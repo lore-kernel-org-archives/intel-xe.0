@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA251D3176C
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 17:30:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD87BD3176E
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 17:30:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 885DC10E5F2;
-	Tue,  5 Nov 2024 17:30:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D52010E5F3;
+	Tue,  5 Nov 2024 17:30:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CTEFNhdG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FHdxzXAx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1D7E10E5F1
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Nov 2024 17:30:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE04E10E5F3
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Nov 2024 17:30:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730827850; x=1762363850;
+ t=1730827851; x=1762363851;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bWksiK+wkSHQu0DvQkvitzy6DASm51FaxkOYbvZp7KM=;
- b=CTEFNhdGX5W7/Dy2dzyfFYBSEzCIiRvL96vkaH1vRTyWc9F5iALVbtOh
- T8kk8e6myuYZNqVmgZnOR9gEPUkgZDt3aUkcC0kWDuBxR8qgXr/DYzkVG
- YhjVApInKRXIZh9mM/KRO+pOnvXvyYaKv73lbbJgxrQEF5xSLWjOhhjUV
- vtmmrrqTLKoysFJyOu6tYXVYiqgK7y8LY09VI1aZdGzgRkdrlE0th1F9f
- 9RKseOo0D9PAvUWzz2JrdXH3CEeAl0nhDo8HwFELP+RKo8dpJz4VttBtJ
- am+7S3iTeOkgKwkIFdbKUiB01Fj4+uJuksEQot7mBxTZAW7uy+hJ0JLOY g==;
-X-CSE-ConnectionGUID: d+igCyR4RI+ytsA2//2v1Q==
-X-CSE-MsgGUID: rH5CaCXiT7yBs1iAGsowHg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11247"; a="48094175"
-X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; d="scan'208";a="48094175"
+ bh=8ZiV3NYzGMB0l1+OwmQhHayN86P+REpBTy6v24TW/LM=;
+ b=FHdxzXAxiqBeljUPT1/q64xpU6KtSPIxfwcLHDLTRoYwhCDL09EaZ5/f
+ 48mPoCNrHjCiFgnjfPqMYP8jB3mIfcVZ+efaitz0uKq3vbBC4rcSbTync
+ lkEv1AyCR62izKCIBnsV4XOuMiwnXacYaITE1FUVGLGmJDKhKoDJdZa0O
+ lblr+b9Nhl7e1DeIH4LYY8FlOJvAUGPoqSxygPCVL85dvC5l0vdBxm8JD
+ PBfs/pVhvd6TjlmKmJsGmbiQJpea1NJaqLibO2LV6G2C0JlPaq2/reoId
+ f2DrZl/xOn5Yg5Drqikx1TXTjvsLSQmA3VwWnWmaopWopvCdGCuN90gNg w==;
+X-CSE-ConnectionGUID: +EfJ9yssRhiKpMEK4Dk/mA==
+X-CSE-MsgGUID: tjLbOEagTiyyjkeVAu/kOg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11247"; a="48094187"
+X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; d="scan'208";a="48094187"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 09:30:49 -0800
-X-CSE-ConnectionGUID: eMYspNecTZGwXBHEu/FHEA==
-X-CSE-MsgGUID: Gb68CST2QzyQI6kOFSOj2Q==
+ 05 Nov 2024 09:30:51 -0800
+X-CSE-ConnectionGUID: YiZT5AabQK6dAjCE6Vna0Q==
+X-CSE-MsgGUID: BItjvGmwQdSzCpYGBhadJA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; d="scan'208";a="114906275"
+X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; d="scan'208";a="114906282"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.120.199])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 09:30:48 -0800
+ 05 Nov 2024 09:30:49 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH 3/4] drm/xe/guc: Don't read data from G2H prior to length check
-Date: Tue,  5 Nov 2024 18:30:31 +0100
-Message-Id: <20241105173032.1947-4-michal.wajdeczko@intel.com>
+Subject: [PATCH 4/4] drm/xe/guc: Don't treat GuC generic CAT error as protocol
+ error
+Date: Tue,  5 Nov 2024 18:30:32 +0100
+Message-Id: <20241105173032.1947-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20241105173032.1947-1-michal.wajdeczko@intel.com>
 References: <20241105173032.1947-1-michal.wajdeczko@intel.com>
@@ -67,77 +68,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While highly unlikely, incoming G2H message might be too short
-so we shouldn't read any data from it prior to checking a length.
+GuC uses GUC_ID_MAX if it can not map the CAT fault to any PF/VF
+context. We shouldn't treat that as G2H protocol error that would
+justify a GT reset, as it may happen due to some VF activity.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 18 +++++++++++++-----
- 1 file changed, 13 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 4481890be941..147000fd1177 100644
+index 147000fd1177..696f8884040a 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1885,12 +1885,14 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
- int xe_guc_sched_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
- {
- 	struct xe_exec_queue *q;
--	u32 guc_id = msg[0];
--	u32 runnable_state = msg[1];
-+	u32 guc_id, runnable_state;
+@@ -2023,6 +2023,15 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
  
- 	if (unlikely(len < 2))
- 		return -EPROTO;
+ 	guc_id = msg[0];
  
-+	guc_id = msg[0];
-+	runnable_state = msg[1];
-+
- 	q = g2h_exec_queue_lookup(guc, guc_id);
- 	if (unlikely(!q))
- 		return -EPROTO;
-@@ -1924,11 +1926,13 @@ static void handle_deregister_done(struct xe_guc *guc, struct xe_exec_queue *q)
- int xe_guc_deregister_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
- {
- 	struct xe_exec_queue *q;
--	u32 guc_id = msg[0];
-+	u32 guc_id;
- 
- 	if (unlikely(len < 1))
- 		return -EPROTO;
- 
-+	guc_id = msg[0];
-+
- 	q = g2h_exec_queue_lookup(guc, guc_id);
- 	if (unlikely(!q))
- 		return -EPROTO;
-@@ -1950,11 +1954,13 @@ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
- {
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	struct xe_exec_queue *q;
--	u32 guc_id = msg[0];
-+	u32 guc_id;
- 
- 	if (unlikely(len < 1))
- 		return -EPROTO;
- 
-+	guc_id = msg[0];
-+
- 	q = g2h_exec_queue_lookup(guc, guc_id);
- 	if (unlikely(!q))
- 		return -EPROTO;
-@@ -2010,11 +2016,13 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
- {
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	struct xe_exec_queue *q;
--	u32 guc_id = msg[0];
-+	u32 guc_id;
- 
- 	if (unlikely(len < 1))
- 		return -EPROTO;
- 
-+	guc_id = msg[0];
++	if (guc_id == GUC_ID_MAX) {
++		/*
++		 * GuC uses GUC_ID_MAX if it can not map the CAT fault to any PF/VF
++		 * context. Only PF will be notified about that.
++		 */
++		xe_gt_err_ratelimited(gt, "Memory CAT error reported by GuC!\n");
++		return 0;
++	}
 +
  	q = g2h_exec_queue_lookup(guc, guc_id);
  	if (unlikely(!q))
