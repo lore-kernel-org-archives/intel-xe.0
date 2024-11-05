@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90779D1266B
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 09:24:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8F0DD12663
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 09:24:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C95F10E549;
-	Tue,  5 Nov 2024 09:24:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7799410E54A;
+	Tue,  5 Nov 2024 09:24:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hmXTH/sC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PR1RtZJb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45E4610E548
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Nov 2024 09:24:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7093310E54A
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Nov 2024 09:24:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730798668; x=1762334668;
+ t=1730798670; x=1762334670;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gUMtUHB2n+tF3iAVd4nPsLX+Wn791jWiKYvz2KjeKqo=;
- b=hmXTH/sCZgMu3UxV3iaKtAdNMmTueQfF6OJQ7kEQK11sxVKQuGYG69jC
- KbEfc1fLMTNyJvt1mtx7W6SM5xyBIvaFVnemkKTUxg7VTS9/ZzZ2hgHuE
- u03NagAoFPlrjNMRF794B6Ix/yES3W2sJ1Kmuofyzk5MDCLQhcF8FaDO6
- Ob9km7FNyJOFSuy3/uehKgW3iEa39dAri1rhHp05WU4OJyTasJ352HrAO
- OVgDNrSmB15Me/Oznp+bKbjsjUdsi95M4Q+KwvJozIaoTwOs+DWsHiH3F
- 1K0iINyq9rzBtp/zWxjQOV/TUJTLdnJ7ZZazUfT5t6ysaQt1JsAN9TDtl Q==;
-X-CSE-ConnectionGUID: pK2JlDnmTtOk43xYh2C4Ng==
-X-CSE-MsgGUID: 7cvl/k3YQsawZdKzq26yEg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="41905289"
-X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="41905289"
+ bh=p7au9wTx9WNrbi8ICZVY27CdsKS/nv5PxvixA4Gv+RA=;
+ b=PR1RtZJbbhHmzMOfWMGYC9/ympEkrqLP+97eXYnn8S9EwIVp8kWEcIKx
+ gId59yYGaN0JM2Gm7gHl7fUOszOA8ZdseLXlY9bOoBVGaxUIa8U2LalWR
+ Mq4xMl3fvrOt4h7kG+fEDrkZA1QZgudap++hNMHYEGKPf1659lOh5ryFU
+ ICQthD11PwIIBBasDVTdzw5oSGjzvsqOwZK9K4T8Pz7yXjeHVFCvkWLuw
+ gj+hxLBF+GVLuOBoI4jWFrD0SKnc7XuTV3N5GC5rx8J+YicenJjmuzFkI
+ HE3An1K8hvrJNFVEMfaf4Z9y69u7BInDvNGJMINzVYUIAR/42NPSOxdI8 g==;
+X-CSE-ConnectionGUID: 0Xq+81HqS0u5TmXAFb1+/w==
+X-CSE-MsgGUID: SFSNGqstT3GSakYeUiAQbg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="41905293"
+X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="41905293"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 01:24:28 -0800
-X-CSE-ConnectionGUID: YYHooZ/TSKmEsLbazahlig==
-X-CSE-MsgGUID: svkU4MahQNizk2yTYqX6xQ==
+ 05 Nov 2024 01:24:30 -0800
+X-CSE-ConnectionGUID: hFa6cIYYTyG4pRHjBxt9eg==
+X-CSE-MsgGUID: CNFwt6KgQ66sKM9sDtdV8g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="84058684"
+X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="84058718"
 Received: from ilevi-mobl.ger.corp.intel.com (HELO ilevi-mobl.intel.com)
  ([10.245.160.90])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 01:24:27 -0800
+ 05 Nov 2024 01:24:29 -0800
 From: Ilia Levi <ilia.levi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: ilia.levi@intel.com, niranjana.vishwanathapura@intel.com,
- koby.elbaz@intel.com, yaron.avizrat@intel.com
-Subject: [PATCH v2 2/3] drm/xe: Manage MSI-X interrupts allocation
-Date: Tue,  5 Nov 2024 11:24:11 +0200
-Message-Id: <20241105092412.11871-3-ilia.levi@intel.com>
+ koby.elbaz@intel.com, yaron.avizrat@intel.com,
+ Dani Liberman <dliberman@habana.ai>
+Subject: [PATCH v2 3/3] drm/xe/uapi: Support requesting unique MSI-X for exec
+ queue
+Date: Tue,  5 Nov 2024 11:24:12 +0200
+Message-Id: <20241105092412.11871-4-ilia.levi@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241105092412.11871-1-ilia.levi@intel.com>
 References: <20241105092412.11871-1-ilia.levi@intel.com>
@@ -68,204 +70,240 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose functions to request and free MSI-X interrupts.
+From: Dani Liberman <dliberman@habana.ai>
 
-The request has two flavors:
-- Static MSI-X allocation, for known MSI-X interrupts (e.g. GuC-to-host)
-- Dynamic MSI-X allocation, which uses the next available MSI-X interrupt
+Unique MSI-X per exec queue will improve the performance of the
+IRQ handler. In case no MSI-X is available, the uAPI will return
+-EBUSY error and the user would be able to execute the uAPI again
+without the flag (fallback to default MSI-X).
 
-Signed-off-by: Ilia Levi <ilia.levi@intel.com>
+Co-authored-by: Ilia Levi <ilia.levi@intel.com>
+Signed-off-by: Dani Liberman <dliberman@habana.ai>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  2 +
- drivers/gpu/drm/xe/xe_irq_msix.c     | 90 ++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_irq_msix.h     |  5 ++
- 3 files changed, 80 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 58 ++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 +
+ drivers/gpu/drm/xe/xe_irq_msix.c         | 26 +++++++++++
+ drivers/gpu/drm/xe/xe_irq_msix.h         |  1 +
+ include/uapi/drm/xe_drm.h                |  8 +++-
+ 5 files changed, 89 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 8237bb1474c6..c7a695741feb 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -355,6 +355,8 @@ struct xe_device {
- 			u16 num_of_interrupts;
- 			/** @irq.msix.default_msix: Default MSI-X vector */
- 			u16 default_msix;
-+			/** @irq.msix.indexes: used to allocate MSI-X indexes */
-+			struct xarray indexes;
- 		} msix;
- 	} irq;
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 73d71acd6c7d..184131184dda 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -12,10 +12,12 @@
+ #include <uapi/drm/xe_drm.h>
  
-diff --git a/drivers/gpu/drm/xe/xe_irq_msix.c b/drivers/gpu/drm/xe/xe_irq_msix.c
-index dac339ba5ed2..f873bcfe5283 100644
---- a/drivers/gpu/drm/xe/xe_irq_msix.c
-+++ b/drivers/gpu/drm/xe/xe_irq_msix.c
-@@ -24,6 +24,7 @@ void xe_irq_msix_init(struct xe_device *xe, int nvec)
- 	xe->irq.msix.enabled = true;
- 	xe->irq.msix.num_of_interrupts = nvec;
- 	xe->irq.msix.default_msix = DEFAULT_MSIX;
-+	xa_init_flags(&xe->irq.msix.indexes, XA_FLAGS_ALLOC);
- }
+ #include "xe_device.h"
++#include "xe_drv.h"
+ #include "xe_gt.h"
+ #include "xe_hw_engine_class_sysfs.h"
+ #include "xe_hw_engine_group.h"
+ #include "xe_hw_fence.h"
++#include "xe_irq_msix.h"
+ #include "xe_lrc.h"
+ #include "xe_macros.h"
+ #include "xe_migrate.h"
+@@ -34,8 +36,46 @@ enum xe_exec_queue_sched_prop {
+ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue *q,
+ 				      u64 extensions, int ext_number);
  
- static irqreturn_t guc2host_irq_handler(int irq, void *arg)
-@@ -66,8 +67,32 @@ static irqreturn_t xe_irq_msix_default_hwe_handler(int irq, void *arg)
- 	return IRQ_HANDLED;
- }
- 
--static int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler,
--				   const char *name, u16 msix)
-+static int xe_irq_msix_alloc_vector(struct xe_device *xe, void *irq_buf,
-+				    bool dynamic_msix, u16 *msix)
++static int xe_exec_queue_msix_init(struct xe_device *xe, struct xe_exec_queue *q, bool unique_msix)
 +{
-+	struct xa_limit limit;
-+	int ret;
-+	u32 id;
++	u16 msix;
++	int ret = 0;
 +
-+	limit = (dynamic_msix) ? XA_LIMIT(NUM_OF_STATIC_MSIX, xe->irq.msix.num_of_interrupts - 1) :
-+				 XA_LIMIT(*msix, *msix);
-+	ret = xa_alloc(&xe->irq.msix.indexes, &id, irq_buf, limit, GFP_KERNEL);
-+	if (ret)
-+		return ret;
++	if (!xe_device_has_msix(xe))
++		return 0;
 +
-+	if (dynamic_msix)
-+		*msix = id;
++	if (!unique_msix) {
++		q->msix = xe->irq.msix.default_msix;
++		return 0;
++	}
 +
-+	return 0;
-+}
-+
-+static void xe_irq_msix_release_vector(struct xe_device *xe, u16 msix)
-+{
-+	xa_erase(&xe->irq.msix.indexes, msix);
-+}
-+
-+static int xe_irq_msix_request_irq_internal(struct xe_device *xe, irq_handler_t handler,
-+					    void *irq_buf, const char *name, u16 msix)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	int ret, irq;
-@@ -76,17 +101,41 @@ static int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler,
- 	if (irq < 0)
- 		return irq;
- 
--	ret = request_irq(irq, handler, IRQF_SHARED, name, xe);
-+	ret = request_irq(irq, handler, IRQF_SHARED, name, irq_buf);
- 	if (ret < 0)
- 		return ret;
- 
- 	return 0;
- }
- 
--static void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix)
-+int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler, void *irq_buf,
-+			    const char *name, bool dynamic_msix, u16 *msix)
-+{
-+	int ret;
-+
-+	ret = xe_irq_msix_alloc_vector(xe, irq_buf, dynamic_msix, msix);
-+	if (ret)
-+		return ret;
-+
-+	ret = xe_irq_msix_request_irq_internal(xe, handler, irq_buf, name, *msix);
-+	if (ret) {
-+		drm_err(&xe->drm, "Failed to request IRQ for MSI-X %u\n", *msix);
-+		xe_irq_msix_release_vector(xe, *msix);
++	ret = xe_irq_msix_request_irq(xe, xe_irq_msix_hwe_handler, q,
++				      DRIVER_NAME "-exec-queue", true, &msix);
++	if (ret < 0) {
++		drm_dbg(&xe->drm, "Can't allocate unique MSI-X to exec queue (%d)\n", ret);
 +		return ret;
 +	}
 +
++	q->msix = msix;
++
 +	return 0;
 +}
 +
-+void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	int irq;
-+	void *irq_buf;
++static void xe_exec_queue_msix_fini(struct xe_exec_queue *q)
++{
++	struct xe_device *xe = gt_to_xe(q->gt);
 +
-+	irq_buf = xa_load(&xe->irq.msix.indexes, msix);
-+	if (!irq_buf)
++	if (!xe_device_has_msix(xe))
 +		return;
- 
- 	irq = pci_irq_vector(pdev, msix);
- 	if (irq < 0) {
-@@ -94,24 +143,25 @@ static void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix)
- 		return;
- 	}
- 
--	free_irq(irq, xe);
-+	free_irq(irq, irq_buf);
-+	xe_irq_msix_release_vector(xe, msix);
- }
- 
- int xe_irq_msix_request(struct xe_device *xe)
- {
- 	int err;
-+	u16 msix;
- 
--	err = xe_irq_msix_request_irq(xe, guc2host_irq_handler,
--				      DRIVER_NAME "-guc2host", GUC2HOST_MSIX);
--	if (err) {
--		drm_err(&xe->drm, "Failed to request MSI-X IRQ %d: %d\n", GUC2HOST_MSIX, err);
-+	msix = GUC2HOST_MSIX;
-+	err = xe_irq_msix_request_irq(xe, guc2host_irq_handler, xe,
-+				      DRIVER_NAME "-guc2host", false, &msix);
-+	if (err)
- 		return err;
--	}
- 
--	err = xe_irq_msix_request_irq(xe, xe_irq_msix_default_hwe_handler,
--				      DRIVER_NAME "-default-msix", DEFAULT_MSIX);
-+	msix = DEFAULT_MSIX;
-+	err = xe_irq_msix_request_irq(xe, xe_irq_msix_default_hwe_handler, xe,
-+				      DRIVER_NAME "-default-msix", false, &msix);
- 	if (err) {
--		drm_err(&xe->drm, "Failed to request MSI-X IRQ %d: %d\n", DEFAULT_MSIX, err);
- 		xe_irq_msix_free_irq(xe, GUC2HOST_MSIX);
- 		return err;
- 	}
-@@ -121,14 +171,20 @@ int xe_irq_msix_request(struct xe_device *xe)
- 
- void xe_irq_msix_free(struct xe_device *xe)
- {
--	xe_irq_msix_free_irq(xe, GUC2HOST_MSIX);
--	xe_irq_msix_free_irq(xe, DEFAULT_MSIX);
-+	unsigned long msix;
-+	u32 *dummy;
 +
-+	xa_for_each(&xe->irq.msix.indexes, msix, dummy)
-+		xe_irq_msix_free_irq(xe, msix);
-+	xa_destroy(&xe->irq.msix.indexes);
- }
- 
- void xe_irq_msix_synchronize_irq(struct xe_device *xe)
++	if (q->msix && q->msix != xe->irq.msix.default_msix)
++		xe_irq_msix_free_irq(xe, q->msix);
++}
++
+ static void __xe_exec_queue_free(struct xe_exec_queue *q)
  {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	unsigned long msix;
-+	u32 *dummy;
++	xe_exec_queue_msix_fini(q);
++
+ 	if (q->vm)
+ 		xe_vm_put(q->vm);
  
--	synchronize_irq(pci_irq_vector(pdev, GUC2HOST_MSIX));
--	synchronize_irq(pci_irq_vector(pdev, DEFAULT_MSIX));
-+	xa_for_each(&xe->irq.msix.indexes, msix, dummy)
-+		synchronize_irq(pci_irq_vector(pdev, msix));
+@@ -68,7 +108,12 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+ 	q->gt = gt;
+ 	q->class = hwe->class;
+ 	q->width = width;
+-	q->msix = xe->irq.msix.default_msix;
++	err = xe_exec_queue_msix_init(xe, q, flags & EXEC_QUEUE_FLAG_UNIQUE_MSIX);
++	if (err) {
++		kfree(q);
++		return ERR_PTR(err);
++	}
++
+ 	q->logical_mask = logical_mask;
+ 	q->fence_irq = &gt->fence_irq[hwe->class];
+ 	q->ring_ops = gt->ring_ops[hwe->class];
+@@ -536,13 +581,13 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 	struct xe_gt *gt;
+ 	struct xe_tile *tile;
+ 	struct xe_exec_queue *q = NULL;
++	u32 flags = 0;
+ 	u32 logical_mask;
+ 	u32 id;
+ 	u32 len;
+ 	int err;
+ 
+-	if (XE_IOCTL_DBG(xe, args->flags) ||
+-	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
++	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+ 	len = args->width * args->num_placements;
+@@ -558,6 +603,9 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, eci[0].gt_id >= xe->info.gt_count))
+ 		return -EINVAL;
+ 
++	if (args->flags & DRM_XE_EXEC_QUEUE_CREATE_FLAG_UNIQUE_INTERRUPT_HINT)
++		flags |= EXEC_QUEUE_FLAG_UNIQUE_MSIX;
++
+ 	if (eci[0].engine_class == DRM_XE_ENGINE_CLASS_VM_BIND) {
+ 		if (XE_IOCTL_DBG(xe, args->width != 1) ||
+ 		    XE_IOCTL_DBG(xe, args->num_placements != 1) ||
+@@ -566,8 +614,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 
+ 		for_each_tile(tile, xe, id) {
+ 			struct xe_exec_queue *new;
+-			u32 flags = EXEC_QUEUE_FLAG_VM;
+ 
++			flags |= EXEC_QUEUE_FLAG_VM;
+ 			if (id)
+ 				flags |= EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD;
+ 
+@@ -614,7 +662,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 		}
+ 
+ 		q = xe_exec_queue_create(xe, vm, logical_mask,
+-					 args->width, hwe, 0,
++					 args->width, hwe, flags,
+ 					 args->extensions);
+ 		up_read(&vm->lock);
+ 		xe_vm_put(vm);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 19fd66d59dd7..047a3fae849f 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -85,6 +85,8 @@ struct xe_exec_queue {
+ #define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(3)
+ /* kernel exec_queue only, set priority to highest level */
+ #define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(4)
++/* queue with unique msix interrupt */
++#define EXEC_QUEUE_FLAG_UNIQUE_MSIX		BIT(5)
+ 
+ 	/**
+ 	 * @flags: flags for this exec queue, should statically setup aside from ban
+diff --git a/drivers/gpu/drm/xe/xe_irq_msix.c b/drivers/gpu/drm/xe/xe_irq_msix.c
+index f873bcfe5283..53d05aafb2a7 100644
+--- a/drivers/gpu/drm/xe/xe_irq_msix.c
++++ b/drivers/gpu/drm/xe/xe_irq_msix.c
+@@ -9,6 +9,7 @@
+ 
+ #include "xe_device.h"
+ #include "xe_drv.h"
++#include "xe_exec_queue_types.h"
+ #include "xe_guc.h"
+ #include "xe_memirq.h"
+ 
+@@ -67,6 +68,23 @@ static irqreturn_t xe_irq_msix_default_hwe_handler(int irq, void *arg)
+ 	return IRQ_HANDLED;
  }
+ 
++/**
++ * xe_irq_msix_hwe_handler - MSI-X IRQ handler for hw engines
++ * @irq: the irq raised
++ * @arg: the exec queue that raised the interrupt
++ *
++ * In MSI-X mode command streamers raise an interrupt only as a result of
++ * MI_USER_INTERRUPT and MI_FLUSH_DW_NOTIFY commands.
++ */
++irqreturn_t xe_irq_msix_hwe_handler(int irq, void *arg)
++{
++	struct xe_exec_queue *q = arg;
++
++	xe_memirq_hwe_handler(&gt_to_tile(q->hwe->gt)->memirq, q->hwe);
++
++	return IRQ_HANDLED;
++}
++
+ static int xe_irq_msix_alloc_vector(struct xe_device *xe, void *irq_buf,
+ 				    bool dynamic_msix, u16 *msix)
+ {
+@@ -133,6 +151,14 @@ void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix)
+ 	int irq;
+ 	void *irq_buf;
+ 
++	/*
++	 * When removing the driver this function can be called twice for each msix that was
++	 * allocated for exec queue. First from irq_uninstall() and then from exec queue free.
++	 * Hence, it is possible that the xarray was already destroyed or the entry was removed.
++	 */
++	if (xa_empty(&xe->irq.msix.indexes))
++		return;
++
+ 	irq_buf = xa_load(&xe->irq.msix.indexes, msix);
+ 	if (!irq_buf)
+ 		return;
 diff --git a/drivers/gpu/drm/xe/xe_irq_msix.h b/drivers/gpu/drm/xe/xe_irq_msix.h
-index 9c36d11f05fc..a9c8ce18172e 100644
+index a9c8ce18172e..04619d991b10 100644
 --- a/drivers/gpu/drm/xe/xe_irq_msix.h
 +++ b/drivers/gpu/drm/xe/xe_irq_msix.h
-@@ -6,11 +6,16 @@
- #ifndef _XE_IRQ_MSIX_H_
- #define _XE_IRQ_MSIX_H_
- 
-+#include <linux/interrupt.h>
-+
- struct xe_device;
- 
- void xe_irq_msix_init(struct xe_device *xe, int nvec);
- void xe_irq_msix_free(struct xe_device *xe);
- int xe_irq_msix_request(struct xe_device *xe);
- void xe_irq_msix_synchronize_irq(struct xe_device *xe);
-+int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler, void *irq_buf,
-+			    const char *name, bool dynamic_msix, u16 *msix);
-+void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix);
+@@ -17,5 +17,6 @@ void xe_irq_msix_synchronize_irq(struct xe_device *xe);
+ int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler, void *irq_buf,
+ 			    const char *name, bool dynamic_msix, u16 *msix);
+ void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix);
++irqreturn_t xe_irq_msix_hwe_handler(int irq, void *arg);
  
  #endif
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 4a8a4a63e99c..5f32553b14fb 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1123,7 +1123,13 @@ struct drm_xe_exec_queue_create {
+ 	/** @vm_id: VM to use for this exec queue */
+ 	__u32 vm_id;
+ 
+-	/** @flags: MBZ */
++	/*
++	 * When creating exec queue in MSIX platforms, the user can request a unique MSIX interrupt
++	 * for the irq handler. If there is no available MSIX, -EBUSY will be returned.
++	 */
++#define	DRM_XE_EXEC_QUEUE_CREATE_FLAG_UNIQUE_INTERRUPT_HINT (0x1 << 0)
++
++	/** @flags: create queue flags */
+ 	__u32 flags;
+ 
+ 	/** @exec_queue_id: Returned exec queue ID */
 -- 
 2.43.2
 
