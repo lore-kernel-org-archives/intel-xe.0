@@ -4,165 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33BB4D3610E
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 19:26:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58788D3610E
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 19:30:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0040110E03D;
-	Tue,  5 Nov 2024 19:26:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C4D410E428;
+	Tue,  5 Nov 2024 19:30:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gYJk8OhI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DiOlhwSG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 756D310E03D
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Nov 2024 19:26:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE03210E428
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Nov 2024 19:30:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730834792; x=1762370792;
+ t=1730835024; x=1762371024;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=N6CvKBsQE24wa1LvjNd65PFs/SlQZWqHoBHOhW2yAP4=;
- b=gYJk8OhI+TQRDir9gUsj6Kcb4JoNsqLL6fx8bNTTqlAjI2aayYq0PjXZ
- Pxz1Ck9sgaeSy8lIiRxomwrPw12tU4lX94ulGV9YadRgTsunqIONtRk8l
- fEglQCAwwJ6Nl+yvSLc0kVTtvT7hkvuH0MjBx3o+/Og5BnoMRtAhu1djN
- MUnWsYPflqEX+3TWxxXRxE7Gpg0eLkG3fOoFyraZSImJg6McMEP2mdjFk
- tDZ1DzSr3JT4gBRsIM4wsskl89IvYdgK7xgJ/5jh1ZpwdYBAVLptbM0N3
- YyjGnEDWlnuTyZo6biC1l+53GzsQsgvCMTxHPyYdTmXDEoHUp0ykmdNkL A==;
-X-CSE-ConnectionGUID: bAwBXeY+TTSu8afaHWfJaQ==
-X-CSE-MsgGUID: 0ZfWVwYlQgSyNFGynoelLQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30777355"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30777355"
+ bh=SCjeIVKsJxkZv6aEMc5Vt6WarU7hA/RYqa4BCPDljBg=;
+ b=DiOlhwSG5504ssXX5/zrd53G0SGe8HdP+KmzWo3Pp9qYRhWKHSFZk9Vs
+ aUXlKP7SDpoKfFhDjqvt0BwzuNvagDwsOsh8xJKzUhvm2GOrHMrOgZrrv
+ j8JUq5RPoTn1rfMIgnq2joGTw5WUpvgYlrYp8/m+GB/BhAoBwGss89j2u
+ HcT4TRUm9E44Ji1bJOnJ2Gcgo8r7ay6GmS6EcDa5P6PDV7PZeu2pU+MxN
+ L2hPNOOweOxc9eHSRRyHgGLOLIWheExB3EyCZLlCu+YA3HiLPFGCB+Ep+
+ gnyz9cTe8R+9RsrVtrx0Rp868aUHU3zDEIAmmJdVd8u5J3Ae/2OSKmdpW A==;
+X-CSE-ConnectionGUID: 5J4MQTjfSvKAFaT4nrVlNQ==
+X-CSE-MsgGUID: U3hKe9scRza+mZ2VcQ6NqQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30777875"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30777875"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 11:26:32 -0800
-X-CSE-ConnectionGUID: C6kKJCJFROCVxfxMPEStEQ==
-X-CSE-MsgGUID: 50G75PPqS6eJRKdRtTYfNA==
+ 05 Nov 2024 11:30:24 -0800
+X-CSE-ConnectionGUID: 8a/2aSjhT7CofuiXUtPlyQ==
+X-CSE-MsgGUID: 9Lahu543QhyQVDqCCYkY2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; d="scan'208";a="88088909"
+X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; d="scan'208";a="88090989"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
  by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Nov 2024 11:26:32 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ 05 Nov 2024 11:30:15 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 5 Nov 2024 11:26:31 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ 15.1.2507.39; Tue, 5 Nov 2024 11:30:15 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 5 Nov 2024 11:26:31 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.45) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Tue, 5 Nov 2024 11:30:15 -0800
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.174)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 5 Nov 2024 11:26:29 -0800
+ 15.1.2507.39; Tue, 5 Nov 2024 11:30:15 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=T18R5C9VBdTbcf9ZQ7/aJV4uuW9Omf1bzVdzGAM97RrduiDog1sxvCKpkaHrifgOmAnNU6SNw9JwD2S7FKREyfFgXnNSEHt64O0/hElO89z8sOYrBQY9AXkSmyGHvVfrPq/yE79bFET0TeYEqjX4FXZjhYX++LoCeJbLRRcK6uAB+QbElC+EKDeD9UdsoPZZjlfJDgDqplt6A5g46Fk6xOhN6fL0SC3uAJVZzU5h8Rjje8/2+w5PimctqWidSxX16D6qG8rn0cerKEIlyUdAQCx0RBA05T2KGTxxuORCONrC6wWlD7Iv9AV20uGn9zITF2IbeJtwRWsFaKDtu4m/Yw==
+ b=mpmAmcFBAO7pqss8BuHpXtEojXLKKdOR5VJ0xpmGZXZ5J8tgbBPTP5JFB0w1vuYQnB4cSOk02Y2M6Qm/7mlmfzdOr/J1noX3zFhxZrfb3V+PTdZsCeRxkcaBjTpVI1OEMkSFcrOav5w+eTRvVJKoupIMa6iMVrs540gp79btxE9GVkeRIeMkocMyD4ZAA9WL5HRpoxvtS3LrqTWa5eiddEjrMq7bYYCVowYT5npU4Wdhtioa92oFV0QrNudMvLqsGsMA9tQnHle1ZwnrdUqm9cv8ViWBMLpUdExHGf3kRKJwfyvrKPYXteFwfVrbdzYLRsBbk5kkXX/O418uaVwyVw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7XvuiPg2x1pIvUlQPjjNrzGPSbDWdwDyQj9PYs0ZmH0=;
- b=FidrKi7hN+d9dC585OOOkiFZ57puQeToDdOZBBiv9pXGVdzkecac+Tq0/L8S7PpaDOYjYNkR/Mon7Y9CGuenM0uvsltx0ZuyAEO9kALaSd8zyKBamN9ol6YXI3ubpl6z/UxsGEsXgNO1kxpfspnOEC0G82MZqfwJ7Y+mxqSlQMRghp7EmPk9nINBr71HPE/1KY1fqrAh4aICHCd2JC9rcS4hmZ5m8FlBEOszTZKRpjrMyKm6XUFni+I1l5QHmdr0VjmoXrUBlps9+Qo6ymu0hds8kRafmRUYzpS9bOxSBB5NE4vlxK6SurQITw1supCdvckaC8zVF9jyP45AMFcdYQ==
+ bh=WdxjSFb7U/I4aruHdCqwo4SoIEFGVdmbZVoWy/T6SA8=;
+ b=aJ5g5jC5ZZWOHtEm9eyBnTLs6DZZzv5s6jF3A2y/6EHSY8ID0YwgyIfAeXVzLrILRM4AAsy8gkz3TLBRJ4JoEDtmC9r8EKQTlf7kAaOfRuluhG059ZXt2cBLIsCxLt4GjOHBkRdQTsxjm7gtLLE+IuoydO4puL8kcYah6h4OreQCEfcnjQ5537Dr4/gttz8CKT2IL80+ClfvIvNlDbIykqgTSbXn8y5Y9jMaUIsNU01FimM80udZ/KbwKxIlSMQVaPKnpRLoRtrPBgOPpnp9lK0i6gfZICQr9WIqU3tJ3hCf5kPEo/9ywKgOunHzEQAHFVjX7IwSlrWTva5YjMZTZg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA1PR11MB8254.namprd11.prod.outlook.com (2603:10b6:806:251::9)
+ by CY5PR11MB6534.namprd11.prod.outlook.com (2603:10b6:930:42::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.30; Tue, 5 Nov
- 2024 19:26:19 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.19; Tue, 5 Nov
+ 2024 19:30:13 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.8114.028; Tue, 5 Nov 2024
- 19:26:19 +0000
-Date: Tue, 5 Nov 2024 11:26:50 -0800
+ 19:30:13 +0000
+Date: Tue, 5 Nov 2024 11:30:44 -0800
 From: Matthew Brost <matthew.brost@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-CC: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>,
- <stable@vger.kernel.org>, <ulisses.furquim@intel.com>
-Subject: Re: [PATCH v2] drm/xe: improve hibernation on igpu
-Message-ID: <ZypxenMNvxL17mau@lstrano-desk.jf.intel.com>
-References: <20241101170156.213490-2-matthew.auld@intel.com>
- <o3edyxjyz4fd5n53dmi2hntoacioufr3rqelxpn5mkbp6vvaue@v4nxwlz6gpte>
- <ZyUpAwD3jzlW+hbA@lstrano-desk.jf.intel.com>
- <zwfqm64323vefwfugk3tcjvhz4mnowbz6ekixeyinh5bmeap5k@hts3jqvzmwvj>
- <ZypgCGh/bCP8K7aK@lstrano-desk.jf.intel.com>
- <huirzn2ia4hs372ov7r77awhjun4fpezltrxcwfxgzzz4r3pga@h5jprda4zrir>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 1/4] drm/xe/guc: Log content of the failed G2H message
+Message-ID: <ZypyZAL5m5auJBLw@lstrano-desk.jf.intel.com>
+References: <20241105173032.1947-1-michal.wajdeczko@intel.com>
+ <20241105173032.1947-2-michal.wajdeczko@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <huirzn2ia4hs372ov7r77awhjun4fpezltrxcwfxgzzz4r3pga@h5jprda4zrir>
-X-ClientProxiedBy: BYAPR05CA0094.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::35) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20241105173032.1947-2-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0279.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::14) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA1PR11MB8254:EE_
-X-MS-Office365-Filtering-Correlation-Id: 58c254f7-73ec-423a-a900-08dcfdcfb987
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CY5PR11MB6534:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8f9ff371-5f4b-40d6-25b3-08dcfdd044e5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Lt3QGz7BazM5QfjF2YnKrmFfNDKHJcdre4O9K0gbaRlHkLxbjvyTJCUrDU9X?=
- =?us-ascii?Q?oXDS8q3WtbsIIt+bpd2PvJUHOIYp6LgYuWA6F1j1M6G5aRj9Fq7YiQZ4iqUo?=
- =?us-ascii?Q?YP70anlAS27Vpkl57yQJR0Y6crSmgUfYCkPuR7oQ4YsMCVBf+lBvIFpZGWKp?=
- =?us-ascii?Q?5gioaw9Il//ea+EKogRYhxZZoOUDKTPxhdOGaumv0v5WDZjVDADm26fpQKWO?=
- =?us-ascii?Q?120VATQT1Viq4WDeCNndsHBWOA/sOAQY5pNSUsfsFEJFo8VmivWYLsmnXsB6?=
- =?us-ascii?Q?VNxcn7wNjCYN/3isyuCZiFNTiNj3c8+L5xiH3r6utkZ5LiqSMmYpul0Y/U5O?=
- =?us-ascii?Q?oNvsP0ryCRa0PVx4NbUDFQGxcRVjqvieI8Xy525HYyXgwXqDP4+dnkcvgBo1?=
- =?us-ascii?Q?Cv/2L8V7kyambuZKWNgqGaUExUCGIGwL3dD1XnaRJ7svIHoNYxoIY7hvaS3O?=
- =?us-ascii?Q?NWclU+jgzi/jIXExSNUu3uMvX6tiUSJGOD/GNKBAyrN2ZvTxI9GBtUa1r9B8?=
- =?us-ascii?Q?GuaA6bp90hQQHj7olbM8DJlXdFnh5bGQ18DUKcOK0MocQ5n/4AvtPt5bSnUz?=
- =?us-ascii?Q?n3E4qsc7rPKN2nO2u3ZCjO9MwwDa1j5/Tv+VSgA3TzEK50oEPhJpV9655swK?=
- =?us-ascii?Q?jShT/v2w4w1OxwKSATOcNR1EcFas/HXtvWbK7MS0gTzQMJxnV9VljzQC5G3U?=
- =?us-ascii?Q?M+45HY7AaK6LIEh7N0OjNg0qdyieWwsniJguW6k4qCEMbQPA3BCcvWGwIVVT?=
- =?us-ascii?Q?lgIp5gUf8cbKxgWxigN0HYBMHix4RdyzSGNkf1UUWH7LwT9hNfASYTceCfVB?=
- =?us-ascii?Q?u9zo2K357cCjUdVVG54P0/yBWEPkJyFhp0Ej07KD9oFfYvoHfzNwOyQKawTb?=
- =?us-ascii?Q?uF2TSaIM4ajBR30zIxPICtPEu1OVbnwjxcoaKohQF8sDRfDna3RzGtSj/z+F?=
- =?us-ascii?Q?0uIm8tFHDh5UwRxOm8QeSn9ELp42rzQ5qycse/UcjqcDArRSWn5hEz2uca5g?=
- =?us-ascii?Q?Ot3YBjSMdHlOY0QocJ0u/I3nrsljn0QowgAgfrP+L9qJ9IOD53dsMWSWPkSt?=
- =?us-ascii?Q?8cULb28RZZqNY7v9MPFranXruOR/e9nSgXHNPkE8IMm6I31VaEB6pRxjuk/3?=
- =?us-ascii?Q?ZmejGdpgqNLrHTynVtcGJcsZcPYl5N3Z0Slgw1g38r4WUyuOKQK+px/73ZDG?=
- =?us-ascii?Q?rnk1YtII/ngqMS0t+RBEm1Gzw9BHvGMg1ZFz3R7DnRWKp6cPrgeBzqWMaylP?=
- =?us-ascii?Q?dV4OCMgozvcw1tLhFsA5?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?D1olJRmMJaQlDyBNT3HJym0zNEeu3U7oueR+qBiR3oy0BQBC0BaQlH60d5s9?=
+ =?us-ascii?Q?0UzY0PElGheM3ewlbgQh1vDKCRLpRyJubxSpljopod5JjAEXEavdRc9tYTHu?=
+ =?us-ascii?Q?kJLi8O+2579ZhuPZh3z3HG/xqA+I2tLY5zZQR+Au8xSvj9Qqm0Sf06RR8LL6?=
+ =?us-ascii?Q?Xa+f4FPh4req/nVKJ9EAkxSFirqi1YR5h02i/v4eTPGZxt50gLnuDQT5zaqu?=
+ =?us-ascii?Q?xZIjyrjQWRflzv7av2qMXevL509YhM5pV/z7ZvEGRlYZ5ojX4V+ir64gzqNb?=
+ =?us-ascii?Q?6IrAlae/fqM2sDnJ+wD0Ygf1tPXn7Rp4ieLhCMk61YtORi5URX0zLD98cR6Z?=
+ =?us-ascii?Q?JVYMGssQ7TOVq/PUws/ZhOJc/eNwhe0zDsDFb8MexMcdknmHErv8//1Vf3fP?=
+ =?us-ascii?Q?PN3vKTZazmeHtzp/1092pxWZrVuYe8gZZiyb++hogtEEqtf/0J9gfyiPOi78?=
+ =?us-ascii?Q?FoqADyaTCWRLRwvPazqrEhT+zJz2WdDMCI1m7i3FaShxuVyOGaLxFdyiLdZ6?=
+ =?us-ascii?Q?EClEmHWWf7qZO64Z5gz478/peI8MtVxJrdoJpU/HyiwgdyARkrzAxkVATRaT?=
+ =?us-ascii?Q?gcc/cjiSrSNAc13Mn7GyqaOts8x6qutFjXF7ALnV7HNfNk4JPg0kLwe2BPPJ?=
+ =?us-ascii?Q?i7JOoG011LYHDnkBEspF4gZt9B9WXKA51BpnTElz9h0qBrS5lGmtCSPHBlg4?=
+ =?us-ascii?Q?EvT7oumC38gA5KKolOab/WlpGxWyZQ4AKDjNcqrYU83+ZcYeIPO46FA4ix2v?=
+ =?us-ascii?Q?wH8+eD2eumlvEau+u/zEUSaGGP/UyNKHxMn5FWg9TsFs2ZmOyDWDF1N+BrO4?=
+ =?us-ascii?Q?2yLf08Dvbrfbj3bqApb10T7m2JS1+LKu9fj9E0rN3bynrySOc2IhdGC/Duf/?=
+ =?us-ascii?Q?OxGfgbqpqZcnSeJiCIAqRw4jxWnjXgSH1XAKX/EQpY2vuzabHr9wFQW9SQx2?=
+ =?us-ascii?Q?DoR5MY3yNTf9bEbyK/NwbdnEhiMPEApn1C0tJZK8LHRKmp1vTBGJRRqM6yZ/?=
+ =?us-ascii?Q?6FkEX96L9NS+BWLiP6El/qmChQdnahOuo7XoxLZ56V/LGhF6LO1+X3V2kMeW?=
+ =?us-ascii?Q?clRcpfVZgy57Uq0x4uu8QOKgPWpY69w0IMECaVOOBQyTbBTYxc7Q8nnEQKbC?=
+ =?us-ascii?Q?g7p1WEJBx6WyNOoTfJbc+rsIncCrVX1PegF7KBtoBw4e7Rudbbapde1bA9CH?=
+ =?us-ascii?Q?nuvD2wiDCxqiSGo98L3VvoY7O1+JriP3MV4RQokkoc1mY6S+zzr0Sj0JjWaZ?=
+ =?us-ascii?Q?NWhuEUPrSiNG+oZmWnVImB15R96AaI25DnAFIMxRNaadt1AnTeKC1Lxalgyv?=
+ =?us-ascii?Q?WdMdEAfKi9KlIbtjnHZHkHSA?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QQWPFD5L2iMamawtL+vMIoN9O6Ch5UF8dGrtqjX17D2XYZO0LNF1sde6Z89K?=
- =?us-ascii?Q?Kmu72coSDo8RHCWeSiHu+icWrgHyf9SpuvvZP/23JcwCD7hmxWVVGSKCfTay?=
- =?us-ascii?Q?iaRCRTiqk+gb6Ma0GbGl1SnrlTArtcBVTrE6GbQirz70VFQEviTMl/luS+BP?=
- =?us-ascii?Q?oDOreLFoGUxJ8EB7CQnk+jRsGZwwQWIsYIYiRUJUTUbqAAid3gSlDnWPg07W?=
- =?us-ascii?Q?ZBHlS/JOhfy8eH8KRdwdkc8fe7Y5/9TgYAdKxljEApeo84uaFBFitsTd5Z2I?=
- =?us-ascii?Q?6wALCiWVonyB3pHb6h4MkCsggZTcqNAll3gFZkh+NmsbQluUp6cywouFqcx+?=
- =?us-ascii?Q?mIdm0SVOZQrbDg7KNAwljuTR5Hu1VpGKjin0Wh9ESDpoTkgqHDS2DJtWNWo8?=
- =?us-ascii?Q?mcrRCZmwVsjlbDuyvMsw7UC3TH2jkk/wfmd/O41of16OiHs9nr/7uhQtlVSP?=
- =?us-ascii?Q?Yn25M7+Th6XEcQ9rKoDHKTsqRpU9AfmF8WAHrV/YD172RAp4WDVV/rPJpfAq?=
- =?us-ascii?Q?v53CSpI5+8WSQrtgHThCEpO5hB+nZ1TZ4eTmCWiDSK0TKQ0u/r+uH+9lVrGk?=
- =?us-ascii?Q?kR5Rc5CwhJ0VueAh1xsTnVd9SzaGxGkcvnOVFFy3p2vogP6wqxLQAKG/zuHP?=
- =?us-ascii?Q?v9DpMv08X+aM5GdDzo6/lDMVNtRLFGoRED51BoUmUIm4zYJs+oyAvv/frl83?=
- =?us-ascii?Q?ANwYovKkAJZEdvzBPoTzSv1e1MEk1IJ1jeeS9n+j9GN6hgPqdVtG/GwufSGF?=
- =?us-ascii?Q?75j8M98lo9lO5W8MnKPP8Dua6zasL2lRpRrw0TOuDd82pGd6+yFACZKLEyDB?=
- =?us-ascii?Q?Ns13xowbNLAKwZ88jLfDsltdwxjjWgfELHOMXz/P30Xj5a9bJm5ykrhiLa9q?=
- =?us-ascii?Q?cLOtWXNdNIZcG4gHzeE8aT6kwB6976jONza/12EZTFLHDQUsfhqDKmwGJADB?=
- =?us-ascii?Q?73/yhB+1nlkoTqMk5bKgRaVffd2pewwrlFJ4h4jA3orAFiXRJtyqipGbnAY7?=
- =?us-ascii?Q?AWh1JTPIN0wA+Ep4CrwOhL4/HAyo0G4GEYLJpevjQTWKrezWT5yB2uC9BFU+?=
- =?us-ascii?Q?V1qfNnoU5SkNS2x6uKhNivqRHYrc0lA3C1xyrb2CJkOKU4WWCcx4pOQsXDB8?=
- =?us-ascii?Q?xzj9TUALo5XTpqEW9AHABPvzLrQL3dH0pLyiz6nC38M46F3cJcsbHLw0QEFY?=
- =?us-ascii?Q?HUEras4T9oZ4NOaD/V058e+O+GwCoxOWscvbPTKxwnmiQ8MzBGJw3TBc8irY?=
- =?us-ascii?Q?6cjzMn/HDu1BSO720PAYOT6pwZ3cyhsnU760d49atDHZCPpwmO8gyhV2/Cbd?=
- =?us-ascii?Q?FMmLQeXuenvhMLsmcTHD4YDwU4W+QNorvNoC4oBHwUxK86Wg5XR8U4OyUH9t?=
- =?us-ascii?Q?1rrKTrkcxtMwA3WLEdejlEVkiG/0pQ7BJ5igMiNYpcSL43QtDEjAhOagAHPf?=
- =?us-ascii?Q?HNA3vSNnqdt3VyCOKqXgWBqJPE/Y4WkLfSJKgz6M+grZxszjPgwLe5dxViGC?=
- =?us-ascii?Q?Ctga8er43BicSQUBVmWJMu0dNK+VOEVRM9gvMnPpwRxlXPypOzURthQ7I9CU?=
- =?us-ascii?Q?jM0ImqOLcUWEx6A5Grd/g/Yuk52Af3WpyUHr0w2L/NvWUr8c7d9gsDPWwsSE?=
- =?us-ascii?Q?xQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 58c254f7-73ec-423a-a900-08dcfdcfb987
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LjpnM69K43/TxzCNBVtd8DI4FlVoG4cTFtzPev7uiziy3qSp8LcGxWEBIbY/?=
+ =?us-ascii?Q?hzvBejo7+wGJcy5YA6w7lIg7XPU2brZyJkx3vEJhZZAw8KcohE74vX4vKPXM?=
+ =?us-ascii?Q?UdFYgTbyLbjiL/4BnwDgO+PlUW7EBOA44Xi6fnbFcXFGvnMnvnFhJfP7a6Bz?=
+ =?us-ascii?Q?oLLDjSLgBd0uYqFPhM6SbPhh8ZjyJ+vWx2XY3ReVZ7PA8go57xe2Ah/VpT9Z?=
+ =?us-ascii?Q?1dxkPG5Bfve8YuTjN5O7nFtz/zqWQjbbCutsSQdpqlRJm1ka0pfeH74Euq+E?=
+ =?us-ascii?Q?oinxyPRWupQ/0Am+ROU2FKeq8rU0Bw3/M7vyHlOk5Q3vIYbwgnC5JWQmCzHI?=
+ =?us-ascii?Q?eL64m4bNAkyCvn4aA7K1MTfTrvtLEfPj8y5gROMJMHFEqdrRIrXl58m4RpF3?=
+ =?us-ascii?Q?QuASvXys3kcwePY2Pxp9JCrWCEouLBX/ZSwr7lNOVRyRN3KlYYLk2PQjMTxf?=
+ =?us-ascii?Q?57BlZvFN20hcCIoKQ89yP1aa7LM65899XiyKW5e0KHfDwPP+Y4nFpojQS3VM?=
+ =?us-ascii?Q?1A8J+jkjuduyOhxzly0JmDsUO8gAnBheSlllbfk6JaQKo/nCyLj31kU6ULel?=
+ =?us-ascii?Q?0FcmD+H6badSTq21nEGFIZNEInqJGKa7TSkTLCR/iYSCALBBWV1pP+itSyjE?=
+ =?us-ascii?Q?zjUzQjHjX3OAEsykOsKiOeqRP9GyzHmCdpU03gBodZ14ezIORvoZVeaog4Ow?=
+ =?us-ascii?Q?EyoR9y1RHn/JoiLgWcmQ3yYAQSiwBEXMq8E9UryubVoU5JdPnkbL5EhAIOtG?=
+ =?us-ascii?Q?Z4tqwoexS9Sr86uL1oVMY6FjyztbCasaRFvAF1Yuj/MKT4n5D9xA74lZc/dl?=
+ =?us-ascii?Q?MNQx39CkFfCWnfbtXbZ1HI5g0VPNnQc43Y9118onEatCgFZpEkD4/GCUlgZe?=
+ =?us-ascii?Q?CQDwWWXWmIeklQnpVKIFVJA7nz6GQjK5lLsVhbqa0oSD3eb13bhxwfW+VhAp?=
+ =?us-ascii?Q?IGodGHXuNWPKchHfaI9S/Q2Ngz/u7ecKCnrpfi1uUxGiGO7MlE7SpwsDN8gv?=
+ =?us-ascii?Q?2yyMwUsdSp/RPud8lKSmI07Pzsq1AFsDXAU9aEdNcXrZdJCRzxIpdVu6W5TY?=
+ =?us-ascii?Q?NK8XrcC49l4fVpKOabgFb2Au1hnE4iK05Q5K37ycKRFkiEYLCyQm3Q74Hv46?=
+ =?us-ascii?Q?I7qwxoPZrS88AaCXeqahGBxNHWX4JQHm3HuiNp3bMWIkmXYhDX2MShnqR5Vt?=
+ =?us-ascii?Q?8GOqqYTdRQwDmd/DAbfORN+MlQQAFNFjGp7/qXXyT2NLnss+5tg5BXUvBl9x?=
+ =?us-ascii?Q?Ew5Dx7VfM6qFXDeSmfufSKbhZDJEX0yPH8fQtknZpnVKFQSdCXqugGBSD7HI?=
+ =?us-ascii?Q?PNoKQDmeVXTi/DF7soH3mpowQmGv1LCJNZ5HgwZ87okYOiFDfoXOvXvr3r8n?=
+ =?us-ascii?Q?PvVcMjH8b8z1qT5B9m6/NTNRFc745CHZnFSgGc4fPSdeSsTRGSo8aKPnJ7Fq?=
+ =?us-ascii?Q?NSN77KNpLMRfab7CGS04bocQF9HZ5trdD59KEnbyPV9i26iqo8Z/RWnEtT7s?=
+ =?us-ascii?Q?mC/4jstwQaCIh2pkIs7wg6iyh9LQ+lrOhzQbpKH56k8patIHx91kBNv+zBDi?=
+ =?us-ascii?Q?YFBIrqmWzcPTsh3loNIJbal+2jAHPPp9lb9vwedL+lXVZdr7IdQGOJgG59PP?=
+ =?us-ascii?Q?GQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f9ff371-5f4b-40d6-25b3-08dcfdd044e5
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2024 19:26:19.4705 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2024 19:30:13.1895 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 286ckjlJXkLRQgkhaHdCGzH5Eaom8YEQ196ErokBHLLSd1eLHMUJd6tLAK3hIwECrm0nCsEymwTkzJB4xufM9w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8254
+X-MS-Exchange-CrossTenant-UserPrincipalName: kw7jt62UOm/rIpqnUAiEYrLvTXpOvnTG3wUYVvAGoCOZ/Foq/oQAHd7FlJ1uAZGnwhMVAxBhbAxQ+ktzHg4HVw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6534
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,191 +174,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Nov 05, 2024 at 01:18:27PM -0600, Lucas De Marchi wrote:
-> On Tue, Nov 05, 2024 at 10:12:24AM -0800, Matthew Brost wrote:
-> > On Tue, Nov 05, 2024 at 11:32:37AM -0600, Lucas De Marchi wrote:
-> > > On Fri, Nov 01, 2024 at 12:16:19PM -0700, Matthew Brost wrote:
-> > > > On Fri, Nov 01, 2024 at 12:38:19PM -0500, Lucas De Marchi wrote:
-> > > > > On Fri, Nov 01, 2024 at 05:01:57PM +0000, Matthew Auld wrote:
-> > > > > > The GGTT looks to be stored inside stolen memory on igpu which is not
-> > > > > > treated as normal RAM.  The core kernel skips this memory range when
-> > > > > > creating the hibernation image, therefore when coming back from
-> > > > >
-> > > > > can you add the log for e820 mapping to confirm?
-> > > > >
-> > > > > > hibernation the GGTT programming is lost. This seems to cause issues
-> > > > > > with broken resume where GuC FW fails to load:
-> > > > > >
-> > > > > > [drm] *ERROR* GT0: load failed: status = 0x400000A0, time = 10ms, freq = 1250MHz (req 1300MHz), done = -1
-> > > > > > [drm] *ERROR* GT0: load failed: status: Reset = 0, BootROM = 0x50, UKernel = 0x00, MIA = 0x00, Auth = 0x01
-> > > > > > [drm] *ERROR* GT0: firmware signature verification failed
-> > > > > > [drm] *ERROR* CRITICAL: Xe has declared device 0000:00:02.0 as wedged.
-> > > > >
-> > > > > it seems the message above is cut short. Just above these lines don't
-> > > > > you have a log with __xe_guc_upload? Which means: we actually upload the
-> > > > > firmware again to stolen and it doesn't matter that we lost it when
-> > > > > hibernating.
-> > > > >
-> > > >
-> > > > The image is always uploaded. The upload logic uses a GGTT address to
-> > > > find firmware image in SRAM...
-> > > >
-> > > > See snippet from uc_fw_xfer:
-> > > >
-> > > > 821         /* Set the source address for the uCode */
-> > > > 822         src_offset = uc_fw_ggtt_offset(uc_fw) + uc_fw->css_offset;
-> > > > 823         xe_mmio_write32(mmio, DMA_ADDR_0_LOW, lower_32_bits(src_offset));
-> > > > 824         xe_mmio_write32(mmio, DMA_ADDR_0_HIGH,
-> > > > 825                         upper_32_bits(src_offset) | DMA_ADDRESS_SPACE_GGTT);
-> > > >
-> > > > If the GGTT mappings are in stolen and not restored we will not be
-> > > > uploading the correct data for the image.
-> > > >
-> > > > See the gitlab issue, this has been confirmed to fix a real problem from
-> > > > a customer.
-> > > 
-> > > I don't doubt it fixes it, but the justification here is not making much
-> > > sense.  AFAICS it doesn't really correspond to what the patch is doing.
-> > > 
-> > > >
-> > > > Matt
-> > > >
-> > > > > It'd be good to know the size of the rsa key in the failing scenarios.
-> > > > >
-> > > > > Also it seems this is also reproduced in DG2 and I wonder if it's the
-> > > > > same issue or something different:
-> > > > >
-> > > > > 	[drm:__xe_guc_upload.isra.0 [xe]] GT0: load still in progress, timeouts = 0, freq = 1700MHz (req 2050MHz), status = 0x00000064 [0x32/00]
-> > > > > 	[drm:__xe_guc_upload.isra.0 [xe]] GT0: load still in progress, timeouts = 0, freq = 1700MHz (req 2050MHz), status = 0x00000072 [0x39/00]
-> > > > > 	[drm:__xe_guc_upload.isra.0 [xe]] GT0: load still in progress, timeouts = 0, freq = 1700MHz (req 2050MHz), status = 0x00000086 [0x43/00]
-> > > > > 	[drm] *ERROR* GT0: load failed: status = 0x400000A0, time = 5ms, freq = 1700MHz (req 2050MHz), done = -1
-> > > > > 	[drm] *ERROR* GT0: load failed: status: Reset = 0, BootROM = 0x50, UKernel = 0x00, MIA = 0x00, Auth = 0x01
-> > > > > 	[drm] *ERROR* GT0: firmware signature verification failed
-> > > > >
-> > > > > Cc Ulisses.
-> > > > >
-> > > > > >
-> > > > > > Current GGTT users are kernel internal and tracked as pinned, so it
-> > > > > > should be possible to hook into the existing save/restore logic that we
-> > > > > > use for dgpu, where the actual evict is skipped but on restore we
-> > > > > > importantly restore the GGTT programming.  This has been confirmed to
-> > > > > > fix hibernation on at least ADL and MTL, though likely all igpu
-> > > > > > platforms are affected.
-> > > > > >
-> > > > > > This also means we have a hole in our testing, where the existing s4
-> > > > > > tests only really test the driver hooks, and don't go as far as actually
-> > > > > > rebooting and restoring from the hibernation image and in turn powering
-> > > > > > down RAM (and therefore losing the contents of stolen).
-> > > > >
-> > > > > yeah, the problem is that enabling it to go through the entire sequence
-> > > > > we reproduce all kind of issues in other parts of the kernel and userspace
-> > > > > env leading to flaky tests that are usually red in CI. The most annoying
-> > > > > one is the network not coming back so we mark the test as failure
-> > > > > (actually abort. since we stop running everything).
-> > > > >
-> > > > >
-> > > > > >
-> > > > > > v2 (Brost)
-> > > > > > - Remove extra newline and drop unnecessary parentheses.
-> > > > > >
-> > > > > > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> > > > > > Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3275
-> > > > > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > > > > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > > > > Cc: <stable@vger.kernel.org> # v6.8+
-> > > > > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> > > > > > ---
-> > > > > > drivers/gpu/drm/xe/xe_bo.c       | 37 ++++++++++++++------------------
-> > > > > > drivers/gpu/drm/xe/xe_bo_evict.c |  6 ------
-> > > > > > 2 files changed, 16 insertions(+), 27 deletions(-)
-> > > > > >
-> > > > > > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > index 8286cbc23721..549866da5cd1 100644
-> > > > > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > @@ -952,7 +952,10 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
-> > > > > > 	if (WARN_ON(!xe_bo_is_pinned(bo)))
-> > > > > > 		return -EINVAL;
-> > > > > >
-> > > > > > -	if (WARN_ON(xe_bo_is_vram(bo) || !bo->ttm.ttm))
-> > > > > > +	if (WARN_ON(xe_bo_is_vram(bo)))
-> > > > > > +		return -EINVAL;
-> > > > > > +
-> > > > > > +	if (WARN_ON(!bo->ttm.ttm && !xe_bo_is_stolen(bo)))
-> > > > > > 		return -EINVAL;
-> > > > > >
-> > > > > > 	if (!mem_type_is_vram(place->mem_type))
-> > > > > > @@ -1774,6 +1777,7 @@ int xe_bo_pin_external(struct xe_bo *bo)
-> > > > > >
-> > > > > > int xe_bo_pin(struct xe_bo *bo)
-> > > > > > {
-> > > > > > +	struct ttm_place *place = &bo->placements[0];
-> > > > > > 	struct xe_device *xe = xe_bo_device(bo);
-> > > > > > 	int err;
-> > > > > >
-> > > > > > @@ -1804,8 +1808,6 @@ int xe_bo_pin(struct xe_bo *bo)
-> > > > > > 	 */
-> > > > > > 	if (IS_DGFX(xe) && !(IS_ENABLED(CONFIG_DRM_XE_DEBUG) &&
-> > > > > > 	    bo->flags & XE_BO_FLAG_INTERNAL_TEST)) {
-> > > > > > -		struct ttm_place *place = &(bo->placements[0]);
-> > > > > > -
-> > > > > > 		if (mem_type_is_vram(place->mem_type)) {
-> > > > > > 			xe_assert(xe, place->flags & TTM_PL_FLAG_CONTIGUOUS);
-> > > > > >
-> > > > > > @@ -1813,13 +1815,12 @@ int xe_bo_pin(struct xe_bo *bo)
-> > > > > > 				       vram_region_gpu_offset(bo->ttm.resource)) >> PAGE_SHIFT;
-> > > > > > 			place->lpfn = place->fpfn + (bo->size >> PAGE_SHIFT);
-> > > > > > 		}
-> > > > > > +	}
-> > > > > >
-> > > > > > -		if (mem_type_is_vram(place->mem_type) ||
-> > > > > > -		    bo->flags & XE_BO_FLAG_GGTT) {
-> > > > > > -			spin_lock(&xe->pinned.lock);
-> > > > > > -			list_add_tail(&bo->pinned_link, &xe->pinned.kernel_bo_present);
-> > > > > > -			spin_unlock(&xe->pinned.lock);
-> > > > > > -		}
-> > > > > > +	if (mem_type_is_vram(place->mem_type) || bo->flags & XE_BO_FLAG_GGTT) {
-> > > 
-> > > 
-> > > again... why do you say we are restoring the GGTT itself? this seems
-> > > rather to allow pinning and then restoring anything that has
-> > > the XE_BO_FLAG_GGTT - that's any BO that uses the GGTT, not the GGTT.
-> > > 
-> > 
-> > I think what you are sayings is right - the patch restores every BOs
-> > GGTT mappings rather than restoring the entire contents of the GGTT.
-> > 
-> > This might be a larger problem then as I think the scratch GGTT entries
-> > will not be restored - this is problem for both igpu and dgfx devices.
-> > 
-> > This patch should help but is not complete.
-> > 
-> > I think we need a follow up to either...
-> > 
-> > 1. Setup all scratch pages in the GGTT prior to calling
-> > xe_bo_restore_kernel and use this flow to restore individual BOs GGTTs.
+On Tue, Nov 05, 2024 at 06:30:29PM +0100, Michal Wajdeczko wrote:
+> We are already logging an error once we failed to process a G2H
+> message, but then it's quite hard to extract the content of the
+> broken G2H message from the captured snapshot. Extend our error
+> log with the raw hexdump of the G2H message.
 > 
-> yes, but for BOs already in system memory we don't need this flow - we
-> only need them to be mapped again.
-> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
-Right. xe_bo_restore_pinned short circuits on a BO not being in VRAM. We could
-move that check out into xe_bo_restore_kernel though to avoid grabbing a system
-BOs dma-resv lock though. In either VRAM or system case xe_ggtt_map_bo is
-called.
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-Matt 
-
-> > 
-> > 2. Drop restoring of individual BOs GGTTs entirely and save / restore
-> > the GGTTs contents.
+> ---
+>  drivers/gpu/drm/xe/xe_guc_ct.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> ... if we don't risk adding entries to discarded BOs. As long as the
-> save happens after invalidating the entries, I think it could work.
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 550eeed43903..63bd91963eb1 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -1299,8 +1299,8 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>  	}
+>  
+>  	if (ret) {
+> -		xe_gt_err(gt, "G2H action 0x%04x failed (%pe)\n",
+> -			  action, ERR_PTR(ret));
+> +		xe_gt_err(gt, "G2H action %#04x failed (%pe) len %u msg %*ph\n",
+> +			  action, ERR_PTR(ret), hxg_len, (int)sizeof(u32) * hxg_len, hxg);
+>  		CT_DEAD(ct, NULL, PROCESS_FAILED);
+>  	}
+>  
+> -- 
+> 2.43.0
 > 
-> > 
-> > Does this make sense?
-> 
-> yep, thanks.
-> 
-> Lucas De Marchi
