@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD05DD31769
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 17:38:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC028D3176B
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 17:38:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DF5310E075;
-	Tue,  5 Nov 2024 17:38:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96A2E10E417;
+	Tue,  5 Nov 2024 17:38:43 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42DB710E075;
- Tue,  5 Nov 2024 17:38:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3E0810E417;
+ Tue,  5 Nov 2024 17:38:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_GuC=3A_Improve_handl?=
- =?utf-8?q?ing_of_the_malformed_G2H?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_GuC=3A_Improve_handling_o?=
+ =?utf-8?q?f_the_malformed_G2H?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 05 Nov 2024 17:38:31 -0000
-Message-ID: <173082831126.1412890.13359846139392189269@2413ebb6fbb6>
+Date: Tue, 05 Nov 2024 17:38:42 -0000
+Message-ID: <173082832273.1412890.2267332513681799283@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241105173032.1947-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20241105173032.1947-1-michal.wajdeczko@intel.com>
@@ -48,12 +48,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: b925cb281e79 drm-tip: 2024y-11m-05d-14h-00m-11s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc: Log content of the failed G2H message
-Applying: drm/xe/guc: Drop redundant logs about invalid G2H length
-Applying: drm/xe/guc: Don't read data from G2H prior to length check
-Applying: drm/xe/guc: Don't treat GuC generic CAT error as protocol error
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit dd8d29addab2a9e993d2d35236888f12f9e2d96c
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Tue Nov 5 18:30:32 2024 +0100
+
+    drm/xe/guc: Don't treat GuC generic CAT error as protocol error
+    
+    GuC uses GUC_ID_MAX if it can not map the CAT fault to any PF/VF
+    context. We shouldn't treat that as G2H protocol error that would
+    justify a GT reset, as it may happen due to some VF activity.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch b925cb281e79b763990ed64267ef82a87ace5060 drm-intel
+8ea263d76f85 drm/xe/guc: Log content of the failed G2H message
+ef569ffe3403 drm/xe/guc: Drop redundant logs about invalid G2H length
+31059625466c drm/xe/guc: Don't read data from G2H prior to length check
+dd8d29addab2 drm/xe/guc: Don't treat GuC generic CAT error as protocol error
 
 
