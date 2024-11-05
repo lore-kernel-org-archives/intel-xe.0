@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E839D2C122
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 15:10:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABDCCD2C122
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 15:16:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB9010E5CD;
-	Tue,  5 Nov 2024 15:10:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7713910E5C7;
+	Tue,  5 Nov 2024 15:16:12 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18F6710E5CD;
- Tue,  5 Nov 2024 15:10:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5084011639742616621=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 776C310E5C7;
+ Tue,  5 Nov 2024 15:16:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915/dmc=3A_Test_Xe2LPD_DMC_?=
- =?utf-8?q?v2=2E23?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5B1/9=5D_drm/xe=3A_Remove_double_pageflip?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 05 Nov 2024 15:10:51 -0000
-Message-ID: <173081945109.1412775.7032593933001980167@2413ebb6fbb6>
+Date: Tue, 05 Nov 2024 15:16:10 -0000
+Message-ID: <173081977048.1412794.17629772252672098935@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20241105120159.18286-1-gustavo.sousa@intel.com>
-In-Reply-To: <20241105120159.18286-1-gustavo.sousa@intel.com>
+References: <20241105121857.17389-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20241105121857.17389-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,125 +40,25 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5084011639742616621==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dmc: Test Xe2LPD DMC v2.23
-URL   : https://patchwork.freedesktop.org/series/140943/
+Series: series starting with [1/9] drm/xe: Remove double pageflip
+URL   : https://patchwork.freedesktop.org/series/140944/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2167-0f5cd39d188cbedacf9e764749b65a328d33c8ea_BAT -> xe-pw-140943v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140943v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-adlp-7:         [PASS][1] -> [INCOMPLETE][2] ([Intel XE#2874]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2167-0f5cd39d188cbedacf9e764749b65a328d33c8ea/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140943v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-    - bat-dg2-oem2:       [PASS][3] -> [INCOMPLETE][4] ([Intel XE#2874]) +1 other test incomplete
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2167-0f5cd39d188cbedacf9e764749b65a328d33c8ea/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140943v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: b925cb281e79 drm-tip: 2024y-11m-05d-14h-00m-11s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Remove double pageflip
+Applying: drm/xe/display: Add intel_plane_initial_vblank_wait
+Applying: drm/xe: Move suballocator init to after display init
+Applying: drm/xe: Defer irq init until after xe_display_init_noaccel
+Applying: drm/xe/display: Use a single early init call for display
+Applying: drm/xe/sriov: Move VF bootstrap and query_config to vf_guc_init
+Applying: drm/xe: Simplify GuC early initialisation
+Applying: drm/xe: Make it possible to read instance0 MCR registers after xe_gt_mcr_init_early
+Applying: drm/xe: Split init of xe_gt_init_hwconfig to xe_gt_init and *_early
 
 
-Build changes
--------------
-
-  * Linux: xe-2167-0f5cd39d188cbedacf9e764749b65a328d33c8ea -> xe-pw-140943v1
-
-  IGT_8097: 2e7c8e4b88a50e33e10d6c13286818aa833bef9b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2167-0f5cd39d188cbedacf9e764749b65a328d33c8ea: 0f5cd39d188cbedacf9e764749b65a328d33c8ea
-  xe-pw-140943v1: 140943v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140943v1/index.html
-
---===============5084011639742616621==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc: Test Xe2LPD DMC v2.23</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140943/">https://patchwork.freedesktop.org/series/140943/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140943v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140943v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2167-0f5cd39d188cbedacf9e764749b65a328d33c8ea_BAT -&gt; xe-pw-140943v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140943v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2167-0f5cd39d188cbedacf9e764749b65a328d33c8ea/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140943v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2167-0f5cd39d188cbedacf9e764749b65a328d33c8ea/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140943v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2167-0f5cd39d188cbedacf9e764749b65a328d33c8ea -&gt; xe-pw-140943v1</li>
-</ul>
-<p>IGT_8097: 2e7c8e4b88a50e33e10d6c13286818aa833bef9b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2167-0f5cd39d188cbedacf9e764749b65a328d33c8ea: 0f5cd39d188cbedacf9e764749b65a328d33c8ea<br />
-  xe-pw-140943v1: 140943v1</p>
-
-</body>
-</html>
-
---===============5084011639742616621==--
