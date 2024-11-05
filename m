@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3A55D12678
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 10:35:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13977D1267E
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 10:35:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6400B10E563;
-	Tue,  5 Nov 2024 10:35:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA20B10E55B;
+	Tue,  5 Nov 2024 10:35:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ur0OB39N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dmFSLnPp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33B4610E560;
- Tue,  5 Nov 2024 10:35:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 997EC10E564;
+ Tue,  5 Nov 2024 10:35:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730802952; x=1762338952;
+ t=1730802956; x=1762338956;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8ESq4mYykNb0DeLm888sERR1Q/fQHBVC0gwPwZpznb4=;
- b=Ur0OB39NS6/UTqSJmpMyFsVQ0XCgCFNH1cKnmk5uMtltne7BztNJAUo5
- geaPtU9J/Krh6D7NkTPUhNjs7hVUU+8myrMt2lFu+Qel9n+HFcx00Gg13
- A9rg8dELhPUNFSXnEgRLyQ4anGIzYpJHDDFA6vNejrQt5PXqNfJaU1wGc
- nXSsXncwmKqpgCoKPVVptFsTXV/lBnFG77iNbgqvavSz5nH51nhOqTmL+
- Zyh7YmVcNkpmCsOAs2MAebAFP8VaiIJVZAi5+vxVk/ubtoRdkVmcf5EEY
- QZ6WUc/bcgupgF0Ya5Ga7evbUS/NSkQ2tTrWrx85nEdErBAFYHfho6kgd Q==;
-X-CSE-ConnectionGUID: 0/lwCgfKRDSdQntskhI7cg==
-X-CSE-MsgGUID: vYACH5N0RyOC5LSQ6c+rBA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="34230843"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="34230843"
+ bh=oCgS8k7/uxaQcuWl5W5YeVYEW2EcGG8QYH537cMXFq4=;
+ b=dmFSLnPpSfbhdBSbBTvSA+ctC9gmnHTXeefkKliiCcYg0dxqeAjjLUI4
+ Q47hnjvHpgWrKU/35rTkFgKi/T9YCLk2BfHis6KfpPc151+rvZoxdD/uP
+ 0uyZFyvfX2O45Sot+ebR+A98MPLYgbsghu1fR5IYFNBBIchiob0qiLbKh
+ HUEnyb1yeRHu0NMTKA80q8ceBwF7eTkBKT+gkciERO7053+al9or4y3GO
+ tnRaJafQTvF00evkL/CuA6cNU04xZRqGIcZOiJeh1IfEP8qG8lrqmDRqW
+ hpCyyrlCFQ+TfFYfODOjODBhRcFOcBhi43klxWYt4/d/wVg2cH2XMTzKD A==;
+X-CSE-ConnectionGUID: +VrqQ7SHSPy9VAiZ0jWbdg==
+X-CSE-MsgGUID: qANx2wkBSOa/Yl2UngiU7g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="34230856"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="34230856"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 02:35:52 -0800
-X-CSE-ConnectionGUID: jwK4J2SNReqs1bukIZN8BA==
-X-CSE-MsgGUID: n/g9Km0CTUq8ixVAaNdvuw==
+ 05 Nov 2024 02:35:56 -0800
+X-CSE-ConnectionGUID: 4kqE3FhDTUy9SdPcbFaklA==
+X-CSE-MsgGUID: 5TF/mbYOR8GzE+pllpstVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="83485556"
+X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="83485581"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa006.fm.intel.com with ESMTP; 05 Nov 2024 02:35:50 -0800
+ by fmviesa006.fm.intel.com with ESMTP; 05 Nov 2024 02:35:54 -0800
 From: Arun R Murthy <arun.r.murthy@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH 2/4] drm/i915/fb: Add async field to the modifiers description
-Date: Tue,  5 Nov 2024 15:56:06 +0530
-Message-Id: <20241105102608.3912133-3-arun.r.murthy@intel.com>
+Subject: [PATCH 4/4] drm/i915/display: Add async supported formats/modifiers
+Date: Tue,  5 Nov 2024 15:56:08 +0530
+Message-Id: <20241105102608.3912133-5-arun.r.murthy@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241105102608.3912133-1-arun.r.murthy@intel.com>
 References: <20241105102608.3912133-1-arun.r.murthy@intel.com>
@@ -66,103 +66,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Few of the modifiers are not supported with async flip. Add an element
-async_flip to say if the modifier supports asynchronous flips.
+Add the formats/modifiers supported by asynchronous flips by the
+platform based on the plane capabilities.
 
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ .../drm/i915/display/skl_universal_plane.c    | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 6a7060889f40..f05e0c444618 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -231,6 +231,7 @@ struct intel_modifier_desc {
- 		u8 packed_aux_planes:4;
- 		u8 planar_aux_planes:4;
- 	} ccs;
-+	bool async_flip;
- };
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 54cf2c9374cb..bead0c01af10 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -27,6 +27,18 @@
+ #include "skl_watermark.h"
+ #include "pxp/intel_pxp.h"
  
- #define INTEL_PLANE_CAP_CCS_MASK	(INTEL_PLANE_CAP_CCS_RC | \
-@@ -247,10 +248,12 @@ static const struct intel_modifier_desc intel_modifiers[] = {
- 		.modifier = I915_FORMAT_MOD_4_TILED_LNL_CCS,
- 		.display_ver = { 20, -1 },
- 		.plane_caps = INTEL_PLANE_CAP_TILING_4,
-+		.async_flip = true,
- 	}, {
- 		.modifier = I915_FORMAT_MOD_4_TILED_BMG_CCS,
- 		.display_ver = { 14, -1 },
- 		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_NEED64K_PHYS,
-+		.async_flip = true,
- 	}, {
- 		.modifier = I915_FORMAT_MOD_4_TILED_MTL_MC_CCS,
- 		.display_ver = { 14, 14 },
-@@ -268,6 +271,7 @@ static const struct intel_modifier_desc intel_modifiers[] = {
- 		.ccs.packed_aux_planes = BIT(1),
++static u32 skl_async_plane_formats[] = {
++	DRM_FORMAT_RGB565,
++	DRM_FORMAT_XRGB8888,
++	DRM_FORMAT_XBGR8888,
++	DRM_FORMAT_ARGB8888,
++	DRM_FORMAT_ABGR8888,
++	DRM_FORMAT_XRGB2101010,
++	DRM_FORMAT_XBGR2101010,
++	DRM_FORMAT_XRGB16161616F,
++	DRM_FORMAT_XBGR16161616F,
++};
++
+ static const u32 skl_plane_formats[] = {
+ 	DRM_FORMAT_C8,
+ 	DRM_FORMAT_RGB565,
+@@ -2660,6 +2672,9 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 		formats = skl_get_plane_formats(dev_priv, pipe,
+ 						plane_id, &num_formats);
  
- 		FORMAT_OVERRIDE(gen12_ccs_formats),
-+		.async_flip = true,
- 	}, {
- 		.modifier = I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC,
- 		.display_ver = { 14, 14 },
-@@ -293,10 +297,12 @@ static const struct intel_modifier_desc intel_modifiers[] = {
- 		.modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS,
- 		.display_ver = { 13, 13 },
- 		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC,
-+		.async_flip = true,
- 	}, {
- 		.modifier = I915_FORMAT_MOD_4_TILED,
- 		.display_ver = { 13, -1 },
- 		.plane_caps = INTEL_PLANE_CAP_TILING_4,
-+		.async_flip = true,
- 	}, {
- 		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
- 		.display_ver = { 12, 13 },
-@@ -314,6 +320,7 @@ static const struct intel_modifier_desc intel_modifiers[] = {
- 		.ccs.packed_aux_planes = BIT(1),
++	plane->base.async_format_count = ARRAY_SIZE(skl_async_plane_formats);
++	plane->base.async_format_types = skl_async_plane_formats;
++
+ 	if (DISPLAY_VER(dev_priv) >= 12)
+ 		plane_funcs = &tgl_plane_funcs;
+ 	else if (DISPLAY_VER(dev_priv) == 11)
+@@ -2672,6 +2687,13 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 	else
+ 		plane_type = DRM_PLANE_TYPE_OVERLAY;
  
- 		FORMAT_OVERRIDE(gen12_ccs_formats),
-+		.async_flip = true,
- 	}, {
- 		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
- 		.display_ver = { 12, 13 },
-@@ -331,6 +338,7 @@ static const struct intel_modifier_desc intel_modifiers[] = {
- 		.ccs.packed_aux_planes = BIT(1),
- 
- 		FORMAT_OVERRIDE(skl_ccs_formats),
-+		.async_flip = true,
- 	}, {
- 		.modifier = I915_FORMAT_MOD_Y_TILED_CCS,
- 		.display_ver = { 9, 11 },
-@@ -339,21 +347,26 @@ static const struct intel_modifier_desc intel_modifiers[] = {
- 		.ccs.packed_aux_planes = BIT(1),
- 
- 		FORMAT_OVERRIDE(skl_ccs_formats),
-+		.async_flip = true,
- 	}, {
- 		.modifier = I915_FORMAT_MOD_Yf_TILED,
- 		.display_ver = { 9, 11 },
- 		.plane_caps = INTEL_PLANE_CAP_TILING_Yf,
-+		.async_flip = true,
- 	}, {
- 		.modifier = I915_FORMAT_MOD_Y_TILED,
- 		.display_ver = { 9, 13 },
- 		.plane_caps = INTEL_PLANE_CAP_TILING_Y,
-+		.async_flip = true,
- 	}, {
- 		.modifier = I915_FORMAT_MOD_X_TILED,
- 		.display_ver = { 0, 29 },
- 		.plane_caps = INTEL_PLANE_CAP_TILING_X,
-+		.async_flip = true,
- 	}, {
- 		.modifier = DRM_FORMAT_MOD_LINEAR,
- 		.display_ver = DISPLAY_VER_ALL,
-+		.async_flip = true,
- 	},
- };
- 
++	plane->base.async_modifier_count = intel_fb_plane_get_modifiers_count(dev_priv,
++									      skl_get_plane_caps(dev_priv, pipe, plane_id),
++									      true);
++	plane->base.async_modifiers = intel_fb_plane_get_modifiers(dev_priv,
++								   skl_get_plane_caps(dev_priv, pipe, plane_id),
++								   true);
++
+ 	modifiers = intel_fb_plane_get_modifiers(dev_priv,
+ 						 skl_get_plane_caps(dev_priv, pipe, plane_id),
+ 						 false);
 -- 
 2.25.1
 
