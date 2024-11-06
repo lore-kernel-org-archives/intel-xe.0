@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57996D35E5D
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 01:35:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AE5BD35E5D
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 02:16:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1255510E61C;
-	Wed,  6 Nov 2024 01:35:55 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5E7510E61C;
- Wed,  6 Nov 2024 01:35:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2106616307500076963=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED29E10E657;
+	Wed,  6 Nov 2024 02:16:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bakWtJNE";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F92A10E657
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Nov 2024 02:16:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730859418; x=1762395418;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=5II9AffDj5IHVyExkMqbV1kxYSyachQcCv+oHGM09iA=;
+ b=bakWtJNEWpjSL553ulBEHSW/e1M/Pjy+auA4NKYWtRSdkpogUpncTrW0
+ Up6X+QnC2MnW/4fUoPVzlPP+c6g19OH083JjTp7Q88IpBI7iWHd9VUc5S
+ n3jC5zbgzrJJc9QXY4cnMnCxiHBENolBLy10/mcxCWVFal4KaKDC7hIDM
+ xMWpU+qAIa5GOw7OspkNmn853pfA8yyLhYtz+qTsuyZJNO/W16BhKFwZz
+ /bfS8Yi1ndTIbBnv0NXTHnAtBo18tr0QwIXQKW0tqJwm0FWvO3FNoP+aQ
+ GibYMwLe/IjR2m0CuvGbkdS92xkbIw0xRAnfWc2WEkNys/PixdJGfl6F2 g==;
+X-CSE-ConnectionGUID: ldJLpmoXT4ugX63qpy4/EA==
+X-CSE-MsgGUID: CxdXeTXBQPS65XxZBsz8pQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11247"; a="56037259"
+X-IronPort-AV: E=Sophos;i="6.11,261,1725346800"; d="scan'208";a="56037259"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 18:16:57 -0800
+X-CSE-ConnectionGUID: tUADQlneTg61kzgcm9qIew==
+X-CSE-MsgGUID: QAaHRcSdRdWjGPiwPIjrSQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,261,1725346800"; d="scan'208";a="84403565"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 18:16:57 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com,
+	matthew.auld@intel.com
+Subject: [PATCH 2/2] drm/xe: Clear GGTT in xe_bo_restore_kernel
+Date: Tue,  5 Nov 2024 18:17:25 -0800
+Message-Id: <20241106021725.4156175-2-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241106021725.4156175-1-matthew.brost@intel.com>
+References: <20241106021725.4156175-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/gsc=3A_Improve_SW_proxy_e?=
- =?utf-8?q?rror_checking_and_logging?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 06 Nov 2024 01:35:53 -0000
-Message-ID: <173085695367.1414592.1457030755326106770@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241106002402.486700-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20241106002402.486700-1-daniele.ceraolospurio@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +64,112 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2106616307500076963==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Part of what xe_bo_restore_kernel does, is restore BO's GGTT mappings
+which may have been lost during a power state change. Missing is
+restoring the GGTT entries without BO mappings to a known state (e.g.,
+scratch pages). Update xe_bo_restore_kernel to clear the entire GGTT
+before restoring BO's GGTT mappings.
 
-== Series Details ==
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Cc: <stable@vger.kernel.org> # v6.8+
+---
+ drivers/gpu/drm/xe/xe_bo_evict.c |  6 +++++-
+ drivers/gpu/drm/xe/xe_ggtt.c     | 17 ++++++++++++++---
+ drivers/gpu/drm/xe/xe_ggtt.h     |  2 ++
+ 3 files changed, 21 insertions(+), 4 deletions(-)
 
-Series: drm/xe/gsc: Improve SW proxy error checking and logging
-URL   : https://patchwork.freedesktop.org/series/140968/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
+index b01bc20eb90b..68691e591ef1 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.c
++++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+@@ -112,7 +112,8 @@ int xe_bo_evict_all(struct xe_device *xe)
+  * @xe: xe device
+  *
+  * Move kernel BOs from temporary (typically system) memory to VRAM via CPU. All
+- * moves done via TTM calls.
++ * moves done via TTM calls. All GGTT are restored too, first by clearing GGTT
++ * to known state and then restoring individual BO's GGTT mappings.
+  *
+  * This function should be called early, before trying to init the GT, on device
+  * resume.
+@@ -122,6 +123,9 @@ int xe_bo_restore_kernel(struct xe_device *xe)
+ 	struct xe_bo *bo;
+ 	int ret;
+ 
++	for_each_tile(tile, xe, id)
++		xe_ggtt_clear(tile->mem.ggtt);
++
+ 	spin_lock(&xe->pinned.lock);
+ 	for (;;) {
+ 		bo = list_first_entry_or_null(&xe->pinned.evicted,
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 558fac8bb6fb..1ee57f06f0e8 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -140,7 +140,7 @@ static void xe_ggtt_set_pte_and_flush(struct xe_ggtt *ggtt, u64 addr, u64 pte)
+ 	ggtt_update_access_counter(ggtt);
+ }
+ 
+-static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
++static void __xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+ {
+ 	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[XE_CACHE_WB];
+ 	u64 end = start + size - 1;
+@@ -160,6 +160,17 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+ 	}
+ }
+ 
++/**
++ * xe_ggtt_cleared - GGTT clear
++ * @ggtt: the &xe_ggtt to be cleared
++ *
++ * Clear all GGTT to a known state
++ */
++void xe_ggtt_clear(struct xe_ggtt *ggtt)
++{
++	__xe_ggtt_clear(ggtt, 0, ggtt->size);
++}
++
+ static void ggtt_fini_early(struct drm_device *drm, void *arg)
+ {
+ 	struct xe_ggtt *ggtt = arg;
+@@ -277,7 +288,7 @@ static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
+ 	/* Display may have allocated inside ggtt, so be careful with clearing here */
+ 	mutex_lock(&ggtt->lock);
+ 	drm_mm_for_each_hole(hole, &ggtt->mm, start, end)
+-		xe_ggtt_clear(ggtt, start, end - start);
++		__xe_ggtt_clear(ggtt, start, end - start);
+ 
+ 	xe_ggtt_invalidate(ggtt);
+ 	mutex_unlock(&ggtt->lock);
+@@ -294,7 +305,7 @@ static void ggtt_node_remove(struct xe_ggtt_node *node)
+ 
+ 	mutex_lock(&ggtt->lock);
+ 	if (bound)
+-		xe_ggtt_clear(ggtt, node->base.start, node->base.size);
++		__xe_ggtt_clear(ggtt, node->base.start, node->base.size);
+ 	drm_mm_remove_node(&node->base);
+ 	node->base.size = 0;
+ 	mutex_unlock(&ggtt->lock);
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 27e7d67de004..b7ae440cdebf 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -13,6 +13,8 @@ struct drm_printer;
+ int xe_ggtt_init_early(struct xe_ggtt *ggtt);
+ int xe_ggtt_init(struct xe_ggtt *ggtt);
+ 
++void xe_ggtt_clear(struct xe_ggtt *ggtt);
++
+ struct xe_ggtt_node *xe_ggtt_node_init(struct xe_ggtt *ggtt);
+ void xe_ggtt_node_fini(struct xe_ggtt_node *node);
+ int xe_ggtt_node_insert_balloon(struct xe_ggtt_node *node,
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-2171-0d6c6ff5a48a9e5e77fac405beed73cbc9293151_BAT -> xe-pw-140968v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140968v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-dg2-oem2:       [PASS][1] -> [INCOMPLETE][2] ([Intel XE#2874]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2171-0d6c6ff5a48a9e5e77fac405beed73cbc9293151/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140968v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
-
-
-Build changes
--------------
-
-  * Linux: xe-2171-0d6c6ff5a48a9e5e77fac405beed73cbc9293151 -> xe-pw-140968v1
-
-  IGT_8099: 27be46dee80b6b0de80f9fa3cd9bb5f55edccaf8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2171-0d6c6ff5a48a9e5e77fac405beed73cbc9293151: 0d6c6ff5a48a9e5e77fac405beed73cbc9293151
-  xe-pw-140968v1: 140968v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140968v1/index.html
-
---===============2106616307500076963==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/gsc: Improve SW proxy error checking and logging</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140968/">https://patchwork.freedesktop.org/series/140968/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140968v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140968v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2171-0d6c6ff5a48a9e5e77fac405beed73cbc9293151_BAT -&gt; xe-pw-140968v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140968v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2171-0d6c6ff5a48a9e5e77fac405beed73cbc9293151/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140968v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2171-0d6c6ff5a48a9e5e77fac405beed73cbc9293151 -&gt; xe-pw-140968v1</li>
-</ul>
-<p>IGT_8099: 27be46dee80b6b0de80f9fa3cd9bb5f55edccaf8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2171-0d6c6ff5a48a9e5e77fac405beed73cbc9293151: 0d6c6ff5a48a9e5e77fac405beed73cbc9293151<br />
-  xe-pw-140968v1: 140968v1</p>
-
-</body>
-</html>
-
---===============2106616307500076963==--
