@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E02BD3E78C
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 09:07:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90E1DD3E78C
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 09:07:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C6B010E692;
-	Wed,  6 Nov 2024 09:07:49 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C792510E692;
- Wed,  6 Nov 2024 09:07:48 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59E7A10E0E0;
+	Wed,  6 Nov 2024 09:07:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ePRB69AP";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 745A510E0E0;
+ Wed,  6 Nov 2024 09:07:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730884077; x=1762420077;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=P/C4d8979fGeYGoJ5o7JDkPuRDltcOxOLLz51dlMedY=;
+ b=ePRB69APeulATQ+UikV7NGqxrhGygwmXOziAB3EbSdXdIs/JY9XryL3Z
+ DV6rKUQCkahLjOnGeY59j8aRH9PHs09u86J8+E0ejXRMBoDkTjz56f50I
+ ym9djY7R5fP2eDbZEVu7t49i/d8lO28z1Dar/m0gLb9Iwn3M6dVCEYDGr
+ 29DdkkJpeojhJxJquNlnZu7VyJYvOcpWBd8PxzsjaFovsgG42cCBmJV/X
+ 3k0IfSf1uxMHq7PWbMqBNRtAx9bucvj0lMHz/MDgL+0WlEE27mpYnZzl6
+ RPoUnU777FnyzSzovMS0Dom06Ufj5axxF51mGnYZBQdLP6lRYLcNhlOEo A==;
+X-CSE-ConnectionGUID: zKHh8gUWQ3SWbNPH+ZpgEw==
+X-CSE-MsgGUID: 8OvAxf4XSWev/KCNcd09RQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11247"; a="30555730"
+X-IronPort-AV: E=Sophos;i="6.11,262,1725346800"; d="scan'208";a="30555730"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2024 01:07:56 -0800
+X-CSE-ConnectionGUID: tl0XSs8RSl6d/Tk0Q4Suyg==
+X-CSE-MsgGUID: rHGa52+jTDSd+5LppeerVg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,262,1725346800"; d="scan'208";a="89563262"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.143])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2024 01:07:55 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 02/15] drm/i915/display: convert
+ HAS_D12_PLANE_MINIMIZATION() to struct intel_display
+In-Reply-To: <38ef337723bdb90ce4842fd25bd2e4feea382f55.camel@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1730740629.git.jani.nikula@intel.com>
+ <3f7b119ce893194eb50b652c6e6a9050d0d3c2a9.1730740629.git.jani.nikula@intel.com>
+ <38ef337723bdb90ce4842fd25bd2e4feea382f55.camel@intel.com>
+Date: Wed, 06 Nov 2024 11:07:51 +0200
+Message-ID: <877c9ghgrc.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/psr=3A_Implement?=
- =?utf-8?q?_WA_to_help_reach_PC10_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 06 Nov 2024 09:07:48 -0000
-Message-ID: <173088406881.1415391.17079699141932038428@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241106090058.819840-1-suraj.kandpal@intel.com>
-In-Reply-To: <20241106090058.819840-1-suraj.kandpal@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,63 +67,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 06 Nov 2024, "Govindapillai, Vinod" <vinod.govindapillai@intel.com> wrote:
+> On Mon, 2024-11-04 at 19:19 +0200, Jani Nikula wrote:
+>> Convert HAS_D12_PLANE_MINIMIZATION() to struct intel_display. Do minimal
+>> drive-by conversions to struct intel_display in the callers while at it.
+>>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_display_device.c |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_display_device.h |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_display_irq.c    | 12 +++++++-----
+>>  drivers/gpu/drm/i915/display/skl_universal_plane.c  |  4 +++-
+>>  4 files changed, 12 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c
+>> b/drivers/gpu/drm/i915/display/intel_display_device.c
+>> index 47957384d56d..1e561df02751 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+>> @@ -1687,7 +1687,7 @@ static void __intel_display_device_info_runtime_init(struct drm_i915_private
+>> *i9
+>>                 display_runtime->num_scalers[PIPE_C] = 1;
+>>         }
+>>
+>> -       if (DISPLAY_VER(i915) >= 13 || HAS_D12_PLANE_MINIMIZATION(i915))
+>> +       if (DISPLAY_VER(i915) >= 13 || HAS_D12_PLANE_MINIMIZATION(display))
+> Just want to note that, I guess you intentionally leftout rest of the "i915" in this
+> __intel_display_device_info_runtime_init(). Though all instances of i915 in
+> gen8_de_pipe_fault_mask() are changed to intel_display.
 
-Series: drm/i915/psr: Implement WA to help reach PC10 (rev5)
-URL   : https://patchwork.freedesktop.org/series/139512/
-State : success
+Judgement call. Changing __intel_display_device_info_runtime_init()
+would be a bigger change than everything else in the patch. It's done
+separately in a later patch, and that depends on this
+patch. gen8_de_pipe_fault_mask() has a few references only, so makes
+sense to convert that.
 
-== Summary ==
+> Anyway, doesnt impact any functionalities..
+>
+> Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 01875f8e9f203f18601ee5e6c15496fe709a582e
-Author: Suraj Kandpal <suraj.kandpal@intel.com>
-Date:   Wed Nov 6 14:30:59 2024 +0530
+Thanks.
 
-    drm/i915/psr: Implement WA to help reach PC10
-    
-    To reach PC10 when PKG_C_LATENCY is configure we must do the following
-    things
-    1) Enter PSR1 only when delayed_vblank < 6 lines and DC5 can be entered
-    2) Allow PSR2 deep sleep when DC5 can be entered
-    3) DC5 can be entered when all transocoder have either PSR1, PSR2 or
-    eDP 1.5 PR ALPM enabled and VBI is disabled and flips and pushes are
-    not happening.
-    
-    --v2
-    -Add debug prints
-    
-    --v3
-    -use crtc as variable name for intel_crtc [Jani]
-    -use encoder as variable name for intel_encoder [Jani]
-    -No changes in intel_dp in compute_config_late [Jani]
-    
-    --v4
-    -Remove "check" from naming [Jani]
-    -Remove intel_encoder variable which is not necessary in
-    compute_config_late
-    
-    --v5
-    -Make readable function names [Jani]
-    -No need to duplicate all variables into intel_psr [Jani]
-    -Optimize dpkgc_configured function [Jani]
-    -Use crtc_state only to decide if wa is needed for PSR1 [Jani]
-    
-    WA: 22019444797
-    Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-+ /mt/dim checkpatch e6ccd1b8868ec5bc1569c0dbd0dbbd46148cc541 drm-intel
-01875f8e9f20 drm/i915/psr: Implement WA to help reach PC10
+>
+>>                 for_each_pipe(i915, pipe)
+>>                         display_runtime->num_sprites[pipe] = 4;
+>>         else if (DISPLAY_VER(i915) >= 11)
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h
+>> b/drivers/gpu/drm/i915/display/intel_display_device.h
+>> index 392fbe29e974..e45ba21166d3 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+>> @@ -144,7 +144,7 @@ struct intel_display_platforms {
+>>  #define HAS_CDCLK_CRAWL(i915)          (DISPLAY_INFO(i915)->has_cdclk_crawl)
+>>  #define HAS_CDCLK_SQUASH(i915)         (DISPLAY_INFO(i915)->has_cdclk_squash)
+>>  #define HAS_CUR_FBC(i915)              (!HAS_GMCH(i915) && IS_DISPLAY_VER(i915, 7, 13))
+>> -#define HAS_D12_PLANE_MINIMIZATION(i915) (IS_ROCKETLAKE(i915) || IS_ALDERLAKE_S(i915))
+>> +#define HAS_D12_PLANE_MINIMIZATION(__display)  ((__display)->platform.rocketlake || (__display)-
+>> >platform.alderlake_s)
+>>  #define HAS_DBUF_OVERLAP_DETECTION(__i915) (DISPLAY_RUNTIME_INFO(__i915)-
+>> >has_dbuf_overlap_detection)
+>>  #define HAS_DDI(i915)                  (DISPLAY_INFO(i915)->has_ddi)
+>>  #define HAS_DISPLAY(i915)              (DISPLAY_RUNTIME_INFO(i915)->pipe_mask != 0)
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> b/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> index e1547ebce60e..f0d3bdb5fc60 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> @@ -843,7 +843,9 @@ static u32 gen8_de_port_aux_mask(struct drm_i915_private *dev_priv)
+>>
+>>  static u32 gen8_de_pipe_fault_mask(struct drm_i915_private *dev_priv)
+>>  {
+>> -       if (DISPLAY_VER(dev_priv) >= 14)
+>> +       struct intel_display *display = &dev_priv->display;
+>> +
+>> +       if (DISPLAY_VER(display) >= 14)
+>>                 return MTL_PIPEDMC_ATS_FAULT |
+>>                         MTL_PLANE_ATS_FAULT |
+>>                         GEN12_PIPEDMC_FAULT |
+>> @@ -853,7 +855,7 @@ static u32 gen8_de_pipe_fault_mask(struct drm_i915_private *dev_priv)
+>>                         GEN9_PIPE_PLANE3_FAULT |
+>>                         GEN9_PIPE_PLANE2_FAULT |
+>>                         GEN9_PIPE_PLANE1_FAULT;
+>> -       if (DISPLAY_VER(dev_priv) >= 13 || HAS_D12_PLANE_MINIMIZATION(dev_priv))
+>> +       if (DISPLAY_VER(display) >= 13 || HAS_D12_PLANE_MINIMIZATION(display))
+>>                 return GEN12_PIPEDMC_FAULT |
+>>                         GEN9_PIPE_CURSOR_FAULT |
+>>                         GEN11_PIPE_PLANE5_FAULT |
+>> @@ -861,7 +863,7 @@ static u32 gen8_de_pipe_fault_mask(struct drm_i915_private *dev_priv)
+>>                         GEN9_PIPE_PLANE3_FAULT |
+>>                         GEN9_PIPE_PLANE2_FAULT |
+>>                         GEN9_PIPE_PLANE1_FAULT;
+>> -       else if (DISPLAY_VER(dev_priv) == 12)
+>> +       else if (DISPLAY_VER(display) == 12)
+>>                 return GEN12_PIPEDMC_FAULT |
+>>                         GEN9_PIPE_CURSOR_FAULT |
+>>                         GEN11_PIPE_PLANE7_FAULT |
+>> @@ -871,7 +873,7 @@ static u32 gen8_de_pipe_fault_mask(struct drm_i915_private *dev_priv)
+>>                         GEN9_PIPE_PLANE3_FAULT |
+>>                         GEN9_PIPE_PLANE2_FAULT |
+>>                         GEN9_PIPE_PLANE1_FAULT;
+>> -       else if (DISPLAY_VER(dev_priv) == 11)
+>> +       else if (DISPLAY_VER(display) == 11)
+>>                 return GEN9_PIPE_CURSOR_FAULT |
+>>                         GEN11_PIPE_PLANE7_FAULT |
+>>                         GEN11_PIPE_PLANE6_FAULT |
+>> @@ -880,7 +882,7 @@ static u32 gen8_de_pipe_fault_mask(struct drm_i915_private *dev_priv)
+>>                         GEN9_PIPE_PLANE3_FAULT |
+>>                         GEN9_PIPE_PLANE2_FAULT |
+>>                         GEN9_PIPE_PLANE1_FAULT;
+>> -       else if (DISPLAY_VER(dev_priv) >= 9)
+>> +       else if (DISPLAY_VER(display) >= 9)
+>>                 return GEN9_PIPE_CURSOR_FAULT |
+>>                         GEN9_PIPE_PLANE4_FAULT |
+>>                         GEN9_PIPE_PLANE3_FAULT |
+>> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> index 038ca2ec5d7a..c6e464d70cc7 100644
+>> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> @@ -239,7 +239,9 @@ int skl_format_to_fourcc(int format, bool rgb_order, bool alpha)
+>>
+>>  static u8 icl_nv12_y_plane_mask(struct drm_i915_private *i915)
+>>  {
+>> -       if (DISPLAY_VER(i915) >= 13 || HAS_D12_PLANE_MINIMIZATION(i915))
+>> +       struct intel_display *display = &i915->display;
+>> +
+>> +       if (DISPLAY_VER(display) >= 13 || HAS_D12_PLANE_MINIMIZATION(display))
+>>                 return BIT(PLANE_4) | BIT(PLANE_5);
+>>         else
+>>                 return BIT(PLANE_6) | BIT(PLANE_7);
+>
 
-
+-- 
+Jani Nikula, Intel
