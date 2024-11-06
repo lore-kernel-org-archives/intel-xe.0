@@ -4,39 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62989D44D57
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 12:36:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EA62D44D57
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 12:51:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3147B10E6D8;
-	Wed,  6 Nov 2024 12:36:45 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AB5410E6D8;
- Wed,  6 Nov 2024 12:36:44 +0000 (UTC)
-Received: from 37-33-128-53.bb.dnainternet.fi ([37.33.128.53]
- helo=[192.168.8.139])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1t8fH9-00000001UQN-0PBT; Wed, 06 Nov 2024 14:36:43 +0200
-Message-ID: <cfb1dd378c9a3bbb6d1938f6add507f3f4f431b8.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
-Cc: Luca Coelho <luciano.coelho@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-Date: Wed, 06 Nov 2024 14:35:10 +0200
-In-Reply-To: <173089617440.5449.16863330045914467711@intel.com>
-References: <20241021222744.294371-1-gustavo.sousa@intel.com>
- <20241021222744.294371-9-gustavo.sousa@intel.com>
- <39ca0bca034ed369700b2ecc1b1a411c824bd3b0.camel@coelho.fi>
- <173081414310.2525.7600840303352098383@intel.com>
- <fcfcdefef53bc333a8b7015fc603da21fd11a406.camel@coelho.fi>
- <173089617440.5449.16863330045914467711@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.1-1 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C4EF10E281;
+	Wed,  6 Nov 2024 12:51:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TW7K/H3u";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71D9310E281;
+ Wed,  6 Nov 2024 12:51:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730897475; x=1762433475;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5fY1kVbUjurJX8zmV97NdzPRS6etEkNkZuQHkGQA090=;
+ b=TW7K/H3uFN7rjXyWFxuha5TUNXcc0wUnOf6LPOtdiQ2sFhv3gowQGwkr
+ tlvt/uKPyXT5HO5Fhs/JmLyCV6xisOUCaPoUKaHMPg3NPHZhjmnkVl/j9
+ MpGzfFR5gAcUWgBrzSnoAqLdrK/c1sDFVoeOtiLIOxx3r93hEN9RUiVxH
+ bZF+SH1tzDOnVzPq3W37C1QgWztBWJgRjB1TKT8aSEnpvj+6eS+v0CEXm
+ MgNxaPJkRvyDAviN7HqDIDchV7Oqx58EeZcYiwsFqE1XwT3qC05Hz7P7j
+ Xl0UXYDtMEbTkG3TAZknMTN0H3zHyUgfUmmqGwtw0etNmFFCFbFUwgJMR g==;
+X-CSE-ConnectionGUID: H/JWHB7WQ5SAgbe8tcuLQQ==
+X-CSE-MsgGUID: OSz4QxVbR5WDxzAnjNzFKw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="30799059"
+X-IronPort-AV: E=Sophos;i="6.11,262,1725346800"; d="scan'208";a="30799059"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2024 04:51:14 -0800
+X-CSE-ConnectionGUID: DVmaZq0EREmtPm7uNRA73Q==
+X-CSE-MsgGUID: ghvRmgeYTlmIDi4OZfMqaA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,262,1725346800"; d="scan'208";a="122051217"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa001.jf.intel.com with ESMTP; 06 Nov 2024 04:51:12 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, matthew.d.roper@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/hdcp: Handle HDCP Line Rekeying for HDCP 1.4
+Date: Wed,  6 Nov 2024 18:21:00 +0530
+Message-Id: <20241106125100.852609-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: Re: [PATCH 08/13] drm/i915/dmc_wl: Allow simpler syntax for single
- reg in range tables
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,107 +65,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2024-11-06 at 09:29 -0300, Gustavo Sousa wrote:
-> Quoting Luca Coelho (2024-11-06 09:23:32-03:00)
-> > On Tue, 2024-11-05 at 10:42 -0300, Gustavo Sousa wrote:
-> > > Quoting Luca Coelho (2024-11-01 09:58:33-03:00)
-> > > > On Mon, 2024-10-21 at 19:27 -0300, Gustavo Sousa wrote:
-> > > > > Allow simpler syntax for defining entries for single registers in=
- range
-> > > > > tables. That makes them easier to type as well as to read, allowi=
-ng one
-> > > > > to quickly tell whether a range actually refers to a single regis=
-ter or
-> > > > > a "true range".
-> > > > >=20
-> > > > > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 118 ++++++++++----=
-------
-> > > > >  1 file changed, 60 insertions(+), 58 deletions(-)
-> > > > >=20
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/driver=
-s/gpu/drm/i915/display/intel_dmc_wl.c
-> > > > > index 8bf2f32be859..6992ce654e75 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> > > > > @@ -54,82 +54,82 @@ static struct intel_dmc_wl_range lnl_wl_range=
-[] =3D {
-> > > > >  };
-> > > > > =20
-> > > > >  static struct intel_dmc_wl_range xe3lpd_dc5_dc6_wl_ranges[] =3D =
-{
-> > > > > -        { .start =3D 0x45500, .end =3D 0x45500 }, /* DC_STATE_SE=
-L */
-> > > > > +        { .start =3D 0x45500 }, /* DC_STATE_SEL */
-> > > > >          { .start =3D 0x457a0, .end =3D 0x457b0 }, /* DC*_RESIDEN=
-CY_COUNTER */
-> > > > > -        { .start =3D 0x45504, .end =3D 0x45504 }, /* DC_STATE_EN=
- */
-> > > > > +        { .start =3D 0x45504 }, /* DC_STATE_EN */
-> > > > >          { .start =3D 0x45400, .end =3D 0x4540c }, /* PWR_WELL_CT=
-L_* */
-> > > > > -        { .start =3D 0x454f0, .end =3D 0x454f0 }, /* RETENTION_C=
-TRL */
-> > > > > +        { .start =3D 0x454f0 }, /* RETENTION_CTRL */
-> > > > > =20
-> > > > >          /* DBUF_CTL_* */
-> > > > > -        { .start =3D 0x44300, .end =3D 0x44300 },
-> > > > > -        { .start =3D 0x44304, .end =3D 0x44304 },
-> > > > > -        { .start =3D 0x44f00, .end =3D 0x44f00 },
-> > > > > -        { .start =3D 0x44f04, .end =3D 0x44f04 },
-> > > > > -        { .start =3D 0x44fe8, .end =3D 0x44fe8 },
-> > > > > -        { .start =3D 0x45008, .end =3D 0x45008 },
-> > > > > +        { .start =3D 0x44300 },
-> > > > > +        { .start =3D 0x44304 },
-> > > > > +        { .start =3D 0x44f00 },
-> > > > > +        { .start =3D 0x44f04 },
-> > > > > +        { .start =3D 0x44fe8 },
-> > > > > +        { .start =3D 0x45008 },
-> > > > > =20
-> > > > > -        { .start =3D 0x46070, .end =3D 0x46070 }, /* CDCLK_PLL_E=
-NABLE */
-> > > > > -        { .start =3D 0x46000, .end =3D 0x46000 }, /* CDCLK_CTL *=
-/
-> > > > > -        { .start =3D 0x46008, .end =3D 0x46008 }, /* CDCLK_SQUAS=
-H_CTL */
-> > > > > +        { .start =3D 0x46070 }, /* CDCLK_PLL_ENABLE */
-> > > > > +        { .start =3D 0x46000 }, /* CDCLK_CTL */
-> > > > > +        { .start =3D 0x46008 }, /* CDCLK_SQUASH_CTL */
-> > > >=20
-> > > > Many of these are probably actually ranges.  I'm not a HW guy, but
-> > > > these are probably blocks that need the wakelock and it just happen=
-s
-> > > > that many of those addresses are actually not used, but would need =
-a
-> > > > wakelock if they were used?
-> > > >=20
-> > > > IOW, e.g. all these DBUF_CTL registers are probably in the same ran=
-ge
-> > > > that needs wakelocks (i.e. 0x44300-0x46fff)? Do we really need to
-> > > > define many of these individually?
-> > > >=20
-> > > > This is related to the previous patch as well, but I decided to com=
-ment
-> > > > it here because it becomes clearer.
-> > >=20
-> > > Maybe my reply on the previous patch clarifies this? I.e., these
-> > > offset or offset ranges represent offsets that the DMC touches when o=
-n
-> > > specific DC states.
-> >=20
-> > Yeah, but I think this idea of blocks is still valid.  I think it's
-> > very unlikely that only certain _addresses_ and not full blocks of
-> > addresses are affected in the HW.
->=20
-> Except that this is not about the hardware per se, this is about
-> registers that are touched by the *DMC* during DC states and that need
-> DC exit for properly accessing them from the driver. So, I think blocks
-> are not applicable here.
+TRANS_DDI_FUNC_CTL asks us to disable hdcp line rekeying when not in
+hdcp 2.2 and we are not using an hdmi transcoder and it need to be
+enabled when we are using an HDMI transcoder to enable HDCP 1.4.
+We use intel_de_rmw cycles to update TRANS_DDI_FUNC_CTL register so
+we cannot depend on the value being 0 by default everytime which calls
+for seprate handling of HDCP 1.4 case.
 
-Ah, okay, makes sense now. This could be explained in the awesome
-comment you're planning to add, as discussed in the previous patch.
+--v2
+-Use the exising function and modify it based on a bool rather than
+have a different function [Matt]
 
---
-Cheers,
-Luca.
+--v3
+-No need for kzalloc [Jani]
+
+Bspec: 69964, 50493, 50054
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 36 +++++++++++++----------
+ 1 file changed, 21 insertions(+), 15 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 4e937fbba4d2..6ad5efc9711c 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -32,27 +32,31 @@
+ #define HDCP2_LC_RETRY_CNT			3
+ 
+ static void
+-intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
+-				      struct intel_hdcp *hdcp)
++intel_hdcp_adjust_hdcp_line_rekeying(struct intel_encoder *encoder,
++				     struct intel_hdcp *hdcp,
++				     bool enable)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
++	i915_reg_t *rekey_reg;
++	u32 rekey_bit;
+ 
+ 	/* Here we assume HDMI is in TMDS mode of operation */
+ 	if (encoder->type != INTEL_OUTPUT_HDMI)
+ 		return;
+ 
+-	if (DISPLAY_VER(display) >= 30)
+-		intel_de_rmw(display,
+-			     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
+-			     0, XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
+-	else if (IS_DISPLAY_VERx100_STEP(display, 1401, STEP_B0, STEP_FOREVER) ||
+-		 IS_DISPLAY_VERx100_STEP(display, 2000, STEP_B0, STEP_FOREVER))
+-		intel_de_rmw(display,
+-			     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
+-			     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
+-	else if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0, STEP_FOREVER))
+-		intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp->cpu_transcoder),
+-			     0, HDCP_LINE_REKEY_DISABLE);
++	if (DISPLAY_VER(display) >= 30) {
++		*rekey_reg = TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder);
++		rekey_bit = XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE;
++	} else if (IS_DISPLAY_VERx100_STEP(display, 1401, STEP_B0, STEP_FOREVER) ||
++		   IS_DISPLAY_VERx100_STEP(display, 2000, STEP_B0, STEP_FOREVER)) {
++		*rekey_reg = TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder);
++		rekey_bit = TRANS_DDI_HDCP_LINE_REKEY_DISABLE;
++	} else if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0, STEP_FOREVER)) {
++		*rekey_reg = MTL_CHICKEN_TRANS(hdcp->cpu_transcoder);
++		rekey_bit = HDCP_LINE_REKEY_DISABLE;
++	}
++
++	intel_de_rmw(display, *rekey_reg, rekey_bit, enable ? 0 : rekey_bit);
+ }
+ 
+ static int intel_conn_to_vcpi(struct intel_atomic_state *state,
+@@ -1049,6 +1053,8 @@ static int intel_hdcp1_enable(struct intel_connector *connector)
+ 		return ret;
+ 	}
+ 
++	intel_hdcp_adjust_hdcp_line_rekeying(connector->encoder, hdcp, true);
++
+ 	/* Incase of authentication failures, HDCP spec expects reauth. */
+ 	for (i = 0; i < tries; i++) {
+ 		ret = intel_hdcp_auth(connector);
+@@ -2062,7 +2068,7 @@ static int _intel_hdcp2_enable(struct intel_atomic_state *state,
+ 		    connector->base.base.id, connector->base.name,
+ 		    hdcp->content_type);
+ 
+-	intel_hdcp_disable_hdcp_line_rekeying(connector->encoder, hdcp);
++	intel_hdcp_adjust_hdcp_line_rekeying(connector->encoder, hdcp, false);
+ 
+ 	ret = hdcp2_authenticate_and_encrypt(state, connector);
+ 	if (ret) {
+-- 
+2.34.1
+
