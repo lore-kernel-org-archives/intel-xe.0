@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 116D5D3E783
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 02:21:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9ED5D3E783
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 02:22:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD05710E659;
-	Wed,  6 Nov 2024 02:21:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 807AC10E657;
+	Wed,  6 Nov 2024 02:22:10 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 356CD10E659;
- Wed,  6 Nov 2024 02:21:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A072C10E657;
+ Wed,  6 Nov 2024 02:22:09 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5B1?=
- =?utf-8?q?/2=5D_drm/xe=3A_improve_hibernation_on_igpu?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_series_starting_with_=5B1/2=5D?=
+ =?utf-8?q?_drm/xe=3A_improve_hibernation_on_igpu?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 06 Nov 2024 02:21:41 -0000
-Message-ID: <173085970121.1414592.3879029780379102248@2413ebb6fbb6>
+Date: Wed, 06 Nov 2024 02:22:09 -0000
+Message-ID: <173085972965.1414592.4266794925559912964@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241106021725.4156175-1-matthew.brost@intel.com>
 In-Reply-To: <20241106021725.4156175-1-matthew.brost@intel.com>
@@ -44,43 +44,87 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [1/2] drm/xe: improve hibernation on igpu
 URL   : https://patchwork.freedesktop.org/series/140973/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 5b6bd185b0efa9c5972fd6b3e119b66d281aac38
-Author: Matthew Brost <matthew.brost@intel.com>
-Date:   Tue Nov 5 18:17:25 2024 -0800
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+[02:21:41] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[02:21:46] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
+ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_map.h:11,
+                 from ../drivers/gpu/drm/xe/xe_vm.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:14,
+                 from ../drivers/gpu/drm/xe/xe_bo_evict.c:8:
+../drivers/gpu/drm/xe/xe_bo_evict.c: In function ‘xe_bo_restore_kernel’:
+../drivers/gpu/drm/xe/xe_bo_evict.c:126:33: error: ‘id’ undeclared (first use in this function); did you mean ‘ida’?
+  126 |         for_each_tile(tile, xe, id)
+      |                                 ^~
+../drivers/gpu/drm/xe/xe_bo_evict.c:126:9: note: in expansion of macro ‘for_each_tile’
+  126 |         for_each_tile(tile, xe, id)
+      |         ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_bo_evict.c:126:33: note: each undeclared identifier is reported only once for each function it appears in
+  126 |         for_each_tile(tile, xe, id)
+      |                                 ^~
+../drivers/gpu/drm/xe/xe_bo_evict.c:126:9: note: in expansion of macro ‘for_each_tile’
+  126 |         for_each_tile(tile, xe, id)
+      |         ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device.h:9:
+../drivers/gpu/drm/xe/xe_bo_evict.c:126:23: error: ‘tile’ undeclared (first use in this function); did you mean ‘file’?
+  126 |         for_each_tile(tile, xe, id)
+      |                       ^~~~
+../include/drm/drm_util.h:63:38: note: in definition of macro ‘for_each_if’
+   63 | #define for_each_if(condition) if (!(condition)) {} else
+      |                                      ^~~~~~~~~
+../drivers/gpu/drm/xe/xe_bo_evict.c:126:9: note: in expansion of macro ‘for_each_tile’
+  126 |         for_each_tile(tile, xe, id)
+      |         ^~~~~~~~~~~~~
+make[7]: *** [../scripts/Makefile.build:229: drivers/gpu/drm/xe/xe_bo_evict.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:478: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:478: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:478: drivers/gpu] Error 2
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:478: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[2]: *** [/kernel/Makefile:1936: .] Error 2
+make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
 
-    drm/xe: Clear GGTT in xe_bo_restore_kernel
-    
-    Part of what xe_bo_restore_kernel does, is restore BO's GGTT mappings
-    which may have been lost during a power state change. Missing is
-    restoring the GGTT entries without BO mappings to a known state (e.g.,
-    scratch pages). Update xe_bo_restore_kernel to clear the entire GGTT
-    before restoring BO's GGTT mappings.
-    
-    Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-    Cc: Matthew Auld <matthew.auld@intel.com>
-    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-    Cc: <stable@vger.kernel.org> # v6.8+
-+ /mt/dim checkpatch e806a414a0f1d780d467171712a598f2af2e17db drm-intel
-e7e5f9702ffb drm/xe: improve hibernation on igpu
--:12: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#12: 
-[drm] *ERROR* GT0: load failed: status = 0x400000A0, time = 10ms, freq = 1250MHz (req 1300MHz), done = -1
-
-total: 0 errors, 1 warnings, 0 checks, 92 lines checked
-5b6bd185b0ef drm/xe: Clear GGTT in xe_bo_restore_kernel
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
