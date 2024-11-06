@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D083D44D78
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 15:13:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7705D44D7F
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 15:13:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD74410E714;
-	Wed,  6 Nov 2024 15:13:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76A8810E716;
+	Wed,  6 Nov 2024 15:13:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fru2FMYw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZM4oCxUG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEAFF10E707
- for <intel-xe@lists.freedesktop.org>; Wed,  6 Nov 2024 15:13:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8522510E716
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Nov 2024 15:13:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730905992; x=1762441992;
+ t=1730905994; x=1762441994;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=xHayUlcqysQsisM2Rtdp0w2/K447hSPhzUcNHFFxh7A=;
- b=fru2FMYwWw2HGdO9Hc44721ATfM+z55Nppptzf1YZ2/HIYX4gxzbswtn
- 6IrNl1s1pe9Rk5nU2mgJ08OdGOvJ+E9zcNxdP2nvrSZASEiLSfS1CBax+
- SgBinaYjZAWxsmUvLa9wl6H7ZtEFdFUeFTs5dNSYAMdjGAmdnrCMwaarU
- l83vTu/0PeS4bz3qU7cdNJLuC494szXygFbL8C5ZHvR6kXIEJnr8NNCMT
- 2BeAPZdrN+ln21Wu2AG5KvO0GBG+bCDVO9Up6UYVHs5GUYlz+jLqXQe84
- BHPQ++DCflQ4wWW51242P6OFave6pKR4etzWnuPPpEkcuuLCiA7VKT5lE A==;
-X-CSE-ConnectionGUID: sXxbY3TYQ6K2k+8PLHwWvw==
-X-CSE-MsgGUID: r5bhGmDjRhaunwY6gQLQAQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30867680"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30867680"
+ bh=A40+380nZMDEbm/6YSRxcQVAHkNGcbncwnhXcldjLqU=;
+ b=ZM4oCxUGnvuFOXmP2QXqUuXKDz24g7goT5CcHQ1auCJ9YnP41Z6YTFTw
+ c+i/tLKWyAe5Xrs3C0BgN2stXXQ+Ce+2T2JtYBKIg3pt0TCERbQsYMO5l
+ qL/vHI530PuiJ1VeVjVjWjMWczzfx73LaOLqLK/LvSsl7u5AzgkFHGWzF
+ LRwz9haX3TX68TjKXI8Z4qNz38DcK66elg3f6omCCcpFSLLmsi36axz+4
+ qOV/aB1b06YjsNiKkqcue/rH6WT8l9E21fM/0Xhs74jWflW+2BJh5vm/x
+ BSkvHuqFO5AhcjzV6b8D9w5ntKmEsuYI7mCXDgCADeg9THhCJRgXBMBor g==;
+X-CSE-ConnectionGUID: x9SAszSYQeWjPB6YD/X3BQ==
+X-CSE-MsgGUID: lDXMieaiR4uX4hT0xmngtA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30867691"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30867691"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2024 07:13:12 -0800
-X-CSE-ConnectionGUID: IIruqZHoRyGOCc+qpB+Scg==
-X-CSE-MsgGUID: tmQ59z8nTzOH3H5VmrIDYQ==
+ 06 Nov 2024 07:13:14 -0800
+X-CSE-ConnectionGUID: t+LEpOAAQLe20z5Wk1CTmg==
+X-CSE-MsgGUID: ZhznYic3SUa+/ZtpZKD9PQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="84136789"
+X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="84136792"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.98.17])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2024 07:13:11 -0800
+ 06 Nov 2024 07:13:13 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v2 2/5] drm/xe/guc: Add VF_CFG_SCHED_PRIORITY to KLV helper
-Date: Wed,  6 Nov 2024 16:12:58 +0100
-Message-Id: <20241106151301.2079-3-michal.wajdeczko@intel.com>
+Subject: [CI v2 4/5] drm/xe/pf: Allow to control scheduling priority using
+ debugfs
+Date: Wed,  6 Nov 2024 16:13:00 +0100
+Message-Id: <20241106151301.2079-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20241106151301.2079-1-michal.wajdeczko@intel.com>
 References: <20241106151301.2079-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,27 +67,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Recognize new VF_CFG_SCHED_PRIORITY key in to_string() helper.
+Add 'sched_priority' attribute that will represents the scheduling
+prority of the VF or PF. Values {0,1,2} correspond to priorities
+{LOW,NORMAL,HIGH} respectively.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Lukasz Laguna <lukasz.laguna@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_klv_helpers.c | 2 ++
- 1 file changed, 2 insertions(+)
+v2: s/priority/sched_priority (Michal)
+---
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-index 9d99fe266d97..146a6eda9e06 100644
---- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-+++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-@@ -49,6 +49,8 @@ const char *xe_guc_klv_key_to_string(u16 key)
- 		return "begin_db_id";
- 	case GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_KEY:
- 		return "begin_ctx_id";
-+	case GUC_KLV_VF_CFG_SCHED_PRIORITY_KEY:
-+		return "sched_priority";
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+index 05df4ab3514b..b2521dd6ec42 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+@@ -164,6 +164,7 @@ static void pf_add_policy_attrs(struct xe_gt *gt, struct dentry *parent)
+  *      │   │   ├── contexts_spare
+  *      │   │   ├── exec_quantum_ms
+  *      │   │   ├── preempt_timeout_us
++ *      │   │   ├── sched_priority
+  *      │   ├── vf1
+  *      │   │   ├── ggtt_quota
+  *      │   │   ├── lmem_quota
+@@ -171,6 +172,7 @@ static void pf_add_policy_attrs(struct xe_gt *gt, struct dentry *parent)
+  *      │   │   ├── contexts_quota
+  *      │   │   ├── exec_quantum_ms
+  *      │   │   ├── preempt_timeout_us
++ *      │   │   ├── sched_priority
+  */
  
- 	/* VF CFG threshold keys */
- #define define_threshold_key_to_string_case(TAG, NAME, ...)	\
+ #define DEFINE_SRIOV_GT_CONFIG_DEBUGFS_ATTRIBUTE(CONFIG, TYPE, FORMAT)		\
+@@ -209,6 +211,7 @@ DEFINE_SRIOV_GT_CONFIG_DEBUGFS_ATTRIBUTE(ctxs, u32, "%llu\n");
+ DEFINE_SRIOV_GT_CONFIG_DEBUGFS_ATTRIBUTE(dbs, u32, "%llu\n");
+ DEFINE_SRIOV_GT_CONFIG_DEBUGFS_ATTRIBUTE(exec_quantum, u32, "%llu\n");
+ DEFINE_SRIOV_GT_CONFIG_DEBUGFS_ATTRIBUTE(preempt_timeout, u32, "%llu\n");
++DEFINE_SRIOV_GT_CONFIG_DEBUGFS_ATTRIBUTE(sched_priority, u32, "%llu\n");
+ 
+ /*
+  *      /sys/kernel/debug/dri/0/
+@@ -295,6 +298,8 @@ static void pf_add_config_attrs(struct xe_gt *gt, struct dentry *parent, unsigne
+ 				   &exec_quantum_fops);
+ 	debugfs_create_file_unsafe("preempt_timeout_us", 0644, parent, parent,
+ 				   &preempt_timeout_fops);
++	debugfs_create_file_unsafe("sched_priority", 0644, parent, parent,
++				   &sched_priority_fops);
+ 
+ 	/* register all threshold attributes */
+ #define register_threshold_attribute(TAG, NAME, ...) \
 -- 
 2.43.0
 
