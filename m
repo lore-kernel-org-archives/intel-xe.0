@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE084D59F5D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB365D59F5E
 	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 18:34:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FC1A10E75B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99C5710E760;
 	Wed,  6 Nov 2024 18:34:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CeemFznZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WsFIq/4q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C65810E75B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF72810E760
  for <intel-xe@lists.freedesktop.org>; Wed,  6 Nov 2024 18:34:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730918088; x=1762454088;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KMf3rSG8hmgF/O+rFQvG4liv7bMq9p1Yo/aq5Dx+6x8=;
- b=CeemFznZ5dNWHQ4qD/Q+FxM+vy2n9AYDF8vY/moDtMY9TprH69R/M5PR
- +HpXmfuMPSV719DlQRrOJRb+tkuxPj12l6evVFafJHiDLfpIU/L0FVdzV
- 6wwLicD64Nk1F38AswlP0zeiWyZzWklDcRSx1N07RP28LF6w+ym6KEN/u
- lrXcLmJMCOP4NgDnvyPjdt31MxDDx+tgD2ZAzMzLazgVwW4umIsvKxTV0
- GmQUinevly5qrfYfNguHp6zIQmOvb5nadKPD+r3n/+jikojYRr4asDibo
- 9/z6sYag4x6X8cl7IZ58zLPt3Y7ztKmCwDq1QAByGQIWGJrXkITGPu7pg g==;
-X-CSE-ConnectionGUID: XZLxqFuRQACpT2vW5D8i0Q==
-X-CSE-MsgGUID: kvOaMpGiSbS0TFGO5lBF0Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30591592"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30591592"
+ t=1730918089; x=1762454089;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lsTf1QdVuMUTFb/SJNxcjeN6IG+ocTuk6o21+Mum2TA=;
+ b=WsFIq/4q78wtP2MvD+aD5xP2xj+8F+/SrVhkjXN8OCaIyYFRj2Ho2YN1
+ xWKcpANlDNVfeCutCSd0Zm3YJtnmdkUWl5UmHP4mE6WvKRyD26vFOo0A8
+ mYLwOyphkm2+GWaMveSjp6L2GA8MzII+jL+dbcukUVD+wNmZfvxxn4fcW
+ 70zgtLyBgy07JZ5B3L4EdJignaY33CQp1oriE36xAnFMUWKo2fqzl7lYN
+ Pgta1W+aBMzi+btJShPojwmW567Tv3T5cKCtEUg0Jda5j55vqNeq3vH+c
+ o0yNxipTthfoOtNawhAapsr0qZnv8yFT1azbZ84dzi5LZMNv3rJTGfHP6 A==;
+X-CSE-ConnectionGUID: kshdX5ydTxWrCqMllNg9KQ==
+X-CSE-MsgGUID: X0VkDej1QS2WbRi384xd0g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30591593"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30591593"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Nov 2024 10:34:46 -0800
-X-CSE-ConnectionGUID: f1IOsZCnR0yJD1FEB8DMbQ==
-X-CSE-MsgGUID: 48Qvy3f5THCCvxLaHcAhag==
+X-CSE-ConnectionGUID: 6SKWtQ00TjegdUnTHwsOGw==
+X-CSE-MsgGUID: oea1ucapQNaW8G/paj7Vng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="84789669"
+X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="84789665"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Nov 2024 10:34:46 -0800
@@ -45,12 +45,10 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: lucas.demarchi@intel.com,
 	matthew.auld@intel.com
-Subject: [PATCH v3 2/2] drm/xe: Clear GGTT in xe_bo_restore_kernel
-Date: Wed,  6 Nov 2024 10:35:14 -0800
-Message-Id: <20241106183514.4174086-2-matthew.brost@intel.com>
+Subject: [PATCH v3 1/2] drm/xe: improve hibernation on igpu
+Date: Wed,  6 Nov 2024 10:35:13 -0800
+Message-Id: <20241106183514.4174086-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241106183514.4174086-1-matthew.brost@intel.com>
-References: <20241106183514.4174086-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,118 +65,152 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Part of what xe_bo_restore_kernel does, is restore BO's GGTT mappings
-which may have been lost during a power state change. Missing is
-restoring the GGTT entries without BO mappings to a known state (e.g.,
-scratch pages). Update xe_bo_restore_kernel to clear the entire GGTT
-before restoring BO's GGTT mappings.
+From: Matthew Auld <matthew.auld@intel.com>
 
-v2:
- - Include missing local change of tile and id variable (CI)
-v3:
- - Fixed kernel doc (CI)
+The GGTT looks to be stored inside stolen memory on igpu which is not
+treated as normal RAM.  The core kernel skips this memory range when
+creating the hibernation image, therefore when coming back from
+hibernation the GGTT programming is lost. This seems to cause issues
+with broken resume where GuC FW fails to load:
+
+[drm] *ERROR* GT0: load failed: status = 0x400000A0, time = 10ms, freq = 1250MHz (req 1300MHz), done = -1
+[drm] *ERROR* GT0: load failed: status: Reset = 0, BootROM = 0x50, UKernel = 0x00, MIA = 0x00, Auth = 0x01
+[drm] *ERROR* GT0: firmware signature verification failed
+[drm] *ERROR* CRITICAL: Xe has declared device 0000:00:02.0 as wedged.
+
+Current GGTT users are kernel internal and tracked as pinned, so it
+should be possible to hook into the existing save/restore logic that we
+use for dgpu, where the actual evict is skipped but on restore we
+importantly restore the GGTT programming.  This has been confirmed to
+fix hibernation on at least ADL and MTL, though likely all igpu
+platforms are affected.
+
+This also means we have a hole in our testing, where the existing s4
+tests only really test the driver hooks, and don't go as far as actually
+rebooting and restoring from the hibernation image and in turn powering
+down RAM (and therefore losing the contents of stolen).
+
+v2 (Brost)
+ - Remove extra newline and drop unnecessary parentheses.
 
 Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3275
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: <stable@vger.kernel.org> # v6.8+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo_evict.c |  8 +++++++-
- drivers/gpu/drm/xe/xe_ggtt.c     | 17 ++++++++++++++---
- drivers/gpu/drm/xe/xe_ggtt.h     |  2 ++
- 3 files changed, 23 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c       | 37 ++++++++++++++------------------
+ drivers/gpu/drm/xe/xe_bo_evict.c |  6 ------
+ 2 files changed, 16 insertions(+), 27 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 8286cbc23721..549866da5cd1 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -952,7 +952,10 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
+ 	if (WARN_ON(!xe_bo_is_pinned(bo)))
+ 		return -EINVAL;
+ 
+-	if (WARN_ON(xe_bo_is_vram(bo) || !bo->ttm.ttm))
++	if (WARN_ON(xe_bo_is_vram(bo)))
++		return -EINVAL;
++
++	if (WARN_ON(!bo->ttm.ttm && !xe_bo_is_stolen(bo)))
+ 		return -EINVAL;
+ 
+ 	if (!mem_type_is_vram(place->mem_type))
+@@ -1774,6 +1777,7 @@ int xe_bo_pin_external(struct xe_bo *bo)
+ 
+ int xe_bo_pin(struct xe_bo *bo)
+ {
++	struct ttm_place *place = &bo->placements[0];
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 	int err;
+ 
+@@ -1804,8 +1808,6 @@ int xe_bo_pin(struct xe_bo *bo)
+ 	 */
+ 	if (IS_DGFX(xe) && !(IS_ENABLED(CONFIG_DRM_XE_DEBUG) &&
+ 	    bo->flags & XE_BO_FLAG_INTERNAL_TEST)) {
+-		struct ttm_place *place = &(bo->placements[0]);
+-
+ 		if (mem_type_is_vram(place->mem_type)) {
+ 			xe_assert(xe, place->flags & TTM_PL_FLAG_CONTIGUOUS);
+ 
+@@ -1813,13 +1815,12 @@ int xe_bo_pin(struct xe_bo *bo)
+ 				       vram_region_gpu_offset(bo->ttm.resource)) >> PAGE_SHIFT;
+ 			place->lpfn = place->fpfn + (bo->size >> PAGE_SHIFT);
+ 		}
++	}
+ 
+-		if (mem_type_is_vram(place->mem_type) ||
+-		    bo->flags & XE_BO_FLAG_GGTT) {
+-			spin_lock(&xe->pinned.lock);
+-			list_add_tail(&bo->pinned_link, &xe->pinned.kernel_bo_present);
+-			spin_unlock(&xe->pinned.lock);
+-		}
++	if (mem_type_is_vram(place->mem_type) || bo->flags & XE_BO_FLAG_GGTT) {
++		spin_lock(&xe->pinned.lock);
++		list_add_tail(&bo->pinned_link, &xe->pinned.kernel_bo_present);
++		spin_unlock(&xe->pinned.lock);
+ 	}
+ 
+ 	ttm_bo_pin(&bo->ttm);
+@@ -1867,24 +1868,18 @@ void xe_bo_unpin_external(struct xe_bo *bo)
+ 
+ void xe_bo_unpin(struct xe_bo *bo)
+ {
++	struct ttm_place *place = &bo->placements[0];
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 
+ 	xe_assert(xe, !bo->ttm.base.import_attach);
+ 	xe_assert(xe, xe_bo_is_pinned(bo));
+ 
+-	if (IS_DGFX(xe) && !(IS_ENABLED(CONFIG_DRM_XE_DEBUG) &&
+-	    bo->flags & XE_BO_FLAG_INTERNAL_TEST)) {
+-		struct ttm_place *place = &(bo->placements[0]);
+-
+-		if (mem_type_is_vram(place->mem_type) ||
+-		    bo->flags & XE_BO_FLAG_GGTT) {
+-			spin_lock(&xe->pinned.lock);
+-			xe_assert(xe, !list_empty(&bo->pinned_link));
+-			list_del_init(&bo->pinned_link);
+-			spin_unlock(&xe->pinned.lock);
+-		}
++	if (mem_type_is_vram(place->mem_type) || bo->flags & XE_BO_FLAG_GGTT) {
++		spin_lock(&xe->pinned.lock);
++		xe_assert(xe, !list_empty(&bo->pinned_link));
++		list_del_init(&bo->pinned_link);
++		spin_unlock(&xe->pinned.lock);
+ 	}
+-
+ 	ttm_bo_unpin(&bo->ttm);
+ }
+ 
 diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
-index b01bc20eb90b..26c7736cc3a8 100644
+index 32043e1e5a86..b01bc20eb90b 100644
 --- a/drivers/gpu/drm/xe/xe_bo_evict.c
 +++ b/drivers/gpu/drm/xe/xe_bo_evict.c
-@@ -112,7 +112,8 @@ int xe_bo_evict_all(struct xe_device *xe)
-  * @xe: xe device
-  *
-  * Move kernel BOs from temporary (typically system) memory to VRAM via CPU. All
-- * moves done via TTM calls.
-+ * moves done via TTM calls. All GGTT are restored too, first by clearing GGTT
-+ * to known state and then restoring individual BO's GGTT mappings.
-  *
-  * This function should be called early, before trying to init the GT, on device
-  * resume.
-@@ -120,8 +121,13 @@ int xe_bo_evict_all(struct xe_device *xe)
- int xe_bo_restore_kernel(struct xe_device *xe)
- {
- 	struct xe_bo *bo;
-+	struct xe_tile *tile;
-+	u8 id;
+@@ -34,9 +34,6 @@ int xe_bo_evict_all(struct xe_device *xe)
+ 	u8 id;
  	int ret;
  
-+	for_each_tile(tile, xe, id)
-+		xe_ggtt_clear(tile->mem.ggtt);
-+
+-	if (!IS_DGFX(xe))
+-		return 0;
+-
+ 	/* User memory */
+ 	for (mem_type = XE_PL_VRAM0; mem_type <= XE_PL_VRAM1; ++mem_type) {
+ 		struct ttm_resource_manager *man =
+@@ -125,9 +122,6 @@ int xe_bo_restore_kernel(struct xe_device *xe)
+ 	struct xe_bo *bo;
+ 	int ret;
+ 
+-	if (!IS_DGFX(xe))
+-		return 0;
+-
  	spin_lock(&xe->pinned.lock);
  	for (;;) {
  		bo = list_first_entry_or_null(&xe->pinned.evicted,
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 558fac8bb6fb..d7226e9eae38 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -140,7 +140,7 @@ static void xe_ggtt_set_pte_and_flush(struct xe_ggtt *ggtt, u64 addr, u64 pte)
- 	ggtt_update_access_counter(ggtt);
- }
- 
--static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
-+static void __xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
- {
- 	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[XE_CACHE_WB];
- 	u64 end = start + size - 1;
-@@ -160,6 +160,17 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
- 	}
- }
- 
-+/**
-+ * xe_ggtt_clear() - GGTT clear
-+ * @ggtt: the &xe_ggtt to be cleared
-+ *
-+ * Clear all GGTT to a known state
-+ */
-+void xe_ggtt_clear(struct xe_ggtt *ggtt)
-+{
-+	__xe_ggtt_clear(ggtt, 0, ggtt->size);
-+}
-+
- static void ggtt_fini_early(struct drm_device *drm, void *arg)
- {
- 	struct xe_ggtt *ggtt = arg;
-@@ -277,7 +288,7 @@ static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
- 	/* Display may have allocated inside ggtt, so be careful with clearing here */
- 	mutex_lock(&ggtt->lock);
- 	drm_mm_for_each_hole(hole, &ggtt->mm, start, end)
--		xe_ggtt_clear(ggtt, start, end - start);
-+		__xe_ggtt_clear(ggtt, start, end - start);
- 
- 	xe_ggtt_invalidate(ggtt);
- 	mutex_unlock(&ggtt->lock);
-@@ -294,7 +305,7 @@ static void ggtt_node_remove(struct xe_ggtt_node *node)
- 
- 	mutex_lock(&ggtt->lock);
- 	if (bound)
--		xe_ggtt_clear(ggtt, node->base.start, node->base.size);
-+		__xe_ggtt_clear(ggtt, node->base.start, node->base.size);
- 	drm_mm_remove_node(&node->base);
- 	node->base.size = 0;
- 	mutex_unlock(&ggtt->lock);
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 27e7d67de004..b7ae440cdebf 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -13,6 +13,8 @@ struct drm_printer;
- int xe_ggtt_init_early(struct xe_ggtt *ggtt);
- int xe_ggtt_init(struct xe_ggtt *ggtt);
- 
-+void xe_ggtt_clear(struct xe_ggtt *ggtt);
-+
- struct xe_ggtt_node *xe_ggtt_node_init(struct xe_ggtt *ggtt);
- void xe_ggtt_node_fini(struct xe_ggtt_node *node);
- int xe_ggtt_node_insert_balloon(struct xe_ggtt_node *node,
 -- 
 2.34.1
 
