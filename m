@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C26FAD59F52
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 16:21:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C386D59F53
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 16:23:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CA6210E71C;
-	Wed,  6 Nov 2024 16:21:54 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6648410E71C;
- Wed,  6 Nov 2024 16:21:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2961559357634570942=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id D269910E71C;
+	Wed,  6 Nov 2024 16:23:32 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rd5Fekiy";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35E7D10E71C;
+ Wed,  6 Nov 2024 16:23:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730910212; x=1762446212;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UYtOwpDw+itSicBUPVWFN8ZrT4KWfwMb7vBJd0X/J5U=;
+ b=Rd5FekiyQy5uj7g143C+o5pfFcTXkUXOqQqQ8F6GI9/x/WHVGHtbE3qD
+ 7ZSPiEoBBSub/oK6eeZCd1rI/d4zySWlmHFIymCE1UpiZUfYLTqxyt50v
+ s8U4G3zq2IsUTJhBZO386noDm804QfBmsI1fI/D1EzvmIeS3be2dGPMfA
+ WYZfFirFQAAp7WTwuIPh3bpNfWolbzJg92u2KdN72NCDt5UZCQOIC+ObN
+ hcV24zgggYHleiEJn8o/TmzncYzcZSK4Z/g4IN8Sg6xvZeRhj2z+bloHE
+ E8CVhkJS5iXL6ftJpnlnmeQ4JAFjdSZsuo070mrUFUBv2oZApOUdA5LEu A==;
+X-CSE-ConnectionGUID: LJthleZTTYqehW3PTbLsig==
+X-CSE-MsgGUID: k6tk4+ZIRtyN0YENN5ynWA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="41311390"
+X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="41311390"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2024 08:23:32 -0800
+X-CSE-ConnectionGUID: YsLRaLpDS46z4oIFT6IRqA==
+X-CSE-MsgGUID: LsG9ep75SDeVeockNYBO5Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="89164674"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.143])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2024 08:23:28 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, Clint Taylor <clinton.a.taylor@intel.com>,
+ Imre Deak <imre.deak@intel.com>
+Subject: [PATCH] drm/i915/dp: demote source OUI read/write failure logging to
+ debug
+Date: Wed,  6 Nov 2024 18:23:25 +0200
+Message-Id: <20241106162325.4065078-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EFULL=3A_success_for_Expose_modifiers/formats_suppor?=
- =?utf-8?q?ted_by_async_flips?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 06 Nov 2024 16:21:53 -0000
-Message-ID: <173091011341.1417829.1987209291864461942@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241105102608.3912133-1-arun.r.murthy@intel.com>
-In-Reply-To: <20241105102608.3912133-1-arun.r.murthy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +66,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2961559357634570942==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Commit 1f12d63a14d7 ("drm/i915/dp: Write the source OUI for non-eDP
+sinks as well") started writing source OUI for non-eDP sinks as well,
+increasing the possibilities of hitting read/write failures either due
+to the sink behaviour or hotplug or whatever.
 
-== Series Details ==
+Even before that, commit 3fb0501f0c07 ("drm/i915/display/dp: Reduce log
+level for SOURCE OUI write failures") already reduced write failures to
+info level when source OUI was just for eDP.
 
-Series: Expose modifiers/formats supported by async flips
-URL   : https://patchwork.freedesktop.org/series/140934/
-State : success
+Further reduce the log level to just debug. Switch to struct intel_dp
+while at it.
 
-== Summary ==
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3372
+Cc: Clint Taylor <clinton.a.taylor@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-CI Bug Log - changes from xe-2166-913062707a924df0837c0d9eb9745ba52fd92958_full -> xe-pw-140934v1_full
-====================================================
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 5b918363df16..95c71e425fbe 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3432,7 +3432,7 @@ void intel_dp_sink_disable_decompression(struct intel_atomic_state *state,
+ static void
+ intel_dp_init_source_oui(struct intel_dp *intel_dp)
+ {
+-	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
++	struct intel_display *display = to_intel_display(intel_dp);
+ 	u8 oui[] = { 0x00, 0xaa, 0x01 };
+ 	u8 buf[3] = {};
+ 
+@@ -3446,7 +3446,7 @@ intel_dp_init_source_oui(struct intel_dp *intel_dp)
+ 	 * already set to what we want, so as to avoid clearing any state by accident
+ 	 */
+ 	if (drm_dp_dpcd_read(&intel_dp->aux, DP_SOURCE_OUI, buf, sizeof(buf)) < 0)
+-		drm_err(&i915->drm, "Failed to read source OUI\n");
++		drm_dbg_kms(display->drm, "Failed to read source OUI\n");
+ 
+ 	if (memcmp(oui, buf, sizeof(oui)) == 0) {
+ 		/* Assume the OUI was written now. */
+@@ -3455,7 +3455,7 @@ intel_dp_init_source_oui(struct intel_dp *intel_dp)
+ 	}
+ 
+ 	if (drm_dp_dpcd_write(&intel_dp->aux, DP_SOURCE_OUI, oui, sizeof(oui)) < 0) {
+-		drm_info(&i915->drm, "Failed to write source OUI\n");
++		drm_dbg_kms(display->drm, "Failed to write source OUI\n");
+ 		WRITE_ONCE(intel_dp->oui_valid, false);
+ 	}
+ 
+-- 
+2.39.5
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2166-913062707a924df0837c0d9eb9745ba52fd92958 -> xe-pw-140934v1
-
-  IGT_8097: 2e7c8e4b88a50e33e10d6c13286818aa833bef9b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2166-913062707a924df0837c0d9eb9745ba52fd92958: 913062707a924df0837c0d9eb9745ba52fd92958
-  xe-pw-140934v1: 140934v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v1/index.html
-
---===============2961559357634570942==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Expose modifiers/formats supported by async flips</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140934/">https://patchwork.freedesktop.org/series/140934/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2166-913062707a924df0837c0d9eb9745ba52fd92958_full -&gt; xe-pw-140934v1_full</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2166-913062707a924df0837c0d9eb9745ba52fd92958 -&gt; xe-pw-140934v1</li>
-</ul>
-<p>IGT_8097: 2e7c8e4b88a50e33e10d6c13286818aa833bef9b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2166-913062707a924df0837c0d9eb9745ba52fd92958: 913062707a924df0837c0d9eb9745ba52fd92958<br />
-  xe-pw-140934v1: 140934v1</p>
-
-</body>
-</html>
-
---===============2961559357634570942==--
