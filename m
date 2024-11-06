@@ -4,167 +4,188 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F394D59F52
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 16:53:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B7DFD59F53
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 16:59:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69E4110E749;
-	Wed,  6 Nov 2024 16:53:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9EC910E196;
+	Wed,  6 Nov 2024 16:59:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NxEuwBAk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PMID5IRz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12BF110E741;
- Wed,  6 Nov 2024 16:53:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE1AB10E196;
+ Wed,  6 Nov 2024 16:59:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730912030; x=1762448030;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=eC6chfafNKugU3neHrWN4xlVDGXIQbNxpMbO9eldjUM=;
- b=NxEuwBAkZUaAiQpG+fBVCI7ObGPgq+bgVgWno4O2YN1XNTBbZN+RKprU
- mIy9tdOAhuf2GSybKjP/TOYT5IEqhVn1RehTN2v0jr805V2CSb7xUDYUW
- 7SEYk0tD2GoyaIGRthszZAOkYlRk2sN7QHG84Yr59TxU5e+T7QB0rIwJS
- odbhKcxKLl+x+Ea0Om/UvGuTveE1UVbEp89ncCOMcYw8MF+UwvCOXOc8W
- JRMliCrbOFd2vRDgMlJ1QWSwjz8KTY4Pw+9FQKNKJT4b7hdwEMBHrSnFv
- X1ev7zi2STKBzBofP3DnLWjSqoG+7rQTKzFfc9R32qZeECLS5vwWNpcRe g==;
-X-CSE-ConnectionGUID: X8WlYUIcTJmeNEB2qFStxA==
-X-CSE-MsgGUID: fVHetPZnRwGo7BmwEKhDiw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="30836428"
-X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="30836428"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2024 08:53:50 -0800
-X-CSE-ConnectionGUID: oGwlhO/pTPKtQP666eqbug==
-X-CSE-MsgGUID: kWo/B8dbQMigj4qTufaNyg==
+ t=1730912385; x=1762448385;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=YzDy+AbWqR4X8C/lwv8uqqOg6zEaFQ2f8LlgsPm3Gp8=;
+ b=PMID5IRzWaTlYd6ReC9G3ZzwN9N2/mQrE1h/zvbmT30bOKab3lgV3c2G
+ 1v6o0BhPqafAM6J2jQXVyKs4DKoZpUHKGPSZUz2arS3vDatHK5EuK7juP
+ lSAClVTaST3ahFTRMOCdoYc4WQ17sonApDGh9DDPAZxNO3e6oXk9ZiLSs
+ Lk9Do537CZYyAMrTG+qLFsYR44dIM9Sv18eDR283oZjWmUvmcuEdzR4EN
+ sbq4+0m3Cb9wPBSA9K07rSmX5QzcI5nzbOLBa6B536hvIFV6uGUxqmFmu
+ X7YMQrJi3xVSWvwcyzl2xHxFxZc6VgyDBe7HaRtUCsIZvaRrhcK+ztT7S g==;
+X-CSE-ConnectionGUID: tli0Od2bSm+wWvtIbEpR4A==
+X-CSE-MsgGUID: rsCwOmgBT6OuHE1477p3Og==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41819964"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41819964"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2024 08:59:44 -0800
+X-CSE-ConnectionGUID: MpXbN+TPRya5MaycHzeWRA==
+X-CSE-MsgGUID: kAjU2fOmS0aJNMj68Yc9Yw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="107957710"
+X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="84766167"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Nov 2024 08:53:49 -0800
+ by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Nov 2024 08:59:45 -0800
 Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 6 Nov 2024 08:53:49 -0800
+ 15.1.2507.39; Wed, 6 Nov 2024 08:59:44 -0800
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 6 Nov 2024 08:53:49 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.44) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Wed, 6 Nov 2024 08:59:44 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.173)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 6 Nov 2024 08:53:48 -0800
+ 15.1.2507.39; Wed, 6 Nov 2024 08:59:43 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ep/LQGWAHhQNDhXA8F8sFO3BEGGki8pu04DPhPdtMGB9nDuzVTBcYj91Y1oQu5Nxoi+nxVxWRFXzlbjeKD9Hf8oto7IbrpYP7np00naDoCYan7NOiKrqc7G/kOVN5Iya7cKG/s1un6PIKAEl2VSNY3lBDnY/yanqZ0jkQhEgIv8aheO3A3ZHg+UIeM4KvRyJBsYV2NfPGQqWXO3sieZMqfgYFyB7C96btYhubF21zn70whRtgABOlCHpa+w4ro9Ku2SMiPoB3X98bGe9AHEhR/ITTZMbCXdJWCK0ik1nY/eLm2PQCf85wOo9dRaPX5W6bam52jDPuX7wtbkFSDvfSg==
+ b=ADno9DK2Z9oM4BdUAtd72YsrsiZJT8cvHGByITIcaz7/BZIayPhTkDTI3BoEQEn6j6BWwyU5LWPDusebukq//T8umEN9nlbJM9ZCr8QV5iEyie9zvYFFD2I/JE2rXkhGotv+R7uj+iTorLph6WykpG4n2+/88El5GT33BwMsAIj8bCzA75Gp1ZTCa9kIJfHGZjD6juB9d0m5jCWOcsqBfghOrsGz2w2gylOq5AJB9ah0Vsz5G9RE6/iri/eA2U6Xs3QS4K+PDs3go1eHgZuYDiLtdT6UPCZQHfmM0o/FwKMxrbweHQcwg65TgdotuLwSHSeexoU16A4m4Qgyd7ouFA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=csb6pdG5nraecF29V77f++z1G0NKLynx+fr2mh6kR7w=;
- b=GzgyPtrxGZr1ObGHOGTUA9bjg96ZbAy6aIoHQ6L7j3fTNZG2DP1bXrxvQnWFeM3aE1TaUyxNFiMGNLYUX4GCmuEUq1SJxLTVmsDGy8n7Z5KFvZVhnq8eV4cB4jVQmOuXUqn0Nky2+xgNvxCm7FW4OGSijTIvFUJISfvZ8v3HBFjm2+HhmCB4pckShq+gihXGZdvfYBh5zufOpf7lsBUs2vMDo+QHn7eav3O1Nb3zC/A+8g15pFaEX1y3a9rKWY9dVVIaB/3BU9ufQmcxDTZEjx7e1C+HGCq9Fw0LXJg6ijlq2KcXcxyJBArTdyNI7D7oYZo3LX6aNIEZyw/7PkiXag==
+ bh=oaYJGsvJuRp9U1Lv6ouzfZgM/MtWqcmzNjP6Af+zGHs=;
+ b=oh8YvMKp0O3/PYhi/e4HC+57TKboCnfya/Js7R+pyxdNXNgiAcBp0+jKQRpq7XDgi4ZCXLenqrZx/piL8F4aEOasCumD6FIHUroPmOmW9+SWynfj5rHPmAIwqEdrYSzLzUelxROduehzoyXkLzXcdHAb89MgVfa/keoSudixHS32s8sHu39GqjGr4ngjgKSw2lW3ghJEwMBUT1L7uagcuk9vl4KZ7njHxZ2xnAfGhWd28HpRDX6D4uyu2Ev206EMD9GwRkafbcejwouw98CIiDnmqffOEQSIEAbNreYd97Wb9r35lPVqPlfg8kqDop72O6EffQ6hYXAjMbgv8GlSuA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by CY8PR11MB7316.namprd11.prod.outlook.com (2603:10b6:930:9f::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.30; Wed, 6 Nov
- 2024 16:53:46 +0000
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527%3]) with mapi id 15.20.8114.032; Wed, 6 Nov 2024
- 16:53:46 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: "Roper, Matthew D" <matthew.d.roper@intel.com>
-Subject: RE: [PATCH] drm/i915/hdcp: Handle HDCP Line Rekeying for HDCP 1.4
-Thread-Topic: [PATCH] drm/i915/hdcp: Handle HDCP Line Rekeying for HDCP 1.4
-Thread-Index: AQHbMEqfzxKpZCIT60udDQ03iHkYUrKqcYWAgAAGUqA=
-Date: Wed, 6 Nov 2024 16:53:45 +0000
-Message-ID: <SN7PR11MB6750A2E02B5E883F24045D21E3532@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20241106125100.852609-1-suraj.kandpal@intel.com>
- <87ses4fhqu.fsf@intel.com>
-In-Reply-To: <87ses4fhqu.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|CY8PR11MB7316:EE_
-x-ms-office365-filtering-correlation-id: 938198de-1549-40bb-3133-08dcfe83942a
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?Iqa5fwnfyz2h3ZByEcZdIL31BdaGucX6OuW5QARMUoY9SsAm3FUK3oKoAIja?=
- =?us-ascii?Q?0PXintF796Lk1snA6rRPVklTf8fmFaXVwgaCAE2/oQZdbK0x7Gfwn2ypIGjS?=
- =?us-ascii?Q?m9/RYxg94geH5qyoSkYZXc0SmVIVRvR3Zv/NwGiZ+aE1B9b8lpwtzqQTLe13?=
- =?us-ascii?Q?x0pnUwtooC5tkoe+cwgr6ohjQ90jK1ZqzgQXnmsHCrwLlfJWo4EypjEqoc0X?=
- =?us-ascii?Q?0Kv7Wn1yZeOCf1Jd99DD39TeJ3eQLWE5Tg45uUoSubduH8QU1IHOGfBK2Ypg?=
- =?us-ascii?Q?7b5E5czhEILwbHCdnxK4wkoASX/6MCfmRoG4spuYvx+d66I2pzsd7Z3HDqV7?=
- =?us-ascii?Q?yoP+9znzZ4ATQy9teS+tqRKVbeAvjQEvW8VH1tRduVJRzzzgLGnbyKpITppx?=
- =?us-ascii?Q?BoocZCHKs/3P+gvC9hW9ZiM3LFeAefsqwStfgpv9wDrrAIzgGjyOvLhX50rw?=
- =?us-ascii?Q?ORCWIWfaG2oAvtXRz5A1ZsdSbE5CWcv4bQevkDfHiud0R3AV7O4UxGFAZ8xB?=
- =?us-ascii?Q?LYTDfsf541gcqeuM9GOGlouiPVLc8qIUZZFl0FSrPziIur5M/MNG2adwJYpH?=
- =?us-ascii?Q?fmLdZCW/M2ALhAAxsukcVi5etv9KzevOzyJViPcFOl00pICpymWcTkg938pO?=
- =?us-ascii?Q?1gUCFtrTclW4B1+NomHo0IfbmdkylCF9vJoqHNb2POFWVNKNVPkGmmiOaO0v?=
- =?us-ascii?Q?xxWkhpy/AxUySMHD60XGe5cvdzwe23h2impsOTziNbszNtIJ4FjB4o/+BqtL?=
- =?us-ascii?Q?+fnh90VyEoaXonH3HwWea83zdxh6kmSB7vgnhB1ZkvZLaIRtauFfVFFSKehU?=
- =?us-ascii?Q?GFIdYE5HEFBhC17b9ROQaCFf6O1afKqtH+yjUyov5s+lP7Y60eShempMVxrF?=
- =?us-ascii?Q?jHz4qBhe6NxOPC3KczWt0cl9+hJktnB7aevAJlwyjonM8HK1nr/f/wx1qnS9?=
- =?us-ascii?Q?lQ+ejAnVMckJTqqme+NrTUoV/oBENsrSS2xiNES2mMUEZGEloTMBbPhz9REw?=
- =?us-ascii?Q?4fcDihf6KeCLDQlUmJgXcwSaj+sbAikvL1ROo3cYwMLIaWGvWW4VQxsAQ8pR?=
- =?us-ascii?Q?3UePDEkHmItUtJ9YKK9AcQ8QgzOWhdnFkNVT2FQNm1mut/n2xRIQADqCIj+c?=
- =?us-ascii?Q?s/oIZJQXvZ+qAXcykxNWmiEX/9+Qync2yplmxemVpP0uWYFkjZjBGJVEhm2r?=
- =?us-ascii?Q?NqGETtwAyUuCFPlBhSCEHNgHoK9i7zgqW+ASJgt5Yny/ZDTtR8TRXGKM3RVD?=
- =?us-ascii?Q?jKA4DyoIj2njmDQfPRvGTKMP/EGa3rKEo7s1Lm9dXgPaUyDZzlqESPMQK7G9?=
- =?us-ascii?Q?UlkEdxhfynJUThpeYhnXzgqK+sVCMtGNysH/JvsiAMD0NAupUQXmP2TJ/JTn?=
- =?us-ascii?Q?zPlMmKs=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?vCMameGUtmjuensggcgI4jqzuUrBJ+LyDZ3nstcrUStMrF6dFxK3i/mcrH3J?=
- =?us-ascii?Q?i5iXAWUKIhEuxBXFjMGUt0UJwLlBff/2X3XUK9yo4x1KDtYXbLVkyvG1QSf5?=
- =?us-ascii?Q?9KiqtI8WU00nPYmw60xjvsM41XT2cnnAdkyyNpR0HE1TFqxsbYt4Vx1/vLgb?=
- =?us-ascii?Q?OKzdGO/jM0LS1HTbpRXpZ/SYz0mL3VJJRa+brFSCqQncViI5nJOaXx4PzqTf?=
- =?us-ascii?Q?IeJEa3GEJknCRUrs2FhUC2xgDwX59UreIj4mwefXmnNc3yPxyR6VbE9vqgYt?=
- =?us-ascii?Q?4PA7UrZSM8LJVUp2f+uSCjaLz6/y46YPQFFjd0FBlBq7voR+Hs1YHilIQ13/?=
- =?us-ascii?Q?G3FRCEFdquqIF6qoFu/1F13ZDQhDt6N+MrRpDuG4F5Ya4oLQ6t4AQ+zhRx5p?=
- =?us-ascii?Q?11AiDFnbahAxe6VtnhkBulqN6f9wE+nmiPi2geBmTZvfnzCVqscfLNYIkDH+?=
- =?us-ascii?Q?6mB10KYGyPSCoub0MyjIIC9hF081N8ChM7z5sS2a0iKhH67SKEO1KT+uHcG0?=
- =?us-ascii?Q?sx61XVLyC0wPzhguCih3ZS76obdiKeShBAQBSAEuUKqQlL5lmADFRM4eIo/m?=
- =?us-ascii?Q?0deiZ70ScKfnE6eA12A1R09KeQXQbahNEEEG2uSm+iGXdNzHNegp+js3e7yL?=
- =?us-ascii?Q?VIYhe2sZVEIcJn6u2o2kNlOOwz5NDuz+Op2MuD0ZPdebhwHIZkWZUImvIoRa?=
- =?us-ascii?Q?PHnziE7/BABKMEfgVMzharru7jUby77nJV3cMsSCAEFkJMgoVnQPX/0u1ABZ?=
- =?us-ascii?Q?KfNrQCdYXvOrihmfuVftpqseBICs8hntXLUkPYw1Cn6l3TC4s5cXt27ygK19?=
- =?us-ascii?Q?inDQkPlzJOEGKTG9r6rStUgkUjTrnvg9ymlRw88wTBBMYrPNmzJcPaUw/pbK?=
- =?us-ascii?Q?aOVEJeS+plnKlC0PIfpsqZmnqfdWvzqnGM11/4xMksEDEfzFOzu7R9coTGPy?=
- =?us-ascii?Q?Fi4jYbmoGaVtNgLWD/MO/Gzo8UrMvHmfWI3Z4n2XY3UxFS0Ap4DHzPDOdaEA?=
- =?us-ascii?Q?Ih8joINBCviaoDCW3htJ/TU51a78tURiObP09KjDjUy3hx8sl1KPxT+iudKR?=
- =?us-ascii?Q?3RSOYqjLno5BPJ3fZLQHTZ9QxcwnPJK50kxmo1BzE1zetl0GZ95lCv4QMd1n?=
- =?us-ascii?Q?hSpu6HVyOWTkfAm/S/uvjdas5S2WKlJuYwobOxB2QZccCnCS80iwgXla4EU5?=
- =?us-ascii?Q?h1/1vN+dN/N+sScbv6wCv81p6UNq+8VzVeFUy6Gn+FWSV54QXJdnxRJt/RpC?=
- =?us-ascii?Q?G7yjQfwH16FMRe0Ulhobkg21lViwb9rPYk5QQywIdNDhSXyvV+7JGWRNE2fb?=
- =?us-ascii?Q?2pKlNZQxRdgENJK3I9+31Qt/nNoLz6WWqV+Ye65Bhh4PV/YLzQmBLJYvtnVZ?=
- =?us-ascii?Q?UgMPOiBAICbvlCZaaAcb8sH3kXZYtXcvVxWXf0FloFx0BRdHAhFN+ApJZp41?=
- =?us-ascii?Q?hD46+1542Q4PAy8Xqc0VoMmY3/yCDZ4cWRZfJGPMe1sT1p7ba9VdtfLe/D0k?=
- =?us-ascii?Q?1QpvZp9jbiAuF3z0jyoW9Zc09KQmj4AAZjYu5SML+7U0fdLUaNTn16ksEhT1?=
- =?us-ascii?Q?5UxAhwV/Jczx8bv7ZkOLSgNkfsr17k8RhADAwEQz?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by DM4PR11MB5278.namprd11.prod.outlook.com (2603:10b6:5:389::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.19; Wed, 6 Nov
+ 2024 16:59:39 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.8114.028; Wed, 6 Nov 2024
+ 16:59:39 +0000
+Date: Wed, 6 Nov 2024 09:00:09 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+CC: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Huang Rui <ray.huang@amd.com>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <matthew.auld@intel.com>
+Subject: Re: [PATCH v6 2/8] drm/ttm: Add ttm_bo_access
+Message-ID: <ZyugmXt7v+JeKuN9@lstrano-desk.jf.intel.com>
+References: <20241031181048.2948948-3-matthew.brost@intel.com>
+ <ZyQWF/k9VFo99tDB@lstrano-desk.jf.intel.com>
+ <ZykFrJIx9M204Weg@intel.com>
+ <02ec3d6a-4727-4535-a384-4c6789fa4ef4@gmail.com>
+ <ZylBWVjlW+GDYy5M@lstrano-desk.jf.intel.com>
+ <c76830ae-c6f9-47a2-8087-32d9f7c3df2c@amd.com>
+ <ZyplgNBaZ93UUdxY@lstrano-desk.jf.intel.com>
+ <88ceb558-89d1-4d10-be8a-9ce2f3178fa5@amd.com>
+ <ZyuKTFxCD0SusZpt@lstrano-desk.jf.intel.com>
+ <34d18085-7e23-4632-9287-65eff6651bba@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <34d18085-7e23-4632-9287-65eff6651bba@amd.com>
+X-ClientProxiedBy: MW4PR04CA0236.namprd04.prod.outlook.com
+ (2603:10b6:303:87::31) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM4PR11MB5278:EE_
+X-MS-Office365-Filtering-Correlation-Id: 19e2b82d-1edf-4272-8885-08dcfe846671
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?MlpsV1hxTFlnQnZtWU1EL1l4QmhyZS8rK2FhTVRCTnNCcGlnWm02N0pRQTFY?=
+ =?utf-8?B?ZW5kRVZ3SEJsbzMxNVlBUk9QL2xoQlB4Y3BQaE1XSFVYQjFOTHlKWlorcEFB?=
+ =?utf-8?B?YzRHZ3BKbG54Z2lKZGdPUmlLa003dEFTUEtLclMwbmd3d1ZraXM1ZWVmRnRM?=
+ =?utf-8?B?b2lpdUNFSXlqNER5QnNQTThqNkhSeGZqVEhQdEEzRiszeExnVGdIcnlwanhE?=
+ =?utf-8?B?N1Z4dUhhMVh6R3J3c3dNUjF2bmswb29wUUkzSXVxRU1QWXpTL05oellvUURP?=
+ =?utf-8?B?ZnlrelVQTVlpNjBkbUlzY2N1Z1hlMy9qL1NmZitMcE1aU0pZSXVkVTlES2hH?=
+ =?utf-8?B?VGVOVkpCWkEzeDYrb2ZmWSs0eUo3aDRrSnc2VTBlYjk3c1ZYNTU4bDNYakdv?=
+ =?utf-8?B?QzNhZG0wbXJ1SzU0TGI5NWRId2Z5ZTRucHNyZnlXT3NSMGQyZ0dhKzVTTVNu?=
+ =?utf-8?B?ejJTamZSN0dodjl4TkMzYlVycGpUbXRKOENNQVdaR3J5NzNKZCt4bDZmczNr?=
+ =?utf-8?B?UENscDNrYVVTZWlkNkgySW40SjY3dFJZRlJFZHZBNVQ0YXcwaTQ4cHp5VzRw?=
+ =?utf-8?B?b2w0cUEva05GK3lYRnlyTEdzSGpUWnRMK3hNeEYxNVZjb2pPUnVPeXRxK3NN?=
+ =?utf-8?B?NEwvblFGZ0xKZVU5c1VVanBPTTFrOW4vZWd0c0tVUVY0emd3ZVNQSFpmb2RV?=
+ =?utf-8?B?SVJwZkZLMFFBWm9OSFJVSzFFM1F4U0dnaTBFRWFBZ3I2YnEwZnBzU044Q0Nl?=
+ =?utf-8?B?MmF1RlJqMnNUc1AzV0ZZdnA3YXk1L1N5d0ptVkl6bE1KdUZBV2tPd3ZqVHI1?=
+ =?utf-8?B?dkswV3dGZ3l3a2k4MjFuQms4bEFzNGJyTjJndlBwdDZ6NHJRdDYrMUN3aENr?=
+ =?utf-8?B?RWp6SWtSajYwaTh4aGZvN29ZU0hWWWNWUVZNaUFITU5ITWNLck9UUFRhZ2ZW?=
+ =?utf-8?B?Q2dQSTV4Q0xkaW9xR1UzTzFjanhFU2RKVG5TbHdXWjE5SE1qY0Y2UWNnS05K?=
+ =?utf-8?B?K1BJSmk1dlJhSFBLRzEyRHRpUkd5RnpkTE0xWmlFRTNmRUNlemdoR1Zld0NH?=
+ =?utf-8?B?ajNxeXlNRXo4MUpTL3pkblZGcnZHSk1zcWFzdkpMY1U0RFkxV0MxMTZBT0Mx?=
+ =?utf-8?B?cmMxNnpIdUR0cURvQnp4S1V2MGFaQVdWUDg0dTBtVVROejJDbHFFakc1dkFW?=
+ =?utf-8?B?ZGpqMGlTSzVNNUYxdlpOK0VOdU1UN1hsVytGOXlxTHAzWFNWUXIvUjNzSks0?=
+ =?utf-8?B?a1dTc1NPUG5FMkVsR2lxRTZwS2ErNHJzZll4Vmh4NnhwUHFkY2tXQVBUWnRm?=
+ =?utf-8?B?a0ZrZVhnOXBlck9URkx6ZWdoTURwUk01bDhqRFhtR1ZLdGVjNVB4ZjZyMXBR?=
+ =?utf-8?B?Ump1OWNSS05USEwyL2lQZzFvdnRGbjNVaXduL3lDSHRERWhVbHFzTFVnTm0v?=
+ =?utf-8?B?UEF6cGo2WXIyb3RmNnJXN1cyek45Ym8va2NySVZBNGMvM2FiT09jbExPcjBO?=
+ =?utf-8?B?NnpxMFpDd2JiQ08vREs1TUNDQzFBYklTTjZVVTdsaXEzUktIYjkveDB4UWlT?=
+ =?utf-8?B?VXFQRllJZE80c3EwSUZTTmkzNWdLR2wvMkZ3d2FVMUduT003WXh4eUh1dVFp?=
+ =?utf-8?B?NDh1QTVHTnROT2prZ0N3WVdrSERHRm5hMGxYU1JZWlV0Z3BoYXl2MWhiSkdO?=
+ =?utf-8?B?RUFJNjlRWGV2VWdWeTRZdjJ1c2g0VktXZTh0Wmtqb3g5N1R1S0FpRHhnPT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cjFkczVWZnIyUU1lcS94R3hLOVZvVWFuRGUrMnA2REdjSVg5bFd1QjVuajFX?=
+ =?utf-8?B?ZndYcjQ0QkZ1dG1Td2FwL2V2Vm5JK1N4VDI0NGZIWWxXcnRtaDN1ZEZxQVNp?=
+ =?utf-8?B?c0FoNDVmSzhwNG9kTXdkZldCMG5Oa3pGVzVwNHlVWEkycThsTHlkSmZtTDZX?=
+ =?utf-8?B?azRHRDNVVElhZmx2L3pmSitRVWYrVVUwY3A3MENQRUN5OEl3NzQ1cklFQnB5?=
+ =?utf-8?B?OVNLRW83aTRJMVJvdVo4NmNveHdVZS83bmM2ZjFYRURFVC9NZlR2NnRHRnNp?=
+ =?utf-8?B?RHQzUlRpVWNPRXRzZWNqZGNmSks1QVpuaDB0WExQSjJ6TzdvaTlydFVjcEdj?=
+ =?utf-8?B?Qmd5dm1NSTNiQzgzNjVjbjA2aWpUTWhnYkJwVnpwaUFESlVsODVJd3FLZ2o1?=
+ =?utf-8?B?U085Skh6N2o4Tlp2SWw3K0QwOGN4NGVwUFFjLzlCNVdlMVhqOWRLYVBvTHdD?=
+ =?utf-8?B?eW13aUVzWmN4SDRvQzFhSlJBaXJpS0Fod3hjY2hqTU4wU0NodmJnMStVaCth?=
+ =?utf-8?B?QVRSZDZnUEd5T0U0U0pLdEl6UnJIUnZJUXN2bnpYODlHelQvaU9nN0FGVUhL?=
+ =?utf-8?B?TFoyQXlOSlJxeU9UdmJTWkxTTVR0bFo5RVduZ1FwSUJqTXhyVjFBN0ZFNGQ5?=
+ =?utf-8?B?U2hTK3ZPbkJORUwzWmhiUVNTQy9nZkVKU2prTFFLNGd0TFNHenBuQmNwbm8v?=
+ =?utf-8?B?RGJqVEcvNjFjL3Izd252QlVDeWhpdHhJMjVTK1lOc1J1SFpUVmxhSHIrVmJz?=
+ =?utf-8?B?a3owdG1GWEhDc0NrbWplV3pWckk3QTVuQlUwNzd1Y1hjTW5NRTJmSnVFOFFa?=
+ =?utf-8?B?Z0pmZ3pjbHgyY1N0M3owbW05R0ZPK09ES3h6RzNsUlRUdlp2ZEhLODZZSmk1?=
+ =?utf-8?B?TzhwMm5VeDFCVVpRUDVjcTJ4b2hGcUdkNUZDNGxJMVRkQ1BGa0Y4ZHAyVUgr?=
+ =?utf-8?B?d3FYYk91MXpPenk4Rm8zL05mNFJwWmt3N0xTbVFLdUhjUU1PZ1Z2RDNVK1By?=
+ =?utf-8?B?S0grVDhBZnluVTFOaFNLbjg3RGthNUVGM3ZiM3R4bkVRVEQyNE1oTmxSemR3?=
+ =?utf-8?B?Z3p3SlNjYjRVV1AxWkU1NE4wNzl5UFUzdWl5cG5QcUMyQ2pwMUp0Nlg1RkF0?=
+ =?utf-8?B?SURHYVpidUUzZmtnajlXeXNzL2ZNRXZ4V2tPb3ZWVk5PYzlXZTY4VTUxYlRM?=
+ =?utf-8?B?bXduTmxKUXZFY2NQeFhkV212K2pnOXRmMVF4bTBacDVKRklqdHludzBpMVd1?=
+ =?utf-8?B?Y25vKzZIQUhSRXBzeFFxWkNwNVZHUEZBK283ME5tNTRSZFEzVm5EZWt5MDdG?=
+ =?utf-8?B?QWk3NUdtTkRNQVFZQXBHODRPc2tsbHpybUZjcERYRG9Sc1d3SUhTQUJwWHBJ?=
+ =?utf-8?B?aU5hWkNpbGd6NUpSdlRyS0hqbEh4SEVqaldFSlYxdDR6bnVDWno5aWUyd3R2?=
+ =?utf-8?B?bEtUcW9LdGdUTDFvZnBleDlnT2U3Wk94a1VWUXlUcE9FT3lPek9jRWJ5NXow?=
+ =?utf-8?B?ejdLV1hQTkI0b01SNk1tcE9PQlM2MXBCVUR0MFBnK0FRYThEZlZ5a05adzhB?=
+ =?utf-8?B?YlNaSGlTVVkvWitZUFVGQWdnei9xV0o5UlIyUVJvK1BVT0N0bmFlc3Z1TTB1?=
+ =?utf-8?B?UFd0NEhCT0ZCUkhwMm1FemlLbDN6N2NyN2NLcEpmSEJ5bjBaYTE1WWZqMXhC?=
+ =?utf-8?B?T3Z1QlpxOTRTeDhEZXhHTmV6ZFE4VEI2azVQOW1TSUZ6M2x0UW1tUW5Ra2RJ?=
+ =?utf-8?B?V1dtY0VkcXlTakNNcUlBUmx5YnhIbHVSeGZzNkhhNWtpNy9haXNEV2g5bllS?=
+ =?utf-8?B?QjRrbmhKQlBsR0ZlUExvb0VacHZkMDZ3ejhUZ2JoY0dESFI2anJlalhMUzN6?=
+ =?utf-8?B?bWQxN1RpUFp5ellBK1MwMm01U0hMSVBEdFJncG9YREp5OEY0Vk9GVFlxeHdZ?=
+ =?utf-8?B?SE5pcXV4eVpTZHQwbWRRWjRhN0ZnWFQwWG1hQlFyeVRad3FxVXBOTDhYVU82?=
+ =?utf-8?B?dTlITWdHaVhHczJGUUpYeGJrOGhSWFFNYlFzVlRGYXBHZ24rcndGWGNGRUp5?=
+ =?utf-8?B?SXNBcTZYV1RNY2RNOHI4NGVCYVRFZ2pWV20rR2E1MEM1VGQ3ZFhHNXNubUNl?=
+ =?utf-8?B?b0k1eEhGb2JYakY1L2YvWkVrZ3VmOER5ZjgzaUtSQ1N4RkluTndUOFhYNEV4?=
+ =?utf-8?B?b0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 19e2b82d-1edf-4272-8885-08dcfe846671
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 938198de-1549-40bb-3133-08dcfe83942a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Nov 2024 16:53:45.9505 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DcBLMaSSLRbQ8R66uMyyESxwtjpqniIS3VbGU9HtIcwfBmKq52NPU7wVx31Ix45Xy1A1NIaMQF/WJSCHQBYhTQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7316
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2024 16:59:38.9571 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: L6ETC0wQQLmQwPct/FbNCNQyfcOIYGlR2Ml5nm2oGzZ8C7a7VnWfwLtWakcq9xKPBT8LZWL3ALtVUUZ8ediprw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5278
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -180,146 +201,313 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, Nov 06, 2024 at 04:44:15PM +0100, Christian König wrote:
+> Am 06.11.24 um 16:25 schrieb Matthew Brost:
+> > [SNIP]
+> > > Can you fully describe your use case? In other words what exactly is your
+> > > debugger trying to do?
+> > See above; I hope I've made this clearer.
+> 
+> It at least sounds a little bit better.
+> 
+> > Also, I'm not really an expert on Eudebug, as I haven't been involved in
+> > the development aside from reviewing its interaction with the core of
+> > Xe. Any further explanation would likely require me to loop in a
+> > colleague.
+> 
+> I think that could help since I don't have a clear picture of your use case.
+> 
+> 
+> > > Well, I think we need to take a step back. The major question is what is
+> > > your use case and is that use case valid or causes security concerns.
+> > > 
+> > > For example userptrs are imported anonymous pages the GPU has a DMA mapping
+> > > for. Re-mapping them into an user address space for debugging or even
+> > > accessing them through the ptrace interface is strictly forbidden.
+> > > 
+> > > We already had people trying to do exactly that and it ended not well at
+> > > all.
+> > > 
+> > Again, if we can focus on what this patch is doing—accessing a BO, not a
+> > userptr—I think that will help progress here.
+> > 
+> > To bring things together: "There is a huge push from upstream to avoid
+> > using kmap/vmap if possible." How would you suggest accessing a BO then?
+> 
+> Well that's the whole point: You should *not* access the BO on behalves of
+> userspace in a peek/poke like interface.
+> 
 
+This is not a generic interface that anyone can freely access. The same
+permissions used by ptrace are checked when opening such an interface.
+See [1] [2].
 
-> -----Original Message-----
-> From: Nikula, Jani <jani.nikula@intel.com>
-> Sent: Wednesday, November 6, 2024 9:59 PM
-> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-xe@lists.freedesktop.=
-org;
-> intel-gfx@lists.freedesktop.org
-> Cc: Roper, Matthew D <matthew.d.roper@intel.com>; Kandpal, Suraj
-> <suraj.kandpal@intel.com>
-> Subject: Re: [PATCH] drm/i915/hdcp: Handle HDCP Line Rekeying for HDCP 1.=
-4
->=20
-> On Wed, 06 Nov 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> > TRANS_DDI_FUNC_CTL asks us to disable hdcp line rekeying when not in
-> > hdcp 2.2 and we are not using an hdmi transcoder and it need to be
-> > enabled when we are using an HDMI transcoder to enable HDCP 1.4.
-> > We use intel_de_rmw cycles to update TRANS_DDI_FUNC_CTL register so
-> we
-> > cannot depend on the value being 0 by default everytime which calls
-> > for seprate handling of HDCP 1.4 case.
-> >
-> > --v2
-> > -Use the exising function and modify it based on a bool rather than
-> > have a different function [Matt]
-> >
-> > --v3
-> > -No need for kzalloc [Jani]
->=20
-> The code still needs to make sense! You can't just remove allocation and =
-use
-> whatever stack garbage rekey_reg happens to point at. Look at all the oth=
-er
-> code that uses i915_reg_t. You can't possibly assume I would've needed to
-> say "it shouldn't be a pointer at all"?
->=20
+[1] https://patchwork.freedesktop.org/patch/617470/?series=136572&rev=2
+[2] https://patchwork.freedesktop.org/patch/617471/?series=136572&rev=2
 
-Sure Jani ill fix that, I thought I had changed it from a pointer to a norm=
-al variable,
-Seems to have missed it.
+> > kmap/vmap are used everywhere in the DRM subsystem to access BOs, so I’m
+> > failing to see the problem with adding a simple helper based on existing
+> > code.
+> 
+> What#s possible and often done is to do kmap/vmap if you need to implement a
+> CPU copy for scanout for example or for copying/validating command buffers.
+> But that usually requires accessing the whole BO and has separate security
+> checks.
+> 
+> When you want to access only a few bytes of a BO that sounds massively like
+> a peek/poke like interface and we have already rejected that more than once.
+> There even used to be standardized GEM IOCTLs for that which have been
+> removed by now.
+> 
+> If you need to access BOs which are placed in not CPU accessible memory then
+> implement the access callback for ptrace, see amdgpu_ttm_access_memory for
+> an example how to do this.
+> 
 
-Regards,
-Suraj Kandpal
+Ptrace access via vm_operations_struct.access → ttm_bo_vm_access.
 
-> BR,
-> Jani.
->=20
-> >
-> > Bspec: 69964, 50493, 50054
-> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_hdcp.c | 36
-> > +++++++++++++----------
-> >  1 file changed, 21 insertions(+), 15 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > index 4e937fbba4d2..6ad5efc9711c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > @@ -32,27 +32,31 @@
-> >  #define HDCP2_LC_RETRY_CNT			3
-> >
-> >  static void
-> > -intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
-> > -				      struct intel_hdcp *hdcp)
-> > +intel_hdcp_adjust_hdcp_line_rekeying(struct intel_encoder *encoder,
-> > +				     struct intel_hdcp *hdcp,
-> > +				     bool enable)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> > +	i915_reg_t *rekey_reg;
-> > +	u32 rekey_bit;
-> >
-> >  	/* Here we assume HDMI is in TMDS mode of operation */
-> >  	if (encoder->type !=3D INTEL_OUTPUT_HDMI)
-> >  		return;
-> >
-> > -	if (DISPLAY_VER(display) >=3D 30)
-> > -		intel_de_rmw(display,
-> > -			     TRANS_DDI_FUNC_CTL(display, hdcp-
-> >cpu_transcoder),
-> > -			     0, XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
-> > -	else if (IS_DISPLAY_VERx100_STEP(display, 1401, STEP_B0,
-> STEP_FOREVER) ||
-> > -		 IS_DISPLAY_VERx100_STEP(display, 2000, STEP_B0,
-> STEP_FOREVER))
-> > -		intel_de_rmw(display,
-> > -			     TRANS_DDI_FUNC_CTL(display, hdcp-
-> >cpu_transcoder),
-> > -			     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
-> > -	else if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0,
-> STEP_FOREVER))
-> > -		intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp-
-> >cpu_transcoder),
-> > -			     0, HDCP_LINE_REKEY_DISABLE);
-> > +	if (DISPLAY_VER(display) >=3D 30) {
-> > +		*rekey_reg =3D TRANS_DDI_FUNC_CTL(display, hdcp-
-> >cpu_transcoder);
-> > +		rekey_bit =3D XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE;
-> > +	} else if (IS_DISPLAY_VERx100_STEP(display, 1401, STEP_B0,
-> STEP_FOREVER) ||
-> > +		   IS_DISPLAY_VERx100_STEP(display, 2000, STEP_B0,
-> STEP_FOREVER)) {
-> > +		*rekey_reg =3D TRANS_DDI_FUNC_CTL(display, hdcp-
-> >cpu_transcoder);
-> > +		rekey_bit =3D TRANS_DDI_HDCP_LINE_REKEY_DISABLE;
-> > +	} else if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0,
-> STEP_FOREVER)) {
-> > +		*rekey_reg =3D MTL_CHICKEN_TRANS(hdcp->cpu_transcoder);
-> > +		rekey_bit =3D HDCP_LINE_REKEY_DISABLE;
-> > +	}
-> > +
-> > +	intel_de_rmw(display, *rekey_reg, rekey_bit, enable ? 0 :
-> > +rekey_bit);
-> >  }
-> >
-> >  static int intel_conn_to_vcpi(struct intel_atomic_state *state, @@
-> > -1049,6 +1053,8 @@ static int intel_hdcp1_enable(struct intel_connector
-> *connector)
-> >  		return ret;
-> >  	}
-> >
-> > +	intel_hdcp_adjust_hdcp_line_rekeying(connector->encoder, hdcp,
-> > +true);
-> > +
-> >  	/* Incase of authentication failures, HDCP spec expects reauth. */
-> >  	for (i =3D 0; i < tries; i++) {
-> >  		ret =3D intel_hdcp_auth(connector);
-> > @@ -2062,7 +2068,7 @@ static int _intel_hdcp2_enable(struct
-> intel_atomic_state *state,
-> >  		    connector->base.base.id, connector->base.name,
-> >  		    hdcp->content_type);
-> >
-> > -	intel_hdcp_disable_hdcp_line_rekeying(connector->encoder, hdcp);
-> > +	intel_hdcp_adjust_hdcp_line_rekeying(connector->encoder, hdcp,
-> > +false);
-> >
-> >  	ret =3D hdcp2_authenticate_and_encrypt(state, connector);
-> >  	if (ret) {
->=20
-> --
-> Jani Nikula, Intel
+This series renames ttm_bo_vm_access to ttm_bo_access, with no code changes.
+
+The above function accesses a BO via kmap if it is in SYSTEM / TT,
+which is existing code.
+
+This function is only exposed to user space via ptrace permissions.
+
+In this series, we implement a function [3] similar to
+amdgpu_ttm_access_memory for the TTM vfunc access_memory. What is
+missing is non-visible CPU memory access, similar to
+amdgpu_ttm_access_memory_sdma. This will be addressed in a follow-up and
+was omitted in this series given its complexity.
+
+So, this looks more or less identical to AMD's ptrace implementation,
+but in GPU address space. Again, I fail to see what the problem is here.
+What am I missing?
+
+Matt
+
+[3] https://patchwork.freedesktop.org/patch/622520/?series=140200&rev=6
+
+> Regards,
+> Christian.
+> 
+> > 
+> > Matt
+> > 
+> > > Regards,
+> > > Christian.
+> > > 
+> > > > With this, I strongly prefer the code as is.
+> > > > 
+> > > > Matt
+> > > > 
+> > > > > Regards,
+> > > > > Christian.
+> > > > > 
+> > > > > > Matt
+> > > > > > 
+> > > > > > > Regards,
+> > > > > > > Christian.
+> > > > > > > 
+> > > > > > > > > Matt
+> > > > > > > > > 
+> > > > > > > > > > Reported-by: Christoph Manszewski<christoph.manszewski@intel.com>
+> > > > > > > > > > Suggested-by: Thomas Hellström<thomas.hellstrom@linux.intel.com>
+> > > > > > > > > > Signed-off-by: Matthew Brost<matthew.brost@intel.com>
+> > > > > > > > > > Tested-by: Mika Kuoppala<mika.kuoppala@linux.intel.com>
+> > > > > > > > > > Reviewed-by: Matthew Auld<matthew.auld@intel.com>
+> > > > > > > > > > ---
+> > > > > > > > > >      drivers/gpu/drm/ttm/ttm_bo_util.c | 86 +++++++++++++++++++++++++++++++
+> > > > > > > > > >      drivers/gpu/drm/ttm/ttm_bo_vm.c   | 65 +----------------------
+> > > > > > > > > >      include/drm/ttm/ttm_bo.h          |  2 +
+> > > > > > > > > >      3 files changed, 89 insertions(+), 64 deletions(-)
+> > > > > > > > > > 
+> > > > > > > > > > diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> > > > > > > > > > index d939925efa81..77e760ea7193 100644
+> > > > > > > > > > --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+> > > > > > > > > > +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> > > > > > > > > > @@ -919,3 +919,89 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
+> > > > > > > > > >      	return progress;
+> > > > > > > > > >      }
+> > > > > > > > > > +
+> > > > > > > > > > +static int ttm_bo_access_kmap(struct ttm_buffer_object *bo,
+> > > > > > > > > > +			      unsigned long offset,
+> > > > > > > > > > +			      void *buf, int len, int write)
+> > > > > > > > > > +{
+> > > > > > > > > > +	unsigned long page = offset >> PAGE_SHIFT;
+> > > > > > > > > > +	unsigned long bytes_left = len;
+> > > > > > > > > > +	int ret;
+> > > > > > > > > > +
+> > > > > > > > > > +	/* Copy a page at a time, that way no extra virtual address
+> > > > > > > > > > +	 * mapping is needed
+> > > > > > > > > > +	 */
+> > > > > > > > > > +	offset -= page << PAGE_SHIFT;
+> > > > > > > > > > +	do {
+> > > > > > > > > > +		unsigned long bytes = min(bytes_left, PAGE_SIZE - offset);
+> > > > > > > > > > +		struct ttm_bo_kmap_obj map;
+> > > > > > > > > > +		void *ptr;
+> > > > > > > > > > +		bool is_iomem;
+> > > > > > > > > > +
+> > > > > > > > > > +		ret = ttm_bo_kmap(bo, page, 1, &map);
+> > > > > > > > > > +		if (ret)
+> > > > > > > > > > +			return ret;
+> > > > > > > > > > +
+> > > > > > > > > > +		ptr = (void *)ttm_kmap_obj_virtual(&map, &is_iomem) + offset;
+> > > > > > > > > > +		WARN_ON_ONCE(is_iomem);
+> > > > > > > > > > +		if (write)
+> > > > > > > > > > +			memcpy(ptr, buf, bytes);
+> > > > > > > > > > +		else
+> > > > > > > > > > +			memcpy(buf, ptr, bytes);
+> > > > > > > > > > +		ttm_bo_kunmap(&map);
+> > > > > > > > > > +
+> > > > > > > > > > +		page++;
+> > > > > > > > > > +		buf += bytes;
+> > > > > > > > > > +		bytes_left -= bytes;
+> > > > > > > > > > +		offset = 0;
+> > > > > > > > > > +	} while (bytes_left);
+> > > > > > > > > > +
+> > > > > > > > > > +	return len;
+> > > > > > > > > > +}
+> > > > > > > > > > +
+> > > > > > > > > > +/**
+> > > > > > > > > > + * ttm_bo_access - Helper to access a buffer object
+> > > > > > > > > > + *
+> > > > > > > > > > + * @bo: ttm buffer object
+> > > > > > > > > > + * @offset: access offset into buffer object
+> > > > > > > > > > + * @buf: pointer to caller memory to read into or write from
+> > > > > > > > > > + * @len: length of access
+> > > > > > > > > > + * @write: write access
+> > > > > > > > > > + *
+> > > > > > > > > > + * Utility function to access a buffer object. Useful when buffer object cannot
+> > > > > > > > > > + * be easily mapped (non-contiguous, non-visible, etc...).
+> > > > > > > > > > + *
+> > > > > > > > > > + * Returns:
+> > > > > > > > > > + * @len if successful, negative error code on failure.
+> > > > > > > > > > + */
+> > > > > > > > > > +int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
+> > > > > > > > > > +		  void *buf, int len, int write)
+> > > > > > > > > > +{
+> > > > > > > > > > +	int ret;
+> > > > > > > > > > +
+> > > > > > > > > > +	if (len < 1 || (offset + len) > bo->base.size)
+> > > > > > > > > > +		return -EIO;
+> > > > > > > > > > +
+> > > > > > > > > > +	ret = ttm_bo_reserve(bo, true, false, NULL);
+> > > > > > > > > > +	if (ret)
+> > > > > > > > > > +		return ret;
+> > > > > > > > > > +
+> > > > > > > > > > +	switch (bo->resource->mem_type) {
+> > > > > > > > > > +	case TTM_PL_SYSTEM:
+> > > > > > > > > > +		fallthrough;
+> > > > > > > > > > +	case TTM_PL_TT:
+> > > > > > > > > > +		ret = ttm_bo_access_kmap(bo, offset, buf, len, write);
+> > > > > > > > > > +		break;
+> > > > > > > > > > +	default:
+> > > > > > > > > > +		if (bo->bdev->funcs->access_memory)
+> > > > > > > > > > +			ret = bo->bdev->funcs->access_memory
+> > > > > > > > > > +				(bo, offset, buf, len, write);
+> > > > > > > > > > +		else
+> > > > > > > > > > +			ret = -EIO;
+> > > > > > > > > > +	}
+> > > > > > > > > > +
+> > > > > > > > > > +	ttm_bo_unreserve(bo);
+> > > > > > > > > > +
+> > > > > > > > > > +	return ret;
+> > > > > > > > > > +}
+> > > > > > > > > > +EXPORT_SYMBOL(ttm_bo_access);
+> > > > > > > > > > diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> > > > > > > > > > index 2c699ed1963a..20b1e5f78684 100644
+> > > > > > > > > > --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> > > > > > > > > > +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> > > > > > > > > > @@ -366,45 +366,6 @@ void ttm_bo_vm_close(struct vm_area_struct *vma)
+> > > > > > > > > >      }
+> > > > > > > > > >      EXPORT_SYMBOL(ttm_bo_vm_close);
+> > > > > > > > > > -static int ttm_bo_vm_access_kmap(struct ttm_buffer_object *bo,
+> > > > > > > > > > -				 unsigned long offset,
+> > > > > > > > > > -				 uint8_t *buf, int len, int write)
+> > > > > > > > > > -{
+> > > > > > > > > > -	unsigned long page = offset >> PAGE_SHIFT;
+> > > > > > > > > > -	unsigned long bytes_left = len;
+> > > > > > > > > > -	int ret;
+> > > > > > > > > > -
+> > > > > > > > > > -	/* Copy a page at a time, that way no extra virtual address
+> > > > > > > > > > -	 * mapping is needed
+> > > > > > > > > > -	 */
+> > > > > > > > > > -	offset -= page << PAGE_SHIFT;
+> > > > > > > > > > -	do {
+> > > > > > > > > > -		unsigned long bytes = min(bytes_left, PAGE_SIZE - offset);
+> > > > > > > > > > -		struct ttm_bo_kmap_obj map;
+> > > > > > > > > > -		void *ptr;
+> > > > > > > > > > -		bool is_iomem;
+> > > > > > > > > > -
+> > > > > > > > > > -		ret = ttm_bo_kmap(bo, page, 1, &map);
+> > > > > > > > > > -		if (ret)
+> > > > > > > > > > -			return ret;
+> > > > > > > > > > -
+> > > > > > > > > > -		ptr = (uint8_t *)ttm_kmap_obj_virtual(&map, &is_iomem) + offset;
+> > > > > > > > > > -		WARN_ON_ONCE(is_iomem);
+> > > > > > > > > > -		if (write)
+> > > > > > > > > > -			memcpy(ptr, buf, bytes);
+> > > > > > > > > > -		else
+> > > > > > > > > > -			memcpy(buf, ptr, bytes);
+> > > > > > > > > > -		ttm_bo_kunmap(&map);
+> > > > > > > > > > -
+> > > > > > > > > > -		page++;
+> > > > > > > > > > -		buf += bytes;
+> > > > > > > > > > -		bytes_left -= bytes;
+> > > > > > > > > > -		offset = 0;
+> > > > > > > > > > -	} while (bytes_left);
+> > > > > > > > > > -
+> > > > > > > > > > -	return len;
+> > > > > > > > > > -}
+> > > > > > > > > > -
+> > > > > > > > > >      int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
+> > > > > > > > > >      		     void *buf, int len, int write)
+> > > > > > > > > >      {
+> > > > > > > > > > @@ -412,32 +373,8 @@ int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
+> > > > > > > > > >      	unsigned long offset = (addr) - vma->vm_start +
+> > > > > > > > > >      		((vma->vm_pgoff - drm_vma_node_start(&bo->base.vma_node))
+> > > > > > > > > >      		 << PAGE_SHIFT);
+> > > > > > > > > > -	int ret;
+> > > > > > > > > > -
+> > > > > > > > > > -	if (len < 1 || (offset + len) > bo->base.size)
+> > > > > > > > > > -		return -EIO;
+> > > > > > > > > > -	ret = ttm_bo_reserve(bo, true, false, NULL);
+> > > > > > > > > > -	if (ret)
+> > > > > > > > > > -		return ret;
+> > > > > > > > > > -
+> > > > > > > > > > -	switch (bo->resource->mem_type) {
+> > > > > > > > > > -	case TTM_PL_SYSTEM:
+> > > > > > > > > > -		fallthrough;
+> > > > > > > > > > -	case TTM_PL_TT:
+> > > > > > > > > > -		ret = ttm_bo_vm_access_kmap(bo, offset, buf, len, write);
+> > > > > > > > > > -		break;
+> > > > > > > > > > -	default:
+> > > > > > > > > > -		if (bo->bdev->funcs->access_memory)
+> > > > > > > > > > -			ret = bo->bdev->funcs->access_memory(
+> > > > > > > > > > -				bo, offset, buf, len, write);
+> > > > > > > > > > -		else
+> > > > > > > > > > -			ret = -EIO;
+> > > > > > > > > > -	}
+> > > > > > > > > > -
+> > > > > > > > > > -	ttm_bo_unreserve(bo);
+> > > > > > > > > > -
+> > > > > > > > > > -	return ret;
+> > > > > > > > > > +	return ttm_bo_access(bo, offset, buf, len, write);
+> > > > > > > > > >      }
+> > > > > > > > > >      EXPORT_SYMBOL(ttm_bo_vm_access);
+> > > > > > > > > > diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+> > > > > > > > > > index 5804408815be..8ea11cd8df39 100644
+> > > > > > > > > > --- a/include/drm/ttm/ttm_bo.h
+> > > > > > > > > > +++ b/include/drm/ttm/ttm_bo.h
+> > > > > > > > > > @@ -421,6 +421,8 @@ void ttm_bo_unpin(struct ttm_buffer_object *bo);
+> > > > > > > > > >      int ttm_bo_evict_first(struct ttm_device *bdev,
+> > > > > > > > > >      		       struct ttm_resource_manager *man,
+> > > > > > > > > >      		       struct ttm_operation_ctx *ctx);
+> > > > > > > > > > +int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
+> > > > > > > > > > +		  void *buf, int len, int write);
+> > > > > > > > > >      vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
+> > > > > > > > > >      			     struct vm_fault *vmf);
+> > > > > > > > > >      vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+> > > > > > > > > > -- 
+> > > > > > > > > > 2.34.1
+> > > > > > > > > > 
