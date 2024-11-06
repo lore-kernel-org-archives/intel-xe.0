@@ -4,37 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1E01D44D53
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 11:38:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3353FD44D51
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 11:41:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6276D10E6BA;
-	Wed,  6 Nov 2024 11:38:48 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79C8B10E6BA;
- Wed,  6 Nov 2024 11:38:47 +0000 (UTC)
-Received: from 37-33-128-53.bb.dnainternet.fi ([37.33.128.53]
- helo=[192.168.8.139])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1t8eN1-00000001UJj-3GtC; Wed, 06 Nov 2024 13:38:45 +0200
-Message-ID: <f6de991ddb50e048244a1b666511ed7749790d26.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
-Cc: Luca Coelho <luciano.coelho@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-Date: Wed, 06 Nov 2024 13:37:11 +0200
-In-Reply-To: <173081069857.2525.5073945892247170977@intel.com>
-References: <20241021222744.294371-1-gustavo.sousa@intel.com>
- <20241021222744.294371-5-gustavo.sousa@intel.com>
- <ac29b67d7e6db0f2900edf0e0cd40b1c5befb895.camel@coelho.fi>
- <173081069857.2525.5073945892247170977@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.1-1 
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3E8910E6B4;
+	Wed,  6 Nov 2024 11:41:05 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E613A10E6B4;
+ Wed,  6 Nov 2024 11:41:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: Re: [PATCH 04/13] drm/i915/dmc_wl: Get wakelock when disabling
- dynamic DC states
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_MSI-X_support_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ilia Levi" <ilia.levi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 06 Nov 2024 11:41:04 -0000
+Message-ID: <173089326493.1416417.16197200731251828898@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241105092412.11871-1-ilia.levi@intel.com>
+In-Reply-To: <20241105092412.11871-1-ilia.levi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,62 +35,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2024-11-05 at 09:44 -0300, Gustavo Sousa wrote:
-> Quoting Luca Coelho (2024-11-01 09:24:08-03:00)
-> > On Mon, 2024-10-21 at 19:27 -0300, Gustavo Sousa wrote:
-> > > Bspec says that disabling dynamic DC states require taking the DMC
-> > > wakelock to cause an DC exit before writing to DC_STATE_EN. Implement
-> > > that.
-> > >=20
-> > > In fact, testing on PTL revealed we end up failing to exit DC5/6 with=
-out
-> > > this step.
-> > >=20
-> > > Bspec: 71583
-> > > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> > > ---
-> > >  .../drm/i915/display/intel_display_power_well.c    | 10 +++++++---
-> > >  drivers/gpu/drm/i915/display/intel_dmc_wl.c        | 14 ++++++++++++=
---
-> > >  drivers/gpu/drm/i915/display/intel_dmc_wl.h        |  2 ++
-> > >  3 files changed, 21 insertions(+), 5 deletions(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c =
-b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > > index adaf7cf3a33b..e8946ce86aaa 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > > @@ -987,10 +987,14 @@ void gen9_disable_dc_states(struct intel_displa=
-y *display)
-> > >                  return;
-> > >          }
-> > > =20
-> > > -        gen9_set_dc_state(display, DC_STATE_DISABLE);
-> > > -
-> > > -        if (!HAS_DISPLAY(display))
-> > > +        if (HAS_DISPLAY(display)) {
-> > > +                intel_dmc_wl_get_noreg(display);
-> > > +                gen9_set_dc_state(display, DC_STATE_DISABLE);
-> > > +                intel_dmc_wl_put_noreg(display);
-> > > +        } else {
-> > > +                gen9_set_dc_state(display, DC_STATE_DISABLE);
-> > >                  return;
-> > > +        }
-> >=20
-> > I think intel_dmc_get/put() already protect indirectly on
-> > HAS_DISPLAY(), doesn't it? If that's the case, then the if here is
-> > unnecessary.
->=20
-> Actually, intel_dmc_wl_init() gets called only when HAS_DISPLAY() is
-> true, so I think using intel_dmc_wl_{get,put}_noreg() for the
-> !HAS_DISPLAY() case would not be right, at least not with the current
-> state of the code.
+== Series Details ==
 
-Okay, fair enough.
+Series: MSI-X support (rev4)
+URL   : https://patchwork.freedesktop.org/series/140877/
+State : success
 
---
-Cheers,
-Luca.
+== Summary ==
+
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/
+lib/modules/6.12.0-rc6-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc6-xe/build
+lib/modules/6.12.0-rc6-xe/modules.alias.bin
+lib/modules/6.12.0-rc6-xe/modules.builtin
+lib/modules/6.12.0-rc6-xe/modules.softdep
+lib/modules/6.12.0-rc6-xe/modules.alias
+lib/modules/6.12.0-rc6-xe/modules.order
+lib/modules/6.12.0-rc6-xe/modules.symbols
+lib/modules/6.12.0-rc6-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1730893257:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1730893257:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
