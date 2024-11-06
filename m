@@ -4,171 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD686D59F7E
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 22:45:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19791D59F75
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Nov 2024 22:46:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A348210E799;
-	Wed,  6 Nov 2024 22:45:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1DDB10E79A;
+	Wed,  6 Nov 2024 22:45:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hEVzV9Lg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NeILnr1q";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E962D10E799
- for <intel-xe@lists.freedesktop.org>; Wed,  6 Nov 2024 22:45:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92BC110E799;
+ Wed,  6 Nov 2024 22:45:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730933134; x=1762469134;
+ t=1730933159; x=1762469159;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=uuOGz0H3xKU/VFLirPvdepgTDnXBlBMdyy5hAap2NSw=;
- b=hEVzV9Lgc/RdS270G+oRBMJ0yNzlaTZfUnntbU+zbLDFFCiBtMMSdP2z
- o9rf7thhJSyFGMjPfxOyL8yW6HzanwIM96GiY16VbRBIVwxAbIEcgetEs
- 24waKQAg1+SIS+BLgRI+jRjW7ndU5Ns3pzOweL/aJtrpyzG0yVp1jRKac
- qpZCWsg+PYzT+/YzyWoTJK860yd0opsT1yc/5plWmn378ejOeRWaP/DrV
- Qk1YkPyczyBtwzz9djOsl6w/tl4oR4iIicShuSuRA9LNQzPus+/a+U02K
- ok9H+dkLAoGoCONp+cBUN3xgrYFvx9ACtWuAsR7tORqMUzd/7BFeX+94v A==;
-X-CSE-ConnectionGUID: UdCIJJPvSfyR6P8BBG3EGA==
-X-CSE-MsgGUID: QQLSSeqyQJaHOUZ5D0XmRQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="30857851"
-X-IronPort-AV: E=Sophos;i="6.11,264,1725346800"; d="scan'208";a="30857851"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2024 14:45:33 -0800
-X-CSE-ConnectionGUID: PhUFftA4SyOnOyjhQl6Cww==
-X-CSE-MsgGUID: MmC8enbIQNmpl7xYqlidwQ==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=3r0tsc0/J8yMrkvWx1o8IpMRGaesAo7n/Gz8Y5HvGw4=;
+ b=NeILnr1qniLBPZygd7taaZEHBwCclyZMsqtCTtOSzCDB/na2j0L4Fy9j
+ gzW6OpoNx9qeaDrUyuxqxg6GS0dkoHqKzSZ8NfINaTvKcSTegx/BiQk8p
+ fR5xUiKdgcZbeq6f8+PV2l6pdqrvnfqGvV7Vk3kNQtlayVoYTWZ2T4WBb
+ 9tQnpvHpDyAFcARMvZV+QiqRyzNqDDPwRTgtyUKDfJLAzJsfdlk92uXA3
+ a0Cysmwy1pMN80n705sdrC9x+l3zNmatyyZoAIg+seKPdmod/v73MTIWG
+ GgzvvGJNcdZJV9OZy7sl885YUfPkMdn7cpMdIZJ/8fdwrX/hMrhSVNWEQ Q==;
+X-CSE-ConnectionGUID: cypmwQM2SYGHxvugrEgpNw==
+X-CSE-MsgGUID: 1gITocNSRt2fMqZ+tz94OA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30612929"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30612929"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2024 14:45:58 -0800
+X-CSE-ConnectionGUID: Ix3I8lQUTIiaPBuPXZiQgg==
+X-CSE-MsgGUID: 1QgMvua5RNuUiy4sWO/C2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,264,1725346800"; d="scan'208";a="89641553"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Nov 2024 14:45:20 -0800
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 6 Nov 2024 14:45:19 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 6 Nov 2024 14:45:19 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.44) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 6 Nov 2024 14:45:19 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zKYOvdnmNk3a6JHeSKMDwUaXNJt3V89aJFJYAYIWwbEFTWeeWQ7r6xvvVvXJkYrUgKlTKhROPjYiPhxmpeEsAQY3E0BhgujHqiLxHvWn9/Q9s6T+/v9eU1hu/QDf/DvfZB6mN272r71Bgye/N8BntHUWeoe27k4PH3uOSbfPR9JihBADRmZ66OXgSk2gtnBzCUgig2SmBW/jsNQn1lTh6pwafojx1nuU4IF828rHAS3+XWfXiMiVNRzsc8JU3N6asUIy9+jm0klKqsTFZyKserQxTeNc/YqiCk88UkhqjR9gg6WSNxYrsL+4sZBpo42Ql2P86TubhLmdDgSOTQ9Ehw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NbeCWlsEufW500DrlB7iPa+t+EoMsJZrwVlCk+IVnHE=;
- b=UvNzH5gHkotbCbqphVottlKmXagqG4QRZzWLLgCQqeVN7NjwHlSYkgOZQFWZmx4f55bvbFZx7Okl4616xWMjZqKOUwYvIq2lpN2eOWNb7kW/uIZSBnRU3LJfAlsVrA3bEssYt3K+7vRjE1ZNitKCCkg6eYMOLiX51ZPVaQ0aEiRBh3HFy/eBfXyk/0Cdk3tM6NcDLpKBIQSyLPRXd8ntqfVhOnf1d7pyg/b/BX38IzvPxXT3HLxq3hJXHl37BSIs2KOoQrVblVVT43vMjJGwvvwWUUHHS0p+tM8bFO+IVoFtOt0zzaICyIphsIxoUW2eUhAbmA3CnZgjF859ua30sg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SA0PR11MB4527.namprd11.prod.outlook.com (2603:10b6:806:72::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.18; Wed, 6 Nov
- 2024 22:45:11 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.8137.018; Wed, 6 Nov 2024
- 22:45:11 +0000
-Date: Wed, 6 Nov 2024 16:45:08 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: Nirmoy Das <nirmoy.das@intel.com>, <intel-xe@lists.freedesktop.org>,
- Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Stuart Summers
- <stuart.summers@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, <lionel.g.landwerlin@intel.com>,
- <michal.mrozek@intel.com>
-Subject: Re: [PATCH] drm/xe: Do not allow scratch page on long running jobs
-Message-ID: <63zay5uysgin6amsktxqwzu63hcxcgjbov5a5455lzwgbrehnm@4yvoutvjmpx6>
-References: <20240919104704.3591977-1-nirmoy.das@intel.com>
- <ZuxIuCF+dsxOT253@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+X-IronPort-AV: E=Sophos;i="6.11,264,1725346800"; d="scan'208";a="84899124"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 06 Nov 2024 14:45:55 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 07 Nov 2024 00:45:54 +0200
+Date: Thu, 7 Nov 2024 00:45:54 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@intel.com, ville.syrjala@intel.com, jani.saarinen@intel.com
+Subject: Re: [PATCH 7/8] drm/i915/xe3: Use hw support for min/interim ddb
+ allocations for async flip
+Message-ID: <ZyvxovswGZGa6o89@intel.com>
+References: <20241105071600.235338-1-vinod.govindapillai@intel.com>
+ <20241105071600.235338-8-vinod.govindapillai@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZuxIuCF+dsxOT253@DUT025-TGLU.fm.intel.com>
-X-ClientProxiedBy: MW4PR03CA0242.namprd03.prod.outlook.com
- (2603:10b6:303:b4::7) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA0PR11MB4527:EE_
-X-MS-Office365-Filtering-Correlation-Id: 28ea0c9a-9150-4de6-2de5-08dcfeb4abdf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?4sFtAyCCWo4wB5ny2z1rKpWLoCZiZptNPqsPwv1RFwRlP0kuSuxQGfDJR7?=
- =?iso-8859-1?Q?mbp5vXYarGp5dhPeC0b+wcYa1pN84pf1b76UFkG0mxGI4wIkIfMrA0os94?=
- =?iso-8859-1?Q?mga5ladGJovoqJPvbqZM90sKo7Luxbpo9jtQ0PNBxfM/+rZFHMJIzLONqY?=
- =?iso-8859-1?Q?IKqvgl6rQDRwtm9ADP1hq7dPalurktcDE8dbnMOVI/rKcgjqjv4hxK6zBv?=
- =?iso-8859-1?Q?YfqHgUtvQjdJ5pEpR3dVDf8U6cXlOJyNF6ssM0GUieHA+Wpo0oLl+7/UT2?=
- =?iso-8859-1?Q?m0hVK2t8/O4rYoHbXIHoLQIglDW+KJNd4JEkrKx+SdC9UfIDoAlT790Wfx?=
- =?iso-8859-1?Q?6I1qRU9jzGjuQR0kX/lIlnBZHKi6iGsuif18tAzamhsKF15R/h9DfgNpYG?=
- =?iso-8859-1?Q?FWkD5FS4ew8cn0GBvox0IoQHErJ9y7Y0ser0ZhTluVdmX5lFadhbLK0dRP?=
- =?iso-8859-1?Q?6wrbR25BC40os3eXf2TT6pHoA66cOMzXE0B0tkp9TTiVa4WzjC006X8L5q?=
- =?iso-8859-1?Q?FlNeh5CZKGHGdA6H8DoLBrKr6h2cWUhOn+x0j8bOampIwVsajaEkuZkeqS?=
- =?iso-8859-1?Q?Wh2ljpLmZQSzkwMG+X6X6j5tE288DHhh+7Xaz179JLNb+p/EeicQ4Sglot?=
- =?iso-8859-1?Q?fiuQ56ZRirjAvTNW688fcYWK5Mg5iZMrrzzVXtvvhwk05bkGztThwZvZfm?=
- =?iso-8859-1?Q?VwX/zEH9mCHv5pMpSvhbSqv+TfTOVXqSnRwAnZ29yYb9ywwQ6ncDgkb7M7?=
- =?iso-8859-1?Q?m/xTH/uMWekGkWZAvjIakUUoHCos7Tl72+q/BhAsxhyAdBN9Uz+5dOFjxu?=
- =?iso-8859-1?Q?xVzBagtT9pnwBtR5VCcdldk/qayl1ZzH8CPKqH/vaYMU5qDTUomON5VXJE?=
- =?iso-8859-1?Q?dC5jd8Rqubgcq3GqUJLqZflBfC0dszMiUeet3iAfZDdcu0qAoKemgNkcxq?=
- =?iso-8859-1?Q?sBerIk/5WDLBE8kgepr/SrE79ikWeFsxRGH00Ix9gLjt1WscCyu2hQL7q/?=
- =?iso-8859-1?Q?sQM7TSja41Bg3W3Pa+9ENFZqKJyI+jrG4zI+pOUlvhZKM5Q72zNZcClO/M?=
- =?iso-8859-1?Q?kstwhQfw83NyETasW0laq53DF4bfZfg4xY+z/CS+0N0ZBaVVCwXflI3tyv?=
- =?iso-8859-1?Q?18fcytp7xuao8yNDWK9PRKSAYSBQwo8j7irrXedfmVM+IL87VlEAOVSFL2?=
- =?iso-8859-1?Q?nOBwTUSYRJexAGajMBsO1kRCZUH7H0DOM+vU1OMBX9DBj4WLJgLkE+VaNR?=
- =?iso-8859-1?Q?jQPxqh1XoKBtnUAMioLG7cnmno3bVbHYYlxkrSJkHox20D3a0Li4XNZM8O?=
- =?iso-8859-1?Q?0MprLzzgc6Vf+JRsNVX/MYsL8s0cgXPH92/5kJvdhXmgr0bfV0BJOmmy9v?=
- =?iso-8859-1?Q?ZEHGyxrr2d?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?H7CWPMi3BHtEdv0wa90Yei3s4GX83cMMgx+zFW0CwrnMHQtxknRlQ5Ggdt?=
- =?iso-8859-1?Q?wOXIneNhuGMPQ6Fxa18QZK8juwZHznvr5u4VAR3J+pHzUI3hymDyZS5kk4?=
- =?iso-8859-1?Q?tKts2JWYXQ0QnejL0ZshkTHYz7/kFdVpq6M0Pj13FVylWs4SH0tJZ0f8uz?=
- =?iso-8859-1?Q?Gx1Dvr7UoUIWat/f4rHd0qr7NnkI0hMRZyGFHWLfA22zAZQYwBFjES2yCK?=
- =?iso-8859-1?Q?dbmUbmv2VVpWWjwKvb5KrZj6sgo266EafGhSo9XUn1TYXZafLGSYIdTBE2?=
- =?iso-8859-1?Q?O2e8E5l9OiISc6es8cb7NPpC9WLaOkfj4zMXwzopMNYbFBNR2uDz3gzY6D?=
- =?iso-8859-1?Q?11BVrBezidjmyfJtVcidm6IlAMCNf+r6ptg18/pVWs0qpe/ssO+LaEM9s+?=
- =?iso-8859-1?Q?9pCDPYe2m8ppSOAXeLST/JXfmM/fGWs1M6FhQlErL7LfrOA71E52efYzlW?=
- =?iso-8859-1?Q?B2pvm2NR0OkPwMdmWta/vaZ8cc8oGtiJJfoWAS+1H9o7EVOXc/Sf24Dd1k?=
- =?iso-8859-1?Q?imFGZtszOzzsvP8JohNSSQpAt0PWIU84gmwc/bmp1HY5DnCPeS+WNejDwv?=
- =?iso-8859-1?Q?D35PTRyJWLwqdX80d0y/kzy6QaAoEYsM6aT+KWhfZVLIYlksPe2kAoiNy3?=
- =?iso-8859-1?Q?giftOMpStymmY8hf8DdqgGM9PsUk3SMxPhKYK3Fi3D7IUhPVFzeIkW70u0?=
- =?iso-8859-1?Q?y/NYxLt4p8Ep0NnIEzGqk3ONOzUSGf266CDBqDrn77s4OwwMfeOJq/BIyx?=
- =?iso-8859-1?Q?a1y2V0T+HoMhFKez2RDlyMniKuOjsL/QOxt6QrAceajtP29O0qfMtFrX5F?=
- =?iso-8859-1?Q?o75XHAk1WzLDU4QityM0rr8uheuMp0fwKTmxEjz3y/TfqBJrbCBbpZCKxk?=
- =?iso-8859-1?Q?CiX+CsiBzPzb9amy1ipuick7nkGil0kVzOXBG295vHu0ORba4eHfLW8jZl?=
- =?iso-8859-1?Q?6AGjsPi9hUvGAAt5dOFFGnx6BPBcmhSuEtSLfNyEb1A9jtXEVHHLfRp9+/?=
- =?iso-8859-1?Q?o43k4bNmPeOO8zXQAx3jNu8tvNq3YR2+Xo7Qq5S+KsdDNeqwOyA75k/ojg?=
- =?iso-8859-1?Q?rGQAZywEY2ywL1+j2RFTiyC7lDfrkiWuaSA0cisoIv58C4Rvs27zW3W8SY?=
- =?iso-8859-1?Q?D0i+Jj06EnbWv8XCYYTVZBqvOyrPVGdHkYBjn/zpPVnzGWhFHZiNfcov+C?=
- =?iso-8859-1?Q?Olny1zilZ6gQIi4cpW8F3JT6b2JojohjM0Pdp2/cdSySr/CSTuVpb4DQDi?=
- =?iso-8859-1?Q?/Pn6Pfm6yMCIsqp10loaCo6dVo26ziNyF5SrPl3heq7jG0jgGRc6HrVPCt?=
- =?iso-8859-1?Q?XT0Uq/2dppZ2l0YcMEXglOXSOODeq8Nl6BzlX16o/VwsSt1bbutOoFhCMZ?=
- =?iso-8859-1?Q?NrA+xR3Er4LKvssnAI1s+cFyBaA3039PGOvqvnU5sEJFJ+3AxATCjwE4fP?=
- =?iso-8859-1?Q?KlwPB8BFQs2ZnWJoOc5dnztu0FzY1PqRQMMcJjP/v9o0n1Pz3k3/n8wSh4?=
- =?iso-8859-1?Q?1KHxHlPEdoc1GL7N2KIeGFI/yt+xJ1vaXufyzm3YfMdJxeiC5vp76MrelK?=
- =?iso-8859-1?Q?jafcyJ+jspgX2ErhqjxdbW3u4/14w30BbAuvfF63Q8lmtMelDjVh4dfdeK?=
- =?iso-8859-1?Q?b0OrhhTJb40TdQNCpQvcH5HLxAT3W9o51qFiPXPsc5n6HoGApZfyWhAA?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 28ea0c9a-9150-4de6-2de5-08dcfeb4abdf
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2024 22:45:11.2883 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FtM/JKAO3T41CaCdxFZ4WoQjU5bqsZpVsjF8RUQQecDB7vey5HpxfbSix9aXD3m5TVr0ljzdcyCNQtHVxzTuoHx1owD3SMouY4KNLUE8Ssg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4527
-X-OriginatorOrg: intel.com
+In-Reply-To: <20241105071600.235338-8-vinod.govindapillai@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -183,83 +72,472 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Sep 19, 2024 at 03:52:24PM +0000, Matthew Brost wrote:
->On Thu, Sep 19, 2024 at 12:47:04PM +0200, Nirmoy Das wrote:
->> This was agreed upon but not enforced, so enforce the limitation
->> of not allowing scratch pages on long-running jobs unless absolutely
->> required, which is currently the case for a DG2 SKU.
->>
->> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
->> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->
->I think this type of change we will need a maintainer to bless and
+On Tue, Nov 05, 2024 at 09:15:59AM +0200, Vinod Govindapillai wrote:
+> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> 
+> Starting from xe3, hw now is capable of switching automatically to min
+> ddb allocation(not using any extra blocks) or interim SAGV-adjusted
+> allocation in case if async flip is used.
+> For that purpose there is now additional register, where correspodent
+> values have to be programmed.
+> 
+> Bspec: 69880, 72053
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_atomic_plane.c |  9 ++
+>  .../drm/i915/display/intel_display_types.h    |  8 ++
+>  .../drm/i915/display/skl_universal_plane.c    | 31 +++++++
+>  .../i915/display/skl_universal_plane_regs.h   | 13 +++
+>  drivers/gpu/drm/i915/display/skl_watermark.c  | 85 +++++++++++++++++--
+>  5 files changed, 140 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> index 2c8fae8de4da..7940cb911889 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -213,6 +213,15 @@ use_min_ddb(const struct intel_crtc_state *crtc_state,
+>  {
+>  	struct intel_display *display = to_intel_display(plane);
+>  
+> +	/*
+> +	 * For xe3 onwards this feature is implemented in
+> +	 * hardware, so no need to force relative data rate to 0,
+> +	 * we will update a specific register with min_ddb without
+> +	 * extra blocks.
+> +	 */
+> +	if (DISPLAY_VER(display) >= 30)
+> +		return false;
+> +
 
-Sorry, but nack as this will cause breakage on UMD.
+We should probably move this function back into skl_watermark.c so
+that all the logic is in one place. I think we should be able to
+achieve that if we wrap the crtc_state->rel_data_rate[]/etc.
+accesses with small functions that do the use_min_ddb() check.
 
->likely someone from the compute UMD.
->
->It does LGTM, with that:
->Acked-by: Matthew Brost <matthew.brost@intel.com>
->
->> Cc: Stuart Summers <stuart.summers@intel.com>
->> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
->> Suggested-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_vm.c | 16 +++++++++++++++-
->>  1 file changed, 15 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->> index a3d7cb7cfd22..92dc55f3479b 100644
->> --- a/drivers/gpu/drm/xe/xe_vm.c
->> +++ b/drivers/gpu/drm/xe/xe_vm.c
->> @@ -1711,6 +1711,11 @@ find_ufence_get(struct xe_sync_entry *syncs, u32 num_syncs)
->>  	return NULL;
->>  }
->>
->> +static bool xe_vm_device_requires_scratch_page(struct xe_device *xe)
->> +{
->> +	return XE_WA(xe_root_mmio_gt(xe), 14016763929);
->> +}
->> +
->>  #define ALL_DRM_XE_VM_CREATE_FLAGS (DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE | \
->>  				    DRM_XE_VM_CREATE_FLAG_LR_MODE | \
->>  				    DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
->> @@ -1730,7 +1735,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
->>  	if (XE_IOCTL_DBG(xe, args->extensions))
->>  		return -EINVAL;
->>
->> -	if (XE_WA(xe_root_mmio_gt(xe), 14016763929))
->> +	if (xe_vm_device_requires_scratch_page(xe))
->>  		args->flags |= DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE;
->>
->>  	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE &&
->> @@ -1747,6 +1752,15 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
->>  			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
->>  		return -EINVAL;
->>
->> +	/*
->> +	 * Scratch page is disabled for long running job unless absolutely
->> +	 * required as this can introduce hidden bugs.
->> +	 */
->> +	if (!xe_vm_device_requires_scratch_page(xe) &&
->> +	    XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE &&
->> +			 (args->flags & DRM_XE_VM_CREATE_FLAG_LR_MODE)))
+>  	return DISPLAY_VER(display) >= 13 &&
+>  	       crtc_state->uapi.async_flip &&
+>  	       plane->async_flip;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index d2b68505f088..c0548db0061c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -770,6 +770,7 @@ struct skl_wm_level {
+>  	bool enable;
+>  	bool ignore_lines;
+>  	bool can_sagv;
+> +	bool auto_min_ddb_allowed;
 
-I don't think this should be imposed by kernel by simply breaking
-userspace. Rather get our UMDs changed which should cover most of the
-users. Possibly all if we consider long running jobs. Then much later if
-we see there are no users we can consider something.
+The bit appears to be called 'PLANE_WM_AUTO_MIN_ALLOC_EN'.
+The two should match. I'd also put it before 'can_sagv'
+because that one isn't an actual hardware bit.
 
-Lucas De Marchi
+>  };
+>  
+>  struct skl_plane_wm {
+> @@ -863,6 +864,13 @@ struct intel_crtc_wm_state {
+>  			struct skl_ddb_entry plane_ddb[I915_MAX_PLANES];
+>  			/* pre-icl: for planar Y */
+>  			struct skl_ddb_entry plane_ddb_y[I915_MAX_PLANES];
+> +
+> +			/*
+> +			 * xe3: Minimum amount of display blocks and minimum
+> +			 * sagv allocation required for async flip
+> +			 */
+> +			struct skl_ddb_entry plane_min_ddb[I915_MAX_PLANES];
+> +			struct skl_ddb_entry plane_interim_ddb[I915_MAX_PLANES];
+>  		} skl;
+>  
+>  		struct {
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index 038ca2ec5d7a..69d5ca74c594 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -715,6 +715,26 @@ static u32 skl_plane_ddb_reg_val(const struct skl_ddb_entry *entry)
+>  		PLANE_BUF_START(entry->start);
+>  }
+>  
+> +static u32 ptl_plane_min_ddb_reg_val(const struct skl_ddb_entry *min_ddb_entry,
+> +				     const struct skl_ddb_entry *interim_ddb_entry)
+> +{
+> +	u32 val = 0;
+> +
+> +	if (min_ddb_entry->end) {
+> +		val |= PLANE_AUTO_MIN_DBUF_EN;
+> +		val |= REG_FIELD_PREP(PLANE_MIN_DDB_BLOCKS_MASK,
+> +				      min_ddb_entry->end - min_ddb_entry->start);
+> +	}
+> +
+> +	if (interim_ddb_entry->end) {
+> +		val |= PLANE_AUTO_MIN_DBUF_EN;
 
+This bit is now set based on two different conditions. What happens
+if those aren't the same?
 
->> +		return -EINVAL;
->> +
->>  	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_VM_CREATE_FLAG_LR_MODE) &&
->>  			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
->>  		return -EINVAL;
->> --
->> 2.46.0
->>
+> +		val |= REG_FIELD_PREP(PLANE_INTERIM_DDB_BLOCKS_MASK,
+> +				      interim_ddb_entry->end - interim_ddb_entry->start);
+> +	}
+> +
+> +	return val;
+> +}
+> +
+>  static u32 skl_plane_wm_reg_val(const struct skl_wm_level *level)
+>  {
+>  	u32 val = 0;
+> @@ -723,6 +743,9 @@ static u32 skl_plane_wm_reg_val(const struct skl_wm_level *level)
+>  		val |= PLANE_WM_EN;
+>  	if (level->ignore_lines)
+>  		val |= PLANE_WM_IGNORE_LINES;
+> +	if (level->auto_min_ddb_allowed)
+> +		val |= PLANE_WM_AUTO_MIN_ALLOC_EN;
+> +
+>  	val |= REG_FIELD_PREP(PLANE_WM_BLOCKS_MASK, level->blocks);
+>  	val |= REG_FIELD_PREP(PLANE_WM_LINES_MASK, level->lines);
+>  
+> @@ -742,6 +765,10 @@ static void skl_write_plane_wm(struct intel_dsb *dsb,
+>  		&crtc_state->wm.skl.plane_ddb[plane_id];
+>  	const struct skl_ddb_entry *ddb_y =
+>  		&crtc_state->wm.skl.plane_ddb_y[plane_id];
+> +	const struct skl_ddb_entry *min_ddb =
+> +		&crtc_state->wm.skl.plane_min_ddb[plane_id];
+> +	const struct skl_ddb_entry *interim_ddb =
+> +		&crtc_state->wm.skl.plane_interim_ddb[plane_id];
+>  	int level;
+>  
+>  	for (level = 0; level < i915->display.wm.num_levels; level++)
+> @@ -766,6 +793,10 @@ static void skl_write_plane_wm(struct intel_dsb *dsb,
+>  	if (DISPLAY_VER(i915) < 11)
+>  		intel_de_write_dsb(display, dsb, PLANE_NV12_BUF_CFG(pipe, plane_id),
+>  				   skl_plane_ddb_reg_val(ddb_y));
+> +
+> +	if (DISPLAY_VER(display) >= 30)
+> +		intel_de_write_dsb(display, dsb, PLANE_MIN_BUF_CFG(pipe, plane_id),
+> +				   ptl_plane_min_ddb_reg_val(min_ddb, interim_ddb));
+>  }
+>  
+>  static void
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+> index ff31a00d511e..65a5482fae60 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+> @@ -322,6 +322,7 @@
+>  							   _PLANE_WM_2_A_0, _PLANE_WM_2_B_0)
+>  #define   PLANE_WM_EN				REG_BIT(31)
+>  #define   PLANE_WM_IGNORE_LINES			REG_BIT(30)
+> +#define   PLANE_WM_AUTO_MIN_ALLOC_EN		REG_BIT(29)
+>  #define   PLANE_WM_LINES_MASK			REG_GENMASK(26, 14)
+>  #define   PLANE_WM_BLOCKS_MASK			REG_GENMASK(11, 0)
+>  
+> @@ -373,12 +374,24 @@
+>  #define PLANE_BUF_CFG(pipe, plane)	_MMIO_SKL_PLANE((pipe), (plane), \
+>  							_PLANE_BUF_CFG_1_A, _PLANE_BUF_CFG_1_B, \
+>  							_PLANE_BUF_CFG_2_A, _PLANE_BUF_CFG_2_B)
+> +#define _PLANE_MIN_BUF_CFG_1_A			0x70274
+> +#define _PLANE_MIN_BUF_CFG_2_A			0x70374
+> +#define _PLANE_MIN_BUF_CFG_1_B			0x71274
+> +#define _PLANE_MIN_BUF_CFG_2_B			0x71374
+> +#define PLANE_MIN_BUF_CFG(pipe, plane)	_MMIO_SKL_PLANE((pipe), (plane), \
+> +							_PLANE_MIN_BUF_CFG_1_A, _PLANE_MIN_BUF_CFG_1_B, \
+> +							_PLANE_MIN_BUF_CFG_2_A, _PLANE_MIN_BUF_CFG_2_B)
+> +
+>  /* skl+: 10 bits, icl+ 11 bits, adlp+ 12 bits */
+>  #define   PLANE_BUF_END_MASK			REG_GENMASK(27, 16)
+>  #define   PLANE_BUF_END(end)			REG_FIELD_PREP(PLANE_BUF_END_MASK, (end))
+>  #define   PLANE_BUF_START_MASK			REG_GENMASK(11, 0)
+>  #define   PLANE_BUF_START(start)		REG_FIELD_PREP(PLANE_BUF_START_MASK, (start))
+>  
+
+The registers should be defined here.
+
+> +#define PLANE_AUTO_MIN_DBUF_EN			REG_BIT(31)
+> +#define PLANE_MIN_DDB_BLOCKS_MASK		REG_GENMASK(27, 16)
+> +#define PLANE_INTERIM_DDB_BLOCKS_MASK		REG_GENMASK(11, 0)
+
+And these should be appropriately indented to show that they belong to
+said registers.
+
+> +
+>  /* tgl+ */
+>  #define _SEL_FETCH_PLANE_CTL_1_A		0x70890
+>  #define _SEL_FETCH_PLANE_CTL_2_A		0x708b0
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+> index d961d01343b3..4e6433374e0d 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -797,7 +797,9 @@ skl_ddb_get_hw_plane_state(struct intel_display *display,
+>  			   const enum pipe pipe,
+>  			   const enum plane_id plane_id,
+>  			   struct skl_ddb_entry *ddb,
+> -			   struct skl_ddb_entry *ddb_y)
+> +			   struct skl_ddb_entry *ddb_y,
+> +			   struct skl_ddb_entry *min_ddb,
+> +			   struct skl_ddb_entry *interim_ddb)
+>  {
+>  	u32 val;
+>  
+> @@ -811,6 +813,17 @@ skl_ddb_get_hw_plane_state(struct intel_display *display,
+>  	val = intel_de_read(display, PLANE_BUF_CFG(pipe, plane_id));
+>  	skl_ddb_entry_init_from_hw(ddb, val);
+>  
+> +	if (DISPLAY_VER(display) >= 30) {
+> +		val = intel_de_read(display, PLANE_MIN_BUF_CFG(pipe, plane_id));
+> +
+> +		skl_ddb_entry_init(min_ddb, 0,
+
+If we intend to use skl_ddb_entry for this then I think we should
+initialize the start correctly as well. The other option is to just
+store these as simple sizes like the hardware does. The latter option
+might be easier, and would save a bit of memory as well.
+
+> +				   REG_FIELD_GET(PLANE_MIN_DDB_BLOCKS_MASK,
+> +						 val));
+> +		skl_ddb_entry_init(interim_ddb, 0,
+> +				   REG_FIELD_GET(PLANE_INTERIM_DDB_BLOCKS_MASK,
+> +						 val));
+> +	}
+> +
+>  	if (DISPLAY_VER(display) >= 11)
+>  		return;
+>  
+> @@ -820,7 +833,9 @@ skl_ddb_get_hw_plane_state(struct intel_display *display,
+>  
+>  static void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
+>  				      struct skl_ddb_entry *ddb,
+> -				      struct skl_ddb_entry *ddb_y)
+> +				      struct skl_ddb_entry *ddb_y,
+> +				      struct skl_ddb_entry *min_ddb,
+> +				      struct skl_ddb_entry *interim_ddb)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>  	enum intel_display_power_domain power_domain;
+> @@ -837,7 +852,9 @@ static void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
+>  		skl_ddb_get_hw_plane_state(&i915->display, pipe,
+>  					   plane_id,
+>  					   &ddb[plane_id],
+> -					   &ddb_y[plane_id]);
+> +					   &ddb_y[plane_id],
+> +					   &min_ddb[plane_id],
+> +					   &interim_ddb[plane_id]);
+>  
+>  	intel_display_power_put(i915, power_domain, wakeref);
+>  }
+> @@ -1374,7 +1391,9 @@ use_minimal_wm0_only(const struct intel_crtc_state *crtc_state,
+>  {
+>  	struct intel_display *display = to_intel_display(plane);
+>  
+> +	/* Xe3 (ver >= 30) has auto minimum DDB enabled */
+>  	return DISPLAY_VER(display) >= 13 &&
+> +	       DISPLAY_VER(display) < 30 &&
+
+Why is this written in a different style as compared to use_min_ddb()?
+
+>  	       crtc_state->uapi.async_flip &&
+>  	       plane->async_flip;
+>  }
+> @@ -1515,6 +1534,7 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
+>  	const struct intel_dbuf_state *dbuf_state =
+>  		intel_atomic_get_new_dbuf_state(state);
+>  	const struct skl_ddb_entry *alloc = &dbuf_state->ddb[crtc->pipe];
+> +	struct intel_display *display = to_intel_display(state);
+>  	int num_active = hweight8(dbuf_state->active_pipes);
+>  	struct skl_plane_ddb_iter iter;
+>  	enum plane_id plane_id;
+> @@ -1525,6 +1545,8 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
+>  	/* Clear the partitioning for disabled planes. */
+>  	memset(crtc_state->wm.skl.plane_ddb, 0, sizeof(crtc_state->wm.skl.plane_ddb));
+>  	memset(crtc_state->wm.skl.plane_ddb_y, 0, sizeof(crtc_state->wm.skl.plane_ddb_y));
+> +	memset(crtc_state->wm.skl.plane_min_ddb, 0, sizeof(crtc_state->wm.skl.plane_min_ddb));
+> +	memset(crtc_state->wm.skl.plane_interim_ddb, 0, sizeof(crtc_state->wm.skl.plane_interim_ddb));
+>  
+>  	if (!crtc_state->hw.active)
+>  		return 0;
+> @@ -1597,6 +1619,10 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
+>  			&crtc_state->wm.skl.plane_ddb[plane_id];
+>  		struct skl_ddb_entry *ddb_y =
+>  			&crtc_state->wm.skl.plane_ddb_y[plane_id];
+> +		struct skl_ddb_entry *min_ddb =
+> +			&crtc_state->wm.skl.plane_min_ddb[plane_id];
+> +		struct skl_ddb_entry *interim_ddb =
+> +			&crtc_state->wm.skl.plane_interim_ddb[plane_id];
+>  		const struct skl_plane_wm *wm =
+>  			&crtc_state->wm.skl.optimal.planes[plane_id];
+>  
+> @@ -1612,6 +1638,20 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
+>  		} else {
+>  			skl_allocate_plane_ddb(&iter, ddb, &wm->wm[level],
+>  					       crtc_state->rel_data_rate[plane_id]);
+> +
+> +			/*
+> +			 * xe3: Handle min_ddb and interim_ddb. Unlike the
+> +			 * normal ddb allocation, min_ddb and interim_ddb config
+> +			 * expects only the number of blocks from 0. The buffer
+> +			 * start is found in PLANE_BUF_CFG
+> +			 * Bspec: 72053
+> +			 */
+
+Trying to explain away the mess with the bogus ddb start in
+a comment isn't a good idea.
+
+> +			if (DISPLAY_VER(display) >= 30) {
+
+This can easily go one indentation level up.
+
+> +				skl_ddb_entry_init(min_ddb, 0,
+> +						   wm->wm[0].min_ddb_alloc);
+> +				skl_ddb_entry_init(interim_ddb, 0,
+> +						   wm->sagv.wm0.min_ddb_alloc);
+> +			}
+>  		}
+>  	}
+>  	drm_WARN_ON(&i915->drm, iter.size != 0 || iter.data_rate != 0);
+> @@ -1656,6 +1696,8 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
+>  			&crtc_state->wm.skl.plane_ddb[plane_id];
+>  		const struct skl_ddb_entry *ddb_y =
+>  			&crtc_state->wm.skl.plane_ddb_y[plane_id];
+> +		struct skl_ddb_entry *interim_ddb =
+> +			&crtc_state->wm.skl.plane_interim_ddb[plane_id];
+>  		struct skl_plane_wm *wm =
+>  			&crtc_state->wm.skl.optimal.planes[plane_id];
+>  
+> @@ -1669,6 +1711,11 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
+>  		}
+>  
+>  		skl_check_wm_level(&wm->sagv.wm0, ddb);
+> +		/* update the interim ddb, in case if it is changed */
+> +		if (DISPLAY_VER(display) >= 30)
+> +			skl_ddb_entry_init(interim_ddb, 0,
+> +					   wm->sagv.wm0.min_ddb_alloc);
+
+Hmm. I think we should either handle everything to do with
+this stuff in the loop here, or in the earlier place.
+Defintiely not both.
+
+> +
+>  		skl_check_wm_level(&wm->sagv.trans_wm, ddb);
+>  	}
+>  
+> @@ -1747,6 +1794,7 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+>  		      int color_plane, unsigned int pan_x)
+>  {
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct intel_display *display = to_intel_display(crtc_state);
+>  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>  	u32 interm_pbpl;
+>  
+> @@ -1805,7 +1853,7 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+>  					   wp->y_min_scanlines,
+>  					   wp->dbuf_block_size);
+>  
+> -		if (DISPLAY_VER(i915) >= 30)
+> +		if (DISPLAY_VER(display) >= 30)
+>  			interm_pbpl += (pan_x != 0);
+>  		else if (DISPLAY_VER(i915) >= 10)
+>  			interm_pbpl++;
+> @@ -1870,6 +1918,11 @@ static int skl_wm_max_lines(struct drm_i915_private *i915)
+>  		return 31;
+>  }
+>  
+> +static bool can_use_min_ddb(struct intel_display *display, int level)
+> +{
+> +	return DISPLAY_VER(display) >= 30 && level == 0;
+> +}
+> +
+>  static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+>  				 struct intel_plane *plane,
+>  				 int level,
+> @@ -1879,6 +1932,7 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+>  				 struct skl_wm_level *result /* out */)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+> +	struct intel_display *display = to_intel_display(crtc_state);
+>  	uint_fixed_16_16_t method1, method2;
+>  	uint_fixed_16_16_t selected_result;
+>  	u32 blocks, lines, min_ddb_alloc = 0;
+> @@ -2002,6 +2056,11 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+>  	/* Bspec says: value >= plane ddb allocation -> invalid, hence the +1 here */
+>  	result->min_ddb_alloc = max(min_ddb_alloc, blocks) + 1;
+>  	result->enable = true;
+> +	/*
+> +	 * For Xe3, when auto min DDB is enabled, it automatically switches to
+> +	 * the wm level where this auto min ddb is enabled
+> +	 */
+> +	result->auto_min_ddb_allowed = can_use_min_ddb(display, level);
+
+The name of the function doesn't match the bit so this is quite
+confusing, which is probably the reason for the attempt at explaining
+things with a comment.
+
+If you catch yourself adding a comment it's probably a good idea
+to re-evaluate the actual code instead.
+
+>  
+>  	if (DISPLAY_VER(i915) < 12 && i915->display.sagv.block_time_us)
+>  		result->can_sagv = latency >= i915->display.sagv.block_time_us;
+> @@ -2398,6 +2457,10 @@ static bool skl_plane_wm_equals(struct intel_display *display,
+>  		 */
+>  		if (!skl_wm_level_equals(&wm1->wm[level], &wm2->wm[level]))
+>  			return false;
+> +
+> +		if (DISPLAY_VER(display) >= 30 &&
+> +		    wm1->wm[level].auto_min_ddb_allowed != wm2->wm[level].auto_min_ddb_allowed)
+
+This looks like it belongs in skl_wm_level_equals(), and shouldn't
+need any platform checks.
+
+> +			return false;
+>  	}
+>  
+>  	return skl_wm_level_equals(&wm1->trans_wm, &wm2->trans_wm) &&
+> @@ -2929,6 +2992,8 @@ static void skl_wm_level_from_reg_val(struct intel_display *display,
+>  	level->ignore_lines = val & PLANE_WM_IGNORE_LINES;
+>  	level->blocks = REG_FIELD_GET(PLANE_WM_BLOCKS_MASK, val);
+>  	level->lines = REG_FIELD_GET(PLANE_WM_LINES_MASK, val);
+> +	level->auto_min_ddb_allowed = DISPLAY_VER(display) >= 30 &&
+> +					val & PLANE_WM_AUTO_MIN_ALLOC_EN;
+>  }
+>  
+>  static void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
+> @@ -3014,12 +3079,17 @@ static void skl_wm_get_hw_state(struct drm_i915_private *i915)
+>  				&crtc_state->wm.skl.plane_ddb[plane_id];
+>  			struct skl_ddb_entry *ddb_y =
+>  				&crtc_state->wm.skl.plane_ddb_y[plane_id];
+> +			struct skl_ddb_entry *min_ddb =
+> +				&crtc_state->wm.skl.plane_min_ddb[plane_id];
+> +			struct skl_ddb_entry *interim_ddb =
+> +				&crtc_state->wm.skl.plane_interim_ddb[plane_id];
+>  
+>  			if (!crtc_state->hw.active)
+>  				continue;
+>  
+>  			skl_ddb_get_hw_plane_state(display, crtc->pipe,
+> -						   plane_id, ddb, ddb_y);
+> +						   plane_id, ddb, ddb_y,
+> +						   min_ddb, interim_ddb);
+>  
+>  			skl_ddb_entry_union(&dbuf_state->ddb[pipe], ddb);
+>  			skl_ddb_entry_union(&dbuf_state->ddb[pipe], ddb_y);
+> @@ -3136,6 +3206,8 @@ void intel_wm_state_verify(struct intel_atomic_state *state,
+>  	struct skl_hw_state {
+>  		struct skl_ddb_entry ddb[I915_MAX_PLANES];
+>  		struct skl_ddb_entry ddb_y[I915_MAX_PLANES];
+> +		struct skl_ddb_entry min_ddb[I915_MAX_PLANES];
+> +		struct skl_ddb_entry interim_ddb[I915_MAX_PLANES];
+>  		struct skl_pipe_wm wm;
+>  	} *hw;
+>  	const struct skl_pipe_wm *sw_wm = &new_crtc_state->wm.skl.optimal;
+> @@ -3152,7 +3224,8 @@ void intel_wm_state_verify(struct intel_atomic_state *state,
+>  
+>  	skl_pipe_wm_get_hw_state(crtc, &hw->wm);
+>  
+> -	skl_pipe_ddb_get_hw_state(crtc, hw->ddb, hw->ddb_y);
+> +	skl_pipe_ddb_get_hw_state(crtc, hw->ddb, hw->ddb_y, hw->min_ddb,
+> +				  hw->interim_ddb);
+>  
+>  	hw_enabled_slices = intel_enabled_dbuf_slices_mask(display);
+>  
+> -- 
+> 2.34.1
+
+-- 
+Ville Syrjälä
+Intel
