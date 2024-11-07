@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22C64D5AE72
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 08:09:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5E01D5AE71
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 08:09:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC67610E7BD;
-	Thu,  7 Nov 2024 08:09:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FCF710E02B;
+	Thu,  7 Nov 2024 08:09:25 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98A7210E02B;
- Thu,  7 Nov 2024 08:09:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B973C10E02B;
+ Thu,  7 Nov 2024 08:09:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe3lpg=3A_Add?=
- =?utf-8?q?_Wa=5F16024792527_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/xe3lpg=3A_Add_Wa?=
+ =?utf-8?q?=5F16024792527_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: apoorva.singh@intel.com
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 07 Nov 2024 08:09:14 -0000
-Message-ID: <173096695461.1420592.4209914667488471627@2413ebb6fbb6>
+Date: Thu, 07 Nov 2024 08:09:24 -0000
+Message-ID: <173096696475.1420702.13200784564706584126@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241107081438.1426635-1-apoorva.singh@intel.com>
 In-Reply-To: <20241107081438.1426635-1-apoorva.singh@intel.com>
@@ -44,13 +44,34 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/xe3lpg: Add Wa_16024792527 (rev2)
 URL   : https://patchwork.freedesktop.org/series/140666/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5ce87c5ad2cb drm-tip: 2024y-11m-06d-20h-56m-57s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe3lpg: Add Wa_16024792527
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 87c2d8ea5ab2a0f7e94514fc6e6e2c151cfd4921
+Author: Apoorva Singh <apoorva.singh@intel.com>
+Date:   Thu Nov 7 13:44:38 2024 +0530
+
+    drm/xe/xe3lpg: Add Wa_16024792527
+    
+    Force Sampler Tile64 Overfetch via MMIO
+    
+    Signed-off-by: Apoorva Singh <apoorva.singh@intel.com>
++ /mt/dim checkpatch 5ce87c5ad2cbfd2b89a0347e4e4f75de2762b7a3 drm-intel
+87c2d8ea5ab2 drm/xe/xe3lpg: Add Wa_16024792527
+-:19: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#19: FILE: drivers/gpu/drm/xe/regs/xe_gt_regs.h:449:
++#define   SMP_FORCE_128B_OVERFETCH		REG_FIELD_PREP(SMP_WAIT_FETCH_MERGING_COUNTER_MASK, 1)
+
+total: 0 errors, 1 warnings, 0 checks, 20 lines checked
 
 
