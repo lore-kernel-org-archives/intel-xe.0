@@ -4,33 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7502ED5D685
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 19:23:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE6EAD5D683
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 19:48:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38ADA10E236;
-	Thu,  7 Nov 2024 19:23:13 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D28C10E236;
- Thu,  7 Nov 2024 19:23:12 +0000 (UTC)
-Received: from 91-155-254-188.elisa-laajakaista.fi ([91.155.254.188]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1t9861-00000001XeF-37Ie; Thu, 07 Nov 2024 21:23:10 +0200
-Message-ID: <57edfe78f9da272e0312ad77ee8ff7060932ae8c.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
-Cc: Luca Coelho <luciano.coelho@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Date: Thu, 07 Nov 2024 21:23:06 +0200
-In-Reply-To: <20241107182921.102193-18-gustavo.sousa@intel.com>
-References: <20241107182921.102193-1-gustavo.sousa@intel.com>
- <20241107182921.102193-18-gustavo.sousa@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.1-1 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E9AA10E8CC;
+	Thu,  7 Nov 2024 19:48:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EgSOIf0y";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBBC210E8C4
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Nov 2024 19:47:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731008879; x=1762544879;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6iEUl3hQrk6NNo6QR5MRKW/TGzWNMgICoapwi0wSx0w=;
+ b=EgSOIf0y65pIvi2RMh55M+UzLoHtOw8EcZjHfMmjsjIMxZeh5V6hKPZn
+ VxzeT/x316jIT4ttGBV4OLHEfWv3VT0WXEZdMmYSmuHFtyPd4/pejAR1x
+ gIAAigmbXnAlnfVVPXqGDe/Ot9vk3XiEB5YT9hRwtwLm0kkJkB2g3l+un
+ 78YCKKOvaUao518uclxNz2ABF/+zpkVBVv3k4s1+0XtUSnHU5+Y8UZjEm
+ 8/1MHGk84CWurvVun/Tkwy7i13/QClGmidDmt4skbohRVJefpNXGeTord
+ yTOB5kpy3w4H6AU165LYn87TNY58OZpvB8mFQ9CZvafHWCkmv3yd1HIOx w==;
+X-CSE-ConnectionGUID: wb+F6zQMQVm0ngEumoZEjQ==
+X-CSE-MsgGUID: U9PrISr7SDCvY9H5qalV4Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="31045973"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="31045973"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 11:47:56 -0800
+X-CSE-ConnectionGUID: kjwtqZD5SwiIp3o6lzVqCw==
+X-CSE-MsgGUID: OlK6zpSbTyGF4Ep5aQrgeA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="90340354"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.2.138])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 11:47:54 -0800
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 0/2] Prefer GT oriented logs/asserts in submit code
+Date: Thu,  7 Nov 2024 20:47:39 +0100
+Message-Id: <20241107194741.2167-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 17/18] drm/i915/dmc_wl: Do nothing until initialized
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,50 +64,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2024-11-07 at 15:27 -0300, Gustavo Sousa wrote:
-> There is a bit of a chicken and egg situation where we depend on runtime
-> info to know that DMC and wakelock are supported by the hardware, and
-> such information is grabbed via display MMIO functions, which in turns
-> call intel_dmc_wl_get() and intel_dmc_wl_put() as part of their regular
-> flow.
+Michal Wajdeczko (2):
+  drm/xe/guc: Prefer GT oriented asserts in submit code
+  drm/xe/guc: Prefer GT oriented logs in submit code
 
-s/which in turns call/which in turn calls/
+ drivers/gpu/drm/xe/xe_guc_submit.c | 77 +++++++++++++-----------------
+ 1 file changed, 33 insertions(+), 44 deletions(-)
 
+-- 
+2.43.0
 
-> Since we do not expect DC states (and consequently the wakelock
-> mechanism) to be enabled until DMC and DMC wakelock software structures
-> are initialized, a simple and safe solution to this is to turn
-> intel_dmc_wl_get() and intel_dmc_wl_put() into no-op until we have
-> properly initialized.
-
-
-About "safe" here... Can we be sure this will be race-free?
-
-
-> Let's implement that via a new field "initialized". Not that, since we
-> expect __intel_dmc_wl_supported() to be used for most non-static DMC
-> wakelock functions, let's add a drm_WARN_ONCE() there for when it is
-> called prior to initialization.
-
-
-s/not that/note that/
-
-
-> The only exception of functions that can be called before initialization
-> are intel_dmc_wl_get() and intel_dmc_wl_put(), so we bail before
-> calling __intel_dmc_wl_supported() if not initialized.
->=20
-> An alternative solution would be to revise MMIO-related stuff in the
-> whole driver initialization sequence, but that would possibly come with
-> the cost of some added ordering dependencies and complexity to the
-> source code.
-
-I think this can be kept out of the commit message.  It's not very
-clear what you mean and it sounds much more complex than the solution
-you implemented.  Unless race can really be an issue here, but then the
-whole commit message should be changed to an eventual more complex
-solution.
-
---
-Cheers,
-Luca.
