@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE167D43352
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 12:08:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07358D43352
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 12:09:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AEF410E813;
-	Thu,  7 Nov 2024 12:08:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C761B10E812;
+	Thu,  7 Nov 2024 12:09:13 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF7E610E813;
- Thu,  7 Nov 2024 12:08:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A27310E812;
+ Thu,  7 Nov 2024 12:09:12 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i914/watermark?=
- =?utf-8?q?=3A_Modify_latency_programmed_into_PKG=5FC=5FLATENCY?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i914/watermark=3A_Mod?=
+ =?utf-8?q?ify_latency_programmed_into_PKG=5FC=5FLATENCY?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 07 Nov 2024 12:08:52 -0000
-Message-ID: <173098133284.1421980.9029632823841579512@2413ebb6fbb6>
+Date: Thu, 07 Nov 2024 12:09:12 -0000
+Message-ID: <173098135236.1421891.3182468366290180283@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241107113240.887316-1-suraj.kandpal@intel.com>
 In-Reply-To: <20241107113240.887316-1-suraj.kandpal@intel.com>
@@ -48,9 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 6f358787ded2 drm-tip: 2024y-11m-07d-09h-07m-55s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i914/watermark: Modify latency programmed into PKG_C_LATENCY
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9bd4fd95d9b417986295ecfb9d6e83bad451aad9
+Author: Suraj Kandpal <suraj.kandpal@intel.com>
+Date:   Thu Nov 7 17:02:40 2024 +0530
+
+    drm/i914/watermark: Modify latency programmed into PKG_C_LATENCY
+    
+    Increase the latency programmed into PKG_C_LATENCY latency to be
+    a multiple of line time which is written into WM_LINETIME.
+    
+    WA: 22020299601
+    Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 6f358787ded211657532e2ee4df2e446b03d860f drm-intel
+9bd4fd95d9b4 drm/i914/watermark: Modify latency programmed into PKG_C_LATENCY
 
 
