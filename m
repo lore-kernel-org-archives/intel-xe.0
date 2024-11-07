@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0B80D35E5D
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 10:47:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45E0AD35E5D
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 10:48:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B2DA10E7FC;
-	Thu,  7 Nov 2024 10:47:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13AD910E222;
+	Thu,  7 Nov 2024 10:48:07 +0000 (UTC)
 Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 131CB10E7FA;
- Thu,  7 Nov 2024 10:47:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB0D10E222;
+ Thu,  7 Nov 2024 10:48:06 +0000 (UTC)
 Received: from 91-155-254-188.elisa-laajakaista.fi ([91.155.254.188]
  helo=[192.168.100.137])
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1t902Y-00000001WMj-0ZVn; Thu, 07 Nov 2024 12:47:02 +0200
-Message-ID: <c700c7b47701110eb36dd38c6f97874b07806a43.camel@coelho.fi>
+ id 1t903Y-00000001WNI-2qWY; Thu, 07 Nov 2024 12:48:04 +0200
+Message-ID: <94fbda323981bd54fc118db079868fdd2d3f87d5.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: Gustavo Sousa <gustavo.sousa@intel.com>,
  intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Date: Thu, 07 Nov 2024 12:47:00 +0200
-In-Reply-To: <20241106215231.103474-10-gustavo.sousa@intel.com>
+Date: Thu, 07 Nov 2024 12:48:03 +0200
+In-Reply-To: <20241106215231.103474-11-gustavo.sousa@intel.com>
 References: <20241106215231.103474-1-gustavo.sousa@intel.com>
- <20241106215231.103474-10-gustavo.sousa@intel.com>
+ <20241106215231.103474-11-gustavo.sousa@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.54.1-1 
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 09/17] drm/i915/dmc_wl: Track registers touched by
- the DMC
+Subject: Re: [PATCH v2 10/17] drm/i915/dmc_wl: Allow simpler syntax for
+ single reg in range tables
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,26 +47,13 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Wed, 2024-11-06 at 18:50 -0300, Gustavo Sousa wrote:
-> There are extra registers that require the DMC wakelock when specific
-> dynamic DC states are in place. Those are registers that are touched by
-> the DMC and require DC exit for proper access. Add the range tables for
-> them and use the correct one depending on the enabled DC state.
+> Allow simpler syntax for defining entries for single registers in range
+> tables. That makes them easier to type as well as to read, allowing one
+> to quickly tell whether a range actually refers to a single register or
+> a "true range".
 >=20
-> v2:
->   - Do not look into power domains guts (i.e.
->     display->power.domains.dc_state). (Jani)
->   - Come up with better names for variables containing register ranges.
->     (Luca)
->   - Keep a copy of dc_state in struct intel_dmc_wl.
->   - Update commit message for a clearer explanation for the need of
->     these new tables.
->=20
-> Bspec: 71583
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Luca Coelho <luciano.coelho@intel.com>
 > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 > ---
->=20
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
