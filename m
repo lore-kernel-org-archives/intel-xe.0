@@ -4,54 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6695DD4337D
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 16:35:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78CD8D4337C
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 16:35:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A15510E889;
-	Thu,  7 Nov 2024 16:35:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0030410E88B;
+	Thu,  7 Nov 2024 16:35:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KNgqU/Nu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ibzj1Ymn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A8FC10E889
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Nov 2024 16:35:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B58D510E88B
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Nov 2024 16:35:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730997310; x=1762533310;
+ t=1730997311; x=1762533311;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4DveGDMZgs7lCoOyvHyj8q8j4M1x/bD6dp6XNYVbKTM=;
- b=KNgqU/NuMq8Kg73Sig6K+Bd9yCJPcFMyM0EPmBseU6dPJvhobdwC2uLb
- 0glzEoe6p3t2/M5zTODg4ftHgExuDRwyOTVGc/Yk4F/FzjT0lxwcoqFIh
- qAmow77DUvrHKWz3cSDfvTBIQtW2ijOhosbqDU+hNASaNTuEYx/nqqM5k
- hHOH3xWsyBMH9HwZ/xOG6I8lhgmIREP8sHvZQ9itk9Ux5eQ0XK7BB8A4x
- am+3rlTIb26hFGYG8jq2xe2YaHfzL5jqsqjfzUFqbF8CmZfi+6pwCc5AW
- PUKf3ZNiu95HJX8nOBIR51Gntm6m3twAOBMpgXwaaTCKwheylawHdjdSk A==;
-X-CSE-ConnectionGUID: 8aPJI16XRaO2aIGQ1F7w4A==
-X-CSE-MsgGUID: pdV7t2ZQRf2s2UDS1YLbBA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="18480140"
-X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="18480140"
+ bh=ff0ArFXlgCLnFmm38APXqkRE7hoa9xml0amfCbh5Z5A=;
+ b=ibzj1Ymn+OEz8hMMG4cXS0wmI+TJxXd3Hrahf/+k2soKV8YgEhl6YbS5
+ qiGj5GJdd204sP0SvK0rpfo7L7KB/DV6+h1LDJ1Uus1jTFwOHFrCmfQBT
+ jMMiNtLmAme9lFE6JT+mOUdIlulNDIK9SMXuDy3TFuKYoTTIFFtXaXJjJ
+ BMDNLdsnZbLnicycs6n9YgrEpm27GncwWMqFjlrXbasF4MgzSX6X4P84N
+ l8C04GLiIHSSb8LpVXqnVT3AG2qrq+RHf7vU7mrfNUN/SmskY/djvLlov
+ HO7zEqy2F1oyydRYHLi7QmCBnLegihA35SNNeNfCBNbwE1dzFHes+br+2 A==;
+X-CSE-ConnectionGUID: 2aqTnVf0TVekT84Q7bKOGw==
+X-CSE-MsgGUID: eBWPqQggSCSpSBfQEdG6pg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="18480145"
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="18480145"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 08:35:10 -0800
-X-CSE-ConnectionGUID: doG/WlBBQIChIKsPv8x1Nw==
-X-CSE-MsgGUID: h0TCrU8AQDOPX/IPx066NQ==
+ 07 Nov 2024 08:35:11 -0800
+X-CSE-ConnectionGUID: CRUVL+VXS9OWOUlfCE2SLQ==
+X-CSE-MsgGUID: YmUsCqvtQIq4CK9Vmzucog==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="89797021"
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="89797036"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.2.138])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 08:35:07 -0800
+ 07 Nov 2024 08:35:10 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, linux-fsdevel@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH 2/4] libfs: Provide simple_read_from|write_to_iomem()
-Date: Thu,  7 Nov 2024 17:34:46 +0100
-Message-Id: <20241107163448.2123-3-michal.wajdeczko@intel.com>
+ Tomasz Lis <tomasz.lis@intel.com>, Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH 3/4] drm/xe: Add read/write debugfs helpers for GGTT node
+Date: Thu,  7 Nov 2024 17:34:47 +0100
+Message-Id: <20241107163448.2123-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20241107163448.2123-1-michal.wajdeczko@intel.com>
 References: <20241107163448.2123-1-michal.wajdeczko@intel.com>
@@ -71,128 +67,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-New functions are similar to simple_read_from|write_to_buffer()
-but work on the I/O memory instead. Will allow wider code reuse.
+In upcoming patch we want to allow copying and updating PTEs
+of some GGTT nodes over debugfs. Add simple helpers for that.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
-Cc: Alexander Viro <viro@zeniv.linux.org.uk>
-Cc: Christian Brauner <brauner@kernel.org>
-Cc: Jan Kara <jack@suse.cz>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com> #v1
 Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: linux-fsdevel@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
 ---
- fs/libfs.c         | 78 ++++++++++++++++++++++++++++++++++++++++++++++
- include/linux/fs.h |  5 +++
- 2 files changed, 83 insertions(+)
+v2: promote simple_{read,write}_{from,to}_iomem (Matt)
+---
+ drivers/gpu/drm/xe/xe_ggtt.c | 52 ++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ggtt.h |  7 +++++
+ 2 files changed, 59 insertions(+)
 
-diff --git a/fs/libfs.c b/fs/libfs.c
-index 46966fd8bcf9..0e4f0d50d4f3 100644
---- a/fs/libfs.c
-+++ b/fs/libfs.c
-@@ -1095,6 +1095,84 @@ void simple_release_fs(struct vfsmount **mount, int *count)
- }
- EXPORT_SYMBOL(simple_release_fs);
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 558fac8bb6fb..07f5b4c0e6c9 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -838,3 +838,55 @@ u64 xe_ggtt_print_holes(struct xe_ggtt *ggtt, u64 alignment, struct drm_printer
  
+ 	return total;
+ }
++
++#ifdef CONFIG_DEBUG_FS
++
 +/**
-+ * simple_read_from_iomem() - copy data from the I/O memory to user space
-+ * @to: the user space buffer to read to
++ * xe_ggtt_node_read() - Copy PTEs from the GGTT node to the user space buffer
++ * @node: the GGTT node to read from
++ * @buf: the user space buffer to read to
 + * @count: the maximum number of bytes to read
-+ * @ppos: the current position in the buffer
-+ * @from: the I/O memory to read from
-+ * @available: the size of the iomem memory
-+ *
-+ * The simple_read_from_iomem() function reads up to @count bytes from the
-+ * I/O memory @from at offset @ppos into the user space address starting at @to.
++ * @ppos: the current position
 + *
 + * Return: On success, the number of bytes read is returned and the offset
 + * @ppos is advanced by this number, or negative value is returned on error.
 + */
-+ssize_t simple_read_from_iomem(void __user *to, size_t count, loff_t *ppos,
-+			       const void __iomem *from, size_t available)
++ssize_t xe_ggtt_node_read(struct xe_ggtt_node *node, char __user *buf,
++			  size_t count, loff_t *ppos)
 +{
-+	struct iov_iter iter;
-+	loff_t pos = *ppos;
-+	size_t copied;
-+
-+	if (pos < 0)
-+		return -EINVAL;
-+	if (pos >= available || !count)
++	if (!xe_ggtt_node_allocated(node))
 +		return 0;
-+	if (count > available - pos)
-+		count = available - pos;
-+	if (import_ubuf(ITER_DEST, to, count, &iter))
-+		return -EFAULT;
 +
-+	copied = copy_iomem_to_iter(from, pos, count, &iter);
-+	if (!copied)
-+		return -EFAULT;
++	xe_tile_assert(node->ggtt->tile, IS_ALIGNED(node->base.start, XE_PAGE_SIZE));
++	xe_tile_assert(node->ggtt->tile, IS_ALIGNED(node->base.size, XE_PAGE_SIZE));
 +
-+	*ppos = pos + copied;
-+	return copied;
++	return simple_read_from_iomem(buf, count, ppos,
++				      &node->ggtt->gsm[node->base.start / XE_PAGE_SIZE],
++				      size_mul(sizeof(u64), node->base.size / XE_PAGE_SIZE));
 +}
-+EXPORT_SYMBOL(simple_read_from_iomem);
 +
 +/**
-+ * simple_write_to_iomem() - copy data from user space to the I/O memory
-+ * @to: the I/O memory to write to
-+ * @available: the size of the I/O memory
-+ * @ppos: the current position in the buffer
-+ * @from: the user space buffer to read from
++ * xe_ggtt_node_write() - Update PTEs of the GGTT node using data from the user space buffer
++ * @node: the GGTT node to write to
++ * @buf: the user space buffer to read from
 + * @count: the maximum number of bytes to read
-+ *
-+ * The simple_write_to_iomem() function reads up to @count bytes from the user
-+ * space address starting at @from into the I/O memory @to at offset @ppos.
++ * @ppos: the current position
 + *
 + * Return: On success, the number of bytes written is returned and the offset
 + * @ppos is advanced by this number, or negative value is returned on error.
 + */
-+ssize_t simple_write_to_iomem(void __iomem *to, size_t available, loff_t *ppos,
-+			      const void __user *from, size_t count)
++ssize_t xe_ggtt_node_write(struct xe_ggtt_node *node, const char __user *buf,
++			   size_t count, loff_t *ppos)
 +{
-+	struct iov_iter iter;
-+	loff_t pos = *ppos;
-+	size_t copied;
++	if (!xe_ggtt_node_allocated(node))
++		return -ENXIO;
 +
-+	if (pos < 0)
-+		return -EINVAL;
-+	if (pos >= available || !count)
-+		return 0;
-+	if (count > available - pos)
-+		count = available - pos;
-+	if (import_ubuf(ITER_SOURCE, (void __user *)from, count, &iter))
-+		return -EFAULT;
++	xe_tile_assert(node->ggtt->tile, IS_ALIGNED(node->base.start, XE_PAGE_SIZE));
++	xe_tile_assert(node->ggtt->tile, IS_ALIGNED(node->base.size, XE_PAGE_SIZE));
 +
-+	copied = copy_iomem_from_iter(to, pos, count, &iter);
-+	if (!copied)
-+		return -EFAULT;
-+
-+	*ppos = pos + copied;
-+	return copied;
++	return simple_write_to_iomem(&node->ggtt->gsm[node->base.start / XE_PAGE_SIZE],
++				     size_mul(sizeof(u64), node->base.size / XE_PAGE_SIZE),
++				     ppos, buf, count);
 +}
-+EXPORT_SYMBOL(simple_write_to_iomem);
 +
- /**
-  * simple_read_from_buffer - copy data from the buffer to user space
-  * @to: the user space buffer to read to
-diff --git a/include/linux/fs.h b/include/linux/fs.h
-index 3559446279c1..2cc73c5961b0 100644
---- a/include/linux/fs.h
-+++ b/include/linux/fs.h
-@@ -3426,6 +3426,11 @@ extern ssize_t simple_read_from_buffer(void __user *to, size_t count,
- extern ssize_t simple_write_to_buffer(void *to, size_t available, loff_t *ppos,
- 		const void __user *from, size_t count);
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 27e7d67de004..64746e23053e 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -34,6 +34,13 @@ u64 xe_ggtt_largest_hole(struct xe_ggtt *ggtt, u64 alignment, u64 *spare);
+ int xe_ggtt_dump(struct xe_ggtt *ggtt, struct drm_printer *p);
+ u64 xe_ggtt_print_holes(struct xe_ggtt *ggtt, u64 alignment, struct drm_printer *p);
  
-+ssize_t simple_read_from_iomem(void __user *to, size_t count, loff_t *ppos,
-+			       const void __iomem *from, size_t available);
-+ssize_t simple_write_to_iomem(void __iomem *to, size_t available, loff_t *ppos,
-+			      const void __user *from, size_t count);
++#ifdef CONFIG_DEBUG_FS
++ssize_t xe_ggtt_node_read(struct xe_ggtt_node *node, char __user *buf,
++			  size_t count, loff_t *pos);
++ssize_t xe_ggtt_node_write(struct xe_ggtt_node *node, const char __user *buf,
++			   size_t count, loff_t *pos);
++#endif
 +
- struct offset_ctx {
- 	struct maple_tree	mt;
- 	unsigned long		next_offset;
+ #ifdef CONFIG_PCI_IOV
+ void xe_ggtt_assign(const struct xe_ggtt_node *node, u16 vfid);
+ #endif
 -- 
 2.43.0
 
