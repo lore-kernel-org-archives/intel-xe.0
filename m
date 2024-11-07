@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7382CD5AE75
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 09:21:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CCB6D5AE79
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 09:23:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42FD010E7DC;
-	Thu,  7 Nov 2024 09:21:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 287BA10E7DC;
+	Thu,  7 Nov 2024 09:23:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YLW+FLqI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YYiIUiDd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3A1710E7DC
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Nov 2024 09:21:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD0EB10E7D9;
+ Thu,  7 Nov 2024 09:23:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730971303; x=1762507303;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=UxxtWXASinU2ecW5+wxCYMTfCNWrAkfM75CCyFNi9BQ=;
- b=YLW+FLqIP1DTLXkemLaM3QzDKfH5608jf9hWVhkhnRipuC/YErfbyk1K
- H8krF1urUF8n2okZAY7TY/ZU8khDhoYhGHoB1lweVMKLnmHTAp7Lmhaax
- 0AecFzELdPy7iaQV6VT7fwivpriNvs+O5szjOdjtxZJdjmnIJFMEUHvMx
- uPaZ3PDw38hWOf5EMRrl71Gv8mVA3ri0Hwxo8mcwbSO5drsjo+jXIQ2aG
- lqWbQh4LH8EwhycBwtA2Dg2lgFvuoJbukWXMdoZHEm7SaANDJ0Gv0Ny40
- OJ2+j17nM7w2y+xiNS9dJn38LovtYZ0JXXkARMYGPXU5DCTQmnJQXnJax A==;
-X-CSE-ConnectionGUID: 1deGA7PGQ3+E6HY7KTDrww==
-X-CSE-MsgGUID: pxPwOZibTrWS86mTh8AiRw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30964150"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30964150"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 01:21:42 -0800
-X-CSE-ConnectionGUID: TAxhavqcQy25Q/wH8Px/yw==
-X-CSE-MsgGUID: yH+WlmKpT8O2vUeUBIw6Qw==
+ t=1730971423; x=1762507423;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=OBUD/204qlj6bzQRg79Gn2Ndm493ntuSBndlDDRNH5k=;
+ b=YYiIUiDdW/APQqw5zWmarUXsLQnasM1/jNJYibEUR059SjxMGt7JO+nb
+ +SicwFQbmrDCmYpiHBvvLF3wEpf4HywdwD1jW2nvqQa3JLRoMhL46ifNU
+ D1fO0TLuLCzu05AWhV1Ckd0IStlD7V49odaRerCJS9iszFdghh96eCJmK
+ YE/pRRtC2M0+mMia2qoozt9fTiugQUjT+88l8L6hmYupBUVI5v5IPpCnt
+ I0/ucZpdCrwZV8EBbo9BdKFkprTwpC4gVCelDUlgbj/r0VajqtBd4cYPP
+ WTYl2DTqnimIGbOkQ4dPPqh3hYoECMbVEd1k51qR/zKJl6jDBNm6j2r72 A==;
+X-CSE-ConnectionGUID: tEfegkR8Q52aJFNw/O74GA==
+X-CSE-MsgGUID: 5p5iuWwnQy6OphjQiRA3QQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41356526"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41356526"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 01:23:43 -0800
+X-CSE-ConnectionGUID: q16qvZvQSSiT7HQOiOokIw==
+X-CSE-MsgGUID: AhpkYlsKR5qDmdqo6fiB2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,265,1725346800"; d="scan'208";a="122502893"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa001.jf.intel.com with ESMTP; 07 Nov 2024 01:21:42 -0800
-Received: from [10.246.2.138] (mwajdecz-MOBL.ger.corp.intel.com [10.246.2.138])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 3792D28195
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Nov 2024 09:21:40 +0000 (GMT)
-Message-ID: <8019ad54-3371-4d71-be21-e502c0d64703@intel.com>
-Date: Thu, 7 Nov 2024 10:21:39 +0100
+X-IronPort-AV: E=Sophos;i="6.11,265,1725346800"; d="scan'208";a="84557207"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.201])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 01:23:40 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Luca Coelho <luciano.coelho@intel.com>
+Subject: Re: [PATCH v2 01/17] drm/i915/dmc_wl: Use i915_mmio_reg_offset()
+ instead of reg.reg
+In-Reply-To: <20241106215231.103474-2-gustavo.sousa@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241106215231.103474-1-gustavo.sousa@intel.com>
+ <20241106215231.103474-2-gustavo.sousa@intel.com>
+Date: Thu, 07 Nov 2024 11:23:37 +0200
+Message-ID: <87ttcje6sm.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_CI=2EFULL=3A_failure_for_GuC=3A_Improve_h?=
- =?UTF-8?Q?andling_of_the_malformed_G2H_=28rev2=29?=
-To: intel-xe@lists.freedesktop.org
-References: <20241105173032.1947-1-michal.wajdeczko@intel.com>
- <173094159553.1419576.10592915235781384917@2413ebb6fbb6>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <173094159553.1419576.10592915235781384917@2413ebb6fbb6>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,59 +70,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, 06 Nov 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> The macro i915_mmio_reg_offset() is the proper interface to get a
+> register's offset. Use that instead of looking directly at reg.reg.
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-On 07.11.2024 02:06, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: GuC: Improve handling of the malformed G2H (rev2)
-> URL   : https://patchwork.freedesktop.org/series/140958/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from xe-2169-1051f5a468c5531923b01ba67999e502ce47a6b0_full -> xe-pw-140958v2_full
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with xe-pw-140958v2_full absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in xe-pw-140958v2_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   
-> 
-> Participating hosts (4 -> 4)
-> ------------------------------
-> 
->   No changes in participating hosts
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in xe-pw-140958v2_full:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
+> ---
+>  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> index 5634ff07269d..05892a237d3a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> @@ -91,14 +91,15 @@ static void intel_dmc_wl_work(struct work_struct *work)
+>  	spin_unlock_irqrestore(&wl->lock, flags);
+>  }
+>  
+> -static bool intel_dmc_wl_check_range(u32 address)
+> +static bool intel_dmc_wl_check_range(i915_reg_t reg)
+>  {
+>  	int i;
+>  	bool wl_needed = false;
+> +	u32 offset = i915_mmio_reg_offset(reg);
+>  
+>  	for (i = 0; i < ARRAY_SIZE(lnl_wl_range); i++) {
+> -		if (address >= lnl_wl_range[i].start &&
+> -		    address <= lnl_wl_range[i].end) {
+> +		if (offset >= lnl_wl_range[i].start &&
+> +		    offset <= lnl_wl_range[i].end) {
+>  			wl_needed = true;
+>  			break;
+>  		}
+> @@ -191,7 +192,7 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
+>  	if (!__intel_dmc_wl_supported(display))
+>  		return;
+>  
+> -	if (!intel_dmc_wl_check_range(reg.reg))
+> +	if (!intel_dmc_wl_check_range(reg))
+>  		return;
+>  
+>  	spin_lock_irqsave(&wl->lock, flags);
+> @@ -239,7 +240,7 @@ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg)
+>  	if (!__intel_dmc_wl_supported(display))
+>  		return;
+>  
+> -	if (!intel_dmc_wl_check_range(reg.reg))
+> +	if (!intel_dmc_wl_check_range(reg))
+>  		return;
+>  
+>  	spin_lock_irqsave(&wl->lock, flags);
 
-all unrelated, all from noisy KMS
-
->   * igt@kms_color@ctm-0-75@pipe-b-edp-1:
->     - shard-lnl:          [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
->    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2169-1051f5a468c5531923b01ba67999e502ce47a6b0/shard-lnl-7/igt@kms_color@ctm-0-75@pipe-b-edp-1.html
->    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v2/shard-lnl-3/igt@kms_color@ctm-0-75@pipe-b-edp-1.html
-> 
->   * igt@kms_cursor_crc@cursor-offscreen-256x256@pipe-c-edp-1:
->     - shard-lnl:          [PASS][3] -> [FAIL][4] +3 other tests fail
->    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2169-1051f5a468c5531923b01ba67999e502ce47a6b0/shard-lnl-8/igt@kms_cursor_crc@cursor-offscreen-256x256@pipe-c-edp-1.html
->    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v2/shard-lnl-8/igt@kms_cursor_crc@cursor-offscreen-256x256@pipe-c-edp-1.html
-> 
->   
+-- 
+Jani Nikula, Intel
