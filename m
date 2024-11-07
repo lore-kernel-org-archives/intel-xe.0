@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94499D5AE46
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 03:33:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 420A5D5AE5F
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 03:40:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A0E110E226;
-	Thu,  7 Nov 2024 03:33:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AdC6jckn";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E310310E226
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Nov 2024 03:33:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730950436; x=1762486436;
- h=date:from:to:cc:subject:message-id;
- bh=sKCxT+owi4sP/n+EpcXzv2a/sawGwq+4HP9g4XJWK+w=;
- b=AdC6jckn8plY7Ajmthw+Dk8brj80sTBnLSHKit9gQfioCdLQn921TAtc
- tZE7Roe6PwF7K1SQzQr23TtSj4mSRsoE8DqbHJT9ud7Ew5lBaoskLMcM9
- i/eaMDDe+SPqINePPLjyMZCIs1ufv+gLqYLZfxHqHdKlkc1aH5lBpRFHI
- dghdaK/xLOxil1tWAZs++5WlXIIejkd0dSI/7dK5/bv+hFs72oU/ZQB/M
- imnegcenXP4fOumYQevSn9sDApXC10ZuUpcnSO2dnxVhoX6wfNVTaAkc1
- qrkCZzDvvgxeyo4r1l5zZT7ibhBDJXgmAGQImUVKPE4w8I3DuReETS/7L A==;
-X-CSE-ConnectionGUID: 2YmYYLPbS9KpyaKgpouDqw==
-X-CSE-MsgGUID: eQ4THl95TlOobcFnyhxf7Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="56174883"
-X-IronPort-AV: E=Sophos;i="6.11,264,1725346800"; d="scan'208";a="56174883"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2024 19:33:54 -0800
-X-CSE-ConnectionGUID: TQ9vS9ACS8iJslANFDF/gQ==
-X-CSE-MsgGUID: EGjDBg+CQImLHgYBj4OqYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,264,1725346800"; d="scan'208";a="84523731"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
- by fmviesa007.fm.intel.com with ESMTP; 06 Nov 2024 19:33:53 -0800
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1t8tHL-000pmj-0Y;
- Thu, 07 Nov 2024 03:33:51 +0000
-Date: Thu, 07 Nov 2024 11:33:01 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF7E810E22C;
+	Thu,  7 Nov 2024 03:40:13 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7B6210E22C;
+ Thu,  7 Nov 2024 03:40:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/hdcp=3A_Handle_HDCP_L?=
+ =?utf-8?q?ine_Rekeying_for_HDCP_1=2E4_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- abd2202047fc75d52dcd729d5a1534f019822e9c
-Message-ID: <202411071155.RLeL0dyE-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Date: Thu, 07 Nov 2024 03:40:11 -0000
+Message-ID: <173095081180.1420075.18220600350944683839@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241107022807.869744-1-suraj.kandpal@intel.com>
+In-Reply-To: <20241107022807.869744-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,206 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: abd2202047fc75d52dcd729d5a1534f019822e9c  drm/xe/vf: Defer fixups if migrated twice fast
+== Series Details ==
 
-elapsed time: 723m
+Series: drm/i915/hdcp: Handle HDCP Line Rekeying for HDCP 1.4 (rev4)
+URL   : https://patchwork.freedesktop.org/series/140994/
+State : success
 
-configs tested: 184
-configs skipped: 9
+== Summary ==
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/
+lib/modules/6.12.0-rc6-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc6-xe/build
+lib/modules/6.12.0-rc6-xe/modules.alias.bin
+lib/modules/6.12.0-rc6-xe/modules.builtin
+lib/modules/6.12.0-rc6-xe/modules.softdep
+lib/modules/6.12.0-rc6-xe/modules.alias
+lib/modules/6.12.0-rc6-xe/modules.order
+lib/modules/6.12.0-rc6-xe/modules.symbols
+lib/modules/6.12.0-rc6-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1730950804:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1730950804:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-tested configs:
-alpha                             allnoconfig    gcc-14.2.0
-alpha                            allyesconfig    clang-20
-alpha                               defconfig    gcc-14.2.0
-arc                              allmodconfig    clang-20
-arc                               allnoconfig    gcc-14.2.0
-arc                              allyesconfig    clang-20
-arc                          axs103_defconfig    gcc-14.2.0
-arc                                 defconfig    gcc-14.2.0
-arc                        nsimosci_defconfig    clang-20
-arc                   randconfig-001-20241107    gcc-14.2.0
-arc                   randconfig-002-20241107    gcc-14.2.0
-arm                              allmodconfig    clang-20
-arm                               allnoconfig    gcc-14.2.0
-arm                              allyesconfig    clang-20
-arm                                 defconfig    gcc-14.2.0
-arm                          gemini_defconfig    gcc-14.2.0
-arm                           h3600_defconfig    gcc-14.2.0
-arm                            hisi_defconfig    clang-20
-arm                           imxrt_defconfig    gcc-14.2.0
-arm                            qcom_defconfig    clang-20
-arm                   randconfig-001-20241107    gcc-14.2.0
-arm                   randconfig-002-20241107    gcc-14.2.0
-arm                   randconfig-003-20241107    gcc-14.2.0
-arm                   randconfig-004-20241107    gcc-14.2.0
-arm                             rpc_defconfig    clang-20
-arm                             rpc_defconfig    gcc-14.2.0
-arm                       spear13xx_defconfig    clang-20
-arm                       versatile_defconfig    gcc-14.2.0
-arm64                            allmodconfig    clang-20
-arm64                             allnoconfig    gcc-14.2.0
-arm64                               defconfig    gcc-14.2.0
-arm64                 randconfig-001-20241107    gcc-14.2.0
-arm64                 randconfig-002-20241107    gcc-14.2.0
-arm64                 randconfig-003-20241107    gcc-14.2.0
-arm64                 randconfig-004-20241107    gcc-14.2.0
-csky                              allnoconfig    gcc-14.2.0
-csky                                defconfig    gcc-14.2.0
-csky                  randconfig-001-20241107    gcc-14.2.0
-csky                  randconfig-002-20241107    gcc-14.2.0
-hexagon                          allmodconfig    clang-20
-hexagon                           allnoconfig    gcc-14.2.0
-hexagon                          allyesconfig    clang-20
-hexagon                             defconfig    gcc-14.2.0
-hexagon               randconfig-001-20241107    gcc-14.2.0
-hexagon               randconfig-002-20241107    gcc-14.2.0
-i386                             allmodconfig    clang-19
-i386                              allnoconfig    clang-19
-i386                             allyesconfig    clang-19
-i386        buildonly-randconfig-001-20241107    clang-19
-i386        buildonly-randconfig-002-20241107    clang-19
-i386        buildonly-randconfig-003-20241107    clang-19
-i386        buildonly-randconfig-004-20241107    clang-19
-i386        buildonly-randconfig-005-20241107    clang-19
-i386        buildonly-randconfig-006-20241107    clang-19
-i386                                defconfig    clang-19
-i386                  randconfig-001-20241107    clang-19
-i386                  randconfig-002-20241107    clang-19
-i386                  randconfig-003-20241107    clang-19
-i386                  randconfig-004-20241107    clang-19
-i386                  randconfig-005-20241107    clang-19
-i386                  randconfig-006-20241107    clang-19
-i386                  randconfig-011-20241107    clang-19
-i386                  randconfig-012-20241107    clang-19
-i386                  randconfig-013-20241107    clang-19
-i386                  randconfig-014-20241107    clang-19
-i386                  randconfig-015-20241107    clang-19
-i386                  randconfig-016-20241107    clang-19
-loongarch                        allmodconfig    gcc-14.2.0
-loongarch                         allnoconfig    gcc-14.2.0
-loongarch                           defconfig    gcc-14.2.0
-loongarch             randconfig-001-20241107    gcc-14.2.0
-loongarch             randconfig-002-20241107    gcc-14.2.0
-m68k                             allmodconfig    gcc-14.2.0
-m68k                              allnoconfig    gcc-14.2.0
-m68k                             allyesconfig    gcc-14.2.0
-m68k                         amcore_defconfig    clang-20
-m68k                          amiga_defconfig    clang-20
-m68k                          atari_defconfig    gcc-14.2.0
-m68k                                defconfig    gcc-14.2.0
-m68k                          multi_defconfig    gcc-14.2.0
-microblaze                       allmodconfig    gcc-14.2.0
-microblaze                        allnoconfig    gcc-14.2.0
-microblaze                       allyesconfig    gcc-14.2.0
-microblaze                          defconfig    gcc-14.2.0
-mips                              allnoconfig    gcc-14.2.0
-mips                         bigsur_defconfig    clang-20
-nios2                             allnoconfig    gcc-14.2.0
-nios2                               defconfig    gcc-14.2.0
-nios2                 randconfig-001-20241107    gcc-14.2.0
-nios2                 randconfig-002-20241107    gcc-14.2.0
-openrisc                          allnoconfig    clang-20
-openrisc                         allyesconfig    gcc-14.2.0
-openrisc                            defconfig    gcc-12
-parisc                           allmodconfig    gcc-14.2.0
-parisc                            allnoconfig    clang-20
-parisc                           allyesconfig    gcc-14.2.0
-parisc                              defconfig    gcc-12
-parisc                generic-32bit_defconfig    clang-20
-parisc                randconfig-001-20241107    gcc-14.2.0
-parisc                randconfig-002-20241107    gcc-14.2.0
-parisc64                            defconfig    gcc-14.2.0
-powerpc                          allmodconfig    gcc-14.2.0
-powerpc                           allnoconfig    clang-20
-powerpc                          allyesconfig    gcc-14.2.0
-powerpc                      pcm030_defconfig    clang-20
-powerpc                      pcm030_defconfig    gcc-14.2.0
-powerpc               randconfig-001-20241107    gcc-14.2.0
-powerpc               randconfig-002-20241107    gcc-14.2.0
-powerpc               randconfig-003-20241107    gcc-14.2.0
-powerpc                     sequoia_defconfig    gcc-14.2.0
-powerpc                     tqm8541_defconfig    gcc-14.2.0
-powerpc64             randconfig-003-20241107    gcc-14.2.0
-riscv                            allmodconfig    gcc-14.2.0
-riscv                             allnoconfig    clang-20
-riscv                            allyesconfig    gcc-14.2.0
-riscv                               defconfig    clang-20
-riscv                               defconfig    gcc-12
-riscv                 randconfig-001-20241107    gcc-14.2.0
-riscv                 randconfig-002-20241107    gcc-14.2.0
-s390                             allmodconfig    gcc-14.2.0
-s390                              allnoconfig    clang-20
-s390                             allyesconfig    gcc-14.2.0
-s390                                defconfig    gcc-12
-s390                  randconfig-001-20241107    gcc-14.2.0
-s390                  randconfig-002-20241107    gcc-14.2.0
-s390                       zfcpdump_defconfig    clang-20
-sh                               allmodconfig    gcc-14.2.0
-sh                                allnoconfig    gcc-14.2.0
-sh                               allyesconfig    gcc-14.2.0
-sh                                  defconfig    gcc-12
-sh                         ecovec24_defconfig    clang-20
-sh                          lboxre2_defconfig    gcc-14.2.0
-sh                     magicpanelr2_defconfig    clang-20
-sh                            migor_defconfig    gcc-14.2.0
-sh                    randconfig-001-20241107    gcc-14.2.0
-sh                    randconfig-002-20241107    gcc-14.2.0
-sh                           se7721_defconfig    clang-20
-sparc                            allmodconfig    gcc-14.2.0
-sparc                       sparc32_defconfig    gcc-14.2.0
-sparc64                             defconfig    gcc-12
-sparc64               randconfig-001-20241107    gcc-14.2.0
-sparc64               randconfig-002-20241107    gcc-14.2.0
-um                               alldefconfig    gcc-14.2.0
-um                               allmodconfig    clang-20
-um                                allnoconfig    clang-20
-um                               allyesconfig    clang-20
-um                                  defconfig    gcc-12
-um                             i386_defconfig    gcc-12
-um                    randconfig-001-20241107    gcc-14.2.0
-um                    randconfig-002-20241107    gcc-14.2.0
-um                           x86_64_defconfig    gcc-12
-x86_64                            allnoconfig    clang-19
-x86_64                           allyesconfig    clang-19
-x86_64      buildonly-randconfig-001-20241107    clang-19
-x86_64      buildonly-randconfig-002-20241107    clang-19
-x86_64      buildonly-randconfig-003-20241107    clang-19
-x86_64      buildonly-randconfig-004-20241107    clang-19
-x86_64      buildonly-randconfig-005-20241107    clang-19
-x86_64      buildonly-randconfig-006-20241107    clang-19
-x86_64                              defconfig    clang-19
-x86_64                                  kexec    clang-19
-x86_64                                  kexec    gcc-12
-x86_64                randconfig-001-20241107    clang-19
-x86_64                randconfig-002-20241107    clang-19
-x86_64                randconfig-003-20241107    clang-19
-x86_64                randconfig-004-20241107    clang-19
-x86_64                randconfig-005-20241107    clang-19
-x86_64                randconfig-006-20241107    clang-19
-x86_64                randconfig-011-20241107    clang-19
-x86_64                randconfig-012-20241107    clang-19
-x86_64                randconfig-013-20241107    clang-19
-x86_64                randconfig-014-20241107    clang-19
-x86_64                randconfig-015-20241107    clang-19
-x86_64                randconfig-016-20241107    clang-19
-x86_64                randconfig-071-20241107    clang-19
-x86_64                randconfig-072-20241107    clang-19
-x86_64                randconfig-073-20241107    clang-19
-x86_64                randconfig-074-20241107    clang-19
-x86_64                randconfig-075-20241107    clang-19
-x86_64                randconfig-076-20241107    clang-19
-x86_64                               rhel-8.3    gcc-12
-xtensa                            allnoconfig    gcc-14.2.0
-xtensa                randconfig-001-20241107    gcc-14.2.0
-xtensa                randconfig-002-20241107    gcc-14.2.0
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
