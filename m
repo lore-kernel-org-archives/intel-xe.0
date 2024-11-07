@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E1CBD43349
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 11:35:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52503D4334D
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 11:36:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDA2910E80A;
-	Thu,  7 Nov 2024 11:35:58 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E08B10E80A;
- Thu,  7 Nov 2024 11:35:57 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maarten@mblankhorst.nl, Lankhorst@mblankhorst.nl, dev@lankhorst.se
-Subject: [PATCH] drm/xe/display: Add intel_plane_initial_vblank_wait
-Date: Thu,  7 Nov 2024 12:36:17 +0100
-Message-ID: <20241107113617.349916-1-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241107100140.292928-2-maarten.lankhorst@linux.intel.com>
-References: <20241107100140.292928-2-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FAD010E80D;
+	Thu,  7 Nov 2024 11:36:03 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 247FA10E80D;
+ Thu,  7 Nov 2024 11:36:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/ufence=3A_Signal_ufence?=
+ =?utf-8?q?_faster_when_possible_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 07 Nov 2024 11:36:02 -0000
+Message-ID: <173097936214.1421773.3890293328459966301@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241018152958.1975994-1-nirmoy.das@intel.com>
+In-Reply-To: <20241018152958.1975994-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,139 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We're changing the driver to have no interrupts during early init for
-Xe, so we poll the PIPE_FRMSTMSMP counter instead.
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20241105121857.17389-2-maarten.lankhorst@linux.intel.com
-Signed-off-by: Maarten Lankhorst,,, <dev@lankhorst.se>
----
- drivers/gpu/drm/i915/display/intel_display.c  |  6 +++---
- .../drm/i915/display/intel_plane_initial.c    |  9 ++++++++-
- .../drm/i915/display/intel_plane_initial.h    |  2 ++
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 19 ++++++++++++++++++-
- 4 files changed, 31 insertions(+), 5 deletions(-)
+Series: drm/xe/ufence: Signal ufence faster when possible (rev2)
+URL   : https://patchwork.freedesktop.org/series/140181/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index d7f92dc56d1e9..7bd6da2bb36f7 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -795,7 +795,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
- 	if ((crtc_state->active_planes & ~BIT(PLANE_CURSOR)) == 0 &&
- 	    hsw_ips_disable(crtc_state)) {
- 		crtc_state->ips_enabled = false;
--		intel_crtc_wait_for_next_vblank(crtc);
-+		intel_plane_initial_vblank_wait(plane);
- 	}
- 
- 	/*
-@@ -809,7 +809,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
- 	 */
- 	if (HAS_GMCH(dev_priv) &&
- 	    intel_set_memory_cxsr(dev_priv, false))
--		intel_crtc_wait_for_next_vblank(crtc);
-+		intel_plane_initial_vblank_wait(plane);
- 
- 	/*
- 	 * Gen2 reports pipe underruns whenever all planes are disabled.
-@@ -819,7 +819,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
- 		intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe, false);
- 
- 	intel_plane_disable_arm(NULL, plane, crtc_state);
--	intel_crtc_wait_for_next_vblank(crtc);
-+	intel_plane_initial_vblank_wait(plane);
- }
- 
- unsigned int
-diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-index 62401f6a04e4f..77eb2b763be5e 100644
---- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-@@ -14,6 +14,13 @@
- #include "intel_frontbuffer.h"
- #include "intel_plane_initial.h"
- 
-+void intel_plane_initial_vblank_wait(struct intel_plane *plane)
-+{
-+	struct intel_crtc *crtc = intel_crtc_for_pipe(to_intel_display(plane->base.dev), plane->pipe);
-+
-+	intel_crtc_wait_for_next_vblank(crtc);
-+}
-+
- static bool
- intel_reuse_initial_plane_obj(struct intel_crtc *this,
- 			      const struct intel_initial_plane_config plane_configs[],
-@@ -438,7 +445,7 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
- 		intel_find_initial_plane_obj(crtc, plane_configs);
- 
- 		if (i915->display.funcs.display->fixup_initial_plane_config(crtc, plane_config))
--			intel_crtc_wait_for_next_vblank(crtc);
-+			intel_plane_initial_vblank_wait(to_intel_plane(crtc->base.primary));
- 
- 		plane_config_fini(plane_config);
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.h b/drivers/gpu/drm/i915/display/intel_plane_initial.h
-index 64ab95239cd45..149b1bf1bc1f8 100644
---- a/drivers/gpu/drm/i915/display/intel_plane_initial.h
-+++ b/drivers/gpu/drm/i915/display/intel_plane_initial.h
-@@ -7,7 +7,9 @@
- #define __INTEL_PLANE_INITIAL_H__
- 
- struct drm_i915_private;
-+struct intel_plane;
- 
-+void intel_plane_initial_vblank_wait(struct intel_plane *plane);
- void intel_initial_plane_config(struct drm_i915_private *i915);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 668f544a7ac80..9252cfeef0a1f 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -8,7 +8,9 @@
- 
- #include "regs/xe_gtt_defs.h"
- #include "xe_ggtt.h"
-+#include "xe_mmio.h"
- 
-+#include "i915_reg.h"
- #include "intel_atomic_plane.h"
- #include "intel_crtc.h"
- #include "intel_display.h"
-@@ -22,6 +24,21 @@
- 
- #include <generated/xe_wa_oob.h>
- 
-+void intel_plane_initial_vblank_wait(struct intel_plane *plane)
-+{
-+	/* Early xe has no irq */
-+	struct xe_device *xe = to_xe_device(plane->base.dev);
-+	struct xe_reg pipe_frmtmstmp = XE_REG(i915_mmio_reg_offset(PIPE_FRMTMSTMP(plane->pipe)));
-+	u32 timestamp;
-+	int ret;
-+
-+	timestamp = xe_mmio_read32(xe_root_tile_mmio(xe), pipe_frmtmstmp);
-+
-+	ret = xe_mmio_wait32_not(xe_root_tile_mmio(xe), pipe_frmtmstmp, ~0U, timestamp, 40000U, &timestamp, false);
-+	if (ret < 0)
-+		drm_warn(&xe->drm, "waiting for early vblank failed with %i\n", ret);
-+}
-+
- static bool
- intel_reuse_initial_plane_obj(struct intel_crtc *this,
- 			      const struct intel_initial_plane_config plane_configs[],
-@@ -293,7 +310,7 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
- 		intel_find_initial_plane_obj(crtc, plane_configs);
- 
- 		if (i915->display.funcs.display->fixup_initial_plane_config(crtc, plane_config))
--			intel_crtc_wait_for_next_vblank(crtc);
-+			intel_plane_initial_vblank_wait(to_intel_plane(crtc->base.primary));
- 
- 		plane_config_fini(plane_config);
- 	}
--- 
-2.45.2
+== Summary ==
+
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/
+lib/modules/6.12.0-rc6-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc6-xe/build
+lib/modules/6.12.0-rc6-xe/modules.alias.bin
+lib/modules/6.12.0-rc6-xe/modules.builtin
+lib/modules/6.12.0-rc6-xe/modules.softdep
+lib/modules/6.12.0-rc6-xe/modules.alias
+lib/modules/6.12.0-rc6-xe/modules.order
+lib/modules/6.12.0-rc6-xe/modules.symbols
+lib/modules/6.12.0-rc6-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1730979355:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1730979355:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
