@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99DEBD5D683
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 18:29:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73A9CD5D685
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 18:29:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D15910E8C5;
-	Thu,  7 Nov 2024 18:29:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C2B810E8B8;
+	Thu,  7 Nov 2024 18:29:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L3S9e6/b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oDE/vbkR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6659D10E8B7;
- Thu,  7 Nov 2024 18:29:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E08510E8B8;
+ Thu,  7 Nov 2024 18:29:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731004192; x=1762540192;
+ t=1731004195; x=1762540195;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gblMFi7k1ciNl7gDnJeDgveJoXp/r65q6MhSu3U/WNY=;
- b=L3S9e6/bSlWYEE82ACZ9xa7YpgKOap7De4HI4VY15SSrFhBaR/Z6bnTe
- QBPkUQnwFNVxLgr+Pl2l1R/GCFj7HPhpBra+rWgoBB0HYeYY0aR2SxzOE
- 4HGcuH6ta+kGxsso5+gejz9Z6iCuiX4g1lI1pgC0cWbZxGoyXAyUlQnEJ
- 5bfN9HWtNm0AgMzA3AAoS8hoj01/rEVcLhWMnqbd2010vZatFtKJMrQH7
- e2nKlQfXUh+L8tteNBXn3Qpc94QVemLYJvZ46q8TUgtzU4pIZo7ozVb9F
- yLcO27OPg0g/Hs/gL/T37PIVjIQ5GZzM9SwhL9M8QUp6lQcw1IyNRdFNO A==;
-X-CSE-ConnectionGUID: FjQm3Lo2R1a1PnfjvBPuiQ==
-X-CSE-MsgGUID: iJy0/F+kRS+fkJzqfBSFqw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="18494851"
-X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="18494851"
+ bh=qcQDa0NEVD8aVRYK+Fwazusr87XF5RhJ08ntcK4Ltbw=;
+ b=oDE/vbkRNVBOLtDk0poFpKl467GVHI6lODyw3If6NXV21zo7egbrgnP5
+ Lo4MggHNSirLoCnUGv1OARUwp5SrV3VgUJoVq8SsioJh5Uq9M0J2BFoji
+ cHFAJmJ4wzV5P5WgJFU1AKn7FNpYjt0cR7jlLhHEmoP50PwpJ7kVMGDZF
+ aHAA6BuJSqlU3gT5QrdtVuZdwYBHhmf5nwrqaNj2IKHUlvZZLvvqtYow9
+ Ite2ltsBNKCmGIUbqGj06Uh4NGrqrlsUHjdEvCW7XGsdj+7Yqnqdf8omj
+ 9dvf3k0o2tsdcOeu4pQGhf52YIzwSMgDxtw5fkSJuSssmIS1YPT8xYDHN g==;
+X-CSE-ConnectionGUID: BZ5QEFh7RViTwBAHZ136Vg==
+X-CSE-MsgGUID: gJU1+ZBXSy61Ni6VQ78XWg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="18494858"
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="18494858"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 10:29:52 -0800
-X-CSE-ConnectionGUID: WiRO5/WFQueDbZNduld73w==
-X-CSE-MsgGUID: KuzPfqksTb+JIFcIb0ZG3A==
+ 07 Nov 2024 10:29:55 -0800
+X-CSE-ConnectionGUID: GXEbBXn/Sz6pVdZ4c1iiVw==
+X-CSE-MsgGUID: LmRpKEypSB6ICrrIFOaPgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="85329601"
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="85329633"
 Received: from rchatre-mobl4.amr.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.110.154])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 10:29:51 -0800
+ 07 Nov 2024 10:29:54 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v3 06/18] drm/i915/dmc_wl: Use sentinel item for range tables
-Date: Thu,  7 Nov 2024 15:27:11 -0300
-Message-ID: <20241107182921.102193-7-gustavo.sousa@intel.com>
+Subject: [PATCH v3 08/18] drm/i915/dmc_wl: Rename lnl_wl_range to
+ powered_off_ranges
+Date: Thu,  7 Nov 2024 15:27:13 -0300
+Message-ID: <20241107182921.102193-9-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241107182921.102193-1-gustavo.sousa@intel.com>
 References: <20241107182921.102193-1-gustavo.sousa@intel.com>
@@ -68,41 +69,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are currently using ARRAY_SIZE() to iterate address ranges in
-intel_dmc_wl_check_range(). In upcoming changes, we will be using more
-than a single table and will extract the range checking logic into a
-dedicated function that takes a range table as argument. As we will not
-able to use ARRAY_SIZE() then, let's make range tables contain a
-sentinel item at the end and use that instead of having to pass the size
-as parameter in this future function.
+In an upcoming change, we will add extra range tables for registers that
+are touched by the DMC during DC states. The range table that we are
+currently using is meant for registers that are powered off during DC
+states. As such, let's rename the table to powered_off_ranges and also
+add a comment regarding its purpose in the function that uses it.
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc_wl.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index e837c39491bb..1753c334f3fd 100644
+index 4b958a4c4358..1877a89affab 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -53,6 +53,7 @@ struct intel_dmc_wl_range {
- 
- static struct intel_dmc_wl_range lnl_wl_range[] = {
- 	{ .start = 0x60000, .end = 0x7ffff },
-+	{},
+@@ -51,7 +51,7 @@ struct intel_dmc_wl_range {
+ 	u32 end;
  };
  
- static void __intel_dmc_wl_release(struct intel_display *display)
-@@ -104,7 +105,7 @@ static bool intel_dmc_wl_check_range(i915_reg_t reg)
- 	bool wl_needed = false;
- 	u32 offset = i915_mmio_reg_offset(reg);
+-static struct intel_dmc_wl_range lnl_wl_range[] = {
++static struct intel_dmc_wl_range powered_off_ranges[] = {
+ 	{ .start = 0x60000, .end = 0x7ffff },
+ 	{},
+ };
+@@ -114,7 +114,11 @@ static bool intel_dmc_wl_reg_in_range(i915_reg_t reg,
  
--	for (i = 0; i < ARRAY_SIZE(lnl_wl_range); i++) {
-+	for (i = 0; lnl_wl_range[i].start; i++) {
- 		if (offset >= lnl_wl_range[i].start &&
- 		    offset <= lnl_wl_range[i].end) {
- 			wl_needed = true;
+ static bool intel_dmc_wl_check_range(i915_reg_t reg)
+ {
+-	return intel_dmc_wl_reg_in_range(reg, lnl_wl_range);
++	/*
++	 * Check that the offset is in one of the ranges for which
++	 * registers are powered off during DC states.
++	 */
++	return intel_dmc_wl_reg_in_range(reg, powered_off_ranges);
+ }
+ 
+ static bool __intel_dmc_wl_supported(struct intel_display *display)
 -- 
 2.47.0
 
