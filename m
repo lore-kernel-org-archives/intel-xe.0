@@ -4,73 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 481D6D3ABD6
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 17:43:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD646D3ABD3
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 17:43:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FA1F10E066;
-	Mon, 11 Nov 2024 17:43:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 807EB10E15F;
+	Mon, 11 Nov 2024 17:43:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Rfv6xPj0";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VqScTgeL";
 	dkim-atps=neutral
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
- [209.85.210.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CC2710E54A;
- Tue,  5 Nov 2024 10:21:24 +0000 (UTC)
-Received: by mail-pf1-f171.google.com with SMTP id
- d2e1a72fcca58-7206304f93aso4967344b3a.0; 
- Tue, 05 Nov 2024 02:21:24 -0800 (PST)
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com
+ [209.85.218.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA6C610E02B;
+ Thu,  7 Nov 2024 08:21:34 +0000 (UTC)
+Received: by mail-ej1-f47.google.com with SMTP id
+ a640c23a62f3a-a7aa086b077so81878566b.0; 
+ Thu, 07 Nov 2024 00:21:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1730802084; x=1731406884; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=7johmFIxlLMPLSJqq5TydQDo3koGyzHVL0vN4smmk5U=;
- b=Rfv6xPj0H936cAfd/S4LSuOuazomkwYRTpDGyEMgZONgSZ/5q2+ipgj5NV8iD4z7+H
- g0NqlC+hrn522FeFJBAtDzlxp0XzhAHd1qbdHcclmLIwr90y1AIGVJxXTxy1Ay0LEw4v
- ba/CzQlWAN+VvHje8EIcxueSXhMT6Zyq1N06OQ2f1aD1ZGt/0UjZ+cTBSZZxy5Kldu0V
- ByqGOkXpeoKfDrSnzYg8SLSfFyJfRnuq1btfcR0gQ2RUSK9OJSu+SbkLnSzX3DFLyUyv
- KNzft7fGFEa2VnkwKfEyTQSczz2Ldri8QktS47XMrmPfUEFn6GmLN6Uy51ieFFwB+iEs
- DKPw==
+ d=gmail.com; s=20230601; t=1730967693; x=1731572493; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=5VOR5CG5z5tJAz08GO5kOR/f1vtcXPoi8DLyImsNBw4=;
+ b=VqScTgeL8JxMFGywNHC6z+TuRhmQe+FMfAcgQiWZnn2733UGnhy1PrYsRw7cu7Voyt
+ d9dDHycUSIjgE1ZSdbgulaVWPR4NRxDjbxKn+hLZ/FR5sB5tQPEogJGCK9ZlVamn7TtX
+ qn/BpEcBwTgCymMtALY/6UZ5j+OoTm+FeyBj3Ydo9MZTpbjsq8Zjn3M9CCkwNXBB9ZsH
+ O5e/sQlL5xSa3QKHfNwlscP+er9tiTdGBMFYAu34OM1PSGIGH5Josr974JkB1io/8Wp3
+ hGKE/DCdzI6/bY8O34Xlqll5T3JZdrRs5Z02lA5iKztyYKbsQvHNnNIn1jNWoAD/mFpS
+ RJRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1730802084; x=1731406884;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=7johmFIxlLMPLSJqq5TydQDo3koGyzHVL0vN4smmk5U=;
- b=vokGxJdtWJwQhiwd2IPMBjcuWEfd61U9lRv2VDhfenlDTBuhUZ/jxVE15FNXegXOPy
- QnUt5gFTeQzhlK02+QR4/qaq0i568zjzmnYI+8Ue67dkeNFDY/PIgozCxQwvRPXmId2Q
- R2c1pUT6sLT0n4HkAaqd9FYfvtmG1twmKg8hJ2fUmSPVn90ckqEgqNpVCKgGLBVUCXEA
- pQrsgivkGb3roB5DzHUeUA3UZqogN/NDAYcEUyV58BdgNqfIihbX1RwLHqszm1XP+1Xm
- 3NMD1JlEUeZPnB6s4F7aHVyKrestz83Zc/8e8kCSXmrv72Nn1c6+0bqOXGk/vIFXVWf9
- jCHg==
+ d=1e100.net; s=20230601; t=1730967693; x=1731572493;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=5VOR5CG5z5tJAz08GO5kOR/f1vtcXPoi8DLyImsNBw4=;
+ b=IUzOBQjlE9xm+5P3uAKPdYTGp2UHFrvDZcSXT/XPpK7v8n86hUSZTvTBtofEGuIFA5
+ fbYzrHbqguKSfiqBn3l5GiGjUCK5GJczeZSFcxDWxhae1tbByraV/wmVP7FTr9U8k3Zd
+ iSCGsML8R7OZ5XMAYMP5PNyO1PpuCtpuy7SmUFMsY7/pZ7F1gcGsmpSHzzqwzRbv0pik
+ +lD99Cy16SIz782qelFzrLouIiMNA3JQJ/Fh7SY+lWd8uMkQKD9mzViIpHh64rVrUvgL
+ 7FPTN6uBD3zvlQKI72hjnAEbB/Kgv3IIRXmeo1rodOfZK6ApnQ6BWJqV5crSCmRTtZp0
+ M7CA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVJIjmdNVQE+lnx0Yp6Ku/Ds4hESGsjBWjMEy0XBWkiC7eaZH/ttrFZez2+gVQy2jyFxsuajPFvG9g=@lists.freedesktop.org,
- AJvYcCWJAcEzMASyFRwRUKxJy9AIkKsv8Xc5EXdFtzqkf0XpP2Tm0//rYhbkS7BYL+HdM/so+4c+nnrho6c=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw1phTK4QGGfNGKkOkIRJb4yifC4xkhSHU8DpibTETPEVxQBnVe
- 32FmEHSntIA0bwbNYjfUPuHt/o6KRb09YAmOJMZPgCrSf82NBedSdjnX2LUUapxBTtXzcNqgs3v
- OtxanxvL17N439XPj6AqjEo6IFJc=
-X-Google-Smtp-Source: AGHT+IGbd1N33EFPPngiyV0kWvChfD3xYpzmCqXRcDRgBnf1Ooc0ARy5UKUi+cbzUnCCAiKwcTZRwKSDCVwbJyRn6tM=
-X-Received: by 2002:a05:6a21:6d8d:b0:1db:eb50:abb0 with SMTP id
- adf61e73a8af0-1dbeb50ac23mr5158105637.3.1730802083687; Tue, 05 Nov 2024
- 02:21:23 -0800 (PST)
+ AJvYcCW+b+WNZCmcbuKIKJ3nAKuU/5RQzEI8hlrX/qaFdrXkN9XPnTo0jDX4IPWGrQnyCN+d440qlPrNX4E=@lists.freedesktop.org,
+ AJvYcCWpTyOouBMUTNmyaKRPmYhTH6TulEmYMrPnpyoCGJ/3ZT6tAREGoGhK/rlsTjF3wplO9M6rwyBP0f8=@lists.freedesktop.org,
+ AJvYcCXi4q90dqeheo0FHR7Cyf2X6zqI3I9r+Kah+p2qoDQiP5eQ56etTk31AeWoyGqEziP0jaKC4uRN2X+Q@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx5pX2jzdm7BWGwq0OBoRADZGJi81ezZjYYOlQSjsIggv77OYUD
+ plSKV146f51borJFTCyWgHi5g+mWOz2Qbw35aFoRTG+1R5SRohvHu3JQkiCGhBNcTnlxmbCohTl
+ X9P6JlUD0l+d5GOJxX3nkKhnJa28=
+X-Google-Smtp-Source: AGHT+IGzp4ZhM15P5BuZqJNwFlSO7u7lx6xlY6hASCP8GFqOKEug7q8+mJvAPBHNOu1UYfSi3ksydcl56G/UnZhJGfY=
+X-Received: by 2002:a17:907:9622:b0:a99:5234:c56c with SMTP id
+ a640c23a62f3a-a9ee74cae8amr8688466b.33.1730967692918; Thu, 07 Nov 2024
+ 00:21:32 -0800 (PST)
 MIME-Version: 1.0
-References: <20241102022204.155039-1-gye976@gmail.com>
- <hdffht6z6a6dnap7kpbg6w5hyiftgahpiyhidvgga4qjeiw5xz@wu3ca5tvfj3l>
- <p3vspkvcm7nq3gankpblloudrumenpcuflhu5fpdse75kcyyk6@w7adi7togz4j>
-In-Reply-To: <p3vspkvcm7nq3gankpblloudrumenpcuflhu5fpdse75kcyyk6@w7adi7togz4j>
-From: gyeyoung <gye976@gmail.com>
-Date: Tue, 5 Nov 2024 19:21:12 +0900
-Message-ID: <CAKbEzntS731PtOZ7iSvC8Y5XEBaFqG5TEciXQe2EiqWOv85Vdg@mail.gmail.com>
-Subject: Re: [PATCH v4] drm/xe: Fix build error for XE_IOCTL_DBG macro
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+References: <20241017075725.207384-1-giedriuswork@gmail.com>
+ <CALt+6nqxMZjuZuOKaj8Cx4dcNZx0n-0F9aa97d-vZoMWeN=bOw@mail.gmail.com>
+ <Zyk8dFthM0EA2A_K@intel.com>
+In-Reply-To: <Zyk8dFthM0EA2A_K@intel.com>
+From: =?UTF-8?Q?Giedrius_Statkevi=C4=8Dius?= <giedriuswork@gmail.com>
+Date: Thu, 7 Nov 2024 10:21:21 +0200
+Message-ID: <CALt+6nrS2aRHYCyrba5uBUXsHdPntELdj0MYPbv69PupHBKMtA@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/i915/lspcon: do not hardcode settle timeout
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, 
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 11 Nov 2024 17:43:00 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,22 +91,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> there were some checkpatch issues about mixing tabs and spaces. Next
-> time please double check the checkpatch output. I also reworded the
-> commit message a little bit to follow an imperative mood as outlined at
-> https://www.kernel.org/doc/html/v4.10/process/submitting-patches.html#describe-your-changes
+Hello,
 
-I'm sorry for not being more careful, I'll use a script next time
-instead of doing it manually.
-
-Thanks,
-Gyeyoung Baek
-
+On Mon, 4 Nov 2024 at 23:28, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
 >
-> Applied to drm-xe-next. Thanks.
->
-> Lucas De Marchi
->
+> On Mon, Nov 04, 2024 at 02:09:46PM +0200, Giedrius Statkevi=C4=8Dius wrot=
+e:
+> > Hello,
 > >
-> >thanks
-> >Lucas De Marchi
+> > Kind ping.
+>
+> There was a pipe underun in CI... I honestly don't believe this patch is
+> causing it, but anyway I decided to trigger a retest there before I push =
+this.
+>
+> Thanks for the patch and review.
+
+I don't see that on my laptop. Resuming sometimes still doesn't work but
+this helps a little from my testing. I will continue the investigation.
+
+Best regards,
+Giedrius
