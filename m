@@ -4,179 +4,179 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CC86D29FA5
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 00:16:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22296D59F5F
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 00:33:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A92810E03C;
-	Thu,  7 Nov 2024 00:16:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0E5F10E03C;
+	Thu,  7 Nov 2024 00:33:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LiFgQqQE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GGM+4wSk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5FDE10E03C
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Nov 2024 00:16:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86E1410E03C
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Nov 2024 00:33:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730938595; x=1762474595;
+ t=1730939609; x=1762475609;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=IU9Y1oAhVT/9/jWKVSBu5Gdk+aKSHzhJ9D0PQQ2bXPk=;
- b=LiFgQqQE///0vD1ISOO23Zkik3Alr8X7YXbVB/ljPQjsJLm1dpU4T6i3
- ogXVu+Q7BwaXibzVtisIXw2OSAtMAhnFcyw+1/vRQ23F55+OaGNYdOotS
- 83iw2W6cRcLKC+AUsll5gzqAGvrqNhysmi/tPuB1BaRnqEipOcDMbYEEK
- WY4/dvg+U1omrVXO31dPrBJOiyaHk/674hNN5EtzEMECvP5VSJaEjRSiZ
- fxBwyjUeTavlr4eKe4sXOND5liGfzo3PDpzG9qXdaVjNkeLlfGqKqeYKB
- gI+d5Jhpfll4TEU2ITy8kuDeFYgCcsidAvB8gIOfUA36DoZ0vysUTsRs/ A==;
-X-CSE-ConnectionGUID: wLAjeh/2RaSZmIyjg319FA==
-X-CSE-MsgGUID: sDrI5wXQRrCMAinzZuzLVw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="56161737"
-X-IronPort-AV: E=Sophos;i="6.11,264,1725346800"; d="scan'208";a="56161737"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2024 16:16:34 -0800
-X-CSE-ConnectionGUID: 3VKYZ54lQomR39bzb3cemg==
-X-CSE-MsgGUID: kzN7sDjeRryA0Z1yos36mQ==
+ bh=vt+Ro5D3v4BHW4wWA/YrU6odxUmFxeWjhk3CL9q4Ft0=;
+ b=GGM+4wSk0nXPEnkxrso4IsvbJthnMCe5lxDcxTXUzn5uAfMrsYPjmpO3
+ 9gyVOVWdYDSeIZW5QI+w4gadudNosT44dx3PmucA6JDaMup2o5nywYktv
+ hTF8rq0wMpTvryPFO9AOKwrfa5rRW1dZ9u+09pT/6Y+mdjkBXjfd2Ks7c
+ 9PmNyqGF1gBPQR7RCVbAsxvESNS2B3EChtg1QIMKgFwQXSzOMO9fAfQO0
+ RzhQUpIzRh7VGI8oW+uU8shmJf85/iXgSUMRSI/3MxAotKjNIDY/h68gc
+ Rey50WSGK/MiSGdmXMsyuP27tHi1H4PbMsezVV9q8Mp6Q/4W9rrJCJCuF A==;
+X-CSE-ConnectionGUID: JWfuTW86RDm5tnRjFrxfow==
+X-CSE-MsgGUID: F0R2mIv0QVaPFP+H4CR4vQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30727012"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30727012"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2024 16:33:29 -0800
+X-CSE-ConnectionGUID: GtSZovFRRvahGTRRaKP3RQ==
+X-CSE-MsgGUID: z1ifM81YS9e8zlJpEu5G9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,264,1725346800"; d="scan'208";a="84750275"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Nov 2024 16:15:54 -0800
+X-IronPort-AV: E=Sophos;i="6.11,264,1725346800"; d="scan'208";a="122370457"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Nov 2024 16:33:29 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 6 Nov 2024 16:15:53 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ 15.1.2507.39; Wed, 6 Nov 2024 16:33:28 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 6 Nov 2024 16:15:53 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.171)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Wed, 6 Nov 2024 16:33:28 -0800
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.45) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 6 Nov 2024 16:15:52 -0800
+ 15.1.2507.39; Wed, 6 Nov 2024 16:33:28 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=D3r9XMQzr6RHsiVwqeG/htvVlDm9qPoJDF35GUFm7PnRDQGxqxxW+rM97o6zqHEQgxzGmPiCW3XK8ccHF1XtbuyRM6/g/JRYKTXc/2mGQD7wsedXWtH+1mLyKAnx6tW62ErLAOGXc4KLW8tF4ZuUYFJM+Im25bjtznoQ1fFY7KHKmgfOQBqkJajyIPljuGGb/p4ySPhgSoEO7mfbIxv6Ob53L/le7zvZUsuKmRn86+tWluVSiv0Z25vnb9EQrEP8oTutGTtpqoDlEU1xT7QIFLyLKQ7pv/dpSoR3Da5hRMZgRi8t9mlSnaq5E1/C91lZ28Ienb4CZTdkVdjyTCPG8w==
+ b=jKBwUNlEQSFYzS4h3R1Va+Y/BkyeKqlmzsbASjBdYTZRoHufZsSMDQXUIjZIcn2miZF5/dMceGSu6eUlv5/EL+V1mAbCL8RAp9jWLlcP3wLF33nLSNdaz4bq2RjzhY0fuEebX7zipGrclY1YBEmHQelGffvioFYJt8s1m0sAHJ2i6PWsESvjU66ZMpxclLM5EWA1H9pWcA0ZWkGLEpn2Qej0t61vtEwZ82as2ZzWGoTvmbrr6NgVeUripDb0kFIphUXVoSoLhTj4AMtVEjMiV0PMHxQxp19zY6Y6Oa+vO5S5qMDbiglJpiXW61jKS1ZzqNyAmvqqhQtK7FqnOcuJiw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wKqesJX06QMDRw6mJqsAIZJM2pi4+usYeztxIIMCLsk=;
- b=mkNcZqp0UGZIVNptbamk9MxnRLListaCy7KsjyhWraHi4XoD3nSpA31TpWswklopUjOZgLXXl1wF3C02jZNvuQ4Eu9vjdnID0nOAfX4W9Xc56U2n0GRV8Zkb+BWoWlulVNtLcevPHUMZvCZJ+OW3shD8f/brI428TjHaNcY2DWSL9p95qx++YaND/lCzmaI+ievQU9850rYxdjsFiCFGb/DClzgCboWCJ9JDGGaDa9pD9ETgNG+bDbXWZYRAn137uyxNn6UZcfK2vAwsmgI9KDjtFzo73Nbe0j6WMGMOicnxSNbe3QNXMu7VBQj7+CjR8inK0uk97QsLYEcI3AQUbA==
+ bh=m95vMvw+xM3WuX6ZyLcEpNhAdPCRSJFmy6znJmmCcv8=;
+ b=qvNcpLmit5olaKz3UCtmRqn2rlDO70ly5EcMA1Lu2mO1JGlBNjDWYAOtmtx/2zPKiyoG3Hb6wvDNlcm/dD3h+pqsCmg6+zVitF7mQL4PSorGeV04EvobF0jbHw3vmlwWjvrXciz8yJkCq+S31v3VYZYg+6i6TIyXwI+c3s3PxTCox06BTzgwZSAHXlGnzWzOlPA3DDhAEYNMJOXUvdQJRWEYw0+q6pLqDLPliynIFH8XcXZHKCL3yu1khkTu/5XXjlONJ1WkhnfToztLdXz/PbRm/CMI0KmlKRW4EMmLyUqiqLvnOPLZyAEnUE9Motfn5TuzsMAceTOM67ERxdf4Iw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by DS0PR11MB7443.namprd11.prod.outlook.com (2603:10b6:8:148::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.30; Thu, 7 Nov
- 2024 00:15:47 +0000
+ by LV8PR11MB8462.namprd11.prod.outlook.com (2603:10b6:408:1e8::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.31; Thu, 7 Nov
+ 2024 00:33:25 +0000
 Received: from PH7PR11MB7605.namprd11.prod.outlook.com
  ([fe80::d720:25db:67bb:6f50]) by PH7PR11MB7605.namprd11.prod.outlook.com
  ([fe80::d720:25db:67bb:6f50%6]) with mapi id 15.20.8137.018; Thu, 7 Nov 2024
- 00:15:47 +0000
-Message-ID: <49ec50cc-5312-4ece-83fc-34c5be63e120@intel.com>
-Date: Wed, 6 Nov 2024 16:15:46 -0800
+ 00:33:22 +0000
+Message-ID: <2eb53217-757a-47c0-81ab-6106d3e00c7d@intel.com>
+Date: Wed, 6 Nov 2024 16:33:20 -0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/12] drm/xe/pxp: Add GSC session invalidation support
+Subject: Re: [PATCH v2 05/12] drm/xe/pxp: Handle the PXP termination interrupt
 To: John Harrison <john.c.harrison@intel.com>, <intel-xe@lists.freedesktop.org>
 References: <20240816190024.2176976-1-daniele.ceraolospurio@intel.com>
- <20240816190024.2176976-5-daniele.ceraolospurio@intel.com>
- <1efa8385-ba99-475c-bf7d-3b50d426baec@intel.com>
+ <20240816190024.2176976-6-daniele.ceraolospurio@intel.com>
+ <9655d74e-f3f0-4d60-bef3-b9006db61bc3@intel.com>
 Content-Language: en-US
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <1efa8385-ba99-475c-bf7d-3b50d426baec@intel.com>
+In-Reply-To: <9655d74e-f3f0-4d60-bef3-b9006db61bc3@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BYAPR02CA0062.namprd02.prod.outlook.com
- (2603:10b6:a03:54::39) To PH7PR11MB7605.namprd11.prod.outlook.com
+X-ClientProxiedBy: BYAPR08CA0016.namprd08.prod.outlook.com
+ (2603:10b6:a03:100::29) To PH7PR11MB7605.namprd11.prod.outlook.com
  (2603:10b6:510:277::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|DS0PR11MB7443:EE_
-X-MS-Office365-Filtering-Correlation-Id: 027ac57b-0dea-4655-a1fb-08dcfec1543a
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|LV8PR11MB8462:EE_
+X-MS-Office365-Filtering-Correlation-Id: e32d0565-917c-4cd0-0e6a-08dcfec3c8ad
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?aUFTM1ZpTHE5Z0VJY2V4eW9RU01GcnlUY01LSmNuVFpyWjNmK2U3QU94QS9y?=
- =?utf-8?B?UFRxaUZmT2tsbnpkRUJjeXExZTduRWRoR0x0VXlRaUxhZjQ3MWFEaDBSZUMv?=
- =?utf-8?B?anZrb1h4cm15S2V4SEM1Q0VieGF2SVV4V3pXRFdJeDNMWWNkVWZjc0IwTFA4?=
- =?utf-8?B?a3k1dVc1bWFaSGloUjBBY1pDczM4Ulo5dklOaWswOTdJekwwdFRIM3I5eGZH?=
- =?utf-8?B?c0Y3c0JLMitScjZ4YnRmN3B5QUx2SmhnOS9GY0JaWUxPNlJiRHd2elZuaVgy?=
- =?utf-8?B?K0liYlJnNFZXMjgycEJhZ0ZDYm0ySW1tdHprWEtPKzcwUk9INHJ2RWdqZnl2?=
- =?utf-8?B?OVBLMEovKzg2OGMwUGFPWXJhemorb3NFc2FWNTlOdHlXdll4d3U0ekxyUEpu?=
- =?utf-8?B?SFdVRWxpaFRiZ1FFdkFkY1N0WlN2QTZQM3Z6NTRLOWFXR0x0TVg1ZXFqUGpL?=
- =?utf-8?B?dUI0U3loK2NDZG43bkF4QWdKWVV6cTFWRVdvWEt3S2cwcmxjNVVFWmtEU1Fs?=
- =?utf-8?B?azBGeDBkQ1MwZUNGM1RyeThoNEd0VUQ5U1BHSDlzWUV5aGJlcDRpTUpZNEx1?=
- =?utf-8?B?eFJaVHBZTDcvOTVOWWJWa1BiT3pWWm1CeFc3WW02QTcwdmJ0T0dHSXdick9K?=
- =?utf-8?B?TWZkdWlGY3ZEbjVlMUd6NXNIYVBMSHMwM3c5UVB0dW9rejdmUGk4VGc0MmFT?=
- =?utf-8?B?L0FCcjhWOWhocWpzbmROU1BlVDhVZS91aExhNWhKWlFBVmtnZkUvUVNJdzNj?=
- =?utf-8?B?NFJoUTRzeW91SG1IWHIxcCtOZEVaU1VYVXUrTGdxcUE5cnZHWGJRbmN3N0Iv?=
- =?utf-8?B?UXo3WHM3bnV2Q1M5UmZTbnRrNm1DcW5ZNWlWcUFlZGpUVHIzU2JOUjlUZG40?=
- =?utf-8?B?Mjh6K3ZkRm5xdTlNM2hzZWNLU2N3UnVJUjR5bTVDak85ejhlekxpUm5yWlFS?=
- =?utf-8?B?S1o5R3lEc0dCOTduVGNUZUVTVzlZMHIyZEpmZDYyWEJvZGVmNEd0bW5kdFBM?=
- =?utf-8?B?bUhXL0ZaclRJajV4d3hGbGJ1SHNGdkxwQkp0ZjJraWFIamxVZk12RXFvUVhD?=
- =?utf-8?B?aW16UmhFTWlYSDVLeGFNa05lTkVqREQrVlhnNWFxSDdSSjNOZXlndHg0aS9T?=
- =?utf-8?B?SlM5RisrQUlibTYza05ZV1V0UzVldFlRdVp5ZERBTmxnaFdEcWkydU1TdEVh?=
- =?utf-8?B?ajdCS0tCeEVnZ2Q5bmsrWWxpRFVIN1d5SldIbEhjNldYTGhWcEZiK0t3Q0Fq?=
- =?utf-8?B?cWU3Mi9nS1lsa0dRb3RHa2pybk1MMG1RRDNUOS9Va0NaSVAzZ0ZpZHBFdndm?=
- =?utf-8?B?b2FVV1djUHJnWjc0K2UrV0pvRnZ0UUljK0g5ZjJXNmxQV0VqcExSMGp4NHNa?=
- =?utf-8?B?MDgvY1hmL3NxTWdpQWs0bFRmZzROdzhWVXFaSG94NmhWd3NrVHhBZmVxa205?=
- =?utf-8?B?Ykkyczh5RVJqcUhXNTdBaGhEUG5qVDhiMDQ5TTIrYnd3L1NacFVaTlE2Y3dQ?=
- =?utf-8?B?eCsvZTNLQXlsZWdRYmtQVy9SQndmNWhqOHRaYmpiSEVQTXlQejlSRG1Qb3RK?=
- =?utf-8?B?U0N0cCtHT2ZTT1ByWlVHOUNEU3R6TkNVMVRTOE9XQk1oNzkyOWJHRXhaUjFs?=
- =?utf-8?B?dm9wU2RZanF1bXBGaDJjdzB4TFlWbkFVU1N2OGJGa3R3Y0JLZWNWVnp6alZ3?=
- =?utf-8?B?cjBJS1RnRlBOU01uL0NmWkV3WU5MVW50UXdZMFNQZkJwcjI4NitTV1picm1U?=
- =?utf-8?Q?0FyqEpAN94oD/iW9fTsuPYceP1Obi+tgNCgcPTX?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?V05WdmRrK1FkRlA4NDBtOENnOWlrQ1NsTk5kNmdVVnoySTZzQkc1cGFRZExw?=
+ =?utf-8?B?OTBmVHU0d1dFVzRDS3M2cHBtWU5kRnZCNUdYVEw2OW1ZRHBzRzZwWS8rVkVX?=
+ =?utf-8?B?YkdBbFBBcDV6VDlZdi9wWHVmdnQwcWlISkNsYlpRdUhUMnQrTkY0VGU2OUJK?=
+ =?utf-8?B?am1kM0dHa1Z5MzNCM2ZjQnQvVVBIUDlQNnJ2S1dBdUxVUDdQbkh5NEQ0dFFS?=
+ =?utf-8?B?VTMzL1VUcktYcXhxK0luN1BkVDU1alJJOEpqVjZra1hmR1FUcXp0a2dOZXBL?=
+ =?utf-8?B?UFFsUTBscUdqdHF3YXNqYU1PMGszNGRoYXVBYUNNUnNuWlo0UjRHREViY21w?=
+ =?utf-8?B?bWNoMnd5a2FCUmFRQTROdEE1a3JRQmxTRVJzZFpGTGdWa0NRTmZxQXpnNmhV?=
+ =?utf-8?B?bEd4dlBpb3JqRjEzdW5zQ05TYlAzU1NCZVFscHQ4Y2VhQUlVeDBrVFRDL21s?=
+ =?utf-8?B?bGRoNHNDTHkvZTB6WkxtV01UUmJwMVU3SHpjd20wL0gwZDk0cWN3QzFUVjk4?=
+ =?utf-8?B?MW8vaDQrNnAzckxzOXg4VTV6dkkrby9ZOHp0TFk4b2l5Z1NUUTJxSHAxVVlP?=
+ =?utf-8?B?TVB4SytnMFpSbXYrWTFKbXdvalV4RWVOZ3VZRElkdkdrSWFackd3WkFQZ1Y0?=
+ =?utf-8?B?MTByL1hST2VpVncrVC9GT0t0bkQrMzRMZ2ptZkQ0SEtPbFYzeERMNXpsb2ZI?=
+ =?utf-8?B?MWg0RSt6MlJxd21ZZGdRZDFZNmFFTHkvbENsZUVySzJqYWQyTURJNjAwdERB?=
+ =?utf-8?B?OEk3QjE2aEtiajU4czdBQ2oyekltakRFRTIzY0VnTmh0ajAzVE5XMEZuT3BG?=
+ =?utf-8?B?aU1UOVBHQ2xyS0FBeUtBK2N3Y0JrZmFZYytWeFR5RFg0WDZnZDlUb09VL2FJ?=
+ =?utf-8?B?QVkwM25PTjVBekVadC9xNjRsVmRvOTZZTm9JbW9sdVMxOU9ZelVOeExmRXR4?=
+ =?utf-8?B?dWFmdEt3WFk5eitqcDhGU09BQkpzK1l0ZGs2RHU2OThjYnFtUmFDc0xCc2NO?=
+ =?utf-8?B?dGdkaElsaXhYZGtPOU5pTDljanc4WWNNY2x4L3pJUWFPdUQ3ekxIRzJMSFU0?=
+ =?utf-8?B?TDJDcWI0VkJxSlhJQXZHd2VvUmpseVYvaUtNd2F4ZnNZUmFFeTZWSjVNQ3VI?=
+ =?utf-8?B?ZHNzSjNrMy9xa21ZdForVk8xd0hpVnNJV2d6R2dtb0EzTkt0ZnBRMjVKY1RY?=
+ =?utf-8?B?SXVENXYvT0NnRThldUE2ZFZyOVZNdjhuOVQwQ2d4UUxxeXh0bnpaUXdBZllr?=
+ =?utf-8?B?b1FIUGtCQ1VqUXpOU2p6SnNyVGJZSCtQS3dHT1NuNERBQ2dadUYrZHBUV3Zh?=
+ =?utf-8?B?ZHl4OWJocXN2UmtuUWVJTGRWa1daSXVYdlpRM2MwNXVIQWVaN2ZwTWxuYUVN?=
+ =?utf-8?B?dHFsVENtSzEvbTJJWlhQY1R1SzZZMTJwbnR4ajVPMEVqR1huUytiY0VPVjhi?=
+ =?utf-8?B?TFQzc05tbFZtK0xpMjlFRG42ZjhOZitmUlBzZ3FRSjhRcVZRY2VJZnkvVWpB?=
+ =?utf-8?B?MElLcEliRHppdHBSNzM1VXc1a0ttTGU1Z2loYVpMbllOUGwrekZsenpIOG1B?=
+ =?utf-8?B?NDRJK21DUHhIa2ZPYUN1Tm5CTnBHNElEN2JGTGsrUUlXUFJiS1paWkE5a0FM?=
+ =?utf-8?B?WmlHMDFiS05hZTE3OFJTWjFRbzhCSzY4WklLOTJKNi9SQldyNSswREp3OHk2?=
+ =?utf-8?B?T0V5Tmt4cHR0WmUzT0dyeno5RmFuODV3QmFYOWhWclF3RUdtQU9GUEgyenNW?=
+ =?utf-8?Q?+MSEOY5rEDFvzMBdSvbU8YC5CpFkASBjtz195VC?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UjNuOWk0YkpKZWkyWFdsQkNoc2hldUNDZ01CZ2krdW1MUE9LRTRXalZ2S2dr?=
- =?utf-8?B?Yyttc0lzcEZvMElibW96WFgwVXhSVlNtQkIrbzl2YzVGSzZIR2ZOWWFiMkJL?=
- =?utf-8?B?azNrTk9pa1U5SXlOZ211TlBzc2ptbU8rVFNBeHo1V2g0b2tVWUh0UVpyNjlY?=
- =?utf-8?B?SmlrZGlSTlFDaFdxWTU0K2NUNlo2YVNkQ3MvZlh4Q0hNejFROEZHZWthdWx4?=
- =?utf-8?B?dTdOcmdESXFPK0YwNDhQK01qdmVZbXNLN3FnQVROYnBQQjhDa0h5L0NpbDk0?=
- =?utf-8?B?QmxWWGlMOWJzeUVVc1dPcDI2a2FjbEtsZU81dVlUTGpaKy9WdzJTaEtWblE4?=
- =?utf-8?B?TTRCVUIzaHBqNFVRWlFBL3BuYUxUYTM3V2pxMExwS0RLODBLdTlXei9yTDgw?=
- =?utf-8?B?ck00ekllNUZJOXVMbjRGQTZCb1V2TEpkTmZmRTErUTRVVHQ5RlR6OXh3VXdt?=
- =?utf-8?B?ek1ZLyt5NzIrNlM5aVZxRW5xc2JIYklHRVNuNjhweFJtUE5IbzB2TTlSRlNB?=
- =?utf-8?B?cXo1dGZPK1BrL1QrLyttTnJPOFM2VTdNRXptdzVHS0xSSktETVRndVlhRGN4?=
- =?utf-8?B?Ym1ITXlNMFVLZEZ5TW8xVkZJTFlxQmdYNklaeXMxU1hTS21GTXRzcVoyTUhZ?=
- =?utf-8?B?NFRkd3NXWnExWTZrUTdvUGdnQ1NxZFAxNHdtVTJ0NkIvZGR0RnNsVlFkUjFy?=
- =?utf-8?B?cFZhc2dYVnlaYzgwd1BSTGg3QTVDeWJVN20zZkd5VlVNSkVaV1lka3k5M2Rn?=
- =?utf-8?B?RkpyRW5KWENiR2NGQml6dXBYSmpMMzlzdE9XS3duRnF0ZUdrejNvbjdPNytz?=
- =?utf-8?B?NnZaTFpxRWdsT2w0VmxHMkx6d01acFZVQTJaUzd0eFFGM3loNUQ2MUMxL1Rl?=
- =?utf-8?B?UkhZdDJXWjhZbnVIZTlWVVI0SEoxWnNnZWhlMnRURkhVR3ozS2taMFJRS0Q4?=
- =?utf-8?B?dFFaMEc5MjdPTEx6ci9SN1VDNHBHamN4NzNETDBzTG9nZnF3bHdabXF5NmVG?=
- =?utf-8?B?d0g5WGJYd2hVK3pTbXhMdVd1VmtCV1g5V2Q1SkViR0dxYkNIQ2F0S3N1MVNN?=
- =?utf-8?B?c1gzazBZdVZKVDNZcWxFYkoxcXl2Ulo3bi96Y3ZtczZjdEh4OS9NUDFyZ2lv?=
- =?utf-8?B?ay83OHB6K1lDbHZmMWE1K0w4enFmRzZZSFY2blE1STU3SVJ1Sld4WHppRXlF?=
- =?utf-8?B?bDczcWwwbFM4Z1lweVNOOUlBWGxtaUxVbDhTdGZHd0ltdFRKYVVyTnBQaEli?=
- =?utf-8?B?VUF3TkxseEo2dnpqdGxINzQ2VW1Ha3Q1K3RMeUlOQXZEQzlFaXZUR1RDdlhG?=
- =?utf-8?B?TjdxYmpvYk00MzRoT2taSCtHRVpqQ3NFR2N1SHZwM1hYRHJ2MDZYQlEzMWRn?=
- =?utf-8?B?RWdXanJrdjNGWktGMXE4Y0Y5Yk1iZnBUdFJ0MlBGdmpyUGV0SU5ickZGZjU5?=
- =?utf-8?B?cWl3SkxyUWRvNXR4VDc1ZWJDU3Y0YllyS3kzTWlmQzdnL0lObStCNy9OZTN4?=
- =?utf-8?B?WnRZNy9PVm0xM0p5Y2l6b0drZE1ZZkRDOUwwQ0JBR0RQdlRFbGNrSnRaS1hU?=
- =?utf-8?B?ZUlidGFOSEI5dWFKT1V5b3F4eDl1RitrSTdoeXc5WWFsVThuRG9mYkZQVlMw?=
- =?utf-8?B?aVkxOWRsbDlrdDB3b3duVWp1ZGZEVTVKbUNiUjdjUm5ONmlJV2Z6ZW5VMnF6?=
- =?utf-8?B?c1FpRDE4Rk5oNWhqSys0SEtlajhrZWVmNnk4cVQvVXp3b3lRTGxnWDdJeG00?=
- =?utf-8?B?VWVwNEttSSs5Z3BkOGtuWVlnZmREM3ZYV21XakJ2MlJqdTB0WFNwK3Y1cVBE?=
- =?utf-8?B?b2ppZ0hnTmIyeGxYUjdXeWxUSTNJMFdmVm5xVVZDWUZiNXc3TWRxN3pXVmIz?=
- =?utf-8?B?cUdyL2RmRWFMOXpUSU14TEpJTEVIbjVjTFJxOWdFNEtGcXZVaDRYa3NCeVov?=
- =?utf-8?B?cld0dGs0ajhhV055RDJzRG0zd3FCUTdZeFFQYW0rMExSR0NhdVcrVm5DZ0gx?=
- =?utf-8?B?TXkwQkI4dnhvMUZBVHNoQmlQTWtOYlV1RHRzTDlJUVVQUHRSUnlMaHFVSnFU?=
- =?utf-8?B?RE9heitNWDB1Y0VMRU54aWRBQUs2K0lVVTV6b1RSNkV1RkFBd0hTSWl4RERZ?=
- =?utf-8?B?MkpmVmZhL1N3VTVPRVJsSlBCRU9sYjZPYVppUTdYdlZVc0JaR3lmT2J3dE1x?=
- =?utf-8?Q?xO0Xb56OCm42D83pXpSuOm4=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 027ac57b-0dea-4655-a1fb-08dcfec1543a
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dzBxcFJ0dGVPQjV1c09VV0o3Y0pvOGlHZVRmcmJ5YzNoVVIvODJXYTdiZGpK?=
+ =?utf-8?B?QWdCQ2wwREpsVXFVYnRjT0NqK3dOdndSYzVKNGRtaUV0Y21CdHRDaVlTQXhB?=
+ =?utf-8?B?N2JmZXRFQTNKL1I2N2Z2QnZGT2Mvdy9vc3RJeFEwVzdGQWRuKzJmcFlhWSt1?=
+ =?utf-8?B?cGpQTzY5UDluU3FpZm85TlZqQUsyTS8xa2dZTnhnOURBQWZpd0pOWmtjazBp?=
+ =?utf-8?B?dlZRelhXTFVlS3FoQVlMR2k2Ky9iM3dDUHUwK1ZsZkZsdlI3WnFGWXQvbkd2?=
+ =?utf-8?B?c29UVGFFdHM5L25WTm45YmtveThKZmIwRFIwaGY0cGRpT1cvb0dFTXg5TkE2?=
+ =?utf-8?B?YkJRdTlNYWVqeVhXOER3Yi83U1ZldG9ObTFrdjJkYkJCLzI3aGpDK3krV1Nv?=
+ =?utf-8?B?UnRxL05JdDF5enN5UmtHbFd2ZmZHUmo1UTEyRHcvdjk2aXJDcjVTZDlSZUhO?=
+ =?utf-8?B?V3V2cjFhRnlGWlQwakxxRXZjT2MyemxnRzI5U3Z5Q3hoSlVlc2pXckgrQ2Yv?=
+ =?utf-8?B?SEp4M2tTL0M3WWhNZ2NsWmw4T3dUbkRHRWFDemk0Qk8wMzdYQ29VRWNXK1Vx?=
+ =?utf-8?B?UEZWZ1BkK2VVdTVPVFlJc0ZtenEycExWZTVVcitFTlA3NC9hUG1YckU3bXZM?=
+ =?utf-8?B?S1JqMWNIN0tMN1ZhZXUvZklncXM3NEYveVhaV2FELzBVeVZuU3h1WVdEUDJy?=
+ =?utf-8?B?bTRJZ3J3SEp6V2ZKZCtCZDY4WHd4MCtRNkswblNJOFB1WjgwdUJMQytxc082?=
+ =?utf-8?B?VUcySWpJUHJXTHlGTmd5M29oLzIxQUFKdHhvWm1rbWVkM01ndTJ0NlVZTlJZ?=
+ =?utf-8?B?ZDFPNjNHQlQ1ZnNrTHZSM3pSenRQZlNQdHQ3RGUvelNjQUJlUXp4ZHNETWtm?=
+ =?utf-8?B?SlI3ZXl2c2luTUNFZnJ5TzBmMUZFSzdqMk54czFQSEdQdCtDN211RTRSOGVV?=
+ =?utf-8?B?ZDlpUlIrdm4xVGtaZ3JYS1p1R0phT2k3WVREL0xpaTk0ZHhtbWJXR3ZFNXVV?=
+ =?utf-8?B?QWFPa0tYRlVMWG4vMFFDNmN1QmZMZXdRbUJHbU9pUGJtTDAyQ0ovSmFkTjN0?=
+ =?utf-8?B?ZlIzV0p2aEJhWWFIMlRCU2RJWXFNV0ZlUCtsTHRwK29uV2dWaUdvOXRLVUhy?=
+ =?utf-8?B?cjZUK1NzMHBRY1lkRjZrNWx2MThoNnhHeERKVlJJenpZVDhaem1Bd3ppWGJT?=
+ =?utf-8?B?Q3A5YmxYbDQ1dWs5blVyOHh3aEw0U3BGaldqdExDbnorOFdMQUFpalVSTXgy?=
+ =?utf-8?B?M0lheHdFM2NCeXgyc1dZSEVHaTZiMGFYL0NQTUcwR3Z2bkt5Slo5UjlidXZu?=
+ =?utf-8?B?Y2ZrUCtXaElxeXFuRHl2ZXNVdVJjSkVvT0VodklidmJNamdaNSs0RWczYit3?=
+ =?utf-8?B?ckNxWXdjRVl1ZjJRNmlpQVdTNEF2eUQwUEZkYU5EYjl1Q1AyTFlBMWwrWlVu?=
+ =?utf-8?B?Y1JhdytjZW5OQWVqbHd0Z0ZRNFBIQkc4T3hjdU1rN2djUkRXamJXUmlRL2Fz?=
+ =?utf-8?B?MXRackZyRklCNjN2ek9FZWt0NTJwK01uVzJHU09aVlRhMWRuckl0TWdyQnlW?=
+ =?utf-8?B?Y1Z3Nk9CUm1KRjE5VWEvSnR5K2lmZExjVGRkemZVZnFpNU1wVUkyQmxCdEly?=
+ =?utf-8?B?YjBjSUFvMTRPZTlzMkhlaUUzV0pITldoSHE0Z3Z0N1hUWDd6MjU1K08zL3dx?=
+ =?utf-8?B?VWlTSHkvV3RtbmRpMHdCeitlY1J3Z0t1UGViRnM0S3orUGtsalZ3MVVsS2hB?=
+ =?utf-8?B?Z1lGVk9ma0t3bi9kUER3dm9vWklCQW1zSTBHNVREazBhUUpuSVp5eWhjYlh6?=
+ =?utf-8?B?bHdMOTEycXhtZUVtTHFSbDJvYXVGRHdkbkVydjlOa3RvN0kwNCt4c0FpUWIw?=
+ =?utf-8?B?NEdLSFRlS2NBWDBRMkhNTGxKcDkrYmdydlIwb3A3TzUwR2FOZmc4azFiR01Z?=
+ =?utf-8?B?T3Bqbm9ZN0dCRjErRTMvQUV3SnVOQm5LUnNSUnF6WUJxRTlwRjFVSWd0UXUx?=
+ =?utf-8?B?VlpxTG5JY2dNNnhXT1RlTDR4THlOZ1EwSmlUK0FQUlNpc2l2ME5OUXEwSkxU?=
+ =?utf-8?B?aFRPcjNBdFlVOHd2N0tWWXZVZlZjZlBPb2tJcWpVMjFNdVk4RDNKTkNadXF2?=
+ =?utf-8?B?S0Z6L0orWHlNMTYrV2JLWUEzOGlGaTFITUV3R2J0KzA0V2F0VzJ6TmswdDZN?=
+ =?utf-8?Q?SEUGgBDAUDxGoRtSWCWTZUE=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e32d0565-917c-4cd0-0e6a-08dcfec3c8ad
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2024 00:15:47.6393 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2024 00:33:22.0552 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HLRzMPYlp2sk/TXna8tMW5eMAxL2Ugt1gQ1XGEiErAKkILUNBs4eW34fo0gfAoAH3LGtSWUAO1fTq6AzJGcCsyNq/wApGEWCCZwhfrmNqIQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7443
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9Ap1vXTGOHSd8cGmVAPRGxoWjH6qxGNoi5lYAULP/2lnZZ2t5rhZnNH87f5U62MLQ6Z/bpr+9TtIuMBLPzHPjDZwsEn9UGSWVEDTAJ1SJDs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8462
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -193,348 +193,278 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 10/7/24 13:05, John Harrison wrote:
+On 10/7/24 17:34, John Harrison wrote:
 > On 8/16/2024 12:00, Daniele Ceraolo Spurio wrote:
->> After a session is terminated, we need to inform the GSC so that it can
->> clean up its side of the allocation. This is done by sending an
->> invalidation command with the session ID.
->>
->> Note that this patch is meant to be squashed with the follow-up patches
->> that implement the other pieces of the termination flow. It is separate
->> for now for ease of review.
+>> When something happen to the session, the HW generates a termination
+>> interrupt. In reply to this, the driver is required to submit an inline
+>> session termination via the VCS, trigger the global termination and
+>> notify the GSC FW that the session is now invalid.
 >>
 >> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h |  12 +
->>   drivers/gpu/drm/xe/xe_pxp_submit.c            | 215 ++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_pxp_submit.h            |   3 +
->>   3 files changed, 230 insertions(+)
+>>   drivers/gpu/drm/xe/regs/xe_gt_regs.h  |   8 ++
+>>   drivers/gpu/drm/xe/regs/xe_pxp_regs.h |   6 ++
+>>   drivers/gpu/drm/xe/xe_irq.c           |  20 +++-
+>>   drivers/gpu/drm/xe/xe_pxp.c           | 138 +++++++++++++++++++++++++-
+>>   drivers/gpu/drm/xe/xe_pxp.h           |   3 +
+>>   drivers/gpu/drm/xe/xe_pxp_types.h     |  13 +++
+>>   6 files changed, 184 insertions(+), 4 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h 
->> b/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
->> index f3c4cf10ba20..4a59c564a0d0 100644
->> --- a/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
->> +++ b/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
->> @@ -49,6 +49,7 @@ struct pxp_cmd_header {
->>       u32 buffer_len;
->>   } __packed;
->>   +#define PXP43_CMDID_INVALIDATE_STREAM_KEY 0x00000007
->>   #define PXP43_CMDID_NEW_HUC_AUTH 0x0000003F /* MTL+ */
->>     /* PXP-Input-Packet: HUC Auth-only */
->> @@ -63,4 +64,15 @@ struct pxp43_huc_auth_out {
->>       struct pxp_cmd_header header;
->>   } __packed;
->>   +/* PXP-Input-Packet: Invalidate Stream Key */
->> +struct pxp43_inv_stream_key_in {
->> +    struct pxp_cmd_header header;
->> +    u32 rsvd[3];
->> +} __packed;
+>> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h 
+>> b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> index 0d1a4a9f4e11..9e9c20f1f1f4 100644
+>> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> @@ -570,6 +570,7 @@
+>>   #define   ENGINE1_MASK                REG_GENMASK(31, 16)
+>>   #define   ENGINE0_MASK                REG_GENMASK(15, 0)
+>>   #define GPM_WGBOXPERF_INTR_ENABLE        XE_REG(0x19003c, 
+>> XE_REG_OPTION_VF)
+>> +#define CRYPTO_RSVD_INTR_ENABLE            XE_REG(0x190040)
+>>   #define GUNIT_GSC_INTR_ENABLE            XE_REG(0x190044, 
+>> XE_REG_OPTION_VF)
+>>   #define CCS_RSVD_INTR_ENABLE            XE_REG(0x190048, 
+>> XE_REG_OPTION_VF)
+>>   @@ -580,6 +581,7 @@
+>>   #define   INTR_ENGINE_INTR(x) REG_FIELD_GET(GENMASK(15, 0), x)
+>>   #define   OTHER_GUC_INSTANCE            0
+>>   #define   OTHER_GSC_HECI2_INSTANCE        3
+>> +#define   OTHER_KCR_INSTANCE            4
+>>   #define   OTHER_GSC_INSTANCE            6
+>>     #define IIR_REG_SELECTOR(x)            XE_REG(0x190070 + ((x) * 
+>> 4), XE_REG_OPTION_VF)
+>> @@ -591,6 +593,7 @@
+>>   #define HECI2_RSVD_INTR_MASK            XE_REG(0x1900e4)
+>>   #define GUC_SG_INTR_MASK            XE_REG(0x1900e8, XE_REG_OPTION_VF)
+>>   #define GPM_WGBOXPERF_INTR_MASK            XE_REG(0x1900ec, 
+>> XE_REG_OPTION_VF)
+>> +#define CRYPTO_RSVD_INTR_MASK            XE_REG(0x1900f0)
+>>   #define GUNIT_GSC_INTR_MASK            XE_REG(0x1900f4, 
+>> XE_REG_OPTION_VF)
+>>   #define CCS0_CCS1_INTR_MASK            XE_REG(0x190100)
+>>   #define CCS2_CCS3_INTR_MASK            XE_REG(0x190104)
+>> @@ -605,4 +608,9 @@
+>>   #define   GT_CS_MASTER_ERROR_INTERRUPT        REG_BIT(3)
+>>   #define   GT_RENDER_USER_INTERRUPT        REG_BIT(0)
+>>   +/* irqs for OTHER_KCR_INSTANCE */
+>> +#define   KCR_PXP_STATE_TERMINATED_INTERRUPT        REG_BIT(1)
+>> +#define   KCR_APP_TERMINATED_PER_FW_REQ_INTERRUPT    REG_BIT(2)
+>> +#define   KCR_PXP_STATE_RESET_COMPLETE_INTERRUPT    REG_BIT(3)
 >> +
->> +/* PXP-Output-Packet: Invalidate Stream Key */
->> +struct pxp43_inv_stream_key_out {
->> +    struct pxp_cmd_header header;
->> +    u32 rsvd;
->> +} __packed;
 >>   #endif
->> diff --git a/drivers/gpu/drm/xe/xe_pxp_submit.c 
->> b/drivers/gpu/drm/xe/xe_pxp_submit.c
->> index 3b69dcc0a00f..41684d666376 100644
->> --- a/drivers/gpu/drm/xe/xe_pxp_submit.c
->> +++ b/drivers/gpu/drm/xe/xe_pxp_submit.c
->> @@ -15,9 +15,13 @@
->>   #include "xe_gsc_submit.h"
->>   #include "xe_gt.h"
->>   #include "xe_lrc.h"
->> +#include "xe_map.h"
->>   #include "xe_pxp_types.h"
->>   #include "xe_sched_job.h"
->>   #include "xe_vm.h"
->> +#include "abi/gsc_command_header_abi.h"
->> +#include "abi/gsc_pxp_commands_abi.h"
->> +#include "instructions/xe_gsc_commands.h"
->>   #include "instructions/xe_mfx_commands.h"
->>   #include "instructions/xe_mi_commands.h"
->>   #include "regs/xe_gt_regs.h"
->> @@ -307,3 +311,214 @@ int xe_pxp_submit_session_termination(struct 
->> xe_pxp *pxp, u32 id)
->>         return 0;
+>> diff --git a/drivers/gpu/drm/xe/regs/xe_pxp_regs.h 
+>> b/drivers/gpu/drm/xe/regs/xe_pxp_regs.h
+>> index d67cf210d23d..aa158938b42e 100644
+>> --- a/drivers/gpu/drm/xe/regs/xe_pxp_regs.h
+>> +++ b/drivers/gpu/drm/xe/regs/xe_pxp_regs.h
+>> @@ -14,4 +14,10 @@
+>>   #define KCR_INIT                XE_REG(0x3860f0)
+>>   #define   KCR_INIT_ALLOW_DISPLAY_ME_WRITES    REG_BIT(14)
+>>   +/* KCR hwdrm session in play status 0-31 */
+>> +#define KCR_SIP                    XE_REG(0x386260)
+>> +
+>> +/* PXP global terminate register for session termination */
+>> +#define KCR_GLOBAL_TERMINATE            XE_REG(0x3860f8)
+>> +
+>>   #endif /* __XE_PXP_REGS_H__ */
+>> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+>> index 5f2c368c35ad..f11d9a740627 100644
+>> --- a/drivers/gpu/drm/xe/xe_irq.c
+>> +++ b/drivers/gpu/drm/xe/xe_irq.c
+>> @@ -20,6 +20,7 @@
+>>   #include "xe_hw_engine.h"
+>>   #include "xe_memirq.h"
+>>   #include "xe_mmio.h"
+>> +#include "xe_pxp.h"
+>>   #include "xe_sriov.h"
+>>     /*
+>> @@ -202,6 +203,15 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
+>>           }
+>>           if (heci_mask)
+>>               xe_mmio_write32(gt, HECI2_RSVD_INTR_MASK, ~(heci_mask 
+>> << 16));
+>> +
+>> +        if (xe_pxp_is_supported(xe)) {
+>> +            u32 kcr_mask = KCR_PXP_STATE_TERMINATED_INTERRUPT |
+>> +                       KCR_APP_TERMINATED_PER_FW_REQ_INTERRUPT |
+>> +                       KCR_PXP_STATE_RESET_COMPLETE_INTERRUPT;
+>> +
+>> +            xe_mmio_write32(gt, CRYPTO_RSVD_INTR_ENABLE, kcr_mask << 
+>> 16);
+>> +            xe_mmio_write32(gt, CRYPTO_RSVD_INTR_MASK, ~(kcr_mask << 
+>> 16));
+>> +        }
+>>       }
 >>   }
+>>   @@ -324,9 +334,15 @@ static void gt_irq_handler(struct xe_tile *tile,
+>>               }
+>>                 if (class == XE_ENGINE_CLASS_OTHER) {
+>> -                /* HECI GSCFI interrupts come from outside of GT */
+>> +                /*
+>> +                 * HECI GSCFI interrupts come from outside of GT.
+>> +                 * KCR irqs come from inside GT but are handled
+>> +                 * by the global PXP subsystem.
+>> +                 */
+>>                   if (HAS_HECI_GSCFI(xe) && instance == 
+>> OTHER_GSC_INSTANCE)
+>>                       xe_heci_gsc_irq_handler(xe, intr_vec);
+>> +                else if (instance == OTHER_KCR_INSTANCE)
+>> +                    xe_pxp_irq_handler(xe, intr_vec);
+>>                   else
+>>                       gt_other_irq_handler(engine_gt, instance, 
+>> intr_vec);
+>>               }
+>> @@ -512,6 +528,8 @@ static void gt_irq_reset(struct xe_tile *tile)
+>>           xe_mmio_write32(mmio, GUNIT_GSC_INTR_ENABLE, 0);
+>>           xe_mmio_write32(mmio, GUNIT_GSC_INTR_MASK, ~0);
+>>           xe_mmio_write32(mmio, HECI2_RSVD_INTR_MASK, ~0);
+>> +        xe_mmio_write32(mmio, CRYPTO_RSVD_INTR_ENABLE, 0);
+>> +        xe_mmio_write32(mmio, CRYPTO_RSVD_INTR_MASK, ~0);
+>>       }
+>>         xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_ENABLE, 0);
+>> diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
+>> index 56bb7d927c07..382eb0cb0018 100644
+>> --- a/drivers/gpu/drm/xe/xe_pxp.c
+>> +++ b/drivers/gpu/drm/xe/xe_pxp.c
+>> @@ -12,9 +12,11 @@
+>>   #include "xe_gt.h"
+>>   #include "xe_gt_types.h"
+>>   #include "xe_mmio.h"
+>> +#include "xe_pm.h"
+>>   #include "xe_pxp_submit.h"
+>>   #include "xe_pxp_types.h"
+>>   #include "xe_uc_fw.h"
+>> +#include "regs/xe_gt_regs.h"
+>>   #include "regs/xe_pxp_regs.h"
+>>     /**
+>> @@ -25,11 +27,133 @@
+>>    * integrated parts.
+>>    */
+>>   -static bool pxp_is_supported(const struct xe_device *xe)
+>> +#define ARB_SESSION 0xF /* TODO: move to UAPI */
 >> +
->> +static bool
->> +is_fw_err_platform_config(u32 type)
+>> +bool xe_pxp_is_supported(const struct xe_device *xe)
+>>   {
+>>       return xe->info.has_pxp && IS_ENABLED(CONFIG_INTEL_MEI_GSC_PROXY);
+>>   }
+>>   +static bool pxp_is_enabled(const struct xe_pxp *pxp)
 >> +{
->> +    switch (type) {
->> +    case PXP_STATUS_ERROR_API_VERSION:
->> +    case PXP_STATUS_PLATFCONFIG_KF1_NOVERIF:
->> +    case PXP_STATUS_PLATFCONFIG_KF1_BAD:
->> +        return true;
->> +    default:
->> +        break;
->> +    }
->> +    return false;
+>> +    return pxp;
 >> +}
 >> +
->> +static const char *
->> +fw_err_to_string(u32 type)
+>> +static int pxp_wait_for_session_state(struct xe_pxp *pxp, u32 id, 
+>> bool in_play)
 >> +{
->> +    switch (type) {
->> +    case PXP_STATUS_ERROR_API_VERSION:
->> +        return "ERR_API_VERSION";
->> +    case PXP_STATUS_NOT_READY:
->> +        return "ERR_NOT_READY";
->> +    case PXP_STATUS_PLATFCONFIG_KF1_NOVERIF:
-> Is it not worth having a separate string for this error?
-
-
-Not really, the aim here is to communicate that the platform doesn't 
-have a valid configuration (which in theory should never happen without 
-a debug bios), it doesn't really matter which specific error it is. We 
-also print the error code anyway.
-
-
->
->> +    case PXP_STATUS_PLATFCONFIG_KF1_BAD:
->> +        return "ERR_PLATFORM_CONFIG";
->> +    default:
->> +        break;
->> +    }
->> +    return NULL;
+>> +    struct xe_gt *gt = pxp->gt;
+>> +    u32 mask = BIT(id);
+>> +    int ret;
+>> +
+>> +    ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    ret = xe_mmio_wait32(gt, KCR_SIP, mask, in_play ? mask : 0,
+>> +                 250, NULL, false);
+>> +    xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+>> +
+>> +    return ret;
 >> +}
 >> +
->> +static int pxp_pkt_submit(struct xe_exec_queue *q, u64 batch_addr)
+>> +static void pxp_terminate(struct xe_pxp *pxp)
 >> +{
->> +    struct xe_gt *gt = q->gt;
->> +    struct xe_device *xe = gt_to_xe(gt);
->> +    struct xe_sched_job *job;
->> +    struct dma_fence *fence;
->> +    long timeout;
->> +
->> +    xe_assert(xe, q->hwe->engine_id == XE_HW_ENGINE_GSCCS0);
->> +
->> +    job =  xe_sched_job_create(q, &batch_addr);
-> Double space.
->
->> +    if (IS_ERR(job))
->> +        return PTR_ERR(job);
->> +
->> +    xe_sched_job_arm(job);
->> +    fence = dma_fence_get(&job->drm.s_fence->finished);
->> +    xe_sched_job_push(job);
->> +
->> +    timeout = dma_fence_wait_timeout(fence, false, HZ);
->> +    dma_fence_put(fence);
->> +    if (timeout < 0)
->> +        return timeout;
->> +    else if (!timeout)
->> +        return -ETIME;
->> +
->> +    return 0;
->> +}
->> +
->> +static void emit_pxp_heci_cmd(struct xe_device *xe, struct iosys_map 
->> *batch,
->> +                  u64 addr_in, u32 size_in, u64 addr_out, u32 size_out)
->> +{
->> +    u32 len = 0;
->> +
->> +    xe_map_wr(xe, batch, len++ * sizeof(u32), u32, GSC_HECI_CMD_PKT);
->> +    xe_map_wr(xe, batch, len++ * sizeof(u32), u32, 
->> lower_32_bits(addr_in));
->> +    xe_map_wr(xe, batch, len++ * sizeof(u32), u32, 
->> upper_32_bits(addr_in));
->> +    xe_map_wr(xe, batch, len++ * sizeof(u32), u32, size_in);
->> +    xe_map_wr(xe, batch, len++ * sizeof(u32), u32, 
->> lower_32_bits(addr_out));
->> +    xe_map_wr(xe, batch, len++ * sizeof(u32), u32, 
->> upper_32_bits(addr_out));
->> +    xe_map_wr(xe, batch, len++ * sizeof(u32), u32, size_out);
->> +    xe_map_wr(xe, batch, len++ * sizeof(u32), u32, 0);
->> +    xe_map_wr(xe, batch, len++ * sizeof(u32), u32, 
->> MI_BATCH_BUFFER_END);
->> +}
->> +
->> +#define GSC_PENDING_RETRY_MAXCOUNT 40
->> +#define GSC_PENDING_RETRY_PAUSE_MS 50
->> +static int gsccs_send_message(struct xe_pxp_gsc_client_resources 
->> *gsc_res,
->> +                  void *msg_in, size_t msg_in_size,
->> +                  void *msg_out, size_t msg_out_size_max)
->> +{
->> +    struct xe_device *xe = gsc_res->vm->xe;
->> +    const size_t max_msg_size = gsc_res->inout_size - sizeof(struct 
->> intel_gsc_mtl_header);
->> +    u32 wr_offset = 0;
->> +    u32 rd_offset = 0;
-> The intialisation is not necessary here. rd_offset has the appearance 
-> of requiring it but doesn't really, and wr_offset is re-assigned 
-> almost immediately.
->
->> +    u32 reply_size;
->> +    u32 min_reply_size = 0;
 >> +    int ret = 0;
-> Also not necessary to be pre-initialised.
->
->> +    int retry = GSC_PENDING_RETRY_MAXCOUNT;
+>> +    struct xe_device *xe = pxp->xe;
+>> +    struct xe_gt *gt = pxp->gt;
 >> +
->> +    if (msg_in_size > max_msg_size || msg_out_size_max > max_msg_size)
->> +        return -ENOSPC;
+>> +    drm_dbg(&xe->drm, "Terminating PXP\n");
 >> +
->> +    wr_offset = xe_gsc_emit_header(xe, &gsc_res->msg_in, 0,
->> +                       HECI_MEADDRESS_PXP,
->> +                       gsc_res->host_session_handle,
->> +                       msg_in_size);
+>> +    /* terminate the hw session */
+>> +    ret = xe_pxp_submit_session_termination(pxp, ARB_SESSION);
+>> +    if (ret)
+>> +        goto out;
 >> +
->> +    /* NOTE: zero size packets are used for session-cleanups */
->> +    if (msg_in && msg_in_size) {
->> +        xe_map_memcpy_to(xe, &gsc_res->msg_in, wr_offset,
->> +                 msg_in, msg_in_size);
->> +        min_reply_size = sizeof(struct pxp_cmd_header);
->> +    }
+>> +    ret = pxp_wait_for_session_state(pxp, ARB_SESSION, false);
+>> +    if (ret)
+>> +        goto out;
 >> +
->> +    /* Make sure the reply header does not contain stale data */
->> +    xe_gsc_poison_header(xe, &gsc_res->msg_out, 0);
->> +
->> +    emit_pxp_heci_cmd(xe, &gsc_res->batch, PXP_BB_SIZE,
->> +              wr_offset + msg_in_size, PXP_BB_SIZE + 
->> gsc_res->inout_size,
->> +              msg_out_size_max + wr_offset);
-> Is this correct? It is passing in the batch buffer allocation size as 
-> the address. Shouldn't there be some kind of base address included? 
-> The in/out buffer is after the BB in the same allocation but that 
-> allocation is not guaranteed to be at address zero, is it?
+>> +    /* Trigger full HW cleanup */
+>> +    XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
+> Why WARN here but no explicit message at all if the earlier force wake 
+> fails? And is it safe to keep going if the fw did fail?
 
-
-It is guaranteed to be ad address zero, because when we call bind_bo() 
-we specify the address. I can make that a define if you think it'd make 
-things clearer.
+The idea was that if we know that the state is good enough to terminate 
+we could try to do it even with a forcewake error, worst case it doesn't 
+work. If we don't know the state we can't attempt a termination at all.
 
 
 >
-> Also, it would be more consistent to use 'wr_offset + out_size_max' to 
-> match the input calculation rather than flipping the terms around.
->
->> +
->> +    xe_device_wmb(xe);
->> +
-> Might be worth a comment here to say why retries are required and how 
-> many/how long is expected normally versus worst case?
-
+> Also, given two identical, back-to-back fw get/put sets, would it not 
+> be more efficient to have pxp_terminate do the get and share that 
+> across the two register access? It would also remove the issue with 
+> failed fw half way through causing problems due to not wanting to abort.
 
 will do.
 
 
 >
->> +    do {
->> +        ret = pxp_pkt_submit(gsc_res->q, 0);
->> +        if (ret)
->> +            break;
->> +
->> +        if (xe_gsc_check_and_update_pending(xe, &gsc_res->msg_in, 0,
->> +                            &gsc_res->msg_out, 0)) {
->> +            ret = -EAGAIN;
->> +            msleep(GSC_PENDING_RETRY_PAUSE_MS);
->> +        }
->> +    } while (--retry && ret == -EAGAIN);
->> +
->> +    if (ret) {
->> +        drm_err(&xe->drm, "failed to submit GSC PXP message: %d\n", 
->> ret);
->> +        return ret;
->> +    }
->> +
->> +    ret = xe_gsc_read_out_header(xe, &gsc_res->msg_out, 0,
->> +                     min_reply_size, &rd_offset);
->> +    if (ret) {
->> +        drm_err(&xe->drm, "invalid GSC reply for PXP (err=%d)\n", ret);
-> Should be %pe for the error code?
->
->> +        return ret;
->> +    }
->> +
->> +    if (msg_out && min_reply_size) {
->> +        reply_size = xe_map_rd_field(xe, &gsc_res->msg_out, rd_offset,
->> +                         struct pxp_cmd_header, buffer_len);
->> +        reply_size += sizeof(struct pxp_cmd_header);
->> +
->> +        if (reply_size > msg_out_size_max) {
->> +            drm_warn(&xe->drm, "caller with insufficient PXP reply 
->> size %u (%ld)\n",
->> +                 reply_size, msg_out_size_max);
-> I would maybe go with 'reply size overflow'. Took me a moment to work 
-> out why 'size > max' becomes 'insufficient reply size'.
->
->> +            reply_size = msg_out_size_max;
-> Is it useful to return a partial message?
+>> +    xe_mmio_write32(gt, KCR_GLOBAL_TERMINATE, 1);
+> BSpec description for KCR_GLOBAL_TERMINATE says need to check 
+> KCR_SIP_GCD rather than KCR_SIP_MEDIA for bits 0-15 being 0. Whereas 
+> the KCR_SIP being checked above is KCR_SIP_MEDIA only.
 
-
-The caller can check the header and see if there is any error set there.
+That's just the spec not being super clear. The description is common 
+between the render and the media copies of the registers, but you need 
+to check the version of the registers on the actual GT you're doing the 
+termination on.
 
 
 >
->> +        }
+>> +    xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
 >> +
->> +        xe_map_memcpy_from(xe, msg_out, &gsc_res->msg_out,
->> +                   rd_offset, reply_size);
->> +    }
+>> +    /* now we can tell the GSC to clean up its own state */
+>> +    ret = xe_pxp_submit_session_invalidation(&pxp->gsc_res, 
+>> ARB_SESSION);
 >> +
->> +    xe_gsc_poison_header(xe, &gsc_res->msg_in, 0);
->> +
->> +    return ret;
+>> +out:
+>> +    if (ret)
+>> +        drm_err(&xe->drm, "PXP termination failed: %pe\n", 
+>> ERR_PTR(ret));
 >> +}
 >> +
->> +/**
->> + * xe_pxp_submit_session_invalidation - submits a PXP GSC invalidation
->> + * @gsc_res: the pxp client resources
->> + * @id: the session to invalidate
->> + *
->> + * Submit a message to the GSC FW to notify it that a session has been
->> + * terminated and is therefore invalid.
->> + *
->> + * Returns 0 if the submission is successful, an errno value otherwise.
->> + */
->> +int xe_pxp_submit_session_invalidation(struct 
->> xe_pxp_gsc_client_resources *gsc_res,
->> +                       u32 id)
-> Is this really over 100 columns if not wrapped?
-
-
-nope, will remove the wrapping
-
-
->
+>> +static void pxp_terminate_complete(struct xe_pxp *pxp)
 >> +{
->> +    struct xe_device *xe = gsc_res->vm->xe;
->> +    struct pxp43_inv_stream_key_in msg_in = {0};
->> +    struct pxp43_inv_stream_key_out msg_out = {0};
->> +    int ret = 0;
+>> +    /* TODO mark the session as ready to start */
+>> +}
+>> +
+>> +static void pxp_irq_work(struct work_struct *work)
+>> +{
+>> +    struct xe_pxp *pxp = container_of(work, typeof(*pxp), irq.work);
+>> +    struct xe_device *xe = pxp->xe;
+>> +    u32 events = 0;
+>> +
+>> +    spin_lock_irq(&xe->irq.lock);
+>> +    events = pxp->irq.events;
+>> +    pxp->irq.events = 0;
+>> +    spin_unlock_irq(&xe->irq.lock);
+>> +
+>> +    if (!events)
+>> +        return;
 >> +
 >> +    /*
->> +     * Stream key invalidation reuses the same version 4.2 input/output
->> +     * command format but firmware requires 4.3 API interaction
+>> +     * If we're processing a termination irq while suspending then 
+>> don't
+>> +     * bother, we're going to re-init everything on resume anyway.
 >> +     */
->> +    msg_in.header.api_version = PXP_APIVER(4, 3);
->> +    msg_in.header.command_id = PXP43_CMDID_INVALIDATE_STREAM_KEY;
->> +    msg_in.header.buffer_len = sizeof(msg_in) - sizeof(msg_in.header);
->> +
->> +    msg_in.header.stream_id = 
->> FIELD_PREP(PXP_CMDHDR_EXTDATA_SESSION_VALID, 1);
->> +    msg_in.header.stream_id |= 
->> FIELD_PREP(PXP_CMDHDR_EXTDATA_APP_TYPE, 0);
->> +    msg_in.header.stream_id |= 
->> FIELD_PREP(PXP_CMDHDR_EXTDATA_SESSION_ID, id);
->> +
->> +    ret = gsccs_send_message(gsc_res, &msg_in, sizeof(msg_in),
->> +                 &msg_out, sizeof(msg_out));
->> +    if (ret) {
->> +        drm_err(&xe->drm, "Failed to inv-stream-key-%u, ret=[%d]\n",
-> Would be clearer to say "failed to invalidate stream-key-%u"? The 
-> message current reads as "failed to <name-of-variable>" which doesn't 
-> make much sense. Same comment for the other two prints below.
->
-> Also, %pe for the return code?
+>> +    if ((events & PXP_TERMINATION_REQUEST) && 
+>> !xe_pm_runtime_get_if_active(xe))
+>> +        return;
+> I assume it is not possible to have both REQUEST and COMPLETE set at 
+> the same time? I.e. is it possible for this early exit to cause a lost 
+> termination complete call?
 
-
-Ack.
+A complete is only received in response to the submission of a 
+termination request, so they should never be set at the same time. 
+Doesn't really matter anyway since we submit a termination on resume anyway.
 
 Daniele
 
@@ -542,41 +472,131 @@ Daniele
 >
 > John.
 >
->> +            id, ret);
->> +    } else if (msg_out.header.status != 0) {
->> +        if (is_fw_err_platform_config(msg_out.header.status)) {
->> +            drm_info_once(&xe->drm,
->> +                      "PXP inv-stream-key-%u failed due to BIOS/SOC 
->> :0x%08x:%s\n",
->> +                      id, msg_out.header.status,
->> +                      fw_err_to_string(msg_out.header.status));
->> +        } else {
->> +            drm_dbg(&xe->drm, "PXP inv-stream-key-%u failed 
->> 0x%08x:%s:\n",
->> +                id, msg_out.header.status,
->> +                fw_err_to_string(msg_out.header.status));
->> +            drm_dbg(&xe->drm, "     cmd-detail: 
->> ID=[0x%08x],API-Ver-[0x%08x]\n",
->> +                msg_in.header.command_id, msg_in.header.api_version);
->> +        }
+>> +
+>> +    if (events & PXP_TERMINATION_REQUEST) {
+>> +        events &= ~PXP_TERMINATION_COMPLETE;
+>> +        pxp_terminate(pxp);
 >> +    }
 >> +
->> +    return ret;
+>> +    if (events & PXP_TERMINATION_COMPLETE)
+>> +        pxp_terminate_complete(pxp);
+>> +
+>> +    if (events & PXP_TERMINATION_REQUEST)
+>> +        xe_pm_runtime_put(xe);
 >> +}
->> diff --git a/drivers/gpu/drm/xe/xe_pxp_submit.h 
->> b/drivers/gpu/drm/xe/xe_pxp_submit.h
->> index 4ee8c0acfed9..48fdc9b09116 100644
->> --- a/drivers/gpu/drm/xe/xe_pxp_submit.h
->> +++ b/drivers/gpu/drm/xe/xe_pxp_submit.h
->> @@ -9,10 +9,13 @@
+>> +
+>> +/**
+>> + * xe_pxp_irq_handler - Handles PXP interrupts.
+>> + * @pxp: pointer to pxp struct
+>> + * @iir: interrupt vector
+>> + */
+>> +void xe_pxp_irq_handler(struct xe_device *xe, u16 iir)
+>> +{
+>> +    struct xe_pxp *pxp = xe->pxp;
+>> +
+>> +    if (!pxp_is_enabled(pxp)) {
+>> +        drm_err(&xe->drm, "PXP irq 0x%x received with PXP 
+>> disabled!\n", iir);
+>> +        return;
+>> +    }
+>> +
+>> +    lockdep_assert_held(&xe->irq.lock);
+>> +
+>> +    if (unlikely(!iir))
+>> +        return;
+>> +
+>> +    if (iir & (KCR_PXP_STATE_TERMINATED_INTERRUPT |
+>> +           KCR_APP_TERMINATED_PER_FW_REQ_INTERRUPT))
+>> +        pxp->irq.events |= PXP_TERMINATION_REQUEST;
+>> +
+>> +    if (iir & KCR_PXP_STATE_RESET_COMPLETE_INTERRUPT)
+>> +        pxp->irq.events |= PXP_TERMINATION_COMPLETE;
+>> +
+>> +    if (pxp->irq.events)
+>> +        queue_work(pxp->irq.wq, &pxp->irq.work);
+>> +}
+>> +
+>>   static int kcr_pxp_set_status(const struct xe_pxp *pxp, bool enable)
+>>   {
+>>       u32 val = enable ? 
+>> _MASKED_BIT_ENABLE(KCR_INIT_ALLOW_DISPLAY_ME_WRITES) :
+>> @@ -60,6 +184,7 @@ static void pxp_fini(void *arg)
+>>   {
+>>       struct xe_pxp *pxp = arg;
+>>   +    destroy_workqueue(pxp->irq.wq);
+>>       xe_pxp_destroy_execution_resources(pxp);
+>>         /* no need to explicitly disable KCR since we're going to do 
+>> an FLR */
+>> @@ -83,7 +208,7 @@ int xe_pxp_init(struct xe_device *xe)
+>>       struct xe_pxp *pxp;
+>>       int err;
+>>   -    if (!pxp_is_supported(xe))
+>> +    if (!xe_pxp_is_supported(xe))
+>>           return -EOPNOTSUPP;
+>>         /* we only support PXP on single tile devices with a media GT */
+>> @@ -105,12 +230,17 @@ int xe_pxp_init(struct xe_device *xe)
+>>       if (!pxp)
+>>           return -ENOMEM;
+>>   +    INIT_WORK(&pxp->irq.work, pxp_irq_work);
+>>       pxp->xe = xe;
+>>       pxp->gt = gt;
+>>   +    pxp->irq.wq = alloc_ordered_workqueue("pxp-wq", 0);
+>> +    if (!pxp->irq.wq)
+>> +        return -ENOMEM;
+>> +
+>>       err = kcr_pxp_enable(pxp);
+>>       if (err)
+>> -        return err;
+>> +        goto out_wq;
+>>         err = xe_pxp_allocate_execution_resources(pxp);
+>>       if (err)
+>> @@ -122,5 +252,7 @@ int xe_pxp_init(struct xe_device *xe)
+>>     kcr_disable:
+>>       kcr_pxp_disable(pxp);
+>> +out_wq:
+>> +    destroy_workqueue(pxp->irq.wq);
+>>       return err;
+>>   }
+>> diff --git a/drivers/gpu/drm/xe/xe_pxp.h b/drivers/gpu/drm/xe/xe_pxp.h
+>> index 79c951667f13..81bafe2714ff 100644
+>> --- a/drivers/gpu/drm/xe/xe_pxp.h
+>> +++ b/drivers/gpu/drm/xe/xe_pxp.h
+>> @@ -10,6 +10,9 @@
+>>     struct xe_device;
+>>   +bool xe_pxp_is_supported(const struct xe_device *xe);
+>> +
+>>   int xe_pxp_init(struct xe_device *xe);
+>> +void xe_pxp_irq_handler(struct xe_device *xe, u16 iir);
+>>     #endif /* __XE_PXP_H__ */
+>> diff --git a/drivers/gpu/drm/xe/xe_pxp_types.h 
+>> b/drivers/gpu/drm/xe/xe_pxp_types.h
+>> index 3463caaad101..d5cf8faed7be 100644
+>> --- a/drivers/gpu/drm/xe/xe_pxp_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_pxp_types.h
+>> @@ -8,6 +8,7 @@
+>>     #include <linux/iosys-map.h>
 >>   #include <linux/types.h>
->>     struct xe_pxp;
->> +struct xe_pxp_gsc_client_resources;
->>     int xe_pxp_allocate_execution_resources(struct xe_pxp *pxp);
->>   void xe_pxp_destroy_execution_resources(struct xe_pxp *pxp);
->>     int xe_pxp_submit_session_termination(struct xe_pxp *pxp, u32 id);
->> +int xe_pxp_submit_session_invalidation(struct 
->> xe_pxp_gsc_client_resources *gsc_res,
->> +                       u32 id);
->>     #endif /* __XE_PXP_SUBMIT_H__ */
+>> +#include <linux/workqueue.h>
+>>     struct xe_bo;
+>>   struct xe_exec_queue;
+>> @@ -69,6 +70,18 @@ struct xe_pxp {
+>>         /** @gsc_exec: kernel-owned objects for PXP submissions to 
+>> the GSCCS */
+>>       struct xe_pxp_gsc_client_resources gsc_res;
+>> +
+>> +    /** @irq: wrapper for the worker and queue used for PXP irq 
+>> support */
+>> +    struct {
+>> +        /** @irq.work: worker that manages irq events. */
+>> +        struct work_struct work;
+>> +        /** @irq.wq: workqueue on which to queue the irq work. */
+>> +        struct workqueue_struct *wq;
+>> +        /** @irq.events: pending events, protected with 
+>> xe->irq.lock. */
+>> +        u32 events;
+>> +#define PXP_TERMINATION_REQUEST  BIT(0)
+>> +#define PXP_TERMINATION_COMPLETE BIT(1)
+>> +    } irq;
+>>   };
+>>     #endif /* __XE_PXP_TYPES_H__ */
 >
