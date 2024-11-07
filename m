@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EEC2D4335D
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 13:52:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8584D43360
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 13:55:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5E510E30B;
-	Thu,  7 Nov 2024 13:52:50 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74C7910E846;
- Thu,  7 Nov 2024 13:52:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6265309045796728265=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2A4610E30B;
+	Thu,  7 Nov 2024 13:55:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CKT8X0oV";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7A5A10E30B
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Nov 2024 13:55:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730987724; x=1762523724;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=j8slaFaTEGu/xhHXE12T4LXqXQF7F/yzjCDfNWmxfTM=;
+ b=CKT8X0oVWrrqNVstrnBWsCm77x7fZaZ5WaErufP0r4akyF1Of5SDYzou
+ SxviTDMbv1Nu8jSy9I/pDVVScTRwTiwxUkPjtxsMUE7W8pjkzghm/EePz
+ PXQpSSg9sjKrBinuLMb54YmYrevzDAJ83KXuOhGisB/yq01xh2Mn7FeB+
+ 7OZsulnhjHKXyF8InXlkxZTf5AmOyg0kz8uphMwiUOUEjc48WYnQRcao+
+ kDCaWhhM2XOaLm4iP9sAVmmp+c9vjtJvp1IgoRl4rFOgTp8W7B001DU2o
+ gAd+675a8wd+vZWRmUElHKi2W8ytOeVyUZm8Oy9x8WFBIOsaDVXZQ7s2k w==;
+X-CSE-ConnectionGUID: TMn+nrYtSISJlEAOMFKakg==
+X-CSE-MsgGUID: kZaA09dkSZSDKBE59A7JmQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="48289938"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="48289938"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 05:55:24 -0800
+X-CSE-ConnectionGUID: whZXLDeuR/anVjNXBbwJKA==
+X-CSE-MsgGUID: QP3lkXGURKugdlQrwd776g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,266,1728975600"; d="scan'208";a="84708035"
+Received: from llaguna-dev.igk.intel.com (HELO localhost) ([10.91.214.40])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 05:55:22 -0800
+From: Lukasz Laguna <lukasz.laguna@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: michal.winiarski@intel.com, michal.wajdeczko@intel.com,
+ matthew.brost@intel.com, lukasz.laguna@intel.com
+Subject: [PATCH v3 0/4] PF: Add functions to save and restore VF LMEM and CCS
+ data
+Date: Thu,  7 Nov 2024 14:55:13 +0100
+Message-Id: <20241107135517.9516-1-lukasz.laguna@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/9=5D_d?=
- =?utf-8?q?rm/xe=3A_Remove_double_pageflip_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 07 Nov 2024 13:52:48 -0000
-Message-ID: <173098756847.1422405.6670720043301508991@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241107100140.292928-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20241107100140.292928-1-maarten.lankhorst@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,155 +63,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6265309045796728265==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+State of VF LMEM and corresponding CCS metadata needs to be saved and
+restored during migration of VM with attached dGPU VF. Add helpers that
+allow it. We will start using them in upcoming patches. For feature
+enabling and testing purposes, allow to save VF LMEM and CCS state and
+to replace it using debugfs blob file, but only under strict debug
+config.
 
-== Series Details ==
+v3:
+ - refactor locking (Matt B)
+ - add helper to retrieve VF's LMEM object (Lukasz).
 
-Series: series starting with [1/9] drm/xe: Remove double pageflip (rev2)
-URL   : https://patchwork.freedesktop.org/series/141047/
-State : success
+Lukasz Laguna (4):
+  drm/xe/migrate: Add function for raw copy of VRAM and CCS
+  drm/xe/pf: Add helper to retrieve VF's LMEM object
+  drm/xe/pf: Add functions to save and restore VF LMEM and CCS data
+  drm/xe/pf: Allow to view and replace VF LMEM and CCS state over
+    debugfs
 
-== Summary ==
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  22 ++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h    |   1 +
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |  78 +++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c | 318 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.h |  18 +
+ drivers/gpu/drm/xe/xe_migrate.c               | 208 ++++++++++++
+ drivers/gpu/drm/xe/xe_migrate.h               |   5 +
+ 7 files changed, 650 insertions(+)
 
-CI Bug Log - changes from xe-2181-6f358787ded211657532e2ee4df2e446b03d860f_BAT -> xe-pw-141047v2_BAT
-====================================================
+-- 
+2.40.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-141047v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@bad-pitch-0:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#2496]) +31 other tests dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2181-6f358787ded211657532e2ee4df2e446b03d860f/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141047v2/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-adlp-7:         [PASS][3] -> [INCOMPLETE][4] ([Intel XE#2874]) +1 other test incomplete
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2181-6f358787ded211657532e2ee4df2e446b03d860f/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141047v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
-    - bat-bmg-1:          [DMESG-WARN][5] ([Intel XE#877]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2181-6f358787ded211657532e2ee4df2e446b03d860f/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141047v2/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-
-  
-  [Intel XE#2496]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
-
-
-Build changes
--------------
-
-  * Linux: xe-2181-6f358787ded211657532e2ee4df2e446b03d860f -> xe-pw-141047v2
-
-  IGT_8100: 84e42580f918da926481fd2fb37be01451d6ee9a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2181-6f358787ded211657532e2ee4df2e446b03d860f: 6f358787ded211657532e2ee4df2e446b03d860f
-  xe-pw-141047v2: 141047v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141047v2/index.html
-
---===============6265309045796728265==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/9] drm/xe: Remove double pageflip (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141047/">https://patchwork.freedesktop.org/series/141047/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141047v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141047v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2181-6f358787ded211657532e2ee4df2e446b03d860f_BAT -&gt; xe-pw-141047v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-141047v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@bad-pitch-0:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2181-6f358787ded211657532e2ee4df2e446b03d860f/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141047v2/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496">Intel XE#2496</a>) +31 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2181-6f358787ded211657532e2ee4df2e446b03d860f/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141047v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2181-6f358787ded211657532e2ee4df2e446b03d860f/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141047v2/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2181-6f358787ded211657532e2ee4df2e446b03d860f -&gt; xe-pw-141047v2</li>
-</ul>
-<p>IGT_8100: 84e42580f918da926481fd2fb37be01451d6ee9a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2181-6f358787ded211657532e2ee4df2e446b03d860f: 6f358787ded211657532e2ee4df2e446b03d860f<br />
-  xe-pw-141047v2: 141047v2</p>
-
-</body>
-</html>
-
---===============6265309045796728265==--
