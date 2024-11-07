@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E763ED35E5D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3169D5AE7C
 	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 10:02:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6F9710E7F5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F4D910E7F1;
 	Thu,  7 Nov 2024 10:02:04 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48DFC10E7EB;
- Thu,  7 Nov 2024 10:01:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A690210E7F1;
+ Thu,  7 Nov 2024 10:02:02 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maarten@mblankhorst.nl, Lankhorst@mblankhorst.nl, dev@lankhorst.se
-Subject: [PATCH 6/9] drm/xe/sriov: Move VF bootstrap and query_config to
- vf_guc_init
-Date: Thu,  7 Nov 2024 11:01:37 +0100
-Message-ID: <20241107100140.292928-6-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 9/9] drm/xe: Split init of xe_gt_init_hwconfig to xe_gt_init
+ and *_early
+Date: Thu,  7 Nov 2024 11:01:40 +0100
+Message-ID: <20241107100140.292928-9-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241107100140.292928-1-maarten.lankhorst@linux.intel.com>
 References: <20241107100140.292928-1-maarten.lankhorst@linux.intel.com>
@@ -40,74 +40,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We want to split up GUC init to an alloc and noalloc part to keep the
-init path the same for VF and !VF as much as possible.
-
-Everything in vf_guc_init should be done as early as possible, otherwise
-VRAM probing becomes impossible.
+Now that we added the separate step of initialising GUC in
+xe_gt_init_early, it should be ok to initialise the minimum during early
+init, and the rest after allocations are allowed.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20241105121857.17389-6-maarten.lankhorst@linux.intel.com
+Link: https://patchwork.freedesktop.org/patch/msgid/20241105121857.17389-9-maarten.lankhorst@linux.intel.com
 Signed-off-by: Maarten Lankhorst,,, <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  1 -
- drivers/gpu/drm/xe/xe_guc.c         | 17 +++++++++--------
- 2 files changed, 9 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |  6 ----
+ drivers/gpu/drm/xe/xe_gt.c     | 66 +++++++++++++++++-----------------
+ drivers/gpu/drm/xe/xe_gt.h     |  1 -
+ 3 files changed, 32 insertions(+), 41 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index cca5d57328021..997438047a037 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -948,7 +948,6 @@ u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg)
- 	struct vf_runtime_reg *rr;
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 5dafd48d5478b..e11acd5475867 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -654,12 +654,6 @@ int xe_device_probe(struct xe_device *xe)
+ 			return err;
+ 	}
  
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
--	xe_gt_assert(gt, gt->sriov.vf.pf_version.major);
- 	xe_gt_assert(gt, !reg.vf);
- 
- 	if (reg.addr == GMD_ID.addr) {
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 7224593c9ce9b..5a050a5379911 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -301,6 +301,7 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
- 
- static int vf_guc_init(struct xe_guc *guc)
- {
-+	struct xe_gt *gt = guc_to_gt(guc);
- 	int err;
- 
- 	xe_guc_comm_init_early(guc);
-@@ -313,6 +314,14 @@ static int vf_guc_init(struct xe_guc *guc)
+-	for_each_gt(gt, xe, id) {
+-		err = xe_gt_init_hwconfig(gt);
+-		if (err)
+-			return err;
+-	}
+-
+ 	err = xe_devcoredump_init(xe);
  	if (err)
  		return err;
- 
-+	err = xe_gt_sriov_vf_bootstrap(gt);
-+	if (err)
-+		return err;
-+
-+	err = xe_gt_sriov_vf_query_config(gt);
-+	if (err)
-+		return err;
-+
- 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index dc6901255dc91..a6154d1bad9f0 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -364,6 +364,21 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
+ 	return err;
  }
  
-@@ -753,14 +762,6 @@ static int vf_guc_min_load_for_hwconfig(struct xe_guc *guc)
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	int ret;
++static int gt_init_mcr(struct xe_gt *gt)
++{
++	unsigned int fw_ref;
++
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	if (!fw_ref)
++		return -ETIMEDOUT;
++
++	xe_gt_mcr_init_early(gt);
++	xe_pat_init(gt);
++
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	return 0;
++}
++
+ int xe_gt_init_early(struct xe_gt *gt)
+ {
+ 	int err;
+@@ -394,7 +409,11 @@ int xe_gt_init_early(struct xe_gt *gt)
+ 	 */
+ 	xe_gt_mmio_init(gt);
  
--	ret = xe_gt_sriov_vf_bootstrap(gt);
--	if (ret)
--		return ret;
+-	return xe_uc_init_noalloc(&gt->uc);
++	err = xe_uc_init_noalloc(&gt->uc);
++	if (err)
++		return err;
++
++	return gt_init_mcr(gt);
+ }
+ 
+ static void dump_pat_on_error(struct xe_gt *gt)
+@@ -419,6 +438,18 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+ 		goto err_hw_fence_irq;
+ 	}
+ 
++	err = xe_uc_init(&gt->uc);
++	if (err)
++		goto err_force_wake;
++
++	err = xe_uc_init_hwconfig(&gt->uc);
++	if (err)
++		goto err_force_wake;
++
++	xe_gt_topology_init(gt);
++	xe_gt_mcr_init(gt);
++	xe_gt_enable_host_l2_vram(gt);
++
+ 	if (!xe_gt_is_media_type(gt)) {
+ 		err = xe_ggtt_init(gt_to_tile(gt)->mem.ggtt);
+ 		if (err)
+@@ -550,39 +581,6 @@ static int all_fw_domain_init(struct xe_gt *gt)
+ 	return err;
+ }
+ 
+-/*
+- * Initialize enough GT to be able to load GuC in order to obtain hwconfig and
+- * enable CTB communication.
+- */
+-int xe_gt_init_hwconfig(struct xe_gt *gt)
+-{
+-	unsigned int fw_ref;
+-	int err;
 -
--	ret = xe_gt_sriov_vf_query_config(gt);
--	if (ret)
--		return ret;
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+-	if (!fw_ref)
+-		return -ETIMEDOUT;
 -
- 	ret = xe_guc_hwconfig_init(guc);
- 	if (ret)
- 		return ret;
+-	xe_gt_mcr_init_early(gt);
+-	xe_pat_init(gt);
+-
+-	err = xe_uc_init(&gt->uc);
+-	if (err)
+-		goto out_fw;
+-
+-	err = xe_uc_init_hwconfig(&gt->uc);
+-	if (err)
+-		goto out_fw;
+-
+-	xe_gt_topology_init(gt);
+-	xe_gt_mcr_init(gt);
+-	xe_gt_enable_host_l2_vram(gt);
+-
+-out_fw:
+-	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+-	return err;
+-}
+-
+ int xe_gt_init(struct xe_gt *gt)
+ {
+ 	int err;
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 82b9b7f82fcab..0c026cc91ffe9 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -28,7 +28,6 @@ static inline bool xe_fault_inject_gt_reset(void)
+ }
+ 
+ struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
+-int xe_gt_init_hwconfig(struct xe_gt *gt);
+ int xe_gt_init_early(struct xe_gt *gt);
+ int xe_gt_init(struct xe_gt *gt);
+ void xe_gt_mmio_init(struct xe_gt *gt);
 -- 
 2.45.2
 
