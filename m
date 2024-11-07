@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58224D43360
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 13:55:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09D93D4335D
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 14:00:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2301410E854;
-	Thu,  7 Nov 2024 13:55:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kICrIcDk";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 480B510E854
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Nov 2024 13:55:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730987740; x=1762523740;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FXvGAh00Tgr3/rcOBQaSuPqks15I7y7trH3++fGj1sw=;
- b=kICrIcDkX0HQAbMCTUX2UhnZICuU4t2h9s3HcqCpwdzOmt05od1XJjke
- g19swpKZYv2EisRFysZDaHa+liSIJQtGPKuft/jKGzz5Wy0lXgte8DgBW
- creuPyJN8keubpBqpsPCTnlOPVsiqzWCRveya3f1U6lY1atI+B/GytQG2
- CcvcU6aFFOYn1S7xzYWNqGour6GKoo+ySNxDWd46HqHC0c6xOfanTzfdZ
- slnc5S7pRBPnlsFO2nwXv356cGtJ2hRsGqsG6nXMv0nsTOSDd9XHVCnd3
- UmEKl8IiT/SRRGgWXRhC3Df5jzWWtbfYhlz5C5RorB36C/yFgKs6wiu7P Q==;
-X-CSE-ConnectionGUID: BrKWWWzsQS2gZ9spbes/UQ==
-X-CSE-MsgGUID: 2TDIGvsMS1m+aN2H1hOx0w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="48289969"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="48289969"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 05:55:40 -0800
-X-CSE-ConnectionGUID: Tyu0gtVRSxCT2WOPdD/ufQ==
-X-CSE-MsgGUID: Lg8Mq+w9SKGgnQTXc3AvkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,266,1728975600"; d="scan'208";a="84708102"
-Received: from llaguna-dev.igk.intel.com (HELO localhost) ([10.91.214.40])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 05:55:38 -0800
-From: Lukasz Laguna <lukasz.laguna@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: michal.winiarski@intel.com, michal.wajdeczko@intel.com,
- matthew.brost@intel.com, lukasz.laguna@intel.com
-Subject: [PATCH v3 4/4] drm/xe/pf: Allow to view and replace VF LMEM and CCS
- state over debugfs
-Date: Thu,  7 Nov 2024 14:55:17 +0100
-Message-Id: <20241107135517.9516-5-lukasz.laguna@intel.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20241107135517.9516-1-lukasz.laguna@intel.com>
-References: <20241107135517.9516-1-lukasz.laguna@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD6D710E84C;
+	Thu,  7 Nov 2024 14:00:49 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0316D10E84C;
+ Thu,  7 Nov 2024 14:00:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PF=3A_Add_functions_?=
+ =?utf-8?q?to_save_and_restore_VF_LMEM_and_CCS_data_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lukasz Laguna" <lukasz.laguna@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 07 Nov 2024 14:00:49 -0000
+Message-ID: <173098804900.1422418.17827872212317735790@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241107135517.9516-1-lukasz.laguna@intel.com>
+In-Reply-To: <20241107135517.9516-1-lukasz.laguna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,360 +36,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For feature enabling and testing purposes, allow to save VF LMEM and CCS
-state and to replace it using debugfs blob file, but only under strict
-debug config.
+== Series Details ==
 
-Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |  78 +++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c | 205 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.h |   9 +
- 3 files changed, 292 insertions(+)
+Series: PF: Add functions to save and restore VF LMEM and CCS data (rev3)
+URL   : https://patchwork.freedesktop.org/series/140050/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-index 05df4ab3514b..001fc6b585ee 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-@@ -422,6 +422,76 @@ static const struct file_operations guc_state_ops = {
- 	.llseek		= default_llseek,
- };
- 
-+/*
-+ *      /sys/kernel/debug/dri/0/
-+ *      ├── gt0
-+ *      │   ├── vf1
-+ *      │   │   ├── lmem_state
-+ */
-+static ssize_t lmem_state_read(struct file *file, char __user *buf,
-+			       size_t count, loff_t *pos)
-+{
-+	struct dentry *dent = file_dentry(file);
-+	struct dentry *parent = dent->d_parent;
-+	struct xe_gt *gt = extract_gt(parent);
-+	unsigned int vfid = extract_vfid(parent);
-+
-+	return xe_gt_sriov_pf_migration_read_lmem_state(gt, vfid, buf, count, pos);
-+}
-+
-+static ssize_t lmem_state_write(struct file *file, const char __user *buf,
-+				size_t count, loff_t *pos)
-+{
-+	struct dentry *dent = file_dentry(file);
-+	struct dentry *parent = dent->d_parent;
-+	struct xe_gt *gt = extract_gt(parent);
-+	unsigned int vfid = extract_vfid(parent);
-+
-+	return xe_gt_sriov_pf_migration_write_lmem_state(gt, vfid, buf, count, pos);
-+}
-+
-+static const struct file_operations lmem_state_ops = {
-+	.owner		= THIS_MODULE,
-+	.read		= lmem_state_read,
-+	.write		= lmem_state_write,
-+	.llseek		= default_llseek,
-+};
-+
-+/*
-+ *      /sys/kernel/debug/dri/0/
-+ *      ├── gt0
-+ *      │   ├── vf1
-+ *      │   │   ├── ccs_state
-+ */
-+static ssize_t ccs_state_read(struct file *file, char __user *buf,
-+			      size_t count, loff_t *pos)
-+{
-+	struct dentry *dent = file_dentry(file);
-+	struct dentry *parent = dent->d_parent;
-+	struct xe_gt *gt = extract_gt(parent);
-+	unsigned int vfid = extract_vfid(parent);
-+
-+	return xe_gt_sriov_pf_migration_read_ccs_state(gt, vfid, buf, count, pos);
-+}
-+
-+static ssize_t ccs_state_write(struct file *file, const char __user *buf,
-+			       size_t count, loff_t *pos)
-+{
-+	struct dentry *dent = file_dentry(file);
-+	struct dentry *parent = dent->d_parent;
-+	struct xe_gt *gt = extract_gt(parent);
-+	unsigned int vfid = extract_vfid(parent);
-+
-+	return xe_gt_sriov_pf_migration_write_ccs_state(gt, vfid, buf, count, pos);
-+}
-+
-+static const struct file_operations ccs_state_ops = {
-+	.owner		= THIS_MODULE,
-+	.read		= ccs_state_read,
-+	.write		= ccs_state_write,
-+	.llseek		= default_llseek,
-+};
-+
- /*
-  *      /sys/kernel/debug/dri/0/
-  *      ├── gt0
-@@ -554,6 +624,14 @@ void xe_gt_sriov_pf_debugfs_register(struct xe_gt *gt, struct dentry *root)
- 			debugfs_create_file("config_blob",
- 					    IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV) ? 0600 : 0400,
- 					    vfdentry, NULL, &config_blob_ops);
-+			if (IS_DGFX(xe)) {
-+				debugfs_create_file("lmem_state",
-+						    IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV) ?
-+						    0600 : 0400, vfdentry, NULL, &lmem_state_ops);
-+				debugfs_create_file("ccs_state",
-+						    IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV) ?
-+						    0600 : 0400, vfdentry, NULL, &ccs_state_ops);
-+			}
- 		}
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
-index 1ce2c3c3db4e..d2797985e47b 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
-@@ -6,7 +6,9 @@
- #include <drm/drm_managed.h>
- 
- #include "abi/guc_actions_sriov_abi.h"
-+#include "instructions/xe_gpu_commands.h"
- #include "xe_bo.h"
-+#include "xe_gt_sriov_pf_config.h"
- #include "xe_gt_sriov_pf_helpers.h"
- #include "xe_gt_sriov_pf_migration.h"
- #include "xe_gt_sriov_printk.h"
-@@ -381,6 +383,209 @@ ssize_t xe_gt_sriov_pf_migration_write_guc_state(struct xe_gt *gt, unsigned int
- 
- 	return ret;
- }
-+
-+static ssize_t pf_read_lmem_state(struct xe_gt *gt, unsigned int vfid, bool ccs,
-+				  char __user *buf, size_t count, loff_t *pos)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	size_t lmem_size, chunk_size;
-+	struct xe_bo *smem_bo;
-+	struct dma_fence *fence;
-+	loff_t smem_bo_pos = 0;
-+	ssize_t ret;
-+
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-+	xe_gt_assert(gt, vfid != PFID);
-+	xe_gt_assert(gt, vfid <= xe_sriov_pf_get_totalvfs(gt_to_xe(gt)));
-+
-+	if (!pf_migration_supported(gt))
-+		return -ENOPKG;
-+
-+	lmem_size = xe_gt_sriov_pf_config_get_lmem(gt, vfid);
-+	if (!lmem_size)
-+		return -ENODATA;
-+
-+	chunk_size = min(count, (ccs ? xe_device_ccs_bytes(xe, lmem_size) : lmem_size) - *pos);
-+	if (!chunk_size)
-+		return 0;
-+
-+	smem_bo = xe_bo_create_pin_map(xe, NULL, NULL, PAGE_ALIGN(chunk_size), ttm_bo_type_kernel,
-+				      XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+				      XE_BO_FLAG_PINNED);
-+	if (IS_ERR(smem_bo))
-+		return PTR_ERR(smem_bo);
-+
-+	if (ccs)
-+		fence = xe_gt_sriov_pf_migration_save_lmem(gt, vfid, NULL, 0, smem_bo, 0,
-+							   *pos * NUM_BYTES_PER_CCS_BYTE(xe),
-+							   chunk_size * NUM_BYTES_PER_CCS_BYTE(xe));
-+	else
-+		fence = xe_gt_sriov_pf_migration_save_lmem(gt, vfid, smem_bo, 0, NULL, 0, *pos,
-+							   chunk_size);
-+
-+	ret = dma_fence_wait_timeout(fence, false, 5 * HZ);
-+	dma_fence_put(fence);
-+	if (!ret) {
-+		ret = -ETIME;
-+		goto err_smem_bo_put;
-+	}
-+
-+	ret = simple_read_from_buffer(buf, chunk_size, &smem_bo_pos, smem_bo->vmap.vaddr,
-+				      chunk_size);
-+	if (ret > 0) {
-+		if (ret != chunk_size)
-+			xe_gt_sriov_dbg(gt, "Failed to copy the entire chunk (copied bytes: %ld, expected: %lu)\n",
-+				ret, chunk_size);
-+		*pos +=	ret;
-+	}
-+
-+err_smem_bo_put:
-+	xe_bo_unpin_map_no_vm(smem_bo);
-+
-+	return ret;
-+}
-+
-+static ssize_t pf_write_lmem_state(struct xe_gt *gt, unsigned int vfid, bool ccs,
-+				   const char __user *buf, size_t count, loff_t *pos)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_bo *smem_bo;
-+	loff_t smem_bo_pos = 0;
-+	struct dma_fence *fence;
-+	ssize_t ret, err;
-+
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-+	xe_gt_assert(gt, vfid != PFID);
-+	xe_gt_assert(gt, vfid <= xe_sriov_pf_get_totalvfs(gt_to_xe(gt)));
-+
-+	if (!pf_migration_supported(gt))
-+		return -ENOPKG;
-+
-+	if (!xe_gt_sriov_pf_config_get_lmem(gt, vfid))
-+		return -ENOPKG;
-+
-+	smem_bo = xe_bo_create_pin_map(xe, NULL, NULL, PAGE_ALIGN(count), ttm_bo_type_kernel,
-+				      XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+				      XE_BO_FLAG_PINNED);
-+	if (IS_ERR(smem_bo))
-+		return PTR_ERR(smem_bo);
-+
-+	ret = simple_write_to_buffer(smem_bo->vmap.vaddr, count, &smem_bo_pos, buf, count);
-+	if (ret < 0)
-+		goto err_smem_bo_put;
-+	if (ret != count)
-+		xe_gt_sriov_dbg(gt, "Failed to copy the entire chunk (copied bytes: %ld, expected: %lu)\n",
-+				ret, count);
-+
-+	if (ccs)
-+		fence = xe_gt_sriov_pf_migration_restore_lmem(gt, vfid, NULL, 0, smem_bo, 0,
-+							      *pos * NUM_BYTES_PER_CCS_BYTE(xe),
-+							      ret * NUM_BYTES_PER_CCS_BYTE(xe));
-+	else
-+		fence = xe_gt_sriov_pf_migration_restore_lmem(gt, vfid, smem_bo, 0, NULL, 0, *pos,
-+							      ret);
-+
-+	err = dma_fence_wait_timeout(fence, false, 5 * HZ);
-+	dma_fence_put(fence);
-+	if (!err) {
-+		ret = -ETIME;
-+		goto err_smem_bo_put;
-+	}
-+
-+	*pos +=	ret;
-+
-+err_smem_bo_put:
-+	xe_bo_unpin_map_no_vm(smem_bo);
-+
-+	return ret;
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_migration_read_lmem_state() - Read a VF LMEM state.
-+ * @gt: the &xe_gt
-+ * @vfid: the VF identifier
-+ * @buf: the user space buffer to read to
-+ * @count: the maximum number of bytes to read
-+ * @pos: the current position in the buffer
-+ *
-+ * This function is for PF only.
-+ *
-+ * This function reads up to @count bytes from assigned to VF LMEM buffer
-+ * object at offset @pos into the user space address starting at @buf.
-+ *
-+ * Return: the number of bytes read or a negative error code on failure.
-+ */
-+ssize_t xe_gt_sriov_pf_migration_read_lmem_state(struct xe_gt *gt, unsigned int vfid,
-+						 char __user *buf, size_t count, loff_t *pos)
-+{
-+	return pf_read_lmem_state(gt, vfid, false, buf, count, pos);
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_migration_write_lmem_state() - Write a VF LMEM state.
-+ * @gt: the &xe_gt
-+ * @vfid: the VF identifier
-+ * @buf: the user space buffer with VF LMEM state
-+ * @count: the maximum number of bytes to write (in bytes)
-+ * @pos: the current position in the buffer
-+ *
-+ * This function is for PF only.
-+ *
-+ * This function reads @count bytes of the VF LMEM state stored at offset @pos
-+ * of the user space buffer @buf and writes it into a assigned to VF LMEM buffer
-+ * object.
-+ *
-+ * Return: the number of bytes used or a negative error code on failure.
-+ */
-+ssize_t xe_gt_sriov_pf_migration_write_lmem_state(struct xe_gt *gt, unsigned int vfid,
-+						  const char __user *buf, size_t count,
-+						  loff_t *pos)
-+{
-+	return pf_write_lmem_state(gt, vfid, false, buf, count, pos);
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_migration_read_ccs_state() - Read a VF CCS state.
-+ * @gt: the &xe_gt
-+ * @vfid: the VF identifier
-+ * @buf: the user space buffer to read to
-+ * @count: the maximum number of bytes to read
-+ * @pos: the current position in the buffer
-+ *
-+ * This function is for PF only.
-+ *
-+ * This function reads up to @count bytes of the VF CCS data at offset @pos
-+ * into the user space address starting at @buf.
-+ *
-+ * Return: the number of bytes read or a negative error code on failure.
-+ */
-+ssize_t xe_gt_sriov_pf_migration_read_ccs_state(struct xe_gt *gt, unsigned int vfid,
-+						char __user *buf, size_t count, loff_t *pos)
-+{
-+	return pf_read_lmem_state(gt, vfid, true, buf, count, pos);
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_migration_write_ccs_state() - Write a VF CCS state.
-+ * @gt: the &xe_gt
-+ * @vfid: the VF identifier
-+ * @buf: the user space buffer with VF CCS state
-+ * @count: the maximum number of bytes to write (in bytes)
-+ * @pos: the current position in the buffer
-+ *
-+ * This function is for PF only.
-+ *
-+ * This function reads @count bytes of the VF CCS state from the user space
-+ * address @buf at offset @pos and writes it into a device memory where VF CCS
-+ * is stored.
-+ *
-+ * Return: the number of bytes used or a negative error code on failure.
-+ */
-+ssize_t xe_gt_sriov_pf_migration_write_ccs_state(struct xe_gt *gt, unsigned int vfid,
-+						 const char __user *buf, size_t count, loff_t *pos)
-+{
-+	return pf_write_lmem_state(gt, vfid, true, buf, count, pos);
-+}
- #endif /* CONFIG_DEBUG_FS */
- 
- static struct dma_fence *pf_save_restore_lmem(struct xe_gt *gt, unsigned int vfid,
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.h
-index a4301574d92c..da1b067baf56 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.h
-@@ -28,6 +28,15 @@ ssize_t xe_gt_sriov_pf_migration_read_guc_state(struct xe_gt *gt, unsigned int v
- 						char __user *buf, size_t count, loff_t *pos);
- ssize_t xe_gt_sriov_pf_migration_write_guc_state(struct xe_gt *gt, unsigned int vfid,
- 						 const char __user *buf, size_t count);
-+ssize_t xe_gt_sriov_pf_migration_read_lmem_state(struct xe_gt *gt, unsigned int vfid,
-+						 char __user *buf, size_t count, loff_t *pos);
-+ssize_t xe_gt_sriov_pf_migration_write_lmem_state(struct xe_gt *gt, unsigned int vfid,
-+						  const char __user *buf, size_t count,
-+						  loff_t *pos);
-+ssize_t xe_gt_sriov_pf_migration_read_ccs_state(struct xe_gt *gt, unsigned int vfid,
-+						char __user *buf, size_t count, loff_t *pos);
-+ssize_t xe_gt_sriov_pf_migration_write_ccs_state(struct xe_gt *gt, unsigned int vfid,
-+						 const char __user *buf, size_t count, loff_t *pos);
- #endif
- 
- #endif
--- 
-2.40.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 6f358787ded2 drm-tip: 2024y-11m-07d-09h-07m-55s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/migrate: Add function for raw copy of VRAM and CCS
+Applying: drm/xe/pf: Add helper to retrieve VF's LMEM object
+Applying: drm/xe/pf: Add functions to save and restore VF LMEM and CCS data
+Applying: drm/xe/pf: Allow to view and replace VF LMEM and CCS state over debugfs
+
 
