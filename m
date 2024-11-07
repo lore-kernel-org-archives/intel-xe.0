@@ -4,57 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1441DD5D68B
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 21:38:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99550D5D68A
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 21:38:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB8BE10E8FE;
-	Thu,  7 Nov 2024 21:38:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68F3310E8F4;
+	Thu,  7 Nov 2024 21:38:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IqzEHNf7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lhcdTAj8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52F1E10E8F7;
- Thu,  7 Nov 2024 21:38:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E73FC10E8F4
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Nov 2024 21:38:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731015494; x=1762551494;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1rAZ5OBUwfih28MLFfqJAiRPnCNBGJ9+E6m+bzID0Uk=;
- b=IqzEHNf7Wi6unLSBWE8WWTaiY+BilR3jGkjjYzJuPkuQYFHATHhAsaAj
- mI8iNQFDDVhACntp0VG1IRyxyOIQf89nnfLVge+33krF3KPmMDxZoy9nR
- 2GzfKzvBFy/3j9USfhRASwDB+BqZdryDv5/texk27l6BS/9eVL+0iPKAE
- XIyHzp82xT6xZvy5bvYKuMp2ncOWNKmsSlUpQ0WqLN+Nl97RzQjNJHgBI
- kwExIqvXc8nQVPrPaQhxWEM6IL2kGSefVq+W2nWkkfEZm0aOiZmToiYZX
- ICD1SklUnVcTn/iWZbh9m9GpFbm93ZKPzmqFyzUIoEEFqhp5Vrqx2NMQG w==;
-X-CSE-ConnectionGUID: zhG9/dYwSKuy/U/pJ+jS3g==
-X-CSE-MsgGUID: gk4P7vkoT0m8jGiKXSeKUg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="56283051"
-X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="56283051"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 13:38:14 -0800
-X-CSE-ConnectionGUID: YTITAPCjTH2Zr53wGsrHjQ==
-X-CSE-MsgGUID: uE5FYAE8QMilJHRquVptVg==
+ t=1731015523; x=1762551523;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jleXRd965a8KsqF2KVhK1Qn89VuTKGPppsvcNP2qlK4=;
+ b=lhcdTAj8kv968bSxzEtKBuTGenEA1rPZ5py9It4vRAHt3guhZwIzlyg7
+ BdO0rqA1BpAng78unl5PeP04JvR5O2XQxrOxWxsgXMFB1pYoPFR9CUzIN
+ M1T0Xo3DWO4+ZCA1sVqiJhfaiCC2TUQNQe3lvctHmkBFUgOiZQtIQLXr8
+ DFOL4E264+zyxbaDSXVgZXOpKO0/LN9enLnFnZvgEtA3g23oAxaH/OrDS
+ U2ZRebTKtVeNf+/Sl6NBx93FsSmzLCAZ0Nm/cX4PvIy2iXbqtAH78UuD2
+ Sepb1AO7z085KTrs7fS2N2qX9olEIEdqr37XeMngCDa5zmTSZf81foQYG Q==;
+X-CSE-ConnectionGUID: 8aeOMpIjQ3qYR7Isa5VxOw==
+X-CSE-MsgGUID: StIGZNHdQCmBvLmJHt3u+Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30841308"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30841308"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 13:38:43 -0800
+X-CSE-ConnectionGUID: CuUrkIJ4TzOJgP85g4AhnQ==
+X-CSE-MsgGUID: Kx16N8KySj+7U2RJJE/FIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="85574940"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.233])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 13:38:12 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, Vinod Govindapillai <vinod.govindapillai@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI v2 v2 15/15] drm/i915/display: add mobile platform group
-Date: Thu,  7 Nov 2024 23:36:49 +0200
-Message-Id: <77d9cf006c6dde46c0ffdd35b2ecbc20cda447ef.1731015334.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1731015333.git.jani.nikula@intel.com>
-References: <cover.1731015333.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="89195605"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
+ by fmviesa003.fm.intel.com with ESMTP; 07 Nov 2024 13:38:42 -0800
+From: Zhanjun Dong <zhanjun.dong@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
+Subject: [PATCH v2] drm/xe/guc: Remove duplicate source field
+Date: Thu,  7 Nov 2024 13:38:41 -0800
+Message-Id: <20241107213841.436384-1-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,219 +64,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Identify mobile platforms separately in display, using the platform
-group mechanism. This enables dropping the dependency on i915_drv.h
-IS_MOBILE() from display code.
+xe_hw_engine_snapshot.source save the information of where data copied
+from. Because the 'source' field is already populated inside
+'matched_node' ptr hanging off xe_devcoredump_snapshot, which happenned
+either in guc_capture_extract_reglists or xe_engine_manual_capture, we
+can remove this redundant copy of 'source' from xe_hw_engine_snapshot.
 
-v2: Make snb_display static (kernel test robot)
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
 
-Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Changes from prior revs:
+ v2:- Update commit message
 ---
- .../drm/i915/display/intel_display_device.c   | 104 ++++++++++++------
- .../drm/i915/display/intel_display_device.h   |   1 +
- 2 files changed, 70 insertions(+), 35 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_capture.c     | 4 ++--
+ drivers/gpu/drm/xe/xe_hw_engine.c       | 2 --
+ drivers/gpu/drm/xe/xe_hw_engine_types.h | 2 --
+ 3 files changed, 2 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index 41df7a8fd32e..68cb7f9b9ef3 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -253,6 +253,7 @@ static const struct intel_display_device_info no_display = {};
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index cc72446a5de1..e15cf4600c7d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -1759,7 +1759,6 @@ void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm
+ 	if (!devcore_snapshot->matched_node)
+ 		return;
  
- static const struct platform_desc i830_desc = {
- 	PLATFORM(i830),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		I830_DISPLAY,
+-	xe_gt_assert(gt, snapshot->source <= XE_ENGINE_CAPTURE_SOURCE_GUC);
+ 	xe_gt_assert(gt, snapshot->hwe);
  
-@@ -271,6 +272,7 @@ static const struct platform_desc i845_desc = {
+ 	capture_class = xe_engine_class_to_guc_capture_class(snapshot->hwe->class);
+@@ -1768,7 +1767,8 @@ void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm
+ 		   snapshot->name ? snapshot->name : "",
+ 		   snapshot->logical_instance);
+ 	drm_printf(p, "\tCapture_source: %s\n",
+-		   snapshot->source == XE_ENGINE_CAPTURE_SOURCE_GUC ? "GuC" : "Manual");
++		   devcore_snapshot->matched_node->source == XE_ENGINE_CAPTURE_SOURCE_GUC ?
++		   "GuC" : "Manual");
+ 	drm_printf(p, "\tCoverage: %s\n", grptype[devcore_snapshot->matched_node->is_partial]);
+ 	drm_printf(p, "\tForcewake: domain 0x%x, ref %d\n",
+ 		   snapshot->forcewake.domain, snapshot->forcewake.ref);
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 1557acee3523..8bff624f78d2 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -872,7 +872,6 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe, struct xe_sched_job *job
+ 			struct xe_devcoredump *coredump = &xe->devcoredump;
  
- static const struct platform_desc i85x_desc = {
- 	PLATFORM(i85x),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		I830_DISPLAY,
+ 			coredump->snapshot.matched_node = node;
+-			snapshot->source = XE_ENGINE_CAPTURE_SOURCE_GUC;
+ 			xe_gt_dbg(hwe->gt, "Found and locked GuC-err-capture node");
+ 			return snapshot;
+ 		}
+@@ -880,7 +879,6 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe, struct xe_sched_job *job
  
-@@ -313,6 +315,7 @@ static const struct platform_desc i915g_desc = {
+ 	/* otherwise, do manual capture */
+ 	xe_engine_manual_capture(hwe, snapshot);
+-	snapshot->source = XE_ENGINE_CAPTURE_SOURCE_MANUAL;
+ 	xe_gt_dbg(hwe->gt, "Proceeding with manual engine snapshot");
  
- static const struct platform_desc i915gm_desc = {
- 	PLATFORM(i915gm),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN3_DISPLAY,
- 		I9XX_COLORS,
-@@ -337,6 +340,7 @@ static const struct platform_desc i945g_desc = {
- 
- static const struct platform_desc i945gm_desc = {
- 	PLATFORM(i915gm),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN3_DISPLAY,
- 		I9XX_COLORS,
-@@ -358,13 +362,21 @@ static const struct platform_desc g33_desc = {
- 	},
- };
- 
--static const struct platform_desc pnv_desc = {
-+static const struct intel_display_device_info pnv_display = {
-+	GEN3_DISPLAY,
-+	I9XX_COLORS,
-+	.has_hotplug = 1,
-+};
-+
-+static const struct platform_desc pnv_g_desc = {
- 	PLATFORM(pineview),
--	.info = &(const struct intel_display_device_info) {
--		GEN3_DISPLAY,
--		I9XX_COLORS,
--		.has_hotplug = 1,
--	},
-+	.info = &pnv_display,
-+};
-+
-+static const struct platform_desc pnv_m_desc = {
-+	PLATFORM(pineview),
-+	PLATFORM_GROUP(mobile),
-+	.info = &pnv_display,
- };
- 
- #define GEN4_DISPLAY \
-@@ -391,6 +403,7 @@ static const struct platform_desc i965g_desc = {
- 
- static const struct platform_desc i965gm_desc = {
- 	PLATFORM(i965gm),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN4_DISPLAY,
- 		.has_overlay = 1,
-@@ -414,6 +427,7 @@ static const struct platform_desc g45_desc = {
- static const struct platform_desc gm45_desc = {
- 	PLATFORM(gm45),
- 	PLATFORM_GROUP(g4x),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN4_DISPLAY,
- 		.supports_tv = 1,
-@@ -444,6 +458,7 @@ static const struct platform_desc ilk_d_desc = {
- 
- static const struct platform_desc ilk_m_desc = {
- 	PLATFORM(ironlake),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		ILK_DISPLAY,
- 
-@@ -451,38 +466,54 @@ static const struct platform_desc ilk_m_desc = {
- 	},
- };
- 
--static const struct platform_desc snb_desc = {
-+static const struct intel_display_device_info snb_display = {
-+	.has_hotplug = 1,
-+	I9XX_PIPE_OFFSETS,
-+	I9XX_CURSOR_OFFSETS,
-+	ILK_COLORS,
-+
-+	.__runtime_defaults.ip.ver = 6,
-+	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
-+	.__runtime_defaults.cpu_transcoder_mask =
-+	BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
-+	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
-+	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
-+};
-+
-+static const struct platform_desc snb_d_desc = {
- 	PLATFORM(sandybridge),
--	.info = &(const struct intel_display_device_info) {
--		.has_hotplug = 1,
--		I9XX_PIPE_OFFSETS,
--		I9XX_CURSOR_OFFSETS,
--		ILK_COLORS,
-+	.info = &snb_display,
-+};
- 
--		.__runtime_defaults.ip.ver = 6,
--		.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
--		.__runtime_defaults.cpu_transcoder_mask =
--		BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
--		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
--		.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
--	},
-+static const struct platform_desc snb_m_desc = {
-+	PLATFORM(sandybridge),
-+	PLATFORM_GROUP(mobile),
-+	.info = &snb_display,
-+};
-+
-+static const struct intel_display_device_info ivb_display = {
-+	.has_hotplug = 1,
-+	IVB_PIPE_OFFSETS,
-+	IVB_CURSOR_OFFSETS,
-+	IVB_COLORS,
-+
-+	.__runtime_defaults.ip.ver = 7,
-+	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
-+	.__runtime_defaults.cpu_transcoder_mask =
-+	BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
-+	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
-+	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
- };
- 
--static const struct platform_desc ivb_desc = {
-+static const struct platform_desc ivb_d_desc = {
- 	PLATFORM(ivybridge),
--	.info = &(const struct intel_display_device_info) {
--		.has_hotplug = 1,
--		IVB_PIPE_OFFSETS,
--		IVB_CURSOR_OFFSETS,
--		IVB_COLORS,
-+	.info = &ivb_display,
-+};
- 
--		.__runtime_defaults.ip.ver = 7,
--		.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
--		.__runtime_defaults.cpu_transcoder_mask =
--		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
--		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
--		.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
--	},
-+static const struct platform_desc ivb_m_desc = {
-+	PLATFORM(ivybridge),
-+	PLATFORM_GROUP(mobile),
-+	.info = &ivb_display,
- };
- 
- static const struct platform_desc vlv_desc = {
-@@ -1385,11 +1416,14 @@ static const struct {
- 	INTEL_I965GM_IDS(INTEL_DISPLAY_DEVICE, &i965gm_desc),
- 	INTEL_GM45_IDS(INTEL_DISPLAY_DEVICE, &gm45_desc),
- 	INTEL_G45_IDS(INTEL_DISPLAY_DEVICE, &g45_desc),
--	INTEL_PNV_IDS(INTEL_DISPLAY_DEVICE, &pnv_desc),
-+	INTEL_PNV_G_IDS(INTEL_DISPLAY_DEVICE, &pnv_g_desc),
-+	INTEL_PNV_M_IDS(INTEL_DISPLAY_DEVICE, &pnv_m_desc),
- 	INTEL_ILK_D_IDS(INTEL_DISPLAY_DEVICE, &ilk_d_desc),
- 	INTEL_ILK_M_IDS(INTEL_DISPLAY_DEVICE, &ilk_m_desc),
--	INTEL_SNB_IDS(INTEL_DISPLAY_DEVICE, &snb_desc),
--	INTEL_IVB_IDS(INTEL_DISPLAY_DEVICE, &ivb_desc),
-+	INTEL_SNB_D_IDS(INTEL_DISPLAY_DEVICE, &snb_d_desc),
-+	INTEL_SNB_M_IDS(INTEL_DISPLAY_DEVICE, &snb_m_desc),
-+	INTEL_IVB_D_IDS(INTEL_DISPLAY_DEVICE, &ivb_d_desc),
-+	INTEL_IVB_M_IDS(INTEL_DISPLAY_DEVICE, &ivb_m_desc),
- 	INTEL_HSW_IDS(INTEL_DISPLAY_DEVICE, &hsw_desc),
- 	INTEL_VLV_IDS(INTEL_DISPLAY_DEVICE, &vlv_desc),
- 	INTEL_BDW_IDS(INTEL_DISPLAY_DEVICE, &bdw_desc),
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 26b2c246b87d..4f098f5a5a40 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -24,6 +24,7 @@ struct pci_dev;
- #define INTEL_DISPLAY_PLATFORMS(func) \
- 	/* Platform group aliases */ \
- 	func(g4x) /* g45 and gm45 */ \
-+	func(mobile) /* mobile platforms */ \
- 	func(dgfx) /* discrete graphics */ \
- 	/* Display ver 2 */ \
- 	func(i830) \
+ 	return snapshot;
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+index 719f27ef00a5..e14bee95e364 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+@@ -165,8 +165,6 @@ enum xe_hw_engine_snapshot_source_id {
+ struct xe_hw_engine_snapshot {
+ 	/** @name: name of the hw engine */
+ 	char *name;
+-	/** @source: Data source, either manual or GuC */
+-	enum xe_hw_engine_snapshot_source_id source;
+ 	/** @hwe: hw engine */
+ 	struct xe_hw_engine *hwe;
+ 	/** @logical_instance: logical instance of this hw engine */
 -- 
-2.39.5
+2.34.1
 
