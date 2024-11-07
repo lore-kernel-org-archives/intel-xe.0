@@ -4,27 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E50AD5D689
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 20:10:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33AE9D5D688
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 20:14:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27F1C10E8C8;
-	Thu,  7 Nov 2024 20:10:31 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1FAA10E8C8;
- Thu,  7 Nov 2024 20:10:29 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0104510E17F;
+	Thu,  7 Nov 2024 20:14:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="fbMq8Mip";
+	dkim-atps=neutral
+Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 006D910E8C8
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Nov 2024 20:13:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=HBvcWM0gK7/kTdXAO4nzwP9CRBKS7Dzym5COEsSvMQ0=; b=fbMq8MipzULggm8bQ5DxzOoeTd
+ DZtHoCCFK5Yk9UGSWSFAsUgtBbpmaUKR59ya+JtpWzrpWa1+j3kRyd8bhqnZ21tadbfrm6sfELV5d
+ wj7Cnfwzyc09EcRSTmNW670JWoGeTx74+2P63voAIFKJQQDnFvCFABr9M4zF1ELDK4Zdg/mJccs+O
+ j2mqH8E9r0oSrVa3bwHAdyg7cK6PiZl4oVioJaLQF51Op6gmtnX2wr+MYlAHBx3pANkc4pVYZVfc/
+ Xo6D/2zgBpbk6KwSPi0+bxvxhZuY/unEAeztjELz2QI/RhJq/S5jtk/kBgWzfOwQlD0z/ekJFF4Ap
+ 1Hh0Rt3A==;
+Received: from willy by casper.infradead.org with local (Exim 4.98 #2 (Red Hat
+ Linux)) id 1t98t9-00000007KEO-2Ip2; Thu, 07 Nov 2024 20:13:55 +0000
+Date: Thu, 7 Nov 2024 20:13:55 +0000
+From: Matthew Wilcox <willy@infradead.org>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Alexander Viro <viro@zeniv.linux.org.uk>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org
+Subject: Re: [PATCH 1/4] iov_iter: Provide copy_iomem_to|from_iter()
+Message-ID: <Zy0fg6E7Fbmi6lsP@casper.infradead.org>
+References: <20241107163448.2123-1-michal.wajdeczko@intel.com>
+ <20241107163448.2123-2-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Prefer_GT_oriented_logs/?=
- =?utf-8?q?asserts_in_submit_code?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 07 Nov 2024 20:10:29 -0000
-Message-ID: <173101022998.1423870.5618856118073978950@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241107194741.2167-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20241107194741.2167-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241107163448.2123-2-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,38 +54,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Nov 07, 2024 at 05:34:45PM +0100, Michal Wajdeczko wrote:
+> +size_t copy_iomem_to_iter(const void __iomem *from, size_t offset,
+> +			  size_t bytes, struct iov_iter *i)
+> +{
+> +	unsigned char buf[SMP_CACHE_BYTES];
+> +	size_t progress = 0, copied, len;
+> +
+> +	from += offset;
+> +	while (bytes) {
+> +		len = min(bytes, sizeof(buf));
+> +		memcpy_fromio(buf, from + progress, len);
+> +		copied = _copy_to_iter(buf, len, i);
+> +		if (!copied)
+> +			break;
+> +		bytes -= copied;
+> +		progress += copied;
+> +	}
 
-Series: Prefer GT oriented logs/asserts in submit code
-URL   : https://patchwork.freedesktop.org/series/141063/
-State : success
+This seems like a rather sad implementation.  Why not:
 
-== Summary ==
+	if (WARN_ON_ONCE(i->data_source))
+		return 0;
+	if (user_backed_iter(i))
+		might_fault();
+	return iterate_and_advance(i, bytes, (void *)addr,
+			copy_iomem_to_iter, memcpy_iomem_to_iter);
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 85b1b17ed748e1f68ac83052916a95d624405c97
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
+along with
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+size_t memcpy_iomem_to_iter()
+{
+	memcpy_fromio(iter_to, from + progress, len);
+	return 0;
+}`
