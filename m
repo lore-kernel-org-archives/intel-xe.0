@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C556D5D689
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 20:33:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D257BD5D689
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 20:34:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA91010E8D9;
-	Thu,  7 Nov 2024 20:33:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="exigxw8a";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5EA410E8E1;
- Thu,  7 Nov 2024 20:33:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731011590; x=1762547590;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OXYVKSaPqf6G5rsUccGlDN3THqKeS5jUVLP6PU2P5TU=;
- b=exigxw8ao2pfSMThE7vRO3ujt15rnp69+Jj8e+iJvf52z8QvX9RLiNJp
- Ls1cD4sxuXMtrUfwz1yImsLCB0or/zdpu188vSQnW1QuCkVaToxU3Tj1v
- bIP6K4LuIsq49tCKkseV4IbEu2LhwSa7iQZw+ZqaaFjq2dFApPHwHIYLE
- V2dv5jWayj2x9o75vcpmNCOZ/BAgRv3mhSOlMfopkNc6FcJQLs9wFnDeI
- ttrpshZGcZi4nRw2N0Xn2s8lgQKG3SR6WdMZYxMs7KtlOsy6EBMF2zuBE
- x7YZBFtnWj75BH3N9ZFIHTfTRuVMHe5ohK29D119scHB42KINSSDkw/r9 A==;
-X-CSE-ConnectionGUID: WSt01bSASLeybNpL8VnOjQ==
-X-CSE-MsgGUID: 9hsH1RJQQpujCB8NdxGOUA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="30298105"
-X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="30298105"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 12:33:10 -0800
-X-CSE-ConnectionGUID: 2gDG/z+ASgizzpxWd3MO4Q==
-X-CSE-MsgGUID: ZStRQbYqSWWPeNZ6m/h1Ww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="108493882"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.233])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 12:33:08 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, imre.deak@intel.com, ville.syrjala@linux.intel.com
-Subject: [PATCH 8/8] drm/i915/dp: add comments about hooks called from MST
- stream encoders
-Date: Thu,  7 Nov 2024 22:32:21 +0200
-Message-Id: <80f8682fbc304ccf673af20abe562ce5aedb9219.1731011435.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1731011435.git.jani.nikula@intel.com>
-References: <cover.1731011435.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4AE610E20B;
+	Thu,  7 Nov 2024 20:34:39 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06BD010E20B;
+ Thu,  7 Nov 2024 20:34:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2402052926012481701=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Prefer_GT_oriented_logs/asserts_?=
+ =?utf-8?q?in_submit_code?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 07 Nov 2024 20:34:39 -0000
+Message-ID: <173101167902.1423870.12893720658723238525@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241107194741.2167-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20241107194741.2167-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,115 +36,155 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It would be best to have self-explanatory code, but lacking that, add
-some comments about the way the DDI encoder hooks get called from DP MST
-stream encoders.
+--===============2402052926012481701==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 51 ++++++++++++++++++------
- 1 file changed, 38 insertions(+), 13 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index c973b70185cf..9965d7603d6c 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2920,6 +2920,24 @@ static void intel_ddi_pre_enable_hdmi(struct intel_atomic_state *state,
- 				 crtc_state, conn_state);
- }
- 
-+/*
-+ * Note: Also called from the ->pre_enable of the first active MST stream
-+ * encoder on its primary encoder.
-+ *
-+ * When called from DP MST code:
-+ *
-+ * - conn_state will be NULL
-+ *
-+ * - encoder will be the primary encoder (i.e. mst->primary)
-+ *
-+ * - the main connector associated with this port won't be active or linked to a
-+ *   crtc
-+ *
-+ * - crtc_state will be the state of the first stream to be activated on this
-+ *   port, and it may not be the same stream that will be deactivated last, but
-+ *   each stream should have a state that is identical when it comes to the DP
-+ *   link parameteres
-+ */
- static void intel_ddi_pre_enable(struct intel_atomic_state *state,
- 				 struct intel_encoder *encoder,
- 				 const struct intel_crtc_state *crtc_state,
-@@ -2929,19 +2947,6 @@ static void intel_ddi_pre_enable(struct intel_atomic_state *state,
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum pipe pipe = crtc->pipe;
- 
--	/*
--	 * When called from DP MST code:
--	 * - conn_state will be NULL
--	 * - encoder will be the main encoder (ie. mst->primary)
--	 * - the main connector associated with this port
--	 *   won't be active or linked to a crtc
--	 * - crtc_state will be the state of the first stream to
--	 *   be activated on this port, and it may not be the same
--	 *   stream that will be deactivated last, but each stream
--	 *   should have a state that is identical when it comes to
--	 *   the DP link parameteres
--	 */
--
- 	drm_WARN_ON(&dev_priv->drm, crtc_state->has_pch_encoder);
- 
- 	intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, true);
-@@ -3191,6 +3196,11 @@ static void intel_ddi_post_disable_hdmi_or_sst(struct intel_atomic_state *state,
- 	}
- }
- 
-+/*
-+ * Note: Also called from the ->post_disable of the last active MST stream
-+ * encoder on its primary encoder. See also the comment for
-+ * intel_ddi_pre_enable().
-+ */
- static void intel_ddi_post_disable(struct intel_atomic_state *state,
- 				   struct intel_encoder *encoder,
- 				   const struct intel_crtc_state *old_crtc_state,
-@@ -3221,6 +3231,11 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
- 					  old_conn_state);
- }
- 
-+/*
-+ * Note: Also called from the ->post_pll_disable of the last active MST stream
-+ * encoder on its primary encoder. See also the comment for
-+ * intel_ddi_pre_enable().
-+ */
- static void intel_ddi_post_pll_disable(struct intel_atomic_state *state,
- 				       struct intel_encoder *encoder,
- 				       const struct intel_crtc_state *old_crtc_state,
-@@ -3558,6 +3573,11 @@ void intel_ddi_update_active_dpll(struct intel_atomic_state *state,
- 		intel_update_active_dpll(state, pipe_crtc, encoder);
- }
- 
-+/*
-+ * Note: Also called from the ->pre_pll_enable of the first active MST stream
-+ * encoder on its primary encoder. See also the comment for
-+ * intel_ddi_pre_enable().
-+ */
- static void
- intel_ddi_pre_pll_enable(struct intel_atomic_state *state,
- 			 struct intel_encoder *encoder,
-@@ -3996,6 +4016,11 @@ static void intel_ddi_read_func_ctl(struct intel_encoder *encoder,
- 	}
- }
- 
-+/*
-+ * Note: Also called from the ->get_config of the MST stream encoders on their
-+ * primary encoder, via the platform specific hooks here. See also the comment
-+ * for intel_ddi_pre_enable().
-+ */
- static void intel_ddi_get_config(struct intel_encoder *encoder,
- 				 struct intel_crtc_state *pipe_config)
- {
--- 
-2.39.5
+Series: Prefer GT oriented logs/asserts in submit code
+URL   : https://patchwork.freedesktop.org/series/141063/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2184-85b1b17ed748e1f68ac83052916a95d624405c97_BAT -> xe-pw-141063v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-141063v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-dg2-oem2:       [PASS][1] -> [INCOMPLETE][2] ([Intel XE#2874]) +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2184-85b1b17ed748e1f68ac83052916a95d624405c97/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141063v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_addfb_basic@bad-pitch-0:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#2496]) -> [PASS][4] +31 other tests pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2184-85b1b17ed748e1f68ac83052916a95d624405c97/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141063v1/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][5] ([Intel XE#1861]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2184-85b1b17ed748e1f68ac83052916a95d624405c97/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141063v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#2496]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+
+
+Build changes
+-------------
+
+  * Linux: xe-2184-85b1b17ed748e1f68ac83052916a95d624405c97 -> xe-pw-141063v1
+
+  IGT_8100: 84e42580f918da926481fd2fb37be01451d6ee9a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2184-85b1b17ed748e1f68ac83052916a95d624405c97: 85b1b17ed748e1f68ac83052916a95d624405c97
+  xe-pw-141063v1: 141063v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141063v1/index.html
+
+--===============2402052926012481701==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Prefer GT oriented logs/asserts in submit code</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141063/">https://patchwork.freedesktop.org/series/141063/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141063v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141063v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2184-85b1b17ed748e1f68ac83052916a95d624405c97_BAT -&gt; xe-pw-141063v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-141063v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2184-85b1b17ed748e1f68ac83052916a95d624405c97/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141063v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@bad-pitch-0:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2184-85b1b17ed748e1f68ac83052916a95d624405c97/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496">Intel XE#2496</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141063v1/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">PASS</a> +31 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2184-85b1b17ed748e1f68ac83052916a95d624405c97/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141063v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2184-85b1b17ed748e1f68ac83052916a95d624405c97 -&gt; xe-pw-141063v1</li>
+</ul>
+<p>IGT_8100: 84e42580f918da926481fd2fb37be01451d6ee9a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2184-85b1b17ed748e1f68ac83052916a95d624405c97: 85b1b17ed748e1f68ac83052916a95d624405c97<br />
+  xe-pw-141063v1: 141063v1</p>
+
+</body>
+</html>
+
+--===============2402052926012481701==--
