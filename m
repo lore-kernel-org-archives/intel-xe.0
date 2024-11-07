@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6389FD5D681
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 18:35:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE8A9D5D683
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 18:36:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15BC710E8C1;
-	Thu,  7 Nov 2024 18:35:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86A8210E8C1;
+	Thu,  7 Nov 2024 18:36:02 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66DFF10E8BD;
- Thu,  7 Nov 2024 18:35:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3AD110E8C1;
+ Thu,  7 Nov 2024 18:36:01 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/dmc=5Fwl=3A?=
- =?utf-8?q?_Fixes_and_enablement_for_Xe3=5FLPD_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/dmc=5Fwl=3A_Fixe?=
+ =?utf-8?q?s_and_enablement_for_Xe3=5FLPD_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 07 Nov 2024 18:35:31 -0000
-Message-ID: <173100453141.1423404.5189455692028771886@2413ebb6fbb6>
+Date: Thu, 07 Nov 2024 18:36:01 -0000
+Message-ID: <173100456179.1423348.16884255112279733473@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241107182921.102193-1-gustavo.sousa@intel.com>
 In-Reply-To: <20241107182921.102193-1-gustavo.sousa@intel.com>
@@ -44,30 +44,72 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/dmc_wl: Fixes and enablement for Xe3_LPD (rev3)
 URL   : https://patchwork.freedesktop.org/series/140283/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 85b1b17ed748 drm-tip: 2024y-11m-07d-16h-44m-13s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/dmc_wl: Use i915_mmio_reg_offset() instead of reg.reg
-Applying: drm/xe: Mimic i915 behavior for non-sleeping MMIO wait
-Applying: drm/i915/dmc_wl: Use non-sleeping variant of MMIO wait
-Applying: drm/i915/dmc_wl: Check for non-zero refcount in release work
-Applying: drm/i915/dmc_wl: Get wakelock when disabling dynamic DC states
-Applying: drm/i915/dmc_wl: Use sentinel item for range tables
-Applying: drm/i915/dmc_wl: Extract intel_dmc_wl_reg_in_range()
-Applying: drm/i915/dmc_wl: Rename lnl_wl_range to powered_off_ranges
-Applying: drm/i915/dmc_wl: Track registers touched by the DMC
-Applying: drm/i915/dmc_wl: Allow simpler syntax for single reg in range tables
-Applying: drm/i915/dmc_wl: Deal with existing references when disabling
-Applying: drm/i915/dmc_wl: Couple enable/disable with dynamic DC states
-Applying: drm/i915/dmc_wl: Add and use HAS_DMC_WAKELOCK()
-Applying: drm/i915/dmc_wl: Init only after we have runtime device info
-Applying: drm/i915/dmc_wl: Use HAS_DMC() in HAS_DMC_WAKELOCK()
-Applying: drm/i915/dmc_wl: Sanitize enable_dmc_wl according to hardware support
-Applying: drm/i915/dmc_wl: Do nothing until initialized
-Applying: drm/i915/xe3lpd: Use DMC wakelock by default
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2f25f61af1a89141a7d6b508dce93d82855b5672
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Thu Nov 7 15:27:23 2024 -0300
+
+    drm/i915/xe3lpd: Use DMC wakelock by default
+    
+    Although Bspec doesn't explicitly mentions that, as of Xe3_LPD, using
+    DMC wakelock is the officially recommended way of accessing registers
+    that would be off during DC5/DC6 and the legacy method (where the DMC
+    intercepts MMIO to wake up the hardware) is to be avoided.
+    
+    As such, update the driver to use the DMC wakelock by default starting
+    with Xe3_LPD. Since the feature is somewhat new to the driver, also
+    allow disabling it via a module parameter for debugging purposes.
+    
+    For that, make the existing parameter allow values -1 (per-chip
+    default), 0 (disabled) and 1 (enabled), similarly to what is done for
+    other parameters.
+    
+    v2:
+      - Describe -1 in the same area where 0 and 1 are described. (Luca)
+    
+    Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 85b1b17ed748e1f68ac83052916a95d624405c97 drm-intel
+8238085e6f46 drm/i915/dmc_wl: Use i915_mmio_reg_offset() instead of reg.reg
+4c6e899676d7 drm/xe: Mimic i915 behavior for non-sleeping MMIO wait
+59ee792f86f7 drm/i915/dmc_wl: Use non-sleeping variant of MMIO wait
+6fe4d1e08bd5 drm/i915/dmc_wl: Check for non-zero refcount in release work
+6ad84c1a879d drm/i915/dmc_wl: Get wakelock when disabling dynamic DC states
+dc64289bf910 drm/i915/dmc_wl: Use sentinel item for range tables
+303240c66902 drm/i915/dmc_wl: Extract intel_dmc_wl_reg_in_range()
+f0e1d4094508 drm/i915/dmc_wl: Rename lnl_wl_range to powered_off_ranges
+1c951efdb8f7 drm/i915/dmc_wl: Track registers touched by the DMC
+3b463fe8babd drm/i915/dmc_wl: Allow simpler syntax for single reg in range tables
+84f5fdd188a2 drm/i915/dmc_wl: Deal with existing references when disabling
+808e0a51129b drm/i915/dmc_wl: Couple enable/disable with dynamic DC states
+4dac5c0d026c drm/i915/dmc_wl: Add and use HAS_DMC_WAKELOCK()
+68d73856a91f drm/i915/dmc_wl: Init only after we have runtime device info
+2aa754996c7d drm/i915/dmc_wl: Use HAS_DMC() in HAS_DMC_WAKELOCK()
+-:23: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#23: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:150:
++#define HAS_DMC_WAKELOCK(i915)		(HAS_DMC(i915) && DISPLAY_VER(i915) >= 20)
+
+total: 0 errors, 0 warnings, 1 checks, 8 lines checked
+26dab0d98f28 drm/i915/dmc_wl: Sanitize enable_dmc_wl according to hardware support
+98ae1b18db0e drm/i915/dmc_wl: Do nothing until initialized
+2f25f61af1a8 drm/i915/xe3lpd: Use DMC wakelock by default
+-:35: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#35: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:127:
++intel_display_param_named_unsafe(enable_dmc_wl, int, 0400,
+ 	"Enable DMC wakelock "
+
+total: 0 errors, 0 warnings, 1 checks, 33 lines checked
 
 
