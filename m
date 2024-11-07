@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9691AD29FBC
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 02:28:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 608F1D5AE47
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Nov 2024 02:41:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DA2810E223;
-	Thu,  7 Nov 2024 02:28:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OXdoN0Ce";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFAFC10E221;
- Thu,  7 Nov 2024 02:28:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730946522; x=1762482522;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1uOFb+NojURTxv7UA4uX4TfY2pIL6KqXwKQ0CszcU4U=;
- b=OXdoN0Ce3U63tq7EiENqurrMidykWEPozwHTMaRLQmWAIn7aHCBk0UUU
- P9qf9UyHFspdl5nXifnyYgybpeCYrACRLuy084FVwm+LVQtsZB+9SKzrA
- Jgj4yJw7eIcQ+qfHsQFIfl1LmSFRvXHOY6P2L0hOMS65oHK7ycx/RXE4R
- 0/pMey7YRsXo1Wg2JkFCAEuOUxp5lxsmHkfRyjH1tko8d1us3RYj8c01n
- nj/kvN2UhZWXYI7Noj1s6lcgy7nssF7WZ7VMdBn8kgV89g17lL8nc2tuW
- Atkf7tsvqGN4x1VR0WWGrSX701S28iFAlNF/KfHLwnYSQYCZUPFlsUiT8 A==;
-X-CSE-ConnectionGUID: DZWkEenlR5OAAlnc/KyY6Q==
-X-CSE-MsgGUID: CxJZf1cLQ0aPdUKWOJbAnw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="30996923"
-X-IronPort-AV: E=Sophos;i="6.11,264,1725346800"; d="scan'208";a="30996923"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2024 18:28:41 -0800
-X-CSE-ConnectionGUID: WAqWT6aiT4ikeW8WeHMt5Q==
-X-CSE-MsgGUID: mGxOLLBBRHysvqLxs/pzhw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,264,1725346800"; d="scan'208";a="84981406"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa008.fm.intel.com with ESMTP; 06 Nov 2024 18:28:39 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, jani.nikula@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/hdcp: Handle HDCP Line Rekeying for HDCP 1.4
-Date: Thu,  7 Nov 2024 07:58:08 +0530
-Message-Id: <20241107022807.869744-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8D0E10E223;
+	Thu,  7 Nov 2024 02:41:17 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2032510E223;
+ Thu,  7 Nov 2024 02:41:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7018428124106961110=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Ensure_all_locks_relea?=
+ =?utf-8?q?sed_in_exec_IOCTL?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 07 Nov 2024 02:41:17 -0000
+Message-ID: <173094727711.1419905.8720862032239380868@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241106224944.30130-1-matthew.brost@intel.com>
+In-Reply-To: <20241106224944.30130-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,102 +36,226 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-TRANS_DDI_FUNC_CTL asks us to disable hdcp line rekeying when not in
-hdcp 2.2 and we are not using an hdmi transcoder and it need to be
-enabled when we are using an HDMI transcoder to enable HDCP 1.4.
-We use intel_de_rmw cycles to update TRANS_DDI_FUNC_CTL register so
-we cannot depend on the value being 0 by default everytime which calls
-for seprate handling of HDCP 1.4 case.
+--===============7018428124106961110==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---v2
--Use the exising function and modify it based on a bool rather than
-have a different function [Matt]
+== Series Details ==
 
---v3
--No need for kzalloc [Jani]
+Series: drm/xe: Ensure all locks released in exec IOCTL
+URL   : https://patchwork.freedesktop.org/series/141031/
+State : success
 
---v4
--i915_reg_t should not be pointer [Jani]
--use rekey_bit to ensure when writing to reg everything is initialized
+== Summary ==
 
-Bspec: 69964, 50493, 50054
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 37 ++++++++++++++---------
- 1 file changed, 22 insertions(+), 15 deletions(-)
+CI Bug Log - changes from xe-2180-5ce87c5ad2cbfd2b89a0347e4e4f75de2762b7a3_BAT -> xe-pw-141031v1_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 4e937fbba4d2..dbcdd1777fa3 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -32,27 +32,32 @@
- #define HDCP2_LC_RETRY_CNT			3
- 
- static void
--intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
--				      struct intel_hdcp *hdcp)
-+intel_hdcp_adjust_hdcp_line_rekeying(struct intel_encoder *encoder,
-+				     struct intel_hdcp *hdcp,
-+				     bool enable)
- {
- 	struct intel_display *display = to_intel_display(encoder);
-+	i915_reg_t rekey_reg;
-+	u32 rekey_bit = 0;
- 
- 	/* Here we assume HDMI is in TMDS mode of operation */
- 	if (encoder->type != INTEL_OUTPUT_HDMI)
- 		return;
- 
--	if (DISPLAY_VER(display) >= 30)
--		intel_de_rmw(display,
--			     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
--			     0, XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
--	else if (IS_DISPLAY_VERx100_STEP(display, 1401, STEP_B0, STEP_FOREVER) ||
--		 IS_DISPLAY_VERx100_STEP(display, 2000, STEP_B0, STEP_FOREVER))
--		intel_de_rmw(display,
--			     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
--			     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
--	else if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0, STEP_FOREVER))
--		intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp->cpu_transcoder),
--			     0, HDCP_LINE_REKEY_DISABLE);
-+	if (DISPLAY_VER(display) >= 30) {
-+		rekey_reg = TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder);
-+		rekey_bit = XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE;
-+	} else if (IS_DISPLAY_VERx100_STEP(display, 1401, STEP_B0, STEP_FOREVER) ||
-+		   IS_DISPLAY_VERx100_STEP(display, 2000, STEP_B0, STEP_FOREVER)) {
-+		rekey_reg = TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder);
-+		rekey_bit = TRANS_DDI_HDCP_LINE_REKEY_DISABLE;
-+	} else if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0, STEP_FOREVER)) {
-+		rekey_reg = MTL_CHICKEN_TRANS(hdcp->cpu_transcoder);
-+		rekey_bit = HDCP_LINE_REKEY_DISABLE;
-+	}
-+
-+	if (rekey_bit)
-+		intel_de_rmw(display, rekey_reg, rekey_bit, enable ? 0 : rekey_bit);
- }
- 
- static int intel_conn_to_vcpi(struct intel_atomic_state *state,
-@@ -1049,6 +1054,8 @@ static int intel_hdcp1_enable(struct intel_connector *connector)
- 		return ret;
- 	}
- 
-+	intel_hdcp_adjust_hdcp_line_rekeying(connector->encoder, hdcp, true);
-+
- 	/* Incase of authentication failures, HDCP spec expects reauth. */
- 	for (i = 0; i < tries; i++) {
- 		ret = intel_hdcp_auth(connector);
-@@ -2062,7 +2069,7 @@ static int _intel_hdcp2_enable(struct intel_atomic_state *state,
- 		    connector->base.base.id, connector->base.name,
- 		    hdcp->content_type);
- 
--	intel_hdcp_disable_hdcp_line_rekeying(connector->encoder, hdcp);
-+	intel_hdcp_adjust_hdcp_line_rekeying(connector->encoder, hdcp, false);
- 
- 	ret = hdcp2_authenticate_and_encrypt(state, connector);
- 	if (ret) {
--- 
-2.34.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-141031v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@bad-pitch-0:
+    - bat-adlp-7:         NOTRUN -> [DMESG-WARN][1] ([Intel XE#2496]) +31 other tests dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-adlp-7:         NOTRUN -> [SKIP][2] ([Intel XE#455])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html
+
+  * igt@xe_evict@evict-beng-small:
+    - bat-adlp-7:         NOTRUN -> [SKIP][3] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html
+
+  * igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:
+    - bat-adlp-7:         NOTRUN -> [SKIP][4] ([Intel XE#688]) +1 other test skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
+
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
+    - bat-adlp-7:         NOTRUN -> [SKIP][5] ([Intel XE#288]) +32 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
+    - bat-adlp-7:         NOTRUN -> [SKIP][6] ([Intel XE#2229]) +2 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-adlp-7:         NOTRUN -> [SKIP][7] ([Intel XE#1008])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-adlp-7:         NOTRUN -> [SKIP][8] ([Intel XE#2839] / [Intel XE#977])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-adlp-7:         NOTRUN -> [SKIP][9] ([Intel XE#2838] / [Intel XE#979])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-adlp-7:         NOTRUN -> [SKIP][10] ([Intel XE#979])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#1008]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2496]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#2839]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2839
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+
+
+Build changes
+-------------
+
+  * Linux: xe-2180-5ce87c5ad2cbfd2b89a0347e4e4f75de2762b7a3 -> xe-pw-141031v1
+
+  IGT_8100: 84e42580f918da926481fd2fb37be01451d6ee9a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2180-5ce87c5ad2cbfd2b89a0347e4e4f75de2762b7a3: 5ce87c5ad2cbfd2b89a0347e4e4f75de2762b7a3
+  xe-pw-141031v1: 141031v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/index.html
+
+--===============7018428124106961110==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Ensure all locks released in exec IOCTL</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141031/">https://patchwork.freedesktop.org/series/141031/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2180-5ce87c5ad2cbfd2b89a0347e4e4f75de2762b7a3_BAT -&gt; xe-pw-141031v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-141031v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@bad-pitch-0:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496">Intel XE#2496</a>) +31 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-beng-small:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008">Intel XE#1008</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2839">Intel XE#2839</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141031v1/bat-adlp-7/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2180-5ce87c5ad2cbfd2b89a0347e4e4f75de2762b7a3 -&gt; xe-pw-141031v1</li>
+</ul>
+<p>IGT_8100: 84e42580f918da926481fd2fb37be01451d6ee9a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2180-5ce87c5ad2cbfd2b89a0347e4e4f75de2762b7a3: 5ce87c5ad2cbfd2b89a0347e4e4f75de2762b7a3<br />
+  xe-pw-141031v1: 141031v1</p>
+
+</body>
+</html>
+
+--===============7018428124106961110==--
