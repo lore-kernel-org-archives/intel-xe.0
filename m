@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CACA9D5C0C3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6D27D5C0C2
 	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 13:03:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E599B10E995;
-	Fri,  8 Nov 2024 13:03:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 277CA10E999;
+	Fri,  8 Nov 2024 13:03:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f9vLSudW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZKQhtWD6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BAFC10E984;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1C3510E98A;
  Fri,  8 Nov 2024 13:03:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731070983; x=1762606983;
+ t=1731070984; x=1762606984;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qbC+v05l0Nw8rcZT6b+g9fYV7+aP0Qavjn1ycZRrbdk=;
- b=f9vLSudW4hAaVxPl3g5hcpoo63sQfYAMdKDStH+j35X5zMf+JifUQ57e
- uf7MB8TkqrAzald/husYnhkCrMv8qAL2LPKdEG9/9bjFsT8lZYUHlyyxT
- 4TWtt84xWxhgVb+zphLtsjMzKdPjLYcu0JNCo+GjuLeJhgcp4L8+w/hdM
- H8cWcBHBYMbLGFLJFc5DTw+8sgQNP4YkilacSAEnpTe4xZTOTHvYXogjc
- 6abx3nijXW0nPuSVb4+Cls9rX1klZTurX5GUmPClBRMTLGH540Rpo7MWE
- l60yynm4GYImSjoiLgAIYk5QC70rIerm7tFBUemat6yVYiSoA8dPzlp6d A==;
-X-CSE-ConnectionGUID: S4LyNuEMTS6XyWTBRJ7JUA==
-X-CSE-MsgGUID: SMN93kH9RX2UD6ZRMhIqxA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41513125"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41513125"
+ bh=gblMFi7k1ciNl7gDnJeDgveJoXp/r65q6MhSu3U/WNY=;
+ b=ZKQhtWD62rrSmHc9SIIVEKtPubx7s68BDguqqU2KxCem01lmcICe4tsE
+ kKuGKruMsQtrrBzH01Fzh4D6C3OctEHG+5yzlUyyMwyArHznqhwxkcHKP
+ /TuQgLmUoZUPj/aF6ewxM1vveTFC89E8k89ODz3kT1lXcXxnzQuD3F1BZ
+ w4QN2gqceRy5qd/PsrFmWw7DwDpRY0JsNt1C7bPiPo8aEh9SU5tjTiJun
+ Xua8kpHDiCBQXUD3YCEhy1A4UjGzfywTaV0iPOelfMTeFwUxF6RFZE/A5
+ kb2U9D6zZl5Xwmy2J6ZZ/zfH4+VoXEr5SJLtBAVYqoJ3L/wdgI3HP9s4s A==;
+X-CSE-ConnectionGUID: AZf3tkbRQZS1im3sjTAPyw==
+X-CSE-MsgGUID: HC4xlMCsTvWFEE3MvsJjlA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41513129"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41513129"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Nov 2024 05:03:03 -0800
-X-CSE-ConnectionGUID: BPXzdXVpQ+aKK2ei1KDkag==
-X-CSE-MsgGUID: 9uWjCNg8S0Cx/mBtbB8jmQ==
+X-CSE-ConnectionGUID: a9wVrwVVQL6t4z0J2Oq/OA==
+X-CSE-MsgGUID: OlEF1DG9SsyzrTDaq3KfcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,138,1728975600"; d="scan'208";a="85692475"
+X-IronPort-AV: E=Sophos;i="6.12,138,1728975600"; d="scan'208";a="85692480"
 Received: from ldmartin-desk2.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.110.232])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2024 05:02:47 -0800
+ 08 Nov 2024 05:02:51 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v4 04/15] drm/i915/dmc_wl: Check for non-zero refcount in
- release work
-Date: Fri,  8 Nov 2024 09:57:09 -0300
-Message-ID: <20241108130218.24125-5-gustavo.sousa@intel.com>
+Subject: [PATCH v4 06/15] drm/i915/dmc_wl: Use sentinel item for range tables
+Date: Fri,  8 Nov 2024 09:57:11 -0300
+Message-ID: <20241108130218.24125-7-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241108130218.24125-1-gustavo.sousa@intel.com>
 References: <20241108130218.24125-1-gustavo.sousa@intel.com>
@@ -69,45 +68,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When the DMC wakelock refcount reaches zero, we know that there are no
-users and that we can do the actual release operation on the hardware,
-which is queued with a delayed work. The idea of the delayed work is to
-avoid performing the release if a new lock user appears (i.e. refcount
-gets incremented) in a very short period of time.
-
-Based on the above, the release work should bail out if refcount is
-non-zero (meaning new lock users appeared in the meantime), but our
-current code actually does the opposite: it bails when refcount is zero.
-That means that the wakelock is not released when it should be; and
-that, when the work is not canceled in time, it ends up being releasing
-when it should not.
-
-Fix that by inverting the condition.
+We are currently using ARRAY_SIZE() to iterate address ranges in
+intel_dmc_wl_check_range(). In upcoming changes, we will be using more
+than a single table and will extract the range checking logic into a
+dedicated function that takes a range table as argument. As we will not
+able to use ARRAY_SIZE() then, let's make range tables contain a
+sentinel item at the end and use that instead of having to pass the size
+as parameter in this future function.
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc_wl.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index 9255505437d5..a0a060706305 100644
+index e837c39491bb..1753c334f3fd 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -76,8 +76,11 @@ static void intel_dmc_wl_work(struct work_struct *work)
+@@ -53,6 +53,7 @@ struct intel_dmc_wl_range {
  
- 	spin_lock_irqsave(&wl->lock, flags);
+ static struct intel_dmc_wl_range lnl_wl_range[] = {
+ 	{ .start = 0x60000, .end = 0x7ffff },
++	{},
+ };
  
--	/* Bail out if refcount reached zero while waiting for the spinlock */
--	if (!refcount_read(&wl->refcount))
-+	/*
-+	 * Bail out if refcount became non-zero while waiting for the spinlock,
-+	 * meaning that the lock is now taken again.
-+	 */
-+	if (refcount_read(&wl->refcount))
- 		goto out_unlock;
+ static void __intel_dmc_wl_release(struct intel_display *display)
+@@ -104,7 +105,7 @@ static bool intel_dmc_wl_check_range(i915_reg_t reg)
+ 	bool wl_needed = false;
+ 	u32 offset = i915_mmio_reg_offset(reg);
  
- 	__intel_de_rmw_nowl(display, DMC_WAKELOCK1_CTL, DMC_WAKELOCK_CTL_REQ, 0);
+-	for (i = 0; i < ARRAY_SIZE(lnl_wl_range); i++) {
++	for (i = 0; lnl_wl_range[i].start; i++) {
+ 		if (offset >= lnl_wl_range[i].start &&
+ 		    offset <= lnl_wl_range[i].end) {
+ 			wl_needed = true;
 -- 
 2.47.0
 
