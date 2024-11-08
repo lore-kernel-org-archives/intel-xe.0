@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EE27D5E12D
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 04:54:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1466D5E12A
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 05:33:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BF8C10E268;
-	Fri,  8 Nov 2024 04:54:17 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CC5E10E268;
- Fri,  8 Nov 2024 04:54:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A07310E920;
+	Fri,  8 Nov 2024 05:33:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cC56jASi";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CBB910E91E
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Nov 2024 05:33:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731044022; x=1762580022;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=P2JKwDK1s+AtI/l6AJ3Lvg6WfnLpLCYzsBh6bApUxTc=;
+ b=cC56jASiXpVRh1hbiRwmKDHuRoWx3LZ5smsg9Eluzx5Hggp5c2hPJmPZ
+ 9XrFQszxM8b2mJnei/ldhZfjmbt+nIeMndt3APJprqgja1R848ETgBfKM
+ BsZQEuOa871ACC2zWgQ22xu4bVldl/lW5WHopgLbnwVgINjiWutIonXCL
+ EwpnCM+AaE5QIYvpgkKNW7T37lansP4mX44nqlaaFNaRqJM3wVq0l7UCy
+ PdgoEJXgQUEVJFf3QjOOEK9UsVC5pJcAe20pvOhEKBHJ7CWYXBHffdrpv
+ WIS10n9xRLbAsSfB4U6KK+SzQESBseS189/uCLtqEJk6Iqp32r2Q88Scq g==;
+X-CSE-ConnectionGUID: w+TVZxJSTSaDKzM13cMt0w==
+X-CSE-MsgGUID: GvfSw0tjRmyfBlZKNnSZ0w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="30316579"
+X-IronPort-AV: E=Sophos;i="6.12,137,1728975600"; d="scan'208";a="30316579"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 21:33:42 -0800
+X-CSE-ConnectionGUID: 3OEtMcp9R3C2W/vlIHj+QQ==
+X-CSE-MsgGUID: t9Prda3sRvOC+mvEDFOMZg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,137,1728975600"; d="scan'208";a="90037099"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 21:33:43 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v4 0/3] drm/xe: Fix races on fdinfo
+Date: Thu,  7 Nov 2024 21:33:15 -0800
+Message-ID: <20241108053318.3483678-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.47.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?v3=2C1/2=5D_drm/xe=3A_improve_hibernation_on_igpu_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 08 Nov 2024 04:54:16 -0000
-Message-ID: <173104165617.1425511.3997312381520104850@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241106183514.4174086-1-matthew.brost@intel.com>
-In-Reply-To: <20241106183514.4174086-1-matthew.brost@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,38 +64,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The current reading of engine utilization has same races. This should
+fix most of them while also drastically reducing the update rate needed
+on "normal apps".
 
-Series: series starting with [v3,1/2] drm/xe: improve hibernation on igpu (rev2)
-URL   : https://patchwork.freedesktop.org/series/141021/
-State : success
+I left tests/xe_drm_fdinfo --r utilization-single-full-load-destroy-queue
+running on 2 systems and saw no failures after 100 iterations about
+execution cycles being 0.
 
-== Summary ==
+As for the patch to cache hwe, I'm still not sure it's worth. Tracing
+show_run_ticks() doesn't show noticeable performance improvement.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 5f445c6723de9ac7087170f4ee8fcb2050ab8346
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
+v4:
+  - Remove patches already applied for tracepoint, doc fix and where the
+    timestamp is accumulate
+  - Move wait to the beginning, to avoid impacting the read of gpu
+    timestamp vs pceu
+  - Refactor patch to extract force wake getting: this should make it
+    simpler to eventually cache hwe
+  - Add patch to cache hwe
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Lucas De Marchi (3):
+  drm/xe: Wait on killed exec queues
+  drm/xe: Sample gpu timestamp closer to exec queues
+  drm/xe: Cache hwe used for timestamp
 
+ drivers/gpu/drm/xe/xe_device.c       |  2 +
+ drivers/gpu/drm/xe/xe_device_types.h | 10 ++++
+ drivers/gpu/drm/xe/xe_drm_client.c   | 90 ++++++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_drm_client.h   |  2 +
+ drivers/gpu/drm/xe/xe_exec_queue.c   |  6 ++
+ 5 files changed, 86 insertions(+), 24 deletions(-)
+
+-- 
+2.47.0
 
