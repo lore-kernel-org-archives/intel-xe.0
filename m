@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DF64D5E148
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 08:51:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0F53D5E145
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 08:55:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B35110E939;
-	Fri,  8 Nov 2024 08:51:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cvyMvw6X";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E419510E937;
- Fri,  8 Nov 2024 08:51:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731055874; x=1762591874;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ChRXIwI2T/EMoXB7+pDb4Qovu1ELbEfUOFVYhGkSvmg=;
- b=cvyMvw6X3et4VDxfvOPrIa7oCuNZicVXJ1BQuavxGxrc+LmCzT9ST/a6
- AjtZXLXcbkWj8t/7bKzM7FWBjt8RDvXzaTejXPzmGlQwq8vHdPkxCP/65
- /nsDcer2HtXhpRTHBpQ8qtZbfiaveK6MrFQwM3LsCAF9wn4uSyzbgEFA5
- Ad7RD/TrtQvub/iswdB6RuxhT3xa5e+Ff628sh/qwx4TRoQAgDLblC5If
- x1Czikt0Yq3rMwh9+7ZbdkqjmW+stGYHgTCV0ZPIlmruIlZ2vMN+QP6O9
- KV5OtJ1kOhJ+pxFf4UMt0SQSDDmAsiHBWd+7GNBjDgFhOmZQuUFB31D9z g==;
-X-CSE-ConnectionGUID: JrCGLgzuTDGpQI/ChYB9oA==
-X-CSE-MsgGUID: kbtVhJJNQTun6sRRH7n9LQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="53490976"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="53490976"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2024 00:51:12 -0800
-X-CSE-ConnectionGUID: +6G/veDFR7WsQtTZq2fvDA==
-X-CSE-MsgGUID: zoHE9XMDRxe+MYZF3Yzzbg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,137,1728975600"; d="scan'208";a="90333558"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa005.jf.intel.com with ESMTP; 08 Nov 2024 00:51:09 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, sai.teja.pottumuttu@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/watermark: Modify latency programmed into
- PKG_C_LATENCY
-Date: Fri,  8 Nov 2024 14:20:49 +0530
-Message-Id: <20241108085048.919665-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD31610E938;
+	Fri,  8 Nov 2024 08:55:38 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38C3B10E938;
+ Fri,  8 Nov 2024 08:55:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/watermark?=
+ =?utf-8?q?=3A_Modify_latency_programmed_into_PKG=5FC=5FLATENCY?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 08 Nov 2024 08:55:37 -0000
+Message-ID: <173105613722.1426263.17332330728527499571@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241108085048.919665-1-suraj.kandpal@intel.com>
+In-Reply-To: <20241108085048.919665-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,91 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Increase the latency programmed into PKG_C_LATENCY latency to be
-a multiple of line time which is written into WM_LINETIME.
+== Series Details ==
 
---v2
--Fix commit subject line [Sai Teja]
--Use individual DISPLAY_VER checks instead of range [Sai Teja]
--Initialize max_linetime [Sai Teja]
+Series: drm/i915/watermark: Modify latency programmed into PKG_C_LATENCY
+URL   : https://patchwork.freedesktop.org/series/141092/
+State : success
 
-WA: 22020299601
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 26 ++++++++++++++------
- 1 file changed, 18 insertions(+), 8 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index d3bbf335c749..9e208db55abb 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2848,9 +2848,11 @@ static int skl_wm_add_affected_planes(struct intel_atomic_state *state,
-  * Program PKG_C_LATENCY Added Wake Time = 0
-  */
- static void
--skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
-+skl_program_dpkgc_latency(struct drm_i915_private *i915,
-+			  bool enable_dpkgc,
-+			  u32 max_linetime)
- {
--	u32 max_latency = 0;
-+	u32 adjusted_latency = 0;
- 	u32 clear = 0, val = 0;
- 	u32 added_wake_time = 0;
- 
-@@ -2858,18 +2860,23 @@ skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
- 		return;
- 
- 	if (enable_dpkgc) {
--		max_latency = skl_watermark_max_latency(i915, 1);
--		if (max_latency == 0)
--			max_latency = LNL_PKG_C_LATENCY_MASK;
-+		adjusted_latency = skl_watermark_max_latency(i915, 1);
-+		if (adjusted_latency == 0)
-+			adjusted_latency = LNL_PKG_C_LATENCY_MASK;
-+
-+		/* Wa_22020299601 */
-+		if (DISPLAY_VER(i915) == 20 || DISPLAY_VER(i915) == 30)
-+			adjusted_latency = max_linetime *
-+				DIV_ROUND_UP(adjusted_latency, max_linetime);
- 		added_wake_time = DSB_EXE_TIME +
- 			i915->display.sagv.block_time_us;
- 	} else {
--		max_latency = LNL_PKG_C_LATENCY_MASK;
-+		adjusted_latency = LNL_PKG_C_LATENCY_MASK;
- 		added_wake_time = 0;
- 	}
- 
- 	clear |= LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
--	val |= REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, max_latency);
-+	val |= REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, adjusted_latency);
- 	val |= REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_wake_time);
- 
- 	intel_uncore_rmw(&i915->uncore, LNL_PKG_C_LATENCY, clear, val);
-@@ -2882,6 +2889,7 @@ skl_compute_wm(struct intel_atomic_state *state)
- 	struct intel_crtc_state __maybe_unused *new_crtc_state;
- 	int ret, i;
- 	bool enable_dpkgc = false;
-+	u32 max_linetime = 0;
- 
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
- 		ret = skl_build_pipe_wm(state, crtc);
-@@ -2911,9 +2919,11 @@ skl_compute_wm(struct intel_atomic_state *state)
- 		     new_crtc_state->vrr.vmin == new_crtc_state->vrr.flipline) ||
- 		    !new_crtc_state->vrr.enable)
- 			enable_dpkgc = true;
-+
-+		max_linetime = max(new_crtc_state->linetime, max_linetime);
- 	}
- 
--	skl_program_dpkgc_latency(to_i915(state->base.dev), enable_dpkgc);
-+	skl_program_dpkgc_latency(to_i915(state->base.dev), enable_dpkgc, max_linetime);
- 
- 	skl_print_wm_changes(state);
- 
--- 
-2.34.1
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 5f445c6723de drm-tip: 2024y-11m-08d-03h-48m-35s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/watermark: Modify latency programmed into PKG_C_LATENCY
+
 
