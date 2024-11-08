@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F8EFD5C0C4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFEC6D5C0C8
 	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 13:03:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA3D010E98D;
-	Fri,  8 Nov 2024 13:03:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 873AC10E98A;
+	Fri,  8 Nov 2024 13:03:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gB5yhNHF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NeD41Irk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C10010E97C;
- Fri,  8 Nov 2024 13:03:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56ECC10E984;
+ Fri,  8 Nov 2024 13:03:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1731070983; x=1762606983;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=FxvNTMT+Q9Qw9Bhg4/VTAoriEYIOerqahKyQyOgo6w4=;
- b=gB5yhNHFKQxGEkWp4l7PVaVvFHE3vRXeUSuZuUYm3KrduWyqefj3I9NF
- fFEXDE/lGLvuV0BgAALf/t6ftlt110Xd38WVZ+h4wgkR6qi1xhtye2WRR
- VGSLnKuAZkw6k1xZGuPAZ5P7BIo5DYV1lYEuAU/BTMvSHfurI4fnJ6GQD
- qIcmI/zn2ToWI0OUYeUcUMh1+e8g2S15eZmdt+jGnh/s9S6qreLddpQUH
- gKO9OfpNaVJ1QwMhNvcFHgQ+y06eLGA7ppdDSHSBJZq6z27WPcd28AnKm
- Mga42t3RxZ8WOacgvFR7KgZNFuXrjmha9Kye5Z7tfAAbhwcjOizqFFkiK A==;
-X-CSE-ConnectionGUID: a9JC86cKQq63RcIITW1kAg==
-X-CSE-MsgGUID: sAHZCr8fSKy/AGzmrU+kAA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41513121"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41513121"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=UgXrwxXddIARR9qJIwEmLpZHuQCxADGfVyhuWKKzd64=;
+ b=NeD41IrkN+SggarV0rWo4Y5u/++ctJuJOTA9VaIwpucpK90ZXqk0A9a9
+ wWslufyZTTJnkCOT5J9LR+wdRoW8cfQFfmtyJW1xd+RsOAwuBKN6ucaTC
+ Csd8EKIW4s3d2/v140Fz+3LWepAdCOV6ekKAPOjOvD7WR3LI9nGbfiig5
+ KSnB1CWkxOsIb9MRLTJ0nvMze/cr3dwdDd/EW6dMnxGqzKCVLZB6C5B6q
+ BbgsCMjjCKFvT1uYr6N82feD5wXNIrU7ySM4bdOBH5Ig+pnH5IoArz462
+ tFec3milqrXW1p68u8jbe3xLeOgcf3KnCArSj4vVQu6OjsZTIQxqzV3Rh A==;
+X-CSE-ConnectionGUID: 2VgJXoQwR/isEkIm2DvzMg==
+X-CSE-MsgGUID: RiPl/HQKSZyoo3Yynn6zYw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41513126"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41513126"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2024 05:03:02 -0800
-X-CSE-ConnectionGUID: 7wEMTAN+RGq4EbjjilUaGg==
-X-CSE-MsgGUID: c6cZJP3YRaW6ij9EWSxqSA==
+ 08 Nov 2024 05:03:03 -0800
+X-CSE-ConnectionGUID: Br3y/KV5QFuabhPUghfCow==
+X-CSE-MsgGUID: U8JU4TCZSC+Emz2hEqkgVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,138,1728975600"; d="scan'208";a="85692462"
+X-IronPort-AV: E=Sophos;i="6.12,138,1728975600"; d="scan'208";a="85692477"
 Received: from ldmartin-desk2.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.110.232])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2024 05:02:41 -0800
+ 08 Nov 2024 05:02:49 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v4 00/15] drm/i915/dmc_wl: Fixes and enablement for Xe3_LPD
-Date: Fri,  8 Nov 2024 09:57:05 -0300
-Message-ID: <20241108130218.24125-1-gustavo.sousa@intel.com>
+Subject: [PATCH v4 05/15] drm/i915/dmc_wl: Get wakelock when disabling dynamic
+ DC states
+Date: Fri,  8 Nov 2024 09:57:10 -0300
+Message-ID: <20241108130218.24125-6-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241108130218.24125-1-gustavo.sousa@intel.com>
+References: <20241108130218.24125-1-gustavo.sousa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,44 +69,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Using the DMC wakelock is the official recommendation for Xe3_LPD. This
-series apply fixes to the current DMC wakelock implementation and
-enables it by default for Xe3_LPD. The series has been tested with a PTL
-machine.
+Bspec says that disabling dynamic DC states require taking the DMC
+wakelock to cause an DC exit before writing to DC_STATE_EN. Implement
+that.
 
-This is the v4 of the series. The only difference from v3 is that I decided to
-drop patches related to the usage of HAS_DMC() in HAS_DMC_WAKELOCK(), as they
-might need more polishing and will be send as a separate series. I believe we
-don't need to be blocked on those to get this series landed.
+In fact, testing on PTL revealed we end up failing to exit DC5/6 without
+this step.
 
-Gustavo Sousa (15):
-  drm/i915/dmc_wl: Use i915_mmio_reg_offset() instead of reg.reg
-  drm/xe: Mimic i915 behavior for non-sleeping MMIO wait
-  drm/i915/dmc_wl: Use non-sleeping variant of MMIO wait
-  drm/i915/dmc_wl: Check for non-zero refcount in release work
-  drm/i915/dmc_wl: Get wakelock when disabling dynamic DC states
-  drm/i915/dmc_wl: Use sentinel item for range tables
-  drm/i915/dmc_wl: Extract intel_dmc_wl_reg_in_range()
-  drm/i915/dmc_wl: Rename lnl_wl_range to powered_off_ranges
-  drm/i915/dmc_wl: Track registers touched by the DMC
-  drm/i915/dmc_wl: Allow simpler syntax for single reg in range tables
-  drm/i915/dmc_wl: Deal with existing references when disabling
-  drm/i915/dmc_wl: Couple enable/disable with dynamic DC states
-  drm/i915/dmc_wl: Add and use HAS_DMC_WAKELOCK()
-  drm/i915/dmc_wl: Sanitize enable_dmc_wl according to hardware support
-  drm/i915/xe3lpd: Use DMC wakelock by default
+Bspec: 71583
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ .../drm/i915/display/intel_display_power_well.c    | 10 +++++++---
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c        | 14 ++++++++++++--
+ drivers/gpu/drm/i915/display/intel_dmc_wl.h        |  2 ++
+ 3 files changed, 21 insertions(+), 5 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_de.h       |  10 +
- .../drm/i915/display/intel_display_device.h   |   1 +
- .../drm/i915/display/intel_display_params.c   |   6 +-
- .../drm/i915/display/intel_display_params.h   |   2 +-
- .../i915/display/intel_display_power_well.c   |  19 +-
- drivers/gpu/drm/i915/display/intel_dmc.c      |   4 -
- drivers/gpu/drm/i915/display/intel_dmc_wl.c   | 304 ++++++++++++++----
- drivers/gpu/drm/i915/display/intel_dmc_wl.h   |  13 +-
- .../drm/xe/compat-i915-headers/intel_uncore.h |  11 +-
- 9 files changed, 295 insertions(+), 75 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index f0131dd853de..0c77b6252969 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -994,10 +994,14 @@ void gen9_disable_dc_states(struct intel_display *display)
+ 		return;
+ 	}
+ 
+-	gen9_set_dc_state(display, DC_STATE_DISABLE);
+-
+-	if (!HAS_DISPLAY(display))
++	if (HAS_DISPLAY(display)) {
++		intel_dmc_wl_get_noreg(display);
++		gen9_set_dc_state(display, DC_STATE_DISABLE);
++		intel_dmc_wl_put_noreg(display);
++	} else {
++		gen9_set_dc_state(display, DC_STATE_DISABLE);
+ 		return;
++	}
+ 
+ 	intel_dmc_wl_disable(display);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+index a0a060706305..e837c39491bb 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+@@ -199,7 +199,7 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
+ 	if (!__intel_dmc_wl_supported(display))
+ 		return;
+ 
+-	if (!intel_dmc_wl_check_range(reg))
++	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(reg))
+ 		return;
+ 
+ 	spin_lock_irqsave(&wl->lock, flags);
+@@ -251,7 +251,7 @@ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg)
+ 	if (!__intel_dmc_wl_supported(display))
+ 		return;
+ 
+-	if (!intel_dmc_wl_check_range(reg))
++	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(reg))
+ 		return;
+ 
+ 	spin_lock_irqsave(&wl->lock, flags);
+@@ -272,3 +272,13 @@ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg)
+ out_unlock:
+ 	spin_unlock_irqrestore(&wl->lock, flags);
+ }
++
++void intel_dmc_wl_get_noreg(struct intel_display *display)
++{
++	intel_dmc_wl_get(display, INVALID_MMIO_REG);
++}
++
++void intel_dmc_wl_put_noreg(struct intel_display *display)
++{
++	intel_dmc_wl_put(display, INVALID_MMIO_REG);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.h b/drivers/gpu/drm/i915/display/intel_dmc_wl.h
+index adab51208d0a..9aa72a4bf153 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_wl.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.h
+@@ -27,5 +27,7 @@ void intel_dmc_wl_enable(struct intel_display *display);
+ void intel_dmc_wl_disable(struct intel_display *display);
+ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg);
+ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg);
++void intel_dmc_wl_get_noreg(struct intel_display *display);
++void intel_dmc_wl_put_noreg(struct intel_display *display);
+ 
+ #endif /* __INTEL_WAKELOCK_H__ */
 -- 
 2.47.0
 
