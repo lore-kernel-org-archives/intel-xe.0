@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D1B1D5E154
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 10:32:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5939AD5E155
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 10:33:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2CAE10E95F;
-	Fri,  8 Nov 2024 10:32:44 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35D6010E95F;
- Fri,  8 Nov 2024 10:32:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2154702960674221174=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915/mst=3A_cleanups=2C_rena?=
- =?utf-8?q?mes=2C_clarifications_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 268FD10E95F;
+	Fri,  8 Nov 2024 10:33:02 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XMkHTcI/";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0408910E95F
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Nov 2024 10:33:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731061980; x=1762597980;
+ h=date:from:to:cc:subject:message-id;
+ bh=iJTrGRukamsgAqCbzAy22vEIiyvUfs2kcHaDHFNp1Xg=;
+ b=XMkHTcI/RXtxiFZX+gjMJYP1TFx7v+sPNlmrm+mT5TuoiUg49Chpj8FI
+ Cy238krOzVWreUD4rcx9nOykDMys9g2bNXBYgOTLAc9B6Yl/9VQriCl1Y
+ XH330ylikXhOgHkDgPdj0wQGgAB5Atl0rI9LQVamKnKNQqGw0j3pLoGj8
+ LKdBSJf03ahPvPW7Q8WYu91ashDT8Cmg0ze+WwjxgHl5xNivGMrN6uHvw
+ vkm5XfAK5OFR/h7oNcR5dhg+85/YW6So3Ur5Y/2ZCfhxcdRF9MT9/KGDm
+ YwN5YPPXKmfAWR7I99i96XoPJjUURrkCq38tfGHpG/mi4++97SXIdEosZ A==;
+X-CSE-ConnectionGUID: jfugF+CMR5iMhPRy/KUByw==
+X-CSE-MsgGUID: A9/SzB31SUCwEfe1KfPGhA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="30339330"
+X-IronPort-AV: E=Sophos;i="6.12,137,1728975600"; d="scan'208";a="30339330"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2024 02:32:59 -0800
+X-CSE-ConnectionGUID: PQQTx+xwR4mC0X2R5bE+Tw==
+X-CSE-MsgGUID: DGMrLdLeRcCgbFcYQtj9qg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,137,1728975600"; d="scan'208";a="85484707"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+ by orviesa010.jf.intel.com with ESMTP; 08 Nov 2024 02:32:59 -0800
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1t9MIT-000rKA-0U;
+ Fri, 08 Nov 2024 10:32:57 +0000
+Date: Fri, 08 Nov 2024 18:32:00 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 08 Nov 2024 10:32:43 -0000
-Message-ID: <173106196321.1426263.16222053274822712713@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1731011435.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1731011435.git.jani.nikula@intel.com>
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 9e7aacd8402b88394e6a83cb242901fde77a1773
+Message-ID: <202411081852.b4NGciQn-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,188 +61,214 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2154702960674221174==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 9e7aacd8402b88394e6a83cb242901fde77a1773  drm/xe: Ensure all locks released in exec IOCTL
 
-== Series Details ==
+elapsed time: 728m
 
-Series: drm/i915/mst: cleanups, renames, clarifications (rev2)
-URL   : https://patchwork.freedesktop.org/series/141067/
-State : success
+configs tested: 192
+configs skipped: 5
 
-== Summary ==
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-CI Bug Log - changes from xe-2188-5f445c6723de9ac7087170f4ee8fcb2050ab8346_BAT -> xe-pw-141067v2_BAT
-====================================================
+tested configs:
+alpha                             allnoconfig    gcc-14.2.0
+alpha                            allyesconfig    clang-20
+arc                              allmodconfig    clang-20
+arc                               allnoconfig    gcc-14.2.0
+arc                              allyesconfig    clang-20
+arc                      axs103_smp_defconfig    clang-20
+arc                            hsdk_defconfig    clang-14
+arc                   randconfig-001-20241108    gcc-14.2.0
+arc                   randconfig-002-20241108    gcc-14.2.0
+arc                           tb10x_defconfig    gcc-14.2.0
+arc                    vdk_hs38_smp_defconfig    clang-20
+arm                              allmodconfig    clang-20
+arm                               allnoconfig    gcc-14.2.0
+arm                              allyesconfig    clang-20
+arm                            dove_defconfig    clang-14
+arm                          ep93xx_defconfig    clang-14
+arm                           h3600_defconfig    gcc-14.2.0
+arm                        keystone_defconfig    clang-20
+arm                           omap1_defconfig    gcc-14.2.0
+arm                   randconfig-001-20241108    gcc-14.2.0
+arm                   randconfig-002-20241108    gcc-14.2.0
+arm                   randconfig-003-20241108    gcc-14.2.0
+arm                   randconfig-004-20241108    gcc-14.2.0
+arm                           sama7_defconfig    clang-14
+arm                           sama7_defconfig    gcc-14.2.0
+arm64                            alldefconfig    gcc-14.2.0
+arm64                            allmodconfig    clang-20
+arm64                             allnoconfig    gcc-14.2.0
+arm64                 randconfig-001-20241108    gcc-14.2.0
+arm64                 randconfig-002-20241108    gcc-14.2.0
+arm64                 randconfig-003-20241108    gcc-14.2.0
+arm64                 randconfig-004-20241108    gcc-14.2.0
+csky                              allnoconfig    gcc-14.2.0
+csky                  randconfig-001-20241108    gcc-14.2.0
+csky                  randconfig-002-20241108    gcc-14.2.0
+hexagon                          allmodconfig    clang-20
+hexagon                           allnoconfig    gcc-14.2.0
+hexagon                          allyesconfig    clang-20
+hexagon               randconfig-001-20241108    gcc-14.2.0
+hexagon               randconfig-002-20241108    gcc-14.2.0
+i386                             allmodconfig    clang-19
+i386                              allnoconfig    clang-19
+i386                             allyesconfig    clang-19
+i386        buildonly-randconfig-001-20241108    clang-19
+i386        buildonly-randconfig-002-20241108    clang-19
+i386        buildonly-randconfig-003-20241108    clang-19
+i386        buildonly-randconfig-004-20241108    clang-19
+i386        buildonly-randconfig-005-20241108    clang-19
+i386        buildonly-randconfig-006-20241108    clang-19
+i386                                defconfig    clang-19
+i386                  randconfig-001-20241108    clang-19
+i386                  randconfig-002-20241108    clang-19
+i386                  randconfig-003-20241108    clang-19
+i386                  randconfig-004-20241108    clang-19
+i386                  randconfig-005-20241108    clang-19
+i386                  randconfig-006-20241108    clang-19
+i386                  randconfig-011-20241108    clang-19
+i386                  randconfig-012-20241108    clang-19
+i386                  randconfig-013-20241108    clang-19
+i386                  randconfig-014-20241108    clang-19
+i386                  randconfig-015-20241108    clang-19
+i386                  randconfig-016-20241108    clang-19
+loongarch                        allmodconfig    gcc-14.2.0
+loongarch                         allnoconfig    gcc-14.2.0
+loongarch                 loongson3_defconfig    gcc-14.2.0
+loongarch             randconfig-001-20241108    gcc-14.2.0
+loongarch             randconfig-002-20241108    gcc-14.2.0
+m68k                             alldefconfig    clang-20
+m68k                             allmodconfig    gcc-14.2.0
+m68k                              allnoconfig    gcc-14.2.0
+m68k                             allyesconfig    gcc-14.2.0
+m68k                          atari_defconfig    gcc-14.2.0
+m68k                            q40_defconfig    gcc-14.2.0
+microblaze                       allmodconfig    gcc-14.2.0
+microblaze                        allnoconfig    gcc-14.2.0
+microblaze                       allyesconfig    gcc-14.2.0
+mips                              allnoconfig    gcc-14.2.0
+mips                       bmips_be_defconfig    gcc-14.2.0
+mips                           ip30_defconfig    gcc-14.2.0
+mips                      maltaaprp_defconfig    clang-14
+mips                   sb1250_swarm_defconfig    clang-14
+nios2                         3c120_defconfig    gcc-14.2.0
+nios2                             allnoconfig    gcc-14.2.0
+nios2                 randconfig-001-20241108    gcc-14.2.0
+nios2                 randconfig-002-20241108    gcc-14.2.0
+openrisc                          allnoconfig    clang-20
+openrisc                         allyesconfig    gcc-14.2.0
+openrisc                            defconfig    gcc-12
+openrisc                       virt_defconfig    clang-14
+parisc                           allmodconfig    gcc-14.2.0
+parisc                            allnoconfig    clang-20
+parisc                           allyesconfig    gcc-14.2.0
+parisc                              defconfig    gcc-12
+parisc                randconfig-001-20241108    gcc-14.2.0
+parisc                randconfig-002-20241108    gcc-14.2.0
+powerpc                          allmodconfig    gcc-14.2.0
+powerpc                           allnoconfig    clang-20
+powerpc                          allyesconfig    gcc-14.2.0
+powerpc                    amigaone_defconfig    clang-14
+powerpc                      cm5200_defconfig    clang-20
+powerpc                      katmai_defconfig    gcc-14.2.0
+powerpc                   lite5200b_defconfig    clang-14
+powerpc                     mpc512x_defconfig    clang-14
+powerpc               mpc834x_itxgp_defconfig    clang-14
+powerpc                  mpc885_ads_defconfig    clang-20
+powerpc                      pasemi_defconfig    clang-20
+powerpc                      pmac32_defconfig    gcc-14.2.0
+powerpc               randconfig-001-20241108    gcc-14.2.0
+powerpc               randconfig-002-20241108    gcc-14.2.0
+powerpc               randconfig-003-20241108    gcc-14.2.0
+powerpc                     sequoia_defconfig    clang-14
+powerpc                     skiroot_defconfig    gcc-14.2.0
+powerpc                  storcenter_defconfig    clang-20
+powerpc                     taishan_defconfig    clang-20
+powerpc                     tqm8541_defconfig    clang-20
+powerpc64             randconfig-001-20241108    gcc-14.2.0
+powerpc64             randconfig-002-20241108    gcc-14.2.0
+powerpc64             randconfig-003-20241108    gcc-14.2.0
+riscv                            allmodconfig    gcc-14.2.0
+riscv                             allnoconfig    clang-20
+riscv                            allyesconfig    gcc-14.2.0
+riscv                               defconfig    gcc-12
+riscv                 randconfig-001-20241108    gcc-14.2.0
+riscv                 randconfig-002-20241108    gcc-14.2.0
+s390                             alldefconfig    clang-14
+s390                             allmodconfig    gcc-14.2.0
+s390                              allnoconfig    clang-20
+s390                             allyesconfig    gcc-14.2.0
+s390                                defconfig    gcc-12
+s390                  randconfig-001-20241108    gcc-14.2.0
+s390                  randconfig-002-20241108    gcc-14.2.0
+sh                               allmodconfig    gcc-14.2.0
+sh                                allnoconfig    gcc-14.2.0
+sh                               allyesconfig    gcc-14.2.0
+sh                                  defconfig    gcc-12
+sh                               j2_defconfig    clang-20
+sh                          kfr2r09_defconfig    clang-14
+sh                            migor_defconfig    clang-14
+sh                    randconfig-001-20241108    gcc-14.2.0
+sh                    randconfig-002-20241108    gcc-14.2.0
+sh                   rts7751r2dplus_defconfig    clang-20
+sh                          sdk7786_defconfig    clang-20
+sh                   sh7770_generic_defconfig    gcc-14.2.0
+sh                            titan_defconfig    clang-20
+sparc                            allmodconfig    gcc-14.2.0
+sparc64                             defconfig    gcc-12
+sparc64               randconfig-001-20241108    gcc-14.2.0
+sparc64               randconfig-002-20241108    gcc-14.2.0
+um                               allmodconfig    clang-20
+um                                allnoconfig    clang-20
+um                               allyesconfig    clang-20
+um                                  defconfig    gcc-12
+um                             i386_defconfig    gcc-12
+um                    randconfig-001-20241108    gcc-14.2.0
+um                    randconfig-002-20241108    gcc-14.2.0
+um                           x86_64_defconfig    gcc-12
+x86_64                            allnoconfig    clang-19
+x86_64                           allyesconfig    clang-19
+x86_64      buildonly-randconfig-001-20241108    clang-19
+x86_64      buildonly-randconfig-002-20241108    clang-19
+x86_64      buildonly-randconfig-003-20241108    clang-19
+x86_64      buildonly-randconfig-004-20241108    clang-19
+x86_64      buildonly-randconfig-005-20241108    clang-19
+x86_64      buildonly-randconfig-006-20241108    clang-19
+x86_64                              defconfig    clang-19
+x86_64                                  kexec    clang-19
+x86_64                                  kexec    gcc-12
+x86_64                randconfig-001-20241108    clang-19
+x86_64                randconfig-002-20241108    clang-19
+x86_64                randconfig-003-20241108    clang-19
+x86_64                randconfig-004-20241108    clang-19
+x86_64                randconfig-005-20241108    clang-19
+x86_64                randconfig-006-20241108    clang-19
+x86_64                randconfig-011-20241108    clang-19
+x86_64                randconfig-012-20241108    clang-19
+x86_64                randconfig-013-20241108    clang-19
+x86_64                randconfig-014-20241108    clang-19
+x86_64                randconfig-015-20241108    clang-19
+x86_64                randconfig-016-20241108    clang-19
+x86_64                randconfig-071-20241108    clang-19
+x86_64                randconfig-072-20241108    clang-19
+x86_64                randconfig-073-20241108    clang-19
+x86_64                randconfig-074-20241108    clang-19
+x86_64                randconfig-075-20241108    clang-19
+x86_64                randconfig-076-20241108    clang-19
+x86_64                               rhel-8.3    gcc-12
+xtensa                            allnoconfig    gcc-14.2.0
+xtensa                generic_kc705_defconfig    clang-20
+xtensa                  nommu_kc705_defconfig    gcc-14.2.0
+xtensa                randconfig-001-20241108    gcc-14.2.0
+xtensa                randconfig-002-20241108    gcc-14.2.0
+xtensa                         virt_defconfig    clang-14
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-141067v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@bad-pitch-0:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#2496]) +31 other tests dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2188-5f445c6723de9ac7087170f4ee8fcb2050ab8346/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
-
-  * igt@xe_evict@evict-beng-small:
-    - bat-adlp-7:         NOTRUN -> [SKIP][3] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/bat-adlp-7/igt@xe_evict@evict-beng-small.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
-    - bat-adlp-7:         NOTRUN -> [SKIP][4] ([Intel XE#288]) +32 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-dg2-oem2:       [PASS][5] -> [INCOMPLETE][6] ([Intel XE#2874]) +1 other test incomplete
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2188-5f445c6723de9ac7087170f4ee8fcb2050ab8346/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-7:         NOTRUN -> [SKIP][7] ([Intel XE#2229])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-adlp-7:         [INCOMPLETE][8] ([Intel XE#2874]) -> [PASS][9] +1 other test pass
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2188-5f445c6723de9ac7087170f4ee8fcb2050ab8346/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2496]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496
-  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-
-
-Build changes
--------------
-
-  * Linux: xe-2188-5f445c6723de9ac7087170f4ee8fcb2050ab8346 -> xe-pw-141067v2
-
-  IGT_8100: 84e42580f918da926481fd2fb37be01451d6ee9a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2188-5f445c6723de9ac7087170f4ee8fcb2050ab8346: 5f445c6723de9ac7087170f4ee8fcb2050ab8346
-  xe-pw-141067v2: 141067v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/index.html
-
---===============2154702960674221174==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/mst: cleanups, renames, clarifications (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141067/">https://patchwork.freedesktop.org/series/141067/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2188-5f445c6723de9ac7087170f4ee8fcb2050ab8346_BAT -&gt; xe-pw-141067v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-141067v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@bad-pitch-0:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2188-5f445c6723de9ac7087170f4ee8fcb2050ab8346/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496">Intel XE#2496</a>) +31 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-small:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/bat-adlp-7/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2188-5f445c6723de9ac7087170f4ee8fcb2050ab8346/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2188-5f445c6723de9ac7087170f4ee8fcb2050ab8346/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141067v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2188-5f445c6723de9ac7087170f4ee8fcb2050ab8346 -&gt; xe-pw-141067v2</li>
-</ul>
-<p>IGT_8100: 84e42580f918da926481fd2fb37be01451d6ee9a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2188-5f445c6723de9ac7087170f4ee8fcb2050ab8346: 5f445c6723de9ac7087170f4ee8fcb2050ab8346<br />
-  xe-pw-141067v2: 141067v2</p>
-
-</body>
-</html>
-
---===============2154702960674221174==--
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
