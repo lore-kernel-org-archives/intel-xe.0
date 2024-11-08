@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB625D6408B
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 21:27:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EC6FD64098
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 21:47:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91D2910E190;
-	Fri,  8 Nov 2024 21:27:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iTg657cj";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E08C10E190
- for <Intel-Xe@lists.freedesktop.org>; Fri,  8 Nov 2024 21:27:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731101258; x=1762637258;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=46mhFy5ycWsX0L/CiMJqSx71b+UmqGM1Tth70PJ5t0M=;
- b=iTg657cjnPYA0r15W7UvTOopH1M34MTTBV/Xi7ewpi/BLRLV+7C8iq6h
- p4MV/EKrgSZE35voGew37HdV5sCq0W8aM/JcXjwhIc8HvSrRZdiruPjAt
- LwLabvmzYq/bhnO8rYDWugxDQQdtwJYNX4zqcL6hOiHtbw4+SzjeGJp7F
- ZD3qsXUM+0CK/LNeoOOUyD8opViogLJpdbXdLWNSGnW/sWqBVZ3NJiR2P
- yNKYIiQBrFpg4cgtVWFO/h3qo6PZbaTIzoPp37Q2xWa3hUV74eIRmSZr/
- QcIyIRKboYfGPzgGBTd/IEplgDaB+1n2U7mnifpj+amEt1J3PyvqqpwI5 A==;
-X-CSE-ConnectionGUID: 1W/Ls9SOQCy3XlA25yAqcA==
-X-CSE-MsgGUID: xV0UezrKTaehQkk/b24MDg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30854865"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30854865"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2024 13:27:38 -0800
-X-CSE-ConnectionGUID: aprT5g+kQu20Pqk76NbLtw==
-X-CSE-MsgGUID: 0WUD9lcYR6eUcqoaTYezkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,139,1728975600"; d="scan'208";a="85744261"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by orviesa010.jf.intel.com with ESMTP; 08 Nov 2024 13:27:38 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-Xe@Lists.FreeDesktop.Org
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH 2/2] drm/xe/guc: Support crash dump notification from GuC
-Date: Fri,  8 Nov 2024 13:27:37 -0800
-Message-ID: <20241108212737.2044007-3-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241108212737.2044007-1-John.C.Harrison@Intel.com>
-References: <20241108212737.2044007-1-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F84310E29B;
+	Fri,  8 Nov 2024 21:47:37 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DA7610EA37;
+ Fri,  8 Nov 2024 21:47:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0569053075231929341=="
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/2=5D_p?=
+ =?utf-8?q?latform/x86/intel/pmt=3A_allow_user_offset_for_PMT_callbacks?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 08 Nov 2024 21:47:35 -0000
+Message-ID: <173110245557.1429282.1948838644442995554@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241108201955.2048085-1-michael.j.ruhl@intel.com>
+In-Reply-To: <20241108201955.2048085-1-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,67 +36,155 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+--===============0569053075231929341==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Add support for the two crash dump notifications from GuC. Either one
-means GuC is toast, so just capture state trigger a reset.
+== Series Details ==
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/xe/xe_guc_ct.c | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Series: series starting with [1/2] platform/x86/intel/pmt: allow user offset for PMT callbacks
+URL   : https://patchwork.freedesktop.org/series/141118/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 63bd91963eb1..7eb175a0b874 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -54,6 +54,7 @@ enum {
- 	CT_DEAD_PARSE_G2H_UNKNOWN,		/* 0x1000 */
- 	CT_DEAD_PARSE_G2H_ORIGIN,		/* 0x2000 */
- 	CT_DEAD_PARSE_G2H_TYPE,			/* 0x4000 */
-+	CT_DEAD_CRASH,				/* 0x8000 */
- };
- 
- static void ct_dead_worker_func(struct work_struct *w);
-@@ -1120,6 +1121,24 @@ static int parse_g2h_event(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 	return 0;
- }
- 
-+static int guc_crash_process_msg(struct xe_guc_ct *ct, u32 action)
-+{
-+	struct xe_gt *gt = ct_to_gt(ct);
-+
-+	if (action == XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED)
-+		xe_gt_err(gt, "GuC Crash dump notification\n");
-+	else if (action == XE_GUC_ACTION_NOTIFY_EXCEPTION)
-+		xe_gt_err(gt, "GuC Exception notification\n");
-+	else
-+		xe_gt_err(gt, "Unknown GuC crash notification: 0x%04X\n", action);
-+
-+	CT_DEAD(ct, NULL, CRASH);
-+
-+	kick_reset(ct);
-+
-+	return 0;
-+}
-+
- static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
- {
- 	struct xe_gt *gt =  ct_to_gt(ct);
-@@ -1294,6 +1313,10 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 	case GUC_ACTION_GUC2PF_ADVERSE_EVENT:
- 		ret = xe_gt_sriov_pf_monitor_process_guc2pf(gt, hxg, hxg_len);
- 		break;
-+	case XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED:
-+	case XE_GUC_ACTION_NOTIFY_EXCEPTION:
-+		ret = guc_crash_process_msg(ct, action);
-+		break;
- 	default:
- 		xe_gt_err(gt, "unexpected G2H action 0x%04x\n", action);
- 	}
--- 
-2.47.0
+== Summary ==
 
+CI Bug Log - changes from xe-2192-3bd35b8c2fe7a3a8a31d5d619ff190e06b66af0e_BAT -> xe-pw-141118v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-141118v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-adlp-7:         [PASS][1] -> [INCOMPLETE][2] ([Intel XE#2874]) +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2192-3bd35b8c2fe7a3a8a31d5d619ff190e06b66af0e/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141118v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-lnl-1:          [FAIL][3] ([Intel XE#886]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2192-3bd35b8c2fe7a3a8a31d5d619ff190e06b66af0e/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141118v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][5] ([Intel XE#1861]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2192-3bd35b8c2fe7a3a8a31d5d619ff190e06b66af0e/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141118v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+
+
+Build changes
+-------------
+
+  * Linux: xe-2192-3bd35b8c2fe7a3a8a31d5d619ff190e06b66af0e -> xe-pw-141118v1
+
+  IGT_8101: 1235576931b5abdcb2c755672d194fb540fa6fb1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2192-3bd35b8c2fe7a3a8a31d5d619ff190e06b66af0e: 3bd35b8c2fe7a3a8a31d5d619ff190e06b66af0e
+  xe-pw-141118v1: 141118v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141118v1/index.html
+
+--===============0569053075231929341==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] platform/x86/intel/pmt: allow user offset for PMT callbacks</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141118/">https://patchwork.freedesktop.org/series/141118/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141118v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141118v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2192-3bd35b8c2fe7a3a8a31d5d619ff190e06b66af0e_BAT -&gt; xe-pw-141118v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-141118v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2192-3bd35b8c2fe7a3a8a31d5d619ff190e06b66af0e/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141118v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2192-3bd35b8c2fe7a3a8a31d5d619ff190e06b66af0e/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141118v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2192-3bd35b8c2fe7a3a8a31d5d619ff190e06b66af0e/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141118v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2192-3bd35b8c2fe7a3a8a31d5d619ff190e06b66af0e -&gt; xe-pw-141118v1</li>
+</ul>
+<p>IGT_8101: 1235576931b5abdcb2c755672d194fb540fa6fb1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2192-3bd35b8c2fe7a3a8a31d5d619ff190e06b66af0e: 3bd35b8c2fe7a3a8a31d5d619ff190e06b66af0e<br />
+  xe-pw-141118v1: 141118v1</p>
+
+</body>
+</html>
+
+--===============0569053075231929341==--
