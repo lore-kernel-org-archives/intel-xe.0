@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B6F7D5E129
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 04:37:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD250D5E12A
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 04:37:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC56D10E90A;
-	Fri,  8 Nov 2024 04:37:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8756210E90A;
+	Fri,  8 Nov 2024 04:37:45 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3191410E345;
- Fri,  8 Nov 2024 04:37:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8837310E345;
+ Fri,  8 Nov 2024 04:37:43 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5Bv3=2C1/2=5D_drm/xe=3A_improve_hibernation_on_igpu_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5Bv?=
+ =?utf-8?q?3=2C1/2=5D_drm/xe=3A_improve_hibernation_on_igpu_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 08 Nov 2024 04:37:29 -0000
-Message-ID: <173104064919.1425512.4400834780247801428@2413ebb6fbb6>
+Date: Fri, 08 Nov 2024 04:37:43 -0000
+Message-ID: <173104066355.1425511.12994523320275772699@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241106183514.4174086-1-matthew.brost@intel.com>
 In-Reply-To: <20241106183514.4174086-1-matthew.brost@intel.com>
@@ -44,14 +44,48 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [v3,1/2] drm/xe: improve hibernation on igpu (rev2)
 URL   : https://patchwork.freedesktop.org/series/141021/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5f445c6723de drm-tip: 2024y-11m-08d-03h-48m-35s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: improve hibernation on igpu
-Applying: drm/xe: Clear GGTT in xe_bo_restore_kernel
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1c01aa109fd387a258df2c469317782c54158448
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Wed Nov 6 10:35:14 2024 -0800
+
+    drm/xe: Clear GGTT in xe_bo_restore_kernel
+    
+    Part of what xe_bo_restore_kernel does, is restore BO's GGTT mappings
+    which may have been lost during a power state change. Missing is
+    restoring the GGTT entries without BO mappings to a known state (e.g.,
+    scratch pages). Update xe_bo_restore_kernel to clear the entire GGTT
+    before restoring BO's GGTT mappings.
+    
+    v2:
+     - Include missing local change of tile and id variable (CI)
+    v3:
+     - Fixed kernel doc (CI)
+    
+    Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Cc: <stable@vger.kernel.org> # v6.8+
++ /mt/dim checkpatch 5f445c6723de9ac7087170f4ee8fcb2050ab8346 drm-intel
+50016ba59fda drm/xe: improve hibernation on igpu
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#12: 
+[drm] *ERROR* GT0: load failed: status = 0x400000A0, time = 10ms, freq = 1250MHz (req 1300MHz), done = -1
+
+total: 0 errors, 1 warnings, 0 checks, 92 lines checked
+1c01aa109fd3 drm/xe: Clear GGTT in xe_bo_restore_kernel
 
 
