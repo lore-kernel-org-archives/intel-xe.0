@@ -4,181 +4,151 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 895BDD5C0C8
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 14:19:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24CEFD5C0C8
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 14:32:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5201E10E9C9;
-	Fri,  8 Nov 2024 14:19:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D790710E9D4;
+	Fri,  8 Nov 2024 14:32:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="knwEsZhC";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="4GgaqQlc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FE5F10E9C8;
- Fri,  8 Nov 2024 14:19:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731075578; x=1762611578;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=K4E6yM64V4n0q6yOuE+IdVOhxEmMnGjhptIPUTA2zPM=;
- b=knwEsZhC7gOebu3TqSi/vW6l+jHEmJZ9Ng+Hg4/1BNVS1AHUrUFZmW5g
- K7YQ265K/VaqzxeSB067Uu58uaAMTHsabXhud+qxiBln5LaXo9N5nn5VL
- +rOHjWC1XDIjKCDrrkzP/tdoxhrCeiPicXowxL624v6F/XgYafopRvr2O
- p42Ot8Q+1aeL+l8/a0idyFBP88vQ2Q141DQZWCRF9zRHmn7m2pTr2gMSf
- 4Szf8ZtvBGEhMG79LQDoyWnrgE45HTZYhpMMu7x1peSxw0O3hvTUbX/NP
- kS5j5X7oRwuFLc3cMjAXHgi4aZJmfI1dJWa/nBTrOie/Dcpl17mTtD86m w==;
-X-CSE-ConnectionGUID: qEHB1Pt7TVqhyXX1Gm2wvQ==
-X-CSE-MsgGUID: sJ8AGj8HS5SFiPvH2b4Zlw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="53521320"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="53521320"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2024 06:19:38 -0800
-X-CSE-ConnectionGUID: Pdw5UVC5Qy6lo87KrS6wlA==
-X-CSE-MsgGUID: ndyC1FWtR1eEbl7vXKpXoA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,138,1728975600"; d="scan'208";a="85967517"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 Nov 2024 06:19:37 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 8 Nov 2024 06:19:36 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 8 Nov 2024 06:19:36 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 8 Nov 2024 06:19:35 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2081.outbound.protection.outlook.com [40.107.93.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE2C110E9D3;
+ Fri,  8 Nov 2024 14:32:16 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qlp7x7UmeHi0DidGgkxfqicJeZSKO43qvZthX+xhZosr+yj/E2Xr0K4LaQH2JaML1KoRDqTo7oapml/xvI6e0rMHKbF3ylJ170qO3a346W+BHnTAFcsBthck4hizid38rsjp+/09q/NIosSaSEInwxlWrmbkMNe8LEnMc8CSIbTW2UdYGBfZ2ewQE8U7JaizkwacTFFVlp4Y/VFW5R+/rLmUTYumM8tmeqVfNmaE9pfBaQu9KO68Oh9ArKzZx+KaLRn2dwg9+1Kzm9aGhc+p//AbQnftheejirA9yonbySiZYNcxFyDfHcTmGd2mqddXFDCsxOkSpwEkcpRckolPow==
+ b=og54ILuOF0+kMAZiz3As1s+15StjqB0Jx9AF/tcBbEQzjGXNCSA7c3ITycb/1CqHTUxpn9rCqMdpLAwIFwWJjvzmEc4O+Ds6qA5whhf+IFGD6LtE+opXRnb///gRLLcq0uObi28xal+unGTFzlo7Q982MtgAvVY8rKGLmPWW6CZPJ++jYFyaX/DKld3i2xHGkdT+jBP9IEmjgQe01jD01VbeR+WtrnFqgbvNfzyelAL1khdPosC3sEDfikMx1hiH0U3VhLM6tvIvKFfLBG76wwTq+1HdGmLVF2Wpvxmj1WvQHmGwNEoALL2mKEqE9JLDa6XNbgtosPByWn1+nU7Yhw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=K4E6yM64V4n0q6yOuE+IdVOhxEmMnGjhptIPUTA2zPM=;
- b=BFlW1U5oOZ1EGPdnCtVrb/gO92nyS7YrrffsVHJFjzkZt45KKfm1PzZGYEZeLjhZuhLOoi1c6SjoXJWn8rbB2s6sB6a94Gupzj2kWHQctBrSi2fbBthPamjd59nkGPg8AxogtZr0VI9ofx5uNmoyTHmlXjAYrkg/oUQ11gNmtPLrMN6VcK3GSLYeWGMnc3VLaxADMLk1BWHF+iJCBAE0cfC8DGtIFM2i9s0z9nAaZyABUuFECKisjXQb1zBxikAybFCox8cR3T6Tq/cQKR9NLLupH89cUpsG5r86aF60dT7qFh0mef+9KMVVTnKqS/UTrpkxODX6jzMprboeTOUl1A==
+ bh=TuAkmv4dbet51DtLfksbkBa0lGhhPTbPs2jLOglConk=;
+ b=B32EVHL9KWbFjI/hkEKdCiKtSXfWM72BOXb/8B//qYAqm4Hy66+4XT5z6f3+tjsPvNyd8Db0OGMoMAkJeXJ6QqiT6d40Q92WgwEFhTyWQ+dOElYMWCwsESLwsrktzUI9NVkP+gjt3hs6u9e80HrShzpHQ5ffoChDMEBSfuSBPQn9FadNXaQ+ZiHCcCfr3hNF7WnZVRecxJ12vlXRmuB5UldehWwKBPxVYOEddHn9fl0QZpgkwOUUNkM++V7lSdP8xjNEV4v6tDlhc1sgBsDp1WJJIXEsGZg35lOiCpZSbul2zhBHJe6zX40KzG6dkKOvv9vP2JN0hC00AL8hAL8ebA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TuAkmv4dbet51DtLfksbkBa0lGhhPTbPs2jLOglConk=;
+ b=4GgaqQlcwlHT9OmJ3uIuvYqwecQQOUi8DQrm/niaLls0fo0Ry2g4K4KqOKaTsLVIoSfUoZen6BXOjG9ulOb/k5VjPKLjcVXXx3cExBALbz7Klcd+TsB/8m60xBux9frtFgnKfoHIewZRWb6xgl2aOWBXF0nBVLEecjvnMwEhyoQ=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by PH8PR11MB6708.namprd11.prod.outlook.com (2603:10b6:510:1c7::17)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SJ0PR12MB8116.namprd12.prod.outlook.com (2603:10b6:a03:4ec::22)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.19; Fri, 8 Nov
- 2024 14:19:33 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350%5]) with mapi id 15.20.8137.019; Fri, 8 Nov 2024
- 14:19:33 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <076db523d9e533bc39028ba066133b190d9e4754.camel@coelho.fi>
-References: <20241108130218.24125-1-gustavo.sousa@intel.com>
- <076db523d9e533bc39028ba066133b190d9e4754.camel@coelho.fi>
-Subject: Re: [PATCH v4 00/15] drm/i915/dmc_wl: Fixes and enablement for Xe3_LPD
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: Luca Coelho <luciano.coelho@intel.com>, Jani Nikula <jani.nikula@intel.com>
-To: Luca Coelho <luca@coelho.fi>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>
-Date: Fri, 8 Nov 2024 11:19:27 -0300
-Message-ID: <173107556735.7597.6304154681047821758@intel.com>
-User-Agent: alot/0.10
-X-ClientProxiedBy: MW4PR03CA0352.namprd03.prod.outlook.com
- (2603:10b6:303:dc::27) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.21; Fri, 8 Nov
+ 2024 14:32:14 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%2]) with mapi id 15.20.8137.018; Fri, 8 Nov 2024
+ 14:32:14 +0000
+Message-ID: <5b424798-832b-4489-b4b4-8dc53ad487cf@amd.com>
+Date: Fri, 8 Nov 2024 15:32:08 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 2/8] drm/ttm: Add a virtual base class for graphics
+ memory backup
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org,
+ Paulo Zanoni <paulo.r.zanoni@intel.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>
+References: <20241016085559.11840-1-thomas.hellstrom@linux.intel.com>
+ <20241016085559.11840-3-thomas.hellstrom@linux.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20241016085559.11840-3-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR0P281CA0081.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1e::7) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|PH8PR11MB6708:EE_
-X-MS-Office365-Filtering-Correlation-Id: 52638ef2-9a0b-4bfd-00e0-08dd00005dc4
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SJ0PR12MB8116:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3fc7592e-031c-4bb3-d019-08dd00022346
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VzZQSHJUTmR1amZBbDJEUnl6eDV3dVRNemZLOCtWb1A1UVBFalNRYkd1Ulg1?=
- =?utf-8?B?RTl1T0o2aGdhWFFxWlcwdE40TFE1bkY4NDZtbitldkw4dUpGb3RBZzBoUmJE?=
- =?utf-8?B?NlFDYWRmRE50YzVjL1JDVXFrWWJxaVBrbk0wS2xiQnNyYjk3UkJpbWxQbE1z?=
- =?utf-8?B?YlRzcWR4U0trR2JNa0ZwSUJERHlJSDZ4b2RjSU8xSENvZXNWMS9CRHh1QXZJ?=
- =?utf-8?B?TzhnZ3hxbEJFSzh3ZkI0UVlLa0RWQ2Q1c25MdmM2NXZacW10ZzlrT2dlTlJm?=
- =?utf-8?B?cVBicENiZVYrNmF4ODgydXc5ZTZoZ252bUMxaU9CbFpmbysxY2ZNMTNqSmNY?=
- =?utf-8?B?QTl1SUpYVW1WZERWc0xycWN6MDJTUXdJV2FhOUpOZGQ4dkduT04xNlNxVmVZ?=
- =?utf-8?B?czdLeE9iY0JydWVSUEJwcWpOTDZZNUxXQnVsenh2aDkwbnYyK2NvTHFERkNy?=
- =?utf-8?B?dVlETWNydm5DZ3F0aTA0VzM5M2VtckJoaEFxVms3REhKYXdZMllBc3Jwb0Ja?=
- =?utf-8?B?UWIyaDlTdmw5NWpjVGdZK1FrSnA1NG9YY3c0L2RpQTAwd1VCdDY3OXAxT1Fs?=
- =?utf-8?B?L0hMYndNdzh4YkZDeHlMT3VhYXFiZmUyTjNpTWFhdnVXbnB1ZDh0MVBQei8r?=
- =?utf-8?B?NG5NMXVwVTFTWTZuZG1sUUh3RjFndDFNQlUvMGhxZ1ozV1dFSkNSU0dDeWlW?=
- =?utf-8?B?QWIxb2lsdDkwSmlFNmhVcC9NejM1Wjl3NmR4K00wcHRvcGdMVzBINHRaTW8x?=
- =?utf-8?B?N3BOcWxRRzRuNjFsdE54V1M2dHZ3enlKVG42TUpPWkZjL0ovRlJEMFpVdCt6?=
- =?utf-8?B?SUpGcXNiNGFxaEw2TTh1T0J3eHBPbldOa2huRVJ4U250OWFHTEZ4NU5XNmVx?=
- =?utf-8?B?NzBCUnk1ZW1BTG4xY0l6Zy9WMDl1bldXbW0rcEFUSzNNaFI3OVRiUmhYTXVj?=
- =?utf-8?B?UjE4K1dDQ1d0SkxNaDhzQkZBWDQ1cm5jWkwydEhZSHB2VFRSOW5mWExNTDlL?=
- =?utf-8?B?OVhvY2VxVzFTd2xKMm4rSFdXMy9NeGhBYWx3R1hIM0RJejVmdWIxbWNDNFZh?=
- =?utf-8?B?cXZVZTNJb1lvS2RSOG5tN1BGSHFrVTZoME0yZ2lBOFhiN2xDSTFZdHRXeDcy?=
- =?utf-8?B?T3c4SlFIRk10WVNQOW0yMWFvOU5nbW9zTUJGaWhldUV6ZngwRHo4ZHY1cUMv?=
- =?utf-8?B?eDliV0FyaHV1WTVJU3UzU1hlemJyNUpxaFhvMU93am1GYVZKMmdUQzlEWXdW?=
- =?utf-8?B?ZVpGQW5ENlZuc3p4U1Nod3F0T0JENEN0Yk0wY1R0UURFRVhrL1ZRN0xtK0pC?=
- =?utf-8?B?MWhPN1NwWkNsVVNsS2V5M25RZmdCWGx6MDRxVTY3NUY5T2VRNDgwbVRVcmc0?=
- =?utf-8?B?Q3Q1aWc1dlRQOG1aM2lRMHEwVWZjemZySnM5RERqU0g4Qy9Sa3RPQnVydUht?=
- =?utf-8?B?WU90NEI0VGlNOWFmOGc3OUtoMjRqRlFuUloveG00OWh2OCtRTll5TTVXb2pX?=
- =?utf-8?B?d2NGUlBXaXZGTlpIQ0luYXhEeXNQMnNUakJmdHRudWhNL0VkQWtuVVN3c0ZV?=
- =?utf-8?B?Z0lxd1ZwazdxeGpKSE5jTEVJaVlTcEVIY0dYc0RnbHhGcDNscStERVpRWCtw?=
- =?utf-8?B?N2pFaUNpMVM3bE5TYVk2ZVRTQXhBeStxN0tnYjROTlVrbHdidnNCbTRTQldz?=
- =?utf-8?B?bkNUWFNZS2dFNXpmbkNMbEVRUWJMNHJ4aEtXU3FjZlRGdGRZSmlyWi95bUc0?=
- =?utf-8?Q?tZhj/M6Pip2o0OU0sMZNKBfMZ3CpY5IBsCI4UVC?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?M1FKRW9uMW5YVlJ6QjZkVlM5T1RQRGlSKzk1VUZtTEpOZmtWQ2s4bmNTRjR6?=
+ =?utf-8?B?ZGtGR2wzY0E0VEE4Q0NNUEoyOThtUUt5bFBOVzdQdFppRUpwYStWcjl3ek9z?=
+ =?utf-8?B?UVJNaTMyRWNDY000ZzdlM3IzMDdrS0xhRXBWUFkvYXNZZSttcjdZaXRWRk1i?=
+ =?utf-8?B?Mk9IUlRkOHhoSHpmbkZRWHExeEJtRHdKQ1VsamlIdzA5VWl3Ymh0ZlAyM0dw?=
+ =?utf-8?B?VkhCclZtTDgvL1RDc3BKc1RUT05rOHRZK0NESEQvZm93bDBWeWVZWG5OZWk3?=
+ =?utf-8?B?aGtKMmpFOTNaZE1FY3gzWlRoVm5DbmhXZUI2QUo2cXErSVlFY1A5b0FjT0R0?=
+ =?utf-8?B?bW00QTdhNURSaVJrMDk5VUszNlhBa29yMUtub0ptNmQ2TVVEeFE4RmVvYVhY?=
+ =?utf-8?B?c3plMjFhdmIzU2xLT25zdkJRSEVlb1h3L2NPS3IvSVEvbm41S2xPZ0JOYW1B?=
+ =?utf-8?B?YjN5TmZkNXlhellwNVQ3MHJxRG5SMVlCT1E0Ky9haWNrQXRqNlJnaW9BbHpj?=
+ =?utf-8?B?eWxBRHZocUtKODI0RllJQ2xpMkZWVTdwSDZxTjdhc2w5dXVSM1orSmdzZGto?=
+ =?utf-8?B?aW80aUNpdUIreHkxN3N0OUNWM3JKS2h2My9RRHhFM3pTaGNRUk5hdFdQVUdM?=
+ =?utf-8?B?RFVuRGkvTzhSUHdiWG1VYlI0UnFVWW5URTh6SkhKNWxBQ01LVHkxQ0N2TmVU?=
+ =?utf-8?B?UVZJN0hUOHo4d2EwbWxNOTd4UG1jMHVnVUZYYXVyNkE5QmNqZVpNU3Bic1l2?=
+ =?utf-8?B?NWhaL0h1M0svZ244MW9YbGoxVFVRMEM4dzFyVU8ybmVSMzJBMnR0QlFVSUtT?=
+ =?utf-8?B?Nmo0Tkt1YzNSbzVUVjIxaXVQOEp6ZXIrVG9ITzhVTStiVWx6SjRPRFNyZ2R3?=
+ =?utf-8?B?TDI1Nml0dThxajl3ZTNZZXZaWXdHd3UwTlRlUXVUVkdwRk5Pc1VXU1hHY0ZI?=
+ =?utf-8?B?T1RKOXZxWWtpcGFHWWpHV2F4VHhpYlZXY3BrMEMxa0cyOGFVNHJzUmx0Y1R3?=
+ =?utf-8?B?T09FV2NBSktxMk4xczBUclROdUVmL3dQRFV6eVJpdnBWQWNKNDlsbTRjbzVP?=
+ =?utf-8?B?Q3N3cU5vRzBhRHZ5TWgyVHJ5M0lPSlZDU01yOFoxL04wMzJ0cUVaL1dWNWUw?=
+ =?utf-8?B?aE9JWG9mTndvZS9OdjJJb0NzK3NoTnFIcVRnVEJtUVVjTjgwUGovQWJrRUdk?=
+ =?utf-8?B?VElhNmVyQ3JpeUFiTXFIc0RiMHNDZndqYzliRUw1Z3pKbkd0UldhalR5dW5r?=
+ =?utf-8?B?VFBndkQ4ZzdXYWFDZlFlZlIwVHJJaE44c0Q2MUhNL1JRSmFtMERacGtNdXRa?=
+ =?utf-8?B?M3RZalBqeWUwcExTSU5PUTh6REdha3dVc2RPdTJ3eEtHeEpJQStQMkZZTktH?=
+ =?utf-8?B?MFQrMlI2bjhxM21WN2ZsYkpuYzhacUI0TWlRbnJJWG1PYnBYcDNZZ0FwRVdl?=
+ =?utf-8?B?N3R6eUNmdVprV1pCbVpvV0hKSXJrV2N2cW5jR08xb1Uwc2crU3lrQlYzaXYx?=
+ =?utf-8?B?QUdzbWhlL3FWQzNKRkRrRnlGU3dlenc5aE5wZi9TVXFpSU1oVUR2blJKQnhM?=
+ =?utf-8?B?V3pHeUdxN2ZINEVHTTBheXJ0YlJ1bUlLcG9zTlYwYU1UOVpONkdVK2JINk0r?=
+ =?utf-8?B?SE5pRXBBK21aVW90NWdqVVhucmtUVDkyL2Y5cDNRb0hDR0c3OXV3aG1wa01W?=
+ =?utf-8?B?SzZGeVJ5OU9JUFk5UDRETVpVVHE5SklVYkRkNUtoRFN0TWhUMDJXZWZoSnBy?=
+ =?utf-8?Q?Jm8qIistxsb1rhiRo3exb8FaQ+qT2Q7lhxw5ahN?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K2w0VThrNCtHTHg5cFNQYmRrTlkrR3ZMeVhtS2hEeEgwUHNaU3ZIeXdiVUR6?=
- =?utf-8?B?QVNrT3RPa1Z4YXloTUZ1WnRkZWFBQVV4ZW1jS3hqYkhKSm13Sy9RbmR3d3Y1?=
- =?utf-8?B?RG9JRmt0T2c5ZGtUVHpMNzBZVVZMWXBIbUk0WjNpZHlnTHVNdUpVT2FYNWsz?=
- =?utf-8?B?TlRMMGNic2daSXJadjNRQlFBYW9Bb0RBbmhZSlBXSlJPcVZxTCszQmlqUERZ?=
- =?utf-8?B?VllKR2R1WUVXcDZsaGJUdGROakwrblhYS3R6bkkyS25JTXRoSjNiTW90dU9D?=
- =?utf-8?B?ajdIMzNOMkdzallUZEdpQ1JqSzVENHRxZU9lNExBQ2I0bnl3bzlWMm9mSy9Y?=
- =?utf-8?B?ZnBuZ3paWDNXQTRiT2diRnNFQUJlOGpTY0dCMUpIYlJqOUp0R0QvQXhaWGQz?=
- =?utf-8?B?b1IyMmF0SDVkSDF0bU1OT2twZGhKSDRXa2dFaS9VUkEyZ3hhRUpQYzcyc2xH?=
- =?utf-8?B?ZUxKdmFxK1pBV2tTNGowcWxMZFQwRWhFNWlxbVhLcXBiNjk2WGtKRThQMG85?=
- =?utf-8?B?blJvYmg3cFFPVlExZnEzTWlIRDB1V0N6a0Raa1NWL2NjWERhMjRScEZCUWVJ?=
- =?utf-8?B?aW0rSXlpSEhFUVVNdlg1Nk5qTE13T3NjOVQ1T1o2UTJaSHFuQ1VvcTQxcERF?=
- =?utf-8?B?d3Y1aUI1TnlLZy9OK20rV04zTzlqWThncS9oVGthcm5DZWVVeUpPRjVLaFNr?=
- =?utf-8?B?RjFUcGtBMEp0WktBcSsrSW05QjdNRjczRzNuQlZoUmhYdUFiSUV2eVdRRVFX?=
- =?utf-8?B?QnA0RXN6Ymt5ZjJsSVZpV085UkhpVHBRMlpxUFlOcWllVGlKL2NJellIMGM3?=
- =?utf-8?B?UmZJQmdPbFBBWHlzTnpaWG52RGhVcEo2ZkhtKzN6aE5VTUJDSGRVbTI3Zk5l?=
- =?utf-8?B?KzQxK0orL2w4cGJpYWpNWlpjSkVlaXA5NXJHZllhU1ZWNEt5M1gyQ0xPSEhT?=
- =?utf-8?B?VWo3VGNEMFcxR0RYVmx5dGt2aDluSHRqakhiaUlaa2hZM1ZCNUZqYTRDYk94?=
- =?utf-8?B?QXhpa0JpSjVOWHhWY095Q1JnU1BEREF1V2VwclkzczdsenZTNVJ5TXA0eGdo?=
- =?utf-8?B?SVlvOHExejQ2czdvUVp6dzg2WXZqdXJqcWljWHA1R3M3NWVBbGVPRHprdkls?=
- =?utf-8?B?Z2k5TUFoSHFxL05HUTZ4K2pqT0hlbFgwZm00aVZjNVUzcE9yV1l4RFV0dFRk?=
- =?utf-8?B?OGhuM3FCZ0phckdmbDhUT0dnY2FrK1BGTVhJZGVaaWo0QzNPVWFFSVBpVk9X?=
- =?utf-8?B?S21nTE84RzVsaXM3UHVUT3l4ZHNRME9QNHI1R0xZbGZZOVNaS1ZWTHJNa3pG?=
- =?utf-8?B?LzZzTFU2bTh1UGo2Mmdyck1ZZVRncmZ0VGgxVEhDNXovZ29DQW9DbWlpOEY2?=
- =?utf-8?B?OFUrVC83MEVFclVRb1FXY09xM3Y2QTZTRjZGYmdMVit3R1JYVjFzQmtsRG0x?=
- =?utf-8?B?VkxOTUJsZlpXQzVUMEQ4ZVlrSkhDQTAra1pIdTBmanFMZGprRENONFlkSFNC?=
- =?utf-8?B?ZFBvK21WYjdPT1ZRRlZhUnc1S0tzMms2dWZKQmRSdU4zYVdmMS9lVEc0bWs1?=
- =?utf-8?B?UEdwMVN2OUs0QWcyUEdLaVRaYW1TaVFxbHl1ZVd3WUhlUHZrdFd4eCt4eGo0?=
- =?utf-8?B?U2NZOGw0NE9kWTlWakxiQjJWaFUwRE1oS0hOYzZlTjlWOW5VaExSSGZzRnBL?=
- =?utf-8?B?d2pvMFp4Kys4N0dYMGh6cWc2d0dTYldXK2pLUjZyd2hpUDVlNkM4U2V2NDYw?=
- =?utf-8?B?ZjIyN0FyeFU4Vml6bFNtVGxTQllCcmlmWXdaakRmcE5rTi9iTmY4eDRrRDlJ?=
- =?utf-8?B?akNMT2xZa01yRnNibnhmeGtXUXhOczd2QnpOZXVRaVNrKzVOZ3A0RGliVm1C?=
- =?utf-8?B?SExRVlloZEJNU1JTMElQVVNCK3dJL1BvclFBNTRHWjFucTgzVlhYQm1nZCs5?=
- =?utf-8?B?TUlkb0xxU0pyZ0RqSzBTSk9nOHc5Q0R0bXBxNm8xRjFGV1ozeTNOZmVQVWJv?=
- =?utf-8?B?VjVzUlhOTXZFbVVGSWtlOS9MeWFMWjI1NlpmK0doM2xBYmxrbVExL2V0eFpO?=
- =?utf-8?B?YmR2em41YU55YzNQUGpKZFJLNE5iNVlIUmxJKzRsVFBycDEwSmQ5NHYrRXF1?=
- =?utf-8?B?Y1N0dlFlOTd2KytFZkVBZDF2cVBIUGtkd29sQVF5d2J2cWp6VVkrR0l1NlN2?=
- =?utf-8?B?VUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 52638ef2-9a0b-4bfd-00e0-08dd00005dc4
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WitTVUc5a2hYamZwb2pzTmdhejNoN043UmdrYkROY3k4Zm5USDdIeFRISVlO?=
+ =?utf-8?B?akxnank2SnNQNXdYQTBVMmtRRXVJQURjOVRoSUNMUllBTlVyVmVZVm53cEla?=
+ =?utf-8?B?UXA2V04zemtLU1kweFFwQTdWaWV5dmwvcS9MdmQyV3ZnbFp0NjArejYyWE5F?=
+ =?utf-8?B?QlA5YXhHVkY1UnBZSkpLeHFSWjlvVkIxQ2UvQkNqZ2dodVN4Ung1THAvcW5T?=
+ =?utf-8?B?QmF0akRtNkh1K1lIem1EUVBNaVZObVRPWDNBdk5TREY5V01LWEZ3N1RwVEtF?=
+ =?utf-8?B?d1Z1ZSt3V2QrK1lnaTJ6TW9oQlJRNWw1azFYQ01UVGJRYXZuTDhlMkYwRmtr?=
+ =?utf-8?B?SDQ4ZmdhVnBJeXBmVWFYZ1JJUGJBbmlSUTl2RzVEQThXNi9YUk5RVVdCcUtK?=
+ =?utf-8?B?U1lLL2NudTZlbjByeHgyRTdXdmR0OHNKMGRvRGZRMjMrZExVakhBdEZFSWRq?=
+ =?utf-8?B?UE13aHNpSGxkYVowcmVNNVZPZkcxRFcvNjFGYTBDbzNwOVgyZWVqSk1GNzJw?=
+ =?utf-8?B?c0pNT3NLWjE3KzV1a3hQc1BEN3oraHpFRTFqWjlqWkVqUVNvWU03Y0ZLZzd6?=
+ =?utf-8?B?ODNoMDF1NlJPV3MvVVBPenU0dzkrWUUxblZmWm1BRExuVnA3THdNT0tRL25G?=
+ =?utf-8?B?TnI3VFNmRjJjNXJOQlRCTFcvbWZFZjF6VkVCUC9iOEp1WGk4aW0rTHRtelFw?=
+ =?utf-8?B?MlNLVE5QNVVsMXp2b0lvUEp5OW1EQ0srdDdLQlNialN3STg4TmxIVnRZWlF1?=
+ =?utf-8?B?WGVPZWhTVzA0SFhhT3B4ZmZxTEpKeC83dStqRVRJVDh3dWsxR21xZkVOMzhG?=
+ =?utf-8?B?TDUxUUFiRVNuMDlmeTE0T2RDNi9rdnNFSVdEYWpHMHV6OTJVSTdtdWRidktE?=
+ =?utf-8?B?REdoSDRQNHJlSXlrMDZuK2FpRko2VmVkWU9ybzY3TmxlRTdzYXdZbzdiMVlo?=
+ =?utf-8?B?Y1d1L3hoYnZkY1FmTDA0dWgzSnNiSmsrSGtjM3RsT2ZRS1V5Y25UMVZXS0pZ?=
+ =?utf-8?B?eXlvWnJ6ODlxM0E2bmhjWkJrZHhmK2NjUG9mM25XZGJvd05BUlN0K3Jvd3dU?=
+ =?utf-8?B?UmlhS0VHMHJHL3hscWRtRzlONVhUZDRKclQ4LytHYXRoUUlnTy9mUTlKWGpz?=
+ =?utf-8?B?V1gxNFByalpEclNpMmZuVEgyR1Y4RnErcTMxekN3ZDlSK2tQaTRTcDJDZXcr?=
+ =?utf-8?B?U0t2OWFBRnpuSlM4dHgrUnJVVW9ZWGZqYlFLNGJRTnBVTWVzb2ZiaVpRUklt?=
+ =?utf-8?B?TjhYSGtZMGdPREpTaWNTMHZBRllVZUNIb1pXSFFjMVord3kxTUd2bThONjJS?=
+ =?utf-8?B?YmxNb0JFcGcrRXljSjdLMURPaGsxaURGamRrY0czN1l6QjNuWE9BeGdlczZ4?=
+ =?utf-8?B?bzhXSmkwLzAwRXZUUmVSNnNWSy9JZEVyN3VZVEFuZmlTeXNoUWVuRmxHOGRN?=
+ =?utf-8?B?RXVld2xUQVBwdGlmUWZicS9PVjM5TmNNaHdPajFEak1YQWJENGJPTCtpRlVx?=
+ =?utf-8?B?VTQ1dmowTnlieUZTVEcrZUhVQmVjRkx0S0lZd0FOdWo3TVo2cHFGak1wa3dI?=
+ =?utf-8?B?M3ovcWUvM0w5N0VTdVVSOWtFMkVzbzAzLytlVTBLWFRSVTRqQTFlUStWZmxZ?=
+ =?utf-8?B?dEQ2L2ZyTi9sVFR4RzlEK3NqckxvQ2ZNYUw3VkJiS1hjWklHU0NncDlhZzZ1?=
+ =?utf-8?B?d0gyYmpzNGZnNmRGSm5wVE94RGE2ZFN3R0JUVnAva1hJZUdUdGtBMkJDeGVl?=
+ =?utf-8?B?R2dlWWMzY2xMaW1hOUZZclByeU5wS3MwQmsraElhb0xNblM3UGVCTXNkT2Jn?=
+ =?utf-8?B?QkNHZUhUdk5Ta0UyRUpXalFHL25aQnpNYksvdmVXM2J6em5hWnJ2NzU2Wnpz?=
+ =?utf-8?B?UDIvUms0S2JXeG50Z2dNUnJKVG5zOGZ4Y1NjUzI1S2hFcE9tWW9HYlZOUGR0?=
+ =?utf-8?B?TzBsSkJXZ0puWS93M3pKS21YZFZoY3hielpjdExNcjNrTzlONlpPQm0vYlRX?=
+ =?utf-8?B?cklmVVlrL0xvWS93eG51Sm50T0RZS3UvbUovcEFlQWdTK2pnZXluNGxiVWFs?=
+ =?utf-8?B?bzB3WjRqM1hkVmpWS2dkTjNLa1gxN2NoOVJkalBPTkVFK0EvWE5qWFFnZ2Vy?=
+ =?utf-8?Q?0DRSN0fpGyKXn9tEzPPkARwFe?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3fc7592e-031c-4bb3-d019-08dd00022346
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2024 14:19:33.1039 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2024 14:32:13.9417 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0y3sCLcWZejXvYE/+QeAR3VJWnbW5xCdXaF5lubGOGmwBdRItmh0ImUcezp3L/e7PWy4GCFZqil5wvUISIKi/g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6708
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: e0jELz/gz2mI2h1B0LQw9LB31vgWHVprwIUwxtNxm7z/U3ZlVgRNKsYFhDl5qsvX
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB8116
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -193,31 +163,360 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Luca Coelho (2024-11-08 11:16:03-03:00)
->On Fri, 2024-11-08 at 09:57 -0300, Gustavo Sousa wrote:
->> Using the DMC wakelock is the official recommendation for Xe3_LPD. This
->> series apply fixes to the current DMC wakelock implementation and
->> enables it by default for Xe3_LPD. The series has been tested with a PTL
->> machine.
->>=20
->> This is the v4 of the series. The only difference from v3 is that I deci=
-ded to
->> drop patches related to the usage of HAS_DMC() in HAS_DMC_WAKELOCK(), as=
- they
->> might need more polishing and will be send as a separate series. I belie=
-ve we
->> don't need to be blocked on those to get this series landed.
+Am 16.10.24 um 10:55 schrieb Thomas Hellström:
+> Initially intended for experimenting with different backup
+> solutions (shmem vs direct swap cache insertion), abstract
+> the backup destination using a virtual base class.
 >
->Good call!
->
->It seems that the test results with this series is looking good, so
->from my point of view, v4 can be merged.
->
->Waiting for the next patchset with the HAS_DMC*() stuff. ;)
->
->And thanks for fixing all this!
+> Also provide a sample implementation for shmem.
 
-Thank you for the reviews! :-)
+It feels a bit like overkill to have that abstraction.
 
---
-Gustavo Sousa
+> While when settling on a preferred backup solution, one could
+> perhaps skip the abstraction, this functionality may actually
+> come in handy for configurable dedicated graphics memory
+> backup to fast nvme files or similar, whithout affecting
+> swap-space. Could indeed be useful for VRAM backup on S4 and
+> other cases.
+
+Why would we want to have the flexibility to use different backends?
+
+I mean that just sounds like one more thing which can break.
+
+On the other hand it's really nice that we now use folios instead of pages.
+
+> v5:
+> - Fix a UAF. (kernel test robot, Dan Carptenter)
+> v6:
+> - Rename ttm_backup_shmem_copy_page() function argument
+>    (Matthew Brost)
+> - Add some missing documentation
+> v8:
+> - Use folio_file_page to get to the page we want to writeback
+>    instead of using the first page of the folio.
+>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: <dri-devel@lists.freedesktop.org>
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com> #v7
+> ---
+>   drivers/gpu/drm/ttm/Makefile           |   2 +-
+>   drivers/gpu/drm/ttm/ttm_backup_shmem.c | 139 +++++++++++++++++++++++++
+>   include/drm/ttm/ttm_backup.h           | 137 ++++++++++++++++++++++++
+>   3 files changed, 277 insertions(+), 1 deletion(-)
+>   create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
+>   create mode 100644 include/drm/ttm/ttm_backup.h
+>
+> diff --git a/drivers/gpu/drm/ttm/Makefile b/drivers/gpu/drm/ttm/Makefile
+> index dad298127226..5e980dd90e41 100644
+> --- a/drivers/gpu/drm/ttm/Makefile
+> +++ b/drivers/gpu/drm/ttm/Makefile
+> @@ -4,7 +4,7 @@
+>   
+>   ttm-y := ttm_tt.o ttm_bo.o ttm_bo_util.o ttm_bo_vm.o ttm_module.o \
+>   	ttm_execbuf_util.o ttm_range_manager.o ttm_resource.o ttm_pool.o \
+> -	ttm_device.o ttm_sys_manager.o
+> +	ttm_device.o ttm_sys_manager.o ttm_backup_shmem.o
+>   ttm-$(CONFIG_AGP) += ttm_agp_backend.o
+>   
+>   obj-$(CONFIG_DRM_TTM) += ttm.o
+> diff --git a/drivers/gpu/drm/ttm/ttm_backup_shmem.c b/drivers/gpu/drm/ttm/ttm_backup_shmem.c
+> new file mode 100644
+> index 000000000000..cfe4140cc59d
+> --- /dev/null
+> +++ b/drivers/gpu/drm/ttm/ttm_backup_shmem.c
+> @@ -0,0 +1,139 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2024 Intel Corporation
+> + */
+> +
+> +#include <drm/ttm/ttm_backup.h>
+> +#include <linux/page-flags.h>
+> +
+> +/**
+> + * struct ttm_backup_shmem - A shmem based ttm_backup subclass.
+> + * @backup: The base struct ttm_backup
+> + * @filp: The associated shmem object
+> + */
+> +struct ttm_backup_shmem {
+> +	struct ttm_backup backup;
+> +	struct file *filp;
+> +};
+> +
+> +static struct ttm_backup_shmem *to_backup_shmem(struct ttm_backup *backup)
+> +{
+> +	return container_of(backup, struct ttm_backup_shmem, backup);
+> +}
+> +
+> +static void ttm_backup_shmem_drop(struct ttm_backup *backup, unsigned long handle)
+> +{
+> +	handle -= 1;
+
+Why that? I've seen that multiple times in this patch but can't find a 
+good explanation for it.
+
+Regards,
+Christian.
+
+> +	shmem_truncate_range(file_inode(to_backup_shmem(backup)->filp), handle,
+> +			     handle + 1);
+
+
+> +}
+> +
+> +static int ttm_backup_shmem_copy_page(struct ttm_backup *backup, struct page *dst,
+> +				      unsigned long handle, bool intr)
+> +{
+> +	struct file *filp = to_backup_shmem(backup)->filp;
+> +	struct address_space *mapping = filp->f_mapping;
+> +	struct folio *from_folio;
+> +
+> +	handle -= 1;
+> +	from_folio = shmem_read_folio(mapping, handle);
+> +	if (IS_ERR(from_folio))
+> +		return PTR_ERR(from_folio);
+> +
+> +	/* Note: Use drm_memcpy_from_wc? */
+> +	copy_highpage(dst, folio_file_page(from_folio, handle));
+> +	folio_put(from_folio);
+> +
+> +	return 0;
+> +}
+> +
+> +static unsigned long
+> +ttm_backup_shmem_backup_page(struct ttm_backup *backup, struct page *page,
+> +			     bool writeback, pgoff_t i, gfp_t page_gfp,
+> +			     gfp_t alloc_gfp)
+> +{
+> +	struct file *filp = to_backup_shmem(backup)->filp;
+> +	struct address_space *mapping = filp->f_mapping;
+> +	unsigned long handle = 0;
+> +	struct folio *to_folio;
+> +	int ret;
+> +
+> +	to_folio = shmem_read_folio_gfp(mapping, i, alloc_gfp);
+> +	if (IS_ERR(to_folio))
+> +		return handle;
+> +
+> +	folio_mark_accessed(to_folio);
+> +	folio_lock(to_folio);
+> +	folio_mark_dirty(to_folio);
+> +	copy_highpage(folio_file_page(to_folio, i), page);
+> +	handle = i + 1;
+> +
+> +	if (writeback && !folio_mapped(to_folio) && folio_clear_dirty_for_io(to_folio)) {
+> +		struct writeback_control wbc = {
+> +			.sync_mode = WB_SYNC_NONE,
+> +			.nr_to_write = SWAP_CLUSTER_MAX,
+> +			.range_start = 0,
+> +			.range_end = LLONG_MAX,
+> +			.for_reclaim = 1,
+> +		};
+> +		folio_set_reclaim(to_folio);
+> +		ret = mapping->a_ops->writepage(folio_file_page(to_folio, i), &wbc);
+> +		if (!folio_test_writeback(to_folio))
+> +			folio_clear_reclaim(to_folio);
+> +		/* If writepage succeeds, it unlocks the folio */
+> +		if (ret)
+> +			folio_unlock(to_folio);
+> +	} else {
+> +		folio_unlock(to_folio);
+> +	}
+> +
+> +	folio_put(to_folio);
+> +
+> +	return handle;
+> +}
+> +
+> +static void ttm_backup_shmem_fini(struct ttm_backup *backup)
+> +{
+> +	struct ttm_backup_shmem *sbackup = to_backup_shmem(backup);
+> +
+> +	fput(sbackup->filp);
+> +	kfree(sbackup);
+> +}
+> +
+> +static const struct ttm_backup_ops ttm_backup_shmem_ops = {
+> +	.drop = ttm_backup_shmem_drop,
+> +	.copy_backed_up_page = ttm_backup_shmem_copy_page,
+> +	.backup_page = ttm_backup_shmem_backup_page,
+> +	.fini = ttm_backup_shmem_fini,
+> +};
+> +
+> +/**
+> + * ttm_backup_shmem_create() - Create a shmem-based struct backup.
+> + * @size: The maximum size (in bytes) to back up.
+> + *
+> + * Create a backup utilizing shmem objects.
+> + *
+> + * Return: A pointer to a struct ttm_backup on success,
+> + * an error pointer on error.
+> + */
+> +struct ttm_backup *ttm_backup_shmem_create(loff_t size)
+> +{
+> +	struct ttm_backup_shmem *sbackup =
+> +		kzalloc(sizeof(*sbackup), GFP_KERNEL | __GFP_ACCOUNT);
+> +	struct file *filp;
+> +
+> +	if (!sbackup)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	filp = shmem_file_setup("ttm shmem backup", size, 0);
+> +	if (IS_ERR(filp)) {
+> +		kfree(sbackup);
+> +		return ERR_CAST(filp);
+> +	}
+> +
+> +	sbackup->filp = filp;
+> +	sbackup->backup.ops = &ttm_backup_shmem_ops;
+> +
+> +	return &sbackup->backup;
+> +}
+> +EXPORT_SYMBOL_GPL(ttm_backup_shmem_create);
+> diff --git a/include/drm/ttm/ttm_backup.h b/include/drm/ttm/ttm_backup.h
+> new file mode 100644
+> index 000000000000..5f8c7d3069ef
+> --- /dev/null
+> +++ b/include/drm/ttm/ttm_backup.h
+> @@ -0,0 +1,137 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2024 Intel Corporation
+> + */
+> +
+> +#ifndef _TTM_BACKUP_H_
+> +#define _TTM_BACKUP_H_
+> +
+> +#include <linux/mm_types.h>
+> +#include <linux/shmem_fs.h>
+> +
+> +struct ttm_backup;
+> +
+> +/**
+> + * ttm_backup_handle_to_page_ptr() - Convert handle to struct page pointer
+> + * @handle: The handle to convert.
+> + *
+> + * Converts an opaque handle received from the
+> + * struct ttm_backoup_ops::backup_page() function to an (invalid)
+> + * struct page pointer suitable for a struct page array.
+> + *
+> + * Return: An (invalid) struct page pointer.
+> + */
+> +static inline struct page *
+> +ttm_backup_handle_to_page_ptr(unsigned long handle)
+> +{
+> +	return (struct page *)(handle << 1 | 1);
+> +}
+> +
+> +/**
+> + * ttm_backup_page_ptr_is_handle() - Whether a struct page pointer is a handle
+> + * @page: The struct page pointer to check.
+> + *
+> + * Return: true if the struct page pointer is a handld returned from
+> + * ttm_backup_handle_to_page_ptr(). False otherwise.
+> + */
+> +static inline bool ttm_backup_page_ptr_is_handle(const struct page *page)
+> +{
+> +	return (unsigned long)page & 1;
+> +}
+> +
+> +/**
+> + * ttm_backup_page_ptr_to_handle() - Convert a struct page pointer to a handle
+> + * @page: The struct page pointer to convert
+> + *
+> + * Return: The handle that was previously used in
+> + * ttm_backup_handle_to_page_ptr() to obtain a struct page pointer, suitable
+> + * for use as argument in the struct ttm_backup_ops drop() or
+> + * copy_backed_up_page() functions.
+> + */
+> +static inline unsigned long
+> +ttm_backup_page_ptr_to_handle(const struct page *page)
+> +{
+> +	WARN_ON(!ttm_backup_page_ptr_is_handle(page));
+> +	return (unsigned long)page >> 1;
+> +}
+> +
+> +/** struct ttm_backup_ops - A struct ttm_backup backend operations */
+> +struct ttm_backup_ops {
+> +	/**
+> +	 * drop - release memory associated with a handle
+> +	 * @backup: The struct backup pointer used to obtain the handle
+> +	 * @handle: The handle obtained from the @backup_page function.
+> +	 */
+> +	void (*drop)(struct ttm_backup *backup, unsigned long handle);
+> +
+> +	/**
+> +	 * copy_backed_up_page - Copy the contents of a previously backed
+> +	 * up page
+> +	 * @backup: The struct backup pointer used to back up the page.
+> +	 * @dst: The struct page to copy into.
+> +	 * @handle: The handle returned when the page was backed up.
+> +	 * @intr: Try to perform waits interruptable or at least killable.
+> +	 *
+> +	 * Return: 0 on success, Negative error code on failure, notably
+> +	 * -EINTR if @intr was set to true and a signal is pending.
+> +	 */
+> +	int (*copy_backed_up_page)(struct ttm_backup *backup, struct page *dst,
+> +				   unsigned long handle, bool intr);
+> +
+> +	/**
+> +	 * backup_page - Backup a page
+> +	 * @backup: The struct backup pointer to use.
+> +	 * @page: The page to back up.
+> +	 * @writeback: Whether to perform immediate writeback of the page.
+> +	 * This may have performance implications.
+> +	 * @i: A unique integer for each page and each struct backup.
+> +	 * This is a hint allowing the backup backend to avoid managing
+> +	 * its address space separately.
+> +	 * @page_gfp: The gfp value used when the page was allocated.
+> +	 * This is used for accounting purposes.
+> +	 * @alloc_gfp: The gpf to be used when the backend needs to allocaete
+> +	 * memory.
+> +	 *
+> +	 * Return: A handle on success. 0 on failure.
+> +	 * (This is following the swp_entry_t convention).
+> +	 *
+> +	 * Note: This function could be extended to back up a folio and
+> +	 * backends would then split the folio internally if needed.
+> +	 * Drawback is that the caller would then have to keep track of
+> +	 * the folio size- and usage.
+> +	 */
+> +	unsigned long (*backup_page)(struct ttm_backup *backup, struct page *page,
+> +				     bool writeback, pgoff_t i, gfp_t page_gfp,
+> +				     gfp_t alloc_gfp);
+> +	/**
+> +	 * fini - Free the struct backup resources after last use.
+> +	 * @backup: Pointer to the struct backup whose resources to free.
+> +	 *
+> +	 * After a call to @fini, it's illegal to use the @backup pointer.
+> +	 */
+> +	void (*fini)(struct ttm_backup *backup);
+> +};
+> +
+> +/**
+> + * struct ttm_backup - Abstract a backup backend.
+> + * @ops: The operations as described above.
+> + *
+> + * The struct ttm_backup is intended to be subclassed by the
+> + * backend implementation.
+> + */
+> +struct ttm_backup {
+> +	const struct ttm_backup_ops *ops;
+> +};
+> +
+> +/**
+> + * ttm_backup_shmem_create() - Create a shmem-based struct backup.
+> + * @size: The maximum size (in bytes) to back up.
+> + *
+> + * Create a backup utilizing shmem objects.
+> + *
+> + * Return: A pointer to a struct ttm_backup on success,
+> + * an error pointer on error.
+> + */
+> +struct ttm_backup *ttm_backup_shmem_create(loff_t size);
+> +
+> +#endif
+
