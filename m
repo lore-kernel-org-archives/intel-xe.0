@@ -4,36 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9CC2D5E14C
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 10:00:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20B90D5E14C
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 10:04:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78A9710E956;
-	Fri,  8 Nov 2024 10:00:55 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4367210E954;
- Fri,  8 Nov 2024 10:00:54 +0000 (UTC)
-Received: from 91-155-254-241.elisa-laajakaista.fi ([91.155.254.241]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1t9LnP-00000001avb-1Lob; Fri, 08 Nov 2024 12:00:52 +0200
-Message-ID: <39fec318e1e9c5cfbd67abc0e722f6d774aeba5e.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
-Cc: Luca Coelho <luciano.coelho@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Date: Fri, 08 Nov 2024 12:00:49 +0200
-In-Reply-To: <173101244899.92682.12331831987185316729@intel.com>
-References: <20241107182921.102193-1-gustavo.sousa@intel.com>
- <20241107182921.102193-18-gustavo.sousa@intel.com>
- <57edfe78f9da272e0312ad77ee8ff7060932ae8c.camel@coelho.fi>
- <173101047610.92682.5793541337752745725@intel.com>
- <173101244899.92682.12331831987185316729@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.1-1 
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9DB310E957;
+	Fri,  8 Nov 2024 10:04:54 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0CF810E957;
+ Fri,  8 Nov 2024 10:04:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 17/18] drm/i915/dmc_wl: Do nothing until initialized
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/mst=3A_cleanups=2C_re?=
+ =?utf-8?q?names=2C_clarifications_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 08 Nov 2024 10:04:53 -0000
+Message-ID: <173106029371.1426652.5106316485827158843@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <cover.1731011435.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1731011435.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,49 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2024-11-07 at 17:47 -0300, Gustavo Sousa wrote:
-> Quoting Gustavo Sousa (2024-11-07 17:14:36-03:00)
-> > Quoting Luca Coelho (2024-11-07 16:23:06-03:00)
-> >=20
-> > > > Since we do not expect DC states (and consequently the wakelock
-> > > > mechanism) to be enabled until DMC and DMC wakelock software struct=
-ures
-> > > > are initialized, a simple and safe solution to this is to turn
-> > > > intel_dmc_wl_get() and intel_dmc_wl_put() into no-op until we have
-> > > > properly initialized.
-> > >=20
-> > >=20
-> > > About "safe" here... Can we be sure this will be race-free?
-> >=20
-> > The initialization is done only once, during driver load. The wakelock
-> > will be enabled only at a later moment. So, we are good in that regard.
-> >=20
-> > However, now that you mentioned, yeah, we should also consider that tha=
-t
-> > we do concurrent work during initialization (e.g. loading the DMC).
-> > Based on that, we will need to protect "initialized", which means:
-> >=20
-> > - initializing the lock early together with the other ones;
-> > - always going for the lock, even for hardware that does not support th=
-e
-> >  wakelock.
->=20
-> Well, a hacky way to mitigate this is by checking the DISPLAY_VER() >=3D
-> 20 before taking the spin lock, since that info is queried in
-> probe_gmdid_display(), which happens at the "no-mmio" phase of driver
-> initialization.
->=20
-> By the way, that makes me think: is it too bad to do the same kind of
-> early MMIO via pci_iomap_range() for ICL_DFSM_DMC_DISABLE? We could
-> avoid this whole thing, since we would already have the correct value
-> for HAS_DMC() when i915/xe MMIO functions are called.
+== Series Details ==
 
-I'm not sure it's worth it, but if you feel this would be better, go
-ahead and show us the code. :)
+Series: drm/i915/mst: cleanups, renames, clarifications (rev2)
+URL   : https://patchwork.freedesktop.org/series/141067/
+State : success
 
---
-Cheers,
-Luca.
+== Summary ==
+
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/
+lib/modules/6.12.0-rc6-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc6-xe/build
+lib/modules/6.12.0-rc6-xe/modules.alias.bin
+lib/modules/6.12.0-rc6-xe/modules.builtin
+lib/modules/6.12.0-rc6-xe/modules.softdep
+lib/modules/6.12.0-rc6-xe/modules.alias
+lib/modules/6.12.0-rc6-xe/modules.order
+lib/modules/6.12.0-rc6-xe/modules.symbols
+lib/modules/6.12.0-rc6-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1731060281:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1731060281:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
