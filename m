@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFEC6D5C0C8
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 13:03:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B189CD5C0C7
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 13:03:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 873AC10E98A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA4A610E98E;
 	Fri,  8 Nov 2024 13:03:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NeD41Irk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZrGZ6htz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56ECC10E984;
- Fri,  8 Nov 2024 13:03:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07C0310E980;
+ Fri,  8 Nov 2024 13:03:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1731070983; x=1762606983;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UgXrwxXddIARR9qJIwEmLpZHuQCxADGfVyhuWKKzd64=;
- b=NeD41IrkN+SggarV0rWo4Y5u/++ctJuJOTA9VaIwpucpK90ZXqk0A9a9
- wWslufyZTTJnkCOT5J9LR+wdRoW8cfQFfmtyJW1xd+RsOAwuBKN6ucaTC
- Csd8EKIW4s3d2/v140Fz+3LWepAdCOV6ekKAPOjOvD7WR3LI9nGbfiig5
- KSnB1CWkxOsIb9MRLTJ0nvMze/cr3dwdDd/EW6dMnxGqzKCVLZB6C5B6q
- BbgsCMjjCKFvT1uYr6N82feD5wXNIrU7ySM4bdOBH5Ig+pnH5IoArz462
- tFec3milqrXW1p68u8jbe3xLeOgcf3KnCArSj4vVQu6OjsZTIQxqzV3Rh A==;
-X-CSE-ConnectionGUID: 2VgJXoQwR/isEkIm2DvzMg==
-X-CSE-MsgGUID: RiPl/HQKSZyoo3Yynn6zYw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41513126"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41513126"
+ bh=mBIY7pSU8m8SQP+gRuQ3qa81qmpOpi0OGk7F4PaP3s0=;
+ b=ZrGZ6htzBVE/rfkJOeE9/wxbyewf45e5P2MS3zR7Ivmau2PTvUBrd0I2
+ 3iTdoJYQErapeUJqNh7gfe9LYltkYkJVmAlSpIybMSKKXx/qK+1180dx2
+ OsbY2tPUe/iqqDqlZiq3emhwhIwqxzeLJ6qNmrtk5cuNTaN29tlZKtkfl
+ CqiU5MGY2aEouhS5pJh/CttCmy7mYf9mZogpm74JqdaVGGAlb9+JQ8oxv
+ xQuQvzJiShxwUJWSmR95fGY1mQ1DyGs7MUzJeVL6iAF379aiELE5GBg+N
+ 1F+5i0k4J9vnExha4jkezEdRDHRUWI/ejU2A54Qws267X5/Z2oLcSZ9GC g==;
+X-CSE-ConnectionGUID: 77g7uAj7Sg+PPn3G+0liiw==
+X-CSE-MsgGUID: iswslDzjQKq6h2vNS6iQkQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41513124"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41513124"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Nov 2024 05:03:03 -0800
-X-CSE-ConnectionGUID: Br3y/KV5QFuabhPUghfCow==
-X-CSE-MsgGUID: U8JU4TCZSC+Emz2hEqkgVQ==
+X-CSE-ConnectionGUID: e+7TRj9JTgmvird81LBEhg==
+X-CSE-MsgGUID: kJ/o2XGNTKCXe0HfrK4HrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,138,1728975600"; d="scan'208";a="85692477"
+X-IronPort-AV: E=Sophos;i="6.12,138,1728975600"; d="scan'208";a="85692468"
 Received: from ldmartin-desk2.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.110.232])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2024 05:02:49 -0800
+ 08 Nov 2024 05:02:44 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v4 05/15] drm/i915/dmc_wl: Get wakelock when disabling dynamic
- DC states
-Date: Fri,  8 Nov 2024 09:57:10 -0300
-Message-ID: <20241108130218.24125-6-gustavo.sousa@intel.com>
+Subject: [PATCH v4 02/15] drm/xe: Mimic i915 behavior for non-sleeping MMIO
+ wait
+Date: Fri,  8 Nov 2024 09:57:07 -0300
+Message-ID: <20241108130218.24125-3-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241108130218.24125-1-gustavo.sousa@intel.com>
 References: <20241108130218.24125-1-gustavo.sousa@intel.com>
@@ -69,92 +69,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Bspec says that disabling dynamic DC states require taking the DMC
-wakelock to cause an DC exit before writing to DC_STATE_EN. Implement
-that.
+In upcoming display changes, we will modify the DMC wakelock MMIO
+waiting code to choose a non-sleeping variant implementation, because
+the wakelock is also taking in atomic context.
 
-In fact, testing on PTL revealed we end up failing to exit DC5/6 without
-this step.
+While xe provides an explicit parameter (namely "atomic") to prevent
+xe_mmio_wait32() from sleeping, i915 does not and implements that
+behavior when slow_timeout_ms is zero.
 
-Bspec: 71583
+So, for now, let's mimic what i915 does to allow for display to use
+non-sleeping MMIO wait. In the future, we should come up with a better
+and explicit interface for this behavior in i915, at least while display
+code is not an independent entity with proper interfaces between xe and
+i915.
+
+v2:
+  - Make the tone in comment the comment added in
+    __intel_wait_for_register() more explanatory than a FIXME-like text.
+    (Luca)
+
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- .../drm/i915/display/intel_display_power_well.c    | 10 +++++++---
- drivers/gpu/drm/i915/display/intel_dmc_wl.c        | 14 ++++++++++++--
- drivers/gpu/drm/i915/display/intel_dmc_wl.h        |  2 ++
- 3 files changed, 21 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index f0131dd853de..0c77b6252969 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -994,10 +994,14 @@ void gen9_disable_dc_states(struct intel_display *display)
- 		return;
- 	}
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+index 0382beb4035b..686c39f320e4 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+@@ -117,10 +117,19 @@ __intel_wait_for_register(struct intel_uncore *uncore, i915_reg_t i915_reg,
+ 			  unsigned int slow_timeout_ms, u32 *out_value)
+ {
+ 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
++	bool atomic;
++
++	/*
++	 * Replicate the behavior from i915 here, in which sleep is not
++	 * performed if slow_timeout_ms == 0. This is necessary because
++	 * of some paths in display code where waits are done in atomic
++	 * context.
++	 */
++	atomic = !slow_timeout_ms && fast_timeout_us > 0;
  
--	gen9_set_dc_state(display, DC_STATE_DISABLE);
--
--	if (!HAS_DISPLAY(display))
-+	if (HAS_DISPLAY(display)) {
-+		intel_dmc_wl_get_noreg(display);
-+		gen9_set_dc_state(display, DC_STATE_DISABLE);
-+		intel_dmc_wl_put_noreg(display);
-+	} else {
-+		gen9_set_dc_state(display, DC_STATE_DISABLE);
- 		return;
-+	}
- 
- 	intel_dmc_wl_disable(display);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index a0a060706305..e837c39491bb 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -199,7 +199,7 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
- 	if (!__intel_dmc_wl_supported(display))
- 		return;
- 
--	if (!intel_dmc_wl_check_range(reg))
-+	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(reg))
- 		return;
- 
- 	spin_lock_irqsave(&wl->lock, flags);
-@@ -251,7 +251,7 @@ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg)
- 	if (!__intel_dmc_wl_supported(display))
- 		return;
- 
--	if (!intel_dmc_wl_check_range(reg))
-+	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(reg))
- 		return;
- 
- 	spin_lock_irqsave(&wl->lock, flags);
-@@ -272,3 +272,13 @@ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg)
- out_unlock:
- 	spin_unlock_irqrestore(&wl->lock, flags);
+ 	return xe_mmio_wait32(__compat_uncore_to_mmio(uncore), reg, mask, value,
+ 			      fast_timeout_us + 1000 * slow_timeout_ms,
+-			      out_value, false);
++			      out_value, atomic);
  }
-+
-+void intel_dmc_wl_get_noreg(struct intel_display *display)
-+{
-+	intel_dmc_wl_get(display, INVALID_MMIO_REG);
-+}
-+
-+void intel_dmc_wl_put_noreg(struct intel_display *display)
-+{
-+	intel_dmc_wl_put(display, INVALID_MMIO_REG);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.h b/drivers/gpu/drm/i915/display/intel_dmc_wl.h
-index adab51208d0a..9aa72a4bf153 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_wl.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.h
-@@ -27,5 +27,7 @@ void intel_dmc_wl_enable(struct intel_display *display);
- void intel_dmc_wl_disable(struct intel_display *display);
- void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg);
- void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg);
-+void intel_dmc_wl_get_noreg(struct intel_display *display);
-+void intel_dmc_wl_put_noreg(struct intel_display *display);
  
- #endif /* __INTEL_WAKELOCK_H__ */
+ static inline u32 intel_uncore_read_fw(struct intel_uncore *uncore,
 -- 
 2.47.0
 
