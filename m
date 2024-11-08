@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F7C6D5E130
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 05:33:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B361D5E12D
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Nov 2024 05:33:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12CB110E921;
-	Fri,  8 Nov 2024 05:33:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17D2110E1CA;
+	Fri,  8 Nov 2024 05:33:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kBcGDUTc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I+wvZ0L+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0252C10E920
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAB2410E920
  for <intel-xe@lists.freedesktop.org>; Fri,  8 Nov 2024 05:33:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1731044022; x=1762580022;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HqnHTM7+YZ+jzqEwcgyTcPZ15k0X0M5em2PsQKE2r78=;
- b=kBcGDUTcZ21jVffvmINjLdfOxhnYsrNwuA7SSTdNctp/1JE87ZRSx2SR
- 3sdbvdNK0D7enZkpyms5hONZtQjtj5fM+gXLi8Rdcpfw8qta+4H/Q84rm
- 2WY9OvHLAr5zYSJ2+o11skmple0DN9FFhg3r1tg4+nzslChxIw18wPfpm
- 1nDPR1EuJLh02QnobvbhUSfhyNftMGWRrGlwH06mNstOCgj/I1+Yj4fLa
- 6f7x/dCq7aqdBnuXj8YFmDjsQNfYne1XqTsrKQl3UXgENQzLF8JDCmh4F
- 7uwPF9I6tsZ2bdHwnP1fYNmP8oRHqTITuvLnj2x9yFvWLvKhtrk83gvLx Q==;
-X-CSE-ConnectionGUID: 7S3LeAg2RASywgxwk/MHng==
-X-CSE-MsgGUID: 2EGclfH/QQ2q5JrOq6GjvA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="30316583"
-X-IronPort-AV: E=Sophos;i="6.12,137,1728975600"; d="scan'208";a="30316583"
+ bh=Jw4jQBflRd4jyOLXJKN3vbqZpgEnVUCJFfUMrNeYkHI=;
+ b=I+wvZ0L+gpoMyGcasvXIDhn3ko4JLZcGJssaCGA/h22XeuJ2Qknp+G3R
+ P2PA2S18ioMqifVJ8nQhvwRKzVFFF50JXvdA93wmEFRZ/GGs0du0LTq5A
+ EKRBJ2Du4rHJQaShEB3e6JmM/goERD4orxfH/SjTye07SHzd9xI5AYg5/
+ OWJbDNPa0u1v1r7JliTi05l7PGcN04bNDSW6yGiMUXeyW08/Z7/RmnUc0
+ 9sXsYgzhfxD1brNhrIolYrAlgFMg0coCwamzkFOFODnYgayEPqNWMexpo
+ t1Y+DHeee2eysIDCc9Gi+0tVNWMxaAuFpblNEGczF8ZP18Ov7swoOMiOD g==;
+X-CSE-ConnectionGUID: kIjfQNLnTsGsNEEWTwnoeQ==
+X-CSE-MsgGUID: /A2YoG0TTnufLIWijCRerw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="30316581"
+X-IronPort-AV: E=Sophos;i="6.12,137,1728975600"; d="scan'208";a="30316581"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Nov 2024 21:33:42 -0800
-X-CSE-ConnectionGUID: wQHtWXHWQ8mu+8jmhCGavw==
-X-CSE-MsgGUID: eCweOUMMTdO6QWlRB+4I5Q==
+X-CSE-ConnectionGUID: X15APp0gSyWBba5buj450w==
+X-CSE-MsgGUID: /FdL/fQNTq6RV+Dem4SDog==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,137,1728975600"; d="scan'208";a="90037108"
+X-IronPort-AV: E=Sophos;i="6.12,137,1728975600"; d="scan'208";a="90037102"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Nov 2024 21:33:43 -0800
@@ -47,9 +47,9 @@ Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v4 3/3] drm/xe: Cache hwe used for timestamp
-Date: Thu,  7 Nov 2024 21:33:18 -0800
-Message-ID: <20241108053318.3483678-4-lucas.demarchi@intel.com>
+Subject: [PATCH v4 1/3] drm/xe: Wait on killed exec queues
+Date: Thu,  7 Nov 2024 21:33:16 -0800
+Message-ID: <20241108053318.3483678-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241108053318.3483678-1-lucas.demarchi@intel.com>
 References: <20241108053318.3483678-1-lucas.demarchi@intel.com>
@@ -69,99 +69,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Cache the hwe used to read the timestamp so it doesn't need to be done
-every time it's read.
+When an exec queue is killed it triggers an async process of asking the
+GuC to schedule the context out. The timestamp in the context image is
+only updated when this process completes. In case a userspace process
+kills an exec and tries to read the timestamp, it may not get an updated
+runtime.
 
+Add synchronization between the process reading the fdinfo and the exec
+queue being killed. After reading all the timestamps, wait on exec
+queues in the process of being killed. When that wait is over,
+xe_exec_queue_fini() was already called and updated the timestamps.
+
+v2: Do not update pending_removal before validating user args
+    (Matthew Auld)
+v3: Move wait on pending to be done before getting any timestamp
+    so it's more likely for the gpu and exec queue timestamps to
+    be closer together
+
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2667
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c       |  2 ++
- drivers/gpu/drm/xe/xe_device_types.h |  5 +++++
- drivers/gpu/drm/xe/xe_drm_client.c   | 10 ++++++++++
- drivers/gpu/drm/xe/xe_drm_client.h   |  2 ++
- 4 files changed, 19 insertions(+)
+ drivers/gpu/drm/xe/xe_device_types.h | 5 +++++
+ drivers/gpu/drm/xe/xe_drm_client.c   | 7 +++++++
+ drivers/gpu/drm/xe/xe_exec_queue.c   | 6 ++++++
+ 3 files changed, 18 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 0e2dd691bdae9..9668a60e3aeae 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -759,6 +759,8 @@ int xe_device_probe(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_sanitize_freq(gt);
- 
-+	xe_drm_client_init(xe);
-+
- 	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
- 
- err_fini_display:
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index fffbb7d1c40b4..f13b738ce77a8 100644
+index bccca63c8a48c..fffbb7d1c40b4 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -34,6 +34,7 @@
+@@ -607,6 +607,11 @@ struct xe_file {
+ 		 * which does things while being held.
+ 		 */
+ 		struct mutex lock;
++		/**
++		 * @exec_queue.pending_removal: items pending to be removed to
++		 * synchronize GPU state update with ongoing query.
++		 */
++		atomic_t pending_removal;
+ 	} exec_queue;
  
- struct xe_ggtt;
- struct xe_pat_ops;
-+struct xe_hw_engine;
- 
- #define XE_BO_INVALID_OFFSET	LONG_MAX
- 
-@@ -509,6 +510,10 @@ struct xe_device {
- 		int mode;
- 	} wedged;
- 
-+	struct {
-+		struct xe_hw_engine *hwe;
-+	} drm_client;
-+
- #ifdef TEST_VM_OPS_ERROR
- 	/**
- 	 * @vm_inject_error_position: inject errors at different places in VM
+ 	/** @run_ticks: hw engine class run time in ticks for this drm client */
 diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index 298a587da7f17..125ee18ab9f1f 100644
+index 22f0f1a6dfd55..dd4e16a84874c 100644
 --- a/drivers/gpu/drm/xe/xe_drm_client.c
 +++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -274,6 +274,9 @@ static struct xe_hw_engine *any_engine(struct xe_device *xe)
- 	struct xe_gt *gt;
- 	unsigned long gt_id;
+@@ -280,6 +280,13 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
+ 	u64 gpu_timestamp;
+ 	unsigned int fw_ref;
  
-+	if (xe->drm_client.hwe)
-+		return xe->drm_client.hwe;
++	/*
++	 * Wait for any exec queue going away: their cycles will get updated on
++	 * context switch out, so wait for that to happen
++	 */
++	wait_var_event(&xef->exec_queue.pending_removal,
++		       !atomic_read(&xef->exec_queue.pending_removal));
 +
- 	for_each_gt(gt, xe, gt_id) {
- 		struct xe_hw_engine *hwe = xe_gt_any_hw_engine(gt);
+ 	xe_pm_runtime_get(xe);
  
-@@ -394,4 +397,11 @@ void xe_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file)
- 	show_meminfo(p, file);
- 	show_run_ticks(p, file);
- }
+ 	/* Accumulate all the exec queues from this client */
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index fd0f3b3c9101d..ff556773c1063 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -262,8 +262,11 @@ void xe_exec_queue_fini(struct xe_exec_queue *q)
+ 
+ 	/*
+ 	 * Before releasing our ref to lrc and xef, accumulate our run ticks
++	 * and wakeup any waiters.
+ 	 */
+ 	xe_exec_queue_update_run_ticks(q);
++	if (q->xef && atomic_dec_and_test(&q->xef->exec_queue.pending_removal))
++		wake_up_var(&q->xef->exec_queue.pending_removal);
+ 
+ 	for (i = 0; i < q->width; ++i)
+ 		xe_lrc_put(q->lrc[i]);
+@@ -826,7 +829,10 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
+ 
+ 	mutex_lock(&xef->exec_queue.lock);
+ 	q = xa_erase(&xef->exec_queue.xa, args->exec_queue_id);
++	if (q)
++		atomic_inc(&xef->exec_queue.pending_removal);
+ 	mutex_unlock(&xef->exec_queue.lock);
 +
-+void xe_drm_client_init(struct xe_device *xe)
-+{
-+	xe->drm_client.hwe = NULL;
-+	xe->drm_client.hwe = any_engine(xe);
-+}
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.h b/drivers/gpu/drm/xe/xe_drm_client.h
-index a9649aa360110..5609fbd682650 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.h
-+++ b/drivers/gpu/drm/xe/xe_drm_client.h
-@@ -16,6 +16,7 @@
- struct drm_file;
- struct drm_printer;
- struct xe_bo;
-+struct xe_device;
+ 	if (XE_IOCTL_DBG(xe, !q))
+ 		return -ENOENT;
  
- struct xe_drm_client {
- 	struct kref kref;
-@@ -48,6 +49,7 @@ static inline void xe_drm_client_put(struct xe_drm_client *client)
- 	kref_put(&client->kref, __xe_drm_client_free);
- }
- 
-+void xe_drm_client_init(struct xe_device *xe);
- struct xe_drm_client *xe_drm_client_alloc(void);
- static inline struct xe_drm_client *
- xe_drm_client_get(struct xe_drm_client *client);
 -- 
 2.47.0
 
