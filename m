@@ -4,59 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E33AD5E373
-	for <intel-xe@archiver.kernel.org>; Sat,  9 Nov 2024 14:15:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99F5DD5E372
+	for <intel-xe@archiver.kernel.org>; Sat,  9 Nov 2024 14:19:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D9A510E08D;
-	Sat,  9 Nov 2024 14:15:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40A3010E08D;
+	Sat,  9 Nov 2024 14:19:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PkX8Lfvr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="grPrioUp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE37010E08D
- for <intel-xe@lists.freedesktop.org>; Sat,  9 Nov 2024 14:15:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABBD210E2BF
+ for <intel-xe@lists.freedesktop.org>; Sat,  9 Nov 2024 14:19:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731161703; x=1762697703;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=EpGeKSbbhJ1uK23p3G+F13JMR97g+6eEgBu5/XuG0Hc=;
- b=PkX8LfvrJyeait57KKeZTTdxoT09nCz2xVdGmyRcJ6TNkqYXuRH/peXH
- aZj4wv3Zo7W9mgskR8csXa65QT1pl0rOts6BmrbXLu+SgnoqTNQ6JaNBp
- m+QaVlSz9fLoRgZg5oG9BzvdeoYUt3ALziSKSkkW8+S5wyYeCt8KnQBOu
- dfSF7+2CO/6HilMNJ0Os1aiBXElA76HPX9LgQL3+t27nqLDeSdcO5kDYl
- /9eSoEXroHU/ZuOOA3CJbQ1dL/za9+YNQn68NMdoUVXe5F+YbF1wJeTyZ
- TQ1LvzlZcqfVdKKx3FG4C3Ujh/xAMNBU/zr8zMzXDRyV444oJoxZwj0Yp w==;
-X-CSE-ConnectionGUID: IFtJHVVvSai6HhUVLwPgzA==
-X-CSE-MsgGUID: 9hC1mrBDRL2prRybYR5R2A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11251"; a="41642733"
-X-IronPort-AV: E=Sophos;i="6.12,141,1728975600"; d="scan'208";a="41642733"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2024 06:15:02 -0800
-X-CSE-ConnectionGUID: guW8OM1EQq6Fu1pMwvl1Vg==
-X-CSE-MsgGUID: O93YUQ7cSDGHgI6ITew/jw==
+ t=1731161967; x=1762697967;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=x3XK9U6SUYQD8SthFnvZpkOz4Hh4kJmDvWSlTAZGHK8=;
+ b=grPrioUpXP6e6boCMQmE7PhKi6bIDZuP5pren7dmV2N0tL79GsJPfpGz
+ o0ZCZm9BHfM7Y5uDpZ4CZQB4DMWF9mhUSoVQ0kRd0JgmWvUMbeJuB5kUm
+ D1lA91RGKGrMnvzM4NQCiYEdX9IZ3YweLlQyZS1namqdSQ3z3Igx3NlX/
+ /8R0RRhty0s2JWTK3A/yFJIUZ31iTn8R7mlBXhvkf7jAdvfyT4rYG5eXK
+ +UQFMvBmnlaGgKskfuxP8FfKdqtTna8pdDwOkDU8Ctoc/Dot9kqK+Z1Os
+ CaUeJGsmgDfPNGUVZd2TWHG0MPsBJoHfIiomTNp9sZKON7iaKYq+PrMch w==;
+X-CSE-ConnectionGUID: oVRA7nGLSf6j9Twva1K3pg==
+X-CSE-MsgGUID: 6BG99BkFRIiUeCtV89KXuA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11251"; a="30426849"
+X-IronPort-AV: E=Sophos;i="6.12,141,1728975600"; d="scan'208";a="30426849"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2024 06:19:27 -0800
+X-CSE-ConnectionGUID: KWza2E5vSYW/YIbiL7XZkQ==
+X-CSE-MsgGUID: RzbF07mbRYKU5jOI9ANIoQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,141,1728975600"; d="scan'208";a="85703809"
+X-IronPort-AV: E=Sophos;i="6.12,141,1728975600"; d="scan'208";a="86380076"
 Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa007.fm.intel.com with ESMTP; 09 Nov 2024 06:15:01 -0800
+ by orviesa007.jf.intel.com with ESMTP; 09 Nov 2024 06:19:26 -0800
 Received: from [10.246.2.138] (mwajdecz-MOBL.ger.corp.intel.com [10.246.2.138])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 8CB8C28197
- for <intel-xe@lists.freedesktop.org>; Sat,  9 Nov 2024 14:15:00 +0000 (GMT)
-Message-ID: <05a4c78c-22a0-4a3b-bc4e-66577637859e@intel.com>
-Date: Sat, 9 Nov 2024 15:14:59 +0100
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 5276428197;
+ Sat,  9 Nov 2024 14:19:24 +0000 (GMT)
+Message-ID: <6899cf74-3cee-41b3-b4df-d293fe9d1930@intel.com>
+Date: Sat, 9 Nov 2024 15:19:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_CI=2EFULL=3A_failure_for_Prefer_GT_orient?=
- =?UTF-8?Q?ed_logs/asserts_in_submit_code?=
-To: intel-xe@lists.freedesktop.org
-References: <20241107194741.2167-1-michal.wajdeczko@intel.com>
- <173111858505.1509041.12925856584925267535@2413ebb6fbb6>
+Subject: Re: [PATCH v1 1/1] drm/xe/guc: Do not assert CTB state while sending
+ MMIO
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org,
+ =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
+References: <20241107151357.1623733-1-tomasz.lis@intel.com>
+ <20241107151357.1623733-2-tomasz.lis@intel.com>
+ <48da6fac-2693-4fad-871c-d990f2da0bc6@intel.com>
+ <Zy1/zaWCbhI5y8RJ@lstrano-desk.jf.intel.com>
 Content-Language: en-US
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <173111858505.1509041.12925856584925267535@2413ebb6fbb6>
+In-Reply-To: <Zy1/zaWCbhI5y8RJ@lstrano-desk.jf.intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,65 +77,62 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 09.11.2024 03:16, Patchwork wrote:
-> == Series Details ==
+On 08.11.2024 04:04, Matthew Brost wrote:
+> On Thu, Nov 07, 2024 at 05:56:09PM +0100, Michal Wajdeczko wrote:
+>>
+>>
+>> On 07.11.2024 16:13, Tomasz Lis wrote:
+>>> During VF post-migration recovery, MMIO communication channel to GuC
+>>> is used, despite CTB channel being enabled. This behavior is rooted
+>>> in the save-restore architecture specification.
+>>>
+>>> Therefore, a VF driver cannot assert that CTB is disabled while sending
+>>> MMIO messages to GuC. Such assertion needs to be PF only, or be removed.
+>>
+>> + Matt
+>>
 > 
-> Series: Prefer GT oriented logs/asserts in submit code
-> URL   : https://patchwork.freedesktop.org/series/141063/
-> State : failure
+> IIRC there was a big arch push to avoid using MMIO communication
+> entirely but that was several years ago and lost track of GuC interface
+> specifics since then.
 > 
-> == Summary ==
+>>>
+>>> This patch simply removes the assertion.
+>>>
+>>> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+>>> Suggested-by: Michał Wajdeczko <michal.wajdeczko@intel.com>
+>>
+>> in fact I was already trying to fix that [1], but I had to wait until we
+>> have some S/R code in place, so I'm fine with it as-is
+>>
+>> Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>
 > 
-> CI Bug Log - changes from xe-2184-85b1b17ed748e1f68ac83052916a95d624405c97_full -> xe-pw-141063v1_full
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with xe-pw-141063v1_full absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in xe-pw-141063v1_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   
-> 
-> Participating hosts (4 -> 4)
-> ------------------------------
-> 
->   No changes in participating hosts
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in xe-pw-141063v1_full:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
+> I'll defer to Michal here as I'm sure you are more well versed expected
+> GuC interaction at this point that me.
 
-all unrelated
+thanks, pushed as-is to drm-xe-next
 
 > 
->   * igt@core_getversion@all-cards:
->     - shard-dg2-set2:     [PASS][1] -> [FAIL][2]
->    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2184-85b1b17ed748e1f68ac83052916a95d624405c97/shard-dg2-466/igt@core_getversion@all-cards.html
->    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141063v1/shard-dg2-434/igt@core_getversion@all-cards.html
+> Matt
+> 
+>> [1] https://patchwork.freedesktop.org/series/128721/#rev1
+>>
+>>> ---
+>>>  drivers/gpu/drm/xe/xe_guc.c | 1 -
+>>>  1 file changed, 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+>>> index 7224593c9ce9..df1ba94cf4ca 100644
+>>> --- a/drivers/gpu/drm/xe/xe_guc.c
+>>> +++ b/drivers/gpu/drm/xe/xe_guc.c
+>>> @@ -945,7 +945,6 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+>>>  
+>>>  	BUILD_BUG_ON(VF_SW_FLAG_COUNT != MED_VF_SW_FLAG_COUNT);
+>>>  
+>>> -	xe_assert(xe, !xe_guc_ct_enabled(&guc->ct));
+>>>  	xe_assert(xe, len);
+>>>  	xe_assert(xe, len <= VF_SW_FLAG_COUNT);
+>>>  	xe_assert(xe, len <= MED_VF_SW_FLAG_COUNT);
+>>
 
-(core_getversion:2196) drmtest-DEBUG: Looking for devices to open using
-filter 0: pci:vendor=intel,device=discrete,card=0
-(core_getversion:2196) drmtest-WARNING: No card matches the filter!
-[pci:vendor=intel,device=discrete,card=0]
-
-> 
->   * igt@kms_flip@plain-flip-ts-check-interruptible@a-hdmi-a3:
->     - shard-bmg:          NOTRUN -> [INCOMPLETE][3]
->    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141063v1/shard-bmg-1/igt@kms_flip@plain-flip-ts-check-interruptible@a-hdmi-a3.html
-> 
->   * igt@kms_rotation_crc@primary-y-tiled-reflect-x-90:
->     - shard-dg2-set2:     NOTRUN -> [SKIP][4]
->    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141063v1/shard-dg2-433/igt@kms_rotation_crc@primary-y-tiled-reflect-x-90.html
-> 
