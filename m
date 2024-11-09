@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84060D6409E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FE63D6409C
 	for <intel-xe@archiver.kernel.org>; Sat,  9 Nov 2024 01:59:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 485B410E33D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4874210E33E;
 	Sat,  9 Nov 2024 01:59:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DTKJ07pV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KKn9Vzua";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F20E10E339
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46BB810E339
  for <Intel-Xe@lists.freedesktop.org>; Sat,  9 Nov 2024 01:59:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1731117577; x=1762653577;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4shDHUuFoErineLpSg7Vq/CuMY0JACaW62sccacclfY=;
- b=DTKJ07pVsOadl1BNdFzRdjNs6Kggs6blcBN4iC4qtTICyBXzYnKClK3I
- yz1OPP6GgYwP7+5u5mGRPBnJVMWMEKSWyvlu++ug++haxFtrCDgZhvrF0
- kKmBoMxzy6TulGJv8dZUODNg155qZrrXGlDBKQOR/vQQ67ImtP++Q4NYE
- CnnVzEW47oIrq+L5d6tgKsETjDHp8Yvo3JtzoFe2TJs2KHtY+7nV0QHlP
- tCGS2EfTZucTc5jLZZoIkCquXsCZUUJ440mLHN8rHJMMLQsF3GUgWJJGS
- TA0YSBrOotC8jidrpxyL3LE7kGxhEvz0oz1LUN8E7+gGmGDf3FfVvpoei A==;
-X-CSE-ConnectionGUID: zGNW7se/Tpmq5EIXekExVg==
-X-CSE-MsgGUID: lWUyog3bShSlSe0sQ8HaEw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11250"; a="34799513"
-X-IronPort-AV: E=Sophos;i="6.12,139,1728975600"; d="scan'208";a="34799513"
+ bh=76Ka9DGL9ZK84r7rflRddyQZCXWz1/0b5YHHD02QwGs=;
+ b=KKn9VzuaFR/tlGdy4I7Z34TlBak7FpHzIl2Ewt6/6MJxVHkmc6MG7Tdn
+ MU+OSgCNC+f3GBVYs/L9gxOEtINx0s6royjaAad3GKQHK9d+ruKXy5erR
+ J304Zot+0320cUL/x76tGBlQXZ2MZb43VAABP8MRGR+zw+a8i2mZyVBBk
+ 5SYYi/622BZcE3CMJ5l5d+a0BZn9a9DraguIpO/fpV49txJnY+gQqWJuT
+ 8yoDbseUzipkeA7S+ipc02HV2Mg7Fsbok31pzMAz73yCOYbdmqdGfY/HN
+ oOEW143Zss7kWvbF2d5iWiRFH4ui2QhhP3Z5PRzaenZtPjdS4NDQ5Nr0+ Q==;
+X-CSE-ConnectionGUID: grn8pm6pQ3y6m0l31243Vw==
+X-CSE-MsgGUID: g3tZ0OI9SFqwTEYVJE75TQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11250"; a="34799510"
+X-IronPort-AV: E=Sophos;i="6.12,139,1728975600"; d="scan'208";a="34799510"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Nov 2024 17:59:36 -0800
-X-CSE-ConnectionGUID: NCBLwK3fQNiMMZkKz72tBA==
-X-CSE-MsgGUID: jCuiwnDNSMu/gTTlxl9DqA==
+X-CSE-ConnectionGUID: EsWib9U9SnKMTS8dSnM6eg==
+X-CSE-MsgGUID: 7sXNdzLnSPy5XR20dynS3A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,139,1728975600"; d="scan'208";a="90369014"
+X-IronPort-AV: E=Sophos;i="6.12,139,1728975600"; d="scan'208";a="90369005"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
  by fmviesa005.fm.intel.com with ESMTP; 08 Nov 2024 17:59:35 -0800
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
 Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [RFC 4/5] drm/xe: Make coredump printing to in-memory cache optional
-Date: Fri,  8 Nov 2024 17:59:33 -0800
-Message-ID: <20241109015934.2203462-5-John.C.Harrison@Intel.com>
+Subject: [RFC 1/5] drm/xe/devcoredump: Support coredumps without jobs
+Date: Fri,  8 Nov 2024 17:59:30 -0800
+Message-ID: <20241109015934.2203462-2-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241109015934.2203462-1-John.C.Harrison@Intel.com>
 References: <20241109015934.2203462-1-John.C.Harrison@Intel.com>
@@ -69,216 +69,257 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-The devcoredump printing via sysfs is a multi-stage process. After a
-binary capture is created, a worker thread is scheduled to convert
-the binary data into human readable text stored in a memory
-buffer. That buffer is then read via sysfs at a later point.
-
-However, internal driver debug usage of devcoredumps does not
-necessarily want to use the in memory buffer and sysfs output method.
-E.g. when needing to dump via dmesg for various reasons.
-
-So make the worker thread optional and allow the printing code to be
-called with other targets. Also, move blank lines into separate prints
-as some print targets need to add per line prefixes.
+A devcoredump is an extremely useful debug feature. So allow it to be
+used for issues where there is no DRM scheduler job available.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c | 98 +++++++++++++++++------------
- drivers/gpu/drm/xe/xe_devcoredump.h |  2 +
- 2 files changed, 59 insertions(+), 41 deletions(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c | 155 +++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_devcoredump.h |   5 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c  |   2 +-
+ 3 files changed, 137 insertions(+), 25 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 53dc79506094..146b5cd4fbe6 100644
+index d3570d3d573c..f0fcc898b3ae 100644
 --- a/drivers/gpu/drm/xe/xe_devcoredump.c
 +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -74,56 +74,69 @@ static struct xe_guc *exec_queue_to_guc(struct xe_exec_queue *q)
- 	return &q->gt->uc.guc;
+@@ -237,8 +237,8 @@ static void xe_devcoredump_free(void *data)
+ 		 "Xe device coredump has been deleted.\n");
  }
  
--static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
--				     struct xe_devcoredump *coredump)
-+void xe_devcoredump_print(struct drm_printer *p, struct xe_devcoredump *coredump)
+-static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+-				 struct xe_sched_job *job)
++static void devcoredump_snapshot_job(struct xe_devcoredump *coredump,
++				     struct xe_sched_job *job)
  {
- 	struct xe_device *xe = coredump->xe;
- 	struct xe_devcoredump_snapshot *ss;
--	struct drm_printer p;
--	struct drm_print_iterator iter;
- 	struct timespec64 ts;
+ 	struct xe_devcoredump_snapshot *ss = &coredump->snapshot;
+ 	struct xe_exec_queue *q = job->q;
+@@ -246,23 +246,16 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	u32 adj_logical_mask = q->logical_mask;
+ 	u32 width_mask = (0x1 << q->width) - 1;
+ 	const char *process_name = "no process";
+-
+ 	unsigned int fw_ref;
+-	bool cookie;
  	int i;
  
- 	ss = &coredump->snapshot;
- 
--	iter.data = buffer;
--	iter.start = 0;
--	iter.remain = count;
+-	ss->snapshot_time = ktime_get_real();
+-	ss->boot_time = ktime_get_boottime();
 -
--	p = drm_coredump_printer(&iter);
--
--	drm_puts(&p, "**** Xe Device Coredump ****\n");
--	drm_puts(&p, "kernel: " UTS_RELEASE "\n");
--	drm_puts(&p, "module: " KBUILD_MODNAME "\n");
-+	drm_puts(p, "**** Xe Device Coredump ****\n");
-+	drm_puts(p, "kernel: " UTS_RELEASE "\n");
-+	drm_puts(p, "module: " KBUILD_MODNAME "\n");
+ 	if (q->vm && q->vm->xef)
+ 		process_name = q->vm->xef->process_name;
+ 	strscpy(ss->process_name, process_name);
  
- 	ts = ktime_to_timespec64(ss->snapshot_time);
--	drm_printf(&p, "Snapshot time: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
-+	drm_printf(p, "Snapshot time: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
- 	ts = ktime_to_timespec64(ss->boot_time);
--	drm_printf(&p, "Uptime: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
--	drm_printf(&p, "Process: %s\n", ss->process_name);
--	xe_device_snapshot_print(xe, &p);
--
--	drm_printf(&p, "\n**** GT #%d ****\n", ss->gt->info.id);
--	drm_printf(&p, "\tTile: %d\n", ss->gt->tile->id);
-+	drm_printf(p, "Uptime: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
-+	drm_printf(p, "Process: %s\n", ss->process_name);
-+	xe_device_snapshot_print(xe, p);
-+
-+	drm_puts(p, "\n");
-+	drm_printf(p, "**** GT #%d ****\n", ss->gt->info.id);
-+	drm_printf(p, "\tTile: %d\n", ss->gt->tile->id);
-+
-+	drm_puts(p, "\n");
-+	drm_puts(p, "**** GuC Log ****\n");
-+	xe_guc_log_snapshot_print(ss->guc.log, p);
-+	drm_puts(p, "\n");
-+	drm_puts(p, "**** GuC CT ****\n");
-+	xe_guc_ct_snapshot_print(ss->guc.ct, p);
-+
-+	drm_puts(p, "\n");
-+	drm_puts(p, "**** Contexts ****\n");
-+	xe_guc_exec_queue_snapshot_print(ss->ge, p);
-+
-+	drm_puts(p, "\n");
-+	drm_puts(p, "**** Job ****\n");
-+	xe_sched_job_snapshot_print(ss->job, p);
-+
-+	drm_puts(p, "\n");
-+	drm_puts(p, "**** HW Engines ****\n");
-+	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
-+		if (ss->hwe[i])
-+			xe_engine_snapshot_print(ss->hwe[i], p);
+ 	ss->gt = q->gt;
+ 	coredump->job = job;
+-	INIT_WORK(&ss->work, xe_devcoredump_deferred_snap_work);
  
--	drm_puts(&p, "\n**** GuC Log ****\n");
--	xe_guc_log_snapshot_print(ss->guc.log, &p);
--	drm_puts(&p, "\n**** GuC CT ****\n");
--	xe_guc_ct_snapshot_print(ss->guc.ct, &p);
-+	drm_puts(p, "\n");
-+	drm_puts(p, "**** VM state ****\n");
-+	xe_vm_snapshot_print(ss->vm, p);
+-	cookie = dma_fence_begin_signalling();
+ 	for (i = 0; q->width > 1 && i < XE_HW_ENGINE_MAX_INSTANCE;) {
+ 		if (adj_logical_mask & BIT(i)) {
+ 			adj_logical_mask |= width_mask << i;
+@@ -283,32 +276,109 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 
+ 	xe_engine_snapshot_capture_for_job(job);
+ 
++	xe_force_wake_put(gt_to_fw(q->gt), fw_ref);
 +}
- 
--	drm_puts(&p, "\n**** Contexts ****\n");
--	xe_guc_exec_queue_snapshot_print(ss->ge, &p);
-+static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
-+				     struct xe_devcoredump *coredump)
++
++static void devcoredump_snapshot_gt(struct xe_devcoredump *coredump, struct xe_gt *gt)
 +{
-+	struct drm_printer p;
-+	struct drm_print_iterator iter;
++	struct xe_devcoredump_snapshot *ss = &coredump->snapshot;
++	struct xe_guc *guc = &gt->uc.guc;
++	unsigned int fw_ref;
++
++	strscpy(ss->process_name, "no proccess");
++
++	ss->gt = gt;
++
++	/* keep going if fw fails as we still want to save the memory and SW data */
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++
++	ss->guc.log = xe_guc_log_snapshot_capture(&guc->log, true);
++	ss->guc.ct = xe_guc_ct_snapshot_capture(&guc->ct);
++
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++}
++
++static void devcoredump_snapshot_xe(struct xe_devcoredump *coredump, struct xe_device *xe)
++{
++	struct xe_devcoredump_snapshot *ss = &coredump->snapshot;
++
++	strscpy(ss->process_name, "no proccess");
++
++	/* No implemented yet - need to keep a list of GTs in the snapshot */
++#if 0
++	struct xe_gt *gt;
++	int i;
++
++	for_each_gt(gt, xe, i) {
++		struct xe_gt_snapshot *ss_gt;
++		struct xe_guc *guc = &gt->uc.guc;
++		unsigned int fw_ref;
++
++		ss_gt = kzalloc(sizeof(*ss_gt), GFP_ATOMIC);
++		if (!ss_gt)
++			continue;
++
++		ss_gt->gt = gt;
++
++		/* keep going if fw fails as we still want to save the memory and SW data */
++		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++
++		ss_gt->guc.log = xe_guc_log_snapshot_capture(&guc->log, true);
++		ss_gt->guc.ct = xe_guc_ct_snapshot_capture(&guc->ct);
++
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
++
++		list_add(&ss_gt->link, &ss->gt_list);
++	}
++#endif
++}
++
++static void devcoredump_snapshot_for_thing(struct xe_devcoredump *coredump,
++					   struct xe_gt *gt, struct xe_sched_job *job)
++{
++	struct xe_devcoredump_snapshot *ss;
++	struct xe_device *xe;
++	bool cookie;
++
++	xe = coredump_to_xe(coredump);
++
++	xe_assert(xe, !coredump->captured);
++	coredump->captured = true;
++
++	ss = &coredump->snapshot;
++	ss->snapshot_time = ktime_get_real();
++	ss->boot_time = ktime_get_boottime();
++
++	INIT_WORK(&ss->work, xe_devcoredump_deferred_snap_work);
++
++	cookie = dma_fence_begin_signalling();
++
++	if (job)
++		devcoredump_snapshot_job(coredump, job);
++	else if (gt)
++		devcoredump_snapshot_gt(coredump, gt);
++	else
++		devcoredump_snapshot_xe(coredump, xe);
++
+ 	queue_work(system_unbound_wq, &ss->work);
  
--	drm_puts(&p, "\n**** Job ****\n");
--	xe_sched_job_snapshot_print(ss->job, &p);
-+	iter.data = buffer;
-+	iter.start = 0;
-+	iter.remain = count;
- 
--	drm_puts(&p, "\n**** HW Engines ****\n");
--	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
--		if (ss->hwe[i])
--			xe_engine_snapshot_print(ss->hwe[i], &p);
-+	p = drm_coredump_printer(&iter);
- 
--	drm_puts(&p, "\n**** VM state ****\n");
--	xe_vm_snapshot_print(ss->vm, &p);
-+	xe_devcoredump_print(&p, coredump);
- 
- 	return count - iter.remain;
- }
-@@ -330,7 +343,8 @@ static void devcoredump_snapshot_xe(struct xe_devcoredump *coredump)
- }
- 
- static void devcoredump_snapshot_for_thing(struct xe_devcoredump *coredump,
--					   struct xe_gt *gt, struct xe_sched_job *job)
-+					   struct xe_gt *gt, struct xe_sched_job *job,
-+					   bool want_work)
- {
- 	struct xe_devcoredump_snapshot *ss;
- 	struct xe_device *xe;
-@@ -356,12 +370,14 @@ static void devcoredump_snapshot_for_thing(struct xe_devcoredump *coredump,
- 	else
- 		devcoredump_snapshot_xe(coredump);
- 
--	queue_work(system_unbound_wq, &ss->work);
-+	if (want_work)
-+		queue_work(system_unbound_wq, &ss->work);
- 
+-	xe_force_wake_put(gt_to_fw(q->gt), fw_ref);
  	dma_fence_end_signalling(cookie);
  }
  
--static void devcoredump_for_thing(struct xe_device *_xe, struct xe_gt *gt, struct xe_sched_job *job)
-+static void devcoredump_for_thing(struct xe_device *_xe, struct xe_gt *gt,
-+				  struct xe_sched_job *job, bool want_work)
+-/**
+- * xe_devcoredump - Take the required snapshots and initialize coredump device.
+- * @job: The faulty xe_sched_job, where the issue was detected.
+- *
+- * This function should be called at the crash time within the serialized
+- * gt_reset. It is skipped if we still have the core dump device available
+- * with the information of the 'first' snapshot.
+- */
+-void xe_devcoredump(struct xe_sched_job *job)
++static void devcoredump_for_thing(struct xe_device *_xe, struct xe_gt *gt, struct xe_sched_job *job)
  {
- 	struct xe_devcoredump *coredump;
- 	struct xe_device *xe;
-@@ -375,7 +391,7 @@ static void devcoredump_for_thing(struct xe_device *_xe, struct xe_gt *gt, struc
+-	struct xe_device *xe = gt_to_xe(job->q->gt);
+-	struct xe_devcoredump *coredump = &xe->devcoredump;
++	struct xe_devcoredump *coredump;
++	struct xe_device *xe;
++
++	xe = _xe ? _xe : gt_to_xe(gt ? gt : job->q->gt);
++	coredump = &xe->devcoredump;
+ 
+ 	if (coredump->captured) {
+ 		drm_dbg(&xe->drm, "Multiple hangs are occurring, but only the first snapshot was taken\n");
+ 		return;
  	}
  
- 	coredump->xe = xe;
--	devcoredump_snapshot_for_thing(coredump, gt, job);
-+	devcoredump_snapshot_for_thing(coredump, gt, job, want_work);
+-	coredump->captured = true;
+-	devcoredump_snapshot(coredump, job);
++	devcoredump_snapshot_for_thing(coredump, gt, job);
  
  	drm_info(&xe->drm, "Xe device coredump has been created\n");
  	drm_info(&xe->drm, "Check your /sys/class/drm/card%d/device/devcoredump/data\n",
-@@ -396,7 +412,7 @@ static void devcoredump_for_thing(struct xe_device *_xe, struct xe_gt *gt, struc
-  */
- void xe_devcoredump_for_job(struct xe_sched_job *job)
- {
--	devcoredump_for_thing(NULL, NULL, job);
-+	devcoredump_for_thing(NULL, NULL, job, true);
+@@ -319,6 +389,45 @@ void xe_devcoredump(struct xe_sched_job *job)
+ 			      XE_COREDUMP_TIMEOUT_JIFFIES);
  }
  
- /**
-@@ -409,7 +425,7 @@ void xe_devcoredump_for_job(struct xe_sched_job *job)
-  */
- void xe_devcoredump_for_gt(struct xe_gt *gt)
- {
--	devcoredump_for_thing(NULL, gt, NULL);
-+	devcoredump_for_thing(NULL, gt, NULL, true);
- }
- 
- /**
-@@ -422,7 +438,7 @@ void xe_devcoredump_for_gt(struct xe_gt *gt)
-  */
- void xe_devcoredump_for_xe(struct xe_device *xe)
- {
--	devcoredump_for_thing(xe, NULL, NULL);
-+	devcoredump_for_thing(xe, NULL, NULL, true);
- }
- 
++/**
++ * xe_devcoredump_for_job - Take the required snapshots and initialize coredump device.
++ * @job: The faulty xe_sched_job, where the issue was detected.
++ *
++ * This function should be called at the crash time within the serialized gt_reset.
++ * The capture is skipped if a prior device core dump snapshot is still available with
++ * information about the 'first' error.
++ */
++void xe_devcoredump_for_job(struct xe_sched_job *job)
++{
++	devcoredump_for_thing(NULL, NULL, job);
++}
++
++/**
++ * xe_devcoredump_for_gt - Take the required snapshots and initialize coredump device.
++ * @gt: The faulty GT.
++ *
++ * This function should be called when an error occurs but without access to a
++ * scheduler job. The capture is skipped if a prior device core dump snapshot is
++ * still available with information about the 'first' error.
++ */
++void xe_devcoredump_for_gt(struct xe_gt *gt)
++{
++	devcoredump_for_thing(NULL, gt, NULL);
++}
++
++/**
++ * xe_devcoredump_for_xe - Take the required snapshots and initialize coredump device.
++ * @xe: The faulty device.
++ *
++ * This function should be called when an error occurs but without access to either a
++ * scheduler job or even a GT. The capture is skipped if a prior device core dump
++ * snapshot is still available with information about the 'first' error.
++ */
++void xe_devcoredump_for_xe(struct xe_device *xe)
++{
++	devcoredump_for_thing(xe, NULL, NULL);
++}
++
  static void xe_driver_devcoredump_fini(void *arg)
+ {
+ 	struct drm_device *drm = arg;
 diff --git a/drivers/gpu/drm/xe/xe_devcoredump.h b/drivers/gpu/drm/xe/xe_devcoredump.h
-index a83c93d0e82c..1d2f9bbd4ebe 100644
+index a4eebc285fc8..a83c93d0e82c 100644
 --- a/drivers/gpu/drm/xe/xe_devcoredump.h
 +++ b/drivers/gpu/drm/xe/xe_devcoredump.h
-@@ -10,6 +10,7 @@
+@@ -10,10 +10,13 @@
  
  struct drm_printer;
  struct xe_device;
-+struct xe_devcoredump;
- struct xe_gt;
++struct xe_gt;
  struct xe_sched_job;
  
-@@ -29,6 +30,7 @@ static inline int xe_devcoredump_init(struct xe_device *xe)
- }
- #endif
+ #ifdef CONFIG_DEV_COREDUMP
+-void xe_devcoredump(struct xe_sched_job *job);
++void xe_devcoredump_for_job(struct xe_sched_job *job);
++void xe_devcoredump_for_gt(struct xe_gt *gt);
++void xe_devcoredump_for_xe(struct xe_device *xe);
+ int xe_devcoredump_init(struct xe_device *xe);
+ #else
+ static inline void xe_devcoredump(struct xe_sched_job *job)
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 5bd40e94eeba..293a1cbc2486 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1159,7 +1159,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	trace_xe_sched_job_timedout(job);
  
-+void xe_devcoredump_print(struct drm_printer *p, struct xe_devcoredump *coredump);
- void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
- 			   const void *blob, size_t offset, size_t size);
+ 	if (!exec_queue_killed(q))
+-		xe_devcoredump(job);
++		xe_devcoredump_for_job(job);
  
+ 	/*
+ 	 * Kernel jobs should never fail, nor should VM jobs if they do
 -- 
 2.47.0
 
