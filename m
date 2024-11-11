@@ -4,72 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5921D2E9FF
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 14:00:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 245C1D12D49
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 14:01:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F46A10E4C1;
-	Mon, 11 Nov 2024 14:00:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B79D210E4C6;
+	Mon, 11 Nov 2024 14:01:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JOUn9EOr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GPa3EEup";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56A9C10E4C1;
- Mon, 11 Nov 2024 14:00:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5BED10E4C5;
+ Mon, 11 Nov 2024 14:01:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731333629; x=1762869629;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=k5KMfnwXvqjSfpTCU0zPPwJ3Tw8lXegePuO8A03Bt90=;
- b=JOUn9EOrMC5tHRNSZLZIywvUi0K9nNNJKL4LBw0xnzsLdqbw/tk5f3r/
- rdmucAhA1fJp7/zTviCB3bhEo3uaQ859mPofALBOT4+zyQB0Kx1drh1Bw
- BrfYIOzm7+81i/y5zplH4Mu1H4f4zcCsJu1Ai6RvrjY4Jz9iedgxzkOB+
- SdspbRHhyi2WAYgl/CX0wSwVsGPusKDtH2S4pxlnuKq3Z+C8kSaDzsISI
- ndGA/LfTQhC+krQ6o1pSJhAn1vK9oaKZPiohMgHXc4YRVVQZjeOR282Vt
- QWl6WBdOy/RlZMKhM/AY/4Jh838j8xJDzXmZeLKGkkVEsNQcmyfelHN/I Q==;
-X-CSE-ConnectionGUID: +GGbTvBsSPCBeIPgAe11BA==
-X-CSE-MsgGUID: zdiaxXZkSPycpDIH7v59mw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11253"; a="31244320"
-X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="31244320"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 06:00:24 -0800
-X-CSE-ConnectionGUID: TONxTrx1T3WATYMD3u6HbA==
-X-CSE-MsgGUID: 6huUQ6hHQAORkg9rPsT9BA==
+ t=1731333679; x=1762869679;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=8PLJbbA7x7gOX2vMP1MG8reXLjZ0DhFiEp1cdRd/89U=;
+ b=GPa3EEupnngqvMjzedTkj7S3Aoc4Teae3sHlO5LCAd1zb+pQL0JSGBnH
+ CXuLLCMfgz/jAk4Kfy6UdsHUUQ5dXcj+XCrd9r/91/NzFY4cacTO4dY+d
+ AHUS+n4NtH8gBdswtek5xjZqz+YGpjZTrQ4j/RTVpcQDC98dGFDVKF7L/
+ g+m+jQdz+8KpEwMDmHMtocteL1SLZYslfmLVp9rI84oNckbMvRAfINa2O
+ +rbU5AVBxnFBfZ1pZsF0wOHveIjw2S3ooOBtutmBqD8RXHUVulpM5z1Iw
+ jfSfAhwiTNfH6IJtkZ3AUKY6rpkh9fTCNVMliJF8yhk1oSljGnUF4SV0O Q==;
+X-CSE-ConnectionGUID: NUWKJJ1ZS+GicXcAz2nm5w==
+X-CSE-MsgGUID: vF5rxK4dQpCIY4Wy54+u3Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11253"; a="31362392"
+X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="31362392"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2024 06:01:16 -0800
+X-CSE-ConnectionGUID: wZaRr4agR1eI8apv8GJN5A==
+X-CSE-MsgGUID: Hv6dEI3qSeGnQMuugupkhQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="86864868"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO localhost)
- ([10.245.244.40])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 06:00:09 -0800
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="87083817"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 11 Nov 2024 06:01:16 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 11 Nov 2024 06:01:14 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Mon, 11 Nov 2024 06:01:14 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Mon, 11 Nov 2024 06:01:14 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kd8BXCrkUtLdChO3EOqlpRhqKXmeQNwqiyyLnO7AJYYjCAlF3rjk7v48d4qojIlG2msXOQX2X7e3ZA7/wJgFDI+Sr92jE39LOs+7M5fc1angy34jqubvNY2dD+UDhAGLBznrs8mV9DkNhHldKPWIBXVeW88jZJuwyUvC3IXiayBucKc3FD6FIUl9KcQS0z/9R8ayJsuCT1tj+hventomLGHsyjTRRoffsPxXZyoRBpaz5bbi3TPbslc7w5+8SRtyubc+ENqzY9QOLJVIyzcZyQJsMqkUOUd3iZZr4taZfVrkI9zYYMBqiuNkmrOAPrZJ188NmUP1j6TdX36EYNzQBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0Gjy5RBcTnTo00VKGF7ICZthReJWWn+pQsYins6NcoE=;
+ b=gJbtCAswNg+1W1yDvpvZM6DewLDRFtHsa6pdIsUHPCouE12jacvYTngTmjzVhgCKbOOmGtORQp+0kjjC7heNG+FJ9LCQCTkb4o2LsW790qlk0jvwpotddU7OwlIsXUPLaVis0Zy2ZJlpRaX+2XfEhrACMxxfsMa1/gDCL0jGl+HZgrv7/f1QmupbdUS5/mTyEyGIbPXD3Rf6+irV1A14HWgZMs7MdGeil5sfTcBBWE4iax1rQcJcnP6Avj+Vqpp1dyCLwqSBYHraCj6NC5BgkxhFK/n3SGks1spuL2/3BaBsalDh0lNt/3YScsCQbVgSBnKo7TvJP5mRivArh5qZ6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
+ by SJ1PR11MB6178.namprd11.prod.outlook.com (2603:10b6:a03:45b::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.26; Mon, 11 Nov
+ 2024 14:01:03 +0000
+Received: from SN7PR11MB6750.namprd11.prod.outlook.com
+ ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
+ ([fe80::9570:169d:a0d5:527%3]) with mapi id 15.20.8137.022; Mon, 11 Nov 2024
+ 14:01:00 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
+Subject: RE: [PATCH 2/3] drm/i915/watermark: Modify latency programmed into
+ PKG_C_LATENCY
+Thread-Topic: [PATCH 2/3] drm/i915/watermark: Modify latency programmed into
+ PKG_C_LATENCY
+Thread-Index: AQHbNDXolMtPIPanOkq4pyxtGqXyBbKyEhwAgAAGLIA=
+Date: Mon, 11 Nov 2024 14:01:00 +0000
+Message-ID: <SN7PR11MB6750CE7A8AD98B27E90E5C35E3582@SN7PR11MB6750.namprd11.prod.outlook.com>
+References: <20241111123259.1072534-1-suraj.kandpal@intel.com>
+ <20241111123259.1072534-2-suraj.kandpal@intel.com>
+ <IA1PR11MB634876AD3F1DF3AB3BA164F1B2582@IA1PR11MB6348.namprd11.prod.outlook.com>
+In-Reply-To: <IA1PR11MB634876AD3F1DF3AB3BA164F1B2582@IA1PR11MB6348.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|SJ1PR11MB6178:EE_
+x-ms-office365-filtering-correlation-id: 8d64666b-98c4-4680-0407-08dd025945d3
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?wjJ7lSNPShkE2xAp+fc7NExqCB4tYnLu/8vjccywbQ36aFhwh/2L/uiHWIQH?=
+ =?us-ascii?Q?Blpzf7VDan7+2dReEvSV3qpto/aeC+NH/iEfhSyrJUu490bThjDJr0WyRCuB?=
+ =?us-ascii?Q?via2SD6znkfrWlnkHp4olkZ46sa3r49JZXaGqmt4LARbzZyGwxsPhTGVYTMs?=
+ =?us-ascii?Q?5fary3EFX0QloVUmaiL3FUsEHRGQfi8KlwtJvGjr9KZD7kp6kLbf2MJrZT5g?=
+ =?us-ascii?Q?fQ4QyGEWDiMelHmFF26Bdpo9h0dhpsjR8XgIOpHctIXYEnr8zTN9mDA+B3g/?=
+ =?us-ascii?Q?D6GCgL0CyRmRNCHurSpW2zEugm4Bh4jtVMr2kjgRBM/ZMrfadDco3nwnVe4p?=
+ =?us-ascii?Q?4UmaKKYolFV3DF3Bzy3403HrdHd2o6ItLRN9pY0CHwWOBMfumCaUhvo3tjHB?=
+ =?us-ascii?Q?nwuQZHbzUtfTZ/OWg70exdgUNVG7hFLfBaWp14squvtRYeUFYvz438zPp5uP?=
+ =?us-ascii?Q?LhLtD0jhc9pO7aypYfd9ZVGCzeEqaQsCOyCcobXCOslkbcdK//tUQlZJxYqk?=
+ =?us-ascii?Q?qpS3JFod7Fi2Y7aYfCUwxtah3JwPKEuJo/D+BunOc4NgDeQpa+Eow/eluCB7?=
+ =?us-ascii?Q?qlZ38Ny0vQFbdJurpY9HAOOt0j3sGst/lASaI6mm1e3gEVqcKFg3EsOGwPOK?=
+ =?us-ascii?Q?its9KpviRm6KNYQRZ/8ow8rWLuDAQRD732yQnf32iFumL30z3rI9vbmfznM7?=
+ =?us-ascii?Q?W2oS7iMdprS4ioozxPgA/VRRoG+XgbCtfByrNLRlsQXPYcNlHs/0U9PuU4tj?=
+ =?us-ascii?Q?Lw5ra4Aq6FqwZZl8FdHK4GgXRBkLi0h3+EynSyL35WE/2Hfd7ImgDggaw4+o?=
+ =?us-ascii?Q?xwiPeDCE8cAFnwT7Wku1sJ7jox8s0GwUr6QqyayO6wM2YdGlHWuX2ZOP4M6S?=
+ =?us-ascii?Q?gNnm834ScVesHCTmeZwjCukf0FhztfYu1u6IajyRqs16nTq9lp0vL5yWth7C?=
+ =?us-ascii?Q?0qtICvqoPJIxwWcTUbKAXxeEohIQnJdsz0JpXVN1SCoy/+3VXItGMM1vE5LD?=
+ =?us-ascii?Q?FBvXj35aJPzoWFKe16XxxveHdhlI0v07gjOooWgOE2Gb3hruRAwuFtRMX6yl?=
+ =?us-ascii?Q?AYFLd9Vxg/64qXHckGxK4iisKyWijWfwwsd6mfzuAUHw0T6rmeNqacKoZEfA?=
+ =?us-ascii?Q?0MXmTXxR6d9ycJTr2pQ5QcE8NEkxE2UuIsebY1JqTjGvfn95QEwCfEYONhIF?=
+ =?us-ascii?Q?2URCj9D7PB/k7PmGosuqgxSw3/GPUUPc5MwTjqSaOfG6WCdK5X3eB8iY4+OW?=
+ =?us-ascii?Q?4LwEr0CjEevO4HztpKOHCcUsrOEf8fMr6A2uL5LvgJNyltVVHkV3kWb74mo0?=
+ =?us-ascii?Q?GuyY8zvpwgK8Md1mkIfEli9OWgo40pWqcrjs8EYGSFaoNQkEeT+xygnFFPON?=
+ =?us-ascii?Q?bllVCqY=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?FEnJFBY+eeaiYPkKrV5T1vAptOaOZHvhzaTYliNwEMV8J35IhSKqfk0ZqFig?=
+ =?us-ascii?Q?p+c5s4jZkkctKGq061njJ1V3X9wKGMKpM21CZwc64vmCygg6Sv4+Swr23XZG?=
+ =?us-ascii?Q?QIrw/nYCW338LrukKR5kuTYdkiRf7cM9ra9b2/vVCKZU3aAY4XYhbG3jdu6w?=
+ =?us-ascii?Q?Nr0pDjSNSGh1JBNrX6Ddn/Ryda6DXkIBOQ2qTMiarQb1WygdTXYKVB5GqYyl?=
+ =?us-ascii?Q?xUEuYnpp/afLPBSzpVykJ2UM7UdHqAR9V6hN/XPURLUVOGnnbd18uAt83K66?=
+ =?us-ascii?Q?8f4L/lEMLE8W9YWDcJoNm0ruAJBO6TW/WkhbgG+pEjDjzzQ0Sj62yTuJkAqX?=
+ =?us-ascii?Q?B7VMBxRsh7+NFle8U8ICpJYNs/jA5+FkrAC/wFQsEO1mfA86LnllBqE1OchF?=
+ =?us-ascii?Q?fA32m9TMLwE6DAL1S5Sq8mU3gkmkUNK6XjFxHCFos/plBwt/05Wn3g6LiRtg?=
+ =?us-ascii?Q?m/+cDAyz2qj9SRFOlyNR+vjtLvpW1bwpCCdZL8ffxZNEG15d3757zipurqel?=
+ =?us-ascii?Q?j37OBWgt5+7a8gXX8oK/VqbgOjAEYAtvw/C5/fNOrePh3rSCZlF+U79pkT3Y?=
+ =?us-ascii?Q?2MPgSk3LI4iae/PWByqlkO4lC/drvQYVMu0scRa51QDCFKdg6BjoNCXa8Uok?=
+ =?us-ascii?Q?omQFpeBQi+y0hakTxTsZ+ms46gD+Oex+C6xSc6C4r8xazhh/WtbaBdJZm/FN?=
+ =?us-ascii?Q?JXo1E+90xKd00CfZGGfXH5RUF1jdj9QtTbVfbvDtqqiv3VdqXN+84ipztjDn?=
+ =?us-ascii?Q?bzNUe7/NeSb1OD193Ea6UlDQjLZ8II4a2NyNawSh6jR66JxizzbYcQuSrbtd?=
+ =?us-ascii?Q?tJTzTpfT8S3fEzgjae8AyHM4gaRer/2OeBdU8gIjqb2UNMW9ebGPcl36BWKB?=
+ =?us-ascii?Q?g3q+1iXQrHMo9UFGVr1xVIscu+yXN8rpAcpUcHG6/hLf4Hwp2J6GdMBdlPJE?=
+ =?us-ascii?Q?33qKRdcmQh6PoMOLGolt7KAIsK8dQhX8YBxzdBKp2NCbKkMfsH7dxypi9G/7?=
+ =?us-ascii?Q?gEh2cLHr2a2skuW4Cx8bjQ5ulQHWthBmj9mnvW8fFyD36cNcx2pbcVRy05tw?=
+ =?us-ascii?Q?psllT8onLmP7mGvfaWrdmpTA333KBwAFXkQJ2t+5JxMWBm8/0X81aYWhwDbZ?=
+ =?us-ascii?Q?r5f3d6GQ5442CYhhq/ed6bdtFj2R0tStAxO7VeecO9iSeHXxnwb+a5KUBnrZ?=
+ =?us-ascii?Q?uroY3PrxuS7eh8SeW8FwkNc15hcYFEXVOYoBEKCo6vm/MecTcdPiGvx0pVl6?=
+ =?us-ascii?Q?ywRqTsvTKKNrUNt9WgoAtRm+SnLv+iBZRoF/Sf2RMuLtodQPYsjhRex20PGH?=
+ =?us-ascii?Q?Otukhp+SEAWn+hf3ebgj47SynEoEzDn0qXyUtSvHPCJaQJZ1mbqjFNxvy1+r?=
+ =?us-ascii?Q?HW9EDBX1bu1G5Vm37xauddWh2nv9GMjwjA4Gqv1XDL/otILxrCg/bKeAsMq7?=
+ =?us-ascii?Q?bd8HphMM8+Eh49iJAn+ZZcgm4tLX8nIKhVTm5Whmwupbha34u8GZi9CwsBzf?=
+ =?us-ascii?Q?0YkeuIPvqUTdZ1hLu6EntZqqnYipnddX5klp33GZfl60aCFPdeqb0h8g/iw+?=
+ =?us-ascii?Q?21P8p6P/bVwAzosfvuse07T4kfGZr4F4m4bmHWns?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <a1ffb3f7-77bc-41ff-a98a-5cd889f081fa@amd.com>
-References: <02ec3d6a-4727-4535-a384-4c6789fa4ef4@gmail.com>
- <ZyplgNBaZ93UUdxY@lstrano-desk.jf.intel.com>
- <88ceb558-89d1-4d10-be8a-9ce2f3178fa5@amd.com>
- <ZyuKTFxCD0SusZpt@lstrano-desk.jf.intel.com>
- <34d18085-7e23-4632-9287-65eff6651bba@amd.com>
- <ZyugmXt7v+JeKuN9@lstrano-desk.jf.intel.com>
- <85859dc3-cca3-4396-8c75-a726437fb81e@amd.com>
- <173131201749.35893.6727423786823542880@jlahtine-mobl.ger.corp.intel.com>
- <ZzHYB4MBJmVjk-AR@phenom.ffwll.local>
- <a1ffb3f7-77bc-41ff-a98a-5cd889f081fa@amd.com>
-Subject: Re: [PATCH v6 2/8] drm/ttm: Add ttm_bo_access
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Christian =?utf-8?q?K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Huang Rui <ray.huang@amd.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- matthew.auld@intel.com, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-To: Christian =?utf-8?q?K=C3=B6nig?= <christian.koenig@amd.com>,
- Simona Vetter <simona.vetter@ffwll.ch>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Mon, 11 Nov 2024 16:00:02 +0200
-Message-ID: <173133360247.70529.14349388659124962988@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.10
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d64666b-98c4-4680-0407-08dd025945d3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2024 14:01:00.2705 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: R1zkX9ZXXLQTGM8lN37iWw48lrZWYvoLjeDiZPNjWHgQlAu1Ey+Go/PjispwuDVyBxky6ZYq5yEr20qBhyscow==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6178
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,376 +182,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Christian K=C3=B6nig (2024-11-11 13:34:12)
-> Am 11.11.24 um 11:10 schrieb Simona Vetter:
-> > On Mon, Nov 11, 2024 at 10:00:17AM +0200, Joonas Lahtinen wrote:
-> >> Back from some time off and will try to answer below.
-> >>
-> >> Adding Dave and Sima as this topic has been previously discussed to so=
-me
-> >> extent and will be good to reach common understanding about what the
-> >> series is trying to do and what is the difference to the AMD debugging
-> >> model.
-> > I chatted about this thread a bit on irc with folks, and I think an
-> > orthogonal issue is the question, what should be in ttm-utils? I've ask=
-ed
-> > Matt to type up a DOC patch once we have some consensus, since imo the
-> > somewhat lackluster documentation situation for ttm is also somewhat a
-> > cause for these big threads on various different topics. Aside from the
-> > fact that gpu memory management is just hard.
-> >
-> > On the uapi/design aspect, I think this would serve well with a patch to
-> > drm-uapi.rst that adds a debugging section? At least once we have some
-> > rough consensus across drivers, and more importantly userspace in the f=
-orm
-> > of gdb upstream (at least I'm not aware of any other upstream debugger
-> > patches, I think amd's rocm stuff is also gdb-only).
+
+
+> -----Original Message-----
+> From: Golani, Mitulkumar Ajitkumar
+> <mitulkumar.ajitkumar.golani@intel.com>
+> Sent: Monday, November 11, 2024 6:56 PM
+> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-xe@lists.freedesktop.=
+org;
+> intel-gfx@lists.freedesktop.org
+> Cc: Govindapillai, Vinod <vinod.govindapillai@intel.com>; Kandpal, Suraj
+> <suraj.kandpal@intel.com>
+> Subject: RE: [PATCH 2/3] drm/i915/watermark: Modify latency programmed
+> into PKG_C_LATENCY
 >=20
-> Yeah that seems to be a really good idea. Similar design ideas came up=20
-> AMD internally as well but where dropped after pointing people to=20
-> pidfd_getfd().
 >=20
-> But the bigger problem seems to be that the design doesn't seems to take =
-
-> the dma_fence requirements into account.
-
-Where would you deduce that?
-
-We specifically limit the debugging to Long Running contexts which don't
-depend on dma_fences.
-
-> In other words attaching gdb to a pid seems to stop the GPU thread of=20
-> this pid without waiting for the XE preemption nor end of operation fence.
 >=20
-> I mean if the GPU threads are preempted that could work, but yeah not=20
-> like this :)
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> > Suraj Kandpal
+> > Sent: 11 November 2024 18:03
+> > To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+> > Cc: Govindapillai, Vinod <vinod.govindapillai@intel.com>; Kandpal,
+> > Suraj <suraj.kandpal@intel.com>
+> > Subject: [PATCH 2/3] drm/i915/watermark: Modify latency programmed
+> > into PKG_C_LATENCY
+> >
+> > Increase the latency programmed into PKG_C_LATENCY latency to be a
+> > multiple of line time which is written into WM_LINETIME.
+> >
+> > --v2
+> > -Fix commit subject line [Sai Teja]
+> > -Use individual DISPLAY_VER checks instead of range [Sai Teja]
+> > -Initialize max_linetime [Sai Teja]
+> >
+> > --v3
+> > -take into account the scenario when adjusted_latency is 0 [Vinod]
+> >
+> > WA: 22020299601
+> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/skl_watermark.c | 26
+> > ++++++++++++++------
+> >  1 file changed, 19 insertions(+), 7 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c
+> > b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > index a97e90ac643f..e061015a89b0 100644
+> > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > @@ -2848,9 +2848,11 @@ static int skl_wm_add_affected_planes(struct
+> > intel_atomic_state *state,
+> >   * Program PKG_C_LATENCY Added Wake Time =3D 0
+> >   */
+> >  static void
+> > -skl_program_dpkgc_latency(struct drm_i915_private *i915, bool
+> > enable_dpkgc)
+> > +skl_program_dpkgc_latency(struct drm_i915_private *i915,
+> > +			  bool enable_dpkgc,
+> > +			  u32 max_linetime)
+> >  {
+> > -	u32 max_latency =3D LNL_PKG_C_LATENCY_MASK;
+> > +	u32 adjusted_latency =3D LNL_PKG_C_LATENCY_MASK;
+> >  	u32 clear =3D 0, val =3D 0;
+> >  	u32 added_wake_time =3D 0;
+> >
+> > @@ -2858,15 +2860,22 @@ skl_program_dpkgc_latency(struct
+> > drm_i915_private *i915, bool enable_dpkgc)
+> >  		return;
+> >
+> >  	if (enable_dpkgc) {
+> > -		max_latency =3D skl_watermark_max_latency(i915, 1);
+> > -		if (max_latency =3D=3D 0)
+> > -			max_latency =3D LNL_PKG_C_LATENCY_MASK;
+> > +		adjusted_latency =3D skl_watermark_max_latency(i915, 1);
+> > +
+> > +		/* Wa_22020299601 */
+> > +		if ((DISPLAY_VER(i915) =3D=3D 20 || DISPLAY_VER(i915) =3D=3D 30) &&
+> > +		    adjusted_latency !=3D 0)
+> > +			adjusted_latency =3D max_linetime *
+> > +				DIV_ROUND_UP(adjusted_latency,
+> > max_linetime);
+> > +		else
+> > +			adjusted_latency =3D LNL_PKG_C_LATENCY_MASK;
+>=20
+> You are already initialized it on the first instance, and wrote a patch #=
+1 to get
+> rid of duplicate of initialization. But why again ?
 
-For us, hitting a breakpoint inside the workload would always violate
-any dma_fence timeout for the submitted workload, as the HW context can't
-be switched out while in the breakpoint.
+The reason i added the first patch to remove the else block for enable dpkg=
+c variable which tells us if it's
+fixed refresh rate or not.
+In the second patch we add that else block to make sure that the wa is not =
+applied in cases adjusted latency is 0.
+Also adjusted_latency =3D skl_watermark_max_latency(i915, 1);=20
+Makes it so we will reassign adjusted latency which may become 0 too due to=
+ which the above else block was added.
 
-For any dma_fence workload the guarantee is that that it completes
-within reasonable time after submission (guaranteed by the submitter). I
-don't see how you could really allow interactive debugging of a
-breakpoint under those restrictions anyway even if pre-emption was
-supported as the workload would not finish in <10 seconds?
+> Also any reason to move away from 'max_latency' to 'adjusted_latency' ?
+> all I can read through your commit message is, you are making this latenc=
+y as
+> multiple of linetime, any adjustment we are making ?
 
-For i915 we did have the "pre-emptable but indefinitely long dma_fence work=
-loads"
-concept at one point and that was rejected after the lengthy discussion.
-
-So I think only way to allow interactive debugging is to avoid the
-dma_fences. Curious to hear if there are ideas for otherwise.
-
-Regards, Joonas
+Yes original value would have been the simple max latency now the new value=
+ is linetime * ceil(max latency/linetime)
+And if we are not taking the wa into picture we still program the max laten=
+cy. Also the idea of keeping it adjusted latency
+is that we write to the pkgc_latency register's Latency bits.
+But we can rename it to latency if it seems confusing.
 
 >=20
-> Regards,
-> Christian.
+> > +
+> >  		added_wake_time =3D DSB_EXE_TIME +
+> >  			i915->display.sagv.block_time_us;
+> >  	}
+> >
+> >  	clear |=3D LNL_ADDED_WAKE_TIME_MASK |
+> > LNL_PKG_C_LATENCY_MASK;
+> > -	val |=3D REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, max_latency);
+> > +	val |=3D REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK,
+> > adjusted_latency);
 >=20
+> Also you can think of this combine with below line for simplification ?
+
+Sure ill send this refactor as a separate patch.
+
+Regards,
+Suraj Kandpal
+>=20
+> >  	val |=3D REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK,
+> > added_wake_time);
 > >
-> > Some wash-up thoughts from me below, but consider them fairly irrelevant
-> > since I think the main driver for these big questions here should be
-> > gdb/userspace.
+> >  	intel_uncore_rmw(&i915->uncore, LNL_PKG_C_LATENCY, clear, val);
+> @@
+> > -2879,6 +2888,7 @@ skl_compute_wm(struct intel_atomic_state *state)
+> >  	struct intel_crtc_state __maybe_unused *new_crtc_state;
+> >  	int ret, i;
+> >  	bool enable_dpkgc =3D false;
+> > +	u32 max_linetime =3D 0;
 > >
-> >> Quoting Christian K=C3=B6nig (2024-11-07 11:44:33)
-> >>> Am 06.11.24 um 18:00 schrieb Matthew Brost:
-> >>>
-> >>>      [SNIP]
-> >>>
-> >>>      This is not a generic interface that anyone can freely access. T=
-he same
-> >>>      permissions used by ptrace are checked when opening such an inte=
-rface.
-> >>>      See [1] [2].
-> >>>
-> >>>      [1] https://patchwork.freedesktop.org/patch/617470/?series=3D136=
-572&rev=3D2
-> >>>      [2] https://patchwork.freedesktop.org/patch/617471/?series=3D136=
-572&rev=3D2
-> >>>
-> >>>
-> >>> Thanks a lot for those pointers, that is exactly what I was looking f=
-or.
-> >>>
-> >>> And yeah, it is what I feared. You are re-implementing existing funct=
-ionality,
-> >>> but see below.
-> >> Could you elaborate on what this "existing functionality" exactly is?
-> >> I do not think this functionality exists at this time.
-> >>
-> >> The EU debugging architecture for Xe specifically avoids the need for =
-GDB
-> >> to attach with ptrace to the CPU process or interfere with the CPU pro=
-cess for
-> >> the debugging via parasitic threads or so.
-> >>
-> >> Debugger connection is opened to the DRM driver for given PID (which u=
-ses the
-> >> ptrace may access check for now) after which the all DRM client of that
-> >> PID are exposed to the debugger process.
-> >>
-> >> What we want to expose via that debugger connection is the ability for=
- GDB to
-> >> read/write the different GPU VM address spaces (ppGTT for Intel GPUs) =
-just like
-> >> the EU threads would see them. Note that the layout of the ppGTT is
-> >> completely up to the userspace driver to setup and is mostly only part=
-ially
-> >> equal to the CPU address space.
-> >>
-> >> Specifically as part of reading/writing the ppGTT for debugging purpos=
-es,
-> >> there are deep flushes needed: for example flushing instruction cache
-> >> when adding/removing breakpoints.
-> >>
-> >> Maybe that will explain the background. I elaborate on this at the end=
- some more.
-> >>
-> >>>              kmap/vmap are used everywhere in the DRM subsystem to ac=
-cess BOs, so I=E2=80=99m
-> >>>              failing to see the problem with adding a simple helper b=
-ased on existing
-> >>>              code.
-> >>>
-> >>>          What#s possible and often done is to do kmap/vmap if you nee=
-d to implement a
-> >>>          CPU copy for scanout for example or for copying/validating c=
-ommand buffers.
-> >>>          But that usually requires accessing the whole BO and has sep=
-arate security
-> >>>          checks.
-> >>>
-> >>>          When you want to access only a few bytes of a BO that sounds=
- massively like
-> >>>          a peek/poke like interface and we have already rejected that=
- more than once.
-> >>>          There even used to be standardized GEM IOCTLs for that which=
- have been
-> >>>          removed by now.
-> >> Referring to the explanation at top: These IOCTL are not for the debug=
-ging target
-> >> process to issue. The peek/poke interface is specifically for GDB only
-> >> to facilitate the emulation of memory reads/writes on the GPU address
-> >> space as they were done by EUs themselves. And to recap: for modifying
-> >> instructions for example (add/remove breakpoint), extra level of cache=
- flushing is
-> >> needed which is not available to regular userspace.
-> >>
-> >> I specifically discussed with Sima on the difference before moving for=
-ward with this
-> >> design originally. If something has changed since then, I'm of course =
-happy to rediscuss.
-> >>
-> >> However, if this code can't be added, not sure how we would ever be ab=
-le
-> >> to implement core dumps for GPU threads/memory?
-> >>
-> >>>          If you need to access BOs which are placed in not CPU access=
-ible memory then
-> >>>          implement the access callback for ptrace, see amdgpu_ttm_acc=
-ess_memory for
-> >>>          an example how to do this.
-> >> As also mentioned above, we don't work via ptrace at all when it comes
-> >> to debugging the EUs. The only thing used for now is the ptrace_may_ac=
-cess to
-> >> implement similar access restrictions as ptrace has. This can be chang=
-ed
-> >> to something else if needed.
-> >>
-> >>>      Ptrace access via vm_operations_struct.access =E2=86=92 ttm_bo_v=
-m_access.
-> >>>
-> >>>      This series renames ttm_bo_vm_access to ttm_bo_access, with no c=
-ode changes.
-> >>>
-> >>>      The above function accesses a BO via kmap if it is in SYSTEM / T=
-T,
-> >>>      which is existing code.
-> >>>
-> >>>      This function is only exposed to user space via ptrace permissio=
-ns.
-> >> Maybe this sentence is what caused the confusion.
-> >>
-> >> Userspace is never exposed with peek/poke interface, only the debugger
-> >> connection which is its own FD.
-> >>
-> >>>      In this series, we implement a function [3] similar to
-> >>>      amdgpu_ttm_access_memory for the TTM vfunc access_memory. What is
-> >>>      missing is non-visible CPU memory access, similar to
-> >>>      amdgpu_ttm_access_memory_sdma. This will be addressed in a follo=
-w-up and
-> >>>      was omitted in this series given its complexity.
-> >>>
-> >>>      So, this looks more or less identical to AMD's ptrace implementa=
-tion,
-> >>>      but in GPU address space. Again, I fail to see what the problem =
-is here.
-> >>>      What am I missing?
-> >>>
-> >>>
-> >>> The main question is why can't you use the existing interfaces direct=
-ly?
-> >> We're not working on the CPU address space or BOs. We're working
-> >> strictly on the GPU address space as would be seen by an EU thread if =
-it
-> >> accessed address X.
-> >>
-> >>> Additional to the peek/poke interface of ptrace Linux has the pidfd_g=
-etfd
-> >>> system call, see here https://man7.org/linux/man-pages/man2/pidfd_get=
-fd.2.html.
-> >>>
-> >>> The pidfd_getfd() allows to dup() the render node file descriptor int=
-o your gdb
-> >>> process. That in turn gives you all the access you need from gdb, inc=
-luding
-> >>> mapping BOs and command submission on behalf of the application.
-> >> We're not operating on the CPU address space nor are we operating on B=
-Os
-> >> (there is no concept of BO in the EU debug interface). Each VMA in the=
- VM
-> >> could come from anywhere, only the start address and size matter. And
-> >> neither do we need to interfere with the command submission of the
-> >> process under debug.
-> >>
-> >>> As far as I can see that allows for the same functionality as the eud=
-ebug
-> >>> interface, just without any driver specific code messing with ptrace
-> >>> permissions and peek/poke interfaces.
-> >>>
-> >>> So the question is still why do you need the whole eudebug interface =
-in the
-> >>> first place? I might be missing something, but that seems to be super=
-fluous
-> >>> from a high level view.
-> >> Recapping from above. It is to allow the debugging of EU threads per D=
-RM
-> >> client, completely independent of the CPU process. If ptrace_may_acces
-> >> is the sore point, we could consider other permission checks, too. The=
-re
-> >> is no other connection to ptrace in this architecture as single
-> >> permission check to know if PID is fair game to access by debugger
-> >> process.
-> >>
-> >> Why no parasitic thread or ptrace: Going forward, binding the EU debug=
-ging to
-> >> the DRM client would also pave way for being able to extend core kerne=
-l generated
-> >> core dump with each DRM client's EU thread/memory dump. We have similar
-> >> feature called "Offline core dump" enabled in the downstream public
-> >> trees for i915, where we currently attach the EU thread dump to i915 e=
-rror state
-> >> and then later combine i915 error state with CPU core dump file with a
-> >> tool.
-> >>
-> >> This is relatively little amount of extra code, as this baseline series
-> >> already introduces GDB the ability to perform the necessary actions.
-> >> It's just the matter of kernel driver calling: "stop all threads", then
-> >> copying the memory map and memory contents for GPU threads, just like =
-is
-> >> done for CPU threads.
-> >>
-> >> With parasitic thread injection, not sure if there is such way forward,
-> >> as it would seem to require to inject quite abit more logic to core ke=
-rnel?
-> >>
-> >>> It's true that the AMD KFD part has still similar functionality, but =
-that is
-> >>> because of the broken KFD design of tying driver state to the CPU pro=
-cess
-> >>> (which makes it inaccessible for gdb even with imported render node f=
-d).
-> >>>
-> >>> Both Sima and I (and partially Dave as well) have pushed back on the =
-KFD
-> >>> approach. And the long term plan is to get rid of such device driver =
-specific
-> >>> interface which re-implement existing functionality just differently.
-> >> Recapping, this series is not adding it back. The debugger connection
-> >> is a separate FD from the DRM one, with separate IOCTL set. We don't a=
-llow
-> >> the DRM FD any new operations based on ptrace is attached or not. We
-> >> don't ever do that check even.
-> >>
-> >> We only restrict the opening of the debugger connection to given PID w=
-ith
-> >> ptrace_may_access check for now. That can be changed to something else,
-> >> if necessary.
-> > Yeah I think unnecessarily tying gpu processes to cpu processes is a bad
-> > thing, least because even today all the svm discussions we have still h=
-it
-> > clear use-cases, where a 1:1 match is not wanted (like multiple gpu svm
-> > sections with offsets). Not even speaking of all the gpu usecases where
-> > the gpu vm space is still entirely independent of the cpu side.
+> >  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> >  		ret =3D skl_build_pipe_wm(state, crtc); @@ -2908,9 +2918,11
+> @@
+> > skl_compute_wm(struct intel_atomic_state *state)
+> >  		     new_crtc_state->vrr.vmin =3D=3D new_crtc_state->vrr.flipline)
+> > ||
+> >  		    !new_crtc_state->vrr.enable)
+> >  			enable_dpkgc =3D true;
+> > +
+> > +		max_linetime =3D max(new_crtc_state->linetime,
+> > max_linetime);
+> >  	}
 > >
-> > So that's why I think this entirely separate approach looks like the ri=
-ght
-> > one, with ptrace_may_access as the access control check to make sure we
-> > match ptrace on the cpu side.
+> > -	skl_program_dpkgc_latency(to_i915(state->base.dev),
+> > enable_dpkgc);
+> > +	skl_program_dpkgc_latency(to_i915(state->base.dev), enable_dpkgc,
+> > +max_linetime);
 > >
-> > But there's very obviously a bikeshed to be had on what the actual uapi
-> > should look like, especially how gdb opens up a gpu debug access fd. Bu=
-t I
-> > also think that's not much on drm to decide, but whatever gdb wants. And
-> > then we aim for some consistency on that lookup/access control part
-> > (ideally, I might be missing some reasons why this is a bad idea) across
-> > drm drivers.
+> >  	skl_print_wm_changes(state);
 > >
-> >>> So you need to have a really really good explanation why the eudebug =
-interface
-> >>> is actually necessary.
-> >> TL;DR The main point is to decouple the debugging of the EU workloads =
-from the
-> >> debugging of the CPU process. This avoids the interference with the CP=
-U process with
-> >> parasitic thread injection. Further this also allows generating a core=
- dump
-> >> without any GDB connected. There are also many other smaller pros/cons
-> >> which can be discussed but for the context of this patch, this is the
-> >> main one.
-> >>
-> >> So unlike parasitic thread injection, we don't unlock any special IOCT=
-L for
-> >> the process under debug to be performed by the parasitic thread, but we
-> >> allow the minimal set of operations to be performed by GDB as if those=
- were
-> >> done on the EUs themselves.
-> >>
-> >> One can think of it like the minimal subset of ptrace but for EU threa=
-ds,
-> >> not the CPU threads. And thus, building on this it's possible to extend
-> >> the core kernel generated core dumps with DRM specific extension which
-> >> would contain the EU thread/memory dump.
-> > It might be good to document (in that debugging doc patch probably) why
-> > thread injection is not a great option, and why the tradeoffs for
-> > debugging are different than for for checkpoint/restore, where with CRIU
-> > we landed on doing most of this in userspace, and often requiring
-> > injection threads to make it all work.
-> >
-> > Cheers, Sima
-> >
-> >> Regards, Joonas
-> >>
-> >>> Regards,
-> >>> Christian.
-> >>>
-> >>>
-> >>>
-> >>>      Matt
-> >>>
-> >>>      [3] https://patchwork.freedesktop.org/patch/622520/?series=3D140=
-200&rev=3D6
-> >>>
-> >>>
-> >>>          Regards,
-> >>>          Christian.
-> >>>
-> >>>
-> >>>              Matt
-> >>>
-> >>>
-> >>>                  Regards,
-> >>>                  Christian.
-> >>>
->
+> > --
+> > 2.34.1
+
