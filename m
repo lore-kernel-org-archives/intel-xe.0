@@ -4,83 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 620C5D2E9D1
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 10:10:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B9D9D2E9D1
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 10:14:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4016310E469;
-	Mon, 11 Nov 2024 10:10:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="a95MbUAR";
-	dkim-atps=neutral
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com
- [209.85.221.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 399D610E077
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Nov 2024 10:10:20 +0000 (UTC)
-Received: by mail-wr1-f54.google.com with SMTP id
- ffacd0b85a97d-381ee2e10dfso2377532f8f.0
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Nov 2024 02:10:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1731319818; x=1731924618; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=Yv3YwTXOczDtXXdhFrD86DjvxxjThR2nviRCa9EpNLI=;
- b=a95MbUARrXTRsIKDHR14V5+g6nZOBdRgw8oIRfsES4D27nviREfqONjxlDd2oWSVaM
- U7lhjZE280FaciRg7kZoZ8Ks3+JsszICiA4+MGnnlG6OX9F1t8ST3zorQ70IjcOF4LbN
- uHX+TfV2mH2jBntumB5T4ZcO8hNQvdPgpUJWY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1731319818; x=1731924618;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Yv3YwTXOczDtXXdhFrD86DjvxxjThR2nviRCa9EpNLI=;
- b=rbor0N6qizMN2ivBPWeGUpytMWiQTaLbEdyTo41l7t9limAOgyP1dL7GTRvQIjjkbb
- v25H9UMy19LcoyTve7i0Tzl+mTMqxDQyjmjkYQFx2EaWH78gqq7CinrJnQmSS1HuHYjx
- Fl+qz7SaUuK6p8VtCDaWEpGdJwipPzLcdO+Iw5bAuTAPPzR17b+laFw/n65yB5B5l83F
- ZDyZa6Hm8WRfTaPapCg1rgZropVZhXF7sMM7L8MR+oAK9CV6JJ0jA6HMKwAR5K5AimWu
- QNqN3tJe5whIh4h/Hz9UbSCmmmGsOFII+X36AGRySNwg5GhJmrv6B7sb5yECEQp+GhTr
- 5bsQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUjPBq15HqNFZF5/vxeuY1ksBk7pZwmGw0ty8+ohU9/9o4vrdQcR2QBg5nFfFKgfVCdmgMV0DpnCQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxybPDl1/TiKQA4+v2BqJuzeRwBwSw8/z7I6hO4zUcZ16aJDwu4
- 3GOPRRrlZ+1ZNCtvGbHLHPHvvVntLlh1UZsXhQ5PGpZ/RQkYfGCo6nKaGWJk1kY=
-X-Google-Smtp-Source: AGHT+IF8DFAXrC78cRw1tAHxhEIgoA/Ey2TAWrUIHsj6ClNNxbnK+njeXHnWh8Nk49eJVtVAt/aHCA==
-X-Received: by 2002:a05:6000:2a04:b0:381:f595:f4da with SMTP id
- ffacd0b85a97d-381f595f566mr6350943f8f.0.1731319818150; 
- Mon, 11 Nov 2024 02:10:18 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-381ed97fe9bsm12419211f8f.35.2024.11.11.02.10.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 11 Nov 2024 02:10:17 -0800 (PST)
-Date: Mon, 11 Nov 2024 11:10:15 +0100
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Huang Rui <ray.huang@amd.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, matthew.auld@intel.com,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Subject: Re: [PATCH v6 2/8] drm/ttm: Add ttm_bo_access
-Message-ID: <ZzHYB4MBJmVjk-AR@phenom.ffwll.local>
-References: <02ec3d6a-4727-4535-a384-4c6789fa4ef4@gmail.com>
- <ZylBWVjlW+GDYy5M@lstrano-desk.jf.intel.com>
- <c76830ae-c6f9-47a2-8087-32d9f7c3df2c@amd.com>
- <ZyplgNBaZ93UUdxY@lstrano-desk.jf.intel.com>
- <88ceb558-89d1-4d10-be8a-9ce2f3178fa5@amd.com>
- <ZyuKTFxCD0SusZpt@lstrano-desk.jf.intel.com>
- <34d18085-7e23-4632-9287-65eff6651bba@amd.com>
- <ZyugmXt7v+JeKuN9@lstrano-desk.jf.intel.com>
- <85859dc3-cca3-4396-8c75-a726437fb81e@amd.com>
- <173131201749.35893.6727423786823542880@jlahtine-mobl.ger.corp.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A15110E165;
+	Mon, 11 Nov 2024 10:14:17 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4BF510E077;
+ Mon, 11 Nov 2024 10:14:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <173131201749.35893.6727423786823542880@jlahtine-mobl.ger.corp.intel.com>
-X-Operating-System: Linux phenom 6.10.6-amd64 
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/dp=3A_Guarantee_a_min?=
+ =?utf-8?q?imum_HBlank_time_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 11 Nov 2024 10:14:15 -0000
+Message-ID: <173132005593.2555084.7680199093482926021@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241111092608.129410-1-arun.r.murthy@intel.com>
+In-Reply-To: <20241111092608.129410-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,275 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Nov 11, 2024 at 10:00:17AM +0200, Joonas Lahtinen wrote:
-> Back from some time off and will try to answer below.
-> 
-> Adding Dave and Sima as this topic has been previously discussed to some
-> extent and will be good to reach common understanding about what the
-> series is trying to do and what is the difference to the AMD debugging
-> model.
+== Series Details ==
 
-I chatted about this thread a bit on irc with folks, and I think an
-orthogonal issue is the question, what should be in ttm-utils? I've asked
-Matt to type up a DOC patch once we have some consensus, since imo the
-somewhat lackluster documentation situation for ttm is also somewhat a
-cause for these big threads on various different topics. Aside from the
-fact that gpu memory management is just hard.
+Series: drm/i915/dp: Guarantee a minimum HBlank time (rev4)
+URL   : https://patchwork.freedesktop.org/series/139268/
+State : success
 
-On the uapi/design aspect, I think this would serve well with a patch to
-drm-uapi.rst that adds a debugging section? At least once we have some
-rough consensus across drivers, and more importantly userspace in the form
-of gdb upstream (at least I'm not aware of any other upstream debugger
-patches, I think amd's rocm stuff is also gdb-only).
+== Summary ==
 
-Some wash-up thoughts from me below, but consider them fairly irrelevant
-since I think the main driver for these big questions here should be
-gdb/userspace.
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/
+lib/modules/6.12.0-rc7-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc7-xe/build
+lib/modules/6.12.0-rc7-xe/modules.alias.bin
+lib/modules/6.12.0-rc7-xe/modules.builtin
+lib/modules/6.12.0-rc7-xe/modules.softdep
+lib/modules/6.12.0-rc7-xe/modules.alias
+lib/modules/6.12.0-rc7-xe/modules.order
+lib/modules/6.12.0-rc7-xe/modules.symbols
+lib/modules/6.12.0-rc7-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1731320049:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1731320049:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-> Quoting Christian König (2024-11-07 11:44:33)
-> > Am 06.11.24 um 18:00 schrieb Matthew Brost:
-> > 
-> >     [SNIP]
-> > 
-> >     This is not a generic interface that anyone can freely access. The same
-> >     permissions used by ptrace are checked when opening such an interface.
-> >     See [1] [2].
-> > 
-> >     [1] https://patchwork.freedesktop.org/patch/617470/?series=136572&rev=2
-> >     [2] https://patchwork.freedesktop.org/patch/617471/?series=136572&rev=2
-> > 
-> > 
-> > Thanks a lot for those pointers, that is exactly what I was looking for.
-> > 
-> > And yeah, it is what I feared. You are re-implementing existing functionality,
-> > but see below.
-> 
-> Could you elaborate on what this "existing functionality" exactly is?
-> I do not think this functionality exists at this time.
-> 
-> The EU debugging architecture for Xe specifically avoids the need for GDB
-> to attach with ptrace to the CPU process or interfere with the CPU process for
-> the debugging via parasitic threads or so.
-> 
-> Debugger connection is opened to the DRM driver for given PID (which uses the
-> ptrace may access check for now) after which the all DRM client of that
-> PID are exposed to the debugger process.
-> 
-> What we want to expose via that debugger connection is the ability for GDB to
-> read/write the different GPU VM address spaces (ppGTT for Intel GPUs) just like
-> the EU threads would see them. Note that the layout of the ppGTT is
-> completely up to the userspace driver to setup and is mostly only partially
-> equal to the CPU address space.
-> 
-> Specifically as part of reading/writing the ppGTT for debugging purposes,
-> there are deep flushes needed: for example flushing instruction cache
-> when adding/removing breakpoints.
-> 
-> Maybe that will explain the background. I elaborate on this at the end some more.
-> 
-> >             kmap/vmap are used everywhere in the DRM subsystem to access BOs, so I’m
-> >             failing to see the problem with adding a simple helper based on existing
-> >             code.
-> > 
-> >         What#s possible and often done is to do kmap/vmap if you need to implement a
-> >         CPU copy for scanout for example or for copying/validating command buffers.
-> >         But that usually requires accessing the whole BO and has separate security
-> >         checks.
-> > 
-> >         When you want to access only a few bytes of a BO that sounds massively like
-> >         a peek/poke like interface and we have already rejected that more than once.
-> >         There even used to be standardized GEM IOCTLs for that which have been
-> >         removed by now.
-> 
-> Referring to the explanation at top: These IOCTL are not for the debugging target
-> process to issue. The peek/poke interface is specifically for GDB only
-> to facilitate the emulation of memory reads/writes on the GPU address
-> space as they were done by EUs themselves. And to recap: for modifying
-> instructions for example (add/remove breakpoint), extra level of cache flushing is
-> needed which is not available to regular userspace.
-> 
-> I specifically discussed with Sima on the difference before moving forward with this
-> design originally. If something has changed since then, I'm of course happy to rediscuss.
-> 
-> However, if this code can't be added, not sure how we would ever be able
-> to implement core dumps for GPU threads/memory?
-> 
-> >         If you need to access BOs which are placed in not CPU accessible memory then
-> >         implement the access callback for ptrace, see amdgpu_ttm_access_memory for
-> >         an example how to do this.
-> 
-> As also mentioned above, we don't work via ptrace at all when it comes
-> to debugging the EUs. The only thing used for now is the ptrace_may_access to
-> implement similar access restrictions as ptrace has. This can be changed
-> to something else if needed.
-> 
-> >     Ptrace access via vm_operations_struct.access → ttm_bo_vm_access.
-> > 
-> >     This series renames ttm_bo_vm_access to ttm_bo_access, with no code changes.
-> > 
-> >     The above function accesses a BO via kmap if it is in SYSTEM / TT,
-> >     which is existing code.
-> > 
-> >     This function is only exposed to user space via ptrace permissions.
-> 
-> Maybe this sentence is what caused the confusion.
-> 
-> Userspace is never exposed with peek/poke interface, only the debugger
-> connection which is its own FD.
-> 
-> >     In this series, we implement a function [3] similar to
-> >     amdgpu_ttm_access_memory for the TTM vfunc access_memory. What is
-> >     missing is non-visible CPU memory access, similar to
-> >     amdgpu_ttm_access_memory_sdma. This will be addressed in a follow-up and
-> >     was omitted in this series given its complexity.
-> > 
-> >     So, this looks more or less identical to AMD's ptrace implementation,
-> >     but in GPU address space. Again, I fail to see what the problem is here.
-> >     What am I missing?
-> > 
-> > 
-> > The main question is why can't you use the existing interfaces directly?
-> 
-> We're not working on the CPU address space or BOs. We're working
-> strictly on the GPU address space as would be seen by an EU thread if it
-> accessed address X.
-> 
-> > Additional to the peek/poke interface of ptrace Linux has the pidfd_getfd
-> > system call, see here https://man7.org/linux/man-pages/man2/pidfd_getfd.2.html.
-> > 
-> > The pidfd_getfd() allows to dup() the render node file descriptor into your gdb
-> > process. That in turn gives you all the access you need from gdb, including
-> > mapping BOs and command submission on behalf of the application.
-> 
-> We're not operating on the CPU address space nor are we operating on BOs
-> (there is no concept of BO in the EU debug interface). Each VMA in the VM
-> could come from anywhere, only the start address and size matter. And
-> neither do we need to interfere with the command submission of the
-> process under debug.
-> 
-> > As far as I can see that allows for the same functionality as the eudebug
-> > interface, just without any driver specific code messing with ptrace
-> > permissions and peek/poke interfaces.
-> > 
-> > So the question is still why do you need the whole eudebug interface in the
-> > first place? I might be missing something, but that seems to be superfluous
-> > from a high level view.
-> 
-> Recapping from above. It is to allow the debugging of EU threads per DRM
-> client, completely independent of the CPU process. If ptrace_may_acces
-> is the sore point, we could consider other permission checks, too. There
-> is no other connection to ptrace in this architecture as single
-> permission check to know if PID is fair game to access by debugger
-> process.
-> 
-> Why no parasitic thread or ptrace: Going forward, binding the EU debugging to
-> the DRM client would also pave way for being able to extend core kernel generated
-> core dump with each DRM client's EU thread/memory dump. We have similar
-> feature called "Offline core dump" enabled in the downstream public
-> trees for i915, where we currently attach the EU thread dump to i915 error state
-> and then later combine i915 error state with CPU core dump file with a
-> tool.
-> 
-> This is relatively little amount of extra code, as this baseline series
-> already introduces GDB the ability to perform the necessary actions.
-> It's just the matter of kernel driver calling: "stop all threads", then
-> copying the memory map and memory contents for GPU threads, just like is
-> done for CPU threads.
-> 
-> With parasitic thread injection, not sure if there is such way forward,
-> as it would seem to require to inject quite abit more logic to core kernel?
-> 
-> > It's true that the AMD KFD part has still similar functionality, but that is
-> > because of the broken KFD design of tying driver state to the CPU process
-> > (which makes it inaccessible for gdb even with imported render node fd).
-> > 
-> > Both Sima and I (and partially Dave as well) have pushed back on the KFD
-> > approach. And the long term plan is to get rid of such device driver specific
-> > interface which re-implement existing functionality just differently.
-> 
-> Recapping, this series is not adding it back. The debugger connection
-> is a separate FD from the DRM one, with separate IOCTL set. We don't allow
-> the DRM FD any new operations based on ptrace is attached or not. We
-> don't ever do that check even.
-> 
-> We only restrict the opening of the debugger connection to given PID with
-> ptrace_may_access check for now. That can be changed to something else,
-> if necessary.
 
-Yeah I think unnecessarily tying gpu processes to cpu processes is a bad
-thing, least because even today all the svm discussions we have still hit
-clear use-cases, where a 1:1 match is not wanted (like multiple gpu svm
-sections with offsets). Not even speaking of all the gpu usecases where
-the gpu vm space is still entirely independent of the cpu side.
-
-So that's why I think this entirely separate approach looks like the right
-one, with ptrace_may_access as the access control check to make sure we
-match ptrace on the cpu side.
-
-But there's very obviously a bikeshed to be had on what the actual uapi
-should look like, especially how gdb opens up a gpu debug access fd. But I
-also think that's not much on drm to decide, but whatever gdb wants. And
-then we aim for some consistency on that lookup/access control part
-(ideally, I might be missing some reasons why this is a bad idea) across
-drm drivers.
-
-> > So you need to have a really really good explanation why the eudebug interface
-> > is actually necessary.
-> 
-> TL;DR The main point is to decouple the debugging of the EU workloads from the
-> debugging of the CPU process. This avoids the interference with the CPU process with
-> parasitic thread injection. Further this also allows generating a core dump
-> without any GDB connected. There are also many other smaller pros/cons
-> which can be discussed but for the context of this patch, this is the
-> main one.
-> 
-> So unlike parasitic thread injection, we don't unlock any special IOCTL for
-> the process under debug to be performed by the parasitic thread, but we
-> allow the minimal set of operations to be performed by GDB as if those were
-> done on the EUs themselves.
-> 
-> One can think of it like the minimal subset of ptrace but for EU threads,
-> not the CPU threads. And thus, building on this it's possible to extend
-> the core kernel generated core dumps with DRM specific extension which
-> would contain the EU thread/memory dump.
-
-It might be good to document (in that debugging doc patch probably) why
-thread injection is not a great option, and why the tradeoffs for
-debugging are different than for for checkpoint/restore, where with CRIU
-we landed on doing most of this in userspace, and often requiring
-injection threads to make it all work.
-
-Cheers, Sima
-
-> 
-> Regards, Joonas
-> 
-> > 
-> > Regards,
-> > Christian.
-> > 
-> > 
-> > 
-> >     Matt
-> > 
-> >     [3] https://patchwork.freedesktop.org/patch/622520/?series=140200&rev=6
-> > 
-> > 
-> >         Regards,
-> >         Christian.
-> > 
-> > 
-> >             Matt
-> > 
-> > 
-> >                 Regards,
-> >                 Christian.
-> >
-
--- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
