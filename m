@@ -4,79 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD646D3ABD3
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 17:43:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50045D3ABD3
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 17:47:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 807EB10E15F;
-	Mon, 11 Nov 2024 17:43:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2157610E2FA;
+	Mon, 11 Nov 2024 17:47:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VqScTgeL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dLoYBO2o";
 	dkim-atps=neutral
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com
- [209.85.218.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA6C610E02B;
- Thu,  7 Nov 2024 08:21:34 +0000 (UTC)
-Received: by mail-ej1-f47.google.com with SMTP id
- a640c23a62f3a-a7aa086b077so81878566b.0; 
- Thu, 07 Nov 2024 00:21:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1730967693; x=1731572493; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=5VOR5CG5z5tJAz08GO5kOR/f1vtcXPoi8DLyImsNBw4=;
- b=VqScTgeL8JxMFGywNHC6z+TuRhmQe+FMfAcgQiWZnn2733UGnhy1PrYsRw7cu7Voyt
- d9dDHycUSIjgE1ZSdbgulaVWPR4NRxDjbxKn+hLZ/FR5sB5tQPEogJGCK9ZlVamn7TtX
- qn/BpEcBwTgCymMtALY/6UZ5j+OoTm+FeyBj3Ydo9MZTpbjsq8Zjn3M9CCkwNXBB9ZsH
- O5e/sQlL5xSa3QKHfNwlscP+er9tiTdGBMFYAu34OM1PSGIGH5Josr974JkB1io/8Wp3
- hGKE/DCdzI6/bY8O34Xlqll5T3JZdrRs5Z02lA5iKztyYKbsQvHNnNIn1jNWoAD/mFpS
- RJRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1730967693; x=1731572493;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=5VOR5CG5z5tJAz08GO5kOR/f1vtcXPoi8DLyImsNBw4=;
- b=IUzOBQjlE9xm+5P3uAKPdYTGp2UHFrvDZcSXT/XPpK7v8n86hUSZTvTBtofEGuIFA5
- fbYzrHbqguKSfiqBn3l5GiGjUCK5GJczeZSFcxDWxhae1tbByraV/wmVP7FTr9U8k3Zd
- iSCGsML8R7OZ5XMAYMP5PNyO1PpuCtpuy7SmUFMsY7/pZ7F1gcGsmpSHzzqwzRbv0pik
- +lD99Cy16SIz782qelFzrLouIiMNA3JQJ/Fh7SY+lWd8uMkQKD9mzViIpHh64rVrUvgL
- 7FPTN6uBD3zvlQKI72hjnAEbB/Kgv3IIRXmeo1rodOfZK6ApnQ6BWJqV5crSCmRTtZp0
- M7CA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW+b+WNZCmcbuKIKJ3nAKuU/5RQzEI8hlrX/qaFdrXkN9XPnTo0jDX4IPWGrQnyCN+d440qlPrNX4E=@lists.freedesktop.org,
- AJvYcCWpTyOouBMUTNmyaKRPmYhTH6TulEmYMrPnpyoCGJ/3ZT6tAREGoGhK/rlsTjF3wplO9M6rwyBP0f8=@lists.freedesktop.org,
- AJvYcCXi4q90dqeheo0FHR7Cyf2X6zqI3I9r+Kah+p2qoDQiP5eQ56etTk31AeWoyGqEziP0jaKC4uRN2X+Q@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx5pX2jzdm7BWGwq0OBoRADZGJi81ezZjYYOlQSjsIggv77OYUD
- plSKV146f51borJFTCyWgHi5g+mWOz2Qbw35aFoRTG+1R5SRohvHu3JQkiCGhBNcTnlxmbCohTl
- X9P6JlUD0l+d5GOJxX3nkKhnJa28=
-X-Google-Smtp-Source: AGHT+IGzp4ZhM15P5BuZqJNwFlSO7u7lx6xlY6hASCP8GFqOKEug7q8+mJvAPBHNOu1UYfSi3ksydcl56G/UnZhJGfY=
-X-Received: by 2002:a17:907:9622:b0:a99:5234:c56c with SMTP id
- a640c23a62f3a-a9ee74cae8amr8688466b.33.1730967692918; Thu, 07 Nov 2024
- 00:21:32 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE69910E2FA;
+ Mon, 11 Nov 2024 17:47:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731347221; x=1762883221;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=+EmNYfej3Ak73eyym3ARLmFXG9n9LnVhckYOY92t4Rc=;
+ b=dLoYBO2oZ8CHWQl21vjsfEOn9R2+jrYMMAkQueudtP30+dMvUHXtskaj
+ oHDC3g0Q3ekUU52bGhJjNtUAhYDiP/eB58RzGcmX0D/yZdGxnRUrg835C
+ sMfAt+q0egJyzuEJQnj6rFjQeteB4J5DYCYTloyuASgb0O1hfKf1/W6DJ
+ 7WBsr/EZb9zmvqU/KMDOf0XfH2AMLF8D/9woapqRA2XJi4joqoT9bGqdE
+ kY4pazxy2e9GYL+8tMLIaRBDSW/79POzWNA2zlGcuTVI8OpkOeOQnKVpM
+ Z+lmN3mLiZuyCu14ZEi7tp23fLfY0QeJPLjGJtDacuCINmu26wQ0INnf2 g==;
+X-CSE-ConnectionGUID: cZdGCk98QhuXFXPvecHzKg==
+X-CSE-MsgGUID: 6G0GjTW7QEOxP8/8MBi7Tw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="48613956"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="48613956"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2024 09:42:15 -0800
+X-CSE-ConnectionGUID: 0cq+zCpCQhWo7tXBCWEmGg==
+X-CSE-MsgGUID: gBxz86G/S6WqGAT3QAKe7g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="117933496"
+Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.75])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2024 09:42:13 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: imre.deak@intel.com, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 7/8] drm/i915/mst: change naming from fake encoders to
+ MST stream encoders
+In-Reply-To: <ZzI8EItLYhfFjgzf@ideak-desk.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1731011435.git.jani.nikula@intel.com>
+ <dcf0df2dc04b16d9093ac9f9b10d5bbc2fc802f3.1731011435.git.jani.nikula@intel.com>
+ <ZzI3uDJM39B_ow4-@ideak-desk.fi.intel.com>
+ <ZzI8EItLYhfFjgzf@ideak-desk.fi.intel.com>
+Date: Mon, 11 Nov 2024 19:42:10 +0200
+Message-ID: <87ikstd5vx.fsf@intel.com>
 MIME-Version: 1.0
-References: <20241017075725.207384-1-giedriuswork@gmail.com>
- <CALt+6nqxMZjuZuOKaj8Cx4dcNZx0n-0F9aa97d-vZoMWeN=bOw@mail.gmail.com>
- <Zyk8dFthM0EA2A_K@intel.com>
-In-Reply-To: <Zyk8dFthM0EA2A_K@intel.com>
-From: =?UTF-8?Q?Giedrius_Statkevi=C4=8Dius?= <giedriuswork@gmail.com>
-Date: Thu, 7 Nov 2024 10:21:21 +0200
-Message-ID: <CALt+6nrS2aRHYCyrba5uBUXsHdPntELdj0MYPbv69PupHBKMtA@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/i915/lspcon: do not hardcode settle timeout
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 11 Nov 2024 17:43:00 +0000
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,24 +70,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello,
-
-On Mon, 4 Nov 2024 at 23:28, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+On Mon, 11 Nov 2024, Imre Deak <imre.deak@intel.com> wrote:
+> On Mon, Nov 11, 2024 at 06:58:32PM +0200, Imre Deak wrote:
+>> On Thu, Nov 07, 2024 at 10:32:20PM +0200, Jani Nikula wrote:
+>> > The fake encoders pretty much match individual MST streams. The encoders
+>> > remain as fake as ever, but change the naming to MST stream
+>> > encoders. Rename all the encoder hooks and related functions called from
+>> > them to mst_stream_* to clarify what type of encoders the hooks are
+>> > called on.
+>> > 
+>> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> 
+>> Reviewed-by: Imre Deak <imre.deak@intel.com>
+>> 
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 204 ++++++++++----------
+>> >  1 file changed, 100 insertions(+), 104 deletions(-)
+>> > 
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> > index 481510819cc6..0c08212e70ac 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> > @@ -53,7 +53,7 @@
+>> >  #include "intel_vdsc.h"
+>> >  #include "skl_scaler.h"
+>> >  
+>> > -/* From fake MST encoder to primary encoder */
+>> > +/* From fake MST stream encoder to primary encoder */
+>> >  static struct intel_encoder *to_primary_encoder(struct intel_encoder *encoder)
+>> >  {
+>> >  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
+>> > @@ -62,7 +62,7 @@ static struct intel_encoder *to_primary_encoder(struct intel_encoder *encoder)
+>> >  	return &dig_port->base;
+>> >  }
+>> >  
+>> > -/* From fake MST encoder to primary DP */
+>> > +/* From fake MST stream encoder to primary DP */
+>> >  static struct intel_dp *to_primary_dp(struct intel_encoder *encoder)
+>> >  {
+>> >  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
+>> > @@ -179,14 +179,12 @@ static int intel_dp_mst_dsc_get_slice_count(const struct intel_connector *connec
+>> >  					    num_joined_pipes);
+>> >  }
+>> >  
+>> > -static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+>> > -						struct intel_crtc_state *crtc_state,
+>> > -						int max_bpp,
+>> > -						int min_bpp,
+>> > -						struct link_config_limits *limits,
+>> > -						struct drm_connector_state *conn_state,
+>> > -						int step,
+>> > -						bool dsc)
+>> > +static int mst_stream_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+>> > +					      struct intel_crtc_state *crtc_state,
+>> > +					      int max_bpp, int min_bpp,
+>> > +					      struct link_config_limits *limits,
+>> > +					      struct drm_connector_state *conn_state,
+>> > +					      int step, bool dsc)
+>> >  {
+>> >  	struct intel_display *display = to_intel_display(encoder);
+>> >  	struct drm_atomic_state *state = crtc_state->uapi.state;
+>> > @@ -333,10 +331,10 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+>> >  	return slots;
+>> >  }
+>> >  
+>> > -static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
+>> > -					    struct intel_crtc_state *crtc_state,
+>> > -					    struct drm_connector_state *conn_state,
+>> > -					    struct link_config_limits *limits)
+>> > +static int mst_stream_compute_link_config(struct intel_encoder *encoder,
+>> > +					  struct intel_crtc_state *crtc_state,
+>> > +					  struct drm_connector_state *conn_state,
+>> > +					  struct link_config_limits *limits)
+>> >  {
+>> >  	int slots = -EINVAL;
+>> >  
+>> > @@ -344,11 +342,11 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
+>> >  	 * FIXME: allocate the BW according to link_bpp, which in the case of
+>> >  	 * YUV420 is only half of the pipe bpp value.
+>> >  	 */
+>> > -	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state,
+>> > -						     fxp_q4_to_int(limits->link.max_bpp_x16),
+>> > -						     fxp_q4_to_int(limits->link.min_bpp_x16),
+>> > -						     limits,
+>> > -						     conn_state, 2 * 3, false);
+>> > +	slots = mst_stream_find_vcpi_slots_for_bpp(encoder, crtc_state,
+>> > +						   fxp_q4_to_int(limits->link.max_bpp_x16),
+>> > +						   fxp_q4_to_int(limits->link.min_bpp_x16),
+>> > +						   limits,
+>> > +						   conn_state, 2 * 3, false);
+>> >  
+>> >  	if (slots < 0)
+>> >  		return slots;
+>> > @@ -356,10 +354,10 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
+>> >  	return 0;
+>> >  }
+>> >  
+>> > -static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
+>> > -						struct intel_crtc_state *crtc_state,
+>> > -						struct drm_connector_state *conn_state,
+>> > -						struct link_config_limits *limits)
+>> > +static int mst_stream_dsc_compute_link_config(struct intel_encoder *encoder,
+>> > +					      struct intel_crtc_state *crtc_state,
+>> > +					      struct drm_connector_state *conn_state,
+>> > +					      struct link_config_limits *limits)
+>> >  {
+>> >  	struct intel_display *display = to_intel_display(encoder);
+>> >  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+>> > @@ -426,18 +424,19 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
+>> >  	min_compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915, min_compressed_bpp,
+>> >  							    crtc_state->pipe_bpp);
+>> >  
+>> > -	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_compressed_bpp,
+>> > -						     min_compressed_bpp, limits,
+>> > -						     conn_state, 1, true);
+>> > +	slots = mst_stream_find_vcpi_slots_for_bpp(encoder, crtc_state, max_compressed_bpp,
+>> > +						   min_compressed_bpp, limits,
+>> > +						   conn_state, 1, true);
+>> >  
+>> >  	if (slots < 0)
+>> >  		return slots;
+>> >  
+>> >  	return 0;
+>> >  }
+>> > -static int intel_dp_mst_update_slots(struct intel_encoder *encoder,
+>> > -				     struct intel_crtc_state *crtc_state,
+>> > -				     struct drm_connector_state *conn_state)
+>> > +
+>> > +static int mst_stream_update_slots(struct intel_encoder *encoder,
+>> > +				   struct intel_crtc_state *crtc_state,
+>> > +				   struct drm_connector_state *conn_state)
 >
-> On Mon, Nov 04, 2024 at 02:09:46PM +0200, Giedrius Statkevi=C4=8Dius wrot=
-e:
-> > Hello,
-> >
-> > Kind ping.
->
-> There was a pipe underun in CI... I honestly don't believe this patch is
-> causing it, but anyway I decided to trigger a retest there before I push =
-this.
->
-> Thanks for the patch and review.
+> Side note: an additional thing that could be done is to pass intel_dp
+> instead of intel_encoder to all the above functions, since it's clear
+> what the former is (no separate stream vs. primary instances) and
+> intel_encoder is used anyway only to get to intel_dp.
 
-I don't see that on my laptop. Resuming sometimes still doesn't work but
-this helps a little from my testing. I will continue the investigation.
+Right. Maybe I'll send a follow-up once these have been merged.
 
-Best regards,
-Giedrius
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel
