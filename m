@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 304F8D2E9D1
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 10:01:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 673A2D2E9D0
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 10:01:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F053910E077;
-	Mon, 11 Nov 2024 10:01:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B98910E077;
+	Mon, 11 Nov 2024 10:01:28 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5761D10E077;
- Mon, 11 Nov 2024 10:01:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9406B10E077;
+ Mon, 11 Nov 2024 10:01:27 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/dp=3A_Guara?=
- =?utf-8?q?ntee_a_minimum_HBlank_time_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/dp=3A_Guarantee_?=
+ =?utf-8?q?a_minimum_HBlank_time_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 11 Nov 2024 10:01:13 -0000
-Message-ID: <173131927335.2555084.4771771748727002216@2413ebb6fbb6>
+Date: Mon, 11 Nov 2024 10:01:27 -0000
+Message-ID: <173131928760.2530272.16527411382643535514@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241111092608.129410-1-arun.r.murthy@intel.com>
 In-Reply-To: <20241111092608.129410-1-arun.r.murthy@intel.com>
@@ -44,13 +44,52 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/dp: Guarantee a minimum HBlank time (rev4)
 URL   : https://patchwork.freedesktop.org/series/139268/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3f866f737f2b drm-tip: 2024y-11m-11d-09h-50m-40s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/dp: Guarantee a minimum HBlank time
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 479b896c2266343cc4e22cafff4cb3e4887c7e3a
+Author: Arun R Murthy <arun.r.murthy@intel.com>
+Date:   Mon Nov 11 14:56:08 2024 +0530
+
+    drm/i915/dp: Guarantee a minimum HBlank time
+    
+    Mandate a minimum Hblank symbol cycle count between BS and BE in 8b/10b
+    MST and 12b/132b mode.
+    Spec: DP2.1a
+    
+    v2: Affine calculation/updation of min HBlank to dp_mst (Jani)
+    v3: moved min_hblank from struct intel_dp to intel_crtc_state (Jani)
+    v4: use max/min functions, change intel_xx *intel_xx to intel_xx *xx
+        (Jani)
+        Limit hblank to 511 and accomodate BS/BE in calculated value
+        (Srikanth)
+    
+    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
++ /mt/dim checkpatch 3f866f737f2b5b35056783cd2b8bce2c1b00ab47 drm-intel
+479b896c2266 drm/i915/dp: Guarantee a minimum HBlank time
+-:14: WARNING:TYPO_SPELLING: 'accomodate' may be misspelled - perhaps 'accommodate'?
+#14: 
+    Limit hblank to 511 and accomodate BS/BE in calculated value
+                            ^^^^^^^^^^
+
+-:66: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#66: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:179:
++	hblank = DIV_ROUND_UP((DIV_ROUND_UP(adjusted_mode->htotal - adjusted_mode->hdisplay, 4) * bpp_x16), symbol_size);
+
+-:113: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#113: FILE: drivers/gpu/drm/i915/i915_reg.h:3490:
++#define DP_MIN_HBLANK_CTL(trans)		_MMIO_TRANS(trans, _DP_MIN_HBLANK_CTL_A, _DP_MIN_HBLANK_CTL_B)
+
+total: 0 errors, 3 warnings, 0 checks, 77 lines checked
 
 
