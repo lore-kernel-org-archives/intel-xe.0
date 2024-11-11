@@ -4,58 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EE88D2E9C3
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 08:58:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28BDDD2E9C3
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 09:09:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B838B10E43B;
-	Mon, 11 Nov 2024 08:58:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E258410E443;
+	Mon, 11 Nov 2024 09:09:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RRY3XleQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="knReNnQ+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C84E10E43B;
- Mon, 11 Nov 2024 08:58:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2202510E443;
+ Mon, 11 Nov 2024 09:09:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731315506; x=1762851506;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=WmQtLUTxwlrQZ/DTv2qLjz7HAZUJ0eFKiWLBdURBzjs=;
- b=RRY3XleQal+3YEQWlWIJf9FU14cqWd4RIEkz0ksgWR3HNSl91IiHFLX6
- eD5XoA43NExDNc+Lq6cyCO/abNEqiZrdj4AG9n/MdFHYgtxLbAIlQMg8D
- j8+spf1Hz0ilXlFkPAWo7GnyI3rB0dSVm16qIHhPx4vAU7Xmz9Nlp3a5d
- 1GbLDeilXUr1tDkDl/2hkzAWNnPh8dzaMXp39UjnjaHjgKyKnJxOOCcQj
- 6fr/awRUnZh73Z+MPpQ+eoUT3Zj8rBBOwGPjoJuRCfD2eNZHv1tE7P8IK
- VMyIFnXeQoA1BzDnDZNKA29BoXpRfn+ireh3KVo81HUhTvE8PY/amRybL A==;
-X-CSE-ConnectionGUID: 24R2Z/ipTJywEP42z1SJiQ==
-X-CSE-MsgGUID: e8RZT4w0QRKwXZfoXkx8gg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="41743465"
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="41743465"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 00:58:25 -0800
-X-CSE-ConnectionGUID: dv+l+57ASY6OsIYhL1onSA==
-X-CSE-MsgGUID: MVCauSs3SvauTOnNyr3B8g==
+ t=1731316193; x=1762852193;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SpY/iH3+ZO6cpqrXkddbVeZ8XoSkeC14wCg5EuKwEZM=;
+ b=knReNnQ+jSIVkKRlfp4fRIJOFgdAVP0yQ1jJ78DAhV6WXn4K62H0bTfc
+ YMnAMOD8Kntq1Wzp1OCIcTyIAh3owLaq/EFI55UlrFqLXKxXSWkx63+fv
+ jkQ6tbUbdGHS91p0TFZLyYHHpcluEkawNl7VTODYzJ5LDTGhBv1pWGWMU
+ mmJg1pT1ax+ysHC5/bR9v2zGm0KPx3CcDBLVy/K/ZG7PIlJhgaLz4h46U
+ jsKXYwpRm1OSODF1jrFzOAdqfmh/aM2ePPKLFqrzDPZvDPlCvqAoyQh5V
+ N2QCR2oEqe6trpoNvTzDECx3xXuPPRn+052dUewwkTpRJeIFBYH2My/6Y w==;
+X-CSE-ConnectionGUID: lIfPjL1STE20X1TdF1ZkkQ==
+X-CSE-MsgGUID: 16xIBOxcRmWyzzFWPh+XVQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="35052301"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="35052301"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2024 01:09:53 -0800
+X-CSE-ConnectionGUID: qtA2FHv+Q+GbLkUELmZymw==
+X-CSE-MsgGUID: LY9Aga3/QXy/7ITy3/ixHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="117737973"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.75])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 00:58:22 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Clint
- Taylor <clinton.a.taylor@intel.com>, Imre Deak <imre.deak@intel.com>
-Subject: Re: [PATCH] drm/i915/dp: demote source OUI read/write failure
- logging to debug
-In-Reply-To: <20241106172416.GP4891@mdroper-desk1.amr.corp.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241106162325.4065078-1-jani.nikula@intel.com>
- <20241106172416.GP4891@mdroper-desk1.amr.corp.intel.com>
-Date: Mon, 11 Nov 2024 10:58:20 +0200
-Message-ID: <87zfm6cfkj.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="86762527"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2024 01:09:50 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: [PATCH 00/23] Use VRR timing generator for fixed refresh rate modes
+Date: Mon, 11 Nov 2024 14:41:58 +0530
+Message-ID: <20241111091221.2992818-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,81 +65,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 06 Nov 2024, Matt Roper <matthew.d.roper@intel.com> wrote:
-> On Wed, Nov 06, 2024 at 06:23:25PM +0200, Jani Nikula wrote:
->> Commit 1f12d63a14d7 ("drm/i915/dp: Write the source OUI for non-eDP
->> sinks as well") started writing source OUI for non-eDP sinks as well,
->> increasing the possibilities of hitting read/write failures either due
->> to the sink behaviour or hotplug or whatever.
->> 
->> Even before that, commit 3fb0501f0c07 ("drm/i915/display/dp: Reduce log
->> level for SOURCE OUI write failures") already reduced write failures to
->> info level when source OUI was just for eDP.
->> 
->> Further reduce the log level to just debug. Switch to struct intel_dp
->> while at it.
->
-> Did you mean intel_display here rather than intel_dp?
+Even though the VRR timing generator (TG) is primarily used for
+variable refresh rates, it can be used for fixed refresh rates as
+well. For a fixed refresh rate the Flip Line and Vmax must be equal
+(TRANS_VRR_FLIPLINE = TRANS_VRR_VMAX). Beyond that, there are some
+dependencies between the VRR timings and the legacy timing generator
+registers.
 
-Yes, fixed while pushing!
+This series is an attempt to use VRR TG for fixed refresh rate.
+For platforms XE2LPD+, always go with VRR timing generator for both fixed and
+variable refresh rate cases.
 
->
-> Aside from that,
->
->    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Rev2:
+-Added support from MTL+ and for HDMI too.
+-Changed VRR VSYNC programming which is required for HDMI.
+-Modified vrr compute config for bigjoiner case. (Still to be tested).
 
-Thanks!
+Rev3:
+-Start support from XE2LPD+ as MTL needs a WA to have PSR +VRR (fixed
+refresh rate)
+-Add changes to enable PSR with VRR with fixed refresh rate.
 
-BR,
-Jani.
+Rev4:
+-Addressed review comments from Mitul and rebased.
 
->
->
-> Matt
->
->> 
->> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3372
->> Cc: Clint Taylor <clinton.a.taylor@intel.com>
->> Cc: Imre Deak <imre.deak@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_dp.c | 6 +++---
->>  1 file changed, 3 insertions(+), 3 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 5b918363df16..95c71e425fbe 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -3432,7 +3432,7 @@ void intel_dp_sink_disable_decompression(struct intel_atomic_state *state,
->>  static void
->>  intel_dp_init_source_oui(struct intel_dp *intel_dp)
->>  {
->> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->> +	struct intel_display *display = to_intel_display(intel_dp);
->>  	u8 oui[] = { 0x00, 0xaa, 0x01 };
->>  	u8 buf[3] = {};
->>  
->> @@ -3446,7 +3446,7 @@ intel_dp_init_source_oui(struct intel_dp *intel_dp)
->>  	 * already set to what we want, so as to avoid clearing any state by accident
->>  	 */
->>  	if (drm_dp_dpcd_read(&intel_dp->aux, DP_SOURCE_OUI, buf, sizeof(buf)) < 0)
->> -		drm_err(&i915->drm, "Failed to read source OUI\n");
->> +		drm_dbg_kms(display->drm, "Failed to read source OUI\n");
->>  
->>  	if (memcmp(oui, buf, sizeof(oui)) == 0) {
->>  		/* Assume the OUI was written now. */
->> @@ -3455,7 +3455,7 @@ intel_dp_init_source_oui(struct intel_dp *intel_dp)
->>  	}
->>  
->>  	if (drm_dp_dpcd_write(&intel_dp->aux, DP_SOURCE_OUI, oui, sizeof(oui)) < 0) {
->> -		drm_info(&i915->drm, "Failed to write source OUI\n");
->> +		drm_dbg_kms(display->drm, "Failed to write source OUI\n");
->>  		WRITE_ONCE(intel_dp->oui_valid, false);
->>  	}
->>  
->> -- 
->> 2.39.5
->> 
+Rev5:
+-Avoid MSA Ignore PAR timing enable bit for fixed refresh rate
+with VRR TG.
+-Skip VRR compute config for HDMI connected via DP-HDMI2.1 PCON.
+-Print fixed_rr along with other VRR parameters in crtc state dump.
+-Rebase
+
+Rev6:
+-Refactor VRR code to have distinct modes in which VRR timing generator
+can be used: VRR, FIXED_RR, CMRR.
+-Bring the cmmr attributes in vrr struct.
+-Remove condition flipline > vmin for LNL.
+-Account for vmax being 0 based while MSA vtotal being 1 based.
+
+Ankit Nautiyal (23):
+  drm/i915/vrr: Refactor VRR Timing Computation
+  drm/i915/vrr: Simplify CMRR Enable Check in intel_vrr_get_config
+  drm/i915/vrr: Introduce new field for VRR mode
+  drm/i915/vrr: Fill VRR mode for CMRR and dynamic VRR
+  drm/i915/vrr: Rename vrr.enable to vrr.tg_enable
+  drm/i915/display: Absorb cmrr attributes into vrr
+  drm/i915/display: Add vrr mode to crtc_state dump
+  drm/i915/vrr: Remove condition flipline > vmin for LNL
+  drm/i915/vrr: Compute vrr vsync if platforms support it
+  drm/i915/dp: Avoid vrr compute config for HDMI sink
+  drm/i915/dp: fix the Adaptive sync Operation mode for SDP
+  drm/i915/hdmi: Use VRR Timing generator for HDMI
+  drm/i915/vrr: Handle joiner with vrr
+  drm/i915/display: Handle transcoder timings for joiner
+  drm/i915/vrr: Introduce VRR mode Fixed RR
+  drm/i915/vrr: Fill fixed refresh mode in vrr_get_compute_config
+  drm/i915/display: Enable MSA Ignore Timing PAR only when in not
+    fixed_rr mode
+  drm/i915/dp: Set FAVT mode in DP SDP with fixed refresh rate
+  drm/i915/vrr: Avoid sending PUSH when VRR TG is used with Fixed
+    refresh rate
+  drm/i915/display: Disable PSR before disabling VRR
+  drm/i915/psr: Allow PSR for fixed refrsh rate with VRR TG
+  drm/i915/vrr: Always use VRR timing generator for XE2LPD+
+  drm/i915/display: Use VRR timings for XE2LPD+ in modeset sequence
+
+ .../drm/i915/display/intel_crtc_state_dump.c  |   5 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  61 ++--
+ .../drm/i915/display/intel_display_types.h    |  18 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  19 +-
+ .../drm/i915/display/intel_dp_link_training.c |   8 +-
+ drivers/gpu/drm/i915/display/intel_dsb.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   3 +
+ .../drm/i915/display/intel_modeset_setup.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |   5 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c   |   8 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 271 +++++++++++++-----
+ drivers/gpu/drm/i915/display/skl_watermark.c  |   2 +-
+ 13 files changed, 279 insertions(+), 127 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.45.2
+
