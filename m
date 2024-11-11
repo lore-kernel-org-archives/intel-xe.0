@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9763CD2E9C8
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 09:10:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D5AED2E9C3
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 09:10:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63BB210E45A;
-	Mon, 11 Nov 2024 09:10:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A86110E457;
+	Mon, 11 Nov 2024 09:10:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IAifuo9S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GLAGUV6t";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B220610E451;
- Mon, 11 Nov 2024 09:10:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7D4010E454;
+ Mon, 11 Nov 2024 09:10:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731316214; x=1762852214;
+ t=1731316218; x=1762852218;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=iwkhJw2+1NQ4sG6A6bgymwWEGGxCIJcogydoXc840Y8=;
- b=IAifuo9SY/rWmrYjCXB+yd6DV7qfA8wFEr3bjy6VWj96/yxGYOEkuZ4r
- q/lzQtgxEPW9YR3sy06NcN42S18grBSK3jOQmkzAm3/Eu6b9d/VgFT9BN
- pQP4Cf65JHggauxF9a6TBmPiKQl/U8d9vXaGBdeEABUM9+Tu46FmqrpFE
- 6PY5naLUSvXocutiNrl5G86HySSTqQpFk9rTWI0bKi73WkvhbddoNu5mm
- 7JJDRtNwff5ULVgbwmm5D+t2ytwhZ1dcMPnblOBJMEn6cgq1R+WFuUE8B
- eV7rIpzvrjOPsjPi2OTJR1IU2XWLVdSd6QT9XvglV+2mrJh9AB0YTH3es A==;
-X-CSE-ConnectionGUID: yoesAN7VTEK4kEt51MXsFw==
-X-CSE-MsgGUID: hJvsj57LRlSF7wDoroEi4Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="35052353"
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="35052353"
+ bh=7fHdmHLYHB6kD0ak4tocGkICf9NGTLGYbHDXg5PDE2Q=;
+ b=GLAGUV6tm6i7ahsvEhyl2nTqXZ+m9mCqXDC0YcJeEjlBPh4zTY4UMG76
+ kWfrPDZ7FJU8dQCmMpsKfAXE+HRbb9VyHgY9rfd3YTlD5eEbDA8rTIauz
+ LwjDC5AY6oeh7TZQsbGyWojFNcda9YNFdCB8NkUugYj+KUcVXLmJI2IOv
+ B1+tieadXNxRJnyBuci++OX8zJS8KcLY2JB428DsrxEVfyuM0NCPX6b3V
+ lHsesKZnU5MTkmnVcso03Cz5YhRrCc1iqRIDMyuRyxPe0LzBaDbTTZfbf
+ u967KR5NwXzcnCy5nPhm6p4H8JEl4ba+RaBvGvRVsQUIS8Es99VKDgZFv Q==;
+X-CSE-ConnectionGUID: El6wHSVzT2aPK1L2z2gxfw==
+X-CSE-MsgGUID: +ecQ8JAXRXep3kzE7ETl9g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="35052382"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="35052382"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 01:10:14 -0800
-X-CSE-ConnectionGUID: lidx0qhDQNiE/L7TmVBMlA==
-X-CSE-MsgGUID: b5Wo3yZvTm2yJhWeODmXNQ==
+ 11 Nov 2024 01:10:18 -0800
+X-CSE-ConnectionGUID: eMKHgvAgSMO+tox4c8Refg==
+X-CSE-MsgGUID: E1WcqKvJTS+iW1IRxiUQmQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="86762639"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="86762658"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 01:10:11 -0800
+ 11 Nov 2024 01:10:16 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 10/23] drm/i915/dp: Avoid vrr compute config for HDMI sink
-Date: Mon, 11 Nov 2024 14:42:08 +0530
-Message-ID: <20241111091221.2992818-11-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 12/23] drm/i915/hdmi: Use VRR Timing generator for HDMI
+Date: Mon, 11 Nov 2024 14:42:10 +0530
+Message-ID: <20241111091221.2992818-13-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241111091221.2992818-1-ankit.k.nautiyal@intel.com>
 References: <20241111091221.2992818-1-ankit.k.nautiyal@intel.com>
@@ -67,32 +67,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we do not support VRR with HDMI so skip vrr compute
-config step for DP with HDMI sink.
+Add support for using VRR Timing generator for HDMI panels.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index fec720bcd296..2db631ccf8ac 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3178,7 +3178,12 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	if (!HAS_DDI(dev_priv))
- 		g4x_dp_set_clock(encoder, pipe_config);
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index c6ce6bb88d7c..8582f23a514f 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -64,6 +64,7 @@
+ #include "intel_panel.h"
+ #include "intel_pfit.h"
+ #include "intel_snps_phy.h"
++#include "intel_vrr.h"
  
--	intel_vrr_compute_config(pipe_config, conn_state);
-+	/*
-+	 * VRR via PCON is currently unsupported.
-+	 * TODO: Add support for VRR for DP HDMI2.1 PCON.
-+	 */
-+	if (!intel_dp_has_hdmi_sink(intel_dp))
-+		intel_vrr_compute_config(pipe_config, conn_state);
- 	intel_dp_compute_as_sdp(intel_dp, pipe_config);
- 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
- 	intel_alpm_lobf_compute_config(intel_dp, pipe_config, conn_state);
+ static void
+ assert_hdmi_port_disabled(struct intel_hdmi *intel_hdmi)
+@@ -2399,6 +2400,8 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 		}
+ 	}
+ 
++	intel_vrr_compute_config(pipe_config, conn_state);
++
+ 	intel_hdmi_compute_gcp_infoframe(encoder, pipe_config,
+ 					 conn_state);
+ 
 -- 
 2.45.2
 
