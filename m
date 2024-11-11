@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39DA1D2E9C3
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 09:09:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C190D2E9CB
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 09:10:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8CD610E44E;
-	Mon, 11 Nov 2024 09:09:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 012B510E44A;
+	Mon, 11 Nov 2024 09:10:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JceImtEj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K79U5aIV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D714610E449;
- Mon, 11 Nov 2024 09:09:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A57010E451;
+ Mon, 11 Nov 2024 09:10:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731316197; x=1762852197;
+ t=1731316201; x=1762852201;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1JTZZqZWw79o9BYSENptqUbhJyEEAW7Njlmuli0bWDo=;
- b=JceImtEjBg2powFks4cGEtWrQdwgNkYp0eCG4N/D3qHk+FLyvyQydzWo
- 6AHBbi6vuyhoYdVyEadokN0haivPzXZ+Kt51GfXXiV/pL3IfDSbXcjzB7
- bj0gU43qIwIaPw61UfbjRuzFteHZIP7MCWTD7osrytQdF1mMXVJYkEU64
- 8jiBM8ctqf3El7IYH+x6UNWZVKyPxSSiUm7rTNJS9/w2dv4d+OjsLFtog
- GvkpxWDmNlblIU8LBNPwR9iInlnGY/l0GoX00Iork+SfowGwXX8QRw4ic
- 3oz8j+T391LyCvbIbCxVOVgHGcL4wFJPrQYiAobQd15WtEWwRdja1FOsQ A==;
-X-CSE-ConnectionGUID: l7q4QrroTWib+T4ESF4gLQ==
-X-CSE-MsgGUID: YaLQFXSiStOlgW9Fz42DBQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="35052307"
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="35052307"
+ bh=63oZ4J/jo9Ykzk37qKr87HQ3As404mViTDH7GWaCIJk=;
+ b=K79U5aIVMqBYByrPT8dIC3pdMEgxAyIbcM+UMYwjiDUe5bOZwm1KCJa4
+ GVYRxgk2U7EsgljuqM81/AaXJBXKFUHjZa+e55OFp7bk9hQELa+wl7zSt
+ 9qp1IIPIN+VulglQ4sfIwmfPdECmK/hM5dfpmsfxr4npcvRXYBkUUrGLG
+ m5q6duwFqTCdAseDm1OQqlDBBSynPF3gxgJk48bDziyIQuC51tzWgJD1i
+ K/bDr0xcD0RIVGmpi8KbntQ0l7FJaZSrgCK5Gz8vnrCV3SyVERrQy8HVZ
+ Jq+Axw9H6CxlJU52ci68G/aTbGssUl/Pa4V0QBUWvMCTfWuL/F5pzGuXW Q==;
+X-CSE-ConnectionGUID: E4hmEI1xR2eYllD/DhtiYA==
+X-CSE-MsgGUID: qJXv/RyXRdyVbZtz4HpQwQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="35052316"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="35052316"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 01:09:57 -0800
-X-CSE-ConnectionGUID: Zhf8LiWAQua1wd35rbVl5w==
-X-CSE-MsgGUID: mLhaNUwiRF+peQFPt+UqfQ==
+ 11 Nov 2024 01:10:01 -0800
+X-CSE-ConnectionGUID: UmdOcipVTqKfJ42CuMtiQw==
+X-CSE-MsgGUID: GgStIJwNQBOpOZTazDeu0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="86762539"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="86762552"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 01:09:54 -0800
+ 11 Nov 2024 01:09:59 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 02/23] drm/i915/vrr: Simplify CMRR Enable Check in
- intel_vrr_get_config
-Date: Mon, 11 Nov 2024 14:42:00 +0530
-Message-ID: <20241111091221.2992818-3-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 04/23] drm/i915/vrr: Fill VRR mode for CMRR and dynamic VRR
+Date: Mon, 11 Nov 2024 14:42:02 +0530
+Message-ID: <20241111091221.2992818-5-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241111091221.2992818-1-ankit.k.nautiyal@intel.com>
 References: <20241111091221.2992818-1-ankit.k.nautiyal@intel.com>
@@ -68,32 +67,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Combine the CMRR capability and enable check into a single condition.
-Set crtc_state->cmrr.enable directly within the combined condition.
-This will make way to absorb cmrr members in vrr struct.
+Fill vrr.mode during compute_config and update intel_vrr_get_config() to
+read vrr.mode based on CMRR and VRR enable conditions.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 1 +
+ drivers/gpu/drm/i915/display/intel_vrr.c     | 5 +++++
+ 2 files changed, 6 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 14aa171a9eb2..1a933bdb16a2 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5752,6 +5752,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 
+ 	if (!fastset) {
+ 		PIPE_CONF_CHECK_BOOL(vrr.enable);
++		PIPE_CONF_CHECK_X(vrr.mode);
+ 		PIPE_CONF_CHECK_I(vrr.vmin);
+ 		PIPE_CONF_CHECK_I(vrr.vmax);
+ 		PIPE_CONF_CHECK_I(vrr.flipline);
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index defe346b0261..72169346f6b6 100644
+index 72169346f6b6..02160aacd8ee 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -433,10 +433,9 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- 				      TRANS_VRR_CTL(display, cpu_transcoder));
+@@ -166,6 +166,7 @@ void intel_vrr_compute_cmrr_timings(struct intel_crtc_state *crtc_state)
+ {
+ 	crtc_state->vrr.enable = true;
+ 	crtc_state->cmrr.enable = true;
++	crtc_state->vrr.mode = INTEL_VRRTG_MODE_CMRR;
+ 	/*
+ 	 * TODO: Compute precise target refresh rate to determine
+ 	 * if video_mode_required should be true. Currently set to
+@@ -225,6 +226,7 @@ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state, int vmin
+ {
+ 	intel_vrr_prepare_vrr_timings(crtc_state, vmin, vmax);
+ 	crtc_state->vrr.enable = true;
++	crtc_state->vrr.mode = INTEL_VRRTG_MODE_VRR;
+ 	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+ }
  
- 	crtc_state->vrr.enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE;
--	if (HAS_CMRR(display))
--		crtc_state->cmrr.enable = (trans_vrr_ctl & VRR_CTL_CMRR_ENABLE);
+@@ -436,12 +438,15 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
  
--	if (crtc_state->cmrr.enable) {
-+	if (HAS_CMRR(display) && trans_vrr_ctl & VRR_CTL_CMRR_ENABLE) {
-+		crtc_state->cmrr.enable = true;
+ 	if (HAS_CMRR(display) && trans_vrr_ctl & VRR_CTL_CMRR_ENABLE) {
+ 		crtc_state->cmrr.enable = true;
++		crtc_state->vrr.mode = INTEL_VRRTG_MODE_CMRR;
  		crtc_state->cmrr.cmrr_n =
  			intel_de_read64_2x32(display, TRANS_CMRR_N_LO(display, cpu_transcoder),
  					     TRANS_CMRR_N_HI(display, cpu_transcoder));
+ 		crtc_state->cmrr.cmrr_m =
+ 			intel_de_read64_2x32(display, TRANS_CMRR_M_LO(display, cpu_transcoder),
+ 					     TRANS_CMRR_M_HI(display, cpu_transcoder));
++	} else if (trans_vrr_ctl & VRR_CTL_VRR_ENABLE) {
++		crtc_state->vrr.mode = INTEL_VRRTG_MODE_VRR;
+ 	}
+ 
+ 	if (DISPLAY_VER(display) >= 13)
 -- 
 2.45.2
 
