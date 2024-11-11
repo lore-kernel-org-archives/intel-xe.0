@@ -4,183 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06E1CD2E9F0
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 14:31:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DD4CD2E9FF
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 14:38:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C419710E4D8;
-	Mon, 11 Nov 2024 14:31:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3FA710E4D7;
+	Mon, 11 Nov 2024 14:38:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lvWnY+WF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EeSK0yUG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4207210E4D8
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Nov 2024 14:31:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8921910E4D5;
+ Mon, 11 Nov 2024 14:38:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731335497; x=1762871497;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=RPk0dg9ytncjlzpjg0OOAXbOg3rOdzjX8XpOVWyBBk0=;
- b=lvWnY+WFl/yHb0WKAUMtJ+ZAE7Rqwz2PEJ+/RERVOzmp+N3EtVUkOyFp
- 0ByE+wbq0XDVKCeEXZkIvbEHT/x3g4bnHkrActGBZCBor26eoo0i2yTyl
- 8BhNimXH3ZfkBmsfkCcpitaQ/EYoCJli6Kwud0cPJ+WgIo7uDyGznWWmh
- AmW0Zg0lfQ4p/EYrN0eAiIEXhPRoIlia85DxD0OEwU2KAoC1Rs/VNK1um
- l9VxxhPDhybC9jGYnA3v5/ilfHZWsSejc4klLAD2Jddxr24uqIFWaXE2S
- zZezyzv/gZeses3REnEjpPZZJYDNZmwzqJsWyVQlQ3R4Lvd68US4xKIQ8 Q==;
-X-CSE-ConnectionGUID: aZWlk89ZSPCc2uecZ3UYZw==
-X-CSE-MsgGUID: eguPXO4lS4CkpC2eHAtyYw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="42236955"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="42236955"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 06:31:36 -0800
-X-CSE-ConnectionGUID: aOyTnK/ZRqS5ZWj+RcIq9g==
-X-CSE-MsgGUID: xRRzxAbBS3qeXf+eG0lxdQ==
+ t=1731335930; x=1762871930;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=7YvaIdYI62qGLY6wKGKspUAXjECXYjN2f//zgSuhHcM=;
+ b=EeSK0yUGYCxFFGicL4W+jJa5iaKyUg7/LKBZxDAuHwDZYRWlxImSI2o5
+ O9UkSV7zodDCaRkrCcgX9ikfN/d2JIDbyLBPG1RQDQpzp/9WhJHIDgcSM
+ C3JCgWoWxOIHfq+Ngvc7Kw9cfM/JW7sD3CjG3xbbVl33+MtyaChxDxCpc
+ BN0nI3TPzLhsh8Qm6c9s5yw1j98GIVC72mdzdalKH2NRSIQP3x48GkFhs
+ g4U+doscF/fQ2/Gt/wJ1ROxt+zWhd8lGCKA76WBkdjS8MRhQGMVScdiUX
+ HPNl0hsF/pnD8TlweOxgQAsdBl9QB+wJVmyn8YYQNtT1S8+KRXOAeQbqo w==;
+X-CSE-ConnectionGUID: jM1GWszvRHWmhkIq/ZsiTg==
+X-CSE-MsgGUID: waBPM9Q8Tb2473dEkH028Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11253"; a="42539398"
+X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="42539398"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2024 06:38:50 -0800
+X-CSE-ConnectionGUID: OqiKFhJ7SY+p5sTjBeYyTg==
+X-CSE-MsgGUID: 9dBCT5zpTR2Ddtlqt7PeuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="86511429"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 11 Nov 2024 06:31:36 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 11 Nov 2024 06:31:35 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 11 Nov 2024 06:31:35 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.174)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 11 Nov 2024 06:31:35 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UK3g6NuFBG7x04OvBhHM8BalOgAP6rETL1AC+y/kUcpzgKUlBNO4dlf0tV3xnd/OuGBlCAAGPH7kCCHLbmwUxJdnG0mVYt7D83KMRFXNL/q+iOEMRVDQoYaWIO0HiKrx4FRNQeZ8ZU7imT+s0gT4mFxc73s1mtnxpU0urJGZratg4y+awh4krjesMp/88BMz6mlV42wuHJnrvE5qr3xBloyShEXMbRvdIcFoLekNKmMUToMFTWSBRvC0GgmwQTOCuD3OvXGJEMhogIJn0sDkjpbJ5VdwY5FbKdoZRog3QsR4oljoD6eZM6+4x5UXZH2V9hmNGQMUaxMRg6UjNYz8Lw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RPk0dg9ytncjlzpjg0OOAXbOg3rOdzjX8XpOVWyBBk0=;
- b=lt4anLPknZPqyi8J8gK2VGCfYsSReTApYPV/eJ6NqjnjrfHDqWNFYEId85tj2gPJSeQpUIFr7SWBK6qhDbYRpwYefNpuYYb5sudp20i+RhzyeuYWyabDMr8kC+hx6UPBgFew6UuTtYAXyY5SvuvuFbAZfPerUa4w6dyfoENuvP2bbYeKaZpHzDqr3cIVAFZKEkzwAXvaxEku6AEg9d8TMSWVC1Fw8AUgVLR+4mAq0q+m3Ltd8VgDnYshoBIYyQ4q1LQ/YiwQwG7ERLFqkT0FcqCwxSULs5OZJBQXaChYJj3wn2lJLiUMrrD4SnCit8sPAlwXy1pawzMEqmHL8c7c1Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB8179.namprd11.prod.outlook.com (2603:10b6:8:18e::22)
- by DM6PR11MB4691.namprd11.prod.outlook.com (2603:10b6:5:2a6::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.29; Mon, 11 Nov
- 2024 14:31:30 +0000
-Received: from DM4PR11MB8179.namprd11.prod.outlook.com
- ([fe80::f5c2:eb59:d98c:e8ba]) by DM4PR11MB8179.namprd11.prod.outlook.com
- ([fe80::f5c2:eb59:d98c:e8ba%6]) with mapi id 15.20.8137.027; Mon, 11 Nov 2024
- 14:31:30 +0000
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH 0/2] Disallow OA from being enabled on active exec_queue's
-Thread-Topic: [PATCH 0/2] Disallow OA from being enabled on active exec_queue's
-Thread-Index: AQHbMjLU9o/ClufS5k+2KPgQypaICLKyKGMA
-Date: Mon, 11 Nov 2024 14:31:30 +0000
-Message-ID: <d0c25af29401371ae71086e48ae509a8c50c3199.camel@intel.com>
-References: <20241108230602.2984959-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20241108230602.2984959-1-ashutosh.dixit@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB8179:EE_|DM6PR11MB4691:EE_
-x-ms-office365-filtering-correlation-id: 8b0d83a5-0450-492d-ba5a-08dd025d88d3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?bGdzSkJCaFA1L1FKVDNnUTU2bk1lT3JHZHJ5S0RxczhjbUZkeVU1eVFYOXlH?=
- =?utf-8?B?NzJucWtsM0FMd1RwY1IxdkxJL0FPVVNXU1AzWkE1T2hNVjdUQW9QMUt3YVZK?=
- =?utf-8?B?SWRlUUpvaVdtVDdpRXV5N28vT0RRUm95Y29Nck5Vck4zalQxUEgxQ3E2TGNh?=
- =?utf-8?B?cXhzTTFlMlU5NEFMNVh1S3RLUllPTDJha0pSbndpSGtLVUYrVUFnWGJxNFk3?=
- =?utf-8?B?bGVNZThlWHpSV1FUdFdmdFlqNWszZnlvNlFOd1hKSmJKQzRlckQ2b0J2UnVn?=
- =?utf-8?B?amFnWDVYbXhCZVlQdWE3dlozQkVlckdqa2ZVc3FkWnBzZXdaaFVqcFpiVE5B?=
- =?utf-8?B?Z1lXblFlSjRWNnFjTHJabERJZjNVZXZhS01HSHkraUpvWHFrdmFyYTVzeFpt?=
- =?utf-8?B?azByWFFIUXhEM2ZsaHhsZmVUdVlGb25Jd3pZNTVhWm5ld05rbFJ3QklmWW5m?=
- =?utf-8?B?UGVsaVQ0cVNiT1RubVVRaWVsVWZ3VWpwKzhQQkVKSks5YW90dEF4Q2NKclZv?=
- =?utf-8?B?K3RTbGFNQk1Kclp1K05oR3dUbnBKZkZmSXZjL3BKU2hBMjFySzNHTXRUOVJu?=
- =?utf-8?B?dERML01GZFMxdkR2UkZWczZiR0tVcDJSRWJ1cUxpcWt1a2pINklFUmI2NkRy?=
- =?utf-8?B?YVZJdDhMdit1UmtJK2FhVXRIRUp3N3hBOTlMUFJnc1ArdHcrNC9aVGVrdkxD?=
- =?utf-8?B?TFFLS0V3b25iUjNoTkVYbDZSU2RaVEQwV1pJRW92eDZqdFRFYW1jdmJYZ1l2?=
- =?utf-8?B?S3NqejBvalRiWm1uTEhUNU51VXBOWUIzSEZpdVYyeUVmbzhBNnc3UG9JVE9S?=
- =?utf-8?B?L2RaMmxYRGN0RnZtSEwxV3JZNm5yU245RFFBbWtlM3RzaitwQmpzOHJobHAr?=
- =?utf-8?B?ck95V2dKTE93Zzk2eGVEYmx1cm9kdFlUeUVZK254a3Z5c3h1dkJEM3gyZXZV?=
- =?utf-8?B?ZDZoZHdKL21waGpqVkFMNlRidHM0TkdvbURoQnE3OThqTU1ULzJUQTdVaHE3?=
- =?utf-8?B?MnpLQnZaWGQ3RFhxZHhZQzVSclZVQjVhRi9iSW9PV1JORXRlRW1vRjU2Znp5?=
- =?utf-8?B?azZ2aUlvbWJZa0UwQW9tbnlMWWNUeTdYUFZIRGFCbDFLeCtKZFQ1NjNSN2JV?=
- =?utf-8?B?NDRwWHdzdEJyMFVHdFBIb2s2WFdjZXZ5a3laNmVUVkp3Um5iczRJNGFxd244?=
- =?utf-8?B?Nm12ZVdUZC9XMmozdEpnUlI5Q01yVG9PbW1rS2lPcUxSRTliWnRyM3djaUF0?=
- =?utf-8?B?OEw1bGdwaXVTSHExSEVxbjR1ajZSMHRvY1RJT3NvcytTK3BYNWJDUVNBTkFx?=
- =?utf-8?B?a1prNnpNUlQrZm1aRTBUbS91alVPbk11Q1J1Nzhhbi9UR1ZaMmZVQXk0Q24v?=
- =?utf-8?B?RU5ZY1NMZGVwSGJLa2VsQncwUWp6dkJDeXdqd1VsbS9hRVlEUEpMZ0VoUy95?=
- =?utf-8?B?dFlhOGJBaXh1d0Jpck90ZlFmc282eTF3UjJwRWhjbDdNVXlhY1h0cStTKzNQ?=
- =?utf-8?B?Ui9LMThjL2ZqdUxDbFZWSEFKazFVVFBZWGZjU3hwVzNHRHdvL0JTZ001SVc3?=
- =?utf-8?B?YldQWkduL1RxT01Mdk9rZ2c0V3RCdFh3ZVovVWZvNnhvem1TZU5kRzM2Nmxj?=
- =?utf-8?B?dU5NcytpR2pCRHNxK05uKzZxSU53WjVNMTFBMzZhaGxQaEk3UFYzOFlBTkVm?=
- =?utf-8?B?U3BINndva0p1R082UHlETm5mN2lOeVppREJYRVBaRHQ5eDVwRm84cVhkUEp1?=
- =?utf-8?B?MmhEM3NQTGxtQzFpSG50RkRoenpJK1pyb2RzbkdKYitncGpvSHNwTDhiaC83?=
- =?utf-8?Q?WHmduj8dAePPZQJ4C/gSoFHnucvwoqepeu5L8=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB8179.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?a3NqUWMzMHBET0t5TitHQngzd3MwVFIwMmJhMHdEQjJGU3JFWWJjenJubUow?=
- =?utf-8?B?dHhBY0xvUGhnaEQvVTAzMkxMaDVjSjJCMVBOUWF2WGx4UFRrNHBXQ3R0S1Er?=
- =?utf-8?B?YmFkSUZ5cGt6WHJXM205UFlhTWpkS21odzZGekpTZmNOMW5jb0VJYWhEOGw1?=
- =?utf-8?B?bTZLTnM1MmlpbnFjcmcwT3FMNmZMZG1ySGpOSUt5UnFQUkRmd2xHZUo1cWc1?=
- =?utf-8?B?SDNMT1dYNHhFL1ExSTgvVnFZeHI2R1ZQYlRRMTVjL1hKQ002RGFBYTBrc1JN?=
- =?utf-8?B?aUg5bE5RaEV5UU1XU2pjajA4VldwZFd3Z0VOVEI5WVJRdUVEWGJ5cGo3K2Nk?=
- =?utf-8?B?UE1WYWtBR3BDeTRSQTg2TDFNV0hwbnJmcnkwQnZua3lJOWRGVnRTU28xQmwx?=
- =?utf-8?B?Tk4yTHlVamxzSEkra1JJUWNBMHBvYzdjNjFuL1l0LzFERkhkeDdObmFuR1FU?=
- =?utf-8?B?amR6eldoa0FCZFltMjNoQmJLcjQ4UnVleTNKaFlZNy9XTlQ3MThNRUQ0VXhH?=
- =?utf-8?B?Q2c0ZHlJbHBNdkFhaU9KT3VRczZiV294U1ZGWUVWcHBwazVrb0cwaEtBUXUv?=
- =?utf-8?B?cEsrNklrWjFreHpIRVU4Sys3OCt1c3p1Y3FJQjVCSE9HWFNXSUorWnJOdE41?=
- =?utf-8?B?bDNMNC9qRmdZdTJYaXUxVEozYUhtQk00R2JEQnE2bGE5VTZmSVI0TWgvdm50?=
- =?utf-8?B?TE1YbnpOMFpuUE5KL2xjT1NXODdrbU5XUERGVVVxbUt0Qkd2Qmt1TkZJTGVS?=
- =?utf-8?B?UXJrZTd3ZXhjNzdjdjBmMUcwV3hHazVNa2F2K2JyQ2dEZTF5b2ZhRk5qVmlS?=
- =?utf-8?B?UldGTm1kekdoMWNDaGU2YkxFcUNDQ2oyUE5Fb0NQbUYyYXVlOGFzQTg2aXRS?=
- =?utf-8?B?ZWJyMXFWWjVyaUxzRGUxRDhtN3NKYWF2MnZ0WlM0aktYVDRnRXdUa252UEtO?=
- =?utf-8?B?ZzlqcVN3cEkyajNNNjI1UGQydVFTYXl5STEwWTlnVTBydVlHNEQ2OTI2ZU4x?=
- =?utf-8?B?RUE0YWJnck9yTHYyMzYxM1Y4ZWZERFpvVzI0RjMvcFprdGx3dGxRdlc1UFV4?=
- =?utf-8?B?d3NaN21FUXB3VU9SOG1PbU1Wc25JL05TTFFiTFI1MzZ5RTlUS3pSQWQ5dVJv?=
- =?utf-8?B?Z1F1S0N5ZFZrUXJTZVV6U3VjUGtXSVg2Y254YWZFY1NVZVdCWk93UzJ3cmxC?=
- =?utf-8?B?WFVZdHJ5QUFFS0FGZWYwQ25OOVY5eGplRmkxUmdQTHRsV2hJVm5RZzRLRFN1?=
- =?utf-8?B?azNsOXoxQ0tKblExS1V3ZUJKcyt5NjcrbGxBeTFQWjB5MWcrNkxheTUxNkYr?=
- =?utf-8?B?WlBVT3AydDNXZGZXMWQwU2xaVzNNcFMzQXVWUDAyeU9HdW1kQ3JqL0kveHNk?=
- =?utf-8?B?OEEyVkZyM29FMnVDRlhxaVRGTCt2Q0lwMWxVYlNDM1N5cHJrM3RQTHhWM0Zj?=
- =?utf-8?B?SmJ0bGdsS3ZnQjFKeVBQNGh6VVdqUmo5K1RNbzNiODNDbS8xUWNZZ1Z3dVN5?=
- =?utf-8?B?SWhKanRwUTkyUlpKaVBLYllJTzFYV0NURDBvQmg2d1VBWk9UNHF2WlA1dmlt?=
- =?utf-8?B?ZTIxTUtoeTdiWlQyS2QrQmYxTDJGNHZ4VW95UUhRTmNWMnFablk4ZEZma3B6?=
- =?utf-8?B?bHJEaVk3ZmtqMXJuVjNERWN4TTkvVHUwMGF6NkR2VGFyVE9VbGF5b0tubWxz?=
- =?utf-8?B?TVJHUy9QKzVTNG01R2dQRHRVNGZ5QnAyV2ZpdzVpV2l3OWF5b2VJK2ZpaFly?=
- =?utf-8?B?dmNmTlorWm43OUdRUXZlZllhNXFTaGJkYnQyc0VhenMyUnZlYmQxRVlTRko3?=
- =?utf-8?B?UjRSak9oVWN0SmFXV1h1NDlTdVdEQmpnK3dkR0I2QmNOQUxiQ1lKQVJaNi9h?=
- =?utf-8?B?SE5kNjB6K1ZzY3VhNTc5L1pwKzNXUjdVd1FHcXJzWTdaOTJrSHpwc0xqZXVt?=
- =?utf-8?B?QmxDdjZnblVtcFFTRnZ1WTluS2p6R0p0V216MWI4Nm1JUkc5ek5iL2k4bllO?=
- =?utf-8?B?VUVlN3dSRWt3WWJXRGw3Qy9mQlhzNUJpaDJkWW96Wlp6OWVKcktjZE1zZkV4?=
- =?utf-8?B?Q3BMMjRXWnNDczVHcFhWNDAyZTBzaEltN2dnalRlSG9jYlYxMGZuekc4Y00w?=
- =?utf-8?B?bmsyeVVPRDB6RDg2bmFxQWVsa3hIREx6YjlNV29SV1c3Q0NrNCtnVUZlc3Mx?=
- =?utf-8?B?dVE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <89AD8D27E565B34B8BC16202AE6EE05B@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="124511358"
+Received: from slindbla-desk.ger.corp.intel.com (HELO [10.245.246.77])
+ ([10.245.246.77])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2024 06:38:47 -0800
+Message-ID: <c87ed16d1a90d94a7381498b4425eb622ea0ff20.camel@linux.intel.com>
+Subject: Re: [PATCH v11 2/8] drm/ttm: Add a virtual base class for graphics
+ memory backup
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Matthew Brost
+ <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, Paulo Zanoni
+ <paulo.r.zanoni@intel.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Date: Mon, 11 Nov 2024 15:38:27 +0100
+In-Reply-To: <5b424798-832b-4489-b4b4-8dc53ad487cf@amd.com>
+References: <20241016085559.11840-1-thomas.hellstrom@linux.intel.com>
+ <20241016085559.11840-3-thomas.hellstrom@linux.intel.com>
+ <5b424798-832b-4489-b4b4-8dc53ad487cf@amd.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-3.fc39) 
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB8179.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b0d83a5-0450-492d-ba5a-08dd025d88d3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2024 14:31:30.6698 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gdKk/an9DnVNez6yRGDmzY6IPEUz+wRsbs4t5Z7JgGoXF7eYUZQ8hXquNyoo+WLBMK1XxnMstI+lFbQKF/4R9A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4691
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -195,15 +77,433 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VGhlcmUgaXMgYW55IGRvd24gc2lkZSBpbiBoYXZpbmcgT0FDX0NPTlRFWFRfRU5BQkxFIHNldCBp
-biBhbGwgY29udGV4dHM/DQpJIHJlbWVtYmVyIHJlYWRpbmcgaW4gYnNwZWMgdGhhdCBpdCBzaG91
-bGQgYmUgcGFydCBvZiB0aGUgZ29sZGVuIGNvbnRleHQuDQoNCk9uIEZyaSwgMjAyNC0xMS0wOCBh
-dCAxNTowNSAtMDgwMCwgQXNodXRvc2ggRGl4aXQgd3JvdGU6DQo+IEFzaHV0b3NoIERpeGl0ICgy
-KToNCj4gICBkcm0veGUvb2E6IERpc2FsbG93IE9BIGZyb20gYmVpbmcgZW5hYmxlZCBvbiBhY3Rp
-dmUgZXhlY19xdWV1ZSdzDQo+ICAgZHJtL3hlL29hOiBBbGxvdyBzdWJzZXF1ZW50IE9BIHN0cmVh
-bXMgdG8gYmUgb3BlbmVkIG9uIGFuIGV4ZWNfcXVldWUNCj4gDQo+ICBkcml2ZXJzL2dwdS9kcm0v
-eGUveGVfZXhlY19xdWV1ZV90eXBlcy5oIHwgIDIgKysNCj4gIGRyaXZlcnMvZ3B1L2RybS94ZS94
-ZV9ndWNfc3VibWl0LmMgICAgICAgfCAgMiArLQ0KPiAgZHJpdmVycy9ncHUvZHJtL3hlL3hlX2d1
-Y19zdWJtaXQuaCAgICAgICB8ICAxICsNCj4gIGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9vYS5jICAg
-ICAgICAgICAgICAgfCAxNSArKysrKysrKysrKysrKysNCj4gIDQgZmlsZXMgY2hhbmdlZCwgMTkg
-aW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiANCg0K
+On Fri, 2024-11-08 at 15:32 +0100, Christian K=C3=B6nig wrote:
+> Am 16.10.24 um 10:55 schrieb Thomas Hellstr=C3=B6m:
+> > Initially intended for experimenting with different backup
+> > solutions (shmem vs direct swap cache insertion), abstract
+> > the backup destination using a virtual base class.
+> >=20
+> > Also provide a sample implementation for shmem.
+>=20
+> It feels a bit like overkill to have that abstraction.
+>=20
+> > While when settling on a preferred backup solution, one could
+> > perhaps skip the abstraction, this functionality may actually
+> > come in handy for configurable dedicated graphics memory
+> > backup to fast nvme files or similar, whithout affecting
+> > swap-space. Could indeed be useful for VRAM backup on S4 and
+> > other cases.
+>=20
+> Why would we want to have the flexibility to use different backends?
+>=20
+> I mean that just sounds like one more thing which can break.
+
+Let me remove it. I took a stab at it some time ago, but didn't think
+the small LOC save was worth it, but people will keep wondering why
+it's there.
+
+If we add additional backends, (like separate GPU swapout to a user-
+provided fd) we can re-add it. Similarly for the direct-insert-to-swap-
+cache backend I have if we find out we need it anyway.
+
+>=20
+> On the other hand it's really nice that we now use folios instead of
+> pages.
+>=20
+> > v5:
+> > - Fix a UAF. (kernel test robot, Dan Carptenter)
+> > v6:
+> > - Rename ttm_backup_shmem_copy_page() function argument
+> > =C2=A0=C2=A0 (Matthew Brost)
+> > - Add some missing documentation
+> > v8:
+> > - Use folio_file_page to get to the page we want to writeback
+> > =C2=A0=C2=A0 instead of using the first page of the folio.
+> >=20
+> > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > Cc: <dri-devel@lists.freedesktop.org>
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > Reviewed-by: Matthew Brost <matthew.brost@intel.com> #v7
+> > ---
+> > =C2=A0 drivers/gpu/drm/ttm/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> > =C2=A0 drivers/gpu/drm/ttm/ttm_backup_shmem.c | 139
+> > +++++++++++++++++++++++++
+> > =C2=A0 include/drm/ttm/ttm_backup.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 | 137
+> > ++++++++++++++++++++++++
+> > =C2=A0 3 files changed, 277 insertions(+), 1 deletion(-)
+> > =C2=A0 create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
+> > =C2=A0 create mode 100644 include/drm/ttm/ttm_backup.h
+> >=20
+> > diff --git a/drivers/gpu/drm/ttm/Makefile
+> > b/drivers/gpu/drm/ttm/Makefile
+> > index dad298127226..5e980dd90e41 100644
+> > --- a/drivers/gpu/drm/ttm/Makefile
+> > +++ b/drivers/gpu/drm/ttm/Makefile
+> > @@ -4,7 +4,7 @@
+> > =C2=A0=20
+> > =C2=A0 ttm-y :=3D ttm_tt.o ttm_bo.o ttm_bo_util.o ttm_bo_vm.o ttm_modul=
+e.o
+> > \
+> > =C2=A0=C2=A0	ttm_execbuf_util.o ttm_range_manager.o ttm_resource.o
+> > ttm_pool.o \
+> > -	ttm_device.o ttm_sys_manager.o
+> > +	ttm_device.o ttm_sys_manager.o ttm_backup_shmem.o
+> > =C2=A0 ttm-$(CONFIG_AGP) +=3D ttm_agp_backend.o
+> > =C2=A0=20
+> > =C2=A0 obj-$(CONFIG_DRM_TTM) +=3D ttm.o
+> > diff --git a/drivers/gpu/drm/ttm/ttm_backup_shmem.c
+> > b/drivers/gpu/drm/ttm/ttm_backup_shmem.c
+> > new file mode 100644
+> > index 000000000000..cfe4140cc59d
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/ttm/ttm_backup_shmem.c
+> > @@ -0,0 +1,139 @@
+> > +// SPDX-License-Identifier: MIT
+> > +/*
+> > + * Copyright =C2=A9 2024 Intel Corporation
+> > + */
+> > +
+> > +#include <drm/ttm/ttm_backup.h>
+> > +#include <linux/page-flags.h>
+> > +
+> > +/**
+> > + * struct ttm_backup_shmem - A shmem based ttm_backup subclass.
+> > + * @backup: The base struct ttm_backup
+> > + * @filp: The associated shmem object
+> > + */
+> > +struct ttm_backup_shmem {
+> > +	struct ttm_backup backup;
+> > +	struct file *filp;
+> > +};
+> > +
+> > +static struct ttm_backup_shmem *to_backup_shmem(struct ttm_backup
+> > *backup)
+> > +{
+> > +	return container_of(backup, struct ttm_backup_shmem,
+> > backup);
+> > +}
+> > +
+> > +static void ttm_backup_shmem_drop(struct ttm_backup *backup,
+> > unsigned long handle)
+> > +{
+> > +	handle -=3D 1;
+>=20
+> Why that? I've seen that multiple times in this patch but can't find
+> a=20
+> good explanation for it.
+
+It's a mapping from backup interface handles to shmem offsets. Needed
+because interface handle =3D=3D 0 means error (which is inherited from
+swp_entry_t).
+
+/Thomas
+
+
+>=20
+> Regards,
+> Christian.
+>=20
+> > +	shmem_truncate_range(file_inode(to_backup_shmem(backup)-
+> > >filp), handle,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0 handle + 1);
+>=20
+>=20
+> > +}
+> > +
+> > +static int ttm_backup_shmem_copy_page(struct ttm_backup *backup,
+> > struct page *dst,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long handle, bool
+> > intr)
+> > +{
+> > +	struct file *filp =3D to_backup_shmem(backup)->filp;
+> > +	struct address_space *mapping =3D filp->f_mapping;
+> > +	struct folio *from_folio;
+> > +
+> > +	handle -=3D 1;
+> > +	from_folio =3D shmem_read_folio(mapping, handle);
+> > +	if (IS_ERR(from_folio))
+> > +		return PTR_ERR(from_folio);
+> > +
+> > +	/* Note: Use drm_memcpy_from_wc? */
+> > +	copy_highpage(dst, folio_file_page(from_folio, handle));
+> > +	folio_put(from_folio);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static unsigned long
+> > +ttm_backup_shmem_backup_page(struct ttm_backup *backup, struct
+> > page *page,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0 bool writeback, pgoff_t i, gfp_t
+> > page_gfp,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0 gfp_t alloc_gfp)
+> > +{
+> > +	struct file *filp =3D to_backup_shmem(backup)->filp;
+> > +	struct address_space *mapping =3D filp->f_mapping;
+> > +	unsigned long handle =3D 0;
+> > +	struct folio *to_folio;
+> > +	int ret;
+> > +
+> > +	to_folio =3D shmem_read_folio_gfp(mapping, i, alloc_gfp);
+> > +	if (IS_ERR(to_folio))
+> > +		return handle;
+> > +
+> > +	folio_mark_accessed(to_folio);
+> > +	folio_lock(to_folio);
+> > +	folio_mark_dirty(to_folio);
+> > +	copy_highpage(folio_file_page(to_folio, i), page);
+> > +	handle =3D i + 1;
+> > +
+> > +	if (writeback && !folio_mapped(to_folio) &&
+> > folio_clear_dirty_for_io(to_folio)) {
+> > +		struct writeback_control wbc =3D {
+> > +			.sync_mode =3D WB_SYNC_NONE,
+> > +			.nr_to_write =3D SWAP_CLUSTER_MAX,
+> > +			.range_start =3D 0,
+> > +			.range_end =3D LLONG_MAX,
+> > +			.for_reclaim =3D 1,
+> > +		};
+> > +		folio_set_reclaim(to_folio);
+> > +		ret =3D mapping->a_ops-
+> > >writepage(folio_file_page(to_folio, i), &wbc);
+> > +		if (!folio_test_writeback(to_folio))
+> > +			folio_clear_reclaim(to_folio);
+> > +		/* If writepage succeeds, it unlocks the folio */
+> > +		if (ret)
+> > +			folio_unlock(to_folio);
+> > +	} else {
+> > +		folio_unlock(to_folio);
+> > +	}
+> > +
+> > +	folio_put(to_folio);
+> > +
+> > +	return handle;
+> > +}
+> > +
+> > +static void ttm_backup_shmem_fini(struct ttm_backup *backup)
+> > +{
+> > +	struct ttm_backup_shmem *sbackup =3D
+> > to_backup_shmem(backup);
+> > +
+> > +	fput(sbackup->filp);
+> > +	kfree(sbackup);
+> > +}
+> > +
+> > +static const struct ttm_backup_ops ttm_backup_shmem_ops =3D {
+> > +	.drop =3D ttm_backup_shmem_drop,
+> > +	.copy_backed_up_page =3D ttm_backup_shmem_copy_page,
+> > +	.backup_page =3D ttm_backup_shmem_backup_page,
+> > +	.fini =3D ttm_backup_shmem_fini,
+> > +};
+> > +
+> > +/**
+> > + * ttm_backup_shmem_create() - Create a shmem-based struct backup.
+> > + * @size: The maximum size (in bytes) to back up.
+> > + *
+> > + * Create a backup utilizing shmem objects.
+> > + *
+> > + * Return: A pointer to a struct ttm_backup on success,
+> > + * an error pointer on error.
+> > + */
+> > +struct ttm_backup *ttm_backup_shmem_create(loff_t size)
+> > +{
+> > +	struct ttm_backup_shmem *sbackup =3D
+> > +		kzalloc(sizeof(*sbackup), GFP_KERNEL |
+> > __GFP_ACCOUNT);
+> > +	struct file *filp;
+> > +
+> > +	if (!sbackup)
+> > +		return ERR_PTR(-ENOMEM);
+> > +
+> > +	filp =3D shmem_file_setup("ttm shmem backup", size, 0);
+> > +	if (IS_ERR(filp)) {
+> > +		kfree(sbackup);
+> > +		return ERR_CAST(filp);
+> > +	}
+> > +
+> > +	sbackup->filp =3D filp;
+> > +	sbackup->backup.ops =3D &ttm_backup_shmem_ops;
+> > +
+> > +	return &sbackup->backup;
+> > +}
+> > +EXPORT_SYMBOL_GPL(ttm_backup_shmem_create);
+> > diff --git a/include/drm/ttm/ttm_backup.h
+> > b/include/drm/ttm/ttm_backup.h
+> > new file mode 100644
+> > index 000000000000..5f8c7d3069ef
+> > --- /dev/null
+> > +++ b/include/drm/ttm/ttm_backup.h
+> > @@ -0,0 +1,137 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright =C2=A9 2024 Intel Corporation
+> > + */
+> > +
+> > +#ifndef _TTM_BACKUP_H_
+> > +#define _TTM_BACKUP_H_
+> > +
+> > +#include <linux/mm_types.h>
+> > +#include <linux/shmem_fs.h>
+> > +
+> > +struct ttm_backup;
+> > +
+> > +/**
+> > + * ttm_backup_handle_to_page_ptr() - Convert handle to struct page
+> > pointer
+> > + * @handle: The handle to convert.
+> > + *
+> > + * Converts an opaque handle received from the
+> > + * struct ttm_backoup_ops::backup_page() function to an (invalid)
+> > + * struct page pointer suitable for a struct page array.
+> > + *
+> > + * Return: An (invalid) struct page pointer.
+> > + */
+> > +static inline struct page *
+> > +ttm_backup_handle_to_page_ptr(unsigned long handle)
+> > +{
+> > +	return (struct page *)(handle << 1 | 1);
+> > +}
+> > +
+> > +/**
+> > + * ttm_backup_page_ptr_is_handle() - Whether a struct page pointer
+> > is a handle
+> > + * @page: The struct page pointer to check.
+> > + *
+> > + * Return: true if the struct page pointer is a handld returned
+> > from
+> > + * ttm_backup_handle_to_page_ptr(). False otherwise.
+> > + */
+> > +static inline bool ttm_backup_page_ptr_is_handle(const struct page
+> > *page)
+> > +{
+> > +	return (unsigned long)page & 1;
+> > +}
+> > +
+> > +/**
+> > + * ttm_backup_page_ptr_to_handle() - Convert a struct page pointer
+> > to a handle
+> > + * @page: The struct page pointer to convert
+> > + *
+> > + * Return: The handle that was previously used in
+> > + * ttm_backup_handle_to_page_ptr() to obtain a struct page
+> > pointer, suitable
+> > + * for use as argument in the struct ttm_backup_ops drop() or
+> > + * copy_backed_up_page() functions.
+> > + */
+> > +static inline unsigned long
+> > +ttm_backup_page_ptr_to_handle(const struct page *page)
+> > +{
+> > +	WARN_ON(!ttm_backup_page_ptr_is_handle(page));
+> > +	return (unsigned long)page >> 1;
+> > +}
+> > +
+> > +/** struct ttm_backup_ops - A struct ttm_backup backend operations
+> > */
+> > +struct ttm_backup_ops {
+> > +	/**
+> > +	 * drop - release memory associated with a handle
+> > +	 * @backup: The struct backup pointer used to obtain the
+> > handle
+> > +	 * @handle: The handle obtained from the @backup_page
+> > function.
+> > +	 */
+> > +	void (*drop)(struct ttm_backup *backup, unsigned long
+> > handle);
+> > +
+> > +	/**
+> > +	 * copy_backed_up_page - Copy the contents of a previously
+> > backed
+> > +	 * up page
+> > +	 * @backup: The struct backup pointer used to back up the
+> > page.
+> > +	 * @dst: The struct page to copy into.
+> > +	 * @handle: The handle returned when the page was backed
+> > up.
+> > +	 * @intr: Try to perform waits interruptable or at least
+> > killable.
+> > +	 *
+> > +	 * Return: 0 on success, Negative error code on failure,
+> > notably
+> > +	 * -EINTR if @intr was set to true and a signal is
+> > pending.
+> > +	 */
+> > +	int (*copy_backed_up_page)(struct ttm_backup *backup,
+> > struct page *dst,
+> > +				=C2=A0=C2=A0 unsigned long handle, bool
+> > intr);
+> > +
+> > +	/**
+> > +	 * backup_page - Backup a page
+> > +	 * @backup: The struct backup pointer to use.
+> > +	 * @page: The page to back up.
+> > +	 * @writeback: Whether to perform immediate writeback of
+> > the page.
+> > +	 * This may have performance implications.
+> > +	 * @i: A unique integer for each page and each struct
+> > backup.
+> > +	 * This is a hint allowing the backup backend to avoid
+> > managing
+> > +	 * its address space separately.
+> > +	 * @page_gfp: The gfp value used when the page was
+> > allocated.
+> > +	 * This is used for accounting purposes.
+> > +	 * @alloc_gfp: The gpf to be used when the backend needs
+> > to allocaete
+> > +	 * memory.
+> > +	 *
+> > +	 * Return: A handle on success. 0 on failure.
+> > +	 * (This is following the swp_entry_t convention).
+> > +	 *
+> > +	 * Note: This function could be extended to back up a
+> > folio and
+> > +	 * backends would then split the folio internally if
+> > needed.
+> > +	 * Drawback is that the caller would then have to keep
+> > track of
+> > +	 * the folio size- and usage.
+> > +	 */
+> > +	unsigned long (*backup_page)(struct ttm_backup *backup,
+> > struct page *page,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0 bool writeback, pgoff_t i,
+> > gfp_t page_gfp,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0 gfp_t alloc_gfp);
+> > +	/**
+> > +	 * fini - Free the struct backup resources after last use.
+> > +	 * @backup: Pointer to the struct backup whose resources
+> > to free.
+> > +	 *
+> > +	 * After a call to @fini, it's illegal to use the @backup
+> > pointer.
+> > +	 */
+> > +	void (*fini)(struct ttm_backup *backup);
+> > +};
+> > +
+> > +/**
+> > + * struct ttm_backup - Abstract a backup backend.
+> > + * @ops: The operations as described above.
+> > + *
+> > + * The struct ttm_backup is intended to be subclassed by the
+> > + * backend implementation.
+> > + */
+> > +struct ttm_backup {
+> > +	const struct ttm_backup_ops *ops;
+> > +};
+> > +
+> > +/**
+> > + * ttm_backup_shmem_create() - Create a shmem-based struct backup.
+> > + * @size: The maximum size (in bytes) to back up.
+> > + *
+> > + * Create a backup utilizing shmem objects.
+> > + *
+> > + * Return: A pointer to a struct ttm_backup on success,
+> > + * an error pointer on error.
+> > + */
+> > +struct ttm_backup *ttm_backup_shmem_create(loff_t size);
+> > +
+> > +#endif
+>=20
+
