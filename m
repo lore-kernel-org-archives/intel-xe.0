@@ -4,73 +4,190 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55ED7D41D51
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 13:41:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F4D4D42B85
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 14:31:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F40210E5E1;
-	Tue, 12 Nov 2024 13:41:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3653A10E5F4;
+	Tue, 12 Nov 2024 14:31:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QEEDeoFQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a7oCfoKQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7A2510E30A;
- Tue, 12 Nov 2024 13:41:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F29E10E5F2;
+ Tue, 12 Nov 2024 14:31:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731418878; x=1762954878;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=KohF5tR1C4swuIfptTXT1m3728fg1cSzZ/LA91/ukIw=;
- b=QEEDeoFQy7VkGoj/odef2gi9UoC/fsp6z8cGDBcBKVPfp6Tvyz8tVNLQ
- MGBRKQyTvqj6x68RODdSXqN9QD9apiUcjRiwS/C/Tdxd1S1fl/Gjxvb6I
- m7aGeL5nzx3THuRiBMH1lhefBUfXwH1AC5FYq1k5Uu2LyND9Ft7eupkda
- eTrQICZNfjETMesy17Zqh5Vbd6Hgv+4cmcRzVwcRxBzD0Opx/SSMjSTeG
- l3GRw0k+QniKPrAmdAV7ThT/Teh7YMgg3ulTo4ZWPtF7tk8FJpg9UFOrx
- OeWgJLWAqaY33PT3Kbq9Y60xf/88AAdCjqBNw/jQbolTMCrkgAEQDtgJa A==;
-X-CSE-ConnectionGUID: nylQWCkMTlO3Q0WmgAk6Zw==
-X-CSE-MsgGUID: o+gXzwlHTfqLsSq2iSjhcg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11253"; a="18862920"
-X-IronPort-AV: E=Sophos;i="6.12,148,1728975600"; d="scan'208";a="18862920"
+ t=1731421888; x=1762957888;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=lnBoABzZTzWBewKPB/OyP1KKJreT+u59Ne4XnmGCRlg=;
+ b=a7oCfoKQUVd0TzG4i+R1ut5IhaOnUGxwv+jhL4FZTHRjzF62vvEgfuit
+ 4KYRLX8JzO0jRxkMwxplJ3QakBOZn14RMUOAS6Xak0xcmQfA9StDo1BIy
+ ppKFO58281nWdkxH+hNKW1bOq2uwdT/T7K+FsKBJ3GYwurdq7ugParDtJ
+ DkZfLo2pZCj84EK6yMHBzy1RGxdSIdkRTjz+yz6wB319Ffrndm+S4Sk+v
+ mcRC4WL9JFpI5KoL1mEDuxbXz4aCnfZKSVP10m2HAhSEpBM272dribMmi
+ w122zEsAcvYiY0t8Kz0t5pBGTf6OCrT6LojlStMczO3+G6IWx6b0P4y1D g==;
+X-CSE-ConnectionGUID: AHFgJ2ilQkyIljUmI9Z2xA==
+X-CSE-MsgGUID: nWAYiOIcQiWAFa782MSE0Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="30661125"
+X-IronPort-AV: E=Sophos;i="6.12,148,1728975600"; d="scan'208";a="30661125"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2024 05:41:18 -0800
-X-CSE-ConnectionGUID: lHOQ2jmGSG2z8hZ2Cse0tA==
-X-CSE-MsgGUID: LhyUaJfcQEKPNCDEwikU8g==
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2024 06:31:26 -0800
+X-CSE-ConnectionGUID: xFyGx96GRJGe2hcg8ejzZg==
+X-CSE-MsgGUID: sUZxg+PLSkiEfgr3QaMUuw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,148,1728975600"; d="scan'208";a="88287926"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.173])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2024 05:41:12 -0800
+X-IronPort-AV: E=Sophos;i="6.12,148,1728975600"; d="scan'208";a="88317674"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Nov 2024 06:31:27 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 12 Nov 2024 06:31:25 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Tue, 12 Nov 2024 06:31:25 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.173)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Tue, 12 Nov 2024 06:31:24 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=n/AeMhc87TpUyxKkeUEwJFTqtrlrkBlY2RhdxVcm6yb41/6u2vmKoc4MidRLXpHDj2dNFvluPRikXore66KNlVUsli5wmyOGHA5imE4asLOLdVFuIkNq4Ulf7lp0T9e/JWNAGZTSMgNS4KJoEN0YkxStvqySAKkPN+E7LonLs9z/a/f/igS5/HRefzpFTL2KmZlWuqxTvRok0ZaGW0XzF5HvpywaaTPudZlrOyqtS9iqQ/+4YpY/tpiFdZkiZV634qB4YNOm8VAleYpBi/XaGzsNRzURdVCMhiDopYm8WUgA0M/38aGQ5u8Agh5Mxoxvmq0YAzb6GUSbQRE0kWyNww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Qz3PJ1hkaobxcD5IOdj36coW6cx2u8HKzRmOqzOxfIw=;
+ b=SEBg0kdV4AeTjKtKIiAON1KxB+XloQgKaKDSoofuB64FrbeByZ1JOy8MKJZN06f87HMQtMzru8mOh7BFubIlzjCKQ/3KI284NS2RLzZ6/LmQIklviQxK7SxhgVe2eS4ivh1x+4i9NbxKHFfx1sglZxWEFapR3n/2Yqej74j8hZBYGWx6ODV0ed2qJeVyx6QKw7pnuVa8OvEvdnWjBZ7TU6GG/SBnUJqa47XNw7wEe3DXi/tJM/XULRdB6uBwDaRvU8OxgsOu8JoUk97jST/WxhAOle5oKu8/kTl99Zzogu/hyl1A1cXT/tchbx5YBJRhZ50F6KT8Gxs58WCZJMgDWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com (2603:10b6:5:394::7) by
+ PH7PR11MB6523.namprd11.prod.outlook.com (2603:10b6:510:211::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.28; Tue, 12 Nov
+ 2024 14:31:20 +0000
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::927a:9c08:26f7:5b39]) by DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::927a:9c08:26f7:5b39%5]) with mapi id 15.20.8137.027; Tue, 12 Nov 2024
+ 14:31:20 +0000
+Date: Tue, 12 Nov 2024 15:31:16 +0100
+From: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: <linux-pci@vger.kernel.org>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>, "Bjorn
+ Helgaas" <bhelgaas@google.com>, Christian =?utf-8?B?S8O2bmln?=
+ <christian.koenig@amd.com>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?=
+ <kw@linux.com>, Ilpo =?utf-8?B?SsOkcnZpbmVu?=
+ <ilpo.jarvinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH v4 5/7] PCI/IOV: Check that VF BAR fits within the
+ reservation
+Message-ID: <gu2dw2djqwghzmu2r5xosd2y6w5dtlweay7eprcsegogqupn6y@niv2p72xqxrj>
+References: <zbazqug3u77eiydb7p6p6gexwowrjcdl52cszczuww4xow7ebc@tke7k5hewrn5>
+ <20241030165501.GA1205366@bhelgaas>
 Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241030165501.GA1205366@bhelgaas>
+X-ClientProxiedBy: BE1P281CA0375.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:b10:82::9) To DM4PR11MB5373.namprd11.prod.outlook.com
+ (2603:10b6:5:394::7)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <31b16d78-708d-4f19-9b33-891e31be5480@gmail.com>
-References: <88ceb558-89d1-4d10-be8a-9ce2f3178fa5@amd.com>
- <ZyugmXt7v+JeKuN9@lstrano-desk.jf.intel.com>
- <85859dc3-cca3-4396-8c75-a726437fb81e@amd.com>
- <173131201749.35893.6727423786823542880@jlahtine-mobl.ger.corp.intel.com>
- <ZzHYB4MBJmVjk-AR@phenom.ffwll.local>
- <a1ffb3f7-77bc-41ff-a98a-5cd889f081fa@amd.com>
- <173133360247.70529.14349388659124962988@jlahtine-mobl.ger.corp.intel.com>
- <8d181425-db3b-46b7-ae73-ae6ef149d185@amd.com>
- <ZzKJHxaMnWKQ5mzV@lstrano-desk.jf.intel.com>
- <31b16d78-708d-4f19-9b33-891e31be5480@gmail.com>
-Subject: Re: [PATCH v6 2/8] drm/ttm: Add ttm_bo_access
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Huang Rui <ray.huang@amd.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- matthew.auld@intel.com, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Thomas =?utf-8?q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?utf-8?q?K=C3=B6nig?= <christian.koenig@amd.com>,
- Christian =?utf-8?q?K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Matthew Brost <matthew.brost@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Tue, 12 Nov 2024 15:41:09 +0200
-Message-ID: <173141886970.132411.13400253861916730373@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.10
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5373:EE_|PH7PR11MB6523:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5a511129-c2f9-4cad-1530-08dd0326acc2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|7416014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?KzFta3RNVlQ4L212ZDdhSDBTZ2RLWWw2S0w1OXpTam1JZUkvSUlITXlHanM5?=
+ =?utf-8?B?NzVveHNJUjlLOENoTXVnL2c2VStoTkU2SWs1MUlKUmxOa1NXL25IbkRFejIw?=
+ =?utf-8?B?S29PY2I0M0ZUbXBEYW5JNVI0L2NBMm8vK2dwUGxKWXpWQkxwVFRpaVo3aklP?=
+ =?utf-8?B?ZWNqYlExZkhERmdERlN3ZDJGb0UvZ1BOSW11WWo3WU0zNFErd2txcnVsZTlP?=
+ =?utf-8?B?ZlZ2aFFuTUdOUmZ4SFpVdEZDVXc4TEpOeEdRRkk1V0tyQnVnNmp5bEZ3aDBy?=
+ =?utf-8?B?MkYzNjNxaGhlR1dVSFpObTB6amFCazBiZTIvQUg0Ym52ZFhtczBhZ2VQU0ly?=
+ =?utf-8?B?dEdkZnVmcUtQWHJVTDVGc2ZxdjNYSFhwR1VSWCtURllwVWJRMEJRM1gwZEw5?=
+ =?utf-8?B?dmNSVFh4NG1ucFJFbmVycEpic1QxTm5JbGdLRVF0NGhhMTBya3VuWDdYWEVZ?=
+ =?utf-8?B?MER6MkVIZGJhV3Jja2JmYnpQcisvUjNqTlNtbGNSbzRaTjI0aVJEKzFrR3Q5?=
+ =?utf-8?B?SXNDMGN6NW5TdUZKRFloQWVROE1HQS8vYXlQVGc2T1hzdnN1aUhNU2xOSnhT?=
+ =?utf-8?B?MzRpZE4vcGhGT1JodGt6TVNaSGlmQjZwVmVOUHpsZ0laUkJmc0ZzTHZBSFpr?=
+ =?utf-8?B?dFdwVUx2ZU0wdk8relM5N0N1UktKQmNGWG5ZWFVpS2lXOFVRMUpNVVMrWjhT?=
+ =?utf-8?B?bkxRQlFkVS9MeW5iQ2hKQXp3MFM0T3l3VjVERUFtaFVyWDVrUGd4djJDaVRu?=
+ =?utf-8?B?Vy82WHhDV1l5VjNEVmtuc054dDFEYWhPd2NjSTRNU2I3SmNpUE9NYkR0UVVr?=
+ =?utf-8?B?MnY1eVV2a1FZNkFIeVNIcHRkOEtpSVVPRUc4WDhVMnR1YUZsSnlaaWt6UlRL?=
+ =?utf-8?B?ZS8wN3d4TDJDVmtPbk51MDIyb21DRGRocW5jRWF5U3k1ZjExMUo3RnpvVkRN?=
+ =?utf-8?B?cXl3c0wyUDNWWmY3a0RaMHF4SDdUOEd2Q1lGcmhsSVB6Ukxzekl4MXZzVkhj?=
+ =?utf-8?B?UkFtK3hTQlY4b0F6bGNISDdzd2wvb3BIb1dWUWc4dmw1c2lnd2NiK2hPU2VZ?=
+ =?utf-8?B?cmcyRTR3ckUxR1N0VGRYT1BIS1pqZ0orYVZJVG5YVTFyczh3UVhlSEcwZHQv?=
+ =?utf-8?B?anpGZjdtb1B2L3laVEtnbkFtS0ZSUmlZaVpwUkR5aGtIUFoxbEZMUm0xYXpB?=
+ =?utf-8?B?Mm9FS3JoMEs5TVlTTzVLYXFFQnVPMDJ0QTNFc0p4NDB2NWJRWFJ4MW1TNWZs?=
+ =?utf-8?B?c0hiaEY2UzNZYnBqQ1FYMW5kTFdjcEFJRUxPcWdjVUdHYWwvOGNOYmJTakJY?=
+ =?utf-8?B?TFN4UUtQYkE0Q3lmSllvM2Mwcmt2R255Y3lRek5mcHJyM01vRGt3UnpMc2FH?=
+ =?utf-8?B?VmZEcW5jVDJsSTdOeC81Q0t5Z0ZvRC9nYnBkRitLZTBYRURWRmlZelovVGsz?=
+ =?utf-8?B?VE8yMzRVcG9lMkZIQUh6b1dLSGlBME15SFZEOTdIb05taDBXYWlNYVBieDRR?=
+ =?utf-8?B?U2hCaklCRzRpbUpKQXFXemcvZDFvaklUV21FcGZoTGdIOUkyR0tyMEUzTDBF?=
+ =?utf-8?B?Y0htVDlsMG9LbEhvR3ZoL2swS3h6SU82YlEvd09GeUVObW1yN2QyZWRjMk1o?=
+ =?utf-8?B?bitZQ3BVR0hiKzAxNnZ6OGhwMk52UVJvNnQ1RTVLbzJiQmZXWEZ0ejB2ZlpL?=
+ =?utf-8?Q?HCYz3it9F1wVfqGocAY4?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5373.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(7416014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y2RoOXFEYWoveG4vWlJqRTBHOXhlZzBSTm5yR2Y0dkRaNWhTd0Y2S0pVeXpF?=
+ =?utf-8?B?V3UxZ1VvMjlLditTZGU0QWs0Wmcxaitkb0J2MlVMeUkxbEFaUmFlVjZzWnRu?=
+ =?utf-8?B?N3lIWERmcFloN3ZzQzFaR1RtSnNWeFV4ODlybDdaUFZRdmRxQitXZlN2Y1U0?=
+ =?utf-8?B?TVZ5ODR1MEUvMFpnd0pKODhYSVJOZlBpMndseS8wVFZxclFYS3RxT0NXR2Ri?=
+ =?utf-8?B?M0dHQ1BVZm5kWVp3VG5Zdmdsam1GUkowcmpkL1FRVGxuNG02U1JxWTdaQ1BJ?=
+ =?utf-8?B?TVFRRXhjZmFGNVJla0xSNmFlS1pDYjFYeENPN1R6UCtpZmJsTlRxSzdVWGN4?=
+ =?utf-8?B?VVc2SEZZVmQ5d2hmaTZ0SFFMaUlyc3Mrb0hLWUlaa01laUxFdTZTelA4UzFH?=
+ =?utf-8?B?VGdWUlNxSmVpTXIxTjdJNE1EUUNFV3d2WDFGeEdYc1pZaEdPb1NpUG1tZ3pU?=
+ =?utf-8?B?d2FmOEpWblEybjdvMnEzZmg4SmJWOEZHM1RHRGx5TnpaTUp0NnJpekcxM1Jv?=
+ =?utf-8?B?SmRPZTlqSlRydnRsUFRwMzJ2LzdVYjg1RnZ4MmlVQ0svNVRXRmJ3Zzd4U0pU?=
+ =?utf-8?B?UkxTN3hwazIvYUFnNTRvZmc0RXVFLzA0bWlqSTlOSkQrMGF1ODBlZFZobXpi?=
+ =?utf-8?B?UmNqVThuMEU5dGlpTWVkNWdocGo1YjQ3LzJIa21NWXV4MGcyTmJpWVpCcTRV?=
+ =?utf-8?B?d2doa0w3clVlNGJKUVUwQzYvZjlGTUJxdXRRN0Y2bmhsbHVSUXBabTAzWTll?=
+ =?utf-8?B?Z2IyclVFeWRIeUZSWXRWY0lhQ0M4ZUZCNGkxanZHZlZLaG9WQ3JGcEM1b2Nj?=
+ =?utf-8?B?RW11dFRDV0h5cWdlNGpZWTdZK1JRUTVuYmQ5QlhlYlNGVWNvcEJTeXNDRDcx?=
+ =?utf-8?B?UE9OWWZRWHBQOWc2cC9RRU9XOUlUZk9rMzFvaldneFR2eTBUZWpzRHU0YjFa?=
+ =?utf-8?B?cDVHT2ljdk9zbzBLYkRLc2t4THF1RERQMkJMbjdNdldDSDdTbzNXUnVOenRw?=
+ =?utf-8?B?bW52cjBLNlN1Q1Z2RFFaVWx4MEVrVWNhQ25BUHhvc2ZJamJZODdURk5TS0cr?=
+ =?utf-8?B?S0tyWEtad1hBcVdET1phamJNenVHY2gwd2liTVhUMWlvcjVxNzBucmtIQ1J0?=
+ =?utf-8?B?cG5NZVFhY0d3NWJnMUt1eUVQTmdHYWFUQTN3VE0veGV2RUY0YU10a1RrWmcw?=
+ =?utf-8?B?S0dCMTdGMzR6aVVvdlRLT21FR2VlTTd4eEFPVW1KbGhGTmc5dGdmWjhBUE81?=
+ =?utf-8?B?TS9mRjJFVUZVOXVOeEM0ZXorRDRvYlhGcm9WbmxsZUlzemlKWjAvcVY5MmdV?=
+ =?utf-8?B?aUJkUUlUTHFWeFR0OUxCVzVOVURzOHJHRVQvSWwvVnd1dDFoeTgyWTA2RGMw?=
+ =?utf-8?B?clNFU3hlV2ZPNXdRblcxUTArQ2JacHJlcFUzQTFBZGpxWS9IUVZqd2IvV0tR?=
+ =?utf-8?B?VjJKWDYxVHlxbGM3RzJ5TWVKRUJFNHF4SDcydVJYVFZLOGZ4NnlWTHFFUEtk?=
+ =?utf-8?B?d1ZiRXpMS1hpQ0lDOExrVHlmbDcyQmNrZktzc3pOS0JIejR2R3p3eXEyenZo?=
+ =?utf-8?B?U2xCdldBaSttSmRCS3FuNWNkQ3Fjd21zWTloWGNGc1ZDSzJjci96WFRIZHd2?=
+ =?utf-8?B?b0ErNHViR1RFOFJuSndNNHdpSGZzSlJGcnN4V0cvVEFtQjV3SkdDSW4zNmMy?=
+ =?utf-8?B?ZENRaHFrNE8rck5DY0lWa3RXWVFid1hvL2kxUzNyMkpqK3YxVGtCMTlndXhh?=
+ =?utf-8?B?emxxOFRPMzNMWmNoOENyS2VRZ0x5OHh1SlNhS0didnVJcFVJTkhWZFpxUkZJ?=
+ =?utf-8?B?WWhyOERCYzBiR2dpNFRaTkFqQlRXTHZCam1yVmRkMlEzWG1POUhJUk5JbUF2?=
+ =?utf-8?B?aVBha1JxbmJnMUVyckFpcHZhNlhaeVpVOUFQYzNWZ3lPVXRlS3VmVUZEUW8y?=
+ =?utf-8?B?elRMaW1JU0ZhUllUQkx0VFRjaHFHYWVkamlkdFQycml3T05xVlFRTkc3VVhH?=
+ =?utf-8?B?T0tRUG9pNy9lUm9rdHJtYUpUcUpKSS9JbzJ6N3VBZU4yclBJZjBlbnVGOHp3?=
+ =?utf-8?B?dm9aVXpQZ04yVWYxT25iVHd4dExheWMraUk5S2RQSkp1N0JDTGhXNHVXZ3cx?=
+ =?utf-8?B?cHRMZUNyRnpoMUxKMklBbUR1Ulo0alpmODZ5c0dsVE5LV25YTjhSVm85Mk1Z?=
+ =?utf-8?B?SWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a511129-c2f9-4cad-1530-08dd0326acc2
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5373.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2024 14:31:20.0813 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wdJHc3//mCkjbkuegmF7c1VejUcDo0Dp96QRBrw1LNLsL7qxkB/65HH9zDs7PFy99j72WfguQzt6CWknfMub4m28B0PDgiLVUbW1dpr8HuQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6523
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,576 +202,246 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-(+ Thomas)
+On Wed, Oct 30, 2024 at 11:55:01AM -0500, Bjorn Helgaas wrote:
+> On Wed, Oct 30, 2024 at 12:43:19PM +0100, Michał Winiarski wrote:
+> > On Mon, Oct 28, 2024 at 11:56:04AM -0500, Bjorn Helgaas wrote:
+> > > On Fri, Oct 25, 2024 at 11:50:36PM +0200, Michał Winiarski wrote:
+> > > > VF MMIO resource reservation, either created by system firmware and
+> > > > inherited by Linux PCI subsystem or created by the subsystem itself,
+> > > > should contain enough space to fit the BAR of all SR-IOV Virtual
+> > > > Functions that can potentially be created (total VFs supported by the
+> > > > device).
+> > > 
+> > > I don't think "VF resource reservation ... should contain enough
+> > > space" is really accurate or actionable.  It would be *nice* if the PF
+> > > BAR is large enough to accommodate the largest supported VF BARs for
+> > > all possible VFs, but if it doesn't, it's not really an error.  It's
+> > > just a reflection of the fact that resource space is limited.
+> > 
+> > From PCI perspective, you're right, IOV resources are optional, and it's
+> > not really an error for PF device itself.
+> > From IOV perspective - we do need those resources to be able to create
+> > VFs.
+> > 
+> > All I'm trying to say here, is that the context of the change is the
+> > "success" case, where the VF BAR reservation was successfully assigned,
+> > and the PF will be able to create VFs.
+> > The case where there were not enough resources for VF BAR (and PF won't
+> > be able to create VFs) remains unchanged.
+> > 
+> > > > However, that assumption only holds in an environment where VF BAR size
+> > > > can't be modified.
+> > > 
+> > > There's no reason to assume anything about how many VF BARs fit.  The
+> > > existing code should avoid enabling the requested nr_virtfn VFs if the
+> > > PF doesn't have enough space -- I think that's what the "if
+> > > (res->parent)" is supposed to be checking.
+> > > 
+> > > The fact that you need a change here makes me suspect that we're
+> > > missing some resource claim (and corresponding res->parent update)
+> > > elsewhere when resizing the VF BAR.
+> > 
+> > My understanding is that res->parent is only expressing that the
+> > resource is assigned.
+> > We don't really want to change that, the resource is still there and is
+> > assigned - we just want to make sure that VF enabling fails if the
+> > caller wants to enable more VFs than possible for current resource size.
+> > 
+> > Let's use an example. A device with a single BAR.
+> > initial_vf_bar_size = X
+> > total_vfs = 4
+> > supported_vf_resizable_bar_sizes = X, 2X, 4X
+> 
+> In addition, IIUC we're assuming the PF BAR size is 4X, since the
+> conclusion is that 4 VF BARs of size X fill it completely.
 
-Quoting Christian K=C3=B6nig (2024-11-12 11:23:36)
-> Am 11.11.24 um 23:45 schrieb Matthew Brost:
->=20
->     [SNIP]
->=20
->             So I think only way to allow interactive debugging is to avoi=
-d the
->             dma_fences. Curious to hear if there are ideas for otherwise.
->=20
->         You need to guarantee somehow that the process is taken from the =
-hardware so
->         that the preemption fence can signal.
->=20
->=20
->     Our preemption fences have this functionality.
->=20
->     A preemption fence issues a suspend execution command to the firmware=
-. The
->     firmware, in turn, attempts to preempt the workload. If it doesn't re=
-spond
->     within a specified period, it resets the hardware queue, sends a mess=
-age to KMD,
->     bans the software queue, and signals the preemption fence.
->=20
->     We provide even more protection than that. If, for some reason, the f=
-irmware
->     doesn't respond within a longer timeout period, the KMD performs a de=
-vice reset,
->     ban the offending software queue(s), and will signal the preemption f=
-ences.
->=20
->     This flow remains the same whether a debugger is attached or, for exa=
-mple, a
->     user submits a 10-minute non-preemptable workload. In either case, ot=
-her
->     processes are guaranteed to make forward progress.
->=20
->=20
-> Yeah that is pretty much the same argumentation I have heard before and it
-> turned out to not be working.
->=20
->=20
->     The example above illustrates the memory oversubscription case, where=
- two
->     processes are using 51% of the memory.
->=20
->=20
-> That isn't even necessary. We have seen applications dying just because t=
-he
-> core memory management tried to join back small pages into huge pages in =
-an
-> userptr.
->=20
-> That the core memory management jumps in and requests that the pre-emption
-> fence signals can happen all the time.
+The PF BAR is initially sized based on VF BAR size [1]. So yeah - that's
+the assumption for the initial state (prior to doing any resizing).
+For VF PCI device BAR 0, it would be PF PCI device resource 7 (and it's
+programmed using PCI SR-IOV extended capability - so slightly different
+path then regular PCI BARs).
+Note that this resource is completely independent from actual PF BAR 0
+(resource 0), which is why I'm calling it "underlying resource" or
+"reservation".
 
-Ouch. Does there happen to be a known reproducer for this behavior or maybe
-bug report?
+[1] https://elixir.bootlin.com/linux/v6.11/source/drivers/pci/iov.c#L807
 
-> You can mitigate that a bit, Fedora for example disables joining back sma=
-ll
-> pages into huge pages by default for example and we even had people sugge=
-sting
-> to use mprotect() so that userptrs VMAs don't fork() any more (which is of
-> course completely illegal).
->=20
-> But my long term take away is that you can't block all causes of sudden
-> requests to let a pre-emption fence signal.
 
-I think this problem equally applies to the LR-workloads like the EU
-debugging ones.
+> > With that - the initial underlying resource looks like this:
+> >             +----------------------+
+> >             |+--------------------+|
+> >             ||                    ||
+> >             |+--------------------+|
+> >             |+--------------------+|
+> >             ||                    ||
+> >             |+--------------------+|
+> >             |+--------------------+|
+> >             ||                    ||
+> >             |+--------------------+|
+> >             |+--------------------+|
+> >             ||                    ||
+> >             |+--------------------+|
+> >             +----------------------+
+> > Its size is 4X, and it contains BAR for 4 VFs.
+> > "resource_size >= vf_bar_size * num_vfs" is true for any num_vfs
+> > Let's assume that there are enough resources to assign it.
+> > 
+> > Patch 4/7 allows to resize the entire resource (in addition to changing
+> > the VF BAR size), which means that after calling:
+> > pci_resize_resource() with size = 2X, the underlying resource will look
+> > like this:
+> >             +----------------------+ 
+> >             |+--------------------+| 
+> >             ||                    || 
+> >             ||                    || 
+> >             ||                    || 
+> >             ||                    || 
+> >             |+--------------------+| 
+> >             |+--------------------+| 
+> >             ||                    || 
+> >             ||                    || 
+> >             ||                    || 
+> >             ||                    || 
+> >             |+--------------------+| 
+> >             |+--------------------+| 
+> >             ||                    || 
+> >             ||                    || 
+> >             ||                    || 
+> >             ||                    || 
+> >             |+--------------------+| 
+> >             |+--------------------+| 
+> >             ||                    || 
+> >             ||                    || 
+> >             ||                    || 
+> >             ||                    || 
+> >             |+--------------------+| 
+> >             +----------------------+ 
+> > Its size is 8X, and it contains BAR for 4 VFs.
+> > "resource_size >= vf_bar_size * num_vfs" is true for any num_vfs
+> 
+> With the assumption that the PF BAR size is 4X, these VFs would no
+> longer fit.  I guess that's basically what you say here:
 
->     Another preemption scenario involves two processes sharing hardware r=
-esources.
->     Our firmware follows the same flow here. If an LR workload is using a=
- hardware
->     resource and a DMA-fence workload is waiting, and if the LR workload =
-doesn't
->     preempt the in a timely manner, the firmware issues a hardware reset,=
- notifies
->     KMD, and bans the LR software queue. The DMA-fence workload then can =
-make
->     forward progress
->=20
->     With the above in mind, this is why I say that if a user tries to run=
- a game and
->     a non-preemptable LR workload, either oversubscribing memory or shari=
-ng hardware
->     resources, it is unlikely to work well. However, I don't think this i=
-s a common
->     use case. I would expect that when a debugger is open, it is typicall=
-y by a
->     power user who knows how to disable other GPU tasks (e.g., by enablin=
-g software
->     rendering or using a machine without any display).
->=20
->     Given this, please to reconsider your position.
->=20
->=20
-> The key point here is that this isn't stable, you can do that as a tech d=
-emo
-> but it can always be that debugging an application just randomly dies. And
-> believe me AMD has tried this to a rather extreme extend as well.
+Exactly - it wouldn't fit, unless we resize the underlying resource as
+well.
+Which is what the successfull call to pci_resize_resource() with size =
+2X, will do.
 
-It's not really only limited to the debuggable applications at all, the
-normal LR workloads are equally impacted as far as I understand. Just
-harder to catch the issue with LR-workloads if the pre-emption fence
-signaling is sporadic.
+> > It does require an extra 4X of MMIO resources, so this can fail in
+> > resource constrained environment, even though the original 4X resource
+> > was able to be assigned.
+> > The following patch 6/7 allows to change VF BAR size without touching
+> > the underlying reservation size.
+> > After calling pci_iov_vf_bar_set_size() to 4X and enabling a single VF,
+> > the underlying resource will look like this:
+> >             +----------------------+ 
+> >             |+--------------------+| 
+> >             ||░░░░░░░░░░░░░░░░░░░░|| 
+> >             ||░░░░░░░░░░░░░░░░░░░░|| 
+> >             ||░░░░░░░░░░░░░░░░░░░░|| 
+> >             ||░░░░░░░░░░░░░░░░░░░░|| 
+> >             ||░░░░░░░░░░░░░░░░░░░░|| 
+> >             ||░░░░░░░░░░░░░░░░░░░░|| 
+> >             ||░░░░░░░░░░░░░░░░░░░░|| 
+> >             ||░░░░░░░░░░░░░░░░░░░░|| 
+> >             ||░░░░░░░░░░░░░░░░░░░░|| 
+> >             ||░░░░░░░░░░░░░░░░░░░░|| 
+> >             |+--------------------+| 
+> >             +----------------------+ 
+> > Its size is 4X, but since pci_iov_vf_bar_set_size() was called, it is no
+> > longer able to accomodate 4 VFs.
+> > "resource_size >= vf_bar_size * num_vfs" is only true for num_vfs = 1
+> > and any attempts to create more than 1 VF should fail.
+> > We don't need to worry about being MMIO resource constrained, no extra
+> > MMIO resources are needed.
+> 
+> IIUC this series only resizes VF BARs.  Those VF BARs are carved out
+> of a PF BAR, and this series doesn't touch the PF BAR resizing path.
+> I guess the driver might be able to increase the PF BAR size if
+> necessary, and then increase the VF BAR size.
 
-> What you could potentially work is to taint the kernel and make sure that=
- this
-> function is only available to user who absolutely know what they are doin=
-g.
->=20
-> But I would say we can only allow that if all other options have been exe=
-rcised
-> and doing it like this is really the only option left.
+No - it is possible to resize the PF BAR as well.
 
-It sounds like servicing the memory pre-empt fence by stealing the
-pages from underneath the workload would be the way to resolve this
-issue.
+In addition to adding pci_iov_vf_bar_set_size() /
+pci_iov_vf_bar_get_size(), the series expands the pci_resize_resource()
+function, so that it can accept IOV resources (PF BARs 7+, or
+"underlying resource" for VF BAR).
+The usage of pci_resize_resource() for IOV resources is the same as for
+the regular PCI BARs, with the caller expected to release all the
+resource prior to resizing it (as the bridge windows may need to be
+reprogrammed).
 
-This has been extensively discussed already, but was expected to really
-only be needed for low-on-memory scenarios. However it now seems like
-the need is much earlier due to the random userptr page joining by core
-mm.
+> It sounds like this patch is really a bug fix independent of VF BAR
+> resizing.  If we currently allow enabling more VFs than will fit in a
+> PF BAR, that sounds like a bug.
 
-If that is done and the memory pre-empt fence is serviced even for
-debuggable contexts, do you have further concerns with the presented approa=
-ch
-from dma-buf and drm/sched perspective?
+It's not really a bug fix. Without the ability to control VF BAR size
+independently of PF BAR size (via pci_iov_vf_bar_set_size()
+/ pci_iov_vf_bar_get_size()), PF BAR size is always tied to the VF BAR
+size and the total (max) number of VFs supported by the device, so
+there's no need to check if the "nr_virtfn" will fit - as "nr_virtfn" is
+guaranteed to be smaller than the total number of VFs supported by the
+device.
 
-Regards, Joonas
+> So if we try to enable too many VFs, sriov_enable() should fail.  I
+> still don't see why this check should change the res->parent test,
+> though.
 
->=20
-> Regards,
-> Christian.
->=20
->=20
->         This means that a breakpoint or core dump doesn't halt GPU thread=
-s, but
->         rather suspends them. E.g. all running wave data is collected int=
-o a state
->         bag which can be restored later on.
->=20
->         I was under the impression that those long running compute thread=
-s do
->         exactly that, but when the hardware can't switch out the GPU thre=
-ad/process
->         while in a break then that isn't the case.
->=20
->         As long as you don't find a way to avoid that this patch set is a=
- pretty
->         clear NAK from my side as DMA-buf and TTM maintainer.
->=20
->=20
->     I believe this is addressed above.
->=20
->     Matt
->=20
->=20
->         What might work is to keep the submission on the hardware in the =
-break state
->         but forbid any memory access. This way you can signal your preemp=
-tion fence
->         even when the hardware isn't made available.
->=20
->         Before you continue XE setups a new pre-emption fence and makes s=
-ure that
->         all page tables etc... are up to date.
->=20
->         Could be tricky to get this right if completion fence based submi=
-ssions are
->         mixed in as well, but that gives you at least a direction you cou=
-ld
->         potentially go.
->=20
->         Regards,
->         Christian.
->=20
->=20
->             Regards, Joonas
->=20
->=20
->                 Regards,
->                 Christian.
->=20
->=20
->                     Some wash-up thoughts from me below, but consider the=
-m fairly irrelevant
->                     since I think the main driver for these big questions=
- here should be
->                     gdb/userspace.
->=20
->=20
->                         Quoting Christian K=C3=B6nig (2024-11-07 11:44:33)
->=20
->                             Am 06.11.24 um 18:00 schrieb Matthew Brost:
->=20
->                                   [SNIP]
->=20
->                                   This is not a generic interface that an=
-yone can freely access. The same
->                                   permissions used by ptrace are checked =
-when opening such an interface.
->                                   See [1] [2].
->=20
->                                   [1]https://patchwork.freedesktop.org/pa=
-tch/617470/?series=3D136572&rev=3D2
->                                   [2]https://patchwork.freedesktop.org/pa=
-tch/617471/?series=3D136572&rev=3D2
->=20
->=20
->                             Thanks a lot for those pointers, that is exac=
-tly what I was looking for.
->=20
->                             And yeah, it is what I feared. You are re-imp=
-lementing existing functionality,
->                             but see below.
->=20
->                         Could you elaborate on what this "existing functi=
-onality" exactly is?
->                         I do not think this functionality exists at this =
-time.
->=20
->                         The EU debugging architecture for Xe specifically=
- avoids the need for GDB
->                         to attach with ptrace to the CPU process or inter=
-fere with the CPU process for
->                         the debugging via parasitic threads or so.
->=20
->                         Debugger connection is opened to the DRM driver f=
-or given PID (which uses the
->                         ptrace may access check for now) after which the =
-all DRM client of that
->                         PID are exposed to the debugger process.
->=20
->                         What we want to expose via that debugger connecti=
-on is the ability for GDB to
->                         read/write the different GPU VM address spaces (p=
-pGTT for Intel GPUs) just like
->                         the EU threads would see them. Note that the layo=
-ut of the ppGTT is
->                         completely up to the userspace driver to setup an=
-d is mostly only partially
->                         equal to the CPU address space.
->=20
->                         Specifically as part of reading/writing the ppGTT=
- for debugging purposes,
->                         there are deep flushes needed: for example flushi=
-ng instruction cache
->                         when adding/removing breakpoints.
->=20
->                         Maybe that will explain the background. I elabora=
-te on this at the end some more.
->=20
->=20
->                                           kmap/vmap are used everywhere i=
-n the DRM subsystem to access BOs, so I=E2=80=99m
->                                           failing to see the problem with=
- adding a simple helper based on existing
->                                           code.
->=20
->                                       What#s possible and often done is t=
-o do kmap/vmap if you need to implement a
->                                       CPU copy for scanout for example or=
- for copying/validating command buffers.
->                                       But that usually requires accessing=
- the whole BO and has separate security
->                                       checks.
->=20
->                                       When you want to access only a few =
-bytes of a BO that sounds massively like
->                                       a peek/poke like interface and we h=
-ave already rejected that more than once.
->                                       There even used to be standardized =
-GEM IOCTLs for that which have been
->                                       removed by now.
->=20
->                         Referring to the explanation at top: These IOCTL =
-are not for the debugging target
->                         process to issue. The peek/poke interface is spec=
-ifically for GDB only
->                         to facilitate the emulation of memory reads/write=
-s on the GPU address
->                         space as they were done by EUs themselves. And to=
- recap: for modifying
->                         instructions for example (add/remove breakpoint),=
- extra level of cache flushing is
->                         needed which is not available to regular userspac=
-e.
->=20
->                         I specifically discussed with Sima on the differe=
-nce before moving forward with this
->                         design originally. If something has changed since=
- then, I'm of course happy to rediscuss.
->=20
->                         However, if this code can't be added, not sure ho=
-w we would ever be able
->                         to implement core dumps for GPU threads/memory?
->=20
->=20
->                                       If you need to access BOs which are=
- placed in not CPU accessible memory then
->                                       implement the access callback for p=
-trace, see amdgpu_ttm_access_memory for
->                                       an example how to do this.
->=20
->                         As also mentioned above, we don't work via ptrace=
- at all when it comes
->                         to debugging the EUs. The only thing used for now=
- is the ptrace_may_access to
->                         implement similar access restrictions as ptrace h=
-as. This can be changed
->                         to something else if needed.
->=20
->=20
->                                   Ptrace access via vm_operations_struct.=
-access =E2=86=92 ttm_bo_vm_access.
->=20
->                                   This series renames ttm_bo_vm_access to=
- ttm_bo_access, with no code changes.
->=20
->                                   The above function accesses a BO via km=
-ap if it is in SYSTEM / TT,
->                                   which is existing code.
->=20
->                                   This function is only exposed to user s=
-pace via ptrace permissions.
->=20
->                         Maybe this sentence is what caused the confusion.
->=20
->                         Userspace is never exposed with peek/poke interfa=
-ce, only the debugger
->                         connection which is its own FD.
->=20
->=20
->                                   In this series, we implement a function=
- [3] similar to
->                                   amdgpu_ttm_access_memory for the TTM vf=
-unc access_memory. What is
->                                   missing is non-visible CPU memory acces=
-s, similar to
->                                   amdgpu_ttm_access_memory_sdma. This wil=
-l be addressed in a follow-up and
->                                   was omitted in this series given its co=
-mplexity.
->=20
->                                   So, this looks more or less identical t=
-o AMD's ptrace implementation,
->                                   but in GPU address space. Again, I fail=
- to see what the problem is here.
->                                   What am I missing?
->=20
->=20
->                             The main question is why can't you use the ex=
-isting interfaces directly?
->=20
->                         We're not working on the CPU address space or BOs=
-. We're working
->                         strictly on the GPU address space as would be see=
-n by an EU thread if it
->                         accessed address X.
->=20
->=20
->                             Additional to the peek/poke interface of ptra=
-ce Linux has the pidfd_getfd
->                             system call, see herehttps://man7.org/linux/m=
-an-pages/man2/pidfd_getfd.2.html.
->=20
->                             The pidfd_getfd() allows to dup() the render =
-node file descriptor into your gdb
->                             process. That in turn gives you all the acces=
-s you need from gdb, including
->                             mapping BOs and command submission on behalf =
-of the application.
->=20
->                         We're not operating on the CPU address space nor =
-are we operating on BOs
->                         (there is no concept of BO in the EU debug interf=
-ace). Each VMA in the VM
->                         could come from anywhere, only the start address =
-and size matter. And
->                         neither do we need to interfere with the command =
-submission of the
->                         process under debug.
->=20
->=20
->                             As far as I can see that allows for the same =
-functionality as the eudebug
->                             interface, just without any driver specific c=
-ode messing with ptrace
->                             permissions and peek/poke interfaces.
->=20
->                             So the question is still why do you need the =
-whole eudebug interface in the
->                             first place? I might be missing something, bu=
-t that seems to be superfluous
->                             from a high level view.
->=20
->                         Recapping from above. It is to allow the debuggin=
-g of EU threads per DRM
->                         client, completely independent of the CPU process=
-. If ptrace_may_acces
->                         is the sore point, we could consider other permis=
-sion checks, too. There
->                         is no other connection to ptrace in this architec=
-ture as single
->                         permission check to know if PID is fair game to a=
-ccess by debugger
->                         process.
->=20
->                         Why no parasitic thread or ptrace: Going forward,=
- binding the EU debugging to
->                         the DRM client would also pave way for being able=
- to extend core kernel generated
->                         core dump with each DRM client's EU thread/memory=
- dump. We have similar
->                         feature called "Offline core dump" enabled in the=
- downstream public
->                         trees for i915, where we currently attach the EU =
-thread dump to i915 error state
->                         and then later combine i915 error state with CPU =
-core dump file with a
->                         tool.
->=20
->                         This is relatively little amount of extra code, a=
-s this baseline series
->                         already introduces GDB the ability to perform the=
- necessary actions.
->                         It's just the matter of kernel driver calling: "s=
-top all threads", then
->                         copying the memory map and memory contents for GP=
-U threads, just like is
->                         done for CPU threads.
->=20
->                         With parasitic thread injection, not sure if ther=
-e is such way forward,
->                         as it would seem to require to inject quite abit =
-more logic to core kernel?
->=20
->=20
->                             It's true that the AMD KFD part has still sim=
-ilar functionality, but that is
->                             because of the broken KFD design of tying dri=
-ver state to the CPU process
->                             (which makes it inaccessible for gdb even wit=
-h imported render node fd).
->=20
->                             Both Sima and I (and partially Dave as well) =
-have pushed back on the KFD
->                             approach. And the long term plan is to get ri=
-d of such device driver specific
->                             interface which re-implement existing functio=
-nality just differently.
->=20
->                         Recapping, this series is not adding it back. The=
- debugger connection
->                         is a separate FD from the DRM one, with separate =
-IOCTL set. We don't allow
->                         the DRM FD any new operations based on ptrace is =
-attached or not. We
->                         don't ever do that check even.
->=20
->                         We only restrict the opening of the debugger conn=
-ection to given PID with
->                         ptrace_may_access check for now. That can be chan=
-ged to something else,
->                         if necessary.
->=20
->                     Yeah I think unnecessarily tying gpu processes to cpu=
- processes is a bad
->                     thing, least because even today all the svm discussio=
-ns we have still hit
->                     clear use-cases, where a 1:1 match is not wanted (lik=
-e multiple gpu svm
->                     sections with offsets). Not even speaking of all the =
-gpu usecases where
->                     the gpu vm space is still entirely independent of the=
- cpu side.
->=20
->                     So that's why I think this entirely separate approach=
- looks like the right
->                     one, with ptrace_may_access as the access control che=
-ck to make sure we
->                     match ptrace on the cpu side.
->=20
->                     But there's very obviously a bikeshed to be had on wh=
-at the actual uapi
->                     should look like, especially how gdb opens up a gpu d=
-ebug access fd. But I
->                     also think that's not much on drm to decide, but what=
-ever gdb wants. And
->                     then we aim for some consistency on that lookup/acces=
-s control part
->                     (ideally, I might be missing some reasons why this is=
- a bad idea) across
->                     drm drivers.
->=20
->=20
->                             So you need to have a really really good expl=
-anation why the eudebug interface
->                             is actually necessary.
->=20
->                         TL;DR The main point is to decouple the debugging=
- of the EU workloads from the
->                         debugging of the CPU process. This avoids the int=
-erference with the CPU process with
->                         parasitic thread injection. Further this also all=
-ows generating a core dump
->                         without any GDB connected. There are also many ot=
-her smaller pros/cons
->                         which can be discussed but for the context of thi=
-s patch, this is the
->                         main one.
->=20
->                         So unlike parasitic thread injection, we don't un=
-lock any special IOCTL for
->                         the process under debug to be performed by the pa=
-rasitic thread, but we
->                         allow the minimal set of operations to be perform=
-ed by GDB as if those were
->                         done on the EUs themselves.
->=20
->                         One can think of it like the minimal subset of pt=
-race but for EU threads,
->                         not the CPU threads. And thus, building on this i=
-t's possible to extend
->                         the core kernel generated core dumps with DRM spe=
-cific extension which
->                         would contain the EU thread/memory dump.
->=20
->                     It might be good to document (in that debugging doc p=
-atch probably) why
->                     thread injection is not a great option, and why the t=
-radeoffs for
->                     debugging are different than for for checkpoint/resto=
-re, where with CRIU
->                     we landed on doing most of this in userspace, and oft=
-en requiring
->                     injection threads to make it all work.
->=20
->                     Cheers, Sima
->=20
->=20
->                         Regards, Joonas
->=20
->=20
->                             Regards,
->                             Christian.
->=20
->=20
->=20
->                                   Matt
->=20
->                                   [3]https://patchwork.freedesktop.org/pa=
-tch/622520/?series=3D140200&rev=3D6
->=20
->=20
->                                       Regards,
->                                       Christian.
->=20
->=20
->                                           Matt
->=20
->=20
->                                               Regards,
->                                               Christian.
->=20
->=20
->
+The logic for res->parent isn't really changed - we are still failing VF
+enabling if the resource is not assigned.
+
+Previously we were incrementing resource counter if the resource is
+assigned:
+
+if (res->parent)
+	nres++;
+
+Now, we're not incrementing the resource counter if the resource is not
+assigned or if it is too small to fit all enabled VFs:
+
+if (!res->parent || vf_bar_sz * nr_virtfn > resource_size(res))
+	continue;
+
+I can split it into two conditions, if you think it would be clearer:
+
+if (vf_bar_sz * nr_virtfn > resource_size(res))
+	continue;
+
+if (res->parent)
+	nres++;
+
+-Michał
+
+> 
+> > > > Add an additional check that verifies that VF BAR for all enabled VFs
+> > > > fits within the underlying reservation resource.
+> > > > 
+> > > > Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
+> > > > ---
+> > > >  drivers/pci/iov.c | 8 ++++++--
+> > > >  1 file changed, 6 insertions(+), 2 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
+> > > > index 79143c1bc7bb4..5de828e5a26ea 100644
+> > > > --- a/drivers/pci/iov.c
+> > > > +++ b/drivers/pci/iov.c
+> > > > @@ -645,10 +645,14 @@ static int sriov_enable(struct pci_dev *dev, int nr_virtfn)
+> > > >  
+> > > >  	nres = 0;
+> > > >  	for (i = 0; i < PCI_SRIOV_NUM_BARS; i++) {
+> > > > +		int vf_bar_sz = pci_iov_resource_size(dev,
+> > > > +						      pci_resource_to_iov(i));
+> > > >  		bars |= (1 << pci_resource_to_iov(i));
+> > > >  		res = &dev->resource[pci_resource_to_iov(i)];
+> > > > -		if (res->parent)
+> > > > -			nres++;
+> > > > +		if (!res->parent || vf_bar_sz * nr_virtfn > resource_size(res))
+> > > > +			continue;
+> > > > +
+> > > > +		nres++;
+> > > >  	}
+> > > >  	if (nres != iov->nres) {
+> > > >  		pci_err(dev, "not enough MMIO resources for SR-IOV\n");
+> > > > -- 
+> > > > 2.47.0
+> > > > 
