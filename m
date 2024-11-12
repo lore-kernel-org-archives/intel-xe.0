@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FF8AD597AA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 823D5D597B0
 	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 22:01:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4988C10E673;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C35210E674;
 	Tue, 12 Nov 2024 22:01:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="POQ48Spi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WBeybWy3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75CF810E670
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F3B910E670
  for <intel-xe@lists.freedesktop.org>; Tue, 12 Nov 2024 22:00:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1731448857; x=1762984857;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Qn4UOt4lnhlyxqpnNeoSHjtuBp8KofrMPOH2kV3mcwg=;
- b=POQ48SpiaNjpyUoEmLKCiSilpoc2X4H1xZOBDTzjYeU1QzrBe7JFYj0L
- rgemuTlPCF/0RA/cjxMbx9KwozPPh1fronf6RiKUQfF2d7/NNQm7KDBPO
- lbuiso8FTGMYK/rFlCPoX2YYB/xCdcQ4KJKT+1iqpiBRILE9UREUsJUxb
- m0ZJ+uuN6n7f+03sQa1DnnKYk3baH9cASLjdWje5muO6r4TJgCEUN2rdD
- mI3HD3iCBKHkjdBRDeB+ttJZ/Jwz/LqjW3Cwsz4rdgfU0qFrBOm+IfxsM
- UebAahCHWJBRTufBh5KIvDQKNCDPyaewz+YPw6Na5R+3L7K2x31xcLTae A==;
-X-CSE-ConnectionGUID: +2/SXG3sTza0JYAyAhlMYQ==
-X-CSE-MsgGUID: 95CIA7sQQPCoSsQCz+X7mw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="31403995"
-X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="31403995"
+ bh=TW6+fmN7xURnkWnXaUurXvKUGRaNuAD3nfLZ8XxFv6Q=;
+ b=WBeybWy3PZy62NJOzkp4yirPOkz9AAE1mO/2kT1AgOcCm5Wp/DGYpL7T
+ 3Dbkhvw/C9/KmyCywT2IWqCQKAGIn65xLwPAzXs5hKmcO3pcm3myRLO5l
+ 898VT5caKbkTFiE4qgthoauxAicohkz/2tErCYlyO13Z3K8iXk1TEEn6J
+ pIyFRWyLc01RRstn1JEgpGBeFn4MMTfeWZNfU2WR+b8FyqdgyeUmTeAd2
+ 8wMWSTIOQp81gT54Pfn+O3Tq8HIBGAD+IAHbm84LDQur7Y2dX2O+fGktu
+ vQ0k0y+zvszRcE1mmZja6EeH+ummqHTwlYb7Wv5TBL9m25kNzA7nClm2F Q==;
+X-CSE-ConnectionGUID: QgWQNo2xQX2CZXlj0SksaA==
+X-CSE-MsgGUID: THXDU/NDRJ6pDOgV9g6rhg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="31403997"
+X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="31403997"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Nov 2024 14:00:57 -0800
-X-CSE-ConnectionGUID: 7AZyhs9OSVm1D3pB93GGKg==
-X-CSE-MsgGUID: J1Wc/FguSTmp6xPCDjDaAA==
+X-CSE-ConnectionGUID: vZ7njxvBRtW9+8hem76rOQ==
+X-CSE-MsgGUID: E+qx/RfaQmmzuCHrU523nA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="118605698"
+X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="118605700"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Nov 2024 14:00:56 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 3/7] drm/xe: Add ring start to LRC snapshot
-Date: Tue, 12 Nov 2024 14:01:23 -0800
-Message-Id: <20241112220127.1369527-4-matthew.brost@intel.com>
+Subject: [PATCH v3 5/7] drm/xe: Add exec queue param to devcoredump
+Date: Tue, 12 Nov 2024 14:01:25 -0800
+Message-Id: <20241112220127.1369527-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241112220127.1369527-1-matthew.brost@intel.com>
 References: <20241112220127.1369527-1-matthew.brost@intel.com>
@@ -65,64 +65,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add LRC ring start register to LRC snapshot to verify no LRC register
-corruption upon hang. This could be possible if the indirect ring state
-was mapped to user space or via an internal KMD memory corruption.
+During capture time, the target job may be unavailable (e.g., if it's in
+LR mode). However, the associated exec queue will be available
+regardless, so add an exec queue param for such cases.
 
+v2:
+ - Reword commit message (Jonathan)
+
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 10 ++++++++++
- drivers/gpu/drm/xe/xe_lrc.h |  1 +
- 2 files changed, 11 insertions(+)
+ drivers/gpu/drm/xe/xe_devcoredump.c | 15 +++++++++------
+ drivers/gpu/drm/xe/xe_devcoredump.h |  6 ++++--
+ drivers/gpu/drm/xe/xe_guc_submit.c  |  2 +-
+ 3 files changed, 14 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index cc77e5132157..22e58c6e2a35 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1061,6 +1061,14 @@ u32 xe_lrc_ring_tail(struct xe_lrc *lrc)
- 		return xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL) & TAIL_ADDR;
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index d3570d3d573c..c32cbb46ef8c 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -238,10 +238,10 @@ static void xe_devcoredump_free(void *data)
  }
  
-+static u32 xe_lrc_ring_start(struct xe_lrc *lrc)
-+{
-+	if (xe_lrc_has_indirect_ring_state(lrc))
-+		return xe_lrc_read_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START);
-+	else
-+		return xe_lrc_read_ctx_reg(lrc, CTX_RING_START);
-+}
-+
- void xe_lrc_set_ring_head(struct xe_lrc *lrc, u32 head)
+ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
++				 struct xe_exec_queue *q,
+ 				 struct xe_sched_job *job)
  {
- 	if (xe_lrc_has_indirect_ring_state(lrc))
-@@ -1641,6 +1649,7 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
- 	snapshot->head = xe_lrc_ring_head(lrc);
- 	snapshot->tail.internal = lrc->ring.tail;
- 	snapshot->tail.memory = xe_lrc_ring_tail(lrc);
-+	snapshot->start = xe_lrc_ring_start(lrc);
- 	snapshot->start_seqno = xe_lrc_start_seqno(lrc);
- 	snapshot->seqno = xe_lrc_seqno(lrc);
- 	snapshot->lrc_bo = xe_bo_get(lrc->bo);
-@@ -1701,6 +1710,7 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
- 	drm_printf(p, "\tLRC Head: (memory) %u\n", snapshot->head);
- 	drm_printf(p, "\tLRC Tail: (internal) %u, (memory) %u\n",
- 		   snapshot->tail.internal, snapshot->tail.memory);
-+	drm_printf(p, "\tRing start: (memory) 0x%08x\n", snapshot->start);
- 	drm_printf(p, "\tStart seqno: (memory) %d\n", snapshot->start_seqno);
- 	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
- 	drm_printf(p, "\tTimestamp: 0x%08x\n", snapshot->ctx_timestamp);
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 37ca321ed492..b459dcab8787 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -28,6 +28,7 @@ struct xe_lrc_snapshot {
- 	u32 ring_addr;
- 	u32 indirect_context_desc;
- 	u32 head;
-+	u32 start;
- 	struct {
- 		u32 internal;
- 		u32 memory;
+ 	struct xe_devcoredump_snapshot *ss = &coredump->snapshot;
+-	struct xe_exec_queue *q = job->q;
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+ 	u32 adj_logical_mask = q->logical_mask;
+ 	u32 width_mask = (0x1 << q->width) - 1;
+@@ -278,10 +278,12 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	ss->guc.log = xe_guc_log_snapshot_capture(&guc->log, true);
+ 	ss->guc.ct = xe_guc_ct_snapshot_capture(&guc->ct);
+ 	ss->ge = xe_guc_exec_queue_snapshot_capture(q);
+-	ss->job = xe_sched_job_snapshot_capture(job);
++	if (job)
++		ss->job = xe_sched_job_snapshot_capture(job);
+ 	ss->vm = xe_vm_snapshot_capture(q->vm);
+ 
+-	xe_engine_snapshot_capture_for_job(job);
++	if (job)
++		xe_engine_snapshot_capture_for_job(job);
+ 
+ 	queue_work(system_unbound_wq, &ss->work);
+ 
+@@ -291,15 +293,16 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 
+ /**
+  * xe_devcoredump - Take the required snapshots and initialize coredump device.
++ * @q: The faulty xe_exec_queue, where the issue was detected.
+  * @job: The faulty xe_sched_job, where the issue was detected.
+  *
+  * This function should be called at the crash time within the serialized
+  * gt_reset. It is skipped if we still have the core dump device available
+  * with the information of the 'first' snapshot.
+  */
+-void xe_devcoredump(struct xe_sched_job *job)
++void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job)
+ {
+-	struct xe_device *xe = gt_to_xe(job->q->gt);
++	struct xe_device *xe = gt_to_xe(q->gt);
+ 	struct xe_devcoredump *coredump = &xe->devcoredump;
+ 
+ 	if (coredump->captured) {
+@@ -308,7 +311,7 @@ void xe_devcoredump(struct xe_sched_job *job)
+ 	}
+ 
+ 	coredump->captured = true;
+-	devcoredump_snapshot(coredump, job);
++	devcoredump_snapshot(coredump, q, job);
+ 
+ 	drm_info(&xe->drm, "Xe device coredump has been created\n");
+ 	drm_info(&xe->drm, "Check your /sys/class/drm/card%d/device/devcoredump/data\n",
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.h b/drivers/gpu/drm/xe/xe_devcoredump.h
+index a4eebc285fc8..c04a534e3384 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.h
++++ b/drivers/gpu/drm/xe/xe_devcoredump.h
+@@ -10,13 +10,15 @@
+ 
+ struct drm_printer;
+ struct xe_device;
++struct xe_exec_queue;
+ struct xe_sched_job;
+ 
+ #ifdef CONFIG_DEV_COREDUMP
+-void xe_devcoredump(struct xe_sched_job *job);
++void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job);
+ int xe_devcoredump_init(struct xe_device *xe);
+ #else
+-static inline void xe_devcoredump(struct xe_sched_job *job)
++static inline void xe_devcoredump(struct xe_exec_queue *q,
++				  struct xe_sched_job *job)
+ {
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 3d61c650c0d2..46fd4621bfca 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1157,7 +1157,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	trace_xe_sched_job_timedout(job);
+ 
+ 	if (!exec_queue_killed(q))
+-		xe_devcoredump(job);
++		xe_devcoredump(q, job);
+ 
+ 	/*
+ 	 * Kernel jobs should never fail, nor should VM jobs if they do
 -- 
 2.34.1
 
