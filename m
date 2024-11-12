@@ -4,173 +4,179 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A3ABD597AA
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 22:26:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8747ED597AA
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 22:27:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0885A10E113;
-	Tue, 12 Nov 2024 22:26:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55A5310E113;
+	Tue, 12 Nov 2024 22:27:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JYTAtVmL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kef7JlDK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F4BC10E113
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Nov 2024 22:26:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA3AE10E113
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Nov 2024 22:27:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731450403; x=1762986403;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=+0zh0umUvcPOCFgdoC//TtjCQ6FU5x/emY+5eRjWbTw=;
- b=JYTAtVmLsgDPONfisC2XstEECGdRil+ueCQgk/VcuducwhN2KfmxZEOp
- M/CsVfEhthLYNTKdwyXJFe4CQbsDpqHCjOHBVG/VFgRxfNnrjw2/s9We0
- HUKq7x35E1sJ80QamwOwylN/S26CWbUuBd/Wv7MutUuIH/JDHoDOH748N
- ABc3gLGmRufS92Y2kBf8FoirlCuG4l58pXHOl+fsu7F44N2/XDb1MxFZj
- gHQdI0a2a2s8udJZ5ADvb9Imia+VIxjU4iZgFUb71VfxIQur81Zs8I4u8
- BNwki0CyZzOG/1q21nGkJydGCu9qibpLX7/M94bZ4zcj3kFAUTSg/zDcb A==;
-X-CSE-ConnectionGUID: 1k1vmyhbQSSNEoY0EVoFCA==
-X-CSE-MsgGUID: 3VqILrv4Q1GKjAG78qpbRg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="31192953"
-X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="31192953"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2024 14:26:43 -0800
-X-CSE-ConnectionGUID: 343J7NKcSiehjpcslcrazA==
-X-CSE-MsgGUID: NgbSEbK2RMe9Rf0JxSxb7Q==
+ t=1731450442; x=1762986442;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=D3LCPyPNW4b8EHu9kG7cYkQZBzCF7yD9YXJRbc5WoFY=;
+ b=Kef7JlDK+HUDhpSm3ByVjrdNhPJunweUAlnsJPL1XnQgm2uyVAWtbwFK
+ YWVNsx16T+9D0/2OZzRSF+HHNxjYz8pzjXZihdShuqL20V+k2LiVKaB3W
+ /+oaBnIVZoQKGSun5ShegbexzAhW/vpCBlrsnCsGl5ydBDi72PR24ctjP
+ lQ5LCwqDNZMB+A65kjYDcgh962LvW/+efj0FoL2lYXaRHpduIMh00crGq
+ jZNOGtNNn6jRU1c9ClZ8CeQsX1WT/br1uwpr8Zz1liX2VPsUDPp3fQcFb
+ dlL25OiVzVmXnfd0O6hoDS2YupDrtPBLBocLslC+De2rnXplz3MnN2FLi w==;
+X-CSE-ConnectionGUID: 9eqasTP9RUyttzZqqdqyQw==
+X-CSE-MsgGUID: s5HmT4t+RpmptdNDj0nRTA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="35104459"
+X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="35104459"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2024 14:27:22 -0800
+X-CSE-ConnectionGUID: GTwwmk2bQ3+uViYNXqTPcw==
+X-CSE-MsgGUID: 5Rv8PkohRHC0xJe66OABeg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="91716935"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Nov 2024 14:26:39 -0800
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="87570922"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Nov 2024 14:27:22 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 12 Nov 2024 14:26:36 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ 15.1.2507.39; Tue, 12 Nov 2024 14:27:21 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 12 Nov 2024 14:26:36 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.172)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Tue, 12 Nov 2024 14:27:21 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.40) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 12 Nov 2024 14:26:35 -0800
+ 15.1.2507.39; Tue, 12 Nov 2024 14:27:20 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nCNE0WjMAqxPWJ5JNvhEsxc9eODAQyj2nFbacPLxTgyioTh6uXizE7fUUAyi7/PYFskps7KKUZes6/9aYUprDkIIQ/J+swZU5Ff2GBZlqLSkqxY07ahLFqIZSaTVq9Rn9J/pejTinblO+hJR5QJU8Vnq5LGg8czdtYONC/YHdXqo48q9Fn06aCFIhfhvIiVhT8/g13rFErGGy48kq+Y2+RCHL7EeyIlTS/HamGXXJOfoJjjvRdouqQqdDQ2Csd/C0ZDOJ4bau+/fShbnO65VpwagysM1t+E/ozlxKeDHrH+/3oT6rnxWzvFV1fTlsSrV16mvy07mG44+XJFa2uYa4Q==
+ b=f62crbR/XhqxI/7E0mH3jG8wJvNV6Wv0oDu51cK5NLXVXSSIGIwGsNG7JFiXhDfuR9/axSzR6zUuFQY3RGs8B0+idXysL0CG3ytq49iPtZeUw+kivZRL0ALSGWc0fNDktETSQuKz7c1Z+eMpVV5SrBhJCmlLdvf3I2wSZX2aIXePMsTbXiJtT/zsfDB++VGDlz36QOrLZYqENzNER6mFEk2cD9fsBYApQdB5QZflresi/XzdPb6xEGpSk7czF0Lcpbz3fucsu5CJGlwlTHOdNfNGDHHy8dYc62Hr2b2vHlzrtNoKuV6UNJMR0m8MWOA50pid7ZEX6ezVIRvKV5G/DA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+VzmhyEfPj9KJtXVBwc3pA/3UcINCzHVqla+uIUcysw=;
- b=vUFe0ROM45CA4Qsql7mhKreuDOnjD9KIyB3RWdki0PvfweyuXKxlIT3SJqUHX+Kv2pauHIItYxIHRt0NMrqCD8k67S7dicnK65iLMgUdqY7JyH5TNrZlD9XlzXKv9gTwjTQ0EaUKHSZ3tJQZtchvN7P1+0UloOyl9xhOFuZZsZpU0ZOsG6E92xUq3bs1Y2CKqVEJ+J0lIGk8GhYWniOGMmZVuSrWD3D1kt9JKPAmyGpMmRlyIeIGz6EgAwg7n/7mPpLaMdN/jhdrAKm2/tAgnGl2gLrnFkcbFu33PXf9ql7HMZnDOO++KjUTy7mL6FpgnuipbMa/5srkf+yI9lQeTQ==
+ bh=lNLQR83YcIpJpifHyTQgsG4sLl2MEZ9qPxs4yMf81e4=;
+ b=zPbxXJh/puypXVxAe0J1NpSwypx7yu9zoMyb7mg6vmR28BKRj0Oc4SeJaeXSroOOei846VoC2ND42dOTS3H4RbxWZmdChltLeqFXMEjAG5R3MzKOofo1PMDES+iP5IEfftjLS2y5EK5lVKTF8vZLRd67zqU/uFeYyJxngTRIgY8QwYRLzVEZXANOadZBzsbswSGKVf/J3MlBKQardhJ2Wgq/4Bo0rMMw3G+BRrr0cl1P/RJ8nu7yjc2W8/ADazMQpF8x3ibLH/qGYUyb8+9gW/sOXa12zk2PBP5UC7EZjXbwFRIA3XRxndvOV5CEXl5dTa/C2n3m68c+zuOG1dTt0g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by CH3PR11MB8562.namprd11.prod.outlook.com (2603:10b6:610:1b8::13) with
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
+ by DM4PR11MB7181.namprd11.prod.outlook.com (2603:10b6:8:113::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.27; Tue, 12 Nov
- 2024 22:26:33 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::8dd1:f169:5266:e16e%7]) with mapi id 15.20.8137.027; Tue, 12 Nov 2024
- 22:26:33 +0000
-Date: Tue, 12 Nov 2024 14:26:30 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-CC: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Brost, Matthew"
- <matthew.brost@intel.com>, "Harrison, John C" <john.c.harrison@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Teres
- Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>, "Dong, Zhanjun"
- <zhanjun.dong@intel.com>
-Subject: Re: [PATCH 2/7] drm/xe: Add ring address to LRC snapshot
-Message-ID: <20241112222630.GK5725@mdroper-desk1.amr.corp.intel.com>
-References: <20241108174312.272792-3-matthew.brost@intel.com>
- <CH0PR11MB54441F26FE46E5366FEC4EFDE55D2@CH0PR11MB5444.namprd11.prod.outlook.com>
- <Zy6aVcXWot6hBV1n@lstrano-desk.jf.intel.com>
- <CH0PR11MB5444A8A2BFD2FF1C0B22CFB9E55D2@CH0PR11MB5444.namprd11.prod.outlook.com>
- <9d829b21-4327-4cbf-ad72-b3e47d57fa74@intel.com>
- <ZzOb3FtRFAMAQzt3@lstrano-desk.jf.intel.com>
- <CH0PR11MB544468E5716752CB21F19C2AE5592@CH0PR11MB5444.namprd11.prod.outlook.com>
- <20241112203006.GJ5725@mdroper-desk1.amr.corp.intel.com>
- <ZzO-kV7niWsIOiHC@intel.com>
- <CH0PR11MB5444989A724E09C2A4FF3E2EE5592@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CH0PR11MB5444989A724E09C2A4FF3E2EE5592@CH0PR11MB5444.namprd11.prod.outlook.com>
-X-ClientProxiedBy: SJ0PR03CA0294.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::29) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.28; Tue, 12 Nov
+ 2024 22:27:12 +0000
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::d720:25db:67bb:6f50]) by PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::d720:25db:67bb:6f50%6]) with mapi id 15.20.8137.027; Tue, 12 Nov 2024
+ 22:27:12 +0000
+Message-ID: <cbfa2181-3ac3-40ff-802f-1ff918c9a01a@intel.com>
+Date: Tue, 12 Nov 2024 14:27:10 -0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 10/12] drm/xe/pxp: add PXP PM support
+To: John Harrison <john.c.harrison@intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20240816190024.2176976-1-daniele.ceraolospurio@intel.com>
+ <20240816190024.2176976-11-daniele.ceraolospurio@intel.com>
+ <32b467d1-a668-4ec9-a987-1f92c3c5b23e@intel.com>
+Content-Language: en-US
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+In-Reply-To: <32b467d1-a668-4ec9-a987-1f92c3c5b23e@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BY5PR04CA0026.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::36) To PH7PR11MB7605.namprd11.prod.outlook.com
+ (2603:10b6:510:277::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|CH3PR11MB8562:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8e408874-84c5-4663-1fba-08dd03691000
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|DM4PR11MB7181:EE_
+X-MS-Office365-Filtering-Correlation-Id: c58f9bcd-dcfb-428a-12bc-08dd03692762
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?EVFwn6MXfuQhnfhjP9Pl5NKAB8e3iZc9IVi1dF0/tCxD65Hr/j/8jO1YiRrN?=
- =?us-ascii?Q?Uz5XxH0Wpy5P6D2lmS3fOEr9v8zrLBt8DqXV/hMw4UdCV3BqyLqBLWsVUgLA?=
- =?us-ascii?Q?F6yYVmymdxPgKPwuGVm7pmnE/d/t49tRCfWwpfq4B2H9X1NPT+QryczU5NF9?=
- =?us-ascii?Q?xSrlSP6sqtHIKtkYcfZTCJ9DJs/5ZJAdl+2IkyU2RUNyvnt17oaFb1QLmmtE?=
- =?us-ascii?Q?lvEyC3HBEggIxUVOiiwXH6i9JwVsJpI6nAbwpl/V5IF9ZtaGDO1TctwFz+Xj?=
- =?us-ascii?Q?tCXmVRtWAcwV4qtvkL2eC+27imxlpDbWd0NtyWrCtAqKN0q1P9b2nuMqoSHN?=
- =?us-ascii?Q?KkHJDBC/bBQciF/M0Pdi+NSiM2Rm9+FCmhVE92etcmKkvOZGIX/PrcV/LKAZ?=
- =?us-ascii?Q?/6iUDgrYMRtD/MF3nNQoF6fg4MP4JTmDiXd99R3Uh/BwUXaxniU1jIvTqumA?=
- =?us-ascii?Q?zU1yZAJXLCN9/vOeq1lxYgkfmvGDA3CQG+JPubZMhkQzEvDbMAWaoCF1r9ue?=
- =?us-ascii?Q?NWU38iMML3w/3Xt2n7rFRcwWF2FCtndC1cyYU7s1dLFgFvoJAwZwNJ/K64Oo?=
- =?us-ascii?Q?smFW5BpayzHw+6+/UOEzeXobKN/c/28drvteTe6kY/E1xyOXV6WdxsLPxVhM?=
- =?us-ascii?Q?NxU5i6O7eXKwlXp2pPbDb/hdZpyKuz/TnFRk1ciWI2w0NFRdyQNh7NpmQnKp?=
- =?us-ascii?Q?btUc/Z2CbqybcLNKTpwmCwK8yHUFBodTQH5BS5Wh4QxNpDh91+47eoobWPop?=
- =?us-ascii?Q?38PxfCPAMedOlfBNmVJDzxggpeRJGYpjXU4xvBtgHBtX4OV7KaqWsP8wdNWW?=
- =?us-ascii?Q?jB1ii6iR+BY696TrU3XcdatnHDGq6sAfouph7a29f1GEpSai8k2MbjxTW918?=
- =?us-ascii?Q?O+ECSFrwsKZHB10ZH9Sar+Q/9s2a0qwp0iuWuUvLezFLbm3x0w8tQzPrSYqc?=
- =?us-ascii?Q?Uz9pihinP2a7foCfS98NjP/9IrlqJTULe1eRMa6enQWrG/wSzO9bhhSlK/9F?=
- =?us-ascii?Q?cE6r+2cxtpWpaQRwMg8bfP4MoaCkwJ+IJDHSBl2nvJ/teHQJjH3qFXACA8vu?=
- =?us-ascii?Q?wb4NFKy1nH90hH9iwKoLEVQSDr1QnWd5NDn0UwCNORvROQFCFHuu7iiTLcYc?=
- =?us-ascii?Q?xH0GoThLbBMwoT/BLraY4zlQevi/ezK1Ra2MAem8nf5K2lqfDz0YAqreREdy?=
- =?us-ascii?Q?yYt52QWwHaxQJuf26J8un4F3Tp7Z/cr2EeHz2uOxTMDEs8QSgA+RtdyJn3WC?=
- =?us-ascii?Q?TITzqdXDOBJIJ+WwrwukWrGN5FGdZv7bjHpv1mXGVA31B62AvniyZsnZsbhf?=
- =?us-ascii?Q?Nv+RaY1rHumC3Q3r5HBzNydo?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?aWVLTUxzalNXNk1PYlNvMS9hUEhxWE40cTZsQ2RKbkFqbitxbVk4R3VBM3JV?=
+ =?utf-8?B?ci9rN3ZEZm1VdmNjR2dUNmEvT0NHdjl6Y05FVDQwUEJHSkM0aUdmRzRxWFR4?=
+ =?utf-8?B?ckpMK0s4NHNpY1R4M3ZRZmRwaDVmWkxwUllNeE50NEt1NnFleTNpVTVUZ3VC?=
+ =?utf-8?B?ZnNYblpyeVI4QzV6VXBydUszQnNVQTJvZDRBZ1JkSmRFUW5vMGptUlhhcTFJ?=
+ =?utf-8?B?dDUwdTBtUmUwWERNcFFUcE1HeDNmT2gzUDcram1wblgxQzNSc2Fsd2NyTHVN?=
+ =?utf-8?B?alEvY05hb21qZGJjSzhDdjNDNnplUUIrK2hMVCtrdXhFYkh5ZkpvSWtlRlpC?=
+ =?utf-8?B?eGd0NXFrVkd3eDQ3S1g1aWQxMWQ1VjdWUWc4ekZtRHRBa1ZRREJwY2ZocWpI?=
+ =?utf-8?B?OW56RFE5MmZuZHBZUlBtYmE4V1hMRVJqcHVTRDQyNEJvSHh2MGIzWHN2RjlO?=
+ =?utf-8?B?M2padW5WOW1XbzNSVE9meCtVMkp4L2RGbjkrNmVYcmt1N0JYM2NMbDVnNGNK?=
+ =?utf-8?B?UUVyL0xwbWtGUGw4ek9KdHZSMVdNNU1QYWNJZW11cm0ybHFlV0tTSWZYSG01?=
+ =?utf-8?B?WTRnSmt4T2dxS1BXLy9EL3JVUjVXM3BYVFpHUmtwNFQyUG9WVTNRb0krYW1D?=
+ =?utf-8?B?SCtLL3FUbHFqWW4zRXgxUEtWNGFKTGRjbzBLY3psZzdFdDFYa2Y0dG01bklj?=
+ =?utf-8?B?cTFWTGNMaytrdE5XQTlJdTBOSStoSHh5OWZvYzNtN1FmVU1jU0NKdTNEOG9n?=
+ =?utf-8?B?bFBNZm11RVBFNWZ6OWpCeUZ2T0YzNzN3MlBGdTViME1Xc3QxUnliUTVSeVlv?=
+ =?utf-8?B?WDdDOGNOVGd4WkhyRTdGdFVuTjFRclVxTk9ZbDM5VkFaKzZOaFBzMG5sT0Rh?=
+ =?utf-8?B?ZzdYVWxQeHIrUHFSN2hRRDNKb1hnZVlXTktOZ3dEYTAvY1NQQjVQN2FHRUVi?=
+ =?utf-8?B?WlFYOXZ4WExXR3RGc3dvN1dGWjI1dHVaY003VnB2MldIUjN5bEwwbEtGeG8x?=
+ =?utf-8?B?a2YxS1hvWkpPU2Y0TjhUZUFKRFI1REkyVUowOEpWVno2YVphUTVGQmNacVJC?=
+ =?utf-8?B?b2k0aTh3cmtFNVZKVW1URnNXQ2tXelRiM2tuZVZlQWp5dlVrakQySU56MzBY?=
+ =?utf-8?B?M0NlNmxvZDVwMlRGVEppOG0rSU0yN0ZxQWdKYXlkUVZhaVhtNitmZ21yVFNW?=
+ =?utf-8?B?OWQxbHowWmVNQWZmVlZWYXlteTZkaVJxTHdwNTF0OTZxSDI2Z2xMeTZRWVhz?=
+ =?utf-8?B?akh5REF4cGZkOThKMlFGRFpKUUl4UkNRNCtMRVE2bHZtd2FXdUVubzR0Tkpw?=
+ =?utf-8?B?aDRWbUdUam5WUGkyU2J0dG8rUmdLL1JacWw1K0g4MFdKVmlkOFBvTVA2bjYx?=
+ =?utf-8?B?YWVyc2JwS0xLaFpJcFJrYWhsbVpqSlAyVlJ1V24vVTlBbTZNOUtpbVVvVUhQ?=
+ =?utf-8?B?TFVOcFBHK1NNOFN6a1hGdWVNdjBYc0ZuTEFzT0tTNm9iSnJoU3BrRnlHZ2VY?=
+ =?utf-8?B?eCtjQVZvV1RYbUNCcTh2L1Y1c0dvUHZpZzd5RENCNFBVSUtHc3hINU5LaVlp?=
+ =?utf-8?B?ZkQvNTNYTktyRmNmcUFMb3pDTmRlRGJzOWRFODg3WGNLM0NDalE2MGVlVW9O?=
+ =?utf-8?B?YlcvSzBoRHIzUmhxdGgxTjdxVjlSOVdhb1VUbEt4NHg1WDI3NUVUNXQ4bWUr?=
+ =?utf-8?B?dFhJdkNhNHh4bWxyaHJRYWs3RGl3WWZWQThvUWxualVJM1ZwWlNUYXlKekUw?=
+ =?utf-8?Q?UzreYtKyiaMkOBNuqKuLehLAhDVylx94nXTs+I+?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Ieay35gCsbfQb03zlwWJLHe9cPiOKESWP5VcujzRCj6b/lyeEFHkuRrZ1q+Z?=
- =?us-ascii?Q?9lGnePRBKpVQja0o0v+aqhl7IXR06v1TKTPucncXSgrM1All46xCualdx/v5?=
- =?us-ascii?Q?hUbNKDt0O5lJePLY5VB1fy+xe6pZ2VphU/zerhd50Zsc+ANQs6momVkeQbcB?=
- =?us-ascii?Q?hYmKUD8QCzbrP+oHNyq9wa/R1+NJvU26kUUyVvekG4pjAUHkOqWApCwn/AVZ?=
- =?us-ascii?Q?Wfeukr1YjJk7Lexj7zWRJCTsgb+ynVQ6LdeJKd/iPYBJjetWvaHllxQj53JU?=
- =?us-ascii?Q?IWvHckV8Q3vbzJweWVb/Se78hSmT3Rguc86eqnu+2AkdqOR6/DtpzB3hKWVu?=
- =?us-ascii?Q?IL0lVTQNutmd6cYsFsi6FEZwSOyTKqEeQwbmJAg3s0LQ4OR8eEulbZgFR4M6?=
- =?us-ascii?Q?ityubIr5cc152UJfFSWCDp0mIccPoQhbLBGSC4lvulx4+7dGyD2hA9M4Rtw0?=
- =?us-ascii?Q?9w7NhjUz+3PqX3Wt2uLggCDSqPjIMSEXom1ntwo9xhYqQgrEQhL7VedYoeAP?=
- =?us-ascii?Q?c7AgaLtRzT3Dyr3UR0J2a7luqbyNTARfcXef0MUnw3EnRMYk7+GKodNScrWc?=
- =?us-ascii?Q?Ryp85vjTZsCQV8bgPqZsfvyzoSK8FNAWJXAo9ns5NbAyDdkcxHNiB2nZBX7u?=
- =?us-ascii?Q?QA6xylE6ZrQvD7rSisZbpnSl/cSdCbCIwwslxN+NkfBxsG8X7I7sXz73jv97?=
- =?us-ascii?Q?hkeN5m9w7sEXO4W5ZDF3qx/Ke858Tm7a6VDCYZUj1bgN/C9Tc9sNPssVaRKG?=
- =?us-ascii?Q?tnm7i2uQu4i+CQNyZjQ+qRJ1RDmiTysLmENpoIOLlIT2w/DsYfMqmNc1sM+A?=
- =?us-ascii?Q?4l7FYmTnsYY1UgoxPH2K8+aTOvpwdb1gJgCCqJptONtKISyKF5S/lhp2nlT3?=
- =?us-ascii?Q?igPcLuct+1ytkrDv4KIlslI/kiO5Y7kJe5U9izNOdOy8QU2N9nx+qpIxT7Nj?=
- =?us-ascii?Q?02d/w2GQ3nF9EKujTyaBxBg001OiSo8pK/3on3pmRm5kAp+Lyx3QPEbZ7iyc?=
- =?us-ascii?Q?UIUwRgG00+OdHQySxWxcfnPUODPbs2n9YHiFBlTA8v4+da4pomb6tkmsQ+Mv?=
- =?us-ascii?Q?s6QkKMCOna58OAj+B//hQByn5Q7jKcFp0AacYmI8vncHewWg0YrWw2Ww+/pd?=
- =?us-ascii?Q?HwDghgfqUByNpyTsxx3wtv6ponyMW/ToJp8Ii6wyNfit+4auNT4FMw5dfJF8?=
- =?us-ascii?Q?BrIVODN7uXEucOSgVnB+z3KLBkQfn3C0UxYJ3UaTBeNGfr1i676Mm8HLwNqu?=
- =?us-ascii?Q?Tx1KiSZ5HQuzoMvJkCPKGGvzlCXKf+OagM2Xr8/NtjZ1u4dKFyOLvTkKAelT?=
- =?us-ascii?Q?fqmn0dvgJOQC8e3pygliOWcoVn78yofEUI5td5HkC+KZKvM0qx8G1kDVMkzZ?=
- =?us-ascii?Q?IgpAoPewiYPV3OqZQoz1VjGzf5fsEr5aMrZQJDRg75Q03HkC6Na7GOlWCs6+?=
- =?us-ascii?Q?KloE/RNkPIBP9tKOPy+kYtuVjh/DP0eOnJEHAlGsycRHqqxL+7Nn+knS1AoP?=
- =?us-ascii?Q?G/DVw0VtYi47ng65voStW5HhHBLNIbzvXmG5tlA45f2RPIPjkmssp4pPF2hs?=
- =?us-ascii?Q?A13d1yj8fLv0Qvj24qN/qaI1WO1tYoxgT0OVDsv6iDNVAX5ciIzNE4Ki8uqM?=
- =?us-ascii?Q?jg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e408874-84c5-4663-1fba-08dd03691000
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SXQxMW5MZ0Y3Q1JaMjF5UG1qdjNxamdzdllhZDYva1dYYmNkOEhoaHhERHpP?=
+ =?utf-8?B?M200bWorVjU5V3ovbjNUcHFIdEIzazNRN2NWMUh5VWRzc2FCd1FsdnprMVJw?=
+ =?utf-8?B?OFRJUjdaR0dtbldZbndocmdVa3VmczZBUnFNUEMzaWNSK3hUQXpoSzZPYlNM?=
+ =?utf-8?B?Z0JmZnc2VlZINEg4UUJrV2owZHdhNkdlOWljaXRib1FMQUJiaWczSnFueVpD?=
+ =?utf-8?B?azB4eFdSa0EwcTVSN2pzaXpyenVxVHFBTW1rS00rbUJ2ZTU1Y1JwazBESXp1?=
+ =?utf-8?B?V3RzVGQxdlh5c3JybzhBTG41TElRZ3NlUlYxZWxxZE5IUXFDTFVNc3VLampN?=
+ =?utf-8?B?RHkyc3l2YmwrNWVXZ0lJS0Q4V2dzOXJCNDJuQzcxZlpkZmp4Y3BDQUFpQis5?=
+ =?utf-8?B?TjBpOSs1Z0FXa2t0YWY4eFVZWGpFUXkzeHNmYVh4MnI5a01ZV2RJUnBscDJW?=
+ =?utf-8?B?WmkremlKL0hRMWRmeVRwSm1IcEFZQXdRUTRaK3dYY1crbER5Y3gwSWs3MzN3?=
+ =?utf-8?B?cWIvMk8xTGY0ck9SSlhvdHJqcUFOZ0d3VGJNUzkwSW9jRTF0KzI1WG9KWTd5?=
+ =?utf-8?B?UGE5Y21ycksybUZsdVc4Z2MwT1pXUytoL2R2Kzd4QWN5cWRTVkJIUlpoWUMx?=
+ =?utf-8?B?U1JxYzhNMzErb2M1WExlWWNKWEN4c0JkK2FIZGxkNUlMV0VCdGoyTDNESXVT?=
+ =?utf-8?B?eFNuc2JycFdLNHgvSVgrcHp3STJGSWhJU1BvdUp5NzZxWWJCR3RNZDlWQjNm?=
+ =?utf-8?B?Vlh4YTRUNU13bEdOdHI1cis4OVJVeGhDQ0VPUERFZ1NxSFV0NTZCQjdrVkNX?=
+ =?utf-8?B?WG1Xb1ppZVdTWHMzYW8rM3JsU2ZsS3BBUEdMNjNNY0N1SXBJa3BOajY0OTdW?=
+ =?utf-8?B?VDRnWEpNWGZYT3Brc0FlSkpiMjBCYnM0eWFUbzdLaDUvTUU5S2JXbFhVajYx?=
+ =?utf-8?B?bUd6V1NpcTJub0ZYRmV0SEVCZ1N4ZnFOQ3FFU01hSytJeURPWWQ4WEVwSzNr?=
+ =?utf-8?B?bkJzNlQ2THR1TDhJb1NmKzh0U3J4SjdJR3ExY0xyMzJubkVRT2w4amlRUGN3?=
+ =?utf-8?B?b2NSbkpNVzI3Sld6TTQwckJmdndmcHpDYWJrWk55UzlJTngzWkw2YWV4TzRu?=
+ =?utf-8?B?M3l1TlVtU3dDSGNzamVJMXhqazFxNjgwY1dsZUxXRjRBUm15WE1mYVBZNk4y?=
+ =?utf-8?B?RldPanh5Q3Mramd4aXkwU2JRak5taHpiSFpmM0g3N3pZMStKblVCOG1JZE0x?=
+ =?utf-8?B?ZEtMZEJ0S2NPTmpnSmdMei9VRzQrRDNyNXBsdDdJaGZaZGtpN202U1NteFVp?=
+ =?utf-8?B?YmtBcUwxQWgwblIvbyt6bGtYMjk3bE1CZWp3MERIUFlDK3pWVTVVV2tPODdU?=
+ =?utf-8?B?aFlwSEZKYjV0V3VMQ1VZV1E1TlhjSGhqWEk1WTAzeVFWVUZGUk53aTJsT0s0?=
+ =?utf-8?B?YWVXeHFPWDFpVEo5OFZUVXJvZit3aUorZTh1R2txVVRaTkF2MmQxWmZ6UGdX?=
+ =?utf-8?B?ZVhVc3AwMjZHWTNoNTVSdEdUZ3ZSSTdFcHNhTXZsNmsxZTA0OEZCSnFyNnFn?=
+ =?utf-8?B?ZkFrcnJzNHptSE5vVWE5dW1ZZm9acUc4WkZuVDhRYlNxendqREVudE01Q2l5?=
+ =?utf-8?B?ME5UWXEwSmpSRkg2V05NcGJhQlkvZUpzWlIreXdxSlIvYTFxamFpLzEvNm01?=
+ =?utf-8?B?VkV3ajBvNWpOakRYd3ZmWksxeG0vRTB5Q0wxLzhLYWN0TVArdFFCYjE3dFdF?=
+ =?utf-8?B?NUhmd0ZLRkU3V1BIdWtkU0ZrMWhqUVFNQUNjWHhhQUNvRFpSb01ocThpUnVP?=
+ =?utf-8?B?bFFiVTFJYnJEQ0pSSDBtaU9HTEpGcVBlMC9pcUt3YmNQa0tLZDVjaFRReVVN?=
+ =?utf-8?B?Y1crbHRSVGVZdXRvOERWVzFudHZOZUtheDhRbjZJMmpxN1FoTzNsbnVEK2tI?=
+ =?utf-8?B?N1ZpREN0SVFMbkxyVXBvT0E0dGZ6T2ozMGFsMmJ0M2xkNVgrTmFHQ3FGcTRs?=
+ =?utf-8?B?dWFSa050NlBhdlJVczFUblJlemQ0dFBwandGZHg0blRaRzExUElCZUlDZTZO?=
+ =?utf-8?B?UWR3MVg5MzJnQ3AwdjBXVFN1WHhpa0k0VFRxb2F3bjhEZER4c3lYSTRVSWt1?=
+ =?utf-8?B?S3R2WnpFd2p4L3hEMWpENUZrZkdEVjU4a3YrcU5xRjE1WnIxYTBlcHVlVG9s?=
+ =?utf-8?Q?HIiSVsO46Y/e+7CAW65Tw0o=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c58f9bcd-dcfb-428a-12bc-08dd03692762
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2024 22:26:33.3666 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2024 22:27:12.5466 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: C/q4wT1H/CKzJ4cEyl748Uxol66q+p4eHCK7WtPjuvBgJULqXx0bqRg32LlQ1O8YAnn+L5xmzfudzaJH0TqSnyWkiuSsjWnoRLVbQ1pAI1U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8562
+X-MS-Exchange-CrossTenant-UserPrincipalName: XsdpmLRkC8uxHn/NcD6J3aPk0ca/ftedL+41G4JZTBO0mApUTyqxAas+F4wBmr5rZ9rTjm7Pjz0MYPJSg2Q/iuQEiemEH5HoLk4kpWlT5m0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7181
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -186,195 +192,329 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Nov 12, 2024 at 01:21:46PM -0800, Cavitt, Jonathan wrote:
-> -----Original Message-----
-> > From: Vivi, Rodrigo <rodrigo.vivi@intel.com> 
-> > Sent: Tuesday, November 12, 2024 12:46 PM
-> > To: Roper, Matthew D <matthew.d.roper@intel.com>
-> > Cc: Cavitt, Jonathan <jonathan.cavitt@intel.com>; Brost, Matthew <matthew.brost@intel.com>; Harrison, John C <john.c.harrison@intel.com>; intel-xe@lists.freedesktop.org; Teres Alexis, Alan Previn <alan.previn.teres.alexis@intel.com>; Dong, Zhanjun <zhanjun.dong@intel.com>
-> > Subject: Re: [PATCH 2/7] drm/xe: Add ring address to LRC snapshot
-> > 
-> > On Tue, Nov 12, 2024 at 12:30:06PM -0800, Matt Roper wrote:
-> > > On Tue, Nov 12, 2024 at 12:16:46PM -0800, Cavitt, Jonathan wrote:
-> > > > -----Original Message-----
-> > > > From: Brost, Matthew <matthew.brost@intel.com> 
-> > > > Sent: Tuesday, November 12, 2024 10:18 AM
-> > > > To: Harrison, John C <john.c.harrison@intel.com>
-> > > > Cc: Cavitt, Jonathan <jonathan.cavitt@intel.com>; intel-xe@lists.freedesktop.org; Teres Alexis, Alan Previn <alan.previn.teres.alexis@intel.com>; Dong, Zhanjun <zhanjun.dong@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
-> > > > Subject: Re: [PATCH 2/7] drm/xe: Add ring address to LRC snapshot
-> > > > > 
-> > > > > On Tue, Nov 12, 2024 at 09:59:16AM -0800, John Harrison wrote:
-> > > > > > On 11/8/2024 15:34, Cavitt, Jonathan wrote:
-> > > > > > > -----Original Message-----
-> > > > > > > From: Brost, Matthew <matthew.brost@intel.com>
-> > > > > > > Sent: Friday, November 8, 2024 3:10 PM
-> > > > > > > To: Cavitt, Jonathan <jonathan.cavitt@intel.com>
-> > > > > > > Cc: intel-xe@lists.freedesktop.org; Teres Alexis, Alan Previn <alan.previn.teres.alexis@intel.com>; Dong, Zhanjun <zhanjun.dong@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
-> > > > > > > Subject: Re: [PATCH 2/7] drm/xe: Add ring address to LRC snapshot
-> > > > > > > > On Fri, Nov 08, 2024 at 03:05:34PM -0700, Cavitt, Jonathan wrote:
-> > > > > > > > > -----Original Message-----
-> > > > > > > > > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Matthew Brost
-> > > > > > > > > Sent: Friday, November 8, 2024 9:43 AM
-> > > > > > > > > To: intel-xe@lists.freedesktop.org
-> > > > > > > > > Cc: Teres Alexis, Alan Previn <alan.previn.teres.alexis@intel.com>; Dong, Zhanjun <zhanjun.dong@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
-> > > > > > > > > Subject: [PATCH 2/7] drm/xe: Add ring address to LRC snapshot
-> > > > > > > > > > The ring is currently in LRC BO but this may change going forward.
-> > > > > > > > > > Include the ring address in the snapshot protecting again any future
-> > > > > > > > > > changes.
-> > > > > > > > > > 
-> > > > > > > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > > > > > > LGTM, though the terminology we're using to describe the various ggtt addresses
-> > > > > > > > > as "descriptors" is a bit confusing, even if it's consistent.  I wonder where that
-> > > > > > > > > terminology came from?
-> > > > > > > > > This is just a rhetorical question.  I'm not suggesting it be changed.
-> > > > > > > > > 
-> > > > > > > > LRC descriptors is name copied over from i915 and may even be in the bspec.
-> > > > > > > > 
-> > > > > > > > But yea, indirect_state_desc and ring_desc are bad names. Will change to
-> > > > > > > > 'ring_addr' here.
-> > > > > > > IMO it would probably be better to leave it as "ring_desc" for now as it's
-> > > > > > > consistent with surrounding struct members.  We can do a pass of the full
-> > > > > > > XE kernel for inaccurate uses of the "desc" qualifier in the near future and
-> > > > > > > fix the naming scheme here as a part of that fixup.
-> > > > > > I strongly disagree. Just because A is broken doesn't mean we should add a
-> > > > > > broken B and C! It makes no sense to add a name we know is bad just so that
-> > > > > > we can change it later. Anything new should be done properly from the start.
-> > > > > > 
-> > > > > 
-> > > > > I agree with John here.
-> > > > 
-> > > > Okay, I submitted a patch to change the name from context_desc to context_addr,
-> > > > and it was rejected because context_desc is actually correct.  But if context_desc
-> > > > is correct, then would ring_desc *also* be correct?
-> > > > 
-> > > > Pinging @Roper, Matthew D
-> > > > -Jonathan Cavitt
-> > > 
-> > > As I mentioned on the other thread, "context descriptor" is a formal
-> > > hardware term that has a very specific meaning --- it's the 64-bit value
-> > > that gets programmed into the ELSP.  The context descriptor contains the
-> > > various things inside of it, including the LRCA.  It's documented at
-> > > bspec 60419.
-> > > 
-> > > The problem today is that the capture code is using "context descriptor"
-> > > as a name for something else.  We need to decide what the capture code
-> > > should really be doing.  If we want to capture the true descriptor, as
-> > > used by the hardware, then we should fix the capture code to record and
-> > > dump the proper value.  If we only want to capture something else (e.g.,
-> > > the LRCA), then we should rename the fields for what they actually
-> > > contain.  But we definitely don't want patches making statements like
-> > > "context descriptor is a legacy i915 term" since that's just not true
-> > > and will confuse people who read this in the git history for years to
-> > > come.
-> > 
-> > I liked the variables named after address better. But I totally agree
-> > with Matt Roper here. Plus we cannot break userspace. There are tools
-> > out there already parsing 'Desc'.
-> 
-> Okay... Let's bring this back full circle.
-> Should the new variable for this patch be called "ring_addr" or "ring_desc"?
 
-As far as I know there's no such thing as a "ring descriptor."  So some
-kind of name with "address" or "offset" would be fine for new fields.
+On 10/8/24 18:12, John Harrison wrote:
+> On 8/16/2024 12:00, Daniele Ceraolo Spurio wrote:
+>> The HW suspend flow kills all PXP HWDRM sessions, so if there was any
+>> PXP activity before the suspend we need to trigger a full termination on
+>> suspend.
+>>
+>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_pm.c        | 42 +++++++++++---
+>>   drivers/gpu/drm/xe/xe_pxp.c       | 92 ++++++++++++++++++++++++++++++-
+>>   drivers/gpu/drm/xe/xe_pxp.h       |  3 +
+>>   drivers/gpu/drm/xe/xe_pxp_types.h |  9 ++-
+>>   4 files changed, 134 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+>> index 9f3c14fd9f33..1e1f87ec03a2 100644
+>> --- a/drivers/gpu/drm/xe/xe_pm.c
+>> +++ b/drivers/gpu/drm/xe/xe_pm.c
+>> @@ -20,6 +20,7 @@
+>>   #include "xe_guc.h"
+>>   #include "xe_irq.h"
+>>   #include "xe_pcode.h"
+>> +#include "xe_pxp.h"
+>>   #include "xe_trace.h"
+>>   #include "xe_wa.h"
+>>   @@ -90,22 +91,24 @@ int xe_pm_suspend(struct xe_device *xe)
+>>       drm_dbg(&xe->drm, "Suspending device\n");
+>>       trace_xe_pm_suspend(xe, __builtin_return_address(0));
+>>   +    err = xe_pxp_pm_suspend(xe->pxp);
+>> +    if (err)
+>> +        goto err;
+>> +
+>>       for_each_gt(gt, xe, id)
+>>           xe_gt_suspend_prepare(gt);
+>>         /* FIXME: Super racey... */
+>>       err = xe_bo_evict_all(xe);
+>>       if (err)
+>> -        goto err;
+>> +        goto err_pxp;
+>>         xe_display_pm_suspend(xe, false);
+>>         for_each_gt(gt, xe, id) {
+>>           err = xe_gt_suspend(gt);
+>> -        if (err) {
+>> -            xe_display_pm_resume(xe, false);
+>> -            goto err;
+>> -        }
+>> +        if (err)
+>> +            goto err_display;
+>>       }
+>>         xe_irq_suspend(xe);
+>> @@ -114,6 +117,11 @@ int xe_pm_suspend(struct xe_device *xe)
+>>         drm_dbg(&xe->drm, "Device suspended\n");
+>>       return 0;
+>> +
+>> +err_display:
+>> +    xe_display_pm_resume(xe, false);
+>> +err_pxp:
+>> +    xe_pxp_pm_resume(xe->pxp);
+>>   err:
+>>       drm_dbg(&xe->drm, "Device suspend failed %d\n", err);
+>>       return err;
+>> @@ -163,6 +171,8 @@ int xe_pm_resume(struct xe_device *xe)
+>>       if (err)
+>>           goto err;
+>>   +    xe_pxp_pm_resume(xe->pxp);
+>> +
+>>       drm_dbg(&xe->drm, "Device resumed\n");
+>>       return 0;
+>>   err:
+>> @@ -356,6 +366,10 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+>>        */
+>>       lock_map_acquire(&xe_pm_runtime_lockdep_map);
+>>   +    err = xe_pxp_pm_suspend(xe->pxp);
+>> +    if (err)
+>> +        goto out;
+>> +
+>>       /*
+>>        * Applying lock for entire list op as xe_ttm_bo_destroy and 
+>> xe_bo_move_notify
+>>        * also checks and delets bo entry from user fault list.
+>> @@ -369,23 +383,30 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+>>       if (xe->d3cold.allowed) {
+>>           err = xe_bo_evict_all(xe);
+>>           if (err)
+>> -            goto out;
+>> +            goto out_pxp;
+>>           xe_display_pm_suspend(xe, true);
+>>       }
+>>         for_each_gt(gt, xe, id) {
+>>           err = xe_gt_suspend(gt);
+>>           if (err)
+>> -            goto out;
+>> +            goto out_display;
+>>       }
+>>         xe_irq_suspend(xe);
+>>         if (xe->d3cold.allowed)
+>>           xe_display_pm_suspend_late(xe);
+>> +
+>> +    lock_map_release(&xe_pm_runtime_lockdep_map);
+>> +    xe_pm_write_callback_task(xe, NULL);
+>> +    return 0;
+>> +
+>> +out_display:
+>> +    xe_display_pm_resume(xe, true);
+>> +out_pxp:
+>> +    xe_pxp_pm_resume(xe->pxp);
+>>   out:
+>> -    if (err)
+>> -        xe_display_pm_resume(xe, true);
+>>       lock_map_release(&xe_pm_runtime_lockdep_map);
+>>       xe_pm_write_callback_task(xe, NULL);
+>>       return err;
+>> @@ -436,6 +457,9 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+>>           if (err)
+>>               goto out;
+>>       }
+>> +
+>> +    xe_pxp_pm_resume(xe->pxp);
+>> +
+>>   out:
+>>       lock_map_release(&xe_pm_runtime_lockdep_map);
+>>       xe_pm_write_callback_task(xe, NULL);
+>> diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
+>> index 640e62d1d5d7..78373cbbe0d4 100644
+>> --- a/drivers/gpu/drm/xe/xe_pxp.c
+>> +++ b/drivers/gpu/drm/xe/xe_pxp.c
+>> @@ -137,6 +137,13 @@ static void pxp_terminate(struct xe_pxp *pxp)
+>>       if (pxp->status == XE_PXP_ACTIVE)
+>>           pxp->key_instance++;
+>>   +    /*
+>> +     * we'll mark the status as needing termination on resume, so no 
+>> need to
+>> +     * emit a termination now.
+>> +     */
+>> +    if (pxp->status == XE_PXP_SUSPENDED)
+>> +        return;
+>> +
+>>       /*
+>>        * If we have a termination already in progress, we need to 
+>> wait for
+>>        * it to complete before queueing another one. We update the state
+>> @@ -181,17 +188,19 @@ static void pxp_terminate(struct xe_pxp *pxp)
+>>   static void pxp_terminate_complete(struct xe_pxp *pxp)
+>>   {
+>>       /*
+>> -     * We expect PXP to be in one of 2 states when we get here:
+>> +     * We expect PXP to be in one of 3 states when we get here:
+>>        * - XE_PXP_TERMINATION_IN_PROGRESS: a single termination event 
+>> was
+>>        * requested and it is now completing, so we're ready to start.
+>>        * - XE_PXP_NEEDS_TERMINATION: a second termination was 
+>> requested while
+>>        * the first one was still being processed; we don't update the 
+>> state
+>>        * in this case so the pxp_start code will automatically issue 
+>> that
+>>        * second termination.
+>> +     * - XE_PXP_SUSPENDED: PXP is now suspended, so we defer 
+>> everything to
+>> +     * when we come back on resume.
+>>        */
+>>       if (pxp->status == XE_PXP_TERMINATION_IN_PROGRESS)
+>>           pxp->status = XE_PXP_READY_TO_START;
+>> -    else if (pxp->status != XE_PXP_NEEDS_TERMINATION)
+>> +    else if (pxp->status != XE_PXP_NEEDS_TERMINATION && pxp->status 
+>> != XE_PXP_SUSPENDED)
+>>           drm_err(&pxp->xe->drm,
+>>               "PXP termination complete while status was %u\n",
+>>               pxp->status);
+>> @@ -505,6 +514,7 @@ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, 
+>> struct xe_exec_queue *q)
+>>           pxp_terminate(pxp);
+>>           mutex_unlock(&pxp->mutex);
+>>           goto wait_for_termination;
+>> +    case XE_PXP_SUSPENDED:
+>>       default:
+>>           drm_err(&pxp->xe->drm, "unexpected state during PXP start: 
+>> %u", pxp->status);
+>>           ret = -EIO;
+>> @@ -648,3 +658,81 @@ int xe_pxp_key_check(struct xe_pxp *pxp, struct 
+>> xe_bo *bo)
+>>       return 0;
+>>   }
+>>   +int xe_pxp_pm_suspend(struct xe_pxp *pxp)
+>> +{
+>> +    int ret = 0;
+>> +
+>> +    if (!xe_pxp_is_enabled(pxp))
+>> +        return 0;
+>> +
+>> +    mutex_lock(&pxp->mutex);
+>> +
+>> +    /* if the termination is already in progress, no need to re-emit 
+>> it */
+>> +    if (!completion_done(&pxp->termination))
+>> +        goto mark_suspended;
+>> +
+>> +    switch (pxp->status) {
+>> +    case XE_PXP_ERROR:
+>> +    case XE_PXP_READY_TO_START:
+>> +    case XE_PXP_SUSPENDED:
+>> +        /* nothing to cleanup */
+>> +        break;
+>> +    case XE_PXP_NEEDS_TERMINATION:
+>> +        /* If PXP was never used we can skip the cleanup */
+>> +        if (pxp->key_instance == pxp->last_suspend_key_instance)
+> Again, there is the possibility of this being confused by key_instance 
+> roll over.
 
-> Ideally, it should be named after whatever the return value for __xe_lrc_ring_ggtt_addr
-> is, and on paper that should be a ring address, but the function xe_lrc_ggtt_addr
-> returns a context descriptor, and the function xe_lrc_indirect_ring_ggtt_addr
 
-No, xe_lrc_ggtt_addr does not return the context descriptor.  That's the
-pre-existing bug in the snapshot code today --- it's claiming that the
-value returned by this function is a descriptor when it actually isn't.
-So if the snapshot code intended to capture/dump the real descriptor
-(which is important from the hardware's POV, and likely something that
-would be useful to include in a devcoredump), then it needs a bugfix to
-provide the proper value.  xe_lrc_ggtt_addr is just providing a 32-bit
-offset into the GGTT at which the LRC resides.  The LRC itself starts
-with a 4K pphwsp, followed by the various register and state data that
-gets saved/restored on context switch.
+I don't believe it is possible for it to actually roll over even if the 
+system was never rebooted in its lifetime.
 
-As noted previously, a context descriptor is a 64-bit value in the form
-documented at bspec 60419.  The address described above makes up bits
-31:12 of the descriptor, but there's other data in the other bits.
-xe_lrc_descriptor() returns the actual descriptor by OR'ing the offset
-with the other parts of the descriptor, which are stored in lrc->desc.
+Daniele
 
 
-Matt
-
-> apparently doesn't return an address or a descriptor, so I just don't know any more.
-> -Jonathan Cavitt
-> 
-> > 
-> > > 
-> > > 
-> > > Matt
-> > > 
-> > > > 
-> > > > > 
-> > > > > Matt
-> > > > > 
-> > > > > > John.
-> > > > > > 
-> > > > > > > 
-> > > > > > > My RB still stands either way.
-> > > > > > > -Jonathan Cavitt
-> > > > > > > 
-> > > > > > > > Matt
-> > > > > > > > 
-> > > > > > > > > Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> > > > > > > > > -Jonathan Cavitt
-> > > > > > > > > 
-> > > > > > > > > > ---
-> > > > > > > > > >   drivers/gpu/drm/xe/xe_lrc.c | 3 +++
-> > > > > > > > > >   drivers/gpu/drm/xe/xe_lrc.h | 1 +
-> > > > > > > > > >   2 files changed, 4 insertions(+)
-> > > > > > > > > > 
-> > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> > > > > > > > > > index e219657535cf..afb0f4f44748 100644
-> > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_lrc.c
-> > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> > > > > > > > > > @@ -1636,6 +1636,7 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
-> > > > > > > > > >   		xe_vm_get(lrc->bo->vm);
-> > > > > > > > > >   	snapshot->context_desc = xe_lrc_ggtt_addr(lrc);
-> > > > > > > > > > +	snapshot->ring_desc = __xe_lrc_ring_ggtt_addr(lrc);
-> > > > > > > > > >   	snapshot->indirect_context_desc = xe_lrc_indirect_ring_ggtt_addr(lrc);
-> > > > > > > > > >   	snapshot->head = xe_lrc_ring_head(lrc);
-> > > > > > > > > >   	snapshot->tail.internal = lrc->ring.tail;
-> > > > > > > > > > @@ -1693,6 +1694,8 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
-> > > > > > > > > >   		return;
-> > > > > > > > > >   	drm_printf(p, "\tHW Context Desc: 0x%08x\n", snapshot->context_desc);
-> > > > > > > > > > +	drm_printf(p, "\tHW Ring: 0x%08x\n",
-> > > > > > > > > > +		   snapshot->ring_desc);
-> > > > > > > > > >   	drm_printf(p, "\tHW Indirect Ring State: 0x%08x\n",
-> > > > > > > > > >   		   snapshot->indirect_context_desc);
-> > > > > > > > > >   	drm_printf(p, "\tLRC Head: (memory) %u\n", snapshot->head);
-> > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-> > > > > > > > > > index 9d64cedc4d14..a2058a501353 100644
-> > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_lrc.h
-> > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_lrc.h
-> > > > > > > > > > @@ -25,6 +25,7 @@ struct xe_lrc_snapshot {
-> > > > > > > > > >   	unsigned long lrc_size, lrc_offset;
-> > > > > > > > > >   	u32 context_desc;
-> > > > > > > > > > +	u32 ring_desc;
-> > > > > > > > > >   	u32 indirect_context_desc;
-> > > > > > > > > >   	u32 head;
-> > > > > > > > > >   	struct {
-> > > > > > > > > > -- 
-> > > > > > > > > > 2.34.1
-> > > > > > > > > > 
-> > > > > > > > > > 
-> > > > > > 
-> > > > > 
-> > > 
-> > > -- 
-> > > Matt Roper
-> > > Graphics Software Engineer
-> > > Linux GPU Platform Enablement
-> > > Intel Corporation
-> > 
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+>
+>> +            break;
+>> +        fallthrough;
+>> +    case XE_PXP_ACTIVE:
+>> +        pxp_terminate(pxp);
+>> +        break;
+>> +    default:
+>> +        drm_err(&pxp->xe->drm, "unexpected state during PXP suspend: 
+>> %u",
+>> +            pxp->status);
+>> +        ret = -EIO;
+>> +        goto out;
+>> +    }
+>> +
+>> +mark_suspended:
+>> +    /*
+>> +     * We set this even if we were in error state, hoping the 
+>> suspend clears
+>> +     * the error. Worse case we fail again and go in error state again.
+>> +     */
+>> +    pxp->status = XE_PXP_SUSPENDED;
+>> +
+>> +    mutex_unlock(&pxp->mutex);
+>> +
+>> +    /*
+>> +     * if there is a termination in progress, wait for it.
+>> +     * We need to wait outside the lock because the completion is 
+>> done from
+>> +     * within the lock
+>> +     */
+>> +    if (!wait_for_completion_timeout(&pxp->termination,
+>> + msecs_to_jiffies(PXP_TERMINATION_TIMEOUT_MS)))
+>> +        ret = -ETIMEDOUT;
+>> +
+>> +    pxp->last_suspend_key_instance = pxp->key_instance;
+>> +
+>> +out:
+>> +    return ret;
+>> +}
+>> +
+>> +void xe_pxp_pm_resume(struct xe_pxp *pxp)
+>> +{
+>> +    int err;
+>> +
+>> +    if (!xe_pxp_is_enabled(pxp))
+>> +        return;
+>> +
+>> +    err = kcr_pxp_enable(pxp);
+>> +
+>> +    mutex_lock(&pxp->mutex);
+>> +
+>> +    xe_assert(pxp->xe, pxp->status == XE_PXP_SUSPENDED);
+>> +
+>> +    if (err)
+>> +        pxp->status = XE_PXP_ERROR;
+>> +    else
+>> +        pxp->status = XE_PXP_NEEDS_TERMINATION;
+>> +
+>> +    mutex_unlock(&pxp->mutex);
+>> +}
+>> diff --git a/drivers/gpu/drm/xe/xe_pxp.h b/drivers/gpu/drm/xe/xe_pxp.h
+>> index 2d22a6e6ab27..af32c2616641 100644
+>> --- a/drivers/gpu/drm/xe/xe_pxp.h
+>> +++ b/drivers/gpu/drm/xe/xe_pxp.h
+>> @@ -20,6 +20,9 @@ int xe_pxp_get_readiness_status(struct xe_pxp *pxp);
+>>   int xe_pxp_init(struct xe_device *xe);
+>>   void xe_pxp_irq_handler(struct xe_device *xe, u16 iir);
+>>   +int xe_pxp_pm_suspend(struct xe_pxp *pxp);
+>> +void xe_pxp_pm_resume(struct xe_pxp *pxp);
+>> +
+>>   int xe_pxp_exec_queue_set_type(struct xe_pxp *pxp, struct 
+>> xe_exec_queue *q, u8 type);
+>>   int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue 
+>> *q);
+>>   void xe_pxp_exec_queue_remove(struct xe_pxp *pxp, struct 
+>> xe_exec_queue *q);
+>> diff --git a/drivers/gpu/drm/xe/xe_pxp_types.h 
+>> b/drivers/gpu/drm/xe/xe_pxp_types.h
+>> index 1bb747837f86..942f2fa40a58 100644
+>> --- a/drivers/gpu/drm/xe/xe_pxp_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_pxp_types.h
+>> @@ -24,7 +24,8 @@ enum xe_pxp_status {
+>>       XE_PXP_NEEDS_TERMINATION = 0, /* starting status */
+>>       XE_PXP_TERMINATION_IN_PROGRESS,
+>>       XE_PXP_READY_TO_START,
+>> -    XE_PXP_ACTIVE
+>> +    XE_PXP_ACTIVE,
+> You can add a trailing comma even on the last enum value to avoid such 
+> unnecessary deltas.
+>
+> John.
+>
+>> +    XE_PXP_SUSPENDED
+>>   };
+>>     /**
+>> @@ -111,6 +112,12 @@ struct xe_pxp {
+>>         /** @key_instance: keep track of the current iteration of the 
+>> PXP key */
+>>       u32 key_instance;
+>> +    /**
+>> +     * @last_suspend_key_instance: value of key_instance at the last
+>> +     * suspend. Used to check if any PXP session has been created 
+>> between
+>> +     * suspend cycles.
+>> +     */
+>> +    u32 last_suspend_key_instance;
+>>   };
+>>     #endif /* __XE_PXP_TYPES_H__ */
+>
