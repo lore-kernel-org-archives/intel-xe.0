@@ -4,64 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B5A3D3ABCF
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Nov 2024 22:53:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3234DD41D4E
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 03:29:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2931710E0BC;
-	Mon, 11 Nov 2024 22:53:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC1A610E21B;
+	Tue, 12 Nov 2024 03:29:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EEttbxzh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TRiOyreM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7704610E0BC;
- Mon, 11 Nov 2024 22:53:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5754D10E215;
+ Tue, 12 Nov 2024 03:29:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731365623; x=1762901623;
- h=message-id:date:mime-version:from:subject:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=aDsp7lDxtxIOYCCqEcHjGcZbGK3gRNnxFhfeut2hqwk=;
- b=EEttbxzh65EhpyWs6vNwcvbyclWRyRMbZ+onrUEfvniL1mZSQaZNS5Wa
- bB8D+IczlQ1yPgodRJ4xVMCSLhz+pizEOyEkTXrOdkV2od9qJWnI/ZSVE
- fE4ve6ofCU7qQiDzBpAMDlJJPhv654DQeFjLJJ/hm5i4PPFkP9VKAf+B4
- 1m/pMcIGou7HotO8Dfbmr9ZIgebgKZBE58I45ukawODqg6aiLSPY+gJzV
- 8Q8ueqxcR4BkcNlgS1+s+v9xQjZagL/XU36lE1GRkhcKoPJS/8U+Fbmff
- RbCXT28XPJIfzYLX00AfxjJsKmtr4Owcj89imk+PDYOKv2Dheq94rvAvZ A==;
-X-CSE-ConnectionGUID: htCxchD8QAiDp4tn8giCFA==
-X-CSE-MsgGUID: pkXFN6gsQzmJbpCWIt4Vcg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="31360228"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="31360228"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 14:53:42 -0800
-X-CSE-ConnectionGUID: KE6VwBfrQv2bxOUKWXn9dg==
-X-CSE-MsgGUID: MwtYqvv5QYSJDp0hobNOpg==
+ t=1731382160; x=1762918160;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=btr7W4VpzBSgUBnKyz5HMXWseA7BBSosMxaWnU+/z8s=;
+ b=TRiOyreMSUPpiH8bUfCypg5u/xHzbdsJXLuZ7k3JyLmmTIqJQWFxqAh8
+ F5j0QxYPns6dx52Z2TZ0flZ1Gcfagj/VesHDOZDfTw13XrwnoeV6j62xS
+ Hruj9z0Dn+hPyD6hrg4fUFRihZFgI+qUx6qkvg5d2vmYONzbblCbDDINU
+ xohMhtDEl3YWeduxT0vsmODZWHHrjBa+9PNLv/s1xlWQ1Q8LRcPCrCiPw
+ kUfp+QtZ4LpEf064UTrc5hpEttDNjzu4WUaCUa4kiTrOL0zR8nvtccaAv
+ T141OLskdlhkEWAuJvhhUV/p+O6KToVofmlK+1zUGcrkcwq2l7iJqmJwi A==;
+X-CSE-ConnectionGUID: R4u5Ra8gTXKG8OoY0iQq+w==
+X-CSE-MsgGUID: q1ajtqefTaGBit9RSJFMJQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="31161205"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="31161205"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2024 19:29:19 -0800
+X-CSE-ConnectionGUID: gyutBFgLRIeYFHKCPm2uhQ==
+X-CSE-MsgGUID: 1sRW6dNgQTmGSLcjRt99XQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,146,1728975600"; d="scan'208";a="91909304"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.244.165])
- ([10.245.244.165])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 14:53:39 -0800
-Message-ID: <a3484c87-fefb-46f3-908e-d31474145a85@linux.intel.com>
-Date: Mon, 11 Nov 2024 23:53:36 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH 1/7] kernel/cgroup: Add "dev" memory accounting cgroup
-To: Friedrich Vock <friedrich.vock@gmx.de>, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Tejun Heo <tj@kernel.org>, Zefan Li <lizefan.x@bytedance.com>,
- Johannes Weiner <hannes@cmpxchg.org>,
- Andrew Morton <akpm@linux-foundation.org>
-Cc: cgroups@vger.kernel.org, linux-mm@kvack.org,
- Maxime Ripard <mripard@kernel.org>
-References: <20241023075302.27194-1-maarten.lankhorst@linux.intel.com>
- <20241023075302.27194-2-maarten.lankhorst@linux.intel.com>
- <91125995-3a33-4971-a581-e6e24ccf0b47@gmx.de>
-Content-Language: en-US
-In-Reply-To: <91125995-3a33-4971-a581-e6e24ccf0b47@gmx.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="92174482"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 11 Nov 2024 19:29:19 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 11 Nov 2024 19:29:19 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Mon, 11 Nov 2024 19:29:19 -0800
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Mon, 11 Nov 2024 19:29:19 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LGzSftU6r6lPxs2YcXjFlCuoEzTSHJeNdjWeKns2vsW38qlbhmhOtk6O7WNTw4OvTe17Pu726jm1YyTM4Yi/9pTsDN0coFgbfe1dsN/aP7Y3nXWv0PNXtlUYkpwzSejIlje6kCbaizIDvLUshgsFkXMT+3Lx++SbMMLDHlhnX415pyBJGQFhiuKUCV6YeeudtX1xRwemsM3nkjbpEjzBEjoPGdsHKTCoMvWEmxCApRpSkhmo6OVFrPEL+9Wlph+1Yj7XwYGZYHKtdoQBH7ChT39ngh0rIZTtuGGN3nEMSoojDs6t44SmxrsKd6cfHJq08K48Slr1hJG5BcqhhCWzMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=e6KlFn3b8bRMYgw1m4HcERYSHh9De9qHGLweRyT+baE=;
+ b=BrPKaPkDE0gWCQ+p5rvuKa713ccn6aezVND4UIWwln5Ho8RvYmWZYg7duj+DUjmkZnYyijLorf+vDECjLux/H4ccsIHW0/i4cJxCeimO/jP9bh/VnU70tW1Pdc5fYiTF8eWbtav+HJw7/jvNaoayn0ZR2Yv17AAv8oVyGwQT0n2vq/Q0P9zWPAPDGGraWjvFQ/bfqYIHj7/JUT4H/4HWgreklsmmMIBcT4VxQX3xeuOtmXU3nqKxwCSz6sPVdiFLqOZNI3EJPMGwdzZ5VJeXiG/K/Hc/JewYJTklQomCWI/DuQIwdqFK0bn7DSliqlrTMoiKOis0Xvgdttd5zrNTBw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by CO1PR11MB5153.namprd11.prod.outlook.com (2603:10b6:303:95::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.29; Tue, 12 Nov
+ 2024 03:29:15 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::1a0f:84e3:d6cd:e51]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::1a0f:84e3:d6cd:e51%3]) with mapi id 15.20.8137.019; Tue, 12 Nov 2024
+ 03:29:15 +0000
+Date: Mon, 11 Nov 2024 19:29:47 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <simona.vetter@ffwll.ch>, <thomas.hellstrom@linux.intel.com>,
+ <pstanner@redhat.com>, <boris.brezillon@collabora.com>, <airlied@gmail.com>,
+ <ltuikov89@gmail.com>, <dakr@kernel.org>, <mihail.atanassov@arm.com>,
+ <steven.price@arm.com>, <shashank.sharma@amd.com>
+Subject: Re: [RFC PATCH 0/6] Common preempt fences and semantics
+Message-ID: <ZzLLq3IKLnOGSea/@lstrano-desk.jf.intel.com>
+References: <20241109172942.482630-1-matthew.brost@intel.com>
+ <2d634baa-89cc-4b83-a4c4-4d2ca6a4f2b7@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <2d634baa-89cc-4b83-a4c4-4d2ca6a4f2b7@amd.com>
+X-ClientProxiedBy: MW4PR03CA0323.namprd03.prod.outlook.com
+ (2603:10b6:303:dd::28) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|CO1PR11MB5153:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6330e684-2a16-4c74-6088-08dd02ca2ee3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?cM9GzkM8qqrdW9A06oz4cb95Y8PbMx/6MhJ4VtCWVn2w6IBdAJn6t3g3zo?=
+ =?iso-8859-1?Q?q6Ce20iXvC5OtOnit6AIVCnjpSzYkp7asDl7DL3bYCDP8NHtdEXdsUsp78?=
+ =?iso-8859-1?Q?obLBN+JDUUiXlQZfjbFuq3SMUMLCZ7qoxJyoTc3L6D7Wmf6OvtUVB879mZ?=
+ =?iso-8859-1?Q?kGypaXfozPJrCNdF07VP6XZu6cEZLpTNG/t9YjPWMN/8ZRYBH+hJgrumZb?=
+ =?iso-8859-1?Q?15SlAvon0tPgFeuU5fmKW8vBhPJdD2X6bZKWC8Ih+Q7S8JIQRQhh6RI3jU?=
+ =?iso-8859-1?Q?38N5Lh+lJJ3ISWyL2atEOl2H0WO6EPGbVV+MDT+xg3drNfHGxhkT9lFITP?=
+ =?iso-8859-1?Q?avu2xLzFE+8ayHo87/RUAco9hNf9bj7c0KYueS4CEABtAdFPMsd9WbIDOP?=
+ =?iso-8859-1?Q?SBSyJrxRRIVAxyWdwu+n/zZxkclpLGhqJcXyPaZuCnKUaMfM2WtTYMwfIT?=
+ =?iso-8859-1?Q?uAneAY0QjkQ4GJlJ2ijDc454B/tj7LDRbTafKdXWpJQAWngX/6cshHaSEJ?=
+ =?iso-8859-1?Q?psfbgADwo51ScVI4eBFMQdGS6gGKxnb7HarO70cO7Bo9aszBluCsIWXQnV?=
+ =?iso-8859-1?Q?HsMjI8gZyt4ZnQU3e5QqTY+x82pRjN2ZgelU6L8SBk4jtJzjKLf3UqbzZS?=
+ =?iso-8859-1?Q?IcBPgY/bvWQfwADDqq/bVnDgBH1FqUAMhHPZ+o1ZIjsuUMV+MOKGhMilPH?=
+ =?iso-8859-1?Q?aKVDSdLerueGjChxQeh/kfMYfgQ+5KAegucH8Qk+FYcBUosH7bC1xUC0Rt?=
+ =?iso-8859-1?Q?iQ4dsbhHWPpEugKTVRCMve5MNYiNow8uIHiFzMfaWUVgSlFQYhaf6nkRew?=
+ =?iso-8859-1?Q?YuePnK+aBoODf7T5sJ2CFVJNjoJJ7LmWpXWLA0j+tJie6qy2j89nhmjfVk?=
+ =?iso-8859-1?Q?+Q+bvhPrp4tNKlQrfATkM6G4HZ+YHS0bGBcUtQMDVD0oiibGATJJ+m5OSL?=
+ =?iso-8859-1?Q?p3eQt3N9OYAuFb3mG0o/WyxS5kq7BacYJAv6db2L5CYox7Y3iSVzmIzmL+?=
+ =?iso-8859-1?Q?Q++eCfyz3ZTFWOTicq05QNFXRv2kaVh8538wTe1EMgzklg7K7DjJw+EgPt?=
+ =?iso-8859-1?Q?ze8SlKzHs9BGH+WQu6wfUKdF+mun1Y+3SHpVYsTa0qetpHd3GRdO177klu?=
+ =?iso-8859-1?Q?H+KrDG3hi3wkfPTeZeo3Hq0g8mwpHc0kkDthlADX6m8vSuSxKfphU4cJZM?=
+ =?iso-8859-1?Q?qv4RYRRm8zDj864on3zIJwhr4ygjj+g3qHSvWeQzRDOEk+y42URkvXsJoH?=
+ =?iso-8859-1?Q?X0x6OWuC5C99fwiasCLRxEmCMNmp8Q6kqfdED0LRjlXrDkIfVBpObmiJh7?=
+ =?iso-8859-1?Q?E8o+CGocPpzGw5I+HyiNuCrP/g=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(7416014)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?yKxoqemhbUeYuu7XyFx//sgelIbWwhJq0Ec/FiLRMIRHB704gLWSM91wEF?=
+ =?iso-8859-1?Q?ElvazNts+r7bopoM8c0P/vnw88fsCupggWtjT7yylk3o2vV1mbgz6qW37A?=
+ =?iso-8859-1?Q?Zy8QN0VUppe4hRvlRr2QkN8eCh1cPHPGvkzF/N68oPdAangZXeTwvLYHvc?=
+ =?iso-8859-1?Q?e4JlWtAHE+9HHZcbuXmvaMWz3ERKqCG14j4VSh6f+d8sFCWuyhVZqutEXk?=
+ =?iso-8859-1?Q?F0hcpFcAdxNGHaCvinfBp114PBSIpvytfM8hhP7ZJvAteYUX+b+0aTFmqc?=
+ =?iso-8859-1?Q?Pp3nGp2tfvRYzWT/CajoGqvFiDLPLO4erhflxFGJ2AmlP4sxJc91H15BHL?=
+ =?iso-8859-1?Q?x2lNGBr60oZrLanDVQevtIHBNbI3fNSW1aXuJu7MQTkYWxW/V7pYbq+cbT?=
+ =?iso-8859-1?Q?OjGjp+x7bH0Xe7YzyYK27dCVgMXNABn1JMeLw51kYHd9RrmE4/vv0ECpwW?=
+ =?iso-8859-1?Q?008mgt4bVUV1lh8c43f9c6fEs+9ORgPlNM6yD72nuMjCsR0GJA941gkPkD?=
+ =?iso-8859-1?Q?NlliCNzu9TEZfhQcL5IJ5ixUUGQ5R1BtY5hGoSekARfZivnBAivuYzf5kQ?=
+ =?iso-8859-1?Q?1SmWuVvv8hXYoM3dZsi2S3Tu85wR2KUx9PwToG1/Hov04sSoXLrq+GCLXP?=
+ =?iso-8859-1?Q?hZOImrjg1byKPp+WWe4Lc/xonggLC6KhbcJuMior+Dv3lKB2h3KM5V002+?=
+ =?iso-8859-1?Q?fHH7XsaELyRMUXZ08Hc5Nq0O6+FIBkn+DOrxV2FbKYRxWfFWEPF4Rgf5Rm?=
+ =?iso-8859-1?Q?MA1fKkLHISk1ecgjkVxFn5D3+FoZWptXGpXYPeaPICe1SGKMahKIZqFB2F?=
+ =?iso-8859-1?Q?0998A03PN3bWkixeRWPHAo2sHT3qlTY1rbsWTvqxR2Sw+FQEyXtVw63Bgx?=
+ =?iso-8859-1?Q?SNtoPRPIKCq7odjeU/39DzUKBFf/j3E/ZN6/h/cVivYiHq9xoo09Vhj/uN?=
+ =?iso-8859-1?Q?r5iu+Pn355XpXiEEuFF5JHZWbExKBXdQPoTf7O9k/1649FfURcTOGeTzHb?=
+ =?iso-8859-1?Q?xsWO+AEv8jFHP2ogClzyIX/avMhXBOtZhc+OvDBXEgf2NuHsiXj2qVMC26?=
+ =?iso-8859-1?Q?rDlr0ZMBscYfpmMvTfU67d4ts7/XZMZygcsOJpRXISl4/bF2vScrOqlOao?=
+ =?iso-8859-1?Q?NFkm2zTPxnhD/ijAJyt7KJ64JqwHMDjy2jBD6KpgkXTMofmzMzhlB2ou4i?=
+ =?iso-8859-1?Q?ji5maghVW0TVvpxzafbcNj9cRrlV/K1l79djCUCHTd7ScaJRVliMO/QQnr?=
+ =?iso-8859-1?Q?4iqcfDzjAFUgIMAmGqCNw13K6XlANglYc/LSO5ZSzGfzw1ExrjtC35gI8j?=
+ =?iso-8859-1?Q?K53Qct7aH6ICk3oYHhSrntSS7fzGsvsNqX6n7CHgQQ+rbixlkGoxniD3hq?=
+ =?iso-8859-1?Q?0o7ta2AkrYUCBLbAQzqOHq1i5WNW0zq1fDPHk2gQZ+/D5HCrH6ewS4p5ha?=
+ =?iso-8859-1?Q?eOKFg4H/0X95Bju/996ErP6EcD/d0XRoaCU1K59+j/2Ky8fz3IAfCwy211?=
+ =?iso-8859-1?Q?M4yYId0COZ2bGNFdQGYfjpt0VULFz3898kTm2XYnYpOjcHKK6i0Seakz03?=
+ =?iso-8859-1?Q?JdcX7Jo+m5xyuNl3Zvj2rcdswvcH7khtmpVtCPa4a8uNEYdKjICiwJM6Ou?=
+ =?iso-8859-1?Q?i8mM7VLpYXxwfL++dqrQY+QhjPQAHMdDObFZe/Q812QKM2EvGyi+nBoA?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6330e684-2a16-4c74-6088-08dd02ca2ee3
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2024 03:29:15.1096 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nGop0NbGAiBWyLQ1Gatr2Mv6yc97ZVde1uPP6A6Rj2Ub66lBLUKZ1GBV2FTfoEWfanTn5JH5aDt+89/FtWy1pg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5153
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,741 +180,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-Den 2024-10-28 kl. 15:53, skrev Friedrich Vock:
-> On 23.10.24 09:52, Maarten Lankhorst wrote:
->> The initial version was based roughly on the rdma and misc cgroup
->> controllers, with a lot of the accounting code borrowed from rdma.
->>
->> The current version is a complete rewrite with page counter; it uses
->> the same min/low/max semantics as the memory cgroup as a result.
->>
->> There's a small mismatch as TTM uses u64, and page_counter long pages.
->> In practice it's not a problem. 32-bits systems don't really come with
->>> =4GB cards and as long as we're consistently wrong with units, it's
->> fine. The device page size may not be in the same units as kernel page
->> size, and each region might also have a different page size (VRAM vs GART
->> for example).
->>
->> The interface is simple:
->> - populate dev_cgroup_try_charge->regions[..] name and size for each 
->> active
->>    region, set num_regions accordingly.
->> - Call (dev,drmm)_cgroup_register_device()
->> - Use dev_cgroup_try_charge to check if you can allocate a chunk of 
->> memory,
->>    use dev_cgroup__uncharge when freeing it. This may return an error 
->> code,
->>    or -EAGAIN when the cgroup limit is reached. In that case a reference
->>    to the limiting pool is returned.
->> - The limiting cs can be used as compare function for
->>    dev_cgroup_state_evict_valuable.
->> - After having evicted enough, drop reference to limiting cs with
->>    dev_cgroup_pool_state_put.
->>
->> This API allows you to limit device resources with cgroups.
->> You can see the supported cards in /sys/fs/cgroup/dev.region.capacity
->> You need to echo +dev to cgroup.subtree_control, and then you can
->> partition memory.
->>
->> Co-developed-by: Friedrich Vock <friedrich.vock@gmx.de>
->> Signed-off-by: Friedrich Vock <friedrich.vock@gmx.de>
->> Co-developed-by: Maxime Ripard <mripard@kernel.org>
->> Signed-off-by: Maxime Ripard <mripard@kernel.org>
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> ---
->>   Documentation/admin-guide/cgroup-v2.rst |  51 ++
->>   Documentation/core-api/cgroup.rst       |   9 +
->>   Documentation/core-api/index.rst        |   1 +
->>   Documentation/gpu/drm-compute.rst       |  54 ++
->>   include/linux/cgroup_dev.h              |  91 +++
->>   include/linux/cgroup_subsys.h           |   4 +
->>   include/linux/page_counter.h            |   2 +-
->>   init/Kconfig                            |   7 +
->>   kernel/cgroup/Makefile                  |   1 +
->>   kernel/cgroup/dev.c                     | 893 ++++++++++++++++++++++++
->>   mm/page_counter.c                       |   4 +-
->>   11 files changed, 1114 insertions(+), 3 deletions(-)
->>   create mode 100644 Documentation/core-api/cgroup.rst
->>   create mode 100644 Documentation/gpu/drm-compute.rst
->>   create mode 100644 include/linux/cgroup_dev.h
->>   create mode 100644 kernel/cgroup/dev.c
->>
->> diff --git a/Documentation/admin-guide/cgroup-v2.rst b/Documentation/ 
->> admin-guide/cgroup-v2.rst
->> index 69af2173555fb..e8fe79244af9c 100644
->> --- a/Documentation/admin-guide/cgroup-v2.rst
->> +++ b/Documentation/admin-guide/cgroup-v2.rst
->> @@ -2612,6 +2612,57 @@ RDMA Interface Files
->>         mlx4_0 hca_handle=1 hca_object=20
->>         ocrdma1 hca_handle=1 hca_object=23
->>
->> +DEV
->> +----
->> +
->> +The "dev" controller regulates the distribution and accounting of
->> +device resources, currently only memory regions. Because each memory
->> +region may have its own page size, which does not have to be equal
->> +to the system page size. the units are in bytes.
->> +
->> +DEV Interface Files
->> +~~~~~~~~~~~~~~~~~~~~
->> +
->> +  dev.region.max, dev.region.min, dev.region.low
->> +    A readwrite nested-keyed file that exists for all the cgroups
->> +    except root that describes current configured resource limit
->> +    for a device.
->> +
->> +    Lines are keyed by device name and are not ordered.
->> +    Each line contains space separated resource name and its configured
->> +    limit that can be distributed.
->> +
->> +    The following nested keys are defined.
->> +
->> +      ==========    
->> =======================================================
->> +      *         Maximum amount of bytes that allocatable in this region
->> +      ==========    
->> =======================================================
->> +
->> +    An example for xe follows::
->> +
->> +      drm/0000:03:00.0 vram0=1073741824 stolen=max
->> +
->> +    The semantics are the same as for the memory cgroup controller, 
->> and are
->> +    calculated in the same way.
->> +
->> +  dev.region.capacity
->> +    A read-only file that describes maximum region capacity.
->> +    It only exists on the root cgroup. Not all memory can be
->> +    allocated by cgroups, as the kernel reserves some for
->> +    internal use.
->> +
->> +    An example for xe follows::
->> +
->> +      drm/0000:03:00.0 vram0=8514437120 stolen=67108864
->> +
->> +  dev.region.current
->> +    A read-only file that describes current resource usage.
->> +    It exists for all the cgroup except root.
->> +
->> +    An example for xe follows::
->> +
->> +      drm/0000:03:00.0 vram0=12550144 stolen=8650752
->> +
->>   HugeTLB
->>   -------
->>
->> diff --git a/Documentation/core-api/cgroup.rst b/Documentation/core- 
->> api/cgroup.rst
->> new file mode 100644
->> index 0000000000000..475b32255bd68
->> --- /dev/null
->> +++ b/Documentation/core-api/cgroup.rst
->> @@ -0,0 +1,9 @@
->> +==================
->> +Cgroup Kernel APIs
->> +==================
->> +
->> +Device Cgroup API (devcg)
->> +=========================
->> +.. kernel-doc:: kernel/cgroup/dev.c
->> +   :export:
->> +
->> diff --git a/Documentation/core-api/index.rst b/Documentation/core- 
->> api/index.rst
->> index 6a875743dd4b7..dbd6c4f9a6313 100644
->> --- a/Documentation/core-api/index.rst
->> +++ b/Documentation/core-api/index.rst
->> @@ -108,6 +108,7 @@ more memory-management documentation in 
->> Documentation/mm/index.rst.
->>      dma-isa-lpc
->>      swiotlb
->>      mm-api
->> +   cgroup
->>      genalloc
->>      pin_user_pages
->>      boot-time-mm
->> diff --git a/Documentation/gpu/drm-compute.rst b/Documentation/gpu/ 
->> drm-compute.rst
->> new file mode 100644
->> index 0000000000000..116270976ef7a
->> --- /dev/null
->> +++ b/Documentation/gpu/drm-compute.rst
->> @@ -0,0 +1,54 @@
->> +==================================
->> +Long running workloads and compute
->> +==================================
->> +
->> +Long running workloads (compute) are workloads that will not complete 
->> in 10
->> +seconds. (The time let the user wait before he reaches for the power 
->> button).
->> +This means that other techniques need to be used to manage those 
->> workloads,
->> +that cannot use fences.
->> +
->> +Some hardware may schedule compute jobs, and have no way to pre-empt 
->> them, or
->> +have their memory swapped out from them. Or they simply want their 
->> workload
->> +not to be preempted or swapped out at all.
->> +
->> +This means that it differs from what is described in driver-api/dma- 
->> buf.rst.
->> +
->> +As with normal compute jobs, dma-fence may not be used at all. In 
->> this case,
->> +not even to force preemption. The driver with is simply forced to 
->> unmap a BO
->> +from the long compute job's address space on unbind immediately, not 
->> even
->> +waiting for the workload to complete. Effectively this terminates the 
->> workload
->> +when there is no hardware support to recover.
->> +
->> +Since this is undesirable, there need to be mitigations to prevent a 
->> workload
->> +from being terminated. There are several possible approach, all with 
->> their
->> +advantages and drawbacks.
->> +
->> +The first approach you will likely try is to pin all buffers used by 
->> compute.
->> +This guarantees that the job will run uninterrupted, but also allows 
->> a very
->> +denial of service attack by pinning as much memory as possible, 
->> hogging the
->> +all GPU memory, and possibly a huge chunk of CPU memory.
->> +
->> +A second approach that will work slightly better on its own is adding 
->> an option
->> +not to evict when creating a new job (any kind). If all of userspace 
->> opts in
->> +to this flag, it would prevent cooperating userspace from forced 
->> terminating
->> +older compute jobs to start a new one.
->> +
->> +If job preemption and recoverable pagefaults are not available, those 
->> are the
->> +only approaches possible. So even with those, you want a separate way of
->> +controlling resources. The standard kernel way of doing so is cgroups.
->> +
->> +This creates a third option, using cgroups to prevent eviction. Both 
->> GPU and
->> +driver-allocated CPU memory would be accounted to the correct cgroup, 
->> and
->> +eviction would be made cgroup aware. This allows the GPU to be 
->> partitioned
->> +into cgroups, that will allow jobs to run next to each other without
->> +interference.
->> +
->> +The interface to the cgroup would be similar to the current CPU memory
->> +interface, with similar semantics for min/low/high/max, if eviction can
->> +be made cgroup aware. For now only max is implemented.
->> +
->> +What should be noted is that each memory region (tiled memory for 
->> example)
->> +should have its own accounting, using $card key0 = value0 key1 = value1.
->> +
->> +The key is set to the regionid set by the driver, for example "tile0".
->> +For the value of $card, we use drmGetUnique().
->> diff --git a/include/linux/cgroup_dev.h b/include/linux/cgroup_dev.h
->> new file mode 100644
->> index 0000000000000..c6311d1d3ce48
->> --- /dev/null
->> +++ b/include/linux/cgroup_dev.h
->> @@ -0,0 +1,91 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2023 Intel Corporation
->> + */
->> +
->> +#ifndef _CGROUP_DEV_H
->> +#define _CGROUP_DEV_H
->> +
->> +#include <linux/types.h>
->> +#include <linux/llist.h>
->> +
->> +struct dev_cgroup_pool_state;
->> +
->> +/*
->> + * Use 8 as max, because of N^2 lookup when setting things, can be 
->> bumped if needed
->> + * Identical to TTM_NUM_MEM_TYPES to allow simplifying that code.
->> + */
->> +#define DEVICE_CGROUP_MAX_REGIONS 8
->> +
->> +/* Public definition of cgroup device, should not be modified after 
->> _register() */
->> +struct dev_cgroup_device {
->> +    struct {
->> +        u64 size;
->> +        const char *name;
->> +    } regions[DEVICE_CGROUP_MAX_REGIONS];
->> +
->> +    int num_regions;
->> +
->> +    /* used by cgroups, do not use */
->> +    void *priv;
->> +};
->> +
->> +#if IS_ENABLED(CONFIG_CGROUP_DEV)
->> +int dev_cgroup_register_device(struct dev_cgroup_device *cgdev,
->> +                   const char *name);
->> +void dev_cgroup_unregister_device(struct dev_cgroup_device *cgdev);
->> +int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
->> +              u32 index, u64 size,
->> +              struct dev_cgroup_pool_state **ret_pool,
->> +              struct dev_cgroup_pool_state **ret_limit_pool);
->> +void dev_cgroup_uncharge(struct dev_cgroup_pool_state *pool,
->> +             u32 index, u64 size);
->> +bool dev_cgroup_state_evict_valuable(struct dev_cgroup_device *dev, 
->> int index,
->> +                     struct dev_cgroup_pool_state *limit_pool,
->> +                     struct dev_cgroup_pool_state *test_pool,
->> +                     bool ignore_low, bool *ret_hit_low);
->> +
->> +void dev_cgroup_pool_state_put(struct dev_cgroup_pool_state *pool);
->> +#else
->> +static inline int
->> +dev_cgroup_register_device(struct dev_cgroup_device *cgdev,
->> +               const char *name)
->> +{
->> +    return 0;
->> +}
->> +
->> +static inline void dev_cgroup_unregister_device(struct 
->> dev_cgroup_device *cgdev)
->> +{
->> +}
->> +
->> +static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
->> +                     u32 index, u64 size,
->> +                     struct dev_cgroup_pool_state **ret_pool,
->> +                     struct dev_cgroup_pool_state **ret_limit_pool);
->> +{
->> +    *ret_pool = NULL;
->> +
->> +    if (ret_limit_pool)
->> +        *ret_limit_pool = NULL;
->> +
->> +    return 0;
->> +}
->> +
->> +static inline void dev_cgroup_uncharge(struct dev_cgroup_pool_state 
->> *pool,
->> +                       u32 index, u64 size)
->> +{ }
->> +
->> +static inline
->> +bool dev_cgroup_state_evict_valuable(struct dev_cgroup_device *dev, 
->> int index,
->> +                     struct dev_cgroup_pool_state *limit_pool,
->> +                     struct dev_cgroup_pool_state *test_pool,
->> +                     bool ignore_low, bool *ret_hit_low)
->> +{
->> +    return true;
->> +}
->> +
->> +static inline void dev_cgroup_pool_state_put(struct 
->> dev_cgroup_pool_state *pool)
->> +{ }
->> +
->> +#endif
->> +#endif    /* _CGROUP_DEV_H */
->> diff --git a/include/linux/cgroup_subsys.h b/include/linux/ 
->> cgroup_subsys.h
->> index 4452354872307..898340cfe5843 100644
->> --- a/include/linux/cgroup_subsys.h
->> +++ b/include/linux/cgroup_subsys.h
->> @@ -65,6 +65,10 @@ SUBSYS(rdma)
->>   SUBSYS(misc)
->>   #endif
->>
->> +#if IS_ENABLED(CONFIG_CGROUP_DEV)
->> +SUBSYS(dev)
->> +#endif
->> +
->>   /*
->>    * The following subsystems are not supported on the default hierarchy.
->>    */
->> diff --git a/include/linux/page_counter.h b/include/linux/page_counter.h
->> index 79dbd8bc35a72..d75376a1694ee 100644
->> --- a/include/linux/page_counter.h
->> +++ b/include/linux/page_counter.h
->> @@ -96,7 +96,7 @@ static inline void 
->> page_counter_reset_watermark(struct page_counter *counter)
->>       counter->watermark = usage;
->>   }
->>
->> -#ifdef CONFIG_MEMCG
->> +#if IS_ENABLED(CONFIG_MEMCG) || IS_ENABLED(CONFIG_CGROUP_DEVICE)
->>   void page_counter_calculate_protection(struct page_counter *root,
->>                          struct page_counter *counter,
->>                          bool recursive_protection);
->> diff --git a/init/Kconfig b/init/Kconfig
->> index 530a382ee0feb..2da595facd97f 100644
->> --- a/init/Kconfig
->> +++ b/init/Kconfig
->> @@ -1123,6 +1123,13 @@ config CGROUP_RDMA
->>         Attaching processes with active RDMA resources to the cgroup
->>         hierarchy is allowed even if can cross the hierarchy's limit.
->>
->> +config CGROUP_DEV
->> +    bool "Device controller"
->> +    help
->> +      Provides the device subsystem controller.
->> +
->> +      ...
->> +
->>   config CGROUP_FREEZER
->>       bool "Freezer controller"
->>       help
->> diff --git a/kernel/cgroup/Makefile b/kernel/cgroup/Makefile
->> index a5c9359d516f8..441d346fdc51f 100644
->> --- a/kernel/cgroup/Makefile
->> +++ b/kernel/cgroup/Makefile
->> @@ -7,4 +7,5 @@ obj-$(CONFIG_CGROUP_RDMA) += rdma.o
->>   obj-$(CONFIG_CPUSETS) += cpuset.o
->>   obj-$(CONFIG_CPUSETS_V1) += cpuset-v1.o
->>   obj-$(CONFIG_CGROUP_MISC) += misc.o
->> +obj-$(CONFIG_CGROUP_DEV) += dev.o
->>   obj-$(CONFIG_CGROUP_DEBUG) += debug.o
->> diff --git a/kernel/cgroup/dev.c b/kernel/cgroup/dev.c
->> new file mode 100644
->> index 0000000000000..e422ccbfbc444
->> --- /dev/null
->> +++ b/kernel/cgroup/dev.c
->> @@ -0,0 +1,893 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright 2023-2024 Intel Corporation (Maarten Lankhorst 
->> <dev@lankhorst.se>)
->> + * Copyright 2024 Red Hat (Maxime Ripard <mripard@kernel.org>)
->> + * Partially based on the rdma and misc controllers, which bear the 
->> following copyrights:
->> + *
->> + * Copyright 2020 Google LLC
->> + * Copyright (C) 2016 Parav Pandit <pandit.parav@gmail.com>
->> + */
->> +
->> +#include <linux/cgroup.h>
->> +#include <linux/cgroup_dev.h>
->> +#include <linux/list.h>
->> +#include <linux/mutex.h>
->> +#include <linux/page_counter.h>
->> +#include <linux/parser.h>
->> +#include <linux/slab.h>
->> +
->> +struct devcg_device {
->> +    /**
->> +     * @ref: References keeping the device alive.
->> +     * Keeps the device reference alive after a succesful RCU lookup.
->> +     */
->> +    struct kref ref;
->> +
->> +    /** @rcu: RCU head for freeing */
->> +    struct rcu_head rcu;
->> +
->> +    /**
->> +     * @dev_node: Linked into &devcg_devices list.
->> +     * Protected by RCU and global spinlock.
->> +     */
->> +    struct list_head dev_node;
->> +
->> +    /**
->> +     * @pools: List of pools linked to this device.
->> +     * Protected by global spinlock only
->> +     */
->> +    struct list_head pools;
->> +
->> +    /**
->> +     * @base: Copy of the struct passed on register.
->> +     * A copy is made to prevent lifetime issues. devcg_device may
->> +     * be kept alive when changing cgroups values concurrently through
->> +     * rcu lookups.
->> +     */
->> +    struct dev_cgroup_device base;
->> +
->> +    /** @name: Name describing the node, set by 
->> dev_cgroup_register_device */
->> +    const char *name;
->> +
->> +    /**
->> +     * @unregistered: Whether the device is unregistered by its caller.
->> +     * No new pools should be added to the device afterwards.
->> +     */
->> +    bool unregistered;
->> +};
->> +
->> +struct devcg_state {
->> +    struct cgroup_subsys_state css;
->> +
->> +    struct list_head pools;
->> +};
->> +
->> +struct dev_cgroup_pool_state {
->> +    struct devcg_device *device;
->> +    struct devcg_state *cs;
->> +
->> +    /* css node, RCU protected against device teardown */
->> +    struct list_head    css_node;
->> +
->> +    /* dev node, no RCU protection required */
->> +    struct list_head    dev_node;
->> +
->> +    int num_res, inited;
->> +    struct rcu_head rcu;
->> +
->> +    struct devcg_pool_res {
->> +        struct page_counter cnt;
->> +    } resources[];
->> +};
->> +
->> +/*
->> + * 3 operations require locking protection:
->> + * - Registering and unregistering device to/from list, requires 
->> global lock.
->> + * - Adding a dev_cgroup_pool_state to a CSS, removing when CSS is 
->> freed.
->> + * - Adding a dev_cgroup_pool_state to a device list.
->> + *
->> + * Since for the most common operations RCU provides enough 
->> protection, I
->> + * do not think more granular locking makes sense. Most protection is 
->> offered
->> + * by RCU and the lockless operating page_counter.
->> + */
->> +static DEFINE_SPINLOCK(devcg_lock);
->> +static LIST_HEAD(devcg_devices);
->> +
->> +static inline struct devcg_state *
->> +css_to_devcs(struct cgroup_subsys_state *css)
->> +{
->> +    return container_of(css, struct devcg_state, css);
->> +}
->> +
->> +static inline struct devcg_state *get_current_devcs(void)
->> +{
->> +    return css_to_devcs(task_get_css(current, dev_cgrp_id));
->> +}
->> +
->> +static struct devcg_state *parent_devcs(struct devcg_state *cg)
->> +{
->> +    return cg->css.parent ? css_to_devcs(cg->css.parent) : NULL;
->> +}
->> +
->> +static void free_cg_pool(struct dev_cgroup_pool_state *pool)
->> +{
->> +    list_del(&pool->dev_node);
->> +    kfree(pool);
->> +}
->> +
->> +static void
->> +set_resource_min(struct dev_cgroup_pool_state *pool, int i, u64 val)
->> +{
->> +    page_counter_set_min(&pool->resources[i].cnt, val);
->> +}
->> +
->> +static void
->> +set_resource_low(struct dev_cgroup_pool_state *pool, int i, u64 val)
->> +{
->> +    page_counter_set_low(&pool->resources[i].cnt, val);
->> +}
->> +
->> +static void
->> +set_resource_max(struct dev_cgroup_pool_state *pool, int i, u64 val)
->> +{
->> +    page_counter_set_max(&pool->resources[i].cnt, val);
->> +}
->> +
->> +static u64 get_resource_low(struct dev_cgroup_pool_state *pool, int idx)
->> +{
->> +    return pool ? READ_ONCE(pool->resources[idx].cnt.low) : 0;
->> +}
->> +
->> +static u64 get_resource_min(struct dev_cgroup_pool_state *pool, int idx)
->> +{
->> +    return pool ? READ_ONCE(pool->resources[idx].cnt.min) : 0;
->> +}
->> +
->> +static u64 get_resource_max(struct dev_cgroup_pool_state *pool, int idx)
->> +{
->> +    return pool ? READ_ONCE(pool->resources[idx].cnt.max) : 
->> PAGE_COUNTER_MAX;
->> +}
->> +
->> +static u64 get_resource_current(struct dev_cgroup_pool_state *pool, 
->> int idx)
->> +{
->> +    return pool ? page_counter_read(&pool->resources[idx].cnt) : 0;
->> +}
->> +
->> +static void reset_all_resource_limits(struct dev_cgroup_pool_state 
->> *rpool)
->> +{
->> +    int i;
->> +
->> +    for (i = 0; i < rpool->num_res; i++) {
->> +        set_resource_min(rpool, i, 0);
->> +        set_resource_low(rpool, i, 0);
->> +        set_resource_max(rpool, i, PAGE_COUNTER_MAX);
->> +    }
->> +}
->> +
->> +static void devcs_offline(struct cgroup_subsys_state *css)
->> +{
->> +    struct devcg_state *devcs = css_to_devcs(css);
->> +    struct dev_cgroup_pool_state *pool;
->> +
->> +    rcu_read_lock();
->> +    list_for_each_entry_rcu(pool, &devcs->pools, css_node)
->> +        reset_all_resource_limits(pool);
->> +    rcu_read_unlock();
->> +}
->> +
->> +static void devcs_free(struct cgroup_subsys_state *css)
->> +{
->> +    struct devcg_state *devcs = css_to_devcs(css);
->> +    struct dev_cgroup_pool_state *pool, *next;
->> +
->> +    spin_lock(&devcg_lock);
->> +    list_for_each_entry_safe(pool, next, &devcs->pools, css_node) {
->> +        /*
->> +         *The pool is dead and all references are 0,
->> +         * no need for RCU protection with list_del_rcu or freeing.
->> +         */
->> +        list_del(&pool->css_node);
->> +        free_cg_pool(pool);
->> +    }
->> +    spin_unlock(&devcg_lock);
->> +
->> +    kfree(devcs);
->> +}
->> +
->> +static struct cgroup_subsys_state *
->> +devcs_alloc(struct cgroup_subsys_state *parent_css)
->> +{
->> +    struct devcg_state *devcs = kzalloc(sizeof(*devcs), GFP_KERNEL);
->> +    if (!devcs)
->> +        return ERR_PTR(-ENOMEM);
->> +
->> +    INIT_LIST_HEAD(&devcs->pools);
->> +    return &devcs->css;
->> +}
->> +
->> +static struct dev_cgroup_pool_state *
->> +find_cg_pool_locked(struct devcg_state *devcs, struct devcg_device *dev)
->> +{
->> +    struct dev_cgroup_pool_state *pool;
->> +
->> +    list_for_each_entry_rcu(pool, &devcs->pools, css_node, 
->> spin_is_locked(&devcg_lock))
->> +        if (pool->device == dev)
->> +            return pool;
->> +
->> +    return NULL;
->> +}
->> +
->> +static struct dev_cgroup_pool_state *pool_parent(struct 
->> dev_cgroup_pool_state *pool)
->> +{
->> +    if (!pool->resources[0].cnt.parent)
->> +        return NULL;
->> +
->> +    return container_of(pool->resources[0].cnt.parent, typeof(*pool), 
->> resources[0].cnt);
->> +}
->> +
->> +/**
->> + * dev_cgroup_state_evict_valuable() - Check if we should evict from 
->> test_pool
->> + * @dev: &dev_cgroup_device
->> + * @index: The index number of the region being tested.
->> + * @limit_pool: The pool for which we hit limits
->> + * @test_pool: The pool for which to test
->> + * @ignore_low: Whether we have to respect low watermarks.
->> + * @ret_hit_low: Pointer to whether it makes sense to consider low 
->> watermark.
->> + *
->> + * This function returns true if we can evict from @test_pool, false 
->> if not.
->> + * When returning false and @ignore_low is false, @ret_hit_low may
->> + * be set to true to indicate this function can be retried with 
->> @ignore_low
->> + * set to true.
->> + *
->> + * Return: bool
->> + */
->> +bool dev_cgroup_state_evict_valuable(struct dev_cgroup_device *dev, 
->> int index,
->> +                     struct dev_cgroup_pool_state *limit_pool,
->> +                     struct dev_cgroup_pool_state *test_pool,
->> +                     bool ignore_low, bool *ret_hit_low)
->> +{
->> +    struct dev_cgroup_pool_state *pool = test_pool;
->> +    struct page_counter *climit, *ctest;
->> +    u64 used, min, low;
->> +
->> +    /* Can always evict from current pool, despite limits */
->> +    if (limit_pool == test_pool)
->> +        return true;
->> +
->> +    if (limit_pool) {
->> +        if (!parent_devcs(limit_pool->cs))
->> +            return true;
->> +
->> +        for (pool = test_pool; pool && limit_pool != pool; pool = 
->> pool_parent(pool))
->> +            {}
->> +
->> +        if (!pool)
->> +            return false;
->> +    } else {
->> +        /*
->> +         * If there is no cgroup limiting memory usage, use the root
->> +         * cgroup instead for limit calculations.
->> +         */
->> +        for (limit_pool = test_pool; pool_parent(limit_pool); 
->> limit_pool = pool_parent(limit_pool))
->> +            {}
->> +    }
->> +
->> +    climit = &limit_pool->resources[index].cnt;
->> +    ctest = &test_pool->resources[index].cnt;
->> +
->> +    page_counter_calculate_protection(climit, ctest, true);
+On Mon, Nov 11, 2024 at 02:42:02PM +0100, Christian K�nig wrote:
+> Am 09.11.24 um 18:29 schrieb Matthew Brost:
+> > The motivation for this series comes from pending UMD submission work by
+> > AMD [1], ARM [3], and the Xe team, who are also beginning to look at
+> > this. Sima has suggested [4] some common driver preemptive fences and
+> > semantics, which we all agree on. This is the first attempt to implement
+> > them, based on Xe's existing long-running preemptive fences.
+> > 
+> > The semantics are fairly simple: preemptive fences attached to a
+> > dma-resv must wait to enable signaling (and thus preempt device
+> > execution) until all fences in other slots have been signaled. These
+> > semantics are necessary to avoid deadlocks when preempting a device
+> > while a user submission is pending, and resuming device execution
+> > depends on the user submission completing. The semantics align with
+> > Christian's view [5], which I also arrived at independently (with a
+> > little help from Sima).
 > 
-> I realized we can't do this. As the documentation for
-> page_counter_calculate_protection states:
+> Ah! I was really wondering for a moment why you wanted to add a separate
+> dma_resv usage for that. But I strongly think that this approach won't work.
 > 
->> WARNING: This function is not stateless! It can only be used as part
->>          of a top-down tree iteration, not for isolated queries.
+> The assumption that completion fences which depend on a preemption fence are
+> always part of the same dma_resv object is most likely false in some cases.
 > 
-> I authored a fix with [1], though I'm not super happy with having to
-> iterate through the entire (sub-)hierarchy like this every time we
-> consider eviction. If anyone has a better idea, feel free to propose it.
+> At least for the AMD design what can easily happen is that we put a
+> completion fence only into a drm_syncobj for explicit synchronization and
+> then engines or different devices which still use kernel submissions depend
+> on it. That can go boom really trivially.
 > 
-> This branch also contains another idea [2][3] I've been playing around
-> with. Essentially, what I'm trying to solve is TTM preferring to use
-> system memory over evicting VRAM, even if the new VRAM allocation would
-> be protected from eviction by low/min memory protection. In my testing,
-> it leads to a better experience to try evicting unprotected allocations
-> immediately in that case. I'm fine with this being follow-up work, but
-> given that the patchset is still in a rather early stage I thought I'd
-> pitch this now.
-Hey,
+> What we do instead is to wait for the latest issued completion fence while
+> holding a mutex to prevent creating new ones before stopping the threads and
 
-I don't know if an alternative implementation is needed here. I think 
-the current code is correct. The caller ensures that limit_pool and 
-test_pool are alive.
+wrt to a mutex...
 
-I believe it's roughly parallel to try_charge, but in 2 parts. As long 
-as the caller serializes call to evict_valuable, current code should be 
-fine?
+A current code reference would be nice. I looked some of the code on
+list and dma-fencing rules are broken...
 
-Kind regards,
-Maarten Lankhorst
+e.g., This patch [1], takes 'uq_mgr->userq_mutex' in the dma fencing path.
+This patch [2], takes 'uq_mgr->userq_mutex' and then dma-resv lock /
+allocates memory. That is clearly not allowed.
+
+Perhaps this is fixed in your current code base though.
+
+[1] https://patchwork.freedesktop.org/patch/593210/?series=133345&rev=1
+[2] https://patchwork.freedesktop.org/patch/593211/?series=133345&rev=1
+
+> signaling the preemption fence.
+>
+
+Right, that works and is functionally equivalent to the intended purpose
+here.
+
+I left out a key detail: when a user fence is converted into a dma-fence
+and exported in a syncobj or syncfile, it must also be installed in all
+of the VM's dma-resv bookkeeping slots (i.e., in VM's dma-resv and all
+extobj dma-resv mapped in the VM).
+
+Before exporting a dma-fence, the VM must be validated + resumed, and
+you must hold all dma-resv locks, so the above is trivial. If you're
+using gpuvm, just call drm_gpuvm_resv_add_fence. I assume AMD has a
+similarly simple call.
+
+Now the ordering works inherently in dma-resv and the scheduler. e.g. No
+need to track the last completion fences explictly in preempt fences.
+
+I'm pretty sure if converted your code this solution it would work,
+there are however a couple of bugs in this post which I have fixed.
+
+This is a common solution based on existing components which I'd lean
+towards rather than some new component.
+
+Matt
+
+> That code could of course be made some driver independent component.
+> 
+> Regards,
+> Christian.
+> 
+> > 
+> > Implemented via the new dma-resv slot DMA_RESV_USAGE_PREEMPT, a common
+> > embedded base preemptive fence class with driver operations, and updates
+> > to the scheduler to adhere to these semantics.
+> > 
+> > The current Xe long-running preemptive fences have been converted to the
+> > new common code, and UMD submission is expected to follow (hopefully)
+> > shortly thereafter in a subsequent series.
+> > 
+> > Not intended to be presented as the final solution, but rather to
+> > kickstart serious discussions on this topic.
+> > 
+> > Matt
+> > 
+> > [1] https://patchwork.freedesktop.org/series/113675/
+> > [2] https://patchwork.freedesktop.org/series/114385/
+> > [3] https://patchwork.freedesktop.org/series/137924/
+> > [4] https://patchwork.kernel.org/project/dri-devel/cover/20240828172605.19176-1-mihail.atanassov@arm.com/#26011577
+> > [5] https://patchwork.kernel.org/project/dri-devel/cover/20240828172605.19176-1-mihail.atanassov@arm.com/#26011853
+> > 
+> > Matthew Brost (6):
+> >    dma-resv: Add DMA_RESV_USAGE_PREEMPT
+> >    drm/sched: Teach scheduler about DMA_RESV_USAGE_PREEMPT
+> >    dma-fence: Add dma_fence_preempt base class
+> >    drm/sched: Teach scheduler about dma_fence_prempt type
+> >    drm/xe: Use DMA_RESV_USAGE_PREEMPT for preempt fences
+> >    drm/xe: Use dma_fence_preempt base class
+> > 
+> >   drivers/dma-buf/Makefile                    |   2 +-
+> >   drivers/dma-buf/dma-fence-preempt.c         | 102 ++++++++++++++++++++
+> >   drivers/dma-buf/dma-resv.c                  |  43 ++++++---
+> >   drivers/dma-buf/st-dma-resv.c               |   2 +-
+> >   drivers/gpu/drm/scheduler/sched_entity.c    |  29 +++++-
+> >   drivers/gpu/drm/scheduler/sched_main.c      |  50 +++++++---
+> >   drivers/gpu/drm/xe/xe_bo.c                  |  22 +----
+> >   drivers/gpu/drm/xe/xe_guc_submit.c          |   3 +
+> >   drivers/gpu/drm/xe/xe_hw_engine_group.c     |   4 +-
+> >   drivers/gpu/drm/xe/xe_migrate.c             |   4 +-
+> >   drivers/gpu/drm/xe/xe_preempt_fence.c       |  81 +++++-----------
+> >   drivers/gpu/drm/xe/xe_preempt_fence.h       |   2 +-
+> >   drivers/gpu/drm/xe/xe_preempt_fence_types.h |  11 +--
+> >   drivers/gpu/drm/xe/xe_pt.c                  |  12 +--
+> >   drivers/gpu/drm/xe/xe_vm.c                  |  22 +----
+> >   include/drm/gpu_scheduler.h                 |  15 +++
+> >   include/linux/dma-fence-preempt.h           |  54 +++++++++++
+> >   include/linux/dma-fence.h                   |   1 +
+> >   include/linux/dma-resv.h                    |  24 +++--
+> >   19 files changed, 326 insertions(+), 157 deletions(-)
+> >   create mode 100644 drivers/dma-buf/dma-fence-preempt.c
+> >   create mode 100644 include/linux/dma-fence-preempt.h
+> > 
+> 
