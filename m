@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD88CD597AA
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 21:43:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F054D597A7
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 21:43:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A27F10E66F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 944C910E670;
 	Tue, 12 Nov 2024 21:43:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fGjp+/Ep";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jtIMcx+u";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7059210E66F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA2F10E670
  for <intel-xe@lists.freedesktop.org>; Tue, 12 Nov 2024 21:43:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731447784; x=1762983784;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=PyA8SPpUOzeW+V4RL4xrS3OBs+2xk7mvId7B+7E5RS0=;
- b=fGjp+/Ep32haZuewOAsLBr9fDS0cg9ahRHdhXY9/X+rSaxhL1tTnI4Xl
- e7tG1JhxtTBOlbH0CCHeCw4DQ5dg2BatOwx7nHfQG50jl+5ds2cX8DiZP
- WB83DU+8nb/BpBcrCRHKd2mf7KETknSQV2S3u6ixB/jU5JBzKVutKELLO
- tDlAhJbSmdCJ7YN8JWfRE9+yy8Wf4veS0L5y4Sg73WPlArOQn+Bab9xca
- GN6YwWZFzFILFOl6UAFdUq+ApNBjEM46vMD1uiRVLJ8DhxNbpLT1RR/d5
- 8Mr3c/GldB7xEMSPjMhsapJZBo+gezS0P2iB74yty/fZ/dsHjYO2Nk29v g==;
-X-CSE-ConnectionGUID: v30SMBStRIu573XkihMX1A==
-X-CSE-MsgGUID: 9YM/TRZYSkW8q4AhhLf0tw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="42700641"
-X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="42700641"
+ t=1731447785; x=1762983785;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=D8ckMfnhzeJt+pYUuDCgag5izQXW75NrdTOyJqSoFB8=;
+ b=jtIMcx+u2/07k6sVzwBtCpOoSQ2K9cqsFgp7Rcgk8CXTRvkXByLS8/oi
+ fZN7vcZtHYOPRe5IhemqshmelY96lsjC72F1YfmFH5m/fpQd3Rmhv8BNL
+ 3ypHPuGKEqrcsYqyluIwiG73yxq7VI27huoob7MgVPLgWbWvzOThB4UOY
+ 8xNTKXNYoqON90lBmO+qEfkXxcmSDTCtt/sodXDLRlI8hjgzbTpOoRnqU
+ 320OyOi9GfE2Uraf8WhxponbpptftmEtXk3ehRU3ijm1ihSohT/RixJW2
+ JFOQ8CZU+OTo5TsD4JACOxCnRuUG+Ip9pL8r4ar8hEGqAAiS9RrTmZrM5 w==;
+X-CSE-ConnectionGUID: uL9YnWZ4R52mGQaM3PVgLw==
+X-CSE-MsgGUID: D9EHNFeBRAyEs2NOB0sxng==
+X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="42700642"
+X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="42700642"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Nov 2024 13:43:04 -0800
-X-CSE-ConnectionGUID: ua1XlkFKSbeLI6ksS4HT2w==
-X-CSE-MsgGUID: hN2vxDVYQMeyXksUdR4LEA==
+X-CSE-ConnectionGUID: ZTRbNB8ISHmsJuF4oA/VSA==
+X-CSE-MsgGUID: Bph0KIafRDm0yvsXz9nQOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="110968296"
+X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="110968299"
 Received: from orsosgc001.jf.intel.com ([10.165.21.142])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Nov 2024 13:43:04 -0800
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: sai.teja.pottumuttu@intel.com
-Subject: [PATCH 0/1] drm/xe/oa: Increase default OA buffer size to 128 M
-Date: Tue, 12 Nov 2024 13:42:54 -0800
-Message-ID: <20241112214255.3580459-1-ashutosh.dixit@intel.com>
+Subject: [PATCH 1/1] drm/xe/oa: Increase default OA buffer size to 128 M
+Date: Tue, 12 Nov 2024 13:42:55 -0800
+Message-ID: <20241112214255.3580459-2-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20241112214255.3580459-1-ashutosh.dixit@intel.com>
+References: <20241112214255.3580459-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,16 +66,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Test-with: 20241112185901.2326879-1-sai.teja.pottumuttu@intel.com
+Increase default OA buffer size to 128 MB from the current 16 MB. A larger
+OA buffer allows more flexibility to userland to read data before overrun's
+occur.
 
-Ashutosh Dixit (1):
-  drm/xe/oa: Increase default OA buffer size to 128 M
-
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
  drivers/gpu/drm/xe/regs/xe_oa_regs.h |  1 +
  drivers/gpu/drm/xe/xe_oa.c           | 10 +++++++++-
  drivers/gpu/drm/xe/xe_oa_types.h     |  2 +-
  3 files changed, 11 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_oa_regs.h b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+index a9b0091cb7ee1..1188eca79a578 100644
+--- a/drivers/gpu/drm/xe/regs/xe_oa_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+@@ -63,6 +63,7 @@
+ #define OAG_OA_DEBUG XE_REG(0xdaf8, XE_REG_OPTION_MASKED)
+ #define  OAG_OA_DEBUG_DISABLE_MMIO_TRG			REG_BIT(14)
+ #define  OAG_OA_DEBUG_START_TRIGGER_SCOPE_CONTROL	REG_BIT(13)
++#define  OAG_OA_DEBUG_BUF_SIZE_SELECT			REG_BIT(12)
+ #define  OAG_OA_DEBUG_DISABLE_START_TRG_2_COUNT_QUAL	REG_BIT(8)
+ #define  OAG_OA_DEBUG_DISABLE_START_TRG_1_COUNT_QUAL	REG_BIT(7)
+ #define  OAG_OA_DEBUG_INCLUDE_CLK_RATIO			REG_BIT(6)
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index fd2ffe8df1561..962a5fcf57d4f 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -405,6 +405,7 @@ static void xe_oa_init_oa_buffer(struct xe_oa_stream *stream)
+ {
+ 	struct xe_mmio *mmio = &stream->gt->mmio;
+ 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
++	/* For 128M OA buffer size, x8 is done in xe_oa_enable_metric_set() */
+ 	u32 oa_buf = gtt_offset | OABUFFER_SIZE_16M | OAG_OABUFFER_MEMORY_SELECT;
+ 	unsigned long flags;
+ 
+@@ -906,7 +907,6 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream)
+ 	struct xe_bo *bo;
+ 
+ 	BUILD_BUG_ON_NOT_POWER_OF_2(XE_OA_BUFFER_SIZE);
+-	BUILD_BUG_ON(XE_OA_BUFFER_SIZE < SZ_128K || XE_OA_BUFFER_SIZE > SZ_16M);
+ 
+ 	bo = xe_bo_create_pin_map(stream->oa->xe, stream->gt->tile, NULL,
+ 				  XE_OA_BUFFER_SIZE, ttm_bo_type_kernel,
+@@ -1087,6 +1087,13 @@ static u32 oag_report_ctx_switches(const struct xe_oa_stream *stream)
+ 			     0 : OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
+ }
+ 
++static u32 oag_buf_size_select(void)
++{
++	BUILD_BUG_ON(XE_OA_BUFFER_SIZE != SZ_16M && XE_OA_BUFFER_SIZE != SZ_128M);
++	return _MASKED_FIELD(OAG_OA_DEBUG_BUF_SIZE_SELECT,
++			     (XE_OA_BUFFER_SIZE == SZ_128M) ? OAG_OA_DEBUG_BUF_SIZE_SELECT : 0);
++}
++
+ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ {
+ 	struct xe_mmio *mmio = &stream->gt->mmio;
+@@ -1119,6 +1126,7 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ 	xe_mmio_write32(mmio, __oa_regs(stream)->oa_debug,
+ 			_MASKED_BIT_ENABLE(oa_debug) |
+ 			oag_report_ctx_switches(stream) |
++			oag_buf_size_select() |
+ 			oag_configure_mmio_trigger(stream, true));
+ 
+ 	xe_mmio_write32(mmio, __oa_regs(stream)->oa_ctx_ctrl, stream->periodic ?
+diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+index fea9d981e414f..539c75f57c096 100644
+--- a/drivers/gpu/drm/xe/xe_oa_types.h
++++ b/drivers/gpu/drm/xe/xe_oa_types.h
+@@ -15,7 +15,7 @@
+ #include "regs/xe_reg_defs.h"
+ #include "xe_hw_engine_types.h"
+ 
+-#define XE_OA_BUFFER_SIZE SZ_16M
++#define XE_OA_BUFFER_SIZE SZ_128M
+ 
+ enum xe_oa_report_header {
+ 	HDR_32_BIT = 0,
 -- 
 2.41.0
 
