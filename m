@@ -4,162 +4,172 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B24CD597A4
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 20:41:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EF92D597A5
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 20:46:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC77410E188;
-	Tue, 12 Nov 2024 20:41:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5FC010E0BA;
+	Tue, 12 Nov 2024 20:46:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SuvNaNJh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PNoGxa8A";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC31C10E188;
- Tue, 12 Nov 2024 20:41:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 000BF10E0BA
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Nov 2024 20:46:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731444065; x=1762980065;
+ t=1731444380; x=1762980380;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=/8QBLzYWJ3jMXF62qMcqTpHLl0MJ6t+wlPbY7x8QU1M=;
- b=SuvNaNJhPE//PCs83NvUo3yOoQggZ/0EG1LJMLcLuu9SckoxiSj3gdsm
- rskRz4V6ilikbtMAZp1fTTTz0X4mM24ukqv3Z2nuNwVt6Dlialjb+wPyO
- qwDlVpVcCzhaH+eb9IkGpbkmUL2XCukEGT1KW07gMaSZW35VH6mwDME2G
- Q+SulNUj+dxq1SQDvf2DDud/cQzkgabBqmG2gIAPdiQscu14cE+XpqUJI
- qYpFxEJUrv2czoDPbkSEOQV6BpphA8hnfirpX5+lajeKAr69S96U/AbiF
- F2ZdZIK4Ti1mivjpCvThgOe0otJRGZbwoYrDV/HTnefSseRgZHqs1yvuA g==;
-X-CSE-ConnectionGUID: oRKXa2YQSbu5T4kVwJH44A==
-X-CSE-MsgGUID: fsREqez/RW+JRQntkm1cuQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="18916970"
-X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="18916970"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2024 12:41:04 -0800
-X-CSE-ConnectionGUID: 74HIdNiBRLOltKqaUjRAQg==
-X-CSE-MsgGUID: cKXFJFLiRweeyau4ofutEQ==
+ bh=HBR1k/d4L6g5OXuP8NZWwZN//4D7BXehZkWP/M47OwE=;
+ b=PNoGxa8AnQjZKVojRLZ6i7++JDuy+cRMqip/YgpAcmhUdlnp0IBZu9KI
+ YkTsThrOGR0eFG/X0YI8z0Clp0pp2XHfpFWTu4qLkjhM0z16SqLHFTaSO
+ p8Wu9k3zqZ6F+s6TFLiET3xA+SQgLckq6iGSl3fDzWiFWHAu8tve3lM0b
+ CDm65FZHEyMAsfzvkdqroFbkVFdriCWyO7C9nB2q/PcRh9K4GmsmY4Q5F
+ KD0XeW5FnCKuMYqY4Xujg7CijTgia6JpPdyohyv4TjUAy/8L/fygBp/V6
+ BvpuFFuElrB0/AOL2USXLLUE57jtEXDgMHa3eJBXXu/9JAgCU4CYthOYA w==;
+X-CSE-ConnectionGUID: lYpZLZM3S86MUqaH0JWLyg==
+X-CSE-MsgGUID: 3oUI3wwGR4uKgrdQTBvt6w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="31535018"
+X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="31535018"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2024 12:46:19 -0800
+X-CSE-ConnectionGUID: 1+Yq85FJQpiL6OKW6C5aSw==
+X-CSE-MsgGUID: EAkFFfTFQwanyaS4fOQycA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="87213357"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Nov 2024 12:41:05 -0800
+X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="87618233"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Nov 2024 12:46:19 -0800
 Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 12 Nov 2024 12:41:04 -0800
+ 15.1.2507.39; Tue, 12 Nov 2024 12:46:18 -0800
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 12 Nov 2024 12:41:04 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
+ 15.1.2507.39 via Frontend Transport; Tue, 12 Nov 2024 12:46:18 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
  by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 12 Nov 2024 12:41:04 -0800
+ 15.1.2507.39; Tue, 12 Nov 2024 12:46:16 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yjRRix0+GTK9kFn7aDBzy0TwuiSOiC9YvuixpzwY6yX2B3l1zKhGI18Uo1WgYiQmf9MlRX74VBvgpLgb2O/jW9qoOqy7pzMWjmsie/fzTSZSaeZJzw9Hr5S6CN30MWndG2N6CflfcKdb/apzcGf1XsJ4DRDLtbFjENIGNWWGiTftbkc6R1TAH+kJFaWz7RyHXe25/bDxX+YFid1SJWvZbhq5qBZRgfwiMDgizO9ZPW/ohRrwj2Y33g06xe5w3gOnTiXeTBH0GiOz/tlXwLcfPAI4yrOvA0nUwM538A4Kg7yVTKSiNFCnRMARwDkO7TLFZVecKqxE959KGs6CZUPUhQ==
+ b=uGqn2ddtgunq8QLDVr6a2CHvOXWj9y0QvCpITELZwYSrS8D6pNU62bcNpj9QW1RDPZoy53ZnE6+GgqZ5mg2sUYX9ZXDEaGCKQxbcHgbsvsd1qJzZ39VPflRQXSBHTwSmNCky1GD+QaWIS5kebvFV0SqeclcEB7y76cBuPI2wmj9Dgw4ipg3txX/rGmtRMEfatr4THEnBjPSjOr+sDbT6ai2l7Th7vyVtCGNR/jAjmXAPZxA/1j+SDSuJveaFAvKdFZs9LlldtYv69IIdu/0HAZj3byvPV8l0DBtVTHo12x1ILPIEONTtkJHqkA4b9WZ+l2YCYWLY/F0tHMeMx9SU/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yYufPqz3JnakbgumynX20dJGihApedkm3/7Syxd9Sww=;
- b=XwJArlFPjpRi2e+7YkD5xaOL/boXY7Ky6HQMQ3E7TNJrbvk1GCwnhcKUbcpynIp/t3PSiwcbgTRLLyxMebEAvBmyYJ7McY0Bz8ymcpZSmimkVyc4GBrR70fMl47X/KHg93td9H+2kGc8QmMyJSDhIk03XS2QpZ6xICUiiheMqsZGWe5JlXaTQuqIHJQO7BJY9ryoVElGdloIdx9DZCK5JhJhUUkd1ipmKDs7gQUhiFnP4LJ67wReTW1gS6DUynXsUbtDn9NSDBJXE8dy8elBIqJQPoSiLLhs0FIrVD2auIwnLlRpi/cE4MhAMXK3thE2TgcjaETrnpuRTiZZKykGYA==
+ bh=1U2R+6D3DzLC6L2YIWNbGTmQwtiNuLDVYckT4xulGxk=;
+ b=Q3Xo/lOIwDVXhJRuWW0kx3JDt35dz1KStwBXDnbihvVJ0y7RJEvCODKI2R554kdlAa8+ZiIPmaXDO+BW2CL/A+xJNQP3k0nPaoXe1JBFukRB/53BFaRxyuja2mKaCbK6bqM1CwVnWXmxSZVFPEqihN6hT6PxJLI+ktCcM6gMB4v3eNtQO3lI8p+7+Ta2iupm1jH/e9e9P8KzFcpqFFebxIwEByGPfO4QJiD1/u0xqa6/UUAQ5dx37C8AEwU4+33Ew5ASh5ypv6wg0ckjCYYi/Eh9TTQlkJU+0MTlKKRIdanxV5Az41vGLLFShcxepzcfPBnQCzQDkBlZCQ9cL2B5qw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
- by CH0PR11MB5313.namprd11.prod.outlook.com (2603:10b6:610:bc::15)
+ by CH3PR11MB8434.namprd11.prod.outlook.com (2603:10b6:610:176::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.29; Tue, 12 Nov
- 2024 20:40:58 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.17; Tue, 12 Nov
+ 2024 20:46:13 +0000
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42%7]) with mapi id 15.20.8114.020; Tue, 12 Nov 2024
- 20:40:58 +0000
-Date: Tue, 12 Nov 2024 15:40:54 -0500
+ 20:46:13 +0000
+Date: Tue, 12 Nov 2024 15:46:09 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 1/5] drm/i915/overlay: convert to struct intel_display
-Message-ID: <ZzO9VpGn696jbsMA@intel.com>
-References: <cover.1731347547.git.jani.nikula@intel.com>
- <873690f374729d7479e2d7f6adeefddf90f53fc0.1731347547.git.jani.nikula@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+CC: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>, "Brost, Matthew"
+ <matthew.brost@intel.com>, "Harrison, John C" <john.c.harrison@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Teres
+ Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>, "Dong, Zhanjun"
+ <zhanjun.dong@intel.com>
+Subject: Re: [PATCH 2/7] drm/xe: Add ring address to LRC snapshot
+Message-ID: <ZzO-kV7niWsIOiHC@intel.com>
+References: <20241108174312.272792-1-matthew.brost@intel.com>
+ <20241108174312.272792-3-matthew.brost@intel.com>
+ <CH0PR11MB54441F26FE46E5366FEC4EFDE55D2@CH0PR11MB5444.namprd11.prod.outlook.com>
+ <Zy6aVcXWot6hBV1n@lstrano-desk.jf.intel.com>
+ <CH0PR11MB5444A8A2BFD2FF1C0B22CFB9E55D2@CH0PR11MB5444.namprd11.prod.outlook.com>
+ <9d829b21-4327-4cbf-ad72-b3e47d57fa74@intel.com>
+ <ZzOb3FtRFAMAQzt3@lstrano-desk.jf.intel.com>
+ <CH0PR11MB544468E5716752CB21F19C2AE5592@CH0PR11MB5444.namprd11.prod.outlook.com>
+ <20241112203006.GJ5725@mdroper-desk1.amr.corp.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <873690f374729d7479e2d7f6adeefddf90f53fc0.1731347547.git.jani.nikula@intel.com>
-X-ClientProxiedBy: MW4PR04CA0371.namprd04.prod.outlook.com
- (2603:10b6:303:81::16) To BYAPR11MB2854.namprd11.prod.outlook.com
+In-Reply-To: <20241112203006.GJ5725@mdroper-desk1.amr.corp.intel.com>
+X-ClientProxiedBy: MW4PR03CA0170.namprd03.prod.outlook.com
+ (2603:10b6:303:8d::25) To BYAPR11MB2854.namprd11.prod.outlook.com
  (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|CH0PR11MB5313:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5cd3eb6f-0fac-4492-e572-08dd035a4f7d
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|CH3PR11MB8434:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3729dc71-5a88-4b5b-53a6-08dd035b0bce
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ewLjbqiRI0TMMh1eilehHYBpjYviZ//rU996Up9RxEy6a+g3+hYR3k4ximZx?=
- =?us-ascii?Q?+ZtPMUuYteG+8wtxMEZJxKHOyVhgItjJRYbj/1P//0Fm3KmggYPO/aM3eRD9?=
- =?us-ascii?Q?TjxUQ2QSvACNLMvgLBTmUOuWIgXJEOe+nJuAdPdpqBF45ftW+wLBTZbPk7ZH?=
- =?us-ascii?Q?THY6GU6iKoCvH5mvpXViA4DsCu2iKumZv0wfZ+2jUCbwEvQHwxS5Isgna72C?=
- =?us-ascii?Q?ZyIgnHxZ3OHqriWZLp+PffJMBYxIRXnsh+W6IxDzSzCK6Cu0MGipXQ4OCFpG?=
- =?us-ascii?Q?20DC+ZHdnw0E5wfS3vqtL1ME6IjLQ2WRc7q2uAnIFtBJAIFaCqUrWzmnSwRI?=
- =?us-ascii?Q?NjgIkfOSGUqbo4iyvmHbxbhCbuKBDMHyEt5Zf8H4EiIJOoMsIfFhbXSbZ5ZV?=
- =?us-ascii?Q?mmHzZajB5ytB7R/ta5aKrCMZM4BltK8c4VyPIwH4TSSfzoQKsakJ8Ox1uxMI?=
- =?us-ascii?Q?bE2rcUCA41PCRc8FI21+0wAlS0HuClUbkcIQ17ajfyxtvj60gYb80xY0nW23?=
- =?us-ascii?Q?L6fbt2tfRjCzr2Tzyg8NlJNYwd0n9u9AHS9zhB79qkCrp0dKTKhrEl6QD5M6?=
- =?us-ascii?Q?1rsz0R5LIvYVmM0tymbwBd8C9rZIA/UmpSgsZrK2CWyd6/P0doduaBpfOBoL?=
- =?us-ascii?Q?+TQmY0weDDT3LkRbowx0LcuzkNWnAkjK5PMp5GuzXkNRYEfFJ7CYZynAu7La?=
- =?us-ascii?Q?2ZPsWfcKF6YVDgnCgqA25VapqUI1haPZN91fcHbz3VmGAg0CeSZMQBYRoOV1?=
- =?us-ascii?Q?RhVtHsooq2yAtncFIlcy9oY1+nfg3emZjNBs8IRzb2UEe2pgCmfkcYhN9Ooy?=
- =?us-ascii?Q?d8PkUb+uFmo7Nw0rOoBVZzq1HYZSZaYNkRxxr3QVA3fvXdra1WvS3WPqlcGi?=
- =?us-ascii?Q?5ZtEtKk/f9+6iuYSa+o2nPBsSaIFYax9uGqANL9Gjqud+mF/6b8x6rQ1tdAU?=
- =?us-ascii?Q?RTUlIqwyl2nb3IvFV3w2MaHUoqtC1SUyiamntkrCcTsN55GMXgqg36ggEku6?=
- =?us-ascii?Q?O6AgTbqgAoAUcTf58SEaBQeZMnEWZvWTWbbbvCLfWDJA3/I9tm70k9/OpMiL?=
- =?us-ascii?Q?8j6FZ0WZEICZo8teV1ORvB22TsztN/7PwkQEJFa2Do6KixABnAFP8aFy7yYY?=
- =?us-ascii?Q?ndmrKnYlAhIfbEDHYsMZxJ5DZTffguT8HHlXYXawbImP6i7GMkx7GW7GoLKM?=
- =?us-ascii?Q?pVJ7+yVQO3FcVqH1oJvGfoUG8XjREtSkwxf/lR/S3wokgE7jQscwGRGJA6wl?=
- =?us-ascii?Q?5vqsltuz2d4ok2eEn1BqEZZhePrDUFn2gjZ8uIQJlhWQZ41PBiMaIszzYoxo?=
- =?us-ascii?Q?grslvCe3ZuSnVL5Rwq3iWWIa?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?FjWLkurqe+VaBXv1HgJ7vCWt21Prd7hhRJ3ajT8nn1xD55e7imOjQBPtRE7q?=
+ =?us-ascii?Q?3luZzg71NrJ2qjDPvuQBVUGYrh4I1/s/X0kG7SyMKcSGTeujctoCSzaG5tUy?=
+ =?us-ascii?Q?bfHRP/0gIFQrAXrgZmqPm10e+oPFzLy156z2vLOHw/pA52JonA2/NViLwJnj?=
+ =?us-ascii?Q?t2Y67E9Sx5jBeyfN/D5b+cto81CFt8uY2I732RdI/PvYkZSUA52oWOWNl6Cm?=
+ =?us-ascii?Q?5rOzLCTjfn59toL9UqZspFGvDv/Cdc0RUuAe1E1UWbDUXQmMCXqGX8/rg9ZT?=
+ =?us-ascii?Q?5CsRvGTCEfnIpFo1AXN2FEttDPmROUrKvfUgbUuFie8EZWBCwhB5JTy26YCp?=
+ =?us-ascii?Q?Oo7DaxiP3Y0mrCZ/8AatHZiKT4e+wquCtLH6GIrwRNrG3eU44KHGJ3wJuto9?=
+ =?us-ascii?Q?+hZiq5EVqO54Htkg4hCi7cRZ2Khr2IZAPxURMvw9nw8z+Z5y6LVDPoLKFMOO?=
+ =?us-ascii?Q?2udPSgrSLLRzMYoFP+T5iqh4+8BF8snjXdIsJagheqveYy3410NQkyZ8LCSs?=
+ =?us-ascii?Q?TCNSizPCg+4p9qqfh/NlhmGNCNnWm2Oxuhe6DWo97+GZmOZRzk0FMqzj2lYp?=
+ =?us-ascii?Q?eBPGsRl88eu7VBAtN9lFpC6BGbxapE3j/lrtmUruKDVC1Rd8DLM53v+tRNqs?=
+ =?us-ascii?Q?4UaF3VKjwSioWyhvZl/XnQFS2b+tFW9BKSq+uQepqUg10ntxN1KAIfIcByl8?=
+ =?us-ascii?Q?AAe138NzKBGTHkt2WHi9wLGSJoUoad2NhrjThc2Lkw7V3tBcE1nn+PA1YjMk?=
+ =?us-ascii?Q?iNLTDifTxQOHzULu+t4Vt+7sHTAAcWXPnZAZtcIxGitZPV7vx9f9SUSZw9nl?=
+ =?us-ascii?Q?TW6oCuDwuIS1h7XjUxYLPvEm3SIU0cM3HQ4z4vA+VIGCVN5j/SQWkLFOqzCp?=
+ =?us-ascii?Q?j3x26i8ElO5/HbMApTlTxtjKivYQMKh8g7TpL2ANQ+0HG9GVAvMmY5VC08zs?=
+ =?us-ascii?Q?tZx1av5VdtmAwW38//4e88w65vkuFj6q+RNQntMXnMyjjGSSfBnJmxlj54b9?=
+ =?us-ascii?Q?DkHqDz/PudE9HLbaB89JvFmLlVxqtf76Z5xfPJYsseRkk4NDdE9pg2v0s+m/?=
+ =?us-ascii?Q?KedO7mwXZwbPnajiQk4+uAWqJZkrPtSMyuE03eZkuVjaSzK6y+NtBTIiWgKJ?=
+ =?us-ascii?Q?QF4c5C72ZcRZD4vclxEyggI9fxeUjzTCsMS3k40uiYB2i1bwo/iIISiGSGqx?=
+ =?us-ascii?Q?MGuRkAiRBqOJzaTpEzHrXzVHDHenBwO3IE0QsuuWuohd5p8qtua/q2XhjY20?=
+ =?us-ascii?Q?5vJBtuBxWFla6TYn0HmMvLK2vjtW0Doq6Tpnofaj+dxDgy50Lo3aUq7KNyy4?=
+ =?us-ascii?Q?Hag=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QlJb0p8vf1Nlf3RNFI8y8Q3PW7pfd6/Ng0aNVBN5Oh+txxqsg92x8yvlAk2A?=
- =?us-ascii?Q?P8o8lFBo6Fc8XJdF8NQPRaVHcyVmO/XYYiA7L7Ef9a/2iNcvUDNQ4lDCo1uJ?=
- =?us-ascii?Q?bS7faBBDCWYslT8qlHFzAdkf2uNU/QWJYLpmPecphHV3cy3Ca8JzZPxi1xgC?=
- =?us-ascii?Q?yIX6l6IDJucmHsSPiDPN3IMCeGd8jc0ZVbqNTHycG1SNBRRB/SVqw9tt4Hlk?=
- =?us-ascii?Q?rQAPjqPWlGoumbo1dBgUqqnGMPHEEStlmlciRcBbRy7pZ63NkpwBOH842w4z?=
- =?us-ascii?Q?fmtDxRjav1nV4FNzxSlry580rxXf16Yp4G67FSAa5fw6DR/qTN4TANqz5Rpr?=
- =?us-ascii?Q?O865HnxIOZc1pSBQNj9wBE5NavXCOjLw3JA4ybBr1l3megV2t+8J2zkGTCmt?=
- =?us-ascii?Q?9FvXlTXrhywNbb/67JNaLI6GLCU8O4kzFdooZJCStbLYnariFhXorADEufpD?=
- =?us-ascii?Q?l1LNH0pEd/HnBV+uEpum0JpbqVHdiz2/pQs8NHO6G+OHPjE0sHn7NCpbz30s?=
- =?us-ascii?Q?WNHzz0A7QUO7nV6oXTtk+WCkNiYf/0m5Uq/30lAZbfbX1sInVl8iR+The1ZL?=
- =?us-ascii?Q?xwbpUTmcx1JpYsbLKXlyn1piyOY/vGQjaDu3M0gth6cTVwJEBb4MXPGC+Up9?=
- =?us-ascii?Q?UJQCPuyiObqwgaDbO1gqTarc1Sce9bMAAivTErmPH1lLMjtu5VzpjlOSmnJB?=
- =?us-ascii?Q?SbOO8e320FIrVlRF86VbShOHQc3ZDCkCqtihXUFxwSugDHcxhgep1BjzoifA?=
- =?us-ascii?Q?jSiGMXFVJnlPWwtnYraSh0UAEK29FWMDQh8H5uqNGHZMXI6v9J2QXM2EJZ7p?=
- =?us-ascii?Q?LtgoQMs/WAzRMoPGZi9REsDNGY72a+xvM3YOlCU4LBeCyKzfE8UUw/P3Obj+?=
- =?us-ascii?Q?sISQlGqy7xE54hB+LH5Uv89eOfbpxRusZctJk/eOUgutdOGocj09yvtiDpHd?=
- =?us-ascii?Q?u5+cGsNi5PCtiMnjawSL6JrR2A99x4/ZyrmxIWErdtYKRHGRe0Rho0JmVTt5?=
- =?us-ascii?Q?0Wh6UKaOW2hAEAXO4zjJ1xMIZNf88i0dFGORHGe/8slVDPHEcbgud1mIzSer?=
- =?us-ascii?Q?ax046Me8dqUUIFn4H78LZ+7YF3QhbkIPbpX18cxNrGiQpdNp4ZmC7TxNVbHD?=
- =?us-ascii?Q?hHlODK6Jq9d1QGd5cPWMz225V7Fqwzj535t5102xk2u/SF4ro2PwEVB2FmqX?=
- =?us-ascii?Q?Mm44QB9PVU8TwtyvigF0iYwSb9xuY/RI++95TkWwF4gKajqGO3dfwWGU3+8K?=
- =?us-ascii?Q?7Yk9TsBZBX+c9SGJWhxseNvWQeVZIiMRfhhNfwT3KQwAsxK+fyAj53gdgY7b?=
- =?us-ascii?Q?ZosC5v4R6J784yQCSEp9vR6HYoCSvr15645t88DF9+j0vLuezVwMMhONcVTa?=
- =?us-ascii?Q?q0sXhrIhUhmxqETtOfd5Lb/aNS4wXMTfGTne/ih9nuWap/ZUq5KGnG6hIsyC?=
- =?us-ascii?Q?LHisFr4SNJJYZOTAZyT1ehAbjXkznPuv7TEvS0nwd2tsPIJm3eGhWNPjSPcn?=
- =?us-ascii?Q?sgZb7mjArhJg/UBHkGJQkKOW3pXGkMmds1TgfKa/Gh8adEc0B4M/7DfsI+Kh?=
- =?us-ascii?Q?v0VSvxO99bWzWk2N91NVb+v9V3R+REhTdbJ8A/GAfMEZnJ6R8caDfPtNQcvB?=
- =?us-ascii?Q?Xw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5cd3eb6f-0fac-4492-e572-08dd035a4f7d
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/0guL4QLIPd7XcE276AZlMr55P+JfOuHnhJnMEgv3Pe67ggAQV6+8Px8ytvk?=
+ =?us-ascii?Q?YsQYE45hopQsc63ca9amdv4XAE6ptOP94YZQJtWVL1c/MIHFOwVNPyBaY0XJ?=
+ =?us-ascii?Q?d1VOOu8G6P4Rno8dBXCko5l1Ocxbluq/KI8YojvX9YUIPgMlPBeHkc020aTz?=
+ =?us-ascii?Q?DEkVIs680b+CnumWbEgzu6oX6eFIx7yYKAOthCXVkNCgSXLPgIIxgsqi+gQs?=
+ =?us-ascii?Q?NlYKSMec2fe43nYmgUim2cwCDFCTKOHBDMfeYZGrWatXPurtnJnk+LwzoUdQ?=
+ =?us-ascii?Q?XtRE5xjNEiZqsRSobP4Y0aqHozWQNQWzxZpKHlyTzTcYMZ+9fxpz8FGvwlYK?=
+ =?us-ascii?Q?xIdgkXrtCSiu4Hyj1Hkn5siTosR/heXpsNNX2sc6CD+eFtGHayqYyoYTGuD/?=
+ =?us-ascii?Q?oGAlv6TZedrycB4II0VYkOo15+mkLXORDY/2jNLOKCEjHVk62WYq1LklnT7x?=
+ =?us-ascii?Q?b+MoaAZVIVCcuTwMYq+mf5r/RuTZLtLjC0N+/zpGBpH34LJX8ANiKse1QzSc?=
+ =?us-ascii?Q?s8UoXRfaqN/Y/u0y4UHLmMx8UxpsG6zSkhwtHromRY/LB0p3ijdxMo/C5ks4?=
+ =?us-ascii?Q?5Oi33DOzhBm/lgKsL+cC2lBnA1UQ18EKNudrlfX24rHML5FMZ3CzFiLs3ElC?=
+ =?us-ascii?Q?k0cfwOzcLpSPPHEMqw1FONOIqY+4yvAxcwlz4yaHXjZ9bTUs5i2FRuTCg7aU?=
+ =?us-ascii?Q?J7P1QdkxhnGzcPsK0sGpqP+pBeU8qzFGZRuu8zE4iUyihd7MANxffs2LuXTl?=
+ =?us-ascii?Q?5wRZBtaoQcwJDs2/3pwCt1hdDT7hSvE2tJI+5I2m2Xv7ZsQ6lVWPkfaxAvC8?=
+ =?us-ascii?Q?YmsjNH3i8ZGcRFs1ZycUJopMZM0vk1M6ajfEeFzzEatIotPJj4sTiLFTk4Dz?=
+ =?us-ascii?Q?TrsXZfKE9pWnaUbRKrShf+G/Vw/r2EtCVhWqLIqNU5+4RQWRyN0gVySk91hI?=
+ =?us-ascii?Q?EPnirrPpotujrW8y8zZuh5ooSFWAroHSb9pcxYjAxyFsc5gScEmQieHiZe98?=
+ =?us-ascii?Q?lbXJplePDzj6tWio0N7AZRz+382dSGNxA/oQaEdA9C3nLuYIBSybQZHbskpx?=
+ =?us-ascii?Q?V+5AjCd+N9r8i9Qw6EwdfWgADLYphGcKbG+hJSOQxXg+slZFczy7eiyZ0pLZ?=
+ =?us-ascii?Q?mKPiSN0UjJ/hWl5FzmFLpG+u/uIpgTQaQo1aMSBNwysmMyfh/AA2bBqe7Q3c?=
+ =?us-ascii?Q?nv9jFxmjus+lGeQGMaN91uxLZxzo855CgwcRQRHEuWz/D3STcUaZ8jAJIA5T?=
+ =?us-ascii?Q?aKTgI9gclw9sNXIzKb4P+aMtQgKLlzc181zpc2N9Q9LC2M+LZ4ty1KPjsC7/?=
+ =?us-ascii?Q?G71QpJaYyGeN9ihfTcs/Jvs0yaVZSifK5IxJFDGndhzD2bB8M5TPIRDadlKk?=
+ =?us-ascii?Q?MP7QhsOHMxZh7g0CWOzf58DGe9TaCJon1cfQppy2lIV/TO7IzVpNlOwp1Rir?=
+ =?us-ascii?Q?FxyXw/8AaKDvWz7acDKLtCKjEz/efPLMBjGiuwE62sJnEKS/MV8JyaHfIGuz?=
+ =?us-ascii?Q?WCShWaMHiMffThuU7TlQGfQJVOrkSPIgIr8LJPtdirYT7wBY7C+JSPie6Ti5?=
+ =?us-ascii?Q?tyibJMZHS34LzKeFc4T41HuGo4rfAjggLaM1p89q2YiUxHugGb0EwgUrzVgL?=
+ =?us-ascii?Q?/g=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3729dc71-5a88-4b5b-53a6-08dd035b0bce
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2024 20:40:58.1368 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2024 20:46:13.4084 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8w9Iz2+a9AdkkMXwAkIkHySayw4Xjk5vuyQhwH6rSorjYYRdYMyVY2lXGU923HdImy8Bfdp+hPSV0hI7C4w5LQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5313
+X-MS-Exchange-CrossTenant-UserPrincipalName: Gmp/KhMqw3fZbZTEZKrMFiUPjcKKbmx3k5RuAjI7yqIL1h6ZYUduyIFcItNwnfO7Wz2RwWKTqNSflClPJy7r8A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8434
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -175,664 +185,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Nov 11, 2024 at 07:53:30PM +0200, Jani Nikula wrote:
-> struct intel_display replaces struct drm_i915_private as the main
-> display device pointer. Convert overlay to it, as much as possible.
+On Tue, Nov 12, 2024 at 12:30:06PM -0800, Matt Roper wrote:
+> On Tue, Nov 12, 2024 at 12:16:46PM -0800, Cavitt, Jonathan wrote:
+> > -----Original Message-----
+> > From: Brost, Matthew <matthew.brost@intel.com> 
+> > Sent: Tuesday, November 12, 2024 10:18 AM
+> > To: Harrison, John C <john.c.harrison@intel.com>
+> > Cc: Cavitt, Jonathan <jonathan.cavitt@intel.com>; intel-xe@lists.freedesktop.org; Teres Alexis, Alan Previn <alan.previn.teres.alexis@intel.com>; Dong, Zhanjun <zhanjun.dong@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> > Subject: Re: [PATCH 2/7] drm/xe: Add ring address to LRC snapshot
+> > > 
+> > > On Tue, Nov 12, 2024 at 09:59:16AM -0800, John Harrison wrote:
+> > > > On 11/8/2024 15:34, Cavitt, Jonathan wrote:
+> > > > > -----Original Message-----
+> > > > > From: Brost, Matthew <matthew.brost@intel.com>
+> > > > > Sent: Friday, November 8, 2024 3:10 PM
+> > > > > To: Cavitt, Jonathan <jonathan.cavitt@intel.com>
+> > > > > Cc: intel-xe@lists.freedesktop.org; Teres Alexis, Alan Previn <alan.previn.teres.alexis@intel.com>; Dong, Zhanjun <zhanjun.dong@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> > > > > Subject: Re: [PATCH 2/7] drm/xe: Add ring address to LRC snapshot
+> > > > > > On Fri, Nov 08, 2024 at 03:05:34PM -0700, Cavitt, Jonathan wrote:
+> > > > > > > -----Original Message-----
+> > > > > > > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Matthew Brost
+> > > > > > > Sent: Friday, November 8, 2024 9:43 AM
+> > > > > > > To: intel-xe@lists.freedesktop.org
+> > > > > > > Cc: Teres Alexis, Alan Previn <alan.previn.teres.alexis@intel.com>; Dong, Zhanjun <zhanjun.dong@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> > > > > > > Subject: [PATCH 2/7] drm/xe: Add ring address to LRC snapshot
+> > > > > > > > The ring is currently in LRC BO but this may change going forward.
+> > > > > > > > Include the ring address in the snapshot protecting again any future
+> > > > > > > > changes.
+> > > > > > > > 
+> > > > > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > > > > > LGTM, though the terminology we're using to describe the various ggtt addresses
+> > > > > > > as "descriptors" is a bit confusing, even if it's consistent.  I wonder where that
+> > > > > > > terminology came from?
+> > > > > > > This is just a rhetorical question.  I'm not suggesting it be changed.
+> > > > > > > 
+> > > > > > LRC descriptors is name copied over from i915 and may even be in the bspec.
+> > > > > > 
+> > > > > > But yea, indirect_state_desc and ring_desc are bad names. Will change to
+> > > > > > 'ring_addr' here.
+> > > > > IMO it would probably be better to leave it as "ring_desc" for now as it's
+> > > > > consistent with surrounding struct members.  We can do a pass of the full
+> > > > > XE kernel for inaccurate uses of the "desc" qualifier in the near future and
+> > > > > fix the naming scheme here as a part of that fixup.
+> > > > I strongly disagree. Just because A is broken doesn't mean we should add a
+> > > > broken B and C! It makes no sense to add a name we know is bad just so that
+> > > > we can change it later. Anything new should be done properly from the start.
+> > > > 
+> > > 
+> > > I agree with John here.
+> > 
+> > Okay, I submitted a patch to change the name from context_desc to context_addr,
+> > and it was rejected because context_desc is actually correct.  But if context_desc
+> > is correct, then would ring_desc *also* be correct?
+> > 
+> > Pinging @Roper, Matthew D
+> > -Jonathan Cavitt
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  .../drm/i915/display/intel_display_driver.c   |   4 +-
->  drivers/gpu/drm/i915/display/intel_overlay.c  | 179 +++++++++---------
->  drivers/gpu/drm/i915/display/intel_overlay.h  |  14 +-
->  drivers/gpu/drm/i915/gt/intel_reset.c         |   3 +-
->  4 files changed, 102 insertions(+), 98 deletions(-)
+> As I mentioned on the other thread, "context descriptor" is a formal
+> hardware term that has a very specific meaning --- it's the 64-bit value
+> that gets programmed into the ELSP.  The context descriptor contains the
+> various things inside of it, including the LRCA.  It's documented at
+> bspec 60419.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index 56b78cf6b854..5983570b510f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -518,7 +518,7 @@ int intel_display_driver_probe(struct drm_i915_private *i915)
->  	if (ret)
->  		drm_dbg_kms(&i915->drm, "Initial modeset failed, %d\n", ret);
->  
-> -	intel_overlay_setup(i915);
-> +	intel_overlay_setup(display);
->  
->  	/* Only enable hotplug handling once the fbdev is fully set up. */
->  	intel_hpd_init(i915);
-> @@ -607,7 +607,7 @@ void intel_display_driver_remove_noirq(struct drm_i915_private *i915)
->  
->  	intel_dp_tunnel_mgr_cleanup(display);
->  
-> -	intel_overlay_cleanup(i915);
-> +	intel_overlay_cleanup(display);
->  
->  	intel_gmbus_teardown(display);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-> index 2ec14096ba9c..57eaf81651c4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_overlay.c
-> +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-> @@ -183,7 +183,7 @@ struct overlay_registers {
->  };
->  
->  struct intel_overlay {
-> -	struct drm_i915_private *i915;
-> +	struct intel_display *display;
->  	struct intel_context *context;
->  	struct intel_crtc *crtc;
->  	struct i915_vma *vma;
-> @@ -205,17 +205,17 @@ struct intel_overlay {
->  	void (*flip_complete)(struct intel_overlay *ovl);
->  };
->  
-> -static void i830_overlay_clock_gating(struct drm_i915_private *dev_priv,
-> +static void i830_overlay_clock_gating(struct intel_display *display,
->  				      bool enable)
->  {
-> -	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
-> +	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
->  	u8 val;
->  
->  	/* WA_OVERLAY_CLKGATE:alm */
->  	if (enable)
-> -		intel_de_write(dev_priv, DSPCLK_GATE_D(dev_priv), 0);
-> +		intel_de_write(display, DSPCLK_GATE_D(display), 0);
->  	else
-> -		intel_de_write(dev_priv, DSPCLK_GATE_D(dev_priv),
-> +		intel_de_write(display, DSPCLK_GATE_D(display),
->  			       OVRUNIT_CLOCK_GATE_DISABLE);
->  
->  	/* WA_DISABLE_L2CACHE_CLOCK_GATING:alm */
-> @@ -253,11 +253,11 @@ alloc_request(struct intel_overlay *overlay, void (*fn)(struct intel_overlay *))
->  /* overlay needs to be disable in OCMD reg */
->  static int intel_overlay_on(struct intel_overlay *overlay)
->  {
-> -	struct drm_i915_private *dev_priv = overlay->i915;
-> +	struct intel_display *display = overlay->display;
->  	struct i915_request *rq;
->  	u32 *cs;
->  
-> -	drm_WARN_ON(&dev_priv->drm, overlay->active);
-> +	drm_WARN_ON(display->drm, overlay->active);
->  
->  	rq = alloc_request(overlay, NULL);
->  	if (IS_ERR(rq))
-> @@ -271,8 +271,8 @@ static int intel_overlay_on(struct intel_overlay *overlay)
->  
->  	overlay->active = true;
->  
-> -	if (IS_I830(dev_priv))
-> -		i830_overlay_clock_gating(dev_priv, false);
-> +	if (display->platform.i830)
-> +		i830_overlay_clock_gating(display, false);
->  
->  	*cs++ = MI_OVERLAY_FLIP | MI_OVERLAY_ON;
->  	*cs++ = overlay->flip_addr | OFC_UPDATE;
-> @@ -288,10 +288,12 @@ static int intel_overlay_on(struct intel_overlay *overlay)
->  static void intel_overlay_flip_prepare(struct intel_overlay *overlay,
->  				       struct i915_vma *vma)
->  {
-> +	struct intel_display *display = overlay->display;
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	enum pipe pipe = overlay->crtc->pipe;
->  	struct intel_frontbuffer *frontbuffer = NULL;
->  
-> -	drm_WARN_ON(&overlay->i915->drm, overlay->old_vma);
-> +	drm_WARN_ON(display->drm, overlay->old_vma);
->  
->  	if (vma)
->  		frontbuffer = intel_frontbuffer_get(intel_bo_to_drm_bo(vma->obj));
-> @@ -303,8 +305,7 @@ static void intel_overlay_flip_prepare(struct intel_overlay *overlay,
->  		intel_frontbuffer_put(overlay->frontbuffer);
->  	overlay->frontbuffer = frontbuffer;
->  
-> -	intel_frontbuffer_flip_prepare(overlay->i915,
-> -				       INTEL_FRONTBUFFER_OVERLAY(pipe));
-> +	intel_frontbuffer_flip_prepare(i915, INTEL_FRONTBUFFER_OVERLAY(pipe));
->  
->  	overlay->old_vma = overlay->vma;
->  	if (vma)
-> @@ -318,20 +319,20 @@ static int intel_overlay_continue(struct intel_overlay *overlay,
->  				  struct i915_vma *vma,
->  				  bool load_polyphase_filter)
->  {
-> -	struct drm_i915_private *dev_priv = overlay->i915;
-> +	struct intel_display *display = overlay->display;
->  	struct i915_request *rq;
->  	u32 flip_addr = overlay->flip_addr;
->  	u32 tmp, *cs;
->  
-> -	drm_WARN_ON(&dev_priv->drm, !overlay->active);
-> +	drm_WARN_ON(display->drm, !overlay->active);
->  
->  	if (load_polyphase_filter)
->  		flip_addr |= OFC_UPDATE;
->  
->  	/* check for underruns */
-> -	tmp = intel_de_read(dev_priv, DOVSTA);
-> +	tmp = intel_de_read(display, DOVSTA);
->  	if (tmp & (1 << 17))
-> -		drm_dbg(&dev_priv->drm, "overlay underrun, DOVSTA: %x\n", tmp);
-> +		drm_dbg(display->drm, "overlay underrun, DOVSTA: %x\n", tmp);
->  
->  	rq = alloc_request(overlay, NULL);
->  	if (IS_ERR(rq))
-> @@ -355,14 +356,15 @@ static int intel_overlay_continue(struct intel_overlay *overlay,
->  
->  static void intel_overlay_release_old_vma(struct intel_overlay *overlay)
->  {
-> +	struct intel_display *display = overlay->display;
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	struct i915_vma *vma;
->  
->  	vma = fetch_and_zero(&overlay->old_vma);
-> -	if (drm_WARN_ON(&overlay->i915->drm, !vma))
-> +	if (drm_WARN_ON(display->drm, !vma))
->  		return;
->  
-> -	intel_frontbuffer_flip_complete(overlay->i915,
-> -					INTEL_FRONTBUFFER_OVERLAY(overlay->crtc->pipe));
-> +	intel_frontbuffer_flip_complete(i915, INTEL_FRONTBUFFER_OVERLAY(overlay->crtc->pipe));
->  
->  	i915_vma_unpin(vma);
->  	i915_vma_put(vma);
-> @@ -376,7 +378,7 @@ intel_overlay_release_old_vid_tail(struct intel_overlay *overlay)
->  
->  static void intel_overlay_off_tail(struct intel_overlay *overlay)
->  {
-> -	struct drm_i915_private *dev_priv = overlay->i915;
-> +	struct intel_display *display = overlay->display;
->  
->  	intel_overlay_release_old_vma(overlay);
->  
-> @@ -384,8 +386,8 @@ static void intel_overlay_off_tail(struct intel_overlay *overlay)
->  	overlay->crtc = NULL;
->  	overlay->active = false;
->  
-> -	if (IS_I830(dev_priv))
-> -		i830_overlay_clock_gating(dev_priv, true);
-> +	if (display->platform.i830)
-> +		i830_overlay_clock_gating(display, true);
->  }
->  
->  static void intel_overlay_last_flip_retire(struct i915_active *active)
-> @@ -400,10 +402,11 @@ static void intel_overlay_last_flip_retire(struct i915_active *active)
->  /* overlay needs to be disabled in OCMD reg */
->  static int intel_overlay_off(struct intel_overlay *overlay)
->  {
-> +	struct intel_display *display = overlay->display;
->  	struct i915_request *rq;
->  	u32 *cs, flip_addr = overlay->flip_addr;
->  
-> -	drm_WARN_ON(&overlay->i915->drm, !overlay->active);
-> +	drm_WARN_ON(display->drm, !overlay->active);
->  
->  	/* According to intel docs the overlay hw may hang (when switching
->  	 * off) without loading the filter coeffs. It is however unclear whether
-> @@ -452,7 +455,7 @@ static int intel_overlay_recover_from_interrupt(struct intel_overlay *overlay)
->   */
->  static int intel_overlay_release_old_vid(struct intel_overlay *overlay)
->  {
-> -	struct drm_i915_private *dev_priv = overlay->i915;
-> +	struct intel_display *display = overlay->display;
->  	struct i915_request *rq;
->  	u32 *cs;
->  
-> @@ -463,7 +466,7 @@ static int intel_overlay_release_old_vid(struct intel_overlay *overlay)
->  	if (!overlay->old_vma)
->  		return 0;
->  
-> -	if (!(intel_de_read(dev_priv, GEN2_ISR) & I915_OVERLAY_PLANE_FLIP_PENDING_INTERRUPT)) {
-> +	if (!(intel_de_read(display, GEN2_ISR) & I915_OVERLAY_PLANE_FLIP_PENDING_INTERRUPT)) {
->  		intel_overlay_release_old_vid_tail(overlay);
->  		return 0;
->  	}
-> @@ -487,9 +490,9 @@ static int intel_overlay_release_old_vid(struct intel_overlay *overlay)
->  	return i915_active_wait(&overlay->last_flip);
->  }
->  
-> -void intel_overlay_reset(struct drm_i915_private *dev_priv)
-> +void intel_overlay_reset(struct intel_display *display)
->  {
-> -	struct intel_overlay *overlay = dev_priv->display.overlay;
-> +	struct intel_overlay *overlay = display->overlay;
->  
->  	if (!overlay)
->  		return;
-> @@ -550,11 +553,11 @@ static int uv_vsubsampling(u32 format)
->  	}
->  }
->  
-> -static u32 calc_swidthsw(struct drm_i915_private *dev_priv, u32 offset, u32 width)
-> +static u32 calc_swidthsw(struct intel_display *display, u32 offset, u32 width)
->  {
->  	u32 sw;
->  
-> -	if (DISPLAY_VER(dev_priv) == 2)
-> +	if (DISPLAY_VER(display) == 2)
->  		sw = ALIGN((offset & 31) + width, 32);
->  	else
->  		sw = ALIGN((offset & 63) + width, 64);
-> @@ -789,16 +792,17 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
->  				      struct drm_i915_gem_object *new_bo,
->  				      struct drm_intel_overlay_put_image *params)
->  {
-> +	struct intel_display *display = overlay->display;
-> +	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	struct overlay_registers __iomem *regs = overlay->regs;
-> -	struct drm_i915_private *dev_priv = overlay->i915;
->  	u32 swidth, swidthsw, sheight, ostride;
->  	enum pipe pipe = overlay->crtc->pipe;
->  	bool scale_changed = false;
->  	struct i915_vma *vma;
->  	int ret, tmp_width;
->  
-> -	drm_WARN_ON(&dev_priv->drm,
-> -		    !drm_modeset_is_locked(&dev_priv->drm.mode_config.connection_mutex));
-> +	drm_WARN_ON(display->drm,
-> +		    !drm_modeset_is_locked(&display->drm->mode_config.connection_mutex));
->  
->  	ret = intel_overlay_release_old_vid(overlay);
->  	if (ret != 0)
-> @@ -824,7 +828,7 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
->  			oconfig |= OCONF_CC_OUT_8BIT;
->  		if (crtc_state->gamma_enable)
->  			oconfig |= OCONF_GAMMA2_ENABLE;
-> -		if (DISPLAY_VER(dev_priv) == 4)
-> +		if (DISPLAY_VER(display) == 4)
->  			oconfig |= OCONF_CSC_MODE_BT709;
->  		oconfig |= pipe == 0 ?
->  			OCONF_PIPE_A : OCONF_PIPE_B;
-> @@ -845,7 +849,7 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
->  		tmp_width = params->src_width;
->  
->  	swidth = params->src_width;
-> -	swidthsw = calc_swidthsw(dev_priv, params->offset_Y, tmp_width);
-> +	swidthsw = calc_swidthsw(display, params->offset_Y, tmp_width);
->  	sheight = params->src_height;
->  	iowrite32(i915_ggtt_offset(vma) + params->offset_Y, &regs->OBUF_0Y);
->  	ostride = params->stride_Y;
-> @@ -858,9 +862,9 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
->  		swidth |= (params->src_width / uv_hscale) << 16;
->  		sheight |= (params->src_height / uv_vscale) << 16;
->  
-> -		tmp_U = calc_swidthsw(dev_priv, params->offset_U,
-> +		tmp_U = calc_swidthsw(display, params->offset_U,
->  				      params->src_width / uv_hscale);
-> -		tmp_V = calc_swidthsw(dev_priv, params->offset_V,
-> +		tmp_V = calc_swidthsw(display, params->offset_V,
->  				      params->src_width / uv_hscale);
->  		swidthsw |= max(tmp_U, tmp_V) << 16;
->  
-> @@ -899,11 +903,11 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
->  
->  int intel_overlay_switch_off(struct intel_overlay *overlay)
->  {
-> -	struct drm_i915_private *dev_priv = overlay->i915;
-> +	struct intel_display *display = overlay->display;
->  	int ret;
->  
-> -	drm_WARN_ON(&dev_priv->drm,
-> -		    !drm_modeset_is_locked(&dev_priv->drm.mode_config.connection_mutex));
-> +	drm_WARN_ON(display->drm,
-> +		    !drm_modeset_is_locked(&display->drm->mode_config.connection_mutex));
->  
->  	ret = intel_overlay_recover_from_interrupt(overlay);
->  	if (ret != 0)
-> @@ -936,26 +940,24 @@ static int check_overlay_possible_on_crtc(struct intel_overlay *overlay,
->  
->  static void update_pfit_vscale_ratio(struct intel_overlay *overlay)
->  {
-> -	struct drm_i915_private *dev_priv = overlay->i915;
-> +	struct intel_display *display = overlay->display;
->  	u32 ratio;
->  
->  	/* XXX: This is not the same logic as in the xorg driver, but more in
->  	 * line with the intel documentation for the i965
->  	 */
-> -	if (DISPLAY_VER(dev_priv) >= 4) {
-> -		u32 tmp = intel_de_read(dev_priv, PFIT_PGM_RATIOS(dev_priv));
-> +	if (DISPLAY_VER(display) >= 4) {
-> +		u32 tmp = intel_de_read(display, PFIT_PGM_RATIOS(display));
->  
->  		/* on i965 use the PGM reg to read out the autoscaler values */
->  		ratio = REG_FIELD_GET(PFIT_VERT_SCALE_MASK_965, tmp);
->  	} else {
->  		u32 tmp;
->  
-> -		if (intel_de_read(dev_priv, PFIT_CONTROL(dev_priv)) & PFIT_VERT_AUTO_SCALE)
-> -			tmp = intel_de_read(dev_priv,
-> -					    PFIT_AUTO_RATIOS(dev_priv));
-> +		if (intel_de_read(display, PFIT_CONTROL(display)) & PFIT_VERT_AUTO_SCALE)
-> +			tmp = intel_de_read(display, PFIT_AUTO_RATIOS(display));
->  		else
-> -			tmp = intel_de_read(dev_priv,
-> -					    PFIT_PGM_RATIOS(dev_priv));
-> +			tmp = intel_de_read(display, PFIT_PGM_RATIOS(display));
->  
->  		ratio = REG_FIELD_GET(PFIT_VERT_SCALE_MASK, tmp);
->  	}
-> @@ -1000,7 +1002,7 @@ static int check_overlay_scaling(struct drm_intel_overlay_put_image *rec)
->  	return 0;
->  }
->  
-> -static int check_overlay_src(struct drm_i915_private *dev_priv,
-> +static int check_overlay_src(struct intel_display *display,
->  			     struct drm_intel_overlay_put_image *rec,
->  			     struct drm_i915_gem_object *new_bo)
->  {
-> @@ -1011,7 +1013,7 @@ static int check_overlay_src(struct drm_i915_private *dev_priv,
->  	u32 tmp;
->  
->  	/* check src dimensions */
-> -	if (IS_I845G(dev_priv) || IS_I830(dev_priv)) {
-> +	if (display->platform.i845g || display->platform.i830) {
->  		if (rec->src_height > IMAGE_MAX_HEIGHT_LEGACY ||
->  		    rec->src_width  > IMAGE_MAX_WIDTH_LEGACY)
->  			return -EINVAL;
-> @@ -1063,14 +1065,14 @@ static int check_overlay_src(struct drm_i915_private *dev_priv,
->  		return -EINVAL;
->  
->  	/* stride checking */
-> -	if (IS_I830(dev_priv) || IS_I845G(dev_priv))
-> +	if (display->platform.i830 || display->platform.i845g)
->  		stride_mask = 255;
->  	else
->  		stride_mask = 63;
->  
->  	if (rec->stride_Y & stride_mask || rec->stride_UV & stride_mask)
->  		return -EINVAL;
-> -	if (DISPLAY_VER(dev_priv) == 4 && rec->stride_Y < 512)
-> +	if (DISPLAY_VER(display) == 4 && rec->stride_Y < 512)
->  		return -EINVAL;
->  
->  	tmp = (rec->flags & I915_OVERLAY_TYPE_MASK) == I915_OVERLAY_YUV_PLANAR ?
-> @@ -1114,17 +1116,17 @@ static int check_overlay_src(struct drm_i915_private *dev_priv,
->  int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
->  				  struct drm_file *file_priv)
->  {
-> +	struct intel_display *display = to_intel_display(dev);
->  	struct drm_intel_overlay_put_image *params = data;
-> -	struct drm_i915_private *dev_priv = to_i915(dev);
->  	struct intel_overlay *overlay;
->  	struct drm_crtc *drmmode_crtc;
->  	struct intel_crtc *crtc;
->  	struct drm_i915_gem_object *new_bo;
->  	int ret;
->  
-> -	overlay = dev_priv->display.overlay;
-> +	overlay = display->overlay;
->  	if (!overlay) {
-> -		drm_dbg(&dev_priv->drm, "userspace bug: no overlay\n");
-> +		drm_dbg(display->drm, "userspace bug: no overlay\n");
->  		return -ENODEV;
->  	}
->  
-> @@ -1148,7 +1150,7 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
->  	drm_modeset_lock_all(dev);
->  
->  	if (i915_gem_object_is_tiled(new_bo)) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "buffer used for overlay image can not be tiled\n");
->  		ret = -EINVAL;
->  		goto out_unlock;
-> @@ -1197,7 +1199,7 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
->  		goto out_unlock;
->  	}
->  
-> -	ret = check_overlay_src(dev_priv, params, new_bo);
-> +	ret = check_overlay_src(display, params, new_bo);
->  	if (ret != 0)
->  		goto out_unlock;
->  
-> @@ -1277,14 +1279,14 @@ static int check_gamma(struct drm_intel_overlay_attrs *attrs)
->  int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
->  			      struct drm_file *file_priv)
->  {
-> +	struct intel_display *display = to_intel_display(dev);
->  	struct drm_intel_overlay_attrs *attrs = data;
-> -	struct drm_i915_private *dev_priv = to_i915(dev);
->  	struct intel_overlay *overlay;
->  	int ret;
->  
-> -	overlay = dev_priv->display.overlay;
-> +	overlay = display->overlay;
->  	if (!overlay) {
-> -		drm_dbg(&dev_priv->drm, "userspace bug: no overlay\n");
-> +		drm_dbg(display->drm, "userspace bug: no overlay\n");
->  		return -ENODEV;
->  	}
->  
-> @@ -1297,13 +1299,13 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
->  		attrs->contrast   = overlay->contrast;
->  		attrs->saturation = overlay->saturation;
->  
-> -		if (DISPLAY_VER(dev_priv) != 2) {
-> -			attrs->gamma0 = intel_de_read(dev_priv, OGAMC0);
-> -			attrs->gamma1 = intel_de_read(dev_priv, OGAMC1);
-> -			attrs->gamma2 = intel_de_read(dev_priv, OGAMC2);
-> -			attrs->gamma3 = intel_de_read(dev_priv, OGAMC3);
-> -			attrs->gamma4 = intel_de_read(dev_priv, OGAMC4);
-> -			attrs->gamma5 = intel_de_read(dev_priv, OGAMC5);
-> +		if (DISPLAY_VER(display) != 2) {
-> +			attrs->gamma0 = intel_de_read(display, OGAMC0);
-> +			attrs->gamma1 = intel_de_read(display, OGAMC1);
-> +			attrs->gamma2 = intel_de_read(display, OGAMC2);
-> +			attrs->gamma3 = intel_de_read(display, OGAMC3);
-> +			attrs->gamma4 = intel_de_read(display, OGAMC4);
-> +			attrs->gamma5 = intel_de_read(display, OGAMC5);
->  		}
->  	} else {
->  		if (attrs->brightness < -128 || attrs->brightness > 127)
-> @@ -1321,7 +1323,7 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
->  		update_reg_attrs(overlay, overlay->regs);
->  
->  		if (attrs->flags & I915_OVERLAY_UPDATE_GAMMA) {
-> -			if (DISPLAY_VER(dev_priv) == 2)
-> +			if (DISPLAY_VER(display) == 2)
->  				goto out_unlock;
->  
->  			if (overlay->active) {
-> @@ -1333,12 +1335,12 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
->  			if (ret)
->  				goto out_unlock;
->  
-> -			intel_de_write(dev_priv, OGAMC0, attrs->gamma0);
-> -			intel_de_write(dev_priv, OGAMC1, attrs->gamma1);
-> -			intel_de_write(dev_priv, OGAMC2, attrs->gamma2);
-> -			intel_de_write(dev_priv, OGAMC3, attrs->gamma3);
-> -			intel_de_write(dev_priv, OGAMC4, attrs->gamma4);
-> -			intel_de_write(dev_priv, OGAMC5, attrs->gamma5);
-> +			intel_de_write(display, OGAMC0, attrs->gamma0);
-> +			intel_de_write(display, OGAMC1, attrs->gamma1);
-> +			intel_de_write(display, OGAMC2, attrs->gamma2);
-> +			intel_de_write(display, OGAMC3, attrs->gamma3);
-> +			intel_de_write(display, OGAMC4, attrs->gamma4);
-> +			intel_de_write(display, OGAMC5, attrs->gamma5);
->  		}
->  	}
->  	overlay->color_key_enabled = (attrs->flags & I915_OVERLAY_DISABLE_DEST_COLORKEY) == 0;
-> @@ -1352,12 +1354,13 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
->  
->  static int get_registers(struct intel_overlay *overlay, bool use_phys)
->  {
-> -	struct drm_i915_private *i915 = overlay->i915;
-> +	struct intel_display *display = overlay->display;
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	struct drm_i915_gem_object *obj = ERR_PTR(-ENODEV);
->  	struct i915_vma *vma;
->  	int err;
->  
-> -	if (!IS_METEORLAKE(i915)) /* Wa_22018444074 */
-> +	if (!display->platform.meteorlake) /* Wa_22018444074 */
->  		obj = i915_gem_object_create_stolen(i915, PAGE_SIZE);
->  	if (IS_ERR(obj))
->  		obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
-> @@ -1390,13 +1393,14 @@ static int get_registers(struct intel_overlay *overlay, bool use_phys)
->  	return err;
->  }
->  
-> -void intel_overlay_setup(struct drm_i915_private *dev_priv)
-> +void intel_overlay_setup(struct intel_display *display)
->  {
-> +	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	struct intel_overlay *overlay;
->  	struct intel_engine_cs *engine;
->  	int ret;
->  
-> -	if (!HAS_OVERLAY(dev_priv))
-> +	if (!HAS_OVERLAY(display))
->  		return;
->  
->  	engine = to_gt(dev_priv)->engine[RCS0];
-> @@ -1407,7 +1411,7 @@ void intel_overlay_setup(struct drm_i915_private *dev_priv)
->  	if (!overlay)
->  		return;
->  
-> -	overlay->i915 = dev_priv;
-> +	overlay->display = display;
->  	overlay->context = engine->kernel_context;
->  	overlay->color_key = 0x0101fe;
->  	overlay->color_key_enabled = true;
-> @@ -1418,7 +1422,7 @@ void intel_overlay_setup(struct drm_i915_private *dev_priv)
->  	i915_active_init(&overlay->last_flip,
->  			 NULL, intel_overlay_last_flip_retire, 0);
->  
-> -	ret = get_registers(overlay, OVERLAY_NEEDS_PHYSICAL(dev_priv));
-> +	ret = get_registers(overlay, OVERLAY_NEEDS_PHYSICAL(display));
+> The problem today is that the capture code is using "context descriptor"
+> as a name for something else.  We need to decide what the capture code
+> should really be doing.  If we want to capture the true descriptor, as
+> used by the hardware, then we should fix the capture code to record and
+> dump the proper value.  If we only want to capture something else (e.g.,
+> the LRCA), then we should rename the fields for what they actually
+> contain.  But we definitely don't want patches making statements like
+> "context descriptor is a legacy i915 term" since that's just not true
+> and will confuse people who read this in the git history for years to
+> come.
 
-I thought that you were converting the macros separately...
-but if this is working, no hard feelings
+I liked the variables named after address better. But I totally agree
+with Matt Roper here. Plus we cannot break userspace. There are tools
+out there already parsing 'Desc'.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
->  	if (ret)
->  		goto out_free;
->  
-> @@ -1426,19 +1430,19 @@ void intel_overlay_setup(struct drm_i915_private *dev_priv)
->  	update_polyphase_filter(overlay->regs);
->  	update_reg_attrs(overlay, overlay->regs);
->  
-> -	dev_priv->display.overlay = overlay;
-> -	drm_info(&dev_priv->drm, "Initialized overlay support.\n");
-> +	display->overlay = overlay;
-> +	drm_info(display->drm, "Initialized overlay support.\n");
->  	return;
->  
->  out_free:
->  	kfree(overlay);
->  }
->  
-> -void intel_overlay_cleanup(struct drm_i915_private *dev_priv)
-> +void intel_overlay_cleanup(struct intel_display *display)
->  {
->  	struct intel_overlay *overlay;
->  
-> -	overlay = fetch_and_zero(&dev_priv->display.overlay);
-> +	overlay = fetch_and_zero(&display->overlay);
->  	if (!overlay)
->  		return;
->  
-> @@ -1447,7 +1451,7 @@ void intel_overlay_cleanup(struct drm_i915_private *dev_priv)
->  	 * Furthermore modesetting teardown happens beforehand so the
->  	 * hardware should be off already.
->  	 */
-> -	drm_WARN_ON(&dev_priv->drm, overlay->active);
-> +	drm_WARN_ON(display->drm, overlay->active);
->  
->  	i915_gem_object_put(overlay->reg_bo);
->  	i915_active_fini(&overlay->last_flip);
-> @@ -1467,8 +1471,7 @@ struct intel_overlay_snapshot {
->  struct intel_overlay_snapshot *
->  intel_overlay_snapshot_capture(struct intel_display *display)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
-> -	struct intel_overlay *overlay = dev_priv->display.overlay;
-> +	struct intel_overlay *overlay = display->overlay;
->  	struct intel_overlay_snapshot *error;
->  
->  	if (!overlay || !overlay->active)
-> @@ -1478,8 +1481,8 @@ intel_overlay_snapshot_capture(struct intel_display *display)
->  	if (error == NULL)
->  		return NULL;
->  
-> -	error->dovsta = intel_de_read(dev_priv, DOVSTA);
-> -	error->isr = intel_de_read(dev_priv, GEN2_ISR);
-> +	error->dovsta = intel_de_read(display, DOVSTA);
-> +	error->isr = intel_de_read(display, GEN2_ISR);
->  	error->base = overlay->flip_addr;
->  
->  	memcpy_fromio(&error->regs, overlay->regs, sizeof(error->regs));
-> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.h b/drivers/gpu/drm/i915/display/intel_overlay.h
-> index eafac24d1de8..dc885edf39e6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_overlay.h
-> +++ b/drivers/gpu/drm/i915/display/intel_overlay.h
-> @@ -17,19 +17,19 @@ struct intel_overlay;
->  struct intel_overlay_snapshot;
->  
->  #ifdef I915
-> -void intel_overlay_setup(struct drm_i915_private *dev_priv);
-> -void intel_overlay_cleanup(struct drm_i915_private *dev_priv);
-> +void intel_overlay_setup(struct intel_display *display);
-> +void intel_overlay_cleanup(struct intel_display *display);
->  int intel_overlay_switch_off(struct intel_overlay *overlay);
->  int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
->  				  struct drm_file *file_priv);
->  int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
->  			      struct drm_file *file_priv);
-> -void intel_overlay_reset(struct drm_i915_private *dev_priv);
-> +void intel_overlay_reset(struct intel_display *display);
->  #else
-> -static inline void intel_overlay_setup(struct drm_i915_private *dev_priv)
-> +static inline void intel_overlay_setup(struct intel_display *display)
->  {
->  }
-> -static inline void intel_overlay_cleanup(struct drm_i915_private *dev_priv)
-> +static inline void intel_overlay_cleanup(struct intel_display *display)
->  {
->  }
->  static inline int intel_overlay_switch_off(struct intel_overlay *overlay)
-> @@ -37,7 +37,7 @@ static inline int intel_overlay_switch_off(struct intel_overlay *overlay)
->  	return 0;
->  }
->  static inline int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
-> -				  struct drm_file *file_priv)
-> +						struct drm_file *file_priv)
->  {
->  	return 0;
->  }
-> @@ -46,7 +46,7 @@ static inline int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
->  {
->  	return 0;
->  }
-> -static inline void intel_overlay_reset(struct drm_i915_private *dev_priv)
-> +static inline void intel_overlay_reset(struct intel_display *display)
->  {
->  }
->  #endif
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index f42f21632306..c2fe3fc78e76 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -1198,6 +1198,7 @@ void intel_gt_reset(struct intel_gt *gt,
->  		    intel_engine_mask_t stalled_mask,
->  		    const char *reason)
->  {
-> +	struct intel_display *display = &gt->i915->display;
->  	intel_engine_mask_t awake;
->  	int ret;
->  
-> @@ -1243,7 +1244,7 @@ void intel_gt_reset(struct intel_gt *gt,
->  	if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
->  		intel_irq_resume(gt->i915);
->  
-> -	intel_overlay_reset(gt->i915);
-> +	intel_overlay_reset(display);
->  
->  	/* sanitize uC after engine reset */
->  	if (!intel_uc_uses_guc_submission(&gt->uc))
+> 
+> 
+> Matt
+> 
+> > 
+> > > 
+> > > Matt
+> > > 
+> > > > John.
+> > > > 
+> > > > > 
+> > > > > My RB still stands either way.
+> > > > > -Jonathan Cavitt
+> > > > > 
+> > > > > > Matt
+> > > > > > 
+> > > > > > > Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> > > > > > > -Jonathan Cavitt
+> > > > > > > 
+> > > > > > > > ---
+> > > > > > > >   drivers/gpu/drm/xe/xe_lrc.c | 3 +++
+> > > > > > > >   drivers/gpu/drm/xe/xe_lrc.h | 1 +
+> > > > > > > >   2 files changed, 4 insertions(+)
+> > > > > > > > 
+> > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> > > > > > > > index e219657535cf..afb0f4f44748 100644
+> > > > > > > > --- a/drivers/gpu/drm/xe/xe_lrc.c
+> > > > > > > > +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> > > > > > > > @@ -1636,6 +1636,7 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+> > > > > > > >   		xe_vm_get(lrc->bo->vm);
+> > > > > > > >   	snapshot->context_desc = xe_lrc_ggtt_addr(lrc);
+> > > > > > > > +	snapshot->ring_desc = __xe_lrc_ring_ggtt_addr(lrc);
+> > > > > > > >   	snapshot->indirect_context_desc = xe_lrc_indirect_ring_ggtt_addr(lrc);
+> > > > > > > >   	snapshot->head = xe_lrc_ring_head(lrc);
+> > > > > > > >   	snapshot->tail.internal = lrc->ring.tail;
+> > > > > > > > @@ -1693,6 +1694,8 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
+> > > > > > > >   		return;
+> > > > > > > >   	drm_printf(p, "\tHW Context Desc: 0x%08x\n", snapshot->context_desc);
+> > > > > > > > +	drm_printf(p, "\tHW Ring: 0x%08x\n",
+> > > > > > > > +		   snapshot->ring_desc);
+> > > > > > > >   	drm_printf(p, "\tHW Indirect Ring State: 0x%08x\n",
+> > > > > > > >   		   snapshot->indirect_context_desc);
+> > > > > > > >   	drm_printf(p, "\tLRC Head: (memory) %u\n", snapshot->head);
+> > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+> > > > > > > > index 9d64cedc4d14..a2058a501353 100644
+> > > > > > > > --- a/drivers/gpu/drm/xe/xe_lrc.h
+> > > > > > > > +++ b/drivers/gpu/drm/xe/xe_lrc.h
+> > > > > > > > @@ -25,6 +25,7 @@ struct xe_lrc_snapshot {
+> > > > > > > >   	unsigned long lrc_size, lrc_offset;
+> > > > > > > >   	u32 context_desc;
+> > > > > > > > +	u32 ring_desc;
+> > > > > > > >   	u32 indirect_context_desc;
+> > > > > > > >   	u32 head;
+> > > > > > > >   	struct {
+> > > > > > > > -- 
+> > > > > > > > 2.34.1
+> > > > > > > > 
+> > > > > > > > 
+> > > > 
+> > > 
+> 
 > -- 
-> 2.39.5
-> 
+> Matt Roper
+> Graphics Software Engineer
+> Linux GPU Platform Enablement
+> Intel Corporation
