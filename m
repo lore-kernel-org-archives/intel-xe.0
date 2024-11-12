@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 052F5D41D6E
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 08:45:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69C39D41D6E
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 08:45:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DCA710E02B;
-	Tue, 12 Nov 2024 08:45:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B09B10E591;
+	Tue, 12 Nov 2024 08:45:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m8oisyX1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bv8NumvR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 992F610E02B;
- Tue, 12 Nov 2024 08:45:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C0E210E591;
+ Tue, 12 Nov 2024 08:45:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731401153; x=1762937153;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ZcgpnOa40SIuetdynEKEerOPih2ow/d+dMCvF24+4HA=;
- b=m8oisyX1xYZWxZ/orPCJclq+20e98Cd/gIaR0EpLfdjSJH6o6BvUOVOz
- 44m4+/luROlRaQfuOgD1s5wi4pT88pl5h+wGAb3fG6jZkoGjcZfYWNpT9
- i+3kLeCQb7XsiiXPnRWYgrl8eVyPhADSmdfU4SLXE0ZH3BuE78+4DzQrJ
- 1rgeG+eOMCDQbctWpL0CFisVSi6HFb7AGL2qOkQv6JKBX1FOV3mklQUlo
- 5jKIhg8cJF0W+Aofhj2IYHslGqFLuZCVhLPSKO3xn5YOJrrUnzv+vMSXm
- 0czHwlELef08jDrxYEkts9YLiXzJlNGiriGdHp/3OtxzKSKjXoiGwOjER A==;
-X-CSE-ConnectionGUID: o0yowKCvQoOgSIE/4BOR+Q==
-X-CSE-MsgGUID: NYfSSGvMQHCCsuYO6r8Edw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11253"; a="31449603"
-X-IronPort-AV: E=Sophos;i="6.12,147,1728975600"; d="scan'208";a="31449603"
+ t=1731401157; x=1762937157;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=hIXeuFhpIeUNqGZ33Yr0m+mB8qPT1Fu9RLp9d7PsxLE=;
+ b=bv8NumvRSBmYsDwJhsB/jYpQZycZ5omKkZGmOFVKJphGV1xAZ1wfCBeU
+ oUoqmKnCFBtXiDV9cms1/a+mmc7JAJWA05q4BlpcgVLG9gErSkkQpvuZV
+ 9pTpoeVK/hxKIMUzE6yKzi1wAXbZkLPh44qkccHPA55tcuMp5WeaDRJER
+ 476kkuCJKk6stDA4Is7YAtfkVjRR/2eczKUIxfA2rWyUQYv1sJncvnVN3
+ PJzDAGJNAiwlfWKbeMmOCOBQEC+CsxrJ93TvIyW50oO/5AO8kPm7VYXyz
+ CFBGO5AGYqqEj1S7f4+yTbuzWZ+/9cg2NIJKEWBegSYQqA/tq8KpIS757 g==;
+X-CSE-ConnectionGUID: 80k7nsxARuqbLC7QEXEXAQ==
+X-CSE-MsgGUID: wVFEXHrkRJikgkis8Nv8Jg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11253"; a="31449606"
+X-IronPort-AV: E=Sophos;i="6.12,147,1728975600"; d="scan'208";a="31449606"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2024 00:45:53 -0800
-X-CSE-ConnectionGUID: GL6Ma1GIQiGilu/k3AFw7w==
-X-CSE-MsgGUID: QiF0dTe8Svi2yOhfxniUCA==
+ 12 Nov 2024 00:45:57 -0800
+X-CSE-ConnectionGUID: sJGqbBBCTQyY97Tbc0b5fw==
+X-CSE-MsgGUID: NRGPGCBPQcmOVqIBnlj8qg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,147,1728975600"; d="scan'208";a="124851940"
+X-IronPort-AV: E=Sophos;i="6.12,147,1728975600"; d="scan'208";a="124851956"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa001.jf.intel.com with ESMTP; 12 Nov 2024 00:45:52 -0800
+ by orviesa001.jf.intel.com with ESMTP; 12 Nov 2024 00:45:56 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH 1/6] drm/i915/watermark: Initialize latency variable to
- appropriate value
-Date: Tue, 12 Nov 2024 14:15:37 +0530
-Message-Id: <20241112084542.1337314-1-suraj.kandpal@intel.com>
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 3/6] drm/i915/watermark: Refactor dpkgc value prepration
+Date: Tue, 12 Nov 2024 14:15:39 +0530
+Message-Id: <20241112084542.1337314-3-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241112084542.1337314-1-suraj.kandpal@intel.com>
+References: <20241112084542.1337314-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,38 +67,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Initialize max_latency variable to LNL_PKG_C_LATENCY_MASK which helps
-to eliminate the else block and make the whole code a lot cleaner.
+Refactor the value getting prepped to be written into the PKG_C_LATENCY
+register by ORing the REG_FIELD_PREP values instead of having val
+getiing operated on twice.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index d3bbf335c749..a97e90ac643f 100644
+index 3fa463159b0b..4c92ada1c851 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2850,7 +2850,7 @@ static int skl_wm_add_affected_planes(struct intel_atomic_state *state,
- static void
- skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
- {
--	u32 max_latency = 0;
-+	u32 max_latency = LNL_PKG_C_LATENCY_MASK;
- 	u32 clear = 0, val = 0;
- 	u32 added_wake_time = 0;
- 
-@@ -2863,9 +2863,6 @@ skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
- 			max_latency = LNL_PKG_C_LATENCY_MASK;
- 		added_wake_time = DSB_EXE_TIME +
- 			i915->display.sagv.block_time_us;
--	} else {
--		max_latency = LNL_PKG_C_LATENCY_MASK;
--		added_wake_time = 0;
+@@ -2866,8 +2866,8 @@ skl_program_dpkgc_latency(struct drm_i915_private *i915, bool fixed_refresh_rate
  	}
  
  	clear |= LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
+-	val |= REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, max_latency);
+-	val |= REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_wake_time);
++	val |= REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, max_latency) |
++		REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_wake_time);
+ 
+ 	intel_uncore_rmw(&i915->uncore, LNL_PKG_C_LATENCY, clear, val);
+ }
 -- 
 2.34.1
 
