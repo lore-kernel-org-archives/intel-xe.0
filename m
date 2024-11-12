@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90DA4D32D96
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 11:33:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC86ED32D9A
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 11:35:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59B1B10E5CD;
-	Tue, 12 Nov 2024 11:33:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HxduICtL";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB45910E1F8;
- Tue, 12 Nov 2024 11:33:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731411221; x=1762947221;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=mHIT0zYw0AbMCdAtR55bMEioJZw9kx/2C2Xc039IqVg=;
- b=HxduICtL0xS8TqbatP1t389ErKmEZbAlJbFNhLdIPFf6lLm0oz1qLxui
- UvyZ2/+eZJJVLmEwv8GNi30S1G1m4WbW/JX12jKed62IjUfpgHJFzjR9g
- celcOxulHRew9/T2s4cnaCh2pHBSFPPsiLi8DCHLYa9BZhHGg3qLxHv+9
- uAHnD0y4Ad/kquH4oag4kgUe01uiZ03EqIOWB5zm/ZrF+hd1aYmjP3Nc/
- Xt3Z5IYZVBncfsHJ5gvDnduIMV9p32ynA5u5f+HnitRyUN01RgUbAzgPG
- 3pOJ20iMC6AI1TtgpQQ3wDveZv89NiVxWt6SgJm6adTlkfW+hE9c/cl7h A==;
-X-CSE-ConnectionGUID: EtWHX2n2RUWJrMmCGCLZGg==
-X-CSE-MsgGUID: ieL6FtwHTeimKh4o4cXTcQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11253"; a="35172972"
-X-IronPort-AV: E=Sophos;i="6.12,147,1728975600"; d="scan'208";a="35172972"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2024 03:33:40 -0800
-X-CSE-ConnectionGUID: RjJV2sRyTLidG/nJ62mSIw==
-X-CSE-MsgGUID: 9AKM5AC4RVaaJSiyTQ679A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,147,1728975600"; d="scan'208";a="87785146"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.121])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2024 03:33:38 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, ville.syrjala@linux.intel.com,
- mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 03/23] drm/i915/vrr: Introduce new field for VRR mode
-In-Reply-To: <877c98d6w3.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241111091221.2992818-1-ankit.k.nautiyal@intel.com>
- <20241111091221.2992818-4-ankit.k.nautiyal@intel.com>
- <877c98d6w3.fsf@intel.com>
-Date: Tue, 12 Nov 2024 13:33:35 +0200
-Message-ID: <874j4cd6uo.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B79D610E1F8;
+	Tue, 12 Nov 2024 11:35:22 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8784710E1F8;
+ Tue, 12 Nov 2024 11:35:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/mst=3A_cleanups=2C_re?=
+ =?utf-8?q?names=2C_clarifications_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 12 Nov 2024 11:35:21 -0000
+Message-ID: <173141132154.2956503.18290838520773420039@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <cover.1731409802.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1731409802.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,59 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 12 Nov 2024, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Mon, 11 Nov 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
->> VRR timing generator can be used in multiple modes: dynamic vrr, fixed
->> refresh rate and content matched refresh rate (cmrr).
->> Currently we support dynamic vrr mode and cmrr mode, so add a new member
->> to track in which mode the VRR timing generator is used.
->>
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_display_types.h | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index d3a1aa7c919f..a1b67e76d91c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -913,6 +913,12 @@ void intel_io_mmio_fw_write(void *ctx, i915_reg_t reg, u32 val);
->>  
->>  typedef void (*intel_io_reg_write)(void *ctx, i915_reg_t reg, u32 val);
->>  
->> +enum intel_vrrtg_mode {
->> +	INTEL_VRRTG_MODE_NONE,
->
-> I couldn't quickly conclude whether this is in fact redundant with
-> tg_enable.
->
-> Would it be possible to ditch this in favor of using mode != NONE?
+== Series Details ==
 
-Hrmh, I meant s/this/tg_enable/.
+Series: drm/i915/mst: cleanups, renames, clarifications (rev3)
+URL   : https://patchwork.freedesktop.org/series/141067/
+State : success
 
->
-> BR,
-> Jani.
->
->
->> +	INTEL_VRRTG_MODE_VRR,
->> +	INTEL_VRRTG_MODE_CMRR,
->> +};
->> +
->>  struct intel_crtc_state {
->>  	/*
->>  	 * uapi (drm) state. This is the software state shown to userspace.
->> @@ -1286,6 +1292,7 @@ struct intel_crtc_state {
->>  		u8 pipeline_full;
->>  		u16 flipline, vmin, vmax, guardband;
->>  		u32 vsync_end, vsync_start;
->> +		enum intel_vrrtg_mode mode;
->>  	} vrr;
->>  
->>  	/* Content Match Refresh Rate state */
+== Summary ==
 
--- 
-Jani Nikula, Intel
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/
+lib/modules/6.12.0-rc7-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc7-xe/build
+lib/modules/6.12.0-rc7-xe/modules.alias.bin
+lib/modules/6.12.0-rc7-xe/modules.builtin
+lib/modules/6.12.0-rc7-xe/modules.softdep
+lib/modules/6.12.0-rc7-xe/modules.alias
+lib/modules/6.12.0-rc7-xe/modules.order
+lib/modules/6.12.0-rc7-xe/modules.symbols
+lib/modules/6.12.0-rc7-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1731411314:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1731411314:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
