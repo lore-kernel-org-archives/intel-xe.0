@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02FA0D597B2
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 21:55:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88291D597AF
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Nov 2024 21:55:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1C9810E675;
-	Tue, 12 Nov 2024 21:55:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5597C10E674;
+	Tue, 12 Nov 2024 21:55:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IJrxwNII";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fY5GFMey";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 585FD10E1D0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA26610E670
  for <intel-xe@lists.freedesktop.org>; Tue, 12 Nov 2024 21:55:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731448522; x=1762984522;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mir/cdNdXSXukBhHj+IX9zfZtexOZmPDZA2Mymmlzkg=;
- b=IJrxwNII2LH6dzWsArSA3SNTVL6aytq4CwId4XjGszygyJP+EmQ05NBh
- rPuByzny2KRyQsmeQ2JNocs/6U6edYEyrKq2Un2ChKsOLmb8Vfh8RbM4k
- htJfJz32yl2lKZp3SDo3Sp1Sl04bMW16MSL5GNPjKgRanfPXofy2F4SRx
- YvW5P2sxQFhq3Vx7Sb4ppIAXAqYQbWP3QrCGWD9lFu4uGZ/u2STWIBwws
- jycgZHKTdeeDt/P6Mhq/XpSAnujExpWd88pXcLz8wFBXQFpoV0iOz4BmI
- GxCkvyIu5FZGy7aV8LL2fgT/4wB/jJcUC9TN7RLJLcIi/U+/pFCmYrKuj w==;
-X-CSE-ConnectionGUID: nGqtOBaiRnOLO9XU+w1zyA==
-X-CSE-MsgGUID: Lu9xvNNVT8Kc54TcP+p10Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="31190106"
-X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="31190106"
+ t=1731448523; x=1762984523;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=HD94aRZNHHzBQgyHfHawtfzy1h9kEF3BGBpM5A/mjrM=;
+ b=fY5GFMeyuIQDAOuiajNJD+DrE6fJxiRnVeYsS+TgA96+R5LiKYeOebcL
+ XnSNh2QnscmIeqX9ihff/aCNGJES7JDFYAURTC46u8oxilsYnvx2Iwope
+ MLLb5F7UgQ47GOs4xVJombj4LwblNgW3S2QBK9O24OYfWzUvMTDRICUWu
+ Myl9Bj7nQvIScMFbnjN9tOF0tqOYgrry1PU8NXxHfMe7LO5VUEaHDur17
+ lMHaSmR4s7lMj00ozOM9hvc4VjjFhaU7+ucT8ETUXrsQ0UzBrulUW2Bpl
+ HL/avYNT7mMrlECidgyun/LBN8TYTE12Z130vo2LhgTpxehZMHvSoHHmZ Q==;
+X-CSE-ConnectionGUID: NRv7cR15QZ6SpHWcOXf7Xg==
+X-CSE-MsgGUID: iAF+oSLzT8Cdbkx4zYueXQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="31190112"
+X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="31190112"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Nov 2024 13:55:22 -0800
-X-CSE-ConnectionGUID: J1BRud2KQg2Ce1oW3z4CLw==
-X-CSE-MsgGUID: rCM+pY/VTJaiBMfm+r7pUw==
+X-CSE-ConnectionGUID: MDvug9h0TDaaLbsntqJGzQ==
+X-CSE-MsgGUID: oT8746V6TSKO954TGjEuiw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="88050229"
+X-IronPort-AV: E=Sophos;i="6.12,149,1728975600"; d="scan'208";a="88050236"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Nov 2024 13:55:21 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 0/7] Devcoredump Improvements
-Date: Tue, 12 Nov 2024 13:55:46 -0800
-Message-Id: <20241112215553.1369146-1-matthew.brost@intel.com>
+Subject: [PATCH v2 5/7] drm/xe: Improve schedule disable response failure
+Date: Tue, 12 Nov 2024 13:55:51 -0800
+Message-Id: <20241112215553.1369146-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241112215553.1369146-1-matthew.brost@intel.com>
+References: <20241112215553.1369146-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,34 +65,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Mainly enabling devcoredump for LR queues. Missing is engine capture
-from Zhanjun worked on to find one manually or from the GuC. Can be done
-in a follow up.
+Print Guc ID and take devcoredump on schedule disable response failure.
+GuC ID is useful information and a schedule disable response failure is
+possible the LRC state is corrupted so a devcoredump is helpful to debug.
 
-Matt
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Matthew Brost (7):
-  drm/xe: Add xe_ring_lrc_is_idle() helper
-  drm/xe: Remove redundant rebind from preempt rebind worker
-  drm/xe: Add ring address to LRC snapshot
-  drm/xe: Add ring start to LRC snapshot
-  drm/xe: Improve schedule disable response failure
-  drm/xe: Add exec queue param to devcoredump
-  drm/xe: Change xe_engine_snapshot_capture_for_job to be for queue
-
- drivers/gpu/drm/xe/xe_devcoredump.c       | 16 ++++++-------
- drivers/gpu/drm/xe/xe_devcoredump.h       |  6 +++--
- drivers/gpu/drm/xe/xe_devcoredump_types.h |  2 --
- drivers/gpu/drm/xe/xe_guc_capture.c       | 29 ++++++++++-------------
- drivers/gpu/drm/xe/xe_guc_capture.h       |  6 ++---
- drivers/gpu/drm/xe/xe_guc_submit.c        | 13 ++++++----
- drivers/gpu/drm/xe/xe_hw_engine.c         |  8 +++----
- drivers/gpu/drm/xe/xe_hw_engine.h         |  4 ++--
- drivers/gpu/drm/xe/xe_lrc.c               | 26 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.h               |  4 ++++
- drivers/gpu/drm/xe/xe_vm.c                |  4 ----
- 11 files changed, 71 insertions(+), 47 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 663ad4d97b34..3d61c650c0d2 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1124,7 +1124,10 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 		if (!ret || xe_guc_read_stopped(guc)) {
+ trigger_reset:
+ 			if (!ret)
+-				xe_gt_warn(guc_to_gt(guc), "Schedule disable failed to respond");
++				xe_gt_warn(guc_to_gt(guc),
++					   "Schedule disable failed to respond, guc_id=%d",
++					   q->guc->id);
++			xe_devcoredump(q, job);
+ 			set_exec_queue_extra_ref(q);
+ 			xe_exec_queue_get(q);	/* GT reset owns this */
+ 			set_exec_queue_banned(q);
 -- 
 2.34.1
 
