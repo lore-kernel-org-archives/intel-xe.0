@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C29BD41C27
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 10:17:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89B57D41C27
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 10:18:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8D0910E6C8;
-	Wed, 13 Nov 2024 10:17:46 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59EF710E6D1;
- Wed, 13 Nov 2024 10:17:45 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 567EF10E0BD;
+	Wed, 13 Nov 2024 10:18:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gzznx1GD";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7038D10E0BD
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Nov 2024 10:18:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731493108; x=1763029108;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=v5661yWz9wc3wPHKGrR8AZfMyTGxk0fT3jZ3Sa/3MFA=;
+ b=Gzznx1GDxAfHaXm27TNqacbB3i3jRzlEHNXP1eLDiGaiijalLHe1nhUq
+ mZuw7dK5kuhQZ3D+pR4ohCDvQXPz7jnOuCzlYlY9sJVG+OndG/D5RoVJv
+ avshiepiwkp/Kkj4aaTgaHkp4sw6DNiXgfLq16RzgezXa3B/+vvjgrtGu
+ g1peSgiBSpOTMRByCsHiRKcYTjkAPW9WVgzl4K7YNVLuRHIDir67gKTrw
+ k2RR2D4Z+WCJVb6A/xU7Wy0h5V0CrtIAf8WaDCyb8j7m9pDTzHil7+DVP
+ 1NspK819vUlY3/ldLfv5jNzlxgU9IS33KLoKFRhEUSKj3vo9jh74JJ/uI g==;
+X-CSE-ConnectionGUID: oXF+KrRGQDuuaq3dW9kQ/w==
+X-CSE-MsgGUID: RsKI6gPQTUOPWd+NXqbELA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="31260460"
+X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="31260460"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2024 02:18:27 -0800
+X-CSE-ConnectionGUID: HfR0bpF3SjyeCoEtN69k5Q==
+X-CSE-MsgGUID: ylMLyweDR9iEVs1Sxu8ejA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="91870820"
+Received: from smile.fi.intel.com ([10.237.72.154])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2024 02:18:25 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1tBAS6-0000000EInK-2gON; Wed, 13 Nov 2024 12:18:22 +0200
+Date: Wed, 13 Nov 2024 12:18:22 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
+ david.e.box@linux.intel.com, ilpo.jarvinen@linux.intel.com,
+ hdegoede@redhat.com, rodrigo.vivi@intel.com, lucas.demarchi@intel.com
+Subject: Re: [PATCH v2 0/2] Support BMG PMT features for Xe
+Message-ID: <ZzR87mVmsy-AHSDF@smile.fi.intel.com>
+References: <20241112163035.2282499-1-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Add_iomem_helpers_for_use?=
- =?utf-8?q?_from_debugfs_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Nov 2024 10:17:45 -0000
-Message-ID: <173149306536.3431792.15283780802870186715@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241112200454.2211-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20241112200454.2211-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241112163035.2282499-1-michael.j.ruhl@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,42 +69,18 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Nov 12, 2024 at 11:30:33AM -0500, Michael J. Ruhl wrote:
+> Updates for PMT to support user offsets from the sysfs API.
+> 
+> Addressed review comments for the Xe driver udpates.
 
-Series: Add iomem helpers for use from debugfs (rev2)
-URL   : https://patchwork.freedesktop.org/series/141060/
-State : success
+Not sure where the changelog (v1 --> v2) is...
 
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit dedf3224ae6fc08a77cd8b0aa60dc417b5fbd1d0
-Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Date:   Tue Nov 12 21:04:54 2024 +0100
-
-    drm/xe/pf: Expose access to the VF GGTT PTEs over debugfs
-    
-    For feature enabling and testing purposes, allow to capture and
-    replace VF's GGTT PTEs data using debugfs blob file.
-    
-    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-    Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
-+ /mt/dim checkpatch cf3872e462498611b17e5f80f0b1d0900580da20 drm-intel
-563465e3b70e iov_iter: Provide copy_iomem_to|from_iter()
-f5bafe4fb3d5 libfs: Provide simple_read_from|write_to_iomem()
-e288238a9860 drm/xe: Add read/write debugfs helpers for GGTT node
-dedf3224ae6f drm/xe/pf: Expose access to the VF GGTT PTEs over debugfs
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
