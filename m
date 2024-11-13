@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3758D637AF
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 19:59:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33134D637AF
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 19:59:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C22010E28E;
-	Wed, 13 Nov 2024 19:59:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9AD610E1E0;
+	Wed, 13 Nov 2024 19:59:46 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4905B10E1E0;
- Wed, 13 Nov 2024 19:59:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E050C10E1E0;
+ Wed, 13 Nov 2024 19:59:45 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vram=3A_drop_?=
- =?utf-8?q?2G_block_restriction?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/vram=3A_drop_2G_bl?=
+ =?utf-8?q?ock_restriction?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Nov 2024 19:59:26 -0000
-Message-ID: <173152796629.3666420.13333552234588955946@2413ebb6fbb6>
+Date: Wed, 13 Nov 2024 19:59:45 -0000
+Message-ID: <173152798591.3666420.15811203290425003966@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241113172346.256165-2-matthew.auld@intel.com>
 In-Reply-To: <20241113172346.256165-2-matthew.auld@intel.com>
@@ -48,9 +48,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: d8d960b20b0d drm-tip: 2024y-11m-13d-19h-53m-13s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/vram: drop 2G block restriction
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4dd8600aa79008494a899bcf7bba5954b005e9df
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Wed Nov 13 17:23:47 2024 +0000
+
+    drm/xe/vram: drop 2G block restriction
+    
+    Currently we limit the max block size for all users to ensure each block
+    can fit within a sg entry (uint). Drop this restriction and tweak the sg
+    construction to instead handle this itself and break down blocks which
+    are too big, if needed. Most users don't need an sg list in the first
+    place.
+    
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch d8d960b20b0dc59b06c24fc210387b9c158edf70 drm-intel
+4dd8600aa790 drm/xe/vram: drop 2G block restriction
 
 
