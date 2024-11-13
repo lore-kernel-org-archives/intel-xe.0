@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F04BD41C13
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 08:11:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53898D41C19
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 08:26:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14FD610E352;
-	Wed, 13 Nov 2024 08:11:57 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F38A110E352;
- Wed, 13 Nov 2024 08:11:55 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DACD10E692;
+	Wed, 13 Nov 2024 08:26:32 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CoTENNe4";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB56810E690;
+ Wed, 13 Nov 2024 08:26:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731486390; x=1763022390;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=RCBV1RaljYFw8cox1N1ivVFZCuywd4JudOEDZns++BA=;
+ b=CoTENNe4jVgRhkAgno7NS7ECl8U7BQT8tmtjvf3rhff5NoKsSN0qE/4v
+ 0DfFNHxOfJyZhFfHVvAQnHv1XUwAG1cyELwS+AYyUrVJmY5dVnjX5a16S
+ NRM/x2RoWLMA5UTqDwWvAsHtUvs/OSYKw2pjn+z+mYjGLocKoO0j2xWbq
+ 6KMbhvWQvyVmNTJACA7g+/Wp78bD/RC27pWKVrqk2H2VtYU1XEGli1q2G
+ YXuhYECUeQVoLXPoBx+pk47zjDtIzko/pPm1Svb7xOpSiXw/ihr3egIhQ
+ qYtetDRGSf29XU+FhoMa+kzgd4QDtzx6/I7o6DkOf9nycTq+PrYchBI+x A==;
+X-CSE-ConnectionGUID: QiSXigSwRRKPpPJoYMvoJw==
+X-CSE-MsgGUID: Ys9XfCZnREi8FBctAM7Y3w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="42771490"
+X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="42771490"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2024 00:26:30 -0800
+X-CSE-ConnectionGUID: 6esy0KUhSi+zfnWNy0uZHw==
+X-CSE-MsgGUID: fAI3VnbkTqKBTTZqANfHKw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="87957256"
+Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.186])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2024 00:26:28 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/5] drm/i915/overlay: convert to struct intel_display
+In-Reply-To: <ZzO9VpGn696jbsMA@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1731347547.git.jani.nikula@intel.com>
+ <873690f374729d7479e2d7f6adeefddf90f53fc0.1731347547.git.jani.nikula@intel.com>
+ <ZzO9VpGn696jbsMA@intel.com>
+Date: Wed, 13 Nov 2024 10:26:24 +0200
+Message-ID: <87servbkun.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Support_BMG_PMT_features?=
- =?utf-8?q?_for_Xe?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Nov 2024 08:11:55 -0000
-Message-ID: <173148551599.3431792.6533550636556488580@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241112163035.2282499-1-michael.j.ruhl@intel.com>
-In-Reply-To: <20241112163035.2282499-1-michael.j.ruhl@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,38 +66,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 12 Nov 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Mon, Nov 11, 2024 at 07:53:30PM +0200, Jani Nikula wrote:
+>> @@ -1418,7 +1422,7 @@ void intel_overlay_setup(struct drm_i915_private *dev_priv)
+>>  	i915_active_init(&overlay->last_flip,
+>>  			 NULL, intel_overlay_last_flip_retire, 0);
+>>  
+>> -	ret = get_registers(overlay, OVERLAY_NEEDS_PHYSICAL(dev_priv));
+>> +	ret = get_registers(overlay, OVERLAY_NEEDS_PHYSICAL(display));
+>
+> I thought that you were converting the macros separately...
+> but if this is working, no hard feelings
 
-Series: Support BMG PMT features for Xe
-URL   : https://patchwork.freedesktop.org/series/141227/
-State : success
+I only converted the ones that actually needed dev_priv, and couldn't
+use generics. They now accept display only. This one uses generics and
+can take either.
 
-== Summary ==
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 26f5fe99791def93b32e27e79e71dbd0666c117b
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Thanks,
+Jani.
 
 
+-- 
+Jani Nikula, Intel
