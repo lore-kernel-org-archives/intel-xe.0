@@ -4,68 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EAAED462BF
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 14:58:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72DA7D462BF
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 14:59:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8BBA10E720;
-	Wed, 13 Nov 2024 14:58:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wf32Kn6j";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2CEE10E71F;
- Wed, 13 Nov 2024 14:58:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731509911; x=1763045911;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=X24yyBmMKWlCDsByrpVknt1MPni2cbO2tE1LVAy+jxw=;
- b=Wf32Kn6jKQliYNAoBOHEjVqrGM+rktkqGxgvye2pEmEU23cxI3SaFyWL
- YMyJ0bmTnVOxr/uzYNRxMaV1tHZjkSnHXfeC1MyKoa4GtndBxYhG6O06X
- OE7VIRpdUnKN8TVZ1DEyjeYLK99ttZ2CbOe7RsX44G1L21FxUgwYQhxve
- d9gUsCulownlxwKFpvM7QIGGprwxpsNCiv7HdTy5Oz+IOPed9zDEZ+ZLK
- A6SoqBl9jBlxzPxtfQNIJN+p0vhjurMYMPWO/lI82NKNcnkKqi4MRQie+
- rwb5opRtLPJzbl4+35Tr6cd7OCgIXSGtw49jjsnJLtCqWrhgScsXfGjjf Q==;
-X-CSE-ConnectionGUID: frA3dtYxQi2d6atrG7NhFw==
-X-CSE-MsgGUID: 1jwi1FPWT4mhQLZnXojRRw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="48856354"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="48856354"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 06:58:31 -0800
-X-CSE-ConnectionGUID: Bc6jQQN4S02Ll+J+ofCI0w==
-X-CSE-MsgGUID: Kyb9bbZNSx+iy0bO1f/hmA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,151,1728975600"; d="scan'208";a="118833767"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.245.192])
- ([10.245.245.192])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 06:58:27 -0800
-Message-ID: <d6c57862-1593-44ff-a192-7af308cac94b@linux.intel.com>
-Date: Wed, 13 Nov 2024 15:58:25 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 155E710E256;
+	Wed, 13 Nov 2024 14:59:16 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DCB910E256;
+ Wed, 13 Nov 2024 14:59:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/7] kernel/cgroups: Add "dev" memory accounting cgroup.
-To: Tejun Heo <tj@kernel.org>, Maxime Ripard <mripard@kernel.org>
-Cc: Johannes Weiner <hannes@cmpxchg.org>, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Zefan Li <lizefan.x@bytedance.com>, Andrew Morton
- <akpm@linux-foundation.org>, Friedrich Vock <friedrich.vock@gmx.de>,
- cgroups@vger.kernel.org, linux-mm@kvack.org
-References: <20241023075302.27194-1-maarten.lankhorst@linux.intel.com>
- <ZxlRLMwkabTaOrjc@slm.duckdns.org>
- <20241024-beautiful-spaniel-of-youth-f75b61@houat>
- <Zxp-nLXOJXoSy8BN@slm.duckdns.org>
- <20241028-meaty-mega-nuthatch-3d74b1@houat>
- <20241029203834.GA636494@cmpxchg.org>
- <20241106-vivacious-eagle-of-gaiety-44a419@houat>
- <ZyuzeIhTgXU5CCk0@slm.duckdns.org>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <ZyuzeIhTgXU5CCk0@slm.duckdns.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Add_PMU_support_for_sing?=
+ =?utf-8?q?le_engine_busyness?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 13 Nov 2024 14:59:14 -0000
+Message-ID: <173150995457.3627300.5807217140239516348@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241113045549.2390980-1-riana.tauro@intel.com>
+In-Reply-To: <20241113045549.2390980-1-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,31 +36,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+== Series Details ==
 
-Den 2024-11-06 kl. 19:20, skrev Tejun Heo:
-> On Wed, Nov 06, 2024 at 11:31:49AM +0100, Maxime Ripard wrote:
-> ...
->>> How about dmem for this one, and dpu for the other one. For device
->>> memory and device processing unit, respectively.
->>
->> dmem sounds great to me, does everyone agree?
-> 
-> Sounds good to me.
-> 
-> Thanks.
-> 
-Thanks for all feedback and discussion. I checked mostly on patchwork so 
-I missed the discussion here. Fortunately it's only been about naming. :)
+Series: Add PMU support for single engine busyness
+URL   : https://patchwork.freedesktop.org/series/141259/
+State : success
 
-I'm thinking of adding a 'high' knob as well, that will work similarly 
-to high in normal mem controller. (so not proportionally calculated like 
-'max', but (usage + allocated) < max = ok.
+== Summary ==
 
-Recursively of course.
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 169c7cd31a373ed31054abb423981856eb5fb119
+/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
+Sparse version: 
+Fast mode used, each commit won't be checked separately.
+Okay!
 
-Cheers,
-~Maarten
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
