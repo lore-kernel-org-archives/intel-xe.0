@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5931FD637A4
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 17:55:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDFC5D637A4
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 18:11:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 239A110E05E;
-	Wed, 13 Nov 2024 17:55:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f1xz0HiT";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AFC710E05E
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Nov 2024 17:55:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731520547; x=1763056547;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=VqcHzMj7FGsDg+drn6MfdAVbHDBIT81BUUgNvJnmfoA=;
- b=f1xz0HiTk1S/lH/hqcNWbHjJflvos1HopVJyGTkEeqhoNxesxNaEid2K
- 5fvnZqOq1sI1Em92vZkfUKR275vHXIMd0VIw3W4/D7/QMlT9ThIXimClI
- lmVP8voF28pBXzluFFJ2dO0uLZQibjCg/Nq6H+jfu6QKzibcD9UDXf338
- OHgf0jUVSw7d/ZN+EeAPX+VjZucK9A+CvmVgwHNar2qohQFCfPWJmSL2V
- Lwc2k614nh1omhQTVPzXZG7D6YZPQfudECQvpKSYisjdLsWl4Y9sMmX4n
- Z+WwCOxEjNZS1RRkLcO+ehkAKqgh+Q7PY2oZBdy4ULg+G2PncEgKuWJ7w Q==;
-X-CSE-ConnectionGUID: 87bC/ZuoTm2WwrHzM2ONtw==
-X-CSE-MsgGUID: 8YTZXSA8T+SZUNSN0qMJHg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="42543861"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="42543861"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 09:55:47 -0800
-X-CSE-ConnectionGUID: OxnK64iJRUKcNcF6u4NlsQ==
-X-CSE-MsgGUID: th3tA4NRSWSNxkWBAPdjCA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,151,1728975600"; d="scan'208";a="111253941"
-Received: from smile.fi.intel.com ([10.237.72.154])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 09:55:45 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1tBHag-0000000EQZv-1TZv; Wed, 13 Nov 2024 19:55:42 +0200
-Date: Wed, 13 Nov 2024 19:55:42 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
- david.e.box@linux.intel.com, Hans de Goede <hdegoede@redhat.com>,
- rodrigo.vivi@intel.com, lucas.demarchi@intel.com
-Subject: Re: [PATCH v2 0/2] Support BMG PMT features for Xe
-Message-ID: <ZzToHkaM3BhsSwe1@smile.fi.intel.com>
-References: <20241112163035.2282499-1-michael.j.ruhl@intel.com>
- <ZzSBpq2IakMrvV6h@smile.fi.intel.com>
- <23fe9eca-ebd3-4098-22ab-d21434026273@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3CAE10E25E;
+	Wed, 13 Nov 2024 18:11:34 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 524FF10E05E;
+ Wed, 13 Nov 2024 18:11:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3164282729490891292=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <23fe9eca-ebd3-4098-22ab-d21434026273@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/tests=3A_Limit_purgeable_?=
+ =?utf-8?q?size_for_faster_execution?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 13 Nov 2024 18:11:34 -0000
+Message-ID: <173152149433.3708786.3913095828227049047@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241113150228.2337530-1-nirmoy.das@intel.com>
+In-Reply-To: <20241113150228.2337530-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,43 +36,157 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Nov 13, 2024 at 03:52:01PM +0200, Ilpo Järvinen wrote:
-> On Wed, 13 Nov 2024, Andy Shevchenko wrote:
-> > On Tue, Nov 12, 2024 at 11:30:33AM -0500, Michael J. Ruhl wrote:
-> > > Updates for PMT to support user offsets from the sysfs API.
-> > > 
-> > > Addressed review comments for the Xe driver udpates.
-> > 
-> > FWIW,
-> > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > 
-> > If you have wish and time, there are problems with the drivers of different
-> > severities (from "fine as is" to "good to be fixed, but okay as is") I have
-> > noticed so far:
-> > - it uses s*printf() instead of sysfs_emit*()
-> > - it most likely never tested the corner cases. e.g.,
-> > 
-> > 	if (disc_res->start >= pci_resource_start(pci_dev, i) &&
-> > 	    (disc_res->start <= pci_resource_end(pci_dev, i))) {
-> > 
-> >   what is this supposed to mean? Probably someone wanted resource_contains() or
-> >   alike to be called here.
-> > - slightly above the above piece the for-loop
-> > 
-> > 	for (i = 0; i < 6; i++)
-> > 
-> >   which probably want to use PCI_STD_RESOURCE_END)
-> 
-> While both work, in practice PCI_STD_NUM_BARS is way more common than 
-> PCI_STD_RESOURCE_END.
+--===============3164282729490891292==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ah, indeed. I always forget that we have two.
+== Series Details ==
 
--- 
-With Best Regards,
-Andy Shevchenko
+Series: drm/xe/tests: Limit purgeable size for faster execution
+URL   : https://patchwork.freedesktop.org/series/141303/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2221-169c7cd31a373ed31054abb423981856eb5fb119_BAT -> xe-pw-141303v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-141303v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][1] ([Intel XE#288]) +32 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141303v1/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][2] ([Intel XE#2229])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141303v1/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-dg2-oem2:       [INCOMPLETE][3] ([Intel XE#2874]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2221-169c7cd31a373ed31054abb423981856eb5fb119/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141303v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
 
 
+Build changes
+-------------
+
+  * IGT: IGT_8105 -> IGT_8107
+  * Linux: xe-2221-169c7cd31a373ed31054abb423981856eb5fb119 -> xe-pw-141303v1
+
+  IGT_8105: 8105
+  IGT_8107: 0362b0deec80daaecdfa3dd0676dcabb6f14bd9c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2221-169c7cd31a373ed31054abb423981856eb5fb119: 169c7cd31a373ed31054abb423981856eb5fb119
+  xe-pw-141303v1: 141303v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141303v1/index.html
+
+--===============3164282729490891292==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/tests: Limit purgeable size for faster execution</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141303/">https://patchwork.freedesktop.org/series/141303/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141303v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141303v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2221-169c7cd31a373ed31054abb423981856eb5fb119_BAT -&gt; xe-pw-141303v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-141303v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141303v1/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141303v1/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2221-169c7cd31a373ed31054abb423981856eb5fb119/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141303v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8105 -&gt; IGT_8107</li>
+<li>Linux: xe-2221-169c7cd31a373ed31054abb423981856eb5fb119 -&gt; xe-pw-141303v1</li>
+</ul>
+<p>IGT_8105: 8105<br />
+  IGT_8107: 0362b0deec80daaecdfa3dd0676dcabb6f14bd9c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2221-169c7cd31a373ed31054abb423981856eb5fb119: 169c7cd31a373ed31054abb423981856eb5fb119<br />
+  xe-pw-141303v1: 141303v1</p>
+
+</body>
+</html>
+
+--===============3164282729490891292==--
