@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78DAAD462A1
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 13:44:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B44F2D462A1
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 13:45:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C52910E11E;
-	Wed, 13 Nov 2024 13:44:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75AED10E11E;
+	Wed, 13 Nov 2024 13:45:12 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 755F910E11E;
- Wed, 13 Nov 2024 13:44:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E8F510E11E;
+ Wed, 13 Nov 2024 13:45:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe=5Flrc=3A_F?=
- =?utf-8?q?ix_context_descriptors?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/xe=5Flrc=3A_Fix_co?=
+ =?utf-8?q?ntext_descriptors?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Nov 2024 13:44:50 -0000
-Message-ID: <173150549047.3583531.17252942010726160684@2413ebb6fbb6>
+Date: Wed, 13 Nov 2024 13:45:11 -0000
+Message-ID: <173150551144.3583531.15633299208006195600@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241112224947.69243-1-jonathan.cavitt@intel.com>
 In-Reply-To: <20241112224947.69243-1-jonathan.cavitt@intel.com>
@@ -48,9 +48,38 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 169c7cd31a37 drm-tip: 2024y-11m-13d-10h-31m-31s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe_lrc: Fix context descriptors
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bb9b01ba1f31ec6589f73684f9c3e4e473f31369
+Author: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Date:   Tue Nov 12 22:49:47 2024 +0000
+
+    drm/xe/xe_lrc: Fix context descriptors
+    
+    The direct and indirect context descriptors in xe_lrc_snapshot have
+    various problems:
+    
+    - context_desc uses an incomplete 32-bit offset into the GGTT at which
+      the LRC resides.  This is not the same thing as the descriptor itself,
+      which is reported by the function xe_lrc_descriptor.
+    
+    - indirect_context_desc currently only reports the indirect ring state,
+      as described at xe_lrc_indirect_ring_ggtt_addr.  The variable name
+      does not accurately reflect its purpose and should be changed.
+    
+    Fix these issues.
+    
+    Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    CC: Matt Roper <matthew.d.roper@intel.com>
+    CC: John Harrison <john.c.harrison@intel.com>
++ /mt/dim checkpatch 169c7cd31a373ed31054abb423981856eb5fb119 drm-intel
+bb9b01ba1f31 drm/xe/xe_lrc: Fix context descriptors
 
 
