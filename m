@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BC6DD637A0
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 17:21:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB509D637A2
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 17:24:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32B7F10E6CE;
-	Wed, 13 Nov 2024 17:21:45 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9665E10E716;
- Wed, 13 Nov 2024 17:21:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6380690979801988280=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7517010E1C6;
+	Wed, 13 Nov 2024 17:24:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OKKbllOw";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92B2210E1C6
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Nov 2024 17:24:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731518640; x=1763054640;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=03bk/84FIJfR17L4UJB+mV5AUtQJg1iuUrQnGWBM7D0=;
+ b=OKKbllOw7vOBxkiOYkt7Be22q/GL0DCJZTT0pUVZv0yB2Ybhcx1ckusD
+ AS6XejgU79xJCFOsx8mQIPTaFuAdpNFkWxTcHF2Lt/thRi1YEXqvUy8YC
+ WpxfEo5KJpMgWLPFUenMmx5hv2Uwh78RaZxu8vPaZhVxpIHRSOnXuFwNj
+ RWbZ4uVq79j1TWBi4UQAYjLSLtxd5xiE88QAMnQ7IjeSH8KPYhWfVxesm
+ GGQKWqVD72Qp8hYOcws/+WtcQMlTmq+sxKzPRGdXYOSKzMOGKw+3H7yoA
+ Z9/om1g0UF/x5HIGUJ1Kz3h72rHJFFmJ+7OH05EXaJ7rjwbq7f4UsIvan g==;
+X-CSE-ConnectionGUID: pdk7iG1FRB2bwZGcoMa16g==
+X-CSE-MsgGUID: 8elg1eVfRKmJFxe2t7wEMw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="31389456"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="31389456"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2024 09:24:00 -0800
+X-CSE-ConnectionGUID: RSqkS7+aQmiDQ6d7+S2cUA==
+X-CSE-MsgGUID: A4dKwNR1R2KWtRXiJQogWQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,151,1728975600"; d="scan'208";a="87825844"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.245.133])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2024 09:23:59 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH] drm/xe/vram: drop 2G block restriction
+Date: Wed, 13 Nov 2024 17:23:47 +0000
+Message-ID: <20241113172346.256165-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.47.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/xe3lpg=3A_Add_Wa=5F160247?=
- =?utf-8?q?92527_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Apoorva Singh" <apoorva.singh@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Nov 2024 17:21:43 -0000
-Message-ID: <173151850361.3708786.12022407331201175848@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241107082158.1436637-1-apoorva.singh@intel.com>
-In-Reply-To: <20241107082158.1436637-1-apoorva.singh@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,157 +63,134 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6380690979801988280==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Currently we limit the max block size for all users to ensure each block
+can fit within a sg entry (uint). Drop this restriction and tweak the sg
+construction to instead handle this itself and break down blocks which
+are too big, if needed. Most users don't need an sg list in the first
+place.
 
-== Series Details ==
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 51 +++++++---------------------
+ 1 file changed, 12 insertions(+), 39 deletions(-)
 
-Series: drm/xe/xe3lpg: Add Wa_16024792527 (rev4)
-URL   : https://patchwork.freedesktop.org/series/140666/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 423b261ea743..1d39a8c53b3a 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -52,7 +52,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
+ 	struct xe_ttm_vram_mgr_resource *vres;
+ 	struct drm_buddy *mm = &mgr->mm;
+-	u64 size, remaining_size, min_page_size;
++	u64 size, min_page_size;
+ 	unsigned long lpfn;
+ 	int err;
+ 
+@@ -98,17 +98,6 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 		goto error_fini;
+ 	}
+ 
+-	if (WARN_ON(min_page_size > SZ_2G)) { /* FIXME: sg limit */
+-		err = -EINVAL;
+-		goto error_fini;
+-	}
+-
+-	if (WARN_ON((size > SZ_2G &&
+-		     (vres->base.placement & TTM_PL_FLAG_CONTIGUOUS)))) {
+-		err = -EINVAL;
+-		goto error_fini;
+-	}
+-
+ 	if (WARN_ON(!IS_ALIGNED(size, min_page_size))) {
+ 		err = -EINVAL;
+ 		goto error_fini;
+@@ -116,9 +105,8 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 
+ 	mutex_lock(&mgr->lock);
+ 	if (lpfn <= mgr->visible_size >> PAGE_SHIFT && size > mgr->visible_avail) {
+-		mutex_unlock(&mgr->lock);
+ 		err = -ENOSPC;
+-		goto error_fini;
++		goto error_unlock;
+ 	}
+ 
+ 	if (place->fpfn + (size >> PAGE_SHIFT) != place->lpfn &&
+@@ -129,25 +117,11 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 		lpfn = max_t(unsigned long, place->fpfn + (size >> PAGE_SHIFT), lpfn);
+ 	}
+ 
+-	remaining_size = size;
+-	do {
+-		/*
+-		 * Limit maximum size to 2GiB due to SG table limitations.
+-		 * FIXME: Should maybe be handled as part of sg construction.
+-		 */
+-		u64 alloc_size = min_t(u64, remaining_size, SZ_2G);
+-
+-		err = drm_buddy_alloc_blocks(mm, (u64)place->fpfn << PAGE_SHIFT,
+-					     (u64)lpfn << PAGE_SHIFT,
+-					     alloc_size,
+-					     min_page_size,
+-					     &vres->blocks,
+-					     vres->flags);
+-		if (err)
+-			goto error_free_blocks;
+-
+-		remaining_size -= alloc_size;
+-	} while (remaining_size);
++	err = drm_buddy_alloc_blocks(mm, (u64)place->fpfn << PAGE_SHIFT,
++				     (u64)lpfn << PAGE_SHIFT, size,
++				     min_page_size, &vres->blocks, vres->flags);
++	if (err)
++		goto error_unlock;
+ 
+ 	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+ 		if (!drm_buddy_block_trim(mm, NULL, vres->base.size, &vres->blocks))
+@@ -194,9 +168,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 
+ 	*res = &vres->base;
+ 	return 0;
+-
+-error_free_blocks:
+-	drm_buddy_free_list(mm, &vres->blocks, 0);
++error_unlock:
+ 	mutex_unlock(&mgr->lock);
+ error_fini:
+ 	ttm_resource_fini(man, &vres->base);
+@@ -393,7 +365,8 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+ 	xe_res_first(res, offset, length, &cursor);
+ 	while (cursor.remaining) {
+ 		num_entries++;
+-		xe_res_next(&cursor, cursor.size);
++		/* Limit maximum size to 2GiB due to SG table limitations. */
++		xe_res_next(&cursor, min_t(u64, cursor.size, SZ_2G));
+ 	}
+ 
+ 	r = sg_alloc_table(*sgt, num_entries, GFP_KERNEL);
+@@ -413,7 +386,7 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+ 	xe_res_first(res, offset, length, &cursor);
+ 	for_each_sgtable_sg((*sgt), sg, i) {
+ 		phys_addr_t phys = cursor.start + tile->mem.vram.io_start;
+-		size_t size = cursor.size;
++		size_t size = min_t(u64, cursor.size, SZ_2G);
+ 		dma_addr_t addr;
+ 
+ 		addr = dma_map_resource(dev, phys, size, dir,
+@@ -426,7 +399,7 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+ 		sg_dma_address(sg) = addr;
+ 		sg_dma_len(sg) = size;
+ 
+-		xe_res_next(&cursor, cursor.size);
++		xe_res_next(&cursor, size);
+ 	}
+ 
+ 	return 0;
+-- 
+2.47.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-2221-169c7cd31a373ed31054abb423981856eb5fb119_BAT -> xe-pw-140666v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140666v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][1] ([Intel XE#288]) +32 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][2] ([Intel XE#2229])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-dg2-oem2:       [INCOMPLETE][3] ([Intel XE#2874]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2221-169c7cd31a373ed31054abb423981856eb5fb119/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-
-
-Build changes
--------------
-
-  * IGT: IGT_8105 -> IGT_8107
-  * Linux: xe-2221-169c7cd31a373ed31054abb423981856eb5fb119 -> xe-pw-140666v4
-
-  IGT_8105: 8105
-  IGT_8107: 0362b0deec80daaecdfa3dd0676dcabb6f14bd9c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2221-169c7cd31a373ed31054abb423981856eb5fb119: 169c7cd31a373ed31054abb423981856eb5fb119
-  xe-pw-140666v4: 140666v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/index.html
-
---===============6380690979801988280==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe3lpg: Add Wa_16024792527 (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140666/">https://patchwork.freedesktop.org/series/140666/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2221-169c7cd31a373ed31054abb423981856eb5fb119_BAT -&gt; xe-pw-140666v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140666v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2221-169c7cd31a373ed31054abb423981856eb5fb119/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8105 -&gt; IGT_8107</li>
-<li>Linux: xe-2221-169c7cd31a373ed31054abb423981856eb5fb119 -&gt; xe-pw-140666v4</li>
-</ul>
-<p>IGT_8105: 8105<br />
-  IGT_8107: 0362b0deec80daaecdfa3dd0676dcabb6f14bd9c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2221-169c7cd31a373ed31054abb423981856eb5fb119: 169c7cd31a373ed31054abb423981856eb5fb119<br />
-  xe-pw-140666v4: 140666v4</p>
-
-</body>
-</html>
-
---===============6380690979801988280==--
