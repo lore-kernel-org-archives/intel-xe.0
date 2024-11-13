@@ -4,27 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20336D41C17
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 08:35:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E393BD41C16
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 08:37:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF2FA10E694;
-	Wed, 13 Nov 2024 08:35:45 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0FCA10E694;
- Wed, 13 Nov 2024 08:35:44 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA1BF10E694;
+	Wed, 13 Nov 2024 08:37:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3L7wgIU2";
+	dkim-atps=neutral
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2079.outbound.protection.outlook.com [40.107.94.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EBB610E694;
+ Wed, 13 Nov 2024 08:37:14 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IURAczuw4+30wM1T8STLd/o9vQT5tEc9IbidwjczaH5g3AAmlN9NFbUBfmqAXYalxdprtn4zWjFECwbCdZhRmQnAMis6TZDlgjcmzBm1NCzmKHrJgKJK2r1O9PoDDP7vrwdvY414yCWBwIfg1EISnTi8+lfqEq9XPUQaDz+sj/0O8ScLMH2eqcz/pRCl4OxwOOcW0IAOQJSfS14S1xoTD0wKAfATCQxwGQyhyto/0KUbcPLEb1vnzDdcHTAyvp6H+BjxTQ/RO6zTR6g4dnIJ6eeOm6U49L2EahHlJ6noe0J0kYvEReJj9hOK5LsTE5KBn2Hxzv9e4qg6IlYB3F1nBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CJwi+6fP8HdcWmuAuUJ3Cw/jl8l5DQkQmKejpfTl5ik=;
+ b=Hp1NfeVzKJKK07NshkE/8VXUp2haGX7CbDcBEEuBiSqhw6aIF8xk+6yRAJ3ZBLcvk1I7Zyj0Yishy4F4Blw+RVWsLOwxaZDFIB2Jp8YW6i7eKet69DJh7EXRbtfALJ3SmovMvxZnejyPXFFEJVJJmTBlcpzmf19s23AlQh7nOApmWuZZzGWv3EkR7/UzuxvYCEbq9blUFuiZ/PO4kjl8n2NUjerV00inXLOnzUHBmFd5AyuSLfMyNG26I5u6hgc87lANvJeEfPhuIKB6EH2fpLQlm+IlVMnup3/DQ6TXBOQu/r1KEhbNhrQx0dHR4TV5upyIn+5I8yLURxB6mVKOhw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CJwi+6fP8HdcWmuAuUJ3Cw/jl8l5DQkQmKejpfTl5ik=;
+ b=3L7wgIU26M6T/zWEgPwOZgnSef2OB7GFjryN/D39AYUTsQQXk3h42DmvaHLJxPElTxBnS1K+7Bq5xUDVlLbiUp9XctOYugz9O2ArRwNaPZGfsaNqEkG5KdBKU8OwH2r4cIL2m+uA2uhAgnsLxM6i0WjRVI9gTT49YBEzBQtYKcE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by DM4PR12MB7695.namprd12.prod.outlook.com (2603:10b6:8:101::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.17; Wed, 13 Nov
+ 2024 08:37:11 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%2]) with mapi id 15.20.8137.027; Wed, 13 Nov 2024
+ 08:37:11 +0000
+Content-Type: multipart/alternative;
+ boundary="------------2aERzTiTWHE00ELFojl2bCK0"
+Message-ID: <6ab9e754-6f4a-48ec-b143-02585bc40291@amd.com>
+Date: Wed, 13 Nov 2024 09:37:04 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/8] drm/ttm: Add ttm_bo_access
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Huang Rui <ray.huang@amd.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ matthew.auld@intel.com, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+References: <88ceb558-89d1-4d10-be8a-9ce2f3178fa5@amd.com>
+ <ZyugmXt7v+JeKuN9@lstrano-desk.jf.intel.com>
+ <85859dc3-cca3-4396-8c75-a726437fb81e@amd.com>
+ <173131201749.35893.6727423786823542880@jlahtine-mobl.ger.corp.intel.com>
+ <ZzHYB4MBJmVjk-AR@phenom.ffwll.local>
+ <a1ffb3f7-77bc-41ff-a98a-5cd889f081fa@amd.com>
+ <173133360247.70529.14349388659124962988@jlahtine-mobl.ger.corp.intel.com>
+ <8d181425-db3b-46b7-ae73-ae6ef149d185@amd.com>
+ <ZzKJHxaMnWKQ5mzV@lstrano-desk.jf.intel.com>
+ <31b16d78-708d-4f19-9b33-891e31be5480@gmail.com>
+ <173141886970.132411.13400253861916730373@jlahtine-mobl.ger.corp.intel.com>
+ <27f8bd540ac1f04daf8a7786f4ae7828017d061b.camel@linux.intel.com>
+ <c62e5298-1ca6-4cd0-a558-3d2a91175fa0@amd.com>
+ <d469ab3509a1b875ad0c44d01569675682d6c61c.camel@linux.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <d469ab3509a1b875ad0c44d01569675682d6c61c.camel@linux.intel.com>
+X-ClientProxiedBy: FR0P281CA0057.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:49::14) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_drm/xe=3A_Ignore_GGTT_TLB_inva?=
- =?utf-8?q?l_errors_during_GT_reset_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Nov 2024 08:35:44 -0000
-Message-ID: <173148694471.3449415.4582224261564133219@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241112170123.1236443-1-nirmoy.das@intel.com>
-In-Reply-To: <20241112170123.1236443-1-nirmoy.das@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DM4PR12MB7695:EE_
+X-MS-Office365-Filtering-Correlation-Id: 87bedfdc-2fee-4ed0-3056-08dd03be5de6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|7416014|1800799024|8096899003; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?eDNhbFV0NDl2OG1NWVplYXJKK3hORkhoV0I2ZCsxUXFXRG4rOExuYUlPWitZ?=
+ =?utf-8?B?NFNWMWM3UENZWXBpSzUrVFhqbUhza2pGZlU4dDJlbytLZ2FqSktlcGQvYWhp?=
+ =?utf-8?B?SU5hTmpMQmx3OGhPOGtUemFjQ3pCNEs3M01HeTlnV3Y2T1RIVkVKVEpkeDdC?=
+ =?utf-8?B?YWFFcEJHd0FnakRFSm5qVGtEUjdxalNMNTMxNWxCT2tmSjRHVFVTa1RWYVRh?=
+ =?utf-8?B?aHVFZU9qRzFFRDE5bzQyR3NFY0drellwNU1VUmtOaFZBVTBsRU1Wc0hGSUVF?=
+ =?utf-8?B?K0ZoanhaUDZrWk02QWo5b3l1bXN3NzBTNDVIUjM4K2pOSm5SN1h2bllFbkVX?=
+ =?utf-8?B?RThqekZ5eFROekIyNTJmLzNiSitENW9OczZtancrL3lWZlg2Y1RROEhBeitI?=
+ =?utf-8?B?YUpEYkNSSXM3WjZsWTdmNEJHOEhWVWhuY0NoTy9tdXkyeEdnNlp0RDBrYUoy?=
+ =?utf-8?B?bmVmY01yc3EySEYxY0k5VkZ3cWRCUUMySVVMcU5lMHdlelJ2RmZoaU0yZ01u?=
+ =?utf-8?B?TFdHeHR3YXdzeUVNTUdQUjBJQWIzKzluNm1McmlJQ3ZIYjNNTEtnVWFSeFR5?=
+ =?utf-8?B?V3RWVm4zblo5YUZrOHNmTDIwaEl1ZllRY1dRc1dPSzQyR0NQbkJNMW0zcXVL?=
+ =?utf-8?B?VTRXdEo0Y3BNbVZUQ0ZyRnYvYS9YL1dvZEZTZVB4VE9LeEtjNjhRWnBzcjNH?=
+ =?utf-8?B?MXRQczFyZStPNytLQVp5S3hYb1BTQ29WYkdlV1JnOW1LWkRWcmwwdndVNmVk?=
+ =?utf-8?B?R0dIRlQ5K1hVbzN1SU94YUQxWWd6S0lPTGZ2QkNnVnp3Q1d1RGtVZzRQLy8v?=
+ =?utf-8?B?SFlVU3RIWnNPTlI5TnM2UVdSZENoWm9YRDd1Znl4c25Xa0M2ZGpVYjU1ajNm?=
+ =?utf-8?B?WlZwVTdpVkpTY0Z2VkxpV2piVzhsRnFNY202OTh5SnlCL1JwN2lqMWJwcURO?=
+ =?utf-8?B?RUZIZkozVEh6VlpCaFV4aHM2QTVhK1p0dndld2JROFRUOVZPWFlydHlMcjB1?=
+ =?utf-8?B?c1NMaktLWlZqV2R6alB5a1JOWm9ZbzRGS1Y3blBZdXZObUVPWktlVUgvY3RF?=
+ =?utf-8?B?em5Eb0QvWld0Q01UNnFrMUt2MEVHVkNRMHB2Q2RxeEE5azFUdXE2QzBHdlZ1?=
+ =?utf-8?B?c0xqd2RkU1N1RXNleXBnejh2eHpwRGRzZlJ5VHNTcnQwTkN6cVlFQTBGR2dk?=
+ =?utf-8?B?SmJCT1BvR01RY0N5c1c5a0QrQ1kwL01weEU3RjZRdmpPNlZiR1I1V2MzTDJO?=
+ =?utf-8?B?RjdNY3pwdWJlRGcwbE4rSStqbTlrU2xuaHFESDhYWkFDOFRJK2tDbnFHN1Bl?=
+ =?utf-8?B?NUduSFVNWXlkTjJUdUpKR0pYenI4aTRTbkNSMFNyOG04YWU2NTU5OGNudGFp?=
+ =?utf-8?B?K2ZmUGJpSkVZSWtxVWtXRkZCRHdIaUdwWThPSkEwbzEzYlZ5SEhYM0Zya3Jp?=
+ =?utf-8?B?LzZPbG1GTWFTQUJNci9Hc1dVOHlhZEVWMHB0QU80TS9LdkdyVW1QWEFwZUU0?=
+ =?utf-8?B?QW9UODhIWTBRYlJZUSt6TWN6ZjVjeEN0T295Q0Nqd0lYSERSRVNZNVZ5VEh1?=
+ =?utf-8?B?QlFWalREK3pFbWJNWU8wZ3ZwY0tRVldBSW92UzFTcXF5Q1dYeVBleSsySjJ3?=
+ =?utf-8?B?NVU2QnFRSXM2NWN6NWdSdUkrRm9EanBXOVV1OEFBcm5qb0c5Wm1jUkJrMVpx?=
+ =?utf-8?B?dWRCbmNJdXZvSldEK2NRZTlkQm9tR0x1Ryt0NEVuUlZIVVBXcmhZZi9BPT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(7416014)(1800799024)(8096899003); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R0pBd3VDajNqaE9PMmJsSGhCcEVGaHZraVVabERjcnExSVFMNlRJMFhsTlpl?=
+ =?utf-8?B?QkhpbDI1YzlaZGU1UUJ6TEJROWNGZi94VjN5UzFJVlVTQnI4Q3JIcmtJdENC?=
+ =?utf-8?B?Z1Z4STU2eGd4bEdBRWwxVzBROFVvOTRYUmtCOFVLanNnUVNFeTZ1Q0JEQjY2?=
+ =?utf-8?B?MTV0Q1V4SHlIUVRLbXZ6L1JUcmVieXllblZZZnBiOER4NGpZQk1BMkpBZS8r?=
+ =?utf-8?B?TkRNZ3VNK0Qzd2JnM1VuczIwR1NIc2h0TkRaSHYwSWs5WFFpeGZscEIzNlBy?=
+ =?utf-8?B?NmNwZUp3YmlEelRpWEUyenh0V3RtR0s3aE1wVXhTMElkTCtUaGlpbngzNXVV?=
+ =?utf-8?B?UURwTVhjekNRdWNFVy9GTXhkNkpsSncrUWxrdllNZUZJeS9uVmxncVF1cTNI?=
+ =?utf-8?B?L0h4bm5IVDJxVjVMQWlGWkxoK2htWS9vNGIzcS96TUNBQmoxRGVFbEJ0Ylly?=
+ =?utf-8?B?Tld5K2pBUFdLKzl0ZG9ZNG9mcDBVR1VHQWR4S0lBOWxHbHRjSkZHQlowbHcv?=
+ =?utf-8?B?RFBGTFRZdUhIdThjWGJGVURvR1loc1Nka3pCbitQNXBuSEVOTUZwd3EwMlJI?=
+ =?utf-8?B?WC9DWUR6M05remE4MzVaWkpjekRzTjk0REljR1RKczBiaWxUWXdwd1VLdnRl?=
+ =?utf-8?B?L3RtNWtEdWgyWk14K0Y5SkxvalQ5MU9ZMHRuN1IzajF1NFBuSThLS3NVWW5H?=
+ =?utf-8?B?aitmaTVCOTAxR2dIdGRhaUtpNjNlcVA3NVJmZnljUm01RXY3aW16UUpYTytZ?=
+ =?utf-8?B?Yk5QRzZpYk9WZzZ1aGxHYUUyc1ZJMWxpeHpTMU5WOCt5bHlVckhXaXVkMVdR?=
+ =?utf-8?B?bzB5a2VoMGF2VmNwR2toMUlwWkpIbG9KamhOM0xmTzhJNC81NHZxa2sybS9s?=
+ =?utf-8?B?aHIwa2NBM0hQZWMvZU5zSjVFU1RtYnhRVjljbytPUTV0R0dDZTdueWJkcm1W?=
+ =?utf-8?B?aUNKcWpWcVFaMzVweVUraHlpYUtzV3o2UmNFQWZyZ1NLTXVVeEdPa2hKNVFY?=
+ =?utf-8?B?Q2l5NDZCUHJta1lJcDc2RHVIb3A0eURKaXRyNjZSZ2RNZVRrdlovS2VkRXNF?=
+ =?utf-8?B?YUdWTGEreFhxajYycHhSMmVmeHlhZ3RkRGlUZ1hKazJHcTF5c1pNbVpwcm8r?=
+ =?utf-8?B?WW1ycm1kQWtWRVc2Sm1GVlZZZlNVRlhzelVVdjNRVFUyL0paRWsrMEEyTVlM?=
+ =?utf-8?B?eHN4OWV2N004bzN6MC83akovSDY4djVCcHQ4MmkvYmdjUjZTdGxtdExOaDRm?=
+ =?utf-8?B?YnJOWmV5bWRGNnNkTmppQlBOeEZUUjRZM3daQzdYUWtjQkZzam9jNDFmK3pk?=
+ =?utf-8?B?VGowbUtITFE2R2xvRnBCRkdxS2NFbnZEVlh3VTA4bVlVa3lrQmsyaUl6OXlF?=
+ =?utf-8?B?bVlid2RMdHV6dUUvd01LaUQrUDZtVTVtL1ZxKzVzc1hkUnlzUnhWTnJ6VWFq?=
+ =?utf-8?B?QWtpelJ6a0VndDZtamlsL3RLOEJMK3JqZjQ5Tm4wUVRlOU5CNW9mdW91WTEv?=
+ =?utf-8?B?SlRkM3R5aEdxZEN2bkFmc095OWtuWHdaVjhFZWtNTmNiWGkvTWtvOUd6RllQ?=
+ =?utf-8?B?bHhzc3VIcXVvU2tnbDJwRFVhb3pzZVN2Q1dETnBaZ3FabEFobCt5THNBQlB4?=
+ =?utf-8?B?ajJtWmF4VHJPdW1pMFRnOFd5K3o5ZGJuUjRkcWwzVU85V1hXbVpDNVpwbUp0?=
+ =?utf-8?B?eFl5OWNIQWl1UWp1OFpBWmNadUZGZStMZU4zUlh0OUZQalAvMndsS1Rwa0Zt?=
+ =?utf-8?B?NTFBb2EzK3c2S1NKNk8yTms3aTB2UmlZNStOcHVJMDFXd2dvM3RvTWRUb05o?=
+ =?utf-8?B?REZWcTZZZGtKalhIUmgraVhtb09lSmxqa21ZZVBKZkJzWVF0dVpQdWVrTXdt?=
+ =?utf-8?B?bERSL3kvY1FXUk5tS2tYOFNLbThWbERqWVlRVk9zb1VUaGdHMzYyLy9PanVt?=
+ =?utf-8?B?U0xremVQNFhaZHB1SXZtdTA2OWRqT1YveUEvY3R2OUtHbjkvdmE5TUhmMjhG?=
+ =?utf-8?B?RmcyanhFeUxZWmZOSS9OU0JNUk5ZME9Od1VyRVpqeHpMZXlDMFZWNWxKbHRM?=
+ =?utf-8?B?WkdZeVVhTWhsYi9jM0dPTGtaUDBRT0N4WG11ZWErUk5wY0FSaFZWSGdpWXR5?=
+ =?utf-8?Q?MKzGjezsUZ8E+PjHYKqtqEgmQ?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87bedfdc-2fee-4ed0-3056-08dd03be5de6
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2024 08:37:11.3040 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OD2aok1JVm1DTCjotOisWepjgily77D8b8v8agrpXTs9Sn0kvzxPzphRxi0Ossmf
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7695
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,1100 +175,1336 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--------------2aERzTiTWHE00ELFojl2bCK0
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Series: drm/xe: Ignore GGTT TLB inval errors during GT reset (rev2)
-URL   : https://patchwork.freedesktop.org/series/141228/
-State : success
+Am 12.11.24 um 17:33 schrieb Thomas Hellström:
+> [SNIP]
+>>>> This has been extensively discussed already, but was expected to
+>>>> really
+>>>> only be needed for low-on-memory scenarios. However it now seems
+>>>> like
+>>>> the need is much earlier due to the random userptr page joining
+>>>> by
+>>>> core
+>>>> mm.
+>>> Just to clarify here:
+>>>    
+>>> In Long-Running mode with recoverable pagefaults enabled we don't
+>>> have
+>>> any preempt-fences, but rather just zap the PTEs pointing to the
+>>> affected memory and flush TLB. So from a memory resource POW a
+>>> breakpoint should be safe, and no mmu notifier nor shrinker will be
+>>> blocked.
+>> That sounds like a HMM based approach which would clearly work.
+>>
+>> But where is that? I don't see any HMM based approach anywhere in the
+>> XE
+>> driver.
+> This is a mode that uses recoverable pagefaults to fault either full
+> userptr or full bos, and used with DRM_XE_VM_CRATE_FLAG_FAULT_MODE.
+> (not SVM)!
+>
+> userptrs in xe are bo-less, and using the vm's resv, but otherwise
+> using hmm similar to amdgpu: xe_hmm.c
 
-== Summary ==
+Yeah, I have seen that one.
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[08:34:35] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[08:34:39] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
+> fault servicing:
+> xe_gt_pagefault.c
+>
+> PTE zapping on eviction and notifier:
+> xe_vm_invalidate_vma(), xe_vm.c
 
-[08:35:07] Starting KUnit Kernel (1/1)...
-[08:35:07] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[08:35:07] =================== guc_dbm (7 subtests) ===================
-[08:35:07] [PASSED] test_empty
-[08:35:07] [PASSED] test_default
-[08:35:07] ======================== test_size  ========================
-[08:35:07] [PASSED] 4
-[08:35:07] [PASSED] 8
-[08:35:07] [PASSED] 32
-[08:35:07] [PASSED] 256
-[08:35:07] ==================== [PASSED] test_size ====================
-[08:35:07] ======================= test_reuse  ========================
-[08:35:07] [PASSED] 4
-[08:35:07] [PASSED] 8
-[08:35:07] [PASSED] 32
-[08:35:07] [PASSED] 256
-[08:35:07] =================== [PASSED] test_reuse ====================
-[08:35:07] =================== test_range_overlap  ====================
-[08:35:07] [PASSED] 4
-[08:35:07] [PASSED] 8
-[08:35:07] [PASSED] 32
-[08:35:07] [PASSED] 256
-[08:35:07] =============== [PASSED] test_range_overlap ================
-[08:35:07] =================== test_range_compact  ====================
-[08:35:07] [PASSED] 4
-[08:35:07] [PASSED] 8
-[08:35:07] [PASSED] 32
-[08:35:07] [PASSED] 256
-[08:35:07] =============== [PASSED] test_range_compact ================
-[08:35:07] ==================== test_range_spare  =====================
-[08:35:07] [PASSED] 4
-[08:35:07] [PASSED] 8
-[08:35:07] [PASSED] 32
-[08:35:07] [PASSED] 256
-[08:35:07] ================ [PASSED] test_range_spare =================
-[08:35:07] ===================== [PASSED] guc_dbm =====================
-[08:35:07] =================== guc_idm (6 subtests) ===================
-[08:35:07] [PASSED] bad_init
-[08:35:07] [PASSED] no_init
-[08:35:07] [PASSED] init_fini
-[08:35:07] [PASSED] check_used
-[08:35:07] [PASSED] check_quota
-[08:35:07] [PASSED] check_all
-[08:35:07] ===================== [PASSED] guc_idm =====================
-[08:35:07] ================== no_relay (3 subtests) ===================
-[08:35:07] [PASSED] xe_drops_guc2pf_if_not_ready
-[08:35:07] [PASSED] xe_drops_guc2vf_if_not_ready
-[08:35:07] [PASSED] xe_rejects_send_if_not_ready
-[08:35:07] ==================== [PASSED] no_relay =====================
-[08:35:07] ================== pf_relay (14 subtests) ==================
-[08:35:07] [PASSED] pf_rejects_guc2pf_too_short
-[08:35:07] [PASSED] pf_rejects_guc2pf_too_long
-[08:35:07] [PASSED] pf_rejects_guc2pf_no_payload
-[08:35:07] [PASSED] pf_fails_no_payload
-[08:35:07] [PASSED] pf_fails_bad_origin
-[08:35:07] [PASSED] pf_fails_bad_type
-[08:35:07] [PASSED] pf_txn_reports_error
-[08:35:07] [PASSED] pf_txn_sends_pf2guc
-[08:35:07] [PASSED] pf_sends_pf2guc
-[08:35:07] [SKIPPED] pf_loopback_nop
-[08:35:07] [SKIPPED] pf_loopback_echo
-[08:35:07] [SKIPPED] pf_loopback_fail
-[08:35:07] [SKIPPED] pf_loopback_busy
-[08:35:07] [SKIPPED] pf_loopback_retry
-[08:35:07] ==================== [PASSED] pf_relay =====================
-[08:35:07] ================== vf_relay (3 subtests) ===================
-[08:35:07] [PASSED] vf_rejects_guc2vf_too_short
-[08:35:07] [PASSED] vf_rejects_guc2vf_too_long
-[08:35:07] [PASSED] vf_rejects_guc2vf_no_payload
-[08:35:07] ==================== [PASSED] vf_relay =====================
-[08:35:07] ================= pf_service (11 subtests) =================
-[08:35:07] [PASSED] pf_negotiate_any
-[08:35:07] [PASSED] pf_negotiate_base_match
-[08:35:07] [PASSED] pf_negotiate_base_newer
-[08:35:07] [PASSED] pf_negotiate_base_next
-[08:35:07] [SKIPPED] pf_negotiate_base_older
-[08:35:07] [PASSED] pf_negotiate_base_prev
-[08:35:07] [PASSED] pf_negotiate_latest_match
-[08:35:07] [PASSED] pf_negotiate_latest_newer
-[08:35:07] [PASSED] pf_negotiate_latest_next
-[08:35:07] [SKIPPED] pf_negotiate_latest_older
-[08:35:07] [SKIPPED] pf_negotiate_latest_prev
-[08:35:07] =================== [PASSED] pf_service ====================
-[08:35:07] ===================== lmtt (1 subtest) =====================
-[08:35:07] ======================== test_ops  =========================
-[08:35:07] [PASSED] 2-level
-[08:35:07] [PASSED] multi-level
-[08:35:07] ==================== [PASSED] test_ops =====================
-[08:35:07] ====================== [PASSED] lmtt =======================
-[08:35:07] =================== xe_mocs (2 subtests) ===================
-[08:35:07] ================ xe_live_mocs_kernel_kunit  ================
-[08:35:07] =========== [SKIPPED] xe_live_mocs_kernel_kunit ============
-[08:35:07] ================ xe_live_mocs_reset_kunit  =================
-[08:35:07] ============ [SKIPPED] xe_live_mocs_reset_kunit ============
-[08:35:07] ==================== [SKIPPED] xe_mocs =====================
-[08:35:07] ================= xe_migrate (2 subtests) ==================
-[08:35:07] ================= xe_migrate_sanity_kunit  =================
-[08:35:07] ============ [SKIPPED] xe_migrate_sanity_kunit =============
-[08:35:07] ================== xe_validate_ccs_kunit  ==================
-[08:35:07] ============= [SKIPPED] xe_validate_ccs_kunit ==============
-[08:35:07] =================== [SKIPPED] xe_migrate ===================
-[08:35:07] ================== xe_dma_buf (1 subtest) ==================
-[08:35:07] ==================== xe_dma_buf_kunit  =====================
-[08:35:07] ================ [SKIPPED] xe_dma_buf_kunit ================
-[08:35:07] =================== [SKIPPED] xe_dma_buf ===================
-[08:35:07] ==================== xe_bo (3 subtests) ====================
-[08:35:07] ================== xe_ccs_migrate_kunit  ===================
-[08:35:07] ============== [SKIPPED] xe_ccs_migrate_kunit ==============
-[08:35:07] ==================== xe_bo_evict_kunit  ====================
-[08:35:07] =============== [SKIPPED] xe_bo_evict_kunit ================
-[08:35:07] =================== xe_bo_shrink_kunit  ====================
-[08:35:07] =============== [SKIPPED] xe_bo_shrink_kunit ===============
-[08:35:07] ===================== [SKIPPED] xe_bo ======================
-[08:35:07] ==================== args (11 subtests) ====================
-[08:35:07] [PASSED] count_args_test
-[08:35:07] [PASSED] call_args_example
-[08:35:07] [PASSED] call_args_test
-[08:35:07] [PASSED] drop_first_arg_example
-[08:35:07] [PASSED] drop_first_arg_test
-[08:35:07] [PASSED] first_arg_example
-[08:35:07] [PASSED] first_arg_test
-[08:35:07] [PASSED] last_arg_example
-[08:35:07] [PASSED] last_arg_test
-[08:35:07] [PASSED] pick_arg_example
-[08:35:07] [PASSED] sep_comma_examplestty: 'standard input': Inappropriate ioctl for device
+Ah, that was the stuff I was missing.
 
-[08:35:07] ====================== [PASSED] args =======================
-[08:35:07] =================== xe_pci (2 subtests) ====================
-[08:35:07] [PASSED] xe_gmdid_graphics_ip
-[08:35:07] [PASSED] xe_gmdid_media_ip
-[08:35:07] ===================== [PASSED] xe_pci ======================
-[08:35:07] =================== xe_rtp (2 subtests) ====================
-[08:35:07] =============== xe_rtp_process_to_sr_tests  ================
-[08:35:07] [PASSED] coalesce-same-reg
-[08:35:07] [PASSED] no-match-no-add
-[08:35:07] [PASSED] match-or
-[08:35:07] [PASSED] match-or-xfail
-[08:35:07] [PASSED] no-match-no-add-multiple-rules
-[08:35:07] [PASSED] two-regs-two-entries
-[08:35:07] [PASSED] clr-one-set-other
-[08:35:07] [PASSED] set-field
-[08:35:07] [PASSED] conflict-duplicate
-[08:35:07] [PASSED] conflict-not-disjoint
-[08:35:07] [PASSED] conflict-reg-type
-[08:35:07] =========== [PASSED] xe_rtp_process_to_sr_tests ============
-[08:35:07] ================== xe_rtp_process_tests  ===================
-[08:35:07] [PASSED] active1
-[08:35:07] [PASSED] active2
-[08:35:07] [PASSED] active-inactive
-[08:35:07] [PASSED] inactive-active
-[08:35:07] [PASSED] inactive-1st_or_active-inactive
-[08:35:07] [PASSED] inactive-2nd_or_active-inactive
-[08:35:07] [PASSED] inactive-last_or_active-inactive
-[08:35:07] [PASSED] inactive-no_or_active-inactive
-[08:35:07] ============== [PASSED] xe_rtp_process_tests ===============
-[08:35:07] ===================== [PASSED] xe_rtp ======================
-[08:35:07] ==================== xe_wa (1 subtest) =====================
-[08:35:07] ======================== xe_wa_gt  =========================
-[08:35:07] [PASSED] TIGERLAKE (B0)
-[08:35:07] [PASSED] DG1 (A0)
-[08:35:07] [PASSED] DG1 (B0)
-[08:35:07] [PASSED] ALDERLAKE_S (A0)
-[08:35:07] [PASSED] ALDERLAKE_S (B0)
-[08:35:07] [PASSED] ALDERLAKE_S (C0)
-[08:35:07] [PASSED] ALDERLAKE_S (D0)
-[08:35:07] [PASSED] ALDERLAKE_P (A0)
-[08:35:07] [PASSED] ALDERLAKE_P (B0)
-[08:35:07] [PASSED] ALDERLAKE_P (C0)
-[08:35:07] [PASSED] ALDERLAKE_S_RPLS (D0)
-[08:35:07] [PASSED] ALDERLAKE_P_RPLU (E0)
-[08:35:07] [PASSED] DG2_G10 (C0)
-[08:35:07] [PASSED] DG2_G11 (B1)
-[08:35:07] [PASSED] DG2_G12 (A1)
-[08:35:07] [PASSED] METEORLAKE (g:A0, m:A0)
-[08:35:07] [PASSED] METEORLAKE (g:A0, m:A0)
-[08:35:07] [PASSED] METEORLAKE (g:A0, m:A0)
-[08:35:07] [PASSED] LUNARLAKE (g:A0, m:A0)
-[08:35:07] [PASSED] LUNARLAKE (g:B0, m:A0)
-[08:35:07] [PASSED] BATTLEMAGE (g:A0, m:A1)
-[08:35:07] ==================== [PASSED] xe_wa_gt =====================
-[08:35:07] ====================== [PASSED] xe_wa ======================
-[08:35:07] ============================================================
-[08:35:07] Testing complete. Ran 122 tests: passed: 106, skipped: 16
-[08:35:07] Elapsed time: 32.649s total, 4.371s configuring, 28.011s building, 0.239s running
+So the implementation in xe_preempt_fence.c is just for graphics 
+submissions? That would make the whole thing much easier to handle.
 
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-[08:35:07] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[08:35:09] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
+The only remaining question I can then see is if long running 
+submissions with DRM_XE_VM_CRATE_FLAG_FAULT_MODE could potentially block 
+graphics submissions without this flag from accessing the hardware?
 
-[08:35:32] Starting KUnit Kernel (1/1)...
-[08:35:32] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[08:35:32] ================== drm_buddy (7 subtests) ==================
-[08:35:32] [PASSED] drm_test_buddy_alloc_limit
-[08:35:32] [PASSED] drm_test_buddy_alloc_optimistic
-[08:35:32] [PASSED] drm_test_buddy_alloc_pessimistic
-[08:35:32] [PASSED] drm_test_buddy_alloc_pathological
-[08:35:32] [PASSED] drm_test_buddy_alloc_contiguous
-[08:35:32] [PASSED] drm_test_buddy_alloc_clear
-[08:35:32] [PASSED] drm_test_buddy_alloc_range_bias
-[08:35:32] ==================== [PASSED] drm_buddy ====================
-[08:35:32] ============= drm_cmdline_parser (40 subtests) =============
-[08:35:32] [PASSED] drm_test_cmdline_force_d_only
-[08:35:32] [PASSED] drm_test_cmdline_force_D_only_dvi
-[08:35:32] [PASSED] drm_test_cmdline_force_D_only_hdmi
-[08:35:32] [PASSED] drm_test_cmdline_force_D_only_not_digital
-[08:35:32] [PASSED] drm_test_cmdline_force_e_only
-[08:35:32] [PASSED] drm_test_cmdline_res
-[08:35:32] [PASSED] drm_test_cmdline_res_vesa
-[08:35:32] [PASSED] drm_test_cmdline_res_vesa_rblank
-[08:35:32] [PASSED] drm_test_cmdline_res_rblank
-[08:35:32] [PASSED] drm_test_cmdline_res_bpp
-[08:35:32] [PASSED] drm_test_cmdline_res_refresh
-[08:35:32] [PASSED] drm_test_cmdline_res_bpp_refresh
-[08:35:32] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
-[08:35:32] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
-[08:35:32] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
-[08:35:32] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
-[08:35:32] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
-[08:35:32] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
-[08:35:32] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
-[08:35:32] [PASSED] drm_test_cmdline_res_margins_force_on
-[08:35:32] [PASSED] drm_test_cmdline_res_vesa_margins
-[08:35:32] [PASSED] drm_test_cmdline_name
-[08:35:32] [PASSED] drm_test_cmdline_name_bpp
-[08:35:32] [PASSED] drm_test_cmdline_name_option
-[08:35:32] [PASSED] drm_test_cmdline_name_bpp_option
-[08:35:32] [PASSED] drm_test_cmdline_rotate_0
-[08:35:32] [PASSED] drm_test_cmdline_rotate_90
-[08:35:32] [PASSED] drm_test_cmdline_rotate_180
-[08:35:32] [PASSED] drm_test_cmdline_rotate_270
-[08:35:32] [PASSED] drm_test_cmdline_hmirror
-[08:35:32] [PASSED] drm_test_cmdline_vmirror
-[08:35:32] [PASSED] drm_test_cmdline_margin_options
-[08:35:32] [PASSED] drm_test_cmdline_multiple_options
-[08:35:32] [PASSED] drm_test_cmdline_bpp_extra_and_option
-[08:35:32] [PASSED] drm_test_cmdline_extra_and_option
-[08:35:32] [PASSED] drm_test_cmdline_freestanding_options
-[08:35:32] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
-[08:35:32] [PASSED] drm_test_cmdline_panel_orientation
-[08:35:32] ================ drm_test_cmdline_invalid  =================
-[08:35:32] [PASSED] margin_only
-[08:35:32] [PASSED] interlace_only
-[08:35:32] [PASSED] res_missing_x
-[08:35:32] [PASSED] res_missing_y
-[08:35:32] [PASSED] res_bad_y
-[08:35:32] [PASSED] res_missing_y_bpp
-[08:35:32] [PASSED] res_bad_bpp
-[08:35:32] [PASSED] res_bad_refresh
-[08:35:32] [PASSED] res_bpp_refresh_force_on_off
-[08:35:32] [PASSED] res_invalid_mode
-[08:35:32] [PASSED] res_bpp_wrong_place_mode
-[08:35:32] [PASSED] name_bpp_refresh
-[08:35:32] [PASSED] name_refresh
-[08:35:32] [PASSED] name_refresh_wrong_mode
-[08:35:32] [PASSED] name_refresh_invalid_mode
-[08:35:32] [PASSED] rotate_multiple
-[08:35:32] [PASSED] rotate_invalid_val
-[08:35:32] [PASSED] rotate_truncated
-[08:35:32] [PASSED] invalid_option
-[08:35:32] [PASSED] invalid_tv_option
-[08:35:32] [PASSED] truncated_tv_option
-[08:35:32] ============ [PASSED] drm_test_cmdline_invalid =============
-[08:35:32] =============== drm_test_cmdline_tv_options  ===============
-[08:35:32] [PASSED] NTSC
-[08:35:32] [PASSED] NTSC_443
-[08:35:32] [PASSED] NTSC_J
-[08:35:32] [PASSED] PAL
-[08:35:32] [PASSED] PAL_M
-[08:35:32] [PASSED] PAL_N
-[08:35:32] [PASSED] SECAM
-[08:35:32] [PASSED] MONO_525
-[08:35:32] [PASSED] MONO_625
-[08:35:32] =========== [PASSED] drm_test_cmdline_tv_options ===========
-[08:35:32] =============== [PASSED] drm_cmdline_parser ================
-[08:35:32] ========== drmm_connector_hdmi_init (19 subtests) ==========
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_valid
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_bpc_8
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_bpc_10
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_bpc_12
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_bpc_invalid
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_bpc_null
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_formats_empty
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_formats_no_rgb
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_null_ddc
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_null_product
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_null_vendor
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_product_length_exact
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_product_length_too_long
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_product_valid
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_vendor_length_exact
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_vendor_length_too_long
-[08:35:32] [PASSED] drm_test_connector_hdmi_init_vendor_valid
-[08:35:32] ========= drm_test_connector_hdmi_init_type_valid  =========
-[08:35:32] [PASSED] HDMI-A
-[08:35:32] [PASSED] HDMI-B
-[08:35:32] ===== [PASSED] drm_test_connector_hdmi_init_type_valid =====
-[08:35:32] ======== drm_test_connector_hdmi_init_type_invalid  ========
-[08:35:32] [PASSED] Unknown
-[08:35:32] [PASSED] VGA
-[08:35:32] [PASSED] DVI-I
-[08:35:32] [PASSED] DVI-D
-[08:35:32] [PASSED] DVI-A
-[08:35:32] [PASSED] Composite
-[08:35:32] [PASSED] SVIDEO
-[08:35:32] [PASSED] LVDS
-[08:35:32] [PASSED] Component
-[08:35:32] [PASSED] DIN
-[08:35:32] [PASSED] DP
-[08:35:32] [PASSED] TV
-[08:35:32] [PASSED] eDP
-[08:35:32] [PASSED] Virtual
-[08:35:32] [PASSED] DSI
-[08:35:32] [PASSED] DPI
-[08:35:32] [PASSED] Writeback
-[08:35:32] [PASSED] SPI
-[08:35:32] [PASSED] USB
-[08:35:32] ==== [PASSED] drm_test_connector_hdmi_init_type_invalid ====
-[08:35:32] ============ [PASSED] drmm_connector_hdmi_init =============
-[08:35:32] ============= drmm_connector_init (3 subtests) =============
-[08:35:32] [PASSED] drm_test_drmm_connector_init
-[08:35:32] [PASSED] drm_test_drmm_connector_init_null_ddc
-[08:35:32] ========= drm_test_drmm_connector_init_type_valid  =========
-[08:35:32] [PASSED] Unknown
-[08:35:32] [PASSED] VGA
-[08:35:32] [PASSED] DVI-I
-[08:35:32] [PASSED] DVI-D
-[08:35:32] [PASSED] DVI-A
-[08:35:32] [PASSED] Composite
-[08:35:32] [PASSED] SVIDEO
-[08:35:32] [PASSED] LVDS
-[08:35:32] [PASSED] Component
-[08:35:32] [PASSED] DIN
-[08:35:32] [PASSED] DP
-[08:35:32] [PASSED] HDMI-A
-[08:35:32] [PASSED] HDMI-B
-[08:35:32] [PASSED] TV
-[08:35:32] [PASSED] eDP
-[08:35:32] [PASSED] Virtual
-[08:35:32] [PASSED] DSI
-[08:35:32] [PASSED] DPI
-[08:35:32] [PASSED] Writeback
-[08:35:32] [PASSED] SPI
-[08:35:32] [PASSED] USB
-[08:35:32] ===== [PASSED] drm_test_drmm_connector_init_type_valid =====
-[08:35:32] =============== [PASSED] drmm_connector_init ===============
-[08:35:32] = drm_connector_attach_broadcast_rgb_property (2 subtests) =
-[08:35:32] [PASSED] drm_test_drm_connector_attach_broadcast_rgb_property
-[08:35:32] [PASSED] drm_test_drm_connector_attach_broadcast_rgb_property_hdmi_connector
-[08:35:32] === [PASSED] drm_connector_attach_broadcast_rgb_property ===
-[08:35:32] ========== drm_get_tv_mode_from_name (2 subtests) ==========
-[08:35:32] ========== drm_test_get_tv_mode_from_name_valid  ===========
-[08:35:32] [PASSED] NTSC
-[08:35:32] [PASSED] NTSC-443
-[08:35:32] [PASSED] NTSC-J
-[08:35:32] [PASSED] PAL
-[08:35:32] [PASSED] PAL-M
-[08:35:32] [PASSED] PAL-N
-[08:35:32] [PASSED] SECAM
-[08:35:32] [PASSED] Mono
-[08:35:32] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
-[08:35:32] [PASSED] drm_test_get_tv_mode_from_name_truncated
-[08:35:32] ============ [PASSED] drm_get_tv_mode_from_name ============
-[08:35:32] = drm_test_connector_hdmi_compute_mode_clock (12 subtests) =
-[08:35:32] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb
-[08:35:32] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_10bpc
-[08:35:32] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_10bpc_vic_1
-[08:35:32] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_12bpc
-[08:35:32] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_12bpc_vic_1
-[08:35:32] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_double
-[08:35:32] = drm_test_connector_hdmi_compute_mode_clock_yuv420_valid  =
-[08:35:32] [PASSED] VIC 96
-[08:35:32] [PASSED] VIC 97
-[08:35:32] [PASSED] VIC 101
-[08:35:32] [PASSED] VIC 102
-[08:35:32] [PASSED] VIC 106
-[08:35:32] [PASSED] VIC 107
-[08:35:32] === [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_valid ===
-[08:35:32] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_10_bpc
-[08:35:32] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_12_bpc
-[08:35:32] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_8_bpc
-[08:35:32] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_10_bpc
-[08:35:32] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_12_bpc
-[08:35:32] === [PASSED] drm_test_connector_hdmi_compute_mode_clock ====
-[08:35:32] == drm_hdmi_connector_get_broadcast_rgb_name (2 subtests) ==
-[08:35:32] === drm_test_drm_hdmi_connector_get_broadcast_rgb_name  ====
-[08:35:32] [PASSED] Automatic
-[08:35:32] [PASSED] Full
-[08:35:32] [PASSED] Limited 16:235
-[08:35:32] === [PASSED] drm_test_drm_hdmi_connector_get_broadcast_rgb_name ===
-[08:35:32] [PASSED] drm_test_drm_hdmi_connector_get_broadcast_rgb_name_invalid
-[08:35:32] ==== [PASSED] drm_hdmi_connector_get_broadcast_rgb_name ====
-[08:35:32] == drm_hdmi_connector_get_output_format_name (2 subtests) ==
-[08:35:32] === drm_test_drm_hdmi_connector_get_output_format_name  ====
-[08:35:32] [PASSED] RGB
-[08:35:32] [PASSED] YUV 4:2:0
-[08:35:32] [PASSED] YUV 4:2:2
-[08:35:32] [PASSED] YUV 4:4:4
-[08:35:32] === [PASSED] drm_test_drm_hdmi_connector_get_output_format_name ===
-[08:35:32] [PASSED] drm_test_drm_hdmi_connector_get_output_format_name_invalid
-[08:35:32] ==== [PASSED] drm_hdmi_connector_get_output_format_name ====
-[08:35:32] ============= drm_damage_helper (21 subtests) ==============
-[08:35:32] [PASSED] drm_test_damage_iter_no_damage
-[08:35:32] [PASSED] drm_test_damage_iter_no_damage_fractional_src
-[08:35:32] [PASSED] drm_test_damage_iter_no_damage_src_moved
-[08:35:32] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
-[08:35:32] [PASSED] drm_test_damage_iter_no_damage_not_visible
-[08:35:32] [PASSED] drm_test_damage_iter_no_damage_no_crtc
-[08:35:32] [PASSED] drm_test_damage_iter_no_damage_no_fb
-[08:35:32] [PASSED] drm_test_damage_iter_simple_damage
-[08:35:32] [PASSED] drm_test_damage_iter_single_damage
-[08:35:32] [PASSED] drm_test_damage_iter_single_damage_intersect_src
-[08:35:32] [PASSED] drm_test_damage_iter_single_damage_outside_src
-[08:35:32] [PASSED] drm_test_damage_iter_single_damage_fractional_src
-[08:35:32] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
-[08:35:32] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
-[08:35:32] [PASSED] drm_test_damage_iter_single_damage_src_moved
-[08:35:32] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
-[08:35:32] [PASSED] drm_test_damage_iter_damage
-[08:35:32] [PASSED] drm_test_damage_iter_damage_one_intersect
-[08:35:32] [PASSED] drm_test_damage_iter_damage_one_outside
-[08:35:32] [PASSED] drm_test_damage_iter_damage_src_moved
-[08:35:32] [PASSED] drm_test_damage_iter_damage_not_visible
-[08:35:32] ================ [PASSED] drm_damage_helper ================
-[08:35:32] ============== drm_dp_mst_helper (3 subtests) ==============
-[08:35:32] ============== drm_test_dp_mst_calc_pbn_mode  ==============
-[08:35:32] [PASSED] Clock 154000 BPP 30 DSC disabled
-[08:35:32] [PASSED] Clock 234000 BPP 30 DSC disabled
-[08:35:32] [PASSED] Clock 297000 BPP 24 DSC disabled
-[08:35:32] [PASSED] Clock 332880 BPP 24 DSC enabled
-[08:35:32] [PASSED] Clock 324540 BPP 24 DSC enabled
-[08:35:32] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
-[08:35:32] ============== drm_test_dp_mst_calc_pbn_div  ===============
-[08:35:32] [PASSED] Link rate 2000000 lane count 4
-[08:35:32] [PASSED] Link rate 2000000 lane count 2
-[08:35:32] [PASSED] Link rate 2000000 lane count 1
-[08:35:32] [PASSED] Link rate 1350000 lane count 4
-[08:35:32] [PASSED] Link rate 1350000 lane count 2
-[08:35:32] [PASSED] Link rate 1350000 lane count 1
-[08:35:32] [PASSED] Link rate 1000000 lane count 4
-[08:35:32] [PASSED] Link rate 1000000 lane count 2
-[08:35:32] [PASSED] Link rate 1000000 lane count 1
-[08:35:32] [PASSED] Link rate 810000 lane count 4
-[08:35:32] [PASSED] Link rate 810000 lane count 2
-[08:35:32] [PASSED] Link rate 810000 lane count 1
-[08:35:32] [PASSED] Link rate 540000 lane count 4
-[08:35:32] [PASSED] Link rate 540000 lane count 2
-[08:35:32] [PASSED] Link rate 540000 lane count 1
-[08:35:32] [PASSED] Link rate 270000 lane count 4
-[08:35:32] [PASSED] Link rate 270000 lane count 2
-[08:35:32] [PASSED] Link rate 270000 lane count 1
-[08:35:32] [PASSED] Link rate 162000 lane count 4
-[08:35:32] [PASSED] Link rate 162000 lane count 2
-[08:35:32] [PASSED] Link rate 162000 lane count 1
-[08:35:32] ========== [PASSED] drm_test_dp_mst_calc_pbn_div ===========
-[08:35:32] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
-[08:35:32] [PASSED] DP_ENUM_PATH_RESOURCES with port number
-[08:35:32] [PASSED] DP_POWER_UP_PHY with port number
-[08:35:32] [PASSED] DP_POWER_DOWN_PHY with port number
-[08:35:32] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
-[08:35:32] [PASSED] DP_ALLOCATE_PAYLOAD with port number
-[08:35:32] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
-[08:35:32] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
-[08:35:32] [PASSED] DP_QUERY_PAYLOAD with port number
-[08:35:32] [PASSED] DP_QUERY_PAYLOAD with VCPI
-[08:35:32] [PASSED] DP_REMOTE_DPCD_READ with port number
-[08:35:32] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
-[08:35:32] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
-[08:35:32] [PASSED] DP_REMOTE_DPCD_WRITE with port number
-[08:35:32] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
-[08:35:32] [PASSED] DP_REMOTE_DPCD_WRITE with data array
-[08:35:32] [PASSED] DP_REMOTE_I2C_READ with port number
-[08:35:32] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
-[08:35:32] [PASSED] DP_REMOTE_I2C_READ with transactions array
-[08:35:32] [PASSED] DP_REMOTE_I2C_WRITE with port number
-[08:35:32] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
-[08:35:32] [PASSED] DP_REMOTE_I2C_WRITE with data array
-[08:35:32] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
-[08:35:32] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
-[08:35:32] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
-[08:35:32] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
-[08:35:32] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
-[08:35:32] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
-[08:35:32] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
-[08:35:32] ================ [PASSED] drm_dp_mst_helper ================
-[08:35:32] ================== drm_exec (7 subtests) ===================
-[08:35:32] [PASSED] sanitycheck
-[08:35:32] [PASSED] test_lock
-[08:35:32] [PASSED] test_lock_unlock
-[08:35:32] [PASSED] test_duplicates
-[08:35:32] [PASSED] test_prepare
-[08:35:32] [PASSED] test_prepare_array
-[08:35:32] [PASSED] test_multiple_loops
-[08:35:32] ==================== [PASSED] drm_exec =====================
-[08:35:32] =========== drm_format_helper_test (17 subtests) ===========
-[08:35:32] ============== drm_test_fb_xrgb8888_to_gray8  ==============
-[08:35:32] [PASSED] single_pixel_source_buffer
-[08:35:32] [PASSED] single_pixel_clip_rectangle
-[08:35:32] [PASSED] well_known_colors
-[08:35:32] [PASSED] destination_pitch
-[08:35:32] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
-[08:35:32] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
-[08:35:32] [PASSED] single_pixel_source_buffer
-[08:35:32] [PASSED] single_pixel_clip_rectangle
-[08:35:32] [PASSED] well_known_colors
-[08:35:32] [PASSED] destination_pitch
-[08:35:32] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
-[08:35:32] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
-[08:35:32] [PASSED] single_pixel_source_buffer
-[08:35:32] [PASSED] single_pixel_clip_rectangle
-[08:35:32] [PASSED] well_known_colors
-[08:35:32] [PASSED] destination_pitch
-[08:35:32] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
-[08:35:32] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
-[08:35:32] [PASSED] single_pixel_source_buffer
-[08:35:32] [PASSED] single_pixel_clip_rectangle
-[08:35:32] [PASSED] well_known_colors
-[08:35:32] [PASSED] destination_pitch
-[08:35:32] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
-[08:35:32] ============ drm_test_fb_xrgb8888_to_argb1555  =============
-[08:35:32] [PASSED] single_pixel_source_buffer
-[08:35:32] [PASSED] single_pixel_clip_rectangle
-[08:35:32] [PASSED] well_known_colors
-[08:35:32] [PASSED] destination_pitch
-[08:35:32] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
-[08:35:32] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
-[08:35:32] [PASSED] single_pixel_source_buffer
-[08:35:32] [PASSED] single_pixel_clip_rectangle
-[08:35:32] [PASSED] well_known_colors
-[08:35:32] [PASSED] destination_pitch
-[08:35:32] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
-[08:35:32] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
-[08:35:32] [PASSED] single_pixel_source_buffer
-[08:35:32] [PASSED] single_pixel_clip_rectangle
-[08:35:32] [PASSED] well_known_colors
-[08:35:32] [PASSED] destination_pitch
-[08:35:32] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
-[08:35:32] ============ drm_test_fb_xrgb8888_to_argb8888  =============
-[08:35:32] [PASSED] single_pixel_source_buffer
-[08:35:32] [PASSED] single_pixel_clip_rectangle
-[08:35:32] [PASSED] well_known_colors
-[08:35:32] [PASSED] destination_pitch
-[08:35:32] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
-[08:35:32] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
-[08:35:32] [PASSED] single_pixel_source_buffer
-[08:35:32] [PASSED] single_pixel_clip_rectangle
-[08:35:32] [PASSED] well_known_colors
-[08:35:32] [PASSED] destination_pitch
-[08:35:32] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
-[08:35:32] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
-[08:35:32] [PASSED] single_pixel_source_buffer
-[08:35:32] [PASSED] single_pixel_clip_rectangle
-[08:35:32] [PASSED] well_known_colors
-[08:35:32] [PASSED] destination_pitch
-[08:35:32] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
-[08:35:32] ============== drm_test_fb_xrgb8888_to_mono  ===============
-[08:35:32] [PASSED] single_pixel_source_buffer
-[08:35:32] [PASSED] single_pixel_clip_rectangle
-[08:35:32] [PASSED] well_known_colors
-[08:35:32] [PASSED] destination_pitch
-[08:35:32] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
-[08:35:32] ==================== drm_test_fb_swab  =====================
-[08:35:32] [PASSED] single_pixel_source_buffer
-[08:35:32] [PASSED] single_pixel_clip_rectangle
-[08:35:32] [PASSED] well_known_colors
-[08:35:32] [PASSED] destination_pitch
-[08:35:32] ================ [PASSED] drm_test_fb_swab =================
-[08:35:32] ============ drm_test_fb_xrgb8888_to_xbgr8888  =============
-[08:35:32] [PASSED] single_pixel_source_buffer
-[08:35:32] [PASSED] single_pixel_clip_rectangle
-[08:35:32] [PASSED] well_known_colors
-[08:35:32] [PASSED] destination_pitch
-[08:35:32] ======== [PASSED] drm_test_fb_xrgb8888_to_xbgr8888 =========
-[08:35:32] ============ drm_test_fb_xrgb8888_to_abgr8888  =============
-[08:35:32] [PASSED] single_pixel_source_buffer
-[08:35:32] [PASSED] single_pixel_clip_rectangle
-[08:35:32] [PASSED] well_known_colors
-[08:35:32] [PASSED] destination_pitch
-[08:35:32] ======== [PASSED] drm_test_fb_xrgb8888_to_abgr8888 =========
-[08:35:32] ================= drm_test_fb_clip_offset  =================
-[08:35:32] [PASSED] pass through
-[08:35:32] [PASSED] horizontal offset
-[08:35:32] [PASSED] vertical offset
-[08:35:32] [PASSED] horizontal and vertical offset
-[08:35:32] [PASSED] horizontal offset (custom pitch)
-[08:35:32] [PASSED] vertical offset (custom pitch)
-[08:35:32] [PASSED] horizontal and vertical offset (custom pitch)
-[08:35:32] ============= [PASSED] drm_test_fb_clip_offset =============
-[08:35:32] ============== drm_test_fb_build_fourcc_list  ==============
-[08:35:32] [PASSED] no native formats
-[08:35:32] [PASSED] XRGB8888 as native format
-[08:35:32] [PASSED] remove duplicates
-[08:35:32] [PASSED] convert alpha formats
-[08:35:32] [PASSED] random formats
-[08:35:32] ========== [PASSED] drm_test_fb_build_fourcc_list ==========
-[08:35:32] =================== drm_test_fb_memcpy  ====================
-[08:35:32] [PASSED] single_pixel_source_buffer: XR24 little-endian (0x34325258)
-[08:35:32] [PASSED] single_pixel_source_buffer: XRA8 little-endian (0x38415258)
-[08:35:32] [PASSED] single_pixel_source_buffer: YU24 little-endian (0x34325559)
-[08:35:32] [PASSED] single_pixel_clip_rectangle: XB24 little-endian (0x34324258)
-[08:35:32] [PASSED] single_pixel_clip_rectangle: XRA8 little-endian (0x38415258)
-[08:35:32] [PASSED] single_pixel_clip_rectangle: YU24 little-endian (0x34325559)
-[08:35:32] [PASSED] well_known_colors: XB24 little-endian (0x34324258)
-[08:35:32] [PASSED] well_known_colors: XRA8 little-endian (0x38415258)
-[08:35:32] [PASSED] well_known_colors: YU24 little-endian (0x34325559)
-[08:35:32] [PASSED] destination_pitch: XB24 little-endian (0x34324258)
-[08:35:32] [PASSED] destination_pitch: XRA8 little-endian (0x38415258)
-[08:35:32] [PASSED] destination_pitch: YU24 little-endian (0x34325559)
-[08:35:32] =============== [PASSED] drm_test_fb_memcpy ================
-[08:35:32] ============= [PASSED] drm_format_helper_test ==============
-[08:35:32] ================= drm_format (18 subtests) =================
-[08:35:32] [PASSED] drm_test_format_block_width_invalid
-[08:35:32] [PASSED] drm_test_format_block_width_one_plane
-[08:35:32] [PASSED] drm_test_format_block_width_two_plane
-[08:35:32] [PASSED] drm_test_format_block_width_three_plane
-[08:35:32] [PASSED] drm_test_format_block_width_tiled
-[08:35:32] [PASSED] drm_test_format_block_height_invalid
-[08:35:32] [PASSED] drm_test_format_block_height_one_plane
-[08:35:32] [PASSED] drm_test_format_block_height_two_plane
-[08:35:32] [PASSED] drm_test_format_block_height_three_plane
-[08:35:32] [PASSED] drm_test_format_block_height_tiled
-[08:35:32] [PASSED] drm_test_format_min_pitch_invalid
-[08:35:32] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
-[08:35:32] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
-[08:35:32] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
-[08:35:32] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
-[08:35:32] [PASSED] drm_test_format_min_pitch_two_plane
-[08:35:32] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
-[08:35:32] [PASSED] drm_test_format_min_pitch_tiled
-[08:35:32] =================== [PASSED] drm_format ====================
-[08:35:32] ============== drm_framebuffer (10 subtests) ===============
-[08:35:32] ========== drm_test_framebuffer_check_src_coords  ==========
-[08:35:32] [PASSED] Success: source fits into fb
-[08:35:32] [PASSED] Fail: overflowing fb with x-axis coordinate
-[08:35:32] [PASSED] Fail: overflowing fb with y-axis coordinate
-[08:35:32] [PASSED] Fail: overflowing fb with source width
-[08:35:32] [PASSED] Fail: overflowing fb with source height
-[08:35:32] ====== [PASSED] drm_test_framebuffer_check_src_coords ======
-[08:35:32] [PASSED] drm_test_framebuffer_cleanup
-[08:35:32] =============== drm_test_framebuffer_create  ===============
-[08:35:32] [PASSED] ABGR8888 normal sizes
-[08:35:32] [PASSED] ABGR8888 max sizes
-[08:35:32] [PASSED] ABGR8888 pitch greater than min required
-[08:35:32] [PASSED] ABGR8888 pitch less than min required
-[08:35:32] [PASSED] ABGR8888 Invalid width
-[08:35:32] [PASSED] ABGR8888 Invalid buffer handle
-[08:35:32] [PASSED] No pixel format
-[08:35:32] [PASSED] ABGR8888 Width 0
-[08:35:32] [PASSED] ABGR8888 Height 0
-[08:35:32] [PASSED] ABGR8888 Out of bound height * pitch combination
-[08:35:32] [PASSED] ABGR8888 Large buffer offset
-[08:35:32] [PASSED] ABGR8888 Buffer offset for inexistent plane
-[08:35:32] [PASSED] ABGR8888 Invalid flag
-[08:35:32] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
-[08:35:32] [PASSED] ABGR8888 Valid buffer modifier
-[08:35:32] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
-[08:35:32] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
-[08:35:32] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
-[08:35:32] [PASSED] NV12 Normal sizes
-[08:35:32] [PASSED] NV12 Max sizes
-[08:35:32] [PASSED] NV12 Invalid pitch
-[08:35:32] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
-[08:35:32] [PASSED] NV12 different  modifier per-plane
-[08:35:32] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
-[08:35:32] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
-[08:35:32] [PASSED] NV12 Modifier for inexistent plane
-[08:35:32] [PASSED] NV12 Handle for inexistent plane
-[08:35:32] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
-[08:35:32] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
-[08:35:32] [PASSED] YVU420 Normal sizes
-[08:35:32] [PASSED] YVU420 Max sizes
-[08:35:32] [PASSED] YVU420 Invalid pitch
-[08:35:32] [PASSED] YVU420 Different pitches
-[08:35:32] [PASSED] YVU420 Different buffer offsets/pitches
-[08:35:32] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
-[08:35:32] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
-[08:35:32] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
-[08:35:32] [PASSED] YVU420 Valid modifier
-[08:35:32] [PASSED] YVU420 Different modifiers per plane
-[08:35:32] [PASSED] YVU420 Modifier for inexistent plane
-[08:35:32] [PASSED] YUV420_10BIT Invalid modifier(DRM_FORMAT_MOD_LINEAR)
-[08:35:32] [PASSED] X0L2 Normal sizes
-[08:35:32] [PASSED] X0L2 Max sizes
-[08:35:32] [PASSED] X0L2 Invalid pitch
-[08:35:32] [PASSED] X0L2 Pitch greater than minimum required
-[08:35:32] [PASSED] X0L2 Handle for inexistent plane
-[08:35:32] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
-[08:35:32] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
-[08:35:32] [PASSED] X0L2 Valid modifier
-[08:35:32] [PASSED] X0L2 Modifier for inexistent plane
-[08:35:32] =========== [PASSED] drm_test_framebuffer_create ===========
-[08:35:32] [PASSED] drm_test_framebuffer_free
-[08:35:32] [PASSED] drm_test_framebuffer_init
-[08:35:32] [PASSED] drm_test_framebuffer_init_bad_format
-[08:35:32] [PASSED] drm_test_framebuffer_init_dev_mismatch
-[08:35:32] [PASSED] drm_test_framebuffer_lookup
-[08:35:32] [PASSED] drm_test_framebuffer_lookup_inexistent
-[08:35:32] [PASSED] drm_test_framebuffer_modifiers_not_supported
-[08:35:32] ================= [PASSED] drm_framebuffer =================
-[08:35:32] ================ drm_gem_shmem (8 subtests) ================
-[08:35:32] [PASSED] drm_gem_shmem_test_obj_create
-[08:35:32] [PASSED] drm_gem_shmem_test_obj_create_private
-[08:35:32] [PASSED] drm_gem_shmem_test_pin_pages
-[08:35:32] [PASSED] drm_gem_shmem_test_vmap
-[08:35:32] [PASSED] drm_gem_shmem_test_get_pages_sgt
-[08:35:32] [PASSED] drm_gem_shmem_test_get_sg_table
-[08:35:32] [PASSED] drm_gem_shmem_test_madvise
-[08:35:32] [PASSED] drm_gem_shmem_test_purge
-[08:35:32] ================== [PASSED] drm_gem_shmem ==================
-[08:35:32] === drm_atomic_helper_connector_hdmi_check (22 subtests) ===
-[08:35:32] [PASSED] drm_test_check_broadcast_rgb_auto_cea_mode
-[08:35:32] [PASSED] drm_test_check_broadcast_rgb_auto_cea_mode_vic_1
-[08:35:32] [PASSED] drm_test_check_broadcast_rgb_full_cea_mode
-[08:35:32] [PASSED] drm_test_check_broadcast_rgb_full_cea_mode_vic_1
-[08:35:32] [PASSED] drm_test_check_broadcast_rgb_limited_cea_mode
-[08:35:32] [PASSED] drm_test_check_broadcast_rgb_limited_cea_mode_vic_1
-[08:35:32] [PASSED] drm_test_check_broadcast_rgb_crtc_mode_changed
-[08:35:32] [PASSED] drm_test_check_broadcast_rgb_crtc_mode_not_changed
-[08:35:32] [PASSED] drm_test_check_hdmi_funcs_reject_rate
-[08:35:32] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback
-[08:35:32] [PASSED] drm_test_check_max_tmds_rate_format_fallback
-[08:35:32] [PASSED] drm_test_check_output_bpc_crtc_mode_changed
-[08:35:32] [PASSED] drm_test_check_output_bpc_crtc_mode_not_changed
-[08:35:32] [PASSED] drm_test_check_output_bpc_dvi
-[08:35:32] [PASSED] drm_test_check_output_bpc_format_vic_1
-[08:35:32] [PASSED] drm_test_check_output_bpc_format_display_8bpc_only
-[08:35:32] [PASSED] drm_test_check_output_bpc_format_display_rgb_only
-[08:35:32] [PASSED] drm_test_check_output_bpc_format_driver_8bpc_only
-[08:35:32] [PASSED] drm_test_check_output_bpc_format_driver_rgb_only
-[08:35:32] [PASSED] drm_test_check_tmds_char_rate_rgb_8bpc
-[08:35:32] [PASSED] drm_test_check_tmds_char_rate_rgb_10bpc
-[08:35:32] [PASSED] drm_test_check_tmds_char_rate_rgb_12bpc
-[08:35:32] ===== [PASSED] drm_atomic_helper_connector_hdmi_check ======
-[08:35:32] === drm_atomic_helper_connector_hdmi_reset (6 subtests) ====
-[08:35:32] [PASSED] drm_test_check_broadcast_rgb_value
-[08:35:32] [PASSED] drm_test_check_bpc_8_value
-[08:35:32] [PASSED] drm_test_check_bpc_10_value
-[08:35:32] [PASSED] drm_test_check_bpc_12_value
-[08:35:32] [PASSED] drm_test_check_format_value
-[08:35:32] [PASSED] drm_test_check_tmds_char_value
-[08:35:32] ===== [PASSED] drm_atomic_helper_connector_hdmi_reset ======
-[08:35:32] ================= drm_managed (2 subtests) =================
-[08:35:32] [PASSED] drm_test_managed_release_action
-[08:35:32] [PASSED] drm_test_managed_run_action
-[08:35:32] =================== [PASSED] drm_managed ===================
-[08:35:32] =================== drm_mm (6 subtests) ====================
-[08:35:32] [PASSED] drm_test_mm_init
-[08:35:32] [PASSED] drm_test_mm_debug
-[08:35:32] [PASSED] drm_test_mm_align32
-[08:35:32] [PASSED] drm_test_mm_align64
-[08:35:32] [PASSED] drm_test_mm_lowest
-[08:35:32] [PASSED] drm_test_mm_highest
-[08:35:32] ===================== [PASSED] drm_mm ======================
-[08:35:32] ============= drm_modes_analog_tv (5 subtests) =============
-[08:35:32] [PASSED] drm_test_modes_analog_tv_mono_576i
-[08:35:32] [PASSED] drm_test_modes_analog_tv_ntsc_480i
-[08:35:32] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
-[08:35:32] [PASSED] drm_test_modes_analog_tv_pal_576i
-[08:35:32] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
-[08:35:32] =============== [PASSED] drm_modes_analog_tv ===============
-stty: 'standard input': Inappropriate ioctl for device
-[08:35:32] ============== drm_plane_helper (2 subtests) ===============
-[08:35:32] =============== drm_test_check_plane_state  ================
-[08:35:32] [PASSED] clipping_simple
-[08:35:32] [PASSED] clipping_rotate_reflect
-[08:35:32] [PASSED] positioning_simple
-[08:35:32] [PASSED] upscaling
-[08:35:32] [PASSED] downscaling
-[08:35:32] [PASSED] rounding1
-[08:35:32] [PASSED] rounding2
-[08:35:32] [PASSED] rounding3
-[08:35:32] [PASSED] rounding4
-[08:35:32] =========== [PASSED] drm_test_check_plane_state ============
-[08:35:32] =========== drm_test_check_invalid_plane_state  ============
-[08:35:32] [PASSED] positioning_invalid
-[08:35:32] [PASSED] upscaling_invalid
-[08:35:32] [PASSED] downscaling_invalid
-[08:35:32] ======= [PASSED] drm_test_check_invalid_plane_state ========
-[08:35:32] ================ [PASSED] drm_plane_helper =================
-[08:35:32] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
-[08:35:32] ====== drm_test_connector_helper_tv_get_modes_check  =======
-[08:35:32] [PASSED] None
-[08:35:32] [PASSED] PAL
-[08:35:32] [PASSED] NTSC
-[08:35:32] [PASSED] Both, NTSC Default
-[08:35:32] [PASSED] Both, PAL Default
-[08:35:32] [PASSED] Both, NTSC Default, with PAL on command-line
-[08:35:32] [PASSED] Both, PAL Default, with NTSC on command-line
-[08:35:32] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
-[08:35:32] ======== [PASSED] drm_connector_helper_tv_get_modes ========
-[08:35:32] ================== drm_rect (9 subtests) ===================
-[08:35:32] [PASSED] drm_test_rect_clip_scaled_div_by_zero
-[08:35:32] [PASSED] drm_test_rect_clip_scaled_not_clipped
-[08:35:32] [PASSED] drm_test_rect_clip_scaled_clipped
-[08:35:32] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
-[08:35:32] ================= drm_test_rect_intersect  =================
-[08:35:32] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
-[08:35:32] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
-[08:35:32] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
-[08:35:32] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
-[08:35:32] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
-[08:35:32] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
-[08:35:32] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
-[08:35:32] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
-[08:35:32] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
-[08:35:32] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
-[08:35:32] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
-[08:35:32] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
-[08:35:32] [PASSED] far away: 1x1+0+0 x 1x1+3+6
-[08:35:32] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
-[08:35:32] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
-[08:35:32] ============= [PASSED] drm_test_rect_intersect =============
-[08:35:32] ================ drm_test_rect_calc_hscale  ================
-[08:35:32] [PASSED] normal use
-[08:35:32] [PASSED] out of max range
-[08:35:32] [PASSED] out of min range
-[08:35:32] [PASSED] zero dst
-[08:35:32] [PASSED] negative src
-[08:35:32] [PASSED] negative dst
-[08:35:32] ============ [PASSED] drm_test_rect_calc_hscale ============
-[08:35:32] ================ drm_test_rect_calc_vscale  ================
-[08:35:32] [PASSED] normal use
-[08:35:32] [PASSED] out of max range
-[08:35:32] [PASSED] out of min range
-[08:35:32] [PASSED] zero dst
-[08:35:32] [PASSED] negative src
-[08:35:32] [PASSED] negative dst
-[08:35:32] ============ [PASSED] drm_test_rect_calc_vscale ============
-[08:35:32] ================== drm_test_rect_rotate  ===================
-[08:35:32] [PASSED] reflect-x
-[08:35:32] [PASSED] reflect-y
-[08:35:32] [PASSED] rotate-0
-[08:35:32] [PASSED] rotate-90
-[08:35:32] [PASSED] rotate-180
-[08:35:32] [PASSED] rotate-270
-[08:35:32] ============== [PASSED] drm_test_rect_rotate ===============
-[08:35:32] ================ drm_test_rect_rotate_inv  =================
-[08:35:32] [PASSED] reflect-x
-[08:35:32] [PASSED] reflect-y
-[08:35:32] [PASSED] rotate-0
-[08:35:32] [PASSED] rotate-90
-[08:35:32] [PASSED] rotate-180
-[08:35:32] [PASSED] rotate-270
-[08:35:32] ============ [PASSED] drm_test_rect_rotate_inv =============
-[08:35:32] ==================== [PASSED] drm_rect =====================
-[08:35:32] ============================================================
-[08:35:32] Testing complete. Ran 526 tests: passed: 526
-[08:35:32] Elapsed time: 24.329s total, 1.670s configuring, 22.489s building, 0.168s running
+Thanks a lot for pointing this out,
+Christian.
 
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/ttm/tests/.kunitconfig
-[08:35:32] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[08:35:34] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
-[08:35:41] Starting KUnit Kernel (1/1)...
-[08:35:41] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[08:35:41] ================= ttm_device (5 subtests) ==================
-[08:35:41] [PASSED] ttm_device_init_basic
-[08:35:41] [PASSED] ttm_device_init_multiple
-[08:35:41] [PASSED] ttm_device_fini_basic
-[08:35:41] [PASSED] ttm_device_init_no_vma_man
-[08:35:41] ================== ttm_device_init_pools  ==================
-[08:35:41] [PASSED] No DMA allocations, no DMA32 required
-[08:35:41] [PASSED] DMA allocations, DMA32 required
-[08:35:41] [PASSED] No DMA allocations, DMA32 required
-[08:35:41] [PASSED] DMA allocations, no DMA32 required
-[08:35:41] ============== [PASSED] ttm_device_init_pools ==============
-[08:35:41] =================== [PASSED] ttm_device ====================
-[08:35:41] ================== ttm_pool (8 subtests) ===================
-[08:35:41] ================== ttm_pool_alloc_basic  ===================
-[08:35:41] [PASSED] One page
-[08:35:41] [PASSED] More than one page
-[08:35:41] [PASSED] Above the allocation limit
-[08:35:41] [PASSED] One page, with coherent DMA mappings enabled
-[08:35:41] [PASSED] Above the allocation limit, with coherent DMA mappings enabled
-[08:35:41] ============== [PASSED] ttm_pool_alloc_basic ===============
-[08:35:41] ============== ttm_pool_alloc_basic_dma_addr  ==============
-[08:35:41] [PASSED] One page
-[08:35:41] [PASSED] More than one page
-[08:35:41] [PASSED] Above the allocation limit
-[08:35:41] [PASSED] One page, with coherent DMA mappings enabled
-[08:35:41] [PASSED] Above the allocation limit, with coherent DMA mappings enabled
-[08:35:41] ========== [PASSED] ttm_pool_alloc_basic_dma_addr ==========
-[08:35:41] [PASSED] ttm_pool_alloc_order_caching_match
-[08:35:41] [PASSED] ttm_pool_alloc_caching_mismatch
-[08:35:41] [PASSED] ttm_pool_alloc_order_mismatch
-[08:35:41] [PASSED] ttm_pool_free_dma_alloc
-[08:35:41] [PASSED] ttm_pool_free_no_dma_alloc
-[08:35:41] [PASSED] ttm_pool_fini_basic
-[08:35:41] ==================== [PASSED] ttm_pool =====================
-[08:35:41] ================ ttm_resource (8 subtests) =================
-[08:35:41] ================= ttm_resource_init_basic  =================
-[08:35:41] [PASSED] Init resource in TTM_PL_SYSTEM
-[08:35:41] [PASSED] Init resource in TTM_PL_VRAM
-[08:35:41] [PASSED] Init resource in a private placement
-[08:35:41] [PASSED] Init resource in TTM_PL_SYSTEM, set placement flags
-[08:35:41] ============= [PASSED] ttm_resource_init_basic =============
-[08:35:41] [PASSED] ttm_resource_init_pinned
-[08:35:41] [PASSED] ttm_resource_fini_basic
-[08:35:41] [PASSED] ttm_resource_manager_init_basic
-[08:35:41] [PASSED] ttm_resource_manager_usage_basic
-[08:35:41] [PASSED] ttm_resource_manager_set_used_basic
-[08:35:41] [PASSED] ttm_sys_man_alloc_basic
-[08:35:41] [PASSED] ttm_sys_man_free_basic
-[08:35:41] ================== [PASSED] ttm_resource ===================
-[08:35:41] =================== ttm_tt (15 subtests) ===================
-[08:35:41] ==================== ttm_tt_init_basic  ====================
-[08:35:41] [PASSED] Page-aligned size
-[08:35:41] [PASSED] Extra pages requested
-[08:35:41] ================ [PASSED] ttm_tt_init_basic ================
-[08:35:41] [PASSED] ttm_tt_init_misaligned
-[08:35:41] [PASSED] ttm_tt_fini_basic
-[08:35:41] [PASSED] ttm_tt_fini_sg
-[08:35:41] [PASSED] ttm_tt_fini_shmem
-[08:35:41] [PASSED] ttm_tt_create_basic
-[08:35:41] [PASSED] ttm_tt_create_invalid_bo_type
-[08:35:41] [PASSED] ttm_tt_create_ttm_exists
-[08:35:41] [PASSED] ttm_tt_create_failed
-[08:35:41] [PASSED] ttm_tt_destroy_basic
-[08:35:41] [PASSED] ttm_tt_populate_null_ttm
-[08:35:41] [PASSED] ttm_tt_populate_populated_ttm
-[08:35:41] [PASSED] ttm_tt_unpopulate_basic
-[08:35:41] [PASSED] ttm_tt_unpopulate_empty_ttm
-[08:35:41] [PASSED] ttm_tt_swapin_basic
-[08:35:41] ===================== [PASSED] ttm_tt ======================
-[08:35:41] =================== ttm_bo (14 subtests) ===================
-[08:35:41] =========== ttm_bo_reserve_optimistic_no_ticket  ===========
-[08:35:41] [PASSED] Cannot be interrupted and sleeps
-[08:35:41] [PASSED] Cannot be interrupted, locks straight away
-[08:35:41] [PASSED] Can be interrupted, sleeps
-[08:35:41] ======= [PASSED] ttm_bo_reserve_optimistic_no_ticket =======
-[08:35:41] [PASSED] ttm_bo_reserve_locked_no_sleep
-[08:35:41] [PASSED] ttm_bo_reserve_no_wait_ticket
-[08:35:41] [PASSED] ttm_bo_reserve_double_resv
-[08:35:41] [PASSED] ttm_bo_reserve_interrupted
-[08:35:41] [PASSED] ttm_bo_reserve_deadlock
-[08:35:41] [PASSED] ttm_bo_unreserve_basic
-[08:35:41] [PASSED] ttm_bo_unreserve_pinned
-[08:35:41] [PASSED] ttm_bo_unreserve_bulk
-[08:35:41] [PASSED] ttm_bo_put_basic
-[08:35:41] [PASSED] ttm_bo_put_shared_resv
-[08:35:41] [PASSED] ttm_bo_pin_basic
-[08:35:41] [PASSED] ttm_bo_pin_unpin_resource
-[08:35:41] [PASSED] ttm_bo_multiple_pin_one_unpin
-[08:35:41] ===================== [PASSED] ttm_bo ======================
-[08:35:41] ============== ttm_bo_validate (22 subtests) ===============
-[08:35:41] ============== ttm_bo_init_reserved_sys_man  ===============
-[08:35:41] [PASSED] Buffer object for userspace
-[08:35:41] [PASSED] Kernel buffer object
-[08:35:41] [PASSED] Shared buffer object
-[08:35:41] ========== [PASSED] ttm_bo_init_reserved_sys_man ===========
-[08:35:41] ============== ttm_bo_init_reserved_mock_man  ==============
-[08:35:41] [PASSED] Buffer object for userspace
-[08:35:41] [PASSED] Kernel buffer object
-[08:35:41] [PASSED] Shared buffer object
-[08:35:41] ========== [PASSED] ttm_bo_init_reserved_mock_man ==========
-[08:35:41] [PASSED] ttm_bo_init_reserved_resv
-[08:35:41] ================== ttm_bo_validate_basic  ==================
-[08:35:41] [PASSED] Buffer object for userspace
-[08:35:41] [PASSED] Kernel buffer object
-[08:35:41] [PASSED] Shared buffer object
-[08:35:41] ============== [PASSED] ttm_bo_validate_basic ==============
-[08:35:41] [PASSED] ttm_bo_validate_invalid_placement
-[08:35:41] ============= ttm_bo_validate_same_placement  ==============
-[08:35:41] [PASSED] System manager
-[08:35:41] [PASSED] VRAM manager
-[08:35:41] ========= [PASSED] ttm_bo_validate_same_placement ==========
-[08:35:41] [PASSED] ttm_bo_validate_failed_alloc
-[08:35:41] [PASSED] ttm_bo_validate_pinned
-[08:35:41] [PASSED] ttm_bo_validate_busy_placement
-[08:35:41] ================ ttm_bo_validate_multihop  =================
-[08:35:41] [PASSED] Buffer object for userspace
-[08:35:41] [PASSED] Kernel buffer object
-[08:35:41] [PASSED] Shared buffer object
-[08:35:41] ============ [PASSED] ttm_bo_validate_multihop =============
-[08:35:41] ========== ttm_bo_validate_no_placement_signaled  ==========
-[08:35:41] [PASSED] Buffer object in system domain, no page vector
-[08:35:41] [PASSED] Buffer object in system domain with an existing page vector
-[08:35:41] ====== [PASSED] ttm_bo_validate_no_placement_signaled ======
-[08:35:41] ======== ttm_bo_validate_no_placement_not_signaled  ========
-[08:35:41] [PASSED] Buffer object for userspace
-[08:35:41] [PASSED] Kernel buffer object
-[08:35:41] [PASSED] Shared buffer object
-[08:35:41] ==== [PASSED] ttm_bo_validate_no_placement_not_signaled ====
-[08:35:41] [PASSED] ttm_bo_validate_move_fence_signaled
-[08:35:41] ========= ttm_bo_validate_move_fence_not_signaled  =========
-[08:35:41] [PASSED] Waits for GPU
-[08:35:41] [PASSED] Tries to lock straight away
-[08:35:42] ===== [PASSED] ttm_bo_validate_move_fence_not_signaled =====
-[08:35:42] [PASSED] ttm_bo_validate_swapout
-[08:35:42] [PASSED] ttm_bo_validate_happy_evict
-[08:35:42] [PASSED] ttm_bo_validate_all_pinned_evict
-[08:35:42] [PASSED] ttm_bo_validate_allowed_only_evict
-[08:35:42] [PASSED] ttm_bo_validate_deleted_evict
-[08:35:42] [PASSED] ttm_bo_validate_busy_domain_evict
-[08:35:42] [PASSED] ttm_bo_validate_evict_gutting
-[08:35:42] [PASSED] ttm_bo_validate_recrusive_evict
-stty: 'standard input': Inappropriate ioctl for device
-[08:35:42] ================= [PASSED] ttm_bo_validate =================
-[08:35:42] ============================================================
-[08:35:42] Testing complete. Ran 102 tests: passed: 102
-[08:35:42] Elapsed time: 10.003s total, 1.655s configuring, 7.681s building, 0.581s running
+>
+> Thanks,
+> Thomas
+>
+>> Regards,
+>> Christian.
+>>
+>>> Nor will there be any jobs with published dma-fences depending on
+>>> the
+>>> job blocked either temporarily by a pagefault or long-term by a
+>>> debugger breakpoint.
+>>>
+>>> /Thomas
+>>>
+>>>
+>>>> If that is done and the memory pre-empt fence is serviced even
+>>>> for
+>>>> debuggable contexts, do you have further concerns with the
+>>>> presented
+>>>> approach
+>>>> from dma-buf and drm/sched perspective?
+>>>>
+>>>> Regards, Joonas
+>>>>
+>>>>> Regards,
+>>>>> Christian.
+>>>>>
+>>>>>
+>>>>>           This means that a breakpoint or core dump doesn't halt
+>>>>> GPU
+>>>>> threads, but
+>>>>>           rather suspends them. E.g. all running wave data is
+>>>>> collected into a state
+>>>>>           bag which can be restored later on.
+>>>>>
+>>>>>           I was under the impression that those long running
+>>>>> compute
+>>>>> threads do
+>>>>>           exactly that, but when the hardware can't switch out
+>>>>> the
+>>>>> GPU thread/process
+>>>>>           while in a break then that isn't the case.
+>>>>>
+>>>>>           As long as you don't find a way to avoid that this
+>>>>> patch
+>>>>> set is a pretty
+>>>>>           clear NAK from my side as DMA-buf and TTM maintainer.
+>>>>>
+>>>>>
+>>>>>       I believe this is addressed above.
+>>>>>
+>>>>>       Matt
+>>>>>
+>>>>>
+>>>>>           What might work is to keep the submission on the
+>>>>> hardware
+>>>>> in the break state
+>>>>>           but forbid any memory access. This way you can signal
+>>>>> your
+>>>>> preemption fence
+>>>>>           even when the hardware isn't made available.
+>>>>>
+>>>>>           Before you continue XE setups a new pre-emption fence
+>>>>> and
+>>>>> makes sure that
+>>>>>           all page tables etc... are up to date.
+>>>>>
+>>>>>           Could be tricky to get this right if completion fence
+>>>>> based
+>>>>> submissions are
+>>>>>           mixed in as well, but that gives you at least a
+>>>>> direction
+>>>>> you could
+>>>>>           potentially go.
+>>>>>
+>>>>>           Regards,
+>>>>>           Christian.
+>>>>>
+>>>>>
+>>>>>               Regards, Joonas
+>>>>>
+>>>>>
+>>>>>                   Regards,
+>>>>>                   Christian.
+>>>>>
+>>>>>
+>>>>>                       Some wash-up thoughts from me below, but
+>>>>> consider them fairly irrelevant
+>>>>>                       since I think the main driver for these
+>>>>> big
+>>>>> questions here should be
+>>>>>                       gdb/userspace.
+>>>>>
+>>>>>
+>>>>>                           Quoting Christian König (2024-11-07
+>>>>> 11:44:33)
+>>>>>
+>>>>>                               Am 06.11.24 um 18:00 schrieb
+>>>>> Matthew
+>>>>> Brost:
+>>>>>
+>>>>>                                     [SNIP]
+>>>>>
+>>>>>                                     This is not a generic
+>>>>> interface
+>>>>> that anyone can freely access. The same
+>>>>>                                     permissions used by ptrace
+>>>>> are
+>>>>> checked when opening such an interface.
+>>>>>                                     See [1] [2].
+>>>>>
+>>>>>                                    
+>>>>> [1]
+>>>>> https://patchwork.freedesktop.org/patch/617470/?series=136572&r
+>>>>> e
+>>>>> v=2
+>>>>>                                    
+>>>>> [2]
+>>>>> https://patchwork.freedesktop.org/patch/617471/?series=136572&r
+>>>>> e
+>>>>> v=2
+>>>>>
+>>>>>
+>>>>>                               Thanks a lot for those pointers,
+>>>>> that
+>>>>> is exactly what I was looking for.
+>>>>>
+>>>>>                               And yeah, it is what I feared. You
+>>>>> are
+>>>>> re-implementing existing functionality,
+>>>>>                               but see below.
+>>>>>
+>>>>>                           Could you elaborate on what this
+>>>>> "existing
+>>>>> functionality" exactly is?
+>>>>>                           I do not think this functionality
+>>>>> exists at
+>>>>> this time.
+>>>>>
+>>>>>                           The EU debugging architecture for Xe
+>>>>> specifically avoids the need for GDB
+>>>>>                           to attach with ptrace to the CPU
+>>>>> process or
+>>>>> interfere with the CPU process for
+>>>>>                           the debugging via parasitic threads or
+>>>>> so.
+>>>>>
+>>>>>                           Debugger connection is opened to the
+>>>>> DRM
+>>>>> driver for given PID (which uses the
+>>>>>                           ptrace may access check for now) after
+>>>>> which the all DRM client of that
+>>>>>                           PID are exposed to the debugger
+>>>>> process.
+>>>>>
+>>>>>                           What we want to expose via that
+>>>>> debugger
+>>>>> connection is the ability for GDB to
+>>>>>                           read/write the different GPU VM
+>>>>> address
+>>>>> spaces (ppGTT for Intel GPUs) just like
+>>>>>                           the EU threads would see them. Note
+>>>>> that
+>>>>> the layout of the ppGTT is
+>>>>>                           completely up to the userspace driver
+>>>>> to
+>>>>> setup and is mostly only partially
+>>>>>                           equal to the CPU address space.
+>>>>>
+>>>>>                           Specifically as part of
+>>>>> reading/writing the
+>>>>> ppGTT for debugging purposes,
+>>>>>                           there are deep flushes needed: for
+>>>>> example
+>>>>> flushing instruction cache
+>>>>>                           when adding/removing breakpoints.
+>>>>>
+>>>>>                           Maybe that will explain the
+>>>>> background. I
+>>>>> elaborate on this at the end some more.
+>>>>>
+>>>>>
+>>>>>                                             kmap/vmap are used
+>>>>> everywhere in the DRM subsystem to access BOs, so I’m
+>>>>>                                             failing to see the
+>>>>> problem with adding a simple helper based on existing
+>>>>>                                             code.
+>>>>>
+>>>>>                                         What#s possible and
+>>>>> often
+>>>>> done is to do kmap/vmap if you need to implement a
+>>>>>                                         CPU copy for scanout for
+>>>>> example or for copying/validating command buffers.
+>>>>>                                         But that usually
+>>>>> requires
+>>>>> accessing the whole BO and has separate security
+>>>>>                                         checks.
+>>>>>
+>>>>>                                         When you want to access
+>>>>> only
+>>>>> a few bytes of a BO that sounds massively like
+>>>>>                                         a peek/poke like
+>>>>> interface
+>>>>> and we have already rejected that more than once.
+>>>>>                                         There even used to be
+>>>>> standardized GEM IOCTLs for that which have been
+>>>>>                                         removed by now.
+>>>>>
+>>>>>                           Referring to the explanation at top:
+>>>>> These
+>>>>> IOCTL are not for the debugging target
+>>>>>                           process to issue. The peek/poke
+>>>>> interface
+>>>>> is specifically for GDB only
+>>>>>                           to facilitate the emulation of memory
+>>>>> reads/writes on the GPU address
+>>>>>                           space as they were done by EUs
+>>>>> themselves.
+>>>>> And to recap: for modifying
+>>>>>                           instructions for example (add/remove
+>>>>> breakpoint), extra level of cache flushing is
+>>>>>                           needed which is not available to
+>>>>> regular
+>>>>> userspace.
+>>>>>
+>>>>>                           I specifically discussed with Sima on
+>>>>> the
+>>>>> difference before moving forward with this
+>>>>>                           design originally. If something has
+>>>>> changed
+>>>>> since then, I'm of course happy to rediscuss.
+>>>>>
+>>>>>                           However, if this code can't be added,
+>>>>> not
+>>>>> sure how we would ever be able
+>>>>>                           to implement core dumps for GPU
+>>>>> threads/memory?
+>>>>>
+>>>>>
+>>>>>                                         If you need to access
+>>>>> BOs
+>>>>> which are placed in not CPU accessible memory then
+>>>>>                                         implement the access
+>>>>> callback
+>>>>> for ptrace, see amdgpu_ttm_access_memory for
+>>>>>                                         an example how to do
+>>>>> this.
+>>>>>
+>>>>>                           As also mentioned above, we don't work
+>>>>> via
+>>>>> ptrace at all when it comes
+>>>>>                           to debugging the EUs. The only thing
+>>>>> used
+>>>>> for now is the ptrace_may_access to
+>>>>>                           implement similar access restrictions
+>>>>> as
+>>>>> ptrace has. This can be changed
+>>>>>                           to something else if needed.
+>>>>>
+>>>>>
+>>>>>                                     Ptrace access via
+>>>>> vm_operations_struct.access → ttm_bo_vm_access.
+>>>>>
+>>>>>                                     This series renames
+>>>>> ttm_bo_vm_access to ttm_bo_access, with no code changes.
+>>>>>
+>>>>>                                     The above function accesses
+>>>>> a BO
+>>>>> via kmap if it is in SYSTEM / TT,
+>>>>>                                     which is existing code.
+>>>>>
+>>>>>                                     This function is only
+>>>>> exposed to
+>>>>> user space via ptrace permissions.
+>>>>>
+>>>>>                           Maybe this sentence is what caused the
+>>>>> confusion.
+>>>>>
+>>>>>                           Userspace is never exposed with
+>>>>> peek/poke
+>>>>> interface, only the debugger
+>>>>>                           connection which is its own FD.
+>>>>>
+>>>>>
+>>>>>                                     In this series, we implement
+>>>>> a
+>>>>> function [3] similar to
+>>>>>                                     amdgpu_ttm_access_memory for
+>>>>> the
+>>>>> TTM vfunc access_memory. What is
+>>>>>                                     missing is non-visible CPU
+>>>>> memory
+>>>>> access, similar to
+>>>>>                                    
+>>>>> amdgpu_ttm_access_memory_sdma.
+>>>>> This will be addressed in a follow-up and
+>>>>>                                     was omitted in this series
+>>>>> given
+>>>>> its complexity.
+>>>>>
+>>>>>                                     So, this looks more or less
+>>>>> identical to AMD's ptrace implementation,
+>>>>>                                     but in GPU address space.
+>>>>> Again,
+>>>>> I fail to see what the problem is here.
+>>>>>                                     What am I missing?
+>>>>>
+>>>>>
+>>>>>                               The main question is why can't you
+>>>>> use
+>>>>> the existing interfaces directly?
+>>>>>
+>>>>>                           We're not working on the CPU address
+>>>>> space
+>>>>> or BOs. We're working
+>>>>>                           strictly on the GPU address space as
+>>>>> would
+>>>>> be seen by an EU thread if it
+>>>>>                           accessed address X.
+>>>>>
+>>>>>
+>>>>>                               Additional to the peek/poke
+>>>>> interface
+>>>>> of ptrace Linux has the pidfd_getfd
+>>>>>                               system call, see
+>>>>> herehttps://man7.org/linux/man-pages/man2/pidfd_getfd.2.html.
+>>>>>
+>>>>>                               The pidfd_getfd() allows to dup()
+>>>>> the
+>>>>> render node file descriptor into your gdb
+>>>>>                               process. That in turn gives you
+>>>>> all the
+>>>>> access you need from gdb, including
+>>>>>                               mapping BOs and command submission
+>>>>> on
+>>>>> behalf of the application.
+>>>>>
+>>>>>                           We're not operating on the CPU address
+>>>>> space nor are we operating on BOs
+>>>>>                           (there is no concept of BO in the EU
+>>>>> debug
+>>>>> interface). Each VMA in the VM
+>>>>>                           could come from anywhere, only the
+>>>>> start
+>>>>> address and size matter. And
+>>>>>                           neither do we need to interfere with
+>>>>> the
+>>>>> command submission of the
+>>>>>                           process under debug.
+>>>>>
+>>>>>
+>>>>>                               As far as I can see that allows
+>>>>> for the
+>>>>> same functionality as the eudebug
+>>>>>                               interface, just without any driver
+>>>>> specific code messing with ptrace
+>>>>>                               permissions and peek/poke
+>>>>> interfaces.
+>>>>>
+>>>>>                               So the question is still why do
+>>>>> you
+>>>>> need the whole eudebug interface in the
+>>>>>                               first place? I might be missing
+>>>>> something, but that seems to be superfluous
+>>>>>                               from a high level view.
+>>>>>
+>>>>>                           Recapping from above. It is to allow
+>>>>> the
+>>>>> debugging of EU threads per DRM
+>>>>>                           client, completely independent of the
+>>>>> CPU
+>>>>> process. If ptrace_may_acces
+>>>>>                           is the sore point, we could consider
+>>>>> other
+>>>>> permission checks, too. There
+>>>>>                           is no other connection to ptrace in
+>>>>> this
+>>>>> architecture as single
+>>>>>                           permission check to know if PID is
+>>>>> fair
+>>>>> game to access by debugger
+>>>>>                           process.
+>>>>>
+>>>>>                           Why no parasitic thread or ptrace:
+>>>>> Going
+>>>>> forward, binding the EU debugging to
+>>>>>                           the DRM client would also pave way for
+>>>>> being able to extend core kernel generated
+>>>>>                           core dump with each DRM client's EU
+>>>>> thread/memory dump. We have similar
+>>>>>                           feature called "Offline core dump"
+>>>>> enabled
+>>>>> in the downstream public
+>>>>>                           trees for i915, where we currently
+>>>>> attach
+>>>>> the EU thread dump to i915 error state
+>>>>>                           and then later combine i915 error
+>>>>> state
+>>>>> with CPU core dump file with a
+>>>>>                           tool.
+>>>>>
+>>>>>                           This is relatively little amount of
+>>>>> extra
+>>>>> code, as this baseline series
+>>>>>                           already introduces GDB the ability to
+>>>>> perform the necessary actions.
+>>>>>                           It's just the matter of kernel driver
+>>>>> calling: "stop all threads", then
+>>>>>                           copying the memory map and memory
+>>>>> contents
+>>>>> for GPU threads, just like is
+>>>>>                           done for CPU threads.
+>>>>>
+>>>>>                           With parasitic thread injection, not
+>>>>> sure
+>>>>> if there is such way forward,
+>>>>>                           as it would seem to require to inject
+>>>>> quite
+>>>>> abit more logic to core kernel?
+>>>>>
+>>>>>
+>>>>>                               It's true that the AMD KFD part
+>>>>> has
+>>>>> still similar functionality, but that is
+>>>>>                               because of the broken KFD design
+>>>>> of
+>>>>> tying driver state to the CPU process
+>>>>>                               (which makes it inaccessible for
+>>>>> gdb
+>>>>> even with imported render node fd).
+>>>>>
+>>>>>                               Both Sima and I (and partially
+>>>>> Dave as
+>>>>> well) have pushed back on the KFD
+>>>>>                               approach. And the long term plan
+>>>>> is to
+>>>>> get rid of such device driver specific
+>>>>>                               interface which re-implement
+>>>>> existing
+>>>>> functionality just differently.
+>>>>>
+>>>>>                           Recapping, this series is not adding
+>>>>> it
+>>>>> back. The debugger connection
+>>>>>                           is a separate FD from the DRM one,
+>>>>> with
+>>>>> separate IOCTL set. We don't allow
+>>>>>                           the DRM FD any new operations based on
+>>>>> ptrace is attached or not. We
+>>>>>                           don't ever do that check even.
+>>>>>
+>>>>>                           We only restrict the opening of the
+>>>>> debugger connection to given PID with
+>>>>>                           ptrace_may_access check for now. That
+>>>>> can
+>>>>> be changed to something else,
+>>>>>                           if necessary.
+>>>>>
+>>>>>                       Yeah I think unnecessarily tying gpu
+>>>>> processes
+>>>>> to cpu processes is a bad
+>>>>>                       thing, least because even today all the
+>>>>> svm
+>>>>> discussions we have still hit
+>>>>>                       clear use-cases, where a 1:1 match is not
+>>>>> wanted (like multiple gpu svm
+>>>>>                       sections with offsets). Not even speaking
+>>>>> of
+>>>>> all the gpu usecases where
+>>>>>                       the gpu vm space is still entirely
+>>>>> independent
+>>>>> of the cpu side.
+>>>>>
+>>>>>                       So that's why I think this entirely
+>>>>> separate
+>>>>> approach looks like the right
+>>>>>                       one, with ptrace_may_access as the access
+>>>>> control check to make sure we
+>>>>>                       match ptrace on the cpu side.
+>>>>>
+>>>>>                       But there's very obviously a bikeshed to
+>>>>> be had
+>>>>> on what the actual uapi
+>>>>>                       should look like, especially how gdb opens
+>>>>> up a
+>>>>> gpu debug access fd. But I
+>>>>>                       also think that's not much on drm to
+>>>>> decide,
+>>>>> but whatever gdb wants. And
+>>>>>                       then we aim for some consistency on that
+>>>>> lookup/access control part
+>>>>>                       (ideally, I might be missing some reasons
+>>>>> why
+>>>>> this is a bad idea) across
+>>>>>                       drm drivers.
+>>>>>
+>>>>>
+>>>>>                               So you need to have a really
+>>>>> really
+>>>>> good explanation why the eudebug interface
+>>>>>                               is actually necessary.
+>>>>>
+>>>>>                           TL;DR The main point is to decouple
+>>>>> the
+>>>>> debugging of the EU workloads from the
+>>>>>                           debugging of the CPU process. This
+>>>>> avoids
+>>>>> the interference with the CPU process with
+>>>>>                           parasitic thread injection. Further
+>>>>> this
+>>>>> also allows generating a core dump
+>>>>>                           without any GDB connected. There are
+>>>>> also
+>>>>> many other smaller pros/cons
+>>>>>                           which can be discussed but for the
+>>>>> context
+>>>>> of this patch, this is the
+>>>>>                           main one.
+>>>>>
+>>>>>                           So unlike parasitic thread injection,
+>>>>> we
+>>>>> don't unlock any special IOCTL for
+>>>>>                           the process under debug to be
+>>>>> performed by
+>>>>> the parasitic thread, but we
+>>>>>                           allow the minimal set of operations to
+>>>>> be
+>>>>> performed by GDB as if those were
+>>>>>                           done on the EUs themselves.
+>>>>>
+>>>>>                           One can think of it like the minimal
+>>>>> subset
+>>>>> of ptrace but for EU threads,
+>>>>>                           not the CPU threads. And thus,
+>>>>> building on
+>>>>> this it's possible to extend
+>>>>>                           the core kernel generated core dumps
+>>>>> with
+>>>>> DRM specific extension which
+>>>>>                           would contain the EU thread/memory
+>>>>> dump.
+>>>>>
+>>>>>                       It might be good to document (in that
+>>>>> debugging
+>>>>> doc patch probably) why
+>>>>>                       thread injection is not a great option,
+>>>>> and why
+>>>>> the tradeoffs for
+>>>>>                       debugging are different than for for
+>>>>> checkpoint/restore, where with CRIU
+>>>>>                       we landed on doing most of this in
+>>>>> userspace,
+>>>>> and often requiring
+>>>>>                       injection threads to make it all work.
+>>>>>
+>>>>>                       Cheers, Sima
+>>>>>
+>>>>>
+>>>>>                           Regards, Joonas
+>>>>>
+>>>>>
+>>>>>                               Regards,
+>>>>>                               Christian.
+>>>>>
+>>>>>
+>>>>>
+>>>>>                                     Matt
+>>>>>
+>>>>>                                    
+>>>>> [3]
+>>>>> https://patchwork.freedesktop.org/patch/622520/?series=140200&r
+>>>>> e
+>>>>> v=6
+>>>>>
+>>>>>
+>>>>>                                         Regards,
+>>>>>                                         Christian.
+>>>>>
+>>>>>
+>>>>>                                             Matt
+>>>>>
+>>>>>
+>>>>>                                                 Regards,
+>>>>>                                                 Christian.
+>>>>>
+>>>>>
+>>>>>
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+--------------2aERzTiTWHE00ELFojl2bCK0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    Am 12.11.24 um 17:33 schrieb Thomas Hellström:<br>
+    <blockquote type="cite" cite="mid:d469ab3509a1b875ad0c44d01569675682d6c61c.camel@linux.intel.com">[SNIP]<span style="white-space: pre-wrap">
+</span>
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <blockquote type="cite">
+            <pre class="moz-quote-pre" wrap="">This has been extensively discussed already, but was expected to
+really
+only be needed for low-on-memory scenarios. However it now seems
+like
+the need is much earlier due to the random userptr page joining
+by
+core
+mm.
+</pre>
+          </blockquote>
+          <pre class="moz-quote-pre" wrap="">Just to clarify here:
+&nbsp; 
+In Long-Running mode with recoverable pagefaults enabled we don't
+have
+any preempt-fences, but rather just zap the PTEs pointing to the
+affected memory and flush TLB. So from a memory resource POW a
+breakpoint should be safe, and no mmu notifier nor shrinker will be
+blocked.
+</pre>
+        </blockquote>
+        <pre class="moz-quote-pre" wrap="">
+That sounds like a HMM based approach which would clearly work.
+
+But where is that? I don't see any HMM based approach anywhere in the
+XE 
+driver.
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+This is a mode that uses recoverable pagefaults to fault either full
+userptr or full bos, and used with DRM_XE_VM_CRATE_FLAG_FAULT_MODE.
+(not SVM)!
+
+userptrs in xe are bo-less, and using the vm's resv, but otherwise
+using hmm similar to amdgpu: xe_hmm.c</pre>
+    </blockquote>
+    <br>
+    Yeah, I have seen that one.<br>
+    <br>
+    <blockquote type="cite" cite="mid:d469ab3509a1b875ad0c44d01569675682d6c61c.camel@linux.intel.com">
+      <pre class="moz-quote-pre" wrap="">fault servicing:
+xe_gt_pagefault.c
+
+PTE zapping on eviction and notifier:
+xe_vm_invalidate_vma(), xe_vm.c</pre>
+    </blockquote>
+    <br>
+    Ah, that was the stuff I was missing.<br>
+    <br>
+    So the implementation in xe_preempt_fence.c is just for graphics
+    submissions? That would make the whole thing much easier to handle.<br>
+    <br>
+    The only remaining question I can then see is if long running
+    submissions with DRM_XE_VM_CRATE_FLAG_FAULT_MODE could potentially
+    block graphics submissions without this flag from accessing the
+    hardware?<br>
+    <br>
+    Thanks a lot for pointing this out,<br>
+    Christian.<br>
+    <br>
+    <blockquote type="cite" cite="mid:d469ab3509a1b875ad0c44d01569675682d6c61c.camel@linux.intel.com">
+      <pre class="moz-quote-pre" wrap="">
+
+Thanks,
+Thomas
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">
+Regards,
+Christian.
+
+</pre>
+        <blockquote type="cite">
+          <pre class="moz-quote-pre" wrap="">
+Nor will there be any jobs with published dma-fences depending on
+the
+job blocked either temporarily by a pagefault or long-term by a
+debugger breakpoint.
+
+/Thomas
 
 
+</pre>
+          <blockquote type="cite">
+            <pre class="moz-quote-pre" wrap="">If that is done and the memory pre-empt fence is serviced even
+for
+debuggable contexts, do you have further concerns with the
+presented
+approach
+from dma-buf and drm/sched perspective?
+
+Regards, Joonas
+
+</pre>
+            <blockquote type="cite">
+              <pre class="moz-quote-pre" wrap="">Regards,
+Christian.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This means that a breakpoint or core dump doesn't halt
+GPU
+threads, but
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rather suspends them. E.g. all running wave data is
+collected into a state
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bag which can be restored later on.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I was under the impression that those long running
+compute
+threads do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exactly that, but when the hardware can't switch out
+the
+GPU thread/process
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while in a break then that isn't the case.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; As long as you don't find a way to avoid that this
+patch
+set is a pretty
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear NAK from my side as DMA-buf and TTM maintainer.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp; I believe this is addressed above.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Matt
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; What might work is to keep the submission on the
+hardware
+in the break state
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; but forbid any memory access. This way you can signal
+your
+preemption fence
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; even when the hardware isn't made available.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Before you continue XE setups a new pre-emption fence
+and
+makes sure that
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; all page tables etc... are up to date.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Could be tricky to get this right if completion fence
+based
+submissions are
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mixed in as well, but that gives you at least a
+direction
+you could
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; potentially go.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Regards,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Christian.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Regards, Joonas
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Regards,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Christian.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Some wash-up thoughts from me below, but
+consider them fairly irrelevant
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since I think the main driver for these
+big
+questions here should be
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gdb/userspace.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Quoting Christian König (2024-11-07
+11:44:33)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Am 06.11.24 um 18:00 schrieb
+Matthew
+Brost:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [SNIP]
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This is not a generic
+interface
+that anyone can freely access. The same
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; permissions used by ptrace
+are
+checked when opening such an interface.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; See [1] [2].
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+[1]
+<a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/patch/617470/?series=136572&amp;r">https://patchwork.freedesktop.org/patch/617470/?series=136572&amp;r</a>
+e
+v=2
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+[2]
+<a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/patch/617471/?series=136572&amp;r">https://patchwork.freedesktop.org/patch/617471/?series=136572&amp;r</a>
+e
+v=2
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thanks a lot for those pointers,
+that
+is exactly what I was looking for.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; And yeah, it is what I feared. You
+are
+re-implementing existing functionality,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; but see below.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Could you elaborate on what this
+&quot;existing
+functionality&quot; exactly is?
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I do not think this functionality
+exists at
+this time.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The EU debugging architecture for Xe
+specifically avoids the need for GDB
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; to attach with ptrace to the CPU
+process or
+interfere with the CPU process for
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the debugging via parasitic threads or
+so.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Debugger connection is opened to the
+DRM
+driver for given PID (which uses the
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ptrace may access check for now) after
+which the all DRM client of that
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PID are exposed to the debugger
+process.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; What we want to expose via that
+debugger
+connection is the ability for GDB to
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; read/write the different GPU VM
+address
+spaces (ppGTT for Intel GPUs) just like
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the EU threads would see them. Note
+that
+the layout of the ppGTT is
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; completely up to the userspace driver
+to
+setup and is mostly only partially
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; equal to the CPU address space.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Specifically as part of
+reading/writing the
+ppGTT for debugging purposes,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; there are deep flushes needed: for
+example
+flushing instruction cache
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; when adding/removing breakpoints.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Maybe that will explain the
+background. I
+elaborate on this at the end some more.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kmap/vmap are used
+everywhere in the DRM subsystem to access BOs, so I’m
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; failing to see the
+problem with adding a simple helper based on existing
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; code.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; What#s possible and
+often
+done is to do kmap/vmap if you need to implement a
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CPU copy for scanout for
+example or for copying/validating command buffers.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; But that usually
+requires
+accessing the whole BO and has separate security
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; checks.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; When you want to access
+only
+a few bytes of a BO that sounds massively like
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a peek/poke like
+interface
+and we have already rejected that more than once.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There even used to be
+standardized GEM IOCTLs for that which have been
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; removed by now.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Referring to the explanation at top:
+These
+IOCTL are not for the debugging target
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; process to issue. The peek/poke
+interface
+is specifically for GDB only
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; to facilitate the emulation of memory
+reads/writes on the GPU address
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; space as they were done by EUs
+themselves.
+And to recap: for modifying
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; instructions for example (add/remove
+breakpoint), extra level of cache flushing is
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; needed which is not available to
+regular
+userspace.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I specifically discussed with Sima on
+the
+difference before moving forward with this
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; design originally. If something has
+changed
+since then, I'm of course happy to rediscuss.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; However, if this code can't be added,
+not
+sure how we would ever be able
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; to implement core dumps for GPU
+threads/memory?
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If you need to access
+BOs
+which are placed in not CPU accessible memory then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; implement the access
+callback
+for ptrace, see amdgpu_ttm_access_memory for
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; an example how to do
+this.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; As also mentioned above, we don't work
+via
+ptrace at all when it comes
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; to debugging the EUs. The only thing
+used
+for now is the ptrace_may_access to
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; implement similar access restrictions
+as
+ptrace has. This can be changed
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; to something else if needed.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ptrace access via
+vm_operations_struct.access → ttm_bo_vm_access.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This series renames
+ttm_bo_vm_access to ttm_bo_access, with no code changes.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The above function accesses
+a BO
+via kmap if it is in SYSTEM / TT,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; which is existing code.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function is only
+exposed to
+user space via ptrace permissions.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Maybe this sentence is what caused the
+confusion.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Userspace is never exposed with
+peek/poke
+interface, only the debugger
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; connection which is its own FD.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In this series, we implement
+a
+function [3] similar to
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_ttm_access_memory for
+the
+TTM vfunc access_memory. What is
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; missing is non-visible CPU
+memory
+access, similar to
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+amdgpu_ttm_access_memory_sdma.
+This will be addressed in a follow-up and
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; was omitted in this series
+given
+its complexity.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; So, this looks more or less
+identical to AMD's ptrace implementation,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; but in GPU address space.
+Again,
+I fail to see what the problem is here.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; What am I missing?
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The main question is why can't you
+use
+the existing interfaces directly?
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We're not working on the CPU address
+space
+or BOs. We're working
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; strictly on the GPU address space as
+would
+be seen by an EU thread if it
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; accessed address X.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Additional to the peek/poke
+interface
+of ptrace Linux has the pidfd_getfd
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; system call, see
+herehttps://man7.org/linux/man-pages/man2/pidfd_getfd.2.html.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The pidfd_getfd() allows to dup()
+the
+render node file descriptor into your gdb
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; process. That in turn gives you
+all the
+access you need from gdb, including
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mapping BOs and command submission
+on
+behalf of the application.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We're not operating on the CPU address
+space nor are we operating on BOs
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (there is no concept of BO in the EU
+debug
+interface). Each VMA in the VM
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; could come from anywhere, only the
+start
+address and size matter. And
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; neither do we need to interfere with
+the
+command submission of the
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; process under debug.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; As far as I can see that allows
+for the
+same functionality as the eudebug
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; interface, just without any driver
+specific code messing with ptrace
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; permissions and peek/poke
+interfaces.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; So the question is still why do
+you
+need the whole eudebug interface in the
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; first place? I might be missing
+something, but that seems to be superfluous
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from a high level view.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recapping from above. It is to allow
+the
+debugging of EU threads per DRM
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; client, completely independent of the
+CPU
+process. If ptrace_may_acces
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is the sore point, we could consider
+other
+permission checks, too. There
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is no other connection to ptrace in
+this
+architecture as single
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; permission check to know if PID is
+fair
+game to access by debugger
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; process.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Why no parasitic thread or ptrace:
+Going
+forward, binding the EU debugging to
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the DRM client would also pave way for
+being able to extend core kernel generated
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; core dump with each DRM client's EU
+thread/memory dump. We have similar
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature called &quot;Offline core dump&quot;
+enabled
+in the downstream public
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; trees for i915, where we currently
+attach
+the EU thread dump to i915 error state
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and then later combine i915 error
+state
+with CPU core dump file with a
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tool.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This is relatively little amount of
+extra
+code, as this baseline series
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; already introduces GDB the ability to
+perform the necessary actions.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; It's just the matter of kernel driver
+calling: &quot;stop all threads&quot;, then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; copying the memory map and memory
+contents
+for GPU threads, just like is
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; done for CPU threads.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; With parasitic thread injection, not
+sure
+if there is such way forward,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as it would seem to require to inject
+quite
+abit more logic to core kernel?
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; It's true that the AMD KFD part
+has
+still similar functionality, but that is
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; because of the broken KFD design
+of
+tying driver state to the CPU process
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (which makes it inaccessible for
+gdb
+even with imported render node fd).
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Both Sima and I (and partially
+Dave as
+well) have pushed back on the KFD
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; approach. And the long term plan
+is to
+get rid of such device driver specific
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; interface which re-implement
+existing
+functionality just differently.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recapping, this series is not adding
+it
+back. The debugger connection
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is a separate FD from the DRM one,
+with
+separate IOCTL set. We don't allow
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the DRM FD any new operations based on
+ptrace is attached or not. We
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; don't ever do that check even.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We only restrict the opening of the
+debugger connection to given PID with
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ptrace_may_access check for now. That
+can
+be changed to something else,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if necessary.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Yeah I think unnecessarily tying gpu
+processes
+to cpu processes is a bad
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; thing, least because even today all the
+svm
+discussions we have still hit
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear use-cases, where a 1:1 match is not
+wanted (like multiple gpu svm
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sections with offsets). Not even speaking
+of
+all the gpu usecases where
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the gpu vm space is still entirely
+independent
+of the cpu side.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; So that's why I think this entirely
+separate
+approach looks like the right
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; one, with ptrace_may_access as the access
+control check to make sure we
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; match ptrace on the cpu side.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; But there's very obviously a bikeshed to
+be had
+on what the actual uapi
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; should look like, especially how gdb opens
+up a
+gpu debug access fd. But I
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; also think that's not much on drm to
+decide,
+but whatever gdb wants. And
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then we aim for some consistency on that
+lookup/access control part
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (ideally, I might be missing some reasons
+why
+this is a bad idea) across
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm drivers.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; So you need to have a really
+really
+good explanation why the eudebug interface
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is actually necessary.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TL;DR The main point is to decouple
+the
+debugging of the EU workloads from the
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; debugging of the CPU process. This
+avoids
+the interference with the CPU process with
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; parasitic thread injection. Further
+this
+also allows generating a core dump
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; without any GDB connected. There are
+also
+many other smaller pros/cons
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; which can be discussed but for the
+context
+of this patch, this is the
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; main one.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; So unlike parasitic thread injection,
+we
+don't unlock any special IOCTL for
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the process under debug to be
+performed by
+the parasitic thread, but we
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; allow the minimal set of operations to
+be
+performed by GDB as if those were
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; done on the EUs themselves.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; One can think of it like the minimal
+subset
+of ptrace but for EU threads,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; not the CPU threads. And thus,
+building on
+this it's possible to extend
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the core kernel generated core dumps
+with
+DRM specific extension which
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; would contain the EU thread/memory
+dump.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; It might be good to document (in that
+debugging
+doc patch probably) why
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; thread injection is not a great option,
+and why
+the tradeoffs for
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; debugging are different than for for
+checkpoint/restore, where with CRIU
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; we landed on doing most of this in
+userspace,
+and often requiring
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; injection threads to make it all work.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cheers, Sima
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Regards, Joonas
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Regards,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Christian.
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Matt
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+[3]
+<a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/patch/622520/?series=140200&amp;r">https://patchwork.freedesktop.org/patch/622520/?series=140200&amp;r</a>
+e
+v=6
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Regards,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Christian.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Matt
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Regards,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Christian.
+
+
+
+</pre>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+        <pre class="moz-quote-pre" wrap="">
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------2aERzTiTWHE00ELFojl2bCK0--
