@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AA94D41C1E
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 09:15:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDD19D41C20
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 09:19:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1756210E1B6;
-	Wed, 13 Nov 2024 09:15:49 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D708E10E1B6;
- Wed, 13 Nov 2024 09:15:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7189237085187432070=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C99E10E6B8;
+	Wed, 13 Nov 2024 09:19:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QGW30aaU";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF80310E6B6;
+ Wed, 13 Nov 2024 09:19:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731489592; x=1763025592;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=RywXthOwFpE1A24DQnCms05kD5aHruUT0XtDivdxmhY=;
+ b=QGW30aaUCIlZredW3Upy6iXaE2mh4ENk5oo6OrOr1aT9Ej5IJjPCqpVG
+ +ZZZRiSILLGwxWvvGldy39qQA03HfBqDqk/zmMaPJy+82+1r+OPjgsyGr
+ Qew7nD217RPyfvNKtJ6VOSa9f6SmucJRBNDuvURgAOlUKLEPzgXWusZ/F
+ IkS9g5Cvt9t4fPeUHJVXRGedAuSkrpAk+lrtjZ5Qr2ufwoZXJHtaShfdL
+ gnLpNeN9c+kKrB3I3xmHl5h/BnKwxo+YpU8Q/szc6TShniDO2MFIjw9Gb
+ tKunZS+OTER2iX+BWnqahTaeuUnE2224EjDGUGe4k2IQgBBYGCOTTeOlJ Q==;
+X-CSE-ConnectionGUID: Q50+TmQyQiCwcKVZoS6oZQ==
+X-CSE-MsgGUID: LAa/qexNRIWCesOMjr8Ktw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="35162615"
+X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="35162615"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2024 01:19:51 -0800
+X-CSE-ConnectionGUID: 8UyDTvZeTLOn8OBChabZ2A==
+X-CSE-MsgGUID: HvPx21msSdWgFnCUhilnFQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="92585896"
+Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.186])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2024 01:19:47 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Sergey Senozhatsky <senozhatsky@chromium.org>, Sergey Senozhatsky
+ <senozhatsky@chromium.org>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ ville.syrjala@linux.intel.com
+Subject: Re: [RFC][PATCH] drm: i915: do not NULL deref hdmi attached_connector
+In-Reply-To: <20241113083920.GH1458936@google.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241031105145.2140590-1-senozhatsky@chromium.org>
+ <20241113083920.GH1458936@google.com>
+Date: Wed, 13 Nov 2024 11:19:44 +0200
+Message-ID: <87msi3bidr.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Ignore_GGTT_TLB_inval_?=
- =?utf-8?q?errors_during_GT_reset_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Nov 2024 09:15:47 -0000
-Message-ID: <173148934787.3449415.1547508462178550530@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241112170123.1236443-1-nirmoy.das@intel.com>
-In-Reply-To: <20241112170123.1236443-1-nirmoy.das@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,159 +71,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7189237085187432070==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 13 Nov 2024, Sergey Senozhatsky <senozhatsky@chromium.org> wrote:
+> On (24/10/31 19:51), Sergey Senozhatsky wrote:
+>> intel_ddi_init() may skip connector initialization, for instance,
+>> both intel_ddi_init_dp_connector() and intel_ddi_init_hdmi_connector()
+>> are optional.  This leads to situation that ->attached_connector may
+>> be NULL for some connectors.  For instance, on my setup 'DDI A/PHY A'
+>> and 'DDI TC1/PHY TC1' are not initialized.
+>> 
+>> However, functions like intel_dp_dual_mode_set_tmds_output() and
+>> friends don't take this into consideration.  This leads to NULL
+>> ptr-derefs:
+>> 
+>> KASAN: null-ptr-deref in range [0x0000000000000848-0x000000000000084f]
+>> RIP: 0010:intel_hdmi_encoder_shutdown+0x105/0x230
+>> Call Trace:
+>> <TASK>
+>> i915_driver_shutdown+0x2d8/0x490
+>> pci_device_shutdown+0x83/0x150
+>> device_shutdown+0x4ad/0x660
+>> __se_sys_reboot+0x29c/0x4d0
+>> do_syscall_64+0x60/0x90
+>> 
+>> Add a new helper to avoid NULL ->attached_connector derefs and
+>> switch some intel_hdmi function to it.  I'm not sure if we need
+>> to switch all or just intel_dp_dual_mode_set_tmds_output() (I
+>> have only seen this one doing NULL derefs so far).
+>
+> Folks, any more comments / opinions on this?
+> What should be the way forward?
 
-== Series Details ==
+Ville, we handle intel_ddi_init_dp_connector() failures but not
+intel_ddi_init_hdmi_connector() failures. Do you recall if there's a
+reason for that? Something like a dual-mode port where DP works but HDMI
+gets rejected because of bogus VBT info?
 
-Series: drm/xe: Ignore GGTT TLB inval errors during GT reset (rev2)
-URL   : https://patchwork.freedesktop.org/series/141228/
-State : success
+My gut feeling is to propagate errors from intel_hdmi_init_connector()
+and handle them properly in g4x_hdmi_init() and
+intel_ddi_init_hdmi_connector().
 
-== Summary ==
-
-CI Bug Log - changes from xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b_BAT -> xe-pw-141228v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-141228v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141228v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-dg2-oem2:       [PASS][3] -> [INCOMPLETE][4] ([Intel XE#2874]) +1 other test incomplete
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141228v2/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_pipe_crc_basic@hang-read-crc:
-    - bat-bmg-1:          [DMESG-WARN][5] ([Intel XE#877]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141228v2/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
+Of course, we have cases where hdmi is just not initialized on DDI, and
+those should be handled. But I don't think hdmi->attached_connector !=
+NULL is really the right check for that.
 
 
-Build changes
--------------
-
-  * IGT: IGT_8104 -> IGT_8105
-  * Linux: xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b -> xe-pw-141228v2
-
-  IGT_8104: 5da2928391abd9625dd87b4a3fb6c35a54a0d948 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8105: 8105
-  xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b: 26f5fe99791def93b32e27e79e71dbd0666c117b
-  xe-pw-141228v2: 141228v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141228v2/index.html
-
---===============7189237085187432070==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Ignore GGTT TLB inval errors during GT reset (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141228/">https://patchwork.freedesktop.org/series/141228/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141228v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141228v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b_BAT -&gt; xe-pw-141228v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-141228v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141228v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141228v2/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@hang-read-crc:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141228v2/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8104 -&gt; IGT_8105</li>
-<li>Linux: xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b -&gt; xe-pw-141228v2</li>
-</ul>
-<p>IGT_8104: 5da2928391abd9625dd87b4a3fb6c35a54a0d948 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8105: 8105<br />
-  xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b: 26f5fe99791def93b32e27e79e71dbd0666c117b<br />
-  xe-pw-141228v2: 141228v2</p>
-
-</body>
-</html>
-
---===============7189237085187432070==--
+-- 
+Jani Nikula, Intel
