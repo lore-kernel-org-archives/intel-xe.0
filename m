@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2A19D41C00
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 04:40:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C4C6D41C00
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 04:41:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9005910E336;
-	Wed, 13 Nov 2024 04:40:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1290110E683;
+	Wed, 13 Nov 2024 04:41:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d4bYgFPL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KAjk4Xrx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24DD010E682
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Nov 2024 04:40:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D23A10E683
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Nov 2024 04:40:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731472857; x=1763008857;
+ t=1731472859; x=1763008859;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kTrjoSYMyD7lfKPok6oA5ptD432lKR7oCUdE87hvLZc=;
- b=d4bYgFPLQX8+0CxoTSHQoFWz5x3l9NfeLxpa7a1Dn5bxZhwUJDeE58WV
- 8B9CZOaLggAkpjuiYrDkWUPOmnolnfuQmIkL61zm/ULDIlixfvI21ycDL
- uOs6D1NLdE1Fsh0y4xQjHDLPzLDRTxhbRqxtFMYTXZxCahSoSirK/Jjv1
- ZB0yeJ+ONXi3NYV6bVhujmbKMC4VOhjEKg2x4q70+9b3brzO26TqoVLqV
- wH5yZL47gPGPSQwiuaJnM/i5IF7tw9rbrocdsE1IcbNfbpaJdb1ICmloI
- YVKzyUYyh3q0X2Vc3U4Uga6LT9isNvnIKLd+drFoPVvuVvAyfeTa8lCYM Q==;
-X-CSE-ConnectionGUID: gMvflPLdTTypb7ePmkjH5w==
-X-CSE-MsgGUID: IygtQ33ERiWkwNSI1y0WMQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="30742181"
-X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="30742181"
+ bh=IUXQCxyo3E1T9/uKYIDDzpIEo+gBDDIrQgRvvTspGmo=;
+ b=KAjk4Xrxl9lekOD8PxNRxX+H3yqBCN9DK2rfNXGCYJf8lbXP9krzkhlI
+ bkqcwVNeQ1k86J+AcV4n6H9clSY5ol7GX8P54S3AlGa0Wbe+4EwP1gnZY
+ Dz3dYnpiVWEF2nzCoBCIDyRv3i7v5aL7JFOXWlJ4BatJSBw5iDSBOwiEg
+ o3JYGX7BcmkMwAmJ6SR93xNJKcvpV+9Etr5WEdGE9GoUgNSEgP+z0InvD
+ pyhqtfG/ZUBAn69UkYmNNQaBalq68gq5R73mYWczlJ2cTOOkK1W1p1wfl
+ d/uvoQ+Vmqs80h8FssWWrZTSNqatHUhkbmLRQaTknwK43rmBmv+rdIQTy A==;
+X-CSE-ConnectionGUID: mp4zJt8zQe6UjRqAexYWqg==
+X-CSE-MsgGUID: nk7OZJ91ReK3Mor7ty91sA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="30742209"
+X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="30742209"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2024 20:40:48 -0800
-X-CSE-ConnectionGUID: iTfAiOP+QjeZ/9w9zHAGqQ==
-X-CSE-MsgGUID: bu0aeFaFTG2b+K87/6PsJA==
+ 12 Nov 2024 20:40:59 -0800
+X-CSE-ConnectionGUID: aMDZE7qER0Wc1b6+5JEGww==
+X-CSE-MsgGUID: fXg6s1+hTEKHzGXZ0jQiqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="87489482"
+X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="87489531"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2024 20:40:44 -0800
+ 12 Nov 2024 20:40:56 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
@@ -48,9 +48,9 @@ Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
  vinay.belgaumkar@intel.com, aravind.iddamsetty@intel.com,
  john.c.harrison@intel.com, ashutosh.dixit@intel.com,
  soham.purkait@intel.com
-Subject: [PATCH 3/7] [DO NOT REVIEW] drm/xe/pmu: Add GT frequency events
-Date: Wed, 13 Nov 2024 10:25:45 +0530
-Message-Id: <20241113045549.2390980-4-riana.tauro@intel.com>
+Subject: [PATCH 7/7] drm/xe/pmu: Add PMU support for engine busyness
+Date: Wed, 13 Nov 2024 10:25:49 +0530
+Message-Id: <20241113045549.2390980-8-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20241113045549.2390980-1-riana.tauro@intel.com>
 References: <20241113045549.2390980-1-riana.tauro@intel.com>
@@ -70,484 +70,372 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+PMU provides two counters (<engine>-busy-ticks-gt<n>,
+<engine>-total-ticks-gt<n>) to calculate engine busyness. When querying
+engine busyness, user must group these 2 counters using the perf_event
+group mechanism to ensure both counters are sampled together.
 
-DO NOT REVIEW. Patch added for compilation
+To list engine busyness counters use the following
 
-Define PMU events for GT frequency (actual and requested). This is
-a port from the i915 driver implementation, where an internal timer
-is used to aggregate GT frequencies over certain fixed interval.
-Following PMU events are being added-
+./perf list
+  xe_0000_03_00.0/bcs0-busy-ticks-gt0/               [Kernel PMU event]
+  xe_0000_03_00.0/bcs0-total-ticks-gt0/              [Kernel PMU event]
+  xe_0000_03_00.0/ccs0-busy-ticks-gt0/               [Kernel PMU event]
+  xe_0000_03_00.0/ccs0-total-ticks-gt0/              [Kernel PMU event]
 
-  xe_0000_00_02.0/actual-frequency-gt0/              [Kernel PMU event]
-  xe_0000_00_02.0/actual-frequency-gt1/              [Kernel PMU event]
-  xe_0000_00_02.0/requested-frequency-gt0/           [Kernel PMU event]
-  xe_0000_00_02.0/requested-frequency-gt1/           [Kernel PMU event]
+Engine busyness can then be calculated as below
+busyness % = (engine active ticks/total ticks) * 100
 
-Standard perf commands can be used to monitor GT frequency-
-  $ perf stat -e xe_0000_00_02.0/requested-frequency-gt0/ -I1000
-
-     1.001175175                700 M    xe/requested-frequency-gt0/
-     2.005891881                703 M    xe/requested-frequency-gt0/
-     3.007318169                700 M    xe/requested-frequency-gt0/
-
-Actual/requested frequencies will be 0 when GT is suspended.
-
-v2: Checkpatch fix, moved timer code to this patch
-v3: Fix kunit issue
-v4: Checkpatch warning fixes
-
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c        |   2 +
- drivers/gpu/drm/xe/xe_pmu.c       | 248 +++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_pmu.h       |   2 +
- drivers/gpu/drm/xe/xe_pmu_types.h |  26 ++++
- 4 files changed, 277 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_guc.c       |   5 +
+ drivers/gpu/drm/xe/xe_pmu.c       | 187 ++++++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_pmu_types.h |  17 +++
+ drivers/gpu/drm/xe/xe_uc.c        |   3 +
+ 4 files changed, 192 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index fd18bbce99da..ef27db83c09c 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -940,6 +940,8 @@ int xe_gt_resume(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index df1ba94cf4ca..7f0425b41f06 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -17,6 +17,7 @@
+ #include "regs/xe_irq_regs.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
++#include "xe_engine_activity.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt.h"
+ #include "xe_gt_printk.h"
+@@ -418,6 +419,10 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
+ 	if (ret)
+ 		return ret;
  
- 	xe_gt_idle_enable_pg(gt);
- 
-+	xe_pmu_resume(gt);
++	ret = xe_engine_activity_init(guc);
++	if (ret)
++		return ret;
 +
- 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- 	xe_gt_dbg(gt, "resumed\n");
+ 	return xe_guc_ads_init_post_hwconfig(&guc->ads);
+ }
  
 diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
-index 199344154408..633552fbf78d 100644
+index 633552fbf78d..9a657c6bb93e 100644
 --- a/drivers/gpu/drm/xe/xe_pmu.c
 +++ b/drivers/gpu/drm/xe/xe_pmu.c
-@@ -63,6 +63,31 @@ static unsigned int xe_pmu_target_cpu = -1;
-  *      2352945
+@@ -9,10 +9,13 @@
+ 
+ #include "regs/xe_gt_regs.h"
+ #include "xe_device.h"
++#include "xe_engine_activity.h"
+ #include "xe_force_wake.h"
++#include "xe_gt.h"
+ #include "xe_gt_clock.h"
+ #include "xe_gt_idle.h"
+ #include "xe_guc_pc.h"
++#include "xe_hw_engine.h"
+ #include "xe_mmio.h"
+ #include "xe_macros.h"
+ #include "xe_module.h"
+@@ -30,7 +33,7 @@ static unsigned int xe_pmu_target_cpu = -1;
+ /**
+  * DOC: Xe PMU (Performance Monitoring Unit)
   *
-  * Each value is roughly a 1000ms increment here as well. This is expected GT residency when idle.
+- * Expose events/counters like C6 residency and GT frequency to user land.
++ * Expose events/counters like C6 residency, GT frequency and engine busyness to user land.
+  * Perf tool can be used to list these counters from the command line.
+  *
+  * Example commands to list/record supported perf events-
+@@ -88,6 +91,13 @@ static unsigned int xe_pmu_target_cpu = -1;
+  *    1950
+  *    1950
+  *    1950
 + *
-+ * PMU frequency events use a software timer to aggregate GT freq values over the time of capture.
-+ * This allows us to calculate a rough average over the timespan. This is why sysfs is the best way
-+ * to obtain instantaneous frequency if accuracy is intended. Advantage of using PMU is that it
-+ * results in lesser CPU utilization as compared to dumping sysfs entries repeatedly.
++ * Engine busyness: PMU provides two counters (<engine>-busy-ticks-gt<n>,
++ * <engine>-total-ticks-gt<n>) to calculate engine busyness. When querying engine busyness, user
++ * must group these 2 counters using the perf_event group mechanism to ensure both counters are
++ * sampled together. Engine busyness can then be calculated using
 + *
-+ * To list GT frequency events, use the following-
-+ *
-+ * $ perf list | grep frequency-gt
-+ *   xe_0000_00_02.0/actual-frequency-gt0/              [Kernel PMU event]
-+ *   xe_0000_00_02.0/actual-frequency-gt1/              [Kernel PMU event]
-+ *   xe_0000_00_02.0/requested-frequency-gt0/           [Kernel PMU event]
-+ *   xe_0000_00_02.0/requested-frequency-gt1/           [Kernel PMU event]
-+ *
-+ * $ perf stat -e xe_0000_00_02.0/requested-frequency-gt0/ -I1000
-+ * #           time             counts unit events
-+ *      1.001189056               1950 M    xe_0000_00_02.0/requested-frequency-gt0/
-+ *      2.006388494               1960 M    xe_0000_00_02.0/requested-frequency-gt0/
-+ *      3.007930311               1959 M    xe_0000_00_02.0/requested-frequency-gt0/
-+ *
-+ * Dumping requested freq from sysfs-
-+ * $  while true; do cat /sys/class/drm/card0/device/tile0/gt0/freq0/cur_freq ; sleep 1; done
-+ *    1950
-+ *    1950
-+ *    1950
++ *  busyness % = (engine active ticks/total ticks) * 100
   */
  
  static struct xe_pmu *event_to_pmu(struct perf_event *event)
-@@ -88,6 +113,12 @@ static unsigned int other_bit(const u64 config)
- 	case XE_PMU_RC6_RESIDENCY:
- 		val = __XE_PMU_RC6_RESIDENCY_ENABLED;
- 		break;
-+	case XE_PMU_ACTUAL_FREQUENCY:
-+		val =  __XE_PMU_ACTUAL_FREQUENCY_ENABLED;
-+		break;
-+	case XE_PMU_REQUESTED_FREQUENCY:
-+		val = __XE_PMU_REQUESTED_FREQUENCY_ENABLED;
-+		break;
- 	default:
- 		/*
- 		 * Events that do not require sampling, or tracking state
-@@ -104,6 +135,22 @@ static unsigned int config_bit(const u64 config)
- 	return other_bit(config);
+@@ -105,6 +115,64 @@ static u64 config_counter(const u64 config)
+ 	return config & ~(~0ULL << __XE_PMU_GT_SHIFT);
  }
  
-+static u32 config_mask(const u64 config)
++static u8 engine_event_sample(struct perf_event *event)
 +{
-+	unsigned int bit = config_bit(config);
++	u64 config = event->attr.config;
 +
-+	if (__builtin_constant_p(config))
-+		BUILD_BUG_ON(bit >
-+			     BITS_PER_TYPE(typeof_member(struct xe_pmu,
-+							 enable)) - 1);
++	return (config_counter(config) >> XE_PMU_SAMPLE_SHIFT) & 0xf;
++}
++
++static u8 engine_event_class(struct perf_event *event)
++{
++	u64 config = event->attr.config;
++
++	return (config_counter(config) >> XE_PMU_CLASS_SHIFT) & 0xff;
++}
++
++static u8 engine_event_instance(struct perf_event *event)
++{
++	u64 config = event->attr.config;
++
++	return (config_counter(config) >> XE_PMU_INSTANCE_SHIFT) & 0xff;
++}
++
++static bool is_engine_event(struct perf_event *event)
++{
++	return config_counter(event->attr.config) > __XE_PMU_OTHER(0xff);
++}
++
++static int engine_event_status(u8 sample)
++{
++	switch (sample) {
++	case XE_PMU_SAMPLE_BUSY_TICKS:
++	case XE_PMU_SAMPLE_TOTAL_TICKS:
++		return 0;
++	default:
++		return -ENOENT;
++	}
++
++	return 0;
++}
++
++static int engine_event_init(struct perf_event *event)
++{
++	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
++	const u64 config = event->attr.config;
++	const unsigned int gt_id = config_gt_id(config);
++	struct drm_xe_engine_class_instance eci;
++	struct xe_hw_engine *hwe;
++
++	eci.engine_class = engine_event_class(event);
++	eci.engine_instance = engine_event_instance(event);
++	eci.gt_id = gt_id;
++
++	hwe = xe_hw_engine_lookup(xe, eci);
++	if (!hwe)
++		return -ENOENT;
++
++	return engine_event_status(engine_event_sample(event));
++}
++
+ static unsigned int other_bit(const u64 config)
+ {
+ 	unsigned int val;
+@@ -217,7 +285,11 @@ static int xe_pmu_event_init(struct perf_event *event)
+ 	if (!cpumask_test_cpu(event->cpu, &xe_pmu_cpumask))
+ 		return -EINVAL;
+ 
+-	ret = config_status(xe, event->attr.config);
++	if (is_engine_event(event))
++		ret = engine_event_init(event);
 +	else
-+		WARN_ON_ONCE(bit >
-+			     BITS_PER_TYPE(typeof_member(struct xe_pmu,
-+							 enable)) - 1);
++		ret = config_status(xe, event->attr.config);
 +
-+	return BIT(config_bit(config));
-+}
-+
- static unsigned int event_bit(struct perf_event *event)
- {
- 	return config_bit(event->attr.config);
-@@ -132,6 +179,10 @@ config_status(struct xe_device *xe, u64 config)
- 		if (xe->info.skip_guc_pc)
- 			return -ENODEV;
- 		break;
-+	case XE_PMU_ACTUAL_FREQUENCY:
-+		fallthrough;
-+	case XE_PMU_REQUESTED_FREQUENCY:
-+		break;
- 	default:
- 		return -ENOENT;
- 	}
-@@ -194,6 +245,12 @@ store_sample(struct xe_pmu *pmu, unsigned int gt_id, int sample, u64 val)
- 	pmu->event_sample[gt_id][sample].cur = val;
- }
+ 	if (ret)
+ 		return ret;
  
-+static void
-+add_sample_mult(struct xe_pmu *pmu, unsigned int gt_id, int sample, u32 val, u32 mul)
-+{
-+	pmu->event_sample[gt_id][sample].cur += mul_u32_u32(val, mul);
-+}
-+
- static u64 get_rc6(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -239,6 +296,7 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
- {
- 	struct xe_device *xe =
- 		container_of(event->pmu, typeof(*xe), pmu.base);
-+	struct xe_pmu *pmu = &xe->pmu;
+@@ -300,26 +372,54 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
  	const unsigned int gt_id = config_gt_id(event->attr.config);
  	const u64 config = event->attr.config;
  	struct xe_gt *gt = xe_device_get_gt(xe, gt_id);
-@@ -248,6 +306,18 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
- 	case XE_PMU_RC6_RESIDENCY:
- 		val = get_rc6(gt);
- 		break;
-+	case XE_PMU_ACTUAL_FREQUENCY:
-+		val =
-+		   div_u64(read_sample(pmu, gt_id,
-+				       __XE_SAMPLE_FREQ_ACT),
-+			   USEC_PER_SEC /* to MHz */);
-+		break;
-+	case XE_PMU_REQUESTED_FREQUENCY:
-+		val =
-+		   div_u64(read_sample(pmu, gt_id,
-+				       __XE_SAMPLE_FREQ_REQ),
-+			   USEC_PER_SEC /* to MHz */);
-+		break;
- 	default:
- 		drm_warn(&gt->tile->xe->drm, "unknown pmu event\n");
- 	}
-@@ -277,6 +347,144 @@ static void xe_pmu_event_read(struct perf_event *event)
- 	local64_add(new - prev, &event->count);
- }
- 
-+static u32 frequency_enabled_mask(void)
-+{
-+	unsigned int i;
-+	u32 mask = 0;
-+
-+	for (i = 0; i < XE_PMU_MAX_GT; i++)
-+		mask |= config_mask(__XE_PMU_ACTUAL_FREQUENCY(i)) |
-+		config_mask(__XE_PMU_REQUESTED_FREQUENCY(i));
-+
-+	return mask;
-+}
-+
-+static bool
-+frequency_sampling_enabled(struct xe_pmu *pmu, unsigned int gt)
-+{
-+	return pmu->enable &
-+	       (config_mask(__XE_PMU_ACTUAL_FREQUENCY(gt)) |
-+		config_mask(__XE_PMU_REQUESTED_FREQUENCY(gt)));
-+}
-+
-+static void
-+frequency_sample(struct xe_gt *gt, unsigned int period_ns)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	const unsigned int gt_id = gt->info.id;
-+	struct xe_pmu *pmu = &xe->pmu;
 +	bool device_awake;
-+	int ret;
-+	u32 cur_freq;
-+
-+	if (!frequency_sampling_enabled(pmu, gt_id))
-+		return;
-+
-+	/* Report 0/0 (actual/requested) frequency while GT is suspended. */
-+	device_awake = xe_pm_runtime_get_if_active(xe);
-+	if (!device_awake)
-+		return;
-+
-+	if (pmu->enable & config_mask(__XE_PMU_ACTUAL_FREQUENCY(gt_id))) {
-+		u32 val;
-+
-+		/*
-+		 * We take a quick peek here without using forcewake
-+		 * so that we don't perturb the system under observation
-+		 * (forcewake => !rc6 => increased power use). We expect
-+		 * that if the read fails because it is outside of the
-+		 * mmio power well, then it will return 0 -- in which
-+		 * case we assume the system is running at the intended
-+		 * frequency. Fortunately, the read should rarely fail!
-+		 */
-+		val = xe_guc_pc_get_act_freq(&gt->uc.guc.pc);
-+
-+		add_sample_mult(pmu, gt_id, __XE_SAMPLE_FREQ_ACT,
-+				val, period_ns / 1000);
-+	}
-+
-+	if (pmu->enable & config_mask(__XE_PMU_REQUESTED_FREQUENCY(gt_id))) {
-+		ret = xe_guc_pc_get_cur_freq(&gt->uc.guc.pc, &cur_freq);
-+		if (!ret)
-+			add_sample_mult(pmu, gt_id, __XE_SAMPLE_FREQ_REQ,
-+					cur_freq,
-+					period_ns / 1000);
-+	}
-+
-+	xe_pm_runtime_put(xe);
-+}
-+
-+static enum hrtimer_restart xe_sample(struct hrtimer *hrtimer)
-+{
-+	struct xe_pmu *pmu = container_of(hrtimer, struct xe_pmu, timer);
-+	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
-+	u64 period = max_t(u64, 10000, NSEC_PER_SEC / FREQUENCY);
-+	unsigned int period_ns;
-+	struct xe_gt *gt;
-+	unsigned int i;
-+	ktime_t now;
-+
-+	if (!READ_ONCE(pmu->timer_enabled))
-+		return HRTIMER_NORESTART;
-+
-+	now = ktime_get();
-+	period_ns = ktime_to_ns(ktime_sub(now, pmu->timer_last));
-+	pmu->timer_last = now;
-+
-+	/*
-+	 * Strictly speaking the passed in period may not be 100% accurate for
-+	 * all internal calculation, since some amount of time can be spent on
-+	 * grabbing the forcewake. However the potential error from timer call-
-+	 * back delay greatly dominates this so we keep it simple.
-+	 */
-+
-+	for_each_gt(gt, xe, i) {
-+		if (!(pmu->active_gts & BIT(i)))
-+			continue;
-+		frequency_sample(gt, period_ns);
-+	}
-+
-+	hrtimer_forward(hrtimer, now, ns_to_ktime(period));
-+
-+	return HRTIMER_RESTART;
-+}
-+
-+static bool pmu_needs_timer(struct xe_pmu *pmu)
-+{
-+	u32 enable;
-+
-+	/*
-+	 * Only some counters need the sampling timer.
-+	 *
-+	 * We start with a bitmask of all currently enabled events.
-+	 */
-+	enable = pmu->enable;
-+
-+	/*
-+	 * Mask out all the ones which do not need the timer, or in
-+	 * other words keep all the ones that could need the timer.
-+	 */
-+	enable &= frequency_enabled_mask();
-+
-+	/*
-+	 * If some bits remain it means we need the sampling timer running.
-+	 */
-+	return enable;
-+}
-+
-+static void __xe_pmu_maybe_start_timer(struct xe_pmu *pmu)
-+{
-+	u64 period = max_t(u64, 10000, NSEC_PER_SEC / FREQUENCY);
-+
-+	if (!pmu->timer_enabled && pmu_needs_timer(pmu)) {
-+		pmu->timer_enabled = true;
-+		pmu->timer_last = ktime_get();
-+		hrtimer_start_range_ns(&pmu->timer,
-+				       ns_to_ktime(period), 0,
-+				       HRTIMER_MODE_REL_PINNED);
-+	}
-+}
-+
- static void xe_pmu_enable(struct perf_event *event)
- {
- 	struct xe_pmu *pmu = event_to_pmu(event);
-@@ -299,6 +507,11 @@ static void xe_pmu_enable(struct perf_event *event)
- 	pmu->enable |= BIT(bit);
- 	pmu->enable_count[bit]++;
+ 	u64 val = 0;
  
-+	/*
-+	 * Start the sampling timer if needed and not already enabled.
-+	 */
-+	__xe_pmu_maybe_start_timer(pmu);
+-	switch (config_counter(config)) {
+-	case XE_PMU_RC6_RESIDENCY:
+-		val = get_rc6(gt);
+-		break;
+-	case XE_PMU_ACTUAL_FREQUENCY:
+-		val =
+-		   div_u64(read_sample(pmu, gt_id,
+-				       __XE_SAMPLE_FREQ_ACT),
+-			   USEC_PER_SEC /* to MHz */);
+-		break;
+-	case XE_PMU_REQUESTED_FREQUENCY:
+-		val =
+-		   div_u64(read_sample(pmu, gt_id,
+-				       __XE_SAMPLE_FREQ_REQ),
+-			   USEC_PER_SEC /* to MHz */);
+-		break;
+-	default:
+-		drm_warn(&gt->tile->xe->drm, "unknown pmu event\n");
++	if (is_engine_event(event)) {
++		u8 sample = engine_event_sample(event);
++		struct drm_xe_engine_class_instance eci;
++		struct xe_hw_engine *hwe;
 +
- 	spin_unlock_irqrestore(&pmu->lock, flags);
- update:
- 	/*
-@@ -328,8 +541,10 @@ static void xe_pmu_disable(struct perf_event *event)
- 	 * Decrement the reference count and clear the enabled
- 	 * bitmask when the last listener on an event goes away.
- 	 */
--	if (--pmu->enable_count[bit] == 0)
-+	if (--pmu->enable_count[bit] == 0) {
- 		pmu->enable &= ~BIT(bit);
-+		pmu->timer_enabled &= pmu_needs_timer(pmu);
-+	}
++		eci.engine_class = engine_event_class(event);
++		eci.engine_instance = engine_event_instance(event);
++		eci.gt_id = gt_id;
++
++		hwe = xe_hw_engine_lookup(xe, eci);
++
++		device_awake = xe_pm_runtime_get_if_active(xe);
++		if (!device_awake)
++			return 0;
++
++		if (!hwe)
++			drm_WARN_ON_ONCE(&xe->drm, "unknown engine\n");
++		else if (sample == XE_PMU_SAMPLE_BUSY_TICKS)
++			val = xe_engine_activity_get_active_ticks(hwe);
++		else if (sample == XE_PMU_SAMPLE_TOTAL_TICKS)
++			val = xe_engine_activity_get_total_ticks(hwe);
++		else
++			drm_warn(&xe->drm, "unknown pmu engine event\n");
++
++		xe_pm_runtime_put(xe);
++	} else {
++		switch (config_counter(config)) {
++		case XE_PMU_RC6_RESIDENCY:
++			val = get_rc6(gt);
++			break;
++		case XE_PMU_ACTUAL_FREQUENCY:
++			val =
++			    div_u64(read_sample(pmu, gt_id,
++						__XE_SAMPLE_FREQ_ACT),
++						USEC_PER_SEC /* to MHz */);
++			break;
++		case XE_PMU_REQUESTED_FREQUENCY:
++			val =
++			   div_u64(read_sample(pmu, gt_id,
++					       __XE_SAMPLE_FREQ_REQ),
++				   USEC_PER_SEC /* to MHz */);
++			break;
++		default:
++			drm_warn(&gt->tile->xe->drm, "unknown pmu event\n");
++		}
+ 	}
  
- 	spin_unlock_irqrestore(&pmu->lock, flags);
+ 	return val;
+@@ -643,6 +743,12 @@ static const struct attribute_group xe_pmu_cpumask_attr_group = {
+ 	.unit = (__unit), \
  }
-@@ -463,6 +678,8 @@ create_event_attributes(struct xe_pmu *pmu)
- 		const char *unit;
- 	} events[] = {
- 		__event(0, "c6-residency", "ms"),
-+		__event(1, "actual-frequency", "M"),
-+		__event(2, "requested-frequency", "M"),
+ 
++#define __engine_event(__sample, __name) \
++{ \
++	.sample = (__sample), \
++	.name = (__name), \
++}
++
+ static struct xe_ext_attribute *
+ add_xe_attr(struct xe_ext_attribute *attr, const char *name, u64 config)
+ {
+@@ -682,9 +788,19 @@ create_event_attributes(struct xe_pmu *pmu)
+ 		__event(2, "requested-frequency", "M"),
  	};
  
++	static const struct {
++		u8 sample;
++		char *name;
++	} engine_events[] = {
++		__engine_event(XE_PMU_SAMPLE_BUSY_TICKS, "busy-ticks"),
++		__engine_event(XE_PMU_SAMPLE_TOTAL_TICKS, "total-ticks")
++	};
++
  	struct perf_pmu_events_attr *pmu_attr = NULL, *pmu_iter;
-@@ -676,6 +893,31 @@ void xe_pmu_suspend(struct xe_gt *gt)
- 	spin_unlock_irq(&pmu->lock);
- }
+ 	struct xe_ext_attribute *xe_attr = NULL, *xe_iter;
+ 	struct attribute **attr = NULL, **attr_iter;
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
+ 	unsigned int count = 0;
+ 	unsigned int i, j;
+ 	struct xe_gt *gt;
+@@ -699,6 +815,13 @@ create_event_attributes(struct xe_pmu *pmu)
+ 		}
+ 	}
  
-+/**
-+ * xe_pmu_resume() - Restart the timer if needed
-+ * @gt: GT object
-+ */
-+void xe_pmu_resume(struct xe_gt *gt)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_pmu *pmu = &xe->pmu;
++	for_each_gt(gt, xe, j) {
++		for_each_hw_engine(hwe, gt, id)
++			for (i = 0; i < ARRAY_SIZE(engine_events); i++)
++				if (!engine_event_status(engine_events[i].sample))
++					count++;
++	}
 +
-+	if (!pmu->base.event_init)
-+		return;
+ 	/* Allocate attribute objects and table. */
+ 	xe_attr = kcalloc(count, sizeof(*xe_attr), GFP_KERNEL);
+ 	if (!xe_attr)
+@@ -744,6 +867,30 @@ create_event_attributes(struct xe_pmu *pmu)
+ 							events[i].unit);
+ 			}
+ 		}
 +
-+	spin_lock_irq(&pmu->lock);
++		for_each_hw_engine(hwe, gt, id) {
++			for (i = 0; i < ARRAY_SIZE(engine_events); i++) {
++				char *str;
 +
-+	/*
-+	 * Re-enable sampling timer when GPU goes active.
-+	 */
-+	if (pmu->active_gts == 0)
-+		__xe_pmu_maybe_start_timer(pmu);
++				if (engine_event_status(engine_events[i].sample))
++					continue;
 +
-+	pmu->active_gts |= BIT(gt->info.id);
++				str = kasprintf(GFP_KERNEL, "%s%d-%s-gt%u",
++						xe_hw_engine_class_to_str(hwe->class),
++						hwe->logical_instance,
++						engine_events[i].name, j);
++				if (!str)
++					goto err;
 +
-+	spin_unlock_irq(&pmu->lock);
-+}
++				*attr_iter++ = &xe_iter->attr.attr;
++				xe_iter = add_xe_attr
++					(xe_iter, str,
++					 XE_PMU_ENGINE(j, xe_hw_engine_to_user_class(hwe->class),
++						       hwe->logical_instance,
++						       engine_events[i].sample));
++			}
++		}
 +
- /**
-  * xe_pmu_unregister() - Remove/cleanup PMU registration
-  * @arg: Ptr to pmu
-@@ -689,6 +931,8 @@ void xe_pmu_unregister(void *arg)
+ 	}
  
- 	pmu->registered = false;
- 
-+	hrtimer_cancel(&pmu->timer);
-+
- 	xe_pmu_unregister_cpuhp_state(pmu);
- 
- 	perf_pmu_unregister(&pmu->base);
-@@ -732,6 +976,8 @@ void xe_pmu_register(struct xe_pmu *pmu)
- 	int ret = -ENOMEM;
- 
- 	spin_lock_init(&pmu->lock);
-+	hrtimer_init(&pmu->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-+	pmu->timer.function = xe_sample;
- 	pmu->cpuhp.cpu = -1;
- 
- 	pmu->name = kasprintf(GFP_KERNEL,
-diff --git a/drivers/gpu/drm/xe/xe_pmu.h b/drivers/gpu/drm/xe/xe_pmu.h
-index 17f5a8d7d45c..fb6e3819d7bc 100644
---- a/drivers/gpu/drm/xe/xe_pmu.h
-+++ b/drivers/gpu/drm/xe/xe_pmu.h
-@@ -16,12 +16,14 @@ void xe_pmu_exit(void);
- void xe_pmu_register(struct xe_pmu *pmu);
- void xe_pmu_unregister(void *arg);
- void xe_pmu_suspend(struct xe_gt *gt);
-+void xe_pmu_resume(struct xe_gt *gt);
- #else
- static inline int xe_pmu_init(void) { return 0; }
- static inline void xe_pmu_exit(void) {}
- static inline void xe_pmu_register(struct xe_pmu *pmu) {}
- static inline void xe_pmu_unregister(void *arg) {}
- static inline void xe_pmu_suspend(struct xe_gt *gt) {}
-+static inline void xe_pmu_resume(struct xe_gt *gt) {}
- #endif
- 
- #endif
+ 	pmu->xe_attr = xe_attr;
 diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h b/drivers/gpu/drm/xe/xe_pmu_types.h
-index 59d7718c59ce..c44c3d79b970 100644
+index c44c3d79b970..508cc8e43fbe 100644
 --- a/drivers/gpu/drm/xe/xe_pmu_types.h
 +++ b/drivers/gpu/drm/xe/xe_pmu_types.h
-@@ -12,6 +12,8 @@
- enum {
- 	__XE_SAMPLE_RC6,
- 	__XE_SAMPLE_RC6_LAST_REPORTED,
-+	__XE_SAMPLE_FREQ_ACT,
-+	__XE_SAMPLE_FREQ_REQ,
- 	__XE_NUM_PMU_SAMPLERS
- };
+@@ -36,6 +36,23 @@ enum {
+ #define __XE_PMU_ACTUAL_FREQUENCY(gt)		___XE_PMU_OTHER(gt, 1)
+ #define __XE_PMU_REQUESTED_FREQUENCY(gt)	___XE_PMU_OTHER(gt, 2)
  
-@@ -28,13 +30,19 @@ enum {
- #define __XE_PMU_OTHER(x) ___XE_PMU_OTHER(0, x)
- 
- #define XE_PMU_RC6_RESIDENCY                    __XE_PMU_OTHER(0)
-+#define XE_PMU_ACTUAL_FREQUENCY			__XE_PMU_OTHER(1)
-+#define XE_PMU_REQUESTED_FREQUENCY		__XE_PMU_OTHER(2)
- #define __XE_PMU_RC6_RESIDENCY(gt)              ___XE_PMU_OTHER(gt, 0)
-+#define __XE_PMU_ACTUAL_FREQUENCY(gt)		___XE_PMU_OTHER(gt, 1)
-+#define __XE_PMU_REQUESTED_FREQUENCY(gt)	___XE_PMU_OTHER(gt, 2)
- 
++#define XE_PMU_SAMPLE_BUSY_TICKS	(1)
++#define XE_PMU_SAMPLE_TOTAL_TICKS	(2)
++
++/* First 8 bits of config are reserved for other counters */
++#define XE_PMU_SAMPLE_SHIFT			(8)
++#define XE_PMU_SAMPLE_BITS			(4)
++#define XE_PMU_INSTANCE_BITS			(8)
++#define XE_PMU_INSTANCE_SHIFT \
++	(XE_PMU_SAMPLE_SHIFT + XE_PMU_SAMPLE_BITS)
++#define XE_PMU_CLASS_SHIFT \
++	(XE_PMU_INSTANCE_SHIFT + XE_PMU_INSTANCE_BITS)
++
++#define XE_PMU_ENGINE(gt, class, instance, sample) \
++	(((class) << XE_PMU_CLASS_SHIFT | \
++	(instance) << XE_PMU_INSTANCE_SHIFT | \
++	(sample) << XE_PMU_SAMPLE_SHIFT) | ((__u64)(gt) << __XE_PMU_GT_SHIFT))
++
  /**
   * Non-engine events that we need to track enabled-disabled transition and
   * current state.
-  */
- enum xe_pmu_tracked_events {
-+	__XE_PMU_ACTUAL_FREQUENCY_ENABLED,
-+	__XE_PMU_REQUESTED_FREQUENCY_ENABLED,
- 	__XE_PMU_RC6_RESIDENCY_ENABLED,
- 	__XE_PMU_TRACKED_EVENT_COUNT, /* count marker */
- };
-@@ -128,6 +136,24 @@ struct xe_pmu {
- 	 * @sleep_last: Last time GT parked for RC6 estimation.
- 	 */
- 	ktime_t sleep_last[XE_PMU_MAX_GT];
-+	/**
-+	 * @timer: Timer for internal Xe PMU sampling.
-+	 */
-+	struct hrtimer timer;
-+	/**
-+	 * @timer_last:
-+	 *
-+	 * Timestmap of the previous timer invocation.
-+	 */
-+	ktime_t timer_last;
-+	/**
-+	 * @timer_enabled: Should the internal sampling timer be running.
-+	 */
-+	bool timer_enabled;
-+	/**
-+	 * @active_gts: GT active mask.
-+	 */
-+	unsigned int active_gts;
- };
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index 0d073a9987c2..e50d23d53921 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -7,6 +7,7 @@
  
- #endif
+ #include "xe_assert.h"
+ #include "xe_device.h"
++#include "xe_engine_activity.h"
+ #include "xe_gsc.h"
+ #include "xe_gsc_proxy.h"
+ #include "xe_gt.h"
+@@ -210,6 +211,8 @@ int xe_uc_init_hw(struct xe_uc *uc)
+ 	if (ret)
+ 		return ret;
+ 
++	xe_engine_activity_enable_stats(&uc->guc);
++
+ 	/* We don't fail the driver load if HuC fails to auth, but let's warn */
+ 	ret = xe_huc_auth(&uc->huc, XE_HUC_AUTH_VIA_GUC);
+ 	xe_gt_assert(uc_to_gt(uc), !ret);
 -- 
 2.40.0
 
