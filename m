@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B403D41C33
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 11:53:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7C9FD41C33
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 11:57:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16D5E10E6D8;
-	Wed, 13 Nov 2024 11:53:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MENyIsz7";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A35710E6D8;
- Wed, 13 Nov 2024 11:53:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731498780; x=1763034780;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=O7D8Tw4sUe9Md62HtnkXWozpxfymFiYSDTueoBsrDeI=;
- b=MENyIsz7/YwYrO8hwNSGJziSaRopVjQ2ash6N82nVC+I4cvjK+sYAj4y
- ccw/hv1TxADjyHxTywsv2DrLGUfZonNhqMoUKac9+zsOrOyK4HYC85YJL
- YRBfP9A9NsND1xUOoggKBctrMdooW1Yk5Fzl4q0ud+BoUDUQb7OmtS7KT
- FbiOrZHSXcWlZZbzbyEGZD8NH4/9Ts3OWKi1N1fWICbz+5tOfnjlliWiF
- m5/ygbZbYZ+1KBuJswsmKoz5vBp61JiK/UakykOUCMH1nhRtv7NCe0nAL
- JHIOpQvI9hzDPWynBgey9k0qzyHT/Sf8ppJlk6qh8A3OGvd8N5I6orJHA A==;
-X-CSE-ConnectionGUID: ajrwBXrdSTKT0BYUc9DiUA==
-X-CSE-MsgGUID: nR7jAk7QQ4SBp1xWZe7pcQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="35313740"
-X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="35313740"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 03:53:00 -0800
-X-CSE-ConnectionGUID: 9z0ftaFRQqyHImfXBu3UMQ==
-X-CSE-MsgGUID: SQBm9G3ISXeixOtR8G7FYA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="87840435"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 03:52:58 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/i915/display/xe3lpd: Avoid setting YUV420_MODE in
- PIPE_MISC
-Date: Wed, 13 Nov 2024 17:25:31 +0530
-Message-ID: <20241113115531.3394962-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90D7210E6E3;
+	Wed, 13 Nov 2024 11:57:11 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CA9010E6DF;
+ Wed, 13 Nov 2024 11:57:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/pmu=3A_PMU_interface_fo?=
+ =?utf-8?q?r_Xe_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 13 Nov 2024 11:57:10 -0000
+Message-ID: <173149903004.3561541.13213067273751724850@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241112205142.4026554-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20241112205142.4026554-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,53 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For Xe3_LPD the PIPE_MISC YUV420 Enable (bit 27), already implies enabling
-full blend YUV420 mode and YUV420 Mode (bit 26) is removed.
-Therefore, avoid setting YUV420 Mode for Xe3_LPD+ while programming
-PIPE_MISC for YCbCr420 output format.
+== Series Details ==
 
-Bspec: 69749
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+Series: drm/xe/pmu: PMU interface for Xe (rev5)
+URL   : https://patchwork.freedesktop.org/series/139121/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e790a2de5b3d..9db255bb1230 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3137,9 +3137,14 @@ bdw_get_pipe_misc_output_format(struct intel_crtc *crtc)
- 	tmp = intel_de_read(dev_priv, PIPE_MISC(crtc->pipe));
- 
- 	if (tmp & PIPE_MISC_YUV420_ENABLE) {
--		/* We support 4:2:0 in full blend mode only */
--		drm_WARN_ON(&dev_priv->drm,
--			    (tmp & PIPE_MISC_YUV420_MODE_FULL_BLEND) == 0);
-+		/*
-+		 * We support 4:2:0 in full blend mode only.
-+		 * For xe3_lpd+ this is implied in YUV420 Enable bit.
-+		 * Ensure the same for prior platforms in YUV420 Mode bit.
-+		 */
-+		if (DISPLAY_VER(dev_priv) < 30)
-+			drm_WARN_ON(&dev_priv->drm,
-+				    (tmp & PIPE_MISC_YUV420_MODE_FULL_BLEND) == 0);
- 
- 		return INTEL_OUTPUT_FORMAT_YCBCR420;
- 	} else if (tmp & PIPE_MISC_OUTPUT_COLORSPACE_YUV) {
-@@ -3388,8 +3393,8 @@ static void bdw_set_pipe_misc(struct intel_dsb *dsb,
- 		val |= PIPE_MISC_OUTPUT_COLORSPACE_YUV;
- 
- 	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420)
--		val |= PIPE_MISC_YUV420_ENABLE |
--			PIPE_MISC_YUV420_MODE_FULL_BLEND;
-+		val |= DISPLAY_VER(display) >= 30 ? PIPE_MISC_YUV420_ENABLE :
-+			PIPE_MISC_YUV420_ENABLE | PIPE_MISC_YUV420_MODE_FULL_BLEND;
- 
- 	if (DISPLAY_VER(dev_priv) >= 11 && is_hdr_mode(crtc_state))
- 		val |= PIPE_MISC_HDR_MODE_PRECISION;
--- 
-2.45.2
+== Summary ==
+
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/
+lib/modules/6.12.0-rc7-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc7-xe/build
+lib/modules/6.12.0-rc7-xe/modules.alias.bin
+lib/modules/6.12.0-rc7-xe/modules.builtin
+lib/modules/6.12.0-rc7-xe/modules.softdep
+lib/modules/6.12.0-rc7-xe/modules.alias
+lib/modules/6.12.0-rc7-xe/modules.order
+lib/modules/6.12.0-rc7-xe/modules.symbols
+lib/modules/6.12.0-rc7-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1731499021:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1731499021:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
