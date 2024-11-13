@@ -4,57 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53898D41C19
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 08:26:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 469ECD41C16
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 08:29:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DACD10E692;
-	Wed, 13 Nov 2024 08:26:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CoTENNe4";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB56810E690;
- Wed, 13 Nov 2024 08:26:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731486390; x=1763022390;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=RCBV1RaljYFw8cox1N1ivVFZCuywd4JudOEDZns++BA=;
- b=CoTENNe4jVgRhkAgno7NS7ECl8U7BQT8tmtjvf3rhff5NoKsSN0qE/4v
- 0DfFNHxOfJyZhFfHVvAQnHv1XUwAG1cyELwS+AYyUrVJmY5dVnjX5a16S
- NRM/x2RoWLMA5UTqDwWvAsHtUvs/OSYKw2pjn+z+mYjGLocKoO0j2xWbq
- 6KMbhvWQvyVmNTJACA7g+/Wp78bD/RC27pWKVrqk2H2VtYU1XEGli1q2G
- YXuhYECUeQVoLXPoBx+pk47zjDtIzko/pPm1Svb7xOpSiXw/ihr3egIhQ
- qYtetDRGSf29XU+FhoMa+kzgd4QDtzx6/I7o6DkOf9nycTq+PrYchBI+x A==;
-X-CSE-ConnectionGUID: QiSXigSwRRKPpPJoYMvoJw==
-X-CSE-MsgGUID: Ys9XfCZnREi8FBctAM7Y3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="42771490"
-X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="42771490"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 00:26:30 -0800
-X-CSE-ConnectionGUID: 6esy0KUhSi+zfnWNy0uZHw==
-X-CSE-MsgGUID: fAI3VnbkTqKBTTZqANfHKw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="87957256"
-Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.186])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 00:26:28 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/5] drm/i915/overlay: convert to struct intel_display
-In-Reply-To: <ZzO9VpGn696jbsMA@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1731347547.git.jani.nikula@intel.com>
- <873690f374729d7479e2d7f6adeefddf90f53fc0.1731347547.git.jani.nikula@intel.com>
- <ZzO9VpGn696jbsMA@intel.com>
-Date: Wed, 13 Nov 2024 10:26:24 +0200
-Message-ID: <87servbkun.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AA2410E692;
+	Wed, 13 Nov 2024 08:29:19 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46C2510E692;
+ Wed, 13 Nov 2024 08:29:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3009021561008512426=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Support_BMG_PMT_features_for_Xe?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 13 Nov 2024 08:29:18 -0000
+Message-ID: <173148655828.3449415.5154820107680325157@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241112163035.2282499-1-michael.j.ruhl@intel.com>
+In-Reply-To: <20241112163035.2282499-1-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,30 +35,145 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 12 Nov 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Mon, Nov 11, 2024 at 07:53:30PM +0200, Jani Nikula wrote:
->> @@ -1418,7 +1422,7 @@ void intel_overlay_setup(struct drm_i915_private *dev_priv)
->>  	i915_active_init(&overlay->last_flip,
->>  			 NULL, intel_overlay_last_flip_retire, 0);
->>  
->> -	ret = get_registers(overlay, OVERLAY_NEEDS_PHYSICAL(dev_priv));
->> +	ret = get_registers(overlay, OVERLAY_NEEDS_PHYSICAL(display));
->
-> I thought that you were converting the macros separately...
-> but if this is working, no hard feelings
+--===============3009021561008512426==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I only converted the ones that actually needed dev_priv, and couldn't
-use generics. They now accept display only. This one uses generics and
-can take either.
+== Series Details ==
 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Series: Support BMG PMT features for Xe
+URL   : https://patchwork.freedesktop.org/series/141227/
+State : success
 
-Thanks,
-Jani.
+== Summary ==
+
+CI Bug Log - changes from xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b_BAT -> xe-pw-141227v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-141227v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-lnl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#886]) +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141227v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_pipe_crc_basic@hang-read-crc:
+    - bat-bmg-1:          [DMESG-WARN][3] ([Intel XE#877]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141227v1/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc.html
+
+  
+  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
 
 
--- 
-Jani Nikula, Intel
+Build changes
+-------------
+
+  * IGT: IGT_8104 -> IGT_8105
+  * Linux: xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b -> xe-pw-141227v1
+
+  IGT_8104: 5da2928391abd9625dd87b4a3fb6c35a54a0d948 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8105: 8105
+  xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b: 26f5fe99791def93b32e27e79e71dbd0666c117b
+  xe-pw-141227v1: 141227v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141227v1/index.html
+
+--===============3009021561008512426==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Support BMG PMT features for Xe</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141227/">https://patchwork.freedesktop.org/series/141227/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141227v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141227v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b_BAT -&gt; xe-pw-141227v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-141227v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141227v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@hang-read-crc:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141227v1/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8104 -&gt; IGT_8105</li>
+<li>Linux: xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b -&gt; xe-pw-141227v1</li>
+</ul>
+<p>IGT_8104: 5da2928391abd9625dd87b4a3fb6c35a54a0d948 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8105: 8105<br />
+  xe-2218-26f5fe99791def93b32e27e79e71dbd0666c117b: 26f5fe99791def93b32e27e79e71dbd0666c117b<br />
+  xe-pw-141227v1: 141227v1</p>
+
+</body>
+</html>
+
+--===============3009021561008512426==--
