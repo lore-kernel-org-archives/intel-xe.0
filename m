@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55E16D41C36
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 11:03:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E608D41C36
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 11:04:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23DFB10E6D4;
-	Wed, 13 Nov 2024 11:03:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CEE810E6D5;
+	Wed, 13 Nov 2024 11:04:20 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C26B610E6D4;
- Wed, 13 Nov 2024 11:03:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F1E010E6D4;
+ Wed, 13 Nov 2024 11:04:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5BCI=2C1/9=5D_drm/i915=3A_Remove_vga_and_gmbus_seq_out_of_i915?=
- =?utf-8?q?=5Frestore=5Fdisplay_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5BC?=
+ =?utf-8?q?I=2C1/9=5D_drm/i915=3A_Remove_vga_and_gmbus_seq_out_of_i915=5Fres?=
+ =?utf-8?q?tore=5Fdisplay_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Nov 2024 11:03:53 -0000
-Message-ID: <173149583379.3541234.9273318982603686606@2413ebb6fbb6>
+Date: Wed, 13 Nov 2024 11:04:19 -0000
+Message-ID: <173149585945.3541234.7401347910490933362@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241111193947.128871-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20241111193947.128871-1-rodrigo.vivi@intel.com>
@@ -45,21 +45,85 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [CI,1/9] drm/i915: Remove vga and gmbus seq out of i915_restore_display (rev2)
 URL   : https://patchwork.freedesktop.org/series/141181/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 169c7cd31a37 drm-tip: 2024y-11m-13d-10h-31m-31s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915: Remove vga and gmbus seq out of i915_restore_display
-Applying: drm/i915/display: Convert i915_suspend into i9xx_display_sr
-Applying: drm/i915/display: Move regfile registers intel_display.restore
-Applying: drm/{i915, xe}/display: Move DP MST calls to display_driver
-Applying: drm/xe/display: Delay hpd_init resume
-Applying: drm/xe/display: Delay dsm handler registration
-Applying: drm/{i915, xe}: Move power_domains suspend/resume to display_power
-Applying: drm/{i915, xe}: Move remaining intel_power_domains to intel_display
-Applying: drm/{i915, xe}/display: Move dsm registration under intel_driver
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e848be595d4d288865d4ea1b3b2735f053fe7ed5
+Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date:   Mon Nov 11 14:39:42 2024 -0500
+
+    drm/{i915, xe}/display: Move dsm registration under intel_driver
+    
+    Move dsm register/unregister calls from the drivers to under
+    intel_display_driver register/unregister.
+    
+    Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 169c7cd31a373ed31054abb423981856eb5fb119 drm-intel
+2c062f64de7f drm/i915: Remove vga and gmbus seq out of i915_restore_display
+5fa2cf7837d5 drm/i915/display: Convert i915_suspend into i9xx_display_sr
+-:46: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#46: 
+new file mode 100644
+
+-:70: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF0>
+#70: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:20:
++			i915->regfile.saveSWF0[i] = intel_de_read(i915, SWF0(i915, i));
+
+-:71: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF1>
+#71: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:21:
++			i915->regfile.saveSWF1[i] = intel_de_read(i915, SWF1(i915, i));
+
+-:74: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF3>
+#74: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:24:
++			i915->regfile.saveSWF3[i] = intel_de_read(i915, SWF3(i915, i));
+
+-:122: CHECK:CAMELCASE: Avoid CamelCase: <saveDSPARB>
+#122: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:72:
++		i915->regfile.saveDSPARB = intel_de_read(i915, DSPARB(i915));
+
+-:125: CHECK:CAMELCASE: Avoid CamelCase: <saveGCDGMBUS>
+#125: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:75:
++		pci_read_config_word(pdev, GCDGMBUS, &i915->regfile.saveGCDGMBUS);
+
+total: 0 errors, 1 warnings, 5 checks, 153 lines checked
+4a7f842b8756 drm/i915/display: Move regfile registers intel_display.restore
+-:30: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF0>
+#30: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:21:
++			display->restore.saveSWF0[i] = intel_de_read(display, SWF0(i915, i));
+
+-:31: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF1>
+#31: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:22:
++			display->restore.saveSWF1[i] = intel_de_read(display, SWF1(i915, i));
+
+-:35: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF3>
+#35: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:25:
++			display->restore.saveSWF3[i] = intel_de_read(display, SWF3(i915, i));
+
+-:97: CHECK:CAMELCASE: Avoid CamelCase: <saveDSPARB>
+#97: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:75:
++		display->restore.saveDSPARB = intel_de_read(display, DSPARB(i915));
+
+-:101: CHECK:CAMELCASE: Avoid CamelCase: <saveGCDGMBUS>
+#101: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:78:
++		pci_read_config_word(pdev, GCDGMBUS, &display->restore.saveGCDGMBUS);
+
+total: 0 errors, 0 warnings, 5 checks, 135 lines checked
+a25a82e9e038 drm/{i915, xe}/display: Move DP MST calls to display_driver
+210b6350eb6a drm/xe/display: Delay hpd_init resume
+be942326fae4 drm/xe/display: Delay dsm handler registration
+8cd9223aa091 drm/{i915, xe}: Move power_domains suspend/resume to display_power
+edc5dea80440 drm/{i915, xe}: Move remaining intel_power_domains to intel_display
+e848be595d4d drm/{i915, xe}/display: Move dsm registration under intel_driver
 
 
