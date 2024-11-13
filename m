@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C646D462BF
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 15:41:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C132D462C4
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 15:44:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECF3F10E14A;
-	Wed, 13 Nov 2024 15:41:07 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51B6A10E14A;
- Wed, 13 Nov 2024 15:41:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2D2310E144;
+	Wed, 13 Nov 2024 15:44:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SllAvZR5";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BA2610E144
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Nov 2024 15:44:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731512687; x=1763048687;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Rrly++MXC3pppVLD2Fm5h7Oo9SaXBr28yMffAIXK9fI=;
+ b=SllAvZR5aiMXFbZnGdUgyCrgj8EBWzcI+Rgjvzk7ylh8m3eBWrROP16H
+ NVZGkvbTJvlSumx9LHyAWuEfBeUFLIOna46cuC66MvVfmtQd5I1NKN47q
+ pOMullX7KrphI00rXoczKTIeVlnWnfcRS+nqVj+d6OF90atrlimtgeSKh
+ ++jA7C75ak/tg4ukcYB9DFmfOgTe3ksCLr/8kNqyFP5SCzHYL+O6gQ5qh
+ zGvbPOT8Zl8AawAStVJIlel/fYEnY4IcNWvdHH8xyQ5dj/s8kOE6ne1Hq
+ OM0Uotgf476RyZC3XrpqvED7VoIO/VOycZ4l6M9Y5B6SCfh2m5pVjNiis A==;
+X-CSE-ConnectionGUID: T0Fc3EP/R/uSwaa+jhlWjA==
+X-CSE-MsgGUID: SgJoeDPtRcGrGjyJuQliCA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="56802189"
+X-IronPort-AV: E=Sophos;i="6.12,151,1728975600"; d="scan'208";a="56802189"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2024 07:44:46 -0800
+X-CSE-ConnectionGUID: tMxwrTisQ4avl1K9o3dCwg==
+X-CSE-MsgGUID: GLrmujluQByn2sNH+MIXtw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,151,1728975600"; d="scan'208";a="88718322"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2024 07:44:45 -0800
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>, Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH] drm/xe/tests: Limit purgeable size for faster execution
+Date: Wed, 13 Nov 2024 16:02:28 +0100
+Message-ID: <20241113150228.2337530-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display/xe3lpd?=
- =?utf-8?q?=3A_Avoid_setting_YUV420=5FMODE_in_PIPE=5FMISC?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Nov 2024 15:41:07 -0000
-Message-ID: <173151246732.3663616.14688166193207900804@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241113115531.3394962-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20241113115531.3394962-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,36 +65,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+xe_bo_shrink_kunit takes a while to run on some machines depending
+on swap storage speed and ram size. Limit purgeable size to 2GB
+so xe_bo_shrink_kunit can execute much faster.
 
-Series: drm/i915/display/xe3lpd: Avoid setting YUV420_MODE in PIPE_MISC
-URL   : https://patchwork.freedesktop.org/series/141284/
-State : warning
+Cc: Matthew Auld <matthew.auld@intel.com>
+Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2998
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/xe/tests/xe_bo.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 169c7cd31a373ed31054abb423981856eb5fb119
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index cd811aa2b227..71b71a546abe 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -467,7 +467,7 @@ static int shrink_test_run_device(struct xe_device *xe)
+ 	}
+ 	to_alloc = ram * 2;
+ 
+-	ram_and_swap = ram + get_nr_swap_pages() * PAGE_SIZE;
++	ram_and_swap = ram + min(get_nr_swap_pages() * PAGE_SIZE, SZ_2G);
+ 	if (to_alloc > ram_and_swap)
+ 		purgeable = to_alloc - ram_and_swap;
+ 	purgeable += div64_u64(purgeable, 5);
+-- 
+2.46.0
 
