@@ -4,27 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89AA6D41C36
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 10:58:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BCAAD41C37
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 11:03:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 577C410E6CD;
-	Wed, 13 Nov 2024 10:58:45 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7D9E10E6CC;
- Wed, 13 Nov 2024 10:58:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1380523258434319362=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01C0910E6DB;
+	Wed, 13 Nov 2024 11:03:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="DNupk1BR";
+	dkim-atps=neutral
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17DB610E6D8
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Nov 2024 11:03:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1731495799;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=jpBGq9axxArPByyXFOiqjVFa4sA8qL80XJbIsQYR+aw=;
+ b=DNupk1BRn8dL51Vif2hG4c5Mxmm4czhr/dfZlYA3sDfXR3V6U6piQIxngIxVy1djWknedM
+ BJ8BE2sT3kba7GySLDxtIaGgQWMRyS+qAWosnuC8nLoFAmrR9Ma82VYibxkwqDIsePQHi2
+ Ve0RwCMv1eDYcfX7KDm89JfJpZ7ODVI=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-588-Komxtd6ZMayEVjeeX1Sl0Q-1; Wed, 13 Nov 2024 06:03:16 -0500
+X-MC-Unique: Komxtd6ZMayEVjeeX1Sl0Q-1
+X-Mimecast-MFC-AGG-ID: Komxtd6ZMayEVjeeX1Sl0Q
+Received: by mail-qk1-f200.google.com with SMTP id
+ af79cd13be357-7b17e90d16fso867665085a.3
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Nov 2024 03:03:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1731495795; x=1732100595;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=SUHzTSt+GRCZsfoQsjVqApTJ8VE9MjQyXm9ILdw8rmU=;
+ b=GBu+Wrx+0X7uIqJlB/9tN9LWD4HTGXTnpPH5MOlwPriRQdvi11ufH3+Im0zUcUzjv1
+ Wn9nxjLo4XraKML5osNHXipIYu5Lb3Yh7lPDEXB5alGFGOfz9/aRj4e4p/gdYmEVJK0q
+ qFrIwK13gaNbeFOlvIfuqAYTnoR8MymZHHFuHNjEypIQ34RRw+4xz/CTqhnIrhM0n33W
+ unY9rfmm4b/Kn8SlvlTEhCKF6vwZEvcVTWLKPQ9zdYH9eqzvp/hSMCwgpM1/5G3JQX6q
+ jYTSNKyB5JZD8W7RAW1T1hHkf2j/Nflw7qKDiS2pwsTAAvV2GMev4tvx0Iz3WZSxyEcz
+ kkKQ==
+X-Gm-Message-State: AOJu0YwfYQf7YWgECJOSGsb0aNtr5BbwQi53ebcfEuMDmF2pm/1NIIVo
+ YDfVWwNu918IqW2JDskGmOvmIPSXRziY1BZsKVS523BVfnB1Chf8JDFIpoYJbbhbfxkzXA9s1PQ
+ yRO23Red9qFcs7ON+7ORDIL05RLg/ZglG5x4NkEos2rkT+cdaG5JWfw3pyUdK8jtp
+X-Received: by 2002:a05:620a:179e:b0:7b1:48e0:dda with SMTP id
+ af79cd13be357-7b331ec0095mr2240976285a.29.1731495795512; 
+ Wed, 13 Nov 2024 03:03:15 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHL8CJ36PyHaAs+7jpj7NZmmsEBx9YlLxGNaYJs+C8BOnwGeMVLHN3VleqqO7XMM0YUd4DcGA==
+X-Received: by 2002:a05:620a:179e:b0:7b1:48e0:dda with SMTP id
+ af79cd13be357-7b331ec0095mr2240973485a.29.1731495795144; 
+ Wed, 13 Nov 2024 03:03:15 -0800 (PST)
+Received: from [10.200.68.91] (nat-pool-muc-u.redhat.com. [149.14.88.27])
+ by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-7b32ac2e853sm676617185a.3.2024.11.13.03.03.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 13 Nov 2024 03:03:14 -0800 (PST)
+Message-ID: <9460813e606458acfc324e7b4b2b542042bfe3e9.camel@redhat.com>
+Subject: Re: [RFC PATCH 2/6] drm/sched: Teach scheduler about
+ DMA_RESV_USAGE_PREEMPT
+From: Philipp Stanner <pstanner@redhat.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ simona.vetter@ffwll.ch, thomas.hellstrom@linux.intel.com, 
+ boris.brezillon@collabora.com, airlied@gmail.com, ltuikov89@gmail.com, 
+ dakr@kernel.org, christian.koenig@amd.com, mihail.atanassov@arm.com, 
+ steven.price@arm.com, shashank.sharma@amd.com
+Date: Wed, 13 Nov 2024 12:03:10 +0100
+In-Reply-To: <ZzO1oRTJpFWlaLXq@lstrano-desk.jf.intel.com>
+References: <20241109172942.482630-1-matthew.brost@intel.com>
+ <20241109172942.482630-3-matthew.brost@intel.com>
+ <132fdacc1fdbca9bf05cbcbeee8727426675a55a.camel@redhat.com>
+ <ZzO1oRTJpFWlaLXq@lstrano-desk.jf.intel.com>
+User-Agent: Evolution 3.52.4 (3.52.4-2.fc40)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Add_iomem_helpers_for_use_from_d?=
- =?utf-8?q?ebugfs_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Nov 2024 10:58:43 -0000
-Message-ID: <173149552374.3530605.533038375566239730@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241112200454.2211-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20241112200454.2211-1-michal.wajdeczko@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: gtl3hmodTDmxl4ppd9WEXR4cjkJSEHrnRjjPIHWA9do_1731495795
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +96,391 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1380523258434319362==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 2024-11-12 at 12:08 -0800, Matthew Brost wrote:
+> On Tue, Nov 12, 2024 at 10:06:21AM +0100, Philipp Stanner wrote:
+> > Hi Matt,
+> >=20
+> > On Sat, 2024-11-09 at 09:29 -0800, Matthew Brost wrote:
+> > > Follow the semantics of DMA_RESV_USAGE_PREEMPT in the DRM
+> > > scheduler
+> > > by
+> > > storing preemptive fences in a dedicated xarray, which is waited
+> > > on
+> > > after all other fences are signaled. In addition to following
+> > > these
+> > > semantics, pipeline preemptive fences by enabling signaling on
+> > > all
+> > > preemptive fences before waiting on any of them.
+> >=20
+> > the commit message lacks the *motivation*. Why is the current state
+> > a
+> > problem, why is that feature needed etc.
+> >=20
+>=20
+> Yes, I do this in the cover letter but this is missing here. Will add
+> in
+> next rev.
+>=20
+> > >=20
+> > > Cc: Philipp Stanner <pstanner@redhat.com>
+> > > Cc: Danilo Krummrich <dakr@kernel.org>
+> > > Cc: Luben Tuikov <ltuikov89@gmail.com>
+> > > Cc: Dave Airlie <airlied@redhat.com>
+> > > Cc: Simona Vetter <simona.vetter@ffwll.ch>
+> > > Cc: Christian Koenig <christian.koenig@amd.com>
+> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > ---
+> > > =C2=A0drivers/gpu/drm/scheduler/sched_entity.c | 29 ++++++++++++--
+> > > =C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0 | 48 +++++++=
++++++++++--
+> > > ----
+> > > --
+> > > =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 15 ++++++++
+> > > =C2=A03 files changed, 73 insertions(+), 19 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/scheduler/sched_entity.c
+> > > b/drivers/gpu/drm/scheduler/sched_entity.c
+> > > index 69bcf0e99d57..c6c4978aa65a 100644
+> > > --- a/drivers/gpu/drm/scheduler/sched_entity.c
+> > > +++ b/drivers/gpu/drm/scheduler/sched_entity.c
+> > > @@ -201,11 +201,13 @@ static void
+> > > drm_sched_entity_kill_jobs_cb(struct dma_fence *f,
+> > > =C2=A0=09struct drm_sched_job *job =3D container_of(cb, struct
+> > > drm_sched_job,
+> > > =C2=A0=09=09=09=09=09=09 finish_cb);
+> > > =C2=A0=09unsigned long index;
+> > > +=09struct xarray *dependencies =3D &job->dependencies;
+> > > =C2=A0
+> > > =C2=A0=09dma_fence_put(f);
+> > > =C2=A0
+> > > +again:
+> > > =C2=A0=09/* Wait for all dependencies to avoid data corruptions
+> > > */
+> > > -=09xa_for_each(&job->dependencies, index, f) {
+> > > +=09xa_for_each(dependencies, index, f) {
+> > > =C2=A0=09=09struct drm_sched_fence *s_fence =3D
+> > > to_drm_sched_fence(f);
+> > > =C2=A0
+> > > =C2=A0=09=09if (s_fence && f =3D=3D &s_fence->scheduled) {
+> > > @@ -223,7 +225,7 @@ static void
+> > > drm_sched_entity_kill_jobs_cb(struct
+> > > dma_fence *f,
+> > > =C2=A0=09=09=09dma_fence_put(&s_fence->scheduled);
+> > > =C2=A0=09=09}
+> > > =C2=A0
+> > > -=09=09xa_erase(&job->dependencies, index);
+> > > +=09=09xa_erase(dependencies, index);
+> > > =C2=A0=09=09if (f && !dma_fence_add_callback(f, &job-
+> > > >finish_cb,
+> > > =C2=A0=09=09=09=09=09=09
+> > > drm_sched_entity_kill_jobs_cb))
+> > > =C2=A0=09=09=09return;
+> > > @@ -231,6 +233,11 @@ static void
+> > > drm_sched_entity_kill_jobs_cb(struct
+> > > dma_fence *f,
+> > > =C2=A0=09=09dma_fence_put(f);
+> > > =C2=A0=09}
+> > > =C2=A0
+> > > +=09if (dependencies !=3D &job->preempt_dependencies) {
+> > > +=09=09dependencies =3D &job->preempt_dependencies;
+> > > +=09=09goto again;
+> > > +=09}
+> > > +
+> >=20
+> > I think this should have a comment. It can only trigger once,
+> > right? So
+> > I guess that's why it doesn't make sense considering making it a
+> > loop
+> > instead of goto upwards?
+> >=20
+>=20
+> Yes, can only trigger once. I personally don't mind goto while others
+> find them offensive.
 
-== Series Details ==
+I think it's fine here
 
-Series: Add iomem helpers for use from debugfs (rev2)
-URL   : https://patchwork.freedesktop.org/series/141060/
-State : success
+>=20
+> > > =C2=A0=09INIT_WORK(&job->work, drm_sched_entity_kill_jobs_work);
+> > > =C2=A0=09schedule_work(&job->work);
+> > > =C2=A0}
+> > > @@ -456,17 +463,33 @@ drm_sched_job_dependency(struct
+> > > drm_sched_job
+> > > *job,
+> > > =C2=A0=09=09=09 struct drm_sched_entity *entity)
+> > > =C2=A0{
+> > > =C2=A0=09struct dma_fence *f;
+> > > +=09struct xarray *dependencies;
+> > > +
+> > > +again:
+> > > +=09dependencies =3D job->resolve_preempt_dependencies ?
+> > > +=09=09&job->preempt_dependencies : &job->dependencies;
+> >=20
+> > I don't think it's good to use the ternary operator for such long
+> > statements.
+> >=20
+> > if-else is more readable.
+> >=20
+>=20
+> Sure.
+> =C2=A0
+> > > =C2=A0
+> > > =C2=A0=09/* We keep the fence around, so we can iterate over all
+> > > dependencies
+> > > =C2=A0=09 * in drm_sched_entity_kill_jobs_cb() to ensure all deps
+> > > are
+> > > signaled
+> > > =C2=A0=09 * before killing the job.
+> > > =C2=A0=09 */
+> > > -=09f =3D xa_load(&job->dependencies, job->last_dependency);
+> > > +=09f =3D xa_load(dependencies, job->last_dependency);
+> > > =C2=A0=09if (f) {
+> > > =C2=A0=09=09job->last_dependency++;
+> > > =C2=A0=09=09return dma_fence_get(f);
+> > > =C2=A0=09}
+> > > =C2=A0
+> > > +=09/* Switch resolving preempt dependencies pipelining
+> > > signaling */
+> >=20
+> > I don't understand this comment. I guess you want to say that this
+> > section resolves preemption dependencies for the (fence) pipeline
+> > signaling?
+> >=20
+>=20
+> 'Switch to resolving preempt dependencies. Enabling signaling on all
+> preempt dependencies to pipeline the hardware preemption'
+>=20
+> Is that better more / clear?
 
-== Summary ==
-
-CI Bug Log - changes from xe-2219-cf3872e462498611b17e5f80f0b1d0900580da20_BAT -> xe-pw-141060v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-141060v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
-    - bat-bmg-1:          [DMESG-WARN][1] ([Intel XE#877]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2219-cf3872e462498611b17e5f80f0b1d0900580da20/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141060v2/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-
-  
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
-
-
-Build changes
--------------
-
-  * Linux: xe-2219-cf3872e462498611b17e5f80f0b1d0900580da20 -> xe-pw-141060v2
-
-  IGT_8105: 8105
-  xe-2219-cf3872e462498611b17e5f80f0b1d0900580da20: cf3872e462498611b17e5f80f0b1d0900580da20
-  xe-pw-141060v2: 141060v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141060v2/index.html
-
---===============1380523258434319362==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Yup, that sounds clear
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Thanks,
+P.
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add iomem helpers for use from debugfs (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141060/">https://patchwork.freedesktop.org/series/141060/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+>=20
+> > > +=09if (!job->resolve_preempt_dependencies) {
+> > > +=09=09unsigned long index;
+> > > +
+> > > +=09=09xa_for_each(&job->preempt_dependencies, index,
+> > > f)
+> > > +=09=09=09dma_fence_enable_sw_signaling(f);
+> > > +
+> > > +=09=09job->resolve_preempt_dependencies =3D true;
+> >=20
+> > Hm, is this set to false ever again? It seems it doesn't need to?
+> > So
+> > the goto again is only ever triggered once?
+> >=20
+>=20
+> resolve_preempt_dependencies can only go from 0 - > 1 exactly one
+> time.
+>=20
+> > > +=09=09goto again;
+> > > +=09}
+> > > +
+> > > =C2=A0=09if (job->sched->ops->prepare_job)
+> > > =C2=A0=09=09return job->sched->ops->prepare_job(job,
+> > > entity);
+> > > =C2=A0
+> > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+> > > b/drivers/gpu/drm/scheduler/sched_main.c
+> > > index 7ce25281c74c..eceb9b8c6f5f 100644
+> > > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > > @@ -829,6 +829,7 @@ int drm_sched_job_init(struct drm_sched_job
+> > > *job,
+> > > =C2=A0=09INIT_LIST_HEAD(&job->list);
+> > > =C2=A0
+> > > =C2=A0=09xa_init_flags(&job->dependencies, XA_FLAGS_ALLOC);
+> > > +=09xa_init_flags(&job->preempt_dependencies,
+> > > XA_FLAGS_ALLOC);
+> > > =C2=A0
+> > > =C2=A0=09return 0;
+> > > =C2=A0}
+> > > @@ -864,21 +865,14 @@ void drm_sched_job_arm(struct drm_sched_job
+> > > *job)
+> > > =C2=A0}
+> > > =C2=A0EXPORT_SYMBOL(drm_sched_job_arm);
+> > > =C2=A0
+> > > -/**
+> > > - * drm_sched_job_add_dependency - adds the fence as a job
+> > > dependency
+> > > - * @job: scheduler job to add the dependencies to
+> > > - * @fence: the dma_fence to add to the list of dependencies.
+> > > - *
+> > > - * Note that @fence is consumed in both the success and error
+> > > cases.
+> > > - *
+> > > - * Returns:
+> > > - * 0 on success, or an error on failing to expand the array.
+> > > - */
+> > > -int drm_sched_job_add_dependency(struct drm_sched_job *job,
+> > > -=09=09=09=09 struct dma_fence *fence)
+> > > +static int __drm_sched_job_add_dependency(struct drm_sched_job
+> > > *job,
+> > > +=09=09=09=09=09=C2=A0 struct dma_fence
+> > > *fence,
+> > > +=09=09=09=09=09=C2=A0 bool is_preempt)
+> > > =C2=A0{
+> > > =C2=A0=09struct dma_fence *entry;
+> > > =C2=A0=09unsigned long index;
+> > > +=09struct xarray *dependencies =3D is_preempt ? &job-
+> > > > preempt_dependencies :
+> > > +=09=09&job->dependencies;
+> >=20
+> > Same =E2=80=93 is better as an if-else below
+> >=20
+>=20
+> Sure.
+>=20
+> > > =C2=A0=09u32 id =3D 0;
+> > > =C2=A0=09int ret;
+> > > =C2=A0
+> > > @@ -889,25 +883,41 @@ int drm_sched_job_add_dependency(struct
+> > > drm_sched_job *job,
+> > > =C2=A0=09 * This lets the size of the array of deps scale with
+> > > the
+> > > number of
+> > > =C2=A0=09 * engines involved, rather than the number of BOs.
+> > > =C2=A0=09 */
+> > > -=09xa_for_each(&job->dependencies, index, entry) {
+> > > +=09xa_for_each(dependencies, index, entry) {
+> > > =C2=A0=09=09if (entry->context !=3D fence->context)
+> > > =C2=A0=09=09=09continue;
+> > > =C2=A0
+> > > =C2=A0=09=09if (dma_fence_is_later(fence, entry)) {
+> > > =C2=A0=09=09=09dma_fence_put(entry);
+> > > -=09=09=09xa_store(&job->dependencies, index,
+> > > fence,
+> > > GFP_KERNEL);
+> > > +=09=09=09xa_store(dependencies, index, fence,
+> > > GFP_KERNEL);
+> > > =C2=A0=09=09} else {
+> > > =C2=A0=09=09=09dma_fence_put(fence);
+> > > =C2=A0=09=09}
+> > > =C2=A0=09=09return 0;
+> > > =C2=A0=09}
+> > > =C2=A0
+> > > -=09ret =3D xa_alloc(&job->dependencies, &id, fence,
+> > > xa_limit_32b,
+> > > GFP_KERNEL);
+> > > +=09ret =3D xa_alloc(dependencies, &id, fence, xa_limit_32b,
+> > > GFP_KERNEL);
+> > > =C2=A0=09if (ret !=3D 0)
+> > > =C2=A0=09=09dma_fence_put(fence);
+> > > =C2=A0
+> > > =C2=A0=09return ret;
+> > > =C2=A0}
+> > > +
+> > > +/**
+> > > + * drm_sched_job_add_dependency - adds the fence as a job
+> > > dependency
+> > > + * @job: scheduler job to add the dependencies to
+> > > + * @fence: the dma_fence to add to the list of dependencies.
+> > > + *
+> > > + * Note that @fence is consumed in both the success and error
+> > > cases.
+> > > + *
+> > > + * Returns:
+> > > + * 0 on success, or an error on failing to expand the array.
+> > > + */
+> > > +int drm_sched_job_add_dependency(struct drm_sched_job *job,
+> > > +=09=09=09=09 struct dma_fence *fence)
+> > > +{
+> > > +=09return __drm_sched_job_add_dependency(job, fence,
+> > > false);
+> > > +}
+> > > =C2=A0EXPORT_SYMBOL(drm_sched_job_add_dependency);
+> > > =C2=A0
+> > > =C2=A0/**
+> > > @@ -963,7 +973,9 @@ int
+> > > drm_sched_job_add_resv_dependencies(struct
+> > > drm_sched_job *job,
+> > > =C2=A0=09dma_resv_for_each_fence(&cursor, resv, usage, fence) {
+> > > =C2=A0=09=09/* Make sure to grab an additional ref on the
+> > > added
+> > > fence */
+> > > =C2=A0=09=09dma_fence_get(fence);
+> > > -=09=09ret =3D drm_sched_job_add_dependency(job, fence);
+> > > +=09=09ret =3D __drm_sched_job_add_dependency(job, fence,
+> > > +=09=09=09=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0
+> > > cursor.fence_usage =3D=3D
+> > > +=09=09=09=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0
+> > > DMA_RESV_USAGE_PREEMPT);
+> > > =C2=A0=09=09if (ret) {
+> > > =C2=A0=09=09=09dma_fence_put(fence);
+> > > =C2=A0=09=09=09return ret;
+> > > @@ -1030,6 +1042,10 @@ void drm_sched_job_cleanup(struct
+> > > drm_sched_job *job)
+> > > =C2=A0=09}
+> > > =C2=A0=09xa_destroy(&job->dependencies);
+> > > =C2=A0
+> > > +=09xa_for_each(&job->preempt_dependencies, index, fence) {
+> > > +=09=09dma_fence_put(fence);
+> > > +=09}
+> > > +=09xa_destroy(&job->preempt_dependencies);
+> > > =C2=A0}
+> > > =C2=A0EXPORT_SYMBOL(drm_sched_job_cleanup);
+> > > =C2=A0
+> > > diff --git a/include/drm/gpu_scheduler.h
+> > > b/include/drm/gpu_scheduler.h
+> > > index 95e17504e46a..de16cf6b1869 100644
+> > > --- a/include/drm/gpu_scheduler.h
+> > > +++ b/include/drm/gpu_scheduler.h
+> > > @@ -353,6 +353,13 @@ struct drm_sched_job {
+> > > =C2=A0
+> > > =C2=A0=09u32=09=09=09=09credits;
+> > > =C2=A0
+> > > +=09/**
+> > > +=09 * @resolve_preempt_dependencies:
+> > > +=09 *
+> > > +=09 * Job is currently resolving preempt dependencies.
+> > > +=09 */
+> > > +=09bool=09=09=09=09resolve_preempt_dependen
+> > > cies
+> > > ;
+> >=20
+> > I think this should be called "resolving_preempt_dependencies".
+> > Just 2
+> > letters more and it emphasizes that this is happening "currently".
+> >=20
+>=20
+> That is more clear. Will rename.
+>=20
+> Matt
+>=20
+> >=20
+> > P.
+> >=20
+> > > +
+> > > =C2=A0=09/*
+> > > =C2=A0=09 * work is used only after finish_cb has been used and
+> > > will
+> > > not be
+> > > =C2=A0=09 * accessed anymore.
+> > > @@ -376,6 +383,14 @@ struct drm_sched_job {
+> > > =C2=A0=09 */
+> > > =C2=A0=09struct xarray=09=09=09dependencies;
+> > > =C2=A0
+> > > +=09/**
+> > > +=09 * @preempt_dependencies:
+> > > +=09 *
+> > > +=09 * Contains the dependencies as struct dma_fence for
+> > > this
+> > > job which are
+> > > +=09 * preempt fences.
+> > > +=09 */
+> > > +=09struct xarray=09=09=09preempt_dependencies;
+> > > +
+> > > =C2=A0=09/** @last_dependency: tracks @dependencies as they
+> > > signal */
+> > > =C2=A0=09unsigned long=09=09=09last_dependency;
+> > > =C2=A0
+> >=20
+>=20
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141060v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141060v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2219-cf3872e462498611b17e5f80f0b1d0900580da20_BAT -&gt; xe-pw-141060v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-141060v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2219-cf3872e462498611b17e5f80f0b1d0900580da20/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141060v2/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2219-cf3872e462498611b17e5f80f0b1d0900580da20 -&gt; xe-pw-141060v2</li>
-</ul>
-<p>IGT_8105: 8105<br />
-  xe-2219-cf3872e462498611b17e5f80f0b1d0900580da20: cf3872e462498611b17e5f80f0b1d0900580da20<br />
-  xe-pw-141060v2: 141060v2</p>
-
-</body>
-</html>
-
---===============1380523258434319362==--
