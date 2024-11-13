@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BC7DD462A4
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 14:06:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC27ED462AA
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 14:20:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C867910E717;
-	Wed, 13 Nov 2024 14:06:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WDHDNBQY";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E973E10E716;
- Wed, 13 Nov 2024 14:06:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731506782; x=1763042782;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=N/ORtc9aVertKbNro9687VYRdey4ckOigSXKC0sF93o=;
- b=WDHDNBQY0yUJg/uSboiKMM7Qw+JWYowIvievgGHIDxn8V/09SPZfCAFU
- WIIk0/3TougLtfdHYopdUHrOJAkXnLColiWt3qptU5VDDbD8xHm8ZA6CI
- vG9vO/1HU0BvkRqojixiR7KPyndHD6EJJ0S3KxYC1afzP7I/k0CXwhnnu
- FyLv9xX4Tdrju59ElFgoBVHJ4luda1EbUP16M6kjbRryKmSdP714BBgNz
- WsdiFCcHjJu+K0IqZWgLl6m1FamPKTBmcbxI8tCOEgpYRJLuH798cMtOE
- mzNrL46G9d1GECOO4HKRfaq7T5kYdHdialZgLyvXkFJ6/Pis/bRErrNRn Q==;
-X-CSE-ConnectionGUID: nk6ovumGQemjfY3mful+Xg==
-X-CSE-MsgGUID: kb7z+E0YQrKYdA+dWH1x5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="30792358"
-X-IronPort-AV: E=Sophos;i="6.12,151,1728975600"; d="scan'208";a="30792358"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 06:06:22 -0800
-X-CSE-ConnectionGUID: H2str/FQSa6iqWrNeRYgHA==
-X-CSE-MsgGUID: PE9ru+0tQsC3F+aknfBBVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,151,1728975600"; d="scan'208";a="92654166"
-Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 06:06:20 -0800
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: igt-dev@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH 4/4] tests/xe/mmap: add tests for pci mem barrier
-Date: Wed, 13 Nov 2024 19:40:12 +0530
-Message-Id: <20241113141012.1362064-5-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241113141012.1362064-1-tejas.upadhyay@intel.com>
-References: <20241113141012.1362064-1-tejas.upadhyay@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73B6110E715;
+	Wed, 13 Nov 2024 14:20:38 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1C9A10E715;
+ Wed, 13 Nov 2024 14:20:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4877290992133560175=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/xe=5Flrc=3A_Fix_context_d?=
+ =?utf-8?q?escriptors?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 13 Nov 2024 14:20:37 -0000
+Message-ID: <173150763765.3615732.1255993431095782590@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241112224947.69243-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20241112224947.69243-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,151 +36,171 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We want to make sure that mmap do direct mapping of physical
-page at doorbell space and whole page is accessible in order
-to use pci memory barrier effect effectively.
+--===============4877290992133560175==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Following subtests are added,
-./build/tests/xe_mmap --r pci-membarrier
-./build/tests/xe_mmap --r pci-membarrier-bad-pagesize
-./build/tests/xe_mmap --r pci-membarrier-bad-object
+== Series Details ==
 
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- tests/intel/xe_mmap.c | 96 +++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 96 insertions(+)
+Series: drm/xe/xe_lrc: Fix context descriptors
+URL   : https://patchwork.freedesktop.org/series/141253/
+State : success
 
-diff --git a/tests/intel/xe_mmap.c b/tests/intel/xe_mmap.c
-index fc5d73d59..ae0363a20 100644
---- a/tests/intel/xe_mmap.c
-+++ b/tests/intel/xe_mmap.c
-@@ -64,6 +64,74 @@ test_mmap(int fd, uint32_t placement, uint32_t flags)
- 	gem_close(fd, bo);
- }
- 
-+#define PAGE_SHIFT 12
-+#define PAGE_SIZE 4096
-+
-+/**
-+ * SUBTEST: pci-membarrier
-+ * Description: create pci memory barrier with write on defined mmap offset.
-+ * Test category: functionality test
-+ *
-+ */
-+static void test_pci_membarrier(int xe)
-+{
-+	uint64_t flags = MAP_SHARED;
-+	unsigned int prot = PROT_WRITE;
-+	uint32_t *ptr;
-+	uint64_t size = PAGE_SIZE;
-+	struct timespec tv;
-+	struct drm_xe_gem_mmap_offset mmo = {
-+		.handle = 0,
-+		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-+	};
-+
-+	igt_assert_eq(igt_ioctl(xe, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo), 0);
-+	ptr = mmap(NULL, size, prot, flags, xe, mmo.offset);
-+	igt_assert(ptr != MAP_FAILED);
-+
-+	/* Check whole page for any errors, also check as
-+	 * we should not read written values back
-+	 */
-+	for (int i = 0; i < size / sizeof(*ptr); i++) {
-+		/* It is expected unconfigured doorbell space
-+		 * will return read value 0xdeadbeef
-+		 */
-+		igt_assert_eq_u32(READ_ONCE(ptr[i]), 0xdeadbeef);
-+
-+		igt_gettime(&tv);
-+		ptr[i] = i;
-+		if (READ_ONCE(ptr[i]) == i) {
-+			while (READ_ONCE(ptr[i]) == i)
-+				;
-+			igt_info("fd:%d value retained for %"PRId64"ns pos:%d\n",
-+				 xe, igt_nsec_elapsed(&tv), i);
-+		}
-+		igt_assert_neq(READ_ONCE(ptr[i]), i);
-+	}
-+
-+	munmap(ptr, size);
-+}
-+
-+/**
-+ * SUBTEST: pci-membarrier-bad-pagesize
-+ * Description: Test mmap offset with bad pagesize for pci membarrier.
-+ * Test category: negative test
-+ *
-+ */
-+static void test_bad_pagesize_for_pcimem(int fd)
-+{
-+	uint32_t *map;
-+	uint64_t page_size = PAGE_SIZE * 2;
-+	struct drm_xe_gem_mmap_offset mmo = {
-+		.handle = 0,
-+		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-+	};
-+
-+	igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo), 0);
-+	map = mmap(NULL, page_size, PROT_WRITE, MAP_SHARED, fd, mmo.offset);
-+	igt_assert(map == MAP_FAILED);
-+}
-+
- /**
-  * SUBTEST: bad-flags
-  * Description: Test mmap offset with bad flags.
-@@ -126,6 +194,25 @@ static void test_bad_object(int fd)
- 	do_ioctl_err(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo, ENOENT);
- }
- 
-+/**
-+ * SUBTEST: pci-membarrier-bad-object
-+ * Description: Test mmap offset with bad object for pci mem barrier.
-+ * Test category: negative test
-+ *
-+ */
-+static void test_bad_object_for_pcimem(int fd)
-+{
-+	uint64_t size = xe_get_default_alignment(fd);
-+	struct drm_xe_gem_mmap_offset mmo = {
-+		.handle = xe_bo_create(fd, 0, size,
-+				       vram_if_possible(fd, 0),
-+				       DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM),
-+		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-+	};
-+
-+	do_ioctl_err(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo, EINVAL);
-+}
-+
- static jmp_buf jmp;
- 
- __noreturn static void sigtrap(int sig)
-@@ -273,6 +360,12 @@ igt_main
- 		test_mmap(fd, vram_memory(fd, 0) | system_memory(fd),
- 			  DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM);
- 
-+	igt_subtest("pci-membarrier")
-+		test_pci_membarrier(fd);
-+
-+	igt_subtest_f("pci-membarrier-bad-pagesize")
-+		test_bad_pagesize_for_pcimem(fd);
-+
- 	igt_subtest("bad-flags")
- 		test_bad_flags(fd);
- 
-@@ -282,6 +375,9 @@ igt_main
- 	igt_subtest("bad-object")
- 		test_bad_object(fd);
- 
-+	igt_subtest("pci-membarrier-bad-object")
-+		test_bad_object_for_pcimem(fd);
-+
- 	igt_subtest("small-bar") {
- 		igt_require(xe_visible_vram_size(fd, 0));
- 		igt_require(xe_visible_vram_size(fd, 0) < xe_vram_size(fd, 0));
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from xe-2221-169c7cd31a373ed31054abb423981856eb5fb119_BAT -> xe-pw-141253v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-141253v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][1] ([Intel XE#288]) +32 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141253v1/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][2] ([Intel XE#2229])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141253v1/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][3] ([Intel XE#1861]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2221-169c7cd31a373ed31054abb423981856eb5fb119/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141253v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-dg2-oem2:       [INCOMPLETE][5] ([Intel XE#2874]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2221-169c7cd31a373ed31054abb423981856eb5fb119/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141253v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8105 -> IGT_8106
+  * Linux: xe-2221-169c7cd31a373ed31054abb423981856eb5fb119 -> xe-pw-141253v1
+
+  IGT_8105: 8105
+  IGT_8106: 05659c7f2840938c4977668143e6c60a46ca509d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2221-169c7cd31a373ed31054abb423981856eb5fb119: 169c7cd31a373ed31054abb423981856eb5fb119
+  xe-pw-141253v1: 141253v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141253v1/index.html
+
+--===============4877290992133560175==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_lrc: Fix context descriptors</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141253/">https://patchwork.freedesktop.org/series/141253/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141253v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141253v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2221-169c7cd31a373ed31054abb423981856eb5fb119_BAT -&gt; xe-pw-141253v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-141253v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141253v1/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141253v1/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2221-169c7cd31a373ed31054abb423981856eb5fb119/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141253v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2221-169c7cd31a373ed31054abb423981856eb5fb119/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141253v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8105 -&gt; IGT_8106</li>
+<li>Linux: xe-2221-169c7cd31a373ed31054abb423981856eb5fb119 -&gt; xe-pw-141253v1</li>
+</ul>
+<p>IGT_8105: 8105<br />
+  IGT_8106: 05659c7f2840938c4977668143e6c60a46ca509d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2221-169c7cd31a373ed31054abb423981856eb5fb119: 169c7cd31a373ed31054abb423981856eb5fb119<br />
+  xe-pw-141253v1: 141253v1</p>
+
+</body>
+</html>
+
+--===============4877290992133560175==--
