@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CB7BD41C00
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 05:29:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84330D41C02
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 05:29:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED07610E343;
-	Wed, 13 Nov 2024 05:29:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5372A10E67E;
+	Wed, 13 Nov 2024 05:29:44 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB83F10E343;
- Wed, 13 Nov 2024 05:29:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACE8210E343;
+ Wed, 13 Nov 2024 05:29:43 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?Pcode_sets_the_CD_clock_frequency_voltage_levels_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/display=3A_Pcode?=
+ =?utf-8?q?_sets_the_CD_clock_frequency_voltage_levels_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Mika Kahola" <mika.kahola@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Nov 2024 05:29:30 -0000
-Message-ID: <173147577069.3252450.5551719620291552405@2413ebb6fbb6>
+Date: Wed, 13 Nov 2024 05:29:43 -0000
+Message-ID: <173147578370.3252450.14838743987382811739@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241112132411.491540-1-mika.kahola@intel.com>
 In-Reply-To: <20241112132411.491540-1-mika.kahola@intel.com>
@@ -48,9 +48,35 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 26f5fe99791d drm-tip: 2024y-11m-13d-00h-32m-10s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: Pcode sets the CD clock frequency voltage levels
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d39fd4cd899099a8e928e262cb224ad79969a5cf
+Author: Mika Kahola <mika.kahola@intel.com>
+Date:   Tue Nov 12 15:24:11 2024 +0200
+
+    drm/i915/display: Pcode sets the CD clock frequency voltage levels
+    
+    On xe3lpd the CD clock frequency is set by the driver
+    without setting voltage levels. Previously, we had 4
+    levels of voltages to choose from. However, having only 4
+    levels is rather coarse and we may end up consuming more
+    power than necessary. Therefore, these are now removed
+    and choosing the correct voltage level is now handed over
+    to Pcode firmware which is able to set voltage level with
+    higher granularity.
+    
+    v2: Leave voltage level calculcations untouched as it returns
+        always 0. Drop only voltage level nofication to pcode (Ville)
+    
+    Signed-off-by: Mika Kahola <mika.kahola@intel.com>
++ /mt/dim checkpatch 26f5fe99791def93b32e27e79e71dbd0666c117b drm-intel
+d39fd4cd8990 drm/i915/display: Pcode sets the CD clock frequency voltage levels
 
 
