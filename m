@@ -4,51 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4C51D637A0
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 17:17:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BC6DD637A0
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 17:21:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F32B10E0EA;
-	Wed, 13 Nov 2024 17:17:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BnDpsths";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A93C10E0EA
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Nov 2024 17:17:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731518242; x=1763054242;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Zr46Jo2AqGHR3eNs1JSQRsPSVGSnlC2fC6WzNM9qLNo=;
- b=BnDpsthsbfQLeFPK6NtlwjZV/5BAyt2c/ZYKv1iB8DcQzTx18e/yjPJO
- stmGUrxSzDMY2GLzUQYE+fC0v0w1TKGdtZ+tGaclEB+izR/ZynnK9j1Nq
- Cx0r7+AWFu3a/9AiRwAZFhGP6KGAs0o5q68KW4kB22OL0V64peEsGCugD
- Lmu1QqcYRITlZ88mf48UenIqgi94U9KhmmrU80Xl2oIuaTLnz/ak21tns
- PzFo4pwzfkEpyqQ3dfeWiScPnH42RDkVoO5N8R7ULwqyFWPxRe583ZeN3
- RWdUBelo8eNPZO8dv5R+D/h5aYD6yI90+H7jEtzsF+uj2eVnyzfbytfyB w==;
-X-CSE-ConnectionGUID: CPVwC1H2TiS6TMcbb06NAw==
-X-CSE-MsgGUID: CYGuHBCuR+ysM9BvCBqcAg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11254"; a="56814842"
-X-IronPort-AV: E=Sophos;i="6.12,151,1728975600"; d="scan'208";a="56814842"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 09:17:21 -0800
-X-CSE-ConnectionGUID: WPtA3xtlRNSsUhOuY4nc0w==
-X-CSE-MsgGUID: nMiponOkRFiFDc4wo6Lb5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,151,1728975600"; d="scan'208";a="118869239"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 09:17:20 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe: Mark preempt fence workqueue as reclaim
-Date: Wed, 13 Nov 2024 09:17:51 -0800
-Message-Id: <20241113171751.1677784-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32B7F10E6CE;
+	Wed, 13 Nov 2024 17:21:45 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9665E10E716;
+ Wed, 13 Nov 2024 17:21:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6380690979801988280=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/xe3lpg=3A_Add_Wa=5F160247?=
+ =?utf-8?q?92527_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Apoorva Singh" <apoorva.singh@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 13 Nov 2024 17:21:43 -0000
+Message-ID: <173151850361.3708786.12022407331201175848@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241107082158.1436637-1-apoorva.singh@intel.com>
+In-Reply-To: <20241107082158.1436637-1-apoorva.singh@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,34 +36,157 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Preempt fences are in the path of reclaim, and we signal these fences in
-the preempt workqueue. With that, we need to mark the preempt fence
-workqueue with reclaim so that this workqueue can make forward progress
-during reclaim.
+--===============6380690979801988280==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 0e2dd691bdae..06d6db8b50f9 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -350,7 +350,8 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 	INIT_LIST_HEAD(&xe->pinned.external_vram);
- 	INIT_LIST_HEAD(&xe->pinned.evicted);
- 
--	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-fence-wq", 0);
-+	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-fence-wq",
-+						       WQ_MEM_RECLAIM);
- 	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq", 0);
- 	xe->unordered_wq = alloc_workqueue("xe-unordered-wq", 0, 0);
- 	xe->destroy_wq = alloc_workqueue("xe-destroy-wq", 0, 0);
--- 
-2.34.1
+Series: drm/xe/xe3lpg: Add Wa_16024792527 (rev4)
+URL   : https://patchwork.freedesktop.org/series/140666/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2221-169c7cd31a373ed31054abb423981856eb5fb119_BAT -> xe-pw-140666v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-140666v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][1] ([Intel XE#288]) +32 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][2] ([Intel XE#2229])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-dg2-oem2:       [INCOMPLETE][3] ([Intel XE#2874]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2221-169c7cd31a373ed31054abb423981856eb5fb119/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8105 -> IGT_8107
+  * Linux: xe-2221-169c7cd31a373ed31054abb423981856eb5fb119 -> xe-pw-140666v4
+
+  IGT_8105: 8105
+  IGT_8107: 0362b0deec80daaecdfa3dd0676dcabb6f14bd9c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2221-169c7cd31a373ed31054abb423981856eb5fb119: 169c7cd31a373ed31054abb423981856eb5fb119
+  xe-pw-140666v4: 140666v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/index.html
+
+--===============6380690979801988280==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe3lpg: Add Wa_16024792527 (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140666/">https://patchwork.freedesktop.org/series/140666/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2221-169c7cd31a373ed31054abb423981856eb5fb119_BAT -&gt; xe-pw-140666v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-140666v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2221-169c7cd31a373ed31054abb423981856eb5fb119/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140666v4/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8105 -&gt; IGT_8107</li>
+<li>Linux: xe-2221-169c7cd31a373ed31054abb423981856eb5fb119 -&gt; xe-pw-140666v4</li>
+</ul>
+<p>IGT_8105: 8105<br />
+  IGT_8107: 0362b0deec80daaecdfa3dd0676dcabb6f14bd9c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2221-169c7cd31a373ed31054abb423981856eb5fb119: 169c7cd31a373ed31054abb423981856eb5fb119<br />
+  xe-pw-140666v4: 140666v4</p>
+
+</body>
+</html>
+
+--===============6380690979801988280==--
