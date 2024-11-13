@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58C00D41C33
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 11:20:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FEF4D41C38
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Nov 2024 11:39:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 235E010E070;
-	Wed, 13 Nov 2024 11:20:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFEF810E21C;
+	Wed, 13 Nov 2024 11:39:08 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3960510E070;
- Wed, 13 Nov 2024 11:20:50 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8262F10E0DD;
+ Wed, 13 Nov 2024 11:39:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8563158199042111642=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_series_starting_with_=5B?=
- =?utf-8?q?CI=2C1/9=5D_drm/i915=3A_Remove_vga_and_gmbus_seq_out_of_i915=5Fre?=
- =?utf-8?q?store=5Fdisplay_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5BCI=2C1/9?=
+ =?utf-8?q?=5D_drm/i915=3A_Remove_vga_and_gmbus_seq_out_of_i915=5Frestore=5F?=
+ =?utf-8?q?display_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Nov 2024 11:20:50 -0000
-Message-ID: <173149685022.3546833.5147483465545737546@2413ebb6fbb6>
+Date: Wed, 13 Nov 2024 11:39:07 -0000
+Message-ID: <173149794752.3546833.17671872952899512032@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241111193947.128871-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20241111193947.128871-1-rodrigo.vivi@intel.com>
@@ -41,32 +41,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============8563158199042111642==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: series starting with [CI,1/9] drm/i915: Remove vga and gmbus seq out of i915_restore_display (rev2)
 URL   : https://patchwork.freedesktop.org/series/141181/
-State : warning
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 169c7cd31a373ed31054abb423981856eb5fb119
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+CI Bug Log - changes from xe-2220-5e6666bdd22afa584d0ae672dc1ae436978440b4_BAT -> xe-pw-141181v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2220-5e6666bdd22afa584d0ae672dc1ae436978440b4 -> xe-pw-141181v2
+
+  IGT_8105: 8105
+  xe-2220-5e6666bdd22afa584d0ae672dc1ae436978440b4: 5e6666bdd22afa584d0ae672dc1ae436978440b4
+  xe-pw-141181v2: 141181v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141181v2/index.html
+
+--===============8563158199042111642==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [CI,1/9] drm/i915: Remove vga and gmbus seq out of i915_restore_display (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141181/">https://patchwork.freedesktop.org/series/141181/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141181v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141181v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2220-5e6666bdd22afa584d0ae672dc1ae436978440b4_BAT -&gt; xe-pw-141181v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2220-5e6666bdd22afa584d0ae672dc1ae436978440b4 -&gt; xe-pw-141181v2</li>
+</ul>
+<p>IGT_8105: 8105<br />
+  xe-2220-5e6666bdd22afa584d0ae672dc1ae436978440b4: 5e6666bdd22afa584d0ae672dc1ae436978440b4<br />
+  xe-pw-141181v2: 141181v2</p>
+
+</body>
+</html>
+
+--===============8563158199042111642==--
