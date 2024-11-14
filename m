@@ -4,65 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC877D65C52
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 07:20:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03EA8D65C57
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 07:36:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A154610E0CF;
-	Thu, 14 Nov 2024 07:20:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A638B10E00D;
+	Thu, 14 Nov 2024 07:36:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XvEHKDJQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GOVrXpr4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4325810E0CF;
- Thu, 14 Nov 2024 07:20:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCB3C10E00D
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Nov 2024 07:36:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731568825; x=1763104825;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=65zpiDoZSLoUYyvWElatN5U0m5x2ciY3L2lSfQAxQDk=;
- b=XvEHKDJQ/+UPcwkpLibByZQdnx6SFdFwJS3xFdBUa7xNv/Xr1bRGeyzI
- mtajsrjCUZ12LjmXT6XGvRnr5gAbOcAONTmPC5bQuDZJ32tjJs7QgDGfx
- FMjLjJtpCr3ePDKHNgxwIqai3dum7fVYwbKsv+tzUjJjU0Ma1nD1Ky/cS
- fsWGQciuBeL5kjCDk6NHLudBKXvKaqe5QpMUCPyuT2q0sak2dDwD24Usg
- kHp0X1j3p+G2zaPSxQR90K99CegV5tQ/1qqOObrqMS86UZneRqw8usdmg
- aU2lYfTp4tT8JxFkTeR6x7G3tIg++ApwVRfhOph/EgbPNpMA7ZbQwwDwD w==;
-X-CSE-ConnectionGUID: AH+gnGbNTOO8hRd8VO/f9A==
-X-CSE-MsgGUID: L+DsHjyVSdaW0k0/Urda2g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11255"; a="31373709"
-X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="31373709"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 23:20:25 -0800
-X-CSE-ConnectionGUID: n7cmpNwzRDe3cFG0Q2OCTA==
-X-CSE-MsgGUID: NewAXuvXTU6SZVoKyGbM9Q==
+ t=1731569762; x=1763105762;
+ h=date:from:to:cc:subject:message-id;
+ bh=8Z2QreihWRbXhetCE1lWp03hLa+TO5sn7Nz1+L4JG/M=;
+ b=GOVrXpr4VChgVhEhPIm2mGWAuDmTDVB+Cos6v4HpUfgtoe69v/s6smo0
+ Tg8XPguOIFHpjwJemtunDrAgu3iCqMwEW8tNQ7z/eWxqFeOXnfxtYA+j9
+ gRC0frZYZpCLXR72kOf8yO/G1zeX4Zu3MaZ6MhRgjZOf4hxDqsAdj38lJ
+ bCtDXJSgkGceHrLlRdciqHGCJWa3yMvMoFaQsRqf09JQCvTEUyuGUm8hB
+ r1PDqroxfKd097BUW22KzgA/XDmby0ARoa0Pesr0hItPXXWde9QnKT3Rc
+ 1LEY3IT7dlnB8c/2+bUq5LOIQqlhCuJollLwTm0LOLeLhdwVvqs6Mz5dc w==;
+X-CSE-ConnectionGUID: 0SoD5V3UQjGuX9xvltQO4g==
+X-CSE-MsgGUID: pJUXfszdQeWuWBm+2ZWLcg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="35203767"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="35203767"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2024 23:36:02 -0800
+X-CSE-ConnectionGUID: E2EChAhhRxaHgMCoQlhq/w==
+X-CSE-MsgGUID: M48YOx+ZTSyXE3NApKJa5w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="88527917"
-Received: from mlehtone-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.232])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 23:20:20 -0800
-Date: Thu, 14 Nov 2024 09:20:17 +0200
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Message-ID: <ZzWksU6CMGLPfjkT@jlahtine-mobl.ger.corp.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="88001926"
+Received: from lkp-server01.sh.intel.com (HELO 8eed2ac03994) ([10.239.97.150])
+ by orviesa010.jf.intel.com with ESMTP; 13 Nov 2024 23:36:01 -0800
+Received: from kbuild by 8eed2ac03994 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tBUOU-00003J-0w;
+ Thu, 14 Nov 2024 07:35:58 +0000
+Date: Thu, 14 Nov 2024 14:55:18 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ b107c63d2953907908fd0cafb0e543b3c3167b75
+Message-ID: <202411141409.8XH6BC8E-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,49 +64,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave & Sima,
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: b107c63d2953907908fd0cafb0e543b3c3167b75  drm/xe/oa: Fix "Missing outer runtime PM protection" warning
 
-Here goes drm-intel-fixes PR towards v6.12 release.
+elapsed time: 736m
 
-Just two fixes: One potential OOPS fix for TV outputs and skip GSC
-loading on ARL-H and ARL-U with old FW.
+configs tested: 107
+configs skipped: 1
 
-Regards, Joonas
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-***
+tested configs:
+alpha                             allnoconfig    gcc-14.2.0
+alpha                            allyesconfig    gcc-14.2.0
+arc                              allmodconfig    gcc-13.2.0
+arc                               allnoconfig    gcc-13.2.0
+arc                              allyesconfig    gcc-13.2.0
+arc                   randconfig-001-20241114    gcc-13.2.0
+arc                   randconfig-002-20241114    gcc-13.2.0
+arm                              alldefconfig    gcc-14.2.0
+arm                              allmodconfig    gcc-14.2.0
+arm                               allnoconfig    clang-20
+arm                              allyesconfig    gcc-14.2.0
+arm                          exynos_defconfig    clang-17
+arm                   randconfig-001-20241114    gcc-14.2.0
+arm                   randconfig-002-20241114    gcc-14.2.0
+arm                   randconfig-003-20241114    gcc-14.2.0
+arm                   randconfig-004-20241114    clang-14
+arm64                            allmodconfig    clang-20
+arm64                             allnoconfig    gcc-14.2.0
+arm64                 randconfig-001-20241114    clang-20
+arm64                 randconfig-002-20241114    gcc-14.2.0
+arm64                 randconfig-003-20241114    gcc-14.2.0
+arm64                 randconfig-004-20241114    gcc-14.2.0
+csky                              allnoconfig    gcc-14.2.0
+csky                  randconfig-001-20241114    gcc-14.2.0
+csky                  randconfig-002-20241114    gcc-14.2.0
+hexagon                          allmodconfig    clang-20
+hexagon                           allnoconfig    clang-20
+hexagon                          allyesconfig    clang-20
+hexagon               randconfig-001-20241114    clang-20
+hexagon               randconfig-002-20241114    clang-20
+i386                             allmodconfig    gcc-12
+i386                              allnoconfig    gcc-12
+i386                             allyesconfig    gcc-12
+i386        buildonly-randconfig-001-20241114    clang-19
+i386        buildonly-randconfig-002-20241114    gcc-11
+i386        buildonly-randconfig-003-20241114    gcc-12
+i386        buildonly-randconfig-004-20241114    gcc-12
+i386        buildonly-randconfig-005-20241114    gcc-12
+i386        buildonly-randconfig-006-20241114    clang-19
+i386                                defconfig    clang-19
+i386                  randconfig-001-20241114    gcc-12
+i386                  randconfig-002-20241114    gcc-12
+i386                  randconfig-003-20241114    clang-19
+i386                  randconfig-004-20241114    gcc-12
+i386                  randconfig-005-20241114    clang-19
+i386                  randconfig-006-20241114    clang-19
+i386                  randconfig-011-20241114    clang-19
+i386                  randconfig-012-20241114    gcc-12
+i386                  randconfig-013-20241114    clang-19
+i386                  randconfig-014-20241114    clang-19
+i386                  randconfig-015-20241114    gcc-12
+i386                  randconfig-016-20241114    clang-19
+loongarch                        allmodconfig    gcc-14.2.0
+loongarch                         allnoconfig    gcc-14.2.0
+loongarch             randconfig-001-20241114    gcc-14.2.0
+loongarch             randconfig-002-20241114    gcc-14.2.0
+m68k                             allmodconfig    gcc-14.2.0
+m68k                              allnoconfig    gcc-14.2.0
+m68k                             allyesconfig    gcc-14.2.0
+microblaze                       allmodconfig    gcc-14.2.0
+microblaze                        allnoconfig    gcc-14.2.0
+microblaze                       allyesconfig    gcc-14.2.0
+mips                              allnoconfig    gcc-14.2.0
+nios2                             allnoconfig    gcc-14.2.0
+nios2                 randconfig-001-20241114    gcc-14.2.0
+nios2                 randconfig-002-20241114    gcc-14.2.0
+openrisc                          allnoconfig    gcc-14.2.0
+openrisc                         allyesconfig    gcc-14.2.0
+parisc                           allmodconfig    gcc-14.2.0
+parisc                            allnoconfig    gcc-14.2.0
+parisc                           allyesconfig    gcc-14.2.0
+parisc                randconfig-001-20241114    gcc-14.2.0
+parisc                randconfig-002-20241114    gcc-14.2.0
+powerpc                          allmodconfig    gcc-14.2.0
+powerpc                           allnoconfig    gcc-14.2.0
+powerpc                          allyesconfig    clang-20
+powerpc               randconfig-001-20241114    gcc-14.2.0
+powerpc               randconfig-002-20241114    clang-14
+powerpc               randconfig-003-20241114    gcc-14.2.0
+powerpc64             randconfig-001-20241114    gcc-14.2.0
+powerpc64             randconfig-002-20241114    clang-20
+powerpc64             randconfig-003-20241114    gcc-14.2.0
+riscv                            allmodconfig    clang-20
+riscv                             allnoconfig    gcc-14.2.0
+riscv                            allyesconfig    clang-20
+riscv                 randconfig-001-20241114    gcc-14.2.0
+riscv                 randconfig-002-20241114    clang-14
+s390                             allmodconfig    clang-20
+s390                              allnoconfig    clang-20
+s390                             allyesconfig    gcc-14.2.0
+s390                  randconfig-001-20241114    gcc-14.2.0
+s390                  randconfig-002-20241114    clang-20
+sh                               allmodconfig    gcc-14.2.0
+sh                                allnoconfig    gcc-14.2.0
+sh                               allyesconfig    gcc-14.2.0
+sh                    randconfig-001-20241114    gcc-14.2.0
+sh                    randconfig-002-20241114    gcc-14.2.0
+sparc                            allmodconfig    gcc-14.2.0
+um                               allmodconfig    clang-20
+um                                allnoconfig    clang-17
+um                               allyesconfig    gcc-12
+x86_64                            allnoconfig    clang-19
+x86_64                           allyesconfig    clang-19
+x86_64                              defconfig    gcc-11
+x86_64                                  kexec    clang-19
+x86_64                               rhel-8.3    gcc-12
+xtensa                            allnoconfig    gcc-14.2.0
 
-drm-intel-fixes-2024-11-14:
-
-- Don't load GSC on ARL-H and ARL-U if too old FW
-- Avoid potential OOPS in enabling/disabling TV output
-
-The following changes since commit 2d5404caa8c7bb5c4e0435f94b28834ae5456623:
-
-  Linux 6.12-rc7 (2024-11-10 14:19:35 -0800)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2024-11-14
-
-for you to fetch changes up to 67e023b93d69e5a21b16f9602656a803d314e825:
-
-  drm/i915: Grab intel_display from the encoder to avoid potential oopsies (2024-11-12 11:08:06 +0200)
-
-----------------------------------------------------------------
-- Don't load GSC on ARL-H and ARL-U if too old FW
-- Avoid potential OOPS in enabling/disabling TV output
-
-----------------------------------------------------------------
-Daniele Ceraolo Spurio (1):
-      drm/i915/gsc: ARL-H and ARL-U need a newer GSC FW.
-
-Ville Syrjälä (1):
-      drm/i915: Grab intel_display from the encoder to avoid potential oopsies
-
- drivers/gpu/drm/i915/display/intel_tv.c   |  4 +--
- drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c | 50 ++++++++++++++++++++-----------
- drivers/gpu/drm/i915/i915_drv.h           |  8 +++--
- drivers/gpu/drm/i915/intel_device_info.c  | 24 +++++++++++----
- drivers/gpu/drm/i915/intel_device_info.h  |  4 ++-
- include/drm/intel/i915_pciids.h           | 19 +++++++++---
- 6 files changed, 77 insertions(+), 32 deletions(-)
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
