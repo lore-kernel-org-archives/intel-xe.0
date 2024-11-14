@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF05ED68B36
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 15:54:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6309DD68B34
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 16:04:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F0E910E81A;
-	Thu, 14 Nov 2024 15:54:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YNJ42KWi";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9970910E80B;
- Thu, 14 Nov 2024 15:53:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731599639; x=1763135639;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/+SRlLPVSoEcqhnEB8irN9IMlpg5pF84WuBgpr4BvI4=;
- b=YNJ42KWim8XhS8jrDJdLjjksdI5DZ1htI2SkIj38uiJ/o9v2TNb9qLN0
- 8xYyK7fsZezRb9djj2DJ3DbL7TBuhVj2eo/B5HKy+VBtpRk80oZ5Xj+Pt
- RBeG0hl7h5pj9+aAUrtub1AqUZ/bO5/oajyj8HbS8/mJblQ/H6xf+Eyt5
- q4kMTVOTIjhu0D/5YXIHmvxBpZqbpIG4bpvO616TNYc5457b0Mkr9RrZW
- tP36q9rFLJP1dImunZSNZ1Qhnii0h5mRnHjaqXZIu8utm9pgQbo242Idr
- vzEp0mYQXrjl56+in7O3hu+PuGoVHZg/yKe6z6/DEsHtI3DUmwmcOo3w7 A==;
-X-CSE-ConnectionGUID: QezS6rPPQ6itdF5wc3Rnyg==
-X-CSE-MsgGUID: a+WkSGWUR+an4HxAzZvGYg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="31420263"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="31420263"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2024 07:53:58 -0800
-X-CSE-ConnectionGUID: ca6lHrFMTKih0NmqmX/crA==
-X-CSE-MsgGUID: ikoNUm1aRsKw6pFS4HukvA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,154,1728975600"; d="scan'208";a="93324440"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2024 07:53:51 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Sergey Senozhatsky <senozhatsky@chromium.org>, Sergey Senozhatsky
- <senozhatsky@chromium.org>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- ville.syrjala@linux.intel.com
-Subject: Re: [RFC][PATCH] drm: i915: do not NULL deref hdmi attached_connector
-In-Reply-To: <87msi3bidr.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241031105145.2140590-1-senozhatsky@chromium.org>
- <20241113083920.GH1458936@google.com> <87msi3bidr.fsf@intel.com>
-Date: Thu, 14 Nov 2024 17:53:46 +0200
-Message-ID: <87cyix6cc5.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E35F10E81C;
+	Thu, 14 Nov 2024 16:04:57 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D536410E81C;
+ Thu, 14 Nov 2024 16:04:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Trivial_header/flags?=
+ =?utf-8?q?_cleanups?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 14 Nov 2024 16:04:55 -0000
+Message-ID: <173160029586.4127496.12070197281454788511@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241114152148.572447-1-lucas.demarchi@intel.com>
+In-Reply-To: <20241114152148.572447-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,60 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 13 Nov 2024, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Wed, 13 Nov 2024, Sergey Senozhatsky <senozhatsky@chromium.org> wrote:
->> On (24/10/31 19:51), Sergey Senozhatsky wrote:
->>> intel_ddi_init() may skip connector initialization, for instance,
->>> both intel_ddi_init_dp_connector() and intel_ddi_init_hdmi_connector()
->>> are optional.  This leads to situation that ->attached_connector may
->>> be NULL for some connectors.  For instance, on my setup 'DDI A/PHY A'
->>> and 'DDI TC1/PHY TC1' are not initialized.
->>> 
->>> However, functions like intel_dp_dual_mode_set_tmds_output() and
->>> friends don't take this into consideration.  This leads to NULL
->>> ptr-derefs:
->>> 
->>> KASAN: null-ptr-deref in range [0x0000000000000848-0x000000000000084f]
->>> RIP: 0010:intel_hdmi_encoder_shutdown+0x105/0x230
->>> Call Trace:
->>> <TASK>
->>> i915_driver_shutdown+0x2d8/0x490
->>> pci_device_shutdown+0x83/0x150
->>> device_shutdown+0x4ad/0x660
->>> __se_sys_reboot+0x29c/0x4d0
->>> do_syscall_64+0x60/0x90
->>> 
->>> Add a new helper to avoid NULL ->attached_connector derefs and
->>> switch some intel_hdmi function to it.  I'm not sure if we need
->>> to switch all or just intel_dp_dual_mode_set_tmds_output() (I
->>> have only seen this one doing NULL derefs so far).
->>
->> Folks, any more comments / opinions on this?
->> What should be the way forward?
->
-> Ville, we handle intel_ddi_init_dp_connector() failures but not
-> intel_ddi_init_hdmi_connector() failures. Do you recall if there's a
-> reason for that? Something like a dual-mode port where DP works but HDMI
-> gets rejected because of bogus VBT info?
->
-> My gut feeling is to propagate errors from intel_hdmi_init_connector()
-> and handle them properly in g4x_hdmi_init() and
-> intel_ddi_init_hdmi_connector().
->
-> Of course, we have cases where hdmi is just not initialized on DDI, and
-> those should be handled. But I don't think hdmi->attached_connector !=
-> NULL is really the right check for that.
+== Series Details ==
 
-I'm hoping [1] would solve the issue.
+Series: drm/xe: Trivial header/flags cleanups
+URL   : https://patchwork.freedesktop.org/series/141359/
+State : success
 
-BR,
-Jani.
+== Summary ==
 
-[1] https://lore.kernel.org/r/cover.1731599468.git.jani.nikula@intel.com
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc7-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc7-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/
+lib/modules/6.12.0-rc7-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc7-xe/build
+lib/modules/6.12.0-rc7-xe/modules.alias.bin
+lib/modules/6.12.0-rc7-xe/modules.builtin
+lib/modules/6.12.0-rc7-xe/modules.softdep
+lib/modules/6.12.0-rc7-xe/modules.alias
+lib/modules/6.12.0-rc7-xe/modules.order
+lib/modules/6.12.0-rc7-xe/modules.symbols
+lib/modules/6.12.0-rc7-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1731600289:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1731600289:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
--- 
-Jani Nikula, Intel
