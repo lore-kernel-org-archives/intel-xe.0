@@ -4,55 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BEF8D68B06
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 13:04:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E7B0D68B06
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 13:04:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E96310E02C;
-	Thu, 14 Nov 2024 13:04:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06B6210E067;
+	Thu, 14 Nov 2024 13:04:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G64CJ8r5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OSsh3avO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 080D610E02C
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Nov 2024 13:04:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7463210E067
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Nov 2024 13:04:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731589452; x=1763125452;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=b5tMeBj7G8TGC0pQo4cL7OGITA7DTtYRmijuPXkRfv8=;
- b=G64CJ8r5oDfOH6C4/6g0uKp52B03AJmqT4gf6mXQ0d5OBnh0DpME/Fc+
- SZW1IQ3rbUf/v9uz8QAyrnJ+AVSXOf+xN1lr6VYRCy3usowlFYxNvbv0k
- WsvoTsdERsK8L/JSVgolB+55asTc22lrN7g5KIbvU16COso7m8ueRVLr9
- GcdGDnYVVBw8hfmV4XdyfVd7UkdD01lCo9+WGKfv6v9AYg6Vqiptjy8Hj
- bwOHPT3Ms5z60vN01auxvIG/cJc2amODCuYR8G69+OFplGs+VFkQABpuj
- EGWKN0J9t4SidC6VEmfjyfixspabTHwKWv5YpMz/PtrlS3eMZZ/Stei48 g==;
-X-CSE-ConnectionGUID: NfE7KisyScSvxOGbXoBn4Q==
-X-CSE-MsgGUID: by/HEU8cRmy9ABhtLClxcA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11256"; a="35320456"
-X-IronPort-AV: E=Sophos;i="6.12,154,1728975600"; d="scan'208";a="35320456"
+ t=1731589454; x=1763125454;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=QBgH44q6yCMVUiBmOzAq9pIlly2WFxTtqaFnpbJVyQ0=;
+ b=OSsh3avOhIrglUvrnDnt+kk6lhEkhesTzYXN3pJrAvYOR9+qXbalECXy
+ 9nJI1NAvN0Y8LY0+6TC1QNAqBgkMubQoaItlhsh/KOsn5QHsYTdlsrAo4
+ A12IQiXM4kimjNetLuzYj3tMYjR5XKid2dRKhr9FXvai/DnyMJ42dlYxz
+ +wWOJinz3LPie3OHsSBhbBZay1MMXWvZuSOXMnaXg8/2jYwX5PoiCLifa
+ neHf5YsPQiYUCjNKsi36s5COtypDAlOcRl+x6csQhxg+Zt7TTuKxtBBjd
+ ka+HJLssZ7VLOzFB9W5LrqbymDORlXUvWwZ7w/mPx8zv3rBhB1uLS+bJZ Q==;
+X-CSE-ConnectionGUID: idZzdXv/Q26ZnTH0WOyrlw==
+X-CSE-MsgGUID: ebu/mRpLSEyyV3WxV6jgIw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11256"; a="35320461"
+X-IronPort-AV: E=Sophos;i="6.12,154,1728975600"; d="scan'208";a="35320461"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2024 05:04:11 -0800
-X-CSE-ConnectionGUID: ND+gSUTUSt+sCeJ1OH6gwg==
-X-CSE-MsgGUID: wZdShYsNTvmiLNfRjBQWmA==
+ 14 Nov 2024 05:04:14 -0800
+X-CSE-ConnectionGUID: QzVUV+YJRY+3tQczoXM7Pg==
+X-CSE-MsgGUID: 0hdO6W79R0yp31dgEEAqbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,154,1728975600"; d="scan'208";a="88597772"
+X-IronPort-AV: E=Sophos;i="6.12,154,1728975600"; d="scan'208";a="88597781"
 Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2024 05:04:10 -0800
+ 14 Nov 2024 05:04:13 -0800
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
  david.e.box@linux.intel.com, ilpo.jarvinen@linux.intel.com,
  andriy.shevchenko@linux.intel.com, hdegoede@redhat.com,
  rodrigo.vivi@intel.com, lucas.demarchi@intel.com
 Cc: michael.j.ruhl@intel.com
-Subject: [PATCH v3 0/2] Support BMG PMT features for Xe
-Date: Thu, 14 Nov 2024 08:03:56 -0500
-Message-ID: <20241114130358.2467787-1-michael.j.ruhl@intel.com>
+Subject: [PATCH v3 1/2] platform/x86/intel/pmt: allow user offset for PMT
+ callbacks
+Date: Thu, 14 Nov 2024 08:03:57 -0500
+Message-ID: <20241114130358.2467787-2-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20241114130358.2467787-1-michael.j.ruhl@intel.com>
+References: <20241114130358.2467787-1-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,33 +70,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Updates for PMT to support user offsets from the sysfs API.
+Usage of the telem sysfs file allows for partial reads at an offset.
 
-v2:
-  Addressed review comments for the Xe driver udpates.
-v3:
-  Consolidate offest addition to addr
-  Add r-b.
+The current callback method returns the buffer starting from offset 0
+only.
 
-Michael J. Ruhl (2):
-  platform/x86/intel/pmt: allow user offset for PMT callbacks
-  drm/xe/vsec: Support BMG devices
+Include the requested offset in the callback.
+Update the necessary address calculations with the offset.
 
- drivers/gpu/drm/xe/Makefile                |   1 +
- drivers/gpu/drm/xe/regs/xe_pmt.h           |  19 ++
- drivers/gpu/drm/xe/xe_device.c             |   7 +
- drivers/gpu/drm/xe/xe_device_types.h       |   6 +
- drivers/gpu/drm/xe/xe_vsec.c               | 232 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vsec.h               |  11 +
- drivers/platform/x86/intel/pmt/class.c     |   8 +-
- drivers/platform/x86/intel/pmt/class.h     |   2 +-
- drivers/platform/x86/intel/pmt/telemetry.c |   2 +-
- include/linux/intel_vsec.h                 |   3 +-
- 10 files changed, 285 insertions(+), 6 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_pmt.h
- create mode 100644 drivers/gpu/drm/xe/xe_vsec.c
- create mode 100644 drivers/gpu/drm/xe/xe_vsec.h
+Note: offset addition is moved from the caller to the local usage.  For
+non-callback usage this is unchanged behavior.
 
+Fixes: e92affc74cd8 ("platform/x86/intel/vsec: Add PMT read callbacks")
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+---
+ drivers/platform/x86/intel/pmt/class.c     | 8 +++++---
+ drivers/platform/x86/intel/pmt/class.h     | 2 +-
+ drivers/platform/x86/intel/pmt/telemetry.c | 2 +-
+ include/linux/intel_vsec.h                 | 3 ++-
+ 4 files changed, 9 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
+index c04bb7f97a4d..c3ca2ac91b05 100644
+--- a/drivers/platform/x86/intel/pmt/class.c
++++ b/drivers/platform/x86/intel/pmt/class.c
+@@ -59,10 +59,12 @@ pmt_memcpy64_fromio(void *to, const u64 __iomem *from, size_t count)
+ }
+ 
+ int pmt_telem_read_mmio(struct pci_dev *pdev, struct pmt_callbacks *cb, u32 guid, void *buf,
+-			void __iomem *addr, u32 count)
++			void __iomem *addr, loff_t off, u32 count)
+ {
+ 	if (cb && cb->read_telem)
+-		return cb->read_telem(pdev, guid, buf, count);
++		return cb->read_telem(pdev, guid, buf, off, count);
++
++	addr += off;
+ 
+ 	if (guid == GUID_SPR_PUNIT)
+ 		/* PUNIT on SPR only supports aligned 64-bit read */
+@@ -96,7 +98,7 @@ intel_pmt_read(struct file *filp, struct kobject *kobj,
+ 		count = entry->size - off;
+ 
+ 	count = pmt_telem_read_mmio(entry->ep->pcidev, entry->cb, entry->header.guid, buf,
+-				    entry->base + off, count);
++				    entry->base, off, count);
+ 
+ 	return count;
+ }
+diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
+index a267ac964423..b2006d57779d 100644
+--- a/drivers/platform/x86/intel/pmt/class.h
++++ b/drivers/platform/x86/intel/pmt/class.h
+@@ -62,7 +62,7 @@ struct intel_pmt_namespace {
+ };
+ 
+ int pmt_telem_read_mmio(struct pci_dev *pdev, struct pmt_callbacks *cb, u32 guid, void *buf,
+-			void __iomem *addr, u32 count);
++			void __iomem *addr, loff_t off, u32 count);
+ bool intel_pmt_is_early_client_hw(struct device *dev);
+ int intel_pmt_dev_create(struct intel_pmt_entry *entry,
+ 			 struct intel_pmt_namespace *ns,
+diff --git a/drivers/platform/x86/intel/pmt/telemetry.c b/drivers/platform/x86/intel/pmt/telemetry.c
+index c9feac859e57..0cea617c6c2e 100644
+--- a/drivers/platform/x86/intel/pmt/telemetry.c
++++ b/drivers/platform/x86/intel/pmt/telemetry.c
+@@ -219,7 +219,7 @@ int pmt_telem_read(struct telem_endpoint *ep, u32 id, u64 *data, u32 count)
+ 	if (offset + NUM_BYTES_QWORD(count) > size)
+ 		return -EINVAL;
+ 
+-	pmt_telem_read_mmio(ep->pcidev, ep->cb, ep->header.guid, data, ep->base + offset,
++	pmt_telem_read_mmio(ep->pcidev, ep->cb, ep->header.guid, data, ep->base, offset,
+ 			    NUM_BYTES_QWORD(count));
+ 
+ 	return ep->present ? 0 : -EPIPE;
+diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
+index 11ee185566c3..b94beab64610 100644
+--- a/include/linux/intel_vsec.h
++++ b/include/linux/intel_vsec.h
+@@ -74,10 +74,11 @@ enum intel_vsec_quirks {
+  * @pdev:  PCI device reference for the callback's use
+  * @guid:  ID of data to acccss
+  * @data:  buffer for the data to be copied
++ * @off:   offset into the requested buffer
+  * @count: size of buffer
+  */
+ struct pmt_callbacks {
+-	int (*read_telem)(struct pci_dev *pdev, u32 guid, u64 *data, u32 count);
++	int (*read_telem)(struct pci_dev *pdev, u32 guid, u64 *data, loff_t off, u32 count);
+ };
+ 
+ /**
 -- 
 2.44.0
 
