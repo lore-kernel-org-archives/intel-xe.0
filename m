@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD478D68B34
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 15:52:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0114ED68B33
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 15:52:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A207910E818;
-	Thu, 14 Nov 2024 15:52:08 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9959C10E80B;
- Thu, 14 Nov 2024 15:52:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD96710E80B;
+	Thu, 14 Nov 2024 15:52:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G0py4s2m";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 373CF10E80B;
+ Thu, 14 Nov 2024 15:52:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731599545; x=1763135545;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=h2GFfPswiW1ooB+IBUEVbCBA4SuEVSV0CD9JGdCoSdk=;
+ b=G0py4s2mRm7ET1VLdXuyNWuLtrCc51+egBsn7ZDMUV8tvLbsekYp//xv
+ yivpqLjsuUCSmi6iTnB4bPPPvjTL6qKj+ajv9Pseu3bOHQwCP02WbzliY
+ ZiqxftWmNcUEvuWdETVeKd5aUlxaOTjvarWsUrSfV3GC/4JvJkE7xaE97
+ rGRmtwk95E82e8BXczcmasVFFow6Tir7QutjAjYwBHlJtn/E9yVT/o4ta
+ A5ZczCqcQSkaiMDC0NXJD9gHizBX05/ytKWpGe+9AQFB2VVXsPl3LFwKG
+ /qDnWw9fV+9OMXVZ4LwY+Be4InNZdNJizWLJ0tM/ke/L3GDUrXzlYRiX/ A==;
+X-CSE-ConnectionGUID: F8Y84lx3QjSvBtfdkRC/BQ==
+X-CSE-MsgGUID: e15n5wI8SV+Nsbpn6zKevA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="35269695"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="35269695"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2024 07:52:25 -0800
+X-CSE-ConnectionGUID: Y1d00W0SSRC1lJb3HXGf+A==
+X-CSE-MsgGUID: vqIVbvmUS1WKg84HjtvDEg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,154,1728975600"; d="scan'208";a="88645996"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2024 07:52:22 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>
+Subject: [PATCH 0/3] drm/i915/display: handle hdmi connector init failures
+Date: Thu, 14 Nov 2024 17:52:14 +0200
+Message-Id: <cover.1731599468.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Trivial_header/?=
- =?utf-8?q?flags_cleanups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 14 Nov 2024 15:52:06 -0000
-Message-ID: <173159952662.4090787.12636161604922168836@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241114152148.572447-1-lucas.demarchi@intel.com>
-In-Reply-To: <20241114152148.572447-1-lucas.demarchi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,46 +64,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This is an attempt to resolve [1].
 
-Series: drm/xe: Trivial header/flags cleanups
-URL   : https://patchwork.freedesktop.org/series/141359/
-State : warning
+BR,
+Jani.
 
-== Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 7508b3eaa278d2d3a3a46460d5e6e2666b5e455a
-Author: Lucas De Marchi <lucas.demarchi@intel.com>
-Date:   Thu Nov 14 07:21:48 2024 -0800
+[1] https://lore.kernel.org/r/20241031105145.2140590-1-senozhatsky@chromium.org
 
-    drm/xe: Split xe_gt_stat.h
-    
-    Follow what's done for the other headers, with the types split into a
-    separate header that can be included by other *_types.h headers.
-    
-    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-+ /mt/dim checkpatch 92018261c565a3040d58359e890ce947c29907ed drm-intel
-7b0164ab806a drm/xe: Sort again info flags
-be6c14f9a224 drm/xe: Include xe_oa_types.h
-3868a0bde658 drm/xe: Drop HAS_HECI_*
-7508b3eaa278 drm/xe: Split xe_gt_stat.h
--:34: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#34: 
-new file mode 100644
 
-total: 0 errors, 1 warnings, 0 checks, 40 lines checked
+Cc: Sergey Senozhatsky <senozhatsky@chromium.org>
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
 
+Jani Nikula (3):
+  drm/i915/hdmi: propagate errors from intel_hdmi_init_connector()
+  drm/i915/hdmi: add error handling in g4x_hdmi_init()
+  drm/i915/ddi: propagate errors from intel_ddi_init_hdmi_connector()
+
+ drivers/gpu/drm/i915/display/g4x_hdmi.c   | 35 +++++++++++++++--------
+ drivers/gpu/drm/i915/display/g4x_hdmi.h   |  5 ++--
+ drivers/gpu/drm/i915/display/intel_ddi.c  |  6 +++-
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 10 ++++---
+ drivers/gpu/drm/i915/display/intel_hdmi.h |  4 +--
+ 5 files changed, 39 insertions(+), 21 deletions(-)
+
+-- 
+2.39.5
 
