@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3756D68B34
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 15:30:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52DACD68B36
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 15:30:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D80410E80F;
-	Thu, 14 Nov 2024 15:30:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F17A10E818;
+	Thu, 14 Nov 2024 15:30:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="COgc1p0t";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cWJkFtPW";
 	dkim-atps=neutral
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com
- [209.85.218.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E27DF10E801;
- Thu, 14 Nov 2024 15:30:25 +0000 (UTC)
-Received: by mail-ej1-f48.google.com with SMTP id
- a640c23a62f3a-a9e8522c10bso103343466b.1; 
- Thu, 14 Nov 2024 07:30:25 -0800 (PST)
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
+ [209.85.218.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18A4910E816;
+ Thu, 14 Nov 2024 15:30:32 +0000 (UTC)
+Received: by mail-ej1-f52.google.com with SMTP id
+ a640c23a62f3a-a9e8522445dso143050366b.1; 
+ Thu, 14 Nov 2024 07:30:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1731598224; x=1732203024; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1731598230; x=1732203030; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=o5gUunTk+fi0xEBeUGvsU/lF64TxrCQn5ATGQpWTQDU=;
- b=COgc1p0tUrKq6ZbWIKgppi1RPh663d4jzK7xpCYjBLsNn6NzvutcbMgpBWdM1nMu7s
- Bua0mf9VcPGQrIz8OBax9JB3Hdz5LAwQ69Dbqu7rbrDaHzo2wEMpcRs+J2RhCuxznoHV
- YatzpxFKIvOzJyDNlprdtmpCRefbPOm2mkTitbt+qD2t6ocG+62rd9uZd+nsbpMvKSWN
- a0UdyPHbdgiN4/QFVKA/TjWrNWWg/JEbKn3WB3znGO3IoSYmWYqGYPMtESTxyywwbSUk
- HWtSomuhQWnoM8NP/w51YgNIXthg6vFMukQ4yxg8U+C7u8TqeEws02Z7kBR9y7aqjKjW
- hsgw==
+ :reply-to; bh=ETDe7un/JWIbuM3P/iFQm3j6qLUZiVYIWE/wIZIF+UQ=;
+ b=cWJkFtPW/MDMOq02Ra9halagBMGSRWxgVFpnW8z7FsgwM8Ce01o4ElctzJS7kH7++I
+ 9M57Jo/NK0aDoXozy9AYCc0chC/vSggxLMQnrVG+dwlC4gNJ4+MqC40x42+r9K9gqFx/
+ AKCQzlIST43WMq4x+yguiTQSbT6hTC1wB96YwuCNBRiq9XFmmAsSU7aWl1w8NYmcnuKZ
+ LL5HKOXd8kLyzjFisCw57CxpneVPEsEIZ6dImypLrzlzvzBvtX16bRObswNve9ecZCEp
+ 8caftWfZPDajFMNbwVutqeMIaipf8wbjpEqqpBx0Hx5Nl3gh7aAgo3/aYXXWIpfpAOq0
+ 1yaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1731598224; x=1732203024;
+ d=1e100.net; s=20230601; t=1731598230; x=1732203030;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=o5gUunTk+fi0xEBeUGvsU/lF64TxrCQn5ATGQpWTQDU=;
- b=oAUlcr6GX30LrOx5uAzJyyPV9fjDOi+ePi3V0GajK1NV4oBm+MBWHZ+L/Pu7IQnIbu
- CHEuib5SJY4DbpMiIerNfFIt7oToszYlDPj8AhQlwceWhn3vDKuBUhEzhv7U+9Rh67l4
- QeyJQjhcVB339Nat6KepwNDkWFnTaj9eP9NH+IHssA/bx09CUQFa0KOaG9tFibVN7g20
- UhGqwGbbff217LEqOcIFrBJRDvQYpHQnXBSCu8293r3+jVKaoWIm/JG0YLxIfcKZqUHi
- xTARkOYY+WYATMCwi9BnFlPgv5M53WAPLzy9hVmNe970uhWJMrhO3oGSy6ygTi4+pSjN
- tBrg==
+ bh=ETDe7un/JWIbuM3P/iFQm3j6qLUZiVYIWE/wIZIF+UQ=;
+ b=lC/gz4O/GRHGxrmXVVNLbdmbgNlyY7JsffwYfvQvkgh01YsXLIbRDBDcphSAHYZTBO
+ 6D+/PniFI1P35cchAifR+LnEoP50RWPzRfWrjHdEWL/ltklKjfHcX9Gq6K/0GPst8crO
+ 96/MOoRCmQHCbxHQaG6/AYDEoW6ytJnlO86Inf5zJI6RVA3QTOtaaU+xwk7Rxh0L460+
+ AkWWuQ8kVotjmdZk65XwTAWUmIOY+b8khft7l9TeJ4RtOZ28E4Ep5qCv7ThFHFRZHP8R
+ BBV8TDotOHpEkt2RTc60Mx29eePthxej8W7jzEFXyPJlJL8zyFOr93RwfFjBjO11ZY5+
+ fuIg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUYGLTBalAVEtMNhbtHE9yx5s4hRx580CWC0F3g0T9cO9Aq3ZZkXpEIvlYhl+h6pwvcFqk7xIF3V8/H@lists.freedesktop.org,
- AJvYcCUzwTJMfgiJysL4vx0+EaJ+5On0dIFTcmKwpXetMDtduuPswtuJSdAf2IG7shyZSam7Wr5U8jyR3Qc=@lists.freedesktop.org,
- AJvYcCVOwsETB300wxAYrGHXzWeCzIEwnQhagDwZQXNb5fPcx543p5lRXGJjMw0TwpJff4ja3WIMF6m9@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyPKwdGebGVfqV08FIL+5ZBzPBRDV1WrciaxKXJYZKc0M2HZAFm
- 5/JjpRuMsYrqncSPUEKgPm+I0jjvZVZAmUc7QYRtkZsouXWmrBjS
-X-Google-Smtp-Source: AGHT+IFv2EXUftXiHfEra+V5C7isNy2EHptzBjJnU85zwKMHGlhmcs44uSG0Ldp50mgkHCwxYPUjtg==
-X-Received: by 2002:a17:907:d29:b0:a9e:d532:4cc7 with SMTP id
- a640c23a62f3a-aa2076cc161mr358920566b.8.1731598223989; 
- Thu, 14 Nov 2024 07:30:23 -0800 (PST)
+ AJvYcCVQUBOeONuMSZeFjOVZDTQd6VWA++FRcDxaxjZHBO3iVynBnAUWu8HQnXbBiFBoPlXy75RLyMkYJZ86@lists.freedesktop.org,
+ AJvYcCX3cXwgQQG7Wc+I/v17n2V5MgcoOgvktU6yPbMKZdiMurDvd2NsCIovRwCO7CGVLDvdiVCF07r/XkQ=@lists.freedesktop.org,
+ AJvYcCXYo5g3bSbrrnN5z9hNeAVr5Alv+Zqv2Qq3RobBCUKQ0e2E9Y69U5tQSz9SJ5Q4xaae5siQhhgI@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwF+LsnRrx/RJN6gHSceHaljnr5sJgoi9n6acPvN5jcnMRlJVlL
+ zwAjIZfNUDvROrgqjYpZZusR0TEqoq7DCltBnsp5UZ9A9KZQwQth
+X-Google-Smtp-Source: AGHT+IHMJ32RN2lfwiWsru/LwaWKk6ticRANDC7RG1vXcvThsUFNdNXUsMhAHyN7Z0gz/veli4lJ8A==
+X-Received: by 2002:a17:907:3f07:b0:a9a:82e2:e8ce with SMTP id
+ a640c23a62f3a-aa20cdc555cmr258205666b.40.1731598230245; 
+ Thu, 14 Nov 2024 07:30:30 -0800 (PST)
 Received: from able.fritz.box ([2a00:e180:15c9:2500:bb23:40f5:fe29:201])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-aa20e046919sm74063266b.156.2024.11.14.07.30.23
+ a640c23a62f3a-aa20e046919sm74063266b.156.2024.11.14.07.30.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 14 Nov 2024 07:30:23 -0800 (PST)
+ Thu, 14 Nov 2024 07:30:29 -0800 (PST)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
@@ -64,9 +64,9 @@ To: kraxel@redhat.com, airlied@redhat.com, alexander.deucher@amd.com,
  zack.rusin@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
  virtualization@lists.linux.dev, dri-devel@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/7] drm/radeon: switch over to drm_exec v2
-Date: Thu, 14 Nov 2024 16:30:14 +0100
-Message-Id: <20241114153020.6209-2-christian.koenig@amd.com>
+Subject: [PATCH 7/7] drm/ttm: remove ttm_execbug_util
+Date: Thu, 14 Nov 2024 16:30:20 +0100
+Message-Id: <20241114153020.6209-8-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241114153020.6209-1-christian.koenig@amd.com>
 References: <20241114153020.6209-1-christian.koenig@amd.com>
@@ -87,376 +87,324 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Just a straightforward conversion without any optimization.
-
-Smoke tested on actual hardware.
-
-v2: rebase
+Replaced by drm_exec and not used any more.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/radeon/Kconfig         |  1 +
- drivers/gpu/drm/radeon/radeon.h        |  7 ++--
- drivers/gpu/drm/radeon/radeon_cs.c     | 45 +++++++++++++-------------
- drivers/gpu/drm/radeon/radeon_gem.c    | 39 ++++++++++++----------
- drivers/gpu/drm/radeon/radeon_object.c | 25 +++++++-------
- drivers/gpu/drm/radeon/radeon_object.h |  2 +-
- drivers/gpu/drm/radeon/radeon_vm.c     | 10 +++---
- 7 files changed, 66 insertions(+), 63 deletions(-)
+ drivers/gpu/drm/ttm/Makefile           |   4 +-
+ drivers/gpu/drm/ttm/ttm_execbuf_util.c | 161 -------------------------
+ include/drm/ttm/ttm_execbuf_util.h     | 119 ------------------
+ 3 files changed, 2 insertions(+), 282 deletions(-)
+ delete mode 100644 drivers/gpu/drm/ttm/ttm_execbuf_util.c
+ delete mode 100644 include/drm/ttm/ttm_execbuf_util.h
 
-diff --git a/drivers/gpu/drm/radeon/Kconfig b/drivers/gpu/drm/radeon/Kconfig
-index 9c6c74a75778..f51bace9555d 100644
---- a/drivers/gpu/drm/radeon/Kconfig
-+++ b/drivers/gpu/drm/radeon/Kconfig
-@@ -13,6 +13,7 @@ config DRM_RADEON
-         select DRM_TTM
- 	select DRM_TTM_HELPER
- 	select FB_IOMEM_HELPERS if DRM_FBDEV_EMULATION
-+	select DRM_EXEC
- 	select SND_HDA_COMPONENT if SND_HDA_CORE
- 	select POWER_SUPPLY
- 	select HWMON
-diff --git a/drivers/gpu/drm/radeon/radeon.h b/drivers/gpu/drm/radeon/radeon.h
-index fd8a4513025f..8605c074d9f7 100644
---- a/drivers/gpu/drm/radeon/radeon.h
-+++ b/drivers/gpu/drm/radeon/radeon.h
-@@ -75,8 +75,8 @@
+diff --git a/drivers/gpu/drm/ttm/Makefile b/drivers/gpu/drm/ttm/Makefile
+index dad298127226..25937e4ad91a 100644
+--- a/drivers/gpu/drm/ttm/Makefile
++++ b/drivers/gpu/drm/ttm/Makefile
+@@ -3,8 +3,8 @@
+ # Makefile for the drm device driver.  This driver provides support for the
  
- #include <drm/ttm/ttm_bo.h>
- #include <drm/ttm/ttm_placement.h>
+ ttm-y := ttm_tt.o ttm_bo.o ttm_bo_util.o ttm_bo_vm.o ttm_module.o \
+-	ttm_execbuf_util.o ttm_range_manager.o ttm_resource.o ttm_pool.o \
+-	ttm_device.o ttm_sys_manager.o
++	ttm_range_manager.o ttm_resource.o ttm_pool.o ttm_device.o \
++	ttm_sys_manager.o
+ ttm-$(CONFIG_AGP) += ttm_agp_backend.o
+ 
+ obj-$(CONFIG_DRM_TTM) += ttm.o
+diff --git a/drivers/gpu/drm/ttm/ttm_execbuf_util.c b/drivers/gpu/drm/ttm/ttm_execbuf_util.c
+deleted file mode 100644
+index f1c60fa80c2d..000000000000
+--- a/drivers/gpu/drm/ttm/ttm_execbuf_util.c
++++ /dev/null
+@@ -1,161 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+-/**************************************************************************
+- *
+- * Copyright (c) 2006-2009 VMware, Inc., Palo Alto, CA., USA
+- * All Rights Reserved.
+- *
+- * Permission is hereby granted, free of charge, to any person obtaining a
+- * copy of this software and associated documentation files (the
+- * "Software"), to deal in the Software without restriction, including
+- * without limitation the rights to use, copy, modify, merge, publish,
+- * distribute, sub license, and/or sell copies of the Software, and to
+- * permit persons to whom the Software is furnished to do so, subject to
+- * the following conditions:
+- *
+- * The above copyright notice and this permission notice (including the
+- * next paragraph) shall be included in all copies or substantial portions
+- * of the Software.
+- *
+- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL
+- * THE COPYRIGHT HOLDERS, AUTHORS AND/OR ITS SUPPLIERS BE LIABLE FOR ANY CLAIM,
+- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+- * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+- * USE OR OTHER DEALINGS IN THE SOFTWARE.
+- *
+- **************************************************************************/
+-
 -#include <drm/ttm/ttm_execbuf_util.h>
- 
-+#include <drm/drm_exec.h>
- #include <drm/drm_gem.h>
- #include <drm/drm_audio_component.h>
- #include <drm/drm_suballoc.h>
-@@ -457,7 +457,8 @@ struct radeon_mman {
- 
- struct radeon_bo_list {
- 	struct radeon_bo		*robj;
--	struct ttm_validate_buffer	tv;
-+	struct list_head		list;
-+	bool				shared;
- 	uint64_t			gpu_offset;
- 	unsigned			preferred_domains;
- 	unsigned			allowed_domains;
-@@ -1030,6 +1031,7 @@ struct radeon_cs_parser {
- 	struct radeon_bo_list	*vm_bos;
- 	struct list_head	validated;
- 	unsigned		dma_reloc_idx;
-+	struct drm_exec		exec;
- 	/* indices of various chunks */
- 	struct radeon_cs_chunk  *chunk_ib;
- 	struct radeon_cs_chunk  *chunk_relocs;
-@@ -1043,7 +1045,6 @@ struct radeon_cs_parser {
- 	u32			cs_flags;
- 	u32			ring;
- 	s32			priority;
--	struct ww_acquire_ctx	ticket;
- };
- 
- static inline u32 radeon_get_ib_value(struct radeon_cs_parser *p, int idx)
-diff --git a/drivers/gpu/drm/radeon/radeon_cs.c b/drivers/gpu/drm/radeon/radeon_cs.c
-index a6700d7278bf..64b26bfeafc9 100644
---- a/drivers/gpu/drm/radeon/radeon_cs.c
-+++ b/drivers/gpu/drm/radeon/radeon_cs.c
-@@ -182,11 +182,8 @@ static int radeon_cs_parser_relocs(struct radeon_cs_parser *p)
- 			}
- 		}
- 
--		p->relocs[i].tv.bo = &p->relocs[i].robj->tbo;
--		p->relocs[i].tv.num_shared = !r->write_domain;
+-#include <drm/ttm/ttm_bo.h>
 -
--		radeon_cs_buckets_add(&buckets, &p->relocs[i].tv.head,
--				      priority);
-+		p->relocs[i].shared = !r->write_domain;
-+		radeon_cs_buckets_add(&buckets, &p->relocs[i].list, priority);
- 	}
- 
- 	radeon_cs_buckets_get_list(&buckets, &p->validated);
-@@ -197,7 +194,7 @@ static int radeon_cs_parser_relocs(struct radeon_cs_parser *p)
- 	if (need_mmap_lock)
- 		mmap_read_lock(current->mm);
- 
--	r = radeon_bo_list_validate(p->rdev, &p->ticket, &p->validated, p->ring);
-+	r = radeon_bo_list_validate(p->rdev, &p->exec, &p->validated, p->ring);
- 
- 	if (need_mmap_lock)
- 		mmap_read_unlock(current->mm);
-@@ -253,12 +250,11 @@ static int radeon_cs_sync_rings(struct radeon_cs_parser *p)
- 	struct radeon_bo_list *reloc;
- 	int r;
- 
--	list_for_each_entry(reloc, &p->validated, tv.head) {
-+	list_for_each_entry(reloc, &p->validated, list) {
- 		struct dma_resv *resv;
- 
- 		resv = reloc->robj->tbo.base.resv;
--		r = radeon_sync_resv(p->rdev, &p->ib.sync, resv,
--				     reloc->tv.num_shared);
-+		r = radeon_sync_resv(p->rdev, &p->ib.sync, resv, reloc->shared);
- 		if (r)
- 			return r;
- 	}
-@@ -276,6 +272,7 @@ int radeon_cs_parser_init(struct radeon_cs_parser *p, void *data)
- 	s32 priority = 0;
- 
- 	INIT_LIST_HEAD(&p->validated);
-+	drm_exec_init(&p->exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
- 
- 	if (!cs->num_chunks) {
- 		return 0;
-@@ -397,8 +394,8 @@ int radeon_cs_parser_init(struct radeon_cs_parser *p, void *data)
- static int cmp_size_smaller_first(void *priv, const struct list_head *a,
- 				  const struct list_head *b)
- {
--	struct radeon_bo_list *la = list_entry(a, struct radeon_bo_list, tv.head);
--	struct radeon_bo_list *lb = list_entry(b, struct radeon_bo_list, tv.head);
-+	struct radeon_bo_list *la = list_entry(a, struct radeon_bo_list, list);
-+	struct radeon_bo_list *lb = list_entry(b, struct radeon_bo_list, list);
- 
- 	/* Sort A before B if A is smaller. */
- 	if (la->robj->tbo.base.size > lb->robj->tbo.base.size)
-@@ -417,11 +414,13 @@ static int cmp_size_smaller_first(void *priv, const struct list_head *a,
-  * If error is set than unvalidate buffer, otherwise just free memory
-  * used by parsing context.
-  **/
--static void radeon_cs_parser_fini(struct radeon_cs_parser *parser, int error, bool backoff)
-+static void radeon_cs_parser_fini(struct radeon_cs_parser *parser, int error)
- {
- 	unsigned i;
- 
- 	if (!error) {
-+		struct radeon_bo_list *reloc;
-+
- 		/* Sort the buffer list from the smallest to largest buffer,
- 		 * which affects the order of buffers in the LRU list.
- 		 * This assures that the smallest buffers are added first
-@@ -433,15 +432,17 @@ static void radeon_cs_parser_fini(struct radeon_cs_parser *parser, int error, bo
- 		 * per frame under memory pressure.
- 		 */
- 		list_sort(NULL, &parser->validated, cmp_size_smaller_first);
+-static void ttm_eu_backoff_reservation_reverse(struct list_head *list,
+-					      struct ttm_validate_buffer *entry)
+-{
+-	list_for_each_entry_continue_reverse(entry, list, head) {
+-		struct ttm_buffer_object *bo = entry->bo;
 -
--		ttm_eu_fence_buffer_objects(&parser->ticket,
--					    &parser->validated,
--					    &parser->ib.fence->base);
--	} else if (backoff) {
--		ttm_eu_backoff_reservation(&parser->ticket,
--					   &parser->validated);
-+		list_for_each_entry(reloc, &parser->validated, list) {
-+			dma_resv_add_fence(reloc->robj->tbo.base.resv,
-+					   &parser->ib.fence->base,
-+					   reloc->shared ?
-+					   DMA_RESV_USAGE_READ :
-+					   DMA_RESV_USAGE_WRITE);
-+		}
- 	}
- 
-+	drm_exec_fini(&parser->exec);
-+
- 	if (parser->relocs != NULL) {
- 		for (i = 0; i < parser->nrelocs; i++) {
- 			struct radeon_bo *bo = parser->relocs[i].robj;
-@@ -693,7 +694,7 @@ int radeon_cs_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
- 	r = radeon_cs_parser_init(&parser, data);
- 	if (r) {
- 		DRM_ERROR("Failed to initialize parser !\n");
--		radeon_cs_parser_fini(&parser, r, false);
-+		radeon_cs_parser_fini(&parser, r);
- 		up_read(&rdev->exclusive_lock);
- 		r = radeon_cs_handle_lockup(rdev, r);
- 		return r;
-@@ -707,7 +708,7 @@ int radeon_cs_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
- 	}
- 
- 	if (r) {
--		radeon_cs_parser_fini(&parser, r, false);
-+		radeon_cs_parser_fini(&parser, r);
- 		up_read(&rdev->exclusive_lock);
- 		r = radeon_cs_handle_lockup(rdev, r);
- 		return r;
-@@ -724,7 +725,7 @@ int radeon_cs_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
- 		goto out;
- 	}
- out:
--	radeon_cs_parser_fini(&parser, r, true);
-+	radeon_cs_parser_fini(&parser, r);
- 	up_read(&rdev->exclusive_lock);
- 	r = radeon_cs_handle_lockup(rdev, r);
- 	return r;
-diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/radeon_gem.c
-index bf2d4b16dc2a..f86773f3db20 100644
---- a/drivers/gpu/drm/radeon/radeon_gem.c
-+++ b/drivers/gpu/drm/radeon/radeon_gem.c
-@@ -605,33 +605,40 @@ int radeon_gem_get_tiling_ioctl(struct drm_device *dev, void *data,
- static void radeon_gem_va_update_vm(struct radeon_device *rdev,
- 				    struct radeon_bo_va *bo_va)
- {
--	struct ttm_validate_buffer tv, *entry;
--	struct radeon_bo_list *vm_bos;
--	struct ww_acquire_ctx ticket;
-+	struct radeon_bo_list *vm_bos, *entry;
- 	struct list_head list;
-+	struct drm_exec exec;
- 	unsigned domain;
- 	int r;
- 
- 	INIT_LIST_HEAD(&list);
- 
--	tv.bo = &bo_va->bo->tbo;
--	tv.num_shared = 1;
--	list_add(&tv.head, &list);
+-		dma_resv_unlock(bo->base.resv);
+-	}
+-}
 -
- 	vm_bos = radeon_vm_get_bos(rdev, bo_va->vm, &list);
- 	if (!vm_bos)
- 		return;
- 
--	r = ttm_eu_reserve_buffers(&ticket, &list, true, NULL);
--	if (r)
--		goto error_free;
-+	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
-+	drm_exec_until_all_locked(&exec) {
-+		list_for_each_entry(entry, &list, list) {
-+			r = drm_exec_prepare_obj(&exec, &entry->robj->tbo.base,
-+						 1);
-+			drm_exec_retry_on_contention(&exec);
-+			if (unlikely(r))
-+				goto error_cleanup;
-+		}
- 
--	list_for_each_entry(entry, &list, head) {
--		domain = radeon_mem_type_to_domain(entry->bo->resource->mem_type);
-+		r = drm_exec_prepare_obj(&exec, &bo_va->bo->tbo.base, 1);
-+		drm_exec_retry_on_contention(&exec);
-+		if (unlikely(r))
-+			goto error_cleanup;
-+	}
-+
-+	list_for_each_entry(entry, &list, list) {
-+		domain = radeon_mem_type_to_domain(entry->robj->tbo.resource->mem_type);
- 		/* if anything is swapped out don't swap it in here,
- 		   just abort and wait for the next CS */
- 		if (domain == RADEON_GEM_DOMAIN_CPU)
--			goto error_unreserve;
-+			goto error_cleanup;
- 	}
- 
- 	mutex_lock(&bo_va->vm->mutex);
-@@ -645,10 +652,8 @@ static void radeon_gem_va_update_vm(struct radeon_device *rdev,
- error_unlock:
- 	mutex_unlock(&bo_va->vm->mutex);
- 
--error_unreserve:
--	ttm_eu_backoff_reservation(&ticket, &list);
+-void ttm_eu_backoff_reservation(struct ww_acquire_ctx *ticket,
+-				struct list_head *list)
+-{
+-	struct ttm_validate_buffer *entry;
 -
--error_free:
-+error_cleanup:
-+	drm_exec_fini(&exec);
- 	kvfree(vm_bos);
- 
- 	if (r && r != -ERESTARTSYS)
-diff --git a/drivers/gpu/drm/radeon/radeon_object.c b/drivers/gpu/drm/radeon/radeon_object.c
-index 7672404fdb29..a0fc0801abb0 100644
---- a/drivers/gpu/drm/radeon/radeon_object.c
-+++ b/drivers/gpu/drm/radeon/radeon_object.c
-@@ -464,23 +464,26 @@ static u64 radeon_bo_get_threshold_for_moves(struct radeon_device *rdev)
- }
- 
- int radeon_bo_list_validate(struct radeon_device *rdev,
--			    struct ww_acquire_ctx *ticket,
-+			    struct drm_exec *exec,
- 			    struct list_head *head, int ring)
- {
- 	struct ttm_operation_ctx ctx = { true, false };
- 	struct radeon_bo_list *lobj;
--	struct list_head duplicates;
--	int r;
- 	u64 bytes_moved = 0, initial_bytes_moved;
- 	u64 bytes_moved_threshold = radeon_bo_get_threshold_for_moves(rdev);
-+	int r;
- 
--	INIT_LIST_HEAD(&duplicates);
--	r = ttm_eu_reserve_buffers(ticket, head, true, &duplicates);
--	if (unlikely(r != 0)) {
--		return r;
-+	drm_exec_until_all_locked(exec) {
-+		list_for_each_entry(lobj, head, list) {
-+			r = drm_exec_prepare_obj(exec, &lobj->robj->tbo.base,
-+						 1);
-+			drm_exec_retry_on_contention(exec);
-+			if (unlikely(r && r != -EALREADY))
-+				return r;
-+		}
- 	}
- 
--	list_for_each_entry(lobj, head, tv.head) {
-+	list_for_each_entry(lobj, head, list) {
- 		struct radeon_bo *bo = lobj->robj;
- 		if (!bo->tbo.pin_count) {
- 			u32 domain = lobj->preferred_domains;
-@@ -519,7 +522,6 @@ int radeon_bo_list_validate(struct radeon_device *rdev,
- 					domain = lobj->allowed_domains;
- 					goto retry;
- 				}
--				ttm_eu_backoff_reservation(ticket, head);
- 				return r;
- 			}
- 		}
-@@ -527,11 +529,6 @@ int radeon_bo_list_validate(struct radeon_device *rdev,
- 		lobj->tiling_flags = bo->tiling_flags;
- 	}
- 
--	list_for_each_entry(lobj, &duplicates, tv.head) {
--		lobj->gpu_offset = radeon_bo_gpu_offset(lobj->robj);
--		lobj->tiling_flags = lobj->robj->tiling_flags;
+-	if (list_empty(list))
+-		return;
+-
+-	list_for_each_entry(entry, list, head) {
+-		struct ttm_buffer_object *bo = entry->bo;
+-
+-		ttm_bo_move_to_lru_tail_unlocked(bo);
+-		dma_resv_unlock(bo->base.resv);
 -	}
 -
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/radeon/radeon_object.h b/drivers/gpu/drm/radeon/radeon_object.h
-index 39cc87a59a9a..d7bbb52db546 100644
---- a/drivers/gpu/drm/radeon/radeon_object.h
-+++ b/drivers/gpu/drm/radeon/radeon_object.h
-@@ -152,7 +152,7 @@ extern void radeon_bo_force_delete(struct radeon_device *rdev);
- extern int radeon_bo_init(struct radeon_device *rdev);
- extern void radeon_bo_fini(struct radeon_device *rdev);
- extern int radeon_bo_list_validate(struct radeon_device *rdev,
--				   struct ww_acquire_ctx *ticket,
-+				   struct drm_exec *exec,
- 				   struct list_head *head, int ring);
- extern int radeon_bo_set_tiling_flags(struct radeon_bo *bo,
- 				u32 tiling_flags, u32 pitch);
-diff --git a/drivers/gpu/drm/radeon/radeon_vm.c b/drivers/gpu/drm/radeon/radeon_vm.c
-index c38b4d5d6a14..21a5340aefdf 100644
---- a/drivers/gpu/drm/radeon/radeon_vm.c
-+++ b/drivers/gpu/drm/radeon/radeon_vm.c
-@@ -142,10 +142,9 @@ struct radeon_bo_list *radeon_vm_get_bos(struct radeon_device *rdev,
- 	list[0].robj = vm->page_directory;
- 	list[0].preferred_domains = RADEON_GEM_DOMAIN_VRAM;
- 	list[0].allowed_domains = RADEON_GEM_DOMAIN_VRAM;
--	list[0].tv.bo = &vm->page_directory->tbo;
--	list[0].tv.num_shared = 1;
-+	list[0].shared = true;
- 	list[0].tiling_flags = 0;
--	list_add(&list[0].tv.head, head);
-+	list_add(&list[0].list, head);
- 
- 	for (i = 0, idx = 1; i <= vm->max_pde_used; i++) {
- 		if (!vm->page_tables[i].bo)
-@@ -154,10 +153,9 @@ struct radeon_bo_list *radeon_vm_get_bos(struct radeon_device *rdev,
- 		list[idx].robj = vm->page_tables[i].bo;
- 		list[idx].preferred_domains = RADEON_GEM_DOMAIN_VRAM;
- 		list[idx].allowed_domains = RADEON_GEM_DOMAIN_VRAM;
--		list[idx].tv.bo = &list[idx].robj->tbo;
--		list[idx].tv.num_shared = 1;
-+		list[idx].shared = true;
- 		list[idx].tiling_flags = 0;
--		list_add(&list[idx++].tv.head, head);
-+		list_add(&list[idx++].list, head);
- 	}
- 
- 	return list;
+-	if (ticket)
+-		ww_acquire_fini(ticket);
+-}
+-EXPORT_SYMBOL(ttm_eu_backoff_reservation);
+-
+-/*
+- * Reserve buffers for validation.
+- *
+- * If a buffer in the list is marked for CPU access, we back off and
+- * wait for that buffer to become free for GPU access.
+- *
+- * If a buffer is reserved for another validation, the validator with
+- * the highest validation sequence backs off and waits for that buffer
+- * to become unreserved. This prevents deadlocks when validating multiple
+- * buffers in different orders.
+- */
+-
+-int ttm_eu_reserve_buffers(struct ww_acquire_ctx *ticket,
+-			   struct list_head *list, bool intr,
+-			   struct list_head *dups)
+-{
+-	struct ttm_validate_buffer *entry;
+-	int ret;
+-
+-	if (list_empty(list))
+-		return 0;
+-
+-	if (ticket)
+-		ww_acquire_init(ticket, &reservation_ww_class);
+-
+-	list_for_each_entry(entry, list, head) {
+-		struct ttm_buffer_object *bo = entry->bo;
+-		unsigned int num_fences;
+-
+-		ret = ttm_bo_reserve(bo, intr, (ticket == NULL), ticket);
+-		if (ret == -EALREADY && dups) {
+-			struct ttm_validate_buffer *safe = entry;
+-			entry = list_prev_entry(entry, head);
+-			list_del(&safe->head);
+-			list_add(&safe->head, dups);
+-			continue;
+-		}
+-
+-		num_fences = max(entry->num_shared, 1u);
+-		if (!ret) {
+-			ret = dma_resv_reserve_fences(bo->base.resv,
+-						      num_fences);
+-			if (!ret)
+-				continue;
+-		}
+-
+-		/* uh oh, we lost out, drop every reservation and try
+-		 * to only reserve this buffer, then start over if
+-		 * this succeeds.
+-		 */
+-		ttm_eu_backoff_reservation_reverse(list, entry);
+-
+-		if (ret == -EDEADLK) {
+-			ret = ttm_bo_reserve_slowpath(bo, intr, ticket);
+-		}
+-
+-		if (!ret)
+-			ret = dma_resv_reserve_fences(bo->base.resv,
+-						      num_fences);
+-
+-		if (unlikely(ret != 0)) {
+-			if (ticket) {
+-				ww_acquire_done(ticket);
+-				ww_acquire_fini(ticket);
+-			}
+-			return ret;
+-		}
+-
+-		/* move this item to the front of the list,
+-		 * forces correct iteration of the loop without keeping track
+-		 */
+-		list_del(&entry->head);
+-		list_add(&entry->head, list);
+-	}
+-
+-	return 0;
+-}
+-EXPORT_SYMBOL(ttm_eu_reserve_buffers);
+-
+-void ttm_eu_fence_buffer_objects(struct ww_acquire_ctx *ticket,
+-				 struct list_head *list,
+-				 struct dma_fence *fence)
+-{
+-	struct ttm_validate_buffer *entry;
+-
+-	if (list_empty(list))
+-		return;
+-
+-	list_for_each_entry(entry, list, head) {
+-		struct ttm_buffer_object *bo = entry->bo;
+-
+-		dma_resv_add_fence(bo->base.resv, fence, entry->num_shared ?
+-				   DMA_RESV_USAGE_READ : DMA_RESV_USAGE_WRITE);
+-		ttm_bo_move_to_lru_tail_unlocked(bo);
+-		dma_resv_unlock(bo->base.resv);
+-	}
+-	if (ticket)
+-		ww_acquire_fini(ticket);
+-}
+-EXPORT_SYMBOL(ttm_eu_fence_buffer_objects);
+diff --git a/include/drm/ttm/ttm_execbuf_util.h b/include/drm/ttm/ttm_execbuf_util.h
+deleted file mode 100644
+index fac1e3e57ebd..000000000000
+--- a/include/drm/ttm/ttm_execbuf_util.h
++++ /dev/null
+@@ -1,119 +0,0 @@
+-/**************************************************************************
+- *
+- * Copyright (c) 2006-2009 VMware, Inc., Palo Alto, CA., USA
+- * All Rights Reserved.
+- *
+- * Permission is hereby granted, free of charge, to any person obtaining a
+- * copy of this software and associated documentation files (the
+- * "Software"), to deal in the Software without restriction, including
+- * without limitation the rights to use, copy, modify, merge, publish,
+- * distribute, sub license, and/or sell copies of the Software, and to
+- * permit persons to whom the Software is furnished to do so, subject to
+- * the following conditions:
+- *
+- * The above copyright notice and this permission notice (including the
+- * next paragraph) shall be included in all copies or substantial portions
+- * of the Software.
+- *
+- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL
+- * THE COPYRIGHT HOLDERS, AUTHORS AND/OR ITS SUPPLIERS BE LIABLE FOR ANY CLAIM,
+- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+- * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+- * USE OR OTHER DEALINGS IN THE SOFTWARE.
+- *
+- **************************************************************************/
+-/*
+- * Authors: Thomas Hellstrom <thellstrom-at-vmware-dot-com>
+- */
+-
+-#ifndef _TTM_EXECBUF_UTIL_H_
+-#define _TTM_EXECBUF_UTIL_H_
+-
+-#include <linux/list.h>
+-
+-struct ww_acquire_ctx;
+-struct dma_fence;
+-struct ttm_buffer_object;
+-
+-/**
+- * struct ttm_validate_buffer
+- *
+- * @head:           list head for thread-private list.
+- * @bo:             refcounted buffer object pointer.
+- * @num_shared:     How many shared fences we want to add.
+- */
+-
+-struct ttm_validate_buffer {
+-	struct list_head head;
+-	struct ttm_buffer_object *bo;
+-	unsigned int num_shared;
+-};
+-
+-/**
+- * ttm_eu_backoff_reservation
+- *
+- * @ticket:   ww_acquire_ctx from reserve call
+- * @list:     thread private list of ttm_validate_buffer structs.
+- *
+- * Undoes all buffer validation reservations for bos pointed to by
+- * the list entries.
+- */
+-void ttm_eu_backoff_reservation(struct ww_acquire_ctx *ticket,
+-				struct list_head *list);
+-
+-/**
+- * ttm_eu_reserve_buffers
+- *
+- * @ticket:  [out] ww_acquire_ctx filled in by call, or NULL if only
+- *           non-blocking reserves should be tried.
+- * @list:    thread private list of ttm_validate_buffer structs.
+- * @intr:    should the wait be interruptible
+- * @dups:    [out] optional list of duplicates.
+- *
+- * Tries to reserve bos pointed to by the list entries for validation.
+- * If the function returns 0, all buffers are marked as "unfenced",
+- * taken off the lru lists and are not synced for write CPU usage.
+- *
+- * If the function detects a deadlock due to multiple threads trying to
+- * reserve the same buffers in reverse order, all threads except one will
+- * back off and retry. This function may sleep while waiting for
+- * CPU write reservations to be cleared, and for other threads to
+- * unreserve their buffers.
+- *
+- * If intr is set to true, this function may return -ERESTARTSYS if the
+- * calling process receives a signal while waiting. In that case, no
+- * buffers on the list will be reserved upon return.
+- *
+- * If dups is non NULL all buffers already reserved by the current thread
+- * (e.g. duplicates) are added to this list, otherwise -EALREADY is returned
+- * on the first already reserved buffer and all buffers from the list are
+- * unreserved again.
+- *
+- * Buffers reserved by this function should be unreserved by
+- * a call to either ttm_eu_backoff_reservation() or
+- * ttm_eu_fence_buffer_objects() when command submission is complete or
+- * has failed.
+- */
+-int ttm_eu_reserve_buffers(struct ww_acquire_ctx *ticket,
+-			   struct list_head *list, bool intr,
+-			   struct list_head *dups);
+-
+-/**
+- * ttm_eu_fence_buffer_objects
+- *
+- * @ticket:      ww_acquire_ctx from reserve call
+- * @list:        thread private list of ttm_validate_buffer structs.
+- * @fence:       The new exclusive fence for the buffers.
+- *
+- * This function should be called when command submission is complete, and
+- * it will add a new sync object to bos pointed to by entries on @list.
+- * It also unreserves all buffers, putting them on lru lists.
+- *
+- */
+-void ttm_eu_fence_buffer_objects(struct ww_acquire_ctx *ticket,
+-				 struct list_head *list,
+-				 struct dma_fence *fence);
+-
+-#endif
 -- 
 2.34.1
 
