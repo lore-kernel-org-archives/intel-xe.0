@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98667D65C6F
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 10:17:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE98CD65C6E
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 10:17:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65F2710E7D9;
-	Thu, 14 Nov 2024 10:17:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AF3F10E7E0;
+	Thu, 14 Nov 2024 10:17:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DX3x35kr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XvNlEbjO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E98D10E7DC
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Nov 2024 10:17:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C254F10E7E0;
+ Thu, 14 Nov 2024 10:17:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731579449; x=1763115449;
- h=date:from:to:cc:subject:message-id;
- bh=rzFC443KrvkL0XeT0b9AaDThn4q7Lg//SRmW5eqiNZo=;
- b=DX3x35krzv7/cI+9ZO2TTDw78ez2EASFE7E+KXmaHjS3IUdqYYKo4onG
- 8er83vUxW8gKgFCICEHP7GLZi3F7rMLPo7ajSYNSLZ63OnVhvtGR5zfzf
- oS7yO4mDDt+NPL/ZA1EGF51ri5cA9ztXM3Np8awj9VLnmzLw38PNisn1V
- 01wvTj9Ape1pLDQMSrHvtSZp/ljDxSkfChBI8NVwCpothgWRO6cJZ9GIp
- LsCA9GS/BkIIJo+5txn8oLMiGbCyXwfQ/Ifv3XaKnVK8/0rO8Fv1UynU+
- /vOy5Vljfl/fQW1VIPu6SLwxocbe8in4g8j8RXHzoaiRbwfXMQS/chmyn w==;
-X-CSE-ConnectionGUID: QrgBwwu0QQmmw975dJbs8Q==
-X-CSE-MsgGUID: Lf7RQTapSEaDEqxsTgfqJA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="42069847"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="42069847"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2024 02:15:26 -0800
-X-CSE-ConnectionGUID: Moazw6v1Tce2oHZ2KDPj8Q==
-X-CSE-MsgGUID: W+cf4yMJQomQS+1bYljdMw==
+ t=1731579453; x=1763115453;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=mUsQaPHbsMqwFIgfjWB5Mc5FJ7X6JU7KKmWmNXVgJhg=;
+ b=XvNlEbjOFD3lRBpanK2lTudvtSWRn8PM9NldmHzAeFN192LlbmPv8/jQ
+ FrMk+T5piP9bFW9BlEepw2BFtA+0DMT09IHDt1vJharxeC1D5bV2mk9XN
+ 7k/3tRTVqAxbxgv6OhHHRfMY8GlFv2IrOga9ps/ck/G1oihtPUfLJjbZ4
+ qtZMgk3ymypj9X3TwXgeqP+uLK3XNYeeXDooI3hpnzmVJKEuNNrcbOA4G
+ nT05XyiMxey6hw1Qtr8UzRxUwKo4EFFPGJ/49pl6xOrWaJ8ud+OHwQfdz
+ KeETYj3y7VTHXR3ceptEsfkIr/yksgy17NfuouNMfYSaDtdyxtx9ZsMdy Q==;
+X-CSE-ConnectionGUID: pwxkL61iQHCYPgf5m7F9xQ==
+X-CSE-MsgGUID: KQ+Ytg8sR/KtzQNf6eR77g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="31378384"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="31378384"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2024 02:17:32 -0800
+X-CSE-ConnectionGUID: qPEx7XvUSu+gYsQljJ5jIA==
+X-CSE-MsgGUID: cU3vCc4xT56EDxxVk/BLmA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="88266082"
-Received: from lkp-server01.sh.intel.com (HELO cf353f978a24) ([10.239.97.150])
- by fmviesa008.fm.intel.com with ESMTP; 14 Nov 2024 02:15:24 -0800
-Received: from kbuild by cf353f978a24 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tBWsk-00003V-0I;
- Thu, 14 Nov 2024 10:15:22 +0000
-Date: Thu, 14 Nov 2024 18:14:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- c0403e4ceecaefbeaf78263dffcd3e3f06a19f6b
-Message-ID: <202411141822.A8V06fWS-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="93090866"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by orviesa003.jf.intel.com with ESMTP; 14 Nov 2024 02:17:31 -0800
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH 5/5] drm/i915/display: Load the lut values and enable sharpness
+Date: Thu, 14 Nov 2024 15:48:25 +0530
+Message-Id: <20241114101825.3413688-6-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20241114101825.3413688-1-nemesa.garg@intel.com>
+References: <20241114101825.3413688-1-nemesa.garg@intel.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,61 +66,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: c0403e4ceecaefbeaf78263dffcd3e3f06a19f6b  drm/xe/oa: Fix "Missing outer runtime PM protection" warning
+Load the lut values during pipe enable.
 
-elapsed time: 828m
+v2: Add the display version check
+v3: Fix build issue
 
-configs tested: 42
-configs skipped: 1
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_crtc.c         |  3 +++
+ drivers/gpu/drm/i915/display/intel_display.c      |  6 ++++++
+ .../gpu/drm/i915/display/intel_display_types.h    |  2 ++
+ drivers/gpu/drm/i915/display/skl_scaler.c         | 15 ++++++++++++++-
+ 4 files changed, 25 insertions(+), 1 deletion(-)
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index a2c528d707f4..b4d7ae7b3db8 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -388,6 +388,9 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
+ 
+ 	drm_WARN_ON(&dev_priv->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
+ 
++	if (DISPLAY_VER(dev_priv) >= 20)
++		drm_crtc_create_sharpness_strength_property(&crtc->base);
++
+ 	return 0;
+ 
+ fail:
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f5e837310309..e81135f8daf9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1881,6 +1881,9 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+ 			intel_crtc_wait_for_next_vblank(wa_crtc);
+ 		}
+ 	}
++
++	if (new_crtc_state->hw.casf_params.strength_changed)
++		intel_filter_lut_load(crtc, new_crtc_state);
+ }
+ 
+ void ilk_pfit_disable(const struct intel_crtc_state *old_crtc_state)
+@@ -7203,6 +7206,9 @@ static void intel_pre_update_crtc(struct intel_atomic_state *state,
+ 			intel_vrr_set_transcoder_timings(new_crtc_state);
+ 	}
+ 
++	if (intel_casf_strength_changed(state))
++		intel_casf_enable(new_crtc_state);
++
+ 	intel_fbc_update(state, crtc);
+ 
+ 	drm_WARN_ON(&i915->drm, !intel_display_power_is_enabled(i915, POWER_DOMAIN_DC_OFF));
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 19a671848f42..ad4138dcea8b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -920,6 +920,8 @@ struct intel_casf {
+ 	struct scaler_filter_coeff coeff[SCALER_FILTER_NUM_TAPS];
+ 	u8 win_size;
+ 	bool need_scaler;
++	bool strength_changed;
++	u8 strength;
+ };
+ 
+ void intel_io_mmio_fw_write(void *ctx, i915_reg_t reg, u32 val);
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index 5311ef6c51d1..19f6cf62164c 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -7,6 +7,7 @@
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+ #include "intel_fb.h"
++#include "intel_casf_regs.h"
+ #include "skl_scaler.h"
+ #include "skl_universal_plane.h"
+ 
+@@ -869,12 +870,13 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
++	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ 	int id = -1;
+ 	int i;
+ 
+ 	/* find scaler attached to this pipe */
+ 	for (i = 0; i < crtc->num_scalers; i++) {
+-		u32 ctl, pos, size;
++		u32 ctl, pos, size, sharp;
+ 
+ 		ctl = intel_de_read(display, SKL_PS_CTRL(crtc->pipe, i));
+ 		if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) != (PS_SCALER_EN | PS_BINDING_PIPE))
+@@ -882,6 +884,17 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
+ 
+ 		id = i;
+ 
++		if (DISPLAY_VER(display) >= 20) {
++			sharp = intel_de_read(display, SHARPNESS_CTL(display, cpu_transcoder));
++			if (sharp & FILTER_EN) {
++				crtc_state->hw.casf_params.strength =
++					REG_FIELD_GET(FILTER_STRENGTH_MASK, sharp) - 16;
++				crtc_state->hw.casf_params.need_scaler = true;
++				crtc_state->hw.casf_params.win_size =
++					REG_FIELD_GET(FILTER_SIZE_MASK, sharp);
++			}
++		}
++
+ 		if (!crtc_state->hw.casf_params.need_scaler)
+ 			crtc_state->pch_pfit.enabled = true;
+ 
+-- 
+2.25.1
 
-tested configs:
-alpha       allyesconfig    clang-20
-arc         allmodconfig    clang-20
-arc         allyesconfig    clang-20
-arm         allmodconfig    clang-20
-arm         allyesconfig    clang-20
-arm64       allmodconfig    clang-20
-hexagon     allmodconfig    clang-20
-hexagon     allyesconfig    clang-20
-i386        allmodconfig    clang-19
-i386         allnoconfig    clang-19
-i386        allyesconfig    clang-19
-i386           defconfig    clang-19
-loongarch   allmodconfig    gcc-14.2.0
-m68k        allmodconfig    gcc-14.2.0
-m68k        allyesconfig    gcc-14.2.0
-microblaze  allmodconfig    gcc-14.2.0
-microblaze  allyesconfig    gcc-14.2.0
-openrisc     allnoconfig    clang-20
-openrisc    allyesconfig    gcc-14.2.0
-parisc      allmodconfig    gcc-14.2.0
-parisc       allnoconfig    clang-20
-parisc      allyesconfig    gcc-14.2.0
-powerpc     allmodconfig    gcc-14.2.0
-powerpc      allnoconfig    clang-20
-powerpc     allyesconfig    gcc-14.2.0
-riscv       allmodconfig    gcc-14.2.0
-riscv        allnoconfig    clang-20
-riscv       allyesconfig    gcc-14.2.0
-s390        allmodconfig    gcc-14.2.0
-s390         allnoconfig    clang-20
-s390        allyesconfig    gcc-14.2.0
-sh          allmodconfig    gcc-14.2.0
-sh          allyesconfig    gcc-14.2.0
-sparc       allmodconfig    gcc-14.2.0
-um          allmodconfig    clang-20
-um           allnoconfig    clang-20
-um          allyesconfig    clang-20
-x86_64       allnoconfig    clang-19
-x86_64      allyesconfig    clang-19
-x86_64         defconfig    clang-19
-x86_64             kexec    clang-19
-x86_64          rhel-8.3    gcc-12
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
