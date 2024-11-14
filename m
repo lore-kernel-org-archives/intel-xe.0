@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42C1DD68B19
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 13:58:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08907D68B18
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 13:58:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1262B10E092;
-	Thu, 14 Nov 2024 13:58:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C88B410E092;
+	Thu, 14 Nov 2024 13:58:27 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B87210E092;
- Thu, 14 Nov 2024 13:58:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE85810E092;
+ Thu, 14 Nov 2024 13:58:26 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Ensure_GT_reset_is_c?=
- =?utf-8?q?omplete_during_ccs=5Fmode_change?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Ensure_GT_reset_is_comple?=
+ =?utf-8?q?te_during_ccs=5Fmode_change?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 14 Nov 2024 13:58:13 -0000
-Message-ID: <173159269324.4090787.11444411284677316482@2413ebb6fbb6>
+Date: Thu, 14 Nov 2024 13:58:26 -0000
+Message-ID: <173159270690.4090787.14646759819670883984@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241114133738.2125717-1-balasubramani.vivekanandan@intel.com>
 In-Reply-To: <20241114133738.2125717-1-balasubramani.vivekanandan@intel.com>
@@ -48,10 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: fb1a93e81fa2 drm-tip: 2024y-11m-14d-13h-52m-40s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/gt: Add a synchronous GT reset function
-Applying: drm/xe: Ensure GT reset is complete during ccs_mode change
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e0c8d0d6d6f3d2c99187b5f1d662297191f2e143
+Author: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Date:   Thu Nov 14 19:07:38 2024 +0530
+
+    drm/xe: Ensure GT reset is complete during ccs_mode change
+    
+    Driver returns from the ccs_mode change request soon after initiating an
+    asynchronous GT reset. Userspace may submit GT workload while the GT
+    reset is ongoing and may see unexpected results.
+    Make sure the GT reset is complete before exiting from the ccs_mode
+    change request.
+    
+    Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
++ /mt/dim checkpatch fb1a93e81fa2268a3a95ffd2f3dd5d21b0f5a2c8 drm-intel
+a6a276817bd5 drm/xe/gt: Add a synchronous GT reset function
+e0c8d0d6d6f3 drm/xe: Ensure GT reset is complete during ccs_mode change
 
 
