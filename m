@@ -4,58 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FA6BD65C69
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 10:13:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58BEBD65C6A
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 10:17:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EDC010E7E7;
-	Thu, 14 Nov 2024 10:13:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 227B210E1C0;
+	Thu, 14 Nov 2024 10:17:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GUUHwUIS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KPpGKPbl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 238AE10E7DC
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Nov 2024 10:13:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1AB410E1C0;
+ Thu, 14 Nov 2024 10:17:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731579191; x=1763115191;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Wh0pbYuLpcUg36EEQGLL+24nLAdEocxedDEmk4sS/bU=;
- b=GUUHwUISQWYqy8PhBe4QTBp1dfkoOuTU+u/M1/rxqxYXiK21mgUTSr5g
- jMTXJ+6yW+9207J/dRViHV+/5Nx+VrrqZgKE1YM80+dsiBSw1389bosVe
- akmy44xxdT/VAIs1P4zBawgEI8neeHC6N+HQelqgnRkF+wFn1xv/5Ajt8
- zyZ5ZFi7EcoWlb9o1pcq5vpeW+NhSzIQBcka3ejM5VBRELf/OWBP7bVgS
- CuGPjAL2NNXlKF7Z3qZ/RLDOBVNWFoZ2AaccTGjaT5khFnfra4J7ljWFL
- leShvmW9RbXbwq/zSPGdl58p6JW0QvkEvCGSAk6UkQxJH9u7+ZkdHgSYY g==;
-X-CSE-ConnectionGUID: aUxDU4KxRsqKxeEMCh5W9A==
-X-CSE-MsgGUID: 8w7LruJkQnWLcZ4+FZeN2g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="48957592"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="48957592"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2024 02:13:11 -0800
-X-CSE-ConnectionGUID: Y8LGsTo0SHOCAaVVFs/uQQ==
-X-CSE-MsgGUID: NL8reZlhQfabLE+klpYJvA==
+ t=1731579442; x=1763115442;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=y6lTPMgFKDbRgJlTyzRxk8YVuD4azQj+m+2+XwiQJ24=;
+ b=KPpGKPblQCRxdFA3GDC5PIo0mdfRrSge+eQeaWduGgosO1jXXDbBwdWA
+ fjt9yrsCHLSYPNI3xx1AzdaGCQpOc+63xKvCwjJdP4UQwzALcOhM6Bz1j
+ 6bSg6wHYZUtYX+EP6nWp1RGDUA5lnaSgQoh9sfwehWYLGTze9qeux/R6h
+ NNOdqSadGtXokyRq006/s+EjGRXJi+tMbpOavk88HlmN0HPEdRkyy+HGd
+ F8myLRQnaqANefNZL4COdCYN8GGpJUWvgJXaV/6QTWczkAnEf2fZhS0kS
+ Wt/VJJGpyb7eafFNunjJu7Qw7gPv7hu9k89fRc656hjxjZ/Xtr2PZMkDr w==;
+X-CSE-ConnectionGUID: dT7a4dthQt+YZlx6vuCbXg==
+X-CSE-MsgGUID: whZirzNGQO2FICemrdkfbg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="31378365"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="31378365"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2024 02:17:22 -0800
+X-CSE-ConnectionGUID: jESn0MPpQhe44l6QV4FHOQ==
+X-CSE-MsgGUID: LqxQ7conTHek8cW9eKj/sg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="88048320"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.129.220])
- ([10.245.129.220])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2024 02:13:09 -0800
-Message-ID: <ef55b808-e093-4d47-b4bf-a0c7b7d3f668@linux.intel.com>
-Date: Thu, 14 Nov 2024 11:13:06 +0100
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="93090810"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by orviesa003.jf.intel.com with ESMTP; 14 Nov 2024 02:17:18 -0800
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH 1/5] drm: Introduce sharpness strength property
+Date: Thu, 14 Nov 2024 15:48:21 +0530
+Message-Id: <20241114101825.3413688-2-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20241114101825.3413688-1-nemesa.garg@intel.com>
+References: <20241114101825.3413688-1-nemesa.garg@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/tests: Limit purgeable size for faster execution
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Auld <matthew.auld@intel.com>
-References: <20241113150228.2337530-1-nirmoy.das@intel.com>
- <ce8f155875eb7df9e54773c293c0077cbd66a8b1.camel@linux.intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <ce8f155875eb7df9e54773c293c0077cbd66a8b1.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,54 +66,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Introduces the new crtc property "SHARPNESS_STRENGTH" that allows
+the user to set the intensity so as to get the sharpness effect.
+The value of this property can be set from 0-255.
+It is useful in scenario when the output is blurry and user
+want to sharpen the pixels. User can increase/decrease the
+sharpness level depending on the content displayed.
 
-On 11/13/2024 4:52 PM, Thomas Hellström wrote:
-> On Wed, 2024-11-13 at 16:02 +0100, Nirmoy Das wrote:
->> xe_bo_shrink_kunit takes a while to run on some machines depending
->> on swap storage speed and ram size. Limit purgeable size to 2GB
->> so xe_bo_shrink_kunit can execute much faster.
-> Hmm. This actually limits the swap size to 2GiB, and thus *increases*
-> the fraction of purgeable bos.
->
-> But question is if we end up shrinking only purgeable bos, given that
-> we, to be safe, overestimate the need for purgeable bos with 20%.
+v2: Rename crtc property variable [Arun]
+    Add modeset detail in uapi doc[Uma]
+v3: Fix build issue
 
-Tested with system with larger RAM, this helps but not enough. Going to send a IGT patch 
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+---
+ drivers/gpu/drm/drm_atomic_uapi.c |  4 ++++
+ drivers/gpu/drm/drm_crtc.c        | 35 +++++++++++++++++++++++++++++++
+ include/drm/drm_crtc.h            | 17 +++++++++++++++
+ 3 files changed, 56 insertions(+)
 
-to remove this test from the BAT
+diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+index 370dc676e3aa..b482bc2b5d0a 100644
+--- a/drivers/gpu/drm/drm_atomic_uapi.c
++++ b/drivers/gpu/drm/drm_atomic_uapi.c
+@@ -417,6 +417,8 @@ static int drm_atomic_crtc_set_property(struct drm_crtc *crtc,
+ 		set_out_fence_for_crtc(state->state, crtc, fence_ptr);
+ 	} else if (property == crtc->scaling_filter_property) {
+ 		state->scaling_filter = val;
++	} else if (property == crtc->sharpness_strength_property) {
++		state->sharpness_strength = val;
+ 	} else if (crtc->funcs->atomic_set_property) {
+ 		return crtc->funcs->atomic_set_property(crtc, state, property, val);
+ 	} else {
+@@ -454,6 +456,8 @@ drm_atomic_crtc_get_property(struct drm_crtc *crtc,
+ 		*val = 0;
+ 	else if (property == crtc->scaling_filter_property)
+ 		*val = state->scaling_filter;
++	else if (property == crtc->sharpness_strength_property)
++		*val = state->sharpness_strength;
+ 	else if (crtc->funcs->atomic_get_property)
+ 		return crtc->funcs->atomic_get_property(crtc, state, property, val);
+ 	else {
+diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
+index 3488ff067c69..c4a267fa3402 100644
+--- a/drivers/gpu/drm/drm_crtc.c
++++ b/drivers/gpu/drm/drm_crtc.c
+@@ -229,6 +229,25 @@ struct dma_fence *drm_crtc_create_fence(struct drm_crtc *crtc)
+  * 		Driver's default scaling filter
+  * 	Nearest Neighbor:
+  * 		Nearest Neighbor scaling filter
++ * SHARPNESS_STRENGTH:
++ *	Atomic property for setting the sharpness strength/intensity by userspace.
++ *
++ *	The value of this property is set as an integer value ranging
++ *	from 0 - 255 where:
++ *
++ *	0 means feature is disabled.
++ *
++ *	1 means minimum sharpness.
++ *
++ *	255 means maximum sharpness.
++ *
++ *	User can gradually increase or decrease the sharpness level and can
++ *	set the optimum value depending on content and this value will be
++ *	passed to kernel through the Uapi.
++ *	The setting of this property does not require modeset.
++ *	The sharpness effect takes place post blending on the final composed output.
++ *	If the feature is disabled, the content remains same without any sharpening effect
++ *	and when this feature is applied, it enhances the clarity of the content.
+  */
+ 
+ __printf(6, 0)
+@@ -939,3 +958,19 @@ int drm_crtc_create_scaling_filter_property(struct drm_crtc *crtc,
+ 	return 0;
+ }
+ EXPORT_SYMBOL(drm_crtc_create_scaling_filter_property);
++
++int drm_crtc_create_sharpness_strength_property(struct drm_crtc *crtc)
++{
++	struct drm_device *dev = crtc->dev;
++	struct drm_property *prop =
++		drm_property_create_range(dev, 0, "SHARPNESS_STRENGTH", 0, 255);
++
++	if (!prop)
++		return -ENOMEM;
++
++	crtc->sharpness_strength_property = prop;
++	drm_object_attach_property(&crtc->base, prop, 0);
++
++	return 0;
++}
++EXPORT_SYMBOL(drm_crtc_create_sharpness_strength_property);
+diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
+index 8b48a1974da3..37a879350b4e 100644
+--- a/include/drm/drm_crtc.h
++++ b/include/drm/drm_crtc.h
+@@ -317,6 +317,16 @@ struct drm_crtc_state {
+ 	 */
+ 	enum drm_scaling_filter scaling_filter;
+ 
++	/**
++	 * @sharpness_strength
++	 *
++	 * Used by the user to set the sharpness intensity.
++	 * The value ranges from 0-255.
++	 * Any value greater than 0 means enabling the featuring
++	 * along with setting the value for sharpness.
++	 */
++	u8 sharpness_strength;
++
+ 	/**
+ 	 * @event:
+ 	 *
+@@ -1088,6 +1098,12 @@ struct drm_crtc {
+ 	 */
+ 	struct drm_property *scaling_filter_property;
+ 
++	/**
++	 * @sharpness_strength_prop: property to apply
++	 * the intensity of the sharpness requested.
++	 */
++	struct drm_property *sharpness_strength_property;
++
+ 	/**
+ 	 * @state:
+ 	 *
+@@ -1324,4 +1340,5 @@ static inline struct drm_crtc *drm_crtc_find(struct drm_device *dev,
+ int drm_crtc_create_scaling_filter_property(struct drm_crtc *crtc,
+ 					    unsigned int supported_filters);
+ 
++int drm_crtc_create_sharpness_strength_property(struct drm_crtc *crtc);
+ #endif /* __DRM_CRTC_H__ */
+-- 
+2.25.1
 
-
-Regards,
-
-Nirmoy 
-
->
-> Probably better than skipping the test completely, though.
->
-> /Thomas
->  
->
->> Cc: Matthew Auld <matthew.auld@intel.com>
->> Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2998
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> ---
->>  drivers/gpu/drm/xe/tests/xe_bo.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c
->> b/drivers/gpu/drm/xe/tests/xe_bo.c
->> index cd811aa2b227..71b71a546abe 100644
->> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
->> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
->> @@ -467,7 +467,7 @@ static int shrink_test_run_device(struct
->> xe_device *xe)
->>  	}
->>  	to_alloc = ram * 2;
->>  
->> -	ram_and_swap = ram + get_nr_swap_pages() * PAGE_SIZE;
->> +	ram_and_swap = ram + min(get_nr_swap_pages() * PAGE_SIZE,
->> SZ_2G);
->>  	if (to_alloc > ram_and_swap)
->>  		purgeable = to_alloc - ram_and_swap;
->>  	purgeable += div64_u64(purgeable, 5);
