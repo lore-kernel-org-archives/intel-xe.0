@@ -4,65 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6748D41C00
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 04:20:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BB50D41C35
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 04:30:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7423510E06A;
-	Thu, 14 Nov 2024 04:20:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C17010E794;
+	Thu, 14 Nov 2024 04:30:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nFTr+5XP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NCWNGWuY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5974010E06A
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Nov 2024 04:20:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEFAD10E794;
+ Thu, 14 Nov 2024 04:30:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731558046; x=1763094046;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=YVIWZls2hfJ7VYSlPL8sAB0nPPFY4ogRaKErX/qfjPU=;
- b=nFTr+5XPBDHe/20QiXTYhRS1ON9pBxJsHkJXBucRgfTg1ukK50kmI4rX
- g/q89Kcx5f2lKFyBgn1upiKgNTn0x8szT4NFPU6Uf0LPYrttEZIZA9FfB
- iNSo2x3TVdkv+Fa04ueQcMCl4AEir/VBArlvI10FkZ4Suh/lH6Hi39jSZ
- jubp9oXBRM2y8Gin2G0bRimkBXA3UVTEoZZrYnx+V8ONWcW4kqJ0/Dylp
- qJRJGtBnHeEOU32OhbnvuvrHuWbHyf0n5x3GrysC2XEg3OxAzPuljxCEV
- WyDA6cMFWr1KUziFwFnYMyUhLj8Cg2wjYZykeEoni+35OiUbrHnL2lW9T w==;
-X-CSE-ConnectionGUID: zGOg7lPkQ4OwAgsyh4Wb9w==
-X-CSE-MsgGUID: JgoqV2kLTOCJGPBXUoPlAw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11255"; a="35407492"
-X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="35407492"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 20:20:45 -0800
-X-CSE-ConnectionGUID: UrnCjMjPTr2ogMm3HDdJkA==
-X-CSE-MsgGUID: B5mR+kraRmOUlR81jExqDA==
+ t=1731558657; x=1763094657;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vEjsqIFacmJVm4vknDt8a4NgZCjVxHoNjIN1ZpWXXGY=;
+ b=NCWNGWuYR+lapzCPWzRh3s/sSN2kpGwYaKi7E3kJTXg7N0SBqzCghws/
+ qUPOdZUGjeGIX8ea8qLa2FtbGBUbKe8RWumUQ4CHEDPBwceNubtOnpWte
+ BhksyuRmxrPozXi63qLo1N+Eyo4eXcnSYHdisTZZqNR0cGdinp/gIRdZj
+ eq/hFAHZgfqYcitGmaHafppAqWiJm7egTSrcq6INzw6+HQfraV/ggdLM/
+ xg0/iP/kl8tQoNSRCOHvR/sN/DdrrL1ZO2XAywSgyshTwWzCe/rJrldrY
+ Ik6mNiaQWRWPVEJiksSRsq/t+ABW0KHegJUReMp6evzxygH3M3TkQtEGA A==;
+X-CSE-ConnectionGUID: U51xunuYR12YMm43ouJcvQ==
+X-CSE-MsgGUID: dOkBE+hZTxqWJFrMi5XI5w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11255"; a="31581576"
+X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="31581576"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2024 20:30:57 -0800
+X-CSE-ConnectionGUID: MW8uMuZ4QAqVCIEVg7Gbzw==
+X-CSE-MsgGUID: hhdws4gWRPWyvUhyWHX5uQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="92875745"
-Received: from lkp-server01.sh.intel.com (HELO b014a344d658) ([10.239.97.150])
- by fmviesa004.fm.intel.com with ESMTP; 13 Nov 2024 20:20:43 -0800
-Received: from kbuild by b014a344d658 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tBRLU-00006X-1t;
- Thu, 14 Nov 2024 04:20:40 +0000
-Date: Thu, 14 Nov 2024 12:20:23 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Wilcox <willy@infradead.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Andrew Morton <akpm@linux-foundation.org>,
- Linux Memory Management List <linux-mm@kvack.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] iov_iter: Provide copy_iomem_to|from_iter()
-Message-ID: <202411141227.4kDiZIXM-lkp@intel.com>
-References: <20241112200454.2211-2-michal.wajdeczko@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="92545747"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by fmviesa005.fm.intel.com with ESMTP; 13 Nov 2024 20:30:55 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 1/2] drm/i915/watermark: Refactor dpkgc code
+Date: Thu, 14 Nov 2024 10:00:40 +0530
+Message-Id: <20241114043040.1396947-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241112200454.2211-2-michal.wajdeczko@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,81 +65,217 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Michal,
+We move our dpkgc function for the below reasons:
+- We want to make sure we have all the required values specially
+linetime which is computed after intel_wm_compute, this will also
+help implement some WA's which require linetime.
+-We do not want to write into any registers during compute_config phase
+While we are at it do some more refactors in the function like:
+-Use intel_display wherever possible
+-Move away from using enable_dpkgc bool and call it fixed_refresh_rate
+-Optimize value prepration
 
-kernel test robot noticed the following build warnings:
+--v2
+-No need to save anything in intel_display structure [Vinod]
+-Move computation and writing into register to intel_atomic_commit_tail
+[Vinod]
 
-[auto build test WARNING on drm-xe/drm-xe-next]
-[also build test WARNING on brauner-vfs/vfs.all akpm-mm/mm-nonmm-unstable linus/master v6.12-rc7 next-20241113]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c |  2 +
+ drivers/gpu/drm/i915/display/intel_wm.c      | 57 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_wm.h      |  2 +
+ drivers/gpu/drm/i915/display/skl_watermark.c | 52 ------------------
+ 4 files changed, 61 insertions(+), 52 deletions(-)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Michal-Wajdeczko/iov_iter-Provide-copy_iomem_to-from_iter/20241113-080831
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20241112200454.2211-2-michal.wajdeczko%40intel.com
-patch subject: [PATCH v2 1/4] iov_iter: Provide copy_iomem_to|from_iter()
-config: arm-randconfig-r113-20241113 (https://download.01.org/0day-ci/archive/20241114/202411141227.4kDiZIXM-lkp@intel.com/config)
-compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
-reproduce: (https://download.01.org/0day-ci/archive/20241114/202411141227.4kDiZIXM-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411141227.4kDiZIXM-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
-   lib/iov_iter.c:373:47: sparse: sparse: cast removes address space '__iomem' of expression
-   lib/iov_iter.c:386:47: sparse: sparse: cast removes address space '__iomem' of expression
->> lib/iov_iter.c:349:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void const volatile [noderef] __iomem *from @@     got void * @@
-   lib/iov_iter.c:349:9: sparse:     expected void const volatile [noderef] __iomem *from
-   lib/iov_iter.c:349:9: sparse:     got void *
-   lib/iov_iter.c:330:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void const volatile [noderef] __iomem *from @@     got void * @@
-   lib/iov_iter.c:330:9: sparse:     expected void const volatile [noderef] __iomem *from
-   lib/iov_iter.c:330:9: sparse:     got void *
->> lib/iov_iter.c:362:9: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void volatile [noderef] __iomem *to @@     got void *to @@
-   lib/iov_iter.c:362:9: sparse:     expected void volatile [noderef] __iomem *to
-   lib/iov_iter.c:362:9: sparse:     got void *to
->> lib/iov_iter.c:338:9: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void volatile [noderef] __iomem *to @@     got void * @@
-   lib/iov_iter.c:338:9: sparse:     expected void volatile [noderef] __iomem *to
-   lib/iov_iter.c:338:9: sparse:     got void *
-
-vim +349 lib/iov_iter.c
-
-   333	
-   334	static __always_inline
-   335	size_t memcpy_iomem_from_iter(void *iter_from, size_t progress, size_t len,
-   336				      void *to, void *priv2)
-   337	{
- > 338		memcpy_toio(to + progress, iter_from, len);
-   339		return 0;
-   340	}
-   341	
-   342	static __always_inline
-   343	size_t copy_iomem_to_user_iter(void __user *iter_to, size_t progress,
-   344				       size_t len, void *from, void *priv2)
-   345	{
-   346		unsigned char buf[SMP_CACHE_BYTES];
-   347		size_t chunk = min(len, sizeof(buf));
-   348	
- > 349		memcpy_fromio(buf, from + progress, chunk);
-   350		chunk -= copy_to_user_iter(iter_to, progress, chunk, buf, priv2);
-   351		return len - chunk;
-   352	}
-   353	
-   354	static __always_inline
-   355	size_t copy_iomem_from_user_iter(void __user *iter_from, size_t progress,
-   356					 size_t len, void *to, void *priv2)
-   357	{
-   358		unsigned char buf[SMP_CACHE_BYTES];
-   359		size_t chunk = min(len, sizeof(buf));
-   360	
-   361		chunk -= copy_from_user_iter(iter_from, progress, chunk, buf, priv2);
- > 362		memcpy_toio(to, buf, chunk);
-   363		return len - chunk;
-   364	}
-   365	
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index e790a2de5b3d..4f8e45a794bb 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7826,6 +7826,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
+ 	dev_priv->display.funcs.display->commit_modeset_enables(state);
+ 
++	intel_program_dpkgc_latency(state, dev_priv);
++
+ 	if (state->modeset)
+ 		intel_set_cdclk_post_plane_update(state);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_wm.c b/drivers/gpu/drm/i915/display/intel_wm.c
+index d7dc49aecd27..620873d1244f 100644
+--- a/drivers/gpu/drm/i915/display/intel_wm.c
++++ b/drivers/gpu/drm/i915/display/intel_wm.c
+@@ -7,9 +7,18 @@
+ 
+ #include "i915_drv.h"
+ #include "i9xx_wm.h"
++#include "intel_de.h"
+ #include "intel_display_types.h"
+ #include "intel_wm.h"
+ #include "skl_watermark.h"
++#include "skl_watermark_regs.h"
++
++/*
++ * It is expected that DSB can do posted writes to every register in
++ * the pipe and planes within 100us. For flip queue use case, the
++ * recommended DSB execution time is 100us + one SAGV block time.
++ */
++#define DSB_EXE_TIME 100
+ 
+ /**
+  * intel_update_watermarks - update FIFO watermark values based on current modes
+@@ -131,6 +140,54 @@ bool intel_wm_plane_visible(const struct intel_crtc_state *crtc_state,
+ 		return plane_state->uapi.visible;
+ }
+ 
++/*
++ * If Fixed Refresh Rate or For VRR case Vmin = Vmax = Flipline:
++ * Program DEEP PKG_C_LATENCY Pkg C with highest valid latency from
++ * watermark level1 and up and above. If watermark level 1 is
++ * invalid program it with all 1's.
++ * Program PKG_C_LATENCY Added Wake Time = DSB execution time
++ * If Variable Refresh Rate where Vmin != Vmax != Flipline:
++ * Program DEEP PKG_C_LATENCY Pkg C with all 1's.
++ * Program PKG_C_LATENCY Added Wake Time = 0
++ */
++void
++intel_program_dpkgc_latency(struct intel_atomic_state *state,
++			    struct drm_i915_private *i915)
++{
++	struct intel_display *display = to_intel_display(state);
++	struct intel_crtc *crtc;
++	struct intel_crtc_state *new_crtc_state;
++	u32 max_latency = LNL_PKG_C_LATENCY_MASK;
++	u32 clear = 0, val = 0;
++	u32 added_waketime = 0;
++	int i;
++	bool fixed_refresh_rate = false;
++
++	if (DISPLAY_VER(display) < 20)
++		return;
++
++	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
++		if ((new_crtc_state->vrr.vmin == new_crtc_state->vrr.vmax &&
++		     new_crtc_state->vrr.vmin == new_crtc_state->vrr.flipline) ||
++		    !new_crtc_state->vrr.enable)
++			fixed_refresh_rate = true;
++	}
++
++	if (fixed_refresh_rate) {
++		max_latency = skl_watermark_max_latency(i915, 1);
++		if (max_latency == 0)
++			max_latency = LNL_PKG_C_LATENCY_MASK;
++		added_waketime = DSB_EXE_TIME +
++			display->sagv.block_time_us;
++	}
++
++	clear |= LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
++	val |= REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, max_latency) |
++		REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_waketime);
++
++	intel_de_rmw(display, LNL_PKG_C_LATENCY, clear, val);
++}
++
+ void intel_print_wm_latency(struct drm_i915_private *dev_priv,
+ 			    const char *name, const u16 wm[])
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_wm.h b/drivers/gpu/drm/i915/display/intel_wm.h
+index e97cdca89a5c..f47e1354605d 100644
+--- a/drivers/gpu/drm/i915/display/intel_wm.h
++++ b/drivers/gpu/drm/i915/display/intel_wm.h
+@@ -31,5 +31,7 @@ void intel_print_wm_latency(struct drm_i915_private *i915,
+ 			    const char *name, const u16 wm[]);
+ void intel_wm_init(struct drm_i915_private *i915);
+ void intel_wm_debugfs_register(struct drm_i915_private *i915);
++void intel_program_dpkgc_latency(struct intel_atomic_state *state,
++				 struct drm_i915_private *i915);
+ 
+ #endif /* __INTEL_WM_H__ */
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 1a4c1fa24820..d419edb196c6 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -28,12 +28,6 @@
+ #include "skl_watermark.h"
+ #include "skl_watermark_regs.h"
+ 
+-/*It is expected that DSB can do posted writes to every register in
+- * the pipe and planes within 100us. For flip queue use case, the
+- * recommended DSB execution time is 100us + one SAGV block time.
+- */
+-#define DSB_EXE_TIME 100
+-
+ static void skl_sagv_disable(struct drm_i915_private *i915);
+ 
+ /* Stores plane specific WM parameters */
+@@ -2844,51 +2838,12 @@ static int skl_wm_add_affected_planes(struct intel_atomic_state *state,
+ 	return 0;
+ }
+ 
+-/*
+- * If Fixed Refresh Rate or For VRR case Vmin = Vmax = Flipline:
+- * Program DEEP PKG_C_LATENCY Pkg C with highest valid latency from
+- * watermark level1 and up and above. If watermark level 1 is
+- * invalid program it with all 1's.
+- * Program PKG_C_LATENCY Added Wake Time = DSB execution time
+- * If Variable Refresh Rate where Vmin != Vmax != Flipline:
+- * Program DEEP PKG_C_LATENCY Pkg C with all 1's.
+- * Program PKG_C_LATENCY Added Wake Time = 0
+- */
+-static void
+-skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
+-{
+-	u32 max_latency = 0;
+-	u32 clear = 0, val = 0;
+-	u32 added_wake_time = 0;
+-
+-	if (DISPLAY_VER(i915) < 20)
+-		return;
+-
+-	if (enable_dpkgc) {
+-		max_latency = skl_watermark_max_latency(i915, 1);
+-		if (max_latency == 0)
+-			max_latency = LNL_PKG_C_LATENCY_MASK;
+-		added_wake_time = DSB_EXE_TIME +
+-			i915->display.sagv.block_time_us;
+-	} else {
+-		max_latency = LNL_PKG_C_LATENCY_MASK;
+-		added_wake_time = 0;
+-	}
+-
+-	clear |= LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
+-	val |= REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, max_latency);
+-	val |= REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_wake_time);
+-
+-	intel_uncore_rmw(&i915->uncore, LNL_PKG_C_LATENCY, clear, val);
+-}
+-
+ static int
+ skl_compute_wm(struct intel_atomic_state *state)
+ {
+ 	struct intel_crtc *crtc;
+ 	struct intel_crtc_state __maybe_unused *new_crtc_state;
+ 	int ret, i;
+-	bool enable_dpkgc = false;
+ 
+ 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+ 		ret = skl_build_pipe_wm(state, crtc);
+@@ -2913,15 +2868,8 @@ skl_compute_wm(struct intel_atomic_state *state)
+ 		ret = skl_wm_add_affected_planes(state, crtc);
+ 		if (ret)
+ 			return ret;
+-
+-		if ((new_crtc_state->vrr.vmin == new_crtc_state->vrr.vmax &&
+-		     new_crtc_state->vrr.vmin == new_crtc_state->vrr.flipline) ||
+-		    !new_crtc_state->vrr.enable)
+-			enable_dpkgc = true;
+ 	}
+ 
+-	skl_program_dpkgc_latency(to_i915(state->base.dev), enable_dpkgc);
+-
+ 	skl_print_wm_changes(state);
+ 
+ 	return 0;
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
