@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BF04D637D6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A00AD637D8
 	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 02:24:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DCA210E0E6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36BD410E31C;
 	Thu, 14 Nov 2024 02:24:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Za3/mCcr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PoJVv7b8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3085610E31C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E47810E0E6
  for <intel-xe@lists.freedesktop.org>; Thu, 14 Nov 2024 02:24:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1731551091; x=1763087091;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Qn4UOt4lnhlyxqpnNeoSHjtuBp8KofrMPOH2kV3mcwg=;
- b=Za3/mCcrl8nP7YstnAdoL959L0E4h8ult07mmb1gQWL7eUzJn0r5FvlG
- ulkUoEdirdY2cs8k4bTh/GjxE7kj/G9Qfxr7fLbvS2pzQjf6i2NqjJ8OM
- Wvju4QNmOWIbxRH4cc3GBmcNSAFUBIKQ6XYUtimNT3OQt47ET6MoWjQcf
- v9w8pc9mnRuAEtU9MhnV4kC7A70muihRrt1Vn4tj/SWpjd6WnAqMVjQkq
- BF3KWHRyCRQ5IXJFq+NE6YYDNbrBTxASPiwHcb3PJVeUaHM3I28qH0nJ/
- jiuOraci9D+iJsM+bLp0+lfibPSdwcgEULeWZSMRJTP33sj+L1PNsNVKK A==;
-X-CSE-ConnectionGUID: 3FWlmvE0RQ2FwcDMSReyeg==
-X-CSE-MsgGUID: 92pbsbjSTDyW1YnOORRJag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11255"; a="31576659"
-X-IronPort-AV: E=Sophos;i="6.12,152,1728975600"; d="scan'208";a="31576659"
+ bh=TNDEUQWuiUeknhg1nnezobJVAcIIE42HdLSRic6m7Yc=;
+ b=PoJVv7b8Rib2vNg/mpDAbPVdr3DjNU5sgqTZhLXFq23EwNrO11CoZEud
+ DyS8XR/KS1+d3D0Y6UI5wzTl5xoQdZ0ZUIVKW/I5Z5L68vyNNNuCt291U
+ j2/iC4VrmCvhpSr8Es/RaXz4IWinHGKX5wBmyYysCgnfC8aVb/daqBHx2
+ Qu7tr45XtLrjMv4a48aTFyto5CEfPaUb0WS0EKT7ChuTgHSZtveFWZKtm
+ JKO6Jxr2odrSPZhYll/nOQrsPfv+pY3YGUux/qqJEggKxMFfHe7WTFJoo
+ nVSW96QzE+Bw8exwPiRaldPP0uLPebV6HWNVxfmQ3vdZlMSFe/dH6FrxW w==;
+X-CSE-ConnectionGUID: Z34srOexRG63/p+1R8d80A==
+X-CSE-MsgGUID: WCgJg8G/SNKKYCrRzCPvkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11255"; a="31576662"
+X-IronPort-AV: E=Sophos;i="6.12,152,1728975600"; d="scan'208";a="31576662"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Nov 2024 18:24:50 -0800
-X-CSE-ConnectionGUID: Q8etWPhNSoy+/X6zuDK8Zw==
-X-CSE-MsgGUID: VgjpZXnnTJWv1JbQHCuPjw==
+X-CSE-ConnectionGUID: bJmhm2o4R4ei+rDKQfVG5Q==
+X-CSE-MsgGUID: IO6elLHVRFugzT8TggTPuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,152,1728975600"; d="scan'208";a="93110572"
+X-IronPort-AV: E=Sophos;i="6.12,152,1728975600"; d="scan'208";a="93110574"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Nov 2024 18:24:50 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 3/7] drm/xe: Add ring start to LRC snapshot
-Date: Wed, 13 Nov 2024 18:25:18 -0800
-Message-Id: <20241114022522.1951351-4-matthew.brost@intel.com>
+Subject: [PATCH v4 5/7] drm/xe: Improve schedule disable response failure
+Date: Wed, 13 Nov 2024 18:25:20 -0800
+Message-Id: <20241114022522.1951351-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241114022522.1951351-1-matthew.brost@intel.com>
 References: <20241114022522.1951351-1-matthew.brost@intel.com>
@@ -65,64 +65,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add LRC ring start register to LRC snapshot to verify no LRC register
-corruption upon hang. This could be possible if the indirect ring state
-was mapped to user space or via an internal KMD memory corruption.
+Print Guc ID and take devcoredump on schedule disable response failure.
+GuC ID is useful information and a schedule disable response failure is
+possible the LRC state is corrupted so a devcoredump is helpful to debug.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 10 ++++++++++
- drivers/gpu/drm/xe/xe_lrc.h |  1 +
- 2 files changed, 11 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index cc77e5132157..22e58c6e2a35 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1061,6 +1061,14 @@ u32 xe_lrc_ring_tail(struct xe_lrc *lrc)
- 		return xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL) & TAIL_ADDR;
- }
- 
-+static u32 xe_lrc_ring_start(struct xe_lrc *lrc)
-+{
-+	if (xe_lrc_has_indirect_ring_state(lrc))
-+		return xe_lrc_read_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START);
-+	else
-+		return xe_lrc_read_ctx_reg(lrc, CTX_RING_START);
-+}
-+
- void xe_lrc_set_ring_head(struct xe_lrc *lrc, u32 head)
- {
- 	if (xe_lrc_has_indirect_ring_state(lrc))
-@@ -1641,6 +1649,7 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
- 	snapshot->head = xe_lrc_ring_head(lrc);
- 	snapshot->tail.internal = lrc->ring.tail;
- 	snapshot->tail.memory = xe_lrc_ring_tail(lrc);
-+	snapshot->start = xe_lrc_ring_start(lrc);
- 	snapshot->start_seqno = xe_lrc_start_seqno(lrc);
- 	snapshot->seqno = xe_lrc_seqno(lrc);
- 	snapshot->lrc_bo = xe_bo_get(lrc->bo);
-@@ -1701,6 +1710,7 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
- 	drm_printf(p, "\tLRC Head: (memory) %u\n", snapshot->head);
- 	drm_printf(p, "\tLRC Tail: (internal) %u, (memory) %u\n",
- 		   snapshot->tail.internal, snapshot->tail.memory);
-+	drm_printf(p, "\tRing start: (memory) 0x%08x\n", snapshot->start);
- 	drm_printf(p, "\tStart seqno: (memory) %d\n", snapshot->start_seqno);
- 	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
- 	drm_printf(p, "\tTimestamp: 0x%08x\n", snapshot->ctx_timestamp);
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 37ca321ed492..b459dcab8787 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -28,6 +28,7 @@ struct xe_lrc_snapshot {
- 	u32 ring_addr;
- 	u32 indirect_context_desc;
- 	u32 head;
-+	u32 start;
- 	struct {
- 		u32 internal;
- 		u32 memory;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 08a6578ee104..46fd4621bfca 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1124,7 +1124,10 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 		if (!ret || xe_guc_read_stopped(guc)) {
+ trigger_reset:
+ 			if (!ret)
+-				xe_gt_warn(guc_to_gt(guc), "Schedule disable failed to respond");
++				xe_gt_warn(guc_to_gt(guc),
++					   "Schedule disable failed to respond, guc_id=%d",
++					   q->guc->id);
++			xe_devcoredump(q, job);
+ 			set_exec_queue_extra_ref(q);
+ 			xe_exec_queue_get(q);	/* GT reset owns this */
+ 			set_exec_queue_banned(q);
 -- 
 2.34.1
 
