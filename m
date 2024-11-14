@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA27FD6A221
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 17:40:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C28E2D6A221
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 17:41:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D62310E368;
-	Thu, 14 Nov 2024 17:40:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8562710E827;
+	Thu, 14 Nov 2024 17:41:08 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFDAA10E368;
- Thu, 14 Nov 2024 17:40:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F94210E827;
+ Thu, 14 Nov 2024 17:41:07 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/ufence=3A_Wak?=
- =?utf-8?q?e_up_waiters_after_setting_ufence-=3Esignalled?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/ufence=3A_Wake_up_?=
+ =?utf-8?q?waiters_after_setting_ufence-=3Esignalled?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 14 Nov 2024 17:40:55 -0000
-Message-ID: <173160605584.4134303.7872357910080710890@2413ebb6fbb6>
+Date: Thu, 14 Nov 2024 17:41:07 -0000
+Message-ID: <173160606745.4134303.15108235004675700409@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241114150537.4161573-1-nirmoy.das@intel.com>
 In-Reply-To: <20241114150537.4161573-1-nirmoy.das@intel.com>
@@ -48,9 +48,32 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5ca0ec447ff9 drm-tip: 2024y-11m-14d-15h-58m-19s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/ufence: Wake up waiters after setting ufence->signalled
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 72661ddaa63d1428d6af7ba1c84116af4368f5be
+Author: Nirmoy Das <nirmoy.das@intel.com>
+Date:   Thu Nov 14 16:05:37 2024 +0100
+
+    drm/xe/ufence: Wake up waiters after setting ufence->signalled
+    
+    If a previous ufence is not signalled, vm_bind will return -EBUSY.
+    Delaying the modification of ufence->signalled can cause issues if the
+    UMD reuses the same ufence so update ufence->signalled before waking up
+    waiters.
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3233
+    Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+    Fixes: 977e5b82e090 ("drm/xe: Expose user fence from xe_sync_entry")
++ /mt/dim checkpatch 5ca0ec447ff9c0868ef93556f1f99828be0fa336 drm-intel
+72661ddaa63d drm/xe/ufence: Wake up waiters after setting ufence->signalled
 
 
