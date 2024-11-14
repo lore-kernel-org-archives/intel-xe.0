@@ -4,56 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3873D41D46
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 04:31:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86D0CD41C3A
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Nov 2024 04:33:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E2CE10E79B;
-	Thu, 14 Nov 2024 04:31:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50C8710E794;
+	Thu, 14 Nov 2024 04:33:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="El0EXgnT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HUCDCejS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A58E810E79A;
- Thu, 14 Nov 2024 04:30:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40B0E10E794
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Nov 2024 04:33:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731558659; x=1763094659;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=nWx0i3mCqYpGj7juL3Fo6KgD4dix4Jn5el9XhgGPj9Q=;
- b=El0EXgnT3ZxybdlCib65Ye2jVuLOjuCMgWcsOxP4MB1WFjFVnT/sObIS
- OU0aMAG+mo8R2tQ/JaLWQyf7hyGNuNtIwOl50u0teTJ6vYNuOpe0UXN4h
- dkSw9/NzXnj6xSKv2xruVUrRVPyqEJXWdMDiL1x9aqAYwP34/JxxtYG1a
- S5vtOVNLiLlWCbBS71e132Gc8/c25sXLXAo+G5xEXjj3Xpstnr4wFkR/e
- 0tbmokomaIXgEVFfvAY4lDq6gFukqHZPpNFGobTn8s7DyLmjrXP3xO7wR
- OAFcFejtCPnXLRW31Jj95Q24e5zlJhj/PqmuFfkc1300dJGOsRG6ygpyt w==;
-X-CSE-ConnectionGUID: VCdxbOWhQ/aR8bAmBrgMKQ==
-X-CSE-MsgGUID: sQXpBVGBSou31aDPKxwy/A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11255"; a="31581582"
-X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="31581582"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2024 20:30:58 -0800
-X-CSE-ConnectionGUID: bwV2yYl2TAStUUzcSkrRng==
-X-CSE-MsgGUID: MucWUzJyS++05i59pGcBuw==
+ t=1731558833; x=1763094833;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=emQrX91EVbMDA50IiCf7LHwO157Ht+EGb5GVlBjz1yE=;
+ b=HUCDCejSn8X8L4ThlzLD3ikUCkI91DoQj3c0DEo3RKJKTnO+2q2ZAhMR
+ MCaoQzBXSyjx4hWnStd/zQ83TK7WEG0xReq7q8klVqlmJOuB5IrWi5+wg
+ sebmF6qc721o6k2XYdXUQsJseHih6eAurc3g8B81oOOVSe9mjkX3NXYmf
+ XgBtXSxaf7ca2C1qiKm3mADDMZ8/XRFWMEdEkl1SRwejGSKM/VQW8D+G4
+ s6Jh5mIWB+pNEDAXdZDCrfZG+iA0EnIWEpX+qUeb6bxC1sTCnEzMMwjC2
+ D2hL4K1paFEm+oOpEFMed9PTO5niq/d7I6dC19tQpld3rgyxHghCcYC5V g==;
+X-CSE-ConnectionGUID: WTQdM9VfRduAWNxwCrl8Fw==
+X-CSE-MsgGUID: 1OdwP0lySkWGpfgslUnlVA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11255"; a="42105071"
+X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="42105071"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2024 20:33:53 -0800
+X-CSE-ConnectionGUID: qFRabU8nRDCEuH+aHyKL3Q==
+X-CSE-MsgGUID: +W3GA734QCmssrEuZvrbZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="92545752"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa005.fm.intel.com with ESMTP; 13 Nov 2024 20:30:57 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 2/2] drm/i915/watermark: Modify latency programmed into
- PKG_C_LATENCY
-Date: Thu, 14 Nov 2024 10:00:41 +0530
-Message-Id: <20241114043040.1396947-2-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241114043040.1396947-1-suraj.kandpal@intel.com>
-References: <20241114043040.1396947-1-suraj.kandpal@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="88475524"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2024 20:33:53 -0800
+Date: Wed, 13 Nov 2024 20:33:52 -0800
+Message-ID: <85bjyixwlr.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ <intel-xe@lists.freedesktop.org>, Aravind Iddamsetty
+ <aravind.iddamsetty@linux.intel.com>, Bommu Krishnaiah
+ <krishnaiah.bommu@intel.com>, Riana Tauro <riana.tauro@intel.com>,
+ "Rodrigo\ Vivi" <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v6 1/3] drm/xe/pmu: Enable PMU interface
+In-Reply-To: <lnvrm7guru3ujx7kt4irhvjb3wc3vcfzzhko3h5zkvgdig6znm@xb56nnaemwi5>
+References: <20241113174242.24787-1-vinay.belgaumkar@intel.com>
+ <20241113174242.24787-2-vinay.belgaumkar@intel.com>
+ <lnvrm7guru3ujx7kt4irhvjb3wc3vcfzzhko3h5zkvgdig6znm@xb56nnaemwi5>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,80 +75,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Increase the latency programmed into PKG_C_LATENCY latency to be
-a multiple of line time which is written into WM_LINETIME.
+On Wed, 13 Nov 2024 19:16:55 -0800, Lucas De Marchi wrote:
+>
+> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> > index bccca63c8a48..0cb8d650135a 100644
+> > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > @@ -18,6 +18,7 @@
+> > #include "xe_memirq_types.h"
+> > #include "xe_oa.h"
+> > #include "xe_platform_types.h"
+> > +#include "xe_pmu.h"
+>
+> you will need a xe_pmu_types.h where you only define the types.
+> See the other lines that serve as good citizens, don't look at xe_oa.h
 
---v2
--Fix commit subject line [Sai Teja]
--Use individual DISPLAY_VER checks instead of range [Sai Teja]
--Initialize max_linetime [Sai Teja]
-
---v3
--take into account the scenario when adjusted_latency is 0 [Vinod]
-
---v4
--rename adjusted_latency to latency [Mitul]
--fix the condition in which dpkgc is disabled [Vinod]
-
---v5
--Add check to see if max_linetime is 0 [Vinod]
-
-WA: 22020299601
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_wm.c | 22 +++++++++++++++++-----
- 1 file changed, 17 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_wm.c b/drivers/gpu/drm/i915/display/intel_wm.c
-index 620873d1244f..ce11a69b36cc 100644
---- a/drivers/gpu/drm/i915/display/intel_wm.c
-+++ b/drivers/gpu/drm/i915/display/intel_wm.c
-@@ -157,9 +157,10 @@ intel_program_dpkgc_latency(struct intel_atomic_state *state,
- 	struct intel_display *display = to_intel_display(state);
- 	struct intel_crtc *crtc;
- 	struct intel_crtc_state *new_crtc_state;
--	u32 max_latency = LNL_PKG_C_LATENCY_MASK;
-+	u32 latency = LNL_PKG_C_LATENCY_MASK;
- 	u32 clear = 0, val = 0;
- 	u32 added_waketime = 0;
-+	u32 max_linetime = 0;
- 	int i;
- 	bool fixed_refresh_rate = false;
- 
-@@ -171,18 +172,29 @@ intel_program_dpkgc_latency(struct intel_atomic_state *state,
- 		     new_crtc_state->vrr.vmin == new_crtc_state->vrr.flipline) ||
- 		    !new_crtc_state->vrr.enable)
- 			fixed_refresh_rate = true;
-+
-+		max_linetime = max(new_crtc_state->linetime, max_linetime);
- 	}
- 
- 	if (fixed_refresh_rate) {
--		max_latency = skl_watermark_max_latency(i915, 1);
--		if (max_latency == 0)
--			max_latency = LNL_PKG_C_LATENCY_MASK;
-+		latency = skl_watermark_max_latency(i915, 1);
-+
-+		/* Wa_22020299601 */
-+		if (latency) {
-+			if ((DISPLAY_VER(display) == 20 || DISPLAY_VER(display) == 30) &&
-+			    max_linetime)
-+				latency = max_linetime *
-+					DIV_ROUND_UP(latency, max_linetime);
-+		} else {
-+			latency = LNL_PKG_C_LATENCY_MASK;
-+		}
-+
- 		added_waketime = DSB_EXE_TIME +
- 			display->sagv.block_time_us;
- 	}
- 
- 	clear |= LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
--	val |= REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, max_latency) |
-+	val |= REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, latency) |
- 		REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_waketime);
- 
- 	intel_de_rmw(display, LNL_PKG_C_LATENCY, clear, val);
--- 
-2.34.1
-
+What's wrong with xe_oa.h :) There's an xe_oa_types.h!
