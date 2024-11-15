@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FD5FD6DDD8
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 13:02:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48CDED6DDF8
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 13:02:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F332A10E09D;
-	Fri, 15 Nov 2024 13:02:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1281410E09D;
+	Fri, 15 Nov 2024 13:02:59 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1755F10E09D;
- Fri, 15 Nov 2024 13:02:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B48510E3CF;
+ Fri, 15 Nov 2024 13:02:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/throttle=3A_L?=
- =?utf-8?q?og_throttle_reasons?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/throttle=3A_Log_th?=
+ =?utf-8?q?rottle_reasons?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Raag Jadav" <raag.jadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 15 Nov 2024 13:02:46 -0000
-Message-ID: <173167576609.231518.12143306438650351945@2413ebb6fbb6>
+Date: Fri, 15 Nov 2024 13:02:57 -0000
+Message-ID: <173167577710.229834.12963401793449255299@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241115125614.857611-1-raag.jadav@intel.com>
 In-Reply-To: <20241115125614.857611-1-raag.jadav@intel.com>
@@ -48,9 +48,25 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5191b7a38bbe drm-tip: 2024y-11m-15d-12h-10m-25s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/throttle: Log throttle reasons
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a2fc1661263013b88eeb9cef65d36934f637f059
+Author: Raag Jadav <raag.jadav@intel.com>
+Date:   Fri Nov 15 18:26:14 2024 +0530
+
+    drm/xe/throttle: Log throttle reasons
+    
+    Log throttle register MMIO reads which will be useful for debugging.
+    
+    Signed-off-by: Raag Jadav <raag.jadav@intel.com>
++ /mt/dim checkpatch 5191b7a38bbe1cafec77861b407dd4e439d9c262 drm-intel
+a2fc16612630 drm/xe/throttle: Log throttle reasons
 
 
