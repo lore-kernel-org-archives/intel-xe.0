@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51CA6D68BDA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4E4DD68BD8
 	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 21:22:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 162DD10E8CE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89EEA10E8CF;
 	Fri, 15 Nov 2024 21:22:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="Oh5o3W+Q";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="jwtdE59v";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5568B10E045;
- Fri, 15 Nov 2024 21:22:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0DAC010E8C9;
+ Fri, 15 Nov 2024 21:22:45 +0000 (UTC)
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
- by linux.microsoft.com (Postfix) with ESMTPSA id 49A20206BCE5;
+ by linux.microsoft.com (Postfix) with ESMTPSA id ADD5A206BCE7;
  Fri, 15 Nov 2024 13:22:42 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 49A20206BCE5
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com ADD5A206BCE7
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
  s=default; t=1731705762;
- bh=mjGmNlPTDeXtBIVnBruZVxnncRcSbkg/ti9M5w2fu78=;
+ bh=2qNmVTIUPIQHjxG6U+oz3oOJorUpDTvltiEua1kgDGM=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=Oh5o3W+QiJRTTPFI9dpb9A1AWSAOLDDOB8sqUPea54Qx6kUKHNmkqaArwACWjQxKB
- D55Uc4+WAewzxsbEk8laNjMjSMPfVawB+Zi45VRw0skgegejDy9IgBYr/0jKgvvqvH
- DeGMefeFQkwrmneQNUkhORZAjpQMci1rsg92zUBA=
+ b=jwtdE59vuxdQNE0RiS/g1dZX+uqTWG/w9IblshEquJbSzhtkY3Zk6fbDpk+PaYqJ3
+ QDyNOhOWd9ZJoQqLoj3N42Lk4lBijUYlMVpBY8G/XYg13FKv7CiQTz5tjAvkJe5Ryj
+ q0FRAVEgJKXl2OZRO71N5d2wqJQesfADXbZgbw84=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:22:32 +0000
-Subject: [PATCH 02/22] coccinelle: misc: Add secs_to_jiffies script
+Date: Fri, 15 Nov 2024 21:22:34 +0000
+Subject: [PATCH 04/22] s390: kernel: Convert timeouts to use secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v1-2-19aadc34941b@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v1-4-19aadc34941b@linux.microsoft.com>
 References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 In-Reply-To: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -115,39 +115,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Suggested-by: Anna-Maria Behnsen <anna-maria@linutronix.de>
+Changes made with the following Coccinelle rules:
+
+@@ constant C; @@
+
+- msecs_to_jiffies(C * 1000)
++ secs_to_jiffies(C)
+
+@@ constant C; @@
+
+- msecs_to_jiffies(C * MSEC_PER_SEC)
++ secs_to_jiffies(C)
+
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- scripts/coccinelle/misc/secs_to_jiffies.cocci | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ arch/s390/kernel/lgr.c      | 3 ++-
+ arch/s390/kernel/time.c     | 4 ++--
+ arch/s390/kernel/topology.c | 2 +-
+ 3 files changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/scripts/coccinelle/misc/secs_to_jiffies.cocci b/scripts/coccinelle/misc/secs_to_jiffies.cocci
-new file mode 100644
-index 0000000000000000000000000000000000000000..af762b1c0aac8f044f21150bfaafd9efc834ee87
---- /dev/null
-+++ b/scripts/coccinelle/misc/secs_to_jiffies.cocci
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+///
-+/// Find usages of:
-+/// - msecs_to_jiffies(value*1000)
-+/// - msecs_to_jiffies(value*MSEC_PER_SEC)
-+///
-+// Confidence: High
-+// Copyright: (C) 2024 Easwar Hariharan Microsoft
-+//
-+// Keywords: secs, seconds, jiffies
-+//
-+
-+@@ constant C; @@
-+
-+- msecs_to_jiffies(C * 1000)
-++ secs_to_jiffies(C)
-+
-+@@ constant C; @@
-+
-+- msecs_to_jiffies(C * MSEC_PER_SEC)
-++ secs_to_jiffies(C)
+diff --git a/arch/s390/kernel/lgr.c b/arch/s390/kernel/lgr.c
+index 6652e54cf3db9fbdd8cfb06f8a0dc1d4c05ae7d7..68021cb38574b122bbe3d9f70e9168305360017b 100644
+--- a/arch/s390/kernel/lgr.c
++++ b/arch/s390/kernel/lgr.c
+@@ -166,7 +166,8 @@ static struct timer_list lgr_timer;
+  */
+ static void lgr_timer_set(void)
+ {
+-	mod_timer(&lgr_timer, jiffies + msecs_to_jiffies(LGR_TIMER_INTERVAL_SECS * MSEC_PER_SEC));
++	mod_timer(&lgr_timer,
++		  jiffies + secs_to_jiffies(LGR_TIMER_INTERVAL_SECS));
+ }
+ 
+ /*
+diff --git a/arch/s390/kernel/time.c b/arch/s390/kernel/time.c
+index b713effe057967623f64da8297314fcc42ff1af2..e28c61d39d27c6e89f490e779ff674ba2fe21d3e 100644
+--- a/arch/s390/kernel/time.c
++++ b/arch/s390/kernel/time.c
+@@ -656,12 +656,12 @@ static void stp_check_leap(void)
+ 		if (ret < 0)
+ 			pr_err("failed to set leap second flags\n");
+ 		/* arm Timer to clear leap second flags */
+-		mod_timer(&stp_timer, jiffies + msecs_to_jiffies(14400 * MSEC_PER_SEC));
++		mod_timer(&stp_timer, jiffies + secs_to_jiffies(14400));
+ 	} else {
+ 		/* The day the leap second is scheduled for hasn't been reached. Retry
+ 		 * in one hour.
+ 		 */
+-		mod_timer(&stp_timer, jiffies + msecs_to_jiffies(3600 * MSEC_PER_SEC));
++		mod_timer(&stp_timer, jiffies + secs_to_jiffies(3600));
+ 	}
+ }
+ 
+diff --git a/arch/s390/kernel/topology.c b/arch/s390/kernel/topology.c
+index 813e5da9a9737e05ec3ef85a495fe38cbb40c49b..99095ff3897c1b5337f7e2abcf10f3fe8219ad7c 100644
+--- a/arch/s390/kernel/topology.c
++++ b/arch/s390/kernel/topology.c
+@@ -370,7 +370,7 @@ static void set_topology_timer(void)
+ 	if (atomic_add_unless(&topology_poll, -1, 0))
+ 		mod_timer(&topology_timer, jiffies + msecs_to_jiffies(100));
+ 	else
+-		mod_timer(&topology_timer, jiffies + msecs_to_jiffies(60 * MSEC_PER_SEC));
++		mod_timer(&topology_timer, jiffies + secs_to_jiffies(60));
+ }
+ 
+ void topology_expect_change(void)
 
 -- 
 2.34.1
