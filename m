@@ -4,165 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA60FD68BCF
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 20:20:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1D6FD68BD4
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 20:22:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85BC710E8B4;
-	Fri, 15 Nov 2024 20:20:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B57D10E8B5;
+	Fri, 15 Nov 2024 20:22:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a214QjM1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="emWivhV0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2020610E8B4
- for <Intel-Xe@lists.freedesktop.org>; Fri, 15 Nov 2024 20:20:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5696810E8B5;
+ Fri, 15 Nov 2024 20:22:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731702042; x=1763238042;
+ t=1731702153; x=1763238153;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=EUaZHPOmYVi+xy7HhE/JWLVjF0hTtfXvbrcn6jBuCxU=;
- b=a214QjM1ReNlNMycEr92vxJMHByriwaj6XSx4Ggq8L/V+wrwTseQx1DJ
- hWXfxH8tXSR+QxbtnELkRPV4XQjayPgvr8T9lbp0D0tiyqemE+SICe+7E
- ttFXDwtGGUkPpAM2kYIdCkprm672MqHCp1BnmSqQfQfIYgg2Nf86ZjxDG
- ZmToXBJjnslF0MztVWYLscT31UFUZs+mLdbfE+tADPw9BUqGPoNqS+Zdp
- kf9gwoXugtnTk7Zjj6e4Mo+WAO8HvUIpZuwoAfl4X4YnEvtXwfVwopDLC
- 94FFzeik44rtw4mpvAH6Mqda7BiVwXfsDqtIVC9O5hG3KE804A3t9RJws A==;
-X-CSE-ConnectionGUID: 173LxOfmQ0KRSYE0YjnDNw==
-X-CSE-MsgGUID: U/d2SEdgS1Giv0TsGF1RKA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="31111529"
-X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="31111529"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 12:20:42 -0800
-X-CSE-ConnectionGUID: p0BPo3huRhGurVwynq7v/g==
-X-CSE-MsgGUID: BDjtR0fOS4W9MZmy5HcwJw==
+ bh=HqxJJcwvpSPmJ/fOBqq/BlnYqCgS0aH8bctiOHdAwKk=;
+ b=emWivhV0QGY9crdLFCzvUCr+IzcwnSxcKv8Ekhb98GIjDlHCrwhP6v9k
+ AczLlnzO4meUWL/BHcPAl+p7JVyLzArHqXfjSWeniOUq5C6wNkzCpedym
+ Ydf4KpT/xiCZMxRPty0ibR7J21cVBUCf5oXDhBsuIinrZBd4XQX7mmUUo
+ JmppN721mbjDYj8pl1eE4Kpk0cQ/54o6VZUiFN9RkVA0xHm233U5qVS80
+ rpB9ds4XTeXnj3EItQ4Joeh4hVvQcQVls/rlMyusHgDHJs+sKvaoR2tc7
+ og6tBRCCDCjgMyFeIAwnqH7yhgBFtWfhRQrbFmdxH5crXgXa5BnmWSEIj w==;
+X-CSE-ConnectionGUID: 7n/C9AI4QHqkb//lJPcJ/g==
+X-CSE-MsgGUID: GOuONMV3RGW/EANtVtvEPQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="42803815"
+X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="42803815"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 12:22:33 -0800
+X-CSE-ConnectionGUID: Aj7QDnXhTLWeLlP5qBw4Rw==
+X-CSE-MsgGUID: ZN5hgDuNSYG4yNN9jZ0HQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="88542685"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 Nov 2024 12:20:41 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="119598115"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 Nov 2024 12:22:32 -0800
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 15 Nov 2024 12:20:41 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ 15.1.2507.39; Fri, 15 Nov 2024 12:22:31 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 15 Nov 2024 12:20:41 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.175)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Fri, 15 Nov 2024 12:22:31 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.42) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 15 Nov 2024 12:20:40 -0800
+ 15.1.2507.39; Fri, 15 Nov 2024 12:22:30 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TMSUuX8bhm06mfUuefZ6sTzufyqG/GeanYIeSdJYjo1PA/k/VeKBEkgEOr0czHc86+q0VKAsGejmTYnhA8+vJwGAoMIhhWfuKJvJy/tRhxw5xeEtKJzsNU+cAlhIbkCFUoWs8/I7IUHqCUiGZBxLkk//0rfgVeFwWuwiIq7k09trWljNTy3rUiXoL6xg3icP6ZM/B+7OHj4y/0OMeyihbMiUXIKdGGXLQYnaWS/F3FbjppiWjSo/GbILFWoUPV3LFOJ+OmAXLIiIephFPYb2wgTejKN1WR6sJMp+uj224p2maQKp695NXfhwd8h8Gxhu2wUzkoW/hVQy9BHGm1asaQ==
+ b=t9qT7SHynNCAoMUMSjGWxN4y3ZbKtU/hGhZC5moq6H5bcxQXXjqpGOd3Y9+YEYEiTghhYAUEYMqbBhB0UOIRh1KKhjMiBdRXMxPaefohLxzfLbESA/lVRABrsgb1RQHazVoS1COpHnjHt/Z+CoAzwOLCwk37bVjJrD48xdG11Ngle+dXceK2anveKKH/PNfQdHvfIcsE+g85jcUoNut7P7DwC+J3SLsPJEsTSzesW/2xysuo5cv4IbspQfuwZYF3tuWYhq0JpW8UoM4KNhR29rga89MmviNoLc/QdDj1l4hHSYtJsoT4WcDIPFWAAvlWxnAHupLNRNFSn5x0oXw42Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MasN8hZCXOJzKXFLgEUIH/qJlNJMVycQcgCer5rFTnk=;
- b=HAoa0BYHM5ImI/DYmmU9pSW0r8ZMO/sPjlbV6eJbKoQYv0njFOMgXWZAWuryxsz8BaWrSq9SlF5Wkbkgd6Nd3vZcJbQSkq9jkgzAJmv12xnqOUZpXoVnX/3dxnKwQBzJxY9Wf8xVpx+4rFPjQ0+0B4qqaDex8w+28+DUZ9u+AwgTYnsLI0tOkoi5XHFL8ikFhbEIqao8QaEF6fHG4UeKeMb9IDv3GC3oZDZ6Mi2NJDiLUKfPs+ShMcVtRm1/pwo3Nahx6e7DTGKaIcgZB2oMsDKGZgI1+oqqyg07v2135HtefXzwjrZB/Q3EII8Qkxqe5OaU+Kywj3LLs8fdlwCqIw==
+ bh=iD48BQ3UJ8TTjFo2maANbt46jvXw0KitQaXJK7JlDOM=;
+ b=d5peKd92o+11dAs18/B4c+BW0acE8gvux9UkgMaxto+xNIS3+W4OD6YDLEo94lmxSIQVb4zte600DTcLsaCI35CRJpnszZSJOW8y2zct77Ofm5/jy0OYePmfcu9/E0hLT8oyy+BapGRP5owafJjXvJXKbq2Yq/LW0InFmm/gPMBLIrj38MnFnpJn3P0PtdjKSG9eQ80hnWG1T4hFEVNTYJaI1I16ilGKTTjGJhdb38DvHO90cg7c6a/VAgYgllTprisvnW+Ne/0AMKQIwKfib1GLw+bJORB2+FqbTjI2TgIe5gobxj6863cNzDkjmz85WRB2ruvBQwkUQYFlqJ6NpQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by CY8PR11MB7745.namprd11.prod.outlook.com (2603:10b6:930:90::13)
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
+ by LV2PR11MB6048.namprd11.prod.outlook.com (2603:10b6:408:178::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.18; Fri, 15 Nov
- 2024 20:20:37 +0000
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::1a0f:84e3:d6cd:e51]) by BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::1a0f:84e3:d6cd:e51%3]) with mapi id 15.20.8158.017; Fri, 15 Nov 2024
- 20:20:37 +0000
-Date: Fri, 15 Nov 2024 12:21:11 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-CC: <Intel-Xe@lists.freedesktop.org>
-Subject: Re: [PATCH 2/2] drm/xe/guc: Add support for G2G communications
-Message-ID: <ZzetNxeXh6xvywII@lstrano-desk.jf.intel.com>
-References: <20241108202216.2020164-1-John.C.Harrison@Intel.com>
- <20241108202216.2020164-3-John.C.Harrison@Intel.com>
- <ZzeczRm2B3ekqb4Y@lstrano-desk.jf.intel.com>
- <b2707450-2273-4933-bd2a-bc175c3905ac@intel.com>
- <ZzelyrwhddiK0QBY@lstrano-desk.jf.intel.com>
- <a52b5323-6d2c-405a-b23b-8727a67551fa@intel.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.19; Fri, 15 Nov
+ 2024 20:22:16 +0000
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42%7]) with mapi id 15.20.8114.020; Fri, 15 Nov 2024
+ 20:22:09 +0000
+Date: Fri, 15 Nov 2024 15:22:05 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, Imre
+ <imre.deak@intel.com>
+CC: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Subject: Re: [PATCH 1/3] drm/i915/display: Move shutdown sequences under
+ display driver
+Message-ID: <ZzetbStBHPMO9-yj@intel.com>
+References: <20241114202252.239652-1-rodrigo.vivi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <a52b5323-6d2c-405a-b23b-8727a67551fa@intel.com>
-X-ClientProxiedBy: MW4PR03CA0282.namprd03.prod.outlook.com
- (2603:10b6:303:b5::17) To BL3PR11MB6508.namprd11.prod.outlook.com
- (2603:10b6:208:38f::5)
+In-Reply-To: <20241114202252.239652-1-rodrigo.vivi@intel.com>
+X-ClientProxiedBy: MW4PR03CA0204.namprd03.prod.outlook.com
+ (2603:10b6:303:b8::29) To BYAPR11MB2854.namprd11.prod.outlook.com
+ (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|CY8PR11MB7745:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1bf97ab3-22d4-4033-8078-08dd05b2f7bf
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|LV2PR11MB6048:EE_
+X-MS-Office365-Filtering-Correlation-Id: 32491e91-5ace-4077-a391-08dd05b32e3f
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Cl5QoClKxvd+qA+R10aQcmCS3ByAkJs8hMbM7wTWukPz9HIgwepki8UycEnt?=
- =?us-ascii?Q?Q7a70ysIWnIpbTCZKozMGeiZZQOCkiM7XkWqNHW0mkrAVB5om/IoDznzKyFO?=
- =?us-ascii?Q?2EDLCqUu2AdvguIkpKGlbEbAZ/rnw/F7pFxNVQuSduuK1tdZt1KgKuHdNqny?=
- =?us-ascii?Q?GPzOIV/cptU4cAGr7SkAQzjXwoH4sdeQLttFVb+HuufTOiGS6kUgsJkCVWJP?=
- =?us-ascii?Q?TQ3ZTDLvgb93ItTTdWATK5tuW/PeRNJ4udZwou+C8+vUO3XBfa4IZ4ZAXq5I?=
- =?us-ascii?Q?6PnmHDK5tt+RvpRDyLtsCCMYUnDmEDYMPdtihB/oqVjP4mYRpMtutTwNYeNs?=
- =?us-ascii?Q?w/4axALSukHu4SVNkAyozURCdrL6XQKddFCBf1UYZmbNurg8bdqgOolVu+QS?=
- =?us-ascii?Q?w2+U8Y7RVnLAXBhpr6RQ8ZxZONwBZKIpvuZ5RBN4WoAqZnRjURn7Yf7qVPrl?=
- =?us-ascii?Q?LNmi9fPt0PeMrupJ/suC5qAkezQ45U2cs+p0CmJ6UuMb4sILOUmcHVkRING3?=
- =?us-ascii?Q?i2SgYrDwm6gFA/0CHYzhmGgmsAZYn2iSr8ZzzVqcpJfq61Mk2WAT8pLIw5nX?=
- =?us-ascii?Q?b3PNobfo6gIco7n+WpWzE+JuOktTlNZvXjGQfw3khDqSTdtz/jOrmkXdmr2o?=
- =?us-ascii?Q?Dt8UoBhK48/1fYAqSlG6kei4HWst+tUk61NDfMYmmwR7Az6hAqMx1nz0BxsT?=
- =?us-ascii?Q?tdXCKJmDKa1+vqzWJNrKGKVZEFHuqFzJSCiH6KpNevB2OPxqiT/0ymDndkc9?=
- =?us-ascii?Q?AD0RzeOVfE4xTJ8Trsvw1SUIrBNSTTk645RjP79ItSwFncd0Jee9onQx57g0?=
- =?us-ascii?Q?3U2fiZheP04MVieyiW9wtdkZC22Sj1qA69b0J7rvyLZ/nXHvJotL2oyqz1rT?=
- =?us-ascii?Q?hVemw0BXZrdFrhpgNDdc7x0Icybeudf9K1ir67XF5gfV+OfBQ7ZzQmawF5cF?=
- =?us-ascii?Q?5Sgo2T/EGnte4XOxSNi22y/ve0LDnL8Qq4dv6BtP4MXd2z6UamXCP55sMJfL?=
- =?us-ascii?Q?m+/vwLQ2yW89CvHZo9TvBdZeAK0aLe8BLMJYsDc1q0C2wWb69NjnrUwg0ehw?=
- =?us-ascii?Q?k0FV9R9mXinNwzkn57oIWYP2+pG5I3mxKsdOgtuD1feDhsMeHAliQRFMSOfr?=
- =?us-ascii?Q?IFPr+CgB3sVDKVyNcvZPOsv+v/XZT3U2NF5bVOkfXXkEF9whH0pqDRMplsKg?=
- =?us-ascii?Q?OFXqZ9ZHtJl3liU65nT/J90B3fK+o3tTvpMsvtSV43Lf4m+gms61NWHrPtUx?=
- =?us-ascii?Q?5MKSHueBdZZP9Mlls86AJYZzg2XEr2gkqzlerYGlrv3gymYoS4PjvCGzBYku?=
- =?us-ascii?Q?YV6tMBuR9Aqnk+pU13pjYUcy?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?KYNRrxXBnu0/rwtOemlSuXmI2sULPMS00g8NwWdKuzJ7HMn+i92CIoBGRk5y?=
+ =?us-ascii?Q?3SLz8qAWgTQfgbTzvnhNukCpxrluvs+WpBDOMOs5mTURjBJM/yU9zIRcEJ88?=
+ =?us-ascii?Q?+HqJmxK+p3XsSqcED2ZTnEOBpq+5mi5EOQJW/hZP47l6RnEgoJJy0eHCMSEw?=
+ =?us-ascii?Q?z+0Skmn3vq9NjrzXlAeBJ6FqJEZoPLII+dGnkcnxWb21Ooxb8JWH3KyVWSh3?=
+ =?us-ascii?Q?K3GjQ8uDEv4QUGICiD3Wv3tMc3dB4oZPMAnYFSUt4C1wQCf0Br6G5O6x9dvY?=
+ =?us-ascii?Q?vkFpDi5auxw8HVq1QsbcXhRjuhApyifLzOHU3+2xDcmLBC6TIZaLI1JFcbE8?=
+ =?us-ascii?Q?Z1gv9KmpZwBYhUSwuE6FE1iN6vELN7gQ7m6IcHSQ+wXSkKkLVFz+43tm67Z2?=
+ =?us-ascii?Q?hdyzLwvuI7gipRyzZTNIhguA6nUoD1mo0N6UJw8h/W80aC1H2xEmsAimPnEZ?=
+ =?us-ascii?Q?vIqSmGd6mwnb2GpI9DpZ7zLRoCrPxFkfWt/vXHzYgP2Qa4EiYnq58vr3SRy3?=
+ =?us-ascii?Q?KuWsNpt54etFSWNy2ZwbA23vzsMYtrPI06mCmcH6ZThVl9prjOYgDc571b/G?=
+ =?us-ascii?Q?K4GhLpTGbN6GyGNPamehbtZF9SBrVBSOJcJBjFLQ7aKHZOsqcCfwz3zbJNeW?=
+ =?us-ascii?Q?xowc7kK3dyPNHcfEdDPOdEZ6dMKQptAHBb3u+Cw80a0w5nfdRU+Br1flP9Sf?=
+ =?us-ascii?Q?3a5yPSJl2menV41pyUDDI2itlxFDLB2fpbGhL9lkTlWDbaY9Khpojb3aTOCF?=
+ =?us-ascii?Q?i+M43J8dgj/d7fuHhOJkWJIIjZ44Lac0iIqbCgOog1ePsZVItEz8FeO2mbAV?=
+ =?us-ascii?Q?Ucq0r8CkPfvI9akooFx8VeUJrNZcFIbwU3LxObShuBYCuJoOIj8r8df7Zoc8?=
+ =?us-ascii?Q?any/nuyJFGNrOpdoRmxoARfpAlopRaMwfEhFvv5mR1+1aM2R66Xw+kExqhAl?=
+ =?us-ascii?Q?pUAQTpp5wX7Gz/3jDhzbCpHzmozu+W0YgUk1tcC8GA/hCZff8yefrjhlXw8A?=
+ =?us-ascii?Q?quhncCmIufyyl+pAguW1zZ29D51WEWh5OwlTM3h5sCoo/LSv3lJ6BrifJrue?=
+ =?us-ascii?Q?D9SCOsNJpwNe2WhdQ2MYvVrsUNLmsDpfupAl7w1MYmffPFvflj7EBIShsi1J?=
+ =?us-ascii?Q?vHdPWOMzj0SO7BBNC99Ybna/hH2yKm6KwuIuUTnFfksm6/etBNG5BybQY6Dt?=
+ =?us-ascii?Q?hOOzAERA+kLrQlrePjigPI3y7FhG9psT/QXSFJi5GlZ9yiX/EZRT5QaMuH+f?=
+ =?us-ascii?Q?MAxo92Lt3VWMkhVPt9GFXebSciofziATZphFDFePzPr4SBA/QsfnbcCQGXYt?=
+ =?us-ascii?Q?7yLNKgTW4O+Y79EDaLYKz8k8?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7R3hWJpPhYCKlGwPjwzVsGArBY2zNnyPuTsBBs0EfZ1yDZtv7h8oePbqV+jJ?=
- =?us-ascii?Q?BjiFBtTFVndv25I46Q8gWahJG6DSldDYEG/gTC1hscgnkZRYPoQ0HWd21SuV?=
- =?us-ascii?Q?H2VqJOhZTJ40SUi15G7RTYowO5rd4a5TUlSFFnqUhobbFhufgL7RT4dDJyBL?=
- =?us-ascii?Q?iJoBVlNoAUzu42OHkEfSGnZyl61QRnavbOgtIHjzPGtxNROESSJo6BV4ehTG?=
- =?us-ascii?Q?QHx5Au4PYkvggkU7yy8fTHvEVmxGh6MkzHCMGEj0RveImB2oQBUbq8amtF+r?=
- =?us-ascii?Q?AJ3EA/LHMklfgabLcokQtJ+VT6mUnW0te6zRg5hLWkYxG/suR0z6QVC8nCY4?=
- =?us-ascii?Q?mDpImhYvBGx5rbWNPlMGAWhIiSZI+h1jVoS++Ww1Qct3R4AYFVoUlH5DDmud?=
- =?us-ascii?Q?33GiSRHy3oCLPQiQKE00yrEUFtq20WvXm3JZPl3QqxUVxqMfTAcAA2UtvxvY?=
- =?us-ascii?Q?F0fNUVeEDqRE1saSYS4zJR9CuTQUdFuJCkykJ75rthFh5yK3lzwMyI2KgbJz?=
- =?us-ascii?Q?aZ1X0xUqPlWx1L8tJyjvdzM1egU4xvEPtJzbIUSlRK7+sVdeg9H/ZUgPYMZb?=
- =?us-ascii?Q?D/X0FsM81+wvoxtj8soRUzVHPxx/HERsviP3+cdZ6dFFGVyeNG8x0QbKh7Eu?=
- =?us-ascii?Q?1bohI9VdMkFWZmcfKHQC34GYQ+GBi0Jmqje6b1C3/9GAZdOF3Fle2GsEBMxm?=
- =?us-ascii?Q?JbiecxM8+vCekxDo0rXgkOamzzCVcWeY03xEY2F+qzmITOyz5slvaCZA4d5A?=
- =?us-ascii?Q?qLxPl9YmuZGybDD3IUvUdvmcywOfU6M1g7xVb1pWzhd+XfkEOqyjZQLkDbhB?=
- =?us-ascii?Q?ukrPNekUZQ/vpQRIQGxuCttXOwnPjOpCnC5XPMznNXSm36H0vQSGXrB/wwPF?=
- =?us-ascii?Q?FRcwgVTNBOhWyiAYWK0BNygKqJr+Jcty1vPJGJ2o9Yh9sakSm+9Fkns7XPXe?=
- =?us-ascii?Q?bsnCJW0aoVVfAtU0jhuFIfxXSxDDwtu//i3SJKpzhcDs4D8avWMssbVuyD10?=
- =?us-ascii?Q?vtT2Ft6XtYlPHfRcHzkE/f376vRV/5oHi/8yJmNTob6kPUgHuAbw5Fz7xvsK?=
- =?us-ascii?Q?erNvgLF+K5r67YBG1CK+kOVonXz+8pw7D6Giddf/GeCGEhzqHAJB7coEdaDR?=
- =?us-ascii?Q?/AyOFEspcGS7AvTb/Kq2P7Pz5ycXcKHyCQpCS+7loEfzhsr0+Kja62OmxMkM?=
- =?us-ascii?Q?SiuV1SaC8R4ojN0+S5SaGeHvnrCppwC3eaysiAUvSXn7oCRlyLwiZ6ol7xDm?=
- =?us-ascii?Q?ontFf7HR+xtI5Ds6m38KH5fNaXpooBkpMcIgeNbGjbepw8DXZ3rIKDCK6ZDM?=
- =?us-ascii?Q?9Kt5i+v9avraADQH8ZrNE/abJ2X3prsjjaDSnDqocMdyXX4MmYEuF8PwwxWJ?=
- =?us-ascii?Q?+kDlhcUgAhIeC6SMuRajh9cpF08FUBEjHW98zC9ruNIrAEGtUmXjLUSxaPYh?=
- =?us-ascii?Q?ZvMMZPAaxeM6d5LGaRiBsvx/qCUkpgFsuYvrACxNC+Ze6WPJLa1Q/7Hxz5wK?=
- =?us-ascii?Q?uwGHM24DDeGTO3uUFq9iTEjdtfg2AGI4VRYjgljnskBcjnEAwmLXlBUuwEdX?=
- =?us-ascii?Q?0HqT7pCTyQjMSWpQhsVTzdxNmxISrFNLfIYP3kQTBjEcXNqor07lDEGkQLy/?=
- =?us-ascii?Q?gQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1bf97ab3-22d4-4033-8078-08dd05b2f7bf
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3bSBG588/pVWuV1xRodh08jpnAdku0JKtxVgAcNph93tDmXiFx4Sb5k/uNcY?=
+ =?us-ascii?Q?DV8cPWgCnQ2rgxvmpZjcdSX9Ps5MsTYVmATg+pFGOuE7jWaxY52XexrwSMF5?=
+ =?us-ascii?Q?FiECajSLfvkNt8tjcwss/n6vdcYA7qlJVvNrEQ17ZxyM5qGnufLnCOgKeq+Y?=
+ =?us-ascii?Q?4bqSyUJwwqyqFhsg+dTtAWFfPYtGJwVv4Qr7AkNGPpNSx3HhxXAjwzSZ0p7W?=
+ =?us-ascii?Q?MvtVsNlAabnjnMLfDxv2fAQgzCZkWUZ48Wbvv1hA3aAzMLppdZ35YThXzCEJ?=
+ =?us-ascii?Q?xx79zerbk5jGKhvpioHaxBjdyqArpixb1SmXjv6CFCWO4IpWd6MKOij6VeXV?=
+ =?us-ascii?Q?GO4e8n7N/793r21JlDDrSPsM+Ohdb4d/dn50Kw0iGuWYPMqSkMdl/sfvCiN8?=
+ =?us-ascii?Q?P0ra8i5NBfVQfT2KA4uU+CSU1o8jFIi8TbJe6AhyzU9x7/avV4idBo4JZReI?=
+ =?us-ascii?Q?MWN6cSA1X2Hp/v2C+4VFwI1oinMjlHh4pfj94h21nYwYxs4dedB+7Xac9Bmz?=
+ =?us-ascii?Q?JI6G6wsumlYjQZibl6Mb1pS+a9RczbEdIVbOWMg3KHGYPDbjS3RsQJ53/Mh2?=
+ =?us-ascii?Q?LmItoNQwSI5XfDb58NKx4RmqTGGAhmsCUmPSA0Akhon9ioM7+a3lSxeEIf+7?=
+ =?us-ascii?Q?nOofnDBliLCq/n8beS6PDgpfk9K15/Kdm3cBB7QpxGxyoJySvhrBikP8R61U?=
+ =?us-ascii?Q?M6nB1C3P249SYUrVY7L2bkqsnH/w11w8c2eINgmNRYedQrtu00B4pz02mIm9?=
+ =?us-ascii?Q?oLrGkuZe2kjRqCTbrbD6m4IX85eLqjsZt4XxeEtuydGf4liJApC755WwkB/3?=
+ =?us-ascii?Q?9XEUBnyef8xIuMcYG5Au9Rh+jpEvG7tQ/ZiN2f9VGjT866VopyX+TywoyBmU?=
+ =?us-ascii?Q?w7z56myxyhzaINzZX9wLjHzxMlhOF4h7sPxnb+VMKhKA/oHeXiI2KAzZfi7R?=
+ =?us-ascii?Q?0Yso3qEA7C7xllKubQHH3VTzBUirizipUKoUMMAmIru/5NxP+zS/4vg3OAkY?=
+ =?us-ascii?Q?v4NcfF9+N5pvKqaVHEtSRgr8bdVFPgzSOCN8g6HiUNqq79BsESHMlHv1HRHN?=
+ =?us-ascii?Q?naj2Ek53P0eDFGTqbv4d30BjR+QN6j9sw3Jojxdl4a/nb8P0y750riLRk3me?=
+ =?us-ascii?Q?8PEKqNw5UHCa330TWIjINOFpNzNxLXMHDCKCyCQlBCRGaLFec5KO8G9wWzzB?=
+ =?us-ascii?Q?MEDkhrMV0ZAHDakHVGz6Pf23wVF8ESm6ospp7Nbou0i9COsjhaSI2YpnAtPD?=
+ =?us-ascii?Q?0+s7H6fphAmcosmpcoef7d7ZfztnV0ZmFnhvnAoEmt5nO9iSzHZBZhIavah6?=
+ =?us-ascii?Q?l1YmGFqDmDZm3lGEcPQgfyqrn5bpPaawTu5pmNXgL8xg+e0AOIt45qnjsxwN?=
+ =?us-ascii?Q?GuYIdqZJcvauieAygqnjA2JJSdEyJ20RXvJfWd2zYDBSJe5vP16rk/EF/lBy?=
+ =?us-ascii?Q?/13KzHqFPBs7NkHraLEfzaZoONne9Zj7jELFEiUqxrwVs6lRHuNWQ7ABy8tE?=
+ =?us-ascii?Q?5N4zAtBrlAOd0tcGM+6wX9PXbIrR+2HGGrPpu8IqQQi1PvEGcc9hEARxdTNl?=
+ =?us-ascii?Q?M/B2JfEQRPUXUgA9aIVx5DsXA8y3gms7iB9q+p7T5rl16xXvrFq6p9zWAVo/?=
+ =?us-ascii?Q?Fg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32491e91-5ace-4077-a391-08dd05b32e3f
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2024 20:20:37.6945 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2024 20:22:09.2097 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: v2NZJLqX0Hv3RqUQVZEIsLIXq2vl9UiJa/TaGzBG3KZUcoqwE7oDa6IUtfIN/YTPVa38aAbtOnjt8uftFfmKyQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7745
+X-MS-Exchange-CrossTenant-UserPrincipalName: pHPwrhlEPwPairTNL3x8vBVgUZim5hWnD3PNTs4ixFDi345HtWLGa0qc2u55g4Uc8YFTIsqD5SMIW59af9JHMw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB6048
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,462 +176,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Nov 15, 2024 at 12:00:20PM -0800, John Harrison wrote:
-> On 11/15/2024 11:49, Matthew Brost wrote:
-> > On Fri, Nov 15, 2024 at 11:34:40AM -0800, John Harrison wrote:
-> > > On 11/15/2024 11:11, Matthew Brost wrote:
-> > > > On Fri, Nov 08, 2024 at 12:22:16PM -0800, John.C.Harrison@Intel.com wrote:
-> > > > > From: John Harrison <John.C.Harrison@Intel.com>
-> > > > > 
-> > > > > Some features require inter-GuC communication channels on multi-tile
-> > > > > devices. So allocate and enable such.
-> > > > > 
-> > > > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> > > > > ---
-> > > > >    drivers/gpu/drm/xe/abi/guc_actions_abi.h |  20 ++
-> > > > >    drivers/gpu/drm/xe/xe_guc.c              | 276 ++++++++++++++++++++++-
-> > > > >    drivers/gpu/drm/xe/xe_guc_types.h        |  10 +
-> > > > >    3 files changed, 305 insertions(+), 1 deletion(-)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-> > > > > index b54fe40fc5a9..fee385532fb0 100644
-> > > > > --- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-> > > > > +++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-> > > > > @@ -134,6 +134,8 @@ enum xe_guc_action {
-> > > > >    	XE_GUC_ACTION_DEREGISTER_CONTEXT = 0x4503,
-> > > > >    	XE_GUC_ACTION_REGISTER_COMMAND_TRANSPORT_BUFFER = 0x4505,
-> > > > >    	XE_GUC_ACTION_DEREGISTER_COMMAND_TRANSPORT_BUFFER = 0x4506,
-> > > > > +	XE_GUC_ACTION_REGISTER_G2G = 0x4507,
-> > > > > +	XE_GUC_ACTION_DEREGISTER_G2G = 0x4508,
-> > > > >    	XE_GUC_ACTION_DEREGISTER_CONTEXT_DONE = 0x4600,
-> > > > >    	XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC = 0x4601,
-> > > > >    	XE_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
-> > > > > @@ -218,4 +220,22 @@ enum xe_guc_tlb_inval_mode {
-> > > > >    	XE_GUC_TLB_INVAL_MODE_LITE = 0x1,
-> > > > >    };
-> > > > > +/*
-> > > > > + * GuC to GuC communication (de-)registration fields:
-> > > > > + */
-> > > > > +enum xe_guc_g2g_type {
-> > > > > +	XE_G2G_TYPE_IN = 0x0,
-> > > > > +	XE_G2G_TYPE_OUT,
-> > > > > +	XE_G2G_TYPE_LIMIT,
-> > > > > +};
-> > > > > +
-> > > > > +#define XE_G2G_REGISTER_DEVICE	REG_GENMASK(16, 16)
-> > > > > +#define XE_G2G_REGISTER_TILE	REG_GENMASK(15, 12)
-> > > > > +#define XE_G2G_REGISTER_TYPE	REG_GENMASK(11, 8)
-> > > > > +#define XE_G2G_REGISTER_SIZE	REG_GENMASK(7, 0)
-> > > > > +
-> > > > > +#define XE_G2G_DEREGISTER_DEVICE	REG_GENMASK(16, 16)
-> > > > > +#define XE_G2G_DEREGISTER_TILE	REG_GENMASK(15, 12)
-> > > > > +#define XE_G2G_DEREGISTER_TYPE	REG_GENMASK(11, 8)
-> > > > > +
-> > > > >    #endif
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> > > > > index 1cbad8a91798..899094423291 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_guc.c
-> > > > > +++ b/drivers/gpu/drm/xe/xe_guc.c
-> > > > > @@ -44,7 +44,15 @@ static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
-> > > > >    			    struct xe_bo *bo)
-> > > > >    {
-> > > > >    	struct xe_device *xe = guc_to_xe(guc);
-> > > > > -	u32 addr = xe_bo_ggtt_addr(bo);
-> > > > > +	u32 addr;
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * For most BOs, the address on the allocating tile is fine. However for
-> > > > > +	 * some, e.g. G2G CTB, the address on a specific tile is required as it
-> > > > > +	 * might be different for each tile. So, just always ask for the address
-> > > > > +	 * on the target GuC.
-> > > > > +	 */
-> > > > > +	addr = __xe_bo_ggtt_addr(bo, gt_to_tile(guc_to_gt(guc))->id);
-> > > > >    	/* GuC addresses above GUC_GGTT_TOP don't map through the GTT */
-> > > > >    	xe_assert(xe, addr >= xe_wopcm_size(guc_to_xe(guc)));
-> > > > > @@ -244,6 +252,263 @@ static void guc_write_params(struct xe_guc *guc)
-> > > > >    		xe_mmio_write32(&gt->mmio, SOFT_SCRATCH(1 + i), guc->params[i]);
-> > > > >    }
-> > > > > +static int guc_action_register_g2g_buffer(struct xe_guc *guc, u32 type, u32 dst_tile, u32 dst_dev,
-> > > > > +					  u32 desc_addr, u32 buff_addr, u32 size)
-> > > > > +{
-> > > > > +	struct xe_gt *gt = guc_to_gt(guc);
-> > > > > +	struct xe_device *xe = gt_to_xe(gt);
-> > > > > +	u32 action[] = {
-> > > > > +		XE_GUC_ACTION_REGISTER_G2G,
-> > > > > +		FIELD_PREP(XE_G2G_REGISTER_SIZE, size / SZ_4K - 1) |
-> > > > > +		FIELD_PREP(XE_G2G_REGISTER_TYPE, type) |
-> > > > > +		FIELD_PREP(XE_G2G_REGISTER_TILE, dst_tile) |
-> > > > > +		FIELD_PREP(XE_G2G_REGISTER_DEVICE, dst_dev),
-> > > > > +		desc_addr,
-> > > > > +		buff_addr,
-> > > > > +	};
-> > > > > +
-> > > > > +	xe_assert(xe, (type == XE_G2G_TYPE_IN) || (type == XE_G2G_TYPE_OUT));
-> > > > > +	xe_assert(xe, !(size % SZ_4K));
-> > > > > +
-> > > > > +	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
-> > > > > +}
-> > > > > +
-> > > > > +static int guc_action_deregister_g2g_buffer(struct xe_guc *guc, u32 type, u32 dst_tile, u32 dst_dev)
-> > > > > +{
-> > > > > +	struct xe_gt *gt = guc_to_gt(guc);
-> > > > > +	struct xe_device *xe = gt_to_xe(gt);
-> > > > > +	u32 action[] = {
-> > > > > +		XE_GUC_ACTION_DEREGISTER_G2G,
-> > > > > +		FIELD_PREP(XE_G2G_DEREGISTER_TYPE, type) |
-> > > > > +		FIELD_PREP(XE_G2G_DEREGISTER_TILE, dst_tile) |
-> > > > > +		FIELD_PREP(XE_G2G_DEREGISTER_DEVICE, dst_dev),
-> > > > > +	};
-> > > > > +
-> > > > > +	xe_assert(xe, (type == XE_G2G_TYPE_IN) || (type == XE_G2G_TYPE_OUT));
-> > > > > +
-> > > > > +	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
-> > > > > +}
-> > > > > +
-> > > > > +#define G2G_DEV(gt)	(((gt)->info.type == XE_GT_TYPE_MAIN) ? 0 : 1)
-> > > > > +
-> > > > > +#define G2G_BUFFER_SIZE (SZ_4K)
-> > > > > +#define G2G_DESC_SIZE (64)
-> > > > > +#define G2G_DESC_AREA_SIZE (SZ_4K)
-> > > > > +
-> > > > > +/*
-> > > > > + * Generate a unique id for each bi-directional CTB for each pair of
-> > > > > + * near and far tiles/devices. The id can then be used as an index into
-> > > > > + * a single allocation that is sub-divided into multiple CTBs.
-> > > > > + *
-> > > > > + * For example, with two devices per tile and two tiles, the table should
-> > > > > + * look like:
-> > > > > + *           Far <tile>.<dev>
-> > > > > + *         0.0   0.1   1.0   1.1
-> > > > > + * N 0.0  --/-- 00/01 02/03 04/05
-> > > > > + * e 0.1  01/00 --/-- 06/07 08/09
-> > > > > + * a 1.0  03/02 07/06 --/-- 10/11
-> > > > > + * r 1.1  05/04 09/08 11/10 --/--
-> > > > > + *
-> > > > > + * Where each entry is Rx/Tx channel id.
-> > > > > + *
-> > > > > + * So GuC #3 (tile 1, dev 1) talking to GuC #2 (tile 1, dev 0) would
-> > > > > + * be reading from channel #11 and writing to channel #10. Whereas,
-> > > > > + * GuC #2 talking to GuC #3 would be read on #10 and write to #11.
-> > > > > + */
-> > > > > +static unsigned int g2g_slot(u32 near_tile, u32 near_dev, u32 far_tile, u32 far_dev,
-> > > > > +			     u32 type, u32 max_inst, bool have_dev)
-> > > > > +{
-> > > > This function makes my head hurt but I don't have any other suggestions.
-> > > > 
-> > > > > +	u32 near = near_tile, far = far_tile;
-> > > > > +	u32 idx = 0;
-> > > > > +	int i;
-> > > > > +
-> > > > > +	if (have_dev) {
-> > > > > +		near = (near << 1) | near_dev;
-> > > > > +		far = (far << 1) | far_dev;
-> > > > > +	}
-> > > > > +
-> > > > > +	if (far > near) {
-> > > > > +		for (i = near; i > 0; i--)
-> > > > > +			idx += max_inst - i;
-> > > > > +		idx += (far - 1 - near);
-> > > > > +		idx *= 2;
-> > > > > +		idx += type;
-> > > > > +		return idx;
-> > > > > +	}
-> > > > > +
-> > > > > +	if (far < near) {
-> > > > > +		for (i = far; i > 0; i--)
-> > > > > +			idx += max_inst - i;
-> > > > > +		idx += (near - 1 - far);
-> > > > > +		idx *= 2;
-> > > > > +		idx += (1 - type);
-> > > > > +		return idx;
-> > > > > +	}
-> > > > > +
-> > > > > +	return -1;
-> > > > > +}
-> > > > > +
-> > > > > +static int guc_g2g_register(struct xe_guc *near_guc, struct xe_gt *far_gt, u32 type, bool have_dev)
-> > > > > +{
-> > > > > +	struct xe_gt *near_gt = guc_to_gt(near_guc);
-> > > > > +	struct xe_device *xe = gt_to_xe(near_gt);
-> > > > > +	struct xe_bo *g2g_bo;
-> > > > > +	u32 near_tile = gt_to_tile(near_gt)->id;
-> > > > > +	u32 near_dev = G2G_DEV(near_gt);
-> > > > > +	u32 far_tile = gt_to_tile(far_gt)->id;
-> > > > > +	u32 far_dev = G2G_DEV(far_gt);
-> > > > > +	u32 max = xe->info.gt_count;
-> > > > > +	u32 base, desc, buf;
-> > > > > +	int slot;
-> > > > > +
-> > > > > +	xe_assert(xe, xe == gt_to_xe(far_gt));
-> > > > > +
-> > > > > +	g2g_bo = near_guc->g2g.bo;
-> > > > > +	xe_assert(xe, g2g_bo);
-> > > > > +
-> > > > > +	slot = g2g_slot(near_tile, near_dev, far_tile, far_dev, type, max, have_dev);
-> > > > > +	xe_assert(xe, slot >= 0);
-> > > > > +
-> > > > > +	base = guc_bo_ggtt_addr(near_guc, g2g_bo);
-> > > > > +	desc = base + slot * G2G_DESC_SIZE;
-> > > > > +	buf = base + slot * G2G_BUFFER_SIZE + G2G_DESC_AREA_SIZE;
-> > > > > +
-> > > > > +	xe_assert(xe, (desc - base + G2G_DESC_SIZE) <= G2G_DESC_AREA_SIZE);
-> > > > > +	xe_assert(xe, (buf - base + G2G_BUFFER_SIZE) <= g2g_bo->size);
-> > > > > +
-> > > > > +	return guc_action_register_g2g_buffer(near_guc, type, far_tile, far_dev,
-> > > > > +					      desc, buf, G2G_BUFFER_SIZE);
-> > > > > +}
-> > > > > +
-> > > > > +static void guc_g2g_deregister(struct xe_guc *guc, u32 far_tile, u32 far_dev, u32 type)
-> > > > > +{
-> > > > > +	guc_action_deregister_g2g_buffer(guc, type, far_tile, far_dev);
-> > > > > +}
-> > > > > +
-> > > > > +static u32 guc_g2g_size(struct xe_guc *guc)
-> > > > > +{
-> > > > > +	struct xe_gt *gt = guc_to_gt(guc);
-> > > > > +	struct xe_device *xe = gt_to_xe(gt);
-> > > > > +	unsigned int count = xe->info.gt_count;
-> > > > > +	u32 num_channels = (count * (count - 1)) / 2;
-> > > > > +
-> > > > > +	return num_channels * XE_G2G_TYPE_LIMIT * G2G_BUFFER_SIZE + G2G_DESC_AREA_SIZE;
-> > > > > +}
-> > > > > +
-> > > > > +static bool xe_guc_g2g_wanted(struct xe_device *xe)
-> > > > > +{
-> > > > > +	/* Can't do GuC to GuC communication if there is only one GuC */
-> > > > > +	if (xe->info.gt_count <= 1)
-> > > > > +		return false;
-> > > > > +
-> > > > > +	/* No current user */
-> > > > > +	return false;
-> > > > > +}
-> > > > > +
-> > > > > +static int guc_g2g_alloc(struct xe_guc *guc)
-> > > > > +{
-> > > > > +	struct xe_gt *gt = guc_to_gt(guc);
-> > > > > +	struct xe_device *xe = gt_to_xe(gt);
-> > > > > +	struct xe_tile *tile = gt_to_tile(gt);
-> > > > > +	struct xe_bo *bo;
-> > > > > +	u32 g2g_size;
-> > > > > +
-> > > > > +	if (guc->g2g.bo)
-> > > > > +		return 0;
-> > > > > +
-> > > > > +	if (gt->info.id != 0) {
-> > > > > +		struct xe_gt *root_gt = xe_device_get_gt(xe, 0);
-> > > > > +		struct xe_guc *root_guc = &root_gt->uc.guc;
-> > > > > +		struct xe_bo *bo;
-> > > > > +
-> > > > > +		bo = xe_bo_get(root_guc->g2g.bo);
-> > > > > +		if (IS_ERR(bo))
-> > > > > +			return PTR_ERR(bo);
-> > > > A few things.
-> > > > 
-> > > > - xe_bo_get returns BO or NULL.
-> > > Meaning just use if(bo) rather than the IS_ERR wrapper?
-> > > 
-> > Yes but if(!bo) is the error case. Assuming a typo on your end.
-> Yes. I meant "if(!bo) return -ENODEV;"
+On Thu, Nov 14, 2024 at 03:22:50PM -0500, Rodrigo Vivi wrote:
+> Move display related shutdown sequences from i915_driver to
+> intel_display_driver.
 > 
-> > 
-> > > > - Checking the return seems overkill
-> > > Seems wrong to not return an error if there is no allocation. E.g. just
-> > > change it to 'return -ENODEV' or some such if the bo is null?
-> > > 
-> > That's fine if want to leave in the error case but tons of places in
-> > driver don't have this check. Maybe that is an oversight though in some
-> > cases. Some cases we are in a non-failure path though. It can only
-> > return NULL if argument is NULL.
-> Indeed. But the source is coming from another GT. So technically it is
-> outside of the control of this GT. And I like defensive programming and
-> always checking for errors!
+> No functional change. Just taking the right ownership and
+> start some reconciliation of them between i915 and Xe.
 > 
-> > 
-> > > > - I don't see an associated xe_bo_put
-> > > > - Do we even need a reference? i.e. The clean up is handled by DRM managed on driver unload.
-> > > Technically, the get is not required at present if the secondary GTs can all
-> > > assume that the root GT is guaranteed to be holding its reference at all
-> > > times. It seems cleaner (and more future proof) to not make such
-> > > assumptions, though. Just have each GT look after its own usages and
-> > > requirements.
-> > > 
-> > > And yes, there is currently no put because everything just magically
-> > > vanishes on driver unload (same as per a whole bunch of other driver
-> > That function only drops a ref, so if you don't have put the BO will
-> > never actually get destroyed. I'd expect if you load the driver on a
-> > multt-GT device with this series and then unload it you will get loud
-> > complaints in dmesg unless I'm missing something. So if you leave in the
-> > get, you need put unless I'm missing something.
-> Hmm. Confused. I've run this code plenty on various types of multi-GT
-> devices and not noticed any complaints. Do I need any particular CONFIG
-> options enabled? Pretty sure I've run with the regular kernel leak detector
-> enabled but maybe not in a while.
+> v2: - Add missing _nogem caller (Imre)
+>     - Fix comment style (Jonathan)
 > 
+> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com> #v1
 
-I do bad things locally that leak memory all the time and IIRC it
-usually the TTM memory managers complaining about being unclean. I just
-looked and didn't see anything but drm_buddy_fini appears to have a
-couple of WARNs that should pop. So maybe this only shows on VRAM
-devices. Have you tried this on BMG?
+Cc: Imre Deak <imre.deak@intel.com>
 
-Matt
-
-> John.
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_driver.c   | 40 +++++++++++++++++++
+>  .../drm/i915/display/intel_display_driver.h   |  3 ++
+>  drivers/gpu/drm/i915/i915_driver.c            | 27 ++-----------
+>  3 files changed, 47 insertions(+), 23 deletions(-)
 > 
-> > 
-> > Matt
-> > 
-> > > internal BOs). The selftest does require dynamically releasing and
-> > > re-allocating the shared BO in various different configurations, though
-> > > (including different per GT splits that mean the root GT isn't necessarily
-> > > owning the allocation, it might not even have an allocation). That code
-> > > isn't included in this patch set at present for a bunch of 'not ready'
-> > > reasons.
-> > > 
-> > > > > +
-> > > > > +		guc->g2g.bo = bo;
-> > > > > +		guc->g2g.owned = false;
-> > > > > +		return 0;
-> > > > > +	}
-> > > > > +
-> > > > > +	g2g_size = guc_g2g_size(guc);
-> > > > > +	bo = xe_managed_bo_create_pin_map(xe, tile, g2g_size,
-> > > > > +					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-> > > > > +					  XE_BO_FLAG_GGTT |
-> > > > > +					  XE_BO_FLAG_GGTT_ALL |
-> > > > > +					  XE_BO_FLAG_GGTT_INVALIDATE);
-> > > > > +	if (IS_ERR(bo))
-> > > > > +		return PTR_ERR(bo);
-> > > > > +
-> > > > > +	xe_map_memset(xe, &bo->vmap, 0, 0, g2g_size);
-> > > > > +	guc->g2g.bo = bo;
-> > > > > +	guc->g2g.owned = true;
-> > > > > +
-> > > > > +	return 0;
-> > > > > +}
-> > > > > +
-> > > > > +static int guc_g2g_start(struct xe_guc *guc)
-> > > > > +{
-> > > > > +	struct xe_gt *far_gt, *gt = guc_to_gt(guc);
-> > > > > +	struct xe_device *xe = gt_to_xe(gt);
-> > > > > +	unsigned int i, j;
-> > > > > +	int t, err;
-> > > > > +	bool have_dev;
-> > > > > +
-> > > > > +	if (!guc->g2g.bo) {
-> > > > > +		int ret;
-> > > > > +
-> > > > > +		ret = guc_g2g_alloc(guc);
-> > > > > +		if (ret)
-> > > > > +			return ret;
-> > > > > +	}
-> > > > > +
-> > > > > +	/* GuC interface will need extending if more GT device types are ever created. */
-> > > > > +	xe_gt_assert(gt, (gt->info.type == XE_GT_TYPE_MAIN) || (gt->info.type == XE_GT_TYPE_MEDIA));
-> > > > > +
-> > > > > +	/* Channel numbering depends on whether there are multiple GTs per tile */
-> > > > > +	have_dev = xe->info.gt_count > xe->info.tile_count;
-> > > > > +
-> > > > > +	for_each_gt(far_gt, xe, i) {
-> > > > > +		u32 far_tile, far_dev;
-> > > > > +
-> > > > > +		if (far_gt->info.id == gt->info.id)
-> > > > > +			continue;
-> > > > > +
-> > > > > +		far_tile = gt_to_tile(far_gt)->id;
-> > > > > +		far_dev = G2G_DEV(far_gt);
-> > > > > +
-> > > > > +		for (t = 0; t < XE_G2G_TYPE_LIMIT; t++) {
-> > > > > +			err = guc_g2g_register(guc, far_gt, t, have_dev);
-> > > > > +			if (err) {
-> > > > > +				while (--t >= 0)
-> > > > > +					guc_g2g_deregister(guc, far_tile, far_dev, t);
-> > > > > +				goto err_deregister;
-> > > > > +			}
-> > > > > +		}
-> > > > > +	}
-> > > > > +
-> > > > > +	return 0;
-> > > > > +
-> > > > > +err_deregister:
-> > > > > +	for_each_gt(far_gt, xe, j) {
-> > > > > +		u32 tile, dev;
-> > > > > +
-> > > > > +		if (far_gt->info.id == gt->info.id)
-> > > > > +			continue;
-> > > > > +
-> > > > > +		if (j >= i)
-> > > > > +			break;
-> > > > > +
-> > > > > +		tile = gt_to_tile(far_gt)->id;
-> > > > > +		dev = G2G_DEV(far_gt);
-> > > > > +
-> > > > > +		for (t = 0; t < XE_G2G_TYPE_LIMIT; t++)
-> > > > > +			guc_g2g_deregister(guc, tile, dev, t);
-> > > > > +	}
-> > > > > +
-> > > > > +	return err;
-> > > > > +}
-> > > > > +
-> > > > >    static void guc_fini_hw(void *arg)
-> > > > >    {
-> > > > >    	struct xe_guc *guc = arg;
-> > > > > @@ -423,7 +688,16 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
-> > > > >    int xe_guc_post_load_init(struct xe_guc *guc)
-> > > > >    {
-> > > > > +	int ret;
-> > > > > +
-> > > > >    	xe_guc_ads_populate_post_load(&guc->ads);
-> > > > > +
-> > > > > +	if (xe_guc_g2g_wanted(guc_to_xe(guc))) {
-> > > > > +		ret = guc_g2g_start(guc);
-> > > > > +		if (ret)
-> > > > > +			return ret;
-> > > > > +	}
-> > > > > +
-> > > > >    	guc->submission_state.enabled = true;
-> > > > >    	return 0;
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-> > > > > index fa75f57bf5da..83a41ebcdc91 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_guc_types.h
-> > > > > +++ b/drivers/gpu/drm/xe/xe_guc_types.h
-> > > > > @@ -64,6 +64,15 @@ struct xe_guc {
-> > > > >    	struct xe_guc_pc pc;
-> > > > >    	/** @dbm: GuC Doorbell Manager */
-> > > > >    	struct xe_guc_db_mgr dbm;
-> > > > > +
-> > > > > +	/** @g2g: GuC to GuC communication state */
-> > > > > +	struct {
-> > > > > +		/** @g2g.bo: Storage for GuC to GuC communication channels */
-> > > > > +		struct xe_bo *bo;
-> > > > > +		/** @g2g.owned: Is the BO owned by this GT or just mapped in */
-> > > > > +		bool owned;
-> > > > > +	} g2g;
-> > > > > +
-> > > > >    	/** @submission_state: GuC submission state */
-> > > > >    	struct {
-> > > > >    		/** @submission_state.idm: GuC context ID Manager */
-> > > > > @@ -79,6 +88,7 @@ struct xe_guc {
-> > > > >    		/** @submission_state.fini_wq: submit fini wait queue */
-> > > > >    		wait_queue_head_t fini_wq;
-> > > > >    	} submission_state;
-> > > > > +
-> > > > Unrelated.
-> > > Sort of. If the coding style is to have blank lines between sub-structs then
-> > > adding the g2g struct ahead of submission_state gives it a blank line above
-> > > but not below, which is therefore wrong because it is both mis-matched start
-> > > vs end and not following the style guide. On the other hand, if blank lines
-> > > should not be included at all then the lines before/after the g2g struct
-> > > should be dropped.
-> > > 
-> > > John.
-> > > 
-> > > > Matt
-> > > > 
-> > > > >    	/** @hwconfig: Hardware config state */
-> > > > >    	struct {
-> > > > >    		/** @hwconfig.bo: buffer object of the hardware config */
-> > > > > -- 
-> > > > > 2.47.0
-> > > > > 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> index 06a60be649ee..ee2cccff6e5e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -39,6 +39,7 @@
+>  #include "intel_dp_tunnel.h"
+>  #include "intel_dpll.h"
+>  #include "intel_dpll_mgr.h"
+> +#include "intel_encoder.h"
+>  #include "intel_fb.h"
+>  #include "intel_fbc.h"
+>  #include "intel_fbdev.h"
+> @@ -762,3 +763,42 @@ void intel_display_driver_resume(struct drm_i915_private *i915)
+>  	if (state)
+>  		drm_atomic_state_put(state);
+>  }
+> +
+> +void intel_display_driver_shutdown(struct drm_i915_private *i915)
+> +{
+> +	intel_power_domains_disable(i915);
+> +
+> +	intel_fbdev_set_suspend(&i915->drm, FBINFO_STATE_SUSPENDED, true);
+> +	if (HAS_DISPLAY(i915)) {
+> +		drm_kms_helper_poll_disable(&i915->drm);
+> +		intel_display_driver_disable_user_access(i915);
+> +
+> +		drm_atomic_helper_shutdown(&i915->drm);
+> +	}
+> +
+> +	intel_dp_mst_suspend(i915);
+> +}
+> +
+> +void intel_display_driver_shutdown_noirq(struct drm_i915_private *i915)
+> +{
+> +	intel_hpd_cancel_work(i915);
+> +
+> +	if (HAS_DISPLAY(i915))
+> +		intel_display_driver_suspend_access(i915);
+> +
+> +	intel_encoder_suspend_all(&i915->display);
+> +	intel_encoder_shutdown_all(&i915->display);
+> +
+> +	intel_dmc_suspend(&i915->display);
+> +}
+> +
+> +void intel_display_driver_shutdown_nogem(struct drm_i915_private *i915)
+> +{
+> +	/*
+> +	 * The only requirement is to reboot with display DC states disabled,
+> +	 * for now leaving all display power wells in the INIT power domain
+> +	 * enabled.
+> +	 */
+> +
+> +	intel_power_domains_driver_remove(i915);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
+> index 42cc4af6d3fd..1ee37fb58d38 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
+> @@ -26,6 +26,9 @@ void intel_display_driver_remove_nogem(struct drm_i915_private *i915);
+>  void intel_display_driver_unregister(struct drm_i915_private *i915);
+>  int intel_display_driver_suspend(struct drm_i915_private *i915);
+>  void intel_display_driver_resume(struct drm_i915_private *i915);
+> +void intel_display_driver_shutdown(struct drm_i915_private *i915);
+> +void intel_display_driver_shutdown_noirq(struct drm_i915_private *i915);
+> +void intel_display_driver_shutdown_nogem(struct drm_i915_private *i915);
+>  
+>  /* interface for intel_display_reset.c */
+>  int __intel_display_driver_resume(struct drm_i915_private *i915,
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 2013962e446c..3b241054ceb5 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -945,43 +945,24 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+>  {
+>  	disable_rpm_wakeref_asserts(&i915->runtime_pm);
+>  	intel_runtime_pm_disable(&i915->runtime_pm);
+> -	intel_power_domains_disable(i915);
+>  
+> -	intel_fbdev_set_suspend(&i915->drm, FBINFO_STATE_SUSPENDED, true);
+> -	if (HAS_DISPLAY(i915)) {
+> -		drm_kms_helper_poll_disable(&i915->drm);
+> -		intel_display_driver_disable_user_access(i915);
+> -
+> -		drm_atomic_helper_shutdown(&i915->drm);
+> -	}
+> -
+> -	intel_dp_mst_suspend(i915);
+> +	intel_display_driver_shutdown(i915);
+>  
+>  	intel_irq_suspend(i915);
+> -	intel_hpd_cancel_work(i915);
+> -
+> -	if (HAS_DISPLAY(i915))
+> -		intel_display_driver_suspend_access(i915);
+>  
+> -	intel_encoder_suspend_all(&i915->display);
+> -	intel_encoder_shutdown_all(&i915->display);
+> -
+> -	intel_dmc_suspend(&i915->display);
+> +	intel_display_driver_shutdown_noirq(i915);
+>  
+>  	i915_gem_suspend(i915);
+>  
+>  	/*
+> -	 * The only requirement is to reboot with display DC states disabled,
+> -	 * for now leaving all display power wells in the INIT power domain
+> -	 * enabled.
+> -	 *
+>  	 * TODO:
+>  	 * - unify the pci_driver::shutdown sequence here with the
+>  	 *   pci_driver.driver.pm.poweroff,poweroff_late sequence.
+>  	 * - unify the driver remove and system/runtime suspend sequences with
+>  	 *   the above unified shutdown/poweroff sequence.
+>  	 */
+> -	intel_power_domains_driver_remove(i915);
+> +	intel_display_driver_shutdown_nogem(i915);
+> +
+>  	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+>  
+>  	intel_runtime_pm_driver_last_release(&i915->runtime_pm);
+> -- 
+> 2.47.0
 > 
