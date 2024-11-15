@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBF00D6DDFA
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 13:13:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E17BDD6DDF8
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 13:13:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B7EA10E2D0;
-	Fri, 15 Nov 2024 13:13:15 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DE7610E2D0;
- Fri, 15 Nov 2024 13:13:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF64C10E2D0;
+	Fri, 15 Nov 2024 13:13:38 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EcZKrAqL";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D26C910E2D0;
+ Fri, 15 Nov 2024 13:13:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731676418; x=1763212418;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=T8NkwCR1BQ2cIYrzf0dmq0y8GKLd9G6AdXbdZOzSbio=;
+ b=EcZKrAqLSVLj7d3CuweQMHy7Le/WLry2qSrngovaDFoCiTc8WGF4v1xO
+ UnlFryg7hrjblsuK+226NWoT2l75FHJ99NA0TNzWdn0j3KIBnk+whmihf
+ xu03LaiFfNSxjhCuBj0lFnndPp/sGnshwXp8RvMzVPrLLlUSOO1T+YAtb
+ lDcw3+6lJKSTd8NRl4fnN6PXxFLgzDyYbIrBVgiBjTxm+BFvfa/YC6KdA
+ WbwB9RY2krAeKmxCg4e8TgPW0hk2fr8ZPWmp+FYLkaeertIKrPQ1ZDuAp
+ u43XfjGAxL61cdAGVZzmCgxrTdx/8g0uGrWueXPTj47BhVL71AJpRAPe4 w==;
+X-CSE-ConnectionGUID: JAdElwB8S9We793hOx+/JQ==
+X-CSE-MsgGUID: JQKoDwkaRTKFGw2rtYhj1A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="42327537"
+X-IronPort-AV: E=Sophos;i="6.12,156,1728975600"; d="scan'208";a="42327537"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 05:13:37 -0800
+X-CSE-ConnectionGUID: 18hCa8qBQtmAujBIEomhWQ==
+X-CSE-MsgGUID: 0Msy412cQB6W3Mxyi2akvg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="93579170"
+Received: from ksztyber-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.64])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 05:13:36 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 4/5] drm/i915/irq: hide display_irqs_enabled access
+In-Reply-To: <ZzY5f-p1ERZwH7mj@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1731347547.git.jani.nikula@intel.com>
+ <6dcb90c7786532c7df0281e29a3e680c9551f060.1731347547.git.jani.nikula@intel.com>
+ <ZzY5f-p1ERZwH7mj@intel.com>
+Date: Fri, 15 Nov 2024 15:13:31 +0200
+Message-ID: <8734js63no.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_drm/xe/throttle=3A_Log_throttl?=
- =?utf-8?q?e_reasons?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 15 Nov 2024 13:13:13 -0000
-Message-ID: <173167639344.229834.3882108289336731059@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241115125614.857611-1-raag.jadav@intel.com>
-In-Reply-To: <20241115125614.857611-1-raag.jadav@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,119 +66,137 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 14 Nov 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Mon, Nov 11, 2024 at 07:53:33PM +0200, Jani Nikula wrote:
+>> Move the check for display_irqs_enabled within vlv_display_irq_reset()
+>> and vlv_display_irq_postinstall() to avoid looking at struct
+>> intel_display members within i915 core irq code.
+>> 
+>> Within display irq code, vlv_display_irq_reset() may need to be called
+>> with !display_irqs_enabled, so add a small wrapper.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_display_irq.c | 15 ++++++++++++---
+>>  drivers/gpu/drm/i915/i915_irq.c                  | 12 ++++--------
+>>  2 files changed, 16 insertions(+), 11 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> index e1547ebce60e..d5458b0d976b 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> @@ -1479,7 +1479,7 @@ void bdw_disable_vblank(struct drm_crtc *_crtc)
+>>  		schedule_work(&display->irq.vblank_dc_work);
+>>  }
+>>  
+>> -void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
+>> +static void _vlv_display_irq_reset(struct drm_i915_private *dev_priv)
+>>  {
+>>  	struct intel_uncore *uncore = &dev_priv->uncore;
+>>  
+>> @@ -1497,6 +1497,12 @@ void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
+>>  	dev_priv->irq_mask = ~0u;
+>>  }
+>>  
+>> +void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
+>> +{
+>> +	if (dev_priv->display.irq.display_irqs_enabled)
+>> +		_vlv_display_irq_reset(dev_priv);
+>> +}
+>> +
+>>  void i9xx_display_irq_reset(struct drm_i915_private *i915)
+>>  {
+>>  	if (I915_HAS_HOTPLUG(i915)) {
+>> @@ -1516,6 +1522,9 @@ void vlv_display_irq_postinstall(struct drm_i915_private *dev_priv)
+>>  	u32 enable_mask;
+>>  	enum pipe pipe;
+>>  
+>> +	if (!dev_priv->display.irq.display_irqs_enabled)
+>> +		return;
+>
+> I got confused here. this likely deserves a separate patch?
 
-Series: drm/xe/throttle: Log throttle reasons
-URL   : https://patchwork.freedesktop.org/series/141399/
-State : failure
+I thought I explained it in the commit message. The check is being moved
+from the callers to the callees. But for vlv_display_irq_reset() we also
+need to be able to call without the check, so that gets an additional
+wrapper.
 
-== Summary ==
+BR,
+Jani.
 
-lib/modules/6.12.0-rc7-xe/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/xcbc.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/serpent_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/aria_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/adiantum.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/tcrypt.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/crypto_engine.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/zstd.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/asymmetric_keys/
-lib/modules/6.12.0-rc7-xe/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/des_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/xctr.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/authenc.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/sm4_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/keywrap.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/camellia_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/sm3.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/pcrypt.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/aegis128.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/af_alg.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/algif_aead.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/cmac.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/sm3_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/aes_ti.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/chacha_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/poly1305_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/nhpoly1305.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/crc32_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/essiv.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/ccm.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/wp512.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/streebog_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/authencesn.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/echainiv.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/lrw.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/cryptd.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/crypto_user.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/algif_hash.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/vmac.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/hctr2.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/842.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/pcbc.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/ansi_cprng.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/cast6_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/twofish_common.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/twofish_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/lz4hc.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/blowfish_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/md4.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/curve25519-generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/lz4.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/rmd160.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/algif_skcipher.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/cast5_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/fcrypt.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/sm4.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/cast_common.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/blowfish_common.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/michael_mic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/
-lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/algif_rng.ko
-lib/modules/6.12.0-rc7-xe/kernel/block/
-lib/modules/6.12.0-rc7-xe/kernel/block/bfq.ko
-lib/modules/6.12.0-rc7-xe/kernel/block/kyber-iosched.ko
-lib/modules/6.12.0-rc7-xe/build
-lib/modules/6.12.0-rc7-xe/modules.alias.bin
-lib/modules/6.12.0-rc7-xe/modules.builtin
-lib/modules/6.12.0-rc7-xe/modules.softdep
-lib/modules/6.12.0-rc7-xe/modules.alias
-lib/modules/6.12.0-rc7-xe/modules.order
-lib/modules/6.12.0-rc7-xe/modules.symbols
-lib/modules/6.12.0-rc7-xe/modules.dep.bin
-+ mv kernel.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1731676389:package_x86_64\r\e[0K'
-[0Ksection_end:1731676389:package_x86_64
-[0K
-++ date +%s
-[0Ksection_start:1731676389:build_x86_64_nodebug[collapsed=true]
-[0KBuild x86-64 NoDebug
-+ echo -e '\e[0Ksection_start:1731676389:build_x86_64_nodebug[collapsed=true]\r\e[0KBuild x86-64 NoDebug'
-+ mkdir -p build64-nodebug
-+ KCONFIG_CONFIG=build64-nodebug/.config
-+ ./scripts/kconfig/merge_config.sh -m .ci/kernel/kconfig .ci/kernel/nodebug.fragment
-Using .ci/kernel/kconfig as base
-Merging .ci/kernel/nodebug.fragment
-The merge file '.ci/kernel/nodebug.fragment' does not exist.  Exit.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+>
+>> +
+>>  	pipestat_mask = PIPE_CRC_DONE_INTERRUPT_STATUS;
+>>  
+>>  	i915_enable_pipestat(dev_priv, PIPE_A, PIPE_GMBUS_INTERRUPT_STATUS);
+>> @@ -1694,7 +1703,7 @@ void valleyview_enable_display_irqs(struct drm_i915_private *dev_priv)
+>>  	dev_priv->display.irq.display_irqs_enabled = true;
+>>  
+>>  	if (intel_irqs_enabled(dev_priv)) {
+>> -		vlv_display_irq_reset(dev_priv);
+>> +		_vlv_display_irq_reset(dev_priv);
+>>  		vlv_display_irq_postinstall(dev_priv);
+>>  	}
+>>  }
+>> @@ -1709,7 +1718,7 @@ void valleyview_disable_display_irqs(struct drm_i915_private *dev_priv)
+>>  	dev_priv->display.irq.display_irqs_enabled = false;
+>>  
+>>  	if (intel_irqs_enabled(dev_priv))
+>> -		vlv_display_irq_reset(dev_priv);
+>> +		_vlv_display_irq_reset(dev_priv);
+>>  }
+>>  
+>>  void ilk_de_irq_postinstall(struct drm_i915_private *i915)
+>> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+>> index f75cbf5b8a1c..7920ad9585ae 100644
+>> --- a/drivers/gpu/drm/i915/i915_irq.c
+>> +++ b/drivers/gpu/drm/i915/i915_irq.c
+>> @@ -658,8 +658,7 @@ static void valleyview_irq_reset(struct drm_i915_private *dev_priv)
+>>  	gen5_gt_irq_reset(to_gt(dev_priv));
+>>  
+>>  	spin_lock_irq(&dev_priv->irq_lock);
+>> -	if (dev_priv->display.irq.display_irqs_enabled)
+>> -		vlv_display_irq_reset(dev_priv);
+>> +	vlv_display_irq_reset(dev_priv);
+>>  	spin_unlock_irq(&dev_priv->irq_lock);
+>>  }
+>>  
+>> @@ -723,8 +722,7 @@ static void cherryview_irq_reset(struct drm_i915_private *dev_priv)
+>>  	gen2_irq_reset(uncore, GEN8_PCU_IRQ_REGS);
+>>  
+>>  	spin_lock_irq(&dev_priv->irq_lock);
+>> -	if (dev_priv->display.irq.display_irqs_enabled)
+>> -		vlv_display_irq_reset(dev_priv);
+>> +	vlv_display_irq_reset(dev_priv);
+>>  	spin_unlock_irq(&dev_priv->irq_lock);
+>>  }
+>>  
+>> @@ -740,8 +738,7 @@ static void valleyview_irq_postinstall(struct drm_i915_private *dev_priv)
+>>  	gen5_gt_irq_postinstall(to_gt(dev_priv));
+>>  
+>>  	spin_lock_irq(&dev_priv->irq_lock);
+>> -	if (dev_priv->display.irq.display_irqs_enabled)
+>> -		vlv_display_irq_postinstall(dev_priv);
+>> +	vlv_display_irq_postinstall(dev_priv);
+>>  	spin_unlock_irq(&dev_priv->irq_lock);
+>>  
+>>  	intel_uncore_write(&dev_priv->uncore, VLV_MASTER_IER, MASTER_INTERRUPT_ENABLE);
+>> @@ -794,8 +791,7 @@ static void cherryview_irq_postinstall(struct drm_i915_private *dev_priv)
+>>  	gen8_gt_irq_postinstall(to_gt(dev_priv));
+>>  
+>>  	spin_lock_irq(&dev_priv->irq_lock);
+>> -	if (dev_priv->display.irq.display_irqs_enabled)
+>> -		vlv_display_irq_postinstall(dev_priv);
+>> +	vlv_display_irq_postinstall(dev_priv);
+>>  	spin_unlock_irq(&dev_priv->irq_lock);
+>>  
+>>  	intel_uncore_write(&dev_priv->uncore, GEN8_MASTER_IRQ, GEN8_MASTER_IRQ_CONTROL);
+>> -- 
+>> 2.39.5
+>> 
 
-
+-- 
+Jani Nikula, Intel
