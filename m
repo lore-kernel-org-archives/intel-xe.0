@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1179FD68BDF
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 21:26:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20352D68BDB
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 21:26:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD59110E8E9;
-	Fri, 15 Nov 2024 21:26:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DE6910E8FE;
+	Fri, 15 Nov 2024 21:26:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="iVvLyPnz";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="Fqjuy5eS";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 49D5910E8E5;
- Fri, 15 Nov 2024 21:26:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id DCC6E10E8E6;
+ Fri, 15 Nov 2024 21:26:44 +0000 (UTC)
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
- by linux.microsoft.com (Postfix) with ESMTPSA id CEC70206BCF9;
- Fri, 15 Nov 2024 13:26:41 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com CEC70206BCF9
+ by linux.microsoft.com (Postfix) with ESMTPSA id 9A64C206BCFC;
+ Fri, 15 Nov 2024 13:26:42 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9A64C206BCFC
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
  s=default; t=1731706002;
- bh=2qNmVTIUPIQHjxG6U+oz3oOJorUpDTvltiEua1kgDGM=;
+ bh=QYs6jKNkSqRMwxas8zTGS0f9EDen03tWxmE1GsbmPvQ=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=iVvLyPnzqMDnIVqCr8TaID7h6/EcvZ4uGITdugla/Mpc21N0a+zSOXosYGRpfd2vu
- d1MyMoy9U+Z9sd1VeqqtG/myJ7CKMnsPLRLQ8NuKd0YjVEIqU9hZB6KsELpQ9xGs8R
- v7zo22n2+S5uyzdobRgvEalMR5SyEYAxTB4IIGU8=
+ b=Fqjuy5eSiRbnXSL2o0v7YwMA9fZ674Q/Gd+25Z4rP4RwCiu11at2Mv7W7PGMuqY5d
+ K4P8ORik82r/04knqALaANam5+D1reZvHHMZxADzcYp9l2s2TYV6JJ/Elj8BYsGqr3
+ W1hOklHhhwD9HLzPgJ9aKxBAHgaV0sBNYgQwU9cU=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:26:21 +0000
-Subject: [PATCH v2 04/21] s390: kernel: Convert timeouts to use
+Date: Fri, 15 Nov 2024 21:26:24 +0000
+Subject: [PATCH v2 07/21] accel/habanalabs: Convert timeouts to
  secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v2-4-911fb7595e79@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v2-7-911fb7595e79@linux.microsoft.com>
 References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
 In-Reply-To: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -130,57 +130,37 @@ Changes made with the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- arch/s390/kernel/lgr.c      | 3 ++-
- arch/s390/kernel/time.c     | 4 ++--
- arch/s390/kernel/topology.c | 2 +-
- 3 files changed, 5 insertions(+), 4 deletions(-)
+ drivers/accel/habanalabs/common/device.c         | 2 +-
+ drivers/accel/habanalabs/common/habanalabs_drv.c | 3 +--
+ 2 files changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/arch/s390/kernel/lgr.c b/arch/s390/kernel/lgr.c
-index 6652e54cf3db9fbdd8cfb06f8a0dc1d4c05ae7d7..68021cb38574b122bbe3d9f70e9168305360017b 100644
---- a/arch/s390/kernel/lgr.c
-+++ b/arch/s390/kernel/lgr.c
-@@ -166,7 +166,8 @@ static struct timer_list lgr_timer;
-  */
- static void lgr_timer_set(void)
- {
--	mod_timer(&lgr_timer, jiffies + msecs_to_jiffies(LGR_TIMER_INTERVAL_SECS * MSEC_PER_SEC));
-+	mod_timer(&lgr_timer,
-+		  jiffies + secs_to_jiffies(LGR_TIMER_INTERVAL_SECS));
- }
+diff --git a/drivers/accel/habanalabs/common/device.c b/drivers/accel/habanalabs/common/device.c
+index e0cf3b4343bb081638430f2552ed27431b488ff9..30277ae410d4b742ffb7bddc35498564ff96fe62 100644
+--- a/drivers/accel/habanalabs/common/device.c
++++ b/drivers/accel/habanalabs/common/device.c
+@@ -817,7 +817,7 @@ static void device_hard_reset_pending(struct work_struct *work)
+ 		}
  
- /*
-diff --git a/arch/s390/kernel/time.c b/arch/s390/kernel/time.c
-index b713effe057967623f64da8297314fcc42ff1af2..e28c61d39d27c6e89f490e779ff674ba2fe21d3e 100644
---- a/arch/s390/kernel/time.c
-+++ b/arch/s390/kernel/time.c
-@@ -656,12 +656,12 @@ static void stp_check_leap(void)
- 		if (ret < 0)
- 			pr_err("failed to set leap second flags\n");
- 		/* arm Timer to clear leap second flags */
--		mod_timer(&stp_timer, jiffies + msecs_to_jiffies(14400 * MSEC_PER_SEC));
-+		mod_timer(&stp_timer, jiffies + secs_to_jiffies(14400));
- 	} else {
- 		/* The day the leap second is scheduled for hasn't been reached. Retry
- 		 * in one hour.
- 		 */
--		mod_timer(&stp_timer, jiffies + msecs_to_jiffies(3600 * MSEC_PER_SEC));
-+		mod_timer(&stp_timer, jiffies + secs_to_jiffies(3600));
+ 		queue_delayed_work(hdev->reset_wq, &device_reset_work->reset_work,
+-					msecs_to_jiffies(HL_PENDING_RESET_PER_SEC * 1000));
++					secs_to_jiffies(HL_PENDING_RESET_PER_SEC));
  	}
  }
  
-diff --git a/arch/s390/kernel/topology.c b/arch/s390/kernel/topology.c
-index 813e5da9a9737e05ec3ef85a495fe38cbb40c49b..99095ff3897c1b5337f7e2abcf10f3fe8219ad7c 100644
---- a/arch/s390/kernel/topology.c
-+++ b/arch/s390/kernel/topology.c
-@@ -370,7 +370,7 @@ static void set_topology_timer(void)
- 	if (atomic_add_unless(&topology_poll, -1, 0))
- 		mod_timer(&topology_timer, jiffies + msecs_to_jiffies(100));
- 	else
--		mod_timer(&topology_timer, jiffies + msecs_to_jiffies(60 * MSEC_PER_SEC));
-+		mod_timer(&topology_timer, jiffies + secs_to_jiffies(60));
- }
+diff --git a/drivers/accel/habanalabs/common/habanalabs_drv.c b/drivers/accel/habanalabs/common/habanalabs_drv.c
+index 708dfd10f39c584a6221c29015f4b0323574145a..5ec13f3a46f915e75b04582b28d51ba8bb50be78 100644
+--- a/drivers/accel/habanalabs/common/habanalabs_drv.c
++++ b/drivers/accel/habanalabs/common/habanalabs_drv.c
+@@ -362,8 +362,7 @@ static void fixup_device_params_per_asic(struct hl_device *hdev, int timeout)
+ 		 * a different default timeout for Gaudi
+ 		 */
+ 		if (timeout == HL_DEFAULT_TIMEOUT_LOCKED)
+-			hdev->timeout_jiffies = msecs_to_jiffies(GAUDI_DEFAULT_TIMEOUT_LOCKED *
+-										MSEC_PER_SEC);
++			hdev->timeout_jiffies = secs_to_jiffies(GAUDI_DEFAULT_TIMEOUT_LOCKED);
  
- void topology_expect_change(void)
+ 		hdev->reset_upon_device_release = 0;
+ 		break;
 
 -- 
 2.34.1
