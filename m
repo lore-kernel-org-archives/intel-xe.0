@@ -4,63 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17805D68BCD
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 18:57:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 315CBD68BCF
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 19:07:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D90B810E0C4;
-	Fri, 15 Nov 2024 18:57:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D360B10E108;
+	Fri, 15 Nov 2024 19:06:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b9rMnpNo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jYMC0zrk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB1E10E17B
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Nov 2024 18:57:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C58510E0AE;
+ Fri, 15 Nov 2024 19:06:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731697026; x=1763233026;
+ t=1731697618; x=1763233618;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=+T3LHzgTU6L2DHkyEZohcZ+ObYZKgtVPR3wa6EpfDck=;
- b=b9rMnpNozJTv7Svfkz5NIfj+qgv8+Db16luPPICP/umhWJjQWIqLKYpp
- frzQBSFOBGmDRhpN0Wzi1m7Gfr1J5P5jkLMMJ+Tvp4AAcuC7JQTI0ZPUZ
- /ABxp2ddGlnwADdkE6v+044hgGUYCOriWL+NebLXcNNbpAHUz4J+KfO6M
- B+vF2aAU5x+FOcByStecZuH2t0Q8tH9N43ylX27O2KWKoZoLLaerdMUq6
- RK6K7bOLP/gwu5ncryOB5mBo6JjpnzBVB0lBSBBinJHzd+O87Kk7vkmfP
- 6D/lJKE1+YB/D32I8AnkvVHqUFk3h/XG4/TRLWIVGRrR0AhwKkC9OUo/H g==;
-X-CSE-ConnectionGUID: eayJXMbzS6euWX8wy0sOsw==
-X-CSE-MsgGUID: x8KD4/0mSfqhQzPe3XJ2SA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="43110512"
-X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="43110512"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 10:57:06 -0800
-X-CSE-ConnectionGUID: obUV/Fj5ROS9vOK79KBqLQ==
-X-CSE-MsgGUID: ndPHvsLjR/uoYTDHL4gGjg==
+ in-reply-to:mime-version;
+ bh=PDt5PFurQCP6B0FHXmHB/RpxfMBRSMd5hcTfaZlHp8s=;
+ b=jYMC0zrkCzRgZZcUrBoJ3Twj5Op8mJ054vPfdKMDr6MkEH6n1irWkTjF
+ +v89LcDCKvx3fqdKm56PMyMz5f9l33K2tmGuqzY+whOgUB9XZtpth2L0z
+ Zl+s7JHKZtXiJmO167CsoKMpbC/CGiFJwPYga27rKME78h/ctW5kIAll8
+ 6MnuAtwFgICV9Zqzm5W8sq4qAO905Bd8sHcbTp+LOMshNO3q52OFz96u9
+ ZIwyjf547KRkBOloNb8Fy4AEVdWUf/4EI0pJayLT54jha9oQ9CPHdlAjK
+ iDck7XrlM6fsM1cibbtS0iH3VVV7tFJXfIOuR2VBLvzpZTq1TDWE2qXMz w==;
+X-CSE-ConnectionGUID: lxjYMvO1RnWAzkmmOIGhUA==
+X-CSE-MsgGUID: 3fPBCXlVQWaWA1PRC9vnoA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="42797068"
+X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="42797068"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 11:06:58 -0800
+X-CSE-ConnectionGUID: mxtykcq+SzWjRpbHI0ksHw==
+X-CSE-MsgGUID: hHMdoDIESxqDADFLLaW+4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="119479193"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.108.108])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 10:57:06 -0800
-Date: Fri, 15 Nov 2024 12:56:57 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "Gupta, saurabhg" <saurabhg.gupta@intel.com>, "Zuo, Alex" <alex.zuo@intel.com>,
- "Vishwanathapura, Niranjana" <niranjana.vishwanathapura@intel.com>,
- "brian.welty@intel.com" <brian.welty@intel.com>, 
- "Roper, Matthew D" <matthew.d.roper@intel.com>, "Brost,
- Matthew" <matthew.brost@intel.com>, 
- "Harrison, John C" <john.c.harrison@intel.com>
-Subject: Re: [PATCH v2] drm/xe/xe_guc_ads: Add nonpriv registers to write list
-Message-ID: <f34ezr2xwkzxhd6h6vcetpertkg46jnffmjmbbnx2xtht2nefx@ysn2rc5grkdf>
-References: <20241101222350.108367-1-jonathan.cavitt@intel.com>
- <la7edkqhnhjs2vuy7eihivskiqwbqtm3tpnu4alyreqgi5lwn4@chzwysy5jiri>
- <CH0PR11MB5444A7503D73D9D2B4C287C6E5242@CH0PR11MB5444.namprd11.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="88742533"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 Nov 2024 11:06:57 -0800
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 15 Nov 2024 11:06:57 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 15 Nov 2024 11:06:57 -0800
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 15 Nov 2024 11:06:57 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=u5jBU7cw+NgudeDdk+5DEedb3uZgNyHVBptYBwdrepCjFnH5GoaxNt4L86oNO04hKT3VQMZAmv1DkAsYjfqEIFroDEIl2UeoMTjZFBWRdjkCDg/Suld7S8DyFCxkcgqLn2sMCXVgTZvU7hLydiyauJdYnyfhtxzTObZg7Gm2EC6W79RfWxjOINZLVqnKEWsBhdnmCHQFjE7c+mFKSwBhlBFlot/Yv+/UiSYGM2HB+vaJ7xrMt7d8VxwhmICESBI8sOF7+hZIKIq2TqYmtwDIauHcMXJtHXhWxNXKadB/bYKcZAoH1HSiS5UHO1FLHzKrg7GTlpu8FnmVOke05FKckQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=obXQvjpzSyohfk1blrPNi1/hMBhSYckidFKT2vzDS0g=;
+ b=RrWLsT7aUwhJ5PHQMBCXlJsU+GiEwk6+FtiseTr03j0aNWkpJEpyUyd5++hRls4WTwKZIp+v3mBXxDILtLbi6fmjNO27RxAOHsaKJ9+aLq2xRo3Fc64hoNkdKB8j84oh5r8PbyUdXvSQhAiP3yR4BNu9f8uRp4Wf+d8AD34ZsWuZw7qyIeRWCkrRCZGYdS/iIFTyacAQeTiyfincIPQ1XBNxJWp/xrQ3pupC5Dtszec7Jx2t3uvLvyPGLZM/oV3lvKKBqQgPxKZ+P7GClOmvFNqY9lt0653RBKtbV4vdf76WmnlsMYcLZphrvl4P9TE4Rmx4L63ChdELb+wo7pdYIg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
+ by MW4PR11MB6570.namprd11.prod.outlook.com (2603:10b6:303:1e3::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.18; Fri, 15 Nov
+ 2024 19:06:54 +0000
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42%7]) with mapi id 15.20.8114.020; Fri, 15 Nov 2024
+ 19:06:54 +0000
+Date: Fri, 15 Nov 2024 14:06:49 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Maarten Lankhorst <maarten@lankhorst.se>
+CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Michal Wajdeczko
+ <michal.wajdeczko@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <dev@lankhorst.se>
+Subject: Re: [PATCH 6/9] drm/xe/sriov: Move VF bootstrap and query_config to
+ vf_guc_init
+Message-ID: <ZzebyT2n7Yawvugg@intel.com>
+References: <20241107100140.292928-1-maarten.lankhorst@linux.intel.com>
+ <20241107100140.292928-6-maarten.lankhorst@linux.intel.com>
+ <ZzYguKUVI6DSpNvL@intel.com>
+ <4698fb99-209c-4e66-a364-232884bcdf9b@lankhorst.se>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <CH0PR11MB5444A7503D73D9D2B4C287C6E5242@CH0PR11MB5444.namprd11.prod.outlook.com>
+In-Reply-To: <4698fb99-209c-4e66-a364-232884bcdf9b@lankhorst.se>
+X-ClientProxiedBy: MW4P223CA0021.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:303:80::26) To BYAPR11MB2854.namprd11.prod.outlook.com
+ (2603:10b6:a02:c9::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|MW4PR11MB6570:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2382e9df-8d69-4561-77bb-08dd05a8ab4b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?6KZCfrooV4RsD5E6Vk2f5el/YgoMUZCRD8ISOT92kOKbyJtRXICyR1SyRG/S?=
+ =?us-ascii?Q?4+JLlXGBYbRA9jjnVvZ+Z+eMvmcc5o/u9Mxb5/Xiaqj3+y0gAIA2iWKU55+A?=
+ =?us-ascii?Q?1wfv9LuHgJSGaYLFfQcyNYbbGALiQlTrDerq2Zz74R3zZCFLO2F9ywKrNer/?=
+ =?us-ascii?Q?VNHveeP3pTDxgJqyOWHGEnVESjOLRzeutLoOMp/iJoRztqP5L+XyMNNqstH5?=
+ =?us-ascii?Q?J8A9wK3NkP12TdSvwboSygySILrhRM+rjvxCZuwJginX7xZe0VtedLcGB9o9?=
+ =?us-ascii?Q?lj6luDenkrb16z2Ud38n1NPawffhqJpIl1NWOjlfE9N3noqzZZEJDMZtJcmK?=
+ =?us-ascii?Q?41Z5G0v8TuIhU/A/z7z0expMGdgwf06pLxTHayj+4zuFMCImzHoP3yo7pyWI?=
+ =?us-ascii?Q?0TV5qMrS55WnLe/t0bjgd94UeQkBKjFJ/XOPeJ0OvfL3QfXpz9aD7ksBdUrQ?=
+ =?us-ascii?Q?r2YPipVkmewPVifHMBIIg1qVhAC8k1wWJMqH8s0L8Zrb+E8qp+ZlAvSrDQfC?=
+ =?us-ascii?Q?Ea0ueBPf8JkElkcaZcgYfUB1dPrU2bUWDZrH5i+0yU1tRIdXoYxWAY3Q/bbb?=
+ =?us-ascii?Q?8cXgPPycdUupaYSfmFO56HwpOJcDJBTq96MzaPn1fgtTAfDWmz4/XHISctmA?=
+ =?us-ascii?Q?pwI5f43smJWnIX0OfKNU7chkj0mI/wBTTIMdkNl+6bTm82MvoE+NA0zJ11X0?=
+ =?us-ascii?Q?NTNMEMGZRGJDf+l+DTKkoe6Qtk9rV+JXtAPZcsmJo1Zz/Rch8vPz4bTP+rkK?=
+ =?us-ascii?Q?hHx4TMvLoZUWOd5eTSlQtSNWvcE33uvpDHS7UtwhV6gu45h8I4MiEmwrrpzV?=
+ =?us-ascii?Q?QRn9h9/Z1JMXEE5RXLNT2bSfZcpusFXNeioHA8PVV1zydrs0RT2Dsvg8m0m8?=
+ =?us-ascii?Q?sd77ZFzIeTRDEnaCf4mBm6UvtQtUq0H6mJMNn77kZj/VAVEysXWv4WtqTlwV?=
+ =?us-ascii?Q?62nbNRLWVEccse0VseljDmJ4+Q5/TnYNh3T7xYxRn6h2bJ4sgdixC2kzPPoB?=
+ =?us-ascii?Q?7295pEEcZR6ulTtt4ahr5EBkTD5NoPW9rX54aSC30kfrgYCdA1kYmkqHe/dI?=
+ =?us-ascii?Q?qbrfOd2uFSj3MTiAqH52T6gON2g4ZbnDr8IrSfBEm0ZJA6aHlmt3gPEMWqVJ?=
+ =?us-ascii?Q?2NN9jn6pDorQM9SrKWnrzQBRUjO4fyStXZpTDjoToCUfktsQoJxUfKExp/7v?=
+ =?us-ascii?Q?/GLJBKZqQ0Axm9JeTJJLLYgYilkjWU/w7CNvsKQOjbnN9G9m0RXKps3nt/pF?=
+ =?us-ascii?Q?5Bqj+d/wRKvEPia4Zs8X?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xParQJPOvPBygqDYikZEAddei1sryYhTePBitgJjE2Dd/c+jy6x2LxfjwYkA?=
+ =?us-ascii?Q?En0+F+Rr3H8yU5wvhhs7R/rcaYxQ/65qLtQiWGs/qHE8dqZmWRRk3vzJOOhb?=
+ =?us-ascii?Q?kWZ4WaH2z9vtbDbZtGG2SFoUGU1BYaSyDMa85fzjeTmS7YXj1IRt1vpv/ffx?=
+ =?us-ascii?Q?ib6Pca7AYa6yi4uN9nOfTcPC9t8azLEMbghIRT3CdxZTL5cpJ9yYpWKBXFlJ?=
+ =?us-ascii?Q?gzbvBgaSPaT2PrSEotsnPixT1Asx0lv2eTY/X9axtk1vpPrd41Y+Bc1G6PV8?=
+ =?us-ascii?Q?RSWo4ogHDDSlU0G+Redr22RPCJLuNhoy73soZwR8qswbHyWz9Oqro/qnTN5F?=
+ =?us-ascii?Q?vcvisROyyJLOY+mUADG69jmMljXI50ODIo2zl7E2SkEfAtV7HwWUC3o/AJhO?=
+ =?us-ascii?Q?EOW8T+KbCtLx02Mley8mGPeXuyou5aq2Oh9wE1LQW2F1r/fNz2sqHmGic8Rh?=
+ =?us-ascii?Q?q5Ah7fPTmbKUsqEeq0k4DM6q1oaINuyAkmJFOuQRE1mGTQQwN/CwZoz9Rk3r?=
+ =?us-ascii?Q?mg+X4q01GMl9zeUbXk9YMg1vkHR0LBiZGfszNjKbWPpF/dWk0JKxA9MCbst5?=
+ =?us-ascii?Q?YEXTFCgdI+TWLkr167YyhPoPOiRdGBV6d6y97gibF9kvgR2A1B+S3Cu0ByDC?=
+ =?us-ascii?Q?KA5RaBfJVCmObCcykpItH7WWt6Zrq6NKdYkzhXhry76Q5gDaFbow39boPvGv?=
+ =?us-ascii?Q?9NY4lommoG+swClh0fgYSbk3cdYv21pdCWAHgTCudYJXBsWS75mB9i+hAazX?=
+ =?us-ascii?Q?YLexsZB3bG/AJA37sCPIQso1TGq1AGERGvh+0iMnkRfFq0ZkJ3/jWegF0IKF?=
+ =?us-ascii?Q?Z9iksF1lJOdNCuMsQgxNgZEnnjYTG0qYAjyZEUUp33Iq5Vf9k7ghX0KnmaFp?=
+ =?us-ascii?Q?IoousfBhzyeRtFoH6ekC4RuMGWTkCABDAD/FKTr/MWo8qk+XsrBf39G6fllS?=
+ =?us-ascii?Q?kffQ59wuEKRz6I3aHPCEK3KxQEO0qXyUc2DduBb3mSYDVIqRg5Jt8FFOA8VD?=
+ =?us-ascii?Q?51oKYfqvhheQltASBKZ1OcH5HarQerbWYfCnTWIQv4EfILRWqHeRGLhzLxAi?=
+ =?us-ascii?Q?Mw4EdTpF/BXZijTN9ynYB4G9vo3CZNIja7IWuPKM/6j7N7iRzAyG048CaX1b?=
+ =?us-ascii?Q?m+vfeGPLkko/lWzCNvAlm3+OVzKpxMtqa7xmlYLVJNvuEm2t5Vr4F1koKpjM?=
+ =?us-ascii?Q?9yDQS+3ols9eKdLQmK1wszEZRYLA1OP92KV0JWg8DgAJs6IFiM+BacB2HChi?=
+ =?us-ascii?Q?Ys03gJsuwu19pGD0X2rOKQYCz0usb4nPmRc+JZ87LKJttGQYlX7PXlUyP1Sn?=
+ =?us-ascii?Q?0JCBptP9qsovV/BMXwhnrCZIH2eyffmbgaCx3yJ8gccj/jbxN51uzTnOrVLn?=
+ =?us-ascii?Q?EdmIS136uFj+O47jizxnK3a959EcHZgA4S411uH9WrDUdU3+7DZziIE8GdoE?=
+ =?us-ascii?Q?kbZBxFac24AXtxM3lQElrdFBDS6S2KPgG+ZMiVKGE/ps2nMTJCSJ1Lfo2xIJ?=
+ =?us-ascii?Q?T9oRNTfCT7oqskP/qjODqteYkWa0wR/a49qeCMIL5/J+EecgGnsrpfZX/xUW?=
+ =?us-ascii?Q?aJmj29/dujMUt7WwyFZCRrIyil6aMUgHaAbKK9tKUOxqoHO40wGsmKmOFqbS?=
+ =?us-ascii?Q?oQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2382e9df-8d69-4561-77bb-08dd05a8ab4b
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2024 19:06:54.6087 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dD0WlUtDrqn3kRBdlse3ZUvuzwuazBGHBZT2/K9mH6igBbnUtpHmvK1br8HSpnthDm47X2vQWKmlIBix+xdfKw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6570
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,167 +178,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Nov 15, 2024 at 11:28:25AM -0600, Cavitt, Jonathan wrote:
->-----Original Message-----
->From: De Marchi, Lucas <lucas.demarchi@intel.com>
->Sent: Thursday, November 14, 2024 4:31 PM
->To: Cavitt, Jonathan <jonathan.cavitt@intel.com>
->Cc: intel-xe@lists.freedesktop.org; Gupta, saurabhg <saurabhg.gupta@intel.com>; Zuo, Alex <alex.zuo@intel.com>; Vishwanathapura, Niranjana <niranjana.vishwanathapura@intel.com>; brian.welty@intel.com; Roper, Matthew D <matthew.d.roper@intel.com>; Brost, Matthew <matthew.brost@intel.com>; Harrison, John C <john.c.harrison@intel.com>
->Subject: Re: [PATCH v2] drm/xe/xe_guc_ads: Add nonpriv registers to write list
->>
->> On Fri, Nov 01, 2024 at 10:23:50PM +0000, Jonathan Cavitt wrote:
->> >When performing a guc_mmio_regset_write, we add all the registers in the
->> >reg_sr list to the save/restore list, but do not do the same for the
->> >nonpriv registers.  Add them in.
->> >
->> >v2:
->> >- Add all NONPRIV registers to avoid undefined behavior (Harrison)
->> >- s/whitelist/nonpriv
->> >
->> >Closes: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2249
->> >Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
->> >CC: Lucas de Marchi <lucas.demarchi@intel.com>
->> >CC: Matt Roper <matthew.d.roper@intel.com>
->> >CC: John Harrison <john.c.harrison@intel.com>
->> >CC: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->> >CC: Ashutosh Dixit <ashutosh.dixit@intel.com>
->> >---
->> > drivers/gpu/drm/xe/xe_guc_ads.c | 7 +++++++
->> > 1 file changed, 7 insertions(+)
->> >
->> >diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
->> >index 943146e5b460..b0afb89d9d90 100644
->> >--- a/drivers/gpu/drm/xe/xe_guc_ads.c
->> >+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
->> >@@ -243,6 +243,8 @@ static size_t calculate_regset_size(struct xe_gt *gt)
->> > 		xa_for_each(&hwe->reg_sr.xa, sr_idx, sr_entry)
->> > 			count++;
->> >
->> >+	count += RING_MAX_NONPRIV_SLOTS * XE_NUM_HW_ENGINES;
->> >+
->> > 	count += ADS_REGSET_EXTRA_MAX * XE_NUM_HW_ENGINES;
->> >
->> > 	if (XE_WA(gt, 1607983814))
->> >@@ -727,6 +729,11 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
->> > 	xa_for_each(&hwe->reg_sr.xa, idx, entry)
->> > 		guc_mmio_regset_write_one(ads, regset_map, entry->reg, count++);
->> >
->> >+	for (i = 0; i < RING_MAX_NONPRIV_SLOTS; i++)
->> >+		guc_mmio_regset_write_one(ads, regset_map,
->> >+					  RING_FORCE_TO_NONPRIV(hwe->mmio_base, i),
->> >+					  count++);
->>
->> I guess this fixes the issue. I'm still wondering why we are changing it
->> in the ads though.
->>
->> Ideally we'd do:
->>
->> a) switch the order in hw_engine_init() so it does:
->>
->> 	xe_reg_sr_apply_whitelist(hwe);
->> 	xe_reg_sr_apply_mmio(&hwe->reg_sr, gt);
->>
->> b) change xe_reg_sr_apply_whitelist() so instead of writting the
->>     mmio slots by itself, it writes them to hwe->reg_sr
->>
->>
->> I **think** it would also work and stop handling the nonpriv slots as
->> snow flakes. They would also show up in debugfs/.../register-save-restore
->> file.
->>
->> Can you give it a try?  If it doesn't work, feel free to
->> add my
->>
->> 	Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>
->> and we can try to polish it later.
->
->Thank you for the conditional RB.  Here's what I attempted WRT this request:
->
->"""
->diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
->index c4b0dc3be39c..095df24c61b8 100644
->--- a/drivers/gpu/drm/xe/xe_hw_engine.c
->+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
->@@ -573,8 +573,8 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
->        xe_gt_assert(gt, id < ARRAY_SIZE(engine_infos) && engine_infos[id].name);
->        xe_gt_assert(gt, gt->info.engine_mask & BIT(id));
->
->-       xe_reg_sr_apply_mmio(&hwe->reg_sr, gt);
->        xe_reg_sr_apply_whitelist(hwe);
->+       xe_reg_sr_apply_mmio(&hwe->reg_sr, gt);
->
->        hwe->hwsp = xe_managed_bo_create_pin_map(xe, tile, SZ_4K,
->                                                 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
->diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
->index e1a0e27cda14..809a72767bde 100644
->--- a/drivers/gpu/drm/xe/xe_reg_sr.c
->+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
->@@ -234,6 +236,13 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
->
->        p = drm_dbg_printer(&xe->drm, DRM_UT_DRIVER, NULL);
->        xa_for_each(&sr->xa, reg, entry) {
->+               struct xe_reg_sr_entry sr_entry = {
->+                       .reg = RING_FORCE_TO_NONPRIV(mmio_base, slot),
->+                       .clr_bits = entry->clr_bits,
->+                       .set_bits = reg | entry->set_bits,
->+                       .read_mask = entry->read_mask,
->+               };
->+
->                if (slot == RING_MAX_NONPRIV_SLOTS) {
->                        xe_gt_err(gt,
->                                  "hwe %s: maximum register whitelist slots (%d) reached, refusing to add more\n",
->@@ -242,16 +251,19 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
->                }
->
->                xe_reg_whitelist_print_entry(&p, 0, reg, entry);
->-               xe_mmio_write32(&gt->mmio, RING_FORCE_TO_NONPRIV(mmio_base, slot),
->-                               reg | entry->set_bits);
->+               xe_reg_sr_add(sr, &sr_entry, gt);
->                slot++;
->        }
->
->        /* And clear the rest just in case of garbage */
->        for (; slot < RING_MAX_NONPRIV_SLOTS; slot++) {
->-               u32 addr = RING_NOPID(mmio_base).addr;
->-
->-               xe_mmio_write32(&gt->mmio, RING_FORCE_TO_NONPRIV(mmio_base, slot), addr);
->+               struct xe_reg_sr_entry sr_entry = {
->+                       .reg = RING_FORCE_TO_NONPRIV(mmio_base, slot),
->+                       .clr_bits = 0,
->+                       .set_bits = RING_NOPID(mmio_base).addr,
->+                       .read_mask = 0,
->+               };
->+               xe_reg_sr_add(sr, &sr_entry, gt);
+On Fri, Nov 15, 2024 at 03:21:43PM +0100, Maarten Lankhorst wrote:
+> Hey,
+> 
+> Den 2024-11-14 kl. 17:09, skrev Rodrigo Vivi:
+> > On Thu, Nov 07, 2024 at 11:01:37AM +0100, Maarten Lankhorst wrote:
+> >> We want to split up GUC init to an alloc and noalloc part to keep the
+> >> init path the same for VF and !VF as much as possible.
+> >>
+> >> Everything in vf_guc_init should be done as early as possible, otherwise
+> >> VRAM probing becomes impossible.
+> >>
+> >> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> >> Link: https://patchwork.freedesktop.org/patch/msgid/20241105121857.17389-6-maarten.lankhorst@linux.intel.com
+> >> Signed-off-by: Maarten Lankhorst,,, <dev@lankhorst.se>
+> >> ---
+> >>  drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  1 -
+> >>  drivers/gpu/drm/xe/xe_guc.c         | 17 +++++++++--------
+> >>  2 files changed, 9 insertions(+), 9 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> >> index cca5d57328021..997438047a037 100644
+> >> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> >> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> >> @@ -948,7 +948,6 @@ u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg)
+> >>  	struct vf_runtime_reg *rr;
+> >>  
+> >>  	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+> >> -	xe_gt_assert(gt, gt->sriov.vf.pf_version.major);
+> >>  	xe_gt_assert(gt, !reg.vf);
+> >>  
+> >>  	if (reg.addr == GMD_ID.addr) {
+> >> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> >> index 7224593c9ce9b..5a050a5379911 100644
+> >> --- a/drivers/gpu/drm/xe/xe_guc.c
+> >> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> >> @@ -301,6 +301,7 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
+> >>  
+> >>  static int vf_guc_init(struct xe_guc *guc)
+> >>  {
+> >> +	struct xe_gt *gt = guc_to_gt(guc);
+> >>  	int err;
+> >>  
+> >>  	xe_guc_comm_init_early(guc);
+> >> @@ -313,6 +314,14 @@ static int vf_guc_init(struct xe_guc *guc)
+> >>  	if (err)
+> >>  		return err;
+> >>  
+> >> +	err = xe_gt_sriov_vf_bootstrap(gt);
+> >> +	if (err)
+> >> +		return err;
+> >> +
+> >> +	err = xe_gt_sriov_vf_query_config(gt);
+> >> +	if (err)
+> >> +		return err;
+> >> +
+> >>  	return 0;
+> >>  }
+> >>  
+> >> @@ -753,14 +762,6 @@ static int vf_guc_min_load_for_hwconfig(struct xe_guc *guc)
+> > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> >
+> > as I believe there was a good reason for these functions to be called this early.
+> 
+> This is in fact called slightly earlier than before. It's now called in xe_uc_init instead of xe_uc_init_hwconfig. :-)
 
-you need to add it to the hwe->reg_sr, not to the whitelist. There are
-more things to be simplified as this doesn't touch the hw anymore (no
-need for forcewake), it's probably in the wrong place now as it's not
-really related to the reg_sr. Let's land the other previous patch and
-maybe cleanup it later.
+Oh! Indeed! one step earlier actually... that name min_for_hwconfig got me confused, I'm sorry.
 
+The only difference that I see now is that this functions are not avoided anymore if xe.force_execlist=1...
 
-Lucas De Marchi
+We should probably add some skips inside the function? I know I know we likely have many other bugs
+if using force_execlists, but let's at least try to avoid introducing more cases...
 
->        }
->
->        xe_force_wake_put(gt_to_fw(gt), fw_ref);
->"""
->This didn't seem to have the intended effect, and xe_oa@mmio-triggered-reports test still failed
->after an engine reset.  Also, we seemed to be running up against the "if (xa_empty(&sr->xa))" case
->in xe_reg_sr_apply_whitelist, though I can't tell if that's normally what happens, or if it's a result
->of the hw_engine_init reordering.
->-Jonathan Cavitt
->
->>
->> thanks
->> Lucas De Marchi
->>
->> >+
->> > 	for (e = extra_regs; e < extra_regs + ARRAY_SIZE(extra_regs); e++) {
->> > 		if (e->skip)
->> > 			continue;
->> >--
->> >2.43.0
->> >
->>
+> 
+> Cheers,
+> 
+> ~Maarten
+> 
