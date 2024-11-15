@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47474D6DDD8
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 13:12:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBF00D6DDFA
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 13:13:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D373810E09D;
-	Fri, 15 Nov 2024 13:12:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cphlXPyZ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D36910E09D
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Nov 2024 13:12:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731676332; x=1763212332;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ORC/NycHwZz/imRBCsH3cdLlDIKSZ9CuUff97cmwuhU=;
- b=cphlXPyZl8StVDd+1wPRRKzvL5/AtoaXbbIVdpb6J5oaybfNVXG/9YUE
- M2OIwAw7oMSGYTU9/1V5OswrNPiHM6abgBOg4ZooujfG/XBsM2gTQ4JGF
- +fGBDnyk6IAYBuu3/nJ6boCkD65wxM3ugWEjMhH+HhFlbn+zi5prVCe3l
- 55ghhWxcn39ZoNdXg6Qh35s/dj7dFyc4rv9KUCoWSOAvm7d4Qu+Y/XbMZ
- fhuycMWeI5L+ECpgMNXL1jodoRTQ7pLQCTWaOkWXMTM3uHJePUH+94QP/
- P9gL35SrxjYDvYxq0K8mDoQvlQBEp/r1f9vdHlCTutVeU/3CUoXyt1N2W Q==;
-X-CSE-ConnectionGUID: nPxo/0BVSyC39uV8OIukXA==
-X-CSE-MsgGUID: UVhbemJNRpiAUG/e7nlVSw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="42314885"
-X-IronPort-AV: E=Sophos;i="6.12,156,1728975600"; d="scan'208";a="42314885"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 05:12:11 -0800
-X-CSE-ConnectionGUID: GIc+Ia/WRcSvQ8MIeyl27g==
-X-CSE-MsgGUID: fMY0wAgYTJmVpbg7UFBb+w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,156,1728975600"; d="scan'208";a="88665603"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa008.fm.intel.com with ESMTP; 15 Nov 2024 05:12:10 -0800
-Received: from [10.245.80.89] (unknown [10.245.80.89])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 7B27628775;
- Fri, 15 Nov 2024 13:12:09 +0000 (GMT)
-Message-ID: <d81e0758-95f7-44bd-a899-252b0b9a60ad@intel.com>
-Date: Fri, 15 Nov 2024 14:12:08 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B7EA10E2D0;
+	Fri, 15 Nov 2024 13:13:15 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DE7610E2D0;
+ Fri, 15 Nov 2024 13:13:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] drm/xe/throttle: Log throttle reasons
-To: Raag Jadav <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com
-References: <20241115125614.857611-1-raag.jadav@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20241115125614.857611-1-raag.jadav@intel.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_drm/xe/throttle=3A_Log_throttl?=
+ =?utf-8?q?e_reasons?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 15 Nov 2024 13:13:13 -0000
+Message-ID: <173167639344.229834.3882108289336731059@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241115125614.857611-1-raag.jadav@intel.com>
+In-Reply-To: <20241115125614.857611-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,48 +36,119 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: drm/xe/throttle: Log throttle reasons
+URL   : https://patchwork.freedesktop.org/series/141399/
+State : failure
 
-On 15.11.2024 13:56, Raag Jadav wrote:
-> Log throttle register MMIO reads which will be useful for debugging.
-> 
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gt_throttle.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
-> index 03b225364101..0ce21ffc08dc 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_throttle.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
-> @@ -37,15 +37,18 @@ dev_to_gt(struct device *dev)
->  
->  u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
->  {
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	bool media = xe_gt_is_media_type(gt);
->  	u32 reg;
->  
-> -	xe_pm_runtime_get(gt_to_xe(gt));
-> -	if (xe_gt_is_media_type(gt))
-> +	xe_pm_runtime_get(xe);
-> +	if (media)
->  		reg = xe_mmio_read32(&gt->mmio, MTL_MEDIA_PERF_LIMIT_REASONS);
->  	else
->  		reg = xe_mmio_read32(&gt->mmio, GT0_PERF_LIMIT_REASONS);
-> -	xe_pm_runtime_put(gt_to_xe(gt));
-> +	xe_pm_runtime_put(xe);
->  
-> +	drm_dbg(&xe->drm, "%s reg: 0x%x\n", media ? "media" : "gt", reg);
+== Summary ==
 
-we prefer GT oriented logs, so this should be:
+lib/modules/6.12.0-rc7-xe/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/xcbc.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/serpent_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/aria_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/adiantum.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/tcrypt.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/crypto_engine.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/zstd.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/asymmetric_keys/
+lib/modules/6.12.0-rc7-xe/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/des_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/xctr.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/authenc.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/sm4_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/keywrap.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/camellia_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/sm3.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/pcrypt.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/aegis128.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/af_alg.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/algif_aead.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/sm3_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/aes_ti.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/chacha_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/poly1305_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/nhpoly1305.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/crc32_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/essiv.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/wp512.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/streebog_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/authencesn.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/echainiv.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/lrw.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/crypto_user.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/algif_hash.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/vmac.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/hctr2.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/842.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/pcbc.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/ansi_cprng.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/cast6_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/twofish_common.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/twofish_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/lz4hc.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/blowfish_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/md4.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/curve25519-generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/lz4.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/rmd160.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/algif_skcipher.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/cast5_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/fcrypt.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/sm4.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/cast_common.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/blowfish_common.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/michael_mic.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc7-xe/kernel/crypto/algif_rng.ko
+lib/modules/6.12.0-rc7-xe/kernel/block/
+lib/modules/6.12.0-rc7-xe/kernel/block/bfq.ko
+lib/modules/6.12.0-rc7-xe/kernel/block/kyber-iosched.ko
+lib/modules/6.12.0-rc7-xe/build
+lib/modules/6.12.0-rc7-xe/modules.alias.bin
+lib/modules/6.12.0-rc7-xe/modules.builtin
+lib/modules/6.12.0-rc7-xe/modules.softdep
+lib/modules/6.12.0-rc7-xe/modules.alias
+lib/modules/6.12.0-rc7-xe/modules.order
+lib/modules/6.12.0-rc7-xe/modules.symbols
+lib/modules/6.12.0-rc7-xe/modules.dep.bin
++ mv kernel.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1731676389:package_x86_64\r\e[0K'
+[0Ksection_end:1731676389:package_x86_64
+[0K
+++ date +%s
+[0Ksection_start:1731676389:build_x86_64_nodebug[collapsed=true]
+[0KBuild x86-64 NoDebug
++ echo -e '\e[0Ksection_start:1731676389:build_x86_64_nodebug[collapsed=true]\r\e[0KBuild x86-64 NoDebug'
++ mkdir -p build64-nodebug
++ KCONFIG_CONFIG=build64-nodebug/.config
++ ./scripts/kconfig/merge_config.sh -m .ci/kernel/kconfig .ci/kernel/nodebug.fragment
+Using .ci/kernel/kconfig as base
+Merging .ci/kernel/nodebug.fragment
+The merge file '.ci/kernel/nodebug.fragment' does not exist.  Exit.
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-	xe_gt_dbg(gt, "....
-
->  	return reg;
->  }
->  
 
