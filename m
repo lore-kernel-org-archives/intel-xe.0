@@ -4,57 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49484D68BC1
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 14:40:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CE29D68BC5
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 14:56:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 107FF10E872;
-	Fri, 15 Nov 2024 14:40:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B163510E874;
+	Fri, 15 Nov 2024 14:56:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ijHMZanH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i4jL/iis";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FE9210E872
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Nov 2024 14:40:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91FDA10E874
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Nov 2024 14:56:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731681655; x=1763217655;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=7P6k4DFLqZAAleyaMXHQaPp5bHzCdaUzE0LJYDX0pZQ=;
- b=ijHMZanHeFf0lDeRh8fdRf3wtgXsuCCYK0ThxKs5ctK1mC1iBlNL1vZF
- o2LIxZTbkSntq0wIZjqhQCC+L8rndsuPUdrhhfXmkvjwpsVRuKZngsWYf
- l7u4/9OWL2n6KGZCoK/pyq/G7l3Zxq2zENmhlyVQKW9fFl+RY0CVGKr/I
- 1gqElSk5fk6sTRchj405mwbp/Pr1eiGFqp3rIA8ozFaiLZEfoT0it1BnH
- JySYoCHMidqR6Dy6PG9+QJ4MZH5LFzvqR+UI8OOpJoCuo+kL47sOTuGXq
- yzipLhlJC0doHxnY56Pany/gp0LqcJgS8qTVPF9Wl1Ya8aZR6zzpSlgEc w==;
-X-CSE-ConnectionGUID: pkMG+6/kSMWPG5Wgwjsh8A==
-X-CSE-MsgGUID: +gccwHXFRGGtqCH4WF/pWQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="31824769"
-X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="31824769"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 06:40:54 -0800
-X-CSE-ConnectionGUID: nDMwdGkmSDKe2cM83IFVRw==
-X-CSE-MsgGUID: UzpE+uQzQ1qvcYQEzrdMDA==
+ t=1731682594; x=1763218594;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=1fv18sHHE0rCpLzbyCpUug71W/a7AOBadydCmTLRAVs=;
+ b=i4jL/iisgM6NcgB6zngobzEUd8ZGDdmv0RnWVHR84uopfhQn3wdrzy4o
+ 4KPkHcl08gXvXe5WfvLOY1GNdcl4INsVpZCYlw7dme2alQD+IbpTgY95a
+ B0qpmO7cZyurjTJXoaJqrjNfFs7LfuSX5ehhgBoux4XNd5RpFsrTr8Lyw
+ dwQ7ffG+zWetL7JAVfrUPknrl7U5EAXlWkHr0lhZ/WTQ7umOmJVM6H5JL
+ 9uqRU56T7Yb/UiVX20m1U63+rdlAtiixTMrUO8DfGS/c0L3i4ZCIHtmO/
+ M3aZtP4tJjgn71OWfL/Z9AgBtoc4O7TuB6vrNhMEoG1jTnTycRJzkjfQb w==;
+X-CSE-ConnectionGUID: 10/fI7d7Qwq+RvESrvU1Wg==
+X-CSE-MsgGUID: tMLd4jtWTm6VWXzpuVf4DQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="57106285"
+X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="57106285"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 06:56:34 -0800
+X-CSE-ConnectionGUID: 4vl+SOPUQmus5k9I88m7tw==
+X-CSE-MsgGUID: 5HXUjygUSjGECSkXi/730A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="93595315"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 06:40:52 -0800
-Date: Fri, 15 Nov 2024 16:40:49 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="119411524"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 06:56:34 -0800
+Date: Fri, 15 Nov 2024 06:56:33 -0800
+Message-ID: <858qtky28u.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com
+ <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>
 Subject: Re: [PATCH v1] drm/xe/throttle: Log throttle reasons
-Message-ID: <ZzddcQoXLFGNwfOZ@black.fi.intel.com>
+In-Reply-To: <ZzddcQoXLFGNwfOZ@black.fi.intel.com>
 References: <20241115125614.857611-1-raag.jadav@intel.com>
  <d81e0758-95f7-44bd-a899-252b0b9a60ad@intel.com>
  <85a5e0y5dq.wl-ashutosh.dixit@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <85a5e0y5dq.wl-ashutosh.dixit@intel.com>
+ <ZzddcQoXLFGNwfOZ@black.fi.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,56 +73,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Nov 15, 2024 at 05:48:49AM -0800, Dixit, Ashutosh wrote:
-> On Fri, 15 Nov 2024 05:12:08 -0800, Michal Wajdeczko wrote:
-> > On 15.11.2024 13:56, Raag Jadav wrote:
-> > > Log throttle register MMIO reads which will be useful for debugging.
-> > >
-> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_gt_throttle.c | 9 ++++++---
-> > >  1 file changed, 6 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
-> > > index 03b225364101..0ce21ffc08dc 100644
-> > > --- a/drivers/gpu/drm/xe/xe_gt_throttle.c
-> > > +++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
-> > > @@ -37,15 +37,18 @@ dev_to_gt(struct device *dev)
-> > >
-> > >  u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
-> > >  {
-> > > +	struct xe_device *xe = gt_to_xe(gt);
-> > > +	bool media = xe_gt_is_media_type(gt);
-> 
-> Also not sure what the point of these new variables is, previous code is
-> fine. I actually prefer it to the new code.
-> 
-> So this patch should be just a single line of xe_gt_dbg, IMO.
+On Fri, 15 Nov 2024 06:40:49 -0800, Raag Jadav wrote:
+>
+> On Fri, Nov 15, 2024 at 05:48:49AM -0800, Dixit, Ashutosh wrote:
+> > On Fri, 15 Nov 2024 05:12:08 -0800, Michal Wajdeczko wrote:
+> > > On 15.11.2024 13:56, Raag Jadav wrote:
+> > > > Log throttle register MMIO reads which will be useful for debugging.
+> > > >
+> > > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/xe/xe_gt_throttle.c | 9 ++++++---
+> > > >  1 file changed, 6 insertions(+), 3 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
+> > > > index 03b225364101..0ce21ffc08dc 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_gt_throttle.c
+> > > > +++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
+> > > > @@ -37,15 +37,18 @@ dev_to_gt(struct device *dev)
+> > > >
+> > > >  u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
+> > > >  {
+> > > > +	struct xe_device *xe = gt_to_xe(gt);
+> > > > +	bool media = xe_gt_is_media_type(gt);
+> >
+> > Also not sure what the point of these new variables is, previous code is
+> > fine. I actually prefer it to the new code.
+> >
+> > So this patch should be just a single line of xe_gt_dbg, IMO.
+>
+> We normally have temp variables for repeated uses. Makes the rest a bit
+> easier on the eyes.
 
-We normally have temp variables for repeated uses. Makes the rest a bit
-easier on the eyes.
+Disagree. Adding additional lines to do unnecessary things makes the code
+harder to read, easier.
 
-Raag
-
-> > >	u32 reg;
+>
+> Raag
+>
+> > > >	u32 reg;
+> > > >
+> > > > -	xe_pm_runtime_get(gt_to_xe(gt));
+> > > > -	if (xe_gt_is_media_type(gt))
+> > > > +	xe_pm_runtime_get(xe);
+> > > > +	if (media)
+> > > >		reg = xe_mmio_read32(&gt->mmio, MTL_MEDIA_PERF_LIMIT_REASONS);
+> > > >	else
+> > > >		reg = xe_mmio_read32(&gt->mmio, GT0_PERF_LIMIT_REASONS);
+> > > > -	xe_pm_runtime_put(gt_to_xe(gt));
+> > > > +	xe_pm_runtime_put(xe);
+> > > >
+> > > > +	drm_dbg(&xe->drm, "%s reg: 0x%x\n", media ? "media" : "gt", reg);
 > > >
-> > > -	xe_pm_runtime_get(gt_to_xe(gt));
-> > > -	if (xe_gt_is_media_type(gt))
-> > > +	xe_pm_runtime_get(xe);
-> > > +	if (media)
-> > >		reg = xe_mmio_read32(&gt->mmio, MTL_MEDIA_PERF_LIMIT_REASONS);
-> > >	else
-> > >		reg = xe_mmio_read32(&gt->mmio, GT0_PERF_LIMIT_REASONS);
-> > > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > > +	xe_pm_runtime_put(xe);
+> > > we prefer GT oriented logs, so this should be:
 > > >
-> > > +	drm_dbg(&xe->drm, "%s reg: 0x%x\n", media ? "media" : "gt", reg);
-> >
-> > we prefer GT oriented logs, so this should be:
-> >
-> >	xe_gt_dbg(gt, "....
-> >
-> > >	return reg;
-> > >  }
+> > >	xe_gt_dbg(gt, "....
 > > >
-> >
+> > > >	return reg;
+> > > >  }
+> > > >
+> > >
