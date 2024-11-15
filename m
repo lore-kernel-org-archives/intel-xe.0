@@ -4,35 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99EAFE6781F
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 14:28:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49484D68BC1
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 14:40:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C80110E86D;
-	Fri, 15 Nov 2024 14:28:41 +0000 (UTC)
-X-Greylist: delayed 443 seconds by postgrey-1.36 at gabe;
- Fri, 15 Nov 2024 14:28:40 UTC
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9098B10E86E;
- Fri, 15 Nov 2024 14:28:40 +0000 (UTC)
-Message-ID: <4698fb99-209c-4e66-a364-232884bcdf9b@lankhorst.se>
-Date: Fri, 15 Nov 2024 15:21:43 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 107FF10E872;
+	Fri, 15 Nov 2024 14:40:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ijHMZanH";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FE9210E872
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Nov 2024 14:40:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731681655; x=1763217655;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=7P6k4DFLqZAAleyaMXHQaPp5bHzCdaUzE0LJYDX0pZQ=;
+ b=ijHMZanHeFf0lDeRh8fdRf3wtgXsuCCYK0ThxKs5ctK1mC1iBlNL1vZF
+ o2LIxZTbkSntq0wIZjqhQCC+L8rndsuPUdrhhfXmkvjwpsVRuKZngsWYf
+ l7u4/9OWL2n6KGZCoK/pyq/G7l3Zxq2zENmhlyVQKW9fFl+RY0CVGKr/I
+ 1gqElSk5fk6sTRchj405mwbp/Pr1eiGFqp3rIA8ozFaiLZEfoT0it1BnH
+ JySYoCHMidqR6Dy6PG9+QJ4MZH5LFzvqR+UI8OOpJoCuo+kL47sOTuGXq
+ yzipLhlJC0doHxnY56Pany/gp0LqcJgS8qTVPF9Wl1Ya8aZR6zzpSlgEc w==;
+X-CSE-ConnectionGUID: pkMG+6/kSMWPG5Wgwjsh8A==
+X-CSE-MsgGUID: +gccwHXFRGGtqCH4WF/pWQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="31824769"
+X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="31824769"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 06:40:54 -0800
+X-CSE-ConnectionGUID: nDMwdGkmSDKe2cM83IFVRw==
+X-CSE-MsgGUID: UzpE+uQzQ1qvcYQEzrdMDA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="93595315"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 06:40:52 -0800
+Date: Fri, 15 Nov 2024 16:40:49 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com
+Subject: Re: [PATCH v1] drm/xe/throttle: Log throttle reasons
+Message-ID: <ZzddcQoXLFGNwfOZ@black.fi.intel.com>
+References: <20241115125614.857611-1-raag.jadav@intel.com>
+ <d81e0758-95f7-44bd-a899-252b0b9a60ad@intel.com>
+ <85a5e0y5dq.wl-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/9] drm/xe/sriov: Move VF bootstrap and query_config to
- vf_guc_init
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dev@lankhorst.se
-References: <20241107100140.292928-1-maarten.lankhorst@linux.intel.com>
- <20241107100140.292928-6-maarten.lankhorst@linux.intel.com>
- <ZzYguKUVI6DSpNvL@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten@lankhorst.se>
-In-Reply-To: <ZzYguKUVI6DSpNvL@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <85a5e0y5dq.wl-ashutosh.dixit@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,71 +69,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+On Fri, Nov 15, 2024 at 05:48:49AM -0800, Dixit, Ashutosh wrote:
+> On Fri, 15 Nov 2024 05:12:08 -0800, Michal Wajdeczko wrote:
+> > On 15.11.2024 13:56, Raag Jadav wrote:
+> > > Log throttle register MMIO reads which will be useful for debugging.
+> > >
+> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_gt_throttle.c | 9 ++++++---
+> > >  1 file changed, 6 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
+> > > index 03b225364101..0ce21ffc08dc 100644
+> > > --- a/drivers/gpu/drm/xe/xe_gt_throttle.c
+> > > +++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
+> > > @@ -37,15 +37,18 @@ dev_to_gt(struct device *dev)
+> > >
+> > >  u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
+> > >  {
+> > > +	struct xe_device *xe = gt_to_xe(gt);
+> > > +	bool media = xe_gt_is_media_type(gt);
+> 
+> Also not sure what the point of these new variables is, previous code is
+> fine. I actually prefer it to the new code.
+> 
+> So this patch should be just a single line of xe_gt_dbg, IMO.
 
-Den 2024-11-14 kl. 17:09, skrev Rodrigo Vivi:
-> On Thu, Nov 07, 2024 at 11:01:37AM +0100, Maarten Lankhorst wrote:
->> We want to split up GUC init to an alloc and noalloc part to keep the
->> init path the same for VF and !VF as much as possible.
->>
->> Everything in vf_guc_init should be done as early as possible, otherwise
->> VRAM probing becomes impossible.
->>
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> Link: https://patchwork.freedesktop.org/patch/msgid/20241105121857.17389-6-maarten.lankhorst@linux.intel.com
->> Signed-off-by: Maarten Lankhorst,,, <dev@lankhorst.se>
->> ---
->>  drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  1 -
->>  drivers/gpu/drm/xe/xe_guc.c         | 17 +++++++++--------
->>  2 files changed, 9 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
->> index cca5d57328021..997438047a037 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
->> @@ -948,7 +948,6 @@ u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg)
->>  	struct vf_runtime_reg *rr;
->>  
->>  	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
->> -	xe_gt_assert(gt, gt->sriov.vf.pf_version.major);
->>  	xe_gt_assert(gt, !reg.vf);
->>  
->>  	if (reg.addr == GMD_ID.addr) {
->> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
->> index 7224593c9ce9b..5a050a5379911 100644
->> --- a/drivers/gpu/drm/xe/xe_guc.c
->> +++ b/drivers/gpu/drm/xe/xe_guc.c
->> @@ -301,6 +301,7 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
->>  
->>  static int vf_guc_init(struct xe_guc *guc)
->>  {
->> +	struct xe_gt *gt = guc_to_gt(guc);
->>  	int err;
->>  
->>  	xe_guc_comm_init_early(guc);
->> @@ -313,6 +314,14 @@ static int vf_guc_init(struct xe_guc *guc)
->>  	if (err)
->>  		return err;
->>  
->> +	err = xe_gt_sriov_vf_bootstrap(gt);
->> +	if (err)
->> +		return err;
->> +
->> +	err = xe_gt_sriov_vf_query_config(gt);
->> +	if (err)
->> +		return err;
->> +
->>  	return 0;
->>  }
->>  
->> @@ -753,14 +762,6 @@ static int vf_guc_min_load_for_hwconfig(struct xe_guc *guc)
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->
-> as I believe there was a good reason for these functions to be called this early.
+We normally have temp variables for repeated uses. Makes the rest a bit
+easier on the eyes.
 
-This is in fact called slightly earlier than before. It's now called in xe_uc_init instead of xe_uc_init_hwconfig. :-)
+Raag
 
-Cheers,
-
-~Maarten
-
+> > >	u32 reg;
+> > >
+> > > -	xe_pm_runtime_get(gt_to_xe(gt));
+> > > -	if (xe_gt_is_media_type(gt))
+> > > +	xe_pm_runtime_get(xe);
+> > > +	if (media)
+> > >		reg = xe_mmio_read32(&gt->mmio, MTL_MEDIA_PERF_LIMIT_REASONS);
+> > >	else
+> > >		reg = xe_mmio_read32(&gt->mmio, GT0_PERF_LIMIT_REASONS);
+> > > -	xe_pm_runtime_put(gt_to_xe(gt));
+> > > +	xe_pm_runtime_put(xe);
+> > >
+> > > +	drm_dbg(&xe->drm, "%s reg: 0x%x\n", media ? "media" : "gt", reg);
+> >
+> > we prefer GT oriented logs, so this should be:
+> >
+> >	xe_gt_dbg(gt, "....
+> >
+> > >	return reg;
+> > >  }
+> > >
+> >
