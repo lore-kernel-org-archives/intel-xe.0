@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74916D6DDED
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 10:20:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58EABD6DDEF
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 10:22:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39FFE10E27A;
-	Fri, 15 Nov 2024 10:20:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 250D310E844;
+	Fri, 15 Nov 2024 10:22:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EaDzwcF/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RKTkY+aU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBD4210E051;
- Fri, 15 Nov 2024 10:20:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D818710E845;
+ Fri, 15 Nov 2024 10:22:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731666002; x=1763202002;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=UF+RDfDilZQ9prdAlr9akq5bD/pUX2N2x4BJglcjQrU=;
- b=EaDzwcF/HNCsro2yI3pU98KmQNngxEaViLGg0rRoh5RiW8YyWO0DCpBy
- kGLGIom4PNJnRuWyetZf3Ymyisfs/xf5IblaPn64Si2xwhU07b4O4phXY
- 5tP6m4vqnnSUM+MHzDBIM5/SkSvFnUcmQFm8dOOIDzIfDkU9YHUcChliu
- vgW9cERcpySVPV3oQ6zpfGgycjfOyt3N0WDPTH2ztL8n6zNEcSGVG7XOZ
- E7erelVJWkbkzZRHF8/w5Kbl8Hw6g83qjIGMjodHhPYqiPYMB1zwbekh2
- +PiEjn6b4JyONeUCgrAQmIPGQzkQPVFQAzp3xRCBwyo+QblhYHOREAgQX w==;
-X-CSE-ConnectionGUID: oVpKU5GGTOS4+dx8hJj3MA==
-X-CSE-MsgGUID: 3amT3UotRfCdmOPEytfU6g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11256"; a="19275668"
-X-IronPort-AV: E=Sophos;i="6.12,156,1728975600"; d="scan'208";a="19275668"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 02:20:02 -0800
-X-CSE-ConnectionGUID: p/bkfZm/RbSQt3A0a6T2PQ==
-X-CSE-MsgGUID: edrtNPO6SLWMPFTLxDGb1A==
+ t=1731666159; x=1763202159;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=uxG2wZKaFFWWnFFQpIYl1sXHTc2KhcuS3qwKcFlSpC4=;
+ b=RKTkY+aUiXOWC6HzLAqyo6JJQwAIFFyuI3x8m3Sr2dhQOz8D87iAIEmj
+ Vt4rEH6qgGXzbcV17ulV6mIQQQSO0FOCgkoizKUYgHba43LYdPm2WrJoB
+ tICN3DXOpNPrwyhsJl0eMYOESbR97MOzf1e4HKIAAeCOlLL2nc3Uzkxb3
+ 4xtAdKMs57vYD7dFo9JcWPb6ra84+kAu+PxD5XpNaUUahS050KTJWMhO2
+ IQTK7u3BDLs918Q8CVymXSBKB00qA1fYHWoIqvHNZwT3ijGbY3z4VyBvp
+ kc4V2R1y0w8u0idhZDO+07WzcqUV753CgYhJh+RGZUhELKE694u6RDSoR w==;
+X-CSE-ConnectionGUID: zzvN2YzrRXm00vqGI/QvrQ==
+X-CSE-MsgGUID: xKPkIL6TRh2uhQZmbmBtzA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11256"; a="31424123"
+X-IronPort-AV: E=Sophos;i="6.12,156,1728975600"; d="scan'208";a="31424123"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 02:22:38 -0800
+X-CSE-ConnectionGUID: 09jII5jUQ5+/lja1AWOGTg==
+X-CSE-MsgGUID: mSB7rDbJSKG7d7fJI6Yn3A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,156,1728975600"; d="scan'208";a="93474537"
-Received: from ksztyber-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.64])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 02:19:59 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com, Suraj Kandpal
- <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 1/2] drm/i915/display: Refactor handling of dpkgc
- latency programming
-In-Reply-To: <20241115063440.1422706-1-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241115063440.1422706-1-suraj.kandpal@intel.com>
-Date: Fri, 15 Nov 2024 12:19:55 +0200
-Message-ID: <87a5e06bp0.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,156,1728975600"; d="scan'208";a="88921398"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.244.175])
+ ([10.245.244.175])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 02:22:37 -0800
+Message-ID: <3fecadce-8477-4034-88fd-5f6cf5667c2e@intel.com>
+Date: Fri, 15 Nov 2024 10:22:34 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [i-g-t 2/4] include/drm-uapi-experimental: Move i915_drm_local.h
+ to drm-uapi-experimental
+To: Tejas Upadhyay <tejas.upadhyay@intel.com>, igt-dev@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+References: <20241114050129.1381711-1-tejas.upadhyay@intel.com>
+ <20241114050129.1381711-3-tejas.upadhyay@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20241114050129.1381711-3-tejas.upadhyay@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,231 +71,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 15 Nov 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> - We want to make sure we have all the required values specially
-> linetime which is computed after intel_wm_compute, this will also
-> help implement some WA's which require linetime.
-> -We do not want to write into any registers during compute_config phase
-> While we are at it do some more refactors in the function like:
-> -Use intel_display wherever possible
-> -Move away from using enable_dpkgc bool and call it fixed_refresh_rate
-> -Optimize value prepration
+On 14/11/2024 05:01, Tejas Upadhyay wrote:
+> Move i915_drm_local.h to drm-uapi-experimental/intel_drm_local.h
 
-Please write proper sentences instead of bullet points. And the general
-advice is to do one thing per patch.
+Should say why.
 
->
-> --v2
-> -No need to save anything in intel_display structure [Vinod]
-> -Move computation and writing into register to intel_atomic_commit_tail
-> [Vinod]
->
-> --v3
-> -Rename the subject [Vinod]
-> -Rearrange the variable initialization and declaration [Vinod]
-> -Reaarange condition evaluation for fixed_refresh_rate [Vinod]
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> 
+> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c |  2 +
->  drivers/gpu/drm/i915/display/intel_wm.c      | 56 ++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_wm.h      |  1 +
->  drivers/gpu/drm/i915/display/skl_watermark.c | 52 ------------------
->  4 files changed, 59 insertions(+), 52 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index e790a2de5b3d..d1880e0a5d29 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7826,6 +7826,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
->  	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
->  	dev_priv->display.funcs.display->commit_modeset_enables(state);
->  
-> +	intel_program_dpkgc_latency(state);
+>   .../drm-uapi-experimental/intel_drm_local.h   | 27 +++++++++++++++++++
+>   lib/i915/gem_scheduler.c                      |  2 +-
+>   lib/i915/intel_memory_region.h                |  2 +-
+>   lib/igt_gt.h                                  |  2 +-
+>   tools/i915-perf/i915_perf_recorder.c          |  2 +-
+>   5 files changed, 31 insertions(+), 4 deletions(-)
+>   create mode 100644 include/drm-uapi-experimental/intel_drm_local.h
+> 
+> diff --git a/include/drm-uapi-experimental/intel_drm_local.h b/include/drm-uapi-experimental/intel_drm_local.h
+> new file mode 100644
+> index 000000000..1773c649b
+> --- /dev/null
+> +++ b/include/drm-uapi-experimental/intel_drm_local.h
+> @@ -0,0 +1,27 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2021 Intel Corporation
+> + */
+> +#ifndef _INTEL_DRM_LOCAL_H_
+> +#define _INTEL_DRM_LOCAL_H_
 > +
->  	if (state->modeset)
->  		intel_set_cdclk_post_plane_update(state);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_wm.c b/drivers/gpu/drm/i915/display/intel_wm.c
-> index d7dc49aecd27..4a2caf9cb03e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_wm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_wm.c
-> @@ -7,9 +7,18 @@
->  
->  #include "i915_drv.h"
->  #include "i9xx_wm.h"
-> +#include "intel_de.h"
->  #include "intel_display_types.h"
->  #include "intel_wm.h"
->  #include "skl_watermark.h"
-> +#include "skl_watermark_regs.h"
+> +#if defined(__cplusplus)
+> +extern "C" {
+> +#endif
 > +
 > +/*
-> + * It is expected that DSB can do posted writes to every register in
-> + * the pipe and planes within 100us. For flip queue use case, the
-> + * recommended DSB execution time is 100us + one SAGV block time.
+> + * It is necessary on occasion to add uapi declarations to IGT before they
+> + * appear in imported kernel uapi headers. This header is provided for this
+> + * purpose.
+> +
+> + * Early uapi declarations should be added here exactly as they are
+> + * expected to appear in the kernel uapi headers, i.e. without the LOCAL_
+> + * or local_ prefix and without any #ifndef's. Attempt should be made to
+> + * clean these up when kernel uapi headers are sync'd.
 > + */
-> +#define DSB_EXE_TIME 100
->  
->  /**
->   * intel_update_watermarks - update FIFO watermark values based on current modes
-> @@ -131,6 +140,53 @@ bool intel_wm_plane_visible(const struct intel_crtc_state *crtc_state,
->  		return plane_state->uapi.visible;
->  }
->  
-> +/*
-> + * If Fixed Refresh Rate or For VRR case Vmin = Vmax = Flipline:
-> + * Program DEEP PKG_C_LATENCY Pkg C with highest valid latency from
-> + * watermark level1 and up and above. If watermark level 1 is
-> + * invalid program it with all 1's.
-> + * Program PKG_C_LATENCY Added Wake Time = DSB execution time
-> + * If Variable Refresh Rate where Vmin != Vmax != Flipline:
-> + * Program DEEP PKG_C_LATENCY Pkg C with all 1's.
-> + * Program PKG_C_LATENCY Added Wake Time = 0
-> + */
-> +void
-> +intel_program_dpkgc_latency(struct intel_atomic_state *state)
-
-The function prefix should match the file name i.e. a function in
-intel_foo.[ch] should be named intel_foo_bar().
-
-But why is the function being relocated at all? That's also not
-explained in the commit message.
-
-> +{
-> +	struct intel_display *display = to_intel_display(state);
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +	struct intel_crtc *crtc;
-> +	struct intel_crtc_state *new_crtc_state;
-> +	u32 max_latency = LNL_PKG_C_LATENCY_MASK, added_waketime = 0;
-> +	bool fixed_refresh_rate = false;
-> +	u32 clear, val;
-> +	int i;
 > +
-> +	if (DISPLAY_VER(display) < 20)
-> +		return;
-> +
-> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-> +		if (!new_crtc_state->vrr.enable ||
-> +		    (new_crtc_state->vrr.vmin == new_crtc_state->vrr.vmax &&
-> +		     new_crtc_state->vrr.vmin == new_crtc_state->vrr.flipline))
-> +			fixed_refresh_rate = true;
-> +	}
-> +
-> +	if (fixed_refresh_rate) {
-> +		max_latency = skl_watermark_max_latency(i915, 1);
-> +		if (max_latency == 0)
-> +			max_latency = LNL_PKG_C_LATENCY_MASK;
-> +		added_waketime = DSB_EXE_TIME +
-> +			display->sagv.block_time_us;
-> +	}
-> +
-> +	clear = LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
-> +	val = REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, max_latency) |
-> +		REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_waketime);
-> +
-> +	intel_de_rmw(display, LNL_PKG_C_LATENCY, clear, val);
+> +#if defined(__cplusplus)
 > +}
+> +#endif
 > +
->  void intel_print_wm_latency(struct drm_i915_private *dev_priv,
->  			    const char *name, const u16 wm[])
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_wm.h b/drivers/gpu/drm/i915/display/intel_wm.h
-> index e97cdca89a5c..07e3d9359d73 100644
-> --- a/drivers/gpu/drm/i915/display/intel_wm.h
-> +++ b/drivers/gpu/drm/i915/display/intel_wm.h
-> @@ -31,5 +31,6 @@ void intel_print_wm_latency(struct drm_i915_private *i915,
->  			    const char *name, const u16 wm[]);
->  void intel_wm_init(struct drm_i915_private *i915);
->  void intel_wm_debugfs_register(struct drm_i915_private *i915);
-> +void intel_program_dpkgc_latency(struct intel_atomic_state *state);
->  
->  #endif /* __INTEL_WM_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index 1a4c1fa24820..d419edb196c6 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -28,12 +28,6 @@
->  #include "skl_watermark.h"
->  #include "skl_watermark_regs.h"
->  
-> -/*It is expected that DSB can do posted writes to every register in
-> - * the pipe and planes within 100us. For flip queue use case, the
-> - * recommended DSB execution time is 100us + one SAGV block time.
-> - */
-> -#define DSB_EXE_TIME 100
-> -
->  static void skl_sagv_disable(struct drm_i915_private *i915);
->  
->  /* Stores plane specific WM parameters */
-> @@ -2844,51 +2838,12 @@ static int skl_wm_add_affected_planes(struct intel_atomic_state *state,
->  	return 0;
->  }
->  
-> -/*
-> - * If Fixed Refresh Rate or For VRR case Vmin = Vmax = Flipline:
-> - * Program DEEP PKG_C_LATENCY Pkg C with highest valid latency from
-> - * watermark level1 and up and above. If watermark level 1 is
-> - * invalid program it with all 1's.
-> - * Program PKG_C_LATENCY Added Wake Time = DSB execution time
-> - * If Variable Refresh Rate where Vmin != Vmax != Flipline:
-> - * Program DEEP PKG_C_LATENCY Pkg C with all 1's.
-> - * Program PKG_C_LATENCY Added Wake Time = 0
-> - */
-> -static void
-> -skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
-> -{
-> -	u32 max_latency = 0;
-> -	u32 clear = 0, val = 0;
-> -	u32 added_wake_time = 0;
-> -
-> -	if (DISPLAY_VER(i915) < 20)
-> -		return;
-> -
-> -	if (enable_dpkgc) {
-> -		max_latency = skl_watermark_max_latency(i915, 1);
-> -		if (max_latency == 0)
-> -			max_latency = LNL_PKG_C_LATENCY_MASK;
-> -		added_wake_time = DSB_EXE_TIME +
-> -			i915->display.sagv.block_time_us;
-> -	} else {
-> -		max_latency = LNL_PKG_C_LATENCY_MASK;
-> -		added_wake_time = 0;
-> -	}
-> -
-> -	clear |= LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
-> -	val |= REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, max_latency);
-> -	val |= REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_wake_time);
-> -
-> -	intel_uncore_rmw(&i915->uncore, LNL_PKG_C_LATENCY, clear, val);
-> -}
-> -
->  static int
->  skl_compute_wm(struct intel_atomic_state *state)
->  {
->  	struct intel_crtc *crtc;
->  	struct intel_crtc_state __maybe_unused *new_crtc_state;
->  	int ret, i;
-> -	bool enable_dpkgc = false;
->  
->  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
->  		ret = skl_build_pipe_wm(state, crtc);
-> @@ -2913,15 +2868,8 @@ skl_compute_wm(struct intel_atomic_state *state)
->  		ret = skl_wm_add_affected_planes(state, crtc);
->  		if (ret)
->  			return ret;
-> -
-> -		if ((new_crtc_state->vrr.vmin == new_crtc_state->vrr.vmax &&
-> -		     new_crtc_state->vrr.vmin == new_crtc_state->vrr.flipline) ||
-> -		    !new_crtc_state->vrr.enable)
-> -			enable_dpkgc = true;
->  	}
->  
-> -	skl_program_dpkgc_latency(to_i915(state->base.dev), enable_dpkgc);
-> -
->  	skl_print_wm_changes(state);
->  
->  	return 0;
+> +#endif /* _INTEL_DRM_LOCAL_H_ */
+> diff --git a/lib/i915/gem_scheduler.c b/lib/i915/gem_scheduler.c
+> index 0087df902..7c4eea983 100644
+> --- a/lib/i915/gem_scheduler.c
+> +++ b/lib/i915/gem_scheduler.c
+> @@ -25,10 +25,10 @@
+>   #include <string.h>
+>   #include <sys/ioctl.h>
+>   
+> +#include "drm-uapi-experimental/intel_drm_local.h"
+>   #include "igt_core.h"
+>   #include "ioctl_wrappers.h"
+>   
+> -#include "i915/i915_drm_local.h"
+>   #include "i915/gem_scheduler.h"
+>   #include "i915/gem_submission.h"
+>   
+> diff --git a/lib/i915/intel_memory_region.h b/lib/i915/intel_memory_region.h
+> index 9e24bd8fb..ce187f426 100644
+> --- a/lib/i915/intel_memory_region.h
+> +++ b/lib/i915/intel_memory_region.h
+> @@ -22,7 +22,7 @@
+>    */
+>   #include "i915_drm.h"
+>   #include "igt_collection.h"
+> -#include "i915_drm_local.h"
+> +#include "intel_drm_local.h"
 
--- 
-Jani Nikula, Intel
+Header is now empty, right? Maybe just drop all of these instead?
+
+>   
+>   #ifndef INTEL_MEMORY_REGION_H
+>   #define INTEL_MEMORY_REGION_H
+> diff --git a/lib/igt_gt.h b/lib/igt_gt.h
+> index d3213123d..82ed22be7 100644
+> --- a/lib/igt_gt.h
+> +++ b/lib/igt_gt.h
+> @@ -24,11 +24,11 @@
+>   #ifndef IGT_GT_H
+>   #define IGT_GT_H
+>   
+> +#include "drm-uapi-experimental/intel_drm_local.h"
+>   #include "igt_debugfs.h"
+>   #include "igt_dummyload.h"
+>   #include "igt_core.h"
+>   
+> -#include "i915/i915_drm_local.h"
+>   #include "i915_drm.h"
+>   
+>   struct pci_device;
+> diff --git a/tools/i915-perf/i915_perf_recorder.c b/tools/i915-perf/i915_perf_recorder.c
+> index ca4354832..5dc5eb65d 100644
+> --- a/tools/i915-perf/i915_perf_recorder.c
+> +++ b/tools/i915-perf/i915_perf_recorder.c
+> @@ -44,7 +44,7 @@
+>   
+>   #include <i915_drm.h>
+>   
+> -#include "i915/i915_drm_local.h"
+> +#include "drm-uapi-experimental/intel_drm_local.h"
+>   
+>   #include "igt_core.h"
+>   #include "intel_chipset.h"
+
