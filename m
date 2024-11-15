@@ -4,108 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9E18D68BDD
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 23:20:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A58C1D68BDC
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 23:24:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F81F10E3E6;
-	Fri, 15 Nov 2024 23:20:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7078010E3E6;
+	Fri, 15 Nov 2024 23:24:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="SaYzzMZW";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="o0jZxjqE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XON6EHmo";
 	dkim-atps=neutral
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B5C810E183;
- Fri, 15 Nov 2024 23:20:48 +0000 (UTC)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1731712845;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=ocF2UaqffllWgiGWdH3dEXBRLSQ8zx6v3UTSvYUEWBM=;
- b=SaYzzMZW0ZsY0TGo8HlsbXzuUvCi20iDEgp+8ohYBSE4TZQXRHLKLbged2BOetLpsx4OkO
- tbZB0k+QLCEJmNzJNJ7TX06kODrXybKEr0MN0pB2oucYCsCZhXwiPTvkrVYx4d0RSom1W9
- M5V6DhOs4++KN4sHh/UkGD4PfYSgL/msvq0en1H26aBKpf6quxCthUWooMmyaT4o/QkfC2
- lCNSo4ipp434fYIwklbWGy8m/kIcsHAL1J9mGF0JwBaNElltRXstfx+KSUKFTEf5oJlO1l
- imvGv9XAnBM1fMHYuOdaaDvDY2O6X0pakSlzfvsLT9wL98INhCHIDkaV3HsBDQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1731712845;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=ocF2UaqffllWgiGWdH3dEXBRLSQ8zx6v3UTSvYUEWBM=;
- b=o0jZxjqE/bb/KZAxT0liDWVEJtakeTQr/m7JfpgliBKuwvw5FjJoNIULPPZ+hcCbxwHCjD
- VmO8h0eWyvF8dzAA==
-To: Easwar Hariharan <eahariha@linux.microsoft.com>, Jeff Johnson
- <quic_jjohnson@quicinc.com>
-Cc: eahariha@linux.microsoft.com, netfilter-devel@vger.kernel.org,
- coreteam@netfilter.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, cocci@inria.fr,
- linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-scsi@vger.kernel.org, xen-devel@lists.xenproject.org,
- linux-block@vger.kernel.org, linux-wireless@vger.kernel.org,
- ath11k@lists.infradead.org, linux-mm@kvack.org,
- linux-bluetooth@vger.kernel.org, linux-staging@lists.linux.dev,
- linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org,
- live-patching@vger.kernel.org, linux-sound@vger.kernel.org,
- etnaviv@lists.freedesktop.org, oss-drivers@corigine.com,
- linuxppc-dev@lists.ozlabs.org, Anna-Maria Behnsen
- <anna-maria@linutronix.de>, Madhavan Srinivasan <maddy@linux.ibm.com>,
- Naveen N Rao <naveen@kernel.org>, Christophe Leroy
- <christophe.leroy@csgroup.eu>, Louis Peens <louis.peens@corigine.com>,
- Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman
- <mpe@ellerman.id.au>, Christian Gmeiner <christian.gmeiner@gmail.com>,
- Russell King <linux+etnaviv@armlinux.org.uk>, Lucas Stach
- <l.stach@pengutronix.de>, Takashi Iwai <tiwai@suse.com>, Jaroslav Kysela
- <perex@perex.cz>, Petr Mladek <pmladek@suse.com>, Joe Lawrence
- <joe.lawrence@redhat.com>, Miroslav Benes <mbenes@suse.cz>, Jiri Kosina
- <jikos@kernel.org>, Josh Poimboeuf <jpoimboe@kernel.org>, Ilya Dryomov
- <idryomov@gmail.com>, Xiubo Li <xiubli@redhat.com>, Broadcom internal
- kernel review list <bcm-kernel-feedback-list@broadcom.com>, Scott Branden
- <sbranden@broadcom.com>, Ray Jui <rjui@broadcom.com>, Florian Fainelli
- <florian.fainelli@broadcom.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Luiz Augusto von Dentz
- <luiz.dentz@gmail.com>, Johan Hedberg <johan.hedberg@gmail.com>, Jens
- Axboe <axboe@kernel.dk>, Marcel Holtmann <marcel@holtmann.org>, Kalle Valo
- <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Roger Pau =?utf-8?Q?Monn=C3=A9?=
- <roger.pau@citrix.com>, Jack
- Wang <jinpu.wang@cloud.ionos.com>, Andrew Morton
- <akpm@linux-foundation.org>, "Martin K. Petersen"
- <martin.petersen@oracle.com>, Praveen Kaligineedi
- <pkaligineedi@google.com>, Andrew Lunn <andrew+netdev@lunn.ch>, James
- Smart <james.smart@broadcom.com>, Dick Kennedy
- <dick.kennedy@broadcom.com>, "James E.J. Bottomley"
- <James.Bottomley@HansenPartnership.com>, Maxime Ripard
- <mripard@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Jeroen de Borst <jeroendb@google.com>, Shailend Chand
- <shailend@google.com>, Thomas Zimmermann <tzimmermann@suse.de>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Oded Gabbay <ogabbay@kernel.org>, Ofir Bitton
- <obitton@habana.ai>, Sven Schnelle <svens@linux.ibm.com>, Christian
- Borntraeger <borntraeger@linux.ibm.com>, Alexander Gordeev
- <agordeev@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, Heiko
- Carstens <hca@linux.ibm.com>, Russell King <linux@armlinux.org.uk>, Robert
- Jarzmik <robert.jarzmik@free.fr>, Haojian Zhuang
- <haojian.zhuang@gmail.com>, Daniel Mack <daniel@zonque.org>, Nicolas Palix
- <nicolas.palix@imag.fr>, Julia Lawall <Julia.Lawall@inria.fr>, Simon
- Horman <horms@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Jakub Kicinski
- <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, "David S. Miller"
- <davem@davemloft.net>, Jozsef Kadlecsik <kadlec@netfilter.org>, Pablo
- Neira Ayuso <pablo@netfilter.org>
-Subject: Re: [PATCH v2 00/21] Converge on using secs_to_jiffies()
-In-Reply-To: <8127a2e6-fa62-4c85-b7ed-24748cc9e285@linux.microsoft.com>
-References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
- <10ee4e8f-d8b4-4502-a5e2-0657802aeb11@linux.microsoft.com>
- <3ac480f5-549b-4449-baa9-f766e074c409@quicinc.com>
- <8127a2e6-fa62-4c85-b7ed-24748cc9e285@linux.microsoft.com>
-Date: Sat, 16 Nov 2024 00:20:50 +0100
-Message-ID: <87plmwytgt.ffs@tglx>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E267210E3E6
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Nov 2024 23:23:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731713039; x=1763249039;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=e2xVBJjF/3zAFR1ODfYvEIDiqayKDx22JtMe4DHO2Rk=;
+ b=XON6EHmoMUB4ggl5rY3X5j3hDpBpPJGzpQGvCJBmtB4VvKthwA22997r
+ 0Qznazc7pBVBtybPnW8TYQzi0NX+KpAQk47mR5oYNKIAArC/BBsENSHUj
+ 4kdqjcgh3icnlh84NvFdyScRRnCGJx3JNlJ5fwPATSf+X8MHkBOFTaRP8
+ bniNX2q3fJdlAvgOMbVxrHy0nHgmyAUD/Cdi53p64QRH+kZX0jnHqAuvb
+ EINw8A8+RJ0hiVq4Fu0uOx4JWqITNt8+OMlOK1IUWIQjPip1LfMqfzhB/
+ BC4ep15+oB264lZDMHYiXF44hode4qzI2BXEVEb0/QNm/A79biajqAvVO w==;
+X-CSE-ConnectionGUID: IfYdvY03SuOtabF6zfZ5gA==
+X-CSE-MsgGUID: GDGhXFW/Rt6CNpVMaG31Fw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="31492716"
+X-IronPort-AV: E=Sophos;i="6.12,158,1728975600"; d="scan'208";a="31492716"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 15:23:59 -0800
+X-CSE-ConnectionGUID: WarFfOwqTXib45DyI1waxg==
+X-CSE-MsgGUID: nN5rSKiJSd6e+foZwCWalA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,158,1728975600"; d="scan'208";a="119536281"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 Nov 2024 15:23:57 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 15 Nov 2024 15:23:56 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 15 Nov 2024 15:23:56 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.172)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 15 Nov 2024 15:23:56 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=E+mdWJOkZk5IoNQw3jSxnYBKu8LA/BgCluYm4EKifHs6MN8vbkJWV3YPmT6M+3a0QU8vcBXfou1iuO9qzxoru2yzMNKDkfhAmFL0nP5FaUaaBAKz4omQFFGaM6zxxe75DEf4LBmwRJnMc6eY9gRoUA3fHjja0VdUjYRJ7kdHhYsjKAP3zy2KTYhYm4I8sW1szKkTZ17Eoe904n/26HZe2n331ReUjhrL4xuefiITLTN+HODRWpsTIg0nhufWkW6VLR2ykSPdjygzwqpHil4dCXf+r4enzyCBitVva4UhfgwIPm8CGZNjlCklgEP5KVe8ruYV1yCaDcNkwBdM+mzoIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AO5YEKLidd842ZwxJOdrZvyeyPP/jvOO7byNSCqDg80=;
+ b=YtXzBh3ifc++liCpvp3QQwo1YHY5lUoL2HGIshlhhTpQ+oTjKTlyAoOWcrAwXurlTjErzxqntijRXlh7nfTo/lDqwsfS1rX7FNTzCgxH/GkOSsL9fRztz+jys27vJNN441mTs4hfbBJ3xCPzoFSo/4y/ueRIV4n1TtjjcyDC+Cqmrr/BQ+u4pbcVFmCFN7bQlF3t9XBQnkET5s4nwcA7VvNf0Sr5WlNvph22zeDoN9KN8Ehdp+AjWnX6p8BsYAcPq4kbzrHhd67UNRhCEkKQyxClyAsjTieshTgwaHX55R8YVeeZKPkUi7APFfLPcs1od0nrhYXVLG7hD2Qkc0rFtA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by LV1PR11MB8841.namprd11.prod.outlook.com (2603:10b6:408:2b2::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.18; Fri, 15 Nov
+ 2024 23:23:53 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.8158.017; Fri, 15 Nov 2024
+ 23:23:52 +0000
+Date: Fri, 15 Nov 2024 15:24:27 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/xe: Drop useless d3cold allowed message
+Message-ID: <ZzfYK1jr6KTGxR0c@lstrano-desk.jf.intel.com>
+References: <20241115192155.2050987-1-matthew.brost@intel.com>
+ <ZzfCwCZr0byTqGj1@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ZzfCwCZr0byTqGj1@intel.com>
+X-ClientProxiedBy: MW4PR04CA0155.namprd04.prod.outlook.com
+ (2603:10b6:303:85::10) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|LV1PR11MB8841:EE_
+X-MS-Office365-Filtering-Correlation-Id: be5f7917-7953-4f51-c299-08dd05cc916a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?QBmL4odS+6W5iXSpWjw50vxYgXRh8+O+B/qhFE+36n2gVKDqW9daVF8FXEaX?=
+ =?us-ascii?Q?z9/nIwpTjebHLDM8yVZ5ewFLX8uoCsNDRFt3y5hFOgrcWjrujHnS37fS182U?=
+ =?us-ascii?Q?uGjIwsV5eQJdqRAbLeyVa3T5xRMcHZs9jytSsCqW6TA57FQ67fLHtcXc3wsN?=
+ =?us-ascii?Q?Fk5QGRz+VT/7SM77TNWFE8QmWGhv79PmDIkeWk8+p/B1hTYd58dg148eIK0e?=
+ =?us-ascii?Q?lWtNzVaymEo6PLLvhV7rJLLopzTcowoTGu0G8bJae900ZUvESUUBLuDY6zMf?=
+ =?us-ascii?Q?bYyAocjIKmDsVuJM+2YHEiz3RnbmQIj4Eq6TMVEsThLEFuWXKvic1ImbuELD?=
+ =?us-ascii?Q?goQbtUJAEKSjbQRm7VvOAi0YW2GvitzVwRVlN5TeL9cTbh1bsIgAm6W177pO?=
+ =?us-ascii?Q?ry0lYQPU2mCMXFQaJ+EHNH9HjB2qF7Uda1WUnrUp1ZeK2i/6qgUmqeXW/0vQ?=
+ =?us-ascii?Q?H4a9C1o0JanRSfOryct5n80/ym2H4dikeTiXLw5d2FWQXnCI3uEJHwqY8veG?=
+ =?us-ascii?Q?Ra93xdiz0sMvkZYib3cEzj6WLY3e20OcesFaPY5/GO8YvO6vxlwvi6y+sJ4+?=
+ =?us-ascii?Q?9/yaRtP00DWrrAf1TWCtkABkrmc5c1omAUG3ekrqQVoHC3ydTfeyd40UhEVE?=
+ =?us-ascii?Q?6HsCPv8BBIjK4+EwUgATbymUfgoaE2F3X7dYMPaIu0Rs2Gyf8HKD/B76FZlv?=
+ =?us-ascii?Q?FJeQ78Yjvnrp+PsHOpAJf/6KDGzQCvOXMh2AfJyXpRNAn5x7wjpVJcQncxB3?=
+ =?us-ascii?Q?ym1DML+Ru2SdXZp9hh/HIijVtk1iFRfceOckLxehoWRXi6JfqIkeB80YxU0c?=
+ =?us-ascii?Q?FY72YxN2zLPAzoD+pnRSAB46QrX5JbY7+eKST01sPSvC4h5xAiPxJw8yBjj8?=
+ =?us-ascii?Q?4Q8DUo01l8lZ0PDltzBXUqvs/RNgGW7RDZqQUAVbj7FjFWuS6oL4hLz7vb3e?=
+ =?us-ascii?Q?6TMdvryIIoPFX0+VrArbYLMctz5hRHNMgVo/Cj5BxOYYDCvK5u9UNIAVlSaK?=
+ =?us-ascii?Q?bJYNkqSvuIX9301K4jNOJfJslNVvuT4Ge4IeMdB+2oWtxBzyTeTOO4sDjXE7?=
+ =?us-ascii?Q?jXDwiu25bePb91NKChrkJyWKvciOlBwH6lbvJWXtD6/qhQkdCHwcDTjTIsGx?=
+ =?us-ascii?Q?IDzZbIpHG36/FbPX9sY7IvhWFhD7Fg6/rbwebLti/icBWxEszGHUPPYHDuPz?=
+ =?us-ascii?Q?IJZn91QkxO97bt8it9co5qz6twjlZzIVU2q4Y5AEPJFBAe3/H5tCbjtzDtav?=
+ =?us-ascii?Q?Ab4yejESB02vDLoieObU//BI9IxacEs6vakfghV0fYOvrH/HJYCJN06Ku15W?=
+ =?us-ascii?Q?zO/UwP2vhk0CTCHnVn9lL+/Y?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?lk+zg9qjnYagUGn4k5wR5GaQHWnoeQ8yna0b7s++j2TEUiMoNkmJ2COCqzDd?=
+ =?us-ascii?Q?qgUDfNmkVZimPRzM8pjRCQdx5b5p4d9jG0WJQDSysxq3ELlbpqEpeun4WeXj?=
+ =?us-ascii?Q?Q0rTFxAtjVHOix9FFImIB56fXdygD5GtgRLfv/f7wsxjhiaE/SXR3kYgwFvp?=
+ =?us-ascii?Q?QvDwnargOjIngFVQedoT6heprIIeB4rYmUTmFRE0irmaHLy5uAnBa7EHwi6o?=
+ =?us-ascii?Q?TRW+USL/Zg8iSKKGld5O4MayOqC8HuolXLOW0dJcJUMZCE+ipBioLolItkGY?=
+ =?us-ascii?Q?GYLwhPBy3cbwDXfoS69C2ghjpIall5nRVf4pWuDZd8ywKuz/VGaC6107XfrK?=
+ =?us-ascii?Q?SmPB2RuGIhmT6AZCVDn56uHfGSWx+cObwEeoB32iSCnnMHo1wfyuqr6a/T8n?=
+ =?us-ascii?Q?yaXU23WlDz0qdG+pVCS8O20dWXJSKTZO3umaUCu1Sa+NVli50de0ggJ6ggaF?=
+ =?us-ascii?Q?uZwhMCizogPljNtkoJ9yRuEGrNTe1IfQ4BidVcVJwr3/fM0UOQYDxfvCV7Aa?=
+ =?us-ascii?Q?WtpUpmzkqzGVNdUGTEwZGVUQf3732MGWkBlld1s0mQcBc3r7/UQMLU3IVMpL?=
+ =?us-ascii?Q?huoA45oxXzYycsas+iNlkOWjHsyjyeBHd+cUF4VEePkykgj4bBZy/zaS6XV0?=
+ =?us-ascii?Q?Bm0mqmzRZ1k4biKFCt4vJxn4lEGEWrYynz6MI529M5GeQ4VjDq+aJOLSO+Z/?=
+ =?us-ascii?Q?8aTx9H/+Nq8QpgqcnoZOlcwWxE3M7c3nbeY6HvlFdCf79I709lj4vAJlrStk?=
+ =?us-ascii?Q?LQH9nbPf+1QvFS/IBb6/McFyc3Be2Sh7adH3a1Mj6GtUAbAcnS/gNb7BCksr?=
+ =?us-ascii?Q?pfPbJDkTU1pOIcR8jU787h6IkpMDSjkJtQhmPlNS452rYbny+s58nveFfzcA?=
+ =?us-ascii?Q?SC063dHONDWlHBlssfmm76OMBnIeFAidXckwb/iujPesengDeVQWe357J0k8?=
+ =?us-ascii?Q?VFPnL7QIVzPGoI2bQDdseqMUPKBOgvBSd1ZluiH4LD3bhXromq0D9fegwqCY?=
+ =?us-ascii?Q?2oMMq6CpHbQmpySJl1GJ/0QyH0qaoWfSjOeUsgmhDBVa3d3/2VBGuYEMXljl?=
+ =?us-ascii?Q?qMFrv6VWP06Vyggg3UyHjrDXb3yzqQ44ksqgE/IzfY80FZwwUgehsq+R9PJR?=
+ =?us-ascii?Q?C80u0qft/o+BPVbWIUoa799cKqWUrcOZoQCoXb344FY45HkwE4a68gAFZJSJ?=
+ =?us-ascii?Q?4UUeTDHsKoeDM3Xze1OjzoAHH5/u1CHy20u3It/K957sLiWIVmXHwFyqQddL?=
+ =?us-ascii?Q?7oGUDqUZF3FVu09yNmRPXS+6SzBIt/NiuO5+nNL/+ah55T3csnGDQh8X0I8Z?=
+ =?us-ascii?Q?7ZxATWstSX+ce69VpE61u5yUK52UIo09h6pmNq3jraUuaaOuk71CgW20SsGj?=
+ =?us-ascii?Q?uYINCSWbBXQArddM9eDix54rTmxtJ/8PWh51OHV8bJDj06ijK3pXHFfwbcxn?=
+ =?us-ascii?Q?PLbiLntz+dVcr0D1v+PXnSVmcVEwO5qmlrRUF3U2Mbv3T85xJNuxbNAne+4D?=
+ =?us-ascii?Q?EbRCpvPe4IfEqcmNjR3upCQ31aAad65a3IvxtT+m9NtfzMXvvF0wQ5IIdQCj?=
+ =?us-ascii?Q?crMjindLM6dNlzMO0KcmMc9eDoydrfLmoZlOGIiigpX7xuCRBnAKjF9ZonRr?=
+ =?us-ascii?Q?8w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: be5f7917-7953-4f51-c299-08dd05cc916a
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2024 23:23:52.8905 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jtpqHQmxLOd9kayOImpkYTkN3dnzzNSDxqn7FRDmthl2cnuXQ6MXIMYAIdlTDXi85BYHgdvcW4J7WhPtLjW2lQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV1PR11MB8841
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,29 +174,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Nov 15 2024 at 14:15, Easwar Hariharan wrote:
-> On 11/15/2024 1:41 PM, Jeff Johnson wrote:
->> 
->> How do you expect this series to land since it overlaps a large number of
->> maintainer trees? Do you have a maintainer who has volunteered to take the
->> series and the maintainers should just ack? Or do you want the maintainers to
->> take the individual patches that are applicable to them?
->> 
->> /jeff
->
-> I am hoping for tglx to take it through his tree since the patch
-> introducing secs_to_jiffies() is in his tree, so sequencing of
-> dependencies would not be an issue.
+On Fri, Nov 15, 2024 at 04:53:04PM -0500, Rodrigo Vivi wrote:
+> On Fri, Nov 15, 2024 at 11:21:55AM -0800, Matthew Brost wrote:
+> > This message just spams dmesg providing little benefit. Remove it.
+> 
+> I don't believe it is useless, but I also hate the spammers...
+> 
+> perhaps we could bring the status of it in some debugfs form
+> as a replacement?
+> 
 
-Right, but it's two days before the merge window opens, so no.
+ftrace could an option so if you really care about this enable it there?
 
-> But if tglx won't, we could push it out another cycle and individual
-> maintainers can take the patches that are applicable to their tree for
-> the series.
+Matt
 
-That's the easiest way forward as it does not create conflicts and all
-maintainers will have the base patch in their trees after rc1.
-
-Thanks,
-
-        tglx
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> 
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_pm.c | 3 ---
+> >  1 file changed, 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> > index 40f7c844ed44..80699dbeb2e9 100644
+> > --- a/drivers/gpu/drm/xe/xe_pm.c
+> > +++ b/drivers/gpu/drm/xe/xe_pm.c
+> > @@ -738,9 +738,6 @@ void xe_pm_d3cold_allowed_toggle(struct xe_device *xe)
+> >  		xe->d3cold.allowed = false;
+> >  
+> >  	mutex_unlock(&xe->d3cold.lock);
+> > -
+> > -	drm_dbg(&xe->drm,
+> > -		"d3cold: allowed=%s\n", str_yes_no(xe->d3cold.allowed));
+> >  }
+> >  
+> >  /**
+> > -- 
+> > 2.34.1
+> > 
