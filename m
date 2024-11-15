@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83695D68BD5
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 20:57:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D04CD68BD6
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 20:57:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53D2210E8B9;
-	Fri, 15 Nov 2024 20:57:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 692BD10E8BA;
+	Fri, 15 Nov 2024 20:57:50 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 200F910E17C;
- Fri, 15 Nov 2024 20:57:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C0BC10E8BA;
+ Fri, 15 Nov 2024 20:57:49 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Drop_usele?=
- =?utf-8?q?ss_d3cold_allowed_message_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Drop_useless_d3?=
+ =?utf-8?q?cold_allowed_message_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 15 Nov 2024 20:57:39 -0000
-Message-ID: <173170425915.380829.688751549079746377@2413ebb6fbb6>
+Date: Fri, 15 Nov 2024 20:57:49 -0000
+Message-ID: <173170426959.380829.4280236256071552458@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241115192155.2050987-1-matthew.brost@intel.com>
 In-Reply-To: <20241115192155.2050987-1-matthew.brost@intel.com>
@@ -48,9 +48,25 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: f43942f219c8 drm-tip: 2024y-11m-15d-19h-15m-44s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Drop useless d3cold allowed message
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 92217412a48d379e893db9b5848c0cdd2753afdc
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Nov 15 11:21:55 2024 -0800
+
+    drm/xe: Drop useless d3cold allowed message
+    
+    This message just spams dmesg providing little benefit. Remove it.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch f43942f219c827e4e89baa102ceca3d62205135e drm-intel
+92217412a48d drm/xe: Drop useless d3cold allowed message
 
 
