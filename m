@@ -4,53 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DF0BD68BD7
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 21:00:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B553D68BD7
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 21:09:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 395D110E17C;
-	Fri, 15 Nov 2024 21:00:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 971BD10E8BA;
+	Fri, 15 Nov 2024 21:09:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZlDlwuB/";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="BwHKoEve";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99F0210E17C
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Nov 2024 21:00:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731704450; x=1763240450;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HxmqrJ+WTz3lO9nITWw61wMhbJk9piiNS7HAWsldcNA=;
- b=ZlDlwuB/nTJBYt5jWFEt5n6OXPdmmI+eRnW8PFZDJmVps2BxEYEcwnwF
- BmUf9WqTD8k5ItoP7B00CkKHwj0oAh2NI0FIQ1GYxPCsha9jxg/R52Fu7
- Ngg1aBSsea1xiE2sPvX6debfsSuC7YvyJYhAivRUUuO+KBtNicafvUJUf
- Xp5ttzaomchtsyMhrR7OuFr4xlywptcc+ApiK+Q4grbdnU+5J3MuzH8tR
- 7gmk3B1Ps4h1/SHHZ3gJqAXF8wCzQBZ1BkPD/aiY0NJ7oxvsx91zt0zMZ
- AYy1KxLNoaJhymiJ/rzwmDJJqTf2UuG2IR/EhZLyVceIi2RHXxshftDvI Q==;
-X-CSE-ConnectionGUID: EtOcizMwQ123aH2l9Z+/Hw==
-X-CSE-MsgGUID: eVC/ja9uRVGAe764N2B2uA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="31830686"
-X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="31830686"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 13:00:49 -0800
-X-CSE-ConnectionGUID: XZve0ZzHRy+GBGUJ7UpMiw==
-X-CSE-MsgGUID: /5yr50fUS8qeVCrVZAqooQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="93501750"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.96.66])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 13:00:48 -0800
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH] drm/xe/vf: Print assumed values of the MOCS entries if VF
-Date: Fri, 15 Nov 2024 22:00:25 +0100
-Message-Id: <20241115210025.2343-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
+ [209.85.208.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0129210E8BA
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Nov 2024 21:09:34 +0000 (UTC)
+Received: by mail-lj1-f181.google.com with SMTP id
+ 38308e7fff4ca-2fb5fa911aaso409581fa.2
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Nov 2024 13:09:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1731704973; x=1732309773; darn=lists.freedesktop.org;
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=XED2X79g7oTzQZPuBi80aknKVusfXlwcC80XkRremeE=;
+ b=BwHKoEveaxhloSdkwxlVfMytKAXk4/NCkHSFYBOqrX/KgpD7cPthLCeDv1A8uCRRwp
+ 948TAmZuBauvBi7oqObSUwqKSSgPBZBo5TurtYwrGkHPmGV1cwV0xpDRlYDHtukKznsa
+ AKq/+0c9OzcjDGoKvYI8/UONP4QvXXfDu9yrF/a5qK46drvl1jQixkuDgx9Xh33sugug
+ YkVnCgezDbTXOjOk+opKyM0Upo+r6/p5LutGFXfpn2Lu7HrTzoZC6U49kkZDGRPKz3Cp
+ mtGRWL6Mcfr2kv+Fby3zERWfvAeE+OqVyxJkzqtxouPAiyGahPbpyOs12myRnueJfOa6
+ /VqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1731704973; x=1732309773;
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=XED2X79g7oTzQZPuBi80aknKVusfXlwcC80XkRremeE=;
+ b=EyFVrL4CSKiseIJkumHe8SdEYqwN9/5XqhAp8EQisKxCockJyj8RdUs1NqkDzkqLva
+ QxhwhbX/V/l5mQYIsJBxpllVJgn9n0zRXfx2csbasIyYTLEJAhD0pj1V1L+Y5aKhhcLE
+ eGNA3JphK1lBp8MgjdVs4P60c6vcqR0lEIky0mn+kupKRxE7UIK9v8/cqagzuaxOtUUh
+ Dtdijmk0x1WHmWoS1l5BAcdzSB11/PXhBeNwU1I5Bu8ggJSxxl3nXqt6v9RFGDnqPqL1
+ ii0LAScPZ2eCs57BHJDncfF97xGK9bOdmwNuhw7Vos3EW9gn7uscdp75TBw4eraBqN74
+ BbXg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWkm0KbYwq/ARz9PnB6jbBtR/TemgKWEDXjdQshradioDZajmOU6rcjo32Y8D8zUTglY5vzVLxrfQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw1g9Mtn5bZfMAWkNZ2dArk5Q7YkcuZAU1CFCWvQ2Z1a+rHzJIi
+ zIFD2IJDk7RQCVwpJAB6//BVSshJ9vPjB/HKjzsumkBwJL0yBv2LdlS58pz3t8Y=
+X-Google-Smtp-Source: AGHT+IHez1wMZP17Apwa7Bnkqf7ljiE/uJbTx+3XZMcqqQX4tSNJGW0SXO/6d9g5SI/Am3EvbzmiwA==
+X-Received: by 2002:a2e:a9a5:0:b0:2fa:fdd1:be23 with SMTP id
+ 38308e7fff4ca-2ff606dae98mr45142221fa.28.1731704972480; 
+ Fri, 15 Nov 2024 13:09:32 -0800 (PST)
+Received: from umbar.lan ([192.130.178.90]) by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-aa20df51648sm219626366b.62.2024.11.15.13.09.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 15 Nov 2024 13:09:31 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH 0/5] drm/connector: make mode_valid() callback accept const
+ mode pointer
+Date: Fri, 15 Nov 2024 23:09:25 +0200
+Message-Id: <20241115-drm-connector-mode-valid-const-v1-0-b1b523156f71@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIW4N2cC/x2NwQqDMBAFf0X23AWjtoX+SukhZp+6UJOyERHEf
+ zf2OHOY2SnDFJle1U6GVbOmWMDdKgqTjyNYpTA1ddM55+4sNnNIMSIsyXhOAl79V+WSeWGPVvo
+ awyP0TyqRn2HQ7T94f47jBPjSJeVwAAAA
+X-Change-ID: 20241115-drm-connector-mode-valid-const-ae3db0ef6cb7
+To: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@redhat.com>, Harry Wentland <harry.wentland@amd.com>, 
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Xinhui Pan <Xinhui.Pan@amd.com>, Alain Volmat <alain.volmat@foss.st.com>, 
+ Raphael Gallais-Pou <rgallaispou@gmail.com>, 
+ Liviu Dudau <liviu.dudau@arm.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Peter Senna Tschudin <peter.senna@gmail.com>, Ian Ray <ian.ray@ge.com>, 
+ Martyn Welch <martyn.welch@collabora.co.uk>, 
+ Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
+ Kyungmin Park <kyungmin.park@samsung.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Stefan Agner <stefan@agner.ch>, 
+ Alison Wang <alison.wang@nxp.com>, 
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, Chen-Yu Tsai <wens@csie.org>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Mikko Perttunen <mperttunen@nvidia.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+ =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, 
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
+ Gurchetan Singh <gurchetansingh@chromium.org>, 
+ Chia-I Wu <olvaffe@gmail.com>, Zack Rusin <zack.rusin@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-msm@vger.kernel.org, 
+ freedreno@lists.freedesktop.org, virtualization@lists.linux.dev, 
+ spice-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5960;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=7DBFK+lDKP5iAIHminI6ZsVedJ6Zsj0sk2U8oofC4jk=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnN7iH9UX+z3iPeGBrDJ+gqWgtsWho1RLd/uzgK
+ y5jp5dF6RSJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZze4hwAKCRCLPIo+Aiko
+ 1dvoB/9ggjr7svokfox4UbrLISeADRAMrka4CxEv6luVeowWrO4BDOHeR/LpneYbdOb0tmjA+Pb
+ ObskcENd45LKNnm8iiuEv3ORbexyMoRqMZI6FdO+hWMIvWfeFAeCrbxoEb2AU0mz/0OJRhYdFIh
+ 6ADcN+5MudlSWZqBj8CeTwERU6kZeeZ9h55X8e9ga9vjWTcvn37riLK7gIwCVt5aFKpDOVJTJEG
+ 3dOkx1p9Fu8DnCMYGt4g+zzCiCCQwSRVTWlIZ7YuQ1D6PJTmyvl30OSHCd3ej7eDm3HO7WLpKua
+ 3NsbAZnA8gZ1iI0FRTpMJG60zM1XwIjJD2ahRcO3pGZ5FetB
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,126 +147,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VF drivers can't access the MOCS registers so their values can't
-be printed as part of the gt0/mocs debugfs attribute, but since
-MOCS settings are part of the Bspec and SLA between PF and VFs,
-we can print assumed MOCS values instead.
+While working on the generic mode_valid() implementation for the HDMI
+Connector framework I noticed that unlike other DRM objects
+drm_connector accepts non-const pointer to struct drm_display_mode,
+while obviously mode_valid() isn't expected to modify the argument.
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Mass-change the DRM framework code to pass const argument to that
+callback.
+
+Note: yes, I understand that this change might be hard to review and
+merge. The only viable option that I foresee is to add new callback,
+having the const argument and migrate drivers into using it one by one.
+
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/gpu/drm/xe/xe_mocs.c | 42 +++++++++++++++++++++++++++++-------
- 1 file changed, 34 insertions(+), 8 deletions(-)
+Dmitry Baryshkov (5):
+      drm/encoder_slave: make mode_valid accept const struct drm_display_mode
+      drm/amdgpu: don't change mode in amdgpu_dm_connector_mode_valid()
+      drm/sti: hda: pass const struct drm_display_mode* to hda_get_mode_idx()
+      drm/connector: make mode_valid_ctx accept const struct drm_display_mode
+      drm/connector: make mode_valid accept const struct drm_display_mode
 
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 54d199b5cfb2..9ad5366f4370 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -257,6 +257,14 @@ static const struct xe_mocs_entry gen12_mocs_desc[] = {
- 		   L3_1_UC)
- };
- 
-+static u32 get_entry_control(const struct xe_mocs_info *info, unsigned int index);
-+static u32 get_combined_entry_l3cc(const struct xe_mocs_info *info, unsigned int index);
-+
-+static bool regs_are_not_available(struct xe_gt *gt)
-+{
-+	return IS_SRIOV_VF(gt_to_xe(gt));
-+}
-+
- static bool regs_are_mcr(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -275,7 +283,9 @@ static void xelp_lncf_dump(struct xe_mocs_info *info, struct xe_gt *gt, struct d
- 	drm_printf(p, "LNCFCMOCS[idx] = [ESC, SCC, L3CC] (value)\n\n");
- 
- 	for (i = 0, j = 0; i < (info->num_mocs_regs + 1) / 2; i++, j++) {
--		if (regs_are_mcr(gt))
-+		if (regs_are_not_available(gt))
-+			reg_val = get_combined_entry_l3cc(info, i);
-+		else if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
- 		else
- 			reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i));
-@@ -307,7 +317,9 @@ static void xelp_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
- 		drm_printf(p, "GLOB_MOCS[idx] = [LeCC, TC, LRUM, AOM, RSC, SCC, PFM, SCF, CoS, SSE] (value)\n\n");
- 
- 		for (i = 0; i < info->num_mocs_regs; i++) {
--			if (regs_are_mcr(gt))
-+			if (regs_are_not_available(gt))
-+				reg_val = get_entry_control(info, i);
-+			else if (regs_are_mcr(gt))
- 				reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 			else
- 				reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
-@@ -380,7 +392,9 @@ static void xehp_lncf_dump(struct xe_mocs_info *info, unsigned int flags,
- 	drm_printf(p, "LNCFCMOCS[idx] = [UCL3LOOKUP, GLBGO, L3CC] (value)\n\n");
- 
- 	for (i = 0, j = 0; i < (info->num_mocs_regs + 1) / 2; i++, j++) {
--		if (regs_are_mcr(gt))
-+		if (regs_are_not_available(gt))
-+			reg_val = get_combined_entry_l3cc(info, i);
-+		else if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
- 		else
- 			reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i));
-@@ -425,7 +439,9 @@ static void pvc_mocs_dump(struct xe_mocs_info *info, unsigned int flags, struct
- 	drm_printf(p, "LNCFCMOCS[idx] = [ L3CC ] (value)\n\n");
- 
- 	for (i = 0, j = 0; i < (info->num_mocs_regs + 1) / 2; i++, j++) {
--		if (regs_are_mcr(gt))
-+		if (regs_are_not_available(gt))
-+			reg_val = get_combined_entry_l3cc(info, i);
-+		else if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
- 		else
- 			reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i));
-@@ -507,7 +523,9 @@ static void mtl_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
- 	drm_printf(p, "GLOB_MOCS[idx] = [IG_PAT, L4_CACHE_POLICY] (value)\n\n");
- 
- 	for (i = 0; i < info->num_mocs_regs; i++) {
--		if (regs_are_mcr(gt))
-+		if (regs_are_not_available(gt))
-+			reg_val = get_entry_control(info, i);
-+		else if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 		else
- 			reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
-@@ -550,7 +568,9 @@ static void xe2_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
- 	drm_printf(p, "GLOB_MOCS[idx] = [IG_PAT, L3_CLOS, L3_CACHE_POLICY, L4_CACHE_POLICY] (value)\n\n");
- 
- 	for (i = 0; i < info->num_mocs_regs; i++) {
--		if (regs_are_mcr(gt))
-+		if (regs_are_not_available(gt))
-+			reg_val = get_entry_control(info, i);
-+		else if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 		else
- 			reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
-@@ -713,6 +733,13 @@ static u32 l3cc_combine(u16 low, u16 high)
- 	return low | (u32)high << 16;
- }
- 
-+static u32 get_combined_entry_l3cc(const struct xe_mocs_info *info,
-+				   unsigned int index)
-+{
-+	return l3cc_combine(get_entry_l3cc(info, 2 * index),
-+			    get_entry_l3cc(info, 2 * index + 1));
-+}
-+
- static void init_l3cc_table(struct xe_gt *gt,
- 			    const struct xe_mocs_info *info)
- {
-@@ -722,8 +749,7 @@ static void init_l3cc_table(struct xe_gt *gt,
- 	mocs_dbg(gt, "l3cc entries: %d\n", info->num_mocs_regs);
- 
- 	for (i = 0; i < (info->num_mocs_regs + 1) / 2; i++) {
--		l3cc = l3cc_combine(get_entry_l3cc(info, 2 * i),
--				    get_entry_l3cc(info, 2 * i + 1));
-+		l3cc = get_combined_entry_l3cc(info, i);
- 
- 		mocs_dbg(gt, "LNCFCMOCS[%d] 0x%x 0x%x\n", i,
- 			 XELP_LNCFCMOCS(i).addr, l3cc);
+ drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c           |  8 ++++----
+ drivers/gpu/drm/amd/amdgpu/atombios_dp.c                 |  2 +-
+ drivers/gpu/drm/amd/amdgpu/atombios_dp.h                 |  2 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c        | 12 +++++++++---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h        |  2 +-
+ drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c |  2 +-
+ drivers/gpu/drm/arm/malidp_mw.c                          |  2 +-
+ drivers/gpu/drm/bridge/adv7511/adv7511_drv.c             |  2 +-
+ drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c      |  2 +-
+ drivers/gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c |  7 -------
+ drivers/gpu/drm/drm_crtc_helper_internal.h               |  2 +-
+ drivers/gpu/drm/drm_probe_helper.c                       |  2 +-
+ drivers/gpu/drm/exynos/exynos_hdmi.c                     |  2 +-
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c                |  2 +-
+ drivers/gpu/drm/gma500/cdv_intel_crt.c                   |  2 +-
+ drivers/gpu/drm/gma500/cdv_intel_dp.c                    |  2 +-
+ drivers/gpu/drm/gma500/cdv_intel_hdmi.c                  |  2 +-
+ drivers/gpu/drm/gma500/cdv_intel_lvds.c                  |  2 +-
+ drivers/gpu/drm/gma500/oaktrail_hdmi.c                   |  2 +-
+ drivers/gpu/drm/gma500/psb_intel_drv.h                   |  2 +-
+ drivers/gpu/drm/gma500/psb_intel_lvds.c                  |  2 +-
+ drivers/gpu/drm/gma500/psb_intel_sdvo.c                  |  2 +-
+ drivers/gpu/drm/i2c/ch7006_drv.c                         |  2 +-
+ drivers/gpu/drm/i2c/sil164_drv.c                         |  2 +-
+ drivers/gpu/drm/i915/display/dvo_ch7017.c                |  2 +-
+ drivers/gpu/drm/i915/display/dvo_ch7xxx.c                |  2 +-
+ drivers/gpu/drm/i915/display/dvo_ivch.c                  |  2 +-
+ drivers/gpu/drm/i915/display/dvo_ns2501.c                |  2 +-
+ drivers/gpu/drm/i915/display/dvo_sil164.c                |  2 +-
+ drivers/gpu/drm/i915/display/dvo_tfp410.c                |  2 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c                   |  2 +-
+ drivers/gpu/drm/i915/display/intel_crt.c                 |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c                  |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c              |  2 +-
+ drivers/gpu/drm/i915/display/intel_dsi.c                 |  2 +-
+ drivers/gpu/drm/i915/display/intel_dsi.h                 |  2 +-
+ drivers/gpu/drm/i915/display/intel_dvo.c                 |  2 +-
+ drivers/gpu/drm/i915/display/intel_dvo_dev.h             |  2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c                |  2 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c                |  2 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c                |  2 +-
+ drivers/gpu/drm/i915/display/intel_tv.c                  |  2 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c                   |  2 +-
+ drivers/gpu/drm/imx/ipuv3/imx-tve.c                      |  2 +-
+ drivers/gpu/drm/msm/disp/mdp4/mdp4_lvds_connector.c      |  2 +-
+ drivers/gpu/drm/nouveau/dispnv04/tvnv17.c                |  2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c                  |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_connector.c              |  2 +-
+ drivers/gpu/drm/qxl/qxl_display.c                        |  2 +-
+ drivers/gpu/drm/radeon/atombios_dp.c                     |  2 +-
+ drivers/gpu/drm/radeon/radeon_connectors.c               | 10 +++++-----
+ drivers/gpu/drm/radeon/radeon_mode.h                     |  2 +-
+ drivers/gpu/drm/rockchip/cdn-dp-core.c                   |  2 +-
+ drivers/gpu/drm/rockchip/inno_hdmi.c                     |  4 ++--
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c                   |  2 +-
+ drivers/gpu/drm/sti/sti_dvo.c                            |  2 +-
+ drivers/gpu/drm/sti/sti_hda.c                            | 12 ++++++------
+ drivers/gpu/drm/sti/sti_hdmi.c                           |  2 +-
+ drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c                   |  2 +-
+ drivers/gpu/drm/tegra/dsi.c                              |  2 +-
+ drivers/gpu/drm/tegra/hdmi.c                             |  2 +-
+ drivers/gpu/drm/tegra/sor.c                              |  2 +-
+ drivers/gpu/drm/vc4/vc4_txp.c                            |  2 +-
+ drivers/gpu/drm/virtio/virtgpu_display.c                 |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                      |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.h                      |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c                     |  2 +-
+ include/drm/drm_encoder_slave.h                          |  2 +-
+ include/drm/drm_modeset_helper_vtables.h                 |  4 ++--
+ 69 files changed, 90 insertions(+), 91 deletions(-)
+---
+base-commit: 7d2faa8dbb7055a115fe0cd6068d7090094a573d
+change-id: 20241115-drm-connector-mode-valid-const-ae3db0ef6cb7
+
+Best regards,
 -- 
-2.43.0
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
