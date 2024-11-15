@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C99ECD68BE1
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 21:22:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D1CCD68BDA
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 21:22:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 803E710E8D8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB63610E8E3;
 	Fri, 15 Nov 2024 21:22:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="RVx2emb3";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="TpPSBC6Q";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9536C10E8CD;
- Fri, 15 Nov 2024 21:22:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id F0C7910E045;
+ Fri, 15 Nov 2024 21:22:42 +0000 (UTC)
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
- by linux.microsoft.com (Postfix) with ESMTPSA id E451D206BCE8;
+ by linux.microsoft.com (Postfix) with ESMTPSA id 1682D206BCE4;
  Fri, 15 Nov 2024 13:22:42 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com E451D206BCE8
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 1682D206BCE4
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1731705763;
- bh=uwqJCSe3GXdPjGHghPvDBfnEwZdT0uYA3z4HTDFu1hA=;
+ s=default; t=1731705762;
+ bh=Q64Lap8gGilYnZS8wBYuXVtg6CkDWFgIDR5hpRb/qKY=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=RVx2emb342NEz2mst6RfMUiki8VYrjbKedjHqPNNNkb4BXhLdZgldqHGBRr6S5V4l
- ot1jj3ag+tv5arCezMBNlcZVolqJ/kVXCKfLQi6UufSSi9gPBN5Z2YR5EAMTqKRljK
- uRWcAwELTERtWaAvz5gx5fAH4KPOOU/VcBtZ4kx8=
+ b=TpPSBC6Q0pyCMIPKcOfsvZX/wWIHu4+ejmKY8xw+0GecDvIAUfgwshz01AoOkZ0WD
+ k4gHIei/egZSo7W0NlMAlHYHatQ5bzRsbZtX1NOQvIcE9aFKMDcUHtqmglM484AIGB
+ /3Fdhfw7EN1qT/zCvUp8095p9P9VmicZ+TZgDM0I=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:22:35 +0000
-Subject: [PATCH 05/22] powerpc/papr_scm: Convert timeouts to secs_to_jiffies()
+Date: Fri, 15 Nov 2024 21:22:31 +0000
+Subject: [PATCH 01/22] netfilter: conntrack: Cleanup timeout definitions
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v1-5-19aadc34941b@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v1-1-19aadc34941b@linux.microsoft.com>
 References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 In-Reply-To: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -115,36 +115,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Changes made with the following Coccinelle rules:
-
-@@ constant C; @@
-
-- msecs_to_jiffies(C * 1000)
-+ secs_to_jiffies(C)
-
-@@ constant C; @@
-
-- msecs_to_jiffies(C * MSEC_PER_SEC)
-+ secs_to_jiffies(C)
+None of the higher order definitions are used anymore, so remove
+definitions for minutes, hours, and days timeouts. Convert the seconds
+denominated timeouts to secs_to_jiffies()
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- arch/powerpc/platforms/pseries/papr_scm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ net/netfilter/nf_conntrack_proto_sctp.c | 21 ++++++++-------------
+ 1 file changed, 8 insertions(+), 13 deletions(-)
 
-diff --git a/arch/powerpc/platforms/pseries/papr_scm.c b/arch/powerpc/platforms/pseries/papr_scm.c
-index 9e297f88adc5d97d4dc7b267b0bfebd58e5cf193..9e8086ec66e0f0e555ac27933854c06cfcf91a04 100644
---- a/arch/powerpc/platforms/pseries/papr_scm.c
-+++ b/arch/powerpc/platforms/pseries/papr_scm.c
-@@ -543,7 +543,7 @@ static int drc_pmem_query_health(struct papr_scm_priv *p)
+diff --git a/net/netfilter/nf_conntrack_proto_sctp.c b/net/netfilter/nf_conntrack_proto_sctp.c
+index 4cc97f971264ed779434ab4597dd0162586b3736..6c95ac96fa42a39acafb5b88a7cf8898010e911c 100644
+--- a/net/netfilter/nf_conntrack_proto_sctp.c
++++ b/net/netfilter/nf_conntrack_proto_sctp.c
+@@ -39,20 +39,15 @@ static const char *const sctp_conntrack_names[] = {
+ 	[SCTP_CONNTRACK_HEARTBEAT_SENT]		= "HEARTBEAT_SENT",
+ };
  
- 	/* Jiffies offset for which the health data is assumed to be same */
- 	cache_timeout = p->lasthealth_jiffies +
--		msecs_to_jiffies(MIN_HEALTH_QUERY_INTERVAL * 1000);
-+		secs_to_jiffies(MIN_HEALTH_QUERY_INTERVAL);
+-#define SECS  * HZ
+-#define MINS  * 60 SECS
+-#define HOURS * 60 MINS
+-#define DAYS  * 24 HOURS
+-
+ static const unsigned int sctp_timeouts[SCTP_CONNTRACK_MAX] = {
+-	[SCTP_CONNTRACK_CLOSED]			= 10 SECS,
+-	[SCTP_CONNTRACK_COOKIE_WAIT]		= 3 SECS,
+-	[SCTP_CONNTRACK_COOKIE_ECHOED]		= 3 SECS,
+-	[SCTP_CONNTRACK_ESTABLISHED]		= 210 SECS,
+-	[SCTP_CONNTRACK_SHUTDOWN_SENT]		= 3 SECS,
+-	[SCTP_CONNTRACK_SHUTDOWN_RECD]		= 3 SECS,
+-	[SCTP_CONNTRACK_SHUTDOWN_ACK_SENT]	= 3 SECS,
+-	[SCTP_CONNTRACK_HEARTBEAT_SENT]		= 30 SECS,
++	[SCTP_CONNTRACK_CLOSED]			= secs_to_jiffies(10),
++	[SCTP_CONNTRACK_COOKIE_WAIT]		= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_COOKIE_ECHOED]		= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_ESTABLISHED]		= secs_to_jiffies(210),
++	[SCTP_CONNTRACK_SHUTDOWN_SENT]		= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_SHUTDOWN_RECD]		= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_SHUTDOWN_ACK_SENT]	= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_HEARTBEAT_SENT]		= secs_to_jiffies(3),
+ };
  
- 	/* Fetch new health info is its older than MIN_HEALTH_QUERY_INTERVAL */
- 	if (time_after(jiffies, cache_timeout))
+ #define	SCTP_FLAG_HEARTBEAT_VTAG_FAILED	1
 
 -- 
 2.34.1
