@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E838FD68BE7
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 21:22:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A806D68BE9
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 21:22:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E73410E8E4;
-	Fri, 15 Nov 2024 21:22:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCE4110E8F9;
+	Fri, 15 Nov 2024 21:22:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="Go0aUNLY";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="PrkdMSJs";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id D88DA10E8CD;
- Fri, 15 Nov 2024 21:22:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6A81110E8E4;
+ Fri, 15 Nov 2024 21:22:52 +0000 (UTC)
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
- by linux.microsoft.com (Postfix) with ESMTPSA id 6E2AB20BEBD3;
- Fri, 15 Nov 2024 13:22:44 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 6E2AB20BEBD3
+ by linux.microsoft.com (Postfix) with ESMTPSA id 4F33820BEBD7;
+ Fri, 15 Nov 2024 13:22:45 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 4F33820BEBD7
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1731705764;
- bh=KRAKVqkmYHFKsYpIbPFWmWMGYVvfzvIpOOiOmhExdwo=;
+ s=default; t=1731705765;
+ bh=DTjXQ8JEnxKHPkRfiey8gv8xkSCkh1L+oMakOx6bumQ=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=Go0aUNLY+uBRc1gulf22NPnT4wn803j0Yofkqbh+DxXkzhV99tx8UWceKEAkUZyjD
- tejuZgR0LF67pK/elmBAeNnO4NhzZ4R+VTUBXRegmJhIlArTFy4HXwc9kGMh3mQr02
- 7PyIpQ3LVnHfWOT4NY7AkEac4yki6LEIgx0W/av8=
+ b=PrkdMSJsCXq7e/LVXAIqADh6VOx2LSK3q8Voqjd439eNhh8b6N4u5aB1nfKzAe2Tm
+ +kT+vzsuhI8O0/+YRjBVlaEQ5kmFrot1X5DGJclM8+YlYZkjA4xQVjB3ZX/xX3Lrsj
+ FbrAa2GDIV5JdurdApM8LMcIFqaWmUwvCMzOiXGc=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:22:42 +0000
-Subject: [PATCH 12/22] scsi: pm8001: Convert timeouts to secs_to_jiffies()
+Date: Fri, 15 Nov 2024 21:22:46 +0000
+Subject: [PATCH 16/22] Bluetooth: MGMT: Convert timeouts to secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v1-12-19aadc34941b@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v1-16-19aadc34941b@linux.microsoft.com>
 References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 In-Reply-To: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -129,22 +129,22 @@ Changes made with the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- drivers/scsi/pm8001/pm8001_init.c | 2 +-
+ net/bluetooth/mgmt.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/scsi/pm8001/pm8001_init.c b/drivers/scsi/pm8001/pm8001_init.c
-index 33e1eba62ca12c2555419197ecdbebad817e4a6d..be88890716cc152b4687edf5e204d14bd177e188 100644
---- a/drivers/scsi/pm8001/pm8001_init.c
-+++ b/drivers/scsi/pm8001/pm8001_init.c
-@@ -734,7 +734,7 @@ static int pm8001_init_sas_add(struct pm8001_hba_info *pm8001_ha)
- 		return -EIO;
- 	}
- 	time_remaining = wait_for_completion_timeout(&completion,
--				msecs_to_jiffies(60*1000)); // 1 min
-+				secs_to_jiffies(60)); // 1 min
- 	if (!time_remaining) {
- 		kfree(payload.func_specific);
- 		pm8001_dbg(pm8001_ha, FAIL, "get_nvmd_req timeout\n");
+diff --git a/net/bluetooth/mgmt.c b/net/bluetooth/mgmt.c
+index a429661b676a83ec2d34ed7e228195f39a153f9f..ca89c26d04ec64869e6b99de099d343f4c548ce5 100644
+--- a/net/bluetooth/mgmt.c
++++ b/net/bluetooth/mgmt.c
+@@ -209,7 +209,7 @@ static const u16 mgmt_untrusted_events[] = {
+ 	MGMT_EV_EXP_FEATURE_CHANGED,
+ };
+ 
+-#define CACHE_TIMEOUT	msecs_to_jiffies(2 * 1000)
++#define CACHE_TIMEOUT	secs_to_jiffies(2)
+ 
+ #define ZERO_KEY "\x00\x00\x00\x00\x00\x00\x00\x00" \
+ 		 "\x00\x00\x00\x00\x00\x00\x00\x00"
 
 -- 
 2.34.1
