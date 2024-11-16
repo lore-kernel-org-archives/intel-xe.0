@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E9C4D68BD0
-	for <intel-xe@archiver.kernel.org>; Sat, 16 Nov 2024 02:57:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD979D68BE3
+	for <intel-xe@archiver.kernel.org>; Sat, 16 Nov 2024 05:16:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E3BE10E038;
-	Sat, 16 Nov 2024 02:57:52 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7BDE10E038;
- Sat, 16 Nov 2024 02:57:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3933659085270682354=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D99010E11C;
+	Sat, 16 Nov 2024 05:16:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M9msX6eV";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47B0510E11C
+ for <intel-xe@lists.freedesktop.org>; Sat, 16 Nov 2024 05:16:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731734184; x=1763270184;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=m7CgkBNMgvasTHs9y+UCBuGMWlQtT/zTpLpM6UP+Orc=;
+ b=M9msX6eVhimHI8610Ce4v9nBWXivyAUYrC9FzdIu/aWxuoqG6hkn0F6v
+ KqeFut/geDs1DxBNu31wS3wHs0KeMqdk+ReY3gw9kG4/lWzsT5JXRMnJm
+ QujNT7Wo1EZ+EPcAQIEraOmY0BvafGb1oFZALV3h9K6IPXT2c3uDm457W
+ q6JayIG7Rp5a4FgCbYpkuxbtH3UE4rHejTmYgNXK+vtBivUVMnzDT83dO
+ 5BFEjia1x8fZTCR6spekcBKb/B1fjnZbhWS4acYYjy0fzvFftDxI2ePah
+ F+6XZAzpMUFHZH71YqMUX5E4sHaPhHAOM1I27UCw5eaZ5I11JSIyqo6DD Q==;
+X-CSE-ConnectionGUID: fN5FvTRkSmaxMYQM9OCz6Q==
+X-CSE-MsgGUID: BIXBkWyzQ+yYh/RBsizEgw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="31593709"
+X-IronPort-AV: E=Sophos;i="6.12,158,1728975600"; d="scan'208";a="31593709"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 21:16:23 -0800
+X-CSE-ConnectionGUID: Pt1AjKhJR6Gr/mj5qG27aA==
+X-CSE-MsgGUID: aOn+o81qSqy/IrLjN4aAHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,158,1728975600"; d="scan'208";a="93585519"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 21:16:21 -0800
+Date: Sat, 16 Nov 2024 07:16:18 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com
+Subject: Re: [PATCH v1] drm/xe/throttle: Log throttle reasons
+Message-ID: <ZzgqondldktBhnbV@black.fi.intel.com>
+References: <20241115125614.857611-1-raag.jadav@intel.com>
+ <ZzenBqroyv4N4r47@lstrano-desk.jf.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/vf=3A_Post-migration_reco?=
- =?utf-8?q?very_of_GGTT_nodes_and_CTB_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tomasz Lis" <tomasz.lis@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 16 Nov 2024 02:57:50 -0000
-Message-ID: <173172587070.436711.8755150662925204796@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241116021238.2486287-1-tomasz.lis@intel.com>
-In-Reply-To: <20241116021238.2486287-1-tomasz.lis@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZzenBqroyv4N4r47@lstrano-desk.jf.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +64,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3933659085270682354==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Nov 15, 2024 at 11:54:46AM -0800, Matthew Brost wrote:
+> On Fri, Nov 15, 2024 at 06:26:14PM +0530, Raag Jadav wrote:
+> > Log throttle register MMIO reads which will be useful for debugging.
+> > 
+> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_gt_throttle.c | 9 ++++++---
+> >  1 file changed, 6 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
+> > index 03b225364101..0ce21ffc08dc 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_throttle.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
+> > @@ -37,15 +37,18 @@ dev_to_gt(struct device *dev)
+> >  
+> >  u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
+> >  {
+> > +	struct xe_device *xe = gt_to_xe(gt);
+> > +	bool media = xe_gt_is_media_type(gt);
+> >  	u32 reg;
+> >  
+> > -	xe_pm_runtime_get(gt_to_xe(gt));
+> > -	if (xe_gt_is_media_type(gt))
+> > +	xe_pm_runtime_get(xe);
+> > +	if (media)
+> >  		reg = xe_mmio_read32(&gt->mmio, MTL_MEDIA_PERF_LIMIT_REASONS);
+> >  	else
+> >  		reg = xe_mmio_read32(&gt->mmio, GT0_PERF_LIMIT_REASONS);
+> > -	xe_pm_runtime_put(gt_to_xe(gt));
+> > +	xe_pm_runtime_put(xe);
+> >  
+> > +	drm_dbg(&xe->drm, "%s reg: 0x%x\n", media ? "media" : "gt", reg);
+> 
+> How often does this happen? i.e. Is this common enough that it will spam
+> dmesg when running IGTs. I find messages which spam dmesg very annoying.
+> See this patch [1] I posted to remove one of these.
+> 
+> Matt
+> 
+> [1] https://patchwork.freedesktop.org/series/141426/
 
-== Series Details ==
+We're trying to debug a rare issue so I initially only meant it for CI.
 
-Series: drm/xe/vf: Post-migration recovery of GGTT nodes and CTB (rev2)
-URL   : https://patchwork.freedesktop.org/series/141439/
-State : success
+https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3254
+https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3147
+https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2810
 
-== Summary ==
+But we'll see about merging if it really helps investigate.
+I'm not sure if Test-with works with xe, does it?
 
-CI Bug Log - changes from xe-2242-9a7388467f79fb74c67a2444c5b1add91652f89e_BAT -> xe-pw-141439v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-141439v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][1] ([Intel XE#1033]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2242-9a7388467f79fb74c67a2444c5b1add91652f89e/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141439v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
-
-
-Build changes
--------------
-
-  * Linux: xe-2242-9a7388467f79fb74c67a2444c5b1add91652f89e -> xe-pw-141439v2
-
-  IGT_8114: 8114
-  xe-2242-9a7388467f79fb74c67a2444c5b1add91652f89e: 9a7388467f79fb74c67a2444c5b1add91652f89e
-  xe-pw-141439v2: 141439v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141439v2/index.html
-
---===============3933659085270682354==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/vf: Post-migration recovery of GGTT nodes and CTB (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141439/">https://patchwork.freedesktop.org/series/141439/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141439v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141439v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2242-9a7388467f79fb74c67a2444c5b1add91652f89e_BAT -&gt; xe-pw-141439v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-141439v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2242-9a7388467f79fb74c67a2444c5b1add91652f89e/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141439v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2242-9a7388467f79fb74c67a2444c5b1add91652f89e -&gt; xe-pw-141439v2</li>
-</ul>
-<p>IGT_8114: 8114<br />
-  xe-2242-9a7388467f79fb74c67a2444c5b1add91652f89e: 9a7388467f79fb74c67a2444c5b1add91652f89e<br />
-  xe-pw-141439v2: 141439v2</p>
-
-</body>
-</html>
-
---===============3933659085270682354==--
+Raag
