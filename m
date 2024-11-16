@@ -4,61 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF0B0D68BDC
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Nov 2024 23:49:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD0E7D68BDD
+	for <intel-xe@archiver.kernel.org>; Sat, 16 Nov 2024 00:12:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7611410E1E1;
-	Fri, 15 Nov 2024 23:49:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76EF210E1E1;
+	Sat, 16 Nov 2024 00:12:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aDcQ2y8G";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="Pq2k2Nni";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02D6910E1E1
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Nov 2024 23:49:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731714577; x=1763250577;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=ZP8NweOjvfAWINE9u/CInaRFeYzLaBFj4eDOCBab1LI=;
- b=aDcQ2y8GkiJTFbEsjT2mFFTJFmPKuB4zfkkapFQ6CMhMqJhpWsG4BV3z
- vAXuurndDkteUxcWzjd0B70sLAUHiowo8pHvnFkmGNIt0F/RmyDcTwIIe
- KtOrN+tiPLuoBAyAb1uiKpuFUgzuMJv6maCtdS7mYKBg2AuTw41nhyN6n
- vpih6tmW4sXrlk8M6qXyIzhzyQKZCEz5e4kk5AegpzlpiHNmTSzVhucH/
- JkPYHYi5wjdZijFRUxOq6SRaNDDL1cvhqXkskL/uWEHwRzS8sYg7avN0P
- XXzgudZSKXrVnAN6hrZbuH0OAasvEHTaTeULtsKTptfgQzNtNWNvUZ/lN A==;
-X-CSE-ConnectionGUID: t5tol+3oSRmMVHpZGG5EKw==
-X-CSE-MsgGUID: Lhlq47pbSMuy/g5lVhrX8g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="31125603"
-X-IronPort-AV: E=Sophos;i="6.12,158,1728975600"; d="scan'208";a="31125603"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 15:49:36 -0800
-X-CSE-ConnectionGUID: obU7IY6LQgGuXa/NXinahg==
-X-CSE-MsgGUID: Fj7hG/MrRIKSYlKo/AugDA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,158,1728975600"; d="scan'208";a="119639676"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.108.165])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 15:49:36 -0800
-Date: Fri, 15 Nov 2024 17:49:25 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>, 
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>
-Subject: Re: [PATCH 4/4] drm/xe: Split xe_gt_stat.h
-Message-ID: <k2t2gjroww5mzo6lkcgc4vo5bmtd4fwknuggjx45cebxv6j6rm@cq2y7rvknevw>
-References: <20241114152148.572447-1-lucas.demarchi@intel.com>
- <20241114152148.572447-5-lucas.demarchi@intel.com>
- <ZzY17YU-YLGxh_Ia@intel.com>
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DF31610E1E1;
+ Sat, 16 Nov 2024 00:12:34 +0000 (UTC)
+Received: from [192.168.35.166] (c-73-118-245-227.hsd1.wa.comcast.net
+ [73.118.245.227])
+ by linux.microsoft.com (Postfix) with ESMTPSA id 1600B2064AEE;
+ Fri, 15 Nov 2024 16:12:32 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 1600B2064AEE
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1731715954;
+ bh=xpBEojaRNmZLcf0UaP4ux3dQkOORS/leVLfy1gAywiE=;
+ h=Date:Cc:Subject:To:References:From:In-Reply-To:From;
+ b=Pq2k2Nni3cFBRk9EH3pyxgnDw6ECvdbg1vXWXgUrnZTvujbQOLePABt8LVR+E9JSZ
+ k4WoN+iIfUxQpiMRt/FU+pwGNrKJBo/0Q2+4KvxqDSAbq0u3pnKwVj+6aACG5ZF/KB
+ j3wJy4AhuvO/DGvU623x7nThkWYs37o8kaDAxg9k=
+Message-ID: <68331eb9-545f-48a4-9c49-1a3637b3d918@linux.microsoft.com>
+Date: Fri, 15 Nov 2024 16:12:31 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZzY17YU-YLGxh_Ia@intel.com>
+User-Agent: Mozilla Thunderbird
+Cc: eahariha@linux.microsoft.com, Pablo Neira Ayuso <pablo@netfilter.org>,
+ Jozsef Kadlecsik <kadlec@netfilter.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Simon Horman <horms@kernel.org>, Julia Lawall <Julia.Lawall@inria.fr>,
+ Nicolas Palix <nicolas.palix@imag.fr>, Daniel Mack <daniel@zonque.org>,
+ Haojian Zhuang <haojian.zhuang@gmail.com>,
+ Robert Jarzmik <robert.jarzmik@free.fr>, Russell King
+ <linux@armlinux.org.uk>, Heiko Carstens <hca@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Alexander Gordeev
+ <agordeev@linux.ibm.com>, Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Ofir Bitton <obitton@habana.ai>,
+ Oded Gabbay <ogabbay@kernel.org>, Lucas De Marchi
+ <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jeroen de Borst <jeroendb@google.com>,
+ Praveen Kaligineedi <pkaligineedi@google.com>,
+ Shailend Chand <shailend@google.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ James Smart <james.smart@broadcom.com>,
+ Dick Kennedy <dick.kennedy@broadcom.com>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ =?UTF-8?Q?Roger_Pau_Monn=C3=A9?= <roger.pau@citrix.com>,
+ Jens Axboe <axboe@kernel.dk>, Kalle Valo <kvalo@kernel.org>,
+ Jeff Johnson <jjohnson@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Andrew Morton <akpm@linux-foundation.org>,
+ Jack Wang <jinpu.wang@cloud.ionos.com>, Marcel Holtmann
+ <marcel@holtmann.org>, Johan Hedberg <johan.hedberg@gmail.com>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Xiubo Li <xiubli@redhat.com>,
+ Ilya Dryomov <idryomov@gmail.com>, Josh Poimboeuf <jpoimboe@kernel.org>,
+ Jiri Kosina <jikos@kernel.org>, Miroslav Benes <mbenes@suse.cz>,
+ Petr Mladek <pmladek@suse.com>, Joe Lawrence <joe.lawrence@redhat.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Louis Peens <louis.peens@corigine.com>, Michael Ellerman
+ <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Naveen N Rao <naveen@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>,
+ netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org, cocci@inria.fr,
+ linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-scsi@vger.kernel.org, xen-devel@lists.xenproject.org,
+ linux-block@vger.kernel.org, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org, linux-mm@kvack.org,
+ linux-bluetooth@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org,
+ live-patching@vger.kernel.org, linux-sound@vger.kernel.org,
+ etnaviv@lists.freedesktop.org, oss-drivers@corigine.com,
+ linuxppc-dev@lists.ozlabs.org, Anna-Maria Behnsen <anna-maria@linutronix.de>
+Subject: Re: [PATCH 03/22] arm: pxa: Convert timeouts to use secs_to_jiffies()
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
+ <20241115-converge-secs-to-jiffies-v1-3-19aadc34941b@linux.microsoft.com>
+ <20241116093815.5d37eb43@canb.auug.org.au>
+Content-Language: en-US
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+In-Reply-To: <20241116093815.5d37eb43@canb.auug.org.au>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,89 +116,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 14, 2024 at 12:39:57PM -0500, Rodrigo Vivi wrote:
->On Thu, Nov 14, 2024 at 07:21:48AM -0800, Lucas De Marchi wrote:
->> Follow what's done for the other headers, with the types split into a
->> separate header that can be included by other *_types.h headers.
+On 11/15/2024 2:38 PM, Stephen Rothwell wrote:
+> Hi Easwar,
+> 
+> On Fri, 15 Nov 2024 21:22:33 +0000 Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
 >>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_gt_stats.h       |  8 ++------
->>  drivers/gpu/drm/xe/xe_gt_stats_types.h | 15 +++++++++++++++
->>  drivers/gpu/drm/xe/xe_gt_types.h       |  2 +-
->>  3 files changed, 18 insertions(+), 7 deletions(-)
->>  create mode 100644 drivers/gpu/drm/xe/xe_gt_stats_types.h
->>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_stats.h b/drivers/gpu/drm/xe/xe_gt_stats.h
->> index 91d944f6c4e43..38325ef536176 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_stats.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_stats.h
->> @@ -6,15 +6,11 @@
->>  #ifndef _XE_GT_STATS_H_
->>  #define _XE_GT_STATS_H_
->>
->> +#include "xe_gt_stats_types.h"
->> +
->>  struct xe_gt;
->>  struct drm_printer;
->>
->> -enum xe_gt_stats_id {
->> -	XE_GT_STATS_ID_TLB_INVAL,
->> -	/* must be the last entry */
->> -	__XE_GT_STATS_NUM_IDS,
->
->would deserve a doc while moving it here?
+>> -#define SHARPSL_CHARGE_ON_TIME_INTERVAL        (msecs_to_jiffies(1*60*1000))  /* 1 min */
+>> -#define SHARPSL_CHARGE_FINISH_TIME             (msecs_to_jiffies(10*60*1000)) /* 10 min */
+>> -#define SHARPSL_BATCHK_TIME                    (msecs_to_jiffies(15*1000))    /* 15 sec */
+>> +#define SHARPSL_CHARGE_ON_TIME_INTERVAL        (secs_to_jiffies(60))  /* 1 min */
+>> +#define SHARPSL_CHARGE_FINISH_TIME             (secs_to_jiffies(10*60)) /* 10 min */
+>> +#define SHARPSL_BATCHK_TIME                    (secs_to_jiffies(15))    /* 15 sec */
+> 
+> It might be nice to keep the alignment of the comments here.
+> 
 
-it wouldn't show up in the html output unless we also linked it
-somewhere in the Documentation/  side. I prefer to do that on top.
-
->anyway,
->
->Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-thanks
-Lucas De Marchi
-
->
->> -};
->> -
->>  #ifdef CONFIG_DEBUG_FS
->>  int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p);
->>  void xe_gt_stats_incr(struct xe_gt *gt, const enum xe_gt_stats_id id, int incr);
->> diff --git a/drivers/gpu/drm/xe/xe_gt_stats_types.h b/drivers/gpu/drm/xe/xe_gt_stats_types.h
->> new file mode 100644
->> index 0000000000000..2fc055e39f273
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_gt_stats_types.h
->> @@ -0,0 +1,15 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2024 Intel Corporation
->> + */
->> +
->> +#ifndef _XE_GT_STATS_TYPES_H_
->> +#define _XE_GT_STATS_TYPES_H_
->> +
->> +enum xe_gt_stats_id {
->> +	XE_GT_STATS_ID_TLB_INVAL,
->> +	/* must be the last entry */
->> +	__XE_GT_STATS_NUM_IDS,
->> +};
->> +
->> +#endif
->> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
->> index 20901c01ba29a..6e66bf0e8b3f7 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_types.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
->> @@ -11,7 +11,7 @@
->>  #include "xe_gt_idle_types.h"
->>  #include "xe_gt_sriov_pf_types.h"
->>  #include "xe_gt_sriov_vf_types.h"
->> -#include "xe_gt_stats.h"
->> +#include "xe_gt_stats_types.h"
->>  #include "xe_hw_engine_types.h"
->>  #include "xe_hw_fence_types.h"
->>  #include "xe_oa_types.h"
->> --
->> 2.47.0
->>
+Will fix in v3.
