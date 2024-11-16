@@ -4,55 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD979D68BE3
-	for <intel-xe@archiver.kernel.org>; Sat, 16 Nov 2024 05:16:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 554A9D68BE1
+	for <intel-xe@archiver.kernel.org>; Sat, 16 Nov 2024 05:34:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D99010E11C;
-	Sat, 16 Nov 2024 05:16:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1042810E089;
+	Sat, 16 Nov 2024 05:34:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M9msX6eV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kc54l5rE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47B0510E11C
- for <intel-xe@lists.freedesktop.org>; Sat, 16 Nov 2024 05:16:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C38310E089
+ for <intel-xe@lists.freedesktop.org>; Sat, 16 Nov 2024 05:34:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731734184; x=1763270184;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=m7CgkBNMgvasTHs9y+UCBuGMWlQtT/zTpLpM6UP+Orc=;
- b=M9msX6eVhimHI8610Ce4v9nBWXivyAUYrC9FzdIu/aWxuoqG6hkn0F6v
- KqeFut/geDs1DxBNu31wS3wHs0KeMqdk+ReY3gw9kG4/lWzsT5JXRMnJm
- QujNT7Wo1EZ+EPcAQIEraOmY0BvafGb1oFZALV3h9K6IPXT2c3uDm457W
- q6JayIG7Rp5a4FgCbYpkuxbtH3UE4rHejTmYgNXK+vtBivUVMnzDT83dO
- 5BFEjia1x8fZTCR6spekcBKb/B1fjnZbhWS4acYYjy0fzvFftDxI2ePah
- F+6XZAzpMUFHZH71YqMUX5E4sHaPhHAOM1I27UCw5eaZ5I11JSIyqo6DD Q==;
-X-CSE-ConnectionGUID: fN5FvTRkSmaxMYQM9OCz6Q==
-X-CSE-MsgGUID: BIXBkWyzQ+yYh/RBsizEgw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="31593709"
-X-IronPort-AV: E=Sophos;i="6.12,158,1728975600"; d="scan'208";a="31593709"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 21:16:23 -0800
-X-CSE-ConnectionGUID: Pt1AjKhJR6Gr/mj5qG27aA==
-X-CSE-MsgGUID: aOn+o81qSqy/IrLjN4aAHQ==
+ t=1731735288; x=1763271288;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=32qGqyICusqcMBhW60cyT7fwTQpMZKYSF7K6IC4pjY4=;
+ b=Kc54l5rE+EmpzP5AsPQd0PjtHthEeiOs539K43+UiSjquG8hUq9MjDSG
+ X49kdkZZiXzw8/NhX78xtkSBQY4JxOQf2s2gDm/QrX8gGAVFdhMwAIEuM
+ 6hPh3L6AA+jF06z8RNdCav3377+iffRIqPZ8BSFkwssgQKB63iUpI4CK2
+ 6uwb3mHUEnpazvUnnxAGDOLW6iNaffEWMOTQd66YQskIthWxXaxqYXrdz
+ FHazcQgF4nV6xOovfC/zaZ0mjS/+NAZs7jO84VWtt+1b047/7WMsQrehG
+ oUGxAtAcf8NA6uqzwOh7vjMh713QeLQtUFT3PcrsnADYXKd68rfwoT0zp g==;
+X-CSE-ConnectionGUID: mvi1chMBSpW0VvmAtgVeZQ==
+X-CSE-MsgGUID: AJmA+eCNROKdBHRjpBHf7Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="42397922"
+X-IronPort-AV: E=Sophos;i="6.12,158,1728975600"; d="scan'208";a="42397922"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 21:34:48 -0800
+X-CSE-ConnectionGUID: 6ZjfxcK7TsSCLSSqlN+MMg==
+X-CSE-MsgGUID: DL/0ra3ETDK8iuKtphPyiw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,158,1728975600"; d="scan'208";a="93585519"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 21:16:21 -0800
-Date: Sat, 16 Nov 2024 07:16:18 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com
+X-IronPort-AV: E=Sophos;i="6.12,158,1728975600"; d="scan'208";a="88632984"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 21:34:48 -0800
+Date: Fri, 15 Nov 2024 21:34:47 -0800
+Message-ID: <855xonyc5k.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+	anshuman.gupta@intel.com
 Subject: Re: [PATCH v1] drm/xe/throttle: Log throttle reasons
-Message-ID: <ZzgqondldktBhnbV@black.fi.intel.com>
+In-Reply-To: <ZzgqondldktBhnbV@black.fi.intel.com>
 References: <20241115125614.857611-1-raag.jadav@intel.com>
  <ZzenBqroyv4N4r47@lstrano-desk.jf.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZzenBqroyv4N4r47@lstrano-desk.jf.intel.com>
+ <ZzgqondldktBhnbV@black.fi.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,54 +72,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Nov 15, 2024 at 11:54:46AM -0800, Matthew Brost wrote:
-> On Fri, Nov 15, 2024 at 06:26:14PM +0530, Raag Jadav wrote:
-> > Log throttle register MMIO reads which will be useful for debugging.
-> > 
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_gt_throttle.c | 9 ++++++---
-> >  1 file changed, 6 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
-> > index 03b225364101..0ce21ffc08dc 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_throttle.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
-> > @@ -37,15 +37,18 @@ dev_to_gt(struct device *dev)
-> >  
-> >  u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
-> >  {
-> > +	struct xe_device *xe = gt_to_xe(gt);
-> > +	bool media = xe_gt_is_media_type(gt);
-> >  	u32 reg;
-> >  
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> > -	if (xe_gt_is_media_type(gt))
-> > +	xe_pm_runtime_get(xe);
-> > +	if (media)
-> >  		reg = xe_mmio_read32(&gt->mmio, MTL_MEDIA_PERF_LIMIT_REASONS);
-> >  	else
-> >  		reg = xe_mmio_read32(&gt->mmio, GT0_PERF_LIMIT_REASONS);
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > +	xe_pm_runtime_put(xe);
-> >  
-> > +	drm_dbg(&xe->drm, "%s reg: 0x%x\n", media ? "media" : "gt", reg);
-> 
-> How often does this happen? i.e. Is this common enough that it will spam
-> dmesg when running IGTs. I find messages which spam dmesg very annoying.
-> See this patch [1] I posted to remove one of these.
-> 
-> Matt
-> 
-> [1] https://patchwork.freedesktop.org/series/141426/
+On Fri, 15 Nov 2024 21:16:18 -0800, Raag Jadav wrote:
+>
+> We're trying to debug a rare issue so I initially only meant it for CI.
+>
+> https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3254
+> https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3147
+> https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2810
+>
+> But we'll see about merging if it really helps investigate.
+> I'm not sure if Test-with works with xe, does it?
 
-We're trying to debug a rare issue so I initially only meant it for CI.
-
-https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3254
-https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3147
-https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2810
-
-But we'll see about merging if it really helps investigate.
-I'm not sure if Test-with works with xe, does it?
-
-Raag
+Should be a simple matter of searching your email and seeing if you find
+any Test-with's, isn't it?
