@@ -4,41 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7445D68BDF
-	for <intel-xe@archiver.kernel.org>; Sat, 16 Nov 2024 08:20:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC7DFD68BD2
+	for <intel-xe@archiver.kernel.org>; Sat, 16 Nov 2024 09:40:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C05310E1AB;
-	Sat, 16 Nov 2024 08:20:05 +0000 (UTC)
-X-Greylist: delayed 2025 seconds by postgrey-1.36 at gabe;
- Sat, 16 Nov 2024 08:20:04 UTC
+	by gabe.freedesktop.org (Postfix) with ESMTP id 452C910E11C;
+	Sat, 16 Nov 2024 09:40:44 +0000 (UTC)
 Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 127C310E033;
- Sat, 16 Nov 2024 08:20:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91E7D10E0FB;
+ Sat, 16 Nov 2024 09:40:42 +0000 (UTC)
 Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
- by localhost (Postfix) with ESMTP id 4Xr5YN504Vz9sSR;
- Sat, 16 Nov 2024 08:46:16 +0100 (CET)
+ by localhost (Postfix) with ESMTP id 4Xr85N5Gv6z9sSR;
+ Sat, 16 Nov 2024 10:40:40 +0100 (CET)
 X-Virus-Scanned: amavisd-new at c-s.fr
 Received: from pegase2.c-s.fr ([172.26.127.65])
  by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id lhQM5FPtGe1r; Sat, 16 Nov 2024 08:46:16 +0100 (CET)
+ with ESMTP id RSlaypuNxNm4; Sat, 16 Nov 2024 10:40:40 +0100 (CET)
 Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
- by pegase2.c-s.fr (Postfix) with ESMTP id 4Xr5YN3dzNz9sSL;
- Sat, 16 Nov 2024 08:46:16 +0100 (CET)
+ by pegase2.c-s.fr (Postfix) with ESMTP id 4Xr85N41fnz9sSL;
+ Sat, 16 Nov 2024 10:40:40 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id 60E718B7A0;
- Sat, 16 Nov 2024 08:46:16 +0100 (CET)
+ by messagerie.si.c-s.fr (Postfix) with ESMTP id 6B8F18B7A0;
+ Sat, 16 Nov 2024 10:40:40 +0100 (CET)
 X-Virus-Scanned: amavisd-new at c-s.fr
 Received: from messagerie.si.c-s.fr ([127.0.0.1])
  by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
- with ESMTP id DVfL0PgYOHHm; Sat, 16 Nov 2024 08:46:16 +0100 (CET)
+ with ESMTP id 9RKIVUrbVgoj; Sat, 16 Nov 2024 10:40:40 +0100 (CET)
 Received: from [192.168.232.159] (POS169858.IDSI0.si.c-s.fr [192.168.232.159])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id 93F818B763;
- Sat, 16 Nov 2024 08:46:12 +0100 (CET)
-Message-ID: <856ae9de-0712-4a44-ab3d-9e5077725877@csgroup.eu>
-Date: Sat, 16 Nov 2024 08:46:09 +0100
+ by messagerie.si.c-s.fr (Postfix) with ESMTP id EDBE28B763;
+ Sat, 16 Nov 2024 10:40:36 +0100 (CET)
+Message-ID: <b370e8d0-2f87-4819-8f30-1181946295d9@csgroup.eu>
+Date: Sat, 16 Nov 2024 10:40:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/21] Converge on using secs_to_jiffies()
+Subject: Re: [PATCH v2 01/21] netfilter: conntrack: Cleanup timeout definitions
 To: Easwar Hariharan <eahariha@linux.microsoft.com>,
  Pablo Neira Ayuso <pablo@netfilter.org>,
  Jozsef Kadlecsik <kadlec@netfilter.org>,
@@ -101,10 +99,10 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  etnaviv@lists.freedesktop.org, oss-drivers@corigine.com,
  linuxppc-dev@lists.ozlabs.org, Anna-Maria Behnsen <anna-maria@linutronix.de>
 References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
- <10ee4e8f-d8b4-4502-a5e2-0657802aeb11@linux.microsoft.com>
+ <20241115-converge-secs-to-jiffies-v2-1-911fb7595e79@linux.microsoft.com>
 Content-Language: fr-FR
 From: Christophe Leroy <christophe.leroy@csgroup.eu>
-In-Reply-To: <10ee4e8f-d8b4-4502-a5e2-0657802aeb11@linux.microsoft.com>
+In-Reply-To: <20241115-converge-secs-to-jiffies-v2-1-911fb7595e79@linux.microsoft.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -123,43 +121,63 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-Le 15/11/2024 à 22:29, Easwar Hariharan a écrit :
+Le 15/11/2024 à 22:26, Easwar Hariharan a écrit :
 > [Vous ne recevez pas souvent de courriers de eahariha@linux.microsoft.com. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
 > 
-> On 11/15/2024 1:26 PM, Easwar Hariharan wrote:
->> This is a series that follows up on my previous series to introduce
->> secs_to_jiffies() and convert a few initial users.[1] In the review for
->> that series, Anna-Maria requested converting other users with
->> Coccinelle. This is part 1 that converts users of msecs_to_jiffies()
->> that use the multiply pattern of either of:
->> - msecs_to_jiffies(N*1000), or
->> - msecs_to_jiffies(N*MSEC_PER_SEC)
->>
->> The entire conversion is made with Coccinelle in the script added in
->> patch 2. Some changes suggested by Coccinelle have been deferred to
->> later parts that will address other possible variant patterns.
->>
->> CC: Anna-Maria Behnsen <anna-maria@linutronix.de>
->> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
->>
->> [1] https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fall%2F20241030-open-coded-timeouts-v3-0-9ba123facf88%40linux.microsoft.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cff4857ad28a74e7051f708dd05bc8d45%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638673029556700628%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=q%2FHm%2Fal%2FBtK5J4nd%2BqJHNeSJ3f%2B0lVCKzigUUoL2vjw%3D&reserved=0
->> [2] https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fall%2F8734kngfni.fsf%40somnus%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cff4857ad28a74e7051f708dd05bc8d45%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638673029556721028%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=PZiR%2B9GSo3Zk7cD85MyM4ZpqvIQtD0lSxd4G1gZ4UFE%3D&reserved=0
->>
->> ---
->> Changes in v2:
->> - EDITME: describe what is new in this series revision.
->> - EDITME: use bulletpoints and terse descriptions.
->> - Link to v1: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fr%2F20241115-converge-secs-to-jiffies-v1-0-19aadc34941b%40linux.microsoft.com&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cff4857ad28a74e7051f708dd05bc8d45%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638673029556732854%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=NXdY%2FTuSufEPcy4ijIj%2F0%2BW3K%2FhkLs2JGu5C1WFMPOM%3D&reserved=0
->>
+> None of the higher order definitions are used anymore, so remove
+> definitions for minutes, hours, and days timeouts. Convert the seconds
+> denominated timeouts to secs_to_jiffies()
+
+There is very similar things with tcp_timeouts[] in 
+nf_conntrack_proto_tcp.c, why not convert it as well ?
+
 > 
-> Apologies, I missed out on editing the changelog here. v1 included a
-> patch that's already been accepted, there are no other changes in v2.
+> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> ---
+>   net/netfilter/nf_conntrack_proto_sctp.c | 21 ++++++++-------------
+>   1 file changed, 8 insertions(+), 13 deletions(-)
+> 
+> diff --git a/net/netfilter/nf_conntrack_proto_sctp.c b/net/netfilter/nf_conntrack_proto_sctp.c
+> index 4cc97f971264ed779434ab4597dd0162586b3736..6c95ac96fa42a39acafb5b88a7cf8898010e911c 100644
+> --- a/net/netfilter/nf_conntrack_proto_sctp.c
+> +++ b/net/netfilter/nf_conntrack_proto_sctp.c
+> @@ -39,20 +39,15 @@ static const char *const sctp_conntrack_names[] = {
+>          [SCTP_CONNTRACK_HEARTBEAT_SENT]         = "HEARTBEAT_SENT",
+>   };
+> 
+> -#define SECS  * HZ
+> -#define MINS  * 60 SECS
+> -#define HOURS * 60 MINS
+> -#define DAYS  * 24 HOURS
+> -
+>   static const unsigned int sctp_timeouts[SCTP_CONNTRACK_MAX] = {
+> -       [SCTP_CONNTRACK_CLOSED]                 = 10 SECS,
+> -       [SCTP_CONNTRACK_COOKIE_WAIT]            = 3 SECS,
+> -       [SCTP_CONNTRACK_COOKIE_ECHOED]          = 3 SECS,
+> -       [SCTP_CONNTRACK_ESTABLISHED]            = 210 SECS,
+> -       [SCTP_CONNTRACK_SHUTDOWN_SENT]          = 3 SECS,
+> -       [SCTP_CONNTRACK_SHUTDOWN_RECD]          = 3 SECS,
+> -       [SCTP_CONNTRACK_SHUTDOWN_ACK_SENT]      = 3 SECS,
+> -       [SCTP_CONNTRACK_HEARTBEAT_SENT]         = 30 SECS,
+> +       [SCTP_CONNTRACK_CLOSED]                 = secs_to_jiffies(10),
+> +       [SCTP_CONNTRACK_COOKIE_WAIT]            = secs_to_jiffies(3),
+> +       [SCTP_CONNTRACK_COOKIE_ECHOED]          = secs_to_jiffies(3),
+> +       [SCTP_CONNTRACK_ESTABLISHED]            = secs_to_jiffies(210),
+> +       [SCTP_CONNTRACK_SHUTDOWN_SENT]          = secs_to_jiffies(3),
+> +       [SCTP_CONNTRACK_SHUTDOWN_RECD]          = secs_to_jiffies(3),
+> +       [SCTP_CONNTRACK_SHUTDOWN_ACK_SENT]      = secs_to_jiffies(3),
+> +       [SCTP_CONNTRACK_HEARTBEAT_SENT]         = secs_to_jiffies(3),
 
-You should refrain from sending such a patch bomb twice in 4 minutes. If 
-there is no other change you could have just replied to that already 
-included patch to say so.
+Was 30 before, if you think it must be changed to 3 you must explain it 
+in the commit message, or maybe do another patch for that change.
 
-In any case wait a few days so that people have time to review and 
-provide comments.
+>   };
+> 
+>   #define        SCTP_FLAG_HEARTBEAT_VTAG_FAILED 1
+> 
+> --
+> 2.34.1
+> 
 
 Christophe
+
