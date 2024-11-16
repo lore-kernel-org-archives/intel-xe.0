@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0DDCD68BDA
-	for <intel-xe@archiver.kernel.org>; Sat, 16 Nov 2024 01:37:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56429D68BDA
+	for <intel-xe@archiver.kernel.org>; Sat, 16 Nov 2024 01:38:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACC4310E056;
-	Sat, 16 Nov 2024 01:37:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07D9C10E056;
+	Sat, 16 Nov 2024 01:38:17 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C3F310E056;
- Sat, 16 Nov 2024 01:37:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4259310E056;
+ Sat, 16 Nov 2024 01:38:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/vf=3A_Post-migrati?=
- =?utf-8?q?on_recovery_of_GGTT_nodes_and_CTB?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/vf=3A_Post-migration_re?=
+ =?utf-8?q?covery_of_GGTT_nodes_and_CTB?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tomasz Lis" <tomasz.lis@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 16 Nov 2024 01:37:42 -0000
-Message-ID: <173172106246.436711.2588866283805537050@2413ebb6fbb6>
+Date: Sat, 16 Nov 2024 01:38:16 -0000
+Message-ID: <173172109629.436711.14480080110383051518@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241116012755.2297439-1-tomasz.lis@intel.com>
 In-Reply-To: <20241116012755.2297439-1-tomasz.lis@intel.com>
@@ -44,190 +44,62 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/vf: Post-migration recovery of GGTT nodes and CTB
 URL   : https://patchwork.freedesktop.org/series/141439/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit a381e4c3664a73f4acc56650dfb4440a255a98b3
-Author: Tomasz Lis <tomasz.lis@intel.com>
-Date:   Sat Nov 16 02:27:55 2024 +0100
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_sriov_vf.c: In function ‘vf_post_migration_fixup_ggtt_nodes’:
+../drivers/gpu/drm/xe/xe_sriov_vf.c:190:21: error: implicit declaration of function ‘xe_gt_is_media_type’ [-Werror=implicit-function-declaration]
+  190 |                 if (xe_gt_is_media_type(gt))
+      |                     ^~~~~~~~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:229: drivers/gpu/drm/xe/xe_sriov_vf.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:478: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:478: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:478: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:478: drivers] Error 2
+make[2]: *** [/kernel/Makefile:1936: .] Error 2
+make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
 
-    drm/xe/vf: Fixup CTB send buffer messages after migration
-    
-    During post-migration recovery of a VF, it in necessary to update
-    GGTT references included in messages which are going to be sent
-    to GuC. GuC will start consuming messages after VF KMD will inform
-    it about fixups being done; before that, the VF KMD is expected
-    to update any H2G messages which are already in send buffer but
-    were not consumed by GuC.
-    
-    Only a small subset of messages allowed for VFs have GGTT references
-    in them. This patch adds the functionality to parse the CTB send
-    ring buffer and shift addresses contained within.
-    
-    While fixing the CTB content, ct->lock is not taken. This means
-    the only barier taken remains GGTT address lock - which is ok,
-    because only requests with GGTT addresses matter, but it also means
-    tail changes can happen during the CTB fixups execution (which may
-    be ignored as any new messages will not have anything to fix).
-    
-    The GGTT address locking will be introduced in a future series.
-    
-    Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
-+ /mt/dim checkpatch 9a7388467f79fb74c67a2444c5b1add91652f89e drm-intel
-b9e1c651ef2e drm/drm_mm: Safe macro for iterating through nodes in range
--:32: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'node__' - possible side-effects?
-#32: FILE: include/drm/drm_mm.h:520:
-+#define drm_mm_for_each_node_in_range_safe(node__, next__, mm__, start__, end__)	\
-+	for (node__ = __drm_mm_interval_first((mm__), (start__), (end__)-1), \
-+		next__ = list_next_entry(node__, node_list); \
-+	     node__->start < (end__);					\
-+	     node__ = next__, next__ = list_next_entry(next__, node_list))
-
--:32: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'next__' - possible side-effects?
-#32: FILE: include/drm/drm_mm.h:520:
-+#define drm_mm_for_each_node_in_range_safe(node__, next__, mm__, start__, end__)	\
-+	for (node__ = __drm_mm_interval_first((mm__), (start__), (end__)-1), \
-+		next__ = list_next_entry(node__, node_list); \
-+	     node__->start < (end__);					\
-+	     node__ = next__, next__ = list_next_entry(next__, node_list))
-
--:32: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
-#32: FILE: include/drm/drm_mm.h:520:
-+#define drm_mm_for_each_node_in_range_safe(node__, next__, mm__, start__, end__)	\
-+	for (node__ = __drm_mm_interval_first((mm__), (start__), (end__)-1), \
-+		next__ = list_next_entry(node__, node_list); \
-+	     node__->start < (end__);					\
-+	     node__ = next__, next__ = list_next_entry(next__, node_list))
-
--:33: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#33: FILE: include/drm/drm_mm.h:521:
-+	for (node__ = __drm_mm_interval_first((mm__), (start__), (end__)-1), \
- 	                                                                ^
-
-total: 0 errors, 0 warnings, 4 checks, 25 lines checked
-26ae2cf9c496 drm/xe/sriov: Shifting GGTT area post migration
--:45: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#45: FILE: drivers/gpu/drm/xe/xe_gt_sriov_vf.c:931:
-+	xe_gt_sriov_info(gt, "GGTT base shifted from %#llx to %#llx\n",
-+		  old_base, old_base + ggtt_shift);
-
--:51: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#51: FILE: drivers/gpu/drm/xe/xe_gt_sriov_vf.c:937:
-+static void xe_ggtt_mm_shift_nodes(struct xe_ggtt *ggtt, struct drm_mm_node *balloon_beg,
-+				struct drm_mm_node *balloon_fin, s64 shift)
-
--:151: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#151: FILE: drivers/gpu/drm/xe/xe_gt_sriov_vf.c:1037:
-+static void xe_ggtt_node_shift_nodes(struct xe_ggtt *ggtt, struct xe_ggtt_node *balloon_beg,
-+				struct xe_ggtt_node *balloon_fin, s64 shift)
-
--:156: CHECK:BRACES: braces {} should be used on all arms of this statement
-#156: FILE: drivers/gpu/drm/xe/xe_gt_sriov_vf.c:1042:
-+	if (balloon_beg && balloon_beg->ggtt)
-[...]
-+	else {
-[...]
-
--:158: CHECK:BRACES: Unbalanced braces around else statement
-#158: FILE: drivers/gpu/drm/xe/xe_gt_sriov_vf.c:1044:
-+	else {
-
--:166: CHECK:BRACES: braces {} should be used on all arms of this statement
-#166: FILE: drivers/gpu/drm/xe/xe_gt_sriov_vf.c:1052:
-+	if (balloon_fin && balloon_fin->ggtt)
-[...]
-+	else {
-[...]
-
--:168: CHECK:BRACES: Unbalanced braces around else statement
-#168: FILE: drivers/gpu/drm/xe/xe_gt_sriov_vf.c:1054:
-+	else {
-
-total: 0 errors, 0 warnings, 7 checks, 214 lines checked
-a381e4c3664a drm/xe/vf: Fixup CTB send buffer messages after migration
--:87: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#87: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:1636:
-+static void ct_update_addresses_in_message(struct xe_guc_ct *ct,
-+					    struct iosys_map *cmds, u32 head,
-
--:95: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
-#95: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:1644:
-+#define read32(o, p)							\
-+	xe_map_memcpy_from(xe, msg, cmds, (head + p) * sizeof(u32),	\
-+			   1 * sizeof(u32));				\
-+	o = msg[0]
-
--:95: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'p' may be better as '(p)' to avoid precedence issues
-#95: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:1644:
-+#define read32(o, p)							\
-+	xe_map_memcpy_from(xe, msg, cmds, (head + p) * sizeof(u32),	\
-+			   1 * sizeof(u32));				\
-+	o = msg[0]
-
--:99: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
-#99: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:1648:
-+#define fixup64(p)							\
-+	xe_map_memcpy_from(xe, msg, cmds, (head + p) * sizeof(u32),	\
-+			   2 * sizeof(u32));				\
-+	offset = make_u64(msg[1], msg[0]);				\
-+	offset += shift;						\
-+	msg[0] = lower_32_bits(offset);					\
-+	msg[1] = upper_32_bits(offset);					\
-+	xe_map_memcpy_to(xe, cmds, (head + p) * sizeof(u32), msg, 2 * sizeof(u32))
-
--:99: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
-#99: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:1648:
-+#define fixup64(p)							\
-+	xe_map_memcpy_from(xe, msg, cmds, (head + p) * sizeof(u32),	\
-+			   2 * sizeof(u32));				\
-+	offset = make_u64(msg[1], msg[0]);				\
-+	offset += shift;						\
-+	msg[0] = lower_32_bits(offset);					\
-+	msg[1] = upper_32_bits(offset);					\
-+	xe_map_memcpy_to(xe, cmds, (head + p) * sizeof(u32), msg, 2 * sizeof(u32))
-
--:99: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'p' may be better as '(p)' to avoid precedence issues
-#99: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:1648:
-+#define fixup64(p)							\
-+	xe_map_memcpy_from(xe, msg, cmds, (head + p) * sizeof(u32),	\
-+			   2 * sizeof(u32));				\
-+	offset = make_u64(msg[1], msg[0]);				\
-+	offset += shift;						\
-+	msg[0] = lower_32_bits(offset);					\
-+	msg[1] = upper_32_bits(offset);					\
-+	xe_map_memcpy_to(xe, cmds, (head + p) * sizeof(u32), msg, 2 * sizeof(u32))
-
--:111: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#111: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:1660:
-+	switch (action)
-+	{
-
--:123: WARNING:BRACES: braces {} are not necessary for single statement blocks
-#123: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:1672:
-+			for (i = 0; i < n; i++) {
-+				fixup64(11 + 2 * i);
-+			}
-
--:192: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#192: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:1741:
-+		xe_gt_err(gt, "H2G channel has Invalid tail offset (%u >= %u)\n",
-+			 tail, size);
-
--:213: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#213: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:1762:
-+	xe_gt_err(gt, "Corrupted descriptor head=%u tail=%u\n",
-+		 head, tail);
-
-total: 3 errors, 1 warnings, 6 checks, 216 lines checked
+[01:37:43] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[01:37:47] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
