@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C101D68BEA
-	for <intel-xe@archiver.kernel.org>; Sat, 16 Nov 2024 11:46:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB8F1D68BEA
+	for <intel-xe@archiver.kernel.org>; Sat, 16 Nov 2024 11:46:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62F0D10E00B;
-	Sat, 16 Nov 2024 11:46:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9575A10E27E;
+	Sat, 16 Nov 2024 11:46:20 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D6B310E00B;
- Sat, 16 Nov 2024 11:46:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9C9510E27E;
+ Sat, 16 Nov 2024 11:46:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_TTM_shrinker_helpers_and_xe_bu?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EHooks=3A_failure_for_TTM_shrinker_helpers_and_xe_bu?=
  =?utf-8?q?ffer_object_shrinker_=28rev14=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 16 Nov 2024 11:46:05 -0000
-Message-ID: <173175756546.380828.17431676248867629630@2413ebb6fbb6>
+Date: Sat, 16 Nov 2024 11:46:19 -0000
+Message-ID: <173175757971.436711.3187047702536408271@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241115150120.3280-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20241115150120.3280-1-thomas.hellstrom@linux.intel.com>
@@ -44,110 +44,103 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: TTM shrinker helpers and xe buffer object shrinker (rev14)
 URL   : https://patchwork.freedesktop.org/series/131815/
-State : success
+State : failure
 
 == Summary ==
 
-lib/modules/6.12.0-rc7-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/
-lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.12.0-rc7-xe/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.12.0-rc7-xe/kernel/kernel/
-lib/modules/6.12.0-rc7-xe/kernel/kernel/kheaders.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/
-lib/modules/6.12.0-rc7-xe/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/xcbc.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/serpent_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/aria_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/adiantum.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/tcrypt.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/crypto_engine.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/zstd.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/asymmetric_keys/
-lib/modules/6.12.0-rc7-xe/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/des_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/xctr.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/authenc.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/sm4_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/keywrap.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/camellia_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/sm3.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/pcrypt.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/aegis128.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/af_alg.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/algif_aead.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/cmac.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/sm3_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/aes_ti.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/chacha_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/poly1305_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/nhpoly1305.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/crc32_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/essiv.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/ccm.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/wp512.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/streebog_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/authencesn.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/echainiv.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/lrw.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/cryptd.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/crypto_user.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/algif_hash.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/vmac.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/hctr2.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/842.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/pcbc.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/ansi_cprng.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/cast6_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/twofish_common.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/twofish_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/lz4hc.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/blowfish_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/md4.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/curve25519-generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/lz4.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/rmd160.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/algif_skcipher.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/cast5_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/fcrypt.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/sm4.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/cast_common.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/blowfish_common.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/michael_mic.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/
-lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.12.0-rc7-xe/kernel/crypto/algif_rng.ko
-lib/modules/6.12.0-rc7-xe/kernel/block/
-lib/modules/6.12.0-rc7-xe/kernel/block/bfq.ko
-lib/modules/6.12.0-rc7-xe/kernel/block/kyber-iosched.ko
-lib/modules/6.12.0-rc7-xe/build
-lib/modules/6.12.0-rc7-xe/modules.alias.bin
-lib/modules/6.12.0-rc7-xe/modules.builtin
-lib/modules/6.12.0-rc7-xe/modules.softdep
-lib/modules/6.12.0-rc7-xe/modules.alias
-lib/modules/6.12.0-rc7-xe/modules.order
-lib/modules/6.12.0-rc7-xe/modules.symbols
-lib/modules/6.12.0-rc7-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1731757551:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1731757551:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+run-parts: executing /workspace/ci/hooks/00-showenv
++ export
++ grep -Ei '(^|\W)CI_'
+declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64-default"
+declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
+declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
+declare -x CI_WORKSPACE_DIR="/workspace"
+run-parts: executing /workspace/ci/hooks/10-build-W1
++ SRC_DIR=/workspace/kernel
++ RESTORE_DISPLAY_CONFIG=0
++ '[' -n /workspace/kernel/build64-default ']'
++ BUILD_DIR=/workspace/kernel/build64-default
++ cd /workspace/kernel
+++ nproc
++ make -j48 O=/workspace/kernel/build64-default modules_prepare
+make[1]: Entering directory '/workspace/kernel/build64-default'
+  GEN     Makefile
+  UPD     include/config/kernel.release
+mkdir -p /workspace/kernel/build64-default/tools/objtool && make O=/workspace/kernel/build64-default subdir=tools/objtool --no-print-directory -C objtool 
+  UPD     include/generated/utsrelease.h
+  CALL    ../scripts/checksyscalls.sh
+  INSTALL libsubcmd_headers
+  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/exec-cmd.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/help.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/pager.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/parse-options.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/run-command.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/sigchain.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/subcmd-config.o
+  LD      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd-in.o
+  AR      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd.a
+  CC      /workspace/kernel/build64-default/tools/objtool/weak.o
+  CC      /workspace/kernel/build64-default/tools/objtool/check.o
+  CC      /workspace/kernel/build64-default/tools/objtool/builtin-check.o
+  CC      /workspace/kernel/build64-default/tools/objtool/special.o
+  CC      /workspace/kernel/build64-default/tools/objtool/elf.o
+  CC      /workspace/kernel/build64-default/tools/objtool/objtool.o
+  CC      /workspace/kernel/build64-default/tools/objtool/orc_gen.o
+  CC      /workspace/kernel/build64-default/tools/objtool/orc_dump.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libstring.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libctype.o
+  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/special.o
+  CC      /workspace/kernel/build64-default/tools/objtool/str_error_r.o
+  CC      /workspace/kernel/build64-default/tools/objtool/librbtree.o
+  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/decode.o
+  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/orc.o
+  LD      /workspace/kernel/build64-default/tools/objtool/arch/x86/objtool-in.o
+  LD      /workspace/kernel/build64-default/tools/objtool/objtool-in.o
+  LINK    /workspace/kernel/build64-default/tools/objtool/objtool
+make[1]: Leaving directory '/workspace/kernel/build64-default'
+++ nproc
++ make -j48 O=/workspace/kernel/build64-default W=1 drivers/gpu/drm/xe
+make[1]: Entering directory '/workspace/kernel/build64-default'
+make[2]: Nothing to be done for 'drivers/gpu/drm/xe'.
+make[1]: Leaving directory '/workspace/kernel/build64-default'
+run-parts: executing /workspace/ci/hooks/11-build-32b
++++ realpath /workspace/ci/hooks/11-build-32b
+++ dirname /workspace/ci/hooks/11-build-32b
++ THIS_SCRIPT_DIR=/workspace/ci/hooks
++ SRC_DIR=/workspace/kernel
++ TOOLS_SRC_DIR=/workspace/ci
++ '[' -n /workspace/kernel/build64-default ']'
++ BUILD_DIR=/workspace/kernel/build64-default
++ BUILD_DIR=/workspace/kernel/build64-default/build32
++ cd /workspace/kernel
++ mkdir -p /workspace/kernel/build64-default/build32
+++ nproc
++ make -j48 ARCH=i386 O=/workspace/kernel/build64-default/build32 defconfig
+make[1]: Entering directory '/workspace/kernel/build64-default/build32'
+  GEN     Makefile
+  HOSTCC  scripts/basic/fixdep
+  HOSTCC  scripts/kconfig/conf.o
+  HOSTCC  scripts/kconfig/confdata.o
+  HOSTCC  scripts/kconfig/expr.o
+  LEX     scripts/kconfig/lexer.lex.c
+  YACC    scripts/kconfig/parser.tab.[ch]
+  HOSTCC  scripts/kconfig/menu.o
+  HOSTCC  scripts/kconfig/preprocess.o
+  HOSTCC  scripts/kconfig/symbol.o
+  HOSTCC  scripts/kconfig/util.o
+  HOSTCC  scripts/kconfig/lexer.lex.o
+  HOSTCC  scripts/kconfig/parser.tab.o
+  HOSTLD  scripts/kconfig/conf
+*** Default configuration is based on 'i386_defconfig'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/workspace/kernel/build64-default/build32'
++ cd /workspace/kernel/build64-default/build32
++ /workspace/kernel/scripts/kconfig/merge_config.sh .config /workspace/ci/kernel/10-xe.fragment
+Using .config as base
+Merging /workspace/ci/kernel/10-xe.fragment
+The merge file '/workspace/ci/kernel/10-xe.fragment' does not exist.  Exit.
+run-parts: /workspace/ci/hooks/11-build-32b exited with return code 1
 
 
