@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04125D68BDA
-	for <intel-xe@archiver.kernel.org>; Sat, 16 Nov 2024 02:12:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E161DD68BD0
+	for <intel-xe@archiver.kernel.org>; Sat, 16 Nov 2024 02:12:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97E4F10E3EB;
-	Sat, 16 Nov 2024 02:12:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACAE710E3E4;
+	Sat, 16 Nov 2024 02:12:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a/5CHlfC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gFDeiXmG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A82C10E3D6
- for <intel-xe@lists.freedesktop.org>; Sat, 16 Nov 2024 02:12:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E942C10E3F3
+ for <intel-xe@lists.freedesktop.org>; Sat, 16 Nov 2024 02:12:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731723161; x=1763259161;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=nZAtyZX6OawoLTiSwx6Vkqn+52qUCtjeapPe12UiK+M=;
- b=a/5CHlfCuYmb4nDFKa7laO/7Z/8vVAwOdUKDLLt/IIrlKPTigCnfKoMz
- 3FUeF7Ax6XzCVa8ouAIvO8IIvshOXOYqcXEw4h4WV73XsnFtE1NyMaBes
- zWqghMnEegYsX/f467StDKnh1SlVjPR64+huszOyxx+Y9WoDWyPxBf+99
- DqEOp8gJhRDkvJL3zVdBJeX75UE2mRjVHkl5Pem4VMKFr3LQA1ezNky97
- ybeMmevN2xJLaJh6nFP7XG0BcN5Kqxmww0U1b/Ctp5Ak237VuU8ZV+FEs
- X0DkHAgaRFy/VhnzVzRtlddCto89OstLd+fvBY3kW9KakOzbGxMujXLQc Q==;
-X-CSE-ConnectionGUID: zhl7/0oMRbOQCmhoCC3IRA==
-X-CSE-MsgGUID: aM2vzmioSqejMaHodTEUEA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="42380709"
-X-IronPort-AV: E=Sophos;i="6.12,158,1728975600"; d="scan'208";a="42380709"
+ t=1731723164; x=1763259164;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=nZGVKeSa8cNkxmc5gyw7pSfxSsg9dt2/j1FpFolNLBA=;
+ b=gFDeiXmGoja/ppcd6sxLI2i7BBVctM/XuaiaCQtkSHCK1zsYE0SfGJ81
+ iwoLhZWlP2nMcPXSP8weLxkC81IeSxlYoX7pbm1gh6XX0chTPkS9hFOeh
+ YyIi03H48cEkaitKRvoTefhESEiJLUIddNFZKPFmVIWve4DfUibEO1Yqu
+ ALlv2jccx/X7YI3aglBkCiftL412o4uu8Q1NEwSyKznnWa1yYsCBnTEJ1
+ OLnejIhMaRbm5Bpv8ANJBOMXDD/0JSd3Jk5CKsVOIATEyHE1Y1D/xu/Xz
+ jQDUw5hBqvoJMzZSO5SMPKjk0pYDrJHx8k0gfB2/4Wa6D0fc7SEv2sqtU A==;
+X-CSE-ConnectionGUID: chQxBY7ZQoKON6eaWcvyXw==
+X-CSE-MsgGUID: A5R+LiG6T5eSVsNcF+AFTg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="42380712"
+X-IronPort-AV: E=Sophos;i="6.12,158,1728975600"; d="scan'208";a="42380712"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 18:12:41 -0800
-X-CSE-ConnectionGUID: QEB7gg5fSwmZJh0/QTIgeQ==
-X-CSE-MsgGUID: pM66vvrXSfOcHbwKk21ELQ==
+ 15 Nov 2024 18:12:43 -0800
+X-CSE-ConnectionGUID: HOhwVphDTUuK2xQcwZvk0g==
+X-CSE-MsgGUID: H/KPHS6mSgKzbiOByW9VXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,158,1728975600"; d="scan'208";a="88481924"
+X-IronPort-AV: E=Sophos;i="6.12,158,1728975600"; d="scan'208";a="88481938"
 Received: from gkczarna.igk.intel.com ([10.102.139.130])
- by fmviesa007.fm.intel.com with ESMTP; 15 Nov 2024 18:12:40 -0800
+ by fmviesa007.fm.intel.com with ESMTP; 15 Nov 2024 18:12:42 -0800
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v2 0/3] drm/xe/vf: Post-migration recovery of GGTT nodes and
- CTB
-Date: Sat, 16 Nov 2024 03:12:35 +0100
-Message-Id: <20241116021238.2486287-1-tomasz.lis@intel.com>
+Subject: [PATCH v2 2/3] drm/xe/sriov: Shifting GGTT area post migration
+Date: Sat, 16 Nov 2024 03:12:37 +0100
+Message-Id: <20241116021238.2486287-3-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20241116021238.2486287-1-tomasz.lis@intel.com>
+References: <20241116021238.2486287-1-tomasz.lis@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,30 +67,264 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To support VF Migration, it is necessary to do fixups to any
-non-virtualized resources. These fixups need to be applied within
-VM, on the KMD working with VF.
+We have only one GGTT for all IOV functions, with each VF having assigned
+a range of addresses for its use. After migration, a VF can receive a
+different range of addresses than it had initially.
 
-This series adds two fixup functions to the recovery worker:
-* for fixing drm_mm nodes which represent GGTT allocations
-* for fixing content of outgoing CTB buffer
+This implements shifting GGTT addresses within drm_mm nodes, so that
+VMAs stay valid after migration. This will make the driver use new
+addresses when accessing GGTT from the moment the shifting ends.
 
-v2: Fixed missing include, made checkpatch happy
+By taking the ggtt->lock for the period of VMA fixups, this change
+also adds constaint on that mutex. Any locks used during the recovery
+cannot ever wait for hardware response - because after migration,
+the hardware will not do anything until fixups are finished.
 
-Tomasz Lis (3):
-  drm/drm_mm: Safe macro for iterating through nodes in range
-  drm/xe/sriov: Shifting GGTT area post migration
-  drm/xe/vf: Fixup CTB send buffer messages after migration
+Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 175 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h |   1 +
+ drivers/gpu/drm/xe/xe_sriov_vf.c    |  15 +++
+ 3 files changed, 191 insertions(+)
 
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 177 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |   1 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |   2 +
- drivers/gpu/drm/xe/xe_guc_ct.c            | 146 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_ct.h            |   2 +
- drivers/gpu/drm/xe/xe_sriov_vf.c          |  27 ++++
- include/drm/drm_mm.h                      |  19 +++
- 7 files changed, 374 insertions(+)
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index cca5d5732802..ae24c47ed8f8 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -912,6 +912,181 @@ int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt)
+ 	return err;
+ }
+ 
++static u64 drm_mm_node_end(struct drm_mm_node *node)
++{
++	return node->start + node->size;
++}
++
++static s64 vf_get_post_migration_ggtt_shift(struct xe_gt *gt)
++{
++	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
++	struct xe_tile *tile = gt_to_tile(gt);
++	u64 old_base;
++	s64 ggtt_shift;
++
++	old_base = drm_mm_node_end(&tile->sriov.vf.ggtt_balloon[0]->base);
++	ggtt_shift = config->ggtt_base - (s64)old_base;
++
++	xe_gt_sriov_info(gt, "GGTT base shifted from %#llx to %#llx\n",
++		  old_base, old_base + ggtt_shift);
++
++	return ggtt_shift;
++}
++
++static void xe_ggtt_mm_shift_nodes(struct xe_ggtt *ggtt, struct drm_mm_node *balloon_beg,
++				struct drm_mm_node *balloon_fin, s64 shift)
++{
++	struct drm_mm_node *node, *tmpn;
++	int err;
++	LIST_HEAD(temp_list_head);
++
++	lockdep_assert_held(&ggtt->lock);
++
++	/*
++	 * Move nodes, from range previously assigned to this VF, into temp list.
++	 *
++	 * The balloon_beg and balloon_fin nodes are there to eliminate unavailable
++	 * ranges from use: first reserves the GGTT area below the range for current VF,
++	 * and second reserves area above. There may also exist extra nodes at the bottom
++	 * or top of GGTT range, as long as there are no free spaces inbetween. Such
++	 * extra nodes will be left unchanged.
++	 *
++	 * Below is a GGTT layout of example VF, with a certain address range assigned to
++	 * said VF, and inaccessible areas above and below:
++	 *
++	 *  0                                                                  ggtt->size
++	 *  |<--------------------------- Total GGTT size ----------------------------->|
++	 *
++	 *  +-----------+-------------------------+----------+--------------+-----------+
++	 *  |\\\\\\\\\\\|/////////////////////////|  VF mem  |//////////////|\\\\\\\\\\\|
++	 *  +-----------+-------------------------+----------+--------------+-----------+
++	 *
++	 * Hardware enforced access rules before migration:
++	 *
++	 *  |<------- inaccessible for VF ------->|<VF owned>|<-- inaccessible for VF ->|
++	 *
++	 * drm_mm nodes used for tracking allocations:
++	 *
++	 *  |<- extra ->|<------- balloon ------->|<- nodes->|<-- balloon ->|<- extra ->|
++	 *
++	 * After the migration, GGTT area assigned to the VF might have shifted, either
++	 * to lower or to higher address. But we expect the total size and extra areas to
++	 * be identical, as migration can only happen between matching platforms.
++	 * Below is an example of GGTT layout of the VF after migration. Content of the
++	 * GGTT for VF has been moved to a new area, and we receive its address from GuC:
++	 *
++	 *  +-----------+--------------+----------+-------------------------+-----------+
++	 *  |\\\\\\\\\\\|//////////////|  VF mem  |/////////////////////////|\\\\\\\\\\\|
++	 *  +-----------+--------------+----------+-------------------------+-----------+
++	 *
++	 * Hardware enforced access rules after migration:
++	 *
++	 *  |<- inaccessible for VF -->|<VF owned>|<------- inaccessible for VF ------->|
++	 *
++	 * So the VF has a new slice of GGTT assigned, and during migration process, the
++	 * memory content was copied to that new area. But the drm_mm nodes within i915
++	 * are still tracking allocations using the old addresses. The nodes within VF
++	 * owned area have to be shifted, and balloon nodes need to be resized to
++	 * properly mask out areas not owned by the VF.
++	 *
++	 * Fixed drm_mm nodes used for tracking allocations:
++	 *
++	 *  |<- extra  ->|<- balloon ->|<-- VF -->|<-------- balloon ------>|<- extra ->|
++	 *
++	 * Due to use of GPU profiles, we do not expect the old and new GGTT ares to
++	 * overlap; but our node shifting will fix addresses properly regardless.
++	 *
++	 */
++	drm_mm_for_each_node_in_range_safe(node, tmpn, &ggtt->mm,
++					   drm_mm_node_end(balloon_beg),
++					   balloon_fin->start) {
++		drm_mm_remove_node(node);
++		list_add(&node->node_list, &temp_list_head);
++	}
++
++	/* shift and re-add ballooning nodes */
++	if (drm_mm_node_allocated(balloon_beg))
++		drm_mm_remove_node(balloon_beg);
++	if (drm_mm_node_allocated(balloon_fin))
++		drm_mm_remove_node(balloon_fin);
++	balloon_beg->size += shift;
++	balloon_fin->start += shift;
++	balloon_fin->size -= shift;
++	if (balloon_beg->size != 0) {
++		err = drm_mm_reserve_node(&ggtt->mm, balloon_beg);
++		XE_WARN_ON(err);
++	}
++	if (balloon_fin->size != 0) {
++		err = drm_mm_reserve_node(&ggtt->mm, balloon_fin);
++		XE_WARN_ON(err);
++	}
++
++	/*
++	 * Now the GGTT VM contains only nodes outside of area assigned to this VF.
++	 * We can re-add all VF nodes with shifted offsets.
++	 */
++	list_for_each_entry_safe(node, tmpn, &temp_list_head, node_list) {
++		list_del(&node->node_list);
++		node->start += shift;
++		err = drm_mm_reserve_node(&ggtt->mm, node);
++		XE_WARN_ON(err);
++	}
++}
++
++static void xe_ggtt_node_shift_nodes(struct xe_ggtt *ggtt, struct xe_ggtt_node *balloon_beg,
++				struct xe_ggtt_node *balloon_fin, s64 shift)
++{
++	struct drm_mm_node *balloon_mm_beg, *balloon_mm_end;
++	struct drm_mm_node loc_beg, loc_end;
++
++	if (balloon_beg && balloon_beg->ggtt)
++		balloon_mm_beg = &balloon_beg->base;
++	else {
++		loc_beg.color = 0;
++		loc_beg.flags = 0;
++		loc_beg.start = xe_wopcm_size(ggtt->tile->xe);
++		loc_beg.size = 0;
++		balloon_mm_beg = &loc_beg;
++	}
++
++	if (balloon_fin && balloon_fin->ggtt)
++		balloon_mm_end = &balloon_fin->base;
++	else {
++		loc_end.color = 0;
++		loc_end.flags = 0;
++		loc_end.start = GUC_GGTT_TOP;
++		loc_end.size = 0;
++		balloon_mm_end = &loc_end;
++	}
++
++	drm_dbg(&ggtt->tile->xe->drm, "tli: node shift start beg %llx %llx end %llx %llx\n",
++		balloon_mm_beg->start, balloon_mm_beg->size,
++		balloon_mm_end->start, balloon_mm_end->size);
++	xe_ggtt_mm_shift_nodes(ggtt, balloon_mm_beg, balloon_mm_end, shift);
++	drm_dbg(&ggtt->tile->xe->drm, "tli: node shift end\n");
++}
++
++/**
++ * xe_gt_sriov_vf_fixup_ggtt_nodes - Shift GGTT allocations to match assigned range.
++ * @gt: the &xe_gt struct instance
++ *
++ * Since Global GTT is not virtualized, each VF has an assigned range
++ * within the global space. This range might have changed during migration,
++ * which requires all memory addresses pointing to GGTT to be shifted.
++ */
++void xe_gt_sriov_vf_fixup_ggtt_nodes(struct xe_gt *gt)
++{
++	struct xe_tile *tile = gt_to_tile(gt);
++	struct xe_ggtt *ggtt = tile->mem.ggtt;
++	s64 ggtt_shift;
++
++	mutex_lock(&ggtt->lock);
++	ggtt_shift = vf_get_post_migration_ggtt_shift(gt);
++	xe_ggtt_node_shift_nodes(ggtt, tile->sriov.vf.ggtt_balloon[0],
++				 tile->sriov.vf.ggtt_balloon[1], ggtt_shift);
++	mutex_unlock(&ggtt->lock);
++}
++
+ static int vf_runtime_reg_cmp(const void *a, const void *b)
+ {
+ 	const struct vf_runtime_reg *ra = a;
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+index 912d20814261..a8745ec23380 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+@@ -17,6 +17,7 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
+ int xe_gt_sriov_vf_connect(struct xe_gt *gt);
+ int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
+ int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
++void xe_gt_sriov_vf_fixup_ggtt_nodes(struct xe_gt *gt);
+ int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
+ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+index c1275e64aa9c..5bcd55999e0e 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+@@ -7,6 +7,7 @@
+ 
+ #include "xe_assert.h"
+ #include "xe_device.h"
++#include "xe_gt.h"
+ #include "xe_gt_sriov_printk.h"
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_pm.h"
+@@ -170,6 +171,19 @@ static bool vf_post_migration_imminent(struct xe_device *xe)
+ 	work_pending(&xe->sriov.vf.migration.worker);
+ }
+ 
++static void vf_post_migration_fixup_ggtt_nodes(struct xe_device *xe)
++{
++	struct xe_gt *gt;
++	unsigned int id;
++
++	for_each_gt(gt, xe, id) {
++		/* media doesn't have its own ggtt */
++		if (xe_gt_is_media_type(gt))
++			continue;
++		xe_gt_sriov_vf_fixup_ggtt_nodes(gt);
++	}
++}
++
+ /*
+  * Notify all GuCs about resource fixups apply finished.
+  */
+@@ -201,6 +215,7 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+ 	if (unlikely(err))
+ 		goto fail;
+ 
++	vf_post_migration_fixup_ggtt_nodes(xe);
+ 	/* FIXME: add the recovery steps */
+ 	vf_post_migration_notify_resfix_done(xe);
+ 	xe_pm_runtime_put(xe);
 -- 
 2.25.1
 
