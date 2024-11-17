@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00C88D68BF5
-	for <intel-xe@archiver.kernel.org>; Sat, 16 Nov 2024 20:01:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56307D68BDD
+	for <intel-xe@archiver.kernel.org>; Sun, 17 Nov 2024 07:13:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F74C10E086;
-	Sat, 16 Nov 2024 20:01:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0CC010E202;
+	Sun, 17 Nov 2024 07:13:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="az6r2UR5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hieMX+jj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E10EA10E086
- for <intel-xe@lists.freedesktop.org>; Sat, 16 Nov 2024 20:01:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BCEA10E202;
+ Sun, 17 Nov 2024 07:13:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731787276; x=1763323276;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=7jYLdGqZkkG49+ylYc0dnUMHzatXHLsvmI7s28dKnNw=;
- b=az6r2UR5u+1UiAPchnFW4jBxZP+gd3WOe/C7uMghoKxdIGQDOctbiXGv
- LXUjwBFNuhqmRr907PaXsddiYMDq//qxoTFZHfn3CojvdkjUbLoAzjRQY
- Rw+AHcyDCD3FCo0mw6yffd1cjxDWnIdrMDqRelY1CRfpnlr1rbmXzxwze
- O2hsSHvBsPcGDxRvk3+E9dUF+SwmjxyN1FUsBDy4qBrG2GI5tGNUgzsLu
- DZLqta9sO+ZB4zgIBmZ2nbulbzqTKkGsnzk3wEYINtCDQBGffXdFcz4fY
- jCj3goFriVEfjTq5GtC/vXvNzXR0ZIYtfxGOd8L83wUkDTeVgaLFmLRXV g==;
-X-CSE-ConnectionGUID: X4jr2fq7SuCqbrACEm1JuA==
-X-CSE-MsgGUID: xq+Wu8jbQeSMpNmkgSi9Rg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11258"; a="19382744"
-X-IronPort-AV: E=Sophos;i="6.12,160,1728975600"; d="scan'208";a="19382744"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2024 12:01:15 -0800
-X-CSE-ConnectionGUID: OTOn3pN/TL6KgpilCqQy2Q==
-X-CSE-MsgGUID: KjK9hHXITO+kbxxE04l1FQ==
+ t=1731827591; x=1763363591;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=+6pi0xIObDperUsi3dpTgjgdsIwz20tURcMA7WHB4XA=;
+ b=hieMX+jj9KrTAFaqjlZkZ7ZLtwaSdna6+W8Ll677pPccQmSzDCIv0p2J
+ EJdn7S0wVfd8yM90gL/n1Q1NpW5SePXo5C6ha0n70ISpBZ4iJGr47ChmI
+ tAJX+PlaTVOyMLvA0bDLErE4//h6qNPLQf1roBXDfdI8sc7eKVCHVXDD8
+ vclpQKmqHyAvQ/WkRLMBA/zQtnYXfhrqu1l1HxZtuo/j9aq0D9N8csxAT
+ Y2oE1GdQGFK4FVzDL4wrh+SSAXHGZLnyvXmjWtsUxihYcYKHI9dqAv1Ij
+ 0zKpc6k/FweVjyxdgmC8xwpHGIWYWhma/yh0FoCju27+aCq6FaqevkFVb A==;
+X-CSE-ConnectionGUID: 5WV1Frb8RruDPudygw7XlQ==
+X-CSE-MsgGUID: ZeI5d+0vQIWpGgegs+Jp2g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11258"; a="31638530"
+X-IronPort-AV: E=Sophos;i="6.12,161,1728975600"; d="scan'208";a="31638530"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2024 23:13:10 -0800
+X-CSE-ConnectionGUID: c+Q90LuaTiGhlOrutJk4Hg==
+X-CSE-MsgGUID: Fh4MVNReQK2D/0NCK2enQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,160,1728975600"; d="scan'208";a="93693441"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa004.fm.intel.com with ESMTP; 16 Nov 2024 12:01:13 -0800
-Received: from [10.245.96.66] (mwajdecz-MOBL.ger.corp.intel.com [10.245.96.66])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 562E828794;
- Sat, 16 Nov 2024 20:01:12 +0000 (GMT)
-Message-ID: <25aad7d7-39c2-4e5e-b504-8ef6d59b8439@intel.com>
-Date: Sat, 16 Nov 2024 21:01:11 +0100
+X-IronPort-AV: E=Sophos;i="6.12,161,1728975600"; d="scan'208";a="89094163"
+Received: from lkp-server01.sh.intel.com (HELO 1e3cc1889ffb) ([10.239.97.150])
+ by orviesa006.jf.intel.com with ESMTP; 16 Nov 2024 23:13:07 -0800
+Received: from kbuild by 1e3cc1889ffb with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tCZSx-0001cR-37;
+ Sun, 17 Nov 2024 07:13:03 +0000
+Date: Sun, 17 Nov 2024 15:12:53 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian =?unknown-8bit?B?S8O2bmln?= <ckoenig.leichtzumerken@gmail.com>, 
+ kraxel@redhat.com, airlied@redhat.com, alexander.deucher@amd.com,
+ zack.rusin@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+ virtualization@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 3/7] drm/vmwgfx: start to phase out ttm_exec
+Message-ID: <202411171454.yXzqqhti-lkp@intel.com>
+References: <20241114153020.6209-4-christian.koenig@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drm/xe/vf: Fixup CTB send buffer messages after
- migration
-To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-References: <20241116021238.2486287-1-tomasz.lis@intel.com>
- <20241116021238.2486287-4-tomasz.lis@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20241116021238.2486287-4-tomasz.lis@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=unknown-8bit
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241114153020.6209-4-christian.koenig@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,325 +73,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Christian,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on drm-xe/drm-xe-next]
+[also build test WARNING on drm/drm-next drm-exynos/exynos-drm-next linus/master drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip v6.12-rc7 next-20241115]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-K-nig/drm-qxl-switch-to-using-drm_exec-v2/20241115-014610
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20241114153020.6209-4-christian.koenig%40amd.com
+patch subject: [PATCH 3/7] drm/vmwgfx: start to phase out ttm_exec
+config: x86_64-rhel-8.3 (https://download.01.org/0day-ci/archive/20241117/202411171454.yXzqqhti-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241117/202411171454.yXzqqhti-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411171454.yXzqqhti-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/vmwgfx/vmwgfx_resource.c:521: warning: Function parameter or struct member 'bo' not described in 'vmw_resource_check_buffer'
+>> drivers/gpu/drm/vmwgfx/vmwgfx_resource.c:521: warning: Excess function parameter 'val_buf' description in 'vmw_resource_check_buffer'
 
 
-On 16.11.2024 03:12, Tomasz Lis wrote:
-> During post-migration recovery of a VF, it in necessary to update
-> GGTT references included in messages which are going to be sent
-> to GuC. GuC will start consuming messages after VF KMD will inform
-> it about fixups being done; before that, the VF KMD is expected
-> to update any H2G messages which are already in send buffer but
-> were not consumed by GuC.
-> 
-> Only a small subset of messages allowed for VFs have GGTT references
-> in them. This patch adds the functionality to parse the CTB send
-> ring buffer and shift addresses contained within.
-> 
-> While fixing the CTB content, ct->lock is not taken. This means
-> the only barier taken remains GGTT address lock - which is ok,
+vim +521 drivers/gpu/drm/vmwgfx/vmwgfx_resource.c
 
-typo barrier
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  503  
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  504  /**
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  505   * vmw_resource_check_buffer - Check whether a backup buffer is needed
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  506   *                             for a resource and in that case, allocate
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  507   *                             one, reserve and validate it.
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  508   *
+05436815fdb475 Tom Rix           2022-07-30  509   * @ticket:         The ww acquire context to use, or NULL if trylocking.
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  510   * @res:            The resource for which to allocate a backup buffer.
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  511   * @interruptible:  Whether any sleeps during allocation should be
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  512   *                  performed while interruptible.
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  513   * @val_buf:        On successful return contains data about the
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  514   *                  reserved and validated backup buffer.
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  515   */
+ecff665f5e3f1c Maarten Lankhorst 2013-06-27  516  static int
+19f976ab01a6bb Thomas Hellstrom  2018-06-19  517  vmw_resource_check_buffer(struct ww_acquire_ctx *ticket,
+19f976ab01a6bb Thomas Hellstrom  2018-06-19  518  			  struct vmw_resource *res,
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  519  			  bool interruptible,
+0b48fc98b52ea2 Christian König   2024-11-14  520  			  struct ttm_buffer_object **bo)
+c0951b797e7d0f Thomas Hellstrom  2012-11-20 @521  {
+19be5570107108 Christian König   2017-04-12  522  	struct ttm_operation_ctx ctx = { true, false };
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  523  	struct list_head val_list;
+668b206601c5f5 Zack Rusin        2023-01-30  524  	bool guest_memory_dirty = false;
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  525  	int ret;
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  526  
+668b206601c5f5 Zack Rusin        2023-01-30  527  	if (unlikely(!res->guest_memory_bo)) {
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  528  		ret = vmw_resource_buf_alloc(res, interruptible);
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  529  		if (unlikely(ret != 0))
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  530  			return ret;
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  531  	}
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  532  
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  533  	INIT_LIST_HEAD(&val_list);
+668b206601c5f5 Zack Rusin        2023-01-30  534  	ttm_bo_get(&res->guest_memory_bo->tbo);
+0b48fc98b52ea2 Christian König   2024-11-14  535  
+0b48fc98b52ea2 Christian König   2024-11-14  536  	*bo = &res->guest_memory_bo->tbo;
+0b48fc98b52ea2 Christian König   2024-11-14  537  	if (ticket)
+0b48fc98b52ea2 Christian König   2024-11-14  538  		ww_acquire_init(ticket, &reservation_ww_class);
+0b48fc98b52ea2 Christian König   2024-11-14  539  
+0b48fc98b52ea2 Christian König   2024-11-14  540  	ret = ttm_bo_reserve(*bo, interruptible, (ticket == NULL), ticket);
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  541  	if (unlikely(ret != 0))
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  542  		goto out_no_reserve;
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  543  
+668b206601c5f5 Zack Rusin        2023-01-30  544  	if (res->func->needs_guest_memory && !vmw_resource_mob_attached(res))
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  545  		return 0;
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  546  
+668b206601c5f5 Zack Rusin        2023-01-30  547  	guest_memory_dirty = res->guest_memory_dirty;
+668b206601c5f5 Zack Rusin        2023-01-30  548  	vmw_bo_placement_set(res->guest_memory_bo, res->func->domain,
+39985eea5a6dd1 Zack Rusin        2023-01-30  549  			     res->func->busy_domain);
+668b206601c5f5 Zack Rusin        2023-01-30  550  	ret = ttm_bo_validate(&res->guest_memory_bo->tbo,
+668b206601c5f5 Zack Rusin        2023-01-30  551  			      &res->guest_memory_bo->placement,
+19be5570107108 Christian König   2017-04-12  552  			      &ctx);
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  553  
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  554  	if (unlikely(ret != 0))
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  555  		goto out_no_validate;
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  556  
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  557  	return 0;
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  558  
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  559  out_no_validate:
+0b48fc98b52ea2 Christian König   2024-11-14  560  	dma_resv_unlock((*bo)->base.resv);
+0b48fc98b52ea2 Christian König   2024-11-14  561  	if (ticket)
+0b48fc98b52ea2 Christian König   2024-11-14  562  		ww_acquire_fini(ticket);
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  563  out_no_reserve:
+0b48fc98b52ea2 Christian König   2024-11-14  564  	ttm_bo_put(*bo);
+668b206601c5f5 Zack Rusin        2023-01-30  565  	if (guest_memory_dirty)
+91398b413d0366 Zack Rusin        2023-09-28  566  		vmw_user_bo_unref(&res->guest_memory_bo);
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  567  
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  568  	return ret;
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  569  }
+c0951b797e7d0f Thomas Hellstrom  2012-11-20  570  
 
-> because only requests with GGTT addresses matter, but it also means
-> tail changes can happen during the CTB fixups execution (which may
-> be ignored as any new messages will not have anything to fix).
-> 
-> The GGTT address locking will be introduced in a future series.
-> 
-> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gt_sriov_vf.c       |   2 +
->  drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |   2 +
->  drivers/gpu/drm/xe/xe_guc_ct.c            | 146 ++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_guc_ct.h            |   2 +
->  drivers/gpu/drm/xe/xe_sriov_vf.c          |  12 ++
->  5 files changed, 164 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> index ae24c47ed8f8..604cbbf55d4f 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> @@ -920,12 +920,14 @@ static u64 drm_mm_node_end(struct drm_mm_node *node)
->  static s64 vf_get_post_migration_ggtt_shift(struct xe_gt *gt)
->  {
->  	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-> +	struct xe_gt_sriov_vf_runtime *runtime = &gt->sriov.vf.runtime;
->  	struct xe_tile *tile = gt_to_tile(gt);
->  	u64 old_base;
->  	s64 ggtt_shift;
->  
->  	old_base = drm_mm_node_end(&tile->sriov.vf.ggtt_balloon[0]->base);
->  	ggtt_shift = config->ggtt_base - (s64)old_base;
-> +	runtime->ggtt_shift = ggtt_shift;
-
-can't we store that when reading new config?
-
->  
->  	xe_gt_sriov_info(gt, "GGTT base shifted from %#llx to %#llx\n",
->  		  old_base, old_base + ggtt_shift);
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> index a57f13b5afcd..6af219b0eb1e 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> @@ -65,6 +65,8 @@ struct xe_gt_sriov_vf_runtime {
->  		/** @regs.value: register value. */
->  		u32 value;
->  	} *regs;
-> +	/** @ggtt_shift: difference in ggtt_base on last migration */
-> +	s64 ggtt_shift;
-
-by 'VF runtime data' we meant here the missing HW data obtained at
-_runtime_ from the GuC/PF (see "runtime-regs")
-
-this 'shift' is more like a migration specific data and doesn't really
-fit here, so better define a separate struct for it
-
->  };
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index 7eb175a0b874..119f4627a6d5 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -84,6 +84,8 @@ struct g2h_fence {
->  	bool done;
->  };
->  
-> +#define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
-> +
->  static void g2h_fence_init(struct g2h_fence *g2h_fence, u32 *response_buffer)
->  {
->  	g2h_fence->response_buffer = response_buffer;
-> @@ -1620,6 +1622,150 @@ static void g2h_worker_func(struct work_struct *w)
->  	receive_g2h(ct);
->  }
->  
-> +/*
-> + * ct_update_addresses_in_message - Shift any GGTT addresses within
-> + * a single message left within CTB from before post-migration recovery.
-> + * @ct: pointer to CT struct of the target GuC
-> + * @cmds: iomap buffer containing CT messages
-> + * @head: start of the target message within the buffer
-> + * @len: length of the target message
-> + * @size: size of the commands buffer
-> + * @shift: the address shift to be added to each GGTT reference
-> + */
-> +static void ct_update_addresses_in_message(struct xe_guc_ct *ct,
-> +					    struct iosys_map *cmds, u32 head,
-> +					    u32 len, u32 size, s64 shift)
-> +{
-> +	struct xe_device *xe = ct_to_xe(ct);
-> +	u32 action, i, n;
-> +	u32 msg[2];
-> +	u64 offset;
-> +
-> +#define read32(o, p)							\
-> +do {									\
-> +	xe_map_memcpy_from(xe, msg, cmds, (head + p) * sizeof(u32),	\
-> +			   1 * sizeof(u32));				\
-> +	o = msg[0];							\
-> +} while (0)
-> +#define fixup64(p)							\
-> +do {									\
-> +	xe_map_memcpy_from(xe, msg, cmds, (head + p) * sizeof(u32),	\
-> +			   2 * sizeof(u32));				\
-
-what about buffer wrap?
-
-> +	offset = make_u64(msg[1], msg[0]);				\
-> +	offset += shift;						\
-> +	msg[0] = lower_32_bits(offset);					\
-> +	msg[1] = upper_32_bits(offset);					\
-> +	xe_map_memcpy_to(xe, cmds, (head + p) * sizeof(u32), msg, 2 * sizeof(u32)); \
-> +} while (0)
-
-those macros are quite ugly and violating many rules
-maybe they should be converted into inlines?
-
-> +
-> +	xe_map_memcpy_from(xe, msg, cmds, head * sizeof(u32),
-> +			   1 * sizeof(u32));
-> +	action = FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, msg[0]);
-> +	switch (action) {
-> +	case XE_GUC_ACTION_REGISTER_CONTEXT:
-> +	case XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC:
-> +		/* field wq_desc */
-> +		fixup64(5);
-> +		/* field wq_base */
-> +		fixup64(7);
-> +		if (action == XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC) {
-> +			/* field number_children */
-> +			read32(n, 10);
-> +			/* field hwlrca and child lrcas */
-> +			for (i = 0; i < n; i++)
-> +				fixup64(11 + 2 * i);
-> +		} else {
-> +			/* field hwlrca */
-> +			fixup64(10);
-> +		}
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +#undef fixup64
-> +#undef read32
-> +}
-> +
-> +static int ct_update_addresses_in_buffer(struct xe_guc_ct *ct,
-> +					 struct guc_ctb *h2g,
-> +					 s64 shift, u32 *mhead, s32 avail)
-> +{
-> +	struct xe_device *xe = ct_to_xe(ct);
-> +	u32 head = *mhead;
-> +	u32 size = h2g->info.size;
-> +	u32 msg[1];
-> +	u32 len;
-> +
-> +	/* Read header */
-> +	xe_map_memcpy_from(xe, msg, &h2g->cmds, sizeof(u32) * head,
-> +			   sizeof(u32));
-> +	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
-
-is it ok to access here all this CTB data without any lock?
-
-> +
-> +	if (unlikely(len > (u32)avail)) {
-> +		struct xe_gt *gt = ct_to_gt(ct);
-> +
-> +		xe_gt_err(gt, "H2G channel broken on read, avail=%d, len=%d, fixups skipped\n",
-> +			  avail, len);
-> +		return 0;
-
-shouldn't we return some -errno to correctly report failure to the caller?
-
-> +	}
-> +
-> +	head = (head + 1) % size;
-> +	ct_update_addresses_in_message(ct, &h2g->cmds, head, len - 1, size, shift);
-> +	*mhead = (head + len - 1) % size;
-> +
-> +	return avail - len;
-> +}
-> +
-> +/**
-> + * xe_guc_ct_update_addresses - Shifts any GGTT addresses left
-> + * within CTB from before post-migration recovery.
-
-"Fixup any pending H2G CTB messages by updating GGTT offsets in their
-payloads" ?
-
-> + * @ct: pointer to CT struct of the target GuC
-> + */
-> +int xe_guc_ct_update_addresses(struct xe_guc_ct *ct)
-> +{
-> +	struct xe_guc *guc = ct_to_guc(ct);
-> +	struct xe_gt *gt = guc_to_gt(guc);
-> +	struct xe_gt_sriov_vf_runtime *runtime = &gt->sriov.vf.runtime;
-
-please provide ggtt-shift explicitly to avoid direct access to the VF
-data from the CT code
-
-> +	struct guc_ctb *h2g = &ct->ctbs.h2g;
-> +	u32 head = h2g->info.head;
-> +	u32 tail = READ_ONCE(h2g->info.tail);
-> +	u32 size = h2g->info.size;
-> +	s32 avail;
-> +	s64 ggtt_shift;
-> +
-> +	if (unlikely(h2g->info.broken))
-> +		return -EPIPE;
-> +
-> +	XE_WARN_ON(head > size);
-
-use xe_gt_WARN() or xe_gt_assert() instead - depends on what exactly do
-you want to check here
-
-> +
-> +	if (unlikely(tail >= size)) {
-> +		xe_gt_err(gt, "H2G channel has Invalid tail offset (%u >= %u)\n",
-
-s/Invalid/invalid
-
-> +			 tail, size);
-> +		goto corrupted;
-> +	}
-> +
-> +	avail = tail - head;
-> +
-> +	/* beware of buffer wrap case */
-> +	if (unlikely(avail < 0))
-> +		avail += size;
-> +	xe_gt_dbg(gt, "available %d (%u:%u:%u)\n", avail, head, tail, size);
-> +	XE_WARN_ON(avail < 0);
-> +
-> +	ggtt_shift = runtime->ggtt_shift;
-> +
-> +	while (avail > 0)
-> +		avail = ct_update_addresses_in_buffer(ct, h2g, ggtt_shift, &head, avail);
-> +
-> +	return 0;
-> +
-> +corrupted:
-> +	xe_gt_err(gt, "Corrupted descriptor head=%u tail=%u\n",
-> +		 head, tail);
-> +	h2g->info.broken = true;
-> +	return -EPIPE;
-> +}
-> +
->  static struct xe_guc_ct_snapshot *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic,
->  							bool want_ctb)
->  {
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-> index 82c4ae458dda..6b04fd4b1e03 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-> @@ -22,6 +22,8 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_pr
->  void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
->  void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
->  
-> +int xe_guc_ct_update_addresses(struct xe_guc_ct *ct);
-> +
->  static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
->  {
->  	return ct->state == XE_GUC_CT_STATE_ENABLED;
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> index 5bcd55999e0e..08c789ebfa18 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> @@ -10,6 +10,7 @@
->  #include "xe_gt.h"
->  #include "xe_gt_sriov_printk.h"
->  #include "xe_gt_sriov_vf.h"
-> +#include "xe_guc_ct.h"
->  #include "xe_pm.h"
->  #include "xe_sriov.h"
->  #include "xe_sriov_printk.h"
-> @@ -158,6 +159,15 @@ static int vf_post_migration_requery_guc(struct xe_device *xe)
->  	return ret;
->  }
->  
-> +static void vf_post_migration_fixup_ctb(struct xe_device *xe)
-> +{
-> +	struct xe_gt *gt;
-> +	unsigned int id;
-> +
-> +	for_each_gt(gt, xe, id)
-> +		xe_guc_ct_update_addresses(&gt->uc.guc.ct);
-> +}
-> +
->  /*
->   * vf_post_migration_imminent - Check if post-restore recovery is coming.
->   * @xe: the &xe_device struct instance
-> @@ -217,6 +227,8 @@ static void vf_post_migration_recovery(struct xe_device *xe)
->  
->  	vf_post_migration_fixup_ggtt_nodes(xe);
->  	/* FIXME: add the recovery steps */
-> +	vf_post_migration_fixup_ctb(xe);
-> +
-
-why this extra separation line?
-
->  	vf_post_migration_notify_resfix_done(xe);
->  	xe_pm_runtime_put(xe);
->  	drm_notice(&xe->drm, "migration recovery ended\n");
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
