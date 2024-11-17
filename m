@@ -4,60 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F12DD68BFB
-	for <intel-xe@archiver.kernel.org>; Sun, 17 Nov 2024 09:16:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69F50D10F27
+	for <intel-xe@archiver.kernel.org>; Sun, 17 Nov 2024 18:44:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 481D810E221;
-	Sun, 17 Nov 2024 09:16:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFB4310E308;
+	Sun, 17 Nov 2024 18:44:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nvlUOnGQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gbh0tE02";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87B6C10E031;
- Sun, 17 Nov 2024 09:16:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3327210E1A1;
+ Sun, 17 Nov 2024 18:44:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731834978; x=1763370978;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=g4ehLSqsya6NJQtkjdgyvdNG0TLIzz8TwUMtsuSLxek=;
- b=nvlUOnGQFRniMBtCbZiWxcQZN7nc8DKM5MUbFqMcn2ij7fYOMHK+8qYT
- 2SI4S9fFzbPQaBQ3yUF53hywP0F8RfVncc6lucBgLa31vkSPg1HQU1azA
- VRkZO1CWc8Wp3+MKayL/pcHhOfTlhbuatvOQUsGZceofIqdCEvYRyZVDR
- T7s+IIcs6nX1ZruGqwCJ5LmACx1IoJ1/QQSZcodKzRwig5aEmRubkYANu
- lSQoNuEeogj2EbMljpd9W3rVi9beOWppAJsuO3aGLwd3bVA4BsB4/AswS
- aZ9B5Bj4+L0v7R5QQx55bfD/UtF90Rk062tMw60U7HPXA7uhLmEn7UZuH w==;
-X-CSE-ConnectionGUID: C56V5acmT3GpQUbPN6axvw==
-X-CSE-MsgGUID: ynWz6apLQ2yETUlnWRjg3g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11258"; a="31739669"
-X-IronPort-AV: E=Sophos;i="6.12,161,1728975600"; d="scan'208";a="31739669"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2024 01:16:17 -0800
-X-CSE-ConnectionGUID: jraRo+LeTxqqej/ImtU/gw==
-X-CSE-MsgGUID: cqMAJ3wyScW0hGareT7SIQ==
+ t=1731869041; x=1763405041;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ckKkBx62Djh6yT47FZqSCfKqYxEwIg1mfsy55ZPvKI0=;
+ b=Gbh0tE02+WFTft52iC1UnaiBcgWf0JsDOHujwct7L6xA0Tyl9+/eXdgU
+ O3uGrKSCXtXDRItu9tUenJEhHtoQvl9dkVo17UCcMCbhmFd00GPPpagJC
+ wOKYkd/JldRxFv37IY6duFEXcUyXTcTmXnyV6uZsGBDao/d4OWxWbLyDj
+ vU54B3Le6zo3eBh0a6p0+pNrqi5+AA6UwlIrcZCNBLYgXR5DybgAZOXTV
+ p4sS1LV35+tKwCD0FdzJ2ruNub04VoR9mz9sn+3qTSm9uGwetLqYb09Q8
+ uHZMdn+USwN/e9DnvUdd5ERa2YwYwNpc24Y12usrS5YSINCyC03GrPRMQ g==;
+X-CSE-ConnectionGUID: TfeycUazTCyQBGW4BzUgOA==
+X-CSE-MsgGUID: G5bg0IYVR6i8asxoi0iVvw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11259"; a="43219642"
+X-IronPort-AV: E=Sophos;i="6.12,162,1728975600"; d="scan'208";a="43219642"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2024 10:44:00 -0800
+X-CSE-ConnectionGUID: +vXfDj/qRzKUgvC+NX2xaw==
+X-CSE-MsgGUID: trHElf7QR6eMOVi4gudZwQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,161,1728975600"; d="scan'208";a="112241906"
-Received: from lkp-server01.sh.intel.com (HELO 1e3cc1889ffb) ([10.239.97.150])
- by fmviesa002.fm.intel.com with ESMTP; 17 Nov 2024 01:16:14 -0800
-Received: from kbuild by 1e3cc1889ffb with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tCbO8-0001fH-24;
- Sun, 17 Nov 2024 09:16:12 +0000
-Date: Sun, 17 Nov 2024 17:15:49 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian =?unknown-8bit?B?S8O2bmln?= <ckoenig.leichtzumerken@gmail.com>, 
- kraxel@redhat.com, airlied@redhat.com, alexander.deucher@amd.com,
- zack.rusin@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
- virtualization@lists.linux.dev, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 4/7] drm/vmwgfx: use the new drm_exec object
-Message-ID: <202411171611.9LEZwWSe-lkp@intel.com>
-References: <20241114153020.6209-5-christian.koenig@amd.com>
+X-IronPort-AV: E=Sophos;i="6.12,162,1728975600"; d="scan'208";a="93485902"
+Received: from aalteres-desk1.fm.intel.com ([10.1.39.140])
+ by fmviesa005.fm.intel.com with ESMTP; 17 Nov 2024 10:44:00 -0800
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ dri-devel@lists.freedesktop.org,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ John Harrison <john.c.harrison@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH 0/1] Maintenence of devcoredump <-> GuC-Err-Capture plumbing
+Date: Sun, 17 Nov 2024 10:43:59 -0800
+Message-Id: <20241117184400.2206120-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241114153020.6209-5-christian.koenig@amd.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,58 +68,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Christian,
+The GuC-Error-Capture is currently reaching into xe_devcoredump
+structure to store its own place-holder snaphot to workaround
+the race between G2H-Error-Capture-Notification vs Drm-Scheduler
+triggering GuC-Submission-exec-queue-timeout/kill.
 
-kernel test robot noticed the following build warnings:
+Part of that race workaround design included GuC-Error-Capture taking
+on some of the front-end functions for xe_hw_engine_snapshot
+generation because of the orthogonal debugfs for raw dumps of engine
+registers without any job association. We want this to also be handled,
+even if indirectly, by GuC-Error-Capture since there is a lot to manage
+when it comes to reading and printing the register lists.
 
-[auto build test WARNING on drm-xe/drm-xe-next]
-[also build test WARNING on drm/drm-next drm-exynos/exynos-drm-next linus/master drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip v6.12-rc7 next-20241115]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+However, logically speaking, GuC-Error-Capture node management,
+despite being the majority of an engine-snapshot work, is still
+a subset of xe_hw_engine_snapshot.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-K-nig/drm-qxl-switch-to-using-drm_exec-v2/20241115-014610
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20241114153020.6209-5-christian.koenig%40amd.com
-patch subject: [PATCH 4/7] drm/vmwgfx: use the new drm_exec object
-config: x86_64-rhel-8.3 (https://download.01.org/0day-ci/archive/20241117/202411171611.9LEZwWSe-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241117/202411171611.9LEZwWSe-lkp@intel.com/reproduce)
+This series intends to re-design the plumbing for future
+maintenence and scalability, rearranging the layering
+back to what its should be (xe_devcoredump_snapshot owns
+xe_hw_engine_snapshot owns xe_guc_capture_snapshot)..
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411171611.9LEZwWSe-lkp@intel.com/
+Alan Previn (1):
+  drm/xe/guc/capture: Maintenence of devcoredump <-> GuC-Err-Capture
+    plumbing
 
-All warnings (new ones prefixed by >>):
+ drivers/gpu/drm/xe/xe_devcoredump.c           |   3 -
+ drivers/gpu/drm/xe/xe_devcoredump_types.h     |   6 -
+ drivers/gpu/drm/xe/xe_guc_capture.c           | 397 ++++++++----------
+ drivers/gpu/drm/xe/xe_guc_capture.h           |  10 +-
+ .../drm/xe/xe_guc_capture_snapshot_types.h    |  68 +++
+ drivers/gpu/drm/xe/xe_guc_submit.c            |  21 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c             | 117 ++++--
+ drivers/gpu/drm/xe/xe_hw_engine.h             |   4 +-
+ drivers/gpu/drm/xe/xe_hw_engine_types.h       |  13 +-
+ 9 files changed, 353 insertions(+), 286 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_snapshot_types.h
 
->> drivers/gpu/drm/vmwgfx/vmwgfx_validation.c:861: warning: Function parameter or struct member 'fence' not described in 'vmw_validation_bo_fence'
 
-
-vim +861 drivers/gpu/drm/vmwgfx/vmwgfx_validation.c
-
-   850	
-   851	/**
-   852	 * vmw_validation_bo_fence - Unreserve and fence buffer objects registered
-   853	 * with a validation context
-   854	 * @ctx: The validation context
-   855	 *
-   856	 * This function unreserves the buffer objects previously reserved using
-   857	 * vmw_validation_bo_reserve, and fences them with a fence object.
-   858	 */
-   859	void vmw_validation_bo_fence(struct vmw_validation_context *ctx,
-   860				     struct vmw_fence_obj *fence)
- > 861	{
-   862		struct vmw_validation_bo_node *entry;
-   863	
-   864		list_for_each_entry(entry, &ctx->bo_list, base.head) {
-   865			dma_resv_add_fence(entry->base.bo->base.resv, &fence->base,
-   866					   DMA_RESV_USAGE_READ);
-   867		}
-   868		drm_exec_fini(&ctx->exec);
-   869	}
-   870	
-
+base-commit: 2d4993e163401c81e138c6e0e6223752c2e90402
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
