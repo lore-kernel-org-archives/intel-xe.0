@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8F42D4921E
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 13:10:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9F05D4921C
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 13:16:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9094910E4B8;
-	Mon, 18 Nov 2024 13:10:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MLTH82Qy";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB72F10E237;
- Mon, 18 Nov 2024 13:10:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731935410; x=1763471410;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=5W7x77F7fwG+7KK69IM/RYjpKpCJ0yRonF2P5P4hzr8=;
- b=MLTH82QysnH1As2eZ52Jg7lFPsCsEelYIjetUpkMxLXYXm2hMx6a1/bg
- o6gTstkWIqCvCv/OvZbCpMpDDX/JGE6fMp9uKyjJNcEKeCmVWzA/V9IKi
- 6nOa6gCi90uLfknW7pVidTIurEU1zrlmE0JXk45fxbAVbnbApbwdt4dun
- OKN6UF/AEglHXmUXaJzModTxaDYiI/j7P9DaJTx3/lXKVim7wUyz58Ulv
- e/8XaABT6sGrKAp5QSUU7mR3urtsajLS1BbUv9jDRAlWR7ywY10IQc6cl
- HBDoY+NxkXOAC+elEdlaVMqk65skdVieJgpN7qhCDMsI26m1RCjMBzLxi A==;
-X-CSE-ConnectionGUID: 71WeZv5vTFmSX1DdvouIIg==
-X-CSE-MsgGUID: qtznGWh9TJGAJLHdf9n/FQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="35663615"
-X-IronPort-AV: E=Sophos;i="6.12,164,1728975600"; d="scan'208";a="35663615"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 05:10:09 -0800
-X-CSE-ConnectionGUID: I1dBu82ERXu2luQZzuRRPw==
-X-CSE-MsgGUID: Jjso3LcXRIecyaJqIBXW4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,164,1728975600"; d="scan'208";a="94034267"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 05:10:08 -0800
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI] drm/i915/dp_mst: Fix connector initialization in
- intel_dp_add_mst_connector()
-Date: Mon, 18 Nov 2024 15:10:44 +0200
-Message-ID: <20241118131044.1278028-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.44.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84E7010E25B;
+	Mon, 18 Nov 2024 13:16:54 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48BF310E25B;
+ Mon, 18 Nov 2024 13:16:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6636481626931385823=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_TTM_shrinker_helpers_and_xe_buff?=
+ =?utf-8?q?er_object_shrinker_=28rev15=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 18 Nov 2024 13:16:53 -0000
+Message-ID: <173193581331.1226988.6059785484044629596@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241115150120.3280-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20241115150120.3280-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,51 +36,198 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The connector initialization in intel_dp_add_mst_connector() depends on
-the device pointer in connector to be valid, at least by connector
-debug printing. The device pointer is initialized by drm_connector_init(),
-however that function also exposes the connector to in-kernel users,
-which can't be done before the connector is fully initialized. For now
-make sure the device pointer is valid before it's used, until a
-follow-up change moving this to DRM core.
+--===============6636481626931385823==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This issue was revealed by the commit in the Fixes: line below, before
-which the above debug printing checked and handled a NULL device pointer
-gracefully in DRM core.
+== Series Details ==
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Fixes: 529798bd786a ("drm/i915/mst: convert to struct intel_display")
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12799
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Series: TTM shrinker helpers and xe buffer object shrinker (rev15)
+URL   : https://patchwork.freedesktop.org/series/131815/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index df7edcfe885b6..f058360a26413 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1727,6 +1727,16 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
- 
- 	intel_dp_init_modeset_retry_work(intel_connector);
- 
-+	/*
-+	 * TODO: The following drm_connector specific initialization belongs
-+	 * to DRM core, however it happens atm too late in
-+	 * drm_connector_init(). That function will also expose the connector
-+	 * to in-kernel users, so it can't be called until the connector is
-+	 * sufficiently initialized; init the device pointer used by the
-+	 * following DSC setup, until a fix moving this to DRM core.
-+	 */
-+	intel_connector->base.dev = mgr->dev;
-+
- 	intel_connector->dp.dsc_decompression_aux = drm_dp_mst_dsc_aux_for_port(port);
- 	intel_dp_mst_read_decompression_port_dsc_caps(intel_dp, intel_connector);
- 	intel_connector->dp.dsc_hblank_expansion_quirk =
--- 
-2.44.2
+== Summary ==
 
+CI Bug Log - changes from xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f_BAT -> xe-pw-131815v15_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-131815v15_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-FAIL][2] ([Intel XE#1033])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_intel_bb@render@render-linear-256:
+    - bat-adlp-vf:        [PASS][3] -> [DMESG-WARN][4] ([Intel XE#358]) +1 other test dmesg-warn
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [PASS][5] -> [SKIP][6] ([Intel XE#1192]) +1 other test skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-lnl-1:          [FAIL][7] ([Intel XE#886]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@xe_exec_threads@threads-mixed-shared-vm-basic:
+    - bat-pvc-2:          [DMESG-WARN][9] ([Intel XE#3371]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f/bat-pvc-2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/bat-pvc-2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][11] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][12] ([Intel XE#1192])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#3371]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3371
+  [Intel XE#358]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/358
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+
+
+Build changes
+-------------
+
+  * Linux: xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f -> xe-pw-131815v15
+
+  IGT_8114: 8114
+  xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f: 57639ceec0f66f06f4a8a8ac3b9551b7b493c33f
+  xe-pw-131815v15: 131815v15
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/index.html
+
+--===============6636481626931385823==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>TTM shrinker helpers and xe buffer object shrinker (rev15)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131815/">https://patchwork.freedesktop.org/series/131815/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f_BAT -&gt; xe-pw-131815v15_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-131815v15_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_intel_bb@render@render-linear-256:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/358">Intel XE#358</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_threads@threads-mixed-shared-vm-basic:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f/bat-pvc-2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3371">Intel XE#3371</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/bat-pvc-2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v15/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f -&gt; xe-pw-131815v15</li>
+</ul>
+<p>IGT_8114: 8114<br />
+  xe-2245-57639ceec0f66f06f4a8a8ac3b9551b7b493c33f: 57639ceec0f66f06f4a8a8ac3b9551b7b493c33f<br />
+  xe-pw-131815v15: 131815v15</p>
+
+</body>
+</html>
+
+--===============6636481626931385823==--
