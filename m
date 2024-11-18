@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0D10D4920F
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 11:51:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D8D6D49211
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 11:52:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B06010E4A1;
-	Mon, 18 Nov 2024 11:51:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2EE610E4A9;
+	Mon, 18 Nov 2024 11:52:15 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3C6A10E4AA;
- Mon, 18 Nov 2024 11:51:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 495A410E4A9;
+ Mon, 18 Nov 2024 11:52:15 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5BPATCHv2=2C1/3=5D_drm/plane=3A_Add_new_plane_property_IN=5FFOR?=
- =?utf-8?q?MATS=5FASYNC?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5BP?=
+ =?utf-8?q?ATCHv2=2C1/3=5D_drm/plane=3A_Add_new_plane_property_IN=5FFORMATS?=
+ =?utf-8?q?=5FASYNC?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Murthy, Arun R" <arun.r.murthy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 18 Nov 2024 11:51:56 -0000
-Message-ID: <173193071688.1199969.1603157020119978228@2413ebb6fbb6>
+Date: Mon, 18 Nov 2024 11:52:15 -0000
+Message-ID: <173193073532.1199969.11335716763425749554@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241118075315.466009-1-arun.r.murthy@intel.com>
 In-Reply-To: <20241118075315.466009-1-arun.r.murthy@intel.com>
@@ -49,11 +49,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 90014f8026e3 drm-tip: 2024y-11m-18d-09h-06m-48s UTC integration manifest
-=== git am output follows ===
-Applying: drm/plane: Add new plane property IN_FORMATS_ASYNC
-Applying: drm/plane: Expose function to create format/modifier blob
-Applying: drm/i915/display: Populate list of async supported formats/modifiers
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1bab1842c7a10015407b265e3aec1d7db689b34b
+Author: Arun R Murthy <arun.r.murthy@intel.com>
+Date:   Mon Nov 18 13:23:15 2024 +0530
+
+    drm/i915/display: Populate list of async supported formats/modifiers
+    
+    Populate the list of formats/modifiers supported by async flip. Register
+    a async property and expose the same to user through blob.
+    
+    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
++ /mt/dim checkpatch 90014f8026e31874d368834834253debd131268b drm-intel
+de9d060c7e4d drm/plane: Add new plane property IN_FORMATS_ASYNC
+04de1c7e39f7 drm/plane: Expose function to create format/modifier blob
+1bab1842c7a1 drm/i915/display: Populate list of async supported formats/modifiers
 
 
