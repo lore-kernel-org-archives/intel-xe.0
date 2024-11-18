@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5639D60D00
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7A4DD60D07
 	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 23:37:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02E9B10E29D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DD5810E582;
 	Mon, 18 Nov 2024 23:37:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IrFj9FKw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e6pVmwhN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA4E010E040;
- Mon, 18 Nov 2024 23:37:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6112110E040;
+ Mon, 18 Nov 2024 23:37:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1731973044; x=1763509044;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=y2XgvCO4mQouVbYYXxG/xv9Uz9Y6ODwgn8hTNcyktQQ=;
- b=IrFj9FKwvX3KSAKJBAnv8c7A6MU7ix050XzpqvCn9Wo3JadzGgIdbs0h
- wDfbz8dcSFHOkX/V7FHFor3ytRqHmOOe6uSLtw2dELY+kA5ZrN0jwjHIK
- 54Ux6axXNo+xcYnEU9kgquuPLgSKxCQ+wbn07IrMaRHI0Rd8CaxX4v0Gp
- aGubjPRf5GDkmXO23lLG3naNdKm2ExtuVavcsxw6WeAdSlHI1EQpG3HKq
- CPsecNTIb18HBAKw08eJXwcZsA5sbeTG5YPy9aiJoB7YErNKPhOEieAUz
- 6BlnDShgoh08UMh88cRTUF0eDlHL6o0AfkxQLxZH8jzk3fGjwN1uvjmPN A==;
-X-CSE-ConnectionGUID: XUesvJgLRyeEmKvXb9EvyA==
-X-CSE-MsgGUID: 95BpnEiUSFCdGCDKl21tJw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31878857"
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31878857"
+ bh=ay6A70QWOSeOFEkh6hckt8gFzr/HHR3I+sf1nUFsfbY=;
+ b=e6pVmwhNbHrFBJjfIduxAd2WEalKGwH2lny3kIkxw04NEbRnuZ5c/q0Q
+ EQhqkCJ57cuspYeO4n8t/PHv/3RtS0nUa3/EdYvUYSjmcloKx1VBti+br
+ cVpvQmGHCruJIIgkzUo1BYmjyBweczfT48lgpRI43BKErSDiFGi1a7608
+ QpwG7OqSuHKezqJIUCmQgV3YeKQkQnAvgRPMMC8R0JHTf0XvSnORIHzJ1
+ S5ACqTQLFI/SwAXZkZ8tHJyJYPEn7NfijvHJNFHRI7mGiRAZ8MRV6ZpYI
+ fKj6yJ14IwfS+XImz+vaeIR1DzP7ShLEa6jBLhdh7m/aMSMtKxEwW87b3 Q==;
+X-CSE-ConnectionGUID: ZdNPvipyTF2kk7zxFctR0g==
+X-CSE-MsgGUID: PSFOmK1nRp6dSfQrWRd23A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31878869"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31878869"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 15:37:23 -0800
-X-CSE-ConnectionGUID: jIkz5y60T46r1gXNkpZgtg==
-X-CSE-MsgGUID: Zyda5ht9SuyPP51qVmDkYQ==
+ 18 Nov 2024 15:37:24 -0800
+X-CSE-ConnectionGUID: z2lLjAT2SfqNVCTX/tSUvA==
+X-CSE-MsgGUID: /Oa5n3TJSAyJsyprwKuZDQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="89521675"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="89521683"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 15:37:23 -0800
+ 18 Nov 2024 15:37:24 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -49,14 +49,13 @@ Cc: kenneth.w.graunke@intel.com, lionel.g.landwerlin@intel.com,
  thomas.hellstrom@linux.intel.com, boris.brezillon@collabora.com,
  airlied@gmail.com, christian.koenig@amd.com, mihail.atanassov@arm.com,
  steven.price@arm.com, shashank.sharma@amd.com
-Subject: [RFC PATCH 02/29] dma-fence: Add dma_fence_user_fence
-Date: Mon, 18 Nov 2024 15:37:30 -0800
-Message-Id: <20241118233757.2374041-3-matthew.brost@intel.com>
+Subject: [RFC PATCH 04/29] drm/xe: Allocate doorbells for UMD exec queues
+Date: Mon, 18 Nov 2024 15:37:32 -0800
+Message-Id: <20241118233757.2374041-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241118233757.2374041-1-matthew.brost@intel.com>
 References: <20241118233757.2374041-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,153 +71,243 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Normalize user fence attachment to a DMA fence. A user fence is a simple
-seqno write to memory, implemented by attaching a DMA fence callback
-that writes out the seqno. Intended use case is importing a dma-fence
-into kernel and exporting a user fence.
+These will be mapped to user space for UMD submission. Add
+infrastructure to GuC submission backend to manage these.
 
-Helpers added to allocate, attach, and free a dma_fence_user_fence.
-
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Christian Koenig <christian.koenig@amd.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/dma-buf/Makefile               |  2 +-
- drivers/dma-buf/dma-fence-user-fence.c | 73 ++++++++++++++++++++++++++
- include/linux/dma-fence-user-fence.h   | 31 +++++++++++
- 3 files changed, 105 insertions(+), 1 deletion(-)
- create mode 100644 drivers/dma-buf/dma-fence-user-fence.c
- create mode 100644 include/linux/dma-fence-user-fence.h
+ drivers/gpu/drm/xe/xe_exec_queue_types.h     |   2 +
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |   7 ++
+ drivers/gpu/drm/xe/xe_guc_submit.c           | 107 +++++++++++++++++--
+ 3 files changed, 106 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/dma-buf/Makefile b/drivers/dma-buf/Makefile
-index c25500bb38b5..ba9ba339319e 100644
---- a/drivers/dma-buf/Makefile
-+++ b/drivers/dma-buf/Makefile
-@@ -1,6 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0-only
- obj-y := dma-buf.o dma-fence.o dma-fence-array.o dma-fence-chain.o \
--	 dma-fence-preempt.o dma-fence-unwrap.o dma-resv.o
-+	 dma-fence-preempt.o dma-fence-unwrap.o dma-fence-user-fence.o dma-resv.o
- obj-$(CONFIG_DMABUF_HEAPS)	+= dma-heap.o
- obj-$(CONFIG_DMABUF_HEAPS)	+= heaps/
- obj-$(CONFIG_SYNC_FILE)		+= sync_file.o
-diff --git a/drivers/dma-buf/dma-fence-user-fence.c b/drivers/dma-buf/dma-fence-user-fence.c
-new file mode 100644
-index 000000000000..5a4b289bacb8
---- /dev/null
-+++ b/drivers/dma-buf/dma-fence-user-fence.c
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include <linux/dma-fence-user-fence.h>
-+#include <linux/slab.h>
-+
-+static void user_fence_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 1158b6062a6c..7f68587d4021 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -83,6 +83,8 @@ struct xe_exec_queue {
+ #define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(3)
+ /* kernel exec_queue only, set priority to highest level */
+ #define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(4)
++/* queue used for UMD submission */
++#define EXEC_QUEUE_FLAG_UMD_SUBMISSION		BIT(5)
+ 
+ 	/**
+ 	 * @flags: flags for this exec queue, should statically setup aside from ban
+diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+index 4c39f01e4f52..2d53af75ed75 100644
+--- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+@@ -47,6 +47,13 @@ struct xe_guc_exec_queue {
+ 	u16 id;
+ 	/** @suspend_wait: wait queue used to wait on pending suspends */
+ 	wait_queue_head_t suspend_wait;
++	/** @db: doorbell state */
++	struct {
++		/** @db.id: doorbell ID */
++		int id;
++		/** @db.dpa: doorbell device physical address */
++		u64 dpa;
++	} db;
+ 	/** @suspend_pending: a suspend of the exec_queue is pending */
+ 	bool suspend_pending;
+ };
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 58a3f4bb3887..cc7a98c1343e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -29,6 +29,7 @@
+ #include "xe_guc.h"
+ #include "xe_guc_capture.h"
+ #include "xe_guc_ct.h"
++#include "xe_guc_db_mgr.h"
+ #include "xe_guc_exec_queue_types.h"
+ #include "xe_guc_id_mgr.h"
+ #include "xe_guc_submit_types.h"
+@@ -67,6 +68,7 @@ exec_queue_to_guc(struct xe_exec_queue *q)
+ #define EXEC_QUEUE_STATE_BANNED			(1 << 9)
+ #define EXEC_QUEUE_STATE_CHECK_TIMEOUT		(1 << 10)
+ #define EXEC_QUEUE_STATE_EXTRA_REF		(1 << 11)
++#define EXEC_QUEUE_STATE_DB_REGISTERED		(1 << 12)
+ 
+ static bool exec_queue_registered(struct xe_exec_queue *q)
+ {
+@@ -218,6 +220,16 @@ static void set_exec_queue_extra_ref(struct xe_exec_queue *q)
+ 	atomic_or(EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
+ }
+ 
++static bool exec_queue_doorbell_registered(struct xe_exec_queue *q)
 +{
-+	struct dma_fence_user_fence *user_fence =
-+		container_of(cb, struct dma_fence_user_fence, cb);
-+
-+	if (user_fence->map.is_iomem)
-+		writeq(user_fence->seqno, user_fence->map.vaddr_iomem);
-+	else
-+		*(u64 *)user_fence->map.vaddr = user_fence->seqno;
-+
-+	dma_fence_user_fence_free(user_fence);
++	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_DB_REGISTERED;
 +}
 +
-+/**
-+ * dma_fence_user_fence_alloc() - Allocate user fence
-+ *
-+ * Return: Allocated struct dma_fence_user_fence on Success, NULL on failure
-+ */
-+struct dma_fence_user_fence *dma_fence_user_fence_alloc(void)
++static void set_exec_queue_doorbell_registered(struct xe_exec_queue *q)
 +{
-+	return kmalloc(sizeof(struct dma_fence_user_fence), GFP_KERNEL);
++	atomic_or(EXEC_QUEUE_STATE_DB_REGISTERED, &q->guc->state);
 +}
-+EXPORT_SYMBOL(dma_fence_user_fence_alloc);
 +
-+/**
-+ * dma_fence_user_fence_free() - Free user fence
-+ *
-+ * Free user fence. Should only be called on a user fence if
-+ * dma_fence_user_fence_attach is not called to cleanup original allocation from
-+ * dma_fence_user_fence_alloc.
-+ */
-+void dma_fence_user_fence_free(struct dma_fence_user_fence *user_fence)
+ static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
+ {
+ 	return (atomic_read(&q->guc->state) &
+@@ -354,13 +366,6 @@ static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
+ 	return ret;
+ }
+ 
+-static void release_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
+-{
+-	mutex_lock(&guc->submission_state.lock);
+-	__release_guc_id(guc, q, q->width);
+-	mutex_unlock(&guc->submission_state.lock);
+-}
+-
+ struct exec_queue_policy {
+ 	u32 count;
+ 	struct guc_update_exec_queue_policy h2g;
+@@ -1238,7 +1243,13 @@ static void __guc_exec_queue_fini_async(struct work_struct *w)
+ 
+ 	if (xe_exec_queue_is_lr(q))
+ 		cancel_work_sync(&ge->lr_tdr);
+-	release_guc_id(guc, q);
++
++	mutex_lock(&guc->submission_state.lock);
++	if (q->guc->db.id >= 0)
++		xe_guc_db_mgr_release_id_locked(&guc->dbm, q->guc->db.id);
++	__release_guc_id(guc, q, q->width);
++	mutex_unlock(&guc->submission_state.lock);
++
+ 	xe_sched_entity_fini(&ge->entity);
+ 	xe_sched_fini(&ge->sched);
+ 
+@@ -1273,6 +1284,8 @@ static void __guc_exec_queue_fini(struct xe_guc *guc, struct xe_exec_queue *q)
+ 	guc_exec_queue_fini_async(q);
+ }
+ 
++static void deallocate_doorbell(struct xe_guc *guc, u16 guc_id);
++
+ static void __guc_exec_queue_process_msg_cleanup(struct xe_sched_msg *msg)
+ {
+ 	struct xe_exec_queue *q = msg->private_data;
+@@ -1281,6 +1294,9 @@ static void __guc_exec_queue_process_msg_cleanup(struct xe_sched_msg *msg)
+ 	xe_gt_assert(guc_to_gt(guc), !(q->flags & EXEC_QUEUE_FLAG_PERMANENT));
+ 	trace_xe_exec_queue_cleanup_entity(q);
+ 
++	if (exec_queue_doorbell_registered(q))
++		deallocate_doorbell(guc, q->guc->id);
++
+ 	if (exec_queue_registered(q))
+ 		disable_scheduling_deregister(guc, q);
+ 	else
+@@ -1399,6 +1415,53 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
+ 	xe_pm_runtime_put(xe);
+ }
+ 
++static int allocate_doorbell(struct xe_guc *guc, u16 guc_id, int doorbell_id,
++			     u64 gpa)
 +{
-+	kfree(user_fence);
-+}
-+EXPORT_SYMBOL(dma_fence_user_fence_free);
++	u32 action[] = {
++		XE_GUC_ACTION_ALLOCATE_DOORBELL,
++		guc_id,
++		doorbell_id,
++		lower_32_bits(gpa),
++		upper_32_bits(gpa),
++		0,
++	};
 +
-+/**
-+ * dma_fence_user_fence_attach() - Attach user fence to dma-fence
-+ *
-+ * @fence: fence
-+ * @user_fence user fence
-+ * @map: IOSYS map to write seqno to
-+ * @seqno: seqno to write to IOSYS map
-+ *
-+ * Attach a user fence, which is a seqno write to an IOSYS map, to a DMA fence.
-+ * The caller must guarantee that the memory in the IOSYS map doesn't move
-+ * before the fence signals. This is typically done by installing the DMA fence
-+ * into the BO's DMA reservation bookkeeping slot from which the IOSYS was
-+ * derived.
-+ */
-+void dma_fence_user_fence_attach(struct dma_fence *fence,
-+				 struct dma_fence_user_fence *user_fence,
-+				 struct iosys_map *map, u64 seqno)
++	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
++}
++
++static void deallocate_doorbell(struct xe_guc *guc, u16 guc_id)
 +{
-+	int err;
++	u32 action[] = {
++		XE_GUC_ACTION_DEALLOCATE_DOORBELL,
++		guc_id
++	};
 +
-+	user_fence->map = *map;
-+	user_fence->seqno = seqno;
-+
-+	err = dma_fence_add_callback(fence, &user_fence->cb, user_fence_cb);
-+	if (err == -ENOENT)
-+		user_fence_cb(NULL, &user_fence->cb);
++	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
 +}
-+EXPORT_SYMBOL(dma_fence_user_fence_attach);
-diff --git a/include/linux/dma-fence-user-fence.h b/include/linux/dma-fence-user-fence.h
-new file mode 100644
-index 000000000000..8678129c7d56
---- /dev/null
-+++ b/include/linux/dma-fence-user-fence.h
-@@ -0,0 +1,31 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
 +
-+#ifndef __LINUX_DMA_FENCE_USER_FENCE_H
-+#define __LINUX_DMA_FENCE_USER_FENCE_H
++#define GUC_MMIO_DB_BAR_OFFSET SZ_4M
 +
-+#include <linux/dma-fence.h>
-+#include <linux/iosys-map.h>
++static int create_doorbell(struct xe_guc *guc, struct xe_exec_queue *q)
++{
++	int ret;
 +
-+/** struct dma_fence_user_fence - User fence */
-+struct dma_fence_user_fence {
-+	/** @cb: dma-fence callback used to attach user fence to dma-fence */
-+	struct dma_fence_cb cb;
-+	/** @map: IOSYS map to write seqno to */
-+	struct iosys_map map;
-+	/** @seqno: seqno to write to IOSYS map */
-+	u64 seqno;
-+};
++	set_exec_queue_doorbell_registered(q);
++	xe_guc_submit_reset_wait(guc);
 +
-+struct dma_fence_user_fence *dma_fence_user_fence_alloc(void);
++	q->guc->db.dpa = GUC_MMIO_DB_BAR_OFFSET + PAGE_SIZE * q->guc->db.id;
++	register_exec_queue(q);
++	enable_scheduling(q);
 +
-+void dma_fence_user_fence_free(struct dma_fence_user_fence *user_fence);
++	ret = allocate_doorbell(guc, q->guc->id, q->guc->db.id, q->guc->db.dpa);
++	if (ret) {
++		disable_scheduling_deregister(guc, q);
++		return ret;
++	}
 +
-+void dma_fence_user_fence_attach(struct dma_fence *fence,
-+				 struct dma_fence_user_fence *user_fence,
-+				 struct iosys_map *map,
-+				 u64 seqno);
++	return 0;
++}
 +
-+#endif
+ static const struct drm_sched_backend_ops drm_sched_ops = {
+ 	.run_job = guc_exec_queue_run_job,
+ 	.free_job = guc_exec_queue_free_job,
+@@ -1415,7 +1478,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+ 	struct xe_guc_exec_queue *ge;
+ 	long timeout;
+-	int err, i;
++	int err, i, db_id = 0;
+ 
+ 	xe_gt_assert(guc_to_gt(guc), xe_device_uc_enabled(guc_to_xe(guc)));
+ 
+@@ -1458,14 +1521,35 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	if (xe_guc_read_stopped(guc))
+ 		xe_sched_stop(sched);
+ 
++	q->guc->db.id = -1;
++	if (q->flags & EXEC_QUEUE_FLAG_UMD_SUBMISSION) {
++		db_id = xe_guc_db_mgr_reserve_id_locked(&guc->dbm);
++		if (db_id < 0) {
++			err = db_id;
++			goto err_id;
++		}
++	}
++
+ 	mutex_unlock(&guc->submission_state.lock);
+ 
++	if (q->flags & EXEC_QUEUE_FLAG_UMD_SUBMISSION) {
++		q->guc->db.id = db_id;
++		err = create_doorbell(guc, q);
++		if (err)
++			goto err_db;
++	}
++
+ 	xe_exec_queue_assign_name(q, q->guc->id);
+ 
+ 	trace_xe_exec_queue_create(q);
+ 
+ 	return 0;
+ 
++err_db:
++	mutex_lock(&guc->submission_state.lock);
++	xe_guc_db_mgr_release_id_locked(&guc->dbm, q->guc->db.id);
++err_id:
++	__release_guc_id(guc, q, q->width);
+ err_entity:
+ 	mutex_unlock(&guc->submission_state.lock);
+ 	xe_sched_entity_fini(&ge->entity);
+@@ -1699,7 +1783,10 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+ 		struct xe_sched_job *job = xe_sched_first_pending_job(sched);
+ 		bool ban = false;
+ 
+-		if (job) {
++		if (exec_queue_doorbell_registered(q)) {
++			/* TODO: Ban via UMD shim too */
++			ban = true;
++		} else if (job) {
+ 			if ((xe_sched_job_started(job) &&
+ 			    !xe_sched_job_completed(job)) ||
+ 			    xe_sched_invalidate_job(job, 2)) {
 -- 
 2.34.1
 
