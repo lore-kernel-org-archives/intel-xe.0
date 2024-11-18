@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3AA0D60CF8
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 23:05:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19F10D60CFA
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 23:05:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAAA910E060;
-	Mon, 18 Nov 2024 23:05:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C99BD10E060;
+	Mon, 18 Nov 2024 23:05:29 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F43310E060;
- Mon, 18 Nov 2024 23:05:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB8B710E2EA;
+ Mon, 18 Nov 2024 23:05:27 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Sort_again?=
- =?utf-8?q?_the_info_flags?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Sort_again_the_?=
+ =?utf-8?q?info_flags?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 18 Nov 2024 23:05:15 -0000
-Message-ID: <173197111521.10600.12769142682621416726@b555e5b46a47>
+Date: Mon, 18 Nov 2024 23:05:27 -0000
+Message-ID: <173197112792.10600.4351289898997742221@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241118223314.1969166-1-lucas.demarchi@intel.com>
 In-Reply-To: <20241118223314.1969166-1-lucas.demarchi@intel.com>
@@ -48,9 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 1fe9a6cc7d13 drm-tip: 2024y-11m-18d-21h-03m-03s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Sort again the info flags
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2cf30ed3eab57db4425f20d31a1cac4c42957566
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Mon Nov 18 14:33:14 2024 -0800
+
+    drm/xe: Sort again the info flags
+    
+    Those flags are supposed to be kept sorted alphabetically. Unfortunately
+    it's a constant battle as new flags are added to the end or at random
+    places. Sort it again.
+    
+    v2: Include the other non-has_* 1-bit flags in the sort
+    
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # v1
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 1fe9a6cc7d136c9a34c47ccd6ee5a2b7d02c0bd6 drm-intel
+2cf30ed3eab5 drm/xe: Sort again the info flags
 
 
