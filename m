@@ -4,48 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B43AD49232
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 15:08:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F6ECD49231
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 15:08:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFE4210E4F8;
-	Mon, 18 Nov 2024 15:08:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="o5xIuiv6";
-	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34F0D10E4F8;
- Mon, 18 Nov 2024 15:08:20 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 5E2855C498D;
- Mon, 18 Nov 2024 15:07:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7127AC4CECC;
- Mon, 18 Nov 2024 15:08:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1731942499;
- bh=Jq9qBPGj+NNUX4ncwRPBzR9LEbcSp1xBwEwNkIm+pbw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=o5xIuiv6XPUDH8kNSx52IS02wPfquG4bA7d+2SY5AdIw+Gq9CdEetNyMdcmNKwHIF
- 4geRmGscFQytkxt2561Zomekw7TEUH1lnuKGdHWSAiTKJgh90PNYvZm4GRqBGMc9c9
- pgiTU5iPq/WfkptlQMEYlHD/1q/6PGHwua8x9evqUGUpME18dBVWslTZYx+M9NmP9K
- Eu0H6S/niusliGCRn6GAe4zu+ZqKM4LhPfp3X5KiyNEXUa1oC4n7hE88A8xK5ohrSy
- Sa1DhlzgSwucIqp5WYf0z/RsP1xuNvMK1PFk6+XbTBYZfV4hVM1NROrerXvnaVwtNM
- QJV0AMnrTtMRA==
-Date: Mon, 18 Nov 2024 08:08:16 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>,
- Dave Airlie <airlied@gmail.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, hjc@rock-chips.com,
- heiko@sntech.de, andy.yan@rock-chips.com
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PULL] drm-misc-next
-Message-ID: <20241118150816.GA3706736@thelio-3990X>
-References: <deeef745-f3fb-4e85-a9d0-e8d38d43c1cf@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEC4E10E4F8;
+	Mon, 18 Nov 2024 15:08:47 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39E4710E4F8;
+ Mon, 18 Nov 2024 15:08:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <deeef745-f3fb-4e85-a9d0-e8d38d43c1cf@linux.intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_MST_and_?=
+ =?utf-8?q?DDI_cleanups_and_refactoring?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 18 Nov 2024 15:08:47 -0000
+Message-ID: <173194252725.1263241.5690091664640427995@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <cover.1731941270.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1731941270.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,18 +36,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 31, 2024 at 02:41:38PM +0100, Maarten Lankhorst wrote:
-> Cristian Ciocaltea (3):
->       drm/rockchip: Add basic RK3588 HDMI output support
+== Series Details ==
 
-Can someone please apply [1] to resolve a link time failure seen with
-32-bit clang builds? I am still seeing it in -next and my ping on the
-patch does not appear to be seen...
+Series: drm/i915: MST and DDI cleanups and refactoring
+URL   : https://patchwork.freedesktop.org/series/141501/
+State : success
 
-[1]: https://lore.kernel.org/20241018151016.3496613-1-arnd@kernel.org/
+== Summary ==
 
-Cheers,
-Nathan
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 90014f8026e3 drm-tip: 2024y-11m-18d-09h-06m-48s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/mst: pass intel_dp around in mst stream helpers
+Applying: drm/i915/mst: unify MST connector function naming to mst_connector_*
+Applying: drm/i915/mst: simplify mst_connector_get_hw_state()
+Applying: drm/i915/mst: unify MST topology callback naming to mst_topology_*
+Applying: drm/i915/ddi: use intel_ddi_* naming convention for encoder enable/disable
+Applying: drm/i915/reg: convert DP_TP_CTL/DP_TP_STATUS to REG_BIT() and friends
+Applying: drm/i915/dp: refactor clear/wait for act sent
+Applying: drm/i915/ddi: rename temp to ddi_func_ctl in intel_ddi_read_func_ctl()
+Applying: drm/i915/ddi: split up intel_ddi_read_func_ctl() by output type
+Applying: drm/i915/ddi: refactor intel_ddi_connector_get_hw_state()
+Applying: drm/i915/ddi: simplify intel_ddi_get_encoder_pipes() slightly
+
+
