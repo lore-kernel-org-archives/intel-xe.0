@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF49DD60D06
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5639D60D00
 	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 23:37:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B51110E583;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02E9B10E29D;
 	Mon, 18 Nov 2024 23:37:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="asqlE5s3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IrFj9FKw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4353A10E2EA;
- Mon, 18 Nov 2024 23:37:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA4E010E040;
+ Mon, 18 Nov 2024 23:37:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731973045; x=1763509045;
+ t=1731973044; x=1763509044;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Rg2arXeuFU6PrAFxbxFS4Q0ahHLNAQySLw0eB/7jbv0=;
- b=asqlE5s3TU/VletWpQg8r2sp3d9ZUQdt5yytAqTPqYdkBafEVokW+Dp8
- YivcI26K2+OW7ES9906dhc3iqMjN6jSFhA65Kj2M0va31cQQGuAvoUTcE
- J3rIkpe1UdfId/wmLUWwEfyy6hNMiU8v3Z+jd9rL5cU0yePk+qm162F1B
- bHiHY918j2LU8GR4w+j0z2VnYaZB1qKm91J4rVitlMVz8KefdWdxlASWx
- tB3zfCJoJyjJ5jLnTKNb6lBXGYDXvsAYFtCus45SvGQ1ycpGINu12Huik
- ZGiY5/+QP5ooM0GkXTMJPcpaD6YH6/OU3jfjZQM0zfc1I1umZfdxh8+f/ Q==;
-X-CSE-ConnectionGUID: 21p1ddy0ReSAY6ojQQrPzQ==
-X-CSE-MsgGUID: LQcqUmr5SZazyK+Y/inbhg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31878890"
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31878890"
+ bh=y2XgvCO4mQouVbYYXxG/xv9Uz9Y6ODwgn8hTNcyktQQ=;
+ b=IrFj9FKwvX3KSAKJBAnv8c7A6MU7ix050XzpqvCn9Wo3JadzGgIdbs0h
+ wDfbz8dcSFHOkX/V7FHFor3ytRqHmOOe6uSLtw2dELY+kA5ZrN0jwjHIK
+ 54Ux6axXNo+xcYnEU9kgquuPLgSKxCQ+wbn07IrMaRHI0Rd8CaxX4v0Gp
+ aGubjPRf5GDkmXO23lLG3naNdKm2ExtuVavcsxw6WeAdSlHI1EQpG3HKq
+ CPsecNTIb18HBAKw08eJXwcZsA5sbeTG5YPy9aiJoB7YErNKPhOEieAUz
+ 6BlnDShgoh08UMh88cRTUF0eDlHL6o0AfkxQLxZH8jzk3fGjwN1uvjmPN A==;
+X-CSE-ConnectionGUID: XUesvJgLRyeEmKvXb9EvyA==
+X-CSE-MsgGUID: 95BpnEiUSFCdGCDKl21tJw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31878857"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31878857"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 15:37:25 -0800
-X-CSE-ConnectionGUID: F1nZMF+gRaWQwi9z+DUkfw==
-X-CSE-MsgGUID: VP+HY8E/T5alSKK3tMRGQw==
+ 18 Nov 2024 15:37:23 -0800
+X-CSE-ConnectionGUID: jIkz5y60T46r1gXNkpZgtg==
+X-CSE-MsgGUID: Zyda5ht9SuyPP51qVmDkYQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="89521693"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="89521675"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 15:37:25 -0800
+ 18 Nov 2024 15:37:23 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -49,14 +49,14 @@ Cc: kenneth.w.graunke@intel.com, lionel.g.landwerlin@intel.com,
  thomas.hellstrom@linux.intel.com, boris.brezillon@collabora.com,
  airlied@gmail.com, christian.koenig@amd.com, mihail.atanassov@arm.com,
  steven.price@arm.com, shashank.sharma@amd.com
-Subject: [RFC PATCH 07/29] drm/xe: Break indirect ring state out into its own
- BO
-Date: Mon, 18 Nov 2024 15:37:35 -0800
-Message-Id: <20241118233757.2374041-8-matthew.brost@intel.com>
+Subject: [RFC PATCH 02/29] dma-fence: Add dma_fence_user_fence
+Date: Mon, 18 Nov 2024 15:37:30 -0800
+Message-Id: <20241118233757.2374041-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241118233757.2374041-1-matthew.brost@intel.com>
 References: <20241118233757.2374041-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,206 +72,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Start laying the ground work for UMD submission. This will allow mmaping
-the indirect ring state to user space.
+Normalize user fence attachment to a DMA fence. A user fence is a simple
+seqno write to memory, implemented by attaching a DMA fence callback
+that writes out the seqno. Intended use case is importing a dma-fence
+into kernel and exporting a user fence.
 
+Helpers added to allocate, attach, and free a dma_fence_user_fence.
+
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Christian Koenig <christian.koenig@amd.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c       | 79 ++++++++++++++++++++++---------
- drivers/gpu/drm/xe/xe_lrc_types.h |  7 ++-
- 2 files changed, 63 insertions(+), 23 deletions(-)
+ drivers/dma-buf/Makefile               |  2 +-
+ drivers/dma-buf/dma-fence-user-fence.c | 73 ++++++++++++++++++++++++++
+ include/linux/dma-fence-user-fence.h   | 31 +++++++++++
+ 3 files changed, 105 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/dma-buf/dma-fence-user-fence.c
+ create mode 100644 include/linux/dma-fence-user-fence.h
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 758648b6a711..e3c1773191bd 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -74,10 +74,6 @@ size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class)
- 		size = 2 * SZ_4K;
- 	}
- 
--	/* Add indirect ring state page */
--	if (xe_gt_has_indirect_ring_state(gt))
--		size += LRC_INDIRECT_RING_STATE_SIZE;
--
- 	return size;
- }
- 
-@@ -694,8 +690,7 @@ static u32 __xe_lrc_ctx_timestamp_offset(struct xe_lrc *lrc)
- 
- static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
- {
--	/* Indirect ring state page is at the very end of LRC */
--	return lrc->size - LRC_INDIRECT_RING_STATE_SIZE;
-+	return 0;
- }
- 
- #define DECL_MAP_ADDR_HELPERS(elem) \
-@@ -726,6 +721,20 @@ static inline u32 __maybe_unused __xe_lrc_##elem##_ggtt_addr(struct xe_lrc *lrc)
- 	return xe_bo_ggtt_addr(lrc->submission_ring) + __xe_lrc_##elem##_offset(lrc); \
- } \
- 
-+#define DECL_MAP_INDIRECT_ADDR_HELPERS(elem) \
-+static inline struct iosys_map __xe_lrc_##elem##_map(struct xe_lrc *lrc) \
-+{ \
-+	struct iosys_map map = lrc->indirect_state->vmap; \
-+\
-+	xe_assert(lrc_to_xe(lrc), !iosys_map_is_null(&map));  \
-+	iosys_map_incr(&map, __xe_lrc_##elem##_offset(lrc)); \
-+	return map; \
-+} \
-+static inline u32 __maybe_unused __xe_lrc_##elem##_ggtt_addr(struct xe_lrc *lrc) \
-+{ \
-+	return xe_bo_ggtt_addr(lrc->indirect_state) + __xe_lrc_##elem##_offset(lrc); \
-+} \
+diff --git a/drivers/dma-buf/Makefile b/drivers/dma-buf/Makefile
+index c25500bb38b5..ba9ba339319e 100644
+--- a/drivers/dma-buf/Makefile
++++ b/drivers/dma-buf/Makefile
+@@ -1,6 +1,6 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ obj-y := dma-buf.o dma-fence.o dma-fence-array.o dma-fence-chain.o \
+-	 dma-fence-preempt.o dma-fence-unwrap.o dma-resv.o
++	 dma-fence-preempt.o dma-fence-unwrap.o dma-fence-user-fence.o dma-resv.o
+ obj-$(CONFIG_DMABUF_HEAPS)	+= dma-heap.o
+ obj-$(CONFIG_DMABUF_HEAPS)	+= heaps/
+ obj-$(CONFIG_SYNC_FILE)		+= sync_file.o
+diff --git a/drivers/dma-buf/dma-fence-user-fence.c b/drivers/dma-buf/dma-fence-user-fence.c
+new file mode 100644
+index 000000000000..5a4b289bacb8
+--- /dev/null
++++ b/drivers/dma-buf/dma-fence-user-fence.c
+@@ -0,0 +1,73 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2024 Intel Corporation
++ */
 +
- DECL_MAP_RING_ADDR_HELPERS(ring)
- DECL_MAP_ADDR_HELPERS(pphwsp)
- DECL_MAP_ADDR_HELPERS(seqno)
-@@ -734,8 +743,9 @@ DECL_MAP_ADDR_HELPERS(start_seqno)
- DECL_MAP_ADDR_HELPERS(ctx_job_timestamp)
- DECL_MAP_ADDR_HELPERS(ctx_timestamp)
- DECL_MAP_ADDR_HELPERS(parallel)
--DECL_MAP_ADDR_HELPERS(indirect_ring)
-+DECL_MAP_INDIRECT_ADDR_HELPERS(indirect_ring)
- 
-+#undef DECL_INDIRECT_MAP_ADDR_HELPERS
- #undef DECL_RING_MAP_ADDR_HELPERS
- #undef DECL_MAP_ADDR_HELPERS
- 
-@@ -845,25 +855,27 @@ void xe_lrc_write_ctx_reg(struct xe_lrc *lrc, int reg_nr, u32 val)
- 	xe_map_write32(xe, &map, val);
- }
- 
--static void *empty_lrc_data(struct xe_hw_engine *hwe)
-+static void *empty_lrc_data(struct xe_hw_engine *hwe, bool has_default)
- {
- 	struct xe_gt *gt = hwe->gt;
- 	void *data;
- 	u32 *regs;
- 
--	data = kzalloc(xe_gt_lrc_size(gt, hwe->class), GFP_KERNEL);
-+	data = kzalloc(xe_gt_lrc_size(gt, hwe->class) +
-+		       LRC_INDIRECT_RING_STATE_SIZE, GFP_KERNEL);
- 	if (!data)
- 		return NULL;
- 
- 	/* 1st page: Per-Process of HW status Page */
--	regs = data + LRC_PPHWSP_SIZE;
--	set_offsets(regs, reg_offsets(gt_to_xe(gt), hwe->class), hwe);
--	set_context_control(regs, hwe);
--	set_memory_based_intr(regs, hwe);
--	reset_stop_ring(regs, hwe);
-+	if (!has_default) {
-+		regs = data + LRC_PPHWSP_SIZE;
-+		set_offsets(regs, reg_offsets(gt_to_xe(gt), hwe->class), hwe);
-+		set_context_control(regs, hwe);
-+		set_memory_based_intr(regs, hwe);
-+		reset_stop_ring(regs, hwe);
-+	}
- 	if (xe_gt_has_indirect_ring_state(gt)) {
--		regs = data + xe_gt_lrc_size(gt, hwe->class) -
--		       LRC_INDIRECT_RING_STATE_SIZE;
-+		regs = data + xe_gt_lrc_size(gt, hwe->class);
- 		set_offsets(regs, xe2_indirect_ring_state_offsets, hwe);
- 	}
- 
-@@ -883,6 +895,7 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
- 	xe_hw_fence_ctx_finish(&lrc->fence_ctx);
- 	xe_bo_unpin_map_no_vm(lrc->bo);
- 	xe_bo_unpin_map_no_vm(lrc->submission_ring);
-+	xe_bo_unpin_map_no_vm(lrc->indirect_state);
- }
- 
- #define PVC_CTX_ASID		(0x2e + 1)
-@@ -903,8 +916,6 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	kref_init(&lrc->refcount);
- 	lrc->flags = 0;
- 	lrc_size = xe_gt_lrc_size(gt, hwe->class);
--	if (xe_gt_has_indirect_ring_state(gt))
--		lrc->flags |= XE_LRC_FLAG_INDIRECT_RING_STATE;
- 
- 	/*
- 	 * FIXME: Perma-pinning LRC as we don't yet support moving GGTT address
-@@ -929,6 +940,22 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 		goto err_lrc_finish;
- 	}
- 
-+	if (xe_gt_has_indirect_ring_state(gt)) {
-+		lrc->flags |= XE_LRC_FLAG_INDIRECT_RING_STATE;
++#include <linux/dma-fence-user-fence.h>
++#include <linux/slab.h>
 +
-+		lrc->indirect_state = xe_bo_create_pin_map(xe, tile, vm,
-+							   LRC_INDIRECT_RING_STATE_SIZE,
-+							   ttm_bo_type_kernel,
-+							   XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-+							   XE_BO_FLAG_GGTT |
-+							   XE_BO_FLAG_GGTT_INVALIDATE);
-+		if (IS_ERR(lrc->indirect_state)) {
-+			err = PTR_ERR(lrc->indirect_state);
-+			lrc->indirect_state = NULL;
-+			goto err_lrc_finish;
-+		}
-+	}
++static void user_fence_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
++{
++	struct dma_fence_user_fence *user_fence =
++		container_of(cb, struct dma_fence_user_fence, cb);
 +
- 	lrc->size = lrc_size;
- 	lrc->tile = gt_to_tile(hwe->gt);
- 	lrc->ring.size = ring_size;
-@@ -938,8 +965,8 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	xe_hw_fence_ctx_init(&lrc->fence_ctx, hwe->gt,
- 			     hwe->fence_irq, hwe->name);
- 
--	if (!gt->default_lrc[hwe->class]) {
--		init_data = empty_lrc_data(hwe);
-+	if (!gt->default_lrc[hwe->class] || xe_gt_has_indirect_ring_state(gt)) {
-+		init_data = empty_lrc_data(hwe, !!gt->default_lrc[hwe->class]);
- 		if (!init_data) {
- 			err = -ENOMEM;
- 			goto err_lrc_finish;
-@@ -951,7 +978,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	 * values
- 	 */
- 	map = __xe_lrc_pphwsp_map(lrc);
--	if (!init_data) {
-+	if (gt->default_lrc[hwe->class]) {
- 		xe_map_memset(xe, &map, 0, 0, LRC_PPHWSP_SIZE);	/* PPHWSP */
- 		xe_map_memcpy_to(xe, &map, LRC_PPHWSP_SIZE,
- 				 gt->default_lrc[hwe->class] + LRC_PPHWSP_SIZE,
-@@ -959,9 +986,17 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	} else {
- 		xe_map_memcpy_to(xe, &map, 0, init_data,
- 				 xe_gt_lrc_size(gt, hwe->class));
--		kfree(init_data);
- 	}
- 
-+	if (xe_gt_has_indirect_ring_state(gt)) {
-+		map = __xe_lrc_indirect_ring_map(lrc);
-+		xe_map_memcpy_to(xe, &map, 0, init_data +
-+				 xe_gt_lrc_size(gt, hwe->class),
-+				 LRC_INDIRECT_RING_STATE_SIZE);
-+	}
++	if (user_fence->map.is_iomem)
++		writeq(user_fence->seqno, user_fence->map.vaddr_iomem);
++	else
++		*(u64 *)user_fence->map.vaddr = user_fence->seqno;
 +
-+	kfree(init_data);
++	dma_fence_user_fence_free(user_fence);
++}
 +
- 	if (vm) {
- 		xe_lrc_set_ppgtt(lrc, vm);
- 
-diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-index 3ad9ac2d644f..3be708c82313 100644
---- a/drivers/gpu/drm/xe/xe_lrc_types.h
-+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-@@ -27,7 +27,12 @@ struct xe_lrc {
- 	 */
- 	struct xe_bo *submission_ring;
- 
--	/** @size: size of lrc including any indirect ring state page */
-+	/**
-+	 * @indirect_state: buffer object (memory) for indirect state
-+	 */
-+	struct xe_bo *indirect_state;
++/**
++ * dma_fence_user_fence_alloc() - Allocate user fence
++ *
++ * Return: Allocated struct dma_fence_user_fence on Success, NULL on failure
++ */
++struct dma_fence_user_fence *dma_fence_user_fence_alloc(void)
++{
++	return kmalloc(sizeof(struct dma_fence_user_fence), GFP_KERNEL);
++}
++EXPORT_SYMBOL(dma_fence_user_fence_alloc);
 +
-+	/** @size: size of lrc */
- 	u32 size;
- 
- 	/** @tile: tile which this LRC belongs to */
++/**
++ * dma_fence_user_fence_free() - Free user fence
++ *
++ * Free user fence. Should only be called on a user fence if
++ * dma_fence_user_fence_attach is not called to cleanup original allocation from
++ * dma_fence_user_fence_alloc.
++ */
++void dma_fence_user_fence_free(struct dma_fence_user_fence *user_fence)
++{
++	kfree(user_fence);
++}
++EXPORT_SYMBOL(dma_fence_user_fence_free);
++
++/**
++ * dma_fence_user_fence_attach() - Attach user fence to dma-fence
++ *
++ * @fence: fence
++ * @user_fence user fence
++ * @map: IOSYS map to write seqno to
++ * @seqno: seqno to write to IOSYS map
++ *
++ * Attach a user fence, which is a seqno write to an IOSYS map, to a DMA fence.
++ * The caller must guarantee that the memory in the IOSYS map doesn't move
++ * before the fence signals. This is typically done by installing the DMA fence
++ * into the BO's DMA reservation bookkeeping slot from which the IOSYS was
++ * derived.
++ */
++void dma_fence_user_fence_attach(struct dma_fence *fence,
++				 struct dma_fence_user_fence *user_fence,
++				 struct iosys_map *map, u64 seqno)
++{
++	int err;
++
++	user_fence->map = *map;
++	user_fence->seqno = seqno;
++
++	err = dma_fence_add_callback(fence, &user_fence->cb, user_fence_cb);
++	if (err == -ENOENT)
++		user_fence_cb(NULL, &user_fence->cb);
++}
++EXPORT_SYMBOL(dma_fence_user_fence_attach);
+diff --git a/include/linux/dma-fence-user-fence.h b/include/linux/dma-fence-user-fence.h
+new file mode 100644
+index 000000000000..8678129c7d56
+--- /dev/null
++++ b/include/linux/dma-fence-user-fence.h
+@@ -0,0 +1,31 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#ifndef __LINUX_DMA_FENCE_USER_FENCE_H
++#define __LINUX_DMA_FENCE_USER_FENCE_H
++
++#include <linux/dma-fence.h>
++#include <linux/iosys-map.h>
++
++/** struct dma_fence_user_fence - User fence */
++struct dma_fence_user_fence {
++	/** @cb: dma-fence callback used to attach user fence to dma-fence */
++	struct dma_fence_cb cb;
++	/** @map: IOSYS map to write seqno to */
++	struct iosys_map map;
++	/** @seqno: seqno to write to IOSYS map */
++	u64 seqno;
++};
++
++struct dma_fence_user_fence *dma_fence_user_fence_alloc(void);
++
++void dma_fence_user_fence_free(struct dma_fence_user_fence *user_fence);
++
++void dma_fence_user_fence_attach(struct dma_fence *fence,
++				 struct dma_fence_user_fence *user_fence,
++				 struct iosys_map *map,
++				 u64 seqno);
++
++#endif
 -- 
 2.34.1
 
