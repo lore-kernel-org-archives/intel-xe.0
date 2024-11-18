@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7A4DD60D07
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 23:37:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BB83D60D0C
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 23:37:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DD5810E582;
-	Mon, 18 Nov 2024 23:37:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA70B10E591;
+	Mon, 18 Nov 2024 23:37:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e6pVmwhN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h9qzgR2+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6112110E040;
- Mon, 18 Nov 2024 23:37:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07C3210E585;
+ Mon, 18 Nov 2024 23:37:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731973044; x=1763509044;
+ t=1731973050; x=1763509050;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ay6A70QWOSeOFEkh6hckt8gFzr/HHR3I+sf1nUFsfbY=;
- b=e6pVmwhNbHrFBJjfIduxAd2WEalKGwH2lny3kIkxw04NEbRnuZ5c/q0Q
- EQhqkCJ57cuspYeO4n8t/PHv/3RtS0nUa3/EdYvUYSjmcloKx1VBti+br
- cVpvQmGHCruJIIgkzUo1BYmjyBweczfT48lgpRI43BKErSDiFGi1a7608
- QpwG7OqSuHKezqJIUCmQgV3YeKQkQnAvgRPMMC8R0JHTf0XvSnORIHzJ1
- S5ACqTQLFI/SwAXZkZ8tHJyJYPEn7NfijvHJNFHRI7mGiRAZ8MRV6ZpYI
- fKj6yJ14IwfS+XImz+vaeIR1DzP7ShLEa6jBLhdh7m/aMSMtKxEwW87b3 Q==;
-X-CSE-ConnectionGUID: ZdNPvipyTF2kk7zxFctR0g==
-X-CSE-MsgGUID: PSFOmK1nRp6dSfQrWRd23A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31878869"
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31878869"
+ bh=C02NA37fN9dm3BF7bGK31pqMn+aFCtASLHdm9hCh/k4=;
+ b=h9qzgR2+V3epog6qoHy9w/BMBRnIGSdiij6ePFyKQPcapEKtJsRUmKRB
+ UwlXYUiEUn6wduV9V/REmFMvonUftD91rb2g/g14d8r2kugjXAVtSlvic
+ hvyFtGPhChk6XiPNGIe0aNVb3UBi/DCVduf45mKdz1+spVTk2a0CSc62b
+ ucOKPKQ8LFTe50lj8gTBEfcsgIJ3TyE6GlS3sC0AX7yZ0L6X/6Mp64+ZY
+ PID3aq1V6IjhfFMP3Rbs87RwRKaIJ1XEvSHiZ/fy07YSEYIwkplIsea1r
+ 1JWXqyLxoBWkkSayoNm4yvka/X/NV11iAsaNYImAqGJ6y9khsQLUfW2go w==;
+X-CSE-ConnectionGUID: 23QZUSSJSrOiUsUfTuYNvA==
+X-CSE-MsgGUID: g4Dn8+UrT7yibgruFP+btA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31878998"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31878998"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 15:37:24 -0800
-X-CSE-ConnectionGUID: z2lLjAT2SfqNVCTX/tSUvA==
-X-CSE-MsgGUID: /Oa5n3TJSAyJsyprwKuZDQ==
+ 18 Nov 2024 15:37:29 -0800
+X-CSE-ConnectionGUID: ZjHVHXT9QDaHpvEo7aDu5A==
+X-CSE-MsgGUID: VLvUIeWJSt+IcI6yzvRDcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="89521683"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="89521759"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 15:37:24 -0800
+ 18 Nov 2024 15:37:29 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -49,9 +49,9 @@ Cc: kenneth.w.graunke@intel.com, lionel.g.landwerlin@intel.com,
  thomas.hellstrom@linux.intel.com, boris.brezillon@collabora.com,
  airlied@gmail.com, christian.koenig@amd.com, mihail.atanassov@arm.com,
  steven.price@arm.com, shashank.sharma@amd.com
-Subject: [RFC PATCH 04/29] drm/xe: Allocate doorbells for UMD exec queues
-Date: Mon, 18 Nov 2024 15:37:32 -0800
-Message-Id: <20241118233757.2374041-5-matthew.brost@intel.com>
+Subject: [RFC PATCH 23/29] drm/xe: Add user fence IRQ handler
+Date: Mon, 18 Nov 2024 15:37:51 -0800
+Message-Id: <20241118233757.2374041-24-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241118233757.2374041-1-matthew.brost@intel.com>
 References: <20241118233757.2374041-1-matthew.brost@intel.com>
@@ -71,243 +71,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-These will be mapped to user space for UMD submission. Add
-infrastructure to GuC submission backend to manage these.
+Imported user fences will not be tied to a specific queue or hardware
+engine class. Therefore, a device IRQ handler is needed to signal the
+associated exported DMA fences.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue_types.h     |   2 +
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |   7 ++
- drivers/gpu/drm/xe/xe_guc_submit.c           | 107 +++++++++++++++++--
- 3 files changed, 106 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c       | 4 ++++
+ drivers/gpu/drm/xe/xe_device_types.h | 3 +++
+ drivers/gpu/drm/xe/xe_hw_engine.c    | 4 +++-
+ 3 files changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 1158b6062a6c..7f68587d4021 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -83,6 +83,8 @@ struct xe_exec_queue {
- #define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(3)
- /* kernel exec_queue only, set priority to highest level */
- #define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(4)
-+/* queue used for UMD submission */
-+#define EXEC_QUEUE_FLAG_UMD_SUBMISSION		BIT(5)
- 
- 	/**
- 	 * @flags: flags for this exec queue, should statically setup aside from ban
-diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-index 4c39f01e4f52..2d53af75ed75 100644
---- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-@@ -47,6 +47,13 @@ struct xe_guc_exec_queue {
- 	u16 id;
- 	/** @suspend_wait: wait queue used to wait on pending suspends */
- 	wait_queue_head_t suspend_wait;
-+	/** @db: doorbell state */
-+	struct {
-+		/** @db.id: doorbell ID */
-+		int id;
-+		/** @db.dpa: doorbell device physical address */
-+		u64 dpa;
-+	} db;
- 	/** @suspend_pending: a suspend of the exec_queue is pending */
- 	bool suspend_pending;
- };
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 58a3f4bb3887..cc7a98c1343e 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -29,6 +29,7 @@
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index bbdff4308b2e..573b5f3df0c8 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -39,6 +39,7 @@
+ #include "xe_gt_sriov_vf.h"
  #include "xe_guc.h"
- #include "xe_guc_capture.h"
- #include "xe_guc_ct.h"
-+#include "xe_guc_db_mgr.h"
- #include "xe_guc_exec_queue_types.h"
- #include "xe_guc_id_mgr.h"
- #include "xe_guc_submit_types.h"
-@@ -67,6 +68,7 @@ exec_queue_to_guc(struct xe_exec_queue *q)
- #define EXEC_QUEUE_STATE_BANNED			(1 << 9)
- #define EXEC_QUEUE_STATE_CHECK_TIMEOUT		(1 << 10)
- #define EXEC_QUEUE_STATE_EXTRA_REF		(1 << 11)
-+#define EXEC_QUEUE_STATE_DB_REGISTERED		(1 << 12)
+ #include "xe_hw_engine_group.h"
++#include "xe_hw_fence.h"
+ #include "xe_hwmon.h"
+ #include "xe_irq.h"
+ #include "xe_memirq.h"
+@@ -902,6 +903,7 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err;
  
- static bool exec_queue_registered(struct xe_exec_queue *q)
- {
-@@ -218,6 +220,16 @@ static void set_exec_queue_extra_ref(struct xe_exec_queue *q)
- 	atomic_or(EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
++	xe_hw_fence_irq_init(&xe->user_fence_irq);
+ 	for_each_gt(gt, xe, id) {
+ 		last_gt = id;
+ 
+@@ -944,6 +946,7 @@ int xe_device_probe(struct xe_device *xe)
+ 	xe_oa_fini(xe);
+ 
+ err_fini_gt:
++	xe_hw_fence_irq_finish(&xe->user_fence_irq);
+ 	for_each_gt(gt, xe, id) {
+ 		if (id < last_gt)
+ 			xe_gt_remove(gt);
+@@ -979,6 +982,7 @@ void xe_device_remove(struct xe_device *xe)
+ 
+ 	xe_heci_gsc_fini(xe);
+ 
++	xe_hw_fence_irq_finish(&xe->user_fence_irq);
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_remove(gt);
  }
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 8592f1b02db1..3ac118c6f85e 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -507,6 +507,9 @@ struct xe_device {
+ 		int mode;
+ 	} wedged;
  
-+static bool exec_queue_doorbell_registered(struct xe_exec_queue *q)
-+{
-+	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_DB_REGISTERED;
-+}
++	/** @user_fence_irq: User fence IRQ handler */
++	struct xe_hw_fence_irq user_fence_irq;
 +
-+static void set_exec_queue_doorbell_registered(struct xe_exec_queue *q)
-+{
-+	atomic_or(EXEC_QUEUE_STATE_DB_REGISTERED, &q->guc->state);
-+}
-+
- static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
- {
- 	return (atomic_read(&q->guc->state) &
-@@ -354,13 +366,6 @@ static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
- 	return ret;
- }
+ #ifdef TEST_VM_OPS_ERROR
+ 	/**
+ 	 * @vm_inject_error_position: inject errors at different places in VM
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index c4b0dc3be39c..2c9aa5343971 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -822,8 +822,10 @@ void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec)
+ 	if (hwe->irq_handler)
+ 		hwe->irq_handler(hwe, intr_vec);
  
--static void release_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
--{
--	mutex_lock(&guc->submission_state.lock);
--	__release_guc_id(guc, q, q->width);
--	mutex_unlock(&guc->submission_state.lock);
--}
--
- struct exec_queue_policy {
- 	u32 count;
- 	struct guc_update_exec_queue_policy h2g;
-@@ -1238,7 +1243,13 @@ static void __guc_exec_queue_fini_async(struct work_struct *w)
- 
- 	if (xe_exec_queue_is_lr(q))
- 		cancel_work_sync(&ge->lr_tdr);
--	release_guc_id(guc, q);
-+
-+	mutex_lock(&guc->submission_state.lock);
-+	if (q->guc->db.id >= 0)
-+		xe_guc_db_mgr_release_id_locked(&guc->dbm, q->guc->db.id);
-+	__release_guc_id(guc, q, q->width);
-+	mutex_unlock(&guc->submission_state.lock);
-+
- 	xe_sched_entity_fini(&ge->entity);
- 	xe_sched_fini(&ge->sched);
- 
-@@ -1273,6 +1284,8 @@ static void __guc_exec_queue_fini(struct xe_guc *guc, struct xe_exec_queue *q)
- 	guc_exec_queue_fini_async(q);
- }
- 
-+static void deallocate_doorbell(struct xe_guc *guc, u16 guc_id);
-+
- static void __guc_exec_queue_process_msg_cleanup(struct xe_sched_msg *msg)
- {
- 	struct xe_exec_queue *q = msg->private_data;
-@@ -1281,6 +1294,9 @@ static void __guc_exec_queue_process_msg_cleanup(struct xe_sched_msg *msg)
- 	xe_gt_assert(guc_to_gt(guc), !(q->flags & EXEC_QUEUE_FLAG_PERMANENT));
- 	trace_xe_exec_queue_cleanup_entity(q);
- 
-+	if (exec_queue_doorbell_registered(q))
-+		deallocate_doorbell(guc, q->guc->id);
-+
- 	if (exec_queue_registered(q))
- 		disable_scheduling_deregister(guc, q);
- 	else
-@@ -1399,6 +1415,53 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
- 	xe_pm_runtime_put(xe);
- }
- 
-+static int allocate_doorbell(struct xe_guc *guc, u16 guc_id, int doorbell_id,
-+			     u64 gpa)
-+{
-+	u32 action[] = {
-+		XE_GUC_ACTION_ALLOCATE_DOORBELL,
-+		guc_id,
-+		doorbell_id,
-+		lower_32_bits(gpa),
-+		upper_32_bits(gpa),
-+		0,
-+	};
-+
-+	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
-+}
-+
-+static void deallocate_doorbell(struct xe_guc *guc, u16 guc_id)
-+{
-+	u32 action[] = {
-+		XE_GUC_ACTION_DEALLOCATE_DOORBELL,
-+		guc_id
-+	};
-+
-+	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
-+}
-+
-+#define GUC_MMIO_DB_BAR_OFFSET SZ_4M
-+
-+static int create_doorbell(struct xe_guc *guc, struct xe_exec_queue *q)
-+{
-+	int ret;
-+
-+	set_exec_queue_doorbell_registered(q);
-+	xe_guc_submit_reset_wait(guc);
-+
-+	q->guc->db.dpa = GUC_MMIO_DB_BAR_OFFSET + PAGE_SIZE * q->guc->db.id;
-+	register_exec_queue(q);
-+	enable_scheduling(q);
-+
-+	ret = allocate_doorbell(guc, q->guc->id, q->guc->db.id, q->guc->db.dpa);
-+	if (ret) {
-+		disable_scheduling_deregister(guc, q);
-+		return ret;
+-	if (intr_vec & GT_RENDER_USER_INTERRUPT)
++	if (intr_vec & GT_RENDER_USER_INTERRUPT) {
++		xe_hw_fence_irq_run(&gt_to_xe(hwe->gt)->user_fence_irq);
+ 		xe_hw_fence_irq_run(hwe->fence_irq);
 +	}
-+
-+	return 0;
-+}
-+
- static const struct drm_sched_backend_ops drm_sched_ops = {
- 	.run_job = guc_exec_queue_run_job,
- 	.free_job = guc_exec_queue_free_job,
-@@ -1415,7 +1478,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	struct xe_guc_exec_queue *ge;
- 	long timeout;
--	int err, i;
-+	int err, i, db_id = 0;
+ }
  
- 	xe_gt_assert(guc_to_gt(guc), xe_device_uc_enabled(guc_to_xe(guc)));
- 
-@@ -1458,14 +1521,35 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 	if (xe_guc_read_stopped(guc))
- 		xe_sched_stop(sched);
- 
-+	q->guc->db.id = -1;
-+	if (q->flags & EXEC_QUEUE_FLAG_UMD_SUBMISSION) {
-+		db_id = xe_guc_db_mgr_reserve_id_locked(&guc->dbm);
-+		if (db_id < 0) {
-+			err = db_id;
-+			goto err_id;
-+		}
-+	}
-+
- 	mutex_unlock(&guc->submission_state.lock);
- 
-+	if (q->flags & EXEC_QUEUE_FLAG_UMD_SUBMISSION) {
-+		q->guc->db.id = db_id;
-+		err = create_doorbell(guc, q);
-+		if (err)
-+			goto err_db;
-+	}
-+
- 	xe_exec_queue_assign_name(q, q->guc->id);
- 
- 	trace_xe_exec_queue_create(q);
- 
- 	return 0;
- 
-+err_db:
-+	mutex_lock(&guc->submission_state.lock);
-+	xe_guc_db_mgr_release_id_locked(&guc->dbm, q->guc->db.id);
-+err_id:
-+	__release_guc_id(guc, q, q->width);
- err_entity:
- 	mutex_unlock(&guc->submission_state.lock);
- 	xe_sched_entity_fini(&ge->entity);
-@@ -1699,7 +1783,10 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
- 		struct xe_sched_job *job = xe_sched_first_pending_job(sched);
- 		bool ban = false;
- 
--		if (job) {
-+		if (exec_queue_doorbell_registered(q)) {
-+			/* TODO: Ban via UMD shim too */
-+			ban = true;
-+		} else if (job) {
- 			if ((xe_sched_job_started(job) &&
- 			    !xe_sched_job_completed(job)) ||
- 			    xe_sched_invalidate_job(job, 2)) {
+ /**
 -- 
 2.34.1
 
