@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2A45D10F37
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 04:53:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ABCBD10F37
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 04:53:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE41910E25A;
-	Mon, 18 Nov 2024 04:53:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45EF410E30A;
+	Mon, 18 Nov 2024 04:53:48 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D458C10E25A;
- Mon, 18 Nov 2024 04:53:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CC8210E30A;
+ Mon, 18 Nov 2024 04:53:47 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe3lpg=3A_Add?=
- =?utf-8?q?_Wa=5F16024792527_=28rev6=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/xe3lpg=3A_Add_Wa?=
+ =?utf-8?q?=5F16024792527_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Apoorva Singh" <apoorva.singh@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 18 Nov 2024 04:53:36 -0000
-Message-ID: <173190561688.1052622.5997827055910325790@2413ebb6fbb6>
+Date: Mon, 18 Nov 2024 04:53:47 -0000
+Message-ID: <173190562727.1057238.17010562772082525539@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241107082158.1436637-1-apoorva.singh@intel.com>
 In-Reply-To: <20241107082158.1436637-1-apoorva.singh@intel.com>
@@ -48,9 +48,26 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 57639ceec0f6 drm-tip: 2024y-11m-18d-03h-31m-09s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe3lpg: Add Wa_16024792527
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f0a447222c9b1d0f051213cff72696ee8dfb232c
+Author: Apoorva Singh <apoorva.singh@intel.com>
+Date:   Thu Nov 7 13:51:58 2024 +0530
+
+    drm/xe/xe3lpg: Add Wa_16024792527
+    
+    Force Sampler Tile64 Overfetch via MMIO
+    
+    Signed-off-by: Apoorva Singh <apoorva.singh@intel.com>
+    Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 57639ceec0f66f06f4a8a8ac3b9551b7b493c33f drm-intel
+f0a447222c9b drm/xe/xe3lpg: Add Wa_16024792527
 
 
