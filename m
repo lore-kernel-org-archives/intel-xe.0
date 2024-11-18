@@ -4,57 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF8E8D591AA
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 17:27:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 068F1D591A9
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 17:27:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 764FC10E53E;
-	Mon, 18 Nov 2024 17:27:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC40610E533;
+	Mon, 18 Nov 2024 17:27:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="inxlsLLt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ls8MQt7D";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EE3D10E538;
- Mon, 18 Nov 2024 17:27:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1147F10E53E;
+ Mon, 18 Nov 2024 17:27:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731950850; x=1763486850;
+ t=1731950854; x=1763486854;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/dT61utc4TT7Ys3PilCsKAG2msotwCgMpPLu8bintwU=;
- b=inxlsLLty/0cp+qRlXlzO+OqPRx5MILIXUCi+vpmHhWiHZ3J64xX3Pjf
- RuLUtc93wjz2dwGmyOa2DZ0PvWltFmwO4/oSWCACO+ktf7XtKMhXXfgq7
- bYwk61qe2p1aFM2i47OjRCPuK+mECkMWNRYO923AT58oogZkOQKrJYHk5
- GC5oefpygCOdKsex2aDqCDZ4aeVcUZqK7MoYrk3uZhXaAJfNc/bcZvtfa
- p6BBkXoI/2SD67kJD2/PEldVXQOsPti/Wxo7SPG/mrl64LAj+x2H3Z9Wu
- sTAiHs5q019aW5HSaTqK5YrdkLg6oVyn+M6uKRlKev2I+QS0kIl2zwVuH A==;
-X-CSE-ConnectionGUID: C0lR/Uv5S9eS9AtewkmOGA==
-X-CSE-MsgGUID: hluPqFnnRxWQUQJZMF6dew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31857935"
-X-IronPort-AV: E=Sophos;i="6.12,164,1728975600"; d="scan'208";a="31857935"
+ bh=gU5OmOyPkSIr0yhVyZ3MYrgG4boE6kpUHtAqU+NWtOw=;
+ b=Ls8MQt7DT9lfSadzZYlb/0/al1KgLQ4IW/A0RdxvSys+6Kayv1EcGdtu
+ WBrRssSidEe1rnJ58kzAChCCBNXNB02rFhuceFOX9D68Te/LTLeajBy1y
+ /E4OInP2ud8D2wQZixtHDDz2uSPsShV1T2okB4sQj4kt744m3UckO/LFb
+ Ek3ixxV+t2D5Mp7WFNieebabgzhM27VXaGTPMR4hbAlmXMPeMm8l7iRVL
+ 7xuHc0JaOpozT57QLR2YGQlALVePYPXUUXKQKmgT/0sGZvb/6JV/WHcXE
+ B8MzkVm8FgV2WBpa8ejyrB6qS72vRF1J2ovb7q4FZVCoex/1otG/IvtrO Q==;
+X-CSE-ConnectionGUID: WhlmfM7yTUO+frbknMdbGQ==
+X-CSE-MsgGUID: jDpkt1i2Qi6iBNR/TYSkbw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31857951"
+X-IronPort-AV: E=Sophos;i="6.12,164,1728975600"; d="scan'208";a="31857951"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 09:27:30 -0800
-X-CSE-ConnectionGUID: 0eJOzcUjSLyj+2Dk6oHkbw==
-X-CSE-MsgGUID: EB+HUYJWQgqQsl6GubaelA==
+ 18 Nov 2024 09:27:34 -0800
+X-CSE-ConnectionGUID: msJKFRS8RA2zujjT+M4BEw==
+X-CSE-MsgGUID: BNFAMC9lQUeiLopnzr86gg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,164,1728975600"; d="scan'208";a="94099957"
+X-IronPort-AV: E=Sophos;i="6.12,164,1728975600"; d="scan'208";a="94099982"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 09:27:28 -0800
+ 18 Nov 2024 09:27:32 -0800
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: igt-dev@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Subject: [i-g-t V4 2/4] include/drm-uapi-experimental: Move i915_drm_local.h
- to drm-uapi-experimental
-Date: Mon, 18 Nov 2024 23:01:35 +0530
-Message-Id: <20241118173137.1512581-3-tejas.upadhyay@intel.com>
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [i-g-t V4 4/4] tests/xe/mmap: add tests for pci mem barrier
+Date: Mon, 18 Nov 2024 23:01:37 +0530
+Message-Id: <20241118173137.1512581-5-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241118173137.1512581-1-tejas.upadhyay@intel.com>
 References: <20241118173137.1512581-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,115 +67,176 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-i915_drm_local.h is for temporary local addition of defines before KMD is
-merged upstream and defines replaced with it. We have similar local defines
-requirement for xe as well for some cases. So for common use move
-i915_drm_local.h to drm-uapi-experimental/ and rename it to intel_drm_local.h
+We want to make sure that mmap do direct mapping of physical
+page at doorbell space and whole page is accessible in order
+to use pci memory barrier effect effectively.
 
-V4(MAuld)
-  - Update copyright content
+Following subtests are added,
+./build/tests/xe_mmap --r pci-membarrier
+./build/tests/xe_mmap --r pci-membarrier-bad-pagesize
+./build/tests/xe_mmap --r pci-membarrier-bad-object
+
+V3(MAuld):
+ - Check if pci memory barrier is supported
 V2(MAuld)
-  - Remove include as it is empty now
-  - Add details in commit message
+ - use do_ioctl and replace igt_subtest_f with igt_subtest
+ - Remove unused define
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- .../drm-uapi-experimental/intel_drm_local.h   | 27 +++++++++++++++++++
- lib/i915/gem_scheduler.c                      |  1 -
- lib/i915/intel_memory_region.h                |  1 -
- lib/igt_gt.h                                  |  2 +-
- tools/i915-perf/i915_perf_recorder.c          |  2 --
- 5 files changed, 28 insertions(+), 5 deletions(-)
- create mode 100644 include/drm-uapi-experimental/intel_drm_local.h
+ tests/intel/xe_mmap.c | 111 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 111 insertions(+)
 
-diff --git a/include/drm-uapi-experimental/intel_drm_local.h b/include/drm-uapi-experimental/intel_drm_local.h
-new file mode 100644
-index 000000000..b48c9e219
---- /dev/null
-+++ b/include/drm-uapi-experimental/intel_drm_local.h
-@@ -0,0 +1,27 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
+diff --git a/tests/intel/xe_mmap.c b/tests/intel/xe_mmap.c
+index fc5d73d59..3fa3a2680 100644
+--- a/tests/intel/xe_mmap.c
++++ b/tests/intel/xe_mmap.c
+@@ -64,6 +64,73 @@ test_mmap(int fd, uint32_t placement, uint32_t flags)
+ 	gem_close(fd, bo);
+ }
+ 
++#define PAGE_SIZE 4096
++
++/**
++ * SUBTEST: pci-membarrier
++ * Description: create pci memory barrier with write on defined mmap offset.
++ * Test category: functionality test
++ *
 + */
-+#ifndef _INTEL_DRM_LOCAL_H_
-+#define _INTEL_DRM_LOCAL_H_
++static void test_pci_membarrier(int xe)
++{
++	uint64_t flags = MAP_SHARED;
++	unsigned int prot = PROT_WRITE;
++	uint32_t *ptr;
++	uint64_t size = PAGE_SIZE;
++	struct timespec tv;
++	struct drm_xe_gem_mmap_offset mmo = {
++		.handle = 0,
++		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
++	};
 +
-+#if defined(__cplusplus)
-+extern "C" {
-+#endif
++	do_ioctl(xe, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
++	ptr = mmap(NULL, size, prot, flags, xe, mmo.offset);
++	igt_assert(ptr != MAP_FAILED);
 +
-+/*
-+ * It is necessary on occasion to add uapi declarations to IGT before they
-+ * appear in imported kernel uapi headers. This header is provided for this
-+ * purpose.
++	/* Check whole page for any errors, also check as
++	 * we should not read written values back
++	 */
++	for (int i = 0; i < size / sizeof(*ptr); i++) {
++		/* It is expected unconfigured doorbell space
++		 * will return read value 0xdeadbeef
++		 */
++		igt_assert_eq_u32(READ_ONCE(ptr[i]), 0xdeadbeef);
 +
-+ * Early uapi declarations should be added here exactly as they are
-+ * expected to appear in the kernel uapi headers, i.e. without the LOCAL_
-+ * or local_ prefix and without any #ifndef's. Attempt should be made to
-+ * clean these up when kernel uapi headers are sync'd.
-+ */
++		igt_gettime(&tv);
++		ptr[i] = i;
++		if (READ_ONCE(ptr[i]) == i) {
++			while (READ_ONCE(ptr[i]) == i)
++				;
++			igt_info("fd:%d value retained for %"PRId64"ns pos:%d\n",
++				 xe, igt_nsec_elapsed(&tv), i);
++		}
++		igt_assert_neq(READ_ONCE(ptr[i]), i);
++	}
 +
-+#if defined(__cplusplus)
++	munmap(ptr, size);
 +}
-+#endif
 +
-+#endif /* _INTEL_DRM_LOCAL_H_ */
-diff --git a/lib/i915/gem_scheduler.c b/lib/i915/gem_scheduler.c
-index 0087df902..e80c775af 100644
---- a/lib/i915/gem_scheduler.c
-+++ b/lib/i915/gem_scheduler.c
-@@ -28,7 +28,6 @@
- #include "igt_core.h"
- #include "ioctl_wrappers.h"
++/**
++ * SUBTEST: pci-membarrier-bad-pagesize
++ * Description: Test mmap offset with bad pagesize for pci membarrier.
++ * Test category: negative test
++ *
++ */
++static void test_bad_pagesize_for_pcimem(int fd)
++{
++	uint32_t *map;
++	uint64_t page_size = PAGE_SIZE * 2;
++	struct drm_xe_gem_mmap_offset mmo = {
++		.handle = 0,
++		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
++	};
++
++	do_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
++	map = mmap(NULL, page_size, PROT_WRITE, MAP_SHARED, fd, mmo.offset);
++	igt_assert(map == MAP_FAILED);
++}
++
+ /**
+  * SUBTEST: bad-flags
+  * Description: Test mmap offset with bad flags.
+@@ -126,6 +193,25 @@ static void test_bad_object(int fd)
+ 	do_ioctl_err(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo, ENOENT);
+ }
  
--#include "i915/i915_drm_local.h"
- #include "i915/gem_scheduler.h"
- #include "i915/gem_submission.h"
++/**
++ * SUBTEST: pci-membarrier-bad-object
++ * Description: Test mmap offset with bad object for pci mem barrier.
++ * Test category: negative test
++ *
++ */
++static void test_bad_object_for_pcimem(int fd)
++{
++	uint64_t size = xe_get_default_alignment(fd);
++	struct drm_xe_gem_mmap_offset mmo = {
++		.handle = xe_bo_create(fd, 0, size,
++				       vram_if_possible(fd, 0),
++				       DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM),
++		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
++	};
++
++	do_ioctl_err(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo, EINVAL);
++}
++
+ static jmp_buf jmp;
  
-diff --git a/lib/i915/intel_memory_region.h b/lib/i915/intel_memory_region.h
-index 9e24bd8fb..4641b18c1 100644
---- a/lib/i915/intel_memory_region.h
-+++ b/lib/i915/intel_memory_region.h
-@@ -22,7 +22,6 @@
-  */
- #include "i915_drm.h"
- #include "igt_collection.h"
--#include "i915_drm_local.h"
+ __noreturn static void sigtrap(int sig)
+@@ -255,6 +341,16 @@ static void test_cpu_caching(int fd)
+ 	assert_caching(fd, system_memory(fd), DRM_XE_GEM_CPU_CACHING_WC + 1, true);
+ }
  
- #ifndef INTEL_MEMORY_REGION_H
- #define INTEL_MEMORY_REGION_H
-diff --git a/lib/igt_gt.h b/lib/igt_gt.h
-index d3213123d..82ed22be7 100644
---- a/lib/igt_gt.h
-+++ b/lib/igt_gt.h
-@@ -24,11 +24,11 @@
- #ifndef IGT_GT_H
- #define IGT_GT_H
++static bool is_pci_membarrier_supported(int fd)
++{
++	struct drm_xe_gem_mmap_offset mmo = {
++		.handle = 0,
++		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
++	};
++
++	return (igt_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo) == 0);
++}
++
+ igt_main
+ {
+ 	int fd;
+@@ -273,6 +369,16 @@ igt_main
+ 		test_mmap(fd, vram_memory(fd, 0) | system_memory(fd),
+ 			  DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM);
  
-+#include "drm-uapi-experimental/intel_drm_local.h"
- #include "igt_debugfs.h"
- #include "igt_dummyload.h"
- #include "igt_core.h"
++	igt_subtest("pci-membarrier") {
++		igt_require(is_pci_membarrier_supported(fd));
++		test_pci_membarrier(fd);
++	}
++
++	igt_subtest("pci-membarrier-bad-pagesize") {
++		igt_require(is_pci_membarrier_supported(fd));
++		test_bad_pagesize_for_pcimem(fd);
++	}
++
+ 	igt_subtest("bad-flags")
+ 		test_bad_flags(fd);
  
--#include "i915/i915_drm_local.h"
- #include "i915_drm.h"
+@@ -282,6 +388,11 @@ igt_main
+ 	igt_subtest("bad-object")
+ 		test_bad_object(fd);
  
- struct pci_device;
-diff --git a/tools/i915-perf/i915_perf_recorder.c b/tools/i915-perf/i915_perf_recorder.c
-index ca4354832..3f3692dc8 100644
---- a/tools/i915-perf/i915_perf_recorder.c
-+++ b/tools/i915-perf/i915_perf_recorder.c
-@@ -44,8 +44,6 @@
- 
- #include <i915_drm.h>
- 
--#include "i915/i915_drm_local.h"
--
- #include "igt_core.h"
- #include "intel_chipset.h"
- #include "i915/perf.h"
++	igt_subtest("pci-membarrier-bad-object") {
++		igt_require(is_pci_membarrier_supported(fd));
++		test_bad_object_for_pcimem(fd);
++	}
++
+ 	igt_subtest("small-bar") {
+ 		igt_require(xe_visible_vram_size(fd, 0));
+ 		igt_require(xe_visible_vram_size(fd, 0) < xe_vram_size(fd, 0));
 -- 
 2.34.1
 
