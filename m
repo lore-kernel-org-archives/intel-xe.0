@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6A06D49219
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 12:56:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CA63D49219
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 12:58:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DC6A10E325;
-	Mon, 18 Nov 2024 12:56:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FE3C10E325;
+	Mon, 18 Nov 2024 12:58:15 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3B4C10E347;
- Mon, 18 Nov 2024 12:56:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AE2E10E325;
+ Mon, 18 Nov 2024 12:58:14 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EHooks=3A_failure_for_TTM_shrinker_helpers_and_xe_bu?=
- =?utf-8?q?ffer_object_shrinker_=28rev15=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_TTM_shrinker_helpers_and?=
+ =?utf-8?q?_xe_buffer_object_shrinker_=28rev15=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 18 Nov 2024 12:56:41 -0000
-Message-ID: <173193460182.1214718.8534538044684329801@2413ebb6fbb6>
+Date: Mon, 18 Nov 2024 12:58:14 -0000
+Message-ID: <173193469426.1214628.13787681268612766796@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241115150120.3280-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20241115150120.3280-1-thomas.hellstrom@linux.intel.com>
@@ -44,103 +44,28 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: TTM shrinker helpers and xe buffer object shrinker (rev15)
 URL   : https://patchwork.freedesktop.org/series/131815/
-State : failure
+State : warning
 
 == Summary ==
 
-run-parts: executing /workspace/ci/hooks/00-showenv
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64-default"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64-default ']'
-+ BUILD_DIR=/workspace/kernel/build64-default
-+ cd /workspace/kernel
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64-default'
-  GEN     Makefile
-  UPD     include/config/kernel.release
-mkdir -p /workspace/kernel/build64-default/tools/objtool && make O=/workspace/kernel/build64-default subdir=tools/objtool --no-print-directory -C objtool 
-  UPD     include/generated/utsrelease.h
-  CALL    ../scripts/checksyscalls.sh
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/sigchain.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/subcmd-config.o
-  LD      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64-default/tools/objtool/weak.o
-  CC      /workspace/kernel/build64-default/tools/objtool/check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/elf.o
-  CC      /workspace/kernel/build64-default/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64-default/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/decode.o
-  CC      /workspace/kernel/build64-default/tools/objtool/librbtree.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/orc.o
-  LD      /workspace/kernel/build64-default/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64-default/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default W=1 drivers/gpu/drm/xe
-make[1]: Entering directory '/workspace/kernel/build64-default'
-make[2]: Nothing to be done for 'drivers/gpu/drm/xe'.
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-run-parts: executing /workspace/ci/hooks/11-build-32b
-+++ realpath /workspace/ci/hooks/11-build-32b
-++ dirname /workspace/ci/hooks/11-build-32b
-+ THIS_SCRIPT_DIR=/workspace/ci/hooks
-+ SRC_DIR=/workspace/kernel
-+ TOOLS_SRC_DIR=/workspace/ci
-+ '[' -n /workspace/kernel/build64-default ']'
-+ BUILD_DIR=/workspace/kernel/build64-default
-+ BUILD_DIR=/workspace/kernel/build64-default/build32
-+ cd /workspace/kernel
-+ mkdir -p /workspace/kernel/build64-default/build32
-++ nproc
-+ make -j48 ARCH=i386 O=/workspace/kernel/build64-default/build32 defconfig
-make[1]: Entering directory '/workspace/kernel/build64-default/build32'
-  GEN     Makefile
-  HOSTCC  scripts/basic/fixdep
-  HOSTCC  scripts/kconfig/conf.o
-  HOSTCC  scripts/kconfig/confdata.o
-  HOSTCC  scripts/kconfig/expr.o
-  LEX     scripts/kconfig/lexer.lex.c
-  YACC    scripts/kconfig/parser.tab.[ch]
-  HOSTCC  scripts/kconfig/preprocess.o
-  HOSTCC  scripts/kconfig/menu.o
-  HOSTCC  scripts/kconfig/symbol.o
-  HOSTCC  scripts/kconfig/util.o
-  HOSTCC  scripts/kconfig/lexer.lex.o
-  HOSTCC  scripts/kconfig/parser.tab.o
-  HOSTLD  scripts/kconfig/conf
-*** Default configuration is based on 'i386_defconfig'
-#
-# configuration written to .config
-#
-make[1]: Leaving directory '/workspace/kernel/build64-default/build32'
-+ cd /workspace/kernel/build64-default/build32
-+ /workspace/kernel/scripts/kconfig/merge_config.sh .config /workspace/ci/kernel/10-xe.fragment
-Using .config as base
-Merging /workspace/ci/kernel/10-xe.fragment
-The merge file '/workspace/ci/kernel/10-xe.fragment' does not exist.  Exit.
-run-parts: /workspace/ci/hooks/11-build-32b exited with return code 1
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 90014f8026e31874d368834834253debd131268b
+/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
+Sparse version: 
+Fast mode used, each commit won't be checked separately.
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
