@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9D19D60D00
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 23:37:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 454C3D60D06
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 23:37:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35BD410E190;
-	Mon, 18 Nov 2024 23:37:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4118210E576;
+	Mon, 18 Nov 2024 23:37:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m2frrSJE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C3PzzUD8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 956DA10E190;
- Mon, 18 Nov 2024 23:37:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BB6410E568;
+ Mon, 18 Nov 2024 23:37:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731973043; x=1763509043;
+ t=1731973045; x=1763509045;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rH8hTGJCAoerEtuHvYdMXIH/cuzWnm4A2o119v9dQe0=;
- b=m2frrSJEj5fPKFn7CJ5UjIhy6xlqH8mMOq43r2C+uzx/PKZKK7MrI8H9
- JdIMiFmEzgJ/MkmVJlZia3QlKuezHnBQujLHKMbPjgwSXLgR95Z4T4fF3
- 4grXkSdovN/SuoxHCxN79yUgWAM3jvWt6xyTErCR+j5v1h6ZqqKJhaUV+
- ayGSwkcLX1XyJ6/Kr9VjMyQrz4WWzANwJTw265cGZNy5cxIsk1nxu6t4X
- Ba7sVhdExSAQSUWspS0k5GjJfY2ToEu/QOEPwQR6Ad3Zk1bY0CSEIlqAu
- bCeghArZIK8MCUwNnzA8rcX1iUC+BTAqroLuxXEt6pX53ha5c3YNolPde A==;
-X-CSE-ConnectionGUID: ehbpurniTCupRzAKRk7UMQ==
-X-CSE-MsgGUID: goCsjvMDQa6+AFAaDgYxQA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31878851"
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31878851"
+ bh=FQxvSEd01/OxTgGjN+9eaO1d4HXqMPyPwKn7zGm1XOU=;
+ b=C3PzzUD8IDMSz6BtiwuujaqdB+qesEr7XpmlonfH3LlpYEyQnt9+l9pz
+ ZMVZMSds8BNir4rWs9L1uGpzZuF/93ajomj6l8WLi2D7FwkEqpheN60da
+ xtWZ7Mbw/SHFSPAP37C1CzBeiSlktf6wg+52OCKTKtzGMdw+0c7QMutMd
+ 49G0xu/hyC87ZcICESo+tVziZo44yBYk40sCrKcqWRp7AfglsHktqCOQ3
+ twHaXryjUOKtB43We3Akz/ZVlrzWFGykhVzA5z4/u35EFMABGXdXUYPZ9
+ fyQuVI567YeNwihH3L9+lBVDL1do2gNsqUtz4LoRL+28AzC29/JDoDoO9 Q==;
+X-CSE-ConnectionGUID: Ik0KT47hTxSN0bDIJeuGQw==
+X-CSE-MsgGUID: ZxPHoLFWSASgFVVs/Kew8g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31878897"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31878897"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 15:37:23 -0800
-X-CSE-ConnectionGUID: fYuWwgN6RiitE1p5oCjrew==
-X-CSE-MsgGUID: z1OTRbCpT4qEiCFw04kY6g==
+ 18 Nov 2024 15:37:25 -0800
+X-CSE-ConnectionGUID: oxIahCEPQ4eIRrn66HhuBw==
+X-CSE-MsgGUID: 4I+LFVZCRmSL9zHA6s/IoQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="89521668"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="89521696"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 15:37:23 -0800
+ 18 Nov 2024 15:37:25 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -49,14 +49,13 @@ Cc: kenneth.w.graunke@intel.com, lionel.g.landwerlin@intel.com,
  thomas.hellstrom@linux.intel.com, boris.brezillon@collabora.com,
  airlied@gmail.com, christian.koenig@amd.com, mihail.atanassov@arm.com,
  steven.price@arm.com, shashank.sharma@amd.com
-Subject: [RFC PATCH 01/29] dma-fence: Add dma_fence_preempt base class
-Date: Mon, 18 Nov 2024 15:37:29 -0800
-Message-Id: <20241118233757.2374041-2-matthew.brost@intel.com>
+Subject: [RFC PATCH 08/29] drm/xe: Clear GGTT in xe_bo_restore_kernel
+Date: Mon, 18 Nov 2024 15:37:36 -0800
+Message-Id: <20241118233757.2374041-9-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241118233757.2374041-1-matthew.brost@intel.com>
 References: <20241118233757.2374041-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,236 +71,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a dma_fence_preempt base class with driver ops to implement
-preemption, based on the existing Xe preemptive fence implementation.
+Part of what xe_bo_restore_kernel does, is restore BO's GGTT mappings
+which may have been lost during a power state change. Missing is
+restoring the GGTT entries without BO mappings to a known state (e.g.,
+scratch pages). Update xe_bo_restore_kernel to clear the entire GGTT
+before restoring BO's GGTT mappings.
 
-Annotated to ensure correct driver usage.
+v2:
+ - Include missing local change of tile and id variable (CI)
+v3:
+ - Fixed kernel doc (CI)
+v4:
+ - Only clear holes (CI)
 
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Christian Koenig <christian.koenig@amd.com>
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Cc: <stable@vger.kernel.org> # v6.8+
 ---
- drivers/dma-buf/Makefile            |   2 +-
- drivers/dma-buf/dma-fence-preempt.c | 133 ++++++++++++++++++++++++++++
- include/linux/dma-fence-preempt.h   |  56 ++++++++++++
- 3 files changed, 190 insertions(+), 1 deletion(-)
- create mode 100644 drivers/dma-buf/dma-fence-preempt.c
- create mode 100644 include/linux/dma-fence-preempt.h
+ drivers/gpu/drm/xe/xe_bo_evict.c |  8 +++++++-
+ drivers/gpu/drm/xe/xe_ggtt.c     | 19 ++++++++++++++++---
+ drivers/gpu/drm/xe/xe_ggtt.h     |  2 ++
+ 3 files changed, 25 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/dma-buf/Makefile b/drivers/dma-buf/Makefile
-index 70ec901edf2c..c25500bb38b5 100644
---- a/drivers/dma-buf/Makefile
-+++ b/drivers/dma-buf/Makefile
-@@ -1,6 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0-only
- obj-y := dma-buf.o dma-fence.o dma-fence-array.o dma-fence-chain.o \
--	 dma-fence-unwrap.o dma-resv.o
-+	 dma-fence-preempt.o dma-fence-unwrap.o dma-resv.o
- obj-$(CONFIG_DMABUF_HEAPS)	+= dma-heap.o
- obj-$(CONFIG_DMABUF_HEAPS)	+= heaps/
- obj-$(CONFIG_SYNC_FILE)		+= sync_file.o
-diff --git a/drivers/dma-buf/dma-fence-preempt.c b/drivers/dma-buf/dma-fence-preempt.c
-new file mode 100644
-index 000000000000..6e6ce7ea7421
---- /dev/null
-+++ b/drivers/dma-buf/dma-fence-preempt.c
-@@ -0,0 +1,133 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
+index 8fb2be061003..d7bb3dbb41d6 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.c
++++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+@@ -123,7 +123,8 @@ int xe_bo_evict_all(struct xe_device *xe)
+  * @xe: xe device
+  *
+  * Move kernel BOs from temporary (typically system) memory to VRAM via CPU. All
+- * moves done via TTM calls.
++ * moves done via TTM calls. All GGTT are restored too, first by clearing GGTT
++ * to known state and then restoring individual BO's GGTT mappings.
+  *
+  * This function should be called early, before trying to init the GT, on device
+  * resume.
+@@ -131,8 +132,13 @@ int xe_bo_evict_all(struct xe_device *xe)
+ int xe_bo_restore_kernel(struct xe_device *xe)
+ {
+ 	struct xe_bo *bo;
++	struct xe_tile *tile;
++	u8 id;
+ 	int ret;
+ 
++	for_each_tile(tile, xe, id)
++		xe_ggtt_clear(tile->mem.ggtt);
 +
-+#include <linux/dma-fence-preempt.h>
-+#include <linux/dma-resv.h>
-+
-+static void dma_fence_preempt_work_func(struct work_struct *w)
-+{
-+	bool cookie = dma_fence_begin_signalling();
-+	struct dma_fence_preempt *pfence =
-+		container_of(w, typeof(*pfence), work);
-+	const struct dma_fence_preempt_ops *ops = pfence->ops;
-+	int err = pfence->base.error;
-+
-+	if (!err) {
-+		err = ops->preempt_wait(pfence);
-+		if (err)
-+			dma_fence_set_error(&pfence->base, err);
-+	}
-+
-+	dma_fence_signal(&pfence->base);
-+	ops->preempt_finished(pfence);
-+
-+	dma_fence_end_signalling(cookie);
-+}
-+
-+static const char *
-+dma_fence_preempt_get_driver_name(struct dma_fence *fence)
-+{
-+	return "dma_fence_preempt";
-+}
-+
-+static const char *
-+dma_fence_preempt_get_timeline_name(struct dma_fence *fence)
-+{
-+	return "ordered";
-+}
-+
-+static void dma_fence_preempt_issue(struct dma_fence_preempt *pfence)
-+{
-+	int err;
-+
-+	err = pfence->ops->preempt(pfence);
-+	if (err)
-+		dma_fence_set_error(&pfence->base, err);
-+
-+	queue_work(pfence->wq, &pfence->work);
-+}
-+
-+static void dma_fence_preempt_cb(struct dma_fence *fence,
-+				 struct dma_fence_cb *cb)
-+{
-+	struct dma_fence_preempt *pfence =
-+		container_of(cb, typeof(*pfence), cb);
-+
-+	dma_fence_preempt_issue(pfence);
-+}
-+
-+static void dma_fence_preempt_delay(struct dma_fence_preempt *pfence)
-+{
-+	struct dma_fence *fence;
-+	int err;
-+
-+	fence = pfence->ops->preempt_delay(pfence);
-+	if (WARN_ON_ONCE(!fence || IS_ERR(fence)))
-+		return;
-+
-+	err = dma_fence_add_callback(fence, &pfence->cb, dma_fence_preempt_cb);
-+	if (err == -ENOENT)
-+		dma_fence_preempt_issue(pfence);
-+}
-+
-+static bool dma_fence_preempt_enable_signaling(struct dma_fence *fence)
-+{
-+	struct dma_fence_preempt *pfence =
-+		container_of(fence, typeof(*pfence), base);
-+
-+	if (pfence->ops->preempt_delay)
-+		dma_fence_preempt_delay(pfence);
-+	else
-+		dma_fence_preempt_issue(pfence);
-+
-+	return true;
-+}
-+
-+static const struct dma_fence_ops preempt_fence_ops = {
-+	.get_driver_name = dma_fence_preempt_get_driver_name,
-+	.get_timeline_name = dma_fence_preempt_get_timeline_name,
-+	.enable_signaling = dma_fence_preempt_enable_signaling,
-+};
+ 	spin_lock(&xe->pinned.lock);
+ 	for (;;) {
+ 		bo = list_first_entry_or_null(&xe->pinned.evicted,
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 558fac8bb6fb..2fc498b89878 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -140,7 +140,7 @@ static void xe_ggtt_set_pte_and_flush(struct xe_ggtt *ggtt, u64 addr, u64 pte)
+ 	ggtt_update_access_counter(ggtt);
+ }
+ 
+-static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
++static void __xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+ {
+ 	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[XE_CACHE_WB];
+ 	u64 end = start + size - 1;
+@@ -160,6 +160,19 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+ 	}
+ }
+ 
++static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt);
 +
 +/**
-+ * dma_fence_is_preempt() - Is preempt fence
++ * xe_ggtt_clear() - GGTT clear
++ * @ggtt: the &xe_ggtt to be cleared
 + *
-+ * @fence: Preempt fence
-+ *
-+ * Return: True if preempt fence, False otherwise
++ * Clear all GGTT to a known state
 + */
-+bool dma_fence_is_preempt(const struct dma_fence *fence)
++void xe_ggtt_clear(struct xe_ggtt *ggtt)
 +{
-+	return fence->ops == &preempt_fence_ops;
++	xe_ggtt_initial_clear(ggtt);
 +}
-+EXPORT_SYMBOL(dma_fence_is_preempt);
 +
-+/**
-+ * dma_fence_preempt_init() - Initial preempt fence
-+ *
-+ * @fence: Preempt fence
-+ * @ops: Preempt fence operations
-+ * @wq: Work queue for preempt wait, should have WQ_MEM_RECLAIM set
-+ * @context: Fence context
-+ * @seqno: Fence seqence number
-+ */
-+void dma_fence_preempt_init(struct dma_fence_preempt *fence,
-+			    const struct dma_fence_preempt_ops *ops,
-+			    struct workqueue_struct *wq,
-+			    u64 context, u64 seqno)
-+{
-+	/*
-+	 * XXX: We really want to check wq for WQ_MEM_RECLAIM here but
-+	 * workqueue_struct is private.
-+	 */
+ static void ggtt_fini_early(struct drm_device *drm, void *arg)
+ {
+ 	struct xe_ggtt *ggtt = arg;
+@@ -277,7 +290,7 @@ static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
+ 	/* Display may have allocated inside ggtt, so be careful with clearing here */
+ 	mutex_lock(&ggtt->lock);
+ 	drm_mm_for_each_hole(hole, &ggtt->mm, start, end)
+-		xe_ggtt_clear(ggtt, start, end - start);
++		__xe_ggtt_clear(ggtt, start, end - start);
+ 
+ 	xe_ggtt_invalidate(ggtt);
+ 	mutex_unlock(&ggtt->lock);
+@@ -294,7 +307,7 @@ static void ggtt_node_remove(struct xe_ggtt_node *node)
+ 
+ 	mutex_lock(&ggtt->lock);
+ 	if (bound)
+-		xe_ggtt_clear(ggtt, node->base.start, node->base.size);
++		__xe_ggtt_clear(ggtt, node->base.start, node->base.size);
+ 	drm_mm_remove_node(&node->base);
+ 	node->base.size = 0;
+ 	mutex_unlock(&ggtt->lock);
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 27e7d67de004..b7ae440cdebf 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -13,6 +13,8 @@ struct drm_printer;
+ int xe_ggtt_init_early(struct xe_ggtt *ggtt);
+ int xe_ggtt_init(struct xe_ggtt *ggtt);
+ 
++void xe_ggtt_clear(struct xe_ggtt *ggtt);
 +
-+	fence->ops = ops;
-+	fence->wq = wq;
-+	INIT_WORK(&fence->work, dma_fence_preempt_work_func);
-+	spin_lock_init(&fence->lock);
-+	dma_fence_init(&fence->base, &preempt_fence_ops,
-+		       &fence->lock, context, seqno);
-+}
-+EXPORT_SYMBOL(dma_fence_preempt_init);
-diff --git a/include/linux/dma-fence-preempt.h b/include/linux/dma-fence-preempt.h
-new file mode 100644
-index 000000000000..28d803f89527
---- /dev/null
-+++ b/include/linux/dma-fence-preempt.h
-@@ -0,0 +1,56 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef __LINUX_DMA_FENCE_PREEMPT_H
-+#define __LINUX_DMA_FENCE_PREEMPT_H
-+
-+#include <linux/dma-fence.h>
-+#include <linux/workqueue.h>
-+
-+struct dma_fence_preempt;
-+struct dma_resv;
-+
-+/**
-+ * struct dma_fence_preempt_ops - Preempt fence operations
-+ *
-+ * These functions should be implemented in the driver side.
-+ */
-+struct dma_fence_preempt_ops {
-+	/** @preempt_delay: Preempt execution with a delay */
-+	struct dma_fence *(*preempt_delay)(struct dma_fence_preempt *fence);
-+	/** @preempt: Preempt execution */
-+	int (*preempt)(struct dma_fence_preempt *fence);
-+	/** @preempt_wait: Wait for preempt of execution to complete */
-+	int (*preempt_wait)(struct dma_fence_preempt *fence);
-+	/** @preempt_finished: Signal that the preempt has finished */
-+	void (*preempt_finished)(struct dma_fence_preempt *fence);
-+};
-+
-+/**
-+ * struct dma_fence_preempt - Embedded preempt fence base class
-+ */
-+struct dma_fence_preempt {
-+	/** @base: Fence base class */
-+	struct dma_fence base;
-+	/** @lock: Spinlock for fence handling */
-+	spinlock_t lock;
-+	/** @cb: Callback preempt delay */
-+	struct dma_fence_cb cb;
-+	/** @ops: Preempt fence operation */
-+	const struct dma_fence_preempt_ops *ops;
-+	/** @wq: Work queue for preempt wait */
-+	struct workqueue_struct *wq;
-+	/** @work: Work struct for preempt wait */
-+	struct work_struct work;
-+};
-+
-+bool dma_fence_is_preempt(const struct dma_fence *fence);
-+
-+void dma_fence_preempt_init(struct dma_fence_preempt *fence,
-+			    const struct dma_fence_preempt_ops *ops,
-+			    struct workqueue_struct *wq,
-+			    u64 context, u64 seqno);
-+
-+#endif
+ struct xe_ggtt_node *xe_ggtt_node_init(struct xe_ggtt *ggtt);
+ void xe_ggtt_node_fini(struct xe_ggtt_node *node);
+ int xe_ggtt_node_insert_balloon(struct xe_ggtt_node *node,
 -- 
 2.34.1
 
