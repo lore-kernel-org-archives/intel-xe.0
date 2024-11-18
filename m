@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58FFAD60D09
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 23:37:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3695AD60D0C
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 23:37:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D8BB10E5A4;
-	Mon, 18 Nov 2024 23:37:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF96A10E29C;
+	Mon, 18 Nov 2024 23:37:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QmErJ+oN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W3VOVwfJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0241C10E592;
- Mon, 18 Nov 2024 23:37:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FE2A10E57A;
+ Mon, 18 Nov 2024 23:37:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731973052; x=1763509052;
+ t=1731973048; x=1763509048;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=k6npIro/CDXRVdYry+Z7wVHzj1KL9gz5MwjkQUsk+8Y=;
- b=QmErJ+oNGVpf3Xo/AyQk3AvaXNx99XveupDettHBdxBnDt+kxUE2l2Jb
- KLcxHGjBW30bWqV7MnCx1mEMsftPK/b+NH+R3CeTlNhX3j3iJSMOqo9LN
- YTOhgx6NSygOL19d6X+dTIHqFTs9N6cyTBjEI+5vaM/pNPcgZWWu1X0tq
- 2LEIT2wVWWkLvWvYGn/AE+y5XtZCdiKolyGPyElV1Cfs6kcu3ycOwQw8m
- b1ePMOUWbVYAg98jMoy+W2W76DVmLzBJkwxEXY4eBfdsE72OrbmHVnciE
- nf9Vj9hFtG2S3Bi9D2gwNdvOEjUq2NKmQ1w5ZeEA603Bdx+5uqp430nB/ g==;
-X-CSE-ConnectionGUID: y3+dy3ahR8uf5aMpLwP5Pw==
-X-CSE-MsgGUID: zyomD7BiSqON0jIJMLsNTA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31879040"
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31879040"
+ bh=gNdp0QyGV4i1yaEhzaz39MS69VT1BTl28gqiah5Po/o=;
+ b=W3VOVwfJBN6J76Y/Nyd5x8/epHY+Ona0XQMNYzzOpxdVWaSovTZSTcnE
+ AQ/UxwgqXQj1fn/ueMB+PCpvWWmFGJMYbIzCqO/oeqy/9+a4VlHvicDZH
+ H1rilTYZO9Mv+3Ov3scNd+qPdn1mdcyJt/HSYSo4ZPSlchqpQ0NLmr6rv
+ 2jtQ/vwXyJpItWrwcuZ0gE+p//ShzyTwUfLZ4cx60X8QwxZYcjmr9nkZ9
+ Fb2nmboQQZV8wJgezTKUGQwrxJVWAa8mAVWjYSeTiK5Q0n35laR6JA7z4
+ 1Cd30hzMsiBYlhctG9sUY21GqUnz07ivR1FcPdXOn2T4QmyDGDVmCn1um A==;
+X-CSE-ConnectionGUID: JEF8QO7sQzGrRW2K2XGV3g==
+X-CSE-MsgGUID: ztXMgF0rR3SrV2KGSd/82g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31878956"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31878956"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 15:37:31 -0800
-X-CSE-ConnectionGUID: 4ewmGeeVSXSAonED7NscQw==
-X-CSE-MsgGUID: fWWSngICRRqLPLlUCOYldQ==
+ 18 Nov 2024 15:37:28 -0800
+X-CSE-ConnectionGUID: QNIgtjt/THizqv1WLVDANA==
+X-CSE-MsgGUID: r2gxfw5ZQDOKgSot8h/NWg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="89521783"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="89521731"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 15:37:31 -0800
+ 18 Nov 2024 15:37:28 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -49,9 +49,9 @@ Cc: kenneth.w.graunke@intel.com, lionel.g.landwerlin@intel.com,
  thomas.hellstrom@linux.intel.com, boris.brezillon@collabora.com,
  airlied@gmail.com, christian.koenig@amd.com, mihail.atanassov@arm.com,
  steven.price@arm.com, shashank.sharma@amd.com
-Subject: [RFC PATCH 29/29] drm/xe: Add user fence TDR
-Date: Mon, 18 Nov 2024 15:37:57 -0800
-Message-Id: <20241118233757.2374041-30-matthew.brost@intel.com>
+Subject: [RFC PATCH 17/29] drm/xe: Add usermap exec queue extension
+Date: Mon, 18 Nov 2024 15:37:45 -0800
+Message-Id: <20241118233757.2374041-18-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241118233757.2374041-1-matthew.brost@intel.com>
 References: <20241118233757.2374041-1-matthew.brost@intel.com>
@@ -71,302 +71,377 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We cannot let user fences exported as dma-fence run forever. Add a TDR
-to protect against this. If the TDR fires the entire VM is killed as
-dma-fences are not tied to an individual queue.
+Implement uAPI which maps submit rings, indirect LRC state, and
+doorbells to user space. This is required for UMD direction submission.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c       | 164 +++++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_vm_types.h |  22 +++++
- 2 files changed, 179 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 125 ++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  13 +++
+ drivers/gpu/drm/xe/xe_execlist.c         |   2 +-
+ drivers/gpu/drm/xe/xe_lrc.c              |  59 +++++++----
+ drivers/gpu/drm/xe/xe_lrc.h              |   2 +-
+ 5 files changed, 176 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 5078aeea2bd8..8b475e76bfe0 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -30,6 +30,7 @@
- #include "xe_exec_queue.h"
- #include "xe_gt_pagefault.h"
- #include "xe_gt_tlb_invalidation.h"
-+#include "xe_hw_fence.h"
- #include "xe_migrate.h"
- #include "xe_pat.h"
- #include "xe_pm.h"
-@@ -336,11 +337,15 @@ void xe_vm_kill(struct xe_vm *vm, bool unlocked)
- 	if (unlocked)
- 		xe_vm_lock(vm, false);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index aef5b130e7f8..c8d45133eb59 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -11,6 +11,7 @@
+ #include <drm/drm_file.h>
+ #include <uapi/drm/xe_drm.h>
  
--	vm->flags |= XE_VM_FLAG_BANNED;
--	trace_xe_vm_kill(vm);
-+	if (!(vm->flags |= XE_VM_FLAG_BANNED)) {
-+		vm->flags |= XE_VM_FLAG_BANNED;
-+		trace_xe_vm_kill(vm);
++#include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_hw_engine_class_sysfs.h"
+@@ -38,12 +39,18 @@ static int exec_queue_user_extensions_post_init(struct xe_device *xe, struct xe_
  
--	list_for_each_entry(q, &vm->preempt.exec_queues, lr.link)
--		q->ops->kill(q);
-+		list_for_each_entry(q, &vm->preempt.exec_queues, lr.link)
-+			q->ops->kill(q);
-+
-+		/* TODO: Unmap usermap doorbells */
-+	}
- 
- 	if (unlocked)
- 		xe_vm_unlock(vm);
-@@ -1393,6 +1398,9 @@ static void xe_vm_free_scratch(struct xe_vm *vm)
- 	}
- }
- 
-+static void userfence_tdr(struct work_struct *w);
-+static void userfence_kill(struct work_struct *w);
-+
- struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ static void __xe_exec_queue_free(struct xe_exec_queue *q)
  {
- 	struct drm_gem_object *vm_resv_obj;
-@@ -1517,6 +1525,12 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 		}
- 	}
- 
-+	spin_lock_init(&vm->userfence.lock);
-+	INIT_LIST_HEAD(&vm->userfence.pending_list);
-+	vm->userfence.timeout = HZ * 5;
-+	INIT_DELAYED_WORK(&vm->userfence.tdr, userfence_tdr);
-+	INIT_WORK(&vm->userfence.kill_work, userfence_kill);
++	struct xe_device *xe = q->vm ? q->vm->xe : NULL;
 +
- 	if (number_tiles > 1)
- 		vm->composite_fence_ctx = dma_fence_context_alloc(1);
+ 	if (q->vm)
+ 		xe_vm_put(q->vm);
  
-@@ -1562,6 +1576,9 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 	xe_vm_close(vm);
- 	flush_work(&vm->preempt.rebind_work);
+ 	if (q->xef)
+ 		xe_file_put(q->xef);
  
-+	flush_delayed_work(&vm->userfence.tdr);
-+	flush_work(&vm->userfence.kill_work);
++	if (q->usermap)
++		xe_pm_runtime_put(xe);
 +
- 	down_write(&vm->lock);
- 	for_each_tile(tile, xe, id) {
- 		if (vm->q[id])
-@@ -3449,6 +3466,114 @@ static int check_semaphores(struct xe_vm *vm, struct xe_sync_entry *syncs,
- 	return 0;
++	kfree(q->usermap);
+ 	kfree(q);
  }
  
-+struct tdr_item {
-+	struct dma_fence *fence;
-+	struct xe_vm *vm;
-+	struct list_head link;
-+	struct dma_fence_cb cb;
-+	u64 deadline;
-+};
-+
-+static void userfence_kill(struct work_struct *w)
+@@ -110,6 +117,8 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+ static int __xe_exec_queue_init(struct xe_exec_queue *q)
+ {
+ 	struct xe_vm *vm = q->vm;
++	u64 ring_addr = q->usermap ? q->usermap->ring_addr : 0;
++	u32 ring_size = q->usermap ? q->usermap->ring_size : SZ_16K;
+ 	int i, err;
+ 
+ 	if (vm) {
+@@ -119,7 +128,8 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
+ 	}
+ 
+ 	for (i = 0; i < q->width; ++i) {
+-		q->lrc[i] = xe_lrc_create(q, q->hwe, q->vm, SZ_16K);
++		q->lrc[i] = xe_lrc_create(q, q->hwe, q->vm, ring_size,
++					  ring_addr);
+ 		if (IS_ERR(q->lrc[i])) {
+ 			err = PTR_ERR(q->lrc[i]);
+ 			goto err_unlock;
+@@ -444,12 +454,125 @@ typedef int (*xe_exec_queue_user_extension_fn)(struct xe_device *xe,
+ 					       struct xe_exec_queue *q,
+ 					       u64 extension);
+ 
++static int exec_queue_user_ext_usermap(struct xe_device *xe,
++				       struct xe_exec_queue *q,
++				       u64 extension)
 +{
-+	struct xe_vm *vm =
-+		container_of(w, struct xe_vm, userfence.kill_work);
++	u64 __user *address = u64_to_user_ptr(extension);
++	struct drm_xe_exec_queue_ext_usermap ext;
++	int err;
 +
-+	down_write(&vm->lock);
-+	xe_vm_kill(vm, true);
-+	up_write(&vm->lock);
-+}
++	/* Just parse args and make sure they are sane */
 +
-+static void userfence_tdr(struct work_struct *w)
-+{
-+	struct xe_vm *vm =
-+		container_of(w, struct xe_vm, userfence.tdr.work);
-+	struct tdr_item *tdr_item;
-+	bool timeout = false, cookie = dma_fence_begin_signalling();
++	if (XE_IOCTL_DBG(xe, !xe_gt_has_indirect_ring_state(q->gt)))
++		return -EOPNOTSUPP;
 +
-+	xe_hw_fence_irq_stop(&vm->xe->user_fence_irq);
++	if (XE_IOCTL_DBG(xe, q->width != 1))
++		return -EOPNOTSUPP;
 +
-+	spin_lock_irq(&vm->userfence.lock);
-+	list_for_each_entry(tdr_item, &vm->userfence.pending_list, link) {
-+		if (!dma_fence_is_signaled(tdr_item->fence)) {
-+			drm_notice(&vm->xe->drm,
-+				   "Timedout usermap fence: seqno=%llu, deadline=%llu, jiffies=%llu",
-+				   tdr_item->fence->seqno, tdr_item->deadline,
-+				   get_jiffies_64());
-+			dma_fence_set_error(tdr_item->fence, -ETIME);
-+			timeout = true;
-+			vm->userfence.timeout = 0;
-+		}
-+	}
-+	spin_unlock_irq(&vm->userfence.lock);
++	if (XE_IOCTL_DBG(xe, q->flags & (EXEC_QUEUE_FLAG_KERNEL |
++					 EXEC_QUEUE_FLAG_PERMANENT |
++					 EXEC_QUEUE_FLAG_VM |
++					 EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD)))
++		return -EOPNOTSUPP;
 +
-+	xe_hw_fence_irq_start(&vm->xe->user_fence_irq);
++	if (XE_IOCTL_DBG(xe, q->width != 1))
++		return -EOPNOTSUPP;
 +
 +	/*
-+	 * This is dma-fence signaling path so we cannot take the locks requires
-+	 * to kill a VM. Defer killing to a worker.
++	 * XXX: More or less free to support this but targeting Mesa for now as
++	 * LR mode has ULLS.
 +	 */
-+	if (timeout)
-+		schedule_work(&vm->userfence.kill_work);
++	if (XE_IOCTL_DBG(xe, xe_vm_in_lr_mode(q->vm)))
++		return -EOPNOTSUPP;
 +
-+	dma_fence_end_signalling(cookie);
++	if (XE_IOCTL_DBG(xe, q->flags & EXEC_QUEUE_FLAG_UMD_SUBMISSION))
++		return -EINVAL;
++
++	err = __copy_from_user(&ext, address, sizeof(ext));
++	if (XE_IOCTL_DBG(xe, err))
++		return -EFAULT;
++
++	if (XE_IOCTL_DBG(xe, ext.reserved[0] || ext.reserved[1]))
++		return -EINVAL;
++
++	if (XE_IOCTL_DBG(xe, ext.pad))
++		return -EINVAL;
++
++	if (XE_IOCTL_DBG(xe, ext.flags))
++		return -EINVAL;
++
++	if (XE_IOCTL_DBG(xe, ext.ring_size < SZ_4K ||
++			 ext.ring_size > SZ_2M ||
++			 ext.ring_size & ~PAGE_MASK))
++		return -EINVAL;
++
++	if (XE_IOCTL_DBG(xe, ext.version !=
++			 DRM_XE_EXEC_QUEUE_USERMAP_VERSION_XE2_REV0))
++		return -EINVAL;
++
++	q->usermap = kzalloc(sizeof(struct xe_exec_queue_usermap), GFP_KERNEL);
++	if (!q->usermap)
++		return -ENOMEM;
++
++	q->usermap->ring_size = ext.ring_size;
++	q->usermap->ring_addr = ext.ring_addr;
++
++	xe_pm_runtime_get_noresume(xe);
++	q->flags |= EXEC_QUEUE_FLAG_UMD_SUBMISSION;
++
++	return 0;
 +}
 +
-+static void userfence_fence_cb(struct dma_fence *fence,
-+			       struct dma_fence_cb *cb)
++static int exec_queue_user_ext_post_init_usermap(struct xe_device *xe,
++						 struct xe_exec_queue *q,
++						 u64 extension)
 +{
-+	struct tdr_item *next, *tdr_item = container_of(cb, struct tdr_item, cb);
-+	struct xe_vm *vm = tdr_item->vm;
-+	struct xe_gt *gt = xe_device_get_gt(vm->xe, 0);
++	struct drm_xe_exec_queue_ext_usermap ext;
++	struct xe_lrc *lrc = q->lrc[0];
++	u64 __user *address = u64_to_user_ptr(extension);
++	u32 indirect_ring_state_handle;
++	int err;
 +
-+	if (fence)
-+		spin_lock(&vm->userfence.lock);
-+	else
-+		spin_lock_irq(&vm->userfence.lock);
++	err = __copy_from_user(&ext, address, sizeof(ext));
++	if (XE_IOCTL_DBG(xe, err))
++		return -EFAULT;
 +
-+	list_del(&tdr_item->link);
-+	next = list_first_entry_or_null(&vm->userfence.pending_list,
-+					typeof(*next), link);
-+	if (next)
-+		mod_delayed_work(gt->ordered_wq, &vm->userfence.tdr,
-+				 next->deadline - get_jiffies_64());
-+	else
-+		cancel_delayed_work(&vm->userfence.tdr);
++	err = drm_gem_handle_create(q->xef->drm,
++				    &lrc->indirect_state->ttm.base,
++				    &indirect_ring_state_handle);
++	if (err)
++		return err;
 +
-+	if (fence)
-+		spin_unlock(&vm->userfence.lock);
-+	else
-+		spin_unlock_irq(&vm->userfence.lock);
++	ext.indirect_ring_state_offset =
++		drm_vma_node_offset_addr(&lrc->indirect_state->ttm.base.vma_node);
++	ext.indirect_ring_state_handle = indirect_ring_state_handle;
++	ext.doorbell_offset = XE_MMIO_DOORBELL_MMAP_OFFSET +
++		SZ_4K * q->guc->db.id;
++	ext.doorbell_page_offset = 0;
 +
-+	dma_fence_put(tdr_item->fence);
-+	xe_vm_put(tdr_item->vm);
-+	kfree(tdr_item);
-+}
-+
-+static void userfence_tdr_add(struct xe_vm *vm, struct tdr_item *tdr_item,
-+			      struct dma_fence *fence)
-+{
-+	struct xe_gt *gt = xe_device_get_gt(vm->xe, 0);
-+	int ret;
-+
-+	tdr_item->fence = dma_fence_get(fence);
-+	tdr_item->vm = xe_vm_get(vm);
-+	INIT_LIST_HEAD(&tdr_item->link);
-+	tdr_item->deadline = vm->userfence.timeout + get_jiffies_64();
-+
-+	spin_lock_irq(&vm->userfence.lock);
-+	list_add_tail(&tdr_item->link, &vm->userfence.pending_list);
-+	if (list_is_singular(&vm->userfence.pending_list))
-+		mod_delayed_work(gt->ordered_wq,
-+				 &vm->userfence.tdr,
-+				 vm->userfence.timeout);
-+	spin_unlock_irq(&vm->userfence.lock);
-+
-+	ret = dma_fence_add_callback(fence, &tdr_item->cb, userfence_fence_cb);
-+	if (ret == -ENOENT)
-+		userfence_fence_cb(NULL, &tdr_item->cb);
-+}
-+
- int xe_vm_convert_fence_ioctl(struct drm_device *dev, void *data,
- 			      struct drm_file *file)
- {
-@@ -3459,6 +3584,7 @@ int xe_vm_convert_fence_ioctl(struct drm_device *dev, void *data,
- 	struct drm_xe_semaphore __user *semaphores_user;
- 	struct xe_sync_entry *syncs = NULL;
- 	struct xe_vm *vm;
-+	struct tdr_item **tdr_items = NULL;
- 	int err = 0, i, num_syncs = 0;
- 	bool done = false;
- 	struct drm_exec exec;
-@@ -3493,6 +3619,12 @@ int xe_vm_convert_fence_ioctl(struct drm_device *dev, void *data,
- 		goto release_vm_lock;
- 	}
- 
-+	tdr_items = kcalloc(args->num_syncs, sizeof(*tdr_items), GFP_KERNEL);
-+	if (!tdr_items) {
-+		err = -ENOMEM;
-+		goto release_vm_lock;
++	err = copy_to_user(address, &ext, sizeof(ext));
++	if (XE_IOCTL_DBG(xe, err)) {
++		err = -EFAULT;
++		goto close_handles;
 +	}
 +
- 	syncs_user = u64_to_user_ptr(args->syncs);
- 	semaphores_user = u64_to_user_ptr(args->semaphores);
- 	for (i = 0; i < args->num_syncs; i++, num_syncs++) {
-@@ -3505,6 +3637,15 @@ int xe_vm_convert_fence_ioctl(struct drm_device *dev, void *data,
- 		if (err)
- 			goto release_syncs;
- 
-+		if (sync->flags & DRM_XE_SYNC_FLAG_SIGNAL) {
-+			tdr_items[i] = kmalloc(sizeof(struct tdr_item),
-+					       GFP_KERNEL);
-+			if (!tdr_items[i]) {
-+				xe_sync_entry_cleanup(&syncs[i]);
-+				goto release_syncs;
-+			}
-+		}
++	return 0;
 +
- 		err = xe_sync_semaphore_parse(xe, xef, semaphore_sync,
- 					      &semaphores_user[i],
- 					      sync->flags);
-@@ -3591,6 +3732,10 @@ int xe_vm_convert_fence_ioctl(struct drm_device *dev, void *data,
- 				&semaphore_sync->chain_fence->base;
- 			semaphore_sync->chain_fence = NULL;
- 
-+			userfence_tdr_add(vm, tdr_items[i],
-+					  semaphore_sync->fence);
-+			tdr_items[i] = 0;
++close_handles:
++	drm_gem_handle_delete(q->xef->drm, indirect_ring_state_handle);
 +
- 			semaphore_sync->fence = NULL;   /* Ref owned by chain */
- 		} else {
- 			xe_sync_entry_signal(semaphore_sync, sync->fence);
-@@ -3617,9 +3762,13 @@ int xe_vm_convert_fence_ioctl(struct drm_device *dev, void *data,
- out_unlock:
- 	drm_exec_fini(&exec);
- release_syncs:
--	while (err != -EAGAIN && num_syncs--) {
--		xe_sync_entry_cleanup(&syncs[num_syncs]);
--		xe_sync_entry_cleanup(&syncs[args->num_syncs + num_syncs]);
-+	if (err != -EAGAIN) {
-+		for (i = 0; i < num_syncs; ++i)
-+			kfree(tdr_items[i]);
-+		while (num_syncs--) {
-+			xe_sync_entry_cleanup(&syncs[num_syncs]);
-+			xe_sync_entry_cleanup(&syncs[args->num_syncs + num_syncs]);
++	return err;
++}
++
+ static const xe_exec_queue_user_extension_fn exec_queue_user_extension_funcs[] = {
+ 	[DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY] = exec_queue_user_ext_set_property,
++	[DRM_XE_EXEC_QUEUE_EXTENSION_USERMAP] = exec_queue_user_ext_usermap,
+ };
+ 
+ static const xe_exec_queue_user_extension_fn exec_queue_user_extension_post_init_funcs[] = {
+ 	[DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY] = NULL,
++	[DRM_XE_EXEC_QUEUE_EXTENSION_USERMAP] = exec_queue_user_ext_post_init_usermap,
+ };
+ 
+ #define MAX_USER_EXTENSIONS	16
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 7f68587d4021..b30b5ee910fa 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -31,6 +31,16 @@ enum xe_exec_queue_priority {
+ 	XE_EXEC_QUEUE_PRIORITY_COUNT
+ };
+ 
++/**
++ * struct xe_exec_queue_usermap - Execution queue usermap (UMD submission)
++ */
++struct xe_exec_queue_usermap {
++	/** @ring_addr: ring address (PPGTT) */
++	u64 ring_addr;
++	/** @ring_size: ring size */
++	u32 ring_size;
++};
++
+ /**
+  * struct xe_exec_queue - Execution queue
+  *
+@@ -130,6 +140,9 @@ struct xe_exec_queue {
+ 		struct list_head link;
+ 	} lr;
+ 
++	/** @usermap: user map interface */
++	struct xe_exec_queue_usermap *usermap;
++
+ 	/** @ops: submission backend exec queue operations */
+ 	const struct xe_exec_queue_ops *ops;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index 93f76280d453..803c84b2e4ed 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -265,7 +265,7 @@ struct xe_execlist_port *xe_execlist_port_create(struct xe_device *xe,
+ 
+ 	port->hwe = hwe;
+ 
+-	port->lrc = xe_lrc_create(NULL, hwe, NULL, SZ_16K);
++	port->lrc = xe_lrc_create(NULL, hwe, NULL, SZ_16K, 0);
+ 	if (IS_ERR(port->lrc)) {
+ 		err = PTR_ERR(port->lrc);
+ 		goto err;
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 8a79470b52ae..8d5a65724c04 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -903,7 +903,7 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
+ 
+ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_exec_queue *q,
+ 		       struct xe_hw_engine *hwe, struct xe_vm *vm,
+-		       u32 ring_size)
++		       u32 ring_size, u64 ring_addr)
+ {
+ 	struct xe_gt *gt = hwe->gt;
+ 	struct xe_tile *tile = gt_to_tile(gt);
+@@ -919,6 +919,8 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_exec_queue *q,
+ 		XE_BO_FLAG_USER : 0;
+ 	int err;
+ 
++	xe_assert(xe, (!user_queue && !ring_addr) || (user_queue && ring_addr));
++
+ 	kref_init(&lrc->refcount);
+ 	lrc->flags = 0;
+ 	lrc_size = xe_gt_lrc_size(gt, hwe->class);
+@@ -935,16 +937,18 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_exec_queue *q,
+ 	if (IS_ERR(lrc->bo))
+ 		return PTR_ERR(lrc->bo);
+ 
+-	lrc->submission_ring = xe_bo_create_pin_map(xe, tile, vm, SZ_32K,
+-						    submit_type,
+-						    submit_flags |
+-						    XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+-						    XE_BO_FLAG_GGTT |
+-						    XE_BO_FLAG_GGTT_INVALIDATE);
+-	if (IS_ERR(lrc->submission_ring)) {
+-		err = PTR_ERR(lrc->submission_ring);
+-		lrc->submission_ring = NULL;
+-		goto err_lrc_finish;
++	if (!user_queue) {
++		lrc->submission_ring = xe_bo_create_pin_map(xe, tile, vm, SZ_32K,
++							    submit_type,
++							    submit_flags |
++							    XE_BO_FLAG_VRAM_IF_DGFX(tile) |
++							    XE_BO_FLAG_GGTT |
++							    XE_BO_FLAG_GGTT_INVALIDATE);
++		if (IS_ERR(lrc->submission_ring)) {
++			err = PTR_ERR(lrc->submission_ring);
++			lrc->submission_ring = NULL;
++			goto err_lrc_finish;
 +		}
  	}
- release_vm_lock:
- 	if (err == -EAGAIN)
-@@ -3629,6 +3778,7 @@ int xe_vm_convert_fence_ioctl(struct drm_device *dev, void *data,
- 	xe_vm_put(vm);
- 	free_preempt_fences(&preempt_fences);
- 	kfree(syncs);
-+	kfree(tdr_items);
  
- 	return err;
- }
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index c5cb83722706..49cac5716f72 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -260,6 +260,28 @@ struct xe_vm {
- 		struct dma_fence *exported_fence;
- 	} preempt;
+ 	if (xe_gt_has_indirect_ring_state(gt)) {
+@@ -1018,12 +1022,19 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_exec_queue *q,
+ 	}
  
-+	/** @userfence: User fence state */
-+	struct {
-+		/**
-+		 * @userfence.lock: fence lock
-+		 */
-+		spinlock_t lock;
-+		/**
-+		 * @userfence.pending_list: pending fence list, protected by
-+		 * userfence.lock
-+		 */
-+		struct list_head pending_list;
-+		/** @userfence.tdr: fence TDR */
-+		struct delayed_work tdr;
-+		/** @userfence.kill_work */
-+		struct work_struct kill_work;
-+		/**
-+		 * @userfence.timeout: Fence timeout period, protected by
-+		 * userfence.lock
-+		 */
-+		u32 timeout;
-+	} userfence;
-+
- 	/** @um: unified memory state */
- 	struct {
- 		/** @asid: address space ID, unique to each VM */
+ 	if (xe_gt_has_indirect_ring_state(gt)) {
+-		xe_lrc_write_ctx_reg(lrc, CTX_INDIRECT_RING_STATE,
+-				     __xe_lrc_indirect_ring_ggtt_addr(lrc));
+-
+-		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START,
+-					      __xe_lrc_ring_ggtt_addr(lrc));
+-		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START_UDW, 0);
++		if (ring_addr) {	/* PPGTT */
++			xe_lrc_write_ctx_reg(lrc, CTX_INDIRECT_RING_STATE,
++					     __xe_lrc_indirect_ring_ggtt_addr(lrc) | BIT(0));
++			xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START,
++						      ring_addr);
++		} else {
++			xe_lrc_write_ctx_reg(lrc, CTX_INDIRECT_RING_STATE,
++					     __xe_lrc_indirect_ring_ggtt_addr(lrc));
++			xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START,
++						      __xe_lrc_ring_ggtt_addr(lrc));
++		}
++		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START_UDW,
++					      ring_addr >> 32);
+ 		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_HEAD, 0);
+ 		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_TAIL, lrc->ring.tail);
+ 		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_CTL,
+@@ -1056,8 +1067,10 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_exec_queue *q,
+ 		lrc->desc |= FIELD_PREP(LRC_ENGINE_CLASS, hwe->class);
+ 	}
+ 
+-	arb_enable = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+-	xe_lrc_write_ring(lrc, &arb_enable, sizeof(arb_enable));
++	if (lrc->submission_ring) {
++		arb_enable = MI_ARB_ON_OFF | MI_ARB_ENABLE;
++		xe_lrc_write_ring(lrc, &arb_enable, sizeof(arb_enable));
++	}
+ 
+ 	map = __xe_lrc_seqno_map(lrc);
+ 	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
+@@ -1078,6 +1091,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_exec_queue *q,
+  * @hwe: Hardware Engine
+  * @vm: The VM (address space)
+  * @ring_size: LRC ring size
++ * @ring_addr: LRC ring address, only valid for usermap queues
+  *
+  * Allocate and initialize the Logical Ring Context (LRC).
+  *
+@@ -1085,7 +1099,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_exec_queue *q,
+  * upon failure.
+  */
+ struct xe_lrc *xe_lrc_create(struct xe_exec_queue *q, struct xe_hw_engine *hwe,
+-			     struct xe_vm *vm, u32 ring_size)
++			     struct xe_vm *vm, u32 ring_size, u64 ring_addr)
+ {
+ 	struct xe_lrc *lrc;
+ 	int err;
+@@ -1094,7 +1108,7 @@ struct xe_lrc *xe_lrc_create(struct xe_exec_queue *q, struct xe_hw_engine *hwe,
+ 	if (!lrc)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	err = xe_lrc_init(lrc, q, hwe, vm, ring_size);
++	err = xe_lrc_init(lrc, q, hwe, vm, ring_size, ring_addr);
+ 	if (err) {
+ 		kfree(lrc);
+ 		return ERR_PTR(err);
+@@ -1717,7 +1731,8 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+ 		xe_vm_get(lrc->bo->vm);
+ 
+ 	snapshot->context_desc = xe_lrc_ggtt_addr(lrc);
+-	snapshot->ring_addr = __xe_lrc_ring_ggtt_addr(lrc);
++	snapshot->ring_addr = lrc->submission_ring ?
++		__xe_lrc_ring_ggtt_addr(lrc) : 0;
+ 	snapshot->indirect_context_desc = xe_lrc_indirect_ring_ggtt_addr(lrc);
+ 	snapshot->head = xe_lrc_ring_head(lrc);
+ 	snapshot->tail.internal = lrc->ring.tail;
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 23d71283c79d..a7facfa8bf51 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -42,7 +42,7 @@ struct xe_lrc_snapshot {
+ #define LRC_PPHWSP_SCRATCH_ADDR (0x34 * 4)
+ 
+ struct xe_lrc *xe_lrc_create(struct xe_exec_queue *q, struct xe_hw_engine *hwe,
+-			     struct xe_vm *vm, u32 ring_size);
++			     struct xe_vm *vm, u32 ring_size, u64 ring_addr);
+ void xe_lrc_destroy(struct kref *ref);
+ 
+ /**
 -- 
 2.34.1
 
