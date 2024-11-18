@@ -4,185 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDDD5D60CF8
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 23:32:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E3CCD60CF8
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 23:37:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76C6810E190;
-	Mon, 18 Nov 2024 23:32:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE02C10E299;
+	Mon, 18 Nov 2024 23:37:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lVE3lyCf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jxP5bOPr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7750B10E040
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Nov 2024 23:32:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 681AB10E040;
+ Mon, 18 Nov 2024 23:37:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731972757; x=1763508757;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=HAQRlt42GwhUNi/7rfgaE/xj+o2QJsAN3XU2BI4HfQQ=;
- b=lVE3lyCfgPie/1PSH/q5OjPH1tgLFhhhGjXTsUkfybSVMxiSKzFCVeNm
- +aq+vUPuzmynltg1EOqNI0b8eHrwe93U13q/0U+x8CWHcAV0iXxLfB8yJ
- Rl5wlAHdvRFXbk4FuQraFxu1LxYIsQqrYhtcVj79GVD+8tzQHGok8RCv4
- DTfBLqBP05R7olWoQ0OEDuZlrj0bzOg0L6ayrF6OiuidcmjdYAu9p2GC0
- M0VQYiv7ohCOdVUHK0EEHvo47Ttcs70l9369UWANI/ks2EQMUlRQNrywl
- WBuFH/MuZBDY4jeFxfLNCredbRQmvDXJcwzG2WX44BGq84zaVjr1gIW+T A==;
-X-CSE-ConnectionGUID: pLj7SdZIRVGcn4nXHz+lOg==
-X-CSE-MsgGUID: OfiI39rlREqaxQNM1E6cTg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31325273"
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31325273"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 15:32:37 -0800
-X-CSE-ConnectionGUID: dbtvnEBTReKbShq+U+nM7w==
-X-CSE-MsgGUID: pmlxGX9WSgqto3QvacReQA==
+ t=1731973043; x=1763509043;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7Q34MN1+S/hWvA02/u63ADNitopgDqBdhWospnhR7xY=;
+ b=jxP5bOPrIPlBL3nIfrnRrhMyMiLmpKG/3YJ6Bx+yhbmnnaP0ZS3/kJOn
+ Je8uUmdAlfrbEz7bMkzCNu0fisIjIt312Y7f4/kg4r9fbr7hLXfLAC21j
+ C5ZwMG+6Q716QNjQ0ZtIBVPo8LjV2qXpZLXZIX+qkdokUtRQv+JMewDEB
+ ivx5waIXfahhLQAyjKjF5WmfHJVp7FEMhY9IMmEJoXBjFaHYU4RosdKRb
+ mwMCj2fTdJU9bCbsxn5wZNIvpxl649tnnYHaCtoLCalNInCTrwUySbDxQ
+ 0meAsckXGr09uQpctQy0JUP2Kd8zETfi0NU6ceqrKO9gvU5dNPt/6i1OW w==;
+X-CSE-ConnectionGUID: x2tKnaqERvC17PbzXIR6jg==
+X-CSE-MsgGUID: LuYItpm6Sq+/Wbhk+pYCng==
+X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31878845"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31878845"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2024 15:37:23 -0800
+X-CSE-ConnectionGUID: 6uthKWc1QrOgzNLsa/DkqQ==
+X-CSE-MsgGUID: q0C1cGx7RrmIxksb1w+dEw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="126906060"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 18 Nov 2024 15:32:37 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 18 Nov 2024 15:32:36 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 18 Nov 2024 15:32:36 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.41) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 18 Nov 2024 15:32:36 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NbudQW1mEyF93tFBtjVTYfRo3g9AxyjInfugcUCsSigRfQf7iStS0Z/MJYrpdw9yABhGUoGbsPTJ2pjQpKnCDlXi/W3BvRbQ3PkV6V2fg/shzRp8benAJelDhxKK4SXMfutKIqsakriKOgsHuR3cQyIkjZv5h7O/xzy2sRZP9J9SQkdwQiIpcZuV6rXUV00CPGy+b1UoLy7tsM8CHCIifP0zzFK9Wu0DWwNcTVpw/iAmxt8mBh9SkpgmKzfij1OZPhc8kMYYmHuJSaPcPRw1FwxnUBR1thexEVMh7YEitZcptd9v+K+jbrUWvSb5ESkSk+SSaPzINDFPgKzwfGrAsQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hgd+L5hEA1TWMd3qMD2f7pceUBbV7nPK7ioDh0uS9ic=;
- b=n7iLturxWDPnl8GUKwoaxQkjTdXoJvK+rHWNEXzBTcNo9qwsia0bLqWj7zFk/joDvsVHSrxqGh8vUcwYjdPieBUsqZnEPKDud1B9WYgREDjtn7fPerbKXIUZnP27i7eIdYL7dVCt301QLUfNj9azRjJE8zvmpOoj/95jmUau7dGBhDSEaYNZcUf8657319X5XbEzcPYhaeDcvyvR0YA/jIYDfOh28tUFN9nmV8yYLUXzMuQhgIcvuJNUKj39caBg17u+1z/bgLhdPlStD10i9GajSP/ychVKhdONk/MV5zBaDAqcufKzSPuBc9IG4f030fnSNzwvOCX8KlY2FHZvbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
- by PH7PR11MB6673.namprd11.prod.outlook.com (2603:10b6:510:1ab::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.24; Mon, 18 Nov
- 2024 23:32:33 +0000
-Received: from DS0PR11MB7408.namprd11.prod.outlook.com
- ([fe80::6387:4b73:8906:7543]) by DS0PR11MB7408.namprd11.prod.outlook.com
- ([fe80::6387:4b73:8906:7543%4]) with mapi id 15.20.8158.021; Mon, 18 Nov 2024
- 23:32:33 +0000
-Date: Mon, 18 Nov 2024 15:32:31 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <rodrigo.vivi@intel.com>, <vinay.belgaumkar@intel.com>,
- <aravind.iddamsetty@intel.com>, <john.c.harrison@intel.com>,
- <ashutosh.dixit@intel.com>, <soham.purkait@intel.com>
-Subject: Re: [PATCH 6/7] drm/xe/guc: Expose engine busyness only for
- supported GuC version
-Message-ID: <ZzvOj3lFfaGnL0/K@orsosgc001>
-References: <20241113045549.2390980-1-riana.tauro@intel.com>
- <20241113045549.2390980-7-riana.tauro@intel.com>
- <ZzaR7I1G+kuu/SCx@orsosgc001>
- <8ceea4a6-96d2-432d-8375-73d968d068c4@intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8ceea4a6-96d2-432d-8375-73d968d068c4@intel.com>
-X-ClientProxiedBy: MW2PR2101CA0003.namprd21.prod.outlook.com
- (2603:10b6:302:1::16) To DS0PR11MB7408.namprd11.prod.outlook.com
- (2603:10b6:8:136::15)
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="89521664"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2024 15:37:23 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: kenneth.w.graunke@intel.com, lionel.g.landwerlin@intel.com,
+ jose.souza@intel.com, simona.vetter@ffwll.ch,
+ thomas.hellstrom@linux.intel.com, boris.brezillon@collabora.com,
+ airlied@gmail.com, christian.koenig@amd.com, mihail.atanassov@arm.com,
+ steven.price@arm.com, shashank.sharma@amd.com
+Subject: [RFC PATCH 00/29] UMD direct submission in Xe
+Date: Mon, 18 Nov 2024 15:37:28 -0800
+Message-Id: <20241118233757.2374041-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|PH7PR11MB6673:EE_
-X-MS-Office365-Filtering-Correlation-Id: ae7a3a31-2121-40ee-26d6-08dd08294707
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VTJMazdvVk1yNWgwc1hHdDlIT2tzS3hkaU1mMS8yV0xzLzhFRkNNNDhJaTZT?=
- =?utf-8?B?bEsxb0wxbDUzQ2lLc0N3d3lkeGNZbEc5elJWNUdSMzNhR2NKU0wzdVJrVHN2?=
- =?utf-8?B?cTgrMFNGUEJnUWRUM3pnVktEaStoTXpFYU85SFpza0JKUG54UVBlQ01makRz?=
- =?utf-8?B?Uks5cS9GaGY0cEFCZnVpMkFabEdSbVNEL0JKUTBVQzMzT3EwekdHRmRLMVZU?=
- =?utf-8?B?L0hBMUxkVlVEK3NJMGdNUU1UeVR6bEl3OHRIMEJlQWtpNDljOEpCL25sbzEv?=
- =?utf-8?B?QTd6V1YrazFtTFcvSFZlSld6enVvM2VNOXlnQmd2azcxQmhqaU9zU1l6V1RH?=
- =?utf-8?B?SjBJeGNJdkVDMkFDVHVFbzdHcjVlSnVSVkdMc3o0U1dCTU85OVZmR3gxZ0tM?=
- =?utf-8?B?VEhaVGEvelRDYVJwcUZDRzVmWlUrMi9SUlNneTBDR1ZWSm5yTzFMNHU1MWdX?=
- =?utf-8?B?QzFFTmRnNmhWS0ZaY2pkVkpjWDIxdHFzMmZkdW42Z0ZtN0o0Titoa25SUmJT?=
- =?utf-8?B?Z09WM3BLQkZIUG55R1hKc2wrcWpDZ3B3bWxuQnhGWnFaTGlmQVE1SVRlQ21T?=
- =?utf-8?B?MmZXVU4rT2Nmb01WUnA3WWI0OXR3eEVheTlvSXFhTTdUcmdQaW5lMmRUL1Rp?=
- =?utf-8?B?TFJISHM3S2N1YnF2eEFFZkZiTTFCcHk4MTR6MFR5YWNodFUvMGdFeHowTUVZ?=
- =?utf-8?B?QVVLV3ovWTBFdVhUNCtxNSt6OEJQbzFmdTBqWk9WNFpDSm95alNmVVpJZW9m?=
- =?utf-8?B?SUtyOXVrL2lxRFRLc3VheUVDdmMxNmhoY3NCRVFvYmdJdEJKMmh1UWk4cmFp?=
- =?utf-8?B?TDI0Vm9UOHRQUmxLbjd3dW96YmhGMmk0Z1YwNC8rMWdaeXpDVS9XSDlxN0NZ?=
- =?utf-8?B?YTVMbDF1b0EyeTN2ZjN1a0YwOUsrSU4zazVSM1poWnI4NW9yTGpRQ1hFQldT?=
- =?utf-8?B?c2ZOSFZwMUVNRHBENEpUNWhEa212QVNNYmtuYXA1TFlSc1A0cC9EUzZrbFpT?=
- =?utf-8?B?VkFhS1lYNHZIRjNmUzhxLytuWFJ2cCtVcTlKcldSdXYxNi9wTWVOYy9YaFVk?=
- =?utf-8?B?a3I5T2d5TnV4eTk1NXlvZzFCaTkyR0FCQjVBR1k5ZnN0NWlxemdFQVlEVWxB?=
- =?utf-8?B?VFJGcHVrSVVjTHRJMGw5SU9xVGwyYWcrOVpCd0RaTnhFajNmblI3dTFuK1U0?=
- =?utf-8?B?UHdTUTZhQ2hxSXBJVnA1c2pOL3dBM3RvS1IwSk5DRVVRUXFhRlpCWWNiSGVE?=
- =?utf-8?B?YjBwdW5IWGdNWUlCZVg1SkladnVWTXZhNHQ2R1RERTBXbk45WnhZaVV2YkFM?=
- =?utf-8?B?ZWtjNk5sRzBzdElsaFJwanV0dWtWem9BUHQ3Z1hLMHI2ckhMZERHNktaK2Er?=
- =?utf-8?B?KzMwTk5tVmx1WmpIM2h4ZkFjOTJvaldhS08rNVQzdDY5L0U5ZDkwaXMxMndv?=
- =?utf-8?B?Mm9ZQ3p1UW1mVnZhaGRPZUcyWk9GMWxaREhPbDNsNlhPQmx0U3NydnhrN0JH?=
- =?utf-8?B?TU9HeHNrYjV4WDdTS0Z5ZUVuemdXLzVzNHQ3K3NZNXBZVm1Dcmc5VGJwWC94?=
- =?utf-8?B?dUY3OTI0RmxvSE5mNHUwVjRlWWxoWVpVWmRTcFBKWWk4NE5VY3gra1ZxZDNw?=
- =?utf-8?B?SG0rR0ZUOHBYZlVPRHVrcjRqcmtJaXpiWnZMZ3pocjltWklKdlY4YXM5UWRl?=
- =?utf-8?B?VzZJRGlTa0NSVElZcG85bTdCemcyNG1vd3ZMbFM1ZnB2c2VCWFBsdjduRjZY?=
- =?utf-8?Q?3SHSlyFsjZXRMrV8oNpcHp/2d0E3id7XqRd1L45?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MnpkVnZHNldRRkxjcUtKNHRJbE10emNTSGgrOUM3UXhYb3lPcVNFUUNnSE0r?=
- =?utf-8?B?VUNremdZOUR3VnJSRGprTEJ1UjBYY0NKV3B1ZEtPcm1Uc08rUVdlTDcydGp1?=
- =?utf-8?B?dzRjVlBJUytWSVh4WGJYSXpTMHhVRWVOMmxUdTdsemQ2eWF3SXd3eW1mMjVz?=
- =?utf-8?B?NEt5cXNFZnlrYkwzR1ZSMWljUVlsbGo5MnNvRjJyaWlVcW5oazFkU1kvckVm?=
- =?utf-8?B?bk1Sa3Zwc0dYbzdBU2pneGtESEE2WHdTS2c3ZHlYUzdWYjZRVmxiVFNJem5Y?=
- =?utf-8?B?WC83RnZqUVFsb3FlN2NCV2IrN0JOYUpoMDNDSE5kYWkyRmZaTnBHNzF0b2JK?=
- =?utf-8?B?eXNXMDRKZ2lhc1lmeGZZbWtxYkh6TTkyNW1ZN2VSOHhNNzhsZThxUTJjWUFF?=
- =?utf-8?B?YmNaalhnblNhN1duVWJqeGZ5dUM1MTVpNENyZ2lDNzF0aXRlLzZMSmZSeTNX?=
- =?utf-8?B?Z2FhM3NNc0E3QzRMR0RHanhySG1FYjc2azNmenZnVTNabHlRcDBwbnFiNmNr?=
- =?utf-8?B?dXVGNy8rL2RISzBzZVB1bGlyTzJhYldwVlJlRVArYTBOM0R2Vmk3WDBGS1ho?=
- =?utf-8?B?SEUrTFBxODhVeXhZcVFCcERWMEQyaWJIRGhNdnl6S0hQS1BwWDZWUi9QRUhl?=
- =?utf-8?B?bEoyeGdXUUlvOHhBaUlwVit0c0wvMHdEdHJkSDJqWjJhTVN0allNbzR4cFYy?=
- =?utf-8?B?NDJiQ3l2bU9HN0wzblZWbGV2MGtSNFZYeDhDV2R1ODFIYVpUK2Z2N3VGWDVU?=
- =?utf-8?B?Z2J3N2UvWUNNOWhTeUtpT3Y5OCtqV2k0N0ptcXRTeElFcENPVXRBVGJZa1Vz?=
- =?utf-8?B?a2Zhbk9qUHFKa3o5WGlsMDdnSDBwRDlNSXI5TDVSckJrOXNseDFGZWt6d3F4?=
- =?utf-8?B?UjNCTmIxMTl1SWZacER4cDk2STNuWXBmaUJDa3pRWW9KVFBIblBMRXRIWHE2?=
- =?utf-8?B?Rko1elBqamVXdFI0Ui8xRFV2UHlxMmNnV2M2ZzdrVWxVSU8wTEI1WnliSVlw?=
- =?utf-8?B?aFpkQ1A5TGtsQTZPMlRpOU1VTkhOQTJMSkovcEp2KzM1ZTBUaEFOQVdmeHZn?=
- =?utf-8?B?NWZvWUxsOU4zNDFRY0lyRHNkLzFLSENtVkRBWDVHd05JOTdHVkRhdHZqNS9N?=
- =?utf-8?B?MnBPdFBOQlRqK1QrTUpmUGZoUFhtYlg5T1daYVJ4NFFSbVdBdFpYOXRVekY0?=
- =?utf-8?B?ZVlHcmdaaU9tRXFFZXFpMy8ySjdZeWt1MmZaWFlUb1VsRStQU2ZEbExwRkN6?=
- =?utf-8?B?QXZOaWtBTEhpT2Q0b3RpQkJyNTI0MjRsQ1NiMVFkUnBDOHBZVWpUS0o2eWtQ?=
- =?utf-8?B?MGhRZ2gyR0ZMeXNWZlQ0d21UOC9DTUt4TUdBT091ZlVJRU0wZXNFeHVsTTRs?=
- =?utf-8?B?LzVJOGc5Y0dBTmU0ZnkzeGJrcWc0UXVscXZRSlhWVlJtdUYrZ3V5RS9ZMWdE?=
- =?utf-8?B?MEJsU2RkOVBOK00xVUxZcTZGMXlZWTFyNWFFM05KQ3UyZVlMeXpxOU9jemhT?=
- =?utf-8?B?ZmpveElSL0dYb0VFZURkbDFoZ3F4Z1V4cVdkSHFKL1ptemozekwwcEluZk5p?=
- =?utf-8?B?eHpCd21rb0xHSzFGWUhpWUNObG1ZT1R5ZWw0TTN4a0oxVW9CbHJWTlhmUDNX?=
- =?utf-8?B?cEU4RFpRc0lvczNqUi8yMnlRK2JlUnpuKzU2MmdBU0xWcWVmWUhiKzM2NENn?=
- =?utf-8?B?TlRudnpRU0xrc3FyZmV4Y3FrNVMyTFJrbVAzVFJlMFVzbHhHVmtTRVR6ZEU0?=
- =?utf-8?B?YXkweG1COHk2SXJNOW4wbUZkWm14OGI5ZjNSaFBXbCs3a0xVQ1JmdldCM1Qw?=
- =?utf-8?B?SkhJKy9OVENEaFdnQlRpOE1WeWxjWjB0eHpNUGlNVW5tcDNma0ZIZFZhL3F2?=
- =?utf-8?B?RnkzNnRMc2piR09YSWNnR1I0VFlrL3VZSjNZUUJOUmVWSGNxM0V5bnFqTWtB?=
- =?utf-8?B?TWFBL25GNy94R1pRSmkxaTRjejRJcWRSRXpobWNtSmhjMDlUUFJaVElQUDRh?=
- =?utf-8?B?OGdNaWpUb3VGV3JhUnNjWFFpWHQ1a1M5cUh5T01GUkF6REFrcnowdG1EZHZL?=
- =?utf-8?B?ZkNWYTk2eVVLZ0o1YnREMVJNY0tDUnNhU0dFZEZWRy8rZGpUazVRMmVJbnZT?=
- =?utf-8?B?ejkwbk5OV051MXM4STNBSDRRa2pmb2JIVmdRdVZzdHhURklVM3kvTGc4clVs?=
- =?utf-8?Q?PjJOFMJ19dknuxzvYZTPZiY=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae7a3a31-2121-40ee-26d6-08dd08294707
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2024 23:32:33.7003 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vBpi2u8j3U5uYhL0pcm7651mUYOPdAIUfo97aSzjrrjsrKwqabosUa0RxXMbYnPXJZVyF1AFvMVZWaVi9swZUPDN4LAq4vYcuNqEdHBfsxA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6673
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,86 +70,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Nov 18, 2024 at 01:07:32PM +0530, Riana Tauro wrote:
->Hi Umesh
->
->On 11/15/2024 5:42 AM, Umesh Nerlige Ramappa wrote:
->>On Wed, Nov 13, 2024 at 10:25:48AM +0530, Riana Tauro wrote:
->>>Engine busyness is supported only on GuC versions >= 70.32.0
->>>Allow enabling/reading engine busyness only on supported
->>>GuC versions. Warn once if not supported.
->>>
->>>Signed-off-by: Riana Tauro <riana.tauro@intel.com>
->>>---
->>>drivers/gpu/drm/xe/xe_engine_activity.c | 22 ++++++++++++++++++++++
->>>1 file changed, 22 insertions(+)
->>>
->>>diff --git a/drivers/gpu/drm/xe/xe_engine_activity.c 
->>>b/drivers/gpu/ drm/xe/xe_engine_activity.c
->>>index 7a2ae09d23de..fc34dcf3057a 100644
->>>--- a/drivers/gpu/drm/xe/xe_engine_activity.c
->>>+++ b/drivers/gpu/drm/xe/xe_engine_activity.c
->>>@@ -236,6 +236,16 @@ static u32 gpm_timestamp_shift(struct xe_gt *gt)
->>>    return 3 - REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, reg);
->>>}
->>>
->>>+static bool guc_engine_activity_supported(struct xe_guc *guc)
->>>+{
->>>+    if (GUC_FIRMWARE_VER(guc) >= MAKE_GUC_VER(70, 32, 0))
->>>+        return true;
->>>+
->>>+    drm_WARN_ON_ONCE(&guc_to_xe(guc)->drm,
->>>+             "Engine busyness not supported in this GuC version\n");
->>>+    return false;
->>>+}
->>>+
->>>/**
->>> * xe_engine_activity_get_active_ticks - Get engine active ticks
->>> * @hwe: The hw_engine object
->>>@@ -246,6 +256,9 @@ u64 xe_engine_activity_get_active_ticks(struct 
->>>xe_hw_engine *hwe)
->>>{
->>>    struct xe_guc *guc =  &hwe->gt->uc.guc;
->>>
->>>+    if (!guc_engine_activity_supported(guc))
->>>+        return 0;
->>>+
->>>    return get_engine_active_ticks(guc, hwe);
->>>}
->>>
->>>@@ -259,6 +272,9 @@ u64 xe_engine_activity_get_total_ticks(struct 
->>>xe_hw_engine *hwe)
->>>{
->>>    struct xe_guc *guc =  &hwe->gt->uc.guc;
->>>
->>>+    if (!guc_engine_activity_supported(guc))
->>
->>Hmm, not sure my response to this landed on the ML. Sending again..
->>
->>If GuC is an older version and UMDs have implemented the new 
->>interface, we could return CPU time in ticks here so that UMDs will 
->>still be able to use something in the denominator instead of a 
->>divide by zero. Busy value will still be 0. Thoughts?
->We could do this. But shouldn't UMD only read total ticks if they see 
->an actual busyness? Busyness % will anyway be 0 even if we return the 
->cpu time in ticks
+This is an RFC, or possibly even a proof of concept, for UMD (User Mode
+Driver) direct submission in Xe. It is similar to AMD's design [1] [2]
+or ARM's design [3], utilizing a uAPI to convert user-space syncs
+(memory writes) to kernel-space syncs (DMA fences). It is built around
+the existing Xe preemption fences for dynamic memory management, such as
+userptr invalidation and buffer object (BO) eviction.
 
-Well, I think we shouldn't have to impose that condition on the UMDs - 
-read total ticks only if engine busy ticks is non-zero. At the same time 
-they should not use a zero delta in the denominator anyways, so you can 
-ignore this for now. We can add it if there's an issue later.
+The series also enables mapping a PPGTT-bound submission ring in
+non-privileged mode, as well as exposing indirect ring state (such as
+ring head, tail, etc.) and the doorbell to user space, enabling UMD
+direct submission.
 
-Thanks,
-Umesh
+The target for this series is Mesa, with the goal of enabling UMD direct
+submission and removing the submission thread that currently handles
+future fences. I've discussed this with Sima and the Intel Mesa team,
+and it seems like a reachable target. Most synchronization will be
+handled in user space via memory writes and semaphore wait ring
+instructions, with only legacy cross-process synchronization (e.g.,
+compositors) requiring kernel synchronization (DMA fences).
 
->
->Thanks
->Riana Tauro
->>
->>Umesh
->>
->>>+        return 0;
->>>+
->>>    return get_engine_total_ticks(guc, hwe);
->>>}
->
+The series includes some common patches at the beginning to implement
+preemption fences and user fences. The idea of preemption
+DMA-reservation slots [4] has been dropped in favor of attaching the
+last exported DMA fence to the preemption fence as suggested by AMD.
+
+This is a public checkpoint on the KMD (Kernel Mode Driver) work, which
+will be tabled until Intel's Mesa team has the bandwidth to begin the
+UMD work. That said, the uAPI is very preliminary and likely to change.
+One idea that was discussed is a common user fence interface based
+around DRM syncobjs, which will likely be explored further as UMD
+engagement begins. Some work for syncing VM binds (kernel operation)
+with UMD direct submission is also likely required.
+
+Testing has been done with [5], and the main features—such as basic
+submission, dynamic memory management, user-to-kernel sync conversion,
+and protection against endless user fences—are working on BMG and LNL.
+
+The GitLab branch [6] has also been pushed for reference.
+
+Any early community feedback is always appreciated.
+
+Matt
+
+[1] https://patchwork.freedesktop.org/series/113675/
+[2] https://patchwork.freedesktop.org/series/114385/
+[3] https://patchwork.freedesktop.org/series/137924/
+[4] https://patchwork.freedesktop.org/series/141129/
+[5] https://patchwork.freedesktop.org/series/141518/
+[6] https://gitlab.freedesktop.org/mbrost/xe-kernel-driver-umd-submission-post/-/tree/post-11-18-24?ref_type=heads 
+
+Matthew Brost (28):
+  dma-fence: Add dma_fence_preempt base class
+  dma-fence: Add dma_fence_user_fence
+  drm/xe: Use dma_fence_preempt base class
+  drm/xe: Allocate doorbells for UMD exec queues
+  drm/xe: Add doorbell ID to snapshot capture
+  drm/xe: Break submission ring out into its own BO
+  drm/xe: Break indirect ring state out into its own BO
+  drm/xe: Clear GGTT in xe_bo_restore_kernel
+  FIXME: drm/xe: Add pad to ring and indirect state
+  drm/xe: Enable indirect ring on media GT
+  drm/xe: Don't add pinned mappings to VM bulk move
+  drm/xe: Add exec queue post init extension processing
+  drm/xe: Add support for mmapping doorbells to user space
+  drm/xe: Add support for mmapping submission ring and indirect ring
+    state to user space
+  drm/xe/uapi: Define UMD exec queue mapping uAPI
+  drm/xe: Add usermap exec queue extension
+  drm/xe: Drop EXEC_QUEUE_FLAG_UMD_SUBMISSION flag
+  drm/xe: Do not allow usermap exec queues in exec IOCTL
+  drm/xe: Teach GuC backend to kill usermap queues
+  drm/xe: Enable preempt fences on usermap queues
+  drm/xe/uapi: Add uAPI to convert user semaphore to / from drm syncobj
+  drm/xe: Add user fence IRQ handler
+  drm/xe: Add xe_hw_fence_user_init
+  drm/xe: Add a message lock to the Xe GPU scheduler
+  drm/xe: Always wait on preempt fences in vma_check_userptr
+  drm/xe: Teach xe_sync layer about drm_xe_semaphore
+  drm/xe: Add VM convert fence IOCTL
+  drm/xe: Add user fence TDR
+
+Tejas Upadhyay (1):
+  drm/xe/mmap: Add mmap support for PCI memory barrier
+
+ drivers/dma-buf/Makefile                     |   2 +-
+ drivers/dma-buf/dma-fence-preempt.c          | 134 ++++++
+ drivers/dma-buf/dma-fence-user-fence.c       |  73 ++++
+ drivers/gpu/drm/xe/xe_bo.c                   |  29 +-
+ drivers/gpu/drm/xe/xe_bo.h                   |   5 +
+ drivers/gpu/drm/xe/xe_bo_evict.c             |   8 +-
+ drivers/gpu/drm/xe/xe_device.c               | 181 +++++++-
+ drivers/gpu/drm/xe/xe_device_types.h         |   3 +
+ drivers/gpu/drm/xe/xe_exec.c                 |   3 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c           | 175 +++++++-
+ drivers/gpu/drm/xe/xe_exec_queue.h           |   5 +
+ drivers/gpu/drm/xe/xe_exec_queue_types.h     |  13 +
+ drivers/gpu/drm/xe/xe_execlist.c             |   2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                 |  19 +-
+ drivers/gpu/drm/xe/xe_ggtt.h                 |   2 +
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c        |  19 +-
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h        |  12 +-
+ drivers/gpu/drm/xe/xe_gpu_scheduler_types.h  |   2 +
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |   9 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c           | 177 +++++++-
+ drivers/gpu/drm/xe/xe_guc_submit_types.h     |   2 +
+ drivers/gpu/drm/xe/xe_hw_engine.c            |   4 +-
+ drivers/gpu/drm/xe/xe_hw_engine_group.c      |   4 +-
+ drivers/gpu/drm/xe/xe_hw_fence.c             |  17 +
+ drivers/gpu/drm/xe/xe_hw_fence.h             |   3 +
+ drivers/gpu/drm/xe/xe_lrc.c                  | 176 ++++++--
+ drivers/gpu/drm/xe/xe_lrc.h                  |   4 +-
+ drivers/gpu/drm/xe/xe_lrc_types.h            |  16 +-
+ drivers/gpu/drm/xe/xe_pci.c                  |   1 +
+ drivers/gpu/drm/xe/xe_preempt_fence.c        |  89 ++--
+ drivers/gpu/drm/xe/xe_preempt_fence.h        |   2 +-
+ drivers/gpu/drm/xe/xe_preempt_fence_types.h  |  11 +-
+ drivers/gpu/drm/xe/xe_pt.c                   |   5 +-
+ drivers/gpu/drm/xe/xe_sync.c                 |  90 ++++
+ drivers/gpu/drm/xe/xe_sync.h                 |   8 +
+ drivers/gpu/drm/xe/xe_sync_types.h           |   5 +-
+ drivers/gpu/drm/xe/xe_vm.c                   | 423 ++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_vm.h                   |   4 +-
+ drivers/gpu/drm/xe/xe_vm_types.h             |  26 ++
+ include/linux/dma-fence-preempt.h            |  56 +++
+ include/linux/dma-fence-user-fence.h         |  31 ++
+ include/uapi/drm/xe_drm.h                    | 147 ++++++-
+ 42 files changed, 1798 insertions(+), 199 deletions(-)
+ create mode 100644 drivers/dma-buf/dma-fence-preempt.c
+ create mode 100644 drivers/dma-buf/dma-fence-user-fence.c
+ create mode 100644 include/linux/dma-fence-preempt.h
+ create mode 100644 include/linux/dma-fence-user-fence.h
+
+-- 
+2.34.1
+
