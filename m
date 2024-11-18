@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA103D591A8
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 17:27:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 295CCD591A9
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Nov 2024 17:27:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70D9010E538;
-	Mon, 18 Nov 2024 17:27:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEDB010E53D;
+	Mon, 18 Nov 2024 17:27:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gtW4cJ2y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hejLUdgd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB48710E538;
- Mon, 18 Nov 2024 17:27:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 719D610E53D;
+ Mon, 18 Nov 2024 17:27:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731950849; x=1763486849;
+ t=1731950852; x=1763486852;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eO17UJigM8JTxlq4sWJZKudi6hLJrqL/9SeYrCwxlac=;
- b=gtW4cJ2yArNrfkztZvR6u1zqtQbhWGamuX3h1FMuMQ1Fxb5zx7YA7FBD
- yPVSQOIe27MApvghaqNjdzI5x3aaorYs3b4pEbVgpICAC/MmaXyKFgrCD
- jyQ2gUCdTeMAPN1MHS/lwymEXdqosjbHlQ+QS+hZagmOA4rRr8uKQ2om0
- Jd/p/rdgNqJevGVPj4XBYp9lP8TRFsTT31pyxsFc+Vv+Poav+JhJPY4kn
- /nonukCD9acIHc42ReQBRmDFWIoRTOuVfvTrbTAH7LzHa9Q2vdOIglPhO
- id+G8f+mMfxxTrRHTuXOnMMSRz5DCSxWax291F2tkQ94XoHbq+YQFge62 A==;
-X-CSE-ConnectionGUID: j+jGV0gOQY2BKa1l8M4WdQ==
-X-CSE-MsgGUID: xrMA59VQQWekyjYmgD8flA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31857916"
-X-IronPort-AV: E=Sophos;i="6.12,164,1728975600"; d="scan'208";a="31857916"
+ bh=IDvghJba7JjGPaVQsZq4GaUxd0zGSoYzKYUUvegtXB8=;
+ b=hejLUdgdcADmWAK9WAeP3869vPVJk6EzNYdWsySZ4EFfoB3d6T5TquhA
+ mcj1F5xIllxIDFoPhBdYk+Y+U32Pop28A+bDkcstmZ36aLOSCytRoZqYt
+ jet9Vz25UtKDEUm1PFM/owrOYpUxSnwF6wtwy0+fod3CpPVfM7XwX0e5P
+ tvKGVo2OtdxHD+UqiC9Y9Gd4xQyVdksxBl0wMul4vqTbAGnjZ7GxJEae0
+ LxKkWv6+3v1/toC928dy1U0hB6WbnFCRcBqeCFFeyV2SASyNU6WS2a08e
+ AS3BDrbU+TilpUBcYkG4bJx8xyAg0UHEA5LndfqXMgIcug1FfQH2kvv3v A==;
+X-CSE-ConnectionGUID: j/9mGTw+Ts+P3dp9COxI+A==
+X-CSE-MsgGUID: WNG+miycRE2G4NbX70HVEQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31857942"
+X-IronPort-AV: E=Sophos;i="6.12,164,1728975600"; d="scan'208";a="31857942"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 09:27:28 -0800
-X-CSE-ConnectionGUID: teoeYrojSlumkEs9n9r22A==
-X-CSE-MsgGUID: Bp6/ixM2QqinndpEZwmWsg==
+ 18 Nov 2024 09:27:32 -0800
+X-CSE-ConnectionGUID: XUvKaeFyQIuldwXlct2RyQ==
+X-CSE-MsgGUID: fuIxHbpiTEO3SKUXWXh1sg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,164,1728975600"; d="scan'208";a="94099938"
+X-IronPort-AV: E=Sophos;i="6.12,164,1728975600"; d="scan'208";a="94099969"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 09:27:26 -0800
+ 18 Nov 2024 09:27:30 -0800
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: igt-dev@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>,
  Matthew Auld <matthew.auld@intel.com>
-Subject: [i-g-t V4 1/4] lib/i915_drm_local: Remove macros added via merged
- kernel
-Date: Mon, 18 Nov 2024 23:01:34 +0530
-Message-Id: <20241118173137.1512581-2-tejas.upadhyay@intel.com>
+Subject: [i-g-t V4 3/4] include/intel_drm_local.h: Add
+ DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER
+Date: Mon, 18 Nov 2024 23:01:36 +0530
+Message-Id: <20241118173137.1512581-4-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241118173137.1512581-1-tejas.upadhyay@intel.com>
 References: <20241118173137.1512581-1-tejas.upadhyay@intel.com>
@@ -69,34 +69,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The uapi on the kernel side is merged, I915_ENGINE_CLASS_COMPUTE,
-DRM_I915_PERF_PROP_OA_ENGINE_CLASS, DRM_I915_QUERY_GEOMETRY_SUBSLICES
-and DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE  is part of drm-next,
+For now dump into intel_drm_local.h. Once the uapi on the kernel side is
+merged, and is part of drm-next, we can sync the kernel headers and
 remove this.
 
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- lib/i915/i915_drm_local.h | 6 ------
- 1 file changed, 6 deletions(-)
+ include/drm-uapi-experimental/intel_drm_local.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/lib/i915/i915_drm_local.h b/lib/i915/i915_drm_local.h
-index af0176500..dd646aedf 100644
---- a/lib/i915/i915_drm_local.h
-+++ b/lib/i915/i915_drm_local.h
-@@ -19,12 +19,6 @@ extern "C" {
-  * or local_ prefix and without any #ifndef's. Attempt should be made to
+diff --git a/include/drm-uapi-experimental/intel_drm_local.h b/include/drm-uapi-experimental/intel_drm_local.h
+index b48c9e219..40e8dcc43 100644
+--- a/include/drm-uapi-experimental/intel_drm_local.h
++++ b/include/drm-uapi-experimental/intel_drm_local.h
+@@ -20,6 +20,8 @@ extern "C" {
   * clean these up when kernel uapi headers are sync'd.
   */
--#define I915_ENGINE_CLASS_COMPUTE 4
--
--#define DRM_I915_QUERY_GEOMETRY_SUBSLICES      6
--
--#define DRM_I915_PERF_PROP_OA_ENGINE_CLASS	9
--#define DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE	10
  
++#define DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER	(1 << 0)
++
  #if defined(__cplusplus)
  }
+ #endif
 -- 
 2.34.1
 
