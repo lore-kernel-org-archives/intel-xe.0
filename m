@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56676D6C2B4
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 22:03:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39AFDD6C2AF
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 22:08:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DD2610E371;
-	Tue, 19 Nov 2024 22:03:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9E6E10E371;
+	Tue, 19 Nov 2024 22:08:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oCVCnRNh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QHJw2s4h";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF72F10E37A
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Nov 2024 22:03:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80E2210E371
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Nov 2024 22:08:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732053797; x=1763589797;
+ t=1732054117; x=1763590117;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=m4lVrYIg9e1SpQHuw7yT5QQMnCmkHcE8Oos5wlGUN7o=;
- b=oCVCnRNh/4rGb8NiFy8JGhz7XRjSABAkFrvtVQ7//Uh3SrN/gCJO9I8x
- WLNNw4Y4z43voYeIqmgOcMddiS12hq0n3aNP1Ru9biVfTeoRp5ytfNVca
- X4ILTHDsfs8YymnhTMj2y62WBZODQl70aAw9Mty6ByaP442jVgj8opoYO
- MJ59Ffj07BxPV+/P5A7sV54veJw8sd7BdjyfaC+AMtzjdAcLnna1m5LCW
- rbdmFDN4M8KMd2QbqFJ0YcMmCi9M//P9FbU1bmXOwxP0m1r0GTrrZkNf8
- BXubeTEErgpf96mR8cHWfF6kEzzMN7/uC5qDZ3rrPwAPzv1hi5FK35vlp w==;
-X-CSE-ConnectionGUID: KwXNT5DwTvGsUrA1etKdJw==
-X-CSE-MsgGUID: OdxVW15ASQa4N0XYAdw0CA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="43152669"
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="43152669"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 14:03:16 -0800
-X-CSE-ConnectionGUID: yRiyoxRBQkKvvQ2RG9OviQ==
-X-CSE-MsgGUID: R7DgQ3SGRGaFeb9GzqNlPA==
+ bh=rkqkTXKC1v+D+pAH9SQVHFLVMJgq8SA6pEdSFG8ruvo=;
+ b=QHJw2s4h046zWPNgTmqyumq/RZBkJYS14YbnVqldO/6nMJpzocx+3383
+ h4NlXMi+xnppQXaKKosuPHaeXrLRLZUuIvaeGvixHGlsRD+pCwUtzCGIe
+ 3dFNsv+hQ2hoaSYpFk1pTV0aqKHTgbsNhPzJ/ZytQarwIjM6PVOhNXoqE
+ HXeJrCcYOSbhn00hz3k/It7dXL1/2N7tiWvxpjaE/FjtqMbJ+F92kr0bK
+ TQGM3AelkApvUnFUTEAWOlpGykcO60EHv4HCLVgFsVS1DFzAWwq2Gmbox
+ uDA0TczP5eVf4A2L8VFMcKRNijpOYF57Uj32r8GgaAJZO9kGsnHfwQsxN Q==;
+X-CSE-ConnectionGUID: fyQPeX7tScSfExC1Pm7+Ag==
+X-CSE-MsgGUID: Ovv5FcN4RASyGYU+Bt/CyQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="32333740"
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="32333740"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 14:08:36 -0800
+X-CSE-ConnectionGUID: lZ2qMAooTp63+8tI8Iv+mQ==
+X-CSE-MsgGUID: N4Q8CfknTRuckSi27pFaOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="120649646"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 19 Nov 2024 14:03:08 -0800
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="89698484"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Nov 2024 14:08:36 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 19 Nov 2024 14:03:02 -0800
+ 15.1.2507.39; Tue, 19 Nov 2024 14:08:35 -0800
 Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 19 Nov 2024 14:03:02 -0800
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.177)
+ 15.1.2507.39 via Frontend Transport; Tue, 19 Nov 2024 14:08:35 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
  by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 19 Nov 2024 14:03:02 -0800
+ 15.1.2507.39; Tue, 19 Nov 2024 14:08:35 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PmF4PUnyK8hQ/3ogYJ2rp02xShtMm20irwMZ9+KPWZj0q4hv45ec+7a1CJeX/7Q9PKBsGSN9Bf9vuGiF9RhUtWXf3JuCgFXHSRf2cNe0ePAZDHvTitOKvNmpNW4RVC/sBqasEudJ4LsvGn+Exn6xeySDzS9yCxFNNmlsNcvhMlffNTuP4NVMBIlOGqURRDgEjzAbtAOak+G/C3CuKOo5NiuwREMCgwjaDIU3/aOKiliR4JPvcc6ilstUmUr98xnQyYaUm+u+5qnMUmDH1yo6Pc4u7prPSfo+b6Yn18nBX594rfleuKXeX2nmSNl2flgouhLH0lvaLe+NJ3+O7uvrBw==
+ b=dNnGxJntndy6l0GCTmCkeLv6gYMGgmIN3JNSmstdFm/fMcz+HH5tiFnKV8m+APiSWzyGUS1s9AorTMO6V7zbIVbzfyuhy0oo9/ry2LBsXAZEjUC1BL8iLdjHku942h0SArJjzkksH/g6rMlg8xsPDqVjlC3izk5S9j/ltFdqC3TZ9Xl506LlnFPmMyuN3JOcqikCZ87q35j29hUEbN1OWU9O/LRUKG5r623mTyeapmFGiYbEtbdm25f25RaRGHbGd71bD1K7kgrHetXxMoBVVyfEJXD3QWuMkmroYndy5r5lMZqwA9tPTKZSipAMoJhIFPQaGVHrcXg8e8X/zZm/Fw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3KN016gt1aAc4UMZ71XHlfRla+igCSXG+infQYyKVRs=;
- b=CITeq2TajYYFtkucalnmG7k9ytv6M6NQBV7ywRiqPeNrC9P9OASZv9CWuVJogY5Q7VIB3XdT+fYd4OFy5QkG7TYXD15tWLKuYrwdlxAFiUjnJ9gkjLv2HTgqc9pSAmAzDEKScDLG0uZSGAyrHrfW1Cv1lm0CzepmykM4I/vUkd6xkFagrdr2kOLzhdhh/tUVTGRe+SbxOvh2PkVHa2y8GFui00lvXgCxj/lCZTvLmRmJRHb9SFZketwMRLVOYKA6Cg92F2T3PzEW7ohAEMYaKAY3OkWSYWCFplcechT0PX/LwkLvFND9AAsG5aTVQ0qFxMWKPzb0TpiMbe30kip3LQ==
+ bh=PCduPR0DOu4VFNFOZHM4QUg3YOoPvsdmcGyah1h/2+k=;
+ b=gj+gtRYmU9FpaEWyad4BV1MmhCIU5xsqx4jan4UD4krkJU8jRGrA6ZYJjP/kxA1qRw78MvAEr0t3E41ejL+uGOWvmjphV36U3Ziz52oOSd/S9B6QO1GIxgcA9gf58ZfTatHH4HvLBn3POXYjbBhyPvZuVlFgoBauxNkE+G9fRU18cWAvRRSgIjx+3hCNSgJJO3+zXKyRg0cURo7owl9yVU47fQKYsxHT7cZN8XEuLyCDRkeWirFAU819abOnG7dnL/b8Xe6Qq0UVTe2k3USS+8uil80JrPuMHHoH/pWztfCImq7s9ULB6T21D3mTzpReeOojRHNKkuhW+oqgZSy9GA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,98 +69,99 @@ Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
  by DM6PR11MB4610.namprd11.prod.outlook.com (2603:10b6:5:2ab::19) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.24; Tue, 19 Nov
- 2024 22:03:00 +0000
+ 2024 22:08:32 +0000
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::1a0f:84e3:d6cd:e51]) by BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::1a0f:84e3:d6cd:e51%3]) with mapi id 15.20.8158.021; Tue, 19 Nov 2024
- 22:02:59 +0000
-Date: Tue, 19 Nov 2024 14:03:34 -0800
+ 22:08:32 +0000
+Date: Tue, 19 Nov 2024 14:09:07 -0800
 From: Matthew Brost <matthew.brost@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe: Drop useless d3cold allowed message
-Message-ID: <Zz0LNv3K3fEm/o8R@lstrano-desk.jf.intel.com>
-References: <20241115192155.2050987-1-matthew.brost@intel.com>
- <ZzfCwCZr0byTqGj1@intel.com>
- <ZzfYK1jr6KTGxR0c@lstrano-desk.jf.intel.com>
- <Zzzd7FO-z9Q66Ugi@intel.com>
- <o2qvrowghi5shepavwjzb6utpioyj2neqfbr45eny54fqrga3m@trovhcv4hoof>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Umesh Nerlige Ramappa
+ <umesh.nerlige.ramappa@intel.com>, Jonathan Cavitt
+ <jonathan.cavitt@intel.com>
+Subject: Re: [PATCH] drm/xe/oa: Disallow OA from being enabled on active
+ exec_queue's
+Message-ID: <Zz0Mg7gL2mQT8ZPw@lstrano-desk.jf.intel.com>
+References: <20241119013256.680030-1-ashutosh.dixit@intel.com>
+ <ZzykYzGwr1GXSqoV@lstrano-desk.jf.intel.com>
+ <851pz76ie6.wl-ashutosh.dixit@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <o2qvrowghi5shepavwjzb6utpioyj2neqfbr45eny54fqrga3m@trovhcv4hoof>
-X-ClientProxiedBy: MW4PR03CA0174.namprd03.prod.outlook.com
- (2603:10b6:303:8d::29) To BL3PR11MB6508.namprd11.prod.outlook.com
+In-Reply-To: <851pz76ie6.wl-ashutosh.dixit@intel.com>
+X-ClientProxiedBy: MW4PR04CA0069.namprd04.prod.outlook.com
+ (2603:10b6:303:6b::14) To BL3PR11MB6508.namprd11.prod.outlook.com
  (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|DM6PR11MB4610:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2a303e8a-2ad8-4e5e-eda1-08dd08e5ee40
+X-MS-Office365-Filtering-Correlation-Id: 84712e49-e2e6-4065-1172-08dd08e6b497
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?U4x95cQ6agQWU24rdxhdCIFD7OXzd5XINVJJA8EK9DPQe3sey9edZQwZ8lQ7?=
- =?us-ascii?Q?X2cQpXW9il7bNvgTBdx/CB9rdxAUfvOaJXiqCqrYC5ffbjYHASfaVql5qHJl?=
- =?us-ascii?Q?nq2hQKSGFpgsLNsB1i6uryJZXdh37YqGClPaEudYiMQojK2nLf5UQvYTuMzs?=
- =?us-ascii?Q?wEMgvP99EpzF7Uv3CHHOYkfKzbpjaqGDGkeNBx+j0NPgFL+Luw07D+TF7OHJ?=
- =?us-ascii?Q?KKX9grqFB+xrj16y+7leLrL4VZx5IyczkkHE2TWVDd445zs5IE5RLARMsupG?=
- =?us-ascii?Q?jxoyaRY0cI84cLVmL2XSbuh9rkCgbWtc17a/ykoUyoYo2QNtZp0wUCEYUu0F?=
- =?us-ascii?Q?2q6HC9Ton4TR17OytA/9Lc9jLK4oK17xi++/IaD0p/44yHQ7eIdDEO7JcJ8Q?=
- =?us-ascii?Q?HvrwCvT2aLIXt5Zv3mEFwUmQTIShTo8qBNRqPfdMPFpdvYFmFibF3jWQ/NpX?=
- =?us-ascii?Q?u/gRqJN1vPeetdEwrcXhdwJoFYLZyTGwp45PT1ulFNE7gZPdQdAw7MsxaCx0?=
- =?us-ascii?Q?po22kNKNreM7XeZEfSw3z7n6V7nPzOmKPBcaeEtYBm7REVUbADb2xIjQFYsP?=
- =?us-ascii?Q?1zdkBC/O0igXSQ0H+gglj+ECPrj37belJyFN0AGJM1Otg7d93TN03Us9OpLA?=
- =?us-ascii?Q?cDc6RGEafJkTPDpeB1FkG0id2WX+mB3LsCVwbQYHt9sAcbB2COuhAZT6yysY?=
- =?us-ascii?Q?EXffsvSrl/AJrREMUFZtKYeXMVs0M1ybIzI/hL4T6gEcI0sIL+t558XhINss?=
- =?us-ascii?Q?t9btsU3y5P6xZRzud5WOEmCvh+MHqpgiLn+0XnPvcX8QcSk/rJh0WansDU24?=
- =?us-ascii?Q?lF76c1hqDv532icbpsziAvYj1RLoF3j1q55OUzjc+BV857Tv6o6g1Q9UfNGO?=
- =?us-ascii?Q?I+76a9E9ykpLrJvFgijsYxoPg41KmqFWAIN97nYIPqOvpUyNR3GylFAjdkYf?=
- =?us-ascii?Q?dGU9z8E/NmyColEcvMebC8ZKCkVVTrftXCHJxglyZjHI/zmR/l5z3+DPxiHw?=
- =?us-ascii?Q?y8vO6GHHD/deszwpwA7xuQyLToooTJGf2I+MjJA/5u7R7WJse2BJA9gHW0vp?=
- =?us-ascii?Q?WQ08INMoUbuH0HFWq6F1sBaqjpD9+kq215bYaRxjzFijRbvUx+6HUk9jI46V?=
- =?us-ascii?Q?f2YD9ctbSbNGdwNvlxfRvro8FbjwFB7EQhEIv33TnbATMgffRthq39MHj6jV?=
- =?us-ascii?Q?rGmUOAEb2x8WuDZxko9zukxpMk98EnDa6sD1p6xmFuykEVHRSGZR8yPGT4Jw?=
- =?us-ascii?Q?R0jdbE2mEbIDjnBhrnpA/Zs0yKLJNIbdLAnEE3Ye1yn99CjdbAodMcDtgdij?=
- =?us-ascii?Q?9pu0UUPYIqDMXq9VvXNWsshj?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?gHutEViofJON1N7ay7/scN5YOBREUl/RhJBIkUsv9QSK4R7V1wgMByX1Uqtp?=
+ =?us-ascii?Q?IcxljEjK0GK/IfJywgdLIjpuwJrLhRgePQQXW3Ib9UuoBEx0Wp/0tcLbWNqY?=
+ =?us-ascii?Q?S6nSdt/t6gaTzR2ycTKhh95umynPmTugYHPuswY6ddvc2WvYK+T2+xQRSOv/?=
+ =?us-ascii?Q?HLjhATveP6wWtRffMnDQIfEu/eyeE4/lr4+9Ygmd1i/j1dNvK6hWZ5bo0lal?=
+ =?us-ascii?Q?PditvtTHENOZPpmbjOQYhl0PrBiLNjGpMGm8sWZuWvA1eyYsX3UxngKyUq4i?=
+ =?us-ascii?Q?qLRM8nfgQp49i3kvhYZBKWt8eM+zbSPXSFTKkvfUrolYm79GYqJjQgF8LnXf?=
+ =?us-ascii?Q?Hv+hSrvmCabuX2qWAvZhqE6XsUSXkE9G4KS2w0rANq7Ar5bzeYrQGKGMy5X+?=
+ =?us-ascii?Q?gVtDhH0XX6DBjS10WavJF5zIQN8FygBDZrCbOCe/FLXXyJGAB2sfzJC3eXrr?=
+ =?us-ascii?Q?bm55QQU0Za3zVdxUD03TLoERjSY84NFRShE/t6AuAkpoiFne9PixwPHMz/sI?=
+ =?us-ascii?Q?RzX/9woQdkHVo/NdgjiXHKyQ2OBZ/TWucrJWZR4b7+YRsXP8hFbH01r8PNw3?=
+ =?us-ascii?Q?oHFVCF9hvyDtJZs0DrkEikgfqiN0ZWlMxdbCpqsKF6ehb5DIzVfQnnU0DB9z?=
+ =?us-ascii?Q?tFgoztGj1AP4v4DMM3h9b0TfwXUq2oc+MXImG5VEnWywKOB0RMtw5qWbos28?=
+ =?us-ascii?Q?NMKhOoMOSBhAmBguJIS9akXEXkfbiQnaJBEmMLEDbz2xpkdCjN9E3SSwjkUW?=
+ =?us-ascii?Q?iMCHd4nv7FkXLmygqgy9UOuRc5uItj5klxiF0H8aNbloIa8AtwJZvpSKC58i?=
+ =?us-ascii?Q?AfCjgdYgXnnkNK9Ppf6lSc8R6PVyPC6XBJrKNp6SzVVMR1F3zyDVZpptEpW3?=
+ =?us-ascii?Q?hYuGE6UtuP+4dBvTdpf3tvj9sCZLx+EEDW5fy9TgZvqtySpBgfQZPIfpCK4F?=
+ =?us-ascii?Q?Dyx8vUSibiNOZ1/yQEVpZnkbke3V/SvwzzycTOwF3iwMe6SIQ8PBwHyTTQ92?=
+ =?us-ascii?Q?gJOhhKKYUFxfr9FyfrbKXxUTeBR2ri40JghvavY5HWVKCx1L/+R9RYvNsGna?=
+ =?us-ascii?Q?ZBDGc1szT8oYUU0ZHQNX4U8+EnMZ3/SIZTkk3YXBJGAk45lEb8Zbqw4fMmN2?=
+ =?us-ascii?Q?jPmLT+eCUO/95bW3hrcoWvfsrdlMzsmoPLQ/2anHHMiuj/0AIIpaY2V6M7E3?=
+ =?us-ascii?Q?qbxJgf9nC58eYnci5UD4yRv5gzFnoE88MJ3qZa8sWONuRd1/C3x2OIMNRFgp?=
+ =?us-ascii?Q?DwuaqDi17V7avcIrho+y4rWPMv2MSZu+OvLn0YwjOq0NHomD1Zz1fzJKzNA6?=
+ =?us-ascii?Q?6T3t1pkBnRsYoy9xQ7rSTExV?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?VyOpskELtdRHXYpsrkA+PzqYe6OZwq5x/tOJ09FBzHzPuGle4C8ucFV9+Soe?=
- =?us-ascii?Q?Cj9gOduZ5Vj+xNG44PjFjRZehi/f1G0LydkmeqGBDMpBI1QXmXlIaJP+8lCx?=
- =?us-ascii?Q?PpChY/Xbx4XgCuFf/c/4sAaKbNxUBInpE4LQ6V9dOhUkKe2XATNTcVCY+5gQ?=
- =?us-ascii?Q?Lju85SY2Y/PTWp8PG4S0glRayX4p8ghOt4j69yg2zGnj4HDkYEzjYi5Fv7Hp?=
- =?us-ascii?Q?SHgk8kdE4L5MTZdingjR2ocCk3qu9LgkHS0jDfY1NwkaACC+34odzisgEu7N?=
- =?us-ascii?Q?Mjc1z6erWEn5FEZI2JwPPhhn3h6rhfIjBbd8V0HFZagSd/ooyQzoIj9sds/V?=
- =?us-ascii?Q?44pqPSZ8ncsiRNbf6OmvbZ9XbMYHsVHEFq6raKs/s0kSPGjuLOM/CGX8uTPh?=
- =?us-ascii?Q?zhyK4U+nKUWa57zlpdkdf5SqmQX78hewHtyjq+zir4DfQ4FtuUDubUr9/wZy?=
- =?us-ascii?Q?JVyN0mTynmNQpi6lWbZIABDWzg5SEqHL3hQeZo+uVGOB9207PKMhMw3FtouD?=
- =?us-ascii?Q?KonfQqUTzq26+b76mEoszlIlRnVdyqAGga50qGNQ64InKG1zka057XatV60i?=
- =?us-ascii?Q?WyylZvEZNWEUbC4miklk5m9oenXusC/YCPitYUNiI+DW53SJ8am3XwwRaYxG?=
- =?us-ascii?Q?f55km9FZRTXfgsM8oEggFZ5KfGmX8u747BzRHKx93eTwfNuR1d2PxLy3inIu?=
- =?us-ascii?Q?1Ur+Kz2kt/YbYjtSysrgKJS0p5JV431maTKSd664b8K8feh2B7Qihh0zA7q2?=
- =?us-ascii?Q?fozKd96uCxjSOe1gDU60ZmkxndohFtI1aDahMAy7hMdmW3tqaXwC8p6kOVmn?=
- =?us-ascii?Q?OfgWnZDk0Z5pRmm5gu4KA68cW7Dt/HTxEJdhSLUM1rXmduhYlUxgqdrU07ve?=
- =?us-ascii?Q?98B6t/ERTPU6Cy5IhMv6Y5gKC43fmCccPC78uxyOqRZCqfay/5uJEVRmpKuB?=
- =?us-ascii?Q?YQRTw+GVWeyIzLjs4lilmx0phuqiJh8e7tiE4t/27seW3YaGpMTTu7soTBGi?=
- =?us-ascii?Q?e5ZIr6kFECfk2pb6JCLDB9Qf6xi9/sAbA1/xZYww2GwRPtr19gLrS8Ji9a3L?=
- =?us-ascii?Q?HCUuppmjxLplYZ4eF9QMm4OPUb/p3ztg4yTkxGirMzgjfD0CH+ebUeF12kno?=
- =?us-ascii?Q?eIBtfobYHnuxxHjPbe+EizjIiFIWwJQGQX7BVJzbWxrBp+5ViGax51y02tBe?=
- =?us-ascii?Q?EWLqbrkKUq6opxIaKErylBFhTaJotnYPbbdHr9k9swb53s1Msw/geTo9FM6L?=
- =?us-ascii?Q?drNmN7UW5t9djaV/7VMqaBTn0y5mcC80XPNUD5oncVMXUz43qN7ZkI1rATWq?=
- =?us-ascii?Q?gMtYF8IbR1X91D4q7vNjdxF/0Pqmyk1kyWw9D8yZ+wUA9MvRM0TyZpu4q/on?=
- =?us-ascii?Q?F96jqBw2HJCs3hJ+jpGFBc7FA911YIQcQqG8XT6WcELob1iRhgyeqkXLaINs?=
- =?us-ascii?Q?pyiL44GLyzk7xECqr5cjPwCTCcTu0B3gUQOC7ULJ9jGBM+dE7kCQltktrkj9?=
- =?us-ascii?Q?LdaC6ppM2LQfZvse6RPNolY1TPU4YAPMstbv9qJgi2F7KekV6v/l+8ICnYqP?=
- =?us-ascii?Q?ZCTdg6hh0bb6wKSJRrWQ0JlloHwfbXpP710ZMDsU64uaVpU4lzEx804dkhA8?=
- =?us-ascii?Q?UQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a303e8a-2ad8-4e5e-eda1-08dd08e5ee40
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1KEZmtQ9YM1i10wYhzO87xaFa6udqHVY9lVFitNn3pRjUuXspcX3StzxtNaZ?=
+ =?us-ascii?Q?JEcuBUgMCISkpRZ8JeRNnSX1+FirySBrM32VggShPXQzl/v0EWGCmXGytxvw?=
+ =?us-ascii?Q?LHxbRaRsyUWt71zC1+7YEoSIbN9/CpMklZDv4IzjqXHyDonl+G6lw5CUyXyN?=
+ =?us-ascii?Q?akDsBly/2rTxLeqh5fWfJ75O5XgULHbQl2fpVnCg+wWtlaky7P3WM6cG791J?=
+ =?us-ascii?Q?Nv6LGpjxAKOqsVic4Tegejd2xA3K7h0UzPA817+SsXAwovWVU8L9Xdz71Om0?=
+ =?us-ascii?Q?3BCEAcy0dxix6PX/lkQXXUnlqocqP6JcAwDUPJNpGB5P0Xa0iSHA/FhE3n1K?=
+ =?us-ascii?Q?fQNc+Ybdv1/l9av6iwT6RqD1a8tGmZq3S2c8NDM/UApyhM/af5Y44Gtv00+h?=
+ =?us-ascii?Q?uDRWrwMWH95EUt2ZUb5oBUvz2hNp+VSQwfm8RXVqX9LvB+4RUVaSacQtoLzO?=
+ =?us-ascii?Q?OUFXt4ofpWX4TD/IggaD5MnZmE0G5RiiViG0Mgw4xL5VL36PssAYYoLdGF+0?=
+ =?us-ascii?Q?L3wFSjtnVYfbplnvdjD9bMRu8KkZK0831C/w+o1GvQY/mLdoIQSv3/XiuLy9?=
+ =?us-ascii?Q?mXmyQA6gWqifMDFhv6ksmPMcWbqXs3THWKEylz+LiLW2tk3OcQVq5mq1DGtc?=
+ =?us-ascii?Q?Vz0Wb8XJynnpSNkgaDbXKjhUx3MqpNv8kgWNtBd0QXMHuY9TJOPUS6BBE4F7?=
+ =?us-ascii?Q?3HHY7K0FwTxPVhLNM9jZiRlkB3GMcu2cXdQB/6l+DzvQm+FXA8VVbKtUOmn8?=
+ =?us-ascii?Q?XOZQsOs5zxjz3a7xN4Eew0zZii6jFc5BxZTKy3fO6i+VvBomdrtGtDaSqpfq?=
+ =?us-ascii?Q?cwdtbznOrZN39N0AixVP31ysfGaDIb+sE8myfrSX+ogBfJw0kyzD4ejSk5WN?=
+ =?us-ascii?Q?2sQ5YcJza7qpUNpkR8eaNa4ZMa9hphu4qFWpKugkjZsBeBKy/m0v8r6hezPA?=
+ =?us-ascii?Q?b/V7zXDcYjKQsfJ7BZlnNweqk9J/nfg4ryC2iHNfuKKRDubqQITMcHZ1txyI?=
+ =?us-ascii?Q?KKYq/UUZjNNuHaLkIWVP3vQ3C8icazYzHARfFEYnDZPv/P2HDmHwnaFnS5Q6?=
+ =?us-ascii?Q?isgorsm4U5XhNISnNI3w0y8j/nt8x5ZJ6VKADJHY9s2FdhL3fub9Dj1eCBLi?=
+ =?us-ascii?Q?ibQtEdw7yDhPJn+Zx9fexAH+4vMpPCx6KE0OPG6AL+WszIlRhFFy8UQ6skOh?=
+ =?us-ascii?Q?9LXtRxEYbYKUWWTvzL5IJtMaehfup2hXIG5K+wOzfSARlzrg3GenR8ohFu6N?=
+ =?us-ascii?Q?FuhrB1uw/kcwVbI19FYCE2GLTInsARNczfDf+waWw0oCkqo1CqZ9bwaCUYGf?=
+ =?us-ascii?Q?aUevLiTobkp2RguxACOkDdpmYUqZL2c334xnRVlQbeV05WfaE8kPCoqGFkeP?=
+ =?us-ascii?Q?PzSryJeAoX6nlil7zjD8N9aGg7Uox+jVU0QZhYcBzphHHlTvkOUqlzL3nwFj?=
+ =?us-ascii?Q?76j+qpPJgE9Aelv85FZgpVF9Vl5JwWHI/ecwtLxOfQl/yA3n2C6sAv9p0her?=
+ =?us-ascii?Q?sK2pv4qXgtRfkm6oOInFbOQiTHc7w/8Tc+1LqddSFOAC5KL/cVKyOBu4NdFh?=
+ =?us-ascii?Q?wOPRIqgz8gPXdspe1ATEs+W9qJtrcJJ0khVt2wnaVvst7Mlo8zJf3d3iwV5y?=
+ =?us-ascii?Q?6A=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 84712e49-e2e6-4065-1172-08dd08e6b497
 X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2024 22:02:59.6627 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2024 22:08:32.3492 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4G4a1HyWqitUNWYLBMTaY74MTADFOKsESuq/h4f956gtAvvAMimlT9qp0mSuDbewntk8Bc5KQAKZXe3uY7vEMQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: lvrxDFrvbtnrBzqGurtxPsp12rnoXgwLgA+NPnbW/ZAANUOiTX6A+elcteugyhPBBvFyZHIH6p2p1P9hQNRMmA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4610
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -177,37 +178,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Nov 19, 2024 at 03:01:48PM -0600, Lucas De Marchi wrote:
-> On Tue, Nov 19, 2024 at 01:50:20PM -0500, Rodrigo Vivi wrote:
-> > On Fri, Nov 15, 2024 at 03:24:27PM -0800, Matthew Brost wrote:
-> > > On Fri, Nov 15, 2024 at 04:53:04PM -0500, Rodrigo Vivi wrote:
-> > > > On Fri, Nov 15, 2024 at 11:21:55AM -0800, Matthew Brost wrote:
-> > > > > This message just spams dmesg providing little benefit. Remove it.
-> > > >
-> > > > I don't believe it is useless, but I also hate the spammers...
-> > > >
-> > > > perhaps we could bring the status of it in some debugfs form
-> > > > as a replacement?
-> > > >
-> > > 
-> > > ftrace could an option so if you really care about this enable it there?
-> > 
-> > hmmm it looks like a good idea... but no strong preference from my side...
+On Tue, Nov 19, 2024 at 01:08:49PM -0800, Dixit, Ashutosh wrote:
+> On Tue, 19 Nov 2024 06:44:51 -0800, Matthew Brost wrote:
+> >
+> > On Mon, Nov 18, 2024 at 05:32:56PM -0800, Ashutosh Dixit wrote:
+> > > Enabling OA on an exec_queue toggles the OAC_CONTEXT_ENABLE bit in
+> > > CTXT_SR_CTL register. Toggling this bit changes the size and layout of the
+> > > underlying HW context image. Therefore, enabling OA on an already active
+> > > exec_queue (as currently implemented in xe) is an invalid operation and can
+> > > cause hangs. Therefore, disallow OA from being enabled on active
+> > > exec_queue's (here, by active we mean a context on which submissions have
+> > > previously happened).
+> > >
+> >
+> > This is something we will need to keep on eye on then because in various
+> > experimental code I've played around enabling exec queues upon creation.
+> > e.g., If we want to allocate a doorbell. I seem to recall Habana wanting
+> > to enable exec queues upon creation too.
 > 
-> as long as we are talking about adding a tracepoint rather than a plain
-> trace_printk() unconditionally.
-> 
-
-Yes, trace point rather than trace_printk as that would just spam the
-trace buffer.
-
-> with dynamic debug we could use a verbose level that is only enabled per
-> file when needed. Then we can keep messages like this rather than
-> misusing the trace buffer.
+> The real requirement here is that HW context image should not have been
+> loaded before OA is enabled on the exec queue. That is what happens today
+> in the ENABLED state, correct, when user space submissions start?
 > 
 
-'with dynamic debug' - Can you explain what you mean here?
+Yea, that is the current flow. If we change this to enable an exec queue
+upon allocation we probably could check for ring head & tail == 0.
+
+Also note LR queues with preemption fences do toggle the enabled state
+too. Does OA apply to those queues? If so, a registered check may be
+better than enabled or maybe just start with ring head & tail == 0.
 
 Matt
 
-> Lucas De Marchi
+> If operations such as doorbell are only management requests to GuC (which
+> don't cause HW context image to be loaded) and if we can name a new state
+> when the exec queue is handed off to userspace for starting submissions, we
+> should be able to stay with this approach.
+> 
+> > Just curious if it was ever explored having exec queue creation
+> > extension which enables OA? It seems like this is something we may need
+> > at some point if our exec queue creation semantics change of course
+> > being careful to not break existing flows.
+> 
+> Yeah I did think of it but didn't want to change the uapi.
+> 
+
+Makes sense.
+
+> Also, a different implementation is possible which avoids this resizing of
+> the context image altogether. It requires the kernel OA code submit its
+> submissions on the user exec queue (and use that exec queue's VM, currently
+> OA code uses a kernel exec queue). There are some reasons I don't want to
+> implement that just yet, but worst case, we can do that if absolutely
+> needed.
+> 
+> Thanks.
+> --
+> Ashutosh
+> 
+> > > Transition from 1 -> 0 for this bit was disallowed in
+> > > '0c8650b09a36 ("drm/xe/oa: Don't reset OAC_CONTEXT_ENABLE on OA stream
+> > > close")'. Here we disallow the 0 -> 1 transition on active contexts.
+> > >
+> > > v2: Don't export exec_queue_enabled, define new xe_exec_queue_op (M Brost)
+> > >     Directly check OAC_CONTEXT_ENABLE bit from context image (J Cavitt)
+> > >
+> > > Bspec: 60314
+> > > Fixes: 2f4a730fcd2d ("drm/xe/oa: Add OAR support")
+> > > Cc: stable@vger.kernel.org
+> > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 ++
+> > >  drivers/gpu/drm/xe/xe_guc_submit.c       |  1 +
+> > >  drivers/gpu/drm/xe/xe_oa.c               | 13 +++++++++++++
+> > >  3 files changed, 16 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > index 1158b6062a6cd..b88d617c37b33 100644
+> > > --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > @@ -184,6 +184,8 @@ struct xe_exec_queue_ops {
+> > >	void (*resume)(struct xe_exec_queue *q);
+> > >	/** @reset_status: check exec queue reset status */
+> > >	bool (*reset_status)(struct xe_exec_queue *q);
+> > > +	/** @enabled: check if exec queue is in enabled state */
+> > > +	bool (*enabled)(struct xe_exec_queue *q);
+> > >  };
+> > >
+> > >  #endif
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > index f9ecee5364d82..b9b9cdb6f768b 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > @@ -1660,6 +1660,7 @@ static const struct xe_exec_queue_ops guc_exec_queue_ops = {
+> > >	.suspend_wait = guc_exec_queue_suspend_wait,
+> > >	.resume = guc_exec_queue_resume,
+> > >	.reset_status = guc_exec_queue_reset_status,
+> > > +	.enabled = exec_queue_enabled,
+> > >  };
+> > >
+> > >  static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+> > > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> > > index 8dd55798ab312..4a7440c40978c 100644
+> > > --- a/drivers/gpu/drm/xe/xe_oa.c
+> > > +++ b/drivers/gpu/drm/xe/xe_oa.c
+> > > @@ -2066,6 +2066,19 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
+> > >		if (XE_IOCTL_DBG(oa->xe, !param.exec_q))
+> > >			return -ENOENT;
+> > >
+> > > +		/*
+> > > +		 * Disallow OA from being enabled on active exec_queue's. Enabling OA sets the
+> > > +		 * OAC_CONTEXT_ENABLE bit in CTXT_SR_CTL register. Toggling the bit changes
+> > > +		 * the size and layout of the underlying HW context image and can cause hangs.
+> > > +		 */
+> > > +		if (XE_IOCTL_DBG(oa->xe,
+> > > +				 !(xe_lrc_read_ctx_reg(param.exec_q->lrc[0],
+> > > +				       CTX_CONTEXT_CONTROL) & CTX_CTRL_OAC_CONTEXT_ENABLE) &&
+> > > +				 param.exec_q->ops->enabled(param.exec_q))) {
+> > > +			ret = -EADDRINUSE;
+> > > +			goto err_exec_q;
+> > > +		}
+> > > +
+> > >		if (param.exec_q->width > 1)
+> > >			drm_dbg(&oa->xe->drm, "exec_q->width > 1, programming only exec_q->lrc[0]\n");
+> > >	}
+> > > --
+> > > 2.41.0
+> > >
