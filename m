@@ -4,67 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52A62D591A5
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 17:21:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6E84D62077
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 17:27:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E40A710E697;
-	Tue, 19 Nov 2024 17:21:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eTHvtJ36";
-	dkim-atps=neutral
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
- [209.85.210.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6858310E695;
- Tue, 19 Nov 2024 17:21:30 +0000 (UTC)
-Received: by mail-pf1-f171.google.com with SMTP id
- d2e1a72fcca58-7246c8b89b4so3907070b3a.1; 
- Tue, 19 Nov 2024 09:21:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1732036889; x=1732641689; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=a6KLEWYZye5Sq732J3G8kWJR4LNQs6UUiyLg6FE31xI=;
- b=eTHvtJ36csgqcJZmCsFx5dnXyieyry38mAO6u0an/5EBNWdv8sj+xCwC16kqpLtXsJ
- k6fN3fyd3vab2kWWMwi8jtv7Yl4KJ7RCBalVij2sEq2GaycrXuxWczPtRUyaswCWaCna
- zugv7ouqVW2Dhrc3zsAXxPyWcU0v/IMLea5F5ioEx6cgsOzkS3XqP7St/GMOsUFmeInk
- pG07HFVNlnPn/OH+lR6NmVcBn0AlAZLAlY/rgqID8/2INMoReols0i9Cz8pYSHUz/z3/
- AdsjSqnXzmPYquBxPD9l+LCOZZy9ndZYDOAESgNJ3m/0uxaxOq6HKPYtq+zDmpZfufA/
- cylg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1732036889; x=1732641689;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=a6KLEWYZye5Sq732J3G8kWJR4LNQs6UUiyLg6FE31xI=;
- b=Vt/v0Z+ow4CxuVfUyI6QKdyyzore0B8WKa09wWMzyA3zJPYUflMDQjVsvFsJXCBUdR
- wIny0Hqw1tIHpVK2RobcUGT+zCGxLwGrRco+EldeZXqMbS4Ca1BHFXFCJO5B+BRUv8du
- t1A5f5CBMq8mWD/XgvUgrrgPFk4LM6Ze5zlB3IUv2pqDQFX8gUufX+rOI/woItyXQqkb
- b7Ax9oNfIedKImoxldQ6Np1uySfJWwGDxMqiBAt4v4Mbxk2uz16O56o72ZoAOxkHtwlH
- AMK/V3Q8Yz6qCBdq3AO6mt3J313UL87fgIeyJugFXitkYNcIPE6rCPw1j1iFS+51aotx
- hHGg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUahZWth513gmHBOdvZazOUDmvmk/joneutLMnqlZpnHapJzs9w6lgAHGeyVg3CGkydthVi0VNu9Q==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwSuHhKqgkYp8rGoLc5hVkYX1tIB0Z9yIFjnGE/G/tmOpkPP8tb
- 0Fdmt0LKD8zeR1o9jK6Flf8xWsXufz6sZ+DgSklc6D9NUakz9vRxOaPpc5gKjNK1/Q==
-X-Google-Smtp-Source: AGHT+IFHJ87SuW9QMNT3JT6SQHBGc8vYjLyFg4MDtCvjwke8LG2D3zjk5iaaqQMFhZDhLvt9+SxeBg==
-X-Received: by 2002:a05:6a00:4fd1:b0:71e:667c:8384 with SMTP id
- d2e1a72fcca58-724af929a56mr6299940b3a.9.1732036889356; 
- Tue, 19 Nov 2024 09:21:29 -0800 (PST)
-Received: from localhost ([134.134.139.75]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-7247711dd82sm8658319b3a.65.2024.11.19.09.21.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 Nov 2024 09:21:28 -0800 (PST)
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Subject: [PATCH] drm/i915/display: Don't allow odd ypan or ysize with
- semiplanar format
-Date: Tue, 19 Nov 2024 19:25:44 +0200
-Message-ID: <20241119172544.861424-1-juhapekka.heikkila@gmail.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FF4D10E698;
+	Tue, 19 Nov 2024 17:27:37 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9447410E698;
+ Tue, 19 Nov 2024 17:27:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?Don=27t_allow_odd_ypan_or_ysize_with_semiplanar_format?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 19 Nov 2024 17:27:36 -0000
+Message-ID: <173203725662.369595.8746300943530998768@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241119172544.861424-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20241119172544.861424-1-juhapekka.heikkila@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,35 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Disable support for odd panning and size in y direction when running
-on display version 3x and using semiplanar formats.
+== Series Details ==
 
-Bspec: 68903
+Series: drm/i915/display: Don't allow odd ypan or ysize with semiplanar format
+URL   : https://patchwork.freedesktop.org/series/141561/
+State : success
 
-Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_atomic_plane.c | 5 +++++
- 1 file changed, 5 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index d89630b2d5c1..a61eeaa7640c 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -1030,6 +1030,11 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
- 		     DISPLAY_VERx100(i915) == 3000) &&
- 		     src_x % 2 != 0)
- 			hsub = 2;
-+
-+		if (DISPLAY_VERx100(i915) >= 3000 &&
-+		    DISPLAY_VERx100(i915) <= 3500)
-+			vsub = 2;
-+
- 	} else {
- 		hsub = fb->format->hsub;
- 		vsub = fb->format->vsub;
--- 
-2.45.2
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c2bd638d71d6 drm-tip: 2024y-11m-19d-16h-29m-08s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: Don't allow odd ypan or ysize with semiplanar format
+
 
