@@ -4,150 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0B56D4415F
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 13:40:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49A98D4415E
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 13:56:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 739A810E638;
-	Tue, 19 Nov 2024 13:40:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1F5F10E649;
+	Tue, 19 Nov 2024 13:56:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ahUlKuwv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BPxPKYbm";
 	dkim-atps=neutral
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2058.outbound.protection.outlook.com [40.107.223.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7E3710E05C;
- Tue, 19 Nov 2024 13:40:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Im5Nc17617VcfDA5+7Em31JTyngWaKZNUZUN9qBuz9eig34djV+YB6RZqXzNeX8Fnx/6EH/sZU/whOyitxDaWxYVbppOgEfi+IM10VkCw8gvRSAb+YH9cksi5cam7wnMzwFYEcjmWOzxbfIe0gibDX/ZlBGV8burrms5vW9I+Cs+U7F6+ODPXs16ip7tHxP5BfSykhMozuL7ZlInTUDxaqswuR812ddusGB/rUtuU7dAHEofczKar1+349AYLAYoj3lHTkazI20Cd+8AUVq+6FXndqGepaci1jsxEm6MfF76DEeWz4sAx8fy2BOmHE6itytj6EjlBREvim9r8yb0dA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VCke2kv53RJYDEjzwesC9NATR5rhgND9JmJu9dKd25M=;
- b=uSg8ZXM+QBBgmFp7/ch+/3vFR0TAJKbSfasVaIzSABFwba1qUC9Xhp40Oiod4DyyLfqHnPTA9YAtQ7JNkMxvy4smJYqBvDaNWBiMoMxnq27nVUkDCxddwUDX0xhT21oMZELERUxQeTs8gFDNJ3/BhjbNHIahinlOvkQ9qrRDyOcAYDnvAZYLs44tJSfl/BNmDCsjwbulvYBydjPQAQKKuU96vI1MABxxSZ/uxLLJ1b4S4riqgfNaskoT6yQJJR78dqNe7AxKKYXf9tlPJDWfyyMaoKWoeMsjEoQ++k845M2o/TRwr14xLfi+Dmd0phrGUVkF/SOTuYYY/Rmac/BUCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VCke2kv53RJYDEjzwesC9NATR5rhgND9JmJu9dKd25M=;
- b=ahUlKuwvWJWevr3h6ITaGyF5xxBeopXmiRi69d48fOOnsOwAtDdVBFxgua5VBrn8o5ebPcGZzPXmEcEUNq+KyiRJVfRI5GoG0rrhYfIaDH9PUrJivrYo2dVkP+BINpGvhuNbOGNh3HvOv1eBBGti/8Q4syhBuGtEJ4ii+DeLFAM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by PH0PR12MB8798.namprd12.prod.outlook.com (2603:10b6:510:28d::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.23; Tue, 19 Nov
- 2024 13:40:38 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8158.019; Tue, 19 Nov 2024
- 13:40:36 +0000
-Message-ID: <a87503b5-2bca-4614-8816-078ade6d0940@amd.com>
-Date: Tue, 19 Nov 2024 14:40:29 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 2/8] drm/ttm: Provide a shmem backup implementation
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org,
- Paulo Zanoni <paulo.r.zanoni@intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>
-References: <20241115150120.3280-1-thomas.hellstrom@linux.intel.com>
- <20241115150120.3280-3-thomas.hellstrom@linux.intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20241115150120.3280-3-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0344.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ea::7) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F318810E648;
+ Tue, 19 Nov 2024 13:56:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732024579; x=1763560579;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=uyZyKHdrhoteT2xvGurGW2c2iRqYXfrZJ6ZSVzospvI=;
+ b=BPxPKYbmnOHYMGamgW/CBI+dX52njjID7/rmxr4xMLYHKNioNapxTKWJ
+ whafDBzeTA7DfWbTNKqVhah/AC4YecgGDV0w6M+p3MqKYHbhMCZPQ6UZ2
+ /Em9F3dy4Em820BGyWYIGDlDBNfY2rllTs8J/38jLp4sVq8SaZ3FRf3qA
+ /tRwUGFbigeKpmJlASDCm9skELm3oV8JCMf+GTY366AoJT76mFYfmDUDu
+ wNQFmtbof7ynB+9hbAHAPMPTBejtx3BB86mchgIECobFhvpHKDsYF4wwx
+ 1H6lb74tsgH8qOnWvHkoKVu/MHWpnnxKZ2WlYmFTGwl+MxOym4P37LS++ Q==;
+X-CSE-ConnectionGUID: XcAiIm+hS4i8zpQD/7NVtA==
+X-CSE-MsgGUID: H68zDSnjQgSd5jgHrmFDmA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="32270551"
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="32270551"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 05:56:19 -0800
+X-CSE-ConnectionGUID: CZCkuvtZQZiBAE+y7HtlOw==
+X-CSE-MsgGUID: 6F1UAhB5Rv+YelhoEQVl8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="94635223"
+Received: from smoticic-mobl.ger.corp.intel.com (HELO [10.245.246.223])
+ ([10.245.246.223])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 05:56:16 -0800
+Message-ID: <12b541d3a1b46434032afc1bcb9ce90428aa24a5.camel@linux.intel.com>
+Subject: Re: [PATCH v2 09/29] drm/xe: Add SVM range invalidation
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com, 
+ simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
+Date: Tue, 19 Nov 2024 14:56:12 +0100
+In-Reply-To: <20241016032518.539495-10-matthew.brost@intel.com>
+References: <20241016032518.539495-1-matthew.brost@intel.com>
+ <20241016032518.539495-10-matthew.brost@intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-3.fc39) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH0PR12MB8798:EE_
-X-MS-Office365-Filtering-Correlation-Id: 33d36b4e-fc07-4deb-6459-08dd089fbfb4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?K2Z2blVZSUZ4MzNrd3o0K0thYUVVVTEyY2dRTHVoUW54dTNpWkVGbmhPMjVN?=
- =?utf-8?B?MmQxVVJ5ZXZJRkR6SXJrdDN0T2kzZGtqMk5Camx1WFowazd2L2tnUDNZK09s?=
- =?utf-8?B?R05UTmF0QVFYajAwNFJmUUlXYitPQm0wL3BaWnV3cGFURGd5VGZXbnNSWEVx?=
- =?utf-8?B?L2hJZXpPUnJPdkFMK2tMTVpIekttdHNBSFdqa2NHUGdLMW9EU05RYVQ1ZVNC?=
- =?utf-8?B?K3IvU2R1SHVMSEtVZDdCbkplYlp0NXVxdmJMUWNUcDArbFhSYkpkMnVBTTdi?=
- =?utf-8?B?Q3NlSGF1VysvcGpNWjZLT0gvTVFMNXM5NVY0WGlLN0NNNHZwY0VUQUh5a2cw?=
- =?utf-8?B?aUREM1JGajBINk11S0pZWG1vTnRmWXZHbGlFOHFncXVrZ3pZY1VqRWlZbVBJ?=
- =?utf-8?B?ZXZ4azd3ekZnNnlhMkk1SVE0MkJOcXBUR2tiZEg5ZWgrQnVVUlhuUjhIS3BT?=
- =?utf-8?B?ZU9TK0tjSzU3U2RaRGloeS9BcXVXcnN6TElBM3ZINWRrQUxLZWIxMzRZTmty?=
- =?utf-8?B?eDNXRElQTHFUQ0Vpd3JwRXAvTEJNalhDRkEvYm4yNmxROWpvekg3SkRmaDI2?=
- =?utf-8?B?UkhhTE8wb1ppcGFDT0tNU2NySEd6U25ycmlmcVh5SW16d1JnRjdjZTYrNHlS?=
- =?utf-8?B?OUVQN2dRSk5CUUdqT052b3lFcXppTXRoSklFQlAwUDdlVmxCN0RxWHBMR3d6?=
- =?utf-8?B?SUpwVjVYdU55eG15S0xvY3hLNUxmRSswK0YwYVJ5NEh3dS9tTVpCRk52VEJ1?=
- =?utf-8?B?azBrWTcrMSt0WEV3QkxOUE96QktFVmJtTjZWbWFTTXEzdmRBVUZPSkVnZ0FT?=
- =?utf-8?B?TGZFZjFlek9OQ0N5d01oaVVBaVFwaTBqMVBJQkQvc1F4RCtTUDFjbjBRWUtL?=
- =?utf-8?B?OCtuWFVmZ1I4OGljcWxZeTNQazZkdDNFSXBiQ24wRjZtRVRXWFR0UmlHenBO?=
- =?utf-8?B?aytLajl3YTU5OVpPVytVdSs1aS9ZVlRQWFlnWWFsaG85RGk1Sklvc0gyRnJM?=
- =?utf-8?B?aE0wd0hQZkwrZ2dVdWtQNVZ1aEttU1NKRHRhQmplRUpXZEJOcHVvbFNNUndI?=
- =?utf-8?B?c2JPZnI0ellMSE9KQUFFY3lXR2lBR3diU3BEZDJxS3RHWWJ2amxXbCs1aVFP?=
- =?utf-8?B?b09CTDJkY0ZwbWxpR0pTTHJjQVlMTjlDdUt4NkV4KzR1Mm02bHEycVBqbTNi?=
- =?utf-8?B?VE5nR2x6Wm5UTGdzdndUTXVpeENsSmJLVU8zZER5MGlkeTFTU01wZHpxUVk5?=
- =?utf-8?B?VitHY1VkbXFyYmRLQ0FSVXJseHhwYUNnZmxjMVQrQ3FKcjQ4MlZUTXNMNlpw?=
- =?utf-8?B?bVcrUlk3RGMwK2U1VHJoWkF6aG9OK0haeWtTSUo2dFRIU0VDZ2JYdFhoOThP?=
- =?utf-8?B?UGVZRDVjRTFodmFuQWViRkZvZHVKNmF4MS9La2lSRElPTWZHaHZhaTVBb0tV?=
- =?utf-8?B?a1pqOHExVnFTTFpGRDR5bkkvR3hvVmZwMDlJQ3B3WWJuTXlyOEUwZHNKUUJi?=
- =?utf-8?B?T0pkczB1TmlFNDZJNms4VXY4UkFBNG1ZeTFvdFRDUkVuYzR4OHQxbDFtQ1Vz?=
- =?utf-8?B?SEttRzNJb21QMXVLOGhNMFhCZW5hMVV6R1RWS3UydXVPNGh1eU5KMFQ2WUFi?=
- =?utf-8?B?WW5vNng5QXF4QTBpblhpK21KUUZUQ0gwOFZLcy80N2drT3RGSWhzbG5NWmw2?=
- =?utf-8?B?dEVuWGJlcTF1K3JQYktuQ2xBQlFlSTNGY0JaU3JsQUlxZUM0OVNtV2hMNmhv?=
- =?utf-8?Q?LDQuv6UOaRqRrrRnDtUsC8AWYfWPBXvPZN0I3rp?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RmNhVGlrdTVlWCt2Szd6NmU0cGtMaEorZFdXN1JlU3U3bW9pamwzRzhvY0Zp?=
- =?utf-8?B?YUFFNXNHNGE4REQwZVMyZElGekMxNm1YSWF0Tk5USmIwMVd4Ti9NVkt0N0R6?=
- =?utf-8?B?L2pSQnJyRDB0WE1WaDZyRis2T0tZY0hPbUNNYkNPb1h2RkNrMEVjVHdHSkJE?=
- =?utf-8?B?ejRLVGdOMk05R1d1bDNMTEp4REc5MllveVNuaXFMVDBVaWQ0aWFsNG9OeHV4?=
- =?utf-8?B?WmhFY1VhTjYzRE53OG5sNjRQTFo2NlJYa09kTUVySlZ2R2NCTVpoMWRWRlc2?=
- =?utf-8?B?UXJaMS9jNHNyYXlpTXFGOUt3RkZRV3FJb0wxUFZadUUyNno4dmVMcDZCLzkv?=
- =?utf-8?B?N1o0VGhmS25vQlkrQmlHcDRRTmNJVWoycndERTl5bFV1UG9JSHp0VzlGTVVV?=
- =?utf-8?B?dmc0dG5vZ0M4M2VNNlVjc1Zla3BqNE9rOE55eUFrU3c1Rkw4a3RKenA2dWla?=
- =?utf-8?B?WGFrTUxnekhVTTRXL01TUTRySXZ1YS81WnVhR0VmWFYzMVJKbEZTU3RwKy9Q?=
- =?utf-8?B?Nll5YXVWeU9wSDNzTzduRUh6WkI3VUd2UzRzMU9mZEdjZVl3Qks1ZVZZOEl5?=
- =?utf-8?B?MGdUVHBGK1VTRTdEdm1ZQUZuUG5GR3NCbDNKYjhhQzlLVDdNRmxxOXcvazE1?=
- =?utf-8?B?VzNLU1ZXaUM3d0pkUHNnVGJGcElvVENjbnAyUkNPeURjLy84aEZGMlVEb1Qy?=
- =?utf-8?B?WTlTZDdDSVVGNEZrWCtQWXNtTm9kOUs4SWhuOXhyRlNyUjJ1QTlEa2VmUlZn?=
- =?utf-8?B?SEo0SzFJTkx1anR0RHBBa1UyZmsyWFZVbFlSK3lZOC90cVFPUWtpZEN2VWtV?=
- =?utf-8?B?WEFrTnNkTnMvVitCWGFJSklHWEtjVmV5MVZiSjltSnVnNjU5bHAvY1RUUjBD?=
- =?utf-8?B?TEh2SlRxbUp5SWlNcjdmRmxFK2hINU53cGhlaFRxUXVxTU5RVTYzVE1yeUNt?=
- =?utf-8?B?TnU0elV5V0pMV3RwZ0FtUnl4VnU5T0wzZVNmc3dhdXFqRnRsbUM0d0JQdjIv?=
- =?utf-8?B?M1NZeUlQWExnalZGbG1DY3R0RWg3UUY1ejd4MzFwVEdKakRZakFaeVJUZStS?=
- =?utf-8?B?cTkwemJUMGhHWmxmK1FJY0FKZnpjNitkaGVhVzNXYk9ScHlOeCtkZVlvam8v?=
- =?utf-8?B?eU1DeUdaa3RxVXdiWHk3empveStEc09IelpPanRiOUk0aklzS0lOckpGdEpR?=
- =?utf-8?B?UVU0NzB2bHZXalRrUlBTdVo3R1A4ZGR4azNmcE5IblI5ZWY4OENWbW1ITlVJ?=
- =?utf-8?B?d1dhVEtjalZEQ2pYZGxsTzRiVklaeDBEWW5KQ2Vwck5oZHVYNVhwNnhRRUJH?=
- =?utf-8?B?b1VJZ3ZsWi93K2w5QlpwVzNMbktrVnFaMUxNV0RjQ2xtNkxhczg0K2NiZEp3?=
- =?utf-8?B?Y1R6M0lXa1RYY21xTnFnbGNlcHJWNlVhY0JRcTlpZkc0THpxVGJRaFluMjcw?=
- =?utf-8?B?amJkTFlBVHlRNjl6ck9kUUlzSm96bThvTE1CN1JWeStxaE1CdTBDR09HeUYy?=
- =?utf-8?B?Y0RDR29FM1NKN2h1RXNSRkJWTldKOGkxa1l0OXJkTWVtU2xQRHhhS1MwQzRU?=
- =?utf-8?B?OWI0WEtud0lhOUdoZmZxaTdSeUdac1grK2lCUTJLWWhIUEJkUkpNUDZkL0JK?=
- =?utf-8?B?dTVZWWZHUjRNc3gwTzBZZ1JtQi9GdjZsbDlXTUpZNFBIaE5wKzdJWTN4dTh5?=
- =?utf-8?B?THpmTUFPS3NHOGFTbmh0eDRRUFRPTyt2d1N6dFpOeEl4emljc0QvUWFTc2xD?=
- =?utf-8?B?c2Q5ZVFocGVZckp1SWhSV2ZwZjV6UklPZjU5R3phYTVjUUtGaTRNT2JSeDdo?=
- =?utf-8?B?OG5kL3ZsOUtaWlhCelRNUWdNb1VDTDlqdThFSmcveDNKUU5OT20ya0l2eFpn?=
- =?utf-8?B?MDFJQTNhaXZvb0dFNU5nM0lXWVNaOWk0T3NTSmJmRmI0Z0Y1UTlhTXVGLzAw?=
- =?utf-8?B?bnFCeVQzdFhqcXVlQkozNTYvTVVURzUrVllRaldHR0dRSWF1V2lmWG5lNmdY?=
- =?utf-8?B?QkErWDJOTjdjQ2x1L2xURCtma0VMbUhMeUEvWDFpT2kwT2dqSkVlNjVOYUFi?=
- =?utf-8?B?Y3J3ZXBWSHdaWWpneWhYTUtUMGt2Tk9XVkhJK2N4WVF0cVdLS1o1bUM0TzhC?=
- =?utf-8?Q?6XystLXIKFPDUG2HoGcieYfbb?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 33d36b4e-fc07-4deb-6459-08dd089fbfb4
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2024 13:40:36.6800 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z/Z+zgvKl5y+1asRKAa1/IhTtYvdp0IQhRe763/B8ux41A12IIAvqWpyypN3l6VM
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8798
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,360 +74,495 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 15.11.24 um 16:01 schrieb Thomas Hellström:
-> Provide a standalone shmem backup implementation.
-> Given the ttm_backup interface, this could
-> later on be extended to providing other backup
-> implementation than shmem, with one use-case being
-> GPU swapout to a user-provided fd.
->
-> v5:
-> - Fix a UAF. (kernel test robot, Dan Carptenter)
-> v6:
-> - Rename ttm_backup_shmem_copy_page() function argument
->    (Matthew Brost)
-> - Add some missing documentation
-> v8:
-> - Use folio_file_page to get to the page we want to writeback
->    instead of using the first page of the folio.
-> v13:
-> - Remove the base class abstraction (Christian König)
-> - Include ttm_backup_bytes_avail().
-> v14:
-> - Fix kerneldoc for ttm_backup_bytes_avail() (0-day)
-> - Work around casting of __randomize_layout struct pointer (0-day)
->
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: <dri-devel@lists.freedesktop.org>
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com> #v13
+On Tue, 2024-10-15 at 20:24 -0700, Matthew Brost wrote:
+> Add SVM range invalidation vfunc.
+>=20
+> v2:
+> =C2=A0- Don't run invalidation if VM is closed
+> =C2=A0- Cycle notifier lock in xe_svm_close
+> =C2=A0- Drop xe_gt_tlb_invalidation_fence_fini
+>=20
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->   drivers/gpu/drm/ttm/Makefile     |   2 +-
->   drivers/gpu/drm/ttm/ttm_backup.c | 204 +++++++++++++++++++++++++++++++
->   include/drm/ttm/ttm_backup.h     |  74 +++++++++++
->   3 files changed, 279 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/gpu/drm/ttm/ttm_backup.c
->   create mode 100644 include/drm/ttm/ttm_backup.h
->
-> diff --git a/drivers/gpu/drm/ttm/Makefile b/drivers/gpu/drm/ttm/Makefile
-> index dad298127226..40d07a35293a 100644
-> --- a/drivers/gpu/drm/ttm/Makefile
-> +++ b/drivers/gpu/drm/ttm/Makefile
-> @@ -4,7 +4,7 @@
->   
->   ttm-y := ttm_tt.o ttm_bo.o ttm_bo_util.o ttm_bo_vm.o ttm_module.o \
->   	ttm_execbuf_util.o ttm_range_manager.o ttm_resource.o ttm_pool.o \
-> -	ttm_device.o ttm_sys_manager.o
-> +	ttm_device.o ttm_sys_manager.o ttm_backup.o
->   ttm-$(CONFIG_AGP) += ttm_agp_backend.o
->   
->   obj-$(CONFIG_DRM_TTM) += ttm.o
-> diff --git a/drivers/gpu/drm/ttm/ttm_backup.c b/drivers/gpu/drm/ttm/ttm_backup.c
-> new file mode 100644
-> index 000000000000..bf16bb0c594e
-> --- /dev/null
-> +++ b/drivers/gpu/drm/ttm/ttm_backup.c
-> @@ -0,0 +1,204 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2024 Intel Corporation
-> + */
+> =C2=A0drivers/gpu/drm/xe/xe_gt_pagefault.c |=C2=A0 17 ++-
+> =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 24 ++++
+> =C2=A0drivers/gpu/drm/xe/xe_pt.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +
+> =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 205
+> ++++++++++++++++++++++++++-
+> =C2=A0drivers/gpu/drm/xe/xe_svm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 13 ++
+> =C2=A05 files changed, 256 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> index 79c426dc2505..92923947a12c 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> @@ -19,6 +19,7 @@
+> =C2=A0#include "xe_guc.h"
+> =C2=A0#include "xe_guc_ct.h"
+> =C2=A0#include "xe_migrate.h"
+> +#include "xe_svm.h"
+> =C2=A0#include "xe_trace_bo.h"
+> =C2=A0#include "xe_vm.h"
+> =C2=A0
+> @@ -125,18 +126,17 @@ static int xe_pf_begin(struct drm_exec *exec,
+> struct xe_vma *vma,
+> =C2=A0	return 0;
+> =C2=A0}
+> =C2=A0
+> -static int handle_vma_pagefault(struct xe_tile *tile, struct
+> pagefault *pf,
+> -				struct xe_vma *vma)
+> +static int handle_vma_pagefault(struct xe_tile *tile, struct xe_vma
+> *vma,
+> +				bool atomic)
+> =C2=A0{
+> =C2=A0	struct xe_vm *vm =3D xe_vma_vm(vma);
+> =C2=A0	struct drm_exec exec;
+> =C2=A0	struct dma_fence *fence;
+> =C2=A0	ktime_t end =3D 0;
+> =C2=A0	int err;
+> -	bool atomic;
+> =C2=A0
+> +	lockdep_assert_held_write(&vm->lock);
+> =C2=A0	trace_xe_vma_pagefault(vma);
+> -	atomic =3D access_is_atomic(pf->access_type);
+> =C2=A0
+> =C2=A0	/* Check if VMA is valid */
+> =C2=A0	if (vma_is_valid(tile, vma) && !atomic)
+> @@ -207,6 +207,7 @@ static int handle_pagefault(struct xe_gt *gt,
+> struct pagefault *pf)
+> =C2=A0	struct xe_vm *vm;
+> =C2=A0	struct xe_vma *vma =3D NULL;
+> =C2=A0	int err;
+> +	bool atomic;
+> =C2=A0
+> =C2=A0	/* SW isn't expected to handle TRTT faults */
+> =C2=A0	if (pf->trva_fault)
+> @@ -232,7 +233,13 @@ static int handle_pagefault(struct xe_gt *gt,
+> struct pagefault *pf)
+> =C2=A0		goto unlock_vm;
+> =C2=A0	}
+> =C2=A0
+> -	err =3D handle_vma_pagefault(tile, pf, vma);
+> +	atomic =3D access_is_atomic(pf->access_type);
 > +
-> +#include <drm/ttm/ttm_backup.h>
-> +#include <linux/page-flags.h>
-> +#include <linux/swap.h>
-> +
-> +/*
-> + * Casting from randomized struct file * to struct ttm_backup * is fine since
-> + * struct ttm_backup is never defined nor dereferenced.
-> + */
-> +static struct file *ttm_backup_to_file(struct ttm_backup *backup)
+> +	if (xe_vma_is_system_allocator(vma))
+> +		err =3D xe_svm_handle_pagefault(vm, vma, tile,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pf->page_addr,
+> atomic);
+> +	else
+> +		err =3D handle_vma_pagefault(tile, vma, atomic);
+> =C2=A0
+> =C2=A0unlock_vm:
+> =C2=A0	if (!err)
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index 39357e829b6d..282476c4edbd 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -20,6 +20,7 @@
+> =C2=A0#include "xe_res_cursor.h"
+> =C2=A0#include "xe_sched_job.h"
+> =C2=A0#include "xe_sync.h"
+> +#include "xe_svm.h"
+> =C2=A0#include "xe_trace.h"
+> =C2=A0#include "xe_ttm_stolen_mgr.h"
+> =C2=A0#include "xe_vm.h"
+> @@ -829,6 +830,29 @@ bool xe_pt_zap_ptes(struct xe_tile *tile, struct
+> xe_vma *vma)
+> =C2=A0	return xe_walk.needs_invalidate;
+> =C2=A0}
+> =C2=A0
+> +bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm *vm,
+> +			=C2=A0 struct xe_svm_range *range)
 
-Do I get it right that struct ttm_backup is never really defined? What 
-purpose does that have?
+Kerneldoc.
+
+Here, (and I saw Oak also commented around this some time ago) ideally
+we should make xe_pt.c unaware of vmas and svm ranges, and in this
+case, use the same xe_pt function for both.
+
+
 
 > +{
-> +	return (void *)backup;
+> +	struct xe_pt_zap_ptes_walk xe_walk =3D {
+> +		.base =3D {
+> +			.ops =3D &xe_pt_zap_ptes_ops,
+> +			.shifts =3D xe_normal_pt_shifts,
+> +			.max_level =3D XE_PT_HIGHEST_LEVEL,
+> +		},
+> +		.tile =3D tile,
+> +	};
+> +	struct xe_pt *pt =3D vm->pt_root[tile->id];
+> +	u8 pt_mask =3D (range->tile_present & ~range-
+> >tile_invalidated);
+> +
+> +	if (!(pt_mask & BIT(tile->id)))
+> +		return false;
+> +
+> +	(void)xe_pt_walk_shared(&pt->base, pt->level, range-
+> >base.va.start,
+> +				range->base.va.end, &xe_walk.base);
+> +
+> +	return xe_walk.needs_invalidate;
 > +}
 > +
-> +static struct ttm_backup *ttm_file_to_backup(struct file *file)
+> =C2=A0static void
+> =C2=A0xe_vm_populate_pgtable(struct xe_migrate_pt_update *pt_update,
+> struct xe_tile *tile,
+> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iosys_map *map, void =
+*data,
+> diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
+> index 9ab386431cad..5f333eeedf5c 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.h
+> +++ b/drivers/gpu/drm/xe/xe_pt.h
+> @@ -13,6 +13,7 @@ struct dma_fence;
+> =C2=A0struct xe_bo;
+> =C2=A0struct xe_device;
+> =C2=A0struct xe_exec_queue;
+> +struct xe_svm_range;
+> =C2=A0struct xe_sync_entry;
+> =C2=A0struct xe_tile;
+> =C2=A0struct xe_vm;
+> @@ -42,5 +43,7 @@ void xe_pt_update_ops_fini(struct xe_tile *tile,
+> struct xe_vma_ops *vops);
+> =C2=A0void xe_pt_update_ops_abort(struct xe_tile *tile, struct xe_vma_ops
+> *vops);
+> =C2=A0
+> =C2=A0bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma);
+> +bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm *vm,
+> +			=C2=A0 struct xe_svm_range *range);
+> =C2=A0
+> =C2=A0#endif
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> b/drivers/gpu/drm/xe/xe_svm.c
+> index 57b740367843..b2bc259978c4 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -5,18 +5,188 @@
+> =C2=A0
+> =C2=A0#include "drm_gpusvm.h"
+> =C2=A0
+> +#include "xe_gt_tlb_invalidation.h"
+> +#include "xe_pt.h"
+> =C2=A0#include "xe_svm.h"
+> =C2=A0#include "xe_vm.h"
+> =C2=A0#include "xe_vm_types.h"
+> =C2=A0
+> +static struct xe_vm *gpusvm_to_vm(struct drm_gpusvm *gpusvm)
 > +{
-> +	return (void *)file;
+> +	return container_of(gpusvm, struct xe_vm, svm.gpusvm);
 > +}
 > +
-> +/*
-> + * Need to map shmem indices to handle since a handle value
-> + * of 0 means error, following the swp_entry_t convention.
-> + */
-> +static unsigned long ttm_backup_shmem_idx_to_handle(pgoff_t idx)
+> +static struct xe_vm *range_to_vm(struct drm_gpusvm_range *r)
 > +{
-> +	return (unsigned long)idx + 1;
+> +	return gpusvm_to_vm(r->gpusvm);
 > +}
 > +
-> +static pgoff_t ttm_backup_handle_to_shmem_idx(pgoff_t handle)
+> +static struct drm_gpusvm_range *
+> +xe_svm_range_alloc(struct drm_gpusvm *gpusvm)
 > +{
-> +	return handle - 1;
+> +	struct xe_svm_range *range;
+> +
+> +	range =3D kzalloc(sizeof(*range), GFP_KERNEL);
+> +	if (!range)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	xe_vm_get(gpusvm_to_vm(gpusvm));
+> +
+> +	return &range->base;
 > +}
 > +
-> +/**
-> + * ttm_backup_drop() - release memory associated with a handle
-> + * @backup: The struct backup pointer used to obtain the handle
-> + * @handle: The handle obtained from the @backup_page function.
-> + */
-> +void ttm_backup_drop(struct ttm_backup *backup, pgoff_t handle)
+> +static void xe_svm_range_free(struct drm_gpusvm_range *range)
 > +{
-> +	loff_t start = ttm_backup_handle_to_shmem_idx(handle);
-> +
-> +	start <<= PAGE_SHIFT;
-> +	shmem_truncate_range(file_inode(ttm_backup_to_file(backup)), start,
-> +			     start + PAGE_SIZE - 1);
+> +	xe_vm_put(range_to_vm(range));
+> +	kfree(range);
 > +}
 > +
-> +/**
-> + * ttm_backup_copy_page() - Copy the contents of a previously backed
-> + * up page
-> + * @backup: The struct backup pointer used to back up the page.
-> + * @dst: The struct page to copy into.
-> + * @handle: The handle returned when the page was backed up.
-> + * @intr: Try to perform waits interruptable or at least killable.
-> + *
-> + * Return: 0 on success, Negative error code on failure, notably
-> + * -EINTR if @intr was set to true and a signal is pending.
-> + */
-> +int ttm_backup_copy_page(struct ttm_backup *backup, struct page *dst,
-> +			 pgoff_t handle, bool intr)
+> +static struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
 > +{
-> +	struct file *filp = ttm_backup_to_file(backup);
-> +	struct address_space *mapping = filp->f_mapping;
-> +	struct folio *from_folio;
-> +	pgoff_t idx = ttm_backup_handle_to_shmem_idx(handle);
-> +
-> +	from_folio = shmem_read_folio(mapping, idx);
-> +	if (IS_ERR(from_folio))
-> +		return PTR_ERR(from_folio);
-> +
-> +	copy_highpage(dst, folio_file_page(from_folio, idx));
-> +	folio_put(from_folio);
-> +
-> +	return 0;
+> +	return container_of(r, struct xe_svm_range, base);
 > +}
 > +
-> +/**
-> + * ttm_backup_backup_page() - Backup a page
-> + * @backup: The struct backup pointer to use.
-> + * @page: The page to back up.
-> + * @writeback: Whether to perform immediate writeback of the page.
-> + * This may have performance implications.
-> + * @idx: A unique integer for each page and each struct backup.
-> + * This allows the backup implementation to avoid managing
-> + * its address space separately.
-> + * @page_gfp: The gfp value used when the page was allocated.
-> + * This is used for accounting purposes.
-> + * @alloc_gfp: The gpf to be used when allocating memory.
-
-Typo: gfp instead of gpf.
-
-> + *
-> + * Context: If called from reclaim context, the caller needs to
-> + * assert that the shrinker gfp has __GFP_FS set, to avoid
-> + * deadlocking on lock_page(). If @writeback is set to true and
-> + * called from reclaim context, the caller also needs to assert
-> + * that the shrinker gfp has __GFP_IO set, since without it,
-> + * we're not allowed to start backup IO.
-> + *
-> + * Return: A handle on success. 0 on failure.
-> + * (This is following the swp_entry_t convention).
-> + *
-> + * Note: This function could be extended to back up a folio and
-> + * implementations would then split the folio internally if needed.
-> + * Drawback is that the caller would then have to keep track of
-> + * the folio size- and usage.
-> + */
-> +unsigned long
-> +ttm_backup_backup_page(struct ttm_backup *backup, struct page *page,
-> +		       bool writeback, pgoff_t idx, gfp_t page_gfp,
-> +		       gfp_t alloc_gfp)
+> +static u8
+> +xe_svm_range_notifier_event_begin(struct xe_vm *vm, struct
+> drm_gpusvm_range *r,
+> +				=C2=A0 const struct mmu_notifier_range
+> *mmu_range,
+> +				=C2=A0 u64 *adj_start, u64 *adj_end)
 > +{
-> +	struct file *filp = ttm_backup_to_file(backup);
-> +	struct address_space *mapping = filp->f_mapping;
-> +	unsigned long handle = 0;
-> +	struct folio *to_folio;
-> +	int ret;
+> +	struct xe_svm_range *range =3D to_xe_range(r);
+> +	struct xe_device *xe =3D vm->xe;
+> +	struct xe_tile *tile;
+> +	u8 tile_mask =3D 0;
+> +	u8 id;
 > +
-> +	to_folio = shmem_read_folio_gfp(mapping, idx, alloc_gfp);
-> +	if (IS_ERR(to_folio))
-> +		return handle;
 
-Just that I sleep better: This can never return a folio larger than a 
-page, doesn't it?
+lockdep assert?
 
-Apart from those background questions looks good to me.
+> +	/* Skip if already unmapped or if no binding exist */
+> +	if (range->base.flags.unmapped || !range->tile_present)
+> +		return 0;
+> +
+> +	/* Adjust invalidation to range boundaries */
+> +	if (range->base.va.start < mmu_range->start)
+> +		*adj_start =3D range->base.va.start;
+> +	if (range->base.va.end > mmu_range->end)
+> +		*adj_end =3D range->base.va.end;
+> +
+> +	/*
+> +	 * XXX: Ideally would zap PTEs in one shot in
+> xe_svm_invalidate but the
+> +	 * invalidation code can't correctly cope with sparse ranges
+> or
+> +	 * invalidations spanning multiple ranges.
+> +	 */
+> +	for_each_tile(tile, xe, id)
+> +		if (xe_pt_zap_ptes_range(tile, vm, range)) {
+> +			tile_mask |=3D BIT(id);
+> +			range->tile_invalidated |=3D BIT(id);
+> +		}
+> +
+> +	return tile_mask;
+> +}
+> +
+> +static void
+> +xe_svm_range_notifier_event_end(struct xe_vm *vm, struct
+> drm_gpusvm_range *r,
+> +				const struct mmu_notifier_range
+> *mmu_range)
+> +{
+> +	struct drm_gpusvm_ctx ctx =3D { .in_notifier =3D true, };
+> +
+> +	drm_gpusvm_range_unmap_pages(&vm->svm.gpusvm, r, &ctx);
+> +	/* TODO: Add range to garbage collector */
+> +}
+> +
+> =C2=A0static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_gpusvm_notifier *notif=
+ier,
+> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct mmu_notifier_range
+> *mmu_range)
+> =C2=A0{
+> -	/* TODO: Implement */
+> +	struct xe_vm *vm =3D gpusvm_to_vm(gpusvm);
+> +	struct xe_device *xe =3D vm->xe;
+> +	struct xe_tile *tile;
+> +	struct drm_gpusvm_range *r, *first;
+> +	struct xe_gt_tlb_invalidation_fence
+> +		fence[XE_MAX_TILES_PER_DEVICE * XE_MAX_GT_PER_TILE];
+> +	u64 adj_start =3D mmu_range->start, adj_end =3D mmu_range->end;
+> +	u8 tile_mask =3D 0;
+> +	u8 id;
+> +	u32 fence_id =3D 0;
+> +	long err;
+> +
+> +	if (xe_vm_is_closed(vm))
+> +		return;
 
-Regards,
-Christian.
+How do we ensure we don't race here? Are we sure that all dma mappings
+and all PTEs pointing to the range is gone at this point? Becase "They
+will soon be gone anyway" isn't enough.
 
 > +
-> +	folio_mark_accessed(to_folio);
-> +	folio_lock(to_folio);
-> +	folio_mark_dirty(to_folio);
-> +	copy_highpage(folio_file_page(to_folio, idx), page);
-> +	handle = ttm_backup_shmem_idx_to_handle(idx);
+> +	/* Adjust invalidation to notifier boundaries */
+> +	if (adj_start < notifier->interval.start)
+> +		adj_start =3D notifier->interval.start;
+> +	if (adj_end > notifier->interval.end)
+> +		adj_end =3D notifier->interval.end;
 > +
-> +	if (writeback && !folio_mapped(to_folio) &&
-> +	    folio_clear_dirty_for_io(to_folio)) {
-> +		struct writeback_control wbc = {
-> +			.sync_mode = WB_SYNC_NONE,
-> +			.nr_to_write = SWAP_CLUSTER_MAX,
-> +			.range_start = 0,
-> +			.range_end = LLONG_MAX,
-> +			.for_reclaim = 1,
-> +		};
-> +		folio_set_reclaim(to_folio);
-> +		ret = mapping->a_ops->writepage(folio_file_page(to_folio, idx), &wbc);
-> +		if (!folio_test_writeback(to_folio))
-> +			folio_clear_reclaim(to_folio);
-> +		/* If writepage succeeds, it unlocks the folio */
-> +		if (ret)
-> +			folio_unlock(to_folio);
-> +	} else {
-> +		folio_unlock(to_folio);
+> +	first =3D drm_gpusvm_range_find(notifier, adj_start, adj_end);
+> +	if (!first)
+> +		return;
+> +
+> +	/*
+> +	 * XXX: Less than ideal to always wait on VM's resv slots if
+> an
+> +	 * invalidation is not required. Could walk range list twice
+> to figure
+> +	 * out if an invalidations is need, but also not ideal.
+> Maybe a counter
+> +	 * within the notifier, seems like that could work.
+> +	 */
+> +	err =3D dma_resv_wait_timeout(xe_vm_resv(vm),
+> +				=C2=A0=C2=A0=C2=A0 DMA_RESV_USAGE_BOOKKEEP,
+> +				=C2=A0=C2=A0=C2=A0 false, MAX_SCHEDULE_TIMEOUT);
+> +	XE_WARN_ON(err <=3D 0);
+> +
+> +	r =3D first;
+> +	drm_gpusvm_for_each_range(r, notifier, adj_start, adj_end)
+> +		tile_mask |=3D xe_svm_range_notifier_event_begin(vm,
+> r, mmu_range,
+> +							=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> &adj_start,
+> +							=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> &adj_end);
+> +	if (!tile_mask)
+> +		goto range_notifier_event_end;
+> +
+> +	xe_device_wmb(xe);
+> +
+> +	for_each_tile(tile, xe, id) {
+> +		if (tile_mask & BIT(id)) {
+> +			int err;
+> +
+> +			xe_gt_tlb_invalidation_fence_init(tile-
+> >primary_gt,
+> +							=C2=A0
+> &fence[fence_id], true);
+> +
+> +			err =3D xe_gt_tlb_invalidation_range(tile-
+> >primary_gt,
+> +							=C2=A0=C2=A0
+> &fence[fence_id],
+> +							=C2=A0=C2=A0
+> adj_start,
+> +							=C2=A0=C2=A0 adj_end,
+> +							=C2=A0=C2=A0 vm-
+> >usm.asid);
+> +			if (WARN_ON_ONCE(err < 0))
+> +				goto wait;
+> +			++fence_id;
+> +
+> +			if (!tile->media_gt)
+> +				continue;
+> +
+> +			xe_gt_tlb_invalidation_fence_init(tile-
+> >media_gt,
+> +							=C2=A0
+> &fence[fence_id], true);
+> +
+> +			err =3D xe_gt_tlb_invalidation_range(tile-
+> >media_gt,
+> +							=C2=A0=C2=A0
+> &fence[fence_id],
+> +							=C2=A0=C2=A0
+> adj_start,
+> +							=C2=A0=C2=A0 adj_end,
+> +							=C2=A0=C2=A0 vm-
+> >usm.asid);
+> +			if (WARN_ON_ONCE(err < 0))
+> +				goto wait;
+> +			++fence_id;
+> +		}
 > +	}
 > +
-> +	folio_put(to_folio);
+> +wait:
+> +	for (id =3D 0; id < fence_id; ++id)
+> +		xe_gt_tlb_invalidation_fence_wait(&fence[id]);
 > +
-> +	return handle;
-> +}
+> +range_notifier_event_end:
+> +	r =3D first;
+> +	drm_gpusvm_for_each_range(r, notifier, adj_start, adj_end)
+> +		xe_svm_range_notifier_event_end(vm, r, mmu_range);
+> =C2=A0}
+> =C2=A0
+> =C2=A0static const struct drm_gpusvm_ops gpusvm_ops =3D {
+> +	.range_alloc =3D xe_svm_range_alloc,
+> +	.range_free =3D xe_svm_range_free,
+> =C2=A0	.invalidate =3D xe_svm_invalidate,
+> =C2=A0};
+> =C2=A0
+> @@ -36,6 +206,11 @@ int xe_svm_init(struct xe_vm *vm)
+> =C2=A0
+> =C2=A0void xe_svm_close(struct xe_vm *vm)
+> =C2=A0{
+> +	xe_assert(vm->xe, xe_vm_is_closed(vm));
 > +
-> +/**
-> + * ttm_backup_fini() - Free the struct backup resources after last use.
-> + * @backup: Pointer to the struct backup whose resources to free.
-> + *
-> + * After a call to this function, it's illegal to use the @backup pointer.
-> + */
-> +void ttm_backup_fini(struct ttm_backup *backup)
+> +	/* Flush running notifiers making xe_vm_close() visable */
+> +	drm_gpusvm_notifier_lock(&vm->svm.gpusvm);
+> +	drm_gpusvm_notifier_unlock(&vm->svm.gpusvm);
+
+Calling mmu_notifier_read_begin() ensures that nothing is invalidating
+on the range. Probably a better choice.
+
+> =C2=A0}
+> =C2=A0
+> =C2=A0void xe_svm_fini(struct xe_vm *vm)
+> @@ -44,3 +219,31 @@ void xe_svm_fini(struct xe_vm *vm)
+> =C2=A0
+> =C2=A0	drm_gpusvm_fini(&vm->svm.gpusvm);
+> =C2=A0}
+> +
+> +int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+> +			=C2=A0=C2=A0=C2=A0 struct xe_tile *tile, u64 fault_addr,
+> +			=C2=A0=C2=A0=C2=A0 bool atomic)
 > +{
-> +	fput(ttm_backup_to_file(backup));
+> +	struct drm_gpusvm_ctx ctx =3D { .read_only =3D
+> xe_vma_read_only(vma), };
+> +	struct drm_gpusvm_range *r;
+> +	int err;
+> +
+> +	lockdep_assert_held_write(&vm->lock);
+> +
+> +retry:
+> +	/* TODO: Run garbage collector */
+> +
+> +	r =3D drm_gpusvm_range_find_or_insert(&vm->svm.gpusvm,
+> fault_addr,
+> +					=C2=A0=C2=A0=C2=A0 xe_vma_start(vma),
+> xe_vma_end(vma),
+> +					=C2=A0=C2=A0=C2=A0 &ctx);
+> +	if (IS_ERR(r))
+> +		return PTR_ERR(r);
+> +
+> +	err =3D drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r, false);
+> +	if (err =3D=3D -EFAULT || err =3D=3D -EPERM)	/* Corner where CPU
+> mappings have change */
+
+s/change/changed/
+
+> +	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto retry;
+> +
+> +	/* TODO: Issue bind */
+> +
+> +	return err;
 > +}
+> diff --git a/drivers/gpu/drm/xe/xe_svm.h
+> b/drivers/gpu/drm/xe/xe_svm.h
+> index 376e86876a11..c91c5f538024 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.h
+> +++ b/drivers/gpu/drm/xe/xe_svm.h
+> @@ -6,14 +6,27 @@
+> =C2=A0#ifndef _XE_SVM_H_
+> =C2=A0#define _XE_SVM_H_
+> =C2=A0
+> +#include "drm_gpusvm.h"
+> =C2=A0#include "drm_pagemap.h"
+> =C2=A0
+> =C2=A0#define XE_INTERCONNECT_VRAM DRM_INTERCONNECT_DRIVER
+
+Not used yet
+
+> =C2=A0
+> +struct xe_tile;
+> =C2=A0struct xe_vm;
+> +struct xe_vma;
 > +
-> +/**
-> + * ttm_backup_bytes_avail() - Report the approximate number of bytes of backup space
-> + * left for backup.
-> + *
-> + * This function is intended also for driver use to indicate whether a
-> + * backup attempt is meaningful.
-> + *
-> + * Return: An approximate size of backup space available.
-> + */
-> +u64 ttm_backup_bytes_avail(void)
-> +{
-> +	/*
-> +	 * The idea behind backing up to shmem is that shmem objects may
-> +	 * eventually be swapped out. So no point swapping out if there
-> +	 * is no or low swap-space available. But the accuracy of this
-> +	 * number also depends on shmem actually swapping out backed-up
-> +	 * shmem objects without too much buffering.
-> +	 */
-> +	return (u64)get_nr_swap_pages() << PAGE_SHIFT;
-> +}
-> +EXPORT_SYMBOL_GPL(ttm_backup_bytes_avail);
+> +struct xe_svm_range {
+> +	struct drm_gpusvm_range base;
+> +	u8 tile_present;
+> +	u8 tile_invalidated;
+> +};
+
+Kerneldoc
+
+
+> =C2=A0
+> =C2=A0int xe_svm_init(struct xe_vm *vm);
+> =C2=A0void xe_svm_fini(struct xe_vm *vm);
+> =C2=A0void xe_svm_close(struct xe_vm *vm);
+> =C2=A0
+> +int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+> +			=C2=A0=C2=A0=C2=A0 struct xe_tile *tile, u64 fault_addr,
+> +			=C2=A0=C2=A0=C2=A0 bool atomic);
 > +
-> +/**
-> + * ttm_backup_shmem_create() - Create a shmem-based struct backup.
-> + * @size: The maximum size (in bytes) to back up.
-> + *
-> + * Create a backup utilizing shmem objects.
-> + *
-> + * Return: A pointer to a struct ttm_backup on success,
-> + * an error pointer on error.
-> + */
-> +struct ttm_backup *ttm_backup_shmem_create(loff_t size)
-> +{
-> +	struct file *filp;
-> +
-> +	filp = shmem_file_setup("ttm shmem backup", size, 0);
-> +
-> +	return ttm_file_to_backup(filp);
-> +}
-> diff --git a/include/drm/ttm/ttm_backup.h b/include/drm/ttm/ttm_backup.h
-> new file mode 100644
-> index 000000000000..20609da7e281
-> --- /dev/null
-> +++ b/include/drm/ttm/ttm_backup.h
-> @@ -0,0 +1,74 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2024 Intel Corporation
-> + */
-> +
-> +#ifndef _TTM_BACKUP_H_
-> +#define _TTM_BACKUP_H_
-> +
-> +#include <linux/mm_types.h>
-> +#include <linux/shmem_fs.h>
-> +
-> +struct ttm_backup;
-> +
-> +/**
-> + * ttm_backup_handle_to_page_ptr() - Convert handle to struct page pointer
-> + * @handle: The handle to convert.
-> + *
-> + * Converts an opaque handle received from the
-> + * struct ttm_backoup_ops::backup_page() function to an (invalid)
-> + * struct page pointer suitable for a struct page array.
-> + *
-> + * Return: An (invalid) struct page pointer.
-> + */
-> +static inline struct page *
-> +ttm_backup_handle_to_page_ptr(unsigned long handle)
-> +{
-> +	return (struct page *)(handle << 1 | 1);
-> +}
-> +
-> +/**
-> + * ttm_backup_page_ptr_is_handle() - Whether a struct page pointer is a handle
-> + * @page: The struct page pointer to check.
-> + *
-> + * Return: true if the struct page pointer is a handld returned from
-> + * ttm_backup_handle_to_page_ptr(). False otherwise.
-> + */
-> +static inline bool ttm_backup_page_ptr_is_handle(const struct page *page)
-> +{
-> +	return (unsigned long)page & 1;
-> +}
-> +
-> +/**
-> + * ttm_backup_page_ptr_to_handle() - Convert a struct page pointer to a handle
-> + * @page: The struct page pointer to convert
-> + *
-> + * Return: The handle that was previously used in
-> + * ttm_backup_handle_to_page_ptr() to obtain a struct page pointer, suitable
-> + * for use as argument in the struct ttm_backup_ops drop() or
-> + * copy_backed_up_page() functions.
-> + */
-> +static inline unsigned long
-> +ttm_backup_page_ptr_to_handle(const struct page *page)
-> +{
-> +	WARN_ON(!ttm_backup_page_ptr_is_handle(page));
-> +	return (unsigned long)page >> 1;
-> +}
-> +
-> +void ttm_backup_drop(struct ttm_backup *backup, pgoff_t handle);
-> +
-> +int ttm_backup_copy_page(struct ttm_backup *backup, struct page *dst,
-> +			 pgoff_t handle, bool intr);
-> +
-> +unsigned long
-> +ttm_backup_backup_page(struct ttm_backup *backup, struct page *page,
-> +		       bool writeback, pgoff_t idx, gfp_t page_gfp,
-> +		       gfp_t alloc_gfp);
-> +
-> +void ttm_backup_fini(struct ttm_backup *backup);
-> +
-> +u64 ttm_backup_bytes_avail(void);
-> +
-> +struct ttm_backup *ttm_backup_shmem_create(loff_t size);
-> +
-> +#endif
+> =C2=A0#endif
+
+Thanks,
+Thomas
 
