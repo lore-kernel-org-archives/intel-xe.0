@@ -4,27 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FDF5D4414C
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 11:58:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22980D44151
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 12:13:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A8AC10E24D;
-	Tue, 19 Nov 2024 11:58:38 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A191A10E24D;
- Tue, 19 Nov 2024 11:58:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3916663853611623498=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id D903610E2A6;
+	Tue, 19 Nov 2024 12:13:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WWB/OCig";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE35710E24D;
+ Tue, 19 Nov 2024 12:13:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732018413; x=1763554413;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=iDxSnOYsKcOd2cS+EUEoDDAZConEVLlScsukXH4wbjk=;
+ b=WWB/OCigdBRtMb2C8ICHFUSywl9EYp4Wjt/DDGfFLicFUZQlZJV8/rQw
+ MzKmF62pbesqvmmr1zWzzdZHCyrLU+9+W4cmKoA4ynNAE+pWJClU9SwAh
+ fHBlcSsvAJ218LfFvz46z10NHW0LyfRxklDr8dxpWr5lVqnzTbZY5JqEJ
+ mppIxF2PEZUFAo5k+bq3lJJqa9sN1gzgrxmVVtrqA1u0Eyn+aVEjJy/pv
+ wQd+cvFyKMtWyoY2+SDJ+V9BA/5eDDly8HlrhmsM7bsL8MTmKrfmKnFx+
+ Svvz3Miyw8XrdQRjxKu1YL92g7hs7cJ8ozoN6Z5l67aUecquSTBEMePnO Q==;
+X-CSE-ConnectionGUID: USL4yZWQQ36XoxS9P3NGNA==
+X-CSE-MsgGUID: rZ6PjAOMRACuq0+PlBFFaA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="19620729"
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="19620729"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 04:13:32 -0800
+X-CSE-ConnectionGUID: WAVreZK9TmqRpcrNBnHY5g==
+X-CSE-MsgGUID: pcDxwLGWT1a0JNt9fqQnjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="89112076"
+Received: from smoticic-mobl.ger.corp.intel.com (HELO [10.245.246.223])
+ ([10.245.246.223])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 04:13:29 -0800
+Message-ID: <4b221f9cfb35637e96cddfd8fee6cee45c98bd4d.camel@linux.intel.com>
+Subject: Re: [PATCH v2 07/29] drm/xe: Add SVM init / close / fini to
+ faulting VMs
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com, 
+ simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
+Date: Tue, 19 Nov 2024 13:13:26 +0100
+In-Reply-To: <20241016032518.539495-8-matthew.brost@intel.com>
+References: <20241016032518.539495-1-matthew.brost@intel.com>
+ <20241016032518.539495-8-matthew.brost@intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-3.fc39) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Display_Global_Histogram_=28rev3?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 19 Nov 2024 11:58:36 -0000
-Message-ID: <173201751668.301060.17869052573751664054@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241119104521.575377-1-arun.r.murthy@intel.com>
-In-Reply-To: <20241119104521.575377-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +72,198 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3916663853611623498==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 2024-10-15 at 20:24 -0700, Matthew Brost wrote:
+> Add SVM init / close / fini to faulting VMs. Minimual implementation.
+>=20
+> v2:
+> =C2=A0- Add close function
+>=20
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/xe/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1=
+ +
+> =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 46
+> ++++++++++++++++++++++++++++++++
+> =C2=A0drivers/gpu/drm/xe/xe_svm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 15 ++++=
++++++++
+> =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 12=
+ +++++++++
+> =C2=A0drivers/gpu/drm/xe/xe_vm_types.h |=C2=A0 7 +++++
+> =C2=A05 files changed, 81 insertions(+)
+> =C2=A0create mode 100644 drivers/gpu/drm/xe/xe_svm.c
+> =C2=A0create mode 100644 drivers/gpu/drm/xe/xe_svm.h
+>=20
+> diff --git a/drivers/gpu/drm/xe/Makefile
+> b/drivers/gpu/drm/xe/Makefile
+> index 8d991d4a92a5..c3e85bcfd4d1 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -96,6 +96,7 @@ xe-y +=3D drm_gpusvm.o \
+> =C2=A0	xe_sa.o \
+> =C2=A0	xe_sched_job.o \
+> =C2=A0	xe_step.o \
+> +	xe_svm.o \
+> =C2=A0	xe_sync.o \
+> =C2=A0	xe_tile.o \
+> =C2=A0	xe_tile_sysfs.o \
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> b/drivers/gpu/drm/xe/xe_svm.c
+> new file mode 100644
+> index 000000000000..57b740367843
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -0,0 +1,46 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =C2=A9 2024 Intel Corporation
+> + */
+> +
+> +#include "drm_gpusvm.h"
+> +
+> +#include "xe_svm.h"
+> +#include "xe_vm.h"
+> +#include "xe_vm_types.h"
+> +
+> +static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_gpusvm_notifier *notifier,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct mmu_notifier_range
+> *mmu_range)
+> +{
+> +	/* TODO: Implement */
+> +}
+> +
+> +static const struct drm_gpusvm_ops gpusvm_ops =3D {
+> +	.invalidate =3D xe_svm_invalidate,
+> +};
+> +
+> +static const u64 fault_chunk_sizes[] =3D {
+> +	SZ_2M,
+> +	SZ_64K,
+> +	SZ_4K,
+> +};
+> +
+> +int xe_svm_init(struct xe_vm *vm)
+Kerneldoc + other undocumented extern funcs
 
-== Series Details ==
+> +{
+> +	return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe-
+> >drm,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 current->mm, NULL, 0, vm->size,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SZ_512M, &gpusvm_ops,
+> fault_chunk_sizes,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARRAY_SIZE(fault_chunk_sizes));
+> +}
+> +
+> +void xe_svm_close(struct xe_vm *vm)
 
-Series: Display Global Histogram (rev3)
-URL   : https://patchwork.freedesktop.org/series/138867/
-State : success
+> +{
+> +}
+> +
+> +void xe_svm_fini(struct xe_vm *vm)
+> +{
+> +	xe_assert(vm->xe, xe_vm_is_closed(vm));
+> +
+> +	drm_gpusvm_fini(&vm->svm.gpusvm);
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_svm.h
+> b/drivers/gpu/drm/xe/xe_svm.h
+> new file mode 100644
+> index 000000000000..979f2322eeba
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_svm.h
+> @@ -0,0 +1,15 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright =C2=A9 2024 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_SVM_H_
+> +#define _XE_SVM_H_
+> +
+> +struct xe_vm;
+> +
+> +int xe_svm_init(struct xe_vm *vm);
+> +void xe_svm_fini(struct xe_vm *vm);
+> +void xe_svm_close(struct xe_vm *vm);
+> +
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 0d887fb9de59..b11fb0ac9520 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -35,6 +35,7 @@
+> =C2=A0#include "xe_preempt_fence.h"
+> =C2=A0#include "xe_pt.h"
+> =C2=A0#include "xe_res_cursor.h"
+> +#include "xe_svm.h"
+> =C2=A0#include "xe_sync.h"
+> =C2=A0#include "xe_trace_bo.h"
+> =C2=A0#include "xe_wa.h"
+> @@ -1503,6 +1504,12 @@ struct xe_vm *xe_vm_create(struct xe_device
+> *xe, u32 flags)
+> =C2=A0		}
+> =C2=A0	}
+> =C2=A0
+> +	if (flags & XE_VM_FLAG_FAULT_MODE) {
+> +		err =3D xe_svm_init(vm);
+> +		if (err)
+> +			goto err_close;
+> +	}
+> +
+> =C2=A0	if (number_tiles > 1)
+> =C2=A0		vm->composite_fence_ctx =3D
+> dma_fence_context_alloc(1);
+> =C2=A0
+> @@ -1548,6 +1555,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+> =C2=A0	xe_vm_close(vm);
+> =C2=A0	if (xe_vm_in_preempt_fence_mode(vm))
+> =C2=A0		flush_work(&vm->preempt.rebind_work);
+> +	if (xe_vm_in_fault_mode(vm))
+> +		xe_svm_close(vm);
+> =C2=A0
+> =C2=A0	down_write(&vm->lock);
+> =C2=A0	for_each_tile(tile, xe, id) {
+> @@ -1616,6 +1625,9 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+> =C2=A0		xe_vma_destroy_unlocked(vma);
+> =C2=A0	}
+> =C2=A0
+> +	if (xe_vm_in_fault_mode(vm))
+> +		xe_svm_fini(vm);
+> +
+> =C2=A0	up_write(&vm->lock);
+> =C2=A0
+> =C2=A0	down_write(&xe->usm.lock);
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
+> b/drivers/gpu/drm/xe/xe_vm_types.h
+> index 1764781c376b..bd1c0e368238 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -6,6 +6,7 @@
+> =C2=A0#ifndef _XE_VM_TYPES_H_
+> =C2=A0#define _XE_VM_TYPES_H_
+> =C2=A0
+> +#include "drm_gpusvm.h"
+> =C2=A0#include <drm/drm_gpuvm.h>
+> =C2=A0
+> =C2=A0#include <linux/dma-resv.h>
+> @@ -140,6 +141,12 @@ struct xe_vm {
+> =C2=A0	/** @gpuvm: base GPUVM used to track VMAs */
+> =C2=A0	struct drm_gpuvm gpuvm;
+> =C2=A0
+> +	/** @svm: Shared virtual memory state */
+> +	struct {
+> +		/** @svm.gpusvm: base GPUSVM used to track fault
+> allocations */
+> +		struct drm_gpusvm gpusvm;
+> +	} svm;
+> +
+> =C2=A0	struct xe_device *xe;
+> =C2=A0
+> =C2=A0	/* exec queue used for (un)binding vma's */
 
-== Summary ==
+Thanks,
+Thomas
 
-CI Bug Log - changes from xe-2250-ae16c37991aa8ab2afc0309ff88d9ccada395192_BAT -> xe-pw-138867v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-138867v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@xe_exec_fault_mode@many-basic:
-    - bat-lnl-2:          [INCOMPLETE][1] ([Intel XE#3466]) -> [DMESG-FAIL][2] ([Intel XE#3466])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2250-ae16c37991aa8ab2afc0309ff88d9ccada395192/bat-lnl-2/igt@xe_exec_fault_mode@many-basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138867v3/bat-lnl-2/igt@xe_exec_fault_mode@many-basic.html
-
-  
-  [Intel XE#3466]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3466
-
-
-Build changes
--------------
-
-  * Linux: xe-2250-ae16c37991aa8ab2afc0309ff88d9ccada395192 -> xe-pw-138867v3
-
-  IGT_8116: 10a7dcaa598461073d6c7268704f32043af8722f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2250-ae16c37991aa8ab2afc0309ff88d9ccada395192: ae16c37991aa8ab2afc0309ff88d9ccada395192
-  xe-pw-138867v3: 138867v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138867v3/index.html
-
---===============3916663853611623498==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Display Global Histogram (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138867/">https://patchwork.freedesktop.org/series/138867/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138867v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138867v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2250-ae16c37991aa8ab2afc0309ff88d9ccada395192_BAT -&gt; xe-pw-138867v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-138867v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_exec_fault_mode@many-basic:<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2250-ae16c37991aa8ab2afc0309ff88d9ccada395192/bat-lnl-2/igt@xe_exec_fault_mode@many-basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3466">Intel XE#3466</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138867v3/bat-lnl-2/igt@xe_exec_fault_mode@many-basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3466">Intel XE#3466</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2250-ae16c37991aa8ab2afc0309ff88d9ccada395192 -&gt; xe-pw-138867v3</li>
-</ul>
-<p>IGT_8116: 10a7dcaa598461073d6c7268704f32043af8722f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2250-ae16c37991aa8ab2afc0309ff88d9ccada395192: ae16c37991aa8ab2afc0309ff88d9ccada395192<br />
-  xe-pw-138867v3: 138867v3</p>
-
-</body>
-</html>
-
---===============3916663853611623498==--
