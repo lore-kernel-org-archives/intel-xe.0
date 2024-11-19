@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51FDCD6C287
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 19:40:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91180D6C28C
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 19:40:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B46110E363;
-	Tue, 19 Nov 2024 19:40:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 536EE10E6B7;
+	Tue, 19 Nov 2024 19:40:33 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56CC710E2BF;
- Tue, 19 Nov 2024 19:40:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6332010E6B8;
+ Tue, 19 Nov 2024 19:40:32 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/ptl=3A_Update?=
- =?utf-8?q?_PTL_GuC_revision_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/ptl=3A_Update_PTL_?=
+ =?utf-8?q?GuC_revision_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Atwood" <matthew.s.atwood@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 19 Nov 2024 19:40:21 -0000
-Message-ID: <173204522137.428480.9693623643958148556@b555e5b46a47>
+Date: Tue, 19 Nov 2024 19:40:32 -0000
+Message-ID: <173204523242.428480.10734845164917051936@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241119193156.12951-1-matthew.s.atwood@intel.com>
 In-Reply-To: <20241119193156.12951-1-matthew.s.atwood@intel.com>
@@ -48,9 +48,25 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: c2bd638d71d6 drm-tip: 2024y-11m-19d-16h-29m-08s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/ptl: Update PTL GuC revision
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b271d4e88c59da63b1d9e4d3dc443d6faec9bd30
+Author: Matt Atwood <matthew.s.atwood@intel.com>
+Date:   Tue Nov 19 11:31:56 2024 -0800
+
+    drm/xe/ptl: Update PTL GuC revision
+    
+    Update PTL guc version to 7.36.0.
+    
+    Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
++ /mt/dim checkpatch c2bd638d71d621e6887e15ae2e7bf1571b9599de drm-intel
+b271d4e88c59 drm/xe/ptl: Update PTL GuC revision
 
 
