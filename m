@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC4F1D6C2B9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F2C2D6C2B6
 	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 22:54:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE45410E37B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4BD810E0D3;
 	Tue, 19 Nov 2024 22:54:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YQLimKJe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VL2x46Hs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDE8E10E37A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E127A10E0D3
  for <Intel-Xe@lists.freedesktop.org>; Tue, 19 Nov 2024 22:54:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1732056863; x=1763592863;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=A0GZEpO05XxunTAYTsorlYkqqFMPU/IpDTcIVteEJz8=;
- b=YQLimKJeDpRZfkk3LEtlCnOKZTuCJbWy9FO53+pp3/L8a2Q7UBxogsnl
- K4Qo+oj1kJkjTI4rwOLSOJKKf/Q9UsGxaAPW1m0JBWm6l54RNYMcnn43d
- ZZkZ3hqeCuMGOQzrBrKCqfOC1p3GxuSjZFCnUuPGr1v+ppL5URbK8sxpN
- 6enu4AyAXM+u97F1cGqTTUtYWely1XHE4oTiCdbDOCaSctkIqVQOAn8RX
- zeVWzjrbRA5snG6oTvKEb8Nn0pV5APxjTnz8XKkTpXlrHxUt6C4exWu2m
- yL1IuO/ky5anAEM4WtX4nn2a0iUBpQ4w+gMRrRCuVBDXlmtvxlN//yLFX w==;
-X-CSE-ConnectionGUID: qGMvPjIBTeeAcP+B52vwVA==
-X-CSE-MsgGUID: /xqePVINRPqWhFPJ/SuREA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="32026794"
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="32026794"
+ bh=lu1YCBZmHq5CQTMGHL8qlHEsCLyGpR6D5HG/Z1/+RtA=;
+ b=VL2x46HsasCakC6DQoU0oYU7oyroQMZkpntAo49XYWwk1ROKKPG50GVD
+ 2fhZL9prHRDiN0IKHBzXbji7F4UxWKMeocePtfofgt4A39AFH6iiSSGP7
+ Ayvwtgu+zbyrFpnOkdwzcCycWgoM9U+4saoRmqCSzohfiL7Era2MWH892
+ LPjDfvPdRryy3xipgYTFw5PHw54rzkhz5MFJXV1/KUOLf/H/kLXdQMcMM
+ uWBB/N8rjwJzWtttHpUBrS8FGNdwOGJicq4Y1c/y0XeexQNB0lqWBHiBl
+ uu+6IsKzghGg9sBaWUmq1CGHc8418J4saxUYE4laVPzjaJUP5+if+6LMj Q==;
+X-CSE-ConnectionGUID: gD+Pbx2YQ524mxdR6HSEEQ==
+X-CSE-MsgGUID: rqHn3dJHS1KA7JOi2lHycw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="32026795"
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="32026795"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Nov 2024 14:54:23 -0800
-X-CSE-ConnectionGUID: sAEVNNfWTUeILVGU3RfQ9Q==
-X-CSE-MsgGUID: 6xY2mD6QSCmQtZHT19gMUw==
+X-CSE-ConnectionGUID: 3tBupFCaRP23nN5iZWRsSw==
+X-CSE-MsgGUID: wgT27f4MTjeEroa77uH7Yw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="90540628"
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="90540631"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
  by orviesa008.jf.intel.com with ESMTP; 19 Nov 2024 14:54:22 -0800
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2 1/2] drm/xe: Allow bo mapping on multiple ggtts
-Date: Tue, 19 Nov 2024 14:54:20 -0800
-Message-ID: <20241119225421.198838-2-John.C.Harrison@Intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH v2 2/2] drm/xe/guc: Add support for G2G communications
+Date: Tue, 19 Nov 2024 14:54:21 -0800
+Message-ID: <20241119225421.198838-3-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241119225421.198838-1-John.C.Harrison@Intel.com>
 References: <20241119225421.198838-1-John.C.Harrison@Intel.com>
@@ -68,348 +67,427 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+From: John Harrison <John.C.Harrison@Intel.com>
 
-Make bo->ggtt an array to support bo mapping on multiple ggtts.
-Add XE_BO_FLAG_GGTTx flags to map the bo on ggtt of tile 'x'.
+Some features require inter-GuC communication channels on multi-tile
+devices. So allocate and enable such.
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+v2: Correct use of xe_bo_get/put (review feedback from Matthew Brost)
+Add extra assert, re-order a calculation for better clarity and add
+comments to slot calculation (review feedback from Daniele). Also
+slightly re-work the slot calc to avoid code duplication.
+
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 12 ++++---
- drivers/gpu/drm/xe/xe_bo.c             | 49 ++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_bo.h             | 32 ++++++++++++++---
- drivers/gpu/drm/xe/xe_bo_evict.c       | 14 +++++---
- drivers/gpu/drm/xe/xe_bo_types.h       |  5 +--
- drivers/gpu/drm/xe/xe_ggtt.c           | 35 +++++++++---------
- 6 files changed, 101 insertions(+), 46 deletions(-)
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h |  20 ++
+ drivers/gpu/drm/xe/xe_guc.c              | 307 ++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_types.h        |  10 +
+ 3 files changed, 336 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 761510ae0690..9fa51b84737c 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -161,7 +161,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 	}
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+index b54fe40fc5a9..fee385532fb0 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+@@ -134,6 +134,8 @@ enum xe_guc_action {
+ 	XE_GUC_ACTION_DEREGISTER_CONTEXT = 0x4503,
+ 	XE_GUC_ACTION_REGISTER_COMMAND_TRANSPORT_BUFFER = 0x4505,
+ 	XE_GUC_ACTION_DEREGISTER_COMMAND_TRANSPORT_BUFFER = 0x4506,
++	XE_GUC_ACTION_REGISTER_G2G = 0x4507,
++	XE_GUC_ACTION_DEREGISTER_G2G = 0x4508,
+ 	XE_GUC_ACTION_DEREGISTER_CONTEXT_DONE = 0x4600,
+ 	XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC = 0x4601,
+ 	XE_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
+@@ -218,4 +220,22 @@ enum xe_guc_tlb_inval_mode {
+ 	XE_GUC_TLB_INVAL_MODE_LITE = 0x1,
+ };
  
- 	vma->dpt = dpt;
--	vma->node = dpt->ggtt_node;
-+	vma->node = dpt->ggtt_node[tile0->id];
- 	return 0;
- }
- 
-@@ -213,8 +213,8 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
- 		align = max_t(u32, align, SZ_64K);
- 
--	if (bo->ggtt_node && view->type == I915_GTT_VIEW_NORMAL) {
--		vma->node = bo->ggtt_node;
-+	if (bo->ggtt_node[ggtt->tile->id] && view->type == I915_GTT_VIEW_NORMAL) {
-+		vma->node = bo->ggtt_node[ggtt->tile->id];
- 	} else if (view->type == I915_GTT_VIEW_NORMAL) {
- 		u32 x, size = bo->ttm.base.size;
- 
-@@ -345,10 +345,12 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 
- static void __xe_unpin_fb_vma(struct i915_vma *vma)
- {
-+	u8 tile_id = vma->node->ggtt->tile->id;
++/*
++ * GuC to GuC communication (de-)registration fields:
++ */
++enum xe_guc_g2g_type {
++	XE_G2G_TYPE_IN = 0x0,
++	XE_G2G_TYPE_OUT,
++	XE_G2G_TYPE_LIMIT,
++};
 +
- 	if (vma->dpt)
- 		xe_bo_unpin_map_no_vm(vma->dpt);
--	else if (!xe_ggtt_node_allocated(vma->bo->ggtt_node) ||
--		 vma->bo->ggtt_node->base.start != vma->node->base.start)
-+	else if (!xe_ggtt_node_allocated(vma->bo->ggtt_node[tile_id]) ||
-+		 vma->bo->ggtt_node[tile_id]->base.start != vma->node->base.start)
- 		xe_ggtt_node_remove(vma->node, false);
- 
- 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 549866da5cd1..ec070af12662 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1140,6 +1140,8 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
- {
- 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
- 	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
-+	struct xe_tile *tile;
-+	u8 id;
- 
- 	if (bo->ttm.base.import_attach)
- 		drm_prime_gem_destroy(&bo->ttm.base, NULL);
-@@ -1147,8 +1149,9 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
- 
- 	xe_assert(xe, list_empty(&ttm_bo->base.gpuva.list));
- 
--	if (bo->ggtt_node && bo->ggtt_node->base.size)
--		xe_ggtt_remove_bo(bo->tile->mem.ggtt, bo);
-+	for_each_tile(tile, xe, id)
-+		if (bo->ggtt_node[id] && bo->ggtt_node[id]->base.size)
-+			xe_ggtt_remove_bo(tile->mem.ggtt, bo);
- 
- #ifdef CONFIG_PROC_FS
- 	if (bo->client)
-@@ -1319,6 +1322,10 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 		return ERR_PTR(-EINVAL);
- 	}
- 
-+	/* XE_BO_FLAG_GGTTx requires XE_BO_FLAG_GGTT also be set */
-+	if ((flags & XE_BO_FLAG_GGTT_ALL) && !(flags & XE_BO_FLAG_GGTT))
-+		return ERR_PTR(-EINVAL);
++#define XE_G2G_REGISTER_DEVICE	REG_GENMASK(16, 16)
++#define XE_G2G_REGISTER_TILE	REG_GENMASK(15, 12)
++#define XE_G2G_REGISTER_TYPE	REG_GENMASK(11, 8)
++#define XE_G2G_REGISTER_SIZE	REG_GENMASK(7, 0)
 +
- 	if (flags & (XE_BO_FLAG_VRAM_MASK | XE_BO_FLAG_STOLEN) &&
- 	    !(flags & XE_BO_FLAG_IGNORE_MIN_PAGE_SIZE) &&
- 	    ((xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) ||
-@@ -1509,19 +1516,29 @@ __xe_bo_create_locked(struct xe_device *xe,
- 	bo->vm = vm;
- 
- 	if (bo->flags & XE_BO_FLAG_GGTT) {
--		if (!tile && flags & XE_BO_FLAG_STOLEN)
--			tile = xe_device_get_root_tile(xe);
-+		struct xe_tile *t;
-+		u8 id;
- 
--		xe_assert(xe, tile);
-+		if (!(bo->flags & XE_BO_FLAG_GGTT_ALL)) {
-+			if (!tile && flags & XE_BO_FLAG_STOLEN)
-+				tile = xe_device_get_root_tile(xe);
- 
--		if (flags & XE_BO_FLAG_FIXED_PLACEMENT) {
--			err = xe_ggtt_insert_bo_at(tile->mem.ggtt, bo,
--						   start + bo->size, U64_MAX);
--		} else {
--			err = xe_ggtt_insert_bo(tile->mem.ggtt, bo);
-+			xe_assert(xe, tile);
-+		}
++#define XE_G2G_DEREGISTER_DEVICE	REG_GENMASK(16, 16)
++#define XE_G2G_DEREGISTER_TILE	REG_GENMASK(15, 12)
++#define XE_G2G_DEREGISTER_TYPE	REG_GENMASK(11, 8)
 +
-+		for_each_tile(t, xe, id) {
-+			if (t != tile && !(bo->flags & XE_BO_FLAG_GGTTx(t)))
-+				continue;
-+
-+			if (flags & XE_BO_FLAG_FIXED_PLACEMENT) {
-+				err = xe_ggtt_insert_bo_at(t->mem.ggtt, bo,
-+							   start + bo->size, U64_MAX);
-+			} else {
-+				err = xe_ggtt_insert_bo(t->mem.ggtt, bo);
-+			}
-+			if (err)
-+				goto err_unlock_put_bo;
- 		}
--		if (err)
--			goto err_unlock_put_bo;
- 	}
- 
- 	return bo;
-@@ -2379,14 +2396,18 @@ void xe_bo_put_commit(struct llist_head *deferred)
- 
- void xe_bo_put(struct xe_bo *bo)
- {
-+	struct xe_tile *tile;
-+	u8 id;
-+
- 	might_sleep();
- 	if (bo) {
- #ifdef CONFIG_PROC_FS
- 		if (bo->client)
- 			might_lock(&bo->client->bos_lock);
  #endif
--		if (bo->ggtt_node && bo->ggtt_node->ggtt)
--			might_lock(&bo->ggtt_node->ggtt->lock);
-+		for_each_tile(tile, xe_bo_device(bo), id)
-+			if (bo->ggtt_node[id] && bo->ggtt_node[id]->ggtt)
-+				might_lock(&bo->ggtt_node[id]->ggtt->lock);
- 		drm_gem_object_put(&bo->ttm.base);
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 7fa44a0138b0..d0dce44317c7 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -39,10 +39,22 @@
- #define XE_BO_FLAG_NEEDS_64K		BIT(15)
- #define XE_BO_FLAG_NEEDS_2M		BIT(16)
- #define XE_BO_FLAG_GGTT_INVALIDATE	BIT(17)
-+#define XE_BO_FLAG_GGTT0                BIT(18)
-+#define XE_BO_FLAG_GGTT1                BIT(19)
-+#define XE_BO_FLAG_GGTT2                BIT(20)
-+#define XE_BO_FLAG_GGTT3                BIT(21)
-+#define XE_BO_FLAG_GGTT_ALL             (XE_BO_FLAG_GGTT0 | \
-+					 XE_BO_FLAG_GGTT1 | \
-+					 XE_BO_FLAG_GGTT2 | \
-+					 XE_BO_FLAG_GGTT3)
-+
- /* this one is trigger internally only */
- #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
- #define XE_BO_FLAG_INTERNAL_64K		BIT(31)
- 
-+#define XE_BO_FLAG_GGTTx(tile) \
-+	(XE_BO_FLAG_GGTT0 << (tile)->id)
-+
- #define XE_PTE_SHIFT			12
- #define XE_PAGE_SIZE			(1 << XE_PTE_SHIFT)
- #define XE_PTE_MASK			(XE_PAGE_SIZE - 1)
-@@ -194,14 +206,24 @@ xe_bo_main_addr(struct xe_bo *bo, size_t page_size)
- }
- 
- static inline u32
--xe_bo_ggtt_addr(struct xe_bo *bo)
-+__xe_bo_ggtt_addr(struct xe_bo *bo, u8 tile_id)
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 0a61c948f631..b52fe528597d 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -44,7 +44,15 @@ static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
+ 			    struct xe_bo *bo)
  {
--	if (XE_WARN_ON(!bo->ggtt_node))
-+	struct xe_ggtt_node *ggtt_node = bo->ggtt_node[tile_id];
+ 	struct xe_device *xe = guc_to_xe(guc);
+-	u32 addr = xe_bo_ggtt_addr(bo);
++	u32 addr;
 +
-+	if (XE_WARN_ON(!ggtt_node))
- 		return 0;
++	/*
++	 * For most BOs, the address on the allocating tile is fine. However for
++	 * some, e.g. G2G CTB, the address on a specific tile is required as it
++	 * might be different for each tile. So, just always ask for the address
++	 * on the target GuC.
++	 */
++	addr = __xe_bo_ggtt_addr(bo, gt_to_tile(guc_to_gt(guc))->id);
  
--	XE_WARN_ON(bo->ggtt_node->base.size > bo->size);
--	XE_WARN_ON(bo->ggtt_node->base.start + bo->ggtt_node->base.size > (1ull << 32));
--	return bo->ggtt_node->base.start;
-+	XE_WARN_ON(ggtt_node->base.size > bo->size);
-+	XE_WARN_ON(ggtt_node->base.start + ggtt_node->base.size > (1ull << 32));
-+	return ggtt_node->base.start;
+ 	/* GuC addresses above GUC_GGTT_TOP don't map through the GTT */
+ 	xe_assert(xe, addr >= xe_wopcm_size(guc_to_xe(guc)));
+@@ -244,6 +252,292 @@ static void guc_write_params(struct xe_guc *guc)
+ 		xe_mmio_write32(&gt->mmio, SOFT_SCRATCH(1 + i), guc->params[i]);
+ }
+ 
++static int guc_action_register_g2g_buffer(struct xe_guc *guc, u32 type, u32 dst_tile, u32 dst_dev,
++					  u32 desc_addr, u32 buff_addr, u32 size)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	struct xe_device *xe = gt_to_xe(gt);
++	u32 action[] = {
++		XE_GUC_ACTION_REGISTER_G2G,
++		FIELD_PREP(XE_G2G_REGISTER_SIZE, size / SZ_4K - 1) |
++		FIELD_PREP(XE_G2G_REGISTER_TYPE, type) |
++		FIELD_PREP(XE_G2G_REGISTER_TILE, dst_tile) |
++		FIELD_PREP(XE_G2G_REGISTER_DEVICE, dst_dev),
++		desc_addr,
++		buff_addr,
++	};
++
++	xe_assert(xe, (type == XE_G2G_TYPE_IN) || (type == XE_G2G_TYPE_OUT));
++	xe_assert(xe, !(size % SZ_4K));
++
++	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
 +}
 +
-+static inline u32
-+xe_bo_ggtt_addr(struct xe_bo *bo)
++static int guc_action_deregister_g2g_buffer(struct xe_guc *guc, u32 type, u32 dst_tile, u32 dst_dev)
 +{
-+	xe_assert(xe_bo_device(bo), bo->tile);
++	struct xe_gt *gt = guc_to_gt(guc);
++	struct xe_device *xe = gt_to_xe(gt);
++	u32 action[] = {
++		XE_GUC_ACTION_DEREGISTER_G2G,
++		FIELD_PREP(XE_G2G_DEREGISTER_TYPE, type) |
++		FIELD_PREP(XE_G2G_DEREGISTER_TILE, dst_tile) |
++		FIELD_PREP(XE_G2G_DEREGISTER_DEVICE, dst_dev),
++	};
 +
-+	return __xe_bo_ggtt_addr(bo, bo->tile->id);
- }
- 
- int xe_bo_vmap(struct xe_bo *bo);
-diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
-index 8fb2be061003..6a40eedd9db1 100644
---- a/drivers/gpu/drm/xe/xe_bo_evict.c
-+++ b/drivers/gpu/drm/xe/xe_bo_evict.c
-@@ -152,11 +152,17 @@ int xe_bo_restore_kernel(struct xe_device *xe)
- 		}
- 
- 		if (bo->flags & XE_BO_FLAG_GGTT) {
--			struct xe_tile *tile = bo->tile;
-+			struct xe_tile *tile;
-+			u8 id;
- 
--			mutex_lock(&tile->mem.ggtt->lock);
--			xe_ggtt_map_bo(tile->mem.ggtt, bo);
--			mutex_unlock(&tile->mem.ggtt->lock);
-+			for_each_tile(tile, xe, id) {
-+				if (tile != bo->tile && !(bo->flags & XE_BO_FLAG_GGTTx(tile)))
-+					continue;
++	xe_assert(xe, (type == XE_G2G_TYPE_IN) || (type == XE_G2G_TYPE_OUT));
 +
-+				mutex_lock(&tile->mem.ggtt->lock);
-+				xe_ggtt_map_bo(tile->mem.ggtt, bo);
-+				mutex_unlock(&tile->mem.ggtt->lock);
++	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
++}
++
++#define G2G_DEV(gt)	(((gt)->info.type == XE_GT_TYPE_MAIN) ? 0 : 1)
++
++#define G2G_BUFFER_SIZE (SZ_4K)
++#define G2G_DESC_SIZE (64)
++#define G2G_DESC_AREA_SIZE (SZ_4K)
++
++/*
++ * Generate a unique id for each bi-directional CTB for each pair of
++ * near and far tiles/devices. The id can then be used as an index into
++ * a single allocation that is sub-divided into multiple CTBs.
++ *
++ * For example, with two devices per tile and two tiles, the table should
++ * look like:
++ *           Far <tile>.<dev>
++ *         0.0   0.1   1.0   1.1
++ * N 0.0  --/-- 00/01 02/03 04/05
++ * e 0.1  01/00 --/-- 06/07 08/09
++ * a 1.0  03/02 07/06 --/-- 10/11
++ * r 1.1  05/04 09/08 11/10 --/--
++ *
++ * Where each entry is Rx/Tx channel id.
++ *
++ * So GuC #3 (tile 1, dev 1) talking to GuC #2 (tile 1, dev 0) would
++ * be reading from channel #11 and writing to channel #10. Whereas,
++ * GuC #2 talking to GuC #3 would be read on #10 and write to #11.
++ */
++static unsigned int g2g_slot(u32 near_tile, u32 near_dev, u32 far_tile, u32 far_dev,
++			     u32 type, u32 max_inst, bool have_dev)
++{
++	u32 near = near_tile, far = far_tile;
++	u32 idx = 0, x, y, direction;
++	int i;
++
++	if (have_dev) {
++		near = (near << 1) | near_dev;
++		far = (far << 1) | far_dev;
++	}
++
++	/* No need to send to one's self */
++	if (far == near)
++		return -1;
++
++	if (far > near) {
++		/* Top right table half */
++		x = far;
++		y = near;
++
++		/* T/R is 'forwards' direction */
++		direction = type;
++	} else {
++		/* Bottom left table half */
++		x = near;
++		y = far;
++
++		/* B/L is 'backwards' direction */
++		direction = (1 - type);
++	}
++
++	/* Count the rows prior to the target */
++	for (i = y; i > 0; i--)
++		idx += max_inst - i;
++
++	/* Count this row up to the target */
++	idx += (x - 1 - y);
++
++	/* Slots are in Rx/Tx pairs */
++	idx *= 2;
++
++	/* Pick Rx/Tx direction */
++	idx += direction;
++
++	return idx;
++}
++
++static int guc_g2g_register(struct xe_guc *near_guc, struct xe_gt *far_gt, u32 type, bool have_dev)
++{
++	struct xe_gt *near_gt = guc_to_gt(near_guc);
++	struct xe_device *xe = gt_to_xe(near_gt);
++	struct xe_bo *g2g_bo;
++	u32 near_tile = gt_to_tile(near_gt)->id;
++	u32 near_dev = G2G_DEV(near_gt);
++	u32 far_tile = gt_to_tile(far_gt)->id;
++	u32 far_dev = G2G_DEV(far_gt);
++	u32 max = xe->info.gt_count;
++	u32 base, desc, buf;
++	int slot;
++
++	xe_assert(xe, xe == gt_to_xe(far_gt));
++
++	g2g_bo = near_guc->g2g.bo;
++	xe_assert(xe, g2g_bo);
++
++	slot = g2g_slot(near_tile, near_dev, far_tile, far_dev, type, max, have_dev);
++	xe_assert(xe, slot >= 0);
++
++	base = guc_bo_ggtt_addr(near_guc, g2g_bo);
++	desc = base + slot * G2G_DESC_SIZE;
++	buf = base + G2G_DESC_AREA_SIZE + slot * G2G_BUFFER_SIZE;
++
++	xe_assert(xe, (desc - base + G2G_DESC_SIZE) <= G2G_DESC_AREA_SIZE);
++	xe_assert(xe, (buf - base + G2G_BUFFER_SIZE) <= g2g_bo->size);
++
++	return guc_action_register_g2g_buffer(near_guc, type, far_tile, far_dev,
++					      desc, buf, G2G_BUFFER_SIZE);
++}
++
++static void guc_g2g_deregister(struct xe_guc *guc, u32 far_tile, u32 far_dev, u32 type)
++{
++	guc_action_deregister_g2g_buffer(guc, type, far_tile, far_dev);
++}
++
++static u32 guc_g2g_size(struct xe_guc *guc)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	struct xe_device *xe = gt_to_xe(gt);
++	unsigned int count = xe->info.gt_count;
++	u32 num_channels = (count * (count - 1)) / 2;
++
++	xe_assert(xe, num_channels * XE_G2G_TYPE_LIMIT * G2G_DESC_SIZE <= G2G_DESC_AREA_SIZE);
++
++	return num_channels * XE_G2G_TYPE_LIMIT * G2G_BUFFER_SIZE + G2G_DESC_AREA_SIZE;
++}
++
++static bool xe_guc_g2g_wanted(struct xe_device *xe)
++{
++	/* Can't do GuC to GuC communication if there is only one GuC */
++	if (xe->info.gt_count <= 1)
++		return false;
++
++	/* No current user */
++	return false;
++}
++
++static int guc_g2g_alloc(struct xe_guc *guc)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_tile *tile = gt_to_tile(gt);
++	struct xe_bo *bo;
++	u32 g2g_size;
++
++	if (guc->g2g.bo)
++		return 0;
++
++	if (gt->info.id != 0) {
++		struct xe_gt *root_gt = xe_device_get_gt(xe, 0);
++		struct xe_guc *root_guc = &root_gt->uc.guc;
++		struct xe_bo *bo;
++
++		bo = xe_bo_get(root_guc->g2g.bo);
++		if (!bo)
++			return -ENODEV;
++
++		guc->g2g.bo = bo;
++		guc->g2g.owned = false;
++		return 0;
++	}
++
++	g2g_size = guc_g2g_size(guc);
++	bo = xe_managed_bo_create_pin_map(xe, tile, g2g_size,
++					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
++					  XE_BO_FLAG_GGTT |
++					  XE_BO_FLAG_GGTT_ALL |
++					  XE_BO_FLAG_GGTT_INVALIDATE);
++	if (IS_ERR(bo))
++		return PTR_ERR(bo);
++
++	xe_map_memset(xe, &bo->vmap, 0, 0, g2g_size);
++	guc->g2g.bo = bo;
++	guc->g2g.owned = true;
++
++	return 0;
++}
++
++static void guc_g2g_fini(struct xe_guc *guc)
++{
++	if (!guc->g2g.bo)
++		return;
++
++	/* Unpinning the owned object is handled by generic shutdown */
++	if (!guc->g2g.owned)
++		xe_bo_put(guc->g2g.bo);
++
++	guc->g2g.bo = NULL;
++}
++
++static int guc_g2g_start(struct xe_guc *guc)
++{
++	struct xe_gt *far_gt, *gt = guc_to_gt(guc);
++	struct xe_device *xe = gt_to_xe(gt);
++	unsigned int i, j;
++	int t, err;
++	bool have_dev;
++
++	if (!guc->g2g.bo) {
++		int ret;
++
++		ret = guc_g2g_alloc(guc);
++		if (ret)
++			return ret;
++	}
++
++	/* GuC interface will need extending if more GT device types are ever created. */
++	xe_gt_assert(gt, (gt->info.type == XE_GT_TYPE_MAIN) || (gt->info.type == XE_GT_TYPE_MEDIA));
++
++	/* Channel numbering depends on whether there are multiple GTs per tile */
++	have_dev = xe->info.gt_count > xe->info.tile_count;
++
++	for_each_gt(far_gt, xe, i) {
++		u32 far_tile, far_dev;
++
++		if (far_gt->info.id == gt->info.id)
++			continue;
++
++		far_tile = gt_to_tile(far_gt)->id;
++		far_dev = G2G_DEV(far_gt);
++
++		for (t = 0; t < XE_G2G_TYPE_LIMIT; t++) {
++			err = guc_g2g_register(guc, far_gt, t, have_dev);
++			if (err) {
++				while (--t >= 0)
++					guc_g2g_deregister(guc, far_tile, far_dev, t);
++				goto err_deregister;
 +			}
- 		}
- 
- 		/*
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index 13c6d8a69e91..5387e0456625 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -13,6 +13,7 @@
- #include <drm/ttm/ttm_execbuf_util.h>
- #include <drm/ttm/ttm_placement.h>
- 
-+#include "xe_device_types.h"
- #include "xe_ggtt_types.h"
- 
- struct xe_device;
-@@ -39,8 +40,8 @@ struct xe_bo {
- 	struct ttm_place placements[XE_BO_MAX_PLACEMENTS];
- 	/** @placement: current placement for this BO */
- 	struct ttm_placement placement;
--	/** @ggtt_node: GGTT node if this BO is mapped in the GGTT */
--	struct xe_ggtt_node *ggtt_node;
-+	/** @ggtt_node: Array of GGTT nodes if this BO is mapped in the GGTTs */
-+	struct xe_ggtt_node *ggtt_node[XE_MAX_TILES_PER_DEVICE];
- 	/** @vmap: iosys map of this buffer */
- 	struct iosys_map vmap;
- 	/** @ttm_kmap: TTM bo kmap object for internal use only. Keep off. */
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 558fac8bb6fb..05154f9de1a6 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -598,10 +598,10 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- 	u64 start;
- 	u64 offset, pte;
- 
--	if (XE_WARN_ON(!bo->ggtt_node))
-+	if (XE_WARN_ON(!bo->ggtt_node[ggtt->tile->id]))
- 		return;
- 
--	start = bo->ggtt_node->base.start;
-+	start = bo->ggtt_node[ggtt->tile->id]->base.start;
- 
- 	for (offset = 0; offset < bo->size; offset += XE_PAGE_SIZE) {
- 		pte = ggtt->pt_ops->pte_encode_bo(bo, offset, pat_index);
-@@ -612,15 +612,16 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 				  u64 start, u64 end)
- {
--	int err;
- 	u64 alignment = bo->min_align > 0 ? bo->min_align : XE_PAGE_SIZE;
-+	u8 tile_id = ggtt->tile->id;
-+	int err;
- 
- 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
- 		alignment = SZ_64K;
- 
--	if (XE_WARN_ON(bo->ggtt_node)) {
-+	if (XE_WARN_ON(bo->ggtt_node[tile_id])) {
- 		/* Someone's already inserted this BO in the GGTT */
--		xe_tile_assert(ggtt->tile, bo->ggtt_node->base.size == bo->size);
-+		xe_tile_assert(ggtt->tile, bo->ggtt_node[tile_id]->base.size == bo->size);
- 		return 0;
- 	}
- 
-@@ -630,19 +631,19 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 
- 	xe_pm_runtime_get_noresume(tile_to_xe(ggtt->tile));
- 
--	bo->ggtt_node = xe_ggtt_node_init(ggtt);
--	if (IS_ERR(bo->ggtt_node)) {
--		err = PTR_ERR(bo->ggtt_node);
--		bo->ggtt_node = NULL;
-+	bo->ggtt_node[tile_id] = xe_ggtt_node_init(ggtt);
-+	if (IS_ERR(bo->ggtt_node[tile_id])) {
-+		err = PTR_ERR(bo->ggtt_node[tile_id]);
-+		bo->ggtt_node[tile_id] = NULL;
- 		goto out;
- 	}
- 
- 	mutex_lock(&ggtt->lock);
--	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node->base, bo->size,
--					  alignment, 0, start, end, 0);
-+	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node[tile_id]->base,
-+					  bo->size, alignment, 0, start, end, 0);
- 	if (err) {
--		xe_ggtt_node_fini(bo->ggtt_node);
--		bo->ggtt_node = NULL;
-+		xe_ggtt_node_fini(bo->ggtt_node[tile_id]);
-+		bo->ggtt_node[tile_id] = NULL;
- 	} else {
- 		xe_ggtt_map_bo(ggtt, bo);
- 	}
-@@ -691,13 +692,15 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
-  */
- void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- {
--	if (XE_WARN_ON(!bo->ggtt_node))
-+	u8 tile_id = ggtt->tile->id;
++		}
++	}
 +
-+	if (XE_WARN_ON(!bo->ggtt_node[tile_id]))
- 		return;
- 
- 	/* This BO is not currently in the GGTT */
--	xe_tile_assert(ggtt->tile, bo->ggtt_node->base.size == bo->size);
-+	xe_tile_assert(ggtt->tile, bo->ggtt_node[tile_id]->base.size == bo->size);
- 
--	xe_ggtt_node_remove(bo->ggtt_node,
-+	xe_ggtt_node_remove(bo->ggtt_node[tile_id],
- 			    bo->flags & XE_BO_FLAG_GGTT_INVALIDATE);
++	return 0;
++
++err_deregister:
++	for_each_gt(far_gt, xe, j) {
++		u32 tile, dev;
++
++		if (far_gt->info.id == gt->info.id)
++			continue;
++
++		if (j >= i)
++			break;
++
++		tile = gt_to_tile(far_gt)->id;
++		dev = G2G_DEV(far_gt);
++
++		for (t = 0; t < XE_G2G_TYPE_LIMIT; t++)
++			guc_g2g_deregister(guc, tile, dev, t);
++	}
++
++	return err;
++}
++
+ static void guc_fini_hw(void *arg)
+ {
+ 	struct xe_guc *guc = arg;
+@@ -253,6 +547,8 @@ static void guc_fini_hw(void *arg)
+ 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+ 	xe_uc_fini_hw(&guc_to_gt(guc)->uc);
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++
++	guc_g2g_fini(guc);
  }
  
+ /**
+@@ -423,7 +719,16 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
+ 
+ int xe_guc_post_load_init(struct xe_guc *guc)
+ {
++	int ret;
++
+ 	xe_guc_ads_populate_post_load(&guc->ads);
++
++	if (xe_guc_g2g_wanted(guc_to_xe(guc))) {
++		ret = guc_g2g_start(guc);
++		if (ret)
++			return ret;
++	}
++
+ 	guc->submission_state.enabled = true;
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
+index fa75f57bf5da..83a41ebcdc91 100644
+--- a/drivers/gpu/drm/xe/xe_guc_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_types.h
+@@ -64,6 +64,15 @@ struct xe_guc {
+ 	struct xe_guc_pc pc;
+ 	/** @dbm: GuC Doorbell Manager */
+ 	struct xe_guc_db_mgr dbm;
++
++	/** @g2g: GuC to GuC communication state */
++	struct {
++		/** @g2g.bo: Storage for GuC to GuC communication channels */
++		struct xe_bo *bo;
++		/** @g2g.owned: Is the BO owned by this GT or just mapped in */
++		bool owned;
++	} g2g;
++
+ 	/** @submission_state: GuC submission state */
+ 	struct {
+ 		/** @submission_state.idm: GuC context ID Manager */
+@@ -79,6 +88,7 @@ struct xe_guc {
+ 		/** @submission_state.fini_wq: submit fini wait queue */
+ 		wait_queue_head_t fini_wq;
+ 	} submission_state;
++
+ 	/** @hwconfig: Hardware config state */
+ 	struct {
+ 		/** @hwconfig.bo: buffer object of the hardware config */
 -- 
 2.47.0
 
