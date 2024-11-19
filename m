@@ -4,164 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22AC7D44162
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 14:44:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C578FD44162
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 14:45:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD33310E666;
-	Tue, 19 Nov 2024 14:44:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AFCA10E666;
+	Tue, 19 Nov 2024 14:45:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aIpIVv4f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gIbv823F";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E05F210E666
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Nov 2024 14:44:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7B5810E1B2;
+ Tue, 19 Nov 2024 14:45:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732027460; x=1763563460;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=6hMJApDRm8dx2bmcF2QsL1rXqvjQZQUK9JpYU+EwP4o=;
- b=aIpIVv4fN0YSqTcba1z62ziOFzhk7V1VLPg4UNWGFExqqw1nywXoekNK
- a3ha/Tkfce7xFQKpV/x250i2SSRwLOGUlg1yYzoH3WzONX8eCr8RD73FF
- I4ATAp0mk2nA55S8wqF7ElLYC/WHHHc31x47ISCQ6Ij6ejzWr/vFq+TDq
- OyjbsykzJ8UGvjoyvBgXnYQB1+V0KgI4dXdEgfPaccvwSfGdoF5z+ICL6
- wBXvCUOVlhYkUqe875iJG/0oM8MByb2bqEOkb3S9W25wDI80190JiTT5X
- WI6y9SzYts8wlYrm6t3U81Gn2VqLZsLjk0legdKhUxc4HV5dZ0amtt2cI w==;
-X-CSE-ConnectionGUID: LBFVBnTvSyy0Lxz2BpWs6Q==
-X-CSE-MsgGUID: iSwNity3R5+biIlZpYytbQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="32090446"
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="32090446"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 06:44:20 -0800
-X-CSE-ConnectionGUID: CilvJ1ZvQbuw5tiNU9kP4A==
-X-CSE-MsgGUID: TzNjHn++SYaiqOA0L/T+DA==
+ t=1732027539; x=1763563539;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=4MIFxoxRNrLCPi2cv7E766J2253Vjqs8JqD243DDZuo=;
+ b=gIbv823FB0UOBK7njGUJjgMBaOXSAXHkcNEWcox8R4PFI062tC1R7npS
+ ow9NPQ+Q5SjHrJf7k/kTmqM99ukZom2iw76f7PpdljQE0LvXqudC/l2Lo
+ KIlB0vQ2GS1fUAvkUZ3e0BqL7Wl/8pSuUwu82cdxh9TlcJWwJenZevgM0
+ +hp5gDX5Hhdhg06ZFXOKAs8ov9BxAc8MjrMuVXi1XGHW7AbrXN50dD2dA
+ JeUVaKP7iCnf4UMHDrt+daxwVy/cyRB5/4zp858APFdhddGXPPQH0ncsP
+ 9KrRKpD5w2S0j4/BpfbDtLrCUo+tnnpdrNTyq2JcEhHEP0rPDyJQmbRuj g==;
+X-CSE-ConnectionGUID: E+s77Mc+Sye31cdllQz18g==
+X-CSE-MsgGUID: TZCI+SdeTPWbBAEcfIUvag==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="32166142"
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="32166142"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 06:45:39 -0800
+X-CSE-ConnectionGUID: JwAa5pwrRAOg80RfE3zwbw==
+X-CSE-MsgGUID: o09O45w1QNO9MvrYyIjJqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="120517993"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 19 Nov 2024 06:44:20 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 19 Nov 2024 06:44:19 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 19 Nov 2024 06:44:19 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.44) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 19 Nov 2024 06:44:19 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nGPQU89xMbFilcLVkoIuYKGk6JoBO19N7xjmnOIezliQDcmzgj9q+qOvFCI+j4+gR4/bUOgJarwF8s8B+2LYjAgQ/SFjDlQQIw+x8YXl7AeWdVEmD0ER85TGH7YRNYFV+UbsAO3NyTuUVm9otFwZk87eP5M8YQjS/5zpg5EPSqxTFPB+nkKgGTGnxsLXYcS3rBZTYUgqtSMN5s2N88EnPLFt+TvZKmw7LZVhSyCldk3WLK9IIig77RE4JltZsjVzCwbhTOU6y9/Z377JORLD556gQ0wA1ALFCCyzdoqBe/Fb2LJk2bGvQV2rP7e7D8oo5+xHAYHgb4xwNbxRvplzvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xsrCjORkehirAkAW5ZpIhoR23Q3Ea8M+ZlGDgGPN2Pw=;
- b=DK5wkio+CGWKN5sF6axSi0qaGbOKJqMqvNNHSAV6kPX+wADMpaA9cW8sKXNVGaFZbIkds0Xav5a7KpVNCqmmYFU5mO3fe9sQ++TSGWyy5DBV9q2Gk8FSHieexqlsLFpIvDBvjRhS8rkICnBICTLU2augWeaql0giP3BZ6/KcRuVVmJo69FJJvv3CL9/Jm1ruYHXYFYti/9uscwiGPioVwC7q6kMnvXSPf88Fb1Xy7d1cw3GFbjMU9qofG8pKuXEDxX9xOG8+e45FoT2anbPMgH8iriwsXeo6OcrI0hLlCfbTWX02ENopNzhcgQj2V5MJT/9uwpCRjRUBOFiw7GWm3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA0PR11MB4766.namprd11.prod.outlook.com (2603:10b6:806:92::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.24; Tue, 19 Nov
- 2024 14:44:16 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.8158.023; Tue, 19 Nov 2024
- 14:44:16 +0000
-Date: Tue, 19 Nov 2024 06:44:51 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Umesh Nerlige Ramappa
- <umesh.nerlige.ramappa@intel.com>, Jonathan Cavitt
- <jonathan.cavitt@intel.com>
-Subject: Re: [PATCH] drm/xe/oa: Disallow OA from being enabled on active
- exec_queue's
-Message-ID: <ZzykYzGwr1GXSqoV@lstrano-desk.jf.intel.com>
-References: <20241119013256.680030-1-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20241119013256.680030-1-ashutosh.dixit@intel.com>
-X-ClientProxiedBy: MW4PR04CA0108.namprd04.prod.outlook.com
- (2603:10b6:303:83::23) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="89588975"
+Received: from smoticic-mobl.ger.corp.intel.com (HELO [10.245.246.223])
+ ([10.245.246.223])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 06:45:35 -0800
+Message-ID: <747e7befa275ac0fcc95dc4e7e7aca27020e8dda.camel@linux.intel.com>
+Subject: Re: [PATCH v2 12/29] drm/xe: Add SVM garbage collector
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com, 
+ simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
+Date: Tue, 19 Nov 2024 15:45:33 +0100
+In-Reply-To: <20241016032518.539495-13-matthew.brost@intel.com>
+References: <20241016032518.539495-1-matthew.brost@intel.com>
+ <20241016032518.539495-13-matthew.brost@intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-3.fc39) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA0PR11MB4766:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8e986195-2bd8-4224-f5fc-08dd08a8a45d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?+jPALNPs4rbKGelWp7VPD3CEcKvUhrHLJzKQ00jK82xu2YyJ6MoZP1PWQd3c?=
- =?us-ascii?Q?CJoREt1jAlBt6iUFwxVSCCsQK4EOo/4vyWwm3Sojpxl/bZEIGGv9sUdQH2gZ?=
- =?us-ascii?Q?m3uuIungvRELI4Z3PenwodwDP9BuXfI3sanf+jtHQQ1nnN2CLxsxZ1SQimHv?=
- =?us-ascii?Q?fOvIx91XGr5r8kMUsx+grbrI2CdOoTk5wRIw4jST7YrPEAV4fvgQS2MAhqpC?=
- =?us-ascii?Q?2QpbKDzuEUy7rJw4z2brQYzL+GG9CnwhypboHZKQJ3AJpF02IkkWUxdCx3sZ?=
- =?us-ascii?Q?WCQo8g4gwOFtvJI9dPHhBeuhO2oJd0Fxa4y0DdkNum1A6UwIcM5oU9ylQx+b?=
- =?us-ascii?Q?cFYrL/Mbe7ZuzIWShDttJ1DraH297NHTh5+2u9QP3cKlnNlZec/zKRq/Dfys?=
- =?us-ascii?Q?hearLwHXktyvIF+WXbWSBvrCNVCm3UL/daVGLhHhvkzeMcGe83Qc240Zb6xm?=
- =?us-ascii?Q?sgTtR6AbD2RgW1sVLaNiSRGzsJZRe7YZj2fpYakm5Y2imXbxvTo/qPx+jciQ?=
- =?us-ascii?Q?OTFn4WFJ3QBi1rVYqC2ml1vuRE04tKGJX7OGzKGi//eOMsx7Hje3On2ieORZ?=
- =?us-ascii?Q?qu4TPMUhnCN11+qO0fu/ftUaazM+f1LYGy0/MYOYYHaqeB2Khf/XcK9Txn4S?=
- =?us-ascii?Q?DjWbl2CmBzKNmDt86LcKiUthm/DwedkvJVp060Jseuq7KqcFPe8tfQwT7BzH?=
- =?us-ascii?Q?r8GFBazRF72w4W8/DeiZS8LDpJTSCLaLsywyo6Gp+1FfavpG151nZocgocOK?=
- =?us-ascii?Q?aKuZNVODi84CivwOlUPXpII0oIL3dDepYM5tyicd5CXA9pbTXLzAPGQJgPUw?=
- =?us-ascii?Q?zTrQ973g+tdbMut5Y61NDZKDohIRzcGR57JwivRzQg9J3gk/0PJqJUIFI+vu?=
- =?us-ascii?Q?iM8IRI96f0qPfHTqtusFHwyCaXjnl+sI17EHlUxv8ly5p8SKxZ3V5SeICW4e?=
- =?us-ascii?Q?HGKDO5o4rV1hFJIlvX8Hm6HKH6V2s90EzJoYhgFYgp85N5n9Zk+hJocU859g?=
- =?us-ascii?Q?TuYSkRxOTfHNPU4kZdZFDqH+BVCDgcHvg6iFe9CGN/57ihyJEjbBzz8KsgXG?=
- =?us-ascii?Q?MztIhsBehtD26VDq3w138UD0jNRMuKcCirG/UdjPBp2q0BCKnlS86zVc/hsa?=
- =?us-ascii?Q?Pu0Pn80Ftv62upr1V3chH1dVy5Z3HQkmi69C/Xdi8NeV0PxMdQH9ToAiD1O+?=
- =?us-ascii?Q?LRcJT0sW+DwrB6CxOgyYNx7b10gNUrtV1zDPjL1WtbiqhY0E3NH6BYvA63/O?=
- =?us-ascii?Q?3zzEQNnF6kHvZ0wgX8yvekqizKPrzeM3xgcT94l+kOUl447agJtHoa4onMyI?=
- =?us-ascii?Q?knOVE1TWJI9mSIuxx36VvU1O?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3u6cXsp0l4hqa+sC0dVh10pP5+rRzgD95REVRsIKNsqWBq45tjr0UGOw9I2B?=
- =?us-ascii?Q?/IbhJNEborowi7Z4oc+PV6oF4UXHyhLR0EK2K33CodV4SNG95NMRBmS0AjFB?=
- =?us-ascii?Q?GugT1zFPoNrTBNuduS7qTDsvYG0fYCponVYCWZga7YsbpMr+dhxfSqBXzVS1?=
- =?us-ascii?Q?jnJ8x/n4f/c/lKx3YO1uxBvF+R6PAlYnDBGIs9EO8qf7/LYL+r0f1fcabsF1?=
- =?us-ascii?Q?Qv/jlGdHNORdK08LWIpfnS8f37QrVsb67wTs+bI57zT4KeH89eRbeq4oAE1i?=
- =?us-ascii?Q?tPM2pJMH+6d7TndvSRTe2SR8C89Z+vXQgdrnJAJlWXcm+3mLuUCG4zFf665k?=
- =?us-ascii?Q?w/NAUvUSbwcHC9+GiMsor3zqe+IEZwL+4A4L3rnyOi5JuhHUiibSU3jPqkL4?=
- =?us-ascii?Q?1pEbn0G5SlZ3Wt6ldZAaDsPflZUnPTNFDkqC5BVeCS4P3Yj1MYJAsv3Vbl4N?=
- =?us-ascii?Q?uwyov4BEEUJim2dqcB93YISilXyoBdmMO5lsx4+o7wa65PkrUQnamVvEj8PP?=
- =?us-ascii?Q?oPm9SwuI0pZSKbZMW7g6fpOwKZZsLbVQbIc7+FLgfKTi+zHCCZf3k3N1ovNC?=
- =?us-ascii?Q?VIunTaG53RMPXJAkEdVAGT9QXV9DHMfZMK6idWwydbWlsO4roY81T1N3PUfk?=
- =?us-ascii?Q?MIxD3NuJQUvGsHqJNVq/um8Ljf28l2B/8ToEdbAC8x//AEOeCqhcx8QJDGmh?=
- =?us-ascii?Q?6qUkOqS9+Qy8rbDoEMKCqRLM3e0woMQcp/4+l9wCBJ4FDvoTxsokBVfBAQOc?=
- =?us-ascii?Q?8H3D+ey7+NGsOog1BLsskze1W6DoFIx5XMVWH6pVqF9KhnnqgK28SdrRYbXm?=
- =?us-ascii?Q?lPUATg26A/1LQGDpGeo+gEeziSrVP9I212UECnnIP3JDalf0O0Hrt5XLl7jS?=
- =?us-ascii?Q?2vI6fIdKhcOchRXoUKpfxV3xSer0hc8quhwO3e0z+EosY78RPVkR2FrTv6vX?=
- =?us-ascii?Q?g0/f3c98LRNdylwiIkXUiPbzUsHNk6zBRR6rdEOpMaimor8kqcxODTtYYI5H?=
- =?us-ascii?Q?rZ2btFPVsk28N2FzKEKkK4HLu0uxinzqbpa0bt+jeCMhXqEUCt9U4zRwKPis?=
- =?us-ascii?Q?NC9lneXHQwmq3MZiDCJj2vKjlkpUMI1HSxcn1r2fD2M+a1ExA+eQ3jsxeZlM?=
- =?us-ascii?Q?NHTipP4VMz/BPyT9IGfAvdjciQgF080hqA/6Al6+RGx3R8G+8eaLF6TER27s?=
- =?us-ascii?Q?07hlcIGj6HJQ7kWJ3153ZfqehLtEhgL0ewFCrtjhjoAtzahP9/zXLB1y0Gav?=
- =?us-ascii?Q?UJFa+OZ8wc5d6WAjvAZtcgstRYyCnoou/HU1hTXR9a6fStvg2BjbKHd0OBKO?=
- =?us-ascii?Q?4/w1oOVxpX8ptF4AatT4HTLlqKDs5iIumtO7/NP0od2wFkz311aonegAOfPB?=
- =?us-ascii?Q?G5fagL22idHWVOwidS050GcxN5RVFYbf0aaJcE4BFtxBBST0gllqLuJRTK/0?=
- =?us-ascii?Q?ggIUsWfBdkfiUAwFexnFctSAYoTIQCiNAU5adb4LJ99UHeO+RPqVifVk0mar?=
- =?us-ascii?Q?Dy2QARbZdUITOhIVjFVtlNl3fqnltm3IdBi6eQ3HhVR6uNCVl38w/f71PoLS?=
- =?us-ascii?Q?49l7P2iANLQr/Shig86UiqFnxbVIRZH1dkFhfiTyHK9cVjm1pt5T8bnfUuxl?=
- =?us-ascii?Q?ow=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e986195-2bd8-4224-f5fc-08dd08a8a45d
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2024 14:44:16.3394 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fJRsmNzVSYN5lU5wuHTU1u/rOWSi54nzG/iM2IN1N9rxsAPEWMmv1rA536fPquADTol060kwqRx80EFEmYs+ow==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4766
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,94 +74,241 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Nov 18, 2024 at 05:32:56PM -0800, Ashutosh Dixit wrote:
-> Enabling OA on an exec_queue toggles the OAC_CONTEXT_ENABLE bit in
-> CTXT_SR_CTL register. Toggling this bit changes the size and layout of the
-> underlying HW context image. Therefore, enabling OA on an already active
-> exec_queue (as currently implemented in xe) is an invalid operation and can
-> cause hangs. Therefore, disallow OA from being enabled on active
-> exec_queue's (here, by active we mean a context on which submissions have
-> previously happened).
-> 
-
-This is something we will need to keep on eye on then because in various
-experimental code I've played around enabling exec queues upon creation.
-e.g., If we want to allocate a doorbell. I seem to recall Habana wanting
-to enable exec queues upon creation too.
-
-Just curious if it was ever explored having exec queue creation
-extension which enables OA? It seems like this is something we may need
-at some point if our exec queue creation semantics change of course
-being careful to not break existing flows.
-
-Matt
-
-> Transition from 1 -> 0 for this bit was disallowed in
-> '0c8650b09a36 ("drm/xe/oa: Don't reset OAC_CONTEXT_ENABLE on OA stream
-> close")'. Here we disallow the 0 -> 1 transition on active contexts.
-> 
-> v2: Don't export exec_queue_enabled, define new xe_exec_queue_op (M Brost)
->     Directly check OAC_CONTEXT_ENABLE bit from context image (J Cavitt)
-> 
-> Bspec: 60314
-> Fixes: 2f4a730fcd2d ("drm/xe/oa: Add OAR support")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+On Tue, 2024-10-15 at 20:25 -0700, Matthew Brost wrote:
+> Add basic SVM garbage collector which can destroy an SVM range upon
+> an
+> MMU UNMAP event.
+>=20
+> v2:
+> =C2=A0- Flush garbage collector in xe_svm_close
+>=20
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 ++
->  drivers/gpu/drm/xe/xe_guc_submit.c       |  1 +
->  drivers/gpu/drm/xe/xe_oa.c               | 13 +++++++++++++
->  3 files changed, 16 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> index 1158b6062a6cd..b88d617c37b33 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> @@ -184,6 +184,8 @@ struct xe_exec_queue_ops {
->  	void (*resume)(struct xe_exec_queue *q);
->  	/** @reset_status: check exec queue reset status */
->  	bool (*reset_status)(struct xe_exec_queue *q);
-> +	/** @enabled: check if exec queue is in enabled state */
-> +	bool (*enabled)(struct xe_exec_queue *q);
->  };
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index f9ecee5364d82..b9b9cdb6f768b 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -1660,6 +1660,7 @@ static const struct xe_exec_queue_ops guc_exec_queue_ops = {
->  	.suspend_wait = guc_exec_queue_suspend_wait,
->  	.resume = guc_exec_queue_resume,
->  	.reset_status = guc_exec_queue_reset_status,
-> +	.enabled = exec_queue_enabled,
->  };
->  
->  static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
-> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-> index 8dd55798ab312..4a7440c40978c 100644
-> --- a/drivers/gpu/drm/xe/xe_oa.c
-> +++ b/drivers/gpu/drm/xe/xe_oa.c
-> @@ -2066,6 +2066,19 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
->  		if (XE_IOCTL_DBG(oa->xe, !param.exec_q))
->  			return -ENOENT;
->  
-> +		/*
-> +		 * Disallow OA from being enabled on active exec_queue's. Enabling OA sets the
-> +		 * OAC_CONTEXT_ENABLE bit in CTXT_SR_CTL register. Toggling the bit changes
-> +		 * the size and layout of the underlying HW context image and can cause hangs.
-> +		 */
-> +		if (XE_IOCTL_DBG(oa->xe,
-> +				 !(xe_lrc_read_ctx_reg(param.exec_q->lrc[0],
-> +				       CTX_CONTEXT_CONTROL) & CTX_CTRL_OAC_CONTEXT_ENABLE) &&
-> +				 param.exec_q->ops->enabled(param.exec_q))) {
-> +			ret = -EADDRINUSE;
-> +			goto err_exec_q;
+> =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 87
+> +++++++++++++++++++++++++++++++-
+> =C2=A0drivers/gpu/drm/xe/xe_svm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1=
+ +
+> =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 4 ++
+> =C2=A0drivers/gpu/drm/xe/xe_vm_types.h |=C2=A0 5 ++
+> =C2=A04 files changed, 95 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> b/drivers/gpu/drm/xe/xe_svm.c
+> index a9addaea316d..9c2f44cba166 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -30,6 +30,7 @@ xe_svm_range_alloc(struct drm_gpusvm *gpusvm)
+> =C2=A0	if (!range)
+> =C2=A0		return ERR_PTR(-ENOMEM);
+> =C2=A0
+> +	INIT_LIST_HEAD(&range->garbage_collector_link);
+> =C2=A0	xe_vm_get(gpusvm_to_vm(gpusvm));
+> =C2=A0
+> =C2=A0	return &range->base;
+> @@ -46,6 +47,24 @@ static struct xe_svm_range *to_xe_range(struct
+> drm_gpusvm_range *r)
+> =C2=A0	return container_of(r, struct xe_svm_range, base);
+> =C2=A0}
+> =C2=A0
+> +static void
+> +xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct
+> xe_svm_range *range,
+> +				=C2=A0=C2=A0 const struct mmu_notifier_range
+> *mmu_range)
+> +{
+> +	struct xe_device *xe =3D vm->xe;
+> +
+> +	drm_gpusvm_range_set_unmapped(&range->base, mmu_range);
+> +
+> +	spin_lock(&vm->svm.garbage_collector.lock);
+> +	if (list_empty(&range->garbage_collector_link))
+> +		list_add_tail(&range->garbage_collector_link,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &vm-
+> >svm.garbage_collector.range_list);
+> +	spin_unlock(&vm->svm.garbage_collector.lock);
+> +
+> +	queue_work(xe_device_get_root_tile(xe)->primary_gt-
+> >usm.pf_wq,
+> +		=C2=A0=C2=A0 &vm->svm.garbage_collector.work);
+> +}
+> +
+> =C2=A0static u8
+> =C2=A0xe_svm_range_notifier_event_begin(struct xe_vm *vm, struct
+> drm_gpusvm_range *r,
+> =C2=A0				=C2=A0 const struct mmu_notifier_range
+> *mmu_range,
+> @@ -88,7 +107,9 @@ xe_svm_range_notifier_event_end(struct xe_vm *vm,
+> struct drm_gpusvm_range *r,
+> =C2=A0	struct drm_gpusvm_ctx ctx =3D { .in_notifier =3D true, };
+> =C2=A0
+> =C2=A0	drm_gpusvm_range_unmap_pages(&vm->svm.gpusvm, r, &ctx);
+> -	/* TODO: Add range to garbage collector */
+> +	if (mmu_range->event =3D=3D MMU_NOTIFY_UNMAP)
+> +		xe_svm_garbage_collector_add_range(vm,
+> to_xe_range(r),
+> +						=C2=A0=C2=A0 mmu_range);
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+> @@ -184,6 +205,58 @@ static void xe_svm_invalidate(struct drm_gpusvm
+> *gpusvm,
+> =C2=A0		xe_svm_range_notifier_event_end(vm, r, mmu_range);
+> =C2=A0}
+> =C2=A0
+> +static int __xe_svm_garbage_collector(struct xe_vm *vm,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_svm_range *range)
+> +{
+> +	/* TODO: Do unbind */
+> +
+> +	drm_gpusvm_range_remove(&vm->svm.gpusvm, &range->base);
+> +
+> +	return 0;
+> +}
+> +
+> +static int xe_svm_garbage_collector(struct xe_vm *vm)
+> +{
+> +	struct xe_svm_range *range, *next;
+> +	int err;
+> +
+> +	lockdep_assert_held_write(&vm->lock);
+> +
+> +	if (xe_vm_is_closed_or_banned(vm))
+> +		return -ENOENT;
+> +
+> +	spin_lock(&vm->svm.garbage_collector.lock);
+> +	list_for_each_entry_safe(range, next,
+> +				 &vm-
+> >svm.garbage_collector.range_list,
+> +				 garbage_collector_link) {
+> +		list_del(&range->garbage_collector_link);
+> +		spin_unlock(&vm->svm.garbage_collector.lock);
+
+This looks broken, what if someone removed the "next" entry here?
+You probably want to use list_next_entry_or_null();
+
+> +
+> +		err =3D __xe_svm_garbage_collector(vm, range);
+> +		if (err) {
+> +			drm_warn(&vm->xe->drm,
+> +				 "Garbage collection failed: %d\n",
+> err);
+> +			xe_vm_kill(vm, true);
+> +			return err;
 > +		}
 > +
->  		if (param.exec_q->width > 1)
->  			drm_dbg(&oa->xe->drm, "exec_q->width > 1, programming only exec_q->lrc[0]\n");
->  	}
-> -- 
-> 2.41.0
-> 
+> +		spin_lock(&vm->svm.garbage_collector.lock);
+> +	}
+> +	spin_unlock(&vm->svm.garbage_collector.lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static void xe_svm_garbage_collector_work_func(struct work_struct
+> *w)
+> +{
+> +	struct xe_vm *vm =3D container_of(w, struct xe_vm,
+> +					svm.garbage_collector.work);
+> +
+> +	down_write(&vm->lock);
+> +	xe_svm_garbage_collector(vm);
+> +	up_write(&vm->lock);
+> +}
+> +
+> =C2=A0static const struct drm_gpusvm_ops gpusvm_ops =3D {
+> =C2=A0	.range_alloc =3D xe_svm_range_alloc,
+> =C2=A0	.range_free =3D xe_svm_range_free,
+> @@ -198,6 +271,11 @@ static const u64 fault_chunk_sizes[] =3D {
+> =C2=A0
+> =C2=A0int xe_svm_init(struct xe_vm *vm)
+> =C2=A0{
+> +	spin_lock_init(&vm->svm.garbage_collector.lock);
+> +	INIT_LIST_HEAD(&vm->svm.garbage_collector.range_list);
+> +	INIT_WORK(&vm->svm.garbage_collector.work,
+> +		=C2=A0 xe_svm_garbage_collector_work_func);
+> +
+> =C2=A0	return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe-
+> >drm,
+> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 current->mm, NULL, 0, vm->s=
+ize,
+> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SZ_512M, &gpusvm_ops,
+> fault_chunk_sizes,
+> @@ -211,6 +289,8 @@ void xe_svm_close(struct xe_vm *vm)
+> =C2=A0	/* Flush running notifiers making xe_vm_close() visable */
+> =C2=A0	xe_svm_notifier_lock(vm);
+> =C2=A0	xe_svm_notifier_unlock(vm);
+> +
+> +	flush_work(&vm->svm.garbage_collector.work);
+> =C2=A0}
+> =C2=A0
+> =C2=A0void xe_svm_fini(struct xe_vm *vm)
+> @@ -241,7 +321,10 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+> struct xe_vma *vma,
+> =C2=A0	lockdep_assert_held_write(&vm->lock);
+> =C2=A0
+> =C2=A0retry:
+> -	/* TODO: Run garbage collector */
+> +	/* Always process UNMAPs first so view SVM ranges is current
+> */
+> +	err =3D xe_svm_garbage_collector(vm);
+> +	if (err)
+> +		return err;
+> =C2=A0
+> =C2=A0	r =3D drm_gpusvm_range_find_or_insert(&vm->svm.gpusvm,
+> fault_addr,
+> =C2=A0					=C2=A0=C2=A0=C2=A0 xe_vma_start(vma),
+> xe_vma_end(vma),
+> diff --git a/drivers/gpu/drm/xe/xe_svm.h
+> b/drivers/gpu/drm/xe/xe_svm.h
+> index ee0bd1ae655b..06d90d0f71a6 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.h
+> +++ b/drivers/gpu/drm/xe/xe_svm.h
+> @@ -17,6 +17,7 @@ struct xe_vma;
+> =C2=A0
+> =C2=A0struct xe_svm_range {
+> =C2=A0	struct drm_gpusvm_range base;
+> +	struct list_head garbage_collector_link;
+> =C2=A0	u8 tile_present;
+> =C2=A0	u8 tile_invalidated;
+> =C2=A0};
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 63aa0a25d3b7..399cbbdbddd5 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -3071,6 +3071,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev,
+> void *data, struct drm_file *file)
+> =C2=A0		goto put_exec_queue;
+> =C2=A0	}
+> =C2=A0
+> +	/* Ensure all UNMAPs visable */
+> +	if (xe_vm_in_fault_mode(vm))
+> +		flush_work(&vm->svm.garbage_collector.work);
+
+Hmm, what is someone added an UNMAP here?
+
+Thanks,
+Thomas
+
+> +
+> =C2=A0	err =3D down_write_killable(&vm->lock);
+> =C2=A0	if (err)
+> =C2=A0		goto put_vm;
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
+> b/drivers/gpu/drm/xe/xe_vm_types.h
+> index b736e53779d2..2eae3575c409 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -146,6 +146,11 @@ struct xe_vm {
+> =C2=A0	struct {
+> =C2=A0		/** @svm.gpusvm: base GPUSVM used to track fault
+> allocations */
+> =C2=A0		struct drm_gpusvm gpusvm;
+> +		struct {
+> +			spinlock_t lock;
+> +			struct list_head range_list;
+> +			struct work_struct work;
+> +		} garbage_collector;
+> =C2=A0	} svm;
+> =C2=A0
+> =C2=A0	struct xe_device *xe;
+
