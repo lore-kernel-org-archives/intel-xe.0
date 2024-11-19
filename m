@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C120D6C299
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 20:33:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E546ED6C299
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 21:01:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC67C10E363;
-	Tue, 19 Nov 2024 20:33:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A38E910E36D;
+	Tue, 19 Nov 2024 21:01:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yuitgi70";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VWc8cQPO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD66A10E363
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Nov 2024 20:33:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C07110E36D
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Nov 2024 21:01:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732048414; x=1763584414;
+ t=1732050115; x=1763586115;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=TVi6kMlRtuZpPrSK3Ag8fowTczcoukk+bHxYpstN7ms=;
- b=Yuitgi70C2rtpwtXw706dWbTEjIssxz3NpZxzKdGxXhAcfMpKJu4jwZY
- dU2MdgZ72QLucfWK734s9PMf4EPe1ENi8lbqPDqhCk3RlXAt/6ewIaigc
- 4vvaJA+YCpRthf2OT1cCKTvIKriM8Cv54i+3W/WOL7Aw9EJQsmfgAxkK0
- 5ebjA43+e+xICE9F162s9cCIb5YHVuCYz/h2zpaOxcFMbyAYCI9jip+Qi
- DPeP3kkwKy4W1HDEjlGfKycXslPSmltC7cznjubQf371r9D0LYkhy9Y9f
- gGaTKN/QLm1ucuWL0e/70KwNAh58FiEIU6JzEmHdqBkQoC+mV4Q9RDTGe A==;
-X-CSE-ConnectionGUID: PlGeQYjJSkyQQi0PNLCAOw==
-X-CSE-MsgGUID: MZrYl/oHRgiPLHvgwpcTOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="57483313"
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="57483313"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 12:33:34 -0800
-X-CSE-ConnectionGUID: WAr7aib6QQ2LdEArmDhpWw==
-X-CSE-MsgGUID: lraCZsGaR7q91qK/TAsOOg==
+ mime-version:in-reply-to;
+ bh=PbSWOMRbV0caE4exgI0EaqCT3H4mLPwi9elnDYHAHOY=;
+ b=VWc8cQPOsiNnKmD6wgUXFQTjbWb0Hs3EvWJ4DoLDFmdocpxghyb8SUON
+ V7YCS6aej4hCSeXNkPJLQSt2AP8LCJv2j9MAqH5/LYAm4S2fSLuTkfzmI
+ vuDSvEK42PD3crO1utcqR0ccz4idjl3JAMeMWVccKVlG1DV3OYdlvw1vi
+ LQwX4gLWHPZZRhPA7y5z/FOL+LElqZW/67OJnQb5yQkwAuQQ7+d+zffwn
+ oa82JEbR3mQI2EJcukfKAI/8W4oBMDzlLpgaOm3QgXLiYFo9W5xFeBVYw
+ 4tfdv37/DMLRvtmC/gq8ElYAMeaRHQzkn+IHQ05R8CTbRepiBOmaRShW4 Q==;
+X-CSE-ConnectionGUID: DBFibDOsTNSmXce/jXBREw==
+X-CSE-MsgGUID: a/1L2X5mTWizVAM4/oDBsQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="49616551"
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="49616551"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 13:01:55 -0800
+X-CSE-ConnectionGUID: WDCUFEi0Qo+cWqzWeXMwRw==
+X-CSE-MsgGUID: olLqk4lnRweBk1IVcCZfTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="120629368"
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="93759399"
 Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
  ([10.125.109.70])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 12:33:34 -0800
-Date: Tue, 19 Nov 2024 14:33:28 -0600
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 13:01:54 -0800
+Date: Tue, 19 Nov 2024 15:01:48 -0600
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
-Subject: Re: [PATCH 1/2] drm/xe: Always setup GT MMIO adjustment data
-Message-ID: <4drzjxtmbgwjiwwuxxu6436parjojvohwhuqcyzktvihvpbomm@m2j64wuicfr3>
-References: <20241114175955.2299-1-michal.wajdeczko@intel.com>
- <20241114175955.2299-2-michal.wajdeczko@intel.com>
- <yzyjk63jmruhujcaqpkx4cd64ymrqvjmikwlltgbf7pmbg6s7o@ycn665ds4ile>
- <3dde1c69-39f7-4ae7-8ecd-31338ce94a80@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>, 
+	intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/xe: Drop useless d3cold allowed message
+Message-ID: <o2qvrowghi5shepavwjzb6utpioyj2neqfbr45eny54fqrga3m@trovhcv4hoof>
+References: <20241115192155.2050987-1-matthew.brost@intel.com>
+ <ZzfCwCZr0byTqGj1@intel.com>
+ <ZzfYK1jr6KTGxR0c@lstrano-desk.jf.intel.com>
+ <Zzzd7FO-z9Q66Ugi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3dde1c69-39f7-4ae7-8ecd-31338ce94a80@intel.com>
+In-Reply-To: <Zzzd7FO-z9Q66Ugi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,74 +71,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 14, 2024 at 08:36:46PM +0100, Michal Wajdeczko wrote:
->
->
->On 14.11.2024 20:23, Lucas De Marchi wrote:
->> On Thu, Nov 14, 2024 at 06:59:54PM +0100, Michal Wajdeczko wrote:
->>> While we believed that xe_gt_mmio_init() will be called just once
->>> per GT, this might not be a case due to some tweaks that need to
->>> performed by the VF driver during early probe.  To avoid leaving
+On Tue, Nov 19, 2024 at 01:50:20PM -0500, Rodrigo Vivi wrote:
+>On Fri, Nov 15, 2024 at 03:24:27PM -0800, Matthew Brost wrote:
+>> On Fri, Nov 15, 2024 at 04:53:04PM -0500, Rodrigo Vivi wrote:
+>> > On Fri, Nov 15, 2024 at 11:21:55AM -0800, Matthew Brost wrote:
+>> > > This message just spams dmesg providing little benefit. Remove it.
+>> >
+>> > I don't believe it is useless, but I also hate the spammers...
+>> >
+>> > perhaps we could bring the status of it in some debugfs form
+>> > as a replacement?
+>> >
 >>
->> can you be explicit where this is being set on the VF case?
+>> ftrace could an option so if you really care about this enable it there?
 >
->it will be used in read_gmdid(), see next patch
->
->> Shouldn't VF
->> itself deal with fixing up what it did?
->
->in read_gmdid() we already said
->
->516      /*
->517       * Only undo xe_gt.info here, the remaining changes made above
->518       * will be overwritten as part of the regular initialization.
->519       */
->
->and it looks that xe_gt_mmio_init() is not overwriting everything as we
->would expect
+>hmmm it looks like a good idea... but no strong preference from my side...
 
-We only need to read the gmdid and for that need the mmio struct to be
-filled out. We end up needing the gt as a context, but this all looks to
-be fixing things that shouldn't have been done.
+as long as we are talking about adding a tracepoint rather than a plain
+trace_printk() unconditionally.
 
-without looking deeper I don't have a short-term alternative, though.
-
-Matt Roper, any better alternative that comes to mind? You did the mmio
-conversion and acked this "misbehavior" for VF earlier, so I'd like to
-hear your opinion.
+with dynamic debug we could use a verbose level that is only enabled per
+file when needed. Then we can keep messages like this rather than
+misusing the trace buffer.
 
 Lucas De Marchi
-
->
->>
->>> any stale data in case of the re-run, reset the GT MMIO adjustment
->>> data for the non-media GT case.
->>
->>
->> Lucas De Marchi
->>
->>>
->>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>> ---
->>> drivers/gpu/drm/xe/xe_gt.c | 3 +++
->>> 1 file changed, 3 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->>> index d6744be01a68..d45d2cecc4dc 100644
->>> --- a/drivers/gpu/drm/xe/xe_gt.c
->>> +++ b/drivers/gpu/drm/xe/xe_gt.c
->>> @@ -643,6 +643,9 @@ void xe_gt_mmio_init(struct xe_gt *gt)
->>>     if (gt->info.type == XE_GT_TYPE_MEDIA) {
->>>         gt->mmio.adj_offset = MEDIA_GT_GSI_OFFSET;
->>>         gt->mmio.adj_limit = MEDIA_GT_GSI_LENGTH;
->>> +    } else {
->>> +        gt->mmio.adj_offset = 0;
->>> +        gt->mmio.adj_limit = 0;
->>>     }
->>>
->>>     if (IS_SRIOV_VF(gt_to_xe(gt)))
->>> -- 
->>> 2.43.0
->>>
->
