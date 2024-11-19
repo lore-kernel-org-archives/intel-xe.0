@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96C81D44148
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 11:39:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25001D4414B
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 11:40:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6118310E629;
-	Tue, 19 Nov 2024 11:39:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KrJ7JdIS";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E0FB10E61D;
- Tue, 19 Nov 2024 11:39:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732016384; x=1763552384;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=61FGsbj4kt2c24O4GTiyLTwXpaS7o8ZVMBRlAJyaWJo=;
- b=KrJ7JdISlzm7RqsADdVXbswfNUmWZValtQ+812ErU6Wi2uDY1VSgJhd8
- EQMmIMmZDC/oRMrul7+IiWi7Y/XOdIEZM+dkI5vMxSFZIYtiwhK7I9lJz
- D11hvyiITIXWIJZjhPGzxx25DpB8U+jNawduBTZnlzTwaE6g+qdqAoNJB
- AMhmTOXMtJ07TpEdQmeuokx0D+naD7r+3J12/Cw+84jJSJRBAMCLg2sUb
- jP0OOY99rL8phaHNxNNzMWMvm1nY8X3qvpADRJe971VUhghfX3C+ezm8T
- kptzzzcEV5umSWQvrMQi7jkaKSxphFFocRtgqZS01EKufEOzIeJ9jCMOh A==;
-X-CSE-ConnectionGUID: W3J2DSYfSi2F25JAW30dQg==
-X-CSE-MsgGUID: EK6sADAQTU6kqYc6A0r+dg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31941858"
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31941858"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 03:39:44 -0800
-X-CSE-ConnectionGUID: q+xQ25ctQt+1jCASYp0Uug==
-X-CSE-MsgGUID: +njuSac+Sgi3lwPHHRxs6A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="112821014"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 03:39:43 -0800
-Date: Tue, 19 Nov 2024 13:40:16 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 11/11] drm/i915/ddi: simplify
- intel_ddi_get_encoder_pipes() slightly
-Message-ID: <Zzx5IKsm7us1CcBP@ideak-desk.fi.intel.com>
-References: <cover.1731941270.git.jani.nikula@intel.com>
- <0aa1274597fa84a0dc3c9ccf7bb20997d1d154bf.1731941270.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA8DB10E62B;
+	Tue, 19 Nov 2024 11:40:06 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0E2C10E62B;
+ Tue, 19 Nov 2024 11:40:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0aa1274597fa84a0dc3c9ccf7bb20997d1d154bf.1731941270.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Display_Global_Histogram?=
+ =?utf-8?q?_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 19 Nov 2024 11:40:05 -0000
+Message-ID: <173201640574.281726.2877817068841105460@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241119104521.575377-1-arun.r.murthy@intel.com>
+In-Reply-To: <20241119104521.575377-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,52 +36,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Nov 18, 2024 at 04:49:06PM +0200, Jani Nikula wrote:
-> Use a temporary variable for DDI mode to simplify the conditions. This
-> is in line with the other places that read DDI mode.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 33628cbc0f72..e25b712bf03b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -818,7 +818,7 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
->  	mst_pipe_mask = 0;
->  	for_each_pipe(dev_priv, p) {
->  		enum transcoder cpu_transcoder = (enum transcoder)p;
-> -		unsigned int port_mask, ddi_select;
-> +		u32 port_mask, ddi_select, ddi_mode;
->  		intel_wakeref_t trans_wakeref;
->  
->  		trans_wakeref = intel_display_power_get_if_enabled(dev_priv,
-> @@ -842,9 +842,10 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
->  		if ((tmp & port_mask) != ddi_select)
->  			continue;
->  
-> -		if ((tmp & TRANS_DDI_MODE_SELECT_MASK) == TRANS_DDI_MODE_SELECT_DP_MST ||
-> -		    (HAS_DP20(display) &&
-> -		     (tmp & TRANS_DDI_MODE_SELECT_MASK) == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B))
-> +		ddi_mode = tmp & TRANS_DDI_MODE_SELECT_MASK;
-> +
-> +		if (ddi_mode == TRANS_DDI_MODE_SELECT_DP_MST ||
-> +		    (ddi_mode == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B && HAS_DP20(display)))
+== Series Details ==
 
-nit: the above condition and the fdi counterpart is used elsewhere too,
-so could use a helper. The patchset looks ok regardless:
+Series: Display Global Histogram (rev3)
+URL   : https://patchwork.freedesktop.org/series/138867/
+State : warning
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+== Summary ==
 
->  			mst_pipe_mask |= BIT(p);
->  
->  		*pipe_mask |= BIT(p);
-> -- 
-> 2.39.5
-> 
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 6af9eb4707b2f65024ac9412f3a9d76cc2516a9a
+/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
+Sparse version: 
+Fast mode used, each commit won't be checked separately.
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
