@@ -4,27 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE096D60D11
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 03:00:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5169D60D19
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 03:25:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78A7E10E15C;
-	Tue, 19 Nov 2024 03:00:56 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4997610E15C;
- Tue, 19 Nov 2024 03:00:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8378588620035927532=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87A7010E5A6;
+	Tue, 19 Nov 2024 03:25:32 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LGDSpTjN";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5709D10E0E6;
+ Tue, 19 Nov 2024 03:25:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731986731; x=1763522731;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=AvQLeSWIB/RrVgpj4+hYmlLC2Bv3tG3pO/cE4+Qt9ZE=;
+ b=LGDSpTjN67DrMVdHhVblNDgGmbEBYUt9Qtbl0XFu8eW6ujAJhyb75yTZ
+ B9yXRb5qijVzLfgtZYMTTdQOIzPTwQZ1H0iGkOQq8L281kGz2/X9EtF0x
+ gRg59B4JZFDpIMfomWcBG2dQN6zY3qwmy84jlKxoWutykNjjJ4VtyvrwS
+ FqggsTqsup0MQ02FvkjXaCI9YvvRSfhmAYMlvPjk5AjQrT8AzoLXeR/vu
+ eQnCX1zNZqwEHM4OD83SF2Z/33EYJVIuXw0Rtt0SJSnk2HBU2MtcyntKj
+ 7Fu+hGPqKp/qLAzFpOxvzh55GTs6y965xUMErALDcgvLDiP6NSACA9Kpb A==;
+X-CSE-ConnectionGUID: HNCGlvAYSCCrWTDnP0d47w==
+X-CSE-MsgGUID: Tq8bsHp4RhSLgiWPpnky1w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31721703"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31721703"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2024 19:25:30 -0800
+X-CSE-ConnectionGUID: IOrVK42mRei6J+uzsr7+Dw==
+X-CSE-MsgGUID: MJq8zgCjQ12fLvQMrv1dsA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="94358674"
+Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
+ ([10.145.162.146])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2024 19:25:26 -0800
+Message-ID: <c267f1e6-0669-4b25-8552-c0311b461450@linux.intel.com>
+Date: Tue, 19 Nov 2024 08:58:42 +0530
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/oa=3A_Disallow_OA_from_be?=
- =?utf-8?q?ing_enabled_on_active_exec=5Fqueue=27s?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 19 Nov 2024 03:00:55 -0000
-Message-ID: <173198525531.107654.18099264305878556018@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241119013256.680030-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20241119013256.680030-1-ashutosh.dixit@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 3/4] drm/xe: Use device wedged event
+To: Raag Jadav <raag.jadav@intel.com>, airlied@gmail.com, simona@ffwll.ch,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
+ lina@asahilina.net, michal.wajdeczko@intel.com, christian.koenig@amd.com
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ anshuman.gupta@intel.com, alexander.deucher@amd.com, andrealmeid@igalia.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
+References: <20241115050733.806934-1-raag.jadav@intel.com>
+ <20241115050733.806934-4-raag.jadav@intel.com>
+Content-Language: en-US
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <20241115050733.806934-4-raag.jadav@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,154 +73,78 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8378588620035927532==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 15/11/24 10:37, Raag Jadav wrote:
+> This was previously attempted as xe specific reset uevent but dropped
+> in commit 77a0d4d1cea2 ("drm/xe/uapi: Remove reset uevent for now")
+> as part of refactoring.
+>
+> Now that we have device wedged event provided by DRM core, make use
+> of it and support both driver rebind and bus-reset based recovery.
+> With this in place userspace will be notified of wedged device, on
+> the basis of which, userspace may take respective action to recover
+> the device.
+>
+> $ udevadm monitor --property --kernel
+> monitor will print the received events for:
+> KERNEL - the kernel uevent
+>
+> KERNEL[265.802982] change   /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0 (drm)
+> ACTION=change
+> DEVPATH=/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0
+> SUBSYSTEM=drm
+> WEDGED=rebind,bus-reset
+> DEVNAME=/dev/dri/card0
+> DEVTYPE=drm_minor
+> SEQNUM=5208
+> MAJOR=226
+> MINOR=0
+LGTM.
+Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 
-Series: drm/xe/oa: Disallow OA from being enabled on active exec_queue's
-URL   : https://patchwork.freedesktop.org/series/141528/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-2249-1fe9a6cc7d136c9a34c47ccd6ee5a2b7d02c0bd6_BAT -> xe-pw-141528v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-141528v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141528v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][2] ([Intel XE#1033]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2249-1fe9a6cc7d136c9a34c47ccd6ee5a2b7d02c0bd6/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141528v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [DMESG-FAIL][4] ([Intel XE#358]) -> [PASS][5] +1 other test pass
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2249-1fe9a6cc7d136c9a34c47ccd6ee5a2b7d02c0bd6/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141528v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  
-  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#358]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/358
-
-
-Build changes
--------------
-
-  * Linux: xe-2249-1fe9a6cc7d136c9a34c47ccd6ee5a2b7d02c0bd6 -> xe-pw-141528v1
-
-  IGT_8115: 4942fc57c20f9cb2195e70991c4e4df03dd3db21 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2249-1fe9a6cc7d136c9a34c47ccd6ee5a2b7d02c0bd6: 1fe9a6cc7d136c9a34c47ccd6ee5a2b7d02c0bd6
-  xe-pw-141528v1: 141528v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141528v1/index.html
-
---===============8378588620035927532==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/oa: Disallow OA from being enabled on active exec_queue&#x27;s</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141528/">https://patchwork.freedesktop.org/series/141528/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141528v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141528v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2249-1fe9a6cc7d136c9a34c47ccd6ee5a2b7d02c0bd6_BAT -&gt; xe-pw-141528v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-141528v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141528v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2249-1fe9a6cc7d136c9a34c47ccd6ee5a2b7d02c0bd6/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141528v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2249-1fe9a6cc7d136c9a34c47ccd6ee5a2b7d02c0bd6/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/358">Intel XE#358</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141528v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2249-1fe9a6cc7d136c9a34c47ccd6ee5a2b7d02c0bd6 -&gt; xe-pw-141528v1</li>
-</ul>
-<p>IGT_8115: 4942fc57c20f9cb2195e70991c4e4df03dd3db21 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2249-1fe9a6cc7d136c9a34c47ccd6ee5a2b7d02c0bd6: 1fe9a6cc7d136c9a34c47ccd6ee5a2b7d02c0bd6<br />
-  xe-pw-141528v1: 141528v1</p>
-
-</body>
-</html>
-
---===============8378588620035927532==--
+Thanks,
+Aravind.
+>
+> v2: Change authorship to Himal (Aravind)
+>     Add uevent for all device wedged cases (Aravind)
+> v3: Generic re-implementation in DRM subsystem (Lucas)
+> v4: Change authorship to Raag (Aravind)
+>
+> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_device.c | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 0e2dd691bdae..5878b331e35c 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -989,11 +989,12 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
+>   * xe_device_declare_wedged - Declare device wedged
+>   * @xe: xe device instance
+>   *
+> - * This is a final state that can only be cleared with a mudule
+> + * This is a final state that can only be cleared with a module
+>   * re-probe (unbind + bind).
+>   * In this state every IOCTL will be blocked so the GT cannot be used.
+>   * In general it will be called upon any critical error such as gt reset
+> - * failure or guc loading failure.
+> + * failure or guc loading failure. Userspace will be notified of this state
+> + * by a DRM uevent.
+>   * If xe.wedged module parameter is set to 2, this function will be called
+>   * on every single execution timeout (a.k.a. GPU hang) right after devcoredump
+>   * snapshot capture. In this mode, GT reset won't be attempted so the state of
+> @@ -1023,6 +1024,10 @@ void xe_device_declare_wedged(struct xe_device *xe)
+>  			"IOCTLs and executions are blocked. Only a rebind may clear the failure\n"
+>  			"Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
+>  			dev_name(xe->drm.dev));
+> +
+> +		/* Notify userspace of wedged device */
+> +		drm_dev_wedged_event(&xe->drm,
+> +				     DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET);
+>  	}
+>  
+>  	for_each_gt(gt, xe, id)
