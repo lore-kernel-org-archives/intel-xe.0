@@ -4,146 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88867D44157
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 13:04:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62571D4415C
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 13:09:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 530A610E34A;
-	Tue, 19 Nov 2024 13:04:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E29A10E27B;
+	Tue, 19 Nov 2024 13:09:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2bIQYYNe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ibHK7Hw0";
 	dkim-atps=neutral
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2080.outbound.protection.outlook.com [40.107.236.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACAE610E34A;
- Tue, 19 Nov 2024 13:04:37 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d8b8Qa8jMczGD6/XesMgKoKiO7HGbyB5yqRbFilCJrD+KPQZCMZPWVO371KSUKBCDJztIslYhRaFIPhG1p8A6Q2b57ToNjJax9UtpMi5Qz0nGHetZ3Jb3RiEUUDkbMBg05MCfKdBl1qFP9aKbsHDIonQg8pt18gxEGwUCqUsVntW7ZxYhetBkBVbWXBjosueaCU6lcseq3LrNOV70ijDmrLT2Ck/dp7HBEaiAG4/f1uzJ7yP1XTi5+3Ny09eMNsOWh1PGHEw489g9CSf91f//0r3/wptU9Z1YUDgEh0mN3nLEu4sdMExgI7R9+E3Yw/xuE88CI2V7m8vHQUxN3+pDA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3uBnloOW5+j+k4Hyn/O6c1uTrSmitUmrGekMA0Z0Fo0=;
- b=eq1UZRhJK2APD+F5i98SXoVUaSuJePovfvxasBZTg4PTuC1E2JH2cQoa/SdzVPCZm10aY2rHpgAM6i6C6SSMHO6n9RSpyEFt9mnInv5d90/MBLl7nV4Hsv5cL/XXxpZ8/5y8NYAwZSSB5gSABysYH9Ui24vtRcTmgIixmcPjtoSwe6OtCd9wYyGhVAMe7deCSjoyBxwv58hyRiwVPK/OsQquSuxR01sYTPtMJbzieGlr/o2CxGeVBE0od650AFBI9h39Bv/AAv7IF27QvO5zjmnFt4GUfjEk2h2qeFeaXT/ujJgjs1HmoI6w+yVYJq5eUQzpgZ03hMaMGc+TGuTeBA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3uBnloOW5+j+k4Hyn/O6c1uTrSmitUmrGekMA0Z0Fo0=;
- b=2bIQYYNeiqmmZTRgfPJSdU29npKhMQ++jGk3ghuWuQNQ+df65/qHk+xpXv5EelEckDLJlNWaZSYk08KVyDA305GTV4LXXJZO5wVoAd3IisvC3VU6n6wwdDBdN8zket29Q/Osw8MWVuzvuw3lGmFf1ruEWN8cTXzau68Vg4N/A7E=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SJ2PR12MB7920.namprd12.prod.outlook.com (2603:10b6:a03:4c6::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.28; Tue, 19 Nov
- 2024 13:04:32 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8158.019; Tue, 19 Nov 2024
- 13:04:32 +0000
-Message-ID: <f1c9230a-d0b8-4322-b7be-09afdfe938db@amd.com>
-Date: Tue, 19 Nov 2024 14:04:27 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: Merging the xe / ttm shrinker series?
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-References: <ce4c83dfa93e22487ed80e855318cd8f92a054f2.camel@linux.intel.com>
- <c0ba86c43497626c329a7c4ee9cf1ebc96279519.camel@linux.intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <c0ba86c43497626c329a7c4ee9cf1ebc96279519.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR0P281CA0119.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a8::17) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB49710E27B;
+ Tue, 19 Nov 2024 13:09:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732021794; x=1763557794;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=xplUgtG5Xd3qLlnacR3Ok7o4lxNH0Q48twDzhE93rIw=;
+ b=ibHK7Hw06O6lCdcopT47PK4GqtY4nkhKo3zhzWOJKotXop9++eM3ZVg0
+ PkY3Q7CpqJefKLMf4Lg0dNo5frmp8gQFhyAitK8IurXOupzwngQFdsJM/
+ x6epfUk6DrcIMZxDzSuogvfrWCeyg68nPRMvwcRrrVx4fO1sxfK4y6wgW
+ /i1Ea4q+aHl4s3BVoVt3D5U8FElyX1pCuNV4Y0RE56XGpkx7+NTbZ5BtN
+ MCNXOd/iRAj3nYgnqX8jGH+FJIBAizY8jDZ7GKzTwXQT8oROLdoyzWPfI
+ a020Yg/pDeLoVynGPyYGe1yxl4Th9sZrmNG6yfHk3JMbBRuu1CjwJ4HnO w==;
+X-CSE-ConnectionGUID: q2dCFD8+ScKXO3LbI1DFRw==
+X-CSE-MsgGUID: 2Y0jq7ysQEy3TVbWIIWGQQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="31871792"
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="31871792"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 05:09:54 -0800
+X-CSE-ConnectionGUID: 4J8E8oCURC+R25Tc3knhSg==
+X-CSE-MsgGUID: LzS+xtHCSpq+3ZkX1O2G0w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="90358301"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.202])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 05:09:52 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 06/11] drm/i915/reg: convert DP_TP_CTL/DP_TP_STATUS to
+ REG_BIT() and friends
+In-Reply-To: <Zzx6zqUeUzUQlAgc@ideak-desk.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1731941270.git.jani.nikula@intel.com>
+ <9c54e8d7a3ff5039e4537cccb97214e63b9805c9.1731941270.git.jani.nikula@intel.com>
+ <Zzx6zqUeUzUQlAgc@ideak-desk.fi.intel.com>
+Date: Tue, 19 Nov 2024 15:09:49 +0200
+Message-ID: <87iksj2wv6.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SJ2PR12MB7920:EE_
-X-MS-Office365-Filtering-Correlation-Id: 81e69400-3aa8-4e74-ed85-08dd089ab556
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?MnpVdjMzR2VtOGRiU0x0MXp4WWd4M1I4djkxZ0FnQkRXUnU0ZHVIWTgxNjhJ?=
- =?utf-8?B?NUZiUUpEQ3lxZjRMK0dOYnlFbytPM2NUc1JmU041bGtIWjNSS0Fua0tiUjRa?=
- =?utf-8?B?amN4Q1BHV2kwZ3hleFdMbkd3Zlk3clhOdlZ6MlJVak5QaDBCL0orWkFqQTY2?=
- =?utf-8?B?S3IraUhXcTFHY0JUVGxGWEFRQTN1b0t1Z250WS9xcEpqWmhaTExYdTdscGFx?=
- =?utf-8?B?RytOYTFYZStxajR5SEg4eEFJNno0b2VIa1dabWk4QkJiSEZ5RlBjVVErNkU5?=
- =?utf-8?B?cVhjeHFBNzFRS1NGU1pqV3Y2enREeGVZTi95ZjB4Unk1aWJxMXMvQjY4d1lD?=
- =?utf-8?B?Y2NsWUcwRlUxbUdPNGdSdDFjSXNHSnJhSnlHMUJXZlFhcmlFeEtKbm9tb2VN?=
- =?utf-8?B?MENMRFRpTlRhaUhqU2I4dldOb3FZZFh5RnBsRUg2RHlDZWlHRDkyMHVnamFI?=
- =?utf-8?B?VXRCVlFSTHg3b3RZNjFITktTNUhYdUVoN21vMXYzdUpnNzBlQURibTZkSWtH?=
- =?utf-8?B?VVZYWkxHNlVyY3N1clFqemlnNFJQZ05pLzlTRjBwN1FCSVVnNTdMU2NRUVJ0?=
- =?utf-8?B?MW9qMlZzd0lNR05XOVpKZzErbGFIN294b0QrV3hBL2E5Q29EYXNmU3ZZWmJV?=
- =?utf-8?B?Ny8yQWRYc0M3QndJeFVPRW1PVlF5Tmp4blcxaW1wM0ZBYzFxa3N6dlFaNVpW?=
- =?utf-8?B?Z01rRGVkZGdjUFJEMnBFYWVQd1RDVVVoaVNvY2d3WGx0SXZ1ZjRHTHI5Z1ht?=
- =?utf-8?B?NlRhNHNxZktlMGpMU3BKSDdIZzN4cisxcGJZQVZNeEw4eHA3Z2pOekdIN0Zr?=
- =?utf-8?B?dWRCWFZPR01oMklBZGpYRS9ZQktIMGhqczl6WkwrOVdQckMwNGxCWEZiMW9M?=
- =?utf-8?B?N25XWmVkd3pocFRPWmJTb3dvVm9sb1hTN1Z0RlpXQmxTTk03N0RrNEdjR2gz?=
- =?utf-8?B?enNod0NRTFUrZDFNVVFHdUJrWmkzYmVCcklScFpBT3NsdlV0b0VBVHpmTGhH?=
- =?utf-8?B?Tkt3VnNuRUlPSjV4WDhYSnlJT3VDeFUyNTIzMmtRZ2tQTnVoU2dqR1Q3M2xi?=
- =?utf-8?B?TmY3bHhOTnNkZE1iZmVYOERaV0VxR1BLS0Y3eW9pbXV5WFU3Y1BlUDdHSEZZ?=
- =?utf-8?B?WndHMG01aW9zcUFjWWdUcUx0WER2MnZlQ2ZmZVIxTWVod1hiMG4rRVN2Ymoy?=
- =?utf-8?B?V0xUY0xaZlJzRXlNRlVibU9xZTB2ZFpzeEYvVjhwNTF5OUFRZkNqZCs0cDdJ?=
- =?utf-8?B?a05Pd3dSTnBhcUVleng2UWcyUjBEU1JmTFo4djdTU2MxVDgvblJ1L3lSbW1T?=
- =?utf-8?B?TkxSSFNONXViUHMwVFpKWnYvSkcvS2hvVmg1b3FpVlR2eWpra0VRc2luM28r?=
- =?utf-8?B?amZXanZPcWtzbHBPNi9XZ0F3dEl3L3JZTElZWllrajlCMm80Sy9NWkxhUXdQ?=
- =?utf-8?B?TnAveFVDRHViZmE1Y1F6VjBGd090bWl4dU1PM0ZRb0NwM2J6ekp4WDdaaHlz?=
- =?utf-8?B?L1hWNFE2QzVGVHlDTXRFQ05neGtTcmNJUzRBTyt2ekZnZE5KU05ZWHFVMjJV?=
- =?utf-8?B?cHI0NzNSK3hXd2NSNm9IQ2x4WFFvUVloK2tLS2NtT1AzWFVSSWxnRyt1dy9B?=
- =?utf-8?B?NW1KTnRDY1hjeUtyY3Y1QmM2a0xKdzROUk1hbENGaHArcVBVWGsvZmtpdHlj?=
- =?utf-8?B?cmdraEM0UUFDeEVUTGpTVW84UDVudW95OTdubHBPWlJiWHRWakVoT0tTT3lk?=
- =?utf-8?Q?Tqa8Cfp5WcuDXHYIYw=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bThXZFNpNSsxMmFoWXJENXpXQlhVRkxnS0ZHdE85RVptMmxDUkFnb242Mjhw?=
- =?utf-8?B?NlB4TmJ6NXAwMDljQTVIQThxdGsxbUUwajZIanpHUGVpY00xaTUxVXRDei9n?=
- =?utf-8?B?Wk1LbUtvSHF4V0VhWUxMT0djTFNudS9OTytEa0wxdnZKeE1lMTZwTkE1NExL?=
- =?utf-8?B?RW5CcGFkQTFXdkJTTlhyMjNpdndGb3RCQnZwakFrdlhzdUVGenUwNHJkVTJ4?=
- =?utf-8?B?eDh4YUtOVzlWRVczK1JvQm9obUZnQ053ZXpLdDN1STBydWxvai84T0xZYVdG?=
- =?utf-8?B?WmttOVorZG9laFJ3UTFPVGMvMVd2WXJkQWIwUzUxYWdjeC9oNDBmNVpyMXk5?=
- =?utf-8?B?azlpRVpINWhvMENzYUN0WEszUHdDblV0ZllCV0c4Z09IUzF1Zytjd1dLOXhR?=
- =?utf-8?B?OTNFblVXVGsxV2lrdTA3UDF5aEdJU2JxL3VmRG9Mdng1MEFvYmJpVzZEaW8w?=
- =?utf-8?B?c1p6K0Q1UzZHZWFUKzMxMVEvTVNkTHBpUnNPZXNPL3RDc2h2T3Z3aWVoOEE0?=
- =?utf-8?B?Tys2Ni9QOFVNSFpnckhJVXJBZGQrSGZBQ0s0M3BkbHVjUTdkb0lyWXdvRGs4?=
- =?utf-8?B?enNpNjgzaUhjUDVWUkRxUUQwQkJtNHlMMDZXc3pVbzk4L1Eva1k2bjRLay9x?=
- =?utf-8?B?d1V5MzRwS01IR3NGM2VxNjc2bFJ2U3ZmTjdkck1tL0NXbUtCWUJxNEc1ZEN2?=
- =?utf-8?B?MnRReWJESnJKOWJ3N3NUOVp4NnRaa2pzLzB3SHJJZ1MvV1ZsQWFCZmpXcFRY?=
- =?utf-8?B?cjRObitwdXI1RlVON1lHK1RvNEt1dWtjaXUwendPdEQzL3FHSEpyajRuN05P?=
- =?utf-8?B?SlNFWXo0M1g0dkU3UFFNMVRNUW90WnJjTjMrcFB1LzIyYVNYUERtdEdxNGMw?=
- =?utf-8?B?L0E1TlA5VkMyeWFZcXp4QittNENuamVQRlEyRVExTnNvS3c4cWFZVWd4dHNk?=
- =?utf-8?B?endvWWUxR2p3dWZDdktaYXJ2RnVsTERlb0NLVkUrNUlFVnJWbGlSSmZqZkpM?=
- =?utf-8?B?SE03YnpmOG1lNVZ0VS93d0krRTRuNGN2ZW1PR0k3QURRUkJFTW5HTzhqdDlZ?=
- =?utf-8?B?THdKQ1lyeGxCSVovc2RLMWlsTWRRak9vRU5xaHp4MkRXMVlEM0pMYmF5RVpM?=
- =?utf-8?B?TWZjSzRjNWZkb3Fsc0xkc2xQOU1ra1BsSWJvSEsxT005VWFHbjczalU3bSt5?=
- =?utf-8?B?NVdxejhJalk1ZmRLL3NTaUU0YUpUenFoVit4elJIaENzNTdqMzNSMkNVTDhL?=
- =?utf-8?B?TWF4WUtzYWwvOFIxVk5mc3A2OHdaZ0E4bzZqM0pLOVBJZjVEelNlbm4zY2Zj?=
- =?utf-8?B?WU5PRm1TUFUycDF3RGFrKytjNXUyc0dVUURrZGxyQ3lCQ29UU3hWYWIvSWhW?=
- =?utf-8?B?OU9hSFg5MXoxRHJqZFdkb0swUXlKN1c5SU5rNHpBTk5kWWtkcHNHWE9IT0k4?=
- =?utf-8?B?bSsyNEl5VU15aG16eWdLSm9YZk1hY2VwMkIrdWx6bnpzQ3NoeGJnRUl6ZGRl?=
- =?utf-8?B?WnFZM09HRVB2b0c5WHk3UklWc2VudkpaSm5NUWJZMk1oNnpkNEtaRjQrQ3B3?=
- =?utf-8?B?eWFuQ1QyeUdESXB5ckFOWVg2eXJtUzJoWG5qckhsR0YyOEU0dFBqQjdpN21l?=
- =?utf-8?B?dC95YlpwUGtlTG1sQVJWdVljYkIzdFRhYWVhSURYRkFhMHhlWEhKVnhCczEv?=
- =?utf-8?B?Yk0rNVVTMHoraWJRckxGRUtxTkJvYzhHNkp1TUhIWmdpa2V5V1dGVm5rL05G?=
- =?utf-8?B?YlFrZXExRGdzbXFPVlMwSGtFMDYrUHdhby9Md1MreE9KTmNocDdmV0k2a2ho?=
- =?utf-8?B?RTVPUDN4QUo3SU8wQXE2NytvUXJpTWQ4RUdhTFhHNDJ3TWwyazk1alBTQnBF?=
- =?utf-8?B?aHU4c3A3cDByY1VsSDlrRmlYZldKS0pyNERqZTFWdys4Rk1aWDdOaTJONDM4?=
- =?utf-8?B?Y1l0L3hLY3RWdHlHalViUE5VVVpYT1J0aS9zOXRSb21ib3AzUVBielI1SjI3?=
- =?utf-8?B?cnN4WEhOMkZJZGhuMlpEcHRDOGhneU54Um1wOGF3VTRyNENidDR2SFFMZjN1?=
- =?utf-8?B?NHhQajZWeDVROURicUM1VVR4Y3dCU3JaK0ZpQXBmRFlSSXVhWjFDc3JteE55?=
- =?utf-8?Q?qBqpXrYzA6yg90ru/fQkMal5y?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81e69400-3aa8-4e74-ed85-08dd089ab556
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2024 13:04:32.3838 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XxAoekK8T7H/QCT3Nkl2EP97nZ0vCiLkZSQ9QZh6nmzpp71eO+ydV7iehegHEnP0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7920
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,34 +70,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 19.11.24 um 12:22 schrieb Thomas Hellström:
-> Hi, Christian,
+On Tue, 19 Nov 2024, Imre Deak <imre.deak@intel.com> wrote:
+> On Mon, Nov 18, 2024 at 04:49:01PM +0200, Jani Nikula wrote:
+>> Use the modern style for defining register contents. Expand the status
+>> register contents a bit.
+>> 
+>> TODO: The payload mapping fields have more bits on more recent
+>> platforms.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/i915_reg.h | 57 +++++++++++++++++----------------
+>>  1 file changed, 30 insertions(+), 27 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+>> index 7a35be56b7ef..9c198405349d 100644
+>> --- a/drivers/gpu/drm/i915/i915_reg.h
+>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+>> @@ -3823,25 +3823,26 @@ enum skl_power_gate {
+>>  #define _TGL_DP_TP_CTL_A		0x60540
+>>  #define DP_TP_CTL(port) _MMIO_PORT(port, _DP_TP_CTL_A, _DP_TP_CTL_B)
+>>  #define TGL_DP_TP_CTL(dev_priv, tran) _MMIO_TRANS2(dev_priv, (tran), _TGL_DP_TP_CTL_A)
+>> -#define  DP_TP_CTL_ENABLE			(1 << 31)
+>> -#define  DP_TP_CTL_FEC_ENABLE			(1 << 30)
+>> -#define  DP_TP_CTL_MODE_SST			(0 << 27)
+>> -#define  DP_TP_CTL_MODE_MST			(1 << 27)
+>> -#define  DP_TP_CTL_FORCE_ACT			(1 << 25)
+>> -#define  DP_TP_CTL_TRAIN_PAT4_SEL_MASK		(3 << 19)
+>> -#define  DP_TP_CTL_TRAIN_PAT4_SEL_TP4A		(0 << 19)
+>> -#define  DP_TP_CTL_TRAIN_PAT4_SEL_TP4B		(1 << 19)
+>> -#define  DP_TP_CTL_TRAIN_PAT4_SEL_TP4C		(2 << 19)
+>> -#define  DP_TP_CTL_ENHANCED_FRAME_ENABLE	(1 << 18)
+>> -#define  DP_TP_CTL_FDI_AUTOTRAIN		(1 << 15)
+>> -#define  DP_TP_CTL_LINK_TRAIN_MASK		(7 << 8)
+>> -#define  DP_TP_CTL_LINK_TRAIN_PAT1		(0 << 8)
+>> -#define  DP_TP_CTL_LINK_TRAIN_PAT2		(1 << 8)
+>> -#define  DP_TP_CTL_LINK_TRAIN_PAT3		(4 << 8)
+>> -#define  DP_TP_CTL_LINK_TRAIN_PAT4		(5 << 8)
+>> -#define  DP_TP_CTL_LINK_TRAIN_IDLE		(2 << 8)
+>> -#define  DP_TP_CTL_LINK_TRAIN_NORMAL		(3 << 8)
+>> -#define  DP_TP_CTL_SCRAMBLE_DISABLE		(1 << 7)
+>> +#define   DP_TP_CTL_ENABLE			REG_BIT(31)
+>> +#define   DP_TP_CTL_FEC_ENABLE			REG_BIT(30)
+>> +#define   DP_TP_CTL_MODE_MASK			REG_BIT(27)
+>> +#define   DP_TP_CTL_MODE_SST			REG_FIELD_PREP(DP_TP_CTL_MODE_MASK, 0)
+>> +#define   DP_TP_CTL_MODE_MST			REG_FIELD_PREP(DP_TP_CTL_MODE_MASK, 1)
+>> +#define   DP_TP_CTL_FORCE_ACT			REG_BIT(25)
+>> +#define   DP_TP_CTL_TRAIN_PAT4_SEL_MASK		REG_GENMASK(20, 19)
+>> +#define   DP_TP_CTL_TRAIN_PAT4_SEL_TP4A		REG_FIELD_PREP(DP_TP_CTL_TRAIN_PAT4_SEL_MASK, 0)
+>> +#define   DP_TP_CTL_TRAIN_PAT4_SEL_TP4B		REG_FIELD_PREP(DP_TP_CTL_TRAIN_PAT4_SEL_MASK, 1)
+>> +#define   DP_TP_CTL_TRAIN_PAT4_SEL_TP4C		REG_FIELD_PREP(DP_TP_CTL_TRAIN_PAT4_SEL_MASK, 2)
+>> +#define   DP_TP_CTL_ENHANCED_FRAME_ENABLE	REG_BIT(18)
+>> +#define   DP_TP_CTL_FDI_AUTOTRAIN		REG_BIT(15)
+>> +#define   DP_TP_CTL_LINK_TRAIN_MASK		REG_GENMASK(10, 8)
+>> +#define   DP_TP_CTL_LINK_TRAIN_PAT1		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 0)
+>> +#define   DP_TP_CTL_LINK_TRAIN_PAT2		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 1)
+>> +#define   DP_TP_CTL_LINK_TRAIN_PAT3		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 4)
+>> +#define   DP_TP_CTL_LINK_TRAIN_PAT4		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 5)
+>> +#define   DP_TP_CTL_LINK_TRAIN_IDLE		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 2)
+>> +#define   DP_TP_CTL_LINK_TRAIN_NORMAL		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 3)
+>> +#define   DP_TP_CTL_SCRAMBLE_DISABLE		REG_BIT(7)
+>>  
+>>  /* DisplayPort Transport Status */
+>>  #define _DP_TP_STATUS_A			0x64044
+>> @@ -3849,14 +3850,16 @@ enum skl_power_gate {
+>>  #define _TGL_DP_TP_STATUS_A		0x60544
+>>  #define DP_TP_STATUS(port) _MMIO_PORT(port, _DP_TP_STATUS_A, _DP_TP_STATUS_B)
+>>  #define TGL_DP_TP_STATUS(dev_priv, tran) _MMIO_TRANS2(dev_priv, (tran), _TGL_DP_TP_STATUS_A)
+>> -#define  DP_TP_STATUS_FEC_ENABLE_LIVE		(1 << 28)
+>> -#define  DP_TP_STATUS_IDLE_DONE			(1 << 25)
+>> -#define  DP_TP_STATUS_ACT_SENT			(1 << 24)
+>> -#define  DP_TP_STATUS_MODE_STATUS_MST		(1 << 23)
+>> -#define  DP_TP_STATUS_AUTOTRAIN_DONE		(1 << 12)
+>> -#define  DP_TP_STATUS_PAYLOAD_MAPPING_VC2	(3 << 8)
+>> -#define  DP_TP_STATUS_PAYLOAD_MAPPING_VC1	(3 << 4)
+>> -#define  DP_TP_STATUS_PAYLOAD_MAPPING_VC0	(3 << 0)
+>> +#define   DP_TP_STATUS_FEC_ENABLE_LIVE		REG_BIT(28)
+>> +#define   DP_TP_STATUS_IDLE_DONE		REG_BIT(25)
+>> +#define   DP_TP_STATUS_ACT_SENT			REG_BIT(24)
+>> +#define   DP_TP_STATUS_MODE_STATUS_MST		REG_BIT(23)
+>> +#define   DP_TP_STATUS_AUTOTRAIN_DONE		REG_BIT(12)
+>> +#define   DP_TP_STATUS_STREAMS_ENABLED_MASK	REG_GENMASK(21, 19)
 >
-> On Sun, 2024-11-03 at 13:38 +0100, Thomas Hellström wrote:
->> Hi, Christian,
->>
->> The TTM shrinker series is now at v12 with all patches R-B:d.
->>
->> Ack to merge through drm-xe-next?
->>
->> Thanks,
->> Thomas
->>
-> Gentle ping on this,
-> The requested change of the ttm_backup interface done and MBrost has
-> extended his R-B.
+> I assume the above is the 'Streams Enabled' field and that is bits 18:16
+> on the platforms I checked. Bits 21:19 is 'DP Init Status'.
 
-Yeah and you guys keep pushing stuff on my TODO list additionally to the 
-stuff the AMD guys are pushing for.
-
-Give me a few more days, it looked mostly good. I just couldn't wrap my 
-head around splitting the huge pages so far.
-
-Regards,
-Christian.
+You're right. Good catch, thanks!
 
 >
-> Thanks,
-> Thomas
->
+>> +#define   DP_TP_STATUS_PAYLOAD_MAPPING_VC3_MASK REG_GENMASK(13, 12)
+>> +#define   DP_TP_STATUS_PAYLOAD_MAPPING_VC2_MASK REG_GENMASK(9, 8)
+>> +#define   DP_TP_STATUS_PAYLOAD_MAPPING_VC1_MASK	REG_GENMASK(5, 4)
+>> +#define   DP_TP_STATUS_PAYLOAD_MAPPING_VC0_MASK	REG_GENMASK(1, 0)
+>>  
+>>  /* DDI Buffer Control */
+>>  #define _DDI_BUF_CTL_A				0x64000
+>> -- 
+>> 2.39.5
+>> 
 
+-- 
+Jani Nikula, Intel
