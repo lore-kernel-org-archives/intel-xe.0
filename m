@@ -4,167 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57DE3D6C2B8
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 23:44:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48B2FD6C2B8
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 23:59:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2076C10E06C;
-	Tue, 19 Nov 2024 23:44:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 125C910E0D9;
+	Tue, 19 Nov 2024 23:59:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kP78+rgL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XOoGbOWK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48FFC10E06C;
- Tue, 19 Nov 2024 23:43:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3105210E0D9
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Nov 2024 23:59:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732059838; x=1763595838;
+ t=1732060768; x=1763596768;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=kCTyw2ClqQDMaFH4CIOXLViwT0wSr8+1f/50fLqL+jw=;
- b=kP78+rgLI06+IdQMRA3NQnryon5SkimEsgBUzfmTBiI6ykoS4oQBf8nB
- SW9w9olrqOPMlssrV9K/WqBObqbOkgUNddQhMZEJ1dfvErOXvv0CiilgY
- 7+60bZhmA+VsE6GgI0QOqjKqslxBd3ead5Ko0+8mLFfbvmic7hMNmMNhe
- Pom+bXfJWAMKJZtiGhwFXAKUj+Pn4b57sSDNqLCmPe8mbcUDJ56L+IwoD
- QChD6xAn+x7Q+X2sjv+r+kXDqUXJcTiZTclW13ZASXGmWjAgWHMV/rRbD
- 9ii80cf8O0EygIlsRyttLJlESEEQLzWFLOElNpYh0ppToGGp0yGKGlE7G g==;
-X-CSE-ConnectionGUID: rV0eODDKTFK529cV37bo0Q==
-X-CSE-MsgGUID: /jCCqR6hTPehM7jBtneb+Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="31500069"
-X-IronPort-AV: E=Sophos;i="6.12,168,1728975600"; d="scan'208";a="31500069"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 15:43:57 -0800
-X-CSE-ConnectionGUID: rqaBL+YhQGmKrGSpGf4wYw==
-X-CSE-MsgGUID: bag8hC9ARQCvmRPjKXTPSQ==
+ bh=0WJQPgLpVYYDKDrumB1g5oGp6RrZObQdsFuABHycVYw=;
+ b=XOoGbOWKjk6IyFXTLMvHemNhr8khbd49bBL/1kysYYtDDgv8Ui7mogAS
+ T1E+ABxxHDE0Ki3/JV3xfXWb8eLI5Mr8aYiBv6vNMVKPybaK2punpXzom
+ vSQRXTQy4W3k8g7CnMuZHaWmVsLbsUmMJ4h5xwwQOf7TCdInZED0iFo89
+ zyXyZp/zohYBl2INq2MDruwd6sHDaGI3jG5j1lVVvX0pDxexUgKWxLGCJ
+ /uIWVWJLBqugjO3EP2jyFTi4OtDcV6y0bB8E+wt7Dv5EnsPnqfZNXSjbT
+ F3dUhSGHnW6WQZcabxtOrA8HZAShcv7ybqZGSpjGpwJRcSPA8dsmP//bo Q==;
+X-CSE-ConnectionGUID: Jq1JH/6bTXaMKs5PRZlmJw==
+X-CSE-MsgGUID: N+CHtzNORHSQQ7big8wZ0Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="43481650"
+X-IronPort-AV: E=Sophos;i="6.12,168,1728975600"; d="scan'208";a="43481650"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 15:59:28 -0800
+X-CSE-ConnectionGUID: +oGC1J08S0ikGwfK39uXPQ==
+X-CSE-MsgGUID: jjuCX4SRR1OU9M5Yvd2aXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,168,1728975600"; d="scan'208";a="89720192"
+X-IronPort-AV: E=Sophos;i="6.12,168,1728975600"; d="scan'208";a="94546784"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 19 Nov 2024 15:43:57 -0800
+ by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Nov 2024 15:59:28 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 19 Nov 2024 15:43:57 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ 15.1.2507.39; Tue, 19 Nov 2024 15:59:27 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 19 Nov 2024 15:43:57 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Tue, 19 Nov 2024 15:59:27 -0800
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.45) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 19 Nov 2024 15:43:57 -0800
+ 15.1.2507.39; Tue, 19 Nov 2024 15:59:27 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wPUySrsHhJCjNYgQCHQA2jKipybQOdOPo5TA3U/tIBGD0ZJmqwvsjbYGf9NtjG66gLGaFZD8rBWVIkZeTWO/ySx3GwjLtL88x4HIcf63wrnDrObtMBbFL4uAUjexOYRsPvDppLqdUh7H/kKwSf/tgkYbZ0b0vjUI2kD4DgBd2dZ0h37rcxSeoczThqL3KKowqP3pU6ZhWWtmKa868RBzCxvD4ZE0tXLHm5jlWYzoqeb/WcijUki2+Pn8n7WCR3TeE+YVymbWNoBq7aUFPh6v3XuTm9c9dftLSkmHzlklBo1P99uZtIAqyntVrwhY2xNaVvuKK73PcFlIePS4IcsaoQ==
+ b=KKsB2vYz9veLuB057xiaRJd0wLpCDXHL8dUHk9V38iA649WJD6kIp1K/oCSkVxwmA2CIUdXQINtPgCBGrzI/Y0aR7bU+67YPE3lMEZEPFXZl1hz5bFIPRSx17FdOURQ3/aGMaZjX7BWjdCL2chGQN9+wSRix1bpLIWRNUaT0UPrD3P69glqrFd8YOpXegpJylDFEVVRkHerV47seOELs10pxWXhG8h4tBDGIvtfYmLH149KmHhSG+M1sAHEFM3bUBu9loIVFyj6iJEypp/Z92SRWvdTwEXZAFGJmYpYLp8WfjEgJkX5QzvLpzG3NlOlFLskVYhg3/jUr0KwDBKVRUQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vRsdCj6dPpA3plkfl2uetqyXNsYPReFlPO+7UOQOnN4=;
- b=Otkd+O0Pu5LWqnaJgJobNtzPwgQzamVm8Jg7C1FOUO+J/SykTQfAgpt7tUE2QxfiVKRlXmCrRkNhR5XCKkW8tfKjR0MrtyJn4LTBCn+95IV4qzzOV6Qw75B3/RH9wuFkk9YkcqhoFDdwVrp9s+x+U4et6VPn6weXb8Y3jrtCfrIDScAJfAg/JpIcOjFyrbO/5misqzFuf60hFThlS5DMzjhszBJigkZ7fhOsDXX9uGE9SC6rJA/Cx07V9JAW0KW73hX4OhMKH4DnELPbLFTt1fnfvpx7d6zn0SnmS3SSkNcVBI5ijvwK27yyyu1NTOVUWY2TACCTdPziscVG3SCxKw==
+ bh=CfNDxKIOgFjmWWyIR0m7rRtuRdACxrTi6p/YRMu2GMs=;
+ b=O2MfhS3ioZbRYBQbrU7VWO21fveqG5It2FQ8EeoQ+CLBA5HFPk9DO2FoyswxlK//DWuXDlstxjfwpNs8AEhDyauoQO9FkXAFxeHdWOXV2n/lUdaByuChy4k46VthI1jt3qDPUSGJavmKgBWjrY+zgEdb2GNXQ5bz0eQRH2vlW8ABmluwK8wFTG2Zyq7PDylL7NT0Q9SvP338I+4pWzF+eiahluC2yI0uIVyHQ+xOdBt8Oj0FR5eLjByQh12U4BthLYV9MsmKAL1nfbnsQy5iu28Rdj0Xf9AmuecxaBjXpLtBUtXB4sRxoi4WdLvQll+uZbdZ4WN+9oL8BQ1XWHHFOg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by BY1PR11MB7984.namprd11.prod.outlook.com (2603:10b6:a03:531::11)
+Received: from MN0PR11MB6278.namprd11.prod.outlook.com (2603:10b6:208:3c2::8)
+ by MW3PR11MB4729.namprd11.prod.outlook.com (2603:10b6:303:5d::24)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.22; Tue, 19 Nov
- 2024 23:43:54 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.8158.023; Tue, 19 Nov 2024
- 23:43:54 +0000
-Date: Tue, 19 Nov 2024 15:44:29 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <apopple@nvidia.com>, <airlied@gmail.com>, <christian.koenig@amd.com>,
- <simona.vetter@ffwll.ch>, <felix.kuehling@amd.com>, <dakr@kernel.org>
-Subject: Re: [PATCH v2 13/29] drm/xe: Add unbind to SVM garbage collector
-Message-ID: <Zz0i3XiEijt/9e7y@lstrano-desk.jf.intel.com>
-References: <20241016032518.539495-1-matthew.brost@intel.com>
- <20241016032518.539495-14-matthew.brost@intel.com>
- <e30f24553810cf10774201b39262e63fd7f664d7.camel@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.23; Tue, 19 Nov
+ 2024 23:59:23 +0000
+Received: from MN0PR11MB6278.namprd11.prod.outlook.com
+ ([fe80::a9df:4a4d:b9e7:76e2]) by MN0PR11MB6278.namprd11.prod.outlook.com
+ ([fe80::a9df:4a4d:b9e7:76e2%6]) with mapi id 15.20.8158.023; Tue, 19 Nov 2024
+ 23:59:22 +0000
+Date: Tue, 19 Nov 2024 15:59:12 -0800
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <ashutosh.dixit@intel.com>,
+ <james.ausmus@intel.com>, <felix.j.degrood@intel.com>,
+ <jose.souza@intel.com>, <matias.a.cabral@intel.com>,
+ <joshua.santosh.ranjan@intel.com>, <shubham.kumar@intel.com>
+Subject: Re: [PATCH v4 2/5] drm/xe/eustall: Introduce API for EU stall sampling
+Message-ID: <Zz0mUGCKzLXI5Y13@intel.com>
+References: <cover.1728884074.git.harish.chegondi@intel.com>
+ <a4ca443e9dc0e25ff4d77908f785cdfdf6c80f7f.1728884074.git.harish.chegondi@intel.com>
+ <ZzYj53waEWwK/5za@orsosgc001>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <e30f24553810cf10774201b39262e63fd7f664d7.camel@linux.intel.com>
-X-ClientProxiedBy: MW4PR04CA0068.namprd04.prod.outlook.com
- (2603:10b6:303:6b::13) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <ZzYj53waEWwK/5za@orsosgc001>
+X-ClientProxiedBy: MW4PR03CA0055.namprd03.prod.outlook.com
+ (2603:10b6:303:8e::30) To MN0PR11MB6278.namprd11.prod.outlook.com
+ (2603:10b6:208:3c2::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|BY1PR11MB7984:EE_
-X-MS-Office365-Filtering-Correlation-Id: be9383d5-f64d-45b0-8bd3-08dd08f4074b
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6278:EE_|MW3PR11MB4729:EE_
+X-MS-Office365-Filtering-Correlation-Id: e5a6aad2-b725-44d7-3660-08dd08f63058
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?P10N2yiW2wu3BEirJgUWxTSOsPsn+7bPP70p/Ns2vHYsBdc7zM4FcXX1XC?=
- =?iso-8859-1?Q?9f1Z/Vxkq7ukyhuqX3GRjx0GUNPOtwvt+i1g0f1+SS2zS/pRnXGBUOyZgE?=
- =?iso-8859-1?Q?s0HmFFkW9PjIuInYjDAi1Xrxx3USJwnmWKfGBKsY9bnW9ZyJm4zIoO0jMC?=
- =?iso-8859-1?Q?kTm9Oz8aZE68xbDOjtHSW8df1kpLojWMjY5aUr0t/zslt6X2vh3LyVHy6O?=
- =?iso-8859-1?Q?UFtxl7sE7c28D2nbR7j2PZb4dGWAOqO3EQMuM07Kf9IEYwltTFdhKAC+UG?=
- =?iso-8859-1?Q?/4S+iRbL01KAoKBeHufhORDSrgYtJ8dVhXlkwQIRNperxIW3v84bR7giOe?=
- =?iso-8859-1?Q?Tt9m3YjFobR9Rj05eE8xk9OgWtydp7+bxZrdT5uglBtLh8DPIdfV02XZ9C?=
- =?iso-8859-1?Q?q+Tii62L9srDyfrpRtSHiOzhWMeR6yoAWzBaTVfuBNBmoIXZ2SKRaAkxu/?=
- =?iso-8859-1?Q?PLY+Ru6u2o9WBVNa0VQezkTJQJJnf0GON2Y7VDg//fcfVWoTd4SNsh2SBH?=
- =?iso-8859-1?Q?YU5fwVEpoIhzjMgKorAd2P8qKEZHED20+X8lTH0mQ4A8md2XSsP+YS6cJo?=
- =?iso-8859-1?Q?SCHZLY68u+js2uYV70bJ0JdFVdCs6u0n6THBMnQ9HlqM2bduZ//yaVti0I?=
- =?iso-8859-1?Q?pc/mtaylHLaBK4vxP4qhTO2i/dirSau2188gtL/K6/BxIyk5pvk+QNJ7xk?=
- =?iso-8859-1?Q?jhOe0r2QDJ+UsJUjH6p3lhZmc6kL0Cm1bYnloGZupwVnZfCEB+9Q4uimw0?=
- =?iso-8859-1?Q?wwAROuFM3cFVetmjyx8rRbX+CVkxvRYV/M8fFBOytvR9mf+u2At/Dzvd/t?=
- =?iso-8859-1?Q?X7//pjPeYiEoCmE40CWZldy2p7wk9G14onODMVULzVRQ6SpRThFsHph7aW?=
- =?iso-8859-1?Q?qRirGoqXpFcs4pWBd73MtC1SX9AmFpNEXczJgAzpqvbKfqx3EC2P2UrFTF?=
- =?iso-8859-1?Q?emaPQz3fcQBuN1lqsgYvubtSoJJ7pVtS3+3LYKEe5L3NaBDVOHKF/J+pWc?=
- =?iso-8859-1?Q?ARLn5YAgrK6lGUFDPEYIpFxq6c2+pWro1g+BNYM0CeAEIcFtx41bWe+PcA?=
- =?iso-8859-1?Q?OjVk+qVq9AFopUY+eyCy0tmpdotfoacKRlHxKUZQDETNtaV9lDY+OK1VpM?=
- =?iso-8859-1?Q?zNEIxrClqEX0opyHwkE9yEpr9mlQJUBfQz9icWIqAfYzZZkJx2ABVmUFn5?=
- =?iso-8859-1?Q?Z6P5Im+pRkF1QY+GV6WNaLOyOJmPSa76mU5yRkIc1eIOTFfD9gZnozBDqc?=
- =?iso-8859-1?Q?gZsINpERdI7KTuxt3uzCyVhZW06tWAh79Bqhpc0TQDr8UVETAjiGuaC+a7?=
- =?iso-8859-1?Q?W11teltBHRZXRFZnVE34nBbsk6Ru20NR7r5cOiSmhRx2IOqm6/3kNo9uaL?=
- =?iso-8859-1?Q?Y6Rq+G9p9e?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NEZLak9Hd0ZjL1BlMEpvam9HUHhHOXNFN1dFYzI0SDVYYjJ2WElxOTNXMVZ6?=
+ =?utf-8?B?VUdnQnFjTVZTK1NEWWgxRkNiUTJ3TFZ4dyttNXR0ZzNLTGFJZFdSa0hkQ3Jq?=
+ =?utf-8?B?d0JwRk5ETTF1VTIvYUUxbTdMNUNYamxNV2FmUitTdHF5TDFSelJVams5YXRG?=
+ =?utf-8?B?d0pvVWdFODh5MmVlMDhYNHhiVUpVV3hqMlpxempZRU9IZElnNm9SNGhnaXds?=
+ =?utf-8?B?SUx1RFZ5V3ZBT2UrU3B3ODVkUXFlR0VleUJqbG9kOWk4RnZtM2d3RHh2V2N6?=
+ =?utf-8?B?SDZNMmJiSm1rdkFoOUJmeGgvbTcyenU4ODJrUGtpUXQzQUZQdVhwdml4VDJG?=
+ =?utf-8?B?cUZuRDFXRDkyRUVKMWd6bVRJdllzd3dBQllndVNBVlJTK1owQlkzVmIxMzNC?=
+ =?utf-8?B?ZnNMVytzZVVXdVEvMWVxclcwVUdOVHhXVklSbldsQ2dUWHpVenVWcCtRdS9U?=
+ =?utf-8?B?K1dwdFlqRFpsYWFRdE01ei9TV2V4OXh6Q2lRSmFUb1JFRWZaeUlSY0crVG9Z?=
+ =?utf-8?B?N1dzcGJiaWZNak4xZnY2WW55amR2dlBWVzR3NGhwTFVkRHQzMjFsUlFQT3N6?=
+ =?utf-8?B?OWpROXBabCthaE9EcGxYZFBnSTZEYU9CV3ZLVzRDcWtpVkMrZGptU3U0bjg4?=
+ =?utf-8?B?aCtsNzAvQm5ML1FZQWJaNlgyQnBQUUpkU0g5NmpXajl3ZDRpV3l2R25IYnV4?=
+ =?utf-8?B?MVVDcDZWamwwdjlBTUJpZ3phaU5sOFlXQUE3R0JETmZjc3JSOGl5QmljblAv?=
+ =?utf-8?B?elBQMmZndXJQZ3kvZUEvWk95TjhSUUdjc1NSM2g5azg4QzU3WUR6MWJZU0lk?=
+ =?utf-8?B?dHliZHMrTDlYSHRZSnZjK1lSRE0zYitqeWJURUU5K3RKYlUxYWdDblIrdnB1?=
+ =?utf-8?B?bHFRSFVLKzFJZXhTTGFrN2k0ZXd4MXI4QU9jZXVvSktIbTZSdVNaOWNOZlBk?=
+ =?utf-8?B?ZU9RVjhiSUFaZEhLK2JDSndQVHQwNElVL090QnJmVkNKUTZPQmZ6R0JSQzZx?=
+ =?utf-8?B?S3dlVTdld1ZkMlVJQjk5Z21SUlZFdUFGMk9NRjVwNnJKYURpaEMzditNNm9X?=
+ =?utf-8?B?WXpHNjk1ZFNCMUlRK3NBMkQzcmhCY3FuRVdYQ1dFNjlKcldmY2lvY1luZmo4?=
+ =?utf-8?B?SmVnd0pJUlNxamNXVWNjTWpLcnNadkpOSThxRW1CY1hVYUJ6M0NDUWQ2cldU?=
+ =?utf-8?B?aUMxZzEvTDFNa0NSQkxjeUNBb1M4TUlmWXg1LzdSOGhZeHpsMG8yYWlXQTZC?=
+ =?utf-8?B?UUw3Nm44dEdrNHpCSUxiZndOQVNoTVlpeXREa1B0d211VEozbTNoQjB4bkZD?=
+ =?utf-8?B?VEFWQno5d29hOElzWmMzd2JSaktmTUNLcm1naWkyNGZ5WkU4QWYwRUplWXNh?=
+ =?utf-8?B?eFV2UGdlRURvS09yY2NLKzlpZzc2bUk5RHVDUHIwSGIvY3hQNmhjaGx6RzMr?=
+ =?utf-8?B?ODU5c1lqbU44QUtnQlQ3aU1GTkE2RkFYNmhScFVxdDRGWExEYW9hcDRkNDBa?=
+ =?utf-8?B?OXNQVVczTlQ5RDhnRWd0TU1HbEdVd1A5UFVmOXM1cUNHZnVZZVZUbU9vem45?=
+ =?utf-8?B?Y0VtVm9EV0tHdlU1aDkxMVM2SzBBenYwUEFuR3ZSRnRzTXJkRldrU3JEdzUv?=
+ =?utf-8?B?Y2c3MVhIOE9EbThsNmxKUUJWNElhYnFVVEdXUVJ5QU0yM011UU80aWhmUEw5?=
+ =?utf-8?B?MmpINm53dnlMdXNJWnRzdWtkRVBwSmpmVDJqUnBsZ0hEYjVzeDQwd0hoOEFW?=
+ =?utf-8?Q?fKGhp8/ADlA91stqlJjTMOAzJvDVaf7p4eYYxIB?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6278.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Lhyag6iKec8Q1QCx3K2U4b7aQp+gJ1oewknLlteyAOfQborL7jYHEXl9P3?=
- =?iso-8859-1?Q?7ZdYhPVvsdlMdJg7UuWYNP1ytQvPuBga/YY354+o0y6Aj/WN9Gh0RoNosv?=
- =?iso-8859-1?Q?cxTbQYNcDVg3yH0STbY+Cf/IyDyReAtq6Ta2F+dK/3UlRP0NAX/n//Fw6U?=
- =?iso-8859-1?Q?iRrEAWS2t6vIxX79ui5Q748FER2Bp0cxl+wbC4xAyNPguHBQkDwn9NXoox?=
- =?iso-8859-1?Q?ipSnaJwNEJf1pemZ8yUHhDoA3VNfg03x108mQ/yDGPJeMD417xSU22Q/0W?=
- =?iso-8859-1?Q?4syc4swC17B/cUHTVSKNtkN2AKsckwXGxs9Ahj/l83uJBGviBSrZavp/cY?=
- =?iso-8859-1?Q?nXsVv0VMLhR+LfnzoqdjQ81VYaDRF1652JpR8PY6zEOWkL+hX5LLrmuxmP?=
- =?iso-8859-1?Q?taADSzsqbYtKuLLKPVH6BBwUrqIh0PXCMkmaowo1AxmdejJjgrv5BfESqs?=
- =?iso-8859-1?Q?H/MUtW57rAZkCsH6VNg259BjnJy7gN/XG810n6sbfLpurFPAWvl0kLPT1q?=
- =?iso-8859-1?Q?WszV4rBPGk/b0qZnw1/+tt7uXSuCbAxMsLt31he5/gT29OMfVO70Pb2uNG?=
- =?iso-8859-1?Q?jXg75SDumvoPf38vSoz7iBW9k8QNYMHvXVjy/qvzWWfu0zfCm/hWi8klhY?=
- =?iso-8859-1?Q?ahcfqqNEE1qqStDQvU0ef/GgXtP7SqaSfjV/eaTBloCIWH5A9d7pXZHgyo?=
- =?iso-8859-1?Q?nH8HmOZ0C3VN0QYIH8A3qAi6mFkBGT9Cbw2MPuE3o+JayLAcDn8Ihimedc?=
- =?iso-8859-1?Q?I1M8HKqAfs5WkqQMveR5seKn0UUXhjhvZeD+0eoujMR2X6oNCCrS+1GhNg?=
- =?iso-8859-1?Q?NiWoj/EeZyYGDTWeoP23S5RsY0KdzqeDNVpgJWwRFIZecqsspfNWWDAyNF?=
- =?iso-8859-1?Q?S4aZJnyFOSAGD+GtW8LC168xtAGlIVpy1jOir97HY5XbD1uXwFlhUf3XA2?=
- =?iso-8859-1?Q?rbFGPA28FApgbBuLwNrDdxehNF8+lo6uLT9Jc+ne3mxjIfv95fCxbVZ6Bv?=
- =?iso-8859-1?Q?uCqhH95SK0jIKEUiBrqEHGusQwwm9PT3yqkFRtpvSoAvxIwvhe/5vsp0Sr?=
- =?iso-8859-1?Q?Ii5q4EvJjt3NVWbJSc0NwZKIyP8Kca7qXUPC5S+dDpZubhB/Ctt8cX5xoQ?=
- =?iso-8859-1?Q?uZ5mOxxX+ses04TZ3qwb8XrpTbzRwrpbqy/hwzGDG3lBXuImvNZEdVV2oX?=
- =?iso-8859-1?Q?dS/YJbcYrigvEfWfYto9lAA2diV4qO16+i0Nk4KeW2ztfSjSFSVwaWDdN0?=
- =?iso-8859-1?Q?wYCV3ZhnvvrDfilCANCBmbNsDpH4DM3JIbuJtkN9850SoKZjiHgnS167Ki?=
- =?iso-8859-1?Q?yqapg5a3nyQTfrELhx0/ZlIjioRTz68t/shoU+RXcvDFXS8H9wg1GAUGf9?=
- =?iso-8859-1?Q?RMCgCky1+N1dWFyKqbN1aqNQUNkBI2TbEKWUD5D2v0AiH5D5TKtDmSd5dC?=
- =?iso-8859-1?Q?bt6hXwGw5Ik4ctw72DWENQiO+8F0uBTPOAiMnv74FjCENV+sckDOPun45J?=
- =?iso-8859-1?Q?ms/KprLBhXyQlOnE4JG+f2lWiygYdiPV5QTFAocUmkNkio3VUg2WwVLVBv?=
- =?iso-8859-1?Q?wTXAX2Yo/0Jn68tSJfQlfKZKGDq40X2TpzZ1GsEntGFyQjiKgpu80Jcoic?=
- =?iso-8859-1?Q?Ie/+/WnwNuIHEgjihJZpD3s0kz2H+CXDczMfiuQ9p6vaawGS35dr3KQQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: be9383d5-f64d-45b0-8bd3-08dd08f4074b
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Mzg2YVRQS3FjcmZaZjY2clBCdzVTR2tPYm9aVFY2Sm1jcnRKNkpDSVJPK28z?=
+ =?utf-8?B?NmxqVkNCd2U5cUlncU9MWXV1K3lmd0FzclZTcUU5eW84WEFkekxRZ3hDTEZt?=
+ =?utf-8?B?Qkl4VW40ak41MWdMcUIrN1VrMlE2Z1V2LzFza2YzbXNzQk9PMEtSV3JsaGhJ?=
+ =?utf-8?B?NU1uaVZBMytSc0Q2M2p2TkJJL1dDN3Voa0lYRUcrN0JZd2xiSzZ6SEZRTFk0?=
+ =?utf-8?B?TzBXSTBSOEVwMi8rOW5TaU1sME5uUmUxNmxCMGJobnJOOEVpUkVUcVJURFov?=
+ =?utf-8?B?TEo2QjY2OUxUSExMOU5MZkpTakJDRlpsbXdHZUpuNkg0SzZRSXhNa0k4Lzhs?=
+ =?utf-8?B?cE1kZXlzSHdOSDJaMGJTRDdlS0Fkelo2T09odk80VDgrV2dlbnlWNXVFOUN0?=
+ =?utf-8?B?YnJDd1lWQXVBNTJMOGNaYnBnb0J6WkRyZWc3OERWRDdkMXBHUm9HVmd1c0hO?=
+ =?utf-8?B?Vm4zdmc0QjV0V1Q0UFI2RitRY3hWd2xBTndrVU5ZYWZYaStUTnFsK0lsREc0?=
+ =?utf-8?B?Q3ZpODk0RlE4WU5EQXpLL2xBRnRCaWExa1pwOTUyMUdlVmRMSVhBRXhHekdL?=
+ =?utf-8?B?NGVOcG9XMngyc1JxVm96eWVPWXB5TU4vdDNyKzhoVGJhdERXZmd2NVJWUi9Y?=
+ =?utf-8?B?SWFqaHlKbkF4ajJoUjNpa3Babnp1TjZZL2hWaXhMczEwSjRINW1BZUNrN0dn?=
+ =?utf-8?B?K3p6N1ZSeHFjb1U4enFjUytlVGFLRUlUNkc3aW9CeVlHQk1RdDhYZjVhanRw?=
+ =?utf-8?B?emtsMjFyZnZTc3NlMjI1SGwwTzd5dXhFbG5ITFZLYm9vUysrUFJrZnhzUjJM?=
+ =?utf-8?B?ckhjcFhQanBiQ3E0UGM1THR4em10RkF0eGFBZU1qVXZjbDMzVzBDVElyalNa?=
+ =?utf-8?B?SFVBTVh2cElqbWNDdXJWL0NQSGJ3Yk5CQXFJcjg0dzZuam5uM3BYcktwa1Vz?=
+ =?utf-8?B?UjBYRUl5ZVlYd3pRT01hNXk3dVV5YlpSTE96bGJzamxSV3I0N3BHMEVZNnM4?=
+ =?utf-8?B?YTd3Y0hlRmlWSEQ4SVp6ZGlYYXpRajF2YkxtNFVjZEltWHh5cG5vNmFOWHZ3?=
+ =?utf-8?B?ZTVTWjZzM21RR1F6VlZjQ3hkeTZOVHBVaCtaMEx6SW5GeUZLWGJhVHRINldZ?=
+ =?utf-8?B?WE8xaXJkM1Bud3I5WTdoZU1VcFRyNE5vOXVvbkRrenkxNzRoT0pSV01kbENy?=
+ =?utf-8?B?UjErYVFRL2M0QWZpWXZKQnpTRk9hbld0cnp3WE93U3dpQ0IyN3h5cGVQNlpE?=
+ =?utf-8?B?cy9HMXRCTk9Ec3NGS1ZxR3Y4ZmVRS0xNTlR0SFhEVnRWS01MR2dhN0R0d215?=
+ =?utf-8?B?OW9vWlNWS0QvUXZGYm5Sbnl2TlVXR3pnTDJURndBcC9WUTI3a2JnQmFsWnRq?=
+ =?utf-8?B?MEFlQ3hDSXFpSUxFZGM0aThla0huQkN4cmw0SXJ4WTNLWG0zVHR0K2VJL1NW?=
+ =?utf-8?B?NUhmNW1TWWROVEdqZjhaZERqblA2bXlQNklDSnp4eExLRTl4dVVTL1RTSTZo?=
+ =?utf-8?B?NExpWWMraXFUcDd5TUlkTHVCaEovQzVDZnNxOXl6WFVmYlNSMkNCZTlJRlJQ?=
+ =?utf-8?B?UUxydDJSU3h3UXA4aGczVnkwUDBIMjg2TzBsVjZta3VYbkxDUFJ4QURSNk45?=
+ =?utf-8?B?NmhJTU02VDNrSVhRUHQzWFhsMlBTcDFRSkZDY0Q2OTI4czQxY291WWpFK0Nv?=
+ =?utf-8?B?QXNxeG9HempLTTVjRnc3Y05DOU03T1dmdlBNOFk5dno2VlY5WHR0Y2FLMkhl?=
+ =?utf-8?B?cE16SHQ0TUZ2Q3lzc0orRjFUUmY0TE81Ylh1c29BRHc4dkZ3eTE3MnlqVnFB?=
+ =?utf-8?B?ck5YKzhqdzR1N21PMU5weHE1NHA4bEVidXpubTB1VDZ1L1BPaHlzLzZJbHFZ?=
+ =?utf-8?B?bUNOTGxmdndJRnhNY25XWXEyZVN0TGFkWUdpTkIrSk5PWHY2aFdlQ2pTQktn?=
+ =?utf-8?B?MzA3eFJqMU9qbWFXOFozQkFDK0FrZlUyZmZxcHJpNWVIUEFOVWZLOU9aZk1r?=
+ =?utf-8?B?UDUveXkzMWdyVGhrelBWby9QOURkRzFGdE1aTFNoaXFTZ3p1Mnl2TTJZSHpB?=
+ =?utf-8?B?QktDRmZUWVBFemg3QkQ0bHVnL3VqVWtoZEhnYjlITmZiMGo2Rlc0ZXM1U01J?=
+ =?utf-8?B?dUs4alh6b2hxbmVNU0g5bWJvaFNya3FmUktGZnhjd2w1SkhCSjFxR1M1Wm9q?=
+ =?utf-8?B?VVE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e5a6aad2-b725-44d7-3660-08dd08f63058
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6278.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2024 23:43:54.5615 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2024 23:59:22.4899 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7lwcenL+ce1yJ/M/bQXMXXSNVgTwoEjRh1d7TgseSgDY5D7fYJElKBxICx0+/3C4A8eAIt5Lsuj1kY1Ph10LOA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB7984
+X-MS-Exchange-CrossTenant-UserPrincipalName: spzP7+QRWdw3Oc7Yb7E84bQLL0o1cpLU+LCKapW8zoKumjlW0VTcGHkbmyFoNaICPGp5QZT55PfPheYCpz4/DTHVDWQVktzHSOzwOW6Zt+o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4729
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -180,432 +195,471 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Nov 19, 2024 at 04:31:05PM +0100, Thomas Hellström wrote:
-> On Tue, 2024-10-15 at 20:25 -0700, Matthew Brost wrote:
-> > Add unbind to SVM garbage collector. To facilitate add unbind support
-> > function to VM layer which unbinds a SVM range. Also teach PY layer
-> > to
-> > understand unbinds of SVM ranges.
+On Thu, Nov 14, 2024 at 08:23:03AM -0800, Umesh Nerlige Ramappa wrote:
+> On Sun, Oct 13, 2024 at 11:00:33PM -0700, Harish Chegondi wrote:
+> > A new hardware feature first introduced in PVC gives capability to
+> > periodically sample EU stall state and record counts for different stall
+> > reasons, on a per IP basis, aggregate across all EUs in a subslice and
+> > record the samples in a buffer in each subslice. Eventually, the aggregated
+> > data is written out to a buffer in the memory. This feature is also
+> > supported in XE2 and later architecture GPUs.
 > > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > Use an existing IOCTL DRM_IOCTL_XE_OBSERVATION as interface into the driver
+> > from the user space to do initial setup and obtain a file descriptor for
+> > the EU stall counter data stream.  Input parameter to the IOCTL is a struct
+> > drm_xe_observation_param in which observation_type should be set to
+> > DRM_XE_OBSERVATION_TYPE_EU_STALL, observation_op should be
+> > DRM_XE_OBSERVATION_OP_STREAM_OPEN and param should point to a chain of
+> > drm_xe_ext_set_property structures in which each structure has a pair of
+> > property and value. The EU stall sampling input properties are defined in
+> > drm_xe_eu_stall_property_id enum.
+> > 
+> > With the file descriptor obtained from DRM_IOCTL_XE_OBSERVATION, user space
+> > can enable and disable EU stall sampling with the IOCTLs:
+> > DRM_XE_OBSERVATION_IOCTL_ENABLE and DRM_XE_OBSERVATION_IOCTL_DISABLE.
+> > User space can also call poll() to check for availability of data in the
+> > buffer. The data can be read with read(). Finally, the file descriptor
+> > can be closed with close().
+> > 
+> > Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
 > > ---
-> >  drivers/gpu/drm/xe/xe_pt.c       | 84 ++++++++++++++++++++++++++----
-> > --
-> >  drivers/gpu/drm/xe/xe_svm.c      |  9 +++-
-> >  drivers/gpu/drm/xe/xe_vm.c       | 73 +++++++++++++++++++++++++++
-> >  drivers/gpu/drm/xe/xe_vm.h       |  2 +
-> >  drivers/gpu/drm/xe/xe_vm_types.h | 12 ++++-
-> >  5 files changed, 162 insertions(+), 18 deletions(-)
+> > drivers/gpu/drm/xe/Makefile         |   1 +
+> > drivers/gpu/drm/xe/xe_eu_stall.c    | 275 ++++++++++++++++++++++++++++
+> > drivers/gpu/drm/xe/xe_eu_stall.h    |  12 ++
+> > drivers/gpu/drm/xe/xe_observation.c |  14 ++
+> > include/uapi/drm/xe_drm.h           |  42 +++++
+> > 5 files changed, 344 insertions(+)
+> > create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.c
+> > create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.h
 > > 
-> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> > index 024e4eb83408..687abd1a5e74 100644
-> > --- a/drivers/gpu/drm/xe/xe_pt.c
-> > +++ b/drivers/gpu/drm/xe/xe_pt.c
-> > @@ -925,10 +925,16 @@ static void xe_pt_cancel_bind(struct xe_vma
-> > *vma,
-> >  	}
-> >  }
-> >  
-> > +#define INVALID_VMA	(struct xe_vma*)(0xdeaddeadull)
-> 
-> Please prefix with XE_ to avoid future name clashes.
-> 
-
-Good idea.
-
+> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> > index cb6c625bdef0..bf21feae6950 100644
+> > --- a/drivers/gpu/drm/xe/Makefile
+> > +++ b/drivers/gpu/drm/xe/Makefile
+> > @@ -33,6 +33,7 @@ xe-y += xe_bb.o \
+> > 	xe_device_sysfs.o \
+> > 	xe_dma_buf.o \
+> > 	xe_drm_client.o \
+> > +	xe_eu_stall.o \
+> > 	xe_exec.o \
+> > 	xe_execlist.o \
+> > 	xe_exec_queue.o \
+> > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+> > new file mode 100644
+> > index 000000000000..5e4c90f9614d
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+> > @@ -0,0 +1,275 @@
+> > +// SPDX-License-Identifier: MIT
+> > +/*
+> > + * Copyright Â© 2024 Intel Corporation
+> > + */
 > > +
-> >  static void xe_pt_commit_locks_assert(struct xe_vma *vma)
-> >  {
-> > -	struct xe_vm *vm = xe_vma_vm(vma);
-> > +	struct xe_vm *vm;
-> >  
-> > +	if (vma == INVALID_VMA)
-> > +		return;
+> > +#include <linux/anon_inodes.h>
+> > +#include <linux/types.h>
+> > +#include <linux/poll.h>
+> > +#include <linux/fs.h>
 > > +
-> > +	vm = xe_vma_vm(vma);
-> >  	lockdep_assert_held(&vm->lock);
-> >  
-> >  	if (!xe_vma_has_no_bo(vma))
-> > @@ -954,7 +960,8 @@ static void xe_pt_commit(struct xe_vma *vma,
-> >  		for (j = 0; j < entries[i].qwords; j++) {
-> >  			struct xe_pt *oldpte =
-> > entries[i].pt_entries[j].pt;
-> >  
-> > -			xe_pt_destroy(oldpte, xe_vma_vm(vma)->flags,
-> > deferred);
-> > +			xe_pt_destroy(oldpte, (vma == INVALID_VMA) ?
-> > 0 :
-> > +				      xe_vma_vm(vma)->flags,
-> > deferred);
-> >  		}
-> >  	}
-> >  }
-> > @@ -1387,6 +1394,9 @@ static int xe_pt_svm_pre_commit(struct
-> > xe_migrate_pt_update *pt_update)
-> >  	list_for_each_entry(op, &vops->list, link) {
-> >  		struct xe_svm_range *range = op->map_range.range;
-> >  
-> > +		if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE)
-> > +			continue;
+> > +#include <uapi/drm/xe_drm.h>
 > > +
-> >  		xe_assert(vm->xe, xe_vma_is_system_allocator(op-
-> > >map_range.vma));
-> >  		xe_assert(vm->xe, op->subop ==
-> > XE_VMA_SUBOP_MAP_RANGE);
-> >  
-> > @@ -1585,7 +1595,9 @@ static const struct xe_pt_walk_ops
-> > xe_pt_stage_unbind_ops = {
-> >   * xe_pt_stage_unbind() - Build page-table update structures for an
-> > unbind
-> >   * operation
-> >   * @tile: The tile we're unbinding for.
-> > + * @vm: The vm
-> >   * @vma: The vma we're unbinding.
-> > + * @range: The range we're unbinding.
-> >   * @entries: Caller-provided storage for the update structures.
-> >   *
-> >   * Builds page-table update structures for an unbind operation. The
-> > function
-> > @@ -1595,9 +1607,14 @@ static const struct xe_pt_walk_ops
-> > xe_pt_stage_unbind_ops = {
-> >   *
-> >   * Return: The number of entries used.
-> >   */
-> > -static unsigned int xe_pt_stage_unbind(struct xe_tile *tile, struct
-> > xe_vma *vma,
-> > +static unsigned int xe_pt_stage_unbind(struct xe_tile *tile,
-> > +				       struct xe_vm *vm,
-> > +				       struct xe_vma *vma,
-> > +				       struct xe_svm_range *range,
-> >  				       struct xe_vm_pgtable_update
-> > *entries)
-> >  {
-> > +	u64 start = range ? range->base.va.start :
-> > xe_vma_start(vma);
-> > +	u64 end = range ? range->base.va.end : xe_vma_end(vma);
-> >  	struct xe_pt_stage_unbind_walk xe_walk = {
-> >  		.base = {
-> >  			.ops = &xe_pt_stage_unbind_ops,
-> > @@ -1605,14 +1622,14 @@ static unsigned int xe_pt_stage_unbind(struct
-> > xe_tile *tile, struct xe_vma *vma,
-> >  			.max_level = XE_PT_HIGHEST_LEVEL,
-> >  		},
-> >  		.tile = tile,
-> > -		.modified_start = xe_vma_start(vma),
-> > -		.modified_end = xe_vma_end(vma),
-> > +		.modified_start = start,
-> > +		.modified_end = end,
-> >  		.wupd.entries = entries,
-> >  	};
-> > -	struct xe_pt *pt = xe_vma_vm(vma)->pt_root[tile->id];
-> > +	struct xe_pt *pt = vm->pt_root[tile->id];
-> >  
-> > -	(void)xe_pt_walk_shared(&pt->base, pt->level,
-> > xe_vma_start(vma),
-> > -				xe_vma_end(vma), &xe_walk.base);
-> > +	(void)xe_pt_walk_shared(&pt->base, pt->level, start, end,
-> > +				&xe_walk.base);
-> >  
-> >  	return xe_walk.wupd.num_used_entries;
-> >  }
-> > @@ -1854,13 +1871,6 @@ static int unbind_op_prepare(struct xe_tile
-> > *tile,
-> >  	       "Preparing unbind, with range [%llx...%llx)\n",
-> >  	       xe_vma_start(vma), xe_vma_end(vma) - 1);
-> >  
-> > -	/*
-> > -	 * Wait for invalidation to complete. Can corrupt internal
-> > page table
-> > -	 * state if an invalidation is running while preparing an
-> > unbind.
-> > -	 */
-> > -	if (xe_vma_is_userptr(vma) &&
-> > xe_vm_in_fault_mode(xe_vma_vm(vma)))
-> > -		mmu_interval_read_begin(&to_userptr_vma(vma)-
-> > >userptr.notifier);
-> > -
-> >  	pt_op->vma = vma;
-> >  	pt_op->bind = false;
-> >  	pt_op->rebind = false;
-> > @@ -1869,7 +1879,8 @@ static int unbind_op_prepare(struct xe_tile
-> > *tile,
-> >  	if (err)
-> >  		return err;
-> >  
-> > -	pt_op->num_entries = xe_pt_stage_unbind(tile, vma, pt_op-
-> > >entries);
-> > +	pt_op->num_entries = xe_pt_stage_unbind(tile,
-> > xe_vma_vm(vma),
-> > +						vma, NULL, pt_op-
-> > >entries);
-> >  
-> >  	xe_vm_dbg_print_entries(tile_to_xe(tile), pt_op->entries,
-> >  				pt_op->num_entries, false);
-> > @@ -1884,6 +1895,42 @@ static int unbind_op_prepare(struct xe_tile
-> > *tile,
-> >  	return 0;
-> >  }
-> >  
-> > +static int unbind_range_prepare(struct xe_vm *vm,
-> > +				struct xe_tile *tile,
-> > +				struct xe_vm_pgtable_update_ops
-> > *pt_update_ops,
-> > +				struct xe_svm_range *range)
-> > +{
-> > +	u32 current_op = pt_update_ops->current_op;
-> > +	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops-
-> > >ops[current_op];
+> > +#include "xe_macros.h"
+> > +#include "xe_device.h"
+> > +#include "xe_eu_stall.h"
+> > +#include "xe_gt_printk.h"
+> > +#include "xe_gt_topology.h"
+> > +#include "xe_observation.h"
 > > +
-> > +	if (!(range->tile_present & BIT(tile->id)))
-> > +		return 0;
-> > +
-> > +	vm_dbg(&vm->xe->drm,
-> > +	       "Preparing unbind, with range [%llx...%llx)\n",
-> > +	       range->base.va.start, range->base.va.end - 1);
-> > +
-> > +	pt_op->vma = INVALID_VMA;
-> > +	pt_op->bind = false;
-> > +	pt_op->rebind = false;
-> > +
-> > +	pt_op->num_entries = xe_pt_stage_unbind(tile, vm, NULL,
-> > range,
-> > +						pt_op->entries);
-> > +
-> > +	xe_vm_dbg_print_entries(tile_to_xe(tile), pt_op->entries,
-> > +				pt_op->num_entries, false);
-> > +	xe_pt_update_ops_rfence_interval(pt_update_ops, range-
-> > >base.va.start,
-> > +					 range->base.va.end);
-> > +	++pt_update_ops->current_op;
-> > +	pt_update_ops->needs_svm_lock = true;
-> > +	pt_update_ops->needs_invalidation = true;
-> > +
-> > +	xe_pt_commit_prepare_unbind(INVALID_VMA, pt_op->entries,
-> > +				    pt_op->num_entries);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static int op_prepare(struct xe_vm *vm,
-> >  		      struct xe_tile *tile,
-> >  		      struct xe_vm_pgtable_update_ops
-> > *pt_update_ops,
-> > @@ -1951,6 +1998,9 @@ static int op_prepare(struct xe_vm *vm,
-> >  			err = bind_range_prepare(vm, tile,
-> > pt_update_ops,
-> >  						 op->map_range.vma,
-> >  						 op-
-> > >map_range.range);
-> > +		} else if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE) {
-> > +			err = unbind_range_prepare(vm, tile,
-> > pt_update_ops,
-> > +						   op-
-> > >unmap_range.range);
-> >  		}
-> >  		break;
-> >  	default:
-> > @@ -2139,6 +2189,8 @@ static void op_commit(struct xe_vm *vm,
-> >  		if (op->subop == XE_VMA_SUBOP_MAP_RANGE) {
-> >  			op->map_range.range->tile_present |=
-> > BIT(tile->id);
-> >  			op->map_range.range->tile_invalidated &=
-> > ~BIT(tile->id);
-> > +		} else if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE) {
-> > +			op->unmap_range.range->tile_present &=
-> > ~BIT(tile->id);
-> >  		}
-> >  		break;
-> >  	}
-> 
-> I think this further stresses the need to provide a pt code interface
-> that is oblivious of vmas, userptr and ranges so that we can get rid of
-> all special-casing, but for now code looks good as is IMO.
-> 
-
-I agree eventually it would be nice drop vmas / userptr / ranges from
-the bind code. I believe I even opened a Jira for this task. The main
-issue I see is tile_present, tile_invalidated needs to be moved to the
-PT state which is a fairly large refactor. We also short circuit in
-bunch of places based on this state which would turn into a page table
-walk which also needs to be considered too.
-
-As long as you ok with this for now, I agree let's scope / do in a
-follow up.
-
-> 
-> > diff --git a/drivers/gpu/drm/xe/xe_svm.c
-> > b/drivers/gpu/drm/xe/xe_svm.c
-> > index 9c2f44cba166..0762126f65e0 100644
-> > --- a/drivers/gpu/drm/xe/xe_svm.c
-> > +++ b/drivers/gpu/drm/xe/xe_svm.c
-> > @@ -208,7 +208,14 @@ static void xe_svm_invalidate(struct drm_gpusvm
-> > *gpusvm,
-> >  static int __xe_svm_garbage_collector(struct xe_vm *vm,
-> >  				      struct xe_svm_range *range)
-> >  {
-> > -	/* TODO: Do unbind */
-> > +	struct dma_fence *fence;
-> > +
-> > +	xe_vm_lock(vm, false);
-> > +	fence = xe_vm_range_unbind(vm, range);
-> > +	xe_vm_unlock(vm);
-> > +	if (IS_ERR(fence))
-> > +		return PTR_ERR(fence);
-> > +	dma_fence_put(fence);
-> >  
-> >  	drm_gpusvm_range_remove(&vm->svm.gpusvm, &range->base);
-> >  
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > index 399cbbdbddd5..76a20e96084e 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -972,6 +972,79 @@ struct dma_fence *xe_vm_range_rebind(struct
-> > xe_vm *vm,
-> >  	return fence;
-> >  }
-> >  
-> > +static void xe_vm_populate_range_unbind(struct xe_vma_op *op,
-> > +					struct xe_svm_range *range)
-> > +{
-> > +	INIT_LIST_HEAD(&op->link);
-> > +	op->tile_mask = range->tile_present;
-> > +	op->base.op = DRM_GPUVA_OP_USER;
-> > +	op->subop = XE_VMA_SUBOP_UNMAP_RANGE;
-> > +	op->unmap_range.range = range;
-> > +}
-> > +
-> > +static int
-> > +xe_vm_ops_add_range_unbind(struct xe_vma_ops *vops,
-> > +			   struct xe_svm_range *range)
-> > +{
-> > +	struct xe_vma_op *op;
-> > +
-> > +	op = kzalloc(sizeof(*op), GFP_KERNEL);
-> > +	if (!op)
-> > +		return -ENOMEM;
-> > +
-> > +	xe_vm_populate_range_unbind(op, range);
-> > +	list_add_tail(&op->link, &vops->list);
-> > +	xe_vma_ops_incr_pt_update_ops(vops, range->tile_present);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +struct dma_fence *xe_vm_range_unbind(struct xe_vm *vm,
-> > +				     struct xe_svm_range *range)
-> 
-> Kerneldoc.
-> 
-
-Yep.
-
-Matt
-
-> 
-> > +{
-> > +	struct dma_fence *fence = NULL;
-> > +	struct xe_vma_ops vops;
-> > +	struct xe_vma_op *op, *next_op;
-> > +	struct xe_tile *tile;
-> > +	u8 id;
-> > +	int err;
-> > +
-> > +	lockdep_assert_held(&vm->lock);
-> > +	xe_vm_assert_held(vm);
-> > +	xe_assert(vm->xe, xe_vm_in_fault_mode(vm));
-> > +
-> > +	if (!range->tile_present)
-> > +		return dma_fence_get_stub();
-> > +
-> > +	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
-> > +	for_each_tile(tile, vm->xe, id) {
-> > +		vops.pt_update_ops[id].wait_vm_bookkeep = true;
-> > +		vops.pt_update_ops[tile->id].q =
-> > +			xe_tile_migrate_exec_queue(tile);
-> > +	}
-> > +
-> > +	err = xe_vm_ops_add_range_unbind(&vops, range);
-> > +	if (err)
-> > +		return ERR_PTR(err);
-> > +
-> > +	err = xe_vma_ops_alloc(&vops, false);
-> > +	if (err) {
-> > +		fence = ERR_PTR(err);
-> > +		goto free_ops;
-> > +	}
-> > +
-> > +	fence = ops_execute(vm, &vops);
-> > +
-> > +free_ops:
-> > +	list_for_each_entry_safe(op, next_op, &vops.list, link) {
-> > +		list_del(&op->link);
-> > +		kfree(op);
-> > +	}
-> > +	xe_vma_ops_fini(&vops);
-> > +
-> > +	return fence;
-> > +}
-> > +
-> >  static void xe_vma_free(struct xe_vma *vma)
-> >  {
-> >  	if (xe_vma_is_userptr(vma))
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-> > index 8bd921b33090..d577ca9e3d65 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.h
-> > +++ b/drivers/gpu/drm/xe/xe_vm.h
-> > @@ -222,6 +222,8 @@ struct dma_fence *xe_vm_range_rebind(struct xe_vm
-> > *vm,
-> >  				     struct xe_vma *vma,
-> >  				     struct xe_svm_range *range,
-> >  				     u8 tile_mask);
-> > +struct dma_fence *xe_vm_range_unbind(struct xe_vm *vm,
-> > +				     struct xe_svm_range *range);
-> >  
-> >  int xe_vm_invalidate_vma(struct xe_vma *vma);
-> >  
-> > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
-> > b/drivers/gpu/drm/xe/xe_vm_types.h
-> > index 2eae3575c409..d38cf7558f62 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> > @@ -348,6 +348,12 @@ struct xe_vma_op_map_range {
-> >  	struct xe_svm_range *range;
-> >  };
-> >  
-> > +/** struct xe_vma_op_unmap_range - VMA unmap range operation */
-> > +struct xe_vma_op_unmap_range {
-> > +	/** @range: SVM range to unmap */
-> > +	struct xe_svm_range *range;
+> > +/**
+> > + * struct eu_stall_open_properties
+> > + *
+> > + * @eu_stall_sampling_rate: Hardware EU stall sampling rate.
+> > + * @event_report_count: Minimum no of EU stall data rows for poll to set POLLIN.
+> > + * @poll_period: The period in nanoseconds at which the CPU will check for
+> > + *		 EU stall data in the buffer.
+> > + * @gt: GT on which EU stall data will be captured.
+> > + */
+> > +struct eu_stall_open_properties {
+> > +	u8 eu_stall_sampling_rate;
+> > +	u32 event_report_count;
+> > +	u64 poll_period;
+> > +	struct xe_gt *gt;
 > > +};
 > > +
-> >  /** enum xe_vma_op_flags - flags for VMA operation */
-> >  enum xe_vma_op_flags {
-> >  	/** @XE_VMA_OP_COMMITTED: VMA operation committed */
-> > @@ -362,6 +368,8 @@ enum xe_vma_op_flags {
-> >  enum xe_vma_subop {
-> >  	/** @XE_VMA_SUBOP_MAP_RANGE: Map range */
-> >  	XE_VMA_SUBOP_MAP_RANGE,
-> > +	/** @XE_VMA_SUBOP_UNMAP_RANGE: Unmap range */
-> > +	XE_VMA_SUBOP_UNMAP_RANGE,
-> >  };
-> >  
-> >  /** struct xe_vma_op - VMA operation */
-> > @@ -384,8 +392,10 @@ struct xe_vma_op {
-> >  		struct xe_vma_op_remap remap;
-> >  		/** @prefetch: VMA prefetch operation specific data
-> > */
-> >  		struct xe_vma_op_prefetch prefetch;
-> > -		/** @map: VMA map range operation specific data */
-> > +		/** @map_range: VMA map range operation specific
-> > data */
-> >  		struct xe_vma_op_map_range map_range;
-> > +		/** @unmap_range: VMA unmap range operation specific
-> > data */
-> > +		struct xe_vma_op_map_range unmap_range;
-> >  	};
-> >  };
-> >  
+> > +/**
+> > + * num_data_rows - Return the number of EU stall data rows of 64B each
+> > + *		   for a given data size.
+> > + *
+> > + * @data_size: EU stall data size
+> > + */
+> > +static inline u32
+> > +num_data_rows(u32 data_size)
+> > +{
+> > +	return (data_size >> 6);
+> > +}
+> > +
+> > +static int set_prop_eu_stall_sampling_rate(struct xe_device *xe, u64 value,
+> > +					   struct eu_stall_open_properties *props)
+> > +{
+> > +	if (value == 0 || value > 7) {
+> > +		drm_dbg(&xe->drm, "Invalid EU stall sampling rate %llu\n", value);
+> > +		return -EINVAL;
+> > +	}
+> > +	props->eu_stall_sampling_rate = value;
+> > +	return 0;
+> > +}
+> > +
+> > +static int set_prop_eu_stall_poll_period(struct xe_device *xe, u64 value,
+> > +					 struct eu_stall_open_properties *props)
+> > +{
+> > +	if (value < 100000 /* 100us */) {
+> > +		drm_dbg(&xe->drm, "EU stall data poll period %lluns less than 100us\n", value);
+> > +		return -EINVAL;
+> > +	}
+> > +	props->poll_period = value;
+> > +	return 0;
+> > +}
+> > +
+> > +static int set_prop_eu_stall_event_report_count(struct xe_device *xe, u64 value,
+> > +						struct eu_stall_open_properties *props)
+> > +{
+> > +	if (value == 0) {
+> > +		drm_dbg(&xe->drm, "Invalid EU stall poll event report count %llu\n", value);
+> > +		return -EINVAL;
+> > +	}
+> > +	props->event_report_count = (u32)value;
+> > +	return 0;
+> > +}
+> > +
+> > +static int set_prop_eu_stall_gt_id(struct xe_device *xe, u64 value,
+> > +				   struct eu_stall_open_properties *props)
+> > +{
+> > +	props->gt = xe_device_get_gt(xe, (u8)value);
+> > +	if (!props->gt) {
+> > +		drm_dbg(&xe->drm, "Invalid GT ID %llu for EU stall sampling\n", value);
+> > +		return -EINVAL;
+> > +	}
+> > +	return 0;
+> > +}
+> > +
+> > +typedef int (*set_eu_stall_property_fn)(struct xe_device *xe, u64 value,
+> > +					struct eu_stall_open_properties *props);
+> > +
+> > +static const set_eu_stall_property_fn xe_set_eu_stall_property_funcs[] = {
+> > +	[DRM_XE_EU_STALL_PROP_SAMPLE_RATE] = set_prop_eu_stall_sampling_rate,
+> > +	[DRM_XE_EU_STALL_PROP_POLL_PERIOD] = set_prop_eu_stall_poll_period,
+> > +	[DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT] = set_prop_eu_stall_event_report_count,
+> > +	[DRM_XE_EU_STALL_PROP_GT_ID] = set_prop_eu_stall_gt_id,
+> > +};
+> > +
+> > +static int xe_eu_stall_user_ext_set_property(struct xe_device *xe, u64 extension,
+> > +					     struct eu_stall_open_properties *props)
+> > +{
+> > +	u64 __user *address = u64_to_user_ptr(extension);
+> > +	struct drm_xe_ext_set_property ext;
+> > +	int err;
+> > +	u32 idx;
+> > +
+> > +	err = __copy_from_user(&ext, address, sizeof(ext));
+> > +	if (XE_IOCTL_DBG(xe, err))
+> > +		return -EFAULT;
+> > +
+> > +	if (XE_IOCTL_DBG(xe, ext.property >= ARRAY_SIZE(xe_set_eu_stall_property_funcs)) ||
+> > +	    XE_IOCTL_DBG(xe, ext.pad))
+> > +		return -EINVAL;
+> > +
+> > +	idx = array_index_nospec(ext.property, ARRAY_SIZE(xe_set_eu_stall_property_funcs));
+> > +	return xe_set_eu_stall_property_funcs[idx](xe, ext.value, props);
+> > +}
+> > +
+> > +typedef int (*xe_eu_stall_user_extension_fn)(struct xe_device *xe, u64 extension,
+> > +					     struct eu_stall_open_properties *props);
+> > +static const xe_eu_stall_user_extension_fn xe_eu_stall_user_extension_funcs[] = {
+> > +	[DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY] = xe_eu_stall_user_ext_set_property,
+> > +};
+> > +
+> > +static int xe_eu_stall_user_extensions(struct xe_device *xe, u64 extension,
+> > +				       struct eu_stall_open_properties *props)
+> > +{
+> > +	u64 __user *address = u64_to_user_ptr(extension);
+> > +	struct drm_xe_user_extension ext;
+> > +	int err;
+> > +	u32 idx;
+> > +
+> > +	err = __copy_from_user(&ext, address, sizeof(ext));
+> > +	if (XE_IOCTL_DBG(xe, err))
+> > +		return -EFAULT;
+> > +
+> > +	if (XE_IOCTL_DBG(xe, ext.pad) ||
+> > +	    XE_IOCTL_DBG(xe, ext.name >= ARRAY_SIZE(xe_eu_stall_user_extension_funcs)))
+> > +		return -EINVAL;
+> > +
+> > +	idx = array_index_nospec(ext.name, ARRAY_SIZE(xe_eu_stall_user_extension_funcs));
+> > +	err = xe_eu_stall_user_extension_funcs[idx](xe, extension, props);
+> > +	if (XE_IOCTL_DBG(xe, err))
+> > +		return err;
+> > +
+> > +	if (ext.next_extension)
+> > +		return xe_eu_stall_user_extensions(xe, ext.next_extension, props);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +/**
+> > + * xe_eu_stall_stream_read - handles userspace read() of a EU stall data stream fd.
+> > + *
+> > + * @file: An xe EU stall data stream file
+> > + * @buf: destination buffer given by userspace
+> > + * @count: the number of bytes userspace wants to read
+> > + * @ppos: (inout) file seek position (unused)
+> > + *
+> > + * Returns: The number of bytes copied or a negative error code on failure.
+> > + */
+> > +static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
+> > +				       size_t count, loff_t *ppos)
+> > +{
+> > +	ssize_t ret = 0;
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +/**
+> > + * xe_eu_stall_stream_poll - handles userspace poll() of a EU stall data stream fd.
+> > + *
+> > + * @file: An xe EU stall data stream file
+> > + * @wait: Poll table
+> > + *
+> > + * Returns: Bit mask of returned events.
+> > + */
+> > +static __poll_t
+> > +xe_eu_stall_stream_poll(struct file *file, poll_table *wait)
+> > +{
+> > +	__poll_t ret = 0;
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +/**
+> > + * xe_eu_stall_stream_ioctl - support ioctl() usage with xe EU stall data
+> > + *								stream fd
+> > + * @file: An xe EU stall data stream file
+> > + * @cmd: the ioctl request
+> > + * @arg: the ioctl data
+> > + *
+> > + * Returns: zero on success or a negative error code. Returns -EINVAL for
+> > + * an unknown ioctl request.
+> > + */
+> > +static long xe_eu_stall_stream_ioctl(struct file *file,
+> > +				     unsigned int cmd,
+> > +				     unsigned long arg)
+> > +{
+> > +	switch (cmd) {
+> > +	case DRM_XE_OBSERVATION_IOCTL_ENABLE:
+> > +		return 0;
+> > +	case DRM_XE_OBSERVATION_IOCTL_DISABLE:
+> > +		return 0;
+> > +	}
+> > +
+> > +	return -EINVAL;
+> > +}
+> > +
+> > +/**
+> > + * xe_eu_stall_stream_close - handles userspace close() of a EU stall data
+> > + *			      stream file.
+> > + * @inode: anonymous inode associated with file
+> > + * @file: An xe EU stall data stream file
+> > + *
+> > + * Cleans up any resources associated with an open EU stall data stream file.
+> > + */
+> > +static int xe_eu_stall_stream_close(struct inode *inode, struct file *file)
+> > +{
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct file_operations fops_eu_stall = {
+> > +	.owner		= THIS_MODULE,
+> > +	.llseek		= noop_llseek,
+> > +	.release	= xe_eu_stall_stream_close,
+> > +	.poll		= xe_eu_stall_stream_poll,
+> > +	.read		= xe_eu_stall_stream_read,
+> > +	.unlocked_ioctl = xe_eu_stall_stream_ioctl,
+> > +	.compat_ioctl   = xe_eu_stall_stream_ioctl,
+> > +};
+> > +
+> > +static inline bool has_eu_stall_sampling_support(struct xe_device *xe)
+> > +{
+> > +	return false;
+> > +}
+> > +
+> > +int xe_eu_stall_stream_open(struct drm_device *dev,
+> > +			    u64 data,
+> > +			    struct drm_file *file)
+> > +{
+> > +	struct xe_device *xe = to_xe_device(dev);
+> > +	struct eu_stall_open_properties props;
+> > +	int ret, stream_fd;
+> > +
+> > +	memset(&props, 0, sizeof(struct eu_stall_open_properties));
+> > +
+> > +	ret = xe_eu_stall_user_extensions(xe, data, &props);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (!props.gt) {
+> > +		drm_dbg(&xe->drm, "GT ID not provided for EU stall sampling\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	if (xe_observation_paranoid && !perfmon_capable()) {
+> > +		xe_gt_dbg(props.gt, "Insufficient privileges for EU stall monitoring\n");
+> > +		return -EACCES;
+> > +	}
+> > +
+> > +	if (!has_eu_stall_sampling_support(xe)) {
+> > +		xe_gt_dbg(props.gt, "EU stall monitoring is not supported on this platform\n");
+> > +		return -EPERM;
+> > +	}
+> > +	stream_fd = anon_inode_getfd("[xe_eu_stall]", &fops_eu_stall,
+> > +				     NULL, 0);
+> > +	if (stream_fd < 0)
+> > +		xe_gt_dbg(props.gt, "EU stall inode get fd failed : %d\n", stream_fd);
+> > +
+> > +	return stream_fd;
+> > +}
+> > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.h b/drivers/gpu/drm/xe/xe_eu_stall.h
+> > new file mode 100644
+> > index 000000000000..70fc89480df2
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_eu_stall.h
+> > @@ -0,0 +1,12 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright Â© 2024 Intel Corporation
+> > + */
+> > +
+> > +#ifndef __XE_EU_STALL_H__
+> > +#define __XE_EU_STALL_H__
+> > +
+> > +int xe_eu_stall_stream_open(struct drm_device *dev,
+> > +			    u64 data,
+> > +			    struct drm_file *file);
+> > +#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_observation.c b/drivers/gpu/drm/xe/xe_observation.c
+> > index 8ec1b84cbb9e..cca661de60ac 100644
+> > --- a/drivers/gpu/drm/xe/xe_observation.c
+> > +++ b/drivers/gpu/drm/xe/xe_observation.c
+> > @@ -9,6 +9,7 @@
+> > #include <uapi/drm/xe_drm.h>
+> > 
+> > #include "xe_oa.h"
+> > +#include "xe_eu_stall.h"
+> > #include "xe_observation.h"
+> > 
+> > u32 xe_observation_paranoid = true;
+> > @@ -29,6 +30,17 @@ static int xe_oa_ioctl(struct drm_device *dev, struct drm_xe_observation_param *
+> > 	}
+> > }
+> > 
+> > +static int xe_eu_stall_ioctl(struct drm_device *dev, struct drm_xe_observation_param *arg,
+> > +			     struct drm_file *file)
+> > +{
+> > +	switch (arg->observation_op) {
+> > +	case DRM_XE_OBSERVATION_OP_STREAM_OPEN:
+> > +		return xe_eu_stall_stream_open(dev, arg->param, file);
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +}
+> > +
+> > /**
+> >  * xe_observation_ioctl - The top level observation layer ioctl
+> >  * @dev: @drm_device
+> > @@ -51,6 +63,8 @@ int xe_observation_ioctl(struct drm_device *dev, void *data, struct drm_file *fi
+> > 	switch (arg->observation_type) {
+> > 	case DRM_XE_OBSERVATION_TYPE_OA:
+> > 		return xe_oa_ioctl(dev, arg, file);
+> > +	case DRM_XE_OBSERVATION_TYPE_EU_STALL:
+> > +		return xe_eu_stall_ioctl(dev, arg, file);
+> > 	default:
+> > 		return -EINVAL;
+> > 	}
+> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> > index c4182e95a619..50ad6b2e1450 100644
+> > --- a/include/uapi/drm/xe_drm.h
+> > +++ b/include/uapi/drm/xe_drm.h
+> > @@ -1397,6 +1397,8 @@ struct drm_xe_wait_user_fence {
+> > enum drm_xe_observation_type {
+> > 	/** @DRM_XE_OBSERVATION_TYPE_OA: OA observation stream type */
+> > 	DRM_XE_OBSERVATION_TYPE_OA,
+> > +	/** @DRM_XE_OBSERVATION_TYPE_EU_STALL: EU stall sampling observation stream type */
+> > +	DRM_XE_OBSERVATION_TYPE_EU_STALL,
+> > };
+> > 
+> > /**
+> > @@ -1696,6 +1698,46 @@ struct drm_xe_oa_stream_info {
+> > 	__u64 reserved[3];
+> > };
+> > 
+> > +/**
+> > + * enum drm_xe_eu_stall_property_id - EU stall sampling input property ids.
+> > + *
+> > + * These properties are passed to the driver as a chain of
+> > + * @drm_xe_ext_set_property structures with @property set to these
+> > + * properties' enums and @value set to the corresponding values of these
+> > + * properties. @drm_xe_user_extension base.name should be set to
+> > + * @DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY.
+> > + */
+> > +enum drm_xe_eu_stall_property_id {
+> > +#define DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY		0
+> > +	/**
+> > +	 * @DRM_XE_EU_STALL_PROP_SAMPLE_RATE: Sampling rate
+> > +	 * in multiples of 251 cycles. Valid values are 1 to 7.
+> > +	 * If the value is 1, sampling interval is 251 cycles.
+> > +	 * If the value is 7, sampling interval is 7 x 251 cycles.
+> > +	 */
+> > +	DRM_XE_EU_STALL_PROP_SAMPLE_RATE = 1,
 > 
-> Thanks,
-> Thomas
+> What is the rate of 251 cycles? If that can be clearly defined, then at
+> first glance, I would think it's better to define this in terms of
+> frequency. The implementation can decide how to translate that to HW
+> configuration.
 > 
+> Regards,
+> Umesh
+Since the duration of a cycle depends on the GPU clock, it can very from
+GPU to GPU. So, if there is any translation in the driver, it will have
+to be different for each GPU. I think keeping this input as a multiplier
+of cycles may be more future proof for the uAPI. I am trying to get more
+information and feedback from the user space regarding your suggestion.
+If it is feasible, I will implement in v6.
+
+Thank You
+Harish.
+> 
+> > +
+> > +	/**
+> > +	 * @DRM_XE_EU_STALL_PROP_POLL_PERIOD: EU stall data
+> > +	 * poll period in nanoseconds at which the driver polls
+> > +	 * for EU stall data in the buffer. Should be at least 100000 ns.
+> > +	 */
+> > +	DRM_XE_EU_STALL_PROP_POLL_PERIOD,
+> > +
+> > +	/**
+> > +	 * @DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT: Minimum number of
+> > +	 * EU stall data rows to be present in the kernel buffer for
+> > +	 * poll() to set POLLIN (data present).
+> > +	 */
+> > +	DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT,
+> > +
+> > +	/**
+> > +	 * @DRM_XE_EU_STALL_PROP_GT_ID: GT ID of the GT on which
+> > +	 * EU stall data will be captured.
+> > +	 */
+> > +	DRM_XE_EU_STALL_PROP_GT_ID,
+> > +};
+> > +
+> > #if defined(__cplusplus)
+> > }
+> > #endif
+> > -- 
+> > 2.45.1
+> > 
