@@ -4,158 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B418D62041
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 09:09:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70ED7D6204A
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 09:21:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BF7410E5F7;
-	Tue, 19 Nov 2024 09:09:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1869110E33C;
+	Tue, 19 Nov 2024 09:21:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="SIRiPqoh";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="eLQee8Kl";
-	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="SIRiPqoh";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="eLQee8Kl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XGdJ11ul";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9065210E5F7;
- Tue, 19 Nov 2024 09:09:57 +0000 (UTC)
-Received: from pobox.suse.cz (unknown [10.100.2.14])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id D475321901;
- Tue, 19 Nov 2024 09:09:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1732007396; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=d3ZUiM0v/u9S5PwB6Ydqo1vhiAlHB49FGA/7ikHpEDE=;
- b=SIRiPqohnfZsfiR8rWfugglV6kBt9WZNkpsbbr+OOaRL3B/gLbNYdP82bjB0S/Sjpyp4Dh
- 6DaUo1iD8tvsOcOGm8MLnAkvlYyhNoN/BKk+Nu5/yLAfPrF9/Eu//yrmX3tKwCADYf1zxx
- 7juTShWa4+8m5I6ysJKabU6DZBznQQA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1732007396;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=d3ZUiM0v/u9S5PwB6Ydqo1vhiAlHB49FGA/7ikHpEDE=;
- b=eLQee8Kl//Z+uAJMSQ8O/3uMhn0cIi08Nnfcslit1gjRhYGbaqZ6swdcVqziESyeoUyf0K
- N0AZng7gJdnO9PAg==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1732007396; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=d3ZUiM0v/u9S5PwB6Ydqo1vhiAlHB49FGA/7ikHpEDE=;
- b=SIRiPqohnfZsfiR8rWfugglV6kBt9WZNkpsbbr+OOaRL3B/gLbNYdP82bjB0S/Sjpyp4Dh
- 6DaUo1iD8tvsOcOGm8MLnAkvlYyhNoN/BKk+Nu5/yLAfPrF9/Eu//yrmX3tKwCADYf1zxx
- 7juTShWa4+8m5I6ysJKabU6DZBznQQA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1732007396;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=d3ZUiM0v/u9S5PwB6Ydqo1vhiAlHB49FGA/7ikHpEDE=;
- b=eLQee8Kl//Z+uAJMSQ8O/3uMhn0cIi08Nnfcslit1gjRhYGbaqZ6swdcVqziESyeoUyf0K
- N0AZng7gJdnO9PAg==
-Date: Tue, 19 Nov 2024 10:09:55 +0100 (CET)
-From: Miroslav Benes <mbenes@suse.cz>
-To: Petr Mladek <pmladek@suse.com>
-cc: Easwar Hariharan <eahariha@linux.microsoft.com>, 
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- Pablo Neira Ayuso <pablo@netfilter.org>, 
- Jozsef Kadlecsik <kadlec@netfilter.org>, 
- "David S. Miller" <davem@davemloft.net>, 
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
- Julia Lawall <Julia.Lawall@inria.fr>, 
- Nicolas Palix <nicolas.palix@imag.fr>, Daniel Mack <daniel@zonque.org>, 
- Haojian Zhuang <haojian.zhuang@gmail.com>, 
- Robert Jarzmik <robert.jarzmik@free.fr>, 
- Russell King <linux@armlinux.org.uk>, Heiko Carstens <hca@linux.ibm.com>, 
- Vasily Gorbik <gor@linux.ibm.com>, 
- Alexander Gordeev <agordeev@linux.ibm.com>, 
- Christian Borntraeger <borntraeger@linux.ibm.com>, 
- Sven Schnelle <svens@linux.ibm.com>, Ofir Bitton <obitton@habana.ai>, 
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Jeroen de Borst <jeroendb@google.com>, 
- Praveen Kaligineedi <pkaligineedi@google.com>, 
- Shailend Chand <shailend@google.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
- James Smart <james.smart@broadcom.com>, 
- Dick Kennedy <dick.kennedy@broadcom.com>, 
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>, 
- =?ISO-8859-15?Q?Roger_Pau_Monn=E9?= <roger.pau@citrix.com>, 
- Jens Axboe <axboe@kernel.dk>, Kalle Valo <kvalo@kernel.org>, 
- Jeff Johnson <jjohnson@kernel.org>, 
- Catalin Marinas <catalin.marinas@arm.com>, 
- Andrew Morton <akpm@linux-foundation.org>, 
- Jack Wang <jinpu.wang@cloud.ionos.com>, 
- Marcel Holtmann <marcel@holtmann.org>, 
- Johan Hedberg <johan.hedberg@gmail.com>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>, 
- Josh Poimboeuf <jpoimboe@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
- Joe Lawrence <joe.lawrence@redhat.com>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Lucas Stach <l.stach@pengutronix.de>, 
- Russell King <linux+etnaviv@armlinux.org.uk>, 
- Christian Gmeiner <christian.gmeiner@gmail.com>, 
- Louis Peens <louis.peens@corigine.com>, 
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
- Naveen N Rao <naveen@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, netfilter-devel@vger.kernel.org, 
- coreteam@netfilter.org, netdev@vger.kernel.org, 
- linux-kernel@vger.kernel.org, cocci@inria.fr, 
- linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-scsi@vger.kernel.org, xen-devel@lists.xenproject.org, 
- linux-block@vger.kernel.org, linux-wireless@vger.kernel.org, 
- ath11k@lists.infradead.org, linux-mm@kvack.org, 
- linux-bluetooth@vger.kernel.org, linux-staging@lists.linux.dev, 
- linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org, 
- live-patching@vger.kernel.org, linux-sound@vger.kernel.org, 
- etnaviv@lists.freedesktop.org, oss-drivers@corigine.com, 
- linuxppc-dev@lists.ozlabs.org, 
- Anna-Maria Behnsen <anna-maria@linutronix.de>
-Subject: Re: [PATCH v2 19/21] livepatch: Convert timeouts to secs_to_jiffies()
-In-Reply-To: <ZzxR3uAcWFEPUIUK@pathway.suse.cz>
-Message-ID: <alpine.LSU.2.21.2411191006340.15289@pobox.suse.cz>
-References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
- <20241115-converge-secs-to-jiffies-v2-19-911fb7595e79@linux.microsoft.com>
- <718febc4-59ee-4701-ad62-8b7a8fa7a910@csgroup.eu>
- <Zzsfuuv3AVomkMxn@pathway.suse.cz>
- <96f3b51b-c28c-4ea8-b61e-a4982196215f@linux.microsoft.com>
- <ZzxR3uAcWFEPUIUK@pathway.suse.cz>
-User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AA1010E272;
+ Tue, 19 Nov 2024 09:21:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732008063; x=1763544063;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=bVQxPot3yn21nhtnjGm5wU5Seqb2vD5PTwNF8EXa38o=;
+ b=XGdJ11ulvA2gf0BIRCSpVBFfniKoJln/UtQCakmc65Fo1w/McVVb+9+2
+ JNlMPaH49inh4kmx0f0526/XRbkLVn6PnPCzrycHnyNJdaaCEMn7diTV4
+ MGU3/KOcgCJCoUIWc5cMmG318/Dq+c0cVKCLx0tW60w4980jxaalsfNd/
+ fovZvo0khDu8SI/J63V2YpbZeDHHCDet3qNU4BBLKZ8KexAE7xAmui4gQ
+ 1go5lejhqkOnWxI46KTyXNrhKARCMPobVWkVZcpBwbpAPfa2bc9OB1SHl
+ ocehMau7mWVEJp6FTOs0BFhPtW85b7GgZNeLB9FMjpA86O8wlz/DdfA5z w==;
+X-CSE-ConnectionGUID: jtOODa5/Tuu9ACqde1A/Nw==
+X-CSE-MsgGUID: vUu7RWWiSD6FxNxfkFBlYQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="43379594"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="43379594"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 01:21:02 -0800
+X-CSE-ConnectionGUID: 5x3hG/wDQuelX779xi0ttg==
+X-CSE-MsgGUID: fItaZH7BTFeROMArm3dLSA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="120419630"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Nov 2024 01:21:02 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 19 Nov 2024 01:21:01 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Tue, 19 Nov 2024 01:21:01 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.172)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Tue, 19 Nov 2024 01:21:01 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kdv796VKQZh0iY+HWpGmxMMY9uGSfeugVl+/D4lk+rE6oSuAa9aA8V0NEqv0uRvOP88q6Oc4g3XVqFoD/F5YZ7BdOIAV84abk0lvNenj3VEWdULDX8417UDLaGFqMwUJD7HVcsfsKD87GHepYK8BvBDi955ksz0TTuQkcIIbXNaEttBYdhCLYWPuf48yJXpmDcm0Y+IUzheO3VL9J4I8YGIAoQYdCws1KfVOKhtB/xSWqTduCFptyi9ALLVwfIF99v3qc40dKkJRn3zaz6h3i35/9OQQCVBwA1buOJ9XvcnCUuQ7zkNaX7r+Y3dmRUIy6U79GavCuJg4zjuj9yS3Gw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fmgnHYx68J8OlFjZ74V2z2JWCsYNUQu1l3RrEWmL+Ag=;
+ b=t3XBC4EViG9pn54//ipKWUb2fN9Vplik9WL/SZZQucZWM3SrFv0KNRTlKfPySYFpfJpNTarZEFxbB3fddvc+1KdsPWbYlO8pScRUFKuUVdQE02fOs2YJOfP+R9eKPHqbeoWJUvS8s/ssm/27y2m90PVRLbammbAPIVA3yS9af+ECUHqfEGliK1vhoFhSgADDmcfv+Pe+bLFdG+A9o4ZadgMPOlnp6343B+SdvSm/CPmKLTyaVuoixrh5Hp+73Af711uOxmzltUqd9EOD7V1Mod5HYk8nJzlQd/iPPk4p2YXfb9OqvskfZaI9wXR5pR40h3njmJjlQB2V7tNcBN+8DQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by SN7PR11MB6800.namprd11.prod.outlook.com (2603:10b6:806:260::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.23; Tue, 19 Nov
+ 2024 09:05:01 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%3]) with mapi id 15.20.8158.023; Tue, 19 Nov 2024
+ 09:05:00 +0000
+Message-ID: <4ce600a0-6561-43aa-a5e2-3a2245bc2664@intel.com>
+Date: Tue, 19 Nov 2024 14:34:53 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/display/xe3lpd: Avoid setting YUV420_MODE in
+ PIPE_MISC
+To: =?UTF-8?Q?Juha-Pekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+References: <20241113115531.3394962-1-ankit.k.nautiyal@intel.com>
+ <CAJ=qYWTMYzkKCT_eVEBeP=q=L1mXykdcv+DER6DB=toXU8+KxQ@mail.gmail.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <CAJ=qYWTMYzkKCT_eVEBeP=q=L1mXykdcv+DER6DB=toXU8+KxQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN3PR01CA0054.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:98::20) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- BOUNDARY="1678380546-1247530484-1732007229=:15289"
-Content-ID: <alpine.LSU.2.21.2411191007130.15289@pobox.suse.cz>
-X-Spamd-Result: default: False [-5.80 / 50.00]; REPLY(-4.00)[];
- BAYES_HAM(-3.00)[100.00%]; SUSPICIOUS_RECIPS(1.50)[];
- CTYPE_MIXED_BOGUS(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-0.998];
- MIME_GOOD(-0.10)[multipart/mixed,text/plain];
- FROM_EQ_ENVFROM(0.00)[]; ARC_NA(0.00)[];
- REDIRECTOR_URL(0.00)[aka.ms]; FROM_HAS_DN(0.00)[];
- FREEMAIL_CC(0.00)[linux.microsoft.com,csgroup.eu,netfilter.org,davemloft.net,google.com,kernel.org,redhat.com,inria.fr,imag.fr,zonque.org,gmail.com,free.fr,armlinux.org.uk,linux.ibm.com,habana.ai,intel.com,linux.intel.com,suse.de,ffwll.ch,lunn.ch,broadcom.com,hansenpartnership.com,oracle.com,citrix.com,kernel.dk,arm.com,linux-foundation.org,cloud.ionos.com,holtmann.org,linuxfoundation.org,perex.cz,suse.com,pengutronix.de,corigine.com,ellerman.id.au,vger.kernel.org,lists.infradead.org,lists.freedesktop.org,lists.xenproject.org,kvack.org,lists.linux.dev,lists.ozlabs.org,linutronix.de];
- TO_DN_SOME(0.00)[]; MIME_TRACE(0.00)[0:+,1:+];
- TO_MATCH_ENVRCPT_SOME(0.00)[];
- TAGGED_RCPT(0.00)[netdev,etnaviv];
- MID_RHS_MATCH_FROMTLD(0.00)[]; RCPT_COUNT_GT_50(0.00)[94];
- RCVD_COUNT_ZERO(0.00)[0]; FUZZY_BLOCKED(0.00)[rspamd.com];
- R_RATELIMIT(0.00)[to_ip_from(RLst1ywfnn8h7y4sspo7cfrpds)];
- DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
- FREEMAIL_ENVRCPT(0.00)[gmail.com,free.fr]
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SN7PR11MB6800:EE_
+X-MS-Office365-Filtering-Correlation-Id: 52bb8a9e-1ea9-454c-401e-08dd08793f5a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?MnVhNGV4cm5YeG83aitCWEpsTzNncmRncjRqYlJ6TnlSUWdPc1dhNis4OWtq?=
+ =?utf-8?B?a1VPTHI3TnFyTTlSUVNvZVpuZmpqQTRRdStxZ0g2czliam1rMjVadE9NZDIr?=
+ =?utf-8?B?QkdlZ3o0SVM5V1ZheGdnVThzb0tUMDVSaTNUdnJJakRTMkF3eWs5dXZhSW9T?=
+ =?utf-8?B?bGEvU0VTRVJZSnRqTlBLUExiblZTNGErVlMzd2w2alpIaU1TMWE5N3crZDI4?=
+ =?utf-8?B?S0k1OXdqajZvSm81NDFCb00rVnFuUE1KVVVhQm52SGRWM0ltdXlxZ2V1Q3lJ?=
+ =?utf-8?B?K1BjVzFZVms0c0dzaFNLQXRDOG9sbW1aUGU1U2Z0OUtVcFdWVy96clFlcTlY?=
+ =?utf-8?B?RnlFY2E1Ni96YXFRdmV0enZ0RTM5OEFtQmo2Mzk0RFErbFlxSXNWVllPekpG?=
+ =?utf-8?B?QkRRTkVUQk0xbTZnR0VhdmdxV0Ewb25XQytML0U5MFdDUHJDZ0JjRlNHdnhs?=
+ =?utf-8?B?UUZFTklBZUV0SGd5dzNMbGt1NWR1SHdzd2hGdFhIKyt3M1NDZnZoa0VmRE41?=
+ =?utf-8?B?L3lrK2RMOEdvT2tHc2J0VzgwbmVQaWd0MWRDcFpWclk0eG9HenJyQklTOEgv?=
+ =?utf-8?B?UXFLNytOU1Bpd2RNa00vKzZJOEQwS0N6N3EzSWhja25iZzM0T0ZVSlIxWTU5?=
+ =?utf-8?B?UU9PbGpSOEhxTmlLVWlJU0ZzY3psNVBMMnVOYXhMbTdRRnVXUy8wdnFIVFhu?=
+ =?utf-8?B?S3V1c2pwQVNEZlpwRHg4dmFRZXE0ejY2Mm00NXZLWnFWMTZPdnBibWFLTzRp?=
+ =?utf-8?B?anZpRnd3Y3NZMno4N3FQT1pkZGxKV20zWjZXa3R1NDlvamIrNGNabTUxWnFa?=
+ =?utf-8?B?UDN1Q2Q4OENkazJEdjVYaGRpbUQ3VjFrdEtmUkIySTZScU4xM3U1U0dNSUFt?=
+ =?utf-8?B?S3NLM1V1NDhhd1FjOEtLTmFiZmJFc2RwKzNoK2ZzaTRKRVI1M1hlYTgwSnlN?=
+ =?utf-8?B?a2xOeEljRmZjbTVjT3NOL1FTT0RkWmtHeGpQTjJRRzlvRmFiZXJDYkRhVjRZ?=
+ =?utf-8?B?QUkyNnlHRzhQbWVyd2QrWjB3Q2xVY2ZCREtDV0lYQ2xZVTBjL2ROekoyT0RF?=
+ =?utf-8?B?TEJma2cwMlRBMG9LbmxFY29RR2tjemMrL3FxYk5qTVR5ME1OTDZJdHcwK3Zw?=
+ =?utf-8?B?YTRWcG5CZXFkakVnQ3BldUVSRExKWnNKOHhJOUE5QlhhNDB1SkczMkxESHVo?=
+ =?utf-8?B?aDBVbDdDS3Z1c1RqZ2hLOWw2MXRSczVIZENZbUlmZWtoNWQrS29pTGd6cWVU?=
+ =?utf-8?B?N0FVVDVkYklKZXAyRlAxVVpKdzA5Y0xSeUlrcjgyaDdNak1oa1dxRGZzU05M?=
+ =?utf-8?B?VEwxQXV2MHR4OTVHN1pnV3FVdFNjY3ZmcUl4TExKcERTc2NNVnlPcW1GRVlq?=
+ =?utf-8?B?WU1WaVUrUndSNXZmMDlqMnA0YnlvRlUzem43a2h6K1hRL2FYRmlKVVNYWlZ1?=
+ =?utf-8?B?dzZQMlV0SVUrVTJhaytDeUE4dlhVUXFTSGlKSzB3cStleFhMNnVzbFBiQWd4?=
+ =?utf-8?B?S1lVend1TTl4bnU5b0FwS2s0VENmNjUwSzNXNDhRb1ErMkU0ZDNFU0hNWFky?=
+ =?utf-8?B?RDRCVlBGb3VqWS9jYXlnTzlTa0t3dS8vdjk4QjZLS042THh6ampoV3FVVlNH?=
+ =?utf-8?B?cGloZnZTQ0pKRFZCTU1tT1NKdW9SdEt1aFoxU1ZtVXlGajRRcHU5dTRsYkNZ?=
+ =?utf-8?B?MGdNYWNtdXBKN0wyUmJ3QzUrREFXcmJhMU1vbU5aeXVlSkFUYllwMmUrSXFK?=
+ =?utf-8?Q?6hVUIC2+QnnWtDdzBKSeEK+lR3PwMR82h6mZfOB?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?REV5NFBnY2RGNHdtUS9ROXNBR1VwZ29RVzdUZndZNEw3dEpQY1N3ZVNNb3di?=
+ =?utf-8?B?UUY4QnBNKzNCeTJLSW1JOVF5ZzJLN2MxOWIwdlA4aHN0Vmw0djRKTTJOYTJG?=
+ =?utf-8?B?QnhxOEhtRmZXbStSYldMc1BGSlZaMFVEbDB0QWgzRFBiaGhMb2drZjVKM1Ja?=
+ =?utf-8?B?dkhMYW9QTFdjS2hkTHlUSGt4ZXN0S0ZLdFh6UGk2alhNY0V4L0ptVHF0MGti?=
+ =?utf-8?B?dVlTK1hwSC9lYzhYdlRObUhwU05rcERpM2xQRVVmQzdQTHRScVVVTTdoMEtY?=
+ =?utf-8?B?endpdGZKZkhlUFRDMVNQb0swNlZDc29DT0JnRHdpL05uNy9EMHlMTXFRWFM0?=
+ =?utf-8?B?eFAwUnBaenNpVVdpTS8ydE9uRTk0NVhIYUFOcWJkY0xxRmRheko2elRTN0k3?=
+ =?utf-8?B?OFlPOTlJYzlBWkx6aXRibkRXc2hFYmg2L2VFeTZiL2ttek1HeURVUHlweHly?=
+ =?utf-8?B?TlFnNTZEdkdCZGdqbk0rdVhidEhZcFU4RC9NdmR0ckVBRXZWL0lESE9CSlNH?=
+ =?utf-8?B?cExMR0NxaWM2c052am1jOGExS1ZaSHBPMnMzQWlDNDFmS0swRTc5YWhvMmZU?=
+ =?utf-8?B?U1o0dGowekhnU3Z5eHdVQVFudmYyTlRQcFY4SjUvNDJEQWRLN283V3VZWVBl?=
+ =?utf-8?B?aU4vcUdweDBETUhUZlgwcXB1cFlFcFRYaC9HRU5UdEhhK0sxbS9IUDVVb1Na?=
+ =?utf-8?B?cElaOVkwOTFSSHp3WlBiRmx5bkM0amtXZklFZ2RLdzNLdEpneTlxWDd2S0Zx?=
+ =?utf-8?B?UlBJNE9FUmtaQ2JmVGpLcFovY1hsMVNPd3kyaEVpa0szNGFBdlRYZzdYK1l0?=
+ =?utf-8?B?alBlYVJOdEtKSTBJWW1XWjBIcTJ2UmNCMWhDNWd2RmtiYzErc3hqV0JxMEll?=
+ =?utf-8?B?VEtqQzhHWVo3b3dqRExUZHJJU01rZnlhMUYrMDViNnlDQWswQklzTDU3clox?=
+ =?utf-8?B?eW1GbUpRRnBGa1ZvZkJJSnordHlseFlTMWN2QzgwNFExSHRMS05iMzB3OEty?=
+ =?utf-8?B?WHYwV0Eyb3FDQ1JadEIwUUVPSkZCQmtnN1I2RGZtSEJrSnJjT3lFMklTeDVp?=
+ =?utf-8?B?ODRkcDVFbHVMdzNhN2VjZzNIY0F1ZVcya01oaEJFakdOWWROdDdPNjkxMHRx?=
+ =?utf-8?B?UTZZdk5zTVMwcGkxdmpscHhHU1cyYXNoandMZnZlREdINUhnQUNoSXpRd0Vw?=
+ =?utf-8?B?aXVhQzY0a0NDbkVycHUzZFdta25RZmkvU3ZsbTZOYUpNdEVaWk5KNFZ2NkE2?=
+ =?utf-8?B?aG9zUm9RdzNqMjhLU0M1KzBmMFZqYjgzVzV5V0kzbHVOSzVvOEN2ZGNCUjg3?=
+ =?utf-8?B?TTlYOXJjN002ZGtKSm5WWTE2d2NmR3l0MHg0dC83UGVKLzJpRHEvZzAxeG9E?=
+ =?utf-8?B?a2tGWk5MbXFzaGE2ZHU2QlpkMmltZ2twUlN1VDFsWE9YeGxaR0FTSTE5cXpq?=
+ =?utf-8?B?Z1BtSUpWeGJEVFdvVzBmMHB1blN6RjJRa2ZNZDNUN0FXcE5GVWhhMHY3d0tk?=
+ =?utf-8?B?dEQ2QlVjMTZlZyt6bGJtK2xmMUVYUUdxejBoZmdPUzZtQW54L25LWU9vcXI3?=
+ =?utf-8?B?Q21NTE4zMFFRQkM5d1J1d2JIZnpObEMwYWQrQ0EzRmk2NFFFRHliT0NuYVJ4?=
+ =?utf-8?B?UnhyR2UzRk5XQ0h0b3RVY0FQMlJQRHE5VXVUOUg2N2xRemgyRkh2NHVGTHo2?=
+ =?utf-8?B?aEtOSG5VdWlEV090cllYNFIvMXpwbVduYU1IZ29QSU9RRlV3ZndNMTJSanoy?=
+ =?utf-8?B?Z3oxTXdiV2J0UTBxdWYzU3lzSlBPMGJWVjN2TW1MU2haam12WTZCbXlaR0NQ?=
+ =?utf-8?B?bS9qUDVLWVphUnRrVmZZc1FVa2l2a1JRQWhxd2tzUmdDUG0wQ1hybWgxZHlT?=
+ =?utf-8?B?bEtaNnhJM09YRXpsQ2FBZXpnRXQ2aUtxK2N3QmN0Sm1qNWtGK3A1MU81eTJ3?=
+ =?utf-8?B?SlZUYjI1VzA0NkQ2ZHkxVTF2dkJlNGNsQmNvK2N3OW43bDE2dktCMTErenU2?=
+ =?utf-8?B?Y05FRTJETC9ncGlmUzhuSjJubC9OZjBNV0RwTkUrS1NZVkNMRE9IYjdBQU1Y?=
+ =?utf-8?B?QVlrNVczSURDQlZSTGE1TnZzeTRqazY5MWN2cFVLaHBYZkxNM1dhU1lkcUdS?=
+ =?utf-8?B?eXlCV1NmcERFZU45akpzTzVmYVdINWJTeGN2UzZ5bEF5bTNoZ1lCSFVORERL?=
+ =?utf-8?B?L0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52bb8a9e-1ea9-454c-401e-08dd08793f5a
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2024 09:05:00.9474 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Zvd6ny1vuPN/pWzxGaPkdJHffm6ofeOW917/CdEJHgkH9BfeEg8WSgMBlgc8vKOIpuaAaaCqFWPSkV6iUYYWzbYKZyobr9hMrK4xgsFOKbg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6800
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,93 +193,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
 
---1678380546-1247530484-1732007229=:15289
-Content-Type: text/plain; CHARSET=ISO-8859-15
-Content-Transfer-Encoding: 8BIT
-Content-ID: <alpine.LSU.2.21.2411191007131.15289@pobox.suse.cz>
+On 11/18/2024 7:14 PM, Juha-Pekka HeikkilÃ¤ wrote:
+> These display patches probably should go through i915 ci also since it
+> changes code on i915.
+>
+> patch itself look ok,
+>
+> Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 
-On Tue, 19 Nov 2024, Petr Mladek wrote:
+Was already tested with i915 CI.
 
-> On Mon 2024-11-18 10:18:49, Easwar Hariharan wrote:
-> > On 11/18/2024 3:06 AM, Petr Mladek wrote:
-> > > On Sat 2024-11-16 11:10:52, Christophe Leroy wrote:
-> > >>
-> > >>
-> > >> Le 15/11/2024 à 22:26, Easwar Hariharan a écrit :
-> > >>> [Vous ne recevez pas souvent de courriers de eahariha@linux.microsoft.com. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
-> > >>>
-> > >>> Changes made with the following Coccinelle rules:
-> > >>>
-> > >>> @@ constant C; @@
-> > >>>
-> > >>> - msecs_to_jiffies(C * 1000)
-> > >>> + secs_to_jiffies(C)
-> > >>>
-> > >>> @@ constant C; @@
-> > >>>
-> > >>> - msecs_to_jiffies(C * MSEC_PER_SEC)
-> > >>> + secs_to_jiffies(C)
-> > >>>
-> > >>> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
-> > >>> ---
-> > >>>   samples/livepatch/livepatch-callbacks-busymod.c |  2 +-
-> > >>>   samples/livepatch/livepatch-shadow-fix1.c       |  2 +-
-> > >>>   samples/livepatch/livepatch-shadow-mod.c        | 10 +++++-----
-> > >>>   3 files changed, 7 insertions(+), 7 deletions(-)
-> > >>>
-> > >>> diff --git a/samples/livepatch/livepatch-callbacks-busymod.c b/samples/livepatch/livepatch-callbacks-busymod.c
-> > >>> index 378e2d40271a9717d09eff51d3d3612c679736fc..d0fd801a7c21b7d7939c29d83f9d993badcc9aba 100644
-> > >>> --- a/samples/livepatch/livepatch-callbacks-busymod.c
-> > >>> +++ b/samples/livepatch/livepatch-callbacks-busymod.c
-> > >>> @@ -45,7 +45,7 @@ static int livepatch_callbacks_mod_init(void)
-> > >>>   {
-> > >>>          pr_info("%s\n", __func__);
-> > >>>          schedule_delayed_work(&work,
-> > >>> -               msecs_to_jiffies(1000 * 0));
-> > >>> +               secs_to_jiffies(0));
-> > >>
-> > >> Using secs_to_jiffies() is pointless, 0 is universal, should become
-> > >> schedule_delayed_work(&work, 0);
-> > > 
-> > > Yes, schedule_delayed_work(&work, 0) looks like the right solution.
-> > > 
-> > > Or even better, it seems that the delayed work might get replaced by
-> > > a normal workqueue work.
-> > > 
-> > > Anyway, I am working on a patchset which would remove this sample
-> > > module. There is no need to put much effort into the clean up
-> > > of this particular module. Do whatever is easiest for you.
-> > > 
-> > > Best Regards,
-> > > Petr
-> > 
-> > If we're removing the module, I'll drop it from the series. Just to
-> > clarify, do you mean to remove all of samples/livepatch/* or some
-> > particular file(s)?
-> 
-> To be precise, I am going to replace:
-> 
-> 	samples/livepatch/livepatch-callbacks-demo.c
-> 	samples/livepatch/livepatch-callbacks-mod.c
-> 	samples/livepatch/livepatch-callbacks-busymod.c
-> 
-> with a completely different modules because I am reworking the
-> callbacks API.
-> 
-> All other sample modules are going to stay.
-> 
-> Feel free to remove livepatch-callbacks-busymod.c from the patchset.
-> But also feel free to keep it. The API rework goes slowly. I am not
-> sure if it would be ready for 6.14.
+Patch is pushed to drm-intel-next. Thanks JP for the review.
 
-I would propose that Easwar goes on with his work and prepares an updated 
-version of the patch based on Christophe's feedback. That is, disregarding 
-Petr's rework for now. The patch set has a higher chance to be merged 
-sooner. Petr can then easily rebase. If there is a conflict, we will 
-handle it as usual. What do you think?
 
-Miroslav
---1678380546-1247530484-1732007229=:15289--
+Regards,
+
+Ankit
+
+>
+> On Wed, Nov 13, 2024 at 1:53â€¯PM Ankit Nautiyal
+> <ankit.k.nautiyal@intel.com> wrote:
+>> For Xe3_LPD the PIPE_MISC YUV420 Enable (bit 27), already implies enabling
+>> full blend YUV420 mode and YUV420 Mode (bit 26) is removed.
+>> Therefore, avoid setting YUV420 Mode for Xe3_LPD+ while programming
+>> PIPE_MISC for YCbCr420 output format.
+>>
+>> Bspec: 69749
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_display.c | 15 ++++++++++-----
+>>   1 file changed, 10 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> index e790a2de5b3d..9db255bb1230 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -3137,9 +3137,14 @@ bdw_get_pipe_misc_output_format(struct intel_crtc *crtc)
+>>          tmp = intel_de_read(dev_priv, PIPE_MISC(crtc->pipe));
+>>
+>>          if (tmp & PIPE_MISC_YUV420_ENABLE) {
+>> -               /* We support 4:2:0 in full blend mode only */
+>> -               drm_WARN_ON(&dev_priv->drm,
+>> -                           (tmp & PIPE_MISC_YUV420_MODE_FULL_BLEND) == 0);
+>> +               /*
+>> +                * We support 4:2:0 in full blend mode only.
+>> +                * For xe3_lpd+ this is implied in YUV420 Enable bit.
+>> +                * Ensure the same for prior platforms in YUV420 Mode bit.
+>> +                */
+>> +               if (DISPLAY_VER(dev_priv) < 30)
+>> +                       drm_WARN_ON(&dev_priv->drm,
+>> +                                   (tmp & PIPE_MISC_YUV420_MODE_FULL_BLEND) == 0);
+>>
+>>                  return INTEL_OUTPUT_FORMAT_YCBCR420;
+>>          } else if (tmp & PIPE_MISC_OUTPUT_COLORSPACE_YUV) {
+>> @@ -3388,8 +3393,8 @@ static void bdw_set_pipe_misc(struct intel_dsb *dsb,
+>>                  val |= PIPE_MISC_OUTPUT_COLORSPACE_YUV;
+>>
+>>          if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420)
+>> -               val |= PIPE_MISC_YUV420_ENABLE |
+>> -                       PIPE_MISC_YUV420_MODE_FULL_BLEND;
+>> +               val |= DISPLAY_VER(display) >= 30 ? PIPE_MISC_YUV420_ENABLE :
+>> +                       PIPE_MISC_YUV420_ENABLE | PIPE_MISC_YUV420_MODE_FULL_BLEND;
+>>
+>>          if (DISPLAY_VER(dev_priv) >= 11 && is_hdr_mode(crtc_state))
+>>                  val |= PIPE_MISC_HDR_MODE_PRECISION;
+>> --
+>> 2.45.2
+>>
