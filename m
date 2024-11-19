@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E546ED6C299
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 21:01:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A824AD6C29A
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 21:05:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A38E910E36D;
-	Tue, 19 Nov 2024 21:01:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A09910E364;
+	Tue, 19 Nov 2024 21:05:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VWc8cQPO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F/tEMgwm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C07110E36D
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Nov 2024 21:01:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B139C10E364
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Nov 2024 21:05:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732050115; x=1763586115;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=PbSWOMRbV0caE4exgI0EaqCT3H4mLPwi9elnDYHAHOY=;
- b=VWc8cQPOsiNnKmD6wgUXFQTjbWb0Hs3EvWJ4DoLDFmdocpxghyb8SUON
- V7YCS6aej4hCSeXNkPJLQSt2AP8LCJv2j9MAqH5/LYAm4S2fSLuTkfzmI
- vuDSvEK42PD3crO1utcqR0ccz4idjl3JAMeMWVccKVlG1DV3OYdlvw1vi
- LQwX4gLWHPZZRhPA7y5z/FOL+LElqZW/67OJnQb5yQkwAuQQ7+d+zffwn
- oa82JEbR3mQI2EJcukfKAI/8W4oBMDzlLpgaOm3QgXLiYFo9W5xFeBVYw
- 4tfdv37/DMLRvtmC/gq8ElYAMeaRHQzkn+IHQ05R8CTbRepiBOmaRShW4 Q==;
-X-CSE-ConnectionGUID: DBFibDOsTNSmXce/jXBREw==
-X-CSE-MsgGUID: a/1L2X5mTWizVAM4/oDBsQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="49616551"
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="49616551"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 13:01:55 -0800
-X-CSE-ConnectionGUID: WDCUFEi0Qo+cWqzWeXMwRw==
-X-CSE-MsgGUID: olLqk4lnRweBk1IVcCZfTg==
+ t=1732050354; x=1763586354;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=itLfHzqp4oALr3/tKtYFNhkIdiiyc62A8m7IBffiCdU=;
+ b=F/tEMgwmGkJ2xcsj7yqT2xSRyOKGytwpqCQ/RBZEUuLfa0KhKOISzV0Y
+ k3ChmZOaqjycXQJc9j+72WDNfUJcaActhekehD1mX44G+zW4SNYvze500
+ aXirit0b2SyZgkpVHOEiq5OiA3xr9CetmF3J0KDLBk1mW0sX4wTIOMteA
+ RzQfKuRoCLBybz1+OO1qQUnXoAnskzX2N0BenyezXG8wQ/zIKUYjsTshn
+ mf4dVKBXo2M0prn55AX2uaveTSGFhjT1rNyqapNtoEoFx3zVG8+igYBsY
+ rXH/dCKU8+fQX2gJi9csH/O2qJZ8cTaeyw4wOLf0gN2BQFG+k2G11+1EP g==;
+X-CSE-ConnectionGUID: nM3ZOTmgQriG+N8c+g5WPg==
+X-CSE-MsgGUID: PJjNjuu1Qn2iwtTxuot8Lw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="34939425"
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="34939425"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 13:05:50 -0800
+X-CSE-ConnectionGUID: 7+204LDhQJia6sFPmzn2TA==
+X-CSE-MsgGUID: Ghp94B8USTiry74pKlM1sQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="93759399"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.109.70])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 13:01:54 -0800
-Date: Tue, 19 Nov 2024 15:01:48 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>, 
-	intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/xe: Drop useless d3cold allowed message
-Message-ID: <o2qvrowghi5shepavwjzb6utpioyj2neqfbr45eny54fqrga3m@trovhcv4hoof>
-References: <20241115192155.2050987-1-matthew.brost@intel.com>
- <ZzfCwCZr0byTqGj1@intel.com>
- <ZzfYK1jr6KTGxR0c@lstrano-desk.jf.intel.com>
- <Zzzd7FO-z9Q66Ugi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="89638993"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa010.jf.intel.com with ESMTP; 19 Nov 2024 13:05:48 -0800
+Received: from [10.245.80.89] (unknown [10.245.80.89])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id E95122FC51;
+ Tue, 19 Nov 2024 21:05:46 +0000 (GMT)
+Message-ID: <8e9b5a14-0439-410e-96dd-36c89429a3f9@intel.com>
+Date: Tue, 19 Nov 2024 22:05:46 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <Zzzd7FO-z9Q66Ugi@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] drm/xe: Use new force-wake guard class in xe_mocs.c
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+References: <20241118184511.258-1-michal.wajdeczko@intel.com>
+ <20241118184511.258-3-michal.wajdeczko@intel.com>
+ <q6oftdodc3xpjczeddv3ghr2c5msrqgekbz3f34yi5leg4hz22@dwodxaqpk6pd>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <q6oftdodc3xpjczeddv3ghr2c5msrqgekbz3f34yi5leg4hz22@dwodxaqpk6pd>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,27 +72,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Nov 19, 2024 at 01:50:20PM -0500, Rodrigo Vivi wrote:
->On Fri, Nov 15, 2024 at 03:24:27PM -0800, Matthew Brost wrote:
->> On Fri, Nov 15, 2024 at 04:53:04PM -0500, Rodrigo Vivi wrote:
->> > On Fri, Nov 15, 2024 at 11:21:55AM -0800, Matthew Brost wrote:
->> > > This message just spams dmesg providing little benefit. Remove it.
->> >
->> > I don't believe it is useless, but I also hate the spammers...
->> >
->> > perhaps we could bring the status of it in some debugfs form
->> > as a replacement?
->> >
+
+
+On 19.11.2024 21:03, Lucas De Marchi wrote:
+> On Mon, Nov 18, 2024 at 07:45:11PM +0100, Michal Wajdeczko wrote:
+>> Start using new xe_fw class to minimize risk of leaking force-wake
+>> references.
 >>
->> ftrace could an option so if you really care about this enable it there?
->
->hmmm it looks like a good idea... but no strong preference from my side...
+>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> ---
+>> v2: rebased
+>> ---
+>> drivers/gpu/drm/xe/xe_mocs.c | 10 +++-------
+>> 1 file changed, 3 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+>> index 54d199b5cfb2..f18aaa6595c7 100644
+>> --- a/drivers/gpu/drm/xe/xe_mocs.c
+>> +++ b/drivers/gpu/drm/xe/xe_mocs.c
+>> @@ -776,19 +776,15 @@ void xe_mocs_dump(struct xe_gt *gt, struct
+>> drm_printer *p)
+>> {
+>>     struct xe_device *xe = gt_to_xe(gt);
+>>     struct xe_mocs_info table;
+>> -    unsigned int fw_ref, flags;
+>> +    unsigned int flags;
+>>
+>>     flags = get_mocs_settings(xe, &table);
+>>
+>>     xe_pm_runtime_get_noresume(xe);
+>> -    fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+>> -    if (!fw_ref)
+>> -        goto err_fw;
+>>
+>> -    table.ops->dump(&table, flags, gt, p);
+>> +    scoped_guard(xe_fw, gt_to_fw(gt), XE_FW_GT)
+>> +        table.ops->dump(&table, flags, gt, p);
+> 
+> 
+> afair one caveat is that you can't have a goto that jumps over guard
+> because of the usage of the cleanup attribute. Is that still the case or
+> do we have some magic convincing the compiler to do the right thing?
 
-as long as we are talking about adding a tracepoint rather than a plain
-trace_printk() unconditionally.
+not sure if I get the problem right, but in the perfect world, we will
+not need to use goto's any more (as we need them mostly for the cleanup)
 
-with dynamic debug we could use a verbose level that is only enabled per
-file when needed. Then we can keep messages like this rather than
-misusing the trace buffer.
+so code like this:
 
-Lucas De Marchi
+int legacy(gt)
+{
+	unsigned int fw_ref;
+	int res;
+
+	xe_pm_runtime_get(gt_to_xe(gt));
+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_GT);
+	if (!fw_ref) {
+		res = -ETIMEDOUT;
+		goto out_pm;
+	}
+
+	res = foo();
+
+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+out_pm:
+	xe_pm_runtime_put(gt_to_xe(gt));
+	return res;
+}
+
+we could likely replace with:
+
+int future(gt)
+{
+	guard(xe_pm)(gt_to_xe(gt));
+	scoped_guard(xe_fw, gt_to_fw(gt), XE_FORCEWAKE_GT)
+		return foo();
+
+	return -ETIMEDOUT;
+}
+
+> 
+> once we get agreement on the approach, please let's convert everything
+> that can be converted to scoped guard so we don't have to keep both
+> approaches for a long time.
+> 
+> Lucas De Marchi
+> 
+>>
+>> -    xe_force_wake_put(gt_to_fw(gt), fw_ref);
+>> -err_fw:
+>>     xe_pm_runtime_put(xe);
+>> }
+>>
+>> -- 
+>> 2.43.0
+>>
+
