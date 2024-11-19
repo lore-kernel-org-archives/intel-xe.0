@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0603AD60D09
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 01:35:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D4CFD60D0A
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Nov 2024 01:36:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBBF710E598;
-	Tue, 19 Nov 2024 01:35:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C8FF10E1A6;
+	Tue, 19 Nov 2024 01:36:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bg1SYaWx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bUNheYDD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF7D510E598
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Nov 2024 01:35:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9277E10E1A6
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Nov 2024 01:36:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731980124; x=1763516124;
+ t=1731980162; x=1763516162;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=MXoavAyGvqoZuizqk4P9s14xy+snf25TwTSYOG6TIps=;
- b=bg1SYaWxG0eTBWlllMS9YEGHm+u26XbsCOhA42q4ENtiTG/H3TcUqFnv
- ypscwS0WaKhNjc0l1BRcFiwMIr7ofUWKO1ch5NaSHsLWm7f/ql3OZw5sH
- YiGxmL0APy9NXns/xCR9zSL5pCzp95ZmdfG7sV0M2CfCU4P7/BJ4Z+kOU
- iq7BwSnHnXxA422EUKMykcX2tGTOFM5mOQ3SZcICWIEEBc11VLEyeFDrr
- KVIq/2Zwj9k1M9jEwb014GLJMV2Ab1AmyVNQOeT5Fz5cYPlyemkLd4dby
- xitWsAAsLR7WPulwSr65rLUU8+U5Mw0IC+298Z3ZwBWKP8O96n6+R7SoN Q==;
-X-CSE-ConnectionGUID: bhFycYp9QrWfZ9C1fNu6Sg==
-X-CSE-MsgGUID: xleLknktTCKqgBcHA/nGog==
-X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="31713226"
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="31713226"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 17:35:23 -0800
-X-CSE-ConnectionGUID: nhPoIz7xQZGtYwqLBjgDRA==
-X-CSE-MsgGUID: 6VMYkPtoSAKLC4JvHfkhBQ==
+ bh=/s9T2in4VrPqDstepKaJocu87J+CUHKcRBStotziGQg=;
+ b=bUNheYDDP4vlC38AwRiR3QKj5Zej6fTG7IWb7IQzFJDOT0bRl2shQxVt
+ f8nlNsx7Xx35Lsp/PeURtv8NmH+tZm2wJjbD4JVaRlqQgeL6QL2XHB1Ad
+ ELrDo62NAS+S1CA4UuxGuanbL20GB1Fh0wz95yoL9EPlgXbpnJN4lMrgm
+ iSlhr3O9odRNmWoGFSZhZ7w9n1N1hy70U2rH1yzJGviUKuz3W3D9V8d+z
+ UpDd3j0LckCn+JlCD7nz6vLPoXgzRpXIDhAcN8xK+pIyMF/TUenJZTIHU
+ o00RitP6cDn8u4qgUHZvVKSISADDeTrv6YNz07JaGN5+552lxWp95NbFL Q==;
+X-CSE-ConnectionGUID: 1v/gwoz5TvidRBzRR+B5mw==
+X-CSE-MsgGUID: K0MDOeIdRTa0uFYvDUuT7A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="43032086"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="43032086"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2024 17:36:02 -0800
+X-CSE-ConnectionGUID: 3Ht1f+60T0WzkrCL/bR9pA==
+X-CSE-MsgGUID: sE3GVELFR8uJW7pzz5XNag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="93475741"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="88963619"
 Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
  ([10.165.21.142])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 17:35:23 -0800
-Date: Mon, 18 Nov 2024 17:35:23 -0800
-Message-ID: <85ttc4vwdg.wl-ashutosh.dixit@intel.com>
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2024 17:36:01 -0800
+Date: Mon, 18 Nov 2024 17:36:00 -0800
+Message-ID: <85serovwcf.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH 1/2] drm/xe/oa: Disallow OA from being enabled on active
- exec_queue's
-In-Reply-To: <Zy6bZgJmdaMisqZ9@lstrano-desk.jf.intel.com>
-References: <20241108230602.2984959-1-ashutosh.dixit@intel.com>	<20241108230602.2984959-2-ashutosh.dixit@intel.com>	<Zy6bZgJmdaMisqZ9@lstrano-desk.jf.intel.com>
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>
+Subject: Re: [PATCH 2/2] drm/xe/oa: Allow subsequent OA streams to be opened
+ on an exec_queue
+In-Reply-To: <CH0PR11MB54442A583206132ABDFBCDADE55D2@CH0PR11MB5444.namprd11.prod.outlook.com>
+References: <20241108230602.2984959-1-ashutosh.dixit@intel.com>	<20241108230602.2984959-3-ashutosh.dixit@intel.com>	<CH0PR11MB54442A583206132ABDFBCDADE55D2@CH0PR11MB5444.namprd11.prod.outlook.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -71,47 +71,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 08 Nov 2024 15:14:46 -0800, Matthew Brost wrote:
+On Fri, 08 Nov 2024 15:42:40 -0800, Cavitt, Jonathan wrote:
 >
-> On Fri, Nov 08, 2024 at 03:06:00PM -0800, Ashutosh Dixit wrote:
-> > Enabling OA on an exec_queue toggles the OAC_CONTEXT_ENABLE bit in
-> > CTXT_SR_CTL register. Toggling this bit changes the size and layout of the
-> > underlying HW context image. Therefore, enabling OA on an already active
-> > exec_queue (as currently implemented in xe) is an invalid operation and can
-> > cause hangs. Therefore, disallow OA from being enabled on active
-> > exec_queue's (here by active we mean a context on which submissions have
-> > previously happened).
+
+Hi Jonathan,
+
+> -----Original Message-----
+> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Ashutosh Dixit
+> Sent: Friday, November 8, 2024 3:06 PM
+> To: intel-xe@lists.freedesktop.org
+> Cc: Nerlige Ramappa, Umesh <umesh.nerlige.ramappa@intel.com>
+> Subject: [PATCH 2/2] drm/xe/oa: Allow subsequent OA streams to be opened on an exec_queue
 > >
-> > Transition from 1 -> 0 for this bit was disallowed in
-> > '0c8650b09a36 ("drm/xe/oa: Don't reset OAC_CONTEXT_ENABLE on OA stream
-> > close")'. Here we disallow the 0 -> 1 transition on active contexts.
+> > The restriction that OA not be enabled on an active exec queue only applies
+> > to the first OA stream opened on the exec queue. Subsequent OA streams can
+> > be opened on the exec queue since this will not toggle the
+> > OAC_CONTEXT_ENABLE bit.
 > >
-> > Bspec: 60314
 > > Fixes: 2f4a730fcd2d ("drm/xe/oa: Add OAR support")
 > > Cc: stable@vger.kernel.org
 > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 > > ---
-> >  drivers/gpu/drm/xe/xe_guc_submit.c |  2 +-
-> >  drivers/gpu/drm/xe/xe_guc_submit.h |  1 +
-> >  drivers/gpu/drm/xe/xe_oa.c         | 11 +++++++++++
-> >  3 files changed, 13 insertions(+), 1 deletion(-)
+> >  drivers/gpu/drm/xe/xe_exec_queue_types.h | 2 ++
+> >  drivers/gpu/drm/xe/xe_oa.c               | 8 ++++++--
+> >  2 files changed, 8 insertions(+), 2 deletions(-)
 > >
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > index 9e0f86f3778b2..5c285d966fd5c 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > @@ -83,7 +83,7 @@ static void clear_exec_queue_registered(struct xe_exec_queue *q)
-> >	atomic_and(~EXEC_QUEUE_STATE_REGISTERED, &q->guc->state);
-> >  }
-> >
-> > -static bool exec_queue_enabled(struct xe_exec_queue *q)
-> > +bool exec_queue_enabled(struct xe_exec_queue *q)
+> > diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > index 1158b6062a6cd..6e3311c22404e 100644
+> > --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > @@ -142,6 +142,8 @@ struct xe_exec_queue {
+> >	u64 tlb_flush_seqno;
+> >	/** @hw_engine_group_link: link into exec queues in the same hw engine group */
+> >	struct list_head hw_engine_group_link;
+> > +	/** @oa: this exec_queue is used for OA (OAR/OAC) */
+> > +	bool oa;
 >
-> Don't export this. Use a xe_exec_queue_ops vfunc. Current vfunc
-> 'reset_status' would kinda similar to this. A vfunc protects use against
-> baking in submission backend specifics into other layers. We only really
-> have 1 ATM that works (execlists backend is still here for some reason)
-> but this is the best practice.
+> Opening the first OA stream sets the OAC_CONTEXT_ENABLE bit.  Would it be possible
+> to read that bit instead of adding an additional bool to the exec queue?
+>
+> I won't block on this, just asking.
 
-Done in v2, thanks for the suggestion, Matt. I've only added the vfunc to
-GuC though, since OA is disabled for execlists.
+It was indeed possible, thanks for the suggestion. I have implemented it in
+v2 of Patch 1 and dropped this Patch 2, since it doesn't seem to be needed
+if we read the bit directly. Note though the register is read from the
+context image, it is not an mmio register.
+
+I have also dropped your R-b from Patch 1, since the patch is significantly
+different now (after addressing both yours and Matt Brost's reviews). So if
+you could please take a quick look again that would be great.
+
+Thanks.
+Ashutosh
+
+> -Jonathan Cavitt
+>
+> >	/** @lrc: logical ring context for this exec queue */
+> >	struct xe_lrc *lrc[] __counted_by(width);
+> >  };
+> > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> > index b0692b8ca0a3d..53d2946ea3052 100644
+> > --- a/drivers/gpu/drm/xe/xe_oa.c
+> > +++ b/drivers/gpu/drm/xe/xe_oa.c
+> > @@ -1915,6 +1915,9 @@ static int xe_oa_stream_open_ioctl_locked(struct xe_oa *oa,
+> >		goto err_disable;
+> >	}
+> >
+> > +	if (stream->exec_q && !stream->exec_q->oa)
+> > +		stream->exec_q->oa = true;
+> > +
+> >	/* Hold a reference on the drm device till stream_fd is released */
+> >	drm_dev_get(&stream->oa->xe->drm);
+> >
+> > @@ -2068,9 +2071,10 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
+> >		/*
+> >		 * Disallow OA from being enabled on active exec_queue's. Enabling OA toggles
+> >		 * the OAC_CONTEXT_ENABLE bit in CTXT_SR_CTL register, which changes the size
+> > -		 * and layout of the underlying HW context image and can cause hangs.
+> > +		 * and layout of the underlying HW context image and can cause hangs. This
+> > +		 * restriction holds only for the first OA stream opened on the exec queue.
+> >		 */
+> > -		if (XE_IOCTL_DBG(oa->xe, exec_queue_enabled(param.exec_q))) {
+> > +		if (XE_IOCTL_DBG(oa->xe, !param.exec_q->oa && exec_queue_enabled(param.exec_q))) {
+> >			ret = -EADDRINUSE;
+> >			goto err_exec_q;
+> >		}
+> > --
+> > 2.41.0
+> >
+> >
