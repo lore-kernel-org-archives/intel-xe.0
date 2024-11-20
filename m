@@ -4,90 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95906D6E2D8
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Nov 2024 08:33:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36E3DD6E2DE
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Nov 2024 09:09:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41A5610E3B5;
-	Wed, 20 Nov 2024 08:33:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9C2510E3B1;
+	Wed, 20 Nov 2024 09:09:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mMSlxXfi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M/qn2za6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C5DC10E3B5;
- Wed, 20 Nov 2024 08:33:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5342C10E3B0;
+ Wed, 20 Nov 2024 09:09:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732091607; x=1763627607;
+ t=1732093784; x=1763629784;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=K05yIj+ydve/yCf206hzPNmLBh5hXWqDOqwEqIVVh4A=;
- b=mMSlxXfioORfvYKlnN6WYYLJRpSlQZoj9tV+m2s7s0YItD1YC2z+xn3H
- uKoOvlCZ7WF6CDHdgWfXMEXQauMabnqddQ1+S1xkbw+u88F58fVmtDNG4
- H8MO/0tSNaUXrVlAOHdFsXhdXF8GdoHPq8sF9k0uYov1NThBHkMD4qHaZ
- bY2mC7osc/14TEHQWapfCmnsKOsCkB3FTQALg6ZqI0QDE7x12d6x7GlFM
- 3zENm4dUHhVxO9BcQV9DuvdVa2KkkaxQM/XpN68P8rDVYeyUFIpkFtUxS
- h6MGcyl1Sulce7azN+vYKSTxJekMIC7syvW9bAHqTVtl+/udEE5Sl4VXl Q==;
-X-CSE-ConnectionGUID: Fc3XFeMpTJOHbxh/SEaDdg==
-X-CSE-MsgGUID: +OdOiHTdSReIhe/KxvCpyg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="35918522"
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="35918522"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 00:33:27 -0800
-X-CSE-ConnectionGUID: Yp28IbdYRba9KH7nL4arwg==
-X-CSE-MsgGUID: H6e6pJCfRQ6KzGh6t+qfKQ==
+ bh=GQ79AuNLkD62wd7jBGyKAF/rlgPENOQ7tBSTMC1BagY=;
+ b=M/qn2za6NHE+GJqYGhwNKPYr6dYpNL83mT8FL5ZEVewldQ2j1/aVdfUA
+ q/tjeYO8hNV4ZaXiZxvhaa5MrEg47b1N8mj6CUd8Fui6oMZC0JrrYoopK
+ uaxx8Ml5l0O1YzSFU+zP4bgCE/2n2O0wthakym62lemLnv/Uth7Mpfra4
+ QFoKVe9BFMvcjcGGqXeoQxfwlt6z1JndktesK6hqeZGO80dwrOz6lqywk
+ ZjU6iNW1kZvGFRvSpZg4wbXj2KShV9o3BTOuJgXIiefeysDX1ks4lYZzE
+ XFxgzy/tF43aHkM+I9bfkyh9vaiGxzJQBJvkhRXjWf0d8zl/xdx4tttg/ g==;
+X-CSE-ConnectionGUID: 1a4+XginRZy4i4QaWGAVlQ==
+X-CSE-MsgGUID: L592QGpOT8SNctbXU4irGQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="42772758"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="42772758"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2024 01:09:44 -0800
+X-CSE-ConnectionGUID: USgd4F/RQViq8HPSwqhmWA==
+X-CSE-MsgGUID: 4K8aDW/SQiCzueEDfTIl5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="90233951"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Nov 2024 00:33:27 -0800
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="120703938"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 20 Nov 2024 01:09:44 -0800
 Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 20 Nov 2024 00:33:26 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 20 Nov 2024 00:33:26 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.46) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39; Wed, 20 Nov 2024 01:09:43 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 20 Nov 2024 01:09:43 -0800
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.46) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 20 Nov 2024 00:33:26 -0800
+ 15.1.2507.39; Wed, 20 Nov 2024 01:09:43 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VZCuf3utndVDiBkkgibkNLADUDqnbyhaATFaUqb8VIp10CyfQ0stjCIEq37BFfrfK4ywrDoahEIKB7FIfwXC/8+/JIrLg912A/S6wMV42hEfTNdPeavsbkerceUw0SPrfw4ufa34YBKOGW0ToX1rC5goEbhZP/y/PBTCTiiZLCFNEETgNe0kuKJx69bL+yr98Z6yH5vvrj8TtV091bAW9vrKD+CdFO5YVZkjLzchaCqWOZzTsE1iKT8vu9gzjh7NgPF8BzWu8XDJZuHs99BBHwJD3f+SPamZz5mvJWAu0OeNR9zgq28N5Qer5DtvaixGwjEsMgXmQiFy1dLLsZ5whQ==
+ b=sYB8usEf1nfKKxa2Jpmh+G2ITx0Uw0DWsD7BvZIiVBHOkxxMNl9QiNe95NPEHguVscS5MVLQRWv02ViH0GYTx3tJQ2nkiJBaEZ2LGRce+wHAWziu0CSc7JZSEaUhFBJ/va69avuTkfC98odt+9Ef7/mVYFJjfJX9NZc4jhef0atilVdFmRn3HO0aDupWeQ1oDHYZj9Xk/LoPVqA0y7HRZOLUxhH0lckMm6COqYEQI5vnE8JJrlsqN98gKSBB2xNIufSo5L3wz5fFybbRwBJT7xNx+5Y06GX8aGcVIiyJ74EGxFSl5hAvxdvNE+I4W312+GLnn81C+iIgwrxVfJ76VA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2LpU23rC7cTh5C5t+apiU5ZrqQTbATWSPP+5BpUAjwc=;
- b=FuT1WpkIdr1Eypkz9/HcsWbrmVrKsjZt/9x9muag9gNjNEE2tGABFeH9ZbXvisyODeDdvED9DGnLpgAiHFb6WcZD6CaP03a040/luW+Yd5isqStERNh9g440BkfR0xFHGVCOURgp2yavfSy7G2+YXqivzSTGww6Ree17U07pejkWQMOtEkLHWgEu38PoBRE+EKObS9AdV1fh4uWgHfMDNhAQ2QWFKpXGF5k2BkeDcCdyC6THiB4khx4E+3+y3zZze5T0DkUPFZR5E2HHx3EbosNYAlU/JHpE7Oe+734XappogeUZNKE+62qbNY3x73O3i8yhIFZ+9cG8v0sMIHNK0g==
+ bh=P+rqs/x8Vz8jJJ94GQzQX3G69ipEMmcfdmMHSwd9130=;
+ b=klizSnrzIslQQrpRWVXtIsv6RvU6fXaons+SJdA5fykBeSXj+/88XvBuyfnXPCg2VrSJCppiBy8sIc1jDed3tfadqvr76SBwPcy10Q3snfnXSnomcTxCBRB/bQiOmWnyKI6lJrxwGdwUOGuccvPmlaB/4GKBWcf/pbL5s2gZpWD3r2moqySVyIxk+8uYJWWt/k+DQj885GC7SQxIObNu66bKKAWtB2rDTZTkhbzKfTdmjpryo1g7FAau5FrKvUzZ/+FQ3V6kTzK6N82bUNh9opOcEgdi3O6fXndhf7k6ust/72t5g0aZJCPzdE2Yh1ujyUeOqwb/6933VmgBheHfpA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by CYYPR11MB8305.namprd11.prod.outlook.com (2603:10b6:930:c1::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.14; Wed, 20 Nov
- 2024 08:33:23 +0000
+ by DS0PR11MB7904.namprd11.prod.outlook.com (2603:10b6:8:f8::8) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8158.23; Wed, 20 Nov 2024 09:09:41 +0000
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::9570:169d:a0d5:527%3]) with mapi id 15.20.8158.021; Wed, 20 Nov 2024
- 08:33:23 +0000
+ 09:09:41 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 CC: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Subject: RE: [PATCHv5 5/8] drm/i915/histogram: Add crtc properties for global
- histogram
-Thread-Topic: [PATCHv5 5/8] drm/i915/histogram: Add crtc properties for global
- histogram
-Thread-Index: AQHbOnGLbzxgLrGd3Eq8GmhK3BxVYbK/2AYg
-Date: Wed, 20 Nov 2024 08:33:23 +0000
-Message-ID: <SN7PR11MB6750D73A85B90DD5FB11301AE3212@SN7PR11MB6750.namprd11.prod.outlook.com>
+Subject: RE: [PATCH 6/8] drm/i915/histogram: histogram delay counter doesnt
+ reset
+Thread-Topic: [PATCH 6/8] drm/i915/histogram: histogram delay counter doesnt
+ reset
+Thread-Index: AQHbOnGQxZz1TDJ6bkm8fC5yKYvrALK/2mMg
+Date: Wed, 20 Nov 2024 09:09:40 +0000
+Message-ID: <SN7PR11MB67509E12E0CB7AB44CA50434E3212@SN7PR11MB6750.namprd11.prod.outlook.com>
 References: <20241119104521.575377-1-arun.r.murthy@intel.com>
- <20241119104521.575377-6-arun.r.murthy@intel.com>
-In-Reply-To: <20241119104521.575377-6-arun.r.murthy@intel.com>
+ <20241119104521.575377-7-arun.r.murthy@intel.com>
+In-Reply-To: <20241119104521.575377-7-arun.r.murthy@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -95,80 +95,80 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|CYYPR11MB8305:EE_
-x-ms-office365-filtering-correlation-id: 64bfc410-51a2-4762-c54f-08dd093dff27
+x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|DS0PR11MB7904:EE_
+x-ms-office365-filtering-correlation-id: 7d687b82-8d20-4d67-cc5f-08dd09431115
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?ePIwJT1vl2z9i+7TP3Y5a7Z77kfc1HFAE4S8GEp1N12AK73WwPXV1J4Gz+7O?=
- =?us-ascii?Q?IALlDRjl2V4EkUrKv8UGGJzxKJOb92R6fJtLWE1HknKV9OEH+zQBWPF30XYO?=
- =?us-ascii?Q?nL8strPhZJ6SHv/ksZKyLkX0JqpWD34TGwJb+XTUK0dZ0VfW2dFkK+UfKcXN?=
- =?us-ascii?Q?jmzru/9aMC5ICXqQl/bgvdiAM2cUiqTw0vnC6ARUh9M+ZnUcCqv4U88+MQ8J?=
- =?us-ascii?Q?i2t0lFZcFHm+ICeku42nhsbLHjbzrsxaGi46tldB2p2Ak38pRdJCoyIrV9fF?=
- =?us-ascii?Q?UcSrqPsMFWesC2kw/4QKJamMXpIWmue8cwtVkYi8RvwHkMCeHgnQfFbAHBm6?=
- =?us-ascii?Q?ViSOzAC+e+09UIe3OuX9EAbIoos9THykJhj30hBqNBU21zOkq2qcfDR0l4h2?=
- =?us-ascii?Q?8IuyeHvFA5OUI7vO2zLAcyDDmEFsv5COLo5PhFaLA3XbNkqa0/3X84hllboz?=
- =?us-ascii?Q?us0jD4PofBs+4jfFh/tjuz4nmp45uarmsqawBMB5ZiUJEQb91P2noVLFbZ6D?=
- =?us-ascii?Q?x/j3h/P9yPss90zyf7orPbR6Xqtzcv6r9LBz8hILSXXWfwLCE+h7TUINRklm?=
- =?us-ascii?Q?qBGdK072bwc7rZqwv1DMN9DLaIeNeq8Ibz6LmuPY71JLC8IsKPuSGTe1gQM6?=
- =?us-ascii?Q?3HoQ8lmWl3h1eT+r0nWXzIxs0I8qRVABi7oj+98NbPNpBKzdBkl3a96MF1/G?=
- =?us-ascii?Q?w8dCNfninTxXkiTURQXqrI0rQX0E1iJd031X71m6i6t8bdyb5HKtEz7nq2aW?=
- =?us-ascii?Q?3cRrBYAYe5mYMJ10aaLHpBoCbO4s2GcoW2HMl7VETIVPoaIvdDFPzd46qx3q?=
- =?us-ascii?Q?kq9DCdND1iqeU0Yhqifl2BaqGPfcU2Z+D8inH5PHqrsHQsOavLjE2XV7EH12?=
- =?us-ascii?Q?iblSNsxDKaIRYioawv2eP7LhHZU+yLHx+tdQXB2kj1a51lvg+d/TT6RqSaon?=
- =?us-ascii?Q?wUq8WSDXmEWL2K2t5mE0KrLWNag3kA1IWVsq5l+ERlHYzoG6JlLAFgUX2apF?=
- =?us-ascii?Q?2iZEwQR2QidbOtgj9uZQntU6Q+Y+FxztC9wPsxzEaAwFhQrR5LXiJFjSgvSy?=
- =?us-ascii?Q?trygYPFg7qX90WRiv0mArCLyp9/74Iws+rEk1BS+TDXeApWJUV4sh+WQJvwY?=
- =?us-ascii?Q?Vi0iWKHmH0KnssLCdeOx2eiDTFFnjHqN5024xzfm72mskdJFSIGGAkc2ncdB?=
- =?us-ascii?Q?3WQK71KR0+p7evOILdQygR6Q4965tHzuE3iHT11pE3vNlVxqE5OJ/BXnu8KW?=
- =?us-ascii?Q?zo7Eilxa73Xn+V7mFxAbhqIl4i7gmJbBNhGO+6mzIc/djItFJjjAYk7DG7DL?=
- =?us-ascii?Q?onuR2Q+bx99qLiACmhr2DOHsM3D8yCZNxFJFjiPiSuzVvMt0XoCpNncESgiH?=
- =?us-ascii?Q?yt23HgE=3D?=
+ ARA:13230040|376014|1800799024|366016|38070700018|7053199007; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?m3BRbNIm54jYfvZKYexPX+OzOQKpBJSoD+vLV3l1LRXK6/lNRVHsyjbnyTf7?=
+ =?us-ascii?Q?ZCaQqThNGk/e1/uqG08sGc8cMaMf8nGAShAaJa4zge1PxVWY3ZSUJEmNffBc?=
+ =?us-ascii?Q?Mk1i8zUFue4wDDCrp5kccZIb6CR74vvqdZLOmhazXCIMb2D43VqrSUgsbZCm?=
+ =?us-ascii?Q?+ChOiKN9BbgGYb0YaJ7bNxaBTdzjv1ZhdR995onkeKyp9ejWabY7/BJlzWBX?=
+ =?us-ascii?Q?ZcWkGhKy+V0WQfsXpK4JGOwCgMrKccYvT0SLAb5LqpfBfXJ5uDRtIpHX/Nv8?=
+ =?us-ascii?Q?mMCNoegZVqUnvFKD0bK/ZNnunjOYlbY4Q5jOWKgyeLncUfYXHs9565+QGYiX?=
+ =?us-ascii?Q?hCE/rjEs2MJoWO9U30oZgZtqvLFp7DKtO+3laHTK4roKZYaI9PbfmPfiFauR?=
+ =?us-ascii?Q?z4DpWIXXQTCUX7/F6Zdv9JuTyvOV16dX640WD6j2wlnoat51gubginzeAoRU?=
+ =?us-ascii?Q?87ubo73PzJG3lRGDtiq9seCq2Xi1ummIHV4yxgc/V63oMp4RPzpZwvLY4DdQ?=
+ =?us-ascii?Q?mh3oHfdKBl6LsYeEf2wJaHs5hLJVioBzfm3P8WiPpXFIzDuG0k+qOYRICWSf?=
+ =?us-ascii?Q?lZVLMw4odKWcRn+dxq/sHexvt1QwtNT+P9t8TgYR9w7ggx2REh7OSPobhqmJ?=
+ =?us-ascii?Q?BSfOF3RZ1EY7N/jaDocXmuNXr/1kf3mO5N/BgThwyl51MLCryvsRXmAEPUeo?=
+ =?us-ascii?Q?YK56esDj1D1EzpeVr9P9CwETCP2okQB3TMNGdTQlao8fEl9pifMv5Rzbo54I?=
+ =?us-ascii?Q?064EsfL2AUl5UnQnL1eMoC/wQQKMPJInUXsUYxxvdabFkTbbRIcIged4yCg3?=
+ =?us-ascii?Q?O6xTDcsy8K99b6c9woUInPCkDzYPL+KzOMdjRk4dqdkqeqkRhFtTp3rVKfck?=
+ =?us-ascii?Q?PKp8TpeJR3LIqIU0ZjsN0ZHyR6hvhZOm7bI00Cgzc6lOOCKCmoA24UMXcmQw?=
+ =?us-ascii?Q?dcOiayMXSvEAiAod3rIFIXmyxKG/CXugjwQHOy7x6M9BWc4f9L8Llfq1C1bm?=
+ =?us-ascii?Q?iG9Fp2SJGoaanSdr36wjflQ83sCsbULojO5c641+lYGs/hJRhRmZ/whq5eyb?=
+ =?us-ascii?Q?daf44Gk5oMql7mUsQrQcvxN5p/2PwtgSmWIIqy3b6RoKjAcXZqmZhIuTpNUM?=
+ =?us-ascii?Q?XpJDVxF30P5GZfpcJKMlxEz37shWaho6ZNnPP5YiUlIAO0rJLgMbpGq2WgTW?=
+ =?us-ascii?Q?AvjscBwEbRgsPGFo8xJ9ufK1spt5OBFGKPnNbaDcNFCDETnS5oDPnEN/mPAI?=
+ =?us-ascii?Q?foaxDvGER0v9ZnfKd7Nd+5fY16T9wLC/iTvlzm9h3d6/gYVOO/fVa4hkNgtl?=
+ =?us-ascii?Q?CTmAumrRT3rmqGI/uNjjyAX7MDGwDGyxHXaT6TU0ufdufsepGrZzpPRMjfpE?=
+ =?us-ascii?Q?UePjS/w=3D?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7053199007)(38070700018); DIR:OUT;
+ SFS:(13230040)(376014)(1800799024)(366016)(38070700018)(7053199007); DIR:OUT;
  SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?StGEcGp12a0+E8kxykv90rKwzrX8Clkhfim/dHqmYoRrnPENqrWQacLzERbS?=
- =?us-ascii?Q?1IDCgDzXtz6FbglKZZDs/5oWpf2axSQ6wIW/QcMJquFm1XQ1xh7vGLFCOsBP?=
- =?us-ascii?Q?8TWvshFCzlUGvZMdGS49rhxcE7QE1beX7YNW9MTzwGlAHwtc3tcXnkCVI0wx?=
- =?us-ascii?Q?UNYAgjqa5WJ7vfqJ1+yZVRWTwr9wJNrh/eDm7VZON4JhaKS7fRwKn7I2nufA?=
- =?us-ascii?Q?6ap/2jH9CSHqcR4gvX9dFxiNKw7/D95cFTYv7ivcctxz1H9fRM9Lg2pE+c7A?=
- =?us-ascii?Q?6dg//yy+zQP2RJKN3cO3HibRHr+D9oCICTW8t+pmkZnjHiqiVbdA0aUpPlrc?=
- =?us-ascii?Q?/4/rjY+md69oa4zVRgCCk0f/rmb/ZoTn4KELSTLLJX/tPw9ZT6UmyvB9pBYk?=
- =?us-ascii?Q?E6x2I57mwnYEVQvjDJ/JGqG60Y/4Lnry7hHgYa4K6lrJOo40xlI/luvxKa9F?=
- =?us-ascii?Q?JHzxKM0zKdX7hEuYVVZa6lTefhq4gfQD5nwHF/83JinSXDY4lAnHuFpNMyKi?=
- =?us-ascii?Q?qdML740BLbWRioD8366Uj2wsEYamWx8pT9m2LkAKpQXMmqk9PC11ZBXBtNQn?=
- =?us-ascii?Q?wAUHUqt1fX/h3COd3BGFUFta4vAWdEOHY7iEcXbUlkS9vcAMFtgFJpPB8iMy?=
- =?us-ascii?Q?ORmXOoa0OIpxvO91m5qmvLJUx7DU31Z3QyQYcsv+jQmby5UODh3HzGc4bzOa?=
- =?us-ascii?Q?IeVw7r2/CbjFo1KA2rrAqA+00B6LltE0ub5tCbpBE11nqNhB6qC4lpOCV1X8?=
- =?us-ascii?Q?wcmWbmuvidv+psDGlJkG75F8yoexOiujnX+Yjb+R+rTQbhbgDxnjr6y73T/x?=
- =?us-ascii?Q?1whgCFAXjHn/7osVXgzG4NwFVN3GBBqr5aSR2u6cpO4eln/j2AgrPiKMYirD?=
- =?us-ascii?Q?v///rDZFFjRZwP9LE0zW4ToGmN1wcQ2/Qv54tE8ZQ9gYH+jIiq741f2nDynZ?=
- =?us-ascii?Q?NiB6wlLf7QFvH8rYXoSX7sdVPaEUDn4sAzvVJDOE1sjqM/NV+Sc3LLjOssJg?=
- =?us-ascii?Q?3+WjhVWof17OLS6jqqQYC+qjafKcAaQlg5YZvcwb02GaN9fu8hoZu6R2xP7z?=
- =?us-ascii?Q?o9qZKvuy0B2M5nMf8v18U6tbjCRr/rSgHSxWs757mPwgA4tDN0HXFB4zj+Yz?=
- =?us-ascii?Q?9ceJPGpeLZeGx5ONyowczJ9lSZfunGOVKoqP6QnQddlbnn+zmYPdFX/d3si8?=
- =?us-ascii?Q?72kHvkYznTMpXsYT/U6DcjKtFFAJXVSnCSFFR0KB6m02aNUOyR2dGFePH8h7?=
- =?us-ascii?Q?8321bqKbQEbrh8xgADvBTM1L2aQQfZtM2nu1Hv1kp52hpDuz7g8qfhCMQP5p?=
- =?us-ascii?Q?AOWNRngZ/qOjtZZ4oiwtl5ah+Ne9Nza1Iwn2WkLnW0+tOJK/rU+HYjnbFsOu?=
- =?us-ascii?Q?+xSM7OIwd4PrGH33M5iD7z2/R7Jgzibc6nAzeSdevfhHe34EERuxv5B6nQ8v?=
- =?us-ascii?Q?unGC8Uxbg663WomUHp+Yv/gzysJMk0taELLo87TF8Ats4M1I955mYQWxdBp+?=
- =?us-ascii?Q?KDDSEUz9MOCDbcUvBzENesw7lYZ0Rf7+HnXvJUC+zsFjZy9AwtLwQhQtXRCn?=
- =?us-ascii?Q?iSnjFBxiQu77l8Qyvd8rShBN1H8uHOA53L3mIAxS?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?FEdVnFP9qAEUVcyw+ftGYU2JJhLWfFvI8nU+KCtdo8n0xylc5IHYDX4DcPEz?=
+ =?us-ascii?Q?oac2TS3p05RSoigQY8lSm8KKHPFtYIJ+WLNaPwfP+8qbBluCC41rEtxInyWE?=
+ =?us-ascii?Q?Tqfbav9KaFZ9tCMmos+ut2gl1p8/KdqYrSKazLaoZAM6qQ/VHTfz53xP2ekZ?=
+ =?us-ascii?Q?8LhLBFmOfYB4MO2wown0xvVvWXneTHrz/TY2+8egHVRqtRZrIOkLazUF36CU?=
+ =?us-ascii?Q?Q39vIwRIGQ6F0ATRCTWr3F+1eCBszkdXoPtV9s3hEGT6fOBf87xWjCcMhtES?=
+ =?us-ascii?Q?VNyKVT8CDJDuVfx9V3zvLs/f5t/9LQuLHfm8vYDGVZjnQPQI25gzu84Y0FRn?=
+ =?us-ascii?Q?G7Ho1jYTaC+HZwoyEfW4jr6y/LFhYrR3NctoBHX+ZC8+6YVIREmDx+bp6PZz?=
+ =?us-ascii?Q?Yfe/DFOrIsFoiVK1kepLVgZvrOOi5XoR6Of3Go4EsTilNy3EwErQW23636J3?=
+ =?us-ascii?Q?bkrYjpSemyDG7GtnlWd6ZogqrljA2NqASqrg7Ew6BbZXCZBFL2gQpVqZ17nj?=
+ =?us-ascii?Q?LPtq839x/DMJZbDD6PomHoe79a6CxljTzVChQ8BItPmLvOuX8BBTeCRfLXI7?=
+ =?us-ascii?Q?RUFKIToufXTVnzHFd5YEXHId471wxRwbQoa5efHRr8mrzAcoB2TzhQh1fTHV?=
+ =?us-ascii?Q?YDTejqvdo9RhoGCpK1l1Ad9HgUPuRCzuj2Hw6wVIHrfde8J9HLrBGYc49PPu?=
+ =?us-ascii?Q?NGG+H3Ea2xj48JdL3ew6diZwknMVhX5O4RndP5vqbpTZOct2Dr5mGTDhT1GO?=
+ =?us-ascii?Q?MEF5oQ3DuNkFTo+WQIAkXx6pvxPaTMKFTE7u3qbWJMxviZ1YYEmT00YcCsrM?=
+ =?us-ascii?Q?6orSYQGah7izbJe2p9Q9d8Wc2MgFXiUoSKPDrcItlR5qvXJhZAJYCZhjd3pF?=
+ =?us-ascii?Q?Iwe+iiOSsMSosNSyWQF7LnpOVtQpiETr8FpdZDmKrGLKNCcUtt3uFGyZgmHd?=
+ =?us-ascii?Q?zymzpdDX/mW7XAUQdlRy79WhjqyKgc7O2fFWoXmhgJf1OS/raD55Z0p+w4k4?=
+ =?us-ascii?Q?nNItn0tgcESZgauTdyG1bfrch83DS8ti59IBzDNuKg7nWuiaQxflOfmBJ/A2?=
+ =?us-ascii?Q?slTvxMh7Xt1kRwwSdw9/YeYqzxSsBEOpsZzb2tXgixyIX6kMKFW0cEs8YPZY?=
+ =?us-ascii?Q?49YlT2qhxoJc9l/kTlSlhWuomr3qunMw7wubgqE75tFB0PQzLf0c+Lx4wtEt?=
+ =?us-ascii?Q?wBH1/nPaiAl9d05TnjsUv28Gpn+MQlBYdNh3+eSot7n0bdVGmEJjnlVXq+hi?=
+ =?us-ascii?Q?gyB62G/AzpadWupcAGOOvO6LBnk/2C2MBwOA+py5Bi0TJrpQP/NSfKT66yT4?=
+ =?us-ascii?Q?yUvDxEwrTNiehNkVX5sK93JE73XnFouJbvpYmac70lzfE3EkUr09sAhHxa1f?=
+ =?us-ascii?Q?r1rf+6o2hwwZD7N6kF7Z/nIfS6hZGvqsodBDYFMW2VB7y5zfT9XnTnSKBL5X?=
+ =?us-ascii?Q?EIQ7/YebOztb13/GwZkidZGhKlNg6uu9g8Jqi++2jdzby/5BGyPb46FCnkuD?=
+ =?us-ascii?Q?EbKjgQoEsfWs57jw4no7wafnZdZdaV7PxNajn2f80vJg7FI51Q2YcuNZR671?=
+ =?us-ascii?Q?R8VD8ecX9EH0Pnot1OrDnIAGbKJcVFD63Omh3si0?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 64bfc410-51a2-4762-c54f-08dd093dff27
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Nov 2024 08:33:23.4523 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d687b82-8d20-4d67-cc5f-08dd09431115
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Nov 2024 09:09:40.9958 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sk4EkJx+VUncPMhgnxry8HqQnO/C49qrFswb1jFSp8LDFSctJM0RayvXk4GbragwlRk43TcenUuX3NxO3wPM0A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8305
+X-MS-Exchange-CrossTenant-userprincipalname: 3W08Dcm3I3q25PQ1vJTxkwyMRKB3PIR0Jk7Iu+tPl5RmPv7o4kqbQzxEkjedLc2LhLXb6t7Wn1gZUecxTECyFA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7904
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -187,448 +187,114 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 > -----Original Message-----
-> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of
-> Arun R Murthy
+> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Arun=
+ R
+> Murthy
 > Sent: Tuesday, November 19, 2024 4:15 PM
 > To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; dri-
 > devel@lists.freedesktop.org
 > Cc: Murthy, Arun R <arun.r.murthy@intel.com>
-> Subject: [PATCHv5 5/8] drm/i915/histogram: Add crtc properties for global
-> histogram
+> Subject: [PATCH 6/8] drm/i915/histogram: histogram delay counter doesnt
+> reset
 >=20
-> CRTC properties have been added for enable/disable histogram, reading the
-> histogram data and writing the IET data.
-> "HISTOGRAM_EN" is the crtc property to enable/disable the global histogra=
-m
-> and takes a value 0/1 accordingly.
-> "Histogram" is a crtc property to read the binary histogram data.
-> "Global IET" is a crtc property to write the IET binary LUT data.
->=20
-> v2: Read the histogram blob data before sending uevent (Jani)
-> v3: use drm_property_replace_blob_from_id (Vandita)
->     Add substruct for histogram in intel_crtc_state (Jani)
-> v4:  Rebased after addressing comments on patch 1
-> v5: histogram check with old/new crtc_state (Suraj)
+> The delay counter for histogram does not reset and as a result the histog=
+ram
+> bin never gets updated. Workaround would be to use save and restore
+> histogram register.
+> Wa: 14014889975
+
+This should be above the Signed-off-by
+
 >=20
 > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_atomic.c   |   5 +
->  drivers/gpu/drm/i915/display/intel_crtc.c     | 168 +++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_crtc.h     |   5 +
->  drivers/gpu/drm/i915/display/intel_display.c  |  18 ++
->  .../drm/i915/display/intel_display_types.h    |  13 ++
->  .../gpu/drm/i915/display/intel_histogram.c    |   6 +
->  6 files changed, 214 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_histogram.c  | 17 +++++++++++++++++
+> .../gpu/drm/i915/display/intel_histogram_regs.h |  1 +
+>  2 files changed, 18 insertions(+)
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c
-> b/drivers/gpu/drm/i915/display/intel_atomic.c
-> index 03dc54c802d3..a0d64a20b01e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-> @@ -246,6 +246,8 @@ intel_crtc_duplicate_state(struct drm_crtc *crtc)
+> diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c
+> b/drivers/gpu/drm/i915/display/intel_histogram.c
+> index cba65f4260cd..fdcc64677e96 100644
+> --- a/drivers/gpu/drm/i915/display/intel_histogram.c
+> +++ b/drivers/gpu/drm/i915/display/intel_histogram.c
+> @@ -74,6 +74,11 @@ static void intel_histogram_handle_int_work(struct
+> work_struct *work)
+>  	struct intel_display *display =3D to_intel_display(intel_crtc);
+>  	char *histogram_event[] =3D {"HISTOGRAM=3D1", NULL};
 >=20
->  	__drm_atomic_helper_crtc_duplicate_state(crtc, &crtc_state->uapi);
->=20
-> +	if (crtc_state->histogram.global_iet)
-> +		drm_property_blob_get(crtc_state->histogram.global_iet);
->  	/* copy color blobs */
->  	if (crtc_state->hw.degamma_lut)
->  		drm_property_blob_get(crtc_state->hw.degamma_lut);
-> @@ -278,6 +280,7 @@ intel_crtc_duplicate_state(struct drm_crtc *crtc)
->  	crtc_state->dsb_color_vblank =3D NULL;
->  	crtc_state->dsb_commit =3D NULL;
->  	crtc_state->use_dsb =3D false;
-> +	crtc_state->histogram.histogram_enable_changed =3D false;
->=20
->  	return &crtc_state->uapi;
->  }
-> @@ -314,6 +317,8 @@ intel_crtc_destroy_state(struct drm_crtc *crtc,
->  	drm_WARN_ON(crtc->dev, crtc_state->dsb_color_vblank);
->  	drm_WARN_ON(crtc->dev, crtc_state->dsb_commit);
->=20
-> +	if (crtc_state->histogram.global_iet)
-> +		drm_property_blob_put(crtc_state->histogram.global_iet);
->  	__drm_atomic_helper_crtc_destroy_state(&crtc_state->uapi);
->  	intel_crtc_free_hw_state(crtc_state);
->  	if (crtc_state->dp_tunnel_ref.tunnel)
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c
-> b/drivers/gpu/drm/i915/display/intel_crtc.c
-> index a2c528d707f4..3be81a5a789b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -11,6 +11,7 @@
->  #include <drm/drm_plane.h>
->  #include <drm/drm_vblank.h>
->  #include <drm/drm_vblank_work.h>
-> +#include <drm/drm_atomic_uapi.h>
->=20
->  #include "i915_vgpu.h"
->  #include "i9xx_plane.h"
-> @@ -27,6 +28,7 @@
->  #include "intel_drrs.h"
->  #include "intel_dsi.h"
->  #include "intel_fifo_underrun.h"
-> +#include "intel_histogram.h"
->  #include "intel_pipe_crc.h"
->  #include "intel_psr.h"
->  #include "intel_sprite.h"
-> @@ -210,6 +212,7 @@ static struct intel_crtc *intel_crtc_alloc(void)  sta=
-tic
-> void intel_crtc_free(struct intel_crtc *crtc)  {
->  	intel_crtc_destroy_state(&crtc->base, crtc->base.state);
-> +	intel_histogram_finish(crtc);
->  	kfree(crtc);
->  }
->=20
-> @@ -229,6 +232,66 @@ static int intel_crtc_late_register(struct drm_crtc
-> *crtc)
->  	return 0;
->  }
->=20
-> +static int intel_crtc_get_property(struct drm_crtc *crtc,
-> +				   const struct drm_crtc_state *state,
-> +				   struct drm_property *property,
-> +				   uint64_t *val)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(crtc->dev);
-> +	const struct intel_crtc_state *intel_crtc_state =3D
-> +		to_intel_crtc_state(state);
-> +	struct intel_crtc *intel_crtc =3D to_intel_crtc(crtc);
-> +
-> +	if (property =3D=3D intel_crtc->histogram_en_property) {
-> +		*val =3D intel_crtc_state->histogram.histogram_enable;
-> +	} else if (property =3D=3D intel_crtc->global_iet_property) {
-> +		*val =3D (intel_crtc_state->histogram.global_iet) ?
-> +			intel_crtc_state->histogram.global_iet->base.id : 0;
-> +	} else if (property =3D=3D intel_crtc->histogram_property) {
-> +		*val =3D (intel_crtc_state->histogram.histogram) ?
-> +			intel_crtc_state->histogram.histogram->base.id : 0;
-> +	} else {
-> +		drm_err(&i915->drm,
-> +			"Unknown property [PROP:%d:%s]\n",
-> +			property->base.id, property->name);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int intel_crtc_set_property(struct drm_crtc *crtc,
-> +				   struct drm_crtc_state *state,
-> +				   struct drm_property *property,
-> +				   u64 val)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(crtc->dev);
-> +	struct intel_crtc_state *intel_crtc_state =3D
-> +		to_intel_crtc_state(state);
-> +	struct intel_crtc *intel_crtc =3D to_intel_crtc(crtc);
-> +	bool replaced =3D false;
-> +
-> +	if (property =3D=3D intel_crtc->histogram_en_property) {
-> +		intel_crtc_state->histogram.histogram_enable =3D val;
-> +		return 0;
-> +	}
-> +
-> +	if (property =3D=3D intel_crtc->global_iet_property) {
-> +		drm_property_replace_blob_from_id(crtc->dev,
-> +						  &intel_crtc_state-
-> >histogram.global_iet,
-> +						  val,
-> +						  sizeof(uint32_t) *
-> HISTOGRAM_IET_LENGTH,
-> +						  -1, &replaced);
-> +		if (replaced)
-> +			intel_crtc_state->histogram.global_iet_changed =3D
-> true;
-> +		return 0;
-> +	}
-> +
-> +	drm_dbg_atomic(&i915->drm, "Unknown property [PROP:%d:%s]\n",
-> +		       property->base.id, property->name);
-> +	return -EINVAL;
-> +}
-> +
->  #define INTEL_CRTC_FUNCS \
->  	.set_config =3D drm_atomic_helper_set_config, \
->  	.destroy =3D intel_crtc_destroy, \
-> @@ -238,7 +301,9 @@ static int intel_crtc_late_register(struct drm_crtc *=
-crtc)
->  	.set_crc_source =3D intel_crtc_set_crc_source, \
->  	.verify_crc_source =3D intel_crtc_verify_crc_source, \
->  	.get_crc_sources =3D intel_crtc_get_crc_sources, \
-> -	.late_register =3D intel_crtc_late_register
-> +	.late_register =3D intel_crtc_late_register, \
-> +	.atomic_set_property =3D intel_crtc_set_property, \
-> +	.atomic_get_property =3D intel_crtc_get_property
->=20
->  static const struct drm_crtc_funcs bdw_crtc_funcs =3D {
->  	INTEL_CRTC_FUNCS,
-> @@ -383,6 +448,10 @@ int intel_crtc_init(struct drm_i915_private *dev_pri=
-v,
-> enum pipe pipe)
->  	intel_color_crtc_init(crtc);
->  	intel_drrs_crtc_init(crtc);
->  	intel_crtc_crc_init(crtc);
-> +	intel_histogram_init(crtc);
-> +
-> +	/* Initialize crtc properties */
-> +	intel_crtc_add_property(crtc);
->=20
->  	cpu_latency_qos_add_request(&crtc->vblank_pm_qos,
-> PM_QOS_DEFAULT_VALUE);
->=20
-> @@ -737,3 +806,100 @@ void intel_pipe_update_end(struct
-> intel_atomic_state *state,
->  out:
->  	intel_psr_unlock(new_crtc_state);
->  }
-> +
-> +static const struct drm_prop_enum_list histogram_enable_names[] =3D {
-> +	{ INTEL_HISTOGRAM_DISABLE, "Disable" },
-> +	{ INTEL_HISTOGRAM_ENABLE, "Enable" },
-> +};
-> +
-> +/**
-> + * intel_attach_histogram_en_property() - add property to
-> +enable/disable histogram
-> + * @intel_crtc: pointer to the struct intel_crtc on which the global his=
-togram
-> is to
-> + *		be enabled/disabled
-> + *
-> + * "HISTOGRAM_EN" is the crtc propety to enable/disable global
-> +histogram  */ void intel_attach_histogram_en_property(struct intel_crtc
-> +*intel_crtc) {
-> +	struct drm_crtc *crtc =3D &intel_crtc->base;
-> +	struct drm_device *dev =3D crtc->dev;
-> +	struct drm_property *prop;
-> +
-> +	prop =3D intel_crtc->histogram_en_property;
-> +	if (!prop) {
-> +		prop =3D drm_property_create_enum(dev, 0,
-> +						"Histogram_Enable",
-> +						histogram_enable_names,
-> +
-> 	ARRAY_SIZE(histogram_enable_names));
-> +		if (!prop)
-> +			return;
-> +
-> +		intel_crtc->histogram_en_property =3D prop;
-> +	}
-> +
-> +	drm_object_attach_property(&crtc->base, prop, 0); }
-> +
-> +/**
-> + * intel_attach_global_iet_property() - add property to write Image
-> +Enhancement data
-> + * @intel_crtc: pointer to the struct intel_crtc on which global
-> +histogram is enabled
-> + *
-> + * "Global IET" is the crtc property to write the Image Enhancement LUT
-> +binary data  */ void intel_attach_global_iet_property(struct intel_crtc
-> +*intel_crtc) {
-> +	struct drm_crtc *crtc =3D &intel_crtc->base;
-> +	struct drm_device *dev =3D crtc->dev;
-> +	struct drm_property *prop;
-> +
-> +	prop =3D intel_crtc->global_iet_property;
-> +	if (!prop) {
-> +		prop =3D drm_property_create(dev, DRM_MODE_PROP_BLOB |
-> DRM_MODE_PROP_ATOMIC,
-> +					   "Global IET", 0);
-> +		if (!prop)
-> +			return;
-> +
-> +		intel_crtc->global_iet_property =3D prop;
-> +	}
-> +
-> +	drm_object_attach_property(&crtc->base, prop, 0); }
-> +
-> +/**
-> + * intel_attach_histogram_property() - crtc property to read the histogr=
-am.
-> + * @intel_crtc: pointer to the struct intel_crtc on which the global his=
-togram
-> + *		was enabled.
-> + * "Global Histogram" is the crtc property to read the binary histogram =
-data.
-> + */
-> +void intel_attach_histogram_property(struct intel_crtc *intel_crtc) {
-> +	struct drm_crtc *crtc =3D &intel_crtc->base;
-> +	struct drm_device *dev =3D crtc->dev;
-> +	struct drm_property *prop;
-> +	struct drm_property_blob *blob;
-> +
-> +	prop =3D intel_crtc->histogram_property;
-> +	if (!prop) {
-> +		prop =3D drm_property_create(dev, DRM_MODE_PROP_BLOB |
-> +					   DRM_MODE_PROP_ATOMIC |
-> +					   DRM_MODE_PROP_IMMUTABLE,
-> +					   "Global Histogram", 0);
-> +		if (!prop)
-> +			return;
-> +
-> +		intel_crtc->histogram_property =3D prop;
-> +	}
-> +	blob =3D drm_property_create_blob(dev, sizeof(uint32_t) *
-> HISTOGRAM_BIN_COUNT, NULL);
-> +	intel_crtc->config->histogram.histogram =3D blob;
-> +
-> +	drm_object_attach_property(&crtc->base, prop, blob->base.id); }
-> +
-> +int intel_crtc_add_property(struct intel_crtc *intel_crtc) {
-> +	intel_attach_histogram_en_property(intel_crtc);
-> +	intel_attach_histogram_property(intel_crtc);
-> +	intel_attach_global_iet_property(intel_crtc);
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h
-> b/drivers/gpu/drm/i915/display/intel_crtc.h
-> index de54ae1deedf..4e0a3c43d4f8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.h
-> @@ -7,6 +7,7 @@
->  #define _INTEL_CRTC_H_
->=20
->  #include <linux/types.h>
-> +#include <drm/drm_crtc.h>
->=20
->  enum i9xx_plane_id;
->  enum pipe;
-> @@ -59,4 +60,8 @@ void intel_wait_for_vblank_if_active(struct
-> drm_i915_private *i915,
->  				     enum pipe pipe);
->  void intel_crtc_wait_for_next_vblank(struct intel_crtc *crtc);
->=20
-> +int intel_crtc_add_property(struct intel_crtc *intel_crtc); void
-> +intel_attach_histogram_en_property(struct intel_crtc *intel_crtc); void
-> +intel_attach_global_iet_property(struct intel_crtc *intel_crtc); void
-> +intel_attach_histogram_property(struct intel_crtc *intel_crtc);
->  #endif
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> b/drivers/gpu/drm/i915/display/intel_display.c
-> index e790a2de5b3d..0c3008a2d774 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -93,6 +93,7 @@
->  #include "intel_fifo_underrun.h"
->  #include "intel_frontbuffer.h"
->  #include "intel_hdmi.h"
-> +#include "intel_histogram.h"
->  #include "intel_hotplug.h"
->  #include "intel_link_bw.h"
->  #include "intel_lvds.h"
-> @@ -4607,6 +4608,10 @@ static int intel_crtc_atomic_check(struct
-> intel_atomic_state *state,
->  	if (ret)
->  		return ret;
->=20
-> +	/* HISTOGRAM changed */
+> +	/* Wa: 14014889975 */
+> +	if (IS_DISPLAY_VER(display, 12, 13))
 
-No need for the above comment=20
+We have shifted to using is_display_verx100 so you can use that instead
+Also there is no display ver 13 just 12 and then 14 so maybe this should be=
+ just display_ver =3D=3D 12
+
+
+> +		intel_de_rmw(display, DPST_CTL(intel_crtc->pipe),
+> +			     DPST_CTL_RESTORE, 0);
+> +
+>  	/*
+>  	 * TODO: PSR to be exited while reading the Histogram data
+>  	 * Set DPST_CTL Bin Reg function select to TC @@ -94,6 +99,12 @@
+> static void intel_histogram_handle_int_work(struct work_struct *work)
+>  				"sending HISTOGRAM event failed\n");
+>  	}
+>=20
+> +	/* Wa: 14014889975 */
+> +	if (IS_DISPLAY_VER(display, 12, 13))
+> +		/* Write the value read from DPST_CTL to DPST_CTL.Interrupt
+> Delay Counter(bit 23:16) */
+> +		intel_de_write(display, DPST_CTL(intel_crtc->pipe),
+> intel_de_read(display,
+> +			       DPST_CTL(intel_crtc->pipe)) |
+> DPST_CTL_RESTORE);
+> +
+
+From the WA it seems we need to write 0 in the above Guardband Interrupt De=
+lay Counter (bits 23:16) when servicing interrupts
+And only write value read from dpst_ctl when enabling  dpst_config or doing=
+ an adjustment
 
 Regards,
 Suraj Kandpal
-> +	if (crtc_state->histogram.histogram_enable_changed)
-> +		return intel_histogram_atomic_check(crtc);
-> +
->  	return 0;
->  }
->=20
-> @@ -6826,6 +6831,11 @@ int intel_atomic_check(struct drm_device *dev,
->  		if (new_crtc_state->uapi.scaling_filter !=3D
->  		    old_crtc_state->uapi.scaling_filter)
->  			new_crtc_state->uapi.mode_changed =3D true;
-> +
-> +		/* Histogram updates */
-> +		if (old_crtc_state->histogram.histogram_enable !=3D
-> +		    new_crtc_state->histogram.histogram_enable)
-> +			new_crtc_state-
-> >histogram.histogram_enable_changed =3D true;
+
+>  	/* Enable histogram interrupt */
+>  	intel_de_rmw(display, DPST_GUARD(intel_crtc->pipe),
+> DPST_GUARD_HIST_INT_EN,
+>  		     DPST_GUARD_HIST_INT_EN);
+> @@ -240,6 +251,12 @@ int intel_histogram_set_iet_lut(struct intel_crtc
+> *intel_crtc, u32 *data)
+>  		return -EINVAL;
 >  	}
 >=20
->  	intel_vrr_check_modeset(state);
-> @@ -7892,6 +7902,14 @@ static void intel_atomic_commit_tail(struct
-> intel_atomic_state *state)
->  		 */
->  		old_crtc_state->dsb_color_vblank =3D
-> fetch_and_zero(&new_crtc_state->dsb_color_vblank);
->  		old_crtc_state->dsb_commit =3D
-> fetch_and_zero(&new_crtc_state->dsb_commit);
+> +	/* Wa: 14014889975 */
+> +	if (IS_DISPLAY_VER(display, 12, 13))
+> +		/* Write the value read from DPST_CTL to DPST_CTL.Interrupt
+> Delay Counter(bit 23:16) */
+> +		intel_de_write(display, DPST_CTL(intel_crtc->pipe),
+> intel_de_read(display,
+> +			       DPST_CTL(intel_crtc->pipe)) |
+> DPST_CTL_RESTORE);
 > +
-> +		/* Re-Visit: HISTOGRAM related stuff */
-> +		if (new_crtc_state->histogram.histogram_enable_changed)
-> +			intel_histogram_update(crtc,
-> +					       new_crtc_state-
-> >histogram.histogram_enable);
-> +		if (new_crtc_state->histogram.global_iet_changed)
-> +			intel_histogram_set_iet_lut(crtc,
-> +						    (u32 *)new_crtc_state-
-> >histogram.global_iet->data);
->  	}
->=20
->  	/* Underruns don't always raise interrupts, so check manually */ diff -
-> -git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 351441efd10a..300e90998463 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1306,6 +1306,15 @@ struct intel_crtc_state {
->=20
->  	/* LOBF flag */
->  	bool has_lobf;
-> +
-> +	/* Histogram data */
-> +	struct {
-> +		int histogram_enable;
-> +		struct drm_property_blob *global_iet;
-> +		struct drm_property_blob *histogram;
-> +		bool global_iet_changed;
-> +		bool histogram_enable_changed;
-> +	} histogram;
->  };
->=20
->  enum intel_pipe_crc_source {
-> @@ -1415,6 +1424,10 @@ struct intel_crtc {
->  	struct pm_qos_request vblank_pm_qos;
->=20
->  	struct intel_histogram *histogram;
-> +	/* HISTOGRAM properties */
-> +	struct drm_property *histogram_en_property;
-> +	struct drm_property *global_iet_property;
-> +	struct drm_property *histogram_property;
->=20
->  #ifdef CONFIG_DEBUG_FS
->  	struct intel_pipe_crc pipe_crc;
-> diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c
-> b/drivers/gpu/drm/i915/display/intel_histogram.c
-> index 16f29923ef10..cba65f4260cd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_histogram.c
-> +++ b/drivers/gpu/drm/i915/display/intel_histogram.c
-> @@ -82,6 +82,11 @@ static void intel_histogram_handle_int_work(struct
-> work_struct *work)
->  	intel_de_rmw(display, DPST_CTL(intel_crtc->pipe),
->  		     DPST_CTL_BIN_REG_FUNC_SEL |
-> DPST_CTL_BIN_REG_MASK, 0);
->  	if (intel_histogram_get_data(intel_crtc)) {
-> +		drm_property_replace_global_blob(display->drm,
-> +				&intel_crtc->config->histogram.histogram,
-> +				sizeof(histogram->bin_data),
-> +				histogram->bin_data, &intel_crtc->base.base,
-> +				intel_crtc->histogram_property);
->  		/* Notify user for Histogram rediness */
->  		if (kobject_uevent_env(&display->drm->primary->kdev->kobj,
->  				       KOBJ_CHANGE, histogram_event)) @@ -
-> 203,6 +208,7 @@ static void intel_histogram_disable(struct intel_crtc
-> *intel_crtc)
->=20
->  	cancel_delayed_work(&histogram->work);
->  	histogram->enable =3D false;
-> +	intel_crtc->config->histogram.histogram_enable =3D false;
->  }
->=20
->  int intel_histogram_update(struct intel_crtc *intel_crtc, bool enable)
+>  	/*
+>  	 * Set DPST_CTL Bin Reg function select to IE
+>  	 * Set DPST_CTL Bin Register Index to 0 diff --git
+> a/drivers/gpu/drm/i915/display/intel_histogram_regs.h
+> b/drivers/gpu/drm/i915/display/intel_histogram_regs.h
+> index 1252b4f339a6..e50b1448bd40 100644
+> --- a/drivers/gpu/drm/i915/display/intel_histogram_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_histogram_regs.h
+> @@ -16,6 +16,7 @@
+>  #define  DPST_CTL_RESTORE				REG_BIT(28)
+>  #define  DPST_CTL_IE_MODI_TABLE_EN			REG_BIT(27)
+>  #define  DPST_CTL_HIST_MODE				REG_BIT(24)
+> +#define  DPST_CTL_GUARDBAND_INTERRUPT_DELAY_CNT
+> 	REG_GENMASK(23, 16)
+>  #define  DPST_CTL_ENHANCEMENT_MODE_MASK
+> 	REG_GENMASK(14, 13)
+>  #define  DPST_CTL_EN_MULTIPLICATIVE
+> 	REG_FIELD_PREP(DPST_CTL_ENHANCEMENT_MODE_MASK, 2)
+>  #define  DPST_CTL_IE_TABLE_VALUE_FORMAT			REG_BIT(15)
 > --
 > 2.25.1
 
