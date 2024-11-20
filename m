@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D5A2D63932
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Nov 2024 12:01:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61EE6D63930
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Nov 2024 12:03:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 283BB10E726;
-	Wed, 20 Nov 2024 12:01:16 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6151710E727;
- Wed, 20 Nov 2024 12:01:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 216AB10E727;
+	Wed, 20 Nov 2024 12:03:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E3dWrEQd";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E094210E124;
+ Wed, 20 Nov 2024 12:03:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732104223; x=1763640223;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MgCJf/ONKMtTscMnUn/3v2oeEHj9O1SBmVKf/YHzq3M=;
+ b=E3dWrEQdznO3JuDCDQRJsu4+wurXIKzj1aO/FJMM/mGAKmHI/vh21iDc
+ QnkA02yZNiP3Vzc4yMnLorNN25B7DFqDX7tmitvzfsW4dQxgZdsJlrvMs
+ zNjOly+r4mBaPJtKb6W2NWD+A7aXFw3samumj5fV2jxfQ418jifXDLKKa
+ OesBLVwzsOaUhU+D2VLGp1ZOfNoWCzGW+SR1cB/jQ2i/CmhLEpjIQnFB1
+ T4wRBaG63g7G4FXAF0GHESfwj5qlh3e8sJvg2C+awfPHm0NefGM55Kldq
+ kYe87mr0qB7V6v5+oGBANaXedjSZtgS3LA2tJ8r9J0qJb46IJY5V3UtBq Q==;
+X-CSE-ConnectionGUID: BpfBUTLUS6+b9g57TEPXrA==
+X-CSE-MsgGUID: 7wfbYhBwSHqvnnXCYPrKYQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="43540093"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="43540093"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2024 04:03:43 -0800
+X-CSE-ConnectionGUID: g60AAoHqQt2c/HwNLHMqOA==
+X-CSE-MsgGUID: lf7DB1pPTvifb+J3tnq41Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="90277866"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.54])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2024 04:03:41 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [RESEND 0/6] drm/i915/display: make all i915_drv.h includes explicit
+Date: Wed, 20 Nov 2024 14:03:31 +0200
+Message-Id: <cover.1732104170.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915=3A_intel=5Fdisp?=
- =?utf-8?q?lay_conversions=2C_cleanups_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 20 Nov 2024 12:01:15 -0000
-Message-ID: <173210407541.700359.3874680813485081390@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <cover.1732102179.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1732102179.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,36 +64,87 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Drop all implicit includes of i915_drv.h via other headers in display
+code, and make the includes explicit.
 
-Series: drm/i915: intel_display conversions, cleanups (rev2)
-URL   : https://patchwork.freedesktop.org/series/141175/
-State : warning
+With this, we can use:
 
-== Summary ==
+$ git grep '#include "i915_drv.h"' -- drivers/gpu/drm/i915/display/
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast ccf64319402f90f68549e2047a7f985a46436e41
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+to track the progress of struct drm_i915_private -> struct intel_display
+conversion, and in general the progress of breaking ties with everything
+that comes out of i915_drv.h. Before this, removing the i915_drv.h
+includes was meaningless, because we'd always get it through some other
+route.
 
+BR,
+Jani.
+
+Jani Nikula (6):
+  drm/i915/gvt: always pass struct intel_display * to register macros
+  drm/i915: extract intel_uncore_trace.[ch]
+  drm/i915/display: add intel_display_conversion.c to hide stuff better
+  drm/i915/uncore: add to_intel_uncore() and use it
+  drm/i915/display: add struct drm_device to struct intel_display
+    conversion function
+  drm/i915/display: drop i915_drv.h include from intel_display_trace.h
+
+ drivers/gpu/drm/i915/Makefile                 |  2 +
+ drivers/gpu/drm/i915/display/g4x_dp.c         |  1 +
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |  1 +
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  1 +
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  1 +
+ drivers/gpu/drm/i915/display/intel_alpm.c     |  1 +
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  1 +
+ .../gpu/drm/i915/display/intel_backlight.c    |  1 +
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  1 +
+ drivers/gpu/drm/i915/display/intel_color.c    |  1 +
+ .../gpu/drm/i915/display/intel_combo_phy.c    |  1 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  1 +
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  1 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  2 +
+ drivers/gpu/drm/i915/display/intel_de.h       |  8 +-
+ .../i915/display/intel_display_conversion.c   | 14 ++++
+ .../i915/display/intel_display_conversion.h   | 10 ++-
+ .../drm/i915/display/intel_display_debugfs.c  |  1 +
+ .../drm/i915/display/intel_display_trace.h    |  2 +-
+ .../drm/i915/display/intel_display_types.h    |  3 +-
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c   |  1 +
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  1 +
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |  1 +
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  1 +
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  1 +
+ .../gpu/drm/i915/display/intel_dpt_common.c   |  1 +
+ drivers/gpu/drm/i915/display/intel_fdi.c      |  1 +
+ drivers/gpu/drm/i915/display/intel_lspcon.c   |  1 +
+ .../gpu/drm/i915/display/intel_pch_display.c  |  1 +
+ .../gpu/drm/i915/display/intel_pch_refclk.c   |  1 +
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c |  1 +
+ drivers/gpu/drm/i915/display/intel_snps_phy.c |  1 +
+ drivers/gpu/drm/i915/display/skl_scaler.c     |  1 +
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         | 17 ++--
+ drivers/gpu/drm/i915/gvt/display.c            | 80 ++++++++++---------
+ drivers/gpu/drm/i915/gvt/fb_decoder.c         | 21 ++---
+ drivers/gpu/drm/i915/gvt/handlers.c           | 44 +++++-----
+ drivers/gpu/drm/i915/i915_trace.h             | 28 -------
+ drivers/gpu/drm/i915/intel_uncore.c           |  7 +-
+ drivers/gpu/drm/i915/intel_uncore.h           |  2 +
+ drivers/gpu/drm/i915/intel_uncore_trace.c     |  7 ++
+ drivers/gpu/drm/i915/intel_uncore_trace.h     | 49 ++++++++++++
+ drivers/gpu/drm/i915/vlv_suspend.c            |  1 +
+ drivers/gpu/drm/xe/Makefile                   |  1 +
+ .../drm/xe/compat-i915-headers/intel_uncore.h |  5 ++
+ .../{i915_trace.h => intel_uncore_trace.h}    |  0
+ 47 files changed, 221 insertions(+), 110 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_conversion.c
+ create mode 100644 drivers/gpu/drm/i915/intel_uncore_trace.c
+ create mode 100644 drivers/gpu/drm/i915/intel_uncore_trace.h
+ rename drivers/gpu/drm/xe/compat-i915-headers/{i915_trace.h => intel_uncore_trace.h} (100%)
+
+-- 
+2.39.5
 
