@@ -4,56 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F374AD743F8
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Nov 2024 23:44:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26668D743F9
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Nov 2024 23:44:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 738C610E7D5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 790AC10E800;
 	Wed, 20 Nov 2024 23:44:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ikl9E66t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jcyv2kGk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A97210E14C
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Nov 2024 23:44:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B49A10E183
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Nov 2024 23:44:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732146245; x=1763682245;
+ t=1732146247; x=1763682247;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QmHeOOI3GYgsaY00zXcnZCmhjEuYYOark75SzjSqafM=;
- b=Ikl9E66tKmr127mZc2rFQIKxcIav7MMga4AYJhV4LWOGUDwAKAgeUCf2
- v28CZHnc1S2uaE8JoQrPbcfAljZvrr4pBitUwqTfXSdEzXB4DkT7zXERd
- 0oucdUMsmkwdn+aaUwY8c1D7qSnO5vS0NKm7hcdhoB19egtxVym+ZG1+x
- upLUvEwWgp3Nb8cTXw394fiGBsqFNIdCPEbY8FodEyjujY6Pl8oT77qwg
- eRKZdBCO+uCQbzHQq6FcwOzJpo0qSjsQauV30igNnMXIAXYB18oC3BcTO
- AstTMUlw6Qwn+A2FPyzwsVWzzt/B7G/c0ngp9p9UhB/dljVN3n4xTT6tr g==;
-X-CSE-ConnectionGUID: P8p9uk0WRm64izU0Ab4+qg==
-X-CSE-MsgGUID: OJhLDY1dTRGTICowpz/rjQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11262"; a="54733276"
-X-IronPort-AV: E=Sophos;i="6.12,171,1728975600"; d="scan'208";a="54733276"
+ bh=Fa0DszpSjqQVISlr7sxvP/uZQ9Uwfp45/I+FFNpjo6E=;
+ b=jcyv2kGkC7JRl0+gDrWbO5dvBqcfFsz83hoL7qHKWjEVnYluD93P7xQE
+ EgnkoWg7ALch8iV2pBoyUD4MEz7Y76PmuV5GCFfeMEsHAMZaQFtl7EReN
+ XHSchA9BnPro0rYFwBl3SKcMob4AkVBdyWqqfnFKm46qFFk/SFUIlSu9F
+ GpZl+3iSLzUpBEC5q2ZuZ1dVTL7jQiUXJ3TdAt7K3XeSk7WzuEgMAxz8i
+ CQ+/uYAb7fy7M6bEy79i4sSKDswCph8HTeZQzdWhj91oJ5C2TG7HkyRBR
+ Jxug5CYccWmXKoijuqUiGERfoW7VKzUuuMbtYfqzGytsoaBHD3XM6QPrc Q==;
+X-CSE-ConnectionGUID: eKSFnSIHR6WyNrl8O9rqcQ==
+X-CSE-MsgGUID: uJOyDfwwRBah7yecirLcBw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11262"; a="54733279"
+X-IronPort-AV: E=Sophos;i="6.12,171,1728975600"; d="scan'208";a="54733279"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 15:44:05 -0800
-X-CSE-ConnectionGUID: kdKLtAZNQIeYc4V483p5hw==
-X-CSE-MsgGUID: KOpyPMGkSoyQBG5WewjT8w==
+ 20 Nov 2024 15:44:07 -0800
+X-CSE-ConnectionGUID: /BIKCkPaTqiQvvvN/YUQ6A==
+X-CSE-MsgGUID: s7EMPxITS/GaPHQjy7H+Pw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,171,1728975600"; d="scan'208";a="90453629"
+X-IronPort-AV: E=Sophos;i="6.12,171,1728975600"; d="scan'208";a="90453640"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 15:44:04 -0800
+ 20 Nov 2024 15:44:07 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v3 02/12] drm/xe/pxp: Allocate PXP execution resources
-Date: Wed, 20 Nov 2024 15:43:42 -0800
-Message-ID: <20241120234353.1037180-3-daniele.ceraolospurio@intel.com>
+ John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH v3 05/12] drm/xe/pxp: Handle the PXP termination interrupt
+Date: Wed, 20 Nov 2024 15:43:45 -0800
+Message-ID: <20241120234353.1037180-6-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241120234353.1037180-1-daniele.ceraolospurio@intel.com>
 References: <20241120234353.1037180-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,663 +67,379 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PXP requires submissions to the HW for the following operations
+When something happen to the session, the HW generates a termination
+interrupt. In reply to this, the driver is required to submit an inline
+session termination via the VCS, trigger the global termination and
+notify the GSC FW that the session is now invalid.
 
-1) Key invalidation, done via the VCS engine
-2) Communication with the GSC FW for session management, done via the
-   GSCCS.
-
-Key invalidation submissions are serialized (only 1 termination can be
-serviced at a given time) and done via GGTT, so we can allocate a simple
-BO and a kernel queue for it.
-
-Submissions for session management are tied to a PXP client (identified
-by a unique host_session_id); from the GSC POV this is a user-accessible
-construct, so all related submission must be done via PPGTT. The driver
-does not currently support PPGTT submission from within the kernel, so
-to add this support, the following changes have been included:
-
-- a new type of kernel-owned VM (marked as GSC), required to ensure we
-  don't use fault mode on the engine and to mark the different lock
-  usage with lockdep.
-- a new function to map a BO into a VM from within the kernel.
-
-v2: improve comments and function name, remove unneeded include (John)
+v2: rename ARB define to make it cleaner to move it to uapi (John)
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                   |   1 +
- drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h |   7 +
- drivers/gpu/drm/xe/xe_exec_queue.c            |   3 +
- drivers/gpu/drm/xe/xe_pxp.c                   |  23 +-
- drivers/gpu/drm/xe/xe_pxp_submit.c            | 200 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_pxp_submit.h            |  14 ++
- drivers/gpu/drm/xe/xe_pxp_types.h             |  48 +++++
- drivers/gpu/drm/xe/xe_vm.c                    | 119 ++++++++++-
- drivers/gpu/drm/xe/xe_vm.h                    |   6 +
- drivers/gpu/drm/xe/xe_vm_types.h              |   1 +
- 10 files changed, 411 insertions(+), 11 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_pxp_submit.c
- create mode 100644 drivers/gpu/drm/xe/xe_pxp_submit.h
+ drivers/gpu/drm/xe/regs/xe_irq_regs.h |   8 ++
+ drivers/gpu/drm/xe/regs/xe_pxp_regs.h |   6 ++
+ drivers/gpu/drm/xe/xe_irq.c           |  20 +++-
+ drivers/gpu/drm/xe/xe_pxp.c           | 139 +++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_pxp.h           |   7 ++
+ drivers/gpu/drm/xe/xe_pxp_types.h     |  13 +++
+ 6 files changed, 189 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 3c0bd3c814de..126c8f1ab673 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -87,6 +87,7 @@ xe-y += xe_bb.o \
- 	xe_pt.o \
- 	xe_pt_walk.o \
- 	xe_pxp.o \
-+	xe_pxp_submit.o \
- 	xe_query.o \
- 	xe_range_fence.o \
- 	xe_reg_sr.o \
-diff --git a/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h b/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
-index 57520809e48d..f3c4cf10ba20 100644
---- a/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
-+++ b/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
-@@ -6,6 +6,7 @@
- #ifndef _ABI_GSC_PXP_COMMANDS_ABI_H
- #define _ABI_GSC_PXP_COMMANDS_ABI_H
+diff --git a/drivers/gpu/drm/xe/regs/xe_irq_regs.h b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
+index 1776b3f78ccb..f0ecfcac4003 100644
+--- a/drivers/gpu/drm/xe/regs/xe_irq_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
+@@ -44,6 +44,7 @@
+ #define   ENGINE1_MASK				REG_GENMASK(31, 16)
+ #define   ENGINE0_MASK				REG_GENMASK(15, 0)
+ #define GPM_WGBOXPERF_INTR_ENABLE		XE_REG(0x19003c, XE_REG_OPTION_VF)
++#define CRYPTO_RSVD_INTR_ENABLE			XE_REG(0x190040)
+ #define GUNIT_GSC_INTR_ENABLE			XE_REG(0x190044, XE_REG_OPTION_VF)
+ #define CCS_RSVD_INTR_ENABLE			XE_REG(0x190048, XE_REG_OPTION_VF)
  
-+#include <linux/sizes.h>
- #include <linux/types.h>
+@@ -54,6 +55,7 @@
+ #define   INTR_ENGINE_INTR(x)			REG_FIELD_GET(GENMASK(15, 0), x)
+ #define   OTHER_GUC_INSTANCE			0
+ #define   OTHER_GSC_HECI2_INSTANCE		3
++#define   OTHER_KCR_INSTANCE			4
+ #define   OTHER_GSC_INSTANCE			6
  
- /* Heci client ID for PXP commands */
-@@ -13,6 +14,12 @@
+ #define IIR_REG_SELECTOR(x)			XE_REG(0x190070 + ((x) * 4), XE_REG_OPTION_VF)
+@@ -65,6 +67,7 @@
+ #define HECI2_RSVD_INTR_MASK			XE_REG(0x1900e4)
+ #define GUC_SG_INTR_MASK			XE_REG(0x1900e8, XE_REG_OPTION_VF)
+ #define GPM_WGBOXPERF_INTR_MASK			XE_REG(0x1900ec, XE_REG_OPTION_VF)
++#define CRYPTO_RSVD_INTR_MASK			XE_REG(0x1900f0)
+ #define GUNIT_GSC_INTR_MASK			XE_REG(0x1900f4, XE_REG_OPTION_VF)
+ #define CCS0_CCS1_INTR_MASK			XE_REG(0x190100)
+ #define CCS2_CCS3_INTR_MASK			XE_REG(0x190104)
+@@ -79,4 +82,9 @@
+ #define   GT_CS_MASTER_ERROR_INTERRUPT		REG_BIT(3)
+ #define   GT_RENDER_USER_INTERRUPT		REG_BIT(0)
  
- #define PXP_APIVER(x, y) (((x) & 0xFFFF) << 16 | ((y) & 0xFFFF))
- 
-+/*
-+ * A PXP sub-section in an HECI packet can be up to 64K big in each direction.
-+ * This does not include the top-level GSC header.
-+ */
-+#define PXP_MAX_PACKET_SIZE SZ_64K
++/* irqs for OTHER_KCR_INSTANCE */
++#define   KCR_PXP_STATE_TERMINATED_INTERRUPT		REG_BIT(1)
++#define   KCR_APP_TERMINATED_PER_FW_REQ_INTERRUPT	REG_BIT(2)
++#define   KCR_PXP_STATE_RESET_COMPLETE_INTERRUPT	REG_BIT(3)
 +
+ #endif
+diff --git a/drivers/gpu/drm/xe/regs/xe_pxp_regs.h b/drivers/gpu/drm/xe/regs/xe_pxp_regs.h
+index d67cf210d23d..aa158938b42e 100644
+--- a/drivers/gpu/drm/xe/regs/xe_pxp_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_pxp_regs.h
+@@ -14,4 +14,10 @@
+ #define KCR_INIT				XE_REG(0x3860f0)
+ #define   KCR_INIT_ALLOW_DISPLAY_ME_WRITES	REG_BIT(14)
+ 
++/* KCR hwdrm session in play status 0-31 */
++#define KCR_SIP					XE_REG(0x386260)
++
++/* PXP global terminate register for session termination */
++#define KCR_GLOBAL_TERMINATE			XE_REG(0x3860f8)
++
+ #endif /* __XE_PXP_REGS_H__ */
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 7bf7201529ac..6a7a65d5e5d1 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -19,6 +19,7 @@
+ #include "xe_hw_engine.h"
+ #include "xe_memirq.h"
+ #include "xe_mmio.h"
++#include "xe_pxp.h"
+ #include "xe_sriov.h"
+ 
  /*
-  * there are a lot of status codes for PXP, but we only define the cross-API
-  * common ones that we actually can handle in the kernel driver. Other failure
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index aab9e561153d..60418debc1ec 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -150,6 +150,9 @@ struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *v
- 	struct xe_exec_queue *q;
- 	int err;
- 
-+	/* VMs for GSCCS queues (and only those) must have the XE_VM_FLAG_GSC flag */
-+	xe_assert(xe, !vm || (!!(vm->flags & XE_VM_FLAG_GSC) == !!(hwe->engine_id == XE_HW_ENGINE_GSCCS0)));
+@@ -202,6 +203,15 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
+ 		}
+ 		if (heci_mask)
+ 			xe_mmio_write32(mmio, HECI2_RSVD_INTR_MASK, ~(heci_mask << 16));
 +
- 	q = __xe_exec_queue_alloc(xe, vm, logical_mask, width, hwe, flags,
- 				  extensions);
- 	if (IS_ERR(q))
++		if (xe_pxp_is_supported(xe)) {
++			u32 kcr_mask = KCR_PXP_STATE_TERMINATED_INTERRUPT |
++				       KCR_APP_TERMINATED_PER_FW_REQ_INTERRUPT |
++				       KCR_PXP_STATE_RESET_COMPLETE_INTERRUPT;
++
++			xe_mmio_write32(mmio, CRYPTO_RSVD_INTR_ENABLE, kcr_mask << 16);
++			xe_mmio_write32(mmio, CRYPTO_RSVD_INTR_MASK, ~(kcr_mask << 16));
++		}
+ 	}
+ }
+ 
+@@ -324,9 +334,15 @@ static void gt_irq_handler(struct xe_tile *tile,
+ 			}
+ 
+ 			if (class == XE_ENGINE_CLASS_OTHER) {
+-				/* HECI GSCFI interrupts come from outside of GT */
++				/*
++				 * HECI GSCFI interrupts come from outside of GT.
++				 * KCR irqs come from inside GT but are handled
++				 * by the global PXP subsystem.
++				 */
+ 				if (xe->info.has_heci_gscfi && instance == OTHER_GSC_INSTANCE)
+ 					xe_heci_gsc_irq_handler(xe, intr_vec);
++				else if (instance == OTHER_KCR_INSTANCE)
++					xe_pxp_irq_handler(xe, intr_vec);
+ 				else
+ 					gt_other_irq_handler(engine_gt, instance, intr_vec);
+ 			}
+@@ -512,6 +528,8 @@ static void gt_irq_reset(struct xe_tile *tile)
+ 		xe_mmio_write32(mmio, GUNIT_GSC_INTR_ENABLE, 0);
+ 		xe_mmio_write32(mmio, GUNIT_GSC_INTR_MASK, ~0);
+ 		xe_mmio_write32(mmio, HECI2_RSVD_INTR_MASK, ~0);
++		xe_mmio_write32(mmio, CRYPTO_RSVD_INTR_ENABLE, 0);
++		xe_mmio_write32(mmio, CRYPTO_RSVD_INTR_MASK, ~0);
+ 	}
+ 
+ 	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_ENABLE, 0);
 diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
-index 1a4d12d37d96..89d71a69cdff 100644
+index 89d71a69cdff..bc816cfecdd6 100644
 --- a/drivers/gpu/drm/xe/xe_pxp.c
 +++ b/drivers/gpu/drm/xe/xe_pxp.c
-@@ -12,6 +12,7 @@
+@@ -12,9 +12,11 @@
  #include "xe_gt.h"
  #include "xe_gt_types.h"
  #include "xe_mmio.h"
-+#include "xe_pxp_submit.h"
++#include "xe_pm.h"
+ #include "xe_pxp_submit.h"
  #include "xe_pxp_types.h"
  #include "xe_uc_fw.h"
++#include "regs/xe_irq_regs.h"
  #include "regs/xe_pxp_regs.h"
-@@ -50,6 +51,20 @@ static int kcr_pxp_enable(const struct xe_pxp *pxp)
- 	return kcr_pxp_set_status(pxp, true);
+ 
+ /**
+@@ -25,11 +27,132 @@
+  * integrated parts.
+  */
+ 
+-static bool pxp_is_supported(const struct xe_device *xe)
++#define ARB_SESSION DRM_XE_PXP_HWDRM_DEFAULT_SESSION /* shorter define */
++
++bool xe_pxp_is_supported(const struct xe_device *xe)
+ {
+ 	return xe->info.has_pxp && IS_ENABLED(CONFIG_INTEL_MEI_GSC_PROXY);
  }
  
-+static int kcr_pxp_disable(const struct xe_pxp *pxp)
++static bool pxp_is_enabled(const struct xe_pxp *pxp)
 +{
-+	return kcr_pxp_set_status(pxp, false);
++	return pxp;
 +}
 +
-+static void pxp_fini(void *arg)
++static int pxp_wait_for_session_state(struct xe_pxp *pxp, u32 id, bool in_play)
 +{
-+	struct xe_pxp *pxp = arg;
++	struct xe_gt *gt = pxp->gt;
++	u32 mask = BIT(id);
 +
-+	xe_pxp_destroy_execution_resources(pxp);
-+
-+	/* no need to explicitly disable KCR since we're going to do an FLR */
++	return xe_mmio_wait32(&gt->mmio, KCR_SIP, mask, in_play ? mask : 0,
++			      250, NULL, false);
 +}
 +
- /**
-  * xe_pxp_init - initialize PXP support
-  * @xe: the xe_device structure
-@@ -97,10 +112,16 @@ int xe_pxp_init(struct xe_device *xe)
++static void pxp_terminate(struct xe_pxp *pxp)
++{
++	int ret = 0;
++	struct xe_device *xe = pxp->xe;
++	struct xe_gt *gt = pxp->gt;
++	unsigned int fw_ref;
++
++	drm_dbg(&xe->drm, "Terminating PXP\n");
++
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT)) {
++		ret = -EIO;
++		goto out;
++	}
++
++	/* terminate the hw session */
++	ret = xe_pxp_submit_session_termination(pxp, ARB_SESSION);
++	if (ret)
++		goto out;
++
++	ret = pxp_wait_for_session_state(pxp, ARB_SESSION, false);
++	if (ret)
++		goto out;
++
++	/* Trigger full HW cleanup */
++	xe_mmio_write32(&gt->mmio, KCR_GLOBAL_TERMINATE, 1);
++
++	/* now we can tell the GSC to clean up its own state */
++	ret = xe_pxp_submit_session_invalidation(&pxp->gsc_res, ARB_SESSION);
++
++out:
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++
++	if (ret)
++		drm_err(&xe->drm, "PXP termination failed: %pe\n", ERR_PTR(ret));
++}
++
++static void pxp_terminate_complete(struct xe_pxp *pxp)
++{
++	/* TODO mark the session as ready to start */
++}
++
++static void pxp_irq_work(struct work_struct *work)
++{
++	struct xe_pxp *pxp = container_of(work, typeof(*pxp), irq.work);
++	struct xe_device *xe = pxp->xe;
++	u32 events = 0;
++
++	spin_lock_irq(&xe->irq.lock);
++	events = pxp->irq.events;
++	pxp->irq.events = 0;
++	spin_unlock_irq(&xe->irq.lock);
++
++	if (!events)
++		return;
++
++	/*
++	 * If we're processing a termination irq while suspending then don't
++	 * bother, we're going to re-init everything on resume anyway.
++	 */
++	if ((events & PXP_TERMINATION_REQUEST) && !xe_pm_runtime_get_if_active(xe))
++		return;
++
++	if (events & PXP_TERMINATION_REQUEST) {
++		events &= ~PXP_TERMINATION_COMPLETE;
++		pxp_terminate(pxp);
++	}
++
++	if (events & PXP_TERMINATION_COMPLETE)
++		pxp_terminate_complete(pxp);
++
++	if (events & PXP_TERMINATION_REQUEST)
++		xe_pm_runtime_put(xe);
++}
++
++/**
++ * xe_pxp_irq_handler - Handles PXP interrupts.
++ * @pxp: pointer to pxp struct
++ * @iir: interrupt vector
++ */
++void xe_pxp_irq_handler(struct xe_device *xe, u16 iir)
++{
++	struct xe_pxp *pxp = xe->pxp;
++
++	if (!pxp_is_enabled(pxp)) {
++		drm_err(&xe->drm, "PXP irq 0x%x received with PXP disabled!\n", iir);
++		return;
++	}
++
++	lockdep_assert_held(&xe->irq.lock);
++
++	if (unlikely(!iir))
++		return;
++
++	if (iir & (KCR_PXP_STATE_TERMINATED_INTERRUPT |
++		   KCR_APP_TERMINATED_PER_FW_REQ_INTERRUPT))
++		pxp->irq.events |= PXP_TERMINATION_REQUEST;
++
++	if (iir & KCR_PXP_STATE_RESET_COMPLETE_INTERRUPT)
++		pxp->irq.events |= PXP_TERMINATION_COMPLETE;
++
++	if (pxp->irq.events)
++		queue_work(pxp->irq.wq, &pxp->irq.work);
++}
++
+ static int kcr_pxp_set_status(const struct xe_pxp *pxp, bool enable)
+ {
+ 	u32 val = enable ? _MASKED_BIT_ENABLE(KCR_INIT_ALLOW_DISPLAY_ME_WRITES) :
+@@ -60,6 +183,7 @@ static void pxp_fini(void *arg)
+ {
+ 	struct xe_pxp *pxp = arg;
+ 
++	destroy_workqueue(pxp->irq.wq);
+ 	xe_pxp_destroy_execution_resources(pxp);
+ 
+ 	/* no need to explicitly disable KCR since we're going to do an FLR */
+@@ -83,7 +207,7 @@ int xe_pxp_init(struct xe_device *xe)
+ 	struct xe_pxp *pxp;
+ 	int err;
+ 
+-	if (!pxp_is_supported(xe))
++	if (!xe_pxp_is_supported(xe))
+ 		return -EOPNOTSUPP;
+ 
+ 	/* we only support PXP on single tile devices with a media GT */
+@@ -105,12 +229,19 @@ int xe_pxp_init(struct xe_device *xe)
+ 	if (!pxp)
+ 		return -ENOMEM;
+ 
++	INIT_WORK(&pxp->irq.work, pxp_irq_work);
+ 	pxp->xe = xe;
+ 	pxp->gt = gt;
+ 
++	pxp->irq.wq = alloc_ordered_workqueue("pxp-wq", 0);
++	if (!pxp->irq.wq) {
++		err = -ENOMEM;
++		goto out_free;
++	}
++
+ 	err = kcr_pxp_enable(pxp);
  	if (err)
- 		goto out_free;
+-		goto out_free;
++		goto out_wq;
  
-+	err = xe_pxp_allocate_execution_resources(pxp);
-+	if (err)
-+		goto out_kcr_disable;
-+
- 	xe->pxp = pxp;
+ 	err = xe_pxp_allocate_execution_resources(pxp);
+ 	if (err)
+@@ -122,6 +253,8 @@ int xe_pxp_init(struct xe_device *xe)
  
--	return 0;
-+	return devm_add_action_or_reset(xe->drm.dev, pxp_fini, pxp);
- 
-+out_kcr_disable:
-+	kcr_pxp_disable(pxp);
+ out_kcr_disable:
+ 	kcr_pxp_disable(pxp);
++out_wq:
++	destroy_workqueue(pxp->irq.wq);
  out_free:
  	drmm_kfree(&xe->drm, pxp);
  	return err;
-diff --git a/drivers/gpu/drm/xe/xe_pxp_submit.c b/drivers/gpu/drm/xe/xe_pxp_submit.c
-new file mode 100644
-index 000000000000..196c0e5bbb17
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_pxp_submit.c
-@@ -0,0 +1,200 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright(c) 2024 Intel Corporation.
-+ */
-+
-+#include "xe_pxp_submit.h"
-+
-+#include <uapi/drm/xe_drm.h>
-+
-+#include "xe_device_types.h"
-+#include "xe_bo.h"
-+#include "xe_exec_queue.h"
-+#include "xe_gsc_submit.h"
-+#include "xe_gt.h"
-+#include "xe_pxp_types.h"
-+#include "xe_vm.h"
-+
-+/*
-+ * The VCS is used for kernel-owned GGTT submissions to issue key termination.
-+ * Terminations are serialized, so we only need a single queue and a single
-+ * batch.
-+ */
-+static int allocate_vcs_execution_resources(struct xe_pxp *pxp)
-+{
-+	struct xe_gt *gt = pxp->gt;
-+	struct xe_device *xe = pxp->xe;
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_hw_engine *hwe;
-+	struct xe_exec_queue *q;
-+	struct xe_bo *bo;
-+	int err;
-+
-+	hwe = xe_gt_hw_engine(gt, XE_ENGINE_CLASS_VIDEO_DECODE, 0, true);
-+	if (!hwe)
-+		return -ENODEV;
-+
-+	q = xe_exec_queue_create(xe, NULL, BIT(hwe->logical_instance), 1, hwe,
-+				 EXEC_QUEUE_FLAG_KERNEL | EXEC_QUEUE_FLAG_PERMANENT, 0);
-+	if (IS_ERR(q))
-+		return PTR_ERR(q);
-+
-+	/*
-+	 * Each termination is 16 DWORDS, so 4K is enough to contain a
-+	 * termination for each sessions.
-+	 */
-+	bo = xe_bo_create_pin_map(xe, tile, 0, SZ_4K, ttm_bo_type_kernel,
-+				  XE_BO_FLAG_SYSTEM | XE_BO_FLAG_PINNED | XE_BO_FLAG_GGTT);
-+	if (IS_ERR(bo)) {
-+		err = PTR_ERR(bo);
-+		goto out_queue;
-+	}
-+
-+	pxp->vcs_exec.q = q;
-+	pxp->vcs_exec.bo = bo;
-+
-+	return 0;
-+
-+out_queue:
-+	xe_exec_queue_put(q);
-+	return err;
-+}
-+
-+static void destroy_vcs_execution_resources(struct xe_pxp *pxp)
-+{
-+	if (pxp->vcs_exec.bo)
-+		xe_bo_unpin_map_no_vm(pxp->vcs_exec.bo);
-+
-+	if (pxp->vcs_exec.q)
-+		xe_exec_queue_put(pxp->vcs_exec.q);
-+}
-+
-+#define PXP_BB_SIZE		XE_PAGE_SIZE
-+static int allocate_gsc_client_resources(struct xe_gt *gt,
-+					 struct xe_pxp_gsc_client_resources *gsc_res,
-+					 size_t inout_size)
-+{
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct xe_hw_engine *hwe;
-+	struct xe_vm *vm;
-+	struct xe_bo *bo;
-+	struct xe_exec_queue *q;
-+	struct dma_fence *fence;
-+	long timeout;
-+	int err = 0;
-+
-+	hwe = xe_gt_hw_engine(gt, XE_ENGINE_CLASS_OTHER, 0, true);
-+
-+	/* we shouldn't reach here if the GSC engine is not available */
-+	xe_assert(xe, hwe);
-+
-+	/* PXP instructions must be issued from PPGTT */
-+	vm = xe_vm_create(xe, XE_VM_FLAG_GSC);
-+	if (IS_ERR(vm))
-+		return PTR_ERR(vm);
-+
-+	/* We allocate a single object for the batch and the in/out memory */
-+	xe_vm_lock(vm, false);
-+	bo = xe_bo_create_pin_map(xe, tile, vm, PXP_BB_SIZE + inout_size * 2,
-+				  ttm_bo_type_kernel,
-+				  XE_BO_FLAG_SYSTEM | XE_BO_FLAG_PINNED | XE_BO_FLAG_NEEDS_UC);
-+	xe_vm_unlock(vm);
-+	if (IS_ERR(bo)) {
-+		err = PTR_ERR(bo);
-+		goto vm_out;
-+	}
-+
-+	fence = xe_vm_bind_kernel_bo(vm, bo, NULL, 0, XE_CACHE_WB);
-+	if (IS_ERR(fence)) {
-+		err = PTR_ERR(fence);
-+		goto bo_out;
-+	}
-+
-+	timeout = dma_fence_wait_timeout(fence, false, HZ);
-+	dma_fence_put(fence);
-+	if (timeout <= 0) {
-+		err = timeout ?: -ETIME;
-+		goto bo_out;
-+	}
-+
-+	q = xe_exec_queue_create(xe, vm, BIT(hwe->logical_instance), 1, hwe,
-+				 EXEC_QUEUE_FLAG_KERNEL |
-+				 EXEC_QUEUE_FLAG_PERMANENT, 0);
-+	if (IS_ERR(q)) {
-+		err = PTR_ERR(q);
-+		goto bo_out;
-+	}
-+
-+	gsc_res->vm = vm;
-+	gsc_res->bo = bo;
-+	gsc_res->inout_size = inout_size;
-+	gsc_res->batch = IOSYS_MAP_INIT_OFFSET(&bo->vmap, 0);
-+	gsc_res->msg_in = IOSYS_MAP_INIT_OFFSET(&bo->vmap, PXP_BB_SIZE);
-+	gsc_res->msg_out = IOSYS_MAP_INIT_OFFSET(&bo->vmap, PXP_BB_SIZE + inout_size);
-+	gsc_res->q = q;
-+
-+	/* initialize host-session-handle (for all Xe-to-gsc-firmware PXP cmds) */
-+	gsc_res->host_session_handle = xe_gsc_create_host_session_id();
-+
-+	return 0;
-+
-+bo_out:
-+	xe_bo_unpin_map_no_vm(bo);
-+vm_out:
-+	xe_vm_close_and_put(vm);
-+
-+	return err;
-+}
-+
-+static void destroy_gsc_client_resources(struct xe_pxp_gsc_client_resources *gsc_res)
-+{
-+	if (!gsc_res->q)
-+		return;
-+
-+	xe_exec_queue_put(gsc_res->q);
-+	xe_bo_unpin_map_no_vm(gsc_res->bo);
-+	xe_vm_close_and_put(gsc_res->vm);
-+}
-+
-+/**
-+ * xe_pxp_allocate_execution_resources - Allocate PXP submission objects
-+ * @pxp: the xe_pxp structure
-+ *
-+ * Allocates exec_queues objects for VCS and GSCCS submission. The GSCCS
-+ * submissions are done via PPGTT, so this function allocates a VM for it and
-+ * maps the object into it.
-+ *
-+ * Returns 0 if the allocation and mapping is successful, an errno value
-+ * otherwise.
-+ */
-+int xe_pxp_allocate_execution_resources(struct xe_pxp *pxp)
-+{
-+	int err;
-+
-+	err = allocate_vcs_execution_resources(pxp);
-+	if (err)
-+		return err;
-+
-+	/*
-+	 * PXP commands can require a lot of BO space (see PXP_MAX_PACKET_SIZE),
-+	 * but we currently only support a subset of commands that are small
-+	 * (< 20 dwords), so a single page is enough for now.
-+	 */
-+	err = allocate_gsc_client_resources(pxp->gt, &pxp->gsc_res, XE_PAGE_SIZE);
-+	if (err)
-+		goto destroy_vcs_context;
-+
-+	return 0;
-+
-+destroy_vcs_context:
-+	destroy_vcs_execution_resources(pxp);
-+	return err;
-+}
-+
-+void xe_pxp_destroy_execution_resources(struct xe_pxp *pxp)
-+{
-+	destroy_gsc_client_resources(&pxp->gsc_res);
-+	destroy_vcs_execution_resources(pxp);
-+}
-+
-diff --git a/drivers/gpu/drm/xe/xe_pxp_submit.h b/drivers/gpu/drm/xe/xe_pxp_submit.h
-new file mode 100644
-index 000000000000..fd21ac935be1
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_pxp_submit.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright(c) 2024, Intel Corporation. All rights reserved.
-+ */
-+
-+#ifndef __XE_PXP_SUBMIT_H__
-+#define __XE_PXP_SUBMIT_H__
-+
-+struct xe_pxp;
-+
-+int xe_pxp_allocate_execution_resources(struct xe_pxp *pxp);
-+void xe_pxp_destroy_execution_resources(struct xe_pxp *pxp);
-+
-+#endif /* __XE_PXP_SUBMIT_H__ */
-diff --git a/drivers/gpu/drm/xe/xe_pxp_types.h b/drivers/gpu/drm/xe/xe_pxp_types.h
-index 4639cf49d267..25db23180a30 100644
---- a/drivers/gpu/drm/xe/xe_pxp_types.h
-+++ b/drivers/gpu/drm/xe/xe_pxp_types.h
-@@ -6,8 +6,45 @@
- #ifndef __XE_PXP_TYPES_H__
- #define __XE_PXP_TYPES_H__
+diff --git a/drivers/gpu/drm/xe/xe_pxp.h b/drivers/gpu/drm/xe/xe_pxp.h
+index 00f5e688c0d9..39435c644dcd 100644
+--- a/drivers/gpu/drm/xe/xe_pxp.h
++++ b/drivers/gpu/drm/xe/xe_pxp.h
+@@ -6,8 +6,15 @@
+ #ifndef __XE_PXP_H__
+ #define __XE_PXP_H__
  
-+#include <linux/iosys-map.h>
 +#include <linux/types.h>
 +
-+struct xe_bo;
-+struct xe_exec_queue;
  struct xe_device;
- struct xe_gt;
-+struct xe_vm;
-+
-+/**
-+ * struct xe_pxp_gsc_client_resources - resources for GSC submission by a PXP
-+ * client. The GSC FW supports multiple GSC client active at the same time.
-+ */
-+struct xe_pxp_gsc_client_resources {
-+	/**
-+	 * @host_session_handle: handle used to identify the client in messages
-+	 * sent to the GSC firmware.
-+	 */
-+	u64 host_session_handle;
-+	/** @vm: VM used for PXP submissions to the GSCCS */
-+	struct xe_vm *vm;
-+	/** @q: GSCCS exec queue for PXP submissions */
-+	struct xe_exec_queue *q;
-+
-+	/**
-+	 * @bo: BO used for submissions to the GSCCS and GSC FW. It includes
-+	 * space for the GSCCS batch and the input/output buffers read/written
-+	 * by the FW
-+	 */
-+	struct xe_bo *bo;
-+	/** @inout_size: size of each of the msg_in/out sections individually */
-+	u32 inout_size;
-+	/** @batch: iosys_map to the batch memory within the BO */
-+	struct iosys_map batch;
-+	/** @msg_in: iosys_map to the input memory within the BO */
-+	struct iosys_map msg_in;
-+	/** @msg_out: iosys_map to the output memory within the BO */
-+	struct iosys_map msg_out;
-+};
  
- /**
-  * struct xe_pxp - pxp state
-@@ -21,6 +58,17 @@ struct xe_pxp {
- 	 * (VDBOX, KCR and GSC)
- 	 */
- 	struct xe_gt *gt;
++#define DRM_XE_PXP_HWDRM_DEFAULT_SESSION 0xF /* TODO: move to uapi */
 +
-+	/** @vcs_exec: kernel-owned objects for PXP submissions to the VCS */
++bool xe_pxp_is_supported(const struct xe_device *xe);
++
+ int xe_pxp_init(struct xe_device *xe);
++void xe_pxp_irq_handler(struct xe_device *xe, u16 iir);
+ 
+ #endif /* __XE_PXP_H__ */
+diff --git a/drivers/gpu/drm/xe/xe_pxp_types.h b/drivers/gpu/drm/xe/xe_pxp_types.h
+index 25db23180a30..40c28f32f51a 100644
+--- a/drivers/gpu/drm/xe/xe_pxp_types.h
++++ b/drivers/gpu/drm/xe/xe_pxp_types.h
+@@ -8,6 +8,7 @@
+ 
+ #include <linux/iosys-map.h>
+ #include <linux/types.h>
++#include <linux/workqueue.h>
+ 
+ struct xe_bo;
+ struct xe_exec_queue;
+@@ -69,6 +70,18 @@ struct xe_pxp {
+ 
+ 	/** @gsc_exec: kernel-owned objects for PXP submissions to the GSCCS */
+ 	struct xe_pxp_gsc_client_resources gsc_res;
++
++	/** @irq: wrapper for the worker and queue used for PXP irq support */
 +	struct {
-+		/** @vcs_exec.q: kernel-owned VCS exec queue used for PXP terminations */
-+		struct xe_exec_queue *q;
-+		/** @vcs_exec.bo: BO used for submissions to the VCS */
-+		struct xe_bo *bo;
-+	} vcs_exec;
-+
-+	/** @gsc_exec: kernel-owned objects for PXP submissions to the GSCCS */
-+	struct xe_pxp_gsc_client_resources gsc_res;
++		/** @irq.work: worker that manages irq events. */
++		struct work_struct work;
++		/** @irq.wq: workqueue on which to queue the irq work. */
++		struct workqueue_struct *wq;
++		/** @irq.events: pending events, protected with xe->irq.lock. */
++		u32 events;
++#define PXP_TERMINATION_REQUEST  BIT(0)
++#define PXP_TERMINATION_COMPLETE BIT(1)
++	} irq;
  };
  
  #endif /* __XE_PXP_TYPES_H__ */
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 1d7faeba157e..eb95f654a88f 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1382,6 +1382,12 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 	struct xe_tile *tile;
- 	u8 id;
- 
-+	/*
-+	 * Since the GSCCS is not user-accessible, we don't expect a GSC VM to
-+	 * ever be in faulting mode.
-+	 */
-+	xe_assert(xe, !((flags & XE_VM_FLAG_GSC) && (flags & XE_VM_FLAG_FAULT_MODE)));
-+
- 	vm = kzalloc(sizeof(*vm), GFP_KERNEL);
- 	if (!vm)
- 		return ERR_PTR(-ENOMEM);
-@@ -1392,7 +1398,21 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 
- 	vm->flags = flags;
- 
--	init_rwsem(&vm->lock);
-+	/**
-+	 * GSC VMs are kernel-owned, only used for PXP ops and can sometimes be
-+	 * manipulated under the PXP mutex. However, the PXP mutex can be taken
-+	 * under a user-VM lock when the PXP session is started at exec_queue
-+	 * creation time. Those are different VMs and therefore there is no risk
-+	 * of deadlock, but we need to tell lockdep that this is the case or it
-+	 * will print a warning.
-+	 */
-+	if (flags & XE_VM_FLAG_GSC) {
-+		static struct lock_class_key gsc_vm_key;
-+
-+		__init_rwsem(&vm->lock, "gsc_vm", &gsc_vm_key);
-+	} else {
-+		init_rwsem(&vm->lock);
-+	}
- 	mutex_init(&vm->snap_mutex);
- 
- 	INIT_LIST_HEAD(&vm->rebind_list);
-@@ -2666,11 +2686,10 @@ static void vm_bind_ioctl_ops_fini(struct xe_vm *vm, struct xe_vma_ops *vops,
- 	for (i = 0; i < vops->num_syncs; i++)
- 		xe_sync_entry_signal(vops->syncs + i, fence);
- 	xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
--	dma_fence_put(fence);
- }
- 
--static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
--				     struct xe_vma_ops *vops)
-+static struct dma_fence *vm_bind_ioctl_ops_execute(struct xe_vm *vm,
-+						   struct xe_vma_ops *vops)
- {
- 	struct drm_exec exec;
- 	struct dma_fence *fence;
-@@ -2683,21 +2702,21 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
- 	drm_exec_until_all_locked(&exec) {
- 		err = vm_bind_ioctl_ops_lock_and_prep(&exec, vm, vops);
- 		drm_exec_retry_on_contention(&exec);
--		if (err)
-+		if (err) {
-+			fence = ERR_PTR(err);
- 			goto unlock;
-+		}
- 
- 		fence = ops_execute(vm, vops);
--		if (IS_ERR(fence)) {
--			err = PTR_ERR(fence);
-+		if (IS_ERR(fence))
- 			goto unlock;
--		}
- 
- 		vm_bind_ioctl_ops_fini(vm, vops, fence);
- 	}
- 
- unlock:
- 	drm_exec_fini(&exec);
--	return err;
-+	return fence;
- }
- ALLOW_ERROR_INJECTION(vm_bind_ioctl_ops_execute, ERRNO);
- 
-@@ -2929,6 +2948,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	struct xe_sync_entry *syncs = NULL;
- 	struct drm_xe_vm_bind_op *bind_ops;
- 	struct xe_vma_ops vops;
-+	struct dma_fence *fence;
- 	int err;
- 	int i;
- 
-@@ -3093,7 +3113,11 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	if (err)
- 		goto unwind_ops;
- 
--	err = vm_bind_ioctl_ops_execute(vm, &vops);
-+	fence = vm_bind_ioctl_ops_execute(vm, &vops);
-+	if (IS_ERR(fence))
-+		err = PTR_ERR(fence);
-+	else
-+		dma_fence_put(fence);
- 
- unwind_ops:
- 	if (err && err != -ENODATA)
-@@ -3127,6 +3151,81 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	return err;
- }
- 
-+/**
-+ * xe_vm_bind_bo - bind a kernel BO to a VM
-+ * @vm: VM to bind the BO to
-+ * @bo: BO to bind
-+ * @q: exec queue to use for the bind (optional)
-+ * @addr: address at which to bind the BO
-+ * @cache_lvl: PAT cache level to use
-+ *
-+ * Execute a VM bind map operation on a kernel-owned BO to bind it into a
-+ * kernel-owned VM.
-+ *
-+ * Returns a dma_fence to track the binding completion if the job to do so was
-+ * successfully submitted, an error pointer otherwise.
-+ */
-+struct dma_fence *xe_vm_bind_kernel_bo(struct xe_vm *vm, struct xe_bo *bo,
-+				       struct xe_exec_queue *q, u64 addr,
-+				       enum xe_cache_level cache_lvl)
-+{
-+	struct xe_vma_ops vops;
-+	struct drm_gpuva_ops *ops = NULL;
-+	struct dma_fence *fence;
-+	int err;
-+
-+	xe_bo_get(bo);
-+	xe_vm_get(vm);
-+	if (q)
-+		xe_exec_queue_get(q);
-+
-+	down_write(&vm->lock);
-+
-+	xe_vma_ops_init(&vops, vm, q, NULL, 0);
-+
-+	ops = vm_bind_ioctl_ops_create(vm, bo, 0, addr, bo->size,
-+				       DRM_XE_VM_BIND_OP_MAP, 0, 0,
-+				       vm->xe->pat.idx[cache_lvl]);
-+	if (IS_ERR(ops)) {
-+		err = PTR_ERR(ops);
-+		goto release_vm_lock;
-+	}
-+
-+	err = vm_bind_ioctl_ops_parse(vm, ops, &vops);
-+	if (err)
-+		goto release_vm_lock;
-+
-+	xe_assert(vm->xe, !list_empty(&vops.list));
-+
-+	err = xe_vma_ops_alloc(&vops, false);
-+	if (err)
-+		goto unwind_ops;
-+
-+	fence = vm_bind_ioctl_ops_execute(vm, &vops);
-+	if (IS_ERR(fence))
-+		err = PTR_ERR(fence);
-+
-+unwind_ops:
-+	if (err && err != -ENODATA)
-+		vm_bind_ioctl_ops_unwind(vm, &ops, 1);
-+
-+	xe_vma_ops_fini(&vops);
-+	drm_gpuva_ops_free(&vm->gpuvm, ops);
-+
-+release_vm_lock:
-+	up_write(&vm->lock);
-+
-+	if (q)
-+		xe_exec_queue_put(q);
-+	xe_vm_put(vm);
-+	xe_bo_put(bo);
-+
-+	if (err)
-+		fence = ERR_PTR(err);
-+
-+	return fence;
-+}
-+
- /**
-  * xe_vm_lock() - Lock the vm's dma_resv object
-  * @vm: The struct xe_vm whose lock is to be locked
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 23adb7442881..0a2fa6c0815b 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -18,6 +18,8 @@ struct drm_file;
- 
- struct ttm_buffer_object;
- 
-+struct dma_fence;
-+
- struct xe_exec_queue;
- struct xe_file;
- struct xe_sync_entry;
-@@ -247,6 +249,10 @@ int xe_vm_lock_vma(struct drm_exec *exec, struct xe_vma *vma);
- int xe_vm_validate_rebind(struct xe_vm *vm, struct drm_exec *exec,
- 			  unsigned int num_fences);
- 
-+struct dma_fence *xe_vm_bind_kernel_bo(struct xe_vm *vm, struct xe_bo *bo,
-+				       struct xe_exec_queue *q, u64 addr,
-+				       enum xe_cache_level cache_lvl);
-+
- /**
-  * xe_vm_resv() - Return's the vm's reservation object
-  * @vm: The vm
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 7f9a303e51d8..52467b9b5348 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -164,6 +164,7 @@ struct xe_vm {
- #define XE_VM_FLAG_BANNED		BIT(5)
- #define XE_VM_FLAG_TILE_ID(flags)	FIELD_GET(GENMASK(7, 6), flags)
- #define XE_VM_FLAG_SET_TILE_ID(tile)	FIELD_PREP(GENMASK(7, 6), (tile)->id)
-+#define XE_VM_FLAG_GSC			BIT(8)
- 	unsigned long flags;
- 
- 	/** @composite_fence_ctx: context composite fence */
 -- 
 2.43.0
 
