@@ -4,66 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F1C9D6392E
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Nov 2024 11:20:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEDA2D6392D
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Nov 2024 11:23:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEF7110E70F;
-	Wed, 20 Nov 2024 11:20:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kTWbFVXG";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39F5610E70D;
- Wed, 20 Nov 2024 11:20:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732101630; x=1763637630;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=txC85dMgL8wgHs+FaSs2etsVzdPBdlc/aqchDrcNHkU=;
- b=kTWbFVXGxUAzlVNNdI1ukK2eXeUm+Y10Q2XB4IaQUCHtIQxNm8EGHrgZ
- eAVV76tmrjIBsAwKAGgvcvR6oDjBgENch3yAvQEE+iDYimrKvkdwJZRV1
- g7HVtaUfDIYTxynOnfAEhWjO4o+io+C0lQmMmtlgs/OjeTlXACrodH6jd
- AVjUXT9YFhpZxxTV5HZluoEy99up+34YBTDZ069aDGUVjAQrEd1fhWcY3
- f1zZww8q41ifn5a6Fig2K+t9qdbfxya+pfmgnteXKPemupDEKp8ViChaZ
- V7WM8o10yrG9yLi5dbpkgbus1++ZkPh5W+pga1uEibZ4bwuovxeOv7Gsf Q==;
-X-CSE-ConnectionGUID: JJlQULE7S9+pudhx2v41Jg==
-X-CSE-MsgGUID: v95rLxpQSPKaERVOTKlNOQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="31523610"
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="31523610"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 03:20:30 -0800
-X-CSE-ConnectionGUID: 4kmraDkJTXOTmA09YcMRoQ==
-X-CSE-MsgGUID: TUY90Z7/SWisxV0SZfsrVA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="89835032"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO [10.245.246.14])
- ([10.245.246.14])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 03:20:27 -0800
-Message-ID: <cf1e39e5182e64910c3bca12c20e7d4271fd2d83.camel@linux.intel.com>
-Subject: Re: [PATCH v14 2/8] drm/ttm: Provide a shmem backup implementation
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Matthew Brost
- <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, Paulo Zanoni
- <paulo.r.zanoni@intel.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Date: Wed, 20 Nov 2024 12:20:24 +0100
-In-Reply-To: <22e11191-c52f-4544-a91f-5a53bc78fae9@amd.com>
-References: <20241115150120.3280-1-thomas.hellstrom@linux.intel.com>
- <20241115150120.3280-3-thomas.hellstrom@linux.intel.com>
- <a87503b5-2bca-4614-8816-078ade6d0940@amd.com>
- <7f3536a2e436566145215fad8889eee77dfa271c.camel@linux.intel.com>
- <22e11191-c52f-4544-a91f-5a53bc78fae9@amd.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-3.fc39) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB5A110E70F;
+	Wed, 20 Nov 2024 11:23:49 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1C3310E70F;
+ Wed, 20 Nov 2024 11:23:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4513613992672242855=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_DP_DSC_min/max_src_bpc_fixes_=28?=
+ =?utf-8?q?rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 20 Nov 2024 11:23:48 -0000
+Message-ID: <173210182867.694779.17837324436429796650@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241120103802.134295-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20241120103802.134295-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,250 +36,172 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2024-11-20 at 10:24 +0100, Christian K=C3=B6nig wrote:
->=20
+--===============4513613992672242855==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-[SNIP]
+== Series Details ==
 
-> > > Just that I sleep better: This can never return a folio larger
-> > > than a
-> > > page, doesn't it?
-> > The interface definitely allows for returning larger folios, but
-> > the
-> > individual page in the folio is selected by folio_file_page(folio,
-> > idx).
->=20
-> Ah, yeah completely missed that and was really wondering why that
-> would=20
-> work.
+Series: DP DSC min/max src bpc fixes (rev2)
+URL   : https://patchwork.freedesktop.org/series/139490/
+State : success
 
-One remaining sligtht concern, though, is that if we repeatedly call -
->writepage() for *each* page in a folio, that might degrade
-performance. Not sure if the filesystem is supposed to coalesce such
-requests if they happen, or whether things will start to crawl.
+== Summary ==
 
-Right now we can't really tell, since shmem typically only allocates
-single page folios (unless told otherwise, like i915 does), and in
-addition shmem writepage() also splits any large folios. I've seen
-patches floating around to remove that split, though.
+CI Bug Log - changes from xe-2254-ccf64319402f90f68549e2047a7f985a46436e41_BAT -> xe-pw-139490v2_BAT
+====================================================
 
-/Thomas
-=20
->=20
-> >=20
-> > /Thomas
-> >=20
-> >=20
-> > > Apart from those background questions looks good to me.
-> > >=20
-> > > Regards,
-> > > Christian.
-> > >=20
-> > > > +
-> > > > +	folio_mark_accessed(to_folio);
-> > > > +	folio_lock(to_folio);
-> > > > +	folio_mark_dirty(to_folio);
-> > > > +	copy_highpage(folio_file_page(to_folio, idx), page);
-> > > > +	handle =3D ttm_backup_shmem_idx_to_handle(idx);
-> > > > +
-> > > > +	if (writeback && !folio_mapped(to_folio) &&
-> > > > +	=C2=A0=C2=A0=C2=A0 folio_clear_dirty_for_io(to_folio)) {
-> > > > +		struct writeback_control wbc =3D {
-> > > > +			.sync_mode =3D WB_SYNC_NONE,
-> > > > +			.nr_to_write =3D SWAP_CLUSTER_MAX,
-> > > > +			.range_start =3D 0,
-> > > > +			.range_end =3D LLONG_MAX,
-> > > > +			.for_reclaim =3D 1,
-> > > > +		};
-> > > > +		folio_set_reclaim(to_folio);
-> > > > +		ret =3D mapping->a_ops-
-> > > > > writepage(folio_file_page(to_folio, idx), &wbc);
-> > > > +		if (!folio_test_writeback(to_folio))
-> > > > +			folio_clear_reclaim(to_folio);
-> > > > +		/* If writepage succeeds, it unlocks the folio
-> > > > */
-> > > > +		if (ret)
-> > > > +			folio_unlock(to_folio);
->=20
-> The code ignores the error and potentially deserves an explanation
-> for that.
->=20
-> Regards,
-> Christian.
->=20
-> > > > +	} else {
-> > > > +		folio_unlock(to_folio);
-> > > > +	}
-> > > > +
-> > > > +	folio_put(to_folio);
-> > > > +
-> > > > +	return handle;
-> > > > +}
-> > > > +
-> > > > +/**
-> > > > + * ttm_backup_fini() - Free the struct backup resources after
-> > > > last
-> > > > use.
-> > > > + * @backup: Pointer to the struct backup whose resources to
-> > > > free.
-> > > > + *
-> > > > + * After a call to this function, it's illegal to use the
-> > > > @backup
-> > > > pointer.
-> > > > + */
-> > > > +void ttm_backup_fini(struct ttm_backup *backup)
-> > > > +{
-> > > > +	fput(ttm_backup_to_file(backup));
-> > > > +}
-> > > > +
-> > > > +/**
-> > > > + * ttm_backup_bytes_avail() - Report the approximate number of
-> > > > bytes of backup space
-> > > > + * left for backup.
-> > > > + *
-> > > > + * This function is intended also for driver use to indicate
-> > > > whether a
-> > > > + * backup attempt is meaningful.
-> > > > + *
-> > > > + * Return: An approximate size of backup space available.
-> > > > + */
-> > > > +u64 ttm_backup_bytes_avail(void)
-> > > > +{
-> > > > +	/*
-> > > > +	 * The idea behind backing up to shmem is that shmem
-> > > > objects may
-> > > > +	 * eventually be swapped out. So no point swapping out
-> > > > if
-> > > > there
-> > > > +	 * is no or low swap-space available. But the accuracy
-> > > > of
-> > > > this
-> > > > +	 * number also depends on shmem actually swapping out
-> > > > backed-up
-> > > > +	 * shmem objects without too much buffering.
-> > > > +	 */
-> > > > +	return (u64)get_nr_swap_pages() << PAGE_SHIFT;
-> > > > +}
-> > > > +EXPORT_SYMBOL_GPL(ttm_backup_bytes_avail);
-> > > > +
-> > > > +/**
-> > > > + * ttm_backup_shmem_create() - Create a shmem-based struct
-> > > > backup.
-> > > > + * @size: The maximum size (in bytes) to back up.
-> > > > + *
-> > > > + * Create a backup utilizing shmem objects.
-> > > > + *
-> > > > + * Return: A pointer to a struct ttm_backup on success,
-> > > > + * an error pointer on error.
-> > > > + */
-> > > > +struct ttm_backup *ttm_backup_shmem_create(loff_t size)
-> > > > +{
-> > > > +	struct file *filp;
-> > > > +
-> > > > +	filp =3D shmem_file_setup("ttm shmem backup", size, 0);
-> > > > +
-> > > > +	return ttm_file_to_backup(filp);
-> > > > +}
-> > > > diff --git a/include/drm/ttm/ttm_backup.h
-> > > > b/include/drm/ttm/ttm_backup.h
-> > > > new file mode 100644
-> > > > index 000000000000..20609da7e281
-> > > > --- /dev/null
-> > > > +++ b/include/drm/ttm/ttm_backup.h
-> > > > @@ -0,0 +1,74 @@
-> > > > +/* SPDX-License-Identifier: MIT */
-> > > > +/*
-> > > > + * Copyright =C2=A9 2024 Intel Corporation
-> > > > + */
-> > > > +
-> > > > +#ifndef _TTM_BACKUP_H_
-> > > > +#define _TTM_BACKUP_H_
-> > > > +
-> > > > +#include <linux/mm_types.h>
-> > > > +#include <linux/shmem_fs.h>
-> > > > +
-> > > > +struct ttm_backup;
-> > > > +
-> > > > +/**
-> > > > + * ttm_backup_handle_to_page_ptr() - Convert handle to struct
-> > > > page
-> > > > pointer
-> > > > + * @handle: The handle to convert.
-> > > > + *
-> > > > + * Converts an opaque handle received from the
-> > > > + * struct ttm_backoup_ops::backup_page() function to an
-> > > > (invalid)
-> > > > + * struct page pointer suitable for a struct page array.
-> > > > + *
-> > > > + * Return: An (invalid) struct page pointer.
-> > > > + */
-> > > > +static inline struct page *
-> > > > +ttm_backup_handle_to_page_ptr(unsigned long handle)
-> > > > +{
-> > > > +	return (struct page *)(handle << 1 | 1);
-> > > > +}
-> > > > +
-> > > > +/**
-> > > > + * ttm_backup_page_ptr_is_handle() - Whether a struct page
-> > > > pointer
-> > > > is a handle
-> > > > + * @page: The struct page pointer to check.
-> > > > + *
-> > > > + * Return: true if the struct page pointer is a handld
-> > > > returned
-> > > > from
-> > > > + * ttm_backup_handle_to_page_ptr(). False otherwise.
-> > > > + */
-> > > > +static inline bool ttm_backup_page_ptr_is_handle(const struct
-> > > > page
-> > > > *page)
-> > > > +{
-> > > > +	return (unsigned long)page & 1;
-> > > > +}
-> > > > +
-> > > > +/**
-> > > > + * ttm_backup_page_ptr_to_handle() - Convert a struct page
-> > > > pointer
-> > > > to a handle
-> > > > + * @page: The struct page pointer to convert
-> > > > + *
-> > > > + * Return: The handle that was previously used in
-> > > > + * ttm_backup_handle_to_page_ptr() to obtain a struct page
-> > > > pointer, suitable
-> > > > + * for use as argument in the struct ttm_backup_ops drop() or
-> > > > + * copy_backed_up_page() functions.
-> > > > + */
-> > > > +static inline unsigned long
-> > > > +ttm_backup_page_ptr_to_handle(const struct page *page)
-> > > > +{
-> > > > +	WARN_ON(!ttm_backup_page_ptr_is_handle(page));
-> > > > +	return (unsigned long)page >> 1;
-> > > > +}
-> > > > +
-> > > > +void ttm_backup_drop(struct ttm_backup *backup, pgoff_t
-> > > > handle);
-> > > > +
-> > > > +int ttm_backup_copy_page(struct ttm_backup *backup, struct
-> > > > page
-> > > > *dst,
-> > > > +			 pgoff_t handle, bool intr);
-> > > > +
-> > > > +unsigned long
-> > > > +ttm_backup_backup_page(struct ttm_backup *backup, struct page
-> > > > *page,
-> > > > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool writeback, pgoff_t idx=
-, gfp_t
-> > > > page_gfp,
-> > > > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gfp_t alloc_gfp);
-> > > > +
-> > > > +void ttm_backup_fini(struct ttm_backup *backup);
-> > > > +
-> > > > +u64 ttm_backup_bytes_avail(void);
-> > > > +
-> > > > +struct ttm_backup *ttm_backup_shmem_create(loff_t size);
-> > > > +
-> > > > +#endif
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-139490v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-FAIL][2] ([Intel XE#1033])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2254-ccf64319402f90f68549e2047a7f985a46436e41/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139490v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#3517]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2254-ccf64319402f90f68549e2047a7f985a46436e41/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139490v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-adlp-7:         [SKIP][5] ([Intel XE#3443] / [Intel XE#455]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2254-ccf64319402f90f68549e2047a7f985a46436e41/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139490v2/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  
+#### Warnings ####
+
+  * igt@xe_exec_threads@threads-mixed-shared-vm-basic:
+    - bat-lnl-1:          [DMESG-FAIL][7] ([Intel XE#3466]) -> [DMESG-WARN][8] ([Intel XE#3466])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2254-ccf64319402f90f68549e2047a7f985a46436e41/bat-lnl-1/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139490v2/bat-lnl-1/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html
+
+  
+  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
+  [Intel XE#3443]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3443
+  [Intel XE#3466]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3466
+  [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-2254-ccf64319402f90f68549e2047a7f985a46436e41 -> xe-pw-139490v2
+
+  IGT_8118: 17707095f1e5d3c30f463b43022f01c0160579b6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2254-ccf64319402f90f68549e2047a7f985a46436e41: ccf64319402f90f68549e2047a7f985a46436e41
+  xe-pw-139490v2: 139490v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139490v2/index.html
+
+--===============4513613992672242855==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>DP DSC min/max src bpc fixes (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139490/">https://patchwork.freedesktop.org/series/139490/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139490v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139490v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2254-ccf64319402f90f68549e2047a7f985a46436e41_BAT -&gt; xe-pw-139490v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-139490v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2254-ccf64319402f90f68549e2047a7f985a46436e41/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139490v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2254-ccf64319402f90f68549e2047a7f985a46436e41/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517">Intel XE#3517</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139490v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2254-ccf64319402f90f68549e2047a7f985a46436e41/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3443">Intel XE#3443</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139490v2/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_exec_threads@threads-mixed-shared-vm-basic:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2254-ccf64319402f90f68549e2047a7f985a46436e41/bat-lnl-1/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3466">Intel XE#3466</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139490v2/bat-lnl-1/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3466">Intel XE#3466</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2254-ccf64319402f90f68549e2047a7f985a46436e41 -&gt; xe-pw-139490v2</li>
+</ul>
+<p>IGT_8118: 17707095f1e5d3c30f463b43022f01c0160579b6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2254-ccf64319402f90f68549e2047a7f985a46436e41: ccf64319402f90f68549e2047a7f985a46436e41<br />
+  xe-pw-139490v2: 139490v2</p>
+
+</body>
+</html>
+
+--===============4513613992672242855==--
