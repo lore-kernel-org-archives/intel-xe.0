@@ -4,57 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BC9ED6395B
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Nov 2024 14:02:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 838A2D6395B
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Nov 2024 14:06:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42A5810E28C;
-	Wed, 20 Nov 2024 14:02:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48A6C10E013;
+	Wed, 20 Nov 2024 14:06:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M0hUu0bo";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lrfXi9vn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0679E10E013;
- Wed, 20 Nov 2024 14:02:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732111365; x=1763647365;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=UocC8UkiyMlGT5OAEt1y978NBn8Okj0z2cJce80v2dk=;
- b=M0hUu0boo3oubgc6SKUKKcuZvObpnpVZj4Gmw9qhm9XR1B9frCUvmRvH
- gLezJqRlNKSMJ9X92tfnPOrBMl1ybVjfZGuLAWggdVGTPfSk6Q/KeyvMy
- YMteYdSElqY5yHPchF+TNsa/ABENplanwJsagwUAG4RVvaBCCkDRNwrJb
- B1kZgfxD3n2bP2hZs1QgMvPnGS+8Tm2384YZOU5Gzb3R5Zr5++NaZzb4J
- TMc1Jl5GkOljYgDgs435eQlAF3msnXyC6seKpfI9MZK0ny6SzerPp/cWo
- hkzNrPRCTEIBgkUyU+NiIXk7RSOP141WFbFbj3S7lXWI3neloKzTC2o2U g==;
-X-CSE-ConnectionGUID: Qb1LToSSSLOoyjsEgIyQHw==
-X-CSE-MsgGUID: 9lz8zKeBR5qgQ0M1S15oyQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11262"; a="43235876"
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="43235876"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 06:02:34 -0800
-X-CSE-ConnectionGUID: 3fAGkwQATx+mosqwT+LvSg==
-X-CSE-MsgGUID: C/3+nB0dQL+RlhJEI4h+5Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="127463698"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.54])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 06:02:34 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: I915-ci-infra@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: =?utf-8?Q?=E2=9C=97?= CI.BAT: failure for drm/i915: MST and DDI
- cleanups and refactoring (rev3)
-In-Reply-To: <173211120756.722476.1061959015010963380@b555e5b46a47>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1732106557.git.jani.nikula@intel.com>
- <173211120756.722476.1061959015010963380@b555e5b46a47>
-Date: Wed, 20 Nov 2024 16:02:30 +0200
-Message-ID: <87o72a0zrd.fsf@intel.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9BC510E769;
+ Wed, 20 Nov 2024 14:06:35 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 033EAA430FB;
+ Wed, 20 Nov 2024 14:04:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96D97C4CECD;
+ Wed, 20 Nov 2024 14:06:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1732111594;
+ bh=snK4haJGbbF0ladFXJRDOWEkiDsVD/apKtbr/fWv7JU=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=lrfXi9vnePm6UyBYnED+lnoz9J0bquH4uedjObYscR6tSFvYpFJ494Tj40d4V8DNL
+ 1XxtJ5x1pRq+awrBpIgnSwwQ7X9pIgiqnJjd1b6lqng3Jbk7RGCCx6afZnXODe2ebp
+ xqbKH/mT+JNqW2RaxI8OJPhY/a3A8rVCmDPZ85+mtzRuNAAWYP4yzC3Xpbu5NoVa6L
+ ZhKVCScHpMZcJQg8g01D6kmNIjBsILWaQ2b1njPujXzpZSY2Sbrvn06qQoqd+IsbyV
+ pLiEY6TNOApyjNdy7eR1yLyBsYGa51crbhzMKwa2X7nQTYbttcg+Fvrm0XJysHOBAX
+ rP5JWbD24H16A==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Sasha Levin <sashal@kernel.org>, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ simona@ffwll.ch, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.11 09/10] drm/xe: Restore system memory GGTT mappings
+Date: Wed, 20 Nov 2024 09:05:34 -0500
+Message-ID: <20241120140556.1768511-9-sashal@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241120140556.1768511-1-sashal@kernel.org>
+References: <20241120140556.1768511-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.11.9
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,105 +66,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 20 Nov 2024, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> == Series Details ==
->
-> Series: drm/i915: MST and DDI cleanups and refactoring (rev3)
-> URL   : https://patchwork.freedesktop.org/series/141501/
-> State : failure
->
-> == Summary ==
->
-> CI Bug Log - changes from xe-2255-6992ee4b9cd5a553e6e429e58b97abedf546e3ed_BAT -> xe-pw-141501v3_BAT
-> ====================================================
->
-> Summary
-> -------
->
->   **FAILURE**
->
->   Serious unknown changes coming with xe-pw-141501v3_BAT absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in xe-pw-141501v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
->
->   
->
-> Participating hosts (9 -> 9)
-> ------------------------------
->
->   No changes in participating hosts
->
-> Possible new issues
-> -------------------
->
->   Here are the unknown changes that may have been introduced in xe-pw-141501v3_BAT:
->
-> ### IGT changes ###
->
-> #### Possible regressions ####
->
->   * igt@kms_psr@psr-primary-page-flip@edp-1:
->     - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
->    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2255-6992ee4b9cd5a553e6e429e58b97abedf546e3ed/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
->    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141501v3/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
+From: Matthew Brost <matthew.brost@intel.com>
 
-Unrelated, please re-report.
+[ Upstream commit dd886a63d6e2ce5c16e662c07547c067ad7d91f5 ]
 
-Please also add the Reply-To: I915-ci-infra@lists.freedesktop.org header
-to the mails.
+GGTT mappings reside on the device and this state is lost during suspend
+/ d3cold thus this state must be restored resume regardless if the BO is
+in system memory or VRAM.
 
+v2:
+ - Unnecessary parentheses around bo->placements[0] (Checkpatch)
 
->
->   
-> Known issues
-> ------------
->
->   Here are the changes found in xe-pw-141501v3_BAT that come from known issues:
->
-> ### IGT changes ###
->
-> #### Issues hit ####
->
->   * igt@core_hotunplug@unbind-rebind:
->     - bat-adlp-7:         [PASS][3] -> [DMESG-WARN][4] ([Intel XE#3517])
->    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2255-6992ee4b9cd5a553e6e429e58b97abedf546e3ed/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
->    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141501v3/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
->
->   * igt@kms_psr@psr-cursor-plane-move:
->     - bat-adlp-7:         [PASS][5] -> [SKIP][6] ([Intel XE#3443] / [Intel XE#455]) +3 other tests skip
->    [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2255-6992ee4b9cd5a553e6e429e58b97abedf546e3ed/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
->    [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141501v3/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
->
->   
-> #### Warnings ####
->
->   * igt@xe_exec_fault_mode@many-basic:
->     - bat-lnl-1:          [DMESG-FAIL][7] ([Intel XE#3466]) -> [INCOMPLETE][8] ([Intel XE#3466])
->    [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2255-6992ee4b9cd5a553e6e429e58b97abedf546e3ed/bat-lnl-1/igt@xe_exec_fault_mode@many-basic.html
->    [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141501v3/bat-lnl-1/igt@xe_exec_fault_mode@many-basic.html
->
->   
->   [Intel XE#3443]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3443
->   [Intel XE#3466]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3466
->   [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
->   [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
->
->
-> Build changes
-> -------------
->
->   * Linux: xe-2255-6992ee4b9cd5a553e6e429e58b97abedf546e3ed -> xe-pw-141501v3
->
->   IGT_8118: 17707095f1e5d3c30f463b43022f01c0160579b6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->   xe-2255-6992ee4b9cd5a553e6e429e58b97abedf546e3ed: 6992ee4b9cd5a553e6e429e58b97abedf546e3ed
->   xe-pw-141501v3: 141501v3
->
-> == Logs ==
->
-> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141501v3/index.html
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20241031182257.2949579-1-matthew.brost@intel.com
+(cherry picked from commit a19d1db9a3fa89fabd7c83544b84f393ee9b851f)
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/xe/xe_bo.c       | 14 +++++++++++---
+ drivers/gpu/drm/xe/xe_bo_evict.c |  1 -
+ 2 files changed, 11 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index e147ef1d0578f..c096e5c06f726 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -869,8 +869,8 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
+ 	if (WARN_ON(!xe_bo_is_pinned(bo)))
+ 		return -EINVAL;
+ 
+-	if (WARN_ON(!xe_bo_is_vram(bo)))
+-		return -EINVAL;
++	if (!xe_bo_is_vram(bo))
++		return 0;
+ 
+ 	ret = ttm_bo_mem_space(&bo->ttm, &placement, &new_mem, &ctx);
+ 	if (ret)
+@@ -920,6 +920,7 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
+ 		.interruptible = false,
+ 	};
+ 	struct ttm_resource *new_mem;
++	struct ttm_place *place = &bo->placements[0];
+ 	int ret;
+ 
+ 	xe_bo_assert_held(bo);
+@@ -933,6 +934,9 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
+ 	if (WARN_ON(xe_bo_is_vram(bo) || !bo->ttm.ttm))
+ 		return -EINVAL;
+ 
++	if (!mem_type_is_vram(place->mem_type))
++		return 0;
++
+ 	ret = ttm_bo_mem_space(&bo->ttm, &bo->placement, &new_mem, &ctx);
+ 	if (ret)
+ 		return ret;
+@@ -1740,7 +1744,10 @@ int xe_bo_pin(struct xe_bo *bo)
+ 			place->fpfn = (xe_bo_addr(bo, 0, PAGE_SIZE) -
+ 				       vram_region_gpu_offset(bo->ttm.resource)) >> PAGE_SHIFT;
+ 			place->lpfn = place->fpfn + (bo->size >> PAGE_SHIFT);
++		}
+ 
++		if (mem_type_is_vram(place->mem_type) ||
++		    bo->flags & XE_BO_FLAG_GGTT) {
+ 			spin_lock(&xe->pinned.lock);
+ 			list_add_tail(&bo->pinned_link, &xe->pinned.kernel_bo_present);
+ 			spin_unlock(&xe->pinned.lock);
+@@ -1801,7 +1808,8 @@ void xe_bo_unpin(struct xe_bo *bo)
+ 	    bo->flags & XE_BO_FLAG_INTERNAL_TEST)) {
+ 		struct ttm_place *place = &(bo->placements[0]);
+ 
+-		if (mem_type_is_vram(place->mem_type)) {
++		if (mem_type_is_vram(place->mem_type) ||
++		    bo->flags & XE_BO_FLAG_GGTT) {
+ 			spin_lock(&xe->pinned.lock);
+ 			xe_assert(xe, !list_empty(&bo->pinned_link));
+ 			list_del_init(&bo->pinned_link);
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
+index 541b49007d738..32043e1e5a863 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.c
++++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+@@ -159,7 +159,6 @@ int xe_bo_restore_kernel(struct xe_device *xe)
+ 		 * should setup the iosys map.
+ 		 */
+ 		xe_assert(xe, !iosys_map_is_null(&bo->vmap));
+-		xe_assert(xe, xe_bo_is_vram(bo));
+ 
+ 		xe_bo_put(bo);
+ 
 -- 
-Jani Nikula, Intel
+2.43.0
+
