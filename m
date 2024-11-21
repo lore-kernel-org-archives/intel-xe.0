@@ -4,165 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 265B9D7879B
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 17:24:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E31D6D743CA
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 17:45:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6AF010EA03;
-	Thu, 21 Nov 2024 17:24:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7F4F10E06D;
+	Thu, 21 Nov 2024 17:45:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="apbA+dbE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aVNqyPiY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEECE10EA03
- for <Intel-Xe@lists.freedesktop.org>; Thu, 21 Nov 2024 17:24:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A62DB10E06D
+ for <Intel-Xe@lists.freedesktop.org>; Thu, 21 Nov 2024 17:45:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732209845; x=1763745845;
+ t=1732211135; x=1763747135;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=TmJ8ix3qgn06x1464ScB7+/YoepwFBpHwsPvfYCil8M=;
- b=apbA+dbEmt9ITbg5GMtv56Mb6emM3vhbQJGcy15+w+FAnwMIJLDxx8Hv
- aluJHcxJR6YJXEzMqnwCbWT0wle6STdgbAae6ws10XYUvXUzNa8iidypE
- 0PunL+vlnYAJISFQJKfj+VEZ8DVKbTOtPFLtmy651IbSIdXQG+o5xy0kb
- JdVZvepjzewzt2jmShQW4xijgZNN5MbYQHrpk806QLSvFpSqV9028MGhw
- yB2Z1QNs9XXKWKnoTT8VNXHWkxmPi9QMHxZea0Ap73vIE/0iFz5N8CqV3
- YViMJ7d6Pz554FKG28DZVw6fNM0oXEJnHvoURFfZ51PcyWtnQg/JLfpJ8 A==;
-X-CSE-ConnectionGUID: XBTskdLERCCUFOBPGle/Aw==
-X-CSE-MsgGUID: hD3KwliZSk2yj1F3cvhSdg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="32194765"
-X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="32194765"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 09:24:05 -0800
-X-CSE-ConnectionGUID: qgWZflfZRw2Ppc+hUpvIZw==
-X-CSE-MsgGUID: WGnINcQjTV+7IUx6F4xFXA==
+ in-reply-to:mime-version;
+ bh=zjqt5NK2bkDH386kJ1s6Lih7r22I6HV3SNo4CjFkmWE=;
+ b=aVNqyPiYA6K9+2//M6AOHxcpq/+alEOiXHTG6YD7vMF26H1Dwxq7gruM
+ sV6hX2T7aEUMI2Z6bCVfjP4htbKdCtfdPamN18Gzw8YxolIyeNu6T6/OR
+ 27wzCePzw8eH1TAZXIP+u7ui8ESfhCFXhiKQzoMdSkA4v0wKyPg0GEgT8
+ ChG7HQISGpDPioTBfB7nprZBHMKoENAX9uvDumpV09/8k2FA2WoosSWh2
+ dJWuAN1omx5T1NGma8zgpOsvG/fSWZM74cOfNRxBf7N5nX/vf7RtTTurf
+ CSjMQcmVdgfZSl0atBANrJrP5Gvc2CS9rFwOwzWTHSC0jGtAeKRxBHFKl g==;
+X-CSE-ConnectionGUID: zb1aNodxTnqFbsdZewpXJg==
+X-CSE-MsgGUID: 0fhAu1yORReQFLZojgI6Jw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="54849869"
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="54849869"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 09:45:30 -0800
+X-CSE-ConnectionGUID: MJazSKehQf+AYJBZ/d5AvQ==
+X-CSE-MsgGUID: sxoCYZsFS7a5d5Q2gVNyCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="90480715"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 21 Nov 2024 09:24:05 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="94765143"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 21 Nov 2024 09:45:29 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 21 Nov 2024 09:24:04 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 21 Nov 2024 09:45:29 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 21 Nov 2024 09:24:04 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.174)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 21 Nov 2024 09:45:29 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.172)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 21 Nov 2024 09:24:04 -0800
+ 15.1.2507.39; Thu, 21 Nov 2024 09:45:29 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DwFvDiSFyoGLCjzfY3nXls97fpk61Wq+yemdfSmXnLipSz9Zk2Kj4feBXkDMTju7AXhdbwMI657Kgfk3QawzTT4Isr/I3VU/ANyKq4VYzivi0+Y5owsQXQGE7wp9BBtUgIAMW2j52Vk1SeXOY0u/YrXAJmcjqnTrReUPr5ZGtmP58DK9mAGI3wqy/XQF5jaRUhJDR7q0HaIRmjl1ABeB9sGOtnxtNFlDBZ4qlJa3+yk7bu3GIQwo56oFLT97ZjoeOwKfskSCh24tF/+Ghckx9H9zYJxo8Pbat0UR94VIK8xGcxlRynYBMfqd9Yl3Wx1+KMoyHMDlhEStS1Ue4S1RrA==
+ b=svv0+qQn8mlalJLDWzzvXnrxdu7QNwYB5NY3D47rW0thxTWqDuSBG7ia5sxUnJ+WfiHg1MzPg06K+Ohvf41nxnfvmdDudzTTIFYbNwfghtSjHGn6NhPmE2qXXEv+08rphqKKOrQh8Lhnpsz7PfnXT8B5OfRbWrLFfPgELTBVzJEheBa29DzsUEuH8lbqKjwr1nqymhM0UUIyiuVWMzzDRlf+W95QkowlPH1SpJEEAGDJkJMUd0vrNssTTHK+9MFNEcI6wWTRXP1T13svDSkmcbElRBvKDV4DFq5OozefHbcOlQYSgIfNDMAT4PwWwTrrvALRIB3m20awQ2qrMrkO3A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8YKGNiLVvFklncO0XGeCTOB7FewitL0gQeYuaa6wHnY=;
- b=GtQra9577eWRvcZSX+saJtz8tEAcbSCk2d473UAT5e0WkcgZXod6C+SbbpM5kMIu3xlAAJLkXc02EhyKBPUvNYpmkSeValBxYmUYYjrymMw8fI/WiGzxd2/PGXwMcYrqUjYzBB8F+EdS3yrefJXZkWIT6VtqdowopA8mI8OMG1kkpisiYQNgzQ67sBAAYymOSfMlAmAzJi2yHFSBg1+jnd/Tg4zKTgJt1w4E1Eb89Vak8Tagd5WgSw/JtO6EORDWjM48j7f0hbW5KgnnnLXL2hvSqMDmy3EmVSpVL3y3XkPzXTvTzxWKaxo4aIA/d7NKvWPZdE29vRHlGr8nKyx5bQ==
+ bh=wOxrtozkk2q9UUS5jDpxLGKnJjYCSo0gkfx5WJjRsYs=;
+ b=B1Bsvm50owU/7Uy4DzouWjKkpr29d0+lhmaZPKb4QJyRkiG5ZKv0ApWH7oOYMTOoVRfkWP7vPVzcM/1GLwLDNRI54mI1Nw5yqj9902mL72TPKtersbatEn61/lwS1FT8D7NVUraGKfo1ddHCXhaqkRUgzI3Ta/ft9FK96wYRmRbp32WMaIYSq+AjKfVxfNwKJUudTmYfkCYJUo4ntwShCTH/gdsrybuYr5KJGqShNuYVMAVYFxSkupMJQ+ahnW+GxZhLz0kQLaCoCUsGI1bRo/SOr0dBWNVCPCZajyQb2BW8has2QUJyMXle5xnr8L+yJ2UT+ue/6F5TuhN5664E8w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by MW3PR11MB4524.namprd11.prod.outlook.com (2603:10b6:303:2c::13)
- with Microsoft SMTP Server (version=TLS1_2,
+ by MW3PR11MB4522.namprd11.prod.outlook.com (2603:10b6:303:2d::8) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.24; Thu, 21 Nov
- 2024 17:24:01 +0000
+ 2024 17:45:16 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.8158.023; Thu, 21 Nov 2024
- 17:24:01 +0000
-Date: Thu, 21 Nov 2024 09:24:37 -0800
+ 17:45:16 +0000
+Date: Thu, 21 Nov 2024 09:45:51 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: John Harrison <john.c.harrison@intel.com>
 CC: <Intel-Xe@lists.freedesktop.org>
-Subject: Re: [PATCH 2/2] drm/xe: Add lock around devcoredump capture status
-Message-ID: <Zz9s1QINdIZyco1A@lstrano-desk.jf.intel.com>
+Subject: Re: [PATCH 1/2] drm/xe: Add a reason string to the devcoredump
+Message-ID: <Zz9xz8zQoXcGIl8T@lstrano-desk.jf.intel.com>
 References: <20241120232257.1025282-1-John.C.Harrison@Intel.com>
- <20241120232257.1025282-3-John.C.Harrison@Intel.com>
- <Zz6pPI/q0hfTfZ3/@lstrano-desk.jf.intel.com>
- <4bc83b58-8f52-47da-a8da-96d8ad6cfeb5@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ <20241120232257.1025282-2-John.C.Harrison@Intel.com>
+ <Zz6rNo0s6y5W0Hrp@lstrano-desk.jf.intel.com>
+ <Zz7G9MKChzMefclb@lstrano-desk.jf.intel.com>
+ <75c993a1-b8f9-4d85-adcd-f28b26109633@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4bc83b58-8f52-47da-a8da-96d8ad6cfeb5@intel.com>
-X-ClientProxiedBy: MW4P221CA0002.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:303:8b::7) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <75c993a1-b8f9-4d85-adcd-f28b26109633@intel.com>
+X-ClientProxiedBy: MW4PR02CA0003.namprd02.prod.outlook.com
+ (2603:10b6:303:16d::30) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MW3PR11MB4524:EE_
-X-MS-Office365-Filtering-Correlation-Id: b4503043-7221-4a22-eec8-08dd0a514a6a
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MW3PR11MB4522:EE_
+X-MS-Office365-Filtering-Correlation-Id: f6f5b887-050d-4173-eea9-08dd0a544213
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?SiBKsxu2pCBagCt6KhZSRqMBN6fepRiK3TpDYTNOvJjQYg/SaKxtKRxTiU?=
- =?iso-8859-1?Q?0dfoDHZyBwljQ0gQfOJhBfmqPnysfgj+6yv8vgobREL2XRHX1d0FkctgXp?=
- =?iso-8859-1?Q?w5GTqrhwO2HWB/90+1Btj4WUuwh+jh5JLPJ0UHQraze5PKLTdghXiTB0q9?=
- =?iso-8859-1?Q?u9GKKTPMToo4+t6fDFwgWtMnIF1fumf1Oy0GPelwzAs/51bKrPs0I6z/2J?=
- =?iso-8859-1?Q?EjK1VT/Z2Jwe26c/SQfofwQL1T5ASUP4EaRV39blvNrbYmrJi/KsxrHV1G?=
- =?iso-8859-1?Q?lKbZG8yBTpzNNHWf5BOMl0DRXjhOdot8sMcjfCkXXZHObM9bedMtFNSWOg?=
- =?iso-8859-1?Q?V+Uvk6qu/YBdbrwHyzSqn1WsLnAWUao7bsC6NUrIa1T0okpX/vL8+LNBg7?=
- =?iso-8859-1?Q?n+KVJrv99+wPHZxqCSpKCN7j6Y0BEEyCO9b+RlwW9/yV7axaNVvrAGN+PE?=
- =?iso-8859-1?Q?PkA6Md6jui9dRyQIiahggVTTPEmklpwDKUePVTLDxCUz5VA8J3sY5zoIN6?=
- =?iso-8859-1?Q?P4ZN1pbMO8d4oG5/BNoXyDGkzo/96ONZtXqJqazY2DQEJ/83quHBOHIoi6?=
- =?iso-8859-1?Q?lvKdhur01oyKLM6qwX08gwVKillKgr4unZqTf8OEZdpRw1ksOLigaH+On8?=
- =?iso-8859-1?Q?FY8SkmeBp8/kgQexdfYS1e95sRLumxszfuVLXZvG6mCVtkVlXZU22wUclS?=
- =?iso-8859-1?Q?IpZosyEtvaaYSQnS0GbGn6ZTxuDJLJiH3omcn81Pw25tNH17ygPSMU0UVx?=
- =?iso-8859-1?Q?qPXP+mXuB6H775RIPRBSNaO7AO+7NIxQvV+QvYJzYXV0EgIrCkqyBNKs+p?=
- =?iso-8859-1?Q?z6ruhsPE/np2EqU2Yqwcdoej+58wMfYY6nSvlMKsW6N3SMljHEWPak/lkz?=
- =?iso-8859-1?Q?lpoNUxLuW9GUuzhQYj4YyxoUnH/bUQTXT68R0czh9HUsaww/89Y/VKswSq?=
- =?iso-8859-1?Q?UvAAAvH6Ntt+AkmP0U/07VQzx1541x88xHPy3uH0yeHGFUltQxp/JXbCTf?=
- =?iso-8859-1?Q?0hPZAjIExalaJ7Dl6QOgSkfodSzbyyFBQxE+TO5Q9hEvDlcRciwysxjsfq?=
- =?iso-8859-1?Q?UcaP3Koa4KW8OTfx6AAVdsIoPhyKZEO6c8KSjSUsp24UPZx3HR7XECg3AT?=
- =?iso-8859-1?Q?OOTZv4wzjd950ptdasTOtCUH5tj/8zKyFeTwRuwkJsHjgi/Vn+/O0tJVuc?=
- =?iso-8859-1?Q?/6Z2zCZ3i2vgtyvdvIOgTDqCQwiWAJOkR0v0IFOnUTPeVG2XsJBxBm4a60?=
- =?iso-8859-1?Q?a6waYfaT71Uc7ky2wmKSBbHSCbL2mgVPXP9JMN4OS0Hz4D89MK5YFvgrwp?=
- =?iso-8859-1?Q?+h0p?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ADRff/NpCA25U7necncEjDnsDx0AYIjBGMSKAZJIeTfk4ym+3ZygGQQM2+Jp?=
+ =?us-ascii?Q?OggXxD0TmpFE4CaSgrckA6hYzJ/ZIW85eaa6EiBQDrKCPs9czokeeIuCoeYj?=
+ =?us-ascii?Q?pluxrAauOMziFV9UvavMLKwWhG3xjjG18M+08qiz2noLTVQee1ZqYr6dY1mD?=
+ =?us-ascii?Q?M3RP+GmE/KJVnRsyr5IRkING99E4woQROMqM9uFeIk+JtppiXlaB3O3N3Ekc?=
+ =?us-ascii?Q?/kSICiVJRo0XafdmI+ahgivFpnnRqFARyv08F5NYDz5AhExSEU2LO6lRpqiA?=
+ =?us-ascii?Q?acoCF2yVsPI0A3bQPJEnfAJoLdInhScK7wr0jNyFtkn6tUXXapfHZ9QOnTFg?=
+ =?us-ascii?Q?289+VM+4UPPXOrjdhRopVn3K/ItKuk/A+maWsFuXBX/hEz5n72kyuklURDwq?=
+ =?us-ascii?Q?1JhGURQkNgRoryB2VVtTpeck7DZoJTd9Y9EpH+tuXudw5JQTY8uiOljdJXXA?=
+ =?us-ascii?Q?DcmB5efTxa9/mDP9dPCvCb2YsKnjF26hIekPahNYJ3OeYBh0y3fyb9bQntDo?=
+ =?us-ascii?Q?TZrdT70aA9wayuPjWbStTzieedsQmvRwr8HOiFY720LuK7uwXCb58+/fUnvl?=
+ =?us-ascii?Q?QuRcqzCnc4kVUUlua3x8X1l9KgfXlECbwVpm6jIJXb9LVqCljhhPiwCEG4Aa?=
+ =?us-ascii?Q?aHWsslfGXiphcafqZ1kZZstT8dXFrh782G7jC4TNFaPzwAlmqH52QHGsSNGQ?=
+ =?us-ascii?Q?tJd9Hd+HluCCUbotKT29AqK32roK7VQUaynN1JZ0s5ph5mX8DVyzEHc06Nxl?=
+ =?us-ascii?Q?39uiRz4UfmS80lYoJkHa/y57AKe+chXkgP7wRz0rIqMcYTFMc5THD3HUT+zi?=
+ =?us-ascii?Q?VS4oBXoeQ7IpQ6K8pFZZtflIGsBlEd3S8izFoFanenkYfIhhIVD3suyxrOHS?=
+ =?us-ascii?Q?uhpYfao9Rd79p5Hrn8lgl7WCMOxGCrW8FNoO1eUKB0b22RhEP86V+O1t7bRs?=
+ =?us-ascii?Q?nVbESs/SbKBL5zumGsGYAo5YpFuYmUDQ1W1CpMAaaFYKVVj4OlEHkVGGcGkq?=
+ =?us-ascii?Q?VbUrqvShwZ/ndYLDyGTvQzQFnrncD/h4HUuP5NZITof2DwblIFh4G/YmuDNJ?=
+ =?us-ascii?Q?qX9gHAkOpxdVxeVImkrEDZlGrWGnaTHGCrzNU3yV2UJbHTXAEZcmvtS+IxhX?=
+ =?us-ascii?Q?nXSrys78Qt8kLlhoQGNawp4R9P463LCh2FpTnmvZR57QHY+uA/mGunUaRme8?=
+ =?us-ascii?Q?KwPLYGlEYYr3DlMU1DZsTgZmr020ynbhz9c6JT+dq2CPgGf/Bc2iCuk2HfFw?=
+ =?us-ascii?Q?vhyeX3ujEXbWwYyqDlMS1U3xQfQqeA4NAYi6uOa8h5LXCp4p83srCmPaysRT?=
+ =?us-ascii?Q?VPsL6P74zydgJqDMZO5A05ZM?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?JCowYwnq5xel6BEdLOl16R6UISdIkfY9qPKU1GLHSZ+BSVSZpHR11Uj5f/?=
- =?iso-8859-1?Q?Dy1aAml0EwRx/AoDgmXc7i5whdhKTZKenioouWYhS/5ViRSpy2xBEGMarB?=
- =?iso-8859-1?Q?NiRVlpt9gm12v1QXbkI2mwRgfIBIhKCntvp0lAqMV+khqtiYKC+cWjh1qP?=
- =?iso-8859-1?Q?5wglbwufM9Tn96cyMWmTZ9JU+HKXVRoCGQ1TrPeC+q1cgqhw3uC1Q2VAbA?=
- =?iso-8859-1?Q?3fB4NhTdPfrVkT2qkgQK7Hj7Fid7yHsHGPlHfKqbnlNyB0vZDTJu1D7IwA?=
- =?iso-8859-1?Q?iv35ICYO/xpiOlmeORbPf57KFxp535a9ECK5R9/YI2+Nfbr2CgeLa94Mfv?=
- =?iso-8859-1?Q?tL4skJn16daa9EUpzJDIyFA5cx3vZFlhS6nl/Hxt7MFOGgRG0VsJZaTGWM?=
- =?iso-8859-1?Q?7VE0jF7+r5ebnLYqD+El1afrlrktZRBV5yKV6WKSjXe4ugHpc/7np6dJrY?=
- =?iso-8859-1?Q?LkQTO5ZvnY5akm7rrSW/dKazyM3JXOQMRV4gCjYV/OIbewk60//NUpWMUz?=
- =?iso-8859-1?Q?mhBriw+RnuDvjuvAjPQ/jS0dsq5+38Jdk+/o3z4uvDcSAiUhs8SelWYuD3?=
- =?iso-8859-1?Q?8MV7hHGMuJ09BRIqbgIp2SeCMxat80cB4cVKMcLeJ5Qavi8gaP+BwiUzUS?=
- =?iso-8859-1?Q?4rQeogYc2N98aWR0AIlT5FIQgjwU30CLnMl+XSGLgcwD3qBRue0NZ6drPm?=
- =?iso-8859-1?Q?8DP0MX0aUMc1lofRP3dJeRcMuCZEtoME+cTfLFV7/IfUD1S7NaScvzBqvE?=
- =?iso-8859-1?Q?HP3b8rhcdrZtKfON/bSGj/HByIZtP63G22dDpKVeAip1kHmvrRZIZVC2ol?=
- =?iso-8859-1?Q?1WFFl5lAK8lhdCUr9kLpTPsSqizxf9jTIDzWnmUnafp322zelRlAKDnjzo?=
- =?iso-8859-1?Q?y4rcaz+HupodptBTKi49yxH4QwmToU4rD/Ol2bZCawlw5ywuzov9OkPnQ9?=
- =?iso-8859-1?Q?O7eMm7Q2hmoipefy9heF1fK5Utbp7SwOZKt4xB9gkzjDqNp4TzQLxv81+V?=
- =?iso-8859-1?Q?FtfZoOtnRZA0HEMyCQ/JE7M5nVGJVGFpSslFCRuE6pcsgW7uTwCheYXOp8?=
- =?iso-8859-1?Q?AYDfpqx4Xz9lEkI44jHuMuB1X41u/NxJwgkLRt6pv22sd8rsoUNDSKV9fI?=
- =?iso-8859-1?Q?KGTYkfxCJitUpq4VCB0w37HhM5TAlWaTjDM1beaw4IWLhdZz0VMbAFfE1B?=
- =?iso-8859-1?Q?hnzqZFlcCpt8hQ7o2hUmKgLlpyFMzzi0/UdTjF0WSdsa5fyZmpS+NxmO7e?=
- =?iso-8859-1?Q?jTps3hyrlL1OEDNrzEH6xg3qKAMTz382V5Nfg1yurgcXTPRWg830s3OZyG?=
- =?iso-8859-1?Q?pvPAquh0hheQRnLiHQHzhQL1NKqtoO7c0P08NaP5ba+VRHZSj6KnWK4N73?=
- =?iso-8859-1?Q?ouvgeQRsIe3okq2Rzbqhm36ANpJY7oj3ZxmYp8rUVfy02DOWAVq4rb9Njt?=
- =?iso-8859-1?Q?SgzMOCZvkJvI6m19QKsrKAhtIojTmZ3xxNwJqC/fp6NHfXbmuu6nDxCuUk?=
- =?iso-8859-1?Q?DXT61IzPSqxyrU3NY+AdnkujclVbcq6Bl1Ysn2C0mYuNPKb51Dm7JzwMD8?=
- =?iso-8859-1?Q?YN1HH4PxZkK83GseUHPD21d58x+GRE2r+nMRyL7Zpn+bZvjSqyjjoR0GiJ?=
- =?iso-8859-1?Q?dUxE6BwszxvVXGRIV9dXy1vjqGjqC6CJfBdyg7EayXEMhDsKdqzKXpaA?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b4503043-7221-4a22-eec8-08dd0a514a6a
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?28FiHgBZqlg06cJ2oTXOjuGHtz70aiRmuKMmIgY0oiubB/bcBJbMezeRjCES?=
+ =?us-ascii?Q?Yc2g5XFxEaVZJlTbGi929E9bf4wIaS84wxEVn/dmewpfes31yKRnTYYqI2YS?=
+ =?us-ascii?Q?nvKgiaHnHFO2jdiiApjb36Ow4IdzUeE8moRIaVmHPUgV/gs7tq2aLf59p9bD?=
+ =?us-ascii?Q?LJZ8FDjepJvHJmvaGYOFvYpIQe/U1fbWp5Y7rgXUsY3SAT49T7KDJpvcy8Af?=
+ =?us-ascii?Q?b7KFJox8IrFTfSTw7pCvMG+YLC/lz/oC84kQKs6BuDkL01wJJLU/kILJzm/c?=
+ =?us-ascii?Q?j96/sUCessJ9Ud1FGcpGCJuuTUOpBSl3AlCGaYH7LwLUWqpjS06GP8UTPR90?=
+ =?us-ascii?Q?KA7fid3pUFkxEQHac71EWjRyep78AXjiPvIKv4I3xg5WVFYLtQbhq+7pQpcE?=
+ =?us-ascii?Q?hY4SfcIprAv5O8QzzfDx39HAXEp81KAWwvhs3PEXTXaWGDFfkQzf8vr0sqCu?=
+ =?us-ascii?Q?NuvAJb328qvP5vKm1UdQODbZC28U1HC3TBekdvtvVOP+Fob4aeJ0FaILHF0/?=
+ =?us-ascii?Q?gQdTWOzVbmCLbBCoMW+hje9tE3X8LwvA4NWcMEmZwQkQR862x41w/Z7Dl7mR?=
+ =?us-ascii?Q?VwPRZUBgyPT6uH2spb/KzHmgnGbjBh03PSFGh4sPy28VhoYCRWlGkpGpsKV0?=
+ =?us-ascii?Q?lqaJY/88YEvOEoxCEhpGO/NEhAcExsFIDzh7zzSjDl+499uC+GJKtB9G005H?=
+ =?us-ascii?Q?Wne+bPirkMzCzHXFIaSXxBn6/qzzV3X7h8stKRbVCbBd3fFKMpCwcUleR2Bw?=
+ =?us-ascii?Q?Kj0h2f0M++a1HFejVpad7I0gyFX1wa+KQA6crtW2nRs93yUOJaDxt/g6ozKc?=
+ =?us-ascii?Q?h9tMcMfsUgKMcaW7BtYp/sauFJhWvx1LCsVJhwu2XshH57sbpKoLaAraYElW?=
+ =?us-ascii?Q?OZa9oKlJwnmjMxkxlPRESsQwJpfhFrmKqqPbNzhsSADsVSAZgfSkTv66EQ3s?=
+ =?us-ascii?Q?fcnUZ+M/SV+zQe91scJKqxIXiwR4fYLaPGQfP5Bra1zOJ/iNEwC4XDpG+BXt?=
+ =?us-ascii?Q?S4dRkc/1nAdyedM7pa1NScckJLnRV6CiVDp9vIHTjYVcyAUQ8VCnHNFfpdCK?=
+ =?us-ascii?Q?IEg0H5mbuxB15YZm+A4kYeK/UZji1guKZSpuntXZENuYYrZq7a8fViYydGHd?=
+ =?us-ascii?Q?8cUFlM5Wl2bQO1un94vS70OI4MsloqqGQyVBngp57xD2Ii6954ioGqqzXGEq?=
+ =?us-ascii?Q?V6ltXjExqHNgX4zEns9sXPMOgrYS70Hm1ff/wzuaiffUFHmQsUyFhXuMt/n3?=
+ =?us-ascii?Q?4AMF2LiET+uBfCbwP0Ed4eaKB6DQXRhjuMaV+h8H6GrT33JRohU2Rbq4X+1C?=
+ =?us-ascii?Q?biVHLfDnWyRH93vUf5PS+GWLWhAS7DK87r9e/qMxa45Pkx16WSC3fhvzy1bN?=
+ =?us-ascii?Q?6qWnr/B29o6IBB1PJlcApyWFmLrNlYSTJuOf9liL83yurlcEgn+ubjqrymiq?=
+ =?us-ascii?Q?Cn25RoP7ry+GfEUX/kRlaMVbhhV7F0Q3UAm6dNJ9b4zSXgHlHTk6azh5Bvlr?=
+ =?us-ascii?Q?vAfuQTrN+iLYLjokfnOjFkJt5RnTd2+HxrBv+txHf2GZ/zltdgj11jNDxFp1?=
+ =?us-ascii?Q?Uj3p5boApG6/01zYMahBq0axiKzRNwzng/JyYI1pv2aKhPXeQuYtqmbQ2X5T?=
+ =?us-ascii?Q?qQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6f5b887-050d-4173-eea9-08dd0a544213
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2024 17:24:01.5655 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2024 17:45:16.0898 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Vrf2MgAslnAW9WKB5sIEc7f6UGQpeEtSjOVU8mJYGD4DXu4fFjXaacUu027TDLA71dJgv1iU2ZGwUzQZynQlCA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4524
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4kAdagkb7WQFXz+rpty4r1K2HcLQ659P7818gOR1mS2806MZ67ssJwaFnAPa2utF4uoDk2NJI5VLIft7q6cf0A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4522
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,182 +177,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 21, 2024 at 08:56:19AM -0800, John Harrison wrote:
-> On 11/20/2024 19:30, Matthew Brost wrote:
-> > On Wed, Nov 20, 2024 at 03:22:57PM -0800, John.C.Harrison@Intel.com wrote:
-> > > From: John Harrison <John.C.Harrison@Intel.com>
+On Thu, Nov 21, 2024 at 08:44:37AM -0800, John Harrison wrote:
+> On 11/20/2024 21:36, Matthew Brost wrote:
+> > On Wed, Nov 20, 2024 at 07:38:30PM -0800, Matthew Brost wrote:
+> > > On Wed, Nov 20, 2024 at 03:22:56PM -0800, John.C.Harrison@Intel.com wrote:
+> > > > From: John Harrison <John.C.Harrison@Intel.com>
+> > > > 
+> > > > There are debug level prints giving more information about the cause
+> > > > of the hang immediately before core dumps are created. However, not
+> > > > everyone has debug level prints enabled or saves the dmesg log at all.
+> > > > So include that information in the dump file itself. Also, at least
+> > > > one of those prints included the pid as well as the process name. So
+> > > > include that in the capture too.
+> > > > 
+> > > This looks helpful.
 > > > 
-> > > There are now multiple places that can trigger a coredump. Some of
-> > > which can happen in parallel. There is already a check against
-> > > capturing multiple dumps sequentially, but without locking it doesn't
-> > > guarantee to work against concurrent dumps. And if two dumps do happen
-> > > in parallel, they can end up doing Bad Things such as one call stack
-> > > freeing the data the other call stack is still processing. Which leads
-> > > to a crashed kernel. So add the lock.
+> > > A couple of nits below.
 > > > 
-> > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> > > ---
-> > >   drivers/gpu/drm/xe/xe_devcoredump.c       | 18 ++++++++++++++----
-> > >   drivers/gpu/drm/xe/xe_devcoredump_types.h |  2 ++
-> > >   2 files changed, 16 insertions(+), 4 deletions(-)
+> > > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> > > > ---
+> > > >   drivers/gpu/drm/xe/xe_devcoredump.c       | 20 +++++++++++++++++---
+> > > >   drivers/gpu/drm/xe/xe_devcoredump.h       |  5 +++--
+> > > >   drivers/gpu/drm/xe/xe_devcoredump_types.h |  4 ++++
+> > > >   drivers/gpu/drm/xe/xe_guc_submit.c        | 14 ++++++++++----
+> > > >   4 files changed, 34 insertions(+), 9 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+> > > > index 0e5edf14a241..b5aebe8fb06d 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_devcoredump.c
+> > > > +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+> > > > @@ -99,6 +99,7 @@ static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
+> > > >   	p = drm_coredump_printer(&iter);
+> > > >   	drm_puts(&p, "**** Xe Device Coredump ****\n");
+> > > > +	drm_printf(&p, "Reason: %s\n", ss->reason);
+> > > >   	drm_puts(&p, "kernel: " UTS_RELEASE "\n");
+> > > >   	drm_puts(&p, "module: " KBUILD_MODNAME "\n");
+> > > > @@ -106,7 +107,7 @@ static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
+> > > >   	drm_printf(&p, "Snapshot time: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
+> > > >   	ts = ktime_to_timespec64(ss->boot_time);
+> > > >   	drm_printf(&p, "Uptime: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
+> > > > -	drm_printf(&p, "Process: %s\n", ss->process_name);
+> > > > +	drm_printf(&p, "Process: %s [%d]\n", ss->process_name, ss->pid);
+> > > >   	xe_device_snapshot_print(xe, &p);
+> > > >   	drm_printf(&p, "\n**** GT #%d ****\n", ss->gt->info.id);
+> > > > @@ -138,6 +139,9 @@ static void xe_devcoredump_snapshot_free(struct xe_devcoredump_snapshot *ss)
+> > > >   {
+> > > >   	int i;
+> > > > +	kvfree(ss->reason);
+> > > Do we need kvalloc / kvfree here? Seems like this would be small in size.
+> The type of free used is dependent upon the alloc itself. But I think this
+> should actually be kfree after all, see below...
+> 
 > > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-> > > index b5aebe8fb06d..05f3c9185ef3 100644
-> > > --- a/drivers/gpu/drm/xe/xe_devcoredump.c
-> > > +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-> > > @@ -235,9 +235,13 @@ static void xe_devcoredump_free(void *data)
-> > >   	/* To prevent stale data on next snapshot, clear everything */
-> > >   	memset(&coredump->snapshot, 0, sizeof(coredump->snapshot));
-> > > -	coredump->captured = false;
-> > > +
-> > >   	drm_info(&coredump_to_xe(coredump)->drm,
-> > >   		 "Xe device coredump has been deleted.\n");
-> > > +
-> > > +	spin_lock_irq(&coredump->lock);
-> > > +	coredump->captured = false;
-> > > +	spin_unlock_irq(&coredump->lock);
-> > I don't think you need the IRQ version here, or in the other usage. I
-> > don't believe in either case here we are in IRQ contexts, or if we were
-> > one of the cases would use spin_lock (already in an IRQ context) and
-> > the other would use spin_lock_irq (not in an IRQ context but another
-> > case can be). Certainly taking spin_lock_irq in all use cases of a lock
-> > seems unnecessary.
-> Yeah, that was a copy/paste that I was meaning to go back and update as
-> necessary but evidently forgot to.
-> 
+> > > > +	ss->reason = NULL;
+> > > > +
+> > > >   	xe_guc_log_snapshot_free(ss->guc.log);
+> > > >   	ss->guc.log = NULL;
+> > > > @@ -253,8 +257,11 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+> > > >   	ss->snapshot_time = ktime_get_real();
+> > > >   	ss->boot_time = ktime_get_boottime();
+> > > > -	if (q->vm && q->vm->xef)
+> > > > +	if (q->vm && q->vm->xef) {
+> > > >   		process_name = q->vm->xef->process_name;
+> > > > +		ss->pid = q->vm->xef->pid;
+> > > > +	}
+> > > > +
+> > > >   	strscpy(ss->process_name, process_name);
+> > > >   	ss->gt = q->gt;
+> > > > @@ -297,10 +304,12 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+> > > >    * gt_reset. It is skipped if we still have the core dump device available
+> > > >    * with the information of the 'first' snapshot.
+> > > >    */
+> > > Seems like kernel doc should be updated.
+> > > 
+> > > > -void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job)
+> > > > +__printf(3, 4)
+> > > > +void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job, const char *fmt, ...)
+> > > >   {
+> > > >   	struct xe_device *xe = gt_to_xe(q->gt);
+> > > >   	struct xe_devcoredump *coredump = &xe->devcoredump;
+> > > > +	va_list varg;
+> > > >   	if (coredump->captured) {
+> > > >   		drm_dbg(&xe->drm, "Multiple hangs are occurring, but only the first snapshot was taken\n");
+> > > > @@ -308,6 +317,11 @@ void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job)
+> > > >   	}
+> > > >   	coredump->captured = true;
+> > > > +
+> > > > +	va_start(varg, fmt);
+> > > > +	coredump->snapshot.reason = kvasprintf(GFP_KERNEL, fmt, varg);
+> > > See above. Off the top my head idk if there is a non-kv* version of this
+> > > function but if there is, maybe use that.
+> > Ok, scratch this comment. I do see these functions defined:
 > > 
-> > Is there some follow on patches where this changes?
-> There will be. Still more re-work to be done for the GT targetted capture
-> support.
-> 
+> > __printf(2, 3) __malloc char *kasprintf(gfp_t gfp, const char *fmt, ...);
+> > __printf(2, 0) __malloc char *kvasprintf(gfp_t gfp, const char *fmt, va_list args);
 > > 
-> > Adding the lock seems right though and should enable coredumps on
-> > multi-GT or from which are not the GT ordered WQ.
-> Yeah, with the capture on GT reset I was hitting the race and got a very
-> dead kernel a couple of times (because there were parallel captures for the
-> same failure - one via GT reset and one via DRM timeout). Not sure if it is
-> possible to hit with the current job specific captures but I don't see why
-> not. If you had parallel independent hangs on both GTs of a multi-GT system
-> then it seems like it would still go bang. Just much harder to hit.
-> 
-
-Agree this is certainly possible to hit.
-
-> > 
-> > Maybe also add helpers like...
-> > 
-> > void xe_devcoredump_release()
-> > {
-> > 	spin_lock(&coredump->lock);
-> > 	coredump->captured = false;
-> > 	spin_unlock(&coredump->lock);
-> > }
-> > 
-> > bool xe_devcoredump_acquire();
-> > {
-> > 	bool acquired;
-> > 
-> > 	spin_lock(&coredump->lock);
-> > 	acquired = !coredump->captured;
-> > 	coredump->captured = true;
-> > 	spin_unlock(&coredump->lock);
-> > 
-> > 	return acquired;
-> > }
-> > 
-> > IMO - this makes this locking semantic a bit more clear.
-> Not convinced. There are exactly one places where each of these functions
-> would be used. And acquire/release doesn't seem like the right terminology
-> to me. Especially when the release is from a totally different call path.
-> The 'acquire' is an internally triggered thing by the driver but the
-> 'release' is in response to a sysfs write from the user. The intent is
-> really just alloc and free but for a singleton entity so there can only ever
-> be one instance at a time.  However, the above code is not the actual
-> alloc/free so calling it that would be wrong.
-> 
-
-This comment is more about having a locking semantic that protects code
-paths rather than data. I think having a helper makes this part more
-palatable.
-
-However, now that I've written this, maybe it's better to just use a
-single large mutex that is held across xe_devcoredump,
-xe_devcoredump_free, and xe_devcoredump_read. Looking at the code, I'm
-pretty sure that xe_devcoredump_free and xe_devcoredump_read can race,
-with xe_devcoredump_read possibly dereferencing a NULL pointer in
-read.buffer. This mutex would also need to be primed with reclaim, so I
-guess it wouldn't be held in flush_work(&ss->work) or
-cancel_work_sync(&coredump->snapshot.work), but everywhere else in the
-aforementioned functions.
-
-Do you think that would work? If so, it seems cleaner and would adhere
-to Sima's locking guidelines [1].
-
-Matt
-
-[1] https://blog.ffwll.ch/2022/07/locking-engineering.html
-
-> The implementation is more about back-off-when-busy than regular mutex
-> locking. It could potentially be done with a kref thing and inc-if-not-zero
-> functionality, but that also seemed more confusion than just having a
-> spinlock around a simple bool.
-> 
-> John.
-> 
-> > 
-> > >   }
-> > >   static void devcoredump_snapshot(struct xe_devcoredump *coredump,
-> > > @@ -310,14 +314,18 @@ void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job, const cha
-> > >   	struct xe_device *xe = gt_to_xe(q->gt);
-> > >   	struct xe_devcoredump *coredump = &xe->devcoredump;
-> > >   	va_list varg;
-> > > +	bool captured;
-> > > -	if (coredump->captured) {
-> > > +	spin_lock_irq(&coredump->lock);
-> > > +	captured = coredump->captured;
-> > > +	coredump->captured = true;
-> > > +	spin_unlock_irq(&coredump->lock);
-> > > +
-> > > +	if (captured) {
-> > Then here...
-> > 
-> > if (!xe_devcoredump_acquire())
-> > 	msg...
-> > 	return;
-> > 
-> > >   		drm_dbg(&xe->drm, "Multiple hangs are occurring, but only the first snapshot was taken\n");
-> > >   		return;
-> > >   	}
-> > > -	coredump->captured = true;
-> > > -
-> > >   	va_start(varg, fmt);
-> > >   	coredump->snapshot.reason = kvasprintf(GFP_KERNEL, fmt, varg);
-> > >   	va_end(varg);
-> > > @@ -342,6 +350,8 @@ static void xe_driver_devcoredump_fini(void *arg)
-> > >   int xe_devcoredump_init(struct xe_device *xe)
-> > >   {
-> > > +	spin_lock_init(&xe->devcoredump.lock);
-> > > +
-> > >   	return devm_add_action_or_reset(xe->drm.dev, xe_driver_devcoredump_fini, &xe->drm);
-> > >   }
-> > > diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-> > > index e6234e887102..6b776abd8bf4 100644
-> > > --- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
-> > > +++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-> > > @@ -80,6 +80,8 @@ struct xe_devcoredump_snapshot {
-> > >    * for reading the information.
-> > >    */
-> > >   struct xe_devcoredump {
-> > > +	/** @lock: protects access to 'captured' to prevent concurrent captures */
-> > > +	spinlock_t lock;
-> > >   	/** @captured: The snapshot of the first hang has already been taken. */
-> > Protected by @lock.
+> > The former call doesn't work here as va_start is only safe to call once
+> > in a call chain [1]. The former internally needs to call va_start again.
+> > Unsure why this seemly equivalent functions have different signatures
+> > but I think your usage here is correct.
 > > 
 > > Matt
 > > 
-> > >   	bool captured;
-> > >   	/** @snapshot: Snapshot is captured at time of the first crash */
-> > > -- 
-> > > 2.47.0
+> > [1] https://stackoverflow.com/questions/59608636/can-we-call-va-start-twice-without-calling-va-end-in-between
+> Yeah, that was the conclusion I came to. But note that the v in the above is
+> for va_list not for virtual. From looking at other bits of the kernel, it
+> seems that even with kvasprintf, the correct free function is just kfree. I
+> thought I had checked that earlier but evidently I managed to confuse myself
+> again!
+> 
+
+Ok, confusing name and this all makes a bit more sense now. Yes, then
+kfree is correct call then even though kvfree does work.
+
+Matt
+
+> > 
+> > > Nits aside, LGTM:
+> > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 > > > 
+> > > > +	va_end(varg);
+> > > > +
+> > > >   	devcoredump_snapshot(coredump, q, job);
+> > > >   	drm_info(&xe->drm, "Xe device coredump has been created\n");
+> > > > diff --git a/drivers/gpu/drm/xe/xe_devcoredump.h b/drivers/gpu/drm/xe/xe_devcoredump.h
+> > > > index c04a534e3384..6a17e6d60102 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_devcoredump.h
+> > > > +++ b/drivers/gpu/drm/xe/xe_devcoredump.h
+> > > > @@ -14,11 +14,12 @@ struct xe_exec_queue;
+> > > >   struct xe_sched_job;
+> > > >   #ifdef CONFIG_DEV_COREDUMP
+> > > > -void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job);
+> > > > +void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job, const char *fmt, ...);
+> > > >   int xe_devcoredump_init(struct xe_device *xe);
+> > > >   #else
+> > > >   static inline void xe_devcoredump(struct xe_exec_queue *q,
+> > > > -				  struct xe_sched_job *job)
+> > > > +				  struct xe_sched_job *job,
+> > > > +				  const char *fmt, ...)
+> > > >   {
+> > > >   }
+> > > > diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+> > > > index be4d59ea9ac8..e6234e887102 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
+> > > > +++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+> > > > @@ -28,6 +28,10 @@ struct xe_devcoredump_snapshot {
+> > > >   	ktime_t boot_time;
+> > > >   	/** @process_name: Name of process that triggered this gpu hang */
+> > > >   	char process_name[TASK_COMM_LEN];
+> > > > +	/** @pid: Process id of process that triggered this gpu hang */
+> > > > +	pid_t pid;
+> > > > +	/** @reason: The reason the coredump was triggered */
+> > > > +	char *reason;
+> > > >   	/** @gt: Affected GT, used by forcewake for delayed capture */
+> > > >   	struct xe_gt *gt;
+> > > > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > > index e132294fde51..7d0e7cb977ad 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > > @@ -898,7 +898,8 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+> > > >   		if (!ret) {
+> > > >   			xe_gt_warn(q->gt, "Schedule disable failed to respond, guc_id=%d\n",
+> > > >   				   q->guc->id);
+> > > > -			xe_devcoredump(q, NULL);
+> > > > +			xe_devcoredump(q, NULL, "Schedule disable failed to respond, guc_id=%d\n",
+> > > > +				       q->guc->id);
+> > > >   			xe_sched_submission_start(sched);
+> > > >   			xe_gt_reset_async(q->gt);
+> > > >   			return;
+> > > > @@ -906,7 +907,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+> > > >   	}
+> > > >   	if (!exec_queue_killed(q) && !xe_lrc_ring_is_idle(q->lrc[0]))
+> > > > -		xe_devcoredump(q, NULL);
+> > > > +		xe_devcoredump(q, NULL, "LR job cleanup, guc_id=%d", q->guc->id);
+> > > >   	xe_sched_submission_start(sched);
+> > > >   }
+> > > > @@ -1132,7 +1133,9 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+> > > >   				xe_gt_warn(guc_to_gt(guc),
+> > > >   					   "Schedule disable failed to respond, guc_id=%d",
+> > > >   					   q->guc->id);
+> > > > -			xe_devcoredump(q, job);
+> > > > +			xe_devcoredump(q, job,
+> > > > +				       "Schedule disable failed to respond, guc_id=%d, ret=%d, guc_read=%d",
+> > > > +				       q->guc->id, ret, xe_guc_read_stopped(guc));
+> > > >   			set_exec_queue_extra_ref(q);
+> > > >   			xe_exec_queue_get(q);	/* GT reset owns this */
+> > > >   			set_exec_queue_banned(q);
+> > > > @@ -1162,7 +1165,10 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+> > > >   	trace_xe_sched_job_timedout(job);
+> > > >   	if (!exec_queue_killed(q))
+> > > > -		xe_devcoredump(q, job);
+> > > > +		xe_devcoredump(q, job,
+> > > > +			       "Timedout job - seqno=%u, lrc_seqno=%u, guc_id=%d, flags=0x%lx",
+> > > > +			       xe_sched_job_seqno(job), xe_sched_job_lrc_seqno(job),
+> > > > +			       q->guc->id, q->flags);
+> > > >   	/*
+> > > >   	 * Kernel jobs should never fail, nor should VM jobs if they do
+> > > > -- 
+> > > > 2.47.0
+> > > > 
 > 
