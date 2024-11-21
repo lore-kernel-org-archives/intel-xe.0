@@ -4,160 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BED6D3B7FE
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Nov 2024 10:27:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CAC8D58069
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Nov 2024 11:57:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D42EA10E3B1;
-	Mon, 25 Nov 2024 10:27:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7FF710E16F;
+	Mon, 25 Nov 2024 11:57:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="PBvq16iX";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DJllmg8n";
 	dkim-atps=neutral
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2058.outbound.protection.outlook.com [40.107.244.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D527C10E139;
- Mon, 25 Nov 2024 10:27:33 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JrsrLCFOkRDi/kH9f7pGPsVlXJGdgTVblXyP0sDtExO4krywKh171tjd0lV4BvZtIC42wjv35HBrf9XxyhmiI1asjRmKquu0wyxBCv3cUz/FZVJCDr9L80vrGUiYQR6wKVLM8C71Zpi8ETG1CE+i9z31kQAmlrbl7Zjy0NfH5j/QzHcYFOjTn19Pu5bvo+OeTKJmqzbwsXQMHS/QDRUs1BLi9wbPox1Hy0ctNH2sYIePFaZtKD3BbAPg3aH1XxgIMynt8UcrChjEwdCGpiWXcZetvhwj9eqPo5aNFK4cOVEPuvhgtNirH7XDSqcBlJZY2oRqMRzhkhv1BbHzRar6wg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zPz8GQJiqAge/9Atzdfs/Rs0NOa+rjfwmFreHaq77Kg=;
- b=R7cdVY0x8BSdzLfUEIwqDwyZYfMu69JJq6uDdTrdqVX7Z2XkzuChUQczO074iZDRa8U5gmBi63wx2I4ekCXFhWiDIwXJCW8CuqnyeN/SSRmdg/3SOq7/bB9TNxNkBUsKk5iHc1d/QjPucXVwkecITigOZ6xsYEML9HfL/1LFeYhfpAkejmbCTzAoUuHi6zIhXcEuh2dKKy3yk16K36Zf6DFt/njyhN18PX23QQCgfDUYeE1jGddymzrRZ1ZYngPo3hT144ThadlTPGQnJAwW2Py3kp2MkgngzkXqDOGXsuBr2jxy2JakYZdNv+gEMbYE1xnklLAhA2XxUrqKa7KuQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zPz8GQJiqAge/9Atzdfs/Rs0NOa+rjfwmFreHaq77Kg=;
- b=PBvq16iXOSMEcLLIaDnOLf1nrlzEPzVNzoBTKic7jWyNS8xFt81FYtsMI5sQCF/WUrRKG+oWp7ukxyWCEfpt5JJcULPsC/+80oHEfSxjJX/VqdURu09U+41kOV5Zeep5aSGf3nXWSklidAyx7ComJfPC/0pYzLJi5ML310OrtRg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA3PR12MB7921.namprd12.prod.outlook.com (2603:10b6:806:320::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.20; Mon, 25 Nov
- 2024 10:27:28 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8182.018; Mon, 25 Nov 2024
- 10:27:28 +0000
-Message-ID: <953f1201-fb7d-408d-8ce3-7f6105c7c158@amd.com>
-Date: Mon, 25 Nov 2024 11:27:20 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/4] drm: Introduce device wedged event
-To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>,
- Raag Jadav <raag.jadav@intel.com>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- andriy.shevchenko@linux.intel.com, lina@asahilina.net,
- michal.wajdeczko@intel.com, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, anshuman.gupta@intel.com,
- alexander.deucher@amd.com, andrealmeid@igalia.com,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
-References: <20241115050733.806934-1-raag.jadav@intel.com>
- <20241115050733.806934-2-raag.jadav@intel.com>
- <8c7292c3-8459-4ddc-a899-b56b1d93076f@linux.intel.com>
- <Z0Atv3Zw1d0N8hvv@black.fi.intel.com>
- <3644d364-6021-46fe-b3a2-689821551984@amd.com>
- <Z0CrJ3C3wJqtySLp@black.fi.intel.com>
- <637aa694-d32b-4c9a-99b7-3b77996d96b6@linux.intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <637aa694-d32b-4c9a-99b7-3b77996d96b6@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0205.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a5::17) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com
+ [209.85.208.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8689310E2E2;
+ Thu, 21 Nov 2024 21:23:57 +0000 (UTC)
+Received: by mail-ed1-f45.google.com with SMTP id
+ 4fb4d7f45d1cf-5d0062e9c80so1763619a12.2; 
+ Thu, 21 Nov 2024 13:23:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1732224235; x=1732829035; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=vH5eEx92Lr2Szoo+88xQFIoldvHAb3MxjigQ5AJgHzY=;
+ b=DJllmg8n3k7XNryYepMkkyyemZuX9fjIkVvUUbJNE3DJFG6PFtgaTJ2ef732/a8ob4
+ rqZL8QgWObIrfNFR5rh/XVU68F5OcLAugSlDOGfCZfP+tem326hHsadZeQ1JypzJvEM9
+ YyZn5uD+n8ZFsyVxXBuMioIkkJem2U2EO+cy7+ESw5MY4zy4D11FG9yTi46ssgnru0EH
+ UpI4RDRzcwYFIjCJptjMGGhuVPTra9hxO2zKGcEnBwn3+RfLt/LC7Q12YSmKDT9puaeT
+ IujpVWhwYlMuMKdjpSq/ptsDw96YEN0sIuMExmtfTcI0W6dCQrLVXtDzrnc4pyBMcyz3
+ eBVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1732224235; x=1732829035;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=vH5eEx92Lr2Szoo+88xQFIoldvHAb3MxjigQ5AJgHzY=;
+ b=UIyclPl/bov5eo5H8Fr8V5W2ohsbFBJ7LVg0Jdk6t/W81gvMad3EOfAlTP+ZnWQxAV
+ EgKytEgEJ8aa0ZYXQ14IVqrURJjYBZFu5VTj+G91MWH+jQbLFJkqQO7OCRb5w+5i/V4P
+ eQrSnXrq83uhPiN8Ex4pM6Ghlm1bE8DZ4ZV4a0OcEE3DI7tE0oFPadBdGXg1xjmTNcgM
+ sVPTmBmJnvU1xs5ljJUSYpTmhan609urp+yFJFIsKKDbG+BXRmP5cemewNvpBkHQ0GgW
+ EPvZUUmwJcUN9MogEqr67urlP9KlubfpnUPicIa2oO/bF0V2VTMabxFqPI3KVZ1lD72Y
+ X/sw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVe/asa1h2Ouyg1j5o6pgP7Ffwlkw5wytrtAx+QLcDuNfQeTBYHU3uKg7WuWRvxo4SKH790Bt/opiw=@lists.freedesktop.org,
+ AJvYcCWrovXnsE0BmdzzIiBawk6x+VlaLeDQpFbGfaCskGUcxN2uqWC8jGPIJU01dMBYYgDVAuIvJd5q47U=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwXS2FbCdcdC3tw9kHOXk7sfBVdjP83LZUnz0d5691vDLUoF+EX
+ kR4wYapXomxCdB90+On800NVCcSwp9wSS91xC3Q1MAyuksmJQ/mN
+X-Gm-Gg: ASbGnct3cmr7DqWOwqT7zwMmh66NVHJ9/I+JBzzfDJv3lqVZGttJa5zixXCm+mmkZY7
+ hmDuooijV1OO0v8O33B2/e62qvKDqyG00F4liAbINodZ2O0Gpv0jLwtLAv//kasHF6U5RXQuzbS
+ mvNwvu7bJNPBUXNrrhWmOD2o9zJwRA5lyeqV9pIliy2DbH59lhFbl3fAVsFLH/Cinv+dggYRE+H
+ hXocmOE5iIp/DsqgUY2iGIl2rhvQ7jg7NUKs1XRRovgKIW6uc73+inFHMwWVDk=
+X-Google-Smtp-Source: AGHT+IEyyQ6mC5ziSyd6ZZ6fw2BVBUM7eBI02Y1PnnCrHrXI1brGl+EFb5EWLAKg2rV0EEkGts+4ew==
+X-Received: by 2002:a05:6402:5201:b0:5cf:eaf7:2776 with SMTP id
+ 4fb4d7f45d1cf-5d0205c6025mr149140a12.7.1732224235157; 
+ Thu, 21 Nov 2024 13:23:55 -0800 (PST)
+Received: from localhost (dh207-40-8.xnet.hr. [88.207.40.8])
+ by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-5d01d3fc94asm184056a12.58.2024.11.21.13.23.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 21 Nov 2024 13:23:53 -0800 (PST)
+From: Mirsad Todorovac <mtodorovac69@gmail.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Mirsad Todorovac <mtodorovac69@gmail.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Francois Dugast <francois.dugast@intel.com>,
+ Philippe Lecluse <philippe.lecluse@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, Jani Nikula <jani.nikula@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ Faith Ekstrand <faith.ekstrand@collabora.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Akshata Jahagirdar <akshata.jahagirdar@intel.com>,
+ David Kershner <david.kershner@intel.com>
+Subject: [PATCH v1 1/1] drm/xe: fix the ERR_PTR() returned on failure to
+ allocate tiny pt
+Date: Thu, 21 Nov 2024 22:20:58 +0100
+Message-ID: <20241121212057.1526634-2-mtodorovac69@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA3PR12MB7921:EE_
-X-MS-Office365-Filtering-Correlation-Id: 23a146c2-0403-4002-b27d-08dd0d3bc2dd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?U2JuZ2dRdkdwS0dFZ0dBZGc0cHdNT29HNUM2T0F1K0l3ZzgycDJBVm9xbW5w?=
- =?utf-8?B?eXR6OEpWV3JHNTUxQWc3czdTeXRhMUxZQXJDa2h3SUZyc3VlMUdTZDNnT3Z1?=
- =?utf-8?B?UHRDNjJTdlVmOXdtZXVLKzJGNWxDSWRjMGVPWEV6YUpuN2grWTlPY2YzN0hn?=
- =?utf-8?B?RFh6WGIxSzM5elRLL1lxUzFyendzSzRjTWkrNzBZVTBwTkUwM0ZNT2ZtNlFz?=
- =?utf-8?B?aEl4SHlsZzd2RVQ3QndEaDBUYmJpZDVkTGt2Njd6TldHZTRwcXdDU01ud0po?=
- =?utf-8?B?aWhHcWxKTHYrb20yMHpxRGZDNVVXS3VnRVVvMC9kRGpvaUVpOUxPdzlIMmtV?=
- =?utf-8?B?OHJQa1Nvc2dtSDkwMWwxNFNmb0Q2OHNEcElwY3FBakpDQ0dhN3RpTDE4Ukt3?=
- =?utf-8?B?Qm0vQWo0NG5QLzluYzlKKzVrNmhFbnhWeGx6TlZpMWZSWGk0T0VtTXdrU1Rh?=
- =?utf-8?B?ZGxzUnZCRFRpb1BVMUl1bFVMNEZNWDFuSGk3ODg3dUhPY2xlR0lZclAxOTB5?=
- =?utf-8?B?YU0zenlhWEFNSEQrSkNjZ1V3VHY5ejNneFhQNUc4dTNjMFNDdmM4Y1Y1ekl6?=
- =?utf-8?B?alVsQm5BWTVLQ3FMVFF6cndNWDE5YUpHRnFoa2gyZitjcEQwSzR5dE4vN3hJ?=
- =?utf-8?B?Vlo4V2N5WHQ2MERhNTRocmxrVWw5MFNSeHlVMXN2SkJhN0tFREZDQzRNRVhD?=
- =?utf-8?B?RXNSLzVQcldOUWVRdTMzVlZNVVdvQ3dlQVBGMzlpdFVTWDFuQmwwYllDVVVh?=
- =?utf-8?B?QW42elRXaU54ZjJDanBSQlJqb1BpbXhxRXBLMzhzVGJTd1A4dzZEWWxwS2pz?=
- =?utf-8?B?WERzL3lOU0VaUzB1RlByTUQzU1Y3RFgzNFZqVElCUFNFU3B2R1Y5WUoyZDBD?=
- =?utf-8?B?NGhkMjlVYkJLL1pibkIwN3k3ek1BdkcxTDBYQjRHVTZSbWdpNkw4NHB4dEI0?=
- =?utf-8?B?STduK2FZOXorcWJmUFlCUnlDZHhpMDhjWFlsZCtiMGJac0hjU2xKcTdvVWN1?=
- =?utf-8?B?UEpXOC9GWUVwOWVPOWpoMXp6Z09tTHg4Q3prbk1aNmlBTHdac09BS2hpZUkz?=
- =?utf-8?B?UFUybFBlUGtiREltb1NhQlVROUc0QzUxdFZvM01KQUQ3MDgxOVIyR2lXRExH?=
- =?utf-8?B?Uk1HaHBJM2JsanhTOVZFd2JDNGhrTC8zRkFQVlJsUWtMayt1enJ3NnFDblNR?=
- =?utf-8?B?b1ZQdmdPdFVrMEVmVGIxbUlGWTdjNXlBbTIxaENJSlV6amdvaFFEc0RBbllj?=
- =?utf-8?B?WklOQ010M2tkcWRBbURmSCs2ZUcyQXBHS3JMemx2SVdoUERZQnpWanNxSkw3?=
- =?utf-8?B?YWx2NUx4N1l2YURSVTFNNjlFeGxrSDVBcWFYVU9UeGI4Vkw4RldIUWp4eEcx?=
- =?utf-8?B?L3U2MEpidFRFTUdaOHZnTjk0RlZSVUJId3NBd0pCMk0xN090bkh6bTlKV2xJ?=
- =?utf-8?B?UStLZDUyYmZ2QzhhVk9aNTJzbW1KanFCZ0U0MlZBYW9IcXI3N1ZhK1hTVHRF?=
- =?utf-8?B?R1czNm5sd0dPZGNyOTNyQjdqMzY0N2k0KzlqUUtKZTdQY2xNYmFBUmRFc0dh?=
- =?utf-8?B?RElRbHZnNHljUnl6YnNUTVNOUEFwcmZZeHpBT3ZpVG1QK05nSWhNL2RSdWVI?=
- =?utf-8?B?dUQzMFlJUVpQVDIyQzMxSVVsZTBGdGI1NFFsYzRFQUNTbHVPQmlpalBoVSt6?=
- =?utf-8?B?QnlUSlYwTW1KV09wa21nWjcvSXpBaHJYOUFERk9Xa2wwNFUydEJoOFJaNyt3?=
- =?utf-8?B?QVhsSk5DWjRiSjJSYmhRSVUwR0hzWlV5UGNSQ290dmxibzNrTmpHeUhHQzZL?=
- =?utf-8?B?WFE2UXhPblgvZlNNcGRZQT09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aFExMWRLcjdpdnptZGJPRktySG1rSGJDbzZxOGVhRm1NanM0TStYdEpmVXhu?=
- =?utf-8?B?QnVlVDFSSWJLQ2krVHJlVHB5eFZPbFVXNFFUUTVWSmx1V2ovbjY2bGIvSUlN?=
- =?utf-8?B?aEFtaXlPZm5sNnJrTDNEUXpjQjlJUjF5aG4rSmJpeUUySG1tMDlZcTFNVUpR?=
- =?utf-8?B?S21wbktXZWNLU0VScnpKbkZjeGhTUEZZOG9jcFJVdjQvclF3emdrRmF5UlRv?=
- =?utf-8?B?bU5Sc1MzVXo0UTF0aTRrcWExQ05WazZBbms2RkFDNlNKd2k0RDRDdGtYTDFY?=
- =?utf-8?B?Q2FaUElWWFVWTkc1TEx0cVE4K3ZYRmRtLzAvd0d6NytvWmsvYldXWjJJYkMy?=
- =?utf-8?B?WUZidVRmNmZvRlVPVG5PRDFuT0pDZUZabnY4VGZYWkhzc3Z6Q2NVWDFiQmE2?=
- =?utf-8?B?ZWxNWFNpUitlM0dRWUlVekpzRzBmYTlMa2U1Y3R5aTdJZzJpQ0xMclF2eVFv?=
- =?utf-8?B?d1N6UHlJeFlXZ1FibEltKzRjZy9oTVJ0cnNnTVduWGhaN2xrM3NabUdrMXRp?=
- =?utf-8?B?aUZHaTZkTmd2dDJkUFhHbjlPK0VQdzIrcGtveGxMYTFpZFloeGFhTDVFdHZD?=
- =?utf-8?B?RXBpdDZuakw2ekIrb3N4TkQ2bHVoYXJ6c3hMN0JwdVhvb290KzZtSk56NXd5?=
- =?utf-8?B?dzRNampqdjJnMkFDTDJMcDd6WGEyTkEvM2xNeHpEcW9POVI3MzVLU2Z4c20v?=
- =?utf-8?B?cEtvZjFZV2t4RGhyekVsYUZmVWRjY20vbnNjdmprbzh6dHZ4TnNFL3YrbWd0?=
- =?utf-8?B?VzZoT3BoQlRmVEx1a2ZNS3ltNEZzUlFST0hwM1liWURUQUIxc2hwWlZBOFZ1?=
- =?utf-8?B?SkhZc0c4V0ZkRzRWa3hFMC9wRWpOclRkbjdxbXB4L0hhU3J1a010RFkzelYw?=
- =?utf-8?B?UjF2d0NGMDdubmdXNUc1cjVhTWVkSWlxNVphRmI3dEY3bzBBZVFHSWljRVE5?=
- =?utf-8?B?Rm5PQk4xcEhEY2VhYS80eUZiemY1b1Y5YThQSUJmeHovWG1MVmZic3NYaW0r?=
- =?utf-8?B?dElObDkxMDlSbmRLMTNEODFSczMyNWNzWmdER0dlTytWRS9wWUVINERlZ29r?=
- =?utf-8?B?NGpZemtoN3FEWFRqeG4yTjdFbjlTaHl5SW4zTjh6cEpQSFRveVFhcUJGNXRZ?=
- =?utf-8?B?Qi8wQndBT0pFV0MzbXdSbkxLd1lCMnE1QU11V2tKenZHL1BrQ3B1cFpqSTZ1?=
- =?utf-8?B?ZzBMOXFrNmw2cFhZZHBlbFd3anBBbkFTOGZhdTdub2hpSDNPd29nN3E2UWN0?=
- =?utf-8?B?Z1FTNUJ3Y0lxb1RKbmdTbGJ4NndjWkVFQ1hvdVphcVRTMm9LKzhIYUE5bnpx?=
- =?utf-8?B?VGgrcVNVYjI3R0ZkWGZ4L05oTUdKTklReFhWRUd1Rnp0N29OaEJrTHZnRnJu?=
- =?utf-8?B?blhlY3NQWEs4K0JXcHFMVFB5dFRqcjN3Ylc0VzloV3RGUnBFeENwWWZ2aHE1?=
- =?utf-8?B?WUJBVThlTDdNTnBJa0krUzhjeENSSWsxay9XNVBNTkcyTTdTcEQ5ZWhSQnJ1?=
- =?utf-8?B?S3ZrTDJpeFh0T0pUazM4SlBoa1l4TWJWY0hETVZndjFlTlhHOXNRczFjd3Ra?=
- =?utf-8?B?dmVEMnY2dml2UEtMMFl3SVBRTHBkZTlxVzdSM0JYRGNvNEk1TFN5UXkva1p3?=
- =?utf-8?B?aGI3R2NGNHF4MVBMSkx1bU1SQmJnZWtXSjVrY0tCZFl0b3pYSUEvNkZlOHY2?=
- =?utf-8?B?NmtUV08wekZ1MEFTWkpYUStPQi9VdHVNbStvR0J1bWdqd1p4ZE0wbDZuVDVS?=
- =?utf-8?B?ejdCaHVsRDNodUJZekFIVXlwTHFCdDgwU2FKQjlvTGtGd3dqV2kvcnFHdmxa?=
- =?utf-8?B?UGNrV1hBak5lSy9SK29PUzdEZmRBVDlDWWpUWmhNdG5BbUVqa28yNE5vQWhD?=
- =?utf-8?B?V21pSXBWYzg0M1RMYmpkY3Q5SlJ2bUxVWGpXM0poRkE4S1NWdEQwSmdmRGx1?=
- =?utf-8?B?aDRpemdSbGhTMFV4akhGSDZPNnVHd2hJd3pIdXovWXZwWXZvcDJPQWZoeHkz?=
- =?utf-8?B?S25ZT2xrNlFKNkhBSit0a2g5d2pRQXVxNDd5N2hNN1pLbnZWWWY2TGhtS1BK?=
- =?utf-8?B?TW9rdng5dUtxbytwNVgvK29oUjBReFJlMlBROEIyaisyREd1c3BqZUlEb1Ux?=
- =?utf-8?Q?l3+2j9fo7t520jqxKG2n9BWKw?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 23a146c2-0403-4002-b27d-08dd0d3bc2dd
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2024 10:27:28.1340 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wu4DHSI+A080UpYFTDJ6UaW6EX2RwR4y3RYScyeq0e7etZQVjI4gF5oVdhMe/d1P
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7921
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 25 Nov 2024 11:57:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,71 +104,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 25.11.24 um 06:56 schrieb Aravind Iddamsetty:
-> On 22/11/24 21:32, Raag Jadav wrote:
->> On Fri, Nov 22, 2024 at 11:09:32AM +0100, Christian König wrote:
->>> Am 22.11.24 um 08:07 schrieb Raag Jadav:
->>>> On Mon, Nov 18, 2024 at 08:26:37PM +0530, Aravind Iddamsetty wrote:
->>>>> On 15/11/24 10:37, Raag Jadav wrote:
->>>>>> Introduce device wedged event, which notifies userspace of 'wedged'
->>>>>> (hanged/unusable) state of the DRM device through a uevent. This is
->>>>>> useful especially in cases where the device is no longer operating as
->>>>>> expected and has become unrecoverable from driver context. Purpose of
->>>>>> this implementation is to provide drivers a generic way to recover with
->>>>>> the help of userspace intervention without taking any drastic measures
->>>>>> in the driver.
->>>>>>
->>>>>> A 'wedged' device is basically a dead device that needs attention. The
->>>>>> uevent is the notification that is sent to userspace along with a hint
->>>>>> about what could possibly be attempted to recover the device and bring
->>>>>> it back to usable state. Different drivers may have different ideas of
->>>>>> a 'wedged' device depending on their hardware implementation, and hence
->>>>>> the vendor agnostic nature of the event. It is up to the drivers to
->>>>>> decide when they see the need for recovery and how they want to recover
->>>>>> from the available methods.
->>>>>>
->>>>>> Prerequisites
->>>>>> -------------
->>>>>>
->>>>>> The driver, before opting for recovery, needs to make sure that the
->>>>>> 'wedged' device doesn't harm the system as a whole by taking care of the
->>>>>> prerequisites. Necessary actions must include disabling DMA to system
->>>>>> memory as well as any communication channels with other devices. Further,
->>>>>> the driver must ensure that all dma_fences are signalled and any device
->>>>>> state that the core kernel might depend on are cleaned up. Once the event
->>>>>> is sent, the device must be kept in 'wedged' state until the recovery is
->>>>>> performed. New accesses to the device (IOCTLs) should be blocked,
->>>>>> preferably with an error code that resembles the type of failure the
->>>>>> device has encountered. This will signify the reason for wegeding which
->>>>>> can be reported to the application if needed.
->>>>> should we even drop the mmaps we created?
->>>> Whatever is required for a clean recovery, yes.
->>>>
->>>> Although how would this play out? Do we risk loosing display?
->>>> Or any other possible side-effects?
->>> Before sending a wedge event all DMA transfers of the device have to be
->>> blocked.
->>>
->>> So yes, all display, mmap() and file descriptor connections you had with the
->>> device would need to be re-created.
->> Does it mean we'd have to rely on userspace to unmap()?
->
-> I'm not sure of display, but at least all user mappings can be destroyed
-> using drm_vma_node_unmap.
+Running coccinelle spatch gave the following warning:
 
-That is not really correct. The mappings are not destroy, they are 
-invalidated.
+./drivers/gpu/drm/xe/tests/xe_migrate.c:226:5-11: inconsistent IS_ERR and PTR_ERR on line 228.
 
-On access a page fault is generated and TTM should redirect the access 
-to the dummy page.
+The code reports PTR_ERR(pt) when IS_ERR(tiny) is checked:
 
-The userspace application still has to unmap the VMA to destroy it.
+→ 211         pt = xe_bo_create_pin_map(xe, tile, m->q->vm, XE_PAGE_SIZE,
+  212                                   ttm_bo_type_kernel,
+  213                                   XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+  214                                   XE_BO_FLAG_PINNED);
+  215         if (IS_ERR(pt)) {
+  216                 KUNIT_FAIL(test, "Failed to allocate fake pt: %li\n",
+  217                            PTR_ERR(pt));
+  218                 goto free_big;
+  219         }
+  220
+  221         tiny = xe_bo_create_pin_map(xe, tile, m->q->vm,
+→ 222                                     2 * SZ_4K,
+  223                                     ttm_bo_type_kernel,
+  224                                     XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+  225                                     XE_BO_FLAG_PINNED);
+→ 226         if (IS_ERR(tiny)) {
+→ 227                 KUNIT_FAIL(test, "Failed to allocate fake pt: %li\n",
+→ 228                            PTR_ERR(pt));
+  229                 goto free_pt;
+  230         }
 
-Regards,
-Christian.
+Now, the IS_ERR(tiny) and the corresponding PTR_ERR(pt) do not match.
 
->
-> Thanks,
-> Aravind.
->> Raag
+Returning PTR_ERR(tiny), as the last failed function call, seems logical.
+
+Fixes: dd08ebf6c3525 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Philippe Lecluse <philippe.lecluse@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Faith Ekstrand <faith.ekstrand@collabora.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+Cc: David Kershner <david.kershner@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Mirsad Todorovac <mtodorovac69@gmail.com>
+---
+ v1:
+	There is also the logical problem which this patch developer is not qualified to fix:
+	first the fake pt tries to allocate size of (1 << (XE_PT_SHIFT=12)) = 4096 bytes,
+	then "tiny pt" tries to allocate 2 * SZ_4K, twice as much. Is this what was meant
+	to accomplish?
+
+	drivers/gpu/drm/xe/xe_bo.h#L46:
+	#define XE_PTE_SHIFT			12
+	#define XE_PAGE_SIZE			(1 << XE_PTE_SHIFT)
+
+	include/linux/sizes.h#L23:
+	#define SZ_4K				0x00001000
+
+ drivers/gpu/drm/xe/tests/xe_migrate.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 1a192a2a941b..3bbdb362d6f0 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -224,8 +224,8 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 				    XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+ 				    XE_BO_FLAG_PINNED);
+ 	if (IS_ERR(tiny)) {
+-		KUNIT_FAIL(test, "Failed to allocate fake pt: %li\n",
+-			   PTR_ERR(pt));
++		KUNIT_FAIL(test, "Failed to allocate tiny fake pt: %li\n",
++			   PTR_ERR(tiny));
+ 		goto free_pt;
+ 	}
+ 
+-- 
+2.43.0
 
