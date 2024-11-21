@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E280E64002
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 18:30:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 382BEE64000
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 18:30:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30E8C10E150;
-	Thu, 21 Nov 2024 18:30:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E30C710EA21;
+	Thu, 21 Nov 2024 18:30:49 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1FF110E150;
- Thu, 21 Nov 2024 18:30:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D84C10EA21;
+ Thu, 21 Nov 2024 18:30:49 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/pf=3A_Drop_2G?=
- =?utf-8?q?iB_limit_of_fair_LMEM_allocation?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/pf=3A_Drop_2GiB_li?=
+ =?utf-8?q?mit_of_fair_LMEM_allocation?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 Nov 2024 18:30:38 -0000
-Message-ID: <173221383868.1285623.15079497065156090414@b555e5b46a47>
+Date: Thu, 21 Nov 2024 18:30:49 -0000
+Message-ID: <173221384907.1285623.2049629660976870567@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241121175754.302-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20241121175754.302-1-michal.wajdeczko@intel.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: e46649e7764a drm-tip: 2024y-11m-20d-23h-16m-04s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/pf: Drop 2GiB limit of fair LMEM allocation
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 28cb8fff624258aeb7b4f304dadf4f8b8283ba28
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Thu Nov 21 18:57:54 2024 +0100
+
+    drm/xe/pf: Drop 2GiB limit of fair LMEM allocation
+    
+    Since commit 678ccbf98796 ("drm/xe/vram: drop 2G block
+    restriction") we are able to provision VFs with more than 2GiB.
+    Drop our temporary limit of maximum fair LMEM size that was added
+    just to avoid hitting -EINVAL from auto-provisioning.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
++ /mt/dim checkpatch e46649e7764a9f6868ccbcba7b8b23b413303380 drm-intel
+28cb8fff6242 drm/xe/pf: Drop 2GiB limit of fair LMEM allocation
 
 
