@@ -4,60 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 660C7D6ED02
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 10:53:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC70CD6ED0A
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 11:27:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35FEB10E11C;
-	Thu, 21 Nov 2024 10:53:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F0AF10E1BB;
+	Thu, 21 Nov 2024 11:27:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CjfoFUZ2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g+/hqL3X";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB1A010E11C
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Nov 2024 10:53:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FAB310E1BB;
+ Thu, 21 Nov 2024 11:27:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732186391; x=1763722391;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=vBjc8pp7QeaOlJVJMuXxy6JmVZLSm/GCXSEBxSyWRWg=;
- b=CjfoFUZ2LA5VgJsU8k3aDmd1EHnAx7D3aam1M8IU6BYRO2VK3xrKNnsP
- qR/niJfoO8SRsTT21/uYeschzpT5+L8RRVRYOwHJexlS0s33mw3QwYQHn
- 2QL/xMV3g1SaUw8g9dGQgdXIoA1MUkVF6toTWd9SAJGEmKo8MbT+JnPBq
- b6ZjyrMaj8AGffvOK6C+RQafN/MTAdCn++JaMbtT3iTdkTTGwgtsM91oN
- UMsb6a8kXZANVALmk0PlPpTIQeqtReGxgWElrlXAcPjYBRF0GVysLsD9s
- T6Q5fv7sj/JJDeW/9djMkk/UUL3Sa6a2HgaFSMLHEunLK30CnaPoF1oyo w==;
-X-CSE-ConnectionGUID: eX9MCt2ERJyZNWIC2wKB+A==
-X-CSE-MsgGUID: qG3Q1bj1TDm7RFdQHgcJMw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11262"; a="32537462"
-X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="32537462"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 02:53:11 -0800
-X-CSE-ConnectionGUID: waWAgeIWT+GcE3FPZBjehA==
-X-CSE-MsgGUID: /aiC4zDKSuWiftqrIa2Qow==
+ t=1732188460; x=1763724460;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9deqdZC0u8OcDT/Chgb4t9piw7d6DQFUUyjpJ2oseE0=;
+ b=g+/hqL3XyTwQOfsuhlva7Eh8oQ/uoL1APqJ2mj3msBiVP/NwIf93JjD6
+ mF5XyZMk53hkoqWVGwUd0A/Aa+9nN3S7dzP69Eo/eveU3AvLUoMr6HRMq
+ /WPih9HzxfrdqJ+iQyLY5EEA36wWejKXj5rGFL2ahIlNPL8Y5ntnhPcN6
+ UeKEqhUDHmhnbv7Nm6AjlKmHgYaPkH8iGYwoSQf3hjoEY5JYUfNEXl94p
+ g3YOB5pbQvG19XsxIhAxL04XEh7lntP8n/4oNUvwnh9b3sSalzWj1uMGe
+ 4G1ARxg/6efOdNbjLAeABB/qRFVBYcyDgeJCDAgEnOLoLZoGgrHmcoPw2 w==;
+X-CSE-ConnectionGUID: OMlN6cqcQl2pCTKZkhp1Pg==
+X-CSE-MsgGUID: /ZwQvVW5R2mQVCPGKi3U0Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11262"; a="49821029"
+X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="49821029"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 03:27:40 -0800
+X-CSE-ConnectionGUID: fsGfR3rZQJu2s6EfH+/YRA==
+X-CSE-MsgGUID: DtITExBVRyaEo5ZexvY+Jw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="127743738"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.95])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 02:53:09 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, ryszard.knop@intel.com
-Subject: Re: [PATCH] drm/xe: Sort again the info flags
-In-Reply-To: <gh2z4erofoxvb5npgoopc7cq7b32erdfxeqztroseyqywmel5o@fc6r37gczlpk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241118223314.1969166-1-lucas.demarchi@intel.com>
- <7f8fccfd-cb92-47bd-b6d3-bbed2a11094e@intel.com>
- <pma4bikew4wnxhs2nczdzbbpz2yt77pvoy5xdxq23sg5cw4e3n@aypm5hztxb2v>
- <87wmgy14oe.fsf@intel.com>
- <gh2z4erofoxvb5npgoopc7cq7b32erdfxeqztroseyqywmel5o@fc6r37gczlpk>
-Date: Thu, 21 Nov 2024 12:53:05 +0200
-Message-ID: <87a5ds26zy.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="90165728"
+Received: from vgovind2-mobl3.fi.intel.com ([10.237.66.37])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 03:27:38 -0800
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, jani.nikula@intel.com,
+ ville.syrjala@intel.com, jani.saarinen@intel.com
+Subject: [PATCH v2 0/3] use hw support for min/interim ddb allocation for
+ async flip
+Date: Thu, 21 Nov 2024 13:27:23 +0200
+Message-Id: <20241121112726.510220-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,20 +68,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 20 Nov 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> IMO we should turn all these "checks run on the build machine" rather
-> than "checks executed on the target hosts" part of the hooks infra....
-> because that is much more visible than scripts hidden inside the CI
-> pipeline. And then people can even run on their own machines.
+In Xe3, hw can automatically switch to minimum / interim ddb allocations
+for async flip use case. Configure the minimum and interim ddb
+configurations. As usage of intel_display is recommended instead of
+drm_i915_private, few preparatory patches were added for that purpose.
 
-Going on a slight tangent, thinking aloud. Could we split the load more
-between running on target and running in, say, qemu? Like, there's no
-point in running some of the drm selftests on each target host. And
-could we move more towards splitting igt this direction too?
+v2: Addressed review comments
+    Dropped few patches which do replacing i915 with intel_display
+    Dropped the debugfs patch to print dbuf allocation stats as
+    part of ddb info
 
-BR,
-Jani.
+Stanislav Lisovskiy (1):
+  drm/i915/xe3: Use hw support for min/interim ddb allocations for async
+    flip
 
+Vinod Govindapillai (2):
+  drm/i915/display: update to plane_wm register access function
+  drm/i915/display: update to relative data rate handling
+
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  27 +---
+ .../drm/i915/display/intel_display_types.h    |   8 ++
+ .../drm/i915/display/skl_universal_plane.c    |  26 ++++
+ .../i915/display/skl_universal_plane_regs.h   |  15 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 135 +++++++++++++-----
+ drivers/gpu/drm/i915/display/skl_watermark.h  |   4 +
+ 6 files changed, 160 insertions(+), 55 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.34.1
+
