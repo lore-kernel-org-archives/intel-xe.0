@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94686D6ED09
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 11:29:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 732FCD6ED09
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 11:30:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BD8710E1BB;
-	Thu, 21 Nov 2024 11:29:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4073410E1BB;
+	Thu, 21 Nov 2024 11:30:06 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E0A710E1C8;
- Thu, 21 Nov 2024 11:29:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA13410E1BB;
+ Thu, 21 Nov 2024 11:30:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_test=3A_check_if_inc?=
- =?utf-8?q?reasing_dmc_wakelock_timeout_helps?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_test=3A_check_if_increasi?=
+ =?utf-8?q?ng_dmc_wakelock_timeout_helps?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Luca Coelho" <luciano.coelho@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 Nov 2024 11:29:50 -0000
-Message-ID: <173218859066.1116962.17834719828001171624@b555e5b46a47>
+Date: Thu, 21 Nov 2024 11:30:05 -0000
+Message-ID: <173218860578.1116962.5046720418509017459@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241121104416.883314-1-luciano.coelho@intel.com>
 In-Reply-To: <20241121104416.883314-1-luciano.coelho@intel.com>
@@ -44,13 +44,30 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: test: check if increasing dmc wakelock timeout helps
 URL   : https://patchwork.freedesktop.org/series/141644/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: e46649e7764a drm-tip: 2024y-11m-20d-23h-16m-04s UTC integration manifest
-=== git am output follows ===
-Applying: test: check if increasing dmc wakelock timeout helps
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5df1633b44bed4ac784100efe02dd770222cda36
+Author: Luca Coelho <luciano.coelho@intel.com>
+Date:   Thu Nov 21 12:44:04 2024 +0200
+
+    test: check if increasing dmc wakelock timeout helps
+    
+    Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
++ /mt/dim checkpatch e46649e7764a9f6868ccbcba7b8b23b413303380 drm-intel
+5df1633b44be test: check if increasing dmc wakelock timeout helps
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
 
 
