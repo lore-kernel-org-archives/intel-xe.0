@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06B9ED743F3
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Nov 2024 23:52:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A01D2D743F3
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 00:15:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B985C10E107;
-	Wed, 20 Nov 2024 23:52:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FFDB10E3E6;
+	Thu, 21 Nov 2024 00:15:54 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13E6B10E107;
- Wed, 20 Nov 2024 23:52:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 644FF10E3C7;
+ Thu, 21 Nov 2024 00:15:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Add_devcoredum?=
- =?utf-8?q?p_locking_and_reason_string?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Add_PXP_HWDRM_suppor?=
+ =?utf-8?q?t_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 20 Nov 2024 23:52:56 -0000
-Message-ID: <173214677610.876587.17796796328011243377@b555e5b46a47>
+Date: Thu, 21 Nov 2024 00:15:53 -0000
+Message-ID: <173214815343.895989.4839022254240247789@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20241120232257.1025282-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20241120232257.1025282-1-John.C.Harrison@Intel.com>
+References: <20241120234353.1037180-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20241120234353.1037180-1-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,32 +42,35 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Add devcoredump locking and reason string
-URL   : https://patchwork.freedesktop.org/series/141628/
+Series: Add PXP HWDRM support (rev3)
+URL   : https://patchwork.freedesktop.org/series/136052/
 State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast e46649e7764a9f6868ccbcba7b8b23b413303380
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: e46649e7764a drm-tip: 2024y-11m-20d-23h-16m-04s UTC integration manifest
+=== git am output follows ===
+.git/rebase-apply/patch:323: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+.git/rebase-apply/patch:675: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+.git/rebase-apply/patch:348: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: drm/xe/pxp: Initialize PXP structure and KCR reg
+Applying: drm/xe/pxp: Allocate PXP execution resources
+Applying: drm/xe/pxp: Add VCS inline termination support
+Applying: drm/xe/pxp: Add GSC session invalidation support
+Applying: drm/xe/pxp: Handle the PXP termination interrupt
+Applying: drm/xe/pxp: Add GSC session initialization support
+Applying: drm/xe/pxp: Add support for PXP-using queues
+Applying: drm/xe/pxp: add a query for PXP status
+Applying: drm/xe/pxp: Add API to mark a BO as using PXP
+Applying: drm/xe/pxp: add PXP PM support
+Applying: drm/xe/pxp: Add PXP debugfs support
+Applying: drm/xe/pxp: Enable PXP for MTL and LNL
 
 
