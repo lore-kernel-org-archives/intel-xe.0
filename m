@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3692D6ED19
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 12:35:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 911ECD6ED19
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 12:35:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68CD510E909;
-	Thu, 21 Nov 2024 12:35:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B91610E915;
+	Thu, 21 Nov 2024 12:35:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XOgZSkbd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZQQgT66J";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2336210E403;
- Thu, 21 Nov 2024 12:35:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F022010E910;
+ Thu, 21 Nov 2024 12:35:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732192543; x=1763728543;
+ t=1732192547; x=1763728547;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Sb167tBYI4JWh1IzbJJ4LdgbutLEO/4AwBeXAVCEKCs=;
- b=XOgZSkbdumzc07aqC9ivZuu+r/IWwXecKWLMLROH59vZqwMUFF8qfz5Q
- i+QOWMSPK3kodmvJKG8EBnRgu6fow4LW8Mr0Cc51WnlysH0IaaDIxka41
- quK9uIE1hDanaZeilJqGe5FFkw6I9RNQjFnsTAfouvPBaec3m75C3Ol3s
- LK8K5zvFuY4jPW6FlRopPdXQVzXSBLk3dN4nYtsMNJeXGRDCSpdMuIFi0
- JHSYw53yAp3lcHB4GsXKaWkEfDv7wbol2BeW0vK2D3yO/9Xi+yBoJs9Ig
- 2K6ovyejHKwdjFTltX1mZuO3UzHqV3LXKD0l0j+cKhaJ+wYdu395d4KIy w==;
-X-CSE-ConnectionGUID: aFXDPIeUSYyVSKEpblYNQQ==
-X-CSE-MsgGUID: Qw4BVSSTQJif2UVyTS+BuQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="32230317"
-X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="32230317"
+ bh=qim44bhfEGeu7lxNe5mva5J8SPeY19zU/HcooOnW4uo=;
+ b=ZQQgT66JN4cu2aNLiwkXBqtX15SKTV+r6uVrYIV45oKbkIiK5jP6NfpR
+ a6F4flumS+2zigUIQOoYs21ticBjYUi3GdKFxIHVpz7aEnmqFpaSNnNXf
+ HXnHLd51AmYQ6c8TQ92IHJ7LRrMuKiKwTA8DV78skHBQ3FfLrGHzBfnEI
+ oK6gV390IdwiNl0YSPbWckw+zdKZ+21n4NLATQ1FVOBy18Yvl5VhB/0ev
+ Lc6dkbn9kZROo7Jbp8KIxCysiahjL9QYpfBijdhRIb9S9HJd2PXa2EI3D
+ SSyhvmiH9Vb/bNVlvxO5dNpYNuHFxt56+ebQJw5qPi8/gUGoBq3FWCg7t w==;
+X-CSE-ConnectionGUID: URiMRAC3SsWvE32vMPd84w==
+X-CSE-MsgGUID: JJKESuqsQGWjkPLZyypChg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="32230326"
+X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="32230326"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 04:35:43 -0800
-X-CSE-ConnectionGUID: eGl5c7H5QXy1+LzxQ9uyeA==
-X-CSE-MsgGUID: K12hJaU8Si+p4GPL96S9Nw==
+ 21 Nov 2024 04:35:47 -0800
+X-CSE-ConnectionGUID: zEm/ZvfaTq+N+74LSQtVNQ==
+X-CSE-MsgGUID: 9iSoKpM2QU2oFP3oIGwpFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="127765959"
+X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="127765980"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa001.jf.intel.com with ESMTP; 21 Nov 2024 04:35:41 -0800
+ by orviesa001.jf.intel.com with ESMTP; 21 Nov 2024 04:35:45 -0800
 From: Arun R Murthy <arun.r.murthy@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: Arun R Murthy <arun.r.murthy@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCHv2 1/8] drm/i915/histogram: Define registers for histogram
-Date: Thu, 21 Nov 2024 17:55:56 +0530
-Message-Id: <20241121122603.736267-2-arun.r.murthy@intel.com>
+Subject: [PATCH 3/8] drm/xe: Add histogram support to Xe builds
+Date: Thu, 21 Nov 2024 17:55:58 +0530
+Message-Id: <20241121122603.736267-4-arun.r.murthy@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241121122603.736267-1-arun.r.murthy@intel.com>
 References: <20241121122603.736267-1-arun.r.murthy@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,72 +67,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add the register/bit definitions for global histogram.
+Histogram added as part of i915/display driver. Adding the same for xe
+as well.
 
-v2: Intended the register contents, removed unused regs (Jani)
-
-Bspec: 4270
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- .../drm/i915/display/intel_histogram_regs.h   | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
- create mode 100644 drivers/gpu/drm/i915/display/intel_histogram_regs.h
+ drivers/gpu/drm/xe/Makefile | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram_regs.h b/drivers/gpu/drm/i915/display/intel_histogram_regs.h
-new file mode 100644
-index 000000000000..1252b4f339a6
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_histogram_regs.h
-@@ -0,0 +1,48 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_HISTOGRAM_REGS_H__
-+#define __INTEL_HISTOGRAM_REGS_H__
-+
-+#include "intel_display_reg_defs.h"
-+
-+/* GLOBAL_HIST related registers */
-+#define _DPST_CTL_A					0x490C0
-+#define _DPST_CTL_B					0x491C0
-+#define DPST_CTL(pipe)					_MMIO_PIPE(pipe, _DPST_CTL_A, _DPST_CTL_B)
-+#define  DPST_CTL_IE_HIST_EN				REG_BIT(31)
-+#define  DPST_CTL_RESTORE				REG_BIT(28)
-+#define  DPST_CTL_IE_MODI_TABLE_EN			REG_BIT(27)
-+#define  DPST_CTL_HIST_MODE				REG_BIT(24)
-+#define  DPST_CTL_ENHANCEMENT_MODE_MASK			REG_GENMASK(14, 13)
-+#define  DPST_CTL_EN_MULTIPLICATIVE			REG_FIELD_PREP(DPST_CTL_ENHANCEMENT_MODE_MASK, 2)
-+#define  DPST_CTL_IE_TABLE_VALUE_FORMAT			REG_BIT(15)
-+#define  DPST_CTL_BIN_REG_FUNC_SEL			REG_BIT(11)
-+#define  DPST_CTL_BIN_REG_FUNC_TC			REG_FIELD_PREP(DPST_CTL_BIN_REG_FUNC_SEL, 0)
-+#define  DPST_CTL_BIN_REG_FUNC_IE			REG_FIELD_PREP(DPST_CTL_BIN_REG_FUNC_SEL, 1)
-+#define  DPST_CTL_BIN_REG_MASK				REG_GENMASK(6, 0)
-+#define  DPST_CTL_BIN_REG_CLEAR				REG_FIELD_PREP(DPST_CTL_BIN_REG_MASK, 0)
-+#define  DPST_CTL_IE_TABLE_VALUE_FORMAT_2INT_8FRAC	REG_FIELD_PREP(DPST_CTL_IE_TABLE_VALUE_FORMAT, 1)
-+#define  DPST_CTL_IE_TABLE_VALUE_FORMAT_1INT_9FRAC	REG_FIELD_PREP(DPST_CTL_IE_TABLE_VALUE_FORMAT, 0)
-+#define  DPST_CTL_HIST_MODE_YUV				REG_FIELD_PREP(DPST_CTL_HIST_MODE, 0)
-+#define  DPST_CTL_HIST_MODE_HSV				REG_FIELD_PREP(DPST_CTL_HIST_MODE, 1)
-+
-+#define _DPST_GUARD_A					0x490C8
-+#define _DPST_GUARD_B					0x491C8
-+#define DPST_GUARD(pipe)				_MMIO_PIPE(pipe, _DPST_GUARD_A, _DPST_GUARD_B)
-+#define  DPST_GUARD_HIST_INT_EN				REG_BIT(31)
-+#define  DPST_GUARD_HIST_EVENT_STATUS			REG_BIT(30)
-+#define  DPST_GUARD_INTERRUPT_DELAY_MASK			REG_GENMASK(29, 22)
-+#define  DPST_GUARD_INTERRUPT_DELAY(val)			REG_FIELD_PREP(DPST_GUARD_INTERRUPT_DELAY_MASK, val)
-+#define  DPST_GUARD_THRESHOLD_GB_MASK			REG_GENMASK(21, 0)
-+#define  DPST_GUARD_THRESHOLD_GB(val)			REG_FIELD_PREP(DPST_GUARD_THRESHOLD_GB_MASK, val)
-+
-+#define _DPST_BIN_A					0x490C4
-+#define _DPST_BIN_B					0x491C4
-+#define DPST_BIN(pipe)					_MMIO_PIPE(pipe, _DPST_BIN_A, _DPST_BIN_B)
-+#define  DPST_BIN_DATA_MASK				REG_GENMASK(23, 0)
-+#define  DPST_BIN_BUSY					REG_BIT(31)
-+
-+#endif /* __INTEL_HISTOGRAM_REGS_H__ */
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index a93e6fcc0ad9..d383b0d35d8e 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -245,6 +245,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/intel_hdcp.o \
+ 	i915-display/intel_hdcp_gsc_message.o \
+ 	i915-display/intel_hdmi.o \
++	i915-display/intel_histogram.o \
+ 	i915-display/intel_hotplug.o \
+ 	i915-display/intel_hotplug_irq.o \
+ 	i915-display/intel_hti.o \
 -- 
 2.25.1
 
