@@ -4,61 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 943EDE6400D
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 20:03:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE27AE64012
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 20:53:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5779510E1CC;
-	Thu, 21 Nov 2024 20:03:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B76010E1F7;
+	Thu, 21 Nov 2024 20:53:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EUc5fA0P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fYgsJJXk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE8C110E1CC
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Nov 2024 20:03:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02BEE10E053
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Nov 2024 20:53:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732219418; x=1763755418;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=rDH96bywRec+zOCwVGqefAKiF3a/mKaT7gtuDHdcHMo=;
- b=EUc5fA0PoodVvR+AM3f2L1idW3c7zkc821fFSqhB9DxpEg5JIDpNVRdr
- Xt+QvLA0fLkMocHvgyc9JkapC600lQDHCxO9ZipCwKTnKiA5v1AUDkLwf
- 6Zza40dLzutpwtRyOu6o5u6LGw4v79rcktAvtKgeLZ8+OrQwHTZ3jsxMt
- 927E0B63t3fY4bsaSZqAmtoKJtDZkRQm8Z7g1vQIbaMlG3nUn7vWTZ9NY
- pjpqakNoGTLOI6ywef+bEb/Hu49IB4KoubyGhMPl88N/+VOcrWYf9wEW5
- sfvUyGuRL6DptboNYOAQUQxnBM0+ETiT/V/AqmlU90IIAZ4DOiQitYNzo Q==;
-X-CSE-ConnectionGUID: aKKvu93KStm+USLXkBT7RQ==
-X-CSE-MsgGUID: q+de272cQsCHt5X5rw0BPw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="35216872"
-X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="35216872"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 12:03:38 -0800
-X-CSE-ConnectionGUID: PsMa7l+bRh2H9H6iKZ6kYQ==
-X-CSE-MsgGUID: RRDpu57OQp2wrQSvVMDMXQ==
+ t=1732222404; x=1763758404;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=irQgqODSepXMvJOpGYRvOegtXmM9C4zKIzjoJFU0rsE=;
+ b=fYgsJJXkoZeTGW381Gy6M7hTt/SAKzXbYL36rC7j2cR1xUnfIyo9etTy
+ 66eKOrX5ggtJ8lfEfflb+i9v5xujMrH8A1TMOWsjqw+2R6HkZZc0RrDdO
+ /ocoR/fGGCHNRgDDbJGgO0YoKL3CFju9/TjNkZwQat3yV5TKQapq/cKSn
+ Utk3WcSAwvo/Tmj2fsNJqw4o3zoz6vndZu50YXMPW8KJHGCrvlh+T6igq
+ RH5PHRvJprkDtqW+uvWx8z2hzcmRG7JqDN18WopCRsPBiu2JPYtFWsj4V
+ CBQmeSIusa0fq8xBDWVXKC8y9u/ikxTQ00lkQh/hVE5z/t9d+lHV/XlIN Q==;
+X-CSE-ConnectionGUID: xsvLL8MIRQGuBlFWMO0cdw==
+X-CSE-MsgGUID: PMIzTZV2R1GVUdK0bicaqA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="32600939"
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="32600939"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 12:53:24 -0800
+X-CSE-ConnectionGUID: aBi1sbdDQIuKPMQr9e7iFg==
+X-CSE-MsgGUID: M5KxNcdjQL2clwjMYI5eMg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="89997427"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.125])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 12:03:35 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="90172583"
+Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
+ ([10.125.109.234])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 12:53:23 -0800
+Date: Thu, 21 Nov 2024 14:53:18 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>, 
  intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, Thomas =?utf-8?Q?Hellstr?=
- =?utf-8?Q?=C3=B6m?= <thomas.hellstrom@linux.intel.com>, John Harrison
- <John.C.Harrison@Intel.com>
-Subject: Re: [PATCH v3 09/12] drm/xe/pxp: Add API to mark a BO as using PXP
-In-Reply-To: <cb789d6f-dcf0-4077-bc36-e630df0d9913@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241120234353.1037180-1-daniele.ceraolospurio@intel.com>
- <20241120234353.1037180-10-daniele.ceraolospurio@intel.com>
- <87iksg29kt.fsf@intel.com>
- <cb789d6f-dcf0-4077-bc36-e630df0d9913@intel.com>
-Date: Thu, 21 Nov 2024 22:03:30 +0200
-Message-ID: <87plmoz759.fsf@intel.com>
+Subject: Re: [PATCH v2 2/2] drm/xe: Use new force-wake guard class in xe_mocs.c
+Message-ID: <ybziwoe3kxpv4mlbvei3sontpizglivnhdxgald65wkyqxic2h@6pgh4u5eqeqg>
+References: <20241118184511.258-1-michal.wajdeczko@intel.com>
+ <20241118184511.258-3-michal.wajdeczko@intel.com>
+ <q6oftdodc3xpjczeddv3ghr2c5msrqgekbz3f34yi5leg4hz22@dwodxaqpk6pd>
+ <Zz69Ksdzuqb4TO1v@lstrano-desk.jf.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <Zz69Ksdzuqb4TO1v@lstrano-desk.jf.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,73 +71,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 21 Nov 2024, Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> wrote:
-> On 11/21/2024 1:57 AM, Jani Nikula wrote:
->> On Wed, 20 Nov 2024, Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> wrote:
->>> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h b/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
->>> index 419e8e926f00..533bc82255b6 100644
->>> --- a/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
->>> +++ b/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
->>> @@ -9,6 +9,9 @@
->>>   #include <linux/errno.h>
->>>   #include <linux/types.h>
->>>   
->>> +#include "xe_bo.h"
->>> +#include "xe_pxp.h"
->>> +
->> Can't have this. This will include xe_bo.h and xe_pxp.h from i915
->> display.
+On Wed, Nov 20, 2024 at 08:55:06PM -0800, Matthew Brost wrote:
+>On Tue, Nov 19, 2024 at 02:03:12PM -0600, Lucas De Marchi wrote:
+>> On Mon, Nov 18, 2024 at 07:45:11PM +0100, Michal Wajdeczko wrote:
+>> > Start using new xe_fw class to minimize risk of leaking force-wake
+>> > references.
+>> >
+>> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> > ---
+>> > v2: rebased
+>> > ---
+>> > drivers/gpu/drm/xe/xe_mocs.c | 10 +++-------
+>> > 1 file changed, 3 insertions(+), 7 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+>> > index 54d199b5cfb2..f18aaa6595c7 100644
+>> > --- a/drivers/gpu/drm/xe/xe_mocs.c
+>> > +++ b/drivers/gpu/drm/xe/xe_mocs.c
+>> > @@ -776,19 +776,15 @@ void xe_mocs_dump(struct xe_gt *gt, struct drm_printer *p)
+>> > {
+>> > 	struct xe_device *xe = gt_to_xe(gt);
+>> > 	struct xe_mocs_info table;
+>> > -	unsigned int fw_ref, flags;
+>> > +	unsigned int flags;
+>> >
+>> > 	flags = get_mocs_settings(xe, &table);
+>> >
+>> > 	xe_pm_runtime_get_noresume(xe);
+>> > -	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+>> > -	if (!fw_ref)
+>> > -		goto err_fw;
+>> >
+>> > -	table.ops->dump(&table, flags, gt, p);
+>> > +	scoped_guard(xe_fw, gt_to_fw(gt), XE_FW_GT)
+>> > +		table.ops->dump(&table, flags, gt, p);
 >>
->> Basically you can't use gem_to_xe_bo() in static inlines in headers that
->> get included to i915 display. It all needs to stay opaque.
->
-> Why would this be included to i915 display? This is the copy of the 
-> header used for building the display code with Xe, i915 should use it's 
-> own copy (i915/pxp/intel_pxp.h). Several other headers in the 
-> compat-i915-headers subfolder include Xe headers. Or is the problem 
-> specifically with the BO part of it? Because I can move the code to 
-> xe_pxp.c, but I'd still have to include at least xe_pxp.h.
-
-With "i915 display", I refer to the display code that gets built for
-both i915 and xe. And regardless of which module the code is being built
-for, it should not include details like this. The goal is to make it
-more and more independent from the two, eventually spawning into a
-dedicated module. So we want to axe includes that lead from i915 display
-to either i915 or xe core headers.
-
-BR,
-Jani.
-
-
-
->
-> Daniele
->
 >>
->> BR,
->> Jani.
+>> afair one caveat is that you can't have a goto that jumps over guard
+>> because of the usage of the cleanup attribute. Is that still the case or
+>> do we have some magic convincing the compiler to do the right thing?
 >>
->>>   struct drm_gem_object;
->>>   struct xe_pxp;
->>>   
->>> @@ -16,7 +19,15 @@ static inline int intel_pxp_key_check(struct xe_pxp *pxp,
->>>   				      struct drm_gem_object *obj,
->>>   				      bool assign)
->>>   {
->>> -	return -ENODEV;
->>> +	/*
->>> +	 * The assign variable is used in i915 to assign the key to the BO at
->>> +	 * first submission time. In Xe the key is instead assigned at BO
->>> +	 * creation time, so the assign variable must always be false.
->>> +	 */
->>> +	if (assign)
->>> +		return -EINVAL;
->>> +
->>> +	return xe_pxp_key_check(pxp, gem_to_xe_bo(obj));
->>>   }
->>>   
->>>   #endif
+>> once we get agreement on the approach, please let's convert everything
+>> that can be converted to scoped guard so we don't have to keep both
+>> approaches for a long time.
+>>
 >
+>+1. I've come around to using (scoped) guard but if we commit to this I
+>do think we should try to overhaul the driver to use this more or less
+>everywhere it makes sense (e.g. fw, spin locks, mutexes, perhaps some pm
+>refs where the ref is only held within scope, also maybe also tmp object
+>refs?). Having a single sematic IMO makes it easier to quickly understand
+>different code paths. Maybe we even put the agreement in some kernel doc
+>too.
+>
+>Can stage this a piece at time too, e.g., A series which converts spin
+>locks to scoped guard, etc...
+>
+>Anything simple which also doesn't fix into patterns handled by scoped
+>guard we could also review if the complexity is required and if it is
+>flag for comments so we can understand why it is needed. I know for sure
+>I've added odd coding patterns which are required, don't have a comment
+>why I did it, only to forget why later which is not great for long term
+>maintainability.
+>
+>Obviously complex locking patterns, e.g., the VM lock's + drm exec, will
+>still need to be open coded /w unwinds but that locking itself is or
+>should be documented too.
 
--- 
-Jani Nikula, Intel
+Ack to get started with the xe_fw and then we can provide separate
+series to convert the others.
+
+Lucas De Marchi
