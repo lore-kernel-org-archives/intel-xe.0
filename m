@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE27AE64012
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 20:53:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A1C0E64014
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 21:04:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B76010E1F7;
-	Thu, 21 Nov 2024 20:53:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3656F10E1F7;
+	Thu, 21 Nov 2024 21:04:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fYgsJJXk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GtzYPqw7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02BEE10E053
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Nov 2024 20:53:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C90B410E1F7
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Nov 2024 21:04:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732222404; x=1763758404;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=irQgqODSepXMvJOpGYRvOegtXmM9C4zKIzjoJFU0rsE=;
- b=fYgsJJXkoZeTGW381Gy6M7hTt/SAKzXbYL36rC7j2cR1xUnfIyo9etTy
- 66eKOrX5ggtJ8lfEfflb+i9v5xujMrH8A1TMOWsjqw+2R6HkZZc0RrDdO
- /ocoR/fGGCHNRgDDbJGgO0YoKL3CFju9/TjNkZwQat3yV5TKQapq/cKSn
- Utk3WcSAwvo/Tmj2fsNJqw4o3zoz6vndZu50YXMPW8KJHGCrvlh+T6igq
- RH5PHRvJprkDtqW+uvWx8z2hzcmRG7JqDN18WopCRsPBiu2JPYtFWsj4V
- CBQmeSIusa0fq8xBDWVXKC8y9u/ikxTQ00lkQh/hVE5z/t9d+lHV/XlIN Q==;
-X-CSE-ConnectionGUID: xsvLL8MIRQGuBlFWMO0cdw==
-X-CSE-MsgGUID: PMIzTZV2R1GVUdK0bicaqA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="32600939"
-X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="32600939"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 12:53:24 -0800
-X-CSE-ConnectionGUID: aBi1sbdDQIuKPMQr9e7iFg==
-X-CSE-MsgGUID: M5KxNcdjQL2clwjMYI5eMg==
+ t=1732223066; x=1763759066;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=WnDB7tPq7c+LBpvMGesBfFQbIj6N0ZPnifZ2Nft7138=;
+ b=GtzYPqw75YxnSMfmb5HeMbijZj2Z3SrGS7LCcT3qqSmRBUVeexMkH/WT
+ FTyi+70tza+aE5ZBNFVmzJz03LIbhRumSQkVm33XlgG6kpxbzoXePy2fb
+ T6I9lvwCWcX32d7DHucvyuMcvUnQug7p2MciFpZc08UP7kL12THJBDKTB
+ T0TlTaWBtjL7bGxrilrp5SAVXxqyrHUn/y+g+kvoiKnBJkOod3DRInhHO
+ uLhq3VrGnNz7XXtZ1OeXKc5/s/ydZzJyAFRP9+DvujJPA44iQSVsRnFQc
+ Qgv6Kz+CCqKOOUrlOgNilty3byx/zKdDrVxcM9XwXnTvuFipQ9qV+QHoy A==;
+X-CSE-ConnectionGUID: b3/x3Vb+QWmzkW10PTrnsw==
+X-CSE-MsgGUID: KkdX6x0xQrOWrMljjgeT/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="32510088"
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="32510088"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 13:04:26 -0800
+X-CSE-ConnectionGUID: jqm5+sH5TQarcj8AvGoJxw==
+X-CSE-MsgGUID: SIJR/mqVTBS9LKOPrWqdBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="90172583"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.109.234])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 12:53:23 -0800
-Date: Thu, 21 Nov 2024 14:53:18 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="90011253"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 13:04:25 -0800
+Date: Thu, 21 Nov 2024 13:04:24 -0800
+Message-ID: <85v7wgjo2v.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Matthew Brost <matthew.brost@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>, 
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 2/2] drm/xe: Use new force-wake guard class in xe_mocs.c
-Message-ID: <ybziwoe3kxpv4mlbvei3sontpizglivnhdxgald65wkyqxic2h@6pgh4u5eqeqg>
-References: <20241118184511.258-1-michal.wajdeczko@intel.com>
- <20241118184511.258-3-michal.wajdeczko@intel.com>
- <q6oftdodc3xpjczeddv3ghr2c5msrqgekbz3f34yi5leg4hz22@dwodxaqpk6pd>
- <Zz69Ksdzuqb4TO1v@lstrano-desk.jf.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <Zz69Ksdzuqb4TO1v@lstrano-desk.jf.intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>, 
+ Jonathan Cavitt <jonathan.cavitt@intel.com>
+Subject: Re: [PATCH] drm/xe/oa: Disallow OA from being enabled on active
+ exec_queue's
+In-Reply-To: <Zz7CPGchRIRrYHaE@lstrano-desk.jf.intel.com>
+References: <20241119013256.680030-1-ashutosh.dixit@intel.com>	<ZzykYzGwr1GXSqoV@lstrano-desk.jf.intel.com>	<851pz76ie6.wl-ashutosh.dixit@intel.com>	<Zz0Mg7gL2mQT8ZPw@lstrano-desk.jf.intel.com>	<85y11djjwy.wl-ashutosh.dixit@intel.com>	<Zz7CPGchRIRrYHaE@lstrano-desk.jf.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,74 +72,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Nov 20, 2024 at 08:55:06PM -0800, Matthew Brost wrote:
->On Tue, Nov 19, 2024 at 02:03:12PM -0600, Lucas De Marchi wrote:
->> On Mon, Nov 18, 2024 at 07:45:11PM +0100, Michal Wajdeczko wrote:
->> > Start using new xe_fw class to minimize risk of leaking force-wake
->> > references.
->> >
->> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> > ---
->> > v2: rebased
->> > ---
->> > drivers/gpu/drm/xe/xe_mocs.c | 10 +++-------
->> > 1 file changed, 3 insertions(+), 7 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
->> > index 54d199b5cfb2..f18aaa6595c7 100644
->> > --- a/drivers/gpu/drm/xe/xe_mocs.c
->> > +++ b/drivers/gpu/drm/xe/xe_mocs.c
->> > @@ -776,19 +776,15 @@ void xe_mocs_dump(struct xe_gt *gt, struct drm_printer *p)
->> > {
->> > 	struct xe_device *xe = gt_to_xe(gt);
->> > 	struct xe_mocs_info table;
->> > -	unsigned int fw_ref, flags;
->> > +	unsigned int flags;
->> >
->> > 	flags = get_mocs_settings(xe, &table);
->> >
->> > 	xe_pm_runtime_get_noresume(xe);
->> > -	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->> > -	if (!fw_ref)
->> > -		goto err_fw;
->> >
->> > -	table.ops->dump(&table, flags, gt, p);
->> > +	scoped_guard(xe_fw, gt_to_fw(gt), XE_FW_GT)
->> > +		table.ops->dump(&table, flags, gt, p);
->>
->>
->> afair one caveat is that you can't have a goto that jumps over guard
->> because of the usage of the cleanup attribute. Is that still the case or
->> do we have some magic convincing the compiler to do the right thing?
->>
->> once we get agreement on the approach, please let's convert everything
->> that can be converted to scoped guard so we don't have to keep both
->> approaches for a long time.
->>
+On Wed, 20 Nov 2024 21:16:44 -0800, Matthew Brost wrote:
 >
->+1. I've come around to using (scoped) guard but if we commit to this I
->do think we should try to overhaul the driver to use this more or less
->everywhere it makes sense (e.g. fw, spin locks, mutexes, perhaps some pm
->refs where the ref is only held within scope, also maybe also tmp object
->refs?). Having a single sematic IMO makes it easier to quickly understand
->different code paths. Maybe we even put the agreement in some kernel doc
->too.
+> On Wed, Nov 20, 2024 at 08:22:05PM -0800, Dixit, Ashutosh wrote:
+> > On Tue, 19 Nov 2024 14:09:07 -0800, Matthew Brost wrote:
+> > >
+> >
+> > Hi Matt,
+> >
+> > > On Tue, Nov 19, 2024 at 01:08:49PM -0800, Dixit, Ashutosh wrote:
+> > > > On Tue, 19 Nov 2024 06:44:51 -0800, Matthew Brost wrote:
+> > > > >
+> > > > > On Mon, Nov 18, 2024 at 05:32:56PM -0800, Ashutosh Dixit wrote:
+> > > > > > Enabling OA on an exec_queue toggles the OAC_CONTEXT_ENABLE bit in
+> > > > > > CTXT_SR_CTL register. Toggling this bit changes the size and layout of the
+> > > > > > underlying HW context image. Therefore, enabling OA on an already active
+> > > > > > exec_queue (as currently implemented in xe) is an invalid operation and can
+> > > > > > cause hangs. Therefore, disallow OA from being enabled on active
+> > > > > > exec_queue's (here, by active we mean a context on which submissions have
+> > > > > > previously happened).
+> > > > > >
+> > > > >
+> > > > > This is something we will need to keep on eye on then because in various
+> > > > > experimental code I've played around enabling exec queues upon creation.
+> > > > > e.g., If we want to allocate a doorbell. I seem to recall Habana wanting
+> > > > > to enable exec queues upon creation too.
+> > > >
+> > > > The real requirement here is that HW context image should not have been
+> > > > loaded before OA is enabled on the exec queue. That is what happens today
+> > > > in the ENABLED state, correct, when user space submissions start?
+> > > >
+> > >
+> > > Yea, that is the current flow. If we change this to enable an exec queue
+> > > upon allocation we probably could check for ring head & tail == 0.
+> > >
+> > > Also note LR queues with preemption fences do toggle the enabled state
+> > > too. Does OA apply to those queues? If so, a registered check may be
+> > > better than enabled or maybe just start with ring head & tail == 0.
+> >
+> > Yes I could do 'ring head & tail == 0' but not sure how it works, since
+> > ring head and tail could have wrapped round back to 0 (giving the false
+> > impression that exec_queue was not active when it was).
 >
->Can stage this a piece at time too, e.g., A series which converts spin
->locks to scoped guard, etc...
+> Indeed wrapping is a corner...
 >
->Anything simple which also doesn't fix into patterns handled by scoped
->guard we could also review if the complexity is required and if it is
->flag for comments so we can understand why it is needed. I know for sure
->I've added odd coding patterns which are required, don't have a comment
->why I did it, only to forget why later which is not great for long term
->maintainability.
+> What about ring head & tail == 0 && ctx timestamp == 0?
 >
->Obviously complex locking patterns, e.g., the VM lock's + drm exec, will
->still need to be open coded /w unwinds but that locking itself is or
->should be documented too.
+> That seems correct and future proof.
 
-Ack to get started with the xe_fw and then we can provide separate
-series to convert the others.
+If 'head & tail == 0' is ambiguous, 'ctx timestamp == 0' should be
+sufficient by itself. But appears ctx timestamp can also wrap around? If
+yes, theoretically it is possible that all three (head, tail and ctx
+timestamp) have simultaneously wrapped around to 0.
 
-Lucas De Marchi
+So I think that's why you want to check all three, since the likelihood of
+all three simultaneously wrapping round to 0 is extremely unlikely (but I'd
+say not impossible).
+
+But anyway, I can go with this for now (and maybe revisit about perhaps
+introducing a new state after ENABLED, after the other exec queue changes
+are done). But this looks good for now.
+
+Thanks.
+--
+Ashutosh
+
+> > I am assuming you mean the ring is "0 to N" rather than "gtt_addr to
+> > gtt_addr + N", correct?
+> >
+> > Thanks.
+> > --
+> > Ashutosh
+> >
+> > > > If operations such as doorbell are only management requests to GuC (which
+> > > > don't cause HW context image to be loaded) and if we can name a new state
+> > > > when the exec queue is handed off to userspace for starting submissions, we
+> > > > should be able to stay with this approach.
+> > > >
+> > > > > Just curious if it was ever explored having exec queue creation
+> > > > > extension which enables OA? It seems like this is something we may need
+> > > > > at some point if our exec queue creation semantics change of course
+> > > > > being careful to not break existing flows.
+> > > >
+> > > > Yeah I did think of it but didn't want to change the uapi.
+> > > >
+> > >
+> > > Makes sense.
+> > >
+> > > > Also, a different implementation is possible which avoids this resizing of
+> > > > the context image altogether. It requires the kernel OA code submit its
+> > > > submissions on the user exec queue (and use that exec queue's VM, currently
+> > > > OA code uses a kernel exec queue). There are some reasons I don't want to
+> > > > implement that just yet, but worst case, we can do that if absolutely
+> > > > needed.
+> > > >
+> > > > Thanks.
+> > > > --
+> > > > Ashutosh
+> > > >
+> > > > > > Transition from 1 -> 0 for this bit was disallowed in
+> > > > > > '0c8650b09a36 ("drm/xe/oa: Don't reset OAC_CONTEXT_ENABLE on OA stream
+> > > > > > close")'. Here we disallow the 0 -> 1 transition on active contexts.
+> > > > > >
+> > > > > > v2: Don't export exec_queue_enabled, define new xe_exec_queue_op (M Brost)
+> > > > > >     Directly check OAC_CONTEXT_ENABLE bit from context image (J Cavitt)
+> > > > > >
+> > > > > > Bspec: 60314
+> > > > > > Fixes: 2f4a730fcd2d ("drm/xe/oa: Add OAR support")
+> > > > > > Cc: stable@vger.kernel.org
+> > > > > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 ++
+> > > > > >  drivers/gpu/drm/xe/xe_guc_submit.c       |  1 +
+> > > > > >  drivers/gpu/drm/xe/xe_oa.c               | 13 +++++++++++++
+> > > > > >  3 files changed, 16 insertions(+)
+> > > > > >
+> > > > > > diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > > > > index 1158b6062a6cd..b88d617c37b33 100644
+> > > > > > --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > > > > +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > > > > @@ -184,6 +184,8 @@ struct xe_exec_queue_ops {
+> > > > > >	void (*resume)(struct xe_exec_queue *q);
+> > > > > >	/** @reset_status: check exec queue reset status */
+> > > > > >	bool (*reset_status)(struct xe_exec_queue *q);
+> > > > > > +	/** @enabled: check if exec queue is in enabled state */
+> > > > > > +	bool (*enabled)(struct xe_exec_queue *q);
+> > > > > >  };
+> > > > > >
+> > > > > >  #endif
+> > > > > > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > > > > index f9ecee5364d82..b9b9cdb6f768b 100644
+> > > > > > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > > > > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > > > > @@ -1660,6 +1660,7 @@ static const struct xe_exec_queue_ops guc_exec_queue_ops = {
+> > > > > >	.suspend_wait = guc_exec_queue_suspend_wait,
+> > > > > >	.resume = guc_exec_queue_resume,
+> > > > > >	.reset_status = guc_exec_queue_reset_status,
+> > > > > > +	.enabled = exec_queue_enabled,
+> > > > > >  };
+> > > > > >
+> > > > > >  static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+> > > > > > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> > > > > > index 8dd55798ab312..4a7440c40978c 100644
+> > > > > > --- a/drivers/gpu/drm/xe/xe_oa.c
+> > > > > > +++ b/drivers/gpu/drm/xe/xe_oa.c
+> > > > > > @@ -2066,6 +2066,19 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
+> > > > > >		if (XE_IOCTL_DBG(oa->xe, !param.exec_q))
+> > > > > >			return -ENOENT;
+> > > > > >
+> > > > > > +		/*
+> > > > > > +		 * Disallow OA from being enabled on active exec_queue's. Enabling OA sets the
+> > > > > > +		 * OAC_CONTEXT_ENABLE bit in CTXT_SR_CTL register. Toggling the bit changes
+> > > > > > +		 * the size and layout of the underlying HW context image and can cause hangs.
+> > > > > > +		 */
+> > > > > > +		if (XE_IOCTL_DBG(oa->xe,
+> > > > > > +				 !(xe_lrc_read_ctx_reg(param.exec_q->lrc[0],
+> > > > > > +				       CTX_CONTEXT_CONTROL) & CTX_CTRL_OAC_CONTEXT_ENABLE) &&
+> > > > > > +				 param.exec_q->ops->enabled(param.exec_q))) {
+> > > > > > +			ret = -EADDRINUSE;
+> > > > > > +			goto err_exec_q;
+> > > > > > +		}
+> > > > > > +
+> > > > > >		if (param.exec_q->width > 1)
+> > > > > >			drm_dbg(&oa->xe->drm, "exec_q->width > 1, programming only exec_q->lrc[0]\n");
+> > > > > >	}
+> > > > > > --
+> > > > > > 2.41.0
+> > > > > >
