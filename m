@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6965FE65D03
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 22:55:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A0C3E65D00
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Nov 2024 22:55:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12CE510E106;
-	Thu, 21 Nov 2024 22:55:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 334F910E419;
+	Thu, 21 Nov 2024 22:55:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZTL9HXKR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CdiPpnS/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92C9D10E00A
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Nov 2024 22:55:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15CA010E419
+ for <Intel-Xe@lists.freedesktop.org>; Thu, 21 Nov 2024 22:55:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732229725; x=1763765725;
+ t=1732229743; x=1763765743;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=fH1x7+/k8R1y+LCIog4FPKT04y9Lz7Kl46+5SFBmFno=;
- b=ZTL9HXKR7pq9Z0BHsPZ+VbwcLKlgo84LoOXHqGGheBFOwuPRR1M6s11B
- TN8w97cBdEMPtiYwlf+LOLAE+k5XJ3MRghEBFDFpeNXB42fd4cANTS/da
- /ZP+cICCuyXygYEHs0n8sp7wFZ41/0AxPyNKUGsSej2JUMpT4LMEXVqbE
- mBJk/Hye9q8TkexnQXTMROG6A4AUhUyy+VkHrKxxNioVxsfgc6NFNLkNd
- 1IxVOeBcEMgidS9KAsyTCveNyh/1KnlWnUkScfa90u/hFyAYTCefnIJPc
- HuLIEiEqOpdrZ3KC9qMQ4W3EF0+qo5aI0p5x7Dos1Qh4iqd0bfTgCckSi A==;
-X-CSE-ConnectionGUID: jDvuHeyyTDSE5YnonzxxFQ==
-X-CSE-MsgGUID: +jqz7s6CT96RTbGffncdxA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="36034986"
-X-IronPort-AV: E=Sophos;i="6.12,174,1728975600"; d="scan'208";a="36034986"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 14:55:25 -0800
-X-CSE-ConnectionGUID: 9baVZ6hORCWocTF7q4Fd4Q==
-X-CSE-MsgGUID: YyjMCH0PSKmuOvKxidqTBA==
+ bh=69YK95flDVLpqbE75ueszAwGybgGZe92YwPFmrY0760=;
+ b=CdiPpnS/JLA5TzATdyB49tRkqfY1rAsFIM2zk2symxzZ656AMp6TeL36
+ c0NbWI1hyBo1WS+lKm77a/wpfXL3xxnqZYp8+oFFrNnaNWMk4+lLyHaKm
+ 9DLXm2OaPaIfb8nw/MQNZMp/0YjBJc8cPS1UgkCBn4cvl+IfEKYi9sggI
+ vCRcEvUtBY4nv2wwEX7A9aYajH4WIYggh4QgeAtlzR21oDnuEzOFzjCvT
+ RRM272TEN3oiQlxhch8A6gGfzhPEV88CT2d2GE+HkkogDcNRtfcjHDBPk
+ u0iSS2KYk4PFrgg8vZCrX99pEcRn1MU18yMgKMyao9j2N0OyIINNt2u6C w==;
+X-CSE-ConnectionGUID: UrQlCHTLT7KPaFvq0IgbvA==
+X-CSE-MsgGUID: 0TWNTE5FRruTZIZSRiwPjg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="42885955"
+X-IronPort-AV: E=Sophos;i="6.12,174,1728975600"; d="scan'208";a="42885955"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 14:55:43 -0800
+X-CSE-ConnectionGUID: yzUYkDwiSGqXCmrLRwWJVg==
+X-CSE-MsgGUID: 8vtvDk3vSjy8WaBAN1/rlw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,174,1728975600"; d="scan'208";a="90325625"
-Received: from msatwood-mobl.amr.corp.intel.com (HELO
- msatwood-mobl.hsd1.or.comcast.net) ([10.125.110.34])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 14:55:22 -0800
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH v2 topic/xe-for-ci] drm/xe/ptl: Update PTL GuC revision
-Date: Thu, 21 Nov 2024 14:55:18 -0800
-Message-ID: <20241121225518.10986-1-matthew.s.atwood@intel.com>
-X-Mailer: git-send-email 2.45.0
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="90194314"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by fmviesa007.fm.intel.com with ESMTP; 21 Nov 2024 14:55:42 -0800
+From: John.C.Harrison@Intel.com
+To: Intel-Xe@Lists.FreeDesktop.Org
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH v2 0/2] drm/xe: Add devcoredump locking and reason string
+Date: Thu, 21 Nov 2024 14:55:40 -0800
+Message-ID: <20241121225542.1336796-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.47.0
 MIME-Version: 1.0
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,28 +65,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update PTL guc version to 70.36.0.
+From: John Harrison <John.C.Harrison@Intel.com>
 
-v2: Fix typo in commit message
+There are now many ways to trigger a devcoredump capture. So include a
+reason message to say why it happened.
 
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/xe/xe_uc_fw.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Also, add locking to avoid a races with double captures and free vs read.
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index b0deb082ab2b..9c14b0adad0c 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -107,7 +107,7 @@ struct fw_blobs_by_type {
- };
- 
- #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)			\
--	fw_def(PANTHERLAKE,	mmp_ver(xe,	guc,	ptl,	70, 33, 2))	\
-+	fw_def(PANTHERLAKE,	mmp_ver(xe,	guc,	ptl,	70, 36, 0))	\
- 	fw_def(BATTLEMAGE,	major_ver(xe,	guc,	bmg,	70, 29, 2))	\
- 	fw_def(LUNARLAKE,	major_ver(xe,	guc,	lnl,	70, 29, 2))	\
- 	fw_def(METEORLAKE,	major_ver(i915,	guc,	mtl,	70, 29, 2))	\
+v2: Change to spin_lock to mutex and a few other tweaks (review
+feedback from Matthew Brost).
+
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+
+John Harrison (2):
+  drm/xe: Add a reason string to the devcoredump
+  drm/xe: Add mutex locking to devcoredump
+
+ drivers/gpu/drm/xe/xe_devcoredump.c       | 47 ++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_devcoredump.h       |  5 ++-
+ drivers/gpu/drm/xe/xe_devcoredump_types.h |  8 +++-
+ drivers/gpu/drm/xe/xe_guc_submit.c        | 14 +++++--
+ 4 files changed, 62 insertions(+), 12 deletions(-)
+
 -- 
-2.45.0
+2.47.0
 
