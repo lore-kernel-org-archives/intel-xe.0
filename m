@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72E59E69186
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Nov 2024 18:37:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A400E69188
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Nov 2024 18:46:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2918310E160;
-	Fri, 22 Nov 2024 18:37:06 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28D8110E160;
- Fri, 22 Nov 2024 18:37:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C830310E27C;
+	Fri, 22 Nov 2024 18:46:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xt9OeBVu";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F12710E1D4;
+ Fri, 22 Nov 2024 18:46:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732301160; x=1763837160;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=pL+wbSYtCQG9arTxEVhGuaT0bG8Y+GMbIVvevnJOhL0=;
+ b=Xt9OeBVuyW4GFwxJ2i/KDzdUlZDN93Xu+0YmkcpPh3FAZPgUekEBUr56
+ 45P+jXDoDj60lbXPdgNu1W9W4anSo9+4iI5nG5H4p7WkWWdT+QuSXT+ei
+ KGbh5t076nQ6t77SJxsfHLoPsu7MJVltPJh/Df/ncXPooKR12Gcd2V7IU
+ 58FponS4wYAhvfZcaynJjukwEc67I1n6pUgAu5aiS4O7WNa7z0BEQsCrM
+ OlV/9j6Uc95X5safeUlNIcPB6+MnLiwR3gsSJs3V1vvsHHFgO5FjOLfZ4
+ YGUzMStiPoHD5qmSldlNreUz25yTY5exI/WuK1mTVc0VqqThGqWBLGLk/ A==;
+X-CSE-ConnectionGUID: h4bhoqNPRDGsQdqT/OZr1A==
+X-CSE-MsgGUID: A14Yihu7QdqcuLGgVm1EYw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="32209594"
+X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="32209594"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2024 10:46:00 -0800
+X-CSE-ConnectionGUID: hBbLJjsJSgmDoXTM78+gWw==
+X-CSE-MsgGUID: dOO7aH4xTwm6AtUfd9l2dw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="90829338"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 22 Nov 2024 10:45:58 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 22 Nov 2024 20:45:57 +0200
+Date: Fri, 22 Nov 2024 20:45:57 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Nemesa Garg <nemesa.garg@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/6] drm/i915/display: Disable joiner and pfit
+Message-ID: <Z0DRZZ91gyhHqVSq@intel.com>
+References: <20241120053838.3794419-1-nemesa.garg@intel.com>
+ <20241120053838.3794419-2-nemesa.garg@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/xe=5Fguc=5Fads=3A?=
- =?utf-8?q?_Add_nonpriv_registers_to_write_list_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 22 Nov 2024 18:37:04 -0000
-Message-ID: <173230062418.1794284.13871837342517177352@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241122180826.7075-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20241122180826.7075-1-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241120053838.3794419-2-nemesa.garg@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,38 +67,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Nov 20, 2024 at 11:08:33AM +0530, Nemesa Garg wrote:
+> Disable panel fitting if joiner is enabled as
+> backporting of joiner part is required in case
+> of pfit.
+> 
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_pfit.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
+> index 50861aa78a89..e214e19f8174 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pfit.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pfit.c
+> @@ -187,6 +187,9 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
+>  	int pipe_src_h = drm_rect_height(&crtc_state->pipe_src);
+>  	int ret, x, y, width, height;
+>  
+> +	if (crtc_state->joiner_pipes)
+> +		return 0;
+> +
 
-Series: drm/xe/xe_guc_ads: Add nonpriv registers to write list (rev3)
-URL   : https://patchwork.freedesktop.org/series/140833/
-State : success
+This needs to return an error, and it needs to be checked after we've
+determined that pfit is in fact needed.
 
-== Summary ==
+>  	/* Native modes don't need fitting */
+>  	if (adjusted_mode->crtc_hdisplay == pipe_src_w &&
+>  	    adjusted_mode->crtc_vdisplay == pipe_src_h &&
+> -- 
+> 2.25.1
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 2d0d734c211b36125b27eceb42aceac394d4f377
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+-- 
+Ville Syrjälä
+Intel
