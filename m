@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94BD4E69191
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Nov 2024 20:38:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F475E6918F
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Nov 2024 20:46:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3596910E096;
-	Fri, 22 Nov 2024 20:38:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7AAF10EC86;
+	Fri, 22 Nov 2024 20:46:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nyR+NhOs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WrxMX6fX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B60CF10E096
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Nov 2024 20:38:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7995F10EC8B
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Nov 2024 20:46:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732307896; x=1763843896;
+ t=1732308378; x=1763844378;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=GbrSYLMQKA0DJqhkSmEzYK81+wKCa9/AO/xW+EuoDT8=;
- b=nyR+NhOsibIoRB/AmnGndvjIx9OdPpdlezxWzekwKPTVqAa4kNyTlCOX
- AhiL12IMdxNhT+DvLdfcEnR5ydiflitXCScqIE1Xk7ZggEjskKqjBzvpE
- 6Gbcr6ntQkrgoZniirMe2lt2WPViWn71o5SP2hxnSuDm9oSH90St6q2zP
- qdZpP4/7kSIJZciGkkRgm/f1kY+MVDBzPQTXGwJ7Tkz+KT/W0caxOWldg
- 8Jv4LR4WD8uWZPT2zWk1RS97dm0dAiMstxx8v2sNhNWRE7TUEimsUuGH+
- 9uPGd0+q4owe7XaxMJwNTqr6nJWV/+65ew7s5feTbw+LFuREsIKNBxLth g==;
-X-CSE-ConnectionGUID: bDfeHcaATFWQGBcINAxlNg==
-X-CSE-MsgGUID: jElGch/rSD+dpObKpb1xzw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="36251744"
-X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="36251744"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2024 12:38:09 -0800
-X-CSE-ConnectionGUID: 0U/+riscRlqAjF/nKipjow==
-X-CSE-MsgGUID: i4OABZIySDGkO9iL5n4M4Q==
+ bh=MHqn3/jOpL22Xtf2rv/M+b3sErv7ocx1yqwXVZ/SK9Y=;
+ b=WrxMX6fXsYfRoQyZOHd8IcoMXA9CQimhDE/9Vx6Se5HBumGnXvIyXFKy
+ y66bjJOqWzEWijZzgyPNHLbe/dRNg3MQm6dCyvkPP7vkfGFOhSQtng9/W
+ OmiMvKfNHF0P10lEiC5c7oU3k79sdYqjopKoTv737S4ch28iJqYq39elH
+ SeTtV0Bpke98hNVQL92XAT9OE7p4QyrnV83FIJ06bYH1KpxlJKVY9AqmB
+ srsGSV30P0v4yjxJjQ3R5llCxDbaP5aWuSdamUKjiWEc9V5ZVvIO9eZ7E
+ d2EIMtRrnvGOqhEaKSzn7INFFxFI+mN2OWSzFepjBUTOpcf1XNLj4ztWt g==;
+X-CSE-ConnectionGUID: kbVUHz6qRHqFuD2e1AN2XA==
+X-CSE-MsgGUID: vft9dx8dSxKCbsuGTwCOrA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="32217853"
+X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="32217853"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2024 12:46:18 -0800
+X-CSE-ConnectionGUID: qARR3eUoQyaiMSGD0YfoUw==
+X-CSE-MsgGUID: P8JkjwKZQ7eOp1aaTxk9HA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="90478123"
+X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="91100904"
 Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
  ([10.125.110.58])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2024 12:38:08 -0800
-Date: Fri, 22 Nov 2024 14:38:02 -0600
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2024 12:46:17 -0800
+Date: Fri, 22 Nov 2024 14:46:11 -0600
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-Cc: Matt Atwood <matthew.s.atwood@intel.com>, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 topic/xe-for-ci] drm/xe/ptl: Update PTL GuC revision
-Message-ID: <g4fnwwuyczq5ocbpddxqdyg6ngkqga2a5ypbhzg4fshv3avvb2@ippavld7gwii>
-References: <20241121225518.10986-1-matthew.s.atwood@intel.com>
- <5133b46a-f9e8-4d64-97a3-5016b5037f79@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org, 
+	Matthew Brost <matthew.brost@intel.com>
+Subject: Re: [PATCH 1/3] drm/xe/trace: improve xe_sched_msg trace
+Message-ID: <njljjmdfawoew5s4ryxlo7t4wr4uvqemkt36dnak4ym7wxbjzt@pg3h2ivzh2ng>
+References: <20241122161914.321263-4-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <5133b46a-f9e8-4d64-97a3-5016b5037f79@intel.com>
+In-Reply-To: <20241122161914.321263-4-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,34 +68,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 21, 2024 at 03:11:41PM -0800, John Harrison wrote:
->On 11/21/2024 14:55, Matt Atwood wrote:
->>Update PTL guc version to 70.36.0.
->>
->>v2: Fix typo in commit message
->>
->>Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
->Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+On Fri, Nov 22, 2024 at 04:19:15PM +0000, Matthew Auld wrote:
+>Also include the gt_id, that way we can ignore duplicate guc_id across
+>different GTs when applying some filtering.
+>
+>Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>Cc: Matthew Brost <matthew.brost@intel.com>
 
-pushed to topic/xe-for-CI branch, thanks.
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Lucas De Marchi
 
+>---
+> drivers/gpu/drm/xe/xe_trace.h | 5 ++++-
+> 1 file changed, 4 insertions(+), 1 deletion(-)
 >
->>---
->>  drivers/gpu/drm/xe/xe_uc_fw.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->>diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
->>index b0deb082ab2b..9c14b0adad0c 100644
->>--- a/drivers/gpu/drm/xe/xe_uc_fw.c
->>+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
->>@@ -107,7 +107,7 @@ struct fw_blobs_by_type {
->>  };
->>  #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)			\
->>-	fw_def(PANTHERLAKE,	mmp_ver(xe,	guc,	ptl,	70, 33, 2))	\
->>+	fw_def(PANTHERLAKE,	mmp_ver(xe,	guc,	ptl,	70, 36, 0))	\
->>  	fw_def(BATTLEMAGE,	major_ver(xe,	guc,	bmg,	70, 29, 2))	\
->>  	fw_def(LUNARLAKE,	major_ver(xe,	guc,	lnl,	70, 29, 2))	\
->>  	fw_def(METEORLAKE,	major_ver(i915,	guc,	mtl,	70, 29, 2))	\
+>diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+>index de682978c4bf..d5281de04d54 100644
+>--- a/drivers/gpu/drm/xe/xe_trace.h
+>+++ b/drivers/gpu/drm/xe/xe_trace.h
+>@@ -284,6 +284,7 @@ DECLARE_EVENT_CLASS(xe_sched_msg,
+> 			     __string(dev, __dev_name_eq(((struct xe_exec_queue *)msg->private_data)))
+> 			     __field(u32, opcode)
+> 			     __field(u16, guc_id)
+>+			     __field(u8, gt_id)
+> 			     ),
+>
+> 		    TP_fast_assign(
+>@@ -291,9 +292,11 @@ DECLARE_EVENT_CLASS(xe_sched_msg,
+> 			   __entry->opcode = msg->opcode;
+> 			   __entry->guc_id =
+> 			   ((struct xe_exec_queue *)msg->private_data)->guc->id;
+>+			   __entry->gt_id =
+>+			   ((struct xe_exec_queue *)msg->private_data)->gt->info.id;
+> 			   ),
+>
+>-		    TP_printk("dev=%s, guc_id=%d, opcode=%u", __get_str(dev), __entry->guc_id,
+>+		    TP_printk("dev=%s, gt=%u guc_id=%d, opcode=%u", __get_str(dev), __entry->gt_id, __entry->guc_id,
+> 			      __entry->opcode)
+> );
+>
+>-- 
+>2.47.0
 >
