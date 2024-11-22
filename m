@@ -4,63 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 799C0E6916C
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Nov 2024 15:06:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49D07E69173
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Nov 2024 16:02:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D6BF10EBC9;
-	Fri, 22 Nov 2024 15:06:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 145BB10EBEA;
+	Fri, 22 Nov 2024 16:02:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GQ/QDW4N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MnxVOmUh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E98210EBC9
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Nov 2024 15:06:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1A5F10E301;
+ Fri, 22 Nov 2024 16:02:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732288010; x=1763824010;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=kXaIr58VrpiBEOMGeYH/Qp7iQuxBzMFHfjTw7CjKr9U=;
- b=GQ/QDW4NDhGxrHgsNxk96UayYBVrcRbDMH4g8IrKJ1+/7wq330wH5NZ9
- 9iqJhwQNia/XcXAT3KW+00lWhAYqGw+sUKP38rnRxOVUiL4TWEvqSetyN
- ghPxB0yG0Y0vMXH/QdVxYhNdWTRHD0ZT1hTUUyIv3Zh4jh1ap9YXMu7Qy
- PQIgshZhOJP+2LWndKe34DFICYj03/IbZQ8uSJeThm5B/hoCYfx3U3r/n
- DitscfxTor8vcDx+Z9x4sWfZcMX2a9ADMBUp6geMRqjkgIiUGkvetNS7k
- ISrHO+l4L+/1B4U4Ei4pt1T2WnNiWSlI2xml1oMdwTl7pd0KiNsfC9e/E w==;
-X-CSE-ConnectionGUID: FMk3Ucv0TGeQSkr5EVsn1g==
-X-CSE-MsgGUID: wWpsrYelQxK5W3LLAZjEWA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="54955120"
-X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="54955120"
+ t=1732291375; x=1763827375;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=QRr37RA14akjZg3hT7KJvo3SRw4lq5ZSzKxt1VhKt3c=;
+ b=MnxVOmUhJtx2tmsCjh9cBn1FVXZJMveTpLp+abS119EEbEDqWfj+PlzQ
+ gev+gAaNO+xJHXd8OORFnNzzMwNwkEVeXzmCdQOo4dzqc8T943i5c/MLt
+ H52ngeMXtAoU+GwtmBczCpfLl2v2nX28Fxwy54k3n/6PyoKv2VB6b8lZv
+ P6Cf1lDRmfaA+Fnkzc3QF/Z7AXHoHvHqf1Wj4ZbmiH6396P7LmWEFzaAS
+ Dll3ORmcFP4FvSFO9TrbvMp0z8H7RI1k0eeFqxjQtq5s0c7ONRSPM4Z/T
+ piAcnNeIC52c8ft66xWEliJQznUcsCTgmqvZTBmzRfBABvK0U2gFuv5cL g==;
+X-CSE-ConnectionGUID: OzkhO8e6SQmBT4hITFuGhg==
+X-CSE-MsgGUID: TaOIuaiuQKm/BKbqTEPqHg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="32602270"
+X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="32602270"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2024 07:06:36 -0800
-X-CSE-ConnectionGUID: DDfcJ3aEQCy330h4XpRSwA==
-X-CSE-MsgGUID: on4IaE0iTqG1spKUacsjjw==
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2024 08:02:55 -0800
+X-CSE-ConnectionGUID: 6L6QQQs1R0Ow/CMsbIOrnw==
+X-CSE-MsgGUID: uANIV3POT0usWdgqIyN+mg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="90238271"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.157])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2024 07:06:32 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, Thomas =?utf-8?Q?Hellstr?=
- =?utf-8?Q?=C3=B6m?= <thomas.hellstrom@linux.intel.com>, John Harrison
- <John.C.Harrison@Intel.com>
-Subject: Re: [PATCH v3 09/12] drm/xe/pxp: Add API to mark a BO as using PXP
-In-Reply-To: <7dcfa3af-35e5-40cf-a910-4b3cc1e34c03@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241120234353.1037180-1-daniele.ceraolospurio@intel.com>
- <20241120234353.1037180-10-daniele.ceraolospurio@intel.com>
- <87iksg29kt.fsf@intel.com>
- <cb789d6f-dcf0-4077-bc36-e630df0d9913@intel.com>
- <87plmoz759.fsf@intel.com>
- <7dcfa3af-35e5-40cf-a910-4b3cc1e34c03@intel.com>
-Date: Fri, 22 Nov 2024 17:06:26 +0200
-Message-ID: <875xofz4st.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="90251722"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2024 08:02:50 -0800
+Date: Fri, 22 Nov 2024 18:02:47 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>,
+ airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, lina@asahilina.net,
+ michal.wajdeczko@intel.com, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ himal.prasad.ghimiray@intel.com, anshuman.gupta@intel.com,
+ alexander.deucher@amd.com, andrealmeid@igalia.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
+Subject: Re: [PATCH v9 1/4] drm: Introduce device wedged event
+Message-ID: <Z0CrJ3C3wJqtySLp@black.fi.intel.com>
+References: <20241115050733.806934-1-raag.jadav@intel.com>
+ <20241115050733.806934-2-raag.jadav@intel.com>
+ <8c7292c3-8459-4ddc-a899-b56b1d93076f@linux.intel.com>
+ <Z0Atv3Zw1d0N8hvv@black.fi.intel.com>
+ <3644d364-6021-46fe-b3a2-689821551984@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3644d364-6021-46fe-b3a2-689821551984@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,98 +79,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 21 Nov 2024, Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> wrote:
-> On 11/21/2024 12:03 PM, Jani Nikula wrote:
->> On Thu, 21 Nov 2024, Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> wrote:
->>> On 11/21/2024 1:57 AM, Jani Nikula wrote:
->>>> On Wed, 20 Nov 2024, Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> wrote:
->>>>> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h b/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
->>>>> index 419e8e926f00..533bc82255b6 100644
->>>>> --- a/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
->>>>> +++ b/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
->>>>> @@ -9,6 +9,9 @@
->>>>>    #include <linux/errno.h>
->>>>>    #include <linux/types.h>
->>>>>    
->>>>> +#include "xe_bo.h"
->>>>> +#include "xe_pxp.h"
->>>>> +
->>>> Can't have this. This will include xe_bo.h and xe_pxp.h from i915
->>>> display.
->>>>
->>>> Basically you can't use gem_to_xe_bo() in static inlines in headers that
->>>> get included to i915 display. It all needs to stay opaque.
->>> Why would this be included to i915 display? This is the copy of the
->>> header used for building the display code with Xe, i915 should use it's
->>> own copy (i915/pxp/intel_pxp.h). Several other headers in the
->>> compat-i915-headers subfolder include Xe headers. Or is the problem
->>> specifically with the BO part of it? Because I can move the code to
->>> xe_pxp.c, but I'd still have to include at least xe_pxp.h.
->> With "i915 display", I refer to the display code that gets built for
->> both i915 and xe. And regardless of which module the code is being built
->> for, it should not include details like this. The goal is to make it
->> more and more independent from the two, eventually spawning into a
->> dedicated module. So we want to axe includes that lead from i915 display
->> to either i915 or xe core headers.
->
-> Ok that makes sense, but I'm not sure if it can be easily avoided here. 
-> The PXP key is managed outside of the display code, so we do need a 
-> callback into Xe or i915 to get that info. The only way I can see that 
-> being doable without the different headers is if we pass a function 
-> pointer at display init time and keep that stored inside the 
-> intel_display structure. That to me sounds like something that should be 
-> introduced more structurally for multiple callbacks into i915/xe instead 
-> of just for PXP, but I can do it if that's the preference.
+On Fri, Nov 22, 2024 at 11:09:32AM +0100, Christian König wrote:
+> Am 22.11.24 um 08:07 schrieb Raag Jadav:
+> > On Mon, Nov 18, 2024 at 08:26:37PM +0530, Aravind Iddamsetty wrote:
+> > > On 15/11/24 10:37, Raag Jadav wrote:
+> > > > Introduce device wedged event, which notifies userspace of 'wedged'
+> > > > (hanged/unusable) state of the DRM device through a uevent. This is
+> > > > useful especially in cases where the device is no longer operating as
+> > > > expected and has become unrecoverable from driver context. Purpose of
+> > > > this implementation is to provide drivers a generic way to recover with
+> > > > the help of userspace intervention without taking any drastic measures
+> > > > in the driver.
+> > > > 
+> > > > A 'wedged' device is basically a dead device that needs attention. The
+> > > > uevent is the notification that is sent to userspace along with a hint
+> > > > about what could possibly be attempted to recover the device and bring
+> > > > it back to usable state. Different drivers may have different ideas of
+> > > > a 'wedged' device depending on their hardware implementation, and hence
+> > > > the vendor agnostic nature of the event. It is up to the drivers to
+> > > > decide when they see the need for recovery and how they want to recover
+> > > > from the available methods.
+> > > > 
+> > > > Prerequisites
+> > > > -------------
+> > > > 
+> > > > The driver, before opting for recovery, needs to make sure that the
+> > > > 'wedged' device doesn't harm the system as a whole by taking care of the
+> > > > prerequisites. Necessary actions must include disabling DMA to system
+> > > > memory as well as any communication channels with other devices. Further,
+> > > > the driver must ensure that all dma_fences are signalled and any device
+> > > > state that the core kernel might depend on are cleaned up. Once the event
+> > > > is sent, the device must be kept in 'wedged' state until the recovery is
+> > > > performed. New accesses to the device (IOCTLs) should be blocked,
+> > > > preferably with an error code that resembles the type of failure the
+> > > > device has encountered. This will signify the reason for wegeding which
+> > > > can be reported to the application if needed.
+> > > should we even drop the mmaps we created?
+> > Whatever is required for a clean recovery, yes.
+> > 
+> > Although how would this play out? Do we risk loosing display?
+> > Or any other possible side-effects?
+> 
+> Before sending a wedge event all DMA transfers of the device have to be
+> blocked.
+> 
+> So yes, all display, mmap() and file descriptor connections you had with the
+> device would need to be re-created.
 
-Why not make xe_pxp_key_check() accept struct drm_gem_object * instead
-of struct xe_bo *? Basically all the interfaces to/from display will
-need to use i915/xe independent types anyway.
+Does it mean we'd have to rely on userspace to unmap()?
 
-See ad36a322619c ("drm/i915/display: convert skl_universal_plane.c to
-struct drm_gem_object") which converts i915 pxp. And i915 display gets
-to use either opaque types or generic drm types.
-
-BR,
-Jani.
-
-
-
->
-> thanks,
-> Daniele
->
->>
->> BR,
->> Jani.
->>
->>
->>
->>> Daniele
->>>
->>>> BR,
->>>> Jani.
->>>>
->>>>>    struct drm_gem_object;
->>>>>    struct xe_pxp;
->>>>>    
->>>>> @@ -16,7 +19,15 @@ static inline int intel_pxp_key_check(struct xe_pxp *pxp,
->>>>>    				      struct drm_gem_object *obj,
->>>>>    				      bool assign)
->>>>>    {
->>>>> -	return -ENODEV;
->>>>> +	/*
->>>>> +	 * The assign variable is used in i915 to assign the key to the BO at
->>>>> +	 * first submission time. In Xe the key is instead assigned at BO
->>>>> +	 * creation time, so the assign variable must always be false.
->>>>> +	 */
->>>>> +	if (assign)
->>>>> +		return -EINVAL;
->>>>> +
->>>>> +	return xe_pxp_key_check(pxp, gem_to_xe_bo(obj));
->>>>>    }
->>>>>    
->>>>>    #endif
->
-
--- 
-Jani Nikula, Intel
+Raag
