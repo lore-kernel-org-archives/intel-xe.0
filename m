@@ -4,182 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68FD2E6ADDD
-	for <intel-xe@archiver.kernel.org>; Sat, 23 Nov 2024 02:38:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9001CE6ADD9
+	for <intel-xe@archiver.kernel.org>; Sat, 23 Nov 2024 02:49:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5CA910E463;
-	Sat, 23 Nov 2024 02:38:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05F5710E46E;
+	Sat, 23 Nov 2024 02:49:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OPRy472g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RZhRBRUG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 826DA10E463
- for <intel-xe@lists.freedesktop.org>; Sat, 23 Nov 2024 02:38:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C910610E46E
+ for <intel-xe@lists.freedesktop.org>; Sat, 23 Nov 2024 02:49:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732329509; x=1763865509;
+ t=1732330190; x=1763866190;
  h=message-id:date:from:subject:to:cc:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=Xguk+QxuZkL7AmKrAydHftEIcxJVkw9YGZshGWKYs8Y=;
- b=OPRy472g3AoZr6PLfvJzRojKCynPM3mkkWt233CCxsbpwPY/PErKMuu8
- LmlbmRJwjqZloazrgH+ErFw9ICLvqme70e7i0MFJv3Tj0lJDs72vvleWP
- /x7rNbEPsjfQceiYIbvIYFRT8jlYVtFxTOxuXisbY7AQi3iqr6ZACY7jO
- cM+2fPfZY07p+aMXpIpt507LRrHIyVpPKCcAdySgZeTYw8p5zo8yCG1JA
- RTTJ6xq05mPUXwLlekEfra/t9Hu2Terz1WRJYE3tKUA61WW0ztMWf30fI
- qdQGiCNr0NjTtrtOZfbX7OHOxRcfAr9qTJUoZbXFSvJUlW/kGmUFxsfzf Q==;
-X-CSE-ConnectionGUID: r+GHHBxLS2qAl8i5Cd+oZw==
-X-CSE-MsgGUID: B7E+OV58T+C+g7RPp6rUbQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="49915154"
-X-IronPort-AV: E=Sophos;i="6.12,177,1728975600"; d="scan'208";a="49915154"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2024 18:38:29 -0800
-X-CSE-ConnectionGUID: ow8f4YT0Qa6RjxW7M+S0og==
-X-CSE-MsgGUID: 6YiLZ9rqTbiSktdjCOXgFA==
+ bh=JlUAtlBHlP6CG5OcYOdpYQ3wcZmPBVQl4Mzf6Fzy5Xs=;
+ b=RZhRBRUGAAgFlYavkOBNmo72p/VJOvF33faaJFpHq4O1gh4nAL8PPo7h
+ yvAmj+T1HMS+LyBr/DVId0Y5X89knDUKSlCrsnD1Ks6Q5TdCUxvKJO7bG
+ KW4fkWZr0VYWK5KCDHGOmPBLqnJkZouDzZTBqkC1fAWMgL5ixPnrtgMNg
+ iH1MEsegGPvv4syXMMIPas2DzJ6CR0j/dFrQwVNJpt7S/sClNkfVRA3ph
+ BcQc1adaSmFVmdEp99PtEu6SSPON5+jB9uvQFPPXkhnqaWUg/61x5lzSg
+ ogCbufI7eKfEmD8fFTkcfK6Q5JOKySMRdrSV0NpC5OMPbJDgp6jwsFh8Z A==;
+X-CSE-ConnectionGUID: p/zUkhO7SEWVEKrSPs45Vw==
+X-CSE-MsgGUID: y5avv3cvTxOEcLrVOeMUoQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="32427738"
+X-IronPort-AV: E=Sophos;i="6.12,177,1728975600"; d="scan'208";a="32427738"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2024 18:49:50 -0800
+X-CSE-ConnectionGUID: bnuvyzpASZCg6nQAnIjGXw==
+X-CSE-MsgGUID: +rj4OacGRxyIhGmbmmkTkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,177,1728975600"; d="scan'208";a="90737075"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Nov 2024 18:38:28 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.12,177,1728975600"; d="scan'208";a="121694424"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Nov 2024 18:49:49 -0800
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 22 Nov 2024 18:38:26 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ 15.1.2507.39; Fri, 22 Nov 2024 18:49:49 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 22 Nov 2024 18:38:26 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Fri, 22 Nov 2024 18:49:49 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.176)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 22 Nov 2024 18:38:26 -0800
+ 15.1.2507.39; Fri, 22 Nov 2024 18:49:48 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wuHO7NMZ1VZrFMq93TOaZP6IeCUzzqAHZk7LCl9aPKjiTY1e13C2by00MOmwxVUxgM+Roob6ZxEkZYwYpXCD7O4m4ph+5T8wMqnNj8AuKb4smRNmlmPsPCPZS5yh4pqt65EB4BOmd8BtpgPEPRdnyJ9Q/yjwJtV5ZxaVK5YJ0yOrkzCHVLdogUpVUGRJ9yc2xhNWFjI8/v0/3q9AE1xEFiHLe7HBGuwP7qixuM8hQa90I/R3z6hxsj06jKQTkED6mQCEi1jql+2kY/lXI+TZzwHh8sIKUxMxUuZX83Bp6FyHc8WQwyhFvkjSZxYoyLRzgroCpgJHwJbH67O5+FX8Vw==
+ b=xw7TQLAzK/MUtpmp2RDvcoAxhkGwZ0qB7lI2qx6nIYqnbfyf42fYg+v5a2buWLG+d5ag10KpuMhCo16h6BAELNxTkjKcO5M9NJrjl/4uwJJR6X9jSa5Qq9uHJBGiXKBEe4GWTZ+xWmDF+31PqHyt8iIh7VfBhtWvkk9xi60Uvn6OacN5FE8Zw+PCWDZWAmRgg6b1heERYB5g7N21R9TJZK+ND1zkw9wQQLeo90q6GONypYEfhtXTqt4czyBU0WU59gkWAuX4Yx1HrxH8vajNDRyvUW0JCs4SMaeEytt9lW9t6GRFT9dZD1rL4GrvDjB82MfEBOE0eP2rXzfvZmRW2Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Yg96t9CpdBVhCDHly0c5agsjE/4Ksvb/o16S5eH5Kng=;
- b=E/0DKmn59q3m5SeMhxR7uninbbCmlWddCvCVtLQ3ZsIwXIvEitRZt/gZjzQcy9mDPfBLKXCnJXzfFN6VVe69lfH3Ju1cUS5bQf6yQC9E7ldhIETx/C0lSvtYz+yhHXqeFIyFbpunf16xpQLUaPX5lwO6wOm3lBfYTSCG02iDmD+mbBwpsr5zZ8XIat7dhnkwoeXuyh0ZaXJr6zqB4y+pQx1RuPDsBw+sMAie8Dzf6MiAY9Scmns3Mj0XMnaEJcPGtLR3eAuZfVaPzBcLhNs6bQhe8zgqA+7qZKeGf4xTBB/Et+p9aXgkcgkQv9Dyh0/chbuQuXepowpetHiq6/kXFg==
+ bh=eZXRbalZGbnYaU03MV0jmzUmtyKzenHrDvosArzOXLc=;
+ b=f8kIw1BzDuklwtK6Vod1yzk/nX5RF5u7vaYZEbA4tPU74Ms4Lxq8a7RPCGDbhKQNy0pgw2+7/oEl6d/ZSOFccJvJcA2/zxR76lWlFqOZfchoSRMCkuzbWVzUqdYmSVOTHyd8lntBAMbo2sn7sdXRX/w53eBf9DDW3ZroMj0T9oVtzvy99TvlTr5E1cOB7Oiirrk4PlpWqzPS/G5Lc1Fve0S3wlIm2LZZdKol2ZtMkSV7MIK/kGgDVFJyCAUA3SiC5tL0oZslfGz0BRjGcLhpNyHp8IJttsxbS9YCzQ8+dDg0KHE/fyaQ0afQ0n2q7PIE+5ss71f9ELAeyqjJJNUR1g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MW4PR11MB6714.namprd11.prod.outlook.com (2603:10b6:303:20f::20)
- by SA1PR11MB7111.namprd11.prod.outlook.com (2603:10b6:806:2b5::8)
+ by PH0PR11MB4824.namprd11.prod.outlook.com (2603:10b6:510:38::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.15; Sat, 23 Nov
- 2024 02:38:24 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.18; Sat, 23 Nov
+ 2024 02:49:45 +0000
 Received: from MW4PR11MB6714.namprd11.prod.outlook.com
  ([fe80::e8c7:f61:d9d6:32a2]) by MW4PR11MB6714.namprd11.prod.outlook.com
  ([fe80::e8c7:f61:d9d6:32a2%6]) with mapi id 15.20.8158.021; Sat, 23 Nov 2024
- 02:38:23 +0000
-Message-ID: <4f8bbb1f-0334-4973-8d86-a09199f192c7@intel.com>
-Date: Sat, 23 Nov 2024 03:38:18 +0100
+ 02:49:45 +0000
+Message-ID: <2b9054d9-3937-49a0-a8b2-1e2443961764@intel.com>
+Date: Sat, 23 Nov 2024 03:49:41 +0100
 User-Agent: Mozilla Thunderbird
 From: "Lis, Tomasz" <tomasz.lis@intel.com>
-Subject: Re: [PATCH v2 2/3] drm/xe/sriov: Shifting GGTT area post migration
+Subject: Re: [PATCH v2 3/3] drm/xe/vf: Fixup CTB send buffer messages after
+ migration
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-xe@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+ <intel-xe@lists.freedesktop.org>
 CC: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
 References: <20241116021238.2486287-1-tomasz.lis@intel.com>
- <20241116021238.2486287-3-tomasz.lis@intel.com>
- <8130fc0f-2978-4ad7-b0b7-8e2fbaa3e2db@intel.com>
+ <20241116021238.2486287-4-tomasz.lis@intel.com>
+ <25aad7d7-39c2-4e5e-b504-8ef6d59b8439@intel.com>
 Content-Language: en-US
-In-Reply-To: <8130fc0f-2978-4ad7-b0b7-8e2fbaa3e2db@intel.com>
+In-Reply-To: <25aad7d7-39c2-4e5e-b504-8ef6d59b8439@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: WA2P291CA0001.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1e::20) To MW4PR11MB6714.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: WA0P291CA0007.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1::11) To MW4PR11MB6714.namprd11.prod.outlook.com
  (2603:10b6:303:20f::20)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB6714:EE_|SA1PR11MB7111:EE_
-X-MS-Office365-Filtering-Correlation-Id: cb499d93-2ad3-44d1-ab09-08dd0b67e67d
+X-MS-TrafficTypeDiagnostic: MW4PR11MB6714:EE_|PH0PR11MB4824:EE_
+X-MS-Office365-Filtering-Correlation-Id: 250f10cb-c467-4c5f-3b9a-08dd0b697d0d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?M2dQbTlzQXQzYUVZNUYrRXMrZUtwNjYwbFJRQWhpVVVSMzFCcnVucmwxc2Fi?=
- =?utf-8?B?NzAxSHV0dFN1bkI5L0dMMWkrR3ZCeDdaUUdlNmhEYnJnVTZMM2lpNGVWa0N3?=
- =?utf-8?B?OEU1RzdmdUNzQ0JqNFQxVUI2OStlYkt3SVhoWHlQMkh1b1FkOUdNMzJTbVhG?=
- =?utf-8?B?R0ZIVDdXT3hLZTRXdVpIVXdnb3hCZEF2c3ZRZGJIVkFyZU1GVVNsQzVpMFVh?=
- =?utf-8?B?Skp2K2ZOY21JMzN1QVg2WUlmbzYycVN2b3R5K1Q3OXdLZ2hmcUZFakpZZ2Qy?=
- =?utf-8?B?R0pPcTQ2RE1nU3RBYUxhcVFhQUprbnNXcmVkRUt5U2pFMklkWGorQTFNVWpr?=
- =?utf-8?B?elhjVUJjZU1JWHZ5T1NmakZKTGdCeGU5ekxkNTNYaklnZWNUK3djbzhqRHNE?=
- =?utf-8?B?bG5zaS9rN0I5eWZ0Mmdaa0ZlQXBmckpXUVlXeXdscmwzampodVlwVmk0VmVq?=
- =?utf-8?B?ODNEZ0J2OTZacHFpUEFOajBkZ3ZVU2sxUTVmT0MvTkJ4UTRLWkhndldHV3dQ?=
- =?utf-8?B?c3Jra0NuYlV6TzRXSmQ1TXZma1doSmxFN1JKUTRDRU1NRXhSdzZNT2hVMmZN?=
- =?utf-8?B?NDFJNFI0NThLYmFZYVB2eG1wRzZjclNIMnZjN2ZoU1dDcGRKU3BRaitCQ0tW?=
- =?utf-8?B?ZnhicHZWaFBiZUpvTjE4eDZramJhN0k3MGxQOXdzR1pTUzJMV3NnUWw1VHll?=
- =?utf-8?B?RU4yVUVjUVFza2dKWElYUCs2enhNVlFqa1JmL1pRb0oxVUxFN3pnTjhTUTZo?=
- =?utf-8?B?K0ZKSnNCc0d2TmFMMVNjYkVYdSswYkR4TkRKVzN5R2piNUEwRm4xcWpxK1Fq?=
- =?utf-8?B?eW5wOTZtYjlwOHF0YTNKV2ZycHg4YlVWc1crdEhRclYvdkNhTzhZYnJOQTBL?=
- =?utf-8?B?bmJLbDE4cGF0V1JpamtzNjNTaUdZcEY3U25sQ3FXMmVuWkRxNTFwNTBXTEc2?=
- =?utf-8?B?TUJHbklRVW8zZkI4bk9OSXVneDJyNGN0cUtkNkNLWm1aZ05RM1pJSXRndG15?=
- =?utf-8?B?bzg4YmsyMS9SUExTeHpJa0tzVmdNbisrRXpsdDhsU1kvZmhnaDFiOHQ3bGJp?=
- =?utf-8?B?Y2FsYU5aRDl1d3Z0NWswT0JjeUVTemZLSTVHTFlZTmJrYmZuSUNqNmZyZmdP?=
- =?utf-8?B?TktiWVltbVZvbWgvY1ZUbmdrSnlleEdwNFE1NVRYajFkdmVvMDMybVlXQ2Y3?=
- =?utf-8?B?OGo3VFVkNXdGMTVYUDI2YUlHdnVka2J2cXVQQmpXb2kyRVRrVERmUTRaTjY5?=
- =?utf-8?B?SEdIMXNqUE8zMEQyQ2lzbUt5V1o5SjJ1bHY1dzFhNnMyV2V4S2Z0cGtWR0xn?=
- =?utf-8?B?WEIwYTBMZjJXbzlETXVCenNrbFI3SUtadnhrSWFrNUFMUHhjeVNrRkpWQTR2?=
- =?utf-8?B?dWF6d1NFeXFQZUllRHpmSGFvMko0SzNFY2g4QkNWVE51dVM0RkhWZWt5ZGJl?=
- =?utf-8?B?bUUwZGpUbWJJK2ZkcFZUQVlobEx6ZW9Qd1VEWFNOeTlyWnZvY0lrdzdlcGI1?=
- =?utf-8?B?UnBiTEpkT0RrU1REM3hSTHFJdWo3b1JhRk5XandsQzAvT3pycWFxM0JaYnFB?=
- =?utf-8?B?UEtBa3d3dWd5RWptZ00yQmRMNUN0SGdWMFhvdjV1QkJTY3IwQTdDajlrWTJo?=
- =?utf-8?B?V21TQ2JueGczRS94bDlraGF6UzZPakVYN2NDVWhRU29hM0xJN3krSldsYXVY?=
- =?utf-8?B?RXdNNkdNcnpuSHZNdW1nc0x1UEF5UzFTQUtkVFRSMEdtZCtkUDJ2VGI2bUlS?=
- =?utf-8?B?NEc3Z2JsVlNyN1pjOUoyaDlZQ1Z2ajd2Q3QwZDVqcHBvKzB5djB1anZMSS8x?=
- =?utf-8?B?TVIySjRraVFDYTdEQVhBQT09?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UURuRVVETzVJeVdBcFZkYlpUZnhzOHIrVE8rMzZNYXVaYVlBVDhudENGQlI3?=
+ =?utf-8?B?dFVCMTNEUDBjanRsb3NNQ0RlZHFGWTBUUmFIZ2hxRUJQd3RRaFJpWTJxajZ0?=
+ =?utf-8?B?ZGFUeXZDY3J0dXpYdlFjVlRTT3NJcGZrRGJKRnNvZGlRZVhodW50cWZtelRr?=
+ =?utf-8?B?c0hGWXRWck82M0VwSzJhSEszb1NlVk1INGRJVGd4clgxSmJQeVpsSEVSaUJh?=
+ =?utf-8?B?RnNmbjZnOE5kdWtheWxvOVp5R1pNRTFHY0psM3hqOVhMUmtCOVVvTWozRTRN?=
+ =?utf-8?B?MU9NeXVqWk9VeXhmUnVTc25pYUtvOCtteG1SZ2JGc3hCdDdpOVZvSTlrSmI4?=
+ =?utf-8?B?VFJid25uWXBxNFB2OE1pdktEc0VWZGFKMFluNUtrWnhHUVNGNHR2d1hGdXRE?=
+ =?utf-8?B?Szh0d0p0UU05amlvc1h1Z24yZWY4U1d4a3lYSVEwWkJleXY5T3lKRGVzZ1hz?=
+ =?utf-8?B?MHY5aGZIYlJWa1ZpRW4yNVVhTy9Wa3JDTzFacXRnR2FsQTh5UXVvMzBxeVdD?=
+ =?utf-8?B?YVlDY3lvMVEyeVhLbHhKMjJ2dmVjTjBxVVpuUk9hSlJPZEo1TGhtdEVjemY0?=
+ =?utf-8?B?Ym54ZVVqeVVKYkhUMDZ3MGtpM3VuZ2J2OHRVZXJZTzVtMlRYTUdYdWU1SmlL?=
+ =?utf-8?B?QnNCUERFUFRWaCt2N2ZlNW91dUhXNGRUVXNLU2o3Yk14YWZ5N3RVaUR5ZlJy?=
+ =?utf-8?B?OStJV1dBSFZZMkRiS0o1U09BRGlwMzE3eGxQcFJxNzA3dlBvcTJGWVlXYTVK?=
+ =?utf-8?B?b0o0Qk9yMUptcWY5YzhSZVcxZERYTi90MTNudjgvcWVlQjVEejdSMVBtUnZw?=
+ =?utf-8?B?d2x5Z1BzSjNSVnMzam9DVkFEbkVpM2xrWGNVUG40QU9ZQmZmWHZ2MllXT2s5?=
+ =?utf-8?B?aGVJR1NlVmhQRStCMWdUNCtBSS9jSDFNZXdPdmFlVWFNSkFlMlBLTEJDNFR6?=
+ =?utf-8?B?RUx5NkpieXRCTFhEeVRrV2d5M3R1UVp3WitzbUExVmZmVXZTQjFhTkozYjVk?=
+ =?utf-8?B?bmlySUxTMFVHcmdjengwbkttbERWNDMybWlLSWpBaXl0ZkdWSFFTWk1ndjRG?=
+ =?utf-8?B?cFpUc0NDTHlJMEFPRDdBSzRrZk9Oc2R5K0lQbkZLQmd4M3BpWmxlanpiSmJq?=
+ =?utf-8?B?RmdqM0wyRklrNkg2UDErc2oxdGNmY0VFTTRNZGtFWC9lTlBJNGg4M05meWUw?=
+ =?utf-8?B?RG82Q0x3M1lsZEhsVmkzK2FtWHViUXRoWndyeUhoOXRnRWhQY1piTENMdzhr?=
+ =?utf-8?B?T0pmU1pOanJWajYzcEpXMmpPY1hlK0lyejZrWjRrN3FkKzFHWG9Sd0ZNUmd5?=
+ =?utf-8?B?OFBjL05yT3B4dnp2ekRUSGdCNUtsWldrTWZJeWRSK3dLcjJSaTJodmQ1WnNK?=
+ =?utf-8?B?ajZ4TDZKS2l2RkhNMXlSV0pIZmpsZmxqSDNHVzk1TFNKNS9KZUNGNHZSRElw?=
+ =?utf-8?B?Wk9OeVBFdGIxcW1DWUNGVkRKbVhHeU1mc2t2MWdvZUdvWmxNUVFnOEZDTURl?=
+ =?utf-8?B?REkybFI0RXBlY0V1T0JmRFZFeWN4Qlhrb2R6bjV0M2V3R0phanlxZ1dsdE94?=
+ =?utf-8?B?MHg0UkI5NXVFTVZCazhVdUFBcFd2R08razRFa2NuWEVFVGMwb3JPMENqQTRm?=
+ =?utf-8?B?R0VFM1dyV3dzNU1idkZjbUNac3I0dTllSk5xelZuS003Wng3akkxQUNxZmMz?=
+ =?utf-8?B?QUlyWTFDcDVCTkViL1h4ZHB1bUV1RGs5Z1pMTDQ4S25FUTRMa3JnMW1OVndu?=
+ =?utf-8?B?a3FHT2VCaWNPRHI0UWNYblh4WjZSNDR2dkxvT3lzMEJlTXZQZkpHTUdzSkI5?=
+ =?utf-8?B?K2kvemVJL2ZJOFJhNlljZz09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW4PR11MB6714.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NXROWUEzUjlUZ3RjdWVMby9zU3IzSE0zajRIR1NSMVZNUEx1WGtnOEhjbzVU?=
- =?utf-8?B?V1BMYWk2Q0Rmd2FzcHVnS1U0WkdCUUxVeHh2bVM0dkcwOXJSNnl4VndKbjk0?=
- =?utf-8?B?Y242QzRnL1EyZ2hCQjEzWkpDRm5pcUdub2I4TkptTlpBWXRneXJFeHEyVHFj?=
- =?utf-8?B?V2RoY2xMY1RteU1TZTF6L0pqSmJUZXFYSDBZRXVOZjR3YnR4VG5IVjdHbVY5?=
- =?utf-8?B?MjF2am8vc1NIZHVteXpSck5sYlpKUWhONlZDQzFLM3hkaWIwUUZxbFl1eFlV?=
- =?utf-8?B?U2NLbFlIZ0h2SG9Yc0hHSnZ4eU5ucXE3QnpQN3F4b2dnVVdpQmhucjIzUnlh?=
- =?utf-8?B?c3M2TnNmTko0LzJ6dEJwVERFM09kWHhvbXpsWDNEUHYza0gzV2JucUE0Rjc0?=
- =?utf-8?B?UmhVVDNFeDZJd3dBajY0WHBaTWZORWxHSXJXNjkxQjFZSUVCM2JEbG1QUENB?=
- =?utf-8?B?WE45RThWd0JRWStxSHlTS2dRT25jR1kyTjRIVk85UUVDU3F5S0NuVUlzN1oz?=
- =?utf-8?B?dE1QRVduSHNlSnhwTEhCN2pzM2NGbWw0bWVqZ3N4WnlkRU8rZ3RPUW5RNzk4?=
- =?utf-8?B?amdsOCtpbnIxSnRGaW9JbHFpb1I5R2RIdHhGVGV0VUxyWGwxMnFMNjVxWkhy?=
- =?utf-8?B?VGY3Z1BCRFNFR0NFVjdMS0JDS0hGajVXZkJuMThVc2p2czd6OFdRQkxNRGI5?=
- =?utf-8?B?U0k0NG5nMy9vbTRBQXJ1TG9DTVJHTDdwT2dOSVRWWmtydk9Xb0N4UVNWM3Nm?=
- =?utf-8?B?YTJWQUh0L3VwdDJxUE9rQmxXSm5lZmFIbGRCeC9ubVNjb3k2OXdhSGV3SDFL?=
- =?utf-8?B?djVzdFYwOUJ1TVdhOVl0TWJGVVZBc0JEQTZqcXVJaGRUVllvU3c5dHJ4M2d2?=
- =?utf-8?B?bzNwQ3M3SjBLVHdpVXBrK2RwQ0VRUmdodkkxZGNudUxUbDlIVW1UVWV3b3F4?=
- =?utf-8?B?cjFNa0ZMSXBCZUtWQzRYUlJUcGI3dC8xeWRwUnpJanNJQW0zZnVRTlZIbUF4?=
- =?utf-8?B?VitveHhOT3RtRldtNFFKRGUrdHVJRCtkOTBLUmNwdzlXUVJJaGhRNlBURHNM?=
- =?utf-8?B?MWdza1VNNkc0dGRIVDhGZElzUVJSQzNrdjFTMGxBN3ZtbjlsTHBuMGppQ2FO?=
- =?utf-8?B?RkZXTUd3QjJ4S0lsZGorQTB3SnloSTNkY2h2SHBoRmR5aTF0dUp5cVF0OGRl?=
- =?utf-8?B?V3VucHhnZlBoYnJia1lTNm1oVjFWSE9BTGM2aGx5WS9BazFpdlFYWVdmVVhm?=
- =?utf-8?B?QVMySUhaclB4S1laMDRzRlZ4dXRhU0ZmVnFoSzdkam0rREU4WTRHaUVGZ2l4?=
- =?utf-8?B?NSsvcm9JYmo5TU1rUEg2cW9JZ0JFbWtBbUc3UkxiU3pJS1hGR21DN290N0ZR?=
- =?utf-8?B?NzlaME5pUHlzT1MxcFI1L0UrcHBPZFRBNFRqUS9SeERMZnk4U1d0NXV0M25T?=
- =?utf-8?B?MU44aVk1Sjg0VHE5NXRwYVZGTVRxRDRXZGtTdDBOeVZjWXUwTGdxcVNOM256?=
- =?utf-8?B?c2t0UXJ0VHZpS204Q3ZXYURCZFdick1GWDUwWWxBUmt4WVBDbjhFejRoSVlK?=
- =?utf-8?B?ZzVwK0JTQmhVOEViN21oQlJBUmdhS2YxM0NpUmI1ZjgvMDV6bkkwYUtZUXJZ?=
- =?utf-8?B?cmtRbnhMWFRaRHFPOEkzeElRaXY0NVg2U1hyUDFmWHhqVnBrTHo1T2l5ajZv?=
- =?utf-8?B?cElRSDJLeFk2RkwwVng3K1ZBQTZFdDRqd0ZuM01pa2lGWlkvZ0hVcjBFOHhL?=
- =?utf-8?B?RDBLS0huK2ZKa2NFL0xmYk5SMVppRncxZllraWxnclBiY0JYMlBpY2xEWktX?=
- =?utf-8?B?S2dlTHFKTjM5WXBXSHVxSVpETE44OU5jZDN0S2YyalZCUXBUdmZEUnYxU3kw?=
- =?utf-8?B?dGlGQTJ6Y254ZjBRRFNVYXBvOHNLUmxCK1QxREVqY2prTHkwSHRreDl6VWV1?=
- =?utf-8?B?VUR2TVNZRWJpVFBNajV3OXRQR0l1VzJSTjhmWnFUcUsxNmt5ZnNGK25YREE2?=
- =?utf-8?B?L1ZuUitFSW1ERjhmc2RJeldDQ0s2R1VMUWpOS0ZPUFExcnVZRGhLVTFSdXdW?=
- =?utf-8?B?QldOS0FjQU9Bdk1qL3d0d2VSNm5KUm5mQ2s0RjdqWlMxa1hQeENkdXlPTHRu?=
- =?utf-8?Q?AdZw/WrrWOCHa/IA837rIlTJy?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb499d93-2ad3-44d1-ab09-08dd0b67e67d
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eG5TVE9vWVdDM3poTmhpdE5nK3Z3U2ZGNkJBN3huY3NZVW5xYzE2dmY4TnJK?=
+ =?utf-8?B?SWR1aFpKNEF3V3E2eVhqNHRFSSsyUnRUY1NoeC9jWVVDN05UTDJtamdvRVZ4?=
+ =?utf-8?B?VDN3bUpLOFA1bEJwN0IyNnhmZlZiM0tiR2VvZ2hyamJkNGhGZ1MyT1hrYmVn?=
+ =?utf-8?B?UUl5LzNGeHdub0d5WnIzR3pVZk9NZjl6NzFaOVNuWUNyOG9wVGJiZHpJZUVP?=
+ =?utf-8?B?NS9GbC93TVdQRDZscldtdkZSZVpqaVRqaHY4SDRJbG9vN29DK3Nid1FzRVpF?=
+ =?utf-8?B?T21MTnNZZzEzYndiNXFHVURoQzk5emlsSVFpMUxSTnpEam1qQm1yRmFJOEpu?=
+ =?utf-8?B?T0svMXJjMjRoalFzYmtQZHIvdjhGcCtYTU9tSTBQL0phY1B0K0FrWTBUTThh?=
+ =?utf-8?B?WURteHZEZGYrUE00dDhUN2Z4ZXF3OVZ0VFZXdHREcVRFUzJDMzdYVFVZSlBo?=
+ =?utf-8?B?QTNORkxUbG9aWDN4OUZoWCtZU3gwMFNTUG1sdHN3cWQyeDRnTE5FRnRJZTJC?=
+ =?utf-8?B?U0E3dUFTVUl0bHFncW9PcGdBaHpybWZEWFowUUlQaTZtb0dEdmx0aVNocDlx?=
+ =?utf-8?B?OUk0T3h5SUJ2WDVSK0JleUU3VERUWFA0QmJRdFhoMzdRSnFsSXphR1JwMU5s?=
+ =?utf-8?B?cGU0K1o5YmdWVXJ5ZkwxZThPOFFpMkZVYjJEUVloeHdCSDJBVnhhaWpvY3ho?=
+ =?utf-8?B?aXNKdlZEemlkZkxPdzBrUzV2NGl3bDBnZ2R6N0Y0OGJERC9La2FNaFVDSlR1?=
+ =?utf-8?B?SzkvL3hCNUhNWkQxeWh1MWNJUGNJblRFbmJ1a2xJODlQVWtUSWd2UFkyMkZN?=
+ =?utf-8?B?Sjg2SVIxQ0MrdmkyK0NzNlB5ZFIvWCs1OEQ0Y1pNdmtodTlTZjE2blNJQUww?=
+ =?utf-8?B?eFBOZWNIaEdCM0RRbTlXa24rVU1JMjQ3Q2c4U2hFMXFLd1B4emFobkJKOGlG?=
+ =?utf-8?B?WWEvWWovRFk4SUhkUHVSem9oTUJQeEQzK2VSV3pWYzFVU0VGZ011dlBnWEtt?=
+ =?utf-8?B?c0RURHQ2TDdhdEQzaTA4ZVdoeGhlcmV3cnBtUXdydHZWZTNtT2ZqR2EzUVVB?=
+ =?utf-8?B?MzdNRWtod3ozWFdDdGR4bFFMMWtnUW1WckhiSVRES1R0T051cVRkNEE0RzJP?=
+ =?utf-8?B?NmpkdGRqT05DdHBjV282bWVNZll0MUxPZWJNd2t2N1RsYmkzZ2xtK1lPbEpW?=
+ =?utf-8?B?N3FQWENzWUM2Y0pOZWU3Zy9MZlRERUtzeFByWlk4RUhUQmNTRVhiVUNNZ0cr?=
+ =?utf-8?B?cHEzUnhiQmJSUG15b0lEZDZ0STZaR0VHVWlEdDhNMVIvcHpsRzlBd3JhdmU2?=
+ =?utf-8?B?VXd0ZkdSYXZYNVIxU2FqWjBFb1pUOXoxa3U4aDhIOXVhRHcrM1Z5UGpLdVh2?=
+ =?utf-8?B?dHJCSFI2MWcwZ2FGUTFLeUs5T0hPVmZ2MlpXQWlDdENrY3lHUDJjbjRvTFNu?=
+ =?utf-8?B?V2tSem9lRDRFM2wyaThNVE81VWhVeWlHajhKNWVvRDhvQ1o1NnRGREcrMWpW?=
+ =?utf-8?B?MlFKcGdCWU84dm91d1M4YVBrYXdnSURtbmliOVRheTEyYm1lTHVvVjVDM2hR?=
+ =?utf-8?B?VWFiaTc0TnptdXBpcEpOTVFxQm14ZkFYZzlsSGE0VzBGOXIzSk9qTStWT0lZ?=
+ =?utf-8?B?eTBpUlZYbi9ZZnR2T1hVOEc0eS95SCtWWmNJTEhOVFJST0t1MnBCZUFpU3hX?=
+ =?utf-8?B?SVRDZHJtRTFjU01rVlhkb2RJOXk5OGxhaFRONmxKY0dMMGJqbE5TRm4zMmh1?=
+ =?utf-8?B?TDYzcTQ5NG5UTFROalVxaVZzdzRZb1RqQit5ZnNLMFlSY2tqdzRZV2dnYTh1?=
+ =?utf-8?B?UndxbG1wSHJlSlc4R3p3ejM4VjB3SjFyenRqTzhWTGNMaklBRjVlSk1tS1lX?=
+ =?utf-8?B?b3daZGJ0dURxRGdCTW5sV3NOYWVyZXZGNGFiYkNOampYQnp0dzJTVU4valRw?=
+ =?utf-8?B?MmZ6QWdDMUxWZ0JvdFhCUUY5T2d4VW90M2Vob3NGcDEzdW1keTlkek1JRjJV?=
+ =?utf-8?B?QTkvQlpFNlNFNjRnQlF5aVl1VnJvOUovY1RZdzZrTzNrTmhiMGdaNUsvMFln?=
+ =?utf-8?B?eUlnbG9LYTNxdTFkTmcwSWgwMDI2YjAvN3pmdUJHSVBUcC9KM2U1UVBJbzhl?=
+ =?utf-8?Q?DtTAQ0oTM19HC+l32k9NpQqKa?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 250f10cb-c467-4c5f-3b9a-08dd0b697d0d
 X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6714.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2024 02:38:23.6491 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2024 02:49:45.6831 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dyh4nvUVIWi8QqI6S14XEHcxSeiIdyfXHPDKIZwCyMZqrX4SdnS9KNJzvXtI0nY3S0MJZTdkZzQnsIsVdIGafQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7111
+X-MS-Exchange-CrossTenant-UserPrincipalName: Xh8iUBW0DqipcP1VREBFSiB3gSi/6FEn2b7HHJrkPokOduueRMwokcc6kV9NHtBowOPfqfr9yiM+d2xdvGYb2Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4824
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -196,332 +197,356 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 16.11.2024 20:29, Michal Wajdeczko wrote:
+On 16.11.2024 21:01, Michal Wajdeczko wrote:
 > On 16.11.2024 03:12, Tomasz Lis wrote:
->> We have only one GGTT for all IOV functions, with each VF having assigned
->> a range of addresses for its use. After migration, a VF can receive a
->> different range of addresses than it had initially.
+>> During post-migration recovery of a VF, it in necessary to update
+>> GGTT references included in messages which are going to be sent
+>> to GuC. GuC will start consuming messages after VF KMD will inform
+>> it about fixups being done; before that, the VF KMD is expected
+>> to update any H2G messages which are already in send buffer but
+>> were not consumed by GuC.
 >>
->> This implements shifting GGTT addresses within drm_mm nodes, so that
->> VMAs stay valid after migration. This will make the driver use new
->> addresses when accessing GGTT from the moment the shifting ends.
+>> Only a small subset of messages allowed for VFs have GGTT references
+>> in them. This patch adds the functionality to parse the CTB send
+>> ring buffer and shift addresses contained within.
 >>
->> By taking the ggtt->lock for the period of VMA fixups, this change
->> also adds constaint on that mutex. Any locks used during the recovery
->> cannot ever wait for hardware response - because after migration,
->> the hardware will not do anything until fixups are finished.
+>> While fixing the CTB content, ct->lock is not taken. This means
+>> the only barier taken remains GGTT address lock - which is ok,
+> typo barrier
+ack
+>> because only requests with GGTT addresses matter, but it also means
+>> tail changes can happen during the CTB fixups execution (which may
+>> be ignored as any new messages will not have anything to fix).
+>>
+>> The GGTT address locking will be introduced in a future series.
 >>
 >> Signed-off-by: Tomasz Lis<tomasz.lis@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 175 ++++++++++++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_gt_sriov_vf.h |   1 +
->>   drivers/gpu/drm/xe/xe_sriov_vf.c    |  15 +++
->>   3 files changed, 191 insertions(+)
+>>   drivers/gpu/drm/xe/xe_gt_sriov_vf.c       |   2 +
+>>   drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |   2 +
+>>   drivers/gpu/drm/xe/xe_guc_ct.c            | 146 ++++++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_guc_ct.h            |   2 +
+>>   drivers/gpu/drm/xe/xe_sriov_vf.c          |  12 ++
+>>   5 files changed, 164 insertions(+)
 >>
 >> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
->> index cca5d5732802..ae24c47ed8f8 100644
+>> index ae24c47ed8f8..604cbbf55d4f 100644
 >> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 >> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
->> @@ -912,6 +912,181 @@ int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt)
->>   	return err;
+>> @@ -920,12 +920,14 @@ static u64 drm_mm_node_end(struct drm_mm_node *node)
+>>   static s64 vf_get_post_migration_ggtt_shift(struct xe_gt *gt)
+>>   {
+>>   	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
+>> +	struct xe_gt_sriov_vf_runtime *runtime = &gt->sriov.vf.runtime;
+>>   	struct xe_tile *tile = gt_to_tile(gt);
+>>   	u64 old_base;
+>>   	s64 ggtt_shift;
+>>   
+>>   	old_base = drm_mm_node_end(&tile->sriov.vf.ggtt_balloon[0]->base);
+>>   	ggtt_shift = config->ggtt_base - (s64)old_base;
+>> +	runtime->ggtt_shift = ggtt_shift;
+> can't we store that when reading new config?
+will do.
+>
+>>   
+>>   	xe_gt_sriov_info(gt, "GGTT base shifted from %#llx to %#llx\n",
+>>   		  old_base, old_base + ggtt_shift);
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>> index a57f13b5afcd..6af219b0eb1e 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>> @@ -65,6 +65,8 @@ struct xe_gt_sriov_vf_runtime {
+>>   		/** @regs.value: register value. */
+>>   		u32 value;
+>>   	} *regs;
+>> +	/** @ggtt_shift: difference in ggtt_base on last migration */
+>> +	s64 ggtt_shift;
+> by 'VF runtime data' we meant here the missing HW data obtained at
+> _runtime_ from the GuC/PF (see "runtime-regs")
+>
+> this 'shift' is more like a migration specific data and doesn't really
+> fit here, so better define a separate struct for it
+since it's now part of getting config, will add it there.
+>
+>>   };
+>>   
+>>   /**
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+>> index 7eb175a0b874..119f4627a6d5 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+>> @@ -84,6 +84,8 @@ struct g2h_fence {
+>>   	bool done;
+>>   };
+>>   
+>> +#define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
+>> +
+>>   static void g2h_fence_init(struct g2h_fence *g2h_fence, u32 *response_buffer)
+>>   {
+>>   	g2h_fence->response_buffer = response_buffer;
+>> @@ -1620,6 +1622,150 @@ static void g2h_worker_func(struct work_struct *w)
+>>   	receive_g2h(ct);
 >>   }
 >>   
->> +static u64 drm_mm_node_end(struct drm_mm_node *node)
+>> +/*
+>> + * ct_update_addresses_in_message - Shift any GGTT addresses within
+>> + * a single message left within CTB from before post-migration recovery.
+>> + * @ct: pointer to CT struct of the target GuC
+>> + * @cmds: iomap buffer containing CT messages
+>> + * @head: start of the target message within the buffer
+>> + * @len: length of the target message
+>> + * @size: size of the commands buffer
+>> + * @shift: the address shift to be added to each GGTT reference
+>> + */
+>> +static void ct_update_addresses_in_message(struct xe_guc_ct *ct,
+>> +					    struct iosys_map *cmds, u32 head,
+>> +					    u32 len, u32 size, s64 shift)
 >> +{
->> +	return node->start + node->size;
+>> +	struct xe_device *xe = ct_to_xe(ct);
+>> +	u32 action, i, n;
+>> +	u32 msg[2];
+>> +	u64 offset;
+>> +
+>> +#define read32(o, p)							\
+>> +do {									\
+>> +	xe_map_memcpy_from(xe, msg, cmds, (head + p) * sizeof(u32),	\
+>> +			   1 * sizeof(u32));				\
+>> +	o = msg[0];							\
+>> +} while (0)
+>> +#define fixup64(p)							\
+>> +do {									\
+>> +	xe_map_memcpy_from(xe, msg, cmds, (head + p) * sizeof(u32),	\
+>> +			   2 * sizeof(u32));				\
+> what about buffer wrap?
+
+I don't see any implementation of ability to wrap with cutting a message 
+in half. Rather, h2g_write() fills remaining area with null messages.
+
+No special support is needed.
+
+>
+>> +	offset = make_u64(msg[1], msg[0]);				\
+>> +	offset += shift;						\
+>> +	msg[0] = lower_32_bits(offset);					\
+>> +	msg[1] = upper_32_bits(offset);					\
+>> +	xe_map_memcpy_to(xe, cmds, (head + p) * sizeof(u32), msg, 2 * sizeof(u32)); \
+>> +} while (0)
+> those macros are quite ugly and violating many rules
+> maybe they should be converted into inlines?
+will do.
+>
+>> +
+>> +	xe_map_memcpy_from(xe, msg, cmds, head * sizeof(u32),
+>> +			   1 * sizeof(u32));
+>> +	action = FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, msg[0]);
+>> +	switch (action) {
+>> +	case XE_GUC_ACTION_REGISTER_CONTEXT:
+>> +	case XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC:
+>> +		/* field wq_desc */
+>> +		fixup64(5);
+>> +		/* field wq_base */
+>> +		fixup64(7);
+>> +		if (action == XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC) {
+>> +			/* field number_children */
+>> +			read32(n, 10);
+>> +			/* field hwlrca and child lrcas */
+>> +			for (i = 0; i < n; i++)
+>> +				fixup64(11 + 2 * i);
+>> +		} else {
+>> +			/* field hwlrca */
+>> +			fixup64(10);
+>> +		}
+>> +		break;
+>> +	default:
+>> +		break;
+>> +	}
+>> +#undef fixup64
+>> +#undef read32
 >> +}
 >> +
->> +static s64 vf_get_post_migration_ggtt_shift(struct xe_gt *gt)
+>> +static int ct_update_addresses_in_buffer(struct xe_guc_ct *ct,
+>> +					 struct guc_ctb *h2g,
+>> +					 s64 shift, u32 *mhead, s32 avail)
 >> +{
->> +	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-> I'm wondering whether it would be possible to set/remember any GGTT
-> shift when VF was querying it's new config?
-
-The querying happens within post-migration recovery worker, after the 
-upcoming lock is taken.
-
-So subtracting old from new just after the GuC config query would be doable.
-
-Yeah, will do that.
-
->> +	struct xe_tile *tile = gt_to_tile(gt);
->> +	u64 old_base;
->> +	s64 ggtt_shift;
+>> +	struct xe_device *xe = ct_to_xe(ct);
+>> +	u32 head = *mhead;
+>> +	u32 size = h2g->info.size;
+>> +	u32 msg[1];
+>> +	u32 len;
 >> +
->> +	old_base = drm_mm_node_end(&tile->sriov.vf.ggtt_balloon[0]->base);
->> +	ggtt_shift = config->ggtt_base - (s64)old_base;
+>> +	/* Read header */
+>> +	xe_map_memcpy_from(xe, msg, &h2g->cmds, sizeof(u32) * head,
+>> +			   sizeof(u32));
+>> +	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
+> is it ok to access here all this CTB data without any lock?
+Yes, it is ok. The lack of lock is  explained in patch comment.
 >> +
->> +	xe_gt_sriov_info(gt, "GGTT base shifted from %#llx to %#llx\n",
->> +		  old_base, old_base + ggtt_shift);
+>> +	if (unlikely(len > (u32)avail)) {
+>> +		struct xe_gt *gt = ct_to_gt(ct);
 >> +
->> +	return ggtt_shift;
->> +}
->> +
->> +static void xe_ggtt_mm_shift_nodes(struct xe_ggtt *ggtt, struct drm_mm_node *balloon_beg,
->> +				struct drm_mm_node *balloon_fin, s64 shift)
-> there is way too much internals that should be just known to the xe_ggtt
-> maybe better to move most of this function to xe_ggtt.c ?
-Sure, I can move them. Will do.
->> +{
->> +	struct drm_mm_node *node, *tmpn;
->> +	int err;
->> +	LIST_HEAD(temp_list_head);
-> nit: I think our Xe maintainers prefer declarations in Reverse Christmas
-> Tree Format
-I though the rule is - uninitialized, then initialized. But I see all 
-possible conventions within the existing sources, so there just seem to 
-be no rule.
->> +
->> +	lockdep_assert_held(&ggtt->lock);
->> +
->> +	/*
->> +	 * Move nodes, from range previously assigned to this VF, into temp list.
->> +	 *
->> +	 * The balloon_beg and balloon_fin nodes are there to eliminate unavailable
->> +	 * ranges from use: first reserves the GGTT area below the range for current VF,
->> +	 * and second reserves area above. There may also exist extra nodes at the bottom
->> +	 * or top of GGTT range, as long as there are no free spaces inbetween. Such
->> +	 * extra nodes will be left unchanged.
->> +	 *
->> +	 * Below is a GGTT layout of example VF, with a certain address range assigned to
->> +	 * said VF, and inaccessible areas above and below:
->> +	 *
->> +	 *  0                                                                  ggtt->size
->> +	 *  |<--------------------------- Total GGTT size ----------------------------->|
->> +	 *
->> +	 *  +-----------+-------------------------+----------+--------------+-----------+
->> +	 *  |\\\\\\\\\\\|/////////////////////////|  VF mem  |//////////////|\\\\\\\\\\\|
->> +	 *  +-----------+-------------------------+----------+--------------+-----------+
->> +	 *
->> +	 * Hardware enforced access rules before migration:
->> +	 *
->> +	 *  |<------- inaccessible for VF ------->|<VF owned>|<-- inaccessible for VF ->|
->> +	 *
->> +	 * drm_mm nodes used for tracking allocations:
->> +	 *
->> +	 *  |<- extra ->|<------- balloon ------->|<- nodes->|<-- balloon ->|<- extra ->|
-> in Xe we don't have 'extra' regions since xe_ggtt already covers only
-> GuC accessible GGTT region, so it's like:
->
-> 0                                                        4GiB
-> |<----------------- Total GGTT size ------------------------>|
->
->      WOPCM                                      GUC_TOP
-> +-------+-------------------+-----------+------------+-------+
-> |\\\\\\\|///////////////////|  VF mem   |////////////|\\\\\\\|
-> +-------+-------------------+-----------+------------+-------+
->
->          0                                  ggtt->size
->          |<--balloon-------->|<--nodes-->|<-balloon->|
-will update.
->> +	 *
->> +	 * After the migration, GGTT area assigned to the VF might have shifted, either
->> +	 * to lower or to higher address. But we expect the total size and extra areas to
->> +	 * be identical, as migration can only happen between matching platforms.
->> +	 * Below is an example of GGTT layout of the VF after migration. Content of the
->> +	 * GGTT for VF has been moved to a new area, and we receive its address from GuC:
->> +	 *
->> +	 *  +-----------+--------------+----------+-------------------------+-----------+
->> +	 *  |\\\\\\\\\\\|//////////////|  VF mem  |/////////////////////////|\\\\\\\\\\\|
->> +	 *  +-----------+--------------+----------+-------------------------+-----------+
->> +	 *
->> +	 * Hardware enforced access rules after migration:
->> +	 *
->> +	 *  |<- inaccessible for VF -->|<VF owned>|<------- inaccessible for VF ------->|
->> +	 *
->> +	 * So the VF has a new slice of GGTT assigned, and during migration process, the
->> +	 * memory content was copied to that new area. But the drm_mm nodes within i915
-> i915 ?
-ack
->> +	 * are still tracking allocations using the old addresses. The nodes within VF
->> +	 * owned area have to be shifted, and balloon nodes need to be resized to
->> +	 * properly mask out areas not owned by the VF.
->> +	 *
->> +	 * Fixed drm_mm nodes used for tracking allocations:
-> drm_mm nodes are implementation details of the xe_ggtt_nodes
+>> +		xe_gt_err(gt, "H2G channel broken on read, avail=%d, len=%d, fixups skipped\n",
+>> +			  avail, len);
+>> +		return 0;
+> shouldn't we return some -errno to correctly report failure to the caller?
 
-You could equally say xe_ggtt_nodes are wrappers for drm_mm nodes. 
-Neither of these is going anywhere
+Why would we do this? What error handling would we do?
 
-for the lifetime of the driver within the kernel. And even calling these 
-approaches equal is a stretch.
+We are within a delicate, unusual situation during the recovery. The 
+goal of migration recovery is clearly stated, and it is not verification 
+of the state of buffers.
 
-It is easier to explain how something works using generic terms, and I'm 
-sure you agree drm_mm nodes are
+If that condition was reached, then:
 
-more generic than the xe-specific wrappers.
+* Maybe we've got double migration at a very specific time and we're 
+operating on a living GuC. In that case, we should just back off and not 
+touch it. (low probability of hitting that precise timings)
 
-The function is not fixing anything beyond the drm_mm - there are no 
-modifications to the xe decorator.
+* Maybe the CTB was broken before migration, or got broken while 
+restoring - the post-migration recovery is not a place to react on that. 
+(low probability, as we check the head and tail before)
 
-And note, vast majority of people reading the code will see the xe nodes 
-as just that - drm_mm node decorators.
+* Maybe our CTB parser is imperfect, or our locking will be imperfect 
+(or more likely, it will regress due to unrelated changes) - in that 
+case we also should back off.
 
->> +	 *
->> +	 *  |<- extra  ->|<- balloon ->|<-- VF -->|<-------- balloon ------>|<- extra ->|
->> +	 *
->> +	 * Due to use of GPU profiles, we do not expect the old and new GGTT ares to
->> +	 * overlap; but our node shifting will fix addresses properly regardless.
->> +	 *
->> +	 */
->> +	drm_mm_for_each_node_in_range_safe(node, tmpn, &ggtt->mm,
->> +					   drm_mm_node_end(balloon_beg),
->> +					   balloon_fin->start) {
->> +		drm_mm_remove_node(node);
->> +		list_add(&node->node_list, &temp_list_head);
->> +	}
->> +
->> +	/* shift and re-add ballooning nodes */
->> +	if (drm_mm_node_allocated(balloon_beg))
->> +		drm_mm_remove_node(balloon_beg);
->> +	if (drm_mm_node_allocated(balloon_fin))
->> +		drm_mm_remove_node(balloon_fin);
->> +	balloon_beg->size += shift;
->> +	balloon_fin->start += shift;
->> +	balloon_fin->size -= shift;
->> +	if (balloon_beg->size != 0) {
->> +		err = drm_mm_reserve_node(&ggtt->mm, balloon_beg);
->> +		XE_WARN_ON(err);
->> +	}
->> +	if (balloon_fin->size != 0) {
->> +		err = drm_mm_reserve_node(&ggtt->mm, balloon_fin);
->> +		XE_WARN_ON(err);
-> maybe xe_tile_assert() will work here?
-sound good.
->> +	}
->> +
->> +	/*
->> +	 * Now the GGTT VM contains only nodes outside of area assigned to this VF.
->> +	 * We can re-add all VF nodes with shifted offsets.
->> +	 */
->> +	list_for_each_entry_safe(node, tmpn, &temp_list_head, node_list) {
->> +		list_del(&node->node_list);
->> +		node->start += shift;
->> +		err = drm_mm_reserve_node(&ggtt->mm, node);
->> +		XE_WARN_ON(err);
-> ditto
+In general, if we've failed with CTB fixups, it doesn't mean the GFX is 
+unusable. There is actually much greater chance that no outgoing message 
+required fixups - most workloads are not registering contexts every 
+second. There is no point in propagating errors which do not break the 
+recovery. And if something is broken, then we should have mechanisms 
+within driver to deal with that. Post-migration recovery is not for that.
+
 >
 >> +	}
->> +}
 >> +
->> +static void xe_ggtt_node_shift_nodes(struct xe_ggtt *ggtt, struct xe_ggtt_node *balloon_beg,
->> +				struct xe_ggtt_node *balloon_fin, s64 shift)
->> +{
->> +	struct drm_mm_node *balloon_mm_beg, *balloon_mm_end;
->> +	struct drm_mm_node loc_beg, loc_end;
+>> +	head = (head + 1) % size;
+>> +	ct_update_addresses_in_message(ct, &h2g->cmds, head, len - 1, size, shift);
+>> +	*mhead = (head + len - 1) % size;
 >> +
->> +	if (balloon_beg && balloon_beg->ggtt)
->> +		balloon_mm_beg = &balloon_beg->base;
->> +	else {
->> +		loc_beg.color = 0;
->> +		loc_beg.flags = 0;
->> +		loc_beg.start = xe_wopcm_size(ggtt->tile->xe);
->> +		loc_beg.size = 0;
->> +		balloon_mm_beg = &loc_beg;
->> +	}
->> +
->> +	if (balloon_fin && balloon_fin->ggtt)
->> +		balloon_mm_end = &balloon_fin->base;
->> +	else {
->> +		loc_end.color = 0;
->> +		loc_end.flags = 0;
->> +		loc_end.start = GUC_GGTT_TOP;
->> +		loc_end.size = 0;
->> +		balloon_mm_end = &loc_end;
->> +	}
->> +
->> +	drm_dbg(&ggtt->tile->xe->drm, "tli: node shift start beg %llx %llx end %llx %llx\n",
->> +		balloon_mm_beg->start, balloon_mm_beg->size,
->> +		balloon_mm_end->start, balloon_mm_end->size);
->> +	xe_ggtt_mm_shift_nodes(ggtt, balloon_mm_beg, balloon_mm_end, shift);
->> +	drm_dbg(&ggtt->tile->xe->drm, "tli: node shift end\n");
-> tli ? looks like your private debug logs
-yeah, forgot about these.
+>> +	return avail - len;
 >> +}
 >> +
 >> +/**
->> + * xe_gt_sriov_vf_fixup_ggtt_nodes - Shift GGTT allocations to match assigned range.
->> + * @gt: the &xe_gt struct instance
->> + *
->> + * Since Global GTT is not virtualized, each VF has an assigned range
->> + * within the global space. This range might have changed during migration,
->> + * which requires all memory addresses pointing to GGTT to be shifted.
+>> + * xe_guc_ct_update_addresses - Shifts any GGTT addresses left
+>> + * within CTB from before post-migration recovery.
+> "Fixup any pending H2G CTB messages by updating GGTT offsets in their
+> payloads" ?
+ok, will switch to this.
+>
+>> + * @ct: pointer to CT struct of the target GuC
 >> + */
->> +void xe_gt_sriov_vf_fixup_ggtt_nodes(struct xe_gt *gt)
+>> +int xe_guc_ct_update_addresses(struct xe_guc_ct *ct)
 >> +{
->> +	struct xe_tile *tile = gt_to_tile(gt);
->> +	struct xe_ggtt *ggtt = tile->mem.ggtt;
+>> +	struct xe_guc *guc = ct_to_guc(ct);
+>> +	struct xe_gt *gt = guc_to_gt(guc);
+>> +	struct xe_gt_sriov_vf_runtime *runtime = &gt->sriov.vf.runtime;
+> please provide ggtt-shift explicitly to avoid direct access to the VF
+> data from the CT code
+will do.
+>
+>> +	struct guc_ctb *h2g = &ct->ctbs.h2g;
+>> +	u32 head = h2g->info.head;
+>> +	u32 tail = READ_ONCE(h2g->info.tail);
+>> +	u32 size = h2g->info.size;
+>> +	s32 avail;
 >> +	s64 ggtt_shift;
 >> +
->> +	mutex_lock(&ggtt->lock);
->> +	ggtt_shift = vf_get_post_migration_ggtt_shift(gt);
-> do we still need to do anything if shift is 0?
-Decreasing recovery time when possible does make sense. Will add a 
-condition.
->> +	xe_ggtt_node_shift_nodes(ggtt, tile->sriov.vf.ggtt_balloon[0],
->> +				 tile->sriov.vf.ggtt_balloon[1], ggtt_shift);
->> +	mutex_unlock(&ggtt->lock);
+>> +	if (unlikely(h2g->info.broken))
+>> +		return -EPIPE;
+>> +
+>> +	XE_WARN_ON(head > size);
+> use xe_gt_WARN() or xe_gt_assert() instead - depends on what exactly do
+> you want to check here
+ack
+>
+>> +
+>> +	if (unlikely(tail >= size)) {
+>> +		xe_gt_err(gt, "H2G channel has Invalid tail offset (%u >= %u)\n",
+> s/Invalid/invalid
+ok
+>> +			 tail, size);
+>> +		goto corrupted;
+>> +	}
+>> +
+>> +	avail = tail - head;
+>> +
+>> +	/* beware of buffer wrap case */
+>> +	if (unlikely(avail < 0))
+>> +		avail += size;
+>> +	xe_gt_dbg(gt, "available %d (%u:%u:%u)\n", avail, head, tail, size);
+>> +	XE_WARN_ON(avail < 0);
+>> +
+>> +	ggtt_shift = runtime->ggtt_shift;
+>> +
+>> +	while (avail > 0)
+>> +		avail = ct_update_addresses_in_buffer(ct, h2g, ggtt_shift, &head, avail);
+>> +
+>> +	return 0;
+>> +
+>> +corrupted:
+>> +	xe_gt_err(gt, "Corrupted descriptor head=%u tail=%u\n",
+>> +		 head, tail);
+>> +	h2g->info.broken = true;
+>> +	return -EPIPE;
 >> +}
 >> +
->>   static int vf_runtime_reg_cmp(const void *a, const void *b)
+>>   static struct xe_guc_ct_snapshot *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic,
+>>   							bool want_ctb)
 >>   {
->>   	const struct vf_runtime_reg *ra = a;
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
->> index 912d20814261..a8745ec23380 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
->> @@ -17,6 +17,7 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
->>   int xe_gt_sriov_vf_connect(struct xe_gt *gt);
->>   int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
->>   int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
->> +void xe_gt_sriov_vf_fixup_ggtt_nodes(struct xe_gt *gt);
->>   int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
->>   void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+>> index 82c4ae458dda..6b04fd4b1e03 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+>> @@ -22,6 +22,8 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_pr
+>>   void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
+>>   void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
 >>   
+>> +int xe_guc_ct_update_addresses(struct xe_guc_ct *ct);
+>> +
+>>   static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
+>>   {
+>>   	return ct->state == XE_GUC_CT_STATE_ENABLED;
 >> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
->> index c1275e64aa9c..5bcd55999e0e 100644
+>> index 5bcd55999e0e..08c789ebfa18 100644
 >> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
 >> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
->> @@ -7,6 +7,7 @@
->>   
->>   #include "xe_assert.h"
->>   #include "xe_device.h"
->> +#include "xe_gt.h"
+>> @@ -10,6 +10,7 @@
+>>   #include "xe_gt.h"
 >>   #include "xe_gt_sriov_printk.h"
 >>   #include "xe_gt_sriov_vf.h"
+>> +#include "xe_guc_ct.h"
 >>   #include "xe_pm.h"
->> @@ -170,6 +171,19 @@ static bool vf_post_migration_imminent(struct xe_device *xe)
->>   	work_pending(&xe->sriov.vf.migration.worker);
+>>   #include "xe_sriov.h"
+>>   #include "xe_sriov_printk.h"
+>> @@ -158,6 +159,15 @@ static int vf_post_migration_requery_guc(struct xe_device *xe)
+>>   	return ret;
 >>   }
 >>   
->> +static void vf_post_migration_fixup_ggtt_nodes(struct xe_device *xe)
+>> +static void vf_post_migration_fixup_ctb(struct xe_device *xe)
 >> +{
 >> +	struct xe_gt *gt;
 >> +	unsigned int id;
 >> +
->> +	for_each_gt(gt, xe, id) {
-> maybe for_each_tile() would be a better fit here?
-
-Since current platforms have ggtt per-tile rather than per-gt, it does 
-makes sense. Will change.
-
--Tomasz
-
->> +		/* media doesn't have its own ggtt */
->> +		if (xe_gt_is_media_type(gt))
->> +			continue;
->> +		xe_gt_sriov_vf_fixup_ggtt_nodes(gt);
->> +	}
+>> +	for_each_gt(gt, xe, id)
+>> +		xe_guc_ct_update_addresses(&gt->uc.guc.ct);
 >> +}
 >> +
 >>   /*
->>    * Notify all GuCs about resource fixups apply finished.
->>    */
->> @@ -201,6 +215,7 @@ static void vf_post_migration_recovery(struct xe_device *xe)
->>   	if (unlikely(err))
->>   		goto fail;
+>>    * vf_post_migration_imminent - Check if post-restore recovery is coming.
+>>    * @xe: the &xe_device struct instance
+>> @@ -217,6 +227,8 @@ static void vf_post_migration_recovery(struct xe_device *xe)
 >>   
->> +	vf_post_migration_fixup_ggtt_nodes(xe);
+>>   	vf_post_migration_fixup_ggtt_nodes(xe);
 >>   	/* FIXME: add the recovery steps */
+>> +	vf_post_migration_fixup_ctb(xe);
+>> +
+> why this extra separation line?
+
+it separates fixups from finalization. Similarly, there's a line at 
+start of fixups.
+
+-Tomasz
+
 >>   	vf_post_migration_notify_resfix_done(xe);
 >>   	xe_pm_runtime_put(xe);
+>>   	drm_notice(&xe->drm, "migration recovery ended\n");
