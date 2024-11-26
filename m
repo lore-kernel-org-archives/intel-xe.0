@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74590D6553B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CD64D65535
 	for <intel-xe@archiver.kernel.org>; Tue, 26 Nov 2024 17:45:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC4BF10E977;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8613D10E973;
 	Tue, 26 Nov 2024 17:45:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UU7AhRD5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HV89K9zK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4A5710E973;
- Tue, 26 Nov 2024 17:45:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEC83899A3;
+ Tue, 26 Nov 2024 17:45:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732643141; x=1764179141;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=nZMJwEdjNoBvlGVgeI7A/wYeq0nHCWPF1Z/N58o2JT8=;
- b=UU7AhRD50HS9eYT0nff9uROoyDgUR8L8Sv2YrivlZXzmfSp/RXqfMmWi
- /mB65MFjHM4hUfLJm7rImdFRGcjFkJWVpOJ3FuWlVFQ7PCV3UVN+G2pgA
- YQbMgtIL7BpJ1lr9enRvUA3ZgtnLRR3g5zolFNH/Wg5G6xZdvlvHAf3bl
- Ml1Qv3L26MMetDaTJMVaTUW7Bw/Dlyz3oLxaEtQY+dhe4/bBbC3XLgctZ
- bBw//IFnv23JzdvBDZTcgL0IBPW0c4af1Zn7GAOXH3qmtEqaRNLP0k++E
- Ct50nEopKx2HN0D+tlK7yjYEluI53MYUe9vrRTBIWFpwPx8c/SIX3N0+u Q==;
-X-CSE-ConnectionGUID: TqaUHgy/QLe5evRHCmv6ZA==
-X-CSE-MsgGUID: lkQy8JYVRVOYjJPA7dGhNw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="32676921"
-X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="32676921"
+ t=1732643140; x=1764179140;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PkWiFYslfaLNg6YRsbTeeDCnGjQC7oOlwil3ks27fnM=;
+ b=HV89K9zK5vJOrObgn8CvtMGCvO+zwVtBF8ZkBNcaujtfMks9N95e4bxk
+ ib5ITZ1NbpZo2BR8++LURnjrjXVTE6rAbx3F1gpP1sKZFQGcnQ6n5+ShM
+ 6VMX9k1pzmKylPQUnnlhOy2vJm8EPoNX7gr0X45IdXvMfa4zg3Wh/pcje
+ FQi4jE2+IFaJQR1nUoI9HE+fEOTloIMCu1cvr38ORkz+Snj93Ouh8F6p8
+ QDqjOzyCHAnDnsvKgtBu83d3QRx9Mev/dfvNsakXRE4lDGG9Qg3beNpOm
+ Byis4LsBV265irDWEcckxgNpu5w+4EdfKuPAnuBAccCtgFzcfqLKr+tjZ A==;
+X-CSE-ConnectionGUID: Ux85hBoDQ9mzT99jDO3CTg==
+X-CSE-MsgGUID: QPJZh7vZSYepeeFcyqdv2A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="32676907"
+X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="32676907"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2024 09:45:41 -0800
-X-CSE-ConnectionGUID: RWsP5VpFSN64IY3/h09ONA==
-X-CSE-MsgGUID: FlKAl7ytQqSrNoNZpvfEKg==
+ 26 Nov 2024 09:45:40 -0800
+X-CSE-ConnectionGUID: EOKuP9mxQOy5ZN2lfnBCoA==
+X-CSE-MsgGUID: C1/Zl3+NTVSOiHaajANVIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="92152587"
+X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="92152574"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2024 09:45:40 -0800
+ 26 Nov 2024 09:45:39 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: christian.koenig@amd.com,
 	thomas.hellstrom@linux.intel.com
-Subject: [PATCH v7 7/8] drm/xe: Set XE_BO_FLAG_PINNED in migrate selftest BOs
-Date: Tue, 26 Nov 2024 09:46:14 -0800
-Message-Id: <20241126174615.2665852-8-matthew.brost@intel.com>
+Subject: [PATCH v7 0/8] Fix non-contiguous VRAM BO access in Xe
+Date: Tue, 26 Nov 2024 09:46:07 -0800
+Message-Id: <20241126174615.2665852-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241126174615.2665852-1-matthew.brost@intel.com>
-References: <20241126174615.2665852-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,61 +67,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We only allow continguous BOs to be vmapped, set XE_BO_FLAG_PINNED on
-BOs in migrate selftest as this forces continguous BOs and selftest uses
-vmaps.
+Fully reviewed and resending for final CI.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_migrate.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+Dropping non-visible patch for now as it a bit larger, not strickly
+required to unblock EU debug, and be sent independently in a follow up.
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 1a192a2a941b..4cef3b20bd17 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -83,7 +83,8 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
- 						   bo->size,
- 						   ttm_bo_type_kernel,
- 						   region |
--						   XE_BO_FLAG_NEEDS_CPU_ACCESS);
-+						   XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+						   XE_BO_FLAG_PINNED);
- 	if (IS_ERR(remote)) {
- 		KUNIT_FAIL(test, "Failed to allocate remote bo for %s: %pe\n",
- 			   str, remote);
-@@ -642,7 +643,9 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
- 
- 	sys_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M,
- 				   DRM_XE_GEM_CPU_CACHING_WC,
--				   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS);
-+				   XE_BO_FLAG_SYSTEM |
-+				   XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+				   XE_BO_FLAG_PINNED);
- 
- 	if (IS_ERR(sys_bo)) {
- 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
-@@ -666,7 +669,8 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
- 
- 	ccs_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M,
- 				   DRM_XE_GEM_CPU_CACHING_WC,
--				   bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS);
-+				   bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+				   XE_BO_FLAG_PINNED);
- 
- 	if (IS_ERR(ccs_bo)) {
- 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
-@@ -690,7 +694,8 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
- 
- 	vram_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M,
- 				    DRM_XE_GEM_CPU_CACHING_WC,
--				    bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS);
-+				    bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+				    XE_BO_FLAG_PINNED);
- 	if (IS_ERR(vram_bo)) {
- 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
- 			   PTR_ERR(vram_bo));
+Matt
+
+Matthew Brost (8):
+  drm/xe: Add xe_bo_vm_access
+  drm/ttm: Add ttm_bo_access
+  drm/xe: Add xe_ttm_access_memory
+  drm/xe: Take PM ref in delayed snapshot capture worker
+  drm/xe/display: Update intel_bo_read_from_page to use ttm_bo_access
+  drm/xe: Use ttm_bo_access in xe_vm_snapshot_capture_delayed
+  drm/xe: Set XE_BO_FLAG_PINNED in migrate selftest BOs
+  drm/xe: Only allow contiguous BOs to use xe_bo_vmap
+
+ drivers/gpu/drm/ttm/ttm_bo_vm.c       | 40 ++++++++---
+ drivers/gpu/drm/xe/display/intel_bo.c | 25 +------
+ drivers/gpu/drm/xe/tests/xe_migrate.c | 13 ++--
+ drivers/gpu/drm/xe/xe_bo.c            | 99 +++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_devcoredump.c   |  6 ++
+ drivers/gpu/drm/xe/xe_vm.c            | 17 ++---
+ include/drm/ttm/ttm_bo.h              |  2 +
+ 7 files changed, 142 insertions(+), 60 deletions(-)
+
 -- 
 2.34.1
 
