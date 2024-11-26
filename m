@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 186ADD65536
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 907D3D6553A
 	for <intel-xe@archiver.kernel.org>; Tue, 26 Nov 2024 17:45:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8650210E976;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7A9C10E979;
 	Tue, 26 Nov 2024 17:45:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ldNbc/4/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JiS4gvzv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0722899A3;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DAEE10E96E;
  Tue, 26 Nov 2024 17:45:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732643141; x=1764179141;
+ t=1732643140; x=1764179140;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Uh9Jwo9O+TNbDlkFULMypNtBNGe09Nh9IU4Xyq1WC2c=;
- b=ldNbc/4/u+F8CBwjAu+q4dFelO0zgCdTxbrJkLY0cLSYLuDBSFykWXRB
- usq/iYe6vv8K+0ZcAWuPglcwKRDBgy9DnuC75W9wE3uNIqvbZYgOSkf7T
- OLtMOQgHL2rnhODARMWcfILEvI1/l/ylltkQ5GGiKUvdPa0KK27JuhBry
- nIbgjSKRANXp1bcf0DddPO8hEkv+A883bOhA5WsNwaY+i3RyB0Sbgf9J9
- zSQ1sJQsF9VvPO6A2ce/VPVaGJq1ftExHCh56PpuEgEDVb5Xt+wlBKDYv
- 9FOSGWnoyNcOX71c0nd8fX6oKHpUJYBaFUnBhYA1kRJZi/OqSrsv/FqVF Q==;
-X-CSE-ConnectionGUID: 5XEwUwVFQT28Y56ZYy4TxA==
-X-CSE-MsgGUID: mZoV7wr9SW+S1QGjwS5iWw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="32676919"
-X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="32676919"
+ bh=i9vSL4DAuDLWzDNTn8Skfuqr9p6KQPGc9GqEIMr3nrs=;
+ b=JiS4gvzvqee/+0fLvKOyvXr0L53TGFbsY91As04Sy9t2x0V7Ha+n+wc3
+ UnzyfeOyxux5Iw3OqmMQ+j4Art29xVw53k6C7eIQeNrLq4wShnH4ZRSWW
+ hluUx+YegjQ3a93Mmi4m68LjspihlVBszR3sFZCa+9DZjtCn4tHj+GLrQ
+ A/lXcd1kaiUpa3fqLFr6ImeDcaCz9OMnVUZ4ZaCPEvT9HIrFm+HaELP22
+ 5RyhB/pcJn/3YLhhA6yvTSLZI69q4ts0sMhpwdZRMIVdUINH7+U7NsXoC
+ aBFGTQZCpmMFG8hF5Q3IDlxZ6Lom56633HujFJmy78/GUemP1lt9iiYQj Q==;
+X-CSE-ConnectionGUID: 6PmvAooTRii1dQ2Nm8ZKAQ==
+X-CSE-MsgGUID: hcCAzIn2RL671uGKqgaGLg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="32676915"
+X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="32676915"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2024 09:45:41 -0800
-X-CSE-ConnectionGUID: rJwy1/G4SDmaNF+oVE4Cew==
-X-CSE-MsgGUID: DhZZF/ZdQHq9lxsi20NTWQ==
+ 26 Nov 2024 09:45:40 -0800
+X-CSE-ConnectionGUID: doGWteCgRu2bmYiLSLLpCg==
+X-CSE-MsgGUID: hGDpTNrMTEuJ0JPoD4Ff1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="92152586"
+X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="92152582"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Nov 2024 09:45:40 -0800
@@ -46,10 +46,9 @@ To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: christian.koenig@amd.com,
 	thomas.hellstrom@linux.intel.com
-Subject: [PATCH v7 6/8] drm/xe: Use ttm_bo_access in
- xe_vm_snapshot_capture_delayed
-Date: Tue, 26 Nov 2024 09:46:13 -0800
-Message-Id: <20241126174615.2665852-7-matthew.brost@intel.com>
+Subject: [PATCH v7 4/8] drm/xe: Take PM ref in delayed snapshot capture worker
+Date: Tue, 26 Nov 2024 09:46:11 -0800
+Message-Id: <20241126174615.2665852-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241126174615.2665852-1-matthew.brost@intel.com>
 References: <20241126174615.2665852-1-matthew.brost@intel.com>
@@ -69,54 +68,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Non-contiguous mapping of BO in VRAM doesn't work, use ttm_bo_access
-instead.
+The delayed snapshot capture worker can access the GPU or VRAM both of
+which require a PM reference. Take a reference in this worker.
 
-v2:
- - Fix error handling
-
-Fixes: 0eb2a18a8fad ("drm/xe: Implement VM snapshot support for BO's and userptr")
-Suggested-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Fixes: 4f04d07c0a94 ("drm/xe: Faster devcoredump")
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 17 ++++++-----------
- 1 file changed, 6 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 1d7faeba157e..2492750505d6 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3309,7 +3309,6 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 0e5edf14a241..0d3a4dc87a7f 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -23,6 +23,7 @@
+ #include "xe_guc_submit.h"
+ #include "xe_hw_engine.h"
+ #include "xe_module.h"
++#include "xe_pm.h"
+ #include "xe_sched_job.h"
+ #include "xe_vm.h"
  
- 	for (int i = 0; i < snap->num_snaps; i++) {
- 		struct xe_bo *bo = snap->snap[i].bo;
--		struct iosys_map src;
- 		int err;
+@@ -167,8 +168,11 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
+ {
+ 	struct xe_devcoredump_snapshot *ss = container_of(work, typeof(*ss), work);
+ 	struct xe_devcoredump *coredump = container_of(ss, typeof(*coredump), snapshot);
++	struct xe_device *xe = coredump_to_xe(coredump);
+ 	unsigned int fw_ref;
  
- 		if (IS_ERR(snap->snap[i].data))
-@@ -3322,16 +3321,12 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
- 		}
++	xe_pm_runtime_get(xe);
++
+ 	/* keep going if fw fails as we still want to save the memory and SW data */
+ 	fw_ref = xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
+ 	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
+@@ -177,6 +181,8 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
+ 	xe_guc_exec_queue_snapshot_capture_delayed(ss->ge);
+ 	xe_force_wake_put(gt_to_fw(ss->gt), fw_ref);
  
- 		if (bo) {
--			xe_bo_lock(bo, false);
--			err = ttm_bo_vmap(&bo->ttm, &src);
--			if (!err) {
--				xe_map_memcpy_from(xe_bo_device(bo),
--						   snap->snap[i].data,
--						   &src, snap->snap[i].bo_ofs,
--						   snap->snap[i].len);
--				ttm_bo_vunmap(&bo->ttm, &src);
--			}
--			xe_bo_unlock(bo);
-+			err = ttm_bo_access(&bo->ttm, snap->snap[i].bo_ofs,
-+					    snap->snap[i].data, snap->snap[i].len, 0);
-+			if (!(err < 0) && err != snap->snap[i].len)
-+				err = -EIO;
-+			else if (!(err < 0))
-+				err = 0;
- 		} else {
- 			void __user *userptr = (void __user *)(size_t)snap->snap[i].bo_ofs;
++	xe_pm_runtime_put(xe);
++
+ 	/* Calculate devcoredump size */
+ 	ss->read.size = __xe_devcoredump_read(NULL, INT_MAX, coredump);
  
 -- 
 2.34.1
