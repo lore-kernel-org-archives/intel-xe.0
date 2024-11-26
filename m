@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACA4CD65543
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Nov 2024 18:27:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32777D6554C
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Nov 2024 18:38:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ABB910E979;
-	Tue, 26 Nov 2024 18:27:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ScMpHpEv";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AB5110E979
- for <intel-xe@lists.freedesktop.org>; Tue, 26 Nov 2024 18:27:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732645656; x=1764181656;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Y/VgcZj7shpqvcYRSS3IMWyuQIHtz4hzuV5aBvphYvE=;
- b=ScMpHpEvJDb8205cKG511NUmsECD/MdBBqYE0tzFIJwDRMjMBjCyKLAI
- /y8/SAkcQpFqx0o98vSgYYPF1RPg8SWPV+F6VtaIOUcoUEzR4IT1f/Zfc
- 038B+1suVLFigVITZqOTAO0ec0lHz+7doJjxF4c9wIs3lWyPWz3Xi196q
- almFBD1SopeKeGjqA9fLGT4dITt9b8/+J9vdY4IhUn6hxe+k1KMSKwq6m
- fTxjn+OfBOmBVJKHU6d70XuecZbN+WuLE3Wd+Zv5FEJGmBvYLgWzy92Nk
- p6LkvyI/IOVRyxwFVv2IzlqCZFZ5X/2YoZ4whm0NB4SwRR5hh22mbOtAP g==;
-X-CSE-ConnectionGUID: rMCtGMmrRtuQo2pprG7E7A==
-X-CSE-MsgGUID: 9hp99unLRVOcPNAvc+F2eQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="43892435"
-X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="43892435"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2024 10:27:35 -0800
-X-CSE-ConnectionGUID: lQOUGVVTShqy0IJvJjwbtw==
-X-CSE-MsgGUID: DQnAiYPhQt65paIQf6I9ng==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="91519735"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.160.19])
- ([10.245.160.19])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2024 10:27:33 -0800
-Message-ID: <e134fa72-678d-4e3f-9362-d303407a5e85@linux.intel.com>
-Date: Tue, 26 Nov 2024 19:27:30 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04CBF10E9A3;
+	Tue, 26 Nov 2024 18:38:09 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1149E10E9A3;
+ Tue, 26 Nov 2024 18:38:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe/migrate: use XE_BO_FLAG_PAGETABLE
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, Nirmoy Das
- <nirmoy.das@intel.com>, stable@vger.kernel.org
-References: <20241126181259.159713-3-matthew.auld@intel.com>
- <20241126181259.159713-4-matthew.auld@intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20241126181259.159713-4-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Fix_non-contiguous_VRAM_BO_acc?=
+ =?utf-8?q?ess_in_Xe_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 26 Nov 2024 18:38:08 -0000
+Message-ID: <173264628806.3447124.14461846351160523671@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241126174615.2665852-1-matthew.brost@intel.com>
+In-Reply-To: <20241126174615.2665852-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,40 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 11/26/2024 7:13 PM, Matthew Auld wrote:
-> On some HW we want to avoid the host caching PTEs, since access from GPU
-> side can be incoherent. However here the special migrate object is
-> mapping PTEs which are written from the host and potentially cached. Use
-> XE_BO_FLAG_PAGETABLE to ensure that non-cached mapping is used, on
-> platforms where this matters.
->
-> Fixes: 7a060d786cc1 ("drm/xe/mtl: Map PPGTT as CPU:WC")
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
-> Cc: <stable@vger.kernel.org> # v6.8+
+Series: Fix non-contiguous VRAM BO access in Xe (rev7)
+URL   : https://patchwork.freedesktop.org/series/140200/
+State : success
 
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+== Summary ==
 
-> ---
->  drivers/gpu/drm/xe/xe_migrate.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index 48e205a40fd2..1b97d90aadda 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -209,7 +209,8 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->  				  num_entries * XE_PAGE_SIZE,
->  				  ttm_bo_type_kernel,
->  				  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-> -				  XE_BO_FLAG_PINNED);
-> +				  XE_BO_FLAG_PINNED |
-> +				  XE_BO_FLAG_PAGETABLE);
->  	if (IS_ERR(bo))
->  		return PTR_ERR(bo);
->  
+lib/modules/6.12.0-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-xe/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.12.0-xe/kernel/kernel/
+lib/modules/6.12.0-xe/kernel/kernel/kheaders.ko
+lib/modules/6.12.0-xe/kernel/crypto/
+lib/modules/6.12.0-xe/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/xcbc.ko
+lib/modules/6.12.0-xe/kernel/crypto/serpent_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/aria_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-xe/kernel/crypto/adiantum.ko
+lib/modules/6.12.0-xe/kernel/crypto/tcrypt.ko
+lib/modules/6.12.0-xe/kernel/crypto/crypto_engine.ko
+lib/modules/6.12.0-xe/kernel/crypto/zstd.ko
+lib/modules/6.12.0-xe/kernel/crypto/asymmetric_keys/
+lib/modules/6.12.0-xe/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.12.0-xe/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.12.0-xe/kernel/crypto/des_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/xctr.ko
+lib/modules/6.12.0-xe/kernel/crypto/authenc.ko
+lib/modules/6.12.0-xe/kernel/crypto/sm4_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/keywrap.ko
+lib/modules/6.12.0-xe/kernel/crypto/camellia_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/sm3.ko
+lib/modules/6.12.0-xe/kernel/crypto/pcrypt.ko
+lib/modules/6.12.0-xe/kernel/crypto/aegis128.ko
+lib/modules/6.12.0-xe/kernel/crypto/af_alg.ko
+lib/modules/6.12.0-xe/kernel/crypto/algif_aead.ko
+lib/modules/6.12.0-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-xe/kernel/crypto/sm3_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/aes_ti.ko
+lib/modules/6.12.0-xe/kernel/crypto/chacha_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/poly1305_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/nhpoly1305.ko
+lib/modules/6.12.0-xe/kernel/crypto/crc32_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/essiv.ko
+lib/modules/6.12.0-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-xe/kernel/crypto/wp512.ko
+lib/modules/6.12.0-xe/kernel/crypto/streebog_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/authencesn.ko
+lib/modules/6.12.0-xe/kernel/crypto/echainiv.ko
+lib/modules/6.12.0-xe/kernel/crypto/lrw.ko
+lib/modules/6.12.0-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-xe/kernel/crypto/crypto_user.ko
+lib/modules/6.12.0-xe/kernel/crypto/algif_hash.ko
+lib/modules/6.12.0-xe/kernel/crypto/vmac.ko
+lib/modules/6.12.0-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/hctr2.ko
+lib/modules/6.12.0-xe/kernel/crypto/842.ko
+lib/modules/6.12.0-xe/kernel/crypto/pcbc.ko
+lib/modules/6.12.0-xe/kernel/crypto/ansi_cprng.ko
+lib/modules/6.12.0-xe/kernel/crypto/cast6_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/twofish_common.ko
+lib/modules/6.12.0-xe/kernel/crypto/twofish_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/lz4hc.ko
+lib/modules/6.12.0-xe/kernel/crypto/blowfish_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/md4.ko
+lib/modules/6.12.0-xe/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.12.0-xe/kernel/crypto/curve25519-generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/lz4.ko
+lib/modules/6.12.0-xe/kernel/crypto/rmd160.ko
+lib/modules/6.12.0-xe/kernel/crypto/algif_skcipher.ko
+lib/modules/6.12.0-xe/kernel/crypto/cast5_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/fcrypt.ko
+lib/modules/6.12.0-xe/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/sm4.ko
+lib/modules/6.12.0-xe/kernel/crypto/cast_common.ko
+lib/modules/6.12.0-xe/kernel/crypto/blowfish_common.ko
+lib/modules/6.12.0-xe/kernel/crypto/michael_mic.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-xe/kernel/crypto/algif_rng.ko
+lib/modules/6.12.0-xe/kernel/block/
+lib/modules/6.12.0-xe/kernel/block/bfq.ko
+lib/modules/6.12.0-xe/kernel/block/kyber-iosched.ko
+lib/modules/6.12.0-xe/build
+lib/modules/6.12.0-xe/modules.alias.bin
+lib/modules/6.12.0-xe/modules.builtin
+lib/modules/6.12.0-xe/modules.softdep
+lib/modules/6.12.0-xe/modules.alias
+lib/modules/6.12.0-xe/modules.order
+lib/modules/6.12.0-xe/modules.symbols
+lib/modules/6.12.0-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1732646276:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1732646276:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
