@@ -4,68 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5DDDD3B98B
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Nov 2024 13:19:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45785D3B98E
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Nov 2024 13:19:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B1E910E3FD;
-	Tue, 26 Nov 2024 13:19:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DADA610E406;
+	Tue, 26 Nov 2024 13:19:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZMbyHBCV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J1kPZxHl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76D6710E3FB;
- Tue, 26 Nov 2024 13:19:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32F0F10E406;
+ Tue, 26 Nov 2024 13:19:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732627174; x=1764163174;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bgwkmXirEvTcVNmkqoesy+pBMAgBC/BpN9gMOid+n4g=;
- b=ZMbyHBCVE71dOPkAK4e7xTT8FSx/czV5wIksXsmMAQq1W5vddwsKvMCA
- +1Gw+DLPS0OJ9BojickBjg0hCrbmGhcQb9C7cMAnpu+Pz5WA8GZ3qLuja
- 7/8cm4OvJzvPDNP/WN8xTYNwXGe1Q6YFZ1i2cj0TgCczEJ0DXgojyG2cx
- BBnRLiEmSEE1LYH7y0GWPa1StZH90STkyY1Mb29sJI/r74EiO0sdGj2Eb
- w3Mh091MuMrAOCQQkuBViRY7Na8d5fqQR79Ll1WN+iADjxiCZhi7Ih39Q
- JwYzwd4DK6EfNlt/vqdyqHn+cyzQT1P/MjUW5r7vZcyE3x5HGXu2iJAFn w==;
-X-CSE-ConnectionGUID: 6v3zqmFXQSm7qW4P9p3hYg==
-X-CSE-MsgGUID: 5qt06zlHRiezO3+5vTt3uw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="44170049"
-X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="44170049"
+ t=1732627191; x=1764163191;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=xyW9d0XI4ewu6YVUVmB93Ujsw7mQpzheeGQaqfYD8c4=;
+ b=J1kPZxHlVlTcBuifqvAvrM1DICTLARkZ+nIiLzYhCgDByNmOBksIwSkL
+ VjEkR1JP+wwgXyHC5b4A7EeUaV5dyhyxbG6g8V3uv4Rp5xEBqaT+pIv6b
+ uCKZXVLSCBWEufv5fNFNMqKB3lK4ZrSSpi0lp+0flcPhL2JRvZpTIdgWT
+ LbnJZzki9P2g7JdZad6liFN6K5AMF8qS8TsIImRXlTvFZZzc0pVH1oLGZ
+ by/I4z62OOzs7kmSQ2/1bfbkqtLTRCnhm+n7VfSuQWWNYdLLD3FZulpmO
+ zygrwMPHKT9Nfz611aiRq5GSsP5/CE44E/g609esNttpOVfrD5PNi6B84 w==;
+X-CSE-ConnectionGUID: pIU9Gvf8Tbq3fusk9MDGjg==
+X-CSE-MsgGUID: D5Jnp1ASROeVbAFL+bAoDg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="44170085"
+X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="44170085"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2024 05:19:32 -0800
-X-CSE-ConnectionGUID: GJktSUbQRYmNRSiNn5Jjhg==
-X-CSE-MsgGUID: 2lKMUQVYR2eSdtkLVG8rVw==
+ 26 Nov 2024 05:19:41 -0800
+X-CSE-ConnectionGUID: S+S/TxmISUmo8/GxWYRUGQ==
+X-CSE-MsgGUID: GzkUMzNeTq+6K2tQLX5s9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="114874521"
+X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="114874559"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa002.fm.intel.com with ESMTP; 26 Nov 2024 05:19:24 -0800
+ by fmviesa002.fm.intel.com with ESMTP; 26 Nov 2024 05:19:36 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, harry.wentland@amd.com,
  pekka.paalanen@haloniitty.fi, sebastian.wick@redhat.com, jadahl@redhat.com,
  mwen@igalia.com, contact@emersion.fr, naveen1.kumar@intel.com,
- Uma Shankar <uma.shankar@intel.com>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Shashank Sharma <shashank.sharma@amd.com>,
- Alexander Goins <agoins@nvidia.com>, Joshua Ashton <joshua@froggi.es>,
- =?UTF-8?q?Michel=20D=C3=A4nzer?= <mdaenzer@redhat.com>,
- Aleix Pol <aleixpol@kde.org>, Xaver Hugl <xaver.hugl@gmail.com>,
- Victoria Brekenfeld <victoria@system76.com>, Sima <daniel@ffwll.ch>,
- Naseer Ahmed <quic_naseer@quicinc.com>,
- Christopher Braga <quic_cbraga@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Arthur Grillo <arthurgrillo@riseup.net>, Hector Martin <marcan@marcan.st>,
- Liviu Dudau <Liviu.Dudau@arm.com>,
- Sasha McIntosh <sashamcintosh@google.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Subject: [v2 00/25] Plane Color Pipeline support for Intel platforms
-Date: Tue, 26 Nov 2024 18:57:05 +0530
-Message-ID: <20241126132730.1192571-1-uma.shankar@intel.com>
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Uma Shankar <uma.shankar@intel.com>
+Subject: [v2 02/25] drm: Add support for 3x3 CTM
+Date: Tue, 26 Nov 2024 18:57:07 +0530
+Message-ID: <20241126132730.1192571-3-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20241126132730.1192571-1-uma.shankar@intel.com>
+References: <20241126132730.1192571-1-uma.shankar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,195 +70,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series intends to add support for Plane Color Management for
-Intel platforms. This is based on the design which has been agreed
-upon by the community. Series implementing the design for generic
-DRM core has been sent out by Harry Wentland and is under review
-below:
-https://patchwork.freedesktop.org/series/123446/
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 
-The base work of above series is squashed under 1 patch and support
-for Intel platform is added on top of it.
-Any reviews on the original core design is expected to be done in 
-Harry's series to avoid any forking of the discussion.
+Add support for 3x3 Color Transformation Matrices in Color Pipeline.
 
-Changes added on core design:
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+---
+ drivers/gpu/drm/drm_atomic.c      |  3 +++
+ drivers/gpu/drm/drm_atomic_uapi.c |  3 +++
+ drivers/gpu/drm/drm_colorop.c     | 29 +++++++++++++++++++++++++++++
+ include/drm/drm_colorop.h         |  2 ++
+ include/uapi/drm/drm_mode.h       |  8 ++++++++
+ 5 files changed, 45 insertions(+)
 
-1. Implemented a HW capability property to expose segmented luts.
-drm: Add Color lut range attributes
-drm: Add Color ops capability property
-drm: Define helper to create color ops capability property
-drm: Define helper for adding capability property for 1D LUT MULTSEG
-
-This helps in generically defining the hardware lut capabilities,
-lut distribution, precision, segmented or PWL LUTS.
-
-2. Added support for enhanced prescision, 3x3 matrix and 1d LUT:
-drm: Add Enhanced LUT precision structure
-drm: Add support for 3x3 CTM
-drm: Add 1D LUT color op
-
-On top of this base work for DRM core plane color pipeline design,
-implementation is done for Intel hardware platforms. Below patches
-include the same:
-
-drm/i915: Add identifiers for intel color blocks
-drm/i915: Add intel_color_op
-drm/i915/color: Add helper to allocate intel colorop
-drm/i915/color: Add helper to create intel colorop
-drm/i915/color: Create a transfer function color pipeline
-drm/i915/color: Add and attach COLORPIPELINE plane property
-drm/i915/color: Add framework to set colorop
-drm/i915/color: Add callbacks to set plane CTM
-drm/i915/color: Add framework to program PRE/POST CSC LUT
-drm/i915/color: Enable Plane Color Pipelines
-drm/i915: Define segmented Lut and add capabilities to colorop
-drm/i915/color: Add plane CTM callback for TGL and beyond
-drm/i915: Add register definitions for Plane Degamma
-drm/i915: Add register definitions for Plane Post CSC
-drm/i915/color: Program Pre-CSC registers
-drm/i915/xelpd: Program Plane Post CSC Registers
-
-IGT Changes to validate the same have been implemented and can be found
-in the below github repository:
-https://github.com/ckborah/igt-sandbox/tree/amd-intel-color-pipeline-v5-new_seg
-
-Changes in v2:
-   - Added documentation for hardware capability detection for segmented luts
-   - Added documentation for lut computation in userspace based on
-     hardware caps
-   - Updated drm_color_lut_range data structure and handling
-   - Enhanced the structure to avoid ambiguity and cater to varying
-     hardware implementations of 1D Lut blocks
-   - replaced drm_color_lut_ext with drm_color_lut32
-   - Changed namespace for drm_color_lut_range flags (Sebastien)
-   - Program super fine post csc gamma lut segment for Intel hardware
-
-ToDo:
-   - Implement Checks for sanity of hardware capability structure
-   - Implement and Enhance Checks for user data for Lut Blob
-   - Implement post blending color API's
-
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
-Cc: Simon Ser <contact@emersion.fr>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Melissa Wen <mwen@igalia.com>
-Cc: Jonas Ådahl <jadahl@redhat.com>
-Cc: Sebastian Wick <sebastian.wick@redhat.com>
-Cc: Shashank Sharma <shashank.sharma@amd.com>
-Cc: Alexander Goins <agoins@nvidia.com>
-Cc: Joshua Ashton <joshua@froggi.es>
-Cc: Michel Dänzer <mdaenzer@redhat.com>
-Cc: Aleix Pol <aleixpol@kde.org>
-Cc: Xaver Hugl <xaver.hugl@gmail.com>
-Cc: Victoria Brekenfeld <victoria@system76.com>
-Cc: Sima <daniel@ffwll.ch>
-Cc: Naseer Ahmed <quic_naseer@quicinc.com>
-Cc: Christopher Braga <quic_cbraga@quicinc.com>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: Arthur Grillo <arthurgrillo@riseup.net>
-Cc: Hector Martin <marcan@marcan.st>
-Cc: Liviu Dudau <Liviu.Dudau@arm.com>
-Cc: Sasha McIntosh <sashamcintosh@google.com>
-Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-
-Chaitanya Kumar Borah (13):
-  drm: Add support for 3x3 CTM
-  drm: Add 1D LUT multi-segmented color op
-  drm: Add helper to initialize segmented 1D LUT
-  drm/i915: Add identifiers for intel color blocks
-  drm/i915: Add intel_color_op
-  drm/i915/color: Add helper to create intel colorop
-  drm/i915/color: Create a transfer function color pipeline
-  drm/i915/color: Add and attach COLORPIPELINE plane property
-  drm/i915/color: Add framework to set colorop
-  drm/i915/color: Add callbacks to set plane CTM
-  drm/i915/color: Add new color callbacks for Xelpd
-  drm/i915/color: Add framework to program PRE/POST CSC LUT
-  drm/i915/color: Enable Plane Color Pipelines
-
-Harry Wentland (1):
-  [NOT FOR REVIEW] drm: color pipeline base work
-
-Uma Shankar (11):
-  drm: Add Enhanced LUT precision structure
-  drm: Add Color lut range attributes
-  drm: Add Color ops capability property
-  drm: Define helper to create color ops capability property
-  drm: Define helper for adding capability property for 1D LUT MULTSEG
-  drm/i915/color: Add plane CTM callback for D13 and beyond
-  drm/i915: Add register definitions for Plane Degamma
-  drm/i915: Add register definitions for Plane Post CSC
-  drm/i915/color: Program Pre-CSC registers
-  drm/i915/xelpd: Program Plane Post CSC Registers
-  drm/doc/rfc: Add documentation for multi-segmented 1D LUT
-
- Documentation/gpu/drm-kms.rst                 |  15 +
- Documentation/gpu/rfc/color_pipeline.rst      | 516 +++++++++++
- Documentation/gpu/rfc/index.rst               |   3 +
- drivers/gpu/drm/Makefile                      |   1 +
- .../gpu/drm/amd/display/amdgpu_dm/Makefile    |   3 +-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   4 +
- .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 581 ++++++++++++-
- .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c | 216 +++++
- .../amd/display/amdgpu_dm/amdgpu_dm_colorop.h |  36 +
- .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  32 +
- drivers/gpu/drm/drm_atomic.c                  | 191 ++++-
- drivers/gpu/drm/drm_atomic_helper.c           |  12 +
- drivers/gpu/drm/drm_atomic_state_helper.c     |   5 +
- drivers/gpu/drm/drm_atomic_uapi.c             | 184 ++++
- drivers/gpu/drm/drm_color_mgmt.c              |  43 +
- drivers/gpu/drm/drm_colorop.c                 | 662 +++++++++++++++
- drivers/gpu/drm/drm_ioctl.c                   |   7 +
- drivers/gpu/drm/drm_mode_config.c             |   7 +
- drivers/gpu/drm/drm_plane.c                   |  52 ++
- drivers/gpu/drm/i915/display/intel_color.c    | 628 +++++++++++++-
- drivers/gpu/drm/i915/display/intel_color.h    |  16 +
- .../drm/i915/display/intel_display_limits.h   |  13 +
- .../drm/i915/display/intel_display_types.h    |  19 +
- .../drm/i915/display/skl_universal_plane.c    |   5 +
- .../i915/display/skl_universal_plane_regs.h   | 126 +++
- drivers/gpu/drm/tests/Makefile                |   3 +-
- drivers/gpu/drm/tests/drm_fixp_test.c         |  70 ++
- drivers/gpu/drm/vkms/Kconfig                  |  15 +
- drivers/gpu/drm/vkms/Makefile                 |   5 +-
- drivers/gpu/drm/vkms/tests/.kunitconfig       |   4 +
- drivers/gpu/drm/vkms/tests/Makefile           |   3 +
- drivers/gpu/drm/vkms/tests/vkms_color_test.c  | 454 ++++++++++
- drivers/gpu/drm/vkms/vkms_colorop.c           | 113 +++
- drivers/gpu/drm/vkms/vkms_composer.c          | 128 ++-
- drivers/gpu/drm/vkms/vkms_composer.h          |  27 +
- drivers/gpu/drm/vkms/vkms_drv.h               |   8 +
- drivers/gpu/drm/vkms/vkms_luts.c              | 802 ++++++++++++++++++
- drivers/gpu/drm/vkms/vkms_luts.h              |  12 +
- drivers/gpu/drm/vkms/vkms_plane.c             |   2 +
- include/drm/drm_atomic.h                      | 130 +++
- include/drm/drm_atomic_uapi.h                 |   3 +
- include/drm/drm_color_mgmt.h                  |  13 +
- include/drm/drm_colorop.h                     | 459 ++++++++++
- include/drm/drm_file.h                        |   7 +
- include/drm/drm_fixed.h                       |  18 +
- include/drm/drm_mode_config.h                 |  18 +
- include/drm/drm_plane.h                       |  19 +
- include/uapi/drm/amdgpu_drm.h                 |   9 -
- include/uapi/drm/drm.h                        |  16 +
- include/uapi/drm/drm_mode.h                   | 253 ++++++
- 50 files changed, 5919 insertions(+), 49 deletions(-)
- create mode 100644 Documentation/gpu/rfc/color_pipeline.rst
- create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
- create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.h
- create mode 100644 drivers/gpu/drm/drm_colorop.c
- create mode 100644 drivers/gpu/drm/tests/drm_fixp_test.c
- create mode 100644 drivers/gpu/drm/vkms/tests/.kunitconfig
- create mode 100644 drivers/gpu/drm/vkms/tests/Makefile
- create mode 100644 drivers/gpu/drm/vkms/tests/vkms_color_test.c
- create mode 100644 drivers/gpu/drm/vkms/vkms_colorop.c
- create mode 100644 drivers/gpu/drm/vkms/vkms_composer.h
- create mode 100644 drivers/gpu/drm/vkms/vkms_luts.c
- create mode 100644 drivers/gpu/drm/vkms/vkms_luts.h
- create mode 100644 include/drm/drm_colorop.h
-
+diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+index 3161e2ab4efc..8a75f4a0637a 100644
+--- a/drivers/gpu/drm/drm_atomic.c
++++ b/drivers/gpu/drm/drm_atomic.c
+@@ -802,6 +802,9 @@ static void drm_atomic_colorop_print_state(struct drm_printer *p,
+ 		drm_printf(p, "\tinterpolation=%s\n", drm_get_colorop_lut1d_interpolation_name(colorop->lut1d_interpolation));
+ 		drm_printf(p, "\tdata blob id=%d\n", state->data ? state->data->base.id : 0);
+ 		break;
++	case DRM_COLOROP_CTM_3X3:
++		drm_printf(p, "\tdata blob id=%d\n", state->data ? state->data->base.id : 0);
++		break;
+ 	case DRM_COLOROP_CTM_3X4:
+ 		drm_printf(p, "\tdata blob id=%d\n", state->data ? state->data->base.id : 0);
+ 		break;
+diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+index d6c71135f290..ba68358c0ffe 100644
+--- a/drivers/gpu/drm/drm_atomic_uapi.c
++++ b/drivers/gpu/drm/drm_atomic_uapi.c
+@@ -708,6 +708,9 @@ static int drm_atomic_color_set_data_property(struct drm_colorop *colorop,
+ 	case DRM_COLOROP_CTM_3X4:
+ 		size = sizeof(struct drm_color_ctm_3x4);
+ 		break;
++	case DRM_COLOROP_CTM_3X3:
++		size = sizeof(struct drm_color_ctm);
++		break;
+ 	case DRM_COLOROP_3D_LUT:
+ 		index = state->lut_3d_mode_index;
+ 		if (index >= (state->lut_3d_modes->length / sizeof(struct drm_mode_3dlut_mode)))
+diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
+index fd1cd934df48..a427cfc5bbbc 100644
+--- a/drivers/gpu/drm/drm_colorop.c
++++ b/drivers/gpu/drm/drm_colorop.c
+@@ -315,6 +315,35 @@ int drm_colorop_ctm_3x4_init(struct drm_device *dev, struct drm_colorop *colorop
+ }
+ EXPORT_SYMBOL(drm_colorop_ctm_3x4_init);
+ 
++/**
++ * drm_colorop_ctm_3x3 - Initialize a DRM_COLOROP_CTM_3X3
++ *
++ * @dev: DRM device
++ * @colorop: The drm_colorop object to initialize
++ * @plane: The associated drm_plane
++ * @allow_bypass: true if BYPASS property should be created, false if bypass of
++ *                this colorop is not possible
++ * @return zero on success, -E value on failure
++ */
++int drm_colorop_ctm_3x3_init(struct drm_device *dev, struct drm_colorop *colorop,
++			     struct drm_plane *plane, bool allow_bypass)
++{
++	int ret;
++
++	ret = drm_colorop_init(dev, colorop, plane, DRM_COLOROP_CTM_3X3, allow_bypass);
++	if (ret)
++		return ret;
++
++	ret = drm_colorop_create_data_prop(dev, colorop);
++	if (ret)
++		return ret;
++
++	drm_colorop_reset(colorop);
++
++	return 0;
++}
++EXPORT_SYMBOL(drm_colorop_ctm_3x3_init);
++
+ /**
+  * drm_colorop_mult_init - Initialize a DRM_COLOROP_MULTIPLIER
+  *
+diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
+index bf5117f30c80..56b51fafebdf 100644
+--- a/include/drm/drm_colorop.h
++++ b/include/drm/drm_colorop.h
+@@ -377,6 +377,8 @@ int drm_colorop_curve_1d_lut_init(struct drm_device *dev, struct drm_colorop *co
+ 				  struct drm_plane *plane, uint32_t lut_size,
+ 				  enum drm_colorop_lut1d_interpolation_type lut1d_interpolation,
+ 				  bool allow_bypass);
++int drm_colorop_ctm_3x3_init(struct drm_device *dev, struct drm_colorop *colorop,
++			     struct drm_plane *plane, bool allow_bypass);
+ int drm_colorop_ctm_3x4_init(struct drm_device *dev, struct drm_colorop *colorop,
+ 			     struct drm_plane *plane, bool allow_bypass);
+ int drm_colorop_mult_init(struct drm_device *dev, struct drm_colorop *colorop,
+diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+index 290c2e32f692..a4a7ab689631 100644
+--- a/include/uapi/drm/drm_mode.h
++++ b/include/uapi/drm/drm_mode.h
+@@ -905,6 +905,14 @@ enum drm_colorop_type {
+ 	 */
+ 	DRM_COLOROP_CTM_3X4,
+ 
++	/**
++	 * @DRM_COLOROP_CTM_3X3:
++	 *
++	 * A 3x3 matrix. Its values are specified via the
++	 * &drm_color_ctm struct provided via the DATA property.
++	 */
++	DRM_COLOROP_CTM_3X3,
++
+ 	/**
+ 	 * @DRM_COLOROP_MULTIPLIER:
+ 	 *
 -- 
 2.42.0
 
