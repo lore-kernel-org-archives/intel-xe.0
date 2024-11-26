@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 907D3D6553A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74590D6553B
 	for <intel-xe@archiver.kernel.org>; Tue, 26 Nov 2024 17:45:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7A9C10E979;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC4BF10E977;
 	Tue, 26 Nov 2024 17:45:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JiS4gvzv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UU7AhRD5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DAEE10E96E;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4A5710E973;
  Tue, 26 Nov 2024 17:45:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732643140; x=1764179140;
+ t=1732643141; x=1764179141;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=i9vSL4DAuDLWzDNTn8Skfuqr9p6KQPGc9GqEIMr3nrs=;
- b=JiS4gvzvqee/+0fLvKOyvXr0L53TGFbsY91As04Sy9t2x0V7Ha+n+wc3
- UnzyfeOyxux5Iw3OqmMQ+j4Art29xVw53k6C7eIQeNrLq4wShnH4ZRSWW
- hluUx+YegjQ3a93Mmi4m68LjspihlVBszR3sFZCa+9DZjtCn4tHj+GLrQ
- A/lXcd1kaiUpa3fqLFr6ImeDcaCz9OMnVUZ4ZaCPEvT9HIrFm+HaELP22
- 5RyhB/pcJn/3YLhhA6yvTSLZI69q4ts0sMhpwdZRMIVdUINH7+U7NsXoC
- aBFGTQZCpmMFG8hF5Q3IDlxZ6Lom56633HujFJmy78/GUemP1lt9iiYQj Q==;
-X-CSE-ConnectionGUID: 6PmvAooTRii1dQ2Nm8ZKAQ==
-X-CSE-MsgGUID: hcCAzIn2RL671uGKqgaGLg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="32676915"
-X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="32676915"
+ bh=nZMJwEdjNoBvlGVgeI7A/wYeq0nHCWPF1Z/N58o2JT8=;
+ b=UU7AhRD50HS9eYT0nff9uROoyDgUR8L8Sv2YrivlZXzmfSp/RXqfMmWi
+ /mB65MFjHM4hUfLJm7rImdFRGcjFkJWVpOJ3FuWlVFQ7PCV3UVN+G2pgA
+ YQbMgtIL7BpJ1lr9enRvUA3ZgtnLRR3g5zolFNH/Wg5G6xZdvlvHAf3bl
+ Ml1Qv3L26MMetDaTJMVaTUW7Bw/Dlyz3oLxaEtQY+dhe4/bBbC3XLgctZ
+ bBw//IFnv23JzdvBDZTcgL0IBPW0c4af1Zn7GAOXH3qmtEqaRNLP0k++E
+ Ct50nEopKx2HN0D+tlK7yjYEluI53MYUe9vrRTBIWFpwPx8c/SIX3N0+u Q==;
+X-CSE-ConnectionGUID: TqaUHgy/QLe5evRHCmv6ZA==
+X-CSE-MsgGUID: lkQy8JYVRVOYjJPA7dGhNw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="32676921"
+X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="32676921"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2024 09:45:40 -0800
-X-CSE-ConnectionGUID: doGWteCgRu2bmYiLSLLpCg==
-X-CSE-MsgGUID: hGDpTNrMTEuJ0JPoD4Ff1w==
+ 26 Nov 2024 09:45:41 -0800
+X-CSE-ConnectionGUID: RWsP5VpFSN64IY3/h09ONA==
+X-CSE-MsgGUID: FlKAl7ytQqSrNoNZpvfEKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="92152582"
+X-IronPort-AV: E=Sophos;i="6.12,186,1728975600"; d="scan'208";a="92152587"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Nov 2024 09:45:40 -0800
@@ -46,9 +46,9 @@ To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: christian.koenig@amd.com,
 	thomas.hellstrom@linux.intel.com
-Subject: [PATCH v7 4/8] drm/xe: Take PM ref in delayed snapshot capture worker
-Date: Tue, 26 Nov 2024 09:46:11 -0800
-Message-Id: <20241126174615.2665852-5-matthew.brost@intel.com>
+Subject: [PATCH v7 7/8] drm/xe: Set XE_BO_FLAG_PINNED in migrate selftest BOs
+Date: Tue, 26 Nov 2024 09:46:14 -0800
+Message-Id: <20241126174615.2665852-8-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241126174615.2665852-1-matthew.brost@intel.com>
 References: <20241126174615.2665852-1-matthew.brost@intel.com>
@@ -68,51 +68,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The delayed snapshot capture worker can access the GPU or VRAM both of
-which require a PM reference. Take a reference in this worker.
+We only allow continguous BOs to be vmapped, set XE_BO_FLAG_PINNED on
+BOs in migrate selftest as this forces continguous BOs and selftest uses
+vmaps.
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Fixes: 4f04d07c0a94 ("drm/xe: Faster devcoredump")
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/xe/tests/xe_migrate.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 0e5edf14a241..0d3a4dc87a7f 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -23,6 +23,7 @@
- #include "xe_guc_submit.h"
- #include "xe_hw_engine.h"
- #include "xe_module.h"
-+#include "xe_pm.h"
- #include "xe_sched_job.h"
- #include "xe_vm.h"
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 1a192a2a941b..4cef3b20bd17 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -83,7 +83,8 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 						   bo->size,
+ 						   ttm_bo_type_kernel,
+ 						   region |
+-						   XE_BO_FLAG_NEEDS_CPU_ACCESS);
++						   XE_BO_FLAG_NEEDS_CPU_ACCESS |
++						   XE_BO_FLAG_PINNED);
+ 	if (IS_ERR(remote)) {
+ 		KUNIT_FAIL(test, "Failed to allocate remote bo for %s: %pe\n",
+ 			   str, remote);
+@@ -642,7 +643,9 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
  
-@@ -167,8 +168,11 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
- {
- 	struct xe_devcoredump_snapshot *ss = container_of(work, typeof(*ss), work);
- 	struct xe_devcoredump *coredump = container_of(ss, typeof(*coredump), snapshot);
-+	struct xe_device *xe = coredump_to_xe(coredump);
- 	unsigned int fw_ref;
+ 	sys_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M,
+ 				   DRM_XE_GEM_CPU_CACHING_WC,
+-				   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS);
++				   XE_BO_FLAG_SYSTEM |
++				   XE_BO_FLAG_NEEDS_CPU_ACCESS |
++				   XE_BO_FLAG_PINNED);
  
-+	xe_pm_runtime_get(xe);
-+
- 	/* keep going if fw fails as we still want to save the memory and SW data */
- 	fw_ref = xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
- 	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
-@@ -177,6 +181,8 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
- 	xe_guc_exec_queue_snapshot_capture_delayed(ss->ge);
- 	xe_force_wake_put(gt_to_fw(ss->gt), fw_ref);
+ 	if (IS_ERR(sys_bo)) {
+ 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
+@@ -666,7 +669,8 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
  
-+	xe_pm_runtime_put(xe);
-+
- 	/* Calculate devcoredump size */
- 	ss->read.size = __xe_devcoredump_read(NULL, INT_MAX, coredump);
+ 	ccs_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M,
+ 				   DRM_XE_GEM_CPU_CACHING_WC,
+-				   bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS);
++				   bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS |
++				   XE_BO_FLAG_PINNED);
  
+ 	if (IS_ERR(ccs_bo)) {
+ 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
+@@ -690,7 +694,8 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
+ 
+ 	vram_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M,
+ 				    DRM_XE_GEM_CPU_CACHING_WC,
+-				    bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS);
++				    bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS |
++				    XE_BO_FLAG_PINNED);
+ 	if (IS_ERR(vram_bo)) {
+ 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
+ 			   PTR_ERR(vram_bo));
 -- 
 2.34.1
 
