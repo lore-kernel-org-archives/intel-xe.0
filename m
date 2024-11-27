@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5565DD6ACF4
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 17:25:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5902BD6ACF7
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 17:32:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECC8A10E146;
-	Wed, 27 Nov 2024 17:25:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cdSNEPfJ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E35010E110;
- Wed, 27 Nov 2024 17:25:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732728303; x=1764264303;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=z6lYj3XqyRF01Zm5W1AiSdqHxbrxN4aA6QHY7KP2Nc4=;
- b=cdSNEPfJ+HdYAZl0R/LNWdrRW4obeePU/YsGx/mbE3CsNWwPJxVvNxw8
- 96ln211eTh4qufvi3FPGSesKKJmKy53Y7V5zB4LP6ksDcbypXaXib1HUw
- R95lSawvST/1pS1i7GZkVBNK4ABx3/imheWmm4hwxl3FQvuw35YQ2jcPO
- glbsjQMlAtfJhGzJ0Ce2vf7gIWLnJmDk2QufG4xxlJs1UE5N0ACgZ8Gth
- /Cr4szoDhKS4bGyn67g9pXGZzZ1BRyk0Vnjjw5guPLIXpkSbXuTqxAIkx
- qroOgi7EcC7Z4eikCr616CyeBCls7zy+/itq1PSblEguyIalAAEH55kGU g==;
-X-CSE-ConnectionGUID: A3GOPfqdRxmrBtyIpGaahw==
-X-CSE-MsgGUID: 3ipphpTGTsKr2GVeSzIKQQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="33098466"
-X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="33098466"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2024 09:25:02 -0800
-X-CSE-ConnectionGUID: Mw/ye2vPQGu1Rk4BcKo3/w==
-X-CSE-MsgGUID: ZeiOAPNHSUSncgFe+j76SA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="91936622"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.110])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2024 09:25:01 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/dp: use seq buf for printing rates
-In-Reply-To: <173272067132.9041.672991565423824805@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241127131838.3268735-1-jani.nikula@intel.com>
- <173272067132.9041.672991565423824805@intel.com>
-Date: Wed, 27 Nov 2024 19:24:58 +0200
-Message-ID: <87mshkwpw5.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2912710E146;
+	Wed, 27 Nov 2024 17:32:01 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53D6D10E146;
+ Wed, 27 Nov 2024 17:32:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/display=3A_power_conv?=
+ =?utf-8?q?ersion_to_struct_intel=5Fdisplay?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 27 Nov 2024 17:32:00 -0000
+Message-ID: <173272872033.3808061.513292174745232341@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <cover.1732727056.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1732727056.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,110 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 27 Nov 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Jani Nikula (2024-11-27 10:18:38-03:00)
->>Hand rolling the buffer overflow handling with snprintf() is a bit
->>tedious. The seq_buf interface is made for this. Switch to it.
->
-> Cool! Today I learned a new kernel interface. :-)
+== Series Details ==
 
-\o/
+Series: drm/i915/display: power conversion to struct intel_display
+URL   : https://patchwork.freedesktop.org/series/141847/
+State : success
 
->>
->>Use struct intel_display while at it.
->>
->>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>---
->> drivers/gpu/drm/i915/display/intel_dp.c | 36 ++++++++++---------------
->> 1 file changed, 14 insertions(+), 22 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->>index 053a9a4182e7..4471c8fcd478 100644
->>--- a/drivers/gpu/drm/i915/display/intel_dp.c
->>+++ b/drivers/gpu/drm/i915/display/intel_dp.c
->>@@ -28,6 +28,7 @@
->> #include <linux/export.h>
->> #include <linux/i2c.h>
->> #include <linux/notifier.h>
->>+#include <linux/seq_buf.h>
->> #include <linux/slab.h>
->> #include <linux/sort.h>
->> #include <linux/string_helpers.h>
->>@@ -1506,41 +1507,32 @@ bool intel_dp_source_supports_tps4(struct drm_i915_private *i915)
->>         return DISPLAY_VER(i915) >= 10;
->> }
->> 
->>-static void snprintf_int_array(char *str, size_t len,
->>-                               const int *array, int nelem)
->>+static void seq_buf_print_array(struct seq_buf *s, const int *array, int nelem)
->> {
->>         int i;
->> 
->>-        str[0] = '\0';
->>-
->>-        for (i = 0; i < nelem; i++) {
->>-                int r = snprintf(str, len, "%s%d", i ? ", " : "", array[i]);
->>-                if (r >= len)
->>-                        return;
->>-                str += r;
->>-                len -= r;
->>-        }
->>+        for (i = 0; i < nelem; i++)
->>+                seq_buf_printf(s, "%s%d", i ? ", " : "", array[i]);
->> }
->> 
->> static void intel_dp_print_rates(struct intel_dp *intel_dp)
->> {
->>-        struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->>-        char str[128]; /* FIXME: too big for stack? */
->>+        struct intel_display *display = to_intel_display(intel_dp);
->>+        DECLARE_SEQ_BUF(s, 128); /* FIXME: too big for stack? */
->
-> I wonder if just using drm_dbg_printer() would make things simpler,
-> without requiring a buffer.
+== Summary ==
 
-Mmh, that's always line based, isn't it? It would result in each rate
-getting printed on its own line, which is too spammy.
+lib/modules/6.12.0-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-xe/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.12.0-xe/kernel/kernel/
+lib/modules/6.12.0-xe/kernel/kernel/kheaders.ko
+lib/modules/6.12.0-xe/kernel/crypto/
+lib/modules/6.12.0-xe/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/xcbc.ko
+lib/modules/6.12.0-xe/kernel/crypto/serpent_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/aria_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-xe/kernel/crypto/adiantum.ko
+lib/modules/6.12.0-xe/kernel/crypto/tcrypt.ko
+lib/modules/6.12.0-xe/kernel/crypto/crypto_engine.ko
+lib/modules/6.12.0-xe/kernel/crypto/zstd.ko
+lib/modules/6.12.0-xe/kernel/crypto/asymmetric_keys/
+lib/modules/6.12.0-xe/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.12.0-xe/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.12.0-xe/kernel/crypto/des_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/xctr.ko
+lib/modules/6.12.0-xe/kernel/crypto/authenc.ko
+lib/modules/6.12.0-xe/kernel/crypto/sm4_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/keywrap.ko
+lib/modules/6.12.0-xe/kernel/crypto/camellia_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/sm3.ko
+lib/modules/6.12.0-xe/kernel/crypto/pcrypt.ko
+lib/modules/6.12.0-xe/kernel/crypto/aegis128.ko
+lib/modules/6.12.0-xe/kernel/crypto/af_alg.ko
+lib/modules/6.12.0-xe/kernel/crypto/algif_aead.ko
+lib/modules/6.12.0-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-xe/kernel/crypto/sm3_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/aes_ti.ko
+lib/modules/6.12.0-xe/kernel/crypto/chacha_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/poly1305_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/nhpoly1305.ko
+lib/modules/6.12.0-xe/kernel/crypto/crc32_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/essiv.ko
+lib/modules/6.12.0-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-xe/kernel/crypto/wp512.ko
+lib/modules/6.12.0-xe/kernel/crypto/streebog_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/authencesn.ko
+lib/modules/6.12.0-xe/kernel/crypto/echainiv.ko
+lib/modules/6.12.0-xe/kernel/crypto/lrw.ko
+lib/modules/6.12.0-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-xe/kernel/crypto/crypto_user.ko
+lib/modules/6.12.0-xe/kernel/crypto/algif_hash.ko
+lib/modules/6.12.0-xe/kernel/crypto/vmac.ko
+lib/modules/6.12.0-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/hctr2.ko
+lib/modules/6.12.0-xe/kernel/crypto/842.ko
+lib/modules/6.12.0-xe/kernel/crypto/pcbc.ko
+lib/modules/6.12.0-xe/kernel/crypto/ansi_cprng.ko
+lib/modules/6.12.0-xe/kernel/crypto/cast6_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/twofish_common.ko
+lib/modules/6.12.0-xe/kernel/crypto/twofish_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/lz4hc.ko
+lib/modules/6.12.0-xe/kernel/crypto/blowfish_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/md4.ko
+lib/modules/6.12.0-xe/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.12.0-xe/kernel/crypto/curve25519-generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/lz4.ko
+lib/modules/6.12.0-xe/kernel/crypto/rmd160.ko
+lib/modules/6.12.0-xe/kernel/crypto/algif_skcipher.ko
+lib/modules/6.12.0-xe/kernel/crypto/cast5_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/fcrypt.ko
+lib/modules/6.12.0-xe/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/sm4.ko
+lib/modules/6.12.0-xe/kernel/crypto/cast_common.ko
+lib/modules/6.12.0-xe/kernel/crypto/blowfish_common.ko
+lib/modules/6.12.0-xe/kernel/crypto/michael_mic.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-xe/kernel/crypto/algif_rng.ko
+lib/modules/6.12.0-xe/kernel/block/
+lib/modules/6.12.0-xe/kernel/block/bfq.ko
+lib/modules/6.12.0-xe/kernel/block/kyber-iosched.ko
+lib/modules/6.12.0-xe/build
+lib/modules/6.12.0-xe/modules.alias.bin
+lib/modules/6.12.0-xe/modules.builtin
+lib/modules/6.12.0-xe/modules.softdep
+lib/modules/6.12.0-xe/modules.alias
+lib/modules/6.12.0-xe/modules.order
+lib/modules/6.12.0-xe/modules.symbols
+lib/modules/6.12.0-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
+[0Ksection_end:1732728707:package_x86_64_nodebug
+[0K
++ echo -e '\e[0Ksection_end:1732728707:package_x86_64_nodebug\r\e[0K'
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-> Anyway, the patch looks good to me, so:
->
-> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Thanks!
-
->
->> 
->>         if (!drm_debug_enabled(DRM_UT_KMS))
->>                 return;
->> 
->>-        snprintf_int_array(str, sizeof(str),
->>-                           intel_dp->source_rates, intel_dp->num_source_rates);
->>-        drm_dbg_kms(&i915->drm, "source rates: %s\n", str);
->>+        seq_buf_print_array(&s, intel_dp->source_rates, intel_dp->num_source_rates);
->>+        drm_dbg_kms(display->drm, "source rates: %s\n", seq_buf_str(&s));
->> 
->>-        snprintf_int_array(str, sizeof(str),
->>-                           intel_dp->sink_rates, intel_dp->num_sink_rates);
->>-        drm_dbg_kms(&i915->drm, "sink rates: %s\n", str);
->>+        seq_buf_clear(&s);
->>+        seq_buf_print_array(&s, intel_dp->sink_rates, intel_dp->num_sink_rates);
->>+        drm_dbg_kms(display->drm, "sink rates: %s\n", seq_buf_str(&s));
->> 
->>-        snprintf_int_array(str, sizeof(str),
->>-                           intel_dp->common_rates, intel_dp->num_common_rates);
->>-        drm_dbg_kms(&i915->drm, "common rates: %s\n", str);
->>+        seq_buf_clear(&s);
->>+        seq_buf_print_array(&s, intel_dp->common_rates, intel_dp->num_common_rates);
->>+        drm_dbg_kms(display->drm, "common rates: %s\n", seq_buf_str(&s));
->> }
->> 
->> static int forced_link_rate(struct intel_dp *intel_dp)
->>-- 
->>2.39.5
->>
-
--- 
-Jani Nikula, Intel
