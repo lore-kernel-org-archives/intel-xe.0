@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7D5AD6ACC9
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 12:52:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD9F1D6ACCA
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 13:13:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9762310E269;
-	Wed, 27 Nov 2024 12:52:36 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B0C910E269;
- Wed, 27 Nov 2024 12:52:35 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D3CA10E27E;
+	Wed, 27 Nov 2024 13:13:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kJqxrUQj";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16A8F10E178;
+ Wed, 27 Nov 2024 13:13:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732713203; x=1764249203;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=8GWzr3fI2HSf08W+WGK1x+KKN3Ch3Q2YXbioJAev1fQ=;
+ b=kJqxrUQjftpsdmdgDszirGFibZvF/C+Uiz5N3nuYrJdNDzxY9pNLRNHm
+ cUqA6JGGLavzGyuy1rFLBygd/2m+sR8akYthxdxtfk9zDxUHN+hNL4yKS
+ QmsfNDTcKqjmWeI26DGFq5HROvyouXAAziW3rr1Ngb+XYqMKsRPAOxywS
+ P1Sq+3kKctUrh4f75WU/S0RHowue0uc7vRVoYvl9PNgtfIC1pOY02JcKt
+ EFTsyLlIMR+H9p8XWhINw/yyo5WSMVtHcRy0jd8TahYltCo+76hXCpgUN
+ M/GkIFXil3ki74RgZ8WlNq71I2aquK5s7fwk0Vg/d2baGb6u+gHT9F/pf w==;
+X-CSE-ConnectionGUID: 2X88kL2rQtCADbJrOPPIHw==
+X-CSE-MsgGUID: 7l2tNGEaRbqH5cAMm97oog==
+X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="32867198"
+X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="32867198"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2024 05:13:23 -0800
+X-CSE-ConnectionGUID: E9ojOoSDTMqPAB+cpy4uWg==
+X-CSE-MsgGUID: /XWndkHaSyyEw12mWXJgbQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="96375078"
+Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.110])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2024 05:13:20 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ imre.deak@intel.com, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH 0/3] drm/dp: extract payload helpers
+In-Reply-To: <cover.1731942780.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1731942780.git.jani.nikula@intel.com>
+Date: Wed, 27 Nov 2024 15:13:17 +0200
+Message-ID: <87sercx1jm.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_prunue_audio_frequencies?=
- =?utf-8?q?_based_on_bw_limits_for_DP2?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 27 Nov 2024 12:52:35 -0000
-Message-ID: <173271195543.3737588.3580652946990036559@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241127120715.185348-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20241127120715.185348-1-vinod.govindapillai@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,36 +67,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 18 Nov 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> Add some mst topology manager independent payload helpers.
 
-Series: prunue audio frequencies based on bw limits for DP2
-URL   : https://patchwork.freedesktop.org/series/141839/
-State : warning
+Cc: maintainers, Lyude, are we good to go with this?
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 4e5e3c93cf642f47374ed6e003f0a55b8af0f25b
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+BR,
+Jani.
 
 
+>
+> Jani Nikula (3):
+>   drm/dp: extract drm_dp_dpcd_poll_act_handled()
+>   drm/dp: extract drm_dp_dpcd_write_payload()
+>   drm/dp: extract drm_dp_dpcd_clear_payload()
+>
+>  drivers/gpu/drm/display/drm_dp_helper.c       | 124 +++++++++++++++++-
+>  drivers/gpu/drm/display/drm_dp_mst_topology.c |  88 +------------
+>  include/drm/display/drm_dp_helper.h           |   5 +
+>  3 files changed, 133 insertions(+), 84 deletions(-)
+
+-- 
+Jani Nikula, Intel
