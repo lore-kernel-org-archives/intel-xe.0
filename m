@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F7F1D609A7
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 07:40:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B736D609A7
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 07:56:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49B0B10EA07;
-	Wed, 27 Nov 2024 07:40:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DsRGhK2n";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0521410EA02;
- Wed, 27 Nov 2024 07:40:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732693255; x=1764229255;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=74wJeFL9up3nzhDs96hsRcazop/GttPwXCxOtQ4bJ6Y=;
- b=DsRGhK2nzHXVlwccrerhro2IOF43NiY7vCNpPNadlFZqzKRBcCTvVnYH
- j1HnuFs4o7/BKEdo0WUlZ844SABi0XezvJrcrSJ4VeoRgvH6x4kunof2q
- SYfadu58qiX8HGBQ4wDAQzee11Is/2zAZr9pIYZjym4JXbjjHow/+xQ2j
- SSnbhsufbz752+8xL1Ox1xa6R+xXDxJHetoTL6xEPU4qvUD9Mvc7DVnOn
- KdewuHYZ0hbbrfN7tWcQCjoCQgC1asM6vsBJuWSjGzclSpGGmaTuNv3Cx
- bI/Bl/M7QSl8aaxR+Vb1vfEf8+xooOhknvnZ5uTqKzRVDlpQaSK4x7VaW A==;
-X-CSE-ConnectionGUID: 31aXfqwfTcCHlL/WmFCzjA==
-X-CSE-MsgGUID: lNNRREokQ/ul1ddg9n5SKg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="36670674"
-X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="36670674"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2024 23:40:55 -0800
-X-CSE-ConnectionGUID: y4Opc6IYSgGJ8OLFG6f23Q==
-X-CSE-MsgGUID: RsKDBG2PSay+fYFzlhWRZw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="129376622"
-Received: from sorvi2.fi.intel.com ([10.237.72.194])
- by orviesa001.jf.intel.com with ESMTP; 26 Nov 2024 23:40:53 -0800
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, Mika Kahola <mika.kahola@intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Subject: [PATCH v6 2/2] drm/i915/display: Use struct intel_display instead of
- struct drm_i915_private
-Date: Wed, 27 Nov 2024 09:32:00 +0200
-Message-ID: <20241127073200.124907-3-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241127073200.124907-1-mika.kahola@intel.com>
-References: <20241127073200.124907-1-mika.kahola@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4331C10EA10;
+	Wed, 27 Nov 2024 07:56:29 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C737810EA00;
+ Wed, 27 Nov 2024 07:56:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0936473477999985394=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Refactor_VRR_for_different_?=
+ =?utf-8?q?VRR_timing_generator?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 27 Nov 2024 07:56:28 -0000
+Message-ID: <173269418880.3660614.3896383331275946201@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241127071136.1017190-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20241127071136.1017190-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,52 +36,141 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Let's start using struct intel_display instead of struct drm_i915_private
-when introducing new code. No functional changes.
+--===============0936473477999985394==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Drop tc_to_intel_display() helper funtion (Jani)
+== Series Details ==
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/i915/display/intel_tc.c | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
+Series: Refactor VRR for different VRR timing generator
+URL   : https://patchwork.freedesktop.org/series/141819/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index 82e82e8ec11a..33b8f2772076 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -1043,10 +1043,9 @@ static void xelpdp_tc_power_request_wa(struct intel_display *display, bool enabl
- 
- static void __xelpdp_tc_phy_enable_tcss_power(struct intel_tc_port *tc, bool enable)
- {
--	struct drm_i915_private *i915 = tc_to_i915(tc);
--	struct intel_display *display = &i915->display;
-+	struct intel_display *display = to_intel_display(tc->dig_port);
- 	enum port port = tc->dig_port->base.port;
--	i915_reg_t reg = XELPDP_PORT_BUF_CTL1(i915, port);
-+	i915_reg_t reg = XELPDP_PORT_BUF_CTL1(display, port);
- 	u32 val;
- 
- 	assert_tc_cold_blocked(tc);
-@@ -1054,12 +1053,12 @@ static void __xelpdp_tc_phy_enable_tcss_power(struct intel_tc_port *tc, bool ena
- 	if (DISPLAY_VER(display) == 30)
- 		xelpdp_tc_power_request_wa(display, enable);
- 
--	val = intel_de_read(i915, reg);
-+	val = intel_de_read(display, reg);
- 	if (enable)
- 		val |= XELPDP_TCSS_POWER_REQUEST;
- 	else
- 		val &= ~XELPDP_TCSS_POWER_REQUEST;
--	intel_de_write(i915, reg, val);
-+	intel_de_write(display, reg, val);
- }
- 
- static bool xelpdp_tc_phy_enable_tcss_power(struct intel_tc_port *tc, bool enable)
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from xe-2282-241f1fd26b38614aa85276a78b127e9abb14850a_BAT -> xe-pw-141819v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-141819v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2282-241f1fd26b38614aa85276a78b127e9abb14850a/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141819v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-lnl-1:          [FAIL][3] ([Intel XE#886]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2282-241f1fd26b38614aa85276a78b127e9abb14850a/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141819v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+
+
+Build changes
+-------------
+
+  * Linux: xe-2282-241f1fd26b38614aa85276a78b127e9abb14850a -> xe-pw-141819v1
+
+  IGT_8127: 433ecaf95ccaed2b5adcb40d27fa5b7a08a2e03d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2282-241f1fd26b38614aa85276a78b127e9abb14850a: 241f1fd26b38614aa85276a78b127e9abb14850a
+  xe-pw-141819v1: 141819v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141819v1/index.html
+
+--===============0936473477999985394==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Refactor VRR for different VRR timing generator</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141819/">https://patchwork.freedesktop.org/series/141819/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141819v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141819v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2282-241f1fd26b38614aa85276a78b127e9abb14850a_BAT -&gt; xe-pw-141819v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-141819v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2282-241f1fd26b38614aa85276a78b127e9abb14850a/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141819v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2282-241f1fd26b38614aa85276a78b127e9abb14850a/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141819v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2282-241f1fd26b38614aa85276a78b127e9abb14850a -&gt; xe-pw-141819v1</li>
+</ul>
+<p>IGT_8127: 433ecaf95ccaed2b5adcb40d27fa5b7a08a2e03d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2282-241f1fd26b38614aa85276a78b127e9abb14850a: 241f1fd26b38614aa85276a78b127e9abb14850a<br />
+  xe-pw-141819v1: 141819v1</p>
+
+</body>
+</html>
+
+--===============0936473477999985394==--
