@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37D0AD6ACC5
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 12:07:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B82FD6ACC4
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 12:07:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDEC410EAB9;
-	Wed, 27 Nov 2024 12:07:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69D2C10EAC7;
+	Wed, 27 Nov 2024 12:07:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WRh84qIg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VMq0QSsk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B49910EABF;
- Wed, 27 Nov 2024 12:07:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8221110EAB9;
+ Wed, 27 Nov 2024 12:07:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732709266; x=1764245266;
+ t=1732709272; x=1764245272;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ry18WdMblMIAgPceaNkHXpcJI0Bs97iZ6u0R/Eh54Fo=;
- b=WRh84qIgployqsTvkyhmUZJDmfKFRQVXn8LhHIn3oVet/NXAe9Het/0V
- n2dKZjys3FtL+OHCQHpomzLoloJ28Ci+v12cb1WuxAzhq/nrGrTMePKjj
- xgEzfU9ei9otYxkbCN+YAOc71hz2zE6cGnHDNMaZHotbjtuDhfpcUXzEC
- tqGa/JnThKGFfqtY7Kg2hDq7amECqoVsS4VdWTPEOAZTk2mRThhT8Jkga
- UdeN3rb59NRD0zWhbbaKUw9ftCSQXZbCh6RqXscIj21kMeELLrePhfb1s
- nvyW4IQTPs/NFGFi2vQ8UqxGwl3SLnf8nbYUcceOrhPDQIGlj3esIJI2k w==;
-X-CSE-ConnectionGUID: AQAa7sVBQa+eW7iZDdkR9Q==
-X-CSE-MsgGUID: Rdxml5YjR5mmCKaLM45AwQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="43972825"
-X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="43972825"
+ bh=sxC06TLUH15F2qy4Dp3+kPGmi5hB5xm0N3fA+SPQrVI=;
+ b=VMq0QSskxPOvCUkNHXJ4DEDRvqQXF/22IdiGd0q4edWsz0n6XMq2ukho
+ Lf+KWHqTTW9AXlBmrPOQ+Il9E9rfkjw4DDefvZdoM9VsK2kiVdSVne9lV
+ 1vOiQ0oD0I+U+QolNLlRtqzDk57DAXipdxfGiFKBqISoPnAgdD8YBq6E4
+ V07d65wachy65B9Njlo2Dnb9wDJRHOPb0YGOG01LPIO/S9FJ4eD/uN4KL
+ pGrz4Qg0CaeADnustSy/F4DJwxcuQCCnq3GVQF8Odc9wdx7K3dJ9JerjC
+ 2DQKKfW8EMKOGPzGu6MoW8R59jGEJLyBEQBBI8ExDzPlIQ1GdiSVnlwFR w==;
+X-CSE-ConnectionGUID: DW6nXvknSKST+MEzGnBblg==
+X-CSE-MsgGUID: SNE9C/ABRT2MNoCt8BsY/A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="43972838"
+X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="43972838"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2024 04:07:46 -0800
-X-CSE-ConnectionGUID: 9At0aylIQkqaqqnMRC1Ikw==
-X-CSE-MsgGUID: cFFupRy6RiqQw8t2uqjLIQ==
+ 27 Nov 2024 04:07:52 -0800
+X-CSE-ConnectionGUID: X+bCg0RXQ12XpHOBtBEcLg==
+X-CSE-MsgGUID: zbB3oEnQRZaokYuv6Vs+Lg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="92754974"
+X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="92754991"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO vgovind2-mobl3..)
  ([10.245.244.60])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2024 04:07:44 -0800
+ 27 Nov 2024 04:07:50 -0800
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, kai.vehmanen@linux.intel.co,
  jani.saarinen@intel.com
-Subject: [PATCH v2 4/6] drm/i915/display: iterate through channels if no
- feasible frequencies
-Date: Wed, 27 Nov 2024 14:07:13 +0200
-Message-Id: <20241127120715.185348-5-vinod.govindapillai@intel.com>
+Subject: [PATCH v2 6/6] drm/i915/display: update audio bw calculations for MTL
+Date: Wed, 27 Nov 2024 14:07:15 +0200
+Message-Id: <20241127120715.185348-7-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241127120715.185348-1-vinod.govindapillai@intel.com>
 References: <20241127120715.185348-1-vinod.govindapillai@intel.com>
@@ -71,90 +70,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For a pipe configuration, if no supported audio frequencies are
-found, then start reducing the audio channels and try assess the
-sad audio frequency list again.
+Update the reference overhead values for audio bw calculations
+for MTL onwards
 
-v2: fix commit description (Kai)
-    uninitialized variable "sad_freq" (kernel test robot)
-    use intel_display instead of i915
+v2: fix the patch description (Kai)
 
 Bspec: 67768
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_audio.c | 35 +++++++++++++++-------
- 1 file changed, 25 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index b4eef6d60ca1..cf88728b8f80 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -765,16 +765,28 @@ static void intel_audio_compute_sad(struct intel_encoder *encoder,
- 				    int avail_overhead, int req_overhead,
- 				    struct cea_sad *sad)
- {
--	u8 sad_channels = sad->channels + 1;
--	u8 sad_freq;
-+	u8 sad_freq = 0;
-+	u8 channels;
- 
--	sad_freq = intel_audio_get_pruned_audfreq(line_freq_khz,
--						  hblank_slots_lanes_bytes,
--						  avail_overhead,
--						  req_overhead, sad_channels,
--						  sad->freq);
-+	/*
-+	 * If we don't find any supported audio frequencies for a channel,
-+	 * reduce the channel and try
-+	 */
-+	for (channels = sad->channels + 1; channels >= 1; channels--) {
-+		sad_freq = intel_audio_get_pruned_audfreq(line_freq_khz,
-+							  hblank_slots_lanes_bytes,
-+							  avail_overhead,
-+							  req_overhead,
-+							  channels,
-+							  sad->freq);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index efcba6e5c452..25691f87f779 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -109,6 +109,8 @@
+ /* DP Audio bw params calculations. Bspec: 67768 */
+ #define DP_AUDIO_BW_HBLANK_OVERHEAD_AVAIL	64
+ #define DP_AUDIO_BW_HBLANK_OVERHEAD_REQ		80
++#define MTL_DP_AUDIO_BW_HBLANK_OVERHEAD_REQ	0
 +
-+		/* Supported frequencies exist! No need to proceed further */
-+		if (sad_freq)
-+			break;
-+	}
  
- 	sad->freq = sad_freq;
-+	sad->channels = channels ? channels - 1 : 0;
- }
+ /* Constants for DP DSC configurations */
+ static const u8 valid_dsc_bpp[] = {6, 8, 10, 12, 15};
+@@ -3071,10 +3073,15 @@ intel_dp_audio_compute_bw_limits(struct intel_encoder *encoder,
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+ 	int hblank_bytes_avail_overhead = DP_AUDIO_BW_HBLANK_OVERHEAD_AVAIL;
+-	int hblank_bytes_req_overhead = DP_AUDIO_BW_HBLANK_OVERHEAD_REQ;
++	int hblank_bytes_req_overhead;
+ 	int hblank_slots_lanes_bytes;
+ 	int line_freq_khz;
  
- bool intel_audio_compute_eld_config(struct intel_encoder *encoder,
-@@ -794,22 +806,25 @@ bool intel_audio_compute_eld_config(struct intel_encoder *encoder,
- 	for (int i = 0; i < drm_eld_sad_count(eld); i++) {
- 		struct cea_sad sad;
- 		u8 sad_freq;
-+		u8 sad_channels;
- 
- 		if (drm_eld_sad_get(eld, i, &sad))
- 			continue;
- 
- 		sad_freq = sad.freq;
-+		sad_channels = sad.channels;
- 		intel_audio_compute_sad(encoder, line_freq_khz,
- 					hblank_slots_lanes_bytes,
- 					avail_overhead, req_overhead, &sad);
- 
- 		/* Update the eld with new sad data if any changes in the list */
--		if (sad_freq != sad.freq) {
-+		if (sad_freq != sad.freq || sad_channels != sad.channels) {
- 			drm_eld_sad_set(eld, i, &sad);
- 			drm_dbg_kms(display->drm,
--				    "[CONNECTOR:%d:%s] SAD updated. Freq: 0x%x(0x%x)\n",
-+				    "[CONNECTOR:%d:%s] SAD updated. Freq: 0x%x(0x%x) Channels: %d(%d)\n",
- 				    connector->base.base.id, connector->base.name,
--				    sad.freq, sad_freq);
-+				    sad.freq, sad_freq, sad.channels,
-+				    sad_channels);
- 		}
- 	}
- 
++	if (DISPLAY_VER(display) >= 14)
++		hblank_bytes_req_overhead = MTL_DP_AUDIO_BW_HBLANK_OVERHEAD_REQ;
++	else
++		hblank_bytes_req_overhead = DP_AUDIO_BW_HBLANK_OVERHEAD_REQ;
++
+ 	intel_dp_compute_audio_bwparams(crtc_state, &line_freq_khz,
+ 					&hblank_slots_lanes_bytes);
+ 	drm_dbg_kms(display->drm,
 -- 
 2.34.1
 
