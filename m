@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29BA8D6ACCA
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 13:14:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B5DCD6ACCD
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 13:18:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB2348979D;
-	Wed, 27 Nov 2024 13:14:22 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9CA58979D;
- Wed, 27 Nov 2024 13:14:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7118272553710997948=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0945B10E141;
+	Wed, 27 Nov 2024 13:18:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ia0XyWqN";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE38310E03E;
+ Wed, 27 Nov 2024 13:18:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732713524; x=1764249524;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8NBpQHJen3D1FXzBl748Iu2FemRHjAXTXRghVENhrEM=;
+ b=ia0XyWqNRYEch8r/py0Rymvs7kZ4fSQFu3Ok+RH8Wwq4I4OWzImSPiIN
+ kJog/FwvrtrRFnPm98lo9rncsgLlkzxJM621Fqx3lUr7ZzxkOVMRVqY3W
+ 79KnkOiWa+rCQoZZznPilG0gPAUJIfs/hPRR6J/VJSRX0FwbIrw3bIdJI
+ XSdVvZvZZh/grI2UyztSe4Lnms7tclEiTqMAoe/RTPCo3HjGy1eK3/jqk
+ TCGM+sneNbMSozBiEJj1kNuSIVePL9gya5JJjHspDQoasGJmPlu5kfs1T
+ gEwB4sD5Saq+ZvUexggLFKpuXi8EbyvfQK3RXPzLI8wk+Mu3qpjRPq0uz g==;
+X-CSE-ConnectionGUID: cZN0PXx9TRKGxhbFZnedWw==
+X-CSE-MsgGUID: aUp//mTjRYyGmCVJEO9JmA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="35779023"
+X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="35779023"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2024 05:18:43 -0800
+X-CSE-ConnectionGUID: Djs6rZlsQnKn2QyA7WSBNw==
+X-CSE-MsgGUID: oC4o6lZrQ0m6lV3SlIXMeA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="96876476"
+Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.110])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2024 05:18:42 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH] drm/i915/dp: use seq buf for printing rates
+Date: Wed, 27 Nov 2024 15:18:38 +0200
+Message-Id: <20241127131838.3268735-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_prunue_audio_frequencies_ba?=
- =?utf-8?q?sed_on_bw_limits_for_DP2?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 27 Nov 2024 13:14:21 -0000
-Message-ID: <173271326188.3737589.138586339894191544@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241127120715.185348-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20241127120715.185348-1-vinod.govindapillai@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,86 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7118272553710997948==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hand rolling the buffer overflow handling with snprintf() is a bit
+tedious. The seq_buf interface is made for this. Switch to it.
 
-== Series Details ==
+Use struct intel_display while at it.
 
-Series: prunue audio frequencies based on bw limits for DP2
-URL   : https://patchwork.freedesktop.org/series/141839/
-State : success
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 36 ++++++++++---------------
+ 1 file changed, 14 insertions(+), 22 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 053a9a4182e7..4471c8fcd478 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -28,6 +28,7 @@
+ #include <linux/export.h>
+ #include <linux/i2c.h>
+ #include <linux/notifier.h>
++#include <linux/seq_buf.h>
+ #include <linux/slab.h>
+ #include <linux/sort.h>
+ #include <linux/string_helpers.h>
+@@ -1506,41 +1507,32 @@ bool intel_dp_source_supports_tps4(struct drm_i915_private *i915)
+ 	return DISPLAY_VER(i915) >= 10;
+ }
+ 
+-static void snprintf_int_array(char *str, size_t len,
+-			       const int *array, int nelem)
++static void seq_buf_print_array(struct seq_buf *s, const int *array, int nelem)
+ {
+ 	int i;
+ 
+-	str[0] = '\0';
+-
+-	for (i = 0; i < nelem; i++) {
+-		int r = snprintf(str, len, "%s%d", i ? ", " : "", array[i]);
+-		if (r >= len)
+-			return;
+-		str += r;
+-		len -= r;
+-	}
++	for (i = 0; i < nelem; i++)
++		seq_buf_printf(s, "%s%d", i ? ", " : "", array[i]);
+ }
+ 
+ static void intel_dp_print_rates(struct intel_dp *intel_dp)
+ {
+-	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+-	char str[128]; /* FIXME: too big for stack? */
++	struct intel_display *display = to_intel_display(intel_dp);
++	DECLARE_SEQ_BUF(s, 128); /* FIXME: too big for stack? */
+ 
+ 	if (!drm_debug_enabled(DRM_UT_KMS))
+ 		return;
+ 
+-	snprintf_int_array(str, sizeof(str),
+-			   intel_dp->source_rates, intel_dp->num_source_rates);
+-	drm_dbg_kms(&i915->drm, "source rates: %s\n", str);
++	seq_buf_print_array(&s, intel_dp->source_rates, intel_dp->num_source_rates);
++	drm_dbg_kms(display->drm, "source rates: %s\n", seq_buf_str(&s));
+ 
+-	snprintf_int_array(str, sizeof(str),
+-			   intel_dp->sink_rates, intel_dp->num_sink_rates);
+-	drm_dbg_kms(&i915->drm, "sink rates: %s\n", str);
++	seq_buf_clear(&s);
++	seq_buf_print_array(&s, intel_dp->sink_rates, intel_dp->num_sink_rates);
++	drm_dbg_kms(display->drm, "sink rates: %s\n", seq_buf_str(&s));
+ 
+-	snprintf_int_array(str, sizeof(str),
+-			   intel_dp->common_rates, intel_dp->num_common_rates);
+-	drm_dbg_kms(&i915->drm, "common rates: %s\n", str);
++	seq_buf_clear(&s);
++	seq_buf_print_array(&s, intel_dp->common_rates, intel_dp->num_common_rates);
++	drm_dbg_kms(display->drm, "common rates: %s\n", seq_buf_str(&s));
+ }
+ 
+ static int forced_link_rate(struct intel_dp *intel_dp)
+-- 
+2.39.5
 
-CI Bug Log - changes from xe-2284-434aceeb99d1eeb41253f3ff58fbb9686d8abfb3_BAT -> xe-pw-141839v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2284-434aceeb99d1eeb41253f3ff58fbb9686d8abfb3 -> xe-pw-141839v1
-
-  IGT_8127: 433ecaf95ccaed2b5adcb40d27fa5b7a08a2e03d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2284-434aceeb99d1eeb41253f3ff58fbb9686d8abfb3: 434aceeb99d1eeb41253f3ff58fbb9686d8abfb3
-  xe-pw-141839v1: 141839v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141839v1/index.html
-
---===============7118272553710997948==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>prunue audio frequencies based on bw limits for DP2</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141839/">https://patchwork.freedesktop.org/series/141839/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141839v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141839v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2284-434aceeb99d1eeb41253f3ff58fbb9686d8abfb3_BAT -&gt; xe-pw-141839v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2284-434aceeb99d1eeb41253f3ff58fbb9686d8abfb3 -&gt; xe-pw-141839v1</li>
-</ul>
-<p>IGT_8127: 433ecaf95ccaed2b5adcb40d27fa5b7a08a2e03d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2284-434aceeb99d1eeb41253f3ff58fbb9686d8abfb3: 434aceeb99d1eeb41253f3ff58fbb9686d8abfb3<br />
-  xe-pw-141839v1: 141839v1</p>
-
-</body>
-</html>
-
---===============7118272553710997948==--
