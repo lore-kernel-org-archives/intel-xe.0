@@ -4,58 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C58E9D609AD
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 08:10:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C643D609AD
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 08:11:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D99110EA1C;
-	Wed, 27 Nov 2024 08:10:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B16B410EA16;
+	Wed, 27 Nov 2024 08:11:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BvuY7apf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cKp4K0n/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA7C310EA1C
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Nov 2024 08:09:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E5B810EA16
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Nov 2024 08:11:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732694999; x=1764230999;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kh9KjYXQN8IZsv/J2vcuqgaQr+lUcuNJ3zF90CqB2rk=;
- b=BvuY7apfLx2roE6tZ17hQaEXRkwS3MDKdvGKSr1LYoOfGni9f1FUuVGC
- cWnBPchrI/Kc9XnCvzfI1/cX0HVH7o6khGK+MSStRCC22N5v6zGEGLXbI
- ut8XZqaX0nTrTt857COzwGGx0DLPU7dFG3/KUEiGjx4oWbQ2ydgK8ryKP
- 6O6AvHu5eNAiuZ4VPElRPbCTS8UUcpuhKGa8TB5KTeVwhiFrmQl5np4sO
- x+CuNojAJ7+dix9iGqHlJjQMSJVWwJ/aEveWOdPyq4KBlp27oVmhMQ0jj
- tPgWG2sf2GIvADdbM/G2dMtVX5Ad0FrPyBm2bk4Yet6Xc6LhLc+UiUtI+ w==;
-X-CSE-ConnectionGUID: qNWcGrypSdaFNDUB5vUYwQ==
-X-CSE-MsgGUID: WOXn3PEHTNuNgglQYZmeNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="36810252"
-X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="36810252"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2024 00:09:59 -0800
-X-CSE-ConnectionGUID: t3E9UFlRSAy0SU3aEy4PDA==
-X-CSE-MsgGUID: qCsvAqp8S+aCuri2AVWFwg==
+ t=1732695095; x=1764231095;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=tS0Oppk1j/IkbGuWa22I0WX2CKYDTji/6zLhGtiyNDs=;
+ b=cKp4K0n/f90FCE5xJsN/t/KSobPfx2zJQBFfDgk6Qhbx6dPJO19loMWP
+ w0LIooa8ynKN8Ms6c7ZMMPZoB5lcxQ9lc8N0RbQJa96CB1XQjStWqSb9v
+ 0EBMuZiY/WdXGLpbDducC4QDztivk1vJ2thzUIO+OCoi98H19BlVjyShW
+ uPI5pNfgbfFfhM14fLH7CLmdE2c/gcO32OFjCYLQwQbUIkRM0XfCFw8mN
+ vPy4CJ1GV1qkGUdJ7o7Z8AVtdkyTk+70YmWWwJVBHHe1WdQFgTb0S5CL+
+ mbgB2df2feWtv56DsZNJk2pTQ3qdVffeoXDvU7SKEUzzEnWaElfDwDCf5 w==;
+X-CSE-ConnectionGUID: zmPL0/7yRh22ZshLtV12cw==
+X-CSE-MsgGUID: 9O2hG6rdR8Waeyesy/JOVw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="32629864"
+X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="32629864"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2024 00:11:34 -0800
+X-CSE-ConnectionGUID: aHFYA7wVSoGUjvet4N1mMQ==
+X-CSE-MsgGUID: kkD2StPwQhCxNHs6oJJH0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="92689715"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa008.jf.intel.com with ESMTP; 27 Nov 2024 00:09:56 -0800
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 3/3] Revert "drm/xe: Add a reason string to the devcoredump"
-Date: Wed, 27 Nov 2024 14:00:42 +0530
-Message-Id: <20241127083042.358726-4-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241127083042.358726-1-himal.prasad.ghimiray@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="92012067"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.246.103])
+ ([10.245.246.103])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2024 00:11:31 -0800
+Message-ID: <f7bb2b1a6a31597bdd440a4db92f4f344c86c232.camel@linux.intel.com>
+Subject: Re: [PATCH 1/3] Revert "drm/xe: Add mutex locking to devcoredump"
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: John Harrison <John.C.Harrison@Intel.com>, Matthew Brost
+ <matthew.brost@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date: Wed, 27 Nov 2024 09:11:28 +0100
+In-Reply-To: <20241127083042.358726-2-himal.prasad.ghimiray@intel.com>
 References: <20241127083042.358726-1-himal.prasad.ghimiray@intel.com>
+ <20241127083042.358726-2-himal.prasad.ghimiray@intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-3.fc39) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,177 +74,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit 06e2cb496396613e583a72a85e0822fb43b2ead5. The commit
-was accidentally and unintentionally pushed.
+On Wed, 2024-11-27 at 14:00 +0530, Himal Prasad Ghimiray wrote:
+> This reverts commit b9428d0ac54fcece5ad8fc86c5d3e7aacc6e2c76. The
+> commit
+> was accidentally and unintentionally pushed.
+>=20
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Himal Prasad Ghimiray
+> <himal.prasad.ghimiray@intel.com>
 
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_devcoredump.c       | 21 +++------------------
- drivers/gpu/drm/xe/xe_devcoredump.h       |  5 ++---
- drivers/gpu/drm/xe/xe_devcoredump_types.h |  4 ----
- drivers/gpu/drm/xe/xe_guc_submit.c        | 14 ++++----------
- 4 files changed, 9 insertions(+), 35 deletions(-)
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index f4c77f525819..0e5edf14a241 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -99,7 +99,6 @@ static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
- 	p = drm_coredump_printer(&iter);
- 
- 	drm_puts(&p, "**** Xe Device Coredump ****\n");
--	drm_printf(&p, "Reason: %s\n", ss->reason);
- 	drm_puts(&p, "kernel: " UTS_RELEASE "\n");
- 	drm_puts(&p, "module: " KBUILD_MODNAME "\n");
- 
-@@ -107,7 +106,7 @@ static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
- 	drm_printf(&p, "Snapshot time: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
- 	ts = ktime_to_timespec64(ss->boot_time);
- 	drm_printf(&p, "Uptime: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
--	drm_printf(&p, "Process: %s [%d]\n", ss->process_name, ss->pid);
-+	drm_printf(&p, "Process: %s\n", ss->process_name);
- 	xe_device_snapshot_print(xe, &p);
- 
- 	drm_printf(&p, "\n**** GT #%d ****\n", ss->gt->info.id);
-@@ -139,9 +138,6 @@ static void xe_devcoredump_snapshot_free(struct xe_devcoredump_snapshot *ss)
- {
- 	int i;
- 
--	kfree(ss->reason);
--	ss->reason = NULL;
--
- 	xe_guc_log_snapshot_free(ss->guc.log);
- 	ss->guc.log = NULL;
- 
-@@ -257,11 +253,8 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
- 	ss->snapshot_time = ktime_get_real();
- 	ss->boot_time = ktime_get_boottime();
- 
--	if (q->vm && q->vm->xef) {
-+	if (q->vm && q->vm->xef)
- 		process_name = q->vm->xef->process_name;
--		ss->pid = q->vm->xef->pid;
--	}
--
- 	strscpy(ss->process_name, process_name);
- 
- 	ss->gt = q->gt;
-@@ -299,18 +292,15 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
-  * xe_devcoredump - Take the required snapshots and initialize coredump device.
-  * @q: The faulty xe_exec_queue, where the issue was detected.
-  * @job: The faulty xe_sched_job, where the issue was detected.
-- * @fmt: Printf format + args to describe the reason for the core dump
-  *
-  * This function should be called at the crash time within the serialized
-  * gt_reset. It is skipped if we still have the core dump device available
-  * with the information of the 'first' snapshot.
-  */
--__printf(3, 4)
--void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job, const char *fmt, ...)
-+void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job)
- {
- 	struct xe_device *xe = gt_to_xe(q->gt);
- 	struct xe_devcoredump *coredump = &xe->devcoredump;
--	va_list varg;
- 
- 	if (coredump->captured) {
- 		drm_dbg(&xe->drm, "Multiple hangs are occurring, but only the first snapshot was taken\n");
-@@ -318,11 +308,6 @@ void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job, const cha
- 	}
- 
- 	coredump->captured = true;
--
--	va_start(varg, fmt);
--	coredump->snapshot.reason = kvasprintf(GFP_ATOMIC, fmt, varg);
--	va_end(varg);
--
- 	devcoredump_snapshot(coredump, q, job);
- 
- 	drm_info(&xe->drm, "Xe device coredump has been created\n");
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.h b/drivers/gpu/drm/xe/xe_devcoredump.h
-index 6a17e6d60102..c04a534e3384 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.h
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.h
-@@ -14,12 +14,11 @@ struct xe_exec_queue;
- struct xe_sched_job;
- 
- #ifdef CONFIG_DEV_COREDUMP
--void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job, const char *fmt, ...);
-+void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job);
- int xe_devcoredump_init(struct xe_device *xe);
- #else
- static inline void xe_devcoredump(struct xe_exec_queue *q,
--				  struct xe_sched_job *job,
--				  const char *fmt, ...)
-+				  struct xe_sched_job *job)
- {
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-index e6234e887102..be4d59ea9ac8 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
-+++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-@@ -28,10 +28,6 @@ struct xe_devcoredump_snapshot {
- 	ktime_t boot_time;
- 	/** @process_name: Name of process that triggered this gpu hang */
- 	char process_name[TASK_COMM_LEN];
--	/** @pid: Process id of process that triggered this gpu hang */
--	pid_t pid;
--	/** @reason: The reason the coredump was triggered */
--	char *reason;
- 
- 	/** @gt: Affected GT, used by forcewake for delayed capture */
- 	struct xe_gt *gt;
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 9c36329fe857..d00af8d8acbe 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -901,8 +901,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 		if (!ret) {
- 			xe_gt_warn(q->gt, "Schedule disable failed to respond, guc_id=%d\n",
- 				   q->guc->id);
--			xe_devcoredump(q, NULL, "Schedule disable failed to respond, guc_id=%d\n",
--				       q->guc->id);
-+			xe_devcoredump(q, NULL);
- 			xe_sched_submission_start(sched);
- 			xe_gt_reset_async(q->gt);
- 			return;
-@@ -910,7 +909,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 	}
- 
- 	if (!exec_queue_killed(q) && !xe_lrc_ring_is_idle(q->lrc[0]))
--		xe_devcoredump(q, NULL, "LR job cleanup, guc_id=%d", q->guc->id);
-+		xe_devcoredump(q, NULL);
- 
- 	xe_sched_submission_start(sched);
- }
-@@ -1137,9 +1136,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 				xe_gt_warn(guc_to_gt(guc),
- 					   "Schedule disable failed to respond, guc_id=%d",
- 					   q->guc->id);
--			xe_devcoredump(q, job,
--				       "Schedule disable failed to respond, guc_id=%d, ret=%d, guc_read=%d",
--				       q->guc->id, ret, xe_guc_read_stopped(guc));
-+			xe_devcoredump(q, job);
- 			set_exec_queue_extra_ref(q);
- 			xe_exec_queue_get(q);	/* GT reset owns this */
- 			set_exec_queue_banned(q);
-@@ -1169,10 +1166,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	trace_xe_sched_job_timedout(job);
- 
- 	if (!exec_queue_killed(q))
--		xe_devcoredump(q, job,
--			       "Timedout job - seqno=%u, lrc_seqno=%u, guc_id=%d, flags=0x%lx",
--			       xe_sched_job_seqno(job), xe_sched_job_lrc_seqno(job),
--			       q->guc->id, q->flags);
-+		xe_devcoredump(q, job);
- 
- 	/*
- 	 * Kernel jobs should never fail, nor should VM jobs if they do
--- 
-2.34.1
+
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_devcoredump.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 33 ++-------------------
+> --
+> =C2=A0drivers/gpu/drm/xe/xe_devcoredump_types.h |=C2=A0 4 +--
+> =C2=A02 files changed, 3 insertions(+), 34 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c
+> b/drivers/gpu/drm/xe/xe_devcoredump.c
+> index dd6a4f591ee0..5d19a4e3d5af 100644
+> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
+> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+> @@ -182,24 +182,16 @@ static ssize_t xe_devcoredump_read(char
+> *buffer, loff_t offset,
+> =C2=A0	/* Ensure delayed work is captured before continuing */
+> =C2=A0	flush_work(&ss->work);
+> =C2=A0
+> -	mutex_lock(&coredump->lock);
+> -
+> -	if (!ss->read.buffer) {
+> -		mutex_unlock(&coredump->lock);
+> +	if (!ss->read.buffer)
+> =C2=A0		return -ENODEV;
+> -	}
+> =C2=A0
+> -	if (offset >=3D ss->read.size) {
+> -		mutex_unlock(&coredump->lock);
+> +	if (offset >=3D ss->read.size)
+> =C2=A0		return 0;
+> -	}
+> =C2=A0
+> =C2=A0	byte_copied =3D count < ss->read.size - offset ? count :
+> =C2=A0		ss->read.size - offset;
+> =C2=A0	memcpy(buffer, ss->read.buffer + offset, byte_copied);
+> =C2=A0
+> -	mutex_unlock(&coredump->lock);
+> -
+> =C2=A0	return byte_copied;
+> =C2=A0}
+> =C2=A0
+> @@ -213,8 +205,6 @@ static void xe_devcoredump_free(void *data)
+> =C2=A0
+> =C2=A0	cancel_work_sync(&coredump->snapshot.work);
+> =C2=A0
+> -	mutex_lock(&coredump->lock);
+> -
+> =C2=A0	xe_devcoredump_snapshot_free(&coredump->snapshot);
+> =C2=A0	kvfree(coredump->snapshot.read.buffer);
+> =C2=A0
+> @@ -223,8 +213,6 @@ static void xe_devcoredump_free(void *data)
+> =C2=A0	coredump->captured =3D false;
+> =C2=A0	drm_info(&coredump_to_xe(coredump)->drm,
+> =C2=A0		 "Xe device coredump has been deleted.\n");
+> -
+> -	mutex_unlock(&coredump->lock);
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void xe_devcoredump_deferred_snap_work(struct work_struct
+> *work)
+> @@ -333,11 +321,8 @@ void xe_devcoredump(struct xe_exec_queue *q,
+> struct xe_sched_job *job, const cha
+> =C2=A0	struct xe_devcoredump *coredump =3D &xe->devcoredump;
+> =C2=A0	va_list varg;
+> =C2=A0
+> -	mutex_lock(&coredump->lock);
+> -
+> =C2=A0	if (coredump->captured) {
+> =C2=A0		drm_dbg(&xe->drm, "Multiple hangs are occurring, but
+> only the first snapshot was taken\n");
+> -		mutex_unlock(&coredump->lock);
+> =C2=A0		return;
+> =C2=A0	}
+> =C2=A0
+> @@ -352,8 +337,6 @@ void xe_devcoredump(struct xe_exec_queue *q,
+> struct xe_sched_job *job, const cha
+> =C2=A0	drm_info(&xe->drm, "Xe device coredump has been created\n");
+> =C2=A0	drm_info(&xe->drm, "Check your
+> /sys/class/drm/card%d/device/devcoredump/data\n",
+> =C2=A0		 xe->drm.primary->index);
+> -
+> -	mutex_unlock(&coredump->lock);
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void xe_driver_devcoredump_fini(void *arg)
+> @@ -365,18 +348,6 @@ static void xe_driver_devcoredump_fini(void
+> *arg)
+> =C2=A0
+> =C2=A0int xe_devcoredump_init(struct xe_device *xe)
+> =C2=A0{
+> -	int err;
+> -
+> -	err =3D drmm_mutex_init(&xe->drm, &xe->devcoredump.lock);
+> -	if (err)
+> -		return err;
+> -
+> -	if (IS_ENABLED(CONFIG_LOCKDEP)) {
+> -		fs_reclaim_acquire(GFP_KERNEL);
+> -		might_lock(&xe->devcoredump.lock);
+> -		fs_reclaim_release(GFP_KERNEL);
+> -	}
+> -
+> =C2=A0	return devm_add_action_or_reset(xe->drm.dev,
+> xe_driver_devcoredump_fini, &xe->drm);
+> =C2=A0}
+> =C2=A0
+> diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h
+> b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+> index 1a1d16a96b2d..e6234e887102 100644
+> --- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
+> +++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+> @@ -80,9 +80,7 @@ struct xe_devcoredump_snapshot {
+> =C2=A0 * for reading the information.
+> =C2=A0 */
+> =C2=A0struct xe_devcoredump {
+> -	/** @lock: protects access to entire structure */
+> -	struct mutex lock;
+> -	/** @captured: The snapshot of the first hang has already
+> been taken */
+> +	/** @captured: The snapshot of the first hang has already
+> been taken. */
+> =C2=A0	bool captured;
+> =C2=A0	/** @snapshot: Snapshot is captured at time of the first
+> crash */
+> =C2=A0	struct xe_devcoredump_snapshot snapshot;
 
