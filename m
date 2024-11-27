@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD9F1D6ACCA
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 13:13:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29BA8D6ACCA
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 13:14:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D3CA10E27E;
-	Wed, 27 Nov 2024 13:13:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kJqxrUQj";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16A8F10E178;
- Wed, 27 Nov 2024 13:13:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732713203; x=1764249203;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=8GWzr3fI2HSf08W+WGK1x+KKN3Ch3Q2YXbioJAev1fQ=;
- b=kJqxrUQjftpsdmdgDszirGFibZvF/C+Uiz5N3nuYrJdNDzxY9pNLRNHm
- cUqA6JGGLavzGyuy1rFLBygd/2m+sR8akYthxdxtfk9zDxUHN+hNL4yKS
- QmsfNDTcKqjmWeI26DGFq5HROvyouXAAziW3rr1Ngb+XYqMKsRPAOxywS
- P1Sq+3kKctUrh4f75WU/S0RHowue0uc7vRVoYvl9PNgtfIC1pOY02JcKt
- EFTsyLlIMR+H9p8XWhINw/yyo5WSMVtHcRy0jd8TahYltCo+76hXCpgUN
- M/GkIFXil3ki74RgZ8WlNq71I2aquK5s7fwk0Vg/d2baGb6u+gHT9F/pf w==;
-X-CSE-ConnectionGUID: 2X88kL2rQtCADbJrOPPIHw==
-X-CSE-MsgGUID: 7l2tNGEaRbqH5cAMm97oog==
-X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="32867198"
-X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="32867198"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2024 05:13:23 -0800
-X-CSE-ConnectionGUID: E9ojOoSDTMqPAB+cpy4uWg==
-X-CSE-MsgGUID: /XWndkHaSyyEw12mWXJgbQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="96375078"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.110])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2024 05:13:20 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- imre.deak@intel.com, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH 0/3] drm/dp: extract payload helpers
-In-Reply-To: <cover.1731942780.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1731942780.git.jani.nikula@intel.com>
-Date: Wed, 27 Nov 2024 15:13:17 +0200
-Message-ID: <87sercx1jm.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB2348979D;
+	Wed, 27 Nov 2024 13:14:22 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9CA58979D;
+ Wed, 27 Nov 2024 13:14:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7118272553710997948=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_prunue_audio_frequencies_ba?=
+ =?utf-8?q?sed_on_bw_limits_for_DP2?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 27 Nov 2024 13:14:21 -0000
+Message-ID: <173271326188.3737589.138586339894191544@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241127120715.185348-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20241127120715.185348-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,28 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 18 Nov 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> Add some mst topology manager independent payload helpers.
+--===============7118272553710997948==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: maintainers, Lyude, are we good to go with this?
+== Series Details ==
 
-BR,
-Jani.
+Series: prunue audio frequencies based on bw limits for DP2
+URL   : https://patchwork.freedesktop.org/series/141839/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2284-434aceeb99d1eeb41253f3ff58fbb9686d8abfb3_BAT -> xe-pw-141839v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
 
 
->
-> Jani Nikula (3):
->   drm/dp: extract drm_dp_dpcd_poll_act_handled()
->   drm/dp: extract drm_dp_dpcd_write_payload()
->   drm/dp: extract drm_dp_dpcd_clear_payload()
->
->  drivers/gpu/drm/display/drm_dp_helper.c       | 124 +++++++++++++++++-
->  drivers/gpu/drm/display/drm_dp_mst_topology.c |  88 +------------
->  include/drm/display/drm_dp_helper.h           |   5 +
->  3 files changed, 133 insertions(+), 84 deletions(-)
+Changes
+-------
 
--- 
-Jani Nikula, Intel
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2284-434aceeb99d1eeb41253f3ff58fbb9686d8abfb3 -> xe-pw-141839v1
+
+  IGT_8127: 433ecaf95ccaed2b5adcb40d27fa5b7a08a2e03d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2284-434aceeb99d1eeb41253f3ff58fbb9686d8abfb3: 434aceeb99d1eeb41253f3ff58fbb9686d8abfb3
+  xe-pw-141839v1: 141839v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141839v1/index.html
+
+--===============7118272553710997948==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>prunue audio frequencies based on bw limits for DP2</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141839/">https://patchwork.freedesktop.org/series/141839/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141839v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141839v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2284-434aceeb99d1eeb41253f3ff58fbb9686d8abfb3_BAT -&gt; xe-pw-141839v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2284-434aceeb99d1eeb41253f3ff58fbb9686d8abfb3 -&gt; xe-pw-141839v1</li>
+</ul>
+<p>IGT_8127: 433ecaf95ccaed2b5adcb40d27fa5b7a08a2e03d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2284-434aceeb99d1eeb41253f3ff58fbb9686d8abfb3: 434aceeb99d1eeb41253f3ff58fbb9686d8abfb3<br />
+  xe-pw-141839v1: 141839v1</p>
+
+</body>
+</html>
+
+--===============7118272553710997948==--
