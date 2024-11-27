@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D42A1D609AA
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 07:37:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B25FD609AB
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 07:40:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8928610E082;
-	Wed, 27 Nov 2024 07:37:54 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8913310E082;
- Wed, 27 Nov 2024 07:37:53 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F09210E082;
+	Wed, 27 Nov 2024 07:40:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FS7cgXqc";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E927910E082;
+ Wed, 27 Nov 2024 07:40:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732693252; x=1764229252;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uauErpTZ1be0TM1pe8s3J7IXZDPyNJ6aGY0maIvmD6k=;
+ b=FS7cgXqcSb1qXk2wCVj5YQrtW3HC6zQgQ74pr4eGoycFgCI+fDfklS2n
+ C+Npnmz5hy8Jmm3NuvBHYd+BBzSfEORURgiks13j4ptk21xHYIhWYo1ne
+ L/GFky6PrVMX4u8GUxLvfLCYtmeYJRDsKMzrDG1vOtEj/9qh1+0sz1uBL
+ SlUBlZwWsg977rc0rJAG3sZb2luUxhh9s0vxYBGPKt6aS8Y85413i1k9S
+ 4TuH1wo7XKrXszKmSxJCw16E85GxUKL3DNJFwSlTH6ruLBFepvO2E5+0j
+ PHlWDPUI4NdE86M4pPRx3VcEbxlP3BRucB9u68vU2OkE2WwQzgItyEf1D A==;
+X-CSE-ConnectionGUID: 8ihLHdh6Rpm2f8/jDF44XA==
+X-CSE-MsgGUID: 3QSeqLo8SVe3EP2o9UW4gw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="36670644"
+X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="36670644"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2024 23:40:52 -0800
+X-CSE-ConnectionGUID: UM9NqqCzTni92KfHR8DaDw==
+X-CSE-MsgGUID: j9tIfI6dQyeGfCGUcPY/Gg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="129376603"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by orviesa001.jf.intel.com with ESMTP; 26 Nov 2024 23:40:50 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com,
+	Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH v6 0/2] drm/i915/display: Power request asserting/deasserting
+Date: Wed, 27 Nov 2024 09:31:58 +0200
+Message-ID: <20241127073200.124907-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Refactor_VRR_for_differe?=
- =?utf-8?q?nt_VRR_timing_generator?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 27 Nov 2024 07:37:53 -0000
-Message-ID: <173269307355.3654664.14698560821484595833@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241127071136.1017190-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20241127071136.1017190-1-ankit.k.nautiyal@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,36 +62,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+There is a HW issue that arises when there are race conditions
+between TCSS entering/exiting TC7 or TC10 states while the
+driver is asserting/deasserting TCSS power request. As a
+workaround, Display driver will implement a mailbox sequence
+to ensure that the TCSS is in TC0 when TCSS power request is
+asserted/deasserted.
 
-Series: Refactor VRR for different VRR timing generator
-URL   : https://patchwork.freedesktop.org/series/141819/
-State : warning
+The sequence is the following
 
-== Summary ==
+1. Read mailbox command status and wait until run/busy bit is
+   clear
+2. Write mailbox data value '1' for power request asserting
+   and '0' for power request deasserting
+3. Write mailbox command run/busy bit and command value with 0x1
+4. Read mailbox command and wait until run/busy bit is clear
+   before continuing power request.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 241f1fd26b38614aa85276a78b127e9abb14850a
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+while at it, let's start using struct intel_display instead of
+struct drm_i915_private as well.
 
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+
+Mika Kahola (2):
+  drm/i915/xe3lpd: Power request asserting/deasserting
+  drm/i915/display: Use struct intel_display instead of struct
+    drm_i915_private
+
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  7 ++++
+ drivers/gpu/drm/i915/display/intel_tc.c       | 39 +++++++++++++++++--
+ 2 files changed, 42 insertions(+), 4 deletions(-)
+
+-- 
+2.43.0
 
