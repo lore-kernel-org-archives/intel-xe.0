@@ -4,72 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18206D69106
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Nov 2024 12:28:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 319AAD69105
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Nov 2024 12:29:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA37F10E36F;
-	Thu, 28 Nov 2024 12:28:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB45710E379;
+	Thu, 28 Nov 2024 12:29:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="QPnys0og";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="NF86R7YP";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19BAE10E1B7
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Nov 2024 12:28:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CA3B10E36F
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Nov 2024 12:29:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1732796936;
+ s=mimecast20190719; t=1732796954;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=ZACMslqIaF7iVtmlx12c8LPoSlN7TzLegXngDuX2z78=;
- b=QPnys0og/9ZtXa5XVKgdSczFqWElYPx0x38aFbMVU/kymsa4vfCBuKFYZwqJVQGxed07VY
- DfCSxyGrJBgVG8MHz2QkW11kvxWp1FxbuNxYNbmfCChS0MwjTQ1cpaOR7EfKSlEMXecB2B
- 1o3Zeuon1Q7UeIa2GVutpzvainNbh5g=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=0Nxf6CkGK3NslY+JLgqPcTLt32q1OCumzkrHYUKQkbE=;
+ b=NF86R7YPaO4OmYapdN/YmkctK36hyatOwgFnMmypDgOYs+5hDSzw9VI6kPrX1Sfwh9Y/oh
+ pkRUEbh4+BmMaTxCAagWRlwi7lwQxDFd7HAWNdry//JprUXWVkYB37Tpxs4gq9uxDC5E3q
+ Hb7mXLh0aj/aMRbdo2tBNwPWG0P55Bs=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-663-c1QA8zbwOzeFSHWxCmlsQg-1; Thu, 28 Nov 2024 07:28:53 -0500
-X-MC-Unique: c1QA8zbwOzeFSHWxCmlsQg-1
-X-Mimecast-MFC-AGG-ID: c1QA8zbwOzeFSHWxCmlsQg
-Received: by mail-wr1-f70.google.com with SMTP id
- ffacd0b85a97d-38242c5b4ffso437457f8f.1
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Nov 2024 04:28:53 -0800 (PST)
+ us-mta-111-fzKpuEkUPjyoFjqFwM_Rsg-1; Thu, 28 Nov 2024 07:29:13 -0500
+X-MC-Unique: fzKpuEkUPjyoFjqFwM_Rsg-1
+X-Mimecast-MFC-AGG-ID: fzKpuEkUPjyoFjqFwM_Rsg
+Received: by mail-ed1-f69.google.com with SMTP id
+ 4fb4d7f45d1cf-5cfb912729dso487207a12.3
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Nov 2024 04:29:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1732796932; x=1733401732;
+ d=1e100.net; s=20230601; t=1732796952; x=1733401752;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=ZACMslqIaF7iVtmlx12c8LPoSlN7TzLegXngDuX2z78=;
- b=TZ/Syf4QJtimBKsXskD8bSlMWPY0NATPG1vxLSkcFqqtFEpk6hCebN/e1+X8EbRuvr
- di7Y1kzXmjyl/gixkZB7+TaDhAe6hAhr2GmqR2Bc9tAgG6N92pY95HcQM06JH5L+uBwo
- saCl8Ggv0QlTsLMWNmzUGEplYyWALkIVWGKn1teeilG0D+qwljGPQiKCE/8HP1vc08E1
- vO+AlvukST2dYhiJeC761WeygZslUKNstQ6KQqH+1M3jhgQ1UIO7UM5Cw1WwgylSmTdC
- uP2h4SNW54kGvY60ASrvRlc8zLtBU0/vl1OxA7QpB23jRJmw9iRuMhdOJTfxJCjBI+yM
- jtEA==
+ bh=0Nxf6CkGK3NslY+JLgqPcTLt32q1OCumzkrHYUKQkbE=;
+ b=Amp5GtOX3k6sBPo5kEOlPkj3tRRXPXbiZ654yuAWSTu5BGZD44MD8Fj3K6r3Tv18D4
+ G1xF/vBvYWhmcyDI5WrOXFR7hGirj7xXHEtdmMzBMU0CYdjhdu6CbwPfXnBXrxN+nE+o
+ 2FZzr4JgCwCY5b9cZPOKveJ1O0VRpx+uUV73kQNF3vXEJub3zQtR7vfpk4rFgQMLLju5
+ aILTKdMUpyAJVKQ9wJlqKN1ky0qw6Uey4l875OQhE4WeBVUj33+/mhJSnXJCajuNUiNN
+ bg3KgGVrfgvIQMDlBYYmNTPCrmwL+vicqfF4W3KXsEWrlE/nXnUbcLX7IRdGdwAHadQW
+ kw4Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU2xHhhmBjwEFzOLKpzM6hGZnl1QROshj4g4xk3VpD7aAdVgmPXpknQ42NioUocLhcPWF7m9K1uPw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxQ4jjHVU2lidoVv9JnUxQnbzZvAXUC0XSkxQC/twfPTVRFNNNa
- 1/L26lqkSba2qTp+MVhKN4GhP2GuL+0c9wQW87Us2DXccRMcQZTEBCfRPU/sj1Yw31OFF5LtSYK
- oNkRENBRIOmYrkOz5XVy/nsywm4XlQHj533WdzeD2uW4vlQPG+434km2MLVBdyTXqvMUwgr6dN7
- Ex+BfAwy/0AHz3ousCSQcgM63LY5OvGzSNhLTsRKs=
-X-Gm-Gg: ASbGncsAUp1gnd4r1eIiplU96lALB5C5FlsPDZBVDnSeti2ddHZmOfxeXaX5M8khjOQ
- o2kaEN5rIVAICN0LQOZz83/l3gEyn4lU=
-X-Received: by 2002:a05:6000:18ac:b0:382:4a27:1319 with SMTP id
- ffacd0b85a97d-385c6eb5840mr5776166f8f.6.1732796932011; 
- Thu, 28 Nov 2024 04:28:52 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGGOqoP8tsZ6KQpRsoqtGa6KHF61EJ3NUmj3Aw3MlprtODTvHQ/TDY7uTpa3Nw0Vy2Is2RlK3QrcXMwzmVV8rU=
-X-Received: by 2002:a05:6000:18ac:b0:382:4a27:1319 with SMTP id
- ffacd0b85a97d-385c6eb5840mr5776067f8f.6.1732796931576; Thu, 28 Nov 2024
- 04:28:51 -0800 (PST)
+ AJvYcCXGqxwUjT+8RMIvdRPo144SDkY5XcCSl8Q2PB7L7S9MrSfEt4/GuRsgEfCN2F+Ly3OPtNgChBD7rQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwwPNSdj4A4Un4wDVstFA9qpLp4Lfwaf/qGf2qek7IRKtYUg165
+ VFp1whyI9ZGRHzfo0HvWlRkzBM+Az29YbiEO+nFRdHV7szjR+zrlPTWchbdtQnQuPJfFEz1nvE/
+ /SY2/kLn+ZHUk66QZU62thKlGKy5uqiiYKD3FLqq/XEdGNKdbfsgvpZg3vN0nf4GvtQG0i5VJf+
+ ++LGkBYBPhwTTiMmbgibN/PcR4eBW3Gai/8VA8XE4=
+X-Gm-Gg: ASbGncvVG8bSt4RNjyxxutssgos5lJmRxLanL1In+YcTsGy3gsHiLhhK/+Ys8RaZSZd
+ balGT6Z4iX8C62MRkei8fufto5IaTdLI=
+X-Received: by 2002:a05:6402:5243:b0:5cf:e26b:9797 with SMTP id
+ 4fb4d7f45d1cf-5d080c604fcmr5605174a12.29.1732796951986; 
+ Thu, 28 Nov 2024 04:29:11 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGuE0zkJ6zJza+fGet7qX+06h7Jmet7/bu0xRwgqC9A06SMAgod8PaoQJd1k5pY7KRDfw0cJAGqmNIglvOyUZo=
+X-Received: by 2002:a05:6402:5243:b0:5cf:e26b:9797 with SMTP id
+ 4fb4d7f45d1cf-5d080c604fcmr5605060a12.29.1732796951475; Thu, 28 Nov 2024
+ 04:29:11 -0800 (PST)
 MIME-Version: 1.0
-References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
- <20241115-converge-secs-to-jiffies-v2-18-911fb7595e79@linux.microsoft.com>
-In-Reply-To: <20241115-converge-secs-to-jiffies-v2-18-911fb7595e79@linux.microsoft.com>
+References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
+ <20241115-converge-secs-to-jiffies-v1-18-19aadc34941b@linux.microsoft.com>
+In-Reply-To: <20241115-converge-secs-to-jiffies-v1-18-19aadc34941b@linux.microsoft.com>
 From: Alex Markuze <amarkuze@redhat.com>
-Date: Thu, 28 Nov 2024 14:28:40 +0200
-Message-ID: <CAO8a2SgQ-==SjhDFZpi2s3r9FUGA96jwuJL7kTDwE=Hw4UcgUg@mail.gmail.com>
-Subject: Re: [PATCH v2 18/21] ceph: Convert timeouts to secs_to_jiffies()
+Date: Thu, 28 Nov 2024 14:29:00 +0200
+Message-ID: <CAO8a2SjKS2nWWVkAcqXkZhR+Q1TocULkwRk09ABf8XQjjzwJPQ@mail.gmail.com>
+Subject: Re: [PATCH 18/22] ceph: Convert timeouts to secs_to_jiffies()
 To: Easwar Hariharan <eahariha@linux.microsoft.com>
 Cc: Pablo Neira Ayuso <pablo@netfilter.org>,
  Jozsef Kadlecsik <kadlec@netfilter.org>, 
@@ -134,7 +134,7 @@ Cc: Pablo Neira Ayuso <pablo@netfilter.org>,
  oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org, 
  Anna-Maria Behnsen <anna-maria@linutronix.de>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: xrbTOhuCbtQCa_bP4qeorOqI1DSw5_2rbz4Oe1Yp9S8_1732796932
+X-Mimecast-MFC-PROC-ID: l4dJ5Lw58oFJJmJWT6p0jvaBv0tytpQDwsrtX630Big_1732796952
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -154,7 +154,7 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 looks good
 
-On Sat, Nov 16, 2024 at 12:32=E2=80=AFAM Easwar Hariharan
+On Fri, Nov 15, 2024 at 11:35=E2=80=AFPM Easwar Hariharan
 <eahariha@linux.microsoft.com> wrote:
 >
 > Changes made with the following Coccinelle rules:
