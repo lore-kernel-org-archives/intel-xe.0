@@ -4,61 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 051C4D6D247
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Nov 2024 23:21:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09F3FD6D25E
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Nov 2024 03:59:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B11F110E0BA;
-	Wed, 27 Nov 2024 23:21:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81E4D10E776;
+	Thu, 28 Nov 2024 03:59:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RkqDui0X";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="3S0nIS5x";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E51710E0BA
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Nov 2024 23:21:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732749715; x=1764285715;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=NBDAiJBeg5uCvtrZ/wNRH6rlfMrn2gUIlZhm3KPrINE=;
- b=RkqDui0XlNApTzC1BxoMR59MGOktck7kVIiKxZySNnT+UcESe3s3VBlF
- 7DuKGpBtmt0DIcoi6Xe8qh1qaZsMz/SwHEeFHM2mDITF/XcqzJVwtVPyq
- ms/DttqUHk5Iakz46OLLhX/mE4pjPafH+3TdbvO5+9kVMg2r/rtgrak1T
- 2Ov7275ePgzeeA/h3kTLBWHwixKBPMBr+Kd258u7S/xm8etRGQHb4CAJx
- 0ZHIVOjN8Dmwcd808ZfEBMl2wlGcC62Ru3Fed9Np2pqH4o3i9/vwGexth
- rWjA29cJFfN5Lh+ktflhTLJc3pS+GjjJ2e+LBN04cPD+rPXFLUkmLzwa/ g==;
-X-CSE-ConnectionGUID: a9sXdR/ySB+wxYhLOgw+mA==
-X-CSE-MsgGUID: 3BcWoBj0Q8GQVgf91wNPVQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="43581305"
-X-IronPort-AV: E=Sophos;i="6.12,190,1728975600"; d="scan'208";a="43581305"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2024 15:21:55 -0800
-X-CSE-ConnectionGUID: /fsyxtkLTkilye9IWBFUcQ==
-X-CSE-MsgGUID: SSp+yHP8T3OXtN/9oj9M9w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,190,1728975600"; d="scan'208";a="97021677"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa005.jf.intel.com with ESMTP; 27 Nov 2024 15:21:54 -0800
-Received: from [10.245.96.154] (unknown [10.245.96.154])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id EB2512FC67;
- Wed, 27 Nov 2024 23:21:51 +0000 (GMT)
-Message-ID: <fbbf6b81-d54c-4a2e-8cb6-94ccb2d3af1e@intel.com>
-Date: Thu, 28 Nov 2024 00:21:51 +0100
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2206810E1E6;
+ Thu, 28 Nov 2024 03:59:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=l19eVKsY53JL2VQByhBNrJ9l0f6j+JQvqDa2L42Z2s0=; b=3S0nIS5xt0KG9YqSq+lGL6/5Nq
+ ZkGnr2iZmxTK4qK3A8yZxaNWrnLY8mq+HA0528nCHYON14ZDHKoaQjT1Jz0XCLPloIJ1xm/z0v7V/
+ jSmcIzyxb/vI6sjVaOiwZSUm4gQAte253+kaVpu8CFFG236J0dH7HrVuYRb1pxXMD+PRyyu05QL2Q
+ cv0vrGQl+ShCEjybwdn+rBUo9t4kdkrqrOd+gjBqTOfzLEfD35Q7elwOCrTo1FE1Tcmvw4TROZO/5
+ t7vH8d0IbGoKeDCjKx59+Q2Nv/EijZfhlnJA3PilFjSIdmqn9Uabef1h7pjyV2wJIftToH38rai9W
+ 1MKqHdpg==;
+Received: from [50.53.2.24] (helo=bombadil.infradead.org)
+ by bombadil.infradead.org with esmtpsa (Exim 4.98 #2 (Red Hat Linux))
+ id 1tGVgE-0000000EeTB-1gzE; Thu, 28 Nov 2024 03:59:02 +0000
+From: Randy Dunlap <rdunlap@infradead.org>
+To: linux-kernel@vger.kernel.org
+Cc: Randy Dunlap <rdunlap@infradead.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/xe/vm_doc: fix more doc typos
+Date: Wed, 27 Nov 2024 19:58:59 -0800
+Message-ID: <20241128035901.375399-1-rdunlap@infradead.org>
+X-Mailer: git-send-email 2.47.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] drm/xe/vf: Fixup CTB send buffer messages after
- migration
-To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-References: <20241123031333.3435414-1-tomasz.lis@intel.com>
- <20241123031333.3435414-4-tomasz.lis@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20241123031333.3435414-4-tomasz.lis@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,326 +58,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Fix all typos in xe_vm_doc.h as reported by codespell.
 
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org
+---
+ drivers/gpu/drm/xe/xe_vm_doc.h |   22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
-On 23.11.2024 04:13, Tomasz Lis wrote:
-> During post-migration recovery of a VF, it in necessary to update
-
-typo: it is ?
-
-> GGTT references included in messages which are going to be sent
-> to GuC. GuC will start consuming messages after VF KMD will inform
-> it about fixups being done; before that, the VF KMD is expected
-> to update any H2G messages which are already in send buffer but
-> were not consumed by GuC.
-> 
-> Only a small subset of messages allowed for VFs have GGTT references
-> in them. This patch adds the functionality to parse the CTB send
-> ring buffer and shift addresses contained within.
-> 
-> While fixing the CTB content, ct->lock is not taken. This means
-> the only barrier taken remains GGTT address lock - which is ok,
-> because only requests with GGTT addresses matter, but it also means
-> tail changes can happen during the CTB fixups execution (which may
-> be ignored as any new messages will not have anything to fix).
-
-are you sure that there will be no inflight h2g actions during fixup?
-
-	CPU1			CPU2
-
-	ggtt.lock()
-	h2g.a = ggtt.a
-	ggtt.unlock()
-				ggtt.lock()
-				ggtt.a += shift
-				ctb.fixups(shift)
-				ggtt.unlock()
-	ctb.send(h2g)
-
-
-> 
-> The GGTT address locking will be introduced in a future series.
-> 
-> v2: removed storing shif as that's now done in VMA nodes patch;
->   macros to inlines; warns to asserts; log messages fixes (Michal)
-> 
-> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc_ct.c   | 148 +++++++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_guc_ct.h   |   2 +
->  drivers/gpu/drm/xe/xe_sriov_vf.c |  16 ++++
->  3 files changed, 166 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index 7eb175a0b874..212a6795ec8b 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -84,6 +84,8 @@ struct g2h_fence {
->  	bool done;
->  };
->  
-> +#define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
-> +
->  static void g2h_fence_init(struct g2h_fence *g2h_fence, u32 *response_buffer)
->  {
->  	g2h_fence->response_buffer = response_buffer;
-> @@ -1620,6 +1622,152 @@ static void g2h_worker_func(struct work_struct *w)
->  	receive_g2h(ct);
->  }
->  
-> +static inline u32 ctb_read32(struct xe_device *xe, struct iosys_map *cmds,
-
-drop "inline" and let compiler do the job
-
-> +			     u32 head, u32 pos)
-> +{
-> +	u32 msg[1];
-> +
-> +	xe_map_memcpy_from(xe, msg, cmds, (head + pos) * sizeof(u32),
-> +			   1 * sizeof(u32));
-> +	return msg[0];
-> +}
-> +
-> +static inline void ctb_fixup64(struct xe_device *xe, struct iosys_map *cmds,
-
-same here
-
-> +			       u32 head, u32 pos, s64 shift)
-> +{
-> +	u32 msg[2];
-> +	u64 offset;
-> +
-> +	xe_map_memcpy_from(xe, msg, cmds, (head + pos) * sizeof(u32),
-> +			   2 * sizeof(u32));
-> +	offset = make_u64(msg[1], msg[0]);
-> +	offset += shift;
-> +	msg[0] = lower_32_bits(offset);
-> +	msg[1] = upper_32_bits(offset);
-> +	xe_map_memcpy_to(xe, cmds, (head + pos) * sizeof(u32), msg, 2 * sizeof(u32));
-> +}
-> +
-> +/*
-> + * ct_update_addresses_in_message - Shift any GGTT addresses within
-> + * a single message left within CTB from before post-migration recovery.
-> + * @ct: pointer to CT struct of the target GuC
-> + * @cmds: iomap buffer containing CT messages
-> + * @head: start of the target message within the buffer
-> + * @len: length of the target message
-> + * @size: size of the commands buffer
-> + * @shift: the address shift to be added to each GGTT reference
-> + */
-> +static void ct_update_addresses_in_message(struct xe_guc_ct *ct,
-> +					   struct iosys_map *cmds, u32 head,
-> +					   u32 len, u32 size, s64 shift)
-> +{
-> +	struct xe_device *xe = ct_to_xe(ct);
-> +	u32 action, i, n;
-> +	u32 msg[1];
-> +
-> +	xe_map_memcpy_from(xe, msg, cmds, head * sizeof(u32),
-> +			   1 * sizeof(u32));
-> +	action = FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, msg[0]);
-> +	switch (action) {
-> +	case XE_GUC_ACTION_REGISTER_CONTEXT:
-> +	case XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC:
-> +		/* field wq_desc */
-> +		ctb_fixup64(xe, cmds, head, 5, shift);
-
-can we add some defines in abi/ files for these magic offsets?
-
-> +		/* field wq_base */
-> +		ctb_fixup64(xe, cmds, head, 7, shift);
-> +		if (action == XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC) {
-> +			/* field number_children */
-> +			n = ctb_read32(xe, cmds, head, 10);
-> +			/* field hwlrca and child lrcas */
-> +			for (i = 0; i < n; i++)
-> +				ctb_fixup64(xe, cmds, head, 11 + 2 * i, shift);
-> +		} else {
-> +			/* field hwlrca */
-> +			ctb_fixup64(xe, cmds, head, 10, shift);
-> +		}
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +}
-> +
-> +static int ct_update_addresses_in_buffer(struct xe_guc_ct *ct,
-> +					 struct guc_ctb *h2g,
-> +					 s64 shift, u32 *mhead, s32 avail)
-> +{
-> +	struct xe_device *xe = ct_to_xe(ct);
-> +	u32 head = *mhead;
-> +	u32 size = h2g->info.size;
-> +	u32 msg[1];
-> +	u32 len;
-> +
-> +	/* Read header */
-> +	xe_map_memcpy_from(xe, msg, &h2g->cmds, sizeof(u32) * head,
-> +			   sizeof(u32));
-> +	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
-> +
-> +	if (unlikely(len > (u32)avail)) {
-> +		struct xe_gt *gt = ct_to_gt(ct);
-> +
-> +		xe_gt_err(gt, "H2G channel broken on read, avail=%d, len=%d, fixups skipped\n",
-> +			  avail, len);
-> +		return 0;
-> +	}
-> +
-> +	head = (head + 1) % size;
-> +	ct_update_addresses_in_message(ct, &h2g->cmds, head, len - 1, size, shift);
-> +	*mhead = (head + len - 1) % size;
-> +
-> +	return avail - len;
-> +}
-> +
-> +/**
-> + * xe_guc_ct_update_addresses - Fixup any pending H2G CTB messages by updating
-> + * GGTT offsets in their payloads.
-> + * @ct: pointer to CT struct of the target GuC
-> + * @ggtt_shift: shift to be added to all GGTT adresses within the CTB
-
-typo: addresses
-
-Return: ?
-
-> + */
-> +int xe_guc_ct_update_addresses(struct xe_guc_ct *ct, s64 ggtt_shift)
-> +{
-> +	struct xe_guc *guc = ct_to_guc(ct);
-> +	struct xe_gt *gt = guc_to_gt(guc);
-> +	struct guc_ctb *h2g = &ct->ctbs.h2g;
-> +	u32 head = h2g->info.head;
-> +	u32 tail = READ_ONCE(h2g->info.tail);
-> +	u32 size = h2g->info.size;
-> +	s32 avail;
-
-should we care if CTB was disabled when the VF was migrated?
-
-> +
-> +	if (unlikely(h2g->info.broken))
-> +		return -EPIPE;
-
-if it was broken before migration then maybe fixup is not needed and we
-should return a success here?
-
-> +
-> +	xe_gt_assert(gt, head > size);
-
-hmm, is this correct?
-
-> +
-> +	if (unlikely(tail >= size)) {
-> +		xe_gt_err(gt, "H2G channel has invalid tail offset (%u >= %u)\n",
-> +			 tail, size);
-
-maybe just extend xe_gt_err() below with extra info instead of this
-split into two error messages that is from one error case anyway?
-
-btw, I hope that we will have a clear indication that such error was
-found during recovery (as now it looks like generic CTB error)
-
-> +		goto corrupted;
-> +	}
-> +
-> +	avail = tail - head;
-> +
-> +	/* beware of buffer wrap case */
-> +	if (unlikely(avail < 0))
-> +		avail += size;
-> +	xe_gt_dbg(gt, "available %d (%u:%u:%u)\n", avail, head, tail, size);
-> +	XE_WARN_ON(avail < 0);
-
-use xe_gt_assert() instead
-
-> +
-> +	while (avail > 0)
-> +		avail = ct_update_addresses_in_buffer(ct, h2g, ggtt_shift, &head, avail);
-> +
-> +	return 0;
-> +
-> +corrupted:
-> +	xe_gt_err(gt, "Corrupted descriptor head=%u tail=%u\n",
-> +		 head, tail);
-
-no need to wrap (yet)
-
-> +	h2g->info.broken = true;
-> +	return -EPIPE;
-> +}
-> +
->  static struct xe_guc_ct_snapshot *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic,
->  							bool want_ctb)
->  {
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-> index 82c4ae458dda..25e5ee71d853 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-> @@ -22,6 +22,8 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_pr
->  void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
->  void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
->  
-> +int xe_guc_ct_update_addresses(struct xe_guc_ct *ct, s64 ggtt_shift);
-
-nit: maybe ... update_messages() or fixup_messages_with_ggtt() ?
-
-> +
->  static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
->  {
->  	return ct->state == XE_GUC_CT_STATE_ENABLED;
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> index 4ee8fc70a744..1cb8878e6fad 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> @@ -10,6 +10,7 @@
->  #include "xe_gt.h"
->  #include "xe_gt_sriov_printk.h"
->  #include "xe_gt_sriov_vf.h"
-> +#include "xe_guc_ct.h"
->  #include "xe_pm.h"
->  #include "xe_sriov.h"
->  #include "xe_sriov_printk.h"
-> @@ -158,6 +159,18 @@ static int vf_post_migration_requery_guc(struct xe_device *xe)
->  	return ret;
->  }
->  
-> +static void vf_post_migration_fixup_ctb(struct xe_device *xe)
-> +{
-> +	struct xe_gt *gt;
-> +	unsigned int id;
-> +
-
-since you are accessing sriov.vf fields directly, maybe worth to add
-
-	xe_assert(xe, IS_SRIOV_VF(xe))
-
-> +	for_each_gt(gt, xe, id) {
-> +		struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-> +
-> +		xe_guc_ct_update_addresses(&gt->uc.guc.ct, config->ggtt_shift);
-
-this function returns int, shouldn't we check for errors?
-if not then maybe make it void
-
-> +	}
-> +}
-> +
->  /*
->   * vf_post_migration_imminent - Check if post-restore recovery is coming.
->   * @xe: the &xe_device struct instance
-> @@ -224,6 +237,9 @@ static void vf_post_migration_recovery(struct xe_device *xe)
->  
->  	err = vf_post_migration_fixup_ggtt_nodes(xe);
->  	/* FIXME: add the recovery steps */
-
-will be more recovery steps _here_ or below ?
-
-> +	if (err != ENODATA)
-> +		vf_post_migration_fixup_ctb(xe);
-> +
->  	vf_post_migration_notify_resfix_done(xe);
->  	xe_pm_runtime_put(xe);
->  	drm_notice(&xe->drm, "migration recovery ended\n");
-
+--- linux-next-20241125.orig/drivers/gpu/drm/xe/xe_vm_doc.h
++++ linux-next-20241125/drivers/gpu/drm/xe/xe_vm_doc.h
+@@ -64,8 +64,8 @@
+  *	update page level 2 PDE[1] to page level 3b phys address (GPU)
+  *
+  *	bind BO2 0x1ff000-0x201000
+- *	update page level 3a PTE[511] to BO2 phys addres (GPU)
+- *	update page level 3b PTE[0] to BO2 phys addres + 0x1000 (GPU)
++ *	update page level 3a PTE[511] to BO2 phys address (GPU)
++ *	update page level 3b PTE[0] to BO2 phys address + 0x1000 (GPU)
+  *
+  * GPU bypass
+  * ~~~~~~~~~~
+@@ -192,7 +192,7 @@
+  *
+  * If a VM is in fault mode (TODO: link to fault mode), new bind operations that
+  * create mappings are by default deferred to the page fault handler (first
+- * use). This behavior can be overriden by setting the flag
++ * use). This behavior can be overridden by setting the flag
+  * DRM_XE_VM_BIND_FLAG_IMMEDIATE which indicates to creating the mapping
+  * immediately.
+  *
+@@ -209,7 +209,7 @@
+  *
+  * Since this a core kernel managed memory the kernel can move this memory
+  * whenever it wants. We register an invalidation MMU notifier to alert XE when
+- * a user poiter is about to move. The invalidation notifier needs to block
++ * a user pointer is about to move. The invalidation notifier needs to block
+  * until all pending users (jobs or compute mode engines) of the userptr are
+  * idle to ensure no faults. This done by waiting on all of VM's dma-resv slots.
+  *
+@@ -252,7 +252,7 @@
+  * Rebind worker
+  * -------------
+  *
+- * The rebind worker is very similar to an exec. It is resposible for rebinding
++ * The rebind worker is very similar to an exec. It is responsible for rebinding
+  * evicted BOs or userptrs, waiting on those operations, installing new preempt
+  * fences, and finally resuming executing of engines in the VM.
+  *
+@@ -317,11 +317,11 @@
+  * are not allowed, only long running workloads and ULLS are enabled on a faulting
+  * VM.
+  *
+- * Defered VM binds
++ * Deferred VM binds
+  * ----------------
+  *
+  * By default, on a faulting VM binds just allocate the VMA and the actual
+- * updating of the page tables is defered to the page fault handler. This
++ * updating of the page tables is deferred to the page fault handler. This
+  * behavior can be overridden by setting the flag DRM_XE_VM_BIND_FLAG_IMMEDIATE in
+  * the VM bind which will then do the bind immediately.
+  *
+@@ -500,18 +500,18 @@
+  * Slot waiting
+  * ------------
+  *
+- * 1. The exection of all jobs from kernel ops shall wait on all slots
++ * 1. The execution of all jobs from kernel ops shall wait on all slots
+  * (DMA_RESV_USAGE_PREEMPT_FENCE) of either an external BO or VM (depends on if
+  * kernel op is operating on external or private BO)
+  *
+- * 2. In non-compute mode, the exection of all jobs from rebinds in execs shall
++ * 2. In non-compute mode, the execution of all jobs from rebinds in execs shall
+  * wait on the DMA_RESV_USAGE_KERNEL slot of either an external BO or VM
+  * (depends on if the rebind is operatiing on an external or private BO)
+  *
+- * 3. In non-compute mode, the exection of all jobs from execs shall wait on the
++ * 3. In non-compute mode, the execution of all jobs from execs shall wait on the
+  * last rebind job
+  *
+- * 4. In compute mode, the exection of all jobs from rebinds in the rebind
++ * 4. In compute mode, the execution of all jobs from rebinds in the rebind
+  * worker shall wait on the DMA_RESV_USAGE_KERNEL slot of either an external BO
+  * or VM (depends on if rebind is operating on external or private BO)
+  *
