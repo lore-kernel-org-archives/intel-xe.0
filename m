@@ -4,180 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1687DD69100
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Nov 2024 11:50:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18206D69106
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Nov 2024 12:28:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C424510E459;
-	Thu, 28 Nov 2024 11:50:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA37F10E36F;
+	Thu, 28 Nov 2024 12:28:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S1yrY88a";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="QPnys0og";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E026810E445;
- Thu, 28 Nov 2024 11:50:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732794647; x=1764330647;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=JKx5MPrZS2Ttu6YSGOAMGsf1GqbpAe9/nZhDyxbmvlk=;
- b=S1yrY88aeQH+Dqjv7oJ9Z/wZN1CTwb7TZHsaUY2eeJiZq03JwuAxrhuC
- 6JKO2zl+/+XsBYSj8LPG5CbAVWpEhDo7bNuuPovbFmHULviMswyZjDxoa
- LSRZP4Lf2pC3qVyucfSRjA40l+L/6m98WatFMDKaHZcgqI35hAI0iw7n9
- Uc2kxELNfwMYK43DxNP8HeeacvsVawJtxbpTXTb5O9MMJWXA8h3NovLD+
- tjn9WSY7ve0AJzsNt9bEYoRlAxQEnIMy7T61vfXssejsIrguWm4Z54r6g
- RHWrhkhispcSTZe1HMw3WtIJk/IxuZtSqXjY9t0PeIHAghd7hHnn0nZ2A w==;
-X-CSE-ConnectionGUID: niGpd/0dRV+6stx4Iudrlg==
-X-CSE-MsgGUID: Jy90IgWuQBuUcLXd2SQmWQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="36953843"
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="36953843"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2024 03:50:46 -0800
-X-CSE-ConnectionGUID: x1EBN+8qRtan9PqT4W3Vhw==
-X-CSE-MsgGUID: Por/dzbCQkaPCxRbx0Hgtw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="96982364"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 Nov 2024 03:50:46 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 28 Nov 2024 03:50:45 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 28 Nov 2024 03:50:45 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.176)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 28 Nov 2024 03:50:45 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tIHbHtUlIbhgkeDH/B/ya+iCn7jlWEfrcj+/ghZof8hEfJZr2Ncpm141W6yVQfxoWmy4wbVSbVnSWdfiLRwjebfOQ0QwUj2Hra6xlDGFbsnULupwh2X2lVlyp6m5KlXLzfHIA5XJlAoflv1pGTdnu1TkEiULuPCaol1yQt4u4OMEP1Ft5+hFQDrmlLTXfXoTC0YVmU8o6hWWZSvw75+7fUY2nEWgxMJcih2GRI2zLtD5AKhOYBTZ9uu8TyZQc9eTfncLvLpScKjxXMcKtWBm7RDhDIr1RukqAbNogweCjXJb5OJGHBOjqDlDCTs4p8hLNnh23WBKOBAGfdEFxYmX4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IrCoWhuLSFIyUAUDx4rUPtga1wrwaKVPt9RF3UWO3WA=;
- b=otks+RVlIdCACxxexiLoW8ITjaehY6RQvlIkSncG3fg4teeG8v38EBecEZcDr2vvJpQA1V7hdSgYBPDjSuvAo5qkJ/asagKJZJ14x3R7FuzOrUxibF19YTKSKjPzfCvreo29KiopRNsyLnt6hQHqlhLiEl+o25XnT0Fkf+QTjMJslHs9Q+ejCNE9f1m+TvxaOPmED2aCVTBTJxw4HRnFwj6JruhCj5SsBbXnd18l3Oi7fpRNQFZAXH0u6JenHF5G1VSS+kkx4kskVlBgKwC4xEWnAlwEvNTKnSsaBRBG0ZZQNPdTIlX6lLwERzGPwDxNVJZVrpOyPrt3hXsKMQSsAA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by CH0PR11MB8168.namprd11.prod.outlook.com (2603:10b6:610:186::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.20; Thu, 28 Nov
- 2024 11:50:42 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.8207.010; Thu, 28 Nov 2024
- 11:50:42 +0000
-Message-ID: <e5097d78-a55a-48e8-bf01-a1ec930f8caa@intel.com>
-Date: Thu, 28 Nov 2024 17:20:36 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/hdcp: Change log level for HDMI HDCP LIC check
-To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <intel-gfx@lists.freedesktop.org>
-References: <20241128063427.1792509-1-suraj.kandpal@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20241128063427.1792509-1-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN2PEPF000001AD.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c04::9) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19BAE10E1B7
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Nov 2024 12:28:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1732796936;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ZACMslqIaF7iVtmlx12c8LPoSlN7TzLegXngDuX2z78=;
+ b=QPnys0og/9ZtXa5XVKgdSczFqWElYPx0x38aFbMVU/kymsa4vfCBuKFYZwqJVQGxed07VY
+ DfCSxyGrJBgVG8MHz2QkW11kvxWp1FxbuNxYNbmfCChS0MwjTQ1cpaOR7EfKSlEMXecB2B
+ 1o3Zeuon1Q7UeIa2GVutpzvainNbh5g=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-663-c1QA8zbwOzeFSHWxCmlsQg-1; Thu, 28 Nov 2024 07:28:53 -0500
+X-MC-Unique: c1QA8zbwOzeFSHWxCmlsQg-1
+X-Mimecast-MFC-AGG-ID: c1QA8zbwOzeFSHWxCmlsQg
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-38242c5b4ffso437457f8f.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Nov 2024 04:28:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1732796932; x=1733401732;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ZACMslqIaF7iVtmlx12c8LPoSlN7TzLegXngDuX2z78=;
+ b=TZ/Syf4QJtimBKsXskD8bSlMWPY0NATPG1vxLSkcFqqtFEpk6hCebN/e1+X8EbRuvr
+ di7Y1kzXmjyl/gixkZB7+TaDhAe6hAhr2GmqR2Bc9tAgG6N92pY95HcQM06JH5L+uBwo
+ saCl8Ggv0QlTsLMWNmzUGEplYyWALkIVWGKn1teeilG0D+qwljGPQiKCE/8HP1vc08E1
+ vO+AlvukST2dYhiJeC761WeygZslUKNstQ6KQqH+1M3jhgQ1UIO7UM5Cw1WwgylSmTdC
+ uP2h4SNW54kGvY60ASrvRlc8zLtBU0/vl1OxA7QpB23jRJmw9iRuMhdOJTfxJCjBI+yM
+ jtEA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU2xHhhmBjwEFzOLKpzM6hGZnl1QROshj4g4xk3VpD7aAdVgmPXpknQ42NioUocLhcPWF7m9K1uPw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxQ4jjHVU2lidoVv9JnUxQnbzZvAXUC0XSkxQC/twfPTVRFNNNa
+ 1/L26lqkSba2qTp+MVhKN4GhP2GuL+0c9wQW87Us2DXccRMcQZTEBCfRPU/sj1Yw31OFF5LtSYK
+ oNkRENBRIOmYrkOz5XVy/nsywm4XlQHj533WdzeD2uW4vlQPG+434km2MLVBdyTXqvMUwgr6dN7
+ Ex+BfAwy/0AHz3ousCSQcgM63LY5OvGzSNhLTsRKs=
+X-Gm-Gg: ASbGncsAUp1gnd4r1eIiplU96lALB5C5FlsPDZBVDnSeti2ddHZmOfxeXaX5M8khjOQ
+ o2kaEN5rIVAICN0LQOZz83/l3gEyn4lU=
+X-Received: by 2002:a05:6000:18ac:b0:382:4a27:1319 with SMTP id
+ ffacd0b85a97d-385c6eb5840mr5776166f8f.6.1732796932011; 
+ Thu, 28 Nov 2024 04:28:52 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGGOqoP8tsZ6KQpRsoqtGa6KHF61EJ3NUmj3Aw3MlprtODTvHQ/TDY7uTpa3Nw0Vy2Is2RlK3QrcXMwzmVV8rU=
+X-Received: by 2002:a05:6000:18ac:b0:382:4a27:1319 with SMTP id
+ ffacd0b85a97d-385c6eb5840mr5776067f8f.6.1732796931576; Thu, 28 Nov 2024
+ 04:28:51 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CH0PR11MB8168:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6151a8a2-78a4-4336-f21d-08dd0fa2e2f8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?UkJXTXkwZnZhbGxIa2lNNWJsa1YzaDdIWDdkbGROcDJKQm5CZHl0NEc2T3Bh?=
- =?utf-8?B?akVhT2JqUW1XZjJ4K2JmazByRndaRWFaOVd1aktxc0ZXbzNvanRpTENQMEJu?=
- =?utf-8?B?SFlzWEZMRitybGUrRUtBdVlEL3BPTFl2a2RWSmh1YWtCRUNrdGxMTy9pRHRp?=
- =?utf-8?B?Nytza0RpQUM5N0FvTFBvbkRqaDJGR3RIVDNobmE3MERnVnE5TkpLOE5iL1k3?=
- =?utf-8?B?SzdpRzVpQkdpM0RXeURSUS9OVWVRbWhuWkM3cHNiMENpK1BhdTVvK0h5ajB4?=
- =?utf-8?B?RURDcUU4OWpaL0V4eXlvTnV2OE9jejNQaE0zZzNTVFV1a0NoU2xGUzRFakJL?=
- =?utf-8?B?YU4vc0xBNzdnQWxDV2tzU3BkTTB6L2ZsYVpoNXBNVnFCTEtpV1pXRGZjUjky?=
- =?utf-8?B?U2F1Uk8xUVFsdURsMkhwUVU4Q1FHSEtnc0xlY3BtUnlkMTdVczFxdDRObFlo?=
- =?utf-8?B?NzdoN3ZtREIxcElIRmMvMS9XMFgxY3g3Zi9zcThzK3pPOUdxS01mTXFmcHJV?=
- =?utf-8?B?NTAycjRBVXB2amd3cUQvcmtFRGlhd01NNjQzOVFWQ0xYTzZSelRYWU5aWHVI?=
- =?utf-8?B?WDJnZC9UUUg5Sk8zaSt6WngrUVBPY2s0REgyZXR6RkdTdE1lZ3dYbjc4Q0lt?=
- =?utf-8?B?Q2lpWng1R1JuREpqNmxKbEoyS2VKdGxIbnRTZ0czRlRERmlmaUFuVG5FckRj?=
- =?utf-8?B?RlBkU2FUR2RJR0pidDU3NnBsVmx6eGhMaSt2YXdvMndVbWhQOWg2Zm1jc2hC?=
- =?utf-8?B?aHZGOTNpbXdKSlBrUnZxZFFZQnFFVEx0SFVZV2VUMlNzT0JIOW5MMzc4aER1?=
- =?utf-8?B?TktkbEVmUHFaa0tOQ3FxY0ZRbW80RUNQNUFUL0hqVGxPUG1rVy9rem1jQTZJ?=
- =?utf-8?B?emVkS0Q2akQwY1gxV2hDUUdxNU12VEYreUYvOXFTdUJzRFM2OERoQTE0MUJH?=
- =?utf-8?B?aHB1c0VEV1FBS012aU5KbTFYUndSekt6Ump4UTBNSUNjTkRtbkNYOEN5NTdy?=
- =?utf-8?B?Y0VxS2xRT2RzazlVRWRiZVZXSC9RbGhTRmYrT1NrMTd1V3doZ0FIelRBU2pl?=
- =?utf-8?B?Q1NnaVREVElDRWd1djh5a0RlQnRRVWlBbFVJc1J6aUZuTmNTVm5FaEM2N1VU?=
- =?utf-8?B?cXdxZ0xDeEx3RTlXMEw4RUFnOGhoUTFweDBCMkdod3l4eStGM0ZhQ0NpVjJQ?=
- =?utf-8?B?ZEF6OENOL3RORXBuOVJRLzlUZ2pjaDcza0hPSWRvb2ViemE3ZXNtcWFxeVpa?=
- =?utf-8?B?WVk3VGljNUFyVlkwU2h1enJIWXlkRDE1WU5oQ2Q1ZTY5N29aUzQ0N05tdjZQ?=
- =?utf-8?B?aXowQThlRU9NUExTRnEveHhVMkJuSlhyaDZlK2NndWR6ZHcvRE9XTFEvZ3Z5?=
- =?utf-8?B?OGxYUyt1anNtZXQrY0JHVnpXQlhJUmlYSkVONHRpS2lyWjc3TEl2MkIzUURq?=
- =?utf-8?B?NUJJcEtkbVBRamVHbzhzdExrZGRWQ3lxeC9PS0dBN2FFTHRvTi9tQkw2U3lM?=
- =?utf-8?B?dnlJRVhoSnJoL1dJb0VMQ3lyS0Jwd0V0bUFIWWhTUHN6bm1Cd2d1ME1EYjRw?=
- =?utf-8?B?SW9yMm1OL0RycWh4Q2x6bmVKQnFqOXRESHM2R2o2RTBaamtzWW9DakxMcUo4?=
- =?utf-8?B?TUVtOWdhTTNqZHFsMHAwSlAyWC8rSjIxdzNJbTNLL3JzY1h5cGtCUlZjL1p3?=
- =?utf-8?B?NithcXV3cXBXRFZaWTdOTVJ3QlBhRHM0aTMxRGt0ZThuYnVBdTNjcjN2dlNQ?=
- =?utf-8?B?R2ZCME8zdTVQa0ZUb3NjWTgwR2VTS0JIKyswSVNWdzVhUGRwMXRORm1Sa2VD?=
- =?utf-8?B?VWRGOHFSK1djaDBUbWRUZz09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WFFTajE2N2Z6SG53TkdOK1o2ZnMxN0MzTXc3eTVYaDFRQWNIdkpPZ244M1JI?=
- =?utf-8?B?eVM5V2JiTmJmOWxZYzFNc28yd3VaaDhZQ25rdEtYdjNaYWxmTU9raGpvUWY5?=
- =?utf-8?B?bEg1NzJINE5SOXd0eGdKSTZvTmZVNDhpOUQ2Snk2Y2pPc214RUd5L3I5cTA0?=
- =?utf-8?B?TENPSXg3OVpZeGduWXcrRk9jZnpMUHVLN3VqL1NlVWhXSklHMnpVTHA4ZXJQ?=
- =?utf-8?B?dTNreUVBZlBId1kyRXpEWmNONUpQWGVMRy9WZXFvM0J3dW9GbEYwTVF2U0s3?=
- =?utf-8?B?MVlRSXhxMzREVVlLL3F2RDhiK0Y3aDJFczNPR2JqclQrZGUwUVg4MTN5N1ZZ?=
- =?utf-8?B?WTV5K3V5Q0IxWEJtWFF6c3A3NFVhcHJNRnNxZmZQWDlhUWU4QzFZa2lSbDVz?=
- =?utf-8?B?OVNRN3daTlVGOGkyOFZnZGQrdEROYjVSM1BUUS9zd3RucElhRUZIZVY1Mlor?=
- =?utf-8?B?RUxIMG5YVWZCbzJJYTN0d1FsdFM0OEYzZlJZTDRyQkNNc1JScmNzOXVDRHAr?=
- =?utf-8?B?c1VnL3A3RVNVaHFxa0wwbUV5MXdBSFNWcnphVGRNVFlFbkJQTlJ0NzBCYmFq?=
- =?utf-8?B?RFNKVCtkc2ZtWXpnY0xWNTZEOXNUS3VLdmdaVTU0c0pRUm13Qkp4SUJhWVJq?=
- =?utf-8?B?bUxBU2RTZjArTjE4UnJPK0tMZFNxUGk1NzEzdktuYVkrWnZMK1hpSUNROW5L?=
- =?utf-8?B?OFk0dWZnSUZHUUgwamFXUjU0TjFJVVlCaGVFOVB0ZGczWDR4K2MxdExXY09R?=
- =?utf-8?B?SFNpV0FvR3lmMmxpTGxzR0lCeFJIL0lORnUvZkh1RXNyK1FnVjBpT3hZcjl3?=
- =?utf-8?B?ZXpycjNKbys0SUgvZjdiZ2FrdmJoVzJGUjc1emN1NVY2aENMcEdvTUkrdVJn?=
- =?utf-8?B?NzZlcitrMXVhQklwZ3FJR1ljMEpRV3NaVGc3dUw2S2c0eVZncU1kMzZWb1hD?=
- =?utf-8?B?VDdubURJb1dlcG1NUXBqaDA3c3JMdHRqSm5Ca0lkS1Z5WnlpZEorY0lUaGVo?=
- =?utf-8?B?Ym80R2t3eFYwRnpOWS9rcjRTMXpaNWNhRGRuUnRjWDRTWG9GSEg4NkUwM2xk?=
- =?utf-8?B?ZW91VnVMSEhrcFhyOHZNUEpnRWpLbEg0Uk9iUDJIVzZKOWxReEd4c0UvNHNj?=
- =?utf-8?B?ekNxc0g0NitEMlRPL25nVlkvMGRVZTEyZi96cncrVnRXbTExaVNMRmNya0N4?=
- =?utf-8?B?elQzUjhNenBmVFJrazJ4Y29SZEY5akNYTnA5MkJ6OWcyb2loQWpUY3FNeU56?=
- =?utf-8?B?QVIwMkUrVnpEaVpmSFBPQUZYbC9DaVRsUHdpWnQyTzFtNHQxQXJ2Tlp2U0NF?=
- =?utf-8?B?ZStkby9iWkpVbmtNVThTdlExbzVJOGVwaXhWMVlJYkZvRnErVnJybXQ4em1y?=
- =?utf-8?B?Tm15UnpEWTlNK0xqL2RqTGQ0K0NRL3ZMWVhFSkNoZGNkZVdzeWJaamdkZ3Nh?=
- =?utf-8?B?N0czaFB1R0xENEhDM29sR2t2VExNaWJSb0tEZmY2bDcvVUxCbmxRbHpPdGlN?=
- =?utf-8?B?ZllKVUFja1Y5TWxXSHBxRXFxUG1KdWQweEVSbkNSOGdYSURnWDZOay9Lckxt?=
- =?utf-8?B?VkNjRlBaZVNDZGorT1h4ZkN3THJtTnhwY0RKM1ZCVzRHTDhXQVBwSGdxTjVa?=
- =?utf-8?B?dEE4OWt2eHEvTVhvY1dOSlFUMk1XcE1mcUF5TTE4UlRJQXp0ZUlZS3hibXFa?=
- =?utf-8?B?V29Cdzg3MURlTDJKcGhBWFhCT2laZVJPUXVnOERNVmdzTWZ4dlNMWHMrSW1X?=
- =?utf-8?B?UVUzdjk0aGFmTW43M3kxcDY4RVFtQ2NmL3BKVEhvaDRtL0oyOXAzb29mZWdK?=
- =?utf-8?B?RjBXZ0J5M25zcFpSWk5YQ0dMaTllbm1LVWZXWTUzQXF1bitMQ3JVYmZ2cUpH?=
- =?utf-8?B?RzZwNkp2ZjhKZDd3YzdrcjhHQUNIZTc2RUc4WDlsTFpPL2srYnAvR2YxVG9x?=
- =?utf-8?B?MVcvcGgwTXVadktBWXRhcmd4YVhFQlR1a0Rid09iajh5Q0dmNVE3VjgycGtI?=
- =?utf-8?B?amJxeitlSDdXMkM2UDl6aHFzOXFJUnNMYlp2L3h6SWROMkVOQjFJcHdHTVVm?=
- =?utf-8?B?Ri9Ma3hUaUxMNWlFa3hiRWY4a2VBRk0yT1VXTWlnQkxkQThMdG1hRmFKbDBm?=
- =?utf-8?B?N2Y4ajJXV2hzNmV5ZExkYjMzVGV2VTdiT1drS2dQRlUvcGVoZnhJcjdJTFpH?=
- =?utf-8?B?RlE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6151a8a2-78a4-4336-f21d-08dd0fa2e2f8
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2024 11:50:42.6705 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4oixj+hNz4TArloOT6w4Kst4+vNP//1p94cbI/urdQV+7ciD/IuIOGqcNyeupY5zXgnBJpackTuXOiSHxgFsN41NZ3G0ySgt9n3ymPKAy2s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB8168
-X-OriginatorOrg: intel.com
+References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
+ <20241115-converge-secs-to-jiffies-v2-18-911fb7595e79@linux.microsoft.com>
+In-Reply-To: <20241115-converge-secs-to-jiffies-v2-18-911fb7595e79@linux.microsoft.com>
+From: Alex Markuze <amarkuze@redhat.com>
+Date: Thu, 28 Nov 2024 14:28:40 +0200
+Message-ID: <CAO8a2SgQ-==SjhDFZpi2s3r9FUGA96jwuJL7kTDwE=Hw4UcgUg@mail.gmail.com>
+Subject: Re: [PATCH v2 18/21] ceph: Convert timeouts to secs_to_jiffies()
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+Cc: Pablo Neira Ayuso <pablo@netfilter.org>,
+ Jozsef Kadlecsik <kadlec@netfilter.org>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Simon Horman <horms@kernel.org>, 
+ Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>, 
+ Daniel Mack <daniel@zonque.org>, Haojian Zhuang <haojian.zhuang@gmail.com>, 
+ Robert Jarzmik <robert.jarzmik@free.fr>, Russell King <linux@armlinux.org.uk>, 
+ Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>, 
+ Sven Schnelle <svens@linux.ibm.com>, Ofir Bitton <obitton@habana.ai>, 
+ Oded Gabbay <ogabbay@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jeroen de Borst <jeroendb@google.com>,
+ Praveen Kaligineedi <pkaligineedi@google.com>, 
+ Shailend Chand <shailend@google.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+ James Smart <james.smart@broadcom.com>,
+ Dick Kennedy <dick.kennedy@broadcom.com>, 
+ "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ =?UTF-8?Q?Roger_Pau_Monn=C3=A9?= <roger.pau@citrix.com>, 
+ Jens Axboe <axboe@kernel.dk>, Kalle Valo <kvalo@kernel.org>,
+ Jeff Johnson <jjohnson@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Andrew Morton <akpm@linux-foundation.org>, 
+ Jack Wang <jinpu.wang@cloud.ionos.com>, Marcel Holtmann <marcel@holtmann.org>, 
+ Johan Hedberg <johan.hedberg@gmail.com>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
+ Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Xiubo Li <xiubli@redhat.com>, 
+ Ilya Dryomov <idryomov@gmail.com>, Josh Poimboeuf <jpoimboe@kernel.org>,
+ Jiri Kosina <jikos@kernel.org>, 
+ Miroslav Benes <mbenes@suse.cz>, Petr Mladek <pmladek@suse.com>, 
+ Joe Lawrence <joe.lawrence@redhat.com>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>, 
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Louis Peens <louis.peens@corigine.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Naveen N Rao <naveen@kernel.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, netfilter-devel@vger.kernel.org, 
+ coreteam@netfilter.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ cocci@inria.fr, linux-arm-kernel@lists.infradead.org, 
+ linux-s390@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-scsi@vger.kernel.org, 
+ xen-devel@lists.xenproject.org, linux-block@vger.kernel.org, 
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+ linux-mm@kvack.org, linux-bluetooth@vger.kernel.org, 
+ linux-staging@lists.linux.dev, linux-rpi-kernel@lists.infradead.org, 
+ ceph-devel@vger.kernel.org, live-patching@vger.kernel.org, 
+ linux-sound@vger.kernel.org, etnaviv@lists.freedesktop.org, 
+ oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org, 
+ Anna-Maria Behnsen <anna-maria@linutronix.de>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: xrbTOhuCbtQCa_bP4qeorOqI1DSw5_2rbz4Oe1Yp9S8_1732796932
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -192,47 +152,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+looks good
 
-On 11/28/2024 12:04 PM, Suraj Kandpal wrote:
-> We don't need to shout out loud if there is a Link Integrity
-> Failure. This does not mean HDCP has failed, it is expected and
-> taken into account in the HDCP Spec. The real failure happens when
-> we are not able to reauthenticate and get HDCP running again for
-> which we already have the right logging.
+On Sat, Nov 16, 2024 at 12:32=E2=80=AFAM Easwar Hariharan
+<eahariha@linux.microsoft.com> wrote:
 >
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> Changes made with the following Coccinelle rules:
+>
+> @@ constant C; @@
+>
+> - msecs_to_jiffies(C * 1000)
+> + secs_to_jiffies(C)
+>
+> @@ constant C; @@
+>
+> - msecs_to_jiffies(C * MSEC_PER_SEC)
+> + secs_to_jiffies(C)
+>
+> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_hdmi.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>  fs/ceph/quota.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index 23c270a8c4aa..fa679b5d5510 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -1607,7 +1607,7 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *dig_port,
->   		if (intel_hdmi_hdcp_check_link_once(dig_port, connector))
->   			return true;
->   
-> -	drm_err(display->drm, "Link check failed\n");
-> +	drm_dbg_kms(display->drm, "Link check failed\n");
+> diff --git a/fs/ceph/quota.c b/fs/ceph/quota.c
+> index 06ee397e0c3a6172592e62dba95cd267cfff0db1..d90eda19bcc4618f98bfed833=
+c10a6071cf2e2ac 100644
+> --- a/fs/ceph/quota.c
+> +++ b/fs/ceph/quota.c
+> @@ -166,7 +166,7 @@ static struct inode *lookup_quotarealm_inode(struct c=
+eph_mds_client *mdsc,
+>         if (IS_ERR(in)) {
+>                 doutc(cl, "Can't lookup inode %llx (err: %ld)\n", realm->=
+ino,
+>                       PTR_ERR(in));
+> -               qri->timeout =3D jiffies + msecs_to_jiffies(60 * 1000); /=
+* XXX */
+> +               qri->timeout =3D jiffies + secs_to_jiffies(60); /* XXX */
+>         } else {
+>                 qri->timeout =3D 0;
+>                 qri->inode =3D in;
+>
+> --
+> 2.34.1
+>
+>
 
-I agree, we do re-authentication after this so this is not an error at 
-this point.
-
-We already have below debug message in case check_link() fails for 
-either hdmi/dp in intel_hdcp.c
-
-         drm_dbg_kms(display->drm,
-                     "[CONNECTOR:%d:%s] HDCP link failed, retrying 
-authentication\n",
-                     connector->base.base.id, connector->base.name);
-
-Perhaps just dropping this message altogether will be better.
-
-Regards,
-
-Ankit
-
->   	return false;
->   }
->   
