@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 335F3D6D25E
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Nov 2024 04:05:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33648D6D25F
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Nov 2024 04:05:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2F5B10E776;
-	Thu, 28 Nov 2024 04:05:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC00810E776;
+	Thu, 28 Nov 2024 04:05:50 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8B6B10EC14;
- Thu, 28 Nov 2024 04:05:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69E5410EC14;
+ Thu, 28 Nov 2024 04:05:49 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vm=5Fdoc=3A_f?=
- =?utf-8?q?ix_more_doc_typos?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/vm=5Fdoc=3A_fix_mo?=
+ =?utf-8?q?re_doc_typos?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Randy Dunlap" <rdunlap@infradead.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Nov 2024 04:05:37 -0000
-Message-ID: <173276673794.3968974.332411971475795745@b555e5b46a47>
+Date: Thu, 28 Nov 2024 04:05:49 -0000
+Message-ID: <173276674942.3968974.13379086957949936008@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241128035901.375399-1-rdunlap@infradead.org>
 In-Reply-To: <20241128035901.375399-1-rdunlap@infradead.org>
@@ -48,9 +48,32 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2a09bda868b8 drm-tip: 2024y-11m-28d-00h-39m-32s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/vm_doc: fix more doc typos
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 070f8d586adcdf77bd6b1aaed1c8f4d603286ac0
+Author: Randy Dunlap <rdunlap@infradead.org>
+Date:   Wed Nov 27 19:58:59 2024 -0800
+
+    drm/xe/vm_doc: fix more doc typos
+    
+    Fix all typos in xe_vm_doc.h as reported by codespell.
+    
+    Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: intel-xe@lists.freedesktop.org
+    Cc: David Airlie <airlied@gmail.com>
+    Cc: Simona Vetter <simona@ffwll.ch>
+    Cc: dri-devel@lists.freedesktop.org
++ /mt/dim checkpatch 2a09bda868b896bc2a88a3a902e493063ce9e021 drm-intel
+070f8d586adc drm/xe/vm_doc: fix more doc typos
 
 
