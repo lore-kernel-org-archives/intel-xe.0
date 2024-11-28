@@ -4,26 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57E7AD6910B
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Nov 2024 13:42:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 414FAD69111
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Nov 2024 14:00:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FA0810EC84;
-	Thu, 28 Nov 2024 13:42:51 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC4CC10E1CD;
- Thu, 28 Nov 2024 13:42:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2541835876330081863=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF3D810ECBD;
+	Thu, 28 Nov 2024 14:00:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="spXBZAos";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="QzcpnBrU";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="spXBZAos";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="QzcpnBrU";
+	dkim-atps=neutral
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00C1510ECC2;
+ Thu, 28 Nov 2024 14:00:01 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 3917B21190;
+ Thu, 28 Nov 2024 14:00:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1732802400; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=l+06lfCNDnVD2/bTWmn5jNB1y8xu+76Vcsk9Nst6TDU=;
+ b=spXBZAoscIt3YPqSKmP56TV5ZGYPR8DYLDmh0N3qkxyhHuqjN2hNOvygvUPkl/3xgN5NeK
+ YzZVXsjoJDuiAvKz0VFgKJAOGcpWl5LgphixlikhBo79xSE6aqbjo+B4YYOc6ukc82oUEu
+ ndAaOJKo7sY7mP1Csf2Wql+R0oghs6E=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1732802400;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=l+06lfCNDnVD2/bTWmn5jNB1y8xu+76Vcsk9Nst6TDU=;
+ b=QzcpnBrUg/NiE+w/i+8yC6e92kIOb/gkCoOdZclU+gtwib++vwP1ux2MXbOteI6jGb9pPB
+ jIgYF6fjGyIcJ6Cg==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1732802400; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=l+06lfCNDnVD2/bTWmn5jNB1y8xu+76Vcsk9Nst6TDU=;
+ b=spXBZAoscIt3YPqSKmP56TV5ZGYPR8DYLDmh0N3qkxyhHuqjN2hNOvygvUPkl/3xgN5NeK
+ YzZVXsjoJDuiAvKz0VFgKJAOGcpWl5LgphixlikhBo79xSE6aqbjo+B4YYOc6ukc82oUEu
+ ndAaOJKo7sY7mP1Csf2Wql+R0oghs6E=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1732802400;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=l+06lfCNDnVD2/bTWmn5jNB1y8xu+76Vcsk9Nst6TDU=;
+ b=QzcpnBrUg/NiE+w/i+8yC6e92kIOb/gkCoOdZclU+gtwib++vwP1ux2MXbOteI6jGb9pPB
+ jIgYF6fjGyIcJ6Cg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C5CEE13974;
+ Thu, 28 Nov 2024 13:59:59 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id o13SLl93SGfJCAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 28 Nov 2024 13:59:59 +0000
+Date: Thu, 28 Nov 2024 14:59:58 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20241128135958.GA244627@linux.fritz.box>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_MSI-X_support?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ilia Levi" <ilia.levi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Nov 2024 13:42:49 -0000
-Message-ID: <173280136970.4072800.1692798111665473953@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241128125345.1115-1-ilia.levi@intel.com>
-In-Reply-To: <20241128125345.1115-1-ilia.levi@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
+ MISSING_XM_UA(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,129 +112,77 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2541835876330081863==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Sima,
 
-== Series Details ==
+here's the PR of drm-misc-fixes for this week. The first two patches
+are from last weeks PR drm-misc-fixes-2024-11-21, which should be merged
+first.
 
-Series: MSI-X support
-URL   : https://patchwork.freedesktop.org/series/141880/
-State : success
+Best regards
+Thomas
 
-== Summary ==
+drm-misc-fixes-2024-11-28:
+Short summary of fixes pull:
 
-CI Bug Log - changes from xe-2289-f3f406165a3d5f0fcb60be2060b7920ac385dc22_BAT -> xe-pw-141880v1_BAT
-====================================================
+dma-buf:
+- Fix dma_fence_array_signaled() to ensure forward progress
 
-Summary
--------
+dp_mst:
+- Fix MST sideband message body length check
 
-  **SUCCESS**
+sti:
+- Add __iomem for mixer_dbg_mxn()'s parameter
+The following changes since commit 32c4514455b2b8fde506f8c0962f15c7e4c26f1d:
 
-  No regressions found.
+  drm/bridge: tc358768: Fix DSI command tx (2024-11-14 11:29:42 +0100)
 
-  
+are available in the Git repository at:
 
-Participating hosts (9 -> 9)
-------------------------------
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-11-28
 
-  No changes in participating hosts
+for you to fetch changes up to 86e8f94789dd6f3e705bfa821e1e416f97a2f863:
 
-Known issues
-------------
+  drm/sti: Add __iomem for mixer_dbg_mxn's parameter (2024-11-26 14:02:25 +0100)
 
-  Here are the changes found in xe-pw-141880v1_BAT that come from known issues:
+----------------------------------------------------------------
+Short summary of fixes pull:
 
-### IGT changes ###
+dma-buf:
+- Fix dma_fence_array_signaled() to ensure forward progress
 
-#### Issues hit ####
+dp_mst:
+- Fix MST sideband message body length check
 
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2289-f3f406165a3d5f0fcb60be2060b7920ac385dc22/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141880v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+sti:
+- Add __iomem for mixer_dbg_mxn()'s parameter
 
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+----------------------------------------------------------------
+Christian König (1):
+      dma-buf: fix dma_fence_array_signaled v4
 
+Imre Deak (1):
+      drm/dp_mst: Fix MST sideband message body length check
 
-Build changes
--------------
+Pei Xiao (1):
+      drm/sti: Add __iomem for mixer_dbg_mxn's parameter
 
-  * IGT: IGT_8128 -> IGT_8129
-  * Linux: xe-2289-f3f406165a3d5f0fcb60be2060b7920ac385dc22 -> xe-pw-141880v1
+Tvrtko Ursulin (2):
+      dma-fence: Fix reference leak on fence merge failure path
+      dma-fence: Use kernel's sort for merging fences
 
-  IGT_8128: 8128
-  IGT_8129: 363499a879fee5b9b7eda8acf7c772bce3423493 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2289-f3f406165a3d5f0fcb60be2060b7920ac385dc22: f3f406165a3d5f0fcb60be2060b7920ac385dc22
-  xe-pw-141880v1: 141880v1
+ drivers/dma-buf/dma-fence-array.c             |  28 +++++-
+ drivers/dma-buf/dma-fence-unwrap.c            | 126 +++++++++++++-------------
+ drivers/gpu/drm/display/drm_dp_mst_topology.c |   3 +
+ drivers/gpu/drm/sti/sti_mixer.c               |   2 +-
+ 4 files changed, 92 insertions(+), 67 deletions(-)
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141880v1/index.html
-
---===============2541835876330081863==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>MSI-X support</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141880/">https://patchwork.freedesktop.org/series/141880/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141880v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141880v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2289-f3f406165a3d5f0fcb60be2060b7920ac385dc22_BAT -&gt; xe-pw-141880v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-141880v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2289-f3f406165a3d5f0fcb60be2060b7920ac385dc22/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141880v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8128 -&gt; IGT_8129</li>
-<li>Linux: xe-2289-f3f406165a3d5f0fcb60be2060b7920ac385dc22 -&gt; xe-pw-141880v1</li>
-</ul>
-<p>IGT_8128: 8128<br />
-  IGT_8129: 363499a879fee5b9b7eda8acf7c772bce3423493 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2289-f3f406165a3d5f0fcb60be2060b7920ac385dc22: f3f406165a3d5f0fcb60be2060b7920ac385dc22<br />
-  xe-pw-141880v1: 141880v1</p>
-
-</body>
-</html>
-
---===============2541835876330081863==--
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
