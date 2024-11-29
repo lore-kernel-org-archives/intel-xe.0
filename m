@@ -4,182 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CD43D729E7
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Nov 2024 16:07:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38BC2D729EC
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Nov 2024 16:22:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D71F910E2AF;
-	Fri, 29 Nov 2024 16:07:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5F1F10E51D;
+	Fri, 29 Nov 2024 16:22:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HdS+Txk8";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="CCCXqJXB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4348610E05C;
- Fri, 29 Nov 2024 16:07:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732896464; x=1764432464;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=xcz/yJsfsS/ATpyNIBTO/WwGU7hvrQctWWjL38hW6tg=;
- b=HdS+Txk89eY7rHfFCQHhjuZ2dz3EmTnbu/ilOHOr+HT0ymRvK4XDe3u0
- MUY9PQ7Wy070GTwK+/Ev156GYY0JGpr4vVWthukokHuv3OmWrpX40b8c4
- iAl8u2Rl2oL1DtuFhdSkr4KPAI+YlSXhWOBRI9tu7ReXMv/lpkT8zxPv9
- 3/B0UjRH/f2Wx8xH5BqySqOjsMjR6XwzasXe0ps4YwhelgcxgVoe6MF04
- qVLS5UW0YDyx8Fm14rnEXo7yKV123XfDLFZpLS/sdWt5dtiBY+MAfJEKU
- IjjgcYJBJjGBYWC5pkA+hMbQWOuRV60+MBUN52xBBNiLa9wEwOh3/n0JZ A==;
-X-CSE-ConnectionGUID: l75sMs6TQgCtMGcB+Wf6LA==
-X-CSE-MsgGUID: xIB7PERbQzSf7qqSml7xhQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11271"; a="36918833"
-X-IronPort-AV: E=Sophos;i="6.12,196,1728975600"; d="scan'208";a="36918833"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2024 08:07:44 -0800
-X-CSE-ConnectionGUID: xpDPAMK2RaWu/pGlKqYjZA==
-X-CSE-MsgGUID: iLzYt01nSEueXA8eRPWSLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,196,1728975600"; d="scan'208";a="92335528"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 Nov 2024 08:07:45 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 29 Nov 2024 08:07:43 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 29 Nov 2024 08:07:43 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 29 Nov 2024 08:07:43 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KfKTiDxUSr5IfeKlrw7w9zwUxpJ7rcINhhl83o543MoehRl+fmqA/Pr2u1aPXyJGM92BTE9KGYTdF5ZnWorvleQMb6rXKISMuB40zjY866Rgy4qUumObPUsyjBj5dMQGdHuUz84KRChjfqySiWDW1yp6u5huEYOEgDZv9zvlHH43BWuU/rVlURb6KznLJ7wpUVQEvs1VJL/wrUR35tA6RcdE4JYl/DRdpiUzA9qqXyqKm8zSXrndjkD+dlV5hgNytxdWSctfBTJwmiFQg1zckbTwDuPR74d9l9y2BOnwHaZcU+kFdpsYiCPUF3Fwymp8RHIy+eayxus/jDxSDfRASw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7iWK4LUARO2PN1NnDROJmgEvyGdmwKtwiQviiQCUNGc=;
- b=M20RlrQPLFC1wONk2yEFShNmjBldFMBhbcv8MiCryQcP+uZOFk6sDeozm6ZhNDE+vmEq4tH4o4SiJe8QnNeozp/mp0wfRZoVLYcugr3OUW6kg9lKE0lsvE5zD3YBtkZ/BLK6eV9sDJD8e6hQaqE6sahOSEUeF0QwUoRqRkY7jc3E8fNYGqA1OkxennkfkXpiBOiMkfTSrJj7s8G4bP2P+ucW9eznbhy9TN3Y9QTMpeTQ1Un6scc0VN+E5nxvtWBW44KtuNyFrdQexCaabvc2fG8/M4ZjFAS/6eazcx8oajxjJI6EevaF6t8f4OqgnJFAvZ6sYI4Ow68y9o5d5OmSCQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by SA2PR11MB5099.namprd11.prod.outlook.com (2603:10b6:806:f9::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.14; Fri, 29 Nov
- 2024 16:07:38 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350%6]) with mapi id 15.20.8207.014; Fri, 29 Nov 2024
- 16:07:38 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241129151754.22015-3-gustavo.sousa@intel.com>
-References: <20241129151754.22015-1-gustavo.sousa@intel.com>
- <20241129151754.22015-3-gustavo.sousa@intel.com>
-Subject: Re: [PATCH 2/3] drm/xe/display: Extract
- xe_display_pm_runtime_suspend_late()
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: Luca Coelho <luciano.coelho@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Date: Fri, 29 Nov 2024 13:07:32 -0300
-Message-ID: <173289645221.1637.13618914452641694713@intel.com>
-User-Agent: alot/0.10
-X-ClientProxiedBy: MW4PR03CA0025.namprd03.prod.outlook.com
- (2603:10b6:303:8f::30) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 566C510E51D
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 Nov 2024 16:22:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1732897377;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=T2NzOJNybc+OxZcBXIBIIDO3D2n3JMJ6jTFDWviJdRA=;
+ b=CCCXqJXBkNHnTyh875nYxmxd1CSXKAiq8XN2dY4Q6GO0MLhueyjUSEQkhdlQM356VFZAIA
+ MMOB+1l+nXXvzqMHxcLdqx+1+rdULeWW2nLy5GGC4Wx35HHOKOSuqRkErmZUhPrl57Mv2v
+ WFUhugZLSBPw18QK1+Ts2GuGjGhKonk=
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-451-3NM6bngZNY2P5h0oY6nDgQ-1; Fri,
+ 29 Nov 2024 11:22:52 -0500
+X-MC-Unique: 3NM6bngZNY2P5h0oY6nDgQ-1
+X-Mimecast-MFC-AGG-ID: 3NM6bngZNY2P5h0oY6nDgQ
+Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 59423195394F; Fri, 29 Nov 2024 16:22:50 +0000 (UTC)
+Received: from hydra.redhat.com (unknown [10.39.192.13])
+ by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id DD63F1955F2D; Fri, 29 Nov 2024 16:22:46 +0000 (UTC)
+From: Jocelyn Falempe <jfalempe@redhat.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Subject: [RFC PATCH 0/5] drm/i915: Add drm_panic support
+Date: Fri, 29 Nov 2024 17:20:25 +0100
+Message-ID: <20241129162232.7594-1-jfalempe@redhat.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SA2PR11MB5099:EE_
-X-MS-Office365-Filtering-Correlation-Id: 796aa454-b716-403c-f83a-08dd108ff1f1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?TmMwK0szcndxOGVQTE8za3g3aS9xblQ2MG1JTWNXODd5aUFXZ0RlU3Q1MDgr?=
- =?utf-8?B?alRBaEFpVXBEenYxNFNXbnU0UGpJQ2RJWENJYVVsYU9jclVTbXMyWUNWTkdV?=
- =?utf-8?B?T0VFa1JMby9Id1MzZFVPN2RhUHFvRXl2eWpmcVdKdUMyTzV4cTFZV21aS1ov?=
- =?utf-8?B?MkhUTEo2eThUeHhoSDVYZjRnNVFkVzUveExSL3dNbTJHdWFjSkMxbHFadExM?=
- =?utf-8?B?M3BySjAyNGx3dGs4Wmthc09qazZmUnlvQUMxUkdJSDNsL3hna3ZHZ1pBb0l0?=
- =?utf-8?B?NTg3WjlEQ1gyNHhqbkhCWHEvL1hUZVpsdnp2VnpaVlhCdUx6Z0RJY1ZSRVA4?=
- =?utf-8?B?cUl1TUNmT0R4NmhiY0EyaXhhWGNORzVXOVpLWnN0Ykg5dVdHL2N3VldmZTZ5?=
- =?utf-8?B?Y2VoaGFsNFlLaGdvYXlIMHdlYnhZem45OER0b1dsRzFRMDBFZmJxYWF3ME1N?=
- =?utf-8?B?TWlkbjViOUN0MVJHeUh5aHRyQjFxRHZHdkRQMlcvQ2hYUDU5YjBtVG5GNHJF?=
- =?utf-8?B?NGQvdFZtZUF2bnIxUStRd1dTOGZPREJwbWM5RTVvRkJYV2JXTnljM29UMVE2?=
- =?utf-8?B?UjNZYzd2dWtSS2J1Tjhkaml4Q2JON2tJSldPU0x6bXlLSXB5SWxzMFJyWjBo?=
- =?utf-8?B?Y082WXVtODhzNFdkL1lkVWtXWGxaTVdieTl3dXZnamxUQVN3Y0ZMcHJaSDhr?=
- =?utf-8?B?QU5iZytZSzlrOGdRUGNQSjZHS3Y1dUFheGN5Z2QxYVd2YWszcm5TTFhRN0J6?=
- =?utf-8?B?TVFQbzRZM2MvcVAwdnljQSs5NWZlMElUeVNhS2tnbEhGckUxU200L2g0NUxm?=
- =?utf-8?B?ekJXZkFsNE5ud0RXUFpqMzRzcCtRelRJSnAyQjFLQmw0cSt5VGkvSFllZFpC?=
- =?utf-8?B?K0hNVlh0Q1FmR2ZRZWVldG5RVWhNU2hzVy84QSt3WkJicUFPK3RDSUtlckN4?=
- =?utf-8?B?ZFVpNW1XMkZxNWkzM0doUHQ5dWV4YVk5YkZPWVY4QjRoLy9nTVdncWtJdEhK?=
- =?utf-8?B?alBzbUNyVUtycTdrd3o1WUxRWGlCRythK2c1RVJxVmpQSTQwMUgrVEJRQTdy?=
- =?utf-8?B?UFFJc2tUY3RHNGF5N3crVzFSS0x6SDloaHBoVEZ0eDNJZHVLOXZQd0diQStK?=
- =?utf-8?B?bm9KWnpSMXNUTXBjb2FyRmREVldQUVNEUGx5bEpmN3IyUmltOUxtT1Q3Undp?=
- =?utf-8?B?NWcyUUdZeWFiT2NackdQTUVQSVloQk9Ra0t0R1F3ckxmR2Iwek5kSktrbW1z?=
- =?utf-8?B?V0dJb3dzTjl4SUdnRmh4dGxjRXhaSFZ2dmpLQVByMnd1eGFtaUhaQ3dieUZ6?=
- =?utf-8?B?cThiTjk1ZlVRMHZoa1RVeSswZWU1OEVUZFJ1NU40MkUxWk5yWklFcFVpTHl4?=
- =?utf-8?B?MGw0MEdacHQ2dVZFVEhaWitSQVU3UDVkd2xDT3FIMzVQODNvUlFLNE1qZWpJ?=
- =?utf-8?B?NFVyc0ZDUmJRNTZicVVSRUNCOXd3bHNZL1AvS1MxdlgrTkFVbjF2NzB5WTZR?=
- =?utf-8?B?MzF1TDA4OU9DS1BvR0p5RHQ3ZXBVT1hnRzFsRllHQjZQRG5YVHNmZlRXOHdH?=
- =?utf-8?B?NUVhWHg2QitNRlplUkowL3RmNEsrdW11TjRwUHl1dENtWEE3cG5DUkRHV21J?=
- =?utf-8?B?bEFhZzRVMjY0VjJoUkNzcW9DQmNUSlY1czgwb2cvQnBVTUNpRGF2RXcyTENS?=
- =?utf-8?B?UjgwZWRaWiszSVkxczAxbHM1V0dLSTNVcUkwM0lrN2FXWEN0OWhqTlhMd2xZ?=
- =?utf-8?B?WlArcElOTkNOK0hiYnY2NFFkcWhLTEl6VWRGd0EzOEdsVkd0ZkYzanhKY0JO?=
- =?utf-8?B?cmRNQzhCK2NaTXBXUVdWQT09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RTE4T3lrZ2cwWDYxMWtQeEJRL1FMaVRFbDhUc1FjbGxoNFlTQVl0dWpncFJG?=
- =?utf-8?B?a25EV1Z2MVpsKysvRU5mQmVMYlhPRXJ2dThOUXc4R3ZmdS9scDRrQ2pQQUhm?=
- =?utf-8?B?ZjdvWlQydFcwRDJSSy9VMjhNWFY3NjhyMkczZERvQUZzWkFtUnhDdkpXcFRE?=
- =?utf-8?B?N2dKaTdxU2w0d3EvRnp4cFdtRlVLQTZiMEc0c29LS0dEWVJiMGFnejBzZ0dj?=
- =?utf-8?B?Q3V6UG9GS0M5U0pYcmZLVnFUclhERnJSMGFLeWZyOHFRdGYxNDUzV0loWDFw?=
- =?utf-8?B?VFlDcE5MY0ZteEYyWi9UNzhpK2JUOUFOUFo0R2VYdFFpYlltMmRhQzNtZDJm?=
- =?utf-8?B?MXRkQkdLalBtanBYanRJZ2F2VFAyeXRqS1ZwTHlOV2lnTU4yRFMvWmF3cStS?=
- =?utf-8?B?UThFUjNyeDN4bzd0UllnbHc1dUJwYnpaaFpJenY4QnNaT2dVeVVOY3lGV09K?=
- =?utf-8?B?OWl5ZGtRZVhqUXppc2pHRnlUa294WVIrSit0UEtXVDhqVUQydDhKQkFES292?=
- =?utf-8?B?c3Y4RG1veHpzSG5wMG15QnVWV2JTK1hKOTlmYit2NHJFTDE4ZEF4cWJCUmg1?=
- =?utf-8?B?bUFjWTR6VUR4TVI1UnlIdkJIVERzR1k5WjZSTUpLdi9ib250STJHd1dhd1d3?=
- =?utf-8?B?UDViKzlsZzNPSmdaRUEyVzMrTU11bEdRMlNNNTNLY2oxZlVWVkhQSFRDcXRM?=
- =?utf-8?B?MkFGYmFTZlJFV3JnckZJS3E5RkFLN2drNVdsTFlzbWZ5R2N2Y0s4MnIwQi9B?=
- =?utf-8?B?VkxmUk5McDNtOC9VakU1Q01JZTBWdkRVb1JFMldFUFkxNjM4RUdwWGZpZERs?=
- =?utf-8?B?OEw0YWFuUzd6Rit2SHhKK1VVUk5HQzhQS2tpY0VMYzFvUG5abHFLNVpVYlpt?=
- =?utf-8?B?emZhaTZwRHdDa1pVYkp1TWJxc3U3VGxjRmt2US9POWhpTEMzemhXb0VUVm1Z?=
- =?utf-8?B?QUtkK2ZIVGtIcEV0V0h0dlB4L1BqVXQ5OUF3QnRaS2NidXliQit0cUtBZUtu?=
- =?utf-8?B?WlVraDhJYllpTGRLYXplV1Vscm1pQzBGRUdsYndIT1Y1M2V6TTNlUCtENmJu?=
- =?utf-8?B?TzZvVS9NcE5GOTV4MVEwYWNvSmlWK0I2aGNhSE5qTklMMG53Rnlxa0ZiV2hq?=
- =?utf-8?B?TWtOQlJXVkliU3FiUVFJc3ZZWDl0ZzFuTHoxOGQxNFBVN3BKMnJSQWgxRXZS?=
- =?utf-8?B?NmR4emlwNCtLWnJZaTdWRXZlWUN0cXpZUUpFNnpSUlJUdEtVbFdpUkhSS1BD?=
- =?utf-8?B?ckhENXFlaVZKWmh4dzNRemQ4bzk0SHZPOGdQcTE0RStMWVNNLzdEam9SaW8y?=
- =?utf-8?B?NUxxbUpabXdVUG0rOGdNK1BoSlU1WlhCUk9GOE1vNTZ4RXMrRndnQjhRU01B?=
- =?utf-8?B?aWRBV3c0aHorTFJZQndaQW5MVFl3Y2ZYOHI0aU43RUhhK3k0ZlpOM2hrM2Uv?=
- =?utf-8?B?RlVobDd6NGJ1SGNvRFkwSUFZMTluMmZHK3E5WG8xNjRwT0g0cnp1S3Z3ZXZi?=
- =?utf-8?B?cTQyR2hxNkU3OGdLOEQ0NkJxQWs2d1JWYjJyQnMyMytwRVowVjhqSkk0WXBn?=
- =?utf-8?B?ZkhyV3duQUxmVWJNZEtQS200NUU5ZGs3SlRQSEhwaU9TTWhpZTY0Y2FqOGU5?=
- =?utf-8?B?OWRDYThsaHlHaW1uTCt4czQ3T01zWFZyWE1sTmdOZkJlamdEVEVJR3AxUjll?=
- =?utf-8?B?blFxWHZ6dzlSMk95NEkvcmRpSG45ZEs2VGUwaVJrSnR1TzhwbDRVZDU1RmFX?=
- =?utf-8?B?T09uaWtlVzlzS2l5T2JMK0YxRXY3blNRTzEzVkg4S0RYS2FyanZtVEZ1YUo5?=
- =?utf-8?B?NVdQUWFnQk9KUlpFZTFMb1lRN2QvcGMzUE1YQW1QVG9udkFlK043WmR4Qlln?=
- =?utf-8?B?c0s4a2xsUGk5M0NXR2JDNm14TXNqOEJPeUNyaTdUL0txY1luRnJ3WGltbVUx?=
- =?utf-8?B?ZFB0c1V1SSs3Qzg1TzRrUVFOSHpYQzIzeEE4YTVUSDEvdExOZWEvdThzdjFi?=
- =?utf-8?B?S2VjeVU0M1U1d3lXQ3luRkpXR3h2MElvek45OG15RDZZdTZpMjQwdVNkQkJ1?=
- =?utf-8?B?c1AzTXYyeHArdld2NDE3bVBSMTJkemdYQU0zTGcvNVM0M0p4UFZiRHdmQU04?=
- =?utf-8?B?UnhWRkFLYVlBY3pLM1hKQjd2MG9xRlNFTGw2UzlpQk1BdmFoZlJLNzdSeWcv?=
- =?utf-8?B?eGc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 796aa454-b716-403c-f83a-08dd108ff1f1
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2024 16:07:38.4522 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XcO0fblJYb8VV6FOqeK9xN2GSNguxj1212kesBon67NS/3M2o3hkVGgeB7do2sDRPLKX2TI1fxj/w0m+60m9Ig==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5099
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,79 +71,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Gustavo Sousa (2024-11-29 12:17:45-03:00)
->The current behavior for the runtime suspend case is that
->xe_display_pm_suspend_late() is only called when D3cold is allowed.
->Let's incorportate that behavior into a function specific to runtime PM
->and call it xe_display_pm_runtime_suspend_late().
->
->With that, we keep stuff a bit more self-contained and allow having a
->place for adding more "late display runtime suspend"-related logic that
->isn't dependent on the "D3cold allowed" state.
->
->Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->---
-> drivers/gpu/drm/xe/display/xe_display.c | 9 +++++++++
-> drivers/gpu/drm/xe/display/xe_display.h | 1 +
-> drivers/gpu/drm/xe/xe_pm.c              | 4 ++--
-> 3 files changed, 12 insertions(+), 2 deletions(-)
->
->diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/=
-display/xe_display.c
->index 69c828f38cb6..2e189abf8d6f 100644
->--- a/drivers/gpu/drm/xe/display/xe_display.c
->+++ b/drivers/gpu/drm/xe/display/xe_display.c
->@@ -407,6 +407,15 @@ void xe_display_pm_suspend_late(struct xe_device *xe)
->         intel_display_power_suspend_late(xe, s2idle);
-> }
->=20
->+void xe_display_pm_runtime_suspend_late(struct xe_device *xe)
->+{
->+        if (!xe->info.probe_display)
->+                return;
->+
->+        if (xe->d3cold.allowed)
->+                xe_display_pm_runtime_suspend_late(xe);
+This is a first draft of drm_panic support for i915.
 
-Whoops... There is a typo here. It should have been
-xe_display_pm_suspend_late(). I'll send a new version.
+I've tested it on the 3 intel laptops I have at my disposal.
+one Haswell with 128MB of eDRAM, one Cometlake and one Alderlake.
 
---
-Gustavo Sousa
+I tested panic in both fbdev console and gnome desktop.
 
->+}
->+
-> void xe_display_pm_shutdown_late(struct xe_device *xe)
-> {
->         if (!xe->info.probe_display)
->diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/=
-display/xe_display.h
->index 17afa537aee5..954c5a268ef4 100644
->--- a/drivers/gpu/drm/xe/display/xe_display.h
->+++ b/drivers/gpu/drm/xe/display/xe_display.h
->@@ -41,6 +41,7 @@ void xe_display_pm_shutdown_late(struct xe_device *xe);
-> void xe_display_pm_resume_early(struct xe_device *xe);
-> void xe_display_pm_resume(struct xe_device *xe);
-> void xe_display_pm_runtime_suspend(struct xe_device *xe);
->+void xe_display_pm_runtime_suspend_late(struct xe_device *xe);
-> void xe_display_pm_runtime_resume(struct xe_device *xe);
->=20
-> #else
->diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
->index 80699dbeb2e9..a6761cb769b2 100644
->--- a/drivers/gpu/drm/xe/xe_pm.c
->+++ b/drivers/gpu/drm/xe/xe_pm.c
->@@ -414,8 +414,8 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
->=20
->         xe_irq_suspend(xe);
->=20
->-        if (xe->d3cold.allowed)
->-                xe_display_pm_suspend_late(xe);
->+        xe_display_pm_runtime_suspend_late(xe);
->+
-> out:
->         if (err)
->                 xe_display_pm_runtime_resume(xe);
->--=20
->2.47.0
->
+I still have an issue with Alderlake, and it doesn't work when in gnome desktop.
+If I disable tiling on a framebuffer using DPT, then it displays some other memory location.
+As DPT is enabled only for tiled framebuffer, there might be some hardware limitations?
+I think it can be worked around by drawing the image tiled, (like what I've done on nouveau https://patchwork.freedesktop.org/series/133963/), but maybe there is another way?
+
+Best regards,
+
+Jocelyn Falempe (5):
+  drm/i915/fbdev: Add intel_fbdev_getvaddr()
+  drm/i915/display/i9xx: Add a disable_tiling() for i9xx planes
+  drm/i915/display: Add a disable_tiling() for skl planes
+  drm/i915/gem: export i915_gem_object_map_page/pfn
+  drm/i915: Add drm_panic support
+
+ drivers/gpu/drm/i915/display/i9xx_plane.c     | 24 +++++
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 98 ++++++++++++++++++-
+ .../drm/i915/display/intel_display_types.h    |  2 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  5 +
+ drivers/gpu/drm/i915/display/intel_fbdev.h    |  5 +
+ .../drm/i915/display/skl_universal_plane.c    | 20 ++++
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  5 +
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  4 +-
+ 8 files changed, 160 insertions(+), 3 deletions(-)
+
+
+base-commit: 44cff6c5b0b17a78bc0b30372bcd816cf6dd282a
+-- 
+2.47.0
+
