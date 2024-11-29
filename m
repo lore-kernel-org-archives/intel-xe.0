@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42F5FD729E9
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Nov 2024 15:40:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3572CD729E7
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Nov 2024 15:41:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 133BE10E503;
-	Fri, 29 Nov 2024 15:40:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB1A810E503;
+	Fri, 29 Nov 2024 15:41:14 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8818910E503;
- Fri, 29 Nov 2024 15:40:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AF8810E503;
+ Fri, 29 Nov 2024 15:41:13 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Flush_DMC_wakelock_releas?=
- =?utf-8?q?e_work_at_the_end_of_runtime_suspend?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Flush_DMC_wakelock_release_wor?=
+ =?utf-8?q?k_at_the_end_of_runtime_suspend?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 29 Nov 2024 15:40:39 -0000
-Message-ID: <173289483955.328974.15102229162932660093@b555e5b46a47>
+Date: Fri, 29 Nov 2024 15:41:13 -0000
+Message-ID: <173289487343.328974.3967315219627872010@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241129151754.22015-1-gustavo.sousa@intel.com>
 In-Reply-To: <20241129151754.22015-1-gustavo.sousa@intel.com>
@@ -44,42 +44,63 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Flush DMC wakelock release work at the end of runtime suspend
 URL   : https://patchwork.freedesktop.org/series/141931/
-State : success
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 99f82964f289a34ab3ab1867a9eefb7109497ba0
-Author: Gustavo Sousa <gustavo.sousa@intel.com>
-Date:   Fri Nov 29 12:17:46 2024 -0300
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pm.c: In function ‘xe_pm_runtime_suspend’:
+../drivers/gpu/drm/xe/xe_pm.c:417:9: error: implicit declaration of function ‘xe_display_pm_runtime_suspend_late’; did you mean ‘xe_display_pm_runtime_suspend’? [-Werror=implicit-function-declaration]
+  417 |         xe_display_pm_runtime_suspend_late(xe);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |         xe_display_pm_runtime_suspend
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:229: drivers/gpu/drm/xe/xe_pm.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:478: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:478: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:478: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:478: drivers] Error 2
+make[2]: *** [/kernel/Makefile:1936: .] Error 2
+make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
 
-    drm/xe/display: Flush DMC wakelock release work on runtime suspend
-    
-    We currently are not calling display runtime suspend functions when
-    D3cold is not allowed. Because of that, we endup not disabling dynamic
-    DC states (and do not go to DC9). With dynamic DC states enabled, we
-    will also have DMC wakelock enabled. Since we use a delayed work to
-    release the DMC wakelock, the work might get executed a little too late
-    (after the PCI device has been put to D3hot) and we get a timeout
-    warning ("DMC wakelock release timed out") because the MMIO for
-    releasing the wakelock will be invalid after that point.
-    
-    To fix that, make sure we flush the release work at the end of
-    xe_display_pm_runtime_suspend_late(). We can do that unconditionally
-    because, if there is no pending work, that turns into a no-op.
-    
-    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-+ /mt/dim checkpatch 108f610005f88de624c1a8c4f85d5cab9f530ddb drm-intel
-71fd044ac240 drm/i915/dmc_wl: Extract intel_dmc_wl_flush_release_work()
-c788111562b4 drm/xe/display: Extract xe_display_pm_runtime_suspend_late()
-99f82964f289 drm/xe/display: Flush DMC wakelock release work on runtime suspend
+[15:40:40] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[15:40:44] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
