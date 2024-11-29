@@ -4,57 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 310EFD6EC00
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Nov 2024 11:42:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6030D6EBFF
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Nov 2024 11:46:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAC9410E4A6;
-	Fri, 29 Nov 2024 11:42:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b4V3di9h";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B79910E4A6;
- Fri, 29 Nov 2024 11:42:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732880527; x=1764416527;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=x+Ns8sv9GJwX0mbpANVs5azW5kdO8topijym+CKYOfk=;
- b=b4V3di9hI/y5j6/ok8LLsBtzSxth47/tDQfXY0VtK3ElpG9ZvmAppHMq
- eHI7mDA/xjQhmyW3UzsaaUZKsFd4gnCmtOh9IBeimM5SQeKvTy7o7zOjv
- +25O4Eh9iKB8Zf49+FpHTV8jkYGn/dC3HxcwLJWXKkQMv1uzcU2YkxVDb
- VoBPYqtf84iPYfPXK6LkFMwFNptnj4Ltvz70TbRSDtucTF8nTjxLIjgFj
- rwNPv2CJdO9qh7DvkcJ0JBkkfYO5JQikPHnbmu4nKuFKoOeilmmmWWXwv
- 1iO/or0rMA2erKU+gX1HcQP9yr9FJA7U1cAMjXsh5VqdhyITqPNKpNSaN Q==;
-X-CSE-ConnectionGUID: iVYN/KJ0SMyZft1cTwSQAg==
-X-CSE-MsgGUID: BDlqjaACRHmc7yf70dv1Uw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11270"; a="44497741"
-X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; d="scan'208";a="44497741"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2024 03:42:07 -0800
-X-CSE-ConnectionGUID: OR7kzmcoSx6vPiYqwc5w4A==
-X-CSE-MsgGUID: pX49ekFOQz+wv+sq+/FhWw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; d="scan'208";a="123333492"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.241])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2024 03:42:05 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH] drm/i915/cx0: split out mtl_get_cx0_buf_trans() to c10 and
- c20 variants
-Date: Fri, 29 Nov 2024 13:41:58 +0200
-Message-Id: <20241129114158.486418-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
+	by gabe.freedesktop.org (Postfix) with ESMTP id 819DC10E4B0;
+	Fri, 29 Nov 2024 11:46:48 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61A7910E4AE;
+ Fri, 29 Nov 2024 11:46:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5B1/2=5D?=
+ =?utf-8?q?_drm/i915/display=3A_add_hdcp_sub-struct_to_struct_intel=5Fdigita?=
+ =?utf-8?q?l=5Fport?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 29 Nov 2024 11:46:47 -0000
+Message-ID: <173288080739.268036.10143579780258610717@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241129112012.474228-1-jani.nikula@intel.com>
+In-Reply-To: <20241129112012.474228-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,68 +37,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The PHY is either c10 or c20, there's no need to check at runtime and
-complicate the conditions in mtl_get_cx0_buf_trans().
+== Series Details ==
 
-While at it, replace the direct port clock check with
-intel_dp_is_uhbr().
+Series: series starting with [1/2] drm/i915/display: add hdcp sub-struct to struct intel_digital_port
+URL   : https://patchwork.freedesktop.org/series/141922/
+State : success
 
-Cc: Mika Kahola <mika.kahola@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../drm/i915/display/intel_ddi_buf_trans.c    | 23 +++++++++++++------
- 1 file changed, 16 insertions(+), 7 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index 4d21ce734343..9389b295036e 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -1687,18 +1687,24 @@ dg2_get_snps_buf_trans(struct intel_encoder *encoder,
- }
- 
- static const struct intel_ddi_buf_trans *
--mtl_get_cx0_buf_trans(struct intel_encoder *encoder,
-+mtl_get_c10_buf_trans(struct intel_encoder *encoder,
- 		      const struct intel_crtc_state *crtc_state,
- 		      int *n_entries)
- {
--	if (intel_crtc_has_dp_encoder(crtc_state) && crtc_state->port_clock >= 1000000)
-+	return intel_get_buf_trans(&mtl_c10_trans_dp14, n_entries);
-+}
-+
-+static const struct intel_ddi_buf_trans *
-+mtl_get_c20_buf_trans(struct intel_encoder *encoder,
-+		      const struct intel_crtc_state *crtc_state,
-+		      int *n_entries)
-+{
-+	if (intel_crtc_has_dp_encoder(crtc_state) && intel_dp_is_uhbr(crtc_state))
- 		return intel_get_buf_trans(&mtl_c20_trans_uhbr, n_entries);
--	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) && !(intel_encoder_is_c10phy(encoder)))
-+	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
- 		return intel_get_buf_trans(&mtl_c20_trans_hdmi, n_entries);
--	else if (!intel_encoder_is_c10phy(encoder))
--		return intel_get_buf_trans(&mtl_c20_trans_dp14, n_entries);
- 	else
--		return intel_get_buf_trans(&mtl_c10_trans_dp14, n_entries);
-+		return intel_get_buf_trans(&mtl_c20_trans_dp14, n_entries);
- }
- 
- void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
-@@ -1706,7 +1712,10 @@ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 
- 	if (DISPLAY_VER(i915) >= 14) {
--		encoder->get_buf_trans = mtl_get_cx0_buf_trans;
-+		if (intel_encoder_is_c10phy(encoder))
-+			encoder->get_buf_trans = mtl_get_c10_buf_trans;
-+		else
-+			encoder->get_buf_trans = mtl_get_c20_buf_trans;
- 	} else if (IS_DG2(i915)) {
- 		encoder->get_buf_trans = dg2_get_snps_buf_trans;
- 	} else if (IS_ALDERLAKE_P(i915)) {
--- 
-2.39.5
+lib/modules/6.12.0-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-xe/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.12.0-xe/kernel/kernel/
+lib/modules/6.12.0-xe/kernel/kernel/kheaders.ko
+lib/modules/6.12.0-xe/kernel/crypto/
+lib/modules/6.12.0-xe/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/xcbc.ko
+lib/modules/6.12.0-xe/kernel/crypto/serpent_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/aria_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-xe/kernel/crypto/adiantum.ko
+lib/modules/6.12.0-xe/kernel/crypto/tcrypt.ko
+lib/modules/6.12.0-xe/kernel/crypto/crypto_engine.ko
+lib/modules/6.12.0-xe/kernel/crypto/zstd.ko
+lib/modules/6.12.0-xe/kernel/crypto/asymmetric_keys/
+lib/modules/6.12.0-xe/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.12.0-xe/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.12.0-xe/kernel/crypto/des_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/xctr.ko
+lib/modules/6.12.0-xe/kernel/crypto/authenc.ko
+lib/modules/6.12.0-xe/kernel/crypto/sm4_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/keywrap.ko
+lib/modules/6.12.0-xe/kernel/crypto/camellia_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/sm3.ko
+lib/modules/6.12.0-xe/kernel/crypto/pcrypt.ko
+lib/modules/6.12.0-xe/kernel/crypto/aegis128.ko
+lib/modules/6.12.0-xe/kernel/crypto/af_alg.ko
+lib/modules/6.12.0-xe/kernel/crypto/algif_aead.ko
+lib/modules/6.12.0-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-xe/kernel/crypto/sm3_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/aes_ti.ko
+lib/modules/6.12.0-xe/kernel/crypto/chacha_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/poly1305_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/nhpoly1305.ko
+lib/modules/6.12.0-xe/kernel/crypto/crc32_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/essiv.ko
+lib/modules/6.12.0-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-xe/kernel/crypto/wp512.ko
+lib/modules/6.12.0-xe/kernel/crypto/streebog_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/authencesn.ko
+lib/modules/6.12.0-xe/kernel/crypto/echainiv.ko
+lib/modules/6.12.0-xe/kernel/crypto/lrw.ko
+lib/modules/6.12.0-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-xe/kernel/crypto/crypto_user.ko
+lib/modules/6.12.0-xe/kernel/crypto/algif_hash.ko
+lib/modules/6.12.0-xe/kernel/crypto/vmac.ko
+lib/modules/6.12.0-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/hctr2.ko
+lib/modules/6.12.0-xe/kernel/crypto/842.ko
+lib/modules/6.12.0-xe/kernel/crypto/pcbc.ko
+lib/modules/6.12.0-xe/kernel/crypto/ansi_cprng.ko
+lib/modules/6.12.0-xe/kernel/crypto/cast6_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/twofish_common.ko
+lib/modules/6.12.0-xe/kernel/crypto/twofish_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/lz4hc.ko
+lib/modules/6.12.0-xe/kernel/crypto/blowfish_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/md4.ko
+lib/modules/6.12.0-xe/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.12.0-xe/kernel/crypto/curve25519-generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/lz4.ko
+lib/modules/6.12.0-xe/kernel/crypto/rmd160.ko
+lib/modules/6.12.0-xe/kernel/crypto/algif_skcipher.ko
+lib/modules/6.12.0-xe/kernel/crypto/cast5_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/fcrypt.ko
+lib/modules/6.12.0-xe/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.12.0-xe/kernel/crypto/sm4.ko
+lib/modules/6.12.0-xe/kernel/crypto/cast_common.ko
+lib/modules/6.12.0-xe/kernel/crypto/blowfish_common.ko
+lib/modules/6.12.0-xe/kernel/crypto/michael_mic.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-xe/kernel/crypto/algif_rng.ko
+lib/modules/6.12.0-xe/kernel/block/
+lib/modules/6.12.0-xe/kernel/block/bfq.ko
+lib/modules/6.12.0-xe/kernel/block/kyber-iosched.ko
+lib/modules/6.12.0-xe/build
+lib/modules/6.12.0-xe/modules.alias.bin
+lib/modules/6.12.0-xe/modules.builtin
+lib/modules/6.12.0-xe/modules.softdep
+lib/modules/6.12.0-xe/modules.alias
+lib/modules/6.12.0-xe/modules.order
+lib/modules/6.12.0-xe/modules.symbols
+lib/modules/6.12.0-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1732880795:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1732880795:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
