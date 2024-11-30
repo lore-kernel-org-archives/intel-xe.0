@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F8B8D70DEA
-	for <intel-xe@archiver.kernel.org>; Sat, 30 Nov 2024 23:55:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BD24D73619
+	for <intel-xe@archiver.kernel.org>; Sat, 30 Nov 2024 23:55:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D1B810E5E4;
-	Sat, 30 Nov 2024 23:55:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BBDE10E5F0;
+	Sat, 30 Nov 2024 23:55:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="MADDvrQV";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="vm8x+5Qb";
 	dkim-atps=neutral
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com
- [209.85.167.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E6FE10E5E4
- for <intel-xe@lists.freedesktop.org>; Sat, 30 Nov 2024 23:55:41 +0000 (UTC)
-Received: by mail-lf1-f51.google.com with SMTP id
- 2adb3069b0e04-53dd8b7796dso3038051e87.1
- for <intel-xe@lists.freedesktop.org>; Sat, 30 Nov 2024 15:55:41 -0800 (PST)
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com
+ [209.85.167.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25F9610E5E9
+ for <intel-xe@lists.freedesktop.org>; Sat, 30 Nov 2024 23:55:44 +0000 (UTC)
+Received: by mail-lf1-f43.google.com with SMTP id
+ 2adb3069b0e04-53df67d6659so4595694e87.3
+ for <intel-xe@lists.freedesktop.org>; Sat, 30 Nov 2024 15:55:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1733010939; x=1733615739; darn=lists.freedesktop.org;
+ d=linaro.org; s=google; t=1733010942; x=1733615742; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=4cxY+K4yZx53tAspmDt/c32sXFm2om2yzHiockIbOqk=;
- b=MADDvrQVO7btR+DX7XBmwH0KtkDPAtaNQjeJbGRbNNI6TDy185ZOHkgzr3w8LeJG5x
- bNOxf7Z4F0tP5BolVFBpbXPvLCMU2FXDoqtz6d2/lqfqy4ptwOwhsByDc2aI6MqDAiNV
- u1bK/yLkVGCgWT3h7MeW4LQwyMnapKSjqxLJ+OLnMjOUh8aXWloBDhvEUVXQJ442UXWi
- OUTOj7uhFJvtC9/G0ZVBwBiHS6OLn6GYXaU5vJWQW+pCwvgkgdpHD0SOOSFWnuV9L7bt
- BwS1eKRWJcmtzki0n0Lu9bl9rtidBwGf/stpbuzajQ1iw9qk7j3LJQWw8Hk21EE/poyN
- /JUA==
+ :reply-to; bh=Xien0N58sB4iffC9+suYdwxKcgrPQSZoNIx9TfZkSKE=;
+ b=vm8x+5QbE9Dq8kOduBEDcC9ARoU8SejP2a/5iJg3XzIDnZEZyfJiE+0rFCYDC/Ci1y
+ o0drj3jeDppd0vOCn2Oa4sdPHNOU/0RBmN69cdtV5QwSKPeXNOwXi1VeUq+ShCNyA6Sy
+ Vb9pnhb1Nho27aG2y+RpdKts1w7uKQimnbN2QpAj5wCUqsVkxMpC9kS3FzKQOTpBX2JW
+ HZH9nHkOxDw2rLjt8S/1tkZheMEazLkOrLmzxRLPudPMc7h5p78JDMJg/QY8ko5toibG
+ EUVdY6GXw7Px8LLF9Bs47Xib3P36w72BBrW147ap96a13pgwjDgnlJ7W/m+yhmgfUbCU
+ 6dqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733010939; x=1733615739;
+ d=1e100.net; s=20230601; t=1733010942; x=1733615742;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=4cxY+K4yZx53tAspmDt/c32sXFm2om2yzHiockIbOqk=;
- b=ZDbf/gyD48b7+LhZ/ZANKdlPeVy3u0ItEDWIToBO1eDG/PAZWgiGMpr/4tsszgcNQA
- Tw/gNaDKZSeYK20OREulU6QH8f1x8xpvyVNd2EodfuE3ei7rd2FUdXErG2MIMHDYo6zn
- /FBHdtnODZwIwaadqUeQGtY6l+1UCW24ModW1Zdrq8JQaaJYRXv0LkyfCCpIPjYc1Vhk
- AeBcVES6BLB0RRF0ooNj1ceUGi+VtSWnz2dElvvOyU1zRjluRaF2uEF1vm9nPQHVcYwe
- aKwlfwoXutiGOrXDJx1Ib3fobvI2plU8+gaWmSez6dkVvVGZYkOsZKmVGc5DBxtR5Fcy
- yyZg==
+ bh=Xien0N58sB4iffC9+suYdwxKcgrPQSZoNIx9TfZkSKE=;
+ b=H2yc7sXVJI3O+idFum0QP6M3i+RmoyiINeTSaf2bOfy5PADdB6KFhREUn0opYV2+Gb
+ G+4x1KUUrzFtz8ywycFiGv9n8+Xs6LghS1DVbwKaJ/9vUL3fnjbqhg6AcPEybyLbTSux
+ MXiGUaYymyju6xN0zf2uYXh9PHMQwEfYMCs/u8UfH3VI+UE5idyoQRVReTqtKkGszAl0
+ MCT/oyYR/xZzKXMEmmTw8h0osi4y3hEPrIpCEVJpdTXo+PC5IT7Usdh9o0njvbe4Tlwp
+ Jk/CmBT4yV55xnz9lEXSJrYvHsmHyYyrKgThD260/qQp4XQzJbF0JwxToDWL1qfSsSRz
+ HcLA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXL38fA1O+RX3yqJFiUhxBZT3m2wFYekOFkxV0RpWJXyyBYXFr01/XpnOrGxMfrJ4uDpW4lWgDvDg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy0yC3GKsFis4OJ3RnW0CxFzRO5NQg7laOCYn3tQQ0dSBL3LHav
- APSHBH09Q2LXd6CyjtCqPjyk//r6fUzihL/4DorflAszWdJaW95xDg5tOB3DVRSPKzPnSvkISoV
- z
-X-Gm-Gg: ASbGncvsmjW+r16lf8/LNpdCJjys+pLn/wBNH/zme81zeTOPCaEMTL+AKrF3rit6VaA
- AklIgvsYElpsh7NqmxU7FxyaCnv/Fpl7oO4MVjKgC6YYuxRQgM0928shXYnY5uWgtayIb5OrLrU
- uXS87lrvkkecN3RSJQsZajvxKCVfcPgcR7qh3vTzjnR5V9YSxIzGDohapIdalJy2gfRz2NTdtH7
- 98B7SHcfj7iR/j3hLig4IqiAtV1KIVKRut2jInsVOfapcGnr30WPD9lqw==
-X-Google-Smtp-Source: AGHT+IEqhH9kCuwXPt69aMI3EvWDASBu5c9Vx1nORTc0e8euAsFhVw9NvHYYoIvx2navJeV6UfeSbQ==
-X-Received: by 2002:a05:6512:3d89:b0:539:f9b9:e6d2 with SMTP id
- 2adb3069b0e04-53df00ff7c6mr10203616e87.35.1733010939471; 
- Sat, 30 Nov 2024 15:55:39 -0800 (PST)
+ AJvYcCUsEFD0q1UiEvSKHQ2Crj8BReYvDTP03CQhAdPMVcDa67IpvaM9kUgFjdJRghGm4nCC/jw47ZJR3g==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxx6yeT/ttYwS2aexJuHezkgUN5SKYvkFRHsJyV3YSj79cii4BQ
+ LqjTc/PwI4/rJ2Z6ntC66YJmnrqCwnktqLccEpjmCkRa1+Wa9uA6SpsinA9bvdY/aKfC1WwSHbZ
+ q
+X-Gm-Gg: ASbGncu3ZvRAM3oz2M5ZrCtQ0P7kRo34df8phIGihniSecO9+NIIHFb5igVyYzSDWek
+ ngNqR2MyuJHhvKJLCEJCnm4uwipfc9mBAibK8pkq5OGKghT2OLeHG1h9A9NyZI/XD6W610wRnG5
+ 7UrgStlRJ7mK+0H42qrs+9jqfQ3EVj8hMQ+MHmNTryTnZyc+5/RpiybkQ+fLDwt1xzCIV2Ke/6j
+ VRFxMpJWv42nXcf7wcxvUVs1sb8RemIsBbkgN6Y4PDaAykvxjWMV928rg==
+X-Google-Smtp-Source: AGHT+IEoIeugoET5BqjT6NRzZzzy0ZjjP0TBRwdTQ5WPutajVCKBkgCZ3DW7I0WGOJti6hbbaxziUA==
+X-Received: by 2002:a05:6512:3d86:b0:53d:a3a7:fe84 with SMTP id
+ 2adb3069b0e04-53df00a96e8mr14561366e87.8.1733010941990; 
+ Sat, 30 Nov 2024 15:55:41 -0800 (PST)
 Received: from umbar.lan ([192.130.178.90]) by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-53df649647dsm900706e87.195.2024.11.30.15.55.37
+ 2adb3069b0e04-53df649647dsm900706e87.195.2024.11.30.15.55.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 30 Nov 2024 15:55:38 -0800 (PST)
+ Sat, 30 Nov 2024 15:55:40 -0800 (PST)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sun, 01 Dec 2024 01:55:21 +0200
-Subject: [PATCH 04/10] drm/amd/display: use eld_mutex to protect access to
+Date: Sun, 01 Dec 2024 01:55:22 +0200
+Subject: [PATCH 05/10] drm/exynos: hdmi: use eld_mutex to protect access to
  connector->eld
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241201-drm-connector-eld-mutex-v1-4-ba56a6545c03@linaro.org>
+Message-Id: <20241201-drm-connector-eld-mutex-v1-5-ba56a6545c03@linaro.org>
 References: <20241201-drm-connector-eld-mutex-v1-0-ba56a6545c03@linaro.org>
 In-Reply-To: <20241201-drm-connector-eld-mutex-v1-0-ba56a6545c03@linaro.org>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -102,16 +102,16 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
  freedreno@lists.freedesktop.org
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1033;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1012;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=tW4andf3hq3R7WEIVc+7/mi1YkJBAZuwRdePwQe7SPw=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnS6XtKnM5W7YbjO8PfgAgXIKJMU347EHoG7pN6
- bC7slgMtUeJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ0ul7QAKCRCLPIo+Aiko
- 1UpAB/98T+k5U79sPWHDEfdVoK/uxOqdWekFRUGXmaXz8lVAUaoc1w3Ob2vgVsHEmXEpRZcEqWq
- bqDqWhVxSkMp+nC/KP4LYMkzeAhQdwu6z7o3M+cI/LhyEPck5mRwoKlsIKia5ENA0q+YRaJX8R8
- D/MbaqjEkVX7h5ODRsXt0b8del0LoST99BcdJPq6yynl2AInKf1mwGTeXOm09nkJ7B6JX9D3N0r
- XnUieG4H8ZtcZAOSBh2bHBQePXm7XUKBlvFoHDklRqI/YU7jyKDWow4es6KEqLKgoa9z5zUayj2
- 4MDN8Hi3OJ8XFsnfXmBTUuMae75l5OufjL1fj5yqKjhqazvg
+ bh=IlBBKvhDiY+cvMucjbk73vB6IzNnRZ3+VuxCS/o7lvk=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnS6XtFcmUlMe9gPJdYbealc8FI/qrUiornp5Sz
+ cmdQjBUbCqJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ0ul7QAKCRCLPIo+Aiko
+ 1ZUyB/467hRM5fIPQYymRfBPSsYEC5gNFcEsRNSKClp6yBUjqbuT5K54U8veccTLagqpg6mrQHB
+ sJYGNPnkUEjnK/JULDL886lHb/pd7SixyezCY9k1Mvf+/vpb3UQCr09dSOMw30NiV6NkWvyKje3
+ BIlrF/FZ/tS1DHxqV582BXI4mw5v2jinlQQFFXaTrs/2hLdXOEQ4QHa+nzNK2KyOa5RBmbNeNVm
+ uQ+khov3pAbgUTXsoLh/W7vnwwJOU8GBcFGjx4o9CWpP8W8q76JzryVKmf3dp+2WCcFdRfvArJ2
+ 8NknAwK5Hx6FXILV/EdSpHepfGGp/Zv/ytvXybjv5g6YrJ17
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -134,24 +134,23 @@ order to protect connector->eld from concurrent access.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 ++
+ drivers/gpu/drm/exynos/exynos_hdmi.c | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index a0bcc62f280f8e80f5d174cd2f567a8ec616e54f..2843283375551b0b85f5f897acdb2aeab652892c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1037,8 +1037,10 @@ static int amdgpu_dm_audio_component_get_eld(struct device *kdev, int port,
- 			continue;
+diff --git a/drivers/gpu/drm/exynos/exynos_hdmi.c b/drivers/gpu/drm/exynos/exynos_hdmi.c
+index c9d4b9146df95bb46cb6bea4849c331616c2b463..6fc537c9048f5c8e57e30f083121c9aea6b99a5f 100644
+--- a/drivers/gpu/drm/exynos/exynos_hdmi.c
++++ b/drivers/gpu/drm/exynos/exynos_hdmi.c
+@@ -1648,7 +1648,9 @@ static int hdmi_audio_get_eld(struct device *dev, void *data, uint8_t *buf,
+ 	struct hdmi_context *hdata = dev_get_drvdata(dev);
+ 	struct drm_connector *connector = &hdata->connector;
  
- 		*enabled = true;
-+		mutex_lock(&connector->eld_mutex);
- 		ret = drm_eld_size(connector->eld);
- 		memcpy(buf, connector->eld, min(max_bytes, ret));
-+		mutex_unlock(&connector->eld_mutex);
++	mutex_lock(&connector->eld_mutex);
+ 	memcpy(buf, connector->eld, min(sizeof(connector->eld), len));
++	mutex_unlock(&connector->eld_mutex);
  
- 		break;
- 	}
+ 	return 0;
+ }
 
 -- 
 2.39.5
