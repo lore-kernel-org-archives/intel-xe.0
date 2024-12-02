@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D9C7D49796
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 02:43:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FB6DD49794
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 02:49:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C19810E2F8;
-	Mon,  2 Dec 2024 02:43:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oE8G2rwz";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FCAF10E2EF;
- Mon,  2 Dec 2024 02:43:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733107421; x=1764643421;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XcmuxXGoiktJbQoRJxgPq1eZBL7GztrftXb/Z/N4DBo=;
- b=oE8G2rwzIWkmfjT/Z37yR3NYs8CYziX6donLNP/QFg/sqa19oVPvbpLc
- w4g99hjI/0jmi+lM27O5m3xWvnSdmZbUYb+I2980x+XV6AttP4LJTojPZ
- jTcLiQfMyJiiPTrbEG9TFIvyyO6JshTG6w0zG8FFnDjqN+aqmhejK11ht
- whIY5wDMayyL19FYDl06r6COQBYxVef8KEgLJP8Oa0JbKupy3XpXYp94x
- 4yLLo5DUDMs+/mBx4113vxGQ3Njfo+ZMtRPViF2828qQyq7VjLR2AFw+w
- nK4zSEvXKjTULAU61vK4XM0LMmNwFaLJCa6sCtldLlzTn2nRX5g+E1P7S Q==;
-X-CSE-ConnectionGUID: FT7rT038ST6i8S1dfGJAwA==
-X-CSE-MsgGUID: 8LRIjAHNR1mcYZsS0d9ToQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11273"; a="44634863"
-X-IronPort-AV: E=Sophos;i="6.12,201,1728975600"; d="scan'208";a="44634863"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2024 18:43:41 -0800
-X-CSE-ConnectionGUID: IbBbAY52Rf62vAer7cPDnQ==
-X-CSE-MsgGUID: OwpBu171S/aHmA4/x52hww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,201,1728975600"; d="scan'208";a="92878238"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa010.jf.intel.com with ESMTP; 01 Dec 2024 18:43:39 -0800
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, ville.syrjala@linux.intel.com,
- jani.nikula@intel.com, ankit.k.nautiyal@intel.com
-Subject: [PATCH v5 6/6] drm/i915/display: Move as sdp params change to fastset
-Date: Mon,  2 Dec 2024 08:15:40 +0530
-Message-ID: <20241202024540.2578856-7-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20241202024540.2578856-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20241202024540.2578856-1-mitulkumar.ajitkumar.golani@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32CC310E186;
+	Mon,  2 Dec 2024 02:49:02 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66FFC10E186;
+ Mon,  2 Dec 2024 02:49:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Add_AS=5FSDP_to_fast?=
+ =?utf-8?q?set_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 02 Dec 2024 02:49:01 -0000
+Message-ID: <173310774141.1475915.12571503853778768072@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241202024540.2578856-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20241202024540.2578856-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,35 +36,26 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-as_sdp param changes from vrr to cmrr should happen to fastset.
-Changing as_sdp params should not trigger any modeset.
+== Series Details ==
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Series: Add AS_SDP to fastset (rev2)
+URL   : https://patchwork.freedesktop.org/series/137034/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 4805bf682d43..708e3f86db8f 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5711,10 +5711,11 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_INFOFRAME(avi);
- 	PIPE_CONF_CHECK_INFOFRAME(spd);
- 	PIPE_CONF_CHECK_INFOFRAME(hdmi);
--	if (!fastset)
-+	if (!fastset) {
- 		PIPE_CONF_CHECK_INFOFRAME(drm);
-+		PIPE_CONF_CHECK_DP_AS_SDP(as_sdp);
-+	}
- 	PIPE_CONF_CHECK_DP_VSC_SDP(vsc);
--	PIPE_CONF_CHECK_DP_AS_SDP(as_sdp);
- 
- 	PIPE_CONF_CHECK_X(sync_mode_slaves_mask);
- 	PIPE_CONF_CHECK_I(master_transcoder);
--- 
-2.46.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 9b0aa1ea1d6b drm-tip: 2024y-12m-02d-01h-45m-24s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/vrr: Add crtc_state dump for vrr.vsync params
+Applying: drm/i915/vrr: Compute vrr.vsync_{start, end} during full modeset
+Applying: drm/i915/dp: fix the Adaptive sync Operation mode for SDP
+Applying: drm/i915/dp: Compute as_sdp.vtotal based on vrr timings
+Applying: drm/i915/dp: Compute as_sdp based on if vrr possible
+Applying: drm/i915/display: Move as sdp params change to fastset
+
 
