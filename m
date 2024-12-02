@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70B99D78333
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 16:38:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81244D78337
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 16:41:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36AF410E7CC;
-	Mon,  2 Dec 2024 16:38:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gGBxpRwj";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25BB010E7CC
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Dec 2024 16:38:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733157490; x=1764693490;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=O0CO7I4N5+s3i8cP2sibwB6ivEAOR3rF8AIgI7k16gc=;
- b=gGBxpRwja+RYGLds92Cj8GLmgXatrFLTjOZ8/JVh09U7z5munCFhfn52
- N1DE7DaNeYJx/inl9wR5Tn0lUvYxS65g3cAsewCro/xj85pSSPu1cXzSf
- cnv1S48JiBMD46GmxYbnpidIZGtuVde4FgdKNX0pVYQyQWpTE9rmj9ozh
- mk3lq7i5/4XBFFl4feyRlpnSXk18v9ySUoDg9S4LRv7/jrYO9bg0GjTbw
- WAB5AF6ZQ/E3n/b/U4baFffRWc2leNw0Q3ET/6lBeFLAEQ8O4YLAJyqmc
- 3B0mLj37somxj9gF4WEnEjhEcgYhMvJPKwUIe/s8pfic62iXouve6cq5o Q==;
-X-CSE-ConnectionGUID: oN11ntOjT6uzv6uKFb2COw==
-X-CSE-MsgGUID: +DGk/w+kRzKERA+vh6gemA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="33262112"
-X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="33262112"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 08:38:10 -0800
-X-CSE-ConnectionGUID: ny9Ey5VFSF2dlSdeixJlow==
-X-CSE-MsgGUID: nemW0evtTiCLPVeE1VDFeg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="97228365"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.244.79])
- ([10.245.244.79])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 08:38:08 -0800
-Message-ID: <d53d56c6-580f-4ec1-bcaf-328516fbb892@intel.com>
-Date: Mon, 2 Dec 2024 16:38:06 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D77A10E7CD;
+	Mon,  2 Dec 2024 16:41:28 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 913D010E7CD;
+ Mon,  2 Dec 2024 16:41:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4998249455706066777=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/display: fix ttm_bo_access() usage
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/display=3A_fix_ttm?=
+ =?utf-8?q?=5Fbo=5Faccess=28=29_usage?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 02 Dec 2024 16:41:27 -0000
+Message-ID: <173315768758.1684343.14113631174410598432@b555e5b46a47>
+X-Patchwork-Hint: ignore
 References: <20241202154123.76887-2-matthew.auld@intel.com>
- <a758f27d283bc3aff6aeca05c6002d2d5233ec78.camel@linux.intel.com>
- <602c7ab7-cab9-4790-a67c-306b23a75f23@intel.com>
- <e39201e8a53de69a6f4277e29105fddab82c0df8.camel@linux.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <e39201e8a53de69a6f4277e29105fddab82c0df8.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241202154123.76887-2-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,107 +36,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 02/12/2024 16:33, Thomas Hellström wrote:
-> On Mon, 2024-12-02 at 16:28 +0000, Matthew Auld wrote:
->> On 02/12/2024 15:56, Thomas Hellström wrote:
->>> On Mon, 2024-12-02 at 15:41 +0000, Matthew Auld wrote:
->>>> ttm_bo_access() returns the size on success. Account for that
->>>> otherwise
->>>> the caller incorrectly thinks this is an error in
->>>> intel_atomic_prepare_plane_clear_colors().
->>>>
->>>> Fixes: b6308aaa24a7 ("drm/xe/display: Update
->>>> intel_bo_read_from_page
->>>> to use ttm_bo_access")
->>>> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3661
->>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>> Cc: Jani Nikula <jani.nikula@intel.com>
->>>> ---
->>>>    drivers/gpu/drm/xe/display/intel_bo.c | 7 ++++++-
->>>>    1 file changed, 6 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/display/intel_bo.c
->>>> b/drivers/gpu/drm/xe/display/intel_bo.c
->>>> index 43141964f6f2..b2a8d06cc78a 100644
->>>> --- a/drivers/gpu/drm/xe/display/intel_bo.c
->>>> +++ b/drivers/gpu/drm/xe/display/intel_bo.c
->>>> @@ -40,8 +40,13 @@ int intel_bo_fb_mmap(struct drm_gem_object
->>>> *obj,
->>>> struct vm_area_struct *vma)
->>>>    int intel_bo_read_from_page(struct drm_gem_object *obj, u64
->>>> offset,
->>>> void *dst, int size)
->>>>    {
->>>>    	struct xe_bo *bo = gem_to_xe_bo(obj);
->>>> +	int ret;
->>>>    
->>>> -	return ttm_bo_access(&bo->ttm, offset, dst, size, 0);
->>>> +	ret = ttm_bo_access(&bo->ttm, offset, dst, size, 0);
->>>> +	if (ret == size)
->>>> +		ret = 0;
->>>> +
->>>> +	return ret;
->>>>    }
->>>>    
->>>
->>> Looking at how callers are using struct
->>> vm_operations_struct::access()
->>> it looks possible that 0 <= ret < size, indicating the number of
->>> bytes
->>> actually processed.
->>>
->>> Now since ttm_bo_access() is actually a helper to implement the
->>> above,
->>> we strictly don't have to follow that for its interface, but I
->>> think it
->>> makes sense to assert that ret is either == size or something
->>> negative.
->>> Ideas?
->>
->> hmm, what about if we add something like:
->>
->> +int xe_bo_read(struct xe_bo *bo, u64 offset, void *dst, int size)
->> +{
->> +       int ret;
->> +
->> +       ret = ttm_bo_access(&bo->ttm, offset, dst, size, 0);
->> +       if (!(ret < 0) && ret != size)
->> +               ret = -EIO;
->> +       else if (!(ret < 0))
->> +               ret = 0;
->> +
->> +       return ret;
->> +}
->>
->> And then both callers use that?
-> 
-> Yes that should work, although perhaps use ret >= 0 instead of
-> !(ret < 0)
-> 
-> and ret == size in the second test?
+--===============4998249455706066777==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yup, that looks cleaner.
+== Series Details ==
 
-> 
-> Thanks,
-> Thomas
-> 
-> 
-> 
->>
->>>
->>> /Thomas
->>>
->>>
->>>
->>>>    struct intel_frontbuffer *intel_bo_get_frontbuffer(struct
->>>> drm_gem_object *obj)
->>>
->>
-> 
+Series: drm/xe/display: fix ttm_bo_access() usage
+URL   : https://patchwork.freedesktop.org/series/141996/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2301-4ca0f09b17f7d61413bc13bff715747419c5d325_BAT -> xe-pw-141996v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-141996v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#3517]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2301-4ca0f09b17f7d61413bc13bff715747419c5d325/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141996v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-adlp-7:         [SKIP][3] ([Intel XE#455]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2301-4ca0f09b17f7d61413bc13bff715747419c5d325/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141996v1/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  
+  [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-2301-4ca0f09b17f7d61413bc13bff715747419c5d325 -> xe-pw-141996v1
+
+  IGT_8132: 7675e070cb74c6808050764367f978f6b74ebc36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2301-4ca0f09b17f7d61413bc13bff715747419c5d325: 4ca0f09b17f7d61413bc13bff715747419c5d325
+  xe-pw-141996v1: 141996v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141996v1/index.html
+
+--===============4998249455706066777==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/display: fix ttm_bo_access() usage</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141996/">https://patchwork.freedesktop.org/series/141996/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141996v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141996v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2301-4ca0f09b17f7d61413bc13bff715747419c5d325_BAT -&gt; xe-pw-141996v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-141996v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2301-4ca0f09b17f7d61413bc13bff715747419c5d325/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517">Intel XE#3517</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141996v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2301-4ca0f09b17f7d61413bc13bff715747419c5d325/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141996v1/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2301-4ca0f09b17f7d61413bc13bff715747419c5d325 -&gt; xe-pw-141996v1</li>
+</ul>
+<p>IGT_8132: 7675e070cb74c6808050764367f978f6b74ebc36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2301-4ca0f09b17f7d61413bc13bff715747419c5d325: 4ca0f09b17f7d61413bc13bff715747419c5d325<br />
+  xe-pw-141996v1: 141996v1</p>
+
+</body>
+</html>
+
+--===============4998249455706066777==--
