@@ -4,77 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27B9DD78310
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 12:00:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 787BBD7830F
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 12:06:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3B9E10E6FF;
-	Mon,  2 Dec 2024 12:00:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF7B10E6FF;
+	Mon,  2 Dec 2024 12:06:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YNJkDSvb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y0x+6oNQ";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44EC510E6F2;
- Mon,  2 Dec 2024 12:00:27 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 7E8635C6468;
- Mon,  2 Dec 2024 11:59:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89875C4CED2;
- Mon,  2 Dec 2024 12:00:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1733140826;
- bh=uq6P50nPVqYzYznK6CDOgelQtYASy802lUz2VNa3X4k=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=YNJkDSvbo8lkY9GLqT/hIrlkLQ08AZHdWUxs5r6bl3m2EBQ5pBgHM/mjPWR+I6JMf
- WHkFLn1IDnuQbsHQe0nadbr8vKz3xRW21XdUSdb4xT+i2Zor5fgGmzAoSEMfYcJPEX
- fwGe0wsbkhNxUqOwQeGiP8NfPPrneSL6Q9Sw24mlIlLforIDucg4Oz6evGeFxOliV0
- MWA8nqkra3Zn8VhWEpF06jAI0MaT8iKhzitPgCHIdv1qO0FwMpYUOE7uBvzD2uekk0
- +LA/RyRMTlyePXs6iJYth+3uw/OLHT4f3rvhAG9K2jgL+C9JqGuyzaknOpMmRTdq0t
- 0COIRkOoz/T+w==
-Date: Mon, 2 Dec 2024 13:00:23 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, 
- linux-samsung-soc@vger.kernel.org, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Alain Volmat <alain.volmat@foss.st.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- David Airlie <airlied@gmail.com>, Harry Wentland <harry.wentland@amd.com>, 
- Inki Dae <inki.dae@samsung.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Kyungmin Park <kyungmin.park@samsung.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Leo Li <sunpeng.li@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Marijn Suijten <marijn.suijten@somainline.org>,
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Phong LE <ple@baylibre.com>, 
- Raphael Gallais-Pou <rgallaispou@gmail.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
- Rob Clark <robdclark@gmail.com>, Robert Foss <rfoss@kernel.org>, 
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Sean Paul <sean@poorly.run>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
- Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Xinhui Pan <Xinhui.Pan@amd.com>
-Subject: Re: [PATCH 00/10] drm/connector: add eld_mutex to protect
- connector->eld
-Message-ID: <20241202-hummingbird-of-hypothetical-aptitude-646def@houat>
-References: <20241201-drm-connector-eld-mutex-v1-0-ba56a6545c03@linaro.org>
- <77545786331df8bfaf5fdcb309437358@kernel.org>
- <ohbtatnn33jj6y3q4milf4txi4n7yirnny2eefdjddlkn2dnhp@eqjedetct4q3>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8D8810E6FB;
+ Mon,  2 Dec 2024 12:06:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733141200; x=1764677200;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=b1G+dZSZC1u6WFYaj1mpusYFiYwrhplHX41CkoDEMmM=;
+ b=Y0x+6oNQKms3sMiCz+U/MXs7pFp/bsaAiMGp50Ca0clMfX+LRhATIMr9
+ eVh/pLW2A1hnbvg5J40IqolquI0ZfSzs3R1pv6D3bzQKgRTECP2PD4fJ6
+ TyT72AEx23jlVpl5JQ/FImcL4gLS42iAar2uz+Kj38PYDsK777NVS4vGR
+ wZJWFQOkY5q4+QEjt0xwXIFiAFZ3TKRAIkVP3IDcdx4y2ZFUbYatCRAr/
+ PDCsUbgcp1NnrWNeVrUnECFoepXq5CPi8MHj7WN8Vo4celKzXKgeE3lAI
+ 3SsU5WUdsB5B6Judf+CO+pVJlZGs681Jq8gRtSMWycOybaKS2aNAcaSZv w==;
+X-CSE-ConnectionGUID: R+umRIdsQr++MDg63EZpTA==
+X-CSE-MsgGUID: TpYylsw/SWCSCy0TvhdE7A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="43916987"
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="43916987"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 04:06:39 -0800
+X-CSE-ConnectionGUID: FBwwlTtlRxeZ0et1jI38LQ==
+X-CSE-MsgGUID: QhidxGxCQsyxyM3gp7wdvQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="92996628"
+Received: from carterle-desk.ger.corp.intel.com (HELO [10.245.246.72])
+ ([10.245.246.72])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 04:06:36 -0800
+Message-ID: <c7ae9afa6b06e1aa6233929d20487b68b3fca2c7.camel@linux.intel.com>
+Subject: Re: [PATCH v2 24/29] drm/xe: Add SVM VRAM migration
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com, 
+ simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
+Date: Mon, 02 Dec 2024 13:06:33 +0100
+In-Reply-To: <20241016032518.539495-25-matthew.brost@intel.com>
+References: <20241016032518.539495-1-matthew.brost@intel.com>
+ <20241016032518.539495-25-matthew.brost@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="rf5ewnb7ayc4e2uu"
-Content-Disposition: inline
-In-Reply-To: <ohbtatnn33jj6y3q4milf4txi4n7yirnny2eefdjddlkn2dnhp@eqjedetct4q3>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,49 +72,253 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
---rf5ewnb7ayc4e2uu
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 00/10] drm/connector: add eld_mutex to protect
- connector->eld
-MIME-Version: 1.0
-
-On Mon, Dec 02, 2024 at 01:03:07PM +0200, Dmitry Baryshkov wrote:
-> On Mon, Dec 02, 2024 at 10:19:41AM +0000, Maxime Ripard wrote:
-> > On Sun, 1 Dec 2024 01:55:17 +0200, Dmitry Baryshkov wrote:
-> > > The connector->eld is accessed by the .get_eld() callback. This access
-> > > can collide with the drm_edid_to_eld() updating the data at the same
-> > > time. Add drm_connector.eld_mutex to protect the data from concurrenct
-> > > access.
-> > >=20
-> > >=20
-> > > [ ... ]
-> >=20
-> > Reviewed-by: Maxime Ripard <mripard@kernel.org>
+On Tue, 2024-10-15 at 20:25 -0700, Matthew Brost wrote:
+> Migration is implemented with range granularity, with VRAM backing
+> being
+> a VM private TTM BO (i.e., shares dma-resv with VM). The lifetime of
+> the
+> TTM BO is limited to when the SVM range is in VRAM (i.e., when a VRAM
+> SVM range is migrated to SRAM, the TTM BO is destroyed).
 >=20
-> Thanks!
+> The design choice for using TTM BO for VRAM backing store, as opposed
+> to
+> direct buddy allocation, is as follows:
 >=20
-> I'm going to post v2 to fix Jani's comment, but what should be the merge
-> strategy? Merge patches 1-3, 5, 9-10 through drm-misc and the rest (AMD,
-> i915, MSM, radeon) through the driver trees?
+> - DRM buddy allocations are not at page granularity, offering no
+> =C2=A0 advantage over a BO.
+> - Unified eviction is required (SVM VRAM and TTM BOs need to be able
+> to
+> =C2=A0 evict each other).
+> - For exhaustive eviction [1], SVM VRAM allocations will almost
+> certainly
+> =C2=A0 require a dma-resv.
+> - Likely allocation size is 2M which makes of size of BO (872)
+> =C2=A0 acceptable per allocation (872 / 2M =3D=3D .0004158).
+>=20
+> With this, using TTM BO for VRAM backing store seems to be an obvious
+> choice as it allows leveraging of the TTM eviction code.
+>=20
+> Current migration policy is migrate any SVM range greater than or
+> equal
+> to 64k once.
+>=20
+> [1] https://patchwork.freedesktop.org/series/133643/
+>=20
+> v2:
+> =C2=A0- Rebase on latest GPU SVM
+> =C2=A0- Retry page fault on get pages returning mixed allocation
+> =C2=A0- Use drm_gpusvm_devmem
+>=20
+> Signed-off-by: Matthew Brost matthew.brost@intel.com
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_svm.c | 96
+> +++++++++++++++++++++++++++++++++++--
+> =C2=A0drivers/gpu/drm/xe/xe_svm.h |=C2=A0 1 +
+> =C2=A02 files changed, 94 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> b/drivers/gpu/drm/xe/xe_svm.c
+> index 976b4ce15db4..31b80cde15c4 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -218,6 +218,9 @@ static int __xe_svm_garbage_collector(struct
+> xe_vm *vm,
+> =C2=A0{
+> =C2=A0	struct dma_fence *fence;
+> =C2=A0
+> +	if (IS_DGFX(vm->xe) && range->base.flags.partial_unmap)
+> +		drm_gpusvm_range_evict(&vm->svm.gpusvm, &range-
+> >base);
+> +
+> =C2=A0	xe_vm_lock(vm, false);
+> =C2=A0	fence =3D xe_vm_range_unbind(vm, range);
+> =C2=A0	xe_vm_unlock(vm);
+> @@ -458,7 +461,6 @@ static int xe_svm_populate_devmem_pfn(struct
+> drm_gpusvm_devmem *devmem_allocatio
+> =C2=A0	return 0;
+> =C2=A0}
+> =C2=A0
+> -__maybe_unused
+> =C2=A0static const struct drm_gpusvm_devmem_ops gpusvm_devmem_ops =3D {
+> =C2=A0	.devmem_release =3D xe_svm_devmem_release,
+> =C2=A0	.populate_devmem_pfn =3D xe_svm_populate_devmem_pfn,
+> @@ -542,21 +544,84 @@ static bool xe_svm_range_is_valid(struct
+> xe_svm_range *range,
+> =C2=A0	return (range->tile_present & ~range->tile_invalidated) &
+> BIT(tile->id);
+> =C2=A0}
+> =C2=A0
+> +static struct xe_mem_region *tile_to_mr(struct xe_tile *tile)
+> +{
+> +	return &tile->mem.vram;
+> +}
+> +
+> +static struct xe_bo *xe_svm_alloc_vram(struct xe_vm *vm, struct
+> xe_tile *tile,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_svm_range *range,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct drm_gpusvm_ctx
+> *ctx)
 
-The easiest is probably to merge everything through drm-misc if everyone ag=
-rees.
+This function will se substantial updates with multi-device, but let's
+leave as is for now.
 
-Maxime
+> +{
+> +	struct xe_mem_region *mr =3D tile_to_mr(tile);
+> +	struct drm_buddy_block *block;
+> +	struct list_head *blocks;
+> +	struct xe_bo *bo;
+> +	ktime_t end =3D 0;
+> +	int err;
+> +
+> +retry:
+> +	xe_vm_lock(vm, false);
+> +	bo =3D xe_bo_create(tile_to_xe(tile), tile, vm, range-
+> >base.va.end -
+> +			=C2=A0 range->base.va.start, ttm_bo_type_device,
+> +			=C2=A0 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+> +			=C2=A0 XE_BO_FLAG_SYSTEM_ALLOC |
+> XE_BO_FLAG_SKIP_CLEAR);
+> +	xe_vm_unlock(vm);
+> +	if (IS_ERR(bo)) {
+> +		err =3D PTR_ERR(bo);
+> +		if (xe_vm_validate_should_retry(NULL, err, &end))
+> +			goto retry;
+> +		return bo;
+> +	}
+> +
+> +	drm_gpusvm_devmem_init(&bo->devmem_allocation,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vm->xe->drm.dev, vm->svm.gpusvm.=
+mm,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &gpusvm_devmem_ops,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &tile->mem.vram.dpagemap,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 range->base.va.end -
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 range->base.va.start);
+> +
+> +	blocks =3D &to_xe_ttm_vram_mgr_resource(bo->ttm.resource)-
+> >blocks;
+> +	list_for_each_entry(block, blocks, link)
+> +		block->private =3D mr;
+> +
+> +	/*
+> +	 * Take ref because as soon as drm_gpusvm_migrate_to_devmem
+> succeeds the
+> +	 * creation ref can be dropped upon CPU fault or unmap.
+> +	 */
+> +	xe_bo_get(bo);
+> +
+> +	err =3D drm_gpusvm_migrate_to_devmem(&vm->svm.gpusvm, &range-
+> >base,
+> +					=C2=A0=C2=A0 &bo->devmem_allocation,
+> ctx);
+> +	if (err) {
+> +		xe_bo_put(bo);	/* Local ref */
+> +		xe_bo_put(bo);	/* Creation ref */
+> +		return ERR_PTR(err);
+> +	}
+> +
+> +	return bo;
+> +}
+> +
+> =C2=A0int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+> =C2=A0			=C2=A0=C2=A0=C2=A0 struct xe_tile *tile, u64 fault_addr,
+> =C2=A0			=C2=A0=C2=A0=C2=A0 bool atomic)
+> =C2=A0{
+> -	struct drm_gpusvm_ctx ctx =3D { .read_only =3D
+> xe_vma_read_only(vma), };
+> +	struct drm_gpusvm_ctx ctx =3D { .read_only =3D
+> xe_vma_read_only(vma),
+> +		.devmem_possible =3D IS_DGFX(vm->xe), .check_pages =3D
+> true, };
+> =C2=A0	struct xe_svm_range *range;
+> =C2=A0	struct drm_gpusvm_range *r;
+> =C2=A0	struct drm_exec exec;
+> =C2=A0	struct dma_fence *fence;
+> +	struct xe_bo *bo =3D NULL;
+> =C2=A0	ktime_t end =3D 0;
+> =C2=A0	int err;
+> =C2=A0
+> =C2=A0	lockdep_assert_held_write(&vm->lock);
+> =C2=A0
+> =C2=A0retry:
+> +	xe_bo_put(bo);
+> +	bo =3D NULL;
+> +
+> =C2=A0	/* Always process UNMAPs first so view SVM ranges is current
+> */
+> =C2=A0	err =3D xe_svm_garbage_collector(vm);
+> =C2=A0	if (err)
+> @@ -572,9 +637,32 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+> struct xe_vma *vma,
+> =C2=A0	if (xe_svm_range_is_valid(range, tile))
+> =C2=A0		return 0;
+> =C2=A0
+> +	/* XXX: Add migration policy, for now migrate range once */
+> +	if (IS_DGFX(vm->xe) && !range->migrated &&
+> +	=C2=A0=C2=A0=C2=A0 range->base.flags.migrate_devmem &&
+> +	=C2=A0=C2=A0=C2=A0 (range->base.va.end - range->base.va.start) >=3D SZ_=
+64K) {
+> +		range->migrated =3D true;
+> +
+> +		bo =3D xe_svm_alloc_vram(vm, tile, range, &ctx);
+> +		if (IS_ERR(bo)) {
+> +			drm_info(&vm->xe->drm,
+> +				 "VRAM allocation failed, falling
+> back to retrying, asid=3D%u, errno %ld\n",
+> +				 vm->usm.asid, PTR_ERR(bo));
+> +			bo =3D NULL;
+> +			goto retry;
+> +		}
+> +	}
+> +
+> =C2=A0	err =3D drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r, &ctx);
+> =C2=A0	if (err =3D=3D -EFAULT || err =3D=3D -EPERM)	/* Corner where CPU
+> mappings have change */
+> -	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto retry;
+> +	if (err =3D=3D -EOPNOTSUPP || err =3D=3D -EFAULT || err =3D=3D -EPERM)
+> {	/* Corner where CPU mappings have change */
 
---rf5ewnb7ayc4e2uu
-Content-Type: application/pgp-signature; name="signature.asc"
+have changed or have seen a change?
 
------BEGIN PGP SIGNATURE-----
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ02hVgAKCRAnX84Zoj2+
-did2AYCKqjIX2aHftKtybJaUPI3aEKi2s1lRBLYyjb1Uwicsybws1tIK08t+OLLX
-OfIShgYBfiJJHZ+4Gj/u8uuAs91T4EvzTss9Zo2aF+YDFdrV47edIsjbVE2McJQO
-YLEiS8Wy0Q==
-=Idbn
------END PGP SIGNATURE-----
+> +		if (err =3D=3D -EOPNOTSUPP)
+> +			drm_gpusvm_range_evict(&vm->svm.gpusvm,
+> &range->base);
+> +		drm_info(&vm->xe->drm,
+> +			 "Get pages failed, falling back to
+> retrying, asid=3D%u, gpusvm=3D0x%016llx, errno %d\n",
+> +			 vm->usm.asid, (u64)&vm->svm.gpusvm, err);
+> +		goto retry;
+> +	}
+> =C2=A0	if (err)
+> =C2=A0		goto err_out;
+> =C2=A0
+> @@ -605,6 +693,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+> struct xe_vma *vma,
+> =C2=A0	dma_fence_put(fence);
+> =C2=A0
+> =C2=A0err_out:
+> +	xe_bo_put(bo);
+> +
+> =C2=A0	return err;
+> =C2=A0}
+> =C2=A0
+> diff --git a/drivers/gpu/drm/xe/xe_svm.h
+> b/drivers/gpu/drm/xe/xe_svm.h
+> index 760d22cefb1e..6893664dae70 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.h
+> +++ b/drivers/gpu/drm/xe/xe_svm.h
+> @@ -21,6 +21,7 @@ struct xe_svm_range {
+> =C2=A0	struct list_head garbage_collector_link;
+> =C2=A0	u8 tile_present;
+> =C2=A0	u8 tile_invalidated;
+> +	u8 migrated	:1;
 
---rf5ewnb7ayc4e2uu--
+Kerneldoc, including protection information
+
+> =C2=A0};
+> =C2=A0
+> =C2=A0int xe_devm_add(struct xe_tile *tile, struct xe_mem_region *mr);
+
+Thanks,
+Thomas
+
