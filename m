@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D68CD7833A
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 17:28:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0BDAD78337
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 17:28:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9CF610E048;
-	Mon,  2 Dec 2024 17:28:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A579110E048;
+	Mon,  2 Dec 2024 17:28:42 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D6AE10E048;
- Mon,  2 Dec 2024 17:28:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCD9310E048;
+ Mon,  2 Dec 2024 17:28:41 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display=3A_fi?=
- =?utf-8?q?x_ttm=5Fbo=5Faccess=28=29_usage_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/display=3A_fix_ttm?=
+ =?utf-8?q?=5Fbo=5Faccess=28=29_usage_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Dec 2024 17:28:17 -0000
-Message-ID: <173316049744.1703811.5482027894816874026@b555e5b46a47>
+Date: Mon, 02 Dec 2024 17:28:41 -0000
+Message-ID: <173316052183.1703811.8918189312937640716@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241202170102.88893-2-matthew.auld@intel.com>
 In-Reply-To: <20241202170102.88893-2-matthew.auld@intel.com>
@@ -48,9 +48,38 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 26715037f44d drm-tip: 2024y-12m-02d-17h-08m-06s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/display: fix ttm_bo_access() usage
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit fc502816b9a95df753d425894deedec785231371
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Mon Dec 2 17:01:03 2024 +0000
+
+    drm/xe/display: fix ttm_bo_access() usage
+    
+    ttm_bo_access() returns the size on success. Account for that otherwise
+    the caller incorrectly thinks this is an error in
+    intel_atomic_prepare_plane_clear_colors().
+    
+    v2 (Thomas)
+     - Make sure we check for the partial copy case. Also since this api is
+       easy to get wrong, wrap the whole thing in a new helper to hide the
+       details and then convert the existing users over.
+    
+    Fixes: b6308aaa24a7 ("drm/xe/display: Update intel_bo_read_from_page to use ttm_bo_access")
+    Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3661
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Jani Nikula <jani.nikula@intel.com>
+    Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 26715037f44d6dd8c755dd7c3e115cf9b29782a4 drm-intel
+fc502816b9a9 drm/xe/display: fix ttm_bo_access() usage
 
 
