@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE70CE69E97
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 21:57:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA7DCE69E95
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 21:58:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 996E510E87A;
-	Mon,  2 Dec 2024 21:57:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A77A10E879;
+	Mon,  2 Dec 2024 21:58:17 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD64410E879;
- Mon,  2 Dec 2024 21:57:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE18110E879;
+ Mon,  2 Dec 2024 21:58:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vsec=3A_Suppo?=
- =?utf-8?q?rt_BMG_devices_=28rev5=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/vsec=3A_Support_BM?=
+ =?utf-8?q?G_devices_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Dec 2024 21:57:57 -0000
-Message-ID: <173317667783.1773983.654855068508870245@b555e5b46a47>
+Date: Mon, 02 Dec 2024 21:58:16 -0000
+Message-ID: <173317669697.1773983.12392166457443623861@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241202211439.2939607-1-michael.j.ruhl@intel.com>
 In-Reply-To: <20241202211439.2939607-1-michael.j.ruhl@intel.com>
@@ -44,13 +44,40 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/vsec: Support BMG devices (rev5)
 URL   : https://patchwork.freedesktop.org/series/137199/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 83cfa47b4962 drm-tip: 2024y-12m-02d-20h-04m-04s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/vsec: Support BMG devices
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit aeb00e152ef401a6db750c5348436ec99d7ee9a1
+Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Date:   Mon Dec 2 16:14:39 2024 -0500
+
+    drm/xe/vsec: Support BMG devices
+    
+    The Battlemage (BMG) discrete graphics card supports the Platform,
+    Monitoring Technology (PMT) feature directly on the primary PCI device.
+    
+    Utilize the PMT callback API to add support for the BMG devices.
+    
+    Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+    Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
++ /mt/dim checkpatch 83cfa47b496201ff05d4a369f6fe3f75665a2acf drm-intel
+aeb00e152ef4 drm/xe/vsec: Support BMG devices
+-:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#32: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 307 lines checked
 
 
