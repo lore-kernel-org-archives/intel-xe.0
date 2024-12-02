@@ -4,83 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECD14D78302
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 10:23:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 962F2D78306
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 10:44:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07FD910E6BD;
-	Mon,  2 Dec 2024 10:23:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6925D10E1E2;
+	Mon,  2 Dec 2024 10:44:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iTK/DpFz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q8jtE0AX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F8A010E215;
- Mon,  2 Dec 2024 10:23:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 539FC10E1E2;
+ Mon,  2 Dec 2024 10:44:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733135035; x=1764671035;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=LoFYJIJMK9Q6i+Gw0XK8Wb/1ESu9maODEfjoY8fwwDs=;
- b=iTK/DpFzfn5abOUAh9iw/IW5OYc9PadyBwWm5Dp591RSMdMhF3PuCqau
- LdIH6EYj7DjvzpNg+VDhrtDZMT60OhTRN7udpeqtPFVrcTbC2HcMWsgTr
- X4ag54pqD0ivLZetVdpYLGaanVsyhcbAfg1GhajVEziv3hE+jUW+8gzLg
- U8w0PvwgY/4V9qMcW2JdOT2rxQFxHk17bVR+Zm1QPgL9RL+olLUSyH7av
- jVe+Noi/3VcsHQ9h0EEzVx80oWh/tbtotRR0VK44Opx6wkEDXT7tsJea5
- F3Cv6V6yDn+TwIW/h4GtE/WWZy6d5bEtQ75wAAapxdOugqQvnYnOCJEGN g==;
-X-CSE-ConnectionGUID: onrA8vTMSLqFJFAZlnDsCg==
-X-CSE-MsgGUID: 9bcR0yIjT3S38iFeOx+Ngg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11273"; a="58686713"
-X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="58686713"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 02:23:54 -0800
-X-CSE-ConnectionGUID: UHu/FGD7RLStnnYdm2d4Lg==
-X-CSE-MsgGUID: M4511x8/R/qE4ZFNnmbAHg==
+ t=1733136293; x=1764672293;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=/0X7r6apaJy2bjJWw/jQp7VqDYwxYskDSG0BYrYfXtE=;
+ b=Q8jtE0AXMFDhOwumiWRrD1cn0qtoU47riveFWJ2VYMPpUDx4xBzocvIx
+ zl4q/gBOrBAc31CtBJ+FCr40hMPdDT1EqoX+hoGAQFNI9y0WDEzVInzFm
+ eRZOxtc1DNiREEkBVNmYMqAKALuFAWcWpVbh9bsPUAzrzS185I17OcgYV
+ DVRyPJQjqA3qwng5NbyjgZlzWhMbfl6zLeJXXXf9cVOnw2sX41pYYT/eJ
+ reKAte/1yFPtTPwp3MiffB2bTPBUMK/UYqYyEIv3Hn2otF2KrkQwAEdhj
+ xdW70Q/+hSVYUm1AntrbmISVRAvpb+UxdG5xKW7A6012rAa6NoH+VM+vW g==;
+X-CSE-ConnectionGUID: zeXcGUS3Tuu5CZQbzauZ9A==
+X-CSE-MsgGUID: 2CBuT1XDRzGRIon/41Vuzg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11273"; a="33450147"
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="33450147"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 02:44:53 -0800
+X-CSE-ConnectionGUID: 1YTLgdDYQG2Nneipqr1Jmg==
+X-CSE-MsgGUID: MBd3cw0ERbCoClVtniAScQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="97836221"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.77])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 02:23:41 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Christian =?utf-8?Q?K=C3=B6nig?=
- <christian.koenig@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Phong LE <ple@baylibre.com>,
- Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>, Krzysztof Kozlowski
- <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar
- <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, Marijn Suijten
- <marijn.suijten@somainline.org>, Alain Volmat <alain.volmat@foss.st.com>,
- Raphael Gallais-Pou <rgallaispou@gmail.com>, Dave Stevenson
- <dave.stevenson@raspberrypi.com>, =?utf-8?Q?Ma=C3=ADra?= Canal
- <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org
-Subject: Re: [PATCH 01/10] drm/connector: add mutex to protect ELD from
- concurrent access
-In-Reply-To: <20241201-drm-connector-eld-mutex-v1-1-ba56a6545c03@linaro.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241201-drm-connector-eld-mutex-v1-0-ba56a6545c03@linaro.org>
- <20241201-drm-connector-eld-mutex-v1-1-ba56a6545c03@linaro.org>
-Date: Mon, 02 Dec 2024 12:23:29 +0200
-Message-ID: <87r06q5qou.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="92974542"
+Received: from carterle-desk.ger.corp.intel.com (HELO [10.245.246.72])
+ ([10.245.246.72])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 02:44:50 -0800
+Message-ID: <a2377c7b0cacc4c437a0defdb410565b774e6250.camel@linux.intel.com>
+Subject: Re: [PATCH v2 23/29] drm/xe: Add BO flags required for SVM
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com, 
+ simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
+Date: Mon, 02 Dec 2024 11:44:47 +0100
+In-Reply-To: <20241016032518.539495-24-matthew.brost@intel.com>
+References: <20241016032518.539495-1-matthew.brost@intel.com>
+ <20241016032518.539495-24-matthew.brost@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
 MIME-Version: 1.0
-Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,78 +72,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, 01 Dec 2024, Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
-> The connector->eld is accessed by the .get_eld() callback. This access
-> can collide with the drm_edid_to_eld() updating the data at the same
-> time. Add drm_connector.eld_mutex to protect the data from concurrenct
-> access. Individual drivers are not updated (to reduce possible issues
-> while applying the patch), maintainers are to find a best suitable way
-> to lock that mutex while accessing the ELD data.
-
-Missed clear_eld().
-
-BR,
-Jani.
-
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Tue, 2024-10-15 at 20:25 -0700, Matthew Brost wrote:
+> Add XE_BO_FLAG_SYSTEM_ALLOC to indicate BO is tied to SVM range.
+>=20
+> Add XE_BO_FLAG_SKIP_CLEAR to indicate BO does not need to cleared.
+>=20
+> v2:
+> =C2=A0- Take VM ref for system allocator BOs
+>=20
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/drm_connector.c | 1 +
->  drivers/gpu/drm/drm_edid.c      | 4 ++++
->  include/drm/drm_connector.h     | 5 ++++-
->  3 files changed, 9 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index fc35f47e2849ed6786d6223ac9c69e1c359fc648..bbdaaf7022b62d84594a29f1b60144920903a99a 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -277,6 +277,7 @@ static int __drm_connector_init(struct drm_device *dev,
->  	INIT_LIST_HEAD(&connector->probed_modes);
->  	INIT_LIST_HEAD(&connector->modes);
->  	mutex_init(&connector->mutex);
-> +	mutex_init(&connector->eld_mutex);
->  	mutex_init(&connector->edid_override_mutex);
->  	mutex_init(&connector->hdmi.infoframes.lock);
->  	connector->edid_blob_ptr = NULL;
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 855beafb76ffbecf5c08d58e2f54bfb76f30b930..f0ca77bd42fd518d505d0db78557e0c8d83efb29 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -5657,6 +5657,8 @@ static void drm_edid_to_eld(struct drm_connector *connector,
->  	if (!drm_edid)
->  		return;
->  
-> +	mutex_lock(&connector->eld_mutex);
-> +
->  	mnl = get_monitor_name(drm_edid, &eld[DRM_ELD_MONITOR_NAME_STRING]);
->  	drm_dbg_kms(connector->dev, "[CONNECTOR:%d:%s] ELD monitor %s\n",
->  		    connector->base.id, connector->name,
-> @@ -5717,6 +5719,8 @@ static void drm_edid_to_eld(struct drm_connector *connector,
->  	drm_dbg_kms(connector->dev, "[CONNECTOR:%d:%s] ELD size %d, SAD count %d\n",
->  		    connector->base.id, connector->name,
->  		    drm_eld_size(eld), total_sad_count);
-> +
-> +	mutex_unlock(&connector->eld_mutex);
->  }
->  
->  static int _drm_edid_to_sad(const struct drm_edid *drm_edid,
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index e3fa43291f449d70f3b92a00985336c4f2237bc6..1e2b25e204cb523d61d30f5409faa059bf2b86eb 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -2001,8 +2001,11 @@ struct drm_connector {
->  	struct drm_encoder *encoder;
->  
->  #define MAX_ELD_BYTES	128
-> -	/** @eld: EDID-like data, if present */
-> +	/** @eld: EDID-like data, if present, protected by @eld_mutex */
->  	uint8_t eld[MAX_ELD_BYTES];
-> +	/** @eld_mutex: protection for concurrenct access to @eld */
-> +	struct mutex eld_mutex;
-> +
->  	/** @latency_present: AV delay info from ELD, if found */
->  	bool latency_present[2];
->  	/**
+> =C2=A0drivers/gpu/drm/xe/xe_bo.c | 15 +++++++++------
+> =C2=A0drivers/gpu/drm/xe/xe_bo.h |=C2=A0 2 ++
+> =C2=A02 files changed, 11 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index a02d63e322ae..dbd03383878e 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -685,8 +685,9 @@ static int xe_bo_move(struct ttm_buffer_object
+> *ttm_bo, bool evict,
+> =C2=A0	move_lacks_source =3D !old_mem || (handle_system_ccs ? (!bo-
+> >ccs_cleared) :
+> =C2=A0				=09
+> (!mem_type_is_vram(old_mem_type) && !tt_has_data));
+> =C2=A0
+> -	needs_clear =3D (ttm && ttm->page_flags &
+> TTM_TT_FLAG_ZERO_ALLOC) ||
+> -		(!ttm && ttm_bo->type =3D=3D ttm_bo_type_device);
+> +	needs_clear =3D !(bo->flags & XE_BO_FLAG_SKIP_CLEAR) &&
+> +		((ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC)
+> ||
+> +		(!ttm && ttm_bo->type =3D=3D ttm_bo_type_device));
 
--- 
-Jani Nikula, Intel
+It should be worth adding a note about how clearing for svm bos is
+intended to work. From what I can tell, there is an option to clear on
+migration from system to vram if no system pages are present?
+
+> =C2=A0
+> =C2=A0	if (new_mem->mem_type =3D=3D XE_PL_TT) {
+> =C2=A0		ret =3D xe_tt_map_sg(ttm);
+> @@ -1145,7 +1146,7 @@ static void xe_ttm_bo_destroy(struct
+> ttm_buffer_object *ttm_bo)
+> =C2=A0		xe_drm_client_remove_bo(bo);
+> =C2=A0#endif
+> =C2=A0
+> -	if (bo->vm && xe_bo_is_user(bo))
+> +	if (bo->vm && (xe_bo_is_user(bo) || bo->flags &
+> XE_BO_FLAG_SYSTEM_ALLOC))
+> =C2=A0		xe_vm_put(bo->vm);
+> =C2=A0
+> =C2=A0	mutex_lock(&xe->mem_access.vram_userfault.lock);
+> @@ -1301,7 +1302,8 @@ struct xe_bo *___xe_bo_create_locked(struct
+> xe_device *xe, struct xe_bo *bo,
+> =C2=A0	int err;
+> =C2=A0
+> =C2=A0	/* Only kernel objects should set GT */
+> -	xe_assert(xe, !tile || type =3D=3D ttm_bo_type_kernel);
+> +	xe_assert(xe, !tile || type =3D=3D ttm_bo_type_kernel ||
+> +		=C2=A0 flags & XE_BO_FLAG_SYSTEM_ALLOC);
+> =C2=A0
+> =C2=A0	if (XE_WARN_ON(!size)) {
+> =C2=A0		xe_bo_free(bo);
+> @@ -1493,7 +1495,7 @@ __xe_bo_create_locked(struct xe_device *xe,
+> =C2=A0	 * by having all the vm's bo refereferences released at vm
+> close
+> =C2=A0	 * time.
+> =C2=A0	 */
+> -	if (vm && xe_bo_is_user(bo))
+> +	if (vm && (xe_bo_is_user(bo) || bo->flags &
+> XE_BO_FLAG_SYSTEM_ALLOC))
+> =C2=A0		xe_vm_get(vm);
+> =C2=A0	bo->vm =3D vm;
+> =C2=A0
+> @@ -2333,7 +2335,8 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
+> =C2=A0	 * can't be used since there's no CCS storage associated
+> with
+> =C2=A0	 * non-VRAM addresses.
+> =C2=A0	 */
+> -	if (IS_DGFX(xe) && (bo->flags & XE_BO_FLAG_SYSTEM))
+> +	if (IS_DGFX(xe) && ((bo->flags & XE_BO_FLAG_SYSTEM) ||
+> +	=C2=A0=C2=A0=C2=A0 (bo->flags & XE_BO_FLAG_SYSTEM_ALLOC)))
+> =C2=A0		return false;
+
+Can we support CCS with system allocator? Perhaps add a TODO comment if
+so. I figure it should be possible if we resolve on migration to
+system, which we do on BMG.
+
+
+Thanks,
+Thomas
+
+
+> =C2=A0
+> =C2=A0	return true;
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index 7fa44a0138b0..caf0459d16ad 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -39,6 +39,8 @@
+> =C2=A0#define XE_BO_FLAG_NEEDS_64K		BIT(15)
+> =C2=A0#define XE_BO_FLAG_NEEDS_2M		BIT(16)
+> =C2=A0#define XE_BO_FLAG_GGTT_INVALIDATE	BIT(17)
+> +#define XE_BO_FLAG_SYSTEM_ALLOC		BIT(18)
+> +#define XE_BO_FLAG_SKIP_CLEAR		BIT(19)
+> =C2=A0/* this one is trigger internally only */
+> =C2=A0#define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
+> =C2=A0#define XE_BO_FLAG_INTERNAL_64K		BIT(31)
+
