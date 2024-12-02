@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68D32E69E96
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 21:14:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07AB3E69E95
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 21:25:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3384910E0E2;
-	Mon,  2 Dec 2024 21:14:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UNWUDje5";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B35E010E0E2
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Dec 2024 21:14:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733174088; x=1764710088;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8Nbtcj04iZ0HGdO4LG3zXX/RYI8vjE+SBCPkmyQz6Mo=;
- b=UNWUDje5uBh/jsOe0y8YovGUjCkOS0XRmR751fkevHqbzqUhA9S5ik6n
- w3hKN9JQYQw4fpw3jFE315+NhYWEZkoFh85RW+MI4kBHQOJtHECvQqSne
- j4dw2dsMDjRz1STgzGDyQk747zGq4RG8p4LkNgK/Ud9b4nO46MX3B4wm+
- NkmaupbnJE4b7Zww7QD1PtT9Y4UQPmhTq6JvTvMdp/sjHAc+vrxU7sBoa
- Y4/XxeiDwkIuDUbbahIuDhU2V/iK9yXMsjMaE0JXiSUpgQHcjDGtYVMuy
- uylhFY/GGGb2/AqncjbcvmO4VXNbyTrCxh/mFEr0wWIWPMh8DEvflP+U6 Q==;
-X-CSE-ConnectionGUID: PmlwAK4hT52KQr4uAtJdWg==
-X-CSE-MsgGUID: 0N1CcC0VRQWbwhBktmEF0w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="58771065"
-X-IronPort-AV: E=Sophos;i="6.12,203,1728975600"; d="scan'208";a="58771065"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 13:14:47 -0800
-X-CSE-ConnectionGUID: TkKIPlHSQz6RrBIEcSyCVQ==
-X-CSE-MsgGUID: VJNJd4KNRY2OhsH7zBDRYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,203,1728975600"; d="scan'208";a="93624594"
-Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 13:14:47 -0800
-From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	rodrigo.vivi@intel.com
-Cc: michael.j.ruhl@intel.com
-Subject: [PATCH v5] [CI] drm/xe/vsec: Support BMG devices
-Date: Mon,  2 Dec 2024 16:14:39 -0500
-Message-ID: <20241202211439.2939607-1-michael.j.ruhl@intel.com>
-X-Mailer: git-send-email 2.44.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id C654610E1A1;
+	Mon,  2 Dec 2024 21:25:55 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71D1A10E1A1;
+ Mon,  2 Dec 2024 21:25:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Support_BMG_PMT_features_for_X?=
+ =?utf-8?q?e_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 02 Dec 2024 21:25:54 -0000
+Message-ID: <173317475446.1773409.6648909515041786056@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241202200344.2939085-1-michael.j.ruhl@intel.com>
+In-Reply-To: <20241202200344.2939085-1-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,372 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The Battlemage (BMG) discrete graphics card supports the Platform,
-Monitoring Technology (PMT) feature directly on the primary PCI device.
+== Series Details ==
 
-Utilize the PMT callback API to add support for the BMG devices.
+Series: Support BMG PMT features for Xe (rev3)
+URL   : https://patchwork.freedesktop.org/series/141227/
+State : success
 
-Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
----
- drivers/gpu/drm/xe/Makefile          |   1 +
- drivers/gpu/drm/xe/regs/xe_pmt.h     |  19 +++
- drivers/gpu/drm/xe/xe_device.c       |   7 +
- drivers/gpu/drm/xe/xe_device_types.h |   6 +
- drivers/gpu/drm/xe/xe_vsec.c         | 233 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vsec.h         |  11 ++
- 6 files changed, 277 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_pmt.h
- create mode 100644 drivers/gpu/drm/xe/xe_vsec.c
- create mode 100644 drivers/gpu/drm/xe/xe_vsec.h
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index a93e6fcc0ad9..7730e0596299 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -111,6 +111,7 @@ xe-y += xe_bb.o \
- 	xe_vm.o \
- 	xe_vram.o \
- 	xe_vram_freq.o \
-+	xe_vsec.o \
- 	xe_wait_user_fence.o \
- 	xe_wa.o \
- 	xe_wopcm.o
-diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
-new file mode 100644
-index 000000000000..f45abcd96ba8
---- /dev/null
-+++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
-@@ -0,0 +1,19 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+#ifndef _XE_PMT_H_
-+#define _XE_PMT_H_
-+
-+#define SOC_BASE			0x280000
-+
-+#define BMG_PMT_BASE_OFFSET		0xDB000
-+#define BMG_DISCOVERY_OFFSET		(SOC_BASE + BMG_PMT_BASE_OFFSET)
-+
-+#define BMG_TELEMETRY_BASE_OFFSET	0xE0000
-+#define BMG_TELEMETRY_OFFSET		(SOC_BASE + BMG_TELEMETRY_BASE_OFFSET)
-+
-+#define SG_REMAP_INDEX1			XE_REG(SOC_BASE + 0x08)
-+#define   SG_REMAP_BITS			REG_GENMASK(31, 24)
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 930bb2750e2e..d6fccea1e083 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -56,6 +56,7 @@
- #include "xe_ttm_sys_mgr.h"
- #include "xe_vm.h"
- #include "xe_vram.h"
-+#include "xe_vsec.h"
- #include "xe_wait_user_fence.h"
- #include "xe_wa.h"
- 
-@@ -367,6 +368,10 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 		goto err;
- 	}
- 
-+	err = drmm_mutex_init(&xe->drm, &xe->pmt.lock);
-+	if (err)
-+		goto err;
-+
- 	err = xe_display_create(xe);
- 	if (WARN_ON(err))
- 		goto err;
-@@ -761,6 +766,8 @@ int xe_device_probe(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_sanitize_freq(gt);
- 
-+	xe_vsec_init(xe);
-+
- 	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
- 
- err_fini_display:
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 6a04f975ec16..1373a222f5a5 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -485,6 +485,12 @@ struct xe_device {
- 		struct mutex lock;
- 	} d3cold;
- 
-+	/** @pmt: Support the PMT driver callback interface */
-+	struct {
-+		/** @pmt.lock: protect access for telemetry data */
-+		struct mutex lock;
-+	} pmt;
-+
- 	/**
- 	 * @pm_callback_task: Track the active task that is running in either
- 	 * the runtime_suspend or runtime_resume callbacks.
-diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-new file mode 100644
-index 000000000000..17ebc3ffb573
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -0,0 +1,233 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Copyright © 2024 Intel Corporation */
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/cleanup.h>
-+#include <linux/errno.h>
-+#include <linux/intel_vsec.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/pci.h>
-+#include <linux/types.h>
-+
-+#include "xe_device.h"
-+#include "xe_device_types.h"
-+#include "xe_drv.h"
-+#include "xe_mmio.h"
-+#include "xe_platform_types.h"
-+#include "xe_pm.h"
-+#include "xe_vsec.h"
-+
-+#include "regs/xe_pmt.h"
-+
-+/* PMT GUID value for BMG devices.  NOTE: this is NOT a PCI id */
-+#define BMG_DEVICE_ID 0xE2F8
-+
-+static struct intel_vsec_header bmg_telemetry = {
-+	.length = 0x10,
-+	.id = VSEC_ID_TELEMETRY,
-+	.num_entries = 2,
-+	.entry_size = 4,
-+	.tbir = 0,
-+	.offset = BMG_DISCOVERY_OFFSET,
-+};
-+
-+static struct intel_vsec_header bmg_punit_crashlog = {
-+	.length = 0x10,
-+	.id = VSEC_ID_CRASHLOG,
-+	.num_entries = 1,
-+	.entry_size = 4,
-+	.tbir = 0,
-+	.offset = BMG_DISCOVERY_OFFSET + 0x60,
-+};
-+
-+static struct intel_vsec_header bmg_oobmsm_crashlog = {
-+	.length = 0x10,
-+	.id = VSEC_ID_CRASHLOG,
-+	.num_entries = 1,
-+	.entry_size = 4,
-+	.tbir = 0,
-+	.offset = BMG_DISCOVERY_OFFSET + 0x78,
-+};
-+
-+static struct intel_vsec_header *bmg_capabilities[] = {
-+	&bmg_telemetry,
-+	&bmg_punit_crashlog,
-+	&bmg_oobmsm_crashlog,
-+	NULL
-+};
-+
-+enum xe_vsec {
-+	XE_VSEC_UNKNOWN = 0,
-+	XE_VSEC_BMG,
-+};
-+
-+static struct intel_vsec_platform_info xe_vsec_info[] = {
-+	[XE_VSEC_BMG] = {
-+		.caps = VSEC_CAP_TELEMETRY | VSEC_CAP_CRASHLOG,
-+		.headers = bmg_capabilities,
-+	},
-+	{ }
-+};
-+
-+/*
-+ * The GUID will have the following bits to decode:
-+ *   [0:3]   - {Telemetry space iteration number (0,1,..)}
-+ *   [4:7]   - Segment (SEGMENT_INDEPENDENT-0, Client-1, Server-2)
-+ *   [8:11]  - SOC_SKU
-+ *   [12:27] – Device ID – changes for each down bin SKU’s
-+ *   [28:29] - Capability Type (Crashlog-0, Telemetry Aggregator-1, Watcher-2)
-+ *   [30:31] - Record-ID (0-PUNIT, 1-OOBMSM_0, 2-OOBMSM_1)
-+ */
-+#define GUID_TELEM_ITERATION	GENMASK(3, 0)
-+#define GUID_SEGMENT		GENMASK(7, 4)
-+#define GUID_SOC_SKU		GENMASK(11, 8)
-+#define GUID_DEVICE_ID		GENMASK(27, 12)
-+#define GUID_CAP_TYPE		GENMASK(29, 28)
-+#define GUID_RECORD_ID		GENMASK(31, 30)
-+
-+#define PUNIT_TELEMETRY_OFFSET		0x0200
-+#define PUNIT_WATCHER_OFFSET		0x14A0
-+#define OOBMSM_0_WATCHER_OFFSET		0x18D8
-+#define OOBMSM_1_TELEMETRY_OFFSET	0x1000
-+
-+enum record_id {
-+	PUNIT,
-+	OOBMSM_0,
-+	OOBMSM_1,
-+};
-+
-+enum capability {
-+	CRASHLOG,
-+	TELEMETRY,
-+	WATCHER,
-+};
-+
-+static int xe_guid_decode(u32 guid, int *index, u32 *offset)
-+{
-+	u32 record_id = FIELD_GET(GUID_RECORD_ID, guid);
-+	u32 cap_type  = FIELD_GET(GUID_CAP_TYPE, guid);
-+	u32 device_id = FIELD_GET(GUID_DEVICE_ID, guid);
-+
-+	if (device_id != BMG_DEVICE_ID)
-+		return -ENODEV;
-+
-+	if (cap_type > WATCHER)
-+		return -EINVAL;
-+
-+	*offset = 0;
-+
-+	if (cap_type == CRASHLOG) {
-+		*index = record_id == PUNIT ? 2 : 4;
-+		return 0;
-+	}
-+
-+	switch (record_id) {
-+	case PUNIT:
-+		*index = 0;
-+		if (cap_type == TELEMETRY)
-+			*offset = PUNIT_TELEMETRY_OFFSET;
-+		else
-+			*offset = PUNIT_WATCHER_OFFSET;
-+		break;
-+
-+	case OOBMSM_0:
-+		*index = 1;
-+		if (cap_type == WATCHER)
-+			*offset = OOBMSM_0_WATCHER_OFFSET;
-+		break;
-+
-+	case OOBMSM_1:
-+		*index = 1;
-+		if (cap_type == TELEMETRY)
-+			*offset = OOBMSM_1_TELEMETRY_OFFSET;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset,
-+			     u32 count)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	void __iomem *telem_addr = xe->mmio.regs + BMG_TELEMETRY_OFFSET;
-+	u32 mem_region;
-+	u32 offset;
-+	int ret;
-+
-+	ret = xe_guid_decode(guid, &mem_region, &offset);
-+	if (ret)
-+		return ret;
-+
-+	telem_addr += offset + user_offset;
-+
-+	guard(mutex)(&xe->pmt.lock);
-+
-+	/* indicate that we are not at an appropriate power level */
-+	if (!xe_pm_runtime_get_if_active(xe))
-+		return -ENODATA;
-+
-+	/* set SoC re-mapper index register based on GUID memory region */
-+	xe_mmio_rmw32(xe_root_tile_mmio(xe), SG_REMAP_INDEX1, SG_REMAP_BITS,
-+		      REG_FIELD_PREP(SG_REMAP_BITS, mem_region));
-+
-+	memcpy_fromio(data, telem_addr, count);
-+	xe_pm_runtime_put(xe);
-+
-+	return count;
-+}
-+
-+struct pmt_callbacks xe_pmt_cb = {
-+	.read_telem = xe_pmt_telem_read,
-+};
-+
-+static const int vsec_platforms[] = {
-+	[XE_BATTLEMAGE] = XE_VSEC_BMG,
-+};
-+
-+static enum xe_vsec get_platform_info(struct xe_device *xe)
-+{
-+	if (xe->info.platform > XE_BATTLEMAGE)
-+		return XE_VSEC_UNKNOWN;
-+
-+	return vsec_platforms[xe->info.platform];
-+}
-+
-+/**
-+ * xe_vsec_init - Initialize resources and add intel_vsec auxiliary
-+ * interface
-+ * @xe: valid xe instance
-+ */
-+void xe_vsec_init(struct xe_device *xe)
-+{
-+	struct intel_vsec_platform_info *info;
-+	struct device *dev = xe->drm.dev;
-+	struct pci_dev *pdev = to_pci_dev(dev);
-+	enum xe_vsec platform;
-+
-+	platform = get_platform_info(xe);
-+	if (platform == XE_VSEC_UNKNOWN)
-+		return;
-+
-+	info = &xe_vsec_info[platform];
-+	if (!info->headers)
-+		return;
-+
-+	switch (platform) {
-+	case XE_VSEC_BMG:
-+		info->priv_data = &xe_pmt_cb;
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	/*
-+	 * Register a VSEC. Cleanup is handled using device managed
-+	 * resources.
-+	 */
-+	intel_vsec_register(pdev, info);
-+}
-+MODULE_IMPORT_NS(INTEL_VSEC);
-diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
-new file mode 100644
-index 000000000000..5777c53faec2
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_vsec.h
-@@ -0,0 +1,11 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/* Copyright © 2024 Intel Corporation */
-+
-+#ifndef _XE_VSEC_H_
-+#define _XE_VSEC_H_
-+
-+struct xe_device;
-+
-+void xe_vsec_init(struct xe_device *xe);
-+
-+#endif
--- 
-2.44.0
+lib/modules/6.13.0-rc1-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc1-xe/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc1-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc1-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc1-xe/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc1-xe/kernel/kernel/
+lib/modules/6.13.0-rc1-xe/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/
+lib/modules/6.13.0-rc1-xe/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc1-xe/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/842.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc1-xe/kernel/block/
+lib/modules/6.13.0-rc1-xe/kernel/block/bfq.ko
+lib/modules/6.13.0-rc1-xe/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc1-xe/build
+lib/modules/6.13.0-rc1-xe/modules.alias.bin
+lib/modules/6.13.0-rc1-xe/modules.builtin
+lib/modules/6.13.0-rc1-xe/modules.softdep
+lib/modules/6.13.0-rc1-xe/modules.alias
+lib/modules/6.13.0-rc1-xe/modules.order
+lib/modules/6.13.0-rc1-xe/modules.symbols
+lib/modules/6.13.0-rc1-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1733174743:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1733174743:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
