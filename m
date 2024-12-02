@@ -4,57 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A189FD78321
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 14:02:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A5B8D78321
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Dec 2024 14:18:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F5C510E740;
-	Mon,  2 Dec 2024 14:02:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26E6010E75F;
+	Mon,  2 Dec 2024 14:18:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PDzusRld";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QtqVFbwM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF1A510E742
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Dec 2024 14:02:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A27EC10E75C;
+ Mon,  2 Dec 2024 14:18:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733148138; x=1764684138;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=zgKYzr0CY/jG0zaLZsAeRQ8oJ4bjmUvjxSKEsgbbxWA=;
- b=PDzusRldXTjiuGEmeuBj0IwNaF0B1JT72rfQ/Rok1eQI3Kx9IUyfnnt/
- y0JwB+p2Lvwx91jnuAYIsTmkUriB6fRehpDp+bKmQ5O6RS/3afaPXqlma
- CSa9WDhF3w3PKim48x+jNkjS4XknwKiBiW7yQkqx2+/+vsc5q9EW6Z3wG
- 7UvED9guKNZhbkEMNZoqU43iYnI6XznMMP86WGs1AzEAeq0m/+CuWuOg7
- BYDFE8yQZRwaPy1bE5KMUyKj+CUB2bSnto7lXP44BP31CIAj5/TpN/hLK
- 3o9uA8O9RhZom+MVVK7a8CkNsOeOQHNJpl6UFmHdseGupBgERtPbwKBGM g==;
-X-CSE-ConnectionGUID: UB4BNQHiQvOtz93OBIK4iw==
-X-CSE-MsgGUID: 16GStDCNQ+yWgFIIPKvoDw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="20908739"
-X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="20908739"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 06:02:17 -0800
-X-CSE-ConnectionGUID: RRzax4BXRRWxAVfa1ADnxg==
-X-CSE-MsgGUID: pDOwdpJjQJWSrc4+NhYNpw==
+ t=1733149084; x=1764685084;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=JB4mgiJsE+p6EI61rz9n/0H7J08XaThpfbIpd7k81rI=;
+ b=QtqVFbwM8ExDc8A/mlS82eLPUcUMDZUVNGUKZ1a6436aAYXlzxnuxOy9
+ sHSS1M70Zh3QNzW5Y4HIucdAghChX5e04chKhA8b2L/0jgvhzBtegJlYT
+ ZyX/wc1Gk5D5O1kbGbwVEWwhhwta5Mjnn5lAPcJUKcVCQpoE2fsBLPYtQ
+ ZD0BHl1PlaVrvVZAFa9eSqerFBcqBC33Tz6bJcr6FEkfb6pZYE1tKv8kF
+ i917ETt2SGaSaBS1p1IGSOmZRcfA+r8nz0JANIAr5k80m1NJHWX9h+EAA
+ IcEF3IecA61ur3MX3roKp8zoMwJyaK4boEZ1JEmDt3YvhBNlwUzuhh+oM g==;
+X-CSE-ConnectionGUID: x22px8CATTaw4FBw1dBpgA==
+X-CSE-MsgGUID: Bqjs4kjISxGwL5m9GTosCQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="33565410"
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="33565410"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 06:18:03 -0800
+X-CSE-ConnectionGUID: lt8YnKJSTW2h7arR/vPhMQ==
+X-CSE-MsgGUID: ETOSaA5+TEeGXxcvFAeucw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="98218650"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 06:02:15 -0800
-Date: Mon, 2 Dec 2024 16:02:11 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>, rodrigo.vivi@intel.com
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- Michal.Wajdeczko@intel.com, ashutosh.dixit@intel.com,
- matthew.brost@intel.com
-Subject: Re: [PATCH v2] drm/xe/throttle: Log throttle reasons
-Message-ID: <Z02941ro8eHHTxTM@black.fi.intel.com>
-References: <20241129074300.1304068-1-raag.jadav@intel.com>
- <9f227ba3-4f59-418e-bd20-dbb462aaccc4@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="98086044"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.244.79])
+ ([10.245.244.79])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 06:18:02 -0800
+Message-ID: <39f2bbb3-5a53-4a6b-b066-be6be1ead293@intel.com>
+Date: Mon, 2 Dec 2024 14:17:46 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9f227ba3-4f59-418e-bd20-dbb462aaccc4@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 5/8] drm/xe/display: Update intel_bo_read_from_page to
+ use ttm_bo_access
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: christian.koenig@amd.com, thomas.hellstrom@linux.intel.com
+References: <20241126174615.2665852-1-matthew.brost@intel.com>
+ <20241126174615.2665852-6-matthew.brost@intel.com> <87o71u5mza.fsf@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <87o71u5mza.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,16 +73,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Dec 02, 2024 at 12:20:45PM +0530, Riana Tauro wrote:
-> On 11/29/2024 1:13 PM, Raag Jadav wrote:
-> > Log throttle register MMIO reads which will be useful for debugging.
-> > 
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> Looks good to me
-> Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+On 02/12/2024 11:43, Jani Nikula wrote:
+> On Tue, 26 Nov 2024, Matthew Brost <matthew.brost@intel.com> wrote:
+>> Don't open code vmap of a BO, use ttm_bo_access helper which is safe for
+>> non-contiguous BOs and non-visible BOs.
+>>
+>> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> 
+> I've seen a few cases of [1] lately, and Thomas tipped me off to this
+> change. We get:
+> 
+> <4> [374.262965] xe 0000:03:00.0: [drm] drm_WARN_ON(ret)
+> <4> [374.262983] WARNING: CPU: 8 PID: 5462 at drivers/gpu/drm/i915/display/intel_display.c:7637 intel_atomic_commit_tail+0x16c7/0x17f0 [xe]
+> 
+> and that's intel_atomic_prepare_plane_clear_colors():
+> 
+> 		ret = intel_bo_read_from_page(intel_fb_bo(fb),
+> 					      fb->offsets[cc_plane] + 16,
+> 					      &plane_state->ccval,
+> 					      sizeof(plane_state->ccval));
+> 		/* The above could only fail if the FB obj has an unexpected backing store type. */
+> 		drm_WARN_ON(&i915->drm, ret);
+> 
+> 
+> So I don't have any conclusive evidence, but could this be the reason?
 
-Thanks.
+@@ -40,8 +40,13 @@ int intel_bo_fb_mmap(struct drm_gem_object *obj, 
+struct vm_area_struct *vma)
+  int intel_bo_read_from_page(struct drm_gem_object *obj, u64 offset, 
+void *dst, int size)
+  {
+         struct xe_bo *bo = gem_to_xe_bo(obj);
++       int ret;
 
-Rodrigo, can you please pick this one if it's okay?
+-       return ttm_bo_access(&bo->ttm, offset, dst, size, 0);
++       ret = ttm_bo_access(&bo->ttm, offset, dst, size, 0);
++       if (ret == size)
++               ret = 0;
++
++       return ret;
+  }
 
-Raag
+I think we somehow missed that bo_access is returning @size on success?
+
+> 
+> BR,
+> Jani.
+> 
+> 
+> 
+> [1] https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138070v8/shard-dg2-434/igt@kms_flip_tiling@flip-change-tiling@pipe-d-dp-4-linear-to-4-rc-ccs-cc.html
+> 
+> 
+>> ---
+>>   drivers/gpu/drm/xe/display/intel_bo.c | 25 +------------------------
+>>   1 file changed, 1 insertion(+), 24 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/display/intel_bo.c b/drivers/gpu/drm/xe/display/intel_bo.c
+>> index 9f54fad0f1c0..43141964f6f2 100644
+>> --- a/drivers/gpu/drm/xe/display/intel_bo.c
+>> +++ b/drivers/gpu/drm/xe/display/intel_bo.c
+>> @@ -40,31 +40,8 @@ int intel_bo_fb_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma)
+>>   int intel_bo_read_from_page(struct drm_gem_object *obj, u64 offset, void *dst, int size)
+>>   {
+>>   	struct xe_bo *bo = gem_to_xe_bo(obj);
+>> -	struct ttm_bo_kmap_obj map;
+>> -	void *src;
+>> -	bool is_iomem;
+>> -	int ret;
+>>   
+>> -	ret = xe_bo_lock(bo, true);
+>> -	if (ret)
+>> -		return ret;
+>> -
+>> -	ret = ttm_bo_kmap(&bo->ttm, offset >> PAGE_SHIFT, 1, &map);
+>> -	if (ret)
+>> -		goto out_unlock;
+>> -
+>> -	offset &= ~PAGE_MASK;
+>> -	src = ttm_kmap_obj_virtual(&map, &is_iomem);
+>> -	src += offset;
+>> -	if (is_iomem)
+>> -		memcpy_fromio(dst, (void __iomem *)src, size);
+>> -	else
+>> -		memcpy(dst, src, size);
+>> -
+>> -	ttm_bo_kunmap(&map);
+>> -out_unlock:
+>> -	xe_bo_unlock(bo);
+>> -	return ret;
+>> +	return ttm_bo_access(&bo->ttm, offset, dst, size, 0);
+>>   }
+>>   
+>>   struct intel_frontbuffer *intel_bo_get_frontbuffer(struct drm_gem_object *obj)
+> 
+
