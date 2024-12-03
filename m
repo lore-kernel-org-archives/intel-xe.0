@@ -4,55 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16CBCE69E9F
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 10:36:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CFE6E69E9F
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 10:58:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9A8F10E313;
-	Tue,  3 Dec 2024 10:36:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C88BB10E34E;
+	Tue,  3 Dec 2024 10:58:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MVHC2Pwi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RlAPaW5Z";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA9A110E313;
- Tue,  3 Dec 2024 10:36:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA1510E318;
+ Tue,  3 Dec 2024 10:58:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733222181; x=1764758181;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=d0T59woWY78O4dek2DvUEcGZWmbW+rRBhoJSd1I4Li4=;
- b=MVHC2PwihYsiAOMCwVn/AEELEOzcPFS4iMRFU5DGyRyjrVPo1Fl18/1a
- eXKwxGwdW2KI0L2/TJ9uVG3i7pVd66yFp96dp0PEUmZ1cVZoS+h686Xjn
- I/hLi9mwzm9hZlEQ3V0ULk8mXFmlBZSStcwwRQFCVJRDcRrg19obY3AJO
- z82AVaNOo8DgDkuQ/nq3bdAlng5rUuPoXQpgOdJICleFg5TAz41WFZ58u
- PhaSfqMWYHmi/lNxwz2nb7m+3wsPosYZyykTu9tjOnzUgWCTxbPcANs1b
- R33RU6ZhiZXNdPF7JXs4GSqVtDLq4x5I9QSZiHao4joMULJj51VgE7jU3 A==;
-X-CSE-ConnectionGUID: B3wyqoNiSWuvCxFvcHcRYQ==
-X-CSE-MsgGUID: pRJoLiRATJeCMe11x3r5BQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="44456556"
-X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="44456556"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 02:36:21 -0800
-X-CSE-ConnectionGUID: O8TGm+eUSi2X4eZdXcr4Og==
-X-CSE-MsgGUID: +d/zy/r5TN2RNWBMmUmA/A==
+ t=1733223504; x=1764759504;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=r5IzcIHpW1yeHzI+cxkcrwgUkSQv1jAL9yBPggXeYEM=;
+ b=RlAPaW5ZBeFZM2GBHL/pwYe6X5/GprtMWPYHL45jfCW5gvGqh4SkoCRW
+ Zr2Ff/o+vtkJmis6QDoaR4uBPFuarfbME5rbmfzU0RLRBO92NiT/TI+O3
+ zq+g4tzuxRmnmoqvcmTiU0zZYSdg4gQ6uubbiqkHUv4rIgYzVDuptD5vX
+ nZ55YelsuKZZL8S3t8RscXf1tl3+eGJBQjsrmEDBW2BqtkzaSr3K3LSHS
+ mqZ3ucZkCtI7sJdDwjcCgnIQY3qakxcRHIzyt6/hBcAgQ8Q179ER7sIza
+ A+WvA2zYXIkovA+SuZCXOqjUBFv2Q0rOITsiQ2l1Xd0skQADJ6kbH6Hww w==;
+X-CSE-ConnectionGUID: h0rGeIeHTVucPjkA+FKEjA==
+X-CSE-MsgGUID: A6wJY+c8Ts6kTV5e9GN+0A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="43914260"
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="43914260"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 02:58:24 -0800
+X-CSE-ConnectionGUID: seQVHymXRPOzYEoDKLagXQ==
+X-CSE-MsgGUID: Tmu1TYCtSvCpZ6NYVzNtUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="93727742"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.135])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 02:36:18 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: remove unused for_each_crtc()
-In-Reply-To: <173314475855.2905.12006003723478227624@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241202125437.1154945-1-jani.nikula@intel.com>
- <173314475855.2905.12006003723478227624@intel.com>
-Date: Tue, 03 Dec 2024 12:36:15 +0200
-Message-ID: <875xo15a00.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="98400962"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO [10.245.245.10])
+ ([10.245.245.10])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 02:58:20 -0800
+Message-ID: <4e67e781-df6d-45b8-be52-637ee5926bd7@linux.intel.com>
+Date: Tue, 3 Dec 2024 11:58:50 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] drm/i915: Add drm_panic support
+To: Jocelyn Falempe <jfalempe@redhat.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20241203092836.426422-1-jfalempe@redhat.com>
+ <20241203092836.426422-6-jfalempe@redhat.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20241203092836.426422-6-jfalempe@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,45 +76,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 02 Dec 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Jani Nikula (2024-12-02 09:54:37-03:00)
->>This is essentially a duplicate of drm_for_each_crtc() anyway. Remove.
->
-> And it looks like commit 08dfd243abac ("drm/i915: Clean up
-> intel_fbdev_init_bios() a bit") was the one that made it unused.
->
->>
->>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Hey,
 
-Thanks for the review, pushed to din.
+Den 2024-12-03 kl. 09:50, skrev Jocelyn Falempe:
+> This adds drm_panic support for a wide range of Intel GPU. I've
+> tested it only on 3 laptops, haswell (with 128MB of eDRAM),
+> cometlake and alderlake.
+> 
+>  * DPT: if I disable tiling on a framebuffer using DPT, then it
+>    displays some other memory location. As DPT is enabled only for
+>    tiled framebuffer, there might be some hardware limitations.
+This is because DPT points to the pagetable, when you disable tiling DPT is no longer used so the DPT is interpreted as a linear FB instead of a lookup table.
 
-BR,
-Jani.
+The lookup table is necessarily smaller than the real FB, so you would need to overwrite part of the GGTT and point it to linear FB.
 
->
->>---
->> drivers/gpu/drm/i915/display/intel_display.h | 3 ---
->> 1 file changed, 3 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
->>index caef04f655c5..49a246feb1ae 100644
->>--- a/drivers/gpu/drm/i915/display/intel_display.h
->>+++ b/drivers/gpu/drm/i915/display/intel_display.h
->>@@ -238,9 +238,6 @@ enum phy_fia {
->>         for ((__phy) = PHY_A; (__phy) < I915_MAX_PHYS; (__phy)++)        \
->>                 for_each_if((__phys_mask) & BIT(__phy))
->> 
->>-#define for_each_crtc(dev, crtc) \
->>-        list_for_each_entry(crtc, &(dev)->mode_config.crtc_list, head)
->>-
->> #define for_each_intel_plane(dev, intel_plane) \
->>         list_for_each_entry(intel_plane,                        \
->>                             &(dev)->mode_config.plane_list,        \
->>-- 
->>2.39.5
->>
+I'm not sure what the fix is here as it would require a real GGTT mapping to fix, needing an allocation which might not succeed. Perhaps indicates a limitation to require a real pageflip to fbdev fb?
 
--- 
-Jani Nikula, Intel
+Have you tested rotated by any chance? Cursor enabled? Overlay?
+
+I also think this may fail if there are flips queued. We should probably bite the bullet, reprogram the entire state into a known state, disable all overlay planes and cursor, reassign all watermarks for the primary and ensure any background work is killed where needed.
+
+Cheers,
+~Maarten
+
+>  * fbdev: On my haswell laptop, the fbdev framebuffer is configured
+>    with tiling enabled, but really it's linear, because fbcon don't
+>    know about tiling, and the panic screen is perfect when it's drawn
+>    as linear.
+> Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
+> ---
+>  .../gpu/drm/i915/display/intel_atomic_plane.c | 85 ++++++++++++++++++-
+>  1 file changed, 84 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> index b7e462075ded3..58eb3b4c55fa5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -33,16 +33,20 @@
+>  
+>  #include <linux/dma-fence-chain.h>
+>  #include <linux/dma-resv.h>
+> +#include <linux/iosys-map.h>
+>  
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_blend.h>
+> +#include <drm/drm_cache.h>
+>  #include <drm/drm_fourcc.h>
+>  #include <drm/drm_gem.h>
+>  #include <drm/drm_gem_atomic_helper.h>
+> +#include <drm/drm_panic.h>
+>  
+>  #include "i915_config.h"
+>  #include "i9xx_plane_regs.h"
+>  #include "intel_atomic_plane.h"
+> +#include "intel_bo.h"
+>  #include "intel_cdclk.h"
+>  #include "intel_cursor.h"
+>  #include "intel_display_rps.h"
+> @@ -50,6 +54,7 @@
+>  #include "intel_display_types.h"
+>  #include "intel_fb.h"
+>  #include "intel_fb_pin.h"
+> +#include "intel_fbdev.h"
+>  #include "skl_scaler.h"
+>  #include "skl_watermark.h"
+>  
+> @@ -1198,14 +1203,92 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
+>  	intel_plane_unpin_fb(old_plane_state);
+>  }
+>  
+> +/* Only used by drm_panic get_scanout_buffer() and panic_flush(), so it is
+> + * protected by the drm panic spinlock
+> + */
+> +static struct iosys_map panic_map;
+> +
+> +static void intel_panic_flush(struct drm_plane *plane)
+> +{
+> +	struct intel_plane_state *plane_state = to_intel_plane_state(plane->state);
+> +	struct drm_i915_private *dev_priv = to_i915(plane->dev);
+> +	struct drm_framebuffer *fb = plane_state->hw.fb;
+> +	struct intel_plane *iplane = to_intel_plane(plane);
+> +
+> +	/* Force a cache flush, otherwise the new pixels won't show up */
+> +	drm_clflush_virt_range(panic_map.vaddr, fb->height * fb->pitches[0]);
+> +
+> +	/* Don't disable tiling if it's the fbdev framebuffer.*/
+> +	if (to_intel_framebuffer(fb) == intel_fbdev_framebuffer(dev_priv->display.fbdev.fbdev))
+> +		return;
+> +
+> +	if (fb->modifier && iplane->disable_tiling)
+> +		iplane->disable_tiling(iplane);
+> +}
+> +
+> +static int intel_get_scanout_buffer(struct drm_plane *plane,
+> +				    struct drm_scanout_buffer *sb)
+> +{
+> +	struct intel_plane_state *plane_state;
+> +	struct drm_gem_object *obj;
+> +	struct drm_framebuffer *fb;
+> +	struct drm_i915_private *dev_priv = to_i915(plane->dev);
+> +	void *ptr;
+> +
+> +	if (!plane->state || !plane->state->fb || !plane->state->visible)
+> +		return -ENODEV;
+> +
+> +	plane_state = to_intel_plane_state(plane->state);
+> +	fb = plane_state->hw.fb;
+> +	obj = intel_fb_bo(fb);
+> +	if (!obj)
+> +		return -ENODEV;
+> +
+> +	if (to_intel_framebuffer(fb) == intel_fbdev_framebuffer(dev_priv->display.fbdev.fbdev)) {
+> +		ptr = intel_fbdev_get_vaddr(dev_priv->display.fbdev.fbdev);
+> +	} else {
+> +		/* can't disable tiling if DPT is in use */
+> +		if (intel_bo_is_tiled(obj) && HAS_DPT(dev_priv))
+> +			return -EOPNOTSUPP;
+> +
+> +		ptr = intel_bo_panic_map(obj);
+> +	}
+> +
+> +	if (!ptr)
+> +		return -ENOMEM;
+> +
+> +	if (intel_bo_has_iomem(obj))
+> +		iosys_map_set_vaddr_iomem(&panic_map, ptr);
+> +	else
+> +		iosys_map_set_vaddr(&panic_map, ptr);
+> +
+> +	sb->map[0] = panic_map;
+> +	sb->width = fb->width;
+> +	sb->height = fb->height;
+> +	sb->format = fb->format;
+> +	sb->pitch[0] = fb->pitches[0];
+> +
+> +	return 0;
+> +}
+> +
+>  static const struct drm_plane_helper_funcs intel_plane_helper_funcs = {
+>  	.prepare_fb = intel_prepare_plane_fb,
+>  	.cleanup_fb = intel_cleanup_plane_fb,
+>  };
+>  
+> +static const struct drm_plane_helper_funcs intel_primary_plane_helper_funcs = {
+> +	.prepare_fb = intel_prepare_plane_fb,
+> +	.cleanup_fb = intel_cleanup_plane_fb,
+> +	.get_scanout_buffer = intel_get_scanout_buffer,
+> +	.panic_flush = intel_panic_flush,
+> +};
+> +
+>  void intel_plane_helper_add(struct intel_plane *plane)
+>  {
+> -	drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
+> +	if (plane->base.type == DRM_PLANE_TYPE_PRIMARY)
+> +		drm_plane_helper_add(&plane->base, &intel_primary_plane_helper_funcs);
+> +	else
+> +		drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
+>  }
+>  
+>  void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
+
