@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9071FE6C5EA
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 02:10:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20855E6C5E5
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 02:11:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59C9B10E21E;
-	Tue,  3 Dec 2024 02:10:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF83410E21E;
+	Tue,  3 Dec 2024 02:11:04 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D70F10E21E;
- Tue,  3 Dec 2024 02:10:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90FDC10E21E;
+ Tue,  3 Dec 2024 02:11:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Avoid_evic?=
- =?utf-8?q?ting_object_of_the_same_vm_in_none_fault_mode_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Avoid_evicting_?=
+ =?utf-8?q?object_of_the_same_vm_in_none_fault_mode_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Oak Zeng" <oak.zeng@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Dec 2024 02:10:42 -0000
-Message-ID: <173319184257.1836643.7193068023974306045@b555e5b46a47>
+Date: Tue, 03 Dec 2024 02:11:03 -0000
+Message-ID: <173319186358.1836642.3039087917270484140@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241203021929.1919730-1-oak.zeng@intel.com>
 In-Reply-To: <20241203021929.1919730-1-oak.zeng@intel.com>
@@ -48,9 +48,45 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 4de82d50b8de drm-tip: 2024y-12m-03d-00h-37m-04s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Avoid evicting object of the same vm in none fault mode
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1def8594424e9211e8a76fe1e4330e04863df773
+Author: Oak Zeng <oak.zeng@intel.com>
+Date:   Mon Dec 2 21:19:29 2024 -0500
+
+    drm/xe: Avoid evicting object of the same vm in none fault mode
+    
+    BO validation during vm_bind could trigger memory eviction when
+    system runs under memory pressure. Right now we blindly evict
+    BOs of all VMs. This scheme has a problem when system runs in
+    none recoverable page fault mode: even though the vm_bind could
+    be successful by evicting BOs, the later the rebinding of the
+    evicted BOs would fail. So it is better to report an out-of-
+    memory failure at vm_bind time than at time of rebinding where
+    xekmd currently doesn't have a good mechanism to report error
+    to user space.
+    
+    This patch implemented a scheme to only evict objects of other
+    VMs during vm_bind time. Object of the same VM will skip eviction.
+    If we failed to find enough memory for vm_bind, we report error
+    to user space at vm_bind time.
+    
+    This scheme is not needed for recoverable page fault mode under
+    what we can dynamically fault-in pages on demand.
+    
+    v1: Use xe_vm_in_preempt_fence_mode instead of stack variable (Thomas)
+    
+    Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+    Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 4de82d50b8de6a278c1483a7f76ae830c89d1824 drm-intel
+1def8594424e drm/xe: Avoid evicting object of the same vm in none fault mode
 
 
