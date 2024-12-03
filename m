@@ -4,89 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9E51E74AC9
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 17:47:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D52E4E74ACA
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 17:47:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0E5610EAF8;
-	Tue,  3 Dec 2024 17:47:24 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de
- (metis.whiteo.stw.pengutronix.de [185.203.201.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BECC10EAF6
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Dec 2024 17:47:23 +0000 (UTC)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77]
- helo=[IPv6:::1]) by metis.whiteo.stw.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <l.stach@pengutronix.de>)
- id 1tIWyE-0003sq-Mm; Tue, 03 Dec 2024 18:45:58 +0100
-Message-ID: <fc624e3fd4a4a38dedf02e31be9e4f1c85fb40a0.camel@pengutronix.de>
-Subject: Re: [PATCH 09/22] drm/etnaviv: Convert timeouts to secs_to_jiffies()
-From: Lucas Stach <l.stach@pengutronix.de>
-To: Easwar Hariharan <eahariha@linux.microsoft.com>, Pablo Neira Ayuso
- <pablo@netfilter.org>, Jozsef Kadlecsik <kadlec@netfilter.org>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
- Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>, Simon Horman
- <horms@kernel.org>, Julia Lawall <Julia.Lawall@inria.fr>,  Nicolas Palix
- <nicolas.palix@imag.fr>, Daniel Mack <daniel@zonque.org>, Haojian Zhuang
- <haojian.zhuang@gmail.com>, Robert Jarzmik <robert.jarzmik@free.fr>,
- Russell King <linux@armlinux.org.uk>, Heiko Carstens <hca@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>, Alexander Gordeev
- <agordeev@linux.ibm.com>, Christian Borntraeger
- <borntraeger@linux.ibm.com>, Sven Schnelle <svens@linux.ibm.com>, Ofir
- Bitton <obitton@habana.ai>, Oded Gabbay <ogabbay@kernel.org>, Lucas De
- Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jeroen de Borst
- <jeroendb@google.com>, Praveen Kaligineedi <pkaligineedi@google.com>,
- Shailend Chand <shailend@google.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- James Smart <james.smart@broadcom.com>, Dick Kennedy
- <dick.kennedy@broadcom.com>, "James E.J. Bottomley"
- <James.Bottomley@HansenPartnership.com>, "Martin K. Petersen"
- <martin.petersen@oracle.com>, Roger Pau =?ISO-8859-1?Q?Monn=E9?=
- <roger.pau@citrix.com>, Jens Axboe <axboe@kernel.dk>, Kalle Valo
- <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Andrew Morton <akpm@linux-foundation.org>, Jack
- Wang <jinpu.wang@cloud.ionos.com>, Marcel Holtmann <marcel@holtmann.org>,
- Johan Hedberg <johan.hedberg@gmail.com>, Luiz Augusto von Dentz
- <luiz.dentz@gmail.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, Broadcom
- internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Xiubo
- Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,  Josh Poimboeuf
- <jpoimboe@kernel.org>, Jiri Kosina <jikos@kernel.org>, Miroslav Benes
- <mbenes@suse.cz>, Petr Mladek <pmladek@suse.com>, Joe Lawrence
- <joe.lawrence@redhat.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
- <tiwai@suse.com>, Russell King <linux+etnaviv@armlinux.org.uk>, Christian
- Gmeiner <christian.gmeiner@gmail.com>,  Louis Peens
- <louis.peens@corigine.com>, Michael Ellerman <mpe@ellerman.id.au>, Nicholas
- Piggin <npiggin@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>,
- Naveen N Rao <naveen@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>
-Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org, 
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org, cocci@inria.fr, 
- linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-scsi@vger.kernel.org, xen-devel@lists.xenproject.org, 
- linux-block@vger.kernel.org, linux-wireless@vger.kernel.org, 
- ath11k@lists.infradead.org, linux-mm@kvack.org,
- linux-bluetooth@vger.kernel.org,  linux-staging@lists.linux.dev,
- linux-rpi-kernel@lists.infradead.org,  ceph-devel@vger.kernel.org,
- live-patching@vger.kernel.org,  linux-sound@vger.kernel.org,
- etnaviv@lists.freedesktop.org,  oss-drivers@corigine.com,
- linuxppc-dev@lists.ozlabs.org, Anna-Maria Behnsen <anna-maria@linutronix.de>
-Date: Tue, 03 Dec 2024 18:45:50 +0100
-In-Reply-To: <20241115-converge-secs-to-jiffies-v1-9-19aadc34941b@linux.microsoft.com>
-References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
- <20241115-converge-secs-to-jiffies-v1-9-19aadc34941b@linux.microsoft.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-2.fc40) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F57310EAFC;
+	Tue,  3 Dec 2024 17:47:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EM0+NzxM";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D645010EAFC;
+ Tue,  3 Dec 2024 17:47:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733248054; x=1764784054;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Az1khvg3xd5CQqKIXYiMTVFwcV65oFFhTZcYD70Igpg=;
+ b=EM0+NzxMDOWR74C4sxiDJs+/djqdGr2RlZlf8iu6NnsX1Uq/3Gw6CMIF
+ aR6rIAK1DZwLIv3bPOBTFGMJSAqvlCwfs3UhRWGNLHNh8ASn7KOcOHQUV
+ WNF5WAvdffb/cyXytJQ99m95VgN+vuSWt/GOwhQOb/odUhbiXxFVMRuN8
+ 8vbZv5KRmDIwp8digPwBLdDFxDqAAZtJODU4UrpXmdQk/Ic9HX7JBFYTw
+ 0Gu8W7E+LYqmLZYcJj2aCkJGC9cI1UFHdrRLY4UMUiJKVLNY/HCpyFauT
+ A49WU/YW/Hkaz3HnesaVt4TD+roZXT2eMak6q5mEQBtmjydV31g6nluEP g==;
+X-CSE-ConnectionGUID: rV1IQg34TuOu50EcoIhOqQ==
+X-CSE-MsgGUID: jRX6ElGtQgm5XLbpV3yXXg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="33610799"
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="33610799"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 09:47:34 -0800
+X-CSE-ConnectionGUID: KnlwlJtzTkO+R/BuiGrsRQ==
+X-CSE-MsgGUID: yAjn6gJ0SG2umS+AmSA3OA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="93856044"
+Received: from aalteres-desk1.fm.intel.com ([10.1.39.140])
+ by fmviesa010.fm.intel.com with ESMTP; 03 Dec 2024 09:47:33 -0800
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ dri-devel@lists.freedesktop.org,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ John Harrison <john.c.harrison@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v3 0/1] Maintenence of devcoredump <-> GuC-Err-Capture plumbing
+Date: Tue,  3 Dec 2024 09:47:31 -0800
+Message-Id: <20241203174732.3232351-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: intel-xe@lists.freedesktop.org
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,44 +68,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am Freitag, dem 15.11.2024 um 21:22 +0000 schrieb Easwar Hariharan:
-> Changes made with the following Coccinelle rules:
->=20
-> @@ constant C; @@
->=20
-> - msecs_to_jiffies(C * 1000)
-> + secs_to_jiffies(C)
->=20
-> @@ constant C; @@
->=20
-> - msecs_to_jiffies(C * MSEC_PER_SEC)
-> + secs_to_jiffies(C)
->=20
-Thanks, applied to etnaviv/next.
+The GuC-Error-Capture is currently reaching into xe_devcoredump
+structure to store its own place-holder snaphot to workaround
+the race between G2H-Error-Capture-Notification vs Drm-Scheduler
+triggering GuC-Submission-exec-queue-timeout/kill.
 
-Regards,
-Lucas
+Part of that race workaround design included GuC-Error-Capture taking
+on some of the front-end functions for xe_hw_engine_snapshot
+generation because of the orthogonal debugfs for raw dumps of engine
+registers without any job association. We want this to also be handled,
+even if indirectly, by GuC-Error-Capture since there is a lot to manage
+when it comes to reading and printing the register lists.
 
-> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
-> ---
->  drivers/gpu/drm/etnaviv/etnaviv_cmdbuf.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_cmdbuf.c b/drivers/gpu/drm/e=
-tnaviv/etnaviv_cmdbuf.c
-> index 721d633aece9d4c81f0019e4c55884f26ee61c60..0f5a2c885d0ab7029c7248e15=
-d6ea3c31823b782 100644
-> --- a/drivers/gpu/drm/etnaviv/etnaviv_cmdbuf.c
-> +++ b/drivers/gpu/drm/etnaviv/etnaviv_cmdbuf.c
-> @@ -100,7 +100,7 @@ int etnaviv_cmdbuf_init(struct etnaviv_cmdbuf_suballo=
-c *suballoc,
->  		mutex_unlock(&suballoc->lock);
->  		ret =3D wait_event_interruptible_timeout(suballoc->free_event,
->  						       suballoc->free_space,
-> -						       msecs_to_jiffies(10 * 1000));
-> +						       secs_to_jiffies(10));
->  		if (!ret) {
->  			dev_err(suballoc->dev,
->  				"Timeout waiting for cmdbuf space\n");
->=20
+However, logically speaking, GuC-Error-Capture node management,
+despite being the majority of an engine-snapshot work, is still
+a subset of xe_hw_engine_snapshot.
+
+This series intends to re-design the plumbing for future
+maintenence and scalability, rearranging the layering
+back to what its should be (xe_devcoredump_snapshot owns
+xe_hw_engine_snapshot owns xe_guc_capture_snapshot)..
+
+Alan Previn (1):
+  drm/xe/guc/capture: Maintenence of devcoredump <-> GuC-Err-Capture
+    plumbing
+
+ drivers/gpu/drm/xe/xe_devcoredump.c           |   3 -
+ drivers/gpu/drm/xe/xe_devcoredump_types.h     |   6 -
+ drivers/gpu/drm/xe/xe_guc_capture.c           | 406 ++++++++----------
+ drivers/gpu/drm/xe/xe_guc_capture.h           |  10 +-
+ .../drm/xe/xe_guc_capture_snapshot_types.h    |  68 +++
+ drivers/gpu/drm/xe/xe_guc_submit.c            |  21 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c             | 117 +++--
+ drivers/gpu/drm/xe/xe_hw_engine.h             |   4 +-
+ drivers/gpu/drm/xe/xe_hw_engine_types.h       |  13 +-
+ 9 files changed, 359 insertions(+), 289 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_snapshot_types.h
+
+
+base-commit: 906c4b306e9340f6ffd6d44904ebc86e62e63627
+-- 
+2.34.1
 
