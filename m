@@ -4,71 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84D5DE64AB4
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 14:33:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55AF6E64AB6
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 14:49:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EEDF10EA34;
-	Tue,  3 Dec 2024 14:33:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23DAD10E0BF;
+	Tue,  3 Dec 2024 14:49:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tgycmLxe";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="CFiDWAnW";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37E6610EA34;
- Tue,  3 Dec 2024 14:33:35 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id DD51CA4163E;
- Tue,  3 Dec 2024 14:31:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D133EC4CED9;
- Tue,  3 Dec 2024 14:33:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1733236413;
- bh=vkfocJidFOsWJ8j4r+2upwNbeaCg2X4r0idWMhyeuzk=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=tgycmLxenk4BVErw7oDmDKzYWEi/lJ7j2qV1fODOZzNJ+DBrJOFj9wKp9h1vZucQL
- mVX3bd/uYvyRkKFAANZREdfo6hmau6A8AwmNafB2ws4feDnzmEh28ulv32qRszIf2W
- tJ/k48U3z0Pj4gfjskzqpJu9sXXf9bqa2FC9QtaeOH0XGRmAEh4OPB6zlo8h8LRlX+
- mDqdDnRHEgm4lAEyxdIufrrH+Rhlz9jBeXl0ELbPsMjdKq9VVMSKeTuiBdy7Hjh44W
- dNF01Zj30SIjSM0p1en7HNjWN40zgFz2WQWC5HicRJXNjMz1byjRgUjuDpQSVQ7tjc
- zRhWOgpTqN+Xg==
-Received: by mail-oa1-f54.google.com with SMTP id
- 586e51a60fabf-29e3721ded9so1960311fac.0; 
- Tue, 03 Dec 2024 06:33:33 -0800 (PST)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0147E10E0BF
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Dec 2024 14:49:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1733237396;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=n4GDP2N42De0BPou1g+YWzXPbsQ3btrCc627tUnJ8gg=;
+ b=CFiDWAnWhTYg2dctBIZH2jRPP60MBIlRSrinRnfzQLn03WC6O1VSIqyASMiRYzRVUkNCDg
+ pUHWGZYxM9xn3yTVoHUmDSwtYxvnb21/lwl6TbOpqg1qd+glxKkntknFKQUOyTQ3GxourA
+ fM6th2wg6dIzIBKxULL6LlnEgphmdB8=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-126-ljOQIuFFOFaolYrPDnVo8g-1; Tue, 03 Dec 2024 09:49:55 -0500
+X-MC-Unique: ljOQIuFFOFaolYrPDnVo8g-1
+X-Mimecast-MFC-AGG-ID: ljOQIuFFOFaolYrPDnVo8g
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-385e00ebb16so2792402f8f.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 03 Dec 2024 06:49:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1733237394; x=1733842194;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=n4GDP2N42De0BPou1g+YWzXPbsQ3btrCc627tUnJ8gg=;
+ b=rj56XpQtlFeKZj3Lkby3uAJc7IDuu38UXvt0rx7KVrlPp7LZYDjfjSnLk/sLjBqRQ6
+ gvx+ezA9kjeYcjPMJoKMwIc3wWq5dS/M1TtEuBTlWefcFkh1jNiLINyNC7UjxZO1b/Qd
+ ReXjMeRfoBWPTU2InAop9DCNbNcqy2FMx3kGFtjRXZsM6ltTibi3eSPVsJjzzk0nXDO5
+ 1HZVDO4rsa0+unBVv2i0XVwPM9afy8s7xSxjBFX5Xvvv0k70ClImBY4zuJFTj/cO1upk
+ gQreyvjWC1giL0WQL/d0Z/RiZK1BitT6yxpMH5P0o3/HkFtCM0H3yu+qnr4QFXWUU2vW
+ XRKg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUJ6vtlSEyDfUGVbT22M12l9yHl70AcY/pjQzx1s/+a5A5v+/iQEYMybdcIuFiopNzcY5Y4HV2R0h4=@lists.freedesktop.org,
- AJvYcCUszdQvbETzN9m9vXFN27qt7jJwu7BOedskZb0Pkwx1utHhRDdrRjqn1uSNCo6A9oZ+5ekJ22efuBs=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz+JpND5UDIAL8wvhP5WslIWCOBv5Skie3vvHYUrMdMtG/KJLG/
- 7V6ungKGbg+eydcASsCT8c7O6JSeSNRcvHLIU7SpFidqPdodEqC6Y6ed+glJmqme+pm6K2TFK4C
- CmXPdR3EdkErh1szSNnURNDuLRR0=
-X-Google-Smtp-Source: AGHT+IHpr7QHC7AIP/SBz1FrBthPRXkSIECwIwn6uZOMArYMtH1Q7RTuZ78swhIHEAEOKi+pvFatzpdTEtl4v9YyFFo=
-X-Received: by 2002:a05:6871:606:b0:296:ee2e:a23c with SMTP id
- 586e51a60fabf-29e88560c9bmr2902777fac.5.1733236413021; Tue, 03 Dec 2024
- 06:33:33 -0800 (PST)
+ AJvYcCWdVEYeogAaI/6W7b4DgJjBEWW7g9Ood1T7i1qkV6UsTUT41dUZIezZoJ1S8t0UIAZr2A8FDYF93w==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwW78C09UKByEKH/0J4tfw/63BTOb3DF2N31yNysDj7TXxoV6dm
+ l2A1ks1DrlaUKpacmgRCWtL1gj29lHq4rbk9PkCn198bNWpkMF+R/Dr8DEvEJSYCit+T4ots2mB
+ vLADDPX3IzwXU6B8gk9csMroq0UppLliy8LI8lneibIkqqB6MddPjNFzStk7ZM5U8
+X-Gm-Gg: ASbGncs977CWicKYjtPA+1oSwhy86L86OHj9ofMTFOPrLjRtpaBZYiv0WIRrkc1SbiQ
+ 9m/fNMMfoY/ejf+W0lvaOKPnPwNGoJJlotSLC75swImIQWgIbf/SLIJ4SLy6yw1ce2DBPG0IG8c
+ whvP82Qom+ehbe+c2qQaXlfve+csZqCibiPgWg9PvXniAdYDxUY2pWDs+2GsaEkCN6EEQu5+TH4
+ Eyd7T99s7PFccrkpEg3VURy/5Ko8ynBa2VpZ03fx34O/shaLklhOLx9JCYUOfDI2WElM7xxgzwY
+ j7ua8qownxkzHQ==
+X-Received: by 2002:a5d:64e6:0:b0:37e:d2b7:acd5 with SMTP id
+ ffacd0b85a97d-385fd3ce813mr2293178f8f.8.1733237393660; 
+ Tue, 03 Dec 2024 06:49:53 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGFcwkE05mCDE5tPeK9RAGof+vyXA1+Fejzj8Sh9g5cySN/ZQlfiIv2uok1tNdkoohrM943VA==
+X-Received: by 2002:a5d:64e6:0:b0:37e:d2b7:acd5 with SMTP id
+ ffacd0b85a97d-385fd3ce813mr2293163f8f.8.1733237393188; 
+ Tue, 03 Dec 2024 06:49:53 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:c:37e0:ced3:55bd:f454:e722?
+ ([2a01:e0a:c:37e0:ced3:55bd:f454:e722])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-434d04defb7sm19709015e9.0.2024.12.03.06.49.52
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 03 Dec 2024 06:49:52 -0800 (PST)
+Message-ID: <9b553553-55b8-4c79-a31b-5661da55df3b@redhat.com>
+Date: Tue, 3 Dec 2024 15:49:50 +0100
 MIME-Version: 1.0
-References: <SJ1PR11MB6129CCD82CD78D8EE6E27EF4B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <SJ1PR11MB612965ACA3E84745346F0400B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <5e405ad4-34d6-4507-978f-3d81d4af2455@t-8ch.de>
- <CAJZ5v0iXKvaxz-hmW2+qwTcSmtPJ23Hv04CMnmT=qPE0ytNwLg@mail.gmail.com>
- <56d574c6-6eab-4388-8cb8-70cd615a8941@t-8ch.de>
-In-Reply-To: <56d574c6-6eab-4388-8cb8-70cd615a8941@t-8ch.de>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Tue, 3 Dec 2024 15:33:21 +0100
-X-Gmail-Original-Message-ID: <CAJZ5v0gFwu+6Cm7ORs7+TAc5jzXZRBO1uGcttBTTvK4OqT3Q6g@mail.gmail.com>
-Message-ID: <CAJZ5v0gFwu+6Cm7ORs7+TAc5jzXZRBO1uGcttBTTvK4OqT3Q6g@mail.gmail.com>
-Subject: Re: Regression on linux-next (next-20241120) and drm-tip
-To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
- "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, 
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Coelho,
- Luciano" <luciano.coelho@intel.com>, 
- "Saarinen, Jani" <jani.saarinen@intel.com>, "Nikula,
- Jani" <jani.nikula@intel.com>, 
- "De Marchi, Lucas" <lucas.demarchi@intel.com>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] drm/i915: Add drm_panic support
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20241203092836.426422-1-jfalempe@redhat.com>
+ <20241203092836.426422-6-jfalempe@redhat.com>
+ <4e67e781-df6d-45b8-be52-637ee5926bd7@linux.intel.com>
+From: Jocelyn Falempe <jfalempe@redhat.com>
+In-Reply-To: <4e67e781-df6d-45b8-be52-637ee5926bd7@linux.intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: v70IdeMLbCMolaY-W0oUGPEUWcz0ZqSHxmG4JbsYSU0_1733237394
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, fr
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,83 +108,204 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Dec 3, 2024 at 1:04=E2=80=AFPM Thomas Wei=C3=9Fschuh <linux@weisssc=
-huh.net> wrote:
->
-> On 2024-12-03 12:54:54+0100, Rafael J. Wysocki wrote:
-> > On Tue, Dec 3, 2024 at 7:51=E2=80=AFAM Thomas Wei=C3=9Fschuh <linux@wei=
-ssschuh.net> wrote:
-> > >
-> > > (+Cc Sebastian)
-> > >
-> > > Hi Chaitanya,
-> > >
-> > > On 2024-12-03 05:07:47+0000, Borah, Chaitanya Kumar wrote:
-> > > > Hope you are doing well. I am Chaitanya from the linux graphics tea=
-m in Intel.
-> > > >
-> > > > This mail is regarding a regression we are seeing in our CI runs[1]=
- on linux-next repository.
-> > >
-> > > Thanks for the report.
-> > >
-> > > > Since the version next-20241120 [2], we are seeing the following re=
-gression
-> > > >
-> > > > ```````````````````````````````````````````````````````````````````=
-``````````````
-> > > > <4>[   19.990743] Oops: general protection fault, probably for non-=
-canonical address 0xb11675ef8d1ccbce: 0000 [#1] PREEMPT SMP NOPTI
-> > > > <4>[   19.990760] CPU: 21 UID: 110 PID: 867 Comm: prometheus-node N=
-ot tainted 6.12.0-next-20241120-next-20241120-gac24e26aa08f+ #1
-> > > > <4>[   19.990771] Hardware name: Intel Corporation Arrow Lake Clien=
-t Platform/MTL-S UDIMM 2DPC EVCRB, BIOS MTLSFWI1.R00.4400.D85.2410100007 10=
-/10/2024
-> > > > <4>[   19.990782] RIP: 0010:power_supply_get_property+0x3e/0xe0
-> > > > ```````````````````````````````````````````````````````````````````=
-``````````````
-> > > > Details log can be found in [3].
-> > > >
-> > > > After bisecting the tree, the following patch [4] seems to be the f=
-irst "bad"
-> > > > commit
-> > > >
-> > > > ```````````````````````````````````````````````````````````````````=
-``````````````````````````````````````
-> > > > Commit 49000fee9e639f62ba1f965ed2ae4c5ad18d19e2
-> > > > Author:     Thomas Wei=C3=9Fschuh <mailto:linux@weissschuh.net>
-> > > > AuthorDate: Sat Oct 5 12:05:03 2024 +0200
-> > > > Commit:     Sebastian Reichel <mailto:sebastian.reichel@collabora.c=
-om>
-> > > > CommitDate: Tue Oct 15 22:22:20 2024 +0200
-> > > >     power: supply: core: add wakeup source inhibit by power_supply_=
-config
-> > > > ```````````````````````````````````````````````````````````````````=
-``````````````````````````````````````
-> > > >
-> > > > This is now seen in our drm-tip runs as well. [5]
-> > > >
-> > > > Could you please check why the patch causes this regression and pro=
-vide a fix if necessary?
-> > >
-> > > I don't see how this patch can lead to this error.
-> >
-> > It looks like the cfg->no_wakeup_source access reaches beyond the
-> > struct boundary for some reason.
->
-> But the access to this field is only done in __power_supply_register().
-> The error reports however don't show this function at all,
-> they come from power_supply_uevent() and power_supply_get_property() by
-> which time the call to __power_supply_register() is long over.
->
-> FWIW there is an uninitialized 'struct power_supply_config' in
-> drivers/hid/hid-corsair-void.c. But I highly doubt the test machines are
-> using that. (I'll send a patch later for it)
+On 03/12/2024 11:58, Maarten Lankhorst wrote:
+> Hey,
+> 
+> Den 2024-12-03 kl. 09:50, skrev Jocelyn Falempe:
+>> This adds drm_panic support for a wide range of Intel GPU. I've
+>> tested it only on 3 laptops, haswell (with 128MB of eDRAM),
+>> cometlake and alderlake.
+>>
+>>   * DPT: if I disable tiling on a framebuffer using DPT, then it
+>>     displays some other memory location. As DPT is enabled only for
+>>     tiled framebuffer, there might be some hardware limitations.
+> This is because DPT points to the pagetable, when you disable tiling DPT is no longer used so the DPT is interpreted as a linear FB instead of a lookup table.
 
-So the only way I can think about in which the commit in question may
-lead to the reported issues is that changing the size of struct
-power_supply_config or its alignment makes an unexpected functional
-difference somewhere.
+Thanks for the explanation, I was a bit puzzled by this.
+> 
+> The lookup table is necessarily smaller than the real FB, so you would need to overwrite part of the GGTT and point it to linear FB.
+> 
+> I'm not sure what the fix is here as it would require a real GGTT mapping to fix, needing an allocation which might not succeed. Perhaps indicates a limitation to require a real pageflip to fbdev fb?
 
-AFAICS, this commit cannot be reverted by itself, so which commits on
-top of it need to be reverted in order to revert it cleanly?
+fbdev is not always present, (and drm_panic is there to help disable it, 
+so I would prefer that it doesn't rely on it).
+The other solution is to draw tiled. When I tested, TILED_X looked 
+simple, and is the default when using gnome desktop, so I can start to 
+implement that.
+
+> 
+> Have you tested rotated by any chance? Cursor enabled? Overlay?
+
+No, not yet. But even a rotated panic screen is better than a hard 
+freeze. When I test, I have sometime the mouse cursor on top of the 
+panic screen, but that's not really a problem. Even if it hides a part 
+of the QR code, there are enough ECC to decode it.
+drm_panic is a best effort mode, it's not a problem if it doesn't cover 
+all use cases.
+
+As a side note regarding rotation, there are a lot of pictures of 
+Crowdstrike's BSOD, that doesn't respect the rotation of the screen.
+
+> 
+> I also think this may fail if there are flips queued. We should probably bite the bullet, reprogram the entire state into a known state, disable all overlay planes and cursor, reassign all watermarks for the primary and ensure any background work is killed where needed.
+
+This has been discussed when I started drm_panic, and restarting the 
+full graphic pipeline is complex to do in a panic handler.
+It would also require much more work than this.
+
+In a panic handler, there shouldn't be any background work going on the 
+CPU (all CPU are shutdown except the panic CPU). On the other hand, the 
+GPU can continue his work freely.
+
+Also there is a mode_config->panic_lock, so that we don't try to draw a 
+panic screen, if we are in the middle of a page flip:
+https://elixir.bootlin.com/linux/v6.12.1/source/drivers/gpu/drm/drm_atomic_helper.c#L3102
+
+Best regards,
+
+-- 
+
+Jocelyn
+
+> 
+> Cheers,
+> ~Maarten
+> 
+>>   * fbdev: On my haswell laptop, the fbdev framebuffer is configured
+>>     with tiling enabled, but really it's linear, because fbcon don't
+>>     know about tiling, and the panic screen is perfect when it's drawn
+>>     as linear.
+>> Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
+>> ---
+>>   .../gpu/drm/i915/display/intel_atomic_plane.c | 85 ++++++++++++++++++-
+>>   1 file changed, 84 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+>> index b7e462075ded3..58eb3b4c55fa5 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+>> @@ -33,16 +33,20 @@
+>>   
+>>   #include <linux/dma-fence-chain.h>
+>>   #include <linux/dma-resv.h>
+>> +#include <linux/iosys-map.h>
+>>   
+>>   #include <drm/drm_atomic_helper.h>
+>>   #include <drm/drm_blend.h>
+>> +#include <drm/drm_cache.h>
+>>   #include <drm/drm_fourcc.h>
+>>   #include <drm/drm_gem.h>
+>>   #include <drm/drm_gem_atomic_helper.h>
+>> +#include <drm/drm_panic.h>
+>>   
+>>   #include "i915_config.h"
+>>   #include "i9xx_plane_regs.h"
+>>   #include "intel_atomic_plane.h"
+>> +#include "intel_bo.h"
+>>   #include "intel_cdclk.h"
+>>   #include "intel_cursor.h"
+>>   #include "intel_display_rps.h"
+>> @@ -50,6 +54,7 @@
+>>   #include "intel_display_types.h"
+>>   #include "intel_fb.h"
+>>   #include "intel_fb_pin.h"
+>> +#include "intel_fbdev.h"
+>>   #include "skl_scaler.h"
+>>   #include "skl_watermark.h"
+>>   
+>> @@ -1198,14 +1203,92 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
+>>   	intel_plane_unpin_fb(old_plane_state);
+>>   }
+>>   
+>> +/* Only used by drm_panic get_scanout_buffer() and panic_flush(), so it is
+>> + * protected by the drm panic spinlock
+>> + */
+>> +static struct iosys_map panic_map;
+>> +
+>> +static void intel_panic_flush(struct drm_plane *plane)
+>> +{
+>> +	struct intel_plane_state *plane_state = to_intel_plane_state(plane->state);
+>> +	struct drm_i915_private *dev_priv = to_i915(plane->dev);
+>> +	struct drm_framebuffer *fb = plane_state->hw.fb;
+>> +	struct intel_plane *iplane = to_intel_plane(plane);
+>> +
+>> +	/* Force a cache flush, otherwise the new pixels won't show up */
+>> +	drm_clflush_virt_range(panic_map.vaddr, fb->height * fb->pitches[0]);
+>> +
+>> +	/* Don't disable tiling if it's the fbdev framebuffer.*/
+>> +	if (to_intel_framebuffer(fb) == intel_fbdev_framebuffer(dev_priv->display.fbdev.fbdev))
+>> +		return;
+>> +
+>> +	if (fb->modifier && iplane->disable_tiling)
+>> +		iplane->disable_tiling(iplane);
+>> +}
+>> +
+>> +static int intel_get_scanout_buffer(struct drm_plane *plane,
+>> +				    struct drm_scanout_buffer *sb)
+>> +{
+>> +	struct intel_plane_state *plane_state;
+>> +	struct drm_gem_object *obj;
+>> +	struct drm_framebuffer *fb;
+>> +	struct drm_i915_private *dev_priv = to_i915(plane->dev);
+>> +	void *ptr;
+>> +
+>> +	if (!plane->state || !plane->state->fb || !plane->state->visible)
+>> +		return -ENODEV;
+>> +
+>> +	plane_state = to_intel_plane_state(plane->state);
+>> +	fb = plane_state->hw.fb;
+>> +	obj = intel_fb_bo(fb);
+>> +	if (!obj)
+>> +		return -ENODEV;
+>> +
+>> +	if (to_intel_framebuffer(fb) == intel_fbdev_framebuffer(dev_priv->display.fbdev.fbdev)) {
+>> +		ptr = intel_fbdev_get_vaddr(dev_priv->display.fbdev.fbdev);
+>> +	} else {
+>> +		/* can't disable tiling if DPT is in use */
+>> +		if (intel_bo_is_tiled(obj) && HAS_DPT(dev_priv))
+>> +			return -EOPNOTSUPP;
+>> +
+>> +		ptr = intel_bo_panic_map(obj);
+>> +	}
+>> +
+>> +	if (!ptr)
+>> +		return -ENOMEM;
+>> +
+>> +	if (intel_bo_has_iomem(obj))
+>> +		iosys_map_set_vaddr_iomem(&panic_map, ptr);
+>> +	else
+>> +		iosys_map_set_vaddr(&panic_map, ptr);
+>> +
+>> +	sb->map[0] = panic_map;
+>> +	sb->width = fb->width;
+>> +	sb->height = fb->height;
+>> +	sb->format = fb->format;
+>> +	sb->pitch[0] = fb->pitches[0];
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   static const struct drm_plane_helper_funcs intel_plane_helper_funcs = {
+>>   	.prepare_fb = intel_prepare_plane_fb,
+>>   	.cleanup_fb = intel_cleanup_plane_fb,
+>>   };
+>>   
+>> +static const struct drm_plane_helper_funcs intel_primary_plane_helper_funcs = {
+>> +	.prepare_fb = intel_prepare_plane_fb,
+>> +	.cleanup_fb = intel_cleanup_plane_fb,
+>> +	.get_scanout_buffer = intel_get_scanout_buffer,
+>> +	.panic_flush = intel_panic_flush,
+>> +};
+>> +
+>>   void intel_plane_helper_add(struct intel_plane *plane)
+>>   {
+>> -	drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
+>> +	if (plane->base.type == DRM_PLANE_TYPE_PRIMARY)
+>> +		drm_plane_helper_add(&plane->base, &intel_primary_plane_helper_funcs);
+>> +	else
+>> +		drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
+>>   }
+>>   
+>>   void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
+> 
+
