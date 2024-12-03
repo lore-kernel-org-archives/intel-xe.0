@@ -4,62 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 461CAD73612
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 09:29:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44950D4979A
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 09:36:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1892210E9B1;
-	Tue,  3 Dec 2024 09:29:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Kgz9Zg5x";
-	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B30B510E9B7
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Dec 2024 09:29:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1733218161;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=xnIpLUaZjZ89RucMDbcSAI8aEU0VifFxCRWXuWOR5LI=;
- b=Kgz9Zg5xNAunKhX7Q0TrHi3iXojAl69D0bW8DC2n1b2dJXC8pu6FDMQczGnK1RiU3zN2qG
- tCNwp0C/S64QSy4x9Hw/W/b0r/xVWT33Z673ZkXDk5iSQgDT2TMLey2ckkH/0QfluIJYo5
- Y+uzNBKIf7u9wFr6tPum6Oq4rUwAbXk=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-621-9ri83S1KOnqNWER8SpvSmw-1; Tue,
- 03 Dec 2024 04:29:15 -0500
-X-MC-Unique: 9ri83S1KOnqNWER8SpvSmw-1
-X-Mimecast-MFC-AGG-ID: 9ri83S1KOnqNWER8SpvSmw
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 3E2D4195396F; Tue,  3 Dec 2024 09:29:14 +0000 (UTC)
-Received: from hydra.redhat.com (unknown [10.39.193.255])
- by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 4C55D19560A3; Tue,  3 Dec 2024 09:29:11 +0000 (UTC)
-From: Jocelyn Falempe <jfalempe@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
-Subject: [PATCH v2 5/5] drm/i915: Add drm_panic support
-Date: Tue,  3 Dec 2024 09:50:22 +0100
-Message-ID: <20241203092836.426422-6-jfalempe@redhat.com>
-In-Reply-To: <20241203092836.426422-1-jfalempe@redhat.com>
-References: <20241203092836.426422-1-jfalempe@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E1EF10E9B5;
+	Tue,  3 Dec 2024 09:36:47 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA93010E9B5;
+ Tue,  3 Dec 2024 09:36:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5742785972438865968=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/6?=
+ =?utf-8?q?=5D_drm/i915/wm=3A_Initialize_max=5Flatency_variable_to_appropria?=
+ =?utf-8?q?te_value?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 03 Dec 2024 09:36:45 -0000
+Message-ID: <173321860595.1964850.9720362265867585705@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241203084706.2126189-1-suraj.kandpal@intel.com>
+In-Reply-To: <20241203084706.2126189-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,153 +37,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This adds drm_panic support for a wide range of Intel GPU. I've
-tested it only on 3 laptops, haswell (with 128MB of eDRAM),
-cometlake and alderlake.
+--===============5742785972438865968==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
- * DPT: if I disable tiling on a framebuffer using DPT, then it
-   displays some other memory location. As DPT is enabled only for
-   tiled framebuffer, there might be some hardware limitations.
- * fbdev: On my haswell laptop, the fbdev framebuffer is configured
-   with tiling enabled, but really it's linear, because fbcon don't
-   know about tiling, and the panic screen is perfect when it's drawn
-   as linear.
+== Series Details ==
 
-Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
----
- .../gpu/drm/i915/display/intel_atomic_plane.c | 85 ++++++++++++++++++-
- 1 file changed, 84 insertions(+), 1 deletion(-)
+Series: series starting with [1/6] drm/i915/wm: Initialize max_latency variable to appropriate value
+URL   : https://patchwork.freedesktop.org/series/142032/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index b7e462075ded3..58eb3b4c55fa5 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -33,16 +33,20 @@
- 
- #include <linux/dma-fence-chain.h>
- #include <linux/dma-resv.h>
-+#include <linux/iosys-map.h>
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_blend.h>
-+#include <drm/drm_cache.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_gem.h>
- #include <drm/drm_gem_atomic_helper.h>
-+#include <drm/drm_panic.h>
- 
- #include "i915_config.h"
- #include "i9xx_plane_regs.h"
- #include "intel_atomic_plane.h"
-+#include "intel_bo.h"
- #include "intel_cdclk.h"
- #include "intel_cursor.h"
- #include "intel_display_rps.h"
-@@ -50,6 +54,7 @@
- #include "intel_display_types.h"
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
-+#include "intel_fbdev.h"
- #include "skl_scaler.h"
- #include "skl_watermark.h"
- 
-@@ -1198,14 +1203,92 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
- 	intel_plane_unpin_fb(old_plane_state);
- }
- 
-+/* Only used by drm_panic get_scanout_buffer() and panic_flush(), so it is
-+ * protected by the drm panic spinlock
-+ */
-+static struct iosys_map panic_map;
-+
-+static void intel_panic_flush(struct drm_plane *plane)
-+{
-+	struct intel_plane_state *plane_state = to_intel_plane_state(plane->state);
-+	struct drm_i915_private *dev_priv = to_i915(plane->dev);
-+	struct drm_framebuffer *fb = plane_state->hw.fb;
-+	struct intel_plane *iplane = to_intel_plane(plane);
-+
-+	/* Force a cache flush, otherwise the new pixels won't show up */
-+	drm_clflush_virt_range(panic_map.vaddr, fb->height * fb->pitches[0]);
-+
-+	/* Don't disable tiling if it's the fbdev framebuffer.*/
-+	if (to_intel_framebuffer(fb) == intel_fbdev_framebuffer(dev_priv->display.fbdev.fbdev))
-+		return;
-+
-+	if (fb->modifier && iplane->disable_tiling)
-+		iplane->disable_tiling(iplane);
-+}
-+
-+static int intel_get_scanout_buffer(struct drm_plane *plane,
-+				    struct drm_scanout_buffer *sb)
-+{
-+	struct intel_plane_state *plane_state;
-+	struct drm_gem_object *obj;
-+	struct drm_framebuffer *fb;
-+	struct drm_i915_private *dev_priv = to_i915(plane->dev);
-+	void *ptr;
-+
-+	if (!plane->state || !plane->state->fb || !plane->state->visible)
-+		return -ENODEV;
-+
-+	plane_state = to_intel_plane_state(plane->state);
-+	fb = plane_state->hw.fb;
-+	obj = intel_fb_bo(fb);
-+	if (!obj)
-+		return -ENODEV;
-+
-+	if (to_intel_framebuffer(fb) == intel_fbdev_framebuffer(dev_priv->display.fbdev.fbdev)) {
-+		ptr = intel_fbdev_get_vaddr(dev_priv->display.fbdev.fbdev);
-+	} else {
-+		/* can't disable tiling if DPT is in use */
-+		if (intel_bo_is_tiled(obj) && HAS_DPT(dev_priv))
-+			return -EOPNOTSUPP;
-+
-+		ptr = intel_bo_panic_map(obj);
-+	}
-+
-+	if (!ptr)
-+		return -ENOMEM;
-+
-+	if (intel_bo_has_iomem(obj))
-+		iosys_map_set_vaddr_iomem(&panic_map, ptr);
-+	else
-+		iosys_map_set_vaddr(&panic_map, ptr);
-+
-+	sb->map[0] = panic_map;
-+	sb->width = fb->width;
-+	sb->height = fb->height;
-+	sb->format = fb->format;
-+	sb->pitch[0] = fb->pitches[0];
-+
-+	return 0;
-+}
-+
- static const struct drm_plane_helper_funcs intel_plane_helper_funcs = {
- 	.prepare_fb = intel_prepare_plane_fb,
- 	.cleanup_fb = intel_cleanup_plane_fb,
- };
- 
-+static const struct drm_plane_helper_funcs intel_primary_plane_helper_funcs = {
-+	.prepare_fb = intel_prepare_plane_fb,
-+	.cleanup_fb = intel_cleanup_plane_fb,
-+	.get_scanout_buffer = intel_get_scanout_buffer,
-+	.panic_flush = intel_panic_flush,
-+};
-+
- void intel_plane_helper_add(struct intel_plane *plane)
- {
--	drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
-+	if (plane->base.type == DRM_PLANE_TYPE_PRIMARY)
-+		drm_plane_helper_add(&plane->base, &intel_primary_plane_helper_funcs);
-+	else
-+		drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
- }
- 
- void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
--- 
-2.47.1
+== Summary ==
 
+CI Bug Log - changes from xe-2307-4de82d50b8de6a278c1483a7f76ae830c89d1824_BAT -> xe-pw-142032v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2307-4de82d50b8de6a278c1483a7f76ae830c89d1824 -> xe-pw-142032v1
+
+  IGT_8134: 027fbf68a00630d7bb8ae200c620296e2bad971d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2307-4de82d50b8de6a278c1483a7f76ae830c89d1824: 4de82d50b8de6a278c1483a7f76ae830c89d1824
+  xe-pw-142032v1: 142032v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142032v1/index.html
+
+--===============5742785972438865968==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/6] drm/i915/wm: Initialize max_latency variable to appropriate value</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142032/">https://patchwork.freedesktop.org/series/142032/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142032v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142032v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2307-4de82d50b8de6a278c1483a7f76ae830c89d1824_BAT -&gt; xe-pw-142032v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2307-4de82d50b8de6a278c1483a7f76ae830c89d1824 -&gt; xe-pw-142032v1</li>
+</ul>
+<p>IGT_8134: 027fbf68a00630d7bb8ae200c620296e2bad971d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2307-4de82d50b8de6a278c1483a7f76ae830c89d1824: 4de82d50b8de6a278c1483a7f76ae830c89d1824<br />
+  xe-pw-142032v1: 142032v1</p>
+
+</body>
+</html>
+
+--===============5742785972438865968==--
