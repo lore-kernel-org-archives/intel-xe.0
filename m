@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C679E74AC2
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 16:42:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3F5BE74AC5
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 16:43:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B82A710E004;
-	Tue,  3 Dec 2024 16:42:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 377D310EAB7;
+	Tue,  3 Dec 2024 16:43:12 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF64E10E004;
- Tue,  3 Dec 2024 16:42:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E186310E004;
+ Tue,  3 Dec 2024 16:43:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/dp=3A_extract_pa?=
- =?utf-8?q?yload_helpers_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/dp=3A_extract_payload?=
+ =?utf-8?q?_helpers_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Dec 2024 16:42:57 -0000
-Message-ID: <173324417771.2060734.13027085030708482231@b555e5b46a47>
+Date: Tue, 03 Dec 2024 16:43:10 -0000
+Message-ID: <173324419091.2068984.12595149143688464490@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <cover.1733238940.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1733238940.git.jani.nikula@intel.com>
@@ -48,11 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5779fb3c12fa drm-tip: 2024y-12m-03d-12h-35m-05s UTC integration manifest
-=== git am output follows ===
-Applying: drm/dp: extract drm_dp_dpcd_poll_act_handled()
-Applying: drm/dp: extract drm_dp_dpcd_write_payload()
-Applying: drm/dp: extract drm_dp_dpcd_clear_payload()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit cf0986285464fe39e931347f02eee8df431030cc
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Tue Dec 3 17:17:10 2024 +0200
+
+    drm/dp: extract drm_dp_dpcd_clear_payload()
+    
+    SST with 128b/132b channel coding needs this too. Extract to a separate
+    helper, independent of MST.
+    
+    Cc: Lyude Paul <lyude@redhat.com>
+    Reviewed-by: Imre Deak <imre.deak@intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 5779fb3c12faf12589054127d60b1d36d56ba219 drm-intel
+0ffea4982932 drm/dp: extract drm_dp_dpcd_poll_act_handled()
+2b6ca1fcf3e9 drm/dp: extract drm_dp_dpcd_write_payload()
+cf0986285464 drm/dp: extract drm_dp_dpcd_clear_payload()
 
 
