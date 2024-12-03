@@ -4,186 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AE08E74AC6
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 17:40:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2031DE74AC3
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 17:44:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3418C10E480;
-	Tue,  3 Dec 2024 17:40:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3DAF10EAF0;
+	Tue,  3 Dec 2024 17:44:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RacmsIrM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TkpsuvfN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C82CE10E480
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Dec 2024 17:40:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D636110EAF0;
+ Tue,  3 Dec 2024 17:44:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733247644; x=1764783644;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-id:content-transfer-encoding:mime-version;
- bh=zvJp+G/agECXgib43w8e1R3IJu3vw7fgN1Zj6DH4UWY=;
- b=RacmsIrMGJ4RoTDj5etI6Snoyz2JAEla1NkZ+aV0+9RzsESIS3pE6EAr
- kD4aVE0JB7maYVWmsAGZVSsn1LgceE77JeU8oBDHqogjpPofe6EyxTGmP
- KkexQ8UTj0A+CAFYbOuzjD4YuN8o64RChZcmQYb4J4rXrVdzHLk+bE8Du
- GISp02NrkPV9tHy+wqH5ur7eEnoz2NpmiCQPa9THSrWXQyt/d7bis1dF9
- 2y1KYyZ1dpK7zHSxnUxzZUPe5KCi4Rrjs6skRAyYIxQczsegghk38HVol
- OgGPz31LoqvhwEZx4YlmCwQlbjZ4sv/BwOnR5JUNxw/a1RTxcpizKfzfx A==;
-X-CSE-ConnectionGUID: QUsw0A8tT2OteqlzXOhx0A==
-X-CSE-MsgGUID: yg4hHw62QHKgUKoS3zswFA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="37251681"
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="37251681"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 09:40:44 -0800
-X-CSE-ConnectionGUID: spE6zoN7QJm0PmICEltogQ==
-X-CSE-MsgGUID: faEvN0m6Ti6juiqv4SYyxw==
+ t=1733247868; x=1764783868;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=EDDrp+IalHazW5cMMRQdbEkCnFWLLG8DHrZOsjx9f5g=;
+ b=TkpsuvfN/nHGMPgBVbr7Ei6aaqOsHFFL5X+gCh0CSRnCwhY5sqmUFxn0
+ /lbO+JhrthLh9sD2aILMW6dwcrJ/esgRywm0nWJcQjNtOwCB6lwSm/hg5
+ MU2reOOq/dsR4K6vx9DTi3JST6IGG/Cdmim3CDMBsfj700uI49B820qTb
+ 7Y9AcbKcHVoyhwW0yAI+pX1CWjpKVcWrbhgfFvNmy04oL4dcBFVOy36b+
+ znZcQkLfSvF2ncePtiBUzcI4OujfiSZDN/kLoVYS8q+UdZ6dmcctoELwL
+ prmtwnma0naQf1QRfpXeVUlVGjAhbZ+MryaHQ7atSsV7nGUATxYODmm61 A==;
+X-CSE-ConnectionGUID: VUN7ixvETheRK1AtQfnIcw==
+X-CSE-MsgGUID: 5tfKygMZRBSwX/mCQ/ObTw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="36328512"
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="36328512"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 09:44:27 -0800
+X-CSE-ConnectionGUID: GFWCwRvNQE6783TvnmyoSQ==
+X-CSE-MsgGUID: G4ZE7iZqSceELfqX79ft5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="98518513"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 03 Dec 2024 09:40:44 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 3 Dec 2024 09:40:43 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 3 Dec 2024 09:40:43 -0800
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.45) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 3 Dec 2024 09:40:43 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WkrtKFqHiRQyRUIhQf7HLfFExeONgreuWWv+2PyEpAe0UnqaztaerMEV4e/FHV/T/wnfKjPj6Xk+6uLE5dbCOX4Yb0LptzNimrmLyl3THB0ZLav7hhb8+uBdTL5wM+bh6QBKwmcJnxtp8KRP73GNoeJD+MwhpPs9EZebOf6bAD3dPQZX+Cjz3cOfjfUHpMapVoPXGLk4q02iKT45Yd9OL6lIF3mWYN7t/M7NHofCuR2dR2SQZdI4l9YZB3e76BrhK6PIzttgNEsGxk0fRcvsE1zw9fa27npgm7MFXt1OioKc+En+Fpl7MVEEG4tHcF1V1HRwjB9Pb7647SWWRNOROA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zvJp+G/agECXgib43w8e1R3IJu3vw7fgN1Zj6DH4UWY=;
- b=cZwb+11FEJyiLGnyeei54XTIh0+g95oESheCSr4Ilq9YexFzhEYOUijd5tE4/pc13XATOFYUORrSzcQe2XWgRsG/Ed1o8UVaazjghQ+KlSfCCia0s6ZjswcTzS35/7NBeCHZT8xUdMnlr28UKxYSvU03KM191DJLbE5guOwn8mJX4/zBGd2TqanrKAMVPsw5OsCoiiHcfI6mcjtUeD07YwA3s8LOwyXf56Td87Hq94m6/rIawhUpPw0D7JB+mEyces8Akp0ouy48CBpmRnIH/0ZoJSvdWCw/kWvOKg88NEXsl77EI3ZO9uaHXjCXWiZWI4GzFKV+7QjL46tegtbw7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM8PR11MB5751.namprd11.prod.outlook.com (2603:10b6:8:12::16) by
- CY5PR11MB6161.namprd11.prod.outlook.com (2603:10b6:930:2a::10) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8207.19; Tue, 3 Dec 2024 17:40:35 +0000
-Received: from DM8PR11MB5751.namprd11.prod.outlook.com
- ([fe80::4046:430d:f16c:b842]) by DM8PR11MB5751.namprd11.prod.outlook.com
- ([fe80::4046:430d:f16c:b842%6]) with mapi id 15.20.8207.017; Tue, 3 Dec 2024
- 17:40:35 +0000
-From: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: =?utf-8?B?UmU6IOKclyBYZS5DSS5GdWxsOiBmYWlsdXJlIGZvciBNYWludGVuZW5jZSBv?=
- =?utf-8?B?ZiBkZXZjb3JlZHVtcCA8LT4gR3VDLUVyci1DYXB0dXJlIHBsdW1iaW5nIChy?=
- =?utf-8?Q?ev2)?=
-Thread-Topic: =?utf-8?B?4pyXIFhlLkNJLkZ1bGw6IGZhaWx1cmUgZm9yIE1haW50ZW5lbmNlIG9mIGRl?=
- =?utf-8?Q?vcoredump_<->_GuC-Err-Capture_plumbing_(rev2)?=
-Thread-Index: AQHbRUhTJicPphF+8U6Pkuh0A/a79bLUylgA
-Date: Tue, 3 Dec 2024 17:40:35 +0000
-Message-ID: <41e08c46851bd52cc4367f977d891db6107f9bc0.camel@intel.com>
-References: <20241203033703.3215624-1-alan.previn.teres.alexis@intel.com>
- <173320544602.1903651.4392219603779837554@b555e5b46a47>
-In-Reply-To: <173320544602.1903651.4392219603779837554@b555e5b46a47>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.44.4-0ubuntu2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR11MB5751:EE_|CY5PR11MB6161:EE_
-x-ms-office365-filtering-correlation-id: 7429e2cc-cc8f-4f71-4069-08dd13c19823
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?RURJZkRMeFFuejVtWldNWGNEMFV3aEFmajRzZ01YUUM4UFNrUWV0Qm84V3Yv?=
- =?utf-8?B?VmMrWVlDSDdLM0NQcFpNZzIrS3JSUXhBY2gwUEZacWNVVnBySjlWaHBnc0Jp?=
- =?utf-8?B?bHNHNW00bmIvb0dBTDBhYzNacGdXa0pNc0h2VnFHUDVuT1RrMEZFRnpNa0tm?=
- =?utf-8?B?eVAxcUEra0UyZ1V5R1BJRWRFbkt3Q29TS3FOclJFODZwSkNWNmd4QjVNeDRG?=
- =?utf-8?B?YTZlanFnRWo2VFhqdXpJc2ZPaHc1anV3S2pVVHpLemg3NlFTWHZodHRoWUlU?=
- =?utf-8?B?RDZoQXVidmNRWHVkWk5Tb2dWYmtVTTJrZy92SzBFSGNrd00zS2pEaWIvempM?=
- =?utf-8?B?WTNsRUdpbFp3enZoSm9INjFSU2N6eUNsdTRram0zQzJGeVBaMUxmb2luc2du?=
- =?utf-8?B?cnR6NnRHVFpWVjNYUzdMZnZDV3pOYzY3UmlvSDVBTGlZWVBzWHI3V2dHODJS?=
- =?utf-8?B?L1Q5dkVVNHh6RllnOVR2SDh6Z0FHT3dkVDBzczVjWUp1WkhabEpyMHhiZTh4?=
- =?utf-8?B?R2FUZjhaMTNaVkE4N1QvUHFYVUFwaE9EWS9zY0ZuVkdBRDE5R2Iwb2EwT3Bw?=
- =?utf-8?B?RFVtYVRpUjk3RmhGMXp1ZXgwdjF4c01wenJUVDIrLzcrU3hvTkhSZkRsQjJT?=
- =?utf-8?B?SHlNRWwxMk4rRWlscHNjU2xubFN1Tit0UWREZ2FXQjErb21BRE5RQ2V6cVNa?=
- =?utf-8?B?V1Vlai9sQ01wMUpyZnQ2VHlMSWt5SVdUTE1XMXNrdjZCcXpVUXRXeWpmY2Mv?=
- =?utf-8?B?VXlwOGxVcmZCSDdpMnVwM1FIZWROVE1pWnlUZnprYW5za1FhVmh1N3hxZW1I?=
- =?utf-8?B?UWp0TzlSam9xeG12U0N2SGlFaXMwZWFwMG9ZRkUwTGZYVitGUHA0dHlxMGI0?=
- =?utf-8?B?S0VRek5xUHFlMkx4ejZ4eGl2dXNhOXdRYlhOZDJoZ2s0N3oxYmxoUXczZjlT?=
- =?utf-8?B?alRiUk9ZdHh4dkJpalFrODRZU2kvNmIyb3c5TFZkMGV6eU5JNGhhTjNBMTVw?=
- =?utf-8?B?bGNCajhKZUtSMmxnMmpNbXlDRXA1d2syV0hOTXpGaHI5bUhXTldVK29FNjV5?=
- =?utf-8?B?ZzhTNnRmeGw5MURQTC9tS0lJMnBjc2lRTjlKWWNTbTRXbGhQMzhuWjFUQWxP?=
- =?utf-8?B?Vm5sZkVBOHlNNHBYOUp6emMzdlZ2SWw5VnNTVTVjY1NLcTgxelV1dWd0QVB4?=
- =?utf-8?B?Qmh4NFFYMUR2T1U5OHczaUdhWUI0bGRaV3dsNWlSZS9BMEtHQ01DY2pka0Zk?=
- =?utf-8?B?aE5yLzlzcHB5TjBTWlROdW90Vk14VHY4ZzBLSVJaYTV0RndwRERvMUJZNEFV?=
- =?utf-8?B?NER1L0tqSHptbzRIakFpR2VPMmdudmowbTlLTVFmUVdOdHJxdkZPR2UreUp3?=
- =?utf-8?B?Mk4zamRJYTg0YjBnVGVHVjJOdDVvQWRpeTlsV3g2VFdIdzZmWXdNQ05tYW9i?=
- =?utf-8?B?QTlzWnQrVmYvOVpGSmZLdHFEcTA1NjVVaGdFb2R0Q0I5Z1VGaUhUVHJ2cldY?=
- =?utf-8?B?NlpZaTB3SEpNeUszbXEycjJHNTlJdngzQ0h5Uk03QzR4eER1Z3BXbHN1RVBC?=
- =?utf-8?B?ME95OGFsUmtkVmF5RTdENkpyNUdSVTI1ZjUvTVpQdHV4eFpyU0cxQWRHQnph?=
- =?utf-8?B?dFpOTXczRWtQeW1tZWY4K0pQeUttdkxHNElqMEdqaHl5WEVlamR5WWc5UWRo?=
- =?utf-8?B?QzdLT0pNUGFvY2xiQmNjd210aWFtbWgxdW5rMGM1OHI0QlJyRUZZS2lLNlBq?=
- =?utf-8?B?UEo2YkNsQUN0ZDFJbksrTkRPS2xhSDBHSzhDZ0sxeTBrVHdYaFJQSTBjOGJw?=
- =?utf-8?Q?gDFxe2udacLLll/zgloaxLB3K3d7GM783Ah08=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR11MB5751.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?b0FaRW5zZUpPemJPaG80RmM4b2hwRjhkRTRIaTl1TDNhYUVRUUNOQktFM0RE?=
- =?utf-8?B?VkJONjlNZjNzTUtwMEpVQ3AvWmhDTG5JMjE5WTBGK2twcE44NDFTbkVuYUhI?=
- =?utf-8?B?NVZxcVArNFNZdzhvV1Fpd1NicHdGNGNCUm41TXl5VkVuejd5cm1NZ05PTG1F?=
- =?utf-8?B?L3h2ekNwZHdKVVZzbnJvQkZlWlo2d3Z0Ukovb3g1NGtSeDMyR05SbGxsQUZR?=
- =?utf-8?B?OU5ocTc3VGJ2bndwTFhJV0dGRU16cE1LaHUwVnp0cWZ4Q2lKWFJpR1JiSHFX?=
- =?utf-8?B?WHoydXpvK0NJMGtMdmxlNGdvdUVHN3dEWURNZm5DZkNYTVRjVlpSaE15UEZ2?=
- =?utf-8?B?Q0FaZFJFeXNkblpqQkw0OUhBMkhOL3lDTklhdHVocXBvNHhNZGhsMjdMRDlL?=
- =?utf-8?B?YlpmWGZlRTAyNlAwMWtuK0ZJdzFMREVqVGxLV0lwMkdQZXFaWDhQVmE1Zm42?=
- =?utf-8?B?TTJncWxMdm9qZGxvN1g2NnNocmRzSm0yRWI3UDZ5bUZRczM2ZEFvc3FHeHRx?=
- =?utf-8?B?UTYxaHJnVFRveVhXOGFzS0ZhZUU4bGVnTnpuSDFTdmJ0dDJUa1FrSDV3WGF5?=
- =?utf-8?B?TmNjQVAyN0syTkNhWTFqTE9QcXVqdzFsV2lqWjVOakkzSEVUc2tBN3ZicU1H?=
- =?utf-8?B?Vjh1TG9xQ0dvZERqZHBhalFMNm5EdXl5ZE04QVpSMmJwREs1L2dTRU5iUmVM?=
- =?utf-8?B?ZG1SU2l4UUtUMTJvbHJnMFpPRUJRd3VrOWtlU3MvcmJ4enE0YWFIM1pyYmNw?=
- =?utf-8?B?amNiRkpPK2lwVVk4UExmejBGZEVYdkV5c01hdGFaRGJGYUo1cXcrNDN6NWho?=
- =?utf-8?B?NlhsK0g5K28xWEl0N3p3RkFRV2swVEtRbW5BdlFsaUd6NTc1ZWV4VDcvZGxx?=
- =?utf-8?B?Um9tMWw0dWhldGlMeUVseVN3MXRQZlBwQWtyaEtUeGp1Njl2TFRSUTVkbmFt?=
- =?utf-8?B?NjBHanF3bXlHYlRaT0dscERERkpyTzVOeHZ4dTNOWERkdVdmZWVvMDNaZDQ0?=
- =?utf-8?B?T1U2QWE4NEgvUVY0NWI4Zml3QUlVbU94SjBud3dzeWRDb2VaWGVKT1phOURz?=
- =?utf-8?B?cGczOVB0bVBKWHRYZ0gyTnBXRlpZREhjdFBsd3U0NUh6U2lLREVTRFpGUXFH?=
- =?utf-8?B?Z2FqNW9NNzdSU2lnZFc0M2lEWXJJaVl5UUN0N1JyMk9ZcUNCS2MzdjdhV2N4?=
- =?utf-8?B?cVNMcWFpMU5xaFVsalR0SzkwcVZodTZWVThRbnFJOFUydDJLK01JbE8vcmFx?=
- =?utf-8?B?eEc0bjEwaFhxQjh2VnU4VXY4VVZQUElBZm9zbzY0WDllNWF5UVFpMm41c1dl?=
- =?utf-8?B?MXVSbUo4YUxiWlBlSDJyL3Z0TWxibUlIUVJ2eitmdHpOU2ZJNENtS0JkaXR0?=
- =?utf-8?B?cnVmY0NFZTMrb1VUOUszbGs2MGxUUkVRSlo2SEVzUzFiK3ZqenIxMXlNR3hO?=
- =?utf-8?B?UmdlaDgzR3YxazVwMUFaQ0J2TTA4cG9nSkxWa25icTRucUlUSG01elVhbC9h?=
- =?utf-8?B?bTJ6dHF0K01NYVhoeU5oWEdqcmswYUI3aUZyQ1FjMHFuVjkyQ1RadDBPcWpv?=
- =?utf-8?B?UVpETDJsVFRCREJ0TjdvbnMydnFLK0Q1M0M2UGs5VGJSM0RXRytnQm5wRDFB?=
- =?utf-8?B?THdVYktjUXh4MFFjYkZ6bVk3elZwVGFsVHFEb2h4dEZ4bSsreC9ITFRpOXlx?=
- =?utf-8?B?VDZwdUdHT1VqeEpOSHB5Uit3czc4LzQ4V3JFMEVlOU8zYkN3VG91alRrbENH?=
- =?utf-8?B?bmtEY3lFN09BSGNicTdaanJDai9uRzdUVHliVVhIYzNDM3UwY0pQQkt2NS85?=
- =?utf-8?B?bHFCOEdjTkJqUWJaNEY0c09rTGhNOXJPeGdJOUgxMWN0MjIwUFJVRzd1WEVO?=
- =?utf-8?B?alZDM09kK3NDWmRQcmpwT2xVVDNWSlhTZGJudXBJa09jMVp6K2xyMFE0T0x2?=
- =?utf-8?B?UUNhVUVjc1VzblQ0cURpZFZPRXQxYlpNNDNIS01kbGgxa0RxNGNBbFU1VjU5?=
- =?utf-8?B?UmJqZDQ1VVNYQzEvRzFVS1dDZ0FCdUtjaEhPRGJVUWFRSjZ2N2h3bkRURkg2?=
- =?utf-8?B?d1crMW9VeDc1eTRoLzloWDBEb1FWRzBGUFRISVI3VEl4TXo2T0ROK3ptRC9W?=
- =?utf-8?B?ODVFQjZMbFM5Sm1HeDg5T2hmcUk3VnlqdnNXeXZ4bVcvUC80S2J3MXBleXZR?=
- =?utf-8?Q?eLVPVtDd4tUFD19/viBEkKg=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <1148FB335C3A4D4DB8240F5CD6980646@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="97569675"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.120])
+ ([10.245.246.120])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 09:44:20 -0800
+Message-ID: <5f3c04297fd6f008cad0415d6b6c04ba8c3b5a8c.camel@linux.intel.com>
+Subject: Re: [PATCH v14 3/8] drm/ttm/pool: Provide a helper to shrink pages
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Matthew Brost
+ <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, Paulo Zanoni
+ <paulo.r.zanoni@intel.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Date: Tue, 03 Dec 2024 18:44:18 +0100
+In-Reply-To: <c74e9f5c-3201-4083-8b79-80fdbbd903f2@amd.com>
+References: <20241115150120.3280-1-thomas.hellstrom@linux.intel.com>
+ <20241115150120.3280-4-thomas.hellstrom@linux.intel.com>
+ <800ee040-7c2e-47d0-81e6-a352f5f689fb@amd.com>
+ <a07c93704bc7f59f51b5a6a13aeb3e13eee28e3c.camel@linux.intel.com>
+ <d1e33436-9c1c-43d4-a86a-956926a7096c@amd.com>
+ <73588525571a68f5638300ef171591de10ba5e5d.camel@linux.intel.com>
+ <0595e4df-86d4-4082-86ab-b77902d3020b@amd.com>
+ <cf722b696676b7383a94c2b846f8230e180ee527.camel@linux.intel.com>
+ <bc762b0c-4fe3-48ff-b8df-14f741c91939@amd.com>
+ <f74a7b678b5013dbcbe090bbff885827d3675247.camel@linux.intel.com>
+ <c74e9f5c-3201-4083-8b79-80fdbbd903f2@amd.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5751.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7429e2cc-cc8f-4f71-4069-08dd13c19823
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Dec 2024 17:40:35.8217 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: W22sraxTcD28IdzhOnsEIO6bKg/8RzdDbHvinxpfj6D0EBLcXmoiOs5QBWK8XDBLTj6VXz0Y6PqJaloeEVOhHZQjFdXnffR86GVWQLsua0dTpOw+J3SieXR1CsfFPLfS
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6161
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -198,22 +82,232 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDI0LTEyLTAzIGF0IDA1OjU3ICswMDAwLCBQYXRjaHdvcmsgd3JvdGU6DQo+IFBh
-dGNoIERldGFpbHMNCj4gU2VyaWVzOiBNYWludGVuZW5jZSBvZiBkZXZjb3JlZHVtcCA8LT4gR3VD
-LUVyci1DYXB0dXJlIHBsdW1iaW5nIChyZXYyKSBVUkw6DQo+IGh0dHBzOi8vcGF0Y2h3b3JrLmZy
-ZWVkZXNrdG9wLm9yZy9zZXJpZXMvMTQxNDU5LyBTdGF0ZTogZmFpbHVyZSBEZXRhaWxzOg0KPiBo
-dHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9pbnRlbC14ZS94ZS1wdy0xNDE0NTl2Mi9p
-bmRleC5odG1sIA0KPiBDSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIHhlLTIzMDctNGRlODJkNTBi
-OGRlNmEyNzhjMTQ4M2E3Zjc2YWU4MzBjODlkMTgyNF9mdWxsIC0+IHhlLXB3LTE0MTQ1OXYyX2Z1
-bGxTdW1tYXJ5RkFJTFVSRQ0KPiBTZXJpb3VzIHVua25vd24gY2hhbmdlcyBjb21pbmcgd2l0aCB4
-ZS1wdy0xNDE0NTl2Ml9mdWxsIGFic29sdXRlbHkgbmVlZCB0byBiZQ0KPiDCoHZlcmlmaWVkIG1h
-bnVhbGx5Lg0KPiANCg0KW3NuaXBdDQoNCj4gSUdUIGNoYW5nZXNQb3NzaWJsZSByZWdyZXNzaW9u
-cyAqDQoNCj4gIGlndEBrbXNfZmJjb25fZmJ0QGZiYy1zdXNwZW5kOnNoYXJkLWFkbHA6IE5PVFJV
-TiAtPiBBQk9SVA0KPiDCoCogaWd0QHhlX2V4ZWNfc2lwQHNhbml0eS1hZnRlci10aW1lb3V0OnNo
-YXJkLWJtZzogUEFTUyAtPiBETUVTRy1XQVJOICsxIG90aGVyIHRlc3QgZG1lc2ctd2Fybg0KYWxh
-bjogbG9va3MgbGlrZSBpIGhhdmUgYSBidWcgaW4gdGhlIGNvZGUgOiBhbiAiaWYoYmxhaCkiIHNo
-b3VsZCBoYXZlIGJlZW4gYW4gImlmKCFibGFoKSIgLSB3aWxsIGZpeCB0aGF0DQo+IFdhcm5pbmdz
-ICogaWd0QGttc19kcmF3X2NyY0BkcmF3LW1ldGhvZC1ibHRAcmdiNTY1LTR0aWxlZDpzaGFyZC1i
-bWc6IERNRVNHLUZBSUwgKEludGVsIFhFIzE3MjcgLyBJbnRlbCBYRSMzNDY4KSAtPg0KPiBGQUlM
-DQphbGFuOiB0aGlzIHRlc3QgZmFpbGVkIGZvciBvdGhlciByZWFzb25zIGJ1dCBhbW9udCB0aGUg
-ZG1lc2cgdGhlIHNhbWUgd2FybmluZyBhYm92ZSB3YXMgdGhlcmUuIA0KPiANCg0KW3NuaXBdDQo=
+On Tue, 2024-12-03 at 17:46 +0100, Christian K=C3=B6nig wrote:
+> Am 03.12.24 um 17:43 schrieb Thomas Hellstr=C3=B6m:
+> > On Tue, 2024-12-03 at 17:39 +0100, Christian K=C3=B6nig wrote:
+> > > Am 03.12.24 um 17:31 schrieb Thomas Hellstr=C3=B6m:
+> > > > On Tue, 2024-12-03 at 17:20 +0100, Christian K=C3=B6nig wrote:
+> > > > > [SNIP]
+> > > > > > > > > > @@ -453,9 +601,36 @@ int ttm_pool_alloc(struct
+> > > > > > > > > > ttm_pool
+> > > > > > > > > > *pool,
+> > > > > > > > > > struct ttm_tt *tt,
+> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0	else
+> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0		gfp_flags |=3D GF=
+P_HIGHUSER;
+> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=20
+> > > > > > > > > > -	for (order =3D min_t(unsigned int,
+> > > > > > > > > > MAX_PAGE_ORDER,
+> > > > > > > > > > __fls(num_pages));
+> > > > > > > > > > -	=C2=A0=C2=A0=C2=A0=C2=A0 num_pages;
+> > > > > > > > > > -	=C2=A0=C2=A0=C2=A0=C2=A0 order =3D min_t(unsigned int=
+, order,
+> > > > > > > > > > __fls(num_pages)))
+> > > > > > > > > > {
+> > > > > > > > > > +	order =3D min_t(unsigned int,
+> > > > > > > > > > MAX_PAGE_ORDER,
+> > > > > > > > > > __fls(num_pages));
+> > > > > > > > > > +
+> > > > > > > > > > +	if (tt->page_flags &
+> > > > > > > > > > TTM_TT_FLAG_PRIV_BACKED_UP) {
+> > > > > > > > > > +		if (!tt->restore) {
+> > > > > > > > > > +			gfp_t gfp =3D GFP_KERNEL |
+> > > > > > > > > > __GFP_NOWARN;
+> > > > > > > > > > +
+> > > > > > > > > > +			if (ctx-
+> > > > > > > > > > >gfp_retry_mayfail)
+> > > > > > > > > > +				gfp |=3D
+> > > > > > > > > > __GFP_RETRY_MAYFAIL;
+> > > > > > > > > > +
+> > > > > > > > > > +			tt->restore =3D
+> > > > > > > > > > +				kvzalloc(struct_si
+> > > > > > > > > > ze(t
+> > > > > > > > > > t-
+> > > > > > > > > > > restore,
+> > > > > > > > > > old_pages,
+> > > > > > > > > > +					=09
+> > > > > > > > > > (size_t)1
+> > > > > > > > > > <<
+> > > > > > > > > > order), gfp);
+> > > > > > > > > > +			if (!tt->restore)
+> > > > > > > > > > +				return -ENOMEM;
+> > > > > > > > > > +		} else if
+> > > > > > > > > > (ttm_pool_restore_valid(tt-
+> > > > > > > > > > > restore)) {
+> > > > > > > > > > +			struct ttm_pool_tt_restore
+> > > > > > > > > > *restore =3D
+> > > > > > > > > > tt-
+> > > > > > > > > > > restore;
+> > > > > > > > > > +
+> > > > > > > > > > +			num_pages -=3D restore-
+> > > > > > > > > > > alloced_pages;
+> > > > > > > > > > +			order =3D min_t(unsigned
+> > > > > > > > > > int,
+> > > > > > > > > > order,
+> > > > > > > > > > __fls(num_pages));
+> > > > > > > > > > +			pages +=3D restore-
+> > > > > > > > > > > alloced_pages;
+> > > > > > > > > > +			r =3D
+> > > > > > > > > > ttm_pool_restore_tt(restore,
+> > > > > > > > > > tt-
+> > > > > > > > > > > backup, ctx);
+> > > > > > > > > > +			if (r)
+> > > > > > > > > > +				return r;
+> > > > > > > > > > +			caching =3D restore-
+> > > > > > > > > > > caching_divide;
+> > > > > > > > > > +		}
+> > > > > > > > > > +
+> > > > > > > > > > +		tt->restore->pool =3D pool;
+> > > > > > > > > > +	}
+> > > > > > > > > Hui? Why is that part of the allocation function now?
+> > > > > > > > >=20
+> > > > > > > > > At bare minimum I would expect that this is a new
+> > > > > > > > > function.
+> > > > > > > > It's because we now have partially backed up tts, so
+> > > > > > > > the
+> > > > > > > > restore is
+> > > > > > > > interleaved on a per-page basis, replacing the backup
+> > > > > > > > handles
+> > > > > > > > with
+> > > > > > > > page-pointers. I'll see if I can separate out at least
+> > > > > > > > the
+> > > > > > > > initialization here.
+> > > > > > > Yeah, that kind of makes sense.
+> > > > > > >=20
+> > > > > > > My expectation was just that we now have explicit
+> > > > > > > ttm_pool_swapout()
+> > > > > > > and
+> > > > > > > ttm_pool_swapin() functions.
+> > > > > > I fully understand, although in the allocation step, that
+> > > > > > would
+> > > > > > also
+> > > > > > increase the memory pressure since we might momentarily
+> > > > > > have
+> > > > > > twice
+> > > > > > the
+> > > > > > bo-size allocated, if the shmem object was never swapped
+> > > > > > out,
+> > > > > > and
+> > > > > > we
+> > > > > > don't want to unnecessarily risc OOM at recover time,
+> > > > > > although
+> > > > > > that
+> > > > > > should be a recoverable situation now. If the OOM receiver
+> > > > > > can
+> > > > > > free
+> > > > > > up
+> > > > > > system memory resources they can could potentially restart
+> > > > > > the
+> > > > > > recover.
+> > > > > What I meant was more that we have ttm_pool_swapout() which
+> > > > > does
+> > > > > a
+> > > > > mix
+> > > > > of moving each page to a swap backend and freeing one by one.
+> > > > >=20
+> > > > > And ttm_pool_swapin() which allocates a bit of memory
+> > > > > (usually
+> > > > > one
+> > > > > huge
+> > > > > page) and then copies the content back in from the swap
+> > > > > backend.
+> > > > >=20
+> > > > > Alternatively we could rename ttm_pool_alloc() into something
+> > > > > like
+> > > > > ttm_pool_populate() and ttm_pool_free() into
+> > > > > ttm_pool_unpopulate(),
+> > > > > but
+> > > > > those names are not very descriptive either.
+> > > > >=20
+> > > > > It's just that we now do a bit more than just alloc and free
+> > > > > in
+> > > > > those
+> > > > > functions, so the naming doesn't really match that well any
+> > > > > more.
+> > > > So what about ttm_pool_alloc() and ttm_pool_recover/swapin(),
+> > > > both
+> > > > pointing to the same code, but _alloc() asserts that the tt
+> > > > isn't
+> > > > backed up?
+> > > >=20
+> > > > That would give a clean interface at least.
+> > > More or less ok. I would just put figuring out the gfp flags and
+> > > the
+> > > stuff inside the for (order... loop into separate functions. And
+> > > then
+> > > remove the if (tt->page_flags & TTM_TT_FLAG_PRIV_BACKED_UP) from
+> > > the
+> > > pool.
+> > >=20
+> > > In other words you trigger the back restore by calling a
+> > > different
+> > > function than the allocation one.
+> > I'll take a look at this as well.
+>=20
+> Ah, and BTW: It's perfectly possible that ttm_tt_free() is called=20
+> because a halve swapped TT is about to be destroyed!
+>=20
+> If I'm not completely mistaken that is not handled gracefully when we
+> try to always backup from in the ttm_tt_free() function.
+>=20
+> So we clearly need the separation of move this TT to a backup (and=20
+> eventually only partially) and freeing it.
+
+Hm. I'm not sure I follow completely.
+
+The ttm_pool interface is currently:
+
+ttm_pool_alloc() -> allocs and may recover from backup. May leave
+partially backed up. Called from ttm_tt_populate() or its driver
+callbacks.
+
+ttm_pool_backup_tt() -> Attempts to back up (the not already backed up
+part of a tt. Called from ttm_tt_backup(), which is just a tt layer
+wrapper. If called with purge=3D=3Dtrue, then frees memory bypassing the
+pool to return it to the system directly.
+
+ttm_pool_free() -> Frees a (potentially backed up or partially backed
+up) tt. Called from ttm_tt_unpopulate() or its driver callbacks.
+
+So the backup functionality is implemented with a minimal change to
+upper layers, and I don't think there is a correctness problem on
+free().
+
+So could you clarify a bit if it is this interface you think needs
+changing or that the implementation is better at separating out the
+backup functionality from the pool functionality?
+
+Thanks,
+Thomas
+
+
+
+
+>=20
+> Christian.
+>=20
+> >=20
+> > /Thomas
+> >=20
+> >=20
+> > > > For a renaming change that touch all TTM drivers, I'd rather
+> > > > put
+> > > > that
+> > > > as a last patch since getting acks for that from all TTM driver
+> > > > maintainers seems like a hopeless undertaking.
+> > > Yeah the acks are not the problem, merging it through the xe tree
+> > > would be.
+> > >=20
+> > > Christian.
+> > >=20
+> > >=20
+> > > > /Thomas
+> > > >=20
+> > > >=20
+> > > >=20
+> > > >=20
+> > > > > Christian.
+> > > > >=20
+> > > > > > /Thomas
+>=20
+
