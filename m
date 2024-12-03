@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 477FCE6C61C
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 08:52:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BE73E6C61A
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 08:53:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A83410E98A;
-	Tue,  3 Dec 2024 08:52:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C54210E989;
+	Tue,  3 Dec 2024 08:53:16 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4EEE10E989;
- Tue,  3 Dec 2024 08:52:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D123A10E989;
+ Tue,  3 Dec 2024 08:53:14 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5B1/6=5D_drm/i915/wm=3A_Initialize_max=5Flatency_variable_to_ap?=
- =?utf-8?q?propriate_value?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5B1?=
+ =?utf-8?q?/6=5D_drm/i915/wm=3A_Initialize_max=5Flatency_variable_to_appropr?=
+ =?utf-8?q?iate_value?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Dec 2024 08:52:57 -0000
-Message-ID: <173321597786.1949807.6040161778746399709@b555e5b46a47>
+Date: Tue, 03 Dec 2024 08:53:14 -0000
+Message-ID: <173321599485.1949807.12610843325556746303@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241203084706.2126189-1-suraj.kandpal@intel.com>
 In-Reply-To: <20241203084706.2126189-1-suraj.kandpal@intel.com>
@@ -49,14 +49,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 4de82d50b8de drm-tip: 2024y-12m-03d-00h-37m-04s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/wm: Initialize max_latency variable to appropriate value
-Applying: drm/i915/wm: Refactor dpkgc value prepration
-Applying: drm/i915/wm: Use intel_display structure in DPKGC code
-Applying: drm/i915/display: Refactor DPKGC code to call it from atomic_commit_tail
-Applying: drm/i915/wm: Modify latency programmed into PKG_C_LATENCY
-Applying: drm/i915/wm: Club the initialized variables together
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 92b31cfd9a2c2efcfef12d1b708cf05288165e7f
+Author: Suraj Kandpal <suraj.kandpal@intel.com>
+Date:   Tue Dec 3 14:17:06 2024 +0530
+
+    drm/i915/wm: Club the initialized variables together
+    
+    Refactor program_dpkgc function so that all initialized variables
+    are clubbed together.
+    
+    Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 4de82d50b8de6a278c1483a7f76ae830c89d1824 drm-intel
+df9d5f375919 drm/i915/wm: Initialize max_latency variable to appropriate value
+7c399a727528 drm/i915/wm: Refactor dpkgc value prepration
+fbafd33e00ae drm/i915/wm: Use intel_display structure in DPKGC code
+1055e88c820e drm/i915/display: Refactor DPKGC code to call it from atomic_commit_tail
+f16db40c0734 drm/i915/wm: Modify latency programmed into PKG_C_LATENCY
+92b31cfd9a2c drm/i915/wm: Club the initialized variables together
 
 
