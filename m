@@ -4,56 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B73EE6C60F
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 07:11:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB173E6C611
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 07:50:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D71A710E920;
-	Tue,  3 Dec 2024 07:11:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JjHPfJI2";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A04C910E920
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Dec 2024 07:11:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733209900; x=1764745900;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=JnNz+cvgO8l8ce7nVA49jecmOKm6VA74/ZVxFQbdz4A=;
- b=JjHPfJI2WlCXunffdaaKP1lwfOb5Z4b4UnTTkPijNewphGZ2+i6hsrod
- dkLbqaVCYZbTTXfvwhlbatYK1jXdDKYoDsW5o0QZILdru1pXtL0yYBvR5
- ORCsthu8q8LIUdM4geCyIUaBb7zP4dlELhAXJ0tGHUMs3Pwa7HLKD7kyX
- 3JqSLxz5sFzaRa821q6BnZIYDkG518/sarTJcedLKAcYRduUUqjIsfMoz
- oOrTchYHzwCybI1ms07Kbb70zGWu/3z6KdsCafMpodVNBBD3jI9wRdgL0
- hjYEIwFqZCtlbrqFIQXLX6BEehskuk7WI/HbApYZCiihudcEFjD7L+9Jx Q==;
-X-CSE-ConnectionGUID: YtaxhF6LSTOhZnRt3hgNmQ==
-X-CSE-MsgGUID: gyUvDNxrSOeSLmvAYz8fJA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="43891114"
-X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="43891114"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 23:09:43 -0800
-X-CSE-ConnectionGUID: aaTHHoygQRWzHPDraiFtyQ==
-X-CSE-MsgGUID: MSVImfS4SUGhylM0pEuNEg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="93802291"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.120])
- ([10.245.246.120])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 23:09:41 -0800
-Message-ID: <c3fe010ee6dc51ea75bad670be5296784beb262d.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Trace xe_bo_validate
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Oak Zeng <oak.zeng@intel.com>, intel-xe@lists.freedesktop.org
-Date: Tue, 03 Dec 2024 08:09:39 +0100
-In-Reply-To: <20241203022140.1919922-1-oak.zeng@intel.com>
-References: <20241203022140.1919922-1-oak.zeng@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB10210E5F5;
+	Tue,  3 Dec 2024 07:50:13 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32E6C10E5F5;
+ Tue,  3 Dec 2024 07:50:12 +0000 (UTC)
+Received: from 91-155-254-6.elisa-laajakaista.fi ([91.155.254.6]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1tINfb-00000002bL6-0JDg; Tue, 03 Dec 2024 09:50:08 +0200
+Message-ID: <7a84d900879c555dab675605ba925bc91b02510d.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Thomas =?ISO-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>, "Borah,
+ Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Coelho, Luciano"	
+ <luciano.coelho@intel.com>, "Saarinen, Jani" <jani.saarinen@intel.com>, 
+ "Nikula, Jani" <jani.nikula@intel.com>, "De Marchi, Lucas"
+ <lucas.demarchi@intel.com>,  "intel-gfx@lists.freedesktop.org"	
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"	
+ <intel-xe@lists.freedesktop.org>, "linux-pm@vger.kernel.org"	
+ <linux-pm@vger.kernel.org>, Sebastian Reichel
+ <sebastian.reichel@collabora.com>
+Date: Tue, 03 Dec 2024 09:50:05 +0200
+In-Reply-To: <5e405ad4-34d6-4507-978f-3d81d4af2455@t-8ch.de>
+References: <SJ1PR11MB6129CCD82CD78D8EE6E27EF4B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <SJ1PR11MB612965ACA3E84745346F0400B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <5e405ad4-34d6-4507-978f-3d81d4af2455@t-8ch.de>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
+User-Agent: Evolution 3.54.1-1 
 MIME-Version: 1.0
+Subject: Re: Regression on linux-next (next-20241120) and drm-tip
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,49 +53,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2024-12-02 at 21:21 -0500, Oak Zeng wrote:
-> Add a tracepoint for xe_bo_validate function. I found this is
-> useful during debug issues.
->=20
-> Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+Hi,
 
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1 =
-+
-> =C2=A0drivers/gpu/drm/xe/xe_trace_bo.h | 5 +++++
-> =C2=A02 files changed, 6 insertions(+)
+On Tue, 2024-12-03 at 07:50 +0100, Thomas Wei=C3=9Fschuh wrote:
+> (+Cc Sebastian)
 >=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index bdac446bf8c06..3448ede2befa6 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -2004,6 +2004,7 @@ int xe_bo_validate(struct xe_bo *bo, struct
-> xe_vm *vm, bool allow_res_evict)
-> =C2=A0		ctx.resv =3D xe_vm_resv(vm);
-> =C2=A0	}
-> =C2=A0
-> +	trace_xe_bo_validate(bo);
-> =C2=A0	return ttm_bo_validate(&bo->ttm, &bo->placement, &ctx);
-> =C2=A0}
-> =C2=A0
-> diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h
-> b/drivers/gpu/drm/xe/xe_trace_bo.h
-> index c6d3140542cff..e393a2dd83dbe 100644
-> --- a/drivers/gpu/drm/xe/xe_trace_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_trace_bo.h
-> @@ -53,6 +53,11 @@ DEFINE_EVENT(xe_bo, xe_bo_create,
-> =C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0 TP_ARGS(bo)
-> =C2=A0);
-> =C2=A0
-> +DEFINE_EVENT(xe_bo, xe_bo_validate,
-> +	=C2=A0=C2=A0=C2=A0=C2=A0 TP_PROTO(struct xe_bo *bo),
-> +	=C2=A0=C2=A0=C2=A0=C2=A0 TP_ARGS(bo)
-> +);
-> +
-> =C2=A0TRACE_EVENT(xe_bo_move,
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_PROTO(struct xe_bo *bo, uint32_t new_placeme=
-nt,
-> uint32_t old_placement,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0 bool move_lacks_source),
+> Hi Chaitanya,
+>=20
+> On 2024-12-03 05:07:47+0000, Borah, Chaitanya Kumar wrote:
+> > Hope you are doing well. I am Chaitanya from the linux graphics team in=
+ Intel.
+> >=20
+> > This mail is regarding a regression we are seeing in our CI runs[1] on =
+linux-next repository.
+>=20
+> Thanks for the report.
+>=20
+> > Since the version next-20241120 [2], we are seeing the following regres=
+sion
+> >=20
+> > ```````````````````````````````````````````````````````````````````````=
+``````````
+> > <4>[=C2=A0=C2=A0 19.990743] Oops: general protection fault, probably fo=
+r non-canonical address 0xb11675ef8d1ccbce: 0000 [#1] PREEMPT SMP NOPTI
+> > <4>[=C2=A0=C2=A0 19.990760] CPU: 21 UID: 110 PID: 867 Comm: prometheus-=
+node Not tainted 6.12.0-next-20241120-next-20241120-gac24e26aa08f+ #1
+> > <4>[=C2=A0=C2=A0 19.990771] Hardware name: Intel Corporation Arrow Lake=
+ Client Platform/MTL-S UDIMM 2DPC EVCRB, BIOS MTLSFWI1.R00.4400.D85.2410100=
+007 10/10/2024
+> > <4>[=C2=A0=C2=A0 19.990782] RIP: 0010:power_supply_get_property+0x3e/0x=
+e0
+> > ```````````````````````````````````````````````````````````````````````=
+``````````
+> > Details log can be found in [3].=20
+> >=20
+> > After bisecting the tree, the following patch [4] seems to be the first=
+ "bad"
+> > commit
+> >=20
+> > ```````````````````````````````````````````````````````````````````````=
+``````````````````````````````````
+> > Commit 49000fee9e639f62ba1f965ed2ae4c5ad18d19e2
+> > Author: =C2=A0 =C2=A0 Thomas Wei=C3=9Fschuh <mailto:linux@weissschuh.ne=
+t>
+> > AuthorDate: Sat Oct 5 12:05:03 2024 +0200
+> > Commit: =C2=A0 =C2=A0 Sebastian Reichel <mailto:sebastian.reichel@colla=
+bora.com>
+> > CommitDate: Tue Oct 15 22:22:20 2024 +0200
+> > =C2=A0 =C2=A0 power: supply: core: add wakeup source inhibit by power_s=
+upply_config=C2=A0 =C2=A0=C2=A0
+> > ```````````````````````````````````````````````````````````````````````=
+``````````````````````````````````
+> >=20
+> > This is now seen in our drm-tip runs as well. [5]
+> >=20
+> > Could you please check why the patch causes this regression and provide=
+ a fix if necessary?
+>=20
+> I don't see how this patch can lead to this error.
+> Could you doublecheck the bisect?
 
+FWIW I also bisected this and came to the same conclusion, this is the
+first bad commit.  My guess is that some component is not yet setting
+things up properly for the new feature.
+
+This is very easily reproducible in our system, with vanilla 6.13-rc1,
+so if there's anything you want to try, let us know.
+
+--
+Cheers,
+Luca.
