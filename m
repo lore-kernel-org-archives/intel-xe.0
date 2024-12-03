@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C997E69E88
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 10:31:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16CBCE69E9F
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 10:36:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5954B10E9D7;
-	Tue,  3 Dec 2024 10:31:38 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEC2A10E9D3;
- Tue,  3 Dec 2024 10:31:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9A8F10E313;
+	Tue,  3 Dec 2024 10:36:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MVHC2Pwi";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA9A110E313;
+ Tue,  3 Dec 2024 10:36:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733222181; x=1764758181;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=d0T59woWY78O4dek2DvUEcGZWmbW+rRBhoJSd1I4Li4=;
+ b=MVHC2PwihYsiAOMCwVn/AEELEOzcPFS4iMRFU5DGyRyjrVPo1Fl18/1a
+ eXKwxGwdW2KI0L2/TJ9uVG3i7pVd66yFp96dp0PEUmZ1cVZoS+h686Xjn
+ I/hLi9mwzm9hZlEQ3V0ULk8mXFmlBZSStcwwRQFCVJRDcRrg19obY3AJO
+ z82AVaNOo8DgDkuQ/nq3bdAlng5rUuPoXQpgOdJICleFg5TAz41WFZ58u
+ PhaSfqMWYHmi/lNxwz2nb7m+3wsPosYZyykTu9tjOnzUgWCTxbPcANs1b
+ R33RU6ZhiZXNdPF7JXs4GSqVtDLq4x5I9QSZiHao4joMULJj51VgE7jU3 A==;
+X-CSE-ConnectionGUID: B3wyqoNiSWuvCxFvcHcRYQ==
+X-CSE-MsgGUID: pRJoLiRATJeCMe11x3r5BQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="44456556"
+X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="44456556"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 02:36:21 -0800
+X-CSE-ConnectionGUID: O8TGm+eUSi2X4eZdXcr4Og==
+X-CSE-MsgGUID: +d/zy/r5TN2RNWBMmUmA/A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="93727742"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.135])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 02:36:18 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/display: remove unused for_each_crtc()
+In-Reply-To: <173314475855.2905.12006003723478227624@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241202125437.1154945-1-jani.nikula@intel.com>
+ <173314475855.2905.12006003723478227624@intel.com>
+Date: Tue, 03 Dec 2024 12:36:15 +0200
+Message-ID: <875xo15a00.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Regression_on_linux-?=
- =?utf-8?q?next_=28next-20241120=29_and_drm-tip?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Dec 2024 10:31:37 -0000
-Message-ID: <173322189777.1968577.11846270755925557060@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <SJ1PR11MB6129CCD82CD78D8EE6E27EF4B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
-In-Reply-To: <SJ1PR11MB6129CCD82CD78D8EE6E27EF4B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,32 +64,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 02 Dec 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Jani Nikula (2024-12-02 09:54:37-03:00)
+>>This is essentially a duplicate of drm_for_each_crtc() anyway. Remove.
+>
+> And it looks like commit 08dfd243abac ("drm/i915: Clean up
+> intel_fbdev_init_bios() a bit") was the one that made it unused.
+>
+>>
+>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Series: Regression on linux-next (next-20241120) and drm-tip
-URL   : https://patchwork.freedesktop.org/series/142039/
-State : failure
+Thanks for the review, pushed to din.
 
-== Summary ==
+BR,
+Jani.
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 4de82d50b8de drm-tip: 2024y-12m-03d-00h-37m-04s UTC integration manifest
-=== git am output follows ===
-error: patch failed: drivers/power/supply/power_supply_core.c:1411
-error: drivers/power/supply/power_supply_core.c: patch does not apply
-error: patch failed: drivers/power/supply/power_supply_core.c:1410
-error: drivers/power/supply/power_supply_core.c: patch does not apply
-error: patch failed: drivers/power/supply/power_supply_core.c:1356
-error: drivers/power/supply/power_supply_core.c: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: Regression on linux-next (next-20241120) and drm-tip
-Patch failed at 0001 Regression on linux-next (next-20241120) and drm-tip
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+>
+>>---
+>> drivers/gpu/drm/i915/display/intel_display.h | 3 ---
+>> 1 file changed, 3 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+>>index caef04f655c5..49a246feb1ae 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_display.h
+>>+++ b/drivers/gpu/drm/i915/display/intel_display.h
+>>@@ -238,9 +238,6 @@ enum phy_fia {
+>>         for ((__phy) = PHY_A; (__phy) < I915_MAX_PHYS; (__phy)++)        \
+>>                 for_each_if((__phys_mask) & BIT(__phy))
+>> 
+>>-#define for_each_crtc(dev, crtc) \
+>>-        list_for_each_entry(crtc, &(dev)->mode_config.crtc_list, head)
+>>-
+>> #define for_each_intel_plane(dev, intel_plane) \
+>>         list_for_each_entry(intel_plane,                        \
+>>                             &(dev)->mode_config.plane_list,        \
+>>-- 
+>>2.39.5
+>>
 
-
+-- 
+Jani Nikula, Intel
