@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3263E6C5E5
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 02:05:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CD7AE6C5EA
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 02:07:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99B4810E21E;
-	Tue,  3 Dec 2024 02:05:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41B8A10E21E;
+	Tue,  3 Dec 2024 02:07:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ml87trJ0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D0CYW3K4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE87A10E8C6
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Dec 2024 02:05:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3663F10E21E
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Dec 2024 02:07:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733191549; x=1764727549;
+ t=1733191678; x=1764727678;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=WF6mNvXYdMZdcFHLmv0N8ObGu/dk8505ytFOOYTBh/k=;
- b=Ml87trJ0GXfxi8lqEOX08y8njZ8CVEgwuRelPl0NDvIjppGK8pK3ty8B
- 5v7SFlY3w70b6FU6D66uG7/1tdZdH7kazr9+sebFLM8UTX3Yn6PZEkNYh
- GkvBOjSpHLUli5DSVRZpuF4x3WBoBphdbRE5x6zmm+HipeN4niAzgEp7J
- 2OrXq9CfVJsOm/nPSuPLlYwLlJ19LcKmwxNt5q3fLsPneuIoqZ0jqj6y6
- YT8uSVPsAyWFsSrMGhmQUBbWAjzY7STbxAN98jx940Fh4HUWRHEeLJ/os
- eyM0wXo7UDqQTvTB6wtnNFs/yGMYo3mMRfcZ0Mrc0SbrOz0MLze0OVAU/ A==;
-X-CSE-ConnectionGUID: V2cZI7CFTF2ZgUUeFWNWxA==
-X-CSE-MsgGUID: +5fSQCK+RG6uyjWUcYm0Yw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="44419642"
-X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="44419642"
+ bh=OaPjq3XKnN6AGcub5rSwTQVsqkjUyBFlCboaj2JDoWs=;
+ b=D0CYW3K4FOWnUuHXBEAI8w7du8qxpta/vdin8m24vwPfAN/9A81oVVQY
+ GtWEq1HGr7cyAt5hgW2+aOGsJw72IH/jELIyjT4ilJb0rrjzUC2xaeulG
+ pvYcz9ML3j6L5IBGUuQzkeHWUdM+Jo2CqWHGpSmw8bmYkEdEQLtKRE0e7
+ +0VRVGlDO5H0/XKqrxtkbzCbDn1ALCZDgPkq8K6cveWxDua0/bWN6q7sZ
+ n4vg2tCgvZmIoBwpzzKEiRqjzLEItx7L4mtv/MWVoygo8qC/8BV3qoQTy
+ Y1e5ArdPruGVOoMN0seN2Q4o66j03YXiPJd8n1C6hHeNjIO7iXPyotItm g==;
+X-CSE-ConnectionGUID: qaUpQOcJSEeJIgzGd0TuUQ==
+X-CSE-MsgGUID: MbYOT7P5Tzy44mxCo4As8Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="44419780"
+X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="44419780"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 18:05:48 -0800
-X-CSE-ConnectionGUID: VXOc6KjoRd61jUJKa34uAA==
-X-CSE-MsgGUID: 2E/DKPE9RoONBn4vQA2avw==
+ 02 Dec 2024 18:07:58 -0800
+X-CSE-ConnectionGUID: JbT/ps2fRCeoEnwI+/i9Bw==
+X-CSE-MsgGUID: SaZnI+7CTaCKRZcGQUgUOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="98301217"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="98301813"
 Received: from szeng-desk.jf.intel.com ([10.165.21.160])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 18:05:49 -0800
+ 02 Dec 2024 18:07:58 -0800
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Thomas.Hellstrom@linux.intel.com
-Subject: [PATCH] drm/xe: Avoid evicting object of the same vm in none fault
- mode
-Date: Mon,  2 Dec 2024 21:19:29 -0500
-Message-Id: <20241203021929.1919730-1-oak.zeng@intel.com>
+Subject: [PATCH] drm/xe: Trace xe_bo_validate
+Date: Mon,  2 Dec 2024 21:21:40 -0500
+Message-Id: <20241203022140.1919922-1-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,54 +64,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-BO validation during vm_bind could trigger memory eviction when
-system runs under memory pressure. Right now we blindly evict
-BOs of all VMs. This scheme has a problem when system runs in
-none recoverable page fault mode: even though the vm_bind could
-be successful by evicting BOs, the later the rebinding of the
-evicted BOs would fail. So it is better to report an out-of-
-memory failure at vm_bind time than at time of rebinding where
-xekmd currently doesn't have a good mechanism to report error
-to user space.
-
-This patch implemented a scheme to only evict objects of other
-VMs during vm_bind time. Object of the same VM will skip eviction.
-If we failed to find enough memory for vm_bind, we report error
-to user space at vm_bind time.
-
-This scheme is not needed for recoverable page fault mode under
-what we can dynamically fault-in pages on demand.
-
-v1: Use xe_vm_in_preempt_fence_mode instead of stack variable (Thomas)
+Add a tracepoint for xe_bo_validate function. I found this is
+useful during debug issues.
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_bo.c       | 1 +
+ drivers/gpu/drm/xe/xe_trace_bo.h | 5 +++++
+ 2 files changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 2492750505d69..016fedae5d554 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2359,13 +2359,15 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
- 				 bool validate)
- {
- 	struct xe_bo *bo = xe_vma_bo(vma);
-+	struct xe_vm *vm = xe_vma_vm(vma);
- 	int err = 0;
- 
- 	if (bo) {
- 		if (!bo->vm)
- 			err = drm_exec_lock_obj(exec, &bo->ttm.base);
- 		if (!err && validate)
--			err = xe_bo_validate(bo, xe_vma_vm(vma), true);
-+			err = xe_bo_validate(bo, vm,
-+					     !xe_vm_in_preempt_fence_mode(vm));
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index bdac446bf8c06..3448ede2befa6 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2004,6 +2004,7 @@ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
+ 		ctx.resv = xe_vm_resv(vm);
  	}
  
- 	return err;
++	trace_xe_bo_validate(bo);
+ 	return ttm_bo_validate(&bo->ttm, &bo->placement, &ctx);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
+index c6d3140542cff..e393a2dd83dbe 100644
+--- a/drivers/gpu/drm/xe/xe_trace_bo.h
++++ b/drivers/gpu/drm/xe/xe_trace_bo.h
+@@ -53,6 +53,11 @@ DEFINE_EVENT(xe_bo, xe_bo_create,
+ 	     TP_ARGS(bo)
+ );
+ 
++DEFINE_EVENT(xe_bo, xe_bo_validate,
++	     TP_PROTO(struct xe_bo *bo),
++	     TP_ARGS(bo)
++);
++
+ TRACE_EVENT(xe_bo_move,
+ 	    TP_PROTO(struct xe_bo *bo, uint32_t new_placement, uint32_t old_placement,
+ 		     bool move_lacks_source),
 -- 
 2.26.3
 
