@@ -4,66 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 806EFE74AC2
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 16:31:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0D80E74AC3
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 16:38:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3753589CAD;
-	Tue,  3 Dec 2024 16:31:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zv3NFDY3";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89E9389CAD;
- Tue,  3 Dec 2024 16:31:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733243496; x=1764779496;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=LEfpd0xcp7zIbx2i2TeGCztSa5Lb0jhI7WS2jxutZZA=;
- b=Zv3NFDY3/w2ldTn7SlP2asjeKOeHEjfmM3ma75faBB4MrQ84iZuzF8OK
- t0d8evJVvjaxjbAm9lr6NbLnjYGVxsAFAdBPOomHuMjkm4D1jSXrfkt7v
- OFrgaSQSyi/6B5sEyXFGYFlNqIgMTzgN1TIHslwAbsS34HoD+yuBBTh55
- tYPwnOZNOFB6Tmc6pLOCjCXrkBSS3TmqRYeDwd0smlUm0VCqCP/dNUGSH
- T8v70ZrSH0+CgHIvoN4m+KACSe5Ac2myi+gVL3Wb6FEccGEQiGOqTY8aQ
- As8ySeX++p+jZLwrfcMFGTXjWJLXnQXyVEQoxJ5pGbEklsw4ojqcHJn2M A==;
-X-CSE-ConnectionGUID: TXvOLlwUTXmjAKcKQCORPA==
-X-CSE-MsgGUID: z3PFKRlwQgeEQCpr9SiiOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="50993862"
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="50993862"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 08:31:35 -0800
-X-CSE-ConnectionGUID: 0g74vZaWS76tr2642YWcUA==
-X-CSE-MsgGUID: qv5dsyBbRzyAZRlerRouPQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="124432207"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.120])
- ([10.245.246.120])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 08:31:33 -0800
-Message-ID: <cf722b696676b7383a94c2b846f8230e180ee527.camel@linux.intel.com>
-Subject: Re: [PATCH v14 3/8] drm/ttm/pool: Provide a helper to shrink pages
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Matthew Brost
- <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, Paulo Zanoni
- <paulo.r.zanoni@intel.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Date: Tue, 03 Dec 2024 17:31:30 +0100
-In-Reply-To: <0595e4df-86d4-4082-86ab-b77902d3020b@amd.com>
-References: <20241115150120.3280-1-thomas.hellstrom@linux.intel.com>
- <20241115150120.3280-4-thomas.hellstrom@linux.intel.com>
- <800ee040-7c2e-47d0-81e6-a352f5f689fb@amd.com>
- <a07c93704bc7f59f51b5a6a13aeb3e13eee28e3c.camel@linux.intel.com>
- <d1e33436-9c1c-43d4-a86a-956926a7096c@amd.com>
- <73588525571a68f5638300ef171591de10ba5e5d.camel@linux.intel.com>
- <0595e4df-86d4-4082-86ab-b77902d3020b@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6221210EAA9;
+	Tue,  3 Dec 2024 16:38:01 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2B8410EA9A;
+ Tue,  3 Dec 2024 16:37:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5076250536649366108=="
 MIME-Version: 1.0
+Subject: =?utf-8?b?4pyTIFhlLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJtL3hlL2Rpc3BsYXk6IGZpeCB0?=
+ =?utf-8?b?dG1fYm9fYWNjZXNzKCkgdXNhZ2UgKHJldjMp?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 03 Dec 2024 16:37:59 -0000
+Message-ID: <173324387979.2068984.8583207761193632709@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241202170102.88893-2-matthew.auld@intel.com>
+In-Reply-To: <20241202170102.88893-2-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,128 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2024-12-03 at 17:20 +0100, Christian K=C3=B6nig wrote:
-> [SNIP]
-> > > > > > @@ -453,9 +601,36 @@ int ttm_pool_alloc(struct ttm_pool
-> > > > > > *pool,
-> > > > > > struct ttm_tt *tt,
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	else
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		gfp_flags |=3D GFP_HIGHUSER;
-> > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > -	for (order =3D min_t(unsigned int, MAX_PAGE_ORDER,
-> > > > > > __fls(num_pages));
-> > > > > > -	=C2=A0=C2=A0=C2=A0=C2=A0 num_pages;
-> > > > > > -	=C2=A0=C2=A0=C2=A0=C2=A0 order =3D min_t(unsigned int, order,
-> > > > > > __fls(num_pages)))
-> > > > > > {
-> > > > > > +	order =3D min_t(unsigned int, MAX_PAGE_ORDER,
-> > > > > > __fls(num_pages));
-> > > > > > +
-> > > > > > +	if (tt->page_flags & TTM_TT_FLAG_PRIV_BACKED_UP) {
-> > > > > > +		if (!tt->restore) {
-> > > > > > +			gfp_t gfp =3D GFP_KERNEL |
-> > > > > > __GFP_NOWARN;
-> > > > > > +
-> > > > > > +			if (ctx->gfp_retry_mayfail)
-> > > > > > +				gfp |=3D
-> > > > > > __GFP_RETRY_MAYFAIL;
-> > > > > > +
-> > > > > > +			tt->restore =3D
-> > > > > > +				kvzalloc(struct_size(tt-
-> > > > > > > restore,
-> > > > > > old_pages,
-> > > > > > +						=C2=A0=C2=A0=C2=A0=C2=A0
-> > > > > > (size_t)1
-> > > > > > <<
-> > > > > > order), gfp);
-> > > > > > +			if (!tt->restore)
-> > > > > > +				return -ENOMEM;
-> > > > > > +		} else if (ttm_pool_restore_valid(tt-
-> > > > > > > restore)) {
-> > > > > > +			struct ttm_pool_tt_restore
-> > > > > > *restore =3D
-> > > > > > tt-
-> > > > > > > restore;
-> > > > > > +
-> > > > > > +			num_pages -=3D restore-
-> > > > > > >alloced_pages;
-> > > > > > +			order =3D min_t(unsigned int, order,
-> > > > > > __fls(num_pages));
-> > > > > > +			pages +=3D restore->alloced_pages;
-> > > > > > +			r =3D ttm_pool_restore_tt(restore,
-> > > > > > tt-
-> > > > > > > backup, ctx);
-> > > > > > +			if (r)
-> > > > > > +				return r;
-> > > > > > +			caching =3D restore->caching_divide;
-> > > > > > +		}
-> > > > > > +
-> > > > > > +		tt->restore->pool =3D pool;
-> > > > > > +	}
-> > > > > Hui? Why is that part of the allocation function now?
-> > > > >=20
-> > > > > At bare minimum I would expect that this is a new function.
-> > > > It's because we now have partially backed up tts, so the
-> > > > restore is
-> > > > interleaved on a per-page basis, replacing the backup handles
-> > > > with
-> > > > page-pointers. I'll see if I can separate out at least the
-> > > > initialization here.
-> > > Yeah, that kind of makes sense.
-> > >=20
-> > > My expectation was just that we now have explicit
-> > > ttm_pool_swapout()
-> > > and
-> > > ttm_pool_swapin() functions.
-> > I fully understand, although in the allocation step, that would
-> > also
-> > increase the memory pressure since we might momentarily have twice
-> > the
-> > bo-size allocated, if the shmem object was never swapped out, and
-> > we
-> > don't want to unnecessarily risc OOM at recover time, although that
-> > should be a recoverable situation now. If the OOM receiver can free
-> > up
-> > system memory resources they can could potentially restart the
-> > recover.
->=20
-> What I meant was more that we have ttm_pool_swapout() which does a
-> mix=20
-> of moving each page to a swap backend and freeing one by one.
->=20
-> And ttm_pool_swapin() which allocates a bit of memory (usually one
-> huge=20
-> page) and then copies the content back in from the swap backend.
->=20
-> Alternatively we could rename ttm_pool_alloc() into something like=20
-> ttm_pool_populate() and ttm_pool_free() into ttm_pool_unpopulate(),
-> but=20
-> those names are not very descriptive either.
->=20
-> It's just that we now do a bit more than just alloc and free in those
-> functions, so the naming doesn't really match that well any more.
+--===============5076250536649366108==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-So what about ttm_pool_alloc() and ttm_pool_recover/swapin(), both
-pointing to the same code, but _alloc() asserts that the tt isn't
-backed up?
+== Series Details ==
 
-That would give a clean interface at least.
+Series: drm/xe/display: fix ttm_bo_access() usage (rev3)
+URL   : https://patchwork.freedesktop.org/series/141996/
+State : success
 
-For a renaming change that touch all TTM drivers, I'd rather put that
-as a last patch since getting acks for that from all TTM driver
-maintainers seems like a hopeless undertaking.
+== Summary ==
 
-/Thomas
+CI Bug Log - changes from xe-2310-5779fb3c12faf12589054127d60b1d36d56ba219_BAT -> xe-pw-141996v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 6)
+------------------------------
+
+  Missing    (2): bat-bmg-1 bat-lnl-1 
 
 
+Changes
+-------
+
+  No changes found
 
 
->=20
-> Christian.
->=20
-> >=20
-> > /Thomas
+Build changes
+-------------
 
+  * IGT: IGT_8135 -> IGT_8136
+  * Linux: xe-2310-5779fb3c12faf12589054127d60b1d36d56ba219 -> xe-pw-141996v3
+
+  IGT_8135: c6840f5e3c3b942aa79727ee4978a5b79f290b67 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8136: 21076ee09438af484c58b308d8179277503922f5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2310-5779fb3c12faf12589054127d60b1d36d56ba219: 5779fb3c12faf12589054127d60b1d36d56ba219
+  xe-pw-141996v3: 141996v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141996v3/index.html
+
+--===============5076250536649366108==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/display: fix ttm_bo_access() usage (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141996/">https://patchwork.freedesktop.org/series/141996/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141996v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141996v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2310-5779fb3c12faf12589054127d60b1d36d56ba219_BAT -&gt; xe-pw-141996v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 6)</h2>
+<p>Missing    (2): bat-bmg-1 bat-lnl-1 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8135 -&gt; IGT_8136</li>
+<li>Linux: xe-2310-5779fb3c12faf12589054127d60b1d36d56ba219 -&gt; xe-pw-141996v3</li>
+</ul>
+<p>IGT_8135: c6840f5e3c3b942aa79727ee4978a5b79f290b67 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8136: 21076ee09438af484c58b308d8179277503922f5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2310-5779fb3c12faf12589054127d60b1d36d56ba219: 5779fb3c12faf12589054127d60b1d36d56ba219<br />
+  xe-pw-141996v3: 141996v3</p>
+
+</body>
+</html>
+
+--===============5076250536649366108==--
