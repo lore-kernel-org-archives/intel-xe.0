@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DC6DE74ACF
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 20:44:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62625E74AD3
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 20:53:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FF3F10EB2F;
-	Tue,  3 Dec 2024 20:44:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E63010E248;
+	Tue,  3 Dec 2024 20:53:18 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63BDA10EB2F;
- Tue,  3 Dec 2024 20:44:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52E5310E248;
+ Tue,  3 Dec 2024 20:53:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe/vsec=3A_Suppo?=
- =?utf-8?q?rt_BMG_devices_=28rev7=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_usb=3A_typec=3A_ucsi?=
+ =?utf-8?q?=3A_Fix_connector_status_writing_past_buffer_size?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Dec 2024 20:44:56 -0000
-Message-ID: <173325869640.2143460.1770195456117881117@b555e5b46a47>
+Date: Tue, 03 Dec 2024 20:53:17 -0000
+Message-ID: <173325919733.2143460.6724984684307603297@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20241203153639.2982162-1-michael.j.ruhl@intel.com>
-In-Reply-To: <20241203153639.2982162-1-michael.j.ruhl@intel.com>
+References: <20241203200010.2821132-1-lucas.demarchi@intel.com>
+In-Reply-To: <20241203200010.2821132-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,29 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe/vsec: Support BMG devices (rev7)
-URL   : https://patchwork.freedesktop.org/series/137199/
-State : failure
+Series: usb: typec: ucsi: Fix connector status writing past buffer size
+URL   : https://patchwork.freedesktop.org/series/142075/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: fac293c5c775 drm-tip: 2024y-12m-03d-20h-04m-25s UTC integration manifest
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/Makefile:111
-error: drivers/gpu/drm/xe/Makefile: patch does not apply
-error: drivers/gpu/drm/xe/regs/xe_pmt.h: already exists in index
-error: patch failed: drivers/gpu/drm/xe/xe_device.c:56
-error: drivers/gpu/drm/xe/xe_device.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_device_types.h:485
-error: drivers/gpu/drm/xe/xe_device_types.h: patch does not apply
-error: drivers/gpu/drm/xe/xe_vsec.c: already exists in index
-error: drivers/gpu/drm/xe/xe_vsec.h: already exists in index
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/xe/vsec: Support BMG devices
-Patch failed at 0001 drm/xe/vsec: Support BMG devices
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: usb: typec: ucsi: Fix connector status writing past buffer size
 
 
