@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0E9FE74ACB
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 20:00:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FBC3E74ACF
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 20:31:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD8F010E262;
-	Tue,  3 Dec 2024 20:00:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fxCfFjCz";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADCF010E0D0;
- Tue,  3 Dec 2024 20:00:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733256032; x=1764792032;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=YPLd1DjAX7gNniFPSLTOWYkyjTh0BKWZSf83E6y5uoo=;
- b=fxCfFjCzesMnjBYT1jNxLHTe9L6XdX+p3SzasFIFmyQp+monEaqPWqjk
- v2b3c2kCcqxU1RX4Ewson6kRGUKDbQrqL3LDQkBSYGQh6BDxiMB8XCPZA
- kiSN8nuuQBZsOwFLHoh6EpbOyeuQk3bjJhUs+YaDBi6lgKj37F/ynzjcM
- TzoQWseuUzcFZdohAxM8b81Lf7RfhcWrt1rqerpbmKtNoxuABjWk5MJeB
- XKkw8aMgykdcFZ3FkAFMaDNZ5RY7UORFkxC/D6OT9bQl4sQ0/CLrlPCwA
- pV7V4lO4vU84+KiqdusJHvOKTY9/LGMay9d923RaDmz6+uF3321kGu9wm w==;
-X-CSE-ConnectionGUID: PULSQOXkQ5WaxgUaHExTlA==
-X-CSE-MsgGUID: 8D/njRgmQ/qsah9gs1DVJA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="32836190"
-X-IronPort-AV: E=Sophos;i="6.12,206,1728975600"; d="scan'208";a="32836190"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 12:00:31 -0800
-X-CSE-ConnectionGUID: FBet2v0pT5mgv6lPdcazhg==
-X-CSE-MsgGUID: wXQ+BAo+QP2yS9DL5khdyA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,206,1728975600"; d="scan'208";a="98523157"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 12:00:31 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: linux-usb@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- <intel-xe@lists.freedesktop.org>, intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <linux@weissschuh.net>,
- chaitanya.kumar.borah@intel.com, Luca Coelho <luca@coelho.fi>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH] usb: typec: ucsi: Fix connector status writing past buffer
- size
-Date: Tue,  3 Dec 2024 12:00:10 -0800
-Message-ID: <20241203200010.2821132-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.47.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 369D110E164;
+	Tue,  3 Dec 2024 20:31:47 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C241910E164;
+ Tue,  3 Dec 2024 20:31:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3482873491437949846=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Maintenence_of_devcoredump_?=
+ =?utf-8?q?=3C-=3E_GuC-Err-Capture_plumbing_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 03 Dec 2024 20:31:45 -0000
+Message-ID: <173325790579.2141941.14109293674422106379@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241203174732.3232351-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20241203174732.3232351-1-alan.previn.teres.alexis@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,69 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Similar to commit 65c4c9447bfc ("usb: typec: ucsi: Fix a missing bits to
-bytes conversion in ucsi_init()"), there was a missing conversion from
-bits to bytes. Here the outcome is worse though: since the value is
-lower than UCSI_MAX_DATA_LENGTH, instead of bailing out with an error,
-it writes past the buffer size.
+--===============3482873491437949846==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The error is then seen in other places like below:
+== Series Details ==
 
-	Oops: general protection fault, probably for non-canonical address 0x891e812cd0ed968: 0000 [#1] PREEMPT SMP NOPTI
-	CPU: 3 UID: 110 PID: 906 Comm: prometheus-node Not tainted 6.13.0-rc1-xe #1
-	Hardware name: Intel Corporation Lunar Lake Client Platform/LNL-M LP5 RVP1, BIOS LNLMFWI1.R00.3222.D84.2410171025 10/17/2024
-	RIP: 0010:power_supply_get_property+0x3e/0xe0
-	Code: 85 c0 7e 4f 4c 8b 07 89 f3 49 89 d4 49 8b 48 20 48 85 c9 74 72 49 8b 70 18 31 d2 31 c0 eb 0b 83 c2 01 48 63 c2 48 39 c8 73 5d <3b> 1c 86 75 f0 49 8b 40 28 4c 89 e2 89 de ff d0 0f 1f 00 5b 41 5c
-	RSP: 0018:ffffc900017dfa50 EFLAGS: 00010246
-	RAX: 0000000000000000 RBX: 0000000000000011 RCX: c963b02c06092008
-	RDX: 0000000000000000 RSI: 0891e812cd0ed968 RDI: ffff888121dd6800
-	RBP: ffffc900017dfa68 R08: ffff88810a4024b8 R09: 0000000000000000
-	R10: 0000000000000000 R11: 0000000000000000 R12: ffffc900017dfa78
-	R13: ffff888121dd6800 R14: ffff888138ad2c00 R15: ffff88810c57c528
-	FS:  00007713a2ffd6c0(0000) GS:ffff88846f380000(0000) knlGS:0000000000000000
-	CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-	CR2: 000000c0004b1000 CR3: 0000000121ce8003 CR4: 0000000000f72ef0
-	DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-	DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
-	PKRU: 55555554
-	Call Trace:
-	 <TASK>
-	 ? show_regs+0x6c/0x80
-	 ? die_addr+0x37/0xa0
-	 ? exc_general_protection+0x1c1/0x440
-	 ? asm_exc_general_protection+0x27/0x30
-	 ? power_supply_get_property+0x3e/0xe0
-	 power_supply_hwmon_read+0x50/0xe0
-	 hwmon_attr_show+0x46/0x170
-	 dev_attr_show+0x1a/0x70
-	 sysfs_kf_seq_show+0xaa/0x120
-	 kernfs_seq_show+0x41/0x60
+Series: Maintenence of devcoredump <-> GuC-Err-Capture plumbing (rev3)
+URL   : https://patchwork.freedesktop.org/series/141459/
+State : success
 
-Just use the buffer size as argument to fix it.
+== Summary ==
 
-Fixes: 226ff2e681d0 ("usb: typec: ucsi: Convert connector specific commands to bitmaps")
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/usb/typec/ucsi/ucsi.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+CI Bug Log - changes from xe-2311-e46e8fdd83bc0ed3257bcd0230ea7c3272b496cb_BAT -> xe-pw-141459v3_BAT
+====================================================
 
-diff --git a/drivers/usb/typec/ucsi/ucsi.c b/drivers/usb/typec/ucsi/ucsi.c
-index c435c0835744a..69caae84879e9 100644
---- a/drivers/usb/typec/ucsi/ucsi.c
-+++ b/drivers/usb/typec/ucsi/ucsi.c
-@@ -651,7 +651,8 @@ static void ucsi_unregister_altmodes(struct ucsi_connector *con, u8 recipient)
- static int ucsi_get_connector_status(struct ucsi_connector *con, bool conn_ack)
- {
- 	u64 command = UCSI_GET_CONNECTOR_STATUS | UCSI_CONNECTOR_NUMBER(con->num);
--	size_t size = min(UCSI_GET_CONNECTOR_STATUS_SIZE, UCSI_MAX_DATA_LENGTH(con->ucsi));
-+	size_t size = min(sizeof(con->status),
-+			  UCSI_MAX_DATA_LENGTH(con->ucsi));
- 	int ret;
- 
- 	ret = ucsi_send_command_common(con->ucsi, command, &con->status, size, conn_ack);
--- 
-2.47.0
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (7 -> 6)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2311-e46e8fdd83bc0ed3257bcd0230ea7c3272b496cb -> xe-pw-141459v3
+
+  IGT_8136: 21076ee09438af484c58b308d8179277503922f5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2311-e46e8fdd83bc0ed3257bcd0230ea7c3272b496cb: e46e8fdd83bc0ed3257bcd0230ea7c3272b496cb
+  xe-pw-141459v3: 141459v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141459v3/index.html
+
+--===============3482873491437949846==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Maintenence of devcoredump &lt;-&gt; GuC-Err-Capture plumbing (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141459/">https://patchwork.freedesktop.org/series/141459/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141459v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141459v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2311-e46e8fdd83bc0ed3257bcd0230ea7c3272b496cb_BAT -&gt; xe-pw-141459v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 6)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2311-e46e8fdd83bc0ed3257bcd0230ea7c3272b496cb -&gt; xe-pw-141459v3</li>
+</ul>
+<p>IGT_8136: 21076ee09438af484c58b308d8179277503922f5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2311-e46e8fdd83bc0ed3257bcd0230ea7c3272b496cb: e46e8fdd83bc0ed3257bcd0230ea7c3272b496cb<br />
+  xe-pw-141459v3: 141459v3</p>
+
+</body>
+</html>
+
+--===============3482873491437949846==--
