@@ -4,68 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25F3EE64A80
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 11:55:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2B5EE64A87
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 12:31:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DABC310E31D;
-	Tue,  3 Dec 2024 11:55:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DB9410E449;
+	Tue,  3 Dec 2024 12:31:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="swIpzDOq";
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="jZlZroRW";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3768710E31D;
- Tue,  3 Dec 2024 11:55:08 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id AF47BA41462;
- Tue,  3 Dec 2024 11:53:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5D92C4CEDD;
- Tue,  3 Dec 2024 11:55:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1733226906;
- bh=N/o9QrpTvLGERh33N1iKh6DaRqNYdNgXwjWQfAK0g9k=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=swIpzDOqw+Ean7bXywtFyc96sxzlE+L9v2fFpXgTLoFrh4L8ISWn8Xl6P69kGerS1
- p57OgE5hQwnvXODczvo39EhrCMS07BNHWB4UvrGANNhRkddda+3Jc68mNkjelb/YtJ
- 2FQ3SfAmbEz2pVB8OcB/WM0IRxQMpC9xyNP+iUY1fx7I0UxGwhKB6DKVcfgyLSfcPF
- gDzkIEZg8kC3k79Jh1uwO22VVPJ+v17v66O1yf3muzjkyW3UcbiGPj6KWMdUthzliw
- n0IM6+qkCzYDX6sPgZbF0siM7zWo5a3SpLQdr7iSTYtulf0iJa4Jqqfvkh2EDGRdqE
- MnFO/UPALfhMQ==
-Received: by mail-oo1-f43.google.com with SMTP id
- 006d021491bc7-5f1cec20a77so1752371eaf.1; 
- Tue, 03 Dec 2024 03:55:06 -0800 (PST)
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
+ [209.85.214.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD51C10E449
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Dec 2024 12:31:31 +0000 (UTC)
+Received: by mail-pl1-f177.google.com with SMTP id
+ d9443c01a7336-211fb27cc6bso43622525ad.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 03 Dec 2024 04:31:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1733229091; x=1733833891;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=rmCmdPZyqHTJueyoNUxdAbvih3/opUK1QlKGl2LuDMo=;
+ b=jZlZroRWmj9xAFX5Pe1gaB07XhbwXZphJ1mb0gi6Fwlbmg4m+EW4tKgSOCWYOhsGgF
+ mwn6cOE7e00VQOTfwx+2ahI6MTkwS4RD74smUf4cA+YOytA8Dt5Eu8XKkui2kS7DLEtY
+ Q6V+KpNztoAu4Jh224M8zKSv/F6izMOMuEqjg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1733229091; x=1733833891;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=rmCmdPZyqHTJueyoNUxdAbvih3/opUK1QlKGl2LuDMo=;
+ b=t63Vu4KDi9Sr1/6dBGeefey0/DyR0Nai/ERFELzea0VpCg1B8ynpvrz+79kx+Wkc1r
+ vKz1UzGR+6s8cjAk1tLdD0B6YS96O5ywM2o6e5XoO9kNU2KT28pt6NrMfeSejYcyc6W4
+ BlZDZ6eabk01fDbECQ1UjTTRL0ZhmF1syabx7WwiClOeACujBLSFxczlkihgC8+OXNZ4
+ dWZ2NiCJdYtpBLW+VVvTqB1YmGIsSfhdPko3yIYQA1QnsEfoI1MVseJhjnSycMsxsjsI
+ Z4YiB9wj8hnA0fpz4XEtEmwuI4YbXnH5Ed4vl3EAFCPC3dZP6l3S9VY9wuI+gzY6tLAx
+ 0Bbg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXjWCuLuM+n9LOnK6fpmrVpQfMMBj5bwMqU7q41GiTX9U+3uVKORSsKiqtiCM02+TQFRE17FUndwf4=@lists.freedesktop.org,
- AJvYcCXsKZpEByQg2ytOIbbtbxeSJP/9Jm5fLWrWEh/LQFZZcbGjNpB230Z8gDX3n2ydI81gwdUrYrnL7pU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yze0ryZL2qY/XqhNd9wQCUgB3bJBbPpwdXtbEmvt/UHFudSM4cV
- PkpYEo10kYOK+mz5WyzagRLRO/0C5WtEZJ2OUhFwHf9Qa1W+A4PDS9sXTzpCjMI7TfoH09JONsl
- wrfPXmzE4Uh3yesfNFG4Ibrl0T4g=
-X-Google-Smtp-Source: AGHT+IGwR11wmC26MnR8qrUzuGc81R3ZFhKQnYAGjMelBFIRYZk3yBB7hTR2KVin5ABaPEhvg7rYJaJEzZPTOUD7+lk=
-X-Received: by 2002:a05:6870:46ac:b0:29e:6b6a:d6f4 with SMTP id
- 586e51a60fabf-29e8890fbccmr1953346fac.37.1733226905887; Tue, 03 Dec 2024
- 03:55:05 -0800 (PST)
+ AJvYcCWVgbvDCbT6Z6xuVFlh3ydq9O7oImsxqgKVRXjhCvHvSwrjMPV4tN09J/8ZFq+mpL05FpM6lBgu4Q==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzpsxSYw0FnxoyA1EyYYy33KxKBU5gvoYqEgppQJU7hwDIJdFLa
+ MJSzqoZd6raJB3OM0brHM5oQb68I5beFI8sGoUpCr1QG+0P1PzLDbgWT4uXYkw==
+X-Gm-Gg: ASbGncttqf0YPnUWISFfzyyMwFFAAa1wIJU3FcaoIbbbC+Xb5gGPMyvFR8HT9xt637B
+ 4vbWxHCT4HrmRrvysjM9EDZbF8wlY+DwZnkafgw0fFN7S7FLL/WaqCyiXWPqgopbjDu1WuzIc2N
+ LQJ5sfB/qs7t0W6Rytf/ie6/vrQdfKIKlgwiKm+lQA2nwB0PKaEx7bi4+CKRQfsZHjt9BxLHoHY
+ eKvcarbiHTyG/Xop3ctNbP87wBUXYlEENrWMGLu1lkeJocNCA==
+X-Google-Smtp-Source: AGHT+IEeV3az9GRG8rHDkVnd0yV9DLHvIcl9SNi2dwy+VteYziFOzLepiDVQvG1ilEE6bLVtEotHyQ==
+X-Received: by 2002:a17:902:cf0c:b0:215:b6f1:78df with SMTP id
+ d9443c01a7336-215bceb3813mr43179615ad.19.1733229091247; 
+ Tue, 03 Dec 2024 04:31:31 -0800 (PST)
+Received: from google.com ([2401:fa00:8f:203:f520:3e:d9a1:1de])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-215218f452csm93787225ad.48.2024.12.03.04.31.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 03 Dec 2024 04:31:30 -0800 (PST)
+Date: Tue, 3 Dec 2024 21:31:26 +0900
+From: Sergey Senozhatsky <senozhatsky@chromium.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Ville Syrjala <ville.syrjala@linux.intel.com>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>
+Subject: Re: [PATCH 0/3] drm/i915/display: handle hdmi connector init failures
+Message-ID: <20241203123126.GE886051@google.com>
+References: <cover.1731599468.git.jani.nikula@intel.com>
+ <20241115050045.GM1458936@google.com>
 MIME-Version: 1.0
-References: <SJ1PR11MB6129CCD82CD78D8EE6E27EF4B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <SJ1PR11MB612965ACA3E84745346F0400B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <5e405ad4-34d6-4507-978f-3d81d4af2455@t-8ch.de>
-In-Reply-To: <5e405ad4-34d6-4507-978f-3d81d4af2455@t-8ch.de>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Tue, 3 Dec 2024 12:54:54 +0100
-X-Gmail-Original-Message-ID: <CAJZ5v0iXKvaxz-hmW2+qwTcSmtPJ23Hv04CMnmT=qPE0ytNwLg@mail.gmail.com>
-Message-ID: <CAJZ5v0iXKvaxz-hmW2+qwTcSmtPJ23Hv04CMnmT=qPE0ytNwLg@mail.gmail.com>
-Subject: Re: Regression on linux-next (next-20241120) and drm-tip
-To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Cc: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, 
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Coelho,
- Luciano" <luciano.coelho@intel.com>, 
- "Saarinen, Jani" <jani.saarinen@intel.com>, "Nikula,
- Jani" <jani.nikula@intel.com>, 
- "De Marchi, Lucas" <lucas.demarchi@intel.com>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241115050045.GM1458936@google.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,92 +85,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Dec 3, 2024 at 7:51=E2=80=AFAM Thomas Wei=C3=9Fschuh <linux@weisssc=
-huh.net> wrote:
->
-> (+Cc Sebastian)
->
-> Hi Chaitanya,
->
-> On 2024-12-03 05:07:47+0000, Borah, Chaitanya Kumar wrote:
-> > Hope you are doing well. I am Chaitanya from the linux graphics team in=
- Intel.
-> >
-> > This mail is regarding a regression we are seeing in our CI runs[1] on =
-linux-next repository.
->
-> Thanks for the report.
->
-> > Since the version next-20241120 [2], we are seeing the following regres=
-sion
-> >
-> > ```````````````````````````````````````````````````````````````````````=
-``````````
-> > <4>[   19.990743] Oops: general protection fault, probably for non-cano=
-nical address 0xb11675ef8d1ccbce: 0000 [#1] PREEMPT SMP NOPTI
-> > <4>[   19.990760] CPU: 21 UID: 110 PID: 867 Comm: prometheus-node Not t=
-ainted 6.12.0-next-20241120-next-20241120-gac24e26aa08f+ #1
-> > <4>[   19.990771] Hardware name: Intel Corporation Arrow Lake Client Pl=
-atform/MTL-S UDIMM 2DPC EVCRB, BIOS MTLSFWI1.R00.4400.D85.2410100007 10/10/=
-2024
-> > <4>[   19.990782] RIP: 0010:power_supply_get_property+0x3e/0xe0
-> > ```````````````````````````````````````````````````````````````````````=
-``````````
-> > Details log can be found in [3].
-> >
-> > After bisecting the tree, the following patch [4] seems to be the first=
- "bad"
-> > commit
-> >
-> > ```````````````````````````````````````````````````````````````````````=
-``````````````````````````````````
-> > Commit 49000fee9e639f62ba1f965ed2ae4c5ad18d19e2
-> > Author:     Thomas Wei=C3=9Fschuh <mailto:linux@weissschuh.net>
-> > AuthorDate: Sat Oct 5 12:05:03 2024 +0200
-> > Commit:     Sebastian Reichel <mailto:sebastian.reichel@collabora.com>
-> > CommitDate: Tue Oct 15 22:22:20 2024 +0200
-> >     power: supply: core: add wakeup source inhibit by power_supply_conf=
-ig
-> > ```````````````````````````````````````````````````````````````````````=
-``````````````````````````````````
-> >
-> > This is now seen in our drm-tip runs as well. [5]
-> >
-> > Could you please check why the patch causes this regression and provide=
- a fix if necessary?
->
-> I don't see how this patch can lead to this error.
+On (24/11/15 14:00), Sergey Senozhatsky wrote:
+> On (24/11/14 17:52), Jani Nikula wrote:
+> > This is an attempt to resolve [1].
+> > 
+> > [1] https://lore.kernel.org/r/20241031105145.2140590-1-senozhatsky@chromium.org
+> > 
+> > Jani Nikula (3):
+> >   drm/i915/hdmi: propagate errors from intel_hdmi_init_connector()
+> >   drm/i915/hdmi: add error handling in g4x_hdmi_init()
+> >   drm/i915/ddi: propagate errors from intel_ddi_init_hdmi_connector()
+> 
+> So these look reasonable and good to me, and I think landing them
+> makes a lot of sense.  For that part feel free to add:
+> 
+> Reported-and-tested-by: Sergey Senozhatsky <senozhatsky@chromium.org>
+> and FWIW
+> Reviewed-by: Sergey Senozhatsky <senozhatsky@chromium.org>
+> 
+> 
+> 
+> Now, regarding the issue in question - we are getting there, but not
+> quite there yet.
+> 
+> I'm still seeing multiple NULL-ptr derefs, namely on
+> 
+>  DDI A/PHY A
+>  DDI TC1/PHY TC1
+>  DDI TC2/PHY TC2
+>  DDI TC3/PHY TC3
+>  DDI TC4/PHY TC4
+> 
+> The thing is, all of them are DP connectors, we only ever call
+> intel_ddi_init_dp_connector() on them, so dig_port->hdmi
+> is not init-ed, wheres intel_hdmi_encoder_shutdown() doesn't
+> distinguish and treats everyone as HDMI connector, dereferencing
+> ->hdmi.
+> 
+> With the small addition I don't see null-ptr derefs anymore:
 
-It looks like the cfg->no_wakeup_source access reaches beyond the
-struct boundary for some reason.
-
-
-
-> Could you doublecheck the bisect?
->
-> Note: Having line numbers in the trace would be very useful.
->
-> > Thank you.
-> >
-> > Regards
-> >
-> > Chaitanya
->
-> Thanks,
-> Thomas
->
->
-> >
-> > P.S. We could not revert the patch cleanly and therefore we are yet to =
-verify the bisect but we are currently working on it.
-> >
-> >
-> > [1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
-> > [2]https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/=
-commit/?h=3Dnext-20241120
-> > [3] https://intel-gfx-ci.01.org/tree/linux-next/next-20241120/bat-arls-=
-6/boot0.txt
-> > [4] https://cgit.freedesktop.org/drm-tip/commit/?id=3D49000fee9e639f62b=
-a1f965ed2ae4c5ad18d19e2
-> > [5] https://intel-gfx-ci.01.org/tree/drm-tip/index.html?
->
+Gentle ping on this.
