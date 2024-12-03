@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 405F6E74AC3
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 18:22:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34235E74AC3
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 18:22:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E52F310EAFA;
-	Tue,  3 Dec 2024 18:22:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F38C910EB05;
+	Tue,  3 Dec 2024 18:22:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ls/nslLk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TZy4Tu6a";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5572610EAFA
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Dec 2024 18:22:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C09C10EB1E
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Dec 2024 18:22:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733250128; x=1764786128;
+ t=1733250133; x=1764786133;
  h=message-id:date:from:subject:to:cc:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=JVb85dBxsyrQB4WJ7cR/tM0BCivBbtz+WWVxf5kWfDQ=;
- b=ls/nslLk5JgAkwiZmVYlQunHDBfScgSp78xM2xhomVHPUkkblUJYn00U
- EfobCfAuXfJd3CciczOB1f2NmABxItHsI1PRhGTFbTDiXmnJehbwO8Qjh
- zKnXeMXdg7e/ZzJcsE/ea7zAlozaT2aqWSFqL2u4eCavij0KXHbCdEYrh
- dhS/FAP9je3DtRvfscSl8VzQGQISjLGgSoZY8/fH+/G4Sf8Xf6O5+jyIj
- LASMWJriSHSFJAQ8c3COrw7ZGf+YowomKpmsU0QiPZ6YXvkuvYNwVUQ+O
- FXY4SzRMTlvXhQX7nUgjBKlpP2bGUIxaHHn7x+srhXQ4RX2ZAwSZwb8rA g==;
-X-CSE-ConnectionGUID: qS0IehtzSjyAiDI1eG57DQ==
-X-CSE-MsgGUID: vX7SWgeBTkuByBK+AjalpQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="33614899"
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="33614899"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 10:22:08 -0800
-X-CSE-ConnectionGUID: KQ3J7fSDRHaylfZFzO1GAw==
-X-CSE-MsgGUID: j1BLysmhSTO6yEZgu8M3zw==
+ bh=oIUPaSKreeHHEayMO9HlqUpXquf95xlrat/1EF0Yy/I=;
+ b=TZy4Tu6a0DicbDN5rkZZPR7qtRkhr4qLrPl3suJRgfNQEiryu511lSqE
+ fX8b9GdRknu80Jv1JH8f1cQVGO7HAliMFpsz/51u6TwMlmiVpb7Tszrb0
+ KX1VC08zSHHcXiCC3HqSWr3k+G7Fz5KBuuUvsSISOyYb7D5hZYk2AwKm/
+ 0Ld1r7GL1SNOAg8jnzCaoLSDAdJV+RoJ1ag3VibWyKgkwlPhMHdkMpK2D
+ wYXpZh42ChHWx7M2fUSogoIF/awLmj+/STjWJNwfmMSuqBjL9OGtStt2t
+ d8MkPI+vWwMxWek6cvPqvbZHSpMBcBVmGABtPz6EnqBU8ZCw01LDU2fFi Q==;
+X-CSE-ConnectionGUID: r0C8egeYS2SbO9ouuaYvZw==
+X-CSE-MsgGUID: sKCsQThgQzatY8622lHQjA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="55970195"
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="55970195"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 10:22:13 -0800
+X-CSE-ConnectionGUID: NqqLpnNuS/ukHBPFUpFAqg==
+X-CSE-MsgGUID: hQybUvY9SdCYFXoZKgMreA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="130969253"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 03 Dec 2024 10:22:08 -0800
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="97953316"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 03 Dec 2024 10:22:11 -0800
 Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 3 Dec 2024 10:22:07 -0800
+ 15.1.2507.39; Tue, 3 Dec 2024 10:22:11 -0800
 Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 3 Dec 2024 10:22:07 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.41) by
+ 15.1.2507.39 via Frontend Transport; Tue, 3 Dec 2024 10:22:11 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.45) by
  edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 3 Dec 2024 10:22:07 -0800
+ 15.1.2507.39; Tue, 3 Dec 2024 10:22:11 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=b2AvyRqzYC5GzNFp2TYEGNrhWhTlVHpRDwgpUtlauGcercMdhortyjBAwFtUuo/XBSdhhKGx3CnZDVohxRSt2JhfrjK97aLdShktV7hLHPFzpfvG9YhYzNiK859sWDroyGEWWdgIcCOx/NZQ+YmLt3s77BSqHm8VwPal8/Q2ebPA7N96p2DBo77DFB0mMVO/vSEk9Ajja5aBlyriwE1YAwOGyurv7pb/tHGTHs83VkyQmXEVzxiAQLzaoIKE1x6V0sdl3M6s2VicKIBWYUs+zpmboNhEDDOFwAzNSLZa2aImM0/SS8hr8cGepFCR6n5lPu+iMdEeV3sKjwNzTmghWQ==
+ b=CQhBR3mPq7xHHBHOk/Qjsv5p/G7Gz2GgASzTudgIm/XEDdx/DNoEsqnWnMjkq8XwWZaphdVNgD8C/6FgKEshjfpUz3k6hziaK80BM+N9G0MLf74c5n9DS49osbcdXJmnKnE1qMEqYI5Ud3to1tipkVaUiHWf0WZlgaqiT+LADw4ka3qXXFDHwJ+PUJTKl8XPvm6ud8wkzWlyI3rFlJ5w6Ah1ICD0sl+cC7XyPe+IQk9lhRzoo9x/vc3i1PkWZ9Grw8jQr63LgpVoOcwQu+IKTH6YGIaHu1kDfC+waeDP11j/5Ozcav1RmWM/KTwZ12MbzWeIKPQ5s65gBsgrHzam7Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YeO9IzkU5zZcv7Y96ev44DM3zLDbZbCNXpxAguYgxOA=;
- b=h1OZ9+9z22bEH5WVBpltG7gbXooqTxV7gq47dLN6UkUacJjvJuTcYgydObuGvge81fhG9unZMWww+Nqsr8eiYh28FQRHGD/c2EZC4ZyAqbDknRce3rQjZiNHUwZAQ1YIa1QP5uvC3OSLSgV5oUz0coxd6If2VyLH6iU/L3hzdtwYnVoAU9ljbwLyzdgLAF2HNfLGz3pQHOLhbH/o0Qcwql7f/nm2wXdpLCPyHoA5+9MLDaZi0FQlJA/s7jB4b1NTK8H2RrPBWcI888GYAlH3E+0FvkLyxjssK4Mxsvewz9R9tZX2k0ORbw5SR5X3fUYeDyBTyaQy9sVVYxKNs8vUqg==
+ bh=gUii/Q7whtzxx9do7rG+ghJc2zRMerUtxcfVrW9nx6A=;
+ b=jbAlvz0Orwrvk2kSsf+5qXfZ1hsT1fMpZey6oXZuYiuVVL0nzAAtoMcKC7TJVw1qXFsuucdAJ/gx43yga10k7Ru8IJFTfHvLgurGxSxTedF6RYucJZUToyTILqsLpEZmpJNPMkJ0miRYklGqPxpjSMxO1yOcaaNPhp+qCy+Ich5Wyw8taVZNnP2KWFQA1TiT4zbmLOZVlmoOt3X4TbEsrKxtDXCQRBUYeqcRS1jkcKpdtNWHojviU2bXw7Vz33J8Yl340b4jggUlPO9byedROHaLntLiGxdhpCPvJVPaaaXsABTCBzWwo8Hj75qD/IiNQBSAcY10gofIs54uq0P7rA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,117 +69,116 @@ Received: from MW4PR11MB6714.namprd11.prod.outlook.com (2603:10b6:303:20f::20)
  by CH0PR11MB8086.namprd11.prod.outlook.com (2603:10b6:610:190::8)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.19; Tue, 3 Dec
- 2024 18:22:03 +0000
+ 2024 18:22:06 +0000
 Received: from MW4PR11MB6714.namprd11.prod.outlook.com
  ([fe80::e8c7:f61:d9d6:32a2]) by MW4PR11MB6714.namprd11.prod.outlook.com
  ([fe80::e8c7:f61:d9d6:32a2%6]) with mapi id 15.20.8207.017; Tue, 3 Dec 2024
- 18:22:03 +0000
-Message-ID: <e43c35ba-33e3-43d8-9540-e3c4e283dd2c@intel.com>
-Date: Tue, 3 Dec 2024 19:21:58 +0100
+ 18:22:06 +0000
+Message-ID: <52e53dff-37f2-4fee-a310-01ef8bf5080b@intel.com>
+Date: Tue, 3 Dec 2024 19:22:03 +0100
 User-Agent: Mozilla Thunderbird
 From: "Lis, Tomasz" <tomasz.lis@intel.com>
-Subject: Re: [PATCH v3 3/3] drm/xe/vf: Fixup CTB send buffer messages after
- migration
+Subject: Re: [PATCH v3 2/3] drm/xe/sriov: Shifting GGTT area post migration
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  <intel-xe@lists.freedesktop.org>
 CC: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
 References: <20241123031333.3435414-1-tomasz.lis@intel.com>
- <20241123031333.3435414-4-tomasz.lis@intel.com>
- <fbbf6b81-d54c-4a2e-8cb6-94ccb2d3af1e@intel.com>
+ <20241123031333.3435414-3-tomasz.lis@intel.com>
+ <20379fa5-3cbb-4753-8d65-de390197d6dd@intel.com>
 Content-Language: en-US
-In-Reply-To: <fbbf6b81-d54c-4a2e-8cb6-94ccb2d3af1e@intel.com>
+In-Reply-To: <20379fa5-3cbb-4753-8d65-de390197d6dd@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-ClientProxiedBy: WA1P291CA0023.POLP291.PROD.OUTLOOK.COM
  (2603:10a6:1d0:19::7) To MW4PR11MB6714.namprd11.prod.outlook.com
  (2603:10b6:303:20f::20)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MW4PR11MB6714:EE_|CH0PR11MB8086:EE_
-X-MS-Office365-Filtering-Correlation-Id: efe6a8a2-53a2-4db2-0f80-08dd13c762c1
+X-MS-Office365-Filtering-Correlation-Id: 4f9418ed-f888-4dcb-1887-08dd13c76440
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?L1NhSDEzbU5CUGVSZkZKeGtYNFZzK2N5T3pLUmUzeWFIclRqa0M1VEdsMmlz?=
- =?utf-8?B?bGlUT3M0SVhWenJQRDJlQU8zZktLa29iUzcxc0Y1STRVbHp4TG9ETU1JT1BQ?=
- =?utf-8?B?VDNPdmdNU1NheW5CVUlYeTQ2cUxDSFVRTTFCS3pUV0JRVlZWZVp6WWFoZnBi?=
- =?utf-8?B?M3BLT3V0ZHZTVEFiL05VM1pDUTRMbkRmNmZYdStOMExydnd4YTZVVXY2ckxv?=
- =?utf-8?B?ZHN4V1JCOHVjVE1xSEVaQkZNWHZxZEViVytvZy95ek15L05RYmo5K3N5TUYy?=
- =?utf-8?B?b2lmQStTejFXL3FpV2dmYXhUM2lKN3pKS0FVeGpmUXNqSHVlMkRZQnN1VmVy?=
- =?utf-8?B?T0NUaUdmNm9uUnQzamNsRjVwUDVtdWRzc1hjcXpLRU81cVhlNDhBRW9xT1l0?=
- =?utf-8?B?M3lOZ0lkOGhyNkIxb3hwR2NRUFVxbC84VnRLcDZEcXJIaHFpM1pKdk16WGFG?=
- =?utf-8?B?VXBDay9QSFMyUzB1Tm81NDd3RkFYdFlDdlRUSlRiNWMwd2ZQbkdCdVlxZ2hP?=
- =?utf-8?B?a2JVeklyRmMxY2VpSi8xb3EwbXVBTlMzclV6elc4Njg2TTBDMm1ZQWMzS0Fh?=
- =?utf-8?B?a1ozVkJlZ2pFVkd3dHUxSkEyQWNVaU5UdHVQMXpZOVovWXllWFFJS3R6SzBQ?=
- =?utf-8?B?Nm0rdXBxVW9mODR5NGdZbzBlaVdyNWROQTFhNmxaSWhpeHcxcDFlSUFGdS9R?=
- =?utf-8?B?T3dNZWJ5YjVnVStIYXN3alZJL1prWmcybFpwb1VDdUdFUW95S0s3ZXc4V1I0?=
- =?utf-8?B?OXIzc3g5UGdFM3Vham9TdytrUHp0d0xMNlU5ZmMrOWRBZUh0VDZ0RTVLOHhj?=
- =?utf-8?B?K0d3TkFKY0UraFVRYmJYZ0Ewa2lKNmpDa1NJb3BxSGpWaUkyU2JkYlR3eCsz?=
- =?utf-8?B?cXQrL3JUVXpZTUtiNWgyMGpJSVQyMHplRGRBY0tYWkFoQUgzb2N1QlN3Mk9w?=
- =?utf-8?B?NXR5TjV6b3k2RmdCRkhOUlF0bngrdGF0R1JmZzNJaU5Cd2phS25RU3NKSkRY?=
- =?utf-8?B?MWdIL01lN1UrNUhld3dUNjQrNTBPT2MxVDhwdWVKdkRkVWxFaVJnN3VvOVhD?=
- =?utf-8?B?b28xampOWUxLeE9vMU1KMFByelQ0b3paaHRUSHV4eHl6blJhNGM2WVd1WVUv?=
- =?utf-8?B?ak5TUHlzYWdoeUlKN0pyMlFDWHRUUU9BWGpDeDVCR2EvODZnNzFWUC9BRXlO?=
- =?utf-8?B?eWtoaXVnUTJuNXIrMktLTXRsOEJSUkd4OFRJdmwxMVFYRHE5L0tmSHNjZGky?=
- =?utf-8?B?cnFYdUw3QW9KR3czRDFjWWxxZ1ZESFVFc0FZK0dsUHhIMTd1MjNHbDd6UnQ0?=
- =?utf-8?B?YUwybVFPeFkvTmI5U1E0Tm1EUlFGV09jdk92R3lsc0kwUVVhajN2enlHakt5?=
- =?utf-8?B?c2drWUplSEhmdFdPOG1UTlZyRGYrd1FaMU54am1jQmhEeDRMb3JhZzZOWkQ1?=
- =?utf-8?B?TGZuQlpablhkVFowV29UaUFJQUg2ZE9jUFdmZzJ2cUx5NWVEcFJjcHh5QkJE?=
- =?utf-8?B?Si9GSkh3VG0ybzY4eWV3VHVBSkhnNVBtalJFWXM5YVpsZW8xeUhjVW5UdlB3?=
- =?utf-8?B?YTBIeloxYmNJbXcxRFFNc3BqNWk4R2VBT0Jsa0VLYTZ2NFU5d21EVWRIT1ZR?=
- =?utf-8?B?akRqc2grdlhBN0lOS1hGb0hSVHNDMHNER01sZWtxK0lWUTBwSURoQWdJQTV6?=
- =?utf-8?B?dzJNTnRQWWY5SE1sd0pjUjg4QmhqSk56YjJNbS9YVEN0RHZTVWJXK291Y2xx?=
- =?utf-8?B?NmdYOEwxa1pnaVBnM25XQ3M5cVcyQzAxQzVSdzFjNStKSnBUKy82dzNPNWtB?=
- =?utf-8?Q?h3BOgpJRLubiMikcRu0ZfW+03sb38vBAewY6k=3D?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?djVNK0FUWHprYUNESnFsZWFrZzBGWE9aYkNjbkUwV2R5azlGdW1ReENEUksx?=
+ =?utf-8?B?U0x6UVlvOEpIcmVyR2xGUU5KSnRGclFENmRNZ0ZLblI1SnB6MGx3QlNPM3R1?=
+ =?utf-8?B?MkV2TzhDczJMeFZnNFpsblhBZXNDL2lMdDR3TnNpNzZRL29pakJFVWpjWVZw?=
+ =?utf-8?B?RjduNVN0eVRoczlST0pVYzdIN2N3SUxZa2kyNFBYQUlPV3U2V20rVnFBTkw3?=
+ =?utf-8?B?QmVRbEgwdDlpWGVOZzVYRWhEMUxubTNOYzNRV2IxSjhnMFdxeWhhazZmdWJq?=
+ =?utf-8?B?Ky81VWJpekUrWFgyc1p6Z0NjV3ZkT20zVFphV2tQSzRxVUdUUEdDd2lSS1dV?=
+ =?utf-8?B?d2tiSngrRUw0MGxjaCsvT1dUN0ZIUzNFYnIzSUwxa1ovUXVMZmVaTG5HNS9i?=
+ =?utf-8?B?NDFCQldGejdoTllpNEMrYWJ2SFlvKzVIbXFTQkhPZG9BbzJJNnIzMjdyajVn?=
+ =?utf-8?B?YVFXSnVHZkpCb0JOUlRCTjI0V0h2ZldHRkFFUlV6dFFnVkJYZVhzTXg3UStv?=
+ =?utf-8?B?bWRueFpOQ3FMSEw4ZkgvOSt3OEsyUEFNTXRGQUlkeGNTeUtrcDdMOGlaR2cx?=
+ =?utf-8?B?Tm9Lb2NrVkJpTFI4dHQyVG84QXQwU2Z1RE4zVGZxOEdraVlzNVhkMWFKSkJL?=
+ =?utf-8?B?NWZTbkF0WXFkVndzU2VGa2UxeFNITTdpRlhaMzJSdnYrWUkwTjV2cjE5QjM3?=
+ =?utf-8?B?bnZFTGxpMWZXWlBIK1ZucitYZ3cxQk5SUUlQMU9QRlVNUWxoSGRDdk5ueEs1?=
+ =?utf-8?B?Tk1sSWQwcVdXQnVZY3JJSHZJY09RM1lBSUd1alZrUEkwbnZKK3hmZ0YvVFRu?=
+ =?utf-8?B?S1d5OHhoVHB1UldISENNVWN4ajlqS2FQdjVIOTBrT2Z6QW53UnYzK3BYeGlm?=
+ =?utf-8?B?R0hIT1FYZmpDU2lmN29PcUlYU0NlZUZvb3BUa0taeHZMK0VISzczVTdTUXJJ?=
+ =?utf-8?B?YU5XNDdlYTgxdFNFeXROWDROdTBYK0IyOVAzblB0RlorNW5UQnZHNHo3eG03?=
+ =?utf-8?B?TG5qMWpqdTZXNUNtUWs3K1FRVDlSd2o4NjlRQnI2RWNiYkVlM3JWcVkrY2RX?=
+ =?utf-8?B?cXlGbnpBVDBaZERNaXJwWjhXM21OVHV4aEhwZHJ5Vkx5MlpMNXp6a0s4eW5N?=
+ =?utf-8?B?Kzh0SitKVjlwK3ZHd3RaRW0ycFgyOHQrQmdveXBqRFhSeFM5QnZWY1o2akF5?=
+ =?utf-8?B?K3pGVit0K0pkZFRyV09jdnlzcXpvSFZCc1RScm1idjJvUGxkYnNPcVlqcjM3?=
+ =?utf-8?B?YkhrT00rNUFsT2ZWUUttQW5QNGRjUXRoM1V6dzByb0xaWTZVbGE1bjQ2T2FO?=
+ =?utf-8?B?MzNWSnQybytWQ3NJUzUxUHNjN0hhK0FxalZxZUxNaEV2TTBRVCs0Ull2dlpi?=
+ =?utf-8?B?eGlKdmdiVFJ5N1Vhbk1HNjZPUEpVZ2ptL2t0eGxSMytGNFVGQTdUaUV2akxJ?=
+ =?utf-8?B?V0JsYThFTkVnVGMwbXE0bjJUNDZ2ZnM3ZE9Qc1I0TXYzSmxHTnhLYVh5Tncz?=
+ =?utf-8?B?bWxWM1hSMFNQM0daYThpUUkwKzYrSldoc3A0WnhRZWtsQnJoZ2Y4bWg3UUgy?=
+ =?utf-8?B?bGNhR2N5QVlGUlhXN3FhOWNzbytqOUF3amdaRHdqS0RSaDdNblFwM3d5d1Vs?=
+ =?utf-8?B?YzFQODRJOEJ3QWczYmJLbDBjeGhNQ0srUmZtVTV0b0haQ3FCV1haVlFNQWNm?=
+ =?utf-8?B?VTFrN00xc1MxRFVCRVJFYUdPRGRqem9EMks2a1NDa3M3RjZkcmtJZ0lNNWJp?=
+ =?utf-8?B?K0ExTjhpM3NQNDVMbDdZMVdXWkFMQ2UrS1B0dDBUaFBvdlJFaC9GLzdiVklm?=
+ =?utf-8?B?MlFGWGgvUmYwSTl6eDhMQT09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW4PR11MB6714.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aVJ3eVZ1YUxvTXhvdXFZQWYyMDFhZ0hXbFZWVUxQQXZkTlFtcVgrOVJ6eWM1?=
- =?utf-8?B?Q1VFcFBFbkVKM1ZnRUVjMlVGbVRZbktmT0tEbVIzVHFrNDhoZnFDeTBXQ2lw?=
- =?utf-8?B?OGdqclk1YTFBYm93Ykxhd1VKdmpjak0yVkdkakRkYmMycFBjL2o5eG9PY2xV?=
- =?utf-8?B?eGxmbE1nYk9zbStkckVxdTFadWM4cmgraVMxeUFOZmVSMCtLc1kwbDZUa2dC?=
- =?utf-8?B?bjg1aWhTeEFVNXRJa1Q5dE5Ic0xTTGtlWVJ3SkR4dXRUa3lNd25FcDVJUTUz?=
- =?utf-8?B?b3g4WXVQaFNKdkRNRHptUDUwYUl3ckM2L2E1ZHY3ejhFcW9wbDh4dm1jclJ6?=
- =?utf-8?B?T2wzeGxHaUNSNU5lbUo0b2R2U2Fldk9VbEpUN1Qxd0o3R29Zb3owZTRtRVNV?=
- =?utf-8?B?NTVsQmVFbkx0clc0eUZHUDJmSzRHNDNhVmswWEI3OXBxd0tRMjhUYkJsbHpH?=
- =?utf-8?B?ZkVIdko4MU5teU5MKzhZU2pyMlNIeGw3NTBVUExaTy9mZ21EamVGbTlRdTZX?=
- =?utf-8?B?eFVtWG5lcjN4Y2tMbjFSMlVlQUdGZ1hLUFhvdkFLaUhnUGZXLzkzWEpzQ0hs?=
- =?utf-8?B?QUJpU0t3U2ZSemtoSTQvcTFYSm1vclFlc1JYV0dQc0RHSEQ5RzBSODFxUGtR?=
- =?utf-8?B?TEtWZVZGN3lsdUJkRlhUbk9IcTN3STljaHFjcWhKVE9KVU5OTE5XdHcrVGxp?=
- =?utf-8?B?ZkF6NG82aVgra2hZbVlIUXJEeXphcjNZTFhqZUtFM2w0d1owZGg0QTI2TTZQ?=
- =?utf-8?B?eTUyaFBlWCtEK0duSXVWMlFpNE1LMk9HQURXYi9leFZWUU5lenhhTis0YnlZ?=
- =?utf-8?B?Vk81ckFXOEVxWWpVQUR6US9SWWhGQ0p2YnE1YytwUDdhRFk1cnVYUnQxTDBI?=
- =?utf-8?B?Z2VnQjdHRXpRSERGckowWC9Sb2FzNW1xNTVtWVF4QUpTTHR1cTByWVZhOGlF?=
- =?utf-8?B?V1pOSEtEbGRXalo0b3RaYzdiMTNZVHBhVVRXZnAwdTJLMXQvN0lJQ1RYU3d2?=
- =?utf-8?B?aUh5ZmllMXk2aHhGWTJyblNlRG9kS05vbGlvZlhYNXZZUlV5QVB1MWNlMGI3?=
- =?utf-8?B?cC8rUUFod0pCclQxd1cveFVCMUMwaTBBNE1uYmd1RmNyNEpyaEY4VXRUU25m?=
- =?utf-8?B?emZhaGE0Z3Vra3c1R3Bqd1ZtL3B3QlRSOFhDUHFpWEJRb0JEUWpwYmpCL09o?=
- =?utf-8?B?bmdkVFY3MmYzOTQ2MzcvTXhqMndmSDdzakQ3d3pSdDFidHJaTVRWTm1IUHZM?=
- =?utf-8?B?NjUvK1JSMjYvQ0hiOU5yc0JURXJMZDJzYTdWbUp3Q0FXT0pHb1IyUjViUDY2?=
- =?utf-8?B?U0s3ZjhZSU82UU9MWFBOR2s4OGFsTXBBVEZpSEVJRFU1VS9mRXpTMXZVMU9i?=
- =?utf-8?B?cHd6eVE2cFlwUWRrdFZPZXdZUzRLUldsYm9NRG1RRlFrRCs5SDJFOCtkQkdP?=
- =?utf-8?B?a1htRE55SzZkbm1zYjFyM1BYRlFhU0kzemdSakc0eGVDNzlQdm1wanBnWTRB?=
- =?utf-8?B?N1dPYUk4TWNmekZkWDVBeHlWRWd5TWVWUWVwcGhqVmRBVkEwZ2NCOVJaZFpH?=
- =?utf-8?B?dFZKVTZXWmRIaUY4eGk1aVBzaUkybkw4aW1TNEpnSWtyaEFuNXJzMFAvWTBx?=
- =?utf-8?B?UDQxRksxaTlJQ2I2cGxkOEthMC8vMWZmZjJhV2NQRWczSmpXSkt2bmJYWWdx?=
- =?utf-8?B?SnROZ2NNQmZ4WmZRamJEc0FZTkkrMDZ6VUw1eHQ5azU1aEF3cURlZzJIU25t?=
- =?utf-8?B?dE9iNkswMTFNdlhyS1EybnJPMk5oVmc1czhDdU9QbzlLa2Nac3ZwRjBsbzVh?=
- =?utf-8?B?YW5IWXJ5NXpsS0o5SVo1amZGamkrdFByeUtDTFIvK1lrLyt6MzQ5aERiUEhB?=
- =?utf-8?B?VjZ6WXlJb05UaTgreXVjbWV6RGRYZDcvMmYwVVVDM0pPSEhtdEZERkZzalRz?=
- =?utf-8?B?b014SGVJbk43bVdJRy8wVzR0bzNFMkY2eWVVc1B4VE5pSGJxZ3dwSHMwOGlU?=
- =?utf-8?B?ZlZCSWswTzNlSTZkNVN6VmxHVFJWaEtvNSt1VXdhZU0wUzl0ZUtDTDRqWTVE?=
- =?utf-8?B?SkpTS3YxSm5GSUxXQ25UWHEzOERhejNEa3EvSW0wMzc4TDZMNHZKZHNqS1E2?=
- =?utf-8?Q?r8R4Vs33HGULa7h4uK1azo7IB?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: efe6a8a2-53a2-4db2-0f80-08dd13c762c1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a3MxMTV3ZmN1V2xMNElOTDlscnpBVTE4TzZrT21LTElXQmthWlNRTllEblFx?=
+ =?utf-8?B?MHkxNFRBNVV1eFJUN1ZKUE5rTzdERWgvMkpmQ0hDL1ZpamFPSFEyOXNmYjRw?=
+ =?utf-8?B?ZXVtUHZDbDFPRGhTMStjM1FMNDdFNm5neUtCM1gwVkFXMXphTFVxY1NFWmhD?=
+ =?utf-8?B?b1JGTHcveDYzVGNJc1pUYVJRaGM3eThvQ0JjL1RGWGdtSmUyQ1V1MG1XWTkw?=
+ =?utf-8?B?SFRYNWFiTkpjZzFMUlp1M25hNU10Q1lnL1k5SnJmVnJhcEFNejAvNUNVdVdS?=
+ =?utf-8?B?cmpyQmJzSk10elRSNkM1VDdEL0Qvd2I5anJmb3I5Z2svUDVXVGE5bmlDZGJv?=
+ =?utf-8?B?Y20yajI5K2hyQ09jZjY1bDZocVdWWWNzU2xzTmhmcmdCb2VqNVk0RWQ2cW0w?=
+ =?utf-8?B?azNReEVrK3JrYzJ5RnJDT1JvN0FsVjFUclhXVmQwb2hTelFsN2l6d244ajRN?=
+ =?utf-8?B?dkFLSFU0eCtrbnNzajdocGlzaWtFRFJMcjFtR0FoUGNVUVVIVVBuQjUxekpr?=
+ =?utf-8?B?MnhxMWN2bXJLNzBLT1dSS3JYeGh6RTh4dVdtRGdXMjJhRXcrZ1VoeDZrQmxU?=
+ =?utf-8?B?RElXOUNRZDNONzlYSHVORGtRc1h1VzBmMlFEd09kMFQ5SDRlaElrd1dDSC9S?=
+ =?utf-8?B?OENUZk5JNzF4Y1ZqSjNwOHlab1czVWU5OUFDNlo5VmxubVllbDRURmljaWsz?=
+ =?utf-8?B?U1N6bTBCeDlHL2lVUkNIL3dOM2JKeENiWmFFSjhXazZkbTB4QVR6dkdBTkE5?=
+ =?utf-8?B?QXFudm5NM0lyWXpPd2lpRTRkdWhsUzZFYWdta0NMNUFrMEZRcXJMWGxLR0Ro?=
+ =?utf-8?B?RlpTYmRha0NibnlNZ3NRTzU4WmdoRmJmQWROdXdWeGV3aVlNa2hETkhtaEZW?=
+ =?utf-8?B?NjA2RndyZVkwVE4xSkk1SjNYREpyMUtDL2pxTmt5a2hiUG5aY2pMczZyN2l3?=
+ =?utf-8?B?QXRHdWUxZ3N6V2ZoTkFtRksvZ0tMZGJxaWdKTzRrMFE1dnZEWE5HZmRTY1Ax?=
+ =?utf-8?B?WkIwdVhrazMrU2ZlVVg0Qm9SU3B4dlVlV0VzbXkvVEpNanA2M2Y1em5hcXdU?=
+ =?utf-8?B?UytjSk5MYjd4ajZ2ZU9JcDl4L25QTndUaXJwU2thOEMzZnhUdCtDV0tPQmVY?=
+ =?utf-8?B?V3FuSkRzRk5BVURTQ2NoL3I3N2VaNEF4WjJLSElONUtWMXk4RFlTYnBZTFEz?=
+ =?utf-8?B?ekZQWDNNMWJlbXhGZHVTcjJScEFnR1dVcHNLQmlwczFGL2tkU1lGRnlMdFlY?=
+ =?utf-8?B?ZzNyQ3ZRTTYwZ3JtRzZhWGJvS25sdk12ekxmTWhLUmhZZHJFK2k2Z1BSelBP?=
+ =?utf-8?B?V3R5UGxQS2U3RlE5R3RlTXJ1Y1dzVnhUYlpUS0twVnZoK2cvb25ESmpyeUVP?=
+ =?utf-8?B?WjdMbkJGelhGdEdTZXlZQWIxdHNKRUptZ0ZScWNaQlkwSWtnNWRoQlo4N1pX?=
+ =?utf-8?B?WDhuQzJ6aW00aWlWZFRpcmRmTE1lbjI4MGJVaWhWR1JDemt0YzdVNzNiTEY3?=
+ =?utf-8?B?RzVBU2htb2NOUytnYVhHOXc3YXBxZWE2QzNFMEx6eVVZakkwaG5xbmNSL05J?=
+ =?utf-8?B?NWFmaFlVbXRsV09MckYzQkZRTnFiYkpsSU5xc0pKT2dkNmkrUmU4OFNsZG9r?=
+ =?utf-8?B?bk1jQ3hCcGVydHVRRlZ2N0VCeXdCVHp2MnVGdE1SSzNqdWhuM01TWEI0S3Rx?=
+ =?utf-8?B?dlJKZmpQSldnbW5iOUwwVlVsOUxpMUR5MjhYNnBrT2ZiVS85UDJoOGZaUktD?=
+ =?utf-8?B?ZnVrQlNOTTdaWHNOeUlKZEtkS2JDUzl6NlI3Yjh6QmJ0dENlbmR1Nk9SdGs3?=
+ =?utf-8?B?QUFDVWM5UlNjVVNsaVZPNlpOMTVHbWFNNlphMThoWkZjUVR1ODdJdm4wUHUx?=
+ =?utf-8?B?cnorZm1wSHBMK05iYlVna3pWb05Xc3E4UnFpQTBrYXozZGUwTDhwcFg2bHdF?=
+ =?utf-8?B?aGhNRDNjejFaaGVwcFR3T2hzL1FSa2Z1UDY2NWlZUlRDYUgwYWF4MkhYWjRx?=
+ =?utf-8?B?NW1XKzBPZGZSaHZNYVV4aUx2UUl5cXQ5WE9TY21OUWhvYUZ0aTZWRWR6R2RU?=
+ =?utf-8?B?WjJJcWNVME9acWI1Y2IyZHlMbW43ekFtaDcxU2E4VCtqRXp5WnlHdEs5ZHBU?=
+ =?utf-8?Q?jWRRBlgTjfwt6HB6a08VbIKM5?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f9418ed-f888-4dcb-1887-08dd13c76440
 X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6714.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2024 18:22:03.5433 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2024 18:22:06.0501 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KjJtSVctUj6DB0VLjp/dDY687TUi5LgMM+sChIfaOaenhQUJYGnTkbzHoskua/+wYhPgt0jbRyJArjAa/6hlkg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: Q8X5dLv3BgZTAlbRdhB/Xitx9ad03a9ivi5FLeBLeFb+IUcourWAUUsh1ain5tvv57rM1/Q59wuktZA1BSXwXw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB8086
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -197,369 +196,401 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 28.11.2024 00:21, Michal Wajdeczko wrote:
+On 27.11.2024 23:30, Michal Wajdeczko wrote:
 > On 23.11.2024 04:13, Tomasz Lis wrote:
->> During post-migration recovery of a VF, it in necessary to update
-> typo: it is ?
-right
->> GGTT references included in messages which are going to be sent
->> to GuC. GuC will start consuming messages after VF KMD will inform
->> it about fixups being done; before that, the VF KMD is expected
->> to update any H2G messages which are already in send buffer but
->> were not consumed by GuC.
+>> We have only one GGTT for all IOV functions, with each VF having assigned
+>> a range of addresses for its use. After migration, a VF can receive a
+>> different range of addresses than it had initially.
 >>
->> Only a small subset of messages allowed for VFs have GGTT references
->> in them. This patch adds the functionality to parse the CTB send
->> ring buffer and shift addresses contained within.
+>> This implements shifting GGTT addresses within drm_mm nodes, so that
+>> VMAs stay valid after migration. This will make the driver use new
+>> addresses when accessing GGTT from the moment the shifting ends.
 >>
->> While fixing the CTB content, ct->lock is not taken. This means
->> the only barrier taken remains GGTT address lock - which is ok,
->> because only requests with GGTT addresses matter, but it also means
->> tail changes can happen during the CTB fixups execution (which may
->> be ignored as any new messages will not have anything to fix).
-> are you sure that there will be no inflight h2g actions during fixup?
->
-> 	CPU1			CPU2
->
-> 	ggtt.lock()
-> 	h2g.a = ggtt.a
-> 	ggtt.unlock()
-> 				ggtt.lock()
-> 				ggtt.a += shift
-> 				ctb.fixups(shift)
-> 				ggtt.unlock()
-> 	ctb.send(h2g)
->
-While we cannot rule out completely a GuC being active during restore,
-
-such situation is extremely unlikely and we accept it as being prone to 
-failures.
-
-We do not guarantee that we can successfully handle such situation. What
-
-we have to guarantee is that the situation will not have bad consequences
-
-beyond the driver wedge. So, we cannot cause deadlock. But sending invalid
-
-request is not a problem -- again, in this extremely unlikely situation 
-of GuC
-
-being active, which could only be caused by very fast second migration just
-
-after first migration was finalized, and at very unfortunate timing of 
-millisecond
-
-precision. It's a corner case of a corner case.
-
-
-Also please note that in this comment I'm not referring to ggtt access 
-lock which
-
-we already have, but to GGTT address lock which was not even introduced yet.
-
-
->> The GGTT address locking will be introduced in a future series.
+>> By taking the ggtt->lock for the period of VMA fixups, this change
+>> also adds constaint on that mutex. Any locks used during the recovery
+> typo: constraint ?
+ack
+>> cannot ever wait for hardware response - because after migration,
+>> the hardware will not do anything until fixups are finished.
 >>
->> v2: removed storing shif as that's now done in VMA nodes patch;
->>    macros to inlines; warns to asserts; log messages fixes (Michal)
+>> v2: Moved some functs to xe_ggtt.c; moved shift computation to just
+>>    after querying; improved documentation; switched some warns to asserts;
+>>    skipping fixups when GGTT shift eq 0; iterating through tiles (Michal)
 >>
 >> Signed-off-by: Tomasz Lis<tomasz.lis@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_guc_ct.c   | 148 +++++++++++++++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_guc_ct.h   |   2 +
->>   drivers/gpu/drm/xe/xe_sriov_vf.c |  16 ++++
->>   3 files changed, 166 insertions(+)
+>>   drivers/gpu/drm/xe/xe_ggtt.c              | 139 ++++++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_ggtt.h              |   3 +
+>>   drivers/gpu/drm/xe/xe_gt_sriov_vf.c       |  25 ++++
+>>   drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |   1 +
+>>   drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |   2 +
+>>   drivers/gpu/drm/xe/xe_sriov_vf.c          |  22 ++++
+>>   6 files changed, 192 insertions(+)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
->> index 7eb175a0b874..212a6795ec8b 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
->> @@ -84,6 +84,8 @@ struct g2h_fence {
->>   	bool done;
->>   };
->>   
->> +#define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
->> +
->>   static void g2h_fence_init(struct g2h_fence *g2h_fence, u32 *response_buffer)
->>   {
->>   	g2h_fence->response_buffer = response_buffer;
->> @@ -1620,6 +1622,152 @@ static void g2h_worker_func(struct work_struct *w)
->>   	receive_g2h(ct);
+>> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+>> index 558fac8bb6fb..44500707f8ae 100644
+>> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+>> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+>> @@ -489,6 +489,145 @@ void xe_ggtt_node_remove_balloon(struct xe_ggtt_node *node)
+>>   	xe_ggtt_node_fini(node);
 >>   }
 >>   
->> +static inline u32 ctb_read32(struct xe_device *xe, struct iosys_map *cmds,
-> drop "inline" and let compiler do the job
-
-That keyword does not prevent any compiler from doing its job. The 
-compiler still
-
-decides whether it inlines or not, this just alters the wages used to 
-make the decision.
-
-Regardless, sure - can remove. It will get inlined either way.
-
->> +			     u32 head, u32 pos)
+>> +static u64 drm_mm_node_end(struct drm_mm_node *node)
 >> +{
->> +	u32 msg[1];
->> +
->> +	xe_map_memcpy_from(xe, msg, cmds, (head + pos) * sizeof(u32),
->> +			   1 * sizeof(u32));
->> +	return msg[0];
+>> +	return node->start + node->size;
 >> +}
 >> +
->> +static inline void ctb_fixup64(struct xe_device *xe, struct iosys_map *cmds,
-> same here
+>> +u64 xe_ggtt_node_end(struct xe_ggtt_node *node)
+> please add proper kernel-doc
+will remove instead.
+>> +{
+>> +	return drm_mm_node_end(&node->base);
+>> +}
+>> +
+>> +static void xe_ggtt_mm_shift_nodes(struct xe_ggtt *ggtt, struct drm_mm_node *balloon_beg,
+>> +				struct drm_mm_node *balloon_fin, s64 shift)
+>> +{
+>> +	struct drm_mm_node *node, *tmpn;
+>> +	int err;
+>> +	LIST_HEAD(temp_list_head);
+> nit: please reorder vars to follow reverse-xmas-tree style
+I did commented on that request in the previous round.. but ok, can do.
+>> +
+>> +	lockdep_assert_held(&ggtt->lock);
+>> +
+>> +	/*
+>> +	 * Move nodes, from range previously assigned to this VF, into temp list.
+> hmm, now that function is taking generic params, maybe all this comment
+> should be in the VF file as full kernel-doc explaining GGTT fixup steps?
+
+I don't have a strong opinion on docs location. If you provide details 
+of your idea, I can move that.
+
+Though this is only one of the fixups applied. I hope we're not leaning 
+towards making kerneldoc
+
+chapters about all of them.
+
+>> +	 *
+>> +	 * The balloon_beg and balloon_fin nodes are there to eliminate unavailable
+>> +	 * ranges from use: first reserves the GGTT area below the range for current VF,
+>> +	 * and second reserves area above.
+>> +	 *
+>> +	 * Below is a GGTT layout of example VF, with a certain address range assigned to
+>> +	 * said VF, and inaccessible areas above and below:
+>> +	 *
+>> +	 *  0                                                                        4GiB
+>> +	 *  |<--------------------------- Total GGTT size ----------------------------->|
+>> +	 *      WOPCM                                                         GUC_TOP
+>> +	 *      |<-------------- Area mappable by xe_ggtt instance ---------------->|
+>> +	 *
+>> +	 *  +---+---------------------------------+----------+----------------------+---+
+>> +	 *  |\\\|/////////////////////////////////|  VF mem  |//////////////////////|\\\|
+>> +	 *  +---+---------------------------------+----------+----------------------+---+
+> hmm, I'm wondering if maybe after all recent GGTT refactoring it would
+> be easier to trim VF's xe_ggtt size at init() instead of playing with
+> two balloons?
 >
->> +			       u32 head, u32 pos, s64 shift)
->> +{
->> +	u32 msg[2];
->> +	u64 offset;
->> +
->> +	xe_map_memcpy_from(xe, msg, cmds, (head + pos) * sizeof(u32),
->> +			   2 * sizeof(u32));
->> +	offset = make_u64(msg[1], msg[0]);
->> +	offset += shift;
->> +	msg[0] = lower_32_bits(offset);
->> +	msg[1] = upper_32_bits(offset);
->> +	xe_map_memcpy_to(xe, cmds, (head + pos) * sizeof(u32), msg, 2 * sizeof(u32));
->> +}
->> +
->> +/*
->> + * ct_update_addresses_in_message - Shift any GGTT addresses within
->> + * a single message left within CTB from before post-migration recovery.
->> + * @ct: pointer to CT struct of the target GuC
->> + * @cmds: iomap buffer containing CT messages
->> + * @head: start of the target message within the buffer
->> + * @len: length of the target message
->> + * @size: size of the commands buffer
->> + * @shift: the address shift to be added to each GGTT reference
->> + */
->> +static void ct_update_addresses_in_message(struct xe_guc_ct *ct,
->> +					   struct iosys_map *cmds, u32 head,
->> +					   u32 len, u32 size, s64 shift)
->> +{
->> +	struct xe_device *xe = ct_to_xe(ct);
->> +	u32 action, i, n;
->> +	u32 msg[1];
->> +
->> +	xe_map_memcpy_from(xe, msg, cmds, head * sizeof(u32),
->> +			   1 * sizeof(u32));
->> +	action = FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, msg[0]);
->> +	switch (action) {
->> +	case XE_GUC_ACTION_REGISTER_CONTEXT:
->> +	case XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC:
->> +		/* field wq_desc */
->> +		ctb_fixup64(xe, cmds, head, 5, shift);
-> can we add some defines in abi/ files for these magic offsets?
+> then layout will look like:
+>
+> PF:
+>      |<---------------- xe_ggtt.size ----------------------------->|
+> +---+-------------------------------------------------------------+---+
+> |   |/////////////////////////////////////////////////////////////|   |
+> +---+-------------------------------------------------------------+---+
+>
+>
+> VF: before migration
+>                     xe_ggtt.size |<-------->|
+> +---+---------------------------+----------+----------------------+---+
+> |                               |//////////|                          |
+> +---+---------------------------+----------+----------------------+---+
+>
+> VF: after migration
+>                                      xe_ggtt.size |<-------->|
+> +---+--------------------------------------------+----------+-----+---+
+> |                                                |//////////|         |
+> +---+--------------------------------------------+----------+-----+---+
 
-The code will not by cleaner this way. But sure, will introduce some enums.
+That is a change which would require address space shifting capability 
+in drm_mm, and
 
-(based on current look, the abi file seem to prefer enums over defines)
+changes outside the scope of these patches. I will try to prepare an RFC 
+for the drm_mm
 
->> +		/* field wq_base */
->> +		ctb_fixup64(xe, cmds, head, 7, shift);
->> +		if (action == XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC) {
->> +			/* field number_children */
->> +			n = ctb_read32(xe, cmds, head, 10);
->> +			/* field hwlrca and child lrcas */
->> +			for (i = 0; i < n; i++)
->> +				ctb_fixup64(xe, cmds, head, 11 + 2 * i, shift);
->> +		} else {
->> +			/* field hwlrca */
->> +			ctb_fixup64(xe, cmds, head, 10, shift);
->> +		}
->> +		break;
->> +	default:
->> +		break;
+part, then we'll see whether this is viable.
+
+>> +	 *
+>> +	 * Hardware enforced access rules before migration:
+>> +	 *
+>> +	 *  |<------- inaccessible for VF ------->|<VF owned>|<-- inaccessible for VF ->|
+>> +	 *
+>> +	 * drm_mm nodes used for tracking allocations:
+>> +	 *
+>> +	 *     |<----------- balloon ------------>|<- nodes->|<----- balloon ------>|
+>> +	 *
+>> +	 * After the migration, GGTT area assigned to the VF might have shifted, either
+>> +	 * to lower or to higher address. But we expect the total size and extra areas to
+>> +	 * be identical, as migration can only happen between matching platforms.
+>> +	 * Below is an example of GGTT layout of the VF after migration. Content of the
+>> +	 * GGTT for VF has been moved to a new area, and we receive its address from GuC:
+>> +	 *
+>> +	 *  +---+----------------------+----------+---------------------------------+---+
+>> +	 *  |\\\|//////////////////////|  VF mem  |/////////////////////////////////|\\\|
+>> +	 *  +---+----------------------+----------+---------------------------------+---+
+>> +	 *
+>> +	 * Hardware enforced access rules after migration:
+>> +	 *
+>> +	 *  |<- inaccessible for VF -->|<VF owned>|<------- inaccessible for VF ------->|
+>> +	 *
+>> +	 * So the VF has a new slice of GGTT assigned, and during migration process, the
+>> +	 * memory content was copied to that new area. But the drm_mm nodes within xe kmd
+>> +	 * are still tracking allocations using the old addresses. The nodes within VF
+>> +	 * owned area have to be shifted, and balloon nodes need to be resized to
+>> +	 * properly mask out areas not owned by the VF.
+>> +	 *
+>> +	 * Fixed drm_mm nodes used for tracking allocations:
+>> +	 *
+>> +	 *     |<------ balloon ------>|<- nodes->|<----------- balloon ----------->|
+>> +	 *
+>> +	 * Due to use of GPU profiles, we do not expect the old and new GGTT ares to
+>> +	 * overlap; but our node shifting will fix addresses properly regardless.
+> whether we use profile or not, we shouldn't make any assumptions about
+> overlap, so maybe just skip that comment?
+
+The profiles are part of SRIOV architecture. Without a comment, it 
+should be assumed that the code
+
+is only compliant with use cases from said architecture.
+
+>> +	 *
+>> +	 */
+>> +	drm_mm_for_each_node_in_range_safe(node, tmpn, &ggtt->mm,
+>> +					   drm_mm_node_end(balloon_beg),
+>> +					   balloon_fin->start) {
+>> +		drm_mm_remove_node(node);
+>> +		list_add(&node->node_list, &temp_list_head);
+>> +	}
+>> +
+>> +	/* shift and re-add ballooning nodes */
+>> +	if (drm_mm_node_allocated(balloon_beg))
+>> +		drm_mm_remove_node(balloon_beg);
+>> +	if (drm_mm_node_allocated(balloon_fin))
+>> +		drm_mm_remove_node(balloon_fin);
+>> +	balloon_beg->size += shift;
+>> +	balloon_fin->start += shift;
+>> +	balloon_fin->size -= shift;
+>> +	if (balloon_beg->size != 0) {
+>> +		err = drm_mm_reserve_node(&ggtt->mm, balloon_beg);
+>> +		xe_tile_assert(ggtt->tile, !err);
+>> +	}
+>> +	if (balloon_fin->size != 0) {
+>> +		err = drm_mm_reserve_node(&ggtt->mm, balloon_fin);
+>> +		xe_tile_assert(ggtt->tile, !err);
+>> +	}
+>> +
+>> +	/*
+>> +	 * Now the GGTT VM contains only nodes outside of area assigned to this VF.
+>> +	 * We can re-add all VF nodes with shifted offsets.
+>> +	 */
+>> +	list_for_each_entry_safe(node, tmpn, &temp_list_head, node_list) {
+>> +		list_del(&node->node_list);
+>> +		node->start += shift;
+>> +		err = drm_mm_reserve_node(&ggtt->mm, node);
+>> +		xe_tile_assert(ggtt->tile, !err);
 >> +	}
 >> +}
 >> +
->> +static int ct_update_addresses_in_buffer(struct xe_guc_ct *ct,
->> +					 struct guc_ctb *h2g,
->> +					 s64 shift, u32 *mhead, s32 avail)
+>> +void xe_ggtt_node_shift_nodes(struct xe_ggtt *ggtt, struct xe_ggtt_node *balloon_beg,
+>> +			      struct xe_ggtt_node *balloon_fin, s64 shift)
+> don't forget about kernel-doc
+will add.
 >> +{
->> +	struct xe_device *xe = ct_to_xe(ct);
->> +	u32 head = *mhead;
->> +	u32 size = h2g->info.size;
->> +	u32 msg[1];
->> +	u32 len;
+>> +	struct drm_mm_node *balloon_mm_beg, *balloon_mm_end;
+>> +	struct drm_mm_node loc_beg, loc_end;
 >> +
->> +	/* Read header */
->> +	xe_map_memcpy_from(xe, msg, &h2g->cmds, sizeof(u32) * head,
->> +			   sizeof(u32));
->> +	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
->> +
->> +	if (unlikely(len > (u32)avail)) {
->> +		struct xe_gt *gt = ct_to_gt(ct);
->> +
->> +		xe_gt_err(gt, "H2G channel broken on read, avail=%d, len=%d, fixups skipped\n",
->> +			  avail, len);
->> +		return 0;
+>> +	if (balloon_beg && balloon_beg->ggtt)
+>> +		balloon_mm_beg = &balloon_beg->base;
+>> +	else {
+>> +		loc_beg.color = 0;
+>> +		loc_beg.flags = 0;
+>> +		loc_beg.start = xe_wopcm_size(ggtt->tile->xe);
+>> +		loc_beg.size = 0;
+>> +		balloon_mm_beg = &loc_beg;
 >> +	}
 >> +
->> +	head = (head + 1) % size;
->> +	ct_update_addresses_in_message(ct, &h2g->cmds, head, len - 1, size, shift);
->> +	*mhead = (head + len - 1) % size;
->> +
->> +	return avail - len;
->> +}
->> +
->> +/**
->> + * xe_guc_ct_update_addresses - Fixup any pending H2G CTB messages by updating
->> + * GGTT offsets in their payloads.
->> + * @ct: pointer to CT struct of the target GuC
->> + * @ggtt_shift: shift to be added to all GGTT adresses within the CTB
-> typo: addresses
->
-> Return: ?
-to the void with it.
->> + */
->> +int xe_guc_ct_update_addresses(struct xe_guc_ct *ct, s64 ggtt_shift)
->> +{
->> +	struct xe_guc *guc = ct_to_guc(ct);
->> +	struct xe_gt *gt = guc_to_gt(guc);
->> +	struct guc_ctb *h2g = &ct->ctbs.h2g;
->> +	u32 head = h2g->info.head;
->> +	u32 tail = READ_ONCE(h2g->info.tail);
->> +	u32 size = h2g->info.size;
->> +	s32 avail;
-> should we care if CTB was disabled when the VF was migrated?
-
-If CTBs were not registered during migration, then we shouldn't have 
-received an IRQ.
-
-If a situation happened when CTBs were not registered and we did got an 
-IRQ (which means
-
-the user must have been doing some unusual stuff within the VM), we 
-should finish the
-
-migration by reset. But that is not a part of this patch.
-
->> +
->> +	if (unlikely(h2g->info.broken))
->> +		return -EPIPE;
-> if it was broken before migration then maybe fixup is not needed and we
-> should return a success here?
-
-The fixups for CTB are not needed, but the rest still has to be applied.
-
-We are continuing the fixups regardless of error codes from previous 
-ones, except
-
-for the VMAs fixups for which error path was altered after previous 
-round of review.
-
->> +
->> +	xe_gt_assert(gt, head > size);
-> hmm, is this correct?
-right, my mistake
->> +
->> +	if (unlikely(tail >= size)) {
->> +		xe_gt_err(gt, "H2G channel has invalid tail offset (%u >= %u)\n",
->> +			 tail, size);
-> maybe just extend xe_gt_err() below with extra info instead of this
-> split into two error messages that is from one error case anyway?
->
-> btw, I hope that we will have a clear indication that such error was
-> found during recovery (as now it looks like generic CTB error)
-will merge.
->> +		goto corrupted;
+>> +	if (balloon_fin && balloon_fin->ggtt)
+>> +		balloon_mm_end = &balloon_fin->base;
+>> +	else {
+>> +		loc_end.color = 0;
+>> +		loc_end.flags = 0;
+>> +		loc_end.start = GUC_GGTT_TOP;
+>> +		loc_end.size = 0;
+>> +		balloon_mm_end = &loc_end;
 >> +	}
 >> +
->> +	avail = tail - head;
->> +
->> +	/* beware of buffer wrap case */
->> +	if (unlikely(avail < 0))
->> +		avail += size;
->> +	xe_gt_dbg(gt, "available %d (%u:%u:%u)\n", avail, head, tail, size);
->> +	XE_WARN_ON(avail < 0);
-> use xe_gt_assert() instead
-ok.
->> +
->> +	while (avail > 0)
->> +		avail = ct_update_addresses_in_buffer(ct, h2g, ggtt_shift, &head, avail);
->> +
->> +	return 0;
->> +
->> +corrupted:
->> +	xe_gt_err(gt, "Corrupted descriptor head=%u tail=%u\n",
->> +		 head, tail);
-> no need to wrap (yet)
->
->> +	h2g->info.broken = true;
->> +	return -EPIPE;
+>> +	xe_ggtt_mm_shift_nodes(ggtt, balloon_mm_beg, balloon_mm_end, shift);
 >> +}
 >> +
->>   static struct xe_guc_ct_snapshot *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic,
->>   							bool want_ctb)
->>   {
->> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
->> index 82c4ae458dda..25e5ee71d853 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
->> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
->> @@ -22,6 +22,8 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_pr
->>   void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
->>   void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
+>>   /**
+>>    * xe_ggtt_node_insert_locked - Locked version to insert a &xe_ggtt_node into the GGTT
+>>    * @node: the &xe_ggtt_node to be inserted
+>> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+>> index 27e7d67de004..3d2ca6f7185d 100644
+>> --- a/drivers/gpu/drm/xe/xe_ggtt.h
+>> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
+>> @@ -18,12 +18,15 @@ void xe_ggtt_node_fini(struct xe_ggtt_node *node);
+>>   int xe_ggtt_node_insert_balloon(struct xe_ggtt_node *node,
+>>   				u64 start, u64 size);
+>>   void xe_ggtt_node_remove_balloon(struct xe_ggtt_node *node);
+>> +void xe_ggtt_node_shift_nodes(struct xe_ggtt *ggtt, struct xe_ggtt_node *balloon_beg,
+>> +			      struct xe_ggtt_node *balloon_fin, s64 shift);
 >>   
->> +int xe_guc_ct_update_addresses(struct xe_guc_ct *ct, s64 ggtt_shift);
-> nit: maybe ... update_messages() or fixup_messages_with_ggtt() ?
-ok, will rename.
+>>   int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align);
+>>   int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
+>>   			       u32 size, u32 align, u32 mm_flags);
+>>   void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
+>>   bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
+>> +u64 xe_ggtt_node_end(struct xe_ggtt_node *node);
+>>   void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+>>   int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+>>   int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>> index cca5d5732802..a1841862c97e 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>> @@ -389,6 +389,7 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
+>>   	xe_gt_sriov_dbg_verbose(gt, "GGTT %#llx-%#llx = %lluK\n",
+>>   				start, start + size - 1, size / SZ_1K);
+>>   
+>> +	config->ggtt_shift = start - (s64)config->ggtt_base;
+> is this explicit cast really needed ?
+
+"needed.."
+
+Due to the characteristics of two's complement system, not having the 
+cast would lead to valid s64 result on all relevant CPUs.
+
+But according to C specification, result of arithmetic subtraction will 
+be unsigned if both arguments are unsigned (see "Usual arithmetic 
+conversions" for details). So for logic compliance with C standard, the 
+cast is indeed needed.
+
+While in all relevant CPUs the unsigned underflow works as expected, the 
+C spec defines it as undefined behavior in the chapter mentioned before.
+
+>>   	config->ggtt_base = start;
+>>   	config->ggtt_size = size;
+>>   
+>> @@ -912,6 +913,30 @@ int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt)
+>>   	return err;
+>>   }
+>>   
+>> +/**
+>> + * - Shift GGTT allocations to match assigned range.
+>> + * @gt: the &xe_gt struct instance
+>> + *
+>> + * Since Global GTT is not virtualized, each VF has an assigned range
+>> + * within the global space. This range might have changed during migration,
+>> + * which requires all memory addresses pointing to GGTT to be shifted.
+> Return: ?
+will add.
+>> + */
+>> +int xe_gt_sriov_vf_fixup_ggtt_nodes(struct xe_gt *gt)
+>> +{
+>> +	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
+>> +	struct xe_tile *tile = gt_to_tile(gt);
+>> +	struct xe_ggtt *ggtt = tile->mem.ggtt;
+>> +	s64 ggtt_shift;
 >> +
->>   static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
+>> +	mutex_lock(&ggtt->lock);
+>> +	ggtt_shift = config->ggtt_shift;
+>> +	if (ggtt_shift)
+>> +		xe_ggtt_node_shift_nodes(ggtt, tile->sriov.vf.ggtt_balloon[0],
+>> +					 tile->sriov.vf.ggtt_balloon[1], ggtt_shift);
+>> +	mutex_unlock(&ggtt->lock);
+>> +	return ggtt_shift ? 0 : ENODATA;
+>> +}
+>> +
+>>   static int vf_runtime_reg_cmp(const void *a, const void *b)
 >>   {
->>   	return ct->state == XE_GUC_CT_STATE_ENABLED;
+>>   	const struct vf_runtime_reg *ra = a;
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>> index 912d20814261..49af35484a57 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>> @@ -17,6 +17,7 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
+>>   int xe_gt_sriov_vf_connect(struct xe_gt *gt);
+>>   int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
+>>   int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
+>> +int xe_gt_sriov_vf_fixup_ggtt_nodes(struct xe_gt *gt);
+>>   int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
+>>   void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+>>   
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>> index a57f13b5afcd..5ccbdf8d08b6 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>> @@ -40,6 +40,8 @@ struct xe_gt_sriov_vf_selfconfig {
+>>   	u64 ggtt_base;
+>>   	/** @ggtt_size: assigned size of the GGTT region. */
+>>   	u64 ggtt_size;
+>> +	/** @ggtt_shift: difference in ggtt_base on last migration */
+>> +	s64 ggtt_shift;
+>>   	/** @lmem_size: assigned size of the LMEM. */
+>>   	u64 lmem_size;
+>>   	/** @num_ctxs: assigned number of GuC submission context IDs. */
 >> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
->> index 4ee8fc70a744..1cb8878e6fad 100644
+>> index c1275e64aa9c..4ee8fc70a744 100644
 >> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
 >> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
->> @@ -10,6 +10,7 @@
->>   #include "xe_gt.h"
+>> @@ -7,6 +7,7 @@
+>>   
+>>   #include "xe_assert.h"
+>>   #include "xe_device.h"
+>> +#include "xe_gt.h"
 >>   #include "xe_gt_sriov_printk.h"
 >>   #include "xe_gt_sriov_vf.h"
->> +#include "xe_guc_ct.h"
 >>   #include "xe_pm.h"
->>   #include "xe_sriov.h"
->>   #include "xe_sriov_printk.h"
->> @@ -158,6 +159,18 @@ static int vf_post_migration_requery_guc(struct xe_device *xe)
->>   	return ret;
+>> @@ -170,6 +171,26 @@ static bool vf_post_migration_imminent(struct xe_device *xe)
+>>   	work_pending(&xe->sriov.vf.migration.worker);
 >>   }
 >>   
->> +static void vf_post_migration_fixup_ctb(struct xe_device *xe)
+>> +static int vf_post_migration_fixup_ggtt_nodes(struct xe_device *xe)
 >> +{
->> +	struct xe_gt *gt;
+>> +	struct xe_tile *tile;
 >> +	unsigned int id;
+>> +	int err;
 >> +
-> since you are accessing sriov.vf fields directly, maybe worth to add
->
-> 	xe_assert(xe, IS_SRIOV_VF(xe))
-can do. Even though it's a static function.
->> +	for_each_gt(gt, xe, id) {
->> +		struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
+>> +	for_each_tile(tile, xe, id) {
+>> +		struct xe_gt *gt = tile->primary_gt;
+>> +		int ret;
 >> +
->> +		xe_guc_ct_update_addresses(&gt->uc.guc.ct, config->ggtt_shift);
-> this function returns int, shouldn't we check for errors?
-> if not then maybe make it void
-ok, will void it then.
+>> +		/* media doesn't have its own ggtt */
+>> +		if (xe_gt_is_media_type(gt))
+>> +			continue;
+>> +		ret = xe_gt_sriov_vf_fixup_ggtt_nodes(gt);
+>> +		if (ret != ENODATA)
+>> +			err = ret;
 >> +	}
+>> +	return err;
 >> +}
 >> +
 >>   /*
->>    * vf_post_migration_imminent - Check if post-restore recovery is coming.
->>    * @xe: the &xe_device struct instance
->> @@ -224,6 +237,9 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+>>    * Notify all GuCs about resource fixups apply finished.
+>>    */
+>> @@ -201,6 +222,7 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+>>   	if (unlikely(err))
+>>   		goto fail;
 >>   
->>   	err = vf_post_migration_fixup_ggtt_nodes(xe);
+>> +	err = vf_post_migration_fixup_ggtt_nodes(xe);
 >>   	/* FIXME: add the recovery steps */
-> will be more recovery steps _here_ or below ?
+> nit: ... add *more* recovery steps ... ?
 
-here. The comment is at proper place.
+the idea of this comment is to alter the code around it, not to continue 
+adding only slightly relevant fixes to the temporary comment itself.
 
 -Tomasz
 
->> +	if (err != ENODATA)
->> +		vf_post_migration_fixup_ctb(xe);
->> +
 >>   	vf_post_migration_notify_resfix_done(xe);
 >>   	xe_pm_runtime_put(xe);
->>   	drm_notice(&xe->drm, "migration recovery ended\n");
