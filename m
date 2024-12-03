@@ -4,108 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FA71E64AAE
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 13:58:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84D5DE64AB4
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 14:33:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27DD710E47A;
-	Tue,  3 Dec 2024 13:58:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EEDF10EA34;
+	Tue,  3 Dec 2024 14:33:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="kzS0bno6";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tgycmLxe";
 	dkim-atps=neutral
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com
- [209.85.208.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FD3C10E47A
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Dec 2024 13:58:12 +0000 (UTC)
-Received: by mail-lj1-f177.google.com with SMTP id
- 38308e7fff4ca-2ffd796ba0aso54722591fa.3
- for <intel-xe@lists.freedesktop.org>; Tue, 03 Dec 2024 05:58:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1733234291; x=1733839091; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=Pj5SaA33rGzeah/pbmVRQIoqaIyNVExU4n/MvIb6OOM=;
- b=kzS0bno6VkoUaC6sICl5OB/3XbyxpU/aaO2kIlsL6o0CRZKNEXkgzAmHQNK4A+r4Rw
- wCG53nqIWVrcA+FAh68x3Q1n7S2BfORvR8MlNEenXVibjdlPzGMOobwiO8Cj5MhUlOHE
- tpzFhPyA42GKe1Ta85WPycoh3z7EZFNWpS8CDKXxvSrripw1jzehX0+W2obfBGAdDML8
- 3jg16VcLw3h8VN8L1ZtKdpdrHwd5Y86GFSY6fZytB6Y3du9l1sDUqgoJV3fAgJG2Sgzt
- mDODnErzAOrcLuY/CXJwc8cZLJVBuyTqjrmzJJSILNzvm2nzOl7hVgjon2XoQED+f3gG
- 38jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733234291; x=1733839091;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Pj5SaA33rGzeah/pbmVRQIoqaIyNVExU4n/MvIb6OOM=;
- b=SrbfbBUIhuthAuXW2ZXGQ6WbPo57btU3aYVyalq82ShG7rDFKluIJZwVWEFnakFpG5
- V06y1zdWURI/2bDqi8TksTghbyJYC0N3TTP9szki27XN3Y9PNL6VlxgqOQqgzdykHCS6
- 3YwA1ilsdFFYDlQ4IKgmcR+6uChWkk8ioi3xG2qa1Y7vDnqi/gTnOjXv/o8xr7s+4T8v
- Y8IKHobdIK+Y3J7hHHyV+E2ItJO+dvU7iGeTCaZiahuqM/AmquwKUVX3kNVY4A/vOYHE
- xW0bKi7cDYwq2lgq/z2gpjIRrgQ/cwLwD8RpVUrLbd31tFjQHMLOjzSHf2oFeJOfO2Ye
- wwow==
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37E6610EA34;
+ Tue,  3 Dec 2024 14:33:35 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id DD51CA4163E;
+ Tue,  3 Dec 2024 14:31:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D133EC4CED9;
+ Tue,  3 Dec 2024 14:33:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1733236413;
+ bh=vkfocJidFOsWJ8j4r+2upwNbeaCg2X4r0idWMhyeuzk=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=tgycmLxenk4BVErw7oDmDKzYWEi/lJ7j2qV1fODOZzNJ+DBrJOFj9wKp9h1vZucQL
+ mVX3bd/uYvyRkKFAANZREdfo6hmau6A8AwmNafB2ws4feDnzmEh28ulv32qRszIf2W
+ tJ/k48U3z0Pj4gfjskzqpJu9sXXf9bqa2FC9QtaeOH0XGRmAEh4OPB6zlo8h8LRlX+
+ mDqdDnRHEgm4lAEyxdIufrrH+Rhlz9jBeXl0ELbPsMjdKq9VVMSKeTuiBdy7Hjh44W
+ dNF01Zj30SIjSM0p1en7HNjWN40zgFz2WQWC5HicRJXNjMz1byjRgUjuDpQSVQ7tjc
+ zRhWOgpTqN+Xg==
+Received: by mail-oa1-f54.google.com with SMTP id
+ 586e51a60fabf-29e3721ded9so1960311fac.0; 
+ Tue, 03 Dec 2024 06:33:33 -0800 (PST)
 X-Forwarded-Encrypted: i=1;
- AJvYcCW70u7cD/CZOPCcxKuGJww7ruTZHYKKFZFzoV0iLnGR/O8N5aSVQDo3Y2sZyfJsU6dNT0Tt1XOfMg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxLmFBJ1qkw1UrnxAoxgZ2jKEXMDeQM/8kxwuBV8vE6I8/nnRYD
- 4JfBjpnQx/Z8YTVL6AeWuwZ4++yCXxkPyrvc6s2RnYGZuoC4Gq0Lfb4T0mSCDW0=
-X-Gm-Gg: ASbGncvcSm6Dqq34A2SeCBPXuq1pGdzxqKjD7rVPRaDEQ1cE6E+1pMGbhCfKjU/KtrM
- JqA78lydx6LgFGU/VQo8XsC7grFoUZ1d2mnp8y82kdhD074RScAn9OSUEdkdMAGj7GOZ58sN93p
- R18DbII/fbYQ8Gu0TgZ17mlPP8Bt4En7KZfJMXMmnQq73w+BaWFYV7tTlH977UESqZ7iFIypLL1
- L/cpRlmnlnAlO744XuFdeNqkNXgXKCliM7QcMGilM/CuJ56btLMCo1PjqKjcAYV7VlyWUKK6JIQ
- 77gPO+IK9K4Gp4N0mU7gBoz/HXw1uQ==
-X-Google-Smtp-Source: AGHT+IHfqup3wRu/YlQwHjftG9hZZW4Odf6KSlTWBL24IqkfpJKbOUgrh1DX0z2m6JH7KpitaUiUxw==
-X-Received: by 2002:a05:6512:2810:b0:53d:cf78:f240 with SMTP id
- 2adb3069b0e04-53e12a2e9bcmr1842991e87.35.1733234290592; 
- Tue, 03 Dec 2024 05:58:10 -0800 (PST)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-53df6496a43sm1829234e87.213.2024.12.03.05.58.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Dec 2024 05:58:09 -0800 (PST)
-Date: Tue, 3 Dec 2024 15:58:07 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Phong LE <ple@baylibre.com>, Inki Dae <inki.dae@samsung.com>, 
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>,
- Alain Volmat <alain.volmat@foss.st.com>, 
- Raphael Gallais-Pou <rgallaispou@gmail.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
-Subject: Re: [PATCH 07/10] drm/msm/dp: use eld_mutex to protect access to
- connector->eld
-Message-ID: <n2zmw4wquxzht6gvlx6yjurpobgwlsryh75n5gw65j5vjclhgr@jqubqjispqsr>
-References: <20241201-drm-connector-eld-mutex-v1-0-ba56a6545c03@linaro.org>
- <20241201-drm-connector-eld-mutex-v1-7-ba56a6545c03@linaro.org>
- <ca906dc4-ac72-4a76-a670-36c011c853c9@quicinc.com>
+ AJvYcCUJ6vtlSEyDfUGVbT22M12l9yHl70AcY/pjQzx1s/+a5A5v+/iQEYMybdcIuFiopNzcY5Y4HV2R0h4=@lists.freedesktop.org,
+ AJvYcCUszdQvbETzN9m9vXFN27qt7jJwu7BOedskZb0Pkwx1utHhRDdrRjqn1uSNCo6A9oZ+5ekJ22efuBs=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz+JpND5UDIAL8wvhP5WslIWCOBv5Skie3vvHYUrMdMtG/KJLG/
+ 7V6ungKGbg+eydcASsCT8c7O6JSeSNRcvHLIU7SpFidqPdodEqC6Y6ed+glJmqme+pm6K2TFK4C
+ CmXPdR3EdkErh1szSNnURNDuLRR0=
+X-Google-Smtp-Source: AGHT+IHpr7QHC7AIP/SBz1FrBthPRXkSIECwIwn6uZOMArYMtH1Q7RTuZ78swhIHEAEOKi+pvFatzpdTEtl4v9YyFFo=
+X-Received: by 2002:a05:6871:606:b0:296:ee2e:a23c with SMTP id
+ 586e51a60fabf-29e88560c9bmr2902777fac.5.1733236413021; Tue, 03 Dec 2024
+ 06:33:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ca906dc4-ac72-4a76-a670-36c011c853c9@quicinc.com>
+References: <SJ1PR11MB6129CCD82CD78D8EE6E27EF4B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <SJ1PR11MB612965ACA3E84745346F0400B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <5e405ad4-34d6-4507-978f-3d81d4af2455@t-8ch.de>
+ <CAJZ5v0iXKvaxz-hmW2+qwTcSmtPJ23Hv04CMnmT=qPE0ytNwLg@mail.gmail.com>
+ <56d574c6-6eab-4388-8cb8-70cd615a8941@t-8ch.de>
+In-Reply-To: <56d574c6-6eab-4388-8cb8-70cd615a8941@t-8ch.de>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Tue, 3 Dec 2024 15:33:21 +0100
+X-Gmail-Original-Message-ID: <CAJZ5v0gFwu+6Cm7ORs7+TAc5jzXZRBO1uGcttBTTvK4OqT3Q6g@mail.gmail.com>
+Message-ID: <CAJZ5v0gFwu+6Cm7ORs7+TAc5jzXZRBO1uGcttBTTvK4OqT3Q6g@mail.gmail.com>
+Subject: Re: Regression on linux-next (next-20241120) and drm-tip
+To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, 
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Coelho,
+ Luciano" <luciano.coelho@intel.com>, 
+ "Saarinen, Jani" <jani.saarinen@intel.com>, "Nikula,
+ Jani" <jani.nikula@intel.com>, 
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,24 +83,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Dec 02, 2024 at 07:27:45PM -0800, Abhinav Kumar wrote:
-> 
-> 
-> On 11/30/2024 3:55 PM, Dmitry Baryshkov wrote:
-> > Reading access to connector->eld can happen at the same time the
-> > drm_edid_to_eld() updates the data. Take the newly added eld_mutex in
-> > order to protect connector->eld from concurrent access.
-> > 
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >   drivers/gpu/drm/msm/dp/dp_audio.c | 2 ++
-> >   1 file changed, 2 insertions(+)
-> > 
-> 
-> Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+On Tue, Dec 3, 2024 at 1:04=E2=80=AFPM Thomas Wei=C3=9Fschuh <linux@weisssc=
+huh.net> wrote:
+>
+> On 2024-12-03 12:54:54+0100, Rafael J. Wysocki wrote:
+> > On Tue, Dec 3, 2024 at 7:51=E2=80=AFAM Thomas Wei=C3=9Fschuh <linux@wei=
+ssschuh.net> wrote:
+> > >
+> > > (+Cc Sebastian)
+> > >
+> > > Hi Chaitanya,
+> > >
+> > > On 2024-12-03 05:07:47+0000, Borah, Chaitanya Kumar wrote:
+> > > > Hope you are doing well. I am Chaitanya from the linux graphics tea=
+m in Intel.
+> > > >
+> > > > This mail is regarding a regression we are seeing in our CI runs[1]=
+ on linux-next repository.
+> > >
+> > > Thanks for the report.
+> > >
+> > > > Since the version next-20241120 [2], we are seeing the following re=
+gression
+> > > >
+> > > > ```````````````````````````````````````````````````````````````````=
+``````````````
+> > > > <4>[   19.990743] Oops: general protection fault, probably for non-=
+canonical address 0xb11675ef8d1ccbce: 0000 [#1] PREEMPT SMP NOPTI
+> > > > <4>[   19.990760] CPU: 21 UID: 110 PID: 867 Comm: prometheus-node N=
+ot tainted 6.12.0-next-20241120-next-20241120-gac24e26aa08f+ #1
+> > > > <4>[   19.990771] Hardware name: Intel Corporation Arrow Lake Clien=
+t Platform/MTL-S UDIMM 2DPC EVCRB, BIOS MTLSFWI1.R00.4400.D85.2410100007 10=
+/10/2024
+> > > > <4>[   19.990782] RIP: 0010:power_supply_get_property+0x3e/0xe0
+> > > > ```````````````````````````````````````````````````````````````````=
+``````````````
+> > > > Details log can be found in [3].
+> > > >
+> > > > After bisecting the tree, the following patch [4] seems to be the f=
+irst "bad"
+> > > > commit
+> > > >
+> > > > ```````````````````````````````````````````````````````````````````=
+``````````````````````````````````````
+> > > > Commit 49000fee9e639f62ba1f965ed2ae4c5ad18d19e2
+> > > > Author:     Thomas Wei=C3=9Fschuh <mailto:linux@weissschuh.net>
+> > > > AuthorDate: Sat Oct 5 12:05:03 2024 +0200
+> > > > Commit:     Sebastian Reichel <mailto:sebastian.reichel@collabora.c=
+om>
+> > > > CommitDate: Tue Oct 15 22:22:20 2024 +0200
+> > > >     power: supply: core: add wakeup source inhibit by power_supply_=
+config
+> > > > ```````````````````````````````````````````````````````````````````=
+``````````````````````````````````````
+> > > >
+> > > > This is now seen in our drm-tip runs as well. [5]
+> > > >
+> > > > Could you please check why the patch causes this regression and pro=
+vide a fix if necessary?
+> > >
+> > > I don't see how this patch can lead to this error.
+> >
+> > It looks like the cfg->no_wakeup_source access reaches beyond the
+> > struct boundary for some reason.
+>
+> But the access to this field is only done in __power_supply_register().
+> The error reports however don't show this function at all,
+> they come from power_supply_uevent() and power_supply_get_property() by
+> which time the call to __power_supply_register() is long over.
+>
+> FWIW there is an uninitialized 'struct power_supply_config' in
+> drivers/hid/hid-corsair-void.c. But I highly doubt the test machines are
+> using that. (I'll send a patch later for it)
 
-Ack to merge through drm-misc?
+So the only way I can think about in which the commit in question may
+lead to the reported issues is that changing the size of struct
+power_supply_config or its alignment makes an unexpected functional
+difference somewhere.
 
--- 
-With best wishes
-Dmitry
+AFAICS, this commit cannot be reverted by itself, so which commits on
+top of it need to be reverted in order to revert it cleanly?
