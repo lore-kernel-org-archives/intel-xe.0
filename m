@@ -4,27 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3F5BE74AC5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E4D0E74AC4
 	for <intel-xe@archiver.kernel.org>; Tue,  3 Dec 2024 16:43:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 377D310EAB7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1445D10EAB5;
 	Tue,  3 Dec 2024 16:43:12 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E186310E004;
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LvYk8zAs";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99E0810E004;
  Tue,  3 Dec 2024 16:43:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733244191; x=1764780191;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=zKIGvd+HCpPYQMyUMYoUSrcLVeCkKsGj33aEy6D6dxg=;
+ b=LvYk8zAs5cQaovy1rkuytBjobBB5jDyCNXKuy4hspq6PuANC/mPkC23t
+ qa8AmlRhqGMve90ctUkYo8hhrkGg7Q56o8K60B8xRcFbpV4qYwUIjBYie
+ RVv18cgSx2oFljr2ny/FEHkUMlem+hN4d4WaOy/xkX2yWG1DaB9vOBNC9
+ QLAShvAPCT4mzk3sn7G066aESWgS+iNUjNMZMbS2fqP15i+x/VshgBYN1
+ VDmX6DeaDndyhwQ+iGOlLW9wT+O1muLBIzy76ujFB2vKxYeudQLTVUrm8
+ N64hVIinv9nNNvuwTXYQI0KAtLReqCNkn4WauFDY06MVwQsNcHxV1w8Lz g==;
+X-CSE-ConnectionGUID: fXSv97mHRR6+CADcJOSuZw==
+X-CSE-MsgGUID: FKW8+44ORPWOfynd8Mn54A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="33602401"
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="33602401"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 08:43:10 -0800
+X-CSE-ConnectionGUID: zi16HZx3TIO8xeK605VYCg==
+X-CSE-MsgGUID: yCRmVspNRsy4gdEYSqtVJw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="116741759"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.120])
+ ([10.245.246.120])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 08:43:08 -0800
+Message-ID: <f74a7b678b5013dbcbe090bbff885827d3675247.camel@linux.intel.com>
+Subject: Re: [PATCH v14 3/8] drm/ttm/pool: Provide a helper to shrink pages
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Matthew Brost
+ <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, Paulo Zanoni
+ <paulo.r.zanoni@intel.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Date: Tue, 03 Dec 2024 17:43:05 +0100
+In-Reply-To: <bc762b0c-4fe3-48ff-b8df-14f741c91939@amd.com>
+References: <20241115150120.3280-1-thomas.hellstrom@linux.intel.com>
+ <20241115150120.3280-4-thomas.hellstrom@linux.intel.com>
+ <800ee040-7c2e-47d0-81e6-a352f5f689fb@amd.com>
+ <a07c93704bc7f59f51b5a6a13aeb3e13eee28e3c.camel@linux.intel.com>
+ <d1e33436-9c1c-43d4-a86a-956926a7096c@amd.com>
+ <73588525571a68f5638300ef171591de10ba5e5d.camel@linux.intel.com>
+ <0595e4df-86d4-4082-86ab-b77902d3020b@amd.com>
+ <cf722b696676b7383a94c2b846f8230e180ee527.camel@linux.intel.com>
+ <bc762b0c-4fe3-48ff-b8df-14f741c91939@amd.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/dp=3A_extract_payload?=
- =?utf-8?q?_helpers_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Dec 2024 16:43:10 -0000
-Message-ID: <173324419091.2068984.12595149143688464490@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <cover.1733238940.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1733238940.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,42 +77,170 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 2024-12-03 at 17:39 +0100, Christian K=C3=B6nig wrote:
+> Am 03.12.24 um 17:31 schrieb Thomas Hellstr=C3=B6m:
+> > On Tue, 2024-12-03 at 17:20 +0100, Christian K=C3=B6nig wrote:
+> > > [SNIP]
+> > > > > > > > @@ -453,9 +601,36 @@ int ttm_pool_alloc(struct ttm_pool
+> > > > > > > > *pool,
+> > > > > > > > struct ttm_tt *tt,
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0	else
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0		gfp_flags |=3D GFP_HIGHUSER=
+;
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=20
+> > > > > > > > -	for (order =3D min_t(unsigned int,
+> > > > > > > > MAX_PAGE_ORDER,
+> > > > > > > > __fls(num_pages));
+> > > > > > > > -	=C2=A0=C2=A0=C2=A0=C2=A0 num_pages;
+> > > > > > > > -	=C2=A0=C2=A0=C2=A0=C2=A0 order =3D min_t(unsigned int, or=
+der,
+> > > > > > > > __fls(num_pages)))
+> > > > > > > > {
+> > > > > > > > +	order =3D min_t(unsigned int, MAX_PAGE_ORDER,
+> > > > > > > > __fls(num_pages));
+> > > > > > > > +
+> > > > > > > > +	if (tt->page_flags &
+> > > > > > > > TTM_TT_FLAG_PRIV_BACKED_UP) {
+> > > > > > > > +		if (!tt->restore) {
+> > > > > > > > +			gfp_t gfp =3D GFP_KERNEL |
+> > > > > > > > __GFP_NOWARN;
+> > > > > > > > +
+> > > > > > > > +			if (ctx->gfp_retry_mayfail)
+> > > > > > > > +				gfp |=3D
+> > > > > > > > __GFP_RETRY_MAYFAIL;
+> > > > > > > > +
+> > > > > > > > +			tt->restore =3D
+> > > > > > > > +				kvzalloc(struct_size(t
+> > > > > > > > t-
+> > > > > > > > > restore,
+> > > > > > > > old_pages,
+> > > > > > > > +					=09
+> > > > > > > > (size_t)1
+> > > > > > > > <<
+> > > > > > > > order), gfp);
+> > > > > > > > +			if (!tt->restore)
+> > > > > > > > +				return -ENOMEM;
+> > > > > > > > +		} else if (ttm_pool_restore_valid(tt-
+> > > > > > > > > restore)) {
+> > > > > > > > +			struct ttm_pool_tt_restore
+> > > > > > > > *restore =3D
+> > > > > > > > tt-
+> > > > > > > > > restore;
+> > > > > > > > +
+> > > > > > > > +			num_pages -=3D restore-
+> > > > > > > > > alloced_pages;
+> > > > > > > > +			order =3D min_t(unsigned int,
+> > > > > > > > order,
+> > > > > > > > __fls(num_pages));
+> > > > > > > > +			pages +=3D restore-
+> > > > > > > > >alloced_pages;
+> > > > > > > > +			r =3D
+> > > > > > > > ttm_pool_restore_tt(restore,
+> > > > > > > > tt-
+> > > > > > > > > backup, ctx);
+> > > > > > > > +			if (r)
+> > > > > > > > +				return r;
+> > > > > > > > +			caching =3D restore-
+> > > > > > > > >caching_divide;
+> > > > > > > > +		}
+> > > > > > > > +
+> > > > > > > > +		tt->restore->pool =3D pool;
+> > > > > > > > +	}
+> > > > > > > Hui? Why is that part of the allocation function now?
+> > > > > > >=20
+> > > > > > > At bare minimum I would expect that this is a new
+> > > > > > > function.
+> > > > > > It's because we now have partially backed up tts, so the
+> > > > > > restore is
+> > > > > > interleaved on a per-page basis, replacing the backup
+> > > > > > handles
+> > > > > > with
+> > > > > > page-pointers. I'll see if I can separate out at least the
+> > > > > > initialization here.
+> > > > > Yeah, that kind of makes sense.
+> > > > >=20
+> > > > > My expectation was just that we now have explicit
+> > > > > ttm_pool_swapout()
+> > > > > and
+> > > > > ttm_pool_swapin() functions.
+> > > > I fully understand, although in the allocation step, that would
+> > > > also
+> > > > increase the memory pressure since we might momentarily have
+> > > > twice
+> > > > the
+> > > > bo-size allocated, if the shmem object was never swapped out,
+> > > > and
+> > > > we
+> > > > don't want to unnecessarily risc OOM at recover time, although
+> > > > that
+> > > > should be a recoverable situation now. If the OOM receiver can
+> > > > free
+> > > > up
+> > > > system memory resources they can could potentially restart the
+> > > > recover.
+> > > What I meant was more that we have ttm_pool_swapout() which does
+> > > a
+> > > mix
+> > > of moving each page to a swap backend and freeing one by one.
+> > >=20
+> > > And ttm_pool_swapin() which allocates a bit of memory (usually
+> > > one
+> > > huge
+> > > page) and then copies the content back in from the swap backend.
+> > >=20
+> > > Alternatively we could rename ttm_pool_alloc() into something
+> > > like
+> > > ttm_pool_populate() and ttm_pool_free() into
+> > > ttm_pool_unpopulate(),
+> > > but
+> > > those names are not very descriptive either.
+> > >=20
+> > > It's just that we now do a bit more than just alloc and free in
+> > > those
+> > > functions, so the naming doesn't really match that well any more.
+> > So what about ttm_pool_alloc() and ttm_pool_recover/swapin(), both
+> > pointing to the same code, but _alloc() asserts that the tt isn't
+> > backed up?
+> >=20
+> > That would give a clean interface at least.
+>=20
+> More or less ok. I would just put figuring out the gfp flags and the=20
+> stuff inside the for (order... loop into separate functions. And then
+> remove the if (tt->page_flags & TTM_TT_FLAG_PRIV_BACKED_UP) from the
+> pool.
+>=20
+> In other words you trigger the back restore by calling a different=20
+> function than the allocation one.
 
-Series: drm/dp: extract payload helpers (rev2)
-URL   : https://patchwork.freedesktop.org/series/141503/
-State : success
+I'll take a look at this as well.
 
-== Summary ==
+/Thomas
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit cf0986285464fe39e931347f02eee8df431030cc
-Author: Jani Nikula <jani.nikula@intel.com>
-Date:   Tue Dec 3 17:17:10 2024 +0200
 
-    drm/dp: extract drm_dp_dpcd_clear_payload()
-    
-    SST with 128b/132b channel coding needs this too. Extract to a separate
-    helper, independent of MST.
-    
-    Cc: Lyude Paul <lyude@redhat.com>
-    Reviewed-by: Imre Deak <imre.deak@intel.com>
-    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-+ /mt/dim checkpatch 5779fb3c12faf12589054127d60b1d36d56ba219 drm-intel
-0ffea4982932 drm/dp: extract drm_dp_dpcd_poll_act_handled()
-2b6ca1fcf3e9 drm/dp: extract drm_dp_dpcd_write_payload()
-cf0986285464 drm/dp: extract drm_dp_dpcd_clear_payload()
-
+>=20
+> >=20
+> > For a renaming change that touch all TTM drivers, I'd rather put
+> > that
+> > as a last patch since getting acks for that from all TTM driver
+> > maintainers seems like a hopeless undertaking.
+>=20
+> Yeah the acks are not the problem, merging it through the xe tree
+> would be.
+>=20
+> Christian.
+>=20
+>=20
+> >=20
+> > /Thomas
+> >=20
+> >=20
+> >=20
+> >=20
+> > > Christian.
+> > >=20
+> > > > /Thomas
+>=20
 
