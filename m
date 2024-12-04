@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6366E7716B
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 10:59:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46C63E7716B
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 11:04:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A207A10ECC9;
-	Wed,  4 Dec 2024 10:59:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n3DEkMTF";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CF6B10ECC9;
- Wed,  4 Dec 2024 10:59:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733309949; x=1764845949;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=7NKhisL6TQUVbO2jmb12FAH6FJo7Nkk26CUkUmkBrI0=;
- b=n3DEkMTFzdT0UXwFEnW5d5em08arRBRI3PRc8+PWSvtZs4w9+Nf80NOc
- 2yXa9pHJmnS8IkJBCyQmH99wL9/HrNTJpPsZWdac+87Qzee4H7AgaCrx2
- 2vvC2R1qMNdcfCFTcL5OThBM5cg1LZNEvRh5mPUO0G+R8hMiiRLBKm759
- Gat7vtZRASuwmmQmFv90DIrcg99ZAwNNjZhK3XEfErxa+pJU5MFuLzJbC
- gHkv2KNIc5fbGrKNZt8wt5ABS5TeF8GNd9Ut379DFkyAYCIcdjECpkIMg
- u0E++MjvKGjQhydwetrUmkMDbL3zoJum5iPx6OkHrFJql1pUoF+YMSnBw w==;
-X-CSE-ConnectionGUID: ju4Tyfi6T5e8UC9gVlsYXQ==
-X-CSE-MsgGUID: ObJ1C9WDTxm5p2EHbluMmQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="33700939"
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="33700939"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 02:59:09 -0800
-X-CSE-ConnectionGUID: w7xr5xM8R4aJgyn/pqmcag==
-X-CSE-MsgGUID: 3AedRhQqSpuFfAxf2gJytQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="94185502"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.205])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 02:59:07 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Mika Kahola <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: Re: [PATCH v6 0/2] drm/i915/display: Power request
- asserting/deasserting
-In-Reply-To: <20241127073200.124907-1-mika.kahola@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241127073200.124907-1-mika.kahola@intel.com>
-Date: Wed, 04 Dec 2024 12:59:04 +0200
-Message-ID: <87cyi73e9z.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14B2710ECD1;
+	Wed,  4 Dec 2024 11:04:59 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD74A10ECD1;
+ Wed,  4 Dec 2024 11:04:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/display=3A_convert_in?=
+ =?utf-8?q?tel=5Fdisplay=5Fdriver=2E=5Bch=5D_to_struct_intel=5Fdisplay?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 04 Dec 2024 11:04:57 -0000
+Message-ID: <173331029783.2429628.14151063796947683772@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241204102150.2223455-1-jani.nikula@intel.com>
+In-Reply-To: <20241204102150.2223455-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,44 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 27 Nov 2024, Mika Kahola <mika.kahola@intel.com> wrote:
-> There is a HW issue that arises when there are race conditions
-> between TCSS entering/exiting TC7 or TC10 states while the
-> driver is asserting/deasserting TCSS power request. As a
-> workaround, Display driver will implement a mailbox sequence
-> to ensure that the TCSS is in TC0 when TCSS power request is
-> asserted/deasserted.
->
-> The sequence is the following
->
-> 1. Read mailbox command status and wait until run/busy bit is
->    clear
-> 2. Write mailbox data value '1' for power request asserting
->    and '0' for power request deasserting
-> 3. Write mailbox command run/busy bit and command value with 0x1
-> 4. Read mailbox command and wait until run/busy bit is clear
->    before continuing power request.
->
-> while at it, let's start using struct intel_display instead of
-> struct drm_i915_private as well.
->
-> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+== Series Details ==
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Series: drm/i915/display: convert intel_display_driver.[ch] to struct intel_display
+URL   : https://patchwork.freedesktop.org/series/142102/
+State : success
+
+== Summary ==
+
+lib/modules/6.13.0-rc1-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc1-xe/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc1-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc1-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc1-xe/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc1-xe/kernel/kernel/
+lib/modules/6.13.0-rc1-xe/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/
+lib/modules/6.13.0-rc1-xe/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc1-xe/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/842.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc1-xe/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc1-xe/kernel/block/
+lib/modules/6.13.0-rc1-xe/kernel/block/bfq.ko
+lib/modules/6.13.0-rc1-xe/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc1-xe/build
+lib/modules/6.13.0-rc1-xe/modules.alias.bin
+lib/modules/6.13.0-rc1-xe/modules.builtin
+lib/modules/6.13.0-rc1-xe/modules.softdep
+lib/modules/6.13.0-rc1-xe/modules.alias
+lib/modules/6.13.0-rc1-xe/modules.order
+lib/modules/6.13.0-rc1-xe/modules.symbols
+lib/modules/6.13.0-rc1-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1733310285:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1733310285:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
->
-> Mika Kahola (2):
->   drm/i915/xe3lpd: Power request asserting/deasserting
->   drm/i915/display: Use struct intel_display instead of struct
->     drm_i915_private
->
->  .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  7 ++++
->  drivers/gpu/drm/i915/display/intel_tc.c       | 39 +++++++++++++++++--
->  2 files changed, 42 insertions(+), 4 deletions(-)
-
--- 
-Jani Nikula, Intel
