@@ -4,56 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAE93E77170
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 19:32:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2010BE7716D
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 21:01:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E5C810E1B9;
-	Wed,  4 Dec 2024 19:32:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE5AE10E2B7;
+	Wed,  4 Dec 2024 21:01:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IOOMNpVH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ff906mvn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1247C10E1B9
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Dec 2024 19:32:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39E2F10E297;
+ Wed,  4 Dec 2024 21:01:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733340753; x=1764876753;
+ t=1733346086; x=1764882086;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=Czu9o0S4rwl8SEfiJsmh0Fk3T432v0TN97mz+4BzZh4=;
- b=IOOMNpVHmz/Gq1OkFLtnOiCg4nkylw2iUfR/tp390xOUAphSmHzQ49EB
- QKMc/mj+SfY+7BSE8NUAGkU9ZiA0m0df3tjakxqsvj3J7h0Bk+FRHrD1c
- 5VHV6ltYVlXy3lobTw3OjX3rRX3R/cKHCF2R4Tl8RUcKODD/T6O9IPR3O
- LPSbv44D5LDl7r8DApKL5IJAF9Mi8r2/pO9KAmhZzB5PLtfoq94K8liRk
- itIAuSNaOJjgWL30WtelKjzqYHCrv4xFoBSpNYmX0SvqSi8w1MHiW4Emf
- vyF9Ix2xuRGl9WUu4Qe+mC8XY/sR4wuobE9t38kyK6VAl1suYscV+UT2T w==;
-X-CSE-ConnectionGUID: 7jsqbypfTySwxycJ/U8Bew==
-X-CSE-MsgGUID: Qc40OBqMT524Or4oWzwxrg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="51163625"
-X-IronPort-AV: E=Sophos;i="6.12,208,1728975600"; d="scan'208";a="51163625"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 11:32:33 -0800
-X-CSE-ConnectionGUID: vdNfw2TvSRqHmGFnGSk6IA==
-X-CSE-MsgGUID: 5x7ErvTDT6uSZ/AJyXOteQ==
+ bh=+B1b48erQIeQixduuLKyl6Gzmhalqkxt2Aqtmj7j3GM=;
+ b=Ff906mvnYMV5si/CcTD0cLqwit7SefMn5eCjJnVSgvK/zri0F9MRPgee
+ b18ZskXh9ysUVjA0LobPevxfKtW/9Edlh/fHs/uR+xqQ1QLiVkvFkkgFq
+ q28MbxR0zL/FLPs7X1oor0yTfbORv4pQRJEi6v1QG1yJ2jzo8P9Ibl2Ia
+ bvysHY2fltIrLIfjmno8N3eRP5ZZ7XvGcLeEbx74wAZH2JgG+OmG77N12
+ 61AsO67FEXzuEjyB2lWg5UDokPSLeVUj+QHQBrNSsg6SrPzEogNJdcvo8
+ 5mnn0+/KIbdax5lG+3HQZvRG+oq5N7BODA7drmeGbPwnytu3EbJpUcN+b g==;
+X-CSE-ConnectionGUID: UQWLdsvtRGCEutnjnqQ12g==
+X-CSE-MsgGUID: vU6Q9rpbSti9pf3pVv9dwg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="33376968"
+X-IronPort-AV: E=Sophos;i="6.12,208,1728975600"; d="scan'208";a="33376968"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 13:01:25 -0800
+X-CSE-ConnectionGUID: nWMhahjzT6unCm7yL0vWZw==
+X-CSE-MsgGUID: rdAyQyECS1GnVqSYeIN72A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,208,1728975600"; d="scan'208";a="98675660"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.108.58])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 11:32:32 -0800
-Date: Wed, 4 Dec 2024 13:32:24 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ilia Levi <ilia.levi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, piotr.piorkowski@intel.com, 
- michal.wajdeczko@intel.com, koby.elbaz@intel.com, yaron.avizrat@intel.com
-Subject: Re: [PATCH] drm/xe: Use managed BO in memirq
-Message-ID: <wfxrzo3ykhim6lz74ppzgojajgxhieyel54e3q22k3o56cw6kv@xpudxueattu2>
-References: <20241204111655.1293-1-ilia.levi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,208,1728975600"; d="scan'208";a="97937244"
+Received: from lkp-server02.sh.intel.com (HELO 1f5a171d57e2) ([10.239.97.151])
+ by fmviesa003.fm.intel.com with ESMTP; 04 Dec 2024 13:01:21 -0800
+Received: from kbuild by 1f5a171d57e2 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tIwUo-0003UF-2o;
+ Wed, 04 Dec 2024 21:01:18 +0000
+Date: Thu, 5 Dec 2024 05:00:57 +0800
+From: kernel test robot <lkp@intel.com>
+To: Maarten Lankhorst <dev@lankhorst.se>, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Tejun Heo <tj@kernel.org>, Zefan Li <lizefan.x@bytedance.com>,
+ Johannes Weiner <hannes@cmpxchg.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Friedrich Vock <friedrich.vock@gmx.de>, Maxime Ripard <mripard@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev,
+ Linux Memory Management List <linux-mm@kvack.org>, cgroups@vger.kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH v2.1 1/1] kernel/cgroup: Add "dmem" memory accounting
+ cgroup
+Message-ID: <202412050415.jf4sa0gH-lkp@intel.com>
+References: <20241204143112.1250983-1-dev@lankhorst.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241204111655.1293-1-ilia.levi@intel.com>
+In-Reply-To: <20241204143112.1250983-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,72 +76,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Dec 04, 2024 at 01:16:55PM +0200, Ilia Levi wrote:
->When probe has an error, the current scheme causes a page fault during
->resource unwinding. This happens because GTTMMADR_BAR gets unmapped
->before the allocated BO is released via drmm. Switching to a managed BO
->that is released via devm solves this ordering issue.
->
->Signed-off-by: Ilia Levi <ilia.levi@intel.com>
+Hi Maarten,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on tj-cgroup/for-next]
+[also build test WARNING on akpm-mm/mm-everything linus/master v6.13-rc1 next-20241204]
+[cannot apply to drm-misc/drm-misc-next drm-tip/drm-tip]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Maarten-Lankhorst/kernel-cgroup-Add-dmem-memory-accounting-cgroup/20241204-233207
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/tj/cgroup.git for-next
+patch link:    https://lore.kernel.org/r/20241204143112.1250983-1-dev%40lankhorst.se
+patch subject: [PATCH v2.1 1/1] kernel/cgroup: Add "dmem" memory accounting cgroup
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20241205/202412050415.jf4sa0gH-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241205/202412050415.jf4sa0gH-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412050415.jf4sa0gH-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   kernel/cgroup/dmem.c: In function 'dmem_cgroup_state_evict_valuable':
+>> kernel/cgroup/dmem.c:302:30: warning: variable 'climit' set but not used [-Wunused-but-set-variable]
+     302 |         struct page_counter *climit, *ctest;
+         |                              ^~~~~~
+--
+>> kernel/cgroup/dmem.c:300: warning: Excess function parameter 'dev' description in 'dmem_cgroup_state_evict_valuable'
+>> kernel/cgroup/dmem.c:300: warning: Excess function parameter 'index' description in 'dmem_cgroup_state_evict_valuable'
+>> kernel/cgroup/dmem.c:635: warning: Function parameter or struct member 'region' not described in 'dmem_cgroup_try_charge'
+>> kernel/cgroup/dmem.c:635: warning: Excess function parameter 'dev' description in 'dmem_cgroup_try_charge'
 
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+vim +/climit +302 kernel/cgroup/dmem.c
 
-thanks
-Lucas De Marchi
+   280	
+   281	/**
+   282	 * dmem_cgroup_state_evict_valuable() - Check if we should evict from test_pool
+   283	 * @dev: &dmem_cgroup_region
+   284	 * @index: The index number of the region being tested.
+   285	 * @limit_pool: The pool for which we hit limits
+   286	 * @test_pool: The pool for which to test
+   287	 * @ignore_low: Whether we have to respect low watermarks.
+   288	 * @ret_hit_low: Pointer to whether it makes sense to consider low watermark.
+   289	 *
+   290	 * This function returns true if we can evict from @test_pool, false if not.
+   291	 * When returning false and @ignore_low is false, @ret_hit_low may
+   292	 * be set to true to indicate this function can be retried with @ignore_low
+   293	 * set to true.
+   294	 *
+   295	 * Return: bool
+   296	 */
+   297	bool dmem_cgroup_state_evict_valuable(struct dmem_cgroup_pool_state *limit_pool,
+   298					      struct dmem_cgroup_pool_state *test_pool,
+   299					      bool ignore_low, bool *ret_hit_low)
+ > 300	{
+   301		struct dmem_cgroup_pool_state *pool = test_pool;
+ > 302		struct page_counter *climit, *ctest;
+   303		u64 used, min, low;
+   304	
+   305		/* Can always evict from current pool, despite limits */
+   306		if (limit_pool == test_pool)
+   307			return true;
+   308	
+   309		if (limit_pool) {
+   310			if (!parent_dmemcs(limit_pool->cs))
+   311				return true;
+   312	
+   313			for (pool = test_pool; pool && limit_pool != pool; pool = pool_parent(pool))
+   314				{}
+   315	
+   316			if (!pool)
+   317				return false;
+   318		} else {
+   319			/*
+   320			 * If there is no cgroup limiting memory usage, use the root
+   321			 * cgroup instead for limit calculations.
+   322			 */
+   323			for (limit_pool = test_pool; pool_parent(limit_pool); limit_pool = pool_parent(limit_pool))
+   324				{}
+   325		}
+   326	
+   327		climit = &limit_pool->cnt;
+   328		ctest = &test_pool->cnt;
+   329	
+   330		dmem_cgroup_calculate_protection(limit_pool, test_pool);
+   331	
+   332		used = page_counter_read(ctest);
+   333		min = READ_ONCE(ctest->emin);
+   334	
+   335		if (used <= min)
+   336			return false;
+   337	
+   338		if (!ignore_low) {
+   339			low = READ_ONCE(ctest->elow);
+   340			if (used > low)
+   341				return true;
+   342	
+   343			*ret_hit_low = true;
+   344			return false;
+   345		}
+   346		return true;
+   347	}
+   348	EXPORT_SYMBOL_GPL(dmem_cgroup_state_evict_valuable);
+   349	
 
->---
-> drivers/gpu/drm/xe/xe_memirq.c | 23 +++++++----------------
-> 1 file changed, 7 insertions(+), 16 deletions(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
->index 51dc90906003..404fa2a456d5 100644
->--- a/drivers/gpu/drm/xe/xe_memirq.c
->+++ b/drivers/gpu/drm/xe/xe_memirq.c
->@@ -155,13 +155,6 @@ static const char *guc_name(struct xe_guc *guc)
->  *
->  */
->
->-static void __release_xe_bo(struct drm_device *drm, void *arg)
->-{
->-	struct xe_bo *bo = arg;
->-
->-	xe_bo_unpin_map_no_vm(bo);
->-}
->-
-> static inline bool hw_reports_to_instance_zero(struct xe_memirq *memirq)
-> {
-> 	/*
->@@ -184,14 +177,12 @@ static int memirq_alloc_pages(struct xe_memirq *memirq)
-> 	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_SOURCE_OFFSET(0), SZ_64));
-> 	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_STATUS_OFFSET(0), SZ_4K));
->
->-	/* XXX: convert to managed bo */
->-	bo = xe_bo_create_pin_map(xe, tile, NULL, bo_size,
->-				  ttm_bo_type_kernel,
->-				  XE_BO_FLAG_SYSTEM |
->-				  XE_BO_FLAG_GGTT |
->-				  XE_BO_FLAG_GGTT_INVALIDATE |
->-				  XE_BO_FLAG_NEEDS_UC |
->-				  XE_BO_FLAG_NEEDS_CPU_ACCESS);
->+	bo = xe_managed_bo_create_pin_map(xe, tile, bo_size,
->+					  XE_BO_FLAG_SYSTEM |
->+					  XE_BO_FLAG_GGTT |
->+					  XE_BO_FLAG_GGTT_INVALIDATE |
->+					  XE_BO_FLAG_NEEDS_UC |
->+					  XE_BO_FLAG_NEEDS_CPU_ACCESS);
-> 	if (IS_ERR(bo)) {
-> 		err = PTR_ERR(bo);
-> 		goto out;
->@@ -215,7 +206,7 @@ static int memirq_alloc_pages(struct xe_memirq *memirq)
-> 		     xe_bo_ggtt_addr(bo), bo_size, XE_MEMIRQ_SOURCE_OFFSET(0),
-> 		     XE_MEMIRQ_STATUS_OFFSET(0));
->
->-	return drmm_add_action_or_reset(&xe->drm, __release_xe_bo, memirq->bo);
->+	return 0;
->
-> out:
-> 	memirq_err(memirq, "Failed to allocate memirq page (%pe)\n", ERR_PTR(err));
->-- 
->2.43.2
->
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
