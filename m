@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18327E7716B
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 06:09:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59233E7716D
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 06:38:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D26E010EBFE;
-	Wed,  4 Dec 2024 06:09:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fq14xl4Y";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0A8910EBFE;
- Wed,  4 Dec 2024 06:09:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733292595; x=1764828595;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=aqSenYlA75OihojP/g0qsM3tGjxUObdyT2IvZOh3EfU=;
- b=Fq14xl4Y2MkF3JN8BPTc/PgwZ7IbF1RZTwAz7kmFQ4YKlGKxVEIGLsz3
- 5TYz5UdEsPEGaOSb6fEZ2QkZx6cGDrHb9TBOej5RKtHsWeIz3Cjq3bm+k
- 3tzEFSIM9M7ZQIR6uys8N65Ghu8qu7YFtk5JScof1/dqLg1O9enI2+34c
- BZLZws1EfywVxUmq8pveSVPB2fwfEkNGVp2kyLCspz2ZppleyY5mDOwNo
- PIvPp4dTx5a1iA/VlWCgYw2ubyW3Zzb6cAsGydmBfxTCoeUsnDpxEnfQ2
- it8xqWCqNkdoTUelOUa/SQsmKfe1Tny6OQpctAOf7NsD/tbo0vklCMdtl w==;
-X-CSE-ConnectionGUID: 8OuVALlFSYq0z0cdkTFnpQ==
-X-CSE-MsgGUID: AjNWysncRNGYeKPckEKn9Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="44203501"
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44203501"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 22:09:55 -0800
-X-CSE-ConnectionGUID: wLnOQ8/sRkawJKkgJNz/+Q==
-X-CSE-MsgGUID: b2pLJ6B/QXyMDKf3nlelVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="124493483"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa002.jf.intel.com with ESMTP; 03 Dec 2024 22:09:55 -0800
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Subject: [core-for-CI] nvme-pci: don't use dma_alloc_noncontiguous with 0
- merge boundary
-Date: Wed,  4 Dec 2024 11:36:01 +0530
-Message-Id: <20241204060601.1813514-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD01010EC01;
+	Wed,  4 Dec 2024 06:38:07 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFE2810EC01;
+ Wed,  4 Dec 2024 06:38:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_nvme-pci=3A_don=27t_?=
+ =?utf-8?q?use_dma=5Falloc=5Fnoncontiguous_with_0_merge_boundary?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 04 Dec 2024 06:38:05 -0000
+Message-ID: <173329428584.2320591.17616743326707590358@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241204060601.1813514-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20241204060601.1813514-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,49 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Christoph Hellwig <hch@lst.de>
+== Series Details ==
 
-Only call into nvme_alloc_host_mem_single which uses
-dma_alloc_noncontiguous when there is non-null dma merge boundary.
-Without this we'll call into dma_alloc_noncontiguous for device using
-dma-direct, which can work fine as long as the preferred size is below the
-MAX_ORDER of the page allocator, but blows up with a warning if it is
-too large.
+Series: nvme-pci: don't use dma_alloc_noncontiguous with 0 merge boundary
+URL   : https://patchwork.freedesktop.org/series/142082/
+State : success
 
-Fixes: 63a5c7a4b4c4 ("nvme-pci: use dma_alloc_noncontigous if possible")
-Reported-by: Leon Romanovsky <leon@kernel.org>
-Reported-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Signed-off-by: Christoph Hellwig <hch@lst.de>
-References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13227
-Link: https://lore.kernel.org/linux-nvme/39a67024-2926-4a20-8feb-77dd64ab7c39@kernel.dk/T/#mfef47937b20e33aa3cc63a3af930f8a9f9baf8c2
----
- drivers/nvme/host/pci.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/nvme/host/pci.c b/drivers/nvme/host/pci.c
-index 4c644bb7f069..778f124c2e21 100644
---- a/drivers/nvme/host/pci.c
-+++ b/drivers/nvme/host/pci.c
-@@ -2172,6 +2172,7 @@ static int nvme_alloc_host_mem_multi(struct nvme_dev *dev, u64 preferred,
- 
- static int nvme_alloc_host_mem(struct nvme_dev *dev, u64 min, u64 preferred)
- {
-+	unsigned long dma_merge_moundary = dma_get_merge_boundary(dev->dev);
- 	u64 min_chunk = min_t(u64, preferred, PAGE_SIZE * MAX_ORDER_NR_PAGES);
- 	u64 hmminds = max_t(u32, dev->ctrl.hmminds * 4096, PAGE_SIZE * 2);
- 	u64 chunk_size;
-@@ -2180,7 +2181,7 @@ static int nvme_alloc_host_mem(struct nvme_dev *dev, u64 min, u64 preferred)
- 	 * If there is an IOMMU that can merge pages, try a virtually
- 	 * non-contiguous allocation for a single segment first.
- 	 */
--	if (!(PAGE_SIZE & dma_get_merge_boundary(dev->dev))) {
-+	if (dma_merge_moundary && (PAGE_SIZE & dma_merge_moundary) == 0) {
- 		if (!nvme_alloc_host_mem_single(dev, preferred))
- 			return 0;
- 	}
--- 
-2.25.1
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 40be916657d2 drm-tip: 2024y-12m-04d-05h-54m-20s UTC integration manifest
+=== git am output follows ===
+Applying: nvme-pci: don't use dma_alloc_noncontiguous with 0 merge boundary
+
 
