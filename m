@@ -4,54 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22121E7716D
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 09:24:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1DFEE7716B
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 09:24:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E428010EC78;
-	Wed,  4 Dec 2024 09:24:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 980FA10EC83;
+	Wed,  4 Dec 2024 09:24:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BLTS4R9/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IJWmUYFK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0016110ECA4;
- Wed,  4 Dec 2024 09:24:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F42610EC83;
+ Wed,  4 Dec 2024 09:24:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733304264; x=1764840264;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=69qrswSG3uBMgKkK0AWkoiEJHwJ/5MGigP/r/LrqvkM=;
- b=BLTS4R9/iCHXr/Hj1jR4AsxvSsfUJR+ug1NwFndpGBtq3yQmnoEMARWK
- F0TfCkKRjTtkkkod6XOUfGVVHer0y3fT0mpnbjeiCIZzMTsMQ0C5T2JXn
- TGAWpsjRX3SENRKMwKDHVy2AB/7xZsm7lJ3gyVJ1FUPXONNVs40LPkGqQ
- Ms7BRGXFzEd/uBwoFHcYetNIN282RL2hJ8YrX/l/+si/B3J1K282OXw5k
- pEQDeKcAQ5rXTgOOU1OTPlf2QkXJswu/dPIxDOaDO2lzoP3cChPON+A7f
- hZSYMq9b3LrY9a6cWidBhTQ2LGGkXwvFg7h60aKmU3DLKajIAdR0zvg5Z g==;
-X-CSE-ConnectionGUID: oYL7iY/HQ4GF9NF9W/6+2Q==
-X-CSE-MsgGUID: ezy45RcPRmCag6APRUmilQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="44038478"
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44038478"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 01:24:24 -0800
-X-CSE-ConnectionGUID: 9zvqTJW2R/mogSRZd1gJxA==
-X-CSE-MsgGUID: D6SZOEbzRCKYYw3ds5qzsw==
+ t=1733304273; x=1764840273;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jC+CXvKSlFYRPJuUtO6ksaI+jnR2XIOW14T2NT93ulg=;
+ b=IJWmUYFKh52ZeVLNUXJsunszv9qOTAX+aLnny1PnPKNNIoJ81/uNmuL6
+ +i1Tj0XKKbwmhJvfK4xeJ6yPnkj/k+z9K/ZqeRMcIcBUHHBgu1u06RpG4
+ +VeLxUCHAwnCRDQfTvDLxZb4248J+X+ZvsdSvfCju2t1yrLHaq9rK0WIx
+ jaIBYvyhXcoPECxc2uagtsoKFRtKh9fhFCXNOIFDo9HoSJ5vxrjHX7CZ5
+ f3sNxiaRzoo0O3mSuMOTZaW8078D+5tgZgn/hnCQy7P3CK52hfwBXSlx3
+ ijXuxSwCVKfXAGX58yZcdHn+j1pqRhauILeeVGvqpJF5FMr77qtrD9LJ2 A==;
+X-CSE-ConnectionGUID: ENg7nKEqQZmVloDT6i2dnA==
+X-CSE-MsgGUID: 6WpHXmD2SLqTKvOYyG2n/A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="33621569"
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="33621569"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 01:24:33 -0800
+X-CSE-ConnectionGUID: BvQisZtIQ3qmThowrBAtXw==
+X-CSE-MsgGUID: bJ82Sjp3QouRw5nGiTjmFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="93555187"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 01:24:22 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
- jani.nikula@linux.intel.com, imre.deak@intel.com
-Subject: [PATCH 14/14] drm/i915/dp: Set the DSC link limits
- intel_dp_compute_config_link_bpp_limits
-Date: Wed,  4 Dec 2024 14:56:42 +0530
-Message-ID: <20241204092642.1835807-15-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241204092642.1835807-1-ankit.k.nautiyal@intel.com>
-References: <20241204092642.1835807-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="94541210"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa008.jf.intel.com with ESMTP; 04 Dec 2024 01:24:32 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, dmitry.baryshkov@linaro.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCHv2 01/10] drm/crtc: Add histogram properties
+Date: Wed,  4 Dec 2024 14:44:56 +0530
+Message-Id: <20241204091456.1785858-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,162 +64,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The helper intel_dp_compute_config_link_bpp_limits is the correct place
-to set the DSC link limits. Move the code to this function and remove
-the #TODO item.
+Add variables for histogram drm_property, its corrsponding crtc_state
+variables and define the structure pointed by the blob property.
+struct drm_histogram defined in include/uapi/drm/drm_mode.h
+The blob data pointer will be the address of the struct drm_histogram.
+The struct drm_histogram will be used for both reading the histogram and
+writing the image enhanced data.
+struct drm_histogram {
+	u64 data_ptr;
+	u32 nr_elements;
+}
+The element data_ptr holds the address of the histogram statistics data
+and 'nr_elements' represents the number of elements pointed by the
+pointer held in data_ptr.
+The same element data_ptr in teh struct drm_histogram when writing the
+image enahnced data from user to KMD holds the address to pixel factor.
 
-v2: Add argument intel_connector to the helper to get correct connector
-for DP MST. (Imre)
+v2: Added blob description in commit message (Dmitry)
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c     | 60 +++++++++++----------
- drivers/gpu/drm/i915/display/intel_dp.h     |  1 +
- drivers/gpu/drm/i915/display/intel_dp_mst.c |  1 +
- 3 files changed, 34 insertions(+), 28 deletions(-)
+ include/drm/drm_crtc.h      | 48 +++++++++++++++++++++++++++++++++++++
+ include/uapi/drm/drm_mode.h | 11 +++++++++
+ 2 files changed, 59 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 60693c301c3d..1500b99ddb95 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2153,21 +2153,16 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
- {
- 	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
--	int dsc_src_min_bpp, dsc_sink_min_bpp, dsc_min_bpp;
--	int dsc_src_max_bpp, dsc_sink_max_bpp, dsc_max_bpp;
-+	int dsc_min_bpp;
-+	int dsc_max_bpp;
- 	int dsc_joiner_max_bpp;
- 	int num_joined_pipes = intel_crtc_num_joined_pipes(pipe_config);
+diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
+index 8b48a1974da3..3984cfa00cbf 100644
+--- a/include/drm/drm_crtc.h
++++ b/include/drm/drm_crtc.h
+@@ -274,6 +274,38 @@ struct drm_crtc_state {
+ 	 */
+ 	struct drm_property_blob *gamma_lut;
  
--	dsc_src_min_bpp = dsc_src_min_compressed_bpp();
--	dsc_sink_min_bpp = intel_dp_dsc_sink_min_compressed_bpp(pipe_config);
--	dsc_min_bpp = max(dsc_src_min_bpp, dsc_sink_min_bpp);
--	dsc_min_bpp = max(dsc_min_bpp, fxp_q4_to_int_roundup(limits->link.min_bpp_x16));
-+	dsc_min_bpp = fxp_q4_to_int_roundup(limits->link.min_bpp_x16);
- 
--	dsc_src_max_bpp = dsc_src_max_compressed_bpp(intel_dp);
--	dsc_sink_max_bpp = intel_dp_dsc_sink_max_compressed_bpp(connector,
--								pipe_config,
--								pipe_bpp / 3);
--	dsc_max_bpp = dsc_sink_max_bpp ? min(dsc_sink_max_bpp, dsc_src_max_bpp) : dsc_src_max_bpp;
-+	dsc_max_bpp = intel_dp_dsc_sink_max_compressed_bpp(connector,
-+							   pipe_config,
-+							   pipe_bpp / 3);
- 
- 	dsc_joiner_max_bpp = get_max_compressed_bpp_with_joiner(i915, adjusted_mode->clock,
- 								adjusted_mode->hdisplay,
-@@ -2278,8 +2273,8 @@ static int intel_edp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
- 	struct intel_connector *connector =
- 		to_intel_connector(conn_state->connector);
- 	int pipe_bpp, forced_bpp;
--	int dsc_src_min_bpp, dsc_sink_min_bpp, dsc_min_bpp;
--	int dsc_src_max_bpp, dsc_sink_max_bpp, dsc_max_bpp;
-+	int dsc_min_bpp;
-+	int dsc_max_bpp;
- 
- 	forced_bpp = intel_dp_force_dsc_pipe_bpp(intel_dp, limits);
- 
-@@ -2299,16 +2294,12 @@ static int intel_edp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
- 	pipe_config->port_clock = limits->max_rate;
- 	pipe_config->lane_count = limits->max_lane_count;
- 
--	dsc_src_min_bpp = dsc_src_min_compressed_bpp();
--	dsc_sink_min_bpp = intel_dp_dsc_sink_min_compressed_bpp(pipe_config);
--	dsc_min_bpp = max(dsc_src_min_bpp, dsc_sink_min_bpp);
--	dsc_min_bpp = max(dsc_min_bpp, fxp_q4_to_int_roundup(limits->link.min_bpp_x16));
-+	dsc_min_bpp = fxp_q4_to_int_roundup(limits->link.min_bpp_x16);
++	/**
++	 * @histogram_enable:
++	 *
++	 * This will be set if histogram is enabled for the CRTC.
++	 */
++	bool histogram_enable;
 +
-+	dsc_max_bpp = intel_dp_dsc_sink_max_compressed_bpp(connector,
-+							   pipe_config,
-+							   pipe_bpp / 3);
- 
--	dsc_src_max_bpp = dsc_src_max_compressed_bpp(intel_dp);
--	dsc_sink_max_bpp = intel_dp_dsc_sink_max_compressed_bpp(connector,
--								pipe_config,
--								pipe_bpp / 3);
--	dsc_max_bpp = dsc_sink_max_bpp ? min(dsc_sink_max_bpp, dsc_src_max_bpp) : dsc_src_max_bpp;
- 	dsc_max_bpp = min(dsc_max_bpp, fxp_q4_to_int(limits->link.max_bpp_x16));
- 
- 	/* Compressed BPP should be less than the Input DSC bpp */
-@@ -2447,6 +2438,7 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- /**
-  * intel_dp_compute_config_link_bpp_limits - compute output link bpp limits
-  * @intel_dp: intel DP
-+ * @connector: intel connector
-  * @crtc_state: crtc state
-  * @dsc: DSC compression mode
-  * @limits: link configuration limits
-@@ -2458,6 +2450,7 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
-  */
- bool
- intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
-+					const struct intel_connector *connector,
- 					const struct intel_crtc_state *crtc_state,
- 					bool dsc,
- 					struct link_config_limits *limits)
-@@ -2480,12 +2473,22 @@ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
- 
- 		limits->link.min_bpp_x16 = fxp_q4_from_int(limits->pipe.min_bpp);
- 	} else {
--		/*
--		 * TODO: set the DSC link limits already here, atm these are
--		 * initialized only later in intel_edp_dsc_compute_pipe_bpp() /
--		 * intel_dp_dsc_compute_pipe_bpp()
--		 */
--		limits->link.min_bpp_x16 = 0;
-+		int dsc_src_min_bpp, dsc_sink_min_bpp, dsc_min_bpp;
-+		int dsc_src_max_bpp, dsc_sink_max_bpp, dsc_max_bpp;
++	/**
++	 * @histogram_data:
++	 *
++	 * This will hold the pointer to the struct drm_histogram.
++	 * The element data in drm_histogram will hold the pointer to the
++	 * histogram data generated by the hardware.
++	 */
++	struct drm_property_blob *histogram_data;
 +
-+		dsc_src_min_bpp = dsc_src_min_compressed_bpp();
-+		dsc_sink_min_bpp = intel_dp_dsc_sink_min_compressed_bpp(crtc_state);
-+		dsc_min_bpp = max(dsc_src_min_bpp, dsc_sink_min_bpp);
-+		limits->link.min_bpp_x16 = fxp_q4_from_int(dsc_min_bpp);
++	/**
++	 * @histogram_-iet:
++	 *
++	 * This will hold the pointer to the struct drm_histogram.
++	 * The element data in drm_histogram will hold the pointer to the
++	 * histogram image enhancement generated by the algorithm that is to
++	 * be fed back to the hardware.
++	 */
++	struct drm_property_blob *histogram_iet;
++	/**
++	 * @histogram_iet_updates:
++	 *
++	 * Convey that the image enhanced data has been updated by the user
++	 */
++	bool histogram_iet_updated;
 +
-+		dsc_src_max_bpp = dsc_src_max_compressed_bpp(intel_dp);
-+		dsc_sink_max_bpp = intel_dp_dsc_sink_max_compressed_bpp(connector,
-+									crtc_state,
-+									limits->pipe.max_bpp / 3);
-+		dsc_max_bpp = dsc_sink_max_bpp ?
-+			      min(dsc_sink_max_bpp, dsc_src_max_bpp) : dsc_src_max_bpp;
+ 	/**
+ 	 * @target_vblank:
+ 	 *
+@@ -1088,6 +1120,22 @@ struct drm_crtc {
+ 	 */
+ 	struct drm_property *scaling_filter_property;
+ 
++	/**
++	 * @histogram_enable_property: Optional CRTC property for enabling or
++	 * disabling global histogram.
++	 */
++	struct drm_property *histogram_enable_property;
++	/**
++	 * @histogram_data_proeprty: Optional CRTC property for getting the
++	 * histogram blob data.
++	 */
++	struct drm_property *histogram_data_property;
++	/**
++	 * @histogram_iet_proeprty: Optional CRTC property for writing the
++	 * image enhanced blob data
++	 */
++	struct drm_property *histogram_iet_property;
 +
-+		max_link_bpp_x16 = min(max_link_bpp_x16, fxp_q4_from_int(dsc_max_bpp));
- 	}
+ 	/**
+ 	 * @state:
+ 	 *
+diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+index c082810c08a8..da4396f57ed1 100644
+--- a/include/uapi/drm/drm_mode.h
++++ b/include/uapi/drm/drm_mode.h
+@@ -1355,6 +1355,17 @@ struct drm_mode_closefb {
+ 	__u32 pad;
+ };
  
- 	limits->link.max_bpp_x16 = max_link_bpp_x16;
-@@ -2558,6 +2561,7 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
- 	intel_dp_test_compute_config(intel_dp, crtc_state, limits);
- 
- 	return intel_dp_compute_config_link_bpp_limits(intel_dp,
-+						       intel_dp->attached_connector,
- 						       crtc_state,
- 						       dsc,
- 						       limits);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 1488e18ea8b0..90e8b8672ce0 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -197,6 +197,7 @@ int intel_dp_output_bpp(enum intel_output_format output_format, int bpp);
- 
- bool
- intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
-+					const struct intel_connector *connector,
- 					const struct intel_crtc_state *crtc_state,
- 					bool dsc,
- 					struct link_config_limits *limits);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 667006918bfd..47eed76b136f 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -574,6 +574,7 @@ mst_stream_compute_config_limits(struct intel_dp *intel_dp,
- 		intel_dp_dsc_compute_pipe_bpp_limits(intel_dp, limits);
- 
- 	if (!intel_dp_compute_config_link_bpp_limits(intel_dp,
-+						     connector,
- 						     crtc_state,
- 						     dsc,
- 						     limits))
++/**
++ * struct drm_histogram
++ * data_ptr: pointer to the array fo u32 data. This data can be histogram
++ * raw data or image enhanced data
++ * nr_elements: number of elements pointed by the data @data_ptr
++ */
++struct drm_histogram {
++	__u64 data_ptr;
++	__u32 nr_elements;
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
-2.45.2
+2.25.1
 
