@@ -4,60 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9147E7716B
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 13:46:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAB58E7716B
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 14:04:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6D5210ED2D;
-	Wed,  4 Dec 2024 13:46:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69F5D10ED3F;
+	Wed,  4 Dec 2024 14:04:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lWd5vNvl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SFcW0JUc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7AFA10ED2D
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Dec 2024 13:46:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF06210ED31;
+ Wed,  4 Dec 2024 14:04:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733319988; x=1764855988;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=tiJL532+Qt/g2RiE/c7vlfmJYqL2oa53TymtfgPrzYk=;
- b=lWd5vNvlThxGEI47aRznLknnqixmCaUskj43KgXyLxXtvVgIr7357+NX
- 2tkuPTOVAurPQFMLdqtGiQz48tMQuY3Ykg36+0wAB07lIWCISxsIqrs5q
- 1iaPR7yifNAeBI3+gJhrqTPem0Z8+ZdxzRlgm9skzkPYVFIq+Nnr1PNjS
- cUuj9CgimcP5ga+e/iACWaaIlRBl2i1c6gZsRtiOq0fwGcFcmm9HmBiwn
- 9WL+1iAZVdJ/UR+z77teotmsQDKU63v6CIwHZ3iZS2f/GMhWM/xjbf25W
- /XWCyNpvsyR4VpkEh/BFiP6ef2PPGq7XtGr3XIR7YqfucP61Q3Nj8tQ4E Q==;
-X-CSE-ConnectionGUID: pMO1qz+cSJav5C9iwQj03g==
-X-CSE-MsgGUID: VqzglqQfSCqZRYtN4h9d1w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="44250478"
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44250478"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 05:46:28 -0800
-X-CSE-ConnectionGUID: DtaBQed/QNmFaboYeijYHg==
-X-CSE-MsgGUID: bCJzwpIeQ1OfZnpYyoTcDQ==
+ t=1733321041; x=1764857041;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=7KLMpaj3psPE975L+wGRX1NRSUDet9hdWj+hEc/t+XE=;
+ b=SFcW0JUcV5HsTJwzIxd3YL4oeL+pZTiu6QCOJVI+wkPbtIYy3HJPNVhY
+ R7owYyAgwLRtXmlOizOd9fHIZz6LgcaOrieTIl1TlYfmDEQkTu1YpcDiC
+ IY+Wi4Ni3rX7B1h9TfpGgNndRcJ56OQEbaU4uou6/DWyQbqF6+Sn4e0tV
+ M73LM1fPh1S5CSTmXQS/4a6JewjZpFN4T+/Px/ASc3A+YicRLgrYwx8Ey
+ X4NnKgMrsDzjxMefB73obluOhqc+98Lmrqj6yWRttYTXbIEPfVCXi0YCL
+ SMUx4IeADGqqeK14sbJIEsvW4CPOYOMRyoOomN7GuWH7UxbpJ9a2RKTx8 w==;
+X-CSE-ConnectionGUID: Dn/5gnahQaCVQQKJlDuZAg==
+X-CSE-MsgGUID: jiWDbmD8SomzlQCUbsklvg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="44617560"
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44617560"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 06:04:00 -0800
+X-CSE-ConnectionGUID: 4yfn1dd1SteZ8DH1tW0vMg==
+X-CSE-MsgGUID: 435jbu0ITeikpMsf38kSJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="98199050"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.205])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 05:46:25 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Mark Brown <broonie@kernel.org>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, DRM XE List
- <intel-xe@lists.freedesktop.org>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
- Mailing List <linux-next@vger.kernel.org>, Dave Airlie
- <airlied@redhat.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Subject: Re: linux-next: build failure after merge of the drm-xe tree
-In-Reply-To: <Z1BawrcFMsj0ByLk@sirena.org.uk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <Z1BawrcFMsj0ByLk@sirena.org.uk>
-Date: Wed, 04 Dec 2024 15:46:21 +0200
-Message-ID: <87a5db36j6.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="94600355"
+Received: from lkp-server02.sh.intel.com (HELO 1f5a171d57e2) ([10.239.97.151])
+ by orviesa008.jf.intel.com with ESMTP; 04 Dec 2024 06:03:57 -0800
+Received: from kbuild by 1f5a171d57e2 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tIpys-00035D-2A;
+ Wed, 04 Dec 2024 14:03:54 +0000
+Date: Wed, 4 Dec 2024 22:03:37 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jocelyn Falempe <jfalempe@redhat.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Jocelyn Falempe <jfalempe@redhat.com>
+Subject: Re: [PATCH v2 1/5] drm/i915/fbdev: Add intel_fbdev_get_vaddr()
+Message-ID: <202412042119.5ErpNlAU-lkp@intel.com>
+References: <20241203092836.426422-2-jfalempe@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241203092836.426422-2-jfalempe@redhat.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,41 +75,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 04 Dec 2024, Mark Brown <broonie@kernel.org> wrote:
-> Hi all,
->
-> After merging the drm-xe tree, today's linux-next build (x86
-> allmodconfig) failed like this:
->
-> In file included from /tmp/next/build/include/linux/module.h:22,
->                  from /tmp/next/build/include/linux/device/driver.h:21,
->                  from /tmp/next/build/include/linux/device.h:32,
->                  from /tmp/next/build/include/linux/auxiliary_bus.h:11,
->                  from /tmp/next/build/include/linux/intel_vsec.h:5,
->                  from /tmp/next/build/drivers/gpu/drm/xe/xe_vsec.c:7:
-> /tmp/next/build/drivers/gpu/drm/xe/xe_vsec.c:233:18: error: expected ',' or ';' before 'INTEL_VSEC'
->   233 | MODULE_IMPORT_NS(INTEL_VSEC);
->       |                  ^~~~~~~~~~
-> /tmp/next/build/include/linux/moduleparam.h:26:61: note: in definition of macro '__MODULE_INFO'
->    26 |                 = __MODULE_INFO_PREFIX __stringify(tag) "=" info
->       |                                                             ^~~~
-> /tmp/next/build/include/linux/module.h:299:33: note: in expansion of macro 'MODULE_INFO'
->   299 | #define MODULE_IMPORT_NS(ns)    MODULE_INFO(import_ns, ns)
->       |                                 ^~~~~~~~~~~
-> /tmp/next/build/drivers/gpu/drm/xe/xe_vsec.c:233:1: note: in expansion of macro 'MODULE_IMPORT_NS'
->   233 | MODULE_IMPORT_NS(INTEL_VSEC);
->       | ^~~~~~~~~~~~~~~~
->
-> You need to merge up cdd30ebb1b9f36159d66f088b61aee264e649d7a ("module:
-> Convert symbol namespace to string literal") from mainline and fix up
-> for the changes in MODULE_IMPORT_NS.  I'll apply a fixup for now.
+Hi Jocelyn,
 
-Commit cdd30ebb1b9f ("module: Convert symbol namespace to string
-literal") isn't even in a tagged release yet. We'll get it when -rc1 is
-out *and* backmerged to drm-next.
+kernel test robot noticed the following build warnings:
 
-BR,
-Jani.
+[auto build test WARNING on 44cff6c5b0b17a78bc0b30372bcd816cf6dd282a]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jocelyn-Falempe/drm-i915-fbdev-Add-intel_fbdev_get_vaddr/20241203-173213
+base:   44cff6c5b0b17a78bc0b30372bcd816cf6dd282a
+patch link:    https://lore.kernel.org/r/20241203092836.426422-2-jfalempe%40redhat.com
+patch subject: [PATCH v2 1/5] drm/i915/fbdev: Add intel_fbdev_get_vaddr()
+config: i386-randconfig-062-20241204 (https://download.01.org/0day-ci/archive/20241204/202412042119.5ErpNlAU-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241204/202412042119.5ErpNlAU-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412042119.5ErpNlAU-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/gpu/drm/i915/display/intel_fb_pin.c:333:34: sparse: sparse: incorrect type in return expression (different address spaces) @@     expected void * @@     got void [noderef] __iomem * @@
+   drivers/gpu/drm/i915/display/intel_fb_pin.c:333:34: sparse:     expected void *
+   drivers/gpu/drm/i915/display/intel_fb_pin.c:333:34: sparse:     got void [noderef] __iomem *
+
+vim +333 drivers/gpu/drm/i915/display/intel_fb_pin.c
+
+   330	
+   331	void *intel_fb_get_vaddr(struct i915_vma *vma)
+   332	{
+ > 333		return i915_vma_get_iomap(vma);
 
 -- 
-Jani Nikula, Intel
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
