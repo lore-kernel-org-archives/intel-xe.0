@@ -4,54 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F96BE7716B
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 11:17:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2025E7716B
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 11:17:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B4AA10E33C;
-	Wed,  4 Dec 2024 11:17:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58D4310E33C;
+	Wed,  4 Dec 2024 11:17:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dTbfFVBU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EWOcB1Dq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CE7F10E33C
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Dec 2024 11:17:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2537310E33C;
+ Wed,  4 Dec 2024 11:17:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733311025; x=1764847025;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xGGblU6/fTMkc0WClW1qvD13P4FkOvQ7u3JfqCXV7ag=;
- b=dTbfFVBUGGIj57uPGmBhWbW8acbQDOlmuBGD+xtPtfDI/HugMfxUjpA9
- TS0emPPflPXoxzs6aEu/s/TXXLf39zN6GjjhLjYvJ/8VP68PkFWDqawVH
- J9J9QxntZpSfK3scbuwqW3Ur/n6FFLj6yVQvdnW+vYOjxm2s0Tgux+KZ8
- hytRsL1HWTU0dGQWG9yA8gMVtP1l0QITNzZMELhMmw0FTSbvlDBOKrhPE
- 6JD1N+9R572485hzVK5OnRL71U+QgNsjPKKY+YMZm6SMPyZQ2KYt0htnj
- GU8AHtIxNS8YpoX1zq2kEgIwUgUpyXyaMevnpzcXwwVXwxEINZgH4c+9J w==;
-X-CSE-ConnectionGUID: k3QDhZ87TF+ZMtA7BIasQA==
-X-CSE-MsgGUID: jdIpwamoSISWpHWFzlQUNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="51103793"
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="51103793"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 03:17:04 -0800
-X-CSE-ConnectionGUID: wfNC7oVvRKOhrpRKl1Cfag==
-X-CSE-MsgGUID: 88SsXLJLTASBprnuT6VG3Q==
+ t=1733311048; x=1764847048;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=r+IpPAuGZ/rPxn5AuiKI5+6CytqFNjN66IUaSyMmBVQ=;
+ b=EWOcB1Dqtb18aFRedmpIoVMsFr+5y7JGC2+coa1pXLtaWTWWOErLmS6l
+ vwtG0yh3GuqtVYXlHDkd98j/Y9SXWLDuIlYnx7OrjYaeVRmDm+uKiPfdQ
+ 6zsuGkdGSwqqBeP1mVCQaLaRxE6JXUNA3ZTMwJcuocR/k9zArWq1yj4WV
+ l6hL/amyQwiLKwaqx3pPIWGfBLTDdzR6GE+ODdhbunb1HMiq0+Z2M92OG
+ ywlXBKLH5VRUv7qo74I3PG/+r+uUXqwv8o+P77Vumqu4A6YxLYQ7KHdJT
+ Qi7CUeL7bZWvCKqfUPUPXvuzZKPpwExzCeImKq4FsuopvvaZcImpzYJNd Q==;
+X-CSE-ConnectionGUID: TtrovJd4QRqbgYspu/0Uig==
+X-CSE-MsgGUID: fw3yS55sTDKqTln2X8Z8PA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="44182159"
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44182159"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 03:17:25 -0800
+X-CSE-ConnectionGUID: wLX6PSf8S1KjWHYBhiHUKQ==
+X-CSE-MsgGUID: jwofyawjTWiqpGsZAB1mDw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="98725450"
-Received: from ilevi-mobl.ger.corp.intel.com (HELO ilevi-mobl.intel.com)
- ([10.245.176.53])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 03:17:03 -0800
-From: Ilia Levi <ilia.levi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: ilia.levi@intel.com, piotr.piorkowski@intel.com,
- michal.wajdeczko@intel.com, koby.elbaz@intel.com, yaron.avizrat@intel.com
-Subject: [PATCH] drm/xe: Use managed BO in memirq
-Date: Wed,  4 Dec 2024 13:16:55 +0200
-Message-Id: <20241204111655.1293-1-ilia.levi@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="93627280"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 03:17:20 -0800
+Date: Wed, 4 Dec 2024 13:17:17 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de
+Cc: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ aravind.iddamsetty@linux.intel.com, rodrigo.vivi@intel.com,
+ michal.wajdeczko@intel.com, lina@asahilina.net,
+ anshuman.gupta@intel.com, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com
+Subject: Re: [PATCH v10 1/4] drm: Introduce device wedged event
+Message-ID: <Z1A6PYFCUNL9edv6@black.fi.intel.com>
+References: <20241128153707.1294347-1-raag.jadav@intel.com>
+ <20241128153707.1294347-2-raag.jadav@intel.com>
+ <1d448e67-0c28-4e21-afdd-223495346921@igalia.com>
+ <Z01q1-7OF7jgANEM@black.fi.intel.com>
+ <Z06QUpm3o_izNjoV@black.fi.intel.com>
+ <7d0660f8-ce78-4458-a084-b65ab71e8243@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <7d0660f8-ce78-4458-a084-b65ab71e8243@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,64 +81,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When probe has an error, the current scheme causes a page fault during
-resource unwinding. This happens because GTTMMADR_BAR gets unmapped
-before the allocated BO is released via drmm. Switching to a managed BO
-that is released via devm solves this ordering issue.
++ misc maintainers
 
-Signed-off-by: Ilia Levi <ilia.levi@intel.com>
----
- drivers/gpu/drm/xe/xe_memirq.c | 23 +++++++----------------
- 1 file changed, 7 insertions(+), 16 deletions(-)
+On Tue, Dec 03, 2024 at 11:18:00AM +0100, Christian König wrote:
+> Am 03.12.24 um 06:00 schrieb Raag Jadav:
+> > On Mon, Dec 02, 2024 at 10:07:59AM +0200, Raag Jadav wrote:
+> > > On Fri, Nov 29, 2024 at 10:40:14AM -0300, André Almeida wrote:
+> > > > Hi Raag,
+> > > > 
+> > > > Em 28/11/2024 12:37, Raag Jadav escreveu:
+> > > > > Introduce device wedged event, which notifies userspace of 'wedged'
+> > > > > (hanged/unusable) state of the DRM device through a uevent. This is
+> > > > > useful especially in cases where the device is no longer operating as
+> > > > > expected and has become unrecoverable from driver context. Purpose of
+> > > > > this implementation is to provide drivers a generic way to recover with
+> > > > > the help of userspace intervention without taking any drastic measures
+> > > > > in the driver.
+> > > > > 
+> > > > > A 'wedged' device is basically a dead device that needs attention. The
+> > > > > uevent is the notification that is sent to userspace along with a hint
+> > > > > about what could possibly be attempted to recover the device and bring
+> > > > > it back to usable state. Different drivers may have different ideas of
+> > > > > a 'wedged' device depending on their hardware implementation, and hence
+> > > > > the vendor agnostic nature of the event. It is up to the drivers to
+> > > > > decide when they see the need for device recovery and how they want to
+> > > > > recover from the available methods.
+> > > > > 
+> > > > Thank you for your work. Do you think you can add the optional PID
+> > > > parameter, as the PID of the app that caused the reset? For SteamOS use case
+> > > > it has been proved to be useful to kill the fault app as well. If the reset
+> > > > was caused by a kthread, no PID can be provided hence it's an optional
+> > > > parameter.
+> > > Hmm, I'm not sure if it really fits here since it doesn't seem like
+> > > a generic usecase.
+> > > 
+> > > I'd still be open for it if found useful by the drivers but perhaps
+> > > as an extended feature in a separate series.
+> > What do you think Chris, are we good to go with v10?
+> 
+> I agree with Andre that the PID and maybe the new DRM client name would be
+> really nice to have here.
+> 
+> We do have that in the device core dump we create, but if an application is
+> supervised by daemon for example then that would be really useful.
+> 
+> On the other hand I think we should merge the documentation and code as is
+> and then add the PID/name later on. That is essentially a separate
+> discussion.
 
-diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index 51dc90906003..404fa2a456d5 100644
---- a/drivers/gpu/drm/xe/xe_memirq.c
-+++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -155,13 +155,6 @@ static const char *guc_name(struct xe_guc *guc)
-  *
-  */
- 
--static void __release_xe_bo(struct drm_device *drm, void *arg)
--{
--	struct xe_bo *bo = arg;
--
--	xe_bo_unpin_map_no_vm(bo);
--}
--
- static inline bool hw_reports_to_instance_zero(struct xe_memirq *memirq)
- {
- 	/*
-@@ -184,14 +177,12 @@ static int memirq_alloc_pages(struct xe_memirq *memirq)
- 	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_SOURCE_OFFSET(0), SZ_64));
- 	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_STATUS_OFFSET(0), SZ_4K));
- 
--	/* XXX: convert to managed bo */
--	bo = xe_bo_create_pin_map(xe, tile, NULL, bo_size,
--				  ttm_bo_type_kernel,
--				  XE_BO_FLAG_SYSTEM |
--				  XE_BO_FLAG_GGTT |
--				  XE_BO_FLAG_GGTT_INVALIDATE |
--				  XE_BO_FLAG_NEEDS_UC |
--				  XE_BO_FLAG_NEEDS_CPU_ACCESS);
-+	bo = xe_managed_bo_create_pin_map(xe, tile, bo_size,
-+					  XE_BO_FLAG_SYSTEM |
-+					  XE_BO_FLAG_GGTT |
-+					  XE_BO_FLAG_GGTT_INVALIDATE |
-+					  XE_BO_FLAG_NEEDS_UC |
-+					  XE_BO_FLAG_NEEDS_CPU_ACCESS);
- 	if (IS_ERR(bo)) {
- 		err = PTR_ERR(bo);
- 		goto out;
-@@ -215,7 +206,7 @@ static int memirq_alloc_pages(struct xe_memirq *memirq)
- 		     xe_bo_ggtt_addr(bo), bo_size, XE_MEMIRQ_SOURCE_OFFSET(0),
- 		     XE_MEMIRQ_STATUS_OFFSET(0));
- 
--	return drmm_add_action_or_reset(&xe->drm, __release_xe_bo, memirq->bo);
-+	return 0;
- 
- out:
- 	memirq_err(memirq, "Failed to allocate memirq page (%pe)\n", ERR_PTR(err));
--- 
-2.43.2
+So how do we proceed, perhaps through misc tree?
 
+Raag
