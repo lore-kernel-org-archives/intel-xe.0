@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2B13E7716E
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 15:58:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52290E77173
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 16:00:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BC7F10E4E2;
-	Wed,  4 Dec 2024 15:58:37 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B43D10E4E2;
- Wed,  4 Dec 2024 15:58:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F96610E4FE;
+	Wed,  4 Dec 2024 16:00:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FijsFial";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0DB810E4F9;
+ Wed,  4 Dec 2024 16:00:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733328055; x=1764864055;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JUyOMHXp1km4DrKccFna4uuDZBSg4swlgG6PH4VC7zM=;
+ b=FijsFialSsZEGE4qH0mPOuNwFNvOEmNzPw47Y0fInyReE2a/Y4HIaoPP
+ UpC4yjprmffZCPJWd+Cn4Ajh3WNEx7RnHhflZA03UTZcUSu9XP4nhgj98
+ NLOpQZW7Dmg/2w7q+JxPmZJqsj+bs1MU3awAM03p7pLgV6BboQbmyf7C8
+ P+Fdbg5UpuZ8wXsbCkJlR9mStNBbeUEPtGQYCDiNUWDyqWRsiHOs2j/3X
+ +73WnOPTTd4o2ZlPkUJvX9t/IHq4N+HWBy1JXo1lWaPGVSP61qxhyvLUv
+ MLeJMhKxT5YQ8Y/D8DdcMo0CCeKReTa2tcPh8tC/BxYFtmuAXt7UWfTZo g==;
+X-CSE-ConnectionGUID: 0lREvTJxSrKesbNUeTxHMw==
+X-CSE-MsgGUID: 1xthXRalQ+yo3l9zeguuCQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="44075748"
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44075748"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 08:00:54 -0800
+X-CSE-ConnectionGUID: H8nTe9o4T92JHQjqG8Eb3Q==
+X-CSE-MsgGUID: YBctM5IwSgOjkyIoo1DWUQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="93485487"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.205])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 08:00:52 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	Paul Menzel <pmenzel@molgen.mpg.de>
+Subject: [PATCH] drm/i915/pps: debug log the remaining power cycle delay to
+ wait
+Date: Wed,  4 Dec 2024 18:00:48 +0200
+Message-Id: <20241204160048.2774419-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/display=3A_handle_hdm?=
- =?utf-8?q?i_connector_init_failures=2C_and_no_HDMI/DP_cases?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Dec 2024 15:58:37 -0000
-Message-ID: <173332791704.2553856.2387032238614532501@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <cover.1733324735.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1733324735.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +66,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+While pps_init_delays() debug logs the power cycle delay, also debug log
+the actual remaining time to wait in wait_panel_power_cycle().
 
-Series: drm/i915/display: handle hdmi connector init failures, and no HDMI/DP cases
-URL   : https://patchwork.freedesktop.org/series/142118/
-State : success
+Note that this still isn't the full picture; the power sequencer may
+still wait after this one.
 
-== Summary ==
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13007
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-lib/modules/6.13.0-rc1-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.13.0-rc1-xe/kernel/arch/x86/kvm/
-lib/modules/6.13.0-rc1-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.13.0-rc1-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.13.0-rc1-xe/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.13.0-rc1-xe/kernel/kernel/
-lib/modules/6.13.0-rc1-xe/kernel/kernel/kheaders.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/
-lib/modules/6.13.0-rc1-xe/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/xcbc.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/serpent_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/aria_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/adiantum.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/tcrypt.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/crypto_engine.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/zstd.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/asymmetric_keys/
-lib/modules/6.13.0-rc1-xe/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/des_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/xctr.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/authenc.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/sm4_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/keywrap.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/camellia_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/sm3.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/pcrypt.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/aegis128.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/af_alg.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/algif_aead.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/cmac.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/sm3_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/aes_ti.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/chacha_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/poly1305_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/nhpoly1305.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/crc32_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/essiv.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/ccm.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/wp512.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/streebog_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/authencesn.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/echainiv.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/lrw.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/cryptd.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/crypto_user.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/algif_hash.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/vmac.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/hctr2.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/842.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/pcbc.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/ansi_cprng.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/cast6_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/twofish_common.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/twofish_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/lz4hc.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/blowfish_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/md4.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/curve25519-generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/lz4.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/rmd160.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/algif_skcipher.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/cast5_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/fcrypt.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/sm4.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/cast_common.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/blowfish_common.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/michael_mic.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/
-lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.13.0-rc1-xe/kernel/crypto/algif_rng.ko
-lib/modules/6.13.0-rc1-xe/kernel/block/
-lib/modules/6.13.0-rc1-xe/kernel/block/bfq.ko
-lib/modules/6.13.0-rc1-xe/kernel/block/kyber-iosched.ko
-lib/modules/6.13.0-rc1-xe/build
-lib/modules/6.13.0-rc1-xe/modules.alias.bin
-lib/modules/6.13.0-rc1-xe/modules.builtin
-lib/modules/6.13.0-rc1-xe/modules.softdep
-lib/modules/6.13.0-rc1-xe/modules.alias
-lib/modules/6.13.0-rc1-xe/modules.order
-lib/modules/6.13.0-rc1-xe/modules.symbols
-lib/modules/6.13.0-rc1-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1733327906:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1733327906:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+---
 
+Cc: Paul Menzel <pmenzel@molgen.mpg.de>
+---
+ drivers/gpu/drm/i915/display/intel_pps.c | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index 7784b3b760db..bfda52850150 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -668,23 +668,24 @@ static void wait_panel_power_cycle(struct intel_dp *intel_dp)
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+ 	ktime_t panel_power_on_time;
+-	s64 panel_power_off_duration;
+-
+-	drm_dbg_kms(display->drm,
+-		    "[ENCODER:%d:%s] %s wait for panel power cycle\n",
+-		    dig_port->base.base.base.id, dig_port->base.base.name,
+-		    pps_name(intel_dp));
++	s64 panel_power_off_duration, remaining;
+ 
+ 	/* take the difference of current time and panel power off time
+ 	 * and then make panel wait for power_cycle if needed. */
+ 	panel_power_on_time = ktime_get_boottime();
+ 	panel_power_off_duration = ktime_ms_delta(panel_power_on_time, intel_dp->pps.panel_power_off_time);
+ 
++	remaining = max(0, intel_dp->pps.panel_power_cycle_delay - panel_power_off_duration);
++
++	drm_dbg_kms(display->drm,
++		    "[ENCODER:%d:%s] %s wait for panel power cycle (%lld ms remaining)\n",
++		    dig_port->base.base.base.id, dig_port->base.base.name,
++		    pps_name(intel_dp), remaining);
++
+ 	/* When we disable the VDD override bit last we have to do the manual
+ 	 * wait. */
+-	if (panel_power_off_duration < (s64)intel_dp->pps.panel_power_cycle_delay)
+-		wait_remaining_ms_from_jiffies(jiffies,
+-				       intel_dp->pps.panel_power_cycle_delay - panel_power_off_duration);
++	if (remaining)
++		wait_remaining_ms_from_jiffies(jiffies, remaining);
+ 
+ 	wait_panel_status(intel_dp, IDLE_CYCLE_MASK, IDLE_CYCLE_VALUE);
+ }
+-- 
+2.39.5
 
