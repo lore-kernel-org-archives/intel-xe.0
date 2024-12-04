@@ -4,51 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 619CCE7716E
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 14:18:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7C04E77170
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 14:31:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B7EC10E0DB;
-	Wed,  4 Dec 2024 14:18:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFA3010E2AA;
+	Wed,  4 Dec 2024 14:31:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kw9UZ11H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MFMd5SeP";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D979710E0DB
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Dec 2024 14:18:43 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 621D55C6EB6;
- Wed,  4 Dec 2024 14:18:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B357C4CED1;
- Wed,  4 Dec 2024 14:18:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1733321923;
- bh=3ayiCYKdCeeZmDby0tpBL5OzMxBMtlsn6IKrJFlYFh4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=kw9UZ11HUAYdBJsMifrjAa18mRMEzktZVajukp5KWD1M/sJZqoDg7RnW72ILEALMY
- F2SWNKiRXX9JJKKrnRoF7e6gZGPtczMgMKSfH+7j0NUtOJ5QCGQR1m6hR2Q4+TnL9P
- mpHnImPpxFldkkOyTRcjj3ut/SdR2avsohwkxNLaiIU9ezE7mN5oKHW1ELRhqPDIqQ
- OefV3uorVMNUXC7gpuG1qVurnXsi3Ifn71NUskkw3HQ8PRgoDjJ0VAbNclVgdULTdI
- G1aQak+i3rWPWJVOBSNQ0R6Idcomt8V1xv2Zcuu5w75aROZoHYZsqVBZzGZfWAzi+7
- l1oyXeZQcFPoA==
-Date: Wed, 4 Dec 2024 14:18:38 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- DRM XE List <intel-xe@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Dave Airlie <airlied@redhat.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Subject: Re: linux-next: build failure after merge of the drm-xe tree
-Message-ID: <57279266-d844-47d7-9c53-17fdae080b9e@sirena.org.uk>
-References: <Z1BawrcFMsj0ByLk@sirena.org.uk>
- <87a5db36j6.fsf@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5534B10E2AA;
+ Wed,  4 Dec 2024 14:31:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733322678; x=1764858678;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Nay1gnhVbkiMLBv1I4wuTvkENs2han/NjHOXtQx7SIs=;
+ b=MFMd5SePxLvcRlAgCaH284yf9kX8Tzenqtve85qYKwhDFewgwXwWIe2z
+ sFm4gQqw6lNR0LUETFpV/Bog+X17oWFkLk07xnHWCaJ3kQuXW1lOJGX2f
+ bCuIm9m3EQhDcRvHdqOAkLDne0diQM/YJXIRsBo17BFGiYqSySYsbNNo4
+ hBHRvhKkdUK56qSqEZAjcfCAbmJasiX9xfQHitRg19i+/6lx09xT0D1+d
+ lCYU0iFpyF5FiX527/qGIld25v4ONMRwPN7tIVuCIRZd3PwdhMB4OHYtQ
+ 6fPmzJRg3htj/HfM4/8PKly2sWc6qJis1N4VrLB8AnaBZjp/0wefQmYA9 A==;
+X-CSE-ConnectionGUID: YG1w9DX5TcKyMJNUG2nx5w==
+X-CSE-MsgGUID: +gq6QITARwy1UFWJ1Oqlfw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="44255512"
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44255512"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 06:31:18 -0800
+X-CSE-ConnectionGUID: OXUL59ePTK6if2kv+s8f4w==
+X-CSE-MsgGUID: S7NX28XMRxWXwWHN6J1N2Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="93963312"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.205])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 06:31:16 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH v2 0/3] drm: remove driver date
+Date: Wed,  4 Dec 2024 16:31:09 +0200
+Message-Id: <cover.1733322525.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="IurF841KVjN5RdcV"
-Content-Disposition: inline
-In-Reply-To: <87a5db36j6.fsf@intel.com>
-X-Cookie: My mind is a potato field ...
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,37 +68,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Resend, crunched this through more configs enabled to be sure.
 
---IurF841KVjN5RdcV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+BR,
+Jani.
 
-On Wed, Dec 04, 2024 at 03:46:21PM +0200, Jani Nikula wrote:
-> On Wed, 04 Dec 2024, Mark Brown <broonie@kernel.org> wrote:
 
-> > You need to merge up cdd30ebb1b9f36159d66f088b61aee264e649d7a ("module:
-> > Convert symbol namespace to string literal") from mainline and fix up
-> > for the changes in MODULE_IMPORT_NS.  I'll apply a fixup for now.
 
-> Commit cdd30ebb1b9f ("module: Convert symbol namespace to string
-> literal") isn't even in a tagged release yet. We'll get it when -rc1 is
-> out *and* backmerged to drm-next.
+Jani Nikula (3):
+  drm/xen: remove redundant initialization info print
+  accel/ivpu: remove DRIVER_DATE conditional drm_driver init
+  drm: remove driver date from struct drm_driver and all drivers
 
-Yes, it's very disruptive :(
+ drivers/accel/habanalabs/common/habanalabs_drv.c | 1 -
+ drivers/accel/ivpu/ivpu_drv.c                    | 8 --------
+ drivers/accel/qaic/qaic_drv.c                    | 1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c          | 2 --
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.h          | 1 -
+ drivers/gpu/drm/arm/display/komeda/komeda_kms.c  | 1 -
+ drivers/gpu/drm/arm/hdlcd_drv.c                  | 1 -
+ drivers/gpu/drm/arm/malidp_drv.c                 | 1 -
+ drivers/gpu/drm/armada/armada_drv.c              | 1 -
+ drivers/gpu/drm/aspeed/aspeed_gfx_drv.c          | 1 -
+ drivers/gpu/drm/ast/ast_drv.c                    | 1 -
+ drivers/gpu/drm/ast/ast_drv.h                    | 1 -
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c     | 1 -
+ drivers/gpu/drm/etnaviv/etnaviv_drv.c            | 1 -
+ drivers/gpu/drm/exynos/exynos_drm_drv.c          | 2 --
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c        | 1 -
+ drivers/gpu/drm/gma500/psb_drv.c                 | 1 -
+ drivers/gpu/drm/gma500/psb_drv.h                 | 1 -
+ drivers/gpu/drm/gud/gud_drv.c                    | 1 -
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c  | 1 -
+ drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c  | 1 -
+ drivers/gpu/drm/hyperv/hyperv_drm_drv.c          | 2 --
+ drivers/gpu/drm/i915/i915_driver.c               | 1 -
+ drivers/gpu/drm/i915/i915_driver.h               | 1 -
+ drivers/gpu/drm/i915/i915_gpu_error.c            | 1 -
+ drivers/gpu/drm/imagination/pvr_drv.c            | 1 -
+ drivers/gpu/drm/imagination/pvr_drv.h            | 1 -
+ drivers/gpu/drm/imx/dcss/dcss-kms.c              | 1 -
+ drivers/gpu/drm/imx/ipuv3/imx-drm-core.c         | 1 -
+ drivers/gpu/drm/imx/lcdc/imx-lcdc.c              | 1 -
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c        | 1 -
+ drivers/gpu/drm/kmb/kmb_drv.c                    | 1 -
+ drivers/gpu/drm/kmb/kmb_drv.h                    | 1 -
+ drivers/gpu/drm/lima/lima_drv.c                  | 1 -
+ drivers/gpu/drm/logicvc/logicvc_drm.c            | 1 -
+ drivers/gpu/drm/loongson/lsdc_drv.c              | 2 --
+ drivers/gpu/drm/mcde/mcde_drv.c                  | 1 -
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c           | 2 --
+ drivers/gpu/drm/meson/meson_drv.c                | 1 -
+ drivers/gpu/drm/mgag200/mgag200_drv.c            | 1 -
+ drivers/gpu/drm/mgag200/mgag200_drv.h            | 1 -
+ drivers/gpu/drm/msm/msm_drv.c                    | 1 -
+ drivers/gpu/drm/mxsfb/lcdif_drv.c                | 1 -
+ drivers/gpu/drm/mxsfb/mxsfb_drv.c                | 1 -
+ drivers/gpu/drm/nouveau/nouveau_drm.c            | 5 -----
+ drivers/gpu/drm/nouveau/nouveau_drv.h            | 1 -
+ drivers/gpu/drm/omapdrm/omap_drv.c               | 2 --
+ drivers/gpu/drm/panfrost/panfrost_drv.c          | 1 -
+ drivers/gpu/drm/panthor/panthor_drv.c            | 1 -
+ drivers/gpu/drm/pl111/pl111_drv.c                | 1 -
+ drivers/gpu/drm/qxl/qxl_drv.c                    | 1 -
+ drivers/gpu/drm/qxl/qxl_drv.h                    | 1 -
+ drivers/gpu/drm/radeon/radeon_drv.c              | 1 -
+ drivers/gpu/drm/radeon/radeon_drv.h              | 1 -
+ drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c    | 1 -
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c     | 1 -
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c | 1 -
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c      | 2 --
+ drivers/gpu/drm/solomon/ssd130x.c                | 2 --
+ drivers/gpu/drm/sprd/sprd_drm.c                  | 2 --
+ drivers/gpu/drm/sti/sti_drv.c                    | 2 --
+ drivers/gpu/drm/stm/drv.c                        | 1 -
+ drivers/gpu/drm/sun4i/sun4i_drv.c                | 1 -
+ drivers/gpu/drm/tegra/drm.c                      | 2 --
+ drivers/gpu/drm/tidss/tidss_drv.c                | 1 -
+ drivers/gpu/drm/tilcdc/tilcdc_drv.c              | 1 -
+ drivers/gpu/drm/tiny/arcpgu.c                    | 1 -
+ drivers/gpu/drm/tiny/bochs.c                     | 1 -
+ drivers/gpu/drm/tiny/cirrus-qemu.c               | 2 --
+ drivers/gpu/drm/tiny/gm12u320.c                  | 2 --
+ drivers/gpu/drm/tiny/hx8357d.c                   | 1 -
+ drivers/gpu/drm/tiny/ili9163.c                   | 1 -
+ drivers/gpu/drm/tiny/ili9225.c                   | 1 -
+ drivers/gpu/drm/tiny/ili9341.c                   | 1 -
+ drivers/gpu/drm/tiny/ili9486.c                   | 1 -
+ drivers/gpu/drm/tiny/mi0283qt.c                  | 1 -
+ drivers/gpu/drm/tiny/ofdrm.c                     | 2 --
+ drivers/gpu/drm/tiny/panel-mipi-dbi.c            | 1 -
+ drivers/gpu/drm/tiny/repaper.c                   | 1 -
+ drivers/gpu/drm/tiny/sharp-memory.c              | 1 -
+ drivers/gpu/drm/tiny/simpledrm.c                 | 2 --
+ drivers/gpu/drm/tiny/st7586.c                    | 1 -
+ drivers/gpu/drm/tiny/st7735r.c                   | 1 -
+ drivers/gpu/drm/tve200/tve200_drv.c              | 1 -
+ drivers/gpu/drm/udl/udl_drv.c                    | 1 -
+ drivers/gpu/drm/udl/udl_drv.h                    | 1 -
+ drivers/gpu/drm/v3d/v3d_drv.c                    | 2 --
+ drivers/gpu/drm/vboxvideo/vbox_drv.c             | 1 -
+ drivers/gpu/drm/vboxvideo/vbox_drv.h             | 1 -
+ drivers/gpu/drm/vc4/vc4_drv.c                    | 3 ---
+ drivers/gpu/drm/vgem/vgem_drv.c                  | 2 --
+ drivers/gpu/drm/virtio/virtgpu_drv.c             | 1 -
+ drivers/gpu/drm/virtio/virtgpu_drv.h             | 1 -
+ drivers/gpu/drm/vkms/vkms_drv.c                  | 2 --
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c              | 1 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.h              | 1 -
+ drivers/gpu/drm/xe/xe_device.c                   | 1 -
+ drivers/gpu/drm/xe/xe_drv.h                      | 1 -
+ drivers/gpu/drm/xen/xen_drm_front.c              | 6 ------
+ drivers/gpu/drm/xlnx/zynqmp_kms.c                | 1 -
+ include/drm/drm_drv.h                            | 2 --
+ 101 files changed, 138 deletions(-)
 
---IurF841KVjN5RdcV
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.39.5
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmdQZL0ACgkQJNaLcl1U
-h9BNaQf/RRCVZDUfBV8IMrJHgZV8/JM2OJEoX30BUV0DsnX7wU7pvL3TJ4wH2utQ
-bdg5p6bDnd0vxPhzxqy/rKu/r2frXWAI93t9PZe5B43W7rwp2Mi3b9qLAPEHY+fj
-1MnVqlc4GCA4sCsdXp4RceARIrlCOFVYYdBv7ob3DyAwoxHSrbw32uoYIdFdmbGw
-Q3VALlrenY5pbwmqBjolHcufNvuI1V5RcZxV70MBhf7aw1zBNSQWFo3SkC6g/tfx
-InqGiM0XDRygIA0NLS6OaOJG+K+Ot4xcNTv5x/GhmMSMiYXSOaUNdKZUSmQS2iRL
-aXihEaCvS3E1NlqoEB4UJfzT/R8fiQ==
-=vMto
------END PGP SIGNATURE-----
-
---IurF841KVjN5RdcV--
