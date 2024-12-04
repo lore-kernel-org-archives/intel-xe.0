@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CE5FE7716E
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 14:07:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 930D6E7716E
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Dec 2024 14:09:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 517BF10ED45;
-	Wed,  4 Dec 2024 14:07:25 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A352910ED3F;
- Wed,  4 Dec 2024 14:07:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 516E210ED45;
+	Wed,  4 Dec 2024 14:09:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pn4CHbI3";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D340710ED40;
+ Wed,  4 Dec 2024 14:09:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733321348; x=1764857348;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=TCBvtmRf6DnMY/kyoik46wtEycNe6/8fbGRpIcOBLWM=;
+ b=Pn4CHbI3bLlDi1MKyEBVJzTFRQaWa78rM0vZUOiUBVS6Oa2hX5o/14Sa
+ g97j1pyXHLhYIIgEIqNKv48Ltmc5LjiUlMzYeDW9LuETDWFFkMmJOMYXX
+ DAj4rQ+HkmdlegAu7XQWuhImXLdgi3532zjaCGFJpWghqnhM/wXnZUPCo
+ BqQdBks9CjZ6Fi1ZtQWHMllCLxV5DidHUlZeADPIrPFwEi5cSUhJfZaa4
+ JVx59X5JRLxWGIWrHbEf/VaerHvx2sPFD3PA77ufjIN13WEsOSmMW32S2
+ x5v/GLhVw308aRzyaaMMrz+S4iTFFrWLiQkuTgDH4IXqmawRCOWVe2J4B A==;
+X-CSE-ConnectionGUID: L/pntxtSTZ6CJbKLj4cePg==
+X-CSE-MsgGUID: JT8zAC/LSuKAzQDo9EVFkg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="56071479"
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="56071479"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 06:09:08 -0800
+X-CSE-ConnectionGUID: cQ5m6uxMQlSU0JJ6THUmqw==
+X-CSE-MsgGUID: 4lf1GMbdQsG2cM0saye1Ng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="93957492"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.246.221])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 06:09:03 -0800
+Date: Wed, 4 Dec 2024 15:08:53 +0100
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-xe-fixes
+Message-ID: <Z1BidZBFQOLjz__J@fedora>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_kernel/cgroups=3A_Add_=22dmem?=
- =?utf-8?q?=22_memory_accounting_cgroup=2E?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Dec 2024 14:07:24 -0000
-Message-ID: <173332124466.2495098.1146773508096963844@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241204134410.1161769-1-dev@lankhorst.se>
-In-Reply-To: <20241204134410.1161769-1-dev@lankhorst.se>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +71,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Dave, Simona
 
-Series: kernel/cgroups: Add "dmem" memory accounting cgroup.
-URL   : https://patchwork.freedesktop.org/series/142111/
-State : failure
+Two xe fixes for -rc2
 
-== Summary ==
+Thanks,
+Thomas
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:In file included from ../drivers/gpu/drm/ttm/ttm_bo.c:45:
-../include/linux/cgroup_dmem.h:32:1: error: expected identifier or ‘(’ before ‘{’ token
-   32 | {
-      | ^
-../include/linux/cgroup_dmem.h:42:1: error: expected identifier or ‘(’ before ‘{’ token
-   42 | {
-      | ^
-../drivers/gpu/drm/ttm/ttm_bo.c: In function ‘ttm_bo_evict_cb’:
-../drivers/gpu/drm/ttm/ttm_bo.c:518:57: error: passing argument 1 of ‘dmem_cgroup_state_evict_valuable’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  518 |         if (!dmem_cgroup_state_evict_valuable(evict_walk->limit_pool, bo->resource->css,
-      |                                               ~~~~~~~~~~^~~~~~~~~~~~
-      |                                                         |
-      |                                                         struct dmem_cgroup_pool_state *
-../include/linux/cgroup_dmem.h:55:66: note: expected ‘struct dmem_cgroup_device *’ but argument is of type ‘struct dmem_cgroup_pool_state *’
-   55 | bool dmem_cgroup_state_evict_valuable(struct dmem_cgroup_device *region,
-      |                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
-../drivers/gpu/drm/ttm/ttm_bo.c:519:57: error: incompatible type for argument 3 of ‘dmem_cgroup_state_evict_valuable’
-  519 |                                               evict_walk->try_low, &evict_walk->hit_low))
-      |                                               ~~~~~~~~~~^~~~~~~~~
-      |                                                         |
-      |                                                         bool {aka _Bool}
-../include/linux/cgroup_dmem.h:57:70: note: expected ‘struct dmem_cgroup_pool_state *’ but argument is of type ‘bool’ {aka ‘_Bool’}
-   57 |                                       struct dmem_cgroup_pool_state *test_pool,
-      |                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
-../drivers/gpu/drm/ttm/ttm_bo.c:519:47: warning: the comparison will always evaluate as ‘true’ for the address of ‘hit_low’ will never be NULL [-Waddress]
-  519 |                                               evict_walk->try_low, &evict_walk->hit_low))
-      |                                               ^~~~~~~~~~
-../drivers/gpu/drm/ttm/ttm_bo.c:509:14: note: ‘hit_low’ declared here
-  509 |         bool hit_low;
-      |              ^~~~~~~
-../drivers/gpu/drm/ttm/ttm_bo.c:518:14: error: too few arguments to function ‘dmem_cgroup_state_evict_valuable’
-  518 |         if (!dmem_cgroup_state_evict_valuable(evict_walk->limit_pool, bo->resource->css,
-      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../include/linux/cgroup_dmem.h:55:6: note: declared here
-   55 | bool dmem_cgroup_state_evict_valuable(struct dmem_cgroup_device *region,
-      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../include/linux/cgroup_dmem.h: At top level:
-../include/linux/cgroup_dmem.h:31:1: warning: ‘dmem_cgroup_register_region’ declared ‘static’ but never defined [-Wunused-function]
-   31 | dmem_cgroup_register_region(u64 size, const char *name_fmt, ...) __printf(2,3);
-      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-../include/linux/cgroup_dmem.h:39:12: warning: ‘dmem_cgroup_try_charge’ declared ‘static’ but never defined [-Wunused-function]
-   39 | static int dmem_cgroup_try_charge(struct dmem_cgroup_device *cgdev, u64 size,
-      |            ^~~~~~~~~~~~~~~~~~~~~~
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:194: drivers/gpu/drm/ttm/ttm_bo.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:440: drivers/gpu/drm/ttm] Error 2
-make[6]: *** Waiting for unfinished jobs....
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-make[5]: *** [../scripts/Makefile.build:440: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:440: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:440: drivers] Error 2
-make[2]: *** [/kernel/Makefile:1989: .] Error 2
-make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
+drm-xe-fixes-2024-12-04:
+Driver Changes:
+- Missing init value and 64-bit write-order check (Zhanjung)
+- Fix a memory allocation issue causing lockdep violation (John)
+The following changes since commit 40384c840ea1944d7c5a392e8975ed088ecf0b37:
 
-[14:06:51] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[14:06:55] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+  Linux 6.13-rc1 (2024-12-01 14:28:56 -0800)
 
+are available in the Git repository at:
 
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-12-04
+
+for you to fetch changes up to 5dce85fecb87751ec94526e1ac516dd7871e2e0c:
+
+  drm/xe: Move the coredump registration to the worker thread (2024-12-03 10:33:13 +0100)
+
+----------------------------------------------------------------
+Driver Changes:
+- Missing init value and 64-bit write-order check (Zhanjung)
+- Fix a memory allocation issue causing lockdep violation (John)
+
+----------------------------------------------------------------
+John Harrison (1):
+      drm/xe: Move the coredump registration to the worker thread
+
+Zhanjun Dong (1):
+      drm/xe/guc: Fix missing init value and add register order check
+
+ drivers/gpu/drm/xe/xe_devcoredump.c | 73 +++++++++++++++++++----------------
+ drivers/gpu/drm/xe/xe_guc_capture.c | 77 +++++++++++++++++++++++++++++--------
+ 2 files changed, 101 insertions(+), 49 deletions(-)
