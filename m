@@ -4,73 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67744E7716C
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 03:53:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C4B8E7716D
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 04:27:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1858510E37C;
-	Thu,  5 Dec 2024 03:53:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E585D10ED98;
+	Thu,  5 Dec 2024 04:27:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="YyIzfUsV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZumKcllF";
 	dkim-atps=neutral
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com
- [209.85.210.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBAE610E37D
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Dec 2024 03:53:30 +0000 (UTC)
-Received: by mail-pf1-f170.google.com with SMTP id
- d2e1a72fcca58-724e5fb3f9dso403180b3a.3
- for <intel-xe@lists.freedesktop.org>; Wed, 04 Dec 2024 19:53:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1733370810; x=1733975610;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=ZZSHV0LKLhgrBuMbp+ZWR29V4e1LVWQGoaBkExJal3k=;
- b=YyIzfUsVPm1cRrEru/U/XAp5iaW6nlwZML35pqCEmv+TkYfQCQ4+Q/Zxf5vI1+ij5Q
- CfNbFS6VIgJENhqn2hGFGnClukhuWb72qgH8is45N9oBmJ3EpmDkvIKEHPTk2hXeFeFr
- ryazggUav39780M9bzpGxnXW34afwe9FZU38U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733370810; x=1733975610;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ZZSHV0LKLhgrBuMbp+ZWR29V4e1LVWQGoaBkExJal3k=;
- b=ts4d/tfR9F1gwbXZMj5Z/zUzByOv9LkPXma4Ev9ZhOU+6lhtFUAyw5LP/CIUF+GZdk
- 4VtRRUL/tCFba8QJnw4MIFYB6Z5vsZWUVa5NEFPN30XJG9a56yVSfNngZuz/ErDndjuH
- HJVNtsiuEbAhQYV9MoYCYewj56DkKaGSZG+V+Qfw2oTQgWOndZuo1iBpaXelEGyKprtr
- A9CMGdbrKi6j5bPZogOczMvrGM3mirDYB8HwgmkICiqfp//sW70sylkJlXHF+rsiY3zI
- sjs3ELD8iGJzVWncNRtlobK28F6XGse2cLou8QJcI5HkKJaISCyDPg3BM74cpGO2e4cf
- HA3w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXszXcsUj+bEP8QqESEyh1vAW+tHZ39gnsah8Cqfwhp1lbwfyK20T6iLDWI3PvJ5YgT8NTgCMa2Yw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzUBXh03DMPMU3sVYN19wCpbR+hv3PQUAAZ2ON0donQIzrvMPDj
- ufGzGzKAa5U5eixq3po5lNK5jU2xngH3/BKWMcD+p9OUHcNaJeotuEFlZw/2xQ==
-X-Gm-Gg: ASbGncuQDWk/hm8WXhW1RHh8tiAc4sESXOjJMoeZ/7s0ysQ1nwvE5Z0XHaHtpzB0eUv
- o8HlXoVh3RZUcj6CZ2uXM+dW6D6KB1LgxD2HgIUrjKzNC7lAgiSQ14grlogZPMVxo0kU5ZQVXWX
- MS5XbIJNgBLoxuGGic42LocH6QgiIqBOGd0FvEkleYrYNNUAFzwXNVCxSVJW1mtJLQExpEb6S9h
- OD0b98L+3WKMcK7p9RTQPMqGcC4+VEm3VXl0BMp1JgTU+IN7ibL
-X-Google-Smtp-Source: AGHT+IEpqntxhBxjXGPvDXVCuneN7k7K0pj00Sr3u1kw039fQL0FpKMhBXxl/Rcb3K7xZhQPSVrq2A==
-X-Received: by 2002:a05:6a00:9289:b0:720:9a03:b6dc with SMTP id
- d2e1a72fcca58-7257fcb8d0emr12161298b3a.18.1733370810174; 
- Wed, 04 Dec 2024 19:53:30 -0800 (PST)
-Received: from google.com ([2401:fa00:8f:203:84f:5a2a:8b5d:f44f])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-725a2cb5588sm267630b3a.170.2024.12.04.19.53.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 04 Dec 2024 19:53:29 -0800 (PST)
-Date: Thu, 5 Dec 2024 12:53:26 +0900
-From: Sergey Senozhatsky <senozhatsky@chromium.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v2 0/5] drm/i915/display: handle hdmi connector init
- failures, and no HDMI/DP cases
-Message-ID: <20241205035326.GD16709@google.com>
-References: <cover.1733324735.git.jani.nikula@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7BB210ED98
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Dec 2024 04:27:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733372875; x=1764908875;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=U7gKAKCc+9mpLnO4tzVuOJ9AwGgfbhdW6obzWx29Ofo=;
+ b=ZumKcllFockOQ3GFCTun8MSafnyqyVa9QmlWFa5V1iwvzQK/JWWC0w29
+ 7B8rUiqghDMjmVOO8TjIcVgmDqJCj+NRY1QxTEtGGbO0Gjfub6sMb7kCh
+ jPm0XMTyagSL8SyQGfO+TTLObZ/K4Doyj6tpb9PfdiAHOlvCkyk3A56B1
+ zVLdMXwHuH9yRfDBlu6z021wmSe1PSsbvIcFoZx7A5BOXfypIe2Gw54aB
+ Ex6hRUO4U62tp3TUDi5Ehsv2eV9E/fYiRwe3RvnCNiivkukSeYz+f4xhI
+ FMHl/agmuECdrPg6gaREMI9BqUm8E40nXyUnRdcLbtgJ0A2A3FgUxuND0 A==;
+X-CSE-ConnectionGUID: T0wXcFZtQB+jUkl1sdvZZw==
+X-CSE-MsgGUID: Sr9PYlaSR/WeylKIJrddSg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="33005413"
+X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="33005413"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 20:27:54 -0800
+X-CSE-ConnectionGUID: Jx54eRxqS5G+vCXcuiUL8A==
+X-CSE-MsgGUID: 2Fm3kznMRbO6rVmSwLX1rQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="93844501"
+Received: from spottumu-desk.iind.intel.com ([10.145.152.200])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 20:27:52 -0800
+From: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: ashutosh.dixit@intel.com,
+	sai.teja.pottumuttu@intel.com
+Subject: [PATCH v3 0/1] Make OA buffer size configurable
+Date: Thu,  5 Dec 2024 09:49:12 +0530
+Message-Id: <20241205041913.883767-1-sai.teja.pottumuttu@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1733324735.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,10 +65,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On (24/12/04 17:07), Jani Nikula wrote:
-> 
-> v2 of [1] attempting to resolve [2].
+The patch series makes OA buffer size configurable by adding
+a new property DRM_XE_OA_PROPERTY_OA_BUFFER_SIZE. With this
+OA buffer size would now be configurable between 128KB and
+128MB.
 
-Works like a charm!
+The patch series also takes care of the respective register bits
+required to enable >16MB buffer size and removes hardcoded instances
+of OA buffer size.
 
-Tested-by: Sergey Senozhatsky <senozhatsky@chromium.org>
+Note that a link to the UMD patch using this property would be posted
+in the coming up revisions.
+
+v2:
+  - Rebase
+v3:
+  - Squash the patches into one patch [Ashutosh]
+  - Patch specific fixes mentioned in the respective patches
+
+Test-with: 20241204161606.363295-2-sai.teja.pottumuttu@intel.com
+
+Sai Teja Pottumuttu (1):
+  drm/xe/oa/uapi: Make OA buffer size configurable
+
+ drivers/gpu/drm/xe/regs/xe_oa_regs.h |  9 +----
+ drivers/gpu/drm/xe/xe_oa.c           | 55 ++++++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_oa_types.h     |  2 +-
+ drivers/gpu/drm/xe/xe_query.c        |  3 +-
+ include/uapi/drm/xe_drm.h            |  9 +++++
+ 5 files changed, 56 insertions(+), 22 deletions(-)
+
+-- 
+2.34.1
+
