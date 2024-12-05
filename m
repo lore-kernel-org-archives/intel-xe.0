@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDF1AE7716E
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 21:35:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 180FFE7716E
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 21:39:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 586AB10E18E;
-	Thu,  5 Dec 2024 21:35:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B839010E18E;
+	Thu,  5 Dec 2024 21:39:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kAhGpm4t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KvWy2DLO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96FB510E18E
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Dec 2024 21:35:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16E4210E18E
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Dec 2024 21:39:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733434509; x=1764970509;
+ t=1733434791; x=1764970791;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=c28XLAPY7+ZJb3NW+QpoVmh5/lAETjHg1QSjIBqxJpE=;
- b=kAhGpm4tuR8g/PH9Y70r4YTWwyM8TSw9M2RA5pfF4bxGMDXhe4Wd9Jlu
- 7Zn62uQW1VMIVJAegM7KFn6dVMQDrZCLDKgAXhUnvfqjUvZtDpj7lTlYV
- vXKTTupF0yYGarc/zETqj1vRDEyF14hK+7lN4KqBt38WM/wWjuyTR8BHc
- 9Q4fOFu+fLVTP0OkPCJCEzRYQ1npsV/H+2l5JygV5N/RC79QbnQhpuSTT
- 8wzAHIIdmJR+aseW1rwhQ2vDfS4lHVhu5yG5768CU9UWTCeGSavyWeXs2
- 5uSIB5rllnrqPz+6fe9oMHNTfnaP1NBA7yn9CgZi5v9PwEFXMncM69PLf w==;
-X-CSE-ConnectionGUID: V8BDWvcORlyaMz7DZqC1ow==
-X-CSE-MsgGUID: e6oXntxtTZSwYVg9oixq8A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11277"; a="36609778"
-X-IronPort-AV: E=Sophos;i="6.12,211,1728975600"; d="scan'208";a="36609778"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 13:35:09 -0800
-X-CSE-ConnectionGUID: tEQqAYynQji4wzAmUw8ybg==
-X-CSE-MsgGUID: hOFvqOX0SiG9Ah6TsX8FDw==
+ bh=zCq/PliUA+vR7QX4e44+pxQ6zdWjR3iMx6p5rcg4OwE=;
+ b=KvWy2DLOOlGoCBujdR5haFm/H6alFXiI55JEATMcKm8fL/uDOBBxjllL
+ Yst2heZsCQoREh3OURe5j3OQdNd92aNeZ0dknkkyttwdMhVXpB00cZwLo
+ Sddqrh0Sufo3ICHUPY0xoQmxp+/t+MLetJ5VJEaMXXMWfYvQyGMi8HWnl
+ BT1Aac2OO/eYCQxuhwn8MIP4f+pImQxELidLYccPCmdWZ1/Hjs+kittcn
+ BLImZOy+YocbXXI1PYr8aQMSkQFhDzIVg7/pn1Xb7aft7vxLOQ4VemexS
+ nikkTX+n7lzmPU80shwPbfftMnU0mZBOgUCbj2LIeGIDsOBFmoHZ6nCCP g==;
+X-CSE-ConnectionGUID: NtRrR4OLRayHIyeGIX+LFQ==
+X-CSE-MsgGUID: kZlNdKVPQse19Wly57w/pw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11277"; a="44376365"
+X-IronPort-AV: E=Sophos;i="6.12,211,1728975600"; d="scan'208";a="44376365"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2024 13:39:51 -0800
+X-CSE-ConnectionGUID: iOpv3QqYQU2I5p1aaRiQgg==
+X-CSE-MsgGUID: gkLcwBPbRnKKD7c1pxT5FQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,211,1728975600"; d="scan'208";a="94422350"
+X-IronPort-AV: E=Sophos;i="6.12,211,1728975600"; d="scan'208";a="98667500"
 Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
  ([10.165.21.142])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 13:35:07 -0800
-Date: Thu, 05 Dec 2024 13:35:07 -0800
-Message-ID: <85o71p3jas.wl-ashutosh.dixit@intel.com>
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2024 13:39:50 -0800
+Date: Thu, 05 Dec 2024 13:39:50 -0800
+Message-ID: <85msh93j2x.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-Cc: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v3 1/1] drm/xe/oa/uapi: Make OA buffer size configurable
-In-Reply-To: <20241205041913.883767-2-sai.teja.pottumuttu@intel.com>
-References: <20241205041913.883767-1-sai.teja.pottumuttu@intel.com>
- <20241205041913.883767-2-sai.teja.pottumuttu@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+Subject: Re: =?UTF-8?B?4pyX?= Xe.CI.Full: failure for Make OA buffer size
+ configurable (rev3)
+In-Reply-To: <173338063519.2861566.16198592221505537910@b555e5b46a47>
+References: <20241205041913.883767-1-sai.teja.pottumuttu@intel.com>	<173338063519.2861566.16198592221505537910@b555e5b46a47>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -70,15 +70,351 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 04 Dec 2024 20:19:13 -0800, Sai Teja Pottumuttu wrote:
+On Wed, 04 Dec 2024 22:37:15 -0800, Patchwork wrote:
 >
-> Add a new property called DRM_XE_OA_PROPERTY_OA_BUFFER_SIZE to
-> allow OA buffer size to be configurable from userspace.
+>  Patch Details
 >
-> With this OA buffer size can be configured to any power of 2
-> size between 128KB and 128MB and it would default to 16MB in case
-> the size is not supplied.
+>  Series:  Make OA buffer size configurable (rev3)
+>  URL:  https://patchwork.freedesktop.org/series/141795/
+>  State:  failure
+>  Details:  https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141795v3/index.html
+>
+> CI Bug Log - changes from xe-2322-bfd3bde7e3c3d30d3b3f9a155ea8c5d3c8d3871e_full -> xe-pw-141795v3_full
+>
+> Summary
+>
+> FAILURE
+>
+> Serious unknown changes coming with xe-pw-141795v3_full absolutely need to be
+> verified manually.
 
-Look great!
+Failures here are unrelated, though not sure why it didn't run the new
+xe_oa@oa-buffer-size tests specified in the Test-with. Anyway.
 
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+
+>
+> If you think the reported changes have nothing to do with the changes
+> introduced in xe-pw-141795v3_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+> to document this new failure mode, which will reduce false positives in CI.
+>
+> Participating hosts (4 -> 4)
+>
+> No changes in participating hosts
+>
+> Possible new issues
+>
+> Here are the unknown changes that may have been introduced in xe-pw-141795v3_full:
+>
+> IGT changes
+>
+> Possible regressions
+>
+> * igt@kms_properties@connector-properties-atomic@pipe-a-dp-2:
+>
+>  * shard-bmg: PASS -> DMESG-WARN +2 other tests dmesg-warn
+>
+> * igt@xe_exec_compute_mode@many-bindexecqueue-userptr-rebind:
+>
+>  * shard-lnl: PASS -> FAIL
+>
+> Warnings
+>
+> * igt@kms_properties@connector-properties-atomic:
+>
+>  * shard-bmg: DMESG-WARN (Intel XE#3468) -> DMESG-WARN
+>
+> Known issues
+>
+> Here are the changes found in xe-pw-141795v3_full that come from known issues:
+>
+> IGT changes
+>
+> Issues hit
+>
+> * igt@kms_async_flips@alternate-sync-async-flip-atomic:
+>
+>  * shard-adlp: PASS -> DMESG-FAIL (Intel XE#1033 / Intel XE#1727) +3 other tests dmesg-fail
+>
+> * igt@kms_ccs@crc-primary-rotation-180-4-tiled-dg2-rc-ccs-cc:
+>
+>  * shard-bmg: NOTRUN -> SKIP (Intel XE#2887)
+>
+> * igt@kms_cursor_crc@cursor-onscreen-32x10:
+>
+>  * shard-bmg: NOTRUN -> SKIP (Intel XE#2320) +1 other test skip
+>
+> * igt@kms_dsc@dsc-fractional-bpp:
+>
+>  * shard-adlp: NOTRUN -> SKIP (Intel XE#455)
+>
+> * igt@kms_flip@2x-flip-vs-expired-vblank@ac-dp2-hdmi-a3:
+>
+>  * shard-bmg: PASS -> FAIL (Intel XE#3321)
+>
+> * igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-indfb-draw-render:
+>
+>  * shard-bmg: NOTRUN -> FAIL (Intel XE#2333) +2 other tests fail
+>
+> * igt@kms_frontbuffer_tracking@fbcdrrs-1p-primscrn-spr-indfb-draw-mmap-wc:
+>
+>  * shard-bmg: NOTRUN -> SKIP (Intel XE#2311) +3 other tests skip
+>
+> * igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-spr-indfb-onoff:
+>
+>  * shard-bmg: NOTRUN -> SKIP (Intel XE#2313) +1 other test skip
+>
+> * igt@kms_pm_rpm@dpms-lpsp:
+>
+>  * shard-bmg: NOTRUN -> SKIP (Intel XE#1439 / Intel XE#3141 / Intel XE#836)
+>
+> * igt@kms_psr@fbc-pr-sprite-blt:
+>
+>  * shard-bmg: NOTRUN -> SKIP (Intel XE#2234 / Intel XE#2850)
+>
+> * igt@kms_setmode@basic:
+>
+>  * shard-bmg: PASS -> FAIL (Intel XE#2883) +2 other tests fail
+>
+> * igt@kms_vblank@ts-continuation-modeset@pipe-a-dp-2:
+>
+>  * shard-bmg: PASS -> DMESG-WARN (Intel XE#3468) +10 other tests dmesg-warn
+>
+> * igt@kms_vrr@cmrr:
+>
+>  * shard-bmg: NOTRUN -> SKIP (Intel XE#2168)
+>
+> * igt@sriov_basic@enable-vfs-bind-unbind-each-numvfs-all:
+>
+>  * shard-bmg: NOTRUN -> SKIP (Intel XE#1091 / Intel XE#2849)
+>
+> * igt@xe_eudebug@discovery-empty-clients:
+>
+>  * shard-bmg: NOTRUN -> SKIP (Intel XE#2905)
+>
+> * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate:
+>
+>  * shard-bmg: NOTRUN -> SKIP (Intel XE#2322)
+>
+> * igt@xe_exec_mix_modes@exec-simple-batch-store-dma-fence:
+>
+>  * shard-adlp: NOTRUN -> SKIP (Intel XE#2360)
+>
+> * igt@xe_exec_reset@spin-signaled:
+>
+>  * shard-bmg: NOTRUN -> DMESG-WARN (Intel XE#3468)
+>
+> * igt@xe_fault_injection@inject-fault-probe-function-xe_guc_relay_init:
+>
+>  * shard-adlp: PASS -> DMESG-WARN (Intel XE#3086 / Intel XE#3343)
+>
+> * igt@xe_fault_injection@inject-fault-probe-function-xe_wa_init:
+>
+>  * shard-adlp: PASS -> DMESG-WARN (Intel XE#3086)
+>
+> * igt@xe_pm@s2idle-vm-bind-prefetch:
+>
+>  * shard-adlp: NOTRUN -> ABORT (Intel XE#1694) +1 other test abort
+>
+> * igt@xe_pm@s4-basic:
+>
+>  * shard-adlp: PASS -> ABORT (Intel XE#1358 / Intel XE#1607)
+>
+> * igt@xe_pm@s4-multiple-execs:
+>
+>  * shard-adlp: PASS -> ABORT (Intel XE#1358 / Intel XE#1607 / Intel XE#1794)
+>
+> * igt@xe_pm_residency@toggle-gt-c6:
+>
+>  * shard-adlp: PASS -> FAIL (Intel XE#958)
+>
+> Possible fixes
+>
+> * igt@kms_async_flips@alternate-sync-async-flip@pipe-c-hdmi-a-1:
+>
+>  * shard-adlp: DMESG-FAIL (Intel XE#1033 / Intel XE#1727 / Intel XE#324) -> PASS +1 other test pass
+>
+> * igt@kms_async_flips@alternate-sync-async-flip@pipe-d-hdmi-a-1:
+>
+>  * shard-adlp: DMESG-FAIL (Intel XE#1033 / Intel XE#1727) -> PASS
+>
+> * igt@kms_async_flips@async-flip-with-page-flip-events@pipe-b-hdmi-a-1-y:
+>
+>  * shard-adlp: DMESG-WARN (Intel XE#324) -> PASS +3 other tests pass
+>
+> * igt@kms_atomic_transition@modeset-transition-nonblocking@1x-outputs:
+>
+>  * shard-lnl: FAIL (Intel XE#1701) -> PASS +1 other test pass
+>
+> * igt@kms_cursor_legacy@short-flip-before-cursor-toggle:
+>
+>  * shard-adlp: DMESG-WARN (Intel XE#3086) -> PASS +1 other test pass
+>
+> * igt@kms_flip@flip-vs-expired-vblank-interruptible:
+>
+>  * shard-bmg: FAIL (Intel XE#2882) -> PASS +4 other tests pass
+>
+> * igt@kms_flip@flip-vs-expired-vblank-interruptible@b-dp2:
+>
+>  * shard-bmg: FAIL (Intel XE#3640) -> PASS
+>
+> * igt@kms_flip@plain-flip-ts-check@a-edp1:
+>
+>  * shard-lnl: FAIL (Intel XE#886) -> PASS +2 other tests pass
+>
+> * igt@kms_plane_cursor@overlay@pipe-d-dp-2-size-64:
+>
+>  * shard-bmg: DMESG-WARN (Intel XE#3468) -> PASS +14 other tests pass
+>
+> * igt@kms_pm_dc@deep-pkgc:
+>
+>  * shard-lnl: FAIL (Intel XE#2029) -> PASS
+>
+> * igt@kms_pm_rpm@modeset-stress-extra-wait:
+>
+>  * shard-lnl: DMESG-WARN (Intel XE#3184) -> PASS
+>
+> * igt@kms_universal_plane@cursor-fb-leak@pipe-a-edp-1:
+>
+>  * shard-lnl: FAIL (Intel XE#899) -> PASS
+>
+> * igt@kms_vblank@query-forked-busy@pipe-a-dp-2:
+>
+>  * shard-bmg: DMESG-FAIL (Intel XE#3468) -> PASS +4 other tests pass
+>
+> * igt@xe_evict@evict-beng-threads-large:
+>
+>  * shard-bmg: TIMEOUT (Intel XE#1473) -> PASS
+>
+> * igt@xe_exec_reset@virtual-close-execqueues-close-fd:
+>
+>  * shard-bmg: DMESG-WARN (Intel XE#1727) -> PASS
+>
+> * igt@xe_module_load@many-reload:
+>
+>  * shard-adlp: DMESG-WARN (Intel XE#2953 / Intel XE#3086) -> PASS
+>
+> * igt@xe_module_load@reload-no-display:
+>
+>  * shard-adlp: DMESG-WARN (Intel XE#1033 / Intel XE#1727) -> PASS
+>
+> * igt@xe_oa@short-reads:
+>
+>  * shard-lnl: DMESG-WARN -> PASS
+>
+> * igt@xe_pm@s4-exec-after:
+>
+>  * shard-adlp: ABORT (Intel XE#1358 / Intel XE#1607) -> PASS
+>
+> * igt@xe_pm@s4-vm-bind-userptr:
+>
+>  * shard-bmg: DMESG-WARN (Intel XE#1727 / Intel XE#2280 / Intel XE#3468) -> PASS
+>
+> * igt@xe_vm@large-misaligned-binds-536870912:
+>
+>  * shard-bmg: DMESG-WARN -> PASS
+>
+> * igt@xe_vm@large-userptr-split-binds-1073741824:
+>
+>  * shard-adlp: TIMEOUT (Intel XE#1033 / Intel XE#1727) -> PASS
+>
+> Warnings
+>
+> * igt@kms_big_fb@4-tiled-64bpp-rotate-180:
+>
+>  * shard-bmg: DMESG-FAIL (Intel XE#3468) -> DMESG-WARN (Intel XE#3468 / Intel XE#877)
+>
+> * igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-async-flip:
+>
+>  * shard-bmg: DMESG-WARN (Intel XE#3468) -> DMESG-FAIL (Intel XE#3468) +2 other tests dmesg-fail
+>
+> * igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-0:
+>
+>  * shard-bmg: DMESG-FAIL (Intel XE#3468) -> DMESG-WARN (Intel XE#3468)
+>
+> * igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-hflip:
+>
+>  * shard-bmg: DMESG-WARN (Intel XE#1727 / Intel XE#3468) -> DMESG-FAIL (Intel XE#1727 / Intel XE#3468)
+>
+> * igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-hflip-async-flip:
+>
+>  * shard-adlp: DMESG-FAIL -> FAIL (Intel XE#1231)
+>
+> * igt@kms_color@deep-color:
+>
+>  * shard-bmg: DMESG-WARN (Intel XE#3468) -> DMESG-FAIL (Intel XE#3468 / Intel XE#877)
+>
+> * igt@kms_color@deep-color@pipe-a-dp-2-degamma:
+>
+>  * shard-bmg: DMESG-WARN (Intel XE#3468) -> DMESG-WARN (Intel XE#3468 / Intel XE#877)
+>
+> * igt@kms_cursor_legacy@cursorb-vs-flipa-toggle:
+>
+>  * shard-bmg: DMESG-WARN (Intel XE#3468) -> DMESG-WARN (Intel XE#877)
+>
+> * igt@kms_draw_crc@draw-method-blt@xrgb2101010-xtiled:
+>
+>  * shard-bmg: DMESG-FAIL (Intel XE#2705 / Intel XE#3468) -> DMESG-WARN (Intel XE#3468)
+>
+> * igt@kms_draw_crc@draw-method-blt@xrgb8888-4tiled:
+>
+>  * shard-bmg: DMESG-FAIL (Intel XE#2705) -> DMESG-FAIL (Intel XE#2705 / Intel XE#3468)
+>
+> * igt@kms_flip@flip-vs-absolute-wf_vblank:
+>
+>  * shard-lnl: FAIL -> FAIL (Intel XE#886)
+>
+> * igt@kms_flip@flip-vs-absolute-wf_vblank@a-edp1:
+>
+>  * shard-lnl: FAIL (Intel XE#3036) -> FAIL (Intel XE#886)
+>
+> * igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-blt:
+>
+>  * shard-adlp: TIMEOUT (Intel XE#1033 / Intel XE#1727) -> FAIL (Intel XE#1861)
+>
+> * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-move:
+>
+>  * shard-bmg: INCOMPLETE (Intel XE#1727 / Intel XE#2050) -> FAIL (Intel XE#2333)
+>
+> * igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-cur-indfb-draw-blt:
+>
+>  * shard-adlp: TIMEOUT (Intel XE#1033 / Intel XE#1727) -> SKIP (Intel XE#656)
+>
+> * igt@kms_frontbuffer_tracking@psr-2p-primscrn-spr-indfb-draw-render:
+>
+>  * shard-adlp: TIMEOUT (Intel XE#1727) -> SKIP (Intel XE#656)
+>
+> * igt@kms_tiled_display@basic-test-pattern:
+>
+>  * shard-bmg: FAIL (Intel XE#1729) -> SKIP (Intel XE#2426)
+>
+> * igt@kms_vblank@ts-continuation-dpms-rpm@pipe-a-hdmi-a-3:
+>
+>  * shard-bmg: DMESG-WARN (Intel XE#3468) -> DMESG-WARN (Intel XE#1727 / Intel XE#3468)
+>
+> * igt@kms_vblank@ts-continuation-dpms-rpm@pipe-d-hdmi-a-3:
+>
+>  * shard-bmg: DMESG-WARN (Intel XE#1727 / Intel XE#3468) -> DMESG-WARN (Intel XE#3468)
+>
+> * igt@xe_exec_basic@multigpu-no-exec-userptr-invalidate-race:
+>
+>  * shard-adlp: TIMEOUT (Intel XE#1033 / Intel XE#1727) -> SKIP (Intel XE#1392)
+>
+> * igt@xe_fault_injection@inject-fault-probe-function-xe_tile_init_early:
+>
+>  * shard-bmg: DMESG-WARN (Intel XE#3467) -> DMESG-WARN (Intel XE#3467 / Intel XE#3468) +1 other test dmesg-warn
+>
+> * igt@xe_fault_injection@vm-create-fail-xe_exec_queue_create_bind:
+>
+>  * shard-bmg: DMESG-WARN (Intel XE#3467 / Intel XE#3468) -> DMESG-WARN (Intel XE#3467)
+>
+> * igt@xe_wedged@wedged-mode-toggle:
+>
+>  * shard-bmg: DMESG-WARN (Intel XE#3468) -> DMESG-WARN (Intel XE#3467)
+>
+> Build changes
+>
+> * Linux: xe-2322-bfd3bde7e3c3d30d3b3f9a155ea8c5d3c8d3871e -> xe-pw-141795v3
+>
+> IGT_8138: 8138
+> xe-2322-bfd3bde7e3c3d30d3b3f9a155ea8c5d3c8d3871e: bfd3bde7e3c3d30d3b3f9a155ea8c5d3c8d3871e
+> xe-pw-141795v3: 141795v3
