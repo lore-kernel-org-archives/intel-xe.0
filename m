@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38F2FE7716E
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 20:32:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39797E7716E
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 20:32:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E39FF10E3CF;
-	Thu,  5 Dec 2024 20:32:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02D5C10E5CA;
+	Thu,  5 Dec 2024 20:32:15 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A332810E3CF;
- Thu,  5 Dec 2024 20:32:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33B7810E5CA;
+ Thu,  5 Dec 2024 20:32:14 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vsec=3A_Addre?=
- =?utf-8?q?ss_static_checker_issue?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/vsec=3A_Address_st?=
+ =?utf-8?q?atic_checker_issue?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Dec 2024 20:32:04 -0000
-Message-ID: <173343072466.3077870.14259929036852765807@b555e5b46a47>
+Date: Thu, 05 Dec 2024 20:32:14 -0000
+Message-ID: <173343073420.3077870.6242480231202557814@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241205183649.3120032-1-michael.j.ruhl@intel.com>
 In-Reply-To: <20241205183649.3120032-1-michael.j.ruhl@intel.com>
@@ -48,9 +48,32 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 1b7746f77088 drm-tip: 2024y-12m-05d-19h-08m-46s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/vsec: Address static checker issue
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d862c5fc20017f50d95f2c1928cab3b988109701
+Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Date:   Thu Dec 5 13:36:49 2024 -0500
+
+    drm/xe/vsec: Address static checker issue
+    
+    The callback structure should be static.
+    
+    Add static attribute.
+    
+    NOTE: the fixes tag in the drm-tip context
+    
+    Fixes: 0c45e76fcc62 ("drm/xe/vsec: Support BMG devices")
+    Reported-by: kernel test robot <lkp@intel.com>
+    Closes: https://lore.kernel.org/oe-kbuild-all/202412050418.8ecQxYXj-lkp@intel.com/
+    Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
++ /mt/dim checkpatch 1b7746f770882ce40dacae683e8e65657c40c2b7 drm-intel
+d862c5fc2001 drm/xe/vsec: Address static checker issue
 
 
