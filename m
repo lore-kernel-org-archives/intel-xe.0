@@ -4,182 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7158CE77171
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 08:36:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 379A3E77171
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 09:00:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37D9110EDE6;
-	Thu,  5 Dec 2024 08:36:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 064D610EDFB;
+	Thu,  5 Dec 2024 09:00:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T/8kOGXM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="On7FqJSz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C29310EDE2
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Dec 2024 08:35:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B12610EDFB
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Dec 2024 09:00:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733387759; x=1764923759;
+ t=1733389238; x=1764925238;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=ghj8N/8UvfAbXiK8cN8oFCnlGSFKaT7i2+mNLpj0q4Q=;
- b=T/8kOGXMcGjQWvqK26d08MAg3tBM9GerAdwf9uUTApuRfXqMYxcSwVxc
- cL72e4xRXl8zx3Xc3ZQFphW2WOESl56wZ10OoAo3SR813x1B3f5+olgAh
- DZBLt+oXtHdkNszycWSY0+jKo923Ay40OWwqtdB/+mAfTnNI4D+vT2a6I
- bW3zob7syCwlSzsY0D8/Zifl/I7kFVGT8Y/wcCXdnH5DODozzz81YtffZ
- rcj+pHiAIiQICogF4anvMrmRwGxLb6pVbKiRqPTUmCwiY1OO6tjGoUw/3
- eF8f5uTAL1LBSU2EInuP11d1nc/rF59nYuZw3hUvTc8x5T0DZhul0Fnc/ w==;
-X-CSE-ConnectionGUID: tji5+IKhQvCCiZCPaCZpjg==
-X-CSE-MsgGUID: xdVRJrc1S0+cBZVaoOhihQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="33817301"
-X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="33817301"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 00:35:59 -0800
-X-CSE-ConnectionGUID: k02grP2uQGK74txdHZG3Yw==
-X-CSE-MsgGUID: y2PXSRgSRf+mNeTvN/vMhQ==
+ bh=I5ks3VLoGtOJEttoBVhS/IpN6E/2Xfyc9kDsMvc/Q3M=;
+ b=On7FqJSzo9Sv5wpdJUfkgAiz6RpggUy0B0GzkukRCAD+HtY0bTkWIy1v
+ xoORXiF34HgCq/GrTtTMVCLzFh9dBOk2N59aoSPb7NRm7g74cBcfC4C9R
+ IYtfQ/uIF6GHq8L7pSXz2E9xU85wImCYhP8IqOLC3EzgTdSbT2plr8sEt
+ vnldL6iakU5Zl/xSUw/39bD9pK3Uh4+dYce3SvjNVxYNiZ2wEFEhZmeRb
+ BaT9ezy1F3eWcVYgsmO/T4OY+FYzqxr4ZmKH9Vvu/mKENE5cWM4H3zmBP
+ GNEakyKNMTpeotAXF0kOFVVF3bxL/nBb8J35mn2eqryh6HyA+oxUAjILv g==;
+X-CSE-ConnectionGUID: qt4wE4joTN6gmDnFHk8XFw==
+X-CSE-MsgGUID: mG3gwVSNSwOFn/TxgPDwMA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="56167469"
+X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="56167469"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2024 01:00:19 -0800
+X-CSE-ConnectionGUID: goKxrjUjTvmcfj4BIBW9Pg==
+X-CSE-MsgGUID: WfEsbZi3TUa5SCqaqrHqeQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="98096891"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Dec 2024 00:35:58 -0800
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="94222654"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 Dec 2024 01:00:18 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 5 Dec 2024 00:35:58 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 5 Dec 2024 01:00:18 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 5 Dec 2024 00:35:58 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.42) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 5 Dec 2024 01:00:18 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 5 Dec 2024 00:35:58 -0800
+ 15.1.2507.39; Thu, 5 Dec 2024 01:00:18 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WMkO3PuX41/md0uJCPbMnMpAENpn3i8yMA6Z40te3cJc7t+SyG37xkl9sYZdWRI3evBuMetjwlpa5G8h8Pp3wOtcFJMi9ha/gbz9jBH6TTMOn8gauTiqBe2lP6H8i8lOP6Dyb1bNNe+6GYntTJPkAnkR4YMPb2IsGrH8buzR9xYtW6ASAPBBd/78h5kAiMFVIvX6ENuJ6qixZ3hAEHG4TuFGAtCuhRPqPvVrzfF0dhV3mq46JJejmyO2Dnvqpm6baco0l8V9oFAb+1SHtm7NlrXO8tr13UY4jxvSUQD2U4EpDwTI8OZEmZTgZulOKAA0qAwdr1GX1AUQyphe4xRYGg==
+ b=q0SF2dyfUWMW0Vm86NyB1pZmAoPsv8zPv1kSjdsCyNTBGC9sqznEzxTm3weqT3NTLzc2AD7PdQJVxXp5stJ0DADKEaLsC9UqsR3PH/Uofd1GFQIZ1BLNnLnxbR62AFIUebAHOn4Hhq4DD3Us5HdQpKS0fQk/b22OM6HmvdBakXkCXE6iJKhlq1XPyao0lbZHmgNlcDfJs90Ufo8kQrwoj0pmYhOdbW7rUgMLJ9QrTOOKjRjxvE/zgm6Zb68cluRzpy94E5ImydG0oUBIiu7+Q6BIPYlh6oK0tYpblKQBblHnvdCtlnssa10Vb7iWyq2l0bGtCYdmpYYcZVL/iRdDgQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZTZaiUriSHj0AN3dW2prTb41iAbAPavgelPmSYgB6dk=;
- b=SSnuiVUt1boZ7hJhKQVz7phnM1zYpCtI+XJIR4XI01l0mTu9Kq6XlnIbTgpjHGelztQ4ZFk/4dluuCzu8wy1AtSHxQR+7mj1n3mrlGEh5yAE90PybXdDRqfl8SCW3qQSYStme2XnbQo+iQjTgBadsRWrVbZ/Bl4dz9ny2BHolnWkHAsDgQhrf/5lb5Tn3xh1or8hYT84U5C9uqwRwkbhW7XwNTPLcHvCUTiHUhYcpRD9qmVMBgOKJWl6Yjhh86tckbyJQ0qp7QUkwKBo8tGXmPv7Glgkme/Y64m1Xv9twZAYWJIjLbfRctlb3nDcYkFP6yqr2576YLSRSrAwvhkpbQ==
+ bh=sEa0u6WwDQ15L1gOtemeti4DwUHndj2Qjs4NeFehHHo=;
+ b=kUtJXd703olmbzSXbWODvQFPgV7bP3BHFiQGZLvRRYpmhAhOjypM1tswMtUz+ndJye2hxNhiSM2nPgJAariFcgbYPdfZcY80GxjFEUdLv28/DKRwJvOFy0IYHMxc7SuiMOYMw5zsGDQrk0aVrwACNj5NeKGQxQaYew1T6ez60z0+cGRJIrM9Hzv8N2vR7ulJbFH/d2EjruEs1N246xDvKCuE5lVTmdzmdHaBku3dye03pNUczR7K9EMUAstdiPQ6RsRIYYJs9BALfwGGcaZE7uHCXehJR/JWuIDcIN0fRJzVlePl6IAwjwDYlTuJB/5oprEpRFQMBRmWsRffwGI25A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
- by BL3PR11MB6315.namprd11.prod.outlook.com (2603:10b6:208:3b2::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.19; Thu, 5 Dec
- 2024 08:35:55 +0000
+ by DS0PR11MB7652.namprd11.prod.outlook.com (2603:10b6:8:14e::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.11; Thu, 5 Dec
+ 2024 09:00:16 +0000
 Received: from MN0PR11MB6135.namprd11.prod.outlook.com
  ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
  ([fe80::3225:d4ad:74a:6d7a%6]) with mapi id 15.20.8230.010; Thu, 5 Dec 2024
- 08:35:54 +0000
-Date: Thu, 5 Dec 2024 09:35:51 +0100
+ 09:00:16 +0000
+Date: Thu, 5 Dec 2024 10:00:13 +0100
 From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-To: "Levi, Ilia" <ilia.levi@intel.com>
+To: Ilia Levi <ilia.levi@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <niranjana.vishwanathapura@intel.com>,
- <koby.elbaz@intel.com>, <yaron.avizrat@intel.com>
-Subject: Re: [PATCH v5 2/5] drm/xe/irq: Separate MSI and MSI-X flows
-Message-ID: <20241205083551.2fb5czqiyuug2zw6@intel.com>
+ <koby.elbaz@intel.com>, <yaron.avizrat@intel.com>, Dani Liberman
+ <dliberman@habana.ai>
+Subject: Re: [PATCH v5 5/5] drm/xe/uapi: Support requesting unique MSI-X for
+ exec queue
+Message-ID: <20241205090013.wmas3dsxofcctfsn@intel.com>
 References: <20241128125345.1115-1-ilia.levi@intel.com>
- <20241128125345.1115-3-ilia.levi@intel.com>
- <20241202185918.bdz2oz4y3u3voklg@intel.com>
- <42cd338d-2b71-4793-90c8-eafa2a4a96e8@intel.com>
+ <20241128125345.1115-6-ilia.levi@intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <42cd338d-2b71-4793-90c8-eafa2a4a96e8@intel.com>
-X-ClientProxiedBy: DUZPR01CA0042.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:468::9) To MN0PR11MB6135.namprd11.prod.outlook.com
+In-Reply-To: <20241128125345.1115-6-ilia.levi@intel.com>
+X-ClientProxiedBy: DB7PR02CA0023.eurprd02.prod.outlook.com
+ (2603:10a6:10:52::36) To MN0PR11MB6135.namprd11.prod.outlook.com
  (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|BL3PR11MB6315:EE_
-X-MS-Office365-Filtering-Correlation-Id: 74a36e09-bc41-4cf9-ed83-08dd1507d524
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|DS0PR11MB7652:EE_
+X-MS-Office365-Filtering-Correlation-Id: b05c77de-d94b-4f1e-6edd-08dd150b3c68
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?L0VWNUVTR3M5YW5UNmlwYkNXeFBKRDgwMitPNW9QTmQvVndUanBkT1BqNk9U?=
- =?utf-8?B?dW54UlpMZURBOGNJeElvR2wzTXZVQkFPdGU2UWd3eVB3QXA1Ukt2eTl0ZVBk?=
- =?utf-8?B?WjhubFJIVm8rTEUwTUpxYnVpNlgwUGxwT1dqc0tLaTBaR1ZTUnZMZU96bzV5?=
- =?utf-8?B?bUliQkVhOERIQUpQL3Z1K3FsdDQ4Vmd3eG9XZExVSkVyV2d3ckVCUXlaMVpS?=
- =?utf-8?B?R05PVFBFUjlWK3d3M0tGLzExMW5sa0p6anVFR3YwZlExeFVnQzU2SmJob1Va?=
- =?utf-8?B?WDRSbVU2bE1UQTh5ZHJ2TitoQXcxczFlTUJVWlJhaVZGb0R2SDExRW1teHNi?=
- =?utf-8?B?NlZ3ZHpnNHVwa0l0YTZHRmxjSTZrR3Q5Z0R3Uy9XREFDL0hCLzIwdEczL05I?=
- =?utf-8?B?RVFVckp3STQwVkplSUpVclpQdmlGRUdRakxsOVhZMVZlMThmb0wvU2ZvU09G?=
- =?utf-8?B?LzlobHVSOXJuZkFwZ2cxeGVUeEZldnpJcVhrN1p3S0RYRUFDUmd1eFVsZjA0?=
- =?utf-8?B?Z3V1N2liNTh5ZFpYVGxxNFpEQ1B4My93VHI3WXA0MjA5YUFLQmtQQmFZRjdk?=
- =?utf-8?B?b2l3N3VVYUFta0pNU2ZvZnBUOTdEeUg4UCtNdkxURTA2ZEwxcVBYMWdMZkZI?=
- =?utf-8?B?aENRdWRvbmthQW1sNUFhVGgyZ2QzSXhLN3NyeWNvUGdOVm9IMS94ZUR2ckdZ?=
- =?utf-8?B?b0FybEI4VWkzTFlleHlFTjR5aFU1ems1cDZpbk14SktaWUd6MHdWaEtnZ252?=
- =?utf-8?B?ZTBzOUh0NzJqSVVnbWN2YXFUZU1mWHVMMzQ2TWloOFNOWXJtUmRSYW12YWY3?=
- =?utf-8?B?TXBsbnZ5MGZVbVV4bTFGQXpIUUplTUtoRVpQQmx6QmVveFNYemVla1BJQ21T?=
- =?utf-8?B?aEJ4ZWdIK0g3N3RzYkIzWHVMdFhKSkg5MWRjdk5aWHlheGxXU2cybDl6Z3B3?=
- =?utf-8?B?UWd0VDhNWnhTOUMwMnB4NXhneGxHdWlhUjdTM3QvcStYaXdOY3Q3c1VmMGhS?=
- =?utf-8?B?N1RPa3A3aFpOWDYweDc5akhwbzhJK1JDalZlRi9GOTErN3hTU3hzMnp2dnIx?=
- =?utf-8?B?cmtKUmlFMzJEVW5DY1IyeTFtakVhTk9WcEVYOWZBczBCVGdyUVYzTHFFM2FZ?=
- =?utf-8?B?UHVGbnpmYWdpeDJ5WDVhcjJ1eWtDV2Q4NUQzMGo2VVdTOTNmS0hqWXQ4UEgz?=
- =?utf-8?B?clVLSG1rRnh2SUY0bjJiUXN5UnE4ckJSMlgrNjVoQTRmUktzQjZ1elZVUmRY?=
- =?utf-8?B?T0JjczV0b0o4R1RyckZJOFhNMzhEV3B1SmtjU2tSZHpwVnZDY0ozSFVRODcr?=
- =?utf-8?B?Z1QxNStWcUN0RjhNemZGSlJDbDN1enBPN3FFdUNIcDlpWUJHR3RrK21ic1lK?=
- =?utf-8?B?WEtNTDAwS3pHdk9QZHUvL0V6cGZnUlFWd05xN1prOWRzbmVlaWNIYkNYVGN5?=
- =?utf-8?B?VDB0Q1RnUmdkcXpNdnNod3d4c0pvVnVuRlhzZXVTTHgzT2pPOEZ0UklBTE1L?=
- =?utf-8?B?YVFrM0pwTksrbUVjUnViMWl5NUI4S2h2RlNUNjlQZll2LzNqU3FWUXJLM25V?=
- =?utf-8?B?WDhLVzRjT25OYXJlcUNNNUp6Y0dIYW1ubVRWblhDOHpWWFlWYzlMZkNvZ01H?=
- =?utf-8?B?ZVUzdnVtOHZ2MlMxZGltdlFSWEQyeVlrdC9TZDZVamhnOHh4cEdSMWlyNGFj?=
- =?utf-8?B?VTZmTDUzeFAvZnNMbzlPdXdLQXYyS085SVRURG5ITWhGWjdHNTlYSlpBZVpk?=
- =?utf-8?B?SXRMTTFtR3NoNGY2QkVBRXpsSTMveS9TdzNrT05UZzFCbUFoVHpvS2Y3MllO?=
- =?utf-8?B?Q1ZqVWZ5bmdoUWtKTTBWZz09?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bDJFTk8rMENaK1dSQzBrTXJzTXg4UlpQT2NTN05Yenc5UTNYVDFidFhwUVFj?=
+ =?utf-8?B?aTBydDFaYlVsalRUR2xCaytZKzkxNjdWNTVpekZkWUJIbVlqZHl5djkyMlc3?=
+ =?utf-8?B?NHA3UFJVRkJneENOMWJGUFRxdjk5aTRuZDVPWTJ6eWlwU1R2T2Q3a1psREgw?=
+ =?utf-8?B?Q2JDcGhwbkpiTjhORU1LYlBkakdkRHBOMURiSlJucjVxSXpqZHFzY1ZCdm1m?=
+ =?utf-8?B?RmNLUTdrcThhTkRNclJobmpBalZXa1FjbVdyajA5dDlYSHlvTklZb3RMQmpK?=
+ =?utf-8?B?WE5UM3hnV0hBbWpRWXM2aVZSbjBpN1BTQ3dCUFR3K1lsV1JmVzBsSkZHLzc5?=
+ =?utf-8?B?VXJpcElZbFRHOTZTa0ZlVmNjM2UzQUZWbDkwcWF5Q1RHdHFRVXFqcXNCbUtH?=
+ =?utf-8?B?VEF1OE5CR3VhdGtmRjl0dk16MGgvTm9UWjcwSWxZTUVFRzJyVlZCbkxPUldD?=
+ =?utf-8?B?MkRPWFJDTUZ6MS9JRVd5eEc1aG9nYTFlYzdjeHQvSGo0dkQxMEEzZ0xsa1pv?=
+ =?utf-8?B?cmxMeDJIa0pVajltVFJ1VWpkaW5DZENhLzdCK2E1NmZONFFQaUtBZnhGbGFr?=
+ =?utf-8?B?MnNDaDlxVnlEOVc0TURpcTlNSlZkdnJXV3pESkpTVEZkZE5zTHJMM2VhZlNa?=
+ =?utf-8?B?djIycGdWUFNOaUtIVXlHT0pNblY2M0dUdHk5Q0NuQkVaR1haWGhoZDVNWEFD?=
+ =?utf-8?B?Qks5QTdLeHBERmxoQTJYUHhUOEIyRU43RWVvR0FMdWFNb1ZzakgzOVhKMG03?=
+ =?utf-8?B?ck5GVWxYa2h2bGhiNjNId0lJV2JsZlBxY2RYL2hoMjNvbUNLU3FRWU1tNDlh?=
+ =?utf-8?B?N2Z0SytRekNyenR5NElsc0l4WENtdDRUY1JUQUdIQlFaVHA3T0hFRjhKQzFk?=
+ =?utf-8?B?OUpOTVlTaXFMcHo0ZlRtTC9LRzBMSTBEZnloc1lWMUJmemxaV1ZHYnVIQkdj?=
+ =?utf-8?B?amVUVHhrU2htYUFZNDIrL25sZ0w4QTlUTnJoalhDWVpnc1N1V0JGV05PZWhX?=
+ =?utf-8?B?VnhKWjU2Nk92YXBQSU1IRG93bng0M3dmSG5XcTBBWWh2MDBORG1US1hUeFRi?=
+ =?utf-8?B?RlZnYTkxdHJyQlpGZWd3NjNxS2ZhcEhOcy9jak1hWmk4bVQ4cC9ybURMN244?=
+ =?utf-8?B?U3VxQnc5L2ZLdXRCYi96R3YrR0l5UXkvdStTSUtkejhDL0JDT3poaFpBYmpI?=
+ =?utf-8?B?VVpuVUh4SUREZk1xbGxTL3M4ajRiL0RGRnBFTW8zVWZUTnJIT0kxOE5IUlZp?=
+ =?utf-8?B?d0IwSEdrRUJiTmFGaGpvTlIxQ0toSVNXWVFpY0ZEOWIxWStvR1duYUFIVlkr?=
+ =?utf-8?B?K0t6MTBjdzRLblpJc3lXRGExS1hzN2tUY3FOVDgrNFlRM0NoZTk1N21lNUM3?=
+ =?utf-8?B?cTNOamt1d1l1MGMydm5SNWsxT08yTkV0TTdQbTA5K2FvTklKUjZ4ZzVPdmhw?=
+ =?utf-8?B?d1liQ1ZmVWRjbkxhWi9OZUlpL0Fqblo5dENlT2ZSdk95VlZtZVNVS2dNOExa?=
+ =?utf-8?B?b2JzRllNdmZtNHB3MTUxTjJpTkpmRW1RYy9MZTRpS1dYckRHK3hMd1R3TFZQ?=
+ =?utf-8?B?aHBzRk43TVUvSUNQY0cvV21pWElYUW9neEswK3lhWTVrR0VMcTBxWlVQcDRa?=
+ =?utf-8?B?Uy9LVU9TU0RPZ3krbndWeHZMNTR4d1JBTWxhVDNKN2c3QXE5RTI2TUVjQ0Js?=
+ =?utf-8?B?TS9yRXdIM3ZqV2p5RXFObWtYVmJiQVpQazgrUmY3VlhYUFAwZlBuNWN5WWNM?=
+ =?utf-8?B?Zkl1VGlBU3puSEIrYm51eHBlL1NrNnpxekNaeThsL01zUUU3WU5XU3BQMW9a?=
+ =?utf-8?B?am81Qy9nRHB1Y3NMZFc0UT09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Vmk1Z2w2SzJDMURKZ2JJcTlnT1NpYndpM0lsMnVEWUtCVmVaK0JJcHE0dG53?=
- =?utf-8?B?NWZpRGhwOG9ySXhQdUxaV3pxTEpJWnFDQ2luVGZoelRLR0ZmNFB3NDJQMGha?=
- =?utf-8?B?MVhDdlgrdHBLY3grMnl6dGRQZ0h6bUlrM1VlTDREWWIyN0ZFYXVmTUFzaEJZ?=
- =?utf-8?B?bC83TU05QWdiSDJreGJZall5ZDJVTUk0eUVibWNBT253ek1HaXRrS25kQWZo?=
- =?utf-8?B?cGprR0ZFd2hGUU1vbkhKMjU2MFRBRitXR01aeWVZa001azJFU1U3RkdxVzFh?=
- =?utf-8?B?cUF1c3NaYkM4L21IY1lKV2tYOTFvelRUWEh4cnMvM1FORXlOYVltRWtIVXhW?=
- =?utf-8?B?Tzg2ZDVFbnFsNE10dm9nZEk2T296amtOb1BBUUxxaEx0TDFLendoSVgyNTVZ?=
- =?utf-8?B?SkpuTHVvRWNUdFY2SVNKcy94YUNQSXNsdGVXQTBEb1pqd0l0Uzd2S0tja29D?=
- =?utf-8?B?ZlZYZ2xrZnI0aUM5SEt5Qktwc3Fpc3hzdWY5TERTTmNHWWxpZnMyR2pRTmRn?=
- =?utf-8?B?T3lDbGN1SXBmTmRLeWc3OXI5RWhuWDJGbUkzSWhRNTRHYWZXS2RIQVRLbUxw?=
- =?utf-8?B?U2N2SURQaVliWDMxOXBwSXZyaTdJR1YvdUxhb09jcno1TVpTeHE0WFhSYXkz?=
- =?utf-8?B?bk9UcFNLWjNBVXZoMW5PZnZOYmVzUkp2T1RCTnBWVDVYeFB4aXpZSm5CUkNP?=
- =?utf-8?B?MmoyMktGdDZ3U0pqZExoRXRITk5yVWVpbXV5N1F5Sy9MTFBnYlExZjkvWEJr?=
- =?utf-8?B?cWhHVklZRjUyL0lKM1lzWlFMNGY4OThCc25XbkN4ay9WSHRjMFlWMzJ4bzR5?=
- =?utf-8?B?a215MWdHOGZxMUZmRExiNEVJOUJxSFBpTXlyeHNhV1poYTdXMjdHSXRab0h3?=
- =?utf-8?B?Y1h3VDVHYk56emQ0TXdtOG9SaVBhTVRETld5WGNyWWJVUldxSkJmREpIUHR3?=
- =?utf-8?B?TXhkWTJsNVFQUW85QnppMEMyK2JENHhNbGZxMXh3MVhxNHlua1hlYk9TMjB2?=
- =?utf-8?B?b09WSHZ0aDQydndINE1RQXNQWUp5bE52UXRKRXFFdUU5VzdzOVJnTlp4N1ls?=
- =?utf-8?B?V1lCRmIvTVZBWkkyc0pTd2k4N0pNb3VkRHJwT2pqMG5ha1FpTk1MajM4OERI?=
- =?utf-8?B?K1NDUHFYSGwxV08veWJDOGJoTWJrbzQweFdYdkpzTGFyWHA5UnFrNzBJZDNm?=
- =?utf-8?B?KzlXRUhhVW5wQlpiV1hZYklRMGl2K0s2YkZuMEl0K2oyL0h4RTMzT1Zud3pX?=
- =?utf-8?B?VmFnc000YUsxK2F6ZVROQVVWd1d4SWZuZ0dvMDBQNXhqblJlNWp1eHpnUHIy?=
- =?utf-8?B?bG1kSDM4Y09sNnF4VVhWb0xUa3hiUDYxNVYzdC9wYkNzUGVma29NYmtwT0FC?=
- =?utf-8?B?SUk1blRxYkprcWVtK0lzQWxSZmRXU2tjT210ZlpRQTFUQklsL3F1cHdXN2o2?=
- =?utf-8?B?VDRjRi80Y201dDUyRnpmb1cyV1FudXFMOFBNelYydkhWSW1IN3NPREVOYXY4?=
- =?utf-8?B?dzdqSGNLVzF2V0NodUF1cVJCeElCSHFINHVKdkVEbnVtWkFJWDkybDlOTEsz?=
- =?utf-8?B?dUI5N215c3hraFRKL2FUS0gveW52YytQcVdOOTREYWtYTTR5TmJTSGpSQmFz?=
- =?utf-8?B?ajVFTHZHanAyc1I2NW9pbVZZRXFoSXpnaUhtSE1OcEUyYTR0UUV4eU45ZWZL?=
- =?utf-8?B?SDZhM0hDQ0lWODdlNDBLNWtPV0MxZTlwSDNQRGhJS20ycDluUEJxeGIrQmxt?=
- =?utf-8?B?ajg1REtyZnNXQXlveWo1TFd4RlZHeUpuUlJsYlVyRUg4bEM3ZldndmFGUXZD?=
- =?utf-8?B?ZWlsc1daVXlneVQ0U2EvanpaeFhjN1c2aW5NNDhuV0FuOHYzQWo3ZVZIMWhR?=
- =?utf-8?B?VTRyZ2svU1M1TUszTzZYbGoxVmZobjcyMG9qVzNwUU40aC9ESW9ZSW1kamwr?=
- =?utf-8?B?d2g4aklqOGRUdlpBdGpkdkpCUlAwdVlSMyt4bU82cnhucUhQRnhOWjc4bzJw?=
- =?utf-8?B?V2VQNWd4SjFkY2E0ZkdBNnQxbW5xNFBVTklNSHFvd1FNUHlGL3liUDNwbk51?=
- =?utf-8?B?am1XamNIY0R6em5tM0NDNHlSTUhaWFB2U05DNnJ4alZGamU2K0l6cEh0VkZJ?=
- =?utf-8?B?aVRGcHpCNFR4Y3dNMndwWTBpYnZyTnlJV2w4ejM3a3Z3T2w2ZlAwL2EzZVV4?=
- =?utf-8?B?L0E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 74a36e09-bc41-4cf9-ed83-08dd1507d524
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dmZEdDBEcHQrQWhyWnlKUlhHMHZjaFhqcHFTdGdadVQraGRKalBhcEFFUlFE?=
+ =?utf-8?B?TzBjWG1FbkxTVzdnT2U4NXNRQWVCQ3ZMbW9LRnBOU2NKQnJoL3BPa2Q0azg1?=
+ =?utf-8?B?Qm9HMXVPOTdaNWs3VGJ2ZGZMczFqV1JnSkszRld3ZnFWQjJBZ1NzRG5peDIv?=
+ =?utf-8?B?VE9ia1hEaHNtOENsaHRST3BlRkJFS3dHQk1xeVJLNFViVjEzeTFNTXdFWkVR?=
+ =?utf-8?B?ZktqZUhOMzk4S0Q1TEFtYmdXNmhBMkE1Y1k5VEQrTm82VlJvNUJPeWM5ZFlJ?=
+ =?utf-8?B?Sk1nbTJReHBjZm00TUFEb290UFhyRnYwYS9acndnd2tBMkRKUldUT2Nvdy9z?=
+ =?utf-8?B?RVNYRzJ1NmUvakl4LzBEQVU4aGFDazRvSUlQODZwUW9Mejg5RDJaZ0xXR01N?=
+ =?utf-8?B?THd5UlNoRlhzUEpBNjZ1SEk1UFQ3Q0VTOUpZcHU4K1RiaHFJYzBVUFB4bTVC?=
+ =?utf-8?B?aEpvUzg5STJFbnFBZTBnNGdSbXFHZ0VGblp2SUNGOWF0YzZGYytPKzN0alNS?=
+ =?utf-8?B?U2xIQm40a3pQSEVZNGh5dE44dDQrN3F1d1UxTGtyYXRVc0NNeWdRYStOQjQ4?=
+ =?utf-8?B?ckUyTHNDSHVhVU1ZTWVNZmEySFNwM0xVaENsOWdtQkozem4vVWRtZjFmTU9h?=
+ =?utf-8?B?dHE1dVRvbE1Bb2lCRy8vTEtraUZIYS9nNzNlcUsxdWJkTVdMbnhhOUJtYjFY?=
+ =?utf-8?B?TmY4cmRwLzQyUFMzaS9hNk9FdnZvRjN0alcyTXpBU3VkYlFpZnFidHMrN0hD?=
+ =?utf-8?B?NEs1Rnc2ajNHZnRHVDdPU0RWbTFNd2tVNytoR0pSWmpoVlU1K0UwWllTYW1s?=
+ =?utf-8?B?UWJxQ2h1NWNmaDNrcmR2Vi9NMkxWV01nbGJQZSt1emxia3BvbFV1RzFBdFhu?=
+ =?utf-8?B?U2JycTNaMWNZWFV2KzREcEtKeUloNmVSbGh3QlFpUUs0YkEwOVNtVEJYRW5E?=
+ =?utf-8?B?Q1U3MkJKS2Yyb0pGK05iM25aVUROdWsvbXZudnJlTmVGVjNPMlVLdzMweGdC?=
+ =?utf-8?B?cm8yeHE4OUVJbVg5QkUyYjk0WnpVbHh0UHVZSEJxaUE1NnBPTjNjM2ovK21F?=
+ =?utf-8?B?aldhZ2ZSMzNJMGdDRWQrdkVaMU05bjFXSFEwN0tkcFFLTVRTMnhrZmJiNEk4?=
+ =?utf-8?B?OVc1MlBxWnZ3T25SS1Q2TTFFYkJDL0lkYUwzd3A0anRTOEdMN3ZoT3crVEl0?=
+ =?utf-8?B?Q2kzNklaWW5zVVVVZmEyWmJoT3lQcDdPVk51dUVFemNSMmlkNUVENGwvbkpS?=
+ =?utf-8?B?OXZ6QkVNQ29WWFFTK2tJc0ExTk5sV2F1SWdhMDdrSjJTcm1teEJVK1ZQTDlx?=
+ =?utf-8?B?VzN1VFNLVXNURmdVbEpHbGJxY3ZiTHk2b2dZRDlsRzQzbnRNNjI4Tm1aSW1V?=
+ =?utf-8?B?dVA4Zk9jbzd0a3Azek9Jcld1VVU2Q0RZNUN2ZjZDTkNCLzdMOGFlZVdPbFBr?=
+ =?utf-8?B?bGFoK0JCdWpSZmlmQXhRTWpYZEZsYVJpZ3lBaG9WdG1qQ24yK0RsNnJFdUlz?=
+ =?utf-8?B?Q2tJWFFMb0lJMGlTVkl3V3luTndQa1EvQUN2SzBYQWZxMVFZQ0ExSVlLOEdX?=
+ =?utf-8?B?eEJHb29VdmVxUzZqNzlpNWxrZlM4d0hiRXNtRDhwY0trNDVhWmhZK0FlYjRi?=
+ =?utf-8?B?bWJ5MEtKQlJxVW9rbllNQUNvc0N0RUI5SGIrN1E3eVlrWWYyd2VzNEpnSm1X?=
+ =?utf-8?B?VTZkYWIvb0gxRmlhWk1rZzh0RnNYdkpSNndaME5mNXVNd1g0MktkOElDNGtH?=
+ =?utf-8?B?aGhwR0hRZThQdm0welpCdkRQVXpXUnhKVTFjbVpQbFNMckNQMjlzeVRKNFg5?=
+ =?utf-8?B?cnZ6SVRPcjgxcGU3ZVZHTG8rVmUzL3pQRlJyRXRaY0tSajN1ZmlyN1NSTTNn?=
+ =?utf-8?B?cXBuaE5PS2h3YkJYa3ZEUWZJaUEyUGtldUU5R1JOd3JEeDN3ZWtKYWVMKzh5?=
+ =?utf-8?B?ZHZmcjBPbHh1S3FQSkg5M1NkZFdjME9rd0wyRXFWKzBVaVdoVlNlcnZRVXBR?=
+ =?utf-8?B?NndkRFhTSlk2dEUxQkluUjE4UjhHTkZUbWlwTk1MU1JyNjVwNmE4d2s3OWV3?=
+ =?utf-8?B?SGtQQUI2eTFxenZKcXhCZElWSFIyWnRvWVNNcnNzbmZmNkxLTUI4blcyaWZz?=
+ =?utf-8?B?ck1WZi8rNm85d0JTV3hzVXh4bnR2ZFdaTldnckxLby82RzNldGlFN0l0dGIy?=
+ =?utf-8?B?dGc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b05c77de-d94b-4f1e-6edd-08dd150b3c68
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2024 08:35:54.3273 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2024 09:00:16.0069 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KS8KP00SW9ccw0sfROryyFhOdRwFuqGuwJP/dsZ1yjRGEan7mJNVt6hN99xiRE71k19pD9lo1Cq9CcOsny8RvBrMJ34qXXYWsOlIerLQI28=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6315
+X-MS-Exchange-CrossTenant-UserPrincipalName: yAnQPQFpTaO2GghxUrDDQYPmkZihFxMkiCxk+nnuGTVJW/JO3l9GrzscKn7hzUWE0ZL1v8GsgqCNPkf/LhEab8CPmimj4txKz/6rDHQyU1Y=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7652
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -195,459 +195,238 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Levi, Ilia <ilia.levi@intel.com> wrote on wto [2024-gru-03 11:04:14 +0200]:
-> On 02/12/2024 20:59, Piotr Piórkowski wrote:
-> > Ilia Levi <ilia.levi@intel.com> wrote on czw [2024-lis-28 14:53:42 +0200]:
-> >> A new flow is added for devices that support MSI-X:
-> >> - MSI-X vector 0 is used for GuC-to-host interrupt
-> >> - MSI-X vector 1 (aka default MSI-X) is used for HW engines
-> >>
-> >> The default MSI-X will be passed to the HW engines in a subsequent
-> >> patch.
-> >>
-> >> Signed-off-by: Ilia Levi <ilia.levi@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/xe/xe_device.c       |   4 +-
-> >>  drivers/gpu/drm/xe/xe_device.h       |   3 +-
-> >>  drivers/gpu/drm/xe/xe_device_types.h |   6 +
-> >>  drivers/gpu/drm/xe/xe_irq.c          | 257 +++++++++++++++++++++++----
-> >>  drivers/gpu/drm/xe/xe_irq.h          |   3 +
-> >>  5 files changed, 237 insertions(+), 36 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> >> index 930bb2750e2e..f1246fa8b5cc 100644
-> >> --- a/drivers/gpu/drm/xe/xe_device.c
-> >> +++ b/drivers/gpu/drm/xe/xe_device.c
-> >> @@ -325,7 +325,9 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
-> >>  	xe->info.revid = pdev->revision;
-> >>  	xe->info.force_execlist = xe_modparam.force_execlist;
-> >>  
-> >> -	spin_lock_init(&xe->irq.lock);
-> >> +	err = xe_irq_init(xe);
-> >> +	if (err)
-> >> +		goto err;
-> >>  
-> >>  	init_waitqueue_head(&xe->ufence_wq);
-> >>  
-> >> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-> >> index f1fbfe916867..fc3c2af3fb7f 100644
-> >> --- a/drivers/gpu/drm/xe/xe_device.h
-> >> +++ b/drivers/gpu/drm/xe/xe_device.h
-> >> @@ -157,8 +157,7 @@ static inline bool xe_device_has_sriov(struct xe_device *xe)
-> >>  
-> >>  static inline bool xe_device_has_msix(struct xe_device *xe)
-> >>  {
-> > I still think you should use the name xe_device_use_msix.
-> >
-> > We use xe_device_has_* in case, when the capability based on Platform
-> > version (for example xe_device_has_memirq) based on intel_device_info
-> > (for example xe_device_has_sriov or xe_device_has_flat_css).
-> >
-> > IMO in case you are basing it on a variable that you set yourself in init you should use
-> > a different name (for example with “uses” instead of “has”)
-> >
-> > My motivation is that for me xe_device_has-* is used when it is the capability of a given device
-> > and we base on the information that intel_device_info or infromation about the platform version
-> > provides us with.
+Ilia Levi <ilia.levi@intel.com> wrote on czw [2024-lis-28 14:53:45 +0200]:
+> From: Dani Liberman <dliberman@habana.ai>
 > 
-> As we discussed, it is akin to xe_device_has_flat_ccs - where xe->info.has_flat_ccs is set by probe_has_flat_ccs.
-> xe->irq.msix.nvec is set according to pci_msix_vec_count which reads MSI-X capability from the PCI.
+> Unique MSI-X per exec queue will improve the performance of the
+> IRQ handler. In case no MSI-X is available, the uAPI will return
+> -EBUSY error and the user would be able to execute the uAPI again
+> without the flag (fallback to default MSI-X).
 > 
-> >> -	/* TODO: change this when MSI-X support is fully integrated */
-> >> -	return false;
-> >> +	return xe->irq.msix.nvec > 0;
-> >>  }
-> >>  
-> >>  static inline bool xe_device_has_memirq(struct xe_device *xe)
-> >> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> >> index 7ee114c17552..ed638067aa26 100644
-> >> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> >> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> >> @@ -348,6 +348,12 @@ struct xe_device {
-> >>  
-> >>  		/** @irq.enabled: interrupts enabled on this device */
-> >>  		atomic_t enabled;
-> >> +
-> >> +		/** @irq.msix: irq info for platforms that support MSI-X */
-> >> +		struct {
-> >> +			/** @irq.msix.nvec: number of MSI-X interrupts */
-> >> +			u16 nvec;
-> >> +		} msix;
-> >>  	} irq;
-> >>  
-> >>  	/** @ttm: ttm device */
-> >> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-> >> index 1c509e66694d..b8a0b9bbf24c 100644
-> >> --- a/drivers/gpu/drm/xe/xe_irq.c
-> >> +++ b/drivers/gpu/drm/xe/xe_irq.c
-> >> @@ -10,6 +10,7 @@
-> >>  #include <drm/drm_managed.h>
-> >>  
-> >>  #include "display/xe_display.h"
-> >> +#include "regs/xe_guc_regs.h"
-> > I don't see why you are adding this header
+> Co-developed-by: Ilia Levi <ilia.levi@intel.com>
+> Signed-off-by: Ilia Levi <ilia.levi@intel.com>
+> Signed-off-by: Dani Liberman <dliberman@habana.ai>
+> ---
+>  drivers/gpu/drm/xe/xe_exec_queue.c       | 57 +++++++++++++++++++++---
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 +
+>  drivers/gpu/drm/xe/xe_irq.c              | 18 ++++++++
+>  drivers/gpu/drm/xe/xe_irq.h              |  1 +
+>  include/uapi/drm/xe_drm.h                |  8 +++-
+>  5 files changed, 80 insertions(+), 6 deletions(-)
 > 
-> GUC_INTR_GUC2HOST is defined there. It was not needed before as it was called by gt_other_irq_handler (the type of the interrupt was read from the registers).
-> For MSI-X those registers are no longer set - and the only type of interrupt we expect on MSI-X vector 0 is guc-to-host.
-> 
-> >
-> > Thanks,
-> > Piotr
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> index 9c94be571900..1478fdfbf3f7 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -12,6 +12,7 @@
+>  #include <uapi/drm/xe_drm.h>
+>  
+>  #include "xe_device.h"
+> +#include "xe_drv.h"
+>  #include "xe_gt.h"
+>  #include "xe_hw_engine_class_sysfs.h"
+>  #include "xe_hw_engine_group.h"
+> @@ -35,8 +36,46 @@ enum xe_exec_queue_sched_prop {
+>  static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue *q,
+>  				      u64 extensions, int ext_number);
+>  
+> +static int xe_exec_queue_msix_init(struct xe_device *xe, struct xe_exec_queue *q, bool unique_msix)
+> +{
+> +	u16 msix;
+> +	int ret = 0;
+NIT: It seems to me that in case you are expecting success or error in case of a function
+it is better to use err instead of ret
 
-I'm ok with that:
+> +
+> +	if (!xe_device_has_msix(xe))
+> +		return 0;
+> +
+> +	if (!unique_msix) {
+> +		q->msix_vec = XE_IRQ_DEFAULT_MSIX;
+> +		return 0;
+> +	}
+> +
+> +	ret = xe_irq_msix_request_irq(xe, xe_irq_msix_hwe_handler, q,
+> +				      DRIVER_NAME "-exec-queue", true, &msix);
+> +	if (ret < 0) {
+> +		drm_dbg(&xe->drm, "Can't allocate unique MSI-X to exec queue (%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	q->msix_vec = msix;
+> +
+> +	return 0;
+> +}
+> +
+> +static void xe_exec_queue_msix_fini(struct xe_exec_queue *q)
+> +{
+> +	struct xe_device *xe = gt_to_xe(q->gt);
+> +
+> +	if (!xe_device_has_msix(xe))
+> +		return;
+> +
+> +	if (q->msix_vec && q->msix_vec != XE_IRQ_DEFAULT_MSIX)
+> +		xe_irq_msix_free_irq(xe, q->msix_vec);
+> +}
+> +
+>  static void __xe_exec_queue_free(struct xe_exec_queue *q)
+>  {
+> +	xe_exec_queue_msix_fini(q);
+> +
+>  	if (q->vm)
+>  		xe_vm_put(q->vm);
+>  
+> @@ -69,7 +108,12 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+>  	q->gt = gt;
+>  	q->class = hwe->class;
+>  	q->width = width;
+> -	q->msix_vec = XE_IRQ_DEFAULT_MSIX;
+> +	err = xe_exec_queue_msix_init(xe, q, flags & EXEC_QUEUE_FLAG_UNIQUE_MSIX);
+
+NIT: You could use !! to highlight that you are casting an u32 to bool
+
+	err = xe_exec_queue_msix_init(xe, q, !!(flags & EXEC_QUEUE_FLAG_UNIQUE_MSIX));
+
+> +	if (err) {
+> +		kfree(q);
+> +		return ERR_PTR(err);
+> +	}
+> +
+>  	q->logical_mask = logical_mask;
+>  	q->fence_irq = &gt->fence_irq[hwe->class];
+>  	q->ring_ops = gt->ring_ops[hwe->class];
+> @@ -547,13 +591,13 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+>  	struct xe_gt *gt;
+>  	struct xe_tile *tile;
+>  	struct xe_exec_queue *q = NULL;
+> +	u32 flags = 0;
+>  	u32 logical_mask;
+>  	u32 id;
+>  	u32 len;
+>  	int err;
+>  
+> -	if (XE_IOCTL_DBG(xe, args->flags) ||
+> -	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+> +	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>  		return -EINVAL;
+>  
+>  	len = args->width * args->num_placements;
+> @@ -569,6 +613,9 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+>  	if (XE_IOCTL_DBG(xe, eci[0].gt_id >= xe->info.gt_count))
+>  		return -EINVAL;
+>  
+> +	if (args->flags & DRM_XE_EXEC_QUEUE_CREATE_FLAG_UNIQUE_INTERRUPT_HINT)
+> +		flags |= EXEC_QUEUE_FLAG_UNIQUE_MSIX;
+> +
+>  	if (eci[0].engine_class == DRM_XE_ENGINE_CLASS_VM_BIND) {
+>  		if (XE_IOCTL_DBG(xe, args->width != 1) ||
+>  		    XE_IOCTL_DBG(xe, args->num_placements != 1) ||
+> @@ -577,8 +624,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+>  
+>  		for_each_tile(tile, xe, id) {
+>  			struct xe_exec_queue *new;
+> -			u32 flags = EXEC_QUEUE_FLAG_VM;
+>  
+> +			flags |= EXEC_QUEUE_FLAG_VM;
+>  			if (id)
+>  				flags |= EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD;
+>  
+> @@ -625,7 +672,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+>  		}
+>  
+>  		q = xe_exec_queue_create(xe, vm, logical_mask,
+> -					 args->width, hwe, 0,
+> +					 args->width, hwe, flags,
+>  					 args->extensions);
+>  		up_read(&vm->lock);
+>  		xe_vm_put(vm);
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> index eec8f9935a58..6e419b572000 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> @@ -85,6 +85,8 @@ struct xe_exec_queue {
+>  #define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(3)
+>  /* kernel exec_queue only, set priority to highest level */
+>  #define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(4)
+> +/* queue with unique msix interrupt */
+> +#define EXEC_QUEUE_FLAG_UNIQUE_MSIX		BIT(5)
+>  
+>  	/**
+>  	 * @flags: flags for this exec queue, should statically setup aside from ban
+> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+> index 32f5a67a917b..52829771c89b 100644
+> --- a/drivers/gpu/drm/xe/xe_irq.c
+> +++ b/drivers/gpu/drm/xe/xe_irq.c
+> @@ -14,6 +14,7 @@
+>  #include "regs/xe_irq_regs.h"
+>  #include "xe_device.h"
+>  #include "xe_drv.h"
+> +#include "xe_exec_queue_types.h"
+>  #include "xe_gsc_proxy.h"
+>  #include "xe_gt.h"
+>  #include "xe_guc.h"
+> @@ -880,6 +881,23 @@ static irqreturn_t xe_irq_msix_default_hwe_handler(int irq, void *arg)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> +/*
+> + * In MSI-X mode command streamers raise an interrupt only as a result of
+> + * MI_USER_INTERRUPT and MI_FLUSH_DW_NOTIFY commands.
+> + */
+> +irqreturn_t xe_irq_msix_hwe_handler(int irq, void *arg)
+> +{
+> +	struct xe_exec_queue *q = arg;
+> +	struct xe_tile *tile = gt_to_tile(q->hwe->gt);
+> +
+> +	if (!atomic_read(&tile->xe->irq.enabled))
+> +		return IRQ_NONE;
+> +
+> +	xe_memirq_hwe_handler(&tile->memirq, q->hwe);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+>  static int xe_irq_msix_alloc_vector(struct xe_device *xe, void *irq_buf,
+>  				    bool dynamic_msix, u16 *msix)
+>  {
+> diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
+> index a28bd577ba52..47058e2d9d36 100644
+> --- a/drivers/gpu/drm/xe/xe_irq.h
+> +++ b/drivers/gpu/drm/xe/xe_irq.h
+> @@ -19,6 +19,7 @@ int xe_irq_install(struct xe_device *xe);
+>  void xe_irq_suspend(struct xe_device *xe);
+>  void xe_irq_resume(struct xe_device *xe);
+>  void xe_irq_enable_hwe(struct xe_gt *gt);
+> +irqreturn_t xe_irq_msix_hwe_handler(int irq, void *arg);
+>  int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler, void *irq_buf,
+>  			    const char *name, bool dynamic_msix, u16 *msix);
+>  void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix);
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index 4a8a4a63e99c..5f32553b14fb 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -1123,7 +1123,13 @@ struct drm_xe_exec_queue_create {
+>  	/** @vm_id: VM to use for this exec queue */
+>  	__u32 vm_id;
+>  
+> -	/** @flags: MBZ */
+> +	/*
+> +	 * When creating exec queue in MSIX platforms, the user can request a unique MSIX interrupt
+> +	 * for the irq handler. If there is no available MSIX, -EBUSY will be returned.
+> +	 */
+> +#define	DRM_XE_EXEC_QUEUE_CREATE_FLAG_UNIQUE_INTERRUPT_HINT (0x1 << 0)
+> +
+> +	/** @flags: create queue flags */
+>  	__u32 flags;
+>  
+>  	/** @exec_queue_id: Returned exec queue ID */
+> -- 
+> 2.43.2
+
+Two minor comments above, but LGTM:
 Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-> >>  #include "regs/xe_irq_regs.h"
-> >>  #include "xe_device.h"
-> >>  #include "xe_drv.h"
-> >> @@ -29,6 +30,11 @@
-> >>  #define IIR(offset)				XE_REG(offset + 0x8)
-> >>  #define IER(offset)				XE_REG(offset + 0xc)
-> >>  
-> >> +static int xe_irq_msix_init(struct xe_device *xe);
-> >> +static void xe_irq_msix_free(struct xe_device *xe);
-> >> +static int xe_irq_msix_request_irqs(struct xe_device *xe);
-> >> +static void xe_irq_msix_synchronize_irq(struct xe_device *xe);
-> >> +
-> >>  static void assert_iir_is_zero(struct xe_mmio *mmio, struct xe_reg reg)
-> >>  {
-> >>  	u32 val = xe_mmio_read32(mmio, reg);
-> >> @@ -572,6 +578,11 @@ static void xe_irq_reset(struct xe_device *xe)
-> >>  	if (IS_SRIOV_VF(xe))
-> >>  		return vf_irq_reset(xe);
-> >>  
-> >> +	if (xe_device_uses_memirq(xe)) {
-> >> +		for_each_tile(tile, xe, id)
-> >> +			xe_memirq_reset(&tile->memirq);
-> >> +	}
-> >> +
-> >>  	for_each_tile(tile, xe, id) {
-> >>  		if (GRAPHICS_VERx100(xe) >= 1210)
-> >>  			dg1_irq_reset(tile);
-> >> @@ -614,6 +625,14 @@ static void xe_irq_postinstall(struct xe_device *xe)
-> >>  	if (IS_SRIOV_VF(xe))
-> >>  		return vf_irq_postinstall(xe);
-> >>  
-> >> +	if (xe_device_uses_memirq(xe)) {
-> >> +		struct xe_tile *tile;
-> >> +		unsigned int id;
-> >> +
-> >> +		for_each_tile(tile, xe, id)
-> >> +			xe_memirq_postinstall(&tile->memirq);
-> >> +	}
-> >> +
-> >>  	xe_display_irq_postinstall(xe, xe_root_mmio_gt(xe));
-> >>  
-> >>  	/*
-> >> @@ -656,60 +675,83 @@ static irq_handler_t xe_irq_handler(struct xe_device *xe)
-> >>  		return xelp_irq_handler;
-> >>  }
-> >>  
-> >> -static void irq_uninstall(void *arg)
-> >> +static int xe_irq_msi_request_irqs(struct xe_device *xe)
-> >> +{
-> >> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> >> +	irq_handler_t irq_handler;
-> >> +	int irq, err;
-> >> +
-> >> +	irq_handler = xe_irq_handler(xe);
-> >> +	if (!irq_handler) {
-> >> +		drm_err(&xe->drm, "No supported interrupt handler");
-> >> +		return -EINVAL;
-> >> +	}
-> >> +
-> >> +	irq = pci_irq_vector(pdev, 0);
-> >> +	err = request_irq(irq, irq_handler, IRQF_SHARED, DRIVER_NAME, xe);
-> >> +	if (err < 0) {
-> >> +		drm_err(&xe->drm, "Failed to request MSI IRQ %d\n", err);
-> >> +		return err;
-> >> +	}
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static void xe_irq_msi_free(struct xe_device *xe)
-> >>  {
-> >> -	struct xe_device *xe = arg;
-> >>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> >>  	int irq;
-> >>  
-> >> +	irq = pci_irq_vector(pdev, 0);
-> >> +	free_irq(irq, xe);
-> >> +}
-> >> +
-> >> +static void irq_uninstall(void *arg)
-> >> +{
-> >> +	struct xe_device *xe = arg;
-> >> +
-> >>  	if (!atomic_xchg(&xe->irq.enabled, 0))
-> >>  		return;
-> >>  
-> >>  	xe_irq_reset(xe);
-> >>  
-> >> -	irq = pci_irq_vector(pdev, 0);
-> >> -	free_irq(irq, xe);
-> >> +	if (xe_device_has_msix(xe))
-> >> +		xe_irq_msix_free(xe);
-> >> +	else
-> >> +		xe_irq_msi_free(xe);
-> >> +}
-> >> +
-> >> +int xe_irq_init(struct xe_device *xe)
-> >> +{
-> >> +	spin_lock_init(&xe->irq.lock);
-> >> +
-> >> +	return xe_irq_msix_init(xe);
-> >>  }
-> >>  
-> >>  int xe_irq_install(struct xe_device *xe)
-> >>  {
-> >>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> >> -	unsigned int irq_flags = PCI_IRQ_MSIX;
-> >> -	irq_handler_t irq_handler;
-> >> -	int err, irq, nvec;
-> >> -
-> >> -	irq_handler = xe_irq_handler(xe);
-> >> -	if (!irq_handler) {
-> >> -		drm_err(&xe->drm, "No supported interrupt handler");
-> >> -		return -EINVAL;
-> >> -	}
-> >> +	unsigned int irq_flags = PCI_IRQ_MSI;
-> >> +	int nvec = 1;
-> >> +	int err;
-> >>  
-> >>  	xe_irq_reset(xe);
-> >>  
-> >> -	nvec = pci_msix_vec_count(pdev);
-> >> -	if (nvec <= 0) {
-> >> -		if (nvec == -EINVAL) {
-> >> -			/* MSIX capability is not supported in the device, using MSI */
-> >> -			irq_flags = PCI_IRQ_MSI;
-> >> -			nvec = 1;
-> >> -		} else {
-> >> -			drm_err(&xe->drm, "MSIX: Failed getting count\n");
-> >> -			return nvec;
-> >> -		}
-> >> +	if (xe_device_has_msix(xe)) {
-> >> +		nvec = xe->irq.msix.nvec;
-> >> +		irq_flags = PCI_IRQ_MSIX;
-> >>  	}
-> >>  
-> >>  	err = pci_alloc_irq_vectors(pdev, nvec, nvec, irq_flags);
-> >>  	if (err < 0) {
-> >> -		drm_err(&xe->drm, "MSI/MSIX: Failed to enable support %d\n", err);
-> >> +		drm_err(&xe->drm, "Failed to allocate IRQ vectors: %d\n", err);
-> >>  		return err;
-> >>  	}
-> >>  
-> >> -	irq = pci_irq_vector(pdev, 0);
-> >> -	err = request_irq(irq, irq_handler, IRQF_SHARED, DRIVER_NAME, xe);
-> >> -	if (err < 0) {
-> >> -		drm_err(&xe->drm, "Failed to request MSI/MSIX IRQ %d\n", err);
-> >> +	err = xe_device_has_msix(xe) ? xe_irq_msix_request_irqs(xe) :
-> >> +					xe_irq_msi_request_irqs(xe);
-> >> +	if (err)
-> >>  		return err;
-> >> -	}
-> >>  
-> >>  	atomic_set(&xe->irq.enabled, 1);
-> >>  
-> >> @@ -722,18 +764,28 @@ int xe_irq_install(struct xe_device *xe)
-> >>  	return 0;
-> >>  
-> >>  free_irq_handler:
-> >> -	free_irq(irq, xe);
-> >> +	if (xe_device_has_msix(xe))
-> >> +		xe_irq_msix_free(xe);
-> >> +	else
-> >> +		xe_irq_msi_free(xe);
-> >>  
-> >>  	return err;
-> >>  }
-> >>  
-> >> -void xe_irq_suspend(struct xe_device *xe)
-> >> +static void xe_irq_msi_synchronize_irq(struct xe_device *xe)
-> >>  {
-> >> -	int irq = to_pci_dev(xe->drm.dev)->irq;
-> >> +	synchronize_irq(to_pci_dev(xe->drm.dev)->irq);
-> >> +}
-> >>  
-> >> +void xe_irq_suspend(struct xe_device *xe)
-> >> +{
-> >>  	atomic_set(&xe->irq.enabled, 0); /* no new irqs */
-> >>  
-> >> -	synchronize_irq(irq); /* flush irqs */
-> >> +	/* flush irqs */
-> >> +	if (xe_device_has_msix(xe))
-> >> +		xe_irq_msix_synchronize_irq(xe);
-> >> +	else
-> >> +		xe_irq_msi_synchronize_irq(xe);
-> >>  	xe_irq_reset(xe); /* turn irqs off */
-> >>  }
-> >>  
-> >> @@ -754,3 +806,142 @@ void xe_irq_resume(struct xe_device *xe)
-> >>  	for_each_gt(gt, xe, id)
-> >>  		xe_irq_enable_hwe(gt);
-> >>  }
-> >> +
-> >> +/* MSI-X related definitions and functions below. */
-> >> +
-> >> +enum xe_irq_msix_static {
-> >> +	GUC2HOST_MSIX = 0,
-> >> +	DEFAULT_MSIX = XE_IRQ_DEFAULT_MSIX,
-> >> +	/* Must be last */
-> >> +	NUM_OF_STATIC_MSIX,
-> >> +};
-> >> +
-> >> +static int xe_irq_msix_init(struct xe_device *xe)
-> >> +{
-> >> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> >> +	int nvec = pci_msix_vec_count(pdev);
-> >> +
-> >> +	if (nvec == -EINVAL)
-> >> +		return 0;  /* MSI */
-> >> +
-> >> +	if (nvec < 0) {
-> >> +		drm_err(&xe->drm, "Failed getting MSI-X vectors count: %d\n", nvec);
-> >> +		return nvec;
-> >> +	}
-> >> +
-> >> +	xe->irq.msix.nvec = nvec;
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static irqreturn_t guc2host_irq_handler(int irq, void *arg)
-> >> +{
-> >> +	struct xe_device *xe = arg;
-> >> +	struct xe_tile *tile;
-> >> +	u8 id;
-> >> +
-> >> +	if (!atomic_read(&xe->irq.enabled))
-> >> +		return IRQ_NONE;
-> >> +
-> >> +	for_each_tile(tile, xe, id)
-> >> +		xe_guc_irq_handler(&tile->primary_gt->uc.guc,
-> >> +				   GUC_INTR_GUC2HOST);
-> >> +
-> >> +	return IRQ_HANDLED;
-> >> +}
-> >> +
-> >> +static irqreturn_t xe_irq_msix_default_hwe_handler(int irq, void *arg)
-> >> +{
-> >> +	unsigned int tile_id, gt_id;
-> >> +	struct xe_device *xe = arg;
-> >> +	struct xe_memirq *memirq;
-> >> +	struct xe_hw_engine *hwe;
-> >> +	enum xe_hw_engine_id id;
-> >> +	struct xe_tile *tile;
-> >> +	struct xe_gt *gt;
-> >> +
-> >> +	if (!atomic_read(&xe->irq.enabled))
-> >> +		return IRQ_NONE;
-> >> +
-> >> +	for_each_tile(tile, xe, tile_id) {
-> >> +		memirq = &tile->memirq;
-> >> +		if (!memirq->bo)
-> >> +			continue;
-> >> +
-> >> +		for_each_gt(gt, xe, gt_id) {
-> >> +			if (gt->tile != tile)
-> >> +				continue;
-> >> +
-> >> +			for_each_hw_engine(hwe, gt, id)
-> >> +				xe_memirq_hwe_handler(memirq, hwe);
-> >> +		}
-> >> +	}
-> >> +
-> >> +	return IRQ_HANDLED;
-> >> +}
-> >> +
-> >> +static int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler,
-> >> +				   const char *name, u16 msix)
-> >> +{
-> >> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> >> +	int ret, irq;
-> >> +
-> >> +	irq = pci_irq_vector(pdev, msix);
-> >> +	if (irq < 0)
-> >> +		return irq;
-> >> +
-> >> +	ret = request_irq(irq, handler, IRQF_SHARED, name, xe);
-> >> +	if (ret < 0)
-> >> +		return ret;
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix)
-> >> +{
-> >> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> >> +	int irq;
-> >> +
-> >> +	irq = pci_irq_vector(pdev, msix);
-> >> +	if (irq < 0) {
-> >> +		drm_err(&xe->drm, "MSI-X %u can't be released, there is no matching IRQ\n", msix);
-> >> +		return;
-> >> +	}
-> >> +
-> >> +	free_irq(irq, xe);
-> >> +}
-> >> +
-> >> +static int xe_irq_msix_request_irqs(struct xe_device *xe)
-> >> +{
-> >> +	int err;
-> >> +
-> >> +	err = xe_irq_msix_request_irq(xe, guc2host_irq_handler,
-> >> +				      DRIVER_NAME "-guc2host", GUC2HOST_MSIX);
-> >> +	if (err) {
-> >> +		drm_err(&xe->drm, "Failed to request MSI-X IRQ %d: %d\n", GUC2HOST_MSIX, err);
-> >> +		return err;
-> >> +	}
-> >> +
-> >> +	err = xe_irq_msix_request_irq(xe, xe_irq_msix_default_hwe_handler,
-> >> +				      DRIVER_NAME "-default-msix", DEFAULT_MSIX);
-> >> +	if (err) {
-> >> +		drm_err(&xe->drm, "Failed to request MSI-X IRQ %d: %d\n", DEFAULT_MSIX, err);
-> >> +		xe_irq_msix_free_irq(xe, GUC2HOST_MSIX);
-> >> +		return err;
-> >> +	}
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static void xe_irq_msix_free(struct xe_device *xe)
-> >> +{
-> >> +	xe_irq_msix_free_irq(xe, GUC2HOST_MSIX);
-> >> +	xe_irq_msix_free_irq(xe, DEFAULT_MSIX);
-> >> +}
-> >> +
-> >> +static void xe_irq_msix_synchronize_irq(struct xe_device *xe)
-> >> +{
-> >> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> >> +
-> >> +	synchronize_irq(pci_irq_vector(pdev, GUC2HOST_MSIX));
-> >> +	synchronize_irq(pci_irq_vector(pdev, DEFAULT_MSIX));
-> >> +}
-> >> diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
-> >> index 067514e13675..24ff16111b96 100644
-> >> --- a/drivers/gpu/drm/xe/xe_irq.h
-> >> +++ b/drivers/gpu/drm/xe/xe_irq.h
-> >> @@ -6,10 +6,13 @@
-> >>  #ifndef _XE_IRQ_H_
-> >>  #define _XE_IRQ_H_
-> >>  
-> >> +#define XE_IRQ_DEFAULT_MSIX 1
-> >> +
-> >>  struct xe_device;
-> >>  struct xe_tile;
-> >>  struct xe_gt;
-> >>  
-> >> +int xe_irq_init(struct xe_device *xe);
-> >>  int xe_irq_install(struct xe_device *xe);
-> >>  void xe_irq_suspend(struct xe_device *xe);
-> >>  void xe_irq_resume(struct xe_device *xe);
-> >> -- 
-> >> 2.43.2
-> >>
+
+> 
 
 -- 
