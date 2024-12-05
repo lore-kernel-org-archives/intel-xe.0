@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 379A3E77171
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 09:00:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1171E7716C
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 09:07:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 064D610EDFB;
-	Thu,  5 Dec 2024 09:00:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A51A010EE05;
+	Thu,  5 Dec 2024 09:07:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="On7FqJSz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kXvkqnkv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B12610EDFB
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Dec 2024 09:00:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF8BD10EE02
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Dec 2024 09:07:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733389238; x=1764925238;
+ t=1733389648; x=1764925648;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=I5ks3VLoGtOJEttoBVhS/IpN6E/2Xfyc9kDsMvc/Q3M=;
- b=On7FqJSzo9Sv5wpdJUfkgAiz6RpggUy0B0GzkukRCAD+HtY0bTkWIy1v
- xoORXiF34HgCq/GrTtTMVCLzFh9dBOk2N59aoSPb7NRm7g74cBcfC4C9R
- IYtfQ/uIF6GHq8L7pSXz2E9xU85wImCYhP8IqOLC3EzgTdSbT2plr8sEt
- vnldL6iakU5Zl/xSUw/39bD9pK3Uh4+dYce3SvjNVxYNiZ2wEFEhZmeRb
- BaT9ezy1F3eWcVYgsmO/T4OY+FYzqxr4ZmKH9Vvu/mKENE5cWM4H3zmBP
- GNEakyKNMTpeotAXF0kOFVVF3bxL/nBb8J35mn2eqryh6HyA+oxUAjILv g==;
-X-CSE-ConnectionGUID: qt4wE4joTN6gmDnFHk8XFw==
-X-CSE-MsgGUID: mG3gwVSNSwOFn/TxgPDwMA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="56167469"
-X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="56167469"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 01:00:19 -0800
-X-CSE-ConnectionGUID: goKxrjUjTvmcfj4BIBW9Pg==
-X-CSE-MsgGUID: WfEsbZi3TUa5SCqaqrHqeQ==
+ bh=7K25TvxDtyAeR0ZVxT2kxMn1kSuW1VzI70tGSXnlQy4=;
+ b=kXvkqnkvT+HpDyATeWxbCfPiE766yOTYVG/+EajpqqYV82rxFFzPkmE9
+ vIX6mG8UW498OyJBxrJDuiaCGZFWfPIL1viXVan/igaLFy4NAfJ8i+aDd
+ ZoXPr3pWS8DGvi8qnxK/fkXUhQZjZ/bWdpdSxqbB3QINtqGgVMJvSxg9B
+ sPykaWOK1YHxoPSGW4AJ9l7wrvOhHkhzHj+e+tKD3fD9gA6gMbEgevG2i
+ 1ZyyYYLboAujDZ4h7Pup1D7+1YQZyd1ydA+2nmFLRwSf/GaShkol2r+Ht
+ w2ceAS/QA+lbWnxJjwTE0WrRGDiIKLM2wbVdh+nPKOGPgYuFUNgbukQhw A==;
+X-CSE-ConnectionGUID: SLhN2egJTyiCBwPiE0qR7A==
+X-CSE-MsgGUID: FRVuD14FSu+eeDhv72UiFg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="33572142"
+X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="33572142"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2024 01:07:28 -0800
+X-CSE-ConnectionGUID: /a3+2+xXQB2KdVkWOcfPjA==
+X-CSE-MsgGUID: Iv55gFKXSMaLsWeIfmEDFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="94222654"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Dec 2024 01:00:18 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="94383377"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 Dec 2024 01:07:27 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 5 Dec 2024 01:00:18 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 5 Dec 2024 01:07:26 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 5 Dec 2024 01:00:18 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 5 Dec 2024 01:07:26 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.40) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 5 Dec 2024 01:00:18 -0800
+ 15.1.2507.39; Thu, 5 Dec 2024 01:07:26 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=q0SF2dyfUWMW0Vm86NyB1pZmAoPsv8zPv1kSjdsCyNTBGC9sqznEzxTm3weqT3NTLzc2AD7PdQJVxXp5stJ0DADKEaLsC9UqsR3PH/Uofd1GFQIZ1BLNnLnxbR62AFIUebAHOn4Hhq4DD3Us5HdQpKS0fQk/b22OM6HmvdBakXkCXE6iJKhlq1XPyao0lbZHmgNlcDfJs90Ufo8kQrwoj0pmYhOdbW7rUgMLJ9QrTOOKjRjxvE/zgm6Zb68cluRzpy94E5ImydG0oUBIiu7+Q6BIPYlh6oK0tYpblKQBblHnvdCtlnssa10Vb7iWyq2l0bGtCYdmpYYcZVL/iRdDgQ==
+ b=l0BVxaQWOkbz5LeJGGE+gZRpnJRp6t0eJRK2d8IMDi0yr3tBJMzXPJtcwZZVg2zFCyVoEC7x9sPFSUShx0QPemMM2SMr9KBCbAyDK1H4Ep4AjWJ//OZU0kqAk3THLR1Sok4x4dQxerNZCpoyOXg0B9A8zKaEcELGHmQIpcw3Dm1+rYQisZjoiPn1xBKKzodYMnl7Nf9nfJcR4R5sRH9zsHAOAQePiX6htYvSYdx42ZCDKtPbhhzqZE5lPc7+2xpsEU71NrV2SY+D5Z+dH2ClVQGEhCO+J6HNah/q19XyRgcWgYR9ObwzQYXdYZ7hXl24c6hrV/sRNUyFQPXHXlGp2w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sEa0u6WwDQ15L1gOtemeti4DwUHndj2Qjs4NeFehHHo=;
- b=kUtJXd703olmbzSXbWODvQFPgV7bP3BHFiQGZLvRRYpmhAhOjypM1tswMtUz+ndJye2hxNhiSM2nPgJAariFcgbYPdfZcY80GxjFEUdLv28/DKRwJvOFy0IYHMxc7SuiMOYMw5zsGDQrk0aVrwACNj5NeKGQxQaYew1T6ez60z0+cGRJIrM9Hzv8N2vR7ulJbFH/d2EjruEs1N246xDvKCuE5lVTmdzmdHaBku3dye03pNUczR7K9EMUAstdiPQ6RsRIYYJs9BALfwGGcaZE7uHCXehJR/JWuIDcIN0fRJzVlePl6IAwjwDYlTuJB/5oprEpRFQMBRmWsRffwGI25A==
+ bh=Dpx369yEwPT5h9Cg5Ov6jDjV8l6ZVBOeHQ2azcieV0g=;
+ b=uWfA93V87ZYInDgxQDHgGABZEYuWVgq5dUl1SroNf6Ew+JWVI98Uu5Uindecq0UiOSQz5cZp8jCggbCZ93tEpS/rzR7vkX6QrGvwrqrMDlCA38Cjg8XrDTA1Llq/qFlShAbG+ARUPXyLgEzHHkzrhvENYun6+/ECmJKGBX+x8IZxs5kuu2DBZJea2YA1aDkorhwP4IjwQBk4sGjtmB3clCzXxin/29rBpzqos+OTws+EyNt+7UWXSRIIXewauWziNghSNzmxWdosxeL67Bnu3hT8IT3Y/gwuEcP6+Yf6oMozJ8pbKAh7lGiK1TY2ztVD6BMaZL8XVpSBbb1fihn1Xg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,116 +69,114 @@ Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
  by DS0PR11MB7652.namprd11.prod.outlook.com (2603:10b6:8:14e::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.11; Thu, 5 Dec
- 2024 09:00:16 +0000
+ 2024 09:07:24 +0000
 Received: from MN0PR11MB6135.namprd11.prod.outlook.com
  ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
  ([fe80::3225:d4ad:74a:6d7a%6]) with mapi id 15.20.8230.010; Thu, 5 Dec 2024
- 09:00:16 +0000
-Date: Thu, 5 Dec 2024 10:00:13 +0100
+ 09:07:24 +0000
+Date: Thu, 5 Dec 2024 10:07:22 +0100
 From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
 To: Ilia Levi <ilia.levi@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <niranjana.vishwanathapura@intel.com>,
- <koby.elbaz@intel.com>, <yaron.avizrat@intel.com>, Dani Liberman
- <dliberman@habana.ai>
-Subject: Re: [PATCH v5 5/5] drm/xe/uapi: Support requesting unique MSI-X for
- exec queue
-Message-ID: <20241205090013.wmas3dsxofcctfsn@intel.com>
+ <koby.elbaz@intel.com>, <yaron.avizrat@intel.com>
+Subject: Re: [PATCH v5 4/5] drm/xe/irq: Manage MSI-X interrupts allocation
+Message-ID: <20241205090722.ccen4n6q22m5pt45@intel.com>
 References: <20241128125345.1115-1-ilia.levi@intel.com>
- <20241128125345.1115-6-ilia.levi@intel.com>
+ <20241128125345.1115-5-ilia.levi@intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241128125345.1115-6-ilia.levi@intel.com>
-X-ClientProxiedBy: DB7PR02CA0023.eurprd02.prod.outlook.com
- (2603:10a6:10:52::36) To MN0PR11MB6135.namprd11.prod.outlook.com
+In-Reply-To: <20241128125345.1115-5-ilia.levi@intel.com>
+X-ClientProxiedBy: DU2PR04CA0281.eurprd04.prod.outlook.com
+ (2603:10a6:10:28c::16) To MN0PR11MB6135.namprd11.prod.outlook.com
  (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|DS0PR11MB7652:EE_
-X-MS-Office365-Filtering-Correlation-Id: b05c77de-d94b-4f1e-6edd-08dd150b3c68
+X-MS-Office365-Filtering-Correlation-Id: d8ece381-6ec9-43b7-7204-08dd150c3bdb
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bDJFTk8rMENaK1dSQzBrTXJzTXg4UlpQT2NTN05Yenc5UTNYVDFidFhwUVFj?=
- =?utf-8?B?aTBydDFaYlVsalRUR2xCaytZKzkxNjdWNTVpekZkWUJIbVlqZHl5djkyMlc3?=
- =?utf-8?B?NHA3UFJVRkJneENOMWJGUFRxdjk5aTRuZDVPWTJ6eWlwU1R2T2Q3a1psREgw?=
- =?utf-8?B?Q2JDcGhwbkpiTjhORU1LYlBkakdkRHBOMURiSlJucjVxSXpqZHFzY1ZCdm1m?=
- =?utf-8?B?RmNLUTdrcThhTkRNclJobmpBalZXa1FjbVdyajA5dDlYSHlvTklZb3RMQmpK?=
- =?utf-8?B?WE5UM3hnV0hBbWpRWXM2aVZSbjBpN1BTQ3dCUFR3K1lsV1JmVzBsSkZHLzc5?=
- =?utf-8?B?VXJpcElZbFRHOTZTa0ZlVmNjM2UzQUZWbDkwcWF5Q1RHdHFRVXFqcXNCbUtH?=
- =?utf-8?B?VEF1OE5CR3VhdGtmRjl0dk16MGgvTm9UWjcwSWxZTUVFRzJyVlZCbkxPUldD?=
- =?utf-8?B?MkRPWFJDTUZ6MS9JRVd5eEc1aG9nYTFlYzdjeHQvSGo0dkQxMEEzZ0xsa1pv?=
- =?utf-8?B?cmxMeDJIa0pVajltVFJ1VWpkaW5DZENhLzdCK2E1NmZONFFQaUtBZnhGbGFr?=
- =?utf-8?B?MnNDaDlxVnlEOVc0TURpcTlNSlZkdnJXV3pESkpTVEZkZE5zTHJMM2VhZlNa?=
- =?utf-8?B?djIycGdWUFNOaUtIVXlHT0pNblY2M0dUdHk5Q0NuQkVaR1haWGhoZDVNWEFD?=
- =?utf-8?B?Qks5QTdLeHBERmxoQTJYUHhUOEIyRU43RWVvR0FMdWFNb1ZzakgzOVhKMG03?=
- =?utf-8?B?ck5GVWxYa2h2bGhiNjNId0lJV2JsZlBxY2RYL2hoMjNvbUNLU3FRWU1tNDlh?=
- =?utf-8?B?N2Z0SytRekNyenR5NElsc0l4WENtdDRUY1JUQUdIQlFaVHA3T0hFRjhKQzFk?=
- =?utf-8?B?OUpOTVlTaXFMcHo0ZlRtTC9LRzBMSTBEZnloc1lWMUJmemxaV1ZHYnVIQkdj?=
- =?utf-8?B?amVUVHhrU2htYUFZNDIrL25sZ0w4QTlUTnJoalhDWVpnc1N1V0JGV05PZWhX?=
- =?utf-8?B?VnhKWjU2Nk92YXBQSU1IRG93bng0M3dmSG5XcTBBWWh2MDBORG1US1hUeFRi?=
- =?utf-8?B?RlZnYTkxdHJyQlpGZWd3NjNxS2ZhcEhOcy9jak1hWmk4bVQ4cC9ybURMN244?=
- =?utf-8?B?U3VxQnc5L2ZLdXRCYi96R3YrR0l5UXkvdStTSUtkejhDL0JDT3poaFpBYmpI?=
- =?utf-8?B?VVpuVUh4SUREZk1xbGxTL3M4ajRiL0RGRnBFTW8zVWZUTnJIT0kxOE5IUlZp?=
- =?utf-8?B?d0IwSEdrRUJiTmFGaGpvTlIxQ0toSVNXWVFpY0ZEOWIxWStvR1duYUFIVlkr?=
- =?utf-8?B?K0t6MTBjdzRLblpJc3lXRGExS1hzN2tUY3FOVDgrNFlRM0NoZTk1N21lNUM3?=
- =?utf-8?B?cTNOamt1d1l1MGMydm5SNWsxT08yTkV0TTdQbTA5K2FvTklKUjZ4ZzVPdmhw?=
- =?utf-8?B?d1liQ1ZmVWRjbkxhWi9OZUlpL0Fqblo5dENlT2ZSdk95VlZtZVNVS2dNOExa?=
- =?utf-8?B?b2JzRllNdmZtNHB3MTUxTjJpTkpmRW1RYy9MZTRpS1dYckRHK3hMd1R3TFZQ?=
- =?utf-8?B?aHBzRk43TVUvSUNQY0cvV21pWElYUW9neEswK3lhWTVrR0VMcTBxWlVQcDRa?=
- =?utf-8?B?Uy9LVU9TU0RPZ3krbndWeHZMNTR4d1JBTWxhVDNKN2c3QXE5RTI2TUVjQ0Js?=
- =?utf-8?B?TS9yRXdIM3ZqV2p5RXFObWtYVmJiQVpQazgrUmY3VlhYUFAwZlBuNWN5WWNM?=
- =?utf-8?B?Zkl1VGlBU3puSEIrYm51eHBlL1NrNnpxekNaeThsL01zUUU3WU5XU3BQMW9a?=
- =?utf-8?B?am81Qy9nRHB1Y3NMZFc0UT09?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bUVuaUgwS294NWl4YTJHY0VIVGZjdVpWTmtlSDJmMVFacUJTcGNmMFU2SndI?=
+ =?utf-8?B?czhmQkJRZitQQmFjeVNSK1lHdU13RFQvRzVNZnQ0R0NHeWNJbEhNS2JxYlNU?=
+ =?utf-8?B?ekVvY2dQdGtLTDRiV1RBekh4T21RMWtyR3QvS1AzT0gzMjM2UGxsSU5wUnQ2?=
+ =?utf-8?B?bHUzNlljK2o2UUhmRktjeW5namZWVzNGdzRBZFlOTFduUG9CY1BFOGdhOG0r?=
+ =?utf-8?B?RE1CMThNQU0zem9lWFJhUW92M0hhS21vZS92ZnJudFNCQy8rdklSK3hYaG82?=
+ =?utf-8?B?SE9vczV1TjEwUWx3cDNNRFh3emtQaE94MVdBZ3V1azdOQ2p2Y3prRVdZbXRD?=
+ =?utf-8?B?MHY1VTVpeVNTYlF6N0oxRyt6aFlTMmxkSmI3citDeVpTK25lL05nRnJpcHg4?=
+ =?utf-8?B?eE85em9QWU9MeHc5TVFCN0ovKzhaT1h0RC84TjNuVEdkM0cxdnhLRVRvVVE2?=
+ =?utf-8?B?cllyaXYyTmVXNTVGejNMR0hGa293WnVzSm1qS0J3RUhtN1ZPMTZESEZZOFNZ?=
+ =?utf-8?B?VVZ5ZHdIN0pVVWJMUVczMFNVWDFQWjBzT1hqZk8yWm1FYnFFVnZuMjhLbDN6?=
+ =?utf-8?B?Q2dOQmV6eGkxRHZNWXZTV0tHQU53NnBOR1B4ODF6alNSRXFMcVFLZXJlaDlq?=
+ =?utf-8?B?QTByZTY1MXpFVjBxRXFUYlpFQlpGUkFNd2J6aDR0M3k0QW1oNTZuZWhzbC9y?=
+ =?utf-8?B?djVPYW1NRlIxTHN0b09GaXU3UytQcFdkSWFyUStZSXhxVWFPSVpaem5jeXZI?=
+ =?utf-8?B?bTZSQWFLVlI3eXBYR01zSUVNQjA1SkxpaktrSUpqajR1RXR1YUtIN3NXWUNY?=
+ =?utf-8?B?SVViQzVvUEErTERyU1BLWVJ3TTc4TnJYSWl4eDVER25reXVOTEdTYllJMWV4?=
+ =?utf-8?B?RDdSK3JqWWl5NW1ZMVVQWXlyamJoT2xvVStySHpIblVHNFhEQ05HNXVuTU1N?=
+ =?utf-8?B?RlBQMzBBT1NEdkl0YklOTXA5V0lRcUR2amZUdzZRWURZWndmckdIb2VtS3RY?=
+ =?utf-8?B?S05JVWNIY2lNT1VJaWFXOVpBbTdFR09pNXlpaE1rZ3ZtSFlCUHhPLzA5NTRk?=
+ =?utf-8?B?SCtTcU9sMjdsclR6Y0dzaThvd2JGTkc5djJnM3JLc0NvV1FzRUNoTjk0cVM5?=
+ =?utf-8?B?ZVExdDl0NUR5b0lENU5wTitGZENmUEFFd2NHYzFKY0xRVG5yeVhyZXpZK2pD?=
+ =?utf-8?B?S2QyY0Vxc3dFdXdTOUFFVHR6enJEVWZMMUJUZEVvYzEraXI2L3ExSHVxRzBa?=
+ =?utf-8?B?OWZ1QmxsYTNaYjVZSExUWmxNcDhkOUpnbDRJa3FSWkVUT0tldlRMM2l6bmhS?=
+ =?utf-8?B?b01pSERsZTN2RWMza3crNDMza2tWandybEtFR2s3K1FRMjdRQitzU2d3TmxR?=
+ =?utf-8?B?VDQ4dFBXWVdMQ2pWY1ZWU3dtQUtpMVNyYU1DeW1PMHQyRjYwV1VXdHlYRk5W?=
+ =?utf-8?B?dHg3WW9vd2w0S0NsQVRsdHY4WmRrZ2V2TVdOOE1XZ1pRbHp5QnE4aFRXS2c2?=
+ =?utf-8?B?RFBjcERaaXFiMU1yS0QxaTVPZ21kZ0MwbDA1clo5a1FQd0luYm9sZFFRZkQ4?=
+ =?utf-8?B?dnNtWVQ2aklPTmZLbjQ5OGllN1E4QlRYS3lCMXZZN3ZFaWtaay91WG00UHpF?=
+ =?utf-8?B?OUlBY0ZPbnFGczU4b1BtdUJkSmVkWk93bGwzaVBnQW9jS3JSclM4Q3B3ZUti?=
+ =?utf-8?B?MytqYWFTZWE2SG1NT2tCbG5Pd09qSFJYczR2bHdwdDgxckZNNVBOT25QSzNJ?=
+ =?utf-8?B?SEl2Q1hTK3QrRXI1K1YyTC91NHlnWTY1R0VUamFrR3F3OFFkQ2FNcTZtR2lM?=
+ =?utf-8?B?a2dWTHBjeTUxd0NuUncxdz09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dmZEdDBEcHQrQWhyWnlKUlhHMHZjaFhqcHFTdGdadVQraGRKalBhcEFFUlFE?=
- =?utf-8?B?TzBjWG1FbkxTVzdnT2U4NXNRQWVCQ3ZMbW9LRnBOU2NKQnJoL3BPa2Q0azg1?=
- =?utf-8?B?Qm9HMXVPOTdaNWs3VGJ2ZGZMczFqV1JnSkszRld3ZnFWQjJBZ1NzRG5peDIv?=
- =?utf-8?B?VE9ia1hEaHNtOENsaHRST3BlRkJFS3dHQk1xeVJLNFViVjEzeTFNTXdFWkVR?=
- =?utf-8?B?ZktqZUhOMzk4S0Q1TEFtYmdXNmhBMkE1Y1k5VEQrTm82VlJvNUJPeWM5ZFlJ?=
- =?utf-8?B?Sk1nbTJReHBjZm00TUFEb290UFhyRnYwYS9acndnd2tBMkRKUldUT2Nvdy9z?=
- =?utf-8?B?RVNYRzJ1NmUvakl4LzBEQVU4aGFDazRvSUlQODZwUW9Mejg5RDJaZ0xXR01N?=
- =?utf-8?B?THd5UlNoRlhzUEpBNjZ1SEk1UFQ3Q0VTOUpZcHU4K1RiaHFJYzBVUFB4bTVC?=
- =?utf-8?B?aEpvUzg5STJFbnFBZTBnNGdSbXFHZ0VGblp2SUNGOWF0YzZGYytPKzN0alNS?=
- =?utf-8?B?U2xIQm40a3pQSEVZNGh5dE44dDQrN3F1d1UxTGtyYXRVc0NNeWdRYStOQjQ4?=
- =?utf-8?B?ckUyTHNDSHVhVU1ZTWVNZmEySFNwM0xVaENsOWdtQkozem4vVWRtZjFmTU9h?=
- =?utf-8?B?dHE1dVRvbE1Bb2lCRy8vTEtraUZIYS9nNzNlcUsxdWJkTVdMbnhhOUJtYjFY?=
- =?utf-8?B?TmY4cmRwLzQyUFMzaS9hNk9FdnZvRjN0alcyTXpBU3VkYlFpZnFidHMrN0hD?=
- =?utf-8?B?NEs1Rnc2ajNHZnRHVDdPU0RWbTFNd2tVNytoR0pSWmpoVlU1K0UwWllTYW1s?=
- =?utf-8?B?UWJxQ2h1NWNmaDNrcmR2Vi9NMkxWV01nbGJQZSt1emxia3BvbFV1RzFBdFhu?=
- =?utf-8?B?U2JycTNaMWNZWFV2KzREcEtKeUloNmVSbGh3QlFpUUs0YkEwOVNtVEJYRW5E?=
- =?utf-8?B?Q1U3MkJKS2Yyb0pGK05iM25aVUROdWsvbXZudnJlTmVGVjNPMlVLdzMweGdC?=
- =?utf-8?B?cm8yeHE4OUVJbVg5QkUyYjk0WnpVbHh0UHVZSEJxaUE1NnBPTjNjM2ovK21F?=
- =?utf-8?B?aldhZ2ZSMzNJMGdDRWQrdkVaMU05bjFXSFEwN0tkcFFLTVRTMnhrZmJiNEk4?=
- =?utf-8?B?OVc1MlBxWnZ3T25SS1Q2TTFFYkJDL0lkYUwzd3A0anRTOEdMN3ZoT3crVEl0?=
- =?utf-8?B?Q2kzNklaWW5zVVVVZmEyWmJoT3lQcDdPVk51dUVFemNSMmlkNUVENGwvbkpS?=
- =?utf-8?B?OXZ6QkVNQ29WWFFTK2tJc0ExTk5sV2F1SWdhMDdrSjJTcm1teEJVK1ZQTDlx?=
- =?utf-8?B?VzN1VFNLVXNURmdVbEpHbGJxY3ZiTHk2b2dZRDlsRzQzbnRNNjI4Tm1aSW1V?=
- =?utf-8?B?dVA4Zk9jbzd0a3Azek9Jcld1VVU2Q0RZNUN2ZjZDTkNCLzdMOGFlZVdPbFBr?=
- =?utf-8?B?bGFoK0JCdWpSZmlmQXhRTWpYZEZsYVJpZ3lBaG9WdG1qQ24yK0RsNnJFdUlz?=
- =?utf-8?B?Q2tJWFFMb0lJMGlTVkl3V3luTndQa1EvQUN2SzBYQWZxMVFZQ0ExSVlLOEdX?=
- =?utf-8?B?eEJHb29VdmVxUzZqNzlpNWxrZlM4d0hiRXNtRDhwY0trNDVhWmhZK0FlYjRi?=
- =?utf-8?B?bWJ5MEtKQlJxVW9rbllNQUNvc0N0RUI5SGIrN1E3eVlrWWYyd2VzNEpnSm1X?=
- =?utf-8?B?VTZkYWIvb0gxRmlhWk1rZzh0RnNYdkpSNndaME5mNXVNd1g0MktkOElDNGtH?=
- =?utf-8?B?aGhwR0hRZThQdm0welpCdkRQVXpXUnhKVTFjbVpQbFNMckNQMjlzeVRKNFg5?=
- =?utf-8?B?cnZ6SVRPcjgxcGU3ZVZHTG8rVmUzL3pQRlJyRXRaY0tSajN1ZmlyN1NSTTNn?=
- =?utf-8?B?cXBuaE5PS2h3YkJYa3ZEUWZJaUEyUGtldUU5R1JOd3JEeDN3ZWtKYWVMKzh5?=
- =?utf-8?B?ZHZmcjBPbHh1S3FQSkg5M1NkZFdjME9rd0wyRXFWKzBVaVdoVlNlcnZRVXBR?=
- =?utf-8?B?NndkRFhTSlk2dEUxQkluUjE4UjhHTkZUbWlwTk1MU1JyNjVwNmE4d2s3OWV3?=
- =?utf-8?B?SGtQQUI2eTFxenZKcXhCZElWSFIyWnRvWVNNcnNzbmZmNkxLTUI4blcyaWZz?=
- =?utf-8?B?ck1WZi8rNm85d0JTV3hzVXh4bnR2ZFdaTldnckxLby82RzNldGlFN0l0dGIy?=
- =?utf-8?B?dGc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b05c77de-d94b-4f1e-6edd-08dd150b3c68
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UHY0YVFKWVIwcWlnd0dIaW9ydGZtRHFXSUs2T0ZONEtPUkZER3RyQUJ6VDVF?=
+ =?utf-8?B?bVZoSlFRN1dzcXVTd0dzcFFZbTd4VWV4TXdjcUpLazR6RWQ1UDZlbktLVUw0?=
+ =?utf-8?B?bkFiS21aY1k2UXc4N0JCL3pFVE9EemE2VUJ4WFg2WEcrdFdQNTh3TnIzRU5v?=
+ =?utf-8?B?ZG9SRFo1S2RzNncyTm1OeldKVnF1NjU4cldSMnRjMStaRVRqSXV6TVNUTnZi?=
+ =?utf-8?B?Nmp6Q2hoQll6bDFZaXMxKzJlSUt4UEQxN0FZNmJrc0pjdWJWcnMrbFhCTGxs?=
+ =?utf-8?B?dys2RGJ1Tmw1ZUxFaDQ4VDB3d3JWQ1hhZE5xRVZoaE1BSlJkVWhrUjg5Zm9Y?=
+ =?utf-8?B?aVFNY2RqaUNjVzV2VTR6MENSTVl1cG9QQVRqeVgzUlRUaEZNRG5VUWxsall2?=
+ =?utf-8?B?UVJQRE14dTBzYjBBQm8wL2dTK1I1azVWSEprN2w1Qi9BVmFTMDU1OGJIUnk4?=
+ =?utf-8?B?MGFGTGlHNlVnU3phVWFsa3IybHBBQVNjT2lHNzBBZi81aXQ2SU9hN0V1MjBq?=
+ =?utf-8?B?bE5EdldEenZYVWd6QXg1QzFiRGxrWEpndE9yUWpBKzZ1KzByeXUzYVA2M29Q?=
+ =?utf-8?B?eG43eWUwZko4T3ZNWFpSVVVvdHg3S1ZiOGh1TjVPb2Q2UWhhRkc4OHY3QmFj?=
+ =?utf-8?B?czdkcUpnOFdDZkV2TUQ4d0tjbkszWFBEY3BuV1hPZjBuTmlGQ2cxNDgveFUz?=
+ =?utf-8?B?MmF5TUkydGlBRkxSckJPSkJERjhFS1FsL2JZTEdPcjg0aC9Ud3NuT1QrdUQ0?=
+ =?utf-8?B?aU91Tyt5NTVtME1DbWNpMmZXZmNEQzlEM2drb3kveXdIVTNIeitCRzMrVGVx?=
+ =?utf-8?B?T1U1Y0lEalJSWENNUHJTYXR6TUdyQ2NzaThONW9ueXNWY2JHQ3RNa0oxRUFr?=
+ =?utf-8?B?NnRudXJMMDJZcHdIRG84bk9rY2VoOVlUbEoxamdWUmVWbUtMOWFML1BMblBZ?=
+ =?utf-8?B?TDE1aHgwTmhKMHQ4Zi83NGExelNyLzl5NWpuNlZnRTZMT2NwMkcweGNsdXoy?=
+ =?utf-8?B?djh5UStNdklFNTMwa0RuazFBMnJkME1scU85OGFiY0lVd3gwS0wrWVh6eTY4?=
+ =?utf-8?B?UXd6K2tNY3daWkQ0eWpFK081QkNRN0FXYmV3aEx1T29mbnJoa1AxdW4xMG9E?=
+ =?utf-8?B?NUJJZTdTeS8zU3Z6Ujd2UHpKbzFPRngxeUxRVkxvdUs1SkpsRU9OMWNmNjJs?=
+ =?utf-8?B?R3p2M1pXMUk3dHBTeXRwRE5UQkxSZE1TZGJRNmFodzJWT09RT1I2NmN5cTJz?=
+ =?utf-8?B?VkljeWQyWUUxRVJCb1dwSWhmdjRMbFRsTjdRejZNWVoyTFZsQWtmNXNKNmw1?=
+ =?utf-8?B?T09yaTU4bXBIeEYwYkhkY3RIVmg4bWxYYmVFSFo5WFEzaHN4bm40LzlIYVpR?=
+ =?utf-8?B?VDVUZnIzUWZBeUlGNUZDS3ZzWVphd3U1ZjF5YzFvdWVhUThUNGxGdjc3Tnoz?=
+ =?utf-8?B?VEkzRG1SYzNUNlhLYytOVWZ3SkdGUHVQZ1dyUUx3QkRQU3lkQlp2bEJVdTZp?=
+ =?utf-8?B?eDQyOFdUSXR6OUVzbVdJNWIwOTRmWTJFRm52bVQzZUlQMUZIOGhDQTJxdEtx?=
+ =?utf-8?B?aHdPZmVnOXcyK1pSaVhGNHNIMDJKRWJSUjNmYk5MWHNsWWh6aHd5YmlyYWU2?=
+ =?utf-8?B?WjJlRU9DNFVZMGtZL1R6Q2ZJbGJjMkgzTVVjRVdQL3VUYjZkVzJYd0dvMEg4?=
+ =?utf-8?B?d1Q0bTJ3RDlHbHJsOG94ajFmZlU3bHE3MXZ1YS9zM1VUZUdrVzBIbVNmSmN0?=
+ =?utf-8?B?UnFtQldOalI2S0wvM3lZREFWZUE3eG8yemZYd29ZTExNQnhKejFTenE4Qkoz?=
+ =?utf-8?B?OThzMUFaSFRmR3IxRG9HTXVTWVp6QnJXakhVdWlyQ0lzUUE0L2ZCeEZiOGQ1?=
+ =?utf-8?B?cktYbVpiYTVqR21la1V3TEZ4QWdkdndwaVVJdFFra1hwR1IzdTVuTFFER3dv?=
+ =?utf-8?B?eDlEZHh1NVBMem9wUlcrTWI5K1E3dHFmZk0xM3VJbWhBd2lyZEJIWmRZYzdO?=
+ =?utf-8?B?T3dRc1ZndjBpTHdzbUhkdzhnMHRRcUJ3R1Ird0l5czVkdDhRYjFEZjUxbjdm?=
+ =?utf-8?B?NDFwVkkraG40eFlneklVUGxOV3RSOXN6YmZoV3FWeVBSdDZ3dXRTN0h1RDhT?=
+ =?utf-8?B?NlNkZzNtaElseEtFazZQdXM2WHlvaHRSV1NGYXo0K3gwUEZaZDFPbnpvQkts?=
+ =?utf-8?B?UXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8ece381-6ec9-43b7-7204-08dd150c3bdb
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2024 09:00:16.0069 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2024 09:07:24.6021 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yAnQPQFpTaO2GghxUrDDQYPmkZihFxMkiCxk+nnuGTVJW/JO3l9GrzscKn7hzUWE0ZL1v8GsgqCNPkf/LhEab8CPmimj4txKz/6rDHQyU1Y=
+X-MS-Exchange-CrossTenant-UserPrincipalName: WLys1TW8WawNtQYSSrkWS5wN5fPxm3uGbGMyNVSqIBL5kjAYVJdmiAW0Ebpv9MaXUjcI4n4wZJedEqStI1oXm5CKVV08j/tGSYT+d8E8OPA=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7652
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -195,238 +193,217 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Ilia Levi <ilia.levi@intel.com> wrote on czw [2024-lis-28 14:53:45 +0200]:
-> From: Dani Liberman <dliberman@habana.ai>
+Ilia Levi <ilia.levi@intel.com> wrote on czw [2024-lis-28 14:53:44 +0200]:
+> Expose functions to request and free MSI-X interrupts.
 > 
-> Unique MSI-X per exec queue will improve the performance of the
-> IRQ handler. In case no MSI-X is available, the uAPI will return
-> -EBUSY error and the user would be able to execute the uAPI again
-> without the flag (fallback to default MSI-X).
+> The request has two flavors:
+> - Static MSI-X allocation, for known MSI-X interrupts (e.g. GuC-to-host)
+> - Dynamic MSI-X allocation, which uses the next available MSI-X interrupt
 > 
-> Co-developed-by: Ilia Levi <ilia.levi@intel.com>
 > Signed-off-by: Ilia Levi <ilia.levi@intel.com>
-> Signed-off-by: Dani Liberman <dliberman@habana.ai>
 > ---
->  drivers/gpu/drm/xe/xe_exec_queue.c       | 57 +++++++++++++++++++++---
->  drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 +
->  drivers/gpu/drm/xe/xe_irq.c              | 18 ++++++++
->  drivers/gpu/drm/xe/xe_irq.h              |  1 +
->  include/uapi/drm/xe_drm.h                |  8 +++-
->  5 files changed, 80 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/xe/xe_device_types.h |  2 +
+>  drivers/gpu/drm/xe/xe_irq.c          | 96 ++++++++++++++++++++++------
+>  drivers/gpu/drm/xe/xe_irq.h          |  5 ++
+>  3 files changed, 83 insertions(+), 20 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index 9c94be571900..1478fdfbf3f7 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -12,6 +12,7 @@
->  #include <uapi/drm/xe_drm.h>
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index ed638067aa26..1a3ded5a97c1 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -353,6 +353,8 @@ struct xe_device {
+>  		struct {
+>  			/** @irq.msix.nvec: number of MSI-X interrupts */
+>  			u16 nvec;
+> +			/** @irq.msix.indexes: used to allocate MSI-X indexes */
+> +			struct xarray indexes;
+>  		} msix;
+>  	} irq;
 >  
->  #include "xe_device.h"
-> +#include "xe_drv.h"
->  #include "xe_gt.h"
->  #include "xe_hw_engine_class_sysfs.h"
->  #include "xe_hw_engine_group.h"
-> @@ -35,8 +36,46 @@ enum xe_exec_queue_sched_prop {
->  static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue *q,
->  				      u64 extensions, int ext_number);
+> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+> index b8a0b9bbf24c..32f5a67a917b 100644
+> --- a/drivers/gpu/drm/xe/xe_irq.c
+> +++ b/drivers/gpu/drm/xe/xe_irq.c
+> @@ -830,6 +830,7 @@ static int xe_irq_msix_init(struct xe_device *xe)
+>  	}
 >  
-> +static int xe_exec_queue_msix_init(struct xe_device *xe, struct xe_exec_queue *q, bool unique_msix)
+>  	xe->irq.msix.nvec = nvec;
+> +	xa_init_flags(&xe->irq.msix.indexes, XA_FLAGS_ALLOC);
+>  	return 0;
+>  }
+>  
+> @@ -879,8 +880,32 @@ static irqreturn_t xe_irq_msix_default_hwe_handler(int irq, void *arg)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> -static int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler,
+> -				   const char *name, u16 msix)
+> +static int xe_irq_msix_alloc_vector(struct xe_device *xe, void *irq_buf,
+> +				    bool dynamic_msix, u16 *msix)
 > +{
-> +	u16 msix;
-> +	int ret = 0;
-NIT: It seems to me that in case you are expecting success or error in case of a function
-it is better to use err instead of ret
-
+> +	struct xa_limit limit;
+> +	int ret;
+> +	u32 id;
 > +
-> +	if (!xe_device_has_msix(xe))
-> +		return 0;
-> +
-> +	if (!unique_msix) {
-> +		q->msix_vec = XE_IRQ_DEFAULT_MSIX;
-> +		return 0;
-> +	}
-> +
-> +	ret = xe_irq_msix_request_irq(xe, xe_irq_msix_hwe_handler, q,
-> +				      DRIVER_NAME "-exec-queue", true, &msix);
-> +	if (ret < 0) {
-> +		drm_dbg(&xe->drm, "Can't allocate unique MSI-X to exec queue (%d)\n", ret);
+> +	limit = (dynamic_msix) ? XA_LIMIT(NUM_OF_STATIC_MSIX, xe->irq.msix.nvec - 1) :
+> +				 XA_LIMIT(*msix, *msix);
+> +	ret = xa_alloc(&xe->irq.msix.indexes, &id, irq_buf, limit, GFP_KERNEL);
+> +	if (ret)
 > +		return ret;
-> +	}
 > +
-> +	q->msix_vec = msix;
+> +	if (dynamic_msix)
+> +		*msix = id;
 > +
 > +	return 0;
 > +}
 > +
-> +static void xe_exec_queue_msix_fini(struct xe_exec_queue *q)
+> +static void xe_irq_msix_release_vector(struct xe_device *xe, u16 msix)
 > +{
-> +	struct xe_device *xe = gt_to_xe(q->gt);
-> +
-> +	if (!xe_device_has_msix(xe))
-> +		return;
-> +
-> +	if (q->msix_vec && q->msix_vec != XE_IRQ_DEFAULT_MSIX)
-> +		xe_irq_msix_free_irq(xe, q->msix_vec);
+> +	xa_erase(&xe->irq.msix.indexes, msix);
 > +}
 > +
->  static void __xe_exec_queue_free(struct xe_exec_queue *q)
+> +static int xe_irq_msix_request_irq_internal(struct xe_device *xe, irq_handler_t handler,
+> +					    void *irq_buf, const char *name, u16 msix)
 >  {
-> +	xe_exec_queue_msix_fini(q);
-> +
->  	if (q->vm)
->  		xe_vm_put(q->vm);
+>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+>  	int ret, irq;
+> @@ -889,17 +914,41 @@ static int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler,
+>  	if (irq < 0)
+>  		return irq;
 >  
-> @@ -69,7 +108,12 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
->  	q->gt = gt;
->  	q->class = hwe->class;
->  	q->width = width;
-> -	q->msix_vec = XE_IRQ_DEFAULT_MSIX;
-> +	err = xe_exec_queue_msix_init(xe, q, flags & EXEC_QUEUE_FLAG_UNIQUE_MSIX);
-
-NIT: You could use !! to highlight that you are casting an u32 to bool
-
-	err = xe_exec_queue_msix_init(xe, q, !!(flags & EXEC_QUEUE_FLAG_UNIQUE_MSIX));
-
-> +	if (err) {
-> +		kfree(q);
-> +		return ERR_PTR(err);
-> +	}
-> +
->  	q->logical_mask = logical_mask;
->  	q->fence_irq = &gt->fence_irq[hwe->class];
->  	q->ring_ops = gt->ring_ops[hwe->class];
-> @@ -547,13 +591,13 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->  	struct xe_gt *gt;
->  	struct xe_tile *tile;
->  	struct xe_exec_queue *q = NULL;
-> +	u32 flags = 0;
->  	u32 logical_mask;
->  	u32 id;
->  	u32 len;
->  	int err;
+> -	ret = request_irq(irq, handler, IRQF_SHARED, name, xe);
+> +	ret = request_irq(irq, handler, IRQF_SHARED, name, irq_buf);
+>  	if (ret < 0)
+>  		return ret;
 >  
-> -	if (XE_IOCTL_DBG(xe, args->flags) ||
-> -	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
-> +	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
->  		return -EINVAL;
->  
->  	len = args->width * args->num_placements;
-> @@ -569,6 +613,9 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->  	if (XE_IOCTL_DBG(xe, eci[0].gt_id >= xe->info.gt_count))
->  		return -EINVAL;
->  
-> +	if (args->flags & DRM_XE_EXEC_QUEUE_CREATE_FLAG_UNIQUE_INTERRUPT_HINT)
-> +		flags |= EXEC_QUEUE_FLAG_UNIQUE_MSIX;
-> +
->  	if (eci[0].engine_class == DRM_XE_ENGINE_CLASS_VM_BIND) {
->  		if (XE_IOCTL_DBG(xe, args->width != 1) ||
->  		    XE_IOCTL_DBG(xe, args->num_placements != 1) ||
-> @@ -577,8 +624,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->  
->  		for_each_tile(tile, xe, id) {
->  			struct xe_exec_queue *new;
-> -			u32 flags = EXEC_QUEUE_FLAG_VM;
->  
-> +			flags |= EXEC_QUEUE_FLAG_VM;
->  			if (id)
->  				flags |= EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD;
->  
-> @@ -625,7 +672,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->  		}
->  
->  		q = xe_exec_queue_create(xe, vm, logical_mask,
-> -					 args->width, hwe, 0,
-> +					 args->width, hwe, flags,
->  					 args->extensions);
->  		up_read(&vm->lock);
->  		xe_vm_put(vm);
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> index eec8f9935a58..6e419b572000 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> @@ -85,6 +85,8 @@ struct xe_exec_queue {
->  #define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(3)
->  /* kernel exec_queue only, set priority to highest level */
->  #define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(4)
-> +/* queue with unique msix interrupt */
-> +#define EXEC_QUEUE_FLAG_UNIQUE_MSIX		BIT(5)
->  
->  	/**
->  	 * @flags: flags for this exec queue, should statically setup aside from ban
-> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-> index 32f5a67a917b..52829771c89b 100644
-> --- a/drivers/gpu/drm/xe/xe_irq.c
-> +++ b/drivers/gpu/drm/xe/xe_irq.c
-> @@ -14,6 +14,7 @@
->  #include "regs/xe_irq_regs.h"
->  #include "xe_device.h"
->  #include "xe_drv.h"
-> +#include "xe_exec_queue_types.h"
->  #include "xe_gsc_proxy.h"
->  #include "xe_gt.h"
->  #include "xe_guc.h"
-> @@ -880,6 +881,23 @@ static irqreturn_t xe_irq_msix_default_hwe_handler(int irq, void *arg)
->  	return IRQ_HANDLED;
+>  	return 0;
 >  }
 >  
-> +/*
-> + * In MSI-X mode command streamers raise an interrupt only as a result of
-> + * MI_USER_INTERRUPT and MI_FLUSH_DW_NOTIFY commands.
-> + */
-> +irqreturn_t xe_irq_msix_hwe_handler(int irq, void *arg)
+> -static void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix)
+> +int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler, void *irq_buf,
+> +			    const char *name, bool dynamic_msix, u16 *msix)
 > +{
-> +	struct xe_exec_queue *q = arg;
-> +	struct xe_tile *tile = gt_to_tile(q->hwe->gt);
+> +	int ret;
 > +
-> +	if (!atomic_read(&tile->xe->irq.enabled))
-> +		return IRQ_NONE;
+> +	ret = xe_irq_msix_alloc_vector(xe, irq_buf, dynamic_msix, msix);
+> +	if (ret)
+> +		return ret;
 > +
-> +	xe_memirq_hwe_handler(&tile->memirq, q->hwe);
+> +	ret = xe_irq_msix_request_irq_internal(xe, handler, irq_buf, name, *msix);
+> +	if (ret) {
+> +		drm_err(&xe->drm, "Failed to request IRQ for MSI-X %u\n", *msix);
+> +		xe_irq_msix_release_vector(xe, *msix);
+> +		return ret;
+> +	}
 > +
-> +	return IRQ_HANDLED;
+> +	return 0;
 > +}
 > +
->  static int xe_irq_msix_alloc_vector(struct xe_device *xe, void *irq_buf,
->  				    bool dynamic_msix, u16 *msix)
+> +void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix)
 >  {
+>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+>  	int irq;
+> +	void *irq_buf;
+> +
+> +	irq_buf = xa_load(&xe->irq.msix.indexes, msix);
+> +	if (!irq_buf)
+> +		return;
+>  
+>  	irq = pci_irq_vector(pdev, msix);
+>  	if (irq < 0) {
+> @@ -907,24 +956,25 @@ static void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix)
+>  		return;
+>  	}
+>  
+> -	free_irq(irq, xe);
+> +	free_irq(irq, irq_buf);
+> +	xe_irq_msix_release_vector(xe, msix);
+>  }
+>  
+> -static int xe_irq_msix_request_irqs(struct xe_device *xe)
+> +int xe_irq_msix_request_irqs(struct xe_device *xe)
+>  {
+>  	int err;
+> +	u16 msix;
+>  
+> -	err = xe_irq_msix_request_irq(xe, guc2host_irq_handler,
+> -				      DRIVER_NAME "-guc2host", GUC2HOST_MSIX);
+> -	if (err) {
+> -		drm_err(&xe->drm, "Failed to request MSI-X IRQ %d: %d\n", GUC2HOST_MSIX, err);
+> +	msix = GUC2HOST_MSIX;
+> +	err = xe_irq_msix_request_irq(xe, guc2host_irq_handler, xe,
+> +				      DRIVER_NAME "-guc2host", false, &msix);
+> +	if (err)
+>  		return err;
+> -	}
+>  
+> -	err = xe_irq_msix_request_irq(xe, xe_irq_msix_default_hwe_handler,
+> -				      DRIVER_NAME "-default-msix", DEFAULT_MSIX);
+> +	msix = DEFAULT_MSIX;
+> +	err = xe_irq_msix_request_irq(xe, xe_irq_msix_default_hwe_handler, xe,
+> +				      DRIVER_NAME "-default-msix", false, &msix);
+>  	if (err) {
+> -		drm_err(&xe->drm, "Failed to request MSI-X IRQ %d: %d\n", DEFAULT_MSIX, err);
+>  		xe_irq_msix_free_irq(xe, GUC2HOST_MSIX);
+>  		return err;
+>  	}
+> @@ -932,16 +982,22 @@ static int xe_irq_msix_request_irqs(struct xe_device *xe)
+>  	return 0;
+>  }
+>  
+> -static void xe_irq_msix_free(struct xe_device *xe)
+> +void xe_irq_msix_free(struct xe_device *xe)
+>  {
+> -	xe_irq_msix_free_irq(xe, GUC2HOST_MSIX);
+> -	xe_irq_msix_free_irq(xe, DEFAULT_MSIX);
+> +	unsigned long msix;
+> +	u32 *dummy;
+> +
+> +	xa_for_each(&xe->irq.msix.indexes, msix, dummy)
+> +		xe_irq_msix_free_irq(xe, msix);
+> +	xa_destroy(&xe->irq.msix.indexes);
+>  }
+>  
+> -static void xe_irq_msix_synchronize_irq(struct xe_device *xe)
+> +void xe_irq_msix_synchronize_irq(struct xe_device *xe)
+>  {
+>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> +	unsigned long msix;
+> +	u32 *dummy;
+>  
+> -	synchronize_irq(pci_irq_vector(pdev, GUC2HOST_MSIX));
+> -	synchronize_irq(pci_irq_vector(pdev, DEFAULT_MSIX));
+> +	xa_for_each(&xe->irq.msix.indexes, msix, dummy)
+> +		synchronize_irq(pci_irq_vector(pdev, msix));
+>  }
 > diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
-> index a28bd577ba52..47058e2d9d36 100644
+> index 24ff16111b96..a28bd577ba52 100644
 > --- a/drivers/gpu/drm/xe/xe_irq.h
 > +++ b/drivers/gpu/drm/xe/xe_irq.h
-> @@ -19,6 +19,7 @@ int xe_irq_install(struct xe_device *xe);
+> @@ -6,6 +6,8 @@
+>  #ifndef _XE_IRQ_H_
+>  #define _XE_IRQ_H_
+>  
+> +#include <linux/interrupt.h>
+> +
+>  #define XE_IRQ_DEFAULT_MSIX 1
+>  
+>  struct xe_device;
+> @@ -17,5 +19,8 @@ int xe_irq_install(struct xe_device *xe);
 >  void xe_irq_suspend(struct xe_device *xe);
 >  void xe_irq_resume(struct xe_device *xe);
 >  void xe_irq_enable_hwe(struct xe_gt *gt);
-> +irqreturn_t xe_irq_msix_hwe_handler(int irq, void *arg);
->  int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler, void *irq_buf,
->  			    const char *name, bool dynamic_msix, u16 *msix);
->  void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix);
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 4a8a4a63e99c..5f32553b14fb 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -1123,7 +1123,13 @@ struct drm_xe_exec_queue_create {
->  	/** @vm_id: VM to use for this exec queue */
->  	__u32 vm_id;
+> +int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler, void *irq_buf,
+> +			    const char *name, bool dynamic_msix, u16 *msix);
+> +void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix);
 >  
-> -	/** @flags: MBZ */
-> +	/*
-> +	 * When creating exec queue in MSIX platforms, the user can request a unique MSIX interrupt
-> +	 * for the irq handler. If there is no available MSIX, -EBUSY will be returned.
-> +	 */
-> +#define	DRM_XE_EXEC_QUEUE_CREATE_FLAG_UNIQUE_INTERRUPT_HINT (0x1 << 0)
-> +
-> +	/** @flags: create queue flags */
->  	__u32 flags;
->  
->  	/** @exec_queue_id: Returned exec queue ID */
-> -- 
-> 2.43.2
+>  #endif
 
-Two minor comments above, but LGTM:
+LGTM:
 Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-
+> -- 
+> 2.43.2
 > 
 
 -- 
