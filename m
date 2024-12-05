@@ -4,64 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FDF9E7716F
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 02:28:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 431A9E7716F
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 02:37:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 948BB10E0A4;
-	Thu,  5 Dec 2024 02:28:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07BE510E0A4;
+	Thu,  5 Dec 2024 02:37:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KvrH71J7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ETKt8eR7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72C6810E055;
- Thu,  5 Dec 2024 02:28:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9DB510E0A4
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Dec 2024 02:37:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733365681; x=1764901681;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=QO5IboRu4sXKDliedTe2GJzHgDQy5oh6qE/bI1NxotM=;
- b=KvrH71J7kf7mmQYLGHI1aqzSu9HkmKKVNYBEjNn7y5wUSezvBImi5xk+
- dHmkFPV1k54eNbqdKBErCFgqECJgprD9Zc1T4+4nwPrrnBzyy9fPybLTr
- l7+IY62hZFLosdnHU5tLtX2/Km7tikGldqLDX+duNa2OkG5CIx6siU+RI
- 1ZooWkrleIHn+JYBgZObcd4fkNeQomiZ2Nknn/4v1ArOVub3P14akkGjF
- z62ipbghbM7H1u5xF1kC5caJp0T2wQJzrgkqRepfVcVFiaTaBI/ZO8iLx
- JIG7g37ez6jss+aNiyf6lS1AYIJaJ7TPRj8VOyU9vACl2pf5EOCqC4cXu A==;
-X-CSE-ConnectionGUID: ierp3gT/QVS2c6j4i2ZOzw==
-X-CSE-MsgGUID: gOyubPa3S4mvaAOghZu12g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="33906105"
-X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="33906105"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 18:28:00 -0800
-X-CSE-ConnectionGUID: Q5g3rUN6RcabXY/8BbzQOA==
-X-CSE-MsgGUID: nlNLgQgxTM6qb2x9125a6g==
+ t=1733366223; x=1764902223;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=eQYLZKNWqJNhU57yJ3PkLvFNMyHq7LrYBcSZbf8XNcM=;
+ b=ETKt8eR7KvWIY3y2PfElEDfws4q3F6MSkIsyfwR6PRHEoFxkNtz/GsEt
+ YaDjrQA6OHhU5aXHUBmNiTZXT5nHg5zISOQkz0IlfOFRb+l0Usf9fICP8
+ gvkR9B9icdLXgLF1jsQSrE5XKvrVO1yDRgiQWMsI/KwEy3TFMtzRtFmZQ
+ unwA3u8S2lDuwUXIM0iBLwiQAuBj/01md1yc/7GndbMYfI3zLdpqw/9MP
+ lE6uV5iTRxgvQ+T0oIOhfw8FHi9VmcGdv6Cx2ZLNZiqDdrI0//v110K/y
+ fXZDj2avVDYq4LxPlZMFhyRxYn1GkyttOEu/MoQSIPyQ50XX7rrzrQIql Q==;
+X-CSE-ConnectionGUID: AhevNidrSOGp46IdCoj1uA==
+X-CSE-MsgGUID: 8n6OkAVaQfyCge1qoViR/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="37324368"
+X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="37324368"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 18:37:03 -0800
+X-CSE-ConnectionGUID: T00QhJZWR1eUEEk/D6aRXg==
+X-CSE-MsgGUID: STjC+5fxSOiXQEnDqstUbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="98025648"
-Received: from lkp-server02.sh.intel.com (HELO 1f5a171d57e2) ([10.239.97.151])
- by fmviesa003.fm.intel.com with ESMTP; 04 Dec 2024 18:27:57 -0800
-Received: from kbuild by 1f5a171d57e2 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tJ1as-0003gr-2k;
- Thu, 05 Dec 2024 02:27:54 +0000
-Date: Thu, 5 Dec 2024 10:27:19 +0800
-From: kernel test robot <lkp@intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Tejun Heo <tj@kernel.org>, Zefan Li <lizefan.x@bytedance.com>,
- Johannes Weiner <hannes@cmpxchg.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Friedrich Vock <friedrich.vock@gmx.de>, Maxime Ripard <mripard@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev,
- Linux Memory Management List <linux-mm@kvack.org>, cgroups@vger.kernel.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH v2.1 1/1] kernel/cgroup: Add "dmem" memory accounting
- cgroup
-Message-ID: <202412051039.P06riwrP-lkp@intel.com>
-References: <20241204143112.1250983-1-dev@lankhorst.se>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241204143112.1250983-1-dev@lankhorst.se>
+X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="93796420"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 18:37:03 -0800
+Date: Wed, 04 Dec 2024 18:37:02 -0800
+Message-ID: <85plm63lf5.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/2] xe/oa: Use MI_LOAD_REGISTER_IMMEDIATE to enable
+ OAR/OAC
+In-Reply-To: <Z1DEJVuW/16/g4EW@lstrano-desk.jf.intel.com>
+References: <20241127003127.42560-1-umesh.nerlige.ramappa@intel.com>	<20241127003127.42560-3-umesh.nerlige.ramappa@intel.com>	<Z1DEJVuW/16/g4EW@lstrano-desk.jf.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,230 +71,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Maarten,
+On Wed, 04 Dec 2024 13:05:41 -0800, Matthew Brost wrote:
+>
 
-kernel test robot noticed the following build errors:
+Hi Umesh,
 
-[auto build test ERROR on tj-cgroup/for-next]
-[also build test ERROR on akpm-mm/mm-everything linus/master v6.13-rc1 next-20241204]
-[cannot apply to drm-misc/drm-misc-next drm-tip/drm-tip]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> On Tue, Nov 26, 2024 at 04:31:27PM -0800, Umesh Nerlige Ramappa wrote:
+> > To enable OAR/OAC, a bit in RING_CONTEXT_CONTROL needs to be set.
+> > Setting this bit cause the context image size to change and if not done
+> > correct, can cause undesired hangs.
+> >
+> > Current code uses a separate exec_queue to modify this bit and is
+> > error-prone. As per HW recommendation, submit MI_LOAD_REGISTER_IMM to
+> > the target hardware context to modify the relevant bit.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Maarten-Lankhorst/kernel-cgroup-Add-dmem-memory-accounting-cgroup/20241204-233207
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/tj/cgroup.git for-next
-patch link:    https://lore.kernel.org/r/20241204143112.1250983-1-dev%40lankhorst.se
-patch subject: [PATCH v2.1 1/1] kernel/cgroup: Add "dmem" memory accounting cgroup
-config: um-randconfig-r061-20241205 (https://download.01.org/0day-ci/archive/20241205/202412051039.P06riwrP-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241205/202412051039.P06riwrP-lkp@intel.com/reproduce)
+Looks like Matt is fine with the overall approach of this series and the
+locking here should also be ok after the suggested changes. I can review
+the OA specific stuff. A couple of comments below.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412051039.P06riwrP-lkp@intel.com/
+> >
+> > Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_oa.c | 68 ++++++++++++++++++++++++++++----------
+> >  1 file changed, 50 insertions(+), 18 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> > index 8dd55798ab31..73c07fee6409 100644
+> > --- a/drivers/gpu/drm/xe/xe_oa.c
+> > +++ b/drivers/gpu/drm/xe/xe_oa.c
+> > @@ -719,27 +719,55 @@ static int xe_oa_modify_ctx_image(struct xe_oa_stream *stream, struct xe_lrc *lr
+> >	return err;
+> >  }
+> >
+> > -static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *reg_lri)
+> > +static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *reg_lri, u32 count)
+> >  {
+> > +	struct xe_exec_queue *q = stream->exec_q;
 
-All errors (new ones prefixed by >>):
+The two OAR programming batches are followed by another batch to configure
+the OA registers. We fence on only the last batch. The assumption is that
+all batches are submitted to the same exec queue, so we only need to fence
+on the last one.
 
-   /usr/bin/ld: kernel/cgroup/dmem.o: in function `set_resource_min':
->> kernel/cgroup/dmem.c:115: undefined reference to `page_counter_set_min'
-   /usr/bin/ld: kernel/cgroup/dmem.o: in function `set_resource_low':
->> kernel/cgroup/dmem.c:121: undefined reference to `page_counter_set_low'
-   /usr/bin/ld: kernel/cgroup/dmem.o: in function `set_resource_max':
->> kernel/cgroup/dmem.c:127: undefined reference to `page_counter_set_max'
-   /usr/bin/ld: kernel/cgroup/dmem.o: in function `reset_all_resource_limits':
->> kernel/cgroup/dmem.c:115: undefined reference to `page_counter_set_min'
->> /usr/bin/ld: kernel/cgroup/dmem.c:121: undefined reference to `page_counter_set_low'
->> /usr/bin/ld: kernel/cgroup/dmem.c:127: undefined reference to `page_counter_set_max'
-   /usr/bin/ld: kernel/cgroup/dmem.o: in function `dmem_cgroup_uncharge':
->> kernel/cgroup/dmem.c:607: undefined reference to `page_counter_uncharge'
-   /usr/bin/ld: kernel/cgroup/dmem.o: in function `dmem_cgroup_calculate_protection':
->> kernel/cgroup/dmem.c:275: undefined reference to `page_counter_calculate_protection'
-   /usr/bin/ld: kernel/cgroup/dmem.o: in function `dmem_cgroup_try_charge':
->> kernel/cgroup/dmem.c:657: undefined reference to `page_counter_try_charge'
-   collect2: error: ld returned 1 exit status
+So we need to probably send all batches on either the kernel exec_q (when
+user exec_q is not availble) or the user exec_q (when user exec_q is
+available).
 
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for GET_FREE_REGION
-   Depends on [n]: SPARSEMEM [=n]
-   Selected by [y]:
-   - RESOURCE_KUNIT_TEST [=y] && RUNTIME_TESTING_MENU [=y] && KUNIT [=y]
+We'll need to see if there's any reason we cannot do it and then revisit.
 
+> > +	struct xe_sched_job *job;
+> >	struct dma_fence *fence;
+> >	struct xe_bb *bb;
+> > +	long timeout;
+> >	int err;
+> >
+> > -	bb = xe_bb_new(stream->gt, 3, false);
+> > +	bb = xe_bb_new(stream->gt, 2 * count + 1, false);
+> >	if (IS_ERR(bb)) {
+> >		err = PTR_ERR(bb);
+> >		goto exit;
+> >	}
+> >
+> > -	write_cs_mi_lri(bb, reg_lri, 1);
+> > +	write_cs_mi_lri(bb, reg_lri, count);
+> >
+> > -	fence = xe_oa_submit_bb(stream, XE_OA_SUBMIT_NO_DEPS, bb);
+> > -	if (IS_ERR(fence)) {
+> > -		err = PTR_ERR(fence);
+> > +	if (q->vm) {
+> > +		down_read(&q->vm->lock);
+> > +		xe_vm_lock(q->vm, false);
+> > +	}
+> > +
+> > +	job = xe_bb_create_job(q, bb);
+> > +	job->ggtt = true;
+>
+> Need to set this after the IS_ERR(job) check.
+>
+> > +	if (IS_ERR(job)) {
+> > +		err = PTR_ERR(job);
+> >		goto free_bb;
+>
+> You need to unlock the VM here.
+>
+> Matt
+>
+> >	}
+> > -	xe_bb_free(bb, fence);
+> > +
+> > +	xe_sched_job_arm(job);
+> > +	fence = dma_fence_get(&job->drm.s_fence->finished);
+> > +	xe_sched_job_push(job);
+> > +
+> > +	if (q->vm) {
+> > +		xe_vm_unlock(q->vm);
+> > +		up_read(&q->vm->lock);
+> > +	}
+> > +
+> > +	timeout = dma_fence_wait_timeout(fence, false, HZ);
 
-vim +115 kernel/cgroup/dmem.c
+The code should not block here, it should be just push the job and move
+on. So the code is completely non-blocking if any output fences are
+specified for stream open. The fences should signal correctly by
+design. See calls to xe_oa_submit_bb().
 
-   111	
-   112	static void
-   113	set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val)
-   114	{
- > 115		page_counter_set_min(&pool->cnt, val);
-   116	}
-   117	
-   118	static void
-   119	set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val)
-   120	{
- > 121		page_counter_set_low(&pool->cnt, val);
-   122	}
-   123	
-   124	static void
-   125	set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val)
-   126	{
- > 127		page_counter_set_max(&pool->cnt, val);
-   128	}
-   129	
-   130	static u64 get_resource_low(struct dmem_cgroup_pool_state *pool)
-   131	{
-   132		return pool ? READ_ONCE(pool->cnt.low) : 0;
-   133	}
-   134	
-   135	static u64 get_resource_min(struct dmem_cgroup_pool_state *pool)
-   136	{
-   137		return pool ? READ_ONCE(pool->cnt.min) : 0;
-   138	}
-   139	
-   140	static u64 get_resource_max(struct dmem_cgroup_pool_state *pool)
-   141	{
-   142		return pool ? READ_ONCE(pool->cnt.max) : PAGE_COUNTER_MAX;
-   143	}
-   144	
-   145	static u64 get_resource_current(struct dmem_cgroup_pool_state *pool)
-   146	{
-   147		return pool ? page_counter_read(&pool->cnt) : 0;
-   148	}
-   149	
-   150	static void reset_all_resource_limits(struct dmem_cgroup_pool_state *rpool)
-   151	{
-   152		set_resource_min(rpool, 0);
-   153		set_resource_low(rpool, 0);
-   154		set_resource_max(rpool, PAGE_COUNTER_MAX);
-   155	}
-   156	
-   157	static void dmemcs_offline(struct cgroup_subsys_state *css)
-   158	{
-   159		struct dmemcg_state *dmemcs = css_to_dmemcs(css);
-   160		struct dmem_cgroup_pool_state *pool;
-   161	
-   162		rcu_read_lock();
-   163		list_for_each_entry_rcu(pool, &dmemcs->pools, css_node)
-   164			reset_all_resource_limits(pool);
-   165		rcu_read_unlock();
-   166	}
-   167	
-   168	static void dmemcs_free(struct cgroup_subsys_state *css)
-   169	{
-   170		struct dmemcg_state *dmemcs = css_to_dmemcs(css);
-   171		struct dmem_cgroup_pool_state *pool, *next;
-   172	
-   173		spin_lock(&dmemcg_lock);
-   174		list_for_each_entry_safe(pool, next, &dmemcs->pools, css_node) {
-   175			/*
-   176			 *The pool is dead and all references are 0,
-   177			 * no need for RCU protection with list_del_rcu or freeing.
-   178			 */
-   179			list_del(&pool->css_node);
-   180			free_cg_pool(pool);
-   181		}
-   182		spin_unlock(&dmemcg_lock);
-   183	
-   184		kfree(dmemcs);
-   185	}
-   186	
-   187	static struct cgroup_subsys_state *
-   188	dmemcs_alloc(struct cgroup_subsys_state *parent_css)
-   189	{
-   190		struct dmemcg_state *dmemcs = kzalloc(sizeof(*dmemcs), GFP_KERNEL);
-   191		if (!dmemcs)
-   192			return ERR_PTR(-ENOMEM);
-   193	
-   194		INIT_LIST_HEAD(&dmemcs->pools);
-   195		return &dmemcs->css;
-   196	}
-   197	
-   198	static struct dmem_cgroup_pool_state *
-   199	find_cg_pool_locked(struct dmemcg_state *dmemcs, struct dmem_cgroup_region *region)
-   200	{
-   201		struct dmem_cgroup_pool_state *pool;
-   202	
-   203		list_for_each_entry_rcu(pool, &dmemcs->pools, css_node, spin_is_locked(&dmemcg_lock))
-   204			if (pool->region == region)
-   205				return pool;
-   206	
-   207		return NULL;
-   208	}
-   209	
-   210	static struct dmem_cgroup_pool_state *pool_parent(struct dmem_cgroup_pool_state *pool)
-   211	{
-   212		if (!pool->cnt.parent)
-   213			return NULL;
-   214	
-   215		return container_of(pool->cnt.parent, typeof(*pool), cnt);
-   216	}
-   217	
-   218	static void
-   219	dmem_cgroup_calculate_protection(struct dmem_cgroup_pool_state *limit_pool,
-   220					 struct dmem_cgroup_pool_state *test_pool)
-   221	{
-   222		struct page_counter *climit;
-   223		struct cgroup_subsys_state *css, *next_css;
-   224		struct dmemcg_state *dmemcg_iter;
-   225		struct dmem_cgroup_pool_state *pool, *parent_pool;
-   226		bool found_descendant;
-   227	
-   228		climit = &limit_pool->cnt;
-   229	
-   230		rcu_read_lock();
-   231		parent_pool = pool = limit_pool;
-   232		css = &limit_pool->cs->css;
-   233	
-   234		/*
-   235		 * This logic is roughly equivalent to css_foreach_descendant_pre,
-   236		 * except we also track the parent pool to find out which pool we need
-   237		 * to calculate protection values for.
-   238		 *
-   239		 * We can stop the traversal once we find test_pool among the
-   240		 * descendants since we don't really care about any others.
-   241		 */
-   242		while (pool != test_pool) {
-   243			next_css = css_next_child(NULL, css);
-   244			if (next_css) {
-   245				parent_pool = pool;
-   246			} else {
-   247				while (css != &limit_pool->cs->css) {
-   248					next_css = css_next_child(css, css->parent);
-   249					if (next_css)
-   250						break;
-   251					css = css->parent;
-   252					parent_pool = pool_parent(parent_pool);
-   253				}
-   254				/*
-   255				 * We can only hit this when test_pool is not a
-   256				 * descendant of limit_pool.
-   257				 */
-   258				if (WARN_ON_ONCE(css == &limit_pool->cs->css))
-   259					break;
-   260			}
-   261			css = next_css;
-   262	
-   263			found_descendant = false;
-   264			dmemcg_iter = container_of(css, struct dmemcg_state, css);
-   265	
-   266			list_for_each_entry_rcu(pool, &dmemcg_iter->pools, css_node) {
-   267				if (pool_parent(pool) == parent_pool) {
-   268					found_descendant = true;
-   269					break;
-   270				}
-   271			}
-   272			if (!found_descendant)
-   273				continue;
-   274	
- > 275			page_counter_calculate_protection(
-   276				climit, &pool->cnt, true);
-   277		}
-   278		rcu_read_unlock();
-   279	}
-   280	
+> >	dma_fence_put(fence);
+> > +	xe_bb_free(bb, fence);
+> > +
+> > +	if (timeout < 0) {
+> > +		drm_dbg(&stream->oa->xe->drm, "OA load with LRI failed %ld\n", timeout);
+> > +		return timeout;
+> > +	} else if (!timeout) {
+> > +		drm_dbg(&stream->oa->xe->drm, "OA load with LRI timed out\n");
+> > +		return -ETIME;
+> > +	}
+> >
+> >	return 0;
+> >  free_bb:
+> > @@ -751,8 +779,6 @@ static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *re
+> >  static int xe_oa_configure_oar_context(struct xe_oa_stream *stream, bool enable)
+> >  {
+> >	const struct xe_oa_format *format = stream->oa_buffer.format;
+> > -	struct xe_lrc *lrc = stream->exec_q->lrc[0];
+> > -	u32 regs_offset = xe_lrc_regs_offset(lrc) / sizeof(u32);
+> >	u32 oacontrol = __format_to_oactrl(format, OAR_OACONTROL_COUNTER_SEL_MASK) |
+> >		(enable ? OAR_OACONTROL_COUNTER_ENABLE : 0);
+> >
+> > @@ -762,13 +788,17 @@ static int xe_oa_configure_oar_context(struct xe_oa_stream *stream, bool enable)
+> >			stream->oa->ctx_oactxctrl_offset[stream->hwe->class] + 1,
+> >			enable ? OA_COUNTER_RESUME : 0,
+> >		},
+> > +	};
+> > +	struct xe_oa_reg reg_lri[] = {
+> > +		{
+> > +			OAR_OACONTROL,
+> > +			oacontrol,
+> > +		},
+> >		{
+> >			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
+> > -			regs_offset + CTX_CONTEXT_CONTROL,
+> >			_MASKED_BIT_ENABLE(CTX_CTRL_OAC_CONTEXT_ENABLE),
+> >		},
+> >	};
+> > -	struct xe_oa_reg reg_lri = { OAR_OACONTROL, oacontrol };
+> >	int err;
+> >
+> >	/* Modify stream hwe context image with regs_context */
+> > @@ -778,14 +808,12 @@ static int xe_oa_configure_oar_context(struct xe_oa_stream *stream, bool enable)
+> >		return err;
+> >
+> >	/* Apply reg_lri using LRI */
+> > -	return xe_oa_load_with_lri(stream, &reg_lri);
+> > +	return xe_oa_load_with_lri(stream, reg_lri, ARRAY_SIZE(reg_lri));
+> >  }
+> >
+> >  static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
+> >  {
+> >	const struct xe_oa_format *format = stream->oa_buffer.format;
+> > -	struct xe_lrc *lrc = stream->exec_q->lrc[0];
+> > -	u32 regs_offset = xe_lrc_regs_offset(lrc) / sizeof(u32);
+> >	u32 oacontrol = __format_to_oactrl(format, OAR_OACONTROL_COUNTER_SEL_MASK) |
+> >		(enable ? OAR_OACONTROL_COUNTER_ENABLE : 0);
+> >	struct flex regs_context[] = {
+> > @@ -794,14 +822,18 @@ static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
+> >			stream->oa->ctx_oactxctrl_offset[stream->hwe->class] + 1,
+> >			enable ? OA_COUNTER_RESUME : 0,
+> >		},
+> > +	};
+> > +	struct xe_oa_reg reg_lri[] = {
+> > +		{
+> > +			OAC_OACONTROL,
+> > +			oacontrol
+> > +		},
+> >		{
+> >			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
+> > -			regs_offset + CTX_CONTEXT_CONTROL,
+> >			_MASKED_BIT_ENABLE(CTX_CTRL_OAC_CONTEXT_ENABLE) |
+> >			_MASKED_FIELD(CTX_CTRL_RUN_ALONE, enable ? CTX_CTRL_RUN_ALONE : 0),
+> >		},
+> > -	};
+> > -	struct xe_oa_reg reg_lri = { OAC_OACONTROL, oacontrol };
+> > +		};
+> >	int err;
+> >
+> >	/* Set ccs select to enable programming of OAC_OACONTROL */
+> > @@ -815,7 +847,7 @@ static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
+> >		return err;
+> >
+> >	/* Apply reg_lri using LRI */
+> > -	return xe_oa_load_with_lri(stream, &reg_lri);
+> > +	return xe_oa_load_with_lri(stream, reg_lri, ARRAY_SIZE(reg_lri));
+> >  }
+> >
+> >  static int xe_oa_configure_oa_context(struct xe_oa_stream *stream, bool enable)
+> > --
+> > 2.34.1
+> >
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks.
+--
+Ashutosh
