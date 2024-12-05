@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 728D5E7716E
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 20:02:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CC98E7716E
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 20:24:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D02310E035;
-	Thu,  5 Dec 2024 20:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C905510E5CA;
+	Thu,  5 Dec 2024 20:24:13 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF9710E035;
- Thu,  5 Dec 2024 20:02:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA83710E5CA;
+ Thu,  5 Dec 2024 20:24:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6777330083656883809=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_VF=3A_Avoid_reading_inac?=
- =?utf-8?q?cessible_registers?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_VF=3A_Avoid_reading_inacces?=
+ =?utf-8?q?sible_registers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jakub Kolakowski" <jakub1.kolakowski@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Dec 2024 20:02:37 -0000
-Message-ID: <173342895764.3072218.15875228073455369979@b555e5b46a47>
+Date: Thu, 05 Dec 2024 20:24:12 -0000
+Message-ID: <173343025282.3072218.1248926293917528392@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241205181814.1484975-1-jakub1.kolakowski@intel.com>
 In-Reply-To: <20241205181814.1484975-1-jakub1.kolakowski@intel.com>
@@ -40,33 +40,154 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============6777330083656883809==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: VF: Avoid reading inaccessible registers
 URL   : https://patchwork.freedesktop.org/series/142196/
-State : success
+State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 1b7746f770882ce40dacae683e8e65657c40c2b7
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+CI Bug Log - changes from xe-2327-ab26b8eb1a5191f86d7b778e71a15d34fb4737ce_BAT -> xe-pw-142196v1_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-142196v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-142196v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-142196v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
+    - bat-lnl-1:          [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2327-ab26b8eb1a5191f86d7b778e71a15d34fb4737ce/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142196v1/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-142196v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-dpms@a-edp1:
+    - bat-lnl-1:          [DMESG-WARN][3] -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2327-ab26b8eb1a5191f86d7b778e71a15d34fb4737ce/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142196v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
+
+  
 
 
+Build changes
+-------------
+
+  * Linux: xe-2327-ab26b8eb1a5191f86d7b778e71a15d34fb4737ce -> xe-pw-142196v1
+
+  IGT_8138: 8138
+  xe-2327-ab26b8eb1a5191f86d7b778e71a15d34fb4737ce: ab26b8eb1a5191f86d7b778e71a15d34fb4737ce
+  xe-pw-142196v1: 142196v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142196v1/index.html
+
+--===============6777330083656883809==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>VF: Avoid reading inaccessible registers</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142196/">https://patchwork.freedesktop.org/series/142196/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142196v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142196v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2327-ab26b8eb1a5191f86d7b778e71a15d34fb4737ce_BAT -&gt; xe-pw-142196v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-142196v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-142196v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-142196v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2327-ab26b8eb1a5191f86d7b778e71a15d34fb4737ce/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142196v1/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-142196v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-dpms@a-edp1:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2327-ab26b8eb1a5191f86d7b778e71a15d34fb4737ce/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142196v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2327-ab26b8eb1a5191f86d7b778e71a15d34fb4737ce -&gt; xe-pw-142196v1</li>
+</ul>
+<p>IGT_8138: 8138<br />
+  xe-2327-ab26b8eb1a5191f86d7b778e71a15d34fb4737ce: ab26b8eb1a5191f86d7b778e71a15d34fb4737ce<br />
+  xe-pw-142196v1: 142196v1</p>
+
+</body>
+</html>
+
+--===============6777330083656883809==--
