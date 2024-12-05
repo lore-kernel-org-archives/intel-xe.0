@@ -4,171 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 499DDE7716D
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 02:12:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FDF9E7716F
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 02:28:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CFD410E5B9;
-	Thu,  5 Dec 2024 02:12:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 948BB10E0A4;
+	Thu,  5 Dec 2024 02:28:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DqCaHe24";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KvrH71J7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A79510E5B9;
- Thu,  5 Dec 2024 02:12:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72C6810E055;
+ Thu,  5 Dec 2024 02:28:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733364753; x=1764900753;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=XHgjPljaBOU2YQIdEVdwqfJ1XTdOZdj+N3d+SIADB0s=;
- b=DqCaHe24bwuuu7zCERwmh2G5oCY0FjlB7BBKRXiRU0u/wVF+KX8aXMpo
- RFDb4awZpzYcu9B9Ytu+wwsRxn+TRy111x1Sgwo3zb0VoAqnonFxyuxRH
- vTUNv2xsEXXeZEn+TnOYo4gHLXSmMaHAEXhy+t3JDZVp0mCwHmSp5U2jj
- GHUOwK5EA6u7sSJ3r3kFPrhcvH/DvGpTQtJ7Zlo6AQ0jvHJ4Zm/6aBp4E
- gvK/3zRQG7/vrt4zgVBsPqlkyT1sxU1nt17MFtHLRyrnxUl3fK5meu7Vj
- dsaDBuXFWe0ALiyPEzRXbXlTCyADOgnMSxGC79x8fb70+P5tIVKowo2Aw A==;
-X-CSE-ConnectionGUID: m5JSvoNlQu2Xe1DnmqWzLA==
-X-CSE-MsgGUID: 0/fznWD6Q+OnvCUIENxl2g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="37322649"
-X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="37322649"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 18:12:33 -0800
-X-CSE-ConnectionGUID: FmKhcf1GQuKQPK+1LMf7IA==
-X-CSE-MsgGUID: xi+jSIgrQM2L6IV1S9/6iA==
+ t=1733365681; x=1764901681;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=QO5IboRu4sXKDliedTe2GJzHgDQy5oh6qE/bI1NxotM=;
+ b=KvrH71J7kf7mmQYLGHI1aqzSu9HkmKKVNYBEjNn7y5wUSezvBImi5xk+
+ dHmkFPV1k54eNbqdKBErCFgqECJgprD9Zc1T4+4nwPrrnBzyy9fPybLTr
+ l7+IY62hZFLosdnHU5tLtX2/Km7tikGldqLDX+duNa2OkG5CIx6siU+RI
+ 1ZooWkrleIHn+JYBgZObcd4fkNeQomiZ2Nknn/4v1ArOVub3P14akkGjF
+ z62ipbghbM7H1u5xF1kC5caJp0T2wQJzrgkqRepfVcVFiaTaBI/ZO8iLx
+ JIG7g37ez6jss+aNiyf6lS1AYIJaJ7TPRj8VOyU9vACl2pf5EOCqC4cXu A==;
+X-CSE-ConnectionGUID: ierp3gT/QVS2c6j4i2ZOzw==
+X-CSE-MsgGUID: gOyubPa3S4mvaAOghZu12g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="33906105"
+X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="33906105"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 18:28:00 -0800
+X-CSE-ConnectionGUID: Q5g3rUN6RcabXY/8BbzQOA==
+X-CSE-MsgGUID: nlNLgQgxTM6qb2x9125a6g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="93792997"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 04 Dec 2024 18:12:33 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 4 Dec 2024 18:12:32 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 4 Dec 2024 18:12:32 -0800
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.42) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 4 Dec 2024 18:12:32 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Rb1aRes7+Gfj0zeWaxjD6ac8VcDOxLnMiikFp2hUbm1P7uHeV1ak0g3w9WZEBE5u5t4qiRYMK7V5clU/M+pGcY/nFOAMr8i/ZpxqefEEV5DGqT/bySs5cP1EHIafO5hI0PrfD2CtEdchIYuZBpiEo2fP2keNQdjeSLo/7isBrk2pAVDTIJbnxbVLZ5FcjMX9h9lYK4VgkqwX7czmX4VxQKFshrCEPN2vDCPQUQXp7tGh9Sv33Hb8X53ICKJjYJMh2qt9T4YWbAFqdvZZp6WBX7I8E6pYcI/4tBARpQNLUJ9+0EEs4ovXE6NuRaK0Cs9+g1hduxnk+n4uXPGPmPcpnA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T02j9TXK8tOHKpnBcQdlSBKCigt2jPbevlVBcdxXCvE=;
- b=UiX2sCpfHO9Kofo7iepm9Q7fAvbig2ugLHgqBBFUWMFZrTdl86IQwiWGzq8vFIEHeljucUPrTYf5jq22Gt3ArNBbUyAD7UV4+v9T0Okc9Jh+ZzLLf5YR7MmmLnlMKu/0TJXAbhNCoAHXQexo+iGJ6+EnH0/+dSrxxsBhlvXzmoSff8T7v6yqU8qTjcB+T02P+XniVaaV8vgLDS8TcpIQX8B1p7P80zJv0MELDut5Tl1McB6Ki2uFB3y+NE+shBJGf6RSB9GemQs/mSXUasy3njWMXpz67+m7n9GmfkMcyYi33YI/0JX6FKC4DlmrnbdUK1/Frssj2XD/GO6maRRndg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA1PR11MB6348.namprd11.prod.outlook.com (2603:10b6:208:3af::16)
- by DS7PR11MB6037.namprd11.prod.outlook.com (2603:10b6:8:74::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8230.11; Thu, 5 Dec 2024 02:12:29 +0000
-Received: from IA1PR11MB6348.namprd11.prod.outlook.com
- ([fe80::4db5:b0d9:b6b3:bb52]) by IA1PR11MB6348.namprd11.prod.outlook.com
- ([fe80::4db5:b0d9:b6b3:bb52%5]) with mapi id 15.20.8207.017; Thu, 5 Dec 2024
- 02:12:29 +0000
-From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH 6/6] drm/i915/wm: Club the initialized variables together
-Thread-Topic: [PATCH 6/6] drm/i915/wm: Club the initialized variables together
-Thread-Index: AQHbRWARJsJCukp96k2p9Ge85w3Ll7LW5uwQgAACIgCAAAI28A==
-Date: Thu, 5 Dec 2024 02:12:29 +0000
-Message-ID: <IA1PR11MB6348544786C6385AA3069D26B2302@IA1PR11MB6348.namprd11.prod.outlook.com>
-References: <20241203084706.2126189-1-suraj.kandpal@intel.com>
- <20241203084706.2126189-6-suraj.kandpal@intel.com>
- <IA1PR11MB634862BD6406F520E853146AB2302@IA1PR11MB6348.namprd11.prod.outlook.com>
- <SN7PR11MB67500F73AEB731FC8D6904D9E3302@SN7PR11MB6750.namprd11.prod.outlook.com>
-In-Reply-To: <SN7PR11MB67500F73AEB731FC8D6904D9E3302@SN7PR11MB6750.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6348:EE_|DS7PR11MB6037:EE_
-x-ms-office365-filtering-correlation-id: 1065f61e-95f0-4471-0d76-08dd14d2457c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?aHXn4q5BFd0c++ewmpvp1/UybGF4TmGWGAxQUbIdw15bvPfpAsqtIIlaSaKm?=
- =?us-ascii?Q?3gtKzk8v/ejpZkcPem1uGHHGEFI//v8FoRCWRKZYUBrXoqYx2hnAo+5nOzYt?=
- =?us-ascii?Q?vp+2UNBJl0uDCi1gj+eOSLb/znbJ+Gwyr2JBLm2kE+YU5e4/XcdovwPJmMrd?=
- =?us-ascii?Q?vowTF3oZ3scEWcnSZjxdetZVZCl8q7X4EJPn1wfOiSNAvhavQrZMP5rW5llg?=
- =?us-ascii?Q?0PwMmcVv5TIhbKUa0M+e9SJbz3CPMjInCe5C3YZheG9/VPMm0nDEIKMjWukH?=
- =?us-ascii?Q?LCZdIsJXIZRHWDeenLqlEZcXcjbjbJ0TVTODXrHxt5854Xe3Xmgfq4yPQr/z?=
- =?us-ascii?Q?IZdoX6g+eglHW17qbWtmW34nXaprzL7aZK60vIQF3+943jEBVKVDwfhXqOIZ?=
- =?us-ascii?Q?1IimA+HJYcUcmQdu8xNpegjgVZx3S2Uu+sF/636cQJ2O5OEKewJTeQFmaE6r?=
- =?us-ascii?Q?0JwOXya4yF/3UB2yvaMkC0AkCMlDppog9cLagRHKjFf5mGkhXeNH/NuAsVFw?=
- =?us-ascii?Q?3bfIKr+v9HO+o34a0XJAvt7bsL6y6yz3Z82OosT3CsZN4KmJ/58q3hA7KWWQ?=
- =?us-ascii?Q?nj+USa9rxSeb/X6FqA+hk9haitN+joqPnDJ04KCzyIl8SS21kcxtysgJymA8?=
- =?us-ascii?Q?X2iXNgH2EKmf5tzbU2odbVqeqbHsXPLFgId6IBqj7XaxrRDk+Kll7cPyZbIk?=
- =?us-ascii?Q?jYlyceN1qNm3wpbWboLYAgqDB+fAxO+F2J+HASov6VXNBlp401RnB5Orx9/t?=
- =?us-ascii?Q?W0s6Z5OSSYyFAtOA6LM6pHxAnh2sGeFy6BKYDj7ETpNESxHbJsaKKzIKjHbU?=
- =?us-ascii?Q?nUzeeFB36sHbdJBzBL3Sr/93OkWLvdVtrOJIOEp5k4EGCPfnwe5sRUTSfi9A?=
- =?us-ascii?Q?PmyYiY9qwb+r55VDNaNEO28Y/TubrtmBiD3K+5WE+7zQKewqdq2GwoWj57z6?=
- =?us-ascii?Q?GGYeSyIiASEceW3eIxq1xH9Zx5BI88I7WpVafV5Jv5B9KoXnwu+g6orb1N6D?=
- =?us-ascii?Q?my33FUTUyCc9nI2Ep9kOTHC+mLakNsNMe75B94ZbAa793Vpdl7om89L6bG0P?=
- =?us-ascii?Q?tyThN1dDUoe5ULTVP1mn5EES+fJ4xsQMYYQBZwmM4eDEecqiwvWoyf16u7QU?=
- =?us-ascii?Q?zSD9r3Mi9zWsnO9z0fJKyXmomMYAhwikeP3lS7GuOUXB4nFs0HY/I/89bKO2?=
- =?us-ascii?Q?9NboVeRi0gbrN6qyLHBut2KCwFp6sWlMK6pD/P6c6ahfED1qohE490mm91F2?=
- =?us-ascii?Q?j2bu1fJLxD4XfnPjXJwSJCCaO4mhdk/MAyWsgkwnwklt2Dsd99BvrH+UvC6w?=
- =?us-ascii?Q?rV5RunzsuxKrQ6F8QyJkmuV2hw/jMJl2TWBo5AGoI/iWHdHaJ7z7M/3s3HhM?=
- =?us-ascii?Q?cD/aw/QMJMMoBNY0BR9IUIH+li4U/cOw7fMs2d6i5KgwaWIeZQ=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6348.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(7053199007)(38070700018); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?wIOZrH9OUTrmcztFZs3WEeTCpDns/Y3q7tzvarA0JzQAAoxm8fjMvqGnnpFI?=
- =?us-ascii?Q?g4pDDlt9IJ4GGF4lXunhCdQOamTqiAQUOHybRt7uBIwwxC0rdBPaBGoRRuv0?=
- =?us-ascii?Q?4ZvhC7P/6UraiHaf8W7YsvwZvjhZoM+CtySCGwNk/qVPG9aonergCvZAxKeo?=
- =?us-ascii?Q?tIHEhO9z8UJEcWv2Ewb74AyuupVulkswaIY0MbQt7vgbnAAASc1TpPxnAqmK?=
- =?us-ascii?Q?oB8gtjfcrGj5htXMZ+C7oa2omNO8w22/qcsDxgXIgqwcS0XEiS0MY5HnRrZ7?=
- =?us-ascii?Q?wdhnfs7Qug/ZYynd8pSecoCMy1OIcqHe3LJ/jxvcv/Cu7XOmpvQyGEYKORch?=
- =?us-ascii?Q?1lKuyecVk6d/L0qV4qRzqSsr3e22D5LWOyHlcsZ/LLyibw8wQ/9UNBe+kOVP?=
- =?us-ascii?Q?hFNpAKUIJZ7xHTlgZsI3XW3W2c1liwk9nfmILh57rRZnjzUOT1uqDXpT7IoM?=
- =?us-ascii?Q?c1nnNusAsWAVwly3t5bK99fvDeGmeaAxVcpSezrUSSxTHoxuHUXjcHLjX19h?=
- =?us-ascii?Q?t8jtA3rJ403RUO7q9YVnMew2izWgu4+PpzN1Vbrh215jIxINNBlNh5q32TaP?=
- =?us-ascii?Q?DrRL06QhI4bRtKMfvbpaHM2dRT6RTrVvL4AwiqYbs9L/KjvZB7eYsP+6e0Kv?=
- =?us-ascii?Q?3iXTCnq3fsAe9Ii8JP2ata8AaV/VXnnAObocoFeZHZECRUi6F0COpipsvaVF?=
- =?us-ascii?Q?Lb+eHDRUiwTOFKfYENx0HspGttSamcpZzCGDfBLhLCUxtlR4LHdQ+tVxtiv6?=
- =?us-ascii?Q?Ahqjt3K5AXTT0J1rSdnZ493ZUuuMQUZCK7M3mmESeapR7YEaymMfGTs3a7Rw?=
- =?us-ascii?Q?Mj9Kfk8sGmhlj/94NU4H5aRtaBUw2yDHSLhPNmSgz6uerYR3s4H5r+WJF/Vs?=
- =?us-ascii?Q?A4rmjescSTRWgiWN0lNPJtw8fcjvxK+IFN7ia08QX542Mjo0ykNykT4CFaI/?=
- =?us-ascii?Q?R6EOzHJ8GV2urxLsg9aRPojJxYqQnA6wPZ2usgJ042B8lHUqLpuOlks2PGQD?=
- =?us-ascii?Q?GJbC+sxr8SyqyzUPYzmxmprJ8T1L1OUTjh8RJVvJhSV1gIeLIoqc+dqKBVVe?=
- =?us-ascii?Q?kRd7UoEPNaq8+KjV9mARCJNFsqHQkDRhIgXB+RHmueVWdyfDE6437KWhRyV7?=
- =?us-ascii?Q?/bcCOJv5lvqR0WhSphI8BYIxRgxQbROqVigbp8cWV0aqh3WmOk2VUnuZqMat?=
- =?us-ascii?Q?UPKmH/XH0lypQyU9vpsiy4aeZd9jme1ReqIse59g9y8U0vdQLcuWx5lrS4jF?=
- =?us-ascii?Q?1WECnnMY1jPPkslQ5Iz1igWjLGGu7mll32I51lYayC9tlpy63ZFYUUYx8zW/?=
- =?us-ascii?Q?SOW7WEhBx0l3nGHuORSu0+K1csXxhpiqqpoLwdxdwzze3mT6ophLrtIhndzP?=
- =?us-ascii?Q?3Avk9vU2ma2pxML4eL6QKNRxVjZ+n5d75XxcnSw/00h+qERizDSs0JRtK6MA?=
- =?us-ascii?Q?UqtDTSUnj+p+FYttLTnSxopZSVL2816Gz8EqNO+h8SvhFuV4Hb1Tyj2BWUps?=
- =?us-ascii?Q?5bSuiOKuQKblMK0XOxWpjsN/qtWM4LdRN1mUS7WAfeoR0gfWCcYSkq61gX6m?=
- =?us-ascii?Q?vll8+OewJJYboZtPyVTh0OSypQs9h32VAd4ve4fAEFZSGcngjk359ahMdptg?=
- =?us-ascii?Q?Hb3Izzh4yiikagsMKJECRUc=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="98025648"
+Received: from lkp-server02.sh.intel.com (HELO 1f5a171d57e2) ([10.239.97.151])
+ by fmviesa003.fm.intel.com with ESMTP; 04 Dec 2024 18:27:57 -0800
+Received: from kbuild by 1f5a171d57e2 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tJ1as-0003gr-2k;
+ Thu, 05 Dec 2024 02:27:54 +0000
+Date: Thu, 5 Dec 2024 10:27:19 +0800
+From: kernel test robot <lkp@intel.com>
+To: Maarten Lankhorst <dev@lankhorst.se>, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Tejun Heo <tj@kernel.org>, Zefan Li <lizefan.x@bytedance.com>,
+ Johannes Weiner <hannes@cmpxchg.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Friedrich Vock <friedrich.vock@gmx.de>, Maxime Ripard <mripard@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev,
+ Linux Memory Management List <linux-mm@kvack.org>, cgroups@vger.kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH v2.1 1/1] kernel/cgroup: Add "dmem" memory accounting
+ cgroup
+Message-ID: <202412051039.P06riwrP-lkp@intel.com>
+References: <20241204143112.1250983-1-dev@lankhorst.se>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6348.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1065f61e-95f0-4471-0d76-08dd14d2457c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Dec 2024 02:12:29.7346 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RA7fMPVNrrx7y1mS0QPxhp9UdJKhnt2z9CJPOrkWTK9DUoPLoyh/A5gW3RmY2Bb3a5tC88LIAyH+GhXy7asuJuxvQjM4/l8lNiMya5k/YfQH67dExnjdqQe5NQC7bGbS
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6037
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241204143112.1250983-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -183,82 +76,230 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Maarten,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on tj-cgroup/for-next]
+[also build test ERROR on akpm-mm/mm-everything linus/master v6.13-rc1 next-20241204]
+[cannot apply to drm-misc/drm-misc-next drm-tip/drm-tip]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Maarten-Lankhorst/kernel-cgroup-Add-dmem-memory-accounting-cgroup/20241204-233207
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/tj/cgroup.git for-next
+patch link:    https://lore.kernel.org/r/20241204143112.1250983-1-dev%40lankhorst.se
+patch subject: [PATCH v2.1 1/1] kernel/cgroup: Add "dmem" memory accounting cgroup
+config: um-randconfig-r061-20241205 (https://download.01.org/0day-ci/archive/20241205/202412051039.P06riwrP-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241205/202412051039.P06riwrP-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412051039.P06riwrP-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   /usr/bin/ld: kernel/cgroup/dmem.o: in function `set_resource_min':
+>> kernel/cgroup/dmem.c:115: undefined reference to `page_counter_set_min'
+   /usr/bin/ld: kernel/cgroup/dmem.o: in function `set_resource_low':
+>> kernel/cgroup/dmem.c:121: undefined reference to `page_counter_set_low'
+   /usr/bin/ld: kernel/cgroup/dmem.o: in function `set_resource_max':
+>> kernel/cgroup/dmem.c:127: undefined reference to `page_counter_set_max'
+   /usr/bin/ld: kernel/cgroup/dmem.o: in function `reset_all_resource_limits':
+>> kernel/cgroup/dmem.c:115: undefined reference to `page_counter_set_min'
+>> /usr/bin/ld: kernel/cgroup/dmem.c:121: undefined reference to `page_counter_set_low'
+>> /usr/bin/ld: kernel/cgroup/dmem.c:127: undefined reference to `page_counter_set_max'
+   /usr/bin/ld: kernel/cgroup/dmem.o: in function `dmem_cgroup_uncharge':
+>> kernel/cgroup/dmem.c:607: undefined reference to `page_counter_uncharge'
+   /usr/bin/ld: kernel/cgroup/dmem.o: in function `dmem_cgroup_calculate_protection':
+>> kernel/cgroup/dmem.c:275: undefined reference to `page_counter_calculate_protection'
+   /usr/bin/ld: kernel/cgroup/dmem.o: in function `dmem_cgroup_try_charge':
+>> kernel/cgroup/dmem.c:657: undefined reference to `page_counter_try_charge'
+   collect2: error: ld returned 1 exit status
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [y]:
+   - RESOURCE_KUNIT_TEST [=y] && RUNTIME_TESTING_MENU [=y] && KUNIT [=y]
 
 
-> -----Original Message-----
-> From: Kandpal, Suraj <suraj.kandpal@intel.com>
-> Sent: 05 December 2024 07:34
-> To: Golani, Mitulkumar Ajitkumar <mitulkumar.ajitkumar.golani@intel.com>;
-> intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
-> Subject: RE: [PATCH 6/6] drm/i915/wm: Club the initialized variables toge=
-ther
->=20
->=20
->=20
-> > -----Original Message-----
-> > From: Golani, Mitulkumar Ajitkumar
-> > <mitulkumar.ajitkumar.golani@intel.com>
-> > Sent: Thursday, December 5, 2024 7:29 AM
-> > To: Kandpal, Suraj <suraj.kandpal@intel.com>;
-> > intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
-> > Subject: RE: [PATCH 6/6] drm/i915/wm: Club the initialized variables
-> > together
-> >
-> >
-> >
-> > > -----Original Message-----
-> > > From: Kandpal, Suraj <suraj.kandpal@intel.com>
-> > > Sent: 03 December 2024 14:17
-> > > To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
-> > > Cc: Golani, Mitulkumar Ajitkumar
-> > > <mitulkumar.ajitkumar.golani@intel.com>;
-> > > Kandpal, Suraj <suraj.kandpal@intel.com>
-> > > Subject: [PATCH 6/6] drm/i915/wm: Club the initialized variables
-> > > together
-> > >
-> > > Refactor program_dpkgc function so that all initialized variables
-> > > are clubbed together.
-> > >
-> > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/skl_watermark.c | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c
-> > > b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > > index 4c032b1758e7..d93f6786db0e 100644
-> > > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> > > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > > @@ -2862,9 +2862,9 @@ intel_program_dpkgc_latency(struct
-> > > intel_atomic_state *state)
-> > >  	struct intel_crtc *crtc;
-> > >  	struct intel_crtc_state *new_crtc_state;
-> > >  	u32 latency =3D LNL_PKG_C_LATENCY_MASK;
-> > > +	u32 added_wake_time =3D 0;
-> > >  	u32 max_linetime =3D 0;
-> > >  	u32 clear, val;
-> > > -	u32 added_wake_time =3D 0;
-> > >  	bool fixed_refresh_rate =3D false;
-> >
-> > If go by commit message words, change does not actually club all
-> > initialised params together and uninitialized separate.
->=20
-> So when we club params together it needs to be under these restriction Al=
-l
-> with same type come together and the ones with same type with
-> initialization need to be together
->=20
-> Regards,
-> Suraj Kandpal
+vim +115 kernel/cgroup/dmem.c
 
-Ok. Please update commit message before merge so that changes can be aligne=
-d=20
+   111	
+   112	static void
+   113	set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val)
+   114	{
+ > 115		page_counter_set_min(&pool->cnt, val);
+   116	}
+   117	
+   118	static void
+   119	set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val)
+   120	{
+ > 121		page_counter_set_low(&pool->cnt, val);
+   122	}
+   123	
+   124	static void
+   125	set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val)
+   126	{
+ > 127		page_counter_set_max(&pool->cnt, val);
+   128	}
+   129	
+   130	static u64 get_resource_low(struct dmem_cgroup_pool_state *pool)
+   131	{
+   132		return pool ? READ_ONCE(pool->cnt.low) : 0;
+   133	}
+   134	
+   135	static u64 get_resource_min(struct dmem_cgroup_pool_state *pool)
+   136	{
+   137		return pool ? READ_ONCE(pool->cnt.min) : 0;
+   138	}
+   139	
+   140	static u64 get_resource_max(struct dmem_cgroup_pool_state *pool)
+   141	{
+   142		return pool ? READ_ONCE(pool->cnt.max) : PAGE_COUNTER_MAX;
+   143	}
+   144	
+   145	static u64 get_resource_current(struct dmem_cgroup_pool_state *pool)
+   146	{
+   147		return pool ? page_counter_read(&pool->cnt) : 0;
+   148	}
+   149	
+   150	static void reset_all_resource_limits(struct dmem_cgroup_pool_state *rpool)
+   151	{
+   152		set_resource_min(rpool, 0);
+   153		set_resource_low(rpool, 0);
+   154		set_resource_max(rpool, PAGE_COUNTER_MAX);
+   155	}
+   156	
+   157	static void dmemcs_offline(struct cgroup_subsys_state *css)
+   158	{
+   159		struct dmemcg_state *dmemcs = css_to_dmemcs(css);
+   160		struct dmem_cgroup_pool_state *pool;
+   161	
+   162		rcu_read_lock();
+   163		list_for_each_entry_rcu(pool, &dmemcs->pools, css_node)
+   164			reset_all_resource_limits(pool);
+   165		rcu_read_unlock();
+   166	}
+   167	
+   168	static void dmemcs_free(struct cgroup_subsys_state *css)
+   169	{
+   170		struct dmemcg_state *dmemcs = css_to_dmemcs(css);
+   171		struct dmem_cgroup_pool_state *pool, *next;
+   172	
+   173		spin_lock(&dmemcg_lock);
+   174		list_for_each_entry_safe(pool, next, &dmemcs->pools, css_node) {
+   175			/*
+   176			 *The pool is dead and all references are 0,
+   177			 * no need for RCU protection with list_del_rcu or freeing.
+   178			 */
+   179			list_del(&pool->css_node);
+   180			free_cg_pool(pool);
+   181		}
+   182		spin_unlock(&dmemcg_lock);
+   183	
+   184		kfree(dmemcs);
+   185	}
+   186	
+   187	static struct cgroup_subsys_state *
+   188	dmemcs_alloc(struct cgroup_subsys_state *parent_css)
+   189	{
+   190		struct dmemcg_state *dmemcs = kzalloc(sizeof(*dmemcs), GFP_KERNEL);
+   191		if (!dmemcs)
+   192			return ERR_PTR(-ENOMEM);
+   193	
+   194		INIT_LIST_HEAD(&dmemcs->pools);
+   195		return &dmemcs->css;
+   196	}
+   197	
+   198	static struct dmem_cgroup_pool_state *
+   199	find_cg_pool_locked(struct dmemcg_state *dmemcs, struct dmem_cgroup_region *region)
+   200	{
+   201		struct dmem_cgroup_pool_state *pool;
+   202	
+   203		list_for_each_entry_rcu(pool, &dmemcs->pools, css_node, spin_is_locked(&dmemcg_lock))
+   204			if (pool->region == region)
+   205				return pool;
+   206	
+   207		return NULL;
+   208	}
+   209	
+   210	static struct dmem_cgroup_pool_state *pool_parent(struct dmem_cgroup_pool_state *pool)
+   211	{
+   212		if (!pool->cnt.parent)
+   213			return NULL;
+   214	
+   215		return container_of(pool->cnt.parent, typeof(*pool), cnt);
+   216	}
+   217	
+   218	static void
+   219	dmem_cgroup_calculate_protection(struct dmem_cgroup_pool_state *limit_pool,
+   220					 struct dmem_cgroup_pool_state *test_pool)
+   221	{
+   222		struct page_counter *climit;
+   223		struct cgroup_subsys_state *css, *next_css;
+   224		struct dmemcg_state *dmemcg_iter;
+   225		struct dmem_cgroup_pool_state *pool, *parent_pool;
+   226		bool found_descendant;
+   227	
+   228		climit = &limit_pool->cnt;
+   229	
+   230		rcu_read_lock();
+   231		parent_pool = pool = limit_pool;
+   232		css = &limit_pool->cs->css;
+   233	
+   234		/*
+   235		 * This logic is roughly equivalent to css_foreach_descendant_pre,
+   236		 * except we also track the parent pool to find out which pool we need
+   237		 * to calculate protection values for.
+   238		 *
+   239		 * We can stop the traversal once we find test_pool among the
+   240		 * descendants since we don't really care about any others.
+   241		 */
+   242		while (pool != test_pool) {
+   243			next_css = css_next_child(NULL, css);
+   244			if (next_css) {
+   245				parent_pool = pool;
+   246			} else {
+   247				while (css != &limit_pool->cs->css) {
+   248					next_css = css_next_child(css, css->parent);
+   249					if (next_css)
+   250						break;
+   251					css = css->parent;
+   252					parent_pool = pool_parent(parent_pool);
+   253				}
+   254				/*
+   255				 * We can only hit this when test_pool is not a
+   256				 * descendant of limit_pool.
+   257				 */
+   258				if (WARN_ON_ONCE(css == &limit_pool->cs->css))
+   259					break;
+   260			}
+   261			css = next_css;
+   262	
+   263			found_descendant = false;
+   264			dmemcg_iter = container_of(css, struct dmemcg_state, css);
+   265	
+   266			list_for_each_entry_rcu(pool, &dmemcg_iter->pools, css_node) {
+   267				if (pool_parent(pool) == parent_pool) {
+   268					found_descendant = true;
+   269					break;
+   270				}
+   271			}
+   272			if (!found_descendant)
+   273				continue;
+   274	
+ > 275			page_counter_calculate_protection(
+   276				climit, &pool->cnt, true);
+   277		}
+   278		rcu_read_unlock();
+   279	}
+   280	
 
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
->=20
-> >
-> > >  	int i;
-> > >
-> > > --
-> > > 2.34.1
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
