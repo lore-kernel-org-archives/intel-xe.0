@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61FD6E7716C
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 13:32:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74FD9E7716D
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 14:00:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 285F010EE6A;
-	Thu,  5 Dec 2024 13:32:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XN7uxW74";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D7B610EE6A;
- Thu,  5 Dec 2024 13:32:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733405533; x=1764941533;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ZKJmbFXZb7Mu5ntPsS5hH2MbAYfqPgPQ9hW8tcycSl0=;
- b=XN7uxW74B7VeVmK5/7BiDSuRrNjw3XtkReFYgLc7rcWiw2qvVBysGPJE
- r1XXCXTuSAAgo/RxxbWt7IiTthppVXTnWLKHMeRMgpINXVfBAByhwb5Ws
- IxZ/ilr/EXCwpDZvb5HNH6/Rphx9RjAuAXC/0FLS50bB6GiRK6PbSrYy8
- Q+LendvaJg018//o3eAyrB6P6qhDeXF9kjlKHShTghRx/ct9RqyqjAxVN
- s7+dFTHA1YRECDEtcu3L0/lU5W3pvBLPqpbDAEs5FKWPEHuqpwQeg7pBF
- 5eSc1FdDK/nfiMcZ4u+kT1pmxbeq1isjWkvZIy8omAsdxeyGx/DW4aZGi g==;
-X-CSE-ConnectionGUID: sZqr0rXMT2uvS4pum9osRQ==
-X-CSE-MsgGUID: zLyGV8z4TMSLdxFmZyFWtA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="44322492"
-X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; d="scan'208";a="44322492"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 05:32:12 -0800
-X-CSE-ConnectionGUID: /n4XjCZHRFyHH8GrvQKnTw==
-X-CSE-MsgGUID: gULP/NQmSqKL4f6u26RkQg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; d="scan'208";a="94535500"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 05:32:11 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/i915/display: use drm_print_hex_dump() for crtc
- state dump
-In-Reply-To: <Z1GnsMJXRvMgpCdf@ashyti-mobl2.lan>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1733392101.git.jani.nikula@intel.com>
- <12d76e34ed4c508524f768a46d2a2beb09991a23.1733392101.git.jani.nikula@intel.com>
- <Z1GnsMJXRvMgpCdf@ashyti-mobl2.lan>
-Date: Thu, 05 Dec 2024 15:32:08 +0200
-Message-ID: <87cyi61civ.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A81410EE7F;
+	Thu,  5 Dec 2024 14:00:14 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DBFC10EE7F;
+ Thu,  5 Dec 2024 14:00:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4095812939969982246=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5BRFC?=
+ =?utf-8?q?=2C1/2=5D_drm/xe=3A_Add_madvise_interface?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 05 Dec 2024 14:00:13 -0000
+Message-ID: <173340721311.2986419.3758136124578020489@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241205104620.456353-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20241205104620.456353-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,41 +36,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 05 Dec 2024, Andi Shyti <andi.shyti@linux.intel.com> wrote:
-> Hi Jani,
->
-> On Thu, Dec 05, 2024 at 11:49:34AM +0200, Jani Nikula wrote:
->> Use the drm_printer based printer to get the device specific printing of
->> the hex dump.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> ...
->
->> -static void
->> -intel_dump_buffer(const char *prefix, const u8 *buf, size_t len)
->> -{
->> -	if (!drm_debug_enabled(DRM_UT_KMS))
->> -		return;
->
-> We lose this check now, anyway,
+--===============4095812939969982246==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-That now depends on the drm_printer, as it should.
+== Series Details ==
 
-Moreover, intel_crtc_state_dump() already has that check, so this is
-completely redundant.
+Series: series starting with [RFC,1/2] drm/xe: Add madvise interface
+URL   : https://patchwork.freedesktop.org/series/142164/
+State : success
 
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+== Summary ==
 
-Thanks,
-Jani.
+CI Bug Log - changes from xe-2323-6d42506688c08f85240449e80658ab760d899ae2_BAT -> xe-pw-142164v1_BAT
+====================================================
 
->
-> Thanks,
-> Andi
+Summary
+-------
 
--- 
-Jani Nikula, Intel
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 6)
+------------------------------
+
+  Missing    (2): bat-pvc-2 bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-142164v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-1:          NOTRUN -> [SKIP][1] ([Intel XE#2229])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142164v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-hdmi-a-3:
+    - bat-bmg-1:          [DMESG-WARN][2] ([Intel XE#877]) -> [PASS][3] +1 other test pass
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2323-6d42506688c08f85240449e80658ab760d899ae2/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-hdmi-a-3.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142164v1/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-hdmi-a-3.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-bmg-1:          [SKIP][4] ([Intel XE#1192]) -> [PASS][5] +2 other tests pass
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2323-6d42506688c08f85240449e80658ab760d899ae2/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142164v1/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
+
+
+Build changes
+-------------
+
+  * Linux: xe-2323-6d42506688c08f85240449e80658ab760d899ae2 -> xe-pw-142164v1
+
+  IGT_8138: 8138
+  xe-2323-6d42506688c08f85240449e80658ab760d899ae2: 6d42506688c08f85240449e80658ab760d899ae2
+  xe-pw-142164v1: 142164v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142164v1/index.html
+
+--===============4095812939969982246==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [RFC,1/2] drm/xe: Add madvise interface</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142164/">https://patchwork.freedesktop.org/series/142164/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142164v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142164v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2323-6d42506688c08f85240449e80658ab760d899ae2_BAT -&gt; xe-pw-142164v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 6)</h2>
+<p>Missing    (2): bat-pvc-2 bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-142164v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142164v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-hdmi-a-3:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2323-6d42506688c08f85240449e80658ab760d899ae2/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-hdmi-a-3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142164v1/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-hdmi-a-3.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2323-6d42506688c08f85240449e80658ab760d899ae2/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142164v1/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2323-6d42506688c08f85240449e80658ab760d899ae2 -&gt; xe-pw-142164v1</li>
+</ul>
+<p>IGT_8138: 8138<br />
+  xe-2323-6d42506688c08f85240449e80658ab760d899ae2: 6d42506688c08f85240449e80658ab760d899ae2<br />
+  xe-pw-142164v1: 142164v1</p>
+
+</body>
+</html>
+
+--===============4095812939969982246==--
