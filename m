@@ -4,27 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58EBEE77170
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 19:30:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D82CE7716E
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 19:39:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 257F010EF80;
-	Thu,  5 Dec 2024 19:30:40 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C324310EF80;
- Thu,  5 Dec 2024 19:30:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6634191185266486778=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 573D710EF99;
+	Thu,  5 Dec 2024 19:39:05 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 745B210EF99;
+ Thu,  5 Dec 2024 19:39:04 +0000 (UTC)
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH] drm/xe/display: Re-use display vmas when possible
+Date: Thu,  5 Dec 2024 20:39:34 +0100
+Message-ID: <20241205193934.49526-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_reg=5Fsr/whitelist_fixes_an?=
- =?utf-8?q?d_refactors?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Dec 2024 19:30:38 -0000
-Message-ID: <173342703879.3072218.14533301628265668010@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241205182240.3463027-1-lucas.demarchi@intel.com>
-In-Reply-To: <20241205182240.3463027-1-lucas.demarchi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,193 +33,236 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6634191185266486778==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+i915 has this really nice, infrastructure where everything becomes
+complicated, GGTT needs eviction, etc..
 
-== Series Details ==
+Lets not do that, and make the dumbest possible interface instead.
+Try to retrieve the VMA from old_plane_state, or intel_fbdev if kernel
+fb.
 
-Series: reg_sr/whitelist fixes and refactors
-URL   : https://patchwork.freedesktop.org/series/142195/
-State : failure
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |  3 +-
+ drivers/gpu/drm/i915/display/intel_fb_pin.h   |  3 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  5 ++
+ drivers/gpu/drm/i915/display/intel_fbdev.h    |  8 ++++
+ .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  3 ++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 48 +++++++++++++++++--
+ 8 files changed, 65 insertions(+), 9 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index d89630b2d5c19..632b2b0723dd7 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -1144,7 +1144,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 	if (!obj)
+ 		return 0;
+ 
+-	ret = intel_plane_pin_fb(new_plane_state);
++	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index ed88a28a3afae..5984310982e73 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -864,7 +864,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 	if (ret)
+ 		goto out_free;
+ 
+-	ret = intel_plane_pin_fb(new_plane_state);
++	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
+ 	if (ret)
+ 		goto out_free;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+index d3a86f9c6bc86..dd3ac7f98dfcc 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+@@ -252,7 +252,8 @@ intel_plane_fb_min_phys_alignment(const struct intel_plane_state *plane_state)
+ 	return plane->min_alignment(plane, fb, 0);
+ }
+ 
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state)
++int intel_plane_pin_fb(struct intel_plane_state *plane_state,
++		       const struct intel_plane_state *old_plane_state)
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	const struct intel_framebuffer *fb =
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+index ac0319b53af08..0fc6d90446381 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+@@ -23,7 +23,8 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ 
+ void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags);
+ 
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state);
++int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
++		       const struct intel_plane_state *old_plane_state);
+ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index 00852ff5b2470..6c08081333976 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -695,3 +695,8 @@ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
+ 
+ 	return to_intel_framebuffer(fbdev->helper.fb);
+ }
++
++struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
++{
++	return fbdev ? fbdev->vma : NULL;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
+index 08de2d5b34338..24a3434558cb6 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.h
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
+@@ -17,6 +17,8 @@ struct intel_framebuffer;
+ void intel_fbdev_setup(struct drm_i915_private *dev_priv);
+ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
+ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
++struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev);
++
+ #else
+ static inline void intel_fbdev_setup(struct drm_i915_private *dev_priv)
+ {
+@@ -30,6 +32,12 @@ static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbd
+ {
+ 	return NULL;
+ }
++
++static inline struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
++{
++	return NULL;
++}
++
+ #endif
+ 
+ #endif /* __INTEL_FBDEV_H__ */
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+index bdae8392e1253..4465c40f81341 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+@@ -10,6 +10,8 @@
+ 
+ #include "xe_ggtt_types.h"
+ 
++#include <linux/refcount.h>
++
+ /* We don't want these from i915_drm.h in case of Xe */
+ #undef I915_TILING_X
+ #undef I915_TILING_Y
+@@ -19,6 +21,7 @@
+ struct xe_bo;
+ 
+ struct i915_vma {
++	refcount_t ref;
+ 	struct xe_bo *bo, *dpt;
+ 	struct xe_ggtt_node *node;
+ };
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 761510ae06904..8c3a5debe0953 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -9,6 +9,7 @@
+ #include "intel_dpt.h"
+ #include "intel_fb.h"
+ #include "intel_fb_pin.h"
++#include "intel_fbdev.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_ggtt.h"
+@@ -287,6 +288,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	if (!vma)
+ 		return ERR_PTR(-ENODEV);
+ 
++	refcount_set(&vma->ref, 1);
+ 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
+ 	    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
+ 	    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
+@@ -345,6 +347,9 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 
+ static void __xe_unpin_fb_vma(struct i915_vma *vma)
+ {
++	if (!refcount_dec_and_test(&vma->ref))
++		return;
++
+ 	if (vma->dpt)
+ 		xe_bo_unpin_map_no_vm(vma->dpt);
+ 	else if (!xe_ggtt_node_allocated(vma->bo->ggtt_node) ||
+@@ -375,25 +380,58 @@ void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags)
+ 	__xe_unpin_fb_vma(vma);
+ }
+ 
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state)
++static bool reuse_vma(struct intel_plane_state *new_plane_state,
++		      const struct intel_plane_state *old_plane_state)
+ {
+-	struct drm_framebuffer *fb = plane_state->hw.fb;
++	struct intel_framebuffer *fb = to_intel_framebuffer(new_plane_state->hw.fb);
++	struct xe_device *xe = to_xe_device(fb->base.dev);
++	struct i915_vma *vma;
++
++	if (old_plane_state->hw.fb == new_plane_state->hw.fb &&
++	    !memcmp(&old_plane_state->view.gtt,
++		    &new_plane_state->view.gtt,
++	            sizeof(new_plane_state->view.gtt))) {
++		vma = old_plane_state->ggtt_vma;
++		goto found;
++	}
++
++	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
++		vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
++		if (vma)
++			goto found;
++	}
++
++	return false;
++
++found:
++	refcount_inc(&vma->ref);
++	new_plane_state->ggtt_vma = vma;
++	return true;
++}
++
++int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
++		       const struct intel_plane_state *old_plane_state)
++{
++	struct drm_framebuffer *fb = new_plane_state->hw.fb;
+ 	struct drm_gem_object *obj = intel_fb_bo(fb);
+ 	struct xe_bo *bo = gem_to_xe_bo(obj);
+ 	struct i915_vma *vma;
+ 	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
+-	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
++	struct intel_plane *plane = to_intel_plane(new_plane_state->uapi.plane);
+ 	u64 phys_alignment = plane->min_alignment(plane, fb, 0);
+ 
++	if (reuse_vma(new_plane_state, old_plane_state))
++		return 0;
++
+ 	/* We reject creating !SCANOUT fb's, so this is weird.. */
+ 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
+ 
+-	vma = __xe_pin_fb_vma(intel_fb, &plane_state->view.gtt, phys_alignment);
++	vma = __xe_pin_fb_vma(intel_fb, &new_plane_state->view.gtt, phys_alignment);
+ 
+ 	if (IS_ERR(vma))
+ 		return PTR_ERR(vma);
+ 
+-	plane_state->ggtt_vma = vma;
++	new_plane_state->ggtt_vma = vma;
+ 	return 0;
+ }
+ 
+-- 
+2.45.2
 
-CI Bug Log - changes from xe-2326-6148006e767be69293d1ec77dd127dba49db51dd_BAT -> xe-pw-142195v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-142195v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-142195v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-142195v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2326-6148006e767be69293d1ec77dd127dba49db51dd/bat-adlp-vf/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v1/bat-adlp-vf/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
-    - bat-atsm-2:         [PASS][3] -> [DMESG-WARN][4] +1 other test dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2326-6148006e767be69293d1ec77dd127dba49db51dd/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-142195v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-atsm-2:         [PASS][5] -> [SKIP][6] ([Intel XE#1192]) +2 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2326-6148006e767be69293d1ec77dd127dba49db51dd/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
-    - bat-adlp-vf:        [PASS][7] -> [SKIP][8] ([Intel XE#1192]) +1 other test skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2326-6148006e767be69293d1ec77dd127dba49db51dd/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][9] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][10] ([Intel XE#1192])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2326-6148006e767be69293d1ec77dd127dba49db51dd/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * Linux: xe-2326-6148006e767be69293d1ec77dd127dba49db51dd -> xe-pw-142195v1
-
-  IGT_8138: 8138
-  xe-2326-6148006e767be69293d1ec77dd127dba49db51dd: 6148006e767be69293d1ec77dd127dba49db51dd
-  xe-pw-142195v1: 142195v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v1/index.html
-
---===============6634191185266486778==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>reg_sr/whitelist fixes and refactors</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142195/">https://patchwork.freedesktop.org/series/142195/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2326-6148006e767be69293d1ec77dd127dba49db51dd_BAT -&gt; xe-pw-142195v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-142195v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-142195v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-142195v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2326-6148006e767be69293d1ec77dd127dba49db51dd/bat-adlp-vf/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v1/bat-adlp-vf/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2326-6148006e767be69293d1ec77dd127dba49db51dd/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-142195v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_migrate:<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2326-6148006e767be69293d1ec77dd127dba49db51dd/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2326-6148006e767be69293d1ec77dd127dba49db51dd/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2326-6148006e767be69293d1ec77dd127dba49db51dd/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2326-6148006e767be69293d1ec77dd127dba49db51dd -&gt; xe-pw-142195v1</li>
-</ul>
-<p>IGT_8138: 8138<br />
-  xe-2326-6148006e767be69293d1ec77dd127dba49db51dd: 6148006e767be69293d1ec77dd127dba49db51dd<br />
-  xe-pw-142195v1: 142195v1</p>
-
-</body>
-</html>
-
---===============6634191185266486778==--
