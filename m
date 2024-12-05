@@ -4,37 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 867B2E7716D
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 14:49:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1634E7716C
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 14:58:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5382D10EEAC;
-	Thu,  5 Dec 2024 14:49:05 +0000 (UTC)
-X-Greylist: delayed 530 seconds by postgrey-1.36 at gabe;
- Thu, 05 Dec 2024 14:49:03 UTC
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB9E610EEA7;
- Thu,  5 Dec 2024 14:49:03 +0000 (UTC)
-Received: from [192.168.0.53] (ip5f5aee9c.dynamic.kabel-deutschland.de
- [95.90.238.156])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id 3014461E6476B;
- Thu, 05 Dec 2024 15:39:59 +0100 (CET)
-Message-ID: <469420b8-6c6f-4316-a52c-a9d933dac0d3@molgen.mpg.de>
-Date: Thu, 5 Dec 2024 15:39:58 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91B6E10EEAF;
+	Thu,  5 Dec 2024 14:58:11 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE58110EE87;
+ Thu,  5 Dec 2024 14:58:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7901456358397052794=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/pps: debug log the remaining power cycle delay
- to wait
-To: Jani Nikula <jani.nikula@intel.com>
-References: <20241204160048.2774419-1-jani.nikula@intel.com>
-Content-Language: en-US
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20241204160048.2774419-1-jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/tests=3A_Wait_for_cl?=
+ =?utf-8?q?ear_fence_operation_to_complete?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 05 Dec 2024 14:58:10 -0000
+Message-ID: <173341069096.2994774.15445322185889938774@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241205114702.1963303-1-nirmoy.das@intel.com>
+In-Reply-To: <20241205114702.1963303-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,124 +36,325 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Dear Jani,
+--===============7901456358397052794==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/xe/tests: Wait for clear fence operation to complete
+URL   : https://patchwork.freedesktop.org/series/142169/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-2323-6d42506688c08f85240449e80658ab760d899ae2_BAT -> xe-pw-142169v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-142169v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-142169v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Additional (1): bat-lnl-1 
+  Missing    (2): bat-pvc-2 bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-142169v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_flip@basic-flip-vs-dpms@a-edp1:
+    - bat-lnl-1:          NOTRUN -> [DMESG-WARN][1] +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-142169v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-lnl-1:          NOTRUN -> [SKIP][2] ([Intel XE#1466])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-lnl-1:          NOTRUN -> [SKIP][3] ([Intel XE#2244])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - bat-lnl-1:          NOTRUN -> [SKIP][4] ([Intel XE#352]) +2 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@kms_force_connector_basic@force-connector-state.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - bat-lnl-1:          NOTRUN -> [SKIP][5] ([Intel XE#1470] / [Intel XE#2853])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@kms_hdmi_inject@inject-audio.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-off:
+    - bat-lnl-1:          NOTRUN -> [SKIP][6] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@sriov_basic@enable-vfs-autoprobe-off.html
+
+  * igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:
+    - bat-lnl-1:          NOTRUN -> [SKIP][7] ([Intel XE#688]) +17 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-lnl-1:          NOTRUN -> [SKIP][8] ([Intel XE#2229]) +2 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@xe_live_ktest@xe_bo.html
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-1:          NOTRUN -> [SKIP][9] ([Intel XE#2229])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-lnl-1:          NOTRUN -> [SKIP][10] ([Intel XE#1416])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-lnl-1:          NOTRUN -> [SKIP][11] ([Intel XE#1420] / [Intel XE#2838])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-lnl-1:          NOTRUN -> [SKIP][12] ([Intel XE#977])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-lnl-1:          NOTRUN -> [SKIP][13] ([Intel XE#979])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@xe_pat@pat-index-xelpg.html
+
+  * igt@xe_sriov_flr@flr-vf1-clear:
+    - bat-lnl-1:          NOTRUN -> [SKIP][14] ([Intel XE#3342])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@xe_sriov_flr@flr-vf1-clear.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-hdmi-a-3:
+    - bat-bmg-1:          [DMESG-WARN][15] ([Intel XE#877]) -> [PASS][16] +1 other test pass
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2323-6d42506688c08f85240449e80658ab760d899ae2/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-hdmi-a-3.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-hdmi-a-3.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-bmg-1:          [SKIP][17] ([Intel XE#1192]) -> [PASS][18] +2 other tests pass
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2323-6d42506688c08f85240449e80658ab760d899ae2/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html
+
+  
+  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#1416]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#1466]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466
+  [Intel XE#1470]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
+  [Intel XE#2853]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853
+  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
+  [Intel XE#352]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/352
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
 
 
-Thank you very much for the patch.
+Build changes
+-------------
 
-Am 04.12.24 um 17:00 schrieb Jani Nikula:
-> While pps_init_delays() debug logs the power cycle delay, also debug log
-> the actual remaining time to wait in wait_panel_power_cycle().
-> 
-> Note that this still isn't the full picture; the power sequencer may
-> still wait after this one.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13007
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> ---
-> 
-> Cc: Paul Menzel <pmenzel@molgen.mpg.de>
-> ---
->   drivers/gpu/drm/i915/display/intel_pps.c | 19 ++++++++++---------
->   1 file changed, 10 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index 7784b3b760db..bfda52850150 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -668,23 +668,24 @@ static void wait_panel_power_cycle(struct intel_dp *intel_dp)
->   	struct intel_display *display = to_intel_display(intel_dp);
->   	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->   	ktime_t panel_power_on_time;
-> -	s64 panel_power_off_duration;
-> -
-> -	drm_dbg_kms(display->drm,
-> -		    "[ENCODER:%d:%s] %s wait for panel power cycle\n",
-> -		    dig_port->base.base.base.id, dig_port->base.base.name,
-> -		    pps_name(intel_dp));
-> +	s64 panel_power_off_duration, remaining;
->   
->   	/* take the difference of current time and panel power off time
->   	 * and then make panel wait for power_cycle if needed. */
->   	panel_power_on_time = ktime_get_boottime();
->   	panel_power_off_duration = ktime_ms_delta(panel_power_on_time, intel_dp->pps.panel_power_off_time);
->   
-> +	remaining = max(0, intel_dp->pps.panel_power_cycle_delay - panel_power_off_duration);
-> +
-> +	drm_dbg_kms(display->drm,
-> +		    "[ENCODER:%d:%s] %s wait for panel power cycle (%lld ms remaining)\n",
-> +		    dig_port->base.base.base.id, dig_port->base.base.name,
-> +		    pps_name(intel_dp), remaining);
-> +
->   	/* When we disable the VDD override bit last we have to do the manual
->   	 * wait. */
-> -	if (panel_power_off_duration < (s64)intel_dp->pps.panel_power_cycle_delay)
-> -		wait_remaining_ms_from_jiffies(jiffies,
-> -				       intel_dp->pps.panel_power_cycle_delay - panel_power_off_duration);
-> +	if (remaining)
-> +		wait_remaining_ms_from_jiffies(jiffies, remaining);
->   
->   	wait_panel_status(intel_dp, IDLE_CYCLE_MASK, IDLE_CYCLE_VALUE);
->   }
+  * Linux: xe-2323-6d42506688c08f85240449e80658ab760d899ae2 -> xe-pw-142169v1
 
-Tested-by: Paul Menzel <pmenzel@molgen.mpg.de> # Dell XPS 13 
-9360/0596KF, BIOS 2.21.0 06/02/2022
+  IGT_8138: 8138
+  xe-2323-6d42506688c08f85240449e80658ab760d899ae2: 6d42506688c08f85240449e80658ab760d899ae2
+  xe-pw-142169v1: 142169v1
 
-     [   51.596033] PM: suspend entry (deep)
-     [   51.622184] Filesystems sync: 0.026 seconds
-     [   51.634863] Freezing user space processes
-     [   51.636697] Freezing user space processes completed (elapsed 
-0.001 seconds)
-     [   51.636708] OOM killer disabled.
-     [   51.636711] Freezing remaining freezable tasks
-     [   51.638017] Freezing remaining freezable tasks completed 
-(elapsed 0.001 seconds)
-     [   51.638132] printk: Suspending console(s) (use 
-no_console_suspend to debug)
-     [   51.673815] i915 0000:00:02.0: [drm:intel_power_well_enable 
-[i915]] enabling always-on
-     […]
-     [   53.751682] i915 0000:00:02.0: [drm:intel_pps_on_unlocked 
-[i915]] [ENCODER:98:DDI A/PHY A] PPS 0 turn panel power on
-     [   53.751872] i915 0000:00:02.0: [drm:wait_panel_power_cycle 
-[i915]] [ENCODER:98:DDI A/PHY A] PPS 0 wait for panel power cycle (0 ms 
-remaining)
-     [   53.752096] i915 0000:00:02.0: [drm:wait_panel_status [i915]] 
-[ENCODER:98:DDI A/PHY A] PPS 0 mask: 0xb800000f value: 0x00000000 
-PP_STATUS: 0x00000000 PP_CONTROL: 0x00000000
-     [   53.752268] i915 0000:00:02.0: [drm:intel_pps_on_unlocked 
-[i915]] Wait complete
-     [   53.752440] i915 0000:00:02.0: [drm:intel_pps_on_unlocked 
-[i915]] [ENCODER:98:DDI A/PHY A] PPS 0 wait for panel power on
-     [   53.752638] i915 0000:00:02.0: [drm:wait_panel_status [i915]] 
-[ENCODER:98:DDI A/PHY A] PPS 0 mask: 0xb000000f value: 0x80000008 
-PP_STATUS: 0x9000000a PP_CONTROL: 0x00000003
-     [   53.801920] i915 0000:00:02.0: [drm:spt_irq_handler [i915]] 
-hotplug event received, stat 0x01000000, dig 0x12001010, pins 
-0x00000010, long 0x00000010
-     [   53.802088] i915 0000:00:02.0: [drm:intel_hpd_irq_handler 
-[i915]] digital hpd on [ENCODER:98:DDI A/PHY A] - long
-     [   53.802226] i915 0000:00:02.0: [drm:intel_hpd_irq_handler 
-[i915]] Received HPD interrupt on PIN 4 - cnt: 10
-     [   53.802399] i915 0000:00:02.0: [drm:intel_dp_hpd_pulse [i915]] 
-ignoring long hpd on eDP [ENCODER:98:DDI A/PHY A]
-     [   53.831776] i915 0000:00:02.0: [drm:i915_hdcp_component_bind 
-[i915]] I915 HDCP comp bind
-     [   53.832940] mei_hdcp 
-0000:00:16.0-b638ab7e-94e2-4ea2-a552-d1c54b627f04: bound 0000:00:02.0 
-(ops i915_hdcp_ops [i915])
-     [   53.835771] Bluetooth: hci0: using NVM file: 
-qca/nvm_usb_00000302.bin
-     [   53.864037] Bluetooth: hci0: HCI Enhanced Setup Synchronous 
-Connection command is advertised, but not supported.
-     [   53.952873] i915 0000:00:02.0: [drm:intel_pps_on_unlocked 
-[i915]] Wait complete
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/index.html
+
+--===============7901456358397052794==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
-Kind regards,
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-Paul
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/tests: Wait for clear fence operation to complete</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142169/">https://patchwork.freedesktop.org/series/142169/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2323-6d42506688c08f85240449e80658ab760d899ae2_BAT -&gt; xe-pw-142169v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-142169v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-142169v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Additional (1): bat-lnl-1 <br />
+  Missing    (2): bat-pvc-2 bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-142169v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-dpms@a-edp1:<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-142169v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466">Intel XE#1466</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@kms_force_connector_basic@force-connector-state.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/352">Intel XE#352</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470">Intel XE#1470</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853">Intel XE#2853</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416">Intel XE#1416</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-lnl-1/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-hdmi-a-3:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2323-6d42506688c08f85240449e80658ab760d899ae2/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-hdmi-a-3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-hdmi-a-3.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2323-6d42506688c08f85240449e80658ab760d899ae2/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142169v1/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2323-6d42506688c08f85240449e80658ab760d899ae2 -&gt; xe-pw-142169v1</li>
+</ul>
+<p>IGT_8138: 8138<br />
+  xe-2323-6d42506688c08f85240449e80658ab760d899ae2: 6d42506688c08f85240449e80658ab760d899ae2<br />
+  xe-pw-142169v1: 142169v1</p>
+
+</body>
+</html>
+
+--===============7901456358397052794==--
