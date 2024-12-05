@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B910DE7716D
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 12:55:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C5A5E7716D
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 13:12:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87F5110EE44;
-	Thu,  5 Dec 2024 12:55:28 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D964610EE44;
- Thu,  5 Dec 2024 12:55:26 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 275EB10E3B0;
+	Thu,  5 Dec 2024 13:12:31 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Id8RxF7s";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A797610E3B0;
+ Thu,  5 Dec 2024 13:12:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733404349; x=1764940349;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Jl4bPjywWqj7or9VJEuymg5m7MVK7VoFhl/oA5JlDMk=;
+ b=Id8RxF7siRIojvcKzOu5mLa+QaqX7JSlbjXBAgou+y1y77gVLfIFmr5t
+ nUK/AFDv95v60qAKB0eAo/g05mygiQqx649M4mGKJ9CMPkOha1JIX0ccB
+ ltPgUHBua51p+QPFHVg7NDNH5zov+4yEKQrEiC79/4TOrIysYGpksuCpO
+ 3EnZoBjmeHwz8Ar6Ay/UnlcgKutujA5RZPEzEnOoVyH7VYmbzk0Pp6uno
+ seMtnYGEENxh5tbp2z+AhVfFQA9HRGHJxcLj8wm4RTqFqv8sSiGNYMYtl
+ psNq3K2vfOLdScK467wzIrPo/Q4aQn8hgvVVALFs2DbkhFKTf5IKGk+7B g==;
+X-CSE-ConnectionGUID: QtTNC4PpTmSPHTnpzprZng==
+X-CSE-MsgGUID: 1uATBZuISZS/rb6wp9kAag==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="44320854"
+X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; d="scan'208";a="44320854"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2024 05:12:29 -0800
+X-CSE-ConnectionGUID: MLFIij/TQGeRQC2lRjl3eQ==
+X-CSE-MsgGUID: jDcdog3JQqm/GVBI0PMeTA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; d="scan'208";a="94532818"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.41])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2024 05:12:27 -0800
+Date: Thu, 5 Dec 2024 14:12:23 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/3] drm/print: add drm_print_hex_dump()
+Message-ID: <Z1Gmt1rdhgjQOlYD@ashyti-mobl2.lan>
+References: <cover.1733392101.git.jani.nikula@intel.com>
+ <f650fe1ed3e3bb74760426fa7461c3b028d661fb.1733392101.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?RFC=2C1/2=5D_drm/xe=3A_Add_madvise_interface?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Dec 2024 12:55:26 -0000
-Message-ID: <173340332688.2972948.2448889566117685828@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241205104620.456353-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20241205104620.456353-1-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f650fe1ed3e3bb74760426fa7461c3b028d661fb.1733392101.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +66,19 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Jani,
 
-Series: series starting with [RFC,1/2] drm/xe: Add madvise interface
-URL   : https://patchwork.freedesktop.org/series/142164/
-State : success
+On Thu, Dec 05, 2024 at 11:49:33AM +0200, Jani Nikula wrote:
+> Add a helper to print a hex dump to a struct drm_printer. There's no
+> fancy formatting stuff, just 16 space-separated bytes per line, with an
+> optional prefix.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 320bf1795129fe4fb8127717e92289cd09ce0bfd
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+Thanks,
+Andi
