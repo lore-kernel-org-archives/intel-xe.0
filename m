@@ -4,61 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0F18E7716C
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 11:44:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30817E77170
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 11:49:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBC5C10E5CB;
-	Thu,  5 Dec 2024 11:44:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0F1910E39E;
+	Thu,  5 Dec 2024 11:49:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X7fozab5";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="YdPXOdsB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7158710E5C4
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Dec 2024 11:44:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733399042; x=1764935042;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=AE27GIKgR4YhLEYoDRJtp+/wA4/TSiQv6CxIogL1FQI=;
- b=X7fozab5morMkbVUNdxeiKaeDNCJUqcYbTxx/RMIDac/PdzCkJdX1E/2
- SMLcLJgQJB+/mPpNVO9gQwh3CMvQlndyaWmPR4q71d2jBQBzVju+hLVxf
- t39+NvcixMqu28YmWst2cV9vOHJ5PHWexFmUoX0sTrUViKJW+AIV4GXA/
- M9P9Yuu7u0DfVVR+T/blQAuBWg0KvxibNvHbLUEKzG+LR+CvttMvG9heK
- k1h4U0sQkSiYIN6GuT+eD2I8ae4YOjhgZWFAMTCgtCUSEZJZ2PSQ62idD
- STXG9MgjzSO3dZBS6MCtwFybdx/pwJdIQGPjZvLiSHSU5p66VuOnrosD6 Q==;
-X-CSE-ConnectionGUID: 0Gi7V+M9SUWw5K301ZU34Q==
-X-CSE-MsgGUID: sn1cT1OCQGm7E9maM4653w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="44376700"
-X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; d="scan'208";a="44376700"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 03:44:01 -0800
-X-CSE-ConnectionGUID: rv1XKFvQRG6CP7emSh0dvA==
-X-CSE-MsgGUID: BuiED4j4TGuCVYuKCXkQnw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; d="scan'208";a="131499506"
-Received: from nirmoyda-desk.igk.intel.com ([10.211.135.230])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 03:44:00 -0800
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Nirmoy Das <nirmoy.das@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, stable@vger.kernel.org,
- Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v2 2/2] drm/xe: Wait for migration job before unmapping pages
-Date: Thu,  5 Dec 2024 13:02:53 +0100
-Message-ID: <20241205120253.2015537-2-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20241205120253.2015537-1-nirmoy.das@intel.com>
-References: <20241205120253.2015537-1-nirmoy.das@intel.com>
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com
+ [209.85.219.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 104C310E3A7
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Dec 2024 11:49:07 +0000 (UTC)
+Received: by mail-yb1-f174.google.com with SMTP id
+ 3f1490d57ef6-e3983426f80so918392276.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 05 Dec 2024 03:49:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1733399346; x=1734004146; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=NNosSFnZWS3/0rAeqPqg7jsw4r2V2KBYZ8N3XXPfXDA=;
+ b=YdPXOdsBGs57nbbNkkTib77JjPIqWumVwCK1rOOIIJFSd4km5EvL+1kCH8W6mF7A9O
+ gPTy4CzS+adzqxPY3IK1QyyPDeDC2dc9GD2JR1zSkrPyFRdog12wmDv2Ruhg5X3c/uFP
+ PWtbQZVxShsMq3ZaIM2+fWQGGoS6swGH6GKmBUd8YEfCBRBZiHpsy1K1Mc32MInbc6B8
+ Rs19olJ7RF01IwjpdiETwI6TaoxDl0Relb4EefBI0nEtgGI867tiDKLbFkU5K+rkAM12
+ KcBE9MFYDIvlokdSXfuqoS6tx+8wrXOifCX7ZBUo9T5T7CELLIkME+1+zEsi59AWKz8Q
+ lP8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1733399346; x=1734004146;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=NNosSFnZWS3/0rAeqPqg7jsw4r2V2KBYZ8N3XXPfXDA=;
+ b=qL+Um6CgD21X2GBMGfRI7xDoOQ7nVzPqNKE8agtJZd6LCbMyoetgOADX7SD9GJd4C1
+ aGYtu4MtTS54cbWOTo83ogATIskA2gzlYw7dxPpAB/zS/PouLp7PQWVFFERUc/9Vwwf2
+ Hntnowv37iyQheCRst1jb+JWW4wk1IgicW7iKQrrCbibOzU7Lg0TNqKu+Y/gWVX/9k9Q
+ vVbbZwklxS2JkPMdPpi1brz58hEWhW8ZzurBgah2MMwvN3c2lY/gGRTzbRSohsn8mO9K
+ Kh5s75SQobRO+VNlwxmuLkxEGShxVvGvXjIin4sPYCb+qSrBw4h1qvomkCAiKiysDkrg
+ D90g==
+X-Gm-Message-State: AOJu0YyqGPFu6WyKXBELnBd5cgnEYK/r6cHTXcyYIzaTWdowwI54X1vP
+ TCBdw5BS4+jFpoJzUNSE/Vzywp/qz54I3pQXS/RRocxsvn7S3KyD0rCHmevWeyyEajKeqZ8O9n8
+ 35AjodLF1sR7G1ZNXmLfE4CMqeIUFC1cYppLfoA==
+X-Gm-Gg: ASbGncuZlBVS/KKdVOLBKHVhoTo1tWFf3/i8SAQJ5JhpBJB9dfdnm3Mijcx8/s0XIIa
+ GJkynF3Fah71nUI3TetEe7EQ8s1pFdzcHvjQ2DJDY2axngA==
+X-Google-Smtp-Source: AGHT+IHsLDGCMgyHpl+ta8rwvROml6H1/zc0wRlaH4TAJqr+AXvmTTlfjU7Jmp6XmRkiRCRFiAxwe2sKkZpUsmLrYso=
+X-Received: by 2002:a05:6902:2b02:b0:e39:8b10:30d0 with SMTP id
+ 3f1490d57ef6-e39d4386826mr9937682276.44.1733399346113; Thu, 05 Dec 2024
+ 03:49:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
-Content-Transfer-Encoding: 8bit
+References: <20241204091456.1785858-1-arun.r.murthy@intel.com>
+ <s3gkb36ga2pxmxocrhcjp5pcgbewx4x3joiyrpld3th4r4fvyi@rkpgbu4ekst3>
+ <IA0PR11MB7307F22883ACF3AD873C3697BA302@IA0PR11MB7307.namprd11.prod.outlook.com>
+In-Reply-To: <IA0PR11MB7307F22883ACF3AD873C3697BA302@IA0PR11MB7307.namprd11.prod.outlook.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 5 Dec 2024 13:48:55 +0200
+Message-ID: <CAA8EJpp4HjyEL9XSLzXr6tG7+8M2FmZO1S2WrLXmP64J_aKs-w@mail.gmail.com>
+Subject: Re: [PATCHv2 01/10] drm/crtc: Add histogram properties
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,46 +79,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There could be still migration job going on while doing
-xe_tt_unmap_sg() which could trigger GPU page faults. Fix this by
-waiting for the migration job to finish.
+On Thu, 5 Dec 2024 at 09:58, Murthy, Arun R <arun.r.murthy@intel.com> wrote:
+>
+>
+>
+> > -----Original Message-----
+> > From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > Sent: Wednesday, December 4, 2024 5:17 PM
+> > To: Murthy, Arun R <arun.r.murthy@intel.com>
+> > Cc: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; dri-
+> > devel@lists.freedesktop.org
+> > Subject: Re: [PATCHv2 01/10] drm/crtc: Add histogram properties
+> >
+> > On Wed, Dec 04, 2024 at 02:44:56PM +0530, Arun R Murthy wrote:
+> > > Add variables for histogram drm_property, its corrsponding crtc_state
+> > > variables and define the structure pointed by the blob property.
+> > > struct drm_histogram defined in include/uapi/drm/drm_mode.h The blob
+> > > data pointer will be the address of the struct drm_histogram.
+> > > The struct drm_histogram will be used for both reading the histogram
+> > > and writing the image enhanced data.
+> > > struct drm_histogram {
+> > >     u64 data_ptr;
+> > >     u32 nr_elements;
+> > > }
+> > > The element data_ptr holds the address of the histogram statistics
+> > > data and 'nr_elements' represents the number of elements pointed by
+> > > the pointer held in data_ptr.
+> > > The same element data_ptr in teh struct drm_histogram when writing the
+> > > image enahnced data from user to KMD holds the address to pixel factor.
+> > >
+> > > v2: Added blob description in commit message (Dmitry)
+> >
+> > No, it is not a proper description. What is the actual data format inside the
+> > blob? If I were to implement drm_histogram support for e.g.
+> > VKMS, what kind of data should the driver generate? What is the format of the
+> > response data from the userspace app? The ABI description should allow an
+> > independent but completely compatible implementation to be written from
+> > scratch.
+> >
+> The histogram is generated by the hardware.
+> Histogram represents integer which is the pixel count and when it comes to
+> the IET(Image Enhancement) to be written back to hardware its again an
+> integer, pixel factor.
+> Is this the information that you expected to be added or something else?
 
-v2: Use intr=false(Matt A)
+You are defining the interface between the kernel and userspace. The
+interface should be defined in a way that allows us (developers) to
+understand the data, make a decision whether it fits a generic
+namespace (which means that other drivers must be able to implement
+the same interface), it fits namespace specific to i915 / Xe (then we
+will have platform-specific properties for the feature that might be
+implemented by other platforms) or it doesn't fit anything at all.
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3466
-Fixes: 75521e8b56e8 ("drm/xe: Perform dma_map when moving system buffer objects to TT")
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: <stable@vger.kernel.org> # v6.11+
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+So the documentation must contain the specification of the binary data
+inside the blobs. An IGT, modetest or some other compositor must be
+able to parse the data and generate (some) response without using your
+library.
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index b2aa368a23f8..c906a5529db0 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -857,8 +857,16 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 
- out:
- 	if ((!ttm_bo->resource || ttm_bo->resource->mem_type == XE_PL_SYSTEM) &&
--	    ttm_bo->ttm)
-+	    ttm_bo->ttm) {
-+		long timeout = dma_resv_wait_timeout(ttm_bo->base.resv,
-+						     DMA_RESV_USAGE_BOOKKEEP,
-+						     false,
-+						     MAX_SCHEDULE_TIMEOUT);
-+		if (timeout < 0)
-+			ret = timeout;
-+
- 		xe_tt_unmap_sg(ttm_bo->ttm);
-+	}
- 
- 	return ret;
- }
+>
+> > BTW: something is really wrong with the way you are sending the patchset. For
+> > this iteration I see only two patches with no threading.
+> > Please stop playing with individual versions of the patches, generate and send
+> > the patchset via a single invocation of git send-email (or git format-patches / git
+> > send-email). The version is a version of the patchset, not some other number.
+> > You can use the b4 tool which can handle everything for you.
+> Sorry, will send the entire patchset in future.
+>
+> Thanks and Regards,
+> Arun R Murthy
+> -------------------
+
+
+
 -- 
-2.46.0
-
+With best wishes
+Dmitry
