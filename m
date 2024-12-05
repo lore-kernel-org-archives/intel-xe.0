@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFDACE77170
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 18:27:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23420E77170
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Dec 2024 18:27:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF5D010EF68;
-	Thu,  5 Dec 2024 18:27:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E32A310EF6A;
+	Thu,  5 Dec 2024 18:27:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AUPuA33S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cT+PgbBc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E2F510EF68
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Dec 2024 18:27:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3E9E10EF6A
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Dec 2024 18:27:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733423246; x=1764959246;
+ t=1733423250; x=1764959250;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xthot4pB+grDe/eZqqqIDNXZ1fpmo6oFA16lobFDblg=;
- b=AUPuA33SGD95aEJ+u516G6SQT4ArGNVNZfirAs4NSBbc+fw63UbzJxk/
- PoprzSpBd9ROOlExmaZ2+cTvpuAVzU+J9Se7XtBsqMwdj6UHoDvldca2v
- TsnirK2sxMCE3qEhyGiPMiiDSe9iXX0DYuY2JCUykb9FxXGt1pwqh7sWF
- tJTkCTVFCXnoq2kazZRKkdXDmy0Sl67qYFR3Jp01+Sa1MTF3y+QCKCeRh
- JBQetdt8ooPmJYCq41GEfQueMLhZ23M7xtkgnoxvrB9N2g1Z0MqTcFMzh
- ZKEvTImdWC9A8vJ3/7vxaWB91wt/dq2kwiBtutkI2hpg8p1wF7FmrPaWy w==;
-X-CSE-ConnectionGUID: aIREXoxAQ7+2by8VK6lpTg==
-X-CSE-MsgGUID: 4HUBQSOfTT+kl0H/F7IqqA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11277"; a="45134297"
-X-IronPort-AV: E=Sophos;i="6.12,211,1728975600"; d="scan'208";a="45134297"
+ bh=Ax2K5VumwCRN0EwU71G6uCruTDO+FmKCN+E+8gxlZkk=;
+ b=cT+PgbBcquqUfBkQr7pFIyozE3T836WeAOZFOo+CJ5QdCvTcNJvmxzgH
+ 12rHnNFwLuV7CoOxRDCKzpHS0cB6s2REzWayW0dDZO2UdHErmvEBHbLHJ
+ Lc8a8MLy6pkMXhGAZxaJvtgIqxAkiMkCHINV9XBLBVMMzPS+giW04n1K2
+ ltDDzt22FUnTzFU8Tg8V/KD0Fz9wVil2mN/x3cadqCG4DhR7oTZ23QWzZ
+ zSzPy/K+gsN+lvtv+DCkbRdfsNe02Y0oaOmgNf7a6LIhlzhnT/qtEHgHM
+ dH2L7JnjC4t1BL/QHiCzfJFdhElmF+ReG5SEjrysY/suQezJdRhtswYoB w==;
+X-CSE-ConnectionGUID: zk9wk9iIR4KfCTd1zyKNFg==
+X-CSE-MsgGUID: Fph5jzKATcuZ6BLXTd+6GA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11277"; a="45134312"
+X-IronPort-AV: E=Sophos;i="6.12,211,1728975600"; d="scan'208";a="45134312"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 10:27:25 -0800
-X-CSE-ConnectionGUID: jBOPBAJfTAemWeZ0rgASwQ==
-X-CSE-MsgGUID: g0NjET2eTPudbW1eEH3nGQ==
+ 05 Dec 2024 10:27:30 -0800
+X-CSE-ConnectionGUID: hWsfSGEQQNamCyCfQvlupw==
+X-CSE-MsgGUID: tNKkrguuT4yKybfOyXNU9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,211,1728975600"; d="scan'208";a="94618182"
+X-IronPort-AV: E=Sophos;i="6.12,211,1728975600"; d="scan'208";a="94618193"
 Received: from tmistat-dev.igk.intel.com ([10.211.135.226])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 10:27:23 -0800
+ 05 Dec 2024 10:27:27 -0800
 From: Jakub Kolakowski <jakub1.kolakowski@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Jakub Kolakowski <jakub1.kolakowski@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Adam Miszczak <adam.miszczak@linux.intel.com>,
  Lukasz Laguna <lukasz.laguna@intel.com>,
  Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Michal Winiarski <michal.winiarski@intel.com>,
  Narasimha C V <narasimha.c.v@intel.com>,
+ Piotr Piorkowski <piotr.piorkowski@intel.com>,
  Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Tomasz Lis <tomasz.lis@intel.com>, Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH 1/2] drm/xe/vf: Don't check has flat ccs in bios on VF
-Date: Thu,  5 Dec 2024 18:18:13 +0000
-Message-Id: <20241205181814.1484975-2-jakub1.kolakowski@intel.com>
+Subject: [PATCH 2/2] drm/xe/vf: Don't apply Wa_22019338487 for VF
+Date: Thu,  5 Dec 2024 18:18:14 +0000
+Message-Id: <20241205181814.1484975-3-jakub1.kolakowski@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241205181814.1484975-1-jakub1.kolakowski@intel.com>
 References: <20241205181814.1484975-1-jakub1.kolakowski@intel.com>
@@ -76,11 +76,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Don't check for flat ccs from VF-level as VF does not have direct
-access to the register.
+Don't use Wa_22019338487 for VF.
 
 Signed-off-by: Jakub Kolakowski <jakub1.kolakowski@intel.com>
-Suggested-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 Cc: Adam Miszczak <adam.miszczak@linux.intel.com>
 Cc: Jakub Kolakowski <jakub1.kolakowski@intel.com>
 Cc: Lukasz Laguna <lukasz.laguna@intel.com>
@@ -93,22 +91,22 @@ Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Tomasz Lis <tomasz.lis@intel.com>
 Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 930bb2750e2e..5d827b07cf02 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -600,7 +600,7 @@ static int probe_has_flat_ccs(struct xe_device *xe)
- 	u32 reg;
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 05154f9de1a6..11aba2437818 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -238,7 +238,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 	if (ggtt->size > GUC_GGTT_TOP)
+ 		ggtt->size = GUC_GGTT_TOP;
  
- 	/* Always enabled/disabled, no runtime check to do */
--	if (GRAPHICS_VER(xe) < 20 || !xe->info.has_flat_ccs)
-+	if (GRAPHICS_VER(xe) < 20 || !xe->info.has_flat_ccs || IS_SRIOV_VF(xe))
- 		return 0;
- 
- 	gt = xe_root_mmio_gt(xe);
+-	if (GRAPHICS_VERx100(xe) >= 1270)
++	if (GRAPHICS_VERx100(xe) >= 1270 && !IS_SRIOV_VF(xe))
+ 		ggtt->pt_ops = (ggtt->tile->media_gt &&
+ 			       XE_WA(ggtt->tile->media_gt, 22019338487)) ||
+ 			       XE_WA(ggtt->tile->primary_gt, 22019338487) ?
 -- 
 2.25.1
 
