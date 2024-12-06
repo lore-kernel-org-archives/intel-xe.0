@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEA5DE77173
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Dec 2024 20:57:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BCD6E77173
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Dec 2024 20:58:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D5E610F1C3;
-	Fri,  6 Dec 2024 20:57:06 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0678C10F1BD;
- Fri,  6 Dec 2024 20:57:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8F4110F1C3;
+	Fri,  6 Dec 2024 20:58:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="opdIpAAC";
+	dkim-atps=neutral
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AC2BD10E62D;
+ Fri,  6 Dec 2024 20:58:19 +0000 (UTC)
+Received: from [100.65.128.154] (unknown [20.236.11.102])
+ by linux.microsoft.com (Postfix) with ESMTPSA id 8B63620ACD7A;
+ Fri,  6 Dec 2024 12:58:18 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 8B63620ACD7A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1733518699;
+ bh=M9PuEUd7fHK0twjnpmT4sQ2WiGKSyXN5nPrU+06sRxI=;
+ h=Date:Cc:Subject:To:References:From:In-Reply-To:From;
+ b=opdIpAACnQeStJ33oACe6p52ZM8f0Sws7Fv8oVZEtnJ34oxYkj2Ifncn0UBE7+8VM
+ /Rer5IHWNKL+Om4cBhthsawIs+kQdevr3ykVw21CBvfVnNLhAZ1lcWLQbVr0aJDoH2
+ 0Lv+tHrW7mbf2ysXMzyMfTT7x/zNVB+cEVkkvmJU=
+Message-ID: <dab77729-682f-4182-9fb2-cd522ac29b5f@linux.microsoft.com>
+Date: Fri, 6 Dec 2024 12:58:17 -0800
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Cc: eahariha@linux.microsoft.com, netfilter-devel@vger.kernel.org,
+ coreteam@netfilter.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cocci@inria.fr,
+ linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-scsi@vger.kernel.org, xen-devel@lists.xenproject.org,
+ linux-block@vger.kernel.org, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org, linux-mm@kvack.org,
+ linux-bluetooth@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org,
+ live-patching@vger.kernel.org, linux-sound@vger.kernel.org,
+ etnaviv@lists.freedesktop.org, oss-drivers@corigine.com,
+ linuxppc-dev@lists.ozlabs.org, Anna-Maria Behnsen <anna-maria@linutronix.de>
+Subject: Re: [PATCH v2 00/21] Converge on using secs_to_jiffies()
+To: Przemek Kitszel <przemyslaw.kitszel@intel.com>
+References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
+ <b9fcb12a-b7a4-4c33-836e-67109ce07deb@intel.com>
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+Content-Language: en-US
+In-Reply-To: <b9fcb12a-b7a4-4c33-836e-67109ce07deb@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/display=3A_Rework_displ?=
- =?utf-8?q?ay_init_for_reducing_flickering=2E?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Dec 2024 20:57:05 -0000
-Message-ID: <173351862502.3465139.3366576753474757381@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241206185956.3290-1-dev@lankhorst.se>
-In-Reply-To: <20241206185956.3290-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +63,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 11/29/2024 4:57 AM, Przemek Kitszel wrote:
+> 
+> [removed most non-list recipients, it's just too much]
+> 
+> On 11/15/24 10:26 PM, Easwar Hariharan wrote:
+<snip>
+>>
+>> ---
+>> Changes in v2:
+>> - EDITME: describe what is new in this series revision.
+>> - EDITME: use bulletpoints and terse descriptions.
+>> - Link to v1: https://lore.kernel.org/r/20241115-converge-secs-to-
+>> jiffies-v1-0-19aadc34941b@linux.microsoft.com
+> 
+> that is not a proper changelog, you were supposed to edit those
+> placeholder entries; please look around for examples
+> 
+> There is also just too much recipients. Please split up your patches
+> into smaller pieces. You will also learn the process on a smaller
+> sample.
+> 
+> And definitively please wait for 48h before reposting such big series.
 
-Series: drm/xe/display: Rework display init for reducing flickering.
-URL   : https://patchwork.freedesktop.org/series/142241/
-State : success
+Yes, sorry, I sent out a v2 in a moment of panic on including the
+already accepted patch in v1. I failed to edit the changelog in that
+same panic. I'll try to not panic and do better in the future.
 
-== Summary ==
+> 
+> Regarding code - you could also convert msecs_to_jiffies(const * HZ),
+> there are 10 that are greppable.
+> 
 
-lib/modules/6.13.0-rc1-xe+/kernel/arch/x86/events/rapl.ko
-lib/modules/6.13.0-rc1-xe+/kernel/arch/x86/kvm/
-lib/modules/6.13.0-rc1-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.13.0-rc1-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.13.0-rc1-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.13.0-rc1-xe+/kernel/kernel/
-lib/modules/6.13.0-rc1-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/zstd.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/xctr.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/authenc.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/keywrap.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/sm3.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/cmac.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/essiv.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/ccm.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/wp512.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/lrw.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/vmac.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/842.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/md4.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/lz4.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/sm4.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/async_tx/
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.13.0-rc1-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.13.0-rc1-xe+/kernel/block/
-lib/modules/6.13.0-rc1-xe+/kernel/block/bfq.ko
-lib/modules/6.13.0-rc1-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.13.0-rc1-xe+/build
-lib/modules/6.13.0-rc1-xe+/modules.alias.bin
-lib/modules/6.13.0-rc1-xe+/modules.builtin
-lib/modules/6.13.0-rc1-xe+/modules.softdep
-lib/modules/6.13.0-rc1-xe+/modules.alias
-lib/modules/6.13.0-rc1-xe+/modules.order
-lib/modules/6.13.0-rc1-xe+/modules.symbols
-lib/modules/6.13.0-rc1-xe+/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1733518614:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1733518614:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Those seem to be mistakes. const*HZ is a seconds-denominated timeout,
+being passed to msecs_to_jiffies() which will treat it as a
+millisecond-denominated timeout resulting in an excessively long
+timeout. I suppose that's better than a too-short timeout, and
+apparently it's been working fine all along since hardware responds
+before the too-long timeout expires. Half of them are in
+drivers/scsi/arcmsr/arcmsr_hba.c and the pattern has apparently been
+there since 2010.
 
-
+Thanks,
+Easwar
