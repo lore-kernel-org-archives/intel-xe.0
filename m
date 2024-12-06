@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E9C8E77173
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Dec 2024 17:06:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0761E77173
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Dec 2024 17:22:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5994310E1D7;
-	Fri,  6 Dec 2024 17:06:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5316010F143;
+	Fri,  6 Dec 2024 17:22:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nxoLbwFa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M2fMiGib";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDFFF10E1D7
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Dec 2024 17:06:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54F0210F143
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Dec 2024 17:22:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733504775; x=1765040775;
- h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version;
- bh=uFi1R8iAP8rhkrfADWnhWbC2mZ2+YAVtLBpqqSVPAxk=;
- b=nxoLbwFa7tI5tE4ZAAinULWajckjuuOIka4nJM/I0CV6RYR2AgHmCybv
- a72d2Ntag4jQrMdamU+5sJIw8uuCfuIxy5jmcqMzmqkrYxypOvzQh1998
- BiLYkAu7aTE6+osOB2jDHyuAbHW8U6lmFGZm3t1XJpX6ox5CraTheDfLl
- eTlVMsUcPGVjHOJxhEE3TV1uySjcrtaElJPm8e0qV6ne/X1z6fg/YhLg5
- QG6ksS8EQ+A2icAxkM8UO6lPfiEVyfwRmz7C6hiI1zfrFk4XMA4LZgLa0
- h9QZ9bJvpi7i9ETwamsu5Ykq6zFx9zBJvsAucq63LMbsOt5x+49CXRPhH g==;
-X-CSE-ConnectionGUID: P1dnYVzmSZubqrRcZJSzHQ==
-X-CSE-MsgGUID: 7oNzQEttRlG+TNBqZ2lahQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11278"; a="51401096"
-X-IronPort-AV: E=Sophos;i="6.12,213,1728975600"; d="scan'208";a="51401096"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2024 09:06:14 -0800
-X-CSE-ConnectionGUID: 0haPLnJxQhag+NpRhCqC7Q==
-X-CSE-MsgGUID: 4tBrHw4+T0Gnld6dXnlRdQ==
+ t=1733505743; x=1765041743;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=fmVbDLHxqu1tVnYoUr+TEKsQNro7LPr6oEZvlTPVw9g=;
+ b=M2fMiGibTr2WYcmmkf5TIxXlX5a4VSmtSczxZnejstNe4lqDFKf+R+mK
+ JZmL1gcceavI4kev+VkKdFX9dWltzOYXH2eM11NKePwjGLCNO7D6Nc19P
+ FfOgfCf0tl30U9OD+Ts1jt3vOlGkGUj3MfGo3zU+MSvxocSA3csVA2yUQ
+ Pj9y2vY2ECjUhWwC/ZqeV1B7IIoqUdWkAX235heiwv39Kkf+2XgRIjucG
+ pvafY+8LfDoc4eICjMbxZQ1nfI48jU/cOTZBIj0oll5HaYLRh16B7E9X2
+ SGhheDRc1CXKH7MBzrv1avkNjraNbJJgpfQMTYXFcnmvl1K/AVRbfXAoR g==;
+X-CSE-ConnectionGUID: vIhFITROTGaHzFvsy5EKHw==
+X-CSE-MsgGUID: Pb/St2I+RCCb0jp6HpNvNw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11278"; a="44475357"
+X-IronPort-AV: E=Sophos;i="6.12,213,1728975600"; d="scan'208";a="44475357"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2024 09:22:23 -0800
+X-CSE-ConnectionGUID: IsVLuPstTlmRivgt/gTpkg==
+X-CSE-MsgGUID: p2KjitTiQw6ytOHg8lIkiw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="99499634"
-Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
- ([10.165.21.142])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2024 09:06:15 -0800
-Date: Fri, 06 Dec 2024 09:06:14 -0800
-Message-ID: <85ikrw3fnd.wl-ashutosh.dixit@intel.com>
-From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Gupta,\
- saurabhg" <saurabhg.gupta@intel.com>, "Zuo, Alex" <alex.zuo@intel.com>,
- "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>,
- "Harrison, John\ C" <john.c.harrison@intel.com>, "Roper, Matthew D"
- <matthew.d.roper@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,213,1728975600"; d="scan'208";a="94327812"
+Received: from unknown (HELO ldmartin-desk2) ([10.24.12.179])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2024 09:22:23 -0800
+Date: Fri, 6 Dec 2024 11:22:17 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Cc: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Gupta,
+ saurabhg" <saurabhg.gupta@intel.com>, 
+ "Zuo, Alex" <alex.zuo@intel.com>, "Nerlige Ramappa,
+ Umesh" <umesh.nerlige.ramappa@intel.com>, 
+ "Harrison, John C" <john.c.harrison@intel.com>, "Roper,
+ Matthew D" <matthew.d.roper@intel.com>, 
+ Thomas Hellstrom <thomas.hellstrom@intel.com>
 Subject: Re: [PATCH v3] drm/xe/xe_guc_ads: Add nonpriv registers to write list
-In-Reply-To: <7bm4nksegt4vlbq5s4ze4ivzq3u66qb3wsuozb5ytk7fe2uy44@xybhcfgpz32r>
+Message-ID: <rtps642hcji6flwf2ugz4cpvwjh77qmvjg44yobv7uoij2rwno@kx4ozdr4l6ol>
 References: <20241122180826.7075-1-jonathan.cavitt@intel.com>
  <85ttbl3jvv.wl-ashutosh.dixit@intel.com>
  <CH0PR11MB544416674720232DB8B7B8ABE5352@CH0PR11MB5444.namprd11.prod.outlook.com>
  <85r06o3026.wl-ashutosh.dixit@intel.com>
  <7bm4nksegt4vlbq5s4ze4ivzq3u66qb3wsuozb5ytk7fe2uy44@xybhcfgpz32r>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
- Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
+ <85ikrw3fnd.wl-ashutosh.dixit@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <85ikrw3fnd.wl-ashutosh.dixit@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,96 +78,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 03 Dec 2024 14:11:11 -0800, Lucas De Marchi wrote:
->
-> On Tue, Dec 03, 2024 at 01:53:53PM -0800, Ashutosh Dixit wrote:
-> > On Mon, 02 Dec 2024 13:11:21 -0800, Cavitt, Jonathan wrote:
-> >>
-> >> -----Original Message-----
-> >> From: Dixit, Ashutosh <ashutosh.dixit@intel.com>
-> >> Sent: Monday, December 2, 2024 12:33 PM
-> >> To: Cavitt, Jonathan <jonathan.cavitt@intel.com>
-> >> Cc: intel-xe@lists.freedesktop.org; Gupta, saurabhg <saurabhg.gupta@intel.com>; Zuo, Alex <alex.zuo@intel.com>; Nerlige Ramappa, Umesh <umesh.nerlige.ramappa@intel.com>; Harrison, John C <john.c.harrison@intel.com>; Roper, Matthew D <matthew.d.roper@intel.com>; De Marchi, Lucas <lucas.demarchi@intel.com>
-> >> Subject: Re: [PATCH v3] drm/xe/xe_guc_ads: Add nonpriv registers to write list
-> >> >
-> >> > On Fri, 22 Nov 2024 10:08:26 -0800, Jonathan Cavitt wrote:
-> >> > >
-> >> > > When performing a guc_mmio_regset_write, we add all the registers in the
-> >> > > reg_sr list to the save/restore list, but do not do the same for the
-> >> > > nonpriv registers.  Add them in.
-> >> > >
-> >> > > v2:
-> >> > > - Add all NONPRIV registers to avoid undefined behavior (Harrison)
-> >> > > - s/whitelist/nonpriv
-> >> > >
-> >> > > v3:
-> >> > > - Rebase
-> >> > >
-> >> > > Closes: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2249
-> >> > > Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> >> > > CC: Lucas de Marchi <lucas.demarchi@intel.com>
-> >> > > CC: Matt Roper <matthew.d.roper@intel.com>
-> >> > > CC: John Harrison <john.c.harrison@intel.com>
-> >> > > CC: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> >> > > CC: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> >> > > Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
++Thomas
 
-Hmm this should have had a Cc: stable@vger.kernel.org on it. Because it
-didn't, now it should be sent separately following the process here:
+Can you pick this one to drm-xe-fixes and add the Cc?
 
-https://www.kernel.org/doc/html/v4.15/process/stable-kernel-rules.html
+thanks
+Lucas De Marchi
 
-
-> >> > > ---
-> >> > >  drivers/gpu/drm/xe/xe_guc_ads.c | 7 +++++++
-> >> > >  1 file changed, 7 insertions(+)
-> >> > >
-> >> > > diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-> >> > > index 943146e5b460..b0afb89d9d90 100644
-> >> > > --- a/drivers/gpu/drm/xe/xe_guc_ads.c
-> >> > > +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-> >> > > @@ -243,6 +243,8 @@ static size_t calculate_regset_size(struct xe_gt *gt)
-> >> > >		xa_for_each(&hwe->reg_sr.xa, sr_idx, sr_entry)
-> >> > >			count++;
-> >> > >
-> >> > > +	count += RING_MAX_NONPRIV_SLOTS * XE_NUM_HW_ENGINES;
-> >> > > +
-> >> > >	count += ADS_REGSET_EXTRA_MAX * XE_NUM_HW_ENGINES;
-> >> > >
-> >> > >	if (XE_WA(gt, 1607983814))
-> >> > > @@ -727,6 +729,11 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
-> >> > >	xa_for_each(&hwe->reg_sr.xa, idx, entry)
-> >> > >		guc_mmio_regset_write_one(ads, regset_map, entry->reg, count++);
-> >> > >
-> >> > > +	for (i = 0; i < RING_MAX_NONPRIV_SLOTS; i++)
-> >> > > +		guc_mmio_regset_write_one(ads, regset_map,
-> >> > > +					  RING_FORCE_TO_NONPRIV(hwe->mmio_base, i),
-> >> > > +					  count++);
-> >> > > +
-> >> >
-> >> > What about the EU_PERF_CNTL registers which were there in the original
-> >> > patch? Those are not needed?
-> >>
-> >> It turned out they weren't.  At least not for this use case.
-> >> They might be needed later for a different issue, but right now we aren't
-> >> observing any issues caused by their absence.
-> >
-> > Ok, let's keep this patch restricted to the nonprov registers.
+On Fri, Dec 06, 2024 at 09:06:14AM -0800, Ashutosh Dixit wrote:
+>On Tue, 03 Dec 2024 14:11:11 -0800, Lucas De Marchi wrote:
+>>
+>> On Tue, Dec 03, 2024 at 01:53:53PM -0800, Ashutosh Dixit wrote:
+>> > On Mon, 02 Dec 2024 13:11:21 -0800, Cavitt, Jonathan wrote:
+>> >>
+>> >> -----Original Message-----
+>> >> From: Dixit, Ashutosh <ashutosh.dixit@intel.com>
+>> >> Sent: Monday, December 2, 2024 12:33 PM
+>> >> To: Cavitt, Jonathan <jonathan.cavitt@intel.com>
+>> >> Cc: intel-xe@lists.freedesktop.org; Gupta, saurabhg <saurabhg.gupta@intel.com>; Zuo, Alex <alex.zuo@intel.com>; Nerlige Ramappa, Umesh <umesh.nerlige.ramappa@intel.com>; Harrison, John C <john.c.harrison@intel.com>; Roper, Matthew D <matthew.d.roper@intel.com>; De Marchi, Lucas <lucas.demarchi@intel.com>
+>> >> Subject: Re: [PATCH v3] drm/xe/xe_guc_ads: Add nonpriv registers to write list
+>> >> >
+>> >> > On Fri, 22 Nov 2024 10:08:26 -0800, Jonathan Cavitt wrote:
+>> >> > >
+>> >> > > When performing a guc_mmio_regset_write, we add all the registers in the
+>> >> > > reg_sr list to the save/restore list, but do not do the same for the
+>> >> > > nonpriv registers.  Add them in.
+>> >> > >
+>> >> > > v2:
+>> >> > > - Add all NONPRIV registers to avoid undefined behavior (Harrison)
+>> >> > > - s/whitelist/nonpriv
+>> >> > >
+>> >> > > v3:
+>> >> > > - Rebase
+>> >> > >
+>> >> > > Closes: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2249
+>> >> > > Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+>> >> > > CC: Lucas de Marchi <lucas.demarchi@intel.com>
+>> >> > > CC: Matt Roper <matthew.d.roper@intel.com>
+>> >> > > CC: John Harrison <john.c.harrison@intel.com>
+>> >> > > CC: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> >> > > CC: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>> >> > > Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 >
-> applied, thanks.
+>Hmm this should have had a Cc: stable@vger.kernel.org on it. Because it
+>didn't, now it should be sent separately following the process here:
+>
+>https://www.kernel.org/doc/html/v4.15/process/stable-kernel-rules.html
 >
 >
->
-> Lucas De Marchi
->
-> >
-> >
-> >>
-> >> >
-> >> > >	for (e = extra_regs; e < extra_regs + ARRAY_SIZE(extra_regs); e++) {
-> >> > >		if (e->skip)
-> >> > >			continue;
-> >> > > --
-> >> > > 2.43.0
-> >> > >
-> >> >
+>> >> > > ---
+>> >> > >  drivers/gpu/drm/xe/xe_guc_ads.c | 7 +++++++
+>> >> > >  1 file changed, 7 insertions(+)
+>> >> > >
+>> >> > > diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+>> >> > > index 943146e5b460..b0afb89d9d90 100644
+>> >> > > --- a/drivers/gpu/drm/xe/xe_guc_ads.c
+>> >> > > +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+>> >> > > @@ -243,6 +243,8 @@ static size_t calculate_regset_size(struct xe_gt *gt)
+>> >> > >		xa_for_each(&hwe->reg_sr.xa, sr_idx, sr_entry)
+>> >> > >			count++;
+>> >> > >
+>> >> > > +	count += RING_MAX_NONPRIV_SLOTS * XE_NUM_HW_ENGINES;
+>> >> > > +
+>> >> > >	count += ADS_REGSET_EXTRA_MAX * XE_NUM_HW_ENGINES;
+>> >> > >
+>> >> > >	if (XE_WA(gt, 1607983814))
+>> >> > > @@ -727,6 +729,11 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
+>> >> > >	xa_for_each(&hwe->reg_sr.xa, idx, entry)
+>> >> > >		guc_mmio_regset_write_one(ads, regset_map, entry->reg, count++);
+>> >> > >
+>> >> > > +	for (i = 0; i < RING_MAX_NONPRIV_SLOTS; i++)
+>> >> > > +		guc_mmio_regset_write_one(ads, regset_map,
+>> >> > > +					  RING_FORCE_TO_NONPRIV(hwe->mmio_base, i),
+>> >> > > +					  count++);
+>> >> > > +
+>> >> >
+>> >> > What about the EU_PERF_CNTL registers which were there in the original
+>> >> > patch? Those are not needed?
+>> >>
+>> >> It turned out they weren't.  At least not for this use case.
+>> >> They might be needed later for a different issue, but right now we aren't
+>> >> observing any issues caused by their absence.
+>> >
+>> > Ok, let's keep this patch restricted to the nonprov registers.
+>>
+>> applied, thanks.
+>>
+>>
+>>
+>> Lucas De Marchi
+>>
+>> >
+>> >
+>> >>
+>> >> >
+>> >> > >	for (e = extra_regs; e < extra_regs + ARRAY_SIZE(extra_regs); e++) {
+>> >> > >		if (e->skip)
+>> >> > >			continue;
+>> >> > > --
+>> >> > > 2.43.0
+>> >> > >
+>> >> >
