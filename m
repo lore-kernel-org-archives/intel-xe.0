@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E4A7E77173
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Dec 2024 19:35:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24936E77173
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Dec 2024 19:35:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5231F10E619;
-	Fri,  6 Dec 2024 19:35:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E815E10E619;
+	Fri,  6 Dec 2024 19:35:31 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3BDC10E619;
- Fri,  6 Dec 2024 19:35:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE45210E619;
+ Fri,  6 Dec 2024 19:35:30 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display=3A_Re?=
- =?utf-8?q?-use_display_vmas_when_possible_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/display=3A_Re-use_?=
+ =?utf-8?q?display_vmas_when_possible_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Dec 2024 19:35:13 -0000
-Message-ID: <173351371366.3446371.13295327879916156271@b555e5b46a47>
+Date: Fri, 06 Dec 2024 19:35:30 -0000
+Message-ID: <173351373070.3439572.4942498188577787447@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241206182032.196307-1-dev@lankhorst.se>
 In-Reply-To: <20241206182032.196307-1-dev@lankhorst.se>
@@ -44,13 +44,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/display: Re-use display vmas when possible (rev3)
 URL   : https://patchwork.freedesktop.org/series/136033/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 261a0301bda5 drm-tip: 2024y-12m-06d-17h-11m-13s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/display: Re-use display vmas when possible
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a84e4c346e3848286616faace97ce6aeefcc7e00
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Fri Dec 6 19:20:32 2024 +0100
+
+    drm/xe/display: Re-use display vmas when possible
+    
+    i915 has this really nice, infrastructure where everything becomes
+    complicated, GGTT needs eviction, etc..
+    
+    Lets not do that, and make the dumbest possible interface instead.
+    Try to retrieve the VMA from old_plane_state, or intel_fbdev if kernel
+    fb.
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 261a0301bda5af29477bd710465a8886e8609a4d drm-intel
+a84e4c346e38 drm/xe/display: Re-use display vmas when possible
+-:175: ERROR:CODE_INDENT: code indent should use tabs where possible
+#175: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:395:
++^I            sizeof(new_plane_state->view.gtt))) {$
+
+total: 1 errors, 0 warnings, 0 checks, 163 lines checked
 
 
