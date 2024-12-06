@@ -4,21 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61B07E77180
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Dec 2024 18:59:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B86EEE7717B
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Dec 2024 18:59:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5D8F10F180;
-	Fri,  6 Dec 2024 18:59:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CC8310F178;
+	Fri,  6 Dec 2024 18:59:24 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C60410F174;
- Fri,  6 Dec 2024 18:59:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A38410F171;
+ Fri,  6 Dec 2024 18:59:23 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 3/5] drm/xe: Move suballocator init to after display init
-Date: Fri,  6 Dec 2024 19:59:54 +0100
-Message-ID: <20241206185956.3290-4-dev@lankhorst.se>
+Cc: intel-gfx@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH 1/5] drm/xe/display: Add intel_plane_initial_vblank_wait
+Date: Fri,  6 Dec 2024 19:59:52 +0100
+Message-ID: <20241206185956.3290-2-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241206185956.3290-1-dev@lankhorst.se>
 References: <20241206185956.3290-1-dev@lankhorst.se>
@@ -38,76 +38,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-No allocations should be done before we have had a chance to preserve
-the display fb.
+We're changing the driver to have no interrupts during early init for
+Xe, so we poll the PIPE_FRMSTMSMP counter instead.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c |  6 ++++++
- drivers/gpu/drm/xe/xe_tile.c   | 12 ++++++++----
- drivers/gpu/drm/xe/xe_tile.h   |  1 +
- 3 files changed, 15 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  |  6 +++---
+ .../drm/i915/display/intel_plane_initial.c    |  7 ++++++-
+ .../drm/i915/display/intel_plane_initial.h    |  2 ++
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 19 ++++++++++++++++++-
+ 4 files changed, 29 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 56d4ffb650dad..c1b4601a14779 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -732,6 +732,12 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 28c1b372cc954..079d1631c7893 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -796,7 +796,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
+ 	if ((crtc_state->active_planes & ~BIT(PLANE_CURSOR)) == 0 &&
+ 	    hsw_ips_disable(crtc_state)) {
+ 		crtc_state->ips_enabled = false;
+-		intel_crtc_wait_for_next_vblank(crtc);
++		intel_plane_initial_vblank_wait(crtc);
+ 	}
  
-+	for_each_tile(tile, xe, id) {
-+		err = xe_tile_init(tile);
-+		if (err)
-+			goto err;
-+	}
-+
- 	for_each_gt(gt, xe, id) {
- 		last_gt = id;
+ 	/*
+@@ -810,7 +810,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
+ 	 */
+ 	if (HAS_GMCH(dev_priv) &&
+ 	    intel_set_memory_cxsr(dev_priv, false))
+-		intel_crtc_wait_for_next_vblank(crtc);
++		intel_plane_initial_vblank_wait(crtc);
  
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 07cf7cfe4abd5..2825553b568f7 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -170,10 +170,6 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 	if (err)
- 		return err;
+ 	/*
+ 	 * Gen2 reports pipe underruns whenever all planes are disabled.
+@@ -820,7 +820,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
+ 		intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe, false);
  
--	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
--	if (IS_ERR(tile->mem.kernel_bb_pool))
--		return PTR_ERR(tile->mem.kernel_bb_pool);
--
- 	xe_wa_apply_tile_workarounds(tile);
- 
- 	err = xe_tile_sysfs_init(tile);
-@@ -181,6 +177,14 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 	return 0;
+ 	intel_plane_disable_arm(NULL, plane, crtc_state);
+-	intel_crtc_wait_for_next_vblank(crtc);
++	intel_plane_initial_vblank_wait(crtc);
  }
  
-+int xe_tile_init(struct xe_tile *tile)
+ unsigned int
+diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+index 6789b7f140952..b1675b46e06cb 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
++++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+@@ -14,6 +14,11 @@
+ #include "intel_frontbuffer.h"
+ #include "intel_plane_initial.h"
+ 
++void intel_plane_initial_vblank_wait(struct intel_crtc *crtc)
 +{
-+	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
-+	if (IS_ERR(tile->mem.kernel_bb_pool))
-+		return PTR_ERR(tile->mem.kernel_bb_pool);
-+
-+	return 0;
++	intel_crtc_wait_for_next_vblank(crtc);
 +}
- void xe_tile_migrate_wait(struct xe_tile *tile)
- {
- 	xe_migrate_wait(tile->migrate);
-diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
-index 1c9e42ade6b05..eb939316d55b0 100644
---- a/drivers/gpu/drm/xe/xe_tile.h
-+++ b/drivers/gpu/drm/xe/xe_tile.h
-@@ -12,6 +12,7 @@ struct xe_tile;
++
+ static bool
+ intel_reuse_initial_plane_obj(struct intel_crtc *this,
+ 			      const struct intel_initial_plane_config plane_configs[],
+@@ -442,7 +447,7 @@ void intel_initial_plane_config(struct intel_display *display)
+ 		intel_find_initial_plane_obj(crtc, plane_configs);
  
- int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id);
- int xe_tile_init_noalloc(struct xe_tile *tile);
-+int xe_tile_init(struct xe_tile *tile);
+ 		if (display->funcs.display->fixup_initial_plane_config(crtc, plane_config))
+-			intel_crtc_wait_for_next_vblank(crtc);
++			intel_plane_initial_vblank_wait(crtc);
  
- void xe_tile_migrate_wait(struct xe_tile *tile);
+ 		plane_config_fini(plane_config);
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.h b/drivers/gpu/drm/i915/display/intel_plane_initial.h
+index 6c6aa717ed21f..5c315acda2101 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane_initial.h
++++ b/drivers/gpu/drm/i915/display/intel_plane_initial.h
+@@ -6,8 +6,10 @@
+ #ifndef __INTEL_PLANE_INITIAL_H__
+ #define __INTEL_PLANE_INITIAL_H__
  
++struct intel_crtc;
+ struct intel_display;
+ 
+ void intel_initial_plane_config(struct intel_display *display);
++void intel_plane_initial_vblank_wait(struct intel_crtc *crtc);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 2eb9633f163a7..a22e7adfb09d9 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -8,7 +8,9 @@
+ 
+ #include "regs/xe_gtt_defs.h"
+ #include "xe_ggtt.h"
++#include "xe_mmio.h"
+ 
++#include "i915_reg.h"
+ #include "intel_atomic_plane.h"
+ #include "intel_crtc.h"
+ #include "intel_display.h"
+@@ -22,6 +24,21 @@
+ 
+ #include <generated/xe_wa_oob.h>
+ 
++void intel_plane_initial_vblank_wait(struct intel_crtc *crtc)
++{
++	/* Early xe has no irq */
++	struct xe_device *xe = to_xe_device(crtc->base.dev);
++	struct xe_reg pipe_frmtmstmp = XE_REG(i915_mmio_reg_offset(PIPE_FRMTMSTMP(crtc->pipe)));
++	u32 timestamp;
++	int ret;
++
++	timestamp = xe_mmio_read32(xe_root_tile_mmio(xe), pipe_frmtmstmp);
++
++	ret = xe_mmio_wait32_not(xe_root_tile_mmio(xe), pipe_frmtmstmp, ~0U, timestamp, 40000U, &timestamp, false);
++	if (ret < 0)
++		drm_warn(&xe->drm, "waiting for early vblank failed with %i\n", ret);
++}
++
+ static bool
+ intel_reuse_initial_plane_obj(struct intel_crtc *this,
+ 			      const struct intel_initial_plane_config plane_configs[],
+@@ -303,7 +320,7 @@ void intel_initial_plane_config(struct intel_display *display)
+ 		intel_find_initial_plane_obj(crtc, plane_configs);
+ 
+ 		if (display->funcs.display->fixup_initial_plane_config(crtc, plane_config))
+-			intel_crtc_wait_for_next_vblank(crtc);
++			intel_plane_initial_vblank_wait(crtc);
+ 
+ 		plane_config_fini(plane_config);
+ 	}
 -- 
 2.45.2
 
