@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7E89E77179
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Dec 2024 18:59:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61B07E77180
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Dec 2024 18:59:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8435C10F173;
-	Fri,  6 Dec 2024 18:59:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5D8F10F180;
+	Fri,  6 Dec 2024 18:59:25 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD92710F171;
- Fri,  6 Dec 2024 18:59:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C60410F174;
+ Fri,  6 Dec 2024 18:59:24 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
-	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 0/5] drm/xe/display: Rework display init for reducing
- flickering.
-Date: Fri,  6 Dec 2024 19:59:51 +0100
-Message-ID: <20241206185956.3290-1-dev@lankhorst.se>
+Cc: intel-gfx@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 3/5] drm/xe: Move suballocator init to after display init
+Date: Fri,  6 Dec 2024 19:59:54 +0100
+Message-ID: <20241206185956.3290-4-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241206185956.3290-1-dev@lankhorst.se>
+References: <20241206185956.3290-1-dev@lankhorst.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -38,27 +38,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I have rebased the previous series and took out the GuC parts. This makes it a lot easier to review missing parts,
-and not be dependent on GuC loading changes for merging.
+No allocations should be done before we have had a chance to preserve
+the display fb.
 
-Maarten Lankhorst (5):
-  drm/xe/display: Add intel_plane_initial_vblank_wait
-  drm/xe: Remove double pageflip
-  drm/xe: Move suballocator init to after display init
-  drm/xe: Defer irq init until after xe_display_init_noaccel
-  drm/xe/display: Use a single early init call for display
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c |  6 ++++++
+ drivers/gpu/drm/xe/xe_tile.c   | 12 ++++++++----
+ drivers/gpu/drm/xe/xe_tile.h   |  1 +
+ 3 files changed, 15 insertions(+), 4 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_display.c  |  6 +-
- .../drm/i915/display/intel_plane_initial.c    |  7 +-
- .../drm/i915/display/intel_plane_initial.h    |  2 +
- drivers/gpu/drm/xe/display/xe_display.c       | 71 +++++--------------
- drivers/gpu/drm/xe/display/xe_display.h       |  8 +--
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 29 +++++---
- drivers/gpu/drm/xe/xe_device.c                | 28 +++-----
- drivers/gpu/drm/xe/xe_tile.c                  | 19 +++--
- drivers/gpu/drm/xe/xe_tile.h                  |  1 +
- 9 files changed, 77 insertions(+), 94 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 56d4ffb650dad..c1b4601a14779 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -732,6 +732,12 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err;
+ 
++	for_each_tile(tile, xe, id) {
++		err = xe_tile_init(tile);
++		if (err)
++			goto err;
++	}
++
+ 	for_each_gt(gt, xe, id) {
+ 		last_gt = id;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 07cf7cfe4abd5..2825553b568f7 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -170,10 +170,6 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 	if (err)
+ 		return err;
+ 
+-	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
+-	if (IS_ERR(tile->mem.kernel_bb_pool))
+-		return PTR_ERR(tile->mem.kernel_bb_pool);
+-
+ 	xe_wa_apply_tile_workarounds(tile);
+ 
+ 	err = xe_tile_sysfs_init(tile);
+@@ -181,6 +177,14 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 	return 0;
+ }
+ 
++int xe_tile_init(struct xe_tile *tile)
++{
++	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
++	if (IS_ERR(tile->mem.kernel_bb_pool))
++		return PTR_ERR(tile->mem.kernel_bb_pool);
++
++	return 0;
++}
+ void xe_tile_migrate_wait(struct xe_tile *tile)
+ {
+ 	xe_migrate_wait(tile->migrate);
+diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+index 1c9e42ade6b05..eb939316d55b0 100644
+--- a/drivers/gpu/drm/xe/xe_tile.h
++++ b/drivers/gpu/drm/xe/xe_tile.h
+@@ -12,6 +12,7 @@ struct xe_tile;
+ 
+ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id);
+ int xe_tile_init_noalloc(struct xe_tile *tile);
++int xe_tile_init(struct xe_tile *tile);
+ 
+ void xe_tile_migrate_wait(struct xe_tile *tile);
+ 
 -- 
 2.45.2
 
