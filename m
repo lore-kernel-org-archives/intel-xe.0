@@ -4,52 +4,109 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37884E7717B
-	for <intel-xe@archiver.kernel.org>; Sat,  7 Dec 2024 15:32:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F18DE77173
+	for <intel-xe@archiver.kernel.org>; Sun,  8 Dec 2024 12:15:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D982610E141;
-	Sat,  7 Dec 2024 15:32:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0ACF10E26E;
+	Sun,  8 Dec 2024 12:15:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UscvGxxc";
+	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=friedrich.vock@gmx.de header.b="EdKPHgJw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D010E10E141
- for <intel-xe@lists.freedesktop.org>; Sat,  7 Dec 2024 15:32:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733585569; x=1765121569;
- h=date:from:to:cc:subject:message-id;
- bh=L3thj9cdRx1cJdI5PZ58c+DX0B6tNBmrF26O07v/UFE=;
- b=UscvGxxcwkum9r/rG31lDnIiEj3YucRmfcCMdvOGPBkY1irqxUdvWSpO
- hj5i8JZb1eeTxj22OulMJgJp/RHGCo/egpECJNQ3dm+9f47ZlIx5NqCE8
- f2U1PJYqzECSdypoVW5lxIP/aAZavFoQUdXHqMhbUiolckArFZLhQSgrw
- IHkF+vbpHlA4Hp8pvfdt8q1NC8aMc42eb3oDEpVhDv4Ugb0fSp/dEvJ2q
- fMeS0Eko34qykG7u51/ChRqAOqk7d1McjtSyBshv+qrhVhSCZC3IvV8hf
- QrBd7KRm6h2j8ufj8iOdtU7n6rDVVMIhM26ajmvjb7Jhp8tVraVH7REZM g==;
-X-CSE-ConnectionGUID: LPMTk3pOQ4Gaf1BvO2xB0Q==
-X-CSE-MsgGUID: 0kxceXlxReGBfZzyvzlTew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11279"; a="33846410"
-X-IronPort-AV: E=Sophos;i="6.12,216,1728975600"; d="scan'208";a="33846410"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2024 07:32:49 -0800
-X-CSE-ConnectionGUID: pGnBMm/RSoWxSIV6VuAW1w==
-X-CSE-MsgGUID: jjqSUv5iQR2/cacgLjarEQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,216,1728975600"; d="scan'208";a="95114847"
-Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
- by orviesa007.jf.intel.com with ESMTP; 07 Dec 2024 07:32:48 -0800
-Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tJwnV-0002mX-1X;
- Sat, 07 Dec 2024 15:32:45 +0000
-Date: Sat, 07 Dec 2024 23:29:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 774b5fa509a97017715801739111a42fdc23d590
-Message-ID: <202412072308.k7TzFxs9-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39E3D10E26E;
+ Sun,  8 Dec 2024 12:15:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+ s=s31663417; t=1733660136; x=1734264936; i=friedrich.vock@gmx.de;
+ bh=BLAbvkpLslpLzb0lubH4OtDMnvi3SfW5XkcUzyWKVW4=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+ References:From:In-Reply-To:Content-Type:
+ Content-Transfer-Encoding:cc:content-transfer-encoding:
+ content-type:date:from:message-id:mime-version:reply-to:subject:
+ to;
+ b=EdKPHgJwS5oEAs0DAmTwgWExnkDV5Fyrkrfdr3HuVZRRQ4ipNlKrXM683f54O279
+ lg4oKYcyFlZj1wAro+5mYBUskrd6bgpm4HmRCP3AKEs3zwk69mOEtle59yU5D9o1l
+ 9YL45oRUXhtxpeI6ZQnjydmQ3lWwYOwCe5g9OU8o5QD0h1EBrZoc7Adz3skxPrac8
+ 47ZYSs0RqVg1g4uCdZ9uLsIzyZj6dsGoIjXogGNqx944VxQrLV2/rUg691Od1mGXN
+ wB8ec3e7zrKQM4ale9+vbW9UgQEsy/YOSIO7dPDh2wmRtG8TFnvj42ZjGQygMcA5L
+ v0BILk4yK1/8jgGcLg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.0.3] ([109.91.201.165]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MMGRA-1t2B5C1wYg-00W7PB; Sun, 08
+ Dec 2024 13:15:36 +0100
+Message-ID: <29a71119-04de-4c76-a98a-d0fcb906390f@gmx.de>
+Date: Sun, 8 Dec 2024 13:15:34 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/7] kernel/cgroups: Add "dmem" memory accounting
+ cgroup.
+To: Maarten Lankhorst <dev@lankhorst.se>, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Tejun Heo <tj@kernel.org>, Zefan Li <lizefan.x@bytedance.com>,
+ Johannes Weiner <hannes@cmpxchg.org>,
+ Andrew Morton <akpm@linux-foundation.org>, Maxime Ripard <mripard@kernel.org>
+Cc: cgroups@vger.kernel.org, linux-mm@kvack.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+References: <20241204134410.1161769-1-dev@lankhorst.se>
+Content-Language: en-US
+From: Friedrich Vock <friedrich.vock@gmx.de>
+Autocrypt: addr=friedrich.vock@gmx.de; keydata=
+ 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
+ f7+xmX0X3AMtWz/15Y+7cPO2
+In-Reply-To: <20241204134410.1161769-1-dev@lankhorst.se>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:w7dNuTyuZ4TNQ5hpfnJCIfhCruXm3YA39650Wbp2o5G6DWCPayq
+ sCwH/Q8UJcrIfs3y6+NDLqeid9rkeIEahxaG1ltE49BO7ujXuBXCwKwLwq+NCLasDjS5NRi
+ IE2VsH5P2rOXkUlkIxtLeeSZcX0KhPODBYfGFFuXGjWwTnDgtNbOn3ex0XCa7ulELX8KyvN
+ 3HgPrbl0Jo4hXtdv1cOWw==
+UI-OutboundReport: notjunk:1;M01:P0:9AqCQq5rpO0=;GNb/YoPjSN5jUZMfQmXl+Q8muWw
+ YCQilh65p8v4u4FtDBZBA/ZJKBkeZjc7k0GEYS0gUa7alSHCINprxzUASsKjfGYudWSYEV919
+ 5mmvR7nQUa/A9+chPJp/SKgvj6GlErKyVTtZnl9gMKKA9R06LL/3EEsTvtKIJ+lrwg6bfu7qb
+ C4QTFXg3BCZhT/Fl+fJVLOgGGtFJwFXHCfnRXtkFBqiahb/jtSqd4sasTBFNJmxqyfwN281mK
+ 0Hu5Jvd0Uggj3usvC3+WFZUMTIFu2qWVf2IcNV1eVlb/0ZhVuf6YQwXOWFtFYKVcDKewLbVa1
+ Un7fE62Phs282W9TzCeEnMog0IM+nI8oXi2sh/5ecHxQW0cnvluhrTLZ4iZ5jXXbugyVRE0yp
+ 90hcBXzOcNGH8QQsfsxamh3a9LBiHFMzh9KLoKAGKUNgywSwIFWfYWH02Yeipmvq/IaHO9eK7
+ uTytnvA7D9866hkwqGWTVdrXgfrGfLyNkiwRFoqO4zCz+fk+J27fqKdIEHZbvbLak8HbtyImn
+ KIlbZUJOab3cqMmXdc7tNGFoEtGN6wvS5QR+xuyMFACkurMe47MQrWQ24v3BOk/Pyd5YPlW4w
+ YdGLQAfAqA4j3zIHEZzcMc/5tQp+mvJE0guUuLLLaJ2rexsQM13nM6N20pjKFblV5L/FtRcln
+ 99QH35FHhhbV3DY9odCK6sMCXEjlgEbnN9pUvNol8GYQKTU2Fc//m94RApjgq4iWZUiVa251P
+ 5CF3tD1YxdvDzKoJts9pA6D367FSv2o1Zvgwi45MvyoU4tBN1JAe1qcBq99rEpSlznErWiig3
+ 9JYtUrsEWI1+Hr4hywoiRFI0F73EO9CFylWlUIZq7fNZd24uN9Jv3ad3u1INVf5Y58AOwX9Dw
+ fOHvCLY0CNGTw1PxAIFEsnIzAX/X0m2iulXrTaukhFaFmynO7gQvncdy/ajPETytpCd5wWtYh
+ Fbf9E+5QsDPHFUGuGNJeeZoWI+AUzQL88jFMoj1AT63Qwdc2tsUiE7jORxC+6pbtlIOfWY9F0
+ YvGmGIFcuIyYVS7xIoLL8lohTEns6FT6wNGIavEUBywKHpCfs1ZWQWirJdMkr6PpPlENlzQvW
+ o5ozclGn3Q+LK5M6jf7AINUSTIcmFN
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,223 +121,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 774b5fa509a97017715801739111a42fdc23d590  drm/xe: Avoid evicting object of the same vm in none fault mode
+Hi,
 
-elapsed time: 1341m
+On 04.12.24 14:44, Maarten Lankhorst wrote:
+> New update. Instead of calling it the 'dev' cgroup, it's now the 'dmem' =
+cgroup.
 
-configs tested: 204
-configs skipped: 11
+Thanks! I think this version looks pretty good.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+>
+> Because it only deals with memory regions, the UAPI has been updated to =
+use dmem.min/low/max/current, and to make the API cleaner, the names are c=
+hanged too.
+>
+> dmem.current could contain a line like:
+> "drm/0000:03:00.0/vram0 1073741824"
+>
+> But I think using "drm/card0/vram0" instead of PCIID would perhaps be go=
+od too. I'm open to changing it to that based on feedback.
 
-tested configs:
-alpha                             allnoconfig    gcc-14.2.0
-alpha                            allyesconfig    clang-20
-alpha                               defconfig    gcc-14.2.0
-arc                              allmodconfig    clang-18
-arc                              allmodconfig    gcc-13.2.0
-arc                               allnoconfig    gcc-14.2.0
-arc                              allyesconfig    clang-18
-arc                              allyesconfig    gcc-13.2.0
-arc                                 defconfig    gcc-14.2.0
-arc                            hsdk_defconfig    gcc-14.2.0
-arc                     nsimosci_hs_defconfig    gcc-13.2.0
-arc                   randconfig-001-20241207    clang-19
-arc                   randconfig-001-20241207    gcc-13.2.0
-arc                   randconfig-002-20241207    clang-19
-arc                   randconfig-002-20241207    gcc-13.2.0
-arc                        vdk_hs38_defconfig    clang-20
-arm                              allmodconfig    clang-18
-arm                              allmodconfig    gcc-14.2.0
-arm                               allnoconfig    gcc-14.2.0
-arm                              allyesconfig    clang-18
-arm                              allyesconfig    gcc-14.2.0
-arm                       aspeed_g5_defconfig    gcc-14.2.0
-arm                                 defconfig    gcc-14.2.0
-arm                            hisi_defconfig    gcc-14.2.0
-arm                           imxrt_defconfig    gcc-13.2.0
-arm                        multi_v5_defconfig    clang-20
-arm                   randconfig-001-20241207    clang-19
-arm                   randconfig-001-20241207    gcc-14.2.0
-arm                   randconfig-002-20241207    clang-19
-arm                   randconfig-002-20241207    gcc-14.2.0
-arm                   randconfig-003-20241207    clang-19
-arm                   randconfig-004-20241207    clang-19
-arm                   randconfig-004-20241207    clang-20
-arm                        realview_defconfig    clang-20
-arm                        shmobile_defconfig    gcc-14.2.0
-arm                           stm32_defconfig    gcc-14.2.0
-arm                         vf610m4_defconfig    clang-17
-arm64                            allmodconfig    clang-18
-arm64                             allnoconfig    gcc-14.2.0
-arm64                               defconfig    gcc-14.2.0
-arm64                 randconfig-001-20241207    clang-19
-arm64                 randconfig-001-20241207    gcc-14.2.0
-arm64                 randconfig-002-20241207    clang-19
-arm64                 randconfig-002-20241207    gcc-14.2.0
-arm64                 randconfig-003-20241207    clang-19
-arm64                 randconfig-003-20241207    clang-20
-arm64                 randconfig-004-20241207    clang-15
-arm64                 randconfig-004-20241207    clang-19
-csky                              allnoconfig    gcc-14.2.0
-csky                                defconfig    gcc-14.2.0
-csky                  randconfig-001-20241207    clang-19
-csky                  randconfig-001-20241207    gcc-14.2.0
-csky                  randconfig-002-20241207    clang-19
-csky                  randconfig-002-20241207    gcc-14.2.0
-hexagon                          allmodconfig    clang-20
-hexagon                           allnoconfig    gcc-14.2.0
-hexagon                             defconfig    gcc-14.2.0
-hexagon               randconfig-001-20241207    clang-14
-hexagon               randconfig-001-20241207    clang-19
-hexagon               randconfig-002-20241207    clang-16
-hexagon               randconfig-002-20241207    clang-19
-i386                             allmodconfig    clang-19
-i386                             allmodconfig    gcc-12
-i386                              allnoconfig    clang-19
-i386                              allnoconfig    gcc-12
-i386                             allyesconfig    clang-19
-i386                             allyesconfig    gcc-12
-i386        buildonly-randconfig-001-20241207    clang-19
-i386        buildonly-randconfig-002-20241207    clang-19
-i386        buildonly-randconfig-003-20241207    clang-19
-i386        buildonly-randconfig-003-20241207    gcc-12
-i386        buildonly-randconfig-004-20241207    clang-19
-i386        buildonly-randconfig-005-20241207    clang-19
-i386        buildonly-randconfig-006-20241207    clang-19
-i386                                defconfig    clang-19
-loongarch                        allmodconfig    gcc-14.2.0
-loongarch                         allnoconfig    gcc-14.2.0
-loongarch                           defconfig    gcc-14.2.0
-loongarch             randconfig-001-20241207    clang-19
-loongarch             randconfig-001-20241207    gcc-14.2.0
-loongarch             randconfig-002-20241207    clang-19
-loongarch             randconfig-002-20241207    gcc-14.2.0
-m68k                             allmodconfig    gcc-14.2.0
-m68k                              allnoconfig    gcc-14.2.0
-m68k                             allyesconfig    gcc-14.2.0
-m68k                                defconfig    gcc-14.2.0
-m68k                          multi_defconfig    gcc-13.2.0
-m68k                        stmark2_defconfig    clang-20
-microblaze                       allmodconfig    gcc-14.2.0
-microblaze                        allnoconfig    gcc-14.2.0
-microblaze                       allyesconfig    gcc-14.2.0
-microblaze                          defconfig    gcc-14.2.0
-mips                              allnoconfig    gcc-14.2.0
-mips                          ath79_defconfig    gcc-14.2.0
-mips                        bcm47xx_defconfig    gcc-14.2.0
-mips                        maltaup_defconfig    clang-17
-mips                           mtx1_defconfig    gcc-14.2.0
-mips                          rb532_defconfig    clang-17
-mips                   sb1250_swarm_defconfig    clang-20
-nios2                         3c120_defconfig    gcc-14.2.0
-nios2                             allnoconfig    gcc-14.2.0
-nios2                               defconfig    gcc-14.2.0
-nios2                 randconfig-001-20241207    clang-19
-nios2                 randconfig-001-20241207    gcc-14.2.0
-nios2                 randconfig-002-20241207    clang-19
-nios2                 randconfig-002-20241207    gcc-14.2.0
-openrisc                          allnoconfig    clang-20
-openrisc                         allyesconfig    gcc-14.2.0
-openrisc                            defconfig    gcc-12
-openrisc                 simple_smp_defconfig    gcc-13.2.0
-parisc                           allmodconfig    gcc-14.2.0
-parisc                            allnoconfig    clang-20
-parisc                           allyesconfig    gcc-14.2.0
-parisc                              defconfig    gcc-12
-parisc                randconfig-001-20241207    clang-19
-parisc                randconfig-001-20241207    gcc-14.2.0
-parisc                randconfig-002-20241207    clang-19
-parisc                randconfig-002-20241207    gcc-14.2.0
-parisc64                            defconfig    gcc-14.2.0
-powerpc                     akebono_defconfig    clang-17
-powerpc                          allmodconfig    gcc-14.2.0
-powerpc                           allnoconfig    clang-20
-powerpc                          allyesconfig    clang-16
-powerpc                          allyesconfig    gcc-14.2.0
-powerpc                      bamboo_defconfig    gcc-14.2.0
-powerpc                   currituck_defconfig    gcc-14.2.0
-powerpc                    ge_imp3a_defconfig    gcc-14.2.0
-powerpc                       holly_defconfig    clang-20
-powerpc                      mgcoge_defconfig    gcc-14.2.0
-powerpc                 mpc832x_rdb_defconfig    gcc-13.2.0
-powerpc               randconfig-001-20241207    clang-19
-powerpc               randconfig-001-20241207    gcc-14.2.0
-powerpc               randconfig-002-20241207    clang-19
-powerpc               randconfig-002-20241207    clang-20
-powerpc               randconfig-003-20241207    clang-15
-powerpc               randconfig-003-20241207    clang-19
-powerpc                     redwood_defconfig    gcc-14.2.0
-powerpc                    sam440ep_defconfig    gcc-14.2.0
-powerpc64             randconfig-001-20241207    clang-19
-powerpc64             randconfig-001-20241207    gcc-14.2.0
-powerpc64             randconfig-002-20241207    clang-19
-powerpc64             randconfig-003-20241207    clang-17
-powerpc64             randconfig-003-20241207    clang-19
-riscv                            allmodconfig    clang-20
-riscv                            allmodconfig    gcc-14.2.0
-riscv                             allnoconfig    clang-20
-riscv                            allyesconfig    clang-20
-riscv                            allyesconfig    gcc-14.2.0
-riscv                               defconfig    gcc-12
-riscv                 randconfig-001-20241207    gcc-14.2.0
-riscv                 randconfig-002-20241207    gcc-14.2.0
-s390                             allmodconfig    clang-19
-s390                             allmodconfig    gcc-14.2.0
-s390                              allnoconfig    clang-20
-s390                             allyesconfig    gcc-14.2.0
-s390                                defconfig    gcc-12
-s390                                defconfig    gcc-14.2.0
-s390                  randconfig-001-20241207    gcc-14.2.0
-s390                  randconfig-002-20241207    gcc-14.2.0
-sh                               allmodconfig    gcc-14.2.0
-sh                                allnoconfig    gcc-14.2.0
-sh                               allyesconfig    gcc-14.2.0
-sh                         ap325rxa_defconfig    clang-17
-sh                                  defconfig    gcc-12
-sh                        edosk7760_defconfig    gcc-14.2.0
-sh                          kfr2r09_defconfig    clang-20
-sh                          landisk_defconfig    clang-20
-sh                          polaris_defconfig    gcc-14.2.0
-sh                    randconfig-001-20241207    gcc-14.2.0
-sh                    randconfig-002-20241207    gcc-14.2.0
-sh                           se7724_defconfig    gcc-14.2.0
-sh                  sh7785lcr_32bit_defconfig    gcc-14.2.0
-sparc                            allmodconfig    gcc-14.2.0
-sparc                             allnoconfig    gcc-14.2.0
-sparc                 randconfig-001-20241207    gcc-14.2.0
-sparc                 randconfig-002-20241207    gcc-14.2.0
-sparc64                          alldefconfig    gcc-14.2.0
-sparc64                             defconfig    gcc-12
-sparc64               randconfig-001-20241207    gcc-14.2.0
-sparc64               randconfig-002-20241207    gcc-14.2.0
-um                               alldefconfig    gcc-14.2.0
-um                               allmodconfig    clang-20
-um                                allnoconfig    clang-20
-um                               allyesconfig    clang-20
-um                                  defconfig    gcc-12
-um                             i386_defconfig    gcc-12
-um                    randconfig-001-20241207    gcc-14.2.0
-um                           x86_64_defconfig    gcc-12
-x86_64                            allnoconfig    clang-19
-x86_64                           allyesconfig    clang-19
-x86_64      buildonly-randconfig-001-20241207    clang-19
-x86_64      buildonly-randconfig-002-20241207    clang-19
-x86_64      buildonly-randconfig-003-20241207    clang-19
-x86_64      buildonly-randconfig-003-20241207    gcc-11
-x86_64      buildonly-randconfig-004-20241207    clang-19
-x86_64      buildonly-randconfig-005-20241207    clang-19
-x86_64      buildonly-randconfig-006-20241207    clang-19
-x86_64      buildonly-randconfig-006-20241207    gcc-12
-x86_64                              defconfig    clang-19
-x86_64                              defconfig    gcc-11
-xtensa                            allnoconfig    gcc-14.2.0
-xtensa                       common_defconfig    gcc-13.2.0
-xtensa                randconfig-001-20241207    gcc-14.2.0
-xtensa                randconfig-002-20241207    gcc-14.2.0
+Agree, allowing userspace to reference DRM devices via "cardN" syntax
+sounds good. What about other subsystems potentially using dmem cgroups?
+I'm not familiar with the media subsystem, but I imagine we might be
+dealing with things like USB devices there? Is something like a
+"deviceN" possible there as well, or would device IDs look completely
+different?
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+Friedrich
+
+>
+> I've created an IGT test for min and max, and found the changes
+> from Friedrich Vock sent as feedback were needed.
+> I've integrated those into the first patch.
+>
+> Maarten Lankhorst (5):
+>    kernel/cgroup: Add "dmem" memory accounting cgroup
+>    drm/ttm: Handle cgroup based eviction in TTM
+>    drm/xe: Implement cgroup for vram
+>    drm/amdgpu: Add cgroups implementation
+>    drm/xe: Hack to test with mapped pages instead of vram.
+>
+> Maxime Ripard (2):
+>    drm/drv: Add drmm managed registration helper for dmem cgroups.
+>    drm/gem: Add cgroup memory accounting for VRAM helper.
+>
+>   Documentation/admin-guide/cgroup-v2.rst       |  58 +-
+>   Documentation/core-api/cgroup.rst             |   9 +
+>   Documentation/core-api/index.rst              |   1 +
+>   Documentation/gpu/drm-compute.rst             |  54 ++
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  |   4 +
+>   drivers/gpu/drm/drm_drv.c                     |  32 +
+>   drivers/gpu/drm/drm_gem_vram_helper.c         |  15 +-
+>   drivers/gpu/drm/ttm/tests/ttm_bo_test.c       |  18 +-
+>   .../gpu/drm/ttm/tests/ttm_bo_validate_test.c  |   4 +-
+>   drivers/gpu/drm/ttm/tests/ttm_resource_test.c |   2 +-
+>   drivers/gpu/drm/ttm/ttm_bo.c                  |  54 +-
+>   drivers/gpu/drm/ttm/ttm_resource.c            |  23 +-
+>   drivers/gpu/drm/xe/xe_ttm_sys_mgr.c           |   5 +
+>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |   8 +
+>   include/drm/drm_drv.h                         |   5 +
+>   include/drm/ttm/ttm_resource.h                |  12 +-
+>   include/linux/cgroup_dmem.h                   |  67 ++
+>   include/linux/cgroup_subsys.h                 |   4 +
+>   include/linux/page_counter.h                  |   2 +-
+>   init/Kconfig                                  |  10 +
+>   kernel/cgroup/Makefile                        |   1 +
+>   kernel/cgroup/dmem.c                          | 861 ++++++++++++++++++
+>   mm/page_counter.c                             |   4 +-
+>   23 files changed, 1219 insertions(+), 34 deletions(-)
+>   create mode 100644 Documentation/core-api/cgroup.rst
+>   create mode 100644 Documentation/gpu/drm-compute.rst
+>   create mode 100644 include/linux/cgroup_dmem.h
+>   create mode 100644 kernel/cgroup/dmem.c
+>
+
