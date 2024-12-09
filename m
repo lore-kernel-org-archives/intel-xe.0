@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 759BDE7717D
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 23:28:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 892FFE77182
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 23:28:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FA6110E58B;
-	Mon,  9 Dec 2024 23:28:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 457EF10E591;
+	Mon,  9 Dec 2024 23:28:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AxFlkK2Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hFLFJuec";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BDD110E58F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3859210E58B
  for <intel-xe@lists.freedesktop.org>; Mon,  9 Dec 2024 23:28:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1733786882; x=1765322882;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9mVjMe/BUQ77iJGsqqxbH/oiShQx3fXE+fZOIgWoMHU=;
- b=AxFlkK2YaJiJi7ru33P6sFcFqrW4J5iVaRMWTUVr+CzAsJ0NExpd/8iO
- MOvwLUcGrShsSw3FtVWDNh2uBFIpSqD1O34+JI8u5tWAlSG34HsHELu2d
- Lw4UNDnicA9aBz7KD8OLjEjU2H8R21nuQdj2wJlWxp3uehN5CZXQvTyn5
- mRw+oe+ZizmT0qO5GPUhI8raUZgzGBC4YXvK7NUaFbK/m5rS6A6zgj3oD
- e1HGQ4PLnmH7qmbqczXfBOkmIaVJh1X5Q8qGWwH7TdqW2l0QpcmA53abE
- Qh/ySW6Ow0FTrFhfCujjdNobfx1swYXrh1UNNj7NdJh536A9QdJsFMtB8 w==;
-X-CSE-ConnectionGUID: ZfP5tjzrRGWJXdmgiyOpSg==
-X-CSE-MsgGUID: RirWrCUuQa+E4JTn4SQNIg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="44581852"
-X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="44581852"
+ bh=mV5Ta9/gk+jRTBpe9D77zt3qgtx8ztHagkoV4VWRsdY=;
+ b=hFLFJuecXZmal899S7DnKnrpACy7gPlfcsE5JG+jFzD5IyGGHWS8Boe+
+ oHOD1h9oDu5mYfCcq/FuI8nvSiM3BLEvyeL44BcWYxRo/uGwLFwrpnAaC
+ WTmd3FMO9nxCy9tlOa+nina94AG6FTEpzpOUYSsVPQ8KDsc+AFnlEq6Xo
+ nhWLBT2PP4OC6GdumnH05NhcqYXOJT2qqiHuIHbqSPZjWXPbIXPKB9FQy
+ Y1mi4S7Zn0Xav990ytMvuFsyo53CxFrJ/1r7lBxNbbGC2nUmlFLL7DJmG
+ qXCrXjbmG0/CD8xjCjQcshRo+agEtHuhneD9dGL8QdPEUcGNSkVAWGNlB g==;
+X-CSE-ConnectionGUID: lPLHZSEVT/OS01EfHH7NzA==
+X-CSE-MsgGUID: QKgLJzEGROCg544T5TbUfQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="44581853"
+X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="44581853"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Dec 2024 15:28:01 -0800
-X-CSE-ConnectionGUID: 4erfclSNT1+K+2jaBlmKmQ==
-X-CSE-MsgGUID: wAKnAqi8StismhVQqElUaQ==
+X-CSE-ConnectionGUID: ClL7uhhESl6PiGWpaAuTJA==
+X-CSE-MsgGUID: f1eB3tjeSJiA1WpFiuTKSA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="100268957"
+X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="100268961"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Dec 2024 15:28:00 -0800
@@ -48,9 +48,9 @@ Cc: Matt Roper <matthew.d.roper@intel.com>,
  John Harrison <john.c.harrison@intel.com>,
  Jonathan Cavitt <jonathan.cavitt@intel.com>, ashutosh.dixit@intel.com,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 3/5] drm/xe/reg_sr: Convert whitelist to gt logging
-Date: Mon,  9 Dec 2024 15:27:37 -0800
-Message-ID: <20241209232739.147417-4-lucas.demarchi@intel.com>
+Subject: [PATCH v2 4/5] drm/xe/reg_sr: Stop setting all whitelist slots
+Date: Mon,  9 Dec 2024 15:27:38 -0800
+Message-ID: <20241209232739.147417-5-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241209232739.147417-1-lucas.demarchi@intel.com>
 References: <20241209232739.147417-1-lucas.demarchi@intel.com>
@@ -70,52 +70,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Part of the whitelist printing was already using gt-logging - convert
-the rest.
+Currently xe_reg_sr_apply_whitelist() sets the unused values to a known
+used value for no good reason: it could just leave it with the HW
+default. The behavior is slightly different if there are no whitelist
+registers for the engine as the function returns early. This is not
+needed, so just drop the addition writes for the unused slots.
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Later this will allow to reduce the amount of registers passed to GuC
+for save/restore.
+
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_reg_sr.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_reg_sr.c | 7 -------
+ 1 file changed, 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index c13123008e903..080229e0fc15a 100644
+index 080229e0fc15a..0a5c0e62d6e88 100644
 --- a/drivers/gpu/drm/xe/xe_reg_sr.c
 +++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -196,7 +196,6 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
- {
- 	struct xe_reg_sr *sr = &hwe->reg_whitelist;
- 	struct xe_gt *gt = hwe->gt;
--	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_reg_sr_entry *entry;
- 	struct drm_printer p;
- 	u32 mmio_base = hwe->mmio_base;
-@@ -207,13 +206,13 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
- 	if (xa_empty(&sr->xa))
- 		return;
+@@ -227,13 +227,6 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
+ 		slot++;
+ 	}
  
--	drm_dbg(&xe->drm, "Whitelisting %s registers\n", sr->name);
-+	xe_gt_dbg(gt, "Whitelisting %s registers\n", sr->name);
- 
- 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
- 	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
- 		goto err_force_wake;
- 
--	p = drm_dbg_printer(&xe->drm, DRM_UT_DRIVER, NULL);
-+	p = xe_gt_dbg_printer(gt);
- 	xa_for_each(&sr->xa, reg, entry) {
- 		if (slot == RING_MAX_NONPRIV_SLOTS) {
- 			xe_gt_err(gt,
-@@ -241,7 +240,7 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
- 
- err_force_wake:
+-	/* And clear the rest just in case of garbage */
+-	for (; slot < RING_MAX_NONPRIV_SLOTS; slot++) {
+-		u32 addr = RING_NOPID(mmio_base).addr;
+-
+-		xe_mmio_write32(&gt->mmio, RING_FORCE_TO_NONPRIV(mmio_base, slot), addr);
+-	}
+-
  	xe_force_wake_put(gt_to_fw(gt), fw_ref);
--	drm_err(&xe->drm, "Failed to apply, err=-ETIMEDOUT\n");
-+	xe_gt_err(gt, "Failed to apply, err=-ETIMEDOUT\n");
- }
  
- /**
+ 	return;
 -- 
 2.47.0
 
