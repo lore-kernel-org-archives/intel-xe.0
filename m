@@ -4,54 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B521E77173
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 08:52:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 970B3E77173
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 09:44:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C734B10E66F;
-	Mon,  9 Dec 2024 08:52:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65B9110E69C;
+	Mon,  9 Dec 2024 09:44:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FXC1BEu7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kXciMCEv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A28310E66F;
- Mon,  9 Dec 2024 08:52:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A400410E69C
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Dec 2024 09:44:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733734354; x=1765270354;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Z+9VrDA6rBtOiul3dsriQvdkW7mejAPMofHaWrXPVUM=;
- b=FXC1BEu7hCGB/K3c3sw9aFlTLeqX9fkYBCCaU/g0raYSmU6Aw9R2ftak
- tSWk2K9kxXF4B3KKxS0eAy6/7g0t7uWktWPHUmo5+d7SZwvFGzhMt12RZ
- U2hWdjBHVeaAoPJcnmI077xitFAtigfNY8iWKX/ZEgdy0m46M7z8NOgKm
- q5GXXdyreeoGvz0CtyVD7BDApjxSwgCATqeOUDoWjW6xmWQFNqJ0tcA1p
- lpHWAXMjSCa4xa6zRNC2BIUwDSWGkh3edEco9nJlF7w9lBQ0Oqxo3G5jx
- BOFhNaxa7pzGvslRSBbD6FHf93tR2dYJ7dXwj8OXkApBpFfHtN1oTJwz5 A==;
-X-CSE-ConnectionGUID: GB3JtcESS0C75xMhZDfh5Q==
-X-CSE-MsgGUID: G8qpxXscQYSylKZIHA/sFQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11280"; a="33750990"
-X-IronPort-AV: E=Sophos;i="6.12,218,1728975600"; d="scan'208";a="33750990"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 00:52:33 -0800
-X-CSE-ConnectionGUID: PhzrPxAbQ32cv9IZJ22VHg==
-X-CSE-MsgGUID: OoYz7wRVTkKmIhkSsKcqbw==
+ t=1733737488; x=1765273488;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=9slz7nEOGvKD7tQ2gASJ7/A/cgw378zMefKEjlaY7fk=;
+ b=kXciMCEvMNva2W1CzTlxuAF8MTHioERtiHxku5u20f9j6nTu/NomGz2N
+ gA/JUY42DRGEAc95mqGRuslo6NqaTj+9WrIRa/UrWZxwJxHX4ywaSV1vP
+ uS1hJmVxNbUPVCeeF0oaO70FTisI11po1eeKIJNLEUT2u7v/NRLDkP5xw
+ wqSGXv7NpwefHB9tfd3scWWrS0BBBw9EdkNgm0admswBHR9jNeZf25InU
+ ofQIpmwFbD3S895cqWOFcE47TlODhMLZAOCSyjlFImq5nzAHp9u5geF/F
+ wclHLObUgLX+/owLn98TKdHsXZCbcYaVP/JVThzivPwUUozYh1vDYjgnr A==;
+X-CSE-ConnectionGUID: a7m7p50vSMqaPcA1QzKRZQ==
+X-CSE-MsgGUID: xufg237OSsSodlt8GeA20g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11280"; a="33368866"
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="33368866"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2024 01:44:48 -0800
+X-CSE-ConnectionGUID: c4ViaBIATOaPgfV/Nl5KJQ==
+X-CSE-MsgGUID: cg2srym5Tt6Bs0tuFiG75w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,218,1728975600"; d="scan'208";a="132387456"
-Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 00:52:32 -0800
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: igt-dev@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, Jan Maslak <jan.maslak@intel.com>
-Subject: [i-g-t] lib/xe: set hwconfig NULL for unsupported platforms
-Date: Mon,  9 Dec 2024 14:27:09 +0530
-Message-Id: <20241209085709.1979242-1-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="125868343"
+Received: from mbernato-mobl1.ger.corp.intel.com (HELO [10.246.0.23])
+ ([10.246.0.23])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2024 01:44:45 -0800
+Message-ID: <d083b661-04ee-4201-8962-480a093924a2@linux.intel.com>
+Date: Mon, 9 Dec 2024 10:44:42 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/xe/vf: Don't apply Wa_22019338487 for VF
+To: Matt Roper <matthew.d.roper@intel.com>,
+ Jakub Kolakowski <jakub1.kolakowski@intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+ Adam Miszczak <adam.miszczak@linux.intel.com>,
+ Lukasz Laguna <lukasz.laguna@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Michal Winiarski <michal.winiarski@intel.com>,
+ Narasimha C V <narasimha.c.v@intel.com>,
+ Piotr Piorkowski <piotr.piorkowski@intel.com>,
+ Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Tomasz Lis <tomasz.lis@intel.com>
+References: <20241205181814.1484975-1-jakub1.kolakowski@intel.com>
+ <20241205181814.1484975-3-jakub1.kolakowski@intel.com>
+ <20241205210436.GH3224633@mdroper-desk1.amr.corp.intel.com>
+Content-Language: en-US
+From: "Bernatowicz, Marcin" <marcin.bernatowicz@linux.intel.com>
+In-Reply-To: <20241205210436.GH3224633@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,46 +80,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are hardware platforms which are not supporting
-hwconfig table, for example ADLS. Querying hwconfig
-on unsupported platforms leads to assert and failure
-for some of tests like,
-./build/tests/xe_module_load --r load
 
-https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3683
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Jan Maslak <jan.maslak@intel.com>
-Fixes: 37a230e50 ("lib/xe_query: add hwconfig to xe_device")
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- lib/xe/xe_query.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+On 12/5/2024 10:04 PM, Matt Roper wrote:
+> On Thu, Dec 05, 2024 at 06:18:14PM +0000, Jakub Kolakowski wrote:
+>> Don't use Wa_22019338487 for VF.
+> 
+> Would it make sense to add some kind of "PFONLY" RTP action that can be
+> applied to workaround definitions that should only apply when running on
+> the PF and not on the VF?  Then we could just add that flag to this
+> workaround in xe_wa_oob.rules and we wouldn't need to change the
+> callsite(s) where XE_WA is invoked.
+> 
+> I'm not sure how common PF-only (or VF-only for that matter) workarounds
+> are going to be going forward.
+> 
+> 
+> Matt
+> 
 
-diff --git a/lib/xe/xe_query.c b/lib/xe/xe_query.c
-index f3731d9d3..8f0a5392c 100644
---- a/lib/xe/xe_query.c
-+++ b/lib/xe/xe_query.c
-@@ -51,7 +51,8 @@ static uint32_t *xe_query_hwconfig_new(int fd, uint32_t *hwconfig_size)
- 
- 	/* Perform the initial query to get the size */
- 	igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query), 0);
--	igt_assert_neq(query.size, 0);
-+	if (!query.size)
-+		return NULL;
- 
- 	hwconfig = malloc(query.size);
- 	igt_assert(hwconfig);
-@@ -858,7 +859,8 @@ uint32_t *xe_hwconfig_lookup_value(int fd, enum intel_hwconfig attribute, uint32
- 	igt_assert(xe_dev);
- 
- 	hwconfig = xe_dev->hwconfig;
--	igt_assert(hwconfig);
-+	if (!hwconfig)
-+		return NULL;
- 
- 	/* Extract the value from the hwconfig */
- 	pos = 0;
--- 
-2.34.1
+As first step I would add something like NOT VF,
+that should better handle the case SR-IOV is disabled.
+
+So adding a helper to xe_rtp.c:
+
+bool xe_rtp_match_not_sriov_vf(const struct xe_gt *gt,
+                               const struct xe_hw_engine *hwe)
+{
+        return !IS_SRIOV_VF(gt_to_xe(gt));
+}
+
+and updating rules:
+
+  22019338487    MEDIA_VERSION(2000)
+                 GRAPHICS_VERSION(2001)
+-               MEDIA_VERSION(3000), MEDIA_STEP(A0, B0)
++               MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), 
+FUNC(match_not_sriov_vf)
+
+It looks the rules on each line are ORed, so here the generated output is:
+
+{ XE_RTP_NAME("22019338487"),
+   XE_RTP_RULES(MEDIA_VERSION(2000), OR,
+         GRAPHICS_VERSION(2001), OR,
+         MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), 
+FUNC(match_not_sriov_vf)) }
+
+--
+marcin
+
+>>
+>> Signed-off-by: Jakub Kolakowski <jakub1.kolakowski@intel.com>
+>> Cc: Adam Miszczak <adam.miszczak@linux.intel.com>
+>> Cc: Jakub Kolakowski <jakub1.kolakowski@intel.com>
+>> Cc: Lukasz Laguna <lukasz.laguna@intel.com>
+>> Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: Michal Winiarski <michal.winiarski@intel.com>
+>> Cc: Narasimha C V <narasimha.c.v@intel.com>
+>> Cc: Piotr Piorkowski <piotr.piorkowski@intel.com>
+>> Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+>> Cc: Tomasz Lis <tomasz.lis@intel.com>
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_ggtt.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+>> index 05154f9de1a6..11aba2437818 100644
+>> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+>> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+>> @@ -238,7 +238,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+>>   	if (ggtt->size > GUC_GGTT_TOP)
+>>   		ggtt->size = GUC_GGTT_TOP;
+>>   
+>> -	if (GRAPHICS_VERx100(xe) >= 1270)
+>> +	if (GRAPHICS_VERx100(xe) >= 1270 && !IS_SRIOV_VF(xe))
+>>   		ggtt->pt_ops = (ggtt->tile->media_gt &&
+>>   			       XE_WA(ggtt->tile->media_gt, 22019338487)) ||
+>>   			       XE_WA(ggtt->tile->primary_gt, 22019338487) ?
+>> -- 
+>> 2.25.1
+>>
+> 
 
