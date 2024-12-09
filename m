@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D88C8E77180
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 14:51:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1D32E77180
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 14:54:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA70110E75E;
-	Mon,  9 Dec 2024 14:51:04 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87FC310E75E;
- Mon,  9 Dec 2024 14:51:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_adding_wait_helper_f?=
- =?utf-8?q?or_gt_async_reset?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maciej Patelczyk" <maciej.patelczyk@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Dec 2024 14:51:03 -0000
-Message-ID: <173375586355.486559.4809477451308056615@b555e5b46a47>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 930FC10E7AE;
+	Mon,  9 Dec 2024 14:54:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LKeKfK2N";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E136010E75E
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Dec 2024 14:54:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733756090; x=1765292090;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=UEAc3xJswpMSdjsTudNvrR4O/735Cip2Zh0O5zz+M90=;
+ b=LKeKfK2NNnq1h1K73pTRxrcqULF6njiGr35bITDCvPRQFGoiwYUqfH0m
+ aKCwXh17eY0SzCeCSrXIYpCdGPJYVMUIlM+K+Ph7hdcGFS25PyknzSNA+
+ UJ9w0RrhcyVUF/AdQQkbSdAV+Miuju4FXLpzU6hL4O3RpgxEPnpPqMABR
+ IzPHWPioF5XuKs3/m1zFKMFsRMz4oR/iUqlJwZ1mLfoJPkOZQctoxyNXM
+ /zsBwln8bsMhOKqElzMqrFrF/PAfKyzUKC+x/JSxj2GtNawikrJCyLp0z
+ +8bplKIwLomSfMJ/DoIkJpdhMkoBhsJfXb2/3aPDliRzPIRtqhJ47XJ4F Q==;
+X-CSE-ConnectionGUID: 1VIQ7pioSxiVzrbCceFrRw==
+X-CSE-MsgGUID: XwIT2G+DRf+ogGed2IdV7w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="34294720"
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="34294720"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2024 06:54:49 -0800
+X-CSE-ConnectionGUID: 2ZUn1wkhQQ2zMQ8WzxW/4A==
+X-CSE-MsgGUID: 9y0PTsV1SQufapNM5uBXXQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="100051444"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2024 06:54:48 -0800
+Date: Mon, 9 Dec 2024 16:54:45 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Maciej Patelczyk <maciej.patelczyk@intel.com>
+Cc: intel-xe@lists.freedesktop.org, niranjana.vishwanathapura@intel.com
+Subject: Re: [PATCH 1/2] drm/xe: introduce xe_gt_reset_wait to wait for async
+ gt reset
+Message-ID: <Z1cEtYgIRzoaVRY4@black.fi.intel.com>
 References: <20241209141210.1311374-1-maciej.patelczyk@intel.com>
-In-Reply-To: <20241209141210.1311374-1-maciej.patelczyk@intel.com>
+ <20241209141210.1311374-2-maciej.patelczyk@intel.com>
+ <Z1cB5Wx7AWUUD7L2@black.fi.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z1cB5Wx7AWUUD7L2@black.fi.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,83 +66,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Dec 09, 2024 at 04:42:49PM +0200, Raag Jadav wrote:
+> On Mon, Dec 09, 2024 at 03:12:09PM +0100, Maciej Patelczyk wrote:
+> > The reset of the GT is asynchronous.
+> > Adding a wait helper to wait until gt reset is done.
+> > 
+> > Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/tests/xe_bo.c   |  2 +-
+> >  drivers/gpu/drm/xe/tests/xe_mocs.c |  2 +-
+> >  drivers/gpu/drm/xe/xe_gt.h         | 12 ++++++++++++
+> >  drivers/gpu/drm/xe/xe_gt_debugfs.c |  2 +-
+> >  4 files changed, 15 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+> > index c9ec7a313c6b..b51434fc5bd1 100644
+> > --- a/drivers/gpu/drm/xe/tests/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+> > @@ -266,7 +266,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
+> >  		 */
+> >  		for_each_gt(__gt, xe, id) {
+> >  			xe_gt_reset_async(__gt);
+> > -			flush_work(&__gt->reset.worker);
+> > +			xe_gt_reset_wait(__gt);
+> 
+> Why not just create a
+> 
+> void xe_gt_reset_sync(gt)
+> {
+> 	xe_gt_reset_async()
+> 	flush_work()
+> }
+> 
+> and use it instead?
 
-Series: drm/xe: adding wait helper for gt async reset
-URL   : https://patchwork.freedesktop.org/series/142300/
-State : failure
+Or perhaps reuse force_reset_sync()?
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-In file included from ../include/linux/module.h:22,
-                 from ../include/linux/device/driver.h:21,
-                 from ../include/linux/device.h:32,
-                 from ../include/linux/auxiliary_bus.h:11,
-                 from ../include/linux/intel_vsec.h:5,
-                 from ../drivers/gpu/drm/xe/xe_vsec.c:7:
-../drivers/gpu/drm/xe/xe_vsec.c:233:18: error: expected ‘,’ or ‘;’ before ‘INTEL_VSEC’
-  233 | MODULE_IMPORT_NS(INTEL_VSEC);
-      |                  ^~~~~~~~~~
-../include/linux/moduleparam.h:26:61: note: in definition of macro ‘__MODULE_INFO’
-   26 |                 = __MODULE_INFO_PREFIX __stringify(tag) "=" info
-      |                                                             ^~~~
-../include/linux/module.h:299:33: note: in expansion of macro ‘MODULE_INFO’
-  299 | #define MODULE_IMPORT_NS(ns)    MODULE_INFO(import_ns, ns)
-      |                                 ^~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_vsec.c:233:1: note: in expansion of macro ‘MODULE_IMPORT_NS’
-  233 | MODULE_IMPORT_NS(INTEL_VSEC);
-      | ^~~~~~~~~~~~~~~~
-make[7]: *** [../scripts/Makefile.build:194: drivers/gpu/drm/xe/xe_vsec.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:440: drivers/gpu/drm/xe] Error 2
-make[5]: *** [../scripts/Makefile.build:440: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:440: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:440: drivers] Error 2
-make[2]: *** [/kernel/Makefile:1989: .] Error 2
-make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
-
-[14:50:30] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[14:50:34] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+Raag
