@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DE08E7717D
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 21:53:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEC75E77181
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 23:28:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E17F10E582;
-	Mon,  9 Dec 2024 21:53:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A928210E58D;
+	Mon,  9 Dec 2024 23:28:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kCjtSARl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GCZBOY4C";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9649C10E582
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Dec 2024 21:53:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A9FA10E58F
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Dec 2024 23:28:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733781210; x=1765317210;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=o0+b3y/cj8ERdnbIAARbgGNaNr5cEQsIAakljw1UUYk=;
- b=kCjtSARlqPd31dERTmWJ/jHOA66g177/bDmaCMALrnSu9HTo1ROFkWuQ
- 3ryimEF7c7jYIIcz2WyNVSF3ezIWx9KvLo54f4OEB1yODJak/TlzqhCJ+
- qMMtp+b2jdQO+yQVlgHrFWploTGgRdeLzKTDCijsGi0X9dLWg4IzMzzQ7
- 5KMwUqjrdWgnwy9QyyLTEiT2o/ZV4s39Go3hF/eYk20c6E1dmcHzNgvA1
- Qc7WhLoChKiYgY2kyNJnsmN0ShsrCy6F0rRgub/EAUZyw4hIrLjf2VI/4
- 675IRdGA1bkHXGDdXCgbaIonlt2N884kw+z/70a30JQkzYcdAOBHNa8IB Q==;
-X-CSE-ConnectionGUID: tIvsBPNWTHq6mo2mM5n42A==
-X-CSE-MsgGUID: Mq8bv3dTQECat3bDzSNE6Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="33439211"
-X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="33439211"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 13:53:30 -0800
-X-CSE-ConnectionGUID: fAvahZwMQ7m6Ij378QDOCw==
-X-CSE-MsgGUID: GvdN6kTSTDuTQ0APjkuF6w==
+ t=1733786882; x=1765322882;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=imFp2O0/gwj54nyH6x21FHnFJHQBjUMrEgVRlkSthk8=;
+ b=GCZBOY4CpGpI6kBfXXOkzFK1nOlYOyPEoKGnPLk8fZxEbX79rofeZg21
+ KYFZyiWYF951ikDbdlcSHoApqFjvVt4PUWVXvtAD7ykBsqkfQZxUbYNvy
+ DhbcQJb7P46AwRtAF57ols72U4B1I4feISyeLJBzzmbtn/xjY9DiEQpP6
+ oYC+yt1QLxP4gqVXW4ZPkNdI65syZjoRay65o5XqpnGmMNfOre6Kvo4E2
+ IQH0kayD0T1ezLRFY+yBJ4sTdhH4+C4KyA+BQO/L9iic2aHGjflT29mOn
+ eBCc+IafZ4z+PkArV+NFMrSIh7CBJy/bPqSqp0abyH/SlDkbc7NO35DMT A==;
+X-CSE-ConnectionGUID: tvMSK32rRIuF8T8PXkCNJg==
+X-CSE-MsgGUID: UlKISniXRW24IlyUR0E/PQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="44581855"
+X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="44581855"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2024 15:28:01 -0800
+X-CSE-ConnectionGUID: 5wRt+3DTRauB+w8PIKAgXQ==
+X-CSE-MsgGUID: aA5DQNC2SmKarOAxXsL9Xg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="118443338"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.109.77])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 13:53:29 -0800
-Date: Mon, 9 Dec 2024 13:53:22 -0800
+X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="100268954"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2024 15:28:00 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>, 
- Jonathan Cavitt <jonathan.cavitt@intel.com>, ashutosh.dixit@intel.com
-Subject: Re: [PATCH 5/5] drm/xe: Apply whitelist to engine save-restore
-Message-ID: <zofkiibtetsflh7x3pxcdaqrfmghrquv64s2hducuxk7sfnpg5@e2s3uydb3tbx>
-References: <20241205182240.3463027-1-lucas.demarchi@intel.com>
- <20241205182240.3463027-6-lucas.demarchi@intel.com>
- <6d2c1813-d602-4509-9e7c-3de3f6f2d085@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ John Harrison <john.c.harrison@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>, ashutosh.dixit@intel.com,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v2 2/5] drm/xe: Introduce xe_gt_dbg_printer()
+Date: Mon,  9 Dec 2024 15:27:36 -0800
+Message-ID: <20241209232739.147417-3-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241209232739.147417-1-lucas.demarchi@intel.com>
+References: <20241209232739.147417-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <6d2c1813-d602-4509-9e7c-3de3f6f2d085@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,281 +70,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Dec 05, 2024 at 03:14:05PM -0800, John Harrison wrote:
->On 12/5/2024 10:22, Lucas De Marchi wrote:
->>Instead of handling the whitelist directly in the GuC ADS
->>initialization, make it follow the same logic as other engine registers
->>that are save-restored. Main benefit is that then the SW tracking then
->>shows it in debugfs and there's no risk of an engine workaround to write
->>to the same nopriv register that is being passed directly to GuC.
->>
->>This means that xe_reg_whitelist_process_engine() then only process the
->>RTP, converting it to sr entries and then add those entries to the
->What is 'RTP'? Isn't that just a generic term for any table of 
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-not any table, the table defined with the specific fields defined by xe_rtp.h
-as documented in xe_rtp.c:
+We didn't have GT-oriented debug level printer as it was hard to
+correctly show actual callsite annotation. But this is now doable
+from commit c2ef66e9ad88 ("drm/print: Improve drm_dbg_printer").
 
-/**                                                                            
-  * DOC: Register Table Processing                                              
-  *                                                                             
-  * Internal infrastructure to define how registers should be updated based on  
-  * rules and actions. This can be used to define tables with multiple entries  
-  * (one per register) that will be walked over at some point in time to apply  
-  * the values to the registers that have matching rules.                       
-  */
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_printk.h | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
->registers? Also what is the 'sr' in xe_reg_sr? Is it meant to be 
->save/restore or something else entirely?
+diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
+index 5dc71394372d6..11da0228cea71 100644
+--- a/drivers/gpu/drm/xe/xe_gt_printk.h
++++ b/drivers/gpu/drm/xe/xe_gt_printk.h
+@@ -60,6 +60,21 @@ static inline void __xe_gt_printfn_info(struct drm_printer *p, struct va_format
+ 	xe_gt_info(gt, "%pV", vaf);
+ }
+ 
++static inline void __xe_gt_printfn_dbg(struct drm_printer *p, struct va_format *vaf)
++{
++	struct xe_gt *gt = p->arg;
++	struct drm_printer dbg;
++
++	/*
++	 * The original xe_gt_dbg() callsite annotations are useless here,
++	 * redirect to the tweaked drm_dbg_printer() instead.
++	 */
++	dbg = drm_dbg_printer(&gt_to_xe(gt)->drm, DRM_UT_DRIVER, NULL);
++	dbg.origin = p->origin;
++
++	drm_printf(&dbg, "GT%u: %pV", gt->info.id, vaf);
++}
++
+ /**
+  * xe_gt_err_printer - Construct a &drm_printer that outputs to xe_gt_err()
+  * @gt: the &xe_gt pointer to use in xe_gt_err()
+@@ -90,4 +105,20 @@ static inline struct drm_printer xe_gt_info_printer(struct xe_gt *gt)
+ 	return p;
+ }
+ 
++/**
++ * xe_gt_dbg_printer - Construct a &drm_printer that outputs like xe_gt_dbg()
++ * @gt: the &xe_gt pointer to use in xe_gt_dbg()
++ *
++ * Return: The &drm_printer object.
++ */
++static inline struct drm_printer xe_gt_dbg_printer(struct xe_gt *gt)
++{
++	struct drm_printer p = {
++		.printfn = __xe_gt_printfn_dbg,
++		.arg = gt,
++		.origin = (const void *)_THIS_IP_,
++	};
++	return p;
++}
++
+ #endif
+-- 
+2.47.0
 
-yes, save/restore
-
-
->It would be really useful to have some top level documentation 
->somewhere that says how the w/a, whitelist, etc. register lists are 
->handled - how they are constructed, how they are applied (in both the 
->KMD and the GuC), etc.
-
-
-I can try to add later if noone beats me to it.
-
->
->
->>engine sr. With that all the registers should be covered by
->>xe_reg_sr_apply_mmio() to write to the HW and there's no special
->>handling in GuC ADS to also add these registers.
->>
->>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>---
->>  drivers/gpu/drm/xe/xe_gt.c            |  4 +-
->>  drivers/gpu/drm/xe/xe_guc_ads.c       |  7 ----
->>  drivers/gpu/drm/xe/xe_hw_engine.c     |  1 -
->>  drivers/gpu/drm/xe/xe_reg_sr.c        | 49 ----------------------
->>  drivers/gpu/drm/xe/xe_reg_whitelist.c | 59 +++++++++++++++++++++++++++
->>  5 files changed, 60 insertions(+), 60 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->>index d6744be01a687..41ab7fbebc193 100644
->>--- a/drivers/gpu/drm/xe/xe_gt.c
->>+++ b/drivers/gpu/drm/xe/xe_gt.c
->>@@ -748,10 +748,8 @@ static int do_gt_restart(struct xe_gt *gt)
->>  	if (err)
->>  		return err;
->>-	for_each_hw_engine(hwe, gt, id) {
->>+	for_each_hw_engine(hwe, gt, id)
->>  		xe_reg_sr_apply_mmio(&hwe->reg_sr, gt);
->>-		xe_reg_sr_apply_whitelist(hwe);
->>-	}
->>  	/* Get CCS mode in sync between sw/hw */
->>  	xe_gt_apply_ccs_mode(gt);
->>diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
->>index b0afb89d9d90c..943146e5b460d 100644
->>--- a/drivers/gpu/drm/xe/xe_guc_ads.c
->>+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
->>@@ -243,8 +243,6 @@ static size_t calculate_regset_size(struct xe_gt *gt)
->>  		xa_for_each(&hwe->reg_sr.xa, sr_idx, sr_entry)
->>  			count++;
->>-	count += RING_MAX_NONPRIV_SLOTS * XE_NUM_HW_ENGINES;
->>-
->>  	count += ADS_REGSET_EXTRA_MAX * XE_NUM_HW_ENGINES;
->>  	if (XE_WA(gt, 1607983814))
->>@@ -729,11 +727,6 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
->>  	xa_for_each(&hwe->reg_sr.xa, idx, entry)
->>  		guc_mmio_regset_write_one(ads, regset_map, entry->reg, count++);
->>-	for (i = 0; i < RING_MAX_NONPRIV_SLOTS; i++)
->>-		guc_mmio_regset_write_one(ads, regset_map,
->>-					  RING_FORCE_TO_NONPRIV(hwe->mmio_base, i),
->>-					  count++);
->>-
->>  	for (e = extra_regs; e < extra_regs + ARRAY_SIZE(extra_regs); e++) {
->>  		if (e->skip)
->>  			continue;
->>diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
->>index c4b0dc3be39c3..b193667441488 100644
->>--- a/drivers/gpu/drm/xe/xe_hw_engine.c
->>+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
->>@@ -574,7 +574,6 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
->>  	xe_gt_assert(gt, gt->info.engine_mask & BIT(id));
->>  	xe_reg_sr_apply_mmio(&hwe->reg_sr, gt);
->>-	xe_reg_sr_apply_whitelist(hwe);
->>  	hwe->hwsp = xe_managed_bo_create_pin_map(xe, tile, SZ_4K,
->>  						 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
->>diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
->>index ea958400a15a1..9475e3f749580 100644
->>--- a/drivers/gpu/drm/xe/xe_reg_sr.c
->>+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
->>@@ -24,7 +24,6 @@
->>  #include "xe_hw_engine_types.h"
->>  #include "xe_macros.h"
->>  #include "xe_mmio.h"
->>-#include "xe_reg_whitelist.h"
->>  #include "xe_rtp_types.h"
->>  static void reg_sr_fini(struct drm_device *drm, void *arg)
->>@@ -192,54 +191,6 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
->>  	xe_gt_err(gt, "Failed to apply, err=-ETIMEDOUT\n");
->>  }
->>-void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
->>-{
->>-	struct xe_reg_sr *sr = &hwe->reg_whitelist;
->>-	struct xe_gt *gt = hwe->gt;
->>-	struct xe_reg_sr_entry *entry;
->>-	struct drm_printer p;
->>-	u32 mmio_base = hwe->mmio_base;
->>-	unsigned long reg;
->>-	unsigned int slot = 0;
->>-	unsigned int fw_ref;
->>-
->>-	xe_gt_dbg(gt, "Whitelisting %s registers\n", sr->name);
->>-
->>-	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
->>-	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
->>-		goto err_force_wake;
->>-
->>-	p = xe_gt_dbg_printer(gt);
->>-	xa_for_each(&sr->xa, reg, entry) {
->>-		if (slot == RING_MAX_NONPRIV_SLOTS) {
->>-			xe_gt_err(gt,
->>-				  "hwe %s: maximum register whitelist slots (%d) reached, refusing to add more\n",
->>-				  hwe->name, RING_MAX_NONPRIV_SLOTS);
->>-			break;
->>-		}
->>-
->>-		xe_reg_whitelist_print_entry(&p, 0, reg, entry);
->>-		xe_mmio_write32(&gt->mmio, RING_FORCE_TO_NONPRIV(mmio_base, slot),
->>-				reg | entry->set_bits);
->>-		slot++;
->>-	}
->>-
->>-	/* And clear the rest just in case of garbage */
->>-	for (; slot < RING_MAX_NONPRIV_SLOTS; slot++) {
->>-		u32 addr = RING_NOPID(mmio_base).addr;
->>-
->>-		xe_mmio_write32(&gt->mmio, RING_FORCE_TO_NONPRIV(mmio_base, slot), addr);
->>-	}
->>-
->>-	xe_force_wake_put(gt_to_fw(gt), fw_ref);
->>-
->>-	return;
->>-
->>-err_force_wake:
->>-	xe_force_wake_put(gt_to_fw(gt), fw_ref);
->>-	xe_gt_err(gt, "Failed to apply, err=-ETIMEDOUT\n");
->>-}
->>-
->>  /**
->>   * xe_reg_sr_dump - print all save/restore entries
->>   * @sr: Save/restore entries
->>diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
->>index 3996934974fa0..0be105b305907 100644
->>--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
->>+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
->>@@ -10,7 +10,9 @@
->>  #include "regs/xe_oa_regs.h"
->>  #include "regs/xe_regs.h"
->>  #include "xe_gt_types.h"
->>+#include "xe_gt_printk.h"
->>  #include "xe_platform_types.h"
->>+#include "xe_reg_sr.h"
->>  #include "xe_rtp.h"
->>  #include "xe_step.h"
->>@@ -89,6 +91,62 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
->>  	{}
->>  };
->>+static int whitelist_add_to_hwe_sr(struct xe_reg_sr_entry *entry,
->>+				   unsigned int slot,
->>+				   struct xe_hw_engine *hwe)
->>+{
->>+	struct xe_reg_sr_entry hwe_entry = (struct xe_reg_sr_entry) {
->>+		.reg = RING_FORCE_TO_NONPRIV(hwe->mmio_base, slot),
->>+		.set_bits = entry->reg.addr | entry->set_bits,
->>+		.clr_bits = entry->set_bits,
->>+		.read_mask = entry->read_mask,
->>+	};
->>+
->>+	return xe_reg_sr_add(&hwe->reg_sr, &hwe_entry, hwe->gt);
->>+}
->>+
->>+static int whitelist_add_nopid_to_hwe_sr(unsigned int slot,
->>+					 struct xe_hw_engine *hwe)
->>+{
->>+	struct xe_reg_sr_entry hwe_entry = (struct xe_reg_sr_entry) {
->>+		.reg = RING_FORCE_TO_NONPRIV(hwe->mmio_base, slot),
->>+		.set_bits = RING_NOPID(hwe->mmio_base).addr,
->>+		.clr_bits = ~0u,
->>+	};
->>+
->>+	return xe_reg_sr_add(&hwe->reg_sr, &hwe_entry, hwe->gt);
->>+}
->This function is effectively just this?
->
->static int whitelist_add_nopid_to_hwe_sr(unsigned int slot,
->					 struct xe_hw_engine *hwe) {
->	return whitelist_add_to_hwe_sr(RING_NOPID, slot, hwe);
-
-one thing is the format kept by the whitelist where the key is the
-register. Another thing is the register we actually write to the hw
-which is specific to the whitelist stuff: n slots in which the register
-address is part of the *value*.
-
-That's why it was added the way it is, in a complete separate reg_sr
-array and then converted to the right register at the time it needs to
-be applied.  This patches it to be like below:
-
-1) we still use a separate reg_sr for collecting all the registers from
-the RTP.... this is basically done because the RTP infra knows how to
-process the table into sr entries, but it's a bit overkill here. It may
-be converted to a simpler xarray/linked-list in future.
-
-2) loop through the whitelist entries and add the right register in the
-engine sr array (same array where the tuning and WAs are saved)...
-that array will later be applied via mmio and passed to GuC, which
-eliminates the extra step we were doing for whitelist.
-
-
->}
->
->But there is no way to create an xe_reg_sr_entry from an XE_REG() that 
->is simpler than just doing it manually here?
-
-see above, the entry is different. One has the reg as address, the other
-has the slot as address.
-
->
->
->>+
->>+static void whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
->>+{
->>+	struct xe_reg_sr *sr = &hwe->reg_whitelist;
->>+	struct xe_reg_sr_entry *entry;
->>+	struct drm_printer p;
->>+	unsigned long reg;
->>+	unsigned int slot;
->>+
->>+	xe_gt_dbg(hwe->gt, "Whitelisting %s registers\n", sr->name);
->>+	p = xe_gt_dbg_printer(hwe->gt);
->>+
->>+	slot = 0;
->>+	xa_for_each(&sr->xa, reg, entry) {
->>+		if (slot == RING_MAX_NONPRIV_SLOTS) {
->>+			xe_gt_err(hwe->gt,
->>+				  "hwe %s: maximum register whitelist slots (%d) reached, refusing to add more\n",
->>+				  hwe->name, RING_MAX_NONPRIV_SLOTS);
->>+			break;
->>+		}
->>+
->>+		xe_reg_whitelist_print_entry(&p, 0, reg, entry);
->>+		whitelist_add_to_hwe_sr(entry, slot, hwe);
->>+		slot++;
->>+	}
->>+
->>+	/* And clear the rest just in case of garbage */
->>+	for (; slot < RING_MAX_NONPRIV_SLOTS; slot++)
->>+		whitelist_add_nopid_to_hwe_sr(slot, hwe);
->Note that RING_MAX_NONPRIV_SLOTS is short. There are actually 20 
->NONPRIV registers on newer platforms. It's just that regs 12 onwards 
->are somewhat scattered and not consecutive addresses with the first 
->12. We should really be splatting all of them not just the first few.
-
-I'm actually dropping that in v2 until we need it
-
-Lucas De Marchi
