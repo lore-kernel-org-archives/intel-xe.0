@@ -4,182 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8249AE77181
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 13:25:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 435D9E7717D
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 13:33:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 342AF10E732;
-	Mon,  9 Dec 2024 13:25:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E844E10E736;
+	Mon,  9 Dec 2024 13:32:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yw7IlXsr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aUCb21xT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A02EE10E732;
- Mon,  9 Dec 2024 13:25:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7700110E736;
+ Mon,  9 Dec 2024 13:32:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733750711; x=1765286711;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=1jGnKN3LwCaGj8mkBp+Z1+nOG0nkXd6yHgJJIvNcddw=;
- b=Yw7IlXsrgcgsE9LdXxcpEVNDF+KGQybwvIFFSxwc8U5o//nYrHiTPZls
- bgewox6CAJjO8KORf5mah00Yv3Lkh69wfniS0uPDElTe+8tMRcmfQBY9s
- BPkEgzJDHxMxNCezda2vEStYwjDJt1vLDP1X6Bxn35l5nnfBo4mXqf2H/
- EiGittAibMugjEseYL479DYnBV15ImRoIWmD5k/xehpOgUDOPJPOppUW0
- CKFkd2NX0O/L/0l+g4pLCi7R1uSdJe5uxO3vdgNLdXzEnQdCx68jjp/69
- ilA1nGUc36D8Ppx8mv/Xxxf3FbzHrp836+gdOeJHgrhW7CY2d2Qi0nGeb w==;
-X-CSE-ConnectionGUID: OwN2nlYsR2yq5Ww/S0XQzg==
-X-CSE-MsgGUID: qO6BfkngQ0KCWc1V7gocSA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="51460821"
-X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="51460821"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 05:25:11 -0800
-X-CSE-ConnectionGUID: ybrXqmxcT1KgZ6zYAHkfCw==
-X-CSE-MsgGUID: zsygaNtvQ8SF4YVFuFoHSA==
+ t=1733751178; x=1765287178;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uSqd/YWOnq+izwDYMwWH5rzyZbZRX39BPqa9EFvchyw=;
+ b=aUCb21xTDNLJwv30xzuxc6tvAbkFKqXCqQ2d917jbVjP9ivV7fRVfCnN
+ /ZP62cZxSOl0WJHwhKcjHHOM2o9lcYHqpyoCnSwzP8ReBI85jIU2y7aXS
+ tMLToNM4l/pResZYneOxR9JPUaIO1v7OwiAiGuIY/+5GQiLehvH/UUaIJ
+ k2uL2s9umfS7ZvfOVCfjinKMrBCjOn1n7RDbM2I1xcAa7tR3O3Epj1Hro
+ bj+NyCEI4pnJwK1+sJ0N9TgRcoSIgijlKwtzVD9zBLHdL8tas2kFP6krr
+ 68PVKN1E2s03h5+Y0u3M5m+SJ0cN90dGFJbynMFMq11Uo738FjWmzjaJW A==;
+X-CSE-ConnectionGUID: lcCQWHiVRHCWFriAS60ZwA==
+X-CSE-MsgGUID: 381a8mchT+uqU4FWeS+CWQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="34191877"
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="34191877"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2024 05:32:57 -0800
+X-CSE-ConnectionGUID: I7FIlw9kTlWNfaEuYqt0Lw==
+X-CSE-MsgGUID: SzjGNNc7RmSjVXWuAOJXMg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="95417245"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 09 Dec 2024 05:25:11 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 9 Dec 2024 05:25:09 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 9 Dec 2024 05:25:09 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.43) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 9 Dec 2024 05:25:09 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XAm/LfEk3Az8p+vU6fpszquvFbTLlBus7uQq9ZXtauIBBlpI5HpjbCT8McrBnApI8mXzEnmeDnSPPqXt4clT6NjmqKwPXcGiFB1l2DN8Liu5O+UYMtG/SykloG8siE/C/mWg3HiXTeLo3JQKqlEoHQeSMy3oqTNFyhO9QFOP0bC9V5O218g+fHZMeAeb9N5p9UzoHkdMLvXYx28ETUFXgDBS/ub+JETNyA1ppBk5NUDhvVhmL+92yM824wdIynmzXWgWJ/ZIRjZSwKQn5ivyCePQRDnksbpLtrLRypLr4yIe6uh/2ICPhE1rEaeHcGOzDxYAbSa0AhGWf6St/FHC/Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4994NjBjsorq3ecvXOjZ5//tPVlYN7Rwlw2D8oAHRuc=;
- b=bI5Q/LUUxuXhQ72mNlSCZdgmwZ4FPjQAHc/0YUgbE66e3CTmWQDL/poZV3OkaURI7fFCWMi/fbBvid+IOm+JEc5m3DyLUSvs2h2i4dljLI4a991IDA8pZLftWNbeszr56amfhl8SIAxl1sYu5re60duGK9Ncam5AR+j5+gk7GVFa0h5uxQFPtu8W6BMPk7wbWUwHP+TVA0vHXASYZGHUDyBO5tGlp4bm4TSwy+9lY/Ws987rgXAcBThAHYflKyKPZ0htaxQ/TYJlXl9gWaa4HQGQhGVuKmYvKTtiR+lMzDPMGERSZyfvNLgFzdLFjbVFw+aY1e8VB/ysX7QFhHyz9A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by PH7PR11MB8479.namprd11.prod.outlook.com (2603:10b6:510:30c::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.11; Mon, 9 Dec
- 2024 13:25:07 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350%6]) with mapi id 15.20.8230.016; Mon, 9 Dec 2024
- 13:25:07 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241209074702.3975702-1-animesh.manna@intel.com>
-References: <20241209074702.3975702-1-animesh.manna@intel.com>
-Subject: Re: [PATCH v2] drm/i915/display: Adjust Added Wake Time with
- PKG_C_LATENCY
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: Animesh Manna <animesh.manna@intel.com>, Suraj Kandpal
- <suraj.kandpal@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Date: Mon, 9 Dec 2024 10:25:01 -0300
-Message-ID: <173375070100.1961.9282805722236534508@intel.com>
-User-Agent: alot/0.10
-X-ClientProxiedBy: MW4P220CA0030.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:303:115::35) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="99531224"
+Received: from mkuoppal-desk.fi.intel.com ([10.237.72.193])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2024 05:32:56 -0800
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Subject: [PATCH 00/26] Intel Xe GPU debug support (eudebug) v3
+Date: Mon,  9 Dec 2024 15:32:51 +0200
+Message-ID: <20241209133318.1806472-1-mika.kuoppala@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|PH7PR11MB8479:EE_
-X-MS-Office365-Filtering-Correlation-Id: 37a5314c-c3c4-474e-92b4-08dd1854e5c1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?TmwxcFNTQjVRR3NtMlBXeUwxSzVtUUo4VWhwRUsxL05kRlk5YUdXemRCN3d6?=
- =?utf-8?B?YkJobTJETW1nbHRZNWsxM2pPa2lFOTFBWGY1T0hXRlJIQWVHcHdnT3dSUnlR?=
- =?utf-8?B?VkVHY1BEY013M3pDU1NvalhnRW45T1JaTitiKzh1L0Ewbmw2RHZzY3NTcDNS?=
- =?utf-8?B?anFBamJmMlNib2twNVo1NUpUdmIrNUVvakp1SzVWN0RpMjYrTW5OVDc4bWVO?=
- =?utf-8?B?MFExY2RmZW9BUUhjU2dJay9Jdm14UVQ3RkVEN3czZkF2Vi8ycXhhTDRCazRI?=
- =?utf-8?B?SmM0SzM2NGlOb01WWDBZYitHWEVFdExBUkw3ZmlLazJZWmFQdlhrWnk5YW5M?=
- =?utf-8?B?Um9KMWMyN1FPQ0p6OEEzQndJbkVzQ21qTDNoNVozcEw5dkZhS3RUd1hlNnBZ?=
- =?utf-8?B?dXRuNk1BbzQ2Wm82S2dMSCtVSHE1dlJBZlFLMHB6MjFIQU5vYXV4c2FtY2sv?=
- =?utf-8?B?Y1JIcTdDVU55KzMxelZDaEJidHhzRzFaai9uMWI3eHpDOEN4ZnBvb3hwd2p3?=
- =?utf-8?B?d1B1TFhPWWRsWkVub0hLQ09KVmROOEhka2RtSGJycW9SbytmU3g1Wms0ZnNM?=
- =?utf-8?B?bEdQUlBWbG5sVHM3LzNXRkJtLzVUOUN4alp4WWxkYzhHRmhqZlgwekZKQ3ZD?=
- =?utf-8?B?Ukp4MzdSMjBCVEVJRngyQWpMelU4RnhRVnYzczllMFVxQVZjSVc4dHI0WHJq?=
- =?utf-8?B?MkEvQi9xNU1QazVtV0ZncS9PSzVETS9yM2psMjcxSHdWSFcyVzBIVFhtbmdK?=
- =?utf-8?B?ZjFrZWlsaGsyQ3d0QjdKOEUyZks3R3VWZXoxZXBqUVdBTjVnVllIeFNXZ2tt?=
- =?utf-8?B?eVMwdWRyU2lHNHA5UHpxOUFWclc3ZHNEejBlRFFweTdPbXoyZ1ZveVBZY28z?=
- =?utf-8?B?bHVtOHNUWXRoMzNWdGg2OUpZcGlsZWJwcUh6RTJsR2RvVVY3SWNvQ2c1cVkx?=
- =?utf-8?B?Y0dGditIT2t0Z3k3S3A0ck5JTVpBNkQ0MG9GMGRyeTR6b09ZZTdBY1BwM1Zq?=
- =?utf-8?B?eCtrWm9nYlJKOXRzbW4reHV1WkF6NkFsbXNrQUdOb0tRdDd1ME80KzNHYXVT?=
- =?utf-8?B?NXpkRk1jd0E1ZEpOUmNPV1QrTHNOM0JHa0pyR2FzU1ZhNmFJOVpScS9majU4?=
- =?utf-8?B?dTBsSWYxTXdwUUdSU1U1ZU5aMjBRQTl1NVVyUzd4Q0xpUFM1UzcrWllXSkV4?=
- =?utf-8?B?Q0YrK01qTWkwSEZUN0VCYnB6cWpRNXZySEwrYmdKTHZjaGxjeVpQbmdpUnhp?=
- =?utf-8?B?V2QxaDU5YURGdEVSODJvQTlTZUoraUNJVlpYUm1HSElvaE10L3V2bG9IaXlI?=
- =?utf-8?B?cllZTHN5MUxrMGpWRzVVbTBEL1ZuWGV2SkZucDJjYzE1bS9hR05CeW0zNzRl?=
- =?utf-8?B?SElaS3BlZXI1THpKUVNyMXpPQVRDbGJnVkc3MkZjcC9TMC9BanJ3ZDlOYXhw?=
- =?utf-8?B?TG8zeTJNTzhVUW1wL1A5QmJUd3JYMzRobGYxNDRQeFoyei9qTHllc0YyTFNr?=
- =?utf-8?B?MldIY09NWUNFa2J3cEg5SE9YN3MxdVhEd3lMUkVBMHdvd1UvWE14TTc1T1JT?=
- =?utf-8?B?UDZpQVdVSTBNK3pFZ2k0WVk1NGQ0ZjlPS3haR3RRcndWalFvTmtyY2tiUTNr?=
- =?utf-8?B?bUFJT3VMcjQydnpuS21vbVU2MEEwV0J3ZDdUTnJ0dXFleEZZY1YrQWRZOXVV?=
- =?utf-8?B?REdrbW1HRHRjS0tYTjR5VjdFampVNlgwTFZLNkpGK2dkMlpCMWU3T0FKV0pz?=
- =?utf-8?B?c0Y3cXQ4M0FmaGV3Nk04ZXJNek1uQ21NVlRxSFFSTXhkZzh3NEpRQ3BVUWJk?=
- =?utf-8?B?WWFKUmkzRFh0ZVJmQTFtQT09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q0Y0ZE1vOVA0ZVRiRmUvUWFFNENxQjJac2plZzRDdmo3QUY3Q2w5Z2hoeGpy?=
- =?utf-8?B?NEhVc2VrcHdEakFWcWJXTHBiSUR6UXEyenNnaG85T0RZdUNVbmRoVTdvUktH?=
- =?utf-8?B?OWl1N3plVmdQV1J3cUd6VFJwWi9Nb2dQeEhScGR2bmhWcE5oVDdqRUh1clkw?=
- =?utf-8?B?Qkt3bnY0SzJOZDltdHlGTkx4YzhmeDAzVGY1ekVtQTc5Z1VVQXZTUU5ETldu?=
- =?utf-8?B?TUtCNnZaVE9Kc0xsdEJFeHNMT2Y2YnVhdWc3L2xKMWtkWkpiOEVZSHlxc1F5?=
- =?utf-8?B?NFQ3Q1dFNktKdTk4Y2dBOHpDbGFROUpNamhUbTQzSEVnSWR0TjVBYjVmaXlY?=
- =?utf-8?B?TDA0dEdKWmxuaWZ5cUs5U0NqcmZVUzRLbHB4QTVXQXRpUmdZNkU1OVdmN2I1?=
- =?utf-8?B?MkgvblBTbGxvTFB3dElLS1pqU0trVUlZZHFlNEFqSUxMWnBzZDlSVnpXZ01X?=
- =?utf-8?B?R2E4RklSamVCcFhCaU1WUmRPcmpLekdCUUY0TG9GcGVEOXF5NWhoWVVFbHpD?=
- =?utf-8?B?WVlIUzNjZEtUMkxRelBOMVNZTkx5YU12ZW5ZTU1OQWNKVHExNzJ0QkMrb2R2?=
- =?utf-8?B?S2R4YWZSU3VuTHhQa2VsemVETGx2TDFzUHBlT3hmVTQ4NXN1dGwycE9KbDE3?=
- =?utf-8?B?blljL1o4c3Z2WWtVM0N6alU4S2c2dXhRRUdQbXNsWlpvcGx1d3FkQTdDN0hX?=
- =?utf-8?B?ay9UajdJU3BTNXZteERnU3VzaWppWkpJNDAzN1FyMGxHemV0ckM4ZXZUbGFu?=
- =?utf-8?B?bElGM2xQMTBXOWUySEljNk9iQUJxT2FKQ3pDZTJHRFVCZlE0ZmI3NC85eEww?=
- =?utf-8?B?V2FEd1FFT1E2QlhmMmtQZ3pqWnFuZGZiYnBwVWtqSjFxZWNiZEc1SWxnbVBy?=
- =?utf-8?B?cUh4Rkp2R0RXdEpTR3Fwb0FhazhlbE94R1pHNzM1NkswT3FWMlN3VGdtRHZn?=
- =?utf-8?B?K1h6OW5raU5ZM3VFckUzOTJnQlNFaUVlTlV2S1pEZFhnN1E0dzFBOFFkS1Vn?=
- =?utf-8?B?aVFDVGNTOEdzc2lNbmV2OXpGRXErM2k2Y2ZvMkZpbElSTEtrS3ZVYTRwRnhn?=
- =?utf-8?B?Q1dMZDFLRzNjbFpvNkwxdmg4WXo0L2pFN05ITjNjZjlnY3UwMUpiQVJZNDhl?=
- =?utf-8?B?K1dZU29oQTR4QUt6Vno4Z3BTUUZ6UVc2K1JRb2lCSEdZbUQ1QzBRR000UG54?=
- =?utf-8?B?SDl3M3ErckhIdVIvTTRsMGZQZCsxZzhXRVhyL0JYdFRHODVqQW5nVFR5cTNR?=
- =?utf-8?B?eGhlQWloaHgveFdBbEpUckY5anVCdUVhYUdVWC9PNlI4NlB3em5HU3ZQREly?=
- =?utf-8?B?cmhZTmduVmhaRWRMODQ1YkdUZXZKVG56VWExNDlKY1FNUHZUZURveFhYWmY0?=
- =?utf-8?B?b0JaWXN5dnRiSmh5MUdhTXFMS01NVnNtbjIyTkw0K05WaVBNMjk5MUJXR0lh?=
- =?utf-8?B?K1NxY0VoWG5rZy9yaFllVE54NHdISE5EblVSWFZhUU4yR3plSEpqVnNyMTNa?=
- =?utf-8?B?cVc4aS9GWHVVL3RTc2xpcFF5WCtlK1E5cnJKZ2xSODJvaHZHQ3VxMEtrVFR1?=
- =?utf-8?B?TGcrdzNyQ0Y5RVBqdTBsMU4vZzJPVzJ1Q0M1Y252TURPeDl0T2tzaEo4VUI2?=
- =?utf-8?B?N0QwdjAzSlNqejZSREdMcnV2L0ovSFlqNXJuY1A5WXBIekN3anVUWFA2akFO?=
- =?utf-8?B?dFBWaHFXQjVDUEREMjJPMTRLTlVWcmhNZ09MM3VtaFpLZ2o5cmdhR0xoamFk?=
- =?utf-8?B?WXpCZURmaHNWQVFvRkpVWUFYaldGSjNpaWFzQWV4cjlOWXNuRmNKTmo2ckEv?=
- =?utf-8?B?OWJKREFId0FZTVVORWd4UVlGOWliSDBXZ1hreDRLeHRsV1hpRHBnRjVpdFNa?=
- =?utf-8?B?dmN6enpvRXh4YUowbmZiSVlrTk40czVQYnlCMmc2OGh3eVBlSm9FQ3JYUTM2?=
- =?utf-8?B?a3BreGJnUHRycXc2YWw0ZlJ3aCs4NldiSWpLK0VPR1BKK0JjZ2c3cVQweW1Y?=
- =?utf-8?B?ZXRtTThRdWFpOTVYdzVCRnNQdUJwd0c4eTY2TU1sZVFPSmJtMzVuTnVmUitu?=
- =?utf-8?B?cWcxTjkxeEloQXNGME0xd1c4UUdhZ2JvdlFsQldXOCtXWHQzcnp3RnBtLzgr?=
- =?utf-8?B?T3FtVjZDTDBFTzR1MzZ4RmgrUUFlZm4rVDlPaHR5R1hrYUl0ZmY0dGVYdEJZ?=
- =?utf-8?B?YUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 37a5314c-c3c4-474e-92b4-08dd1854e5c1
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2024 13:25:06.9092 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kUQEJQ4Nfar0ybu8lqezNNu5v3BgP4DQPUkN3AutdpRJtZUlzKsA68ZounOSf01yOoUu2SxaTCmCXQWK5REZBQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8479
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,49 +66,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Animesh Manna (2024-12-09 04:47:02-03:00)
->The PKG_C_LATENCY Added Wake Time field is not working.
->When added wake time is needed, such as for flip queue
->DSB execution, increase the PKG_C_LATENCY Pkg C Latency
->field by the added wake time.
->
->WA: 22020432604
->
->v1: Initial version.
->v2: Rebase and cosmetic changes.
->
->Cc: Suraj Kandpal <suraj.kandpal@intel.com>
->Signed-off-by: Animesh Manna <animesh.manna@intel.com>
->---
-> drivers/gpu/drm/i915/display/skl_watermark.c | 6 ++++++
-> 1 file changed, 6 insertions(+)
->
->diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/dr=
-m/i915/display/skl_watermark.c
->index d93f6786db0e..f6f7205e06eb 100644
->--- a/drivers/gpu/drm/i915/display/skl_watermark.c
->+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
->@@ -2894,6 +2894,12 @@ intel_program_dpkgc_latency(struct intel_atomic_sta=
-te *state)
->                         display->sagv.block_time_us;
->         }
->=20
->+        /* Wa_22020432604 */
->+        if (DISPLAY_VER(i915) =3D=3D 30) {
+Hi,
 
-This WA also applies to Xe2_LPD (i.e. display version 20).
+This is continuation of the first and second submission of
+Intel Xe GPU debug support:
 
---
-Gustavo Sousa
+v1: https://lists.freedesktop.org/archives/intel-xe/2024-July/043605.html
+v2: https://lists.freedesktop.org/archives/intel-xe/2024-October/052260.html
 
->+                latency +=3D added_wake_time;
->+                added_wake_time =3D 0;
->+        }
->+
->         clear =3D LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
->         val =3D REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, latency) |
->                 REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_wake_time)=
-;
->--=20
->2.29.0
->
+New features in v3:
+
+ - EXEC_QUEUE_PLACEMENT events providing detailed information
+   about engines participating on exec queue. (Dominik Grzegorzek)
+
+ - EU thread page fault support (Gwan-gyeong Mun)
+
+ - Fixed access to VRAM backed storage (Matthew Brost)
+   Essential for BMG enabling. This work was already merged into
+   xe driver and eudebug takes advantage of that (ttm_bo_access).
+   [8].
+   
+ - Support for Pantherlake (Dominik Grzegorzek)
+
+v3 supports:
+ - Lunarlake (LNL)
+ - Battlemage (BMG)
+ - Pantherlake (PTL)
+
+Thanks to all contributors!
+
+Latest code can be found in:
+[1] https://gitlab.freedesktop.org/miku/kernel/-/tree/eudebug-dev
+
+Branch for this submission:
+[2] https://gitlab.freedesktop.org/miku/kernel/-/tree/eudebug-v3
+
+README/instructions:
+[3] https://gitlab.freedesktop.org/miku/kernel
+
+IGT tests (needs config switch 'xe_eudebug' to be set)
+[4] https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+https://gitlab.freedesktop.org/gfx-ci/i915-infra/-/blob/master/kconfig/debug.kconfig
+
+The user for this uapi:
+[5] https://github.com/intel/compute-runtime
+Event loop and thread control interaction can be found at:
+https://github.com/intel/compute-runtime/tree/master/level_zero/tools/source/debug/linux/xe
+And the wrappers in:
+https://github.com/intel/compute-runtime/tree/master/shared/source/os_interface/linux/xe
+https://github.com/intel/compute-runtime/blob/master/shared/source/os_interface/linux/xe/ioctl_helper_xe_debugger.cpp
+Note that the XE support is disabled by default and you will need
+NEO_ENABLE_XE_EU_DEBUG_SUPPORT enabled in order to test.
+
+GDB support:
+[6] https://github.com/intel/gdb/tree/upstream/intelgt-mvp
+[7] https://github.com/intel/gdb/tree/upstream/intelgt-mvp-plus
+GDB is preparing their own mailing list submission with above and based on v3.
+I will reply to this cover letter and update README when it happens.
+
+[8]: https://lists.freedesktop.org/archives/intel-xe/2024-November/060247.html
+Fix non-contiguous VRAM BO access in Xe
+
+Thanks,
+Mika
+
+Andrzej Hajda (2):
+  drm/xe: add system memory page iterator support to xe_res_cursor
+  drm/xe/eudebug: implement userptr_vma access
+
+Christoph Manszewski (3):
+  drm/xe/eudebug: Add vm bind and vm bind ops
+  drm/xe/eudebug: Dynamically toggle debugger functionality
+  drm/xe/eudebug_test: Introduce xe_eudebug wa kunit test
+
+Dominik Grzegorzek (11):
+  drm/xe/eudebug: Introduce exec_queue events
+  drm/xe/eudebug: Introduce exec queue placements event
+  drm/xe/eudebug: hw enablement for eudebug
+  drm/xe: Add EUDEBUG_ENABLE exec queue property
+  drm/xe/eudebug: Introduce per device attention scan worker
+  drm/xe/eudebug: Introduce EU control interface
+  drm/xe: Debug metadata create/destroy ioctls
+  drm/xe: Attach debug metadata to vma
+  drm/xe/eudebug: Add debug metadata support for xe_eudebug
+  drm/xe/eudebug/ptl: Add support for extra attention register
+  drm/xe/eudebug/ptl: Add RCU_DEBUG_1 register support for xe3
+
+Gwan-gyeong Mun (4):
+  drm/xe/eudebug: Add read/count/compare helper for eu attention
+  drm/xe/eudebug: Introduce EU pagefault handling interface
+  drm/xe/vm: Support for adding null page VMA to VM on request
+  drm/xe/eudebug: Enable EU pagefault handling
+
+Mika Kuoppala (6):
+  ptrace: export ptrace_may_access
+  drm/xe/eudebug: Introduce eudebug support
+  drm/xe/eudebug: Introduce discovery for resources
+  drm/xe/eudebug: Add UFENCE events with acks
+  drm/xe/eudebug: vm open/pread/pwrite
+  drm/xe/eudebug: Implement vm_bind_op discovery
+
+ drivers/gpu/drm/xe/Kconfig                   |   10 +
+ drivers/gpu/drm/xe/Makefile                  |    4 +
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h     |    7 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h         |   43 +
+ drivers/gpu/drm/xe/tests/xe_eudebug.c        |  176 +
+ drivers/gpu/drm/xe/tests/xe_live_test_mod.c  |    5 +
+ drivers/gpu/drm/xe/xe_debug_metadata.c       |  233 +
+ drivers/gpu/drm/xe/xe_debug_metadata.h       |  102 +
+ drivers/gpu/drm/xe/xe_debug_metadata_types.h |   25 +
+ drivers/gpu/drm/xe/xe_device.c               |   25 +-
+ drivers/gpu/drm/xe/xe_device.h               |   36 +
+ drivers/gpu/drm/xe/xe_device_types.h         |   54 +
+ drivers/gpu/drm/xe/xe_eudebug.c              | 4451 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_eudebug.h              |  128 +
+ drivers/gpu/drm/xe/xe_eudebug_types.h        |  448 ++
+ drivers/gpu/drm/xe/xe_exec.c                 |    2 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c           |   56 +-
+ drivers/gpu/drm/xe/xe_exec_queue.h           |    2 +
+ drivers/gpu/drm/xe/xe_exec_queue_types.h     |    7 +
+ drivers/gpu/drm/xe/xe_execlist.c             |    2 +-
+ drivers/gpu/drm/xe/xe_gt_debug.c             |  212 +
+ drivers/gpu/drm/xe/xe_gt_debug.h             |   46 +
+ drivers/gpu/drm/xe/xe_gt_pagefault.c         |   87 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.h         |    2 +
+ drivers/gpu/drm/xe/xe_hw_engine.c            |    1 +
+ drivers/gpu/drm/xe/xe_lrc.c                  |   16 +-
+ drivers/gpu/drm/xe/xe_lrc.h                  |    4 +-
+ drivers/gpu/drm/xe/xe_oa.c                   |    3 +-
+ drivers/gpu/drm/xe/xe_reg_sr.c               |   21 +-
+ drivers/gpu/drm/xe/xe_reg_sr.h               |    4 +-
+ drivers/gpu/drm/xe/xe_res_cursor.h           |   51 +-
+ drivers/gpu/drm/xe/xe_rtp.c                  |    2 +-
+ drivers/gpu/drm/xe/xe_sync.c                 |   45 +-
+ drivers/gpu/drm/xe/xe_sync.h                 |    8 +-
+ drivers/gpu/drm/xe/xe_sync_types.h           |   28 +-
+ drivers/gpu/drm/xe/xe_vm.c                   |  196 +-
+ drivers/gpu/drm/xe/xe_vm.h                   |    5 +
+ drivers/gpu/drm/xe/xe_vm_types.h             |   40 +
+ drivers/gpu/drm/xe/xe_wa_oob.rules           |    2 +
+ include/uapi/drm/xe_drm.h                    |   96 +-
+ include/uapi/drm/xe_drm_eudebug.h            |  256 +
+ kernel/ptrace.c                              |    1 +
+ 42 files changed, 6869 insertions(+), 73 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_eudebug.c
+ create mode 100644 drivers/gpu/drm/xe/xe_debug_metadata.c
+ create mode 100644 drivers/gpu/drm/xe/xe_debug_metadata.h
+ create mode 100644 drivers/gpu/drm/xe/xe_debug_metadata_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_debug.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_debug.h
+ create mode 100644 include/uapi/drm/xe_drm_eudebug.h
+
+-- 
+2.43.0
+
