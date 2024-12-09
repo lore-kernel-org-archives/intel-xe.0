@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E05E7E77180
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 14:22:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18830E7717D
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 14:22:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA09F10E4B7;
-	Mon,  9 Dec 2024 14:22:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFF1610E4B7;
+	Mon,  9 Dec 2024 14:22:49 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8359110E4B7;
- Mon,  9 Dec 2024 14:22:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B4F410E4B7;
+ Mon,  9 Dec 2024 14:22:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_LOBF_enablement_fix?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_LOBF_enablement_fix?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Manna, Animesh" <animesh.manna@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Dec 2024 14:22:28 -0000
-Message-ID: <173375414853.486559.816795512884338960@b555e5b46a47>
+Date: Mon, 09 Dec 2024 14:22:48 -0000
+Message-ID: <173375416804.490008.14339498118337552747@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241209075038.3976877-1-animesh.manna@intel.com>
 In-Reply-To: <20241209075038.3976877-1-animesh.manna@intel.com>
@@ -47,10 +47,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: c266f2fbb9c0 drm-tip: 2024y-12m-09d-14h-13m-53s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/lobf: Add lobf enablement in post plane update
-Applying: drm/i915/lobf: Add debug print for LOBF
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 303a3dfba86f8f52f27d7915dee6a8b411e8466a
+Author: Animesh Manna <animesh.manna@intel.com>
+Date:   Mon Dec 9 13:20:38 2024 +0530
+
+    drm/i915/lobf: Add debug print for LOBF
+    
+    Lobf is enabled part of ALPM configuration and if has_lobf
+    is set to true respective bit for LOBF will be set. Add debug
+    print while setting the bitfield of LOBF.
+    
+    Signed-off-by: Animesh Manna <animesh.manna@intel.com>
++ /mt/dim checkpatch c266f2fbb9c0250af17b14788364766adf802a4a drm-intel
+90d756a2b161 drm/i915/lobf: Add lobf enablement in post plane update
+303a3dfba86f drm/i915/lobf: Add debug print for LOBF
 
 
