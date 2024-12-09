@@ -4,56 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F40A4E7717D
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 16:27:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DDC8E77180
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 16:34:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDB1510E4BF;
-	Mon,  9 Dec 2024 16:27:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B424110E4C2;
+	Mon,  9 Dec 2024 16:34:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D9YQ8KbO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wc9xhMBC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C638110E4BF
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Dec 2024 16:27:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B672310E4C2;
+ Mon,  9 Dec 2024 16:34:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733761620; x=1765297620;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=0uNBVmo/pVyoZg3lb18sBETFu9+SAy170y9WynmbZ/4=;
- b=D9YQ8KbOPMr9hvEOcWs6to/vDKtn1wWYkTyqP8y5gqiCv4GiAdKAYUNT
- 6Sntz0bGPeHCnP0nGFpB4dwlGeGX2MnDWP/nKiDtFHJZUPo3ghxbB1LLp
- mJYb+rO4k68W+Dgg4qwFnxJmhx76PZdeulVFDuaMGHfDUkObWwOeXm8PA
- hlQILgSoOrcSjDe0yPzILTpYqmdebF8yeHKMW10IhAV4CSj3AHihWHKjP
- G2W5iqtcSTV8U9eLlv75BIgwEJ5vvwc+SpUCcLVx7NWxZM03YEMbEy1cz
- 0i1sTxJo/+0jWAqYyTVqirU2MSMymLcZpBnXm9WHQN1G9H8rvAXG9aX8s Q==;
-X-CSE-ConnectionGUID: 63Ro0dWNTAy5h9RGjgLLAw==
-X-CSE-MsgGUID: xe3V86jdTyCE+dZX+SVvzg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="21661350"
-X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="21661350"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 08:27:00 -0800
-X-CSE-ConnectionGUID: PF6npAE7Su+/9YiI+AMhcA==
-X-CSE-MsgGUID: Am1fQitaQ3W0H0TDanKX4w==
+ t=1733762088; x=1765298088;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WsneDXu2cc6IEhKV4/R2d3h/CdyS/UrhBDuIxXKYe+0=;
+ b=Wc9xhMBC0D8OOSp+0cNRzSKyBgF8yxNmx9CKp400snSmQwhUMoNtCClq
+ XYaPfZ9c5tb0a56SqFhV8/hJWL626Cxd9pJeBFd+3bRzoW2jmERSIkHjH
+ OZVXACMUCP5EHbJb4dksUr3CVbBOPKmEU9E20fSiRc1Zp8rnz+Tv3Paks
+ HCWvQShPwBCJ2mg39vHNKwG0BzJpGWa0ld+rtwbMko1IjxsstYXSpwJMX
+ br268LN6j+8y3IUBegruW9+QAomlktibA+k0p1UVoM+3qBvXewN5icmJw
+ fNIQ5CrubkFQP/4g6F35acAdR7NF1PEDZCQRujvmXqL4L6547o9v/swZq g==;
+X-CSE-ConnectionGUID: PqoSfkOSSi6wPsarsy7LHw==
+X-CSE-MsgGUID: TxDeUFIUSd+ScHTTw4bOiQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="56551578"
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="56551578"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2024 08:34:48 -0800
+X-CSE-ConnectionGUID: jgZt3P2kT1Gv78YSW9QdLw==
+X-CSE-MsgGUID: 2aGN43roTrKgMcf0StWQDw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="99596943"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.109.77])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 08:26:59 -0800
-Date: Mon, 9 Dec 2024 08:26:52 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Cc: intel-xe@lists.freedesktop.org, niranjana.vishwanathapura@intel.com
-Subject: Re: [PATCH 2/2] drm/xe: make change ccs_mode a synchronous action
-Message-ID: <e53cytk6v57vw3xcuhwwc7nncseg33q73tmyox46r6zwhwvaev@guigup4rn5x5>
-References: <20241209141210.1311374-1-maciej.patelczyk@intel.com>
- <20241209141210.1311374-3-maciej.patelczyk@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="118371640"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa002.fm.intel.com with ESMTP; 09 Dec 2024 08:34:46 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCHv10 00/10] Display Global Histogram
+Date: Mon,  9 Dec 2024 21:54:54 +0530
+Message-Id: <20241209162504.2146697-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20241209141210.1311374-3-maciej.patelczyk@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,57 +64,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Dec 09, 2024 at 03:12:10PM +0100, Maciej Patelczyk wrote:
->If ccs_mode is being modified via
->   /sys/class/drm/cardX/device/tileY/gtY/ccs_mode
->the asynchronous reset is triggered and the write returns immediately.
->
->With that some test receive false information about number of CCS engines
->or even fail if they proceed without delay after changing the ccs_mode.
->
->Changing the ccs_mode change from async to sync to prevent failures in
->tests.
->
->Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
->---
-> drivers/gpu/drm/xe/xe_gt_ccs_mode.c | 6 +++++-
-> 1 file changed, 5 insertions(+), 1 deletion(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
->index b6adfb9f2030..8d02ec3f7d12 100644
->--- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
->+++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
->@@ -115,7 +115,7 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
-> 	struct xe_gt *gt = kobj_to_gt(&kdev->kobj);
-> 	struct xe_device *xe = gt_to_xe(gt);
-> 	u32 num_engines, num_slices;
->-	int ret;
->+	int mode_changed = 0, ret;
->
-> 	if (IS_SRIOV(xe)) {
-> 		xe_gt_dbg(gt, "Can't change compute mode when running as %s\n",
->@@ -151,10 +151,14 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
-> 		gt->ccs_mode = num_engines;
-> 		xe_gt_record_user_engines(gt);
-> 		xe_gt_reset_async(gt);
->+		mode_changed = 1;
+Display histogram is a hardware functionality where a statistics for 'x'
+number of frames is generated to form a histogram data. This is notified
+to the user via histogram event. Compositor will then upon sensing the
+histogram event will read the histogram data from KMD via crtc property.
+A library can be developed to take this generated histogram as an
+input and apply some algorithm to generate an Image EnhancemenT(IET).
+This is further fed back to the KMD via crtc property. KMD will use this
+IET as a multiplicand factor to multiply with the incoming pixels at the
+end of the pipe which is then pushed onto the display.
 
-I think this can simply be the sync version. We don't want to allow new
-clients being created while this reset is taking place, which is what
-the mutex below is protecting against. 
+One such library Global Histogram Enhancement(GHE) will take the histogram
+as input and applied the algorithm to enhance the density and then
+return the enhanced factor. This library can be located @
+https://github.com/intel/ghe
 
-Lucas De Marchi
+The corresponding mutter changes to enable/disable histogram, read the
+histogram data, communicate with the library and write the enhanced data
+back to the KMD is also pushed for review at https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3873
+and https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3873/diffs?commit_id=270808ca7c8be48513553d95b4a47541f5d40206
+The IGT changes for validating the histogram event and reading the
+histogram is also pushed for review at https://patchwork.freedesktop.org/series/135789/
 
-> 	}
->
-> 	mutex_unlock(&xe->drm.filelist_mutex);
->
->+	if (mode_changed)
->+		xe_gt_reset_wait(gt);
->+
-> 	return count;
-> }
->
->-- 
->2.43.0
->
+Test-with: 20240705091333.328322-1-mohammed.thasleem@intel.com
+
+Arun R Murthy (10):
+  drm/crtc: Add histogram properties
+  drm/crtc: Expose API to create drm crtc property for histogram
+  drm/i915/histogram: Define registers for histogram
+  drm/i915/histogram: Add support for histogram
+  drm/xe: Add histogram support to Xe builds
+  drm/i915/histogram: histogram interrupt handling
+  drm/i915/display: handle drm-crtc histogram property updates
+  drm/i915/histogram: histogram delay counter doesnt reset
+  drm/i915/histogram: Histogram changes for Display 20+
+  drm/i915/histogram: Enable pipe dithering
+
+ drivers/gpu/drm/drm_atomic_state_helper.c     |   6 +
+ drivers/gpu/drm/drm_atomic_uapi.c             |  17 +
+ drivers/gpu/drm/drm_crtc.c                    |  30 ++
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_atomic.c   |   1 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   7 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  17 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |   6 +-
+ .../drm/i915/display/intel_display_types.h    |   4 +
+ .../gpu/drm/i915/display/intel_histogram.c    | 380 ++++++++++++++++++
+ .../gpu/drm/i915/display/intel_histogram.h    |  40 ++
+ .../drm/i915/display/intel_histogram_regs.h   |  75 ++++
+ drivers/gpu/drm/i915/i915_reg.h               |   5 +-
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ include/drm/drm_crtc.h                        |  49 +++
+ include/uapi/drm/drm_mode.h                   |  11 +
+ 16 files changed, 647 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram_regs.h
+
+-- 
+2.25.1
+
