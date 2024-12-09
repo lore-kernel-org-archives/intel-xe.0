@@ -4,181 +4,179 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38868E77180
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 19:00:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACC35E77181
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 19:20:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED22710E51F;
-	Mon,  9 Dec 2024 19:00:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B674B10E525;
+	Mon,  9 Dec 2024 19:20:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IZW4aLVi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hicQpFBj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 341A610E51F
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Dec 2024 19:00:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 750F610E1C4;
+ Mon,  9 Dec 2024 19:20:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733770845; x=1765306845;
+ t=1733772018; x=1765308018;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=PtCeax1LB3zpW7fkd8QlNEjCHwGvJNo3MMKRatM7H2g=;
- b=IZW4aLVijMXnvUAM5pdiPnVuTZrzrW9T+ThDBBK5pbKJjpgPbhkfSIKw
- fUPmA4l5MeGGpvEgPoDUZmugA76cpLCfi+exF8rGiLs5OWG6ObRDGByMh
- GVzy58IhpAMuhZwQZHnqVZxCYbaMrfM9naxUQn6efHovmwOO+ppg7kemB
- YIYI8JoVa7e7lEAg1vZtrVi0WV67yLgAHUjv8Lt9GmdvovVRl9Nuiwt8o
- fKtOiuvxqbe/T7qYQAyO+C539VVqPPT6XNiUq3Z1no3pwJWcrcmFlXvL3
- hfkP5aPCvuqnzOVJrDAwY1n2jpabThS22M0kCJFRztpb1BNCq4nlvQpwe g==;
-X-CSE-ConnectionGUID: Q6sX/18SQw6POQYc/pPDXw==
-X-CSE-MsgGUID: OT24qIN+TI+2EUPByHuiBw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="36924620"
-X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="36924620"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 11:00:45 -0800
-X-CSE-ConnectionGUID: igkmYfnNQMq2eM1t1eXweQ==
-X-CSE-MsgGUID: lopb/r2fTHS6uzcJI7saSg==
+ bh=U/qA1DGfpq3nFtXzdn3IdL1/QLRIWikBmCvvFbjpbw8=;
+ b=hicQpFBj8ol0/MEyXq5wSGeqqQRF4XlfwWI8VA9Z5cA7UgVqMUIcHlyK
+ tyWst1z/PsKN7uTGovIWkpBwfbRL8bC8X2KDxWF5jChJ3mRfNYZh1GQc9
+ 8DgB3XU2m8AXK+zOErPJo9L4qWgdJQ9skPzuDzMQmaKG00Pq5a+P30bRy
+ dzUNZrZYUt4Hu1+BWJqQAHK44a9Rt+GfPinzdeMJkhc088SNl7w0nTVLG
+ wCBI9pr8pimRz47pfycC+Fo1JHcY0swzEFXrgFwu7RKpGovRPc2MW+sRq
+ hx46nzljGNncdU3SHARNLLlmXWk4ikmat/MJLDWfQwua2fpoanBPhV6Aq g==;
+X-CSE-ConnectionGUID: pSR48GdkRvOy7MEi7+dqFQ==
+X-CSE-MsgGUID: ifOlibkyQ1W35EyTq/PDLg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="33431120"
+X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="33431120"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2024 11:20:17 -0800
+X-CSE-ConnectionGUID: WubnH46nS9CVqGt3gdgJVA==
+X-CSE-MsgGUID: J+cK4qWaTQq1XsOUw3M9Dg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="95611054"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 09 Dec 2024 11:00:45 -0800
+X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="99980473"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 09 Dec 2024 11:20:17 -0800
 Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 9 Dec 2024 11:00:44 -0800
+ 15.1.2507.39; Mon, 9 Dec 2024 11:20:16 -0800
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 9 Dec 2024 11:00:44 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.172)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Mon, 9 Dec 2024 11:20:16 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.40) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 9 Dec 2024 11:00:44 -0800
+ 15.1.2507.39; Mon, 9 Dec 2024 11:20:16 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CSqkDWdRAm/iUNkYkhcz5tVvb4xFLxl9/7QzfD5hFI/oowZCIvI2IWXvcm1q5gwkoN3urb5wVHVfAH5njWH5uLY1naiGZWQRH2FhZ2eHrWObPIpShyyf1jYC555ke4QSZDcPCAWtsFoIPU10SEkP4acjRRJflqtJZaJifJVXtmfr5pCXQDlILKx1a5ncO3lTFfzPgwv6UdBp81ikGcLv30PxmjK/rGlutXxnhsJccHnhhNyG+plKVDZaDsNHdqBePFrcYuBAybrwutnqVsRvk/V2k5Lc7kUI4fkqirc2hfBNwBMWHi0YF0omqGIJCnS8hmIvv1SZudP8q9Hz4+ZP2w==
+ b=U6WtlKaHf8exjsKdtuQxb+jm/tOscFe8KjZtnTDbKm5UOPY1Jtb3LdFrWMGUUeZvMR1GVzGQOcoWe2vKC8oD/6aXN8YlD/JonKcVuaKdGEnMCZKV7VaK5Ik16/MBW2of4HvLdkEbeaML8fln9OjErPmVF4h1TytWvsGiBhjjeuX/1noyU7TabBmJQ069YC6JcmzVnGtjDGZS6VjzPKM3vKFDGAEYEu8lu+oIC1LxIz84SHTJptEiLIxXB5yaRMLKV1eDR9HTmUnNA+hlqicgWwUG+jFioYdOIxRMEShg49MIzfHJlGfdQEq9z6p+AO9pqllHv693joC+JlL2Us+u/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P1H58zAsNjLB+whNiwx0DcoEGiCKQaXapoybhGCpHrc=;
- b=amDIx6zZZRzcFl3+GO1QtTGMRjrL7k8NJadD48qNZohKpRtOPP9mEBxNBxMmgkLG17NloKPiUSuJJWtHMK8fGp4yfwEODRtWS9ld+oUgH94PZljW8VY1A2jYOHHf966kahvazRBIiu49hRqakasTmiYScV1v9xPgt9DEyuPtL4csHxYiSDy1FdIDNLzDVgqpeZbPe2OvWgtASx8W934fcNMHvAUwVm2H+w9aZxM+wcWZVlMldcmgjwttwugZBJKA2CvYKZfPFfJuet5bFxnYlkr01bYItorA60grIotAqhoHqq106HQUZcLgvb0VO7DRZlFB+qYcjfmWKiDx1R3nKg==
+ bh=5jnrvJa5OPCKracav7hm8Ff+C9QXA99T570QleEqz8w=;
+ b=opUKypVxDW/9F/k+tpsar+44MOUZEtRpTnB9KZbrtUzucFohhf3vz9BaDqd14+ffAodZqxDxkMyZafT2rMRfwOLbzHx3Vl46RWVLeUnqDMnlWFn6B3qgH40SiFtrb2JUfopmPmNZJAMFEOEH4tPhBQ+1v68Bwld6cRTcpSDWxwuPquxCgIkBC30ZtU1ZMDQd/HYPCP0LpBCODpv+cZ8MXGMtTm9qmTbkq5qltN+KvkxJU/6gDTfeO6eG9mT36hwnNgHaPZZS96UGZGZXCklPydudcYyAVKl6bdD69WQT7kx3rxjOfz3aa3EVEK0hz7UjJO5xq0D59TSKff2k2fYG5A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
- by MW6PR11MB8391.namprd11.prod.outlook.com (2603:10b6:303:243::14)
+ by SA3PR11MB8003.namprd11.prod.outlook.com (2603:10b6:806:2f7::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.12; Mon, 9 Dec
- 2024 19:00:36 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.18; Mon, 9 Dec
+ 2024 19:20:13 +0000
 Received: from CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::bc66:f083:da56:8550]) by CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::bc66:f083:da56:8550%4]) with mapi id 15.20.8230.016; Mon, 9 Dec 2024
- 19:00:36 +0000
-Message-ID: <6076fb0b-44a6-4985-8103-f861ac007a29@intel.com>
-Date: Mon, 9 Dec 2024 11:00:33 -0800
+ 19:20:13 +0000
+Message-ID: <60c6f1d7-6bee-40fa-9f7b-8f138b3a3501@intel.com>
+Date: Mon, 9 Dec 2024 11:20:07 -0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 08/12] drm/xe/pxp: add a query for PXP status
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-References: <20241120234353.1037180-1-daniele.ceraolospurio@intel.com>
- <20241120234353.1037180-9-daniele.ceraolospurio@intel.com>
+Subject: Re: [i-g-t] lib/xe: set hwconfig NULL for unsupported platforms
+To: Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ <igt-dev@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: Matt Roper <matthew.d.roper@intel.com>, Jan Maslak <jan.maslak@intel.com>
+References: <20241209085709.1979242-1-tejas.upadhyay@intel.com>
 Content-Language: en-GB
 From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20241120234353.1037180-9-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20241209085709.1979242-1-tejas.upadhyay@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW4PR04CA0056.namprd04.prod.outlook.com
- (2603:10b6:303:6a::31) To CH3PR11MB8441.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MW4PR03CA0018.namprd03.prod.outlook.com
+ (2603:10b6:303:8f::23) To CH3PR11MB8441.namprd11.prod.outlook.com
  (2603:10b6:610:1bc::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|MW6PR11MB8391:EE_
-X-MS-Office365-Filtering-Correlation-Id: 32cde94e-dc2e-441e-d0fb-08dd1883c3fd
+X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|SA3PR11MB8003:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2c99974d-1e82-45ff-8f0d-08dd18868176
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Vmprd3FZRVVIcFVqckRyWGhqR1A3UG1wMzdSdThGaFlrMFNKQ1VwUXBTMEs5?=
- =?utf-8?B?RkpicEF2VVZ5R0k0c29TZ2NuRFg0Y3l1M1FHbzQvS3V3Ulo3RFl1MkRLaTRY?=
- =?utf-8?B?SlpHZkZqSXdqT2tWNkJIOGdlL3JaZWVnTDRraVk2Q2I3UnRBbXMwLzJqQXRl?=
- =?utf-8?B?YUdjd2x2SEx2MVFXZWhrMUR0bkFSMFRLV01wRVVLbmRuNmdOZHpFM0txOFFO?=
- =?utf-8?B?N0R5QkJsMU9JZVpaYXliVXVVeVlOS1lldG44NTUxUjlwTzlqWG1TRmxnaWxF?=
- =?utf-8?B?eVZuMTRNbmVNZTdvcUI1OHEzUmJJcEd0Q2k1aTVqeUxnWFNTSDY5N29zYllm?=
- =?utf-8?B?Ukp4bkFlNkh0UTlocFVSbk5EbEdIU2RScy8raW9PbEZDMkNUQ0FKeDk4d0Fi?=
- =?utf-8?B?NWRLcWVHbUFYdkRGYzRlL29nMnlsUXE4bEJxdTBXK3F5TkJ1UG1uSy9LZ3pZ?=
- =?utf-8?B?NWpTZks5b3piTnFpVUVlQXRhQU5lZEZFYkJTRkJjc1RxYkpBUkpad1lUaUdz?=
- =?utf-8?B?cjllQUpiSlJiL0VHejlRYzc2WFVpYmpLcjB5dnBqbFY4bXQrUU5PY1FyVEQr?=
- =?utf-8?B?VTR0cCtMMkZXSnUrVW0rV0w3ZnhHWTRMQkptMzlsN0pqS3pSYStKWU1pb3hs?=
- =?utf-8?B?a2FUcUdTSXEwTDdDLzF5VjYrT3QyaFBUUzViOEVsbytPQjhjOUpuMEQ5ejh5?=
- =?utf-8?B?dTdzLzNWV2h4V3RYZEdBcStPU1RXcml3V01YVms2clNEZ1lwSlY3WTdPaG1N?=
- =?utf-8?B?dGU4V1NjMWhTYkl4ZDBjbzFPNk81SEZMcUs4ajJJd2ozTHJKK0RNak5HaW9L?=
- =?utf-8?B?WERlSWp4SHZ6b0FTTGx2bStjeFAwSVY3RUd5U1B5STZTMVFNZ1dCV01jZzdy?=
- =?utf-8?B?bzBINXpWd0FmYk51aGhseUJMQ2dETEhHUlA3bE81QVZGbHYwKzlTd1ltL2do?=
- =?utf-8?B?YW1aVGp1SmcrdWtXWnRZcmhIcUZHMFVCNEhtWnBDOHdWL2JtQi9Rcyt2SjlG?=
- =?utf-8?B?WTNEcFd2UE9mOXBBTXA1NkZna01TdXNPM0tJMTFhMU1nYVdiM0VFRWl6am5l?=
- =?utf-8?B?N3l0UXlZakQ0TW0vSmJJbEt2azZWZTFRMVhkU1M4TzFiL09iRjNJbVZic3Rr?=
- =?utf-8?B?TkJvY2ZkK2hQWm50Y1dNenFpSENoeDhST3lFa3RjeG1hN2Z2ZkVWTjdKTUtF?=
- =?utf-8?B?clAxUmZ6YVErOFBRbnhMMjV3N3RWMTFHNWt5Vkx5V0hIRTU5blVMc2lsak9s?=
- =?utf-8?B?dit2V3F5U0s1STRCNlg0UGlzRlY4NUR4bjJNOXIzVXVlaWNZQUt3THU4VFhY?=
- =?utf-8?B?MXVOWU9RUklJZTRaZFhvd2N6dEd3NGhGQTZhcjl6TkV0L2ZWS3JHeFVjR2Zh?=
- =?utf-8?B?aVI3OHZwYkVjdkVndTVmcU9NMENUL0NFN0s3SGlKdEZDVVZwbnBCRkpFc3J2?=
- =?utf-8?B?WktGOHdLdmlDK0JvcjJ6NUF2QzY5ek5zV1g5UDZWYm1JSUluQjZhbFk5TE5F?=
- =?utf-8?B?NkhDWGMxVnNYajZyNjlBMVB6TEthdkZUdEk3OXhvSFhPbFlHbmFncmROSFRs?=
- =?utf-8?B?dnlTNktFMndHQzRSTy9GRC82eDhVVzRmeVBlRE5tSkdOMWwvNWpEcnMxcXVv?=
- =?utf-8?B?NDkrSng0K3YzQVJsOGM2Zjk5Rnp3SzBGL2lzbnhLK2ZpbGR3clFkWHlXZ013?=
- =?utf-8?B?SmN4WGhocGs4ak5RMjBsWUh4N1dlYjVzSmszNC96c3k0d0QzT1ZrK2JrRmF6?=
- =?utf-8?B?TFlmclBuRXFZVGtSUCtRVG85V1I2MngwNDE2a2FvT1VNby9sTU9VT0x4NXhk?=
- =?utf-8?Q?W6yvItd0OJOY99YMFR9H6+IoY1uxXooa/sIy8=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dVFkOWp1RlM5cHMyZnhJb0FWc3pJNEVQNzM1OHoyT2RRQWFEWjN2ZncrN0VP?=
+ =?utf-8?B?UWZZbW9zK3FhWHJFUXcvWEI1QjNqV2ZNMkRLaStQR3ZnM0RpVDNsM0RJY0ov?=
+ =?utf-8?B?a2F3bVFOMWJVVzJZMHFkbXlNb3BaSmx0c0J6QVM0dWNqUFJnam1GbzRSVmdj?=
+ =?utf-8?B?QjM0UmxOQkQvTnRPbG1wQ3pQc1RkTmk5cFc1b204NXJwdlRoUllwV1pmaDF3?=
+ =?utf-8?B?RDZwU3M1cHR6MXBmaWlqek1GS2s2VUpnQno1U0JTNHVkWHM0eWtUUklHRE0y?=
+ =?utf-8?B?bGFrNnVtYnhmc3h6bXdmY0E0bWs5SG1FanQ1NU40SEJPeSswa0NUTmx1SUFm?=
+ =?utf-8?B?VGpOTFA3N1RSNTRmRDBHZ2ZsZG1LYXZHNVV3c2QxQ21xb3o5bnB4bWhtTVpy?=
+ =?utf-8?B?V0N6eUpMaFBkR0ZrOVcrNHdRSDU1M3RvNG5rV3pWd2lnUC9HeXVrUzh5QXE2?=
+ =?utf-8?B?R1NXM1p1S2RRaGFFTzZ1Wko3bUs4UkZBSTdzWm9EUnlGWWVreVp3c2Y2bjFt?=
+ =?utf-8?B?Rkt5UDllNStjVFF4bGZOQ0E0UEdjelEyR3BBSDRYcUtTTFlKbnlDTFNhcEh3?=
+ =?utf-8?B?eVZKVndXdERIdDA0SU5md3RRUUI4dzlpK0VSNWRYSVFBWlpDbFpVMUNqNmlq?=
+ =?utf-8?B?bWJLZ3FYY3JtQXRIRitneThhWE9zbUtsdWc3YWhzSFNTalRJdllRT3VqS2Js?=
+ =?utf-8?B?c0tSZytHcVprNnRCU2FyTFJsK1ZrNWcrWGowcFZjcFJRQjcwQVZtclJOcVF3?=
+ =?utf-8?B?YllzcnBOZkFFdFZSeWdxc1pTdFNOMnkxemEyMjROWnNYZ3NBOUg4NFM3MHRC?=
+ =?utf-8?B?Zm9ISnpsY1RPeldmSWhuQUEwNUNVT1RzNko3OEQ3NzdpaHJqUEF6MTFVSzcr?=
+ =?utf-8?B?MTUzUzY3d0FEb0NsV0daV2FsVTdKdXVTaTFjMHJlWkhVb2dZZEMwL2ROcGJO?=
+ =?utf-8?B?MjVvZGhCZ2hmOVluN2tDY0pnL1lpdjJkVkJacW9IWnpkODlGcGJvU0JROFMz?=
+ =?utf-8?B?OUwxS0docUo1anhvSEdKWHBIQXg1THlMejlTN09Gak90RHNLQnRFNE1VTW9t?=
+ =?utf-8?B?VklkdVpJVmNhNWdXMS9ON2dGVkh2WVpGdG9tYmpGNTd3ZUtOVkZ0ZmIzOWVk?=
+ =?utf-8?B?VTByWU5aVk5xVnpXZThGZ1lYSzNodnNTM0M0SHp3aXJqNFlESnpPYUJlSStk?=
+ =?utf-8?B?S1VuRWlObFlkSzNGWDZRVW4xY2RvUm9zM1hsWWMrS2xQdDM4RWo4RWtXem5p?=
+ =?utf-8?B?Zkc2cE1PZG5wb3NVMWt4aUp2cmloVEg3NmkvSkJNaHU3ZkhnMVJQQndid3Fx?=
+ =?utf-8?B?cXFYb0FmbmdvM1BOT1lGQ2NoajlvVjRaWlEyQ2VpN0Rqc0swb2YrWG11d0ZQ?=
+ =?utf-8?B?M2J0ZENLUXQ5Y3JuL09zQmJPdy9FQ1VFdzNIdlJnRGlCcitLZ0ZGWWdlMTlD?=
+ =?utf-8?B?eDBOU25lcDhSYy9ZTUpBUlNhdk1RNjhmT1F2WEQ1MnMyVEhzRklDYmR6ZUxL?=
+ =?utf-8?B?SFBLRVpxN3FTMXAzZFRpZTRXblptd1Q1ZmpPWE85TWpJNGt0bkRoYmd3U1Iy?=
+ =?utf-8?B?NW5IT0s0SlJkMmxpbExMaUxubTdjMlhUS3czRTE2dEZLRDVQZmFtVHIrQXdr?=
+ =?utf-8?B?UE5vcmVOMFllTU5ialg0TEx6Um1lVjRkVGpZYWgzMFY0WE5BSGcrSW1IQk5G?=
+ =?utf-8?B?ZTR3YWRFN2pYc1VCcy93VmZqcExlSjZNYUV1a2NXRkFhRFZIcHRMOTkvOTFH?=
+ =?utf-8?Q?92v+c5Khqd2Hv6/BPY=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N05qbjdXcm9DRk5JcG5Dd1FnRFNPU0JhS0hNUHhjcFBBSDJFamJubXdKY2tp?=
- =?utf-8?B?cFZET1NqQWw4dEppajBYRE40S2t3UGZOQnJEdk1MTFBjM3ordktydEVlUjVz?=
- =?utf-8?B?UnBKNSs3Y2tyTm8xWXJYbWRVczM3YjZzaCtaUGtzNEprTzhmdFF6NCtUZFdP?=
- =?utf-8?B?SUpDNXBjZWZ3cEFnR3RNOWJ5Z3Z1bWZUT1hJbkpvTkExM1ArclpKNmIycHQr?=
- =?utf-8?B?eFArcmQvUEUzay9CSDdvS29veHBNSE42eTdtUGRXaFdvZ0NaMkxvYzJVSDZi?=
- =?utf-8?B?KzdZTmlBRGM3WjJrS3JXU3hrTE9qM3llNHQ4WGI3ZUNJcnJuWm1wOFZpaFkr?=
- =?utf-8?B?blBZdXpHNzNsVjltSUUyRGg5cW83aUZES2FXWTVHWm54MkxrVDFFNVVJdk9x?=
- =?utf-8?B?YmxRWDZFVzlqQk8yNWlwQUtMTG9LSjllWjlsamVOUjdVVWRabHZGeTdzWStK?=
- =?utf-8?B?MkRKZ00zbi9kaUhUQ0UvamgvNFFJcHYyUjMzeCtmc3J3NUNaYlkyazZTSFBO?=
- =?utf-8?B?WXRQdkdKYnFvazg0M1VuNkIxaEdIaFhoV3FaRTNHbnRYUW9xQUtDcnNuY1hP?=
- =?utf-8?B?SnBlQjB6SlM4Z1FOZG4zOVphNmN1bE9Henh6OTVXUkZiUzQzalhIS1RROEhJ?=
- =?utf-8?B?NmRmcTQ0K0xLRStSSjBhUmxkLy8vUUpPOWp4YVpaNDRROStVTHJYOVNZREx3?=
- =?utf-8?B?dlg2WkpGYVBjZHVKUVYyajhhNzg3MDdNcFhMNlQrL0hkTE1TUng3NXhWS2FR?=
- =?utf-8?B?bTYwWkdLMmY3V0pzVUhkeGVCcElPblg0ZUx1Zm9vaTBOaWgrQ1hCRGZRZDdk?=
- =?utf-8?B?dGVTSWZBcGZ5T2dJeVBJVnNiaFVwNVNzYVJSMnJVVkR3WXZlc3VjNm9TTDg2?=
- =?utf-8?B?cUJzcUo2Q0I4Zms4RTNDbmpweFRwRjBxY2M5a2ZLVWxyLzB5SjJMam1aZVVt?=
- =?utf-8?B?anZCMjZsM3ltdHpCUXpCQnR0dDVQMklYUjdxNm9kVUdUYTdBZWttM3NtdEhu?=
- =?utf-8?B?VU1sQzVQOUdxZEtVWXlvRUVsaURybGg0VkxjS2FiNDNkSmUyRWxyNEVYdTRa?=
- =?utf-8?B?aUxVcDlBUlluZmY1aFF2Z3gzTi9EZitCeE9kMUF3UDlVYW16cmM4N2tnNEdt?=
- =?utf-8?B?QXMzdkd4R0FpNkRoMk4zcXlwNEhLdVJhQWV4MXZNeGRzT2N5bmV6SUtoN01k?=
- =?utf-8?B?N3pnWEJaOGRFNW9lSGo3ZGhVZmNqaERBNmFuVkg1UTYvbFl5S2hyUEJ2M3hQ?=
- =?utf-8?B?VkVsbUpZV0dMYXVUa3RHSUdPSTA4OHhiaTFxb0dkTDVBT25vQm5lMktxTEtl?=
- =?utf-8?B?UXVKcDVJK0NXOXl1d0xWV25jNGVOdnNNSWRVK3B2amlCeUYySGJGbklnaXht?=
- =?utf-8?B?QUNiNDJ1WkU1UWNTZEQzbGFtbGxqY2pkNXhGYm9IN3VDbWtVdFhlaWJheGVu?=
- =?utf-8?B?SXluWWhHRzN5WXNobEtKekdaVnVMZzJGZUV2c0w4enN5UEQ1cGZKTTFhMVVr?=
- =?utf-8?B?b2UwYUoxRnNETFFaSXZmZ2VsSitjdUJsYWcyWlZkUnJ6cURiUzNtN3ViandH?=
- =?utf-8?B?QVV2eUxCTzJ0OHExQnVzYkxXSFdmbVcvWkRyd0tTZG5mbCt3eWtLN2czNy9I?=
- =?utf-8?B?QVQ5R1ZOL0RpTXBtUXo4YmhCVDZKTWV5b0pCQUxrL09paGg5blFLYXU0NTg3?=
- =?utf-8?B?clVLc3RNS0NjdmxOQU9hREN2M1lkQWdXRnRhS3R4S05EWW1CNWJKOEF2UytS?=
- =?utf-8?B?K2trME14UGcwYmNtL203OTg3YnB2M1hQWmdMUWluV2FROUhDVHgxMjVLbXhP?=
- =?utf-8?B?ay9wejRJRFRjTkR0VzNqdjRSWHd1OUZqbFFBR3krZEJLOUNIb095bjNPVjN0?=
- =?utf-8?B?bTlhcGJmelhQN3g5ZXE4M2hGMDFBYWR0MHpWQ1FkUUlMbzlrSkdObk5YcWxL?=
- =?utf-8?B?RHVkOVVqSUVrNFlESUxIU0pYSVFHeTB0K0pmb0tCWWlDK3RhM2hYTUxIMWFJ?=
- =?utf-8?B?VnhJVk1rVWxmR2IrajVpbTBjdS8yVWdtT0VLTG1ybUI3ZHAyMWNQWWM3SXRR?=
- =?utf-8?B?VGtXVXBYWmtMQlJlWkNLQVNqTEE5RFBnUlVjbG96Y2tYSmxpNGYzTlFpUDdv?=
- =?utf-8?B?ejladmE5ME5HTWs5N2RQKzlMekRpMXZla2pDZC8rclUzYWdaM2NyRWhXNnNE?=
- =?utf-8?B?aUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32cde94e-dc2e-441e-d0fb-08dd1883c3fd
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ekRNUmQ2KytTVDFTVGg3Q2NkdlZxeDE1ZUN1ZkozVi8vZGJRSHU3YjRhMW9j?=
+ =?utf-8?B?RGxkQ1M0Qk95MjhTbEVWcVRPMWpWcmlSdzRjZ2E1OHBNRU1IL0pPcDhtRXI0?=
+ =?utf-8?B?dS9NeklPYmZwcHVVMHhyNUd3U3Fsdm13cmRtaldTamh1TCtMUThVTDlUQlB4?=
+ =?utf-8?B?QTRKd2x5UUJpTi8vVndlaVFoR1pzMk9RbFdmdXp3VS9xREJYLzhrWnRqYUlU?=
+ =?utf-8?B?Ty85M1hsTnlRN01JL2RUL1pJNG1YdDJsdElvY04xWTNuK0E4aFVRMHdYaFJQ?=
+ =?utf-8?B?WXpOd3l4MUJ5c0hxelR4dHY4NHl1K2d2dDR0VWhnL3BpaStOelJiaFlMVE0y?=
+ =?utf-8?B?MFNkNDljZXZVMFBlQUNXd2RkZlZSVkN1R1J4U2g4OFZxcDBmMWd0VFNGVks1?=
+ =?utf-8?B?RHdCdkdUSDdzM3ZEVEF5RjZRZlF0NE8wRXBwQjZtY1dkN1hKMjFKbTJQaDgw?=
+ =?utf-8?B?aW1tVEJtenA2R1cyc1FkZUIxQ1pNQjdzSU1UWFBjVDM1UU1zTGp2SHlSWGxH?=
+ =?utf-8?B?TG9BRldpc2l2SU0rSEtjMllXMVJndmttQW5qWjhWY1JuYnVRa3F6ZFF1eHZJ?=
+ =?utf-8?B?ZWRFQWNCdUZVdEdIQ2RTYTQ2U1cwYVM5Q0I5TVYyWVBZZkxHN3V5RWxZZDFj?=
+ =?utf-8?B?S0xxemJCOVRwSFZRVWZNM29JaXRuL3VzTFpFK0dKcG9QbnhKeWcwNDFpc3ZC?=
+ =?utf-8?B?ZkgrTk00ajZoTG1zOFlmeHVGcktSeHRZZHlYTUtCdmtZbGN5R3lvZmx5bWxB?=
+ =?utf-8?B?c0dVMG1INkJ1UVR3enp0ek8vSVV4VXlTUzBWZVlaM1J3QjNzTnhiNGNEV3dk?=
+ =?utf-8?B?cEg2MUhGYnlTY1UvN2dJd21pZ3pJaEQ0UWsyVnlBSElFQ3lUSG1KR0tOdWx4?=
+ =?utf-8?B?dGVJMEIrQUN6NWVJdzZaNzZ3SjQrZGMwcGZZOHF0WEZxd1JtQ3A2eDBpc3Zv?=
+ =?utf-8?B?MDBvSGJGd29lTlptbkQyeGFIRG1pVmtFTDVjWmFlcFdPUnhzd1MvN0h5Mmdi?=
+ =?utf-8?B?M09QeUxQZWlNQ0VRbUZPMEorZDFwTXlGbG5wbDNNREltRko5Z2o1VUFUWHpH?=
+ =?utf-8?B?MHcrY3htU0YyL0UwamFTT2lXYWlPZWwrNnpNVmJ0N3dXd3NQL3cxWS95YUYv?=
+ =?utf-8?B?UEFIUXZqT3NtOHo0ZTVjOFhPVGNkVStScFJVOHVOS0RHUVQyWlFPOXozTlpY?=
+ =?utf-8?B?OWhQQkRXMlJPYmlVMm1aRXZsMnhjSkZoRy9kZmx5Sk1LM04vN0VibGM4a3Rh?=
+ =?utf-8?B?RWZqdFV3bEJhdFEvclpqRE5uaDFQbUhvZjlXUjkrR2wwQ0dheDRIV2s5THps?=
+ =?utf-8?B?ajJYQ1FjTlhWQjVqWXlIM1BldUFBbTlYa1J0UWNVNjNrSnN4Qk9Pb3VjNE5H?=
+ =?utf-8?B?YktyT0I5WUs5YzdpMEUwTDgyUS85UE0wZ25wa1BzZFBpWEwxdzNMNGlDYldS?=
+ =?utf-8?B?OEhvV3p6ek1DbWliUjdQb0dURW5lVDVQS0twSHhuVURMdnFrcUpXU1RtUzNj?=
+ =?utf-8?B?V0RmVEkzYm9kNlk3RG9KYkl2bU5XRlpvYThzaXUrQXlGL3VsM200bk9UTER2?=
+ =?utf-8?B?dVlUZ0dvb2U3Tm51RHpURG1Cd2hHMVNUTVB6NW5WQngwQUNKMlNwOGU1VXFB?=
+ =?utf-8?B?bzNUVlpUc29nQXhhbXBCdklIU3ZWNHUxNlVQZUxzNFAreE1aanFUelJjbmY4?=
+ =?utf-8?B?ZW5KMVUxbVhTcW1rQlhxcGVINWVOTjFVQVJmSldFN1pxQkVHVEVSMk9xQlNW?=
+ =?utf-8?B?TWluYXFkRnZadnBqcEdhL005akd6Tzh3YTZyTVRmQmVPMzJFZHdOZjhUckJo?=
+ =?utf-8?B?RENSd3E5eUZxWllDenJkaURpNS8ra2o3R3IxM0dCR3lPbUZaZUlFQlFJeVNN?=
+ =?utf-8?B?TUs0MXpKbE5ZdVN6YUJTejNaRklyMklJbmxpZk9IMkU4anVYcENwcDJ3ZGJ1?=
+ =?utf-8?B?c2hsSmZHY2tOTHpLc0h0MlZZN1Ywa2IxSHE3Q2g2R2M5d3Z0WGF6RnE4R29w?=
+ =?utf-8?B?Yng3dnNuVC9QdUtlZWZEWFdiSUhBNFRRME84QUhjUHlnZ0VsZ1kxTEkwdWxI?=
+ =?utf-8?B?K0tGUDlUY3JNYk9POXRHQVVGUURJSFJkdHVCcFY1eHRENUVVbGZLNnd5TnJM?=
+ =?utf-8?B?UGtiSjZ4Ry9OM25oekJwa3dTZ1FGajdPcEt0ZDczWmxsY0dzb0U1UG9IdFVy?=
+ =?utf-8?B?Mmc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c99974d-1e82-45ff-8f0d-08dd18868176
 X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2024 19:00:36.6397 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2024 19:20:13.5405 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hSsAB9ccPLLfEVILafzkkaQDdtk2vYRv1bDgEEZ0iT+3b3rRRdbySUuXFJE9qZ/vylfFEDE+OUycr8THkKovgL5SkqRiE3fPiXE0lNuC1sM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR11MB8391
+X-MS-Exchange-CrossTenant-UserPrincipalName: PS+KCEgB2hofycgBchuZo2iJJq0N3tiGV7+KmXfGMictWs4tQzzWn0E8FGCK7hEnnmhlvutfhiCwUrGzZLEIGvwCXVWiThjv2ILwm4UAFpA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB8003
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -194,195 +192,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 11/20/2024 15:43, Daniele Ceraolo Spurio wrote:
-> PXP prerequisites (SW proxy and HuC auth via GSC) are completed
-> asynchronously from driver load, which means that userspace can start
-> submitting before we're ready to start a PXP session. Therefore, we need
-> a query that userspace can use to check not only if PXP is supported but
-> also to wait until the prerequisites are done.
->
-> v2: Improve doc, do not report TYPE_NONE as supported (José)
-> v3: Better comments, remove unneeded copy_from_user (John)
->
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: José Roberto de Souza <jose.souza@intel.com>
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+On 12/9/2024 00:57, Tejas Upadhyay wrote:
+> There are hardware platforms which are not supporting
+> hwconfig table, for example ADLS. Querying hwconfig
+> on unsupported platforms leads to assert and failure
+> for some of tests like,
+> ./build/tests/xe_module_load --r load
+The module reload test should not be querying the hwconfig table?!
 
-> ---
->   drivers/gpu/drm/xe/xe_pxp.c   | 32 ++++++++++++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_pxp.h   |  1 +
->   drivers/gpu/drm/xe/xe_query.c | 29 +++++++++++++++++++++++++++++
->   include/uapi/drm/xe_drm.h     | 35 +++++++++++++++++++++++++++++++++++
->   4 files changed, 97 insertions(+)
+But the hwconfig test itself should be failing on platforms which do not 
+have a table. That is intentional. There is no platform which is POR for 
+the Xe driver which does not support hwconfig tables. So the test is 
+supposed to fail if it ever does not get a valid table.
+
+John.
+
 >
-> diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
-> index ce1d7ab448dc..fe56e3eec5a7 100644
-> --- a/drivers/gpu/drm/xe/xe_pxp.c
-> +++ b/drivers/gpu/drm/xe/xe_pxp.c
-> @@ -71,6 +71,38 @@ static bool pxp_prerequisites_done(const struct xe_pxp *pxp)
->   	return ready;
->   }
+> https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3683
+>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Jan Maslak <jan.maslak@intel.com>
+> Fixes: 37a230e50 ("lib/xe_query: add hwconfig to xe_device")
+> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> ---
+>   lib/xe/xe_query.c | 6 ++++--
+>   1 file changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/lib/xe/xe_query.c b/lib/xe/xe_query.c
+> index f3731d9d3..8f0a5392c 100644
+> --- a/lib/xe/xe_query.c
+> +++ b/lib/xe/xe_query.c
+> @@ -51,7 +51,8 @@ static uint32_t *xe_query_hwconfig_new(int fd, uint32_t *hwconfig_size)
 >   
-> +/**
-> + * xe_pxp_get_readiness_status - check whether PXP is ready for userspace use
-> + * @pxp: the xe_pxp pointer (can be NULL if PXP is disabled)
-> + *
-> + * Returns: 0 if PXP is not ready yet, 1 if it is ready, a negative errno value
-> + * if PXP is not supported/enabled or if something went wrong in the
-> + * initialization of the prerequisites. Note that the return values of this
-> + * function follow the uapi (see drm_xe_query_pxp_status), so they can be used
-> + * directly in the query ioctl.
-> + */
-> +int xe_pxp_get_readiness_status(struct xe_pxp *pxp)
-> +{
-> +	int ret = 0;
-> +
-> +	if (!xe_pxp_is_enabled(pxp))
-> +		return -ENODEV;
-> +
-> +	/* if the GSC or HuC FW are in an error state, PXP will never work */
-> +	if (xe_uc_fw_status_to_error(pxp->gt->uc.huc.fw.status) ||
-> +	    xe_uc_fw_status_to_error(pxp->gt->uc.gsc.fw.status))
-> +		return -EIO;
-> +
-> +	xe_pm_runtime_get(pxp->xe);
-> +
-> +	/* PXP requires both HuC loaded and GSC proxy initialized */
-> +	if (pxp_prerequisites_done(pxp))
-> +		ret = 1;
-> +
-> +	xe_pm_runtime_put(pxp->xe);
-> +	return ret;
-> +}
-> +
->   static bool pxp_session_is_in_play(struct xe_pxp *pxp, u32 id)
->   {
->   	struct xe_gt *gt = pxp->gt;
-> diff --git a/drivers/gpu/drm/xe/xe_pxp.h b/drivers/gpu/drm/xe/xe_pxp.h
-> index 2e0ab186072a..868813cc84b9 100644
-> --- a/drivers/gpu/drm/xe/xe_pxp.h
-> +++ b/drivers/gpu/drm/xe/xe_pxp.h
-> @@ -14,6 +14,7 @@ struct xe_pxp;
+>   	/* Perform the initial query to get the size */
+>   	igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query), 0);
+> -	igt_assert_neq(query.size, 0);
+> +	if (!query.size)
+> +		return NULL;
 >   
->   bool xe_pxp_is_supported(const struct xe_device *xe);
->   bool xe_pxp_is_enabled(const struct xe_pxp *pxp);
-> +int xe_pxp_get_readiness_status(struct xe_pxp *pxp);
+>   	hwconfig = malloc(query.size);
+>   	igt_assert(hwconfig);
+> @@ -858,7 +859,8 @@ uint32_t *xe_hwconfig_lookup_value(int fd, enum intel_hwconfig attribute, uint32
+>   	igt_assert(xe_dev);
 >   
->   int xe_pxp_init(struct xe_device *xe);
->   void xe_pxp_irq_handler(struct xe_device *xe, u16 iir);
-> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index 3eda616f1502..28d3b98c0fd9 100644
-> --- a/drivers/gpu/drm/xe/xe_query.c
-> +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -24,6 +24,7 @@
->   #include "xe_macros.h"
->   #include "xe_mmio.h"
->   #include "xe_oa.h"
-> +#include "xe_pxp.h"
->   #include "xe_ttm_vram_mgr.h"
->   #include "xe_wa.h"
+>   	hwconfig = xe_dev->hwconfig;
+> -	igt_assert(hwconfig);
+> +	if (!hwconfig)
+> +		return NULL;
 >   
-> @@ -696,6 +697,33 @@ static int query_oa_units(struct xe_device *xe,
->   	return ret ? -EFAULT : 0;
->   }
->   
-> +static int query_pxp_status(struct xe_device *xe, struct drm_xe_device_query *query)
-> +{
-> +	struct drm_xe_query_pxp_status __user *query_ptr = u64_to_user_ptr(query->data);
-> +	size_t size = sizeof(struct drm_xe_query_pxp_status);
-> +	struct drm_xe_query_pxp_status resp = { 0 };
-> +	int ret;
-> +
-> +	if (query->size == 0) {
-> +		query->size = size;
-> +		return 0;
-> +	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = xe_pxp_get_readiness_status(xe->pxp);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	resp.status = ret;
-> +	resp.supported_session_types = BIT(DRM_XE_PXP_TYPE_HWDRM);
-> +
-> +	if (copy_to_user(query_ptr, &resp, size))
-> +		return -EFAULT;
-> +
-> +	return 0;
-> +}
-> +
->   static int (* const xe_query_funcs[])(struct xe_device *xe,
->   				      struct drm_xe_device_query *query) = {
->   	query_engines,
-> @@ -707,6 +735,7 @@ static int (* const xe_query_funcs[])(struct xe_device *xe,
->   	query_engine_cycles,
->   	query_uc_fw_version,
->   	query_oa_units,
-> +	query_pxp_status,
->   };
->   
->   int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index ae6313b8438a..8249870a171a 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -629,6 +629,39 @@ struct drm_xe_query_uc_fw_version {
->   	__u64 reserved;
->   };
->   
-> +/**
-> + * struct drm_xe_query_pxp_status - query if PXP is ready
-> + *
-> + * If PXP is enabled and no fatal error has occurred, the status will be set to
-> + * one of the following values:
-> + * 0: PXP init still in progress
-> + * 1: PXP init complete
-> + *
-> + * If PXP is not enabled or something has gone wrong, the query will be failed
-> + * with one of the following error codes:
-> + * -ENODEV: PXP not supported or disabled;
-> + * -EIO: fatal error occurred during init, so PXP will never be enabled;
-> + * -EINVAL: incorrect value provided as part of the query;
-> + * -EFAULT: error copying the memory between kernel and userspace.
-> + *
-> + * The status can only be 0 in the first few seconds after driver load. If
-> + * everything works as expected, the status will transition to init complete in
-> + * less than 1 second, while in case of errors the driver might take longer to
-> + * start returning an error code, but it should still take less than 10 seconds.
-> + *
-> + * The supported session type bitmask is based on the values in
-> + * enum drm_xe_pxp_session_type. TYPE_NONE is always supported and therefore
-> + * is not reported in the bitmask.
-> + *
-> + */
-> +struct drm_xe_query_pxp_status {
-> +	/** @status: current PXP status */
-> +	__u32 status;
-> +
-> +	/** @supported_session_types: bitmask of supported PXP session types */
-> +	__u32 supported_session_types;
-> +};
-> +
->   /**
->    * struct drm_xe_device_query - Input of &DRM_IOCTL_XE_DEVICE_QUERY - main
->    * structure to query device information
-> @@ -648,6 +681,7 @@ struct drm_xe_query_uc_fw_version {
->    *    attributes.
->    *  - %DRM_XE_DEVICE_QUERY_GT_TOPOLOGY
->    *  - %DRM_XE_DEVICE_QUERY_ENGINE_CYCLES
-> + *  - %DRM_XE_DEVICE_QUERY_PXP_STATUS
->    *
->    * If size is set to 0, the driver fills it with the required size for
->    * the requested type of data to query. If size is equal to the required
-> @@ -700,6 +734,7 @@ struct drm_xe_device_query {
->   #define DRM_XE_DEVICE_QUERY_ENGINE_CYCLES	6
->   #define DRM_XE_DEVICE_QUERY_UC_FW_VERSION	7
->   #define DRM_XE_DEVICE_QUERY_OA_UNITS		8
-> +#define DRM_XE_DEVICE_QUERY_PXP_STATUS		9
->   	/** @query: The type of data to query */
->   	__u32 query;
->   
+>   	/* Extract the value from the hwconfig */
+>   	pos = 0;
 
