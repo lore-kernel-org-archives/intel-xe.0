@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4F1FE77180
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 13:33:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A011EE7717D
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 13:33:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69E8010E74B;
-	Mon,  9 Dec 2024 13:33:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E22710E740;
+	Mon,  9 Dec 2024 13:33:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H5hfLQlq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EhBIQ97z";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BCA510E773;
- Mon,  9 Dec 2024 13:33:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80FCF10E75E;
+ Mon,  9 Dec 2024 13:33:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733751220; x=1765287220;
+ t=1733751224; x=1765287224;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RThmuulfUqOi6traoABdpzCGlKL3v7YFxMezvg+1QfM=;
- b=H5hfLQlq4vrTzgC9Zkv2LV4IoH6XZBYf1edOqxDbXWqp/XBZQFdXshUi
- khnsCfLceZslI+Ezaxdh/2Gn9uJrKuHCywrtC3kCaRhblTpcc9W7sj7QQ
- cBJthN1hUs1EqevuOXBDXE1/5zXTAjybGEI0PMA0B0aujre1O5MKc3oxO
- KFr0yXyeI9xmiwkqzpdHTRyyzHwv6DB2WrRRr02TCE5xPi6cRMVYxxFTG
- RKFseytJlfJtTeMnUblMTviwoJSa7cvX8dhYzofg2GW9tDR7K5EC8Edy5
- dWa8Na6GbAY7MEV5PzOuRLiNO7KpBT+sVkRHqdbbuvxjmLE7hp+7dW1kM A==;
-X-CSE-ConnectionGUID: mXnOcPJMR46kNp3CpI5Zuw==
-X-CSE-MsgGUID: YzOqFb4xRNCxYz9UJdjChg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="34192166"
-X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="34192166"
+ bh=+xCFeV01j1EWvHaalSUnfctLoI4K8h3clbgsY+oeZDA=;
+ b=EhBIQ97zumyZnN1Y1udDSUAnfbr/zMIY1lH+ztxU5gqq48eCgcQdGbiG
+ i6q/o602WBLhjcAa0oIYrhjAuUOk/WmTXMqGSgebwybdjUMDy0zq/lHHY
+ rvH9+gvOxd6GrQrtopUOYqtyOLrj2Cjog4vKGYu3oGL8mQG459uPY6+PQ
+ Pgr1LF36cuF46f18DwJE7mt9iL6sCRQ4/7KZzeA5FqogotYubgI+hZ5jd
+ YTtD3GP2EiAo5/ECX+b5LOUB2SO5EWo0fCXmreTT42Q+8mkEipi/4liF2
+ SnS8YNlOVDXO78VzxRKKF94BFjUbs48dYhIVn7ut/3q0Bf8J9Z3f9iq2J g==;
+X-CSE-ConnectionGUID: 81FNxyMaRESiNbkxSkM4Sw==
+X-CSE-MsgGUID: jYoCNJnRSbCUWWnzFMouLw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="34192190"
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="34192190"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 05:33:40 -0800
-X-CSE-ConnectionGUID: EgMafpxUTpmPuV+Jf7pL9A==
-X-CSE-MsgGUID: P/jMAcn4TM2ke/XRu48FjA==
+ 09 Dec 2024 05:33:43 -0800
+X-CSE-ConnectionGUID: fCL5eKx2R2KlYOqIbCgRMA==
+X-CSE-MsgGUID: xpaxzA6DSHm/x+8jVMQ93g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="99531365"
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="99531377"
 Received: from mkuoppal-desk.fi.intel.com ([10.237.72.193])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 05:33:39 -0800
+ 09 Dec 2024 05:33:42 -0800
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
- Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
+ Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
  Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH 21/26] drm/xe/eudebug/ptl: Add support for extra attention
- register
-Date: Mon,  9 Dec 2024 15:33:12 +0200
-Message-ID: <20241209133318.1806472-22-mika.kuoppala@linux.intel.com>
+Subject: [PATCH 23/26] drm/xe/eudebug: Add read/count/compare helper for eu
+ attention
+Date: Mon,  9 Dec 2024 15:33:14 +0200
+Message-ID: <20241209133318.1806472-24-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241209133318.1806472-1-mika.kuoppala@linux.intel.com>
 References: <20241209133318.1806472-1-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,90 +70,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 
-xe3 can set bits within an additional attention bit register EU_ATT1.
-Recalculate bitmask and make sure we read all required data.
+Add xe_eu_attentions structure to capture and store eu attention bits.
+Add a function to count the number of eu threads that have turned on from
+eu attentions, and add a function to count the number of eu threads that
+have changed on a state between eu attentions.
 
-Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_eudebug.c  | 4 ++--
- drivers/gpu/drm/xe/xe_gt_debug.c | 8 ++++----
- drivers/gpu/drm/xe/xe_gt_debug.h | 8 ++++++--
- 3 files changed, 12 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_debug.c | 64 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_debug.h | 15 ++++++++
+ 2 files changed, 79 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-index f44cc0f8290e..c259e5804386 100644
---- a/drivers/gpu/drm/xe/xe_eudebug.c
-+++ b/drivers/gpu/drm/xe/xe_eudebug.c
-@@ -1858,7 +1858,7 @@ static int check_attn_mcr(struct xe_gt *gt, void *data,
- 	struct xe_eudebug *d = iter->debugger;
- 	unsigned int row;
- 
--	for (row = 0; row < TD_EU_ATTENTION_MAX_ROWS; row++) {
-+	for (row = 0; row < xe_gt_debug_eu_att_rows(gt); row++) {
- 		u32 val, cur = 0;
- 
- 		if (iter->i >= iter->size)
-@@ -1891,7 +1891,7 @@ static int clear_attn_mcr(struct xe_gt *gt, void *data,
- 	struct xe_eudebug *d = iter->debugger;
- 	unsigned int row;
- 
--	for (row = 0; row < TD_EU_ATTENTION_MAX_ROWS; row++) {
-+	for (row = 0; row < xe_gt_debug_eu_att_rows(gt); row++) {
- 		u32 val;
- 
- 		if (iter->i >= iter->size)
 diff --git a/drivers/gpu/drm/xe/xe_gt_debug.c b/drivers/gpu/drm/xe/xe_gt_debug.c
-index f35b9df5e41b..49f24db9da9c 100644
+index 49f24db9da9c..a20e1e57212c 100644
 --- a/drivers/gpu/drm/xe/xe_gt_debug.c
 +++ b/drivers/gpu/drm/xe/xe_gt_debug.c
-@@ -74,9 +74,9 @@ int xe_gt_eu_attention_bitmap_size(struct xe_gt *gt)
- 	bitmap_or(dss_mask, gt->fuse_topo.c_dss_mask,
- 		  gt->fuse_topo.g_dss_mask, XE_MAX_DSS_FUSE_BITS);
+@@ -3,6 +3,7 @@
+  * Copyright © 2023 Intel Corporation
+  */
  
--	return  bitmap_weight(dss_mask, XE_MAX_DSS_FUSE_BITS) *
--		TD_EU_ATTENTION_MAX_ROWS * MAX_THREADS *
--		MAX_EUS_PER_ROW / 8;
-+	return bitmap_weight(dss_mask, XE_MAX_DSS_FUSE_BITS) *
-+	       xe_gt_debug_eu_att_rows(gt) * MAX_THREADS *
-+	       MAX_EUS_PER_ROW / 8;
++#include <linux/delay.h>
+ #include "regs/xe_gt_regs.h"
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
+@@ -146,3 +147,66 @@ int xe_gt_eu_threads_needing_attention(struct xe_gt *gt)
+ 
+ 	return err < 0 ? 0 : err;
  }
- 
- struct attn_read_iter {
-@@ -92,7 +92,7 @@ static int read_eu_attentions_mcr(struct xe_gt *gt, void *data,
- 	struct attn_read_iter * const iter = data;
- 	unsigned int row;
- 
--	for (row = 0; row < TD_EU_ATTENTION_MAX_ROWS; row++) {
-+	for (row = 0; row < xe_gt_debug_eu_att_rows(gt); row++) {
- 		u32 val;
- 
- 		if (iter->i >= iter->size)
++
++static inline unsigned int
++xe_eu_attentions_count(const struct xe_eu_attentions *a)
++{
++	return bitmap_weight((void *)a->att, a->size * BITS_PER_BYTE);
++}
++
++void xe_gt_eu_attentions_read(struct xe_gt *gt,
++			      struct xe_eu_attentions *a,
++			      const unsigned int settle_time_ms)
++{
++	unsigned int prev = 0;
++	ktime_t end, now;
++
++	now = ktime_get_raw();
++	end = ktime_add_ms(now, settle_time_ms);
++
++	a->ts = 0;
++	a->size = min_t(int,
++			xe_gt_eu_attention_bitmap_size(gt),
++			sizeof(a->att));
++
++	do {
++		unsigned int attn;
++
++		xe_gt_eu_attention_bitmap(gt, a->att, a->size);
++		attn = xe_eu_attentions_count(a);
++
++		now = ktime_get_raw();
++
++		if (a->ts == 0)
++			a->ts = now;
++		else if (attn && attn != prev)
++			a->ts = now;
++
++		prev = attn;
++
++		if (settle_time_ms)
++			udelay(5);
++
++		/*
++		 * XXX We are gathering data for production SIP to find
++		 * the upper limit of settle time. For now, we wait full
++		 * timeout value regardless.
++		 */
++	} while (ktime_before(now, end));
++}
++
++unsigned int xe_eu_attentions_xor_count(const struct xe_eu_attentions *a,
++					const struct xe_eu_attentions *b)
++{
++	unsigned int count = 0;
++	unsigned int i;
++
++	if (XE_WARN_ON(a->size != b->size))
++		return -EINVAL;
++
++	for (i = 0; i < a->size; i++)
++		if (a->att[i] ^ b->att[i])
++			count++;
++
++	return count;
++}
 diff --git a/drivers/gpu/drm/xe/xe_gt_debug.h b/drivers/gpu/drm/xe/xe_gt_debug.h
-index 342082699ff6..1edb667154f1 100644
+index 1edb667154f1..1d50b93235ae 100644
 --- a/drivers/gpu/drm/xe/xe_gt_debug.h
 +++ b/drivers/gpu/drm/xe/xe_gt_debug.h
-@@ -6,12 +6,16 @@
- #ifndef __XE_GT_DEBUG_
- #define __XE_GT_DEBUG_
- 
--#define TD_EU_ATTENTION_MAX_ROWS 2u
--
-+#include "xe_device_types.h"
- #include "xe_gt_types.h"
+@@ -11,6 +11,15 @@
  
  #define XE_GT_ATTENTION_TIMEOUT_MS 100
  
-+static inline unsigned int xe_gt_debug_eu_att_rows(struct xe_gt *gt)
-+{
-+	return (GRAPHICS_VERx100(gt_to_xe(gt)) >= 3000) ? 4u : 2u;
-+}
++struct xe_eu_attentions {
++#define XE_MAX_EUS 1024
++#define XE_MAX_THREADS 10
 +
- int xe_gt_eu_threads_needing_attention(struct xe_gt *gt);
- int xe_gt_foreach_dss_group_instance(struct xe_gt *gt,
- 				     int (*fn)(struct xe_gt *gt,
++	u8 att[DIV_ROUND_UP(XE_MAX_EUS * XE_MAX_THREADS, BITS_PER_BYTE)];
++	unsigned int size;
++	ktime_t ts;
++};
++
+ static inline unsigned int xe_gt_debug_eu_att_rows(struct xe_gt *gt)
+ {
+ 	return (GRAPHICS_VERx100(gt_to_xe(gt)) >= 3000) ? 4u : 2u;
+@@ -28,4 +37,10 @@ int xe_gt_eu_attention_bitmap_size(struct xe_gt *gt);
+ int xe_gt_eu_attention_bitmap(struct xe_gt *gt, u8 *bits,
+ 			      unsigned int bitmap_size);
+ 
++void xe_gt_eu_attentions_read(struct xe_gt *gt,
++			      struct xe_eu_attentions *a,
++			      const unsigned int settle_time_ms);
++
++unsigned int xe_eu_attentions_xor_count(const struct xe_eu_attentions *a,
++					const struct xe_eu_attentions *b);
+ #endif
 -- 
 2.43.0
 
