@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27A23E77173
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 09:50:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1AABE77173
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 10:39:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5FCE10E69E;
-	Mon,  9 Dec 2024 09:50:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EDCD10E4BE;
+	Mon,  9 Dec 2024 10:39:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hbmcSvh0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iuEpJBu6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 629EE10E69E;
- Mon,  9 Dec 2024 09:50:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BC0610E4BE;
+ Mon,  9 Dec 2024 10:39:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733737810; x=1765273810;
+ t=1733740758; x=1765276758;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=SE2gqz4eXWuZdiCCj3MBTgNpJ0EGMXIWTf0LYfUv5E0=;
- b=hbmcSvh0xwdUqEDbESmJfDVgWb2+vcEsW6jBtczBlA/sA9V64rhEJdd7
- lI6UMAlVTnzoNGRl7oDgixq77iAXxM1Is4Ppllm3qLXd2AshkHdCmu+5W
- aowDs9/81SRiHZ36vf9VSzVIOG5ZjEot6PIXdVrr6wdftFD3udutHxyEj
- FV4QXaJRyZKZw2OJU6piltu/a96WVI/c09f1MSvKOBUreNCM2SNYZtP/p
- hixu1+a2L1eUwb4b4+AJp8LMGCwgLosFH9q489EWkuZz/NRLGEcT/ykM6
- 1mvxjHnfLUqNXPTbOEt3QK2VuS6n7jQfGZT27R1l4y49klE35RBpD7jXP A==;
-X-CSE-ConnectionGUID: OLsYycdSTliuGJrKD64iUA==
-X-CSE-MsgGUID: m2df+ehuSiC2mT+v6ZK/Kw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11280"; a="34259575"
-X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="34259575"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 01:50:10 -0800
-X-CSE-ConnectionGUID: touccvR9S/G7Y9OTp/P+Qg==
-X-CSE-MsgGUID: IuXIlW8ZQUyEYc4jsT5zOw==
+ bh=zrOttzyjSgQKZvxSP2i+o4lzkjUqEZoJ03/qv6DjehU=;
+ b=iuEpJBu65+e3t6pTLHiAzXsayqxeFhi5SKtrX2uq9kheMPYsQ/uYSPpO
+ I4GSdqgtpxJBlX46Rlg94NBvk+zQhFbROmDjh2l9duFc0azkooFNzAzq8
+ Ls79f5YgMt361qJAulaj2sz90L/aBmtwzDJwb+gsI1i/rmfbTF1nlFrHB
+ eeviGXvoes3m4ylDI5XdXNsB2DnnCv3LrYd2QRD2apOHdKTrSEhE1kPM7
+ kp+tA/QtYYebVHwnnSNP5pBtL6DAsHhllLvD+2mYlKuAn/62KSJ9DfPOC
+ CkSLw2bY82fKwdfJfyuYt5QNXxyl0vKcpub89f+YPdBetdUPqqlAjDful g==;
+X-CSE-ConnectionGUID: jIq4+QOxQNOqweDaU1XTnw==
+X-CSE-MsgGUID: Ripj/XsGTsOeaMtJ6C9Asg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11280"; a="34175719"
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="34175719"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2024 02:39:18 -0800
+X-CSE-ConnectionGUID: 6gxKu/E8Qn2zvdv/Gwn2hA==
+X-CSE-MsgGUID: IKTV3ZS3QXSl+bphycBD9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="94711779"
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="99851275"
 Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.194])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 01:50:08 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH] drm/i915/display: convert intel_display_driver.[ch] to
- struct intel_display
-In-Reply-To: <173332146931.1598.5367405260871758876@intel.com>
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2024 02:39:15 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH 0/5] drm/xe/display: Rework display init for reducing
+ flickering.
+In-Reply-To: <20241206185956.3290-1-dev@lankhorst.se>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241204102150.2223455-1-jani.nikula@intel.com>
- <173332146931.1598.5367405260871758876@intel.com>
-Date: Mon, 09 Dec 2024 11:50:05 +0200
-Message-ID: <877c8918z6.fsf@intel.com>
+References: <20241206185956.3290-1-dev@lankhorst.se>
+Date: Mon, 09 Dec 2024 12:39:13 +0200
+Message-ID: <871pyh16pa.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -70,33 +69,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 04 Dec 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Jani Nikula (2024-12-04 07:21:50-03:00)
->>Going forward, struct intel_display will be the main display driver
->>structure. Convert the main display entry points to struct
->>intel_display.
->>
->>Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Used b4 shazam followed by git show -W --word-diff and things look sane
-> to me. So, also trusting the compiler,
->
-> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+On Fri, 06 Dec 2024, Maarten Lankhorst <dev@lankhorst.se> wrote:
+> I have rebased the previous series and took out the GuC parts. This makes it a lot easier to review missing parts,
+> and not be dependent on GuC loading changes for merging.
 
-Thanks, pushed to din.
-
-> Note: I found some places where the i915 variable could be dropped if we
-> replaced &i915->drm with display->drm (calls to logging functions), but
-> perhaps that was left for a future iteration.
-
-Right, but all on the caller side, not within intel_display_driver.c. I
-didn't want to expand the patch too much as it already touched quite a
-lot.
+I think all of the patches need more explanations in the commit
+messages. Why are we doing this? Why is this okay? How does this work
+with the plans to unify display code between i915 and xe, especially wrt
+the init ordering and the expectations on irqs.
 
 BR,
 Jani.
 
+
+
+
+>
+> Maarten Lankhorst (5):
+>   drm/xe/display: Add intel_plane_initial_vblank_wait
+>   drm/xe: Remove double pageflip
+>   drm/xe: Move suballocator init to after display init
+>   drm/xe: Defer irq init until after xe_display_init_noaccel
+>   drm/xe/display: Use a single early init call for display
+>
+>  drivers/gpu/drm/i915/display/intel_display.c  |  6 +-
+>  .../drm/i915/display/intel_plane_initial.c    |  7 +-
+>  .../drm/i915/display/intel_plane_initial.h    |  2 +
+>  drivers/gpu/drm/xe/display/xe_display.c       | 71 +++++--------------
+>  drivers/gpu/drm/xe/display/xe_display.h       |  8 +--
+>  drivers/gpu/drm/xe/display/xe_plane_initial.c | 29 +++++---
+>  drivers/gpu/drm/xe/xe_device.c                | 28 +++-----
+>  drivers/gpu/drm/xe/xe_tile.c                  | 19 +++--
+>  drivers/gpu/drm/xe/xe_tile.h                  |  1 +
+>  9 files changed, 77 insertions(+), 94 deletions(-)
 
 -- 
 Jani Nikula, Intel
