@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C784CE77180
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 14:44:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C804BE77180
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 14:44:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9043B10E75E;
-	Mon,  9 Dec 2024 14:44:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="foje+gWf";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E5EB10E75E
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Dec 2024 14:44:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733755489; x=1765291489;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=z6SDMTed0Ed8H6at/eQ+iBX7ndSKIiZZB+X66jqjtxs=;
- b=foje+gWf6D+IxWgV3sOwhDqQKYIpZXlnOP25DU/q8gKFK13uCS3KCoUh
- s+fsXsxPNZcOTw6vMATUI2Dp2FcIN/ENg0GQpoQvTkvzdi9Dl+AcS2/hu
- P84bQASQtziHOSY9iqv5/enPMGtu25WJwJ5lr47GCqJMQrS2GrqF5zC3S
- YKg5vRBWm8bhxmO1eW2Qte2Uzwaj6huqUT6RubU35dSiAKd1nsD1Q6/+Q
- l/8xb9j3dUFvphv+4wvy3VY3Dth+Ph1VkxCUdkpQx4WCeFwQNigviOjRb
- 0vxTNxdM5cCmuv+WcCd2vPESZj28R8rmmJkKTONtGViDT+1cccwZutK/4 A==;
-X-CSE-ConnectionGUID: FwfIRGSDTPGgIcs+Vqcqzg==
-X-CSE-MsgGUID: 0IAF+0j2TeOMLLQWuXXteg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="33399740"
-X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="33399740"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 06:44:48 -0800
-X-CSE-ConnectionGUID: Lyf9hvujQPmQzGRbE27oZQ==
-X-CSE-MsgGUID: 58WNyYQET3q7BAVSp7Aedw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="99559013"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.109.77])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 06:44:42 -0800
-Date: Mon, 9 Dec 2024 06:44:36 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>, 
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] drm/xe: Always setup GT MMIO adjustment data
-Message-ID: <f66dgje6rwskimv6zm7tylmjfvbzqbnvlrptaj6rgsqp464uxd@nj2cfcnqkaal>
-References: <20241114175955.2299-1-michal.wajdeczko@intel.com>
- <20241114175955.2299-2-michal.wajdeczko@intel.com>
- <yzyjk63jmruhujcaqpkx4cd64ymrqvjmikwlltgbf7pmbg6s7o@ycn665ds4ile>
- <3dde1c69-39f7-4ae7-8ecd-31338ce94a80@intel.com>
- <4drzjxtmbgwjiwwuxxu6436parjojvohwhuqcyzktvihvpbomm@m2j64wuicfr3>
- <20241203203716.GL4891@mdroper-desk1.amr.corp.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94B8D10E763;
+	Mon,  9 Dec 2024 14:44:55 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55A1310E763;
+ Mon,  9 Dec 2024 14:44:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241203203716.GL4891@mdroper-desk1.amr.corp.intel.com>
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Revert_=22lockdep=3A_Enable_PR?=
+ =?utf-8?q?OVE=5FRAW=5FLOCK=5FNESTING_with_PROVE=5FLOCKING=2E=22?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Luca Coelho" <luciano.coelho@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 09 Dec 2024 14:44:54 -0000
+Message-ID: <173375549434.490008.8224992696817101661@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241209135602.2716023-1-luciano.coelho@intel.com>
+In-Reply-To: <20241209135602.2716023-1-luciano.coelho@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,82 +36,83 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Dec 03, 2024 at 12:37:16PM -0800, Matt Roper wrote:
->On Tue, Nov 19, 2024 at 02:33:28PM -0600, Lucas De Marchi wrote:
->> On Thu, Nov 14, 2024 at 08:36:46PM +0100, Michal Wajdeczko wrote:
->> >
->> >
->> > On 14.11.2024 20:23, Lucas De Marchi wrote:
->> > > On Thu, Nov 14, 2024 at 06:59:54PM +0100, Michal Wajdeczko wrote:
->> > > > While we believed that xe_gt_mmio_init() will be called just once
->> > > > per GT, this might not be a case due to some tweaks that need to
->> > > > performed by the VF driver during early probe.� To avoid leaving
->> > >
->> > > can you be explicit where this is being set on the VF case?
->> >
->> > it will be used in read_gmdid(), see next patch
->> >
->> > > Shouldn't VF
->> > > itself deal with fixing up what it did?
->> >
->> > in read_gmdid() we already said
->> >
->> > 516      /*
->> > 517       * Only undo xe_gt.info here, the remaining changes made above
->> > 518       * will be overwritten as part of the regular initialization.
->> > 519       */
->> >
->> > and it looks that xe_gt_mmio_init() is not overwriting everything as we
->> > would expect
->>
->> We only need to read the gmdid and for that need the mmio struct to be
->> filled out. We end up needing the gt as a context, but this all looks to
->> be fixing things that shouldn't have been done.
->
->I think the problem is that when you say we "only need to read the
->gmdid" that isn't a simple register read when running on an SRIOV VF.
->Rather it's a handshake and query sent to the GuC, which actually
->involves reading/writing lots of GuC registers to eventually get back
->that single version number we want.
+== Series Details ==
 
-and IMO all the preparation for handling the SR-IOV special case needs
-to be explicit in the init sequence of the driver rather than poking
-holes like this.
+Series: Revert "lockdep: Enable PROVE_RAW_LOCK_NESTING with PROVE_LOCKING."
+URL   : https://patchwork.freedesktop.org/series/142297/
+State : failure
 
->
->SRIOV has a lot of chicken-and-egg problems; in this case the problem is
->that our driver needs to know what IP version it's running on in order
->to know how to do basic GT initialization.  However at the same time we
->need to have already done basic GT + GuC initialization in order to even
->find out the IP version since the VF doesn't have any direct access to
->the GMD_ID registers.  So we wind up relying on some ugly hacks like
->this that do a partial/fake initialization of the GT (under the
->understanding that a lot of other GT functionality like MCR, forcewake,
->etc. won't get used) to do things "out of order" compared to native
->execution, and then we come back and fix things up later.
->
->I think some of the headaches here are really oversights in the hardware
->design (e.g., why doesn't the VF BAR expose GMD_ID values somewhere so
->that we don't have to go through the GuC?).  But I don't have any good
->ideas for handling things in a cleaner manner, aside from having a
->completely independent .ko with different code flows to run on VFs,
->which I don't think anyone really wants.
+== Summary ==
 
-I don't think we need a different/independent .ko. We only need the init
-sequence to be clearer and do explicit initialization for VF instead of
-hacking "the leaf functions".
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+[14:44:21] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[14:44:25] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
+ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+In file included from ../include/linux/module.h:22,
+                 from ../include/linux/device/driver.h:21,
+                 from ../include/linux/device.h:32,
+                 from ../include/linux/auxiliary_bus.h:11,
+                 from ../include/linux/intel_vsec.h:5,
+                 from ../drivers/gpu/drm/xe/xe_vsec.c:7:
+../drivers/gpu/drm/xe/xe_vsec.c:233:18: error: expected ‘,’ or ‘;’ before ‘INTEL_VSEC’
+  233 | MODULE_IMPORT_NS(INTEL_VSEC);
+      |                  ^~~~~~~~~~
+../include/linux/moduleparam.h:26:61: note: in definition of macro ‘__MODULE_INFO’
+   26 |                 = __MODULE_INFO_PREFIX __stringify(tag) "=" info
+      |                                                             ^~~~
+../include/linux/module.h:299:33: note: in expansion of macro ‘MODULE_INFO’
+  299 | #define MODULE_IMPORT_NS(ns)    MODULE_INFO(import_ns, ns)
+      |                                 ^~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_vsec.c:233:1: note: in expansion of macro ‘MODULE_IMPORT_NS’
+  233 | MODULE_IMPORT_NS(INTEL_VSEC);
+      | ^~~~~~~~~~~~~~~~
+make[7]: *** [../scripts/Makefile.build:194: drivers/gpu/drm/xe/xe_vsec.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:440: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:440: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:440: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:440: drivers] Error 2
+make[2]: *** [/kernel/Makefile:1989: .] Error 2
+make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
-Anyway, I'm adding my ack here for this to be applied as is, because
-fixing it means a lot more refactors.
-
-I think the problem from start was "we want to keep the same driver init
-sequence in the VF case", when the HW is not really made to allow the
-same init sequence. So why do we keep insisting in doing that?
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
-Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Lucas De Marchi
