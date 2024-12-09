@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AD30E7717D
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 13:33:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69464E77181
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 13:33:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2AC410E74C;
-	Mon,  9 Dec 2024 13:33:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CBCC10E776;
+	Mon,  9 Dec 2024 13:33:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PgNtNEDH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W8B21MjK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A70610E746;
- Mon,  9 Dec 2024 13:33:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8647010E740;
+ Mon,  9 Dec 2024 13:33:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733751213; x=1765287213;
+ t=1733751218; x=1765287218;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VJblLJegvP6uMIILclbYpsBNWEStwKlPq/JbPcZIc7Q=;
- b=PgNtNEDHayOu+nzZTJYvqz7kHqr8LQKfQwj7arUvd6S3r6XmP0AqTJqm
- wQNqiJVuULI0lVOXkPovh8xuoG3xbzj8GizeTsKC9OsbkWw64ZW7uDA2T
- vDfr3ldzmfgzyK6Tu8VIpYxSxT0SiE5yH75OF+InEhPe8csGPSL16N8yh
- N34c+lhK8Qrx6pxA5OnMHhrOSHKE9E+1sFc/dQJsTvNU1wcR/PjsKZzyz
- V5ruK/x2cFXMEiNot0DJqRH2IY+HYk4v+xnYrYtjxDEypsJ6P9KhtKyOD
- wldExsdrYInIPTCPTYoDqHQ9+HCJfqprXPqfUoMrsPrr12Ac+LO4NnCD2 w==;
-X-CSE-ConnectionGUID: eHolKHqVTve2og+rQntvFg==
-X-CSE-MsgGUID: 0ixehx7OSlG/BnHOz8/UHQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="34192109"
-X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="34192109"
+ bh=2mBWGMUlMSlsOjWsvtMpSZ/thOHKnwzkWJWBYWExdDU=;
+ b=W8B21MjKvPasLu27Cl9yxzTetXVQ3YvloIophrTYkbCt8CkzS+fvT/F+
+ PF/Rmm6ugJz+jIWfIJTuJ2olBeHfODmuHfLujRyFwDiaAqBvuD0LnWp8q
+ dgsRp8Ar9Aes8vzkGQFp7noYGkZSEeRJ+vxo4LpA5JBFZB6039K2M04ku
+ KLtxWY7aGAzAqkBMnvueSA61wG7yXht0dCN9Cnwind9/SJkXQWNCDRPOM
+ sDJ5xfQ9CjOtlmwRj8fCopLuJHEOye5fF+S4bTtuqBbQvfWh1BE/cWM/b
+ 6W5vW2nSf+XwKGXIee7W8IUpcyHghHtKhSbgTJSuVE2LxEDQi8PVoc2c2 w==;
+X-CSE-ConnectionGUID: 0s9zO6ikRdO84BvR/hn5lQ==
+X-CSE-MsgGUID: 3paQHqODSTa6w7En0cZY0g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="34192155"
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="34192155"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 05:33:33 -0800
-X-CSE-ConnectionGUID: ivD9tyCpQMqgLQQDsmMchA==
-X-CSE-MsgGUID: gf75IaJDTZCQhNriZ0LbyA==
+ 09 Dec 2024 05:33:38 -0800
+X-CSE-ConnectionGUID: W6CyEpZARCKliAYMf8w/BQ==
+X-CSE-MsgGUID: TF0aPbwsQmOTgYac8SzVxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="99531345"
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; d="scan'208";a="99531361"
 Received: from mkuoppal-desk.fi.intel.com ([10.237.72.193])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 05:33:31 -0800
+ 09 Dec 2024 05:33:37 -0800
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
- Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
- Maciej Patelczyk <maciej.patelczyk@intel.com>,
+ Christoph Manszewski <christoph.manszewski@intel.com>,
  Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH 17/26] drm/xe/eudebug: Add debug metadata support for
- xe_eudebug
-Date: Mon,  9 Dec 2024 15:33:08 +0200
-Message-ID: <20241209133318.1806472-18-mika.kuoppala@linux.intel.com>
+Subject: [PATCH 20/26] drm/xe/eudebug_test: Introduce xe_eudebug wa kunit test
+Date: Mon,  9 Dec 2024 15:33:11 +0200
+Message-ID: <20241209133318.1806472-21-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241209133318.1806472-1-mika.kuoppala@linux.intel.com>
 References: <20241209133318.1806472-1-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,682 +69,233 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+From: Christoph Manszewski <christoph.manszewski@intel.com>
 
-Reflect debug metadata resource creation/destroy as events passed to the
-debugger. Introduce ioctl allowing to read metadata content on demand.
+Introduce kunit test for eudebug. For now it checks the dynamic
+application of WAs.
 
-Each VMA can have multiple metadata attached and it is passed from user
-on BIND or it's copied on internal remap.
+v2: adapt to removal of call_for_each_device (Mika)
+v3: s/FW_RENDER/FORCEWAKE_ALL (Mika)
 
-Xe EU Debugger on VM BIND will inform about VMA metadata attachements
-during bind IOCTL sending proper OP event.
-
-v2:  - checkpatch (Maciej, Tilak)
-     - struct alignment (Matthew)
-     - Kconfig (Mika)
-
-Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
-Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
+Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_debug_metadata.c |   8 +-
- drivers/gpu/drm/xe/xe_eudebug.c        | 330 ++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_eudebug.h        |  21 +-
- drivers/gpu/drm/xe/xe_eudebug_types.h  |  27 +-
- drivers/gpu/drm/xe/xe_vm.c             |   2 +-
- include/uapi/drm/xe_drm_eudebug.h      |  30 +++
- 6 files changed, 406 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_eudebug.c       | 176 ++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_live_test_mod.c |   5 +
+ drivers/gpu/drm/xe/xe_eudebug.c             |   4 +
+ 3 files changed, 185 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_eudebug.c
 
-diff --git a/drivers/gpu/drm/xe/xe_debug_metadata.c b/drivers/gpu/drm/xe/xe_debug_metadata.c
-index b045bdd77235..172fe2b33557 100644
---- a/drivers/gpu/drm/xe/xe_debug_metadata.c
-+++ b/drivers/gpu/drm/xe/xe_debug_metadata.c
-@@ -9,6 +9,7 @@
- #include <uapi/drm/xe_drm.h>
- 
- #include "xe_device.h"
-+#include "xe_eudebug.h"
- #include "xe_macros.h"
- #include "xe_vm.h"
- 
-@@ -158,7 +159,7 @@ int xe_debug_metadata_create_ioctl(struct drm_device *dev,
- 	if (XE_IOCTL_DBG(xe, args->extensions))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_DBG(xe, args->type > DRM_XE_DEBUG_METADATA_PROGRAM_MODULE))
-+	if (XE_IOCTL_DBG(xe, args->type >= WORK_IN_PROGRESS_DRM_XE_DEBUG_METADATA_NUM))
- 		return -EINVAL;
- 
- 	if (XE_IOCTL_DBG(xe, !args->user_addr || !args->len))
-@@ -194,8 +195,11 @@ int xe_debug_metadata_create_ioctl(struct drm_device *dev,
- 	if (err)
- 		goto put_mdata;
- 
+diff --git a/drivers/gpu/drm/xe/tests/xe_eudebug.c b/drivers/gpu/drm/xe/tests/xe_eudebug.c
+new file mode 100644
+index 000000000000..d47e4ff259cb
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_eudebug.c
+@@ -0,0 +1,176 @@
++// SPDX-License-Identifier: GPL-2.0 AND MIT
++/*
++ * Copyright © 2024 Intel Corporation
++ */
 +
- 	args->metadata_id = id;
- 
-+	xe_eudebug_debug_metadata_create(xef, mdata);
++#include <kunit/visibility.h>
 +
- 	return 0;
- 
- put_mdata:
-@@ -221,6 +225,8 @@ int xe_debug_metadata_destroy_ioctl(struct drm_device *dev,
- 	if (XE_IOCTL_DBG(xe, !mdata))
- 		return -ENOENT;
- 
-+	xe_eudebug_debug_metadata_destroy(xef, mdata);
++#include "tests/xe_kunit_helpers.h"
++#include "tests/xe_pci_test.h"
++#include "tests/xe_test.h"
 +
- 	xe_debug_metadata_put(mdata);
++#undef XE_REG_MCR
++#define XE_REG_MCR(r_, ...)	((const struct xe_reg_mcr){					\
++				 .__reg = XE_REG_INITIALIZER(r_,  ##__VA_ARGS__, .mcr = 1)	\
++				 })
++
++static const char *reg_to_str(struct xe_reg reg)
++{
++	if (reg.raw == TD_CTL.__reg.raw)
++		return "TD_CTL";
++	else if (reg.raw == CS_DEBUG_MODE2(RENDER_RING_BASE).raw)
++		return "CS_DEBUG_MODE2";
++	else if (reg.raw == ROW_CHICKEN.__reg.raw)
++		return "ROW_CHICKEN";
++	else if (reg.raw == ROW_CHICKEN2.__reg.raw)
++		return "ROW_CHICKEN2";
++	else if (reg.raw == ROW_CHICKEN3.__reg.raw)
++		return "ROW_CHICKEN3";
++	else
++		return "UNKNOWN REG";
++}
++
++static u32 get_reg_mask(struct xe_device *xe, struct xe_reg reg)
++{
++	struct kunit *test = kunit_get_current_test();
++	u32 val = 0;
++
++	if (reg.raw == TD_CTL.__reg.raw) {
++		val = TD_CTL_BREAKPOINT_ENABLE |
++		      TD_CTL_FORCE_THREAD_BREAKPOINT_ENABLE |
++		      TD_CTL_FEH_AND_FEE_ENABLE;
++
++		if (GRAPHICS_VERx100(xe) >= 1250)
++			val |= TD_CTL_GLOBAL_DEBUG_ENABLE;
++
++	} else if (reg.raw == CS_DEBUG_MODE2(RENDER_RING_BASE).raw) {
++		val = GLOBAL_DEBUG_ENABLE;
++	} else if (reg.raw == ROW_CHICKEN.__reg.raw) {
++		val = STALL_DOP_GATING_DISABLE;
++	} else if (reg.raw == ROW_CHICKEN2.__reg.raw) {
++		val = XEHPC_DISABLE_BTB;
++	} else if (reg.raw == ROW_CHICKEN3.__reg.raw) {
++		val = XE2_EUPEND_CHK_FLUSH_DIS;
++	} else {
++		kunit_warn(test, "Invalid register selection: %u\n", reg.raw);
++	}
++
++	return val;
++}
++
++static u32 get_reg_expected(struct xe_device *xe, struct xe_reg reg, bool enable_eudebug)
++{
++	u32 reg_mask = get_reg_mask(xe, reg);
++	u32 reg_bits = 0;
++
++	if (enable_eudebug || reg.raw == ROW_CHICKEN3.__reg.raw)
++		reg_bits = reg_mask;
++	else
++		reg_bits = 0;
++
++	return reg_bits;
++}
++
++static void check_reg(struct xe_gt *gt, bool enable_eudebug, struct xe_reg reg)
++{
++	struct kunit *test = kunit_get_current_test();
++	struct xe_device *xe = gt_to_xe(gt);
++	u32 reg_bits_expected = get_reg_expected(xe, reg, enable_eudebug);
++	u32 reg_mask = get_reg_mask(xe, reg);
++	u32 reg_bits = 0;
++
++	if (reg.mcr)
++		reg_bits = xe_gt_mcr_unicast_read_any(gt, (struct xe_reg_mcr){.__reg = reg});
++	else
++		reg_bits = xe_mmio_read32(&gt->mmio, reg);
++
++	reg_bits &= reg_mask;
++
++	kunit_printk(KERN_DEBUG, test, "%s bits: expected == 0x%x; actual == 0x%x\n",
++		     reg_to_str(reg), reg_bits_expected, reg_bits);
++	KUNIT_EXPECT_EQ_MSG(test, reg_bits_expected, reg_bits,
++			    "Invalid bits set for %s\n", reg_to_str(reg));
++}
++
++static void __check_regs(struct xe_gt *gt, bool enable_eudebug)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++
++	if (GRAPHICS_VERx100(xe) >= 1200)
++		check_reg(gt, enable_eudebug, TD_CTL.__reg);
++
++	if (GRAPHICS_VERx100(xe) >= 1250 && GRAPHICS_VERx100(xe) <= 1274)
++		check_reg(gt, enable_eudebug, ROW_CHICKEN.__reg);
++
++	if (xe->info.platform == XE_PVC)
++		check_reg(gt, enable_eudebug, ROW_CHICKEN2.__reg);
++
++	if (GRAPHICS_VERx100(xe) >= 2000 && GRAPHICS_VERx100(xe) <= 2004)
++		check_reg(gt, enable_eudebug, ROW_CHICKEN3.__reg);
++}
++
++static void check_regs(struct xe_device *xe, bool enable_eudebug)
++{
++	struct kunit *test = kunit_get_current_test();
++	struct xe_gt *gt;
++	unsigned int fw_ref;
++	u8 id;
++
++	kunit_printk(KERN_DEBUG, test, "Check regs for eudebug %s\n",
++		     enable_eudebug ? "enabled" : "disabled");
++
++	xe_pm_runtime_get(xe);
++	for_each_gt(gt, xe, id) {
++		if (xe_gt_is_media_type(gt))
++			continue;
++
++		/* XXX: Figure out per platform proper domain */
++		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++		KUNIT_ASSERT_TRUE_MSG(test, fw_ref, "Forcewake failed.\n");
++
++		__check_regs(gt, enable_eudebug);
++
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	}
++	xe_pm_runtime_put(xe);
++}
++
++static int toggle_reg_value(struct xe_device *xe)
++{
++	struct kunit *test = kunit_get_current_test();
++	bool enable_eudebug = xe->eudebug.enable;
++
++	kunit_printk(KERN_DEBUG, test, "Test eudebug WAs for graphics version: %u\n",
++		     GRAPHICS_VERx100(xe));
++
++	check_regs(xe, enable_eudebug);
++
++	xe_eudebug_enable(xe, !enable_eudebug);
++	check_regs(xe, !enable_eudebug);
++
++	xe_eudebug_enable(xe, enable_eudebug);
++	check_regs(xe, enable_eudebug);
++
++	return 0;
++}
++
++static void xe_eudebug_toggle_reg_kunit(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++
++	toggle_reg_value(xe);
++}
++
++static struct kunit_case xe_eudebug_tests[] = {
++	KUNIT_CASE_PARAM(xe_eudebug_toggle_reg_kunit,
++			 xe_pci_live_device_gen_param),
++	{}
++};
++
++VISIBLE_IF_KUNIT
++struct kunit_suite xe_eudebug_test_suite = {
++	.name = "xe_eudebug",
++	.test_cases = xe_eudebug_tests,
++	.init = xe_kunit_helper_xe_device_live_test_init,
++};
++EXPORT_SYMBOL_IF_KUNIT(xe_eudebug_test_suite);
+diff --git a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+index 5f14737c8210..7dd8a0a4bdfd 100644
+--- a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
++++ b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+@@ -15,6 +15,11 @@ kunit_test_suite(xe_dma_buf_test_suite);
+ kunit_test_suite(xe_migrate_test_suite);
+ kunit_test_suite(xe_mocs_test_suite);
  
- 	return 0;
++#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
++extern struct kunit_suite xe_eudebug_test_suite;
++kunit_test_suite(xe_eudebug_test_suite);
++#endif
++
+ MODULE_AUTHOR("Intel Corporation");
+ MODULE_LICENSE("GPL");
+ MODULE_DESCRIPTION("xe live kunit tests");
 diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-index e9092ed0b344..2514b880d871 100644
+index fe947d5350d8..f44cc0f8290e 100644
 --- a/drivers/gpu/drm/xe/xe_eudebug.c
 +++ b/drivers/gpu/drm/xe/xe_eudebug.c
-@@ -20,15 +20,18 @@
+@@ -3947,3 +3947,7 @@ xe_eudebug_vm_open_ioctl(struct xe_eudebug *d, unsigned long arg)
  
- #include "xe_assert.h"
- #include "xe_bo.h"
-+#include "xe_debug_metadata.h"
- #include "xe_device.h"
- #include "xe_debug_metadata.h"
- #include "xe_eudebug.h"
- #include "xe_eudebug_types.h"
- #include "xe_exec_queue.h"
-+#include "xe_exec_queue_types.h"
- #include "xe_force_wake.h"
- #include "xe_gt.h"
- #include "xe_gt_debug.h"
- #include "xe_gt_mcr.h"
-+#include "xe_guc_exec_queue_types.h"
- #include "xe_hw_engine.h"
- #include "xe_lrc.h"
- #include "xe_macros.h"
-@@ -908,7 +911,7 @@ static struct xe_eudebug_event *
- xe_eudebug_create_event(struct xe_eudebug *d, u16 type, u64 seqno, u16 flags,
- 			u32 len)
- {
--	const u16 max_event = DRM_XE_EUDEBUG_EVENT_VM_BIND_UFENCE;
-+	const u16 max_event = DRM_XE_EUDEBUG_EVENT_VM_BIND_OP_METADATA;
- 	const u16 known_flags =
- 		DRM_XE_EUDEBUG_EVENT_CREATE |
- 		DRM_XE_EUDEBUG_EVENT_DESTROY |
-@@ -943,7 +946,7 @@ static long xe_eudebug_read_event(struct xe_eudebug *d,
- 		u64_to_user_ptr(arg);
- 	struct drm_xe_eudebug_event user_event;
- 	struct xe_eudebug_event *event;
--	const unsigned int max_event = DRM_XE_EUDEBUG_EVENT_VM_BIND_UFENCE;
-+	const unsigned int max_event = DRM_XE_EUDEBUG_EVENT_VM_BIND_OP_METADATA;
- 	long ret = 0;
- 
- 	if (XE_IOCTL_DBG(xe, copy_from_user(&user_event, user_orig, sizeof(user_event))))
-@@ -1227,6 +1230,90 @@ static long xe_eudebug_eu_control(struct xe_eudebug *d, const u64 arg)
  	return ret;
  }
- 
-+static struct xe_debug_metadata *find_metadata_get(struct xe_eudebug *d,
-+						   u32 id)
-+{
-+	struct xe_debug_metadata *m;
 +
-+	mutex_lock(&d->res->lock);
-+	m = find_resource__unlocked(d->res, XE_EUDEBUG_RES_TYPE_METADATA, id);
-+	if (m)
-+		kref_get(&m->refcount);
-+	mutex_unlock(&d->res->lock);
-+
-+	return m;
-+}
-+
-+static long xe_eudebug_read_metadata(struct xe_eudebug *d,
-+				     unsigned int cmd,
-+				     const u64 arg)
-+{
-+	struct drm_xe_eudebug_read_metadata user_arg;
-+	struct xe_debug_metadata *mdata;
-+	struct xe_file *xef;
-+	struct xe_device *xe = d->xe;
-+	long ret = 0;
-+
-+	if (XE_IOCTL_DBG(xe, !(_IOC_DIR(cmd) & _IOC_WRITE)))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, !(_IOC_DIR(cmd) & _IOC_READ)))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, _IOC_SIZE(cmd) < sizeof(user_arg)))
-+		return -EINVAL;
-+
-+	if (copy_from_user(&user_arg, u64_to_user_ptr(arg), sizeof(user_arg)))
-+		return -EFAULT;
-+
-+	if (XE_IOCTL_DBG(xe, user_arg.flags))
-+		return -EINVAL;
-+
-+	if (!access_ok(u64_to_user_ptr(user_arg.ptr), user_arg.size))
-+		return -EFAULT;
-+
-+	if (xe_eudebug_detached(d))
-+		return -ENOTCONN;
-+
-+	eu_dbg(d,
-+	       "read metadata: client_handle=%llu, metadata_handle=%llu, flags=0x%x",
-+	       user_arg.client_handle, user_arg.metadata_handle, user_arg.flags);
-+
-+	xef = find_client_get(d, user_arg.client_handle);
-+	if (XE_IOCTL_DBG(xe, !xef))
-+		return -EINVAL;
-+
-+	mdata = find_metadata_get(d, (u32)user_arg.metadata_handle);
-+	if (XE_IOCTL_DBG(xe, !mdata)) {
-+		xe_file_put(xef);
-+		return -EINVAL;
-+	}
-+
-+	if (user_arg.size) {
-+		if (user_arg.size < mdata->len) {
-+			ret = -EINVAL;
-+			goto metadata_put;
-+		}
-+
-+		/* This limits us to a maximum payload size of 2G */
-+		if (copy_to_user(u64_to_user_ptr(user_arg.ptr),
-+				 mdata->ptr, mdata->len)) {
-+			ret = -EFAULT;
-+			goto metadata_put;
-+		}
-+	}
-+
-+	user_arg.size = mdata->len;
-+
-+	if (copy_to_user(u64_to_user_ptr(arg), &user_arg, sizeof(user_arg)))
-+		ret = -EFAULT;
-+
-+metadata_put:
-+	xe_debug_metadata_put(mdata);
-+	xe_file_put(xef);
-+	return ret;
-+}
-+
- static long xe_eudebug_vm_open_ioctl(struct xe_eudebug *d, unsigned long arg);
- 
- static long xe_eudebug_ioctl(struct file *file,
-@@ -1257,7 +1344,10 @@ static long xe_eudebug_ioctl(struct file *file,
- 		ret = xe_eudebug_vm_open_ioctl(d, arg);
- 		eu_dbg(d, "ioctl cmd=VM_OPEN ret=%ld\n", ret);
- 		break;
--
-+	case DRM_XE_EUDEBUG_IOCTL_READ_METADATA:
-+		ret = xe_eudebug_read_metadata(d, cmd, arg);
-+		eu_dbg(d, "ioctl cmd=READ_METADATA ret=%ld\n", ret);
-+		break;
- 	default:
- 		ret = -EINVAL;
- 	}
-@@ -2649,19 +2739,145 @@ static int vm_bind_op_event(struct xe_eudebug *d,
- 	return xe_eudebug_queue_bind_event(d, vm, event);
- }
- 
-+static int vm_bind_op_metadata_event(struct xe_eudebug *d,
-+				     struct xe_vm *vm,
-+				     u32 flags,
-+				     u64 ref_seqno,
-+				     u64 metadata_handle,
-+				     u64 metadata_cookie)
-+{
-+	struct xe_eudebug_event_vm_bind_op_metadata *e;
-+	struct xe_eudebug_event *event;
-+	const u32 sz = sizeof(*e);
-+	u64 seqno;
-+
-+	seqno = atomic_long_inc_return(&d->events.seqno);
-+
-+	event = xe_eudebug_create_event(d, DRM_XE_EUDEBUG_EVENT_VM_BIND_OP_METADATA,
-+					seqno, flags, sz);
-+	if (!event)
-+		return -ENOMEM;
-+
-+	e = cast_event(e, event);
-+
-+	write_member(struct drm_xe_eudebug_event_vm_bind_op_metadata, e,
-+		     vm_bind_op_ref_seqno, ref_seqno);
-+	write_member(struct drm_xe_eudebug_event_vm_bind_op_metadata, e,
-+		     metadata_handle, metadata_handle);
-+	write_member(struct drm_xe_eudebug_event_vm_bind_op_metadata, e,
-+		     metadata_cookie, metadata_cookie);
-+
-+	/* If in discovery, no need to collect ops */
-+	if (!completion_done(&d->discovery))
-+		return xe_eudebug_queue_event(d, event);
-+
-+	return xe_eudebug_queue_bind_event(d, vm, event);
-+}
-+
-+static int vm_bind_op_metadata_count(struct xe_eudebug *d,
-+				     struct xe_vm *vm,
-+				     struct list_head *debug_metadata)
-+{
-+	struct xe_vma_debug_metadata *metadata;
-+	struct xe_debug_metadata *mdata;
-+	int h_m = 0, metadata_count = 0;
-+
-+	if (!debug_metadata)
-+		return 0;
-+
-+	list_for_each_entry(metadata, debug_metadata, link) {
-+		mdata = xe_debug_metadata_get(vm->xef, metadata->metadata_id);
-+		if (mdata) {
-+			h_m = find_handle(d->res, XE_EUDEBUG_RES_TYPE_METADATA, mdata);
-+			xe_debug_metadata_put(mdata);
-+		}
-+
-+		if (!mdata || h_m < 0) {
-+			if (!mdata) {
-+				eu_err(d, "Metadata::%u not found.",
-+				       metadata->metadata_id);
-+			} else {
-+				eu_err(d, "Metadata::%u not in the xe debugger",
-+				       metadata->metadata_id);
-+			}
-+			xe_eudebug_disconnect(d, -ENOENT);
-+			return -ENOENT;
-+		}
-+		metadata_count++;
-+	}
-+	return metadata_count;
-+}
-+
-+static int vm_bind_op_metadata(struct xe_eudebug *d, struct xe_vm *vm,
-+			       const u32 flags,
-+			       const u64 op_ref_seqno,
-+			       struct list_head *debug_metadata)
-+{
-+	struct xe_vma_debug_metadata *metadata;
-+	int h_m = 0; /* handle space range = <1, MAX_INT>, return 0 if metadata not attached */
-+	int metadata_count = 0;
-+	int ret;
-+
-+	if (!debug_metadata)
-+		return 0;
-+
-+	XE_WARN_ON(flags != DRM_XE_EUDEBUG_EVENT_CREATE);
-+
-+	list_for_each_entry(metadata, debug_metadata, link) {
-+		struct xe_debug_metadata *mdata;
-+
-+		mdata = xe_debug_metadata_get(vm->xef, metadata->metadata_id);
-+		if (mdata) {
-+			h_m = find_handle(d->res, XE_EUDEBUG_RES_TYPE_METADATA, mdata);
-+			xe_debug_metadata_put(mdata);
-+		}
-+
-+		if (!mdata || h_m < 0) {
-+			eu_err(d, "Attached debug metadata::%u not found!\n",
-+			       metadata->metadata_id);
-+			return -ENOENT;
-+		}
-+
-+		ret = vm_bind_op_metadata_event(d, vm, flags, op_ref_seqno,
-+						h_m, metadata->cookie);
-+		if (ret < 0)
-+			return ret;
-+
-+		metadata_count++;
-+	}
-+
-+	return metadata_count;
-+}
-+
- static int vm_bind_op(struct xe_eudebug *d, struct xe_vm *vm,
- 		      const u32 flags, const u64 bind_ref_seqno,
--		      u64 addr, u64 range)
-+		      u64 addr, u64 range,
-+		      struct list_head *debug_metadata)
- {
- 	u64 op_seqno = 0;
--	u64 num_extensions = 0;
-+	u64 num_extensions;
- 	int ret;
- 
-+	ret = vm_bind_op_metadata_count(d, vm, debug_metadata);
-+	if (ret < 0)
-+		return ret;
-+
-+	num_extensions = ret;
-+
- 	ret = vm_bind_op_event(d, vm, flags, bind_ref_seqno, num_extensions,
- 			       addr, range, &op_seqno);
- 	if (ret)
- 		return ret;
- 
-+	ret = vm_bind_op_metadata(d, vm, flags, op_seqno, debug_metadata);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (ret != num_extensions) {
-+		eu_err(d, "Inconsistency in metadata detected.");
-+		return -EINVAL;
-+	}
-+
- 	return 0;
- }
- 
-@@ -2774,9 +2990,11 @@ void xe_eudebug_vm_bind_start(struct xe_vm *vm)
- 	xe_eudebug_put(d);
- }
- 
--void xe_eudebug_vm_bind_op_add(struct xe_vm *vm, u32 op, u64 addr, u64 range)
-+void xe_eudebug_vm_bind_op_add(struct xe_vm *vm, u32 op, u64 addr, u64 range,
-+			       struct drm_gpuva_ops *ops)
- {
- 	struct xe_eudebug *d;
-+	struct list_head *debug_metadata = NULL;
- 	u32 flags;
- 
- 	if (!xe_vm_in_lr_mode(vm))
-@@ -2786,7 +3004,17 @@ void xe_eudebug_vm_bind_op_add(struct xe_vm *vm, u32 op, u64 addr, u64 range)
- 	case DRM_XE_VM_BIND_OP_MAP:
- 	case DRM_XE_VM_BIND_OP_MAP_USERPTR:
- 	{
-+		struct drm_gpuva_op *__op;
-+
- 		flags = DRM_XE_EUDEBUG_EVENT_CREATE;
-+
-+		/* OP_MAP will be last and singleton */
-+		drm_gpuva_for_each_op(__op, ops) {
-+			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
-+
-+			if (op->base.op == DRM_GPUVA_OP_MAP)
-+				debug_metadata = &op->map.vma->eudebug.metadata.list;
-+		}
- 		break;
- 	}
- 	case DRM_XE_VM_BIND_OP_UNMAP:
-@@ -2805,7 +3033,8 @@ void xe_eudebug_vm_bind_op_add(struct xe_vm *vm, u32 op, u64 addr, u64 range)
- 	if (!d)
- 		return;
- 
--	xe_eudebug_event_put(d, vm_bind_op(d, vm, flags, 0, addr, range));
-+	xe_eudebug_event_put(d, vm_bind_op(d, vm, flags, 0, addr, range,
-+					   debug_metadata));
- }
- 
- static struct xe_eudebug_event *fetch_bind_event(struct xe_vm * const vm)
-@@ -2934,8 +3163,89 @@ int xe_eudebug_vm_bind_ufence(struct xe_user_fence *ufence)
- 	return err;
- }
- 
-+static int send_debug_metadata_event(struct xe_eudebug *d, u32 flags,
-+				     u64 client_handle, u64 metadata_handle,
-+				     u64 type, u64 len, u64 seqno)
-+{
-+	struct xe_eudebug_event *event;
-+	struct xe_eudebug_event_metadata *e;
-+
-+	event = xe_eudebug_create_event(d, DRM_XE_EUDEBUG_EVENT_METADATA, seqno,
-+					flags, sizeof(*e));
-+	if (!event)
-+		return -ENOMEM;
-+
-+	e = cast_event(e, event);
-+
-+	write_member(struct drm_xe_eudebug_event_metadata, e, client_handle, client_handle);
-+	write_member(struct drm_xe_eudebug_event_metadata, e, metadata_handle, metadata_handle);
-+	write_member(struct drm_xe_eudebug_event_metadata, e, type, type);
-+	write_member(struct drm_xe_eudebug_event_metadata, e, len, len);
-+
-+	return xe_eudebug_queue_event(d, event);
-+}
-+
-+static int debug_metadata_create_event(struct xe_eudebug *d,
-+				       struct xe_file *xef, struct xe_debug_metadata *m)
-+{
-+	int h_c, h_m;
-+	u64 seqno;
-+
-+	h_c = find_handle(d->res, XE_EUDEBUG_RES_TYPE_CLIENT, xef);
-+	if (h_c < 0)
-+		return h_c;
-+
-+	h_m = xe_eudebug_add_handle(d, XE_EUDEBUG_RES_TYPE_METADATA, m, &seqno);
-+	if (h_m <= 0)
-+		return h_m;
-+
-+	return send_debug_metadata_event(d, DRM_XE_EUDEBUG_EVENT_CREATE,
-+					 h_c, h_m, m->type, m->len, seqno);
-+}
-+
-+static int debug_metadata_destroy_event(struct xe_eudebug *d,
-+					struct xe_file *xef, struct xe_debug_metadata *m)
-+{
-+	int h_c, h_m;
-+	u64 seqno;
-+
-+	h_c = find_handle(d->res, XE_EUDEBUG_RES_TYPE_CLIENT, xef);
-+	if (h_c < 0)
-+		return h_c;
-+
-+	h_m = xe_eudebug_remove_handle(d, XE_EUDEBUG_RES_TYPE_METADATA, m, &seqno);
-+	if (h_m < 0)
-+		return h_m;
-+
-+	return send_debug_metadata_event(d, DRM_XE_EUDEBUG_EVENT_DESTROY,
-+					 h_c, h_m, m->type, m->len, seqno);
-+}
-+
-+void xe_eudebug_debug_metadata_create(struct xe_file *xef, struct xe_debug_metadata *m)
-+{
-+	struct xe_eudebug *d;
-+
-+	d = xe_eudebug_get(xef);
-+	if (!d)
-+		return;
-+
-+	xe_eudebug_event_put(d, debug_metadata_create_event(d, xef, m));
-+}
-+
-+void xe_eudebug_debug_metadata_destroy(struct xe_file *xef, struct xe_debug_metadata *m)
-+{
-+	struct xe_eudebug *d;
-+
-+	d = xe_eudebug_get(xef);
-+	if (!d)
-+		return;
-+
-+	xe_eudebug_event_put(d, debug_metadata_destroy_event(d, xef, m));
-+}
-+
- static int discover_client(struct xe_eudebug *d, struct xe_file *xef)
- {
-+	struct xe_debug_metadata *m;
- 	struct xe_exec_queue *q;
- 	struct xe_vm *vm;
- 	unsigned long i;
-@@ -2945,6 +3255,12 @@ static int discover_client(struct xe_eudebug *d, struct xe_file *xef)
- 	if (err)
- 		return err;
- 
-+	xa_for_each(&xef->eudebug.metadata.xa, i, m) {
-+		err = debug_metadata_create_event(d, xef, m);
-+		if (err)
-+			break;
-+	}
-+
- 	xa_for_each(&xef->vm.xa, i, vm) {
- 		err = vm_create_event(d, xef, vm);
- 		if (err)
-diff --git a/drivers/gpu/drm/xe/xe_eudebug.h b/drivers/gpu/drm/xe/xe_eudebug.h
-index 13ba0167b31b..572493d341ff 100644
---- a/drivers/gpu/drm/xe/xe_eudebug.h
-+++ b/drivers/gpu/drm/xe/xe_eudebug.h
-@@ -16,6 +16,8 @@ struct xe_vma;
- struct xe_exec_queue;
- struct xe_hw_engine;
- struct xe_user_fence;
-+struct xe_debug_metadata;
-+struct drm_gpuva_ops;
- 
- #if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
- 
-@@ -39,7 +41,8 @@ void xe_eudebug_exec_queue_destroy(struct xe_file *xef, struct xe_exec_queue *q)
- 
- void xe_eudebug_vm_init(struct xe_vm *vm);
- void xe_eudebug_vm_bind_start(struct xe_vm *vm);
--void xe_eudebug_vm_bind_op_add(struct xe_vm *vm, u32 op, u64 addr, u64 range);
-+void xe_eudebug_vm_bind_op_add(struct xe_vm *vm, u32 op, u64 addr, u64 range,
-+			       struct drm_gpuva_ops *ops);
- void xe_eudebug_vm_bind_end(struct xe_vm *vm, bool has_ufence, int err);
- 
- int xe_eudebug_vm_bind_ufence(struct xe_user_fence *ufence);
-@@ -49,6 +52,9 @@ void xe_eudebug_ufence_fini(struct xe_user_fence *ufence);
- struct xe_eudebug *xe_eudebug_get(struct xe_file *xef);
- void xe_eudebug_put(struct xe_eudebug *d);
- 
-+void xe_eudebug_debug_metadata_create(struct xe_file *xef, struct xe_debug_metadata *m);
-+void xe_eudebug_debug_metadata_destroy(struct xe_file *xef, struct xe_debug_metadata *m);
-+
- #else
- 
- static inline int xe_eudebug_connect_ioctl(struct drm_device *dev,
-@@ -71,7 +77,8 @@ static inline void xe_eudebug_exec_queue_destroy(struct xe_file *xef, struct xe_
- 
- static inline void xe_eudebug_vm_init(struct xe_vm *vm) { }
- static inline void xe_eudebug_vm_bind_start(struct xe_vm *vm) { }
--static inline void xe_eudebug_vm_bind_op_add(struct xe_vm *vm, u32 op, u64 addr, u64 range) { }
-+static inline void xe_eudebug_vm_bind_op_add(struct xe_vm *vm, u32 op, u64 addr, u64 range,
-+					     struct drm_gpuva_ops *ops) { }
- static inline void xe_eudebug_vm_bind_end(struct xe_vm *vm, bool has_ufence, int err) { }
- 
- static inline int xe_eudebug_vm_bind_ufence(struct xe_user_fence *ufence) { return 0; }
-@@ -82,6 +89,16 @@ static inline void xe_eudebug_ufence_fini(struct xe_user_fence *ufence) { }
- static inline struct xe_eudebug *xe_eudebug_get(struct xe_file *xef) { return NULL; }
- static inline void xe_eudebug_put(struct xe_eudebug *d) { }
- 
-+static inline void xe_eudebug_debug_metadata_create(struct xe_file *xef,
-+						    struct xe_debug_metadata *m)
-+{
-+}
-+
-+static inline void xe_eudebug_debug_metadata_destroy(struct xe_file *xef,
-+						     struct xe_debug_metadata *m)
-+{
-+}
-+
- #endif /* CONFIG_DRM_XE_EUDEBUG */
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_eudebug_types.h b/drivers/gpu/drm/xe/xe_eudebug_types.h
-index ffb0dc71430a..a69051b04698 100644
---- a/drivers/gpu/drm/xe/xe_eudebug_types.h
-+++ b/drivers/gpu/drm/xe/xe_eudebug_types.h
-@@ -56,7 +56,8 @@ struct xe_eudebug_resource {
- #define XE_EUDEBUG_RES_TYPE_VM		1
- #define XE_EUDEBUG_RES_TYPE_EXEC_QUEUE	2
- #define XE_EUDEBUG_RES_TYPE_LRC		3
--#define XE_EUDEBUG_RES_TYPE_COUNT	(XE_EUDEBUG_RES_TYPE_LRC + 1)
-+#define XE_EUDEBUG_RES_TYPE_METADATA	4
-+#define XE_EUDEBUG_RES_TYPE_COUNT	(XE_EUDEBUG_RES_TYPE_METADATA + 1)
- 
- /**
-  * struct xe_eudebug_resources - eudebug resources for all types
-@@ -326,4 +327,28 @@ struct xe_eudebug_event_vm_bind_ufence {
- 	u64 vm_bind_ref_seqno;
- };
- 
-+struct xe_eudebug_event_metadata {
-+	struct xe_eudebug_event base;
-+
-+	/** @client_handle: client for the attention */
-+	u64 client_handle;
-+
-+	/** @metadata_handle: debug metadata handle it's created/destroyed */
-+	u64 metadata_handle;
-+
-+	/* @type: metadata type, refer to xe_drm.h for options */
-+	u64 type;
-+
-+	/* @len: size of metadata paylad */
-+	u64 len;
-+};
-+
-+struct xe_eudebug_event_vm_bind_op_metadata {
-+	struct xe_eudebug_event base;
-+	u64 vm_bind_op_ref_seqno;
-+
-+	u64 metadata_handle;
-+	u64 metadata_cookie;
-+};
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 19c0b36c10b1..474521d0fea9 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3178,7 +3178,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		if (err)
- 			goto unwind_ops;
- 
--		xe_eudebug_vm_bind_op_add(vm, op, addr, range);
-+		xe_eudebug_vm_bind_op_add(vm, op, addr, range, ops[i]);
- 
- #ifdef TEST_VM_OPS_ERROR
- 		if (flags & FORCE_OP_ERROR) {
-diff --git a/include/uapi/drm/xe_drm_eudebug.h b/include/uapi/drm/xe_drm_eudebug.h
-index a5f13563b3b9..3c4d1b511acd 100644
---- a/include/uapi/drm/xe_drm_eudebug.h
-+++ b/include/uapi/drm/xe_drm_eudebug.h
-@@ -19,6 +19,7 @@ extern "C" {
- #define DRM_XE_EUDEBUG_IOCTL_EU_CONTROL		_IOWR('j', 0x2, struct drm_xe_eudebug_eu_control)
- #define DRM_XE_EUDEBUG_IOCTL_ACK_EVENT		_IOW('j', 0x4, struct drm_xe_eudebug_ack_event)
- #define DRM_XE_EUDEBUG_IOCTL_VM_OPEN		_IOW('j', 0x1, struct drm_xe_eudebug_vm_open)
-+#define DRM_XE_EUDEBUG_IOCTL_READ_METADATA	_IOWR('j', 0x3, struct drm_xe_eudebug_read_metadata)
- 
- /* XXX: Document events to match their internal counterparts when moved to xe_drm.h */
- struct drm_xe_eudebug_event {
-@@ -35,6 +36,8 @@ struct drm_xe_eudebug_event {
- #define DRM_XE_EUDEBUG_EVENT_VM_BIND		7
- #define DRM_XE_EUDEBUG_EVENT_VM_BIND_OP		8
- #define DRM_XE_EUDEBUG_EVENT_VM_BIND_UFENCE	9
-+#define DRM_XE_EUDEBUG_EVENT_METADATA		10
-+#define DRM_XE_EUDEBUG_EVENT_VM_BIND_OP_METADATA 11
- 
- 	__u16 flags;
- #define DRM_XE_EUDEBUG_EVENT_CREATE		(1 << 0)
-@@ -206,6 +209,33 @@ struct drm_xe_eudebug_vm_open {
- 	__u64 timeout_ns;
- };
- 
-+struct drm_xe_eudebug_read_metadata {
-+	__u64 client_handle;
-+	__u64 metadata_handle;
-+	__u32 flags;
-+	__u32 reserved;
-+	__u64 ptr;
-+	__u64 size;
-+};
-+
-+struct drm_xe_eudebug_event_metadata {
-+	struct drm_xe_eudebug_event base;
-+
-+	__u64 client_handle;
-+	__u64 metadata_handle;
-+	/* XXX: Refer to xe_drm.h for fields */
-+	__u64 type;
-+	__u64 len;
-+};
-+
-+struct drm_xe_eudebug_event_vm_bind_op_metadata {
-+	struct drm_xe_eudebug_event base;
-+	__u64 vm_bind_op_ref_seqno; /* *_event_vm_bind_op.base.seqno */
-+
-+	__u64 metadata_handle;
-+	__u64 metadata_cookie;
-+};
-+
- #if defined(__cplusplus)
- }
- #endif
++#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
++#include "tests/xe_eudebug.c"
++#endif
 -- 
 2.43.0
 
