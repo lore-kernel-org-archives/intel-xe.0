@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 892FFE77182
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 715CEE77180
 	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 23:28:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 457EF10E591;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D93810E590;
 	Mon,  9 Dec 2024 23:28:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hFLFJuec";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nLNAAYWe";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3859210E58B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E3FF10E58D
  for <intel-xe@lists.freedesktop.org>; Mon,  9 Dec 2024 23:28:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1733786882; x=1765322882;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mV5Ta9/gk+jRTBpe9D77zt3qgtx8ztHagkoV4VWRsdY=;
- b=hFLFJuecXZmal899S7DnKnrpACy7gPlfcsE5JG+jFzD5IyGGHWS8Boe+
- oHOD1h9oDu5mYfCcq/FuI8nvSiM3BLEvyeL44BcWYxRo/uGwLFwrpnAaC
- WTmd3FMO9nxCy9tlOa+nina94AG6FTEpzpOUYSsVPQ8KDsc+AFnlEq6Xo
- nhWLBT2PP4OC6GdumnH05NhcqYXOJT2qqiHuIHbqSPZjWXPbIXPKB9FQy
- Y1mi4S7Zn0Xav990ytMvuFsyo53CxFrJ/1r7lBxNbbGC2nUmlFLL7DJmG
- qXCrXjbmG0/CD8xjCjQcshRo+agEtHuhneD9dGL8QdPEUcGNSkVAWGNlB g==;
-X-CSE-ConnectionGUID: lPLHZSEVT/OS01EfHH7NzA==
-X-CSE-MsgGUID: QKgLJzEGROCg544T5TbUfQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="44581853"
-X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="44581853"
+ bh=L3mXIYKKAtUM2eRrjPdsiVoP1iYrQQGkV6MxFOxH72A=;
+ b=nLNAAYWewSp9dRAR603vHWlxlWgNDF2kCv8OfdA3ZEapAOCz2Hj6Hl+U
+ DjSD+ORWPcFn0goENJM15hefubmeBRdvY2cKa3oGgDw1zF1mULwgbPkTF
+ xzQx/Wo/uQzs1rKxjTn7D2ihZ1aqpWF30WHkpRA0UetlKUBWWW1RycAVA
+ zmVzJESmfv5ZQGk3zioQ/dOEmqaoayLYcnGm4Qpn2VUEP4c1l8GnHxmJY
+ QBGyOnb1GJKJXGCkDOPdlfiilM7IOZlUsOMHFoWKuBwWuQBBgYokcWk+a
+ mCoDnb/IaAtqOTbxIoGHGwTNFIKBFl+VaxMG8B8rr9Z6u3VDdEPkcAjjm w==;
+X-CSE-ConnectionGUID: JFLdcEvjROGKdiIIJ/wpQw==
+X-CSE-MsgGUID: AOJb74M5RUu2ovFXsFARqg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="44581851"
+X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="44581851"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Dec 2024 15:28:01 -0800
-X-CSE-ConnectionGUID: ClL7uhhESl6PiGWpaAuTJA==
-X-CSE-MsgGUID: f1eB3tjeSJiA1WpFiuTKSA==
+X-CSE-ConnectionGUID: /iDUWWHXS/qeEBeo50uVSg==
+X-CSE-MsgGUID: POTgVHsgRqigKjiNegfysQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="100268961"
+X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="100268951"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Dec 2024 15:28:00 -0800
@@ -48,9 +48,9 @@ Cc: Matt Roper <matthew.d.roper@intel.com>,
  John Harrison <john.c.harrison@intel.com>,
  Jonathan Cavitt <jonathan.cavitt@intel.com>, ashutosh.dixit@intel.com,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 4/5] drm/xe/reg_sr: Stop setting all whitelist slots
-Date: Mon,  9 Dec 2024 15:27:38 -0800
-Message-ID: <20241209232739.147417-5-lucas.demarchi@intel.com>
+Subject: [PATCH v2 1/5] drm/xe/reg_sr: Remove register pool
+Date: Mon,  9 Dec 2024 15:27:35 -0800
+Message-ID: <20241209232739.147417-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241209232739.147417-1-lucas.demarchi@intel.com>
 References: <20241209232739.147417-1-lucas.demarchi@intel.com>
@@ -70,38 +70,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently xe_reg_sr_apply_whitelist() sets the unused values to a known
-used value for no good reason: it could just leave it with the HW
-default. The behavior is slightly different if there are no whitelist
-registers for the engine as the function returns early. This is not
-needed, so just drop the addition writes for the unused slots.
+That pool implementation doesn't really work: if the krealloc happens to
+move the memory and return another address, the entries in the xarray
+become invalid, leading to use-after-free later:
 
-Later this will allow to reduce the amount of registers passed to GuC
-for save/restore.
+	BUG: KASAN: slab-use-after-free in xe_reg_sr_apply_mmio+0x570/0x760 [xe]
+	Read of size 4 at addr ffff8881244b2590 by task modprobe/2753
 
+	Allocated by task 2753:
+	 kasan_save_stack+0x39/0x70
+	 kasan_save_track+0x14/0x40
+	 kasan_save_alloc_info+0x37/0x60
+	 __kasan_kmalloc+0xc3/0xd0
+	 __kmalloc_node_track_caller_noprof+0x200/0x6d0
+	 krealloc_noprof+0x229/0x380
+
+Simplify the code to fix the bug. A better pooling strategy may be added
+back later if needed.
+
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_reg_sr.c | 7 -------
- 1 file changed, 7 deletions(-)
+ drivers/gpu/drm/xe/xe_reg_sr.c       | 31 ++++++----------------------
+ drivers/gpu/drm/xe/xe_reg_sr_types.h |  6 ------
+ 2 files changed, 6 insertions(+), 31 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index 080229e0fc15a..0a5c0e62d6e88 100644
+index e1a0e27cda14c..c13123008e903 100644
 --- a/drivers/gpu/drm/xe/xe_reg_sr.c
 +++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -227,13 +227,6 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
- 		slot++;
- 	}
+@@ -27,46 +27,27 @@
+ #include "xe_reg_whitelist.h"
+ #include "xe_rtp_types.h"
  
--	/* And clear the rest just in case of garbage */
--	for (; slot < RING_MAX_NONPRIV_SLOTS; slot++) {
--		u32 addr = RING_NOPID(mmio_base).addr;
+-#define XE_REG_SR_GROW_STEP_DEFAULT	16
 -
--		xe_mmio_write32(&gt->mmio, RING_FORCE_TO_NONPRIV(mmio_base, slot), addr);
+ static void reg_sr_fini(struct drm_device *drm, void *arg)
+ {
+ 	struct xe_reg_sr *sr = arg;
++	struct xe_reg_sr_entry *entry;
++	unsigned long reg;
++
++	xa_for_each(&sr->xa, reg, entry)
++		kfree(entry);
+ 
+ 	xa_destroy(&sr->xa);
+-	kfree(sr->pool.arr);
+-	memset(&sr->pool, 0, sizeof(sr->pool));
+ }
+ 
+ int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe)
+ {
+ 	xa_init(&sr->xa);
+-	memset(&sr->pool, 0, sizeof(sr->pool));
+-	sr->pool.grow_step = XE_REG_SR_GROW_STEP_DEFAULT;
+ 	sr->name = name;
+ 
+ 	return drmm_add_action_or_reset(&xe->drm, reg_sr_fini, sr);
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_reg_sr_init);
+ 
+-static struct xe_reg_sr_entry *alloc_entry(struct xe_reg_sr *sr)
+-{
+-	if (sr->pool.used == sr->pool.allocated) {
+-		struct xe_reg_sr_entry *arr;
+-
+-		arr = krealloc_array(sr->pool.arr,
+-				     ALIGN(sr->pool.allocated + 1, sr->pool.grow_step),
+-				     sizeof(*arr), GFP_KERNEL);
+-		if (!arr)
+-			return NULL;
+-
+-		sr->pool.arr = arr;
+-		sr->pool.allocated += sr->pool.grow_step;
 -	}
 -
- 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+-	return &sr->pool.arr[sr->pool.used++];
+-}
+-
+ static bool compatible_entries(const struct xe_reg_sr_entry *e1,
+ 			       const struct xe_reg_sr_entry *e2)
+ {
+@@ -112,7 +93,7 @@ int xe_reg_sr_add(struct xe_reg_sr *sr,
+ 		return 0;
+ 	}
  
- 	return;
+-	pentry = alloc_entry(sr);
++	pentry = kmalloc(sizeof(*pentry), GFP_KERNEL);
+ 	if (!pentry) {
+ 		ret = -ENOMEM;
+ 		goto fail;
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr_types.h b/drivers/gpu/drm/xe/xe_reg_sr_types.h
+index ad48a52b824a1..ebe11f237fa26 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr_types.h
++++ b/drivers/gpu/drm/xe/xe_reg_sr_types.h
+@@ -20,12 +20,6 @@ struct xe_reg_sr_entry {
+ };
+ 
+ struct xe_reg_sr {
+-	struct {
+-		struct xe_reg_sr_entry *arr;
+-		unsigned int used;
+-		unsigned int allocated;
+-		unsigned int grow_step;
+-	} pool;
+ 	struct xarray xa;
+ 	const char *name;
+ 
 -- 
 2.47.0
 
