@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AFE1E7717D
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 14:50:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D88C8E77180
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Dec 2024 14:51:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E060110E75E;
-	Mon,  9 Dec 2024 14:50:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA70110E75E;
+	Mon,  9 Dec 2024 14:51:04 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A09E010E75E;
- Mon,  9 Dec 2024 14:50:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87FC310E75E;
+ Mon,  9 Dec 2024 14:51:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_adding_wait_hel?=
- =?utf-8?q?per_for_gt_async_reset?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_adding_wait_helper_f?=
+ =?utf-8?q?or_gt_async_reset?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maciej Patelczyk" <maciej.patelczyk@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Dec 2024 14:50:29 -0000
-Message-ID: <173375582965.490008.7644408851755365553@b555e5b46a47>
+Date: Mon, 09 Dec 2024 14:51:03 -0000
+Message-ID: <173375586355.486559.4809477451308056615@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241209141210.1311374-1-maciej.patelczyk@intel.com>
 In-Reply-To: <20241209141210.1311374-1-maciej.patelczyk@intel.com>
@@ -44,38 +44,75 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: adding wait helper for gt async reset
 URL   : https://patchwork.freedesktop.org/series/142300/
-State : success
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 46980c204d2ac5b1a0c94ae7c7c97bcfaf87d58a
-Author: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Date:   Mon Dec 9 15:12:10 2024 +0100
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+In file included from ../include/linux/module.h:22,
+                 from ../include/linux/device/driver.h:21,
+                 from ../include/linux/device.h:32,
+                 from ../include/linux/auxiliary_bus.h:11,
+                 from ../include/linux/intel_vsec.h:5,
+                 from ../drivers/gpu/drm/xe/xe_vsec.c:7:
+../drivers/gpu/drm/xe/xe_vsec.c:233:18: error: expected ‘,’ or ‘;’ before ‘INTEL_VSEC’
+  233 | MODULE_IMPORT_NS(INTEL_VSEC);
+      |                  ^~~~~~~~~~
+../include/linux/moduleparam.h:26:61: note: in definition of macro ‘__MODULE_INFO’
+   26 |                 = __MODULE_INFO_PREFIX __stringify(tag) "=" info
+      |                                                             ^~~~
+../include/linux/module.h:299:33: note: in expansion of macro ‘MODULE_INFO’
+  299 | #define MODULE_IMPORT_NS(ns)    MODULE_INFO(import_ns, ns)
+      |                                 ^~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_vsec.c:233:1: note: in expansion of macro ‘MODULE_IMPORT_NS’
+  233 | MODULE_IMPORT_NS(INTEL_VSEC);
+      | ^~~~~~~~~~~~~~~~
+make[7]: *** [../scripts/Makefile.build:194: drivers/gpu/drm/xe/xe_vsec.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:440: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:440: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:440: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:440: drivers] Error 2
+make[2]: *** [/kernel/Makefile:1989: .] Error 2
+make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
-    drm/xe: make change ccs_mode a synchronous action
-    
-    If ccs_mode is being modified via
-       /sys/class/drm/cardX/device/tileY/gtY/ccs_mode
-    the asynchronous reset is triggered and the write returns immediately.
-    
-    With that some test receive false information about number of CCS engines
-    or even fail if they proceed without delay after changing the ccs_mode.
-    
-    Changing the ccs_mode change from async to sync to prevent failures in
-    tests.
-    
-    Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
-+ /mt/dim checkpatch c266f2fbb9c0250af17b14788364766adf802a4a drm-intel
-9b93f46b4015 drm/xe: introduce xe_gt_reset_wait to wait for async gt reset
-46980c204d2a drm/xe: make change ccs_mode a synchronous action
+[14:50:30] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[14:50:34] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
