@@ -4,36 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B82EE77193
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 22:02:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 485B7E77189
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 22:02:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8AB510E9C0;
-	Tue, 10 Dec 2024 22:02:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C87210E9B8;
+	Tue, 10 Dec 2024 22:02:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="Vt8vx6jK";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="WbJnm80T";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1316A10E9AD;
- Tue, 10 Dec 2024 22:02:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id C19B910E9B2;
+ Tue, 10 Dec 2024 22:02:45 +0000 (UTC)
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
- by linux.microsoft.com (Postfix) with ESMTPSA id F1ABA20ACD6F;
+ by linux.microsoft.com (Postfix) with ESMTPSA id 05ECB20ACD66;
  Tue, 10 Dec 2024 14:02:39 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com F1ABA20ACD6F
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 05ECB20ACD66
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1733868160;
- bh=zXBBaQqpACacMQS0Kj7gcrwl6nw/WBuJMa6i20JWtiI=;
+ s=default; t=1733868159;
+ bh=VvjxiqfKxbyi9uGzXsW8xZpGKBVs2F3SKydD57RgoIM=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=Vt8vx6jKTs+Ctim/qcZbBmxzvKglLplBaf8u3Ss1TuSPMlqyDk6c0iiPlA+LzR+m0
- YPZ/Qdi+1XcZwtu1UmEnzASc3HPTGQ/HgM/xmF7CmRGYf/aXx12mOKI6ka1aNTAUbz
- /gGdJ/+VOZh0/gOcfBkHqPOaIC1SiZYddw+BwdBw=
+ b=WbJnm80TvYnXykJB9DgMtqoZ50ou8AhS1efFy3dCoV03536YA3dJhXmL0IMKChnpw
+ CujNWFZtiMOuyACXPjtJ3tU0PrbAysQ8+2RTG/TU5ekLFjjJ/pUAEWKon7ssztFoiO
+ F9frqglM8e2VebaFFRHMBRJ+sqXulRejbFKVUSag=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Tue, 10 Dec 2024 22:02:50 +0000
-Subject: [PATCH v3 19/19] ALSA: line6: Convert timeouts to
- secs_to_jiffies()
+Date: Tue, 10 Dec 2024 22:02:45 +0000
+Subject: [PATCH v3 14/19] wifi: ath11k: Convert timeouts to secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241210-converge-secs-to-jiffies-v3-19-ddfefd7e9f2a@linux.microsoft.com>
+Message-Id: <20241210-converge-secs-to-jiffies-v3-14-ddfefd7e9f2a@linux.microsoft.com>
 References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 In-Reply-To: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -96,7 +95,8 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  live-patching@vger.kernel.org, linux-sound@vger.kernel.org, 
  oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org, 
  Anna-Maria Behnsen <anna-maria@linutronix.de>, 
- Easwar Hariharan <eahariha@linux.microsoft.com>
+ Easwar Hariharan <eahariha@linux.microsoft.com>, 
+ Jeff Johnson <quic_jjohnson@quicinc.com>
 X-Mailer: b4 0.14.2
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -129,23 +129,24 @@ the following Coccinelle rules:
 - msecs_to_jiffies(C * MSEC_PER_SEC)
 + secs_to_jiffies(C)
 
+Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- sound/usb/line6/toneport.c | 2 +-
+ drivers/net/wireless/ath/ath11k/debugfs.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/sound/usb/line6/toneport.c b/sound/usb/line6/toneport.c
-index ca2c6f5de407ece21ab69a39ed603e3f10069039..c073b38cd6738176fc6a276d05ed553526573341 100644
---- a/sound/usb/line6/toneport.c
-+++ b/sound/usb/line6/toneport.c
-@@ -386,7 +386,7 @@ static int toneport_setup(struct usb_line6_toneport *toneport)
- 		toneport_update_led(toneport);
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+index 57281a135dd7fa6b8610636f47873c8bba21053c..bf192529e3fe26a91e72105a77b4c6f849b905ec 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -178,7 +178,7 @@ static int ath11k_debugfs_fw_stats_request(struct ath11k *ar,
+ 	 * received 'update stats' event, we keep a 3 seconds timeout in case,
+ 	 * fw_stats_done is not marked yet
+ 	 */
+-	timeout = jiffies + msecs_to_jiffies(3 * 1000);
++	timeout = jiffies + secs_to_jiffies(3);
  
- 	schedule_delayed_work(&toneport->line6.startup_work,
--			      msecs_to_jiffies(TONEPORT_PCM_DELAY * 1000));
-+			      secs_to_jiffies(TONEPORT_PCM_DELAY));
- 	return 0;
- }
+ 	ath11k_debugfs_fw_stats_reset(ar);
  
 
 -- 
