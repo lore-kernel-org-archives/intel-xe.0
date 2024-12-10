@@ -4,57 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3D69E77180
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 09:36:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F55FE7717F
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 09:36:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88EEC10E849;
-	Tue, 10 Dec 2024 09:36:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67F9B10E85E;
+	Tue, 10 Dec 2024 09:36:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fiB70eS3";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="YZD4RptQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78BC110E854;
- Tue, 10 Dec 2024 09:36:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733823362; x=1765359362;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=aStncA1iyIQzIUi8IjV1c0NYxhg/DY9aiTLGa4QBM8Y=;
- b=fiB70eS3T4f+XIEaFxrxr1JE8lDIw9NcuaHmbnKazs59dIC2r1XqwsVw
- c2cZ7yW/C0aWxNsNWvfIctw9xlxZtZJJ3jnEX1vTjl/0InMKMAwtl03/s
- wXoy/yS7lobr9zZNBCHTsdHzBShwq2irOhJo17Cxo/Z0qIHiLVW8ZZKFg
- ll+386nqAkzR+SWonblqaJaPZzUC5SIKRTWLMPaV5EILLdOoIbT0+iG57
- 8kj3JXATi/0tMLhBF1sJUeVbAgAsEhyFNLSolHzSm9I7tcZvZr9LqWAts
- ibzgatijG1e+m57prvTfwiPxFPY7/3SvF/y9is4jJOBuQhSNbiUJhgny5 A==;
-X-CSE-ConnectionGUID: c8YVgh5eRqSouapQ+lNlWA==
-X-CSE-MsgGUID: f6WO0WgIQL6hIoGT2BaM5Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="33493269"
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="33493269"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 01:36:02 -0800
-X-CSE-ConnectionGUID: nEAPm4knR+yadcQpBrBXLg==
-X-CSE-MsgGUID: xV4421D0Qh6DxASWMNZFZg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="100395790"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.242])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 01:36:00 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH] drm/xe/display: Use a single early init call for display
-In-Reply-To: <20241209155142.209657-1-dev@lankhorst.se>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241206185956.3290-6-dev@lankhorst.se>
- <20241209155142.209657-1-dev@lankhorst.se>
-Date: Tue, 10 Dec 2024 11:35:56 +0200
-Message-ID: <87h67bzxqb.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 648BB10E864
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Dec 2024 09:36:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1733823388;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=8GEvw5QpbRp0f45cMt+HrV/NNA4rCDC5F+CWhNaj1U4=;
+ b=YZD4RptQ5T3ymsXacQnr/sSjgoL5q798tE1uB3dx2cUCsVcgLQh4eHAvOWtgsHXz4YvyqQ
+ Q8bhRcPU8PdGCOwVzJjAtnfo3+PWrlvSCp5Bpv/sP0MF7zFXPfwQtFNmDqLmT38rA8r5Gy
+ 0bmYzF1GHLMI6s6wAmuEeAc0vs30zWs=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-553-TP-uYSDmMgmG4UJdPcH1ZQ-1; Tue,
+ 10 Dec 2024 04:36:26 -0500
+X-MC-Unique: TP-uYSDmMgmG4UJdPcH1ZQ-1
+X-Mimecast-MFC-AGG-ID: TP-uYSDmMgmG4UJdPcH1ZQ
+Received: from mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.15])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 38131195C258; Tue, 10 Dec 2024 09:36:24 +0000 (UTC)
+Received: from hydra.redhat.com (unknown [10.39.193.39])
+ by mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id AAF411956089; Tue, 10 Dec 2024 09:36:20 +0000 (UTC)
+From: Jocelyn Falempe <jfalempe@redhat.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Subject: [RFC PATCH v3 0/6] drm/i915: Add drm_panic support
+Date: Tue, 10 Dec 2024 10:28:40 +0100
+Message-ID: <20241210093505.589893-1-jfalempe@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.15
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,204 +71,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 09 Dec 2024, Maarten Lankhorst <dev@lankhorst.se> wrote:
-> Instead of 3 different calls, it should be safe to unify to a single
-> call now. This makes the init sequence cleaner, and display less
-> tangled.
+This is a draft of drm_panic support for i915.
 
-Needs more explanation.
+I've tested it on the 3 intel laptops I have at my disposal.
+one Haswell with 128MB of eDRAM, one Cometlake and one Alderlake.
 
-I thought the goal was to *unify* i915 and xe display init/cleanup. This
-diverges them more, with actually functionally different things rather
-than just slightly different ordering.
+I tested panic in both fbdev console and gnome desktop.
 
-BR,
-Jani.
+Best regards,
+
+v2:
+ * Add the proper abstractions to build also for Xe.
+ * Fix dim checkpatch issues.
+
+v3:
+ * Add support for Y-tiled framebuffer when DPT is enabled.
+
+Jocelyn Falempe (6):
+  drm/i915/fbdev: Add intel_fbdev_get_vaddr()
+  drm/i915/display/i9xx: Add a disable_tiling() for i9xx planes
+  drm/i915/display: Add a disable_tiling() for skl planes
+  drm/i915/gem: Add i915_gem_object_panic_map()
+  drm/i915: Add drm_panic support
+  drm/i915: Add drm_panic support for Y-tiling with DPT
+
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  23 +++
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 147 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bo.c       |  10 ++
+ drivers/gpu/drm/i915/display/intel_bo.h       |   2 +
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |   5 +
+ drivers/gpu/drm/i915/display/intel_fb_pin.h   |   1 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |   5 +
+ drivers/gpu/drm/i915/display/intel_fbdev.h    |   6 +
+ .../drm/i915/display/skl_universal_plane.c    |  27 ++++
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |   2 +
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  25 +++
+ drivers/gpu/drm/i915/i915_vma.h               |   5 +
+ drivers/gpu/drm/xe/display/intel_bo.c         |  11 ++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |   5 +
+ 15 files changed, 275 insertions(+), 1 deletion(-)
 
 
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-> ---
-> Rebase
->
->  drivers/gpu/drm/xe/display/xe_display.c | 73 +++++++------------------
->  drivers/gpu/drm/xe/display/xe_display.h |  8 +--
->  drivers/gpu/drm/xe/xe_device.c          | 10 +---
->  3 files changed, 22 insertions(+), 69 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 317fa66adf189..b013a4db11183 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -101,19 +101,25 @@ int xe_display_create(struct xe_device *xe)
->  	return drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
->  }
->  
-> -static void xe_display_fini_nommio(struct drm_device *dev, void *dummy)
-> +static void xe_display_fini_early(void *arg)
->  {
-> -	struct xe_device *xe = to_xe_device(dev);
-> +	struct xe_device *xe = arg;
->  	struct intel_display *display = &xe->display;
->  
->  	if (!xe->info.probe_display)
->  		return;
->  
-> +	intel_display_driver_remove_nogem(display);
-> +	intel_display_driver_remove_noirq(display);
-> +	intel_opregion_cleanup(display);
->  	intel_power_domains_cleanup(display);
->  }
->  
-> -int xe_display_init_nommio(struct xe_device *xe)
-> +int xe_display_init_early(struct xe_device *xe)
->  {
-> +	struct intel_display *display = &xe->display;
-> +	int err;
-> +
->  	if (!xe->info.probe_display)
->  		return 0;
->  
-> @@ -123,29 +129,6 @@ int xe_display_init_nommio(struct xe_device *xe)
->  	/* This must be called before any calls to HAS_PCH_* */
->  	intel_detect_pch(xe);
->  
-> -	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_nommio, xe);
-> -}
-> -
-> -static void xe_display_fini_noirq(void *arg)
-> -{
-> -	struct xe_device *xe = arg;
-> -	struct intel_display *display = &xe->display;
-> -
-> -	if (!xe->info.probe_display)
-> -		return;
-> -
-> -	intel_display_driver_remove_noirq(display);
-> -	intel_opregion_cleanup(display);
-> -}
-> -
-> -int xe_display_init_noirq(struct xe_device *xe)
-> -{
-> -	struct intel_display *display = &xe->display;
-> -	int err;
-> -
-> -	if (!xe->info.probe_display)
-> -		return 0;
-> -
->  	intel_display_driver_early_probe(display);
->  
->  	/* Early display init.. */
-> @@ -162,38 +145,20 @@ int xe_display_init_noirq(struct xe_device *xe)
->  	intel_display_device_info_runtime_init(display);
->  
->  	err = intel_display_driver_probe_noirq(display);
-> -	if (err) {
-> -		intel_opregion_cleanup(display);
-> -		return err;
-> -	}
-> -
-> -	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_noirq, xe);
-> -}
-> -
-> -static void xe_display_fini_noaccel(void *arg)
-> -{
-> -	struct xe_device *xe = arg;
-> -	struct intel_display *display = &xe->display;
-> -
-> -	if (!xe->info.probe_display)
-> -		return;
-> -
-> -	intel_display_driver_remove_nogem(display);
-> -}
-> -
-> -int xe_display_init_noaccel(struct xe_device *xe)
-> -{
-> -	struct intel_display *display = &xe->display;
-> -	int err;
-> -
-> -	if (!xe->info.probe_display)
-> -		return 0;
-> +	if (err)
-> +		goto err_opregion;
->  
->  	err = intel_display_driver_probe_nogem(display);
->  	if (err)
-> -		return err;
-> +		goto err_noirq;
->  
-> -	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_noaccel, xe);
-> +	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_early, xe);
-> +err_noirq:
-> +	intel_display_driver_remove_noirq(display);
-> +	intel_power_domains_cleanup(display);
-> +err_opregion:
-> +	intel_opregion_cleanup(display);
-> +	return err;
->  }
->  
->  int xe_display_init(struct xe_device *xe)
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
-> index 233f81a26c255..e2a99624f7064 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.h
-> +++ b/drivers/gpu/drm/xe/display/xe_display.h
-> @@ -20,9 +20,7 @@ int xe_display_create(struct xe_device *xe);
->  
->  int xe_display_probe(struct xe_device *xe);
->  
-> -int xe_display_init_nommio(struct xe_device *xe);
-> -int xe_display_init_noirq(struct xe_device *xe);
-> -int xe_display_init_noaccel(struct xe_device *xe);
-> +int xe_display_init_early(struct xe_device *xe);
->  int xe_display_init(struct xe_device *xe);
->  void xe_display_fini(struct xe_device *xe);
->  
-> @@ -54,9 +52,7 @@ static inline int xe_display_create(struct xe_device *xe) { return 0; }
->  
->  static inline int xe_display_probe(struct xe_device *xe) { return 0; }
->  
-> -static inline int xe_display_init_nommio(struct xe_device *xe) { return 0; }
-> -static inline int xe_display_init_noirq(struct xe_device *xe) { return 0; }
-> -static inline int xe_display_init_noaccel(struct xe_device *xe) { return 0; }
-> +static inline int xe_display_init_early(struct xe_device *xe) { return 0; }
->  static inline int xe_display_init(struct xe_device *xe) { return 0; }
->  static inline void xe_display_fini(struct xe_device *xe) {}
->  
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index fbec176ee64ad..c9c0b74c74ddb 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -639,10 +639,6 @@ int xe_device_probe(struct xe_device *xe)
->  		return err;
->  
->  	xe->info.mem_region_mask = 1;
-> -	err = xe_display_init_nommio(xe);
-> -	if (err)
-> -		return err;
-> -
->  	err = xe_set_dma_info(xe);
->  	if (err)
->  		return err;
-> @@ -697,10 +693,6 @@ int xe_device_probe(struct xe_device *xe)
->  	if (err)
->  		return err;
->  
-> -	err = xe_display_init_noirq(xe);
-> -	if (err)
-> -		return err;
-> -
->  	err = probe_has_flat_ccs(xe);
->  	if (err)
->  		goto err;
-> @@ -724,7 +716,7 @@ int xe_device_probe(struct xe_device *xe)
->  	 * This is the reason the first allocation needs to be done
->  	 * inside display.
->  	 */
-> -	err = xe_display_init_noaccel(xe);
-> +	err = xe_display_init_early(xe);
->  	if (err)
->  		goto err;
-
+base-commit: 919b1458ccfd33ead891fa4ad1e1d06016f5a20c
 -- 
-Jani Nikula, Intel
+2.47.1
+
