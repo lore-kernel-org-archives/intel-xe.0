@@ -4,61 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58917E77180
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 15:56:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CBE2E7717F
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 15:57:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2794810E903;
-	Tue, 10 Dec 2024 15:56:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FE0310E3B4;
+	Tue, 10 Dec 2024 15:57:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K7nmtRjk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bub01TV6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7191C10E903
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Dec 2024 15:56:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 238D110E908
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Dec 2024 15:57:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733846218; x=1765382218;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=mjC+e6gNCU3emBb9QuvtpFcjeRTWGAeStvy+POWh8lo=;
- b=K7nmtRjkwSTs7WVE02xG1H/Lj8jXSsOJtsmuko8H86BbGk0L8ocJ+O/e
- XeKKSrFkNBE5QNFbcHJlRrE51fNIiAD4sAk1/0ylEFdoE7zZZr+Y7Z7l6
- iHj+iE58NdcmmkxwJEcr4kl+oHp/QlUNylinZ5zPNV7Yzb5pIEZBdWB+/
- vAl2xWfNdcji4vIfGbf8vUD8v3/c+NIv/F9q5pYjelTv/491jg0Ze3tKl
- 4L3gAOJEzBZCI2scwS79EvWV1vnOOFUXyJ1z9JD7xeTSqTeZGssXu9EQp
- qiSxldB9KQ/U147PAzrlxjFDRVm7Si4tO1VaZQV6QSayG3ccJ4a5yOp/u A==;
-X-CSE-ConnectionGUID: 3Re83V1jSl+4MTqqz7/UbQ==
-X-CSE-MsgGUID: oeH1o+g6Tc6ba01UAyJHjw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="34117432"
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="34117432"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 07:56:58 -0800
-X-CSE-ConnectionGUID: 3ugKgCagTxyib1MZYBnKKw==
-X-CSE-MsgGUID: vWkfEt9ZSQ+zHjZYy8T8CA==
+ t=1733846228; x=1765382228;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=sWOFRjPW8QXYbvamBFzs/unUXnD2C3ltWD5ISgOZAD8=;
+ b=Bub01TV6x13xV+qsB1DtpYUorUjMHdDhkEbnFeXm4Gh6fKuUimDIxzyb
+ cQGiEZOBMqjsi2rqltwlVoIX6caG3UmLZjgfi3YbueGP/YTAUJNBjADkH
+ XxT7vrY8TUoXWvdhf13aFJFzT/6ADlZ/gXkXBcBdYUjmWjZ/E1r+x1Spf
+ GtDiTAYwabGCE3vN+o/vFuZL6FYLQEfH4Ca5i+QzBojLZcRC48IvyA/oE
+ 5MkEejFDNDm2WWdAU2JSXk6xD5/eRe7R6wmgmt29om0VaLxn89YGGMIEX
+ C4ecuGnnH83R3OU87bTkb9n7QwlJE9ec8fFVkH72hHuuCfK2Po3evr86i w==;
+X-CSE-ConnectionGUID: q0dIVen4TN2qBa2MTFdvdQ==
+X-CSE-MsgGUID: D7gm296QT0KQTkqNfh36pg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="44869341"
+X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="44869341"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2024 07:57:07 -0800
+X-CSE-ConnectionGUID: uZ0XZ2NGS8O9suuVwW7ANw==
+X-CSE-MsgGUID: Mi2UjCvETSWmNbL5nyik9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="95261352"
-Received: from nirmoyda-desk.igk.intel.com ([10.211.135.230])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 07:56:55 -0800
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Nirmoy Das <nirmoy.das@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, stable@vger.kernel.org,
- Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v3 2/2] drm/xe: Wait for migration job before unmapping pages
-Date: Tue, 10 Dec 2024 17:15:52 +0100
-Message-ID: <20241210161552.998242-2-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20241210161552.998242-1-nirmoy.das@intel.com>
-References: <20241210161552.998242-1-nirmoy.das@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="95920554"
+Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
+ ([10.125.109.171])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2024 07:57:07 -0800
+Date: Tue, 10 Dec 2024 07:57:02 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Maciej Patelczyk <maciej.patelczyk@intel.com>
+Cc: intel-xe@lists.freedesktop.org, niranjana.vishwanathapura@intel.com, 
+ raag.jadav@intel.com
+Subject: Re: [PATCH v2 2/2] drm/xe: make change ccs_mode a synchronous action
+Message-ID: <7qhfvfkurgmx4kkr2obhzoly2vedqurgtgwlp7wutlsqkcbrmb@eyasvrxog6uw>
+References: <20241210143748.1417098-1-maciej.patelczyk@intel.com>
+ <20241210143748.1417098-3-maciej.patelczyk@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20241210143748.1417098-3-maciej.patelczyk@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,49 +69,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix a potential GPU page fault during tt -> system moves by waiting for
-migration jobs to complete before unmapping SG. This ensures that IOMMU
-mappings are not prematurely torn down while a migration job is still in
-progress.
+On Tue, Dec 10, 2024 at 03:37:48PM +0100, Maciej Patelczyk wrote:
+>If ccs_mode is being modified via
+>   /sys/class/drm/cardX/device/tileY/gtY/ccs_mode
+>the asynchronous reset is triggered and the write returns immediately.
+>
+>With that some test receive false information about number of CCS engines
+>or even fail if they proceed without delay after changing the ccs_mode.
+>
+>Changing the ccs_mode change from async to sync to prevent failures in
+>tests.
+>
+>Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 
-v2: Use intr=false(Matt A)
-v3: Update commit message(Matt A)
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3466
-Fixes: 75521e8b56e8 ("drm/xe: Perform dma_map when moving system buffer objects to TT")
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: <stable@vger.kernel.org> # v6.11+
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 06931df876ab..0a41b6c0583a 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -857,8 +857,16 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 
- out:
- 	if ((!ttm_bo->resource || ttm_bo->resource->mem_type == XE_PL_SYSTEM) &&
--	    ttm_bo->ttm)
-+	    ttm_bo->ttm) {
-+		long timeout = dma_resv_wait_timeout(ttm_bo->base.resv,
-+						     DMA_RESV_USAGE_BOOKKEEP,
-+						     false,
-+						     MAX_SCHEDULE_TIMEOUT);
-+		if (timeout < 0)
-+			ret = timeout;
-+
- 		xe_tt_unmap_sg(ttm_bo->ttm);
-+	}
- 
- 	return ret;
- }
--- 
-2.46.0
-
+Lucas De Marchi
