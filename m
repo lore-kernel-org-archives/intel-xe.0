@@ -4,65 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A6F0E7717F
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 15:59:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B31AFE7717F
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 16:04:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 050EE10E3B4;
-	Tue, 10 Dec 2024 15:59:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cOSg0HQ8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBFD310E3B4
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Dec 2024 15:59:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733846375; x=1765382375;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=5pjft/W20eUX8JrsDVRJH6EKsIldtGO+hAWKlGzM3pY=;
- b=cOSg0HQ8lTEkq7eyganG2wNAutE1Jo+pAg8uxg3wfe/AhnOIMc/XmVD7
- tffcJiV2LFC1VL449UaDz1P1nbVhw46DDI8ViWibdOxvDFcgFQxvdsnL9
- KoRLEKv/6t5ns1NGPg1YxUpbf1epWTZ9tLrNhUVSoN8oTy5gTiHr0e0dH
- 21t+NQQFXFj5d1aEBUCaGymPrCFif0FepUF8W2Jj8jwCPwRLTh6/9nwqb
- rHLfMkEKASbQXdxNzVz6091lYwi0KwJtfSMGSxjSiclnm+0IosfygLL11
- byZF8lR7Cyl0iqO/gSlSePdTONiNRsL5isMoNLAXjgPopwNoZWqqdgB4o w==;
-X-CSE-ConnectionGUID: 9czvG9JURGmydlS8qQ2spw==
-X-CSE-MsgGUID: 3Z14JWlmTrGPu6H8NKJkrQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="51723026"
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="51723026"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 07:59:35 -0800
-X-CSE-ConnectionGUID: phBmM0BcQ3OPLrqhoHTywQ==
-X-CSE-MsgGUID: DxftFuYYTbKvD2AFdM8+HQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="100408566"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.192.15])
- ([10.245.192.15])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 07:59:33 -0800
-Message-ID: <e9d7a359-2c38-4dab-a56e-b406198cf033@linux.intel.com>
-Date: Tue, 10 Dec 2024 16:59:28 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AD7710E908;
+	Tue, 10 Dec 2024 16:04:55 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EB5E10E903;
+ Tue, 10 Dec 2024 16:04:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] drm/xe: Wait for migration job before unmapping
- pages
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>, 
- intel-xe@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
-References: <20241205120253.2015537-1-nirmoy.das@intel.com>
- <20241205120253.2015537-2-nirmoy.das@intel.com>
- <5eb91aa3-6d84-47a9-9f07-1742fe723c41@intel.com>
- <695c408b-c077-44c1-9861-0af54148cc86@linux.intel.com>
- <6vthulgckq2jpfwn2amux5ssijwhxbjp44g2xwp44r626ttrkh@ofwboiylc7eh>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <6vthulgckq2jpfwn2amux5ssijwhxbjp44g2xwp44r626ttrkh@ofwboiylc7eh>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/ptl=3A_Apply_Wa=5F14023?=
+ =?utf-8?q?061436?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 10 Dec 2024 16:04:55 -0000
+Message-ID: <173384669505.880270.11024480883141177402@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241210150621.781462-1-nirmoy.das@intel.com>
+In-Reply-To: <20241210150621.781462-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,91 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 12/10/2024 4:38 PM, Lucas De Marchi wrote:
-> On Thu, Dec 05, 2024 at 03:33:46PM +0100, Nirmoy Das wrote:
->>
->> On 12/5/2024 1:40 PM, Matthew Auld wrote:
->>> On 05/12/2024 12:02, Nirmoy Das wrote:
->>>> There could be still migration job going on while doing
->>>> xe_tt_unmap_sg() which could trigger GPU page faults. Fix this by
->>>> waiting for the migration job to finish.
->>>>
->>>> v2: Use intr=false(Matt A)
->>>>
->>>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3466
->>>> Fixes: 75521e8b56e8 ("drm/xe: Perform dma_map when moving system buffer objects to TT")
->>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>>> Cc: <stable@vger.kernel.org> # v6.11+
->>>> Cc: Matthew Auld <matthew.auld@intel.com>
->>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->>>
->>> Ok, so this is something like ttm_bo_move_to_ghost() doing a pipeline move for tt -> system, but we then do xe_tt_unmap_sg() too early which tears down the IOMMU (if enabled) mappings whilst the job is in progress?
->> Yes, this exactly what is happening for this issue.
->>>
->>> Maybe add some more info to the commit message?
->>
->> I will add more details.
->
-> Are you going to send a new version?
+Series: drm/xe/ptl: Apply Wa_14023061436
+URL   : https://patchwork.freedesktop.org/series/142359/
+State : success
 
-Was waiting for more reviews. Sent  out v3 with updated commit message.
+== Summary ==
+
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/kernel/
+lib/modules/6.13.0-rc2-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc2-xe+/kernel/block/
+lib/modules/6.13.0-rc2-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc2-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc2-xe+/build
+lib/modules/6.13.0-rc2-xe+/modules.alias.bin
+lib/modules/6.13.0-rc2-xe+/modules.builtin
+lib/modules/6.13.0-rc2-xe+/modules.softdep
+lib/modules/6.13.0-rc2-xe+/modules.alias
+lib/modules/6.13.0-rc2-xe+/modules.order
+lib/modules/6.13.0-rc2-xe+/modules.symbols
+lib/modules/6.13.0-rc2-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1733846683:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1733846683:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
-> Once this is fixed, please also
-> send a revert MR to the kconfig workaround
-> 3940181b1bad @ gitlab.freedesktop.org/drm/xe/ci.git
-
-I will do that.
-
-
-Thanks,
-
-Nirmoy
-
->
-> Lucas De Marchi
->
->>
->>
->>> I think this for sure fixes it. Just wondering if it's somehow possible to keep the mapping until the job is done, since all tt -> sys moves are now synced here?
->>>
->>> Unless Thomas has a better idea here,
->>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->>
->>
->> Thanks,
->>
->> Nirmoy
->>
->>>
->>>> ---
->>>>   drivers/gpu/drm/xe/xe_bo.c | 10 +++++++++-
->>>>   1 file changed, 9 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->>>> index b2aa368a23f8..c906a5529db0 100644
->>>> --- a/drivers/gpu/drm/xe/xe_bo.c
->>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
->>>> @@ -857,8 +857,16 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
->>>>     out:
->>>>       if ((!ttm_bo->resource || ttm_bo->resource->mem_type == XE_PL_SYSTEM) &&
->>>> -        ttm_bo->ttm)
->>>> +        ttm_bo->ttm) {
->>>> +        long timeout = dma_resv_wait_timeout(ttm_bo->base.resv,
->>>> +                             DMA_RESV_USAGE_BOOKKEEP,
->>>> +                             false,
->>>> +                             MAX_SCHEDULE_TIMEOUT);
->>>> +        if (timeout < 0)
->>>> +            ret = timeout;
->>>> +
->>>>           xe_tt_unmap_sg(ttm_bo->ttm);
->>>> +    }
->>>>         return ret;
->>>>   }
->>>
