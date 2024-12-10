@@ -4,35 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 037B5E77187
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 22:02:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B82EE77193
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 22:02:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1101510E075;
-	Tue, 10 Dec 2024 22:02:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8AB510E9C0;
+	Tue, 10 Dec 2024 22:02:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="MyS1GphF";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="Vt8vx6jK";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2C70510E9AF;
- Tue, 10 Dec 2024 22:02:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1316A10E9AD;
+ Tue, 10 Dec 2024 22:02:49 +0000 (UTC)
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
- by linux.microsoft.com (Postfix) with ESMTPSA id CC9872047232;
- Tue, 10 Dec 2024 14:02:38 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com CC9872047232
+ by linux.microsoft.com (Postfix) with ESMTPSA id F1ABA20ACD6F;
+ Tue, 10 Dec 2024 14:02:39 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com F1ABA20ACD6F
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1733868158;
- bh=Nu1FTDRwT3eJ8G3TZ1SOaVXDK1brjinK2gy4k85VNBc=;
+ s=default; t=1733868160;
+ bh=zXBBaQqpACacMQS0Kj7gcrwl6nw/WBuJMa6i20JWtiI=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=MyS1GphFvmGr2JHW6tyCf5nlmMH9PAcPu/qJOqDicxYHN3ga/E8mPiUpYdOmKe+08
- ESmMPf61fW9R/vd5fEqw2UI0IyMH9O+5zBGiCitLbR/PLOMP+sV+LtAwK3GV6cBnMZ
- qMuvwZX6TCbpYuenDC/gzSBNDFt3OVWamZA4/4ys=
+ b=Vt8vx6jKTs+Ctim/qcZbBmxzvKglLplBaf8u3Ss1TuSPMlqyDk6c0iiPlA+LzR+m0
+ YPZ/Qdi+1XcZwtu1UmEnzASc3HPTGQ/HgM/xmF7CmRGYf/aXx12mOKI6ka1aNTAUbz
+ /gGdJ/+VOZh0/gOcfBkHqPOaIC1SiZYddw+BwdBw=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Tue, 10 Dec 2024 22:02:44 +0000
-Subject: [PATCH v3 13/19] gve: Convert timeouts to secs_to_jiffies()
+Date: Tue, 10 Dec 2024 22:02:50 +0000
+Subject: [PATCH v3 19/19] ALSA: line6: Convert timeouts to
+ secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241210-converge-secs-to-jiffies-v3-13-ddfefd7e9f2a@linux.microsoft.com>
+Message-Id: <20241210-converge-secs-to-jiffies-v3-19-ddfefd7e9f2a@linux.microsoft.com>
 References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 In-Reply-To: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -130,33 +131,22 @@ the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- drivers/net/ethernet/google/gve/gve_tx_dqo.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ sound/usb/line6/toneport.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/ethernet/google/gve/gve_tx_dqo.c b/drivers/net/ethernet/google/gve/gve_tx_dqo.c
-index f879426cb5523a7e150f363b5e57b9d472b5817c..394debc62268aadf2579f9b516e045cb48287e7c 100644
---- a/drivers/net/ethernet/google/gve/gve_tx_dqo.c
-+++ b/drivers/net/ethernet/google/gve/gve_tx_dqo.c
-@@ -1146,8 +1146,7 @@ static void gve_handle_miss_completion(struct gve_priv *priv,
- 	/* jiffies can wraparound but time comparisons can handle overflows. */
- 	pending_packet->timeout_jiffies =
- 			jiffies +
--			msecs_to_jiffies(GVE_REINJECT_COMPL_TIMEOUT *
--					 MSEC_PER_SEC);
-+			secs_to_jiffies(GVE_REINJECT_COMPL_TIMEOUT);
- 	add_to_list(tx, &tx->dqo_compl.miss_completions, pending_packet);
+diff --git a/sound/usb/line6/toneport.c b/sound/usb/line6/toneport.c
+index ca2c6f5de407ece21ab69a39ed603e3f10069039..c073b38cd6738176fc6a276d05ed553526573341 100644
+--- a/sound/usb/line6/toneport.c
++++ b/sound/usb/line6/toneport.c
+@@ -386,7 +386,7 @@ static int toneport_setup(struct usb_line6_toneport *toneport)
+ 		toneport_update_led(toneport);
  
- 	*bytes += pending_packet->skb->len;
-@@ -1191,8 +1190,7 @@ static void remove_miss_completions(struct gve_priv *priv,
- 		pending_packet->state = GVE_PACKET_STATE_TIMED_OUT_COMPL;
- 		pending_packet->timeout_jiffies =
- 				jiffies +
--				msecs_to_jiffies(GVE_DEALLOCATE_COMPL_TIMEOUT *
--						 MSEC_PER_SEC);
-+				secs_to_jiffies(GVE_DEALLOCATE_COMPL_TIMEOUT);
- 		/* Maintain pending packet in another list so the packet can be
- 		 * unallocated at a later time.
- 		 */
+ 	schedule_delayed_work(&toneport->line6.startup_work,
+-			      msecs_to_jiffies(TONEPORT_PCM_DELAY * 1000));
++			      secs_to_jiffies(TONEPORT_PCM_DELAY));
+ 	return 0;
+ }
+ 
 
 -- 
 2.43.0
