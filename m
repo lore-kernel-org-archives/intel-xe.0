@@ -4,54 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED5D4E7717F
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 17:35:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A120E7717F
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 17:36:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B996B10E140;
-	Tue, 10 Dec 2024 17:35:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23C2D10E061;
+	Tue, 10 Dec 2024 17:36:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZAJrtyCs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i15cKUeJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A791210E939
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Dec 2024 17:35:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1AAF10E061
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Dec 2024 17:36:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733852122; x=1765388122;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=TWGudFP3UOCRkSuEZQugDnOWc4SFAytRHhKcTbMiOb4=;
- b=ZAJrtyCseT2TZxTxl2nyu8vLidQy4FezFCPZ/gd5Bf4GyF74xs9pJd+N
- aYOhIb7gd8r6WQt+z2G7kPKHpsIWYtqFSuWyBZ5P2uWtCFtMsyLB3jdGD
- h2bj2nDipzBU4U4cn+SWU6YCqgF6lp7s0C2obNWDeQUBa0VguZ1W3P8C6
- PY0yWtyRO6dIvEQVkUzIxZnAfVD51GJU6XrllObjfDa2359cccDckSfuI
- DwAsD4akxUSa7I69HrFppr25+FWW48EpWxmxYHPcncU/2YKWNNBvMLnvl
- BodIA7gwigyr/hvPYv7zFLr6co2pFOZn0b8W8yqwjlSgtd9ptFyEqthiJ w==;
-X-CSE-ConnectionGUID: /8hskE11QAu7HC6Gi15Kew==
-X-CSE-MsgGUID: OJP5U6zeQkOLCYT5A/cDbg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="34345934"
-X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; d="scan'208";a="34345934"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 09:35:21 -0800
-X-CSE-ConnectionGUID: Y7jl3yEMQT2uuxkCwR8J1Q==
-X-CSE-MsgGUID: IFD1bfVfSFSH2N2CgS2jLA==
+ t=1733852174; x=1765388174;
+ h=date:from:to:cc:subject:message-id;
+ bh=z6+rc4EpgPF2uPR+rbyWogXoy1pFpd+emNvIkppfc4g=;
+ b=i15cKUeJLIinvB5RTM3Ql2zOavn7k/WbN0aJFmDeAte5SywYzC55Twd8
+ UeUWCYrpON8+ksknaCQrrhDlsW59kbtD0dIodO3Q0KpVcmXqmtnIbfnlL
+ PzZ8yA5EZCYGciYiI7MxxegsjEilE8GPymoNDVOUqwXiFczFLWIvSbHbm
+ IWLCvr195rKF2klsNxKKoxT6zt9rPPcw79SCaEY9bOv5T483MT7N66Q5z
+ Huicc1Q9BCsXAkPaYo+psqdPCRC7wIXYgGg6wuZTcTpOUlGBmCL55GKsp
+ GeX3F/R4VcFs/G+0roH5ttFUlKJJ9DwMij05uAkSA4oIhKKnWqPj0paJ1 A==;
+X-CSE-ConnectionGUID: N+dt3rnIRRO6PoIjxODXPg==
+X-CSE-MsgGUID: eCN9ephoRFCh/fnbVECsEQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="51736660"
+X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; d="scan'208";a="51736660"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2024 09:36:14 -0800
+X-CSE-ConnectionGUID: 64M+8c2fSQW8TloLuVmvjA==
+X-CSE-MsgGUID: yY7qE7deSHyw9rzCVDFM7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; d="scan'208";a="126281190"
-Received: from ilevi-mobl.ger.corp.intel.com (HELO ilevi-mobl.intel.com)
- ([10.245.193.89])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 09:35:16 -0800
-From: Ilia Levi <ilia.levi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: ilia.levi@intel.com, piotr.piorkowski@intel.com, rodrigo.vivi@intel.com,
- koby.elbaz@intel.com, yaron.avizrat@intel.com
-Subject: [PATCH] drm/xe: Make irq enabled flag atomic
-Date: Tue, 10 Dec 2024 19:35:06 +0200
-Message-Id: <20241210173506.202150-1-ilia.levi@intel.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; d="scan'208";a="95948696"
+Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
+ by fmviesa009.fm.intel.com with ESMTP; 10 Dec 2024 09:36:12 -0800
+Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tL49a-0005ox-0m;
+ Tue, 10 Dec 2024 17:36:10 +0000
+Date: Wed, 11 Dec 2024 01:35:12 +0800
+From: kernel test robot <lkp@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ cb57c75098c1c449a007ba301f9073f96febaaa9
+Message-ID: <202412110106.mMLtIgZb-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,142 +64,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The irq.enabled flag was protected by a spin lock (irq.lock).
-By making it atomic we no longer need to wait for the spin lock in
-irq handlers. This will become especially useful for MSI-X irq
-handlers to prevent lock contention between different interrupts.
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: cb57c75098c1c449a007ba301f9073f96febaaa9  drm/xe: fix the ERR_PTR() returned on failure to allocate tiny pt
 
-Signed-off-by: Ilia Levi <ilia.levi@intel.com>
----
- drivers/gpu/drm/xe/display/ext/i915_irq.c | 13 +---------
- drivers/gpu/drm/xe/xe_device_types.h      |  2 +-
- drivers/gpu/drm/xe/xe_irq.c               | 29 ++++++-----------------
- 3 files changed, 9 insertions(+), 35 deletions(-)
+elapsed time: 1442m
 
-diff --git a/drivers/gpu/drm/xe/display/ext/i915_irq.c b/drivers/gpu/drm/xe/display/ext/i915_irq.c
-index a7dbc6554d69..ac4cda2d81c7 100644
---- a/drivers/gpu/drm/xe/display/ext/i915_irq.c
-+++ b/drivers/gpu/drm/xe/display/ext/i915_irq.c
-@@ -53,18 +53,7 @@ void gen2_irq_init(struct intel_uncore *uncore, struct i915_irq_regs regs,
- 
- bool intel_irqs_enabled(struct xe_device *xe)
- {
--	/*
--	 * XXX: i915 has a racy handling of the irq.enabled, since it doesn't
--	 * lock its transitions. Because of that, the irq.enabled sometimes
--	 * is not read with the irq.lock in place.
--	 * However, the most critical cases like vblank and page flips are
--	 * properly using the locks.
--	 * We cannot take the lock in here or run any kind of assert because
--	 * of i915 inconsistency.
--	 * But at this point the xe irq is better protected against races,
--	 * although the full solution would be protecting the i915 side.
--	 */
--	return xe->irq.enabled;
-+	return atomic_read(&xe->irq.enabled);
- }
- 
- void intel_synchronize_irq(struct xe_device *xe)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 1373a222f5a5..ace22e35e769 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -347,7 +347,7 @@ struct xe_device {
- 		spinlock_t lock;
- 
- 		/** @irq.enabled: interrupts enabled on this device */
--		bool enabled;
-+		atomic_t enabled;
- 	} irq;
- 
- 	/** @ttm: ttm device */
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 7bf7201529ac..1c509e66694d 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -348,12 +348,8 @@ static irqreturn_t xelp_irq_handler(int irq, void *arg)
- 	unsigned long intr_dw[2];
- 	u32 identity[32];
- 
--	spin_lock(&xe->irq.lock);
--	if (!xe->irq.enabled) {
--		spin_unlock(&xe->irq.lock);
-+	if (!atomic_read(&xe->irq.enabled))
- 		return IRQ_NONE;
--	}
--	spin_unlock(&xe->irq.lock);
- 
- 	master_ctl = xelp_intr_disable(xe);
- 	if (!master_ctl) {
-@@ -417,12 +413,8 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- 
- 	/* TODO: This really shouldn't be copied+pasted */
- 
--	spin_lock(&xe->irq.lock);
--	if (!xe->irq.enabled) {
--		spin_unlock(&xe->irq.lock);
-+	if (!atomic_read(&xe->irq.enabled))
- 		return IRQ_NONE;
--	}
--	spin_unlock(&xe->irq.lock);
- 
- 	master_tile_ctl = dg1_intr_disable(xe);
- 	if (!master_tile_ctl) {
-@@ -644,12 +636,8 @@ static irqreturn_t vf_mem_irq_handler(int irq, void *arg)
- 	struct xe_tile *tile;
- 	unsigned int id;
- 
--	spin_lock(&xe->irq.lock);
--	if (!xe->irq.enabled) {
--		spin_unlock(&xe->irq.lock);
-+	if (!atomic_read(&xe->irq.enabled))
- 		return IRQ_NONE;
--	}
--	spin_unlock(&xe->irq.lock);
- 
- 	for_each_tile(tile, xe, id)
- 		xe_memirq_handler(&tile->memirq);
-@@ -674,10 +662,9 @@ static void irq_uninstall(void *arg)
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	int irq;
- 
--	if (!xe->irq.enabled)
-+	if (!atomic_xchg(&xe->irq.enabled, 0))
- 		return;
- 
--	xe->irq.enabled = false;
- 	xe_irq_reset(xe);
- 
- 	irq = pci_irq_vector(pdev, 0);
-@@ -724,7 +711,7 @@ int xe_irq_install(struct xe_device *xe)
- 		return err;
- 	}
- 
--	xe->irq.enabled = true;
-+	atomic_set(&xe->irq.enabled, 1);
- 
- 	xe_irq_postinstall(xe);
- 
-@@ -744,9 +731,7 @@ void xe_irq_suspend(struct xe_device *xe)
- {
- 	int irq = to_pci_dev(xe->drm.dev)->irq;
- 
--	spin_lock_irq(&xe->irq.lock);
--	xe->irq.enabled = false; /* no new irqs */
--	spin_unlock_irq(&xe->irq.lock);
-+	atomic_set(&xe->irq.enabled, 0); /* no new irqs */
- 
- 	synchronize_irq(irq); /* flush irqs */
- 	xe_irq_reset(xe); /* turn irqs off */
-@@ -762,7 +747,7 @@ void xe_irq_resume(struct xe_device *xe)
- 	 * 1. no irq will arrive before the postinstall
- 	 * 2. display is not yet resumed
- 	 */
--	xe->irq.enabled = true;
-+	atomic_set(&xe->irq.enabled, 1);
- 	xe_irq_reset(xe);
- 	xe_irq_postinstall(xe); /* turn irqs on */
- 
--- 
-2.43.2
+configs tested: 154
+configs skipped: 2
 
+The following configs have been built successfully.
+More configs may be tested in the coming days.
+
+tested configs:
+alpha                             allnoconfig    gcc-14.2.0
+alpha                            allyesconfig    clang-20
+arc                              allmodconfig    clang-18
+arc                              allmodconfig    gcc-13.2.0
+arc                               allnoconfig    gcc-14.2.0
+arc                              allyesconfig    clang-18
+arc                              allyesconfig    gcc-13.2.0
+arc                   randconfig-001-20241210    gcc-13.2.0
+arc                   randconfig-001-20241210    gcc-14.2.0
+arc                   randconfig-002-20241210    gcc-13.2.0
+arc                   randconfig-002-20241210    gcc-14.2.0
+arm                              allmodconfig    clang-18
+arm                              allmodconfig    gcc-14.2.0
+arm                               allnoconfig    gcc-14.2.0
+arm                              allyesconfig    clang-18
+arm                              allyesconfig    gcc-14.2.0
+arm                   randconfig-001-20241210    clang-20
+arm                   randconfig-001-20241210    gcc-14.2.0
+arm                   randconfig-002-20241210    gcc-14.2.0
+arm                   randconfig-003-20241210    clang-20
+arm                   randconfig-003-20241210    gcc-14.2.0
+arm                   randconfig-004-20241210    clang-20
+arm                   randconfig-004-20241210    gcc-14.2.0
+arm64                            allmodconfig    clang-18
+arm64                             allnoconfig    gcc-14.2.0
+arm64                 randconfig-001-20241210    clang-20
+arm64                 randconfig-001-20241210    gcc-14.2.0
+arm64                 randconfig-002-20241210    clang-20
+arm64                 randconfig-002-20241210    gcc-14.2.0
+arm64                 randconfig-003-20241210    clang-20
+arm64                 randconfig-003-20241210    gcc-14.2.0
+arm64                 randconfig-004-20241210    clang-20
+arm64                 randconfig-004-20241210    gcc-14.2.0
+csky                              allnoconfig    gcc-14.2.0
+csky                  randconfig-001-20241210    gcc-14.2.0
+csky                  randconfig-002-20241210    gcc-14.2.0
+hexagon                          allmodconfig    clang-20
+hexagon                           allnoconfig    gcc-14.2.0
+hexagon                          allyesconfig    clang-20
+hexagon               randconfig-001-20241210    clang-16
+hexagon               randconfig-002-20241210    clang-14
+i386                             allmodconfig    clang-19
+i386                              allnoconfig    clang-19
+i386                             allyesconfig    clang-19
+i386        buildonly-randconfig-001-20241210    gcc-12
+i386        buildonly-randconfig-002-20241210    clang-19
+i386        buildonly-randconfig-002-20241210    gcc-12
+i386        buildonly-randconfig-003-20241210    gcc-12
+i386        buildonly-randconfig-004-20241210    clang-19
+i386        buildonly-randconfig-004-20241210    gcc-12
+i386        buildonly-randconfig-005-20241210    clang-19
+i386        buildonly-randconfig-005-20241210    gcc-12
+i386        buildonly-randconfig-006-20241210    clang-19
+i386        buildonly-randconfig-006-20241210    gcc-12
+i386                                defconfig    clang-19
+i386                  randconfig-001-20241210    clang-19
+i386                  randconfig-002-20241210    clang-19
+i386                  randconfig-003-20241210    clang-19
+i386                  randconfig-004-20241210    clang-19
+i386                  randconfig-005-20241210    clang-19
+i386                  randconfig-006-20241210    clang-19
+i386                  randconfig-007-20241210    clang-19
+i386                  randconfig-011-20241210    clang-19
+i386                  randconfig-012-20241210    clang-19
+i386                  randconfig-013-20241210    clang-19
+i386                  randconfig-014-20241210    clang-19
+i386                  randconfig-015-20241210    clang-19
+i386                  randconfig-016-20241210    clang-19
+i386                  randconfig-017-20241210    clang-19
+loongarch                        allmodconfig    gcc-14.2.0
+loongarch                         allnoconfig    gcc-14.2.0
+loongarch             randconfig-001-20241210    gcc-14.2.0
+loongarch             randconfig-002-20241210    gcc-14.2.0
+m68k                             allmodconfig    gcc-14.2.0
+m68k                              allnoconfig    gcc-14.2.0
+m68k                             allyesconfig    gcc-14.2.0
+microblaze                       allmodconfig    gcc-14.2.0
+microblaze                        allnoconfig    gcc-14.2.0
+microblaze                       allyesconfig    gcc-14.2.0
+mips                              allnoconfig    gcc-14.2.0
+nios2                             allnoconfig    gcc-14.2.0
+nios2                 randconfig-001-20241210    gcc-14.2.0
+nios2                 randconfig-002-20241210    gcc-14.2.0
+openrisc                          allnoconfig    clang-20
+openrisc                         allyesconfig    gcc-14.2.0
+parisc                           allmodconfig    gcc-14.2.0
+parisc                            allnoconfig    clang-20
+parisc                           allyesconfig    gcc-14.2.0
+parisc                randconfig-001-20241210    gcc-14.2.0
+parisc                randconfig-002-20241210    gcc-14.2.0
+powerpc                          allmodconfig    gcc-14.2.0
+powerpc                           allnoconfig    clang-20
+powerpc                          allyesconfig    clang-16
+powerpc                          allyesconfig    gcc-14.2.0
+powerpc               randconfig-001-20241210    clang-20
+powerpc               randconfig-002-20241210    clang-20
+powerpc               randconfig-003-20241210    clang-20
+powerpc64             randconfig-001-20241210    gcc-14.2.0
+powerpc64             randconfig-002-20241210    gcc-14.2.0
+powerpc64             randconfig-003-20241210    gcc-14.2.0
+riscv                            allmodconfig    clang-20
+riscv                            allmodconfig    gcc-14.2.0
+riscv                             allnoconfig    clang-20
+riscv                            allyesconfig    clang-20
+riscv                            allyesconfig    gcc-14.2.0
+riscv                 randconfig-001-20241210    clang-19
+riscv                 randconfig-002-20241210    gcc-14.2.0
+s390                             allmodconfig    clang-19
+s390                             allmodconfig    gcc-14.2.0
+s390                              allnoconfig    clang-20
+s390                             allyesconfig    gcc-14.2.0
+s390                  randconfig-001-20241210    gcc-14.2.0
+s390                  randconfig-002-20241210    gcc-14.2.0
+sh                               allmodconfig    gcc-14.2.0
+sh                                allnoconfig    gcc-14.2.0
+sh                               allyesconfig    gcc-14.2.0
+sh                    randconfig-001-20241210    gcc-14.2.0
+sh                    randconfig-002-20241210    gcc-14.2.0
+sparc                            allmodconfig    gcc-14.2.0
+sparc                             allnoconfig    gcc-14.2.0
+sparc                 randconfig-001-20241210    gcc-14.2.0
+sparc                 randconfig-002-20241210    gcc-14.2.0
+sparc64               randconfig-001-20241210    gcc-14.2.0
+sparc64               randconfig-002-20241210    gcc-14.2.0
+um                               allmodconfig    clang-20
+um                                allnoconfig    clang-20
+um                               allyesconfig    clang-20
+um                    randconfig-001-20241210    clang-20
+um                    randconfig-002-20241210    gcc-12
+x86_64                            allnoconfig    clang-19
+x86_64                           allyesconfig    clang-19
+x86_64      buildonly-randconfig-001-20241210    clang-19
+x86_64      buildonly-randconfig-001-20241210    gcc-12
+x86_64      buildonly-randconfig-002-20241210    clang-19
+x86_64      buildonly-randconfig-003-20241210    clang-19
+x86_64      buildonly-randconfig-004-20241210    clang-19
+x86_64      buildonly-randconfig-004-20241210    gcc-12
+x86_64      buildonly-randconfig-005-20241210    clang-19
+x86_64      buildonly-randconfig-005-20241210    gcc-12
+x86_64      buildonly-randconfig-006-20241210    clang-19
+x86_64                              defconfig    clang-19
+x86_64                                  kexec    clang-19
+x86_64                randconfig-001-20241210    gcc-12
+x86_64                randconfig-002-20241210    gcc-12
+x86_64                randconfig-003-20241210    gcc-12
+x86_64                randconfig-004-20241210    gcc-12
+x86_64                randconfig-005-20241210    gcc-12
+x86_64                randconfig-006-20241210    gcc-12
+x86_64                randconfig-007-20241210    gcc-12
+x86_64                randconfig-008-20241210    gcc-12
+x86_64                               rhel-9.4    clang-19
+xtensa                            allnoconfig    gcc-14.2.0
+xtensa                randconfig-001-20241210    gcc-14.2.0
+xtensa                randconfig-002-20241210    gcc-14.2.0
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
