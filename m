@@ -4,28 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E57FE7717F
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 12:19:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E81C2E77182
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 12:25:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42D3910E010;
-	Tue, 10 Dec 2024 12:19:29 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E84F710E010;
- Tue, 10 Dec 2024 12:19:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1655828256861376954=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94DE810E395;
+	Tue, 10 Dec 2024 12:25:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jhx7NFto";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6281C10E38E;
+ Tue, 10 Dec 2024 12:25:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733833506; x=1765369506;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=PtpvYsMJyPeHOPuFEZLTbXjEUkdt+zwt+rEBAt8uJ3Y=;
+ b=Jhx7NFtoD8oOjenpzGkRGx0lrQh2+11AMRf7Rz9LgfrQ08N3r6cOF+mt
+ ZUbxd9jbcP4n9t+Z76nwMlK+ZyYajDbcE195wAgQKYXxuurmp+sBoQsVF
+ h4icikCfzd+MUDFYozL4I14lNRC6Hug0LgAADvm4bhwCH8pXF8YVgWdCJ
+ Gesh7Oa5nC+tfzn4JJ39BkHB8rs3xce1/3wx52VjQszN3b9l1WPJcimR2
+ r0V8BEFjwlaOQSDVyfnKdWGkGvYY2IS65hyyqW/b88c8dLSna/GTk3AJ0
+ /+bDRQEF1CgAm6q/FAwkKPb+rOjKygTbaxk6KNZi8ibFcUybw/YXBxZCT Q==;
+X-CSE-ConnectionGUID: HKfhRgB3T8KfiVq5yz8F9w==
+X-CSE-MsgGUID: 7jW+1YqLTB+O7zSddLTI9Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="44642682"
+X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="44642682"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2024 04:25:05 -0800
+X-CSE-ConnectionGUID: kWML3+0tSpilYVrYcaMz1A==
+X-CSE-MsgGUID: 8MwiVfTRSpmx3tv+RKDm8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="126296168"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.242])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2024 04:24:59 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Genes Lists <lists@sapience.com>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ linux-kernel@vger.kernel.org, akpm@linux-foundation.org,
+ torvalds@linux-foundation.org, stable@vger.kernel.org,
+ linux-media@vger.kernel.org, bingbu.cao@intel.com, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: Linux 6.12.4 - crash dma_alloc_attrs+0x12b via ipu6
+In-Reply-To: <c1805642a6c5da6fef3927c70358c8cb851d2784.camel@sapience.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <2024120917-vision-outcast-85f2@gregkh>
+ <c0e94be466b367f1a3cfdc3cb7b1a4f47e5953ae.camel@sapience.com>
+ <Z1fqitbWlmELb5pj@kekkonen.localdomain> <87seqvzzg6.fsf@intel.com>
+ <c1805642a6c5da6fef3927c70358c8cb851d2784.camel@sapience.com>
+Date: Tue, 10 Dec 2024 14:24:56 +0200
+Message-ID: <87bjxjzpwn.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Revert_=22lockdep=3A_Enable?=
- =?utf-8?q?_PROVE=5FRAW=5FLOCK=5FNESTING_with_PROVE=5FLOCKING=2E=22_=28rev2?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Luca Coelho" <luciano.coelho@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 10 Dec 2024 12:19:27 -0000
-Message-ID: <173383316794.832510.16680865815420812627@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241209135602.2716023-1-luciano.coelho@intel.com>
-In-Reply-To: <20241209135602.2716023-1-luciano.coelho@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,140 +77,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1655828256861376954==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 10 Dec 2024, Genes Lists <lists@sapience.com> wrote:
+> On Tue, 2024-12-10 at 10:58 +0200, Jani Nikula wrote:
+>> On Tue, 10 Dec 2024, Sakari Ailus <sakari.ailus@linux.intel.com>
+>> wrote:
+>> > Hi,
+>> >=20
+>> > > ...
+>> > > FYI 6.12.4 got a crash shortly after booting in dma_alloc_attrs -
+>> > > maybe
+>> > > triggered in ipu6_probe. Crash only happened on laptop with ipu6.
+>> > > All
+>> > > other machines are running fine.
+>> >=20
+>> > Have you read the dmesg further than the IPU6 related warning? The
+>> > IPU6
+>> > driver won't work (maybe not even probe?) but if the system
+>> > crashes, it
+>> > appears unlikely the IPU6 drivers would have something to do with
+>> > that.
+>> > Look for warnings on linked list corruption later, they seem to be
+>> > coming
+>> > from the i915 driver.
+>>=20
+>> And the list corruption is actually happening in
+>> cpu_latency_qos_update_request(). I don't see any i915 changes in
+>> 6.12.4
+>> that could cause it.
+>>=20
+>> I guess the question is, when did it work? Did 6.12.3 work?
+>>=20
+>>=20
+>> BR,
+>> Jani.
+>
+>
+>  - 6.12.1 worked
+>
+>  - mainline - works (but only with i915 patch set [1] otherwise there
+> are no graphics at all)
+>
+>     [1] https://patchwork.freedesktop.org/series/141911/
+>
+> - 6.12.3 - crashed (i see i915 not ipu6) and again it has      =C2=A0
+>     cpu_latency_qos_update_request+0x61/0xc0
 
-== Series Details ==
+Thanks for testing.
 
-Series: Revert "lockdep: Enable PROVE_RAW_LOCK_NESTING with PROVE_LOCKING." (rev2)
-URL   : https://patchwork.freedesktop.org/series/142297/
-State : success
+There are no changes to either i915 or kernel/power between 6.12.1 and
+6.12.4.
 
-== Summary ==
+There are some changes to drm core, but none that could explain this.
 
-CI Bug Log - changes from xe-2342-4265400fd785f56099b00f9c745b7131b06bb511_BAT -> xe-pw-142297v2_BAT
-====================================================
+Maybe try the same kernels a few more times to see if it's really
+deterministic? Not that I have obvious ideas where to go from there, but
+it's a clue nonetheless.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-142297v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-dpms@a-edp1:
-    - bat-lnl-1:          [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3729]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2342-4265400fd785f56099b00f9c745b7131b06bb511/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142297v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
-    - bat-lnl-1:          [DMESG-WARN][3] ([Intel XE#3729]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2342-4265400fd785f56099b00f9c745b7131b06bb511/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142297v2/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-
-  
-  [Intel XE#3729]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729
-
-
-Build changes
--------------
-
-  * Linux: xe-2342-4265400fd785f56099b00f9c745b7131b06bb511 -> xe-pw-142297v2
-
-  IGT_8146: 4134194b806f286bf0bf47ce02416ca3701b7b34 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2342-4265400fd785f56099b00f9c745b7131b06bb511: 4265400fd785f56099b00f9c745b7131b06bb511
-  xe-pw-142297v2: 142297v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142297v2/index.html
-
---===============1655828256861376954==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Revert &quot;lockdep: Enable PROVE_RAW_LOCK_NESTING with PROVE_LOCKING.&quot; (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142297/">https://patchwork.freedesktop.org/series/142297/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142297v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142297v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2342-4265400fd785f56099b00f9c745b7131b06bb511_BAT -&gt; xe-pw-142297v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-142297v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-dpms@a-edp1:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2342-4265400fd785f56099b00f9c745b7131b06bb511/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142297v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729">Intel XE#3729</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2342-4265400fd785f56099b00f9c745b7131b06bb511/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729">Intel XE#3729</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142297v2/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2342-4265400fd785f56099b00f9c745b7131b06bb511 -&gt; xe-pw-142297v2</li>
-</ul>
-<p>IGT_8146: 4134194b806f286bf0bf47ce02416ca3701b7b34 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2342-4265400fd785f56099b00f9c745b7131b06bb511: 4265400fd785f56099b00f9c745b7131b06bb511<br />
-  xe-pw-142297v2: 142297v2</p>
-
-</body>
-</html>
-
---===============1655828256861376954==--
+--=20
+Jani Nikula, Intel
