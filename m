@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82624E77185
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 22:02:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6C2AE77191
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 22:02:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BCEC10E9B7;
-	Tue, 10 Dec 2024 22:02:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AEE810E9BA;
+	Tue, 10 Dec 2024 22:02:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="IIAWMyJ8";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="i9DsTNH+";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id ED47A10E9A1;
- Tue, 10 Dec 2024 22:02:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 00D8110E9AA;
+ Tue, 10 Dec 2024 22:02:43 +0000 (UTC)
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
- by linux.microsoft.com (Postfix) with ESMTPSA id D4E6A204722D;
- Tue, 10 Dec 2024 14:02:37 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com D4E6A204722D
+ by linux.microsoft.com (Postfix) with ESMTPSA id 6FF4C2047230;
+ Tue, 10 Dec 2024 14:02:38 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 6FF4C2047230
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
  s=default; t=1733868158;
- bh=DhJBfAD2d6ET0f+MR7PDWaX6CpgYhpsGb+RQrMGIOAY=;
+ bh=U++D0WKRUcBPTXKKmA8ay83+fBnoO24djfuDhPxnmd0=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=IIAWMyJ8NzQC8a9Pk8dz0U3jdNgu9NGd3SiawGSbAFHI2lBJj9kVVY+Jrn6mOAaem
- Wm2Q0riPqkUNNLsJAJDVn84Us2zbSxk2FObucA7BvA+Ci0Obga6BtVUEDHD7pm4PpM
- tPAQA1jtOYji99byX6HP0p2SzC0hDQD6638LF7MQ=
+ b=i9DsTNH+sl/IoEAtSjlSJHTOE30TcOTSfxv7yvCJsXzsKYC64wXa+LBK94U2wED8+
+ 6hMcKIbUoHeurUTa3oCFtWHdRYvf3LnrkdYUlQGzEUBgp5Wh7dgkbASpnSVSuIShxl
+ Qe59P7FSrX+a5TC/+UUUxnQ63OeNqL5idRg6Tx5c=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Tue, 10 Dec 2024 22:02:39 +0000
-Subject: [PATCH v3 08/19] drm/xe: Convert timeout to secs_to_jiffies()
+Date: Tue, 10 Dec 2024 22:02:42 +0000
+Subject: [PATCH v3 11/19] scsi: pm8001: Convert timeouts to secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20241210-converge-secs-to-jiffies-v3-8-ddfefd7e9f2a@linux.microsoft.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241210-converge-secs-to-jiffies-v3-11-ddfefd7e9f2a@linux.microsoft.com>
 References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 In-Reply-To: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -128,25 +128,24 @@ the following Coccinelle rules:
 - msecs_to_jiffies(C * MSEC_PER_SEC)
 + secs_to_jiffies(C)
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 2 +-
+ drivers/scsi/pm8001/pm8001_init.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 56d4ffb650dade8622cc25026a96155fa5572434..9093469a275f46f7bf58ff1049c1c9cc712cdd33 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -519,7 +519,7 @@ static int wait_for_lmem_ready(struct xe_device *xe)
- 	drm_dbg(&xe->drm, "Waiting for lmem initialization\n");
- 
- 	start = jiffies;
--	timeout = start + msecs_to_jiffies(60 * 1000); /* 60 sec! */
-+	timeout = start + secs_to_jiffies(60); /* 60 sec! */
- 
- 	do {
- 		if (signal_pending(current))
+diff --git a/drivers/scsi/pm8001/pm8001_init.c b/drivers/scsi/pm8001/pm8001_init.c
+index f8c81e53e93f7849bbe7fe9cbc861f22b964bc39..22e0e79e88ab0a60965ff3809de116eb4a6851e2 100644
+--- a/drivers/scsi/pm8001/pm8001_init.c
++++ b/drivers/scsi/pm8001/pm8001_init.c
+@@ -736,7 +736,7 @@ static int pm8001_init_sas_add(struct pm8001_hba_info *pm8001_ha)
+ 		return -EIO;
+ 	}
+ 	time_remaining = wait_for_completion_timeout(&completion,
+-				msecs_to_jiffies(60*1000)); // 1 min
++				secs_to_jiffies(60)); // 1 min
+ 	if (!time_remaining) {
+ 		kfree(payload.func_specific);
+ 		pm8001_dbg(pm8001_ha, FAIL, "get_nvmd_req timeout\n");
 
 -- 
 2.43.0
