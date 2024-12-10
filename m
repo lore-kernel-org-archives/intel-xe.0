@@ -4,36 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 205D4E77184
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 22:02:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 810A5E7718C
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 22:02:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05EF610E9AE;
-	Tue, 10 Dec 2024 22:02:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C73AF10E9AB;
+	Tue, 10 Dec 2024 22:02:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="svAtqGWU";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="f8FLrazo";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7DABE10E9AB;
- Tue, 10 Dec 2024 22:02:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 47BF210E5EC;
+ Tue, 10 Dec 2024 22:02:43 +0000 (UTC)
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
- by linux.microsoft.com (Postfix) with ESMTPSA id 9DC932047231;
+ by linux.microsoft.com (Postfix) with ESMTPSA id 40433204722F;
  Tue, 10 Dec 2024 14:02:38 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9DC932047231
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 40433204722F
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
  s=default; t=1733868158;
- bh=gKZLAOaJwfAP+6Kmm8Uoact7ay9fLs6b2uIK/ai8VsE=;
+ bh=BGnsC+198VTSc2YUOR+tnnzodlQEmbpaf1xRkHMeOLA=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=svAtqGWUfwwxhkPtOsHM9wFpOe5H7V37CPLpc1efEJB+hZDbAOkD4T5b6sfMzxhZ+
- yP7ZIp8mBgs9llSr4qUZT5sBXpDyffL9kReLgTxKKh0F7Rks+AtMLKTRz+ik8N0b4l
- Co5R1xYnpZA/XZN3kdMilWWEgRejdEMkmjUvT5B4=
+ b=f8FLrazoOSnG7X8aDWVI3nVNlHmQntetz0EU8Jiq9ArRSLgklxjGdYHhwJFkuGOqx
+ IH/VjuOQp54aRZNV03h5piA8Q49loXnKOX2ThzuLLFf9IwCIw5oEVNJs8TgQ/6gM17
+ zOuBTvw2xYfRYO0jrQtMw2wpWhKIeaajYB7zt3gs=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Tue, 10 Dec 2024 22:02:43 +0000
-Subject: [PATCH v3 12/19] xen/blkback: Convert timeouts to
- secs_to_jiffies()
+Date: Tue, 10 Dec 2024 22:02:41 +0000
+Subject: [PATCH v3 10/19] scsi: arcmsr: Convert timeouts to secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241210-converge-secs-to-jiffies-v3-12-ddfefd7e9f2a@linux.microsoft.com>
+Message-Id: <20241210-converge-secs-to-jiffies-v3-10-ddfefd7e9f2a@linux.microsoft.com>
 References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 In-Reply-To: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -131,22 +130,22 @@ the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- drivers/block/xen-blkback/blkback.c | 2 +-
+ drivers/scsi/arcmsr/arcmsr_hba.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/block/xen-blkback/blkback.c b/drivers/block/xen-blkback/blkback.c
-index 838064593f62b75f3d937c0c041ea78dedbbaf84..a7c2b04ab943de9cbd69b596aad177a0534f7762 100644
---- a/drivers/block/xen-blkback/blkback.c
-+++ b/drivers/block/xen-blkback/blkback.c
-@@ -544,7 +544,7 @@ static void print_stats(struct xen_blkif_ring *ring)
- 		 ring->st_rd_req, ring->st_wr_req,
- 		 ring->st_f_req, ring->st_ds_req,
- 		 ring->persistent_gnt_c, max_pgrants);
--	ring->st_print = jiffies + msecs_to_jiffies(10 * 1000);
-+	ring->st_print = jiffies + secs_to_jiffies(10);
- 	ring->st_rd_req = 0;
- 	ring->st_wr_req = 0;
- 	ring->st_oo_req = 0;
+diff --git a/drivers/scsi/arcmsr/arcmsr_hba.c b/drivers/scsi/arcmsr/arcmsr_hba.c
+index 6a32e3e0d516881fd87a56a394607930582644ee..fe7de7705b7e2c84324f1a493f7825343d6476c6 100644
+--- a/drivers/scsi/arcmsr/arcmsr_hba.c
++++ b/drivers/scsi/arcmsr/arcmsr_hba.c
+@@ -1045,7 +1045,7 @@ static void arcmsr_init_get_devmap_timer(struct AdapterControlBlock *pacb)
+ static void arcmsr_init_set_datetime_timer(struct AdapterControlBlock *pacb)
+ {
+ 	timer_setup(&pacb->refresh_timer, arcmsr_set_iop_datetime, 0);
+-	pacb->refresh_timer.expires = jiffies + msecs_to_jiffies(60 * 1000);
++	pacb->refresh_timer.expires = jiffies + secs_to_jiffies(60);
+ 	add_timer(&pacb->refresh_timer);
+ }
+ 
 
 -- 
 2.43.0
