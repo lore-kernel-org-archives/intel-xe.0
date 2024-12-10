@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5206AE7717F
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 14:47:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55542E77180
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 14:47:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1918310E8F6;
-	Tue, 10 Dec 2024 14:47:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CnkHguv5";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2C1B10E8F6
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Dec 2024 14:47:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733842044; x=1765378044;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=f8G9A3Fep8PItx6R3ddOuRhaPKsDnXZORKDNPxCf6hg=;
- b=CnkHguv5c6OD3hG4umKhHeslkECvwbZQ/Xn4qxknImn2E/k2haQ3lblD
- PjeE8bT/c04T5tf9UN4olTwC/XZDK5KW5ICS3OzHDqoMa28IQdQhlOI0c
- igbb0b8aIphUXtJvLoRSsPxQDuxlJ4sapjQFbtVNnvRdbGkcRC9qgSC6L
- 2n2aoHtm6KUfiDOTwcQ9lFvv5kXbWHtzsCfxoXvwQbVdYC3QxwnsnOAAe
- 5v20MGK8NITnJekFiD5J5xF+AnxNm0+GKz97IT9e+sIkP9p6B7L80xwwn
- tpxj986Gz1Adsjjd5DHmcVLzjPuu1uxZdcvzia8mEo5F/+S9HWMvEpzZg w==;
-X-CSE-ConnectionGUID: k6Fgf/NwSU6Rqe/+GZNViQ==
-X-CSE-MsgGUID: UQGwOwbOSNihvP6D/tkraw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="44796148"
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="44796148"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 06:47:23 -0800
-X-CSE-ConnectionGUID: BCbjRXPmTSabUl2O5TV3vw==
-X-CSE-MsgGUID: s/mvqSS7T5GiDY8YzIegpg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="118676529"
-Received: from nirmoyda-desk.igk.intel.com ([10.211.135.230])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 06:47:22 -0800
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Nirmoy Das <nirmoy.das@intel.com>, Gustavo Sousa <gustavo.sousa@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH] drm/xe/ptl: Apply Wa_14023061436
-Date: Tue, 10 Dec 2024 16:06:21 +0100
-Message-ID: <20241210150621.781462-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.46.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2342010E8F8;
+	Tue, 10 Dec 2024 14:47:29 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03B6310E8F8;
+ Tue, 10 Dec 2024 14:47:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_adding_wai?=
+ =?utf-8?q?t_helper_for_gt_async_reset_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maciej Patelczyk" <maciej.patelczyk@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 10 Dec 2024 14:47:28 -0000
+Message-ID: <173384204801.872258.13196794249271873936@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241210143748.1417098-1-maciej.patelczyk@intel.com>
+In-Reply-To: <20241210143748.1417098-1-maciej.patelczyk@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,49 +36,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable WMTP for the BTD kernel to address Wa14023061436 by setting the
-proper TDL Chicken Bit.
+== Series Details ==
 
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 3 +++
- drivers/gpu/drm/xe/xe_wa.c           | 4 ++++
- 2 files changed, 7 insertions(+)
+Series: drm/xe: adding wait helper for gt async reset (rev2)
+URL   : https://patchwork.freedesktop.org/series/142300/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 162f18e975da..6829fbed1803 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -496,6 +496,9 @@
- #define EU_SYSTOLIC_LIC_THROTTLE_CTL_WITH_LOCK	XE_REG_MCR(0xe534)
- #define   EU_SYSTOLIC_LIC_THROTTLE_CTL_LOCK_BIT	REG_BIT(31)
- 
-+#define TDL_CHICKEN				XE_REG_MCR(0xe5f4, XE_REG_OPTION_MASKED)
-+#define   QID_WAIT_FOR_THREAD_NOT_RUN_DISABLE	REG_BIT(12)
-+
- #define XEHP_HDC_CHICKEN0					XE_REG_MCR(0xe5f0, XE_REG_OPTION_MASKED)
- #define   LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK	REG_GENMASK(13, 11)
- #define   DIS_ATOMIC_CHAINING_TYPED_WRITES	REG_BIT(3)
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 570fe0376402..2889d6f65f51 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -637,6 +637,10 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 	  XE_RTP_RULES(GRAPHICS_VERSION(1200)),
- 	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN4, DISABLE_TDC_LOAD_BALANCING_CALC))
- 	},
-+	{ XE_RTP_NAME("14023061436"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3001), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(TDL_CHICKEN, QID_WAIT_FOR_THREAD_NOT_RUN_DISABLE))
-+	},
- 
- 	/* DG1 */
- 
--- 
-2.46.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 6966a52cb553 drm-tip: 2024y-12m-10d-13h-38m-22s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: introduce xe_gt_reset and xe_gt_reset_wait
+Applying: drm/xe: make change ccs_mode a synchronous action
+
 
