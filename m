@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 184B2E77184
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9150AE7718B
 	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 22:02:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C66A010E9AD;
-	Tue, 10 Dec 2024 22:02:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 322C710E2E7;
+	Tue, 10 Dec 2024 22:02:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="k1q7WXOx";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="R9JyWtdI";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6154210E9A3;
- Tue, 10 Dec 2024 22:02:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6FBEE10E9B7;
+ Tue, 10 Dec 2024 22:02:46 +0000 (UTC)
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
- by linux.microsoft.com (Postfix) with ESMTPSA id A7DE320BCAEA;
- Tue, 10 Dec 2024 14:02:37 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com A7DE320BCAEA
+ by linux.microsoft.com (Postfix) with ESMTPSA id 3576020ACD6C;
+ Tue, 10 Dec 2024 14:02:39 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 3576020ACD6C
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1733868157;
- bh=WjXR/e+Bt5J36pfaIEwWXUE8wYei/ElgtSssYeLrLS0=;
+ s=default; t=1733868159;
+ bh=2KdSABVpHGeIl3K+Zfq51kwhEReKGYYzt3DUWqeHGog=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=k1q7WXOxk1qYLVn196G3sb8s3XVjdPiH9giyU/vMWpK4NQiBox8ErAeTFxnenHayv
- 1NLSp5g4CPg/qfYp440BlKTVCcToWDafQQXFfUYhXGaNJP4LCGPckmvvkPFrzQ2ykv
- 8WoFkMMhJxjwt/2RQ+Oo6g69AunqDN5xYmAoTPZY=
+ b=R9JyWtdIUEb4/zKyVfibrupVtLSA8I4Ge9h6DsznbqwDXYuMt91s9gMK2E8wvHrfF
+ DAI6C0uY79rteNLP8XN3j0zl2c4hIe69V64Jd/WfL7mt75W43sZOrZK3S3e5zHR6NX
+ Fb6Kd6ZyvfvV2PAG+yCh6AjQd+L5BQfffwiXvwAk=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Tue, 10 Dec 2024 22:02:38 +0000
-Subject: [PATCH v3 07/19] accel/habanalabs: Convert timeouts to
+Date: Tue, 10 Dec 2024 22:02:46 +0000
+Subject: [PATCH v3 15/19] Bluetooth: MGMT: Convert timeouts to
  secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241210-converge-secs-to-jiffies-v3-7-ddfefd7e9f2a@linux.microsoft.com>
+Message-Id: <20241210-converge-secs-to-jiffies-v3-15-ddfefd7e9f2a@linux.microsoft.com>
 References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 In-Reply-To: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -131,37 +131,22 @@ the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- drivers/accel/habanalabs/common/device.c         | 2 +-
- drivers/accel/habanalabs/common/habanalabs_drv.c | 3 +--
- 2 files changed, 2 insertions(+), 3 deletions(-)
+ net/bluetooth/mgmt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/accel/habanalabs/common/device.c b/drivers/accel/habanalabs/common/device.c
-index e0cf3b4343bb081638430f2552ed27431b488ff9..30277ae410d4b742ffb7bddc35498564ff96fe62 100644
---- a/drivers/accel/habanalabs/common/device.c
-+++ b/drivers/accel/habanalabs/common/device.c
-@@ -817,7 +817,7 @@ static void device_hard_reset_pending(struct work_struct *work)
- 		}
+diff --git a/net/bluetooth/mgmt.c b/net/bluetooth/mgmt.c
+index b31192d473d09b663dc7babd107b4894088ebf6d..8c993763ee0f0360e0d92705f9035f47754b793b 100644
+--- a/net/bluetooth/mgmt.c
++++ b/net/bluetooth/mgmt.c
+@@ -210,7 +210,7 @@ static const u16 mgmt_untrusted_events[] = {
+ 	MGMT_EV_EXP_FEATURE_CHANGED,
+ };
  
- 		queue_delayed_work(hdev->reset_wq, &device_reset_work->reset_work,
--					msecs_to_jiffies(HL_PENDING_RESET_PER_SEC * 1000));
-+					secs_to_jiffies(HL_PENDING_RESET_PER_SEC));
- 	}
- }
+-#define CACHE_TIMEOUT	msecs_to_jiffies(2 * 1000)
++#define CACHE_TIMEOUT	secs_to_jiffies(2)
  
-diff --git a/drivers/accel/habanalabs/common/habanalabs_drv.c b/drivers/accel/habanalabs/common/habanalabs_drv.c
-index 5409b2c656c803f6d172dd882711357061f30022..596c52e8aa266bf48e2be45e719adb202604577b 100644
---- a/drivers/accel/habanalabs/common/habanalabs_drv.c
-+++ b/drivers/accel/habanalabs/common/habanalabs_drv.c
-@@ -361,8 +361,7 @@ static void fixup_device_params_per_asic(struct hl_device *hdev, int timeout)
- 		 * a different default timeout for Gaudi
- 		 */
- 		if (timeout == HL_DEFAULT_TIMEOUT_LOCKED)
--			hdev->timeout_jiffies = msecs_to_jiffies(GAUDI_DEFAULT_TIMEOUT_LOCKED *
--										MSEC_PER_SEC);
-+			hdev->timeout_jiffies = secs_to_jiffies(GAUDI_DEFAULT_TIMEOUT_LOCKED);
- 
- 		hdev->reset_upon_device_release = 0;
- 		break;
+ #define ZERO_KEY "\x00\x00\x00\x00\x00\x00\x00\x00" \
+ 		 "\x00\x00\x00\x00\x00\x00\x00\x00"
 
 -- 
 2.43.0
