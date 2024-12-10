@@ -4,21 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C8D6E77182
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 08:30:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07C50E77184
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 08:30:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD38F10E823;
-	Tue, 10 Dec 2024 08:30:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C39E110E82E;
+	Tue, 10 Dec 2024 08:30:47 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB7C010E80A
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Dec 2024 08:30:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4078D10E822
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Dec 2024 08:30:46 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 04/11] drm/xe: Defer irq init until after
- xe_display_init_noaccel
-Date: Tue, 10 Dec 2024 09:31:04 +0100
-Message-ID: <20241210083111.230484-5-dev@lankhorst.se>
+Subject: [PATCH 07/11] drm/xe/sriov: Move VF bootstrap and query_config to
+ vf_guc_init
+Date: Tue, 10 Dec 2024 09:31:07 +0100
+Message-ID: <20241210083111.230484-8-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241210083111.230484-1-dev@lankhorst.se>
 References: <20241210083111.230484-1-dev@lankhorst.se>
@@ -38,40 +38,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We want to merge xe_display_init_noirq and xe_display_init_noaccel,
-by not enabling interrupts in between, this should be safe to do.
+We want to split up GUC init to an alloc and noalloc part to keep the
+init path the same for VF and !VF as much as possible.
+
+Everything in vf_guc_init should be done as early as possible, otherwise
+VRAM probing becomes impossible.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_device.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  1 -
+ drivers/gpu/drm/xe/xe_guc.c         | 17 +++++++++--------
+ 2 files changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index c1b4601a14779..fbec176ee64ad 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -701,10 +701,6 @@ int xe_device_probe(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index cca5d57328021..997438047a037 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -948,7 +948,6 @@ u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg)
+ 	struct vf_runtime_reg *rr;
+ 
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+-	xe_gt_assert(gt, gt->sriov.vf.pf_version.major);
+ 	xe_gt_assert(gt, !reg.vf);
+ 
+ 	if (reg.addr == GMD_ID.addr) {
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 4e2868efb6206..7a25c1da6c6c3 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -598,6 +598,7 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
+ 
+ static int vf_guc_init(struct xe_guc *guc)
+ {
++	struct xe_gt *gt = guc_to_gt(guc);
+ 	int err;
+ 
+ 	xe_guc_comm_init_early(guc);
+@@ -610,6 +611,14 @@ static int vf_guc_init(struct xe_guc *guc)
  	if (err)
  		return err;
  
--	err = xe_irq_install(xe);
--	if (err)
--		goto err;
--
- 	err = probe_has_flat_ccs(xe);
- 	if (err)
- 		goto err;
-@@ -738,6 +734,10 @@ int xe_device_probe(struct xe_device *xe)
- 			goto err;
- 	}
- 
-+	err = xe_irq_install(xe);
++	err = xe_gt_sriov_vf_bootstrap(gt);
 +	if (err)
-+		goto err;
++		return err;
 +
- 	for_each_gt(gt, xe, id) {
- 		last_gt = id;
++	err = xe_gt_sriov_vf_query_config(gt);
++	if (err)
++		return err;
++
+ 	return 0;
+ }
  
+@@ -1059,14 +1068,6 @@ static int vf_guc_min_load_for_hwconfig(struct xe_guc *guc)
+ 	struct xe_gt *gt = guc_to_gt(guc);
+ 	int ret;
+ 
+-	ret = xe_gt_sriov_vf_bootstrap(gt);
+-	if (ret)
+-		return ret;
+-
+-	ret = xe_gt_sriov_vf_query_config(gt);
+-	if (ret)
+-		return ret;
+-
+ 	ret = xe_guc_hwconfig_init(guc);
+ 	if (ret)
+ 		return ret;
 -- 
 2.45.2
 
