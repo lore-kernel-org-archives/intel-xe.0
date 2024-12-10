@@ -4,27 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3007E77182
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 23:26:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4A6EE77180
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 23:36:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 817F310EA00;
-	Tue, 10 Dec 2024 23:26:05 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83E4D10EA00;
- Tue, 10 Dec 2024 23:26:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3409418233130528117=="
-MIME-Version: 1.0
-Subject: =?utf-8?b?4pyTIFhlLkNJLkJBVDogc3VjY2VzcyBmb3IgQ29udmVyZ2Ugb24gdXNpbmcgc2Vj?=
- =?utf-8?b?c190b19qaWZmaWVzKCkgKHJldjMp?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Easwar Hariharan" <eahariha@linux.microsoft.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 10 Dec 2024 23:26:04 -0000
-Message-ID: <173387316453.1000883.15030476754376556915@b555e5b46a47>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id A37E410EA00;
+	Tue, 10 Dec 2024 23:36:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="JEUFC7jH";
+	dkim-atps=neutral
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62B5E10E2F3;
+ Tue, 10 Dec 2024 23:36:10 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id D5B0DA41CB9;
+ Tue, 10 Dec 2024 23:34:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 557E2C4CED6;
+ Tue, 10 Dec 2024 23:36:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+ s=korg; t=1733873767;
+ bh=HHHMPXzhb0ErTbk6JDPXkklA5yJiK4ykiwi4ou5ZnCc=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=JEUFC7jHRCmHI3pSRcaodXf1l/diOVpYu0xkyvRNQH8mQQn7b8CBtOxBJCrSzxiPd
+ x5Ao+At5E5iCnmOoRtx4XFH3yzCpaefWwlAOlUrwnX+e1Xpsqclis9IS5OMX5ZHkAC
+ NceJVwBIegWzfPrxO3hIAUaRVAN7EpBlmQG/j2MY=
+Date: Tue, 10 Dec 2024 15:36:04 -0800
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Cc: Easwar Hariharan <eahariha@linux.microsoft.com>, Pablo Neira Ayuso
+ <pablo@netfilter.org>, Jozsef Kadlecsik <kadlec@netfilter.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, Julia Lawall
+ <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>, Daniel Mack
+ <daniel@zonque.org>, Haojian Zhuang <haojian.zhuang@gmail.com>, Robert
+ Jarzmik <robert.jarzmik@free.fr>, Russell King <linux@armlinux.org.uk>,
+ Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger
+ <borntraeger@linux.ibm.com>, Sven Schnelle <svens@linux.ibm.com>, Ofir
+ Bitton <obitton@habana.ai>, Oded Gabbay <ogabbay@kernel.org>, Lucas De
+ Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jeroen de Borst
+ <jeroendb@google.com>, Praveen Kaligineedi <pkaligineedi@google.com>,
+ Shailend Chand <shailend@google.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ James Smart <james.smart@broadcom.com>, Dick Kennedy
+ <dick.kennedy@broadcom.com>, "James E.J. Bottomley"
+ <James.Bottomley@HansenPartnership.com>, "Martin K. Petersen"
+ <martin.petersen@oracle.com>, Roger Pau =?ISO-8859-1?Q?Monn=E9?=
+ <roger.pau@citrix.com>, Jens Axboe <axboe@kernel.dk>, Kalle Valo
+ <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Jack Wang <jinpu.wang@cloud.ionos.com>, Marcel
+ Holtmann <marcel@holtmann.org>, Johan Hedberg <johan.hedberg@gmail.com>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Florian Fainelli
+ <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, Scott Branden
+ <sbranden@broadcom.com>, Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Xiubo Li <xiubli@redhat.com>, Ilya
+ Dryomov <idryomov@gmail.com>, Josh Poimboeuf <jpoimboe@kernel.org>, Jiri
+ Kosina <jikos@kernel.org>, Miroslav Benes <mbenes@suse.cz>, Petr Mladek
+ <pmladek@suse.com>, Joe Lawrence <joe.lawrence@redhat.com>, Jaroslav Kysela
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Louis Peens
+ <louis.peens@corigine.com>, Michael Ellerman <mpe@ellerman.id.au>, Nicholas
+ Piggin <npiggin@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Naveen N Rao <naveen@kernel.org>, Madhavan Srinivasan
+ <maddy@linux.ibm.com>, netfilter-devel@vger.kernel.org,
+ coreteam@netfilter.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cocci@inria.fr,
+ linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-scsi@vger.kernel.org, xen-devel@lists.xenproject.org,
+ linux-block@vger.kernel.org, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org, linux-mm@kvack.org,
+ linux-bluetooth@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org,
+ live-patching@vger.kernel.org, linux-sound@vger.kernel.org,
+ oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org, Anna-Maria Behnsen
+ <anna-maria@linutronix.de>
+Subject: Re: [PATCH v3 00/19] Converge on using secs_to_jiffies()
+Message-Id: <20241210153604.cf99699f264f12740ffce5c7@linux-foundation.org>
+In-Reply-To: <315e9178-5b10-4de0-bdcf-7243e0e355bb@oss.qualcomm.com>
 References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
-In-Reply-To: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
+ <315e9178-5b10-4de0-bdcf-7243e0e355bb@oss.qualcomm.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,194 +102,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3409418233130528117==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 10 Dec 2024 15:14:22 -0800 Jeff Johnson <jeff.johnson@oss.qualcomm.com> wrote:
 
-== Series Details ==
+> On 12/10/2024 2:02 PM, Easwar Hariharan wrote:
+> > This is a series that follows up on my previous series to introduce
+> > secs_to_jiffies() and convert a few initial users.[1] In the review for
+> > that series, Anna-Maria requested converting other users with
+> > Coccinelle. [2] This is part 1 that converts users of msecs_to_jiffies()
+> > that use the multiply pattern of either of:
+> > - msecs_to_jiffies(N*1000), or
+> > - msecs_to_jiffies(N*MSEC_PER_SEC)
+> > 
+> > where N is a constant, to avoid the multiplication.
+> > 
+> > The entire conversion is made with Coccinelle in the script added in
+> > patch 2. Some changes suggested by Coccinelle have been deferred to
+> > later parts that will address other possible variant patterns.
+> > 
+> > CC: Anna-Maria Behnsen <anna-maria@linutronix.de>
+> > Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> 
+> I have the same question as before: How do you expect these to land?
+> Do you now have a maintainer who will take all of them?
+> Or do you want individual maintainers to take the ones applicable to them?
 
-Series: Converge on using secs_to_jiffies() (rev3)
-URL   : https://patchwork.freedesktop.org/series/141435/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-2348-2223c2c738ecb056c0a77e115334887da66668c8_BAT -> xe-pw-141435v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-141435v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229] / [Intel XE#455]) +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#2229])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
-    - bat-lnl-1:          [DMESG-WARN][3] ([Intel XE#3729]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2348-2223c2c738ecb056c0a77e115334887da66668c8/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [SKIP][5] ([Intel XE#1192]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2348-2223c2c738ecb056c0a77e115334887da66668c8/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  * igt@xe_vm@shared-pde2-page:
-    - bat-adlp-vf:        [DMESG-WARN][7] ([Intel XE#358]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2348-2223c2c738ecb056c0a77e115334887da66668c8/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][9] ([Intel XE#1192]) -> [SKIP][10] ([Intel XE#2229] / [Intel XE#455])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2348-2223c2c738ecb056c0a77e115334887da66668c8/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#358]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/358
-  [Intel XE#3729]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * Linux: xe-2348-2223c2c738ecb056c0a77e115334887da66668c8 -> xe-pw-141435v3
-
-  IGT_8147: df65b61f81a5cc919c10ff9c5ed516b45364135c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2348-2223c2c738ecb056c0a77e115334887da66668c8: 2223c2c738ecb056c0a77e115334887da66668c8
-  xe-pw-141435v3: 141435v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/index.html
-
---===============3409418233130528117==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Converge on using secs_to_jiffies() (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141435/">https://patchwork.freedesktop.org/series/141435/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2348-2223c2c738ecb056c0a77e115334887da66668c8_BAT -&gt; xe-pw-141435v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-141435v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:</p>
-<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2348-2223c2c738ecb056c0a77e115334887da66668c8/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729">Intel XE#3729</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2348-2223c2c738ecb056c0a77e115334887da66668c8/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@shared-pde2-page:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2348-2223c2c738ecb056c0a77e115334887da66668c8/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/358">Intel XE#358</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2348-2223c2c738ecb056c0a77e115334887da66668c8/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141435v3/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2348-2223c2c738ecb056c0a77e115334887da66668c8 -&gt; xe-pw-141435v3</li>
-</ul>
-<p>IGT_8147: df65b61f81a5cc919c10ff9c5ed516b45364135c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2348-2223c2c738ecb056c0a77e115334887da66668c8: 2223c2c738ecb056c0a77e115334887da66668c8<br />
-  xe-pw-141435v3: 141435v3</p>
-
-</body>
-</html>
-
---===============3409418233130528117==--
+I'll just grab everything and see if anyone complains ;)
