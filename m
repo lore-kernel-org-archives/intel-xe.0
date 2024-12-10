@@ -4,27 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33CB1E7717D
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 00:23:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93F78E77180
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 00:26:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECF4510E59B;
-	Tue, 10 Dec 2024 00:23:33 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75DF610E593;
- Tue, 10 Dec 2024 00:23:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5732041998184256510=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FF9A10E594;
+	Tue, 10 Dec 2024 00:26:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="oREeAIg9";
+	dkim-atps=neutral
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
+ [209.85.167.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B775310E594
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Dec 2024 00:26:08 +0000 (UTC)
+Received: by mail-lf1-f50.google.com with SMTP id
+ 2adb3069b0e04-5401e6efffcso1764303e87.3
+ for <intel-xe@lists.freedesktop.org>; Mon, 09 Dec 2024 16:26:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1733790367; x=1734395167; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=4BwVrUZpTdtHulhLKWv2OcJChXM6uEDlwsocnkbKdQ4=;
+ b=oREeAIg9F3F0g1xUaNQ9w4Tw3sCZJBs4RYtzUD4o2SoolaRpZMIqW0koP9DfAaJFnP
+ jJZwuIczwzopJ8YofkKhjMkYQK7x/n0feNL+rT2ee4XD1X2VekQd/abgXZgsmT81+jT+
+ CMH7Gyr4RmsfR5MM0otDHDAahKTAfnX7wTodleY5AXQOHQjWMO4YjamYNZMrkFZjlciy
+ S14cUL69U5ZtdfrNa4sitsZxoCFgciC7LWwMkFOJTbYDaTYJY2Rwu6OLWjEr9bRvbN4O
+ 0uoT7UbrOKLV5bbRNIR1uXZ/z+ncIbXiG/TIDsY25DihkrgfBq3wPrzKtgSwmb7rXCVu
+ beig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1733790367; x=1734395167;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=4BwVrUZpTdtHulhLKWv2OcJChXM6uEDlwsocnkbKdQ4=;
+ b=m3Z+Jhxw4Agk+xgAFcmd6IHuuePXYHz2PeU8dL48+JVEdXO+oznfg0jitoZusE9BFj
+ hkfkQDtjNKGxE+1y3mD0VsZ9929aL9/3QYLFe1Djy844qwhCPDy647vLxBVo1ocQAsef
+ CvYfAMK0PXLq4I9EsRiZXp3jiY01xsmgbTe7PYgWQwipRzi7AFScpOW1S5XxnsXWQlCw
+ PguVL7PixOUGi3UJnIJUUeSr/mmwGUeWmhRVXD+//dWXrbLT2wc1N6E27F528RoR55rH
+ JTMe4mw2qY9HQfKYyxyXsnJXx054Fs7OrMZoSHSuWlnodb+VbZz2vTA/tzn+WeKpUGz1
+ Untw==
+X-Gm-Message-State: AOJu0YxlixWwhYwatRBUpJUmd/uU653lsSbKIZzCe6kyUdbvnZDSmoMu
+ E31a2x8mqT/bflJ9txU8mrzmMKTSFkD3lVUWmf3bgoCu1GaIWmeTbF3lTQvzUpk=
+X-Gm-Gg: ASbGncu1b8/9LoADCKmA5bU5DiO6+sYIYxy2URNT5ItqtYcAUxG1/uTOxmbdq7j6Y3v
+ K8qhxn274qyizakStPu0r4eOJ+zUnkQTI051YzRxr44v6HIav5KXmRKHyFvq+xuGaIzZlNl89cS
+ fcmZ6CG+e+pMyk4/tTl9/YjVRgVVNtqgEE2wyznpfxfw7eEEeqCKHCFkYpSCvfBVLrIw0HUeYCb
+ LzBrokN11FofPBTeQRhSmozXkwST2yTtr9tsyctrQaudpwYiKfflm6JmDUBYRiBoWL7BFNYvrGV
+ jiyxcVRbYZFOO9YwmtEAopNVE4ndyh4vOw==
+X-Google-Smtp-Source: AGHT+IF2X1+jzpdAk4e9Hp3V3x/qmpFhWj2caHJ76xZxfhEu4S0Ho2FccWas++QMYQWHfk7RKLTQWw==
+X-Received: by 2002:a05:6512:138c:b0:540:1d6c:f1c7 with SMTP id
+ 2adb3069b0e04-540240aa960mr829759e87.10.1733790366671; 
+ Mon, 09 Dec 2024 16:26:06 -0800 (PST)
+Received: from eriador.lumag.spb.ru
+ (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-53e3ab8dd61sm912121e87.44.2024.12.09.16.26.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 09 Dec 2024 16:26:05 -0800 (PST)
+Date: Tue, 10 Dec 2024 02:26:02 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCHv3 01/10] drm/crtc: Add histogram properties
+Message-ID: <7tho6j262nzbu6nvjgzelsu3ljjipxdhazjlzdfa3xi2lbn3vs@bx55yrrbmshg>
+References: <20241209162504.2146697-1-arun.r.murthy@intel.com>
+ <20241209162504.2146697-2-arun.r.murthy@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_reg=5Fsr/whitelist_fixes_an?=
- =?utf-8?q?d_refactors_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 10 Dec 2024 00:23:32 -0000
-Message-ID: <173379021247.656544.10341296943786429416@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241209232739.147417-1-lucas.demarchi@intel.com>
-In-Reply-To: <20241209232739.147417-1-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241209162504.2146697-2-arun.r.murthy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,267 +83,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5732041998184256510==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Dec 09, 2024 at 09:54:55PM +0530, Arun R Murthy wrote:
+> Add variables for histogram drm_property, its corrsponding crtc_state
+> variables and define the structure pointed by the blob property.
+> 
+> struct drm_histogram and drm_iet defined in include/uapi/drm/drm_mode.h
+> 
+> The property HISTOGRAM_ENABLE allows user to enable/disable the
+> histogram feature in the hardware. Upon KMD enabling by writing to the
+> hardware registers, a histogram is generated. Histogram is composed of
+> 'n' bins with each bin being an integer(pixel count).
 
-== Series Details ==
+Is it really a count of pixels that fall into one of the bins?
 
-Series: reg_sr/whitelist fixes and refactors (rev2)
-URL   : https://patchwork.freedesktop.org/series/142195/
-State : success
+> An event HISTOGRAM will be sent to the user. User upon recieving this
+> event user can read the hardware generated histogram using crtc property
 
-== Summary ==
+Nit: here and further, it's CRTC, not crtc
 
-CI Bug Log - changes from xe-2340-9d12021e081c72b18c31bda175fb9a43f1d005fc_BAT -> xe-pw-142195v2_BAT
-====================================================
+> HISTOGRAM_DATA. User can use this histogram data, apply various
+> equilization techniques to come up with a pixel factor. This pixel
+> factor is an array of integer with 'n+1' elements. This is fed back to
+> the KMD by crtc property HISTOGRAM_IET. KMD will write this IET data
+> back to the hardware to see the enhancement/equilization done to the
+> images on that pipe.
+> The crtc property HISTOGRAM_DATA and HISTOGRAM_IET is of type blob.
+> 
+> For crtc property HISTOGRAM_DATA,
+> the blob data pointer will be the address of the struct drm_histogram.
+> struct drm_histogram {
+> 	u64 data_ptr;
+> 	u32 nr_elements;
+> }
+> Histogram is composed of @nr_elements of bins with each bin being an
+> integer value, referred to as pixel_count.
+> The element @data_ptr holds the address of histogam.
+> Sample:
+> Historgram[0] = 2050717
+> Historgram[1] = 244619
+> Historgram[2] = 173368
+> ....
+> Historgram[31] = 21631
+> 
+> For crtc_property HISTOGRAM_IET,
+> the blob data pointer will be the address of the struct drm_iet.
+> struct drm_iet {
+> 	u64 data_ptr;
+> 	u32 nr_elements;
+> }
+> ImageEnhancemenT(IET) is composed of @nr_elements of bins with each bin
+> being an integer value, referred to as pixel factor.
 
-Summary
--------
+What are pixel factors? How are they supposed to be used? You have
+specified the format of the data, but one still can not implement
+proper HISTOGRAM support for the VKMS.
 
-  **SUCCESS**
+> The element @data_ptr holds the addess of pixel factor.
+> Sample:
+> Pixel Factor[0] = 1023
+> Pixel Factor[1] = 695
+> Pixel Factor[2] = 1023
+> ....
+> Pixel Factor[32] = 512
+> 
+> Histogram is the statistics generated with 'n' number of frames on a
+> pipe.
+> Usually the size of pixel factor is one more than the size of histogram
+> data.
 
-  No regressions found.
+What does that mean? What does it mean if this "Usually" isn't being
+followed? Previously you've written that it always has n+1 elements.
 
-  
+> 
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  include/drm/drm_crtc.h      | 51 +++++++++++++++++++++++++++++++++++++
+>  include/uapi/drm/drm_mode.h | 24 +++++++++++++++++
+>  2 files changed, 75 insertions(+)
+> 
 
-Participating hosts (8 -> 8)
-------------------------------
-
-  Additional (1): bat-lnl-1 
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-142195v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-lnl-1:          NOTRUN -> [SKIP][1] ([Intel XE#1466])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
-    - bat-lnl-1:          NOTRUN -> [DMESG-WARN][2] ([Intel XE#3729])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-lnl-1:          NOTRUN -> [SKIP][3] ([Intel XE#2244])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-lnl-1:          NOTRUN -> [SKIP][4] ([Intel XE#352]) +2 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-lnl-1:          NOTRUN -> [SKIP][5] ([Intel XE#1470] / [Intel XE#2853])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-off:
-    - bat-lnl-1:          NOTRUN -> [SKIP][6] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@sriov_basic@enable-vfs-autoprobe-off.html
-
-  * igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:
-    - bat-lnl-1:          NOTRUN -> [SKIP][7] ([Intel XE#688]) +17 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-lnl-1:          NOTRUN -> [SKIP][8] ([Intel XE#1192]) +2 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@xe_live_ktest@xe_bo.html
-
-  * igt@xe_mmap@vram:
-    - bat-lnl-1:          NOTRUN -> [SKIP][9] ([Intel XE#1416])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-lnl-1:          NOTRUN -> [SKIP][10] ([Intel XE#1420] / [Intel XE#2838])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-lnl-1:          NOTRUN -> [SKIP][11] ([Intel XE#977])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-lnl-1:          NOTRUN -> [SKIP][12] ([Intel XE#979])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@xe_pat@pat-index-xelpg.html
-
-  * igt@xe_sriov_flr@flr-vf1-clear:
-    - bat-lnl-1:          NOTRUN -> [SKIP][13] ([Intel XE#3342])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@xe_sriov_flr@flr-vf1-clear.html
-
-  
-  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#1416]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#1466]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466
-  [Intel XE#1470]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470
-  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
-  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
-  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
-  [Intel XE#2853]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853
-  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
-  [Intel XE#352]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/352
-  [Intel XE#3729]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
-  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
-
-
-Build changes
--------------
-
-  * IGT: IGT_8144 -> IGT_8145
-  * Linux: xe-2340-9d12021e081c72b18c31bda175fb9a43f1d005fc -> xe-pw-142195v2
-
-  IGT_8144: 8144
-  IGT_8145: 9ecc5cadf47dc934af126a6b34653b860974b9f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2340-9d12021e081c72b18c31bda175fb9a43f1d005fc: 9d12021e081c72b18c31bda175fb9a43f1d005fc
-  xe-pw-142195v2: 142195v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/index.html
-
---===============5732041998184256510==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>reg_sr/whitelist fixes and refactors (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142195/">https://patchwork.freedesktop.org/series/142195/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2340-9d12021e081c72b18c31bda175fb9a43f1d005fc_BAT -&gt; xe-pw-142195v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>Additional (1): bat-lnl-1 <br />
-  Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-142195v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466">Intel XE#1466</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729">Intel XE#3729</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@kms_force_connector_basic@force-connector-state.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/352">Intel XE#352</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470">Intel XE#1470</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853">Intel XE#2853</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +17 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416">Intel XE#1416</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142195v2/bat-lnl-1/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8144 -&gt; IGT_8145</li>
-<li>Linux: xe-2340-9d12021e081c72b18c31bda175fb9a43f1d005fc -&gt; xe-pw-142195v2</li>
-</ul>
-<p>IGT_8144: 8144<br />
-  IGT_8145: 9ecc5cadf47dc934af126a6b34653b860974b9f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2340-9d12021e081c72b18c31bda175fb9a43f1d005fc: 9d12021e081c72b18c31bda175fb9a43f1d005fc<br />
-  xe-pw-142195v2: 142195v2</p>
-
-</body>
-</html>
-
---===============5732041998184256510==--
+-- 
+With best wishes
+Dmitry
