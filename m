@@ -4,65 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF18FE7717F
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 09:33:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3D69E77180
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Dec 2024 09:36:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8744A10E849;
-	Tue, 10 Dec 2024 09:33:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88EEC10E849;
+	Tue, 10 Dec 2024 09:36:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l2zYjaB3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fiB70eS3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7186510E849;
- Tue, 10 Dec 2024 09:33:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78BC110E854;
+ Tue, 10 Dec 2024 09:36:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733823221; x=1765359221;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:to:date:message-id;
- bh=uiJSYhsMkhrtcrx4xUvSwptITiekNJGtqKuEgrR35KQ=;
- b=l2zYjaB37CRByoyMtYIWZQscocRLe3mNzyi/aoTefxGhqlw6mI/pPWSB
- p9URsMvUuBYt8oJND52PgUc2zmNHxHcloE0/D2MSdR1JZLYKYX+Zv5sa/
- nSoMGUnabsPKfhkSvbC9HeDIxifT+jKh6EdQF3MT4I+DdfBSvVy0bOZe4
- OmzAxT61bJrUoh/iJ8QGgEW7JzadYP44vqm2z7CCiqRwvGVXYLLn5ZPS9
- UZEyVjnBxHrkJbC7x1JdMHKNwT6wtJVouxqCfzYtBW49bWt3vWFsNi5uq
- EAxan3/3mza10xV1tUm2cqnmhLvN+SPB9WdpP6ud2+/61d7agTL3wdt6H w==;
-X-CSE-ConnectionGUID: 3i9xE9LXTC2hTriBw5eVsQ==
-X-CSE-MsgGUID: BHghU22nQiahvGtzWRAiGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="37942970"
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="37942970"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 01:33:40 -0800
-X-CSE-ConnectionGUID: HUjq2qIMReiVzDIrC+D+OA==
-X-CSE-MsgGUID: r/mkXWyhSDCb+77g5KxIQA==
+ t=1733823362; x=1765359362;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=aStncA1iyIQzIUi8IjV1c0NYxhg/DY9aiTLGa4QBM8Y=;
+ b=fiB70eS3T4f+XIEaFxrxr1JE8lDIw9NcuaHmbnKazs59dIC2r1XqwsVw
+ c2cZ7yW/C0aWxNsNWvfIctw9xlxZtZJJ3jnEX1vTjl/0InMKMAwtl03/s
+ wXoy/yS7lobr9zZNBCHTsdHzBShwq2irOhJo17Cxo/Z0qIHiLVW8ZZKFg
+ ll+386nqAkzR+SWonblqaJaPZzUC5SIKRTWLMPaV5EILLdOoIbT0+iG57
+ 8kj3JXATi/0tMLhBF1sJUeVbAgAsEhyFNLSolHzSm9I7tcZvZr9LqWAts
+ ibzgatijG1e+m57prvTfwiPxFPY7/3SvF/y9is4jJOBuQhSNbiUJhgny5 A==;
+X-CSE-ConnectionGUID: c8YVgh5eRqSouapQ+lNlWA==
+X-CSE-MsgGUID: f6WO0WgIQL6hIoGT2BaM5Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="33493269"
+X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="33493269"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2024 01:36:02 -0800
+X-CSE-ConnectionGUID: nEAPm4knR+yadcQpBrBXLg==
+X-CSE-MsgGUID: xV4421D0Qh6DxASWMNZFZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="95826050"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.228])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 01:33:36 -0800
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <e4401ab1-0562-407a-a0e9-2f6e43e5ac22@amd.com>
-References: <20241209133318.1806472-1-mika.kuoppala@linux.intel.com>
- <20241209133318.1806472-15-mika.kuoppala@linux.intel.com>
- <ec42fe8b-9be0-41cc-96f4-f1869c6bb7e6@amd.com>
- <Z1cNQTvGdAUPp4Y-@phenom.ffwll.local>
- <e4401ab1-0562-407a-a0e9-2f6e43e5ac22@amd.com>
-Subject: Re: [PATCH 14/26] drm/xe/eudebug: implement userptr_vma access
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
- Christian =?utf-8?q?K=C3=B6nig?= <christian.koenig@amd.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>, Linux MM <linux-mm@kvack.org>,
- Maciej Patelczyk <maciej.patelczyk@intel.com>,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, lkml <linux-kernel@vger.kernel.org>
+X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="100395790"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.242])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2024 01:36:00 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH] drm/xe/display: Use a single early init call for display
+In-Reply-To: <20241209155142.209657-1-dev@lankhorst.se>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Tue, 10 Dec 2024 11:33:33 +0200
-Message-ID: <173382321353.8959.8314520413901294535@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.10
+References: <20241206185956.3290-6-dev@lankhorst.se>
+ <20241209155142.209657-1-dev@lankhorst.se>
+Date: Tue, 10 Dec 2024 11:35:56 +0200
+Message-ID: <87h67bzxqb.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,112 +69,204 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Christian K=C3=B6nig (2024-12-09 17:42:32)
-> Am 09.12.24 um 16:31 schrieb Simona Vetter:
-> > On Mon, Dec 09, 2024 at 03:03:04PM +0100, Christian K=C3=B6nig wrote:
-> >> Am 09.12.24 um 14:33 schrieb Mika Kuoppala:
-> >>> From: Andrzej Hajda <andrzej.hajda@intel.com>
-> >>>
-> >>> Debugger needs to read/write program's vmas including userptr_vma.
-> >>> Since hmm_range_fault is used to pin userptr vmas, it is possible
-> >>> to map those vmas from debugger context.
-> >> Oh, this implementation is extremely questionable as well. Adding the =
-LKML
-> >> and the MM list as well.
-> >>
-> >> First of all hmm_range_fault() does *not* pin anything!
-> >>
-> >> In other words you don't have a page reference when the function retur=
-ns,
-> >> but rather just a sequence number you can check for modifications.
-> > I think it's all there, holds the invalidation lock during the critical
-> > access/section, drops it when reacquiring pages, retries until it works.
-> >
-> > I think the issue is more that everyone hand-rolls userptr.
->=20
-> Well that is part of the issue.
->=20
-> The general problem here is that the eudebug interface tries to simulate =
+On Mon, 09 Dec 2024, Maarten Lankhorst <dev@lankhorst.se> wrote:
+> Instead of 3 different calls, it should be safe to unify to a single
+> call now. This makes the init sequence cleaner, and display less
+> tangled.
 
-> the memory accesses as they would have happened by the hardware.
+Needs more explanation.
 
-Could you elaborate, what is that a problem in that, exactly?
+I thought the goal was to *unify* i915 and xe display init/cleanup. This
+diverges them more, with actually functionally different things rather
+than just slightly different ordering.
 
-It's pretty much the equivalent of ptrace() poke/peek but for GPU memory.
-And it is exactly the kind of interface that makes sense for debugger as
-GPU memory !=3D CPU memory, and they don't need to align at all.
+BR,
+Jani.
 
-> What the debugger should probably do is to cleanly attach to the=20
-> application, get the information which CPU address is mapped to which=20
-> GPU address and then use the standard ptrace interfaces.
 
-I don't quite agree here -- at all. "Which CPU address is mapped to
-which GPU address" makes no sense when the GPU address space and CPU
-address space is completely controlled by the userspace driver/application.
+>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> ---
+> Rebase
+>
+>  drivers/gpu/drm/xe/display/xe_display.c | 73 +++++++------------------
+>  drivers/gpu/drm/xe/display/xe_display.h |  8 +--
+>  drivers/gpu/drm/xe/xe_device.c          | 10 +---
+>  3 files changed, 22 insertions(+), 69 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index 317fa66adf189..b013a4db11183 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -101,19 +101,25 @@ int xe_display_create(struct xe_device *xe)
+>  	return drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
+>  }
+>  
+> -static void xe_display_fini_nommio(struct drm_device *dev, void *dummy)
+> +static void xe_display_fini_early(void *arg)
+>  {
+> -	struct xe_device *xe = to_xe_device(dev);
+> +	struct xe_device *xe = arg;
+>  	struct intel_display *display = &xe->display;
+>  
+>  	if (!xe->info.probe_display)
+>  		return;
+>  
+> +	intel_display_driver_remove_nogem(display);
+> +	intel_display_driver_remove_noirq(display);
+> +	intel_opregion_cleanup(display);
+>  	intel_power_domains_cleanup(display);
+>  }
+>  
+> -int xe_display_init_nommio(struct xe_device *xe)
+> +int xe_display_init_early(struct xe_device *xe)
+>  {
+> +	struct intel_display *display = &xe->display;
+> +	int err;
+> +
+>  	if (!xe->info.probe_display)
+>  		return 0;
+>  
+> @@ -123,29 +129,6 @@ int xe_display_init_nommio(struct xe_device *xe)
+>  	/* This must be called before any calls to HAS_PCH_* */
+>  	intel_detect_pch(xe);
+>  
+> -	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_nommio, xe);
+> -}
+> -
+> -static void xe_display_fini_noirq(void *arg)
+> -{
+> -	struct xe_device *xe = arg;
+> -	struct intel_display *display = &xe->display;
+> -
+> -	if (!xe->info.probe_display)
+> -		return;
+> -
+> -	intel_display_driver_remove_noirq(display);
+> -	intel_opregion_cleanup(display);
+> -}
+> -
+> -int xe_display_init_noirq(struct xe_device *xe)
+> -{
+> -	struct intel_display *display = &xe->display;
+> -	int err;
+> -
+> -	if (!xe->info.probe_display)
+> -		return 0;
+> -
+>  	intel_display_driver_early_probe(display);
+>  
+>  	/* Early display init.. */
+> @@ -162,38 +145,20 @@ int xe_display_init_noirq(struct xe_device *xe)
+>  	intel_display_device_info_runtime_init(display);
+>  
+>  	err = intel_display_driver_probe_noirq(display);
+> -	if (err) {
+> -		intel_opregion_cleanup(display);
+> -		return err;
+> -	}
+> -
+> -	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_noirq, xe);
+> -}
+> -
+> -static void xe_display_fini_noaccel(void *arg)
+> -{
+> -	struct xe_device *xe = arg;
+> -	struct intel_display *display = &xe->display;
+> -
+> -	if (!xe->info.probe_display)
+> -		return;
+> -
+> -	intel_display_driver_remove_nogem(display);
+> -}
+> -
+> -int xe_display_init_noaccel(struct xe_device *xe)
+> -{
+> -	struct intel_display *display = &xe->display;
+> -	int err;
+> -
+> -	if (!xe->info.probe_display)
+> -		return 0;
+> +	if (err)
+> +		goto err_opregion;
+>  
+>  	err = intel_display_driver_probe_nogem(display);
+>  	if (err)
+> -		return err;
+> +		goto err_noirq;
+>  
+> -	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_noaccel, xe);
+> +	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_early, xe);
+> +err_noirq:
+> +	intel_display_driver_remove_noirq(display);
+> +	intel_power_domains_cleanup(display);
+> +err_opregion:
+> +	intel_opregion_cleanup(display);
+> +	return err;
+>  }
+>  
+>  int xe_display_init(struct xe_device *xe)
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
+> index 233f81a26c255..e2a99624f7064 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.h
+> +++ b/drivers/gpu/drm/xe/display/xe_display.h
+> @@ -20,9 +20,7 @@ int xe_display_create(struct xe_device *xe);
+>  
+>  int xe_display_probe(struct xe_device *xe);
+>  
+> -int xe_display_init_nommio(struct xe_device *xe);
+> -int xe_display_init_noirq(struct xe_device *xe);
+> -int xe_display_init_noaccel(struct xe_device *xe);
+> +int xe_display_init_early(struct xe_device *xe);
+>  int xe_display_init(struct xe_device *xe);
+>  void xe_display_fini(struct xe_device *xe);
+>  
+> @@ -54,9 +52,7 @@ static inline int xe_display_create(struct xe_device *xe) { return 0; }
+>  
+>  static inline int xe_display_probe(struct xe_device *xe) { return 0; }
+>  
+> -static inline int xe_display_init_nommio(struct xe_device *xe) { return 0; }
+> -static inline int xe_display_init_noirq(struct xe_device *xe) { return 0; }
+> -static inline int xe_display_init_noaccel(struct xe_device *xe) { return 0; }
+> +static inline int xe_display_init_early(struct xe_device *xe) { return 0; }
+>  static inline int xe_display_init(struct xe_device *xe) { return 0; }
+>  static inline void xe_display_fini(struct xe_device *xe) {}
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index fbec176ee64ad..c9c0b74c74ddb 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -639,10 +639,6 @@ int xe_device_probe(struct xe_device *xe)
+>  		return err;
+>  
+>  	xe->info.mem_region_mask = 1;
+> -	err = xe_display_init_nommio(xe);
+> -	if (err)
+> -		return err;
+> -
+>  	err = xe_set_dma_info(xe);
+>  	if (err)
+>  		return err;
+> @@ -697,10 +693,6 @@ int xe_device_probe(struct xe_device *xe)
+>  	if (err)
+>  		return err;
+>  
+> -	err = xe_display_init_noirq(xe);
+> -	if (err)
+> -		return err;
+> -
+>  	err = probe_has_flat_ccs(xe);
+>  	if (err)
+>  		goto err;
+> @@ -724,7 +716,7 @@ int xe_device_probe(struct xe_device *xe)
+>  	 * This is the reason the first allocation needs to be done
+>  	 * inside display.
+>  	 */
+> -	err = xe_display_init_noaccel(xe);
+> +	err = xe_display_init_early(xe);
+>  	if (err)
+>  		goto err;
 
-Please try to consider things outside of the ROCm architecture.
-
-Something like a register scratch region or EU instructions should not
-even be mapped to CPU address space as CPU has no business accessing it
-during normal operation. And backing of such region will vary per
-context/LRC on the same virtual address per EU thread.
-
-You seem to be suggesting to rewrite even our userspace driver to behave
-the same way as ROCm driver does just so that we could implement debug memo=
-ry
-accesses via ptrace() to the CPU address space.
-
-That seems bit of a radical suggestion, especially given the drawbacks
-pointed out in your suggested design.
-
-> The whole interface re-invents a lot of functionality which is already=20
-> there=20
-
-I'm not really sure I would call adding a single interface for memory
-reading and writing to be "re-inventing a lot of functionality".
-
-All the functionality behind this interface will be needed by GPU core
-dumping, anyway. Just like for the other patch series.
-
-> just because you don't like the idea to attach to the debugged=20
-> application in userspace.
-
-A few points that have been brought up as drawback to the
-GPU debug through ptrace(), but to recap a few relevant ones for this
-discussion:
-
-- You can only really support GDB stop-all mode or at least have to
-  stop all the CPU threads while you control the GPU threads to
-  avoid interference. Elaborated on this on the other threads more.
-- Controlling the GPU threads will always interfere with CPU threads.
-  Doesn't seem feasible to single-step an EU thread while CPU threads
-  continue to run freely?
-- You are very much restricted by the CPU VA ~ GPU VA alignment
-  requirement, which is not true for OpenGL or Vulkan etc. Seems
-  like one of the reasons why ROCm debugging is not easily extendable
-  outside compute?
-- You have to expose extra memory to CPU process just for GPU
-  debugger access and keep track of GPU VA for each. Makes the GPU more
-  prone to OOB writes from CPU. Exactly what not mapping the memory
-  to CPU tried to protect the GPU from to begin with.
-
-> As far as I can see this whole idea is extremely questionable. This=20
-> looks like re-inventing the wheel in a different color.
-
-I see it like reinventing a round wheel compared to octagonal wheel.
-
-Could you elaborate with facts much more on your position why the ROCm
-debugger design is an absolute must for others to adopt?
-
-Otherwise it just looks like you are trying to prevent others from
-implementing a more flexible debugging interface through vague comments abo=
-ut
-"questionable design" without going into details. Not listing much concrete
-benefits nor addressing the very concretely expressed drawbacks of your
-suggested design, makes it seem like a very biased non-technical discussion.
-
-So while review interest and any comments are very much appreciated, please
-also work on providing bit more reasoning and facts instead of just claiming
-things. That'll help make the discussion much more fruitful.
-
-Regards, Joonas
+-- 
+Jani Nikula, Intel
