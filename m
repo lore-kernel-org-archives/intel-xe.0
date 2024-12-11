@@ -4,30 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C5DDE77180
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 18:52:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39160E77180
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 18:52:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4319110E60B;
-	Wed, 11 Dec 2024 18:52:52 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 078C510E60B
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 18:52:51 +0000 (UTC)
-Message-ID: <c93091af-6337-4e0e-a83c-18e2fea6988b@lankhorst.se>
-Date: Wed, 11 Dec 2024 19:52:49 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06CE310EBE7;
+	Wed, 11 Dec 2024 18:52:56 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 231BC10EBE7;
+ Wed, 11 Dec 2024 18:52:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/11] drm/xe: Split init of xe_gt_init_hwconfig to
- xe_gt_init and *_early
-To: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/display=3A_Program_doub?=
+ =?utf-8?q?le_buffered_LUT_registers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-References: <20241210083111.230484-1-dev@lankhorst.se>
- <20241210083111.230484-11-dev@lankhorst.se>
- <cfyy7aff2eavdf4wisztvev6vkuuajngxe53ekh2pkcoa36gtf@3xzilixxu5qm>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <cfyy7aff2eavdf4wisztvev6vkuuajngxe53ekh2pkcoa36gtf@3xzilixxu5qm>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Date: Wed, 11 Dec 2024 18:52:55 -0000
+Message-ID: <173394317513.1275968.7138162838749339449@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241211181830.3348155-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20241211181830.3348155-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,28 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+== Series Details ==
 
-Den 2024-12-10 kl. 16:25, skrev Lucas De Marchi:
-> On Tue, Dec 10, 2024 at 09:31:10AM +0100, Maarten Lankhorst wrote:
->> static void dump_pat_on_error(struct xe_gt *gt)
->> @@ -419,6 +438,18 @@ static int gt_fw_domain_init(struct xe_gt *gt)
->>         goto err_hw_fence_irq;
->>     }
->>
->> +    err = xe_uc_init(&gt->uc);
-> 
-> what does this have to do with gt_fw_domain_init()?  We should look at
-> removing unrelated stuff from this function rather than stashing more.
-> 
-> Lucas De Marchi
+Series: drm/xe/display: Program double buffered LUT registers
+URL   : https://patchwork.freedesktop.org/series/142436/
+State : success
 
-It just needs to be called with FW and during that point of init, can 
-perhaps create separate functions all called with fw instead?
+== Summary ==
 
-Cheers,
-Maarten
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/kernel/
+lib/modules/6.13.0-rc2-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc2-xe+/kernel/block/
+lib/modules/6.13.0-rc2-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc2-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc2-xe+/build
+lib/modules/6.13.0-rc2-xe+/modules.alias.bin
+lib/modules/6.13.0-rc2-xe+/modules.builtin
+lib/modules/6.13.0-rc2-xe+/modules.softdep
+lib/modules/6.13.0-rc2-xe+/modules.alias
+lib/modules/6.13.0-rc2-xe+/modules.order
+lib/modules/6.13.0-rc2-xe+/modules.symbols
+lib/modules/6.13.0-rc2-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1733943164:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1733943164:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
