@@ -4,27 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 509BAE7717D
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 06:14:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FA5DE7717D
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 06:42:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15EEF10E05F;
-	Wed, 11 Dec 2024 06:14:44 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6A7D10E05F;
- Wed, 11 Dec 2024 06:14:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7345921695968951744=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD22810E06B;
+	Wed, 11 Dec 2024 06:42:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OFgnThVc";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4D2A10E06B
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 06:42:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733899340; x=1765435340;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HKLPy09RWqG7xDQxkzlWQRxnjFrInOF2LYOyrg1fjOU=;
+ b=OFgnThVcTt3tm7qCkz3G8lOERwV3QYlmOIZbNfzqKp1yfm480jdkE9B/
+ TszKsBqwq6n21fFySTpKmtOEKEwG0+b6aOdpy5EJ/36G48BqspCQDBC9K
+ d3IuDDCP5kMKtDwtFC8X0b4b8vezkqmh6za6r4VBb4NPQNAZjKpexcWXc
+ Pvk8mJt7UyWn+a5KFLNjPQBPncWYT5lG52eipeuNH4gdulSJGU7Kac3rY
+ EiUMqb66fASUODTMJXmcEQyQgOAaHYE8IrAwSdg34YLeintcxw+IIqMaP
+ MFr9uP24TBzL4uEpZKP9H6AtSZOEwlJlIN0bVUTX6N2xnNRhldPOmqOGL w==;
+X-CSE-ConnectionGUID: M946z9Y2R32SHQjDhTSi/w==
+X-CSE-MsgGUID: baUinfdtR7e6Nn5vgz/iDg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="44739287"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208,223";a="44739287"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2024 22:42:20 -0800
+X-CSE-ConnectionGUID: PDhYLxbFTzK3evS0tvwI8A==
+X-CSE-MsgGUID: acKssk4ARS+5DAR3NIF3mA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+ d="scan'208,223";a="126605977"
+Received: from mbernato-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.97.233])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2024 22:42:16 -0800
+From: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>,
+ Adam Miszczak <adam.miszczak@linux.intel.com>,
+ Jakub Kolakowski <jakub1.kolakowski@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Lukasz Laguna <lukasz.laguna@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Michal Winiarski <michal.winiarski@intel.com>,
+ Narasimha C V <narasimha.c.v@intel.com>,
+ Piotr Piorkowski <piotr.piorkowski@intel.com>,
+ Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Tomasz Lis <tomasz.lis@intel.com>
+Subject: [PATCH v2 0/3] VF: Avoid reading inaccessible registers
+Date: Wed, 11 Dec 2024 07:42:08 +0100
+Message-Id: <20241211064211.781820-1-marcin.bernatowicz@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_adding_wait_helper_for?=
- =?utf-8?q?_gt_async_reset_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maciej Patelczyk" <maciej.patelczyk@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 11 Dec 2024 06:14:42 -0000
-Message-ID: <173389768280.1103366.15351256890121041510@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241210143748.1417098-1-maciej.patelczyk@intel.com>
-In-Reply-To: <20241210143748.1417098-1-maciej.patelczyk@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,153 +75,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7345921695968951744==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From VF-level some registers are not accessible. Don't check for flat
+ccs from VF-level, also don't use Wa_22019338487 for VF.
 
-== Series Details ==
+v2: Updated description for has_flat_ccs flag setting on VF
+    when disabled in BIOS. (Matt)
+    Reworked workaround ommision on VF to use the RTP mechanism. (Matt)
 
-Series: drm/xe: adding wait helper for gt async reset (rev2)
-URL   : https://patchwork.freedesktop.org/series/142300/
-State : success
+Cc: Adam Miszczak <adam.miszczak@linux.intel.com>
+Cc: Jakub Kolakowski <jakub1.kolakowski@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Lukasz Laguna <lukasz.laguna@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michal Winiarski <michal.winiarski@intel.com>
+Cc: Narasimha C V <narasimha.c.v@intel.com>
+Cc: Piotr Piorkowski <piotr.piorkowski@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Tomasz Lis <tomasz.lis@intel.com>
 
-== Summary ==
+Jakub Kolakowski (1):
+  drm/xe/vf: Don't check has flat ccs in bios on VF
 
-CI Bug Log - changes from xe-2345-afdbad14a16d9f44489fe37a05e93b24581bdc4f_BAT -> xe-pw-142300v2_BAT
-====================================================
+Marcin Bernatowicz (2):
+  drm/xe/rtp: Add match helper to omit SR-IOV VF device
+  drm/xe/vf: Don't apply Wa_22019338487 for VF
 
-Summary
--------
+ drivers/gpu/drm/xe/xe_device.c     |  2 +-
+ drivers/gpu/drm/xe/xe_rtp.c        |  5 +++++
+ drivers/gpu/drm/xe/xe_rtp.h        | 11 +++++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules |  2 +-
+ 4 files changed, 18 insertions(+), 2 deletions(-)
 
-  **SUCCESS**
+-- 
+2.31.1
 
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-New tests
----------
-
-  New tests have been introduced between xe-2345-afdbad14a16d9f44489fe37a05e93b24581bdc4f_BAT and xe-pw-142300v2_BAT:
-
-### New IGT tests (3) ###
-
-  * igt@xe_pat@pat-index-xehpc@blt:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.47] s
-
-  * igt@xe_pat@pat-index-xehpc@dw:
-    - Statuses : 1 pass(s)
-    - Exec time: [3.49] s
-
-  * igt@xe_pat@pat-index-xehpc@render:
-    - Statuses : 1 skip(s)
-    - Exec time: [0.00] s
-
-  
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2345-afdbad14a16d9f44489fe37a05e93b24581bdc4f -> xe-pw-142300v2
-
-  IGT_8146: 4134194b806f286bf0bf47ce02416ca3701b7b34 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2345-afdbad14a16d9f44489fe37a05e93b24581bdc4f: afdbad14a16d9f44489fe37a05e93b24581bdc4f
-  xe-pw-142300v2: 142300v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142300v2/index.html
-
---===============7345921695968951744==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: adding wait helper for gt async reset (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142300/">https://patchwork.freedesktop.org/series/142300/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142300v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142300v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2345-afdbad14a16d9f44489fe37a05e93b24581bdc4f_BAT -&gt; xe-pw-142300v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>New tests</h2>
-<p>New tests have been introduced between xe-2345-afdbad14a16d9f44489fe37a05e93b24581bdc4f_BAT and xe-pw-142300v2_BAT:</p>
-<h3>New IGT tests (3)</h3>
-<ul>
-<li>
-<p>igt@xe_pat@pat-index-xehpc@blt:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.47] s</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc@dw:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [3.49] s</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc@render:</p>
-<ul>
-<li>Statuses : 1 skip(s)</li>
-<li>Exec time: [0.00] s</li>
-</ul>
-</li>
-</ul>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2345-afdbad14a16d9f44489fe37a05e93b24581bdc4f -&gt; xe-pw-142300v2</li>
-</ul>
-<p>IGT_8146: 4134194b806f286bf0bf47ce02416ca3701b7b34 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2345-afdbad14a16d9f44489fe37a05e93b24581bdc4f: afdbad14a16d9f44489fe37a05e93b24581bdc4f<br />
-  xe-pw-142300v2: 142300v2</p>
-
-</body>
-</html>
-
---===============7345921695968951744==--
