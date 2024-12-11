@@ -4,64 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20B68E7717D
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 06:42:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0797DE77180
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 06:42:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E106810E3C6;
-	Wed, 11 Dec 2024 06:42:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B104210E06B;
+	Wed, 11 Dec 2024 06:42:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="As+uxhzD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LLe7J/KO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D779B10E3C6
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 06:42:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2B1010E06B
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 06:42:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733899347; x=1765435347;
+ t=1733899355; x=1765435355;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1J5tbUuMRR615IHC7TAg5mUhd3lbZoG0JM9XZkyDsZc=;
- b=As+uxhzDTOjQ5GF5n7XIIeFgqru4dAR5sj+/eOcKL8gAw6wlSc/nu71S
- 8S81kUxyci6DB/B1xKzMYYgzzGsqKLTBdHcKY2s/XPG8oVM6PNf3M9aSm
- UIiB3NWSTXhxQ0QsPXVK0CTF3905WgYA7hRciWwZVlivw8QMhnqjuGqsM
- SqiCxKYGKB+ftCtuW/4rcMC05DFWtAx1qAJ7ZUNiD+1c4V4hBXCZ3fg+C
- IT62SGGl9bSpZqkjIYguxEa9GBPSoaJBS9X55vqAsB3o6oboEOKhY5qgs
- nt98KhOVwkMxFW9phhfBAruYyv9TaZ2XJFz1eVFXBn+qW6QZYCTPpJ8kd g==;
-X-CSE-ConnectionGUID: tx4zOmCRQwOSjurCIL1uWw==
-X-CSE-MsgGUID: IS0GZm1RT22UzavuLhCiUg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="44739295"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="44739295"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 22:42:27 -0800
-X-CSE-ConnectionGUID: JkCXEBIyQuOdPMOl2KNs2w==
-X-CSE-MsgGUID: tnkNrzY3QEuXVfbQVYvqOA==
+ bh=IYjuV0kS/NUiQF5kd8UrSciJgzfqjJ4/pvFoQjsSyBs=;
+ b=LLe7J/KORZa2xZzov0wouICXm0M6FKrQ754p5msZql2WxRrMfT7dI8dL
+ LiRtiotQgJyF52KhNjTizIz0s+pd8x1+iV5B4HpQbFfKzsMuwEkmPczq/
+ KTazyEo9OM9AnMhG+9woCVlTzmAmv6VlqgGiDocuIsWoa7KEbwU3g5BdH
+ hZbGe2F+4V1EFUA7U6Q4D6EjdKgW0M+ropiRUrYR+EIQE94sPdFZJc1OY
+ apBJxp5+PAAMeUNDyxTUoPCaTuyv+wr+Ph6BpAxda5VZxyHpfPMM6EY1S
+ mprFvIxbPl1YmeG4ZRUlUrRINkE9aoqV8lwzpXc3COOdtSojoaEtLQ8HM g==;
+X-CSE-ConnectionGUID: vhRzxruRTPiXxxYOSdnHgA==
+X-CSE-MsgGUID: EJz3djSNQUOaNXFi2aUnAQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="44936051"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="44936051"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2024 22:42:35 -0800
+X-CSE-ConnectionGUID: luBihrNQQJWacqpkMKeJxw==
+X-CSE-MsgGUID: QaRc9VhIRIqkg8O7t3iyNg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="126606000"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="100505815"
 Received: from mbernato-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.97.233])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 22:42:24 -0800
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2024 22:42:31 -0800
 From: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Jakub Kolakowski <jakub1.kolakowski@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>,
  Adam Miszczak <adam.miszczak@linux.intel.com>,
+ Jakub Kolakowski <jakub1.kolakowski@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
  Lukasz Laguna <lukasz.laguna@intel.com>,
- Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Michal Winiarski <michal.winiarski@intel.com>,
  Narasimha C V <narasimha.c.v@intel.com>,
+ Piotr Piorkowski <piotr.piorkowski@intel.com>,
  Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Tomasz Lis <tomasz.lis@intel.com>, Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH 1/3] drm/xe/vf: Don't check has flat ccs in bios on VF
-Date: Wed, 11 Dec 2024 07:42:09 +0100
-Message-Id: <20241211064211.781820-2-marcin.bernatowicz@linux.intel.com>
+ Tomasz Lis <tomasz.lis@intel.com>
+Subject: [PATCH 2/3] drm/xe/rtp: Add match helper to omit SR-IOV VF device
+Date: Wed, 11 Dec 2024 07:42:10 +0100
+Message-Id: <20241211064211.781820-3-marcin.bernatowicz@linux.intel.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20241211064211.781820-1-marcin.bernatowicz@linux.intel.com>
 References: <20241211064211.781820-1-marcin.bernatowicz@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -77,50 +78,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Jakub Kolakowski <jakub1.kolakowski@intel.com>
+Add a match helper that allows the application of a workaround
+when the device is not an SR-IOV VF (Virtual Function) device.
 
-Don't check for flat ccs from VF-level as VF does not have direct
-access to the register.
-
-If the BIOS disables FlatCCS support (a use-case that will nearly never
-be used) and the has_flat_ccs flag is set, there shouldn't be
-any functional impact. The hardware will drop writes to the CCS region,
-and reads from the CCS region will always return 0.
-For the native case, the flag is disabled if the BIOS disables
-it to avoid unnecessary overhead in buffer object (BO) creation
-and migration.
-
-Signed-off-by: Jakub Kolakowski <jakub1.kolakowski@intel.com>
-Suggested-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Signed-off-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
 Cc: Adam Miszczak <adam.miszczak@linux.intel.com>
 Cc: Jakub Kolakowski <jakub1.kolakowski@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Lukasz Laguna <lukasz.laguna@intel.com>
-Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Michal Winiarski <michal.winiarski@intel.com>
 Cc: Narasimha C V <narasimha.c.v@intel.com>
 Cc: Piotr Piorkowski <piotr.piorkowski@intel.com>
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Tomasz Lis <tomasz.lis@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_rtp.c |  5 +++++
+ drivers/gpu/drm/xe/xe_rtp.h | 11 +++++++++++
+ 2 files changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 56d4ffb650da..ec0ea9c914b4 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -604,7 +604,7 @@ static int probe_has_flat_ccs(struct xe_device *xe)
- 	u32 reg;
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index b13d4d62f0b1..7a1c78fdfc92 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -340,3 +340,8 @@ bool xe_rtp_match_first_gslice_fused_off(const struct xe_gt *gt,
+ 	return dss >= dss_per_gslice;
+ }
  
- 	/* Always enabled/disabled, no runtime check to do */
--	if (GRAPHICS_VER(xe) < 20 || !xe->info.has_flat_ccs)
-+	if (GRAPHICS_VER(xe) < 20 || !xe->info.has_flat_ccs || IS_SRIOV_VF(xe))
- 		return 0;
++bool xe_rtp_match_not_sriov_vf(const struct xe_gt *gt,
++			       const struct xe_hw_engine *hwe)
++{
++	return !IS_SRIOV_VF(gt_to_xe(gt));
++}
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index 827d932b6908..7dea10d732d7 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -476,4 +476,15 @@ bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
+ bool xe_rtp_match_first_gslice_fused_off(const struct xe_gt *gt,
+ 					 const struct xe_hw_engine *hwe);
  
- 	gt = xe_root_mmio_gt(xe);
++/*
++ * xe_rtp_match_not_sriov_vf - Match when not on SR-IOV VF device
++ *
++ * @gt: GT structure
++ * @hwe: Engine instance
++ *
++ * Returns: true if device is not VF, false otherwise.
++ */
++bool xe_rtp_match_not_sriov_vf(const struct xe_gt *gt,
++			       const struct xe_hw_engine *hwe);
++
+ #endif
 -- 
 2.31.1
 
