@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23DA5E7717D
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 16:00:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C458AE7717D
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 16:22:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6A7C10E614;
-	Wed, 11 Dec 2024 16:00:06 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB1D510E614;
- Wed, 11 Dec 2024 16:00:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7205586407473805156=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82FF910EB92;
+	Wed, 11 Dec 2024 16:22:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UgAnbX31";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95D6910EB92
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 16:22:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733934168; x=1765470168;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=j8g1DIyoWoE8YRUzbHhvtphKdIBwM1D8EmtKqTT113w=;
+ b=UgAnbX31SP/m+sY955MgJIs+oM/CzWv9Joflznww/TqODUrYJomhpThj
+ EoT5+WmrK+y8kSQqhKxwvhInl6+EigvhiRhgCntLf9/lhCdpllseFF/Ag
+ lJi1C+5GEPimPcJqBEZkSWOTAFiiIjAWbcM5kyKQm1pYaggupQVFlCIn2
+ UhUJGyX4QbHyrWtaIVTCsmYw63euzTUR4VEjwfHRG7j3lO1iXjAPHfzNG
+ OBjud91Sdp1q8boKNVQVbYDRiNQ8GWRflSs3VIxtAsZI+3hFNhg8FpxeI
+ QYAzKQi93mYsA/cazsqPIwjvNUs2yGUrg2gHiZfY1XILGuL0baGhGpZ+f A==;
+X-CSE-ConnectionGUID: cvGJCrmVSQKUNFzXT/DxYw==
+X-CSE-MsgGUID: 4rZAWp5JT8Owk4H9DtRVmA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="44796644"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="44796644"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2024 08:22:47 -0800
+X-CSE-ConnectionGUID: ZYQi5aXVQ9GPs+dqo9CXQw==
+X-CSE-MsgGUID: oF4Ff6AkSNOuctvEyEaHFA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,226,1728975600"; d="scan'208";a="95922242"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2024 08:22:45 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ John Harrison <john.c.harrison@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>, ashutosh.dixit@intel.com
+Subject: Re: [PATCH v2 0/5] reg_sr/whitelist fixes and refactors
+Date: Wed, 11 Dec 2024 08:22:14 -0800
+Message-ID: <173393345386.822403.10630269256801449644.b4-ty@intel.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241209232739.147417-1-lucas.demarchi@intel.com>
+References: <20241209232739.147417-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/mst=3A_use_intel?=
- =?utf-8?q?=5Fdp=5Fcompute=5Fconfig=5Flimits=28=29_for_DP_MST?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 11 Dec 2024 16:00:05 -0000
-Message-ID: <173393280575.1237565.17108976384198360963@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241211144310.701895-1-jani.nikula@intel.com>
-In-Reply-To: <20241211144310.701895-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +67,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7205586407473805156==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On Mon, 09 Dec 2024 15:27:34 -0800, Lucas De Marchi wrote:
+> First patch is an important fix that we could eventually trip on (and it
+> did in this series because it increases the amount of save-restore
+> registers).
+> 
+> Stop writing the unused NONPRIV registers and use the HWE save-restore
+> so it doesn't need a separate mmio application and handling for GuC.
+> 
+> [...]
 
-Series: drm/i915/mst: use intel_dp_compute_config_limits() for DP MST
-URL   : https://patchwork.freedesktop.org/series/142421/
-State : success
+Applied, thanks for the reviews!
 
-== Summary ==
+[1/5] drm/xe/reg_sr: Remove register pool
+      commit: e5283bd4dfecbd3335f43b62a68e24dae23f59e4
+[2/5] drm/xe: Introduce xe_gt_dbg_printer()
+      commit: 26582fc61a923e81832df8d5a169bbdab095d15e
+[3/5] drm/xe/reg_sr: Convert whitelist to gt logging
+      commit: bd022199ce967cd4bfdd6cea2385448d72be2a80
+[4/5] drm/xe/reg_sr: Stop setting all whitelist slots
+      commit: c1151691b5e97b600a9ef3efd7c31a3abf568e41
+[5/5] drm/xe: Apply whitelist to engine save-restore
+      commit: 3fcf68d7393fd622b96cd45124ccb1eddf77684c
 
-CI Bug Log - changes from xe-2351-03abf2f5f12e0f13a3a28bf70ccf2d88ec2a707b_BAT -> xe-pw-142421v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 7)
-------------------------------
-
-  Missing    (2): bat-adlp-vm bat-lnl-1 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2351-03abf2f5f12e0f13a3a28bf70ccf2d88ec2a707b -> xe-pw-142421v1
-
-  IGT_8148: 5362e7ac965c3768c60848e266294a4c6172241c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2351-03abf2f5f12e0f13a3a28bf70ccf2d88ec2a707b: 03abf2f5f12e0f13a3a28bf70ccf2d88ec2a707b
-  xe-pw-142421v1: 142421v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142421v1/index.html
-
---===============7205586407473805156==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/mst: use intel_dp_compute_config_limits() for DP MST</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142421/">https://patchwork.freedesktop.org/series/142421/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142421v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142421v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2351-03abf2f5f12e0f13a3a28bf70ccf2d88ec2a707b_BAT -&gt; xe-pw-142421v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 7)</h2>
-<p>Missing    (2): bat-adlp-vm bat-lnl-1 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2351-03abf2f5f12e0f13a3a28bf70ccf2d88ec2a707b -&gt; xe-pw-142421v1</li>
-</ul>
-<p>IGT_8148: 5362e7ac965c3768c60848e266294a4c6172241c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2351-03abf2f5f12e0f13a3a28bf70ccf2d88ec2a707b: 03abf2f5f12e0f13a3a28bf70ccf2d88ec2a707b<br />
-  xe-pw-142421v1: 142421v1</p>
-
-</body>
-</html>
-
---===============7205586407473805156==--
+Best regards,
+-- 
+Lucas De Marchi <lucas.demarchi@intel.com>
