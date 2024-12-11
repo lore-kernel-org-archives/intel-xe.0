@@ -4,93 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62FEDE7717D
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 09:56:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B056E7717D
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 11:17:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A87310EAE0;
-	Wed, 11 Dec 2024 09:56:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 453D810E857;
+	Wed, 11 Dec 2024 11:17:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="uX+Uiavo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YIYyIjJq";
 	dkim-atps=neutral
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com
- [209.85.167.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3DE410EAE0
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 09:56:00 +0000 (UTC)
-Received: by mail-lf1-f45.google.com with SMTP id
- 2adb3069b0e04-540201cfedbso2732228e87.3
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 01:56:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1733910959; x=1734515759; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=5o6spnVR6ajql5nXA/7yn9qe6fHy4wd5WT4oqg7Hxjg=;
- b=uX+UiavoJnIJpbc4RZVahVPLdUAHhP2N3jeuj2S9scuX9pU2VH0QNlQhTuzzoTLHmL
- PlRmZkXED1Ly7RXAo1r6F8ncXSYTsoD5bdAdowQm+kdl6E0+E+6tjCEhms3H3yKhm6j0
- gCCJBLCNSZXUApwhkncT9XHtlCn0iH8hOo1mFjJEw3xrEYjlyvTqmfR8EnKf+FmxoPp0
- JKFXTk5bWWSyPobGSwTvQyr9lizn1FvnM1LOR9WHmImaiKn2+krEwJhDWQ5GJVAOaXM2
- F7EG4u2LOHXoecCl2vbZYUPNVtGUgpUxL/1kP9/HiETCChYZgbhSy4m1VtOhdA7f5/Wc
- 3YVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733910959; x=1734515759;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=5o6spnVR6ajql5nXA/7yn9qe6fHy4wd5WT4oqg7Hxjg=;
- b=FRbxVtWPGNoWFLvhBE7J2TuDEsFXoElSPLM1wOT9zRHGFjjFr4Hi05k9otO70JZcup
- cwhdBkeK6/zVcMAmA104KsBvNpQQ66q/iaYQl95BiF5ITxcEcPo2oXqakk8K51hW9XrO
- NeZotOHVuIMjloqwc+FW3W2yi6o1uIHlKanrSovJVTEwU/opZcgFu1SrdIwdE4o5BT3A
- 0X8RMk5rsgONA4AHwT4iDcz9u7PwQt9jZsEQZKWoZfNkygiB7BFFjuQPldivIjCB2veA
- rgEZJsEd9N4CfUv3YrOIOYsriEO29bul64zNFbmLwyKP1kLtDZFHQt9ztIVcH1tGqqvL
- W2AQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW48znAzK0j7Cb1m1kdtP17oeczno63TmcLGZOkFf6tmv7aj1VTBcnwHFNWpnLlI5xezADdUVBoXg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx9LE1C4/sUgxq4zBi5Yb/mkwPBu8kcrOQx7ZLJvWjoCcQ01fyt
- qXA+2jYnFHY5mVtzZ4jDxvP8hk1C/ydxp1SX9aCRnsfrIQd8Na5loxoUaH9Jy0c=
-X-Gm-Gg: ASbGncsdMEZ4RJJiPNEgSchgi7Gio4IFrpYwGjuObeaU8l+nSSlLkwFDliCg+r4FX6r
- tui7O6YQ9amNlhqQ9v4d/9D9oggmmVxNXRbPBJdD0YavLSs1b5vzEeMyHku0tL6AjE2BVDCGJwe
- 0wD7HdTALgwdU1JZEQ8JyVeqcodmXUaGmEhHPz/g2XlmQ0i5pDWn+4JowEeJiBDCj+/zcv9ew7w
- gnRZHhxrMghxw9mPTnzLQR9pRQAMVa5rZAQn04Xrh3tPkL62/A06daHUabvJoNTXNGtyE/MvGDY
- WQQCy5uUjYbXmfHAM0X5PIqyEBfP4IDmyg==
-X-Google-Smtp-Source: AGHT+IFChwIInqKh4toLH7hhsT9qt9s90iu0Z0ak8AysLNTaQPEcT5Yq2WRNWpMzPvyheGTGJPWcWQ==
-X-Received: by 2002:a05:6512:158b:b0:540:1fcd:1d9b with SMTP id
- 2adb3069b0e04-5402a609b3fmr630278e87.54.1733910958544; 
- Wed, 11 Dec 2024 01:55:58 -0800 (PST)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-53e372946dcsm1563735e87.163.2024.12.11.01.55.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 11 Dec 2024 01:55:57 -0800 (PST)
-Date: Wed, 11 Dec 2024 11:55:54 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
- Danilo Krummrich <dakr@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>,
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Johan Hovold <johan@kernel.org>,
- dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org
-Subject: Re: [PATCH RFC 4/4] drm/msm/dp: Add support for LTTPR handling
-Message-ID: <iqt3i5mha44wksx7zqjjccz3od5tavyxygyda2dn2fz2w77n36@gyo3dh6a6j72>
-References: <20241031-drm-dp-msm-add-lttpr-transparent-mode-set-v1-0-cafbb9855f40@linaro.org>
- <20241031-drm-dp-msm-add-lttpr-transparent-mode-set-v1-4-cafbb9855f40@linaro.org>
- <6lpeexb5menpwrzcnmr367x4lmhvzyovhdybn54mnwk55ieehy@mos4oso67boo>
- <Z1lWgDk6vzbx4ew7@linaro.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D09510E857
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 11:17:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733915856; x=1765451856;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=igHCPOqv7HMpbmB8PY+BNl4lzPcz1/6uLoaZBnSj8C0=;
+ b=YIYyIjJq8G4u4gu1X0xcGq/vTH/xAzt8SciKox37hyVuLVZoxIGtN85r
+ ZiDfWWbad/SFSNsvWG8Azy4EpUMHhYua/ujw7Cgt8w+CjyARl70Ipqi29
+ mlKvowG6XIei5U4SCNWNmDk84uNeFclaOrFb57tNiaLHjW7N76u+ya2xy
+ mtLNE06NoJ97eAw4HIB2mgQpmaqLeytpMsM7OyPhNGX+fAofXl/09LBOO
+ SZuVttD3KuMKYlcn9qI0MToWv7tCbmTKWp3iWNvcFfSs4xNgH8gKV2oa5
+ vs57IDLJNPN+2GwBQwlqngosDRSKCuvQzhUOXYZQy5aa4MEMJT+fu7KM2 A==;
+X-CSE-ConnectionGUID: MUXeA6atSeaZebkJ7Nw6tw==
+X-CSE-MsgGUID: ZtQKI9IsTJGarIMe83xWcA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="34430313"
+X-IronPort-AV: E=Sophos;i="6.12,225,1728975600"; d="scan'208";a="34430313"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2024 03:17:36 -0800
+X-CSE-ConnectionGUID: JNOE+VAzQaOLPSKIigsXtg==
+X-CSE-MsgGUID: WNdI9Iz2S8OIgssvajLxsg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,225,1728975600"; d="scan'208";a="96237092"
+Received: from ksztyber-mobl2.ger.corp.intel.com (HELO mpatelcz-mobl..)
+ ([10.245.244.205])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2024 03:17:34 -0800
+From: Maciej Patelczyk <maciej.patelczyk@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, raag.jadav@intel.com,
+ Maciej Patelczyk <maciej.patelczyk@intel.com>
+Subject: [PATCH v3 0/2] drm/xe: adding wait helper for gt async reset
+Date: Wed, 11 Dec 2024 12:17:25 +0100
+Message-ID: <20241211111727.1481476-1-maciej.patelczyk@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z1lWgDk6vzbx4ew7@linaro.org>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,124 +66,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Dec 11, 2024 at 11:08:16AM +0200, Abel Vesa wrote:
-> On 24-10-31 18:54:25, Dmitry Baryshkov wrote:
-> > On Thu, Oct 31, 2024 at 05:12:48PM +0200, Abel Vesa wrote:
-> > > Link Training Tunable PHY Repeaters (LTTPRs) are defined in DisplayPort
-> > > 1.4a specification. As the name suggests, these PHY repeaters are
-> > > capable of adjusting their output for link training purposes.
-> > > 
-> > > The msm DP driver is currently lacking any handling of LTTPRs.
-> > > This means that if at least one LTTPR is found between DPTX and DPRX,
-> > > the link training would fail if that LTTPR was not already configured
-> > > in transparent mode.
-> > 
-> > It might be nice to mention what is the transparent mode, especially for
-> > those who do not have the standard at hand.
-> 
-> Sorry for the late reply.
-> 
-> Will do in the next version.
-> 
-> > 
-> > > The section 3.6.6.1 from the DisplayPort v2.0 specification mandates
-> > > that before link training with the LTTPR is started, the DPTX may place
-> > > the LTTPR in non-transparent mode by first switching to transparent mode
-> > > and then to non-transparent mode. This operation seems to be needed only
-> > > on first link training and doesn't need to be done again until device is
-> > > unplugged.
-> > > 
-> > > It has been observed on a few X Elite-based platforms which have
-> > > such LTTPRs in their board design that the DPTX needs to follow the
-> > > procedure described above in order for the link training to be successful.
-> > > 
-> > > So add support for reading the LTTPR DPCD caps to figure out the number
-> > > of such LTTPRs first. Then, for platforms (or Type-C dongles) that have
-> > > at least one such an LTTPR, set its operation mode to transparent mode
-> > > first and then to non-transparent, just like the mentioned section of
-> > > the specification mandates.
-> > > 
-> > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > > ---
-> > >  drivers/gpu/drm/msm/dp/dp_display.c | 25 +++++++++++++++++++++++++
-> > >  1 file changed, 25 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-> > > index f01980b0888a40b719d3958cb96c6341feada077..5d3d318d7b87ce3bf567d8b7435931d8e087f713 100644
-> > > --- a/drivers/gpu/drm/msm/dp/dp_display.c
-> > > +++ b/drivers/gpu/drm/msm/dp/dp_display.c
-> > > @@ -107,6 +107,8 @@ struct dp_display_private {
-> > >  	struct dp_event event_list[DP_EVENT_Q_MAX];
-> > >  	spinlock_t event_lock;
-> > >  
-> > > +	u8 lttpr_caps[DP_LTTPR_COMMON_CAP_SIZE];
-> > > +
-> > >  	bool wide_bus_supported;
-> > >  
-> > >  	struct dp_audio *audio;
-> > > @@ -367,12 +369,35 @@ static int dp_display_send_hpd_notification(struct dp_display_private *dp,
-> > >  	return 0;
-> > >  }
-> > >  
-> > > +static void dp_display_lttpr_init(struct dp_display_private *dp)
-> > > +{
-> > > +	int lttpr_count;
-> > > +
-> > > +	if (drm_dp_read_lttpr_common_caps(dp->aux, dp->panel->dpcd,
-> > > +					  dp->lttpr_caps))
-> > > +		return;
-> > > +
-> > > +	lttpr_count = drm_dp_lttpr_count(dp->lttpr_caps);
-> > > +
-> > > +	if (lttpr_count) {
-> > > +		drm_dp_lttpr_set_transparent_mode(dp->aux, true);
-> > > +
-> > > +		if (lttpr_count > 0) {
-> > > +			if (drm_dp_lttpr_set_transparent_mode(dp->aux, false) != 1)
-> > > +				drm_dp_lttpr_set_transparent_mode(dp->aux, true);
-> > > +		}
-> > > +	}
-> > > +}
-> > > +
-> > >  static int dp_display_process_hpd_high(struct dp_display_private *dp)
-> > >  {
-> > >  	struct drm_connector *connector = dp->dp_display.connector;
-> > >  	const struct drm_display_info *info = &connector->display_info;
-> > >  	int rc = 0;
-> > >  
-> > > +	if (!dp->dp_display.is_edp)
-> > > +		dp_display_lttpr_init(dp);
-> > 
-> > Why is it limited to non-eDP cases only.
-> 
-> In case of eDP, I don't think that there will ever by a case that will
-> need an LTTPR in between the eDP PHY and the actual panel. It just
-> doesn't make sense.
-> 
-> IIUC, the LTTPRs, since are Training Tunnable capable, they help when
-> the physical link between the PHY and the sink can differ based on
-> different dongles and cables. This is obviously not applicable to eDP.
+GT reset is asynchronous. However, in few places there is an explicit
+wait for reset to finish via flush_work.
+Providing a synchronous gt reset version and additionally wait helper
 
-I think I just have a different paradigm: if the driver explicitly skips
-calling a function in some codepath, I assume that the usecase it broken
-or expected not to work (e.g. I read your patch like: LTTPR is expected
-not to work in eDP). If you would prefer to keep two separate code
-paths, please add a comment like 'we don't expect LTTPRs in eDP
-usecase`.
+The usage of asynchronous reset in sysfs gt0/tile0/ccs_mode creates
+a situation in which a user after changing ccs_mode with immediate
+query can receive only partial configuration due to ongoing reset.
+For instance a single compute engine where 4 were requested.
+This sometimes happens in the EU Debugger tests leading to skips or
+even failures (sysfs not accessible).
+This forces usage of sleep() in tests to wait for reset to complete.
 
-> > > +
-> > >  	rc = dp_panel_read_sink_caps(dp->panel, connector);
-> > >  	if (rc)
-> > >  		goto end;
-> > > 
-> > > -- 
-> > > 2.34.1
-> > > 
-> > 
-> > -- 
-> > With best wishes
-> > Dmitry
+The first patch provides xe_gt_reset and a helper xe_gt_reset_wait.
+The second patch makes ccs_mode sysfs write wait for reset to
+finish.
 
--- 
-With best wishes
-Dmitry
+v3: - xe_gt_reset_wait to xe_gt_wait_for_reset
+    - xe_gt_debugfs.c: force_reset_sync() calls xe_gt_reset().
+
+Maciej Patelczyk (2):
+  drm/xe: introduce xe_gt_reset and xe_gt_wait_for_reset
+  drm/xe: make change ccs_mode a synchronous action
+
+ drivers/gpu/drm/xe/tests/xe_bo.c    |  7 +++----
+ drivers/gpu/drm/xe/tests/xe_mocs.c  |  3 +--
+ drivers/gpu/drm/xe/xe_gt.h          | 25 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_ccs_mode.c |  2 +-
+ drivers/gpu/drm/xe/xe_gt_debugfs.c  |  4 +---
+ 5 files changed, 31 insertions(+), 10 deletions(-)
+
+--
+2.43.0
