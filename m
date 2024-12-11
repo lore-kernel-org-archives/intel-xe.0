@@ -4,27 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12609E7717D
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 18:32:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39B26E7717D
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 18:32:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0AA910EBE3;
-	Wed, 11 Dec 2024 18:32:39 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59E6010E40C;
- Wed, 11 Dec 2024 18:32:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0339710EBE9;
+	Wed, 11 Dec 2024 18:32:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="MRlBdk87";
+	dkim-atps=neutral
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com
+ [209.85.167.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B23D10E40C
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 18:32:56 +0000 (UTC)
+Received: by mail-lf1-f44.google.com with SMTP id
+ 2adb3069b0e04-54024aa9febso2612390e87.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 10:32:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1733941974; x=1734546774; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=qwjqsNH/3nF2Q3XbWudExYhlk4EBq4Q9BHCqHdvdEaI=;
+ b=MRlBdk87yd5XRun6HxduAb3YdKzkUfpEMA9bIt/QJ+Kq4nAMlDgErn1RoQ6Q35yOQn
+ TEWHGFQHtrGuu/dYCiAl+WSTATsibcyCpwOZnm163/j8tW9QUjvEPVhUu6tIzB59rqjm
+ AcxLRhyGdmFpUhguwsbDd96u2RfhH1VyyUkDkB8mKJIFsnVnAq1ADZsxzzcDf9eM6tIX
+ nb/W4apOT4tVBW3WbeVpvx77ky1vcCGddv9jewJSsfIXKjWweeJ9YDu644P8be6Rk1Lm
+ Gde/cQI8Dn64FVHT3ZK9Y7uX8C8h7YXSb+Cd1wignrUFXbBLPBF15Qoi+B+8ggKL1GO5
+ 455g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1733941974; x=1734546774;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=qwjqsNH/3nF2Q3XbWudExYhlk4EBq4Q9BHCqHdvdEaI=;
+ b=Yb5DKMy0sV+W9j2C/w8nNYDZPM6Yv9YrLmbVB6Bt4hlaPekrMJSPjlVvYCxVJ95LNc
+ V/BlbAZU4/CHPtn41PlqbE8zwPGLgADd6vv4pTp00fGNVktmmcK6WfwKW8wFHJSWH2vt
+ 3X5vetwa6dPyAeYPZgxd3fbRJZdLCom1mpMmwRz5iuk91A/UqWMBFIVP9ACSzDXOZS/a
+ cmfrC+gJZEOPe6BNYETh7I3mDUBUHqGaUfG45QQrI6K6tr79LsWc3Z8Af4YYWzKtkRNL
+ Ox0fz+iQGJ10uPiAUgSgmwF/W5UrE8KOqIF02gUmCs56Htdaxc3ArhB3Ty1qz0YlNlaJ
+ QMXw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUL+evBwa6gKYsiLPCYQxwbdK/GGhHiEn2w5w4UArk/OYh9TCOLTN4WHClaKsnoLM1hiy/tM4dg1g==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzSa1uc0mCoz3vC+OPTYmO2gS6fEiVujbq0vunonFfGrmEdrZww
+ rGery/ClJ1uFh4Yd1QxmrcRSkdSZ3zf5SEAnSSEkHZ63iyiWJIGGsPqymMY/oYw=
+X-Gm-Gg: ASbGnctDH/gGeyraUxuuhXQHgpbL/YrEfEm+vFnz6VhaSeAlcCFhvekMKoQ/lfXmkbM
+ AdiLGRtGFRKsYcHquvY4NwtkuNNyFOd//bHFz0miq5uA48pwrsfpq/OXLSqthQ33UggLlP/TxN/
+ ECfvOIrR6ytcpNDdf4fuu/DafMp3WBDdqEg8ZwO4XnrfjpSqEcfMEQJlFOieEC0dRMTckz07X1J
+ empwJKj/hDOZl3h+h1dnisdv8hSqOmWaUh+daqwxz8m4qg7r1ZQdzS0R/VIl7pzM4yqp85MJgkD
+ 2RUjmt71jgbUKMgU8WauK7TkfOomRHuKAQ==
+X-Google-Smtp-Source: AGHT+IFmZdkDf94Jsx8fCrALITW/9iPuUY5e7Ad8TDSKUOMmNblYCFB7l7IPRhIdF6tMpVRDpdpenQ==
+X-Received: by 2002:a05:6512:1329:b0:540:1dac:c03d with SMTP id
+ 2adb3069b0e04-5402f04d0ffmr331050e87.57.1733941974289; 
+ Wed, 11 Dec 2024 10:32:54 -0800 (PST)
+Received: from eriador.lumag.spb.ru
+ (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5401d2aab5csm1134637e87.168.2024.12.11.10.32.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 11 Dec 2024 10:32:52 -0800 (PST)
+Date: Wed, 11 Dec 2024 20:32:51 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Abel Vesa <abel.vesa@linaro.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, 
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v2 1/4] drm/dp: Add helper to set LTTPRs in transparent
+ mode
+Message-ID: <3omcjrgfkdmw466ok7gej2jge25vtwzaiycwz2xgejwppyvkza@rhssgk7xz4hj>
+References: <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-0-d5906ed38b28@linaro.org>
+ <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-1-d5906ed38b28@linaro.org>
+ <Z1mk08SHEd5_vc99@hovoldconsulting.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/display=3A_Program?=
- =?utf-8?q?_double_buffered_LUT_registers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 11 Dec 2024 18:32:38 -0000
-Message-ID: <173394195835.1273498.15840676675604724494@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241211181830.3348155-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20241211181830.3348155-1-chaitanya.kumar.borah@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z1mk08SHEd5_vc99@hovoldconsulting.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,48 +103,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Dec 11, 2024 at 03:42:27PM +0100, Johan Hovold wrote:
+> On Wed, Dec 11, 2024 at 03:04:12PM +0200, Abel Vesa wrote:
+>  
+> > +/**
+> > + * drm_dp_lttpr_set_transparent_mode - set the LTTPR in transparent mode
+> > + * @aux: DisplayPort AUX channel
+> > + * @enable: Enable or disable transparent mode
+> > + *
+> > + * Returns 0 on success or a negative error code on failure.
+> > + */
+> > +int drm_dp_lttpr_set_transparent_mode(struct drm_dp_aux *aux, bool enable)
+> > +{
+> > +	u8 val = enable ? DP_PHY_REPEATER_MODE_TRANSPARENT :
+> > +			  DP_PHY_REPEATER_MODE_NON_TRANSPARENT;
+> > +	int ret = drm_dp_dpcd_writeb(aux, DP_PHY_REPEATER_MODE, val);
+> > +
+> > +	return ret == 1 ? 0 : ret;
+> 
+> This looks correct, but I had to go look at drm_dp_dpcd_writeb() to make
+> sure it never returns 0 (for short transfers).
+> 
+> > +}
+> > +EXPORT_SYMBOL(drm_dp_lttpr_set_transparent_mode);
+> 
+> This appears to be what the driver currently uses, but why not
+> EXPORT_SYMBOL_GPL?
 
-Series: drm/xe/display: Program double buffered LUT registers
-URL   : https://patchwork.freedesktop.org/series/142436/
-State : success
-
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 7ea6c6e988598e4c2de3ead4fa27851bef94d756
-Author: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Date:   Wed Dec 11 23:48:30 2024 +0530
-
-    drm/xe/display: Program double buffered LUT registers
-    
-    From PTL, LUT registers are made double buffered. This helps us
-    to program them in the active region without any concern of tearing.
-    This particulary helps in case of displays with high refresh rates
-    where vblank periods are shorter.
-    
-    This patch tries to incorporates LUT programming to the noarm commit path
-    for PTL without making significant changes to the color callback framework
-    itself. DSB0 is still used to program to non LUT color registers
-    (for ex. CTM). However, it does not chain DSB1 to program the LUT
-    registers. Instead, it is programmed through intel_pre_update_crtc path.
-    
-    LUT programming is also disabled in the vblank worker.
-    
-    Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-+ /mt/dim checkpatch f4246a72ae40a2ac6dfd680e3e4bb1b6895081c3 drm-intel
-7ea6c6e98859 drm/xe/display: Program double buffered LUT registers
+$ git grep EXPORT_SYMBOL drivers/gpu/drm/*.c | wc -l
+962
+$ git grep EXPORT_SYMBOL_GPL drivers/gpu/drm/*.c | wc -l
+93
 
 
+-- 
+With best wishes
+Dmitry
