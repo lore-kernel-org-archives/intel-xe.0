@@ -4,92 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C73EE7717D
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 19:22:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA266E7717D
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 19:22:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 520D310E40E;
-	Wed, 11 Dec 2024 19:22:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="B0AeIbHI";
-	dkim-atps=neutral
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com
- [IPv6:2a00:1450:4864:20::22a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A800410EBF6
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 19:22:06 +0000 (UTC)
-Received: by mail-lj1-x22a.google.com with SMTP id
- 38308e7fff4ca-30036310158so44455061fa.0
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 11:22:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1733944925; x=1734549725; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=fhMIxqS4yJy4TMfF6IpImxcWZLV7gqt0icqJ+XQLDEs=;
- b=B0AeIbHIUSq607/t+edx4VpnmVxnTqcSM2ZAGouPVa7UiSTtwttVn/2baRFBp2ZYc9
- tvGE8mJOm+SZztkPHvaulvx4Md22eZhCHo2BnsuUxgMhrBED6d8qQeVTkEqQ60HuVn2g
- atM9j+3GiBJnoc4wRjRgSAINLLSrFP2a6ajW7BYgZ2nKiO0SUEmFLU5yqipNzxvolOuI
- ssBjQbpaX7tz//97szhwM7zDtv80Kdmrp9SJaHJSENn1Bj9e7COtqWDekdGpsyslAQMk
- kKYPQz+NFg/aEDl8bD8P/5FhqBWuOjgT0aQgtirioX9dQC9EE0p09mUFOu5C8F+JobIw
- B6RQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733944925; x=1734549725;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=fhMIxqS4yJy4TMfF6IpImxcWZLV7gqt0icqJ+XQLDEs=;
- b=XAJZotjr40QAmZn5ffyO6Sq5WwT/78Iq6r3zn4c/ID41NORkFYgxv8yRXMfy+xwWVD
- brCgKcY2aW1iYjx1SAM3K3QHtR9ePxStVWdekgJkP+YPJXKuW2gaH3zaMf8BfXQ6J9an
- WW5V5E2mp0Ur8kaD2LtSIv7qo/W1mprh5Lol6tICT9c/Ctdlc68/eba3F6D4lpr00/FF
- 2r9FebqN+Y+QEyoKzfZggYBbkfBzEpuBdwYOoq8yoA8CzcTA7GQJrariocjH7DRRCU0k
- 6fgEwHL1kB4oph8wzQgZlw8xYiNlABRGbvqar0Qd5qHj3HuMN4f9jfZYfQg+oDUbnesA
- CSog==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXLjI/I9P9eapNu8BHCvCVeeb6LTGs39mKl3aMXboT7A09cxUaZyAVaTPY4ATzc+2SIZkGX0prumw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzl4x2Q/J+45lrfvJnRYb4N2SSu3WOArpP/FHhgBsDlvJ7QmihC
- iQh7YXRqtHqkgqMsEtJZWkGE0gqRnJuQ34Sf8Xic1PES0lHjpdoGzivVGquaemA=
-X-Gm-Gg: ASbGncu7YxCBYgefxM1QriaDQ+qI3ZzjSOR1guUQuDxQxV8Dif1lzY5JathtjLQeuYs
- UicfKAATuDHoqtBfKnjcQ+x7GAr9laUHrFZ3hIqxLOIJI5re20TmeMAy26YyoqQWc4diBk8fbcF
- yUasr/gqG0+2XTiKVjLlOocuj/9VZWVQUj5yqG4tEfZ3syX0o+KmF2aky9LFWHhKHYyhjaa8qjJ
- FSEWdmrsZGDsi+BtamwM2UhYyLEerD/UOrJ3b8BNBWi5CPUdfLfg+KmYBwQqEOoF/reMRkDM4Kw
- QobrmlMqUA4Z+y8YBf/JlcdrkOMyuOU+qw==
-X-Google-Smtp-Source: AGHT+IE7tOuuyi7X6war4XV8L7zXaUOuiy/zuezb7qOEEGBSx8kQ05R5q5SvNGFQfCAc2tJou2uPgw==
-X-Received: by 2002:a19:8c1c:0:b0:540:2ff1:309d with SMTP id
- 2adb3069b0e04-5402ff1319cmr40692e87.34.1733944924716; 
- Wed, 11 Dec 2024 11:22:04 -0800 (PST)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-53e38dcdd1esm1617171e87.124.2024.12.11.11.22.02
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 11 Dec 2024 11:22:03 -0800 (PST)
-Date: Wed, 11 Dec 2024 21:22:00 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
- Danilo Krummrich <dakr@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>,
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Johan Hovold <johan@kernel.org>,
- dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org
-Subject: Re: [PATCH v2 1/4] drm/dp: Add helper to set LTTPRs in transparent
- mode
-Message-ID: <o6xcm7jdcay77b6kltj7zownk6je6umqlmxsuscbbubw4jlr5v@w4zuusufajwx>
-References: <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-0-d5906ed38b28@linaro.org>
- <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-1-d5906ed38b28@linaro.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8066010E40E;
+	Wed, 11 Dec 2024 19:22:29 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E88310E40E;
+ Wed, 11 Dec 2024 19:22:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0188926964986837489=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-1-d5906ed38b28@linaro.org>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/display=3A_Program_d?=
+ =?utf-8?q?ouble_buffered_LUT_registers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 11 Dec 2024 19:22:28 -0000
+Message-ID: <173394494805.1275968.11948381392269486626@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241211181830.3348155-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20241211181830.3348155-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,73 +36,144 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Dec 11, 2024 at 03:04:12PM +0200, Abel Vesa wrote:
-> According to the DisplayPort standard, LTTPRs have two operating
-> modes:
->  - non-transparent - it replies to DPCD LTTPR field specific AUX
->    requests, while passes through all other AUX requests
->  - transparent - it passes through all AUX requests.
-> 
-> Switching between this two modes is done by the DPTX by issuing
-> an AUX write to the DPCD PHY_REPEATER_MODE register.
-> 
-> Add a generic helper that allows switching between these modes.
-> 
-> Also add a generic wrapper for the helper that handles the explicit
-> disabling of non-transparent mode and its disable->enable sequence
-> mentioned in the DP Standard v2.0 section 3.6.6.1. Do this in order
-> to move this handling out of the vendor specific driver implementation
-> into the generic framework.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  drivers/gpu/drm/display/drm_dp_helper.c | 50 +++++++++++++++++++++++++++++++++
->  include/drm/display/drm_dp_helper.h     |  2 ++
->  2 files changed, 52 insertions(+)
-> 
+--===============0188926964986837489==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/xe/display: Program double buffered LUT registers
+URL   : https://patchwork.freedesktop.org/series/142436/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2353-64679a558442b0191dff88abe841d13ee7e0b229_BAT -> xe-pw-142436v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-142436v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
+    - bat-lnl-1:          [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3729])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2353-64679a558442b0191dff88abe841d13ee7e0b229/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142436v1/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-dpms@a-edp1:
+    - bat-lnl-1:          [DMESG-WARN][3] ([Intel XE#3729]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2353-64679a558442b0191dff88abe841d13ee7e0b229/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142436v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
+
+  
+  [Intel XE#3729]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729
 
 
-> +/**
-> + * drm_dp_lttpr_init - init LTTPR transparency mode according to DP standard
-> + *
-> + * @aux: DisplayPort AUX channel
-> + * @lttpr_count: Number of LTTPRs
-> + *
-> + * Returns 0 on success or a negative error code on failure.
-> + */
-> +int drm_dp_lttpr_init(struct drm_dp_aux *aux, int lttpr_count)
-> +{
-> +	if (!lttpr_count)
-> +		return 0;
-> +
-> +	/*
-> +	 * See DP Standard v2.0 3.6.6.1 about the explicit disabling of
-> +	 * non-transparent mode and the disable->enable non-transparent mode
-> +	 * sequence.
-> +	 */
-> +	drm_dp_lttpr_set_transparent_mode(aux, true);
-> +
-> +	if (lttpr_count > 0 && !drm_dp_lttpr_set_transparent_mode(aux, false))
-> +		return 0;
-> +
-> +	/*
-> +	 * Roll-back to tranparent mode if setting non-tranparent mode failed or
-> +	 * the number of LTTPRs is invalid
-> +	 */
-> +	drm_dp_lttpr_set_transparent_mode(aux, true);
+Build changes
+-------------
 
-This means that if lttpr_count < 0, then there will be two requests to
-set LTTPRs to a transparent mode. Is that expected?
+  * IGT: IGT_8148 -> IGT_8149
+  * Linux: xe-2353-64679a558442b0191dff88abe841d13ee7e0b229 -> xe-pw-142436v1
 
-> +
-> +	return -EINVAL;
-> +}
-> +EXPORT_SYMBOL(drm_dp_lttpr_init);
-> +
+  IGT_8148: 5362e7ac965c3768c60848e266294a4c6172241c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8149: 1e3893ae48c972da2338a62477d74de0f7b26776 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2353-64679a558442b0191dff88abe841d13ee7e0b229: 64679a558442b0191dff88abe841d13ee7e0b229
+  xe-pw-142436v1: 142436v1
 
--- 
-With best wishes
-Dmitry
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142436v1/index.html
+
+--===============0188926964986837489==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/display: Program double buffered LUT registers</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142436/">https://patchwork.freedesktop.org/series/142436/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142436v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142436v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2353-64679a558442b0191dff88abe841d13ee7e0b229_BAT -&gt; xe-pw-142436v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-142436v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2353-64679a558442b0191dff88abe841d13ee7e0b229/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142436v1/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729">Intel XE#3729</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-dpms@a-edp1:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2353-64679a558442b0191dff88abe841d13ee7e0b229/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729">Intel XE#3729</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142436v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8148 -&gt; IGT_8149</li>
+<li>Linux: xe-2353-64679a558442b0191dff88abe841d13ee7e0b229 -&gt; xe-pw-142436v1</li>
+</ul>
+<p>IGT_8148: 5362e7ac965c3768c60848e266294a4c6172241c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8149: 1e3893ae48c972da2338a62477d74de0f7b26776 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2353-64679a558442b0191dff88abe841d13ee7e0b229: 64679a558442b0191dff88abe841d13ee7e0b229<br />
+  xe-pw-142436v1: 142436v1</p>
+
+</body>
+</html>
+
+--===============0188926964986837489==--
