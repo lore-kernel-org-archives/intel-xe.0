@@ -4,32 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E572E7717F
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 02:50:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C093E7717F
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 03:01:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A90010EA31;
-	Wed, 11 Dec 2024 02:50:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C69FE10E1FB;
+	Wed, 11 Dec 2024 03:01:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="u5fZ/gpW";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EmcE4/lj";
 	dkim-atps=neutral
 Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BCF810E120;
- Wed, 11 Dec 2024 02:50:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04DF710E1FB
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 03:01:39 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 8E9E9A41D9F;
- Wed, 11 Dec 2024 02:48:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2F66C4CEDF;
- Wed, 11 Dec 2024 02:50:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
- s=korg; t=1733885443;
- bh=C1p1Ur5QCo63c2pabe6pdtPHc4DXD/edWuUg2c5W1rI=;
+ by nyc.source.kernel.org (Postfix) with ESMTP id C7872A41D8E;
+ Wed, 11 Dec 2024 02:59:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 097C6C4CED6;
+ Wed, 11 Dec 2024 03:01:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1733886097;
+ bh=08Gv+rg+muCd4b+QXxh4lSp3ciy5sU1jyZsQ2rNGCQs=;
  h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=u5fZ/gpW5jFRGO7MUBQaaZ7EgRL5SbKSrvY7yk4XgnrXQ7iTXlQdgNQuxkXW8XsEU
- DrSY2RvgO3myem+8+0r+fPnEVkJ622gxoAvBGZmHq1GHcjqcIgbi0UiHZMQHG1FvHq
- abSWtb/hxC5Xk4n2V4Wr5FYMY7W0R77+cgVDL+GA=
-Date: Tue, 10 Dec 2024 18:50:40 -0800
-From: Andrew Morton <akpm@linux-foundation.org>
-To: Jakub Kicinski <kuba@kernel.org>
+ b=EmcE4/ljfCRY3RJanBjxtPhT62/nJjxk7ELO0ZGNbc2mhHWfd391knNb2HOuZGhSx
+ 1e9fTFNcZABywOnqpoRKAEZbgjlix3qU4Qd2lcLQX3AgcLKJ4vrIgfKpyVm37bJMAM
+ wiwQScSc5AP2YRJa64ls0Q4PrRlmeIvzeFuzlqiXSS0E4b38+g1f5LgHQjP+e4bxxF
+ EWfJBUd/sx64BPsSVOGtlrnzPfoqLHGXyBoBKFxBYI5CCDVF2OYRXR0K/LPrQzVMJu
+ IZkEdyC65OkC/1hbUFTVO1xckc1Src7rjo3nhww+SaTgc+dkPD8qefo1Jh9IYKWx27
+ gFWQHpinQ+82w==
+Date: Tue, 10 Dec 2024 19:01:33 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Andrew Morton <akpm@linux-foundation.org>
 Cc: Easwar Hariharan <eahariha@linux.microsoft.com>, Jeff Johnson
  <jeff.johnson@oss.qualcomm.com>, Pablo Neira Ayuso <pablo@netfilter.org>,
  Jozsef Kadlecsik <kadlec@netfilter.org>, "David S. Miller"
@@ -42,7 +45,7 @@ Cc: Easwar Hariharan <eahariha@linux.microsoft.com>, Jeff Johnson
  Alexander Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger
  <borntraeger@linux.ibm.com>, Sven Schnelle <svens@linux.ibm.com>, Ofir
  Bitton <obitton@habana.ai>, Oded Gabbay <ogabbay@kernel.org>, Lucas De
- Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?=
  <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
  <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
@@ -52,7 +55,7 @@ Cc: Easwar Hariharan <eahariha@linux.microsoft.com>, Jeff Johnson
  James Smart <james.smart@broadcom.com>, Dick Kennedy
  <dick.kennedy@broadcom.com>, "James E.J. Bottomley"
  <James.Bottomley@HansenPartnership.com>, "Martin K. Petersen"
- <martin.petersen@oracle.com>, Roger Pau =?ISO-8859-1?Q?Monn=E9?=
+ <martin.petersen@oracle.com>, Roger Pau =?UTF-8?B?TW9ubsOp?=
  <roger.pau@citrix.com>, Jens Axboe <axboe@kernel.dk>, Kalle Valo
  <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, Catalin Marinas
  <catalin.marinas@arm.com>, Jack Wang <jinpu.wang@cloud.ionos.com>, Marcel
@@ -83,16 +86,16 @@ Cc: Easwar Hariharan <eahariha@linux.microsoft.com>, Jeff Johnson
  oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org, Anna-Maria Behnsen
  <anna-maria@linutronix.de>
 Subject: Re: [PATCH v3 00/19] Converge on using secs_to_jiffies()
-Message-Id: <20241210185040.96c81a25f098f59191223c9f@linux-foundation.org>
-In-Reply-To: <20241210184129.41aaf371@kernel.org>
+Message-ID: <20241210190133.44818a76@kernel.org>
+In-Reply-To: <20241210185040.96c81a25f098f59191223c9f@linux-foundation.org>
 References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
  <315e9178-5b10-4de0-bdcf-7243e0e355bb@oss.qualcomm.com>
  <20241210153604.cf99699f264f12740ffce5c7@linux-foundation.org>
  <20241210173548.5d32efe0@kernel.org>
  <20241210183130.81111d05148c41278a299aad@linux-foundation.org>
  <20241210184129.41aaf371@kernel.org>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
+ <20241210185040.96c81a25f098f59191223c9f@linux-foundation.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -109,20 +112,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 10 Dec 2024 18:41:29 -0800 Jakub Kicinski <kuba@kernel.org> wrote:
-
-> On Tue, 10 Dec 2024 18:31:30 -0800 Andrew Morton wrote:
-> > > > I'll just grab everything and see if anyone complains ;)  
-> > > 
-> > > I may, if this leads to a conflict :(  
+On Tue, 10 Dec 2024 18:50:40 -0800 Andrew Morton wrote:
+> > > Very unlikely, and any such conflict will be trivial.  
 > > 
-> > Very unlikely, and any such conflict will be trivial.
+> > Agreed, mainly I don't understand why we'd make an exception
+> > and take the patchset via a special tree.  
 > 
-> Agreed, mainly I don't understand why we'd make an exception
-> and take the patchset via a special tree.
+> It saves work for everyone?
+> 
+> The patches are super-simple.  If a maintainer chooses to merge one of
+> them, Stephen tells us and I drop the mm.git copy.  It's all so easy.
 
-It saves work for everyone?
-
-The patches are super-simple.  If a maintainer chooses to merge one of
-them, Stephen tells us and I drop the mm.git copy.  It's all so easy.
-
+If it's just to save work - we're fine.
+Please don't apply the networking changes.
