@@ -4,126 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A01DE7717D
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 17:46:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9344E7717D
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Dec 2024 18:04:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2993110EBD2;
-	Wed, 11 Dec 2024 17:46:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BECD10EBE3;
+	Wed, 11 Dec 2024 18:04:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="Iy71Fyib";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="AF9i8gno";
 	dkim-atps=neutral
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com
- [209.85.219.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2652910EBD2
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 17:46:52 +0000 (UTC)
-Received: by mail-yb1-f169.google.com with SMTP id
- 3f1490d57ef6-e39fb8548e2so5649803276.3
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 09:46:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=raspberrypi.com; s=google; t=1733939211; x=1734544011;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=XX4yF9JMGXX3II/VI0ICz4h+LN+8Yz44eu6TfJ04Ugk=;
- b=Iy71Fyib4luCZvwEqLaRsLNtjvzAMp+6klAYJWOlhTDx4QJZVbJ8xhCN87YvhUjUU/
- gsAdj2z83ez0BYRkclcRQsfQACgf+NnFKz2ke2kQUYydbLrAFBh07narAQpDKCtZC2IN
- tGIv+RQlqoD1FnzroFmn6rDG4ytusIL/FGWHhCqO5zBVAest26LwyEk70jZxrkSiUy6i
- PlGHgwj7TBpopWWb9BQeMnhcu01BwPa7O+AiqA0gL5yjf731Jhm67CBZbcLUbi/AhAIw
- eyvN9OdFW33zFK7oZMpqftWEQF35noDdAA4DvWJfHcTtNGwI9B7HyhrOKzw4RnexZT9q
- op9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733939211; x=1734544011;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=XX4yF9JMGXX3II/VI0ICz4h+LN+8Yz44eu6TfJ04Ugk=;
- b=iYjR/E6cyqeMOl+Gh+Mxa3W52gcMxzyspKVECRG+/03HHu1dfJiLBLMqXNxZpZzKj6
- CfCQcQ7tE+kiAezcClBWW+/Vgn0TCLJKvOwehhjyW5WmENbGut8Lt9pFF88QYsKWk5S4
- G2UczLRRKRxWAl/cAcGKQ0v9wCXSyw/8LbnBfdEoI7VcgBCxXcGgRe2LoDx8/TTTDp8+
- EkZrMD9GWFnPdgEE0YA19u8SifchxryhmX+ebsxDqeih4RcnrC6vV3dW4pIQXVykfTxA
- F7PfcBF9vYCCNBH0tPHTZNxp68hjlMhjkR/wsXbZ2vMRgmC/lL6PkmzE7peISC7G4M1O
- lOXA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUbch1/eT0kSkzIgf7tfW2Xcw+2G10KNMIrX26sv4NbnKdcO06XwH8O3UpQ/pBSr6RCfgn2+OCV8A==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yww4+dIngvGglirF8kFbo3MpjDS3YQUJsjYklOoAPNTjHxl4lVC
- GMkvyoqNVhQLH5gSoNUxozM+6DXf5QubSzObuSim2oeE1Oap6OtgEHlfr92z4CXrXtEF/cowaX5
- YdRXye/TMtKw3L+OtZN6X12rKAbDZo0uQ1lPdQA==
-X-Gm-Gg: ASbGnctx/J/DbuoBrT2H/KrE1rAIUS7VLCKhqXi7gnshGtP672XwoNM86hp35o9kB9i
- Cw4BCs4M2qxR9FiD5Sf88JIkzVA3tKD2IZaI=
-X-Google-Smtp-Source: AGHT+IG3lDp6pcc8WpN9DOxtNpymp29steFnShZFR78LeXrDU2v7lqz7zSz8oGrhbnT8m3jrCYcj2LxsZTVFVNmSQds=
-X-Received: by 2002:a05:6902:230d:b0:e39:8a36:5771 with SMTP id
- 3f1490d57ef6-e3da3158089mr228005276.34.1733939211006; Wed, 11 Dec 2024
- 09:46:51 -0800 (PST)
-MIME-Version: 1.0
-References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
- <20241210-converge-secs-to-jiffies-v3-16-ddfefd7e9f2a@linux.microsoft.com>
-In-Reply-To: <20241210-converge-secs-to-jiffies-v3-16-ddfefd7e9f2a@linux.microsoft.com>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Wed, 11 Dec 2024 17:46:32 +0000
-Message-ID: <CAPY8ntDHcGpsaNytY2up_54e03twqZ2fj1=JTnb8x7LLo3uGDQ@mail.gmail.com>
-Subject: Re: [PATCH v3 16/19] staging: vc04_services: Convert timeouts to
- secs_to_jiffies()
-To: Easwar Hariharan <eahariha@linux.microsoft.com>
-Cc: Pablo Neira Ayuso <pablo@netfilter.org>,
- Jozsef Kadlecsik <kadlec@netfilter.org>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Simon Horman <horms@kernel.org>, 
- Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>, 
- Daniel Mack <daniel@zonque.org>, Haojian Zhuang <haojian.zhuang@gmail.com>, 
- Robert Jarzmik <robert.jarzmik@free.fr>, Russell King <linux@armlinux.org.uk>, 
- Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, 
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>, 
- Sven Schnelle <svens@linux.ibm.com>, Ofir Bitton <obitton@habana.ai>, 
- Oded Gabbay <ogabbay@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DB8910EBE3;
+ Wed, 11 Dec 2024 18:04:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=mSkjN2oOpv7jPaY0oL6AlL4KmU2vGmok0JKQm2GM5UA=; b=AF9i8gnoezdKo0lEfcFt7zIqKB
+ 7J2n2bzle/Wqqv5Tfy7zfg8RARSP3w5RWK95a1sniCsSruRyXNJYNJ7fx31auIBcqoBG2fVCrPCam
+ fgSQsksVYp42QQ1NNmKqq/wqEcf+DthodMZE5OC4A3Rbg+ArNzgixRfnl0NpubFTMJST17Y5iRa4n
+ 6G1elo6W4O1HmUW6N0WYzvbYN4rkGQzu0mhhOTh7cxMLWFcXv36Wk0c9p1mjccJMj10xzzX5bm/0p
+ j/renxhAlHZQygZFbCRwIrRijcfjoS5ugh1+doPwmINW9D+CnjcwT1IMNvu2ijVthtc6Ukn/w7Uoi
+ M7BTxKIA==;
+Received: from [90.241.98.187] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1tLR4X-0022VR-FL; Wed, 11 Dec 2024 19:04:29 +0100
+Date: Wed, 11 Dec 2024 18:04:28 +0000
+From: Tvrtko Ursulin <tursulin@igalia.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jeroen de Borst <jeroendb@google.com>,
- Praveen Kaligineedi <pkaligineedi@google.com>, 
- Shailend Chand <shailend@google.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
- James Smart <james.smart@broadcom.com>,
- Dick Kennedy <dick.kennedy@broadcom.com>, 
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- =?UTF-8?Q?Roger_Pau_Monn=C3=A9?= <roger.pau@citrix.com>, 
- Jens Axboe <axboe@kernel.dk>, Kalle Valo <kvalo@kernel.org>,
- Jeff Johnson <jjohnson@kernel.org>, 
- Catalin Marinas <catalin.marinas@arm.com>,
- Andrew Morton <akpm@linux-foundation.org>, 
- Jack Wang <jinpu.wang@cloud.ionos.com>, Marcel Holtmann <marcel@holtmann.org>, 
- Johan Hedberg <johan.hedberg@gmail.com>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
- Scott Branden <sbranden@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
- Xiubo Li <xiubli@redhat.com>, 
- Ilya Dryomov <idryomov@gmail.com>, Josh Poimboeuf <jpoimboe@kernel.org>,
- Jiri Kosina <jikos@kernel.org>, 
- Miroslav Benes <mbenes@suse.cz>, Petr Mladek <pmladek@suse.com>, 
- Joe Lawrence <joe.lawrence@redhat.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, 
- Louis Peens <louis.peens@corigine.com>, Michael Ellerman <mpe@ellerman.id.au>, 
- Nicholas Piggin <npiggin@gmail.com>,
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- Naveen N Rao <naveen@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>,
- netfilter-devel@vger.kernel.org, 
- coreteam@netfilter.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
- cocci@inria.fr, linux-arm-kernel@lists.infradead.org, 
- linux-s390@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-scsi@vger.kernel.org, 
- xen-devel@lists.xenproject.org, linux-block@vger.kernel.org, 
- linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
- linux-mm@kvack.org, linux-bluetooth@vger.kernel.org, 
- linux-staging@lists.linux.dev, linux-rpi-kernel@lists.infradead.org, 
- ceph-devel@vger.kernel.org, live-patching@vger.kernel.org, 
- linux-sound@vger.kernel.org, oss-drivers@corigine.com, 
- linuxppc-dev@lists.ozlabs.org, Anna-Maria Behnsen <anna-maria@linutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-fixes
+Message-ID: <Z1nULMrutE4HERvB@linux>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,48 +67,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 10 Dec 2024 at 22:02, Easwar Hariharan
-<eahariha@linux.microsoft.com> wrote:
->
-> Commit b35108a51cf7 ("jiffies: Define secs_to_jiffies()") introduced
-> secs_to_jiffies(). As the value here is a multiple of 1000, use
-> secs_to_jiffies() instead of msecs_to_jiffies to avoid the multiplication.
->
-> This is converted using scripts/coccinelle/misc/secs_to_jiffies.cocci with
-> the following Coccinelle rules:
->
-> @@ constant C; @@
->
-> - msecs_to_jiffies(C * 1000)
-> + secs_to_jiffies(C)
->
-> @@ constant C; @@
->
-> - msecs_to_jiffies(C * MSEC_PER_SEC)
-> + secs_to_jiffies(C)
->
-> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 
-Reviewed-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Hi Dave, Sima,
 
-> ---
->  drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c b/drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c
-> index dc0d715ed97078ad0f0a41db78428db4f4135a76..0dbe76ee557032d7861acfc002cc203ff2e6971d 100644
-> --- a/drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c
-> +++ b/drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c
-> @@ -59,7 +59,7 @@ static int bcm2835_audio_send_msg_locked(struct bcm2835_audio_instance *instance
->
->         if (wait) {
->                 if (!wait_for_completion_timeout(&instance->msg_avail_comp,
-> -                                                msecs_to_jiffies(10 * 1000))) {
-> +                                                secs_to_jiffies(10))) {
->                         dev_err(instance->dev,
->                                 "vchi message timeout, msg=%d\n", m->type);
->                         return -ETIMEDOUT;
->
-> --
-> 2.43.0
->
+A handful of fixes for the weekly release candidate cycle:
+
+One fix for a performance regression in DSB register programming and also
+in the same area a partial fix for the legacy LUT and DSB interaction.
+Then there is a fix for a null pointer dereference in the GuC error state
+capture code. Finally a fix for a memory leak in cases when driver fails
+to load.
+
+Tvrtko
+
+drm-intel-fixes-2024-12-11:
+- Don't use indexed register writes needlessly [dsb] (Ville Syrjälä)
+- Stop using non-posted DSB writes for legacy LUT [color] (Ville Syrjälä)
+- Fix NULL pointer dereference in capture_engine (Eugene Kobyak)
+- Fix memory leak by correcting cache object name in error handler (Jiasheng Jiang)
+The following changes since commit fac04efc5c793dccbd07e2d59af9f90b7fc0dca4:
+
+  Linux 6.13-rc2 (2024-12-08 14:03:39 -0800)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2024-12-11
+
+for you to fetch changes up to 2828e5808bcd5aae7fdcd169cac1efa2701fa2dd:
+
+  drm/i915: Fix memory leak by correcting cache object name in error handler (2024-12-09 10:29:06 +0000)
+
+----------------------------------------------------------------
+- Don't use indexed register writes needlessly [dsb] (Ville Syrjälä)
+- Stop using non-posted DSB writes for legacy LUT [color] (Ville Syrjälä)
+- Fix NULL pointer dereference in capture_engine (Eugene Kobyak)
+- Fix memory leak by correcting cache object name in error handler (Jiasheng Jiang)
+
+----------------------------------------------------------------
+Eugene Kobyak (1):
+      drm/i915: Fix NULL pointer dereference in capture_engine
+
+Jiasheng Jiang (1):
+      drm/i915: Fix memory leak by correcting cache object name in error handler
+
+Ville Syrjälä (2):
+      drm/i915/dsb: Don't use indexed register writes needlessly
+      drm/i915/color: Stop using non-posted DSB writes for legacy LUT
+
+ drivers/gpu/drm/i915/display/intel_color.c | 81 +++++++++++++++++++-----------
+ drivers/gpu/drm/i915/display/intel_dsb.c   | 19 +++++--
+ drivers/gpu/drm/i915/display/intel_dsb.h   |  2 +
+ drivers/gpu/drm/i915/i915_gpu_error.c      | 18 +++++--
+ drivers/gpu/drm/i915/i915_scheduler.c      |  2 +-
+ 5 files changed, 85 insertions(+), 37 deletions(-)
