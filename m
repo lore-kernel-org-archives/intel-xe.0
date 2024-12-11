@@ -4,158 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2EC6E7718C
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 13:11:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E32EE77188
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 13:11:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96A5610EDCE;
-	Thu, 12 Dec 2024 13:11:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23C9610EDD1;
+	Thu, 12 Dec 2024 13:11:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="lHLPUz2e";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Gr5UuMp6";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F3EE10E9EE
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Dec 2024 23:14:31 +0000 (UTC)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BADMvIF013958
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Dec 2024 23:14:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- PS7l0d33ZO6FBTryro+pjfe77l6D5X7/u/fq40BAyts=; b=lHLPUz2eKaNKUox1
- Ub5dhzdNAOoET8wh+maovCNDPMy6t9eby0VQUopQ/MZLa6olLQwy25+UgpQb8ro5
- VlaMWxZAETVnPKvlzO71jszhSUnevwYHdclz20ywMSlVphBPRa3l4C1hylijowi6
- Bk3QIOrIkCQ+2EOFX/Sdw0b2IpZEpF1kH2IJP81FgU3tYlzhsESrVAf/9ob9ocEp
- ghZvyaVc4lOYnIZDKgvxAUu3jssYTEMSXzRSX3MWUGVMwFilQ0CtwOxrY/ufjUY6
- /bXYCyJGZj10oYxR+tKJcKdW/M9cw92yDO1a0dD+j2PcKvi8rQ2zfcQIOo+BmC3o
- GqzWSw==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com
- [209.85.216.70])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43dvyap9c1-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Dec 2024 23:14:30 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id
- 98e67ed59e1d1-2ef728e36d5so4354169a91.3
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Dec 2024 15:14:30 -0800 (PST)
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com
+ [IPv6:2a00:1450:4864:20::632])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C93310EC1A
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 21:25:24 +0000 (UTC)
+Received: by mail-ej1-x632.google.com with SMTP id
+ a640c23a62f3a-aa66ead88b3so814952666b.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Dec 2024 13:25:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1733952322; x=1734557122; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=NiFXx0VcxNc6mbyaX28E5l+Z+JD1Zr+bEvTPIoK/nX0=;
+ b=Gr5UuMp6sEyxhvJ3NfynHOPS58hAkVR6wrzMqSBMlCuF2JHbd+DIQDF4EZo9zwUHvv
+ x861GCwjPgmtf362XGg1P2Ck/xh84bUjxBI8lTDfU22AfWZ0+DP5FDwLoYCG8l+TN47C
+ 2SumEZgVf6Ecee2DnRkQOBHW5yhJTaG7YAn6cCUm5qtYMKHkCyfMT5E7x30D2S4It48M
+ NXlOf2KU0lW7zWJI4ptqBvHajcmQI0NA3ML1pfleEJtBSwq4qfh0AgkXx+gkq0Om0FKt
+ 5Jc6/QZYW7xrGv4eEDvzclZEyx3D3M9xGoq8VbkYbm2tU4ANviYV5v3Zxe1d1YOgjnOc
+ 7DxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733872469; x=1734477269;
- h=content-transfer-encoding:in-reply-to:content-language:from
+ d=1e100.net; s=20230601; t=1733952322; x=1734557122;
+ h=content-transfer-encoding:in-reply-to:from:content-language
  :references:cc:to:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=PS7l0d33ZO6FBTryro+pjfe77l6D5X7/u/fq40BAyts=;
- b=eRHKVrxyR5R+zPg7arzr44F63gO7Ccq9Fim75MpYVpH9pjY8FquKipom1Qp+vsOC0D
- mLWL2pcWaAZDn6umEEfkbEAJsLbIUXsrVS8yFF3G4u61DEJZP7YY2cjom+I93WipJ/jV
- 8m7d75d2Wg0j978uvqLJj+GmqJjqTHwPTxLDC6bfcZudZUWS3AslzYLrbIsT1zNuHLHz
- 5tYd8RPit94EfuzwDoYaRCUIakYnNJleVzO5Zp3qj7TEu6T/6ayOmMDP2MIfj3oaCGaL
- +9RM8rRQ1COFSe7GC5ZJYrntSn3FhnKooiHfjVgSUnF5297Cx7RvjRsCU0Q6Snz1Oca4
- D7aw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWn7gfoUH39AfuHGCPiw42gjAilJ0eSy9BkwP1LlcbIVK2ienO9BYRGrHIft638+NuyeN5W1AR9Pg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy/ZRlBditwch39MB7m6X4t8es3Qt1L73CvgmoDknLkg8E9sfTq
- 1/toGtN5y2BMX5BXrV+8B4cFiCEdsZtSfJTEJ+KLkI16swzFfBbGtydFb3xgxNmfGgRRZhitLSl
- csQHZvajGwLf8mOHdWXRRPXSyCrDSHD2c9UKx7I/a3RPMlX+DZKs8PPfj1A1usoso2A==
-X-Gm-Gg: ASbGncsp/UKz4861qRaSbL4BTUMVxmd4/K3humd+KSGDPAJ8Se3yFJDw1+L1EMgnVGf
- 4fbHFRe/ZE6fCIVrhJhcj3tFpJ/pA27GyY/ECM9Ti5jyN1syHhuktsDT7Ro2kyD1bK5kBMD6eMU
- XiiDsl/YRZL743UwvA3+2TO5XVFKLbMqMIzo4OWDjFl5Z/9RBIF0DJ6AELw6zJQQp7KoEkEHcLB
- gu6RX4vzZH2Krgs6v0IDxW6Hyd2OjW+GJlCTjzuG1yVEpfXCtVNKIOqgV2Y1J5xXKKK1tsiovCW
- 5v7PUbtZ693Q5snWt1P7m9aqbeR7/ynlfvvgGnJR40e151o=
-X-Received: by 2002:a17:90b:2d81:b0:2ee:dd9b:e402 with SMTP id
- 98e67ed59e1d1-2f127fc6f84mr1521904a91.12.1733872468840; 
- Tue, 10 Dec 2024 15:14:28 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFBBY7t9Ty+FaaMWRfRUoSNUm5Sp5vin1MZzPlySUpMdXEhND47a5JS9XP+rCTHee3d0P0EmA==
-X-Received: by 2002:a17:90b:2d81:b0:2ee:dd9b:e402 with SMTP id
- 98e67ed59e1d1-2f127fc6f84mr1521809a91.12.1733872468344; 
- Tue, 10 Dec 2024 15:14:28 -0800 (PST)
-Received: from [192.168.1.111] (c-73-202-227-126.hsd1.ca.comcast.net.
- [73.202.227.126]) by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-2ef779bace5sm7621993a91.31.2024.12.10.15.14.22
+ bh=NiFXx0VcxNc6mbyaX28E5l+Z+JD1Zr+bEvTPIoK/nX0=;
+ b=xQ8s4TxGmdSCEXuV0b4ahRJUAgtEo34Fkw67ZByv1vYdDffRvEeiddZB1FeGwTwqki
+ MOyxw5edg5giQmBJpgcpmsm29p3akZ9kD69dfCtwRE+1Rw5+OGJu8cAtA4eutlZvl6G8
+ mOzQGo9VkuKsr6VEnAbMQpVrWbiyUrrjiEjio/gNIXPhh1+onFblvSa7vpIsaXnTJtOY
+ +Wn1HgHKzsJQLF8z6gtBBNG2aeJIzZl1i+zHY9hSFheT3WOyUFteKfqzfQcLi9Qb1uwa
+ B858kD4USMUGXLnAL7msEqNh5ttE9qre14n9lAlVn8yj2twQ0ZEsfjw3c5bLxed5PKa5
+ VDFw==
+X-Gm-Message-State: AOJu0Yy1axwTTdifklHKiD1vMy2ghiZkxYNz2oK6vlVx2fmTJdBw2ZS1
+ Z900Gb2JJvxFIpc70iOhyMhRpOeK9zishCCAI2qzN9iYYu+r6DMDIu1u7Q==
+X-Gm-Gg: ASbGncv0ovRBy933v7tNQ3fyrljdO5ZomwcjeQ0JH8sHysmmYEvdLnx7gI7fxItuZvd
+ gI/uSJBZW6K0a6r0z8+F/lmsU+3xnWTgAPxWqsonrhOFl5DdAYFpetb+a49kbHKKB9N5j/mDTl/
+ W/xEcukheY/jpKyA01kkehU3M50LDsSVlBmk4NwQnGHCVHs/Y3SKasA9qgZ1gcu4oYrl6zTSXpn
+ J00rpYr9VWswjtc5FhstXZBCWksbCIsLpLG+pPXxye4o/iVBNjgsslaTFtDFudx9tTyYS6FcH1c
+ rEI=
+X-Google-Smtp-Source: AGHT+IEZXjD2OBMbnIMn2i+NMY574iLFCjHHILg1s8JtKbih47YyDe6rHY2SadeFtdswJUtANSKA9Q==
+X-Received: by 2002:a17:906:3cb1:b0:aa6:abe2:5cb8 with SMTP id
+ a640c23a62f3a-aa6b13f942bmr352903866b.60.1733952322313; 
+ Wed, 11 Dec 2024 13:25:22 -0800 (PST)
+Received: from [192.168.178.20] (dh207-42-21.xnet.hr. [88.207.42.21])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-aa62601b54dsm1033639466b.94.2024.12.11.13.25.21
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 10 Dec 2024 15:14:27 -0800 (PST)
-Message-ID: <315e9178-5b10-4de0-bdcf-7243e0e355bb@oss.qualcomm.com>
-Date: Tue, 10 Dec 2024 15:14:22 -0800
+ Wed, 11 Dec 2024 13:25:21 -0800 (PST)
+Message-ID: <823a1ecc-58ca-4c4a-b973-b41682be8f2a@gmail.com>
+Date: Wed, 11 Dec 2024 22:24:20 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/19] Converge on using secs_to_jiffies()
-To: Easwar Hariharan <eahariha@linux.microsoft.com>,
- Pablo Neira Ayuso <pablo@netfilter.org>,
- Jozsef Kadlecsik <kadlec@netfilter.org>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
- Julia Lawall <Julia.Lawall@inria.fr>,
- Nicolas Palix <nicolas.palix@imag.fr>, Daniel Mack <daniel@zonque.org>,
- Haojian Zhuang <haojian.zhuang@gmail.com>,
- Robert Jarzmik <robert.jarzmik@free.fr>, Russell King
- <linux@armlinux.org.uk>,
- Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>, Ofir Bitton <obitton@habana.ai>,
- Oded Gabbay <ogabbay@kernel.org>, Lucas De Marchi
- <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jeroen de Borst <jeroendb@google.com>,
- Praveen Kaligineedi <pkaligineedi@google.com>,
- Shailend Chand <shailend@google.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- James Smart <james.smart@broadcom.com>,
- Dick Kennedy <dick.kennedy@broadcom.com>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- =?UTF-8?Q?Roger_Pau_Monn=C3=A9?= <roger.pau@citrix.com>,
- Jens Axboe <axboe@kernel.dk>, Kalle Valo <kvalo@kernel.org>,
- Jeff Johnson <jjohnson@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Andrew Morton <akpm@linux-foundation.org>,
- Jack Wang <jinpu.wang@cloud.ionos.com>, Marcel Holtmann
- <marcel@holtmann.org>, Johan Hedberg <johan.hedberg@gmail.com>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
- Josh Poimboeuf <jpoimboe@kernel.org>, Jiri Kosina <jikos@kernel.org>,
- Miroslav Benes <mbenes@suse.cz>, Petr Mladek <pmladek@suse.com>,
- Joe Lawrence <joe.lawrence@redhat.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Louis Peens <louis.peens@corigine.com>, Michael Ellerman
- <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Naveen N Rao <naveen@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>
-Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org, cocci@inria.fr,
- linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-scsi@vger.kernel.org, xen-devel@lists.xenproject.org,
- linux-block@vger.kernel.org, linux-wireless@vger.kernel.org,
- ath11k@lists.infradead.org, linux-mm@kvack.org,
- linux-bluetooth@vger.kernel.org, linux-staging@lists.linux.dev,
- linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org,
- live-patching@vger.kernel.org, linux-sound@vger.kernel.org,
- oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org,
- Anna-Maria Behnsen <anna-maria@linutronix.de>
-References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Subject: Re: [PATCH v1 1/1] drm/xe: fix the ERR_PTR() returned on failure to
+ allocate tiny pt
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+References: <20241121212057.1526634-2-mtodorovac69@gmail.com>
+ <Z1cfti-AJCku7BWS@intel.com>
 Content-Language: en-US
-In-Reply-To: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
+From: Mirsad Todorovac <mtodorovac69@gmail.com>
+In-Reply-To: <Z1cfti-AJCku7BWS@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 08TUljmFhBXJPFiTSz3FAD8ROlsfW8jc
-X-Proofpoint-ORIG-GUID: 08TUljmFhBXJPFiTSz3FAD8ROlsfW8jc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0
- mlxlogscore=835 mlxscore=0 priorityscore=1501 suspectscore=0 clxscore=1011
- malwarescore=0 impostorscore=0 adultscore=0 lowpriorityscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412100166
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 12 Dec 2024 13:11:48 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -171,26 +89,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 12/10/2024 2:02 PM, Easwar Hariharan wrote:
-> This is a series that follows up on my previous series to introduce
-> secs_to_jiffies() and convert a few initial users.[1] In the review for
-> that series, Anna-Maria requested converting other users with
-> Coccinelle. [2] This is part 1 that converts users of msecs_to_jiffies()
-> that use the multiply pattern of either of:
-> - msecs_to_jiffies(N*1000), or
-> - msecs_to_jiffies(N*MSEC_PER_SEC)
-> 
-> where N is a constant, to avoid the multiplication.
-> 
-> The entire conversion is made with Coccinelle in the script added in
-> patch 2. Some changes suggested by Coccinelle have been deferred to
-> later parts that will address other possible variant patterns.
-> 
-> CC: Anna-Maria Behnsen <anna-maria@linutronix.de>
-> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+Hi,
 
-I have the same question as before: How do you expect these to land?
-Do you now have a maintainer who will take all of them?
-Or do you want individual maintainers to take the ones applicable to them?
+On 12/9/24 17:49, Rodrigo Vivi wrote:
+> On Thu, Nov 21, 2024 at 10:20:58PM +0100, Mirsad Todorovac wrote:
+>> Running coccinelle spatch gave the following warning:
+>>
+>> ./drivers/gpu/drm/xe/tests/xe_migrate.c:226:5-11: inconsistent IS_ERR and PTR_ERR on line 228.
+>>
+>> The code reports PTR_ERR(pt) when IS_ERR(tiny) is checked:
+>>
+>> → 211         pt = xe_bo_create_pin_map(xe, tile, m->q->vm, XE_PAGE_SIZE,
+>>   212                                   ttm_bo_type_kernel,
+>>   213                                   XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+>>   214                                   XE_BO_FLAG_PINNED);
+>>   215         if (IS_ERR(pt)) {
+>>   216                 KUNIT_FAIL(test, "Failed to allocate fake pt: %li\n",
+>>   217                            PTR_ERR(pt));
+>>   218                 goto free_big;
+>>   219         }
+>>   220
+>>   221         tiny = xe_bo_create_pin_map(xe, tile, m->q->vm,
+>> → 222                                     2 * SZ_4K,
+>>   223                                     ttm_bo_type_kernel,
+>>   224                                     XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+>>   225                                     XE_BO_FLAG_PINNED);
+>> → 226         if (IS_ERR(tiny)) {
+>> → 227                 KUNIT_FAIL(test, "Failed to allocate fake pt: %li\n",
+>> → 228                            PTR_ERR(pt));
+>>   229                 goto free_pt;
+>>   230         }
+>>
+>> Now, the IS_ERR(tiny) and the corresponding PTR_ERR(pt) do not match.
+>>
+>> Returning PTR_ERR(tiny), as the last failed function call, seems logical.
+>>
+>> Fixes: dd08ebf6c3525 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+>> Cc: Francois Dugast <francois.dugast@intel.com>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Cc: Philippe Lecluse <philippe.lecluse@intel.com>
+>> Cc: Nirmoy Das <nirmoy.das@intel.com>
+>> Cc: Jani Nikula <jani.nikula@intel.com>
+>> Cc: José Roberto de Souza <jose.souza@intel.com>
+>> Cc: David Airlie <airlied@gmail.com>
+>> Cc: Maxime Ripard <mripard@kernel.org>
+>> Cc: Faith Ekstrand <faith.ekstrand@collabora.com>
+>> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+>> Cc: Simona Vetter <simona@ffwll.ch>
+>> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+>> Cc: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+>> Cc: David Kershner <david.kershner@intel.com>
+>> Cc: intel-xe@lists.freedesktop.org
+>> Cc: dri-devel@lists.freedesktop.org
+>> Cc: linux-kernel@vger.kernel.org
+> 
+> I clean up this cc list. no reason for this simple patch to have this huge list.
 
-/jeff
+Indeed, Sir.
+
+Please proceed as it seems fit to you. I think I used the get_maintainer.pl script,
+blame and the Cc: list from the fixed commit.
+
+I thought that "more eyes see more", but this is indeed a very small patch (+2/-2 lines).
+
+However, the bug finding tools make me find bugs in widely spread range of drivers,
+and I do not expect to understand +30 million lines of code any time soon :-)
+
+> I also fixed the checkpatch complains in the commit message.
+
+I am sorry for the trouble caused.
+
+> And pushed to drm-xe-next
+> 
+> Thanks for the patch.
+
+Not at all.
+
+I understood that patching drivers must go through rigorous scrutiny.
+
+God bless and I hope you'll have great advent holidays.
+
+Best regards,
+Mirsad Todorovac
+
+>> Signed-off-by: Mirsad Todorovac <mtodorovac69@gmail.com>
+>> ---
+>>  v1:
+>> 	There is also the logical problem which this patch developer is not qualified to fix:
+>> 	first the fake pt tries to allocate size of (1 << (XE_PT_SHIFT=12)) = 4096 bytes,
+>> 	then "tiny pt" tries to allocate 2 * SZ_4K, twice as much. Is this what was meant
+>> 	to accomplish?
+>>
+>> 	drivers/gpu/drm/xe/xe_bo.h#L46:
+>> 	#define XE_PTE_SHIFT			12
+>> 	#define XE_PAGE_SIZE			(1 << XE_PTE_SHIFT)
+>>
+>> 	include/linux/sizes.h#L23:
+>> 	#define SZ_4K				0x00001000
+>>
+>>  drivers/gpu/drm/xe/tests/xe_migrate.c | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+>> index 1a192a2a941b..3bbdb362d6f0 100644
+>> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
+>> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+>> @@ -224,8 +224,8 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+>>  				    XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+>>  				    XE_BO_FLAG_PINNED);
+>>  	if (IS_ERR(tiny)) {
+>> -		KUNIT_FAIL(test, "Failed to allocate fake pt: %li\n",
+>> -			   PTR_ERR(pt));
+>> +		KUNIT_FAIL(test, "Failed to allocate tiny fake pt: %li\n",
+>> +			   PTR_ERR(tiny));
+>>  		goto free_pt;
+>>  	}
+>>  
+>> -- 
+>> 2.43.0
+>>
+
