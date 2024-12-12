@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD05CE7717F
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 19:25:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44936E7717F
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 19:25:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A132A10EE90;
-	Thu, 12 Dec 2024 19:25:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D0F810EE81;
+	Thu, 12 Dec 2024 19:25:26 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B85710EE84;
- Thu, 12 Dec 2024 19:25:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 752DB10EE81;
+ Thu, 12 Dec 2024 19:25:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/client=3A_Bet?=
- =?utf-8?q?ter_correlate_exec=5Fqueue_and_GT_timestamps?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/client=3A_Better_c?=
+ =?utf-8?q?orrelate_exec=5Fqueue_and_GT_timestamps?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Dec 2024 19:25:13 -0000
-Message-ID: <173403151317.1703471.15242382083569971042@b555e5b46a47>
+Date: Thu, 12 Dec 2024 19:25:24 -0000
+Message-ID: <173403152447.1703471.12227735825871947863@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241212173432.1244440-1-lucas.demarchi@intel.com>
 In-Reply-To: <20241212173432.1244440-1-lucas.demarchi@intel.com>
@@ -44,13 +44,54 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/client: Better correlate exec_queue and GT timestamps
 URL   : https://patchwork.freedesktop.org/series/142501/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 1833817dea7a drm-tip: 2024y-12m-12d-16h-37m-06s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/client: Better correlate exec_queue and GT timestamps
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b24de0f67f9dd0b27be0faf6a723e410e5458b37
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Thu Dec 12 09:34:32 2024 -0800
+
+    drm/xe/client: Better correlate exec_queue and GT timestamps
+    
+    This partially reverts commit fe4f5d4b6616 ("drm/xe: Clean up VM / exec
+    queue file lock usage."). While it's desired to have the mutex to
+    protect only the reference to the exec queue, getting and dropping each
+    mutex and then later getting the GPU timestamp, doesn't produce a
+    correct result: it introduces multiple opportunities for the task to be
+    scheduled out and thus wrecking havoc the deltas reported to userspace.
+    
+    Also, to better correlate the timestamp from the exec queues with the
+    GPU, disable preemption so they can be updated without allowing the task
+    to be scheduled out. We leave interrupts enabled as that shouldn't be
+    enough disturbance for the deltas to matter to userspace.
+    
+    Test scenario:
+    
+            * IGT'S `xe_drm_fdinfo --r --r utilization-single-full-load`
+            * Platform: LNL, where CI occasionally reports failures
+            * `stress -c $(nproc)` running in parallel to disturb the
+              system
+    
+    This brings a first failure from "after ~150 executions" to "never
+    occurs after 1000 attempts".
+    
+    Cc: stable@vger.kernel.org # v6.11+
+    Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3512
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 1833817dea7ab2961cc662bfc451bc232c5d24cc drm-intel
+b24de0f67f9d drm/xe/client: Better correlate exec_queue and GT timestamps
+-:54: WARNING:MISSING_FIXES_TAG: The commit message has 'stable@', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 1 warnings, 0 checks, 18 lines checked
 
 
