@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4605E7717F
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 13:31:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCC41E7717F
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 13:31:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B8AF10E22C;
-	Thu, 12 Dec 2024 13:31:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A5A110E22C;
+	Thu, 12 Dec 2024 13:31:37 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51DE710E22C;
- Thu, 12 Dec 2024 13:31:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B76D710E426;
+ Thu, 12 Dec 2024 13:31:36 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/tests=3A_Spli?=
- =?utf-8?q?t_shrink_test_out_of_xe=5Fbo?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/tests=3A_Split_shr?=
+ =?utf-8?q?ink_test_out_of_xe=5Fbo?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Dec 2024 13:31:24 -0000
-Message-ID: <173401028433.1589450.8127676511403551752@b555e5b46a47>
+Date: Thu, 12 Dec 2024 13:31:36 -0000
+Message-ID: <173401029674.1589450.1575969517508092170@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241212133810.3155721-1-nirmoy.das@intel.com>
 In-Reply-To: <20241212133810.3155721-1-nirmoy.das@intel.com>
@@ -44,13 +44,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/tests: Split shrink test out of xe_bo
 URL   : https://patchwork.freedesktop.org/series/142484/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 7b441ab54824 drm-tip: 2024y-12m-12d-10h-23m-45s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/tests: Split shrink test out of xe_bo
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7052535893ded79aa2d1e0888a0a48d779a2ce9d
+Author: Nirmoy Das <nirmoy.das@intel.com>
+Date:   Thu Dec 12 14:38:10 2024 +0100
+
+    drm/xe/tests: Split shrink test out of xe_bo
+    
+    Currently, there is no good way to blocklist a dynamic subtest in IGT,
+    so split out xe_bo_shrink into its own test, which can now be skipped
+    from CI as it is meant to be run manually by developers because of its
+    long execution time.
+    
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
++ /mt/dim checkpatch 7b441ab54824526dd570dfbfbef51bcd2ba4c5b5 drm-intel
+7052535893de drm/xe/tests: Split shrink test out of xe_bo
+-:57: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
+#57: FILE: drivers/gpu/drm/xe/tests/xe_live_test_mod.c:9:
++extern struct kunit_suite xe_bo_shrink_test_suite;
+
+total: 0 errors, 1 warnings, 0 checks, 38 lines checked
 
 
