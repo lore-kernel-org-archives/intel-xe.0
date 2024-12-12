@@ -4,111 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE9A6E7717F
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 17:09:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C3DAE77180
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 17:31:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF09C10EE6C;
-	Thu, 12 Dec 2024 17:09:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6BCD10E3E3;
+	Thu, 12 Dec 2024 17:30:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="xMq9icQ0";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ShMS1mlC";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="xMq9icQ0";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ShMS1mlC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kV60Rxta";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73D7C10EE61;
- Thu, 12 Dec 2024 17:09:27 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id A03A71F46E;
- Thu, 12 Dec 2024 17:09:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1734023364; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=abZACuWG57c8520eJPgk/YvjwvtpOcjfieW35yPTPBw=;
- b=xMq9icQ0/OIUEo8M1qzHUzxG5txAvbySopjOEUinbKrbgg0JvI+rLDDhOqVtfoa1Tk6Zjt
- Lp5wEEW50zE4dMPt0oNB+4H7/KJjlIaqf1aIcrdTiAZSOVGgi4FrcWZDJKmmeCBhJMEDgX
- HT0OxoOKcs+mgy3CzP3mmRo32924bqU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1734023364;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=abZACuWG57c8520eJPgk/YvjwvtpOcjfieW35yPTPBw=;
- b=ShMS1mlCGkCc2rmrQfqDY95ihGlH6hAgCjWKMD3z0QhMK4ZLj0aDnTGm+kipzirV0qI5g/
- w8r8dAYvHZIkFRAg==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=xMq9icQ0;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=ShMS1mlC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1734023364; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=abZACuWG57c8520eJPgk/YvjwvtpOcjfieW35yPTPBw=;
- b=xMq9icQ0/OIUEo8M1qzHUzxG5txAvbySopjOEUinbKrbgg0JvI+rLDDhOqVtfoa1Tk6Zjt
- Lp5wEEW50zE4dMPt0oNB+4H7/KJjlIaqf1aIcrdTiAZSOVGgi4FrcWZDJKmmeCBhJMEDgX
- HT0OxoOKcs+mgy3CzP3mmRo32924bqU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1734023364;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=abZACuWG57c8520eJPgk/YvjwvtpOcjfieW35yPTPBw=;
- b=ShMS1mlCGkCc2rmrQfqDY95ihGlH6hAgCjWKMD3z0QhMK4ZLj0aDnTGm+kipzirV0qI5g/
- w8r8dAYvHZIkFRAg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3E05213508;
- Thu, 12 Dec 2024 17:09:24 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 4LGrDcQYW2etIQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 12 Dec 2024 17:09:24 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
- lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- simona@ffwll.ch, airlied@gmail.com, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com, jfalempe@redhat.com, javierm@redhat.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 10/12] drm/{i915,xe}: Run DRM default client setup
-Date: Thu, 12 Dec 2024 18:08:51 +0100
-Message-ID: <20241212170913.185939-11-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241212170913.185939-1-tzimmermann@suse.de>
-References: <20241212170913.185939-1-tzimmermann@suse.de>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72B8D10E3E3
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Dec 2024 17:30:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734024659; x=1765560659;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to;
+ bh=qBJysWKN8M9v51By+v1kETYL841cU8jMY2vQhTcclHI=;
+ b=kV60RxtaiFyva5Y0KePqo0KypMp1VF5MarzinJUH7+1x4CrK2iP9yKOO
+ ePY6X1gcMitc0bEJYSAlvqGencvhaHIGp93OzcG19H9ayBHp32UtBemiM
+ QwBmgID158fnO1OAF9/vopQDKYVJU+v/QoH28XhwmLKFUmzK94cGfTvlI
+ TYvDuAdyIP1fkv3Vg7Rhtbs7hoVl/kDmX6S9maJCnI16GY0KfLChuYGE3
+ zb/ly3ObRl8NKbIlLdaqT2M3nRJnJ962VNtMdogEGh3F3E4jmDq1MjDs4
+ N+Iye5NZlCff5mlgXtQn2+XBAzByxTbG9IkWB2Un5e875QUMrVcW7KrH2 A==;
+X-CSE-ConnectionGUID: jKVQggChR2WANvtQn9BY9Q==
+X-CSE-MsgGUID: eU2J7NRURu2nxPJvYqABrQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11284"; a="38242635"
+X-IronPort-AV: E=Sophos;i="6.12,229,1728975600"; d="scan'208,217";a="38242635"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2024 09:30:58 -0800
+X-CSE-ConnectionGUID: TrmvimjgQBePMuW1vUXZ9Q==
+X-CSE-MsgGUID: Fd7c5LCRRxuoxz0CA1sRjg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,229,1728975600"; d="scan'208,217";a="96700667"
+Received: from uweinrib-mobl1.ger.corp.intel.com (HELO [10.245.149.72])
+ ([10.245.149.72])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2024 09:30:55 -0800
+Content-Type: multipart/alternative;
+ boundary="------------dDwiGds8G8ytj73E9V4DsaFk"
+Message-ID: <c1d4a307-bebf-401d-ba88-e27675b388d7@linux.intel.com>
+Date: Thu, 12 Dec 2024 18:30:51 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: A03A71F46E
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000]; MID_CONTAINS_FROM(1.00)[];
- R_MISSING_CHARSET(0.50)[];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
- RCVD_COUNT_TWO(0.00)[2]; MIME_TRACE(0.00)[0:+];
- RCPT_COUNT_TWELVE(0.00)[16]; RCVD_TLS_ALL(0.00)[];
- TO_DN_SOME(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
- FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,ffwll.ch,gmail.com,kernel.org,redhat.com];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- R_RATELIMIT(0.00)[to_ip_from(RLqtkr6cif1ebgurukgmwdm7xc)];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/xe/xe_sync: Add debug printing to check_ufence
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "Gupta, saurabhg" <saurabhg.gupta@intel.com>,
+ "Zuo, Alex" <alex.zuo@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+References: <20241206181155.87070-1-jonathan.cavitt@intel.com>
+ <103d96a4-753b-4dd1-9e43-e75b12ef10bf@linux.intel.com>
+ <CH0PR11MB5444CF26B806C6784B54AEFBE53E2@CH0PR11MB5444.namprd11.prod.outlook.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <CH0PR11MB5444CF26B806C6784B54AEFBE53E2@CH0PR11MB5444.namprd11.prod.outlook.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,375 +73,313 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rework fbdev probing to support fbdev_probe in struct drm_driver
-and remove the old fb_probe callback. Provide an initializer macro
-that sets the callback in struct drm_driver according to the kernel
-configuration. Call drm_client_setup_with_color_mode() to run the
-kernel's default client setup for DRM.
+This is a multi-part message in MIME format.
+--------------dDwiGds8G8ytj73E9V4DsaFk
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-This commit also prepares support for the kernel's drm_log client
-(or any future client) in i915. Using drm_log will also require vmap
-support in GEM objects.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- .../gpu/drm/i915/display/intel_display_core.h |   1 -
- drivers/gpu/drm/i915/display/intel_fbdev.c    | 194 +-----------------
- drivers/gpu/drm/i915/display/intel_fbdev.h    |  17 +-
- drivers/gpu/drm/i915/i915_driver.c            |   3 +
- drivers/gpu/drm/xe/display/xe_display.c       |   5 +
- 5 files changed, 21 insertions(+), 199 deletions(-)
+On 12/11/2024 4:24 PM, Cavitt, Jonathan wrote:
+>
+>  
+>
+>  
+>
+> *From:*Nirmoy Das <nirmoy.das@linux.intel.com>
+> *Sent:* Friday, December 6, 2024 11:28 PM
+> *To:* Cavitt, Jonathan <jonathan.cavitt@intel.com>; intel-xe@lists.freedesktop.org
+> *Cc:* Gupta, saurabhg <saurabhg.gupta@intel.com>; Zuo, Alex <alex.zuo@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> *Subject:* Re: [PATCH v2] drm/xe/xe_sync: Add debug printing to check_ufence
+>
+>  
+>
+>  
+>
+> On 12/6/2024 7:11 PM, Jonathan Cavitt wrote:
+>
+>     The xe_sync helper function check_ufence can occasionally report EBUSY
+>
+>     if the ufence has not been signalled yet.  EBUSY is a non-fatal error
+>
+>     value for the function, so it is not desireable to warn in cases where
+>
+>     EBUSY is reported because it is up to the user to decide if EBUSY is a
+>
+>     fatal error in their use cases.  However, we can and should report EBUSY
+>
+>     to the debug logs for diagnostic purposes.
+>
+>      
+>
+>     v2: Use vm_dbg instead of XE_IOCTL_DBG (Rodrigo)
+>
+>      
+>
+>     Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com> <mailto:jonathan.cavitt@intel.com>
+>
+>     CC: Rodrigo Vivi <rodrigo.vivi@intel.com> <mailto:rodrigo.vivi@intel.com>
+>
+>     ---
+>
+>      drivers/gpu/drm/xe/xe_vm.c | 10 ++++++++--
+>
+>      1 file changed, 8 insertions(+), 2 deletions(-)
+>
+>      
+>
+>     diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>
+>     index 74d684708b00..8c770d1b916c 100644
+>
+>     --- a/drivers/gpu/drm/xe/xe_vm.c
+>
+>     +++ b/drivers/gpu/drm/xe/xe_vm.c
+>
+>     @@ -2402,8 +2402,11 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+>
+>                break;
+>
+>        case DRM_GPUVA_OP_REMAP:
+>
+>                err = check_ufence(gpuva_to_vma(op->base.remap.unmap->va));
+>
+>     -          if (err)
+>
+>     +          if (err) {
+>
+>     +                  vm_dbg(&vm->xe->drm,
+>
+>     +                         "REMAP: vma check ufence status = %i\n", err);
+>
+> Move that to check_ufence() instead so there there is only one copy of logging ?
+>
+> IMO I think there’s value in knowing which operation is failing, and that information would
+>
+> be lost if we moved the logging into check_ufence.
+>
+igt stack strace[1] dumps the operation info and any UMD should be able know the failed operation but not against as it is now:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 554870d2494b..674913d6c11d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -386,7 +386,6 @@ struct intel_display {
- 	struct {
- 		/* list of fbdev register on this device */
- 		struct intel_fbdev *fbdev;
--		struct work_struct suspend_work;
- 	} fbdev;
- 
- 	struct {
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index f5dc96a9f86d..de726a9c33c5 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -37,6 +37,7 @@
- #include <linux/tty.h>
- #include <linux/vga_switcheroo.h>
- 
-+#include <drm/clients/drm_client_setup.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_fb_helper.h>
-@@ -54,9 +55,6 @@
- #include "intel_fbdev_fb.h"
- #include "intel_frontbuffer.h"
- 
--static int intelfb_create(struct drm_fb_helper *helper,
--			  struct drm_fb_helper_surface_size *sizes);
--
- struct intel_fbdev {
- 	struct intel_framebuffer *fb;
- 	struct i915_vma *vma;
-@@ -201,14 +199,13 @@ static void intelfb_set_suspend(struct drm_fb_helper *fb_helper, bool suspend)
- }
- 
- static const struct drm_fb_helper_funcs intel_fb_helper_funcs = {
--	.fb_probe = intelfb_create,
- 	.fb_dirty = intelfb_dirty,
- 	.fb_restore = intelfb_restore,
- 	.fb_set_suspend = intelfb_set_suspend,
- };
- 
--static int intelfb_create(struct drm_fb_helper *helper,
--			  struct drm_fb_helper_surface_size *sizes)
-+int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
-+				   struct drm_fb_helper_surface_size *sizes)
- {
- 	struct intel_fbdev *ifbdev = to_intel_fbdev(helper);
- 	struct intel_framebuffer *fb = ifbdev->fb;
-@@ -272,6 +269,7 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 		goto out_unpin;
- 	}
- 
-+	helper->funcs = &intel_fb_helper_funcs;
- 	helper->fb = &fb->base;
- 
- 	info->fbops = &intelfb_ops;
-@@ -480,174 +478,11 @@ static unsigned int intel_fbdev_color_mode(const struct drm_format_info *info)
- 	}
- }
- 
--static void intel_fbdev_suspend_worker(struct work_struct *work)
--{
--	intel_fbdev_set_suspend(&container_of(work,
--					      struct drm_i915_private,
--					      display.fbdev.suspend_work)->drm,
--				FBINFO_STATE_RUNNING,
--				true);
--}
--
--void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous)
--{
--	struct drm_i915_private *dev_priv = to_i915(dev);
--	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
--
--	if (!ifbdev)
--		return;
--
--	if (drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)))
--		return;
--
--	if (!ifbdev->vma)
--		return;
--
--	if (synchronous) {
--		/* Flush any pending work to turn the console on, and then
--		 * wait to turn it off. It must be synchronous as we are
--		 * about to suspend or unload the driver.
--		 *
--		 * Note that from within the work-handler, we cannot flush
--		 * ourselves, so only flush outstanding work upon suspend!
--		 */
--		if (state != FBINFO_STATE_RUNNING)
--			flush_work(&dev_priv->display.fbdev.suspend_work);
--
--		console_lock();
--	} else {
--		/*
--		 * The console lock can be pretty contented on resume due
--		 * to all the printk activity.  Try to keep it out of the hot
--		 * path of resume if possible.
--		 */
--		drm_WARN_ON(dev, state != FBINFO_STATE_RUNNING);
--		if (!console_trylock()) {
--			/* Don't block our own workqueue as this can
--			 * be run in parallel with other i915.ko tasks.
--			 */
--			queue_work(dev_priv->unordered_wq,
--				   &dev_priv->display.fbdev.suspend_work);
--			return;
--		}
--	}
--
--	drm_fb_helper_set_suspend(dev->fb_helper, state);
--	console_unlock();
--}
--
--static int intel_fbdev_restore_mode(struct drm_i915_private *dev_priv)
--{
--	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
--	struct drm_device *dev = &dev_priv->drm;
--	int ret;
--
--	if (!ifbdev)
--		return -EINVAL;
--
--	if (!ifbdev->vma)
--		return -ENOMEM;
--
--	ret = drm_fb_helper_restore_fbdev_mode_unlocked(dev->fb_helper);
--	if (ret)
--		return ret;
--
--	return 0;
--}
--
--/*
-- * Fbdev client and struct drm_client_funcs
-- */
--
--static void intel_fbdev_client_unregister(struct drm_client_dev *client)
--{
--	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
--	struct drm_device *dev = fb_helper->dev;
--	struct pci_dev *pdev = to_pci_dev(dev->dev);
--
--	if (fb_helper->info) {
--		vga_switcheroo_client_fb_set(pdev, NULL);
--		drm_fb_helper_unregister_info(fb_helper);
--	} else {
--		drm_fb_helper_unprepare(fb_helper);
--		drm_client_release(&fb_helper->client);
--		kfree(fb_helper);
--	}
--}
--
--static int intel_fbdev_client_restore(struct drm_client_dev *client)
--{
--	struct drm_i915_private *dev_priv = to_i915(client->dev);
--	int ret;
--
--	ret = intel_fbdev_restore_mode(dev_priv);
--	if (ret)
--		return ret;
--
--	vga_switcheroo_process_delayed_switch();
--
--	return 0;
--}
--
--static int intel_fbdev_client_hotplug(struct drm_client_dev *client)
--{
--	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
--	struct drm_device *dev = client->dev;
--	struct pci_dev *pdev = to_pci_dev(dev->dev);
--	int ret;
--
--	if (dev->fb_helper)
--		return drm_fb_helper_hotplug_event(dev->fb_helper);
--
--	ret = drm_fb_helper_init(dev, fb_helper);
--	if (ret)
--		goto err_drm_err;
--
--	ret = drm_fb_helper_initial_config(fb_helper);
--	if (ret)
--		goto err_drm_fb_helper_fini;
--
--	vga_switcheroo_client_fb_set(pdev, fb_helper->info);
--
--	return 0;
--
--err_drm_fb_helper_fini:
--	drm_fb_helper_fini(fb_helper);
--err_drm_err:
--	drm_err(dev, "Failed to setup i915 fbdev emulation (ret=%d)\n", ret);
--	return ret;
--}
--
--static int intel_fbdev_client_suspend(struct drm_client_dev *client, bool holds_console_lock)
--{
--	intel_fbdev_set_suspend(client->dev, FBINFO_STATE_SUSPENDED, true);
--
--	return 0;
--}
--
--static int intel_fbdev_client_resume(struct drm_client_dev *client, bool holds_console_lock)
--{
--	intel_fbdev_set_suspend(client->dev, FBINFO_STATE_RUNNING, false);
--
--	return 0;
--}
--
--static const struct drm_client_funcs intel_fbdev_client_funcs = {
--	.owner		= THIS_MODULE,
--	.unregister	= intel_fbdev_client_unregister,
--	.restore	= intel_fbdev_client_restore,
--	.hotplug	= intel_fbdev_client_hotplug,
--	.suspend	= intel_fbdev_client_suspend,
--	.resume		= intel_fbdev_client_resume,
--};
--
- void intel_fbdev_setup(struct drm_i915_private *i915)
- {
- 	struct drm_device *dev = &i915->drm;
- 	struct intel_fbdev *ifbdev;
--	struct drm_fb_helper *fb_helper;
- 	unsigned int preferred_bpp = 0;
--	int ret;
- 
- 	if (!HAS_DISPLAY(i915))
- 		return;
-@@ -657,31 +492,12 @@ void intel_fbdev_setup(struct drm_i915_private *i915)
- 		return;
- 
- 	i915->display.fbdev.fbdev = ifbdev;
--	INIT_WORK(&i915->display.fbdev.suspend_work, intel_fbdev_suspend_worker);
- 	if (intel_fbdev_init_bios(dev, ifbdev))
- 		preferred_bpp = intel_fbdev_color_mode(ifbdev->fb->base.format);
- 	if (!preferred_bpp)
- 		preferred_bpp = 32;
- 
--	fb_helper = kzalloc(sizeof(*fb_helper), GFP_KERNEL);
--	if (!fb_helper)
--		return;
--	drm_fb_helper_prepare(dev, fb_helper, preferred_bpp, &intel_fb_helper_funcs);
--
--	ret = drm_client_init(dev, &fb_helper->client, "intel-fbdev",
--			      &intel_fbdev_client_funcs);
--	if (ret) {
--		drm_err(dev, "Failed to register client: %d\n", ret);
--		goto err_drm_fb_helper_unprepare;
--	}
--
--	drm_client_register(&fb_helper->client);
--
--	return;
--
--err_drm_fb_helper_unprepare:
--	drm_fb_helper_unprepare(dev->fb_helper);
--	kfree(fb_helper);
-+	drm_client_setup_with_color_mode(dev, preferred_bpp);
- }
- 
- struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
-index 08de2d5b3433..b2ca1fe3c9ae 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
-@@ -6,26 +6,25 @@
- #ifndef __INTEL_FBDEV_H__
- #define __INTEL_FBDEV_H__
- 
--#include <linux/types.h>
--
--struct drm_device;
-+struct drm_fb_helper;
-+struct drm_fb_helper_surface_size;
- struct drm_i915_private;
- struct intel_fbdev;
- struct intel_framebuffer;
- 
- #ifdef CONFIG_DRM_FBDEV_EMULATION
-+int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
-+				   struct drm_fb_helper_surface_size *sizes);
-+#define INTEL_FBDEV_DRIVER_OPS \
-+	.fbdev_probe = intel_fbdev_driver_fbdev_probe
- void intel_fbdev_setup(struct drm_i915_private *dev_priv);
--void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
- struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
- #else
-+#define INTEL_FBDEV_DRIVER_OPS \
-+	.fbdev_probe = NULL
- static inline void intel_fbdev_setup(struct drm_i915_private *dev_priv)
- {
- }
--
--static inline void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous)
--{
--}
--
- static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
- {
- 	return NULL;
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index e385e4947a91..1029bf8509b7 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -57,6 +57,7 @@
- #include "display/intel_dp.h"
- #include "display/intel_dpt.h"
- #include "display/intel_encoder.h"
-+#include "display/intel_fbdev.h"
- #include "display/intel_hotplug.h"
- #include "display/intel_overlay.h"
- #include "display/intel_pch_refclk.h"
-@@ -1798,6 +1799,8 @@ static const struct drm_driver i915_drm_driver = {
- 	.dumb_create = i915_gem_dumb_create,
- 	.dumb_map_offset = i915_gem_dumb_mmap_offset,
- 
-+	INTEL_FBDEV_DRIVER_OPS,
-+
- 	.ioctls = i915_ioctls,
- 	.num_ioctls = ARRAY_SIZE(i915_ioctls),
- 	.fops = &i915_driver_fops,
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index bc73c9999c57..03554cf4894a 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -27,6 +27,7 @@
- #include "intel_dmc_wl.h"
- #include "intel_dp.h"
- #include "intel_encoder.h"
-+#include "intel_fbdev.h"
- #include "intel_hdcp.h"
- #include "intel_hotplug.h"
- #include "intel_opregion.h"
-@@ -67,6 +68,10 @@ void xe_display_driver_set_hooks(struct drm_driver *driver)
- 	if (!xe_modparam.probe_display)
- 		return;
- 
-+#ifdef CONFIG_DRM_FBDEV_EMULATION
-+	driver->fbdev_probe = intel_fbdev_driver_fbdev_probe;
-+#endif
-+
- 	driver->driver_features |= DRIVER_MODESET | DRIVER_ATOMIC;
- }
- 
--- 
-2.47.1
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
+
+[1] https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_12052/shard-bmg-8/igt@xe_exec_compute_mode@many-rebind.html
+
+> -Jonathan Cavitt
+>
+> Regards,
+>
+> Nirmoy
+>
+>
+>
+>      
+>
+>                        break;
+>
+>     +          }
+>
+>      
+>
+>                err = vma_lock_and_validate(exec,
+>
+>                                           gpuva_to_vma(op->base.remap.unmap->va),
+>
+>     @@ -2415,8 +2418,11 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+>
+>                break;
+>
+>        case DRM_GPUVA_OP_UNMAP:
+>
+>                err = check_ufence(gpuva_to_vma(op->base.unmap.va));
+>
+>     -          if (err)
+>
+>     +          if (err) {
+>
+>     +                  vm_dbg(&vm->xe->drm,
+>
+>     +                         "UNMAP: vma check ufence status = %i\n", err);
+>
+>                        break;
+>
+>     +          }
+>
+>      
+>
+>                err = vma_lock_and_validate(exec,
+>
+>                                           gpuva_to_vma(op->base.unmap.va),
+>
+--------------dDwiGds8G8ytj73E9V4DsaFk
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 12/11/2024 4:24 PM, Cavitt, Jonathan
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CH0PR11MB5444CF26B806C6784B54AEFBE53E2@CH0PR11MB5444.namprd11.prod.outlook.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator"
+        content="Microsoft Word 15 (filtered medium)">
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
+	{font-family:Aptos;}@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:12.0pt;
+	font-family:"Aptos",sans-serif;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	font-size:10.0pt;
+	font-family:"Courier New";}span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:Consolas;}span.hljs
+	{mso-style-name:hljs;}span.EmailStyle22
+	{mso-style-type:personal-reply;
+	font-family:"Aptos",sans-serif;
+	color:windowtext;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	mso-ligatures:none;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal"><span style="font-size:11.0pt"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt"><o:p> </o:p></span></p>
+        <div>
+          <div
+style="border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in 0in 0in">
+            <p class="MsoNormal" style="margin-left:.5in"><b><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">From:</span></b><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">
+                Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@linux.intel.com">&lt;nirmoy.das@linux.intel.com&gt;</a>
+                <br>
+                <b>Sent:</b> Friday, December 6, 2024 11:28 PM<br>
+                <b>To:</b> Cavitt, Jonathan
+                <a class="moz-txt-link-rfc2396E" href="mailto:jonathan.cavitt@intel.com">&lt;jonathan.cavitt@intel.com&gt;</a>;
+                <a class="moz-txt-link-abbreviated" href="mailto:intel-xe@lists.freedesktop.org">intel-xe@lists.freedesktop.org</a><br>
+                <b>Cc:</b> Gupta, saurabhg
+                <a class="moz-txt-link-rfc2396E" href="mailto:saurabhg.gupta@intel.com">&lt;saurabhg.gupta@intel.com&gt;</a>; Zuo, Alex
+                <a class="moz-txt-link-rfc2396E" href="mailto:alex.zuo@intel.com">&lt;alex.zuo@intel.com&gt;</a>; Vivi, Rodrigo
+                <a class="moz-txt-link-rfc2396E" href="mailto:rodrigo.vivi@intel.com">&lt;rodrigo.vivi@intel.com&gt;</a><br>
+                <b>Subject:</b> Re: [PATCH v2] drm/xe/xe_sync: Add debug
+                printing to check_ufence<o:p></o:p></span></p>
+          </div>
+        </div>
+        <p class="MsoNormal" style="margin-left:.5in"><o:p> </o:p></p>
+        <p style="margin-left:.5in"><o:p> </o:p></p>
+        <div>
+          <p class="MsoNormal" style="margin-left:.5in">On 12/6/2024
+            7:11 PM, Jonathan Cavitt wrote:<o:p></o:p></p>
+        </div>
+        <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
+          <pre style="margin-left:.5in">The xe_sync helper function check_ufence can occasionally report EBUSY<o:p></o:p></pre>
+          <pre style="margin-left:.5in">if the ufence has not been signalled yet.  EBUSY is a non-fatal error<o:p></o:p></pre>
+          <pre style="margin-left:.5in">value for the function, so it is not desireable to warn in cases where<o:p></o:p></pre>
+          <pre style="margin-left:.5in">EBUSY is reported because it is up to the user to decide if EBUSY is a<o:p></o:p></pre>
+          <pre style="margin-left:.5in">fatal error in their use cases.  However, we can and should report EBUSY<o:p></o:p></pre>
+          <pre style="margin-left:.5in">to the debug logs for diagnostic purposes.<o:p></o:p></pre>
+          <pre style="margin-left:.5in"><o:p> </o:p></pre>
+          <pre style="margin-left:.5in">v2: Use vm_dbg instead of XE_IOCTL_DBG (Rodrigo)<o:p></o:p></pre>
+          <pre style="margin-left:.5in"><o:p> </o:p></pre>
+          <pre style="margin-left:.5in">Signed-off-by: Jonathan Cavitt <a
+          href="mailto:jonathan.cavitt@intel.com" moz-do-not-send="true">&lt;jonathan.cavitt@intel.com&gt;</a><o:p></o:p></pre>
+          <pre style="margin-left:.5in">CC: Rodrigo Vivi <a
+          href="mailto:rodrigo.vivi@intel.com" moz-do-not-send="true">&lt;rodrigo.vivi@intel.com&gt;</a><o:p></o:p></pre>
+          <pre style="margin-left:.5in">---<o:p></o:p></pre>
+          <pre style="margin-left:.5in"> drivers/gpu/drm/xe/xe_vm.c | 10 ++++++++--<o:p></o:p></pre>
+          <pre style="margin-left:.5in"> 1 file changed, 8 insertions(+), 2 deletions(-)<o:p></o:p></pre>
+          <pre style="margin-left:.5in"><o:p> </o:p></pre>
+          <pre style="margin-left:.5in">diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c<o:p></o:p></pre>
+          <pre style="margin-left:.5in">index 74d684708b00..8c770d1b916c 100644<o:p></o:p></pre>
+          <pre style="margin-left:.5in">--- a/drivers/gpu/drm/xe/xe_vm.c<o:p></o:p></pre>
+          <pre style="margin-left:.5in">+++ b/drivers/gpu/drm/xe/xe_vm.c<o:p></o:p></pre>
+          <pre style="margin-left:.5in">@@ -2402,8 +2402,11 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,<o:p></o:p></pre>
+          <pre style="margin-left:.5in">           break;<o:p></o:p></pre>
+          <pre style="margin-left:.5in">   case DRM_GPUVA_OP_REMAP:<o:p></o:p></pre>
+          <pre style="margin-left:.5in">           err = check_ufence(gpuva_to_vma(op-&gt;base.remap.unmap-&gt;va));<o:p></o:p></pre>
+          <pre style="margin-left:.5in">-          if (err)<o:p></o:p></pre>
+          <pre style="margin-left:.5in">+          if (err) {<o:p></o:p></pre>
+          <pre style="margin-left:.5in">+                  vm_dbg(&amp;vm-&gt;xe-&gt;drm,<o:p></o:p></pre>
+          <pre style="margin-left:.5in">+                         "REMAP: vma check ufence status = %i\n", err);<o:p></o:p></pre>
+        </blockquote>
+        <p style="margin-left:.5in">Move that to <span class="hljs">check_ufence()
+            instead so there there is only one copy of logging ?
+            <o:p></o:p></span></p>
+        <p><span style="font-size:11.0pt">IMO I think there’s value in
+            knowing which operation is failing, and that information
+            would<o:p></o:p></span></p>
+        <p><span style="font-size:11.0pt">be lost if we moved the
+            logging into check_ufence.</span></p>
+      </div>
+    </blockquote>
+    <p>igt stack strace[1] dumps the operation info and any UMD should
+      be able know the failed operation but not against as it is now: <br>
+    </p>
+    <p>Reviewed-by: Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@intel.com">&lt;nirmoy.das@intel.com&gt;</a><br>
+    </p>
+    <p><br>
+    </p>
+    <p>[1]
+<a class="moz-txt-link-freetext" href="https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_12052/shard-bmg-8/igt@xe_exec_compute_mode@many-rebind.html">https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_12052/shard-bmg-8/igt@xe_exec_compute_mode@many-rebind.html</a><br>
+    </p>
+    <blockquote type="cite"
+cite="mid:CH0PR11MB5444CF26B806C6784B54AEFBE53E2@CH0PR11MB5444.namprd11.prod.outlook.com">
+      <div class="WordSection1">
+        <p><span style="font-size:11.0pt"><o:p></o:p></span></p>
+        <p><span style="font-size:11.0pt">-Jonathan Cavitt<o:p></o:p></span></p>
+        <p style="margin-left:.5in"><span class="hljs">Regards,</span><o:p></o:p></p>
+        <p style="margin-left:.5in"><span class="hljs">Nirmoy </span><o:p></o:p></p>
+        <p class="MsoNormal" style="margin-left:.5in"><br>
+          <br>
+          <o:p></o:p></p>
+        <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
+          <pre style="margin-left:.5in"><o:p> </o:p></pre>
+          <pre style="margin-left:.5in">                   break;<o:p></o:p></pre>
+          <pre style="margin-left:.5in">+          }<o:p></o:p></pre>
+          <pre style="margin-left:.5in"> <o:p></o:p></pre>
+          <pre style="margin-left:.5in">           err = vma_lock_and_validate(exec,<o:p></o:p></pre>
+          <pre style="margin-left:.5in">                                      gpuva_to_vma(op-&gt;base.remap.unmap-&gt;va),<o:p></o:p></pre>
+          <pre style="margin-left:.5in">@@ -2415,8 +2418,11 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,<o:p></o:p></pre>
+          <pre style="margin-left:.5in">           break;<o:p></o:p></pre>
+          <pre style="margin-left:.5in">   case DRM_GPUVA_OP_UNMAP:<o:p></o:p></pre>
+          <pre style="margin-left:.5in">           err = check_ufence(gpuva_to_vma(op-&gt;base.unmap.va));<o:p></o:p></pre>
+          <pre style="margin-left:.5in">-          if (err)<o:p></o:p></pre>
+          <pre style="margin-left:.5in">+          if (err) {<o:p></o:p></pre>
+          <pre style="margin-left:.5in">+                  vm_dbg(&amp;vm-&gt;xe-&gt;drm,<o:p></o:p></pre>
+          <pre style="margin-left:.5in">+                         "UNMAP: vma check ufence status = %i\n", err);<o:p></o:p></pre>
+          <pre style="margin-left:.5in">                   break;<o:p></o:p></pre>
+          <pre style="margin-left:.5in">+          }<o:p></o:p></pre>
+          <pre style="margin-left:.5in"> <o:p></o:p></pre>
+          <pre style="margin-left:.5in">           err = vma_lock_and_validate(exec,<o:p></o:p></pre>
+          <pre style="margin-left:.5in">                                      gpuva_to_vma(op-&gt;base.unmap.va),<o:p></o:p></pre>
+        </blockquote>
+      </div>
+    </blockquote>
+  </body>
+</html>
+
+--------------dDwiGds8G8ytj73E9V4DsaFk--
