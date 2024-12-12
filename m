@@ -4,24 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCC20E7717F
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 05:36:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF8E0E7717F
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 05:36:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BC3F10E469;
-	Thu, 12 Dec 2024 05:36:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A87C210E469;
+	Thu, 12 Dec 2024 05:36:39 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92F3C10E469;
- Thu, 12 Dec 2024 05:36:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4E8510E469;
+ Thu, 12 Dec 2024 05:36:38 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Enable_Survivability?=
- =?utf-8?q?_mode?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Enable_Survivability_mode?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Riana Tauro" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Dec 2024 05:36:24 -0000
-Message-ID: <173398178459.1466418.99544345657884740@b555e5b46a47>
+Date: Thu, 12 Dec 2024 05:36:38 -0000
+Message-ID: <173398179873.1463466.7315018818462972865@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241212054945.1091894-1-riana.tauro@intel.com>
 In-Reply-To: <20241212054945.1091894-1-riana.tauro@intel.com>
@@ -44,14 +43,48 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Enable Survivability mode
 URL   : https://patchwork.freedesktop.org/series/142464/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: e70dbc9b6fd6 drm-tip: 2024y-12m-12d-00h-50m-19s UTC integration manifest
-=== git am output follows ===
-Applying: RFC drm/xe: Add functions and sysfs for boot survivability
-Applying: RFC drm/xe: Enable Boot Survivability mode
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e269815f7439db7210665fd0011739c3ba575681
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Thu Dec 12 11:19:45 2024 +0530
+
+    RFC drm/xe: Enable Boot Survivability mode
+    
+    Enable boot survivability mode if pcode initialization fails and
+    if boot status indicates a failure. In this mode, drm card is not
+    exposed and driver probe returns success after loading the bare minimum
+    to allow firmware to be flashed via mei.
+    
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
++ /mt/dim checkpatch e70dbc9b6fd6666891756ed53e0404e0b48b11de drm-intel
+4edad0f6104e RFC drm/xe: Add functions and sysfs for boot survivability
+-:84: WARNING:TYPO_SPELLING: 'Auxillary' may be misspelled - perhaps 'Auxiliary'?
+#84: FILE: drivers/gpu/drm/xe/xe_pcode_api.h:63:
++/* Auxillary info bits */
+    ^^^^^^^^^
+
+-:91: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#91: 
+new file mode 100644
+
+-:138: WARNING:TYPO_SPELLING: 'Auxillary' may be misspelled - perhaps 'Auxiliary'?
+#138: FILE: drivers/gpu/drm/xe/xe_survivability_mode.c:43:
++ *			      Auxillary Information  - Certain failures may have information in
+   			      ^^^^^^^^^
+
+total: 0 errors, 3 warnings, 0 checks, 320 lines checked
+e269815f7439 RFC drm/xe: Enable Boot Survivability mode
 
 
