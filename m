@@ -4,27 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44E05E7717F
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 10:08:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 012F2E77182
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 10:09:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FE2910ED32;
-	Thu, 12 Dec 2024 10:08:46 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A658310ED32;
- Thu, 12 Dec 2024 10:08:44 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C440310ED33;
+	Thu, 12 Dec 2024 10:09:48 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6E6910ED32;
+ Thu, 12 Dec 2024 10:09:46 +0000 (UTC)
+Received: from 91-155-254-135.elisa-laajakaista.fi ([91.155.254.135]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1tLg8b-00000002rXd-3GVN; Thu, 12 Dec 2024 12:09:44 +0200
+Message-ID: <d7fa5670437957a378cf193a74481f8db4b779b2.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Date: Thu, 12 Dec 2024 12:09:40 +0200
+In-Reply-To: <d04779211e96f541d5e46b3fdd2f249fb50e9460.1733827537.git.jani.nikula@intel.com>
+References: <cover.1733827537.git.jani.nikula@intel.com>
+ <d04779211e96f541d5e46b3fdd2f249fb50e9460.1733827537.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.1-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/i915/display=3A_Add_?=
- =?utf-8?q?WA=5F14018221282?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Dec 2024 10:08:44 -0000
-Message-ID: <173399812467.1532923.15566589347894769136@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241212094043.911853-1-nemesa.garg@intel.com>
-In-Reply-To: <20241212094043.911853-1-nemesa.garg@intel.com>
+Subject: Re: [PATCH v2 1/5] drm/i915/dp: s/intel_encoder/encoder/
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +41,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 2024-12-10 at 12:46 +0200, Jani Nikula wrote:
+> Use the contemporary naming convention of struct intel_encoder *encoder.
+>=20
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
 
-Series: drm/i915/display: Add WA_14018221282
-URL   : https://patchwork.freedesktop.org/series/142469/
-State : success
+This is pretty straight-forward.  Did you use any semantic-patch or
+just manually changed them? This is so small that the latter is
+probably faster. ;)
 
-== Summary ==
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast e2a7d57b916f6425afb6bbcc81c1b8bf8a0561a9
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+--
+Cheers,
+Luca.
