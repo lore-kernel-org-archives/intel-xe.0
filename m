@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86821E77182
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 01:02:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75588E77180
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 01:02:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54CD710E0F4;
-	Thu, 12 Dec 2024 01:02:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FEBA10ECA7;
+	Thu, 12 Dec 2024 01:02:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DPmS7olZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WmjCPXOT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D04D810ECA4
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Dec 2024 01:02:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BE7210ECA3
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Dec 2024 01:02:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733965330; x=1765501330;
+ t=1733965328; x=1765501328;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JyIcdr6RwqPrCowmrb7UaAeh2oMCqrWzMFj1H3HiRIQ=;
- b=DPmS7olZgEdbrklqKq+eM+79C8NdIa8Hnxg/uPP6mbbzJJBR96OUFF8Q
- RS2jvHc+w1+NPQ20iNmC/Alp8qRURfMw8fpVT8p5LeYyTZFrJP1lYcCFI
- Tu8i/fdItCpoQ/RXXfMeifTNd/tguCcEVQ+vfas7vEvrjiGNycrRqdqbp
- ZVEcDr7yniZc6Zm3DbT9t4mZBoWDwnyAI6uaCu2C7wvuOmXIfjjgRGq8g
- DqMyAkaN+/4+sN4QhUEtk4uTv2hmAriR+d5GUQergRI8n2C3kGO9IlTt7
- SoYaGqOlbZDjnLdGfymrTffnFZSBsaJsveJqT3BeJJDoQAKr+DxaMyIsg w==;
-X-CSE-ConnectionGUID: mN2P1JkMQbOJDOwpQ/O3Eg==
-X-CSE-MsgGUID: A8gND1sUR+Wt8gPRPCVb8A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="45379801"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="45379801"
+ bh=J2lzLkF2wwDPe8iJAyoufmaRe7WOFXNLGSpA6iE+p+w=;
+ b=WmjCPXOTApnOGuySG4EPJZLIVdaWtiLh//0iVYEcCL5fXfJ695q1gg3k
+ BMXNijuwUkrqMQ3iCXUMWD0JoFbeh2O0VaMPDB8X6+ggz5GTRlx06Ff7l
+ bJ/PpEznfUZNT4rCkj/omrG2YulAyaEh29liIr32uVe0L1M4MIt/nFey5
+ eUaO86YXnQrpjX9caYDLSkEDTU+ZAdRX4wNmZ1CTXww/YrJF+AuFpTL5P
+ dNgkkmdGDFA1+e6qcHeTOjsgUiVyN5ButefjBTnrZgQ4H6GKMYUQSxKn5
+ XIsXlaGu6zscyPc7LvojSIQ1w1kAiChqDBTtlb3/XXSYgKeqwN6d5ZyK+ g==;
+X-CSE-ConnectionGUID: SsD3dR1sTAmw9CeBxvL4UQ==
+X-CSE-MsgGUID: KOQQdwLzRxadkR1piWz7ww==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="45379799"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="45379799"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2024 17:02:09 -0800
-X-CSE-ConnectionGUID: ITfZY70dTjy+6l7Clwh7kA==
-X-CSE-MsgGUID: 7/SSjiu2TQOHiMSDOf0yJQ==
+ 11 Dec 2024 17:02:08 -0800
+X-CSE-ConnectionGUID: lBPOZdAnRsSSiqb0vUumJw==
+X-CSE-MsgGUID: 0loGKSY9TdK9YwmxubJ51A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,227,1728975600"; d="scan'208";a="126856606"
+X-IronPort-AV: E=Sophos;i="6.12,227,1728975600"; d="scan'208";a="126856582"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.80.89])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2024 17:02:09 -0800
+ 11 Dec 2024 17:02:07 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH 09/13] drm/xe/sa: Minor header cleanups
-Date: Thu, 12 Dec 2024 02:01:37 +0100
-Message-Id: <20241212010141.389-10-michal.wajdeczko@intel.com>
+Subject: [PATCH 08/13] drm/xe/sa: Allow creating suballocator with custom
+ guard size
+Date: Thu, 12 Dec 2024 02:01:36 +0100
+Message-Id: <20241212010141.389-9-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20241212010141.389-1-michal.wajdeczko@intel.com>
 References: <20241212010141.389-1-michal.wajdeczko@intel.com>
@@ -67,37 +68,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Drop unused struct xe_bo forward declaration and, while around,
-fix unnecessary line split in xe_sa_bo_free() declaration.
+Actual xe_sa_manager implementation uses hardcoded 4K to exclude
+it from making suballocations but in upcoming patch we want to
+reuse the xe_sa_manager where such 4K guard is not needed. Add
+another variant of the xe_sa_bo_manager_init() function that
+accepts arbitrary guard size.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sa.h | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_sa.c | 18 ++++++++++++++++--
+ drivers/gpu/drm/xe/xe_sa.h |  9 +++++++--
+ 2 files changed, 23 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
-index 9328b38eff6a..83581b427ea6 100644
---- a/drivers/gpu/drm/xe/xe_sa.h
-+++ b/drivers/gpu/drm/xe/xe_sa.h
-@@ -10,7 +10,6 @@
- #include "xe_sa_types.h"
- 
- struct dma_fence;
--struct xe_bo;
- struct xe_tile;
- 
- struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 guard, u32 align);
-@@ -27,8 +26,7 @@ static inline struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager
+diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
+index d92d9836fa91..94f05e704a43 100644
+--- a/drivers/gpu/drm/xe/xe_sa.c
++++ b/drivers/gpu/drm/xe/xe_sa.c
+@@ -32,14 +32,28 @@ static void sa_bo_manager_fini_bo(void *arg)
+ 	sa_manager->bo = NULL;
  }
  
- void xe_sa_bo_flush_write(struct drm_suballoc *sa_bo);
--void xe_sa_bo_free(struct drm_suballoc *sa_bo,
--		   struct dma_fence *fence);
-+void xe_sa_bo_free(struct drm_suballoc *sa_bo, struct dma_fence *fence);
+-struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 align)
++/**
++ * __xe_sa_bo_manager_init() - Create and initialize the suballocator
++ * @tile: the &xe_tile where allocate
++ * @size: number of bytes to allocate
++ * @guard: number of bytes to exclude from suballocations
++ * @align: alignment for each suballocated chunk
++ *
++ * Prepares the suballocation manager for suballocations.
++ *
++ * Return: a pointer to the &xe_sa_manager or an ERR_PTR on failure.
++ */
++struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 guard, u32 align)
+ {
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct xe_sa_manager *sa_manager;
+-	u32 managed_size = size - SZ_4K;
++	u32 managed_size;
+ 	struct xe_bo *bo;
+ 	int ret;
  
- static inline struct xe_sa_manager *
- to_xe_sa_manager(struct drm_suballoc_manager *mng)
++	xe_tile_assert(tile, size > guard);
++	managed_size = size - guard;
++
+ 	sa_manager = drmm_kzalloc(&xe->drm, sizeof(*sa_manager), GFP_KERNEL);
+ 	if (!sa_manager)
+ 		return ERR_PTR(-ENOMEM);
+diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
+index bf55d8c3b5eb..9328b38eff6a 100644
+--- a/drivers/gpu/drm/xe/xe_sa.h
++++ b/drivers/gpu/drm/xe/xe_sa.h
+@@ -5,6 +5,7 @@
+ #ifndef _XE_SA_H_
+ #define _XE_SA_H_
+ 
++#include <linux/sizes.h>
+ #include <linux/types.h>
+ #include "xe_sa_types.h"
+ 
+@@ -12,10 +13,14 @@ struct dma_fence;
+ struct xe_bo;
+ struct xe_tile;
+ 
+-struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 align);
+-
++struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 guard, u32 align);
+ struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size, gfp_t gfp);
+ 
++static inline struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 align)
++{
++	return __xe_sa_bo_manager_init(tile, size, SZ_4K, align);
++}
++
+ static inline struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size)
+ {
+ 	return __xe_sa_bo_new(sa_manager, size, GFP_KERNEL);
 -- 
 2.47.1
 
