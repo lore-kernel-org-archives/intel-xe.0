@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97054E77183
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 01:02:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 937D9E7717D
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 01:03:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6133410ECA4;
-	Thu, 12 Dec 2024 01:02:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A8Ptic8r";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBBDF10ECA0
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Dec 2024 01:02:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733965336; x=1765501336;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=CsPbEQP23nHayGv3dhZVe1ajJGcLmZ7YeNM23vDcZV4=;
- b=A8Ptic8r56vELiWbFvw6aPRlsayRDPTN0Jn3lHxxvfZMK7+e//pt0a6d
- 9M0lLjR+fcEaBJ9APOdhycu+g9D80WF2y64iy+v8CZHxh1rgFKrEccoEX
- O6sVqkOP8xRa1sBAtSaGFWszHR7x0ULJMaLTupQAy3UpwMHbCIyWY0bu1
- +B6g5AJRr3wZ8CHhiOd3agDkgoPp7egPoPBpCBYNIYTu9yk2YVv4n5l2w
- n99WaORzichCWazmj5Y829mzCiXr3ZSXLI1XpY17QwfjtaF2NXfUYKkLZ
- h/4e07MXHU5YPJZGf/tZizUhEIy72ltmByOnNS6o+hTr2YQqI25SPL9l4 A==;
-X-CSE-ConnectionGUID: whCT7Aw8RBiQZaveVsaB3A==
-X-CSE-MsgGUID: muwVzyVIRb6oElXdY3nUiA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="45379823"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="45379823"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2024 17:02:15 -0800
-X-CSE-ConnectionGUID: UiQHzlaISCaz0I28ZMBBJQ==
-X-CSE-MsgGUID: GgV2V4ExQ1SPY9ZQ5CCELg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,227,1728975600"; d="scan'208";a="126856732"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.80.89])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2024 17:02:15 -0800
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 13/13] drm/xe/kunit: Add KUnit tests for GuC Buffer Cache
-Date: Thu, 12 Dec 2024 02:01:41 +0100
-Message-Id: <20241212010141.389-14-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20241212010141.389-1-michal.wajdeczko@intel.com>
-References: <20241212010141.389-1-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F8E210E24A;
+	Thu, 12 Dec 2024 01:03:58 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16E4610E24A;
+ Thu, 12 Dec 2024 01:03:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Remove_a_redundant_a?=
+ =?utf-8?q?rgument_check?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 12 Dec 2024 01:03:57 -0000
+Message-ID: <173396543708.1390308.9241995613219230165@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241211235036.348143-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20241211235036.348143-1-gwan-gyeong.mun@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,374 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add tests to make sure that recently added GuC Buffer Cache
-component is working as expected.
+== Series Details ==
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
-v2: rebased (Michal)
----
- drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c | 335 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_buf.c             |   4 +
- 2 files changed, 339 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
+Series: drm/xe: Remove a redundant argument check
+URL   : https://patchwork.freedesktop.org/series/142449/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-new file mode 100644
-index 000000000000..8a90f832915b
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-@@ -0,0 +1,335 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include <kunit/static_stub.h>
-+#include <kunit/test.h>
-+#include <kunit/test-bug.h>
-+
-+#include "xe_device.h"
-+#include "xe_ggtt.h"
-+#include "xe_guc_ct.h"
-+#include "xe_kunit_helpers.h"
-+#include "xe_pci_test.h"
-+
-+#define DUT_GGTT_START		SZ_1M
-+#define DUT_GGTT_SIZE		SZ_2M
-+#define DUT_DATA		1
-+
-+static struct xe_bo *replacement_xe_managed_bo_create_pin_map(struct xe_device *xe,
-+							      struct xe_tile *tile,
-+							      size_t size, u32 flags)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	struct xe_bo *bo;
-+	void *buf;
-+
-+	bo = drmm_kzalloc(&xe->drm, sizeof(*bo), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, bo);
-+
-+	buf = drmm_kzalloc(&xe->drm, size, GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, buf);
-+
-+	bo->tile = tile;
-+	bo->ttm.bdev = &xe->ttm;
-+	bo->size = size;
-+	iosys_map_set_vaddr(&bo->vmap, buf);
-+
-+	if (flags & XE_BO_FLAG_GGTT) {
-+		struct xe_ggtt *ggtt = tile->mem.ggtt;
-+
-+		bo->ggtt_node[tile->id] = xe_ggtt_node_init(ggtt);
-+		KUNIT_ASSERT_NOT_ERR_OR_NULL(test, bo->ggtt_node[tile->id]);
-+
-+		KUNIT_ASSERT_EQ(test, 0,
-+				drm_mm_insert_node_in_range(&ggtt->mm,
-+							    &bo->ggtt_node[tile->id]->base,
-+							    bo->size, SZ_4K,
-+							    0, 0, U64_MAX, 0));
-+	}
-+
-+	return bo;
-+}
-+
-+static int guc_buf_test_init(struct kunit *test)
-+{
-+	struct xe_pci_fake_data fake = {
-+		.sriov_mode = XE_SRIOV_MODE_PF,
-+		.platform = XE_TIGERLAKE, /* some random platform */
-+		.subplatform = XE_SUBPLATFORM_NONE,
-+	};
-+	struct xe_ggtt *ggtt;
-+	struct xe_guc *guc;
-+
-+	test->priv = &fake;
-+	xe_kunit_helper_xe_device_test_init(test);
-+
-+	ggtt = xe_device_get_root_tile(test->priv)->mem.ggtt;
-+	guc = &xe_device_get_gt(test->priv, 0)->uc.guc;
-+
-+	drm_mm_init(&ggtt->mm, DUT_GGTT_START, DUT_GGTT_SIZE);
-+	mutex_init(&ggtt->lock);
-+
-+	kunit_activate_static_stub(test, xe_managed_bo_create_pin_map,
-+				   replacement_xe_managed_bo_create_pin_map);
-+
-+	KUNIT_ASSERT_EQ(test, 0, xe_guc_buf_cache_init(&guc->buf));
-+
-+	test->priv = &guc->buf;
-+	return 0;
-+}
-+
-+static void test_smallest(struct kunit *test)
-+{
-+	struct xe_guc_buf_cache *cache = test->priv;
-+	struct xe_guc_buf buf;
-+
-+	buf = xe_guc_buf_reserve(cache, 1);
-+	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
-+	KUNIT_EXPECT_NOT_NULL(test, xe_guc_buf_cpu_ptr(buf));
-+	KUNIT_EXPECT_NE(test, 0, xe_guc_buf_gpu_addr(buf));
-+	KUNIT_EXPECT_LE(test, DUT_GGTT_START, xe_guc_buf_gpu_addr(buf));
-+	KUNIT_EXPECT_GT(test, DUT_GGTT_START + DUT_GGTT_SIZE, xe_guc_buf_gpu_addr(buf));
-+	xe_guc_buf_release(buf);
-+}
-+
-+static void test_largest(struct kunit *test)
-+{
-+	struct xe_guc_buf_cache *cache = test->priv;
-+	struct xe_guc_buf buf;
-+
-+	buf = xe_guc_buf_reserve(cache, xe_guc_buf_cache_dwords(cache));
-+	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
-+	KUNIT_EXPECT_NOT_NULL(test, xe_guc_buf_cpu_ptr(buf));
-+	KUNIT_EXPECT_NE(test, 0, xe_guc_buf_gpu_addr(buf));
-+	KUNIT_EXPECT_LE(test, DUT_GGTT_START, xe_guc_buf_gpu_addr(buf));
-+	KUNIT_EXPECT_GT(test, DUT_GGTT_START + DUT_GGTT_SIZE, xe_guc_buf_gpu_addr(buf));
-+	xe_guc_buf_release(buf);
-+}
-+
-+static void test_granular(struct kunit *test)
-+{
-+	struct xe_guc_buf_cache *cache = test->priv;
-+	struct xe_guc_buf *bufs;
-+	int n, dwords;
-+
-+	dwords = xe_guc_buf_cache_dwords(cache);
-+	bufs = kunit_kcalloc(test, dwords, sizeof(*bufs), GFP_KERNEL);
-+	KUNIT_EXPECT_NOT_NULL(test, bufs);
-+
-+	for (n = 0; n < dwords; n++)
-+		bufs[n] = xe_guc_buf_reserve(cache, 1);
-+
-+	for (n = 0; n < dwords; n++)
-+		KUNIT_EXPECT_TRUE_MSG(test, xe_guc_buf_is_valid(bufs[n]), "n=%d", n);
-+
-+	for (n = 0; n < dwords; n++)
-+		xe_guc_buf_release(bufs[n]);
-+}
-+
-+static void test_unique(struct kunit *test)
-+{
-+	struct xe_guc_buf_cache *cache = test->priv;
-+	struct xe_guc_buf *bufs;
-+	int n, m, dwords;
-+
-+	dwords = xe_guc_buf_cache_dwords(cache);
-+	bufs = kunit_kcalloc(test, dwords, sizeof(*bufs), GFP_KERNEL);
-+	KUNIT_EXPECT_NOT_NULL(test, bufs);
-+
-+	for (n = 0; n < dwords; n++)
-+		bufs[n] = xe_guc_buf_reserve(cache, 1);
-+
-+	for (n = 0; n < dwords; n++) {
-+		for (m = n + 1; m < dwords; m++) {
-+			KUNIT_EXPECT_PTR_NE_MSG(test, xe_guc_buf_cpu_ptr(bufs[n]),
-+						xe_guc_buf_cpu_ptr(bufs[m]), "n=%d, m=%d", n, m);
-+			KUNIT_ASSERT_NE_MSG(test, xe_guc_buf_gpu_addr(bufs[n]),
-+					    xe_guc_buf_gpu_addr(bufs[m]), "n=%d, m=%d", n, m);
-+		}
-+	}
-+
-+	for (n = 0; n < dwords; n++)
-+		xe_guc_buf_release(bufs[n]);
-+}
-+
-+static void test_overlap(struct kunit *test)
-+{
-+	struct xe_guc_buf_cache *cache = test->priv;
-+	struct xe_guc_buf b1, b2;
-+	u32 dwords = xe_guc_buf_cache_dwords(cache) / 2;
-+	u32 bytes = dwords * sizeof(u32);
-+	void *p1, *p2;
-+	u64 a1, a2;
-+
-+	b1 = xe_guc_buf_reserve(cache, dwords);
-+	b2 = xe_guc_buf_reserve(cache, dwords);
-+
-+	p1 = xe_guc_buf_cpu_ptr(b1);
-+	p2 = xe_guc_buf_cpu_ptr(b2);
-+
-+	a1 = xe_guc_buf_gpu_addr(b1);
-+	a2 = xe_guc_buf_gpu_addr(b2);
-+
-+	KUNIT_EXPECT_PTR_NE(test, p1, p2);
-+	if (p1 < p2)
-+		KUNIT_EXPECT_LT(test, (uintptr_t)(p1 + bytes - 1), (uintptr_t)p2);
-+	else
-+		KUNIT_EXPECT_LT(test, (uintptr_t)(p2 + bytes - 1), (uintptr_t)p1);
-+
-+	KUNIT_EXPECT_NE(test, a1, a2);
-+	if (a1 < a2)
-+		KUNIT_EXPECT_LT(test, a1 + bytes - 1, a2);
-+	else
-+		KUNIT_EXPECT_LT(test, a2 + bytes - 1, a1);
-+
-+	xe_guc_buf_release(b1);
-+	xe_guc_buf_release(b2);
-+}
-+
-+static void test_reusable(struct kunit *test)
-+{
-+	struct xe_guc_buf_cache *cache = test->priv;
-+	struct xe_guc_buf b1, b2;
-+	void *p1;
-+	u64 a1;
-+
-+	b1 = xe_guc_buf_reserve(cache, xe_guc_buf_cache_dwords(cache));
-+	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(b1));
-+	KUNIT_EXPECT_NOT_NULL(test, p1 = xe_guc_buf_cpu_ptr(b1));
-+	KUNIT_EXPECT_NE(test, 0, a1 = xe_guc_buf_gpu_addr(b1));
-+	xe_guc_buf_release(b1);
-+
-+	b2 = xe_guc_buf_reserve(cache, xe_guc_buf_cache_dwords(cache));
-+	KUNIT_EXPECT_PTR_EQ(test, p1, xe_guc_buf_cpu_ptr(b2));
-+	KUNIT_EXPECT_EQ(test, a1, xe_guc_buf_gpu_addr(b2));
-+	xe_guc_buf_release(b2);
-+}
-+
-+static void test_too_big(struct kunit *test)
-+{
-+	struct xe_guc_buf_cache *cache = test->priv;
-+	struct xe_guc_buf buf;
-+
-+	buf = xe_guc_buf_reserve(cache, xe_guc_buf_cache_dwords(cache) + 1);
-+	KUNIT_EXPECT_FALSE(test, xe_guc_buf_is_valid(buf));
-+	xe_guc_buf_release(buf); /* shouldn't crash */
-+}
-+
-+static void test_flush(struct kunit *test)
-+{
-+	struct xe_guc_buf_cache *cache = test->priv;
-+	struct xe_guc_buf buf;
-+	const u32 dwords = xe_guc_buf_cache_dwords(cache);
-+	const u32 bytes = dwords * sizeof(u32);
-+	u32 *s, *p, *d;
-+	int n;
-+
-+	KUNIT_ASSERT_NOT_NULL(test, s = kunit_kcalloc(test, dwords, sizeof(u32), GFP_KERNEL));
-+	KUNIT_ASSERT_NOT_NULL(test, d = kunit_kcalloc(test, dwords, sizeof(u32), GFP_KERNEL));
-+
-+	for (n = 0; n < dwords; n++)
-+		s[n] = n;
-+
-+	buf = xe_guc_buf_reserve(cache, dwords);
-+	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
-+	KUNIT_ASSERT_NOT_NULL(test, p = xe_guc_buf_cpu_ptr(buf));
-+	KUNIT_EXPECT_PTR_NE(test, p, s);
-+	KUNIT_EXPECT_PTR_NE(test, p, d);
-+
-+	memcpy(p, s, bytes);
-+	KUNIT_EXPECT_NE(test, 0, xe_guc_buf_flush(buf));
-+
-+	iosys_map_memcpy_from(d, &cache->sam->bo->vmap, 0, bytes);
-+	KUNIT_EXPECT_MEMEQ(test, s, d, bytes);
-+
-+	xe_guc_buf_release(buf);
-+}
-+
-+static void test_lookup(struct kunit *test)
-+{
-+	struct xe_guc_buf_cache *cache = test->priv;
-+	struct xe_guc_buf buf;
-+	u32 dwords;
-+	u64 addr;
-+	u32 *p;
-+	int n;
-+
-+	dwords = xe_guc_buf_cache_dwords(cache);
-+	buf = xe_guc_buf_reserve(cache, dwords);
-+	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
-+	KUNIT_ASSERT_NOT_NULL(test, p = xe_guc_buf_cpu_ptr(buf));
-+	KUNIT_ASSERT_NE(test, 0, addr = xe_guc_buf_gpu_addr(buf));
-+
-+	KUNIT_EXPECT_EQ(test, 0, xe_guc_cache_gpu_addr_from_ptr(cache, p - 1, sizeof(u32)));
-+	KUNIT_EXPECT_EQ(test, 0, xe_guc_cache_gpu_addr_from_ptr(cache, p + dwords, sizeof(u32)));
-+
-+	for (n = 0; n < dwords; n++)
-+		KUNIT_EXPECT_EQ_MSG(test, xe_guc_cache_gpu_addr_from_ptr(cache, p + n, sizeof(u32)),
-+				    addr + n * sizeof(u32), "n=%d", n);
-+
-+	xe_guc_buf_release(buf);
-+}
-+
-+static void test_data(struct kunit *test)
-+{
-+	static const u32 data[] = { 1, 2, 3, 4, 5, 6 };
-+	struct xe_guc_buf_cache *cache = test->priv;
-+	struct xe_guc_buf buf;
-+	void *p;
-+
-+	buf = xe_guc_buf_from_data(cache, data, sizeof(data));
-+	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
-+	KUNIT_ASSERT_NOT_NULL(test, p = xe_guc_buf_cpu_ptr(buf));
-+	KUNIT_EXPECT_MEMEQ(test, p, data, sizeof(data));
-+
-+	xe_guc_buf_release(buf);
-+}
-+
-+static void test_class(struct kunit *test)
-+{
-+	struct xe_guc_buf_cache *cache = test->priv;
-+	u32 dwords = xe_guc_buf_cache_dwords(cache);
-+
-+	{
-+		CLASS(xe_guc_buf, buf)(cache, dwords);
-+		KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
-+		KUNIT_EXPECT_NOT_NULL(test, xe_guc_buf_cpu_ptr(buf));
-+		KUNIT_EXPECT_NE(test, 0, xe_guc_buf_gpu_addr(buf));
-+		KUNIT_EXPECT_LE(test, DUT_GGTT_START, xe_guc_buf_gpu_addr(buf));
-+		KUNIT_EXPECT_GT(test, DUT_GGTT_START + DUT_GGTT_SIZE, xe_guc_buf_gpu_addr(buf));
-+	}
-+
-+	{
-+		CLASS(xe_guc_buf, buf)(cache, dwords);
-+		KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
-+		KUNIT_EXPECT_NOT_NULL(test, xe_guc_buf_cpu_ptr(buf));
-+		KUNIT_EXPECT_NE(test, 0, xe_guc_buf_gpu_addr(buf));
-+		KUNIT_EXPECT_LE(test, DUT_GGTT_START, xe_guc_buf_gpu_addr(buf));
-+		KUNIT_EXPECT_GT(test, DUT_GGTT_START + DUT_GGTT_SIZE, xe_guc_buf_gpu_addr(buf));
-+	}
-+}
-+
-+static struct kunit_case guc_buf_test_cases[] = {
-+	KUNIT_CASE(test_smallest),
-+	KUNIT_CASE(test_largest),
-+	KUNIT_CASE(test_granular),
-+	KUNIT_CASE(test_unique),
-+	KUNIT_CASE(test_overlap),
-+	KUNIT_CASE(test_reusable),
-+	KUNIT_CASE(test_too_big),
-+	KUNIT_CASE(test_flush),
-+	KUNIT_CASE(test_lookup),
-+	KUNIT_CASE(test_data),
-+	KUNIT_CASE(test_class),
-+	{}
-+};
-+
-+static struct kunit_suite guc_buf_suite = {
-+	.name = "guc_buf",
-+	.test_cases = guc_buf_test_cases,
-+	.init = guc_buf_test_init,
-+};
-+
-+kunit_test_suites(&guc_buf_suite);
-diff --git a/drivers/gpu/drm/xe/xe_guc_buf.c b/drivers/gpu/drm/xe/xe_guc_buf.c
-index 261c7c74417f..ce6d9830e13b 100644
---- a/drivers/gpu/drm/xe/xe_guc_buf.c
-+++ b/drivers/gpu/drm/xe/xe_guc_buf.c
-@@ -170,3 +170,7 @@ u64 xe_guc_cache_gpu_addr_from_ptr(struct xe_guc_buf_cache *cache, const void *p
- 
- 	return cache->sam->gpu_addr + offset;
- }
-+
-+#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
-+#include "tests/xe_guc_buf_kunit.c"
-+#endif
--- 
-2.47.1
+== Summary ==
+
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/kernel/
+lib/modules/6.13.0-rc2-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc2-xe+/kernel/block/
+lib/modules/6.13.0-rc2-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc2-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc2-xe+/build
+lib/modules/6.13.0-rc2-xe+/modules.alias.bin
+lib/modules/6.13.0-rc2-xe+/modules.builtin
+lib/modules/6.13.0-rc2-xe+/modules.softdep
+lib/modules/6.13.0-rc2-xe+/modules.alias
+lib/modules/6.13.0-rc2-xe+/modules.order
+lib/modules/6.13.0-rc2-xe+/modules.symbols
+lib/modules/6.13.0-rc2-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1733965426:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1733965426:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
