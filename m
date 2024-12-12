@@ -4,165 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85CCDE7717F
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 03:35:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87E1AE77180
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 03:35:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 200A210ECA4;
-	Thu, 12 Dec 2024 03:35:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5305110ECAA;
+	Thu, 12 Dec 2024 03:35:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JfIwLRpb";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="LxFWCAIW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E834C10ECA4
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Dec 2024 03:35:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733974546; x=1765510546;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=tNe+P65alsOOuo6w2JTmwfB8qPS7CF5ytzClaTjsdPY=;
- b=JfIwLRpbUp/iYWTWhEXHftBFBq1mR2IvbDaeyNgcxcUshhq0eDSITh1R
- kPGZWBtQS1Th1A8tvYDRO9pHQYpuxcCUXO5CrAc1Ll736xmJop24ATPGr
- EkXf2FPYtQV6KC+lPeitNAb6a5FZeVMu6t87AM8Zc59C02sCcp5xE/fk/
- pV/4fEQHfL0eVgkC3y8rmdbw0YS5OmsE6It80tBT+ZXaks2Y7Al7X9zfo
- JgnpbbUFF/kVKSjEH3+dQr/O4fze4zPmrl6REOaSUEj8vcTbRWYpUXvXi
- 9tIfJCfAzfZX2A5fyxCZNsU0f5ityLo1I9iUchQ6RpScS7sBpW40G+LuX A==;
-X-CSE-ConnectionGUID: 5yFl5TxFQOS3LAXZkqTx2A==
-X-CSE-MsgGUID: IyxD2MKhTsWqkDDgCklxDA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11283"; a="34620536"
-X-IronPort-AV: E=Sophos;i="6.12,227,1728975600"; d="scan'208";a="34620536"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2024 19:35:45 -0800
-X-CSE-ConnectionGUID: ta09I08iSNGgrTNLh32hGw==
-X-CSE-MsgGUID: PaQGPWczQD6BGQ+3BB/QbQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,227,1728975600"; d="scan'208";a="96597676"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 11 Dec 2024 19:35:45 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 11 Dec 2024 19:35:45 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 11 Dec 2024 19:35:45 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.175)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 11 Dec 2024 19:35:44 -0800
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2062d.outbound.protection.outlook.com
+ [IPv6:2a01:111:f403:2408::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 237F510ECA9;
+ Thu, 12 Dec 2024 03:35:52 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WcDjFZ0FF7cY6ecNjZvMIRM6Bs6O/mu0kvQZpmZ/losJliSYzGp5PQLBovXrrcCzJSVjJ/2axXN0IPw0YJxnaxdEL0IiKYuvUvzhiDQUkbXl+cKw/hHKZGsHn10WFAdD6P/JImdAEulS0vfHEqyTANwokkEMT22b7n4ZQBp8uROKwRlIBtrHVpwqstxx3DF1Di28Wd7vGjKVVRL+nB33fyJA0BqMKBd4SAlJDAWq29wFcvKd0HaEXMBkVFSxYTJJXVIiohnBQ2OEq/8O6bvsXmvWyQgQxVtDrYVQUG3srvnV6/oBK+CpTuXnpYv04DBfquHL7y3CLA/EF2aCfVo8RQ==
+ b=UfxALHEugRf0aIVinsxAI0LQYp+ZKpdOKR7Sp/i6njXPV1Zsr7BkvtAt78LeOIUgY6+riU0RgGJZD0yMNGbaFw9AZzyBQJizYMe2GUF6gcA7ub1G8mUOByCjwlJqTx1fkPDBMTXaQx73Rk5kVJ/6S2QXoNPZ0XZ4eUFyFneISBAwpnX9IVYOGDxwi/KBvw54lRM76+RYbmKKIRMM++1gmxQOPoxyvPXZvK5M46pt8Ksl8UBsiKVZ0Imz/jsiQu5DOVNG42AQb54wiGfGMWu7CD1NoGd4FMbEHEtUlLE/IZ8C5Z/fsIXZQmaZIu0/3/H57wTF4uVOLALOdLh3taYcNg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0zH3icbkTLeXmk733bnoWP8u7K8RMod3zPl0EHXMjiM=;
- b=pLE88BIRRLRpOVG21kaUf42zSVyoQoxIFD1M1Y1UoGwrqdJ0mlOoGlmoZc7V704zgIKnI4GcARx5aWSLqVDWa0EqmVPrbK9H4cKOHaS9MaR6uXmmm/l/RO+RxFSFAVudmAvna93tv/wn1IBBZwRfUWDGalVOaXjmLAHn1FA4gd8NSoAvdndAktC8R2izp331SqsbTn3Xfg7B6xp1Suo1sXmFstOMLF6bNMWZ9tNiNmVs/VN688K4ObTuNO+C+O3kIxLBhd011Gk2G7olo6FQ0l87zMAwGfdftkXQ4l7dTxcpHxz/TyEi7e5xuoMBf9r1Wi70bOFr6GZIxHk3BLmBWQ==
+ bh=VXHQXkXxXk43gSJb4zM7OeKUK4R4JRHW+Vfcnzfxgfk=;
+ b=XppquEe9F2Q6btaMyNsUC+zzReDxsxGCof3yIxgJ5ruAOuWEHAYofskH8Iexntvlgyr+3Ugkdq+LaVDCjB3/MF1IO5VHLOcG/72vM108cCwENYt6cFrU6/7JaYv9WLYxr+eXm4KRXHshAhvN4XK9PD0dbNtG6JhC3/hlgAjiO5miQT2/TIgNzSBWRqR/Y9oNTL2ihbRiqy9AWLi1kPnG7cmzFoFt90r1XkvDyD1hGfNPiFBO/Qth+4oN0H9WqD2TPzc9C+gnqLZyj4zOZy9t1jDe+EJryNZVnzHJv4VHhs7Hao8b1C0XFrB089I1fw+T2XWO9Fz+kQSOSYSoLRqnNw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VXHQXkXxXk43gSJb4zM7OeKUK4R4JRHW+Vfcnzfxgfk=;
+ b=LxFWCAIWzBlNoabm3O3WET6Y+WRx+HCQiDXn0/AJsfoDfc4Ko2fxyvijr2s0Vyx/DySg+l+ZNwb5pXaNLAFMdN3QV/dEUesubV7B+Il/WA9UsPZuIB6JFhSNCA6mWOnIUabBFJsINkuUa28HlNcMuzgVzqFoPMLjQ+QWV2js+/A=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by BL1PR11MB6025.namprd11.prod.outlook.com (2603:10b6:208:390::16)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
+ by SN7PR12MB6838.namprd12.prod.outlook.com (2603:10b6:806:266::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.19; Thu, 12 Dec
- 2024 03:35:42 +0000
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::1a0f:84e3:d6cd:e51]) by BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::1a0f:84e3:d6cd:e51%6]) with mapi id 15.20.8230.016; Thu, 12 Dec 2024
- 03:35:42 +0000
-Date: Wed, 11 Dec 2024 19:36:23 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 13/13] drm/xe/kunit: Add KUnit tests for GuC Buffer Cache
-Message-ID: <Z1paN30DT2nu4glj@lstrano-desk.jf.intel.com>
-References: <20241212010141.389-1-michal.wajdeczko@intel.com>
- <20241212010141.389-14-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241212010141.389-14-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: SJ0P220CA0007.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::15) To BL3PR11MB6508.namprd11.prod.outlook.com
- (2603:10b6:208:38f::5)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.15; Thu, 12 Dec
+ 2024 03:35:48 +0000
+Received: from MN0PR12MB6101.namprd12.prod.outlook.com
+ ([fe80::37ee:a763:6d04:81ca]) by MN0PR12MB6101.namprd12.prod.outlook.com
+ ([fe80::37ee:a763:6d04:81ca%4]) with mapi id 15.20.8251.008; Thu, 12 Dec 2024
+ 03:35:48 +0000
+Message-ID: <abe7da39-b576-4fdf-bd9f-5c51abd7180f@amd.com>
+Date: Wed, 11 Dec 2024 21:35:45 -0600
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] usb: typec: ucsi: Fix connector status writing past
+ buffer size
+To: Lucas De Marchi <lucas.demarchi@intel.com>, linux-usb@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ chaitanya.kumar.borah@intel.com, Luca Coelho <luca@coelho.fi>
+References: <20241203200010.2821132-1-lucas.demarchi@intel.com>
+Content-Language: en-US
+From: Mario Limonciello <mario.limonciello@amd.com>
+In-Reply-To: <20241203200010.2821132-1-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SN6PR01CA0010.prod.exchangelabs.com (2603:10b6:805:b6::23)
+ To MN0PR12MB6101.namprd12.prod.outlook.com
+ (2603:10b6:208:3cb::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|BL1PR11MB6025:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0b90166c-08ef-48a3-16bc-08dd1a5e0de4
+X-MS-TrafficTypeDiagnostic: MN0PR12MB6101:EE_|SN7PR12MB6838:EE_
+X-MS-Office365-Filtering-Correlation-Id: d1b7ddac-8fcd-4592-1f70-08dd1a5e1168
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?OuxjNJ+sC0i4VnnY/ZTOhKSdBzBVqqG7IFhFZOTJdU5ewBFS86BpKzpQSt?=
- =?iso-8859-1?Q?FBJozqap0IFXz9buMpINeOxHCFp2+p9RaCCpbyrfB645eBBn9OBfrNOYkw?=
- =?iso-8859-1?Q?49pbDQVCDX1m/BTQ4GOR7VTdVeCZTdHnbFx34wucQTRlv0IzLNuRkAGdLA?=
- =?iso-8859-1?Q?0rxTF8dsBTcJrUteENnp8VW5+qCM4MG7BU5bAZjh7x1mpKEsKPz2bqtCPM?=
- =?iso-8859-1?Q?omBCoOiVzu4ITN147W0E6am8EEpYtTUOxO0FekV7ekN/MzMC6BDYCUJiEb?=
- =?iso-8859-1?Q?3g+azxolvKgNQS3V1D3mh0btF4VEjkr01fOaO4SW+HnH8x6u/Ww2bhVbt+?=
- =?iso-8859-1?Q?pLPNmBemBKc0ngpZZiDCZ3cgYGRZHLo8jw3vIXCyjy2IBwHlfF6mSIvNB3?=
- =?iso-8859-1?Q?CuQygwZKobYFhnBj823fjr2s+cGOKFHIG+yYbrbRzZJrOqSwPTHTZ/rCTC?=
- =?iso-8859-1?Q?Mz/wEZQnp/z7hmD/tMu4sgOcdLmC6sXhPJxqxwXeH/pe7rZDWUdJJXcLn+?=
- =?iso-8859-1?Q?Q4BCppGOuQUZgjhJ9UunK23uEIFeHDZo5imVxeD1g5LPviYDmTaBeh5VWm?=
- =?iso-8859-1?Q?bBX3caxiM6idLPG9v9CLI4M/tfQvJPptgxvrBn9qou3YkmGrOLGZH0+iPG?=
- =?iso-8859-1?Q?wXGAD9+jD5ny9A3QGSIfUSilupelivDVBvIjV889AjD8E/0ZKqRYMHBK/y?=
- =?iso-8859-1?Q?/9aA/chOl/FHbyCwdn46KdWUTLYJZGZO3ot3aw4vo60xC+QJLvdK1luyWJ?=
- =?iso-8859-1?Q?9wOUhFJ7wI6XVUCpwqt5FlW/HL6PqlWxVvJ8AZKVUOW64v92gwW2DiJ86U?=
- =?iso-8859-1?Q?f58LDAv+h5Pd+HsQTC9DUox1FhD9mJlZxx9VF0XXCJ/9rJsCWi8lonS42I?=
- =?iso-8859-1?Q?aTTvgSCz0GRu3xDmZAvUgCr+d3/wvHhIeNYHtac5N9RN0nLD7F35RfOTGA?=
- =?iso-8859-1?Q?9d2GlOfC1OuqzgPvKo3ihwrdWcA5NULgz3M/YR6TXFbUdaPwbzzx6XNRzB?=
- =?iso-8859-1?Q?btah1mdFnJnxzHyVG5B/h4n0QqwCDMXQ4iycfc/XjcT1nljZ5vjNENtjry?=
- =?iso-8859-1?Q?lwCQCu3X8Ogy2Fa/Au2mkAuxd6oVDY8fB1YuvoFeZv58KDiCNx8F+4Hai9?=
- =?iso-8859-1?Q?zuMN0qJD54hNYqACssrU1OdBjVgTpqWfLWJQsHv3ZMG5ISgq+Z7m9j5BjX?=
- =?iso-8859-1?Q?orbGZMcDaBv6HPift76jo/wQr51Ae+GHDoJcEtjFyi1hhK6hzFPm7P6yKa?=
- =?iso-8859-1?Q?sKWES3kq9lUrK4uOSEOYUUlq4yuDe9lv2ZmuAoyeoOqK4hT00CwMPIfRyF?=
- =?iso-8859-1?Q?3D2z4VGkIkz/oLhP6198aNQfvAugHTxUh6jIB50StbJ949b6OAGPm1K+ot?=
- =?iso-8859-1?Q?Yvb+vw43ZLIVCWHxICS0TZfXuFt3Exug=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?eGtnRFRhRXBteFZXKzRqV0RFWGE0SGFaUzNQVVlDa2Jib3ZzVTBCUnpPQXUw?=
+ =?utf-8?B?clE3cUc1TStZTzFrbXVPNnJubGFCYmtvcDhjeUtSQzdFcmEzczVQcTRRandU?=
+ =?utf-8?B?M3U3d0Fwc0dodkswUnRwQzhvZFdpdzVGcmRLcnlRQWplRUZhZjhBT2VLekxH?=
+ =?utf-8?B?R0NpOGp0M2kvSExySERqV21pYXROWGQ2MUx2VjFqS2Jmc21RMktQM09CTVlI?=
+ =?utf-8?B?djVqR2hjdzVSbzFZWUdpNDBIOVgyNGFhTGFyMVlUbnZtektIb0lxV1NMaWJ3?=
+ =?utf-8?B?MFh1dEhiVytJZGpPRW1Pc3BGZEZqOGxvOUx2Nm53MTB4TFRJQTlwVTkwYVRN?=
+ =?utf-8?B?ZzNLd0o4VmpHMDduK0lzdzFhU0dXZ2JmSUFzVktSc3MrTWxzdzZJQlNzUTBm?=
+ =?utf-8?B?NThHK1FWNm9JMVY4dnJCN2lqdU9xWEFWL3cvOGJxdW1Ub0lPUWc5YStMRHo5?=
+ =?utf-8?B?MGdIbkJDeXJNQWhjSkV3ZXlRZWUxK2JURkU3UGtwVC9yV1RLYjFiM01MS1JW?=
+ =?utf-8?B?M3FsRjdEaWFtcG5zRVZ1bkxrT3l0M3FPWUcxRGlyU2U3ejRZN0xQNkJ5dExM?=
+ =?utf-8?B?MXZpSllneWdtek9ZdEo5Wm1IekJrMlFaaEFOVEh1NHBsdXQwZ205UnZQUHlS?=
+ =?utf-8?B?WmNiWGRld1hiMTRyRmhqYlNqeTY2OE90NU1JZjFwVzhudWRabVJFWVRWQjFh?=
+ =?utf-8?B?ajdDcXZtTEVIN3RZbnhFdGlxeWFHSEhBMU50M3l4aHhnYVVVTGJMSjZXOEhl?=
+ =?utf-8?B?Z3hjWUFuejlhaFpDQmY5ZDBtN2NqSzlpTWIzQlFQN1pWeFB2QTlaOEpubXlK?=
+ =?utf-8?B?S0poeDdxZzR4QlgrZG5mZEpvUlJOZ3JKdlE4ZjlkdmpXa2V3YnBIeXVENUJJ?=
+ =?utf-8?B?ZkNSdWhMc0FLc2dYeHlYTEVEN0ZVZ3hTNWNJNmw5bTBGVGwxbWNpTnhSdDJt?=
+ =?utf-8?B?VUlidW0wSUoxUENVZWwvaXM0UW15Z2FualZDWU0xUVhnWjZHanVsQVU5bzJM?=
+ =?utf-8?B?eER6bisxSHNMQUVBZGhkK2R0TU51T3lvcUl5WjRoUzlIcTVTTmdCaHhtcTgw?=
+ =?utf-8?B?ZVRFVktHdmx2Z0lnWE1nNVdhYjFwK1pYUlhac0Y3R2t4dzZQcGpMNG93TDhh?=
+ =?utf-8?B?SG4wMXdUY01JZjd5eDJWeUlicmFDWU14Y0lhUzE5cXNjVFlaTUllQWpjdHdT?=
+ =?utf-8?B?Vy9LcGVzQWVvUUJ3TXkycFR3ZWQrdUdabWY4eGo2c0tqNlZGemNFdGpsS3pR?=
+ =?utf-8?B?TjYxY1pkNzdSN2Jaam1ZSjlxTHQvNzFja0wzR2syN1g0aFJTeW9tclNpditM?=
+ =?utf-8?B?dXM4aFZobFNBYW9aK21YdERib0x6Q0pFTncxeGF4d2wwM3VrdlhNWVAyV3Zu?=
+ =?utf-8?B?a3VLVytla3JBenJ0SmlSZXR6eDRUVUtPYVFhaVkvUHBmREdwd1Z5b2wxdzlM?=
+ =?utf-8?B?MEtZMVFMMlBuTXVOVGk5UEZmRCswWXU3dXlnTVdmR1RDUExtb3MvdzVObFVT?=
+ =?utf-8?B?QzN1ZkUrQjYxWFBheW9IdDdzcUwrMnhHU1FwWDZrbXBzMTlLUU9GZ202QmJk?=
+ =?utf-8?B?WGQ2d2RPcWpFZzlWem1wZzh5TjhtNUZyMU1hemJEVGxyWW1DQkJiTkppaEpF?=
+ =?utf-8?B?RWRqZkZPbWJhc3EzYWxWRFJ6TzN6ZGlYazV3bXhRamk4bWlCM0dyU2RqSURn?=
+ =?utf-8?B?c1BwUmt1N0RHZm51c2xIeWR5bnpEME5ERHphSWUzY0dIUmFjcVdwMEMwS1ZM?=
+ =?utf-8?B?dkdyTkoyNXcyR3p2eVZMczgwUEwyTDRtOE5ZeEJCdGwxQnZ6Z1YyWXkyd1V3?=
+ =?utf-8?Q?jYCkyop1YaM1gf1Gi+OIItQBYnmqAJCkEM840=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MN0PR12MB6101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(7416014)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?EP9+YOLKH8l7kUXtX1QXl6vZxyAT0KYzBDN2CaCm5Yj7ufJT+rtNvLebF8?=
- =?iso-8859-1?Q?FNaX7raT9ADbrGLeMaGWTUCNqHsmnuuZ+uBUpa3UFiJh/lmFYT3qs+Qtxd?=
- =?iso-8859-1?Q?Br7YKkN4n2ULEHWABLi4p18OzBtN1JSM7CmnMx55DF4vSzi+g/hYefaYWm?=
- =?iso-8859-1?Q?3JcK13uv0jAHmRk4tDmVJYIoRr5tIBUHKB4w718K8W8RyYly3cem5oLgqI?=
- =?iso-8859-1?Q?T2zDM1nd5fe3OMsmZl8hHkk7rSq41uMqdDrUM8WNoeXpucL9rE9eDa+SFO?=
- =?iso-8859-1?Q?ShYJGFIja0Ak9mJBqOj0VbDkFV1z0QIHrcEnzNEsTvkgBqLrIFLZ8pUcnD?=
- =?iso-8859-1?Q?akh+7upV5E+x9SAxTN+z7VNy3VR+bb5h/StxFrcm9GpBHNjFPzC1HfIaLV?=
- =?iso-8859-1?Q?0/sA7OxQKpMs65tvQpvOqJ0v9za2KzJMX7Rk+vtWq7OVL09/drDCLsDQ+l?=
- =?iso-8859-1?Q?pHw76JR91objhCaRgBuTRjHlFtnXHjCgUgdPmZa/xou06yZSE0V29Dk1vQ?=
- =?iso-8859-1?Q?coB2DZfLzlxq3iB5+TG1s3XtMZx0R79PQ7mwgAuZQjs92jPrNbhWU74Mu6?=
- =?iso-8859-1?Q?N+MfPdPcjy6B10S/DCuHyjsaJmEqoysAtd+gSl+m8bsPS2hyIRV8qRqG5u?=
- =?iso-8859-1?Q?J81i0wd7btt9t4OsSwrCdiWPldgVv2sMPpSRQEnQMpnSPj4/UJIkQmSNTJ?=
- =?iso-8859-1?Q?A9CRBLZRKJGyf136rGaEQ7m1efygccAVz6o8x0WXwmvId+vhLgYD6Np2me?=
- =?iso-8859-1?Q?YnygYs5+FixtXra7yvXM51GEkvE3I8kZScTAYce6xL8n1nWtpXe71zchbM?=
- =?iso-8859-1?Q?jbyzDwlTjDVH6bdy/9Z26f991nGx+e+W+I/zfo1YZI8OGLhCTYBz0GIGk+?=
- =?iso-8859-1?Q?H4ik4O05hPibeEtKxpDGJhGvPissVBHZxi+1ArNjjG/BnAanZ2LBZqAHQc?=
- =?iso-8859-1?Q?Px8KQSrqC6zOCIXMZjH/KuPig0k4AEYuY1jMfAWRaVw5F0o23qATghY9rc?=
- =?iso-8859-1?Q?Xmz9q+4rVpJ+t302gNzObzsxi6DURwPO7s0J6kvmoRMfrT6KfGE9NnfLNa?=
- =?iso-8859-1?Q?7tt09UAJ7+2Bu6DnAhuMumFJ76nGDch7zs5sf0AcrZQ3y6+8dkzihVlIc4?=
- =?iso-8859-1?Q?MxEXoQKo0LO62dgZYPGRdAb1nd/RJV1fspoC65Ungrbv5p3hinI1FP3hEm?=
- =?iso-8859-1?Q?jYuccSdEAmpxZXmD89SDg/GuVeYCYrJNeDBHuPKSUozek4X8K/1CbeUhUg?=
- =?iso-8859-1?Q?cQJPI++jTA1YMRE/GNcPOE9Ezqt5++1y7dgy+L3//E1HvsTXCpwyfaGo75?=
- =?iso-8859-1?Q?t/dPaca6ML+5B+pxk9p4M3iI5SKYKJN8zE7PPzuPPlgTJrHUZKUvw3FUuU?=
- =?iso-8859-1?Q?yCUgcmh1YrVlObL3Y6ZKSBykuQwwkOcOIfuN7f/CaiqUva2d2FpGiGd6La?=
- =?iso-8859-1?Q?3XdfWYYRKD/oXOIo3oDEVffA1Fb70DdHEyVSy4G8fSGcpCvWmLGGFempfG?=
- =?iso-8859-1?Q?c6sFvjrdoZLBzxpzPma2pqnaDnc9fBp8U/WbfQ1/uxk7NJ26XyEM+EprOO?=
- =?iso-8859-1?Q?YvmNye8ELV1lGefE8sMsqfwh4a+Ev5mDDoCGqbEmVwxNSjso44JO0TbDnd?=
- =?iso-8859-1?Q?j0P/HRcKPdnZS6EOSCd6Mw1sYtPkXtx1ktpvyScDVY2wQyXfwE5J7kiw?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b90166c-08ef-48a3-16bc-08dd1a5e0de4
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?THZkVHN3bzJ6SWZNSDZTWkNPOUJUM3VlelVHc1ZQa3NTYk5zS3RIT05STzQx?=
+ =?utf-8?B?SENWSTB3cmVxNTkrR0tkUlVKd3NsK0l0L21nRXZMV1lxbWFsczZZaTNDTFB5?=
+ =?utf-8?B?SzNXYnd2R0ZreDZtMEVtM2Z0M0Jaa002Q0pQMEpiaGM1c3lFQ0E3cEdDbXVU?=
+ =?utf-8?B?b2x0SldEd0Q2bXkyZUFXMHc5R0k3OFJSWE5iKzNHK1hQUnBrNDhObHJOUjJ1?=
+ =?utf-8?B?TnpvbnRuOTgxL0MvL0Y5VCtLdmNqYXVSREFiRzVGZkdVMFFNTjRLR2JRY2lz?=
+ =?utf-8?B?bkt6NjFJZVM1MW00MWpTSFpkU20zbkJncFhmcWdNZ1Z1YjVOQVVYOUdpNnBt?=
+ =?utf-8?B?SitkNFR1Y1hwTjdKeTlTakhaUjI3RWRFVUJtVXZRbWlHVGVSNTFHRWIxMFY3?=
+ =?utf-8?B?Mld1RzhOekhaNXlySTlPaVl2eS9jUkpyL09oWTdINDBoTUhNLzFOQTJsWnFo?=
+ =?utf-8?B?ZW1FU0d1ZVlBSnp1K0dGejZHRmlZSVdrNkpka0diUHR0OW5Oekh5QXF6cWw0?=
+ =?utf-8?B?aG9TcC9WUUtDalRNTWZWSGZvWHhiNnQ2U3U4MDZOMTE4bzFaUEVMOE4wQ2ZB?=
+ =?utf-8?B?bzJaZytDdTlZSzdRVEJBU3pZTHVheEFLN21Heng1T2dUTlV4c3hodWVNS29O?=
+ =?utf-8?B?UURPaWRlN0taQkYxTFN0NERNamsyUlhDRUFvNmFFVU8zakYzWUpQMnU4SDZp?=
+ =?utf-8?B?Rld1a3Q5Z3Y0MTJYTTZFcXVrWTc3TTJOWkJWbjRKbmpRcEdZNWxXSzhkSDRZ?=
+ =?utf-8?B?WmhiT25mN0JkOEM1Y0p5RDh5cmMwMm5EcEd1OFpDNndzWndTMXRtYmZWY3dJ?=
+ =?utf-8?B?aDVMYnNpMVpqZGVBUzV2WmJWbFhHM3I1emtFa1hlbjZHTGNZZUtXNzUwdkpp?=
+ =?utf-8?B?cVR0Ni9KRFVHUERNUmwvUE5tWWJIL2I0YWcxNS9WNzVxbEFKWTFPQ2VYQ1ox?=
+ =?utf-8?B?MGdXQ0pYaEltSFNhbEtzalRyYXZWdEZ0cDEwTXUxd0UycWFRZ0VuZUNhOVJ4?=
+ =?utf-8?B?YkxYYVl1MEFBYVpwMDhIVVNYaTdGa29OcVI0VFJ6dmRHb2MwZG8yV1VTbllq?=
+ =?utf-8?B?WGZRU3N5c2k2YnRRcTI5QXRGQy85d1JYR2RFbnNzNmtGc0J1bEtKcVVYVnlW?=
+ =?utf-8?B?QmpvaVgzTnN5dzVKNlZWamRsK0xFL1hJV1JNSnBDaW9ibEJteHhZOUdKWjF3?=
+ =?utf-8?B?R1JDMGZOR2NFR0l5K1AzcjBqR29Sb3UyKzlmT2llcmQ1WlpWRUlYOFlHVVg2?=
+ =?utf-8?B?c0UwaGp5MVFQMDVnTmdxRCtzNnBKc0lyVWV1dlRWOTR0eGFFMDBnOEROYlRH?=
+ =?utf-8?B?b0NIMEtiUWl4T0w4RlFFOW9tSy9DZUhnNUJFUm1OOEpjd2dZeFRUdHdrRDNS?=
+ =?utf-8?B?ZXArWW9aeVJBTXN3eFVDWFF0ejdQdzFNSC9PL0RvVU5XcUx2ZXlQRkRwUkZ6?=
+ =?utf-8?B?S3NjT3VadEN1MmJ2UEwrajEzKzhMZURaRnd2NWtIQjJ6QVdnSy93eXBjbHky?=
+ =?utf-8?B?VzVBV0NTRy9VOGdFOUhvQkZvdjlhSWZOalRLKzNYRERTZ2F3NE1QaUM5bW5s?=
+ =?utf-8?B?aFI4SkpBMzQ1ckU5RWl6dFU3NW0wZTZua3BVZEF1Sk1uZnNnYTYwVk1COEZ4?=
+ =?utf-8?B?TU9ZYXgzQW1EVFp3d2hwaHA0TWxCbVNWNXNmblBPMU13TnllUEhPQ082T256?=
+ =?utf-8?B?UGk5L1JLcFdOYUVzbzhlck9RRXRFTzAvL1NWaDk4cUpwemRLWkQycEZkYTVJ?=
+ =?utf-8?B?eVlweVpMbWpHRU1DN0NvekhsK3NNWDBtUUtDYUxZa1NVVXVPM0x3UWJ4c3d5?=
+ =?utf-8?B?RGYxblNFUlFJT2tBSS83bE9ST2xUMWlWcVJWcDc4b1VsL2laekthZzFpa2Jt?=
+ =?utf-8?B?SWg2NGZMZzZQZ1RJY3VseCtBbUhLTGZPMGRaVm00cXdLTUdlTm1UMUxGeFU1?=
+ =?utf-8?B?UTErRDJlZklINVE4VmVYcGFka3QwRWNqTmkzekhaemZ0ZUZDVWNvUWI0eUJ1?=
+ =?utf-8?B?V0dkY3JqOXRUSnA5b3Y0N0RLdlZta0FKMG9pNGNiNGtFMXFIb2VVUGZiVTVw?=
+ =?utf-8?B?OHk3V2xRTWNJY3lrb3VUakthUHZGTUp1UGVlOVAxOWJhQUN2eWFrazgxSVly?=
+ =?utf-8?Q?AwamT5/XiBnECeP78mm0D+9Fu?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d1b7ddac-8fcd-4592-1f70-08dd1a5e1168
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2024 03:35:42.0477 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2024 03:35:47.9565 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ayccqUpRAbIlPBN9C28H+pWiJ+QrMg+T/qwVvziA6qp9V8poqcTHbKvbz45z2QQlw9xuvRKyZzWS0SUYeKupVw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB6025
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: HtW03sm6n+5MGPqkFNBQb7f9H5QiaWAXSmSZXLZYbvbVPUfGCVe9g71GCQRim7M5fZYUaTcs7p8VKN8sjncw7g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6838
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,379 +165,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Dec 12, 2024 at 02:01:41AM +0100, Michal Wajdeczko wrote:
-> Add tests to make sure that recently added GuC Buffer Cache
-> component is working as expected.
+On 12/3/2024 14:00, Lucas De Marchi wrote:
+> Similar to commit 65c4c9447bfc ("usb: typec: ucsi: Fix a missing bits to
+> bytes conversion in ucsi_init()"), there was a missing conversion from
+> bits to bytes. Here the outcome is worse though: since the value is
+> lower than UCSI_MAX_DATA_LENGTH, instead of bailing out with an error,
+> it writes past the buffer size.
 > 
+> The error is then seen in other places like below:
+> 
+> 	Oops: general protection fault, probably for non-canonical address 0x891e812cd0ed968: 0000 [#1] PREEMPT SMP NOPTI
+> 	CPU: 3 UID: 110 PID: 906 Comm: prometheus-node Not tainted 6.13.0-rc1-xe #1
+> 	Hardware name: Intel Corporation Lunar Lake Client Platform/LNL-M LP5 RVP1, BIOS LNLMFWI1.R00.3222.D84.2410171025 10/17/2024
+> 	RIP: 0010:power_supply_get_property+0x3e/0xe0
+> 	Code: 85 c0 7e 4f 4c 8b 07 89 f3 49 89 d4 49 8b 48 20 48 85 c9 74 72 49 8b 70 18 31 d2 31 c0 eb 0b 83 c2 01 48 63 c2 48 39 c8 73 5d <3b> 1c 86 75 f0 49 8b 40 28 4c 89 e2 89 de ff d0 0f 1f 00 5b 41 5c
+> 	RSP: 0018:ffffc900017dfa50 EFLAGS: 00010246
+> 	RAX: 0000000000000000 RBX: 0000000000000011 RCX: c963b02c06092008
+> 	RDX: 0000000000000000 RSI: 0891e812cd0ed968 RDI: ffff888121dd6800
+> 	RBP: ffffc900017dfa68 R08: ffff88810a4024b8 R09: 0000000000000000
+> 	R10: 0000000000000000 R11: 0000000000000000 R12: ffffc900017dfa78
+> 	R13: ffff888121dd6800 R14: ffff888138ad2c00 R15: ffff88810c57c528
+> 	FS:  00007713a2ffd6c0(0000) GS:ffff88846f380000(0000) knlGS:0000000000000000
+> 	CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> 	CR2: 000000c0004b1000 CR3: 0000000121ce8003 CR4: 0000000000f72ef0
+> 	DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+> 	DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+> 	PKRU: 55555554
+> 	Call Trace:
+> 	 <TASK>
+> 	 ? show_regs+0x6c/0x80
+> 	 ? die_addr+0x37/0xa0
+> 	 ? exc_general_protection+0x1c1/0x440
+> 	 ? asm_exc_general_protection+0x27/0x30
+> 	 ? power_supply_get_property+0x3e/0xe0
+> 	 power_supply_hwmon_read+0x50/0xe0
+> 	 hwmon_attr_show+0x46/0x170
+> 	 dev_attr_show+0x1a/0x70
+> 	 sysfs_kf_seq_show+0xaa/0x120
+> 	 kernfs_seq_show+0x41/0x60
+> 
+> Just use the buffer size as argument to fix it.
+> 
+> Fixes: 226ff2e681d0 ("usb: typec: ucsi: Convert connector specific commands to bitmaps")
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-My opinion is this selftest is a bit overkill, maybe other disagree, but
-I'd drop this as it quite a bit of code to carry for little ROI (i.e. if
-drm_suballoc is broken, the entire DRM subsystem is likely broken).
+I've got a laptop that can't boot 6.13-rc1 or 6.13-rc2 without this fix too.
 
-Matt
+Tested-by: Mario Limonciello <mario.limonciello@amd.com>
+Closes: 
+https://lore.kernel.org/linux-pm/93978193-1273-4954-893a-f27528ed1d0e@kernel.org/
 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 > ---
-> v2: rebased (Michal)
-> ---
->  drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c | 335 ++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_guc_buf.c             |   4 +
->  2 files changed, 339 insertions(+)
->  create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
+>   drivers/usb/typec/ucsi/ucsi.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-> new file mode 100644
-> index 000000000000..8a90f832915b
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-> @@ -0,0 +1,335 @@
-> +// SPDX-License-Identifier: GPL-2.0 AND MIT
-> +/*
-> + * Copyright © 2024 Intel Corporation
-> + */
-> +
-> +#include <kunit/static_stub.h>
-> +#include <kunit/test.h>
-> +#include <kunit/test-bug.h>
-> +
-> +#include "xe_device.h"
-> +#include "xe_ggtt.h"
-> +#include "xe_guc_ct.h"
-> +#include "xe_kunit_helpers.h"
-> +#include "xe_pci_test.h"
-> +
-> +#define DUT_GGTT_START		SZ_1M
-> +#define DUT_GGTT_SIZE		SZ_2M
-> +#define DUT_DATA		1
-> +
-> +static struct xe_bo *replacement_xe_managed_bo_create_pin_map(struct xe_device *xe,
-> +							      struct xe_tile *tile,
-> +							      size_t size, u32 flags)
-> +{
-> +	struct kunit *test = kunit_get_current_test();
-> +	struct xe_bo *bo;
-> +	void *buf;
-> +
-> +	bo = drmm_kzalloc(&xe->drm, sizeof(*bo), GFP_KERNEL);
-> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, bo);
-> +
-> +	buf = drmm_kzalloc(&xe->drm, size, GFP_KERNEL);
-> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, buf);
-> +
-> +	bo->tile = tile;
-> +	bo->ttm.bdev = &xe->ttm;
-> +	bo->size = size;
-> +	iosys_map_set_vaddr(&bo->vmap, buf);
-> +
-> +	if (flags & XE_BO_FLAG_GGTT) {
-> +		struct xe_ggtt *ggtt = tile->mem.ggtt;
-> +
-> +		bo->ggtt_node[tile->id] = xe_ggtt_node_init(ggtt);
-> +		KUNIT_ASSERT_NOT_ERR_OR_NULL(test, bo->ggtt_node[tile->id]);
-> +
-> +		KUNIT_ASSERT_EQ(test, 0,
-> +				drm_mm_insert_node_in_range(&ggtt->mm,
-> +							    &bo->ggtt_node[tile->id]->base,
-> +							    bo->size, SZ_4K,
-> +							    0, 0, U64_MAX, 0));
-> +	}
-> +
-> +	return bo;
-> +}
-> +
-> +static int guc_buf_test_init(struct kunit *test)
-> +{
-> +	struct xe_pci_fake_data fake = {
-> +		.sriov_mode = XE_SRIOV_MODE_PF,
-> +		.platform = XE_TIGERLAKE, /* some random platform */
-> +		.subplatform = XE_SUBPLATFORM_NONE,
-> +	};
-> +	struct xe_ggtt *ggtt;
-> +	struct xe_guc *guc;
-> +
-> +	test->priv = &fake;
-> +	xe_kunit_helper_xe_device_test_init(test);
-> +
-> +	ggtt = xe_device_get_root_tile(test->priv)->mem.ggtt;
-> +	guc = &xe_device_get_gt(test->priv, 0)->uc.guc;
-> +
-> +	drm_mm_init(&ggtt->mm, DUT_GGTT_START, DUT_GGTT_SIZE);
-> +	mutex_init(&ggtt->lock);
-> +
-> +	kunit_activate_static_stub(test, xe_managed_bo_create_pin_map,
-> +				   replacement_xe_managed_bo_create_pin_map);
-> +
-> +	KUNIT_ASSERT_EQ(test, 0, xe_guc_buf_cache_init(&guc->buf));
-> +
-> +	test->priv = &guc->buf;
-> +	return 0;
-> +}
-> +
-> +static void test_smallest(struct kunit *test)
-> +{
-> +	struct xe_guc_buf_cache *cache = test->priv;
-> +	struct xe_guc_buf buf;
-> +
-> +	buf = xe_guc_buf_reserve(cache, 1);
-> +	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
-> +	KUNIT_EXPECT_NOT_NULL(test, xe_guc_buf_cpu_ptr(buf));
-> +	KUNIT_EXPECT_NE(test, 0, xe_guc_buf_gpu_addr(buf));
-> +	KUNIT_EXPECT_LE(test, DUT_GGTT_START, xe_guc_buf_gpu_addr(buf));
-> +	KUNIT_EXPECT_GT(test, DUT_GGTT_START + DUT_GGTT_SIZE, xe_guc_buf_gpu_addr(buf));
-> +	xe_guc_buf_release(buf);
-> +}
-> +
-> +static void test_largest(struct kunit *test)
-> +{
-> +	struct xe_guc_buf_cache *cache = test->priv;
-> +	struct xe_guc_buf buf;
-> +
-> +	buf = xe_guc_buf_reserve(cache, xe_guc_buf_cache_dwords(cache));
-> +	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
-> +	KUNIT_EXPECT_NOT_NULL(test, xe_guc_buf_cpu_ptr(buf));
-> +	KUNIT_EXPECT_NE(test, 0, xe_guc_buf_gpu_addr(buf));
-> +	KUNIT_EXPECT_LE(test, DUT_GGTT_START, xe_guc_buf_gpu_addr(buf));
-> +	KUNIT_EXPECT_GT(test, DUT_GGTT_START + DUT_GGTT_SIZE, xe_guc_buf_gpu_addr(buf));
-> +	xe_guc_buf_release(buf);
-> +}
-> +
-> +static void test_granular(struct kunit *test)
-> +{
-> +	struct xe_guc_buf_cache *cache = test->priv;
-> +	struct xe_guc_buf *bufs;
-> +	int n, dwords;
-> +
-> +	dwords = xe_guc_buf_cache_dwords(cache);
-> +	bufs = kunit_kcalloc(test, dwords, sizeof(*bufs), GFP_KERNEL);
-> +	KUNIT_EXPECT_NOT_NULL(test, bufs);
-> +
-> +	for (n = 0; n < dwords; n++)
-> +		bufs[n] = xe_guc_buf_reserve(cache, 1);
-> +
-> +	for (n = 0; n < dwords; n++)
-> +		KUNIT_EXPECT_TRUE_MSG(test, xe_guc_buf_is_valid(bufs[n]), "n=%d", n);
-> +
-> +	for (n = 0; n < dwords; n++)
-> +		xe_guc_buf_release(bufs[n]);
-> +}
-> +
-> +static void test_unique(struct kunit *test)
-> +{
-> +	struct xe_guc_buf_cache *cache = test->priv;
-> +	struct xe_guc_buf *bufs;
-> +	int n, m, dwords;
-> +
-> +	dwords = xe_guc_buf_cache_dwords(cache);
-> +	bufs = kunit_kcalloc(test, dwords, sizeof(*bufs), GFP_KERNEL);
-> +	KUNIT_EXPECT_NOT_NULL(test, bufs);
-> +
-> +	for (n = 0; n < dwords; n++)
-> +		bufs[n] = xe_guc_buf_reserve(cache, 1);
-> +
-> +	for (n = 0; n < dwords; n++) {
-> +		for (m = n + 1; m < dwords; m++) {
-> +			KUNIT_EXPECT_PTR_NE_MSG(test, xe_guc_buf_cpu_ptr(bufs[n]),
-> +						xe_guc_buf_cpu_ptr(bufs[m]), "n=%d, m=%d", n, m);
-> +			KUNIT_ASSERT_NE_MSG(test, xe_guc_buf_gpu_addr(bufs[n]),
-> +					    xe_guc_buf_gpu_addr(bufs[m]), "n=%d, m=%d", n, m);
-> +		}
-> +	}
-> +
-> +	for (n = 0; n < dwords; n++)
-> +		xe_guc_buf_release(bufs[n]);
-> +}
-> +
-> +static void test_overlap(struct kunit *test)
-> +{
-> +	struct xe_guc_buf_cache *cache = test->priv;
-> +	struct xe_guc_buf b1, b2;
-> +	u32 dwords = xe_guc_buf_cache_dwords(cache) / 2;
-> +	u32 bytes = dwords * sizeof(u32);
-> +	void *p1, *p2;
-> +	u64 a1, a2;
-> +
-> +	b1 = xe_guc_buf_reserve(cache, dwords);
-> +	b2 = xe_guc_buf_reserve(cache, dwords);
-> +
-> +	p1 = xe_guc_buf_cpu_ptr(b1);
-> +	p2 = xe_guc_buf_cpu_ptr(b2);
-> +
-> +	a1 = xe_guc_buf_gpu_addr(b1);
-> +	a2 = xe_guc_buf_gpu_addr(b2);
-> +
-> +	KUNIT_EXPECT_PTR_NE(test, p1, p2);
-> +	if (p1 < p2)
-> +		KUNIT_EXPECT_LT(test, (uintptr_t)(p1 + bytes - 1), (uintptr_t)p2);
-> +	else
-> +		KUNIT_EXPECT_LT(test, (uintptr_t)(p2 + bytes - 1), (uintptr_t)p1);
-> +
-> +	KUNIT_EXPECT_NE(test, a1, a2);
-> +	if (a1 < a2)
-> +		KUNIT_EXPECT_LT(test, a1 + bytes - 1, a2);
-> +	else
-> +		KUNIT_EXPECT_LT(test, a2 + bytes - 1, a1);
-> +
-> +	xe_guc_buf_release(b1);
-> +	xe_guc_buf_release(b2);
-> +}
-> +
-> +static void test_reusable(struct kunit *test)
-> +{
-> +	struct xe_guc_buf_cache *cache = test->priv;
-> +	struct xe_guc_buf b1, b2;
-> +	void *p1;
-> +	u64 a1;
-> +
-> +	b1 = xe_guc_buf_reserve(cache, xe_guc_buf_cache_dwords(cache));
-> +	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(b1));
-> +	KUNIT_EXPECT_NOT_NULL(test, p1 = xe_guc_buf_cpu_ptr(b1));
-> +	KUNIT_EXPECT_NE(test, 0, a1 = xe_guc_buf_gpu_addr(b1));
-> +	xe_guc_buf_release(b1);
-> +
-> +	b2 = xe_guc_buf_reserve(cache, xe_guc_buf_cache_dwords(cache));
-> +	KUNIT_EXPECT_PTR_EQ(test, p1, xe_guc_buf_cpu_ptr(b2));
-> +	KUNIT_EXPECT_EQ(test, a1, xe_guc_buf_gpu_addr(b2));
-> +	xe_guc_buf_release(b2);
-> +}
-> +
-> +static void test_too_big(struct kunit *test)
-> +{
-> +	struct xe_guc_buf_cache *cache = test->priv;
-> +	struct xe_guc_buf buf;
-> +
-> +	buf = xe_guc_buf_reserve(cache, xe_guc_buf_cache_dwords(cache) + 1);
-> +	KUNIT_EXPECT_FALSE(test, xe_guc_buf_is_valid(buf));
-> +	xe_guc_buf_release(buf); /* shouldn't crash */
-> +}
-> +
-> +static void test_flush(struct kunit *test)
-> +{
-> +	struct xe_guc_buf_cache *cache = test->priv;
-> +	struct xe_guc_buf buf;
-> +	const u32 dwords = xe_guc_buf_cache_dwords(cache);
-> +	const u32 bytes = dwords * sizeof(u32);
-> +	u32 *s, *p, *d;
-> +	int n;
-> +
-> +	KUNIT_ASSERT_NOT_NULL(test, s = kunit_kcalloc(test, dwords, sizeof(u32), GFP_KERNEL));
-> +	KUNIT_ASSERT_NOT_NULL(test, d = kunit_kcalloc(test, dwords, sizeof(u32), GFP_KERNEL));
-> +
-> +	for (n = 0; n < dwords; n++)
-> +		s[n] = n;
-> +
-> +	buf = xe_guc_buf_reserve(cache, dwords);
-> +	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
-> +	KUNIT_ASSERT_NOT_NULL(test, p = xe_guc_buf_cpu_ptr(buf));
-> +	KUNIT_EXPECT_PTR_NE(test, p, s);
-> +	KUNIT_EXPECT_PTR_NE(test, p, d);
-> +
-> +	memcpy(p, s, bytes);
-> +	KUNIT_EXPECT_NE(test, 0, xe_guc_buf_flush(buf));
-> +
-> +	iosys_map_memcpy_from(d, &cache->sam->bo->vmap, 0, bytes);
-> +	KUNIT_EXPECT_MEMEQ(test, s, d, bytes);
-> +
-> +	xe_guc_buf_release(buf);
-> +}
-> +
-> +static void test_lookup(struct kunit *test)
-> +{
-> +	struct xe_guc_buf_cache *cache = test->priv;
-> +	struct xe_guc_buf buf;
-> +	u32 dwords;
-> +	u64 addr;
-> +	u32 *p;
-> +	int n;
-> +
-> +	dwords = xe_guc_buf_cache_dwords(cache);
-> +	buf = xe_guc_buf_reserve(cache, dwords);
-> +	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
-> +	KUNIT_ASSERT_NOT_NULL(test, p = xe_guc_buf_cpu_ptr(buf));
-> +	KUNIT_ASSERT_NE(test, 0, addr = xe_guc_buf_gpu_addr(buf));
-> +
-> +	KUNIT_EXPECT_EQ(test, 0, xe_guc_cache_gpu_addr_from_ptr(cache, p - 1, sizeof(u32)));
-> +	KUNIT_EXPECT_EQ(test, 0, xe_guc_cache_gpu_addr_from_ptr(cache, p + dwords, sizeof(u32)));
-> +
-> +	for (n = 0; n < dwords; n++)
-> +		KUNIT_EXPECT_EQ_MSG(test, xe_guc_cache_gpu_addr_from_ptr(cache, p + n, sizeof(u32)),
-> +				    addr + n * sizeof(u32), "n=%d", n);
-> +
-> +	xe_guc_buf_release(buf);
-> +}
-> +
-> +static void test_data(struct kunit *test)
-> +{
-> +	static const u32 data[] = { 1, 2, 3, 4, 5, 6 };
-> +	struct xe_guc_buf_cache *cache = test->priv;
-> +	struct xe_guc_buf buf;
-> +	void *p;
-> +
-> +	buf = xe_guc_buf_from_data(cache, data, sizeof(data));
-> +	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
-> +	KUNIT_ASSERT_NOT_NULL(test, p = xe_guc_buf_cpu_ptr(buf));
-> +	KUNIT_EXPECT_MEMEQ(test, p, data, sizeof(data));
-> +
-> +	xe_guc_buf_release(buf);
-> +}
-> +
-> +static void test_class(struct kunit *test)
-> +{
-> +	struct xe_guc_buf_cache *cache = test->priv;
-> +	u32 dwords = xe_guc_buf_cache_dwords(cache);
-> +
-> +	{
-> +		CLASS(xe_guc_buf, buf)(cache, dwords);
-> +		KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
-> +		KUNIT_EXPECT_NOT_NULL(test, xe_guc_buf_cpu_ptr(buf));
-> +		KUNIT_EXPECT_NE(test, 0, xe_guc_buf_gpu_addr(buf));
-> +		KUNIT_EXPECT_LE(test, DUT_GGTT_START, xe_guc_buf_gpu_addr(buf));
-> +		KUNIT_EXPECT_GT(test, DUT_GGTT_START + DUT_GGTT_SIZE, xe_guc_buf_gpu_addr(buf));
-> +	}
-> +
-> +	{
-> +		CLASS(xe_guc_buf, buf)(cache, dwords);
-> +		KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
-> +		KUNIT_EXPECT_NOT_NULL(test, xe_guc_buf_cpu_ptr(buf));
-> +		KUNIT_EXPECT_NE(test, 0, xe_guc_buf_gpu_addr(buf));
-> +		KUNIT_EXPECT_LE(test, DUT_GGTT_START, xe_guc_buf_gpu_addr(buf));
-> +		KUNIT_EXPECT_GT(test, DUT_GGTT_START + DUT_GGTT_SIZE, xe_guc_buf_gpu_addr(buf));
-> +	}
-> +}
-> +
-> +static struct kunit_case guc_buf_test_cases[] = {
-> +	KUNIT_CASE(test_smallest),
-> +	KUNIT_CASE(test_largest),
-> +	KUNIT_CASE(test_granular),
-> +	KUNIT_CASE(test_unique),
-> +	KUNIT_CASE(test_overlap),
-> +	KUNIT_CASE(test_reusable),
-> +	KUNIT_CASE(test_too_big),
-> +	KUNIT_CASE(test_flush),
-> +	KUNIT_CASE(test_lookup),
-> +	KUNIT_CASE(test_data),
-> +	KUNIT_CASE(test_class),
-> +	{}
-> +};
-> +
-> +static struct kunit_suite guc_buf_suite = {
-> +	.name = "guc_buf",
-> +	.test_cases = guc_buf_test_cases,
-> +	.init = guc_buf_test_init,
-> +};
-> +
-> +kunit_test_suites(&guc_buf_suite);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_buf.c b/drivers/gpu/drm/xe/xe_guc_buf.c
-> index 261c7c74417f..ce6d9830e13b 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_buf.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_buf.c
-> @@ -170,3 +170,7 @@ u64 xe_guc_cache_gpu_addr_from_ptr(struct xe_guc_buf_cache *cache, const void *p
->  
->  	return cache->sam->gpu_addr + offset;
->  }
-> +
-> +#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
-> +#include "tests/xe_guc_buf_kunit.c"
-> +#endif
-> -- 
-> 2.47.1
-> 
+> diff --git a/drivers/usb/typec/ucsi/ucsi.c b/drivers/usb/typec/ucsi/ucsi.c
+> index c435c0835744a..69caae84879e9 100644
+> --- a/drivers/usb/typec/ucsi/ucsi.c
+> +++ b/drivers/usb/typec/ucsi/ucsi.c
+> @@ -651,7 +651,8 @@ static void ucsi_unregister_altmodes(struct ucsi_connector *con, u8 recipient)
+>   static int ucsi_get_connector_status(struct ucsi_connector *con, bool conn_ack)
+>   {
+>   	u64 command = UCSI_GET_CONNECTOR_STATUS | UCSI_CONNECTOR_NUMBER(con->num);
+> -	size_t size = min(UCSI_GET_CONNECTOR_STATUS_SIZE, UCSI_MAX_DATA_LENGTH(con->ucsi));
+> +	size_t size = min(sizeof(con->status),
+> +			  UCSI_MAX_DATA_LENGTH(con->ucsi));
+>   	int ret;
+>   
+>   	ret = ucsi_send_command_common(con->ucsi, command, &con->status, size, conn_ack);
+
