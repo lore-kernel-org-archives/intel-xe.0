@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5EECE7717F
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 18:47:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BED14E7717F
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 18:52:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 935F810E651;
-	Thu, 12 Dec 2024 18:47:04 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF0CE10E64F;
- Thu, 12 Dec 2024 18:47:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7851199351474441430=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2Cxe=7D=3A_Conv?=
- =?utf-8?q?ert_to_DRM_client_setup?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F81610E64F;
+	Thu, 12 Dec 2024 18:52:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YLaKtrl+";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D4CD10E64F
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Dec 2024 18:52:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734029567; x=1765565567;
+ h=date:from:to:cc:subject:message-id;
+ bh=QEZdLE0SxCPt+IcCkZl8BXIGci95HZWaFNhxYhkY4fE=;
+ b=YLaKtrl+yY1d16SzwjYZOZJ4kfhccCR8mPM7IuS2CMrV4+z7eg32fpD4
+ fpTqbpXgSLE4bouktwz7emqRNT5TWr9gzXi6ZKyKNwzj0fqh+87IgWW9r
+ mq6UWZmd/F9qkVBj0XZHO7MydshTVqYL0AG/lgs5iHkG/XgmZfuuTwxUh
+ z9CaiSQdTbcpdS3QgIBv7eHRJuw8xxOu52PHFAQaQnIFaXXDm/zL616RR
+ hIOXo8TMo6n4qifRV+ZwDYg0obwE+CQuVu9XoEYZFoOBR6GfKvdbN3khs
+ W0WnHtXImQppy0vnyJvUwpX8n3DZIzbTHCo9gw94yOCVXNL5idHusANbC w==;
+X-CSE-ConnectionGUID: 5xwuu21jRJqzUvk87fYxXg==
+X-CSE-MsgGUID: 4Sm6JQF4TZOlKc5mbl8ryQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11284"; a="51995301"
+X-IronPort-AV: E=Sophos;i="6.12,229,1728975600"; d="scan'208";a="51995301"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2024 10:52:47 -0800
+X-CSE-ConnectionGUID: 8QFrkp1DQJmQ4qUnf0wvZg==
+X-CSE-MsgGUID: caX7xnqVQCWkz027WMNySQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,229,1728975600"; d="scan'208";a="96544623"
+Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
+ by fmviesa008.fm.intel.com with ESMTP; 12 Dec 2024 10:52:46 -0800
+Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tLoIl-000BDy-31;
+ Thu, 12 Dec 2024 18:52:43 +0000
+Date: Fri, 13 Dec 2024 02:52:34 +0800
+From: kernel test robot <lkp@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Dec 2024 18:47:02 -0000
-Message-ID: <173402922297.1677800.13903519978388477732@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241212170913.185939-1-tzimmermann@suse.de>
-In-Reply-To: <20241212170913.185939-1-tzimmermann@suse.de>
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 4d79a1266d4cc3c967bc8823502466cad1ac8514
+Message-ID: <202412130228.20XHDNns-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,139 +61,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7851199351474441430==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 4d79a1266d4cc3c967bc8823502466cad1ac8514  drm/xe: Make irq enabled flag atomic
 
-== Series Details ==
+elapsed time: 1456m
 
-Series: drm/{i915,xe}: Convert to DRM client setup
-URL   : https://patchwork.freedesktop.org/series/142499/
-State : success
+configs tested: 66
+configs skipped: 1
 
-== Summary ==
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-CI Bug Log - changes from xe-2364-1833817dea7ab2961cc662bfc451bc232c5d24cc_BAT -> xe-pw-142499v1_BAT
-====================================================
+tested configs:
+arc                  randconfig-001-20241212    gcc-13.2.0
+arc                  randconfig-002-20241212    gcc-13.2.0
+arm                  randconfig-001-20241212    gcc-14.2.0
+arm                  randconfig-002-20241212    clang-20
+arm                  randconfig-003-20241212    clang-19
+arm                  randconfig-004-20241212    clang-20
+arm64                randconfig-001-20241212    clang-20
+arm64                randconfig-002-20241212    clang-15
+arm64                randconfig-003-20241212    clang-20
+arm64                randconfig-004-20241212    gcc-14.2.0
+csky                 randconfig-001-20241212    gcc-14.2.0
+csky                 randconfig-002-20241212    gcc-14.2.0
+hexagon              randconfig-001-20241212    clang-14
+hexagon              randconfig-002-20241212    clang-16
+i386       buildonly-randconfig-001-20241212    clang-19
+i386       buildonly-randconfig-002-20241212    clang-19
+i386       buildonly-randconfig-003-20241212    clang-19
+i386       buildonly-randconfig-004-20241212    clang-19
+i386       buildonly-randconfig-005-20241212    clang-19
+i386       buildonly-randconfig-006-20241212    gcc-12
+loongarch                       allmodconfig    gcc-14.2.0
+loongarch            randconfig-001-20241212    gcc-14.2.0
+loongarch            randconfig-002-20241212    gcc-14.2.0
+m68k                            allmodconfig    gcc-14.2.0
+m68k                            allyesconfig    gcc-14.2.0
+nios2                randconfig-001-20241212    gcc-14.2.0
+nios2                randconfig-002-20241212    gcc-14.2.0
+openrisc                         allnoconfig    gcc-14.2.0
+parisc                           allnoconfig    gcc-14.2.0
+parisc               randconfig-001-20241212    gcc-14.2.0
+parisc               randconfig-002-20241212    gcc-14.2.0
+powerpc                          allnoconfig    gcc-14.2.0
+powerpc              randconfig-001-20241212    gcc-14.2.0
+powerpc              randconfig-002-20241212    clang-20
+powerpc              randconfig-003-20241212    clang-15
+powerpc64            randconfig-001-20241212    clang-20
+powerpc64            randconfig-002-20241212    gcc-14.2.0
+powerpc64            randconfig-003-20241212    gcc-14.2.0
+riscv                            allnoconfig    gcc-14.2.0
+riscv                randconfig-001-20241212    clang-17
+riscv                randconfig-002-20241212    clang-20
+s390                            allmodconfig    clang-19
+s390                             allnoconfig    clang-20
+s390                            allyesconfig    gcc-14.2.0
+s390                 randconfig-001-20241212    clang-18
+s390                 randconfig-002-20241212    clang-20
+sh                              allmodconfig    gcc-14.2.0
+sh                              allyesconfig    gcc-14.2.0
+sh                   randconfig-001-20241212    gcc-14.2.0
+sh                   randconfig-002-20241212    gcc-14.2.0
+sparc                           allmodconfig    gcc-14.2.0
+sparc                randconfig-001-20241212    gcc-14.2.0
+sparc                randconfig-002-20241212    gcc-14.2.0
+sparc64              randconfig-001-20241212    gcc-14.2.0
+sparc64              randconfig-002-20241212    gcc-14.2.0
+um                               allnoconfig    clang-18
+um                   randconfig-001-20241212    gcc-12
+um                   randconfig-002-20241212    clang-20
+x86_64     buildonly-randconfig-001-20241212    clang-19
+x86_64     buildonly-randconfig-002-20241212    gcc-12
+x86_64     buildonly-randconfig-003-20241212    clang-19
+x86_64     buildonly-randconfig-004-20241212    clang-19
+x86_64     buildonly-randconfig-005-20241212    gcc-11
+x86_64     buildonly-randconfig-006-20241212    clang-19
+xtensa               randconfig-001-20241212    gcc-14.2.0
+xtensa               randconfig-002-20241212    gcc-14.2.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-142499v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-adlp-7:         [SKIP][1] ([Intel XE#455]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2364-1833817dea7ab2961cc662bfc451bc232c5d24cc/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142499v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-
-  * igt@kms_psr@psr-primary-page-flip@edp-1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#3517]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2364-1833817dea7ab2961cc662bfc451bc232c5d24cc/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142499v1/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
-
-  
-  [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * Linux: xe-2364-1833817dea7ab2961cc662bfc451bc232c5d24cc -> xe-pw-142499v1
-
-  IGT_8151: 84ede1e6f79c17acf9339b62481aa18c3141fa29 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2364-1833817dea7ab2961cc662bfc451bc232c5d24cc: 1833817dea7ab2961cc662bfc451bc232c5d24cc
-  xe-pw-142499v1: 142499v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142499v1/index.html
-
---===============7851199351474441430==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/{i915,xe}: Convert to DRM client setup</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142499/">https://patchwork.freedesktop.org/series/142499/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142499v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142499v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2364-1833817dea7ab2961cc662bfc451bc232c5d24cc_BAT -&gt; xe-pw-142499v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-142499v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2364-1833817dea7ab2961cc662bfc451bc232c5d24cc/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142499v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-primary-page-flip@edp-1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2364-1833817dea7ab2961cc662bfc451bc232c5d24cc/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517">Intel XE#3517</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142499v1/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2364-1833817dea7ab2961cc662bfc451bc232c5d24cc -&gt; xe-pw-142499v1</li>
-</ul>
-<p>IGT_8151: 84ede1e6f79c17acf9339b62481aa18c3141fa29 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2364-1833817dea7ab2961cc662bfc451bc232c5d24cc: 1833817dea7ab2961cc662bfc451bc232c5d24cc<br />
-  xe-pw-142499v1: 142499v1</p>
-
-</body>
-</html>
-
---===============7851199351474441430==--
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
