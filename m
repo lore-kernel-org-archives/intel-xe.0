@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18B96E7717F
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 09:39:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 074EDE77180
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Dec 2024 09:45:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9F4310ED19;
-	Thu, 12 Dec 2024 09:39:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V1dbTrRc";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A89E10ED19;
- Thu, 12 Dec 2024 09:39:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733996358; x=1765532358;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=SOFLbujAchtfSZt8jlKqPYIyEx5RQUE+jbkCs1Q6g4U=;
- b=V1dbTrRcSCEEZ/7/oyge/fEUa7TwMFmKKK+dHVFm/a+aCx0bpEujbdkj
- ipNdtC9vE80nWK1Ca2c7VRD+vsG/8TasF28USJOmmm9/XRmp11IjLkovO
- Y6pdCUNn8oUDmIY+aywW5a+MOZOhHWEBWdbLhDs8Q9cMhP9Z2831Lq0A1
- sNVq7EgCCmHeLtWOm6kjVuYXvDvONsZ2ssG1dKgMcPHz8lHpSIqO7n0n3
- BMK43ClwF2UVeBE3xh0KpUfgjHjE3cb/ZdV5dyG76YAy3vFN7JhavoXTY
- iSTrxSDMl+aNnLL9o6luSZBY4Rna20ZccZIN8mpCkSi+ue9NAFwtVlMlu g==;
-X-CSE-ConnectionGUID: G8718CjoRum6bHN+iAKHQQ==
-X-CSE-MsgGUID: kFaBrhtTSaamXxYRQdf5Wg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11283"; a="38189467"
-X-IronPort-AV: E=Sophos;i="6.12,228,1728975600"; d="scan'208";a="38189467"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2024 01:39:18 -0800
-X-CSE-ConnectionGUID: 5guJTlqTSrKcccZNdzi61A==
-X-CSE-MsgGUID: eraZzs+qRlqosyA5PlsmXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,228,1728975600"; d="scan'208";a="96414461"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa008.fm.intel.com with ESMTP; 12 Dec 2024 01:39:16 -0800
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>, Kulkarni@freedesktop.org,
-	Vandita <vandita.kulkarni@intel.com>
-Subject: [PATCH] drm/i915/display: Add WA_14018221282
-Date: Thu, 12 Dec 2024 15:10:43 +0530
-Message-Id: <20241212094043.911853-1-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1C1110ED19;
+	Thu, 12 Dec 2024 09:45:26 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12AEC10ED19;
+ Thu, 12 Dec 2024 09:45:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?Add_WA=5F14018221282?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 12 Dec 2024 09:45:25 -0000
+Message-ID: <173399672507.1517636.16396873622602218184@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241212094043.911853-1-nemesa.garg@intel.com>
+In-Reply-To: <20241212094043.911853-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,58 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It was observed that the first write to DKL PHY DP Mode
-register was not taking effect, hence rewrite this register.
+== Series Details ==
 
-v2: Rename function [Mitul]
-v3: Rename function [Jani]
+Series: drm/i915/display: Add WA_14018221282
+URL   : https://patchwork.freedesktop.org/series/142469/
+State : success
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-Signed-off-by: Kulkarni, Vandita <vandita.kulkarni@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 4f9c50996446..85b7c30aa9e5 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2099,10 +2099,21 @@ void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder)
- 	encoder->disable_clock(encoder);
- }
- 
-+static void
-+tgl_dkl_phy_check_and_rewrite(struct drm_i915_private *dev_priv,
-+			      enum tc_port tc_port, u32 ln0, u32 ln1)
-+{
-+	if (ln0 != intel_dkl_phy_read(dev_priv, DKL_DP_MODE(tc_port, 0)))
-+		intel_dkl_phy_write(dev_priv, DKL_DP_MODE(tc_port, 0), ln0);
-+	if (ln1 != intel_dkl_phy_read(dev_priv, DKL_DP_MODE(tc_port, 1)))
-+		intel_dkl_phy_write(dev_priv, DKL_DP_MODE(tc_port, 1), ln1);
-+}
-+
- static void
- icl_program_mg_dp_mode(struct intel_digital_port *dig_port,
- 		       const struct intel_crtc_state *crtc_state)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
- 	enum tc_port tc_port = intel_encoder_to_tc(&dig_port->base);
- 	u32 ln0, ln1, pin_assignment;
-@@ -2180,6 +2191,10 @@ icl_program_mg_dp_mode(struct intel_digital_port *dig_port,
- 	if (DISPLAY_VER(dev_priv) >= 12) {
- 		intel_dkl_phy_write(dev_priv, DKL_DP_MODE(tc_port, 0), ln0);
- 		intel_dkl_phy_write(dev_priv, DKL_DP_MODE(tc_port, 1), ln1);
-+		 /* WA_14018221282 */
-+		if (DISPLAY_VER(display) == 12)
-+			tgl_dkl_phy_check_and_rewrite(dev_priv, tc_port, ln0, ln1);
-+
- 	} else {
- 		intel_de_write(dev_priv, MG_DP_MODE(0, tc_port), ln0);
- 		intel_de_write(dev_priv, MG_DP_MODE(1, tc_port), ln1);
--- 
-2.25.1
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: e2a7d57b916f drm-tip: 2024y-12m-12d-07h-29m-24s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: Add WA_14018221282
+
 
