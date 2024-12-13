@@ -4,58 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41117E7717F
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 13:24:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5312AE77180
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 13:36:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2B9310EFFF;
-	Fri, 13 Dec 2024 13:23:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 105AE10F009;
+	Fri, 13 Dec 2024 13:36:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eg4/jxw3";
+	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="TCdKp5dG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D169C10EFF9;
- Fri, 13 Dec 2024 13:23:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734096237; x=1765632237;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=TXnI7SpDsZtyL96Pw+5PTgXQIRuubfo1PLYxBJxRZ0E=;
- b=eg4/jxw30AtnDaEGyfmAzSJJmXVO7G8h/xWy7lbn3P87ca1M4jLiW6Z1
- z2o9nwVITSY1XrrjDVd2lZcKr3bMoa8UbbpXDRsoJRBAzNO5gI377gW8E
- ccj3IngnCZklWun+vHcyDB/QF+mqeFIivnnBgnJnM0320L/kXgbe/b4k0
- 9ow9VZMZ1xx8uZcyi/NnHctscF2SrwVJ0e5i4L4fSmoSwIlHdtc53H4UM
- 4Bo0J797m8no3wXEPqVmf9YfR1R7t7nnRebFj7RTrvKL0MEksUwxe0fgE
- FBU1GvD5/+Z8XN0aTgW1w3COwkimHJv56/5mm30GrWHj99goFcvjEujL8 A==;
-X-CSE-ConnectionGUID: yPCOXg6hRZmYos+FM+edgA==
-X-CSE-MsgGUID: 0gEH8L68TmCu1NrbEoxTLQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="34783141"
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="34783141"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 05:23:57 -0800
-X-CSE-ConnectionGUID: s/A/jJQvTLmV6kT012Gjjg==
-X-CSE-MsgGUID: cnMiCnELQGK3bCW9jk/EBQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="101624567"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.244.7])
- ([10.245.244.7])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 05:23:56 -0800
-Message-ID: <ba8b6e62-580f-4ac5-baef-1c88531431ad@intel.com>
-Date: Fri, 13 Dec 2024 13:23:54 +0000
+X-Greylist: delayed 492 seconds by postgrey-1.36 at gabe;
+ Fri, 13 Dec 2024 13:36:02 UTC
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DE4A10E323;
+ Fri, 13 Dec 2024 13:36:02 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id B0D4540E0169; 
+ Fri, 13 Dec 2024 13:27:47 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+ header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+ by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id sGcE60KnN3ec; Fri, 13 Dec 2024 13:27:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+ t=1734096462; bh=fx6NJswxnApctvUDdLiVKEkcBeLJJ6f/OgTP8Pi/0ME=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=TCdKp5dGfLFekVy98Z5cRjbFBjMfVvYyRYfkhUYQV27uBBXCYYZh9p+mOk9Fgf+Os
+ pQnkema3VHjYt9PUh0meOBj5NrPk/zKO+QDenixpK9n+dz4n1W1+s+KDo+a/POiJM5
+ Jf6qn/XogPW/5jtU4WaIDhZKUdouklEFEDqlqUxQY/zqmsi+ilibsowZBZAyXy4Y1x
+ TpfygtsV0EIon2P3uQJgohoT4cvoEShfdG4TimQLth0mosUPdNeCeUnCPY7vJpG8jp
+ FMDw44tc9UZ8zLBh5SjSjW+tYFB4s0xcTFhxdZaxrRiBX6ofb+4X6HzSOYzqwyuH19
+ 3Gkh2PB0uUC+JXk2zhzsze0kIwSidQFUGAMJuPIsUXASeoSmC8/pKQYSSGpe+44W7X
+ wfaRwlYuRha6hXFbAGc3543MSmoNrbjsNXBdfC4dqq55iCvp1sGLVzoHBrZ6ElvUth
+ Xr+52lDoTAkJQ9VOWavMmRSsyh9669yeE7txdySAT/BnY2u4V0QitRMiF/v+BjKPP3
+ KRaaFCcHHir2sRjQSC0fOS2DqMpzcB0re3ld0RlRsARj0Xcy3Re1L5ZPKAiOs62UDt
+ Jv74MNH+taDciFgIldizxt2pc4BNlWyyNgb6b/mcvo5h8L2N4EtjOHDklrGej/mcSh
+ CG5OdhA4dM08z1FXqQoO86yE=
+Received: from zn.tnic (p200300ea971f9372329c23fffea6a903.dip0.t-ipconnect.de
+ [IPv6:2003:ea:971f:9372:329c:23ff:fea6:a903])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
+ SHA256) (No client certificate requested)
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 2E54840E015F;
+ Fri, 13 Dec 2024 13:27:19 +0000 (UTC)
+Date: Fri, 13 Dec 2024 14:27:09 +0100
+From: Borislav Petkov <bp@alien8.de>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Petr Mladek <pmladek@suse.com>, Yafang Shao <laoar.shao@gmail.com>,
+ torvalds@linux-foundation.org, akpm@linux-foundation.org,
+ linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Andy Whitcroft <apw@canonical.com>, Joe Perches <joe@perches.com>,
+ Dwaipayan Ray <dwaipayanray1@gmail.com>,
+ Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: Re: [PATCH 1/7] vsprintf: Add %pTN to print task name
+Message-ID: <20241213132709.GAZ1w2LW4LgHi-6XfZ@fat_crate.local>
+References: <20241213054610.55843-1-laoar.shao@gmail.com>
+ <20241213054610.55843-2-laoar.shao@gmail.com>
+ <Z1vq2-V7vB5KhBR9@pathway.suse.cz> <87r06crnew.fsf@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [i-g-t V5 4/4] tests/xe/mmap: add tests for pci mem barrier
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>, igt-dev@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-References: <20241128055647.1677371-1-tejas.upadhyay@intel.com>
- <20241128055647.1677371-5-tejas.upadhyay@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20241128055647.1677371-5-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <87r06crnew.fsf@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,285 +87,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 28/11/2024 05:56, Tejas Upadhyay wrote:
-> We want to make sure that mmap do direct mapping of physical
-> page at doorbell space and whole page is accessible in order
-> to use pci memory barrier effect effectively.
-> 
-> Following subtests are added,
-> ./build/tests/xe_mmap --r pci-membarrier
-> ./build/tests/xe_mmap --r pci-membarrier-parallel
-> ./build/tests/xe_mmap --r pci-membarrier-bad-pagesize
-> ./build/tests/xe_mmap --r pci-membarrier-bad-object
-> 
-> V5:
->   - Add pci-membarrier-parallel test
-> V3(MAuld):
->   - Check if pci memory barrier is supported
-> V2(MAuld)
->   - use do_ioctl and replace igt_subtest_f with igt_subtest
->   - Remove unused define
-> 
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> ---
->   tests/intel/xe_mmap.c | 211 ++++++++++++++++++++++++++++++++++++++++++
->   1 file changed, 211 insertions(+)
-> 
-> diff --git a/tests/intel/xe_mmap.c b/tests/intel/xe_mmap.c
-> index fc5d73d59..1a61095d5 100644
-> --- a/tests/intel/xe_mmap.c
-> +++ b/tests/intel/xe_mmap.c
-> @@ -64,6 +64,161 @@ test_mmap(int fd, uint32_t placement, uint32_t flags)
->   	gem_close(fd, bo);
->   }
->   
-> +#define PAGE_SIZE 4096
-> +
-> +/**
-> + * SUBTEST: pci-membarrier
-> + * Description: create pci memory barrier with write on defined mmap offset.
-> + * Test category: functionality test
-> + *
-> + */
-> +static void test_pci_membarrier(int xe)
-> +{
-> +	uint64_t flags = MAP_SHARED;
-> +	unsigned int prot = PROT_WRITE;
-> +	uint32_t *ptr;
-> +	uint64_t size = PAGE_SIZE;
-> +	struct timespec tv;
-> +	struct drm_xe_gem_mmap_offset mmo = {
-> +		.handle = 0,
-> +		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-> +	};
-> +
-> +	do_ioctl(xe, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
-> +	ptr = mmap(NULL, size, prot, flags, xe, mmo.offset);
-> +	igt_assert(ptr != MAP_FAILED);
-> +
-> +	/* Check whole page for any errors, also check as
-> +	 * we should not read written values back
-> +	 */
-> +	for (int i = 0; i < size / sizeof(*ptr); i++) {
-> +		/* It is expected unconfigured doorbell space
-> +		 * will return read value 0xdeadbeef
-> +		 */
-> +		igt_assert_eq_u32(READ_ONCE(ptr[i]), 0xdeadbeef);
-> +
-> +		igt_gettime(&tv);
-> +		ptr[i] = i;
-> +		if (READ_ONCE(ptr[i]) == i) {
-> +			while (READ_ONCE(ptr[i]) == i)
-> +				;
-> +			igt_info("fd:%d value retained for %"PRId64"ns pos:%d\n",
-> +				 xe, igt_nsec_elapsed(&tv), i);
-> +		}
-> +		igt_assert_neq(READ_ONCE(ptr[i]), i);
-> +	}
-> +
-> +	munmap(ptr, size);
-> +}
-> +
-> +/**
-> + * SUBTEST: pci-membarrier-parallel
-> + * Description: create parallel pci memory barrier with write on defined mmap offset.
-> + * Test category: functionality test
-> + *
-> + */
-> +static void test_pci_membarrier_parallel(int xe, int child)
-> +{
-> +	unsigned int bad_ns, elapsed;
-> +	uint64_t flags = MAP_SHARED;
-> +	unsigned int i;
-> +	unsigned int prot = PROT_WRITE;
-> +	uint32_t *ptr;
-> +	uint64_t size = PAGE_SIZE;
-> +	struct drm_xe_gem_mmap_offset mmo = {
-> +		.handle = 0,
-> +		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-> +	};
-> +	struct timespec total, bad;
-> +	int tpos = size / sizeof(*ptr);
-> +	int value;
-> +
-> +	do_ioctl(xe, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
-> +	ptr = mmap(NULL, size, prot, flags, xe, mmo.offset);
-> +	igt_assert(ptr != MAP_FAILED);
-> +
-> +	/* Check any random position up to 1K */
-> +	i = rand() % (size / sizeof(*ptr));
+On Fri, Dec 13, 2024 at 10:35:03AM +0200, Kalle Valo wrote:
+> I agree, it makes the code harder to read for someone who is not
+> familiar with all the %p magic we have (like me).
 
-So both child and parent will have the same rand() value here.
++1
 
-> +	/* It is expected unconfigured doorbell space
-> +	 * will return read value 0xdeadbeef
-> +	 */
-> +	igt_assert_eq_u32(READ_ONCE(ptr[i]), 0xdeadbeef);
-> +
-> +	igt_until_timeout(5) {
-> +		WRITE_ONCE(ptr[i], i);
-> +	}
-> +	bad_ns = 0;
-> +	igt_gettime(&total);
-> +	igt_until_timeout(5) { /* XXX sync with parent loop! */
-> +		if (READ_ONCE(ptr[i]) == i) {
-> +			igt_gettime(&bad);
-> +			while (READ_ONCE(ptr[i]) == i)
-> +				;
-> +			bad_ns += igt_nsec_elapsed(&bad);
-> +		}
-> +	}
-> +	elapsed = igt_nsec_elapsed(&total);
-> +	if (bad_ns) {
-> +		igt_info("Cross-client writes visible %.1f%% of the time.\n",
+-- 
+Regards/Gruss,
+    Boris.
 
-Is this actually "Cross-client"? Are cross client visible writes 
-possible? Is the below not enough to check this?
-
-> +			 bad_ns * 100. / elapsed);
-> +	}
-> +	igt_assert(20 * bad_ns < elapsed); /* Arbitrary 5% threshold */
-> +	igt_assert_neq(READ_ONCE(ptr[i]), i);
-
-> +	igt_until_timeout(5) {
-> +		/* Check clients should not be able to see each other */
-> +		if (child != -1)
-> +			value = tpos + 1;
-> +		else
-> +			value = tpos;
-> +
-> +		WRITE_ONCE(ptr[tpos-1], value);
-> +	}
-> +	bad_ns = 0;
-> +	igt_gettime(&total);
-> +	igt_until_timeout(5) { /* XXX sync with parent loop! */
-> +		if (READ_ONCE(ptr[tpos-1]) == value) {
-> +			igt_gettime(&bad);
-> +			while (READ_ONCE(ptr[tpos-1]) == value)
-> +				;
-> +			bad_ns += igt_nsec_elapsed(&bad);
-> +		}
-> +	}
-> +	elapsed = igt_nsec_elapsed(&total);
-> +	if (bad_ns) {
-> +		igt_info("Cross-client writes visible %.1f%% of the time.\n",
-> +			 bad_ns * 100. / elapsed);
-> +	}
-> +	igt_assert(20 * bad_ns < elapsed); /* Arbitrary 5% threshold */
-> +	if (child != -1)
-> +		igt_assert_neq(READ_ONCE(ptr[tpos-1]), tpos);
-> +	else
-> +		igt_assert_neq(READ_ONCE(ptr[tpos-1]), tpos + 1);
-> +	igt_assert_eq_u32(READ_ONCE(ptr[tpos-1]), 0xdeadbeef);
-> +
-> +	munmap(ptr, size);
-> +}
-> +
-> +/**
-> + * SUBTEST: pci-membarrier-bad-pagesize
-> + * Description: Test mmap offset with bad pagesize for pci membarrier.
-> + * Test category: negative test
-> + *
-> + */
-> +static void test_bad_pagesize_for_pcimem(int fd)
-> +{
-> +	uint32_t *map;
-> +	uint64_t page_size = PAGE_SIZE * 2;
-> +	struct drm_xe_gem_mmap_offset mmo = {
-> +		.handle = 0,
-> +		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-> +	};
-> +
-> +	do_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
-> +	map = mmap(NULL, page_size, PROT_WRITE, MAP_SHARED, fd, mmo.offset);
-> +	igt_assert(map == MAP_FAILED);
-> +}
-> +
->   /**
->    * SUBTEST: bad-flags
->    * Description: Test mmap offset with bad flags.
-> @@ -126,6 +281,25 @@ static void test_bad_object(int fd)
->   	do_ioctl_err(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo, ENOENT);
->   }
->   
-> +/**
-> + * SUBTEST: pci-membarrier-bad-object
-> + * Description: Test mmap offset with bad object for pci mem barrier.
-> + * Test category: negative test
-> + *
-> + */
-> +static void test_bad_object_for_pcimem(int fd)
-> +{
-> +	uint64_t size = xe_get_default_alignment(fd);
-> +	struct drm_xe_gem_mmap_offset mmo = {
-> +		.handle = xe_bo_create(fd, 0, size,
-> +				       vram_if_possible(fd, 0),
-> +				       DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM),
-> +		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-> +	};
-> +
-> +	do_ioctl_err(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo, EINVAL);
-> +}
-> +
->   static jmp_buf jmp;
->   
->   __noreturn static void sigtrap(int sig)
-> @@ -255,6 +429,16 @@ static void test_cpu_caching(int fd)
->   	assert_caching(fd, system_memory(fd), DRM_XE_GEM_CPU_CACHING_WC + 1, true);
->   }
->   
-> +static bool is_pci_membarrier_supported(int fd)
-> +{
-> +	struct drm_xe_gem_mmap_offset mmo = {
-> +		.handle = 0,
-> +		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-> +	};
-> +
-> +	return (igt_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo) == 0);
-> +}
-> +
->   igt_main
->   {
->   	int fd;
-> @@ -273,6 +457,28 @@ igt_main
->   		test_mmap(fd, vram_memory(fd, 0) | system_memory(fd),
->   			  DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM);
->   
-> +	igt_subtest("pci-membarrier") {
-> +		igt_require(is_pci_membarrier_supported(fd));
-> +		test_pci_membarrier(fd);
-> +	}
-> +
-> +	igt_subtest("pci-membarrier-parallel") {
-> +		int xe = drm_open_driver(DRIVER_XE);
-> +
-> +		igt_require(is_pci_membarrier_supported(fd));
-> +		igt_fork(child, 1)
-> +			test_pci_membarrier_parallel(xe, child);
-> +		test_pci_membarrier_parallel(fd, -1);
-> +		igt_waitchildren();
-> +
-> +		close(xe);
-> +	}
-> +
-> +	igt_subtest("pci-membarrier-bad-pagesize") {
-> +		igt_require(is_pci_membarrier_supported(fd));
-> +		test_bad_pagesize_for_pcimem(fd);
-> +	}
-> +
->   	igt_subtest("bad-flags")
->   		test_bad_flags(fd);
->   
-> @@ -282,6 +488,11 @@ igt_main
->   	igt_subtest("bad-object")
->   		test_bad_object(fd);
->   
-> +	igt_subtest("pci-membarrier-bad-object") {
-> +		igt_require(is_pci_membarrier_supported(fd));
-> +		test_bad_object_for_pcimem(fd);
-> +	}
-> +
->   	igt_subtest("small-bar") {
->   		igt_require(xe_visible_vram_size(fd, 0));
->   		igt_require(xe_visible_vram_size(fd, 0) < xe_vram_size(fd, 0));
-
+https://people.kernel.org/tglx/notes-about-netiquette
