@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B229BE7717F
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 16:59:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68F15E77180
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 16:59:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B84210F0A3;
-	Fri, 13 Dec 2024 16:59:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39A2510E352;
+	Fri, 13 Dec 2024 16:59:44 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13D4F10F0A3;
- Fri, 13 Dec 2024 16:59:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E016410E352;
+ Fri, 13 Dec 2024 16:59:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Revert_=22drm/xe/devcored?=
- =?utf-8?q?ump=3A_Add_ASCII85_dump_helper_function=22?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Revert_=22drm/xe/devcoredump?=
+ =?utf-8?q?=3A_Add_ASCII85_dump_helper_function=22?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 13 Dec 2024 16:59:09 -0000
-Message-ID: <173410914907.2202578.7825670630978808372@b555e5b46a47>
+Date: Fri, 13 Dec 2024 16:59:42 -0000
+Message-ID: <173410918291.2202578.8688072480207703162@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241213141252.1488109-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20241213141252.1488109-1-rodrigo.vivi@intel.com>
@@ -44,43 +44,68 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Revert "drm/xe/devcoredump: Add ASCII85 dump helper function"
 URL   : https://patchwork.freedesktop.org/series/142569/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 403dad10f30f593757705583745d54f3806e1fdb
-Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date:   Fri Dec 13 09:12:52 2024 -0500
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+[16:59:09] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[16:59:14] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
+ERROR:root:../drivers/gpu/drm/xe/xe_guc_ct.c: In function ‘xe_guc_ct_snapshot_print’:
+../drivers/gpu/drm/xe/xe_guc_ct.c:1727:25: error: implicit declaration of function ‘xe_print_blob_ascii85’ [-Werror=implicit-function-declaration]
+ 1727 |                         xe_print_blob_ascii85(p, "CTB data", snapshot->ctb, 0, snapshot->ctb_size);
+      |                         ^~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_guc_log.c: In function ‘xe_guc_log_snapshot_print’:
+../drivers/gpu/drm/xe/xe_guc_log.c:215:17: error: implicit declaration of function ‘xe_print_blob_ascii85’ [-Werror=implicit-function-declaration]
+  215 |                 xe_print_blob_ascii85(p, i ? NULL : "Log data", snapshot->copy[i], 0, size);
+      |                 ^~~~~~~~~~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:194: drivers/gpu/drm/xe/xe_guc_log.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:194: drivers/gpu/drm/xe/xe_guc_ct.o] Error 1
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[6]: *** [../scripts/Makefile.build:440: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:440: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:440: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:440: drivers] Error 2
+make[2]: *** [/kernel/Makefile:1989: .] Error 2
+make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
-    Revert "drm/xe/devcoredump: Add ASCII85 dump helper function"
-    
-    We do not break userspace.
-    
-    This reverts commit ec1455ce7e35a31289d2dbc1070b980538698921.
-    
-    Fixes: ec1455ce7e35 ("drm/xe/devcoredump: Add ASCII85 dump helper
-    function")
-    Cc: John Harrison <John.C.Harrison@Intel.com>
-    Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-    Cc: José Roberto de Souza <jose.souza@intel.com>
-    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-+ /mt/dim checkpatch fb3d98511a2f6375a5c989ca5520aa31b689b119 drm-intel
-403dad10f30f Revert "drm/xe/devcoredump: Add ASCII85 dump helper function"
--:13: WARNING:BAD_FIXES_TAG: Please use correct Fixes: style 'Fixes: <12 chars of sha1> ("<title line>")' - ie: 'Fixes: ec1455ce7e35 ("drm/xe/devcoredump: Add ASCII85 dump helper function")'
-#13: 
-Fixes: ec1455ce7e35 ("drm/xe/devcoredump: Add ASCII85 dump helper
-
-total: 0 errors, 1 warnings, 0 checks, 26 lines checked
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
