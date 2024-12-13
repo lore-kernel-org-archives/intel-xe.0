@@ -4,75 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5312AE77180
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 13:36:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40847E7717D
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 13:51:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 105AE10F009;
-	Fri, 13 Dec 2024 13:36:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA00C10F00E;
+	Fri, 13 Dec 2024 13:51:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="TCdKp5dG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ro/AlE0r";
 	dkim-atps=neutral
-X-Greylist: delayed 492 seconds by postgrey-1.36 at gabe;
- Fri, 13 Dec 2024 13:36:02 UTC
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DE4A10E323;
- Fri, 13 Dec 2024 13:36:02 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id B0D4540E0169; 
- Fri, 13 Dec 2024 13:27:47 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
- header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
- by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id sGcE60KnN3ec; Fri, 13 Dec 2024 13:27:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
- t=1734096462; bh=fx6NJswxnApctvUDdLiVKEkcBeLJJ6f/OgTP8Pi/0ME=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=TCdKp5dGfLFekVy98Z5cRjbFBjMfVvYyRYfkhUYQV27uBBXCYYZh9p+mOk9Fgf+Os
- pQnkema3VHjYt9PUh0meOBj5NrPk/zKO+QDenixpK9n+dz4n1W1+s+KDo+a/POiJM5
- Jf6qn/XogPW/5jtU4WaIDhZKUdouklEFEDqlqUxQY/zqmsi+ilibsowZBZAyXy4Y1x
- TpfygtsV0EIon2P3uQJgohoT4cvoEShfdG4TimQLth0mosUPdNeCeUnCPY7vJpG8jp
- FMDw44tc9UZ8zLBh5SjSjW+tYFB4s0xcTFhxdZaxrRiBX6ofb+4X6HzSOYzqwyuH19
- 3Gkh2PB0uUC+JXk2zhzsze0kIwSidQFUGAMJuPIsUXASeoSmC8/pKQYSSGpe+44W7X
- wfaRwlYuRha6hXFbAGc3543MSmoNrbjsNXBdfC4dqq55iCvp1sGLVzoHBrZ6ElvUth
- Xr+52lDoTAkJQ9VOWavMmRSsyh9669yeE7txdySAT/BnY2u4V0QitRMiF/v+BjKPP3
- KRaaFCcHHir2sRjQSC0fOS2DqMpzcB0re3ld0RlRsARj0Xcy3Re1L5ZPKAiOs62UDt
- Jv74MNH+taDciFgIldizxt2pc4BNlWyyNgb6b/mcvo5h8L2N4EtjOHDklrGej/mcSh
- CG5OdhA4dM08z1FXqQoO86yE=
-Received: from zn.tnic (p200300ea971f9372329c23fffea6a903.dip0.t-ipconnect.de
- [IPv6:2003:ea:971f:9372:329c:23ff:fea6:a903])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
- SHA256) (No client certificate requested)
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 2E54840E015F;
- Fri, 13 Dec 2024 13:27:19 +0000 (UTC)
-Date: Fri, 13 Dec 2024 14:27:09 +0100
-From: Borislav Petkov <bp@alien8.de>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Petr Mladek <pmladek@suse.com>, Yafang Shao <laoar.shao@gmail.com>,
- torvalds@linux-foundation.org, akpm@linux-foundation.org,
- linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
- x86@kernel.org, linux-snps-arc@lists.infradead.org,
- linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
- Steven Rostedt <rostedt@goodmis.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Andy Whitcroft <apw@canonical.com>, Joe Perches <joe@perches.com>,
- Dwaipayan Ray <dwaipayanray1@gmail.com>,
- Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: Re: [PATCH 1/7] vsprintf: Add %pTN to print task name
-Message-ID: <20241213132709.GAZ1w2LW4LgHi-6XfZ@fat_crate.local>
-References: <20241213054610.55843-1-laoar.shao@gmail.com>
- <20241213054610.55843-2-laoar.shao@gmail.com>
- <Z1vq2-V7vB5KhBR9@pathway.suse.cz> <87r06crnew.fsf@kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CF6510E193;
+ Fri, 13 Dec 2024 13:51:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734097909; x=1765633909;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=dXTJiavmLa+FSgZqxsR2eLyZWYaFgFIvOUc9tJ9Y6FM=;
+ b=Ro/AlE0rJTs87cXoUT0Dd7UouYj5SEOSLjnd2vlZ4yZoIRoXW3KxQcZ5
+ 0AY8Z4VFHiIsfUSOV7xo6hCuInsZKqU3iKrz8vg1f675/yrNmOx2Dnue1
+ 6PbAYg2RyH0i4G0GC3E9nUYHs1RIbvrD8TnwfP19CK9RtKCYd3iIUDRSa
+ RWZHQzvGdix142pBqj/Nivwhgy6/Rc7kxGT66tEMPjhlI5N4qF1RUr/lF
+ StzMZkKBibALau2iGDLmEF71p0k+wRXSEZ9GmSEgzMb6EErcyQjj1IgwT
+ IWeUGGeAVa5QDa10HDUq0/HTizWrJoz9B40oXoZ8i6Uh8SA9Oa5uQKlvM A==;
+X-CSE-ConnectionGUID: nxrCxq5eSzyQr1vUxUdE/w==
+X-CSE-MsgGUID: 5RWGmR87QTStEr8s3jHlZQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="34462849"
+X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="34462849"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 05:51:49 -0800
+X-CSE-ConnectionGUID: zym8lQjpSa2IP97Y9QWR7w==
+X-CSE-MsgGUID: CH4VQP7ITuG0Rzp495xfuA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="96311171"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 05:51:44 -0800
+Date: Fri, 13 Dec 2024 15:51:41 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>
+Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, lina@asahilina.net,
+ michal.wajdeczko@intel.com, christian.koenig@amd.com,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
+ alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
+ kernel-dev@igalia.com
+Subject: Re: [PATCH v10 1/4] drm: Introduce device wedged event
+Message-ID: <Z1w77fAac2vOaIEd@black.fi.intel.com>
+References: <20241128153707.1294347-1-raag.jadav@intel.com>
+ <20241128153707.1294347-2-raag.jadav@intel.com>
+ <9557db3c-0837-4dfb-ba69-84dbaf13f082@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <87r06crnew.fsf@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9557db3c-0837-4dfb-ba69-84dbaf13f082@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,14 +77,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Dec 13, 2024 at 10:35:03AM +0200, Kalle Valo wrote:
-> I agree, it makes the code harder to read for someone who is not
-> familiar with all the %p magic we have (like me).
+On Thu, Dec 12, 2024 at 03:31:01PM -0300, André Almeida wrote:
+> Hi Raag,
+> 
+> Thank you for your patch.
+> 
+> Em 28/11/2024 12:37, Raag Jadav escreveu:
+> 
+> [...]
+> 
+> > +int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
+> > +{
+> > +	const char *recovery = NULL;
+> > +	unsigned int len, opt;
+> > +	/* Event string length up to 28+ characters with available methods */
+> > +	char event_string[32];
+> > +	char *envp[] = { event_string, NULL };
+> > +
+> > +	len = scnprintf(event_string, sizeof(event_string), "%s", "WEDGED=");
+> > +
+> > +	for_each_set_bit(opt, &method, BITS_PER_TYPE(method)) {
+> > +		recovery = drm_get_wedge_recovery(opt);
+> > +		if (drm_WARN(dev, !recovery, "device wedged, invalid recovery method %u\n", opt))
+> > +			break;
+> > +
+> > +		len += scnprintf(event_string + len, sizeof(event_string), "%s,", recovery);
+> > +	}
+> > +
+> > +	if (recovery)
+> > +		/* Get rid of trailing comma */
+> > +		event_string[len - 1] = '\0';
+> > +	else
+> > +		/* Caller is unsure about recovery, do the best we can at this point. */
+> > +		snprintf(event_string, sizeof(event_string), "%s", "WEDGED=unknown");
+> > +
+> > +	drm_info(dev, "device wedged, needs recovery\n");
+> 
+> As documented in the commit message "No explicit device recovery is expected
+> from the consumer in this case", I think this should be like this:
+> 
+> if (method != DRM_WEDGE_RECOVERY_NONE)
+>     drm_info(dev, "device wedged, needs recovery\n");
+> 
+> and maybe a note like this:
+> 
+> else
+>     drm_info(dev, "device reseted, but managed to recover\n");
 
-+1
+Or perhaps
 
--- 
-Regards/Gruss,
-    Boris.
+	drm_info(dev, "device wedged, but recovered through reset\n");
 
-https://people.kernel.org/tglx/notes-about-netiquette
+> Either way, this patch is:
+> 
+> Reviewed-by: André Almeida <andrealmeid@igalia.com>
+
+Thanks for the review.
+
+Raag
