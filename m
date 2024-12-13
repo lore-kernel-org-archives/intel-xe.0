@@ -4,54 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CCB8E7717F
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 17:06:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DD20E77182
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 17:11:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA93610F0A5;
-	Fri, 13 Dec 2024 17:06:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEC9010F0B3;
+	Fri, 13 Dec 2024 17:11:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fi5POVf+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GkxOFPVD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 115BB10F0A5
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Dec 2024 17:06:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3584410F0AD;
+ Fri, 13 Dec 2024 17:11:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734109583; x=1765645583;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=FOK9fXY2Pr74i8cPJC7Cb5nM8uM+60WamUCHIjWm0w0=;
- b=Fi5POVf+xq/3g3CEZ1dQNIncc3Uxkl4TydWZENRvDJFgPIYWSm4oRDfL
- 8T6vVQD2IbPNIIE1ItIjE1S9HEpmhnCJZJSYsB+qVh0PLtNlnCui7e5fR
- tGxM+Wi8Uv3171+L5zeTq4YF7PgE/SDhGPOMZdZQQjRgGBqB+roQfm/9N
- f61DYxdwBio4h0L3PhRpE04csUteNOQwHb1zIUIEhTZDLdiT0MrB5ffPR
- 9h9wTun69A8Eu1Mo4N80IoNCrrEfLRzAmQUQYeSSZ5GTV8RmGM95ADNsh
- eYWiYD2tSiWVgJBbF89mSaLmk8byrTtAI0gPliq8c7XvQseHhka6UQbyN Q==;
-X-CSE-ConnectionGUID: g8vdEIMnTvmnmRDx8R3AWw==
-X-CSE-MsgGUID: XOPxUhSjRv2G4PevP7F2ew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="38248430"
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="38248430"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 09:06:23 -0800
-X-CSE-ConnectionGUID: DcSOLHPmTLWuiLoBTW4huQ==
-X-CSE-MsgGUID: R/LjKZE6Qc2jGPuX5gpflg==
+ t=1734109874; x=1765645874;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=43lcs1+73oMcgYgVNa8OI3qmg7j0TEA5KYxken4+b0I=;
+ b=GkxOFPVDo+0aPYwy7ad6SkQ2luH3OYIZy/eD47jBuGp6E3yBJToWjZPt
+ FlFH2mgqhYHJLu9E/9yfVjbajw/0plskprwaPHPy4FC0V/2vei3P2WBrt
+ 8PXkj3e4gAWgY0wAwmua0/Rkc13v60rc5Cni30gpnhj57omPVeMl6h8hk
+ TUqUMuyKmscjpPNsUU0LZlrOexktcPGxVnXrhhA5jterdoW7n4iU/n6vp
+ FrpArLw7QIATo+2qIci7MpUqBxjeGjIpkAPC2cpNT9y6KBBZR+ICpSRxM
+ uhbJatHwZFtbbrKIY8XesjcAdbHegXbho2BhuReAk1L1yIOnBO9cffynV g==;
+X-CSE-ConnectionGUID: mV1y3PioTbKuytia316epg==
+X-CSE-MsgGUID: Lnu/1RboTl6t6WgQgYakRA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="45576426"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="45576426"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 09:11:14 -0800
+X-CSE-ConnectionGUID: THz8Mw9lT1KULhWa98pHdg==
+X-CSE-MsgGUID: 088O5EVCSju/YnpNX2zO4A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="96654382"
-Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
- by orviesa006.jf.intel.com with ESMTP; 13 Dec 2024 09:06:22 -0800
-Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tM97L-000CGZ-2Y;
- Fri, 13 Dec 2024 17:06:19 +0000
-Date: Sat, 14 Dec 2024 01:05:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- d7b028656c29b22fcde1c6ee1df5b28fbba987b5
-Message-ID: <202412140124.HmkmVTPO-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101560852"
+Received: from smile.fi.intel.com ([10.237.72.154])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 09:11:09 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1tM9Bx-00000007Q2C-0sOT; Fri, 13 Dec 2024 19:11:05 +0200
+Date: Fri, 13 Dec 2024 19:11:04 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Borislav Petkov <bp@alien8.de>
+Cc: Kalle Valo <kvalo@kernel.org>, Petr Mladek <pmladek@suse.com>,
+ Yafang Shao <laoar.shao@gmail.com>, torvalds@linux-foundation.org,
+ akpm@linux-foundation.org, linux-kernel@vger.kernel.org,
+ linux-security-module@vger.kernel.org, x86@kernel.org,
+ linux-snps-arc@lists.infradead.org, linux-wireless@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ ocfs2-devel@lists.linux.dev, Steven Rostedt <rostedt@goodmis.org>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Andy Whitcroft <apw@canonical.com>, Joe Perches <joe@perches.com>,
+ Dwaipayan Ray <dwaipayanray1@gmail.com>,
+ Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: Re: [PATCH 1/7] vsprintf: Add %pTN to print task name
+Message-ID: <Z1xqqENp6n6HZ_gM@smile.fi.intel.com>
+References: <20241213054610.55843-1-laoar.shao@gmail.com>
+ <20241213054610.55843-2-laoar.shao@gmail.com>
+ <Z1vq2-V7vB5KhBR9@pathway.suse.cz> <87r06crnew.fsf@kernel.org>
+ <20241213132709.GAZ1w2LW4LgHi-6XfZ@fat_crate.local>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241213132709.GAZ1w2LW4LgHi-6XfZ@fat_crate.local>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,79 +85,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: d7b028656c29b22fcde1c6ee1df5b28fbba987b5  drm/xe/reg_sr: Remove register pool
+On Fri, Dec 13, 2024 at 02:27:09PM +0100, Borislav Petkov wrote:
+> On Fri, Dec 13, 2024 at 10:35:03AM +0200, Kalle Valo wrote:
+> > I agree, it makes the code harder to read for someone who is not
+> > familiar with all the %p magic we have (like me).
 
-elapsed time: 1459m
+> +1
 
-configs tested: 60
-configs skipped: 0
+And me too. In case one thinks of unprintable characters, %pE is for that.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
 
-tested configs:
-arc                             allmodconfig    gcc-13.2.0
-arc                             allyesconfig    gcc-13.2.0
-arc                  randconfig-001-20241213    gcc-13.2.0
-arc                  randconfig-002-20241213    gcc-13.2.0
-arm                             allmodconfig    gcc-14.2.0
-arm                  randconfig-001-20241213    clang-16
-arm                  randconfig-002-20241213    clang-18
-arm                  randconfig-003-20241213    gcc-14.2.0
-arm                  randconfig-004-20241213    clang-18
-arm64                randconfig-001-20241213    gcc-14.2.0
-arm64                randconfig-002-20241213    gcc-14.2.0
-arm64                randconfig-003-20241213    clang-18
-arm64                randconfig-004-20241213    gcc-14.2.0
-csky                 randconfig-001-20241213    gcc-14.2.0
-csky                 randconfig-002-20241213    gcc-14.2.0
-hexagon              randconfig-001-20241213    clang-20
-hexagon              randconfig-002-20241213    clang-20
-i386       buildonly-randconfig-001-20241213    clang-19
-i386       buildonly-randconfig-002-20241213    gcc-12
-i386       buildonly-randconfig-003-20241213    gcc-12
-i386       buildonly-randconfig-004-20241213    clang-19
-i386       buildonly-randconfig-005-20241213    gcc-12
-i386       buildonly-randconfig-006-20241213    gcc-12
-loongarch            randconfig-001-20241213    gcc-14.2.0
-loongarch            randconfig-002-20241213    gcc-14.2.0
-nios2                randconfig-001-20241213    gcc-14.2.0
-nios2                randconfig-002-20241213    gcc-14.2.0
-parisc               randconfig-001-20241213    gcc-14.2.0
-parisc               randconfig-002-20241213    gcc-14.2.0
-powerpc              randconfig-001-20241213    gcc-14.2.0
-powerpc              randconfig-002-20241213    clang-20
-powerpc              randconfig-003-20241213    gcc-14.2.0
-powerpc64            randconfig-001-20241213    gcc-14.2.0
-powerpc64            randconfig-002-20241213    gcc-14.2.0
-powerpc64            randconfig-003-20241213    gcc-14.2.0
-riscv                randconfig-001-20241213    gcc-14.2.0
-riscv                randconfig-002-20241213    gcc-14.2.0
-s390                            allmodconfig    clang-19
-s390                            allyesconfig    gcc-14.2.0
-s390                 randconfig-001-20241213    gcc-14.2.0
-s390                 randconfig-002-20241213    clang-19
-sh                              allmodconfig    gcc-14.2.0
-sh                              allyesconfig    gcc-14.2.0
-sh                   randconfig-001-20241213    gcc-14.2.0
-sh                   randconfig-002-20241213    gcc-14.2.0
-sparc                           allmodconfig    gcc-14.2.0
-sparc                randconfig-001-20241213    gcc-14.2.0
-sparc                randconfig-002-20241213    gcc-14.2.0
-sparc64              randconfig-001-20241213    gcc-14.2.0
-sparc64              randconfig-002-20241213    gcc-14.2.0
-um                   randconfig-001-20241213    gcc-12
-um                   randconfig-002-20241213    clang-16
-x86_64     buildonly-randconfig-001-20241213    gcc-12
-x86_64     buildonly-randconfig-002-20241213    gcc-12
-x86_64     buildonly-randconfig-003-20241213    gcc-12
-x86_64     buildonly-randconfig-004-20241213    gcc-12
-x86_64     buildonly-randconfig-005-20241213    gcc-12
-x86_64     buildonly-randconfig-006-20241213    clang-19
-xtensa               randconfig-001-20241213    gcc-14.2.0
-xtensa               randconfig-002-20241213    gcc-14.2.0
+-- 
+With Best Regards,
+Andy Shevchenko
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+
