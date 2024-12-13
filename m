@@ -4,65 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 227B4E77180
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 17:26:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A9B7E77180
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 17:28:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D277510E26D;
-	Fri, 13 Dec 2024 17:26:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C796010E26D;
+	Fri, 13 Dec 2024 17:28:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kgM9XDb9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I0EN65i6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 462B510E26D
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Dec 2024 17:26:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D8C810E26D;
+ Fri, 13 Dec 2024 17:28:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734110780; x=1765646780;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=jAn8Tcn2aQSiimygXRwEQQgqlGh15S9fdmL42j/T+8o=;
- b=kgM9XDb9vO6wre8X9MCOiZeJvGF/Fp/calh04mSU9++/nQIANyqXoXEp
- vulkQaiqLHAMv0xBGCjdRJBc2mFh72yaxiIaHf0pRLZRhSRSVgdaxbOzA
- nVEynwuHdDNpX8RajGZPFCmnfCwLuNtm0LCVg+tw987C0Gqr4rix/exYA
- mL3tCQN+JVvZWH8GhF+8B4EQM31du7QEwYyCop08FZQR0iK4Zo/SizhfT
- h84PeF/QE9BbCU+rSdXtD3SbSwF/luxGnoo42WOTBR6TgiNE6Zr7N/ADg
- Pdag3NW2ezZapyZjwoG9SPinu3NbgDgt0tnYbu39Kjm1xSlZXnFHo5uwi g==;
-X-CSE-ConnectionGUID: UyPGh4poTRmaY79TYPbcrQ==
-X-CSE-MsgGUID: OM3gpzfpTvSal08xZFKzUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="34709819"
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="34709819"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 09:26:19 -0800
-X-CSE-ConnectionGUID: oRJgRYaJSjO4ppA+5UGTdg==
-X-CSE-MsgGUID: WzP8TNK9TQ6CFCDROj5Izg==
+ t=1734110915; x=1765646915;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ATm09Bi+kJ9wWgp5aT5x7AvrnmIu/Tr0NvgiF+F0CIQ=;
+ b=I0EN65i6FrJH5UoZVAm1ozVvFCfxMglNnaPQilbqPryD4Ac/CBlc3Xpl
+ 2wveQqPK5C781dFNHKXh913pCkIM0oOXfnVzmO9sma6cCBOlqdjdgCBxN
+ AGCq7KE18g4vR7BonPUvcjpuFO8TLoEpoU8fmssrih6tEE93N6nqG/QSk
+ eiqvLPHWel5uy4AhdeA2FBtiqS4gLWjZo0mj61BpwXjKQGMghKHR0F7b7
+ nZY7pNQrchBExGhod5RvqsImpgNT7Xg0wRoVU1J1TB4vzi0uH/Zo19fWP
+ 6J7bJdPVc2gjYLWcLcI6nUdMjeL6MEw3CUtIwuyYxNRZyGf0NORS3qc66 w==;
+X-CSE-ConnectionGUID: EoteynvKQPSS3nVfr1kh7w==
+X-CSE-MsgGUID: K2CeodEGQryysQ22dsoQ5w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="33868877"
+X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="33868877"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 09:28:34 -0800
+X-CSE-ConnectionGUID: 3BzirmzsTjCJv/oqquF1Yw==
+X-CSE-MsgGUID: QvNhcp5CSeCG/W452O3mcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="97376277"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.110.218])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 09:26:19 -0800
-Date: Fri, 13 Dec 2024 11:26:10 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com, 
- umesh.nerlige.ramappa@intel.com, rodrigo.vivi@intel.com,
- vinay.belgaumkar@intel.com, 
- aravind.iddamsetty@intel.com, john.c.harrison@intel.com,
- ashutosh.dixit@intel.com, soham.purkait@intel.com
-Subject: Re: [PATCH v2 7/8] drm/xe/guc: Expose engine busyness only for
- supported GuC version
-Message-ID: <uzxdbdx6cceyvijbabppxtusznkm2tbb3pz6xjamtnsu4yhexm@gtqawko5tv2o>
-References: <20241121063904.3033754-1-riana.tauro@intel.com>
- <20241121063904.3033754-8-riana.tauro@intel.com>
- <u3bmt4wjtini2n7bes6gyq2f23kboagca4ee3ekg3oer3qjujj@mh5ct5xwggo6>
- <30a06548-d50f-4c57-9697-39a2bc3a562b@intel.com>
- <htcdqjyj75ymzb6ywe6wczq7vyhop4cocco7pj26sseajtlmo5@hafxw5sqtbj7>
- <588b5829-e5fc-4450-bf83-4f2cf05cf29b@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="119857010"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by fmviesa002.fm.intel.com with ESMTP; 13 Dec 2024 09:28:34 -0800
+From: John.C.Harrison@Intel.com
+To: Intel-Xe@Lists.FreeDesktop.Org
+Cc: John Harrison <John.C.Harrison@Intel.com>,
+ Julia Filipchuk <julia.filipchuk@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/xe: Revert some changes that break a mesa debug tool
+Date: Fri, 13 Dec 2024 09:28:33 -0800
+Message-ID: <20241213172833.1733376-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.47.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <588b5829-e5fc-4450-bf83-4f2cf05cf29b@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,46 +70,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Dec 13, 2024 at 11:40:38AM +0530, Riana Tauro wrote:
->
->
->On 12/13/2024 11:34 AM, Lucas De Marchi wrote:
->>On Fri, Dec 13, 2024 at 11:30:38AM +0530, Riana Tauro wrote:
->>>Hi Lucas
->>>
->>>On 12/13/2024 11:14 AM, Lucas De Marchi wrote:
->>>>On Thu, Nov 21, 2024 at 12:09:03PM +0530, Riana Tauro wrote:
->>>>>Engine busyness is supported only on GuC versions >= 70.32.0
->>>>>Allow enabling/reading engine busyness only on supported
->>>>>GuC versions. Warn once if not supported.
->>>>
->>>>did i915 used a different version of the guc api?
->>>>
->>>>There's no platform supporting GuC >= 70.32.0. We will need to add one
->>>>to be able to test.
->>>Requested for this guc version. Will merge this once CI passes 
->>>with the required version.
->>
->>this means you also need the igt ready for that. Is it done?
->Yeah igt is ready and has been tested locally.
->
->Waiting for other tests of pmu to be pushed 
->https://patchwork.freedesktop.org/series/140737/, to avoid re-sending 
->these patches again. Will send it once these are pushed> Lucas De 
+From: John Harrison <John.C.Harrison@Intel.com>
 
-makes sense, thanks. Please add the link to the igt tests in your cover
-letter for next rev so it's clear for reviewer what's covering this new
-functionality.
+There is a mesa debug tool for decoding devcoredump files. Recent
+changes to improve the devcoredump output broke that tool. So revert
+the changes until the tool can be extended to support the new fields.
 
-thanks
-Lucas De Marchi
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Fixes: c28fd6c358db ("drm/xe/devcoredump: Improve section headings and add tile info")
+Fixes: ec1455ce7e35 ("drm/xe/devcoredump: Add ASCII85 dump helper function")
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Julia Filipchuk <julia.filipchuk@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+---
+ drivers/gpu/drm/xe/xe_devcoredump.c | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
 
->Marchi
->>
->>>
->>>Thanks
->>>Riana
->>>>
->>>>Lucas De Marchi
->>>
->
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 71636e80b71d..6980304c8903 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -119,7 +119,11 @@ static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
+ 	drm_puts(&p, "\n**** GuC CT ****\n");
+ 	xe_guc_ct_snapshot_print(ss->guc.ct, &p);
+ 
+-	drm_puts(&p, "\n**** Contexts ****\n");
++	/*
++	 * Don't add a new section header here because the mesa debug decoder
++	 * tool expects the context information to be in the 'GuC CT' section.
++	 */
++	/* drm_puts(&p, "\n**** Contexts ****\n"); */
+ 	xe_guc_exec_queue_snapshot_print(ss->ge, &p);
+ 
+ 	drm_puts(&p, "\n**** Job ****\n");
+@@ -416,6 +420,15 @@ void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
+ 	char buff[ASCII85_BUFSZ], *line_buff;
+ 	size_t line_pos = 0;
+ 
++	/*
++	 * Splitting blobs across multiple lines is not compatible with the mesa
++	 * debug decoder tool. Note that even dropping the explicit '\n' below
++	 * doesn't help because the GuC log is so big some underlying implementation
++	 * still splits the lines at 512K characters. So just bail completely for
++	 * the moment.
++	 */
++	return;
++
+ #define DMESG_MAX_LINE_LEN	800
+ #define MIN_SPACE		(ASCII85_BUFSZ + 2)		/* 85 + "\n\0" */
+ 
+-- 
+2.47.0
+
