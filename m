@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5252EE7717D
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 12:03:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B89D2E77180
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 12:04:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FC2910E19B;
-	Fri, 13 Dec 2024 12:03:34 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C93310E317;
- Fri, 13 Dec 2024 12:03:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 787BC10E19B;
+	Fri, 13 Dec 2024 12:04:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RNjfKL5b";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 972588912D;
+ Fri, 13 Dec 2024 12:04:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734091453; x=1765627453;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=k16/ErdBcQ48upbbK53uG9MkczSbhBpc9cJVphwdma0=;
+ b=RNjfKL5bNhsjGTN3SgLT+UQNMeAMCVvtWqC/Bj9S5QEKw5TgHi8hNqMh
+ QgxSVis5eZkYOpgO71PygCRS431x5QjmyepLhkyBa0T1UfkZNk6KpVJAL
+ xUxKAJyOnAaV1E6WGh/0Rcl8gohUdWTTfXjb63onA4vLmzojMDXIQvq1N
+ krnIw1Qy+8eq5YlQh/STggt+JoN/m/Rs7V3GShevaeE6TtTOAIKewsgkb
+ MZP7aQ0LCNB563UMQgliVFR4C+Tx77BUuD2sAnsaydoqoe+qSOxiInLtX
+ hEPwzmV+459rSwN+XvqBHtz9k32h8zkXa9HPplF6nxthcALvY0nld+X55 w==;
+X-CSE-ConnectionGUID: I4YcPqkSTCq6UV3GkFYgSQ==
+X-CSE-MsgGUID: 4FZ5+bLOSRmUcG0zaO6iRA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11278"; a="45926208"
+X-IronPort-AV: E=Sophos;i="6.12,214,1728975600"; d="scan'208";a="45926208"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 04:04:13 -0800
+X-CSE-ConnectionGUID: RG9Q6L+QTumyfz82WGI9Fg==
+X-CSE-MsgGUID: qhnnVxhpR3+ZCb4WnjYVzw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101092187"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO vgovind2-mobl3..)
+ ([10.245.245.212])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 04:04:11 -0800
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
+ uma.shankar@intel.com, jani.saarinen@intel.com
+Subject: [PATCH] drm/i915/xe3: do not configure auto min dbuf for cursor WMs
+Date: Fri, 13 Dec 2024 14:03:57 +0200
+Message-Id: <20241213120357.300584-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/dp=3A_convert_to?=
- =?utf-8?q?_struct_intel=5Fdisplay_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 13 Dec 2024 12:03:33 -0000
-Message-ID: <173409141324.2119584.8782706627985003363@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <cover.1734083244.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1734083244.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,43 +65,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Cursor planes do not have the minimum dbuf confguation. The
+ddb allocation and registration routines handle this correctly.
+But the plane wm handling for cursor need to be differentiated
+for this case. Auto minimum buf enable flag should not be
+enabled for cursor wm registers in xe3.
 
-Series: drm/i915/dp: convert to struct intel_display (rev3)
-URL   : https://patchwork.freedesktop.org/series/141928/
-State : success
+Fixes: a831920c370c ("drm/i915/xe3: Use hw support for min/interim ddb allocations for async flip")
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_watermark.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 51efc07af4a055e362f577afcf5e311e113cbe8d
-Author: Jani Nikula <jani.nikula@intel.com>
-Date:   Fri Dec 13 11:48:25 2024 +0200
-
-    drm/i915/dp: finish link training conversion to struct intel_display
-    
-    Convert the final stragglers to struct intel_display now that we have
-    platform identification via it too.
-    
-    Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
-    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-+ /mt/dim checkpatch 8f7b64e137723da601f3c07d0cda22566cf994d5 drm-intel
-a305c6a54fc8 drm/i915/dp: s/intel_encoder/encoder/
-dfe3c9388ec4 drm/i915/dp: s/intel_connector/connector/
-ac460deae79c drm/i915/dp: convert to struct intel_display
-65f0c7f709a7 drm/i915/dp: convert interfaces to struct intel_display
-51efc07af4a0 drm/i915/dp: finish link training conversion to struct intel_display
-
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index d3506e8ccd9b..29e8ea91c858 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -1922,10 +1922,11 @@ static int skl_wm_max_lines(struct drm_i915_private *i915)
+ 		return 31;
+ }
+ 
+-static bool xe3_auto_min_alloc_capable(struct intel_display *display,
+-				       int level)
++static bool xe3_auto_min_alloc_capable(struct intel_plane *plane, int level)
+ {
+-	return DISPLAY_VER(display) >= 30 && level == 0;
++	struct intel_display *display = to_intel_display(plane);
++
++	return DISPLAY_VER(display) >= 30 && level == 0 && plane->id != PLANE_CURSOR;
+ }
+ 
+ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+@@ -1937,7 +1938,6 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+ 				 struct skl_wm_level *result /* out */)
+ {
+ 	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+-	struct intel_display *display = to_intel_display(crtc_state);
+ 	uint_fixed_16_16_t method1, method2;
+ 	uint_fixed_16_16_t selected_result;
+ 	u32 blocks, lines, min_ddb_alloc = 0;
+@@ -2061,7 +2061,7 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+ 	/* Bspec says: value >= plane ddb allocation -> invalid, hence the +1 here */
+ 	result->min_ddb_alloc = max(min_ddb_alloc, blocks) + 1;
+ 	result->enable = true;
+-	result->auto_min_alloc_wm_enable = xe3_auto_min_alloc_capable(display, level);
++	result->auto_min_alloc_wm_enable = xe3_auto_min_alloc_capable(plane, level);
+ 
+ 	if (DISPLAY_VER(i915) < 12 && i915->display.sagv.block_time_us)
+ 		result->can_sagv = latency >= i915->display.sagv.block_time_us;
+-- 
+2.34.1
 
