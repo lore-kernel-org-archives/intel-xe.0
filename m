@@ -4,81 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCB39E7717F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 004CBE77185
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 14:03:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8664210F02C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 749A010F025;
 	Fri, 13 Dec 2024 14:03:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FM/iQDg7";
+	dkim=permerror (0-bit key) header.d=sapience.com header.i=@sapience.com header.b="q4sPn34s";
+	dkim=pass (2048-bit key; secure) header.d=sapience.com header.i=@sapience.com header.b="kh504LIt";
 	dkim-atps=neutral
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com
- [IPv6:2607:f8b0:4864:20::636])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 428E110E074;
- Fri, 13 Dec 2024 05:46:44 +0000 (UTC)
-Received: by mail-pl1-x636.google.com with SMTP id
- d9443c01a7336-2156e078563so10800195ad.2; 
- Thu, 12 Dec 2024 21:46:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1734068804; x=1734673604; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=9nDBDHl8OkOEbonP7/O/xeWGAuqOftf+4IMvf+gS1cw=;
- b=FM/iQDg7KC4a/755IIO7QtW7lGZizb9Ij12tusXglECWpyQ9nvOTMHAcDQwxPnjnYo
- eTsmAPsuz79GW2gDJB31OVGRJSLIvIdoV//6LhZKavKhZUdkvG49eXuYeH7FM/LeRfjP
- hpHU4RxyoJvFZIZ5WFJINR8gs5wgEdI874DfumKMva7Hez/g9dQjQvSD0GxM57ZqiRUn
- Ze68Q8GAR8BO+Otz3EB8MyMegI37Yf180KgHlGvecTr7RT6Z/zQ5ifdva8QEAGqA9rxV
- 5k8tF13tb13nM2JEThwqXq215k7y81rAhUluLZI9l+xXAdlzqxQuOL4CGYB6RCQ+9rtm
- R0aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734068804; x=1734673604;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=9nDBDHl8OkOEbonP7/O/xeWGAuqOftf+4IMvf+gS1cw=;
- b=mFWDB/eHGMLYTkaKvVKZ60/txoFkAnA43c4hJyKomRRG88tb4QvFogw4OsBvUIi5Vu
- QOA8BiD/ML7hvLNsYYv1y76T6dbHHOGIsgr8EpdSQiUciT9fKaT7iu6CdSdosuYtPkw5
- 7ZsJ9p1VmmQ9jEF20YLao+0dw8dSsHzdBGVWM+PFvLfVH4ZGFOSTwuBPh2FjbEE8/CZH
- 2lsLwyvnIkJbBT/TAQhitGsdmuooeqm5zWKs2hTprneecYU12Y/AULYcgNn9J+wj7emC
- uJ8yJfX211t7igSyOVZyJ0JEVpbKBTaILhPtggFQygO3LlvE+qtzr3K7CBAttlu25Dwi
- bZHg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVuNV/C7KDZ61vdMumNzJGhNjpMAlyZS/AhlZd4MRE3HobeUI7E6xaybrgbdXf0oeOuAQfTE9O7Q8o=@lists.freedesktop.org,
- AJvYcCWS6LZqKveP7bsekch4g5LppcXizEU5XoTm8x26xqOm74sc+ymQcqpR+ZsPSIK/l9G4O/r2a9TBwEw=@lists.freedesktop.org,
- AJvYcCX1nmu/3KwyscWOAguGfYweWt8GgaEE63J/Mv4yirjKB47QZeYaOYR6633KAxKNpvUJ8FCfecaQFZbl@lists.freedesktop.org,
- AJvYcCXHM+EdtG+QH1Y0pzz6C3N1W4Ht+sgm3K+k+QTFPLB6MDAhZbO6XMyZQIrMA7ohfrnIHiXdwRg/Vw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyuXR864N1lZGhEEgmYBdzJda9RMNp1aqTsCT+X4sCmUoEV9qJ5
- mkcfAIkMKDbxUYZyAKXwTTN5LjhLbRkGq+1bDN8+prts/1ZJn/MaLsk0ziHZoGk=
-X-Gm-Gg: ASbGncsKUZK8Aboj2I69p6dCvLNo9vla2jLf07xDz2WOGJ/DMCfLjVFYERktOyE4Vt1
- 1LBpFoIqYz9PoW40OY3QFSQXU63CBL4fUA0xOL4s9NUczjx8krGa34kIlIGEBi9BSVyBFaPVoih
- 2BlZo8F85exj9cvo3MyGc4T9ZAqILbfUCdV85UypY+nX5lRCky69tY/cqE76hth3D9RaLKumHfv
- m0Ct3JNbdWgQGRPvsKjZrRxqhOgspaV4r49ieGReupJvjLjjan/a52yy442Ls55tVTWhxXfL+6R
- hsT2R6s=
-X-Google-Smtp-Source: AGHT+IHVKByQs8aQw9nFW65MyCdke95tovLrIe/teYLFc9u83Eik6guIs9oKZyvf6Ts5Rmy4R5h3SA==
-X-Received: by 2002:a17:902:ccd2:b0:216:26f1:530b with SMTP id
- d9443c01a7336-21892a70579mr20915305ad.51.1734068803702; 
- Thu, 12 Dec 2024 21:46:43 -0800 (PST)
-Received: from localhost.localdomain ([180.159.118.224])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-216483dd292sm82564985ad.226.2024.12.12.21.46.38
- (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
- Thu, 12 Dec 2024 21:46:43 -0800 (PST)
-From: Yafang Shao <laoar.shao@gmail.com>
-To: torvalds@linux-foundation.org,
-	akpm@linux-foundation.org
-Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
- x86@kernel.org, linux-snps-arc@lists.infradead.org,
- linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
- Yafang Shao <laoar.shao@gmail.com>
-Subject: [PATCH 0/7] vsprintf: Add %pTN to print Task Name 
-Date: Fri, 13 Dec 2024 13:46:03 +0800
-Message-Id: <20241213054610.55843-1-laoar.shao@gmail.com>
-X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+Received: from s1.sapience.com (s1.sapience.com [72.84.236.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAE1E10E315;
+ Fri, 13 Dec 2024 12:14:09 +0000 (UTC)
+Authentication-Results: dkim-srvy7; dkim=pass (Good ed25519-sha256 
+ signature) header.d=sapience.com header.i=@sapience.com 
+ header.a=ed25519-sha256; dkim=pass (Good 2048 bit rsa-sha256 signature) 
+ header.d=sapience.com header.i=@sapience.com header.a=rsa-sha256
+Received: from srv8.sapience.com (srv8.sapience.com [x.x.x.x])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (secp384r1) server-digest SHA384)
+ (No client certificate requested)
+ by s1.sapience.com (Postfix) with ESMTPS id E862D480525;
+ Fri, 13 Dec 2024 07:14:08 -0500 (EST)
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=sapience.com;
+ i=@sapience.com; q=dns/txt; s=dk-ed25519-220413; t=1734092048;
+ h=message-id : subject : from : to : cc : date : in-reply-to :
+ references : content-type : mime-version : from;
+ bh=on+3kOjcl/tu3R48ep6Fp66Q8LyJDxFH/zcLNPzbXow=;
+ b=q4sPn34soKydu57/9MOjEXYwGdmyeJj2hCmSyqsRycrtjy3yZwIRXBe34Y97lrnBhAqrm
+ J9yAY6yvZ5xLWmRBA==
+ARC-Seal: i=1; a=rsa-sha256; d=sapience.com; s=arc6-rsa-220412; t=1734092048; 
+ cv=none;
+ b=mCeFMKbRbWJPrZtEHGL/TRg+QOJAvmLaaQ0ncKPgHKhoJaeJ562QKEct8Xayqy2MYu9go083lqz2jj1Yd72FM/HNgPcItTiHL/mQUv27I/CxfaqmtnAcbOiRQ5LIiaPUbQM0jYSlNEYZbQGQHyzr+WYDVdE82C56dz+iTWBZlEfel9Ke+PrwbYPKgW48so3oxYnMmqpgGeNhmRl88ulY8Dl0tADvFZ+Vc/ILl+U5fDFC/1mFlb7UyB8pWyAktpfv2zvKJDfk8q2qJjQzVWSxITVqibyNZhK4y2MabECkM6749LXBfo1DqWpxDffJQsaRQSG/p1L2C6DOeISMNrEHrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; d=sapience.com; s=arc6-rsa-220412;
+ t=1734092048; c=relaxed/simple;
+ bh=on+3kOjcl/tu3R48ep6Fp66Q8LyJDxFH/zcLNPzbXow=;
+ h=DKIM-Signature:DKIM-Signature:Message-ID:Subject:From:To:Cc:Date:
+ In-Reply-To:References:Autocrypt:Content-Type:User-Agent:
+ MIME-Version;
+ b=nAgS6qbKdI0yR3Gu075nKMDm1nY/aqPSU838DZqGbuK21hsThoP3rWs97j2ktbjKwY4NfeQcosTmTzsJiLzPFdV9RVQe1iuMu5F4OLzfBfF1fYd1CZV2o+zcJuqtabdy0ZJ/27wyfIAdlx0U5lfWYPufg5SLtQ6xdDJORZVKi57e6gGyyMjZSnoUgBAOZfv8BmNkojGqFIreUDvoGiX+WU82Vk61hhDtbWKPlkj4x6XFQru09xdUADM9iYmSifAO7/qkclq0mOdvUFrbd/UN6HHpHguvJlMYFwUA9LPSJIcOOpxoTn2Alw4HHRWk6fw4o86v8f8H53h7VIJXIzZPBA==
+ARC-Authentication-Results: i=1; arc-srv8.sapience.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sapience.com;
+ i=@sapience.com; q=dns/txt; s=dk-rsa-220413; t=1734092048;
+ h=message-id : subject : from : to : cc : date : in-reply-to :
+ references : content-type : mime-version : from;
+ bh=on+3kOjcl/tu3R48ep6Fp66Q8LyJDxFH/zcLNPzbXow=;
+ b=kh504LItE0Pj3pt4Wkqr//E6SOjF0D4S63h1tl240YyGFqwfOb48xV3OhaZ8xMxMEIMEL
+ oD0H/yDDT1LT/fA/ae/hW9Y4HpdZsH+CeUAl3hmLPy/9eXPcN0fuccZjFEM1IkygQPWjQWh
+ SgjClSUWvd8i3qqMFt1Vw8LomD/2/WGJSYdi0hbApWQ/dB//nA7n7pdm46JnPp07+o/T+CR
+ AZmEt+tslcQrGRDtRXK13XQrZwP3UMO7M7NS/mBCSQCVKlZ1DJnWnbt3TsqcehPTDD1COfr
+ Xul01E3Xe0eeh/+IQV+oO7FzcXPBymRWlCpAv/ThshpCo/AsQDw/FXGf3dZQ==
+Received: from lap7.sapience.com (lap7w.sapience.com [x.x.x.x])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature ECDSA (secp384r1)
+ server-digest SHA384) (No client certificate requested)
+ by srv8.sapience.com (Postfix) with ESMTPS id B90A4280018;
+ Fri, 13 Dec 2024 07:14:08 -0500 (EST)
+Message-ID: <dd13efc9b3fe3e3acd599ca91b714fa92f6cb9a8.camel@sapience.com>
+Subject: Re: 6.13-rc1 graphics fail
+From: Genes Lists <lists@sapience.com>
+To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: regressions@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com, 
+ rodrigo.vivi@intel.com, airlied@gmail.com, tzimmermann@suse.de, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Fri, 13 Dec 2024 07:14:07 -0500
+In-Reply-To: <7db24095f935d874fae466853b0984103f97b40f.camel@sapience.com>
+References: <3b097dddd7095bccabe6791b90899c689f271a35.camel@sapience.com>
+ <Z07Mg2_6y2MW22qV@intel.com>
+ <7db24095f935d874fae466853b0984103f97b40f.camel@sapience.com>
+Autocrypt: addr=lists@sapience.com; prefer-encrypt=mutual;
+ keydata=mDMEXSY9GRYJKwYBBAHaRw8BAQdAwzFfmp+m0ldl2vgmbtPC/XN7/k5vscpADq3BmRy5R
+ 7y0LU1haWwgTGlzdHMgKEwwIDIwMTkwNzEwKSA8bGlzdHNAc2FwaWVuY2UuY29tPoiWBBMWCAA+Ah
+ sBBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEE5YMoUxcbEgQOvOMKc+dlCv6PxQAFAmPJfooFCRl
+ vRHEACgkQc+dlCv6PxQAc/wEA/Dbmg91DOGXll0OW1GKaZQGQDl7fHibMOKRGC6X/emoA+wQR5FIz
+ BnV/PrXbao8LS/h0tSkeXgPsYxrzvfZInIAC
+Content-Type: multipart/signed; micalg="pgp-sha384";
+ protocol="application/pgp-signature"; boundary="=-yjX0hr7VVXVlChB9wdQW"
+User-Agent: Evolution 3.54.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 13 Dec 2024 14:03:09 +0000
+X-Mailman-Approved-At: Fri, 13 Dec 2024 14:03:03 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,45 +98,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since task->comm is guaranteed to be NUL-terminated, it can be printed
-directly. This patch introduces a new vsnprintf format specifier, %pTN, to
-print a task's name. In this specifier, p represents the task pointer, T
-stands for "Task," and N denotes "Name." With this abstraction, users no
-longer need to manually retrieve the task name for printing purposes.
 
-In this patchset, all instances of get_task_comm() used for printing the
-task name have been replaced with the new %pTN specifier. The raw uses of
-'xyz->comm' for printouts will be addressed in a subsequent patch.
+--=-yjX0hr7VVXVlChB9wdQW
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
-Link: https://lore.kernel.org/bpf/CAHk-=wgqrwFXK-CO8-V4fwUh5ymnUZ=wJnFyufV1dM9rC1t3Lg@mail.gmail.com 
+On Tue, 2024-12-03 at 06:34 -0500, Genes Lists wrote:
+> On Tue, 2024-12-03 at 11:16 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
+> > > ...
+>=20
+> > Probably https://gitlab.freedesktop.org/drm/i915/kernel/-
+> > /issues/13057
+> >=20
+> Very helpful.
+>=20
+> I tested your patch set on Linus' tree commit
+> cdd30ebb1b9f36159d66f088b61aee264e649d7a :
+>=20
+> =C2=A0 =C2=A0=C2=A0https://patchwork.freedesktop.org/series/141911/
+>=20
+> and confirm that this fixes the problem=C2=A0
+>=20
+> Thank you.
+>=20
+>=20
 
-Yafang Shao (7):
-  vsprintf: Add %pTN to print task name
-  kernel: Replace get_task_comm() with %pTN
-  arch: Replace get_task_comm() with %pTN
-  net: Replace get_task_comm() with %pTN
-  security: Replace get_task_comm() with %pTN
-  drivers: Repace get_task_comm() with %pTN
-  fs: Use %pTN to print task name
+Just a CC to regressions list for tracking.
 
- arch/arc/kernel/unaligned.c                    |  9 ++++-----
- arch/x86/kernel/vm86_32.c                      |  5 ++---
- drivers/accel/habanalabs/common/context.c      |  5 ++---
- .../accel/habanalabs/common/habanalabs_ioctl.c | 15 +++++----------
- .../drm/i915/display/intel_display_driver.c    | 10 ++++------
- drivers/gpu/drm/nouveau/nouveau_chan.c         |  4 +---
- drivers/gpu/drm/nouveau/nouveau_drm.c          |  7 +++----
- drivers/tty/tty_io.c                           |  5 ++---
- fs/ocfs2/cluster/netdebug.c                    |  5 ++---
- kernel/capability.c                            | 12 ++++--------
- kernel/futex/waitwake.c                        |  5 ++---
- lib/vsprintf.c                                 | 18 ++++++++++++++++++
- net/wireless/wext-core.c                       |  6 ++----
- scripts/checkpatch.pl                          |  6 ++++--
- security/yama/yama_lsm.c                       |  6 ++----
- 15 files changed, 57 insertions(+), 61 deletions(-)
+First report here:=C2=A0
+https://lore.kernel.org/lkml/3b097dddd7095bccabe6791b90899c689f271a35.c
+amel@sapience.com/
 
--- 
-2.43.5
+Fixed by patch set as noted above, but not yet in mainline or linux-
+next.
 
+Thank you again Ville for quickly coming up with a fix.
+
+--=20
+Gene
+
+
+--=-yjX0hr7VVXVlChB9wdQW
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYJAB0WIQRByXNdQO2KDRJ2iXo5BdB0L6Ze2wUCZ1wlEAAKCRA5BdB0L6Ze
+2191AP9B/XFuJzoozY9SuPe5rgJMEoYgdU1lPwVq7uI22li+UAEAtoZSAumqaeVA
+FYnoRJYhHfK4M/sUzUz5a0qaLhX4Egw=
+=3Hbb
+-----END PGP SIGNATURE-----
+
+--=-yjX0hr7VVXVlChB9wdQW--
