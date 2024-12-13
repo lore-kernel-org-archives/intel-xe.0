@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF874E77180
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 18:10:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF915E7717F
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 18:12:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E4B710E436;
-	Fri, 13 Dec 2024 18:10:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N0WDsOfh";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D27010E332
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Dec 2024 18:10:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734113423; x=1765649423;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iEyEw3MTolRjfft1lOBXh5+ikQW2moTXddUgQkqZWeU=;
- b=N0WDsOfhXYWIR2ZOvEza7CupVfJT5HNcsiQ9mM9oBBigCv0FYz65VYlo
- efCuXANTTUX6uakkOZAhj4iD/fkWYS7Sa7qDlMpw+n1uPyWHJal4SklK2
- AGImZ3y2NNDjSnGxawraY8Jz3XJKHwuz7Y9Zl1bfXv3v1SnKHcmyMj97/
- C9eM2/4WIJtPNoTxxiYFYzVNLBaEh1jSDRvIdi311r3hyBmfw76CSFKFl
- F5MEFkw2WOlJUpI8akuEGEY8eO4qToWIh9aWLToGBq7n3Pummlcz6rAAo
- vSaE4naF0PAE/HeOkaeX8VwY8JKvL6OIjjQvM4LOec+kkI8WMoDBjg48q Q==;
-X-CSE-ConnectionGUID: 6pAsThn7SLuTW16YGArIOg==
-X-CSE-MsgGUID: F41T+1GoSbCBNjzIJiV6kw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="34304408"
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="34304408"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 10:10:22 -0800
-X-CSE-ConnectionGUID: CjG1FOxzRMWhfa6O+MBVhw==
-X-CSE-MsgGUID: /Qz9t5VbQdiQ9YRhDrF9aA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101177902"
-Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 10:10:22 -0800
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Jesus Narvaez <jesus.narvaez@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>
-Subject: [PATCH v3] drm/xe/guc: Enable WA_DUAL_QUEUE for newer platforms
-Date: Fri, 13 Dec 2024 10:10:12 -0800
-Message-ID: <20241213181012.2178794-1-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id B844710F0C5;
+	Fri, 13 Dec 2024 18:12:30 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EB9010E443;
+ Fri, 13 Dec 2024 18:12:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/display=3A_handle_hdm?=
+ =?utf-8?q?i_connector_init_failures=2C_and_no_HDMI/DP_cases_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 13 Dec 2024 18:12:29 -0000
+Message-ID: <173411354951.2222702.13377149403709705905@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <cover.1734099220.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1734099220.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,85 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The DUAL_QUEUE_WA tells the GuC to not allow concurrent submissions
-on RCS and CCSes with different address spaces, which on DG2 is
-required as a WA for an HW bug. On newer platforms, this block has
-been moved in HW at the CS level, by stalling the RCS/CCS context
-switch when one of the other RCS/CCSes is busy with a different
-address space. While functionally correct, having a submission
-stalled on the HW limits the GuC ability to shuffle things around and
-can cause complications if the non-stalled submission runs for a long
-time, because the GuC doesn't know that the stalled submission isn't
-actually running and might declare it as hung. Therefore, we enable
-the DUAL_QUEUE_WA on all newer platforms to move management back to
-the GuC.
+== Series Details ==
 
-Note that the GuC specs also recommend enabling this for all platforms
-starting from MTL that have a CCS.
+Series: drm/i915/display: handle hdmi connector init failures, and no HDMI/DP cases (rev2)
+URL   : https://patchwork.freedesktop.org/series/142118/
+State : success
 
-v2: only apply the WA on GTs that have CCS engines
-v3: split comment (Jonathan)
+== Summary ==
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Jesus Narvaez <jesus.narvaez@intel.com>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
----
- drivers/gpu/drm/xe/xe_guc.c | 30 +++++++++++++++++++++++++++++-
- 1 file changed, 29 insertions(+), 1 deletion(-)
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc2-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/kernel/
+lib/modules/6.13.0-rc2-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc2-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc2-xe+/kernel/block/
+lib/modules/6.13.0-rc2-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc2-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc2-xe+/build
+lib/modules/6.13.0-rc2-xe+/modules.alias.bin
+lib/modules/6.13.0-rc2-xe+/modules.builtin
+lib/modules/6.13.0-rc2-xe+/modules.softdep
+lib/modules/6.13.0-rc2-xe+/modules.alias
+lib/modules/6.13.0-rc2-xe+/modules.order
+lib/modules/6.13.0-rc2-xe+/modules.symbols
+lib/modules/6.13.0-rc2-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1734113538:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1734113538:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 4e2868efb620..408365dfe4ee 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -147,6 +147,34 @@ static u32 guc_ctl_ads_flags(struct xe_guc *guc)
- 	return flags;
- }
- 
-+static bool needs_wa_dual_queue(struct xe_gt *gt)
-+{
-+	/*
-+	 * The DUAL_QUEUE_WA tells the GuC to not allow concurrent submissions
-+	 * on RCS and CCSes with different address spaces, which on DG2 is
-+	 * required as a WA for an HW bug.
-+	 */
-+	if (XE_WA(gt, 22011391025))
-+		return true;
-+
-+	/*
-+	 * On newer platforms, the HW has been updated to not allow parallel
-+	 * execution of different address spaces, so the RCS/CCS will stall the
-+	 * context switch if one of the other RCS/CCSes is busy with a different
-+	 * address space. While functionally correct, having a submission
-+	 * stalled on the HW limits the GuC ability to shuffle things around and
-+	 * can cause complications if the non-stalled submission runs for a long
-+	 * time, because the GuC doesn't know that the stalled submission isn't
-+	 * actually running and might declare it as hung. Therefore, we enable
-+	 * the DUAL_QUEUE_WA on all newer platforms on GTs that have CCS engines
-+	 * to move management back to the GuC.
-+	 */
-+	if (CCS_MASK(gt) && GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270)
-+		return true;
-+
-+	return false;
-+}
-+
- static u32 guc_ctl_wa_flags(struct xe_guc *guc)
- {
- 	struct xe_device *xe = guc_to_xe(guc);
-@@ -159,7 +187,7 @@ static u32 guc_ctl_wa_flags(struct xe_guc *guc)
- 	if (XE_WA(gt, 14014475959))
- 		flags |= GUC_WA_HOLD_CCS_SWITCHOUT;
- 
--	if (XE_WA(gt, 22011391025))
-+	if (needs_wa_dual_queue(gt))
- 		flags |= GUC_WA_DUAL_QUEUE;
- 
- 	/*
--- 
-2.43.0
 
