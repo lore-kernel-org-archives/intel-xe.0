@@ -4,56 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D60A0E77180
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 14:03:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BA89E77180
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 14:03:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CD9010F01A;
-	Fri, 13 Dec 2024 14:03:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12BA410F029;
+	Fri, 13 Dec 2024 14:03:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="qciiiCWe";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LA5W3T47";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A3BD10E1E9;
- Thu, 12 Dec 2024 18:31:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=zUh/YyW/cI4qga3mWzSJPGqn9vM7x5xrmfx3htv+gmM=; b=qciiiCWeSsH1CyvmDpCIANNec1
- XzMtbePqIRr3MwbVnGAok0CEMvqYOZnt2bE5q24cH0N0usNQ158oeakGf74pFuDEXyweoWPDdm6E6
- pH1Kw9Z70NVWxcFk/DCF/xjHrHGQeVaAfQAWbzwPWiNKn17qHW1nAft23gXPfVypVDGffbXz6nPx0
- GxRTi1nKHHiHWH1+1JixpFfNq1d9fLunCqDkIDpAtrvo8DiLw1644ev/SVVhirEWVT7bWkSF42g3S
- VU+YDx2zsaKIabzkob584HYUFb2J/4JBIrdXLr8f2A7XZ8OY28DCb7SgkN9LsF1Fz/DeWvOJVizRe
- tZhZaPPA==;
-Received: from [179.193.1.214] (helo=[192.168.15.100])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tLnxt-002LzM-DL; Thu, 12 Dec 2024 19:31:09 +0100
-Message-ID: <9557db3c-0837-4dfb-ba69-84dbaf13f082@igalia.com>
-Date: Thu, 12 Dec 2024 15:31:01 -0300
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com
+ [IPv6:2607:f8b0:4864:20::430])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2E0710EEF6;
+ Fri, 13 Dec 2024 05:49:27 +0000 (UTC)
+Received: by mail-pf1-x430.google.com with SMTP id
+ d2e1a72fcca58-728f1e66418so1225252b3a.2; 
+ Thu, 12 Dec 2024 21:49:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1734068967; x=1734673767; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=m2jUPvsdlfQUhZsdbtI4Ke1sLD5+tvHbQzW9Gl1gyas=;
+ b=LA5W3T47PvwIf7VmXGnZPFB39WUEhKo7m2Em+r8J6qf0S0I93mTrVAOLaGapaKH64V
+ Pdww8aFHJm+jIK3org0dLcJ86lyic4eVqOtJ761bKG5Wx75KbXpwbkl9ITYsZo4FErcg
+ wEov1VhKGY02TQkbxDkBg5gQm0r32u2hlCif/sVMgYn0hIqi1rkKd6FMIrDTuZjqFhFl
+ BA5Xl9dcm9QkikNplPXQjsW4/MLSMN6GcygJrhIKlnuPcoTGHr4OGztiYQDb9RRq3WQe
+ UXu289hLPU+hQyDdab6ZY5raguxeNZQQrmFCIw7XVs3mW/E0jqQaJoh6EVVsjSAHx4Vh
+ LoHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734068967; x=1734673767;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=m2jUPvsdlfQUhZsdbtI4Ke1sLD5+tvHbQzW9Gl1gyas=;
+ b=XkP/L/JedEfzX5KOsJxsQt1D7wyv6NdIWDZSaVzAX38Wx1ZAaqG7YH4ial1sK8dEZ5
+ oXlp77x/1FqqHKYdugp85J5Mcqq5nMNfoKWvNlhWr+55FgNVXOajC/TLZjui+yBeiVsp
+ eEAb2Z0BxBYAT/bYyYhIWDabnSS3ZxYynUN2jaGOWfNAa4Rb2S8+hkHL8YLTmMcpm8hi
+ XopNBGaM7Whd0fuiCJ9SKmsPbH2zahsz3ubci6P/5e0dB7tjJtTfxStxU7L5d9yELRY5
+ 20PMBdYLgzqfSTV9nDt6DMcUk40WS2Sn/OaEek4voIYmz4XnK9XLinSOhliGcVJoavWM
+ jxzw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVPtdmGsbYDus5geJXj4hyaK1Jl/fXX1RptTx0hj7ayu0mFFKrzed4OwNW0RZ19r5DSoKfXy9eXW0I=@lists.freedesktop.org,
+ AJvYcCVfN45mQASctwiPvmwMuAdZN3Y/hFq3GN+PmOUX0wNEXfCWjvUPGIYdYkYOV4i2ZXqFbEzkIAMjf9b7@lists.freedesktop.org,
+ AJvYcCVvTuMRknmT83sk/vF+2N0dL4v7An/BVz0bzO4PRN+Ms/n6uG0Alr9MIKiHzJNu5G8sk1aBQtP1aQ==@lists.freedesktop.org,
+ AJvYcCXcCyTitm5nQN2G6N6whO0J+dCqHA3XpQvoPQYaEyh/JzEUkqIuZUsZNZiwg+iQsSG2nVCsjxlYsDU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz5QI0Ey7lM1SYcy9g1M6pPdxTIJPBL5opRhAIHocac0gpr4Cx2
+ 6qW2OUHmzSlgCt1cfJA6hO9PR0wq+sdy0WhuFbsVRlsGihluDTlY
+X-Gm-Gg: ASbGncsxj/I6srSDlns1syc9CIa6r+Fzw2wJB3PHSAAAl4PjfDaJJYlVTmT7clOyOXi
+ Z++v/fbpooShycVHUjN3DRv8bW+bJ93e2ZG82bdoI2W3vWi4b4cqtYfQOj+EeTfepUl2J023Ib4
+ 2oZqqneVKZYpcKNIHluyxjSQtZIReHUcSBcTe4jfgUJggDN+dNSYAlo1aGhWPnzvDQbRZCHTJWg
+ Uk7AMFXdXjpwG6lD/eIwyGaolqIxicaI07ar8HnaLkPNPACi4sUAoTeOjADjojfVY4crELiCln3
+ mqtk8Fk=
+X-Google-Smtp-Source: AGHT+IGsjn2HsD9B470GSaZ7/WuS4a1ciiqbzWwWUR77XR0Zla03DKiQ+x82aV6yWtJ1LuxULtoYsw==
+X-Received: by 2002:a05:6a00:b46:b0:71e:4786:98ee with SMTP id
+ d2e1a72fcca58-7290c2702e3mr2257553b3a.21.1734068967116; 
+ Thu, 12 Dec 2024 21:49:27 -0800 (PST)
+Received: from localhost.localdomain ([180.159.118.224])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-725ee10f928sm8166032b3a.32.2024.12.12.21.49.23
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Thu, 12 Dec 2024 21:49:26 -0800 (PST)
+From: Yafang Shao <laoar.shao@gmail.com>
+To: torvalds@linux-foundation.org,
+	akpm@linux-foundation.org
+Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Yafang Shao <laoar.shao@gmail.com>, Mark Fasheh <mark@fasheh.com>,
+ Joel Becker <jlbec@evilplan.org>, Joseph Qi <joseph.qi@linux.alibaba.com>
+Subject: [PATCH 7/7] fs: Use %pTN to print task name
+Date: Fri, 13 Dec 2024 13:49:18 +0800
+Message-Id: <20241213054918.56441-1-laoar.shao@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 1/4] drm: Introduce device wedged event
-To: Raag Jadav <raag.jadav@intel.com>, airlied@gmail.com, simona@ffwll.ch,
- lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
- lina@asahilina.net, michal.wajdeczko@intel.com, christian.koenig@amd.com
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
- alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com
-References: <20241128153707.1294347-1-raag.jadav@intel.com>
- <20241128153707.1294347-2-raag.jadav@intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-In-Reply-To: <20241128153707.1294347-2-raag.jadav@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 13 Dec 2024 14:03:03 +0000
+X-Mailman-Approved-At: Fri, 13 Dec 2024 14:03:09 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,53 +94,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Raag,
+Since task->comm is guaranteed to be NUL-terminated, we can print it
+directly without the need to copy it into a separate buffer. This
+simplifies the code and avoids unnecessary operations.
 
-Thank you for your patch.
+Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
+Cc: Mark Fasheh <mark@fasheh.com>
+Cc: Joel Becker <jlbec@evilplan.org>
+Cc: Joseph Qi <joseph.qi@linux.alibaba.com>
+---
+ fs/ocfs2/cluster/netdebug.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-Em 28/11/2024 12:37, Raag Jadav escreveu:
-
-[...]
-
-> +int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
-> +{
-> +	const char *recovery = NULL;
-> +	unsigned int len, opt;
-> +	/* Event string length up to 28+ characters with available methods */
-> +	char event_string[32];
-> +	char *envp[] = { event_string, NULL };
-> +
-> +	len = scnprintf(event_string, sizeof(event_string), "%s", "WEDGED=");
-> +
-> +	for_each_set_bit(opt, &method, BITS_PER_TYPE(method)) {
-> +		recovery = drm_get_wedge_recovery(opt);
-> +		if (drm_WARN(dev, !recovery, "device wedged, invalid recovery method %u\n", opt))
-> +			break;
-> +
-> +		len += scnprintf(event_string + len, sizeof(event_string), "%s,", recovery);
-> +	}
-> +
-> +	if (recovery)
-> +		/* Get rid of trailing comma */
-> +		event_string[len - 1] = '\0';
-> +	else
-> +		/* Caller is unsure about recovery, do the best we can at this point. */
-> +		snprintf(event_string, sizeof(event_string), "%s", "WEDGED=unknown");
-> +
-> +	drm_info(dev, "device wedged, needs recovery\n");
-
-As documented in the commit message "No explicit device recovery is 
-expected from the consumer in this case", I think this should be like this:
-
-if (method != DRM_WEDGE_RECOVERY_NONE)
-     drm_info(dev, "device wedged, needs recovery\n");
-
-and maybe a note like this:
-
-else
-     drm_info(dev, "device reseted, but managed to recover\n");
-
-Either way, this patch is:
-
-Reviewed-by: André Almeida <andrealmeid@igalia.com>
+diff --git a/fs/ocfs2/cluster/netdebug.c b/fs/ocfs2/cluster/netdebug.c
+index bc27301eab6d..039d99f951ea 100644
+--- a/fs/ocfs2/cluster/netdebug.c
++++ b/fs/ocfs2/cluster/netdebug.c
+@@ -122,11 +122,10 @@ static int nst_seq_show(struct seq_file *seq, void *v)
+ 	send = ktime_to_us(ktime_sub(now, nst->st_send_time));
+ 	status = ktime_to_us(ktime_sub(now, nst->st_status_time));
+ 
+-	/* get_task_comm isn't exported.  oh well. */
+ 	seq_printf(seq, "%p:\n"
+ 		   "  pid:          %lu\n"
+ 		   "  tgid:         %lu\n"
+-		   "  process name: %s\n"
++		   "  process name: %pTN\n"
+ 		   "  node:         %u\n"
+ 		   "  sc:           %p\n"
+ 		   "  message id:   %d\n"
+@@ -137,7 +136,7 @@ static int nst_seq_show(struct seq_file *seq, void *v)
+ 		   "  wait start:   %lld usecs ago\n",
+ 		   nst, (unsigned long)task_pid_nr(nst->st_task),
+ 		   (unsigned long)nst->st_task->tgid,
+-		   nst->st_task->comm, nst->st_node,
++		   nst->st_task, nst->st_node,
+ 		   nst->st_sc, nst->st_id, nst->st_msg_type,
+ 		   nst->st_msg_key,
+ 		   (long long)sock,
+-- 
+2.43.5
 
