@@ -4,73 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DD20E77182
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 17:11:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FA52E7717F
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 17:19:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEC9010F0B3;
-	Fri, 13 Dec 2024 17:11:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AD9910E26D;
+	Fri, 13 Dec 2024 17:19:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GkxOFPVD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I8KpkA4V";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3584410F0AD;
- Fri, 13 Dec 2024 17:11:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9F2410E26D
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Dec 2024 17:19:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734109874; x=1765645874;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=43lcs1+73oMcgYgVNa8OI3qmg7j0TEA5KYxken4+b0I=;
- b=GkxOFPVDo+0aPYwy7ad6SkQ2luH3OYIZy/eD47jBuGp6E3yBJToWjZPt
- FlFH2mgqhYHJLu9E/9yfVjbajw/0plskprwaPHPy4FC0V/2vei3P2WBrt
- 8PXkj3e4gAWgY0wAwmua0/Rkc13v60rc5Cni30gpnhj57omPVeMl6h8hk
- TUqUMuyKmscjpPNsUU0LZlrOexktcPGxVnXrhhA5jterdoW7n4iU/n6vp
- FrpArLw7QIATo+2qIci7MpUqBxjeGjIpkAPC2cpNT9y6KBBZR+ICpSRxM
- uhbJatHwZFtbbrKIY8XesjcAdbHegXbho2BhuReAk1L1yIOnBO9cffynV g==;
-X-CSE-ConnectionGUID: mV1y3PioTbKuytia316epg==
-X-CSE-MsgGUID: Lnu/1RboTl6t6WgQgYakRA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="45576426"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="45576426"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 09:11:14 -0800
-X-CSE-ConnectionGUID: THz8Mw9lT1KULhWa98pHdg==
-X-CSE-MsgGUID: 088O5EVCSju/YnpNX2zO4A==
+ t=1734110371; x=1765646371;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=thhdDO4VqBY0uzMK86OQZn5/39TlPMODDINcn15J+VY=;
+ b=I8KpkA4VhXCiTKZ3Hnk5vAEYNYj/JVUJH1WjDub/mcXGXoK0/oZVpEJ8
+ DJaKeBxS7Y+8FIbAzfiQ8Q4RnFxK7iy9wMPTWYRgBTyna9eH1lXcp+yVw
+ D/WrTZzslvhKzEsrpAvu7MMPOeHjCyM2ATwmTMZISYqkOxw4UPI/5HuGu
+ 0HQqsClQAbBDZLnbUra76fYgaU/WQfcLvMhCBLwhz98W0PEBd5IH+8806
+ zTR4kSyR0lfqw04BMe7YJTC1ZqKieJgncQxEkD4IGWAlyHDgRQ/8ILI7X
+ QiC3kdcjssYl9x0/NTZ9EN8lqlWJuHM889Sxiz3fZtt8FFW2FtcMl843O Q==;
+X-CSE-ConnectionGUID: rFx11MsBR5GstqPtrBrAqA==
+X-CSE-MsgGUID: ibPepMHbSmSYkIa1/CW1Ag==
+X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="34471794"
+X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="34471794"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 09:19:30 -0800
+X-CSE-ConnectionGUID: VcSy+k+1SEGa5VsrR5kRAg==
+X-CSE-MsgGUID: zFI/xWXfTdKa1f9qUNyPxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101560852"
-Received: from smile.fi.intel.com ([10.237.72.154])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 09:11:09 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1tM9Bx-00000007Q2C-0sOT; Fri, 13 Dec 2024 19:11:05 +0200
-Date: Fri, 13 Dec 2024 19:11:04 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Borislav Petkov <bp@alien8.de>
-Cc: Kalle Valo <kvalo@kernel.org>, Petr Mladek <pmladek@suse.com>,
- Yafang Shao <laoar.shao@gmail.com>, torvalds@linux-foundation.org,
- akpm@linux-foundation.org, linux-kernel@vger.kernel.org,
- linux-security-module@vger.kernel.org, x86@kernel.org,
- linux-snps-arc@lists.infradead.org, linux-wireless@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- ocfs2-devel@lists.linux.dev, Steven Rostedt <rostedt@goodmis.org>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Andy Whitcroft <apw@canonical.com>, Joe Perches <joe@perches.com>,
- Dwaipayan Ray <dwaipayanray1@gmail.com>,
- Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: Re: [PATCH 1/7] vsprintf: Add %pTN to print task name
-Message-ID: <Z1xqqENp6n6HZ_gM@smile.fi.intel.com>
-References: <20241213054610.55843-1-laoar.shao@gmail.com>
- <20241213054610.55843-2-laoar.shao@gmail.com>
- <Z1vq2-V7vB5KhBR9@pathway.suse.cz> <87r06crnew.fsf@kernel.org>
- <20241213132709.GAZ1w2LW4LgHi-6XfZ@fat_crate.local>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241213132709.GAZ1w2LW4LgHi-6XfZ@fat_crate.local>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="96493599"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 09:19:30 -0800
+Date: Fri, 13 Dec 2024 09:19:30 -0800
+Message-ID: <85bjxf33h9.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>
+Subject: Re: [PATCH] drm/xe/oa/uapi: Expose an unblock after N reports OA
+ property
+In-Reply-To: <CH0PR11MB5444E1D6E5A1F98473B67743E53F2@CH0PR11MB5444.namprd11.prod.outlook.com>
+References: <20241212224903.1853862-1-ashutosh.dixit@intel.com>
+ <CH0PR11MB5444E1D6E5A1F98473B67743E53F2@CH0PR11MB5444.namprd11.prod.outlook.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,18 +72,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Dec 13, 2024 at 02:27:09PM +0100, Borislav Petkov wrote:
-> On Fri, Dec 13, 2024 at 10:35:03AM +0200, Kalle Valo wrote:
-> > I agree, it makes the code harder to read for someone who is not
-> > familiar with all the %p magic we have (like me).
+On Thu, 12 Dec 2024 14:59:35 -0800, Cavitt, Jonathan wrote:
+>
+> > diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> > index d2a816f71bf26..226b234d07110 100644
+> > --- a/drivers/gpu/drm/xe/xe_query.c
+> > +++ b/drivers/gpu/drm/xe/xe_query.c
+> > @@ -672,7 +672,7 @@ static int query_oa_units(struct xe_device *xe,
+> >			du->oa_unit_type = u->type;
+> >			du->oa_timestamp_freq = xe_oa_timestamp_frequency(gt);
+> >			du->capabilities = DRM_XE_OA_CAPS_BASE | DRM_XE_OA_CAPS_SYNCS |
+> > -					   DRM_XE_OA_CAPS_OA_BUFFER_SIZE;
+> > +				DRM_XE_OA_CAPS_OA_BUFFER_SIZE | DRM_XE_OA_CAPS_WAIT_NUM_REPORTS;
+>
+> This should probably be kept inline:
+> """
+>			du->capabilities = DRM_XE_OA_CAPS_BASE | DRM_XE_OA_CAPS_SYNCS |
+>					   DRM_XE_OA_CAPS_OA_BUFFER_SIZE |
+>					   DRM_XE_OA_CAPS_WAIT_NUM_REPORTS;
+> """
+> But otherwise:
+> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
-> +1
+Thanks, sure I will make this change.
 
-And me too. In case one thinks of unprintable characters, %pE is for that.
+Also the MDAPI UMD PR for this kernel change is:
 
+https://github.com/intel/metrics-discovery/pull/32
 
--- 
-With Best Regards,
-Andy Shevchenko
+Thanks.
+--
+Ashutosh
 
-
+> >			j = 0;
+> >			for_each_hw_engine(hwe, gt, hwe_id) {
+> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> > index 0383b52cbd869..f62689ca861a4 100644
+> > --- a/include/uapi/drm/xe_drm.h
+> > +++ b/include/uapi/drm/xe_drm.h
+> > @@ -1487,6 +1487,7 @@ struct drm_xe_oa_unit {
+> >  #define DRM_XE_OA_CAPS_BASE		(1 << 0)
+> >  #define DRM_XE_OA_CAPS_SYNCS		(1 << 1)
+> >  #define DRM_XE_OA_CAPS_OA_BUFFER_SIZE	(1 << 2)
+> > +#define DRM_XE_OA_CAPS_WAIT_NUM_REPORTS	(1 << 3)
+> >
+> >	/** @oa_timestamp_freq: OA timestamp freq */
+> >	__u64 oa_timestamp_freq;
+> > @@ -1660,6 +1661,12 @@ enum drm_xe_oa_property_id {
+> >	 * buffer is allocated by default.
+> >	 */
+> >	DRM_XE_OA_PROPERTY_OA_BUFFER_SIZE,
+> > +
+> > +	/**
+> > +	 * @DRM_XE_OA_PROPERTY_WAIT_NUM_REPORTS: Number of reports to wait
+> > +	 * for before unblocking poll or read
+> > +	 */
+> > +	DRM_XE_OA_PROPERTY_WAIT_NUM_REPORTS,
+> >  };
+> >
+> >  /**
+> > --
+> > 2.47.1
+> >
+> >
