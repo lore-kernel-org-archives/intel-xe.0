@@ -4,67 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9129E7717F
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 00:32:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B4BFE7717F
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 00:36:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A003910E30E;
-	Fri, 13 Dec 2024 00:32:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C70810E096;
+	Fri, 13 Dec 2024 00:36:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i7jwVYOq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TuZIfFvJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A22BE10E30E
- for <Intel-Xe@lists.freedesktop.org>; Fri, 13 Dec 2024 00:32:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6178A10E096
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Dec 2024 00:36:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734049967; x=1765585967;
+ t=1734050215; x=1765586215;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=Wze8OBzfOUunhT6NSgxGfW8pmV7JrcXURnv9zYRpwEk=;
- b=i7jwVYOqLJfHH2ZOBlmk3CTfyJhfnTrPE5Cr2yqrNZnAWpwuAdRV+EWz
- bY5wznEaV0qtowwUZWOVkRJ6n1sY5adggabf7ijoPWC83W8Yk0MBZA6eb
- A5HGDSk4ZNq/uFM7brwQYntl+PL3FM4Xf8c3dieFZxlLCxC2agCIXAmXi
- Qo6yEB0sSbnt1D4UjZeEGLbQMEsx54P3rcW6Dc35QI6UcHTZy6++S/41h
- p9T2tgfaSwRx8Gt5nPlVJnc2UeRCiKTDIeYZBwD6cTaupZqkxgHNkbbw9
- bNVe1XXplZSxz7vUa932Hx1lZi3dI153cck699SsWsogJvppZHcdQMKhS A==;
-X-CSE-ConnectionGUID: kP/0aa/3TwmTzUZq73aP6A==
-X-CSE-MsgGUID: diJw8kEoRfiu/ZKz8H3LyA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="45506539"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="45506539"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2024 16:32:47 -0800
-X-CSE-ConnectionGUID: PtGT/kuwTkSNvjjf2pjTSg==
-X-CSE-MsgGUID: sYAO0UQ5Qoy/Y2l/+xrY8g==
+ bh=lJQ6vFwpVNTShkHN7DfQvbRFAkdD68o7JtS55gULPWc=;
+ b=TuZIfFvJ9YIPTMAZrDdSN5dI6VAnlFKqs7R+4ZqQw5DHz20HgK9pm7Eq
+ QcCzlMO1mItftTxQU2RH4PqQkdEmBsdgLyV0Ca+wJTBvhFGXV5SzeY/6v
+ e74QPd28Ve39ayoaZVzv5EZpnX+rvSKq7WHXGe9pjePfmARnWHLZNYNjz
+ 6l1MvwLtZwyS/1Cte5JQ3vJkwPbyYGdrSbH5LeoPticuZAiV11btxgSgg
+ ImUIzzw9DnBhXZXH7hgjY8hY4UB7a6m7bmszVp/w5PhfnAlAtXgokb8Yr
+ cvSJXzGDaDSCGouOm9i8g4IF4OaDfEfFegVLIiyL0yOCamOvbw3DWZcgc w==;
+X-CSE-ConnectionGUID: tXNjWVCjR6257J9YnVnCsA==
+X-CSE-MsgGUID: CWduRCa/Tb6DVHRilP5IDg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="38430465"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="38430465"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2024 16:36:54 -0800
+X-CSE-ConnectionGUID: mJB0JmCEThOEgf3SOd37sQ==
+X-CSE-MsgGUID: iax6vco/Sd6N4rE4rQfhbw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101344030"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="133764224"
 Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
  ([10.125.110.169])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2024 16:32:45 -0800
-Date: Thu, 12 Dec 2024 18:32:36 -0600
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2024 16:36:54 -0800
+Date: Thu, 12 Dec 2024 18:36:45 -0600
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-Cc: "Souza, Jose" <jose.souza@intel.com>, 
- "Intel-Xe@Lists.FreeDesktop.Org" <Intel-Xe@lists.freedesktop.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>, 
- "Filipchuk, Julia" <julia.filipchuk@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: Re: [PATCH v9 04/11] drm/xe/devcoredump: Add ASCII85 dump helper
- function
-Message-ID: <zy2x47cknwhzycszh7otjn5t65pvsotwwftcbleq44cmzbibaw@5gsx7zp7t2sm>
-References: <20241003004611.2323493-1-John.C.Harrison@Intel.com>
- <20241003004611.2323493-5-John.C.Harrison@Intel.com>
- <ccc1066ab139e800cd8f67535c97aca486bf105d.camel@intel.com>
- <7qhmppwrqj5fsr3tkvufwua3iw7noadrefajrii66x7yydfeba@lqhgd7b5decp>
- <208f50d9-58e8-413e-915f-95ca077e0fa0@intel.com>
- <dahmzb4tveblm74nwhq5mabz672xivpfeuvkpzb6hnjfs4qrwt@rl6c56v6mfyy>
- <db943f8a-0d92-49bc-827e-46284739e8be@intel.com>
+To: Maarten Lankhorst <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 10/11] drm/xe: Split init of xe_gt_init_hwconfig to
+ xe_gt_init and *_early
+Message-ID: <mpijgwdx3y3akmextu6ujwpodg3wkefitrpjj4i7s7c5wz35za@yyou6ytiajnu>
+References: <20241210083111.230484-1-dev@lankhorst.se>
+ <20241210083111.230484-11-dev@lankhorst.se>
+ <cfyy7aff2eavdf4wisztvev6vkuuajngxe53ekh2pkcoa36gtf@3xzilixxu5qm>
+ <c93091af-6337-4e0e-a83c-18e2fea6988b@lankhorst.se>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <db943f8a-0d92-49bc-827e-46284739e8be@intel.com>
+In-Reply-To: <c93091af-6337-4e0e-a83c-18e2fea6988b@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,262 +72,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Dec 12, 2024 at 01:04:23PM -0800, John Harrison wrote:
->On 12/12/2024 12:52, Lucas De Marchi wrote:
->>On Thu, Dec 12, 2024 at 11:14:23AM -0800, John Harrison wrote:
->>>On 12/12/2024 10:45, Lucas De Marchi wrote:
->>>>On Thu, Dec 12, 2024 at 05:41:41PM +0000, Jose Souza wrote:
->>>>>On Wed, 2024-10-02 at 17:46 -0700, John.C.Harrison@Intel.com wrote:
->>>>>>From: John Harrison <John.C.Harrison@Intel.com>
->>>>>>
->>>>>>There is a need to include the GuC log and other large binary objects
->>>>>>in core dumps and via dmesg. So add a helper for dumping to a printer
->>>>>>function via conversion to ASCII85 encoding.
->>>>>>
->>>>>>Another issue with dumping such a large buffer is that it 
->>>>>>can be slow,
->>>>>>especially if dumping to dmesg over a serial port. So add a yield to
->>>>>>prevent the 'task has been stuck for 120s' kernel hang check feature
->>>>>>from firing.
->>>>>>
->>>>>>v2: Add a prefix to the output string. Fix memory allocation bug.
->>>>>>v3: Correct a string size calculation and clean up a define (review
->>>>>>feedback from Julia F).
->>>>>>
->>>>>>Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>>>>Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
->>>>>>---
->>>>>> drivers/gpu/drm/xe/xe_devcoredump.c | 87 
->>>>>>+++++++++++++++++++++++++++++
->>>>>> drivers/gpu/drm/xe/xe_devcoredump.h |  6 ++
->>>>>> 2 files changed, 93 insertions(+)
->>>>>>
->>>>>>diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c 
->>>>>>b/drivers/gpu/drm/xe/xe_devcoredump.c
->>>>>>index 2690f1d1cde4..0884c49942fe 100644
->>>>>>--- a/drivers/gpu/drm/xe/xe_devcoredump.c
->>>>>>+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
->>>>>>@@ -6,6 +6,7 @@
->>>>>> #include "xe_devcoredump.h"
->>>>>> #include "xe_devcoredump_types.h"
->>>>>>
->>>>>>+#include <linux/ascii85.h>
->>>>>> #include <linux/devcoredump.h>
->>>>>> #include <generated/utsrelease.h>
->>>>>>
->>>>>>@@ -315,3 +316,89 @@ int xe_devcoredump_init(struct xe_device *xe)
->>>>>> }
->>>>>>
->>>>>> #endif
->>>>>>+
->>>>>>+/**
->>>>>>+ * xe_print_blob_ascii85 - print a BLOB to some useful 
->>>>>>location in ASCII85
->>>>>>+ *
->>>>>>+ * The output is split to multiple lines because some print 
->>>>>>targets, e.g. dmesg
->>>>>>+ * cannot handle arbitrarily long lines. Note also that 
->>>>>>printing to dmesg in
->>>>>>+ * piece-meal fashion is not possible, each separate call 
->>>>>>to drm_puts() has a
->>>>>>+ * line-feed automatically added! Therefore, the entire 
->>>>>>output line must be
->>>>>>+ * constructed in a local buffer first, then printed in one 
->>>>>>atomic output call.
->>>>>>+ *
->>>>>>+ * There is also a scheduler yield call to prevent the 
->>>>>>'task has been stuck for
->>>>>>+ * 120s' kernel hang check feature from firing when 
->>>>>>printing to a slow target
->>>>>>+ * such as dmesg over a serial port.
->>>>>>+ *
->>>>>>+ * TODO: Add compression prior to the ASCII85 encoding to 
->>>>>>shrink huge buffers down.
->>>>>>+ *
->>>>>>+ * @p: the printer object to output to
->>>>>>+ * @prefix: optional prefix to add to output string
->>>>>>+ * @blob: the Binary Large OBject to dump out
->>>>>>+ * @offset: offset in bytes to skip from the front of the 
->>>>>>BLOB, must be a multiple of sizeof(u32)
->>>>>>+ * @size: the size in bytes of the BLOB, must be a multiple 
->>>>>>of sizeof(u32)
->>>>>>+ */
->>>>>>+void xe_print_blob_ascii85(struct drm_printer *p, const 
->>>>>>char *prefix,
->>>>>>+               const void *blob, size_t offset, size_t size)
->>>>>>+{
->>>>>>+    const u32 *blob32 = (const u32 *)blob;
->>>>>>+    char buff[ASCII85_BUFSZ], *line_buff;
->>>>>>+    size_t line_pos = 0;
->>>>>>+
->>>>>>+#define DMESG_MAX_LINE_LEN    800
->>>>>>+#define MIN_SPACE        (ASCII85_BUFSZ + 2)        /* 85 + 
->>>>>>"\n\0" */
->>>>>>+
->>>>>>+    if (size & 3)
->>>>>>+        drm_printf(p, "Size not word aligned: %zu", size);
->>>>>>+    if (offset & 3)
->>>>>>+        drm_printf(p, "Offset not word aligned: %zu", size);
->>>>>>+
->>>>>>+    line_buff = kzalloc(DMESG_MAX_LINE_LEN, GFP_KERNEL);
->>>>>>+    if (IS_ERR_OR_NULL(line_buff)) {
->>>>>>+        drm_printf(p, "Failed to allocate line buffer: 
->>>>>>%pe", line_buff);
->>>>>>+        return;
->>>>>>+    }
->>>>>>+
->>>>>>+    blob32 += offset / sizeof(*blob32);
->>>>>>+    size /= sizeof(*blob32);
->>>>>>+
->>>>>>+    if (prefix) {
->>>>>>+        strscpy(line_buff, prefix, DMESG_MAX_LINE_LEN - 
->>>>>>MIN_SPACE - 2);
->>>>>>+        line_pos = strlen(line_buff);
->>>>>>+
->>>>>>+        line_buff[line_pos++] = ':';
->>>>>>+        line_buff[line_pos++] = ' ';
->>>>>>+    }
->>>>>>+
->>>>>>+    while (size--) {
->>>>>>+        u32 val = *(blob32++);
->>>>>>+
->>>>>>+        strscpy(line_buff + line_pos, ascii85_encode(val, buff),
->>>>>>+            DMESG_MAX_LINE_LEN - line_pos);
->>>>>>+        line_pos += strlen(line_buff + line_pos);
->>>>>>+
->>>>>>+        if ((line_pos + MIN_SPACE) >= DMESG_MAX_LINE_LEN) {
->>>>>>+            line_buff[line_pos++] = '\n';
->>>>>>+            line_buff[line_pos++] = 0;
->>>>>
->>>>>This breaks ascii85 parser that we had up to now.
->>>It should not break the decoding of existing sections. This helper 
->>>is only being used for the new GuC objects at present. As per the 
->>>TODO, the intent is to use it for all blobs in the future. But 
->>>that was deliberately left to a future update (which hasn't been 
->>>posted yet) to avoid breaking the mesa tool.
->>
->>it broke nonetheless because then it fails to decode this line the way
->>it was doing:  each line starts a new key.
->It barfs on any line it doesn't understand? Seems like it could be 
->made to be more robust in general.
-
-I don't know, you're welcome to look at the source and understand how
-it may possibly break when you are doing a change like that. Even better
-if you can make it robust so it doesn't break. I'm sure you know where
-the mesa repo is. I was just looking at what I wrote in the email thread
-I pointed out when reviewing this. I was surprised it got applied as is,
-knowing it would break (because I had pointed it out) even with 2
-maintainers saying we shouldn't break the mesa tool in question...
-particuarly it being just to please something that shouldn't exist (a
-garbage dump to dmesg).
-
-And before you argue about format version and potential breakages if an
-hypothetical parser is doing obscure things... this is different than
-real breakage: we know there's a parser and we ignored it saying we
-don't care. That is not acceptable.
-
+On Wed, Dec 11, 2024 at 07:52:49PM +0100, Maarten Lankhorst wrote:
+>Hey,
 >
->>
+>Den 2024-12-10 kl. 16:25, skrev Lucas De Marchi:
+>>On Tue, Dec 10, 2024 at 09:31:10AM +0100, Maarten Lankhorst wrote:
+>>>static void dump_pat_on_error(struct xe_gt *gt)
+>>>@@ -419,6 +438,18 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+>>>        goto err_hw_fence_irq;
+>>>    }
 >>>
->>>
->>>>>And I think there is not safe way to parse it now, how would 
->>>>>the parser know that the blob reach to end?
->>>The GuC decoder tool simply ignores leading/trailing whitespace 
->>>and keeps decoding until it finds a line with a new field - i.e. 
->>>anything with a non-ASCII85 character such as ':' or '*'. It is 
->>>totally
+>>>+    err = xe_uc_init(&gt->uc);
 >>
->>character set for ascii85 is [33, 117] and 122, which includes both ':'
->>and '*'. Hopefully it's hard to hit a collision, but we shouldn't design
->>it in a way that is possible.
->Sorry, getting myself confused - it was a while ago when I was writing 
->this. Yes, punctuation marks are part of the ASCII85 character set.
+>>what does this have to do with gt_fw_domain_init()?  We should look at
+>>removing unrelated stuff from this function rather than stashing more.
+>>
+>>Lucas De Marchi
 >
->The GuC decoder looks for white space - a blank line or a line with a 
->space in it. Any new field is guaranteed to be "name: data" so will 
->have a space. And sections are delimited with blank lines, plus 
->section headers are "**** name ****" so also guaranteed to have a 
->space.
+>It just needs to be called with FW and during that point of init, can 
+>perhaps create separate functions all called with fw instead?
 
-space is good because it's outside the character set, so an
-if/else chain with `if (strstartswith("RandomKey: "))` could
-disambiguate it. But maybe it'd be better to have a space at the end of
-the line so a parser knows when the next line should be a continuation,
-just like with use "\" in some places. That is better then trying all
-keys before deciding "never mind, concat with what I was reading before".
-That may break your guc log parser, but it's probably less drastic than
-just reverting this whole thing.
+splitting that up seems ok to me.
 
 Lucas De Marchi
 
 >
->John.
->
->
->>
->>
->>>reliable for me.
->>>
->>>>
->>>>Just looked at this code to check if we also had a "Size" as I remember
->>>>seeing it in previous related patches, but we don't. If
->>>>we did then you could use that to calculate how much you still had to
->>>>read, ignoring the \n. With the current scheme I think one
->>>>way would be to continue the previous key when the line doesn't start
->>>>with a new key. Awful, yes, and not future proof.
->>>Any new field is guaranteed to have a colon in it and any new 
->>>section header is guaranteed to have a star in it. Sounds pretty 
->>>reliable to me.
->>
->>that's what I said by "continue the previous key when the line doesn't
->>start with a new one".
->>
->>
->>>
->>>The other option would be to have an explicit prefix at the start 
->>>of each continuation line. E.g. "A85:".
->>
->>let's not make it worse than it already is. And not future proof by
->>given the encoding algorithm the meaning of "continuation line".
->>
->>Lucas De Marchi
->>
->>>
->>>The problem with a size field is that ASCII85 encoding is data 
->>>dependent - it has extremely basic run length encoding of strings 
->>>of zeros. So you only know the size after the encoding is 
->>>complete. Which means either the size field is in the dump after 
->>>the encoded data (which is therefore useless) or you can't stream 
->>>the encode and must encode to an in-memory buffer first, then 
->>>print the size, then print your pre-encoded data.
->>>
->>>
->>>>
->>>>John, I explicitly said *we can't break the existent users*,
->>>>pointed to the one in the mesa repo and confirmed with José it would be
->>>>indeed a breakage. Please check again the past email thread at
->>>>https://lore.kernel.org/all/3jexgpnh3br3gqi4ol4c3hx3tyhwevq5nqo5xssyie3xglqohz@e7mnj4dewupu/
->>>>
->>>>
->>>That discussion was a question for Jose not a statement. As there 
->>>was no response for several weeks, I assumed that it wasn't a 
->>>problem after all.
->>>
->>>>
->>>>Did you at least prepare the mesa parser for that additional \n?
->>>>
->>>>We shouldn't have merged the kernel patch as is with the excuse 
->>>>it reads
->>>>better in dmesg, when we also said we should not print that garbage to
->>>>dmesg :(
->>>Not following. Should not print what garbage in dmesg? As I keep 
->>>saying, none of this goes to dmesg by default except in the case 
->>>of catastrophic CT failure. And in that case, it is extremely 
->>>useful and the only way to debug issues.
->>>
->>>John.
->>>
->>>>
->>>>Lucas De Marchi
->>>
+>Cheers,
+>Maarten
 >
