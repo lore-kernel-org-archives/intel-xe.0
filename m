@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29F0BE77186
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B773E77187
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 14:03:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED95410F031;
-	Fri, 13 Dec 2024 14:03:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3623D10F033;
+	Fri, 13 Dec 2024 14:03:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HKckgVgk";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="iScZozK8";
 	dkim-atps=neutral
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com
- [IPv6:2607:f8b0:4864:20::630])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9276B10E441;
- Fri, 13 Dec 2024 05:47:07 +0000 (UTC)
-Received: by mail-pl1-x630.google.com with SMTP id
- d9443c01a7336-2165448243fso14748985ad.1; 
- Thu, 12 Dec 2024 21:47:07 -0800 (PST)
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com
+ [IPv6:2607:f8b0:4864:20::629])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BE3610EEF5;
+ Fri, 13 Dec 2024 05:47:30 +0000 (UTC)
+Received: by mail-pl1-x629.google.com with SMTP id
+ d9443c01a7336-216426b0865so12495435ad.0; 
+ Thu, 12 Dec 2024 21:47:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1734068827; x=1734673627; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1734068850; x=1734673650; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=EmVT0W96xTTbgIHaje9qHPh+sH+dkYFHuEVe3qXraIA=;
- b=HKckgVgkXR8lst/xQOO3A2Mllj2EiENfQvsczcRf40JZ8kQ4LE4Bjaf0MGldiIp9zi
- BzxOUnDqs1inF7fjN8unovxw2On1rf3KkmAcdOWmvfzgDi7pEJDb95LFdDlpsEJAOVXL
- ZAoFzoPmeeT0Bc5sp9nAR0rkX7OBjhXMdc6ugKMeo7gHsk2JSaEtnf1zlTrWzagDnKVX
- t8UM0YM50PU1JaRQPj39715TJ7JGudUMJkFT8UXjHyqeE5iQ/a+F7Uais91E4Okrt7ku
- 11Ut8avMT1uCtb7SuR87kmQymPz8K2DyddG1py8+W/fS3Fcyi23MnTk/kxevPhViBulf
- J9BA==
+ bh=WABVozVaGAUeC6WVv6dNDEWCXVmF+XIaxOqP2xXRnSs=;
+ b=iScZozK8ZnFr0iSryj/biErGBGEAo/fKu//a/wd+SURkfFBMeDCDtZn66YsGGvWcHF
+ IawR0pySgKgS46tFofoFtDUQtfbNJm5dtv8xFjvFC2tc4kEgp9yePdL1U9+MT1XRjQVM
+ 46m/kipTOasy1lfV80E9fTFqR+4jmTTXHV/HgtZKb9khMo+7CGL+lu7izWPq9Cxhp8C6
+ eREBxVWIT5/gzyXfM9iVZ2fch6DflVA3ctpehqlwkVjdINPm4XM25nemS9ncuO6lYLAJ
+ kmTbAWWzl83ZSCrKzYIvqAmoaBSmY5ZYWWz6paQ6vr15937rfLmH5qN5rhb1zLzqij96
+ W05Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734068827; x=1734673627;
+ d=1e100.net; s=20230601; t=1734068850; x=1734673650;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=EmVT0W96xTTbgIHaje9qHPh+sH+dkYFHuEVe3qXraIA=;
- b=cweL9r/SN64G1vndWKSSPAsNjvOVffgBaQy3qOo9+Aebs3KV5EMTV2ON0bIA2YWaKl
- cR/+v0hDyozhPvmvL7cqw9f4L5ntvJkl7mMkWQerGzBYp2kk+KCLMsJTMmaoItR2+cR4
- 2uw1Qru0v65w7PMkXp7r8t4zXD8G69kNvMIEvlyZtvSm4XbpT75GHGr7byniPXz5YGBk
- WpyQIvqo26lwuiKwf1Sw0Rf/881kRn2hK6M3/mzVvfvsHUsm3dkrt9h2sv572fz96kjR
- XP5zyonkQ7G2JKhPEy+zGlYeVdITo3seFGlGqzPuS6xpf510wJVxs2PkkDZMr3x4SQtj
- BFFw==
+ bh=WABVozVaGAUeC6WVv6dNDEWCXVmF+XIaxOqP2xXRnSs=;
+ b=oG6a5yhJe/zaBJJQ1BE9AdVtAOgTIY3BpdRB/loNcJfH0XUxx/kQnpnsLoaTlxoOyQ
+ zXTwAeygVIn4aHIXMOxjzxb+7vNS24onwV/5n+Zkww0ABC/jwVz1tG6HlcNZTwJvxWcL
+ hTjGjOdDRDKxpZ+6qVyfoAmQEs+H37QE+lJ3A4EBKuIAVzPMImO9aOAcjaj+DAjbrM4H
+ 8NjPsLwzLEh3eeJfkjSOobiHOtJTOYhaZlUilfg5oXlGUzRO13Xx7eTtAFBxAmbmph9s
+ jdi7LKZoxr6n5zoIyhY+xKKzQ7J4AUCSy7moolnDStc/uHRtNHPzPgyp+2PDertInVFQ
+ da1A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUN2YJJoXHS8uOMOcwhi0kBh0irYqPhWPrb/XkDwdEEjkOllaOGxwW9ZFA9Lck2fbB6KlRi729FTKAD@lists.freedesktop.org,
- AJvYcCV+bwF/zGLLVcUMG2LEjMXjsK446F6JqEJLyUUQ8HNkzjWj+/x2tLwWNOS5+haDLXr6zyERu4bZC3g=@lists.freedesktop.org,
- AJvYcCVIkCuDOr5mzMGO9X6ILsRQODbUJBSddIZBQKou7xp5JH7XtA9yui+S7N+Eces+wruzIQAhC9Oy+g==@lists.freedesktop.org,
- AJvYcCXVG+IDi/KPyaih+MOts/dfhYxnXTWqdhDeXqCq9xkhrJ1Pjv0MgUyIeQVm9emswz7YCVnSIK35qPE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzvC01oMfJ6XRQBJ0psznOgFjqohGH8n5B4KbLDCgmH9b7eRrM9
- X6lAOG1KDOKkqUslA/OamNobhlZbFbKW8KWPF+2Zb/8insutdDz/
-X-Gm-Gg: ASbGnctgchtJyQbmurXVAeDNQrVAKrlWKUvNrFFtO8oGuhpdAaozgKdjWtPVvLqDsbq
- oHcQOitf2UtzOxDoVMZDu83wQAe6TEV3+c7sh2ZSMtu6seRMaV1GxhstvPAQGXuzCnghtzIYzME
- ik6Ym0TLZQ3A5MY+joEKljdfq0Hs/UmKLfWlq5sSwLdtJ0ZlpsYPMT1W5bsQwafcNJFye1O7mdd
- XLBS0eBmFsIrKf3wu/Rpm6sOrwSYN7ZKRN0aDDtg3PtdYOX3JSyAR/KS9NpLCTd+LPgbsZ895dk
- IUWc0/0=
-X-Google-Smtp-Source: AGHT+IGGw/OV/ScatMLc+XWrd5qwOO8iHzpYdxpzWycga8KUsVtQ1P1ntSP55wYL5SQs/JpC5cq7/g==
-X-Received: by 2002:a17:902:d484:b0:215:431f:268f with SMTP id
- d9443c01a7336-21892999536mr21105555ad.10.1734068827157; 
- Thu, 12 Dec 2024 21:47:07 -0800 (PST)
+ AJvYcCV0V/hdVkOXikA5lqtQS/qkWhTtMl0e4P7TfUe7fn4AnHlOv1AcGIjdnjMDe1E2JOgXgLsnD5nukAM=@lists.freedesktop.org,
+ AJvYcCVUDuiA2tWZQBXHdE+N6smQQdGeni3T/9JHPp7zcexut3u4qMsMQa1ORVx6dLdH0iFdiHO4vmqjsw==@lists.freedesktop.org,
+ AJvYcCW1gquKJdaex67jF9QsDBaTq9Fu5MSSoThtUSP/ufG7TAwrPhtSRVBAfGFS1bNAerfqCypc9VGISaNF@lists.freedesktop.org,
+ AJvYcCXS2X2Cv0GXVRuE58zpKt4wH13okBiqIJ7Ev05o8Cf0RZL0ddmcg2T940zl9t35dNxrEcXiDGEmc5M=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxvblv/e5jmEfbu8SaME7xeQYKMz9bZFskUUa88YS1+X71mBRni
+ Gskh/dqN8JCYBpIRqWhllt9cuUzpVF4ZGRUp0aexwvssMSdq+bHw
+X-Gm-Gg: ASbGncsoAwQeyjGoq3Q5g51wmZp2EuazS0X7sdkw/Cu3HIWE6gOfZrdwNuaznCZh8Rn
+ 7G7/ybWwC6R2LRt7YcBQYNg/wxIyVy5ctLQFYOO6LjSq0ruY6/8dR8ButGqhLkdMkN+j3IG1KZ6
+ c+YoTcMUg0zXt3jdYImbJKKPln5ueJ412ethV+GZHuhutoxRnn5QvYU4grl1XYT1vJMmpa/s3Rf
+ aPN9MBn3RjcJBONLeJFXm4ARgBTcork+daT5uBVlzl+3CrnH+8tXwqsvQaiceJr5HWNcaqowxAY
+ HdgMYUQ=
+X-Google-Smtp-Source: AGHT+IGFE1mRmyM5NL2PUAWpAoscqFHXvU8vwTTuUZkYB6i9lL3x0jZgiaefTaKhcRetCPxuiJ6lzw==
+X-Received: by 2002:a17:90b:3889:b0:2ee:aa28:79aa with SMTP id
+ 98e67ed59e1d1-2f28fa55d20mr2136406a91.6.1734068850070; 
+ Thu, 12 Dec 2024 21:47:30 -0800 (PST)
 Received: from localhost.localdomain ([180.159.118.224])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-216483dd292sm82564985ad.226.2024.12.12.21.47.00
+ d9443c01a7336-216483dd292sm82564985ad.226.2024.12.12.21.47.20
  (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
- Thu, 12 Dec 2024 21:47:06 -0800 (PST)
+ Thu, 12 Dec 2024 21:47:29 -0800 (PST)
 From: Yafang Shao <laoar.shao@gmail.com>
 To: torvalds@linux-foundation.org,
 	akpm@linux-foundation.org
@@ -72,13 +72,19 @@ Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
  linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
- Yafang Shao <laoar.shao@gmail.com>, Vineet Gupta <vgupta@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
- "H. Peter Anvin" <hpa@zytor.com>
-Subject: [PATCH 3/7] arch: Replace get_task_comm() with %pTN
-Date: Fri, 13 Dec 2024 13:46:06 +0800
-Message-Id: <20241213054610.55843-4-laoar.shao@gmail.com>
+ Yafang Shao <laoar.shao@gmail.com>, Ofir Bitton <obitton@habana.ai>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>
+Subject: [PATCH 6/7] drivers: Repace get_task_comm() with %pTN
+Date: Fri, 13 Dec 2024 13:46:09 +0800
+Message-Id: <20241213054610.55843-7-laoar.shao@gmail.com>
 X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
 In-Reply-To: <20241213054610.55843-1-laoar.shao@gmail.com>
 References: <20241213054610.55843-1-laoar.shao@gmail.com>
@@ -104,65 +110,185 @@ directly without the need to copy it into a separate buffer. This
 simplifies the code and avoids unnecessary operations.
 
 Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
-Cc: Vineet Gupta <vgupta@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>
-Cc: Ingo Molnar <mingo@redhat.com>
-Cc: Borislav Petkov <bp@alien8.de>
-Cc: Dave Hansen <dave.hansen@linux.intel.com>
-Cc: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Ofir Bitton <obitton@habana.ai>
+Cc: Oded Gabbay <ogabbay@kernel.org>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Karol Herbst <kherbst@redhat.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Danilo Krummrich <dakr@redhat.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Jiri Slaby <jirislaby@kernel.org>
 ---
- arch/arc/kernel/unaligned.c | 9 ++++-----
- arch/x86/kernel/vm86_32.c   | 5 ++---
- 2 files changed, 6 insertions(+), 8 deletions(-)
+ drivers/accel/habanalabs/common/context.c         |  5 ++---
+ .../accel/habanalabs/common/habanalabs_ioctl.c    | 15 +++++----------
+ .../gpu/drm/i915/display/intel_display_driver.c   | 10 ++++------
+ drivers/gpu/drm/nouveau/nouveau_chan.c            |  4 +---
+ drivers/gpu/drm/nouveau/nouveau_drm.c             |  7 +++----
+ drivers/tty/tty_io.c                              |  5 ++---
+ 6 files changed, 17 insertions(+), 29 deletions(-)
 
-diff --git a/arch/arc/kernel/unaligned.c b/arch/arc/kernel/unaligned.c
-index d2f5ceaaed1b..fb8e995823e3 100644
---- a/arch/arc/kernel/unaligned.c
-+++ b/arch/arc/kernel/unaligned.c
-@@ -200,23 +200,22 @@ int misaligned_fixup(unsigned long address, struct pt_regs *regs,
- 		     struct callee_regs *cregs)
+diff --git a/drivers/accel/habanalabs/common/context.c b/drivers/accel/habanalabs/common/context.c
+index b83141f58319..e4026051b735 100644
+--- a/drivers/accel/habanalabs/common/context.c
++++ b/drivers/accel/habanalabs/common/context.c
+@@ -199,7 +199,6 @@ int hl_ctx_create(struct hl_device *hdev, struct hl_fpriv *hpriv)
+ 
+ int hl_ctx_init(struct hl_device *hdev, struct hl_ctx *ctx, bool is_kernel_ctx)
  {
- 	struct disasm_state state;
--	char buf[TASK_COMM_LEN];
+-	char task_comm[TASK_COMM_LEN];
+ 	int rc = 0, i;
  
- 	/* handle user mode only and only if enabled by sysadmin */
- 	if (!user_mode(regs) || !unaligned_enabled)
- 		return 1;
+ 	ctx->hdev = hdev;
+@@ -271,8 +270,8 @@ int hl_ctx_init(struct hl_device *hdev, struct hl_ctx *ctx, bool is_kernel_ctx)
  
- 	if (no_unaligned_warning) {
--		pr_warn_once("%s(%d) made unaligned access which was emulated"
-+		pr_warn_once("%pTN(%d) made unaligned access which was emulated"
- 			     " by kernel assist\n. This can degrade application"
- 			     " performance significantly\n. To enable further"
- 			     " logging of such instances, please \n"
- 			     " echo 0 > /proc/sys/kernel/ignore-unaligned-usertrap\n",
--			     get_task_comm(buf, current), task_pid_nr(current));
-+			     current, task_pid_nr(current));
- 	} else {
- 		/* Add rate limiting if it gets down to it */
--		pr_warn("%s(%d): unaligned access to/from 0x%lx by PC: 0x%lx\n",
--			get_task_comm(buf, current), task_pid_nr(current),
-+		pr_warn("%pTN(%d): unaligned access to/from 0x%lx by PC: 0x%lx\n",
-+			current, task_pid_nr(current),
- 			address, regs->ret);
+ 		mutex_init(&ctx->ts_reg_lock);
  
+-		dev_dbg(hdev->dev, "create user context, comm=\"%s\", asid=%u\n",
+-			get_task_comm(task_comm, current), ctx->asid);
++		dev_dbg(hdev->dev, "create user context, comm=\"%pTN\", asid=%u\n",
++			current, ctx->asid);
  	}
-diff --git a/arch/x86/kernel/vm86_32.c b/arch/x86/kernel/vm86_32.c
-index e9e803a4d44c..1f55d5c2628d 100644
---- a/arch/x86/kernel/vm86_32.c
-+++ b/arch/x86/kernel/vm86_32.c
-@@ -246,9 +246,8 @@ static long do_sys_vm86(struct vm86plus_struct __user *user_vm86, bool plus)
  
- 	/* VM86_SCREEN_BITMAP had numerous bugs and appears to have no users. */
- 	if (v.flags & VM86_SCREEN_BITMAP) {
--		char comm[TASK_COMM_LEN];
+ 	return 0;
+diff --git a/drivers/accel/habanalabs/common/habanalabs_ioctl.c b/drivers/accel/habanalabs/common/habanalabs_ioctl.c
+index 1dd6e23172ca..32678cd0775a 100644
+--- a/drivers/accel/habanalabs/common/habanalabs_ioctl.c
++++ b/drivers/accel/habanalabs/common/habanalabs_ioctl.c
+@@ -1279,13 +1279,10 @@ static long _hl_ioctl(struct hl_fpriv *hpriv, unsigned int cmd, unsigned long ar
+ 		retcode = -EFAULT;
+ 
+ out_err:
+-	if (retcode) {
+-		char task_comm[TASK_COMM_LEN];
 -
--		pr_info_once("vm86: '%s' uses VM86_SCREEN_BITMAP, which is no longer supported\n", get_task_comm(comm, current));
-+		pr_info_once("vm86: '%pTN' uses VM86_SCREEN_BITMAP, which is no longer supported\n",
-+			     current);
- 		return -EINVAL;
++	if (retcode)
+ 		dev_dbg_ratelimited(dev,
+-				"error in ioctl: pid=%d, comm=\"%s\", cmd=%#010x, nr=%#04x\n",
+-				task_pid_nr(current), get_task_comm(task_comm, current), cmd, nr);
+-	}
++				"error in ioctl: pid=%d, comm=\"%pTN\", cmd=%#010x, nr=%#04x\n",
++				task_pid_nr(current), current, cmd, nr);
+ 
+ 	if (kdata != stack_kdata)
+ 		kfree(kdata);
+@@ -1308,11 +1305,9 @@ long hl_ioctl_control(struct file *filep, unsigned int cmd, unsigned long arg)
+ 	if (nr == _IOC_NR(DRM_IOCTL_HL_INFO)) {
+ 		ioctl = &hl_ioctls_control[nr - HL_COMMAND_START];
+ 	} else {
+-		char task_comm[TASK_COMM_LEN];
+-
+ 		dev_dbg_ratelimited(hdev->dev_ctrl,
+-				"invalid ioctl: pid=%d, comm=\"%s\", cmd=%#010x, nr=%#04x\n",
+-				task_pid_nr(current), get_task_comm(task_comm, current), cmd, nr);
++				"invalid ioctl: pid=%d, comm=\"%pTN\", cmd=%#010x, nr=%#04x\n",
++				task_pid_nr(current), current, cmd, nr);
+ 		return -ENOTTY;
  	}
  
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 56b78cf6b854..416aff49ceb8 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -391,7 +391,6 @@ void intel_display_driver_resume_access(struct drm_i915_private *i915)
+  */
+ bool intel_display_driver_check_access(struct drm_i915_private *i915)
+ {
+-	char comm[TASK_COMM_LEN];
+ 	char current_task[TASK_COMM_LEN + 16];
+ 	char allowed_task[TASK_COMM_LEN + 16] = "none";
+ 
+@@ -399,13 +398,12 @@ bool intel_display_driver_check_access(struct drm_i915_private *i915)
+ 	    i915->display.access.allowed_task == current)
+ 		return true;
+ 
+-	snprintf(current_task, sizeof(current_task), "%s[%d]",
+-		 get_task_comm(comm, current),
+-		 task_pid_vnr(current));
++	snprintf(current_task, sizeof(current_task), "%pTN[%d]",
++		 current, task_pid_vnr(current));
+ 
+ 	if (i915->display.access.allowed_task)
+-		snprintf(allowed_task, sizeof(allowed_task), "%s[%d]",
+-			 get_task_comm(comm, i915->display.access.allowed_task),
++		snprintf(allowed_task, sizeof(allowed_task), "%pTN[%d]",
++			 i915->display.access.allowed_task,
+ 			 task_pid_vnr(i915->display.access.allowed_task));
+ 
+ 	drm_dbg_kms(&i915->drm,
+diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
+index 2cb2e5675807..5bcfda6ecafe 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_chan.c
++++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
+@@ -279,7 +279,6 @@ nouveau_channel_ctor(struct nouveau_cli *cli, bool priv, u64 runm,
+ 	const u64 plength = 0x10000;
+ 	const u64 ioffset = plength;
+ 	const u64 ilength = 0x02000;
+-	char name[TASK_COMM_LEN];
+ 	int cid, ret;
+ 	u64 size;
+ 
+@@ -338,8 +337,7 @@ nouveau_channel_ctor(struct nouveau_cli *cli, bool priv, u64 runm,
+ 		chan->userd = &chan->user;
+ 	}
+ 
+-	get_task_comm(name, current);
+-	snprintf(args.name, sizeof(args.name), "%s[%d]", name, task_pid_nr(current));
++	snprintf(args.name, sizeof(args.name), "%pTN[%d]", current, task_pid_nr(current));
+ 
+ 	ret = nvif_object_ctor(&device->object, "abi16ChanUser", 0, hosts[cid].oclass,
+ 			       &args, sizeof(args), &chan->user);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 107f63f08bd9..3264465cded6 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -1159,7 +1159,7 @@ nouveau_drm_open(struct drm_device *dev, struct drm_file *fpriv)
+ {
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nouveau_cli *cli;
+-	char name[32], tmpname[TASK_COMM_LEN];
++	char name[32];
+ 	int ret;
+ 
+ 	/* need to bring up power immediately if opening device */
+@@ -1169,10 +1169,9 @@ nouveau_drm_open(struct drm_device *dev, struct drm_file *fpriv)
+ 		return ret;
+ 	}
+ 
+-	get_task_comm(tmpname, current);
+ 	rcu_read_lock();
+-	snprintf(name, sizeof(name), "%s[%d]",
+-		 tmpname, pid_nr(rcu_dereference(fpriv->pid)));
++	snprintf(name, sizeof(name), "%pTN[%d]",
++		 current, pid_nr(rcu_dereference(fpriv->pid)));
+ 	rcu_read_unlock();
+ 
+ 	if (!(cli = kzalloc(sizeof(*cli), GFP_KERNEL))) {
+diff --git a/drivers/tty/tty_io.c b/drivers/tty/tty_io.c
+index 9771072da177..bd39167d4234 100644
+--- a/drivers/tty/tty_io.c
++++ b/drivers/tty/tty_io.c
+@@ -2622,14 +2622,13 @@ static int tty_tiocgicount(struct tty_struct *tty, void __user *arg)
+ 
+ static int tty_set_serial(struct tty_struct *tty, struct serial_struct *ss)
+ {
+-	char comm[TASK_COMM_LEN];
+ 	int flags;
+ 
+ 	flags = ss->flags & ASYNC_DEPRECATED;
+ 
+ 	if (flags)
+-		pr_warn_ratelimited("%s: '%s' is using deprecated serial flags (with no effect): %.8x\n",
+-				__func__, get_task_comm(comm, current), flags);
++		pr_warn_ratelimited("%s: '%pTN' is using deprecated serial flags (with no effect): %.8x\n",
++				__func__, current, flags);
+ 
+ 	if (!tty->ops->set_serial)
+ 		return -ENOTTY;
 -- 
 2.43.5
 
