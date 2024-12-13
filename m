@@ -4,60 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E57B9E7717D
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 14:38:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF774E77180
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 14:53:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF15410F042;
-	Fri, 13 Dec 2024 14:38:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AJOqb3NI";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 292A610F042
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Dec 2024 14:38:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734100703; x=1765636703;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=V565VeteHmsGX0PTztF/H4lCB3jAmpMc9y6MLr+Xnnc=;
- b=AJOqb3NIPBWXm8omspDsGopdHQ4nw93Y3jryvMzrxkYnPFUISI9zLMiE
- er3k1W2zwRdmD/kV+63r67bVub/LLVYaNv5FLhxQ+htphPXDYOyLqB55D
- vvj/VfGcL3ioYftP+veEeymvtBBNEqMleM4UA9h3VP6p17U7jV4SNbTAn
- +hAgsrdh6/ddYWyMIJOxbVSABxpAI5uNeRsNFksoevXJ4xxlmyBhdgnvS
- 8KsBeqVFB6QgT+iLc+0nnVwnjg7cHjt5hqz7fsaKUVhqXk9zCPVjG3ZFc
- ELRgATN2Wnt4Mr71NbxBkHRX7z+3ICVAGmQ/lEJ+gUGvWMCl9sPfBib7K g==;
-X-CSE-ConnectionGUID: HOkmKFjsRD+HDmR0fLh6fQ==
-X-CSE-MsgGUID: f8KffrQ+QcarUroksjUiKg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="34788551"
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="34788551"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 06:38:23 -0800
-X-CSE-ConnectionGUID: nh/+N15ZQZ++Id6mXW3fTw==
-X-CSE-MsgGUID: SmzzDBupSZOI2c+tL+UyYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="96778932"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.110.169])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 06:38:22 -0800
-Date: Fri, 13 Dec 2024 08:38:12 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, John Harrison <John.C.Harrison@intel.com>,
- Julia Filipchuk <julia.filipchuk@intel.com>, 
- =?utf-8?B?Sm9zw6k=?= Roberto de Souza <jose.souza@intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH] Revert "drm/xe/devcoredump: Add ASCII85 dump helper
- function"
-Message-ID: <t6j573cbepbjwiclv5ulewcapwqyf7np4bvdut6gjario6wmeq@sk3cxg6mnos7>
-References: <20241213141252.1488109-1-rodrigo.vivi@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACC4510F05D;
+	Fri, 13 Dec 2024 14:53:17 +0000 (UTC)
+X-Greylist: delayed 2387 seconds by postgrey-1.36 at gabe;
+ Fri, 13 Dec 2024 14:53:15 UTC
+Received: from mblankhorst.nl (lankhorst.se
+ [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1B4010F049;
+ Fri, 13 Dec 2024 14:53:15 +0000 (UTC)
+Message-ID: <80c49a80-d49c-4ca5-9568-9f7950618275@lankhorst.se>
+Date: Fri, 13 Dec 2024 15:53:13 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241213141252.1488109-1-rodrigo.vivi@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/7] kernel/cgroups: Add "dmem" memory accounting
+ cgroup.
+To: Maxime Ripard <mripard@kernel.org>
+Cc: linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>,
+ Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
+ linux-mm@kvack.org, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+References: <20241204134410.1161769-1-dev@lankhorst.se>
+ <20241213-proud-kind-uakari-df3a70@houat>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20241213-proud-kind-uakari-df3a70@houat>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,32 +49,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Dec 13, 2024 at 09:12:52AM -0500, Rodrigo Vivi wrote:
->We do not break userspace.
->
->This reverts commit ec1455ce7e35a31289d2dbc1070b980538698921.
 
-But we have users calling this function.... the revert is not so simple.
-I think we need to revert the functionality rather than reverting all
-the patches, otherwise it will cause a lot of headaches.
 
-I propose we go with:
+Den 2024-12-13 kl. 14:03, skrev Maxime Ripard:
+> Hi,
+> 
+> Thanks for the new update!
+> 
+> On Wed, Dec 04, 2024 at 02:44:00PM +0100, Maarten Lankhorst wrote:
+>> New update. Instead of calling it the 'dev' cgroup, it's now the
+>> 'dmem' cgroup.
+>>
+>> Because it only deals with memory regions, the UAPI has been updated
+>> to use dmem.min/low/max/current, and to make the API cleaner, the
+>> names are changed too.
+> 
+> The API is much nicer, and fits much better into other frameworks too.
+> 
+>> dmem.current could contain a line like:
+>> "drm/0000:03:00.0/vram0 1073741824"
+>>
+>> But I think using "drm/card0/vram0" instead of PCIID would perhaps be
+>> good too. I'm open to changing it to that based on feedback.
+> 
+> Do we have any sort of guarantee over the name card0 being stable across
+> reboots?
+> 
+> I also wonder if we should have a "total" device that limits the amount
+> of memory we can allocate from any region?
+I don't think it is useful. Say your app can use 1 GB of main memory or 
+2 GB of VRAM, it wouldn't make sense to limit the total of those. In a 
+lot of cases there is only 1 region, so the total of that would still be 
+the same.
 
-a) drop the \n that broke mesa and merge that with cc stable.
+On top, we just separated the management of each region, adding a 
+'total' would require unseparating it again. :-)
 
-b) move back the entry to the previous section that broke mesa and cc
-    stable.
+I'm happy with this version I think. I don't think more changes for the
+base are needed.
 
-    José, would it be ok to merge a patch in mesa and port that
-    to mesa stable that simply looks at 2 possible sections? Or even
-    drop the section checks... ?
-
-c) settle on one of the possible solutions for \n that were presented in
-    this discussion.  I think the sanest one is that a space in the end of a
-    line printing ascii85 would signify a continuation marker.  But merging
-    (a) means we have time to discuss and adjust if needed.
-
-After the dust settles we may think of a better way to evolve the
-devcoredump format so it doesn't cause breakages in future updates.
-
-Lucas De Marchi
+Cheers,
+~Maarten
