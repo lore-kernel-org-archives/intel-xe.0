@@ -4,86 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 004CBE77185
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 14:03:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29F0BE77186
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 14:03:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 749A010F025;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED95410F031;
 	Fri, 13 Dec 2024 14:03:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=sapience.com header.i=@sapience.com header.b="q4sPn34s";
-	dkim=pass (2048-bit key; secure) header.d=sapience.com header.i=@sapience.com header.b="kh504LIt";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HKckgVgk";
 	dkim-atps=neutral
-Received: from s1.sapience.com (s1.sapience.com [72.84.236.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAE1E10E315;
- Fri, 13 Dec 2024 12:14:09 +0000 (UTC)
-Authentication-Results: dkim-srvy7; dkim=pass (Good ed25519-sha256 
- signature) header.d=sapience.com header.i=@sapience.com 
- header.a=ed25519-sha256; dkim=pass (Good 2048 bit rsa-sha256 signature) 
- header.d=sapience.com header.i=@sapience.com header.a=rsa-sha256
-Received: from srv8.sapience.com (srv8.sapience.com [x.x.x.x])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (secp384r1) server-digest SHA384)
- (No client certificate requested)
- by s1.sapience.com (Postfix) with ESMTPS id E862D480525;
- Fri, 13 Dec 2024 07:14:08 -0500 (EST)
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=sapience.com;
- i=@sapience.com; q=dns/txt; s=dk-ed25519-220413; t=1734092048;
- h=message-id : subject : from : to : cc : date : in-reply-to :
- references : content-type : mime-version : from;
- bh=on+3kOjcl/tu3R48ep6Fp66Q8LyJDxFH/zcLNPzbXow=;
- b=q4sPn34soKydu57/9MOjEXYwGdmyeJj2hCmSyqsRycrtjy3yZwIRXBe34Y97lrnBhAqrm
- J9yAY6yvZ5xLWmRBA==
-ARC-Seal: i=1; a=rsa-sha256; d=sapience.com; s=arc6-rsa-220412; t=1734092048; 
- cv=none;
- b=mCeFMKbRbWJPrZtEHGL/TRg+QOJAvmLaaQ0ncKPgHKhoJaeJ562QKEct8Xayqy2MYu9go083lqz2jj1Yd72FM/HNgPcItTiHL/mQUv27I/CxfaqmtnAcbOiRQ5LIiaPUbQM0jYSlNEYZbQGQHyzr+WYDVdE82C56dz+iTWBZlEfel9Ke+PrwbYPKgW48so3oxYnMmqpgGeNhmRl88ulY8Dl0tADvFZ+Vc/ILl+U5fDFC/1mFlb7UyB8pWyAktpfv2zvKJDfk8q2qJjQzVWSxITVqibyNZhK4y2MabECkM6749LXBfo1DqWpxDffJQsaRQSG/p1L2C6DOeISMNrEHrw==
-ARC-Message-Signature: i=1; a=rsa-sha256; d=sapience.com; s=arc6-rsa-220412;
- t=1734092048; c=relaxed/simple;
- bh=on+3kOjcl/tu3R48ep6Fp66Q8LyJDxFH/zcLNPzbXow=;
- h=DKIM-Signature:DKIM-Signature:Message-ID:Subject:From:To:Cc:Date:
- In-Reply-To:References:Autocrypt:Content-Type:User-Agent:
- MIME-Version;
- b=nAgS6qbKdI0yR3Gu075nKMDm1nY/aqPSU838DZqGbuK21hsThoP3rWs97j2ktbjKwY4NfeQcosTmTzsJiLzPFdV9RVQe1iuMu5F4OLzfBfF1fYd1CZV2o+zcJuqtabdy0ZJ/27wyfIAdlx0U5lfWYPufg5SLtQ6xdDJORZVKi57e6gGyyMjZSnoUgBAOZfv8BmNkojGqFIreUDvoGiX+WU82Vk61hhDtbWKPlkj4x6XFQru09xdUADM9iYmSifAO7/qkclq0mOdvUFrbd/UN6HHpHguvJlMYFwUA9LPSJIcOOpxoTn2Alw4HHRWk6fw4o86v8f8H53h7VIJXIzZPBA==
-ARC-Authentication-Results: i=1; arc-srv8.sapience.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sapience.com;
- i=@sapience.com; q=dns/txt; s=dk-rsa-220413; t=1734092048;
- h=message-id : subject : from : to : cc : date : in-reply-to :
- references : content-type : mime-version : from;
- bh=on+3kOjcl/tu3R48ep6Fp66Q8LyJDxFH/zcLNPzbXow=;
- b=kh504LItE0Pj3pt4Wkqr//E6SOjF0D4S63h1tl240YyGFqwfOb48xV3OhaZ8xMxMEIMEL
- oD0H/yDDT1LT/fA/ae/hW9Y4HpdZsH+CeUAl3hmLPy/9eXPcN0fuccZjFEM1IkygQPWjQWh
- SgjClSUWvd8i3qqMFt1Vw8LomD/2/WGJSYdi0hbApWQ/dB//nA7n7pdm46JnPp07+o/T+CR
- AZmEt+tslcQrGRDtRXK13XQrZwP3UMO7M7NS/mBCSQCVKlZ1DJnWnbt3TsqcehPTDD1COfr
- Xul01E3Xe0eeh/+IQV+oO7FzcXPBymRWlCpAv/ThshpCo/AsQDw/FXGf3dZQ==
-Received: from lap7.sapience.com (lap7w.sapience.com [x.x.x.x])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature ECDSA (secp384r1)
- server-digest SHA384) (No client certificate requested)
- by srv8.sapience.com (Postfix) with ESMTPS id B90A4280018;
- Fri, 13 Dec 2024 07:14:08 -0500 (EST)
-Message-ID: <dd13efc9b3fe3e3acd599ca91b714fa92f6cb9a8.camel@sapience.com>
-Subject: Re: 6.13-rc1 graphics fail
-From: Genes Lists <lists@sapience.com>
-To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: regressions@lists.linux.dev, linux-kernel@vger.kernel.org, 
- lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com, 
- rodrigo.vivi@intel.com, airlied@gmail.com, tzimmermann@suse.de, 
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Date: Fri, 13 Dec 2024 07:14:07 -0500
-In-Reply-To: <7db24095f935d874fae466853b0984103f97b40f.camel@sapience.com>
-References: <3b097dddd7095bccabe6791b90899c689f271a35.camel@sapience.com>
- <Z07Mg2_6y2MW22qV@intel.com>
- <7db24095f935d874fae466853b0984103f97b40f.camel@sapience.com>
-Autocrypt: addr=lists@sapience.com; prefer-encrypt=mutual;
- keydata=mDMEXSY9GRYJKwYBBAHaRw8BAQdAwzFfmp+m0ldl2vgmbtPC/XN7/k5vscpADq3BmRy5R
- 7y0LU1haWwgTGlzdHMgKEwwIDIwMTkwNzEwKSA8bGlzdHNAc2FwaWVuY2UuY29tPoiWBBMWCAA+Ah
- sBBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEE5YMoUxcbEgQOvOMKc+dlCv6PxQAFAmPJfooFCRl
- vRHEACgkQc+dlCv6PxQAc/wEA/Dbmg91DOGXll0OW1GKaZQGQDl7fHibMOKRGC6X/emoA+wQR5FIz
- BnV/PrXbao8LS/h0tSkeXgPsYxrzvfZInIAC
-Content-Type: multipart/signed; micalg="pgp-sha384";
- protocol="application/pgp-signature"; boundary="=-yjX0hr7VVXVlChB9wdQW"
-User-Agent: Evolution 3.54.2 
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com
+ [IPv6:2607:f8b0:4864:20::630])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9276B10E441;
+ Fri, 13 Dec 2024 05:47:07 +0000 (UTC)
+Received: by mail-pl1-x630.google.com with SMTP id
+ d9443c01a7336-2165448243fso14748985ad.1; 
+ Thu, 12 Dec 2024 21:47:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1734068827; x=1734673627; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=EmVT0W96xTTbgIHaje9qHPh+sH+dkYFHuEVe3qXraIA=;
+ b=HKckgVgkXR8lst/xQOO3A2Mllj2EiENfQvsczcRf40JZ8kQ4LE4Bjaf0MGldiIp9zi
+ BzxOUnDqs1inF7fjN8unovxw2On1rf3KkmAcdOWmvfzgDi7pEJDb95LFdDlpsEJAOVXL
+ ZAoFzoPmeeT0Bc5sp9nAR0rkX7OBjhXMdc6ugKMeo7gHsk2JSaEtnf1zlTrWzagDnKVX
+ t8UM0YM50PU1JaRQPj39715TJ7JGudUMJkFT8UXjHyqeE5iQ/a+F7Uais91E4Okrt7ku
+ 11Ut8avMT1uCtb7SuR87kmQymPz8K2DyddG1py8+W/fS3Fcyi23MnTk/kxevPhViBulf
+ J9BA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734068827; x=1734673627;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=EmVT0W96xTTbgIHaje9qHPh+sH+dkYFHuEVe3qXraIA=;
+ b=cweL9r/SN64G1vndWKSSPAsNjvOVffgBaQy3qOo9+Aebs3KV5EMTV2ON0bIA2YWaKl
+ cR/+v0hDyozhPvmvL7cqw9f4L5ntvJkl7mMkWQerGzBYp2kk+KCLMsJTMmaoItR2+cR4
+ 2uw1Qru0v65w7PMkXp7r8t4zXD8G69kNvMIEvlyZtvSm4XbpT75GHGr7byniPXz5YGBk
+ WpyQIvqo26lwuiKwf1Sw0Rf/881kRn2hK6M3/mzVvfvsHUsm3dkrt9h2sv572fz96kjR
+ XP5zyonkQ7G2JKhPEy+zGlYeVdITo3seFGlGqzPuS6xpf510wJVxs2PkkDZMr3x4SQtj
+ BFFw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUN2YJJoXHS8uOMOcwhi0kBh0irYqPhWPrb/XkDwdEEjkOllaOGxwW9ZFA9Lck2fbB6KlRi729FTKAD@lists.freedesktop.org,
+ AJvYcCV+bwF/zGLLVcUMG2LEjMXjsK446F6JqEJLyUUQ8HNkzjWj+/x2tLwWNOS5+haDLXr6zyERu4bZC3g=@lists.freedesktop.org,
+ AJvYcCVIkCuDOr5mzMGO9X6ILsRQODbUJBSddIZBQKou7xp5JH7XtA9yui+S7N+Eces+wruzIQAhC9Oy+g==@lists.freedesktop.org,
+ AJvYcCXVG+IDi/KPyaih+MOts/dfhYxnXTWqdhDeXqCq9xkhrJ1Pjv0MgUyIeQVm9emswz7YCVnSIK35qPE=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzvC01oMfJ6XRQBJ0psznOgFjqohGH8n5B4KbLDCgmH9b7eRrM9
+ X6lAOG1KDOKkqUslA/OamNobhlZbFbKW8KWPF+2Zb/8insutdDz/
+X-Gm-Gg: ASbGnctgchtJyQbmurXVAeDNQrVAKrlWKUvNrFFtO8oGuhpdAaozgKdjWtPVvLqDsbq
+ oHcQOitf2UtzOxDoVMZDu83wQAe6TEV3+c7sh2ZSMtu6seRMaV1GxhstvPAQGXuzCnghtzIYzME
+ ik6Ym0TLZQ3A5MY+joEKljdfq0Hs/UmKLfWlq5sSwLdtJ0ZlpsYPMT1W5bsQwafcNJFye1O7mdd
+ XLBS0eBmFsIrKf3wu/Rpm6sOrwSYN7ZKRN0aDDtg3PtdYOX3JSyAR/KS9NpLCTd+LPgbsZ895dk
+ IUWc0/0=
+X-Google-Smtp-Source: AGHT+IGGw/OV/ScatMLc+XWrd5qwOO8iHzpYdxpzWycga8KUsVtQ1P1ntSP55wYL5SQs/JpC5cq7/g==
+X-Received: by 2002:a17:902:d484:b0:215:431f:268f with SMTP id
+ d9443c01a7336-21892999536mr21105555ad.10.1734068827157; 
+ Thu, 12 Dec 2024 21:47:07 -0800 (PST)
+Received: from localhost.localdomain ([180.159.118.224])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-216483dd292sm82564985ad.226.2024.12.12.21.47.00
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Thu, 12 Dec 2024 21:47:06 -0800 (PST)
+From: Yafang Shao <laoar.shao@gmail.com>
+To: torvalds@linux-foundation.org,
+	akpm@linux-foundation.org
+Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Yafang Shao <laoar.shao@gmail.com>, Vineet Gupta <vgupta@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
+ "H. Peter Anvin" <hpa@zytor.com>
+Subject: [PATCH 3/7] arch: Replace get_task_comm() with %pTN
+Date: Fri, 13 Dec 2024 13:46:06 +0800
+Message-Id: <20241213054610.55843-4-laoar.shao@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+In-Reply-To: <20241213054610.55843-1-laoar.shao@gmail.com>
+References: <20241213054610.55843-1-laoar.shao@gmail.com>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 13 Dec 2024 14:03:03 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 13 Dec 2024 14:03:09 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,56 +99,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Since task->comm is guaranteed to be NUL-terminated, we can print it
+directly without the need to copy it into a separate buffer. This
+simplifies the code and avoids unnecessary operations.
 
---=-yjX0hr7VVXVlChB9wdQW
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
+Cc: Vineet Gupta <vgupta@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Borislav Petkov <bp@alien8.de>
+Cc: Dave Hansen <dave.hansen@linux.intel.com>
+Cc: "H. Peter Anvin" <hpa@zytor.com>
+---
+ arch/arc/kernel/unaligned.c | 9 ++++-----
+ arch/x86/kernel/vm86_32.c   | 5 ++---
+ 2 files changed, 6 insertions(+), 8 deletions(-)
 
-On Tue, 2024-12-03 at 06:34 -0500, Genes Lists wrote:
-> On Tue, 2024-12-03 at 11:16 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
-> > > ...
->=20
-> > Probably https://gitlab.freedesktop.org/drm/i915/kernel/-
-> > /issues/13057
-> >=20
-> Very helpful.
->=20
-> I tested your patch set on Linus' tree commit
-> cdd30ebb1b9f36159d66f088b61aee264e649d7a :
->=20
-> =C2=A0 =C2=A0=C2=A0https://patchwork.freedesktop.org/series/141911/
->=20
-> and confirm that this fixes the problem=C2=A0
->=20
-> Thank you.
->=20
->=20
+diff --git a/arch/arc/kernel/unaligned.c b/arch/arc/kernel/unaligned.c
+index d2f5ceaaed1b..fb8e995823e3 100644
+--- a/arch/arc/kernel/unaligned.c
++++ b/arch/arc/kernel/unaligned.c
+@@ -200,23 +200,22 @@ int misaligned_fixup(unsigned long address, struct pt_regs *regs,
+ 		     struct callee_regs *cregs)
+ {
+ 	struct disasm_state state;
+-	char buf[TASK_COMM_LEN];
+ 
+ 	/* handle user mode only and only if enabled by sysadmin */
+ 	if (!user_mode(regs) || !unaligned_enabled)
+ 		return 1;
+ 
+ 	if (no_unaligned_warning) {
+-		pr_warn_once("%s(%d) made unaligned access which was emulated"
++		pr_warn_once("%pTN(%d) made unaligned access which was emulated"
+ 			     " by kernel assist\n. This can degrade application"
+ 			     " performance significantly\n. To enable further"
+ 			     " logging of such instances, please \n"
+ 			     " echo 0 > /proc/sys/kernel/ignore-unaligned-usertrap\n",
+-			     get_task_comm(buf, current), task_pid_nr(current));
++			     current, task_pid_nr(current));
+ 	} else {
+ 		/* Add rate limiting if it gets down to it */
+-		pr_warn("%s(%d): unaligned access to/from 0x%lx by PC: 0x%lx\n",
+-			get_task_comm(buf, current), task_pid_nr(current),
++		pr_warn("%pTN(%d): unaligned access to/from 0x%lx by PC: 0x%lx\n",
++			current, task_pid_nr(current),
+ 			address, regs->ret);
+ 
+ 	}
+diff --git a/arch/x86/kernel/vm86_32.c b/arch/x86/kernel/vm86_32.c
+index e9e803a4d44c..1f55d5c2628d 100644
+--- a/arch/x86/kernel/vm86_32.c
++++ b/arch/x86/kernel/vm86_32.c
+@@ -246,9 +246,8 @@ static long do_sys_vm86(struct vm86plus_struct __user *user_vm86, bool plus)
+ 
+ 	/* VM86_SCREEN_BITMAP had numerous bugs and appears to have no users. */
+ 	if (v.flags & VM86_SCREEN_BITMAP) {
+-		char comm[TASK_COMM_LEN];
+-
+-		pr_info_once("vm86: '%s' uses VM86_SCREEN_BITMAP, which is no longer supported\n", get_task_comm(comm, current));
++		pr_info_once("vm86: '%pTN' uses VM86_SCREEN_BITMAP, which is no longer supported\n",
++			     current);
+ 		return -EINVAL;
+ 	}
+ 
+-- 
+2.43.5
 
-Just a CC to regressions list for tracking.
-
-First report here:=C2=A0
-https://lore.kernel.org/lkml/3b097dddd7095bccabe6791b90899c689f271a35.c
-amel@sapience.com/
-
-Fixed by patch set as noted above, but not yet in mainline or linux-
-next.
-
-Thank you again Ville for quickly coming up with a fix.
-
---=20
-Gene
-
-
---=-yjX0hr7VVXVlChB9wdQW
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYJAB0WIQRByXNdQO2KDRJ2iXo5BdB0L6Ze2wUCZ1wlEAAKCRA5BdB0L6Ze
-2191AP9B/XFuJzoozY9SuPe5rgJMEoYgdU1lPwVq7uI22li+UAEAtoZSAumqaeVA
-FYnoRJYhHfK4M/sUzUz5a0qaLhX4Egw=
-=3Hbb
------END PGP SIGNATURE-----
-
---=-yjX0hr7VVXVlChB9wdQW--
