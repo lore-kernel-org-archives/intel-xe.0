@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FF9DE7717D
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 06:35:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ED47E7717F
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Dec 2024 06:35:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C56F10EF11;
-	Fri, 13 Dec 2024 06:35:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE2A710EF13;
+	Fri, 13 Dec 2024 06:35:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CA5IGvAJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WNXfTxgm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 417ED10EF0E;
- Fri, 13 Dec 2024 06:35:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E084F10EF13;
+ Fri, 13 Dec 2024 06:35:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734071744; x=1765607744;
+ t=1734071749; x=1765607749;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=W1ggE6Cr3dT9WTn7EmUsK6j3gn0KYqDnXqtw2AjPRyk=;
- b=CA5IGvAJ4919GOjU8Mmnf/WGu/GRf03FctuyQE1oIx+iZyRShabK+WQW
- 7Z/dnWftCfKIDoxpo+nGnV1DKZ3v63bRfed41NSusgyn8Rn3TS3hLYPDz
- YtTl/QM1qdqSaibk+dwp5iq1EXBMcc9L6aFqP13AyP0pGIQRxYRocrsBI
- JVqLD3Pg605O3Cx2/AP5DQwEy85SLoFB0sSwrzT5sdyogoR+nY1aSnolO
- S5SIuAIKE9GwvvvIIa9VDpSDruvAtWjhidqXBr8tRuzFShcKTlPWGG0Tx
- RvoonFM2dCTpOdMH9viSEDZTE7Dejv7qlGR8MLjrGYf388kkMiFMbilqW A==;
-X-CSE-ConnectionGUID: KtJddtmgSBaaGW3DJOF4Sg==
-X-CSE-MsgGUID: zi8ySG5nQb6Wb5y0by9iHQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11284"; a="33846826"
-X-IronPort-AV: E=Sophos;i="6.12,230,1728975600"; d="scan'208";a="33846826"
+ bh=gbzQ5hErCOVsameKYcMzOSz5EX9oVn+uuIRLzHdhloI=;
+ b=WNXfTxgmkX5ff/Blzl1+EitKCHK0bYE0m8wwreGWzk9I+xgeLX6ZtJ8C
+ Rk1DsslMcEwkMLnM6gR5n/V1fAQbuzyL7fvlOnC0AMdyLD0jLlwswQV3D
+ ZXY/xPblgcCnJ/oafeHStEJuXr/qtpbPqRwiSuOYAOQC7L042x7n9M/Tn
+ vguZ2mJbpK7CE4me4IJLFPgLGX234XQpPSb+M0L5oEc6d+LMLzZGYQGiZ
+ UaLAAbnqpAiOMYTWjrScEV39GWaow887O2qEZO5hUgyq5SRVeY8A56MyV
+ fgXmdY7Kl9MCrR8V9XiXa0LbXLfOxKZTT+fEUlQjJuYEhuWUPXneDpE+q A==;
+X-CSE-ConnectionGUID: uii0ptWVTi2PHqHzUV8pdg==
+X-CSE-MsgGUID: iKQKYnL8SMGtwWQZJrpkOw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11284"; a="33846840"
+X-IronPort-AV: E=Sophos;i="6.12,230,1728975600"; d="scan'208";a="33846840"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2024 22:35:44 -0800
-X-CSE-ConnectionGUID: okrfgHtqRva1207Gb+mD4g==
-X-CSE-MsgGUID: NQUaB2gvS0ymRBLs+31Gzw==
+ 12 Dec 2024 22:35:48 -0800
+X-CSE-ConnectionGUID: z6t05rEzQ+KPPT54VKJ41A==
+X-CSE-MsgGUID: PVw2OICXRQOCrYy5x4+iDQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="96307695"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="96307740"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.191])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2024 22:35:43 -0800
+ 12 Dec 2024 22:35:48 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 02/10] drm/i915/psr: Rename psr_force_hw_tracking_exit as
- intel_psr_force_update
-Date: Fri, 13 Dec 2024 08:35:20 +0200
-Message-Id: <20241213063528.2759659-3-jouni.hogander@intel.com>
+Subject: [PATCH 05/10] drm/i915/psr: Ensure SFF/CFF bits are not written at
+ their sample point
+Date: Fri, 13 Dec 2024 08:35:23 +0200
+Message-Id: <20241213063528.2759659-6-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241213063528.2759659-1-jouni.hogander@intel.com>
 References: <20241213063528.2759659-1-jouni.hogander@intel.com>
@@ -71,50 +71,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-psr_force_hw_tracking_exit is misleading name as it is used for PSR1, PSR2
-HW tracking and PSR2 selective fetch. Due to this rename it as
-intel_psr_force_update.
+Bspec says this for SFF/CFF:
+
+"Hardware samples this bit on the start of every V. Blank Guardband
+region. For deterministic behavior, Software should ensure it is not
+changing this bit around the sample point."
+
+This can be achieved by using intel_vblank_evade.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 7ad8adcaea98..565057cf4a8c 100644
+index c074de6b6c12..8aa2574ba5c9 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2310,7 +2310,7 @@ static u32 man_trk_ctl_continuos_full_frame(struct intel_display *display)
- 	       PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME;
- }
+@@ -26,6 +26,7 @@
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_damage_helper.h>
+ #include <drm/drm_debugfs.h>
++#include <drm/drm_vblank.h>
  
--static void psr_force_hw_tracking_exit(struct intel_dp *intel_dp)
-+static void intel_psr_force_update(struct intel_dp *intel_dp)
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+@@ -44,6 +45,7 @@
+ #include "intel_psr.h"
+ #include "intel_psr_regs.h"
+ #include "intel_snps_phy.h"
++#include "intel_vblank.h"
+ #include "skl_universal_plane.h"
+ 
+ /**
+@@ -3114,16 +3116,31 @@ static void intel_psr_configure_full_frame_update(struct intel_dp *intel_dp)
  {
  	struct intel_display *display = to_intel_display(intel_dp);
  	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
-@@ -2857,7 +2857,7 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
++	struct intel_crtc *crtc = intel_crtc_for_pipe(display, intel_dp->psr.pipe);
++	struct intel_crtc_state *crtc_state = to_intel_crtc_state(crtc->base.state);
++	struct intel_vblank_evade_ctx evade;
  
- 		/* Force a PSR exit when enabling CRC to avoid CRC timeouts */
- 		if (crtc_state->crc_enabled && psr->enabled)
--			psr_force_hw_tracking_exit(intel_dp);
-+			intel_psr_force_update(intel_dp);
+ 	if (!intel_dp->psr.psr2_sel_fetch_enabled)
+ 		return;
  
- 		/*
- 		 * Clear possible busy bits in case we have
-@@ -3254,10 +3254,10 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
- 			 * continuous full frame is disabled, only a single full
- 			 * frame is required
- 			 */
--			psr_force_hw_tracking_exit(intel_dp);
-+			intel_psr_force_update(intel_dp);
- 		}
- 	} else {
--		psr_force_hw_tracking_exit(intel_dp);
-+		intel_psr_force_update(intel_dp);
++	intel_vblank_evade_init(crtc_state, crtc_state, &evade);
++
++	drm_crtc_vblank_get(&crtc->base);
++
++	local_irq_disable();
++
++	intel_vblank_evade(&evade);
++
++	drm_crtc_vblank_put(&crtc->base);
++
+ 	intel_de_write(display,
+ 		       PSR2_MAN_TRK_CTL(display, cpu_transcoder),
+ 		       man_trk_ctl_enable_bit_get(display) |
+ 		       man_trk_ctl_partial_frame_bit_get(display) |
+ 		       man_trk_ctl_single_full_frame_bit_get(display) |
+ 		       man_trk_ctl_continuos_full_frame(display));
++
++	local_irq_enable();
+ }
  
- 		if (!intel_dp->psr.active && !intel_dp->psr.busy_frontbuffer_bits)
- 			queue_work(dev_priv->unordered_wq, &intel_dp->psr.work);
+ static void _psr_invalidate_handle(struct intel_dp *intel_dp)
 -- 
 2.34.1
 
