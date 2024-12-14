@@ -4,61 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3172E77180
-	for <intel-xe@archiver.kernel.org>; Sat, 14 Dec 2024 00:57:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07408E7717F
+	for <intel-xe@archiver.kernel.org>; Sat, 14 Dec 2024 01:08:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7210910E1E0;
-	Sat, 14 Dec 2024 00:57:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A25F10E342;
+	Sat, 14 Dec 2024 01:08:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iUhSKc6O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LGHqy94m";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 015A610E1E0
- for <intel-xe@lists.freedesktop.org>; Sat, 14 Dec 2024 00:57:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49BC710E25D
+ for <intel-xe@lists.freedesktop.org>; Sat, 14 Dec 2024 01:08:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734137857; x=1765673857;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=j1dnofr0pqmldGIElGQXLD0yITfyKplLR16VjysMtmU=;
- b=iUhSKc6OqGZ+8FPk/bdDy1+x/rJzFqM846mbWz56zlensusN7fK3Uysq
- lg8GnykOs3za9vu1s/xSYnkcfFOPzyCoshxvsEp9qhr+OrZoXhmj/ypYm
- SPlPBHzMAKbtD1lJWgggs70r3h3JLJSFcvv1yzjK+kjRwtb8F9XuH8JDq
- 1MF20zXJGBKxHfQG/GZLvegZ9/p0vxaNcy+Y6TSXgAj2kmZ0RzMZzutpf
- WmTEoDcABPlqyVIfQ5taeAai76q+sIG1bllQvKmOuVX2TMh8wpZWYVmXH
- zfXtQyDpllISqkufO9OLbHJlvusEJu2wUhO3QqQXBxM5g4huTaE1Vd6yS Q==;
-X-CSE-ConnectionGUID: KSQ7fPpgSwuqYOI+WWRhsw==
-X-CSE-MsgGUID: 5ZMqpgV0QRWxJ097/2IVPg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="60000212"
-X-IronPort-AV: E=Sophos;i="6.12,232,1728975600"; d="scan'208";a="60000212"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 16:57:36 -0800
-X-CSE-ConnectionGUID: VT6XQ3MCS9KfY5AIHssW5Q==
-X-CSE-MsgGUID: bFPOc8bVSHG+830KL5xliw==
+ t=1734138499; x=1765674499;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=a5pzfYNaadvs01Z0JScFnLi4L1j2/A0FTbLhr4ks088=;
+ b=LGHqy94mNY9uPC1qFMV1kLY5kanv7DaQb4zGM1wkkKA11rrSv6k52SwM
+ G4Amewid9VQLbBnXpYQrPSb29dIcaQuT6OtJHvw0qESj/z2BLvkiXLGRc
+ 1z56WtZPQNY3EDcZgrMKxdTrVVnl1AY87BcuapJITMlP//z2kftpHQZtZ
+ ZPdG4bRDIAUZM19xMLm9WfwJVrQcrQWAFFL6Xtt5wDKps6kdQtzb5AE9E
+ AEqvXl61iOs+8gLl43RKuemXY/zKZPjIkiQs4kGp6V+S6wqtFBTgHW3A9
+ 0w981X05uGrDDnZyCkKy+7O77e7pGlX+pmMvEY5mlxKRBDdQiKwiSnr1A Q==;
+X-CSE-ConnectionGUID: BGykVlz3Q0+B7CIhJvxY9A==
+X-CSE-MsgGUID: FvRP1D1zQ1y1EL0F+Tplkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="34513926"
+X-IronPort-AV: E=Sophos;i="6.12,232,1728975600"; d="scan'208";a="34513926"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 17:08:19 -0800
+X-CSE-ConnectionGUID: CcIexVPgTyqFdk0dtXJCrQ==
+X-CSE-MsgGUID: KK8xlTTFT++rOTCl1DKdaw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,232,1728975600"; d="scan'208";a="97234029"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.110.252])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 16:57:36 -0800
-Date: Fri, 13 Dec 2024 18:57:26 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Ilia Levi <ilia.levi@intel.com>, intel-xe@lists.freedesktop.org, 
- Dani Liberman <dliberman@habana.ai>,
- Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: Re: [CI 4/4] drm/xe/uapi: Support requesting unique MSI-X for exec
- queue
-Message-ID: <zsukl2wjt76ep4llae6v6e2bidoekxi5hzdfclb277cm6le6g2@zhzfs7ttenue>
-References: <20241213070353.1511-1-ilia.levi@intel.com>
- <20241213070353.1511-5-ilia.levi@intel.com>
- <Z1yAFtqjJO89T_C_@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z1yAFtqjJO89T_C_@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="97474159"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 17:08:19 -0800
+Date: Fri, 13 Dec 2024 17:08:18 -0800
+Message-ID: <85a5cz2hrx.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/xe/oa/uapi: Expose an unblock after N reports OA
+ property
+In-Reply-To: <Z1zXUdMPUGQVO5yJ@orsosgc001>
+References: <20241212224903.1853862-1-ashutosh.dixit@intel.com>
+ <Z1zXUdMPUGQVO5yJ@orsosgc001>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,102 +71,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Dec 13, 2024 at 01:42:30PM -0500, Rodrigo Vivi wrote:
->On Fri, Dec 13, 2024 at 09:03:53AM +0200, Ilia Levi wrote:
->> From: Dani Liberman <dliberman@habana.ai>
->>
->> Unique MSI-X per exec queue will improve the performance of the
->> IRQ handler. In case no MSI-X is available, the uAPI will return
->> -EBUSY error and the user would be able to execute the uAPI again
->> without the flag (fallback to default MSI-X).
+On Fri, 13 Dec 2024 16:54:41 -0800, Umesh Nerlige Ramappa wrote:
 >
->Patches 1, 2 and 3 pushed to drm-xe-next. This patch here is on
->hold while we don't have the open source userspace for that ready
->
->https://dri.freedesktop.org/docs/drm/gpu/drm-uapi.html#open-source-userspace-requirements
->
->Thanks,
->Rodrigo.
->
->>
->> Co-developed-by: Ilia Levi <ilia.levi@intel.com>
->> Signed-off-by: Ilia Levi <ilia.levi@intel.com>
->> Signed-off-by: Dani Liberman <dliberman@habana.ai>
->> Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_exec_queue.c       | 57 +++++++++++++++++++++---
->>  drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 +
->>  drivers/gpu/drm/xe/xe_irq.c              | 18 ++++++++
->>  drivers/gpu/drm/xe/xe_irq.h              |  1 +
->>  include/uapi/drm/xe_drm.h                |  8 +++-
->>  5 files changed, 80 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
->> index 9c94be571900..35ef75f9919f 100644
->> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
->> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
->> @@ -12,6 +12,7 @@
->>  #include <uapi/drm/xe_drm.h>
->>
->>  #include "xe_device.h"
->> +#include "xe_drv.h"
->>  #include "xe_gt.h"
->>  #include "xe_hw_engine_class_sysfs.h"
->>  #include "xe_hw_engine_group.h"
->> @@ -35,8 +36,46 @@ enum xe_exec_queue_sched_prop {
->>  static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue *q,
->>  				      u64 extensions, int ext_number);
->>
->> +static int xe_exec_queue_msix_init(struct xe_device *xe, struct xe_exec_queue *q, bool unique_msix)
->> +{
->> +	u16 msix;
->> +	int err;
->> +
->> +	if (!xe_device_has_msix(xe))
->> +		return 0;
->> +
->> +	if (!unique_msix) {
->> +		q->msix_vec = XE_IRQ_DEFAULT_MSIX;
->> +		return 0;
->> +	}
->> +
->> +	err = xe_irq_msix_request_irq(xe, xe_irq_msix_hwe_handler, q,
->> +				      DRIVER_NAME "-exec-queue", true, &msix);
->> +	if (err < 0) {
->> +		drm_dbg(&xe->drm, "Can't allocate unique MSI-X to exec queue (%d)\n", err);
->> +		return err;
->> +	}
->> +
->> +	q->msix_vec = msix;
->> +
->> +	return 0;
->> +}
->> +
->> +static void xe_exec_queue_msix_fini(struct xe_exec_queue *q)
->> +{
->> +	struct xe_device *xe = gt_to_xe(q->gt);
->> +
->> +	if (!xe_device_has_msix(xe))
->> +		return;
->> +
->> +	if (q->msix_vec && q->msix_vec != XE_IRQ_DEFAULT_MSIX)
->> +		xe_irq_msix_free_irq(xe, q->msix_vec);
->> +}
->> +
->>  static void __xe_exec_queue_free(struct xe_exec_queue *q)
->>  {
->> +	xe_exec_queue_msix_fini(q);
->> +
->>  	if (q->vm)
->>  		xe_vm_put(q->vm);
->>
->> @@ -69,7 +108,12 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
->>  	q->gt = gt;
->>  	q->class = hwe->class;
->>  	q->width = width;
->> -	q->msix_vec = XE_IRQ_DEFAULT_MSIX;
->> +	err = xe_exec_queue_msix_init(xe, q, flags & EXEC_QUEUE_FLAG_UNIQUE_MSIX);
 
-is it fine to allow any user to starve this resource?
+Hi Umesh,
 
-Lucas De Marchi
+> On Thu, Dec 12, 2024 at 02:49:03PM -0800, Ashutosh Dixit wrote:
+> > Expose an "unblock after N reports" OA property, to allow userspace threads
+> > to be woken up less frequently.
+> >
+> > Co-developed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > ---
+> > drivers/gpu/drm/xe/xe_oa.c       | 30 ++++++++++++++++++++++++++----
+> > drivers/gpu/drm/xe/xe_oa_types.h |  3 +++
+> > drivers/gpu/drm/xe/xe_query.c    |  2 +-
+> > include/uapi/drm/xe_drm.h        |  7 +++++++
+> > 4 files changed, 37 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> > index ec88b18e9baa2..56bf375a9d4bc 100644
+> > --- a/drivers/gpu/drm/xe/xe_oa.c
+> > +++ b/drivers/gpu/drm/xe/xe_oa.c
+> > @@ -97,6 +97,7 @@ struct xe_oa_open_param {
+> >	int num_syncs;
+> >	struct xe_sync_entry *syncs;
+> >	size_t oa_buffer_size;
+> > +	int wait_num_reports;
+> > };
+> >
+> > struct xe_oa_config_bo {
+> > @@ -241,11 +242,10 @@ static void oa_timestamp_clear(struct xe_oa_stream *stream, u32 *report)
+> > static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+> > {
+> >	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+> > +	u32 tail, hw_tail, partial_report_size, available;
+> >	int report_size = stream->oa_buffer.format->size;
+> > -	u32 tail, hw_tail;
+> >	unsigned long flags;
+> >	bool pollin;
+> > -	u32 partial_report_size;
+> >
+> >	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
+> >
+> > @@ -289,8 +289,8 @@ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+> >
+> >	stream->oa_buffer.tail = tail;
+> >
+> > -	pollin = xe_oa_circ_diff(stream, stream->oa_buffer.tail,
+> > -				 stream->oa_buffer.head) >= report_size;
+> > +	available = xe_oa_circ_diff(stream, stream->oa_buffer.tail, stream->oa_buffer.head);
+> > +	pollin = available >= stream->wait_num_reports * report_size;
+> >
+> >	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
+> >
+> > @@ -1285,6 +1285,17 @@ static int xe_oa_set_prop_oa_buffer_size(struct xe_oa *oa, u64 value,
+> >	return 0;
+> > }
+> >
+> > +static int xe_oa_set_prop_wait_num_reports(struct xe_oa *oa, u64 value,
+> > +					   struct xe_oa_open_param *param)
+> > +{
+> > +	if (!value) {
+> > +		drm_dbg(&oa->xe->drm, "wait_num_reports %llu\n", value);
+> > +		return -EINVAL;
+> > +	}
+> > +	param->wait_num_reports = value;
+> > +	return 0;
+> > +}
+> > +
+> > static int xe_oa_set_prop_ret_inval(struct xe_oa *oa, u64 value,
+> >				    struct xe_oa_open_param *param)
+> > {
+> > @@ -1306,6 +1317,7 @@ static const xe_oa_set_property_fn xe_oa_set_property_funcs_open[] = {
+> >	[DRM_XE_OA_PROPERTY_NUM_SYNCS] = xe_oa_set_prop_num_syncs,
+> >	[DRM_XE_OA_PROPERTY_SYNCS] = xe_oa_set_prop_syncs_user,
+> >	[DRM_XE_OA_PROPERTY_OA_BUFFER_SIZE] = xe_oa_set_prop_oa_buffer_size,
+> > +	[DRM_XE_OA_PROPERTY_WAIT_NUM_REPORTS] = xe_oa_set_prop_wait_num_reports,
+> > };
+> >
+> > static const xe_oa_set_property_fn xe_oa_set_property_funcs_config[] = {
+> > @@ -1321,6 +1333,7 @@ static const xe_oa_set_property_fn xe_oa_set_property_funcs_config[] = {
+> >	[DRM_XE_OA_PROPERTY_NUM_SYNCS] = xe_oa_set_prop_num_syncs,
+> >	[DRM_XE_OA_PROPERTY_SYNCS] = xe_oa_set_prop_syncs_user,
+> >	[DRM_XE_OA_PROPERTY_OA_BUFFER_SIZE] = xe_oa_set_prop_ret_inval,
+> > +	[DRM_XE_OA_PROPERTY_WAIT_NUM_REPORTS] = xe_oa_set_prop_ret_inval,
+> > };
+> >
+> > static int xe_oa_user_ext_set_property(struct xe_oa *oa, enum xe_oa_user_extn_from from,
+> > @@ -1797,6 +1810,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+> >	stream->periodic = param->period_exponent > 0;
+> >	stream->period_exponent = param->period_exponent;
+> >	stream->no_preempt = param->no_preempt;
+> > +	stream->wait_num_reports = param->wait_num_reports;
+> >
+> >	stream->xef = xe_file_get(param->xef);
+> >	stream->num_syncs = param->num_syncs;
+> > @@ -2156,6 +2170,14 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
+> >	if (!param.oa_buffer_size)
+> >		param.oa_buffer_size = DEFAULT_XE_OA_BUFFER_SIZE;
+> >
+> > +	if (!param.wait_num_reports)
+> > +		param.wait_num_reports = 1;
+> > +	if (param.wait_num_reports > param.oa_buffer_size / f->size) {
+> > +		drm_dbg(&oa->xe->drm, "wait_num_reports %d\n", param.wait_num_reports);
+> > +		ret = -EINVAL;
+> > +		goto err_exec_q;
+> > +	}
+>
+> If possible, I think this check where wait_num_reports has an upper limit
+> should be moved to xe_oa_set_prop_wait_num_reports().
+
+It's not possible since the properties can come in any order, so both the
+OA buffer size as well as the format might not be available when
+wait_num_reports property is parsed. So they could both still be 0 when
+xe_oa_set_prop_wait_num_reports() is called.
+
+That is why the code which checks for consistency between multiple
+properties comes after the code which parses individual properties.
+
+> With that,
+> Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+
+Thanks.
+--
+Ashutosh
+
+
+>
+> > +
+> >	ret = xe_oa_parse_syncs(oa, &param);
+> >	if (ret)
+> >		goto err_exec_q;
+> > diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+> > index df77939156288..2dcd3b9562e97 100644
+> > --- a/drivers/gpu/drm/xe/xe_oa_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_oa_types.h
+> > @@ -218,6 +218,9 @@ struct xe_oa_stream {
+> >	/** @pollin: Whether there is data available to read */
+> >	bool pollin;
+> >
+> > +	/** @wait_num_reports: Number of reports to wait for before signalling pollin */
+> > +	int wait_num_reports;
+> > +
+> >	/** @periodic: Whether periodic sampling is currently enabled */
+> >	bool periodic;
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> > index d2a816f71bf26..226b234d07110 100644
+> > --- a/drivers/gpu/drm/xe/xe_query.c
+> > +++ b/drivers/gpu/drm/xe/xe_query.c
+> > @@ -672,7 +672,7 @@ static int query_oa_units(struct xe_device *xe,
+> >			du->oa_unit_type = u->type;
+> >			du->oa_timestamp_freq = xe_oa_timestamp_frequency(gt);
+> >			du->capabilities = DRM_XE_OA_CAPS_BASE | DRM_XE_OA_CAPS_SYNCS |
+> > -					   DRM_XE_OA_CAPS_OA_BUFFER_SIZE;
+> > +				DRM_XE_OA_CAPS_OA_BUFFER_SIZE | DRM_XE_OA_CAPS_WAIT_NUM_REPORTS;
+> >
+> >			j = 0;
+> >			for_each_hw_engine(hwe, gt, hwe_id) {
+> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> > index 0383b52cbd869..f62689ca861a4 100644
+> > --- a/include/uapi/drm/xe_drm.h
+> > +++ b/include/uapi/drm/xe_drm.h
+> > @@ -1487,6 +1487,7 @@ struct drm_xe_oa_unit {
+> > #define DRM_XE_OA_CAPS_BASE		(1 << 0)
+> > #define DRM_XE_OA_CAPS_SYNCS		(1 << 1)
+> > #define DRM_XE_OA_CAPS_OA_BUFFER_SIZE	(1 << 2)
+> > +#define DRM_XE_OA_CAPS_WAIT_NUM_REPORTS	(1 << 3)
+> >
+> >	/** @oa_timestamp_freq: OA timestamp freq */
+> >	__u64 oa_timestamp_freq;
+> > @@ -1660,6 +1661,12 @@ enum drm_xe_oa_property_id {
+> >	 * buffer is allocated by default.
+> >	 */
+> >	DRM_XE_OA_PROPERTY_OA_BUFFER_SIZE,
+> > +
+> > +	/**
+> > +	 * @DRM_XE_OA_PROPERTY_WAIT_NUM_REPORTS: Number of reports to wait
+> > +	 * for before unblocking poll or read
+> > +	 */
+> > +	DRM_XE_OA_PROPERTY_WAIT_NUM_REPORTS,
+> > };
+> >
+> > /**
+> > --
+> > 2.47.1
+> >
