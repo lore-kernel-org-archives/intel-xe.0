@@ -4,73 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8542E77183
-	for <intel-xe@archiver.kernel.org>; Sat, 14 Dec 2024 13:37:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB414E77184
+	for <intel-xe@archiver.kernel.org>; Sat, 14 Dec 2024 13:37:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68FAC10E175;
-	Sat, 14 Dec 2024 13:37:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C670810E272;
+	Sat, 14 Dec 2024 13:37:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="OR0OVJOd";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="HrD3/euX";
 	dkim-atps=neutral
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com
- [IPv6:2a00:1450:4864:20::22b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7C0010E0A7
- for <intel-xe@lists.freedesktop.org>; Sat, 14 Dec 2024 13:37:13 +0000 (UTC)
-Received: by mail-lj1-x22b.google.com with SMTP id
- 38308e7fff4ca-30167f4c1deso22968861fa.1
- for <intel-xe@lists.freedesktop.org>; Sat, 14 Dec 2024 05:37:13 -0800 (PST)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com
+ [IPv6:2a00:1450:4864:20::134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 545D610E2A5
+ for <intel-xe@lists.freedesktop.org>; Sat, 14 Dec 2024 13:37:16 +0000 (UTC)
+Received: by mail-lf1-x134.google.com with SMTP id
+ 2adb3069b0e04-53e28cf55cdso2382814e87.3
+ for <intel-xe@lists.freedesktop.org>; Sat, 14 Dec 2024 05:37:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1734183432; x=1734788232; darn=lists.freedesktop.org;
- h=cc:to:content-transfer-encoding:mime-version:message-id:date
- :subject:from:from:to:cc:subject:date:message-id:reply-to;
- bh=D5Yifu5AHqHdXbQoT1ZLOpnCiREtj9Cd9aALDn2mK+0=;
- b=OR0OVJOdeRRCp8MjZa1V8fmVVa9aehr2OMdCl9ADzCLQSP9Rpl/AybHry9cQP0fyqy
- L9pMDBDl68Wkl9ywG0fqnEoSnCvJFuukthUof9Eko6LTMitf3f6WUyLyVT+yWQU3ysKf
- RLNXP0ls/MMeZn6mqTgfqjsa9/g8PHGBeuxnYpPV5gvOX9qGg+azhxu9C1RNWlnWzSJ+
- U8zSxLLHhZTZG+61onX9vjXoEh6k4BLevpzVTzwiu/+lT4zvEG4JxL5TlcoPPuWr+Mgb
- 0awVtXj6AayzhkjIOuw+/yaB8ftgv27yGe6erpWg8BEsK1+Mm9+ajgd919zpJhD+cy0P
- yAoA==
+ d=linaro.org; s=google; t=1734183435; x=1734788235; darn=lists.freedesktop.org;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=noTSGg19tqU9DdkDojtudCfDYwJCYSgCTwqn4/VzC74=;
+ b=HrD3/euXap4hxpIFAltIxshIqbqdN2Z4VbK7YlnGGEisd3ryfuU0LrKue+6hk/IlMa
+ kChDnsvHv4h8Q+DcHpktOmDDzRqdblWvKcaFuuttz93GJPae5lcLM7KI3wsH/O61+ol4
+ 7hf5fWcHABRBorrR3ORE7/jP2qBHvH8mJBGM2rb/oNtc8+hxCqsZ64PERrElnz9rQn0p
+ 1TgclfbFsSqvj9I1eaJs6SUxwaZwbPx2gjxuSAyvVCoOQXPEdnh3IthqFFjvUvjYBTIA
+ 6Cqm7lizSkBJSTy3ae8CSo+h6uHnyi+sj7NsZtZ/7NqkMJSdJFTbjWieN3sEZ/DC3okq
+ zPrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734183432; x=1734788232;
- h=cc:to:content-transfer-encoding:mime-version:message-id:date
- :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=D5Yifu5AHqHdXbQoT1ZLOpnCiREtj9Cd9aALDn2mK+0=;
- b=P2oskZTob2Ft2Dt8s5Wvcy51kMO08GjOrkFn8zCZZ8loA+x3zAQvCWHlV3J2YlN3CW
- 3SBldxfHaZdd0KQ4wBif5MNJKFYff9LIW8/T31RKWtbXJcqmNrbzAg3tfhAxqh5cVtPN
- Tyz0EwWce0QDlworpiP4bEocTSdvdVcyut9XL3kbSYySJAmidqnpebPmLi001LoZc4ih
- xKpNLN2r131PfjpJdYAjCsHh+aFISdOW/3eFpk3xNNV4Nb2SeUSsn3qym3362OJbP9KU
- KDeLIvHVBH4ImigsL2l8hQ8+pA9SeoTBI4a5cqxEjb3hpUvnBcXNCJZfgUcz69ssV1PS
- MQYg==
+ d=1e100.net; s=20230601; t=1734183435; x=1734788235;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=noTSGg19tqU9DdkDojtudCfDYwJCYSgCTwqn4/VzC74=;
+ b=LCP60QKvhjDLJSh2TECo+9wlrlqQjOsv9giDf78Co7dpPay0mrN474zSlzv0eW7KSP
+ uBoOnjH7Qw0gXzT/Jx3marvKPRi8DCjBt50l+9QOxgxM29NCMQoXNFpTVJcTSS+1bPbZ
+ 9CGS6/sx6j7fQ4zf82VIFxjAKfaRz5TjeP8fBHvLy0efhmOxfht6hLeXOV4yh6gJLbWb
+ zH2QaCJju0a3bruz3Mvi4+/R9XkbTFI6LH0yFLnIO+9qdseqAk6V53XaPZRVLIqe+8GO
+ xdgqimt/4c5c7VqZ0QcbS4uqTFJC71Lagh9Ala0jbbO+bBF8WOG7KPlJJUSgkHr9i8+i
+ KaYg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU+/OiBr9eAwWKzKYo+WmsvSQi3TFfsh7YeKQ9Vuv6bXqTFT7mPXvtkKrkVzUzb9jyCRJggbkCTMQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwnT4IotX2ZPw3mnyhmrQvqTbwuF6H+LxRlyxQK9WGVl+IJ5jHE
- lqz5vG24Ais1h0H/i39lhOsW6lPhDGcoqDULbpJ8adC9VqrdChJDdnZzTfhabmE=
-X-Gm-Gg: ASbGncuqwh5WcbuHFKqr//TcW4By2/mcmi+a3YEMoemEEIe8mpMLs41cJsnMvvkq27b
- WjD9SOeya+UJVoDiqMAbO+C2hPtN/qcAR8cYexUR9jX1CdZIsWfs7IHAIZxmKkLTGL+yXgxMPqW
- WwjdOeiwRAhgwaYjhSXMaggAj2oJvobnTtiijWpMoW1xKuxvO5wcEHVQte5Ju8KGjwDOT9+jASE
- be4Cicw4Avlmas+lq3FkbKr5slPYgfTwMZ0Cex5/3EGb80FxOpcCCUWE9Lbo4Ry
-X-Google-Smtp-Source: AGHT+IEmz28NMTXAP81JXsAlUmRjxWGG4URFEoZPW2057H7lgb26FPjGbNMLBZ5J86SvfmTU0Z3DXQ==
-X-Received: by 2002:a05:6512:ba3:b0:540:3567:2ede with SMTP id
- 2adb3069b0e04-5408ad822dcmr1895173e87.12.1734183431555; 
- Sat, 14 Dec 2024 05:37:11 -0800 (PST)
+ AJvYcCXzyzf/ImmbeKWf9m6O6cHIiofyMXfN7+f76UG9aw0PFxmUewql/+dIaICQx2nSDe0A4PsxmjhxmQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyL9LCbl2+B8e1ZBgE6fJd1rP+c/mF8eyxDihoPZM29HmOKpQO/
+ FCX+LnX7fvnP/ojIp2jRbsf006f/gBq6Cv2Wdux49lIt3EhdRU9eQNggy/MJAPI=
+X-Gm-Gg: ASbGncu8XtC9DKbb2MNTkDl4zdddi9ypoCQXGkvSOWbYcG+h89z+9gVwCEltJYVITFr
+ 2VJIWhgHy2RtyrW38LS9TvpWISYx5sC0I/W7itlUQxzUabV4BN9xLOTbbEKsfw5/Q86VPdEtekn
+ XPWtzleR6CgE1LpDKuO2h3p6tdhTXt2QdqJWpUFDm7gSD6Alre9ZNiGUGVmx2+zpEjF5wki8FrN
+ O8yIykmxxlla3WctpFtmkfiQHjaxHz6CpT88Q0CCz5Yh79577aL4IZxphilgo06
+X-Google-Smtp-Source: AGHT+IEi0xR7zoRxTqPxl0iLty4zwbr4Ao3SIaMjLOMpCbEphybEZM9KZwFp8q8/rnfiMhGmkXfFYg==
+X-Received: by 2002:a05:6512:12d1:b0:53e:362e:ed3 with SMTP id
+ 2adb3069b0e04-5408cd008f8mr1439574e87.1.1734183434499; 
+ Sat, 14 Dec 2024 05:37:14 -0800 (PST)
 Received: from umbar.lan ([192.130.178.90]) by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-54120baa474sm220131e87.90.2024.12.14.05.37.08
+ 2adb3069b0e04-54120baa474sm220131e87.90.2024.12.14.05.37.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 14 Dec 2024 05:37:10 -0800 (PST)
+ Sat, 14 Dec 2024 05:37:13 -0800 (PST)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH v2 0/5] drm/connector: make mode_valid() callback accept
- const mode pointer
-Date: Sat, 14 Dec 2024 15:37:04 +0200
-Message-Id: <20241214-drm-connector-mode-valid-const-v2-0-4f9498a4c822@linaro.org>
+Date: Sat, 14 Dec 2024 15:37:05 +0200
+Subject: [PATCH v2 1/5] drm/encoder_slave: make mode_valid accept const
+ struct drm_display_mode
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAACKXWcC/42NTQqDMBBGr1Jm3SlOrApd9R7FRX5GHdCkJBJax
- Ls3eoIu34PvfRskjsIJHpcNImdJEnwBdb2AnbQfGcUVBlWpOxE16OKCNnjPdg0Rl+AYs57FHTK
- tqLl2puKhtaaDEnlHHuRzHrz6wpOksvuef5kO+3c6E1ZoyDSqpqYdOnrO4nUMtxBH6Pd9/wHZe
- zDbzQAAAA==
-X-Change-ID: 20241115-drm-connector-mode-valid-const-ae3db0ef6cb7
+Message-Id: <20241214-drm-connector-mode-valid-const-v2-1-4f9498a4c822@linaro.org>
+References: <20241214-drm-connector-mode-valid-const-v2-0-4f9498a4c822@linaro.org>
+In-Reply-To: <20241214-drm-connector-mode-valid-const-v2-0-4f9498a4c822@linaro.org>
 To: Jani Nikula <jani.nikula@linux.intel.com>, 
  Rodrigo Vivi <rodrigo.vivi@intel.com>, 
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
@@ -125,19 +122,18 @@ Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  freedreno@lists.freedesktop.org, virtualization@lists.linux.dev, 
  spice-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, 
  linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org, 
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
- Jani Nikula <jani.nikula@intel.com>
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6418;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2993;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=CFKCP8gmNVOgeqNjr+3QJjtmtNC/tAX/00xUMnJ/tTs=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnXYoDmM2S87MrW8vu+JbVhyOODFafbOCaZxOjt
- xp9pGfUjhmJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ12KAwAKCRCLPIo+Aiko
- 1eEwB/4jmBS/ZZEzFjxaESTGxzhJNhkCvznhOV0ymm9HyVmb5cREFRRAYjI5LoTWx7bG2RoJpPx
- UvuWQ54Hy/EBhfpWcduIr/JhudedQ7jBPBIKLI9pTuxk9R5EX73GEkl63Fke70Rl4RJk106amoZ
- L5UKcCV/8bd4eJp0zytj96tqIz4Ck6AKNLE/phVZ9qgSiEy8WyBf4S97qdT56EH3M7y0HwvvZUR
- hYu0+I8MmFd53hj3SU9abEOy2j4vRwWzuePJ9fgEjSd8QoY+ntVzjh+bjurDQ8D7x0pTI/WJqrS
- 6pXMPMXEdtL00Ib+8dAXox6yumWc5m53LQxFithWGBOqgCaL
+ bh=BA8YlLlkI8E3eOA2TnmDuTVb8Ici90Dw1AiMpOT58zA=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnXYoDwzezrZ7RAm6EtxUMTtxskFsgC2A3+5mf5
+ PDqwy2TYryJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ12KAwAKCRCLPIo+Aiko
+ 1ehtB/4/gv0Y1mrqzFU9+qOJXPi6qnxv3Xebl1NN4vXW6xGWPscYkS7un6aXBPzphwSiybT5Era
+ LbRNX+KCaHxxZqHH1wD1S0U/hTBThZIWnM42zFf0kC4OIX6smT3zfpoHAFsHl5BO4LxW7zCkhce
+ NKxrDnOXXRjcU5FTGiE1s4jztJxDiSHwdzI4l+Ly8uoKKijhwSSQ6f0gNCw/m/EIMyuu8solCjv
+ LmvAJJS2wJUUe6lcm6eObgRuQYPXBAp+PBAkdiNosFiK6BZ/3CvdBkYcm4uwgYxJd/RfeLePmcd
+ dT2X/n21cOejt0WUUOG99WJQGqO/wTvviqkz0NfQmIJA5D88
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -154,114 +150,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While working on the generic mode_valid() implementation for the HDMI
-Connector framework I noticed that unlike other DRM objects
-drm_connector accepts non-const pointer to struct drm_display_mode,
-while obviously mode_valid() isn't expected to modify the argument.
+The mode_valid() callbacks of drm_encoder, drm_crtc and drm_bridge
+accept const struct drm_display_mode argument. Change the mode_valid
+callback of drm_encoder_slave to also accept const argument.
 
-Mass-change the DRM framework code to pass const argument to that
-callback.
-
-The series has been compile-tested with defconfig for x86-64, arm and
-arm64.
-
-Note: yes, I understand that this change might be hard to review and
-merge. The only viable option that I foresee is to add new callback,
-having the const argument and migrate drivers into using it one by one.
-
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
-Changes in v2:
-- Rebased on top of linux-next
-- Replaced 'accept const argument' with 'take a const arugment'
-  (Laurent)
-- Link to v1: https://lore.kernel.org/r/20241115-drm-connector-mode-valid-const-v1-0-b1b523156f71@linaro.org
+ drivers/gpu/drm/i2c/ch7006_drv.c          | 2 +-
+ drivers/gpu/drm/i2c/sil164_drv.c          | 2 +-
+ drivers/gpu/drm/nouveau/dispnv04/tvnv17.c | 2 +-
+ include/drm/drm_encoder_slave.h           | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
----
-Dmitry Baryshkov (5):
-      drm/encoder_slave: make mode_valid accept const struct drm_display_mode
-      drm/amdgpu: don't change mode in amdgpu_dm_connector_mode_valid()
-      drm/sti: hda: pass const struct drm_display_mode* to hda_get_mode_idx()
-      drm/connector: make mode_valid_ctx take a const struct drm_display_mode
-      drm/connector: make mode_valid take a const struct drm_display_mode
+diff --git a/drivers/gpu/drm/i2c/ch7006_drv.c b/drivers/gpu/drm/i2c/ch7006_drv.c
+index 131512a5f3bd996ad1e2eb869ffa09837daba0c7..a57f0a41c1a9e2006142fe0bad2914b0c344c82a 100644
+--- a/drivers/gpu/drm/i2c/ch7006_drv.c
++++ b/drivers/gpu/drm/i2c/ch7006_drv.c
+@@ -104,7 +104,7 @@ static bool ch7006_encoder_mode_fixup(struct drm_encoder *encoder,
+ }
+ 
+ static int ch7006_encoder_mode_valid(struct drm_encoder *encoder,
+-				     struct drm_display_mode *mode)
++				     const struct drm_display_mode *mode)
+ {
+ 	if (ch7006_lookup_mode(encoder, mode))
+ 		return MODE_OK;
+diff --git a/drivers/gpu/drm/i2c/sil164_drv.c b/drivers/gpu/drm/i2c/sil164_drv.c
+index ff23422727fce290a188e495d343e32bc2c373ec..708e119072fcb50c31b5596b75dc341429b93697 100644
+--- a/drivers/gpu/drm/i2c/sil164_drv.c
++++ b/drivers/gpu/drm/i2c/sil164_drv.c
+@@ -255,7 +255,7 @@ sil164_encoder_restore(struct drm_encoder *encoder)
+ 
+ static int
+ sil164_encoder_mode_valid(struct drm_encoder *encoder,
+-			  struct drm_display_mode *mode)
++			  const struct drm_display_mode *mode)
+ {
+ 	struct sil164_priv *priv = to_sil164_priv(encoder);
+ 
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+index 3ecb101d23e949b753b873d24eec01ad6fe7f5d6..35ad4e10d27323c87704a3ff35b7dc26462c82bd 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+@@ -308,7 +308,7 @@ static int nv17_tv_get_modes(struct drm_encoder *encoder,
+ }
+ 
+ static int nv17_tv_mode_valid(struct drm_encoder *encoder,
+-			      struct drm_display_mode *mode)
++			      const struct drm_display_mode *mode)
+ {
+ 	struct nv17_tv_norm_params *tv_norm = get_tv_norm(encoder);
+ 
+diff --git a/include/drm/drm_encoder_slave.h b/include/drm/drm_encoder_slave.h
+index 49172166a164474f43e4afb2eeeb3cde8ae7c61a..b526643833dcf78bae29f9fbbe27de3f730b55d8 100644
+--- a/include/drm/drm_encoder_slave.h
++++ b/include/drm/drm_encoder_slave.h
+@@ -85,7 +85,7 @@ struct drm_encoder_slave_funcs {
+ 	 * @mode_valid: Analogous to &drm_encoder_helper_funcs @mode_valid.
+ 	 */
+ 	int (*mode_valid)(struct drm_encoder *encoder,
+-			  struct drm_display_mode *mode);
++			  const struct drm_display_mode *mode);
+ 	/**
+ 	 * @mode_set: Analogous to &drm_encoder_helper_funcs @mode_set
+ 	 * callback. Wrapped by drm_i2c_encoder_mode_set().
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c           |  8 ++++----
- drivers/gpu/drm/amd/amdgpu/atombios_dp.c                 |  2 +-
- drivers/gpu/drm/amd/amdgpu/atombios_dp.h                 |  2 +-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c        | 12 +++++++++---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h        |  2 +-
- drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c |  2 +-
- drivers/gpu/drm/arm/malidp_mw.c                          |  2 +-
- drivers/gpu/drm/bridge/adv7511/adv7511_drv.c             |  2 +-
- drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c      |  2 +-
- drivers/gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c |  7 -------
- drivers/gpu/drm/display/drm_bridge_connector.c           |  2 +-
- drivers/gpu/drm/display/drm_hdmi_state_helper.c          |  2 +-
- drivers/gpu/drm/drm_crtc_helper_internal.h               |  2 +-
- drivers/gpu/drm/drm_probe_helper.c                       |  2 +-
- drivers/gpu/drm/exynos/exynos_hdmi.c                     |  2 +-
- drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c                |  2 +-
- drivers/gpu/drm/gma500/cdv_intel_crt.c                   |  2 +-
- drivers/gpu/drm/gma500/cdv_intel_dp.c                    |  2 +-
- drivers/gpu/drm/gma500/cdv_intel_hdmi.c                  |  2 +-
- drivers/gpu/drm/gma500/cdv_intel_lvds.c                  |  2 +-
- drivers/gpu/drm/gma500/oaktrail_hdmi.c                   |  2 +-
- drivers/gpu/drm/gma500/psb_intel_drv.h                   |  2 +-
- drivers/gpu/drm/gma500/psb_intel_lvds.c                  |  2 +-
- drivers/gpu/drm/gma500/psb_intel_sdvo.c                  |  2 +-
- drivers/gpu/drm/i2c/ch7006_drv.c                         |  2 +-
- drivers/gpu/drm/i2c/sil164_drv.c                         |  2 +-
- drivers/gpu/drm/i915/display/dvo_ch7017.c                |  2 +-
- drivers/gpu/drm/i915/display/dvo_ch7xxx.c                |  2 +-
- drivers/gpu/drm/i915/display/dvo_ivch.c                  |  2 +-
- drivers/gpu/drm/i915/display/dvo_ns2501.c                |  2 +-
- drivers/gpu/drm/i915/display/dvo_sil164.c                |  2 +-
- drivers/gpu/drm/i915/display/dvo_tfp410.c                |  2 +-
- drivers/gpu/drm/i915/display/icl_dsi.c                   |  2 +-
- drivers/gpu/drm/i915/display/intel_crt.c                 |  2 +-
- drivers/gpu/drm/i915/display/intel_dp.c                  |  2 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c              |  2 +-
- drivers/gpu/drm/i915/display/intel_dsi.c                 |  2 +-
- drivers/gpu/drm/i915/display/intel_dsi.h                 |  2 +-
- drivers/gpu/drm/i915/display/intel_dvo.c                 |  2 +-
- drivers/gpu/drm/i915/display/intel_dvo_dev.h             |  2 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c                |  2 +-
- drivers/gpu/drm/i915/display/intel_lvds.c                |  2 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c                |  2 +-
- drivers/gpu/drm/i915/display/intel_tv.c                  |  2 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c                   |  2 +-
- drivers/gpu/drm/imx/ipuv3/imx-tve.c                      |  2 +-
- drivers/gpu/drm/msm/disp/mdp4/mdp4_lvds_connector.c      |  2 +-
- drivers/gpu/drm/nouveau/dispnv04/tvnv17.c                |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.c                  |  2 +-
- drivers/gpu/drm/nouveau/nouveau_connector.c              |  2 +-
- drivers/gpu/drm/qxl/qxl_display.c                        |  2 +-
- drivers/gpu/drm/radeon/atombios_dp.c                     |  2 +-
- drivers/gpu/drm/radeon/radeon_connectors.c               | 10 +++++-----
- drivers/gpu/drm/radeon/radeon_mode.h                     |  2 +-
- drivers/gpu/drm/rockchip/cdn-dp-core.c                   |  2 +-
- drivers/gpu/drm/rockchip/inno_hdmi.c                     |  4 ++--
- drivers/gpu/drm/rockchip/rk3066_hdmi.c                   |  2 +-
- drivers/gpu/drm/sti/sti_dvo.c                            |  2 +-
- drivers/gpu/drm/sti/sti_hda.c                            | 12 ++++++------
- drivers/gpu/drm/sti/sti_hdmi.c                           |  2 +-
- drivers/gpu/drm/tegra/dsi.c                              |  2 +-
- drivers/gpu/drm/tegra/hdmi.c                             |  2 +-
- drivers/gpu/drm/tegra/sor.c                              |  2 +-
- drivers/gpu/drm/vc4/vc4_txp.c                            |  2 +-
- drivers/gpu/drm/virtio/virtgpu_display.c                 |  2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                      |  2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.h                      |  2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c                     |  2 +-
- include/drm/display/drm_hdmi_state_helper.h              |  2 +-
- include/drm/drm_encoder_slave.h                          |  2 +-
- include/drm/drm_modeset_helper_vtables.h                 |  4 ++--
- 71 files changed, 92 insertions(+), 93 deletions(-)
----
-base-commit: 4176cf5c5651c33769de83bb61b0287f4ec7719f
-change-id: 20241115-drm-connector-mode-valid-const-ae3db0ef6cb7
-
-Best regards,
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+2.39.5
 
