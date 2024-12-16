@@ -4,62 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D09FE7717F
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 10:36:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60BC4E7717F
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 10:42:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 080AF10E584;
-	Mon, 16 Dec 2024 10:36:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 284AE10E58B;
+	Mon, 16 Dec 2024 10:42:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mrDymyod";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WWvS272o";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73ABB10E582;
- Mon, 16 Dec 2024 10:36:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09AAB10E58A
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Dec 2024 10:42:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734345404; x=1765881404;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=eXjfjlX6tkQzfr6zKfizXXMKnZpHOHS+YcuO77yKq/A=;
- b=mrDymyod3/YLdUfvzvKbKdIgjQP2I/k7DAqFxtMIkfrbqzBEcu4SZkmw
- izqcIDTeWuQF06BvIHvX4taUWxt4LshA75CHJYAF8MAQyPFsvcwgcFHF9
- 86ZDto1+Ynf/MiiI20Ibqo09dOAEPsT+n5Yn+K1I1r8OV196ewLR8ARDJ
- fcPnaI4ltRTACdLKhMN0q6T0N/ViuWTQ+UYrEdL48CPY1+t53NQ9GCSIt
- KmG4Y+WswWw+CMMtlJkgYeUA0o4gyQogVwJBJ6UwyOFgh7CkZfCH/jecn
- 9lESDfRkdRpTXZryvx17QJS+WZzlqZmIUBEFDPSf/Zc247hJuL+BlGU86 Q==;
-X-CSE-ConnectionGUID: NmK9PbSJS8KbJCA1rU8b9Q==
-X-CSE-MsgGUID: k9+lk7tJQqKuBm+aTzApaQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="46132806"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="46132806"
+ t=1734345737; x=1765881737;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Uf5P7SzfFGor3PHHj4sRmWQ7EDCJUVUs0cbdRY5MoLQ=;
+ b=WWvS272o21F0ri9aeU3oG42zj95l9/W8uWSF9Q7u3ofOswFs3YoUbVUt
+ CgzgBXn0dj6Ih2ST44+u8kIganEsaKGzb2scaLA8ou+xcI4FulgX5kv4Q
+ Bx7R5wSyfT0pOA4vxZVY+NadkmT5hPjqmzD3fVodrMEAKHq0lwKxoFMxy
+ NlAzZxay6DXQcRF1uS7iJTyfZ9RmCklg+hpQN7K2ohlYjV7zYa+4srqrM
+ kzAiasr6Xhovzuw29tBzpLmtkzRqFJjT5hUC9HhFuPCkUhH3BeergikQS
+ koZvgV66Z8wQJYTw5W+fmBXgFAJs92GFfWcmFQlEKXUkmkErAG+Kcso05 w==;
+X-CSE-ConnectionGUID: gCot0FVoStqixdxpVGRE/w==
+X-CSE-MsgGUID: 0PVHhd+oTVWfylzgZcb8Bw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="46133160"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="46133160"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 02:36:44 -0800
-X-CSE-ConnectionGUID: YhMZX1eFRzug0k/roWhrdA==
-X-CSE-MsgGUID: D90dOze8Qom+15bw+IMgWA==
+ 16 Dec 2024 02:42:17 -0800
+X-CSE-ConnectionGUID: Yx8nAmkSQJqvJtx0tBemNA==
+X-CSE-MsgGUID: W6IphF6ET0OH4hT33Dzyrg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="97031208"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO [10.245.246.246])
- ([10.245.246.246])
+X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="97031917"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.245])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 02:36:23 -0800
-Message-ID: <334bb2c9d2ff97caf712f5f8c17b494c63869265.camel@linux.intel.com>
-Subject: Re: [PATCH v2 12/29] drm/xe: Add SVM garbage collector
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com, 
- simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
-Date: Mon, 16 Dec 2024 11:36:20 +0100
-In-Reply-To: <Z1nlWBOgEOMuKbN2@lstrano-desk.jf.intel.com>
-References: <20241016032518.539495-1-matthew.brost@intel.com>
- <20241016032518.539495-13-matthew.brost@intel.com>
- <747e7befa275ac0fcc95dc4e7e7aca27020e8dda.camel@linux.intel.com>
- <Z1nlWBOgEOMuKbN2@lstrano-desk.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
+ 16 Dec 2024 02:42:14 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ matthew.d.roper@intel.com, aravind.iddamsetty@intel.com
+Subject: Re: [PATCH 2/2] RFC drm/xe: Enable Boot Survivability mode
+In-Reply-To: <20241212054945.1091894-3-riana.tauro@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241212054945.1091894-1-riana.tauro@intel.com>
+ <20241212054945.1091894-3-riana.tauro@intel.com>
+Date: Mon, 16 Dec 2024 12:42:11 +0200
+Message-ID: <878qsfucxo.fsf@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,303 +69,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2024-12-11 at 11:17 -0800, Matthew Brost wrote:
-> On Tue, Nov 19, 2024 at 03:45:33PM +0100, Thomas Hellstr=C3=B6m wrote:
-> > On Tue, 2024-10-15 at 20:25 -0700, Matthew Brost wrote:
-> > > Add basic SVM garbage collector which can destroy an SVM range
-> > > upon
-> > > an
-> > > MMU UNMAP event.
-> > >=20
-> > > v2:
-> > > =C2=A0- Flush garbage collector in xe_svm_close
-> > >=20
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > ---
-> > > =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 87
-> > > +++++++++++++++++++++++++++++++-
-> > > =C2=A0drivers/gpu/drm/xe/xe_svm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 1 +
-> > > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-|=C2=A0 4 ++
-> > > =C2=A0drivers/gpu/drm/xe/xe_vm_types.h |=C2=A0 5 ++
-> > > =C2=A04 files changed, 95 insertions(+), 2 deletions(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/xe/xe_svm.c
-> > > b/drivers/gpu/drm/xe/xe_svm.c
-> > > index a9addaea316d..9c2f44cba166 100644
-> > > --- a/drivers/gpu/drm/xe/xe_svm.c
-> > > +++ b/drivers/gpu/drm/xe/xe_svm.c
-> > > @@ -30,6 +30,7 @@ xe_svm_range_alloc(struct drm_gpusvm *gpusvm)
-> > > =C2=A0	if (!range)
-> > > =C2=A0		return ERR_PTR(-ENOMEM);
-> > > =C2=A0
-> > > +	INIT_LIST_HEAD(&range->garbage_collector_link);
-> > > =C2=A0	xe_vm_get(gpusvm_to_vm(gpusvm));
-> > > =C2=A0
-> > > =C2=A0	return &range->base;
-> > > @@ -46,6 +47,24 @@ static struct xe_svm_range *to_xe_range(struct
-> > > drm_gpusvm_range *r)
-> > > =C2=A0	return container_of(r, struct xe_svm_range, base);
-> > > =C2=A0}
-> > > =C2=A0
-> > > +static void
-> > > +xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct
-> > > xe_svm_range *range,
-> > > +				=C2=A0=C2=A0 const struct
-> > > mmu_notifier_range
-> > > *mmu_range)
-> > > +{
-> > > +	struct xe_device *xe =3D vm->xe;
-> > > +
-> > > +	drm_gpusvm_range_set_unmapped(&range->base, mmu_range);
-> > > +
-> > > +	spin_lock(&vm->svm.garbage_collector.lock);
-> > > +	if (list_empty(&range->garbage_collector_link))
-> > > +		list_add_tail(&range->garbage_collector_link,
-> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &vm-
-> > > > svm.garbage_collector.range_list);
-> > > +	spin_unlock(&vm->svm.garbage_collector.lock);
-> > > +
-> > > +	queue_work(xe_device_get_root_tile(xe)->primary_gt-
-> > > > usm.pf_wq,
-> > > +		=C2=A0=C2=A0 &vm->svm.garbage_collector.work);
-> > > +}
-> > > +
-> > > =C2=A0static u8
-> > > =C2=A0xe_svm_range_notifier_event_begin(struct xe_vm *vm, struct
-> > > drm_gpusvm_range *r,
-> > > =C2=A0				=C2=A0 const struct
-> > > mmu_notifier_range
-> > > *mmu_range,
-> > > @@ -88,7 +107,9 @@ xe_svm_range_notifier_event_end(struct xe_vm
-> > > *vm,
-> > > struct drm_gpusvm_range *r,
-> > > =C2=A0	struct drm_gpusvm_ctx ctx =3D { .in_notifier =3D true, };
-> > > =C2=A0
-> > > =C2=A0	drm_gpusvm_range_unmap_pages(&vm->svm.gpusvm, r, &ctx);
-> > > -	/* TODO: Add range to garbage collector */
-> > > +	if (mmu_range->event =3D=3D MMU_NOTIFY_UNMAP)
-> > > +		xe_svm_garbage_collector_add_range(vm,
-> > > to_xe_range(r),
-> > > +						=C2=A0=C2=A0 mmu_range);
-> > > =C2=A0}
-> > > =C2=A0
-> > > =C2=A0static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
-> > > @@ -184,6 +205,58 @@ static void xe_svm_invalidate(struct
-> > > drm_gpusvm
-> > > *gpusvm,
-> > > =C2=A0		xe_svm_range_notifier_event_end(vm, r,
-> > > mmu_range);
-> > > =C2=A0}
-> > > =C2=A0
-> > > +static int __xe_svm_garbage_collector(struct xe_vm *vm,
-> > > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_svm_range
-> > > *range)
-> > > +{
-> > > +	/* TODO: Do unbind */
-> > > +
-> > > +	drm_gpusvm_range_remove(&vm->svm.gpusvm, &range->base);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int xe_svm_garbage_collector(struct xe_vm *vm)
-> > > +{
-> > > +	struct xe_svm_range *range, *next;
-> > > +	int err;
-> > > +
-> > > +	lockdep_assert_held_write(&vm->lock);
-> > > +
-> > > +	if (xe_vm_is_closed_or_banned(vm))
-> > > +		return -ENOENT;
-> > > +
-> > > +	spin_lock(&vm->svm.garbage_collector.lock);
-> > > +	list_for_each_entry_safe(range, next,
-> > > +				 &vm-
-> > > > svm.garbage_collector.range_list,
-> > > +				 garbage_collector_link) {
-> > > +		list_del(&range->garbage_collector_link);
-> > > +		spin_unlock(&vm->svm.garbage_collector.lock);
-> >=20
-> > This looks broken, what if someone removed the "next" entry here?
-> > You probably want to use list_next_entry_or_null();
-> >=20
->=20
-> Yea, let me fix this loop structure.
->=20
-> > > +
-> > > +		err =3D __xe_svm_garbage_collector(vm, range);
-> > > +		if (err) {
-> > > +			drm_warn(&vm->xe->drm,
-> > > +				 "Garbage collection failed:
-> > > %d\n",
-> > > err);
-> > > +			xe_vm_kill(vm, true);
-> > > +			return err;
-> > > +		}
-> > > +
-> > > +		spin_lock(&vm->svm.garbage_collector.lock);
-> > > +	}
-> > > +	spin_unlock(&vm->svm.garbage_collector.lock);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static void xe_svm_garbage_collector_work_func(struct
-> > > work_struct
-> > > *w)
-> > > +{
-> > > +	struct xe_vm *vm =3D container_of(w, struct xe_vm,
-> > > +					svm.garbage_collector.wo
-> > > rk);
-> > > +
-> > > +	down_write(&vm->lock);
-> > > +	xe_svm_garbage_collector(vm);
-> > > +	up_write(&vm->lock);
-> > > +}
-> > > +
-> > > =C2=A0static const struct drm_gpusvm_ops gpusvm_ops =3D {
-> > > =C2=A0	.range_alloc =3D xe_svm_range_alloc,
-> > > =C2=A0	.range_free =3D xe_svm_range_free,
-> > > @@ -198,6 +271,11 @@ static const u64 fault_chunk_sizes[] =3D {
-> > > =C2=A0
-> > > =C2=A0int xe_svm_init(struct xe_vm *vm)
-> > > =C2=A0{
-> > > +	spin_lock_init(&vm->svm.garbage_collector.lock);
-> > > +	INIT_LIST_HEAD(&vm->svm.garbage_collector.range_list);
-> > > +	INIT_WORK(&vm->svm.garbage_collector.work,
-> > > +		=C2=A0 xe_svm_garbage_collector_work_func);
-> > > +
-> > > =C2=A0	return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm-
-> > > >xe-
-> > > > drm,
-> > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 current->mm, NULL, 0, v=
-m->size,
-> > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SZ_512M, &gpusvm_ops,
-> > > fault_chunk_sizes,
-> > > @@ -211,6 +289,8 @@ void xe_svm_close(struct xe_vm *vm)
-> > > =C2=A0	/* Flush running notifiers making xe_vm_close() visable
-> > > */
-> > > =C2=A0	xe_svm_notifier_lock(vm);
-> > > =C2=A0	xe_svm_notifier_unlock(vm);
-> > > +
-> > > +	flush_work(&vm->svm.garbage_collector.work);
-> > > =C2=A0}
-> > > =C2=A0
-> > > =C2=A0void xe_svm_fini(struct xe_vm *vm)
-> > > @@ -241,7 +321,10 @@ int xe_svm_handle_pagefault(struct xe_vm
-> > > *vm,
-> > > struct xe_vma *vma,
-> > > =C2=A0	lockdep_assert_held_write(&vm->lock);
-> > > =C2=A0
-> > > =C2=A0retry:
-> > > -	/* TODO: Run garbage collector */
-> > > +	/* Always process UNMAPs first so view SVM ranges is
-> > > current
-> > > */
-> > > +	err =3D xe_svm_garbage_collector(vm);
-> > > +	if (err)
-> > > +		return err;
-> > > =C2=A0
-> > > =C2=A0	r =3D drm_gpusvm_range_find_or_insert(&vm->svm.gpusvm,
-> > > fault_addr,
-> > > =C2=A0					=C2=A0=C2=A0=C2=A0 xe_vma_start(vma),
-> > > xe_vma_end(vma),
-> > > diff --git a/drivers/gpu/drm/xe/xe_svm.h
-> > > b/drivers/gpu/drm/xe/xe_svm.h
-> > > index ee0bd1ae655b..06d90d0f71a6 100644
-> > > --- a/drivers/gpu/drm/xe/xe_svm.h
-> > > +++ b/drivers/gpu/drm/xe/xe_svm.h
-> > > @@ -17,6 +17,7 @@ struct xe_vma;
-> > > =C2=A0
-> > > =C2=A0struct xe_svm_range {
-> > > =C2=A0	struct drm_gpusvm_range base;
-> > > +	struct list_head garbage_collector_link;
-> > > =C2=A0	u8 tile_present;
-> > > =C2=A0	u8 tile_invalidated;
-> > > =C2=A0};
-> > > diff --git a/drivers/gpu/drm/xe/xe_vm.c
-> > > b/drivers/gpu/drm/xe/xe_vm.c
-> > > index 63aa0a25d3b7..399cbbdbddd5 100644
-> > > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > > @@ -3071,6 +3071,10 @@ int xe_vm_bind_ioctl(struct drm_device
-> > > *dev,
-> > > void *data, struct drm_file *file)
-> > > =C2=A0		goto put_exec_queue;
-> > > =C2=A0	}
-> > > =C2=A0
-> > > +	/* Ensure all UNMAPs visable */
-> > > +	if (xe_vm_in_fault_mode(vm))
-> > > +		flush_work(&vm->svm.garbage_collector.work);
-> >=20
-> > Hmm, what is someone added an UNMAP here?
-> >=20
->=20
-> What we really trying to guard to against is user space doing
-> something
-> like this:
->=20
-> addr =3D malloc();
-> gpu access
-> free(addr)
-> bind_bo(addr);
->=20
-> We want to make sure all SVM mappings from the GPU access have
-> processed
-> the UNMAP events from the 'free(addr)'. So I think the code is fine
-> as
-> is - we just want to make sure UNMAP events prior to the IOCTL are
-> processed.
+On Thu, 12 Dec 2024, Riana Tauro <riana.tauro@intel.com> wrote:
+> Enable boot survivability mode if pcode initialization fails and
+> if boot status indicates a failure. In this mode, drm card is not
+> exposed and driver probe returns success after loading the bare minimum
+> to allow firmware to be flashed via mei.
+>
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_device.c             |  9 +++++++--
+>  drivers/gpu/drm/xe/xe_pci.c                | 13 +++++++++++++
+>  drivers/gpu/drm/xe/xe_survivability_mode.c |  3 +++
+>  3 files changed, 23 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 56d4ffb650da..50ed980e1db9 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -51,6 +51,7 @@
+>  #include "xe_pm.h"
+>  #include "xe_query.h"
+>  #include "xe_sriov.h"
+> +#include "xe_survivability_mode.h"
+>  #include "xe_tile.h"
+>  #include "xe_ttm_stolen_mgr.h"
+>  #include "xe_ttm_sys_mgr.h"
+> @@ -585,8 +586,12 @@ int xe_device_probe_early(struct xe_device *xe)
+>  	update_device_info(xe);
+>  
+>  	err = xe_pcode_probe_early(xe);
+> -	if (err)
+> -		return err;
+> +	if (err) {
+> +		if (xe->info.platform == XE_BATTLEMAGE && xe_survivability_mode_required(xe))
 
-But the notion of "prior" only exists in the presence of some form of
-synchronization, like a lock. Let's say another thread calls a free
-either
+Why the platform check here? Doesn't this stuff belong abstracted inside
+the survivability mode?
 
-a) before the flush_work
-b) racing with the flush_work
-c) after the flush_work
+> +			xe_survivability_mode_init(xe);
+> +
+> +		return xe->survivability.mode ? 0 : err;
 
-Is there any difference WRT correctness and how do we differentiate?
+Is it a good idea to start looking at survivability guts from all over
+the place? I mean xe->survivability.mode. Even its value should be an
+implementation detail, and this is using it to decide whether the
+previous call succeeded.
 
-I don't think it's clear what this flush_work actually protects
-against.
+I think this would benefit from hiding stuff better and providing
+interfaces. This is one of the things i915 sucks at, and it's really
+hard and tedious work to fix afterwards.
 
-Thanks,
-Thomas
+Just imagine xe->survavibility is an opaque pointer (even if it isn't)
+and implement stuff based on that. It will make a world of difference in
+future maintainability.
 
 
+BR,
+Jani.
 
 
->=20
-> Matt
->=20
-> =C2=A0
-> > Thanks,
-> > Thomas
-> >=20
-> > > +
-> > > =C2=A0	err =3D down_write_killable(&vm->lock);
-> > > =C2=A0	if (err)
-> > > =C2=A0		goto put_vm;
-> > > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
-> > > b/drivers/gpu/drm/xe/xe_vm_types.h
-> > > index b736e53779d2..2eae3575c409 100644
-> > > --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> > > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> > > @@ -146,6 +146,11 @@ struct xe_vm {
-> > > =C2=A0	struct {
-> > > =C2=A0		/** @svm.gpusvm: base GPUSVM used to track fault
-> > > allocations */
-> > > =C2=A0		struct drm_gpusvm gpusvm;
-> > > +		struct {
-> > > +			spinlock_t lock;
-> > > +			struct list_head range_list;
-> > > +			struct work_struct work;
-> > > +		} garbage_collector;
-> > > =C2=A0	} svm;
-> > > =C2=A0
-> > > =C2=A0	struct xe_device *xe;
-> >=20
+> +	}
+>  
+>  	err = wait_for_lmem_ready(xe);
+>  	if (err)
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index 7d146e3e8e21..b9dcd36de06d 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -30,6 +30,7 @@
+>  #include "xe_pm.h"
+>  #include "xe_sriov.h"
+>  #include "xe_step.h"
+> +#include "xe_survivability_mode.h"
+>  #include "xe_tile.h"
+>  
+>  enum toggle_d3cold {
+> @@ -768,6 +769,9 @@ static void xe_pci_remove(struct pci_dev *pdev)
+>  	if (IS_SRIOV_PF(xe))
+>  		xe_pci_sriov_configure(pdev, 0);
+>  
+> +	if (xe->survivability.mode)
+> +		return xe_survivability_mode_remove(xe);
+> +
+>  	xe_device_remove(xe);
+>  	xe_pm_runtime_fini(xe);
+>  	pci_set_drvdata(pdev, NULL);
+> @@ -840,6 +844,15 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  		return err;
+>  
+>  	err = xe_device_probe_early(xe);
+> +
+> +	/*
+> +	 * In Boot Survivability mode, no drm card is exposed
+> +	 * and driver is loaded with bare minimum to allow
+> +	 * for firmware to be flashed through mei
+> +	 */
+> +	if (!err && xe->survivability.mode)
+> +		return 0;
+> +
+>  	if (err)
+>  		return err;
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
+> index 7e36989efd68..6c1e79b5c15f 100644
+> --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
+> +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+> @@ -176,7 +176,10 @@ bool xe_survivability_mode_required(struct xe_device *xe)
+>   */
+>  void xe_survivability_mode_remove(struct xe_device *xe)
+>  {
+> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> +
+>  	sysfs_remove_files(&xe->drm.dev->kobj, survivability_attrs);
+> +	pci_set_drvdata(pdev, NULL);
+>  }
+>  
+>  /**
 
+-- 
+Jani Nikula, Intel
