@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2644E7717F
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 16:31:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68D3FE77183
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 16:31:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ACAA10E6F8;
-	Mon, 16 Dec 2024 16:31:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D3BA10E6F9;
+	Mon, 16 Dec 2024 16:31:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k6XzsKJp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jwBYiumY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D806A10E6F8
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Dec 2024 16:31:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C36CF10E6F9
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Dec 2024 16:31:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734366667; x=1765902667;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/RHrvK2iiTQhlydOmzpZCPkogpxxpXVYNw+V5nbSUNE=;
- b=k6XzsKJpcVmbcrixN8lCRvPN+LoALAhhlWrZW6czP0tCUb2hPvs60gJI
- TIr19T/dKa5jsJkKU4o56syhtjTGjOnP4h/nl80LPjh8Yyw75r2ijhitv
- TokhQMEYXySPUW4SDFCqXgfzkZ9ax+sm3+saqfnMg/8ga/NxOrKWWjLrP
- mzd4TbVqqZKRpgVLjyA+lDBe31jFlNVVzzsGqvV2U3CfvqRET4zZ0o8qL
- KSkshJQRtJ+U8LFlhEg4ccaNqrwRb6ucTWZaQJWXv47/hMBX2BbUA89ff
- kpeQ/A/mC1ix7jzkR0/qT0baYVkdd8M1wVjEuxjYGfjqfuIZslG0H9W9C A==;
-X-CSE-ConnectionGUID: t9zFHzmGSHyE9GkIYT18Iw==
-X-CSE-MsgGUID: cVBFxpLrTwC38Jq90EE7ww==
-X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34636121"
-X-IronPort-AV: E=Sophos;i="6.12,239,1728975600"; d="scan'208";a="34636121"
+ t=1734366670; x=1765902670;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=1oz8g3UwfROc3kLslioU1XbGTfLsTPnWBpdd6Nux5Vs=;
+ b=jwBYiumYfWAbsuQPzZHXhPAvc/GxPkKiA1Lxn7uFOz3muEup1pCFlK9s
+ aXD4t0Uj7yszeALBHOhpJqM+r8jx/rqAsdSd8L97PXBQcMKJxL7oTGsw7
+ fIX7SD1GLQ0H/GVhnlGCaNoDOjBK468tcujLIahdhnBFJ6xd9quWKI1HR
+ OvCiLNkT0TgSw469YW/JyNlw8wStvog7Jj3/fVaKaEmYUIOdpqhJjx0mF
+ iNh8NM6HG2fhumYU23tJLd6ElyiVMHtIPzkXGgsGPPTS30gAVBIWmU9bE
+ 7R3V1YzbDmkQFb6DyIMTr5V76/Jhp0aQFfeIvz6FV/NbE3L7q98yPwpIS A==;
+X-CSE-ConnectionGUID: NtpeMOmdR462TpSLP1ciIQ==
+X-CSE-MsgGUID: 2Y9SWtb9QkWx6xIMuUZ21g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34636147"
+X-IronPort-AV: E=Sophos;i="6.12,239,1728975600"; d="scan'208";a="34636147"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 08:31:06 -0800
-X-CSE-ConnectionGUID: hBFFQvuSRAW4LsTWmbDhww==
-X-CSE-MsgGUID: 9HQE8X1VQtGUtbsvydf83A==
+ 16 Dec 2024 08:31:09 -0800
+X-CSE-ConnectionGUID: U5tZ+1LMQWWB9cZBoixzyQ==
+X-CSE-MsgGUID: 5vIuCrlkSzS1qr5vpuw9ZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,239,1728975600"; d="scan'208";a="97125772"
+X-IronPort-AV: E=Sophos;i="6.12,239,1728975600"; d="scan'208";a="97125799"
 Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
  mwauld-desk.intel.com) ([10.245.244.246])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 08:31:05 -0800
+ 16 Dec 2024 08:31:08 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH 1/7] drm/xe: use backup object for pinned save/restore
-Date: Mon, 16 Dec 2024 16:29:42 +0000
-Message-ID: <20241216162941.86070-8-matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 3/7] drm/xe: Add XE_BO_FLAG_PINNED_NORESTORE
+Date: Mon, 16 Dec 2024 16:29:44 +0000
+Message-ID: <20241216162941.86070-10-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20241216162941.86070-8-matthew.auld@intel.com>
+References: <20241216162941.86070-8-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -67,427 +70,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we move pinned objects, relying on the fact that the lpfn/fpfn
-will force the placement to occupy the same pages when restoring.
-However this then limits all such pinned objects to be contig
-underneath. In addition it is likely a little fragile moving pinned
-objects in the first place. Rather than moving such objects rather copy
-the page contents to a secondary system memory object, that way the VRAM
-pages never move and remain pinned. This also opens the door for
-eventually having non-contig pinned objects that can also be
-saved/restored using blitter.
+From: Matthew Brost <matthew.brost@intel.com>
 
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1182
+Not all BOs need to be restored on resume / d3cold exit, add
+XE_BO_FLAG_PINNED_NO_RESTORE which skips restoring of BOs rather just
+allocates VRAM for the BO. This should slightly speedup resume / d3cold
+exit flows.
+
+Marking GuC ADS, GuC CT, GuC log, GuC PC, and SA as NORESTORE.
+
+v2:
+ - s/WONTNEED/NORESTORE (Vivi)
+ - Rebase on newly added g2g and backup object flow
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c       | 285 ++++++++++++++-----------------
- drivers/gpu/drm/xe/xe_bo_evict.c |   8 -
- drivers/gpu/drm/xe/xe_bo_types.h |   2 +
- 3 files changed, 131 insertions(+), 164 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c      | 6 +++++-
+ drivers/gpu/drm/xe/xe_bo.h      | 9 +++++----
+ drivers/gpu/drm/xe/xe_guc.c     | 3 ++-
+ drivers/gpu/drm/xe/xe_guc_ads.c | 3 ++-
+ drivers/gpu/drm/xe/xe_guc_ct.c  | 3 ++-
+ drivers/gpu/drm/xe/xe_guc_log.c | 3 ++-
+ drivers/gpu/drm/xe/xe_guc_pc.c  | 3 ++-
+ drivers/gpu/drm/xe/xe_sa.c      | 3 ++-
+ 8 files changed, 22 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 283cd0294570..6f073d12359a 100644
+index e95909963e06..f08b725dd419 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -780,79 +780,43 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		xe_pm_runtime_get_noresume(xe);
- 	}
- 
--	if (xe_bo_is_pinned(bo) && !xe_bo_is_user(bo)) {
--		/*
--		 * Kernel memory that is pinned should only be moved on suspend
--		 * / resume, some of the pinned memory is required for the
--		 * device to resume / use the GPU to move other evicted memory
--		 * (user memory) around. This likely could be optimized a bit
--		 * futher where we find the minimum set of pinned memory
--		 * required for resume but for simplity doing a memcpy for all
--		 * pinned memory.
--		 */
--		ret = xe_bo_vmap(bo);
--		if (!ret) {
--			ret = ttm_bo_move_memcpy(ttm_bo, ctx, new_mem);
--
--			/* Create a new VMAP once kernel BO back in VRAM */
--			if (!ret && resource_is_vram(new_mem)) {
--				struct xe_mem_region *vram = res_to_mem_region(new_mem);
--				void __iomem *new_addr = vram->mapping +
--					(new_mem->start << PAGE_SHIFT);
--
--				if (XE_WARN_ON(new_mem->start == XE_BO_INVALID_OFFSET)) {
--					ret = -EINVAL;
--					xe_pm_runtime_put(xe);
--					goto out;
--				}
--
--				xe_assert(xe, new_mem->start ==
--					  bo->placements->fpfn);
--
--				iosys_map_set_vaddr_iomem(&bo->vmap, new_addr);
--			}
--		}
--	} else {
--		if (move_lacks_source) {
--			u32 flags = 0;
--
--			if (mem_type_is_vram(new_mem->mem_type))
--				flags |= XE_MIGRATE_CLEAR_FLAG_FULL;
--			else if (handle_system_ccs)
--				flags |= XE_MIGRATE_CLEAR_FLAG_CCS_DATA;
--
--			fence = xe_migrate_clear(migrate, bo, new_mem, flags);
--		}
--		else
--			fence = xe_migrate_copy(migrate, bo, bo, old_mem,
--						new_mem, handle_system_ccs);
--		if (IS_ERR(fence)) {
--			ret = PTR_ERR(fence);
--			xe_pm_runtime_put(xe);
--			goto out;
--		}
--		if (!move_lacks_source) {
--			ret = ttm_bo_move_accel_cleanup(ttm_bo, fence, evict,
--							true, new_mem);
--			if (ret) {
--				dma_fence_wait(fence, false);
--				ttm_bo_move_null(ttm_bo, new_mem);
--				ret = 0;
--			}
--		} else {
--			/*
--			 * ttm_bo_move_accel_cleanup() may blow up if
--			 * bo->resource == NULL, so just attach the
--			 * fence and set the new resource.
--			 */
--			dma_resv_add_fence(ttm_bo->base.resv, fence,
--					   DMA_RESV_USAGE_KERNEL);
-+	if (move_lacks_source) {
-+		u32 flags = 0;
-+
-+		if (mem_type_is_vram(new_mem->mem_type))
-+			flags |= XE_MIGRATE_CLEAR_FLAG_FULL;
-+		else if (handle_system_ccs)
-+			flags |= XE_MIGRATE_CLEAR_FLAG_CCS_DATA;
-+
-+		fence = xe_migrate_clear(migrate, bo, new_mem, flags);
-+	} else
-+		fence = xe_migrate_copy(migrate, bo, bo, old_mem, new_mem,
-+					handle_system_ccs);
-+	if (IS_ERR(fence)) {
-+		ret = PTR_ERR(fence);
-+		xe_pm_runtime_put(xe);
-+		goto out;
-+	}
-+	if (!move_lacks_source) {
-+		ret = ttm_bo_move_accel_cleanup(ttm_bo, fence, evict, true,
-+						new_mem);
-+		if (ret) {
-+			dma_fence_wait(fence, false);
- 			ttm_bo_move_null(ttm_bo, new_mem);
-+			ret = 0;
- 		}
--
--		dma_fence_put(fence);
-+	} else {
-+		/*
-+		 * ttm_bo_move_accel_cleanup() may blow up if
-+		 * bo->resource == NULL, so just attach the
-+		 * fence and set the new resource.
-+		 */
-+		dma_resv_add_fence(ttm_bo->base.resv, fence,
-+				   DMA_RESV_USAGE_KERNEL);
-+		ttm_bo_move_null(ttm_bo, new_mem);
- 	}
- 
-+	dma_fence_put(fence);
- 	xe_pm_runtime_put(xe);
- 
- out:
-@@ -876,59 +840,70 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
-  */
- int xe_bo_evict_pinned(struct xe_bo *bo)
- {
--	struct ttm_place place = {
--		.mem_type = XE_PL_TT,
--	};
--	struct ttm_placement placement = {
--		.placement = &place,
--		.num_placement = 1,
--	};
--	struct ttm_operation_ctx ctx = {
--		.interruptible = false,
--		.gfp_retry_mayfail = true,
--	};
--	struct ttm_resource *new_mem;
--	int ret;
-+	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
-+	struct xe_bo *backup;
-+	bool unmap = false;
-+	int ret = 0;
- 
--	xe_bo_assert_held(bo);
-+	xe_bo_lock(bo, false);
- 
--	if (WARN_ON(!bo->ttm.resource))
--		return -EINVAL;
-+	if (WARN_ON(!bo->ttm.resource)) {
-+		ret = -EINVAL;
-+		goto out_unlock_bo;
-+	}
- 
--	if (WARN_ON(!xe_bo_is_pinned(bo)))
--		return -EINVAL;
-+	if (WARN_ON(!xe_bo_is_pinned(bo))) {
-+		ret = -EINVAL;
-+		goto out_unlock_bo;
-+	}
- 
+@@ -860,6 +860,9 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
  	if (!xe_bo_is_vram(bo))
--		return 0;
+ 		goto out_unlock_bo;
+ 
++	if (bo->flags & XE_BO_FLAG_PINNED_NORESTORE)
 +		goto out_unlock_bo;
- 
--	ret = ttm_bo_mem_space(&bo->ttm, &placement, &new_mem, &ctx);
--	if (ret)
--		return ret;
--
--	if (!bo->ttm.ttm) {
--		bo->ttm.ttm = xe_ttm_tt_create(&bo->ttm, 0);
--		if (!bo->ttm.ttm) {
--			ret = -ENOMEM;
--			goto err_res_free;
--		}
-+	backup = xe_bo_create_locked(xe, NULL, NULL, bo->size, ttm_bo_type_kernel,
-+			      XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS | XE_BO_FLAG_PINNED);
-+	if (IS_ERR(backup)) {
-+		ret = PTR_ERR(backup);
-+		goto out_unlock_bo;
- 	}
- 
--	ret = ttm_bo_populate(&bo->ttm, &ctx);
--	if (ret)
--		goto err_res_free;
-+	if (!xe_bo_is_user(bo)) {
-+		ret = xe_bo_vmap(backup);
-+		if (ret)
-+			goto out_backup;
- 
--	ret = dma_resv_reserve_fences(bo->ttm.base.resv, 1);
--	if (ret)
--		goto err_res_free;
-+		if (iosys_map_is_null(&bo->vmap)) {
-+			ret = xe_bo_vmap(bo);
-+			if (ret)
-+				goto out_backup;
-+			unmap = true;
-+		}
- 
--	ret = xe_bo_move(&bo->ttm, false, &ctx, new_mem, NULL);
--	if (ret)
--		goto err_res_free;
-+		xe_map_memcpy_from(xe, backup->vmap.vaddr, &bo->vmap, 0,
-+				   bo->size);
-+	} else {
-+		struct dma_fence *fence;
- 
--	return 0;
-+		fence = xe_migrate_copy(bo->tile->migrate, bo, backup,
-+					bo->ttm.resource, backup->ttm.resource,
-+					false);
-+		if (IS_ERR(fence)) {
-+			ret = PTR_ERR(fence);
-+			goto out_backup;
-+		}
-+	}
- 
--err_res_free:
--	ttm_resource_free(&bo->ttm, &new_mem);
-+	bo->backup_obj = backup;
 +
-+out_backup:
-+	xe_bo_vunmap(backup);
-+	xe_bo_unlock(backup);
-+	if (ret)
-+		xe_bo_put(backup);
-+out_unlock_bo:
-+	if (unmap)
-+		xe_bo_vunmap(bo);
-+	xe_bo_unlock(bo);
- 	return ret;
- }
+ 	backup = xe_bo_create_locked(xe, NULL, NULL, bo->size, ttm_bo_type_kernel,
+ 			      XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS | XE_BO_FLAG_PINNED);
+ 	if (IS_ERR(backup)) {
+@@ -1804,7 +1807,8 @@ int xe_managed_bo_reinit_in_vram(struct xe_device *xe, struct xe_tile *tile, str
+ 	struct xe_bo *bo;
+ 	u32 dst_flags = XE_BO_FLAG_VRAM_IF_DGFX(tile) | XE_BO_FLAG_GGTT;
  
-@@ -949,47 +924,61 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
- 		.interruptible = false,
- 		.gfp_retry_mayfail = false,
- 	};
--	struct ttm_resource *new_mem;
--	struct ttm_place *place = &bo->placements[0];
-+	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
-+	struct xe_bo *backup = bo->backup_obj;
-+	bool unmap = false;
- 	int ret;
+-	dst_flags |= (*src)->flags & XE_BO_FLAG_GGTT_INVALIDATE;
++	dst_flags |= (*src)->flags & (XE_BO_FLAG_GGTT_INVALIDATE |
++				      XE_BO_FLAG_PINNED_NORESTORE);
  
--	xe_bo_assert_held(bo);
--
--	if (WARN_ON(!bo->ttm.resource))
--		return -EINVAL;
--
--	if (WARN_ON(!xe_bo_is_pinned(bo)))
--		return -EINVAL;
-+	if (!backup)
-+		return 0;
+ 	xe_assert(xe, IS_DGFX(xe));
+ 	xe_assert(xe, !(*src)->vmap.is_iomem);
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index a0ac2b9c903d..d75740b6e0a5 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -39,10 +39,11 @@
+ #define XE_BO_FLAG_NEEDS_64K		BIT(15)
+ #define XE_BO_FLAG_NEEDS_2M		BIT(16)
+ #define XE_BO_FLAG_GGTT_INVALIDATE	BIT(17)
+-#define XE_BO_FLAG_GGTT0                BIT(18)
+-#define XE_BO_FLAG_GGTT1                BIT(19)
+-#define XE_BO_FLAG_GGTT2                BIT(20)
+-#define XE_BO_FLAG_GGTT3                BIT(21)
++#define XE_BO_FLAG_PINNED_NORESTORE	BIT(18)
++#define XE_BO_FLAG_GGTT0                BIT(19)
++#define XE_BO_FLAG_GGTT1                BIT(20)
++#define XE_BO_FLAG_GGTT2                BIT(21)
++#define XE_BO_FLAG_GGTT3                BIT(22)
+ #define XE_BO_FLAG_GGTT_ALL             (XE_BO_FLAG_GGTT0 | \
+ 					 XE_BO_FLAG_GGTT1 | \
+ 					 XE_BO_FLAG_GGTT2 | \
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 4e2868efb620..2fec35a81afd 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -453,7 +453,8 @@ static int guc_g2g_alloc(struct xe_guc *guc)
+ 					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+ 					  XE_BO_FLAG_GGTT |
+ 					  XE_BO_FLAG_GGTT_ALL |
+-					  XE_BO_FLAG_GGTT_INVALIDATE);
++					  XE_BO_FLAG_GGTT_INVALIDATE |
++					  XE_BO_FLAG_PINNED_NORESTORE);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
  
--	if (WARN_ON(xe_bo_is_vram(bo)))
--		return -EINVAL;
-+	xe_bo_lock(backup, false);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 943146e5b460..887181c5395c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -413,7 +413,8 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, guc_ads_size(ads) + MAX_GOLDEN_LRC_SIZE,
+ 					  XE_BO_FLAG_SYSTEM |
+ 					  XE_BO_FLAG_GGTT |
+-					  XE_BO_FLAG_GGTT_INVALIDATE);
++					  XE_BO_FLAG_GGTT_INVALIDATE |
++					  XE_BO_FLAG_PINNED_NORESTORE);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
  
--	if (WARN_ON(!bo->ttm.ttm && !xe_bo_is_stolen(bo)))
--		return -EINVAL;
-+	ret = ttm_bo_validate(&backup->ttm, &backup->placement, &ctx);
-+	if (ret)
-+		goto out_backup;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 7d33f3a11e61..390598babae9 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -238,7 +238,8 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, guc_ct_size(),
+ 					  XE_BO_FLAG_SYSTEM |
+ 					  XE_BO_FLAG_GGTT |
+-					  XE_BO_FLAG_GGTT_INVALIDATE);
++					  XE_BO_FLAG_GGTT_INVALIDATE |
++					  XE_BO_FLAG_PINNED_NORESTORE);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
  
--	if (!mem_type_is_vram(place->mem_type))
--		return 0;
-+	if (WARN_ON(!dma_resv_trylock(bo->ttm.base.resv))) {
-+		ret = -EBUSY;
-+		goto out_backup;
-+	}
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index df4cfb698cdb..88e4348204a0 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -261,7 +261,8 @@ int xe_guc_log_init(struct xe_guc_log *log)
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, guc_log_size(),
+ 					  XE_BO_FLAG_SYSTEM |
+ 					  XE_BO_FLAG_GGTT |
+-					  XE_BO_FLAG_GGTT_INVALIDATE);
++					  XE_BO_FLAG_GGTT_INVALIDATE |
++					  XE_BO_FLAG_PINNED_NORESTORE);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
  
--	ret = ttm_bo_mem_space(&bo->ttm, &bo->placement, &new_mem, &ctx);
--	if (ret)
--		return ret;
-+	if (!xe_bo_is_user(bo)) {
-+		ret = xe_bo_vmap(backup);
-+		if (ret)
-+			goto out_unlock_bo;
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index e8b9faeaef64..7c7f04f0d574 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -1086,7 +1086,8 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, size,
+ 					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+ 					  XE_BO_FLAG_GGTT |
+-					  XE_BO_FLAG_GGTT_INVALIDATE);
++					  XE_BO_FLAG_GGTT_INVALIDATE |
++					  XE_BO_FLAG_PINNED_NORESTORE);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
  
--	ret = ttm_bo_populate(&bo->ttm, &ctx);
--	if (ret)
--		goto err_res_free;
-+		if (iosys_map_is_null(&bo->vmap)) {
-+			ret = xe_bo_vmap(bo);
-+			if (ret)
-+				goto out_unlock_bo;
-+			unmap = true;
-+		}
- 
--	ret = dma_resv_reserve_fences(bo->ttm.base.resv, 1);
--	if (ret)
--		goto err_res_free;
-+		xe_map_memcpy_to(xe, &bo->vmap, 0, backup->vmap.vaddr,
-+				 bo->size);
-+	} else {
-+		struct dma_fence *fence;
- 
--	ret = xe_bo_move(&bo->ttm, false, &ctx, new_mem, NULL);
--	if (ret)
--		goto err_res_free;
-+		fence = xe_migrate_copy(bo->tile->migrate, backup, bo,
-+					backup->ttm.resource, bo->ttm.resource,
-+					false);
-+		if (IS_ERR(fence)) {
-+			ret = PTR_ERR(fence);
-+			goto out_unlock_bo;
-+		}
-+	}
- 
--	return 0;
-+	bo->backup_obj = NULL;
- 
--err_res_free:
--	ttm_resource_free(&bo->ttm, &new_mem);
-+out_unlock_bo:
-+	xe_bo_unlock(bo);
-+out_backup:
-+	if (unmap)
-+		xe_bo_vunmap(backup);
-+	xe_bo_unlock(backup);
-+	if (!bo->backup_obj)
-+		xe_bo_put(backup);
- 	return ret;
- }
- 
-@@ -1913,22 +1902,6 @@ int xe_bo_pin(struct xe_bo *bo)
- 	if (err)
- 		return err;
- 
--	/*
--	 * For pinned objects in on DGFX, which are also in vram, we expect
--	 * these to be in contiguous VRAM memory. Required eviction / restore
--	 * during suspend / resume (force restore to same physical address).
--	 */
--	if (IS_DGFX(xe) && !(IS_ENABLED(CONFIG_DRM_XE_DEBUG) &&
--	    bo->flags & XE_BO_FLAG_INTERNAL_TEST)) {
--		if (mem_type_is_vram(place->mem_type)) {
--			xe_assert(xe, place->flags & TTM_PL_FLAG_CONTIGUOUS);
--
--			place->fpfn = (xe_bo_addr(bo, 0, PAGE_SIZE) -
--				       vram_region_gpu_offset(bo->ttm.resource)) >> PAGE_SHIFT;
--			place->lpfn = place->fpfn + (bo->size >> PAGE_SHIFT);
--		}
--	}
--
- 	if (mem_type_is_vram(place->mem_type) || bo->flags & XE_BO_FLAG_GGTT) {
- 		spin_lock(&xe->pinned.lock);
- 		list_add_tail(&bo->pinned_link, &xe->pinned.kernel_bo_present);
-diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
-index 6a40eedd9db1..96764d8169f4 100644
---- a/drivers/gpu/drm/xe/xe_bo_evict.c
-+++ b/drivers/gpu/drm/xe/xe_bo_evict.c
-@@ -69,9 +69,7 @@ int xe_bo_evict_all(struct xe_device *xe)
- 		list_move_tail(&bo->pinned_link, &still_in_list);
- 		spin_unlock(&xe->pinned.lock);
- 
--		xe_bo_lock(bo, false);
- 		ret = xe_bo_evict_pinned(bo);
--		xe_bo_unlock(bo);
- 		xe_bo_put(bo);
- 		if (ret) {
- 			spin_lock(&xe->pinned.lock);
-@@ -103,9 +101,7 @@ int xe_bo_evict_all(struct xe_device *xe)
- 		list_move_tail(&bo->pinned_link, &xe->pinned.evicted);
- 		spin_unlock(&xe->pinned.lock);
- 
--		xe_bo_lock(bo, false);
- 		ret = xe_bo_evict_pinned(bo);
--		xe_bo_unlock(bo);
- 		xe_bo_put(bo);
- 		if (ret)
- 			return ret;
-@@ -143,9 +139,7 @@ int xe_bo_restore_kernel(struct xe_device *xe)
- 		list_move_tail(&bo->pinned_link, &xe->pinned.kernel_bo_present);
- 		spin_unlock(&xe->pinned.lock);
- 
--		xe_bo_lock(bo, false);
- 		ret = xe_bo_restore_pinned(bo);
--		xe_bo_unlock(bo);
- 		if (ret) {
- 			xe_bo_put(bo);
- 			return ret;
-@@ -213,9 +207,7 @@ int xe_bo_restore_user(struct xe_device *xe)
- 		xe_bo_get(bo);
- 		spin_unlock(&xe->pinned.lock);
- 
--		xe_bo_lock(bo, false);
- 		ret = xe_bo_restore_pinned(bo);
--		xe_bo_unlock(bo);
- 		xe_bo_put(bo);
- 		if (ret) {
- 			spin_lock(&xe->pinned.lock);
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index 46dc9e4e3e46..a1f1f637aa87 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -27,6 +27,8 @@ struct xe_vm;
- struct xe_bo {
- 	/** @ttm: TTM base buffer object */
- 	struct ttm_buffer_object ttm;
-+	/** @backup_obj: The backup object when pinned and suspended (vram only) */
-+	struct xe_bo *backup_obj;
- 	/** @size: Size of this buffer object */
- 	size_t size;
- 	/** @flags: flags for this buffer object */
+diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
+index e055bed7ae55..d26e6d52d01f 100644
+--- a/drivers/gpu/drm/xe/xe_sa.c
++++ b/drivers/gpu/drm/xe/xe_sa.c
+@@ -49,7 +49,8 @@ struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, size,
+ 					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+ 					  XE_BO_FLAG_GGTT |
+-					  XE_BO_FLAG_GGTT_INVALIDATE);
++					  XE_BO_FLAG_GGTT_INVALIDATE |
++					  XE_BO_FLAG_PINNED_NORESTORE);
+ 	if (IS_ERR(bo)) {
+ 		drm_err(&xe->drm, "failed to allocate bo for sa manager: %ld\n",
+ 			PTR_ERR(bo));
 -- 
 2.47.1
 
