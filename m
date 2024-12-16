@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C798AE77180
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 14:05:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FCA5E7717F
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 14:17:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CB5210E692;
-	Mon, 16 Dec 2024 14:05:50 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 557E110E692;
- Mon, 16 Dec 2024 14:05:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3023754968690593326=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1696210E692;
+	Mon, 16 Dec 2024 14:17:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iTiuGk2f";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D0AB10E692;
+ Mon, 16 Dec 2024 14:17:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734358641; x=1765894641;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=4OHPMDOAAPb8J5rJXxpYnRqkgZC9AeDOeomzy/3ci3A=;
+ b=iTiuGk2fBy8hKGMngFO7GI5C8gJiErfVVFer/ixub0HXbtidWlbNspz0
+ SUa9ePJ2r8uo/ESNLfSxK+QN0ncOTsv5fwsCe/udK7iCzJ6oHPJp+h672
+ hOIX7fBxm83M/CvJbJiF9gdLaj/fb7MIALzxmcOtc6BwScwKzf4wZouXz
+ UJT3pZmk011bEkWZgTw+ej3HJOzkEmICWvAu1kYbAG/KypW8EXVvw6VDx
+ qtqZo/WsJsgWVUxlZDtxYQx9L3sm1Nln8uwa+mjVC2pR5EaihuE5KNLAV
+ fg9VMhydeVtLMWY8wOKN4A+uXTzD23sOqH6FsGsoTkRClXE/p2dRkA6xm A==;
+X-CSE-ConnectionGUID: U26B8ZqISraPDWV2PxMBYw==
+X-CSE-MsgGUID: 22xdzEH8Q8eDzRiJlWTPjQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11278"; a="46137106"
+X-IronPort-AV: E=Sophos;i="6.12,214,1728975600"; d="scan'208";a="46137106"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 06:17:20 -0800
+X-CSE-ConnectionGUID: +YzmFvWdRw22i/zzVM/HIg==
+X-CSE-MsgGUID: llG1kUl/R4uLI1ko3Vb+Ug==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="102306430"
+Received: from mkuoppal-desk.fi.intel.com ([10.237.72.193])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 06:17:18 -0800
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Simona Vetter <simona@ffwll.ch>
+Subject: [PATCH 13/26] RFC drm/xe/eudebug: userptr vm pread/pwrite
+Date: Mon, 16 Dec 2024 16:17:21 +0200
+Message-ID: <20241216141721.2051279-1-mika.kuoppala@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241209133318.1806472-15-mika.kuoppala@linux.intel.com>
+References: <20241209133318.1806472-15-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_UHBR_ra?=
- =?utf-8?q?tes_for_Thunderbolt?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kahola" <mika.kahola@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Dec 2024 14:05:49 -0000
-Message-ID: <173435794934.3308293.9733781585159649451@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241216124422.475693-1-mika.kahola@intel.com>
-In-Reply-To: <20241216124422.475693-1-mika.kahola@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +71,100 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3023754968690593326==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Implement debugger vm access for userptrs.
 
-== Series Details ==
+When bind is done, take ref to current task so that
+we know from which vm the address was bound. Then during
+debugger pread/pwrite we use this target task as
+parameter to access the debuggee vm with access_process_vm().
 
-Series: drm/i915/display: UHBR rates for Thunderbolt
-URL   : https://patchwork.freedesktop.org/series/142649/
-State : success
+This is based on suggestions from Thomas, Joonas and Simona.
 
-== Summary ==
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_eudebug.c  | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_vm.c       | 11 +++++++++++
+ drivers/gpu/drm/xe/xe_vm_types.h |  6 ++++++
+ 3 files changed, 29 insertions(+)
 
-CI Bug Log - changes from xe-2381-46e1a74cb7576e5318856a8c24bd127150687c97_BAT -> xe-pw-142649v1_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
+index 9d87df75348b..980b5a1383ad 100644
+--- a/drivers/gpu/drm/xe/xe_eudebug.c
++++ b/drivers/gpu/drm/xe/xe_eudebug.c
+@@ -3074,6 +3074,18 @@ static int xe_eudebug_vma_access(struct xe_vma *vma, u64 offset_in_vma,
+ 		xe_bo_put(bo);
+ 
+ 		return ret;
++	} else if (xe_vma_is_userptr(vma)) {
++		struct xe_userptr *userptr = &to_userptr_vma(vma)->userptr;
++
++		/*
++		 * XXX: access_remote_vm() would fit as userptr notifier has
++		 * mm ref so we would not need to carry task ref at all.
++		 * But access_remote_vm is not exported. access_process_vm()
++		 * is exported so use it instead.
++		 */
++		return access_process_vm(userptr->eudebug.task,
++					 xe_vma_userptr(vma), buf, bytes,
++					 write ? FOLL_WRITE : 0);
+ 	}
+ 
+ 	return -EINVAL;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 0f17bc8b627b..c23bb4547d66 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -999,6 +999,14 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 			}
+ 
+ 			userptr->notifier_seq = LONG_MAX;
++#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
++			/*
++			 * We could use the mm which is on notifier. But
++			 * the access_remote_vm() is not exported. Thus
++			 * we get reference to task for access_process_vm()
++			 */
++			userptr->eudebug.task = get_task_struct(current);
++#endif
+ 		}
+ 
+ 		xe_vm_get(vm);
+@@ -1023,6 +1031,9 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
+ 		if (userptr->sg)
+ 			xe_hmm_userptr_free_sg(uvma);
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
++		put_task_struct(userptr->eudebug.task);
++#endif
+ 		/*
+ 		 * Since userptr pages are not pinned, we can't remove
+ 		 * the notifer until we're sure the GPU is not accessing
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 557b047ebdd7..26176ccbcbbc 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -68,6 +68,12 @@ struct xe_userptr {
+ #if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
+ 	u32 divisor;
+ #endif
++
++#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
++	struct {
++		struct task_struct *task;
++	} eudebug;
++#endif
+ };
+ 
+ struct xe_vma {
+-- 
+2.43.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2381-46e1a74cb7576e5318856a8c24bd127150687c97 -> xe-pw-142649v1
-
-  IGT_8157: 48a70f6795e6d68b9fae275261ae3b09d3401fe1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2381-46e1a74cb7576e5318856a8c24bd127150687c97: 46e1a74cb7576e5318856a8c24bd127150687c97
-  xe-pw-142649v1: 142649v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142649v1/index.html
-
---===============3023754968690593326==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: UHBR rates for Thunderbolt</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142649/">https://patchwork.freedesktop.org/series/142649/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142649v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142649v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2381-46e1a74cb7576e5318856a8c24bd127150687c97_BAT -&gt; xe-pw-142649v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2381-46e1a74cb7576e5318856a8c24bd127150687c97 -&gt; xe-pw-142649v1</li>
-</ul>
-<p>IGT_8157: 48a70f6795e6d68b9fae275261ae3b09d3401fe1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2381-46e1a74cb7576e5318856a8c24bd127150687c97: 46e1a74cb7576e5318856a8c24bd127150687c97<br />
-  xe-pw-142649v1: 142649v1</p>
-
-</body>
-</html>
-
---===============3023754968690593326==--
