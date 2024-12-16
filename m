@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5B5DE7717F
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 16:31:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05C2FE7717F
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 16:38:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7044D10E70B;
-	Mon, 16 Dec 2024 16:31:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fx1sTuwo";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DB2C10E703
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Dec 2024 16:31:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734366673; x=1765902673;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FYSd9W8CiHhRsKA7oZaNPmyQObiU9w/k9hkjMD9cAvA=;
- b=fx1sTuwo2V89J/GFdYPcPI7ogdKP/pmvWRfmiQpG3hPj15Hf0bFJiYB7
- bQtnXortQbRQGbFk05EzmgH3Oru8fznt+/wpgGXZDWyDxFD8nAky1LVY3
- h+1TSWttvoNkn1Jex9W4aQkjtHk4pEZzkhvxkxRI+zMTVV3okDP7qfzNF
- L2JEp9Q8PjXsCdw1ZMMgo6XCDs6jKK2FFVaxEtKtiwEODZRBaY00M1hms
- Z3d9Ayt+SeJHa/A+8fvXmP1ItMo+iLuoAwuwjwBApkO+8TvvlW2wVfPql
- Ik2CzaNTN+sZq6C47JXm35uKL2iBSjpw3Nnug2nPyVOnorEs1iDrTZdUD A==;
-X-CSE-ConnectionGUID: kjHAntfrS/2be+R+OPf65A==
-X-CSE-MsgGUID: +H9lzm7mTYmoYj4f5dinTQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34636170"
-X-IronPort-AV: E=Sophos;i="6.12,239,1728975600"; d="scan'208";a="34636170"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 08:31:13 -0800
-X-CSE-ConnectionGUID: n2AO7FiMQdSvj8u7I6SqXg==
-X-CSE-MsgGUID: jc+eKlx4T9ylvmVY2kZtjw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,239,1728975600"; d="scan'208";a="97125823"
-Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
- mwauld-desk.intel.com) ([10.245.244.246])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 08:31:12 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH 6/7] drm/xe: allow non-contig VRAM kernel BO
-Date: Mon, 16 Dec 2024 16:29:47 +0000
-Message-ID: <20241216162941.86070-13-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241216162941.86070-8-matthew.auld@intel.com>
-References: <20241216162941.86070-8-matthew.auld@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C92778926F;
+	Mon, 16 Dec 2024 16:38:57 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BDB38926F;
+ Mon, 16 Dec 2024 16:38:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5B1/7=5D_drm/xe=3A_use_backup_object_for_pinned_save/restore?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 16 Dec 2024 16:38:57 -0000
+Message-ID: <173436713743.3349364.145900536637902667@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241216162941.86070-8-matthew.auld@intel.com>
+In-Reply-To: <20241216162941.86070-8-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,43 +36,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the kernel bo doesn't care about vmap(), either directly or
-indirectly with save/restore then we don't need to force contig for such
-buffers.
+== Series Details ==
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+Series: series starting with [1/7] drm/xe: use backup object for pinned save/restore
+URL   : https://patchwork.freedesktop.org/series/142664/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 3b98ddd2fbda..4990da7870eb 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -164,11 +164,17 @@ static void try_add_system(struct xe_device *xe, struct xe_bo *bo,
- 
- static bool force_contiguous(u32 bo_flags)
- {
-+	if (bo_flags & XE_BO_FLAG_STOLEN)
-+		return true; /* users expect this */
-+	else if (bo_flags & XE_BO_FLAG_PINNED_EARLY_RESTORE)
-+		return true; /* needs vmap */
-+
- 	/*
- 	 * For eviction / restore on suspend / resume objects pinned in VRAM
- 	 * must be contiguous, also only contiguous BOs support xe_bo_vmap.
- 	 */
--	return bo_flags & (XE_BO_FLAG_PINNED | XE_BO_FLAG_GGTT);
-+	return bo_flags & XE_BO_FLAG_NEEDS_CPU_ACCESS &&
-+	       bo_flags & XE_BO_FLAG_PINNED;
- }
- 
- static void add_vram(struct xe_device *xe, struct xe_bo *bo,
--- 
-2.47.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 49cc582754c2 drm-tip: 2024y-12m-16d-16h-18m-45s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: use backup object for pinned save/restore
+Applying: drm/xe: split pinned save/restore into phases
+Applying: drm/xe: Add XE_BO_FLAG_PINNED_NORESTORE
+Applying: drm/xe: add XE_BO_FLAG_PINNED_EARLY_RESTORE
+Applying: drm/xe: unconditionally apply PINNED for pin_map()
+Applying: drm/xe: allow non-contig VRAM kernel BO
+Applying: drm/xe/sriov: support non-contig VRAM provisioning
+
 
