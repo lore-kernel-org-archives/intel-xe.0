@@ -4,54 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AF03E7717F
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 16:05:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94BD8E77180
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 16:07:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE66410E2FD;
-	Mon, 16 Dec 2024 16:05:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 461E410E15B;
+	Mon, 16 Dec 2024 16:07:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KTLOoCKK";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jFJaFujX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFDD210E2FD
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Dec 2024 16:05:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734365115; x=1765901115;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=vZKYFN/5tGD72LC5theaKNQZJpQXeOacQHzVv/72Uf0=;
- b=KTLOoCKKv7VL5Dok0xGmDVkbFbu97hIw6ESvZgDOQdYNpsePWXeCWJX4
- 5dbbIVf24EB3f+fj8ayyUftD1INR+c4ECmPjBAZZAQbNqTwSFVm8psF/5
- sNGoQIe3SF/2Tnrm0uM5i8b3/fFisD9ZotKHu/Xd4dhzwZBaHfKREAOA+
- kdMPAHiCaImoED8pJbK5IL+0ktVS/V5sC+SMCacVhmnXAagK1hnhXT2hK
- /+V7hg/fMUlPny+W6sVIiew+30j/a2OdafBWaL0LRiBP7bgl1zAQMSFiF
- s21vqfiSZs88JJEvvBv5MfI2gTjtYVB40s8XUrqJBFm8FJy1Z/wns93FR Q==;
-X-CSE-ConnectionGUID: VsKt8J9sRZGDz/3XNpGCSg==
-X-CSE-MsgGUID: aYeT80NBTqWdUxd0niSsXA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="45242535"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="45242535"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 08:05:14 -0800
-X-CSE-ConnectionGUID: sI1O93nHRTiftjkPiYm4OQ==
-X-CSE-MsgGUID: JdY1X92bTkajJx1a1cT2DA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102231915"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 08:05:13 -0800
-Date: Mon, 16 Dec 2024 18:05:55 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Mika Kahola <mika.kahola@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: UHBR rates for Thunderbolt
-Message-ID: <Z2BP451PxJngjYbg@ideak-desk.fi.intel.com>
-References: <20241216124422.475693-1-mika.kahola@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCDC310E15B;
+ Mon, 16 Dec 2024 16:07:05 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id BF0A95C5B8F;
+ Mon, 16 Dec 2024 16:06:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 565DAC4CED4;
+ Mon, 16 Dec 2024 16:07:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1734365224;
+ bh=AM/8aKA98AZ889JcW0STJ3XuC0MMP8g8wFOlSiAd6Nk=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=jFJaFujXUgK6lTHxCB3Ow6w7gMm9d2l0z4seD9UJ3AidNDOoRvTlTQGMqHOHnuvgM
+ aOgft41I+6EOFSJh8ejSPJbZld3D8ot/iOook7Ic8jWR4Y/2N4zFHk+nDymp5RVOmQ
+ /ol6lbEUc5aXbI5Ay4U55QLEogzpxuWOnTmlPGlOtkBl+7tmAOinA3tVE/+9sfNTqK
+ du2IIe/uzKGbLrWe1BHjUdALaqlRRkrTBPbTeltJCfhzuB551rHI6oHUkxCs5L01cv
+ qY7slCPmT1u9qCey8iWK2yTTmxSN5+FPtHUvNSciBPusICvSyFUdzjd/BS56fSVFMz
+ byLzGJbRcDgMg==
+Date: Mon, 16 Dec 2024 17:07:02 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+ maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, 
+ =?utf-8?B?QW5kcsOp?= Almeida <andrealmeid@igalia.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com, 
+ aravind.iddamsetty@linux.intel.com, rodrigo.vivi@intel.com,
+ michal.wajdeczko@intel.com, 
+ lina@asahilina.net, anshuman.gupta@intel.com, alexander.deucher@amd.com, 
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com, airlied@gmail.com,
+ simona@ffwll.ch, lucas.demarchi@intel.com, jani.nikula@linux.intel.com,
+ andriy.shevchenko@linux.intel.com
+Subject: Re: [PATCH v10 1/4] drm: Introduce device wedged event
+Message-ID: <20241216-grinning-stimulating-jackal-a5fea0@houat>
+References: <20241128153707.1294347-1-raag.jadav@intel.com>
+ <20241128153707.1294347-2-raag.jadav@intel.com>
+ <1d448e67-0c28-4e21-afdd-223495346921@igalia.com>
+ <Z01q1-7OF7jgANEM@black.fi.intel.com>
+ <Z06QUpm3o_izNjoV@black.fi.intel.com>
+ <7d0660f8-ce78-4458-a084-b65ab71e8243@amd.com>
+ <Z1A6PYFCUNL9edv6@black.fi.intel.com>
+ <m6ysmkxnit6kqeilkcaa3hoyfzyznymsa3eybzsl66jsn2ku67@jl3ajhxgqmvy>
+ <Z1q9B4iQlQQNieS7@black.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="nxbd5nusaiy7kazk"
 Content-Disposition: inline
-In-Reply-To: <20241216124422.475693-1-mika.kahola@intel.com>
+In-Reply-To: <Z1q9B4iQlQQNieS7@black.fi.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,133 +72,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Dec 16, 2024 at 02:44:22PM +0200, Mika Kahola wrote:
-> tbt-alt mode is missing uhbr rates 10G and 20G. This requires
-> requires pll clock rates 312.5 MHz and 625 MHz to be added,
-> respectively. The uhbr rates are supported only form PTL+
-> platforms.
-> 
-> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 
-I presume all display related changes should be sent to the intel-gfx ML
-as well for review, even though the change only affects platforms
-supported by xe only.
+--nxbd5nusaiy7kazk
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v10 1/4] drm: Introduce device wedged event
+MIME-Version: 1.0
 
-> ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 27 ++++++++++++++++---
->  .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  4 +++
->  2 files changed, 28 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index cc734079c3b8..e0bd47e684c5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -3070,7 +3070,10 @@ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
->  
->  	val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port));
->  
-> -	clock = REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val);
-> +	if (DISPLAY_VER(display) >= 30)
-> +		clock = REG_FIELD_GET(XE3LPDP_DDI_CLOCK_SELECT_MASK, val);
-> +	else
-> +		clock = REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val);
->  
->  	drm_WARN_ON(display->drm, !(val & XELPDP_FORWARD_CLOCK_UNGATE));
->  	drm_WARN_ON(display->drm, !(val & XELPDP_TBT_CLOCK_REQUEST));
-> @@ -3085,6 +3088,10 @@ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
->  		return 540000;
->  	case XELPDP_DDI_CLOCK_SELECT_TBT_810:
->  		return 810000;
-> +	case XELPDP_DDI_CLOCK_SELECT_TBT_312_5:
-> +		return 1000000;
-> +	case XELPDP_DDI_CLOCK_SELECT_TBT_625:
-> +		return 2000000;
->  	default:
->  		MISSING_CASE(clock);
->  		return 162000;
-> @@ -3102,6 +3109,10 @@ static int intel_mtl_tbt_clock_select(int clock)
->  		return XELPDP_DDI_CLOCK_SELECT_TBT_540;
->  	case 810000:
->  		return XELPDP_DDI_CLOCK_SELECT_TBT_810;
-> +	case 1000000:
+Hi,
 
-On platforms not supporting this rate and the one below, the returned
-value should be still valid, so something like if WARN(DISPLAY_VER < 30)
-return XELPDP_DDI_CLOCK_SELECT_TBT_162;
+On Thu, Dec 12, 2024 at 12:37:59PM +0200, Raag Jadav wrote:
+> On Wed, Dec 11, 2024 at 06:14:12PM +0100, Maxime Ripard wrote:
+> > On Wed, Dec 04, 2024 at 01:17:17PM +0200, Raag Jadav wrote:
+> > > + misc maintainers
+> > >=20
+> > > On Tue, Dec 03, 2024 at 11:18:00AM +0100, Christian K=F6nig wrote:
+> > > > Am 03.12.24 um 06:00 schrieb Raag Jadav:
+> > > > > On Mon, Dec 02, 2024 at 10:07:59AM +0200, Raag Jadav wrote:
+> > > > > > On Fri, Nov 29, 2024 at 10:40:14AM -0300, Andr=E9 Almeida wrote:
+> > > > > > > Hi Raag,
+> > > > > > >=20
+> > > > > > > Em 28/11/2024 12:37, Raag Jadav escreveu:
+> > > > > > > > Introduce device wedged event, which notifies userspace of =
+'wedged'
+> > > > > > > > (hanged/unusable) state of the DRM device through a uevent.=
+ This is
+> > > > > > > > useful especially in cases where the device is no longer op=
+erating as
+> > > > > > > > expected and has become unrecoverable from driver context. =
+Purpose of
+> > > > > > > > this implementation is to provide drivers a generic way to =
+recover with
+> > > > > > > > the help of userspace intervention without taking any drast=
+ic measures
+> > > > > > > > in the driver.
+> > > > > > > >=20
+> > > > > > > > A 'wedged' device is basically a dead device that needs att=
+ention. The
+> > > > > > > > uevent is the notification that is sent to userspace along =
+with a hint
+> > > > > > > > about what could possibly be attempted to recover the devic=
+e and bring
+> > > > > > > > it back to usable state. Different drivers may have differe=
+nt ideas of
+> > > > > > > > a 'wedged' device depending on their hardware implementatio=
+n, and hence
+> > > > > > > > the vendor agnostic nature of the event. It is up to the dr=
+ivers to
+> > > > > > > > decide when they see the need for device recovery and how t=
+hey want to
+> > > > > > > > recover from the available methods.
+> > > > > > > >=20
+> > > > > > > Thank you for your work. Do you think you can add the optiona=
+l PID
+> > > > > > > parameter, as the PID of the app that caused the reset? For S=
+teamOS use case
+> > > > > > > it has been proved to be useful to kill the fault app as well=
+=2E If the reset
+> > > > > > > was caused by a kthread, no PID can be provided hence it's an=
+ optional
+> > > > > > > parameter.
+> > > > > > Hmm, I'm not sure if it really fits here since it doesn't seem =
+like
+> > > > > > a generic usecase.
+> > > > > >=20
+> > > > > > I'd still be open for it if found useful by the drivers but per=
+haps
+> > > > > > as an extended feature in a separate series.
+> > > > > What do you think Chris, are we good to go with v10?
+> > > >=20
+> > > > I agree with Andre that the PID and maybe the new DRM client name w=
+ould be
+> > > > really nice to have here.
+> > > >=20
+> > > > We do have that in the device core dump we create, but if an applic=
+ation is
+> > > > supervised by daemon for example then that would be really useful.
+> > > >=20
+> > > > On the other hand I think we should merge the documentation and cod=
+e as is
+> > > > and then add the PID/name later on. That is essentially a separate
+> > > > discussion.
+> > >=20
+> > > So how do we proceed, perhaps through misc tree?
+> >=20
+> > Provided it follows the usual rules (ie, Reviewed-by, open source
+> > userspace tools using it if it's a new uAPI, etc.) then yeah, we can
+> > merge it through drm-misc.
+>=20
+> My understanding is that the core patches are to be reviewed by the
+> maintainers? The rest of it (patch 2 to 4) seems already reviewed.
+>=20
+> We have a documented example (patch 2) with udev rule and a reference
+> script which can be setup to get this working. Does that qualify as
+> a consumer?
 
-> +		return XELPDP_DDI_CLOCK_SELECT_TBT_312_5;
-> +	case 2000000:
-> +		return XELPDP_DDI_CLOCK_SELECT_TBT_625;
->  	default:
->  		MISSING_CASE(clock);
->  		return XELPDP_DDI_CLOCK_SELECT_TBT_162;
-> @@ -3114,15 +3125,25 @@ static void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
->  	struct intel_display *display = to_intel_display(encoder);
->  	enum phy phy = intel_encoder_to_phy(encoder);
->  	u32 val = 0;
-> +	u32 mask;
->  
->  	/*
->  	 * 1. Program PORT_CLOCK_CTL REGISTER to configure
->  	 * clock muxes, gating and SSC
->  	 */
-> -	val |= XELPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(crtc_state->port_clock));
-> +
-> +	if (DISPLAY_VER(display) >= 30) {
-> +		mask = XE3LPDP_DDI_CLOCK_SELECT_MASK;
-> +		val |= XE3LPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(crtc_state->port_clock));
-> +	} else {
-> +		mask = XELPDP_DDI_CLOCK_SELECT_MASK;
-> +		val |= XELPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(crtc_state->port_clock));
-> +	}
-> +
+Given the description you stated above, I'd expect a compositor to be
+the expected user, right?
 
-To handle the mask for both fields the same way:
-	mask |= XELPDP_FORWARD_CLOCK_UNGATE;
+Our doc
+(https://docs.kernel.org/gpu/drm-uapi.html#open-source-userspace-requiremen=
+ts)
+states:
 
->  	val |= XELPDP_FORWARD_CLOCK_UNGATE;
-> +
->  	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
-> -		     XELPDP_DDI_CLOCK_SELECT_MASK | XELPDP_FORWARD_CLOCK_UNGATE, val);
-> +		     mask | XELPDP_FORWARD_CLOCK_UNGATE, val);
+  The open-source userspace must not be a toy/test application, but the
+  real thing. Specifically it needs to handle all the usual error and
+  corner cases. These are often the places where new uAPI falls apart
+  and hence essential to assess the fitness of a proposed interface.
 
-passing just mask here to intel_de_rmw().
+Maxime
 
->  
->  	/* 2. Read back PORT_CLOCK_CTL REGISTER */
->  	val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port));
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> index c685479c9756..9870d61ca493 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> @@ -187,7 +187,9 @@
->  #define   XELPDP_TBT_CLOCK_REQUEST			REG_BIT(19)
->  #define   XELPDP_TBT_CLOCK_ACK				REG_BIT(18)
->  #define   XELPDP_DDI_CLOCK_SELECT_MASK			REG_GENMASK(15, 12)
-> +#define   XE3LPDP_DDI_CLOCK_SELECT_MASK			REG_GENMASK(16, 12)
+--nxbd5nusaiy7kazk
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Not sure about the XE3 terms, but the driver atm only uses the XE3LPD
-and XE3 prefixes. I see the XE3_D and XE3P_D tags in the spec used for
-the above field width. Which platform does X3LPDP correspond to?
+-----BEGIN PGP SIGNATURE-----
 
->  #define   XELPDP_DDI_CLOCK_SELECT(val)			REG_FIELD_PREP(XELPDP_DDI_CLOCK_SELECT_MASK, val)
-> +#define   XE3LPDP_DDI_CLOCK_SELECT(val)			REG_FIELD_PREP(XE3LPDP_DDI_CLOCK_SELECT_MASK, val)
->  #define   XELPDP_DDI_CLOCK_SELECT_NONE			0x0
->  #define   XELPDP_DDI_CLOCK_SELECT_MAXPCLK		0x8
->  #define   XELPDP_DDI_CLOCK_SELECT_DIV18CLK		0x9
-> @@ -195,6 +197,8 @@
->  #define   XELPDP_DDI_CLOCK_SELECT_TBT_270		0xd
->  #define   XELPDP_DDI_CLOCK_SELECT_TBT_540		0xe
->  #define   XELPDP_DDI_CLOCK_SELECT_TBT_810		0xf
-> +#define   XELPDP_DDI_CLOCK_SELECT_TBT_312_5		0x18
-> +#define   XELPDP_DDI_CLOCK_SELECT_TBT_625		0x19
->  #define   XELPDP_FORWARD_CLOCK_UNGATE			REG_BIT(10)
->  #define   XELPDP_LANE1_PHY_CLOCK_SELECT			REG_BIT(8)
->  #define   XELPDP_SSC_ENABLE_PLLA			REG_BIT(1)
-> -- 
-> 2.43.0
-> 
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ2BQIQAKCRAnX84Zoj2+
+drhfAX9mPXpDK7b9lAQTMkeulf9d78L3Yk31TxHyY0Df+hmLgDsXqyD85JOfk2AC
+Ahe+5Q8Bf2+/43VF5ukum62mTd38WMc+kqx9L7goTASLt5sd7lBBG9JnOLgUTWWY
+nG+jR9uAsQ==
+=IMCP
+-----END PGP SIGNATURE-----
+
+--nxbd5nusaiy7kazk--
