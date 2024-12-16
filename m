@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2105E7717F
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 14:22:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E858AE7717F
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 14:27:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C00B510E6A1;
-	Mon, 16 Dec 2024 14:22:47 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26FA510E6A1;
- Mon, 16 Dec 2024 14:22:47 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A53F310E6A8;
+	Mon, 16 Dec 2024 14:27:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RxrMLP+/";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BA7310E6A7;
+ Mon, 16 Dec 2024 14:27:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734359236; x=1765895236;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=R78Md7HMZ77bNgGoNITMpjsej4PoFDcegb0JI/mFkXE=;
+ b=RxrMLP+/EvI9pK1//ZAUK0NaNpmMDL6c07WvPuvO5y08p5NJMp75LvrN
+ 4qxv1KG+mbhr/5lNyVpEZ+bNu/0uvnn7fWtbbEijkfAfTIRMXN0IQZKUX
+ HZEQyZg6TH0M1khCgxWqa02NIx5bB5r3aW7K9DLZMGR+CuPuN0ZNX7sNk
+ 5cuk+OMd1lRMx+C0WxOjrZTml8dczM+bHqXWlSC6a+M+s0Ya89xtWQVCq
+ ygck/7BLxnAfRWv8Fq4HlTrERjxthxVDAQfjPzSaDLr1LbstanaNeZ5Xm
+ xdDcQFi+H7pY8pxaswsUqYOHVivsQwjC+mLbib0DONtIKSd/5Fgzkb2dW w==;
+X-CSE-ConnectionGUID: 2R1R77neQtiyKLVAh1P1qA==
+X-CSE-MsgGUID: oY7ZTwh4Q4qZRHXdpRYHQg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34065780"
+X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="34065780"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 06:27:16 -0800
+X-CSE-ConnectionGUID: U0mfcPLSTFWfJrvdkSlc8g==
+X-CSE-MsgGUID: g0KmhUiZTZqqko5YSq+QaQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="97644545"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 06:27:14 -0800
+Date: Mon, 16 Dec 2024 16:27:53 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/mst: use intel_dp_compute_config_limits() for
+ DP MST
+Message-ID: <Z2A46f938bAqKmC3@ideak-desk.fi.intel.com>
+References: <20241211144310.701895-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Intel_Xe_GPU_debug_s?=
- =?utf-8?q?upport_=28eudebug=29_v3_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Dec 2024 14:22:47 -0000
-Message-ID: <173435896714.3311862.15227242176810844926@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241209133318.1806472-1-mika.kuoppala@linux.intel.com>
-In-Reply-To: <20241209133318.1806472-1-mika.kuoppala@linux.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241211144310.701895-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,40 +64,172 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Dec 11, 2024 at 04:43:10PM +0200, Jani Nikula wrote:
+> There's a lot of duplication between mst_stream_compute_config_limits()
+> and intel_dp_compute_config_limits(). Adjust the latter to suit the
+> needs of the former, and use the same function for both. This reduces
+> duplication and highlights the differences for SST and MST and UHBR.
+> 
+> Remove the kernel-doc for intel_dp_compute_config_link_bpp_limits()
+> which now becomes static.
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: Intel Xe GPU debug support (eudebug) v3 (rev2)
-URL   : https://patchwork.freedesktop.org/series/142295/
-State : failure
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-== Summary ==
-
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5c2a17b3ae90 drm-tip: 2024y-12m-16d-13h-54m-55s UTC integration manifest
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_exec_queue.c:117
-error: drivers/gpu/drm/xe/xe_exec_queue.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_execlist.c:265
-error: drivers/gpu/drm/xe/xe_execlist.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_lrc.c:876
-error: drivers/gpu/drm/xe/xe_lrc.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_lrc.h:41
-error: drivers/gpu/drm/xe/xe_lrc.h: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: ptrace: export ptrace_may_access
-Applying: drm/xe/eudebug: Introduce eudebug support
-Applying: drm/xe/eudebug: Introduce discovery for resources
-Applying: drm/xe/eudebug: Introduce exec_queue events
-Applying: drm/xe/eudebug: Introduce exec queue placements event
-Applying: drm/xe/eudebug: hw enablement for eudebug
-Applying: drm/xe: Add EUDEBUG_ENABLE exec queue property
-Patch failed at 0007 drm/xe: Add EUDEBUG_ENABLE exec queue property
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-
-
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c     | 44 +++++++++++++--------
+>  drivers/gpu/drm/i915/display/intel_dp.h     | 10 ++---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 29 +-------------
+>  3 files changed, 34 insertions(+), 49 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index fbe6b77d642e..4b6676e785bf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2455,19 +2455,11 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  	return 0;
+>  }
+>  
+> -/**
+> - * intel_dp_compute_config_link_bpp_limits - compute output link bpp limits
+> - * @intel_dp: intel DP
+> - * @crtc_state: crtc state
+> - * @dsc: DSC compression mode
+> - * @limits: link configuration limits
+> - *
+> - * Calculates the output link min, max bpp values in @limits based on the
+> - * pipe bpp range, @crtc_state and @dsc mode.
+> - *
+> - * Returns %true in case of success.
+> +/*
+> + * Calculate the output link min, max bpp values in limits based on the pipe bpp
+> + * range, crtc_state and dsc mode. Return true on success.
+>   */
+> -bool
+> +static bool
+>  intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
+>  					const struct intel_crtc_state *crtc_state,
+>  					bool dsc,
+> @@ -2515,29 +2507,47 @@ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
+>  	return true;
+>  }
+>  
+> -static bool
+> +bool
+>  intel_dp_compute_config_limits(struct intel_dp *intel_dp,
+>  			       struct intel_crtc_state *crtc_state,
+>  			       bool respect_downstream_limits,
+>  			       bool dsc,
+>  			       struct link_config_limits *limits)
+>  {
+> +	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
+> +
+>  	limits->min_rate = intel_dp_min_link_rate(intel_dp);
+>  	limits->max_rate = intel_dp_max_link_rate(intel_dp);
+>  
+>  	/* FIXME 128b/132b SST support missing */
+> -	limits->max_rate = min(limits->max_rate, 810000);
+> +	if (!is_mst)
+> +		limits->max_rate = min(limits->max_rate, 810000);
+>  	limits->min_rate = min(limits->min_rate, limits->max_rate);
+>  
+>  	limits->min_lane_count = intel_dp_min_lane_count(intel_dp);
+>  	limits->max_lane_count = intel_dp_max_lane_count(intel_dp);
+>  
+>  	limits->pipe.min_bpp = intel_dp_min_bpp(crtc_state->output_format);
+> -	limits->pipe.max_bpp = intel_dp_max_bpp(intel_dp, crtc_state,
+> -						     respect_downstream_limits);
+> +	if (is_mst) {
+> +		/*
+> +		 * FIXME: If all the streams can't fit into the link with their
+> +		 * current pipe_bpp we should reduce pipe_bpp across the board
+> +		 * until things start to fit. Until then we limit to <= 8bpc
+> +		 * since that's what was hardcoded for all MST streams
+> +		 * previously. This hack should be removed once we have the
+> +		 * proper retry logic in place.
+> +		 */
+> +		limits->pipe.max_bpp = min(crtc_state->pipe_bpp, 24);
+> +	} else {
+> +		limits->pipe.max_bpp = intel_dp_max_bpp(intel_dp, crtc_state,
+> +							respect_downstream_limits);
+> +	}
+>  
+> -	if (intel_dp->use_max_params) {
+> +	if (is_mst || intel_dp->use_max_params) {
+>  		/*
+> +		 * For MST we always configure max link bw - the spec doesn't
+> +		 * seem to suggest we should do otherwise.
+> +		 *
+>  		 * Use the maximum clock and number of lanes the eDP panel
+>  		 * advertizes being capable of in case the initial fast
+>  		 * optimal params failed us. The panels are generally
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+> index 48f10876be65..8572d7df5335 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> @@ -193,11 +193,11 @@ void intel_dp_invalidate_source_oui(struct intel_dp *intel_dp);
+>  void intel_dp_wait_source_oui(struct intel_dp *intel_dp);
+>  int intel_dp_output_bpp(enum intel_output_format output_format, int bpp);
+>  
+> -bool
+> -intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
+> -					const struct intel_crtc_state *crtc_state,
+> -					bool dsc,
+> -					struct link_config_limits *limits);
+> +bool intel_dp_compute_config_limits(struct intel_dp *intel_dp,
+> +				    struct intel_crtc_state *crtc_state,
+> +				    bool respect_downstream_limits,
+> +				    bool dsc,
+> +				    struct link_config_limits *limits);
+>  
+>  void intel_dp_get_dsc_sink_cap(u8 dpcd_rev, struct intel_connector *connector);
+>  bool intel_dp_has_gamut_metadata_dip(struct intel_encoder *encoder);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 123c4ece6268..d77ebcb1432e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -585,33 +585,8 @@ mst_stream_compute_config_limits(struct intel_dp *intel_dp,
+>  				 bool dsc,
+>  				 struct link_config_limits *limits)
+>  {
+> -	/*
+> -	 * for MST we always configure max link bw - the spec doesn't
+> -	 * seem to suggest we should do otherwise.
+> -	 */
+> -	limits->min_rate = limits->max_rate =
+> -		intel_dp_max_link_rate(intel_dp);
+> -
+> -	limits->min_lane_count = limits->max_lane_count =
+> -		intel_dp_max_lane_count(intel_dp);
+> -
+> -	limits->pipe.min_bpp = intel_dp_min_bpp(crtc_state->output_format);
+> -	/*
+> -	 * FIXME: If all the streams can't fit into the link with
+> -	 * their current pipe_bpp we should reduce pipe_bpp across
+> -	 * the board until things start to fit. Until then we
+> -	 * limit to <= 8bpc since that's what was hardcoded for all
+> -	 * MST streams previously. This hack should be removed once
+> -	 * we have the proper retry logic in place.
+> -	 */
+> -	limits->pipe.max_bpp = min(crtc_state->pipe_bpp, 24);
+> -
+> -	intel_dp_test_compute_config(intel_dp, crtc_state, limits);
+> -
+> -	if (!intel_dp_compute_config_link_bpp_limits(intel_dp,
+> -						     crtc_state,
+> -						     dsc,
+> -						     limits))
+> +	if (!intel_dp_compute_config_limits(intel_dp, crtc_state, false, dsc,
+> +					    limits))
+>  		return false;
+>  
+>  	return adjust_limits_for_dsc_hblank_expansion_quirk(connector,
+> -- 
+> 2.39.5
+> 
