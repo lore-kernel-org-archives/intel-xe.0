@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1108E7717F
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 09:48:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F088DE7717F
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 09:48:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F03010E572;
-	Mon, 16 Dec 2024 09:48:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C157510E571;
+	Mon, 16 Dec 2024 09:48:27 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E44E10E572;
- Mon, 16 Dec 2024 09:48:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E58A10E571;
+ Mon, 16 Dec 2024 09:48:26 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/xe3=3A_do_n?=
- =?utf-8?q?ot_configure_auto_min_dbuf_for_cursor_WMs_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/xe3=3A_do_not_co?=
+ =?utf-8?q?nfigure_auto_min_dbuf_for_cursor_WMs_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Dec 2024 09:48:09 -0000
-Message-ID: <173434248925.3228891.4315755305508509401@b555e5b46a47>
+Date: Mon, 16 Dec 2024 09:48:26 -0000
+Message-ID: <173434250612.3228891.1570658905412074295@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241213120357.300584-1-vinod.govindapillai@intel.com>
 In-Reply-To: <20241213120357.300584-1-vinod.govindapillai@intel.com>
@@ -48,9 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 63be16e210b1 drm-tip: 2024y-12m-14d-23h-07m-46s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/xe3: do not configure auto min dbuf for cursor WMs
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c3b6b7b277a3e34cb852f20db224a936866f0b89
+Author: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Date:   Fri Dec 13 14:03:57 2024 +0200
+
+    drm/i915/xe3: do not configure auto min dbuf for cursor WMs
+    
+    Cursor planes do not have the minimum dbuf confguation. The
+    ddb allocation and registration routines handle this correctly.
+    But the plane wm handling for cursor need to be differentiated
+    for this case. Auto minimum buf enable flag should not be
+    enabled for cursor wm registers in xe3.
+    
+    Fixes: a831920c370c ("drm/i915/xe3: Use hw support for min/interim ddb allocations for async flip")
+    Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
++ /mt/dim checkpatch 63be16e210b1c3e43b43d8ca9b7e17f15142d2c3 drm-intel
+c3b6b7b277a3 drm/i915/xe3: do not configure auto min dbuf for cursor WMs
 
 
