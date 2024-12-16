@@ -4,106 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79566E77183
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 11:24:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E28DBE77183
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 11:28:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4750E10E5CE;
-	Mon, 16 Dec 2024 11:24:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADA0910E5AD;
+	Mon, 16 Dec 2024 11:28:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="X3l5Ybth";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hfmAnU0l";
 	dkim-atps=neutral
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com
- [IPv6:2a00:1450:4864:20::135])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA2FE10E5B5
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Dec 2024 11:24:34 +0000 (UTC)
-Received: by mail-lf1-x135.google.com with SMTP id
- 2adb3069b0e04-53df6322ea7so5557795e87.0
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Dec 2024 03:24:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1734348273; x=1734953073; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=gty21mjzYgvbYsbhfcrs7XMj7b14Ja6LtCdRiQMw9IQ=;
- b=X3l5YbthhhVTEeMbX8SZAbqoPCr7Mmq1yC0hwAnhNTsutlpSvKMegr3H3PgSj175H7
- Yy0BS7IsIqgy2tt+I8qk00T/eEoE6KlR63+KCxeBrQcbxsY9l4DA49NT7sqNbiS3W231
- 98YgYxiRlbgR426qrBld7CHuGaCVWnCkMa4zb5JUzYRZRkxl/fSWQxDDT7/Mgl367UX4
- XwGRPoV6EIUnczu3oIglF9yfPlX+Xfr1YFJDBst2s0K4+lDSVvYeHz/Ez+9HwkoZDGX0
- qov42N9YUtyuTD9zw/CFasHNDaB3uz8+5rlaNC+8+Z9HfURIQKWnkhAy4U4uXvb0CB4Y
- L4XQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734348273; x=1734953073;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=gty21mjzYgvbYsbhfcrs7XMj7b14Ja6LtCdRiQMw9IQ=;
- b=f2z/tvoZV7oDSO77z/PPL+3P/x2RFLJO7zVFEj6KCevGENhNxOlXm1vA1DIeHtZg8/
- mI+JAH4JFBU+9ZrQfNmmMmM+J4IJ1Zk3o9SjtzO25KbwTBTdXWX6t5Xkj8lo1s+gjEyQ
- 5xqqvBovbzZ9x8XFNTH12EkYwqEzppSOEiJoYkrk1svPo49Ojl9NCl6yUwcP8/CtVqkU
- M2jGDtrRGwHCniU8IvlU6PNb5BXOTpv/5a0p+mMgrKvc+RHdh3PVxmG/G80EwXA5Kx5P
- XWKYhfFNSRiiRXcFLnRk1OR5ctEJEfirpJjv4a/fc+9AFMTLMcA/Tt7cVCsVN5KhPBrQ
- TA7A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV/6KdK3Ci99Gj0nfkYMkRZ/dzr9F58Bt9+NQvw222f+odPtzAHkyiBEsupTnQqMPN4zBk2sOXmFA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw3VMGuLBr2Ry1WUySCBmPbxeq83V6YcLj/lXr8bEdSMxKtzCQV
- 4hH0DjXjaIAW0wizQRbfm91lfJbuMv80IwqTD11AhzpOoJmnVvn6g5OgB3R8VQc=
-X-Gm-Gg: ASbGncuxDYLPV4VIx9LoEYVVvDD0ghp/PFyJu5hPZ7MRuZxMAzf3Gob2I0S5saXUS3M
- WT44tAhKJBi2nj0k3rBKuqcs9tbFPZEXzabLDw5CojzOuNdU+M0mDDhO7gbbHKOEeEtoVHK2UDa
- NG3btppvrmGI9e1EqOxRzqQPww8WTQvxCe6ZtW1volpja/AAE3ZFwXbkt716kcqLXRz2UaFRwM1
- PIG9wwhzTeTUE6wWZ7g6ZvKgKHoJe6DUdVGQgA/qDJyyv4Z+ljGGRMVPsOoo7dxjiJtHXc6Aiq+
- NBtgnnZXz8F7XnNoDvAj0KAhBtXg5+8YYQLI
-X-Google-Smtp-Source: AGHT+IHzioRjGIPfaVwEFSX3By+G0bPm5p1y4IolLwPf7YBpM4LUQ/QUZx/r1EiqpYtLRC9+8oUd8Q==
-X-Received: by 2002:a05:6512:2212:b0:540:1a3f:e848 with SMTP id
- 2adb3069b0e04-5409054bce1mr3948864e87.15.1734348273018; 
- Mon, 16 Dec 2024 03:24:33 -0800 (PST)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-54120c1612asm817266e87.222.2024.12.16.03.24.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Dec 2024 03:24:31 -0800 (PST)
-Date: Mon, 16 Dec 2024 13:24:29 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Phong LE <ple@baylibre.com>, Inki Dae <inki.dae@samsung.com>, 
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
- Alain Volmat <alain.volmat@foss.st.com>,
- Raphael Gallais-Pou <rgallaispou@gmail.com>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, 
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- amd-gfx@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v2 00/10] drm/connector: add eld_mutex to protect
- connector->eld
-Message-ID: <xchjpeykkqwlpniaspbzitaozuoltoq7aturtu7jq6z4lcxh77@y7t5ge2sa4er>
-References: <20241206-drm-connector-eld-mutex-v2-0-c9bce1ee8bea@linaro.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBA6810E5AD;
+ Mon, 16 Dec 2024 11:28:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734348492; x=1765884492;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=fiOGslAQUM7uSdNSaYraB7+zf4PgmYdD0EsjP5dCpeM=;
+ b=hfmAnU0lwNYwFexYKljbfsCJ+XinN5hkPWXZiVkdm2Z2aV4W+qMGguoX
+ Tsgbu2pFkVvUAvRJpKyRYbnN9ypztEYPQ/617QsZB738fX3Zg1cTDpgaV
+ zvmrnLph3KBTGi935OsI2/tERQQX1WQWvCtI7GE9Jt0QAHZr/KiuOxI06
+ 62kBG92Obuwr8vBm+Tfs1fh32p7K0oCp4gm7U/4gfIWuURGG6lzVsc/Vi
+ AiZY/imUu7SsPRTK7xV59aokOgAHkKkp8HQuE6iZ5hGYepayrg2bFQcRe
+ W6JAcwuJQGVOvF7zenbEQI+Bj97isY++IETZhogFR5ng9qNb2gWMQ59PW A==;
+X-CSE-ConnectionGUID: ArWa6+8oReqcRj+/WCSA1w==
+X-CSE-MsgGUID: huQSP7jkRmS33AHHPYPOfA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="38654715"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="38654715"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 03:28:12 -0800
+X-CSE-ConnectionGUID: bPngk1DOTSGrY0NDw1Gf6Q==
+X-CSE-MsgGUID: w8Fta0jyTCKxlKEGXQbT4Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="134505362"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.245])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 03:28:10 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>, intel-xe@lists.freedesktop.org
+Cc: jonathan.cavitt@intel.com, saurabhg.gupta@intel.com, alex.zuo@intel.com,
+ intel-gfx@lists.freedesktop.org, imre.deak@intel.com
+Subject: Re: [PATCH] drm/i915/display: Do not report timeout on suspend
+In-Reply-To: <20241213231234.81647-1-jonathan.cavitt@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241213231234.81647-1-jonathan.cavitt@intel.com>
+Date: Mon, 16 Dec 2024 13:28:06 +0200
+Message-ID: <87zfkvsw8p.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241206-drm-connector-eld-mutex-v2-0-c9bce1ee8bea@linaro.org>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,41 +68,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Dec 06, 2024 at 11:43:03AM +0200, Dmitry Baryshkov wrote:
-> The connector->eld is accessed by the .get_eld() callback. This access
-> can collide with the drm_edid_to_eld() updating the data at the same
-> time. Add drm_connector.eld_mutex to protect the data from concurrenct
-> access.
-> 
-> The individual drivers were just compile tested. I propose to merge the
-> drm_connector and bridge drivers through drm-misc, allowing other
-> maintainers either to ack merging through drm-misc or merging the
-> drm-misc into their tree and then picking up correcponding patch.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-> Changes in v2:
-> - Also take the mutex in clear_eld() (Jani)
-> - Rebased on top of linux-next + drm-misc-next to solve build error
-> - Link to v1: https://lore.kernel.org/r/20241201-drm-connector-eld-mutex-v1-0-ba56a6545c03@linaro.org
-> 
-> ---
-> Dmitry Baryshkov (10):
->       drm/connector: add mutex to protect ELD from concurrent access
->       drm/bridge: anx7625: use eld_mutex to protect access to connector->eld
->       drm/bridge: ite-it66121: use eld_mutex to protect access to connector->eld
->       drm/amd/display: use eld_mutex to protect access to connector->eld
->       drm/exynos: hdmi: use eld_mutex to protect access to connector->eld
->       drm/i915/audio: use eld_mutex to protect access to connector->eld
->       drm/msm/dp: use eld_mutex to protect access to connector->eld
->       drm/radeon: use eld_mutex to protect access to connector->eld
->       drm/sti: hdmi: use eld_mutex to protect access to connector->eld
->       drm/vc4: hdmi: use eld_mutex to protect access to connector->eld
+On Fri, 13 Dec 2024, Jonathan Cavitt <jonathan.cavitt@intel.com> wrote:
+> In intel_dp_aux_wait_done, we call intel_de_wait_custom.  This call has
+> a 10ms timeout before reporting ETIMEDOUT.  However, if the display pm
+> runtime is suspended, then it would be expected for this call to time
+> out.  This may be the case, for example, during an engine reset.
+>
+> Do not report ETIMEDOUT here when the pm runtime is suspended.
 
-Granted the lack of reviews from AMD maintainers and granted that the
-rest of the series was reviewed and acked, is it suitable to leave those
-two patches out and merge the rest through drm-misc-next?
+No.
+
+Please root cause how you hit this. This should not be possible.
+
+intel_dp_aux_xfer() -> intel_display_power_get() -> intel_runtime_pm_get()
+
+We hold this over the duration of aux communications. The patch at hand
+is brushing something more serious under the carpet.
+
+BR,
+Jani.
+
+
+>
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_aux.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> index 04a7acd7f73c..25c37398f930 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> @@ -66,7 +66,7 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
+>  				   0,
+>  				   2, timeout_ms, &status);
+>  
+> -	if (ret == -ETIMEDOUT)
+> +	if (ret == -ETIMEDOUT && !pm_runtime_suspended(display->drm->dev))
+>  		drm_err(display->drm,
+>  			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
+>  			intel_dp->aux.name, timeout_ms, status);
 
 -- 
-With best wishes
-Dmitry
+Jani Nikula, Intel
