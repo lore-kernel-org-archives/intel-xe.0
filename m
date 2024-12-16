@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D660E7717F
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 08:08:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1791FE7717F
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 09:01:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2729C10E10D;
-	Mon, 16 Dec 2024 08:08:48 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFC9F10E10D;
- Mon, 16 Dec 2024 08:08:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6113730447828154797=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2BD610E154;
+	Mon, 16 Dec 2024 09:01:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RJQfNqrK";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A42E110E154
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Dec 2024 09:01:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734339687; x=1765875687;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=r/KozuYMeTjHbcO8LwWrshAe4Zp5Zn+4O4INxZnk/Xg=;
+ b=RJQfNqrKoHBwJvaMA1q67EYwRK1HnbixgdacoTyXqZu3k5o0BcumvU0Z
+ vFoM/93lMdOGf5VWskVjOvn4rZZsKhKzJ7Q/Qk76YJmjqBwyasH3bYvVN
+ t89ATyFufCkpBBCM5tb+cp0ydvRyRLhCFmGaL19+laYKLXDJP0xjJQ9Ow
+ 2UHU0dOotXQbnRDaMRSLRv9hSTwdcxb1XRTvvJ5inxpos3DgEnpaPz94W
+ Dc810pqy2Rogszk/09oJxvPNW27zUg/wsCb2QTo+s9u3R5wmHF1hseF+H
+ GrdUZ161UG7sCLzeO44GGywKk3TlUJkSj0zzOXFK+87SS20A8mT7KKiwA g==;
+X-CSE-ConnectionGUID: QbclGN2LQvGAUsYUWa8vfg==
+X-CSE-MsgGUID: 7eApJekdTr6SRaI7hiHJYA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11287"; a="34942745"
+X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="34942745"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 01:01:26 -0800
+X-CSE-ConnectionGUID: WpAwzNajTpyWNqhzwDmVCg==
+X-CSE-MsgGUID: 6W4ckSrpRCeRz/aYcPelwA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102119524"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO [10.245.246.246])
+ ([10.245.246.246])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 01:01:23 -0800
+Message-ID: <24eeb9dcbb1845bdb420df12384f54d60234a411.camel@linux.intel.com>
+Subject: Re: [PATCH v4 1/2] drm/xe: Use non-interruptible wait when moving
+ BO to system
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, stable@vger.kernel.org, Matthew Auld
+ <matthew.auld@intel.com>
+Date: Mon, 16 Dec 2024 10:01:21 +0100
+In-Reply-To: <20241213122415.3880017-1-nirmoy.das@intel.com>
+References: <20241213122415.3880017-1-nirmoy.das@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915/display=3A_handle_hdmi_?=
- =?utf-8?q?connector_init_failures=2C_and_no_HDMI/DP_cases_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Dec 2024 08:08:46 -0000
-Message-ID: <173433652684.3208802.10374286391318318186@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <cover.1734099220.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1734099220.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,155 +69,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6113730447828154797==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+HI, Nirmoy,
 
-== Series Details ==
+On Fri, 2024-12-13 at 13:24 +0100, Nirmoy Das wrote:
+> Ensure a non-interruptible wait is used when moving a bo to
+> XE_PL_SYSTEM. This prevents dma_mappings from being removed
+> prematurely
+> while a GPU job is still in progress, even if the CPU receives a
+> signal during the operation.
+>=20
+> Fixes: 75521e8b56e8 ("drm/xe: Perform dma_map when moving system
+> buffer objects to TT")
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.11+
+> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-Series: drm/i915/display: handle hdmi connector init failures, and no HDMI/DP cases (rev2)
-URL   : https://patchwork.freedesktop.org/series/142118/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-2371-fb3d98511a2f6375a5c989ca5520aa31b689b119_BAT -> xe-pw-142118v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-142118v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-adlp-7:         [PASS][1] -> [SKIP][2] ([Intel XE#455]) +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2371-fb3d98511a2f6375a5c989ca5520aa31b689b119/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142118v2/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-
-  * igt@kms_psr@psr-primary-page-flip@edp-1:
-    - bat-adlp-7:         [PASS][3] -> [DMESG-WARN][4] ([Intel XE#3517]) +1 other test dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2371-fb3d98511a2f6375a5c989ca5520aa31b689b119/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142118v2/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-dpms@a-edp1:
-    - bat-lnl-1:          [DMESG-WARN][5] ([Intel XE#3729]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2371-fb3d98511a2f6375a5c989ca5520aa31b689b119/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142118v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
-
-  
-  [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
-  [Intel XE#3729]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+For both patches
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
 
-Build changes
--------------
-
-  * Linux: xe-2371-fb3d98511a2f6375a5c989ca5520aa31b689b119 -> xe-pw-142118v2
-
-  IGT_8156: edf352a96646c8d793f0c1eb11795112f9bde725 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2371-fb3d98511a2f6375a5c989ca5520aa31b689b119: fb3d98511a2f6375a5c989ca5520aa31b689b119
-  xe-pw-142118v2: 142118v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142118v2/index.html
-
---===============6113730447828154797==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_bo.c | 2 +-
+> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 283cd0294570..06931df876ab 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -733,7 +733,7 @@ static int xe_bo_move(struct ttm_buffer_object
+> *ttm_bo, bool evict,
+> =C2=A0	=C2=A0=C2=A0=C2=A0 new_mem->mem_type =3D=3D XE_PL_SYSTEM) {
+> =C2=A0		long timeout =3D dma_resv_wait_timeout(ttm_bo-
+> >base.resv,
+> =C2=A0						=C2=A0=C2=A0=C2=A0=C2=A0
+> DMA_RESV_USAGE_BOOKKEEP,
+> -						=C2=A0=C2=A0=C2=A0=C2=A0 true,
+> +						=C2=A0=C2=A0=C2=A0=C2=A0 false,
+> =C2=A0						=C2=A0=C2=A0=C2=A0=C2=A0
+> MAX_SCHEDULE_TIMEOUT);
+> =C2=A0		if (timeout < 0) {
+> =C2=A0			ret =3D timeout;
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: handle hdmi connector init failures, and no HDMI/DP cases (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142118/">https://patchwork.freedesktop.org/series/142118/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142118v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142118v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2371-fb3d98511a2f6375a5c989ca5520aa31b689b119_BAT -&gt; xe-pw-142118v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-142118v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2371-fb3d98511a2f6375a5c989ca5520aa31b689b119/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142118v2/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-primary-page-flip@edp-1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2371-fb3d98511a2f6375a5c989ca5520aa31b689b119/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142118v2/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517">Intel XE#3517</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-dpms@a-edp1:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2371-fb3d98511a2f6375a5c989ca5520aa31b689b119/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729">Intel XE#3729</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142118v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2371-fb3d98511a2f6375a5c989ca5520aa31b689b119 -&gt; xe-pw-142118v2</li>
-</ul>
-<p>IGT_8156: edf352a96646c8d793f0c1eb11795112f9bde725 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2371-fb3d98511a2f6375a5c989ca5520aa31b689b119: fb3d98511a2f6375a5c989ca5520aa31b689b119<br />
-  xe-pw-142118v2: 142118v2</p>
-
-</body>
-</html>
-
---===============6113730447828154797==--
