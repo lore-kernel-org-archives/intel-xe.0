@@ -4,53 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40727E7717F
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 11:28:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BDE7E7717F
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 11:38:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E1CF10E5AD;
-	Mon, 16 Dec 2024 11:28:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BBE610E5C7;
+	Mon, 16 Dec 2024 11:38:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ljwckhFh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KDzZ1T/f";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CBD910E5AD
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Dec 2024 11:28:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B4C010E5C7;
+ Mon, 16 Dec 2024 11:38:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734348520; x=1765884520;
+ t=1734349122; x=1765885122;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=Z94fXHQJaw97Qi7hepebvWrM3hT9zldygDTf+doe3ww=;
- b=ljwckhFhOy0SxiwxsgwGYq8CK2MJP7AyjUra3/3AqpINMYLh3VM4Tuff
- kjav0Tetwn3Pu+rOh5vcirks70tEQJMWCXVhlGiEzGe4AG4vqOH6RvikY
- OkN47aiXyDoAc2klyd25IZitIIRahgHem/FX+vdFzfNE3pcutYu+wKhoE
- TwGSPfAsWsTRuOev0fsAsjbgEBPO6ZwvJsU/5X87zXuC3jWNry9ZdfZDi
- CxJe5B+8lVbbO8GizwZvtfL+rNfL0/8BHu4hOSeiX+WasUZJvIyQo7d4D
- ksoubKexza0a0x2cL9RLuVKx/Q4Q22hG3lBZ8fvOFaM1xIQPlQNaPCKZB w==;
-X-CSE-ConnectionGUID: Cxd4GDeeQ9uKE/Frxb/zCw==
-X-CSE-MsgGUID: uNbP3RKQRGmqZcuLRApeEw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="38654750"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="38654750"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 03:28:40 -0800
-X-CSE-ConnectionGUID: cG4RAVKEQBmoW9vetThkqQ==
-X-CSE-MsgGUID: x21MxVMZTKqI3weijHsdmg==
+ bh=sHyuZOv1oWfGup+bQH8GfQT4GOTfG34XvXmPZTdg+oI=;
+ b=KDzZ1T/f7glLXjd4n1smocFiBQ53KSV+WolAZ6168KnDNwkCPfbem79U
+ Zbex8nbR4shIVHGMbL/TnZVWuPy2u63xtJ4I+iQUtqITw70uAjzjIy8QV
+ 9kO8IVPBG/+qF80RiZy5qnlDFvmn2mab6AguTFaKbqT1jKw+aAuzaXtc5
+ gujdioa1eWIeRYVki+FTyQwkqq6MwfA0EJK5HKtkWudwL5AnC0W3DduLk
+ ZeczWPaXjJstQY45vHgjsoKKlTvqr5uodZ3336TA+LEPQmiWD3TxxtRyq
+ 88tSx5V8Q0LIRKNs3pHc4V5/4ziEkjAYRFHQZoOLCgysIwxX7MQGrQd4U A==;
+X-CSE-ConnectionGUID: nXsyO5v/TK2sMegwm010Bg==
+X-CSE-MsgGUID: 9l9aIA1sREWIpk46RSv66g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11287"; a="34025495"
+X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="34025495"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 03:38:41 -0800
+X-CSE-ConnectionGUID: 1iv1UnjkT8GoOZaP95t2dg==
+X-CSE-MsgGUID: 8xr4cfBbSbGIUW9E75P3rg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="134505464"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101326521"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.245])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 03:28:38 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>, intel-xe@lists.freedesktop.org
-Cc: jonathan.cavitt@intel.com, saurabhg.gupta@intel.com, alex.zuo@intel.com
-Subject: Re: [PATCH] drm/i915/display: Do not report timeout on suspend
-In-Reply-To: <20241213231234.81647-1-jonathan.cavitt@intel.com>
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 03:38:39 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: Sergey Senozhatsky <senozhatsky@chromium.org>, Ville Syrjala
+ <ville.syrjala@linux.intel.com>
+Subject: RE: [PATCH v3 1/6] drm/i915/ddi: change
+ intel_ddi_init_{dp,hdmi}_connector() return type
+In-Reply-To: <SN7PR11MB6750DC00BB9AF4CD5A66EA6BE3382@SN7PR11MB6750.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241213231234.81647-1-jonathan.cavitt@intel.com>
-Date: Mon, 16 Dec 2024 13:28:35 +0200
-Message-ID: <87wmfzsw7w.fsf@intel.com>
+References: <cover.1734099220.git.jani.nikula@intel.com>
+ <ddd89d5e49a0cd40c18f12567da7fb9605999fcd.1734099220.git.jani.nikula@intel.com>
+ <SN7PR11MB6750DC00BB9AF4CD5A66EA6BE3382@SN7PR11MB6750.namprd11.prod.outlook.com>
+Date: Mon, 16 Dec 2024 13:38:36 +0200
+Message-ID: <87ttb3svr7.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,35 +73,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 13 Dec 2024, Jonathan Cavitt <jonathan.cavitt@intel.com> wrote:
-> In intel_dp_aux_wait_done, we call intel_de_wait_custom.  This call has
-> a 10ms timeout before reporting ETIMEDOUT.  However, if the display pm
-> runtime is suspended, then it would be expected for this call to time
-> out.  This may be the case, for example, during an engine reset.
+On Fri, 13 Dec 2024, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> -----Original Message-----
+>> From: Nikula, Jani <jani.nikula@intel.com>
+>> Sent: Friday, December 13, 2024 7:46 PM
+>> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>> Cc: Nikula, Jani <jani.nikula@intel.com>; Sergey Senozhatsky
+>> <senozhatsky@chromium.org>; Ville Syrjala <ville.syrjala@linux.intel.com>;
+>> Kandpal, Suraj <suraj.kandpal@intel.com>
+>> Subject: [PATCH v3 1/6] drm/i915/ddi: change
+>> intel_ddi_init_{dp,hdmi}_connector() return type
+>>
+>> The caller doesn't actually need the returned struct intel_connector; it's
+>> stored in the ->attached_connector of intel_dp ad intel_hdmi. Switch to
 >
-> Do not report ETIMEDOUT here when the pm runtime is suspended.
->
-> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Typo : *and
+> Otherwise LGTM,
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-PS. Please *always* Cc: intel-gfx for i915 display patches.
+Thanks, care to look at patch 4 as well, it's changed slightly?
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+BR,
+Jani.
+
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> index 04a7acd7f73c..25c37398f930 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> @@ -66,7 +66,7 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
->  				   0,
->  				   2, timeout_ms, &status);
->  
-> -	if (ret == -ETIMEDOUT)
-> +	if (ret == -ETIMEDOUT && !pm_runtime_suspended(display->drm->dev))
->  		drm_err(display->drm,
->  			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
->  			intel_dp->aux.name, timeout_ms, status);
+>> returning an int with 0 for success and negative errors codes to be able to
+>> indicate success even when we don't have a connector.
+>>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_ddi.c | 20 +++++++++-----------
+>>  1 file changed, 9 insertions(+), 11 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> index 4f9c50996446..21277cf8afef 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -4542,8 +4542,7 @@ static const struct drm_encoder_funcs
+>> intel_ddi_funcs = {
+>>       .late_register = intel_ddi_encoder_late_register,  };
+>>
+>> -static struct intel_connector *
+>> -intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
+>> +static int intel_ddi_init_dp_connector(struct intel_digital_port
+>> +*dig_port)
+>>  {
+>>       struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+>>       struct intel_connector *connector;
+>> @@ -4551,7 +4550,7 @@ intel_ddi_init_dp_connector(struct
+>> intel_digital_port *dig_port)
+>>
+>>       connector = intel_connector_alloc();
+>>       if (!connector)
+>> -             return NULL;
+>> +             return -ENOMEM;
+>>
+>>       dig_port->dp.output_reg = DDI_BUF_CTL(port);
+>>       if (DISPLAY_VER(i915) >= 14)
+>> @@ -4566,7 +4565,7 @@ intel_ddi_init_dp_connector(struct
+>> intel_digital_port *dig_port)
+>>
+>>       if (!intel_dp_init_connector(dig_port, connector)) {
+>>               kfree(connector);
+>> -             return NULL;
+>> +             return -EINVAL;
+>>       }
+>>
+>>       if (dig_port->base.type == INTEL_OUTPUT_EDP) { @@ -4582,7
+>> +4581,7 @@ intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
+>>               }
+>>       }
+>>
+>> -     return connector;
+>> +     return 0;
+>>  }
+>>
+>>  static int intel_hdmi_reset_link(struct intel_encoder *encoder, @@ -4748,20
+>> +4747,19 @@ static bool bdw_digital_port_connected(struct intel_encoder
+>> *encoder)
+>>       return intel_de_read(dev_priv, GEN8_DE_PORT_ISR) & bit;  }
+>>
+>> -static struct intel_connector *
+>> -intel_ddi_init_hdmi_connector(struct intel_digital_port *dig_port)
+>> +static int intel_ddi_init_hdmi_connector(struct intel_digital_port
+>> +*dig_port)
+>>  {
+>>       struct intel_connector *connector;
+>>       enum port port = dig_port->base.port;
+>>
+>>       connector = intel_connector_alloc();
+>>       if (!connector)
+>> -             return NULL;
+>> +             return -ENOMEM;
+>>
+>>       dig_port->hdmi.hdmi_reg = DDI_BUF_CTL(port);
+>>       intel_hdmi_init_connector(dig_port, connector);
+>>
+>> -     return connector;
+>> +     return 0;
+>>  }
+>>
+>>  static bool intel_ddi_a_force_4_lanes(struct intel_digital_port *dig_port) @@
+>> -5306,7 +5304,7 @@ void intel_ddi_init(struct intel_display *display,
+>>       intel_infoframe_init(dig_port);
+>>
+>>       if (init_dp) {
+>> -             if (!intel_ddi_init_dp_connector(dig_port))
+>> +             if (intel_ddi_init_dp_connector(dig_port))
+>>                       goto err;
+>>
+>>               dig_port->hpd_pulse = intel_dp_hpd_pulse; @@ -5320,7
+>> +5318,7 @@ void intel_ddi_init(struct intel_display *display,
+>>        * but leave it just in case we have some really bad VBTs...
+>>        */
+>>       if (encoder->type != INTEL_OUTPUT_EDP && init_hdmi) {
+>> -             if (!intel_ddi_init_hdmi_connector(dig_port))
+>> +             if (intel_ddi_init_hdmi_connector(dig_port))
+>>                       goto err;
+>>       }
+>>
+>> --
+>> 2.39.5
+>
 
 -- 
 Jani Nikula, Intel
