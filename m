@@ -4,57 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60BC4E7717F
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 10:42:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09070E77180
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 10:44:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 284AE10E58B;
-	Mon, 16 Dec 2024 10:42:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2B8E10E404;
+	Mon, 16 Dec 2024 10:44:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WWvS272o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TLeFIrA8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09AAB10E58A
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Dec 2024 10:42:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C3E810E3E4;
+ Mon, 16 Dec 2024 10:44:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734345737; x=1765881737;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Uf5P7SzfFGor3PHHj4sRmWQ7EDCJUVUs0cbdRY5MoLQ=;
- b=WWvS272o21F0ri9aeU3oG42zj95l9/W8uWSF9Q7u3ofOswFs3YoUbVUt
- CgzgBXn0dj6Ih2ST44+u8kIganEsaKGzb2scaLA8ou+xcI4FulgX5kv4Q
- Bx7R5wSyfT0pOA4vxZVY+NadkmT5hPjqmzD3fVodrMEAKHq0lwKxoFMxy
- NlAzZxay6DXQcRF1uS7iJTyfZ9RmCklg+hpQN7K2ohlYjV7zYa+4srqrM
- kzAiasr6Xhovzuw29tBzpLmtkzRqFJjT5hUC9HhFuPCkUhH3BeergikQS
- koZvgV66Z8wQJYTw5W+fmBXgFAJs92GFfWcmFQlEKXUkmkErAG+Kcso05 w==;
-X-CSE-ConnectionGUID: gCot0FVoStqixdxpVGRE/w==
-X-CSE-MsgGUID: 0PVHhd+oTVWfylzgZcb8Bw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="46133160"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="46133160"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 02:42:17 -0800
-X-CSE-ConnectionGUID: Yx8nAmkSQJqvJtx0tBemNA==
-X-CSE-MsgGUID: W6IphF6ET0OH4hT33Dzyrg==
+ t=1734345898; x=1765881898;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=so/6GcuJk+HQIrVMylw/ElVjpzHKK/h9VgR/7RbiKTg=;
+ b=TLeFIrA8KPoMG53C/Ae1ukmZRvu56lQkK2WR5emiQ95sGdpk/D2yGLO/
+ gN+5MXyAhc2MJoVv9v/jveP+lDM142zDYhjdSa1hW4zl4Hvo3t0G3/9E7
+ a11goHqaFU4b1GD0Uae7ZW7Y820N2+SVTPOEcnKbOG1nA/UPk1l9hF7zZ
+ MIPVD4WHQUfJegXdUQhTIAGLGIFU47GVGR7XmQbOKiUeTdnMkKi2E3q8A
+ Otlwa+rOHVivdI22iKMOYI87qCNShm0Kwg79H2ziaboq8hQBAAQTI6iEl
+ lmyeXWk6899RKsW3EY+V9nM2rpEtR7rKrNM2KiU1+4UG/U+sQPYb7XNdg w==;
+X-CSE-ConnectionGUID: 3G9Rm3zkSJ23x5F1MIh/Sw==
+X-CSE-MsgGUID: 4VWAb696TvKh8H4ZGAYm3g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="45728083"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="45728083"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 02:44:58 -0800
+X-CSE-ConnectionGUID: dtAURxieSv+vKYMtHOesjw==
+X-CSE-MsgGUID: C2n9PDd8SEaTGE6e0M+24A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="97031917"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.245])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 02:42:14 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- matthew.d.roper@intel.com, aravind.iddamsetty@intel.com
-Subject: Re: [PATCH 2/2] RFC drm/xe: Enable Boot Survivability mode
-In-Reply-To: <20241212054945.1091894-3-riana.tauro@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241212054945.1091894-1-riana.tauro@intel.com>
- <20241212054945.1091894-3-riana.tauro@intel.com>
-Date: Mon, 16 Dec 2024 12:42:11 +0200
-Message-ID: <878qsfucxo.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="102193904"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO [10.245.246.246])
+ ([10.245.246.246])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 02:44:54 -0800
+Message-ID: <ac9553b60fd7a6794b284b5e830898e42819e43e.camel@linux.intel.com>
+Subject: Re: [PATCH v2 23/29] drm/xe: Add BO flags required for SVM
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com, 
+ simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
+Date: Mon, 16 Dec 2024 11:44:51 +0100
+In-Reply-To: <Z1oHV0F2sjhY1YsF@lstrano-desk.jf.intel.com>
+References: <20241016032518.539495-1-matthew.brost@intel.com>
+ <20241016032518.539495-24-matthew.brost@intel.com>
+ <a2377c7b0cacc4c437a0defdb410565b774e6250.camel@linux.intel.com>
+ <Z1oHV0F2sjhY1YsF@lstrano-desk.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
 MIME-Version: 1.0
-Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,122 +74,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 12 Dec 2024, Riana Tauro <riana.tauro@intel.com> wrote:
-> Enable boot survivability mode if pcode initialization fails and
-> if boot status indicates a failure. In this mode, drm card is not
-> exposed and driver probe returns success after loading the bare minimum
-> to allow firmware to be flashed via mei.
->
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_device.c             |  9 +++++++--
->  drivers/gpu/drm/xe/xe_pci.c                | 13 +++++++++++++
->  drivers/gpu/drm/xe/xe_survivability_mode.c |  3 +++
->  3 files changed, 23 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 56d4ffb650da..50ed980e1db9 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -51,6 +51,7 @@
->  #include "xe_pm.h"
->  #include "xe_query.h"
->  #include "xe_sriov.h"
-> +#include "xe_survivability_mode.h"
->  #include "xe_tile.h"
->  #include "xe_ttm_stolen_mgr.h"
->  #include "xe_ttm_sys_mgr.h"
-> @@ -585,8 +586,12 @@ int xe_device_probe_early(struct xe_device *xe)
->  	update_device_info(xe);
->  
->  	err = xe_pcode_probe_early(xe);
-> -	if (err)
-> -		return err;
-> +	if (err) {
-> +		if (xe->info.platform == XE_BATTLEMAGE && xe_survivability_mode_required(xe))
+On Wed, 2024-12-11 at 13:42 -0800, Matthew Brost wrote:
+> On Mon, Dec 02, 2024 at 11:44:47AM +0100, Thomas Hellstr=C3=B6m wrote:
+> > On Tue, 2024-10-15 at 20:25 -0700, Matthew Brost wrote:
+> > > Add XE_BO_FLAG_SYSTEM_ALLOC to indicate BO is tied to SVM range.
+> > >=20
+> > > Add XE_BO_FLAG_SKIP_CLEAR to indicate BO does not need to
+> > > cleared.
+> > >=20
+> > > v2:
+> > > =C2=A0- Take VM ref for system allocator BOs
+> > >=20
+> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > ---
+> > > =C2=A0drivers/gpu/drm/xe/xe_bo.c | 15 +++++++++------
+> > > =C2=A0drivers/gpu/drm/xe/xe_bo.h |=C2=A0 2 ++
+> > > =C2=A02 files changed, 11 insertions(+), 6 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > > b/drivers/gpu/drm/xe/xe_bo.c
+> > > index a02d63e322ae..dbd03383878e 100644
+> > > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > > @@ -685,8 +685,9 @@ static int xe_bo_move(struct
+> > > ttm_buffer_object
+> > > *ttm_bo, bool evict,
+> > > =C2=A0	move_lacks_source =3D !old_mem || (handle_system_ccs ?
+> > > (!bo-
+> > > > ccs_cleared) :
+> > > =C2=A0				=09
+> > > (!mem_type_is_vram(old_mem_type) && !tt_has_data));
+> > > =C2=A0
+> > > -	needs_clear =3D (ttm && ttm->page_flags &
+> > > TTM_TT_FLAG_ZERO_ALLOC) ||
+> > > -		(!ttm && ttm_bo->type =3D=3D ttm_bo_type_device);
+> > > +	needs_clear =3D !(bo->flags & XE_BO_FLAG_SKIP_CLEAR) &&
+> > > +		((ttm && ttm->page_flags &
+> > > TTM_TT_FLAG_ZERO_ALLOC)
+> > > > >=20
+> > > +		(!ttm && ttm_bo->type =3D=3D ttm_bo_type_device));
+> >=20
+> > It should be worth adding a note about how clearing for svm bos is
+> > intended to work. From what I can tell, there is an option to clear
+> > on
+> > migration from system to vram if no system pages are present?
+> >=20
+>=20
+> Sure can add a comment. The migration from system to vram doesn't do
+> a
+> clear currently because when 'check_pages' is set we only migrate CPU
+> faulted in pages. If we remove that, then yes we'd need a clear on
+> migration.=20
+>=20
+> > > =C2=A0
+> > > =C2=A0	if (new_mem->mem_type =3D=3D XE_PL_TT) {
+> > > =C2=A0		ret =3D xe_tt_map_sg(ttm);
+> > > @@ -1145,7 +1146,7 @@ static void xe_ttm_bo_destroy(struct
+> > > ttm_buffer_object *ttm_bo)
+> > > =C2=A0		xe_drm_client_remove_bo(bo);
+> > > =C2=A0#endif
+> > > =C2=A0
+> > > -	if (bo->vm && xe_bo_is_user(bo))
+> > > +	if (bo->vm && (xe_bo_is_user(bo) || bo->flags &
+> > > XE_BO_FLAG_SYSTEM_ALLOC))
+> > > =C2=A0		xe_vm_put(bo->vm);
+> > > =C2=A0
+> > > =C2=A0	mutex_lock(&xe->mem_access.vram_userfault.lock);
+> > > @@ -1301,7 +1302,8 @@ struct xe_bo *___xe_bo_create_locked(struct
+> > > xe_device *xe, struct xe_bo *bo,
+> > > =C2=A0	int err;
+> > > =C2=A0
+> > > =C2=A0	/* Only kernel objects should set GT */
+> > > -	xe_assert(xe, !tile || type =3D=3D ttm_bo_type_kernel);
+> > > +	xe_assert(xe, !tile || type =3D=3D ttm_bo_type_kernel ||
+> > > +		=C2=A0 flags & XE_BO_FLAG_SYSTEM_ALLOC);
+> > > =C2=A0
+> > > =C2=A0	if (XE_WARN_ON(!size)) {
+> > > =C2=A0		xe_bo_free(bo);
+> > > @@ -1493,7 +1495,7 @@ __xe_bo_create_locked(struct xe_device *xe,
+> > > =C2=A0	 * by having all the vm's bo refereferences released at
+> > > vm
+> > > close
+> > > =C2=A0	 * time.
+> > > =C2=A0	 */
+> > > -	if (vm && xe_bo_is_user(bo))
+> > > +	if (vm && (xe_bo_is_user(bo) || bo->flags &
+> > > XE_BO_FLAG_SYSTEM_ALLOC))
+> > > =C2=A0		xe_vm_get(vm);
+> > > =C2=A0	bo->vm =3D vm;
+> > > =C2=A0
+> > > @@ -2333,7 +2335,8 @@ bool xe_bo_needs_ccs_pages(struct xe_bo
+> > > *bo)
+> > > =C2=A0	 * can't be used since there's no CCS storage associated
+> > > with
+> > > =C2=A0	 * non-VRAM addresses.
+> > > =C2=A0	 */
+> > > -	if (IS_DGFX(xe) && (bo->flags & XE_BO_FLAG_SYSTEM))
+> > > +	if (IS_DGFX(xe) && ((bo->flags & XE_BO_FLAG_SYSTEM) ||
+> > > +	=C2=A0=C2=A0=C2=A0 (bo->flags & XE_BO_FLAG_SYSTEM_ALLOC)))
+> > > =C2=A0		return false;
+> >=20
+> > Can we support CCS with system allocator? Perhaps add a TODO
+> > comment if
+> > so. I figure it should be possible if we resolve on migration to
+> > system, which we do on BMG.
+> >=20
+>=20
+> Honestly don't really understand how CCS works, so unsure if
+> possible.
+> Can add a TODO comment and we can circle back.
 
-Why the platform check here? Doesn't this stuff belong abstracted inside
-the survivability mode?
+Sounds good. We should probably also discuss with UMD if they see a
+performance use-case.
 
-> +			xe_survivability_mode_init(xe);
-> +
-> +		return xe->survivability.mode ? 0 : err;
-
-Is it a good idea to start looking at survivability guts from all over
-the place? I mean xe->survivability.mode. Even its value should be an
-implementation detail, and this is using it to decide whether the
-previous call succeeded.
-
-I think this would benefit from hiding stuff better and providing
-interfaces. This is one of the things i915 sucks at, and it's really
-hard and tedious work to fix afterwards.
-
-Just imagine xe->survavibility is an opaque pointer (even if it isn't)
-and implement stuff based on that. It will make a world of difference in
-future maintainability.
+/Thomas
 
 
-BR,
-Jani.
+>=20
+> Matt
+>=20
+> >=20
+> > Thanks,
+> > Thomas
+> >=20
+> >=20
+> > > =C2=A0
+> > > =C2=A0	return true;
+> > > diff --git a/drivers/gpu/drm/xe/xe_bo.h
+> > > b/drivers/gpu/drm/xe/xe_bo.h
+> > > index 7fa44a0138b0..caf0459d16ad 100644
+> > > --- a/drivers/gpu/drm/xe/xe_bo.h
+> > > +++ b/drivers/gpu/drm/xe/xe_bo.h
+> > > @@ -39,6 +39,8 @@
+> > > =C2=A0#define XE_BO_FLAG_NEEDS_64K		BIT(15)
+> > > =C2=A0#define XE_BO_FLAG_NEEDS_2M		BIT(16)
+> > > =C2=A0#define XE_BO_FLAG_GGTT_INVALIDATE	BIT(17)
+> > > +#define XE_BO_FLAG_SYSTEM_ALLOC		BIT(18)
+> > > +#define XE_BO_FLAG_SKIP_CLEAR		BIT(19)
+> > > =C2=A0/* this one is trigger internally only */
+> > > =C2=A0#define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
+> > > =C2=A0#define XE_BO_FLAG_INTERNAL_64K		BIT(31)
+> >=20
 
-
-> +	}
->  
->  	err = wait_for_lmem_ready(xe);
->  	if (err)
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 7d146e3e8e21..b9dcd36de06d 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -30,6 +30,7 @@
->  #include "xe_pm.h"
->  #include "xe_sriov.h"
->  #include "xe_step.h"
-> +#include "xe_survivability_mode.h"
->  #include "xe_tile.h"
->  
->  enum toggle_d3cold {
-> @@ -768,6 +769,9 @@ static void xe_pci_remove(struct pci_dev *pdev)
->  	if (IS_SRIOV_PF(xe))
->  		xe_pci_sriov_configure(pdev, 0);
->  
-> +	if (xe->survivability.mode)
-> +		return xe_survivability_mode_remove(xe);
-> +
->  	xe_device_remove(xe);
->  	xe_pm_runtime_fini(xe);
->  	pci_set_drvdata(pdev, NULL);
-> @@ -840,6 +844,15 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->  		return err;
->  
->  	err = xe_device_probe_early(xe);
-> +
-> +	/*
-> +	 * In Boot Survivability mode, no drm card is exposed
-> +	 * and driver is loaded with bare minimum to allow
-> +	 * for firmware to be flashed through mei
-> +	 */
-> +	if (!err && xe->survivability.mode)
-> +		return 0;
-> +
->  	if (err)
->  		return err;
->  
-> diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-> index 7e36989efd68..6c1e79b5c15f 100644
-> --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-> +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-> @@ -176,7 +176,10 @@ bool xe_survivability_mode_required(struct xe_device *xe)
->   */
->  void xe_survivability_mode_remove(struct xe_device *xe)
->  {
-> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> +
->  	sysfs_remove_files(&xe->drm.dev->kobj, survivability_attrs);
-> +	pci_set_drvdata(pdev, NULL);
->  }
->  
->  /**
-
--- 
-Jani Nikula, Intel
