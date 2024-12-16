@@ -4,52 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EAAAE7717F
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 12:53:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75A49E7717F
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 12:55:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B3CC10E607;
-	Mon, 16 Dec 2024 12:53:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AFBD10E1C7;
+	Mon, 16 Dec 2024 12:55:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SXpcFkW/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X7ToTQhW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E37010E607
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Dec 2024 12:53:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A49010E1C7;
+ Mon, 16 Dec 2024 12:55:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734353595; x=1765889595;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=nTqPeGvz6WHxEV5XDseZ5G0tyImmSecKe4l/hinLgQM=;
- b=SXpcFkW/6dWh1F9lTSHDZQeNr6ORN38MgNm5vDFQWcpLAnGi4EBCFbpO
- ijsO30s1p4FmitnNxHlneOz8v/Gb8dcemLGrkPbaYjLEg7mQcHsL2wb4B
- 4w2IY8nqj0qk6GPp+FZMErhwravyK+/zY/Z7hb2sIQ0n4f+Vkkqji97R1
- sorcNS/K0K2t8ZjvEK3DKhP6XDVnbWvzaNxM3kVDRNFAvNpts2Xt8xCij
- jvZkRVh5RCUExJrnSU5TX9nfNLUdlrBUeNhDqfJZhi03yFhrnKcxCAoIv
- qx7XvNiFG5g7lx/01rzD8WQzSCRRcTeCczg/3sX5J1ypdEY9lLbzvcKP1 A==;
-X-CSE-ConnectionGUID: hPKp8MhTTTypANU4kdsDfA==
-X-CSE-MsgGUID: XEKilwtjS4qoaiyLKV3/Mw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="38509548"
-X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="38509548"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 04:53:15 -0800
-X-CSE-ConnectionGUID: Jfl9dlwGSTWApWqmBtgtJw==
-X-CSE-MsgGUID: g23E4bgaSau724OIQwVS1w==
+ t=1734353705; x=1765889705;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=Ddh1vCvmn0fnzVid/fPhwwEBTMPKbSWa2WqmIopzWhA=;
+ b=X7ToTQhWXWwiiDfqXCs9Yr44fQgKCi0ZFSG2yguMsFiN5csifrNAstJI
+ 21y8hA+Olxv/oP46b3m1rKBu/bGhcNsGRgc82E3eo4xVcaHwd39pdxKmN
+ UqchX9+WE2hvj0hy1lL6ajtluAIF5t3OTvulje+RZ6CDCrWJ3fyx+w3Lv
+ AozCwGbzVgLWfnSEzx8NYPLn+WWPxE+rP4khR8s4hi/aNBSnfzL6wHFpy
+ lnWR7u7IAF/qo2cnqoYcOkwh7/hf+GRGo6X24CAAcDsQ5h43TmRGu2kdV
+ t+N2F+2ky3Nsitd07NdJLNbkaoNwb3BgzCaMem1bjvwl0JmiqFsn4jmPA g==;
+X-CSE-ConnectionGUID: /5Yn8qdISy6/6jUcaYkm3Q==
+X-CSE-MsgGUID: 56zCoCevTYilQuOC4s3e8w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="52150752"
+X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="52150752"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 04:55:05 -0800
+X-CSE-ConnectionGUID: BjDYnfi+RBGnVwhLv83GsQ==
+X-CSE-MsgGUID: GWkJwCc+TVG4Zohd62U1yA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="97987462"
-Received: from sorvi2.fi.intel.com ([10.237.72.194])
- by orviesa008.jf.intel.com with ESMTP; 16 Dec 2024 04:53:13 -0800
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: imre.deak@intel.com,
-	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH] drm/i915/display: UHBR rates for Thunderbolt
-Date: Mon, 16 Dec 2024 14:44:22 +0200
-Message-ID: <20241216124422.475693-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="97618254"
+Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
+ [10.245.244.246]) ([10.245.244.246])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 04:55:03 -0800
+Message-ID: <3e7e192d-4e1a-45a3-a36e-fca2e38a272a@intel.com>
+Date: Mon, 16 Dec 2024 12:55:01 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [i-g-t V5 4/4] tests/xe/mmap: add tests for pci mem barrier
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
+ "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+References: <20241128055647.1677371-1-tejas.upadhyay@intel.com>
+ <20241128055647.1677371-5-tejas.upadhyay@intel.com>
+ <ba8b6e62-580f-4ac5-baef-1c88531431ad@intel.com>
+ <SJ1PR11MB6204480D213664A0BF5A0D4A813B2@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <SJ1PR11MB6204480D213664A0BF5A0D4A813B2@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,106 +73,318 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tbt-alt mode is missing uhbr rates 10G and 20G. This requires
-requires pll clock rates 312.5 MHz and 625 MHz to be added,
-respectively. The uhbr rates are supported only form PTL+
-platforms.
+On 16/12/2024 12:29, Upadhyay, Tejas wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Auld, Matthew <matthew.auld@intel.com>
+>> Sent: Friday, December 13, 2024 6:54 PM
+>> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; igt-
+>> dev@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>> Subject: Re: [i-g-t V5 4/4] tests/xe/mmap: add tests for pci mem barrier
+>>
+>> On 28/11/2024 05:56, Tejas Upadhyay wrote:
+>>> We want to make sure that mmap do direct mapping of physical page at
+>>> doorbell space and whole page is accessible in order to use pci memory
+>>> barrier effect effectively.
+>>>
+>>> Following subtests are added,
+>>> ./build/tests/xe_mmap --r pci-membarrier ./build/tests/xe_mmap --r
+>>> pci-membarrier-parallel ./build/tests/xe_mmap --r
+>>> pci-membarrier-bad-pagesize ./build/tests/xe_mmap --r
+>>> pci-membarrier-bad-object
+>>>
+>>> V5:
+>>>    - Add pci-membarrier-parallel test
+>>> V3(MAuld):
+>>>    - Check if pci memory barrier is supported
+>>> V2(MAuld)
+>>>    - use do_ioctl and replace igt_subtest_f with igt_subtest
+>>>    - Remove unused define
+>>>
+>>> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+>>> ---
+>>>    tests/intel/xe_mmap.c | 211
+>> ++++++++++++++++++++++++++++++++++++++++++
+>>>    1 file changed, 211 insertions(+)
+>>>
+>>> diff --git a/tests/intel/xe_mmap.c b/tests/intel/xe_mmap.c index
+>>> fc5d73d59..1a61095d5 100644
+>>> --- a/tests/intel/xe_mmap.c
+>>> +++ b/tests/intel/xe_mmap.c
+>>> @@ -64,6 +64,161 @@ test_mmap(int fd, uint32_t placement, uint32_t
+>> flags)
+>>>    	gem_close(fd, bo);
+>>>    }
+>>>
+>>> +#define PAGE_SIZE 4096
+>>> +
+>>> +/**
+>>> + * SUBTEST: pci-membarrier
+>>> + * Description: create pci memory barrier with write on defined mmap
+>> offset.
+>>> + * Test category: functionality test
+>>> + *
+>>> + */
+>>> +static void test_pci_membarrier(int xe) {
+>>> +	uint64_t flags = MAP_SHARED;
+>>> +	unsigned int prot = PROT_WRITE;
+>>> +	uint32_t *ptr;
+>>> +	uint64_t size = PAGE_SIZE;
+>>> +	struct timespec tv;
+>>> +	struct drm_xe_gem_mmap_offset mmo = {
+>>> +		.handle = 0,
+>>> +		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
+>>> +	};
+>>> +
+>>> +	do_ioctl(xe, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
+>>> +	ptr = mmap(NULL, size, prot, flags, xe, mmo.offset);
+>>> +	igt_assert(ptr != MAP_FAILED);
+>>> +
+>>> +	/* Check whole page for any errors, also check as
+>>> +	 * we should not read written values back
+>>> +	 */
+>>> +	for (int i = 0; i < size / sizeof(*ptr); i++) {
+>>> +		/* It is expected unconfigured doorbell space
+>>> +		 * will return read value 0xdeadbeef
+>>> +		 */
+>>> +		igt_assert_eq_u32(READ_ONCE(ptr[i]), 0xdeadbeef);
+>>> +
+>>> +		igt_gettime(&tv);
+>>> +		ptr[i] = i;
+>>> +		if (READ_ONCE(ptr[i]) == i) {
+>>> +			while (READ_ONCE(ptr[i]) == i)
+>>> +				;
+>>> +			igt_info("fd:%d value retained for %"PRId64"ns
+>> pos:%d\n",
+>>> +				 xe, igt_nsec_elapsed(&tv), i);
+>>> +		}
+>>> +		igt_assert_neq(READ_ONCE(ptr[i]), i);
+>>> +	}
+>>> +
+>>> +	munmap(ptr, size);
+>>> +}
+>>> +
+>>> +/**
+>>> + * SUBTEST: pci-membarrier-parallel
+>>> + * Description: create parallel pci memory barrier with write on defined
+>> mmap offset.
+>>> + * Test category: functionality test
+>>> + *
+>>> + */
+>>> +static void test_pci_membarrier_parallel(int xe, int child) {
+>>> +	unsigned int bad_ns, elapsed;
+>>> +	uint64_t flags = MAP_SHARED;
+>>> +	unsigned int i;
+>>> +	unsigned int prot = PROT_WRITE;
+>>> +	uint32_t *ptr;
+>>> +	uint64_t size = PAGE_SIZE;
+>>> +	struct drm_xe_gem_mmap_offset mmo = {
+>>> +		.handle = 0,
+>>> +		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
+>>> +	};
+>>> +	struct timespec total, bad;
+>>> +	int tpos = size / sizeof(*ptr);
+>>> +	int value;
+>>> +
+>>> +	do_ioctl(xe, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
+>>> +	ptr = mmap(NULL, size, prot, flags, xe, mmo.offset);
+>>> +	igt_assert(ptr != MAP_FAILED);
+>>> +
+>>> +	/* Check any random position up to 1K */
+>>> +	i = rand() % (size / sizeof(*ptr));
+>>
+>> So both child and parent will have the same rand() value here.
+> 
+> Possible to have same value but very narrow chance and too much to worry(being sane value) for test functionality we have at hand.
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 27 ++++++++++++++++---
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  4 +++
- 2 files changed, 28 insertions(+), 3 deletions(-)
+I think it will always be the same value. They both start with the same 
+seed so rand() here should give same rng sequence. But I thought that 
+was intentional...
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index cc734079c3b8..e0bd47e684c5 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3070,7 +3070,10 @@ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
- 
- 	val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port));
- 
--	clock = REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val);
-+	if (DISPLAY_VER(display) >= 30)
-+		clock = REG_FIELD_GET(XE3LPDP_DDI_CLOCK_SELECT_MASK, val);
-+	else
-+		clock = REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val);
- 
- 	drm_WARN_ON(display->drm, !(val & XELPDP_FORWARD_CLOCK_UNGATE));
- 	drm_WARN_ON(display->drm, !(val & XELPDP_TBT_CLOCK_REQUEST));
-@@ -3085,6 +3088,10 @@ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
- 		return 540000;
- 	case XELPDP_DDI_CLOCK_SELECT_TBT_810:
- 		return 810000;
-+	case XELPDP_DDI_CLOCK_SELECT_TBT_312_5:
-+		return 1000000;
-+	case XELPDP_DDI_CLOCK_SELECT_TBT_625:
-+		return 2000000;
- 	default:
- 		MISSING_CASE(clock);
- 		return 162000;
-@@ -3102,6 +3109,10 @@ static int intel_mtl_tbt_clock_select(int clock)
- 		return XELPDP_DDI_CLOCK_SELECT_TBT_540;
- 	case 810000:
- 		return XELPDP_DDI_CLOCK_SELECT_TBT_810;
-+	case 1000000:
-+		return XELPDP_DDI_CLOCK_SELECT_TBT_312_5;
-+	case 2000000:
-+		return XELPDP_DDI_CLOCK_SELECT_TBT_625;
- 	default:
- 		MISSING_CASE(clock);
- 		return XELPDP_DDI_CLOCK_SELECT_TBT_162;
-@@ -3114,15 +3125,25 @@ static void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
- 	struct intel_display *display = to_intel_display(encoder);
- 	enum phy phy = intel_encoder_to_phy(encoder);
- 	u32 val = 0;
-+	u32 mask;
- 
- 	/*
- 	 * 1. Program PORT_CLOCK_CTL REGISTER to configure
- 	 * clock muxes, gating and SSC
- 	 */
--	val |= XELPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(crtc_state->port_clock));
-+
-+	if (DISPLAY_VER(display) >= 30) {
-+		mask = XE3LPDP_DDI_CLOCK_SELECT_MASK;
-+		val |= XE3LPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(crtc_state->port_clock));
-+	} else {
-+		mask = XELPDP_DDI_CLOCK_SELECT_MASK;
-+		val |= XELPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(crtc_state->port_clock));
-+	}
-+
- 	val |= XELPDP_FORWARD_CLOCK_UNGATE;
-+
- 	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
--		     XELPDP_DDI_CLOCK_SELECT_MASK | XELPDP_FORWARD_CLOCK_UNGATE, val);
-+		     mask | XELPDP_FORWARD_CLOCK_UNGATE, val);
- 
- 	/* 2. Read back PORT_CLOCK_CTL REGISTER */
- 	val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port));
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-index c685479c9756..9870d61ca493 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-@@ -187,7 +187,9 @@
- #define   XELPDP_TBT_CLOCK_REQUEST			REG_BIT(19)
- #define   XELPDP_TBT_CLOCK_ACK				REG_BIT(18)
- #define   XELPDP_DDI_CLOCK_SELECT_MASK			REG_GENMASK(15, 12)
-+#define   XE3LPDP_DDI_CLOCK_SELECT_MASK			REG_GENMASK(16, 12)
- #define   XELPDP_DDI_CLOCK_SELECT(val)			REG_FIELD_PREP(XELPDP_DDI_CLOCK_SELECT_MASK, val)
-+#define   XE3LPDP_DDI_CLOCK_SELECT(val)			REG_FIELD_PREP(XE3LPDP_DDI_CLOCK_SELECT_MASK, val)
- #define   XELPDP_DDI_CLOCK_SELECT_NONE			0x0
- #define   XELPDP_DDI_CLOCK_SELECT_MAXPCLK		0x8
- #define   XELPDP_DDI_CLOCK_SELECT_DIV18CLK		0x9
-@@ -195,6 +197,8 @@
- #define   XELPDP_DDI_CLOCK_SELECT_TBT_270		0xd
- #define   XELPDP_DDI_CLOCK_SELECT_TBT_540		0xe
- #define   XELPDP_DDI_CLOCK_SELECT_TBT_810		0xf
-+#define   XELPDP_DDI_CLOCK_SELECT_TBT_312_5		0x18
-+#define   XELPDP_DDI_CLOCK_SELECT_TBT_625		0x19
- #define   XELPDP_FORWARD_CLOCK_UNGATE			REG_BIT(10)
- #define   XELPDP_LANE1_PHY_CLOCK_SELECT			REG_BIT(8)
- #define   XELPDP_SSC_ENABLE_PLLA			REG_BIT(1)
--- 
-2.43.0
+> 
+>>
+>>> +	/* It is expected unconfigured doorbell space
+>>> +	 * will return read value 0xdeadbeef
+>>> +	 */
+>>> +	igt_assert_eq_u32(READ_ONCE(ptr[i]), 0xdeadbeef);
+>>> +
+>>> +	igt_until_timeout(5) {
+>>> +		WRITE_ONCE(ptr[i], i);
+>>> +	}
+>>> +	bad_ns = 0;
+>>> +	igt_gettime(&total);
+>>> +	igt_until_timeout(5) { /* XXX sync with parent loop! */
+>>> +		if (READ_ONCE(ptr[i]) == i) {
+>>> +			igt_gettime(&bad);
+>>> +			while (READ_ONCE(ptr[i]) == i)
+>>> +				;
+>>> +			bad_ns += igt_nsec_elapsed(&bad);
+>>> +		}
+>>> +	}
+>>> +	elapsed = igt_nsec_elapsed(&total);
+>>> +	if (bad_ns) {
+>>> +		igt_info("Cross-client writes visible %.1f%% of the time.\n",
+>>
+>> Is this actually "Cross-client"? Are cross client visible writes possible? Is the
+>> below not enough to check this?
+> 
+> Again this is similar to original test where I put debug, we never hit this debug in this test as well, but it was the thinking that the value was hold and cross client might read it, so to test and show case scenario we are checking this. Otherwise below check is enough for clients isolation.
+
+Do we need to test that again? Can't we just test the cross clients 
+isolation below?
+
+> 
+> Tejas
+>   
+>>
+>>> +			 bad_ns * 100. / elapsed);
+>>> +	}
+>>> +	igt_assert(20 * bad_ns < elapsed); /* Arbitrary 5% threshold */
+>>> +	igt_assert_neq(READ_ONCE(ptr[i]), i);
+>>
+>>> +	igt_until_timeout(5) {
+>>> +		/* Check clients should not be able to see each other */
+>>> +		if (child != -1)
+>>> +			value = tpos + 1;
+>>> +		else
+>>> +			value = tpos;
+>>> +
+>>> +		WRITE_ONCE(ptr[tpos-1], value);
+>>> +	}
+>>> +	bad_ns = 0;
+>>> +	igt_gettime(&total);
+>>> +	igt_until_timeout(5) { /* XXX sync with parent loop! */
+>>> +		if (READ_ONCE(ptr[tpos-1]) == value) {
+>>> +			igt_gettime(&bad);
+>>> +			while (READ_ONCE(ptr[tpos-1]) == value)
+>>> +				;
+>>> +			bad_ns += igt_nsec_elapsed(&bad);
+>>> +		}
+>>> +	}
+>>> +	elapsed = igt_nsec_elapsed(&total);
+>>> +	if (bad_ns) {
+>>> +		igt_info("Cross-client writes visible %.1f%% of the time.\n",
+>>> +			 bad_ns * 100. / elapsed);
+>>> +	}
+>>> +	igt_assert(20 * bad_ns < elapsed); /* Arbitrary 5% threshold */
+>>> +	if (child != -1)
+>>> +		igt_assert_neq(READ_ONCE(ptr[tpos-1]), tpos);
+>>> +	else
+>>> +		igt_assert_neq(READ_ONCE(ptr[tpos-1]), tpos + 1);
+>>> +	igt_assert_eq_u32(READ_ONCE(ptr[tpos-1]), 0xdeadbeef);
+>>> +
+>>> +	munmap(ptr, size);
+>>> +}
+>>> +
+>>> +/**
+>>> + * SUBTEST: pci-membarrier-bad-pagesize
+>>> + * Description: Test mmap offset with bad pagesize for pci membarrier.
+>>> + * Test category: negative test
+>>> + *
+>>> + */
+>>> +static void test_bad_pagesize_for_pcimem(int fd) {
+>>> +	uint32_t *map;
+>>> +	uint64_t page_size = PAGE_SIZE * 2;
+>>> +	struct drm_xe_gem_mmap_offset mmo = {
+>>> +		.handle = 0,
+>>> +		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
+>>> +	};
+>>> +
+>>> +	do_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
+>>> +	map = mmap(NULL, page_size, PROT_WRITE, MAP_SHARED, fd,
+>> mmo.offset);
+>>> +	igt_assert(map == MAP_FAILED);
+>>> +}
+>>> +
+>>>    /**
+>>>     * SUBTEST: bad-flags
+>>>     * Description: Test mmap offset with bad flags.
+>>> @@ -126,6 +281,25 @@ static void test_bad_object(int fd)
+>>>    	do_ioctl_err(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo,
+>> ENOENT);
+>>>    }
+>>>
+>>> +/**
+>>> + * SUBTEST: pci-membarrier-bad-object
+>>> + * Description: Test mmap offset with bad object for pci mem barrier.
+>>> + * Test category: negative test
+>>> + *
+>>> + */
+>>> +static void test_bad_object_for_pcimem(int fd) {
+>>> +	uint64_t size = xe_get_default_alignment(fd);
+>>> +	struct drm_xe_gem_mmap_offset mmo = {
+>>> +		.handle = xe_bo_create(fd, 0, size,
+>>> +				       vram_if_possible(fd, 0),
+>>> +
+>> DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM),
+>>> +		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
+>>> +	};
+>>> +
+>>> +	do_ioctl_err(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo,
+>> EINVAL); }
+>>> +
+>>>    static jmp_buf jmp;
+>>>
+>>>    __noreturn static void sigtrap(int sig) @@ -255,6 +429,16 @@ static
+>>> void test_cpu_caching(int fd)
+>>>    	assert_caching(fd, system_memory(fd),
+>> DRM_XE_GEM_CPU_CACHING_WC + 1, true);
+>>>    }
+>>>
+>>> +static bool is_pci_membarrier_supported(int fd) {
+>>> +	struct drm_xe_gem_mmap_offset mmo = {
+>>> +		.handle = 0,
+>>> +		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
+>>> +	};
+>>> +
+>>> +	return (igt_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo) ==
+>> 0); }
+>>> +
+>>>    igt_main
+>>>    {
+>>>    	int fd;
+>>> @@ -273,6 +457,28 @@ igt_main
+>>>    		test_mmap(fd, vram_memory(fd, 0) | system_memory(fd),
+>>>
+>> DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM);
+>>>
+>>> +	igt_subtest("pci-membarrier") {
+>>> +		igt_require(is_pci_membarrier_supported(fd));
+>>> +		test_pci_membarrier(fd);
+>>> +	}
+>>> +
+>>> +	igt_subtest("pci-membarrier-parallel") {
+>>> +		int xe = drm_open_driver(DRIVER_XE);
+>>> +
+>>> +		igt_require(is_pci_membarrier_supported(fd));
+>>> +		igt_fork(child, 1)
+>>> +			test_pci_membarrier_parallel(xe, child);
+>>> +		test_pci_membarrier_parallel(fd, -1);
+>>> +		igt_waitchildren();
+>>> +
+>>> +		close(xe);
+>>> +	}
+>>> +
+>>> +	igt_subtest("pci-membarrier-bad-pagesize") {
+>>> +		igt_require(is_pci_membarrier_supported(fd));
+>>> +		test_bad_pagesize_for_pcimem(fd);
+>>> +	}
+>>> +
+>>>    	igt_subtest("bad-flags")
+>>>    		test_bad_flags(fd);
+>>>
+>>> @@ -282,6 +488,11 @@ igt_main
+>>>    	igt_subtest("bad-object")
+>>>    		test_bad_object(fd);
+>>>
+>>> +	igt_subtest("pci-membarrier-bad-object") {
+>>> +		igt_require(is_pci_membarrier_supported(fd));
+>>> +		test_bad_object_for_pcimem(fd);
+>>> +	}
+>>> +
+>>>    	igt_subtest("small-bar") {
+>>>    		igt_require(xe_visible_vram_size(fd, 0));
+>>>    		igt_require(xe_visible_vram_size(fd, 0) < xe_vram_size(fd, 0));
+> 
 
