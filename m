@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B43DE77180
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 13:00:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43F04E7717F
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 13:00:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D93FA10E609;
-	Mon, 16 Dec 2024 13:00:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 103EB10E607;
+	Mon, 16 Dec 2024 13:00:28 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 564D610E609;
- Mon, 16 Dec 2024 13:00:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 855CF10E607;
+ Mon, 16 Dec 2024 13:00:26 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?UHBR_rates_for_Thunderbolt?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_UHBR_?=
+ =?utf-8?q?rates_for_Thunderbolt?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Mika Kahola" <mika.kahola@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Dec 2024 13:00:07 -0000
-Message-ID: <173435400734.3285310.8477351556292205656@b555e5b46a47>
+Date: Mon, 16 Dec 2024 13:00:26 -0000
+Message-ID: <173435402654.3285310.11515325335980542634@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241216124422.475693-1-mika.kahola@intel.com>
 In-Reply-To: <20241216124422.475693-1-mika.kahola@intel.com>
@@ -44,13 +44,37 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/display: UHBR rates for Thunderbolt
 URL   : https://patchwork.freedesktop.org/series/142649/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 6ef018c1fd86 drm-tip: 2024y-12m-16d-12h-47m-19s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: UHBR rates for Thunderbolt
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 10b0639b4f4ee89716d35a25fd34f6b73b5f8a9c
+Author: Mika Kahola <mika.kahola@intel.com>
+Date:   Mon Dec 16 14:44:22 2024 +0200
+
+    drm/i915/display: UHBR rates for Thunderbolt
+    
+    tbt-alt mode is missing uhbr rates 10G and 20G. This requires
+    requires pll clock rates 312.5 MHz and 625 MHz to be added,
+    respectively. The uhbr rates are supported only form PTL+
+    platforms.
+    
+    Signed-off-by: Mika Kahola <mika.kahola@intel.com>
++ /mt/dim checkpatch 6ef018c1fd86cf86387e2175edf76476cb144095 drm-intel
+10b0639b4f4e drm/i915/display: UHBR rates for Thunderbolt
+-:89: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#89: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:192:
++#define   XE3LPDP_DDI_CLOCK_SELECT(val)			REG_FIELD_PREP(XE3LPDP_DDI_CLOCK_SELECT_MASK, val)
+
+total: 0 errors, 1 warnings, 0 checks, 75 lines checked
 
 
