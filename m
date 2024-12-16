@@ -4,172 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54130E77183
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 09:51:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27C1DE7717F
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Dec 2024 10:01:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D073610E573;
-	Mon, 16 Dec 2024 09:51:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D378210E184;
+	Mon, 16 Dec 2024 10:01:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WKaXHtLf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fYjiaUrD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B314B10E037;
- Mon, 16 Dec 2024 09:51:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FF6110E0DA;
+ Mon, 16 Dec 2024 10:01:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734342702; x=1765878702;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=j+cA5AAzP3+zWpMEWFWNnhtXuDVWJitujTxhLq3V3Ao=;
- b=WKaXHtLfwOCCzzkrpmyoycczgaNQEF81e1DPzJBSMPConkbdiwbcWw95
- irsrEEzQakDQOfEOBrrOLd3+UwyYdm1YYwRRKQ0k88s+d/eA90JxgPoOZ
- 7sExM9mUpiwAAJHepewPZ+pEmFGEvWIduhNiC9oHV6DJT9suge27MQrIa
- IoYjf1qmaI7tXFXolq/xajMqbPI1ZtFdXZxa9v1119z5PgxhmrSRNMZrd
- Z9kfEOP7buFgQeXxtke8ArMHPxStqsW0T6KoD1E/P8FdCfaIzWbCakV5f
- PZ50tlgcVygV4Uk+WG76WfhY7STh3B0wO4sE7evDpVCfSTWPBzCJNAOVs g==;
-X-CSE-ConnectionGUID: xAJpLeagRi+RAo+Bo1D/MA==
-X-CSE-MsgGUID: tCLKARATRf+sgjuCN3PYxw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11287"; a="34862741"
-X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="34862741"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 01:51:42 -0800
-X-CSE-ConnectionGUID: kEYOjl3MRYSpamX5E5Nofw==
-X-CSE-MsgGUID: Kd8Fc8NqS2iMtkQOH7qzkw==
+ t=1734343289; x=1765879289;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=aiJvHLcgjjZ3pu8QjiAbFxVGO/xjw950w7iR594c2/4=;
+ b=fYjiaUrDclbVZKfthlU5UJKLpLecjh8ThxlJejnnaF+Ea5vMcytptYuq
+ aPZl8/1euCxs5v6Rp5r5klRRgOlql+ZwfqW+uKVZ2/ynLOhqei9FPhklw
+ pTifHbySDQ8A94rkFt1mlMEqrq9IEWD2PvFDCHLyF+u2/0chJAjpApiPQ
+ 5G5JeuZ2d6IwiD/Vq34RTRcrXC5Zk7KaLCEOlQX779Guv+j+EQUl3X2W1
+ /NFY31Zdtf+VxIpT2EB3c8iY2Kbp2JgaOrcTh6+Uudh+KhnoWbADEyxvB
+ xoIUhVa8+lpbuUL9dPVHyad3e5nrMl5/vChlhBm1RtQKSa4o4ZIimceuT A==;
+X-CSE-ConnectionGUID: VOXEpEULTvC1sRr6dLaKeg==
+X-CSE-MsgGUID: IwawIh9hR5C0Acruo5vmRw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11287"; a="38495540"
+X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="38495540"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 02:01:29 -0800
+X-CSE-ConnectionGUID: DOY+bdOxQVKMo9zyJbsxsg==
+X-CSE-MsgGUID: nzIclICwRsiVdiqM8lwj7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="97053427"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 16 Dec 2024 01:51:41 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Mon, 16 Dec 2024 01:51:40 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Mon, 16 Dec 2024 01:51:40 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 16 Dec 2024 01:51:38 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uDIkzpDWc6RbdiqEiOFPaqYvLvwXUyY20emcWwm7h2LINfI+SCvhEt7HoVG9iOFPXHBvtV35fpVI1/5I2cQFPAnHzRsv/HB6Y5QmHgFci0wGVyKe5nBLYAt3UdWbqQEbaQNPCAcLPyljPTi+xveoqGA72fXvxzR4LVokwJIjM1PxjRBiLXkWxFoNRuglTpxG/yQmcjkA7d6Eys0YzWpdTLNwK36Ch/yyZ0A9uMKwmADPz4UGx1/lwHQ8k3Ad5mUgYWFAcbrRfdJw9Vr+hpV6fo39mOmOPanx2eekPk60QDImJJe2hxnFR6KOvdkAVOIn/U58t1kfjX/oPXGIRmOVcg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bfh9l+jO1KuRDBTeOrPXI4iEdO7RbAMTnWJFE335GXY=;
- b=mstTt3yD2CsVf9vnJsmWmGcySwHIlBJ//x9AGwyNet/aajAj+Tp04UhX9TSpF/0iwSn4WwsmS2upBWASzpUohQEKLJrWg+6u0cR2wfzyKvCsP89AD1VSz1wZgFWGbWN+AkT0BQZU6GGSA0zaASENJbmr5L5p1/j96oSHeZsfwkvDi4fc2HqoIMB3d6vjzp5uhNLeLJcgiOFasrPDKjFMb8VOPvapU7sbHThg7J6dnTqdaU94iWUAPyMWg2B7Ylstf2drqBP7YsZitU7MMV5VCpw4f110ehkD2++e6PJfrL3U1lj4rnO8642WcGNJwqre0AknBEVDSLlFu9nBXTwJKA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
- DS7PR11MB8828.namprd11.prod.outlook.com (2603:10b6:8:257::19) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8251.21; Mon, 16 Dec 2024 09:51:36 +0000
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::8648:3a6b:af5c:b6e6]) by DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::8648:3a6b:af5c:b6e6%7]) with mapi id 15.20.8251.015; Mon, 16 Dec 2024
- 09:51:35 +0000
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Syrjala, Ville" <ville.syrjala@intel.com>, "Saarinen, Jani"
- <jani.saarinen@intel.com>
-Subject: RE: [PATCH] drm/i915/xe3: do not configure auto min dbuf for cursor
- WMs
-Thread-Topic: [PATCH] drm/i915/xe3: do not configure auto min dbuf for cursor
- WMs
-Thread-Index: AQHbTVcm8qjsIaZ1Z02IyCgjegQ8o7LopNDQ
-Date: Mon, 16 Dec 2024 09:51:35 +0000
-Message-ID: <DM4PR11MB63608088F4503F2EAA39ABF0F43B2@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20241213120357.300584-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20241213120357.300584-1-vinod.govindapillai@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|DS7PR11MB8828:EE_
-x-ms-office365-filtering-correlation-id: 6d2ad346-3916-497a-e272-08dd1db73ac8
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?v7ae5H3vOcNu7oniKqATrKOBjuW7LuAHb86b8UBg/rJiN48kvHOursH57HfF?=
- =?us-ascii?Q?0OdlTuTLNoOYiqaNKHTBVbmFG+C41pnGynzcrjNsGDD2KPpMhD7oI9my1DMn?=
- =?us-ascii?Q?4yaNi+QdrELSERZoE3cHKUxx3LC91xEt5C6rDTNlf+cLhEFMqtOMqq6Fw8yU?=
- =?us-ascii?Q?mMXCxv1fGgd04cn/TqAX0mBU49s4TPrm6Qtmd6ECYK8fDkRsLRTdxTtvUlxf?=
- =?us-ascii?Q?YkUDirFSWmybt9R+VVIrDIRVMF7g5keNEcwOc8WLyUkESSZc3+tbLE9WpxVy?=
- =?us-ascii?Q?XlUfbFDHJYRVD2GgXkTqILrfwf9oRZ0tzky9nfEaLUwxbZ8M3V6fGfaCkMRU?=
- =?us-ascii?Q?h0CxdtAzfc3DtQ2CUsBHtdh9PBTqhzzad/2/sHbkVZkNunI9zFPKR32Sse6x?=
- =?us-ascii?Q?/LXk5AG3FFig7QKqsRp/iu2FiDPa/TMs69JuMEb6W+7jTWh79SpJXChc/oS2?=
- =?us-ascii?Q?ZVCWBKRHDZp7tlUhEww/Jazb4DlFxLi8MEfkDRVnYljjXoml8SoUTRMBPp+6?=
- =?us-ascii?Q?lZatUdEOdAfYeWoHaI1cB3p7XXkkAcFeL3p4NLmNl/BMykMcMkag9XPcy9Ss?=
- =?us-ascii?Q?AxZG9/e5gSsy3yYDAH3Iqjs/f7NrVCYJkuCo/o8UUoiNqQwz1eCzfvrBXXFu?=
- =?us-ascii?Q?hBNWa9edWUM3ncgBNC2wra0K+zubSTD/+O4qtjKle+/UCgX1qs0fexAkXvPX?=
- =?us-ascii?Q?InYlclRwAWnGOGvRwvOrAdUwqlIs/sHeB6mMZSOFZghBoStW3FrEPtL8utQM?=
- =?us-ascii?Q?0El3hq1GhruuZlPJmOoz2MOUaTNSTKr4D8ee4Adh9dyWkS/mzZtTbURoNQ3V?=
- =?us-ascii?Q?wLW1UN08w7x1jyz2TX/UYa1N8KLmEUG92AwiTE4FldqhWEXCHJZha1dHbxs9?=
- =?us-ascii?Q?74yUFXitsA/zMh0Rv32Z9co/NRwvA8EgaoYK6l6orjZ90nN52q6yp9LoO9DH?=
- =?us-ascii?Q?IpKNa6Z6CM498AxjFPM/de2haQ1kfc8Liag8Yz7ENfwV0SLNbgPV33rsTH10?=
- =?us-ascii?Q?YaGhJbYv4M9027mtqnRFnhpFppD73A+WOzSELEc4uBfvdDkNi2njarLNgqPh?=
- =?us-ascii?Q?mppesMCxut/q0CGLe9X4nT7O1GiFqYK4wX5GMr2WPbI3JfyFS5d9mfmV3yj6?=
- =?us-ascii?Q?jCX28nfskrJQDyIKqnOIDL04QSHFeu/uujs5uVB+1HC2c/32sK6WbQj/W0qn?=
- =?us-ascii?Q?m5ITtgPtTAhuM4apJEZEXIIOq0j6H+g/4EhshPF8QaQ4eYQ3eNJrIT/ANoJJ?=
- =?us-ascii?Q?jC1VvgDRK9TmFPsPy6aTH04BxMDyXS0KamS9w8HnI9YWbb1fxQjLg1SOAivc?=
- =?us-ascii?Q?lbTKaKIU3aEt72g/Cu4UIvZqYG7T0/w1M9Gp53X8pTRWtm3A0JnjRQbVj/6R?=
- =?us-ascii?Q?1DvkTv7wwuykdo3BSU+5U2PzY0/JY4PNiU+NbrlqCMOQd6r5NsBvKEahhHgI?=
- =?us-ascii?Q?vfoAy0hrGqMu7hsleRUlX6tDeXl8C0B0?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7053199007)(38070700018); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?xtM3jaat3QJCBt8v6XCQOfMJGfLAJYVCcgqqCb32ztKT5VpWTB5O7TlLt5iz?=
- =?us-ascii?Q?CFSRknWw6e9nBc01OKS5SCh/ZyqiQBwfNnqZcApYUBKIq2NwZJJ108tSaYbQ?=
- =?us-ascii?Q?doM9s05SxO36BzCPYVvDlt8lYnCN39yjaJUc15uwjTiQdFCwLIsN4fppwniN?=
- =?us-ascii?Q?K+l7p6ojK4phYM7Zru/UI5M+N6NzA6QnYg0FQJJTMdipppgeh+yLMG0eXDuw?=
- =?us-ascii?Q?evhUvGaLM26AuJZusMbnkjCoOWhtFno0xAs4BJN0RdIMOWG5Zj3oNRilqYg6?=
- =?us-ascii?Q?Ts5SJ4m4WCoHzDK4fNUxz4Rfxo3/IyIFlOZBzDq+SO5zMGZ+e8MQ2ZFl2k+I?=
- =?us-ascii?Q?oMmMILWVOM9MvxAFtNVdLrZ5wbSqtk3Idyyie5rBf7pWdUTxr/WdEV0OtMl5?=
- =?us-ascii?Q?S4ChDcaZ5a820bry9Oaz+qyKrKtQGB+r/dad1BieM5pW06uu8X5T00lLK/kl?=
- =?us-ascii?Q?0dJfg3UI5eDzW2/wBXl/QMlcFWAnOJup5QciPB4pd8rDDiaCBxWL+ondMsBU?=
- =?us-ascii?Q?/KaK7VTz4/1fGkUogMhfKEXUES4lb5Kj+uGhQUaoW0Fc9V0fi5n3QyZRp96D?=
- =?us-ascii?Q?VqH65Y8vNQlKQ/oTgtu/RbxYObzFXL+g/Htr2PVz1iomvZwWEM/LikUE8KKj?=
- =?us-ascii?Q?7e8h1riZnMRJ896sIqfqRIa6Xsj3k0pmbwRTPvyOkJQAuteGpMWGYq5U3avU?=
- =?us-ascii?Q?N/Z1WHNULCNxLT71E6b86oRIkgNqHAo23sl+wt5ZrN+9kuD68XUHp9Je3kSH?=
- =?us-ascii?Q?FAap5QpV1tx3l4WL5V9yOFZzaZv0qxNqv3lGE2vnXEaxvCL4CTTR5yJDtEPS?=
- =?us-ascii?Q?oDpC7/MGlJ7vpK7PEWnWnroKdLUxQtThBm9stl5qd+XqWBFatXLcwegCiy7O?=
- =?us-ascii?Q?xGDHiO/U7k37/tTwQh5oorpp+vYjuwL5hkfvMKiAx4ruTb28GAD7iFwmPTJa?=
- =?us-ascii?Q?E4bqAz8BHs/Vj88KMuMp0ye62O3d3wT9Fb1fE4UciJcvYYav2Z6Qylhlsgpk?=
- =?us-ascii?Q?ZG4wjud/9CNb3TJC8isq1V7+sCYW9o+PGnNF2l0MS1iaJFM+9aXOyDiBBzhv?=
- =?us-ascii?Q?akoRmkBBPKNHIA2jvLqRw3EQ5QejPzAZygwcYsLxdYMJaox/b5QWR4zBL/ha?=
- =?us-ascii?Q?DPH+sCUQt1XhEszu3SKnBSIsjyorDFGqLEuSRBBt5ROsivt7lEp0N7mI+pGl?=
- =?us-ascii?Q?nnsw07bFuiXgcQasaPx97EgLtUg42PccFLV9Fdt9zopkIBremlwR3Dv5yapv?=
- =?us-ascii?Q?ICGO91+IFz0DAlJS566XfgJjNwx7cXKGVbRIxxef99pzF5Tz7rABvHclkkRi?=
- =?us-ascii?Q?kaHqzKaLKPJVAf95MuYZJjy3UD2jZm/1yyx9sXWvgL8AGaGJZif/wbNNBego?=
- =?us-ascii?Q?Hq/nCuzrviNhRi1GCfHahAWuIiOYNKtZDseDJKmgDf+rzCgyTiOi/5PcTVr5?=
- =?us-ascii?Q?FUT3Uav/oeKK8i4htICUdH7/EioanDoUyJRa95SbW+Du4DttqlsMNqGNFDUx?=
- =?us-ascii?Q?CiciSt3V35QIMuxDjcq0zWzjyJLAu32QoeAzH0C+XhpNv74A9XclZgP5LwkA?=
- =?us-ascii?Q?XJOfbd5XNBdOiKATuQBdhivs2mNTdCosVSejUjab?=
-Content-Type: text/plain; charset="us-ascii"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="97953305"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO [10.245.246.246])
+ ([10.245.246.246])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 02:01:26 -0800
+Message-ID: <a6a58f606bf76f5c4e398f6053e8d20148f9d01f.camel@linux.intel.com>
+Subject: Re: [PATCH v2 09/29] drm/xe: Add SVM range invalidation
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com, 
+ simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
+Date: Mon, 16 Dec 2024 11:01:23 +0100
+In-Reply-To: <Z1nherArkwqT9g0/@lstrano-desk.jf.intel.com>
+References: <20241016032518.539495-1-matthew.brost@intel.com>
+ <20241016032518.539495-10-matthew.brost@intel.com>
+ <12b541d3a1b46434032afc1bcb9ce90428aa24a5.camel@linux.intel.com>
+ <Z1nherArkwqT9g0/@lstrano-desk.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d2ad346-3916-497a-e272-08dd1db73ac8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Dec 2024 09:51:35.8404 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mB7fIjmwjbD8j+w9vTL2V3GtKg/xhASLxv165qod9GoyAh/308DS2MawLbcSJO+lrAhE5tSHVOJaCUkZ+0W6MQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB8828
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -184,87 +74,589 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, 2024-12-11 at 11:01 -0800, Matthew Brost wrote:
+> On Tue, Nov 19, 2024 at 02:56:12PM +0100, Thomas Hellstr=C3=B6m wrote:
+> > On Tue, 2024-10-15 at 20:24 -0700, Matthew Brost wrote:
+> > > Add SVM range invalidation vfunc.
+> > >=20
+> > > v2:
+> > > =C2=A0- Don't run invalidation if VM is closed
+> > > =C2=A0- Cycle notifier lock in xe_svm_close
+> > > =C2=A0- Drop xe_gt_tlb_invalidation_fence_fini
+> > >=20
+> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > ---
+> > > =C2=A0drivers/gpu/drm/xe/xe_gt_pagefault.c |=C2=A0 17 ++-
+> > > =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 24 ++++
+> > > =C2=A0drivers/gpu/drm/xe/xe_pt.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +
+> > > =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 | 205
+> > > ++++++++++++++++++++++++++-
+> > > =C2=A0drivers/gpu/drm/xe/xe_svm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0 13 ++
+> > > =C2=A05 files changed, 256 insertions(+), 6 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > > b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > > index 79c426dc2505..92923947a12c 100644
+> > > --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > > +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > > @@ -19,6 +19,7 @@
+> > > =C2=A0#include "xe_guc.h"
+> > > =C2=A0#include "xe_guc_ct.h"
+> > > =C2=A0#include "xe_migrate.h"
+> > > +#include "xe_svm.h"
+> > > =C2=A0#include "xe_trace_bo.h"
+> > > =C2=A0#include "xe_vm.h"
+> > > =C2=A0
+> > > @@ -125,18 +126,17 @@ static int xe_pf_begin(struct drm_exec
+> > > *exec,
+> > > struct xe_vma *vma,
+> > > =C2=A0	return 0;
+> > > =C2=A0}
+> > > =C2=A0
+> > > -static int handle_vma_pagefault(struct xe_tile *tile, struct
+> > > pagefault *pf,
+> > > -				struct xe_vma *vma)
+> > > +static int handle_vma_pagefault(struct xe_tile *tile, struct
+> > > xe_vma
+> > > *vma,
+> > > +				bool atomic)
+> > > =C2=A0{
+> > > =C2=A0	struct xe_vm *vm =3D xe_vma_vm(vma);
+> > > =C2=A0	struct drm_exec exec;
+> > > =C2=A0	struct dma_fence *fence;
+> > > =C2=A0	ktime_t end =3D 0;
+> > > =C2=A0	int err;
+> > > -	bool atomic;
+> > > =C2=A0
+> > > +	lockdep_assert_held_write(&vm->lock);
+> > > =C2=A0	trace_xe_vma_pagefault(vma);
+> > > -	atomic =3D access_is_atomic(pf->access_type);
+> > > =C2=A0
+> > > =C2=A0	/* Check if VMA is valid */
+> > > =C2=A0	if (vma_is_valid(tile, vma) && !atomic)
+> > > @@ -207,6 +207,7 @@ static int handle_pagefault(struct xe_gt *gt,
+> > > struct pagefault *pf)
+> > > =C2=A0	struct xe_vm *vm;
+> > > =C2=A0	struct xe_vma *vma =3D NULL;
+> > > =C2=A0	int err;
+> > > +	bool atomic;
+> > > =C2=A0
+> > > =C2=A0	/* SW isn't expected to handle TRTT faults */
+> > > =C2=A0	if (pf->trva_fault)
+> > > @@ -232,7 +233,13 @@ static int handle_pagefault(struct xe_gt
+> > > *gt,
+> > > struct pagefault *pf)
+> > > =C2=A0		goto unlock_vm;
+> > > =C2=A0	}
+> > > =C2=A0
+> > > -	err =3D handle_vma_pagefault(tile, pf, vma);
+> > > +	atomic =3D access_is_atomic(pf->access_type);
+> > > +
+> > > +	if (xe_vma_is_system_allocator(vma))
+> > > +		err =3D xe_svm_handle_pagefault(vm, vma, tile,
+> > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pf->page_addr,
+> > > atomic);
+> > > +	else
+> > > +		err =3D handle_vma_pagefault(tile, vma, atomic);
+> > > =C2=A0
+> > > =C2=A0unlock_vm:
+> > > =C2=A0	if (!err)
+> > > diff --git a/drivers/gpu/drm/xe/xe_pt.c
+> > > b/drivers/gpu/drm/xe/xe_pt.c
+> > > index 39357e829b6d..282476c4edbd 100644
+> > > --- a/drivers/gpu/drm/xe/xe_pt.c
+> > > +++ b/drivers/gpu/drm/xe/xe_pt.c
+> > > @@ -20,6 +20,7 @@
+> > > =C2=A0#include "xe_res_cursor.h"
+> > > =C2=A0#include "xe_sched_job.h"
+> > > =C2=A0#include "xe_sync.h"
+> > > +#include "xe_svm.h"
+> > > =C2=A0#include "xe_trace.h"
+> > > =C2=A0#include "xe_ttm_stolen_mgr.h"
+> > > =C2=A0#include "xe_vm.h"
+> > > @@ -829,6 +830,29 @@ bool xe_pt_zap_ptes(struct xe_tile *tile,
+> > > struct
+> > > xe_vma *vma)
+> > > =C2=A0	return xe_walk.needs_invalidate;
+> > > =C2=A0}
+> > > =C2=A0
+> > > +bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm
+> > > *vm,
+> > > +			=C2=A0 struct xe_svm_range *range)
+> >=20
+> > Kerneldoc.
+> >=20
+>=20
+> Will add.
+>=20
+> > Here, (and I saw Oak also commented around this some time ago)
+> > ideally
+> > we should make xe_pt.c unaware of vmas and svm ranges, and in this
+> > case, use the same xe_pt function for both.
+> >=20
+>=20
+> See some of other comments, agree we should do in a follow up.
+>=20
+> >=20
+> >=20
+> > > +{
+> > > +	struct xe_pt_zap_ptes_walk xe_walk =3D {
+> > > +		.base =3D {
+> > > +			.ops =3D &xe_pt_zap_ptes_ops,
+> > > +			.shifts =3D xe_normal_pt_shifts,
+> > > +			.max_level =3D XE_PT_HIGHEST_LEVEL,
+> > > +		},
+> > > +		.tile =3D tile,
+> > > +	};
+> > > +	struct xe_pt *pt =3D vm->pt_root[tile->id];
+> > > +	u8 pt_mask =3D (range->tile_present & ~range-
+> > > > tile_invalidated);
+> > > +
+> > > +	if (!(pt_mask & BIT(tile->id)))
+> > > +		return false;
+> > > +
+> > > +	(void)xe_pt_walk_shared(&pt->base, pt->level, range-
+> > > > base.va.start,
+> > > +				range->base.va.end,
+> > > &xe_walk.base);
+> > > +
+> > > +	return xe_walk.needs_invalidate;
+> > > +}
+> > > +
+> > > =C2=A0static void
+> > > =C2=A0xe_vm_populate_pgtable(struct xe_migrate_pt_update *pt_update,
+> > > struct xe_tile *tile,
+> > > =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iosys_map *map, v=
+oid *data,
+> > > diff --git a/drivers/gpu/drm/xe/xe_pt.h
+> > > b/drivers/gpu/drm/xe/xe_pt.h
+> > > index 9ab386431cad..5f333eeedf5c 100644
+> > > --- a/drivers/gpu/drm/xe/xe_pt.h
+> > > +++ b/drivers/gpu/drm/xe/xe_pt.h
+> > > @@ -13,6 +13,7 @@ struct dma_fence;
+> > > =C2=A0struct xe_bo;
+> > > =C2=A0struct xe_device;
+> > > =C2=A0struct xe_exec_queue;
+> > > +struct xe_svm_range;
+> > > =C2=A0struct xe_sync_entry;
+> > > =C2=A0struct xe_tile;
+> > > =C2=A0struct xe_vm;
+> > > @@ -42,5 +43,7 @@ void xe_pt_update_ops_fini(struct xe_tile
+> > > *tile,
+> > > struct xe_vma_ops *vops);
+> > > =C2=A0void xe_pt_update_ops_abort(struct xe_tile *tile, struct
+> > > xe_vma_ops
+> > > *vops);
+> > > =C2=A0
+> > > =C2=A0bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma);
+> > > +bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm
+> > > *vm,
+> > > +			=C2=A0 struct xe_svm_range *range);
+> > > =C2=A0
+> > > =C2=A0#endif
+> > > diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> > > b/drivers/gpu/drm/xe/xe_svm.c
+> > > index 57b740367843..b2bc259978c4 100644
+> > > --- a/drivers/gpu/drm/xe/xe_svm.c
+> > > +++ b/drivers/gpu/drm/xe/xe_svm.c
+> > > @@ -5,18 +5,188 @@
+> > > =C2=A0
+> > > =C2=A0#include "drm_gpusvm.h"
+> > > =C2=A0
+> > > +#include "xe_gt_tlb_invalidation.h"
+> > > +#include "xe_pt.h"
+> > > =C2=A0#include "xe_svm.h"
+> > > =C2=A0#include "xe_vm.h"
+> > > =C2=A0#include "xe_vm_types.h"
+> > > =C2=A0
+> > > +static struct xe_vm *gpusvm_to_vm(struct drm_gpusvm *gpusvm)
+> > > +{
+> > > +	return container_of(gpusvm, struct xe_vm, svm.gpusvm);
+> > > +}
+> > > +
+> > > +static struct xe_vm *range_to_vm(struct drm_gpusvm_range *r)
+> > > +{
+> > > +	return gpusvm_to_vm(r->gpusvm);
+> > > +}
+> > > +
+> > > +static struct drm_gpusvm_range *
+> > > +xe_svm_range_alloc(struct drm_gpusvm *gpusvm)
+> > > +{
+> > > +	struct xe_svm_range *range;
+> > > +
+> > > +	range =3D kzalloc(sizeof(*range), GFP_KERNEL);
+> > > +	if (!range)
+> > > +		return ERR_PTR(-ENOMEM);
+> > > +
+> > > +	xe_vm_get(gpusvm_to_vm(gpusvm));
+> > > +
+> > > +	return &range->base;
+> > > +}
+> > > +
+> > > +static void xe_svm_range_free(struct drm_gpusvm_range *range)
+> > > +{
+> > > +	xe_vm_put(range_to_vm(range));
+> > > +	kfree(range);
+> > > +}
+> > > +
+> > > +static struct xe_svm_range *to_xe_range(struct drm_gpusvm_range
+> > > *r)
+> > > +{
+> > > +	return container_of(r, struct xe_svm_range, base);
+> > > +}
+> > > +
+> > > +static u8
+> > > +xe_svm_range_notifier_event_begin(struct xe_vm *vm, struct
+> > > drm_gpusvm_range *r,
+> > > +				=C2=A0 const struct
+> > > mmu_notifier_range
+> > > *mmu_range,
+> > > +				=C2=A0 u64 *adj_start, u64 *adj_end)
+> > > +{
+> > > +	struct xe_svm_range *range =3D to_xe_range(r);
+> > > +	struct xe_device *xe =3D vm->xe;
+> > > +	struct xe_tile *tile;
+> > > +	u8 tile_mask =3D 0;
+> > > +	u8 id;
+> > > +
+> >=20
+> > lockdep assert?
+> >=20
+>=20
+> Sure.
+> =C2=A0
+> > > +	/* Skip if already unmapped or if no binding exist */
+> > > +	if (range->base.flags.unmapped || !range->tile_present)
+> > > +		return 0;
+> > > +
+> > > +	/* Adjust invalidation to range boundaries */
+> > > +	if (range->base.va.start < mmu_range->start)
+> > > +		*adj_start =3D range->base.va.start;
+> > > +	if (range->base.va.end > mmu_range->end)
+> > > +		*adj_end =3D range->base.va.end;
+> > > +
+> > > +	/*
+> > > +	 * XXX: Ideally would zap PTEs in one shot in
+> > > xe_svm_invalidate but the
+> > > +	 * invalidation code can't correctly cope with sparse
+> > > ranges
+> > > or
+> > > +	 * invalidations spanning multiple ranges.
+> > > +	 */
+> > > +	for_each_tile(tile, xe, id)
+> > > +		if (xe_pt_zap_ptes_range(tile, vm, range)) {
+> > > +			tile_mask |=3D BIT(id);
+> > > +			range->tile_invalidated |=3D BIT(id);
+> > > +		}
+> > > +
+> > > +	return tile_mask;
+> > > +}
+> > > +
+> > > +static void
+> > > +xe_svm_range_notifier_event_end(struct xe_vm *vm, struct
+> > > drm_gpusvm_range *r,
+> > > +				const struct mmu_notifier_range
+> > > *mmu_range)
+> > > +{
+> > > +	struct drm_gpusvm_ctx ctx =3D { .in_notifier =3D true, };
+> > > +
+> > > +	drm_gpusvm_range_unmap_pages(&vm->svm.gpusvm, r, &ctx);
+> > > +	/* TODO: Add range to garbage collector */
+> > > +}
+> > > +
+> > > =C2=A0static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+> > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_gpusvm_notifier
+> > > *notifier,
+> > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct mmu_notifier_ran=
+ge
+> > > *mmu_range)
+> > > =C2=A0{
+> > > -	/* TODO: Implement */
+> > > +	struct xe_vm *vm =3D gpusvm_to_vm(gpusvm);
+> > > +	struct xe_device *xe =3D vm->xe;
+> > > +	struct xe_tile *tile;
+> > > +	struct drm_gpusvm_range *r, *first;
+> > > +	struct xe_gt_tlb_invalidation_fence
+> > > +		fence[XE_MAX_TILES_PER_DEVICE *
+> > > XE_MAX_GT_PER_TILE];
+> > > +	u64 adj_start =3D mmu_range->start, adj_end =3D mmu_range-
+> > > >end;
+> > > +	u8 tile_mask =3D 0;
+> > > +	u8 id;
+> > > +	u32 fence_id =3D 0;
+> > > +	long err;
+> > > +
+> > > +	if (xe_vm_is_closed(vm))
+> > > +		return;
+> >=20
+> > How do we ensure we don't race here? Are we sure that all dma
+> > mappings
+> > and all PTEs pointing to the range is gone at this point? Becase
+> > "They
+> > will soon be gone anyway" isn't enough.
+> >=20
+>=20
+> I think this is to prevent touching PTs which are being destroyed in
+> parallel which resulted in kernel explosion, so I think we need this.
+
+IIRC, the pt structure change is committed under the notifier lock when
+unbinding, which means that a racing pt zap shouldn't do any harm and
+just have the commit phase re-run?
+
+So if we follow the=20
+1.) take vm->lock : waits for existing binding to complete
+2.) mark vm closed : inhibits future binding
+3.) unbind page-table
+4.) Remove notifiers
+
+We should be ok?
+
+/Thomas
 
 
-> -----Original Message-----
-> From: Govindapillai, Vinod <vinod.govindapillai@intel.com>
-> Sent: Friday, December 13, 2024 5:34 PM
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Govindapillai, Vinod <vinod.govindapillai@intel.com>; Syrjala, Ville
-> <ville.syrjala@intel.com>; Shankar, Uma <uma.shankar@intel.com>; Saarinen=
-,
-> Jani <jani.saarinen@intel.com>
-> Subject: [PATCH] drm/i915/xe3: do not configure auto min dbuf for cursor =
-WMs
 >=20
-> Cursor planes do not have the minimum dbuf confguation. The ddb allocatio=
-n and
-
-Nit: Typo in configuration.
-
-Change Looks Good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-
-> registration routines handle this correctly.
-> But the plane wm handling for cursor need to be differentiated for this c=
-ase. Auto
-> minimum buf enable flag should not be enabled for cursor wm registers in =
-xe3.
+> How to prevent a race? How about on VM close we invalidate the PT
+> root?
+> I had patch at one point which did this. We'd still have dma mappings
+> too but I think if need to we can safely dma-unmap the pages if the
+> VM
+> is closed too. Thoughts?
 >=20
-> Fixes: a831920c370c ("drm/i915/xe3: Use hw support for min/interim ddb
-> allocations for async flip")
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_watermark.c | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
+> > > +
+> > > +	/* Adjust invalidation to notifier boundaries */
+> > > +	if (adj_start < notifier->interval.start)
+> > > +		adj_start =3D notifier->interval.start;
+> > > +	if (adj_end > notifier->interval.end)
+> > > +		adj_end =3D notifier->interval.end;
+> > > +
+> > > +	first =3D drm_gpusvm_range_find(notifier, adj_start,
+> > > adj_end);
+> > > +	if (!first)
+> > > +		return;
+> > > +
+> > > +	/*
+> > > +	 * XXX: Less than ideal to always wait on VM's resv
+> > > slots if
+> > > an
+> > > +	 * invalidation is not required. Could walk range list
+> > > twice
+> > > to figure
+> > > +	 * out if an invalidations is need, but also not ideal.
+> > > Maybe a counter
+> > > +	 * within the notifier, seems like that could work.
+> > > +	 */
+> > > +	err =3D dma_resv_wait_timeout(xe_vm_resv(vm),
+> > > +				=C2=A0=C2=A0=C2=A0 DMA_RESV_USAGE_BOOKKEEP,
+> > > +				=C2=A0=C2=A0=C2=A0 false,
+> > > MAX_SCHEDULE_TIMEOUT);
+> > > +	XE_WARN_ON(err <=3D 0);
+> > > +
+> > > +	r =3D first;
+> > > +	drm_gpusvm_for_each_range(r, notifier, adj_start,
+> > > adj_end)
+> > > +		tile_mask |=3D
+> > > xe_svm_range_notifier_event_begin(vm,
+> > > r, mmu_range,
+> > > +							=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > > &adj_start,
+> > > +							=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > > &adj_end);
+> > > +	if (!tile_mask)
+> > > +		goto range_notifier_event_end;
+> > > +
+> > > +	xe_device_wmb(xe);
+> > > +
+> > > +	for_each_tile(tile, xe, id) {
+> > > +		if (tile_mask & BIT(id)) {
+> > > +			int err;
+> > > +
+> > > +			xe_gt_tlb_invalidation_fence_init(tile-
+> > > > primary_gt,
+> > > +							=C2=A0
+> > > &fence[fence_id], true);
+> > > +
+> > > +			err =3D xe_gt_tlb_invalidation_range(tile-
+> > > > primary_gt,
+> > > +							=C2=A0=C2=A0
+> > > &fence[fence_id],
+> > > +							=C2=A0=C2=A0
+> > > adj_start,
+> > > +							=C2=A0=C2=A0
+> > > adj_end,
+> > > +							=C2=A0=C2=A0 vm-
+> > > > usm.asid);
+> > > +			if (WARN_ON_ONCE(err < 0))
+> > > +				goto wait;
+> > > +			++fence_id;
+> > > +
+> > > +			if (!tile->media_gt)
+> > > +				continue;
+> > > +
+> > > +			xe_gt_tlb_invalidation_fence_init(tile-
+> > > > media_gt,
+> > > +							=C2=A0
+> > > &fence[fence_id], true);
+> > > +
+> > > +			err =3D xe_gt_tlb_invalidation_range(tile-
+> > > > media_gt,
+> > > +							=C2=A0=C2=A0
+> > > &fence[fence_id],
+> > > +							=C2=A0=C2=A0
+> > > adj_start,
+> > > +							=C2=A0=C2=A0
+> > > adj_end,
+> > > +							=C2=A0=C2=A0 vm-
+> > > > usm.asid);
+> > > +			if (WARN_ON_ONCE(err < 0))
+> > > +				goto wait;
+> > > +			++fence_id;
+> > > +		}
+> > > +	}
+> > > +
+> > > +wait:
+> > > +	for (id =3D 0; id < fence_id; ++id)
+> > > +		xe_gt_tlb_invalidation_fence_wait(&fence[id]);
+> > > +
+> > > +range_notifier_event_end:
+> > > +	r =3D first;
+> > > +	drm_gpusvm_for_each_range(r, notifier, adj_start,
+> > > adj_end)
+> > > +		xe_svm_range_notifier_event_end(vm, r,
+> > > mmu_range);
+> > > =C2=A0}
+> > > =C2=A0
+> > > =C2=A0static const struct drm_gpusvm_ops gpusvm_ops =3D {
+> > > +	.range_alloc =3D xe_svm_range_alloc,
+> > > +	.range_free =3D xe_svm_range_free,
+> > > =C2=A0	.invalidate =3D xe_svm_invalidate,
+> > > =C2=A0};
+> > > =C2=A0
+> > > @@ -36,6 +206,11 @@ int xe_svm_init(struct xe_vm *vm)
+> > > =C2=A0
+> > > =C2=A0void xe_svm_close(struct xe_vm *vm)
+> > > =C2=A0{
+> > > +	xe_assert(vm->xe, xe_vm_is_closed(vm));
+> > > +
+> > > +	/* Flush running notifiers making xe_vm_close() visable
+> > > */
+> > > +	drm_gpusvm_notifier_lock(&vm->svm.gpusvm);
+> > > +	drm_gpusvm_notifier_unlock(&vm->svm.gpusvm);
+> >=20
+> > Calling mmu_notifier_read_begin() ensures that nothing is
+> > invalidating
+> > on the range. Probably a better choice.
+> >=20
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c
-> b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index d3506e8ccd9b..29e8ea91c858 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -1922,10 +1922,11 @@ static int skl_wm_max_lines(struct
-> drm_i915_private *i915)
->  		return 31;
->  }
+> We'd have to call that on every notifier rather than just cycle the
+> lock, so with that I'd prefer to leave it as is.
+> =C2=A0
+> > > =C2=A0}
+> > > =C2=A0
+> > > =C2=A0void xe_svm_fini(struct xe_vm *vm)
+> > > @@ -44,3 +219,31 @@ void xe_svm_fini(struct xe_vm *vm)
+> > > =C2=A0
+> > > =C2=A0	drm_gpusvm_fini(&vm->svm.gpusvm);
+> > > =C2=A0}
+> > > +
+> > > +int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma
+> > > *vma,
+> > > +			=C2=A0=C2=A0=C2=A0 struct xe_tile *tile, u64
+> > > fault_addr,
+> > > +			=C2=A0=C2=A0=C2=A0 bool atomic)
+> > > +{
+> > > +	struct drm_gpusvm_ctx ctx =3D { .read_only =3D
+> > > xe_vma_read_only(vma), };
+> > > +	struct drm_gpusvm_range *r;
+> > > +	int err;
+> > > +
+> > > +	lockdep_assert_held_write(&vm->lock);
+> > > +
+> > > +retry:
+> > > +	/* TODO: Run garbage collector */
+> > > +
+> > > +	r =3D drm_gpusvm_range_find_or_insert(&vm->svm.gpusvm,
+> > > fault_addr,
+> > > +					=C2=A0=C2=A0=C2=A0 xe_vma_start(vma),
+> > > xe_vma_end(vma),
+> > > +					=C2=A0=C2=A0=C2=A0 &ctx);
+> > > +	if (IS_ERR(r))
+> > > +		return PTR_ERR(r);
+> > > +
+> > > +	err =3D drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r,
+> > > false);
+> > > +	if (err =3D=3D -EFAULT || err =3D=3D -EPERM)	/* Corner where
+> > > CPU
+> > > mappings have change */
+> >=20
+> > s/change/changed/
+> >=20
 >=20
-> -static bool xe3_auto_min_alloc_capable(struct intel_display *display,
-> -				       int level)
-> +static bool xe3_auto_min_alloc_capable(struct intel_plane *plane, int
-> +level)
->  {
-> -	return DISPLAY_VER(display) >=3D 30 && level =3D=3D 0;
-> +	struct intel_display *display =3D to_intel_display(plane);
-> +
-> +	return DISPLAY_VER(display) >=3D 30 && level =3D=3D 0 && plane->id !=3D
-> +PLANE_CURSOR;
->  }
+> Yep.
 >=20
->  static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_sta=
-te,
-> @@ -1937,7 +1938,6 @@ static void skl_compute_plane_wm(const struct
-> intel_crtc_state *crtc_state,
->  				 struct skl_wm_level *result /* out */)  {
->  	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev);
-> -	struct intel_display *display =3D to_intel_display(crtc_state);
->  	uint_fixed_16_16_t method1, method2;
->  	uint_fixed_16_16_t selected_result;
->  	u32 blocks, lines, min_ddb_alloc =3D 0;
-> @@ -2061,7 +2061,7 @@ static void skl_compute_plane_wm(const struct
-> intel_crtc_state *crtc_state,
->  	/* Bspec says: value >=3D plane ddb allocation -> invalid, hence the +1=
- here
-> */
->  	result->min_ddb_alloc =3D max(min_ddb_alloc, blocks) + 1;
->  	result->enable =3D true;
-> -	result->auto_min_alloc_wm_enable =3D
-> xe3_auto_min_alloc_capable(display, level);
-> +	result->auto_min_alloc_wm_enable =3D
-> xe3_auto_min_alloc_capable(plane,
-> +level);
+> > > +	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto retry;
+> > > +
+> > > +	/* TODO: Issue bind */
+> > > +
+> > > +	return err;
+> > > +}
+> > > diff --git a/drivers/gpu/drm/xe/xe_svm.h
+> > > b/drivers/gpu/drm/xe/xe_svm.h
+> > > index 376e86876a11..c91c5f538024 100644
+> > > --- a/drivers/gpu/drm/xe/xe_svm.h
+> > > +++ b/drivers/gpu/drm/xe/xe_svm.h
+> > > @@ -6,14 +6,27 @@
+> > > =C2=A0#ifndef _XE_SVM_H_
+> > > =C2=A0#define _XE_SVM_H_
+> > > =C2=A0
+> > > +#include "drm_gpusvm.h"
+> > > =C2=A0#include "drm_pagemap.h"
+> > > =C2=A0
+> > > =C2=A0#define XE_INTERCONNECT_VRAM DRM_INTERCONNECT_DRIVER
+> >=20
+> > Not used yet
+> >=20
 >=20
->  	if (DISPLAY_VER(i915) < 12 && i915->display.sagv.block_time_us)
->  		result->can_sagv =3D latency >=3D i915->display.sagv.block_time_us;
-> --
-> 2.34.1
+> Will remove.
+> =C2=A0
+> > > =C2=A0
+> > > +struct xe_tile;
+> > > =C2=A0struct xe_vm;
+> > > +struct xe_vma;
+> > > +
+> > > +struct xe_svm_range {
+> > > +	struct drm_gpusvm_range base;
+> > > +	u8 tile_present;
+> > > +	u8 tile_invalidated;
+> > > +};
+> >=20
+> > Kerneldoc
+> >=20
+>=20
+> Will add.
+>=20
+> >=20
+> > > =C2=A0
+> > > =C2=A0int xe_svm_init(struct xe_vm *vm);
+> > > =C2=A0void xe_svm_fini(struct xe_vm *vm);
+> > > =C2=A0void xe_svm_close(struct xe_vm *vm);
+> > > =C2=A0
+> > > +int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma
+> > > *vma,
+> > > +			=C2=A0=C2=A0=C2=A0 struct xe_tile *tile, u64
+> > > fault_addr,
+> > > +			=C2=A0=C2=A0=C2=A0 bool atomic);
+> > > +
+> > > =C2=A0#endif
+> >=20
+> > Thanks,
+>=20
+> Thanks,
+> Matt
+>=20
+> > Thomas
+> >=20
 
