@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98CC7E77189
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 14:59:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9163EE7718A
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 14:59:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6245310E9C7;
-	Tue, 17 Dec 2024 14:59:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B03C10E9D1;
+	Tue, 17 Dec 2024 14:59:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cNOiXZec";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S7LwhwqN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B88E110E9D1;
- Tue, 17 Dec 2024 14:59:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4CBF10E9D1;
+ Tue, 17 Dec 2024 14:59:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734447566; x=1765983566;
+ t=1734447574; x=1765983574;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AQXEw6geXLw0ekt9lW2pRFTLoheXmOynH/RQVz0xHMc=;
- b=cNOiXZecmz3b1ifIM68Mu+L6ZSuuzE2Nwjj+lxbi84bnnF/+Arg/+2nz
- Z4sJJuxvJdHe0+72E9PsIo1Ch9gHte741wAIfYTY+zgn7r+3AkWvVt8/5
- PI/xfyMwk3An29gYtch7Ly3/q6UTkDWMpwJyfCvM5nkAOds4gG34rdy3K
- tCfGPSRJ2Pcxv0QyX/Z5UyKQuQDYXqGpajEa6aSflbB2bw6bV8GHwO2ca
- aGdJkC4/9/y5SXZXFqRNF1jp/rKe77I7l3fgOM1poBQ5j4jyFGeXztWgv
- 5Uk2x0qpMLOrLtqwTeelsf6ZAv8wyYWwkHlsgre4Q+iLr22kYQfF/T8yt A==;
-X-CSE-ConnectionGUID: bdLkztaDRLGSg6H6PVndRA==
-X-CSE-MsgGUID: aI/T2cMFRPa30yiwGpiMVg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34914471"
-X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="34914471"
+ bh=xVtDZjrM+9ilzETbb9iYCs38I+9mafYXRIhuhzjUN44=;
+ b=S7LwhwqNhw+ms2i/Ce+86C0mgp1C3e7akmp/UkXbfVOEzpqOY3Zqcoyr
+ HrIH5ozAAznNPpzG7f0I8vWM+B4Jwbb8wfwVCJWavjZwBeRYKAJ1ScAcx
+ LsegnodC8y9teyThwniNPunfPzo+tiThKQV0Bn4+UNqQd79izPGxVOUD3
+ /htfayBudXvezb1zkoT+WRXuIfdmlgE+erbBh/UhdHHlC5yTiDOOow6oI
+ RLPo+ad4ralTf8hWEIDSLlJv2H8uAuEt++f4T8B0fczkjliWngbTSZgix
+ xnVHummS2x8cmqN7PhyIufkBSYXK9P+PJqaoObzo6U2NgXPRwgVEEPyp/ w==;
+X-CSE-ConnectionGUID: p4Dtq/QGQCaiUj3PgJ0pNQ==
+X-CSE-MsgGUID: de1XeOF/TpO8s+bIAvTbdg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34914488"
+X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="34914488"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 06:59:26 -0800
-X-CSE-ConnectionGUID: Y+XzkrAeQXWt1UO7pfwsZA==
-X-CSE-MsgGUID: WT0bDDiySYKiaZ+3gdbomA==
+ 17 Dec 2024 06:59:34 -0800
+X-CSE-ConnectionGUID: z9RcYTS+RI+e5BjJTPMQZg==
+X-CSE-MsgGUID: 8VrGGbquToiVV86fZc7U2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101694342"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101694367"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.245.246.49])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 06:59:23 -0800
+ 17 Dec 2024 06:59:31 -0800
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -50,9 +50,9 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Paulo Zanoni <paulo.r.zanoni@intel.com>,
  Simona Vetter <simona.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org
-Subject: [PATCH v15 6/9] drm/ttm: Add a macro to perform LRU iteration
-Date: Tue, 17 Dec 2024 15:58:49 +0100
-Message-ID: <20241217145852.37342-7-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v15 9/9] drm/xe: Increase the XE_PL_TT watermark
+Date: Tue, 17 Dec 2024 15:58:52 +0100
+Message-ID: <20241217145852.37342-10-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20241217145852.37342-1-thomas.hellstrom@linux.intel.com>
 References: <20241217145852.37342-1-thomas.hellstrom@linux.intel.com>
@@ -73,290 +73,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Following the design direction communicated here:
+The XE_PL_TT watermark was set to 50% of system memory.
+The idea behind that was unclear since the net effect is that
+TT memory will be evicted to TTM_PL_SYSTEM memory if that
+watermark is exceeded, requiring PPGTT rebinds and dma
+remapping. But there is no similar watermark for TTM_PL_1SYSTEM
+memory.
 
-https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@amd.com/T/#ma918844aa8a6efe8768fdcda0c6590d5c93850c9
+The TTM functionality that tries to swap out system memory to
+shmem objects if a 50% limit of total system memory is reached
+is orthogonal to this, and with the shrinker added, it's no
+longer in effect.
 
-Export a LRU walker for driver shrinker use. The walker
-initially supports only trylocking, since that's the
-method used by shrinkes. The walker makes use of
-scoped_guard() to allow exiting from the LRU walk loop
-without performing any explicit unlocking or
-cleanup.
-
-v8:
-- Split out from another patch.
-- Use a struct for bool arguments to increase readability (Matt Brost).
-- Unmap user-space cpu-mappings before shrinking pages.
-- Explain non-fatal error codes (Matt Brost)
-
-v10:
-- Instead of using the existing helper, Wrap the interface inside out and
-  provide a loop to de-midlayer things the LRU iteration (Christian König).
-- Removing the R-B by Matt Brost since the patch was significantly changed.
-
-v11:
-- Split the patch up to include just the LRU walk helper.
-
-v12:
-- Indent after scoped_guard() (Matt Brost)
-
-v15:
-- Adapt to new definition of scoped_guard()
+Replace the 50% TTM_PL_TT limit with a 100% limit, in effect
+allowing all graphics memory to be bound to the device unless it
+has been swapped out by the shrinker.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo_util.c | 140 +++++++++++++++++++++++++++++-
- include/drm/ttm/ttm_bo.h          |  72 +++++++++++++++
- 2 files changed, 208 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index 917096bd5f68..0cac02a9764c 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -769,12 +769,10 @@ int ttm_bo_pipeline_gutting(struct ttm_buffer_object *bo)
- 	return ret;
- }
+diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+index 9844a8edbfe1..d38b91872da3 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+@@ -108,9 +108,8 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
+ 	u64 gtt_size;
  
--static bool ttm_lru_walk_trylock(struct ttm_lru_walk *walk,
-+static bool ttm_lru_walk_trylock(struct ttm_operation_ctx *ctx,
- 				 struct ttm_buffer_object *bo,
- 				 bool *needs_unlock)
- {
--	struct ttm_operation_ctx *ctx = walk->ctx;
--
- 	*needs_unlock = false;
+ 	si_meminfo(&si);
++	/* Potentially restrict amount of TT memory here. */
+ 	gtt_size = (u64)si.totalram * si.mem_unit;
+-	/* TTM limits allocation of all TTM devices by 50% of system memory */
+-	gtt_size /= 2;
  
- 	if (dma_resv_trylock(bo->base.resv)) {
-@@ -877,7 +875,7 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
- 		 * since if we do it the other way around, and the trylock fails,
- 		 * we need to drop the lru lock to put the bo.
- 		 */
--		if (ttm_lru_walk_trylock(walk, bo, &bo_needs_unlock))
-+		if (ttm_lru_walk_trylock(walk->ctx, bo, &bo_needs_unlock))
- 			bo_locked = true;
- 		else if (!walk->ticket || walk->ctx->no_wait_gpu ||
- 			 walk->trylock_only)
-@@ -920,3 +918,137 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
- 
- 	return progress;
- }
-+EXPORT_SYMBOL(ttm_lru_walk_for_evict);
-+
-+static void ttm_bo_lru_cursor_cleanup_bo(struct ttm_bo_lru_cursor *curs)
-+{
-+	struct ttm_buffer_object *bo = curs->bo;
-+
-+	if (bo) {
-+		if (curs->needs_unlock)
-+			dma_resv_unlock(bo->base.resv);
-+		ttm_bo_put(bo);
-+		curs->bo = NULL;
-+	}
-+}
-+
-+/**
-+ * ttm_bo_lru_cursor_fini() - Stop using a struct ttm_bo_lru_cursor
-+ * and clean up any iteration it was used for.
-+ * @curs: The cursor.
-+ */
-+void ttm_bo_lru_cursor_fini(struct ttm_bo_lru_cursor *curs)
-+{
-+	spinlock_t *lru_lock = &curs->res_curs.man->bdev->lru_lock;
-+
-+	ttm_bo_lru_cursor_cleanup_bo(curs);
-+	spin_lock(lru_lock);
-+	ttm_resource_cursor_fini(&curs->res_curs);
-+	spin_unlock(lru_lock);
-+}
-+EXPORT_SYMBOL(ttm_bo_lru_cursor_fini);
-+
-+/**
-+ * ttm_bo_lru_cursor_init() - Initialize a struct ttm_bo_lru_cursor
-+ * @curs: The ttm_bo_lru_cursor to initialize.
-+ * @man: The ttm resource_manager whose LRU lists to iterate over.
-+ * @ctx: The ttm_operation_ctx to govern the locking.
-+ *
-+ * Initialize a struct ttm_bo_lru_cursor. Currently only trylocking
-+ * or prelocked buffer objects are available as detailed by
-+ * @ctx::resv and @ctx::allow_res_evict. Ticketlocking is not
-+ * supported.
-+ *
-+ * Return: Pointer to @curs. The function does not fail.
-+ */
-+struct ttm_bo_lru_cursor *
-+ttm_bo_lru_cursor_init(struct ttm_bo_lru_cursor *curs,
-+		       struct ttm_resource_manager *man,
-+		       struct ttm_operation_ctx *ctx)
-+{
-+	memset(curs, 0, sizeof(*curs));
-+	ttm_resource_cursor_init(&curs->res_curs, man);
-+	curs->ctx = ctx;
-+
-+	return curs;
-+}
-+EXPORT_SYMBOL(ttm_bo_lru_cursor_init);
-+
-+static struct ttm_buffer_object *
-+ttm_bo_from_res_reserved(struct ttm_resource *res, struct ttm_bo_lru_cursor *curs)
-+{
-+	struct ttm_buffer_object *bo = res->bo;
-+
-+	if (!ttm_lru_walk_trylock(curs->ctx, bo, &curs->needs_unlock))
-+		return NULL;
-+
-+	if (!ttm_bo_get_unless_zero(bo)) {
-+		if (curs->needs_unlock)
-+			dma_resv_unlock(bo->base.resv);
-+		return NULL;
-+	}
-+
-+	curs->bo = bo;
-+	return bo;
-+}
-+
-+/**
-+ * ttm_bo_lru_cursor_next() - Continue iterating a manager's LRU lists
-+ * to find and lock buffer object.
-+ * @curs: The cursor initialized using ttm_bo_lru_cursor_init() and
-+ * ttm_bo_lru_cursor_first().
-+ *
-+ * Return: A pointer to a locked and reference-counted buffer object,
-+ * or NULL if none could be found and looping should be terminated.
-+ */
-+struct ttm_buffer_object *ttm_bo_lru_cursor_next(struct ttm_bo_lru_cursor *curs)
-+{
-+	spinlock_t *lru_lock = &curs->res_curs.man->bdev->lru_lock;
-+	struct ttm_resource *res = NULL;
-+	struct ttm_buffer_object *bo;
-+
-+	ttm_bo_lru_cursor_cleanup_bo(curs);
-+
-+	spin_lock(lru_lock);
-+	for (;;) {
-+		res = ttm_resource_manager_next(&curs->res_curs);
-+		if (!res)
-+			break;
-+
-+		bo = ttm_bo_from_res_reserved(res, curs);
-+		if (bo)
-+			break;
-+	}
-+
-+	spin_unlock(lru_lock);
-+	return res ? bo : NULL;
-+}
-+EXPORT_SYMBOL(ttm_bo_lru_cursor_next);
-+
-+/**
-+ * ttm_bo_lru_cursor_first() - Start iterating a manager's LRU lists
-+ * to find and lock buffer object.
-+ * @curs: The cursor initialized using ttm_bo_lru_cursor_init().
-+ *
-+ * Return: A pointer to a locked and reference-counted buffer object,
-+ * or NULL if none could be found and looping should be terminated.
-+ */
-+struct ttm_buffer_object *ttm_bo_lru_cursor_first(struct ttm_bo_lru_cursor *curs)
-+{
-+	spinlock_t *lru_lock = &curs->res_curs.man->bdev->lru_lock;
-+	struct ttm_buffer_object *bo;
-+	struct ttm_resource *res;
-+
-+	spin_lock(lru_lock);
-+	res = ttm_resource_manager_first(&curs->res_curs);
-+	if (!res) {
-+		spin_unlock(lru_lock);
-+		return NULL;
-+	}
-+
-+	bo = ttm_bo_from_res_reserved(res, curs);
-+	spin_unlock(lru_lock);
-+
-+	return bo ? bo : ttm_bo_lru_cursor_next(curs);
-+}
-+EXPORT_SYMBOL(ttm_bo_lru_cursor_first);
-diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-index 8ea11cd8df39..1509268849c0 100644
---- a/include/drm/ttm/ttm_bo.h
-+++ b/include/drm/ttm/ttm_bo.h
-@@ -467,4 +467,76 @@ void ttm_bo_tt_destroy(struct ttm_buffer_object *bo);
- int ttm_bo_populate(struct ttm_buffer_object *bo,
- 		    struct ttm_operation_ctx *ctx);
- 
-+/* Driver LRU walk helpers initially targeted for shrinking. */
-+
-+/**
-+ * struct ttm_bo_lru_cursor - Iterator cursor for TTM LRU list looping
-+ */
-+struct ttm_bo_lru_cursor {
-+	/** @res_curs: Embedded struct ttm_resource_cursor. */
-+	struct ttm_resource_cursor res_curs;
-+	/**
-+	 * @ctx: The struct ttm_operation_ctx used while looping.
-+	 * governs the locking mode.
-+	 */
-+	struct ttm_operation_ctx *ctx;
-+	/**
-+	 * @bo: Buffer object pointer if a buffer object is refcounted,
-+	 * NULL otherwise.
-+	 */
-+	struct ttm_buffer_object *bo;
-+	/**
-+	 * @needs_unlock: Valid iff @bo != NULL. The bo resv needs
-+	 * unlock before the next iteration or after loop exit.
-+	 */
-+	bool needs_unlock;
-+};
-+
-+void ttm_bo_lru_cursor_fini(struct ttm_bo_lru_cursor *curs);
-+
-+struct ttm_bo_lru_cursor *
-+ttm_bo_lru_cursor_init(struct ttm_bo_lru_cursor *curs,
-+		       struct ttm_resource_manager *man,
-+		       struct ttm_operation_ctx *ctx);
-+
-+struct ttm_buffer_object *ttm_bo_lru_cursor_first(struct ttm_bo_lru_cursor *curs);
-+
-+struct ttm_buffer_object *ttm_bo_lru_cursor_next(struct ttm_bo_lru_cursor *curs);
-+
-+/*
-+ * Defines needed to use autocleanup (linux/cleanup.h) with struct ttm_bo_lru_cursor.
-+ */
-+DEFINE_CLASS(ttm_bo_lru_cursor, struct ttm_bo_lru_cursor *,
-+	     if (_T) {ttm_bo_lru_cursor_fini(_T); },
-+	     ttm_bo_lru_cursor_init(curs, man, ctx),
-+	     struct ttm_bo_lru_cursor *curs, struct ttm_resource_manager *man,
-+	     struct ttm_operation_ctx *ctx);
-+static inline void *
-+class_ttm_bo_lru_cursor_lock_ptr(class_ttm_bo_lru_cursor_t *_T)
-+{ return *_T; }
-+#define class_ttm_bo_lru_cursor_is_conditional false
-+
-+/**
-+ * ttm_bo_lru_for_each_reserved_guarded() - Iterate over buffer objects owning
-+ * resources on LRU lists.
-+ * @_cursor: struct ttm_bo_lru_cursor to use for the iteration.
-+ * @_man: The resource manager whose LRU lists to iterate over.
-+ * @_ctx: The struct ttm_operation_context to govern the @_bo locking.
-+ * @_bo: The struct ttm_buffer_object pointer pointing to the buffer object
-+ * for the current iteration.
-+ *
-+ * Iterate over all resources of @_man and for each resource, attempt to
-+ * reference and lock (using the locking mode detailed in @_ctx) the buffer
-+ * object it points to. If successful, assign @_bo to the address of the
-+ * buffer object and update @_cursor. The iteration is guarded in the
-+ * sense that @_cursor will be initialized before looping start and cleaned
-+ * up at looping termination, even if terminated prematurely by, for
-+ * example a return or break statement. Exiting the loop will also unlock
-+ * (if needed) and unreference @_bo.
-+ */
-+#define ttm_bo_lru_for_each_reserved_guarded(_cursor, _man, _ctx, _bo)	\
-+	scoped_guard(ttm_bo_lru_cursor, _cursor, _man, _ctx)		\
-+		for ((_bo) = ttm_bo_lru_cursor_first(_cursor); (_bo);	\
-+		     (_bo) = ttm_bo_lru_cursor_next(_cursor))
-+
- #endif
+ 	man->use_tt = true;
+ 	man->func = &xe_ttm_sys_mgr_func;
 -- 
 2.47.1
 
