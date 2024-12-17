@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97FA4E7717F
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 11:57:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C316E7717F
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 12:09:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A5CD10E940;
-	Tue, 17 Dec 2024 11:57:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="k4Pc7NCH";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5465C10E20E;
- Tue, 17 Dec 2024 11:57:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Q0C9ZfTUJSBEghSJHIUvn6yAyoiJhPjoU7oXeo5Ike4=; b=k4Pc7NCHPvTE0AreRMR4Q+aKi2
- PCjGKHK981TDSEby1+G5kVBV7jCjmVoa8SPlXypb0Zied2DAp7e2K6G/3ofbqGLCW1CpZEJql7Rp4
- L0VtJPS+wD/0+MQbCisyCvSV/Qzpy9xZzBvZTIvY8uUsbBcdRG6A0+pAj60FXsp7wNa/fJmbFnE+q
- lXkttLiHJzbX+j1s1sTWg+aQltXcZoZpE1JtG1d2p7aYI6rJzDqE7toIsr+Lod2Czx5ZwSO8WTg3F
- Iv6teQAc5SayNue/fcGUsWIS/KGomcWneSOiNMhbPTrEGtFw75oCC0g7DZ5zjNY7bcR22UrSnAb+B
- jh+8afQQ==;
-Received: from [179.193.1.214] (helo=[192.168.15.100])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tNWCh-004LpZ-5X; Tue, 17 Dec 2024 12:57:31 +0100
-Message-ID: <314af6e1-82e5-405f-aa2c-21708207e7d8@igalia.com>
-Date: Tue, 17 Dec 2024 08:57:24 -0300
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9D8710E94D;
+	Tue, 17 Dec 2024 12:09:26 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CAD410E94D;
+ Tue, 17 Dec 2024 12:09:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7533597056103525293=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 2/4] drm/doc: Document device wedged event
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- andriy.shevchenko@linux.intel.com, lina@asahilina.net,
- michal.wajdeczko@intel.com, christian.koenig@amd.com,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
- alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com
-References: <20241128153707.1294347-1-raag.jadav@intel.com>
- <20241128153707.1294347-3-raag.jadav@intel.com>
- <cfb07238-841c-45ca-9a8e-c5aca80ee47c@igalia.com>
- <Z2E5ZbRym80khid2@black.fi.intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-In-Reply-To: <Z2E5ZbRym80khid2@black.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_adding_wait_helpe?=
+ =?utf-8?q?r_for_gt_async_reset_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maciej Patelczyk" <maciej.patelczyk@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Dec 2024 12:09:25 -0000
+Message-ID: <173443736530.3813316.5724680921992763801@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241211111727.1481476-1-maciej.patelczyk@intel.com>
+In-Reply-To: <20241211111727.1481476-1-maciej.patelczyk@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,39 +36,167 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Em 17/12/2024 05:42, Raag Jadav escreveu:
-> On Thu, Dec 12, 2024 at 03:50:29PM -0300, André Almeida wrote:
->> Em 28/11/2024 12:37, Raag Jadav escreveu:
->>> Add documentation for device wedged event in a new 'Device wedging'
->>> chapter. The describes basic definitions, prerequisites and consumer
->>> expectations along with an example.
->>>
->>>    v8: Improve documentation (Christian, Rodrigo)
->>>    v9: Add prerequisites section (Christian)
->>> v10: Clarify mmap cleanup and consumer prerequisites (Christian, Aravind)
->>>
->>> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
->>> Reviewed-by: Christian König <christian.koenig@amd.com>
->>> ---
->>>    Documentation/gpu/drm-uapi.rst | 112 ++++++++++++++++++++++++++++++++-
->>>    1 file changed, 109 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
->>> index b75cc9a70d1f..da2927cde53d 100644
->>> --- a/Documentation/gpu/drm-uapi.rst
->>> +++ b/Documentation/gpu/drm-uapi.rst
->>> @@ -371,9 +371,115 @@ Reporting causes of resets
->>
->> I think it's a good idea to add a note about "device wedged event" in the
->> section "Device reset > Kernel Mode Driver" since the idea is to explain
->> what should kernel developer add to their kernel drivers to be used when a
->> device resets.
-> 
-> Wouldn't that be just a repetition of below? Also, I'm not sure if it's a hard
-> requirement.
-> 
+--===============7533597056103525293==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Right, it can get repetitive indeed, no need to apply this suggestion then.
+== Series Details ==
+
+Series: drm/xe: adding wait helper for gt async reset (rev4)
+URL   : https://patchwork.freedesktop.org/series/142300/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2389-dc611f7bf8f6d604ba2148508eb076767629a1da_BAT -> xe-pw-142300v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-142300v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2389-dc611f7bf8f6d604ba2148508eb076767629a1da/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142300v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-adlp-7:         [PASS][3] -> [SKIP][4] ([Intel XE#455]) +1 other test skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2389-dc611f7bf8f6d604ba2148508eb076767629a1da/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142300v4/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+
+  * igt@kms_psr@psr-primary-page-flip@edp-1:
+    - bat-adlp-7:         [PASS][5] -> [DMESG-WARN][6] ([Intel XE#3517]) +1 other test dmesg-warn
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2389-dc611f7bf8f6d604ba2148508eb076767629a1da/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142300v4/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_addfb_basic@bad-pitch-0:
+    - bat-adlp-7:         [DMESG-WARN][7] ([Intel XE#3429]) -> [PASS][8] +31 other tests pass
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2389-dc611f7bf8f6d604ba2148508eb076767629a1da/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142300v4/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#3429]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3429
+  [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-2389-dc611f7bf8f6d604ba2148508eb076767629a1da -> xe-pw-142300v4
+
+  IGT_8159: 2a4c77dc47a59032c8cecd61cb0a5546a2828897 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2389-dc611f7bf8f6d604ba2148508eb076767629a1da: dc611f7bf8f6d604ba2148508eb076767629a1da
+  xe-pw-142300v4: 142300v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142300v4/index.html
+
+--===============7533597056103525293==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: adding wait helper for gt async reset (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142300/">https://patchwork.freedesktop.org/series/142300/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142300v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142300v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2389-dc611f7bf8f6d604ba2148508eb076767629a1da_BAT -&gt; xe-pw-142300v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-142300v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2389-dc611f7bf8f6d604ba2148508eb076767629a1da/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142300v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2389-dc611f7bf8f6d604ba2148508eb076767629a1da/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142300v4/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip@edp-1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2389-dc611f7bf8f6d604ba2148508eb076767629a1da/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142300v4/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517">Intel XE#3517</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_addfb_basic@bad-pitch-0:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2389-dc611f7bf8f6d604ba2148508eb076767629a1da/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3429">Intel XE#3429</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142300v4/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">PASS</a> +31 other tests pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2389-dc611f7bf8f6d604ba2148508eb076767629a1da -&gt; xe-pw-142300v4</li>
+</ul>
+<p>IGT_8159: 2a4c77dc47a59032c8cecd61cb0a5546a2828897 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2389-dc611f7bf8f6d604ba2148508eb076767629a1da: dc611f7bf8f6d604ba2148508eb076767629a1da<br />
+  xe-pw-142300v4: 142300v4</p>
+
+</body>
+</html>
+
+--===============7533597056103525293==--
