@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80877E77188
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 09:30:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCB16E77187
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 09:30:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 462D110E8A3;
-	Tue, 17 Dec 2024 09:30:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98D0010E8BA;
+	Tue, 17 Dec 2024 09:30:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g78A8Sdf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eTqprhe4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE47B10E89F;
- Tue, 17 Dec 2024 09:30:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CED2110E8AC;
+ Tue, 17 Dec 2024 09:29:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734427815; x=1765963815;
+ t=1734427797; x=1765963797;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=owyh9ky/7Aukk7SH7i0BMM3+cfW39wpxZw02dBY73U8=;
- b=g78A8SdfvuR8vPlT7J9i+JOZvQEiZtWXYlLkeeWizCcrniMFGmFDdSi8
- p6IrfYQliqW772KcxeF1c/JG6JGiiFWJNmpeg6jni5sV+OSV6iBJ58u9x
- dHgp+JJ3d7dFPCFj5bg2isqZ6vhAvXvJG8rjqeLl8BEOgSEdzmy8kmWzk
- YAWuW7gDcTExf/OUSpEv2vF8s7gg7ZVAYvzuyUXR1hL7foqQzrr0ABZ89
- 4ZfzwXUA6/JRRj3FgtIlhgtNvVt3FMZ538LOctoVwnFGzkMvd3FOtlI9Z
- J9IuSbQBVEYXGKyjajjQksG9tsi3uf3Y4pNHuYIURg4ZKrgcc74GEpewW Q==;
-X-CSE-ConnectionGUID: e4+DF9BMQNaGDnNllVwVPQ==
-X-CSE-MsgGUID: pjlIkQcESQu8W+4L+Iy5NA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34976197"
-X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="34976197"
+ bh=UhV9uxNPxY/5jnNhd8N9/rV1eqmZl2VwhRaEbdrKo3s=;
+ b=eTqprhe40hLbpAjyntMPXLdVFuzLHhUQFEdkD5M93YNl9Cbbul7YOjrX
+ OYfSjlHNAmqUkEtwG12WU9awbo+Zlb38kY7BIC1LFHP1Lblp3rh66GYAN
+ 4eUyU2tjU5hasSY3tlOifE8tsh4G57GLlpOR09wjdcf1aHJU9jXpWwk4f
+ zdCnY9gINdZUV2O2fdsGq35XQEwehLyzuGvm3ie2AGxvlbFGFaiF06T3M
+ pbZn76SnnkEFbfE54uZFwKkU/AoCTWTJSwR5ECzY/+cWjT72NqT96UJRF
+ l2zSCyRgYzXLxt6M5kXYdGRJ3HblFeKFNp+xkMe2tRPGd9fCy32IILhc/ Q==;
+X-CSE-ConnectionGUID: NCa5HQxnQhuutH6qXaOFgg==
+X-CSE-MsgGUID: GKELYrWKTqehw7BCNV2cuA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34976145"
+X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="34976145"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 01:30:15 -0800
-X-CSE-ConnectionGUID: TQPE9yRGTlGUaNKcrvabOw==
-X-CSE-MsgGUID: 6uJ8R3uZTi+XkESwehe3OQ==
+ 17 Dec 2024 01:29:56 -0800
+X-CSE-ConnectionGUID: 2U+vntLMTcCmPQszugzi9Q==
+X-CSE-MsgGUID: sjBWyeBzSmCzcrgiHTX4eQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="98052516"
+X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="98052427"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 01:30:13 -0800
+ 17 Dec 2024 01:29:55 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  jani.nikula@linux.intel.com, imre.deak@intel.com
-Subject: [PATCH 14/14] drm/i915/dp_mst: Use link.{min/max}_bpp_x16
-Date: Tue, 17 Dec 2024 15:02:44 +0530
-Message-ID: <20241217093244.3938132-15-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 05/14] drm/i915/dp: Remove HAS_DSC macro for
+ intel_dp_dsc_max_src_input_bpc
+Date: Tue, 17 Dec 2024 15:02:35 +0530
+Message-ID: <20241217093244.3938132-6-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241217093244.3938132-1-ankit.k.nautiyal@intel.com>
 References: <20241217093244.3938132-1-ankit.k.nautiyal@intel.com>
@@ -67,36 +68,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The link.{min/max}_bpp_x16 is already set in crtc_state, use that while
-computing link config for MST.
+DSC support is already checked before the helper
+intel_dp_dsc_max_src_input_bpc is called.
+Remove the check from the helper.
+
+v2: Drop the argument struct drm_i915_private *i915. (Suraj)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 11 ++---------
- 1 file changed, 2 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 689fbd6bcf9b..a9d9d7694acb 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -428,15 +428,8 @@ static int mst_stream_dsc_compute_link_config(struct intel_dp *intel_dp,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 9a039cbdfcc9..9848a3ecc556 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2188,10 +2188,10 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
+ }
  
- 	crtc_state->pipe_bpp = max_bpp;
+ static
+-u8 intel_dp_dsc_min_src_input_bpc(struct intel_display *display)
++u8 intel_dp_dsc_min_src_input_bpc(void)
+ {
+ 	/* Min DSC Input BPC for ICL+ is 8 */
+-	return HAS_DSC(display) ? 8 : 0;
++	return 8;
+ }
  
--	max_compressed_bpp = intel_dp_dsc_sink_max_compressed_bpp(connector,
--								  crtc_state,
--								  max_bpp / 3);
--	max_compressed_bpp = min(max_compressed_bpp,
--				 fxp_q4_to_int(limits->link.max_bpp_x16));
--
--	min_compressed_bpp = intel_dp_dsc_sink_min_compressed_bpp(crtc_state);
--	min_compressed_bpp = max(min_compressed_bpp,
--				 fxp_q4_to_int_roundup(limits->link.min_bpp_x16));
-+	max_compressed_bpp = fxp_q4_to_int(limits->link.max_bpp_x16);
-+	min_compressed_bpp = fxp_q4_to_int_roundup(limits->link.min_bpp_x16);
+ static
+@@ -2203,7 +2203,7 @@ bool is_dsc_pipe_bpp_sufficient(struct intel_display *display,
+ 	u8 dsc_max_bpc, dsc_min_bpc, dsc_max_pipe_bpp, dsc_min_pipe_bpp;
  
- 	drm_dbg_kms(display->drm, "DSC Sink supported compressed min bpp %d compressed max bpp %d\n",
- 		    min_compressed_bpp, max_compressed_bpp);
+ 	dsc_max_bpc = min(intel_dp_dsc_max_src_input_bpc(display), conn_state->max_requested_bpc);
+-	dsc_min_bpc = intel_dp_dsc_min_src_input_bpc(display);
++	dsc_min_bpc = intel_dp_dsc_min_src_input_bpc();
+ 
+ 	dsc_max_pipe_bpp = min(dsc_max_bpc * 3, limits->pipe.max_bpp);
+ 	dsc_min_pipe_bpp = max(dsc_min_bpc * 3, limits->pipe.min_bpp);
+@@ -2272,7 +2272,7 @@ static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+ 	dsc_max_bpc = min_t(u8, dsc_max_bpc, max_req_bpc);
+ 	dsc_max_bpp = min(dsc_max_bpc * 3, limits->pipe.max_bpp);
+ 
+-	dsc_min_bpc = intel_dp_dsc_min_src_input_bpc(display);
++	dsc_min_bpc = intel_dp_dsc_min_src_input_bpc();
+ 	dsc_min_bpp = max(dsc_min_bpc * 3, limits->pipe.min_bpp);
+ 
+ 	/*
 -- 
 2.45.2
 
