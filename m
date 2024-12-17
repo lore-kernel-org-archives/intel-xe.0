@@ -4,70 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CAFDE7717F
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 14:12:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBA1CE7717F
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 14:26:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDF9E10E980;
-	Tue, 17 Dec 2024 14:12:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 922A910E02B;
+	Tue, 17 Dec 2024 14:26:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iicg//OS";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="FmTTTeOg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28A4A10E980;
- Tue, 17 Dec 2024 14:12:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734444769; x=1765980769;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:to:date:message-id;
- bh=CaJltsNoeXmQRM5tsrufBanE2Qh55lz8mcyu1kKLRZI=;
- b=iicg//OSV5i/SCFCeueD4W+PgHTT+P2Pl79hrZYH0SBN4oryzVdv9uV6
- B9TPoYAfFxAzm0e/Oo5PeOnnWEu2IZqSXCjCBbkv/EuBsawmzQE6PQIk5
- 1OvpEz+Q/TqRsEYGIJZRiCdWtRQ6MoAga9f10y/H0TE6qSf7A7T+XRvxM
- +mjzwRZSSvUNYpKBZH+gzw54aqsGwNbf5nw3TQGhAIwWyfNB0aaDlBBdn
- oBCS0As339RV4+iT41IfzDy54lKJfWVJ6a07LeNkPKO/RxifyaxOg7MUD
- msubPOPhF0DypRnVO9ThkZr6xSCM4i5UAEEDNbQFPsfO6rdwuJX6z5OfU Q==;
-X-CSE-ConnectionGUID: YZtDgqrRT0KKXqVZWtNAjg==
-X-CSE-MsgGUID: W6HT6pBBRwSc3sN/0CUpMA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="45565579"
-X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="45565579"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 06:12:49 -0800
-X-CSE-ConnectionGUID: 6xIGBbAZRg24d1z6RCCp5w==
-X-CSE-MsgGUID: 7t8X2hqiRQ2+hLjYJM4LUA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="97588802"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO localhost)
- ([10.245.245.114])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 06:12:46 -0800
-Content-Type: text/plain; charset="utf-8"
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE19B10E7F8;
+ Tue, 17 Dec 2024 00:41:41 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 6B3BDA41BCB;
+ Tue, 17 Dec 2024 00:39:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D12F7C4CED0;
+ Tue, 17 Dec 2024 00:41:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1734396099;
+ bh=Ka+OMSaqE1tqko01dYUFN1zerLG7QyUuZt4Xtr1VtVU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=FmTTTeOgGwQUKcETSk7JN9uS1HwjCzwU8/9sGIO3Bmrw15uctQ/lYEqdK/Y2LSc36
+ sVRGyQIDFzYTswQB4XJjQuHhYx9O1fqa3MCoBjBngnZMdDWjTdZ1vQSA4ZnrXq1apM
+ H9uWgDD5vchsL3JqZrjjgkuSeehBzjVSoBOMqyfhJeaaEIeN1NvM+1Le09/EnfsIoJ
+ LTKU4scWe5S2hdTTM1QCmRn2znete1zt7t3IduwDQoj7szNb484ObmGOcP7KP82AIq
+ qDk9g26Henr6xwrF7vH+dSu3Evhh1aTu0S+f/QCuMBGKj44cWhlYq5V+wuUrlOwuwA
+ acPDcBfFbH4vQ==
+Date: Mon, 16 Dec 2024 16:41:36 -0800
+From: Kees Cook <kees@kernel.org>
+To: Yafang Shao <laoar.shao@gmail.com>
+Cc: torvalds@linux-foundation.org, akpm@linux-foundation.org,
+ linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
+ "Serge E. Hallyn" <serge@hallyn.com>
+Subject: Re: [PATCH 5/7] security: Replace get_task_comm() with %pTN
+Message-ID: <202412161641.8209C666@keescook>
+References: <20241213054610.55843-1-laoar.shao@gmail.com>
+ <20241213054610.55843-6-laoar.shao@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <173392197322.40386.12252741494998606453@jlahtine-mobl.ger.corp.intel.com>
-References: <20241209133318.1806472-1-mika.kuoppala@linux.intel.com>
- <20241209133318.1806472-15-mika.kuoppala@linux.intel.com>
- <ec42fe8b-9be0-41cc-96f4-f1869c6bb7e6@amd.com>
- <Z1cNQTvGdAUPp4Y-@phenom.ffwll.local>
- <e4401ab1-0562-407a-a0e9-2f6e43e5ac22@amd.com>
- <173382321353.8959.8314520413901294535@jlahtine-mobl.ger.corp.intel.com>
- <d2141daa-b556-4487-a310-69a7fea4eae8@amd.com>
- <173383187817.17709.7100544929981970614@jlahtine-mobl.ger.corp.intel.com>
- <bbe0193c-8869-488a-ae23-139a244654c8@amd.com>
- <173392197322.40386.12252741494998606453@jlahtine-mobl.ger.corp.intel.com>
-Subject: Re: [PATCH 14/26] drm/xe/eudebug: implement userptr_vma access
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
- Christian =?utf-8?q?K=C3=B6nig?= <christian.koenig@amd.com>,
- Christoph Hellwig <hch@lst.de>, Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Linux MM <linux-mm@kvack.org>, Maciej Patelczyk <maciej.patelczyk@intel.com>,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, lkml <linux-kernel@vger.kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Tue, 17 Dec 2024 16:12:42 +0200
-Message-ID: <173444476233.58433.15197725556816943129@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241213054610.55843-6-laoar.shao@gmail.com>
+X-Mailman-Approved-At: Tue, 17 Dec 2024 14:26:42 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,53 +64,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Joonas Lahtinen (2024-12-11 14:59:33)
-> Quoting Christian K=C3=B6nig (2024-12-10 16:03:14)
+On Fri, Dec 13, 2024 at 01:46:08PM +0800, Yafang Shao wrote:
+> Since task->comm is guaranteed to be NUL-terminated, we can print it
+> directly without the need to copy it into a separate buffer. This
+> simplifies the code and avoids unnecessary operations.
+> 
+> Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
 
-<SNIP>
+Looks good to me; thanks!
 
-> > If you really want to expose an interface to userspace which walks the =
-process
-> > page table, installs an MMU notifier, kmaps the resulting page and then=
- memcpy
-> > to/from it then you absolutely *must* run that by guys like Christoph H=
-ellwig,
-> > Andrew and even Linus.
+Acked-by: Kees Cook <kees@kernel.org>
 
-> > I'm pretty sure that those guys will note that a device driver should
-> > absolutely not mess with such stuff.
-
-<SNIP>
-
-> >     But that seems like a high-overhead thing to do due to the overhead=
- of
-> >     setting up a transfer per data word and going over the PCI bus twice
-> >     compared to accessing the memory directly by CPU when it trivially =
-can.
-> >=20
-> >=20
-> > Understandable, but that will create another way of accessing process m=
-emory.
-
-Based on this feedback and some further discussion, we now have an alternat=
-ive
-implementation for this interface via access_process_vm function posted by =
-Mika:
-
-https://lore.kernel.org/dri-devel/20241216141721.2051279-1-mika.kuoppala@li=
-nux.intel.com/
-
-It's a couple of dozen lines don't need to do any open-coded kmapping, only=
- utilizing
-the pre-existing memory access functions.
-
-Hopefully that would address the above concerns?
-
-Regards, Joonas
-
-PS. It could still be optimized further to directly use the struct mm
-from within the mm notifier, and go with access_remote_vm using that,
-but would require new symbol export.
-
-For demonstration it is implemented by grabbing the task_struct and using
-the already exported access_process_vm function.
+-- 
+Kees Cook
