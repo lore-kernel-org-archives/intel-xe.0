@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29D8DE7717F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66413E77187
 	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 09:47:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E090110E8D6;
-	Tue, 17 Dec 2024 09:47:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DFA710E8D3;
+	Tue, 17 Dec 2024 09:47:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xgo4Osyw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kq32K+ji";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7D0D10E8CB
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E894710E8CB
  for <intel-xe@lists.freedesktop.org>; Tue, 17 Dec 2024 09:47:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734428832; x=1765964832;
+ t=1734428833; x=1765964833;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6JggU5ruQeXQFCfJIlmzYu6LtdjVatnLNCCx4tqDk1w=;
- b=Xgo4Osywsthhc0FCVgy0kllUfBqrNhx3XOr77BPBQfOrSL+HiY81D4ta
- TgIWQactqcRUPg00x9exzgTc9bECqVxffws6hwUfTcpvZvMMOpDFgiNba
- XFKtjimptDrbVAW4EqOV5aHQb0i+HyLk1H7OFTYW5rHdSC79PzrQ07r8k
- qdJI6dgD89Xtd6xh0v2Au9YSEuc8aA4TOOIdkx4d5i+fB5s9W3gpMB0jp
- h4/APlEsJ2UFiwQFb2gSkMnQCJtLh6Nm7L3VO2xMSPLMHgL1r7CRHFOGm
- AA4p3/UlnrVArN9xoru50h616/GvlaTAuaFXfOLNzHCNoLsmbtCTazcOu g==;
-X-CSE-ConnectionGUID: hq0ati8oTHqmaK7YVRCkZQ==
-X-CSE-MsgGUID: KomTvxFPTfOrOIKW8PEwbQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11278"; a="46238180"
-X-IronPort-AV: E=Sophos;i="6.12,214,1728975600"; d="scan'208";a="46238180"
+ bh=mXrzc3QhCX2jfkvBfXO5O0z4nwjAzeIBxWcu9FV+WZI=;
+ b=Kq32K+jidzOfdxAATA8Vg6qOfO1A2VQJjd1PiBvZe7rUYzmVjiulrG/C
+ 4kP1db4wiWh2ySumSMnlLajcWKNvpmwZxujb4gIevdTtoLt3/AfTgNJqT
+ AcT5AlGDrOCy7V3fV0Wm/4POhwwqUOQ3M6f376RCcHnfQ1mu5vHrGaVUT
+ EMOj6YekRsNvkD6wpxQhcMuZxozER+DR62el3c3pOf6SqCBnyWFS5wHBw
+ DQ5kPsyFnv6atUNmiAYVRf9TLG/zchM+at6uR8guabmu4bsHoLN/4o1/5
+ nwvKw76OFCJ3dgVqBv3IbGlx9kiq+c5P5rTNn76fzQ6ai6EWXPQJsqJvL g==;
+X-CSE-ConnectionGUID: Y+1yIWssRmmms4uJecPutg==
+X-CSE-MsgGUID: nFb7utuTTuOB3BLT+yk8Uw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11278"; a="46238184"
+X-IronPort-AV: E=Sophos;i="6.12,214,1728975600"; d="scan'208";a="46238184"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Dec 2024 01:47:12 -0800
-X-CSE-ConnectionGUID: 8AVDXsH+SMStTyWdgEno6w==
-X-CSE-MsgGUID: 4szzOBPBTkSz0McPOlS5vg==
+X-CSE-ConnectionGUID: 6cl4DskkQW2Mjvr4Rb0tjA==
+X-CSE-MsgGUID: qyKuO//MQjud1ONwBREsjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="97364648"
+X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="97364660"
 Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 01:47:11 -0800
+ 17 Dec 2024 01:47:12 -0800
 From: Harish Chegondi <harish.chegondi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: ashutosh.dixit@intel.com, james.ausmus@intel.com,
@@ -48,10 +48,10 @@ Cc: ashutosh.dixit@intel.com, james.ausmus@intel.com,
  joshua.santosh.ranjan@intel.com, shubham.kumar@intel.com,
  matthew.d.roper@intel.com, matthew.olson@intel.com,
  Harish Chegondi <harish.chegondi@intel.com>
-Subject: [PATCH v6 1/7] drm/xe/topology: Add a function to find the index of
- the last enabled DSS in a mask
-Date: Tue, 17 Dec 2024 01:46:51 -0800
-Message-ID: <4ad526d947136a5c1c1fd43d7f51051448d40f55.1734427624.git.harish.chegondi@intel.com>
+Subject: [PATCH v6 4/7] drm/xe/eustall: Return -EIO error from read() if HW
+ drops data
+Date: Tue, 17 Dec 2024 01:46:54 -0800
+Message-ID: <42806e64c19aaf6ca80f408843782db64c0d6a95.1734427624.git.harish.chegondi@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <cover.1734427624.git.harish.chegondi@intel.com>
 References: <cover.1734427624.git.harish.chegondi@intel.com>
@@ -71,38 +71,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Last enabled DSS in a DSS mask can help estimate the maximum DSSes enabled
-in the DSS mask, as the enabled DSSes can be discontiguous.
+If the user space doesn't read the EU stall data fast enough,
+it is possible that the EU stall data buffer can get filled,
+and if the hardware wants to write more data, it simply drops
+data due to unavailable buffer space. In that case, hardware
+sets a bit in a register. If the driver detects data drop,
+the driver read() returns -EIO error to let the user space
+know that HW has dropped data. The -EIO error is returned
+even if there is EU stall data in the buffer. A subsequent
+read by the user space returns the remaining EU stall data.
 
 Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_topology.h | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/gpu/drm/xe/xe_eu_stall.c | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_eu_stall.h |  1 +
+ 2 files changed, 13 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.h b/drivers/gpu/drm/xe/xe_gt_topology.h
-index 746b325bbf6e..a72d26ba0653 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.h
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.h
-@@ -25,6 +25,19 @@ void xe_gt_topology_init(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+index 1d13219a3eb0..868f75a53b60 100644
+--- a/drivers/gpu/drm/xe/xe_eu_stall.c
++++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+@@ -472,6 +472,7 @@ xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *stream,
+  * before calling read().
+  *
+  * Returns: The number of bytes copied or a negative error code on failure.
++ *	    -EIO if HW drops any EU stall data when the buffer is full.
+  */
+ static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
+ 				       size_t count, loff_t *ppos)
+@@ -485,6 +486,16 @@ static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
+ 		return -EINVAL;
+ 	}
  
- void xe_gt_topology_dump(struct xe_gt *gt, struct drm_printer *p);
- 
-+/**
-+ * xe_gt_topology_mask_last_dss() - Returns the index of the last DSS in a mask.
-+ * @mask: Input DSS mask
-+ *
-+ * Return: Index of the last DSS in the input DSS mask,
-+ *	   XE_MAX_DSS_FUSE_BITS if DSS mask is empty.
-+ */
-+static inline unsigned int
-+xe_gt_topology_mask_last_dss(const xe_dss_mask_t mask)
-+{
-+	return find_last_bit(mask, XE_MAX_DSS_FUSE_BITS);
-+}
++	if (bitmap_weight(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS)) {
++		if (!stream->data_drop.reported_to_user) {
++			stream->data_drop.reported_to_user = true;
++			xe_gt_dbg(gt, "EU stall data dropped in XeCores: %*pb\n",
++				  XE_MAX_DSS_FUSE_BITS, stream->data_drop.mask);
++			return -EIO;
++		}
++		stream->data_drop.reported_to_user = false;
++	}
 +
- unsigned int
- xe_dss_mask_group_ffs(const xe_dss_mask_t mask, int groupsize, int groupnum);
+ 	if (!(file->f_flags & O_NONBLOCK)) {
+ 		do {
+ 			if (!stream->pollin) {
+@@ -680,6 +691,7 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+ 	if (!stream->xecore_buf)
+ 		return -ENOMEM;
  
++	stream->data_drop.reported_to_user = false;
+ 	bitmap_zero(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS);
+ 
+ 	xe_pm_runtime_get(gt_to_xe(gt));
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.h b/drivers/gpu/drm/xe/xe_eu_stall.h
+index 00896812db41..d9482e1b522b 100644
+--- a/drivers/gpu/drm/xe/xe_eu_stall.h
++++ b/drivers/gpu/drm/xe/xe_eu_stall.h
+@@ -31,6 +31,7 @@ struct xe_eu_stall_data_stream {
+ 	struct xe_bo *bo;
+ 	struct per_xecore_buf *xecore_buf;
+ 	struct {
++		bool reported_to_user;
+ 		xe_dss_mask_t mask;
+ 	} data_drop;
+ 	struct hrtimer poll_check_timer;
 -- 
 2.47.0
 
