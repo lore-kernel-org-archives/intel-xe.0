@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED58AE7716A
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 05:40:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4F7FE77186
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 07:19:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B973210E85D;
-	Tue, 17 Dec 2024 05:40:21 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C51A510E85D;
- Tue, 17 Dec 2024 05:40:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3350683163709569862=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A215410E862;
+	Tue, 17 Dec 2024 07:19:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Q49rcR8q";
+	dkim-atps=neutral
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 271EA10E862;
+ Tue, 17 Dec 2024 07:19:00 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id C4F845C6233;
+ Tue, 17 Dec 2024 07:18:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6B6EC4CEE1;
+ Tue, 17 Dec 2024 07:18:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1734419938;
+ bh=L5T8LbxEketIWtOM1IHY40+VcEiXBuxm2FKTjehvk1s=;
+ h=From:To:Cc:Subject:Date:From;
+ b=Q49rcR8qzY2+ZW2Dn7t0P3mPZD3oxT4iY2ItJtbsdP3NspkKVmlDT3JcmLxlVoP8g
+ u/9lGxq62lxqQ/i33bvjt/FJ3eaYLK0POsz2JbI6tBqITDYcGfY8/olzofCF+A64s9
+ /be9FmrpqHF23paiRiabq9iSqOK5kbm3bk0zXNdhcI7nbzeK9JcsYwhNfZFf3Y+Mia
+ fwgT1cTgHmY+C+HrHInTDetmqdWtRkpXzBiw/X7/E0RrrpK/Yka4GOsh9E4vlB99M4
+ OOQdH6tPwcs/UaNo5psz7futweq8Z/90h31X8cobwULrZwXEvo6ce5vm88MxqKeS6V
+ EC0dXFPRTpDTA==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ "David E. Box" <david.e.box@linux.intel.com>,
+ =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, Jani Nikula <jani.nikula@intel.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Hans de Goede <hdegoede@redhat.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/xe/vsec: enforce CONFIG_INTEL_VSEC dependency
+Date: Tue, 17 Dec 2024 08:18:44 +0100
+Message-Id: <20241217071852.2261858-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Fixes_for_MI=5FREPORT=5FPERF=5FC?=
- =?utf-8?q?OUNT_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 17 Dec 2024 05:40:20 -0000
-Message-ID: <173441402080.3620127.13049807041884607315@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241217005818.25205-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20241217005818.25205-1-umesh.nerlige.ramappa@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,155 +64,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3350683163709569862==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Arnd Bergmann <arnd@arndb.de>
 
-== Series Details ==
+When INTEL_VSEC is in a loadable module, XE cannot be built-in any more:
 
-Series: Fixes for MI_REPORT_PERF_COUNT (rev2)
-URL   : https://patchwork.freedesktop.org/series/141811/
-State : success
+x86_64-linux-ld: vmlinux.o: in function `xe_vsec_init':
+(.text+0x19861bf): undefined reference to `intel_vsec_register'
 
-== Summary ==
+This could be enforced using a 'depends on INTEL_VSEC || !INTEL_VSEC'
+style dependency to allow building with VSEC completely disabled.
+My impression here is that this was not actually intended, and that
+continuing to support that combination would lead to more build bugs.
 
-CI Bug Log - changes from xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191_BAT -> xe-pw-141811v2_BAT
-====================================================
+Instead, make it a hard dependency as all other INTEL_VSEC users are,
+and remove the inline stub alternative. This leads to a dependency
+on CONFIG_X86_PLATFORM_DEVICES, so the 'select' has to be removed
+to avoid a circular dependency.
 
-Summary
--------
+Fixes: 0c45e76fcc62 ("drm/xe/vsec: Support BMG devices")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/gpu/drm/xe/Kconfig | 2 +-
+ include/linux/intel_vsec.h | 7 -------
+ 2 files changed, 1 insertion(+), 8 deletions(-)
 
-  **SUCCESS**
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 6c5b665d9384..217b51468497 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -2,6 +2,7 @@
+ config DRM_XE
+ 	tristate "Intel Xe Graphics"
+ 	depends on DRM && PCI && MMU && (m || (y && KUNIT=y))
++	depends on INTEL_VSEC
+ 	select INTERVAL_TREE
+ 	# we need shmfs for the swappable backing store, and in particular
+ 	# the shmem_readpage() which depends upon tmpfs
+@@ -28,7 +29,6 @@ config DRM_XE
+ 	select INPUT if ACPI
+ 	select ACPI_VIDEO if X86 && ACPI
+ 	select ACPI_BUTTON if ACPI
+-	select X86_PLATFORM_DEVICES if X86 && ACPI
+ 	select ACPI_WMI if X86 && ACPI
+ 	select SYNC_FILE
+ 	select IOSF_MBI
+diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
+index b94beab64610..f2d55e686476 100644
+--- a/include/linux/intel_vsec.h
++++ b/include/linux/intel_vsec.h
+@@ -138,13 +138,6 @@ static inline struct intel_vsec_device *auxdev_to_ivdev(struct auxiliary_device
+ 	return container_of(auxdev, struct intel_vsec_device, auxdev);
+ }
+ 
+-#if IS_ENABLED(CONFIG_INTEL_VSEC)
+ void intel_vsec_register(struct pci_dev *pdev,
+ 			 struct intel_vsec_platform_info *info);
+-#else
+-static inline void intel_vsec_register(struct pci_dev *pdev,
+-				       struct intel_vsec_platform_info *info)
+-{
+-}
+-#endif
+ #endif
+-- 
+2.39.5
 
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-141811v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-dpms@a-edp1:
-    - bat-lnl-1:          [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3729])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#3517]) -> [PASS][4] +2 other tests pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-adlp-7:         [SKIP][5] ([Intel XE#455]) -> [PASS][6] +3 other tests pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-
-  
-  [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
-  [Intel XE#3729]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * Linux: xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191 -> xe-pw-141811v2
-
-  IGT_8157: 48a70f6795e6d68b9fae275261ae3b09d3401fe1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191: 8bfb48c045396305771aaea35f06d5ef3bf3a191
-  xe-pw-141811v2: 141811v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/index.html
-
---===============3350683163709569862==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fixes for MI_REPORT_PERF_COUNT (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141811/">https://patchwork.freedesktop.org/series/141811/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191_BAT -&gt; xe-pw-141811v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-141811v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-dpms@a-edp1:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729">Intel XE#3729</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517">Intel XE#3517</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> +3 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191 -&gt; xe-pw-141811v2</li>
-</ul>
-<p>IGT_8157: 48a70f6795e6d68b9fae275261ae3b09d3401fe1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191: 8bfb48c045396305771aaea35f06d5ef3bf3a191<br />
-  xe-pw-141811v2: 141811v2</p>
-
-</body>
-</html>
-
---===============3350683163709569862==--
