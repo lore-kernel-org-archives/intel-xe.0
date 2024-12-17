@@ -4,44 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0ECBE77188
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 20:17:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77E91E7717F
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 20:35:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CC2210E671;
-	Tue, 17 Dec 2024 20:17:28 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se
- [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBCA610E671;
- Tue, 17 Dec 2024 20:17:27 +0000 (UTC)
-Message-ID: <61b95c08-a3c2-4f92-b6e5-df77fd2491e2@lankhorst.se>
-Date: Tue, 17 Dec 2024 21:17:24 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] kernel/cgroups: Add "dmem" memory accounting
- cgroup.
-To: Tejun Heo <tj@kernel.org>, Simona Vetter <simona.vetter@ffwll.ch>,
- Dave Airlie <airlied@gmail.com>
-Cc: Maxime Ripard <mripard@kernel.org>, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
- linux-mm@kvack.org, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-References: <20241204134410.1161769-1-dev@lankhorst.se>
- <20241213-proud-kind-uakari-df3a70@houat>
- <80c49a80-d49c-4ca5-9568-9f7950618275@lankhorst.se>
- <20241213-gentle-glittering-salamander-22addf@houat>
- <5a50a992-9286-4179-8031-ffb514bca34f@lankhorst.se>
- <20241217-meek-bullfinch-of-luck-2c3468@houat>
- <a69a3500-be17-4899-bdb9-c6a63bf8dc81@lankhorst.se>
- <Z2GwpOQDVshpv-ml@slm.duckdns.org>
- <c0a539e7-0f1b-496a-9848-73a7ada66bfb@lankhorst.se>
- <Z2HBqtKDSTkd1lST@slm.duckdns.org>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <Z2HBqtKDSTkd1lST@slm.duckdns.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41D4010E168;
+	Tue, 17 Dec 2024 20:35:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kczOKYL+";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4F8510E168
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Dec 2024 20:35:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734467716; x=1766003716;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=JmJmSB29LZiDsFgpcC+itWhYi5BoazGRgO5g0dwk35o=;
+ b=kczOKYL+HUhRGXeC5j+XCLx+fc/iNcggQInjpp2xxOnpXK2VMBI2V/Qe
+ sar2vvXV6qjTpVnuWYTU9NhuHSiuh1PqS2N4lhDILBZ0xZZ2zfMk+aAAW
+ oSEHHuCaW87KbljFiynGjJIgp3jmu0hbONbEpBv8haVAPAfJfR2rKw6BV
+ 7ZpF9U5gkZCCDNaVgxH7F7u8L2GcSROh+kyDLIkqNRBxmAanSV9ZONnXP
+ J54IjbiY7G5geNXJt4rTBt1AnVMFqaZUfNfjJYv8eTLM1qLs8smlzdkxx
+ +vYf0DpUnbhwMGkA7n6UXyi1nMLgPmDwZTJfn8S+QaWjc38ebyE873BXI g==;
+X-CSE-ConnectionGUID: t1m0DI5LTTa2deUUyum5Jw==
+X-CSE-MsgGUID: pvwhHSoCTPSUbtRjoxVIaA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="45514959"
+X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="45514959"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 12:35:15 -0800
+X-CSE-ConnectionGUID: FsY4mN/cS+qz2Yke8LQasQ==
+X-CSE-MsgGUID: Y6+811QhSlWUzgW2FT9r4Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102623248"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 12:35:14 -0800
+Date: Tue, 17 Dec 2024 12:35:15 -0800
+Message-ID: <854j322gl8.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Harish Chegondi <harish.chegondi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>, <james.ausmus@intel.com>,
+ <felix.j.degrood@intel.com>, 
+ <matias.a.cabral@intel.com>, <joshua.santosh.ranjan@intel.com>,
+ <shubham.kumar@intel.com>, 
+ <matthew.d.roper@intel.com>, <matthew.olson@intel.com>
+Subject: Re: [PATCH v6 2/7] drm/xe/uapi: Introduce API for EU stall sampling
+In-Reply-To: <03e289da2ba0426649774b2a68569003c2aa0945.1734427624.git.harish.chegondi@intel.com>
+References: <cover.1734427624.git.harish.chegondi@intel.com>	<03e289da2ba0426649774b2a68569003c2aa0945.1734427624.git.harish.chegondi@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,46 +73,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+On Tue, 17 Dec 2024 01:46:52 -0800, Harish Chegondi wrote:
+>
 
-Den 2024-12-17 kl. 19:23, skrev Tejun Heo:
-> Hello,
-> 
-> On Tue, Dec 17, 2024 at 06:37:22PM +0100, Maarten Lankhorst wrote:
->> Den 2024-12-17 kl. 18:11, skrev Tejun Heo:
->>> On Tue, Dec 17, 2024 at 03:28:50PM +0100, Maarten Lankhorst wrote:
->>>> Now that all patches look good, what is needed to merge the series? Without
->>>> patch 6/7 as it is a hack for testing.
->>>
->>> There were some questions raised about device naming. One thing we want to
->>> get right from the beginning is the basic interface.
->>>
->>> Thanks.
->>>
->> I believe it was solved. The conclusion appears to be that we go with how we
->> defined it in this series. drm/$pciid/$regionname. With the only regions
->> defined now being VRAM. Main memory will be a followup, but requires some
->> discussions on hwo to be prevent double accounting, and what to do with the
->> limited amount of mappable memory.
-> 
-> Provided Johannes is okay with the series, how do you want to route the
-> series? If you want to route it through drm, that's fine by me and please
-> feel free to add:
-> 
->   Acked-by: Tejun Heo <tj@kernel.org>
-> 
-> Thanks.
-> 
+Hi Harish,
 
-Thank you!
+Only reviewing the uapi once again.
 
-I've discussed this with the DRM maintainers. What was suggested is to 
-create a topic branch, merge it to drm-misc whichwhere it will be picked 
-up into drm.git during the next pull request. At the same time the topic 
-branch can be also be merged into the cgroup tree if needed.
+> A user space consumer for this feature is Mesa.
+>
+> Mesa PR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/30142
 
-The drm-misc tree already handles dma-buf and fbdev core, think DMEM 
-could fit in there too.
+Mesa PR should be in the cover letter, not in the patch itself. And we'll
+need to eventually show that the Mesa PR is consuming all aspects of the
+uapi being introduced.
 
-Cheers,
-~Maarten
+>
+> v6: Change the input sampling rate to GPU cycles instead of
+>     GPU cycles multiplier.
+
+Note that if your series is v6 each patch in the series is not necessarily
+v6. A patch can be v2 e.g. So you should capture the version and changelog
+of each patch separately.
+
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index f62689ca861a..4ee3b04a1bb5 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -1397,6 +1397,8 @@ struct drm_xe_wait_user_fence {
+>  enum drm_xe_observation_type {
+>	/** @DRM_XE_OBSERVATION_TYPE_OA: OA observation stream type */
+>	DRM_XE_OBSERVATION_TYPE_OA,
+> +	/** @DRM_XE_OBSERVATION_TYPE_EU_STALL: EU stall sampling observation stream type */
+> +	DRM_XE_OBSERVATION_TYPE_EU_STALL,
+>  };
+>
+>  /**
+> @@ -1729,6 +1731,45 @@ struct drm_xe_oa_stream_info {
+>	__u64 reserved[3];
+>  };
+>
+> +/**
+> + * enum drm_xe_eu_stall_property_id - EU stall sampling input property ids.
+> + *
+> + * These properties are passed to the driver at open as a chain of
+> + * @drm_xe_ext_set_property structures with @property set to these
+> + * properties' enums and @value set to the corresponding values of these
+> + * properties. @drm_xe_user_extension base.name should be set to
+> + * @DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY.
+> + *
+> + * With the file descriptor obtained from open, user space must enable
+> + * the EU stall stream fd with @DRM_XE_OBSERVATION_IOCTL_ENABLE before
+> + * calling read(). read() returns number of bytes of EU stall data read
+> + * from the EU stall data buffer or an error. One of the errors returned
+
+No need to explain what read() returns, read() is a system call, user can
+read the read man page.
+
+> + * from read is -EIO which indicates HW dropped data due to full buffer.
+
+Just say "EIO errno from read() indicates data loss due to buffer
+overflow".
+
+Also, -EIO is not returned to userspace, errno is set for userspace.
+
+> + *
+> + */
+> +enum drm_xe_eu_stall_property_id {
+> +#define DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY		0
+> +	/**
+> +	 * @DRM_XE_EU_STALL_PROP_GT_ID: GT ID of the GT on which
+
+@gt_id
+
+> +	 * EU stall data will be captured.
+> +	 */
+> +	DRM_XE_EU_STALL_PROP_GT_ID = 1,
+> +
+> +	/**
+> +	 * @DRM_XE_EU_STALL_PROP_SAMPLE_RATE: Sampling rate
+> +	 * in GPU cycles. Valid values are:
+> +	 * 251, 251x2, 251x3, 251x4, 251x5, 251x6 and 251x7.
+
+This 251 stuff needs to go, as was already mentioned the last
+time. Something like:
+
+"@DRM_XE_EU_STALL_PROP_SAMPLE_RATE: Sampling rate in GPU cycles, from
+@sampling_rates in struct @drm_xe_query_eu_stall".
+
+> +	 */
+> +	DRM_XE_EU_STALL_PROP_SAMPLE_RATE,
+> +
+> +	/**
+> +	 * @DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT: Minimum number of
+> +	 * EU stall data rows to be present in the kernel buffer for
+> +	 * poll() to set POLLIN (data present).
+> +	 */
+> +	DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT,
+
+We called this DRM_XE_OA_PROPERTY_WAIT_NUM_REPORTS for OA. So maybe
+DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS? Or WAIT_REPORT_COUNT? Not sure what
+EVENT is referring to?
+
+> +};
+> +
+>  #if defined(__cplusplus)
+>  }
+>  #endif
+> --
+> 2.47.0
+>
+
+Ashutosh
