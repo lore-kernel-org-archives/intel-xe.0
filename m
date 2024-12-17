@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F35BE77184
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 23:27:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D57C9E77187
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 23:33:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AB4810E0E2;
-	Tue, 17 Dec 2024 23:27:40 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BECD10E0E2;
- Tue, 17 Dec 2024 23:27:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF3D10E2FE;
+	Tue, 17 Dec 2024 23:33:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CQ6DqKE1";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DC0C10E307;
+ Tue, 17 Dec 2024 23:33:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734478388; x=1766014388;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=f83RiUT7fQc7FKChLw9gS+CT0qwEPP2VZm7JxyOqn7M=;
+ b=CQ6DqKE1dVBFsiJ+V0h7qCPlApVXvLr+tdgYalOFMPPkroAZ6QG8LUS3
+ DyH5JiKjKb92qbfVtiK734anBFPZgp2AXCtcc75h9s92DC9pnoYJgZ+0i
+ gM5CMc/hb7r7L4U/+KU47kS/bht08ZFdC94Gkj2NRa85k0xXzwRzSmxSo
+ dpEdkN6cb+Sd+u05drG24I5oawDpnGZiwaWwnOB4Rs7m6UtSfudGVf51b
+ SHDSFv6Oy+KZFHkLqmyULmtc+8xpEDPmqVfmOkZZKxvr4kXMgtBm4YHgu
+ Mr65R6EIFVoseYvjF6I3gaXdiBW/nG88l8M6z622shiMZ3SnoaqpcyNDd A==;
+X-CSE-ConnectionGUID: QsT53CPhSwWdCZXMR4WMVA==
+X-CSE-MsgGUID: 5tNe2KpyQya4fqctLd5UIw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="22517328"
+X-IronPort-AV: E=Sophos;i="6.12,243,1728975600"; d="scan'208";a="22517328"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 15:33:07 -0800
+X-CSE-ConnectionGUID: 0zO6SDpfSqiYM5/IGsrBOQ==
+X-CSE-MsgGUID: 9rOp8qAPSAaJj5KAecXkqQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102273422"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 15:33:07 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com,
+ thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
+ felix.kuehling@amd.com, dakr@kernel.org
+Subject: [PATCH v3 01/30] drm/xe: Retry BO allocation
+Date: Tue, 17 Dec 2024 15:33:19 -0800
+Message-Id: <20241217233348.3519726-2-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241217233348.3519726-1-matthew.brost@intel.com>
+References: <20241217233348.3519726-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Check_if_is_vblank_too_s?=
- =?utf-8?q?hort?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 17 Dec 2024 23:27:38 -0000
-Message-ID: <173447805843.4038026.5938456816459050895@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241217180710.1048355-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20241217180710.1048355-1-mitulkumar.ajitkumar.golani@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,53 +66,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+TTM doesn't support fair eviction via WW locking, this mitigated in by
+using retry loops in exec and preempt rebind worker. Extend this retry
+loop to BO allocation. Once TTM supports fair eviction this patch can be
+reverted.
 
-Series: Check if is vblank too short
-URL   : https://patchwork.freedesktop.org/series/142746/
-State : warning
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 69607bbcaccc29ae254d974a5e547d873e7c0ac0
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index e6c896ad5602..a670a0444e03 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2142,6 +2142,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	struct xe_file *xef = to_xe_file(file);
+ 	struct drm_xe_gem_create *args = data;
+ 	struct xe_vm *vm = NULL;
++	ktime_t end = 0;
+ 	struct xe_bo *bo;
+ 	unsigned int bo_flags;
+ 	u32 handle;
+@@ -2214,11 +2215,14 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 		vm = xe_vm_lookup(xef, args->vm_id);
+ 		if (XE_IOCTL_DBG(xe, !vm))
+ 			return -ENOENT;
++	}
++
++retry:
++	if (vm) {
+ 		err = xe_vm_lock(vm, true);
+ 		if (err)
+ 			goto out_vm;
+ 	}
 -
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:1974:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1974:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1974:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1974:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1974:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1974:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1974:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1974:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1974:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1974:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1974:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+ 	bo = xe_bo_create_user(xe, NULL, vm, args->size, args->cpu_caching,
+ 			       bo_flags);
+ 
+@@ -2227,6 +2231,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 
+ 	if (IS_ERR(bo)) {
+ 		err = PTR_ERR(bo);
++		if (xe_vm_validate_should_retry(NULL, err, &end))
++			goto retry;
+ 		goto out_vm;
+ 	}
+ 
+-- 
+2.34.1
 
