@@ -4,52 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98417E77187
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 14:43:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C9EDE7717F
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 14:59:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A09410E9A0;
-	Tue, 17 Dec 2024 14:43:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C845510E9AC;
+	Tue, 17 Dec 2024 14:59:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dn8oUNdu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MxyjaRed";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2C2F10E9AA;
- Tue, 17 Dec 2024 14:43:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B66A210E9AC;
+ Tue, 17 Dec 2024 14:59:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734446613; x=1765982613;
+ t=1734447550; x=1765983550;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=PHL9f6XKI69YmcA8WWplhMI5EA/HgOYZ+UG88Z8oTf4=;
- b=dn8oUNduWo+NYDEw3aA1h20KiwfEoZKqUgKLO5r2fgR/I0RZhZptQgPF
- paUWAkxzh6Y2/f2Zhr762s1i/NNvVooG7ij8RSpA+uiz5PaALpfTofP6q
- dcNXPp/LXqfxRJjbGlyWWpPiPEqBvXCRfAQL4zkrhUPvEYyUYbFkmz4ZU
- fWnAcrCzWes/XfuneW7AeUWKb+fFYVU1ggF8wPIJIIHOMJ8yxAri1Ud17
- e+l1EcaTx2RvkmWcPdKF7CUY80IIeuwhCGAbfQCp2LpMHRWtW85FgetOV
- A7Tva0PAgMGLcE4P5mXNISFq97UhfANlEwB6iveTr8qF31PfVHSkBQmMW g==;
-X-CSE-ConnectionGUID: d1VH2diHQZuqVahbcjLxZA==
-X-CSE-MsgGUID: znE+aJueQBGEzaPHxBGvGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34767900"
-X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="34767900"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 06:43:32 -0800
-X-CSE-ConnectionGUID: X49y0t3oQPmngxEYYUSdkg==
-X-CSE-MsgGUID: 5Pc/HvzoQKmgU/B02qpgUA==
+ bh=jfUNnBVAafUb24td8bCkulrGl2xGCOlVnNXT7/5R234=;
+ b=MxyjaRedlDX7qMG2o0Y8jkt7Uaq1HRrzZBjO8sAT7qGzP+pMYh80vAIE
+ QoszsHfqW7oK3ad8XGFJdTUvOh0mqAcyNCant2syrTcJVGNHXCyBkx53P
+ qD8YJlfYNHyd0IMXljWQRdmiuuH9ev2H3DFZFYc6dzYII9V7hTzl/gpNC
+ Jwpdgubh772ndwBwqg3Rd13oX8Qbd+cUQs/nCByiEP8C6UWiGW1c9yyjV
+ Z8RZjv1t/mFKPwbTAnEP2VPjh+DTNczFqAfpTwkqxBMbzdtVThArMzS9l
+ XoBWEMYSahJvXEc1XXS1Fc1G15KiIZiNg0HxMg39lLWqFrAHMKwP/b98t g==;
+X-CSE-ConnectionGUID: KFlMEQWpRiWl8ZRHoIvJOQ==
+X-CSE-MsgGUID: TwzREGieQaubAOI3OGlRQQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34914416"
+X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="34914416"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 06:59:10 -0800
+X-CSE-ConnectionGUID: oTd018DIQpicoNclpWyMnw==
+X-CSE-MsgGUID: v1LT6yUyTxmoS8e5CSi/vw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102535562"
-Received: from sorvi2.fi.intel.com ([10.237.72.194])
- by orviesa005.jf.intel.com with ESMTP; 17 Dec 2024 06:43:30 -0800
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: imre.deak@intel.com,
-	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v2] drm/i915/display: UHBR rates for Thunderbolt
-Date: Tue, 17 Dec 2024 16:34:40 +0200
-Message-ID: <20241217143440.572308-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101694280"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO fedora..)
+ ([10.245.246.49])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 06:59:06 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Paulo Zanoni <paulo.r.zanoni@intel.com>, dri-devel@lists.freedesktop.org,
+ Simona Vetter <simona.vetter@ffwll.ch>
+Subject: [PATCH v15 0/9] TTM shrinker helpers and xe buffer object shrinker
+Date: Tue, 17 Dec 2024 15:58:43 +0100
+Message-ID: <20241217145852.37342-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,129 +71,174 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tbt-alt mode is missing uhbr rates 10G and 20G. This requires
-requires pll clock rates 312.5 MHz and 625 MHz to be added,
-respectively. The uhbr rates are supported only form PTL+
-platforms.
+This series implements TTM shrinker / eviction helpers and an xe bo
+shrinker. It builds on a previous series, *and obsoletes that one*.
 
-v2: Add drm_WARN_ON() to check if port clock is not supported by
-    the platform (Imre)
-    Combine forward ungate with mask parameter (Imre)
-    Rename XE3LPDP_* to XE3D_* (Imre)
+https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@amd.com/T/
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 39 +++++++++++++++++--
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  4 ++
- 2 files changed, 39 insertions(+), 4 deletions(-)
+Where the comment about layering
+https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@amd.com/T/#ma918844aa8a6efe8768fdcda0c6590d5c93850c9
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index cc734079c3b8..a8e0450c0378 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3070,7 +3070,10 @@ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
- 
- 	val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port));
- 
--	clock = REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val);
-+	if (DISPLAY_VER(display) >= 30)
-+		clock = REG_FIELD_GET(XE3D_DDI_CLOCK_SELECT_MASK, val);
-+	else
-+		clock = REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val);
- 
- 	drm_WARN_ON(display->drm, !(val & XELPDP_FORWARD_CLOCK_UNGATE));
- 	drm_WARN_ON(display->drm, !(val & XELPDP_TBT_CLOCK_REQUEST));
-@@ -3085,13 +3088,18 @@ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
- 		return 540000;
- 	case XELPDP_DDI_CLOCK_SELECT_TBT_810:
- 		return 810000;
-+	case XELPDP_DDI_CLOCK_SELECT_TBT_312_5:
-+		return 1000000;
-+	case XELPDP_DDI_CLOCK_SELECT_TBT_625:
-+		return 2000000;
- 	default:
- 		MISSING_CASE(clock);
- 		return 162000;
- 	}
- }
- 
--static int intel_mtl_tbt_clock_select(int clock)
-+static int intel_mtl_tbt_clock_select(struct intel_display *display,
-+				      int clock)
- {
- 	switch (clock) {
- 	case 162000:
-@@ -3102,6 +3110,18 @@ static int intel_mtl_tbt_clock_select(int clock)
- 		return XELPDP_DDI_CLOCK_SELECT_TBT_540;
- 	case 810000:
- 		return XELPDP_DDI_CLOCK_SELECT_TBT_810;
-+	case 1000000:
-+		if (DISPLAY_VER(display) < 30) {
-+			drm_WARN_ON(display->drm, "UHBR10 not supported for the platform\n");
-+			return XELPDP_DDI_CLOCK_SELECT_TBT_162;
-+		}
-+		return XELPDP_DDI_CLOCK_SELECT_TBT_312_5;
-+	case 2000000:
-+		if (DISPLAY_VER(display) < 30) {
-+			drm_WARN_ON(display->drm, "UHBR20 not supported for the platform\n");
-+			return XELPDP_DDI_CLOCK_SELECT_TBT_162;
-+		}
-+		return XELPDP_DDI_CLOCK_SELECT_TBT_625;
- 	default:
- 		MISSING_CASE(clock);
- 		return XELPDP_DDI_CLOCK_SELECT_TBT_162;
-@@ -3114,15 +3134,26 @@ static void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
- 	struct intel_display *display = to_intel_display(encoder);
- 	enum phy phy = intel_encoder_to_phy(encoder);
- 	u32 val = 0;
-+	u32 mask;
- 
- 	/*
- 	 * 1. Program PORT_CLOCK_CTL REGISTER to configure
- 	 * clock muxes, gating and SSC
- 	 */
--	val |= XELPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(crtc_state->port_clock));
-+
-+	if (DISPLAY_VER(display) >= 30) {
-+		mask = XE3D_DDI_CLOCK_SELECT_MASK;
-+		val |= XE3D_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(display, crtc_state->port_clock));
-+	} else {
-+		mask = XELPDP_DDI_CLOCK_SELECT_MASK;
-+		val |= XELPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(display, crtc_state->port_clock));
-+	}
-+
-+	mask |= XELPDP_FORWARD_CLOCK_UNGATE;
- 	val |= XELPDP_FORWARD_CLOCK_UNGATE;
-+
- 	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
--		     XELPDP_DDI_CLOCK_SELECT_MASK | XELPDP_FORWARD_CLOCK_UNGATE, val);
-+		     mask, val);
- 
- 	/* 2. Read back PORT_CLOCK_CTL REGISTER */
- 	val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port));
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-index c685479c9756..bf95ac234b2b 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-@@ -187,7 +187,9 @@
- #define   XELPDP_TBT_CLOCK_REQUEST			REG_BIT(19)
- #define   XELPDP_TBT_CLOCK_ACK				REG_BIT(18)
- #define   XELPDP_DDI_CLOCK_SELECT_MASK			REG_GENMASK(15, 12)
-+#define   XE3D_DDI_CLOCK_SELECT_MASK			REG_GENMASK(16, 12)
- #define   XELPDP_DDI_CLOCK_SELECT(val)			REG_FIELD_PREP(XELPDP_DDI_CLOCK_SELECT_MASK, val)
-+#define   XE3D_DDI_CLOCK_SELECT(val)			REG_FIELD_PREP(XE3D_DDI_CLOCK_SELECT_MASK, val)
- #define   XELPDP_DDI_CLOCK_SELECT_NONE			0x0
- #define   XELPDP_DDI_CLOCK_SELECT_MAXPCLK		0x8
- #define   XELPDP_DDI_CLOCK_SELECT_DIV18CLK		0x9
-@@ -195,6 +197,8 @@
- #define   XELPDP_DDI_CLOCK_SELECT_TBT_270		0xd
- #define   XELPDP_DDI_CLOCK_SELECT_TBT_540		0xe
- #define   XELPDP_DDI_CLOCK_SELECT_TBT_810		0xf
-+#define   XELPDP_DDI_CLOCK_SELECT_TBT_312_5		0x18
-+#define   XELPDP_DDI_CLOCK_SELECT_TBT_625		0x19
- #define   XELPDP_FORWARD_CLOCK_UNGATE			REG_BIT(10)
- #define   XELPDP_LANE1_PHY_CLOCK_SELECT			REG_BIT(8)
- #define   XELPDP_SSC_ENABLE_PLLA			REG_BIT(1)
+now addressed, and this version also implements shmem objects for backup
+rather than direct swap-cache insertions, which was used in the previuos
+series. It turns out that with per-page backup / shrinking, shmem objects
+appears to work just as well as direct swap-cache insertions with the
+added benefit that was introduced in the previous TTM shrinker series to
+avoid running out of swap entries isn't really needed.
+
+The series earlier consisted of a LRU traversal part and the current part.
+The LRU traversal part is merged, but is still mentioned in the history
+below.
+
+Patch 1 balances ttm_resource_cursor_fini() with an init function. It
+makes patch 5 more straightforward.
+
+Patch 2 introduces a backup implemententaion.
+
+Patch 3 reworks the structure of ttm_pool_alloc in preparation for patch 4.
+
+Patch 4 introduces functionality in the ttm_pool code for page-by-page shrinking
+and recovery. It avoids having to temporarily allocate a huge amount of
+memory to be able to shrink a buffer object. It also introduces the
+possibility to immediately write-back pages if needed.
+
+Patch 5 Adds a simple error injection to the above code to help increase
+test coverage.
+
+Patch 6 Implements a macro for LRU iteration.
+
+Patch 7 Introduces driver-facing helpers for shrinking.
+
+Patch 8 Implements the xe bo shrinker.
+
+Patch 9 Increases (removes) the XE_PL_TT watermark.
+
+v2:
+- Squash obsolete revision history in the patch commit messages.
+- Fix a couple of review comments by Christian
+- Don't store the mem_type in the TTM managers but in the
+  resource cursor.
+- Rename introduced TTM *back_up* function names to *backup*
+- Add ttm pool recovery fault injection.
+- Shrinker xe kunit test
+- Various bugfixes
+
+v3:
+- Address some review comments from Matthew Brost and Christian König.
+- Use the restartable LRU walk for TTM swapping and eviction.
+- Provide a POC drm_exec locking implementation for exhaustive
+  eviction. (Christian König).
+
+v4:
+- Remove the RFC exhaustive eviction part. While the path to exhaustive
+  eviction is pretty clear and demonstrated in v3, there is still some
+  drm_exec work that needs to be agreed and implemented.
+- Add shrinker power management. On some hw we need to wake when shrinking.
+- Fix the lru walker helper for -EALREADY errors.
+- Add drm/xe: Increase the XE_PL_TT watermark.
+
+v5:
+- Update also TTM kunit tests
+- Handle ghost- and zombie objects in the shrinker.
+- A couple of compile- and UAF fixes reported by Kernel Build Robot and
+  Dan Carpenter.
+
+v6:
+- Address review comments from Matthew Brost on the
+  restartable LRU traversal path.
+
+v7:
+- Split out TTM restartable LRU traversal path and merge that.
+- Adapt the review comments on that series.
+
+v8:
+- Address review comments from Matthew Brost as detailed in the
+  respective patches.
+
+v9:
+- Rebase and fix compilation errors
+
+v10:
+- Use a LRU iteration macro rather than a function with a callback.
+- Rebasing and cleanups
+- Address some additional review comments from Matt Brost.
+- Drop the shrinker selftest. It was already merged as a swapout
+  self-test.
+
+v11:
+- Move more core interaction to additional TTM helpers.
+- Don't back up without __GFP_FS, and don't start writeback without __GFP_IO.
+- Rebase.
+
+v12:
+- Fix an indentation flaw.
+- Rebase
+
+v13:
+- Remove the backup base-class, and use direct calls for ttm_backup
+  (Christian König).
+- Rebase on the ttm_backup changes.
+- Move shrunken bos from the LRU list to the unevictable list.
+- Provide an accessor function with sanity checks to set the
+- ttm_tt::backup field.
+- Update documentation.
+
+v14:
+- Update documentation of ttm_backup_bytes_avail().
+- Work around converting between struct file * and struct ttm-backup *.
+- Don't set up backup for imported buffers.
+
+v15:
+- ttm_backup return value change. (Christian König)
+- ttm_pool restore/alloc implementation rework (Christian König)
+- Documentation update.
+- Remove cond_resched (Christian König)
+
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
+Cc: <dri-devel@lists.freedesktop.org>
+
+Thomas Hellström (9):
+  drm/ttm: Balance ttm_resource_cursor_init() and
+    ttm_resource_cursor_fini()
+  drm/ttm: Provide a shmem backup implementation
+  drm/ttm/pool: Restructure the pool allocation code
+  drm/ttm/pool, drm/ttm/tt: Provide a helper to shrink pages
+  drm/ttm: Use fault-injection to test error paths
+  drm/ttm: Add a macro to perform LRU iteration
+  drm/ttm: Add helpers for shrinking
+  drm/xe: Add a shrinker for xe bos
+  drm/xe: Increase the XE_PL_TT watermark
+
+ drivers/gpu/drm/ttm/Makefile         |   2 +-
+ drivers/gpu/drm/ttm/ttm_backup.c     | 207 ++++++++
+ drivers/gpu/drm/ttm/ttm_bo.c         |   3 +-
+ drivers/gpu/drm/ttm/ttm_bo_util.c    | 250 +++++++++-
+ drivers/gpu/drm/ttm/ttm_pool.c       | 718 +++++++++++++++++++++++----
+ drivers/gpu/drm/ttm/ttm_resource.c   |  35 +-
+ drivers/gpu/drm/ttm/ttm_tt.c         |  83 ++++
+ drivers/gpu/drm/xe/Makefile          |   1 +
+ drivers/gpu/drm/xe/tests/xe_bo.c     |   6 +-
+ drivers/gpu/drm/xe/xe_bo.c           | 202 +++++++-
+ drivers/gpu/drm/xe/xe_bo.h           |  36 ++
+ drivers/gpu/drm/xe/xe_device.c       |   8 +
+ drivers/gpu/drm/xe/xe_device_types.h |   2 +
+ drivers/gpu/drm/xe/xe_shrinker.c     | 258 ++++++++++
+ drivers/gpu/drm/xe/xe_shrinker.h     |  18 +
+ drivers/gpu/drm/xe/xe_ttm_sys_mgr.c  |   3 +-
+ include/drm/ttm/ttm_backup.h         |  74 +++
+ include/drm/ttm/ttm_bo.h             |  93 ++++
+ include/drm/ttm/ttm_pool.h           |   8 +
+ include/drm/ttm/ttm_resource.h       |  11 +-
+ include/drm/ttm/ttm_tt.h             |  69 ++-
+ 21 files changed, 1935 insertions(+), 152 deletions(-)
+ create mode 100644 drivers/gpu/drm/ttm/ttm_backup.c
+ create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
+ create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
+ create mode 100644 include/drm/ttm/ttm_backup.h
+
 -- 
-2.43.0
+2.47.1
 
