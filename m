@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D92BFE7717F
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 18:23:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2788BE7717F
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 18:40:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A977B10EA56;
-	Tue, 17 Dec 2024 18:23:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Zg0NbAka";
-	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75E0010EA56;
- Tue, 17 Dec 2024 18:23:41 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id F274AA41D69;
- Tue, 17 Dec 2024 18:21:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34677C4CED7;
- Tue, 17 Dec 2024 18:23:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1734459820;
- bh=seqaTS+B/Yvq2Zz8QYWQ8AUjQjPku14beCw+oXyf0fQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Zg0NbAkaqSVYJo0rwXVva0ubr0lourBVfpN5/mBCzcihaP16z1+uAcYh0LbyDrFln
- Md/oP7CkhdJFp9WbOVo7eM0G+lPytUIGF67xhK4SNsEF9UWj9KbIHZ/hICcv1kJGt2
- UhUD7hSPeexLUVUQHJsdc5Qx8rsltHK7GeTh6E2Je+ij7y4wez6HezL5SY5IG2jCtn
- HcQiup0NgN1nFtJ2rmvf4J2FC2PPQTUA6t//MU8lheUmDfnP87YHeoWcqrB/eIFNbd
- z5DML9mKi6cVhMQnNPv11p80I0hzzNFKnWXFcUlYO9Ao3B/Eud7NCn823itluC6I+s
- T+7VvSo4+2IRQ==
-Date: Tue, 17 Dec 2024 08:23:38 -1000
-From: Tejun Heo <tj@kernel.org>
-To: Maarten Lankhorst <dev@lankhorst.se>
-Cc: Maxime Ripard <mripard@kernel.org>, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
- linux-mm@kvack.org, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH v2 0/7] kernel/cgroups: Add "dmem" memory accounting
- cgroup.
-Message-ID: <Z2HBqtKDSTkd1lST@slm.duckdns.org>
-References: <20241204134410.1161769-1-dev@lankhorst.se>
- <20241213-proud-kind-uakari-df3a70@houat>
- <80c49a80-d49c-4ca5-9568-9f7950618275@lankhorst.se>
- <20241213-gentle-glittering-salamander-22addf@houat>
- <5a50a992-9286-4179-8031-ffb514bca34f@lankhorst.se>
- <20241217-meek-bullfinch-of-luck-2c3468@houat>
- <a69a3500-be17-4899-bdb9-c6a63bf8dc81@lankhorst.se>
- <Z2GwpOQDVshpv-ml@slm.duckdns.org>
- <c0a539e7-0f1b-496a-9848-73a7ada66bfb@lankhorst.se>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7A1410E00A;
+	Tue, 17 Dec 2024 18:40:24 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7979A10E00A;
+ Tue, 17 Dec 2024 18:40:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c0a539e7-0f1b-496a-9848-73a7ada66bfb@lankhorst.se>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?drop_unnecessary_i915=5Fdrv=2Eh_includes_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Dec 2024 18:40:23 -0000
+Message-ID: <173446082349.3965229.8396501223811192087@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241217132147.2008057-1-jani.nikula@intel.com>
+In-Reply-To: <20241217132147.2008057-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,35 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello,
+== Series Details ==
 
-On Tue, Dec 17, 2024 at 06:37:22PM +0100, Maarten Lankhorst wrote:
-> Den 2024-12-17 kl. 18:11, skrev Tejun Heo:
-> > On Tue, Dec 17, 2024 at 03:28:50PM +0100, Maarten Lankhorst wrote:
-> > > Now that all patches look good, what is needed to merge the series? Without
-> > > patch 6/7 as it is a hack for testing.
-> > 
-> > There were some questions raised about device naming. One thing we want to
-> > get right from the beginning is the basic interface.
-> > 
-> > Thanks.
-> > 
-> I believe it was solved. The conclusion appears to be that we go with how we
-> defined it in this series. drm/$pciid/$regionname. With the only regions
-> defined now being VRAM. Main memory will be a followup, but requires some
-> discussions on hwo to be prevent double accounting, and what to do with the
-> limited amount of mappable memory.
+Series: drm/i915/display: drop unnecessary i915_drv.h includes (rev2)
+URL   : https://patchwork.freedesktop.org/series/142668/
+State : success
 
-Provided Johannes is okay with the series, how do you want to route the
-series? If you want to route it through drm, that's fine by me and please
-feel free to add:
+== Summary ==
 
- Acked-by: Tejun Heo <tj@kernel.org>
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 1984b26a25a5 drm-tip: 2024y-12m-17d-17h-28m-48s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: drop unnecessary i915_drv.h includes
 
-Thanks.
 
--- 
-tejun
