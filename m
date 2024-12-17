@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE8BEE7717F
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 17:34:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBF5BE77184
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 17:36:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C85F10E141;
-	Tue, 17 Dec 2024 17:34:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97E3E10EA40;
+	Tue, 17 Dec 2024 17:36:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OJbB4Giy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gSkX/6TA";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA14B10E141;
- Tue, 17 Dec 2024 17:34:36 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 4FB15A41EDC;
- Tue, 17 Dec 2024 17:32:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B153C4CED3;
- Tue, 17 Dec 2024 17:34:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1734456875;
- bh=dbq7HRtwAuOWYe5ZaidZLWtsSdiMIrwx4jElfMk2ARE=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=OJbB4Giyw0ORE0BgfGD0ZHSRO0iXESRcAdMzAJbq1KRFw/D+h6giknSBbW9GdwRso
- WxuRcExuLtBeKI4cQVwz+paA5r52feGdpc1dQU48wdmf236bVp9hh9KL+9m5/ftKlc
- wkoaVbxCwcFZDqh88tLzPeplCe4+FDMB598RmX9B6varI4UZZxcLynAsFcTSybsohV
- rruP1bt9ZfFt9ikxp88w36+P43T9qvYgat6Uf8g+I+hycmDWXTpOuU5lUisSNuZlqj
- TfgQufN0v5eVKHYlEVccRN0TvqRjkRMZZfY9357Wt+LKBqFfhPYAzWDfP4lgaiMmnA
- mANNfZWT7krlw==
-Date: Tue, 17 Dec 2024 18:34:33 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Tejun Heo <tj@kernel.org>
-Cc: Maarten Lankhorst <dev@lankhorst.se>, linux-kernel@vger.kernel.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>, 
- Andrew Morton <akpm@linux-foundation.org>,
- Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org, 
- linux-mm@kvack.org, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH v2 0/7] kernel/cgroups: Add "dmem" memory accounting
- cgroup.
-Message-ID: <20241217-marigold-cat-of-influence-64bcfa@houat>
-References: <20241204134410.1161769-1-dev@lankhorst.se>
- <20241213-proud-kind-uakari-df3a70@houat>
- <80c49a80-d49c-4ca5-9568-9f7950618275@lankhorst.se>
- <20241213-gentle-glittering-salamander-22addf@houat>
- <5a50a992-9286-4179-8031-ffb514bca34f@lankhorst.se>
- <20241217-meek-bullfinch-of-luck-2c3468@houat>
- <a69a3500-be17-4899-bdb9-c6a63bf8dc81@lankhorst.se>
- <Z2GwpOQDVshpv-ml@slm.duckdns.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="c6tq2wqscpnuxkrk"
-Content-Disposition: inline
-In-Reply-To: <Z2GwpOQDVshpv-ml@slm.duckdns.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60E1A10EA3F
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Dec 2024 17:36:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734456995; x=1765992995;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=wbeV0z7i4AZ5SYfAfbbn6TY+tBmWMrJK3t7GI6Wxpuk=;
+ b=gSkX/6TAEThMJBiWvCnesKiy2af/N/OfdFXDntjMLPJE6Q0B5fyc96HL
+ 0NZ2H246pwQR7+tfh2ecJCbZcGqm6dT1mDc5iuZGW1wdWtCryyBgYLC3g
+ EHwfIbBihLmKaOADZVKY63Y9nsZht/COVGxw0Ej80zGJrn/VZjKiVX3fZ
+ fZGrhB0RG4THuC5+MIa/gJhGI27IgxRjXHg4H1OzCg7QLA1d9AfB7BHUG
+ r72ffgLGb9bofsH1W6lnh2P0lbbD2h3TWkIN/2IKNnx2k7XeQIAWmVe54
+ veDorkFHAXMMsDrf+A5RVGOFIDQWm0TaIUM3n/DGyKFCCNkH+3BCu7UeG w==;
+X-CSE-ConnectionGUID: eIzQhrCeTWqmeBZZxuBGLg==
+X-CSE-MsgGUID: hlO4kTmbR7CF6Em6rjuXCw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="37735495"
+X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="37735495"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 09:36:35 -0800
+X-CSE-ConnectionGUID: idnWGs4gQNOIouQa4kA5ow==
+X-CSE-MsgGUID: 2FduwNwjTYWXlX+Oji4LuA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="97384529"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 09:36:35 -0800
+Date: Tue, 17 Dec 2024 09:36:34 -0800
+Message-ID: <857c7y2ov1.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: =?ISO-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/xe: Force write completion of MI_STORE_DATA_IMM
+In-Reply-To: <20241217160732.46280-1-jose.souza@intel.com>
+References: <20241217160732.46280-1-jose.souza@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,39 +70,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, 17 Dec 2024 08:07:32 -0800, Jos=E9 Roberto de Souza wrote:
+>
+> With Force write completion unset there is no guarantees of when the
+> write will be globally visible what is not the behavior wanted.
 
---c6tq2wqscpnuxkrk
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 0/7] kernel/cgroups: Add "dmem" memory accounting
- cgroup.
-MIME-Version: 1.0
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-On Tue, Dec 17, 2024 at 07:11:00AM -1000, Tejun Heo wrote:
-> On Tue, Dec 17, 2024 at 03:28:50PM +0100, Maarten Lankhorst wrote:
-> > Now that all patches look good, what is needed to merge the series? Wit=
-hout
-> > patch 6/7 as it is a hack for testing.
->=20
-> There were some questions raised about device naming. One thing we want to
-> get right from the beginning is the basic interface.
-
-We decided on the previous version to use dmem and I believe this
-version has switched to it. Do you have any concern still?
-
-Maxime
-
---c6tq2wqscpnuxkrk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ2G2KAAKCRAnX84Zoj2+
-dhcUAYDu7JUd06yF9dtpAtSY2xgUUyKiBfittjG2LbIT1/c9CnioooqRQDaKdWa2
-o3i7wn4BgIG6Ni/zuzXo1ifLLIxisPArPduBae8x5MlNmXKB8A3GnNvPKtItE9PR
-FXyNEY9XAg==
-=mI6D
------END PGP SIGNATURE-----
-
---c6tq2wqscpnuxkrk--
+>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 13 +++++++------
+>  drivers/gpu/drm/xe/xe_migrate.c                  | 11 ++++++++---
+>  drivers/gpu/drm/xe/xe_oa.c                       |  4 +++-
+>  drivers/gpu/drm/xe/xe_ring_ops.c                 |  6 ++++--
+>  4 files changed, 22 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/g=
+pu/drm/xe/instructions/xe_mi_commands.h
+> index 10ec2920d31b3..f4ee910f09432 100644
+> --- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+> +++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+> @@ -33,12 +33,13 @@
+>  #define MI_TOPOLOGY_FILTER		__MI_INSTR(0xD)
+>  #define MI_FORCE_WAKEUP			__MI_INSTR(0x1D)
+>
+> -#define MI_STORE_DATA_IMM		__MI_INSTR(0x20)
+> -#define   MI_SDI_GGTT			REG_BIT(22)
+> -#define   MI_SDI_LEN_DW			GENMASK(9, 0)
+> -#define   MI_SDI_NUM_DW(x)		REG_FIELD_PREP(MI_SDI_LEN_DW, (x) + 3 - 2)
+> -#define   MI_SDI_NUM_QW(x)		(REG_FIELD_PREP(MI_SDI_LEN_DW, 2 * (x) + 3 -=
+ 2) | \
+> -					 REG_BIT(21))
+> +#define MI_STORE_DATA_IMM			__MI_INSTR(0x20)
+> +#define   MI_SDI_GGTT				REG_BIT(22)
+> +#define   MI_FORCE_WRITE_COMPLETION_CHECK	REG_BIT(10)
+> +#define   MI_SDI_LEN_DW				GENMASK(9, 0)
+> +#define   MI_SDI_NUM_DW(x)			REG_FIELD_PREP(MI_SDI_LEN_DW, (x) + 3 - 2)
+> +#define   MI_SDI_NUM_QW(x)			(REG_FIELD_PREP(MI_SDI_LEN_DW, 2 * (x) + 3 =
+- 2) | \
+> +						 REG_BIT(21))
+>
+>  #define MI_LOAD_REGISTER_IMM		__MI_INSTR(0x22)
+>  #define   MI_LRI_LRM_CS_MMIO		REG_BIT(19)
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
+ate.c
+> index 1b97d90aaddaf..8b32fad678782 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -581,7 +581,9 @@ static void emit_pte(struct xe_migrate *m,
+>	while (ptes) {
+>		u32 chunk =3D min(MAX_PTE_PER_SDI, ptes);
+>
+> -		bb->cs[bb->len++] =3D MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
+> +		bb->cs[bb->len++] =3D MI_STORE_DATA_IMM |
+> +				    MI_FORCE_WRITE_COMPLETION_CHECK |
+> +				    MI_SDI_NUM_QW(chunk);
+>		bb->cs[bb->len++] =3D ofs;
+>		bb->cs[bb->len++] =3D 0;
+>
+> @@ -1223,7 +1225,9 @@ static void write_pgtable(struct xe_tile *tile, str=
+uct xe_bb *bb, u64 ppgtt_ofs,
+>		if (!(bb->len & 1))
+>			bb->cs[bb->len++] =3D MI_NOOP;
+>
+> -		bb->cs[bb->len++] =3D MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
+> +		bb->cs[bb->len++] =3D MI_STORE_DATA_IMM |
+> +				    MI_FORCE_WRITE_COMPLETION_CHECK |
+> +				    MI_SDI_NUM_QW(chunk);
+>		bb->cs[bb->len++] =3D lower_32_bits(addr);
+>		bb->cs[bb->len++] =3D upper_32_bits(addr);
+>		if (pt_op->bind)
+> @@ -1388,7 +1392,8 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
+>			u32 idx =3D 0;
+>
+>			bb->cs[bb->len++] =3D MI_STORE_DATA_IMM |
+> -				MI_SDI_NUM_QW(chunk);
+> +					    MI_FORCE_WRITE_COMPLETION_CHECK |
+> +					    MI_SDI_NUM_QW(chunk);
+>			bb->cs[bb->len++] =3D ofs;
+>			bb->cs[bb->len++] =3D 0; /* upper_32_bits */
+>
+> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> index 56bf375a9d4bc..ae94490b0eac8 100644
+> --- a/drivers/gpu/drm/xe/xe_oa.c
+> +++ b/drivers/gpu/drm/xe/xe_oa.c
+> @@ -690,7 +690,9 @@ static void xe_oa_store_flex(struct xe_oa_stream *str=
+eam, struct xe_lrc *lrc,
+>	u32 offset =3D xe_bo_ggtt_addr(lrc->bo);
+>
+>	do {
+> -		bb->cs[bb->len++] =3D MI_STORE_DATA_IMM | MI_SDI_GGTT | MI_SDI_NUM_DW(=
+1);
+> +		bb->cs[bb->len++] =3D MI_STORE_DATA_IMM | MI_SDI_GGTT |
+> +				    MI_FORCE_WRITE_COMPLETION_CHECK |
+> +				    MI_SDI_NUM_DW(1);
+>		bb->cs[bb->len++] =3D offset + flex->offset * sizeof(u32);
+>		bb->cs[bb->len++] =3D 0;
+>		bb->cs[bb->len++] =3D flex->value;
+> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_rin=
+g_ops.c
+> index 0be4f489d3e12..3a75a08b6be92 100644
+> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
+> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+> @@ -72,7 +72,8 @@ static int emit_user_interrupt(u32 *dw, int i)
+>
+>  static int emit_store_imm_ggtt(u32 addr, u32 value, u32 *dw, int i)
+>  {
+> -	dw[i++] =3D MI_STORE_DATA_IMM | MI_SDI_GGTT | MI_SDI_NUM_DW(1);
+> +	dw[i++] =3D MI_STORE_DATA_IMM | MI_SDI_GGTT |
+> +		  MI_FORCE_WRITE_COMPLETION_CHECK | MI_SDI_NUM_DW(1);
+>	dw[i++] =3D addr;
+>	dw[i++] =3D 0;
+>	dw[i++] =3D value;
+> @@ -162,7 +163,8 @@ static int emit_pipe_invalidate(u32 mask_flags, bool =
+invalidate_tlb, u32 *dw,
+>  static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
+>				       u32 *dw, int i)
+>  {
+> -	dw[i++] =3D MI_STORE_DATA_IMM | MI_SDI_NUM_QW(1);
+> +	dw[i++] =3D MI_STORE_DATA_IMM | MI_FORCE_WRITE_COMPLETION_CHECK |
+> +		  MI_SDI_NUM_QW(1);
+>	dw[i++] =3D lower_32_bits(addr);
+>	dw[i++] =3D upper_32_bits(addr);
+>	dw[i++] =3D lower_32_bits(value);
+> --
+> 2.47.1
+>
