@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8854AE7717F
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 16:07:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FFADE7717F
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 16:32:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54B6F10EA0F;
-	Tue, 17 Dec 2024 16:07:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T5xvhmhS";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30DF410EA0F
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Dec 2024 16:07:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734451666; x=1765987666;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=6LQD0Uy1WifEUqLxs3oGkU8S2pJyayGnh0BULru9Cl0=;
- b=T5xvhmhS66WhI+mDINysCQg7dxfGLUbcmypPsZo3644GRb/s4CrfUQHH
- rw8FcwoEuUW9Mowzt4UbcUbu4HmMNNXz6Z/gJteyqaeC4ogUW0t3f63S3
- j3seznSeeKWwg3p+C7vDWgKuF6e8ETA50Rof8THi14RIMW7U8PEK/hDf3
- 88mXgn2y3DawQoRrqnoCiaAlb+zoyy3oCcKvyW3VRKUHJKP3nfzxamJ3w
- dvjbrNaV3p7q2IEM5eEEaGcai2NkdljIZZmnSXFZDtIb4hp+1U5q38vPS
- Zhzn457+XMQSTSJou1iCn6Wy7RrCie6ihNU/8ydG0Qi2q4JhYSCsMDEdk A==;
-X-CSE-ConnectionGUID: riqWvEOlQharls0Bk+xO9A==
-X-CSE-MsgGUID: 5PNlIuDyT56PCpmBVjRwAA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="38823725"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="38823725"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 08:07:43 -0800
-X-CSE-ConnectionGUID: NN2Ve0LMRSamz6dwMUcN+w==
-X-CSE-MsgGUID: dWG0MnCgTT+swa8f8DAIew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="102657171"
-Received: from unknown (HELO josouza-mobl2.fso.intel.com) ([10.230.19.152])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 08:07:42 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH] drm/xe: Force write completion of MI_STORE_DATA_IMM
-Date: Tue, 17 Dec 2024 08:07:32 -0800
-Message-ID: <20241217160732.46280-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.47.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59E9610EA1E;
+	Tue, 17 Dec 2024 16:32:29 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E033D10EA20;
+ Tue, 17 Dec 2024 16:32:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4226017434831011268=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_support_for_EU_stall_sa?=
+ =?utf-8?q?mpling?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Harish Chegondi" <harish.chegondi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Dec 2024 16:32:27 -0000
+Message-ID: <173445314791.3891499.14101818836938589771@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <cover.1734427624.git.harish.chegondi@intel.com>
+In-Reply-To: <cover.1734427624.git.harish.chegondi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,119 +36,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With Force write completion unset there is no guarantees of when the
-write will be globally visible what is not the behavior wanted.
+--===============4226017434831011268==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 13 +++++++------
- drivers/gpu/drm/xe/xe_migrate.c                  | 11 ++++++++---
- drivers/gpu/drm/xe/xe_oa.c                       |  4 +++-
- drivers/gpu/drm/xe/xe_ring_ops.c                 |  6 ++++--
- 4 files changed, 22 insertions(+), 12 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-index 10ec2920d31b3..f4ee910f09432 100644
---- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-@@ -33,12 +33,13 @@
- #define MI_TOPOLOGY_FILTER		__MI_INSTR(0xD)
- #define MI_FORCE_WAKEUP			__MI_INSTR(0x1D)
- 
--#define MI_STORE_DATA_IMM		__MI_INSTR(0x20)
--#define   MI_SDI_GGTT			REG_BIT(22)
--#define   MI_SDI_LEN_DW			GENMASK(9, 0)
--#define   MI_SDI_NUM_DW(x)		REG_FIELD_PREP(MI_SDI_LEN_DW, (x) + 3 - 2)
--#define   MI_SDI_NUM_QW(x)		(REG_FIELD_PREP(MI_SDI_LEN_DW, 2 * (x) + 3 - 2) | \
--					 REG_BIT(21))
-+#define MI_STORE_DATA_IMM			__MI_INSTR(0x20)
-+#define   MI_SDI_GGTT				REG_BIT(22)
-+#define   MI_FORCE_WRITE_COMPLETION_CHECK	REG_BIT(10)
-+#define   MI_SDI_LEN_DW				GENMASK(9, 0)
-+#define   MI_SDI_NUM_DW(x)			REG_FIELD_PREP(MI_SDI_LEN_DW, (x) + 3 - 2)
-+#define   MI_SDI_NUM_QW(x)			(REG_FIELD_PREP(MI_SDI_LEN_DW, 2 * (x) + 3 - 2) | \
-+						 REG_BIT(21))
- 
- #define MI_LOAD_REGISTER_IMM		__MI_INSTR(0x22)
- #define   MI_LRI_LRM_CS_MMIO		REG_BIT(19)
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 1b97d90aaddaf..8b32fad678782 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -581,7 +581,9 @@ static void emit_pte(struct xe_migrate *m,
- 	while (ptes) {
- 		u32 chunk = min(MAX_PTE_PER_SDI, ptes);
- 
--		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
-+		bb->cs[bb->len++] = MI_STORE_DATA_IMM |
-+				    MI_FORCE_WRITE_COMPLETION_CHECK |
-+				    MI_SDI_NUM_QW(chunk);
- 		bb->cs[bb->len++] = ofs;
- 		bb->cs[bb->len++] = 0;
- 
-@@ -1223,7 +1225,9 @@ static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
- 		if (!(bb->len & 1))
- 			bb->cs[bb->len++] = MI_NOOP;
- 
--		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
-+		bb->cs[bb->len++] = MI_STORE_DATA_IMM |
-+				    MI_FORCE_WRITE_COMPLETION_CHECK |
-+				    MI_SDI_NUM_QW(chunk);
- 		bb->cs[bb->len++] = lower_32_bits(addr);
- 		bb->cs[bb->len++] = upper_32_bits(addr);
- 		if (pt_op->bind)
-@@ -1388,7 +1392,8 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
- 			u32 idx = 0;
- 
- 			bb->cs[bb->len++] = MI_STORE_DATA_IMM |
--				MI_SDI_NUM_QW(chunk);
-+					    MI_FORCE_WRITE_COMPLETION_CHECK |
-+					    MI_SDI_NUM_QW(chunk);
- 			bb->cs[bb->len++] = ofs;
- 			bb->cs[bb->len++] = 0; /* upper_32_bits */
- 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 56bf375a9d4bc..ae94490b0eac8 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -690,7 +690,9 @@ static void xe_oa_store_flex(struct xe_oa_stream *stream, struct xe_lrc *lrc,
- 	u32 offset = xe_bo_ggtt_addr(lrc->bo);
- 
- 	do {
--		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_GGTT | MI_SDI_NUM_DW(1);
-+		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_GGTT |
-+				    MI_FORCE_WRITE_COMPLETION_CHECK |
-+				    MI_SDI_NUM_DW(1);
- 		bb->cs[bb->len++] = offset + flex->offset * sizeof(u32);
- 		bb->cs[bb->len++] = 0;
- 		bb->cs[bb->len++] = flex->value;
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 0be4f489d3e12..3a75a08b6be92 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -72,7 +72,8 @@ static int emit_user_interrupt(u32 *dw, int i)
- 
- static int emit_store_imm_ggtt(u32 addr, u32 value, u32 *dw, int i)
- {
--	dw[i++] = MI_STORE_DATA_IMM | MI_SDI_GGTT | MI_SDI_NUM_DW(1);
-+	dw[i++] = MI_STORE_DATA_IMM | MI_SDI_GGTT |
-+		  MI_FORCE_WRITE_COMPLETION_CHECK | MI_SDI_NUM_DW(1);
- 	dw[i++] = addr;
- 	dw[i++] = 0;
- 	dw[i++] = value;
-@@ -162,7 +163,8 @@ static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u32 *dw,
- static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
- 				       u32 *dw, int i)
- {
--	dw[i++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(1);
-+	dw[i++] = MI_STORE_DATA_IMM | MI_FORCE_WRITE_COMPLETION_CHECK |
-+		  MI_SDI_NUM_QW(1);
- 	dw[i++] = lower_32_bits(addr);
- 	dw[i++] = upper_32_bits(addr);
- 	dw[i++] = lower_32_bits(value);
--- 
-2.47.1
+Series: Add support for EU stall sampling
+URL   : https://patchwork.freedesktop.org/series/142707/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2390-ff2d4c1b285a836d28341cdf04adbc811757d4c8_BAT -> xe-pw-142707v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-142707v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-adlp-7:         [SKIP][1] ([Intel XE#455]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2390-ff2d4c1b285a836d28341cdf04adbc811757d4c8/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142707v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+
+  * igt@kms_psr@psr-primary-page-flip@edp-1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#3517]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2390-ff2d4c1b285a836d28341cdf04adbc811757d4c8/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142707v1/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
+
+  
+  [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-2390-ff2d4c1b285a836d28341cdf04adbc811757d4c8 -> xe-pw-142707v1
+
+  IGT_8160: 4f10d98c56498ab29445ae0b06aab6f5a8ec2eca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2390-ff2d4c1b285a836d28341cdf04adbc811757d4c8: ff2d4c1b285a836d28341cdf04adbc811757d4c8
+  xe-pw-142707v1: 142707v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142707v1/index.html
+
+--===============4226017434831011268==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add support for EU stall sampling</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142707/">https://patchwork.freedesktop.org/series/142707/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142707v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142707v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2390-ff2d4c1b285a836d28341cdf04adbc811757d4c8_BAT -&gt; xe-pw-142707v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-142707v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2390-ff2d4c1b285a836d28341cdf04adbc811757d4c8/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142707v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip@edp-1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2390-ff2d4c1b285a836d28341cdf04adbc811757d4c8/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517">Intel XE#3517</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142707v1/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2390-ff2d4c1b285a836d28341cdf04adbc811757d4c8 -&gt; xe-pw-142707v1</li>
+</ul>
+<p>IGT_8160: 4f10d98c56498ab29445ae0b06aab6f5a8ec2eca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2390-ff2d4c1b285a836d28341cdf04adbc811757d4c8: ff2d4c1b285a836d28341cdf04adbc811757d4c8<br />
+  xe-pw-142707v1: 142707v1</p>
+
+</body>
+</html>
+
+--===============4226017434831011268==--
