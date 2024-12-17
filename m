@@ -4,38 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 206EDE77184
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 14:28:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98417E77187
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 14:43:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2A1210E22F;
-	Tue, 17 Dec 2024 14:28:53 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00BCC10E22F;
- Tue, 17 Dec 2024 14:28:52 +0000 (UTC)
-Message-ID: <a69a3500-be17-4899-bdb9-c6a63bf8dc81@lankhorst.se>
-Date: Tue, 17 Dec 2024 15:28:50 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A09410E9A0;
+	Tue, 17 Dec 2024 14:43:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dn8oUNdu";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2C2F10E9AA;
+ Tue, 17 Dec 2024 14:43:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734446613; x=1765982613;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PHL9f6XKI69YmcA8WWplhMI5EA/HgOYZ+UG88Z8oTf4=;
+ b=dn8oUNduWo+NYDEw3aA1h20KiwfEoZKqUgKLO5r2fgR/I0RZhZptQgPF
+ paUWAkxzh6Y2/f2Zhr762s1i/NNvVooG7ij8RSpA+uiz5PaALpfTofP6q
+ dcNXPp/LXqfxRJjbGlyWWpPiPEqBvXCRfAQL4zkrhUPvEYyUYbFkmz4ZU
+ fWnAcrCzWes/XfuneW7AeUWKb+fFYVU1ggF8wPIJIIHOMJ8yxAri1Ud17
+ e+l1EcaTx2RvkmWcPdKF7CUY80IIeuwhCGAbfQCp2LpMHRWtW85FgetOV
+ A7Tva0PAgMGLcE4P5mXNISFq97UhfANlEwB6iveTr8qF31PfVHSkBQmMW g==;
+X-CSE-ConnectionGUID: d1VH2diHQZuqVahbcjLxZA==
+X-CSE-MsgGUID: znE+aJueQBGEzaPHxBGvGg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34767900"
+X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="34767900"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 06:43:32 -0800
+X-CSE-ConnectionGUID: X49y0t3oQPmngxEYYUSdkg==
+X-CSE-MsgGUID: 5Pc/HvzoQKmgU/B02qpgUA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102535562"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by orviesa005.jf.intel.com with ESMTP; 17 Dec 2024 06:43:30 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com,
+	Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH v2] drm/i915/display: UHBR rates for Thunderbolt
+Date: Tue, 17 Dec 2024 16:34:40 +0200
+Message-ID: <20241217143440.572308-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] kernel/cgroups: Add "dmem" memory accounting
- cgroup.
-To: Maxime Ripard <mripard@kernel.org>
-Cc: linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>,
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
- linux-mm@kvack.org, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-References: <20241204134410.1161769-1-dev@lankhorst.se>
- <20241213-proud-kind-uakari-df3a70@houat>
- <80c49a80-d49c-4ca5-9568-9f7950618275@lankhorst.se>
- <20241213-gentle-glittering-salamander-22addf@houat>
- <5a50a992-9286-4179-8031-ffb514bca34f@lankhorst.se>
- <20241217-meek-bullfinch-of-luck-2c3468@houat>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20241217-meek-bullfinch-of-luck-2c3468@houat>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,76 +65,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+tbt-alt mode is missing uhbr rates 10G and 20G. This requires
+requires pll clock rates 312.5 MHz and 625 MHz to be added,
+respectively. The uhbr rates are supported only form PTL+
+platforms.
 
-Now that all patches look good, what is needed to merge the series? 
-Without patch 6/7 as it is a hack for testing.
+v2: Add drm_WARN_ON() to check if port clock is not supported by
+    the platform (Imre)
+    Combine forward ungate with mask parameter (Imre)
+    Rename XE3LPDP_* to XE3D_* (Imre)
 
-I've also posted a IGT for verifying read/write works (rule out 
-copy/paste errors) and min, max semantics work as intended.
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 39 +++++++++++++++++--
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  4 ++
+ 2 files changed, 39 insertions(+), 4 deletions(-)
 
-https://lists.freedesktop.org/archives/igt-dev/2024-December/083345.html
-
-Cheers,
-~Maarten
-
-
-Den 2024-12-17 kl. 08:46, skrev Maxime Ripard:
-> On Fri, Dec 13, 2024 at 05:06:05PM +0100, Maarten Lankhorst wrote:
->> Hey,
->>
->> Den 2024-12-13 kl. 16:21, skrev Maxime Ripard:
->>> On Fri, Dec 13, 2024 at 03:53:13PM +0100, Maarten Lankhorst wrote:
->>>>
->>>>
->>>> Den 2024-12-13 kl. 14:03, skrev Maxime Ripard:
->>>>> Hi,l
->>>>>
->>>>> Thanks for the new update!
->>>>>
->>>>> On Wed, Dec 04, 2024 at 02:44:00PM +0100, Maarten Lankhorst wrote:
->>>>>> New update. Instead of calling it the 'dev' cgroup, it's now the
->>>>>> 'dmem' cgroup.
->>>>>>
->>>>>> Because it only deals with memory regions, the UAPI has been updated
->>>>>> to use dmem.min/low/max/current, and to make the API cleaner, the
->>>>>> names are changed too.
->>>>>
->>>>> The API is much nicer, and fits much better into other frameworks too.
->>>>>
->>>>>> dmem.current could contain a line like:
->>>>>> "drm/0000:03:00.0/vram0 1073741824"
->>>>>>
->>>>>> But I think using "drm/card0/vram0" instead of PCIID would perhaps be
->>>>>> good too. I'm open to changing it to that based on feedback.
->>>>>
->>>>> Do we have any sort of guarantee over the name card0 being stable across
->>>>> reboots?
->>>>>
->>>>> I also wonder if we should have a "total" device that limits the amount
->>>>> of memory we can allocate from any region?
->>>>
->>>> I don't think it is useful. Say your app can use 1 GB of main memory or 2 GB
->>>> of VRAM, it wouldn't make sense to limit the total of those. In a lot of
->>>> cases there is only 1 region, so the total of that would still be the same.
->>>>
->>>> On top, we just separated the management of each region, adding a 'total'
->>>> would require unseparating it again. :-)
->>>
->>> I didn't mean the total for a device, but for the system. It would
->>> definitely not make sense for a VRAM, but for CMA for example, you have
->>> a single, limited, allocator that will be accessible from heaps, v4l2
->>> and DRM devices.
->>>
->>> If an application has to allocate both from v4l2 and DRM buffers, we
->>> should be able to limit its total usage of CMA, not just on a single
->>> device.
->>
->> In this case, I think it makes more sense if CMA creates a region, then use
->> that region in both v4l2 and DRM instead of a separate region for both, with
->> CMA being responsible for lifetime.
-> 
-> Ack, thanks for your feedback :)
-> 
-> Maxime
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index cc734079c3b8..a8e0450c0378 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -3070,7 +3070,10 @@ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
+ 
+ 	val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port));
+ 
+-	clock = REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val);
++	if (DISPLAY_VER(display) >= 30)
++		clock = REG_FIELD_GET(XE3D_DDI_CLOCK_SELECT_MASK, val);
++	else
++		clock = REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val);
+ 
+ 	drm_WARN_ON(display->drm, !(val & XELPDP_FORWARD_CLOCK_UNGATE));
+ 	drm_WARN_ON(display->drm, !(val & XELPDP_TBT_CLOCK_REQUEST));
+@@ -3085,13 +3088,18 @@ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
+ 		return 540000;
+ 	case XELPDP_DDI_CLOCK_SELECT_TBT_810:
+ 		return 810000;
++	case XELPDP_DDI_CLOCK_SELECT_TBT_312_5:
++		return 1000000;
++	case XELPDP_DDI_CLOCK_SELECT_TBT_625:
++		return 2000000;
+ 	default:
+ 		MISSING_CASE(clock);
+ 		return 162000;
+ 	}
+ }
+ 
+-static int intel_mtl_tbt_clock_select(int clock)
++static int intel_mtl_tbt_clock_select(struct intel_display *display,
++				      int clock)
+ {
+ 	switch (clock) {
+ 	case 162000:
+@@ -3102,6 +3110,18 @@ static int intel_mtl_tbt_clock_select(int clock)
+ 		return XELPDP_DDI_CLOCK_SELECT_TBT_540;
+ 	case 810000:
+ 		return XELPDP_DDI_CLOCK_SELECT_TBT_810;
++	case 1000000:
++		if (DISPLAY_VER(display) < 30) {
++			drm_WARN_ON(display->drm, "UHBR10 not supported for the platform\n");
++			return XELPDP_DDI_CLOCK_SELECT_TBT_162;
++		}
++		return XELPDP_DDI_CLOCK_SELECT_TBT_312_5;
++	case 2000000:
++		if (DISPLAY_VER(display) < 30) {
++			drm_WARN_ON(display->drm, "UHBR20 not supported for the platform\n");
++			return XELPDP_DDI_CLOCK_SELECT_TBT_162;
++		}
++		return XELPDP_DDI_CLOCK_SELECT_TBT_625;
+ 	default:
+ 		MISSING_CASE(clock);
+ 		return XELPDP_DDI_CLOCK_SELECT_TBT_162;
+@@ -3114,15 +3134,26 @@ static void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 	u32 val = 0;
++	u32 mask;
+ 
+ 	/*
+ 	 * 1. Program PORT_CLOCK_CTL REGISTER to configure
+ 	 * clock muxes, gating and SSC
+ 	 */
+-	val |= XELPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(crtc_state->port_clock));
++
++	if (DISPLAY_VER(display) >= 30) {
++		mask = XE3D_DDI_CLOCK_SELECT_MASK;
++		val |= XE3D_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(display, crtc_state->port_clock));
++	} else {
++		mask = XELPDP_DDI_CLOCK_SELECT_MASK;
++		val |= XELPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(display, crtc_state->port_clock));
++	}
++
++	mask |= XELPDP_FORWARD_CLOCK_UNGATE;
+ 	val |= XELPDP_FORWARD_CLOCK_UNGATE;
++
+ 	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+-		     XELPDP_DDI_CLOCK_SELECT_MASK | XELPDP_FORWARD_CLOCK_UNGATE, val);
++		     mask, val);
+ 
+ 	/* 2. Read back PORT_CLOCK_CTL REGISTER */
+ 	val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port));
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+index c685479c9756..bf95ac234b2b 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+@@ -187,7 +187,9 @@
+ #define   XELPDP_TBT_CLOCK_REQUEST			REG_BIT(19)
+ #define   XELPDP_TBT_CLOCK_ACK				REG_BIT(18)
+ #define   XELPDP_DDI_CLOCK_SELECT_MASK			REG_GENMASK(15, 12)
++#define   XE3D_DDI_CLOCK_SELECT_MASK			REG_GENMASK(16, 12)
+ #define   XELPDP_DDI_CLOCK_SELECT(val)			REG_FIELD_PREP(XELPDP_DDI_CLOCK_SELECT_MASK, val)
++#define   XE3D_DDI_CLOCK_SELECT(val)			REG_FIELD_PREP(XE3D_DDI_CLOCK_SELECT_MASK, val)
+ #define   XELPDP_DDI_CLOCK_SELECT_NONE			0x0
+ #define   XELPDP_DDI_CLOCK_SELECT_MAXPCLK		0x8
+ #define   XELPDP_DDI_CLOCK_SELECT_DIV18CLK		0x9
+@@ -195,6 +197,8 @@
+ #define   XELPDP_DDI_CLOCK_SELECT_TBT_270		0xd
+ #define   XELPDP_DDI_CLOCK_SELECT_TBT_540		0xe
+ #define   XELPDP_DDI_CLOCK_SELECT_TBT_810		0xf
++#define   XELPDP_DDI_CLOCK_SELECT_TBT_312_5		0x18
++#define   XELPDP_DDI_CLOCK_SELECT_TBT_625		0x19
+ #define   XELPDP_FORWARD_CLOCK_UNGATE			REG_BIT(10)
+ #define   XELPDP_LANE1_PHY_CLOCK_SELECT			REG_BIT(8)
+ #define   XELPDP_SSC_ENABLE_PLLA			REG_BIT(1)
+-- 
+2.43.0
 
