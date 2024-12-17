@@ -4,95 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42A96E7717F
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 21:12:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C37CE77184
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 21:14:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9C1810E062;
-	Tue, 17 Dec 2024 21:12:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="nmF/sQCS";
-	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2E2210E062;
- Tue, 17 Dec 2024 21:12:26 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 6C895A42009;
- Tue, 17 Dec 2024 21:10:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30F7CC4CED7;
- Tue, 17 Dec 2024 21:12:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
- s=korg; t=1734469944;
- bh=6wrZIip+47/78xZMxlKfy5iKCSXmDm0ozFscqh0XaL0=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=nmF/sQCS1D3KNHotz6/Uis21dHNJl7nLly6pcknq1IkDIafHawvIl5RaL9/QyQcZn
- nyGQz6EdiI98Lm7qeFHMwWswlC3Qfefy9eWeYO8Zhv+gHExXCf5+0KsSm0kSj2kwOJ
- 8nof/rwPL6N6M8ZNuUmnLRmLS4svJ9udLDC6DdE4=
-Date: Tue, 17 Dec 2024 13:12:21 -0800
-From: Andrew Morton <akpm@linux-foundation.org>
-To: Easwar Hariharan <eahariha@linux.microsoft.com>
-Cc: Pablo Neira Ayuso <pablo@netfilter.org>, Jozsef Kadlecsik
- <kadlec@netfilter.org>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, Julia Lawall
- <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>, Daniel Mack
- <daniel@zonque.org>, Haojian Zhuang <haojian.zhuang@gmail.com>, Robert
- Jarzmik <robert.jarzmik@free.fr>, Russell King <linux@armlinux.org.uk>,
- Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger
- <borntraeger@linux.ibm.com>, Sven Schnelle <svens@linux.ibm.com>, Ofir
- Bitton <obitton@habana.ai>, Oded Gabbay <ogabbay@kernel.org>, Lucas De
- Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jeroen de Borst
- <jeroendb@google.com>, Praveen Kaligineedi <pkaligineedi@google.com>,
- Shailend Chand <shailend@google.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- James Smart <james.smart@broadcom.com>, Dick Kennedy
- <dick.kennedy@broadcom.com>, "James E.J. Bottomley"
- <James.Bottomley@HansenPartnership.com>, "Martin K. Petersen"
- <martin.petersen@oracle.com>, Roger Pau =?ISO-8859-1?Q?Monn=E9?=
- <roger.pau@citrix.com>, Jens Axboe <axboe@kernel.dk>, Kalle Valo
- <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Jack Wang <jinpu.wang@cloud.ionos.com>, Marcel
- Holtmann <marcel@holtmann.org>, Johan Hedberg <johan.hedberg@gmail.com>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Florian Fainelli
- <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, Scott Branden
- <sbranden@broadcom.com>, Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Xiubo Li <xiubli@redhat.com>, Ilya
- Dryomov <idryomov@gmail.com>, Josh Poimboeuf <jpoimboe@kernel.org>, Jiri
- Kosina <jikos@kernel.org>, Miroslav Benes <mbenes@suse.cz>, Petr Mladek
- <pmladek@suse.com>, Joe Lawrence <joe.lawrence@redhat.com>, Jaroslav Kysela
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Louis Peens
- <louis.peens@corigine.com>, Michael Ellerman <mpe@ellerman.id.au>, Nicholas
- Piggin <npiggin@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>,
- Naveen N Rao <naveen@kernel.org>, Madhavan Srinivasan
- <maddy@linux.ibm.com>, netfilter-devel@vger.kernel.org,
- coreteam@netfilter.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, cocci@inria.fr,
- linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-scsi@vger.kernel.org, xen-devel@lists.xenproject.org,
- linux-block@vger.kernel.org, linux-wireless@vger.kernel.org,
- ath11k@lists.infradead.org, linux-mm@kvack.org,
- linux-bluetooth@vger.kernel.org, linux-staging@lists.linux.dev,
- linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org,
- live-patching@vger.kernel.org, linux-sound@vger.kernel.org,
- oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org, Anna-Maria Behnsen
- <anna-maria@linutronix.de>, Jeff Johnson <quic_jjohnson@quicinc.com>,
- paul@paul-moore.com
-Subject: Re: [PATCH v3 00/19] Converge on using secs_to_jiffies()
-Message-Id: <20241217131221.e1b1262f97dc6a5d616ca8e7@linux-foundation.org>
-In-Reply-To: <14ad0c08-7b3b-47b6-8cc1-8a4179238e5a@linux.microsoft.com>
-References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
- <20241210163520.95fa1c8aa83e1915004ed884@linux-foundation.org>
- <422470cd-84f0-469e-93c2-493c5091391d@linux.microsoft.com>
- <14ad0c08-7b3b-47b6-8cc1-8a4179238e5a@linux.microsoft.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+	by gabe.freedesktop.org (Postfix) with ESMTP id F291710E062;
+	Tue, 17 Dec 2024 21:14:34 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEEAC10E062;
+ Tue, 17 Dec 2024 21:14:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_TTM_shrinker_helpers_and_xe_bu?=
+ =?utf-8?q?ffer_object_shrinker_=28rev16=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Dec 2024 21:14:33 -0000
+Message-ID: <173447007397.3995242.17459910475238564630@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241217145852.37342-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20241217145852.37342-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,15 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 17 Dec 2024 12:53:22 -0800 Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
+== Series Details ==
 
-> There have been a couple of comments[1][2] that came in after you queued
-> the series to mm. Would you rather I send individual patches addressing
-> these, or just send a v4 of the entire series (-netdev of course) so you
-> can replace it wholesale?
+Series: TTM shrinker helpers and xe buffer object shrinker (rev16)
+URL   : https://patchwork.freedesktop.org/series/131815/
+State : success
 
-Individual small fixes would be preferable please.  Mainly to
-preserve the validity of current review efforts.
+== Summary ==
+
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/kernel/
+lib/modules/6.13.0-rc3-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc3-xe+/kernel/block/
+lib/modules/6.13.0-rc3-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc3-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc3-xe+/build
+lib/modules/6.13.0-rc3-xe+/modules.alias.bin
+lib/modules/6.13.0-rc3-xe+/modules.builtin
+lib/modules/6.13.0-rc3-xe+/modules.softdep
+lib/modules/6.13.0-rc3-xe+/modules.alias
+lib/modules/6.13.0-rc3-xe+/modules.order
+lib/modules/6.13.0-rc3-xe+/modules.symbols
+lib/modules/6.13.0-rc3-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
+[0Ksection_end:1734470062:package_x86_64_nodebug
+[0K
++ echo -e '\e[0Ksection_end:1734470062:package_x86_64_nodebug\r\e[0K'
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
