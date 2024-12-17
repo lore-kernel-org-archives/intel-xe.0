@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9163EE7718A
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 14:59:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9E48E77188
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 14:59:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B03C10E9D1;
-	Tue, 17 Dec 2024 14:59:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6864810E9CC;
+	Tue, 17 Dec 2024 14:59:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S7LwhwqN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P2ce8T5g";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4CBF10E9D1;
- Tue, 17 Dec 2024 14:59:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EDB510E9D6;
+ Tue, 17 Dec 2024 14:59:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734447574; x=1765983574;
+ t=1734447569; x=1765983569;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xVtDZjrM+9ilzETbb9iYCs38I+9mafYXRIhuhzjUN44=;
- b=S7LwhwqNhw+ms2i/Ce+86C0mgp1C3e7akmp/UkXbfVOEzpqOY3Zqcoyr
- HrIH5ozAAznNPpzG7f0I8vWM+B4Jwbb8wfwVCJWavjZwBeRYKAJ1ScAcx
- LsegnodC8y9teyThwniNPunfPzo+tiThKQV0Bn4+UNqQd79izPGxVOUD3
- /htfayBudXvezb1zkoT+WRXuIfdmlgE+erbBh/UhdHHlC5yTiDOOow6oI
- RLPo+ad4ralTf8hWEIDSLlJv2H8uAuEt++f4T8B0fczkjliWngbTSZgix
- xnVHummS2x8cmqN7PhyIufkBSYXK9P+PJqaoObzo6U2NgXPRwgVEEPyp/ w==;
-X-CSE-ConnectionGUID: p4Dtq/QGQCaiUj3PgJ0pNQ==
-X-CSE-MsgGUID: de1XeOF/TpO8s+bIAvTbdg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34914488"
-X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="34914488"
+ bh=QbBd7v0jbNi3X6x95eHIusi/kMNaTkZqfaoHa1cwKiE=;
+ b=P2ce8T5gIMP/+WKezxKK8IUyUZimWRtjAkgKMNcHQK7sbLMGNjRHBbX2
+ CaE2uh9fT17Sc7cfdnpp4cMoa6ayaBAXcJq8j6B9YQoyk/mU8aM7br4em
+ CovdP0mDRa3EBtYEMMc1vI5khH/NDVq4KtPWSgantrRPpeNXbbtmFyfJp
+ 8NF4D1Uh+Rs0WobpFOV97w4qIdAjx8vfdDluOA5Pj7egP6bL+QarX1UQ/
+ 3UBsIdlp5Il/AhQtofk8KXhYtsFMQA+tIoWhKCHBxv12zvYCuFaweveYF
+ m+na5Fm+QnQ7ckN3Y1B6pKnM8sFDsNdkNmAwt9fmoqnOLnQ8mCR9LH49w w==;
+X-CSE-ConnectionGUID: 5qplczlTQbSnlq+l+ABdzg==
+X-CSE-MsgGUID: 1+V2JfgdTiOXlzlY7GArpA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34914477"
+X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="34914477"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 06:59:34 -0800
-X-CSE-ConnectionGUID: z9RcYTS+RI+e5BjJTPMQZg==
-X-CSE-MsgGUID: 8VrGGbquToiVV86fZc7U2g==
+ 17 Dec 2024 06:59:29 -0800
+X-CSE-ConnectionGUID: gYuewK+5QHO9BBqkPLfSuA==
+X-CSE-MsgGUID: grhREsZ/QuuPRqObpJQTmw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101694367"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101694352"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.245.246.49])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 06:59:31 -0800
+ 17 Dec 2024 06:59:26 -0800
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -50,9 +50,9 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Paulo Zanoni <paulo.r.zanoni@intel.com>,
  Simona Vetter <simona.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org
-Subject: [PATCH v15 9/9] drm/xe: Increase the XE_PL_TT watermark
-Date: Tue, 17 Dec 2024 15:58:52 +0100
-Message-ID: <20241217145852.37342-10-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v15 7/9] drm/ttm: Add helpers for shrinking
+Date: Tue, 17 Dec 2024 15:58:50 +0100
+Message-ID: <20241217145852.37342-8-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20241217145852.37342-1-thomas.hellstrom@linux.intel.com>
 References: <20241217145852.37342-1-thomas.hellstrom@linux.intel.com>
@@ -73,43 +73,229 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The XE_PL_TT watermark was set to 50% of system memory.
-The idea behind that was unclear since the net effect is that
-TT memory will be evicted to TTM_PL_SYSTEM memory if that
-watermark is exceeded, requiring PPGTT rebinds and dma
-remapping. But there is no similar watermark for TTM_PL_1SYSTEM
-memory.
+Add a number of helpers for shrinking that access core TTM and
+core MM functionality in a way that make them unsuitable for
+driver open-coding.
 
-The TTM functionality that tries to swap out system memory to
-shmem objects if a 50% limit of total system memory is reached
-is orthogonal to this, and with the shrinker added, it's no
-longer in effect.
-
-Replace the 50% TTM_PL_TT limit with a 100% limit, in effect
-allowing all graphics memory to be bound to the device unless it
-has been swapped out by the shrinker.
+v11:
+- New patch (split off from previous) and additional helpers.
+v13:
+- Adapt to ttm_backup interface change.
+- Take resource off LRU when backed up.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com> #v11
 ---
- drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 107 +++++++++++++++++++++++++++++-
+ drivers/gpu/drm/ttm/ttm_tt.c      |  29 ++++++++
+ include/drm/ttm/ttm_bo.h          |  21 ++++++
+ include/drm/ttm/ttm_tt.h          |   2 +
+ 4 files changed, 158 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-index 9844a8edbfe1..d38b91872da3 100644
---- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-@@ -108,9 +108,8 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
- 	u64 gtt_size;
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index 0cac02a9764c..15cab9bda17f 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -28,7 +28,7 @@
+ /*
+  * Authors: Thomas Hellstrom <thellstrom-at-vmware-dot-com>
+  */
+-
++#include <linux/swap.h>
+ #include <linux/vmalloc.h>
  
- 	si_meminfo(&si);
-+	/* Potentially restrict amount of TT memory here. */
- 	gtt_size = (u64)si.totalram * si.mem_unit;
--	/* TTM limits allocation of all TTM devices by 50% of system memory */
--	gtt_size /= 2;
+ #include <drm/ttm/ttm_bo.h>
+@@ -1052,3 +1052,108 @@ struct ttm_buffer_object *ttm_bo_lru_cursor_first(struct ttm_bo_lru_cursor *curs
+ 	return bo ? bo : ttm_bo_lru_cursor_next(curs);
+ }
+ EXPORT_SYMBOL(ttm_bo_lru_cursor_first);
++
++/**
++ * ttm_bo_shrink() - Helper to shrink a ttm buffer object.
++ * @ctx: The struct ttm_operation_ctx used for the shrinking operation.
++ * @bo: The buffer object.
++ * @flags: Flags governing the shrinking behaviour.
++ *
++ * The function uses the ttm_tt_back_up functionality to back up or
++ * purge a struct ttm_tt. If the bo is not in system, it's first
++ * moved there.
++ *
++ * Return: The number of pages shrunken or purged, or
++ * negative error code on failure.
++ */
++long ttm_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
++		   const struct ttm_bo_shrink_flags flags)
++{
++	static const struct ttm_place sys_placement_flags = {
++		.fpfn = 0,
++		.lpfn = 0,
++		.mem_type = TTM_PL_SYSTEM,
++		.flags = 0,
++	};
++	static struct ttm_placement sys_placement = {
++		.num_placement = 1,
++		.placement = &sys_placement_flags,
++	};
++	struct ttm_tt *tt = bo->ttm;
++	long lret;
++
++	dma_resv_assert_held(bo->base.resv);
++
++	if (flags.allow_move && bo->resource->mem_type != TTM_PL_SYSTEM) {
++		int ret = ttm_bo_validate(bo, &sys_placement, ctx);
++
++		/* Consider -ENOMEM and -ENOSPC non-fatal. */
++		if (ret) {
++			if (ret == -ENOMEM || ret == -ENOSPC)
++				ret = -EBUSY;
++			return ret;
++		}
++	}
++
++	ttm_bo_unmap_virtual(bo);
++	lret = ttm_bo_wait_ctx(bo, ctx);
++	if (lret < 0)
++		return lret;
++
++	if (bo->bulk_move) {
++		spin_lock(&bo->bdev->lru_lock);
++		ttm_resource_del_bulk_move(bo->resource, bo);
++		spin_unlock(&bo->bdev->lru_lock);
++	}
++
++	lret = ttm_tt_backup(bo->bdev, tt, (struct ttm_backup_flags)
++			     {.purge = flags.purge,
++			      .writeback = flags.writeback});
++
++	if (lret <= 0 && bo->bulk_move) {
++		spin_lock(&bo->bdev->lru_lock);
++		ttm_resource_add_bulk_move(bo->resource, bo);
++		spin_unlock(&bo->bdev->lru_lock);
++	}
++
++	if (lret < 0 && lret != -EINTR)
++		return -EBUSY;
++
++	return lret;
++}
++EXPORT_SYMBOL(ttm_bo_shrink);
++
++/**
++ * ttm_bo_shrink_suitable() - Whether a bo is suitable for shinking
++ * @ctx: The struct ttm_operation_ctx governing the shrinking.
++ * @bo: The candidate for shrinking.
++ *
++ * Check whether the object, given the information available to TTM,
++ * is suitable for shinking, This function can and should be used
++ * before attempting to shrink an object.
++ *
++ * Return: true if suitable. false if not.
++ */
++bool ttm_bo_shrink_suitable(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx)
++{
++	return bo->ttm && ttm_tt_is_populated(bo->ttm) && !bo->pin_count &&
++		(!ctx->no_wait_gpu ||
++		 dma_resv_test_signaled(bo->base.resv, DMA_RESV_USAGE_BOOKKEEP));
++}
++EXPORT_SYMBOL(ttm_bo_shrink_suitable);
++
++/**
++ * ttm_bo_shrink_avoid_wait() - Whether to avoid waiting for GPU
++ * during shrinking
++ *
++ * In some situations, like direct reclaim, waiting (in particular gpu waiting)
++ * should be avoided since it may stall a system that could otherwise make progress
++ * shrinking something else less time consuming.
++ *
++ * Return: true if gpu waiting should be avoided, false if not.
++ */
++bool ttm_bo_shrink_avoid_wait(void)
++{
++	return !current_is_kswapd();
++}
++EXPORT_SYMBOL(ttm_bo_shrink_avoid_wait);
+diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
+index 00b7c28f2329..df0aa6c4b8b8 100644
+--- a/drivers/gpu/drm/ttm/ttm_tt.c
++++ b/drivers/gpu/drm/ttm/ttm_tt.c
+@@ -531,3 +531,32 @@ unsigned long ttm_tt_pages_limit(void)
+ 	return ttm_pages_limit;
+ }
+ EXPORT_SYMBOL(ttm_tt_pages_limit);
++
++/**
++ * ttm_tt_setup_backup() - Allocate and assign a backup structure for a ttm_tt
++ * @tt: The ttm_tt for wich to allocate and assign a backup structure.
++ *
++ * Assign a backup structure to be used for tt backup. This should
++ * typically be done at bo creation, to avoid allocations at shrinking
++ * time.
++ *
++ * Return: 0 on success, negative error code on failure.
++ */
++int ttm_tt_setup_backup(struct ttm_tt *tt)
++{
++	struct ttm_backup *backup =
++		ttm_backup_shmem_create(((loff_t)tt->num_pages) << PAGE_SHIFT);
++
++	if (WARN_ON_ONCE(!(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE)))
++		return -EINVAL;
++
++	if (IS_ERR(backup))
++		return PTR_ERR(backup);
++
++	if (tt->backup)
++		ttm_backup_fini(tt->backup);
++
++	tt->backup = backup;
++	return 0;
++}
++EXPORT_SYMBOL(ttm_tt_setup_backup);
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index 1509268849c0..903cd1030110 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -225,6 +225,27 @@ struct ttm_lru_walk {
+ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
+ 			   struct ttm_resource_manager *man, s64 target);
  
- 	man->use_tt = true;
- 	man->func = &xe_ttm_sys_mgr_func;
++/**
++ * struct ttm_bo_shrink_flags - flags to govern the bo shrinking behaviour
++ * @purge: Purge the content rather than backing it up.
++ * @writeback: Attempt to immediately write content to swap space.
++ * @allow_move: Allow moving to system before shrinking. This is typically
++ * not desired for zombie- or ghost objects (with zombie object meaning
++ * objects with a zero gem object refcount)
++ */
++struct ttm_bo_shrink_flags {
++	u32 purge : 1;
++	u32 writeback : 1;
++	u32 allow_move : 1;
++};
++
++long ttm_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
++		   const struct ttm_bo_shrink_flags flags);
++
++bool ttm_bo_shrink_suitable(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx);
++
++bool ttm_bo_shrink_avoid_wait(void);
++
+ /**
+  * ttm_bo_get - reference a struct ttm_buffer_object
+  *
+diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
+index c736c01ac2ca..13cf47f3322f 100644
+--- a/include/drm/ttm/ttm_tt.h
++++ b/include/drm/ttm/ttm_tt.h
+@@ -298,6 +298,8 @@ long ttm_tt_backup(struct ttm_device *bdev, struct ttm_tt *tt,
+ int ttm_tt_restore(struct ttm_device *bdev, struct ttm_tt *tt,
+ 		   const struct ttm_operation_ctx *ctx);
+ 
++int ttm_tt_setup_backup(struct ttm_tt *tt);
++
+ #if IS_ENABLED(CONFIG_AGP)
+ #include <linux/agp_backend.h>
+ 
 -- 
 2.47.1
 
