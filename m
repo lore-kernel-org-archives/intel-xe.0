@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BEBEE77191
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 23:33:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20896E7718C
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 23:33:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D45210EAC8;
-	Tue, 17 Dec 2024 23:33:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0F7910EA8D;
+	Tue, 17 Dec 2024 23:33:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ex8Z7LwI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ijDorBL0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F01310EA86;
- Tue, 17 Dec 2024 23:33:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 104DB10EA86;
+ Tue, 17 Dec 2024 23:33:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734478392; x=1766014392;
+ t=1734478394; x=1766014394;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FPrMvQOtIVh5E5KGw6lN7OgswspLJgvvtavgsr6VB9I=;
- b=ex8Z7LwIxhwW7421nfy1ms0VNibydjgB/+N0OQ9APOH/Un0gwK0BIg+1
- gqnZcItvu7IiT1MFBTCUHYY8Dn9soe1hUfEaHyb/L146oInFb8BnpRCNI
- 3SIBY9Cbk/QTjcIBlmRrjEX+3fpHZ/BKQw8PUO0J0w2VDO2/3Km+8Setc
- 3M/E+keqIYuRbm6pNs+tMXewBhNtoqunHAvFskSpJd6wY25UYji3XuLvt
- mtRFiiHE3+B/oZxKz1qwUVQNiGhNBAKMijALRAS9L5yilknSHvgVZ3ABC
- 3cPsLn42VHouykPcMoIyZ/MtE/OENM9WlMr1wnRmzYUO8NlTBYj37BC6J g==;
-X-CSE-ConnectionGUID: mnXSftlPT46vKSAc0g3R7w==
-X-CSE-MsgGUID: UULeLiYnTlCX+KXAmCMYRg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="22517444"
-X-IronPort-AV: E=Sophos;i="6.12,243,1728975600"; d="scan'208";a="22517444"
+ bh=SIxYHubM01zxDG7InLnNikjuJeTuPgn3vS7IU0vL8TY=;
+ b=ijDorBL0KLnAkZ3Jw1SA31zEXG5bVK89f/EMYW6BJXsgG/S/M3RfmEAd
+ ARkEVqugOa8hKzLhEgDGuhZBKr6VQplgNYpLBXZ9E4QbyjXJx2oKo1bIk
+ xdMLBJMeqd3DAW4GWYDBIFbxxNEv/jZSaQiMACwK0hPZfhTpUYXPsD8Tx
+ E9V80SxwPHEIfZzlj1eDNRicQ1JXctCnOgcV6CKfCzmyhwA7uMfolc3ve
+ jLzoyUXpgHaZ/NAM8dJR3PO0vYAIWx6mfjgHOn4MZ82Pon/TAaFoHHHcu
+ hk52o/rT2EFybReCUKWfPPePzUz4SWvwHebuFskWvKPbg0/lVc69R5AYx w==;
+X-CSE-ConnectionGUID: rULhjA57SXe89vFZZJNj9g==
+X-CSE-MsgGUID: 4AIN14JPT1m0GHVFia0Nvw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="22517488"
+X-IronPort-AV: E=Sophos;i="6.12,243,1728975600"; d="scan'208";a="22517488"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 15:33:12 -0800
-X-CSE-ConnectionGUID: qdGyxSztSfWGTZieF9JTSA==
-X-CSE-MsgGUID: TK9EP4vMTc2S1ioUHDSKvQ==
+ 17 Dec 2024 15:33:13 -0800
+X-CSE-ConnectionGUID: 8XL7PIouQo2Ro4h8/mDj5g==
+X-CSE-MsgGUID: 5+IgIdtPSPqaQdK4vUOfuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102273451"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102273462"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 15:33:11 -0800
+ 17 Dec 2024 15:33:13 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v3 20/30] drm/xe: Add drm_gpusvm_devmem to xe_bo
-Date: Tue, 17 Dec 2024 15:33:38 -0800
-Message-Id: <20241217233348.3519726-21-matthew.brost@intel.com>
+Subject: [PATCH v3 27/30] drm/xe: Basic SVM BO eviction
+Date: Tue, 17 Dec 2024 15:33:45 -0800
+Message-Id: <20241217233348.3519726-28-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241217233348.3519726-1-matthew.brost@intel.com>
 References: <20241217233348.3519726-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,36 +69,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add drm_gpusvm_devmem to xe_bo. Required to enable SVM migrations.
+Wire xe_bo_move to GPU SVM migration via new helper xe_svm_bo_evict.
+
+v2:
+ - Use xe_svm_bo_evict
+ - Drop bo->range
+v3:
+ - Kernel doc (Thomas)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo_types.h | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.c | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_svm.h |  2 ++
+ 2 files changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index 46dc9e4e3e46..6d53ccde0256 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -8,6 +8,7 @@
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index a417d8942da4..8780a0b2c81e 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -768,6 +768,20 @@ bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end)
+ 	return drm_gpusvm_has_mapping(&vm->svm.gpusvm, start, end);
+ }
  
- #include <linux/iosys-map.h>
- 
-+#include <drm/drm_gpusvm.h>
- #include <drm/ttm/ttm_bo.h>
- #include <drm/ttm/ttm_device.h>
- #include <drm/ttm/ttm_placement.h>
-@@ -74,6 +75,9 @@ struct xe_bo {
- 	 */
- 	u16 cpu_caching;
- 
-+	/** @devmem_allocation: SVM device memory allocation */
-+	struct drm_gpusvm_devmem devmem_allocation;
++/**
++ * xe_svm_bo_evict() - SVM evict BO to system memory
++ * @bo: BO to evict
++ *
++ * SVM evict BO to system memory. GPU SVM layer ensures all device pages
++ * are evicted before returning.
++ *
++ * Return: 0 on success standard error code otherwise
++ */
++int xe_svm_bo_evict(struct xe_bo *bo)
++{
++	return drm_gpusvm_evict_to_ram(&bo->devmem_allocation);
++}
 +
- 	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
- 		struct list_head vram_userfault_link;
+ #if IS_ENABLED(CONFIG_XE_DEVMEM_MIRROR)
+ static struct drm_pagemap_dma_addr
+ xe_drm_pagemap_map_dma(struct drm_pagemap *dpagemap,
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index d549dd9e8641..9e9d333bb9d3 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -56,6 +56,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
  
+ bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end);
+ 
++int xe_svm_bo_evict(struct xe_bo *bo);
++
+ static inline bool xe_svm_range_pages_valid(struct xe_svm_range *range)
+ {
+ 	return drm_gpusvm_range_pages_valid(range->base.gpusvm, &range->base);
 -- 
 2.34.1
 
