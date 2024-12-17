@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05467E7717F
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 09:30:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 995D9E7716A
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 09:47:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6DC210E8C0;
-	Tue, 17 Dec 2024 09:30:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BEB910E8C9;
+	Tue, 17 Dec 2024 09:47:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mzZGSfwp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M3+31MaG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E13ED10E8A0;
- Tue, 17 Dec 2024 09:30:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8440610E8C9
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Dec 2024 09:47:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734427811; x=1765963811;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=4j/bQap/w17qBvDq2wR7suH9e31TUekB24w0HJpGJdg=;
- b=mzZGSfwpYS5BN0ebiB6rubwoNm8JubF7/VwLbaVImpzpH4P3v72vfhka
- RFeiz7ul1KBn7knaP74oVzNyZPexB3MjnGhFPPJMmibWLa7ccjFjPGH5C
- 4qs6aGtIlEPcXOSLxjUTqK75TQCrZWOmYqkQtRsnjH+cd9nyBkCFdsQCl
- M05VTkwgL5EnKQm5IsNCxFfg0XJ4hRVIXBpJf43NzW3y8/CKHcI8/9YvH
- Hk93pTM0uybpbLGcjPn3MzdHBZgs+rfmtv+jSYdfrq6BZ2kyra7hcfrGJ
- MFr81QG0oW/9PPMIhWdvycYkn6TtFX12V5mOZGkSuua+y9HI5oT1rrOcJ g==;
-X-CSE-ConnectionGUID: aettSUHpRPGr4uHrJEIPwA==
-X-CSE-MsgGUID: zICd1GKSRj++ogWehtFF0Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34976186"
-X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="34976186"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 01:30:11 -0800
-X-CSE-ConnectionGUID: kA8mfBtnTuOwYU18vcDYzA==
-X-CSE-MsgGUID: UQu60bvVTJWznvDnMezOfw==
+ t=1734428832; x=1765964832;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yjmGAGIHPeo1XKwM23H0OyNErnWm4eWoE8Tt+6OovPE=;
+ b=M3+31MaGUEHHO+ZsOfVYlNutmSa2EAkvN7b+IVbi+vbQPgdJyCbEGwrw
+ HH6Ie6QZtyovVVbNuktgMAT0N5xT+Da/mVwu+FqxWe/HoVBTk7F9ywhts
+ ytyZMJKR8eQaEGwLjWwnVjr/1QHtI7lu4ImpRGqd5FEL0OkQFh6URtZhM
+ wo/rq7gkzw6TWid4VRfTFPfGECT+784gZP0GxHGcCaIfhyfejrzNUexj3
+ HKe2gmW97KsvVb2gL7B6oTYpbDZgR8z18ntUb6u21+xZCk0s6LzkHYZ1o
+ 2baE45a1LOOgrpuKaZrRAIlT1npOvzwK5fN1yFCG234nw919N77wkg8HX Q==;
+X-CSE-ConnectionGUID: EZqojzVrS2WJjqBaq5HDvQ==
+X-CSE-MsgGUID: IT44wO4xQZucGpBGtr7fHA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11278"; a="46238177"
+X-IronPort-AV: E=Sophos;i="6.12,214,1728975600"; d="scan'208";a="46238177"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 01:47:11 -0800
+X-CSE-ConnectionGUID: eCqyyGZkQ42hen3nUhhvrg==
+X-CSE-MsgGUID: ehDt9h1qSlG9bLu6j5/wUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="98052477"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 01:30:09 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
- jani.nikula@linux.intel.com, imre.deak@intel.com
-Subject: [PATCH 12/14] drm/i915/dp: Make dsc helpers accept const crtc_state
- pointers
-Date: Tue, 17 Dec 2024 15:02:42 +0530
-Message-ID: <20241217093244.3938132-13-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241217093244.3938132-1-ankit.k.nautiyal@intel.com>
-References: <20241217093244.3938132-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="97364644"
+Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 01:47:11 -0800
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: ashutosh.dixit@intel.com, james.ausmus@intel.com,
+ felix.j.degrood@intel.com, matias.a.cabral@intel.com,
+ joshua.santosh.ranjan@intel.com, shubham.kumar@intel.com,
+ matthew.d.roper@intel.com, matthew.olson@intel.com,
+ Harish Chegondi <harish.chegondi@intel.com>
+Subject: [PATCH v6 0/7] Add support for EU stall sampling
+Date: Tue, 17 Dec 2024 01:46:50 -0800
+Message-ID: <cover.1734427624.git.harish.chegondi@intel.com>
+X-Mailer: git-send-email 2.47.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,68 +68,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Modify the dsc helpers to get max/min compressed bpp to accept
-`const struct intel_crtc_state *` pointers instead of
-`struct intel_crtc_state *`.
+The following patch series add support for EU stall sampling,
+a new hardware feature first added in PVC and is being supported
+in XE2 and later architecture GPUs. This feature would enable
+capturing of EU stall data which include the IP address of the
+instruction stalled and various stall reason counts.
 
-These helpers are not supposed to modify `crtc_state`.
-Accepting const pointers will allow these helpers to be called from
-functions that have const pointer to crtc_state.
+Support for this feature is being added into Mesa.
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/30142
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 6 +++---
- drivers/gpu/drm/i915/display/intel_dp.h | 4 ++--
- 2 files changed, 5 insertions(+), 5 deletions(-)
+This patch series version v6 has new uAPI changes which need to be
+incorporated into the above Mesa PR.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 3760dcff50d3..f694895d223e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1975,7 +1975,7 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
- 
- static
- u16 intel_dp_dsc_max_sink_compressed_bppx16(const struct intel_connector *connector,
--					    struct intel_crtc_state *pipe_config,
-+					    const struct intel_crtc_state *pipe_config,
- 					    int bpc)
- {
- 	u16 max_bppx16 = drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd);
-@@ -2000,7 +2000,7 @@ u16 intel_dp_dsc_max_sink_compressed_bppx16(const struct intel_connector *connec
- 	return 0;
- }
- 
--int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
-+int intel_dp_dsc_sink_min_compressed_bpp(const struct intel_crtc_state *pipe_config)
- {
- 	/* From Mandatory bit rate range Support Table 2-157 (DP v2.0) */
- 	switch (pipe_config->output_format) {
-@@ -2018,7 +2018,7 @@ int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
- }
- 
- int intel_dp_dsc_sink_max_compressed_bpp(const struct intel_connector *connector,
--					 struct intel_crtc_state *pipe_config,
-+					 const struct intel_crtc_state *pipe_config,
- 					 int bpc)
- {
- 	return intel_dp_dsc_max_sink_compressed_bppx16(connector,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 07e8e6cba94d..ca49f0a05da5 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -144,9 +144,9 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct intel_display *display,
- 					enum intel_output_format output_format,
- 					u32 pipe_bpp,
- 					u32 timeslots);
--int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config);
-+int intel_dp_dsc_sink_min_compressed_bpp(const struct intel_crtc_state *pipe_config);
- int intel_dp_dsc_sink_max_compressed_bpp(const struct intel_connector *connector,
--					 struct intel_crtc_state *pipe_config,
-+					 const struct intel_crtc_state *pipe_config,
- 					 int bpc);
- u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
- 				int mode_clock, int mode_hdisplay,
+A new test in the IGT repo:
+https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+is also under development to test this feature in the driver. This
+patch has undergone basic testing with the new IGT test that is under
+development.
+
+Thank You.
+
+v6: a. Changed the uAPI input to accept sampling rate in GPU cycles
+       instead of sampling rate multiplier.
+    b. Fix buffer wrap around over write bug (Matt Olson).
+    c. Include EU stall sampling rates information and per XeCore buffer size in the query information.
+
+v5: Addressed review feedback from v4 including
+    a. Removed DRM_XE_EU_STALL_PROP_POLL_PERIOD from the uAPI (Ashutosh)
+    b. Separated the patches for Xe_HPC and Xe2 (Matt R)
+    c. Moved read() returning -EIO into a separate patch
+    d. Removed spinlocks around set_bit() and clear_bit() (Matt R)
+    e. Renamed several variables, structures and enums (Ashutosh and
+Matt R)
+    f. Addressed other review feedback.
+v4: Addressed review feedback from v3 including
+    a. Split the patch into multiple patches (Matt R)
+    b. Added a new device query to get EU stall info (Ashutosh)
+    c. Renamed all Dss to xecore (Matt R)
+    d. Removed buffer size and disable at open input properties. (Matt R)
+    e. Removed the "_SHIFT" macros (Matt R)
+    f. Allocate the EU stall buffer only on system memory.
+    g. Changed the work arounds to OOB (Matt R)
+    h. Other review feedback.
+v3: a. Removed data header and changed read() to return -EIO when data is dropped by the HW.
+    b. Added a new DRM_XE_OBSERVATION_IOCTL_INFO to query EU stall data record info
+    c. Added struct drm_xe_eu_stall_data_pvc and struct drm_xe_eu_stall_data_xe2
+       to xe_drm.h. These declarations would help user space to parse the
+       EU stall data
+    d. Addressed other review comments from v2
+v2: Rename xe perf layer as xe observation layer (Ashutosh)
+
+Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+
+Harish Chegondi (7):
+  drm/xe/topology: Add a function to find the index of the last enabled
+    DSS in a mask
+  drm/xe/uapi: Introduce API for EU stall sampling
+  drm/xe/eustall: Implement EU stall sampling APIs for Xe_HPC
+  drm/xe/eustall: Return -EIO error from read() if HW drops data
+  drm/xe/eustall: Add EU stall sampling support for Xe2
+  drm/xe/uapi: Add a device query to get EU stall sampling information
+  drm/xe/eustall: Add workaround 22016596838 which applies to PVC.
+
+ drivers/gpu/drm/xe/Makefile                |    1 +
+ drivers/gpu/drm/xe/regs/xe_eu_stall_regs.h |   29 +
+ drivers/gpu/drm/xe/xe_eu_stall.c           | 1101 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_eu_stall.h           |   61 ++
+ drivers/gpu/drm/xe/xe_gt.c                 |    6 +
+ drivers/gpu/drm/xe/xe_gt_topology.h        |   13 +
+ drivers/gpu/drm/xe/xe_gt_types.h           |    3 +
+ drivers/gpu/drm/xe/xe_observation.c        |   14 +
+ drivers/gpu/drm/xe/xe_query.c              |   43 +
+ drivers/gpu/drm/xe/xe_trace.h              |   33 +
+ drivers/gpu/drm/xe/xe_wa_oob.rules         |    1 +
+ include/uapi/drm/xe_drm.h                  |   76 ++
+ 12 files changed, 1381 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_eu_stall_regs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.h
+
 -- 
-2.45.2
+2.47.0
 
