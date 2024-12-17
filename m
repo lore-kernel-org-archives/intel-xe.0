@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5753E7716A
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 08:00:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21FA0E7716A
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 08:37:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B26510E1D5;
-	Tue, 17 Dec 2024 08:00:05 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A457110E19D;
- Tue, 17 Dec 2024 08:00:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2CD010E41F;
+	Tue, 17 Dec 2024 08:37:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n84ltyWL";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A6BD10E201;
+ Tue, 17 Dec 2024 08:37:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734424644; x=1765960644;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mYy0BptuBEsm2X9Op6GxxPgSW9JuvoiEtfnFbgPv3OQ=;
+ b=n84ltyWLTp2KrgnYjiFn/1t1tEM3A7IHloBylRNNEzujjVgmXn+Sf3I2
+ KDwWqPAg00Cx+5cq9ak8ncYw0LGf11GCufhqL0GkZJ64TyQPm5EzarNup
+ 6tvPl4p4eMjDcboh1dZoAqPlnPp8mOe6OFl8a82ddJ2fMruSfcScCMQND
+ XosW7omcRnn6aXAjHikoL/jddhNQbfm762VUPMxJw99iOz382cx/PfRZq
+ ryE0j3mjHoR+0FWH12bD1SrOLTIUOSLj47gamVsfxMtjLOYQovMN34efR
+ mV9USKA/E1jNzoJkNSS0mieGtsBbFp/XJtPXpPr1FN7rAB916oCdjf4iQ A==;
+X-CSE-ConnectionGUID: eoIjqVEWQgKvUIAwBa0n6A==
+X-CSE-MsgGUID: WYtCZiedSoWMRRNZ976PGQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34570383"
+X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="34570383"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 00:37:23 -0800
+X-CSE-ConnectionGUID: TLG0H9YAQMaIN4Qb5nhqlg==
+X-CSE-MsgGUID: pvZq+cXFT+q6J3B2Vok1Nw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="128283223"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa002.jf.intel.com with ESMTP; 17 Dec 2024 00:37:22 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/hdcp: Fix Repeater authentication during topology
+ change
+Date: Tue, 17 Dec 2024 14:07:23 +0530
+Message-Id: <20241217083723.2883317-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe/vsec=3A_enfor?=
- =?utf-8?q?ce_CONFIG=5FINTEL=5FVSEC_dependency?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arnd Bergmann" <arnd@kernel.org>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 17 Dec 2024 08:00:04 -0000
-Message-ID: <173442240466.3702663.1007390673540474352@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241217071852.2261858-1-arnd@kernel.org>
-In-Reply-To: <20241217071852.2261858-1-arnd@kernel.org>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,28 +63,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+When topology changes before beginning a new HDCP authentication by
+sending AKE_init message we need to first authenticate only the
+repeater if that fails only then makes sense to enable a new HDCP
+authentication. Even though it made sense to not enable HDCP directly
+from check_link and schedule it repeater authentication needs to be
+done immidieatly
 
-Series: drm/xe/vsec: enforce CONFIG_INTEL_VSEC dependency
-URL   : https://patchwork.freedesktop.org/series/142695/
-State : failure
+Fixes: 47ef55a8b784 ("drm/i915/hdcp: Don't enable HDCP2.2 directly from check_link")
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-== Summary ==
-
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: e7c9466eaad2 drm-tip: 2024y-12m-17d-02h-09m-32s UTC integration manifest
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/Kconfig:28
-error: drivers/gpu/drm/xe/Kconfig: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/xe/vsec: enforce CONFIG_INTEL_VSEC dependency
-Patch failed at 0001 drm/xe/vsec: enforce CONFIG_INTEL_VSEC dependency
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index f6e68a0e3b6d..9ff2274ed7e7 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -2182,6 +2182,19 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
+ 
+ 		drm_dbg_kms(display->drm,
+ 			    "HDCP2.2 Downstream topology change\n");
++
++		ret = hdcp2_authenticate_repeater_topology(connector);
++		if (!ret) {
++			intel_hdcp_update_value(connector,
++						DRM_MODE_CONTENT_PROTECTION_ENABLED,
++						true);
++			goto out;
++		}
++
++		drm_dbg_kms(display->drm,
++			    "[CONNECTOR:%d:%s] Repeater topology auth failed.(%d)\n",
++			    connector->base.base.id, connector->base.name,
++			    ret);
+ 	} else {
+ 		drm_dbg_kms(display->drm,
+ 			    "[CONNECTOR:%d:%s] HDCP2.2 link failed, retrying auth\n",
+-- 
+2.34.1
 
