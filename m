@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FC68E7716A
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 09:30:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05467E7717F
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 09:30:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C99110E8BB;
-	Tue, 17 Dec 2024 09:30:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6DC210E8C0;
+	Tue, 17 Dec 2024 09:30:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f2yoSBeu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mzZGSfwp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAD4110E8AC;
- Tue, 17 Dec 2024 09:29:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E13ED10E8A0;
+ Tue, 17 Dec 2024 09:30:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734427799; x=1765963799;
+ t=1734427811; x=1765963811;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=A3YpixThfPIPXj5Gwyjl/2K94Ui3JyU5BalBzSNT5nA=;
- b=f2yoSBeuiC87zABDph7zZrQPKBkdj6v1WXlAF0HZKW4QqyDeMkZv57WC
- 8i5rGSuTOPCC1ObVAjL/15DaLjQvo7n8weFZqo88QUvMaJ73lW+oA4XtK
- xgEmnCpnw8MaXsk4fspj05aGK29o2rDcFBW25YTVoVld8xcb9VtLsIAZc
- 9JC2jTVDa5zBwm+1KNDL8nKZbC3TuQ9jE6wPNsGX398G/tWw2z/6CiRv1
- w36bKfzjp6GvJQ/D+IAMphR/GdBYxpjIEbYj6hjckmY4Wj03CQg01/9L1
- w1rVM9JaJmC3vOXSj8XdZE8KbpLFhdgIyLUsXkIOfbOBjEotPKh9GGYAV g==;
-X-CSE-ConnectionGUID: TUibODBGTWiASYLZW6PGvg==
-X-CSE-MsgGUID: WfUZ28LDScuKmkL1OV4nxQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34976157"
-X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="34976157"
+ bh=4j/bQap/w17qBvDq2wR7suH9e31TUekB24w0HJpGJdg=;
+ b=mzZGSfwpYS5BN0ebiB6rubwoNm8JubF7/VwLbaVImpzpH4P3v72vfhka
+ RFeiz7ul1KBn7knaP74oVzNyZPexB3MjnGhFPPJMmibWLa7ccjFjPGH5C
+ 4qs6aGtIlEPcXOSLxjUTqK75TQCrZWOmYqkQtRsnjH+cd9nyBkCFdsQCl
+ M05VTkwgL5EnKQm5IsNCxFfg0XJ4hRVIXBpJf43NzW3y8/CKHcI8/9YvH
+ Hk93pTM0uybpbLGcjPn3MzdHBZgs+rfmtv+jSYdfrq6BZ2kyra7hcfrGJ
+ MFr81QG0oW/9PPMIhWdvycYkn6TtFX12V5mOZGkSuua+y9HI5oT1rrOcJ g==;
+X-CSE-ConnectionGUID: aettSUHpRPGr4uHrJEIPwA==
+X-CSE-MsgGUID: zICd1GKSRj++ogWehtFF0Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34976186"
+X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="34976186"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 01:29:58 -0800
-X-CSE-ConnectionGUID: 4uZR1CvsSIiBURDAjOaq3Q==
-X-CSE-MsgGUID: +LZiZiMnQw+TNavxjuVjcQ==
+ 17 Dec 2024 01:30:11 -0800
+X-CSE-ConnectionGUID: kA8mfBtnTuOwYU18vcDYzA==
+X-CSE-MsgGUID: UQu60bvVTJWznvDnMezOfw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="98052435"
+X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="98052477"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 01:29:57 -0800
+ 17 Dec 2024 01:30:09 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  jani.nikula@linux.intel.com, imre.deak@intel.com
-Subject: [PATCH 06/14] drm/i915/dp: Return int from dsc_max/min_src_input_bpc
- helpers
-Date: Tue, 17 Dec 2024 15:02:36 +0530
-Message-ID: <20241217093244.3938132-7-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 12/14] drm/i915/dp: Make dsc helpers accept const crtc_state
+ pointers
+Date: Tue, 17 Dec 2024 15:02:42 +0530
+Message-ID: <20241217093244.3938132-13-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241217093244.3938132-1-ankit.k.nautiyal@intel.com>
 References: <20241217093244.3938132-1-ankit.k.nautiyal@intel.com>
@@ -68,86 +68,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use ints for dsc_max/min_bpc instead of u8 in
-dsc_max/min_src_input_bpc helpers and their callers.
-This will also help replace min_t/max_t macros with min/max ones.
+Modify the dsc helpers to get max/min compressed bpp to accept
+`const struct intel_crtc_state *` pointers instead of
+`struct intel_crtc_state *`.
+
+These helpers are not supposed to modify `crtc_state`.
+Accepting const pointers will allow these helpers to be called from
+functions that have const pointer to crtc_state.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 6 +++---
+ drivers/gpu/drm/i915/display/intel_dp.h | 4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 9848a3ecc556..f13680c4fb80 100644
+index 3760dcff50d3..f694895d223e 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1784,7 +1784,7 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
- }
+@@ -1975,7 +1975,7 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
  
  static
--u8 intel_dp_dsc_max_src_input_bpc(struct intel_display *display)
-+int intel_dp_dsc_max_src_input_bpc(struct intel_display *display)
+ u16 intel_dp_dsc_max_sink_compressed_bppx16(const struct intel_connector *connector,
+-					    struct intel_crtc_state *pipe_config,
++					    const struct intel_crtc_state *pipe_config,
+ 					    int bpc)
  {
- 	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
- 	if (DISPLAY_VER(display) >= 12)
-@@ -1801,14 +1801,14 @@ int intel_dp_dsc_compute_max_bpp(const struct intel_connector *connector,
- 	struct intel_display *display = to_intel_display(connector);
- 	int i, num_bpc;
- 	u8 dsc_bpc[3] = {};
--	u8 dsc_max_bpc;
-+	int dsc_max_bpc;
- 
- 	dsc_max_bpc = intel_dp_dsc_max_src_input_bpc(display);
- 
- 	if (!dsc_max_bpc)
- 		return dsc_max_bpc;
- 
--	dsc_max_bpc = min_t(u8, dsc_max_bpc, max_req_bpc);
-+	dsc_max_bpc = min(dsc_max_bpc, max_req_bpc);
- 
- 	num_bpc = drm_dp_dsc_sink_supported_input_bpcs(connector->dp.dsc_dpcd,
- 						       dsc_bpc);
-@@ -2188,7 +2188,7 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
+ 	u16 max_bppx16 = drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd);
+@@ -2000,7 +2000,7 @@ u16 intel_dp_dsc_max_sink_compressed_bppx16(const struct intel_connector *connec
+ 	return 0;
  }
  
- static
--u8 intel_dp_dsc_min_src_input_bpc(void)
-+int intel_dp_dsc_min_src_input_bpc(void)
+-int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
++int intel_dp_dsc_sink_min_compressed_bpp(const struct intel_crtc_state *pipe_config)
  {
- 	/* Min DSC Input BPC for ICL+ is 8 */
- 	return 8;
-@@ -2200,7 +2200,7 @@ bool is_dsc_pipe_bpp_sufficient(struct intel_display *display,
- 				struct link_config_limits *limits,
- 				int pipe_bpp)
+ 	/* From Mandatory bit rate range Support Table 2-157 (DP v2.0) */
+ 	switch (pipe_config->output_format) {
+@@ -2018,7 +2018,7 @@ int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
+ }
+ 
+ int intel_dp_dsc_sink_max_compressed_bpp(const struct intel_connector *connector,
+-					 struct intel_crtc_state *pipe_config,
++					 const struct intel_crtc_state *pipe_config,
+ 					 int bpc)
  {
--	u8 dsc_max_bpc, dsc_min_bpc, dsc_max_pipe_bpp, dsc_min_pipe_bpp;
-+	int dsc_max_bpc, dsc_min_bpc, dsc_max_pipe_bpp, dsc_min_pipe_bpp;
- 
- 	dsc_max_bpc = min(intel_dp_dsc_max_src_input_bpc(display), conn_state->max_requested_bpc);
- 	dsc_min_bpc = intel_dp_dsc_min_src_input_bpc();
-@@ -2247,9 +2247,9 @@ static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	const struct intel_connector *connector =
- 		to_intel_connector(conn_state->connector);
--	u8 max_req_bpc = conn_state->max_requested_bpc;
--	u8 dsc_max_bpc, dsc_max_bpp;
--	u8 dsc_min_bpc, dsc_min_bpp;
-+	int max_req_bpc = conn_state->max_requested_bpc;
-+	int dsc_max_bpc, dsc_max_bpp;
-+	int dsc_min_bpc, dsc_min_bpp;
- 	u8 dsc_bpc[3] = {};
- 	int forced_bpp, pipe_bpp;
- 	int num_bpc, i, ret;
-@@ -2269,7 +2269,7 @@ static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
- 	if (!dsc_max_bpc)
- 		return -EINVAL;
- 
--	dsc_max_bpc = min_t(u8, dsc_max_bpc, max_req_bpc);
-+	dsc_max_bpc = min(dsc_max_bpc, max_req_bpc);
- 	dsc_max_bpp = min(dsc_max_bpc * 3, limits->pipe.max_bpp);
- 
- 	dsc_min_bpc = intel_dp_dsc_min_src_input_bpc();
+ 	return intel_dp_dsc_max_sink_compressed_bppx16(connector,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 07e8e6cba94d..ca49f0a05da5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -144,9 +144,9 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct intel_display *display,
+ 					enum intel_output_format output_format,
+ 					u32 pipe_bpp,
+ 					u32 timeslots);
+-int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config);
++int intel_dp_dsc_sink_min_compressed_bpp(const struct intel_crtc_state *pipe_config);
+ int intel_dp_dsc_sink_max_compressed_bpp(const struct intel_connector *connector,
+-					 struct intel_crtc_state *pipe_config,
++					 const struct intel_crtc_state *pipe_config,
+ 					 int bpc);
+ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
+ 				int mode_clock, int mode_hdisplay,
 -- 
 2.45.2
 
