@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2046E7718C
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 23:33:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88E5EE77190
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 23:33:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D6EF10EA86;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C611D10EAA0;
 	Tue, 17 Dec 2024 23:33:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hQvKdO4t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DZdAhlsc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1E5410E860;
- Tue, 17 Dec 2024 23:33:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 684CA10EA96;
+ Tue, 17 Dec 2024 23:33:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734478392; x=1766014392;
+ t=1734478393; x=1766014393;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DekUpJ3M+HQPZXiunqMVekiBvlQ6tTvvYNjDxjKwvVk=;
- b=hQvKdO4tIc41Q6Qk1IrOIHdYE1OC/YmXbcPGVy1DYcwMejhCN4UV0F1t
- 65fWn9HmtAEwyWe6ev/w95QRwxFSCDmumEFrZXpD/rWCkjeztYCpRj4Hj
- 0ww5400CSBc7Iq0+ko7U8ldH57+NtkwV92TgtBCWKKlNOF500nEyNwBkN
- onK7nGlFXqRHH823x6Y5IVZtQ80jPtNwQFCdOjbG21PDwcWiNCpa99o9n
- c7Mwy9mTLtuAVWRW1WTA95IUA/UEOoxBVtvlSUfApfnEGYCtMBoi7pEoC
- /IHLI+Oi87DAu3WuFtnDueMx4pdZLJnquQCrsgzqCfocWqatWm5PXACqL A==;
-X-CSE-ConnectionGUID: TdVCwuXsSjmZWlzVV5MQjA==
-X-CSE-MsgGUID: t3KDfl8dRBuke9edpVM8pg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="22517420"
-X-IronPort-AV: E=Sophos;i="6.12,243,1728975600"; d="scan'208";a="22517420"
+ bh=tLe96lD4/vdfrw7RBqJXlbOnMZbo8zrGGTqMjYQsD/s=;
+ b=DZdAhlscdd/X6iRGiG71zopYxA+GfSiB0zJs76XfGExALNLiXiSCNLT5
+ F1z0cJUaXNmCtyLlSIkvcecy5aZqD2wAkNCbsJmSHqcnFrhyUZpFMnQ9+
+ vIjAVGLLJB2Of5aj1DTNYFP/TbIl7txYeDYqTgMUUqHUApxMH7qsk0PLK
+ /DXf5Q0yV9+JGt6NvS8YTPhOgNMG/92PUSWhm/qT+57V82XaBbXKh+hU0
+ T0GCheR3ErjJLgI/a0CwxcKkNa78cEN+TIBVLRH4gDGTW86A8xvhzvmos
+ btHG0K+vwRfgrF5KIhmAPlAB6CeTJ5A69T2wX3cuxClw1jJEZ23CeS08h A==;
+X-CSE-ConnectionGUID: ZI/9PfOMR7OQmJn01KHu+A==
+X-CSE-MsgGUID: Z18t4da0RE290/rLn/RliA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="22517463"
+X-IronPort-AV: E=Sophos;i="6.12,243,1728975600"; d="scan'208";a="22517463"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 15:33:11 -0800
-X-CSE-ConnectionGUID: +jIlzRF+Ta++9cfu0/qEsA==
-X-CSE-MsgGUID: PkaoFC/3RU2AgbrqcbXEUg==
+ 17 Dec 2024 15:33:12 -0800
+X-CSE-ConnectionGUID: q0bXUw0oSvq2wCK91laMIw==
+X-CSE-MsgGUID: 6hbCpNDhSeSdB4mtIHawGw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102273446"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102273454"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 15:33:10 -0800
+ 17 Dec 2024 15:33:12 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v3 16/30] drm/xe: Do not allow CPU address mirror VMA unbind
- if the GPU has bindings
-Date: Tue, 17 Dec 2024 15:33:34 -0800
-Message-Id: <20241217233348.3519726-17-matthew.brost@intel.com>
+Subject: [PATCH v3 23/30] drm/xe: Add Xe SVM populate_devmem_pfn GPU SVM vfunc
+Date: Tue, 17 Dec 2024 15:33:41 -0800
+Message-Id: <20241217233348.3519726-24-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241217233348.3519726-1-matthew.brost@intel.com>
 References: <20241217233348.3519726-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,86 +70,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-uAPI is designed with the use case that only mapping a BO to a malloc'd
-address will unbind a CPU-address mirror VMA. Therefore, allowing a
-CPU-address mirror VMA to unbind when the GPU has bindings in the range
-being unbound does not make much sense. This behavior is not supported,
-as it simplifies the code. This decision can always be revisited if a
-use case arises.
+Get device pfns from BO's buddy blocks. Used in migrate_* core MM
+functions called in GPU SVM to migrate between device and system memory.
 
+v2:
+ - Use new drm_gpusvm_devmem_ops
 v3:
- - s/arrises/arises (Thomas)
- - s/system allocator/GPU address mirror (Thomas)
- - Kernel doc (Thomas)
- - Newline between function defs (Thomas)
+ - Better commit message (Thomas)
 
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c |  5 +++++
- drivers/gpu/drm/xe/xe_svm.h |  2 ++
- drivers/gpu/drm/xe/xe_vm.c  | 16 ++++++++++++++++
- 3 files changed, 23 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.c | 40 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 58fbe1b65e8b..8237b534a65b 100644
+index dcd99520a6d9..16d526b2d19a 100644
 --- a/drivers/gpu/drm/xe/xe_svm.c
 +++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -427,3 +427,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+@@ -7,6 +7,7 @@
+ #include "xe_migrate.h"
+ #include "xe_pt.h"
+ #include "xe_svm.h"
++#include "xe_ttm_vram_mgr.h"
+ #include "xe_vm.h"
+ #include "xe_vm_types.h"
  
- 	return err;
+@@ -454,8 +455,47 @@ static int xe_svm_copy_to_ram(struct page **pages, dma_addr_t *dma_addr,
+ 	return xe_svm_copy(pages, dma_addr, npages, XE_SVM_COPY_TO_SRAM);
  }
-+
-+bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end)
+ 
++static struct xe_bo *to_xe_bo(struct drm_gpusvm_devmem *devmem_allocation)
 +{
-+	return drm_gpusvm_has_mapping(&vm->svm.gpusvm, start, end);
++	return container_of(devmem_allocation, struct xe_bo, devmem_allocation);
 +}
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 5531868cdd6f..ddce1069ba1e 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -46,6 +46,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 			    struct xe_tile *tile, u64 fault_addr,
- 			    bool atomic);
- 
-+bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end);
 +
- static inline bool xe_svm_range_pages_valid(struct xe_svm_range *range)
- {
- 	return drm_gpusvm_range_pages_valid(range->base.gpusvm, &range->base);
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 20ea099664af..613a68498a24 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2398,6 +2398,17 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 			struct xe_vma *old =
- 				gpuva_to_vma(op->base.remap.unmap->va);
- 			bool skip = xe_vma_is_cpu_addr_mirror(old);
-+			u64 start = xe_vma_start(old), end = xe_vma_end(old);
++static u64 block_offset_to_pfn(struct xe_mem_region *mr, u64 offset)
++{
++	return PHYS_PFN(offset + mr->hpa_base);
++}
 +
-+			if (op->base.remap.prev)
-+				start = op->base.remap.prev->va.addr +
-+					op->base.remap.prev->va.range;
-+			if (op->base.remap.next)
-+				end = op->base.remap.next->va.addr;
++static struct drm_buddy *tile_to_buddy(struct xe_tile *tile)
++{
++	return &tile->mem.vram_mgr->mm;
++}
 +
-+			if (xe_vma_is_cpu_addr_mirror(old) &&
-+			    xe_svm_has_mapping(vm, start, end))
-+				return -EBUSY;
- 
- 			op->remap.start = xe_vma_start(old);
- 			op->remap.range = xe_vma_size(old);
-@@ -2480,6 +2491,11 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 		{
- 			struct xe_vma *vma = gpuva_to_vma(op->base.unmap.va);
- 
-+			if (xe_vma_is_cpu_addr_mirror(vma) &&
-+			    xe_svm_has_mapping(vm, xe_vma_start(vma),
-+					       xe_vma_end(vma)))
-+				return -EBUSY;
++static int xe_svm_populate_devmem_pfn(struct drm_gpusvm_devmem *devmem_allocation,
++				      unsigned long npages, unsigned long *pfn)
++{
++	struct xe_bo *bo = to_xe_bo(devmem_allocation);
++	struct ttm_resource *res = bo->ttm.resource;
++	struct list_head *blocks = &to_xe_ttm_vram_mgr_resource(res)->blocks;
++	struct drm_buddy_block *block;
++	int j = 0;
 +
- 			if (!xe_vma_is_cpu_addr_mirror(vma))
- 				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
- 			break;
++	list_for_each_entry(block, blocks, link) {
++		struct xe_mem_region *mr = block->private;
++		struct xe_tile *tile = mr_to_tile(mr);
++		struct drm_buddy *buddy = tile_to_buddy(tile);
++		u64 block_pfn = block_offset_to_pfn(mr, drm_buddy_block_offset(block));
++		int i;
++
++		for (i = 0; i < drm_buddy_block_size(buddy, block) >> PAGE_SHIFT; ++i)
++			pfn[j++] = block_pfn + i;
++	}
++
++	return 0;
++}
++
+ __maybe_unused
+ static const struct drm_gpusvm_devmem_ops gpusvm_devmem_ops = {
++	.populate_devmem_pfn = xe_svm_populate_devmem_pfn,
+ 	.copy_to_devmem = xe_svm_copy_to_devmem,
+ 	.copy_to_ram = xe_svm_copy_to_ram,
+ };
 -- 
 2.34.1
 
