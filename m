@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F067E77188
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 013D2E7718C
 	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 23:33:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5651010E347;
-	Tue, 17 Dec 2024 23:33:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1346010E41B;
+	Tue, 17 Dec 2024 23:33:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iIGzA7lW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bxKzvgpb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32A2610E2FE;
- Tue, 17 Dec 2024 23:33:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33ABC10E307;
+ Tue, 17 Dec 2024 23:33:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734478388; x=1766014388;
+ t=1734478389; x=1766014389;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HbdphFBOs6QEj3+6AUoIm2WzF/q3MDTxDlAk1XFxXDk=;
- b=iIGzA7lWawNYKqLyNWX/UGN+Sjsf2qivTfYekU+o2ReEEvDm5khkc4xr
- FYHOLaTGLnypVHQthIN/PA6sH1MeLaQacSo5weFKvGjRlbaqDdJjsKSsK
- 2wrBUYn0KAUArGhfMm0soVQc4g5H7Gw8DkcobwyVPp3k8eMSi/R2JnPrc
- HW79nzYJfuWWtA8w55WdUnEOi03i3w788fhxX3gcDthQzxGLe2M4Dibx2
- A6uWoP23I9n9LUX8cqlbBz9yF8GKRS8NOQU29HHfdJhZZ93q+60pQeIqV
- 726H5u0iuVpFlLl1bXNA83WQDwtPsv8JvlLrZO0ArXm8CFgyceF8eI6ji w==;
-X-CSE-ConnectionGUID: TzZl8dpMQv+UI49tmXrQfQ==
-X-CSE-MsgGUID: n6dL3DUPRiusNSe+WJpJFg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="22517334"
-X-IronPort-AV: E=Sophos;i="6.12,243,1728975600"; d="scan'208";a="22517334"
+ bh=Aw6TsYuWW1eZWxgagRgFixS4YXBGrv7twl6YqF9Us4A=;
+ b=bxKzvgpbdkWmjBOykuBbYXn+o+7ijUaJf3T34sOX7ZVjUDtsdFer9FRw
+ LaLItf88tObRc5t/Y0RsWkHJ327Y0PaRfYztI4PhZPpBzkr4vw/1qzJDf
+ W1aOrguitYGbwoeOTIh9Sj6hifkU0/cAsdqzob8czFZcHPzuvqyES07LY
+ mP5IrXl4bV1BJxWt33yMDwpXOMUb7Y4YVbwA8kxxnPrdGHxdw5KOQJCtN
+ JQZLVOi6bl87A8mBivazueNcfFvnVxHSmoE/kA1Ib6jc/AFfwQEwB41+U
+ r1FwP+EGXJI3Y2PC9zVg03Boza94C9wEG2cRpIRSt7p9zN+lDZrm0Bk7n A==;
+X-CSE-ConnectionGUID: W5d1ky1QSQ+gcQiCiUK72Q==
+X-CSE-MsgGUID: cv7IW/8DTkuCYnAAH7Xu7g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="22517346"
+X-IronPort-AV: E=Sophos;i="6.12,243,1728975600"; d="scan'208";a="22517346"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 15:33:07 -0800
-X-CSE-ConnectionGUID: 2YEqj3IORJCkRme6FU/tbg==
-X-CSE-MsgGUID: e5pa1qTYSAmhnkWeD26QIg==
+ 17 Dec 2024 15:33:08 -0800
+X-CSE-ConnectionGUID: EUgOeFzcSW6bC21rifPVyw==
+X-CSE-MsgGUID: 8ZBeak8kQsqvt84BfunhZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102273423"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102273425"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 15:33:07 -0800
+ 17 Dec 2024 15:33:08 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v3 02/30] mm/migrate: Add migrate_device_pfns
-Date: Tue, 17 Dec 2024 15:33:20 -0800
-Message-Id: <20241217233348.3519726-3-matthew.brost@intel.com>
+Subject: [PATCH v3 04/30] drm/pagemap: Add DRM pagemap
+Date: Tue, 17 Dec 2024 15:33:22 -0800
+Message-Id: <20241217233348.3519726-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241217233348.3519726-1-matthew.brost@intel.com>
 References: <20241217233348.3519726-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,116 +70,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add migrate_device_pfns which prepares an array of pre-populated device
-pages for migration. This is needed for eviction of known set of
-non-contiguous devices pages to cpu pages which is a common case for SVM
-in DRM drivers using TTM.
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-v2:
- - s/migrate_device_vma_range/migrate_device_prepopulated_range
- - Drop extra mmu invalidation (Vetter)
+Introduce drm_pagemap ops to map and unmap dma to VRAM resources. In the
+local memory case it's a matter of merely providing an offset into the
+device's physical address. For future p2p the map and unmap functions may
+encode as needed.
+
+Similar to how dma-buf works, let the memory provider (drm_pagemap) provide
+the mapping functionality.
+
 v3:
- - s/migrate_device_prepopulated_range/migrate_device_pfns (Alistar)
- - Use helper to lock device pages (Alistar)
- - Update commit message with why this is required (Alistar)
+ - Move to drm level include
 
-Cc: Andrew Morton <akpm@linux-foundation.org>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- include/linux/migrate.h |  1 +
- mm/migrate_device.c     | 52 +++++++++++++++++++++++++++++------------
- 2 files changed, 38 insertions(+), 15 deletions(-)
+ include/drm/drm_pagemap.h | 103 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 103 insertions(+)
+ create mode 100644 include/drm/drm_pagemap.h
 
-diff --git a/include/linux/migrate.h b/include/linux/migrate.h
-index 002e49b2ebd9..6254746648cc 100644
---- a/include/linux/migrate.h
-+++ b/include/linux/migrate.h
-@@ -229,6 +229,7 @@ void migrate_vma_pages(struct migrate_vma *migrate);
- void migrate_vma_finalize(struct migrate_vma *migrate);
- int migrate_device_range(unsigned long *src_pfns, unsigned long start,
- 			unsigned long npages);
-+int migrate_device_pfns(unsigned long *src_pfns, unsigned long npages);
- void migrate_device_pages(unsigned long *src_pfns, unsigned long *dst_pfns,
- 			unsigned long npages);
- void migrate_device_finalize(unsigned long *src_pfns,
-diff --git a/mm/migrate_device.c b/mm/migrate_device.c
-index 9cf26592ac93..19960743f927 100644
---- a/mm/migrate_device.c
-+++ b/mm/migrate_device.c
-@@ -876,6 +876,22 @@ void migrate_vma_finalize(struct migrate_vma *migrate)
- }
- EXPORT_SYMBOL(migrate_vma_finalize);
- 
-+static unsigned long migrate_device_pfn_lock(unsigned long pfn)
-+{
-+	struct folio *folio;
+diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
+new file mode 100644
+index 000000000000..b6b387b81479
+--- /dev/null
++++ b/include/drm/drm_pagemap.h
+@@ -0,0 +1,103 @@
++/* SPDX-License-Identifier: MIT */
++#ifndef _DRM_PAGEMAP_H_
++#define _DRM_PAGEMAP_H_
 +
-+	folio = folio_get_nontail_page(pfn_to_page(pfn));
-+	if (!folio)
-+		return 0;
++#include <linux/dma-direction.h>
++#include <linux/hmm.h>
++#include <linux/types.h>
 +
-+	if (!folio_trylock(folio)) {
-+		folio_put(folio);
-+		return 0;
-+	}
++struct drm_pagemap;
++struct device;
 +
-+	return migrate_pfn(pfn) | MIGRATE_PFN_MIGRATE;
-+}
-+
- /**
-  * migrate_device_range() - migrate device private pfns to normal memory.
-  * @src_pfns: array large enough to hold migrating source device private pfns.
-@@ -900,29 +916,35 @@ int migrate_device_range(unsigned long *src_pfns, unsigned long start,
- {
- 	unsigned long i, pfn;
- 
--	for (pfn = start, i = 0; i < npages; pfn++, i++) {
--		struct folio *folio;
-+	for (pfn = start, i = 0; i < npages; pfn++, i++)
-+		src_pfns[i] = migrate_device_pfn_lock(pfn);
- 
--		folio = folio_get_nontail_page(pfn_to_page(pfn));
--		if (!folio) {
--			src_pfns[i] = 0;
--			continue;
--		}
-+	migrate_device_unmap(src_pfns, npages, NULL);
- 
--		if (!folio_trylock(folio)) {
--			src_pfns[i] = 0;
--			folio_put(folio);
--			continue;
--		}
-+	return 0;
-+}
-+EXPORT_SYMBOL(migrate_device_range);
- 
--		src_pfns[i] = migrate_pfn(pfn) | MIGRATE_PFN_MIGRATE;
--	}
 +/**
-+ * migrate_device_pfns() - migrate device private pfns to normal memory.
-+ * @src_pfns: pre-popluated array of source device private pfns to migrate.
-+ * @npages: number of pages to migrate.
-+ *
-+ * Similar to migrate_device_range() but supports non-contiguous pre-popluated
-+ * array of device pages to migrate.
++ * enum drm_interconnect_protocol - Used to identify an interconnect protocol.
 + */
-+int migrate_device_pfns(unsigned long *src_pfns, unsigned long npages)
-+{
-+	unsigned long i;
++enum drm_interconnect_protocol {
++	DRM_INTERCONNECT_SYSTEM,    /* DMA map is system pages. */
++	DRM_INTERCONNECT_PCIE_P2P,  /* DMA map is PCIE P2P */
++	DRM_INTERCONNECT_DRIVER,    /* DMA map is driver defined */
++	/* A driver can add private values beyond DRM_INTERCONNECT_DRIVER */
++};
 +
-+	for (i = 0; i < npages; i++)
-+		src_pfns[i] = migrate_device_pfn_lock(src_pfns[i]);
- 
- 	migrate_device_unmap(src_pfns, npages, NULL);
- 
- 	return 0;
- }
--EXPORT_SYMBOL(migrate_device_range);
-+EXPORT_SYMBOL(migrate_device_pfns);
- 
- /*
-  * Migrate a device coherent folio back to normal memory. The caller should have
++/**
++ * struct drm_pagemap_dma_addr - DMA address representation.
++ * @addr: The dma address or driver-defined address for driver private interconnects.
++ * @proto: The interconnect protocol.
++ * @order: The page order of the dma mapping. (Size is PAGE_SIZE << order).
++ * @dir: The DMA direction.
++ *
++ * Note: There is room for improvement here. We should be able to pack into
++ * 64 bits.
++ */
++struct drm_pagemap_dma_addr {
++	dma_addr_t addr;
++	u64 proto : 54;
++	u64 order : 8;
++	u64 dir : 2;
++};
++
++/**
++ * drm_pagemap_dma_addr_encode() - Encode a dma address with metadata
++ * @addr: The dma address or driver-defined address for driver private interconnects.
++ * @proto: The interconnect protocol.
++ * @order: The page order of the dma mapping. (Size is PAGE_SIZE << order).
++ * @dir: The DMA direction.
++ *
++ * Return: A struct drm_pagemap_dma_addr encoding the above information.
++ */
++static inline struct drm_pagemap_dma_addr
++drm_pagemap_dma_addr_encode(dma_addr_t addr,
++			    enum drm_interconnect_protocol proto,
++			    unsigned int order,
++			    enum dma_data_direction dir)
++{
++	return (struct drm_pagemap_dma_addr) {
++		.addr = addr,
++		.proto = proto,
++		.order = order,
++		.dir = dir,
++	};
++}
++
++/**
++ * struct drm_pagemap_ops: Ops for a drm-pagemap.
++ */
++struct drm_pagemap_ops {
++	/**
++	 * @map_dma: Map for dma access or provide a virtual address suitable for
++	 * @dev.
++	 * @dpagemap: The struct drm_pagemap for the page.
++	 * @dev: The dma mapper.
++	 * @page: The page to map.
++	 * @dir: The transfer direction.
++	 * @protocol: The protocol to use.
++	 */
++	struct drm_pagemap_dma_addr (*map_dma)(struct drm_pagemap *dpagemap,
++					       struct device *dev,
++					       struct page *page,
++					       unsigned int order,
++					       enum dma_data_direction dir);
++
++	/**
++	 * @unmap_dma: Unmap a dma address previously obtained using  @map_dma.
++	 * @dev: The dma unmapper.
++	 * @addr: The dma address obtained when mapping.
++	 */
++	void (*unmap_dma)(struct drm_pagemap *dpagemap,
++			  struct device *dev,
++			  struct drm_pagemap_dma_addr addr);
++
++};
++
++/**
++ * struct drm_pagemap: Additional information for a struct dev_pagemap
++ * used for device p2p handshaking.
++ * @ops: The struct drm_pagemap_ops.
++ * @dev: The struct drevice owning the device-private memory.
++ */
++struct drm_pagemap {
++	const struct drm_pagemap_ops *ops;
++	struct device *dev;
++};
++
++#endif
 -- 
 2.34.1
 
