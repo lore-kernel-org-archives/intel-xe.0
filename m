@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0180E7716A
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 05:38:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED58AE7716A
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Dec 2024 05:40:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E83110E85C;
-	Tue, 17 Dec 2024 05:38:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B973210E85D;
+	Tue, 17 Dec 2024 05:40:21 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEFD410E85C;
- Tue, 17 Dec 2024 05:38:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C51A510E85D;
+ Tue, 17 Dec 2024 05:40:20 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============6942011129999923518=="
+ boundary="===============3350683163709569862=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/slpc=3A_Remove_unnecessar?=
- =?utf-8?q?y_force_wakes?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Fixes_for_MI=5FREPORT=5FPERF=5FC?=
+ =?utf-8?q?OUNT_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 17 Dec 2024 05:38:00 -0000
-Message-ID: <173441388090.3620127.875237199049496711@b555e5b46a47>
+Date: Tue, 17 Dec 2024 05:40:20 -0000
+Message-ID: <173441402080.3620127.13049807041884607315@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20241216194119.3017792-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20241216194119.3017792-1-vinay.belgaumkar@intel.com>
+References: <20241217005818.25205-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20241217005818.25205-1-umesh.nerlige.ramappa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,20 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6942011129999923518==
+--===============3350683163709569862==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe/slpc: Remove unnecessary force wakes
-URL   : https://patchwork.freedesktop.org/series/142674/
+Series: Fixes for MI_REPORT_PERF_COUNT (rev2)
+URL   : https://patchwork.freedesktop.org/series/141811/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2386-49cc582754c205bbe43d4ef2b1fd3894bee1f3bd_BAT -> xe-pw-142674v1_BAT
+CI Bug Log - changes from xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191_BAT -> xe-pw-141811v2_BAT
 ====================================================
 
 Summary
@@ -65,32 +65,58 @@ Summary
 
   
 
-Participating hosts (10 -> 8)
+Participating hosts (10 -> 9)
 ------------------------------
 
-  Missing    (2): bat-adlp-vm bat-lnl-1 
+  Missing    (1): bat-adlp-vm 
 
+Known issues
+------------
 
-Changes
--------
+  Here are the changes found in xe-pw-141811v2_BAT that come from known issues:
 
-  No changes found
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-dpms@a-edp1:
+    - bat-lnl-1:          [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3729])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#3517]) -> [PASS][4] +2 other tests pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-adlp-7:         [SKIP][5] ([Intel XE#455]) -> [PASS][6] +3 other tests pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+
+  
+  [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
+  [Intel XE#3729]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
 
 
 Build changes
 -------------
 
-  * Linux: xe-2386-49cc582754c205bbe43d4ef2b1fd3894bee1f3bd -> xe-pw-142674v1
+  * Linux: xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191 -> xe-pw-141811v2
 
   IGT_8157: 48a70f6795e6d68b9fae275261ae3b09d3401fe1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2386-49cc582754c205bbe43d4ef2b1fd3894bee1f3bd: 49cc582754c205bbe43d4ef2b1fd3894bee1f3bd
-  xe-pw-142674v1: 142674v1
+  xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191: 8bfb48c045396305771aaea35f06d5ef3bf3a191
+  xe-pw-141811v2: 141811v2
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142674v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/index.html
 
---===============6942011129999923518==
+--===============3350683163709569862==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,32 +136,55 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe/slpc: Remove unnecessary force wakes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142674/">https://patchwork.freedesktop.org/series/142674/</a></td></tr>
+<tr><td><b>Series:</b></td><td>Fixes for MI_REPORT_PERF_COUNT (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141811/">https://patchwork.freedesktop.org/series/141811/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142674v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142674v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-2386-49cc582754c205bbe43d4ef2b1fd3894bee1f3bd_BAT -&gt; xe-pw-142674v1_BAT</h1>
+    <h1>CI Bug Log - changes from xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191_BAT -&gt; xe-pw-141811v2_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 8)</h2>
-<p>Missing    (2): bat-adlp-vm bat-lnl-1 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-141811v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-dpms@a-edp1:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3729">Intel XE#3729</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517">Intel XE#3517</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141811v2/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> +3 other tests pass</li>
+</ul>
+</li>
+</ul>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-2386-49cc582754c205bbe43d4ef2b1fd3894bee1f3bd -&gt; xe-pw-142674v1</li>
+<li>Linux: xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191 -&gt; xe-pw-141811v2</li>
 </ul>
 <p>IGT_8157: 48a70f6795e6d68b9fae275261ae3b09d3401fe1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2386-49cc582754c205bbe43d4ef2b1fd3894bee1f3bd: 49cc582754c205bbe43d4ef2b1fd3894bee1f3bd<br />
-  xe-pw-142674v1: 142674v1</p>
+  xe-2387-8bfb48c045396305771aaea35f06d5ef3bf3a191: 8bfb48c045396305771aaea35f06d5ef3bf3a191<br />
+  xe-pw-141811v2: 141811v2</p>
 
 </body>
 </html>
 
---===============6942011129999923518==--
+--===============3350683163709569862==--
