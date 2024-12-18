@@ -4,64 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8AD7E77187
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Dec 2024 10:15:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B95AE77188
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Dec 2024 10:29:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A21A010EB40;
-	Wed, 18 Dec 2024 10:15:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBE1610E0C6;
+	Wed, 18 Dec 2024 10:29:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fd8m+opN";
+	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=friedrich.vock@gmx.de header.b="gskIaHS/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54FA110EB40;
- Wed, 18 Dec 2024 10:15:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734516923; x=1766052923;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=zPR6Vu+jyxEVGtaGlHA9wM84vimIooBOwK7FQRw4RSw=;
- b=Fd8m+opNJzI5YXCO9x4EAW2XhU33XoWj3AW3pVppb2X8mzRkQE35tjr6
- 3fxg5ZNmT4famZl2en65G7Daua2r94g29c5AJGmAoFAKMWARcRIQ7Cnwl
- Y7rJLr8QXxsq9TQMgiqhaMoxCWvhXJtokFoaxzwYCz+V4G2MuzQJ2RzzF
- Hkht7ENXXc0GSflmWqxHUGprB/RgJ0yPl6JVAZ/Gb6kl3KtXeojmKIF3J
- Lw++yzLnDTFCb0/pwh2C557Hb50JbSIbWWaFpK8kCl8I5JuKXG5Ck7TAG
- Q8thrYTO2mVEwc531Uj489BWOWLpgx+A6O5aZ9Afx2O5d68g0/g2pMLNa w==;
-X-CSE-ConnectionGUID: 9Wwqo1r1R86Z93scg4L5fA==
-X-CSE-MsgGUID: UVruB/YHTjyB1gEuiMyLTQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="35134326"
-X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="35134326"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 02:15:09 -0800
-X-CSE-ConnectionGUID: tUdJRlzoSlOglfpjDQt+WA==
-X-CSE-MsgGUID: PyEPSASdRNO//bvJNI5xQw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="98232558"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO [10.245.246.105])
- ([10.245.246.105])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 02:15:06 -0800
-Message-ID: <f130c073fdc2338292010e5c737155d9ad696618.camel@linux.intel.com>
-Subject: Re: [PATCH v14 3/8] drm/ttm/pool: Provide a helper to shrink pages
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Matthew Brost
- <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, Paulo Zanoni
- <paulo.r.zanoni@intel.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Date: Wed, 18 Dec 2024 11:15:04 +0100
-In-Reply-To: <d1e33436-9c1c-43d4-a86a-956926a7096c@amd.com>
-References: <20241115150120.3280-1-thomas.hellstrom@linux.intel.com>
- <20241115150120.3280-4-thomas.hellstrom@linux.intel.com>
- <800ee040-7c2e-47d0-81e6-a352f5f689fb@amd.com>
- <a07c93704bc7f59f51b5a6a13aeb3e13eee28e3c.camel@linux.intel.com>
- <d1e33436-9c1c-43d4-a86a-956926a7096c@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C305D10E0C6;
+ Wed, 18 Dec 2024 10:29:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+ s=s31663417; t=1734517736; x=1735122536; i=friedrich.vock@gmx.de;
+ bh=T/KJYEmAbhFiYFse+9DCMOak5ee1q1gfy6EqZYSZ2pA=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+ References:From:In-Reply-To:Content-Type:
+ Content-Transfer-Encoding:cc:content-transfer-encoding:
+ content-type:date:from:message-id:mime-version:reply-to:subject:
+ to;
+ b=gskIaHS/z5SjdcBfjNt80wOoCFQBUb5+ZpG1kiFNmCBj8+GscwT6eI6El4CIqxuE
+ A9fd81BXiWo4dMlIOUr4Yv+WOS8plIu78gADyx4tCErSX5PT512uKpixsQQE9U1mr
+ loozpChePw0xSd414OkgFkrr71/woGPuFynrfDvlyj3VaYPnMZ3Ww7CMXtsyPzMD8
+ qA9LM4+qgG7DzMmEZrGh/J3Tuk4jGrMChnQ8jyxoZ5T20taFR2IWebe2BIvuhxx9U
+ 2eq0DDqt1A2mqoCSjSEu59PCL0Nek9kBdFBrHh1ADx4arsflxySSBk2tCmAo/kXlf
+ SannSIKgrcmV+qolpQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.0.3] ([109.91.201.165]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MK3W0-1t95ZG2wYw-00YJ7v; Wed, 18
+ Dec 2024 11:28:56 +0100
+Message-ID: <170a89dc-00a7-41c5-9b25-790519adf381@gmx.de>
+Date: Wed, 18 Dec 2024 11:28:54 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/7] kernel/cgroups: Add "dmem" memory accounting
+ cgroup.
+To: Maarten Lankhorst <dev@lankhorst.se>, Tejun Heo <tj@kernel.org>
+Cc: Maxime Ripard <mripard@kernel.org>, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ Andrew Morton <akpm@linux-foundation.org>, cgroups@vger.kernel.org,
+ linux-mm@kvack.org, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+References: <20241204134410.1161769-1-dev@lankhorst.se>
+ <20241213-proud-kind-uakari-df3a70@houat>
+ <80c49a80-d49c-4ca5-9568-9f7950618275@lankhorst.se>
+ <20241213-gentle-glittering-salamander-22addf@houat>
+ <5a50a992-9286-4179-8031-ffb514bca34f@lankhorst.se>
+ <20241217-meek-bullfinch-of-luck-2c3468@houat>
+ <a69a3500-be17-4899-bdb9-c6a63bf8dc81@lankhorst.se>
+ <Z2GwpOQDVshpv-ml@slm.duckdns.org>
+ <c0a539e7-0f1b-496a-9848-73a7ada66bfb@lankhorst.se>
+Content-Language: en-US
+From: Friedrich Vock <friedrich.vock@gmx.de>
+Autocrypt: addr=friedrich.vock@gmx.de; keydata=
+ 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
+ f7+xmX0X3AMtWz/15Y+7cPO2
+In-Reply-To: <c0a539e7-0f1b-496a-9848-73a7ada66bfb@lankhorst.se>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:rF51Jw1fMmPKsjCtvVAX5UejHuIfUM1d2kPWtEwDA7+Td/kNgxs
+ LrimTnrfRX+jNP/Dc4RruS0Fp20LATyvRO8msLjytlq22mU7Na2rpL5+hz2cj+LsnCdTqx0
+ Ufn9TCgoGumHU9xnJjPVP3JH50NQkBPJEvRr0M9Ybblt/fb4+YoRjKQO43QLpNJZBO8oVEj
+ 4pPYRnHWoZHj9WnLt0Crw==
+UI-OutboundReport: notjunk:1;M01:P0:AQhxlURqPUw=;Fm2MQyFgnGyjbVYgqofW9E7qdZa
+ okzMmgGY/h7MNpA6FhSoTVXQsnH8PTW94CXiosTiscQHQU8HnGS71P8C1S97GWXDna6DSOWXB
+ LQMKC1Ppu9wkJqRKoJGJ2n3UZMI8J4Y/6OlkPau/ZqwHA1uLTAgnXGi07+hk250SwhhwYlGO0
+ eg814zwedTxrHMt7oWHkFg9m3FV0Wv1CKuIjSoMjDfcKO5f9Ep21V2ygAE9ldX92Ux6+z+XZP
+ M41T8WyDxGsp98dgCO+uXOQ06pqCGVc+HHV04flzv/VaKsheR9z5tT4Mjb+tWgKAFzGwtGtE7
+ WWRM+bKUlXZnmG+tHdMrq1gJgcs3fM5suKo4alGDNXfJokBRExf/V9dXPMzu9hkSb8tiVowH8
+ Tlogay2ozvigC298FEwYMAShbsZxw+O3FiqlPzDWx6tktGziHzeTz4uUvZ7A15Freog0/vME0
+ C0YGGhsr89EQjYLAsVdv4OciMmud9xjoXKhEzHIUssL/zLflawnuUUSrFIaW1U4ftqfM2Zb0k
+ HKPPzC9A4FdF5tKiLsPNDjraiKLWVEvAU1doX5mMIREO4rFJaqyhp+hMPoaCkTuLeJjSxGrfH
+ bl3bcEQNnaQ8r/31WAe2AO6CPY7aTuR7CqtaxsJLtxtcH+CaA+3DdO5EbGsy0KMUkw86yw85n
+ h5Us7pRw2cZCkNlqutOy4iypnhlIjVvpe094TI+kIV88Gz3OEnesRAOAXvuT6rjD9CmDOD0HN
+ j0v8zkp1Rfow7fe683yooPfb9Lv7ykRIT22Qd+eVvkHhN3Xdt2BKTMj7YQFs8aSslcrCDz+2+
+ d8bTEN+NS6IIRfdjl+FIA101nzYYoMf2cM/H5uPev8lzgprGSmckEgBW/NmzKBheBIqVAVPfl
+ BwUtGhnU5BiLcLkw9Bpxn9xxRSOJ7u1wMwExd8psrZp45Ir/ChQm1lIWquEQa6X0QJcOoqosY
+ M8O4Q/ZvimOlqFFww1m6pXoLrPeflWqrYGqTAnjKztn9ppLuVZ2XgXnJyYli9lmsztd+jlbBS
+ /R2Z5Z8mWgRq82L4zkaUyvSTpDm2EHk+rUJ/P2S65WeWZ3pG06G3seSmOc/7zeX0oWDKlIT7g
+ xldqyUOQ2owtUESCQllo9ocYXHgNpQ
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,339 +128,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2024-12-03 at 15:51 +0100, Christian K=C3=B6nig wrote:
-> Am 03.12.24 um 14:42 schrieb Thomas Hellstr=C3=B6m:
-> > On Tue, 2024-12-03 at 14:12 +0100, Christian K=C3=B6nig wrote:
-> > > Am 15.11.24 um 16:01 schrieb Thomas Hellstr=C3=B6m:
-> > > > Provide a helper to shrink ttm_tt page-vectors on a per-page
-> > > > basis. A ttm_backup backend could then in theory get away with
-> > > > allocating a single temporary page for each struct ttm_tt.
-> > > >=20
-> > > > This is accomplished by splitting larger pages before trying to
-> > > > back them up.
-> > > >=20
-> > > > In the future we could allow ttm_backup to handle backing up
-> > > > large pages as well, but currently there's no benefit in
-> > > > doing that, since the shmem backup backend would have to
-> > > > split those anyway to avoid allocating too much temporary
-> > > > memory, and if the backend instead inserts pages into the
-> > > > swap-cache, those are split on reclaim by the core.
-> > > >=20
-> > > > Due to potential backup- and recover errors, allow partially
-> > > > swapped
-> > > > out struct ttm_tt's, although mark them as swapped out stopping
-> > > > them
-> > > > from being swapped out a second time. More details in the
-> > > > ttm_pool.c
-> > > > DOC section.
-> > > >=20
-> > > > v2:
-> > > > - A couple of cleanups and error fixes in ttm_pool_back_up_tt.
-> > > > - s/back_up/backup/
-> > > > - Add a writeback parameter to the exported interface.
-> > > > v8:
-> > > > - Use a struct for flags for readability (Matt Brost)
-> > > > - Address misc other review comments (Matt Brost)
-> > > > v9:
-> > > > - Update the kerneldoc for the ttm_tt::backup field.
-> > > > v10:
-> > > > - Rebase.
-> > > > v13:
-> > > > - Rebase on ttm_backup interface change. Update kerneldoc.
-> > > > - Rebase and adjust ttm_tt_is_swapped().
-> > > >=20
-> > > > Cc: Christian K=C3=B6nig<christian.koenig@amd.com>
-> > > > Cc: Somalapuram Amaranath<Amaranath.Somalapuram@amd.com>
-> > > > Cc: Matthew Brost<matthew.brost@intel.com>
-> > > > Cc:<dri-devel@lists.freedesktop.org>
-> > > > Signed-off-by: Thomas
-> > > > Hellstr=C3=B6m<thomas.hellstrom@linux.intel.com>
-> > > > Reviewed-by: Matthew Brost<matthew.brost@intel.com>
-> > > > ---
-> > > > =C2=A0=C2=A0 drivers/gpu/drm/ttm/ttm_pool.c | 396
-> > > > +++++++++++++++++++++++++++++++--
-> > > > =C2=A0=C2=A0 drivers/gpu/drm/ttm/ttm_tt.c=C2=A0=C2=A0 |=C2=A0 37 ++=
-+
-> > > > =C2=A0=C2=A0 include/drm/ttm/ttm_pool.h=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0=C2=A0 6 +
-> > > > =C2=A0=C2=A0 include/drm/ttm/ttm_tt.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 32 ++-
-> > > > =C2=A0=C2=A0 4 files changed, 457 insertions(+), 14 deletions(-)
-> > > >=20
-> > > > diff --git a/drivers/gpu/drm/ttm/ttm_pool.c
-> > > > b/drivers/gpu/drm/ttm/ttm_pool.c
-> > > > index 8504dbe19c1a..f58864439edb 100644
-> > > > --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> > > > +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> > > > @@ -41,6 +41,7 @@
-> > > > =C2=A0=C2=A0 #include <asm/set_memory.h>
-> > > > =C2=A0=C2=A0 #endif
-> > > > =C2=A0=C2=A0=20
-> > > > +#include <drm/ttm/ttm_backup.h>
-> > > > =C2=A0=C2=A0 #include <drm/ttm/ttm_pool.h>
-> > > > =C2=A0=C2=A0 #include <drm/ttm/ttm_tt.h>
-> > > > =C2=A0=C2=A0 #include <drm/ttm/ttm_bo.h>
-> > > > @@ -58,6 +59,32 @@ struct ttm_pool_dma {
-> > > > =C2=A0=C2=A0=C2=A0	unsigned long vaddr;
-> > > > =C2=A0=C2=A0 };
-> > > > =C2=A0=C2=A0=20
-> > > > +/**
-> > > > + * struct ttm_pool_tt_restore - State representing restore
-> > > > from
-> > > > backup
-> > > > + * @alloced_pages: Total number of already allocated pages for
-> > > > the
-> > > > ttm_tt.
-> > > > + * @restored_pages: Number of (sub) pages restored from swap
-> > > > for
-> > > > this
-> > > > + *		=C2=A0=C2=A0=C2=A0=C2=A0 chunk of 1 << @order pages.
-> > > > + * @first_page: The ttm page ptr representing for
-> > > > @old_pages[0].
-> > > > + * @caching_divide: Page pointer where subsequent pages are
-> > > > cached.
-> > > > + * @old_pages: Backup copy of page pointers that were replaced
-> > > > by
-> > > > the new
-> > > > + *	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 page allocation.
-> > > > + * @pool: The pool used for page allocation while restoring.
-> > > > + * @order: The order of the last page allocated while
-> > > > restoring.
-> > > > + *
-> > > > + * Recovery from backup might fail when we've recovered less
-> > > > than
-> > > > the
-> > > > + * full ttm_tt. In order not to loose any data (yet), keep
-> > > > information
-> > > > + * around that allows us to restart a failed ttm backup
-> > > > recovery.
-> > > > + */
-> > > > +struct ttm_pool_tt_restore {
-> > > > +	pgoff_t alloced_pages;
-> > > > +	pgoff_t restored_pages;
-> > > > +	struct page **first_page;
-> > > > +	struct page **caching_divide;
-> > > > +	struct ttm_pool *pool;
-> > > > +	unsigned int order;
-> > > > +	struct page *old_pages[];
-> > > > +};
-> > > > +
-> > > > =C2=A0=C2=A0 static unsigned long page_pool_size;
-> > > > =C2=A0=C2=A0=20
-> > > > =C2=A0=C2=A0 MODULE_PARM_DESC(page_pool_size, "Number of pages in t=
-he
-> > > > WC/UC/DMA pool");
-> > > > @@ -354,11 +381,105 @@ static unsigned int
-> > > > ttm_pool_page_order(struct ttm_pool *pool, struct page *p)
-> > > > =C2=A0=C2=A0=C2=A0	return p->private;
-> > > > =C2=A0=C2=A0 }
-> > > > =C2=A0=C2=A0=20
-> > > > +/*
-> > > > + * To be able to insert single pages into backup directly,
-> > > > + * we need to split multi-order page allocations and make them
-> > > > look
-> > > > + * like single-page allocations.
-> > > > + */
-> > > > +static void ttm_pool_split_for_swap(struct ttm_pool *pool,
-> > > > struct
-> > > > page *p)
-> > > > +{
-> > > > +	unsigned int order =3D ttm_pool_page_order(pool, p);
-> > > > +	pgoff_t nr;
-> > > > +
-> > > > +	if (!order)
-> > > > +		return;
-> > > > +
-> > > > +	split_page(p, order);
-> > > What exactly should split_page() do here and why is that
-> > > necessary?
-> > >=20
-> > > IIRC that function just updated the reference count and updated
-> > > things
-> > > like page owner tracking and memcg accounting. Which should both
-> > > be
-> > > completely irrelevant here.
-> > >=20
-> > > Or do you just do that so that you can free each page
-> > > individually?
-> > Yes, exactly. Like For a 2MiB page we'd otherwise have to allocate
-> > 2MiB
-> > of shmem backing storage, potentially from kernel reserves before
-> > we
-> > could actually free anything. Since (currently) the shmem objects
-> > we
-> > use are 4K-page only, this should make the process "allocate shmem
-> > and
-> > back up" much less likely to deplete the kernel memory reserves.
->=20
-> Ah, yes that makes totally sense now.
->=20
-> >=20
-> > Taking a step back and looking at potentially other solution, like
-> > direct insertion into the swap cache, then even if inserting a 2MiB
-> > page into the swap cache, vmscan would split it before writeback,
-> > and
-> > still it didn't appear very stable. So inserting one 4K page at a
-> > time
-> > seemed neccessary. If I were to take a guess that's why shmem, when
-> > configured for 2MiB pages, like with i915, also splits the pages
-> > before
-> > moving to swap-cache / writeback.
-> >=20
-> >=20
-> > > > +	nr =3D 1UL << order;
-> > > > +	while (nr--)
-> > > > +		(p++)->private =3D 0;
-> > > > +}
-> > > > +
-> > > > +/**
-> > > > + * DOC: Partial backup and restoration of a struct ttm_tt.
-> > > > + *
-> > > > + * Swapout using ttm_backup_backup_page() and swapin using
-> > > > + * ttm_backup_copy_page() may fail.
-> > > > + * The former most likely due to lack of swap-space or memory,
-> > > > the
-> > > > latter due
-> > > > + * to lack of memory or because of signal interruption during
-> > > > waits.
-> > > > + *
-> > > > + * Backup failure is easily handled by using a ttm_tt pages
-> > > > vector
-> > > > that holds
-> > > > + * both swap entries and page pointers. This has to be taken
-> > > > into
-> > > > account when
-> > > > + * restoring such a ttm_tt from backup, and when freeing it
-> > > > while
-> > > > backed up.
-> > > > + * When restoring, for simplicity, new pages are actually
-> > > > allocated from the
-> > > > + * pool and the contents of any old pages are copied in and
-> > > > then
-> > > > the old pages
-> > > > + * are released.
-> > > > + *
-> > > > + * For restoration failures, the struct ttm_pool_tt_restore
-> > > > holds
-> > > > sufficient state
-> > > > + * to be able to resume an interrupted restore, and that
-> > > > structure
-> > > > is freed once
-> > > > + * the restoration is complete. If the struct ttm_tt is
-> > > > destroyed
-> > > > while there
-> > > > + * is a valid struct ttm_pool_tt_restore attached, that is
-> > > > also
-> > > > properly taken
-> > > > + * care of.
-> > > > + */
-> > > > +
-> > > > +static bool ttm_pool_restore_valid(const struct
-> > > > ttm_pool_tt_restore *restore)
-> > > > +{
-> > > > +	return restore && restore->restored_pages < (1 <<
-> > > > restore-
-> > > > > order);
-> > > > +}
-> > > > +
-> > > > +static int ttm_pool_restore_tt(struct ttm_pool_tt_restore
-> > > > *restore,
-> > > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_backup *backup,
-> > > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *=
-ctx)
-> > > > +{
-> > > > +	unsigned int i, nr =3D 1 << restore->order;
-> > > > +	int ret =3D 0;
-> > > > +
-> > > > +	if (!ttm_pool_restore_valid(restore))
-> > > > +		return 0;
-> > > > +
-> > > > +	for (i =3D restore->restored_pages; i < nr; ++i) {
-> > > > +		struct page *p =3D restore->old_pages[i];
-> > > > +
-> > > > +		if (ttm_backup_page_ptr_is_handle(p)) {
-> > > > +			unsigned long handle =3D
-> > > > ttm_backup_page_ptr_to_handle(p);
-> > > > +
-> > > > +			if (handle =3D=3D 0)
-> > > > +				continue;
-> > > > +
-> > > > +			ret =3D ttm_backup_copy_page
-> > > > +				(backup, restore-
-> > > > >first_page[i],
-> > > > +				 handle, ctx->interruptible);
-> > > That coding style looks really odd, I didn't even notice that it
-> > > is a
-> > > function call initially.
-> > >=20
-> > > Maybe put everything under the if into a separate function.
-> > At a minimum, I'll fix up the formatting here.
-> >=20
-> > > > +			if (ret)
-> > > > +				break;
-> > > > +
-> > > > +			ttm_backup_drop(backup, handle);
-> > > > +		} else if (p) {
-> > > > +			/*
-> > > > +			 * We could probably avoid splitting
-> > > > the
-> > > > old page
-> > > > +			 * using clever logic, but ATM we
-> > > > don't
-> > > > care, as
-> > > > +			 * we prioritize releasing memory
-> > > > ASAP.
-> > > > Note that
-> > > > +			 * here, the old retained page is
-> > > > always
-> > > > write-back
-> > > > +			 * cached.
-> > > > +			 */
-> > > > +			ttm_pool_split_for_swap(restore->pool,
-> > > > p);
-> > > > +			copy_highpage(restore->first_page[i],
-> > > > p);
-> > > > +			__free_pages(p, 0);
-> > > > +		}
-> > > > +
-> > > > +		restore->restored_pages++;
-> > > > +		restore->old_pages[i] =3D NULL;
-> > > > +		cond_resched();
-> > > There is a push to remove cond_resched(), see here:
-> > > https://patchwork.kernel.org/project/linux-mm/patch/20231107230822.37=
-1443-30-ankur.a.arora@oracle.com/
-> > >=20
-> > > Not sure in which discussion that removal went, but IIRC we
-> > > should
-> > > not
-> > > add any new users of it.
-> > I'll read up on that and remove if needed. I'm curious how / if
-> > voluntary preemption is going to be handled.
->=20
-> I didn't fully understood it either, but the push kind of seems to be
-> that drivers or in this cases subsystems are not supposed to mess
-> with=20
-> cond_resched() any more and just rely on preemptive kernels.
->=20
-> > >=20
+On 17.12.24 18:37, Maarten Lankhorst wrote:
+>
+>
+> Den 2024-12-17 kl. 18:11, skrev Tejun Heo:
+>> On Tue, Dec 17, 2024 at 03:28:50PM +0100, Maarten Lankhorst wrote:
+>>> Now that all patches look good, what is needed to merge the series?
+>>> Without
+>>> patch 6/7 as it is a hack for testing.
+>>
+>> There were some questions raised about device naming. One thing we
+>> want to
+>> get right from the beginning is the basic interface.
+>>
+>> Thanks.
+>>
+> I believe it was solved. The conclusion appears to be that we go with
+> how we defined it in this series. drm/$pciid/$regionname.
 
-So I took a deeper look into this. From what I can tell, cond_resched()
-is replaced by some other implicit preemption mechanism, and it seems
-the series is still being worked on, but meanwhile there's nothing
-ensuring that latency-causing long loops will be preempted.
+Yeah, I'd agree. Using PCI IDs works, and the objection about cardN
+syntax being unstable when driver load order changes is a good point.
 
-So IMHO it should be easy to just remove the cond_resched() when that
-series lands, and if it is deemed necessary to add it meanwhile.
+Friedrich
 
-But OTOH, the cond_resched() in this code was added without benchmark
-justification, so I have removed it. If needed could be re-added
-pending the merge of the new preemption code.
-
-Thanks,
-Thomas
-
-
-
-
-
+> With the only
+> regions defined now being VRAM. Main memory will be a followup, but
+> requires some discussions on hwo to be prevent double accounting, and
+> what to do with the limited amount of mappable memory.
+>
+> Cheers,
+> ~Maarten
 
