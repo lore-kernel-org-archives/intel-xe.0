@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D23AE77187
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Dec 2024 13:48:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FB37E77187
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Dec 2024 13:55:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 003FF10E1A0;
-	Wed, 18 Dec 2024 13:48:36 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFBBD10E1A0;
- Wed, 18 Dec 2024 13:48:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2875143405379228981=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E879010E0E2;
+	Wed, 18 Dec 2024 13:55:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m+mqh0tB";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D79C10E0E2
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Dec 2024 13:55:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734530145; x=1766066145;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VAMRqULBsZ49s27HNcG+7rbBoA/XYs41NdBmxkyHMwI=;
+ b=m+mqh0tBrJvb5iclZhTy9psdDKoN4FQZaSEG1aZpuo7iGyO0VxJtTDLF
+ Y4s9nzBGSaFsVQ/8WGnGdHTfIGe0tmRm0hrxFfvrNcDgID4wLapby5nRL
+ MAb8h1usn9Ug1m6QiJg1vD8Qqu7ug4bGeBu4BPQV1uXVgy/XG3nfsPTV3
+ XNUzyJDgs0N2Um5poeAe85pt0GzcZ5c1Dp7hCPzwAxYm2Ty6iNI5W+UEA
+ LP3uZoO3ArmALMsN1gjMUuH5d4FKgNBQXx01YVc2cTVgiJdA3YLZMXT8Q
+ 1IxfbZkgs1R3qVJ/B+9XBjcp/mbnWSROgVzy/gaoUkhWkoJAtYLV8GfKa w==;
+X-CSE-ConnectionGUID: scpjGfDLQVSTn5O43B24wA==
+X-CSE-MsgGUID: M28Hoar6T96XdJNxcYk98g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="35037361"
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="35037361"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 05:55:45 -0800
+X-CSE-ConnectionGUID: bnId6bPEROqHzFegnvaSRg==
+X-CSE-MsgGUID: wAQE1qm0QDqO68tRAGeiiA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="128853088"
+Received: from nirmoyda-desk.igk.intel.com ([10.211.135.230])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 05:55:43 -0800
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>, Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v2] drm/xe/tests: Move shrink test out of xe_bo
+Date: Wed, 18 Dec 2024 15:14:47 +0100
+Message-ID: <20241218141447.2528530-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Improve_SRIOV_VRAM_provisio?=
- =?utf-8?q?ning?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Dec 2024 13:48:35 -0000
-Message-ID: <173452971584.62410.3035380552069393883@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241218121837.226393-9-matthew.auld@intel.com>
-In-Reply-To: <20241218121837.226393-9-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,155 +65,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2875143405379228981==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The subtest typically has an execution time long enough to motivate a
+separate test so that it can be easily excluded if needed.
 
-== Series Details ==
+v2: reword commit message(Thomas)
 
-Series: Improve SRIOV VRAM provisioning
-URL   : https://patchwork.freedesktop.org/series/142782/
-State : success
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/xe/tests/xe_bo.c            | 16 ++++++++++++++--
+ drivers/gpu/drm/xe/tests/xe_live_test_mod.c |  2 ++
+ 2 files changed, 16 insertions(+), 2 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index c9ec7a313c6b..405ff904153e 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -606,8 +606,6 @@ static void xe_bo_shrink_kunit(struct kunit *test)
+ static struct kunit_case xe_bo_tests[] = {
+ 	KUNIT_CASE_PARAM(xe_ccs_migrate_kunit, xe_pci_live_device_gen_param),
+ 	KUNIT_CASE_PARAM(xe_bo_evict_kunit, xe_pci_live_device_gen_param),
+-	KUNIT_CASE_PARAM_ATTR(xe_bo_shrink_kunit, xe_pci_live_device_gen_param,
+-			      {.speed = KUNIT_SPEED_SLOW}),
+ 	{}
+ };
+ 
+@@ -618,3 +616,17 @@ struct kunit_suite xe_bo_test_suite = {
+ 	.init = xe_kunit_helper_xe_device_live_test_init,
+ };
+ EXPORT_SYMBOL_IF_KUNIT(xe_bo_test_suite);
++
++static struct kunit_case xe_bo_shrink_test[] = {
++	KUNIT_CASE_PARAM_ATTR(xe_bo_shrink_kunit, xe_pci_live_device_gen_param,
++			      {.speed = KUNIT_SPEED_SLOW}),
++	{}
++};
++
++VISIBLE_IF_KUNIT
++struct kunit_suite xe_bo_shrink_test_suite = {
++	.name = "xe_bo_shrink",
++	.test_cases = xe_bo_shrink_test,
++	.init = xe_kunit_helper_xe_device_live_test_init,
++};
++EXPORT_SYMBOL_IF_KUNIT(xe_bo_shrink_test_suite);
+diff --git a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+index 0d36ab864ec0..81277c77016d 100644
+--- a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
++++ b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+@@ -6,11 +6,13 @@
+ #include <kunit/test.h>
+ 
+ extern struct kunit_suite xe_bo_test_suite;
++extern struct kunit_suite xe_bo_shrink_test_suite;
+ extern struct kunit_suite xe_dma_buf_test_suite;
+ extern struct kunit_suite xe_migrate_test_suite;
+ extern struct kunit_suite xe_mocs_test_suite;
+ 
+ kunit_test_suite(xe_bo_test_suite);
++kunit_test_suite(xe_bo_shrink_test_suite);
+ kunit_test_suite(xe_dma_buf_test_suite);
+ kunit_test_suite(xe_migrate_test_suite);
+ kunit_test_suite(xe_mocs_test_suite);
+-- 
+2.46.0
 
-CI Bug Log - changes from xe-2394-1d0ef0c9b38ec3433a841e26e6fb553d820ba32c_BAT -> xe-pw-142782v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-142782v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#3517]) -> [PASS][2] +2 other tests pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2394-1d0ef0c9b38ec3433a841e26e6fb553d820ba32c/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142782v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_addfb_basic@bad-pitch-0:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#3429]) -> [PASS][4] +31 other tests pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2394-1d0ef0c9b38ec3433a841e26e6fb553d820ba32c/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142782v1/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-adlp-7:         [SKIP][5] ([Intel XE#455]) -> [PASS][6] +3 other tests pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2394-1d0ef0c9b38ec3433a841e26e6fb553d820ba32c/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142782v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-
-  
-  [Intel XE#3429]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3429
-  [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * IGT: IGT_8161 -> IGT_8162
-  * Linux: xe-2394-1d0ef0c9b38ec3433a841e26e6fb553d820ba32c -> xe-pw-142782v1
-
-  IGT_8161: f7cc6398cc4f21b2647138fa190695b65cfe9e15 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8162: 8bce68b09c45753b5237edc2f65497969a05f881 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2394-1d0ef0c9b38ec3433a841e26e6fb553d820ba32c: 1d0ef0c9b38ec3433a841e26e6fb553d820ba32c
-  xe-pw-142782v1: 142782v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142782v1/index.html
-
---===============2875143405379228981==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Improve SRIOV VRAM provisioning</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142782/">https://patchwork.freedesktop.org/series/142782/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142782v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142782v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2394-1d0ef0c9b38ec3433a841e26e6fb553d820ba32c_BAT -&gt; xe-pw-142782v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-142782v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2394-1d0ef0c9b38ec3433a841e26e6fb553d820ba32c/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517">Intel XE#3517</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142782v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@bad-pitch-0:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2394-1d0ef0c9b38ec3433a841e26e6fb553d820ba32c/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3429">Intel XE#3429</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142782v1/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">PASS</a> +31 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2394-1d0ef0c9b38ec3433a841e26e6fb553d820ba32c/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142782v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> +3 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8161 -&gt; IGT_8162</li>
-<li>Linux: xe-2394-1d0ef0c9b38ec3433a841e26e6fb553d820ba32c -&gt; xe-pw-142782v1</li>
-</ul>
-<p>IGT_8161: f7cc6398cc4f21b2647138fa190695b65cfe9e15 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8162: 8bce68b09c45753b5237edc2f65497969a05f881 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2394-1d0ef0c9b38ec3433a841e26e6fb553d820ba32c: 1d0ef0c9b38ec3433a841e26e6fb553d820ba32c<br />
-  xe-pw-142782v1: 142782v1</p>
-
-</body>
-</html>
-
---===============2875143405379228981==--
