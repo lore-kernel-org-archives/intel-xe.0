@@ -4,57 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 314E0E77187
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Dec 2024 12:19:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25DBCE77187
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Dec 2024 12:51:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F250010EB8D;
-	Wed, 18 Dec 2024 12:19:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4E1310E1C5;
+	Wed, 18 Dec 2024 12:51:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lLgP9xB8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ev71BIAn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57A7F10EB98
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Dec 2024 12:19:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 520AA10E1C5;
+ Wed, 18 Dec 2024 12:51:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734524358; x=1766060358;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qoH2Adv21No+s+Iv3N4GpJH/3gO7TZUygfUeylM59XY=;
- b=lLgP9xB8z1Q8VGgX8gJlsLggCguzVeM9dPlo00krRAyM2L2qRsInEVnq
- x3WvbyVVYGD0VV/U+lYmtDL/ViQIOZaVwu5q1eqgYuoqqbL8ayo0K8O9I
- 0wkfUYnkXDTElmRhjgaaGOr8f7/CiTLhFSkcqYKbBmqBYUC0ba7bPaz0l
- sCnIlj783/Oo8Gh7PaiX6LbW1X8GrZiLns1q+g4NosR/t4K7+kqJcI/sN
- myQnLK6aNf1ZmXvcz80X03AqWznZeBLYuYkm1MHQlpSGrqoM1LzPwUoQP
- O1WUFtFnUBWq6gE6t3QGVAca0NDGERShWLPRHzfItV4Eq7lfVRMmjQqNb w==;
-X-CSE-ConnectionGUID: 9aPTmuD0S7eI9c3qDBY8nA==
-X-CSE-MsgGUID: qevuNT9DSQCD7m0helYw8A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="35028096"
-X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="35028096"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 04:19:17 -0800
-X-CSE-ConnectionGUID: AayEcyEYSQC7y7ACWM7VgA==
-X-CSE-MsgGUID: yxEkOyCBTqSzQ2lt/guz/A==
+ t=1734526301; x=1766062301;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9HQXochbOO8bhM+YUVYwc7dQOS72+c1SHopORFBCcWA=;
+ b=ev71BIAnbWq22Kec8G1lWUB6uFx53hkIxEahPEDDU1U0i9leS57Hp0qp
+ HdhGhpo7NygFcNCNZ/pZ8KKzq6G7h+mYSSgxqFyl6UdzLK10a1tk5iz1x
+ BEKOMnfKZI+b0v+QVxpqt7g7IMgtibfLnIJWIRiMla69N9mwRwCRf4xVh
+ sAL8ZD4I8ZDllvh121eC62CVqKvjdf4KV6fndEuhluo2XPUAxNmTIKLbO
+ YDpoeXvnFYaeaIRMjAqG89OFCUGLRkXzS8xGn/rgAIzzyu0jEknD9pX7K
+ aI++ZO2/aR/5M4WkxszIvT4obBsxPIMsM/5xZ453lJuj6/+clyq0/ILO2 Q==;
+X-CSE-ConnectionGUID: 1KZp+m1aQhSxGNYV7XtcIw==
+X-CSE-MsgGUID: ndNDG0XJT0m6UJ4SBCk42w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="45597860"
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="45597860"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 04:51:41 -0800
+X-CSE-ConnectionGUID: 1s4eMU+7T32NOOBOePkHrA==
+X-CSE-MsgGUID: PY2peh7ZTqSZm3w66/EwPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="97633613"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.244.74])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 04:19:17 -0800
-From: Matthew Auld <matthew.auld@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="102846020"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 04:51:39 -0800
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2 7/7] drm/xe/sriov: support non-contig VRAM provisioning
-Date: Wed, 18 Dec 2024 12:18:45 +0000
-Message-ID: <20241218121837.226393-16-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241218121837.226393-9-matthew.auld@intel.com>
-References: <20241218121837.226393-9-matthew.auld@intel.com>
+Cc: dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Michal Mrozek <michal.mrozek@intel.com>
+Subject: [PATCH V6] drm/xe/mmap: Add mmap support for PCI memory barrier
+Date: Wed, 18 Dec 2024 18:26:28 +0530
+Message-Id: <20241218125628.2270030-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,58 +67,275 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we can run into issues with provisioning VRAM region, due to
-requiring contig VRAM BO underneath. We sometimes see that allocation
-(multiple GB) can fail even when there is enough free space.  We don't
-need CPU access to the buffer in the first place, so can forgo pin_map
-and therefore also the contig requirement. Keep the same behavior with
-save and restore during suspend/resume (which can now be done with
-blitter).  We also need the VRAM to occupy the same pages so we don't
-need to re-program the LMTT, so should still remain pinned (also we
-don't want something to try evict it). With that covert over to plain
-pinned kernel object.
+In order to avoid having userspace to use MI_MEM_FENCE,
+we are adding a mechanism for userspace to generate a
+PCI memory barrier with low overhead (avoiding IOCTL call
+as well as writing to VRAM will adds some overhead).
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+This is implemented by memory-mapping a page as uncached
+that is backed by MMIO on the dGPU and thus allowing userspace
+to do memory write to the page without invoking an IOCTL.
+We are selecting the MMIO so that it is not accessible from
+the PCI bus so that the MMIO writes themselves are ignored,
+but the PCI memory barrier will still take action as the MMIO
+filtering will happen after the memory barrier effect.
+
+When we detect special defined offset in mmap(), We are mapping
+4K page which contains the last of page of doorbell MMIO range
+to userspace for same purpose.
+
+For user to query special offset we are adding special flag in
+mmap_offset ioctl which needs to be passed as follows,
+struct drm_xe_gem_mmap_offset mmo = {
+        .handle = 0, /* this must be 0 */
+        .flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
+};
+igt_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
+map = mmap(NULL, size, PROT_WRITE, MAP_SHARED, fd, mmo);
+
+Note: Test coverage for this is added by IGT
+      https://patchwork.freedesktop.org/series/140368/  here.
+      UMD implementing test, once PR is ready will attach with
+      this patch.
+
+V6(MAuld)
+  - Move physical mmap to fault handler
+  - Modify kernel-doc and attach UMD PR when ready
+V5(MAuld)
+  - Return invalid early in case of non 4K PAGE_SIZE
+  - Format kernel-doc and add note for 4K PAGE_SIZE HW limit
+V4(MAuld)
+  - Add kernel-doc for uapi change
+  - Restrict page size to 4K
+V3(MAuld)
+  - Remove offset defination from UAPI to be able to change later
+  - Edit commit message for special flag addition
+V2(MAuld)
+  - Add fault handler with dummy page to handle unplug device
+  - Add Build check for special offset to be below normal start page
+  - Test d3hot, mapping seems to be valid in d3hot as well
+  - Add more info to commit message
+
+Test-with: 20241118113606.1490397-1-tejas.upadhyay@intel.com
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Michal Mrozek <michal.mrozek@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 19 +++++++++++++------
- 1 file changed, 13 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c     |  16 ++++-
+ drivers/gpu/drm/xe/xe_bo.h     |   2 +
+ drivers/gpu/drm/xe/xe_device.c | 103 ++++++++++++++++++++++++++++++++-
+ include/uapi/drm/xe_drm.h      |  29 +++++++++-
+ 4 files changed, 147 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 65082f12f1a8..56a178aca0d4 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -1409,15 +1409,22 @@ static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
- 		return 0;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index e6c896ad5602..86f2c00a0afd 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2263,9 +2263,23 @@ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+ 	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
  
- 	xe_gt_assert(gt, pf_get_lmem_alignment(gt) == SZ_2M);
--	bo = xe_bo_create_pin_map(xe, tile, NULL,
--				  ALIGN(size, PAGE_SIZE),
--				  ttm_bo_type_kernel,
--				  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
--				  XE_BO_FLAG_NEEDS_2M |
--				  XE_BO_FLAG_PINNED);
-+	bo = xe_bo_create_locked(xe, tile, NULL,
-+				 ALIGN(size, PAGE_SIZE),
-+				 ttm_bo_type_kernel,
-+				 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-+				 XE_BO_FLAG_NEEDS_2M |
-+				 XE_BO_FLAG_PINNED);
- 	if (IS_ERR(bo))
- 		return PTR_ERR(bo);
+-	if (XE_IOCTL_DBG(xe, args->flags))
++	if (XE_IOCTL_DBG(xe, args->flags &
++			 ~DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER))
+ 		return -EINVAL;
  
-+	err = xe_bo_pin(bo);
-+	xe_bo_unlock(bo);
-+	if (unlikely(err)) {
-+		xe_bo_put(bo);
-+		return err;
++	if (args->flags & DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER) {
++		if (XE_IOCTL_DBG(xe, args->handle))
++			return -EINVAL;
++
++		if (XE_IOCTL_DBG(xe, PAGE_SIZE > SZ_4K))
++			return -EINVAL;
++
++		BUILD_BUG_ON(((XE_PCI_BARRIER_MMAP_OFFSET >> XE_PTE_SHIFT) +
++			      SZ_4K) >= DRM_FILE_PAGE_OFFSET_START);
++		args->offset = XE_PCI_BARRIER_MMAP_OFFSET;
++		return 0;
 +	}
 +
- 	config->lmem_obj = bo;
+ 	gem_obj = drm_gem_object_lookup(file, args->handle);
+ 	if (XE_IOCTL_DBG(xe, !gem_obj))
+ 		return -ENOENT;
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index d9386ab03140..04995c5ced32 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -75,6 +75,8 @@
  
- 	err = pf_update_vf_lmtt(xe, vfid);
+ #define XE_BO_PROPS_INVALID	(-1)
+ 
++#define XE_PCI_BARRIER_MMAP_OFFSET	(0x50 << XE_PTE_SHIFT)
++
+ struct sg_table;
+ 
+ struct xe_bo *xe_bo_alloc(void);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 7f021ec5f8e7..bacfeec9dc0b 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -232,12 +232,113 @@ static long xe_drm_compat_ioctl(struct file *file, unsigned int cmd, unsigned lo
+ #define xe_drm_compat_ioctl NULL
+ #endif
+ 
++static void barrier_open(struct vm_area_struct *vma)
++{
++	drm_dev_get(vma->vm_private_data);
++}
++
++static void barrier_close(struct vm_area_struct *vma)
++{
++	drm_dev_put(vma->vm_private_data);
++}
++
++static void barrier_release_dummy_page(struct drm_device *dev, void *res)
++{
++	struct page *dummy_page = (struct page *)res;
++
++	__free_page(dummy_page);
++}
++
++static vm_fault_t barrier_fault(struct vm_fault *vmf)
++{
++	struct drm_device *dev = vmf->vma->vm_private_data;
++	struct vm_area_struct *vma = vmf->vma;
++	vm_fault_t ret = VM_FAULT_NOPAGE;
++	pgprot_t prot;
++	int idx;
++
++	prot = vm_get_page_prot(vma->vm_flags);
++
++	if (drm_dev_enter(dev, &idx)) {
++		unsigned long pfn;
++
++#define LAST_DB_PAGE_OFFSET 0x7ff001
++		pfn = PHYS_PFN(pci_resource_start(to_pci_dev(dev->dev), 0) +
++				LAST_DB_PAGE_OFFSET);
++		ret = vmf_insert_pfn_prot(vma, vma->vm_start, pfn,
++					  pgprot_noncached(prot));
++		drm_dev_exit(idx);
++	} else {
++		struct page *page;
++
++		/* Allocate new dummy page to map all the VA range in this VMA to it*/
++		page = alloc_page(GFP_KERNEL | __GFP_ZERO);
++		if (!page)
++			return VM_FAULT_OOM;
++
++		/* Set the page to be freed using drmm release action */
++		if (drmm_add_action_or_reset(dev, barrier_release_dummy_page, page))
++			return VM_FAULT_OOM;
++
++		ret = vmf_insert_pfn_prot(vma, vma->vm_start, page_to_pfn(page),
++					  prot);
++	}
++
++	return ret;
++}
++
++static const struct vm_operations_struct vm_ops_barrier = {
++	.open = barrier_open,
++	.close = barrier_close,
++	.fault = barrier_fault,
++};
++
++static int xe_pci_barrier_mmap(struct file *filp,
++			       struct vm_area_struct *vma)
++{
++	struct drm_file *priv = filp->private_data;
++	struct drm_device *dev = priv->minor->dev;
++
++	if (vma->vm_end - vma->vm_start > SZ_4K)
++		return -EINVAL;
++
++	if (is_cow_mapping(vma->vm_flags))
++		return -EINVAL;
++
++	if (vma->vm_flags & (VM_READ | VM_EXEC))
++		return -EINVAL;
++
++	vm_flags_clear(vma, VM_MAYREAD | VM_MAYEXEC);
++	vm_flags_set(vma, VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_IO);
++	vma->vm_ops = &vm_ops_barrier;
++	vma->vm_private_data = dev;
++	drm_dev_get(vma->vm_private_data);
++
++	return 0;
++}
++
++static int xe_mmap(struct file *filp, struct vm_area_struct *vma)
++{
++	struct drm_file *priv = filp->private_data;
++	struct drm_device *dev = priv->minor->dev;
++
++	if (drm_dev_is_unplugged(dev))
++		return -ENODEV;
++
++	switch (vma->vm_pgoff) {
++	case XE_PCI_BARRIER_MMAP_OFFSET >> XE_PTE_SHIFT:
++		return xe_pci_barrier_mmap(filp, vma);
++	}
++
++	return drm_gem_mmap(filp, vma);
++}
++
+ static const struct file_operations xe_driver_fops = {
+ 	.owner = THIS_MODULE,
+ 	.open = drm_open,
+ 	.release = drm_release_noglobal,
+ 	.unlocked_ioctl = xe_drm_ioctl,
+-	.mmap = drm_gem_mmap,
++	.mmap = xe_mmap,
+ 	.poll = drm_poll,
+ 	.read = drm_read,
+ 	.compat_ioctl = xe_drm_compat_ioctl,
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index f62689ca861a..cac607a30f6d 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -811,6 +811,32 @@ struct drm_xe_gem_create {
+ 
+ /**
+  * struct drm_xe_gem_mmap_offset - Input of &DRM_IOCTL_XE_GEM_MMAP_OFFSET
++ *
++ * The @flags can be:
++ *  - %DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER - For user to query special offset
++ *  for use in mmap ioctl. Writing to the returned mmap address will generate a
++ *  PCI memory barrier with low overhead (avoiding IOCTL call as well as writing
++ *  to VRAM which would also add overhead), acting like an MI_MEM_FENCE
++ *  instruction.
++ *
++ *  Note: The mmap size can be at most 4K, due to HW limitations. As a result
++ *  this interface is only supported on CPU architectures that support 4K page
++ *  size. The mmap_offset ioctl will detect this and gracefully return an
++ *  error, where userspace is expected to have a different fallback method for
++ *  triggering a barrier.
++ *
++ *  Roughly the usage would be as follows:
++ *
++ *  .. code-block:: C
++ *
++ *  struct drm_xe_gem_mmap_offset mmo = {
++ *	.handle = 0, // must be set to 0
++ *	.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
++ *  };
++ *
++ *  err = ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
++ *  map = mmap(NULL, size, PROT_WRITE, MAP_SHARED, fd, mmo.offset);
++ *  map[i] = 0xdeadbeaf; // issue barrier
+  */
+ struct drm_xe_gem_mmap_offset {
+ 	/** @extensions: Pointer to the first extension struct, if any */
+@@ -819,7 +845,8 @@ struct drm_xe_gem_mmap_offset {
+ 	/** @handle: Handle for the object being mapped. */
+ 	__u32 handle;
+ 
+-	/** @flags: Must be zero */
++#define DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER     (1 << 0)
++	/** @flags: Flags */
+ 	__u32 flags;
+ 
+ 	/** @offset: The fake offset to use for subsequent mmap call */
 -- 
-2.47.1
+2.34.1
 
