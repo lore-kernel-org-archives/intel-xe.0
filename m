@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF07DE7718A
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Dec 2024 14:28:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB0D4E77187
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Dec 2024 14:32:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0061F10EBC8;
-	Wed, 18 Dec 2024 14:28:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72B1110E34E;
+	Wed, 18 Dec 2024 14:32:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AYPmSQvT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kv+AoY/8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B53410EBB2;
- Wed, 18 Dec 2024 14:28:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8421A10E34E
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Dec 2024 14:32:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734532110; x=1766068110;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=KKli7dlZsQbM+YYJ6NRDNkjuOx2gG2SwBDEnYjoybe8=;
- b=AYPmSQvTGkv5gU5xOnrvEQ7v55ymXzBOSuHZfzmpAK58g2+RhjZbMjhA
- IOGB8+i06ahyoBzT/8TMUCHWTs8TEOHDkJnkgDuHZArlBftkXB/PCiW+c
- EVI38pWeIPa5bYebK/3yWHgC07p5f31oUiIcDdtozGLRtgdHiUAV9NtQo
- O4+eRv2xej3O9ajtftlMSTlt2MrtGHE45BwdlgxSVnRxbWUKwWgnY8UpH
- FNglK9l4e9kHgWs1VX2VtTV/R0mTxFO5juFJzRfvriFIOn1NH21EnOtpT
- YsSkPiH/aS/rA/fI6qUy3ODDDIBU1Jyiy6RoZYt6XWMmCUwTfIRM79WCu A==;
-X-CSE-ConnectionGUID: w6mE4retT1C0IVx7mOD+VQ==
-X-CSE-MsgGUID: bZH5gWNSTaG29RDalChUhg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="52534674"
-X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="52534674"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 06:17:42 -0800
-X-CSE-ConnectionGUID: liQ3Tp1IQCaHpc5gSvB/GA==
-X-CSE-MsgGUID: PFRqiLjyRR6kpdXnEQPuvQ==
+ t=1734532351; x=1766068351;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=sRDD/VA9u40asWPutk6Sn/g7VDoAEI69Zd/a326sZtA=;
+ b=kv+AoY/839TFM9Cy1D/Z+Mg3qai8qe8LdrjSG74dD3HF6W2Wn49y5qn7
+ Sxw39W/lydaYaG2fsHQ+eK31OLcPso5VDtP68O3F0oGFE57qhvUhwE0yi
+ 5PdEW9rech8OmIlG5ZmojaiUyjJ27sHmkeMmFYvx+xXUojnKLZH/ENH4F
+ HX4x/nPntAxjTGnFRNeMJlw1Rbkg3nDKfldLe0OMlsztallvFoBR1Wfyw
+ Czi9FYCJSyDL9edwgC5K8TZjVzWYudNg6wkQ2yvMcXnuGCQkWDILh1+pW
+ rScSmOrkbbL4Ti6Noy04tDVRfSPB4cDBEHDDHPOoi1ZppAjfYSTQf1k3J Q==;
+X-CSE-ConnectionGUID: w38V/7X1Qk2DYVTRwJUPHQ==
+X-CSE-MsgGUID: bQlqvDTxStWtrgXTl55yhA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="46427051"
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="46427051"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 06:32:31 -0800
+X-CSE-ConnectionGUID: TT0l0FAVRvahJJg2Mb3JUQ==
+X-CSE-MsgGUID: /9+AXJxsS5Cm+jkBwV+VuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="98291449"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.108])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 06:17:39 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH] drm/i915/dmc_wl: store register ranges in rodata
-Date: Wed, 18 Dec 2024 16:17:34 +0200
-Message-Id: <20241218141734.2583601-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="102734954"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 06:32:30 -0800
+Date: Wed, 18 Dec 2024 16:33:09 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/xe/pm: Also avoid missing outer rpm warning on
+ system suspend
+Message-ID: <Z2LdJSyhpJoSNQ-Q@ideak-desk.fi.intel.com>
+References: <20241217230547.1667561-1-rodrigo.vivi@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241217230547.1667561-1-rodrigo.vivi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,46 +64,79 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add const to register range arrays to store them in rodata. They don't
-need to be modified.
+On Tue, Dec 17, 2024 at 06:05:47PM -0500, Rodrigo Vivi wrote:
+> We have some cases where display is releasing power domains at
+> release_async_put_domains() where intel_runtime_pm_get_noresume()
+> is called, but no outer protection. In Xe this will trigger our
+> traditional warning.
 
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc_wl.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+I suppose by outer protection you mean an RPM reference that is
+guaranteed to be held at the point (that is right before)
+release_async_put_domains() calls intel_runtime_pm_get_noresume(). This
+is guaranteed, i.e. such an RPM reference is held by definition (by the
+power domain reference that is being put).
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index 3ac44151aab5..02de3ae15074 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -55,12 +55,12 @@ struct intel_dmc_wl_range {
- 	u32 end;
- };
- 
--static struct intel_dmc_wl_range powered_off_ranges[] = {
-+static const struct intel_dmc_wl_range powered_off_ranges[] = {
- 	{ .start = 0x60000, .end = 0x7ffff },
- 	{},
- };
- 
--static struct intel_dmc_wl_range xe3lpd_dc5_dc6_dmc_ranges[] = {
-+static const struct intel_dmc_wl_range xe3lpd_dc5_dc6_dmc_ranges[] = {
- 	{ .start = 0x45500 }, /* DC_STATE_SEL */
- 	{ .start = 0x457a0, .end = 0x457b0 }, /* DC*_RESIDENCY_COUNTER */
- 	{ .start = 0x45504 }, /* DC_STATE_EN */
-@@ -94,7 +94,7 @@ static struct intel_dmc_wl_range xe3lpd_dc5_dc6_dmc_ranges[] = {
- 	{},
- };
- 
--static struct intel_dmc_wl_range xe3lpd_dc3co_dmc_ranges[] = {
-+static const struct intel_dmc_wl_range xe3lpd_dc3co_dmc_ranges[] = {
- 	{ .start = 0x454a0 }, /* CHICKEN_DCPR_4 */
- 
- 	{ .start = 0x45504 }, /* DC_STATE_EN */
--- 
-2.39.5
+Instead, the actual reason for triggering the warn - IIUC - is that
+intel_runtime_pm_get_if_in_use() called from
+xe_pm_runtime_get_noresume() (probably for the exact reason to check if
+an outer RPM is held) fails if it is called while system suspending /
+resuming. This is the same scenario as when
+intel_runtime_pm_get_if_in_use() would fail if called during runtime
+suspending / resuming and - worked around earlier I assume - by
+suppressing the warning in this case using xe_pm_suspending_or_resuming().
 
+So in this fix the above workaround to suppress the warning is just
+extended to the system suspend/resume case.
+
+> However, this case should be safe because it is triggered from the
+> system suspend path, where we certainly won't be transitioning to rpm
+> suspend.
+> 
+> This wouldn't happen if the display pm sequences, including
+> all irq flow was in sync between i915 and xe. So, while we
+> don't get there, let's not raise warnings when we are in this
+> system suspend path.
+
+I think the issue fixed in this patch is just a consequence of how the
+outer RPM check works using xe_pm_suspending_or_resuming() and wouldn't
+change even after the IRQ related issues are fixed.
+
+> Suggested-by: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+With the above understanding:
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
+> ---
+>  drivers/gpu/drm/xe/xe_pm.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index a6761cb769b2..c6e57af0144c 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -7,6 +7,7 @@
+>  
+>  #include <linux/fault-inject.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/suspend.h>
+>  
+>  #include <drm/drm_managed.h>
+>  #include <drm/ttm/ttm_placement.h>
+> @@ -607,7 +608,8 @@ static bool xe_pm_suspending_or_resuming(struct xe_device *xe)
+>  	struct device *dev = xe->drm.dev;
+>  
+>  	return dev->power.runtime_status == RPM_SUSPENDING ||
+> -		dev->power.runtime_status == RPM_RESUMING;
+> +		dev->power.runtime_status == RPM_RESUMING ||
+> +		pm_suspend_target_state != PM_SUSPEND_ON;
+>  #else
+>  	return false;
+>  #endif
+> -- 
+> 2.47.1
+> 
