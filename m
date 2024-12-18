@@ -4,63 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FA95E7718A
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Dec 2024 09:48:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B298AE77187
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Dec 2024 10:07:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 669B810EB4B;
-	Wed, 18 Dec 2024 09:48:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CAF210EB40;
+	Wed, 18 Dec 2024 10:07:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ut0uabf3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iXlpNPn2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EF6810EB4B;
- Wed, 18 Dec 2024 09:48:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AC2110EB40;
+ Wed, 18 Dec 2024 10:07:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734515324; x=1766051324;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=s4ocDH7UmrOpvtqpngizXg9vgWT/WeFW9fcb+JcuNrA=;
- b=Ut0uabf3HvR/+IQDzTNs8ZCvAOpEwNBjbepPezXdi8B9VNEAIAwt7PVn
- X4UmMDt8moZNCcj4fDR1O6rLtmrCfzm9EXLP+kyyLdUldfFlBQSL40ZBa
- ehexKXX/mADH9p8S78+tm1VTmETuIngxMfvxPMZUl8wnt7CtH37o03jNB
- IRfaeEgEJ8KdQMETO+MKOr765w+pmFEEzQNeMtd+ngHiUBClZzlSuAulq
- pF9YzV420NgQio71SNM9GOTFJWXgiNnMFVyvFIRIwHUnuyliSwilHyWDa
- sYzWRyCTxRcsauBowWF7k5Qsz1ApPxcAVK63bjSCL4PSHWvMvZi9hxFun Q==;
-X-CSE-ConnectionGUID: QdS0fit6TBC7oDhSSc+uMg==
-X-CSE-MsgGUID: O5DPLLgcStCbJOcHOQO0mw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="34863611"
-X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="34863611"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 01:48:43 -0800
-X-CSE-ConnectionGUID: geOzY59jQGaw66s7WtDnmw==
-X-CSE-MsgGUID: 4DuAxdA6TM+7wIJIyfqaEQ==
+ t=1734516453; x=1766052453;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=7+jZGoWpXFzTjvA7AAPv5PA1iIKyU2ZmT3lpbGdJiTk=;
+ b=iXlpNPn2pCovssv9oCjwPt8l/nRpHwQFA6czYOJUyLGaAPWYARRw9K/V
+ zuzDrd42vof5ypSMsoqQCYvne4eDHAjzL8/giLOvO4D/vM7dCPULoGeyQ
+ VT1IKF9CuxLimhXXGKcdEzy54BTg9V++OwsR5nsjC4AtyoqGndB7tti2S
+ V2xRJOtBtTQmhQJbmrmg3Y+Ns5Q9nnsgCYkHp/OliMDUaD4p8nXyPc8ml
+ PkoNhiLK3LrSR6j0guyIj+aSlekdpxHi/x7QsvNNoIHAc3ij8RNqiucRm
+ 48+aUS5+SsSa5VgL3InCcZ+1bnGBmHK6XW1sA/P18tYsOG62zZn9oqzI3 w==;
+X-CSE-ConnectionGUID: 3D3oc3clT/66YFNIKvLLgg==
+X-CSE-MsgGUID: lit1imT5ROOZt5+r3iFHvQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="52503266"
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="52503266"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 02:07:33 -0800
+X-CSE-ConnectionGUID: 2T5OqQnqQ8igv5xJQi9cnQ==
+X-CSE-MsgGUID: q8pw8DrAT2imfrBYE3/xDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="102646360"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.42])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 01:48:39 -0800
-Date: Wed, 18 Dec 2024 11:48:36 +0200
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-gt-next
-Message-ID: <Z2KadNXgumx1aQMP@jlahtine-mobl.ger.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="97671101"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO [10.245.246.105])
+ ([10.245.246.105])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 02:07:31 -0800
+Message-ID: <e8dc4ae396ed0e432618e7bd40831709a84ec889.camel@linux.intel.com>
+Subject: Re: [PATCH v14 3/8] drm/ttm/pool: Provide a helper to shrink pages
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Matthew Brost
+ <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, Paulo Zanoni
+ <paulo.r.zanoni@intel.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Date: Wed, 18 Dec 2024 11:07:13 +0100
+In-Reply-To: <3130e373-5dbb-4f4b-a24c-a0015a638c3e@amd.com>
+References: <20241115150120.3280-1-thomas.hellstrom@linux.intel.com>
+ <20241115150120.3280-4-thomas.hellstrom@linux.intel.com>
+ <800ee040-7c2e-47d0-81e6-a352f5f689fb@amd.com>
+ <a07c93704bc7f59f51b5a6a13aeb3e13eee28e3c.camel@linux.intel.com>
+ <d1e33436-9c1c-43d4-a86a-956926a7096c@amd.com>
+ <73588525571a68f5638300ef171591de10ba5e5d.camel@linux.intel.com>
+ <0595e4df-86d4-4082-86ab-b77902d3020b@amd.com>
+ <cf722b696676b7383a94c2b846f8230e180ee527.camel@linux.intel.com>
+ <bc762b0c-4fe3-48ff-b8df-14f741c91939@amd.com>
+ <f74a7b678b5013dbcbe090bbff885827d3675247.camel@linux.intel.com>
+ <c74e9f5c-3201-4083-8b79-80fdbbd903f2@amd.com>
+ <5f3c04297fd6f008cad0415d6b6c04ba8c3b5a8c.camel@linux.intel.com>
+ <26747cae-d66a-4bc4-9efb-4fdda4ac766b@amd.com>
+ <e7654f8140ce2bd1afdca20b21b139cf810b6070.camel@linux.intel.com>
+ <1e378253-57f0-46b1-b6a7-a6b8997d7e1b@amd.com>
+ <9e2d75c95a9ed06912490937b1163f2a54d0196a.camel@linux.intel.com>
+ <3130e373-5dbb-4f4b-a24c-a0015a638c3e@amd.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,89 +88,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave & Sima,
+On Wed, 2024-12-04 at 12:24 +0100, Christian K=C3=B6nig wrote:
+> Am 04.12.24 um 12:09 schrieb Thomas Hellstr=C3=B6m:
+> > [SNIP]
+>=20
+> > > > > BTW I really dislike that tt->restore is allocated
+> > > > > dynamically.
+> > > > > That
+> > > > > is
+> > > > > just another allocation which can cause problems.
+> > > > > We should probably have all the state necessary for the
+> > > > > operation
+> > > > > in
+> > > > > the
+> > > > > TT object.
+> > > > Initially it was done this way. But that meant a pre-allocated
+> > > > struct
+> > > > page-pointer array the of 1 << MAX_PAGE_ORDER size (2MiB) for
+> > > > each
+> > > > ttm_tt. That lead to a patch to reduce the MAX_PAGE_ORDER to
+> > > > PMD
+> > > > size
+> > > > order, but=C2=A0 as you might remember, that needed to be ripped ou=
+t
+> > > > because
+> > > > the PMD size macros aren't constant across all architectures.
+> > > > IIRC
+> > > > it
+> > > > was ARM causing compilation failures, and Linus wasn't happy.
+> > > Yeah, I do remember that. But I don't fully get why you need this
+> > > page-pointer array in the first place?
+> > So the TTM page-pointer array holds the backup handles when backed
+> > up.
+> > During recovery, We allocate a (potentially huge) page and populate
+> > the
+> > TTM page-pointer array with pointers into that. Meanwhile we need
+> > to
+> > keep the backup handles for the recover phase in the restore
+> > structure,
+> > and in the middle of the recover phase you might hit an -EINTR.
+>=20
+> I still don't see the problem to be honest.
+>=20
+> What you basically do on recovery is the following:
+> 1. Allocate a bunch of contiguous memory of order X.
+> 2. Take the first entry from the page_array, convert that to your
+> backup=20
+> handle and copy the data back into the just allocated contiguous
+> memory.
+> 3. Replace the first entry in the page array with the struct page=20
+> pointer of the allocated contiguous memory.
+> 4. Take the next entry from the page_array, convert that to your
+> backup=20
+> handle and copy the data back into the just allocated contiguous
+> memory.
+> 5. Replace the next entry in the page_array with the struct page
+> pointer=20
+> + 1 of the allocated contiguous memory.
+> 6. Repeat until the contiguous memory is fully recovered and we jump
+> to=20
+> 1 again.
 
-Here goes the pre-holidays drm-intel-gt-next PR towards 6.14 as promised.
+OK so the reason I skipped this previously was apparently because of
+inconsistencies, since the the dma_addr array is fully populated it
+would look awkward if pages array were only partly populated.
 
-As the main improvement there is engine busyness accuracy improvements
-for GuC submission platforms and fixup for BO mapping corner cases.
+But I reworked this in the latest version to follow the above so now
+both are populated once the whole new multi-order page is successfully
+read back from backup. The patch becomes bigger, and I also added a
+restructuring patch, but OTOH some of the additional additions is
+documentation.
 
-The rest is smaller refactoring and improvements.
+The (now small) kmalloc at start of restore is still present, though. I
+figure if that fails, restore would fail anyway so it shouldn't be an
+issue whatsoever.
 
-Happy Holidays!
+On an unrelated issue,
+I notice that HighMem pages are skipping cache-transitioning. That
+makes sense since they don't have a kernel linear map, but content
+added using writes to other cached maps (page clearing, restore, resume
+from hibernation) might still remain in a PIPT cache, right? Don't we
+need to clflush these pages on wb->wc transition and ensure any resume-
+from-hibernation content is similarly flushed?
 
-Regards, Joonas
+/Thomas
 
-***
 
-drm-intel-gt-next-2024-12-18:
+>=20
+> What exactly do you need this pre-allocated struct page-pointer array
+> of=20
+> 1 << MAX_PAGE_ORDER for?
+>=20
+> Sorry, I must really be missing something here.
+>=20
+> Regards,
+> Christian.
+>=20
+> >=20
+> > Thanks,
+> > Thomas
 
-Driver Changes:
-
-- More accurate engine busyness metrics with GuC submission (Umesh)
-- Ensure BO segment offset never exceeds allowed max (Krzysztof)
-- Flush GuC CT receive tasklet during reset preparation (Zhanjun)
-
-- Code cleanups and refactoring (David, Lucas)
-- Debugging improvements (Jesus)
-- Selftest improvements (Sk)
-
-The following changes since commit 6ef0e3ef2662db71d363af77ce31fa940bb7d525:
-
-  drm/i915/gt: Retry RING_HEAD reset until it get sticks (2024-10-22 11:35:07 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2024-12-18
-
-for you to fetch changes up to f373ebec18a75d671908e81ed9925aebf279ec2f:
-
-  drm/i915/guc: Update guc_err message to show outstanding g2h responses (2024-12-17 11:38:50 -0800)
-
-----------------------------------------------------------------
-Driver Changes:
-
-- More accurate engine busyness metrics with GuC submission (Umesh)
-- Ensure partial BO segment offset never exceeds allowed max (Krzysztof)
-- Flush GuC CT receive tasklet during reset preparation (Zhanjun)
-
-- Code cleanups and refactoring (David, Lucas)
-- Debugging improvements (Jesus)
-- Selftest improvements (Sk)
-
-----------------------------------------------------------------
-Dr. David Alan Gilbert (1):
-      drm/i915/gt: Remove unused execlists_unwind_incomplete_requests
-
-Jesus Narvaez (1):
-      drm/i915/guc: Update guc_err message to show outstanding g2h responses
-
-Krzysztof Karas (1):
-      drm/i915: ensure segment offset never exceeds allowed max
-
-Lucas De Marchi (4):
-      drm/i915/pmu: Rename cpuhp_slot to cpuhp_state
-      drm/i915/pmu: Stop setting event_init to NULL
-      drm/i915/pmu: Replace closed with registered
-      drm/i915/pmu: Remove pointless synchronize_rcu() call
-
-Sk Anirban (1):
-      drm/i915/selftests: Add delay to stabilize frequency in live_rps_power
-
-Umesh Nerlige Ramappa (3):
-      i915/guc: Reset engine utilization buffer before registration
-      i915/guc: Ensure busyness counter increases motonically
-      i915/guc: Accumulate active runtime on gt reset
-
-Zhanjun Dong (1):
-      drm/i915/guc: Flush ct receive tasklet during reset preparation
-
- drivers/gpu/drm/i915/gt/intel_engine.h             |  3 --
- drivers/gpu/drm/i915/gt/intel_engine_types.h       |  5 ++
- .../gpu/drm/i915/gt/intel_execlists_submission.c   |  9 ----
- drivers/gpu/drm/i915/gt/selftest_rps.c             |  1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  | 53 ++++++++++++++++++++--
- drivers/gpu/drm/i915/i915_mm.c                     |  4 +-
- drivers/gpu/drm/i915/i915_pmu.c                    | 50 ++++++++------------
- drivers/gpu/drm/i915/i915_pmu.h                    |  4 +-
- 8 files changed, 79 insertions(+), 50 deletions(-)
