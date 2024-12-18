@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3793E77188
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Dec 2024 23:34:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9096E77188
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Dec 2024 23:34:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32FA810E0DD;
-	Wed, 18 Dec 2024 23:34:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68B8510E040;
+	Wed, 18 Dec 2024 23:34:16 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CB8A10E040;
- Wed, 18 Dec 2024 23:34:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E79E210E040;
+ Wed, 18 Dec 2024 23:34:15 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Small_trac?=
- =?utf-8?q?e_print_improvements_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Small_trace_pri?=
+ =?utf-8?q?nt_improvements_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Oak Zeng" <oak.zeng@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Dec 2024 23:34:03 -0000
-Message-ID: <173456484343.214883.10843523199177441362@b555e5b46a47>
+Date: Wed, 18 Dec 2024 23:34:15 -0000
+Message-ID: <173456485594.214883.17885827637465367186@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241218164833.2364049-1-oak.zeng@intel.com>
 In-Reply-To: <20241218164833.2364049-1-oak.zeng@intel.com>
@@ -48,11 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: d8f0c44e2ed9 drm-tip: 2024y-12m-18d-18h-11m-47s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: trace bo create
-Applying: drm/xe: Print vm flags in xe_vm trace print
-Applying: drm/xe: Print vm parameter in xe_vma trace
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a5fb60400834bb7b82a2f9ff4c2d1ce9dc9c1de5
+Author: Oak Zeng <oak.zeng@intel.com>
+Date:   Wed Dec 18 11:48:33 2024 -0500
+
+    drm/xe: Print vm parameter in xe_vma trace
+    
+    Print the vm that the vma belongs to in the vma trace.
+    This is useful to correlate VMA operations to the VM.
+    
+    Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch d8f0c44e2ed948dcc45d04a0dfa83612995a702b drm-intel
+9e1bf8015024 drm/xe: trace bo create
+ddf7ccb211e1 drm/xe: Print vm flags in xe_vm trace print
+a5fb60400834 drm/xe: Print vm parameter in xe_vma trace
 
 
