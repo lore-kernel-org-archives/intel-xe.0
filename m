@@ -4,57 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E3E9E77187
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Dec 2024 13:59:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92FD6E77188
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Dec 2024 14:13:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B355510E1A0;
-	Wed, 18 Dec 2024 13:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EF8C10E012;
+	Wed, 18 Dec 2024 14:13:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GfyFi4GE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fn8P7Uw5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA6BD10E1A0
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Dec 2024 13:59:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 220AF10E012
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Dec 2024 14:13:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734530347; x=1766066347;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=G/fCLbNlOiUKrh9xC3UH6zeoYELeqRVj4MBHUvSA4+A=;
- b=GfyFi4GEGrvRNMMTXor6QhSmahAxD22i+TKcOkg8T2dcjiRVNRzmWz9c
- 8y1eEVKPv9J+70eEJ3hFt17w7RFOtC7Or4qyuyA7XgNafBjSGuEiq7sx/
- rMANUr2pCpBWePZJTt96PgRlN6L53QRGOCfCYT2uLVJ4EK5osFG3sFyrr
- bxlYxhJU/XF8igVOwSV8CD8kIVxKk+r4u/RKOLKVXMBZ6vumSvOGhF4nq
- IxQTWn7kbo6iepzryfMQbjaDlpMakIygWcmhwh4epBhC5siu0pOwcH1q2
- P9+6wBetiL4CLweV1haN4nAHGNLJjoCrXcDWQY0RrCeBMvvONRB8LJkcc w==;
-X-CSE-ConnectionGUID: eCx7dNAiQ6KWeuHCUWGeYQ==
-X-CSE-MsgGUID: vTc234A5SZeGcvxwmQ5IKg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="34887713"
-X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="34887713"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 05:59:07 -0800
-X-CSE-ConnectionGUID: 7dY9v4w1STeRg+19x3vOaw==
-X-CSE-MsgGUID: MmmURt8+TgGy+NLnG8UhfA==
+ t=1734531227; x=1766067227;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=leNe7Vao+Pp2QFWX0fdUnZVir+FPeblaQ+f0/aXRNHo=;
+ b=fn8P7Uw5pDwLs52+Xr3UDbwcPONlRlM9G1ko8OmXXdH4HrQ/CBCkSDMZ
+ Qdi47oTCvKs6ZHGsnd5mahc60xiJalL3cTkr+EJKc2W7Z7r5OefcUyMLo
+ E1+ncu4mKfZLPVqDUwYWRfYU7EK4T9JXGJRRnY5l4ObgsGDOwTnfSjRaC
+ JEINi+etvwYnYmIgAS6N8H/P/bqWS1W0aAYa4sUCbd0k2JrCMzcmxYTM0
+ axHFrghsPiWdeP4IiHuCx0oaStAl9GHKitI4flKy6QkBx4JiVHUhNhsuL
+ zajWD540wXNWy58EgJhpA3dJObiTngbi/YcgW5ydEydg0HtyTcnk1X7jd Q==;
+X-CSE-ConnectionGUID: y6P8ZK6CRx6rkCyQRibhtw==
+X-CSE-MsgGUID: sezWVptJSPKDLdIWpxE2sw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="38943500"
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="38943500"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 06:13:47 -0800
+X-CSE-ConnectionGUID: 5+xcJSsKT/6sUOsS+i0SRg==
+X-CSE-MsgGUID: pFzyqfDyQGKzIQjvKpoVbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="102867588"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO [10.245.246.105])
- ([10.245.246.105])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 05:59:05 -0800
-Message-ID: <26160d0fb20982b110c91bf607f6886feb8ad8a9.camel@linux.intel.com>
-Subject: Re: [PATCH v2] drm/xe/tests: Move shrink test out of xe_bo
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Auld <matthew.auld@intel.com>
-Date: Wed, 18 Dec 2024 14:59:02 +0100
-In-Reply-To: <20241218141447.2528530-1-nirmoy.das@intel.com>
-References: <20241218141447.2528530-1-nirmoy.das@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="97716865"
+Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
+ ([10.125.111.208])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 06:13:46 -0800
+Date: Wed, 18 Dec 2024 08:13:41 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com, 
+ umesh.nerlige.ramappa@intel.com, rodrigo.vivi@intel.com,
+ vinay.belgaumkar@intel.com, 
+ aravind.iddamsetty@intel.com, john.c.harrison@intel.com,
+ ashutosh.dixit@intel.com, soham.purkait@intel.com
+Subject: Re: [PATCH v2 8/8] drm/xe/pmu: Add PMU support for engine busyness
+Message-ID: <erhe5xquod7e7mlr5nnnaqtlzxsvgytrnxw3xczydibvqcxxtt@v2ta2k3tzip4>
+References: <20241121063904.3033754-1-riana.tauro@intel.com>
+ <20241121063904.3033754-9-riana.tauro@intel.com>
+ <4k3j4q3sakdke5fd3l25rrntjtdjxcm6447xg66czx6whofjbb@jel5xjc7kf77>
+ <5165cae4-729e-4b78-84d6-fbbbb3470fb9@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5165cae4-729e-4b78-84d6-fbbbb3470fb9@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,79 +75,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2024-12-18 at 15:14 +0100, Nirmoy Das wrote:
-> The subtest typically has an execution time long enough to motivate a
-> separate test so that it can be easily excluded if needed.
->=20
-> v2: reword commit message(Thomas)
->=20
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+On Wed, Dec 18, 2024 at 10:42:53AM +0530, Riana Tauro wrote:
+>Hi Lucas
+>
+>On 12/13/2024 11:28 AM, Lucas De Marchi wrote:
+>>On Thu, Nov 21, 2024 at 12:09:04PM +0530, Riana Tauro wrote:
+>>>PMU provides two counters (<engine>-busy-ticks-gt<n>,
+>>><engine>-total-ticks-gt<n>) to calculate engine busyness. When querying
+>>>engine busyness, user must group these 2 counters using the perf_event
+>>>group mechanism to ensure both counters are sampled together.
+>>>
+>>>To list engine busyness counters use the following
+>>>
+>>>./perf list
+>>> xe_0000_03_00.0/bcs0-busy-ticks-gt0/               [Kernel PMU event]
+>>
+>>this will need a rebase on latest versions of the pmu patches as we
+>>moved to have gt as a param rather than mangling the event name.
+>
+>In case of multiple gts, there might be different engines for each gt
+>So should we display a common name and unsupported in case the engine 
+>does not belong to the gt?
+>
+>sudo ./perf stat -e xe_0000_00_02.0/vcs0-busy-ticks,gt_id=0/ -I 1000
 
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+why is engine not a param, like gt?
 
-
-> ---
-> =C2=A0drivers/gpu/drm/xe/tests/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 16 ++++++++++++++--
-> =C2=A0drivers/gpu/drm/xe/tests/xe_live_test_mod.c |=C2=A0 2 ++
-> =C2=A02 files changed, 16 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c
-> b/drivers/gpu/drm/xe/tests/xe_bo.c
-> index c9ec7a313c6b..405ff904153e 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-> @@ -606,8 +606,6 @@ static void xe_bo_shrink_kunit(struct kunit
-> *test)
-> =C2=A0static struct kunit_case xe_bo_tests[] =3D {
-> =C2=A0	KUNIT_CASE_PARAM(xe_ccs_migrate_kunit,
-> xe_pci_live_device_gen_param),
-> =C2=A0	KUNIT_CASE_PARAM(xe_bo_evict_kunit,
-> xe_pci_live_device_gen_param),
-> -	KUNIT_CASE_PARAM_ATTR(xe_bo_shrink_kunit,
-> xe_pci_live_device_gen_param,
-> -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {.speed =3D KUNIT_SPEED_SLOW}),
-> =C2=A0	{}
-> =C2=A0};
-> =C2=A0
-> @@ -618,3 +616,17 @@ struct kunit_suite xe_bo_test_suite =3D {
-> =C2=A0	.init =3D xe_kunit_helper_xe_device_live_test_init,
-> =C2=A0};
-> =C2=A0EXPORT_SYMBOL_IF_KUNIT(xe_bo_test_suite);
-> +
-> +static struct kunit_case xe_bo_shrink_test[] =3D {
-> +	KUNIT_CASE_PARAM_ATTR(xe_bo_shrink_kunit,
-> xe_pci_live_device_gen_param,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {.speed =3D KUNIT_SPEED_SLOW}),
-> +	{}
-> +};
-> +
-> +VISIBLE_IF_KUNIT
-> +struct kunit_suite xe_bo_shrink_test_suite =3D {
-> +	.name =3D "xe_bo_shrink",
-> +	.test_cases =3D xe_bo_shrink_test,
-> +	.init =3D xe_kunit_helper_xe_device_live_test_init,
-> +};
-> +EXPORT_SYMBOL_IF_KUNIT(xe_bo_shrink_test_suite);
-> diff --git a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-> b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-> index 0d36ab864ec0..81277c77016d 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-> @@ -6,11 +6,13 @@
-> =C2=A0#include <kunit/test.h>
-> =C2=A0
-> =C2=A0extern struct kunit_suite xe_bo_test_suite;
-> +extern struct kunit_suite xe_bo_shrink_test_suite;
-> =C2=A0extern struct kunit_suite xe_dma_buf_test_suite;
-> =C2=A0extern struct kunit_suite xe_migrate_test_suite;
-> =C2=A0extern struct kunit_suite xe_mocs_test_suite;
-> =C2=A0
-> =C2=A0kunit_test_suite(xe_bo_test_suite);
-> +kunit_test_suite(xe_bo_shrink_test_suite);
-> =C2=A0kunit_test_suite(xe_dma_buf_test_suite);
-> =C2=A0kunit_test_suite(xe_migrate_test_suite);
-> =C2=A0kunit_test_suite(xe_mocs_test_suite);
-
+Lucas De Marchi
