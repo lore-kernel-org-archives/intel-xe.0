@@ -4,63 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11B6AE77184
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Dec 2024 20:53:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A13EE77184
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Dec 2024 20:54:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8F1510E028;
-	Thu, 19 Dec 2024 20:53:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48B2510E028;
+	Thu, 19 Dec 2024 20:54:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P3KC8FlC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NCtunfAn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36B9310E028
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Dec 2024 20:53:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A824510E028
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Dec 2024 20:54:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734641602; x=1766177602;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=95DKwrrD/B5sv+05p2wZ+mI+nA+tsxkqZSRd4hK0gyM=;
- b=P3KC8FlCN9xjoUmPzTBnNnX6d5FXmo9apkFhTDHSZXUQcOPv3zZ80ksc
- 0GbTsx74CiL/Gxradh2rBV5Sukhg5LpsCMJByFI/bo4oRRwPO6x8IaD6E
- e6hnI7tUtikxVK2YpAGvQZpuTwcVP0SAU4jg3N3N/cxZ5coHUQSjHfp3f
- hUMUYlovdPzwpvVVe+NY3x5cHO2MDBxO8jSdCpSCJ5fJaH3NEuIW/+ylG
- TTodvIMxlxTmuD+G7RXElcnfYRjoUfo/Xt8GMsEwe7HoGVVEqgGNIojFu
- cM8qx9MbL5neAnZn1Jv18Hf+Z6VYBgN9UyZWMCnrBdsWa853aQNIZROF+ A==;
-X-CSE-ConnectionGUID: 7SZwD00BRDeCdIxMA4mcnQ==
-X-CSE-MsgGUID: JpnIdk3KSd6DUpId08zvcw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="34498241"
-X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="34498241"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 12:53:22 -0800
-X-CSE-ConnectionGUID: 7bPBUQUSSrW5R93NA9PWYw==
-X-CSE-MsgGUID: aVM1BlH2Q0GXG8uiDQo7xQ==
+ t=1734641653; x=1766177653;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=ueJT8UY9Z74TPsUXqYPujFDhmUBCIoDQKromJUil98k=;
+ b=NCtunfAnGUTu0AwkwAH6t3asrjJsR6yCacubJxVBu4vvSwh7/M7gONff
+ tnea3AXk8q/weOxQbq6eHfkyjIfb3LZrBop9nA1ufeOEDDoBX6TGz9S72
+ lA1ucC7bcq8e2uivKubPueCupesCMj6RJOTjp1gC0nfA4K8Hl++kPn/DL
+ Uy1HAaWjDGX71Xyfvhc+VirikB7uWL+J4Ujk3JfRh1cUErFulX2JOVrl4
+ g8G/4vY9LE50DUDbOQMD12/o406YYD/a6THXq2S0V7dnRDiYY1nbJXDFN
+ nToR0bwsajnaLJ9OfSf8dtKI/jDdfgcyhxG9Di68HUcsJMWLGpOQQSlMl w==;
+X-CSE-ConnectionGUID: d/fFMjm2RZmmU0CwVccHKw==
+X-CSE-MsgGUID: K+CaF4SgStGrEh1YyauWDA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="35397104"
+X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="35397104"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 12:54:12 -0800
+X-CSE-ConnectionGUID: 3nMQ7cf7QWa6WrE+ar8Yrw==
+X-CSE-MsgGUID: febsw70WRPuLBKiBYesIvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="103314807"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 12:53:18 -0800
-Date: Thu, 19 Dec 2024 22:53:15 +0200
-From: Raag Jadav <raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="98788652"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 12:54:12 -0800
+Date: Thu, 19 Dec 2024 12:54:11 -0800
+Message-ID: <85o7171jik.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Harish Chegondi <harish.chegondi@intel.com>
-Cc: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
- intel-xe@lists.freedesktop.org, james.ausmus@intel.com,
+Cc: intel-xe@lists.freedesktop.org, james.ausmus@intel.com,
  felix.j.degrood@intel.com, matias.a.cabral@intel.com,
  joshua.santosh.ranjan@intel.com, shubham.kumar@intel.com,
  matthew.d.roper@intel.com, matthew.olson@intel.com
 Subject: Re: [PATCH v6 2/7] drm/xe/uapi: Introduce API for EU stall sampling
-Message-ID: <Z2SHu_JgmAPZcmeB@black.fi.intel.com>
+In-Reply-To: <Z2SCKvfqjruxRnQp@intel.com>
 References: <cover.1734427624.git.harish.chegondi@intel.com>
  <03e289da2ba0426649774b2a68569003c2aa0945.1734427624.git.harish.chegondi@intel.com>
  <854j322gl8.wl-ashutosh.dixit@intel.com>
  <Z2NR9oP6zdD41RGe@intel.com>
  <85ttaz1vub.wl-ashutosh.dixit@intel.com>
  <Z2SCKvfqjruxRnQp@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z2SCKvfqjruxRnQp@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,7 +77,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Dec 19, 2024 at 12:29:30PM -0800, Harish Chegondi wrote:
+On Thu, 19 Dec 2024 12:29:30 -0800, Harish Chegondi wrote:
+>
 > On Thu, Dec 19, 2024 at 08:27:56AM -0800, Dixit, Ashutosh wrote:
 > > On Wed, 18 Dec 2024 14:51:34 -0800, Harish Chegondi wrote:
 > > >
@@ -106,12 +109,12 @@ On Thu, Dec 19, 2024 at 12:29:30PM -0800, Harish Chegondi wrote:
 > > > > of each patch separately.
 > > > Makes sense. But how would the reviewers know if a patch v2 in a series
 > > > v6 has been updated?
-> > 
+> >
 > > They can check, say in v7 if the patch has gone from v2 to v3. And anyway
 > > reviewers need to be aware of what is going on. There should be no
 > > significant changes to the patch after a R-b, otherwise typically the patch
 > > will change and it versions increment.
-> > 
+> >
 > > With what you are doing, the patch will go from v6 to v7 even if there are
 > > no changes to the patch.
 > When I do a git format-patch, I specify the --subject-prefix="PATCH version".
@@ -119,6 +122,138 @@ On Thu, Dec 19, 2024 at 12:29:30PM -0800, Harish Chegondi wrote:
 > assigned the new version even though I don't change some of the patches
 > in the series. Is there a way I can specify the version for individual patches?
 
-https://kernelnewbies.org/FirstKernelPatch -> "Versioning patchsets"
+I do everything manually. However, looking at the patches in:
 
-Raag
+https://patchwork.freedesktop.org/series/137870/
+
+Matt Brost seems to be doing what you are doing, so that should be ok too.
+
+> >
+> > > >
+> > > > > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> > > > > index f62689ca861a..4ee3b04a1bb5 100644
+> > > > > --- a/include/uapi/drm/xe_drm.h
+> > > > > +++ b/include/uapi/drm/xe_drm.h
+> > > > > @@ -1397,6 +1397,8 @@ struct drm_xe_wait_user_fence {
+> > > > >  enum drm_xe_observation_type {
+> > > > >	/** @DRM_XE_OBSERVATION_TYPE_OA: OA observation stream type */
+> > > > >	DRM_XE_OBSERVATION_TYPE_OA,
+> > > > > +	/** @DRM_XE_OBSERVATION_TYPE_EU_STALL: EU stall sampling observation stream type */
+> > > > > +	DRM_XE_OBSERVATION_TYPE_EU_STALL,
+> > > > >  };
+> > > > >
+> > > > >  /**
+> > > > > @@ -1729,6 +1731,45 @@ struct drm_xe_oa_stream_info {
+> > > > >	__u64 reserved[3];
+> > > > >  };
+> > > > >
+> > > > > +/**
+> > > > > + * enum drm_xe_eu_stall_property_id - EU stall sampling input property ids.
+> > > > > + *
+> > > > > + * These properties are passed to the driver at open as a chain of
+> > > > > + * @drm_xe_ext_set_property structures with @property set to these
+> > > > > + * properties' enums and @value set to the corresponding values of these
+> > > > > + * properties. @drm_xe_user_extension base.name should be set to
+> > > > > + * @DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY.
+> > > > > + *
+> > > > > + * With the file descriptor obtained from open, user space must enable
+> > > > > + * the EU stall stream fd with @DRM_XE_OBSERVATION_IOCTL_ENABLE before
+> > > > > + * calling read(). read() returns number of bytes of EU stall data read
+> > > > > + * from the EU stall data buffer or an error. One of the errors returned
+> > > >
+> > > > No need to explain what read() returns, read() is a system call, user can
+> > > > read the read man page.
+> > > >
+> > > > > + * from read is -EIO which indicates HW dropped data due to full buffer.
+> > > >
+> > > > Just say "EIO errno from read() indicates data loss due to buffer
+> > > > overflow".
+> > > >
+> > > > Also, -EIO is not returned to userspace, errno is set for userspace.
+> > > >
+> > > > > + *
+> > > > > + */
+> > > > > +enum drm_xe_eu_stall_property_id {
+> > > > > +#define DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY		0
+> > > > > +	/**
+> > > > > +	 * @DRM_XE_EU_STALL_PROP_GT_ID: GT ID of the GT on which
+> > > >
+> > > > @gt_id
+> > > >
+> > > > > +	 * EU stall data will be captured.
+> > > > > +	 */
+> > > > > +	DRM_XE_EU_STALL_PROP_GT_ID = 1,
+> > > > > +
+> > > > > +	/**
+> > > > > +	 * @DRM_XE_EU_STALL_PROP_SAMPLE_RATE: Sampling rate
+> > > > > +	 * in GPU cycles. Valid values are:
+> > > > > +	 * 251, 251x2, 251x3, 251x4, 251x5, 251x6 and 251x7.
+> > > >
+> > > > This 251 stuff needs to go, as was already mentioned the last
+> > > > time. Something like:
+> > > >
+> > > > "@DRM_XE_EU_STALL_PROP_SAMPLE_RATE: Sampling rate in GPU cycles, from
+> > > > @sampling_rates in struct @drm_xe_query_eu_stall".
+> > > Will change.
+> > > >
+> > > > > +	 */
+> > > > > +	DRM_XE_EU_STALL_PROP_SAMPLE_RATE,
+> > > > > +
+> > > > > +	/**
+> > > > > +	 * @DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT: Minimum number of
+> > > > > +	 * EU stall data rows to be present in the kernel buffer for
+> > > > > +	 * poll() to set POLLIN (data present).
+> > > > > +	 */
+> > > > > +	DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT,
+> > > >
+> > > > We called this DRM_XE_OA_PROPERTY_WAIT_NUM_REPORTS for OA. So maybe
+> > > > DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS? Or WAIT_REPORT_COUNT? Not sure what
+> > > > EVENT is referring to?
+> > > Here is EVENT is referring to POLLIN (new EU stall data in the buffer)
+> > > from poll(). This property would specify the minimum EU stall data
+> > > records to be present in the buffer for poll() to set POLLIN.
+> >
+> > Note that above I said use EIO errno, not -EIO return code? The reason for
+> > that is that this is userspace facing file, to be consumed by
+> > userspace. Userspace doesn't know what POLLIN/EVENT mean, those things are
+>
+> Userspace knows POLLIN - https://man7.org/linux/man-pages/man2/poll.2.html
+
+Ah ok. And poll has events too. Though we need to cover both the
+non-blocking as well as blocking read cases. Blocking read does not set
+POLLIN.
+
+>
+> > internal to the kernel implemenation and kernel API's. So these need to be
+> > changed too. Here is the example from OA for this property:
+> >
+> >	/**
+> >	 * @DRM_XE_OA_PROPERTY_WAIT_NUM_REPORTS: Number of reports to wait
+> >	 * for before unblocking poll or read
+> >	 */
+> >	DRM_XE_OA_PROPERTY_WAIT_NUM_REPORTS,
+> >
+> > So here there is no mention of kernel implementation/API's, only about user
+> > threads getting unblocked. And anyway there are no events to userspace
+> > kernel is sending.
+>
+> If I remember correctly, the name event report count was suggested by
+> the user space folks. I can change it so it is consistent with the term
+> used in OA to DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS.
+>
+> >
+> > > >
+> > > > > +};systemctl start gdm3
+> > >
+> > > > > +
+> > > > >  #if defined(__cplusplus)
+> > > > >  }
+> > > > >  #endif
+> > > > > --
+> > > > > 2.47.0
+> > > > >
+> > > >
+> > > > Ashutosh
+> > > Thank you
+> > > Harish.
+> > >
