@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B085E77184
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Dec 2024 21:49:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F963E77184
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Dec 2024 22:00:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0380810EDEE;
-	Thu, 19 Dec 2024 21:49:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ml6LBZLQ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73BB110EDE9;
- Thu, 19 Dec 2024 21:49:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734644979; x=1766180979;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=h7B9pCEcsDRpbCbnTIvSw39Hasy5sUXB1hhaaRUp3iQ=;
- b=ml6LBZLQOCt+9JDIP6hHCL4zVIiNGvwC9mxBJlwGKqejINad13PJKmJJ
- zEYV9Z5QsLT2vmDs3Ta3vsVA24J3QIppR9WJoLYNpMlBNww8sAyCxwpwn
- bQdqTfk0x4iosmvxVK1ucOXflDiEPr7ulAvrB0p+J62kllIqGIapDlV+i
- nU+bq1IE4NnQozc2KVmeNIhXDx01bxKqtjYfFDjKVYMLqV0srzbOpkj5O
- MUb4gf/iPK7ym/LU5jOv1GFGmnRMYgN+El2EnTkHqCvCH3sxepF215JUs
- swVP7ubxAG/Lm1ftOiU6yoo7L6/VMZUuf6zfQNtp4Y+iqCdI9QlZKo23U w==;
-X-CSE-ConnectionGUID: 803fmK9xTT6Tt6jcA+SuiA==
-X-CSE-MsgGUID: 6xEPZdAYTtOMobyfhbbecw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="52710912"
-X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="52710912"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 13:49:39 -0800
-X-CSE-ConnectionGUID: VyXXR4lwSf+qbk6iQUMznA==
-X-CSE-MsgGUID: X9KHqIL2Rq+gg7TSea9GxQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="98150148"
-Received: from ldmartin-desk2.corp.intel.com (HELO
- gjsousa-mobl2.corp.amr.intel.com) ([10.125.108.53])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 13:49:38 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 3/3] drm/i915/display: Use INTEL_GLOBAL_STATE_DEFAULTS
-Date: Thu, 19 Dec 2024 18:48:38 -0300
-Message-ID: <20241219214909.104869-4-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241219214909.104869-1-gustavo.sousa@intel.com>
-References: <20241219214909.104869-1-gustavo.sousa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00BAD10EDC4;
+	Thu, 19 Dec 2024 22:00:35 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 456A210EDC4;
+ Thu, 19 Dec 2024 22:00:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/dp=3A_128b/132b_uncom?=
+ =?utf-8?q?pressed_SST_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 19 Dec 2024 22:00:34 -0000
+Message-ID: <173464563427.549164.4941158355747810554@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <cover.1734643485.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1734643485.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,158 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reduce global state boilerplate by using INTEL_GLOBAL_STATE_DEFAULTS().
-The only case that requires customization is for the duplication of
-CDCLK state, which is resolved by wrapping the generic implementation.
+== Series Details ==
 
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c       | 21 +------------------
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 18 +++++++---------
- drivers/gpu/drm/i915/display/intel_pmdemand.c | 21 +------------------
- drivers/gpu/drm/i915/display/skl_watermark.c  | 20 +-----------------
- 4 files changed, 10 insertions(+), 70 deletions(-)
+Series: drm/i915/dp: 128b/132b uncompressed SST (rev2)
+URL   : https://patchwork.freedesktop.org/series/142548/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 30236010e0ed..f040dfa70fd9 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -1422,27 +1422,8 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
- 	return 0;
- }
- 
--static struct intel_global_state *
--intel_bw_duplicate_state(struct intel_global_obj *obj)
--{
--	struct intel_bw_state *state = to_intel_bw_state(obj->state);
--
--	state = kmemdup(state, sizeof(*state), GFP_KERNEL);
--	if (!state)
--		return NULL;
--
--	return &state->base;
--}
--
--static void intel_bw_destroy_state(struct intel_global_obj *obj,
--				   struct intel_global_state *state)
--{
--	kfree(state);
--}
--
- static const struct intel_global_state_funcs intel_bw_funcs = {
--	.atomic_duplicate_state = intel_bw_duplicate_state,
--	.atomic_destroy_state = intel_bw_destroy_state,
-+	INTEL_GLOBAL_STATE_DEFAULTS(struct intel_bw_state, base),
- };
- 
- int intel_bw_init(struct drm_i915_private *i915)
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index fc084e2a4c6a..a9dfbd53e812 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -3130,27 +3130,23 @@ static int fixed_modeset_calc_cdclk(struct intel_atomic_state *state)
- 
- static struct intel_global_state *intel_cdclk_duplicate_state(struct intel_global_obj *obj)
- {
--	struct intel_cdclk_state *cdclk_state = to_intel_cdclk_state(obj->state);
-+	struct intel_global_state *obj_state;
-+	struct intel_cdclk_state *cdclk_state;
- 
--	cdclk_state = kmemdup(cdclk_state, sizeof(*cdclk_state), GFP_KERNEL);
--	if (!cdclk_state)
-+	obj_state = intel_atomic_global_duplicate_state_common(obj);
-+	if (!obj_state)
- 		return NULL;
- 
-+	cdclk_state = to_intel_cdclk_state(obj_state);
- 	cdclk_state->pipe = INVALID_PIPE;
- 	cdclk_state->disable_pipes = false;
- 
--	return &cdclk_state->base;
--}
--
--static void intel_cdclk_destroy_state(struct intel_global_obj *obj,
--				      struct intel_global_state *state)
--{
--	kfree(state);
-+	return obj_state;
- }
- 
- static const struct intel_global_state_funcs intel_cdclk_funcs = {
-+	INTEL_GLOBAL_STATE_DEFAULTS(struct intel_cdclk_state, base),
- 	.atomic_duplicate_state = intel_cdclk_duplicate_state,
--	.atomic_destroy_state = intel_cdclk_destroy_state,
- };
- 
- struct intel_cdclk_state *
-diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-index 1f71efb7d04d..5bf245a9ac8d 100644
---- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
-+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-@@ -15,27 +15,8 @@
- #include "intel_pmdemand.h"
- #include "skl_watermark.h"
- 
--static struct intel_global_state *
--intel_pmdemand_duplicate_state(struct intel_global_obj *obj)
--{
--	struct intel_pmdemand_state *pmdemand_state = to_intel_pmdemand_state(obj->state);
--
--	pmdemand_state = kmemdup(pmdemand_state, sizeof(*pmdemand_state), GFP_KERNEL);
--	if (!pmdemand_state)
--		return NULL;
--
--	return &pmdemand_state->base;
--}
--
--static void intel_pmdemand_destroy_state(struct intel_global_obj *obj,
--					 struct intel_global_state *state)
--{
--	kfree(state);
--}
--
- static const struct intel_global_state_funcs intel_pmdemand_funcs = {
--	.atomic_duplicate_state = intel_pmdemand_duplicate_state,
--	.atomic_destroy_state = intel_pmdemand_destroy_state,
-+	INTEL_GLOBAL_STATE_DEFAULTS(struct intel_pmdemand_state, base),
- };
- 
- static struct intel_pmdemand_state *
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index b3d38e09df5a..8aa041be8277 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3289,26 +3289,8 @@ static void skl_setup_wm_latency(struct drm_i915_private *i915)
- 	intel_print_wm_latency(i915, "Gen9 Plane", display->wm.skl_latency);
- }
- 
--static struct intel_global_state *intel_dbuf_duplicate_state(struct intel_global_obj *obj)
--{
--	struct intel_dbuf_state *dbuf_state = to_intel_dbuf_state(obj->state);
--
--	dbuf_state = kmemdup(dbuf_state, sizeof(*dbuf_state), GFP_KERNEL);
--	if (!dbuf_state)
--		return NULL;
--
--	return &dbuf_state->base;
--}
--
--static void intel_dbuf_destroy_state(struct intel_global_obj *obj,
--				     struct intel_global_state *state)
--{
--	kfree(state);
--}
--
- static const struct intel_global_state_funcs intel_dbuf_funcs = {
--	.atomic_duplicate_state = intel_dbuf_duplicate_state,
--	.atomic_destroy_state = intel_dbuf_destroy_state,
-+	INTEL_GLOBAL_STATE_DEFAULTS(struct intel_dbuf_state, base),
- };
- 
- struct intel_dbuf_state *
--- 
-2.47.1
+== Summary ==
+
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/kernel/
+lib/modules/6.13.0-rc3-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc3-xe+/kernel/block/
+lib/modules/6.13.0-rc3-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc3-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc3-xe+/build
+lib/modules/6.13.0-rc3-xe+/modules.alias.bin
+lib/modules/6.13.0-rc3-xe+/modules.builtin
+lib/modules/6.13.0-rc3-xe+/modules.softdep
+lib/modules/6.13.0-rc3-xe+/modules.alias
+lib/modules/6.13.0-rc3-xe+/modules.order
+lib/modules/6.13.0-rc3-xe+/modules.symbols
+lib/modules/6.13.0-rc3-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1734645623:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1734645623:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
