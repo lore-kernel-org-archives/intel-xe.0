@@ -4,57 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC242E7718A
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Dec 2024 11:35:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7ECEE7718B
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Dec 2024 12:02:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6FB610ECDF;
-	Thu, 19 Dec 2024 11:35:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56E3010ECE9;
+	Thu, 19 Dec 2024 12:02:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jbOGHejl";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VTXlrd9m";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CF1E10E491;
- Thu, 19 Dec 2024 11:35:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734608118; x=1766144118;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=XNfyo1CGuGtwHMl87IHhVltSQ/N8j1jpSrnGF0qYfoU=;
- b=jbOGHejlHOQ+hlxHsB4j57sWw+D3R+eH6WcVlOigHF53V9N2QVpsJVfy
- MncAaeoKtPixWBvLT6NhJxipgFsTWvzS3AZQebMwl8k37FCOtrc94u/MZ
- MSGMM0wqcw4SSGZLyn4F+LvqjCgeeNimJTZls87K25Mv3rLzyfDjACkSD
- U+RWkpMNcA+uuW9m2bZAUEkwgD3MfHRbcqkjbRD+gzRu8PVGsOrWKsUxE
- ez+LcMuzCIQjvK5tQL95Hg2+aiU20EGNzTlXexcxPT0CGzk0l//SKyEjA
- g8ZUsi09D93X17UQ3fOGRcVsma6HQh/63YcASWmzU07kWEs2jSgdejVan Q==;
-X-CSE-ConnectionGUID: vCuj2nYHRVqzChBxWumxXg==
-X-CSE-MsgGUID: yp5sR6jlSw2UCS8bwvKeKw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="45797259"
-X-IronPort-AV: E=Sophos;i="6.12,247,1728975600"; d="scan'208";a="45797259"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 03:35:17 -0800
-X-CSE-ConnectionGUID: jZcoJUqmQxOEauiin0CyOg==
-X-CSE-MsgGUID: jrOC2liTSY2snsGLVpQaMQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="98643017"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 03:35:15 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Kahola, Mika" <mika.kahola@intel.com>, "Deak, Imre" <imre.deak@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH v2] drm/i915/display: UHBR rates for Thunderbolt
-In-Reply-To: <MW4PR11MB7054A983FD2C1B68E6DCB357EF062@MW4PR11MB7054.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241217143440.572308-1-mika.kahola@intel.com>
- <Z2LirmqeUmqLw17A@ideak-desk.fi.intel.com>
- <MW4PR11MB7054A983FD2C1B68E6DCB357EF062@MW4PR11MB7054.namprd11.prod.outlook.com>
-Date: Thu, 19 Dec 2024 13:35:11 +0200
-Message-ID: <871py3rjm8.fsf@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D336710E491;
+ Thu, 19 Dec 2024 12:01:58 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 38E345C60F2;
+ Thu, 19 Dec 2024 12:01:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9884AC4CECE;
+ Thu, 19 Dec 2024 12:01:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1734609718;
+ bh=mmSG5jmvIG2IQz8h4oPfiL+yfIQ6E1uV4JAbWmJ+e1A=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=VTXlrd9mX2AtoGsMuWQEnYN+Leb0Ph2/db+NrKfLeO70FAXMd7qSLKGyn8zdIpWlI
+ cMF5nLg3ZEiMJZqoxU1oHiyyF6hO7cYPniY4EAN9pDP+57OBp/874axiYg4NHkULDN
+ ptYPqQ6Jk4GYS/dpgJdM/8hwlEbZHE+GABY6vSGzsBo4PQtoSd8LWF94CJl+7ORetY
+ P2nLCIxXSVOhV3/dp83pMQJYZ03jEpdYxxgb2mcdhYXBVJS0lpZsLaXtjF0t+Jmdi8
+ oo8w1Ndg+xfSYueLd+CZI248gXOnzlmmw7oOHU44V4aElZPrmZF8QBHzjrI8ywYV+Y
+ T3U6iuq8pu0rg==
+Date: Thu, 19 Dec 2024 13:01:55 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>
+Cc: Maarten Lankhorst <dev@lankhorst.se>, linux-kernel@vger.kernel.org, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Tejun Heo <tj@kernel.org>, 
+ Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>, 
+ Andrew Morton <akpm@linux-foundation.org>,
+ Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org, 
+ linux-mm@kvack.org, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v2 5/7] drm/amdgpu: Add cgroups implementation
+Message-ID: <20241219-bright-oarfish-of-vitality-a8efba@houat>
+References: <20241204134410.1161769-1-dev@lankhorst.se>
+ <20241204134410.1161769-6-dev@lankhorst.se>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="ggsfrfgw7sj3junq"
+Content-Disposition: inline
+In-Reply-To: <20241204134410.1161769-6-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,18 +66,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 19 Dec 2024, "Kahola, Mika" <mika.kahola@intel.com> wrote:
-> Thanks for the review! Patch is now merged with the change of naming
-> to XE3_*. This is used elsewhere in the driver so maybe it's ok to use
-> here as well.
 
-Nag, I don't really like modifying patches while applying. Personally, I
-try to avoid it altogether, occasionally changing whitespace or
-comments, but hardly ever anything functional.
+--ggsfrfgw7sj3junq
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 5/7] drm/amdgpu: Add cgroups implementation
+MIME-Version: 1.0
 
-BR,
-Jani.
+Hi Alex, Christian, Xinhui,
 
+We forgot to Cc you on that series, sorry. Could you have a look at the fol=
+lowing patch?
 
--- 
-Jani Nikula, Intel
+Thanks!
+Maxime
+
+On Wed, Dec 04, 2024 at 02:44:05PM +0100, Maarten Lankhorst wrote:
+> Similar to xe, enable some simple management of VRAM only.
+>=20
+> Co-developed-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/d=
+rm/amd/amdgpu/amdgpu_vram_mgr.c
+> index 7d26a962f811c..f1703a746cadd 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> @@ -24,6 +24,7 @@
+> =20
+>  #include <linux/dma-mapping.h>
+>  #include <drm/ttm/ttm_range_manager.h>
+> +#include <drm/drm_drv.h>
+> =20
+>  #include "amdgpu.h"
+>  #include "amdgpu_vm.h"
+> @@ -908,6 +909,9 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
+>  	struct ttm_resource_manager *man =3D &mgr->manager;
+>  	int err;
+> =20
+> +	man->cg =3D drmm_cgroup_register_region(adev_to_drm(adev), "vram", adev=
+->gmc.real_vram_size);
+> +	if (IS_ERR(man->cg))
+> +		return PTR_ERR(man->cg);
+>  	ttm_resource_manager_init(man, &adev->mman.bdev,
+>  				  adev->gmc.real_vram_size);
+> =20
+> --=20
+> 2.43.0
+>=20
+
+--ggsfrfgw7sj3junq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ2QLLgAKCRAnX84Zoj2+
+drsmAYDbmxPhzez3f9e9kFd347WH3ntcM31sY9m9CBi5u9GgRqZ4KPX7cVSDDNzI
+2hYAxVgBgP4Y/7904CdByUIhUSux6420o/rh0nJMdvs2pNkYOdk+GWJ+Cl1zPHfA
+FOcqatwDfg==
+=eaig
+-----END PGP SIGNATURE-----
+
+--ggsfrfgw7sj3junq--
