@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5B4AE7718A
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Dec 2024 21:35:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87CF2E77184
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Dec 2024 21:40:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BD0710EDE6;
-	Thu, 19 Dec 2024 21:35:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I+l1TII4";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C24710EDE5;
- Thu, 19 Dec 2024 21:35:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734644143; x=1766180143;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EO3CxJJ1KzVtlMRxzHQs9hNiHRjvg26vi9kd2w1oPjM=;
- b=I+l1TII4A0/tikRF3MNvYrTjunFQGihU0L7Ed1rYetnO+TpgiYPcr16h
- YqCbGb/AKHPuzUy2828SL/zEqSKImnGxliPe8orQ8a8w3qrieFTHS2X80
- pyOfNNkV+92VDfdU4q4Idp88Kjgjyo71+GYznf5BEaHWI+KlsAyBNtyCm
- 3VA3bWCeHVmvhPMmMTAKQWkNBLrMvp5a957dBsT5VXhiGrFd98c5toH4L
- cJFPXdtiAeqW5UAhs/u3uBNIzbq5n4x0W+z1q+NeY6RpKvvDVYCNkXmTF
- V0wv94zFytqSaCa7j46eZQZA5BoqA97zOllncVqxAlPA9Ue2G8++5Zim0 A==;
-X-CSE-ConnectionGUID: MpwOxJeMQo+WzwkBZLarWA==
-X-CSE-MsgGUID: T66SM9YnQYGkCkPL63XCcw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="52590421"
-X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="52590421"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 13:35:43 -0800
-X-CSE-ConnectionGUID: ll1z3+ZATAG/snUFevjfKg==
-X-CSE-MsgGUID: ZzeY7ti/RkKvIcieZnWP/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="129146356"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.207])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 13:35:41 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, jani.nikula@intel.com, imre.deak@intel.com
-Subject: [PATCH v2 16/16] drm/i915/dp: compute config for 128b/132b SST w/o DSC
-Date: Thu, 19 Dec 2024 23:34:05 +0200
-Message-Id: <b239079a989ce11d60e9467cb1125bc2033ae0bd.1734643485.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1734643485.git.jani.nikula@intel.com>
-References: <cover.1734643485.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A60310EDF1;
+	Thu, 19 Dec 2024 21:40:42 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB86B10EDE8;
+ Thu, 19 Dec 2024 21:40:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/dp=3A_128b/?=
+ =?utf-8?q?132b_uncompressed_SST_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 19 Dec 2024 21:40:40 -0000
+Message-ID: <173464444082.549164.11831188896883814652@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <cover.1734643485.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1734643485.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,96 +36,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable basic 128b/132b SST functionality without compression. Reuse
-intel_dp_mtp_tu_compute_config() to figure out the TU after we've
-determined we need to use an UHBR rate.
+== Series Details ==
 
-It's slightly complicated as the M/N computation is done in different
-places in MST and SST paths, so we need to avoid trashing the values
-later for UHBR.
+Series: drm/i915/dp: 128b/132b uncompressed SST (rev2)
+URL   : https://patchwork.freedesktop.org/series/142548/
+State : success
 
-If uncompressed UHBR fails, we drop to compressed non-UHBR, which is
-quite likely to fail as well. We still lack 128b/132b SST+DSC.
+== Summary ==
 
-We need mst_master_transcoder also for 128b/132b SST. Use cpu_transcoder
-directly. Enhanced framing is "don't care" for 128b/132b link.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: a5b4c40929f3 drm-tip: 2024y-12m-19d-15h-56m-38s UTC integration manifest
+=== git am output follows ===
+Applying: drm/mst: remove mgr parameter and debug logging from drm_dp_get_vc_payload_bw()
+Applying: drm/i915/mst: drop connector parameter from intel_dp_mst_bw_overhead()
+Applying: drm/i915/mst: drop connector parameter from intel_dp_mst_compute_m_n()
+Applying: drm/i915/mst: change return value of mst_stream_find_vcpi_slots_for_bpp()
+Applying: drm/i915/mst: remove crtc_state->pbn
+Applying: drm/i915/mst: split out a helper for figuring out the TU
+Applying: drm/i915/mst: adapt intel_dp_mtp_tu_compute_config() for 128b/132b SST
+Applying: drm/i915/ddi: enable 128b/132b TRANS_DDI_FUNC_CTL mode for UHBR SST
+Applying: drm/i915/ddi: 128b/132b SST also needs DP_TP_CTL_MODE_MST
+Applying: drm/i915/ddi: write payload for 128b/132b SST
+Applying: drm/i915/ddi: initialize 128b/132b SST DP2 VFREQ registers
+Applying: drm/i915/ddi: enable ACT handling for 128b/132b SST
+Applying: drm/i915/ddi: start distinguishing 128b/132b SST and MST at state readout
+Applying: drm/i915/ddi: handle 128b/132b SST in intel_ddi_read_func_ctl()
+Applying: drm/i915/ddi: disable trancoder port select for 128b/132b SST
+Applying: drm/i915/dp: compute config for 128b/132b SST w/o DSC
 
-v2: mst_master_transcoder, enhanced framing (Imre)
-
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 34 +++++++++++++++++--------
- 1 file changed, 24 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index fba3af338280..d14a42f02ba8 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2525,8 +2525,8 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
- 	limits->min_rate = intel_dp_min_link_rate(intel_dp);
- 	limits->max_rate = intel_dp_max_link_rate(intel_dp);
- 
--	/* FIXME 128b/132b SST support missing */
--	if (!is_mst)
-+	/* FIXME 128b/132b SST+DSC support missing */
-+	if (!is_mst && dsc)
- 		limits->max_rate = min(limits->max_rate, 810000);
- 	limits->min_rate = min(limits->min_rate, limits->max_rate);
- 
-@@ -2640,6 +2640,13 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 		 */
- 		ret = intel_dp_compute_link_config_wide(intel_dp, pipe_config,
- 							conn_state, &limits);
-+		if (!ret && intel_dp_is_uhbr(pipe_config))
-+			ret = intel_dp_mtp_tu_compute_config(intel_dp,
-+							     pipe_config,
-+							     pipe_config->pipe_bpp,
-+							     pipe_config->pipe_bpp,
-+							     conn_state,
-+							     0, false);
- 		if (ret)
- 			dsc_needed = true;
- 	}
-@@ -3148,8 +3155,13 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	pipe_config->limited_color_range =
- 		intel_dp_limited_color_range(pipe_config, conn_state);
- 
--	pipe_config->enhanced_framing =
--		drm_dp_enhanced_frame_cap(intel_dp->dpcd);
-+	if (intel_dp_is_uhbr(pipe_config)) {
-+		/* 128b/132b SST also needs this */
-+		pipe_config->mst_master_transcoder = pipe_config->cpu_transcoder;
-+	} else {
-+		pipe_config->enhanced_framing =
-+			drm_dp_enhanced_frame_cap(intel_dp->dpcd);
-+	}
- 
- 	if (pipe_config->dsc.compression_enable)
- 		link_bpp_x16 = pipe_config->dsc.compressed_bpp_x16;
-@@ -3180,12 +3192,14 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 
- 	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
- 
--	intel_link_compute_m_n(link_bpp_x16,
--			       pipe_config->lane_count,
--			       adjusted_mode->crtc_clock,
--			       pipe_config->port_clock,
--			       intel_dp_bw_fec_overhead(pipe_config->fec_enable),
--			       &pipe_config->dp_m_n);
-+	if (!intel_dp_is_uhbr(pipe_config)) {
-+		intel_link_compute_m_n(link_bpp_x16,
-+				       pipe_config->lane_count,
-+				       adjusted_mode->crtc_clock,
-+				       pipe_config->port_clock,
-+				       intel_dp_bw_fec_overhead(pipe_config->fec_enable),
-+				       &pipe_config->dp_m_n);
-+	}
- 
- 	/* FIXME: abstract this better */
- 	if (pipe_config->splitter.enable)
--- 
-2.39.5
 
