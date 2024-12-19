@@ -4,74 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 670E0E7718A
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Dec 2024 07:14:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF4BFE77184
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Dec 2024 07:24:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3469B10E294;
-	Thu, 19 Dec 2024 07:14:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="f+6vdB7i";
-	dkim-atps=neutral
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com
- [IPv6:2607:f8b0:4864:20::52f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0797F10E294
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Dec 2024 07:14:35 +0000 (UTC)
-Received: by mail-pg1-x52f.google.com with SMTP id
- 41be03b00d2f7-7ea8de14848so206495a12.2
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Dec 2024 23:14:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1734592474; x=1735197274;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=v4lPK9bkv3J04cn4MggXL3Z3QK+CpXI39O0WQTMymiE=;
- b=f+6vdB7i/CioYl7OoMFTMzJHQl5/8VZM3gFeIMRO6FoKeuED4W5wSoTrCZORnbuKlJ
- meYhm97MuNHbe6e7rsTG4+G7YcpLg9RMXjy8XAEAxH9l1EQ+nLg0d41ceYDr0b+PXbc9
- XdD39i1tXk5cVBLCuRdPFbpYj9vId/1GPD/QU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734592474; x=1735197274;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=v4lPK9bkv3J04cn4MggXL3Z3QK+CpXI39O0WQTMymiE=;
- b=IKs5/U6xroiVdpui2dkpdlc2q+LaLSag+FBHrA6glYoITLzrRl/RJ07iR5u4kCMhZ+
- FlI+T1Jf+4y6z2JrLXGdV+ebIadD3WEXMI7XHHaAutF+SKB8yeNZ12lOm1+9khym71Z7
- COk4Ew4M8Gvvr0YPXJaFdNOe5S6WlpenvzBLi95wo5ascAf5j4uileEwCDHmy2/9Drs0
- 8NWglrY6NhPY4PK00thkiCnKXjetn0wClGlCGO6tMhLTg9EUCuDbUSP58SBxUcQESi+F
- MGt2mHLnW/gL5wB3/Dvw3ZJKAyjWj/mIM2/ecNWT7eWFscJ9i6djtrYzrc2+5FQEnsAO
- 5umg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWnB2xRHK0X/TKyIwQ5rOqheyN5XDM8kkG9bVMwPF7J+KXcHV767h2MzmODBYbGPy69kin7/3ggeg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzmYJPYjSD0994UEdOSjIqpV4Kilblx4T4BmJ4K1Nm608QBi+Qs
- Ktop6fGxoHlZaB1cZY2BLP9uuh6rqwZoN3c7WplMFe5L+LTudAuLgLlQOJfcqg==
-X-Gm-Gg: ASbGncvvramYgTZNf5czx8qngKKGEf1YRqacGXC2vBl11fdBVl6hfuX61R/9v1w6M3W
- o8J76maO+3o748fXlZ2gXCyM7OjkQL5XiUhtsseIFmkWUC4HhVmrEXBkzjELq43uwE+PqrJcOFx
- V86Z/VSgLhFaKILid2hT1JadRcIBWRHJYnGQ0rDMfoZXj2q+Wv7dHVjULR1nWra1wAQJcigs+RT
- m/Ib/iSFFZRmKETgiXta+v3hm9iTW9mzLwvjWlyGllO21qT2OmcUPHPu18N
-X-Google-Smtp-Source: AGHT+IHDIMb+Np34DSWneQrxUgEvqb+pJ10f4Lc4n+fS0VeX9d+U7qhRBlVsF5/9BAB0KhF6U7pxVA==
-X-Received: by 2002:a17:90b:540f:b0:2ee:c9b6:4c42 with SMTP id
- 98e67ed59e1d1-2f2e91d9395mr9815404a91.16.1734592474560; 
- Wed, 18 Dec 2024 23:14:34 -0800 (PST)
-Received: from google.com ([2401:fa00:8f:203:5479:11c3:e91d:de6b])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-2f2ee06dd77sm2824442a91.33.2024.12.18.23.14.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 18 Dec 2024 23:14:34 -0800 (PST)
-Date: Thu, 19 Dec 2024 16:14:29 +0900
-From: Sergey Senozhatsky <senozhatsky@chromium.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Ville Syrjala <ville.syrjala@linux.intel.com>, 
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH v3 0/6] drm/i915/display: handle hdmi connector init
- failures, and no HDMI/DP cases
-Message-ID: <gmdwfv3u7aq4ndsggj6pakptcjfhzu6hddt6yyf3tpyy6c44ok@rvhexe2wfqhf>
-References: <cover.1734099220.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80BAB10E244;
+	Thu, 19 Dec 2024 07:24:36 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE93010E244;
+ Thu, 19 Dec 2024 07:24:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1734099220.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Introduce_fault_injection_for_?=
+ =?utf-8?q?guc_CTB_=26_mmio_send/recv=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 19 Dec 2024 07:24:34 -0000
+Message-ID: <173459307484.309959.9018960465318963042@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241219064932.25145-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20241219064932.25145-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,17 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On (24/12/13 16:15), Jani Nikula wrote:
-> Jani Nikula (6):
->   drm/i915/ddi: change intel_ddi_init_{dp,hdmi}_connector() return type
->   drm/i915/hdmi: propagate errors from intel_hdmi_init_connector()
->   drm/i915/hdmi: add error handling in g4x_hdmi_init()
->   drm/i915/ddi: gracefully handle errors from
->     intel_ddi_init_hdmi_connector()
->   drm/i915/display: add intel_encoder_is_hdmi()
->   drm/i915/ddi: only call shutdown hooks for valid encoders
+== Series Details ==
 
-Would it make sense to Cc stable on these?
+Series: Introduce fault injection for guc CTB & mmio send/recv.
+URL   : https://patchwork.freedesktop.org/series/142815/
+State : success
+
+== Summary ==
+
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/kernel/
+lib/modules/6.13.0-rc3-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc3-xe+/kernel/block/
+lib/modules/6.13.0-rc3-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc3-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc3-xe+/build
+lib/modules/6.13.0-rc3-xe+/modules.alias.bin
+lib/modules/6.13.0-rc3-xe+/modules.builtin
+lib/modules/6.13.0-rc3-xe+/modules.softdep
+lib/modules/6.13.0-rc3-xe+/modules.alias
+lib/modules/6.13.0-rc3-xe+/modules.order
+lib/modules/6.13.0-rc3-xe+/modules.symbols
+lib/modules/6.13.0-rc3-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1734593064:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1734593064:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
