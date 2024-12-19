@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 085DFE7718D
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Dec 2024 16:07:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDB71E7718A
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Dec 2024 16:07:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 759A310E4B5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43D8D10E4A6;
 	Thu, 19 Dec 2024 16:07:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Wiz4x8jd";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HZe8BTSZ";
 	dkim-atps=neutral
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
- [IPv6:2607:f8b0:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16C6210E44B;
- Thu, 19 Dec 2024 02:35:16 +0000 (UTC)
-Received: by mail-pf1-x434.google.com with SMTP id
- d2e1a72fcca58-728ea1573c0so290410b3a.0; 
- Wed, 18 Dec 2024 18:35:16 -0800 (PST)
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com
+ [IPv6:2607:f8b0:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B661C10E271;
+ Thu, 19 Dec 2024 02:35:06 +0000 (UTC)
+Received: by mail-pl1-x62a.google.com with SMTP id
+ d9443c01a7336-216395e151bso2164065ad.0; 
+ Wed, 18 Dec 2024 18:35:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1734575715; x=1735180515; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1734575706; x=1735180506; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Zz5f2fkK5TyUEN5/ypHLYKDvnfLQ33CHwDb71kc+wK0=;
- b=Wiz4x8jdikthKgCfv6BY5z67V7JYaJliEV1ndcCl67DVrn08zmI/h/JgYqudBEgMow
- aRMh56JFW8Nf74QsTm7oW7d7NrasB6faZRSj/crpa16yETcu5sXgF3eOHx+B60ifGe6H
- qMy0zLH+9gKpb2jJsvbd7y4G9iOmj0S6A/RwWWSGz1UIgpotZo1MgLjaYUSADEYhKzll
- aMERShPNH1nqKaBdOUs8/JpR6DwknNk0P5ekj/KOVZSr1fB3X15SUp3CmpiSaLU0JVzd
- gKQR3EBV1js6MpInv2z92gAMSMsrVxhECcp8gblalsM96BbdrHt3krNJA7EnRGWCj/yp
- ZeOw==
+ bh=6yZ75uwrgzXS/KAS9XiI4pfcH/Aa7U+Upt9QqSiD0i8=;
+ b=HZe8BTSZyJ+q9OGkdxCCAQx+r1VJ6B4lUDaoZ2M/B4yhqxskkOvNxU6zAC3W3PMT4h
+ KWyW3LYM8S+LqxSmySPt2PCo3ckrAXW+zfg1Ato2Y7CX3Nrrz8iE/1i9a6TKzHCNgkAM
+ NQV4IoqRTDuVNIAUP0YAOG9XWVcgqXsLg8DWhrDupuHE/3a15y04Y25TZSVMNc1juPrp
+ LCeyeAB8U5HXgmuSU0JQsmZFQjy+AGnJHxNLMIOjhQYmn25RICqpgrbivXW6AJngE/Q5
+ 6Rdo1hyUyog0wx3xMeeRevgmDrHUJvHC2B76D4OCvx1KJYTldxkCR0rekTrNkvpjtaqY
+ yxfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734575715; x=1735180515;
+ d=1e100.net; s=20230601; t=1734575706; x=1735180506;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=Zz5f2fkK5TyUEN5/ypHLYKDvnfLQ33CHwDb71kc+wK0=;
- b=kXk+nJ4lr9Do6Fd7ZlBJ+mofqwRIrjfztuau5Ul3ZvzDKJAmX+IfrsTYrgxvFvEmk3
- AN7qQmAOAe2RkCZ4T2mwJi460N8ubL7t7INT7Pq4kSK7QuI3Ms6HQqzO5Mu+e717+GUB
- JEy5UloTnOp0cSOP19zW2dZS3o2MEadfUR1cHwSozWFi5nTtOOt79kKbH4NlQSx6Oaec
- dURr7ucxigIxT2ami+rwVxkny2ut/h0aG2G7YQPENvrXvdHvxU1S9Ti1G7bepKSwuOfr
- Sk1M25DZK4WqMkh+ep1XTKxXsuhhD+hSIFyfULXjnIfTysgp0OCjXsuE6EWUMj20sU6h
- g6zw==
+ bh=6yZ75uwrgzXS/KAS9XiI4pfcH/Aa7U+Upt9QqSiD0i8=;
+ b=cVJBrCDp5SBkUoscNKAeMHaMRaj7aLuWV3DeiWLav+vjezszTjRvPUpOAx3YFFmaZ1
+ 226StqDHF6xinC899zkP7R6l3wZPe4xKwdLgZqMXEIvGPr/Vo2xWS29OQ8UsCkTtQZFG
+ Kst8ILvRAxsJVGLM0ubHVJqv7AAAsntEBgZya3Xh1+cXTpNL+DzuU+HHIoJpAxzryHGr
+ eJDmxBlheEoFVsi5XRSm/pA5eyjgD+wdU1F+MCw46ZMCtnUwDFcYduB5FtNTtjgrHBrM
+ iv5hPCtCQAPxrW+ZsqxBxBe590KKiGF6rkXfrsyzG3+CRIzbcVL3QzmuQMLPtbQTC1jH
+ 5CmQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU4regOXPovfBhD8VXxLf2WNWaeiCYRpiNpfzmdU9dmNFTE1CO1kY6Y+u9VR+tal3dixVcvAK1EBD9m@lists.freedesktop.org,
- AJvYcCVZuY78NbdJEaA7v7AG83E8VGWluVGIxmTGAkqp95E1Fa6amVMB9Cdd6EAwH3y9SBMgHuLMzL5zP1c=@lists.freedesktop.org,
- AJvYcCXjbbcvWNA7zAwbz0jipdrJAHzebU5Row9Pn05ymx8vSjaOlXnymBwc4iOiZD/qA2ASN/fCdWaGMQ==@lists.freedesktop.org,
- AJvYcCXlN+EwkGWDVKmQ6kCmAvI/DXXPGfDgHEbIm9sQQ2r7LJ+2vNmpYcYRi0cqwaeu7QDfVemLUF/kx7E=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxA9jo4oW5XVAsHwdPZOCaawQuBHJFdG31jktfI27o1X3zKfygL
- ILlXpdqbCXoDqTC4heV2UZiNaoghjmEx+cxG9BFK8sJ2ZV9XwrRK
-X-Gm-Gg: ASbGncuWFXqxAbdzoSNL2LhzNmFTC09k0UtsN4/Hzw+ylNxrofxZqkqFo4hoW4naInG
- e7SZb8rrKVvINWnjF3N5H7HOIc3oYavl0K/14ZzNz4QMQM8ktHFNk8GLAJb8Kjr9Dq+vd84c+WX
- L6CN7Vt0WYe7cfK/kqqEW8R7+iMUpbHwDQJ+7lo+aLFznTzQ3guyOP5vzlpUk32G9nUaKkAPznQ
- c8nGiYV22lhU2t9AwToESXlUvyuUlpMDFzKIF/W/SzqR1HMr6SALeYwLx26wVmIzIVFXKNQYMdN
- 5dDyjVc=
-X-Google-Smtp-Source: AGHT+IE+5BVERtvEj0uFGUNd3NBBPkGat0lwCNqupmyw0FAX2xvKE0cJmTowKcGod/Hmj9SrgliLyA==
-X-Received: by 2002:a05:6a20:a11f:b0:1e0:c0fa:e088 with SMTP id
- adf61e73a8af0-1e5b4810ff0mr7532504637.18.1734575715510; 
- Wed, 18 Dec 2024 18:35:15 -0800 (PST)
+ AJvYcCVBgPoSAn2KpbigBv3DY4KGBBMY3cBh4DqF9kQ3YCMWCdUiUT4akv96y23TvOtoYG5LnjLJrllxc6g=@lists.freedesktop.org,
+ AJvYcCVRrvozocophIB3uM2gcCkmJLVB60xXhJSTb4/GLTRBz567oSD0HDjas43MdatWuCOdyHm06/eQOZ35@lists.freedesktop.org,
+ AJvYcCW0CxuwCRc1XwfsfZB6w8qu0otKqHN0ulV5+cAU2kE9CLKeRT6VTN82UCQVpjP08i8BA5yfSf02og==@lists.freedesktop.org,
+ AJvYcCXhldZKnKlmJD0Y7TIq5ZlOTcb29dUyPGdvsdW8QgdyoX5z0P4skdYN10vodDT5pkklQKju21iGsBY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyXA9GyD3/yxKsp6KZqGIh/sPetBIw79a9YKGKtU8ydT7BI0wdN
+ cIBpXFQulhRv/bO4c6n+onMRyvBWBGFdIPjk44RY1kiwfjf2tWbV
+X-Gm-Gg: ASbGncu+KmTEYn0K1MfqYLN34iq9z+fDiSQNQ4cSeoxGpcmn7zL6Rg8cbCJD08ewNst
+ ZrZcFEBmdUsoZJMyNz6h3ndYxSP9A6NI645H/qn1Hlmu8HqblqRgcmjeJq27AXzfOJ54MZUK+Tm
+ lD4af+Igevk+V5M9ZKF9Mxt5rB101NRw3Qg7lmV/aXFkJBwXyfws6FA1RlKXvQEfCuIW87kPdhH
+ xJjW5CcqJSaaP9FQKjEASi1YRboP4Ur99zoY3EXc53ozrwWtD2mTTOs9Id6ICo0SzKKa3TRG9JB
+ BHpYovQ=
+X-Google-Smtp-Source: AGHT+IHDUXmWYVlYvXYhHIsD36N49JfOorXAToNFZUciCwG5nEYfG9fZ9g2sYrKUGUIeEzsd5pUGJQ==
+X-Received: by 2002:a17:902:f689:b0:215:2d2c:dd0c with SMTP id
+ d9443c01a7336-219da5e3b97mr23433885ad.14.1734575706180; 
+ Wed, 18 Dec 2024 18:35:06 -0800 (PST)
 Received: from localhost.localdomain ([180.159.118.224])
  by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-842b821da83sm142163a12.40.2024.12.18.18.35.11
+ 41be03b00d2f7-842b821da83sm142163a12.40.2024.12.18.18.35.01
  (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
- Wed, 18 Dec 2024 18:35:15 -0800 (PST)
+ Wed, 18 Dec 2024 18:35:05 -0800 (PST)
 From: Yafang Shao <laoar.shao@gmail.com>
 To: akpm@linux-foundation.org
 Cc: torvalds@linux-foundation.org, pmladek@suse.com, kvalo@kernel.org,
@@ -73,16 +73,20 @@ Cc: torvalds@linux-foundation.org, pmladek@suse.com, kvalo@kernel.org,
  linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
- Yafang Shao <laoar.shao@gmail.com>,
- Johannes Berg <johannes@sipsolutions.net>
-Subject: [PATCH v2 3/5] net: Remove get_task_comm() and print task comm
+ Yafang Shao <laoar.shao@gmail.com>, Serge Hallyn <serge@hallyn.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Peter Zijlstra <peterz@infradead.org>, Darren Hart <dvhart@infradead.org>,
+ Davidlohr Bueso <dave@stgolabs.net>,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v2 1/5] kernel: Remove get_task_comm() and print task comm
  directly
-Date: Thu, 19 Dec 2024 10:34:50 +0800
-Message-Id: <20241219023452.69907-4-laoar.shao@gmail.com>
+Date: Thu, 19 Dec 2024 10:34:48 +0800
+Message-Id: <20241219023452.69907-2-laoar.shao@gmail.com>
 X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
 In-Reply-To: <20241219023452.69907-1-laoar.shao@gmail.com>
 References: <20241219023452.69907-1-laoar.shao@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 19 Dec 2024 16:07:10 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -104,27 +108,65 @@ directly without the need to copy it into a separate buffer. This
 simplifies the code and avoids unnecessary operations.
 
 Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
-Cc: Johannes Berg <johannes@sipsolutions.net>
+Cc: Serge Hallyn <serge@hallyn.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Darren Hart <dvhart@infradead.org>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Cc: "André Almeida" <andrealmeid@igalia.com>
 ---
- net/wireless/wext-core.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ kernel/capability.c     | 8 ++------
+ kernel/futex/waitwake.c | 3 +--
+ 2 files changed, 3 insertions(+), 8 deletions(-)
 
-diff --git a/net/wireless/wext-core.c b/net/wireless/wext-core.c
-index 3bb04b05c5ce..bea70eb6f034 100644
---- a/net/wireless/wext-core.c
-+++ b/net/wireless/wext-core.c
-@@ -640,10 +640,8 @@ EXPORT_SYMBOL(wireless_send_event);
- #ifdef CONFIG_CFG80211_WEXT
- static void wireless_warn_cfg80211_wext(void)
+diff --git a/kernel/capability.c b/kernel/capability.c
+index dac4df77e376..e089d2628c29 100644
+--- a/kernel/capability.c
++++ b/kernel/capability.c
+@@ -38,10 +38,8 @@ __setup("no_file_caps", file_caps_disable);
+ 
+ static void warn_legacy_capability_use(void)
  {
 -	char name[sizeof(current->comm)];
 -
- 	pr_warn_once("warning: `%s' uses wireless extensions which will stop working for Wi-Fi 7 hardware; use nl80211\n",
+ 	pr_info_once("warning: `%s' uses 32-bit capabilities (legacy support in use)\n",
 -		     get_task_comm(name, current));
 +		     current->comm);
  }
- #endif
  
+ /*
+@@ -62,10 +60,8 @@ static void warn_legacy_capability_use(void)
+ 
+ static void warn_deprecated_v2(void)
+ {
+-	char name[sizeof(current->comm)];
+-
+ 	pr_info_once("warning: `%s' uses deprecated v2 capabilities in a way that may be insecure\n",
+-		     get_task_comm(name, current));
++		     current->comm);
+ }
+ 
+ /*
+diff --git a/kernel/futex/waitwake.c b/kernel/futex/waitwake.c
+index 3a10375d9521..eb86a7ade06a 100644
+--- a/kernel/futex/waitwake.c
++++ b/kernel/futex/waitwake.c
+@@ -210,13 +210,12 @@ static int futex_atomic_op_inuser(unsigned int encoded_op, u32 __user *uaddr)
+ 
+ 	if (encoded_op & (FUTEX_OP_OPARG_SHIFT << 28)) {
+ 		if (oparg < 0 || oparg > 31) {
+-			char comm[sizeof(current->comm)];
+ 			/*
+ 			 * kill this print and return -EINVAL when userspace
+ 			 * is sane again
+ 			 */
+ 			pr_info_ratelimited("futex_wake_op: %s tries to shift op by %d; fix this program\n",
+-					get_task_comm(comm, current), oparg);
++					    current->comm, oparg);
+ 			oparg &= 31;
+ 		}
+ 		oparg = 1 << oparg;
 -- 
 2.43.5
 
