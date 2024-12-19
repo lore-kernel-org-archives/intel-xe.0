@@ -4,66 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1285E77184
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Dec 2024 16:07:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77A29E7718B
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Dec 2024 16:07:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7256410E33C;
-	Thu, 19 Dec 2024 16:07:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DC5410E34D;
+	Thu, 19 Dec 2024 16:07:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XnKOXrpy";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cRLBUEvR";
 	dkim-atps=neutral
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com
- [IPv6:2607:f8b0:4864:20::429])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECAFA10E45F;
- Thu, 19 Dec 2024 02:35:20 +0000 (UTC)
-Received: by mail-pf1-x429.google.com with SMTP id
- d2e1a72fcca58-725f4623df7so304803b3a.2; 
- Wed, 18 Dec 2024 18:35:20 -0800 (PST)
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com
+ [IPv6:2607:f8b0:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6105B10E20D;
+ Thu, 19 Dec 2024 02:35:01 +0000 (UTC)
+Received: by mail-pf1-x433.google.com with SMTP id
+ d2e1a72fcca58-7265c18d79bso376314b3a.3; 
+ Wed, 18 Dec 2024 18:35:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1734575720; x=1735180520; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=35FnTfH4WG+K4PY792luJMCXMpwCP4Hox12oxUuAxYU=;
- b=XnKOXrpyyMJ90nTU4ulBubzGWGrL8xvYjRBxAxcSe7cNdRSKDHxGo089gzZUh3WdKQ
- ErRO/ijaOnCwu04z3q/8UwxeoaH2tyU245QO7mUoMqpeC/V/JyaQlwhwYpX8yN5mHPR6
- X5jMLkPXTwYmRPrTCj96aT/S5ge/8zy+KG/ncCnutAzELLGbJqmRVRO0IyyL6PWG7rq7
- ymOGawNvCiSLBe0KBhpNIUqJuOcp5Sz065wm46Ut09kTvJqvVldf1nsyYQHMRcIljNrr
- Hi3XhQ8fqM0uSTuw+/Y+ozMGqfT2J7huZTDnvTbSTCp+Om/iw+xH+cSMzgI7vmCYpTrT
- MQ+A==
+ d=gmail.com; s=20230601; t=1734575701; x=1735180501; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=ewYmRGbtjw/u5CZQB/fGCIYq/IkhzVppRPs0v4hq1mw=;
+ b=cRLBUEvRP8UbMnQvOxuMIMxeNxd4Tp6BGg4homTh/W5wzmvi513Z1lqfHQwTStOU8y
+ L1bDo4+nAc97jnYmrVKRM3xRtc4s6An2E/cf07L7TI5Pjum46hDpKThr6esDW87LNxoI
+ OpbN40tQH9G5H0graqLE7CazBJZMjNJDApKyJRHjphpStl+u3rYxxBfnR6IAnZWasMFL
+ bOE3aDSM5qayROuE0eIBa1oZunxlzcxSgKxItKL0MKq3M8sEGM2+TIMFFn+T6paq7y/I
+ 2FlSAxh1EpRtIPrZsbyUxo6i+VrlO4kbmjpqvjKQW823sxlZNRgFwSLGe3Eaa+NCwKPC
+ 3FSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734575720; x=1735180520;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=35FnTfH4WG+K4PY792luJMCXMpwCP4Hox12oxUuAxYU=;
- b=nm83KaayWIy0f3DM6FdspQ0IL7NIqpqvFL2PeGqiwMHR7RgTt4jvCIXLFNQJ5sGVv5
- Tpi1XmsD2U3gnyxb772rFwCMo8yIPARmyrM+jAKPyfELZ4Jlm79YViTw/PITylZKllzr
- SxsuIvjYtI9fbDXVnz8q6A5QGqcfoJW8XerdrV53y6FL2yr1FvqLda92a295CwMY42fq
- PQXDd/ZUkRuPVBc7jhbeEGDKRQ1SAiaYmEvaJyJGz2ysRjwOeBj62QUOQvYS7j/s/0/6
- XGyXqGV+fllB6Gsd3AxUP0wRj07hvWkIo3xlX3IP27h8+KE0o7/mia5NordO+NLm5r72
- 1VwQ==
+ d=1e100.net; s=20230601; t=1734575701; x=1735180501;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ewYmRGbtjw/u5CZQB/fGCIYq/IkhzVppRPs0v4hq1mw=;
+ b=PcH6W7N9eiiTr8aBzCeLlduf3YdDKaSHQ9GcUURlkxl78VCZmj3fKPCVFsnz7DlMlV
+ oFiWcmLLGsRxhmFUsib1iLRKQvLLzHjRaaRtFfn4CC0rCDrFCiNqgx44YdXm8O2nvze4
+ PLYhaKfwRYZX+CW72MaNRz17cnJKmsBLbNxJHrJSobmY3u2E+2Xby5NssGnFYi7BMVo+
+ 46jpOgN9EiH33E6If+q+L4O3PmvUV7aDgAfe7PK8+eOC8ib7/kP8n65OTq+SEIbkLloX
+ Id3CpBC6W6SxHQ1ne3rgg87COk0KgiJ9CcKIuoQRlBCQoYTL4cSUt4QJgltR5n+ZpkQs
+ xNkw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVOXVSQc0WnC1ewZBBsczT9ULiPOK3zy9vqdas4toF0uBVCyjT5Ps2OMXOphrt9XlevqVDxKwnW1Q==@lists.freedesktop.org,
- AJvYcCVPkWhsJfCNzr3f4TmMG611T0aA5s+jEZz7pUejdDqg2/Wi1ktOQe/DBzQGSKUetAbTxsKTlV3x4pc=@lists.freedesktop.org,
- AJvYcCVTj0uYfXlvRzxptyccUGlou6pvrNFg+LKcQNxnqGmrYIkWNBPi6Pg8Lbp9qPoqDLY98DcWoCEWr4s=@lists.freedesktop.org,
- AJvYcCWh57IqC9rUSn2W5U289Le5+d72mcMGLSJ+J3fKJ8+kRg40aq1z+BcnA62EzFpybjRmpOOOLsR2Qu4h@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzbzQIL/AXNzj5/1VyHYV+wpT6rVHtTjLpHfsDoTf4ogTuUM3I4
- uIBwMWInoR13eUE/2oUwsOokShBx77n9OtXI23hfdZNjdUlx0NBF
-X-Gm-Gg: ASbGncv4QUcxRkO9MAuPNsG7aCY+zpCSaJrQAWDUZLWZmu3NUEVFXFIgjoBOkV7LeYN
- CKo36YG0vF6u4T5XZM3jkaYcX1SB/27Gc4ZC8/JdTNHSNbLIREnWG66cOd11HOA6PHBEW+2SHrr
- 6NKaG9uIOkp19xDcHluH5FT3PZNu/tNMbKzZaio881yU5rCy0ysgEYTw88/XHQzNHJqzxAQwYiJ
- aVt8DIumXbJXu51FytgDRUwPeLLlcXwS2i0Lmjep203UOxJY/SYq7R17i1wHBMm3uFObo/7TiIx
- 3V3g7hU=
-X-Google-Smtp-Source: AGHT+IEYa8/cPCrPUtV+8BluujgYPFlXKrKcInk+YdaLokr+l/jazm3QEi9WUGXKVKTvc9yKVja0nA==
-X-Received: by 2002:a05:6a00:9096:b0:725:e37d:cd35 with SMTP id
- d2e1a72fcca58-72a8d2c2269mr8262629b3a.18.1734575720422; 
- Wed, 18 Dec 2024 18:35:20 -0800 (PST)
+ AJvYcCUVy7qfTqSb9Kfv25Kk3px9zpVVFtT0qpn5hNTtytgPjBqt2DFfGEPJZpqDlEugFHrehbeikYWQeg==@lists.freedesktop.org,
+ AJvYcCVw/egzdXDgFX/LlMNU9yep046vwKr3FjiIixkVJNMAYY+CVaIMSO+4Sp/YwPQPzgW8fZwZtEL+zLMa@lists.freedesktop.org,
+ AJvYcCWzwiJFp509Q72Y01taZjBK30WUDwxjLN11I4hEXWQc8zTnFDT+vj5lGswrmG3iDLGoscuqHDfRovU=@lists.freedesktop.org,
+ AJvYcCXNw3z4aqLRDNqGeXXKE8iyTXNbAgRd76B+tSj2rXY7u41csao0wgCIsH8MM7Y+eViJx94TfXmOiIw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyDGiQlEmlGEorXy3M//atFDPhvl13C5JTdpUSfNtos/gAQurNO
+ xwF0IpDJhJxyGyMJwsGeO7xdu/u+KWNu+pG06GZBqQkYegcDoXv/
+X-Gm-Gg: ASbGncvMZoXWPik0RvbaYJhW9ggQBAYaJDbaFWLZqc4iF20is6/6E3rt2DgW1pPmfNw
+ cH0SZ6CnsgYtE1YqdFFsTMbh3Xm0Q+va0VQThtA4m/kYSsUhT20kgcjKuqRyoQS5uEicTmwbl4c
+ +rtUp9ITj25J304bxWQHYhREJ8fSkYPc62b/9RMxH154bp5wiJMlCPPM83XHAg+gMHGuTv0LSca
+ CVbk4waPmkodwozUSibqLPdO+UXTVuwUUbOykBRy9ZS0NucTrRhdOlum2BkLHP9ix5UzeLle1NR
+ XZb+qys=
+X-Google-Smtp-Source: AGHT+IGkt8eWE3wh1dURnDDolV6IzXf9MexDfJ0kaeAEgc6DDmy7cFDTyCLLAMMKibF6E7v5iDX6cg==
+X-Received: by 2002:aa7:9316:0:b0:724:ed8f:4d35 with SMTP id
+ d2e1a72fcca58-72a8d2e0557mr8641134b3a.26.1734575700792; 
+ Wed, 18 Dec 2024 18:35:00 -0800 (PST)
 Received: from localhost.localdomain ([180.159.118.224])
  by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-842b821da83sm142163a12.40.2024.12.18.18.35.15
+ 41be03b00d2f7-842b821da83sm142163a12.40.2024.12.18.18.34.56
  (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
- Wed, 18 Dec 2024 18:35:20 -0800 (PST)
+ Wed, 18 Dec 2024 18:35:00 -0800 (PST)
 From: Yafang Shao <laoar.shao@gmail.com>
 To: akpm@linux-foundation.org
 Cc: torvalds@linux-foundation.org, pmladek@suse.com, kvalo@kernel.org,
@@ -73,17 +72,13 @@ Cc: torvalds@linux-foundation.org, pmladek@suse.com, kvalo@kernel.org,
  linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
- Yafang Shao <laoar.shao@gmail.com>, Paul Moore <paul@paul-moore.com>,
- Kees Cook <kees@kernel.org>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>
-Subject: [PATCH v2 4/5] security: Remove get_task_comm() and print task comm
- directly
-Date: Thu, 19 Dec 2024 10:34:51 +0800
-Message-Id: <20241219023452.69907-5-laoar.shao@gmail.com>
+ Yafang Shao <laoar.shao@gmail.com>
+Subject: [PATCH v2 0/5] Remove get_task_comm() and print task comm directly
+Date: Thu, 19 Dec 2024 10:34:47 +0800
+Message-Id: <20241219023452.69907-1-laoar.shao@gmail.com>
 X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
-In-Reply-To: <20241219023452.69907-1-laoar.shao@gmail.com>
-References: <20241219023452.69907-1-laoar.shao@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 19 Dec 2024 16:07:10 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -104,37 +99,32 @@ Since task->comm is guaranteed to be NUL-terminated, we can print it
 directly without the need to copy it into a separate buffer. This
 simplifies the code and avoids unnecessary operations.
 
-Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
-Reviewed-by: Paul Moore <paul@paul-moore.com>
-Acked-by: Kees Cook <kees@kernel.org>
-Cc: James Morris <jmorris@namei.org>
-Cc: "Serge E. Hallyn" <serge@hallyn.com>
----
- security/yama/yama_lsm.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+v1->v2:
+- Don't add "%pTN" (Petr, Kalle, Borislav, Andy, Linus)
 
-diff --git a/security/yama/yama_lsm.c b/security/yama/yama_lsm.c
-index e1a5e13ea269..1a2d02fee09b 100644
---- a/security/yama/yama_lsm.c
-+++ b/security/yama/yama_lsm.c
-@@ -76,7 +76,6 @@ static void report_access(const char *access, struct task_struct *target,
- 				struct task_struct *agent)
- {
- 	struct access_report_info *info;
--	char agent_comm[sizeof(agent->comm)];
- 
- 	assert_spin_locked(&target->alloc_lock); /* for target->comm */
- 
-@@ -86,8 +85,7 @@ static void report_access(const char *access, struct task_struct *target,
- 		 */
- 		pr_notice_ratelimited(
- 		    "ptrace %s of \"%s\"[%d] was attempted by \"%s\"[%d]\n",
--		    access, target->comm, target->pid,
--		    get_task_comm(agent_comm, agent), agent->pid);
-+		    access, target->comm, target->pid, agent->comm, agent->pid);
- 		return;
- 	}
- 
+v1: https://lore.kernel.org/all/20241213054610.55843-1-laoar.shao@gmail.com/
+
+Yafang Shao (5):
+  kernel: Remove get_task_comm() and print task comm directly
+  arch: Remove get_task_comm() and print task comm directly
+  net: Remove get_task_comm() and print task comm directly
+  security: Remove get_task_comm() and print task comm directly
+  drivers: Remove get_task_comm() and print task comm directly
+
+ arch/arc/kernel/unaligned.c                         |  5 ++---
+ arch/x86/kernel/vm86_32.c                           |  5 ++---
+ drivers/accel/habanalabs/common/context.c           |  3 +--
+ drivers/accel/habanalabs/common/habanalabs_ioctl.c  | 11 +++--------
+ drivers/gpu/drm/i915/display/intel_display_driver.c |  6 ++----
+ drivers/gpu/drm/nouveau/nouveau_chan.c              |  4 +---
+ drivers/gpu/drm/nouveau/nouveau_drm.c               |  5 ++---
+ drivers/tty/tty_io.c                                |  3 +--
+ kernel/capability.c                                 |  8 ++------
+ kernel/futex/waitwake.c                             |  3 +--
+ net/wireless/wext-core.c                            |  4 +---
+ security/yama/yama_lsm.c                            |  4 +---
+ 12 files changed, 19 insertions(+), 42 deletions(-)
+
 -- 
 2.43.5
 
