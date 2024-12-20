@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63A3BE77188
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 11:23:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2580BE7718B
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 11:23:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16D5110EF90;
-	Fri, 20 Dec 2024 11:23:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D964510E2C7;
+	Fri, 20 Dec 2024 11:23:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nYgEUW6L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RI249w9J";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E5E910EF90
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Dec 2024 11:23:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D73910EF92
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Dec 2024 11:23:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734693783; x=1766229783;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=FnsJkGJ7/0xoT+SlWrahOcVZPw2byLFkRaEqyI+bDt0=;
- b=nYgEUW6LNpjnt8zJOOppMST9+RLRK0MYmJoEGclRf0QQhqguFn+qRfxF
- 054eTZ+H3ldJmPHnuLOzcpHGouyOWWIzRGXCtAlTkL5mVlC5CeRwtI/vj
- 4WIHYNU8ynI1soAt2jQkPDC6rBylPBYjX8QF1ccLHZ/loNjOwAQfIupKL
- 5I5AU9Shj+vJecjjfs9hLz9y/n049znpws/Y9OJtabCZLoR+eaU7Y1jo7
- b1o5iuE00/ROg92oxXIYfN+wxJFcLrhJTEKyLj6liPL5n//QHqzAcbR1S
- EnM8rdE06uUJt9TYEgJvjTL9tIpCsLMvbK3Y4xJhnDfgKlg9wTvVhlbWy Q==;
-X-CSE-ConnectionGUID: M/LYOQs2RY6vDo1eiWQQdw==
-X-CSE-MsgGUID: b5JUj0KlRzuXUYArU6ns8w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="35406916"
-X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="35406916"
+ t=1734693784; x=1766229784;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=QJih4QbEhUVhlil2oujbxH7Pr9/M73Cr1kAcv4t2QYM=;
+ b=RI249w9JcVbziwcMVhHYsyb0WvHeKesPvgodzxxHaINGn5hf1eUHC5Xj
+ t/Z+7mMKyzcg88ERcu573/Ufxds7z789iSjEvtMTPnNnP7ekKkdwyFDUj
+ SscafGQ3NOAMvYIBzcCl+hNI2vF34kgfmYSm8eyVc++3gjqlzs5iYU9nP
+ VGEyMyMN5l4Ln96mvTQHhdbkq7k0bFrStEI9bI0UeW+0427h6NthmHYW+
+ 26SYBqV/5mFd6wsd7Np2CYm9cOtliU7JaY/Do1oy2WJBdiSx8Q6j7ZZDu
+ kB+ZVy6gKT68xMlnlsusWt8dWIsTAERbdT0slWo9S7St1g4ioJYTzJqVK w==;
+X-CSE-ConnectionGUID: zTTAztWbQ1SLJfgIex5oQg==
+X-CSE-MsgGUID: ijLw3JepQMiFR/UtfDUMGQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="35406923"
+X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="35406923"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 03:23:02 -0800
-X-CSE-ConnectionGUID: s9ErW4MHRtSZ5x90W3Kgvg==
-X-CSE-MsgGUID: ac10vKdyR7O3oaXN/p3WZQ==
+ 20 Dec 2024 03:23:03 -0800
+X-CSE-ConnectionGUID: iyfEeBuVRz2cAKZrdAc7Yg==
+X-CSE-MsgGUID: idad/4cwRiSFpDCO2DMZBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="98396172"
+X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="98396196"
 Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Dec 2024 03:23:03 -0800
@@ -48,10 +48,13 @@ Cc: ashutosh.dixit@intel.com, james.ausmus@intel.com,
  joshua.santosh.ranjan@intel.com, shubham.kumar@intel.com,
  matthew.d.roper@intel.com, matthew.olson@intel.com,
  Harish Chegondi <harish.chegondi@intel.com>
-Subject: [PATCH v7 0/7] Add support for EU stall sampling
-Date: Fri, 20 Dec 2024 03:22:49 -0800
-Message-ID: <cover.1734693129.git.harish.chegondi@intel.com>
+Subject: [PATCH v7 7/7] drm/xe/eustall: Add workaround 22016596838 which
+ applies to PVC.
+Date: Fri, 20 Dec 2024 03:22:56 -0800
+Message-ID: <08ade736ebbd176dffb1e3e48a25ea1a0922dd4b.1734693129.git.harish.chegondi@intel.com>
 X-Mailer: git-send-email 2.47.1
+In-Reply-To: <cover.1734693129.git.harish.chegondi@intel.com>
+References: <cover.1734693129.git.harish.chegondi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,90 +71,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The following patch series add support for EU stall sampling,
-a new hardware feature first added in PVC and is being supported
-in XE2 and later architecture GPUs. This feature would enable
-capturing of EU stall data which include the IP address of the
-instruction stalled and various stall reason counts.
+Add PVC workaround 22016596838 that disables EU DOP gating
+during EU stall sampling.
 
-Support for this feature is being added into Mesa.
-https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/30142
-
-A new test in the IGT repo:
-https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-is also under development to test this feature in the driver. This
-patch has undergone basic testing with the new IGT test that is under
-development.
-
-Thank You.
-
-v7: a. Renamed input property DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT
-       to DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS to be consistent with
-       OA. Renamed the corresponding internal variables.
-    b. Fixed some commit messages based on review feedback.
-    c. Changed sampling_rates from a pointer to flexible array.
-
-v6: a. Changed the uAPI input to accept sampling rate in GPU cycles
-       instead of sampling rate multiplier.
-    b. Fix buffer wrap around over write bug (Matt Olson).
-    c. Include EU stall sampling rates information and per XeCore buffer size in the query information.
-
-v5: Addressed review feedback from v4 including
-    a. Removed DRM_XE_EU_STALL_PROP_POLL_PERIOD from the uAPI (Ashutosh)
-    b. Separated the patches for Xe_HPC and Xe2 (Matt R)
-    c. Moved read() returning -EIO into a separate patch
-    d. Removed spinlocks around set_bit() and clear_bit() (Matt R)
-    e. Renamed several variables, structures and enums (Ashutosh and
-Matt R)
-    f. Addressed other review feedback.
-v4: Addressed review feedback from v3 including
-    a. Split the patch into multiple patches (Matt R)
-    b. Added a new device query to get EU stall info (Ashutosh)
-    c. Renamed all Dss to xecore (Matt R)
-    d. Removed buffer size and disable at open input properties. (Matt R)
-    e. Removed the "_SHIFT" macros (Matt R)
-    f. Allocate the EU stall buffer only on system memory.
-    g. Changed the work arounds to OOB (Matt R)
-    h. Other review feedback.
-v3: a. Removed data header and changed read() to return -EIO when data is dropped by the HW.
-    b. Added a new DRM_XE_OBSERVATION_IOCTL_INFO to query EU stall data record info
-    c. Added struct drm_xe_eu_stall_data_pvc and struct drm_xe_eu_stall_data_xe2
-       to xe_drm.h. These declarations would help user space to parse the
-       EU stall data
-    d. Addressed other review comments from v2
-v2: Rename xe perf layer as xe observation layer (Ashutosh)
-
-Cc: Felix Degrood <felix.j.degrood@intel.com>
 Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/xe/xe_eu_stall.c   | 16 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules |  1 +
+ 2 files changed, 17 insertions(+)
 
-Harish Chegondi (7):
-  drm/xe/topology: Add a function to find the index of the last enabled
-    DSS in a mask
-  drm/xe/uapi: Introduce API for EU stall sampling
-  drm/xe/eustall: Implement EU stall sampling APIs for Xe_HPC
-  drm/xe/eustall: Return -EIO error from read() if HW drops data
-  drm/xe/eustall: Add EU stall sampling support for Xe2
-  drm/xe/uapi: Add a device query to get EU stall sampling information
-  drm/xe/eustall: Add workaround 22016596838 which applies to PVC.
-
- drivers/gpu/drm/xe/Makefile                |    1 +
- drivers/gpu/drm/xe/regs/xe_eu_stall_regs.h |   29 +
- drivers/gpu/drm/xe/xe_eu_stall.c           | 1103 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_eu_stall.h           |   61 ++
- drivers/gpu/drm/xe/xe_gt.c                 |    6 +
- drivers/gpu/drm/xe/xe_gt_topology.h        |   13 +
- drivers/gpu/drm/xe/xe_gt_types.h           |    3 +
- drivers/gpu/drm/xe/xe_observation.c        |   14 +
- drivers/gpu/drm/xe/xe_query.c              |   38 +
- drivers/gpu/drm/xe/xe_trace.h              |   33 +
- drivers/gpu/drm/xe/xe_wa_oob.rules         |    1 +
- include/uapi/drm/xe_drm.h                  |   74 ++
- 12 files changed, 1376 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_eu_stall_regs.h
- create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.c
- create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.h
-
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+index d63f621a2f73..179d01721141 100644
+--- a/drivers/gpu/drm/xe/xe_eu_stall.c
++++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+@@ -13,6 +13,7 @@
+ 
+ #include "xe_bo.h"
+ #include "xe_pm.h"
++#include "xe_wa.h"
+ #include "xe_trace.h"
+ #include "xe_macros.h"
+ #include "xe_device.h"
+@@ -26,6 +27,8 @@
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_eu_stall_regs.h"
+ 
++#include <generated/xe_wa_oob.h>
++
+ #define POLL_FREQUENCY_HZ 100
+ #define POLL_PERIOD_NS (NSEC_PER_SEC / POLL_FREQUENCY_HZ)
+ 
+@@ -677,6 +680,14 @@ xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
+ 	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_RENDER))
+ 		xe_gt_err(gt, "Failed to get RENDER forcewake\n");
+ 
++	/*
++	 * Wa_22016596838:pvc
++	 * Disable EU DOP gating for PVC.
++	 */
++	if (XE_WA(gt, 22016596838))
++		xe_gt_mcr_multicast_write(gt, ROW_CHICKEN2,
++					  _MASKED_BIT_ENABLE(DISABLE_DOP_GATING));
++
+ 	reg_value = gen_eustall_base(stream, true);
+ 	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_BASE, reg_value);
+ }
+@@ -708,6 +719,11 @@ xe_eu_stall_stream_disable(struct xe_eu_stall_data_stream *stream)
+ 	reg_value = gen_eustall_base(stream, false);
+ 	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_BASE, reg_value);
+ 
++	/* Wa_22016596838:pvc */
++	if (XE_WA(gt, 22016596838))
++		xe_gt_mcr_multicast_write(gt, ROW_CHICKEN2,
++					  _MASKED_BIT_DISABLE(DISABLE_DOP_GATING));
++
+ 	xe_force_wake_put(gt_to_fw(gt), XE_FW_RENDER);
+ 	xe_pm_runtime_put(gt_to_xe(gt));
+ }
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 3ed12a85cc60..c10be71ac766 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -5,6 +5,7 @@
+ 22011391025	PLATFORM(DG2)
+ 22012727170	SUBPLATFORM(DG2, G11)
+ 22012727685	SUBPLATFORM(DG2, G11)
++22016596838	PLATFORM(PVC)
+ 18020744125	PLATFORM(PVC)
+ 1509372804	PLATFORM(PVC), GRAPHICS_STEP(A0, C0)
+ 1409600907	GRAPHICS_VERSION_RANGE(1200, 1250)
 -- 
 2.47.1
 
