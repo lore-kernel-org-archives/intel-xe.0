@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD361E77188
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 23:05:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85B67E77188
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 23:34:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 573E410E00C;
-	Fri, 20 Dec 2024 23:05:27 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED62B10E00C;
- Fri, 20 Dec 2024 23:05:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0197913034618762503=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 230CD10E00C;
+	Fri, 20 Dec 2024 23:34:13 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H5YGgdXD";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3801110E00C
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Dec 2024 23:34:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734737652; x=1766273652;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6xtRPIJ6Z8W9JnXCV9Okbku3VbnDO9vwDvXGKr4ydLk=;
+ b=H5YGgdXDBtqbf9avyqGIaPWMjqyvaAL+j6azZfyWATsUfrGd11vUPq8U
+ sepsXj6SoOHoBvhqLhamcM5U6c55Phk9nGFq1eowzN9HipT51PTF++Bsa
+ Qqg1pGaGZxKu2R8arkjaWEHz9vPwpOY3Dvw/3ReCqDx8OlU8aoPm9Eqec
+ L14qHjQ53DQHFR8z3tXCzRNT0Md9Lf6Bj7BZTvG0FcBfHgb7uMzYyb7pe
+ CiFomRWFnsP2Uv8Rsw5vzvOELtZf4KNaHefepv969gGExDyit3KG4q1yF
+ to+WfEOmEW9wTu0cUDwEhcGHxkiNjIqOkeGWIcxC78vmwehgcXyG9N9vj g==;
+X-CSE-ConnectionGUID: rNxbgsXYQjGPhCbv9A5shw==
+X-CSE-MsgGUID: IxVmB++FTI6J+VmJ9Q5sww==
+X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="57768593"
+X-IronPort-AV: E=Sophos;i="6.12,252,1728975600"; d="scan'208";a="57768593"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2024 15:34:11 -0800
+X-CSE-ConnectionGUID: G6n0Zs78Tl+vTnSuWH6M+g==
+X-CSE-MsgGUID: JhuiyjEORwS0OyLua8Ne5A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,252,1728975600"; d="scan'208";a="99156398"
+Received: from gkczarna.igk.intel.com ([10.211.131.163])
+ by fmviesa009.fm.intel.com with ESMTP; 20 Dec 2024 15:34:10 -0800
+From: Tomasz Lis <tomasz.lis@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v4 0/3] drm/xe/vf: Post-migration recovery of GGTT nodes and
+ CTB
+Date: Sat, 21 Dec 2024 00:34:06 +0100
+Message-Id: <20241220233409.2956004-1-tomasz.lis@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
- =?utf-8?q?=5D_drm/xe=3A_Introduce_GuC_PC_debugfs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 20 Dec 2024 23:05:25 -0000
-Message-ID: <173473592596.950758.1189729096008009225@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241220214139.773729-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20241220214139.773729-1-rodrigo.vivi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,155 +63,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0197913034618762503==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+To support VF Migration, it is necessary to do fixups to any
+non-virtualized resources. These fixups need to be applied within
+VM, on the KMD working with VF.
 
-== Series Details ==
+This series adds two fixup functions to the recovery worker:
+* for fixing drm_mm nodes which represent GGTT allocations
+* for fixing content of outgoing CTB buffer
 
-Series: series starting with [1/2] drm/xe: Introduce GuC PC debugfs
-URL   : https://patchwork.freedesktop.org/series/142894/
-State : success
+v2: Fixed missing include, made checkpatch happy
+v3: Moved some functs to xe_ggtt.c; moved shift computation to just
+  after querying; improved documentation; switched some warns to asserts;
+  skipping fixups when GGTT shift eq 0; iterating through tiles rather
+  than gts; fixes in log messages
+v4: Updated kerneldocs, removed unused funct, properly allocate
+  balloning nodes if non existent, removed inline keywords, enums for
+  offsets in CTB messages, less error messages, if return unused then
+  made functs void
 
-== Summary ==
+Tomasz Lis (3):
+  drm/drm_mm: Safe macro for iterating through nodes in range
+  drm/xe/sriov: Shifting GGTT area post migration
+  drm/xe/vf: Fixup CTB send buffer messages after migration
 
-CI Bug Log - changes from xe-2413-0eede13975362b755a208b2e2ba322940013f183_BAT -> xe-pw-142894v1_BAT
-====================================================
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h  |   7 +
+ drivers/gpu/drm/xe/xe_ggtt.c              | 163 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ggtt.h              |   2 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       |  26 ++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |   1 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |   2 +
+ drivers/gpu/drm/xe/xe_guc_ct.c            | 144 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_ct.h            |   2 +
+ drivers/gpu/drm/xe/xe_guc_submit.c        |   4 +
+ drivers/gpu/drm/xe/xe_sriov_vf.c          |  40 ++++++
+ include/drm/drm_mm.h                      |  19 +++
+ 11 files changed, 410 insertions(+)
 
-Summary
--------
+-- 
+2.25.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-142894v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3517])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2413-0eede13975362b755a208b2e2ba322940013f183/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142894v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-adlp-7:         [PASS][3] -> [SKIP][4] ([Intel XE#455]) +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2413-0eede13975362b755a208b2e2ba322940013f183/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142894v1/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-bmg-1:          [DMESG-WARN][5] ([Intel XE#877]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2413-0eede13975362b755a208b2e2ba322940013f183/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142894v1/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-  [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
-
-
-Build changes
--------------
-
-  * Linux: xe-2413-0eede13975362b755a208b2e2ba322940013f183 -> xe-pw-142894v1
-
-  IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2413-0eede13975362b755a208b2e2ba322940013f183: 0eede13975362b755a208b2e2ba322940013f183
-  xe-pw-142894v1: 142894v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142894v1/index.html
-
---===============0197913034618762503==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: Introduce GuC PC debugfs</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142894/">https://patchwork.freedesktop.org/series/142894/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142894v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142894v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2413-0eede13975362b755a208b2e2ba322940013f183_BAT -&gt; xe-pw-142894v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-142894v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2413-0eede13975362b755a208b2e2ba322940013f183/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142894v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517">Intel XE#3517</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2413-0eede13975362b755a208b2e2ba322940013f183/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142894v1/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2413-0eede13975362b755a208b2e2ba322940013f183/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142894v1/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2413-0eede13975362b755a208b2e2ba322940013f183 -&gt; xe-pw-142894v1</li>
-</ul>
-<p>IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2413-0eede13975362b755a208b2e2ba322940013f183: 0eede13975362b755a208b2e2ba322940013f183<br />
-  xe-pw-142894v1: 142894v1</p>
-
-</body>
-</html>
-
---===============0197913034618762503==--
