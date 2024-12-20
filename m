@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CDD2E77188
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 19:42:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FFEFE77188
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 19:42:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1592610E011;
-	Fri, 20 Dec 2024 19:42:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B70910F049;
+	Fri, 20 Dec 2024 19:42:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CmF9S+gf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Myt4N0Yx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A5B410F04E
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Dec 2024 19:42:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1671010F049
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Dec 2024 19:42:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734723750; x=1766259750;
+ t=1734723745; x=1766259745;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vhoBMOi+Nw7PSL9EcIWZr8vwauVgO5/yGFJ5LkME5AQ=;
- b=CmF9S+gftvykO2nGuk13myxJaz55tb6SKEXZn3d5imuSE40oflJq3ObR
- rH9auDLiRcLexrNDmZ28KxS2k7I3D4Whuwlt21GHHobiwx4i9V0wxcUhQ
- iu7CFrh/9Fb7UPrbSy1QaxN5MZxHpJHGw8pWZaDSJiLq4JG2+l84haSI4
- VOBs+TBKUGMxxInodCRff7dO0b7bKVj+gwUjPAZOy8n/6aQLIvacuiHX7
- AyKHQMPZWWUP5kvPAwSnMvCAny8eK9MUtnFERGoQ5OArZ9ZdDTY2GgN6r
- IBC4MByLVpci0ueLCGisRLhTHESD4XHyEpVC2R5kNkg5LoC3kchDwOaZJ Q==;
-X-CSE-ConnectionGUID: k0bntzTzQMa7eBBVLQs9bw==
-X-CSE-MsgGUID: bMCitAxYStK9ofIO0WIREQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="38965223"
-X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; d="scan'208";a="38965223"
+ bh=UWR54koBGUWhm3Q0FhgMwwXo0JR2eejZkDw2ZTciXwI=;
+ b=Myt4N0YxZtGDeilCffhsAIebOUn82SVXrVeqPA6C8W7bseMPRmVecbCL
+ w38C7vXQRZLTwh2qJEbyiWa/vWBiiOvXGE0NY3wGWLzDNNhgf+bi25ZfY
+ hpSgrDqMRus6/t5SIZmPa4L66K5G292noLgFFSbKbzfLdlJbuVTRi0VJj
+ JiGsd572R66dT9ceeZpaB49qU+vHjFD1JUazKDNnUpAEMv/mvayMoRUZ+
+ 38UeGEnq0HIwz7xhpKa6a7P8SUAZwZZeL3CRWFuJHRmvkcPtgSSpC2yog
+ DbdDHBaHSKCgYSPNwc4kzXseu67omKC9O4YG6vK0baObNTGy9C2YtINok A==;
+X-CSE-ConnectionGUID: 4TTgxwjNTO2nSg5P7CPnFg==
+X-CSE-MsgGUID: FoDBHg1eQs2//7BN5HWqrw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="38965219"
+X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; d="scan'208";a="38965219"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 11:42:30 -0800
-X-CSE-ConnectionGUID: UKk1e7MdRtWJSLIlXjEVbQ==
-X-CSE-MsgGUID: PRKbuzUnRKWOP2aWb3HVtg==
+ 20 Dec 2024 11:42:25 -0800
+X-CSE-ConnectionGUID: 2KsMQKbkTIahji5nkht+IQ==
+X-CSE-MsgGUID: wyfVfnDGTZ+5Ya+myuVgmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="99075495"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="99075466"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.5.201])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 11:42:28 -0800
+ 20 Dec 2024 11:42:23 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2 08/11] drm/xe/guc: Introduce the GuC Buffer Cache
-Date: Fri, 20 Dec 2024 20:42:01 +0100
-Message-Id: <20241220194205.995-9-michal.wajdeczko@intel.com>
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2 05/11] drm/xe/sa: Allow making suballocations using custom
+ gfp flags
+Date: Fri, 20 Dec 2024 20:41:58 +0100
+Message-Id: <20241220194205.995-6-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20241220194205.995-1-michal.wajdeczko@intel.com>
 References: <20241220194205.995-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,351 +68,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The purpose of the GuC Buffer Cache is to maintain a set ofreusable
-buffers that could be used while sending some of the CTB H2G actions
-that require separate buffer with indirect data. Currently only few
-PF actions need this so initialize it only when running as a PF.
+Actual xe_sa_manager implementation uses hardcoded GFP_KERNEL flag
+during creation of suballocations but in upcoming patch we want to
+reuse the xe_sa_manager in places where GFP_KERNEL is not allowed.
+Add another variant of the xe_sa_bo_new() function that accepts
+arbitrary gfp flags.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
-v2: base it on xe_sa_manager instead (Matt, Rodrigo)
-v3: move init to xe_guc_init_post_hwconfig (CI)
+v2: add kernel-doc for xe_sa_bo_new (Matt)
 ---
- drivers/gpu/drm/xe/Makefile           |   1 +
- drivers/gpu/drm/xe/xe_guc.c           |   5 +
- drivers/gpu/drm/xe/xe_guc_buf.c       | 172 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_buf.h       |  47 +++++++
- drivers/gpu/drm/xe/xe_guc_buf_types.h |  28 +++++
- drivers/gpu/drm/xe/xe_guc_types.h     |   3 +
- 6 files changed, 256 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_guc_buf.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_buf.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_buf_types.h
+ drivers/gpu/drm/xe/xe_sa.c | 15 ++++++++++++---
+ drivers/gpu/drm/xe/xe_sa.h | 19 +++++++++++++++++--
+ 2 files changed, 29 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 5c97ad6ed738..2a84c799e946 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -56,6 +56,7 @@ xe-y += xe_bb.o \
- 	xe_gt_topology.o \
- 	xe_guc.o \
- 	xe_guc_ads.o \
-+	xe_guc_buf.o \
- 	xe_guc_capture.o \
- 	xe_guc_ct.o \
- 	xe_guc_db_mgr.o \
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 408365dfe4ee..1619c0a52db9 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -23,6 +23,7 @@
- #include "xe_gt_sriov_vf.h"
- #include "xe_gt_throttle.h"
- #include "xe_guc_ads.h"
-+#include "xe_guc_buf.h"
- #include "xe_guc_capture.h"
- #include "xe_guc_ct.h"
- #include "xe_guc_db_mgr.h"
-@@ -743,6 +744,10 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
- 	if (ret)
- 		return ret;
- 
-+	ret = xe_guc_buf_cache_init(&guc->buf);
-+	if (ret)
-+		return ret;
-+
- 	return xe_guc_ads_init_post_hwconfig(&guc->ads);
+diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
+index 0e78ae46667e..5f89e32b0640 100644
+--- a/drivers/gpu/drm/xe/xe_sa.c
++++ b/drivers/gpu/drm/xe/xe_sa.c
+@@ -74,8 +74,17 @@ struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32
+ 	return sa_manager;
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_guc_buf.c b/drivers/gpu/drm/xe/xe_guc_buf.c
-new file mode 100644
-index 000000000000..261c7c74417f
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_guc_buf.c
-@@ -0,0 +1,172 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include <linux/cleanup.h>
-+#include <drm/drm_managed.h>
-+
-+#include "xe_assert.h"
-+#include "xe_bo.h"
-+#include "xe_gt_printk.h"
-+#include "xe_guc.h"
-+#include "xe_guc_buf.h"
-+#include "xe_sa.h"
-+
-+static struct xe_guc *cache_to_guc(struct xe_guc_buf_cache *cache)
-+{
-+	return container_of(cache, struct xe_guc, buf);
-+}
-+
-+static struct xe_gt *cache_to_gt(struct xe_guc_buf_cache *cache)
-+{
-+	return guc_to_gt(cache_to_guc(cache));
-+}
-+
+-struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager,
+-				  unsigned int size)
 +/**
-+ * xe_guc_buf_cache_init() - Initialize the GuC Buffer Cache.
-+ * @cache: the &xe_guc_buf_cache to initialize
++ * __xe_sa_bo_new() - Make a suballocation but use custom gfp flags.
++ * @sa_manager: the &xe_sa_manager
++ * @size: number of bytes we want to suballocate
++ * @gfp: gfp flags used for memory allocation. Typically GFP_KERNEL.
 + *
-+ * The Buffer Cache allows to obtain a reusable buffer that can be used to pass
-+ * indirect H2G data to GuC without a need to create a ad-hoc allocation.
++ * Try to make a suballocation of size @size.
 + *
-+ * Return: 0 on success or a negative error code on failure.
++ * Return: a &drm_suballoc, or an ERR_PTR.
 + */
-+int xe_guc_buf_cache_init(struct xe_guc_buf_cache *cache)
-+{
-+	struct xe_gt *gt = cache_to_gt(cache);
-+	struct xe_sa_manager *sam;
-+
-+	/* XXX: currently it's useful only for the PF actions */
-+	if (!IS_SRIOV_PF(gt_to_xe(gt)))
-+		return 0;
-+
-+	sam = __xe_sa_bo_manager_init(gt_to_tile(gt), SZ_8K, 0, sizeof(u32));
-+	if (IS_ERR(sam))
-+		return PTR_ERR(sam);
-+	cache->sam = sam;
-+
-+	xe_gt_dbg(gt, "reusable buffer with %u dwords at %#x for %ps\n",
-+		  xe_guc_buf_cache_dwords(cache), xe_bo_ggtt_addr(sam->bo),
-+		  __builtin_return_address(0));
-+	return 0;
-+}
-+
-+/**
-+ * xe_guc_buf_cache_dwords() - Number of dwords the GuC Buffer Cache supports.
-+ * @cache: the &xe_guc_buf_cache to query
-+ *
-+ * Return: a size of the largest reusable buffer (in dwords)
-+ */
-+u32 xe_guc_buf_cache_dwords(struct xe_guc_buf_cache *cache)
-+{
-+	return cache->sam ? cache->sam->base.size / sizeof(u32) : 0;
-+}
-+
-+/**
-+ * xe_guc_buf_reserve() - Reserve a new sub-allocation.
-+ * @cache: the &xe_guc_buf_cache where reserve sub-allocation
-+ * @dwords: the requested size of the buffer in dwords
-+ *
-+ * Use xe_guc_buf_is_valid() to check if returned buffer reference is valid.
-+ * Must use xe_guc_buf_release() to release a sub-allocation.
-+ *
-+ * Return: a &xe_guc_buf of new sub-allocation.
-+ */
-+struct xe_guc_buf xe_guc_buf_reserve(struct xe_guc_buf_cache *cache, u32 dwords)
-+{
-+	struct drm_suballoc *sa;
-+
-+	if (cache->sam)
-+		sa = __xe_sa_bo_new(cache->sam, dwords * sizeof(32), GFP_ATOMIC);
-+	else
-+		sa = ERR_PTR(-EOPNOTSUPP);
-+
-+	return (struct xe_guc_buf){ .sa = sa };
-+}
-+
-+/**
-+ * xe_guc_buf_from_data() - Reserve a new sub-allocation using data.
-+ * @cache: the &xe_guc_buf_cache where reserve sub-allocation
-+ * @data: the data to flush the sub-allocation
-+ * @size: the size of the data
-+ *
-+ * Similar to xe_guc_buf_reserve() but flushes @data to the GPU memory.
-+ *
-+ * Return: a &xe_guc_buf of new sub-allocation.
-+ */
-+struct xe_guc_buf xe_guc_buf_from_data(struct xe_guc_buf_cache *cache,
-+				       const void *data, size_t size)
-+{
-+	struct drm_suballoc *sa;
-+
-+	sa = __xe_sa_bo_new(cache->sam, size, GFP_ATOMIC);
-+	if (!IS_ERR(sa))
-+		memcpy(xe_sa_bo_cpu_addr(sa), data, size);
-+
-+	return (struct xe_guc_buf){ .sa = sa };
-+}
-+
-+/**
-+ * xe_guc_buf_release() - Release a sub-allocation.
-+ * @buf: the &xe_guc_buf to release
-+ *
-+ * Releases a sub-allocation reserved by the xe_guc_buf_reserve().
-+ */
-+void xe_guc_buf_release(const struct xe_guc_buf buf)
-+{
-+	if (xe_guc_buf_is_valid(buf))
-+		xe_sa_bo_free(buf.sa, NULL);
-+}
-+
-+/**
-+ * xe_guc_buf_flush() - Copy the data from the sub-allocation to the GPU memory.
-+ * @buf: the &xe_guc_buf to flush
-+ *
-+ * Return: a GPU address of the sub-allocation.
-+ */
-+u64 xe_guc_buf_flush(const struct xe_guc_buf buf)
-+{
-+	xe_sa_bo_flush_write(buf.sa);
-+	return xe_sa_bo_gpu_addr(buf.sa);
-+}
-+
-+/**
-+ * xe_guc_buf_cpu_ptr() - Obtain a CPU pointer to the sub-allocation.
-+ * @buf: the &xe_guc_buf to query
-+ *
-+ * Return: a CPU pointer of the sub-allocation.
-+ */
-+void *xe_guc_buf_cpu_ptr(const struct xe_guc_buf buf)
-+{
-+	return xe_sa_bo_cpu_addr(buf.sa);
-+}
-+
-+/**
-+ * xe_guc_buf_gpu_addr() - Obtain a GPU address of the sub-allocation.
-+ * @buf: the &xe_guc_buf to query
-+ *
-+ * Return: a GPU address of the sub-allocation.
-+ */
-+u64 xe_guc_buf_gpu_addr(const struct xe_guc_buf buf)
-+{
-+	return xe_sa_bo_gpu_addr(buf.sa);
-+}
-+
-+/**
-+ * xe_guc_cache_gpu_addr_from_ptr() - Lookup a GPU address using the pointer.
-+ * @cache: the &xe_guc_buf_cache with sub-allocations
-+ * @ptr: the CPU pointer of the sub-allocation
-+ * @size: the size of the data
-+ *
-+ * Return: a GPU address on success or 0 if the pointer was unrelated.
-+ */
-+u64 xe_guc_cache_gpu_addr_from_ptr(struct xe_guc_buf_cache *cache, const void *ptr, u32 size)
-+{
-+	ptrdiff_t offset = ptr - cache->sam->cpu_ptr;
-+
-+	if (offset < 0 || offset + size > cache->sam->base.size)
-+		return 0;
-+
-+	return cache->sam->gpu_addr + offset;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_guc_buf.h b/drivers/gpu/drm/xe/xe_guc_buf.h
-new file mode 100644
-index 000000000000..0d67604d96bd
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_guc_buf.h
-@@ -0,0 +1,47 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_GUC_BUF_H_
-+#define _XE_GUC_BUF_H_
-+
-+#include <linux/cleanup.h>
-+#include <linux/err.h>
-+
-+#include "xe_guc_buf_types.h"
-+
-+int xe_guc_buf_cache_init(struct xe_guc_buf_cache *cache);
-+u32 xe_guc_buf_cache_dwords(struct xe_guc_buf_cache *cache);
-+struct xe_guc_buf xe_guc_buf_reserve(struct xe_guc_buf_cache *cache, u32 dwords);
-+struct xe_guc_buf xe_guc_buf_from_data(struct xe_guc_buf_cache *cache,
-+				       const void *data, size_t size);
-+void xe_guc_buf_release(const struct xe_guc_buf buf);
-+
-+/**
-+ * xe_guc_buf_is_valid() - Check if a buffer reference is valid.
-+ * @buf: the &xe_guc_buf reference to check
-+ *
-+ * Return: true if @ref represents a valid sub-allication.
-+ */
-+static inline bool xe_guc_buf_is_valid(const struct xe_guc_buf buf)
-+{
-+	return !IS_ERR_OR_NULL(buf.sa);
-+}
-+
-+void *xe_guc_buf_cpu_ptr(const struct xe_guc_buf buf);
-+u64 xe_guc_buf_flush(const struct xe_guc_buf buf);
-+u64 xe_guc_buf_gpu_addr(const struct xe_guc_buf buf);
-+u64 xe_guc_cache_gpu_addr_from_ptr(struct xe_guc_buf_cache *cache, const void *ptr, u32 size);
-+
-+DEFINE_CLASS(xe_guc_buf, struct xe_guc_buf,
-+	     xe_guc_buf_release(_T),
-+	     xe_guc_buf_reserve(cache, num),
-+	     struct xe_guc_buf_cache *cache, u32 num);
-+
-+DEFINE_CLASS(xe_guc_buf_from_data, struct xe_guc_buf,
-+	     xe_guc_buf_release(_T),
-+	     xe_guc_buf_from_data(cache, data, size),
-+	     struct xe_guc_buf_cache *cache, const void *data, size_t size);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_buf_types.h b/drivers/gpu/drm/xe/xe_guc_buf_types.h
-new file mode 100644
-index 000000000000..9e123d71c064
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_guc_buf_types.h
-@@ -0,0 +1,28 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_GUC_BUF_TYPES_H_
-+#define _XE_GUC_BUF_TYPES_H_
-+
-+struct drm_suballoc;
-+struct xe_sa_manager;
-+
-+/**
-+ * struct xe_guc_buf_cache - GuC Data Buffer Cache.
-+ */
-+struct xe_guc_buf_cache {
-+	/* private: internal sub-allocation manager */
-+	struct xe_sa_manager *sam;
-+};
-+
-+/**
-+ * struct xe_guc_buf - GuC Data Buffer Reference.
-+ */
-+struct xe_guc_buf {
-+	/* private: internal sub-allocation reference */
-+	struct drm_suballoc *sa;
-+};
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-index 83a41ebcdc91..573aa6308380 100644
---- a/drivers/gpu/drm/xe/xe_guc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_types.h
-@@ -11,6 +11,7 @@
++struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size, gfp_t gfp)
+ {
+ 	/*
+ 	 * BB to large, return -ENOBUFS indicating user should split
+@@ -84,7 +93,7 @@ struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager,
+ 	if (size > sa_manager->base.size)
+ 		return ERR_PTR(-ENOBUFS);
  
- #include "regs/xe_reg_defs.h"
- #include "xe_guc_ads_types.h"
-+#include "xe_guc_buf_types.h"
- #include "xe_guc_ct_types.h"
- #include "xe_guc_fwif.h"
- #include "xe_guc_log_types.h"
-@@ -58,6 +59,8 @@ struct xe_guc {
- 	struct xe_guc_ads ads;
- 	/** @ct: GuC ct */
- 	struct xe_guc_ct ct;
-+	/** @buf: GuC Buffer Cache manager */
-+	struct xe_guc_buf_cache buf;
- 	/** @capture: the error-state-capture module's data and objects */
- 	struct xe_guc_state_capture *capture;
- 	/** @pc: GuC Power Conservation */
+-	return drm_suballoc_new(&sa_manager->base, size, GFP_KERNEL, true, 0);
++	return drm_suballoc_new(&sa_manager->base, size, gfp, true, 0);
+ }
+ 
+ void xe_sa_bo_flush_write(struct drm_suballoc *sa_bo)
+diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
+index 4e96483057d7..a0341eafbe77 100644
+--- a/drivers/gpu/drm/xe/xe_sa.h
++++ b/drivers/gpu/drm/xe/xe_sa.h
+@@ -5,6 +5,7 @@
+ #ifndef _XE_SA_H_
+ #define _XE_SA_H_
+ 
++#include <linux/types.h>
+ #include "xe_sa_types.h"
+ 
+ struct dma_fence;
+@@ -13,8 +14,22 @@ struct xe_tile;
+ 
+ struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 align);
+ 
+-struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager,
+-				  u32 size);
++struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size, gfp_t gfp);
++
++/**
++ * xe_sa_bo_new() - Make a suballocation.
++ * @sa_manager: the &xe_sa_manager
++ * @size: number of bytes we want to suballocate
++ *
++ * Try to make a suballocation of size @size.
++ *
++ * Return: a &drm_suballoc, or an ERR_PTR.
++ */
++static inline struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size)
++{
++	return __xe_sa_bo_new(sa_manager, size, GFP_KERNEL);
++}
++
+ void xe_sa_bo_flush_write(struct drm_suballoc *sa_bo);
+ void xe_sa_bo_free(struct drm_suballoc *sa_bo,
+ 		   struct dma_fence *fence);
 -- 
 2.47.1
 
