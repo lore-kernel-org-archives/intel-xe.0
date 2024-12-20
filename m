@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AB89E7718B
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 17:19:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F268E77188
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 17:20:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0D3510F00A;
-	Fri, 20 Dec 2024 17:19:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dQ+HXAcr";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8288B10F008
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Dec 2024 17:19:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734715168; x=1766251168;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=l26bhMNTmtk0XOEGLP6rOYd7aumUl6OphoRtDwSYSbA=;
- b=dQ+HXAcrjlROH+0eusU7E3BrAMR0EBTouJrV4HsFW+cAMW+0g4QywB9y
- rm/Ch0uSNJUDuZ5ElRsPBCdMJX00v/LzcG+y0b+5tcZiSlKY2grMkWacZ
- jne/oxQ82mzh0B0k6WcGEs+PzAo9geRMWWpsVuNxuCJqqzehIKgWPCrqV
- XXl/GzbtOzJdQjONvJ0BYyGmMtqUt5hxRHWn94FG+2A9M6g7FGkgK/OBP
- vHGF0jzQFD4G8uOCjPO17VAKIPLDLsB0hZE+Tt/pesteEfkiltT3HmUbD
- J38pI2+jy5tWZry65kqAhF0LMoPYyipv0kgDZVGXYjnfdrNGhfLYtqIXC w==;
-X-CSE-ConnectionGUID: p6GFAnecQ1qTY1D+49UbFQ==
-X-CSE-MsgGUID: F87egflOSUSKF9nYO9J4zg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="45960089"
-X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; d="scan'208";a="45960089"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 09:19:28 -0800
-X-CSE-ConnectionGUID: OCnTzNFVTcK9+U9QTwzHTw==
-X-CSE-MsgGUID: JMxsZXNHSvuXQFKXO3R0TA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="135917065"
-Received: from dut7231atsm.jf.intel.com ([10.75.202.213])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 09:19:28 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-xe@lists.freedesktop.org, Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: jose.souza@intel.com
-Subject: [PATCH v5 1/2] xe/oa: Fix query mode of operation for OAR/OAC
-Date: Fri, 20 Dec 2024 09:19:18 -0800
-Message-Id: <20241220171919.571528-2-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241220171919.571528-1-umesh.nerlige.ramappa@intel.com>
-References: <20241220171919.571528-1-umesh.nerlige.ramappa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C90A910E3B6;
+	Fri, 20 Dec 2024 17:20:56 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 315BC10E3B6;
+ Fri, 20 Dec 2024 17:20:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5B1/2=5D?=
+ =?utf-8?q?_drm/xe=3A_Introduce_GuC_PC_debugfs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 20 Dec 2024 17:20:56 -0000
+Message-ID: <173471525619.853560.11460408245681420221@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241220153010.623747-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20241220153010.623747-1-rodrigo.vivi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,354 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a set of squashed commits to facilitate smooth applying to
-stable. Each commit message is retained for reference.
+== Series Details ==
 
-1) Allow a GGTT mapped batch to be submitted to user exec queue
+Series: series starting with [1/2] drm/xe: Introduce GuC PC debugfs
+URL   : https://patchwork.freedesktop.org/series/142885/
+State : success
 
-For a OA use case, one of the HW registers needs to be modified by
-submitting an MI_LOAD_REGISTER_IMM command to the users exec queue, so
-that the register is modified in the user's hardware context. In order
-to do this a batch that is mapped in GGTT, needs to be submitted to the
-user exec queue. Since all user submissions use q->vm and hence PPGTT,
-add some plumbing to enable submission of batches mapped in GGTT.
+== Summary ==
 
-v2: ggtt is zero-initialized, so no need to set it false (Matt Brost)
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc3-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/kernel/
+lib/modules/6.13.0-rc3-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc3-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc3-xe+/kernel/block/
+lib/modules/6.13.0-rc3-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc3-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc3-xe+/build
+lib/modules/6.13.0-rc3-xe+/modules.alias.bin
+lib/modules/6.13.0-rc3-xe+/modules.builtin
+lib/modules/6.13.0-rc3-xe+/modules.softdep
+lib/modules/6.13.0-rc3-xe+/modules.alias
+lib/modules/6.13.0-rc3-xe+/modules.order
+lib/modules/6.13.0-rc3-xe+/modules.symbols
+lib/modules/6.13.0-rc3-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1734715246:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1734715246:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-2) xe/oa: Use MI_LOAD_REGISTER_IMMEDIATE to enable OAR/OAC
-
-To enable OAR/OAC, a bit in RING_CONTEXT_CONTROL needs to be set.
-Setting this bit cause the context image size to change and if not done
-correct, can cause undesired hangs.
-
-Current code uses a separate exec_queue to modify this bit and is
-error-prone. As per HW recommendation, submit MI_LOAD_REGISTER_IMM to
-the target hardware context to modify the relevant bit.
-
-In v2 version, an attempt to submit everything to the user-queue was
-made, but it failed the unprivileged-single-ctx-counters test. It
-appears that the OACTXCONTROL must be modified from a remote context.
-
-In v3 version, all context specific register configurations were moved
-to use LOAD_REGISTER_IMMEDIATE and that seems to work well. This is a
-cleaner way, since we can now submit all configuration to user
-exec_queue and the fence handling is simplified.
-
-v2:
-(Matt)
-- set job->ggtt to true if create job is successful
-- unlock vm on job error
-
-(Ashutosh)
-- don't wait on job submission
-- use kernel exec queue where possible
-
-v3:
-(Ashutosh)
-- Fix checkpatch issues
-- Remove extra spaces/new-lines
-- Add Fixes: and Cc: tags
-- Reset context control bit when OA stream is closed
-- Submit all config via MI_LOAD_REGISTER_IMMEDIATE
-
-(Umesh)
-- Update commit message for v3 experiment
-- Squash patches for easier port to stable
-
-v4:
-(Ashutosh)
-- No need to pass q to xe_oa_submit_bb
-- Do not support exec queues with width > 1
-- Fix disabling of CTX_CTRL_OAC_CONTEXT_ENABLE
-
-v5:
-(Ashutosh)
-- Drop reg_lri related comments
-- Use XE_OA_SUBMIT_NO_DEPS in xe_oa_load_with_lri
-
-Fixes: 8135f1c09dd2 ("drm/xe/oa: Don't reset OAC_CONTEXT_ENABLE on OA stream close")
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com> # commit 1
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/xe/xe_oa.c              | 136 ++++++++----------------
- drivers/gpu/drm/xe/xe_ring_ops.c        |   5 +-
- drivers/gpu/drm/xe/xe_sched_job_types.h |   2 +
- 3 files changed, 51 insertions(+), 92 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index ae94490b0eac..9add60097ab5 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -74,12 +74,6 @@ struct xe_oa_config {
- 	struct rcu_head rcu;
- };
- 
--struct flex {
--	struct xe_reg reg;
--	u32 offset;
--	u32 value;
--};
--
- struct xe_oa_open_param {
- 	struct xe_file *xef;
- 	u32 oa_unit_id;
-@@ -605,19 +599,38 @@ static __poll_t xe_oa_poll(struct file *file, poll_table *wait)
- 	return ret;
- }
- 
-+static void xe_oa_lock_vma(struct xe_exec_queue *q)
-+{
-+	if (q->vm) {
-+		down_read(&q->vm->lock);
-+		xe_vm_lock(q->vm, false);
-+	}
-+}
-+
-+static void xe_oa_unlock_vma(struct xe_exec_queue *q)
-+{
-+	if (q->vm) {
-+		xe_vm_unlock(q->vm);
-+		up_read(&q->vm->lock);
-+	}
-+}
-+
- static struct dma_fence *xe_oa_submit_bb(struct xe_oa_stream *stream, enum xe_oa_submit_deps deps,
- 					 struct xe_bb *bb)
- {
-+	struct xe_exec_queue *q = stream->exec_q ?: stream->k_exec_q;
- 	struct xe_sched_job *job;
- 	struct dma_fence *fence;
- 	int err = 0;
- 
--	/* Kernel configuration is issued on stream->k_exec_q, not stream->exec_q */
--	job = xe_bb_create_job(stream->k_exec_q, bb);
-+	xe_oa_lock_vma(q);
-+
-+	job = xe_bb_create_job(q, bb);
- 	if (IS_ERR(job)) {
- 		err = PTR_ERR(job);
- 		goto exit;
- 	}
-+	job->ggtt = true;
- 
- 	if (deps == XE_OA_SUBMIT_ADD_DEPS) {
- 		for (int i = 0; i < stream->num_syncs && !err; i++)
-@@ -632,10 +645,13 @@ static struct dma_fence *xe_oa_submit_bb(struct xe_oa_stream *stream, enum xe_oa
- 	fence = dma_fence_get(&job->drm.s_fence->finished);
- 	xe_sched_job_push(job);
- 
-+	xe_oa_unlock_vma(q);
-+
- 	return fence;
- err_put_job:
- 	xe_sched_job_put(job);
- exit:
-+	xe_oa_unlock_vma(q);
- 	return ERR_PTR(err);
- }
- 
-@@ -684,65 +700,19 @@ static void xe_oa_free_configs(struct xe_oa_stream *stream)
- 	dma_fence_put(stream->last_fence);
- }
- 
--static void xe_oa_store_flex(struct xe_oa_stream *stream, struct xe_lrc *lrc,
--			     struct xe_bb *bb, const struct flex *flex, u32 count)
--{
--	u32 offset = xe_bo_ggtt_addr(lrc->bo);
--
--	do {
--		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_GGTT |
--				    MI_FORCE_WRITE_COMPLETION_CHECK |
--				    MI_SDI_NUM_DW(1);
--		bb->cs[bb->len++] = offset + flex->offset * sizeof(u32);
--		bb->cs[bb->len++] = 0;
--		bb->cs[bb->len++] = flex->value;
--
--	} while (flex++, --count);
--}
--
--static int xe_oa_modify_ctx_image(struct xe_oa_stream *stream, struct xe_lrc *lrc,
--				  const struct flex *flex, u32 count)
--{
--	struct dma_fence *fence;
--	struct xe_bb *bb;
--	int err;
--
--	bb = xe_bb_new(stream->gt, 4 * count, false);
--	if (IS_ERR(bb)) {
--		err = PTR_ERR(bb);
--		goto exit;
--	}
--
--	xe_oa_store_flex(stream, lrc, bb, flex, count);
--
--	fence = xe_oa_submit_bb(stream, XE_OA_SUBMIT_NO_DEPS, bb);
--	if (IS_ERR(fence)) {
--		err = PTR_ERR(fence);
--		goto free_bb;
--	}
--	xe_bb_free(bb, fence);
--	dma_fence_put(fence);
--
--	return 0;
--free_bb:
--	xe_bb_free(bb, NULL);
--exit:
--	return err;
--}
--
--static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *reg_lri)
-+static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *reg_lri, u32 count)
- {
- 	struct dma_fence *fence;
- 	struct xe_bb *bb;
- 	int err;
- 
--	bb = xe_bb_new(stream->gt, 3, false);
-+	bb = xe_bb_new(stream->gt, 2 * count + 1, false);
- 	if (IS_ERR(bb)) {
- 		err = PTR_ERR(bb);
- 		goto exit;
- 	}
- 
--	write_cs_mi_lri(bb, reg_lri, 1);
-+	write_cs_mi_lri(bb, reg_lri, count);
- 
- 	fence = xe_oa_submit_bb(stream, XE_OA_SUBMIT_NO_DEPS, bb);
- 	if (IS_ERR(fence)) {
-@@ -762,71 +732,55 @@ static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *re
- static int xe_oa_configure_oar_context(struct xe_oa_stream *stream, bool enable)
- {
- 	const struct xe_oa_format *format = stream->oa_buffer.format;
--	struct xe_lrc *lrc = stream->exec_q->lrc[0];
--	u32 regs_offset = xe_lrc_regs_offset(lrc) / sizeof(u32);
- 	u32 oacontrol = __format_to_oactrl(format, OAR_OACONTROL_COUNTER_SEL_MASK) |
- 		(enable ? OAR_OACONTROL_COUNTER_ENABLE : 0);
- 
--	struct flex regs_context[] = {
-+	struct xe_oa_reg reg_lri[] = {
- 		{
- 			OACTXCONTROL(stream->hwe->mmio_base),
--			stream->oa->ctx_oactxctrl_offset[stream->hwe->class] + 1,
- 			enable ? OA_COUNTER_RESUME : 0,
- 		},
-+		{
-+			OAR_OACONTROL,
-+			oacontrol,
-+		},
- 		{
- 			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
--			regs_offset + CTX_CONTEXT_CONTROL,
--			_MASKED_BIT_ENABLE(CTX_CTRL_OAC_CONTEXT_ENABLE),
-+			_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
-+				      enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0)
- 		},
- 	};
--	struct xe_oa_reg reg_lri = { OAR_OACONTROL, oacontrol };
--	int err;
--
--	/* Modify stream hwe context image with regs_context */
--	err = xe_oa_modify_ctx_image(stream, stream->exec_q->lrc[0],
--				     regs_context, ARRAY_SIZE(regs_context));
--	if (err)
--		return err;
- 
--	/* Apply reg_lri using LRI */
--	return xe_oa_load_with_lri(stream, &reg_lri);
-+	return xe_oa_load_with_lri(stream, reg_lri, ARRAY_SIZE(reg_lri));
- }
- 
- static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
- {
- 	const struct xe_oa_format *format = stream->oa_buffer.format;
--	struct xe_lrc *lrc = stream->exec_q->lrc[0];
--	u32 regs_offset = xe_lrc_regs_offset(lrc) / sizeof(u32);
- 	u32 oacontrol = __format_to_oactrl(format, OAR_OACONTROL_COUNTER_SEL_MASK) |
- 		(enable ? OAR_OACONTROL_COUNTER_ENABLE : 0);
--	struct flex regs_context[] = {
-+	struct xe_oa_reg reg_lri[] = {
- 		{
- 			OACTXCONTROL(stream->hwe->mmio_base),
--			stream->oa->ctx_oactxctrl_offset[stream->hwe->class] + 1,
- 			enable ? OA_COUNTER_RESUME : 0,
- 		},
-+		{
-+			OAC_OACONTROL,
-+			oacontrol
-+		},
- 		{
- 			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
--			regs_offset + CTX_CONTEXT_CONTROL,
--			_MASKED_BIT_ENABLE(CTX_CTRL_OAC_CONTEXT_ENABLE) |
-+			_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
-+				      enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0) |
- 			_MASKED_FIELD(CTX_CTRL_RUN_ALONE, enable ? CTX_CTRL_RUN_ALONE : 0),
- 		},
- 	};
--	struct xe_oa_reg reg_lri = { OAC_OACONTROL, oacontrol };
--	int err;
- 
- 	/* Set ccs select to enable programming of OAC_OACONTROL */
- 	xe_mmio_write32(&stream->gt->mmio, __oa_regs(stream)->oa_ctrl,
- 			__oa_ccs_select(stream));
- 
--	/* Modify stream hwe context image with regs_context */
--	err = xe_oa_modify_ctx_image(stream, stream->exec_q->lrc[0],
--				     regs_context, ARRAY_SIZE(regs_context));
--	if (err)
--		return err;
--
--	/* Apply reg_lri using LRI */
--	return xe_oa_load_with_lri(stream, &reg_lri);
-+	return xe_oa_load_with_lri(stream, reg_lri, ARRAY_SIZE(reg_lri));
- }
- 
- static int xe_oa_configure_oa_context(struct xe_oa_stream *stream, bool enable)
-@@ -2110,8 +2064,8 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
- 		if (XE_IOCTL_DBG(oa->xe, !param.exec_q))
- 			return -ENOENT;
- 
--		if (param.exec_q->width > 1)
--			drm_dbg(&oa->xe->drm, "exec_q->width > 1, programming only exec_q->lrc[0]\n");
-+		if (XE_IOCTL_DBG(oa->xe, param.exec_q->width > 1))
-+			return -EOPNOTSUPP;
- 	}
- 
- 	/*
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 3a75a08b6be9..c8ab37fa0d19 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -223,7 +223,10 @@ static int emit_pipe_imm_ggtt(u32 addr, u32 value, bool stall_only, u32 *dw,
- 
- static u32 get_ppgtt_flag(struct xe_sched_job *job)
- {
--	return job->q->vm ? BIT(8) : 0;
-+	if (job->q->vm && !job->ggtt)
-+		return BIT(8);
-+
-+	return 0;
- }
- 
- static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
-diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-index f13f333f00be..d942b20a9f29 100644
---- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-@@ -56,6 +56,8 @@ struct xe_sched_job {
- 	u32 migrate_flush_flags;
- 	/** @ring_ops_flush_tlb: The ring ops need to flush TLB before payload. */
- 	bool ring_ops_flush_tlb;
-+	/** @ggtt: mapped in ggtt. */
-+	bool ggtt;
- 	/** @ptrs: per instance pointers. */
- 	struct xe_job_ptrs ptrs[];
- };
--- 
-2.34.1
 
