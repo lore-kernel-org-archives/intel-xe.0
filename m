@@ -4,56 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76A31E77188
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 08:52:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08D59E77188
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 08:58:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41F4910EF2C;
-	Fri, 20 Dec 2024 08:52:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE14110EF2D;
+	Fri, 20 Dec 2024 08:58:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NInP0rX4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EkGUAtSg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FDF610EF21;
- Fri, 20 Dec 2024 08:52:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FF8B10EF2C;
+ Fri, 20 Dec 2024 08:58:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734684725; x=1766220725;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ZzW3rBdAK+99wcnwmd939d3S2a2bW88p1aiaT0ZqSoY=;
- b=NInP0rX4xDLZZ8/XGgbbtM+3ermaZtwi+TXl+5Q60tEfryZj8sIZ6wfr
- Tj62RdU0kLk10o3iJRMpspq3SokdaKw+e/QC7a5ips+n1dDGhI1KGeWxz
- QIfbT1KL+74I1caYz/L7QZKjSfdtZMX6xkuCQBcpKy1JRkg5VR8t1uVLG
- SeOa1YL56JPypNdfkxX1ft8bluE+ukA+8B0vyWeT2VTo6uGpcjbrob3lT
- 2Pc9OK3r5evG5YxLVWCtHk+hu+cYjbUHHgrYxsONntWUaAvhqLZeOnmRK
- sPwtDoC30UEHuaydBmYDGZMvU4RwL2wOdmgHKU5jWu3zNkaShmXMBOclO w==;
-X-CSE-ConnectionGUID: E3jm+RF8SBKwKfxcokyckQ==
-X-CSE-MsgGUID: rFdyNeeMToy+tEMcUGVX5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="60610302"
-X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="60610302"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 00:51:58 -0800
-X-CSE-ConnectionGUID: zlZcg0PfTVeicQXJw5jmBw==
-X-CSE-MsgGUID: XQaF/a6QRZeJlGe95A57/w==
+ t=1734685086; x=1766221086;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=9YAbTC/ZzjGxYdlM6p4Lo37vySeQep4beFnu/uC1omY=;
+ b=EkGUAtSga/rfnsOtAWNr7wkAVFJw557fdSLz0ElV2YgJuJxetZMrVAyT
+ zLN/GP+T7iuRpap2qDtKk8CvC7tdu8PcJiliVtYCJmmPCTq8MAPh6oKTZ
+ V4DE7oW+ZovxGZDj89uK0oLWGJJameknWwbIoTr2N/TDDQQV85LmEu617
+ kqPZ1QPi4UYjXBgCGwoYKjekSvV34/IgDWJPW4GsRqkMjO6OdvO7QSe1J
+ t/X/y1BKKn86j+Om7T6WIMPrcwpdfJyWehFgqsPSZtR/mQThOKAjIFlSv
+ 9etTVWKzXXJ/9Gye2z0G1lbe025AttaozkpQ7CxazJPAmZygxTaZbNWjh A==;
+X-CSE-ConnectionGUID: +zNRdJ2NTruw/2dk2Wzfhg==
+X-CSE-MsgGUID: x9waUcv4Su6q5xx/R21BKA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="34945587"
+X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="34945587"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2024 00:58:06 -0800
+X-CSE-ConnectionGUID: EQkq0mq7RNupa84ykXD7WQ==
+X-CSE-MsgGUID: ePEDoSsbT+qI0Thw18b4TA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="98283774"
+X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="98854349"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.210])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 00:51:57 -0800
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2024 00:58:04 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Gustavo Sousa <gustavo.sousa@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 2/3] drm/i915/display: Add infra to reduce global state
- funcs boilerplate
-In-Reply-To: <20241219214909.104869-3-gustavo.sousa@intel.com>
+Subject: Re: [PATCH] drm/i915/dmc_wl: store register ranges in rodata
+In-Reply-To: <173453211835.3475.8229112069297893910@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241219214909.104869-1-gustavo.sousa@intel.com>
- <20241219214909.104869-3-gustavo.sousa@intel.com>
-Date: Fri, 20 Dec 2024 10:51:51 +0200
-Message-ID: <87ldwapwig.fsf@intel.com>
+References: <20241218141734.2583601-1-jani.nikula@intel.com>
+ <173453211835.3475.8229112069297893910@intel.com>
+Date: Fri, 20 Dec 2024 10:57:59 +0200
+Message-ID: <87ikrepw88.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -70,55 +67,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 19 Dec 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> diff --git a/drivers/gpu/drm/i915/display/intel_global_state.h b/drivers/gpu/drm/i915/display/intel_global_state.h
-> index 6506a8e32972..e47e007225cc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_global_state.h
-> +++ b/drivers/gpu/drm/i915/display/intel_global_state.h
-> @@ -8,6 +8,8 @@
->  
->  #include <linux/kref.h>
->  #include <linux/list.h>
-> +#include <linux/stddef.h>
+On Wed, 18 Dec 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Jani Nikula (2024-12-18 11:17:34-03:00)
+>>Add const to register range arrays to store them in rodata. They don't
+>>need to be modified.
+>>
+>>Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Good idea.
+>
+> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-What do you need this for?
+Thanks for the review, pushed to drm-intel-next.
 
-> +#include <linux/types.h>
->  
->  struct drm_i915_private;
->  struct intel_atomic_state;
-> @@ -15,6 +17,10 @@ struct intel_global_obj;
->  struct intel_global_state;
->  
->  struct intel_global_state_funcs {
-> +	/* state_size and base_offset are initialized by INTEL_GLOBAL_STATE_DEFAULTS() */
-> +	size_t state_size;
-> +	size_t base_offset;
-> +
->  	struct intel_global_state *(*atomic_duplicate_state)(struct intel_global_obj *obj);
->  	void (*atomic_destroy_state)(struct intel_global_obj *obj,
->  				     struct intel_global_state *state);
-> @@ -26,6 +32,10 @@ struct intel_global_obj {
->  	const struct intel_global_state_funcs *funcs;
->  };
->  
-> +#define INTEL_GLOBAL_STATE_DEFAULTS(type, base_member) \
-> +	.state_size = sizeof(type), \
-> +	.base_offset = offsetof(type, base_member)
-> +
->  #define intel_for_each_global_obj(obj, dev_priv) \
->  	list_for_each_entry(obj, &(dev_priv)->display.global.obj_list, head)
->  
-> @@ -96,4 +106,9 @@ int intel_atomic_global_state_wait_for_dependencies(struct intel_atomic_state *s
->  
->  bool intel_atomic_global_state_is_serialized(struct intel_atomic_state *state);
->  
-> +struct intel_global_state *
-> +intel_atomic_global_duplicate_state_common(struct intel_global_obj *obj);
-> +void intel_atomic_global_destroy_state_common(struct intel_global_obj *obj,
-> +					      struct intel_global_state *state);
-> +
->  #endif
+BR,
+Jani.
+
+
+>
+>>---
+>> drivers/gpu/drm/i915/display/intel_dmc_wl.c | 6 +++---
+>> 1 file changed, 3 insertions(+), 3 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+>>index 3ac44151aab5..02de3ae15074 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+>>+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+>>@@ -55,12 +55,12 @@ struct intel_dmc_wl_range {
+>>         u32 end;
+>> };
+>> 
+>>-static struct intel_dmc_wl_range powered_off_ranges[] = {
+>>+static const struct intel_dmc_wl_range powered_off_ranges[] = {
+>>         { .start = 0x60000, .end = 0x7ffff },
+>>         {},
+>> };
+>> 
+>>-static struct intel_dmc_wl_range xe3lpd_dc5_dc6_dmc_ranges[] = {
+>>+static const struct intel_dmc_wl_range xe3lpd_dc5_dc6_dmc_ranges[] = {
+>>         { .start = 0x45500 }, /* DC_STATE_SEL */
+>>         { .start = 0x457a0, .end = 0x457b0 }, /* DC*_RESIDENCY_COUNTER */
+>>         { .start = 0x45504 }, /* DC_STATE_EN */
+>>@@ -94,7 +94,7 @@ static struct intel_dmc_wl_range xe3lpd_dc5_dc6_dmc_ranges[] = {
+>>         {},
+>> };
+>> 
+>>-static struct intel_dmc_wl_range xe3lpd_dc3co_dmc_ranges[] = {
+>>+static const struct intel_dmc_wl_range xe3lpd_dc3co_dmc_ranges[] = {
+>>         { .start = 0x454a0 }, /* CHICKEN_DCPR_4 */
+>> 
+>>         { .start = 0x45504 }, /* DC_STATE_EN */
+>>-- 
+>>2.39.5
+>>
 
 -- 
 Jani Nikula, Intel
