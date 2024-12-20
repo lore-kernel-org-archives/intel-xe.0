@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 154C3E77188
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 19:42:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAA3AE7718C
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 19:42:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A786810E3DA;
-	Fri, 20 Dec 2024 19:42:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B448810E011;
+	Fri, 20 Dec 2024 19:42:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/GVM5rQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zm0QhxtR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4669D10E011
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Dec 2024 19:42:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CFF510E011
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Dec 2024 19:42:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734723738; x=1766259738;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=h2MDaU+5qXR8SIKszOwjB3SokhiyIgxVT0KRCAaCoKw=;
- b=G/GVM5rQ3Wl+9pLiakViAhxhWCg40Xk95Jg0MuYNfx3x4UWSOOI9eA5K
- Nmz5DpChpQkC2eTH7FuddHF6yGgaU7bVWGfjTzk+CFhMVzVZYiPrSpOT9
- KId/UwfA09kGu3e90coYlRmIQY3rlAexiqe7ymZVuAI9NjiANCRcz4Ogu
- xNwuTYcrKiI1J9Nlhh/9N9KMtytbr4AA9UnctYEf9qUzam1nNdbKU4XGB
- ylW2wdK2aYivGjvYnG28QzZh7QzK7oyVZFrSYq2czoZAC+IeIeqniPH6t
- J/cKTpc4yRaFcwPGCz+MI3tSTuNICZUFtcRnDa9gDv0CMNo2uRDyupXaQ Q==;
-X-CSE-ConnectionGUID: A9xrTUM2QRitPmM91tbW4Q==
-X-CSE-MsgGUID: gauSHqY7QE2e2iRRDKCJaQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="38965210"
-X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; d="scan'208";a="38965210"
+ t=1734723739; x=1766259739;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=MvLVVCoLQNvNy2Rgq3WgZ5obH/bBQw/3HiNixBxmghs=;
+ b=Zm0QhxtRQ6Ga/G1hxH1uDPOTzc9LumcI4D47N8yPaBhCx42W2DYaH5Iq
+ 18sOKmlz8wbQv77+TvtebNhP2TFhwb17oNItHJz0bK273ZGFpLNu5lZJH
+ wVqG7bz/DqNrxgA8EfK+bMyt1j5r7o5XQgK3WaHzd1MwHw5Q5Th3NkQVr
+ Bf9iHYAy4KsK4POa20KUHn5fQcCLVzlQK0040iYRej0ewwFJXKpOLFZmW
+ tcKvG6hnEOfQ0AF8DfzOlOM6GN6qyyUaGRKQGLjivp7psjv/qFuRz7ePZ
+ iDUGuwKrN2g/owgMg8089vF/Nr4a9FovIJEyPrw13vLZmXHCDGllg9KO1 w==;
+X-CSE-ConnectionGUID: n8ViykNnQkSNySrfIKkJiQ==
+X-CSE-MsgGUID: pfL0dbCBRF6FRg6aytZ5/Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="38965211"
+X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; d="scan'208";a="38965211"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 11:42:17 -0800
-X-CSE-ConnectionGUID: 2rcMJQdmTXCjgkWbq6xqmg==
-X-CSE-MsgGUID: XZYJJNlnSnGSjnPxh39czg==
+ 20 Dec 2024 11:42:19 -0800
+X-CSE-ConnectionGUID: DMLNzYeRSBKhDKwshUzmYg==
+X-CSE-MsgGUID: YkMspOMoS+C2RLacl+TqpQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="99075418"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="99075423"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.5.201])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 11:42:15 -0800
+ 20 Dec 2024 11:42:17 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 00/11] The xe_sa_manager based GuC Buffer Cache
-Date: Fri, 20 Dec 2024 20:41:53 +0100
-Message-Id: <20241220194205.995-1-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2 01/11] drm/xe/sa: Always call drm_suballoc_manager_fini()
+Date: Fri, 20 Dec 2024 20:41:54 +0100
+Message-Id: <20241220194205.995-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20241220194205.995-1-michal.wajdeczko@intel.com>
+References: <20241220194205.995-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,44 +67,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v0: https://patchwork.freedesktop.org/series/139801/
-v1: https://patchwork.freedesktop.org/series/142458/#rev1
-v2: drop separate bo cleanup patch (Matt)
-    drop is_iomem removal patch (N/A)
-    add kernel-doc xe_sa_bo_new (Matt)
-    move init to xe_guc_init_post_hwconfig (CI)
-    make sure to call xe_guc_buf_flush (Michal)
+After successful call to drm_suballoc_manager_init() we should
+make sure to call drm_suballoc_manager_fini() as it may include
+some cleanup code even if we didn't start using it for real.
 
-Michal Wajdeczko (11):
-  drm/xe/sa: Always call drm_suballoc_manager_fini()
-  drm/xe/sa: Drop redundant NULL assignments
-  drm/xe/sa: Improve error message on init failure
-  drm/xe/sa: Tidy up coding style in init()
-  drm/xe/sa: Allow making suballocations using custom gfp flags
-  drm/xe/sa: Allow creating suballocator with custom guard size
-  drm/xe/sa: Minor header cleanups
-  drm/xe/guc: Introduce the GuC Buffer Cache
-  drm/xe/pf: Use GuC Buffer Cache during VFs provisioning
-  drm/xe/kunit: Allow to replace xe_managed_bo_create_pin_map()
-  drm/xe/kunit: Add KUnit tests for GuC Buffer Cache
+As we can abort init() early due to kvzalloc() failure, we should
+either explicitly call drm_suballoc_manager_fini() or, even better,
+postpone drm_suballoc_manager_init() once we finish all other
+preparation steps, so we can rely on fini() that will do cleanup.
 
- drivers/gpu/drm/xe/Makefile                 |   1 +
- drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c | 335 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_bo.c                  |   4 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c  |  68 ++--
- drivers/gpu/drm/xe/xe_guc.c                 |   5 +
- drivers/gpu/drm/xe/xe_guc_buf.c             | 176 ++++++++++
- drivers/gpu/drm/xe/xe_guc_buf.h             |  47 +++
- drivers/gpu/drm/xe/xe_guc_buf_types.h       |  28 ++
- drivers/gpu/drm/xe/xe_guc_types.h           |   3 +
- drivers/gpu/drm/xe/xe_sa.c                  |  51 ++-
- drivers/gpu/drm/xe/xe_sa.h                  |  30 +-
- 11 files changed, 692 insertions(+), 56 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_buf.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_buf.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_buf_types.h
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_sa.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
+index e055bed7ae55..4e7aba445ebc 100644
+--- a/drivers/gpu/drm/xe/xe_sa.c
++++ b/drivers/gpu/drm/xe/xe_sa.c
+@@ -57,8 +57,6 @@ struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32
+ 	}
+ 	sa_manager->bo = bo;
+ 	sa_manager->is_iomem = bo->vmap.is_iomem;
+-
+-	drm_suballoc_manager_init(&sa_manager->base, managed_size, align);
+ 	sa_manager->gpu_addr = xe_bo_ggtt_addr(bo);
+ 
+ 	if (bo->vmap.is_iomem) {
+@@ -72,6 +70,7 @@ struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32
+ 		memset(sa_manager->cpu_ptr, 0, bo->ttm.base.size);
+ 	}
+ 
++	drm_suballoc_manager_init(&sa_manager->base, managed_size, align);
+ 	ret = drmm_add_action_or_reset(&xe->drm, xe_sa_bo_manager_fini,
+ 				       sa_manager);
+ 	if (ret)
 -- 
 2.47.1
 
