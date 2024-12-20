@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B73AE77188
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 19:42:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57262E7718C
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 19:42:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E848A10E3DA;
-	Fri, 20 Dec 2024 19:42:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20C3810E4F0;
+	Fri, 20 Dec 2024 19:42:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EPbnqTk4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NDl6aQda";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7435C10E3DA
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Dec 2024 19:42:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 486AA10F04E
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Dec 2024 19:42:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734723752; x=1766259752;
+ t=1734723755; x=1766259755;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FrqBl21nT+f52IGEmo1nNSVBL9zU85Moj+/NNvyy/7k=;
- b=EPbnqTk4cObrmKUVhW6EH8sQ9iHvvfubMEVe0pyyGduoVsSm6uWN8Nnq
- uChS2OGEkFmTvNXKrS45oLa6VIJs/JZ4rjUY/QQVIuvrTDR91w5BD+IqQ
- KiAcoaC+ALVaJKC++f/8QR0vMgLjgehhoyPwU6S+TcCH4LtZDA1uFwaNK
- wWJ6kBR+dWCfSufwVBuIVeU+aEShtdtl06YqyR0qCI5I+XURq2jjxoe/b
- wDBCa+kXDcLzOLXBvEAJeEwpEOgOHFom9M1Mra/CKh+wA0+L6lP5PUSWR
- m8b4mNS2jwHYydL6Q0JeiJlpKtHX+kC3euaDqYeNwcD0/n+Qmvljwp+Tw w==;
-X-CSE-ConnectionGUID: v7vSbri7R5SZQx9YvAJqPg==
-X-CSE-MsgGUID: O+lHL7zCRmKeDknV9fS7cA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="38965225"
-X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; d="scan'208";a="38965225"
+ bh=CsPbEQP23nHayGv3dhZVe1ajJGcLmZ7YeNM23vDcZV4=;
+ b=NDl6aQdapugompsdQO5Lo8X0Y0PVvTwxE948LNTuQz9YcRKPbkHraeCK
+ 8rWkTP5vDK+QoJJSQCqhBrNRArtnxBBHk0+no2vlfkQMtfTcI1wseG3US
+ Vdi6rCphp8SJnE5WMtq5/68Nlxd3Lpzdipc4kNDcf7h070bTNKRve2WJz
+ dmWn3Gbbo9Ny1exPxDzae2ON3tsVyJUVGomhWys868jLoJncIMm/dO+u5
+ htK4XgZpwzIoT8xGu3qCShE1Xc9e0QljU977lnuXwaOkiD7e9FW+4g8mP
+ v9sUsxvLx3/RdKFpnAySds955n0NCFjtaW8JjOeimL6dkZVuarHVVEnhw A==;
+X-CSE-ConnectionGUID: 71X92jwIRm+2hDorLl5JDQ==
+X-CSE-MsgGUID: CvjplrHNRk6pxycyk+qKYg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="38965228"
+X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; d="scan'208";a="38965228"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 11:42:32 -0800
-X-CSE-ConnectionGUID: 2oo7FGCQSAyISWNSqqqiRw==
-X-CSE-MsgGUID: JMNVrAO6Qiem6UaRZ8bDOA==
+ 20 Dec 2024 11:42:35 -0800
+X-CSE-ConnectionGUID: 3c5Eson+SP2NlP8qjDx8XQ==
+X-CSE-MsgGUID: ngMCy3gwTd+ffStEetFA2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="99075498"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="99075512"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.5.201])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 11:42:30 -0800
+ 20 Dec 2024 11:42:33 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 09/11] drm/xe/pf: Use GuC Buffer Cache during VFs
- provisioning
-Date: Fri, 20 Dec 2024 20:42:02 +0100
-Message-Id: <20241220194205.995-10-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 11/11] drm/xe/kunit: Add KUnit tests for GuC Buffer Cache
+Date: Fri, 20 Dec 2024 20:42:04 +0100
+Message-Id: <20241220194205.995-12-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20241220194205.995-1-michal.wajdeczko@intel.com>
 References: <20241220194205.995-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,152 +67,371 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Start using GuC buffer cache for the VF's configuration actions.
+Add tests to make sure that recently added GuC Buffer Cache
+component is working as expected.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
 v2: rebased (Michal)
-v3: make sure to call xe_guc_buf_flush() (Michal)
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 68 +++++++++++-----------
- 1 file changed, 35 insertions(+), 33 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c | 335 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_buf.c             |   4 +
+ 2 files changed, 339 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index bd621df3ab91..c5c0879d1d9a 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -20,6 +20,7 @@
- #include "xe_gt_sriov_pf_policy.h"
- #include "xe_gt_sriov_printk.h"
- #include "xe_guc.h"
-+#include "xe_guc_buf.h"
- #include "xe_guc_ct.h"
- #include "xe_guc_db_mgr.h"
- #include "xe_guc_fwif.h"
-@@ -71,48 +72,27 @@ static int pf_send_vf_cfg_reset(struct xe_gt *gt, u32 vfid)
-  * Return: number of KLVs that were successfully parsed and saved,
-  *         negative error code on failure.
-  */
--static int pf_send_vf_cfg_klvs(struct xe_gt *gt, u32 vfid, const u32 *klvs, u32 num_dwords)
-+static int pf_send_vf_buf_klvs(struct xe_gt *gt, u32 vfid, struct xe_guc_buf buf, u32 num_dwords)
- {
--	const u32 bytes = num_dwords * sizeof(u32);
--	struct xe_tile *tile = gt_to_tile(gt);
--	struct xe_device *xe = tile_to_xe(tile);
- 	struct xe_guc *guc = &gt->uc.guc;
--	struct xe_bo *bo;
--	int ret;
- 
--	bo = xe_bo_create_pin_map(xe, tile, NULL,
--				  ALIGN(bytes, PAGE_SIZE),
--				  ttm_bo_type_kernel,
--				  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
--				  XE_BO_FLAG_GGTT |
--				  XE_BO_FLAG_GGTT_INVALIDATE);
--	if (IS_ERR(bo))
--		return PTR_ERR(bo);
--
--	xe_map_memcpy_to(xe, &bo->vmap, 0, klvs, bytes);
--
--	ret = guc_action_update_vf_cfg(guc, vfid, xe_bo_ggtt_addr(bo), num_dwords);
--
--	xe_bo_unpin_map_no_vm(bo);
--
--	return ret;
-+	return guc_action_update_vf_cfg(guc, vfid, xe_guc_buf_flush(buf), num_dwords);
- }
- 
- /*
-  * Return: 0 on success, -ENOKEY if some KLVs were not updated, -EPROTO if reply was malformed,
-  *         negative error code on failure.
-  */
--static int pf_push_vf_cfg_klvs(struct xe_gt *gt, unsigned int vfid, u32 num_klvs,
--			       const u32 *klvs, u32 num_dwords)
-+static int pf_push_vf_buf_klvs(struct xe_gt *gt, unsigned int vfid, u32 num_klvs,
-+			       struct xe_guc_buf buf, u32 num_dwords)
- {
- 	int ret;
- 
--	xe_gt_assert(gt, num_klvs == xe_guc_klv_count(klvs, num_dwords));
--
--	ret = pf_send_vf_cfg_klvs(gt, vfid, klvs, num_dwords);
-+	ret = pf_send_vf_buf_klvs(gt, vfid, buf, num_dwords);
- 
- 	if (ret != num_klvs) {
- 		int err = ret < 0 ? ret : ret < num_klvs ? -ENOKEY : -EPROTO;
-+		void *klvs = xe_guc_buf_cpu_ptr(buf);
- 		struct drm_printer p = xe_gt_info_printer(gt);
- 		char name[8];
- 
-@@ -125,13 +105,35 @@ static int pf_push_vf_cfg_klvs(struct xe_gt *gt, unsigned int vfid, u32 num_klvs
- 
- 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV)) {
- 		struct drm_printer p = xe_gt_info_printer(gt);
-+		void *klvs = xe_guc_buf_cpu_ptr(buf);
-+		char name[8];
- 
-+		xe_gt_sriov_info(gt, "pushed %s config with %u KLV%s:\n",
-+				 xe_sriov_function_name(vfid, name, sizeof(name)),
-+				 num_klvs, str_plural(num_klvs));
- 		xe_guc_klv_print(klvs, num_dwords, &p);
- 	}
- 
- 	return 0;
- }
- 
+diff --git a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
+new file mode 100644
+index 000000000000..8a90f832915b
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
+@@ -0,0 +1,335 @@
++// SPDX-License-Identifier: GPL-2.0 AND MIT
 +/*
-+ * Return: 0 on success, -ENOBUFS if no free buffer for the indirect data,
-+ *         negative error code on failure.
++ * Copyright © 2024 Intel Corporation
 + */
-+static int pf_push_vf_cfg_klvs(struct xe_gt *gt, unsigned int vfid, u32 num_klvs,
-+			       const u32 *klvs, u32 num_dwords)
++
++#include <kunit/static_stub.h>
++#include <kunit/test.h>
++#include <kunit/test-bug.h>
++
++#include "xe_device.h"
++#include "xe_ggtt.h"
++#include "xe_guc_ct.h"
++#include "xe_kunit_helpers.h"
++#include "xe_pci_test.h"
++
++#define DUT_GGTT_START		SZ_1M
++#define DUT_GGTT_SIZE		SZ_2M
++#define DUT_DATA		1
++
++static struct xe_bo *replacement_xe_managed_bo_create_pin_map(struct xe_device *xe,
++							      struct xe_tile *tile,
++							      size_t size, u32 flags)
 +{
-+	CLASS(xe_guc_buf_from_data, buf)(&gt->uc.guc.buf, klvs, num_dwords * sizeof(u32));
++	struct kunit *test = kunit_get_current_test();
++	struct xe_bo *bo;
++	void *buf;
 +
-+	xe_gt_assert(gt, num_klvs == xe_guc_klv_count(klvs, num_dwords));
++	bo = drmm_kzalloc(&xe->drm, sizeof(*bo), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, bo);
 +
-+	if (!xe_guc_buf_is_valid(buf))
-+		return -ENOBUFS;
++	buf = drmm_kzalloc(&xe->drm, size, GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, buf);
 +
-+	return pf_push_vf_buf_klvs(gt, vfid, num_klvs, buf, num_dwords);
++	bo->tile = tile;
++	bo->ttm.bdev = &xe->ttm;
++	bo->size = size;
++	iosys_map_set_vaddr(&bo->vmap, buf);
++
++	if (flags & XE_BO_FLAG_GGTT) {
++		struct xe_ggtt *ggtt = tile->mem.ggtt;
++
++		bo->ggtt_node[tile->id] = xe_ggtt_node_init(ggtt);
++		KUNIT_ASSERT_NOT_ERR_OR_NULL(test, bo->ggtt_node[tile->id]);
++
++		KUNIT_ASSERT_EQ(test, 0,
++				drm_mm_insert_node_in_range(&ggtt->mm,
++							    &bo->ggtt_node[tile->id]->base,
++							    bo->size, SZ_4K,
++							    0, 0, U64_MAX, 0));
++	}
++
++	return bo;
 +}
 +
- static int pf_push_vf_cfg_u32(struct xe_gt *gt, unsigned int vfid, u16 key, u32 value)
- {
- 	u32 klv[] = {
-@@ -304,16 +306,17 @@ static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config, bool
- static int pf_push_full_vf_config(struct xe_gt *gt, unsigned int vfid)
- {
- 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
--	u32 max_cfg_dwords = SZ_4K / sizeof(u32);
-+	u32 max_cfg_dwords = xe_guc_buf_cache_dwords(&gt->uc.guc.buf);
-+	CLASS(xe_guc_buf, buf)(&gt->uc.guc.buf, max_cfg_dwords);
- 	u32 num_dwords;
- 	int num_klvs;
- 	u32 *cfg;
- 	int err;
++static int guc_buf_test_init(struct kunit *test)
++{
++	struct xe_pci_fake_data fake = {
++		.sriov_mode = XE_SRIOV_MODE_PF,
++		.platform = XE_TIGERLAKE, /* some random platform */
++		.subplatform = XE_SUBPLATFORM_NONE,
++	};
++	struct xe_ggtt *ggtt;
++	struct xe_guc *guc;
++
++	test->priv = &fake;
++	xe_kunit_helper_xe_device_test_init(test);
++
++	ggtt = xe_device_get_root_tile(test->priv)->mem.ggtt;
++	guc = &xe_device_get_gt(test->priv, 0)->uc.guc;
++
++	drm_mm_init(&ggtt->mm, DUT_GGTT_START, DUT_GGTT_SIZE);
++	mutex_init(&ggtt->lock);
++
++	kunit_activate_static_stub(test, xe_managed_bo_create_pin_map,
++				   replacement_xe_managed_bo_create_pin_map);
++
++	KUNIT_ASSERT_EQ(test, 0, xe_guc_buf_cache_init(&guc->buf));
++
++	test->priv = &guc->buf;
++	return 0;
++}
++
++static void test_smallest(struct kunit *test)
++{
++	struct xe_guc_buf_cache *cache = test->priv;
++	struct xe_guc_buf buf;
++
++	buf = xe_guc_buf_reserve(cache, 1);
++	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
++	KUNIT_EXPECT_NOT_NULL(test, xe_guc_buf_cpu_ptr(buf));
++	KUNIT_EXPECT_NE(test, 0, xe_guc_buf_gpu_addr(buf));
++	KUNIT_EXPECT_LE(test, DUT_GGTT_START, xe_guc_buf_gpu_addr(buf));
++	KUNIT_EXPECT_GT(test, DUT_GGTT_START + DUT_GGTT_SIZE, xe_guc_buf_gpu_addr(buf));
++	xe_guc_buf_release(buf);
++}
++
++static void test_largest(struct kunit *test)
++{
++	struct xe_guc_buf_cache *cache = test->priv;
++	struct xe_guc_buf buf;
++
++	buf = xe_guc_buf_reserve(cache, xe_guc_buf_cache_dwords(cache));
++	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
++	KUNIT_EXPECT_NOT_NULL(test, xe_guc_buf_cpu_ptr(buf));
++	KUNIT_EXPECT_NE(test, 0, xe_guc_buf_gpu_addr(buf));
++	KUNIT_EXPECT_LE(test, DUT_GGTT_START, xe_guc_buf_gpu_addr(buf));
++	KUNIT_EXPECT_GT(test, DUT_GGTT_START + DUT_GGTT_SIZE, xe_guc_buf_gpu_addr(buf));
++	xe_guc_buf_release(buf);
++}
++
++static void test_granular(struct kunit *test)
++{
++	struct xe_guc_buf_cache *cache = test->priv;
++	struct xe_guc_buf *bufs;
++	int n, dwords;
++
++	dwords = xe_guc_buf_cache_dwords(cache);
++	bufs = kunit_kcalloc(test, dwords, sizeof(*bufs), GFP_KERNEL);
++	KUNIT_EXPECT_NOT_NULL(test, bufs);
++
++	for (n = 0; n < dwords; n++)
++		bufs[n] = xe_guc_buf_reserve(cache, 1);
++
++	for (n = 0; n < dwords; n++)
++		KUNIT_EXPECT_TRUE_MSG(test, xe_guc_buf_is_valid(bufs[n]), "n=%d", n);
++
++	for (n = 0; n < dwords; n++)
++		xe_guc_buf_release(bufs[n]);
++}
++
++static void test_unique(struct kunit *test)
++{
++	struct xe_guc_buf_cache *cache = test->priv;
++	struct xe_guc_buf *bufs;
++	int n, m, dwords;
++
++	dwords = xe_guc_buf_cache_dwords(cache);
++	bufs = kunit_kcalloc(test, dwords, sizeof(*bufs), GFP_KERNEL);
++	KUNIT_EXPECT_NOT_NULL(test, bufs);
++
++	for (n = 0; n < dwords; n++)
++		bufs[n] = xe_guc_buf_reserve(cache, 1);
++
++	for (n = 0; n < dwords; n++) {
++		for (m = n + 1; m < dwords; m++) {
++			KUNIT_EXPECT_PTR_NE_MSG(test, xe_guc_buf_cpu_ptr(bufs[n]),
++						xe_guc_buf_cpu_ptr(bufs[m]), "n=%d, m=%d", n, m);
++			KUNIT_ASSERT_NE_MSG(test, xe_guc_buf_gpu_addr(bufs[n]),
++					    xe_guc_buf_gpu_addr(bufs[m]), "n=%d, m=%d", n, m);
++		}
++	}
++
++	for (n = 0; n < dwords; n++)
++		xe_guc_buf_release(bufs[n]);
++}
++
++static void test_overlap(struct kunit *test)
++{
++	struct xe_guc_buf_cache *cache = test->priv;
++	struct xe_guc_buf b1, b2;
++	u32 dwords = xe_guc_buf_cache_dwords(cache) / 2;
++	u32 bytes = dwords * sizeof(u32);
++	void *p1, *p2;
++	u64 a1, a2;
++
++	b1 = xe_guc_buf_reserve(cache, dwords);
++	b2 = xe_guc_buf_reserve(cache, dwords);
++
++	p1 = xe_guc_buf_cpu_ptr(b1);
++	p2 = xe_guc_buf_cpu_ptr(b2);
++
++	a1 = xe_guc_buf_gpu_addr(b1);
++	a2 = xe_guc_buf_gpu_addr(b2);
++
++	KUNIT_EXPECT_PTR_NE(test, p1, p2);
++	if (p1 < p2)
++		KUNIT_EXPECT_LT(test, (uintptr_t)(p1 + bytes - 1), (uintptr_t)p2);
++	else
++		KUNIT_EXPECT_LT(test, (uintptr_t)(p2 + bytes - 1), (uintptr_t)p1);
++
++	KUNIT_EXPECT_NE(test, a1, a2);
++	if (a1 < a2)
++		KUNIT_EXPECT_LT(test, a1 + bytes - 1, a2);
++	else
++		KUNIT_EXPECT_LT(test, a2 + bytes - 1, a1);
++
++	xe_guc_buf_release(b1);
++	xe_guc_buf_release(b2);
++}
++
++static void test_reusable(struct kunit *test)
++{
++	struct xe_guc_buf_cache *cache = test->priv;
++	struct xe_guc_buf b1, b2;
++	void *p1;
++	u64 a1;
++
++	b1 = xe_guc_buf_reserve(cache, xe_guc_buf_cache_dwords(cache));
++	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(b1));
++	KUNIT_EXPECT_NOT_NULL(test, p1 = xe_guc_buf_cpu_ptr(b1));
++	KUNIT_EXPECT_NE(test, 0, a1 = xe_guc_buf_gpu_addr(b1));
++	xe_guc_buf_release(b1);
++
++	b2 = xe_guc_buf_reserve(cache, xe_guc_buf_cache_dwords(cache));
++	KUNIT_EXPECT_PTR_EQ(test, p1, xe_guc_buf_cpu_ptr(b2));
++	KUNIT_EXPECT_EQ(test, a1, xe_guc_buf_gpu_addr(b2));
++	xe_guc_buf_release(b2);
++}
++
++static void test_too_big(struct kunit *test)
++{
++	struct xe_guc_buf_cache *cache = test->priv;
++	struct xe_guc_buf buf;
++
++	buf = xe_guc_buf_reserve(cache, xe_guc_buf_cache_dwords(cache) + 1);
++	KUNIT_EXPECT_FALSE(test, xe_guc_buf_is_valid(buf));
++	xe_guc_buf_release(buf); /* shouldn't crash */
++}
++
++static void test_flush(struct kunit *test)
++{
++	struct xe_guc_buf_cache *cache = test->priv;
++	struct xe_guc_buf buf;
++	const u32 dwords = xe_guc_buf_cache_dwords(cache);
++	const u32 bytes = dwords * sizeof(u32);
++	u32 *s, *p, *d;
++	int n;
++
++	KUNIT_ASSERT_NOT_NULL(test, s = kunit_kcalloc(test, dwords, sizeof(u32), GFP_KERNEL));
++	KUNIT_ASSERT_NOT_NULL(test, d = kunit_kcalloc(test, dwords, sizeof(u32), GFP_KERNEL));
++
++	for (n = 0; n < dwords; n++)
++		s[n] = n;
++
++	buf = xe_guc_buf_reserve(cache, dwords);
++	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
++	KUNIT_ASSERT_NOT_NULL(test, p = xe_guc_buf_cpu_ptr(buf));
++	KUNIT_EXPECT_PTR_NE(test, p, s);
++	KUNIT_EXPECT_PTR_NE(test, p, d);
++
++	memcpy(p, s, bytes);
++	KUNIT_EXPECT_NE(test, 0, xe_guc_buf_flush(buf));
++
++	iosys_map_memcpy_from(d, &cache->sam->bo->vmap, 0, bytes);
++	KUNIT_EXPECT_MEMEQ(test, s, d, bytes);
++
++	xe_guc_buf_release(buf);
++}
++
++static void test_lookup(struct kunit *test)
++{
++	struct xe_guc_buf_cache *cache = test->priv;
++	struct xe_guc_buf buf;
++	u32 dwords;
++	u64 addr;
++	u32 *p;
++	int n;
++
++	dwords = xe_guc_buf_cache_dwords(cache);
++	buf = xe_guc_buf_reserve(cache, dwords);
++	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
++	KUNIT_ASSERT_NOT_NULL(test, p = xe_guc_buf_cpu_ptr(buf));
++	KUNIT_ASSERT_NE(test, 0, addr = xe_guc_buf_gpu_addr(buf));
++
++	KUNIT_EXPECT_EQ(test, 0, xe_guc_cache_gpu_addr_from_ptr(cache, p - 1, sizeof(u32)));
++	KUNIT_EXPECT_EQ(test, 0, xe_guc_cache_gpu_addr_from_ptr(cache, p + dwords, sizeof(u32)));
++
++	for (n = 0; n < dwords; n++)
++		KUNIT_EXPECT_EQ_MSG(test, xe_guc_cache_gpu_addr_from_ptr(cache, p + n, sizeof(u32)),
++				    addr + n * sizeof(u32), "n=%d", n);
++
++	xe_guc_buf_release(buf);
++}
++
++static void test_data(struct kunit *test)
++{
++	static const u32 data[] = { 1, 2, 3, 4, 5, 6 };
++	struct xe_guc_buf_cache *cache = test->priv;
++	struct xe_guc_buf buf;
++	void *p;
++
++	buf = xe_guc_buf_from_data(cache, data, sizeof(data));
++	KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
++	KUNIT_ASSERT_NOT_NULL(test, p = xe_guc_buf_cpu_ptr(buf));
++	KUNIT_EXPECT_MEMEQ(test, p, data, sizeof(data));
++
++	xe_guc_buf_release(buf);
++}
++
++static void test_class(struct kunit *test)
++{
++	struct xe_guc_buf_cache *cache = test->priv;
++	u32 dwords = xe_guc_buf_cache_dwords(cache);
++
++	{
++		CLASS(xe_guc_buf, buf)(cache, dwords);
++		KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
++		KUNIT_EXPECT_NOT_NULL(test, xe_guc_buf_cpu_ptr(buf));
++		KUNIT_EXPECT_NE(test, 0, xe_guc_buf_gpu_addr(buf));
++		KUNIT_EXPECT_LE(test, DUT_GGTT_START, xe_guc_buf_gpu_addr(buf));
++		KUNIT_EXPECT_GT(test, DUT_GGTT_START + DUT_GGTT_SIZE, xe_guc_buf_gpu_addr(buf));
++	}
++
++	{
++		CLASS(xe_guc_buf, buf)(cache, dwords);
++		KUNIT_ASSERT_TRUE(test, xe_guc_buf_is_valid(buf));
++		KUNIT_EXPECT_NOT_NULL(test, xe_guc_buf_cpu_ptr(buf));
++		KUNIT_EXPECT_NE(test, 0, xe_guc_buf_gpu_addr(buf));
++		KUNIT_EXPECT_LE(test, DUT_GGTT_START, xe_guc_buf_gpu_addr(buf));
++		KUNIT_EXPECT_GT(test, DUT_GGTT_START + DUT_GGTT_SIZE, xe_guc_buf_gpu_addr(buf));
++	}
++}
++
++static struct kunit_case guc_buf_test_cases[] = {
++	KUNIT_CASE(test_smallest),
++	KUNIT_CASE(test_largest),
++	KUNIT_CASE(test_granular),
++	KUNIT_CASE(test_unique),
++	KUNIT_CASE(test_overlap),
++	KUNIT_CASE(test_reusable),
++	KUNIT_CASE(test_too_big),
++	KUNIT_CASE(test_flush),
++	KUNIT_CASE(test_lookup),
++	KUNIT_CASE(test_data),
++	KUNIT_CASE(test_class),
++	{}
++};
++
++static struct kunit_suite guc_buf_suite = {
++	.name = "guc_buf",
++	.test_cases = guc_buf_test_cases,
++	.init = guc_buf_test_init,
++};
++
++kunit_test_suites(&guc_buf_suite);
+diff --git a/drivers/gpu/drm/xe/xe_guc_buf.c b/drivers/gpu/drm/xe/xe_guc_buf.c
+index 261c7c74417f..ce6d9830e13b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_buf.c
++++ b/drivers/gpu/drm/xe/xe_guc_buf.c
+@@ -170,3 +170,7 @@ u64 xe_guc_cache_gpu_addr_from_ptr(struct xe_guc_buf_cache *cache, const void *p
  
--	cfg = kcalloc(max_cfg_dwords, sizeof(u32), GFP_KERNEL);
--	if (!cfg)
--		return -ENOMEM;
-+	if (!xe_guc_buf_is_valid(buf))
-+		return -ENOBUFS;
- 
-+	cfg = xe_guc_buf_cpu_ptr(buf);
- 	num_dwords = encode_config(cfg, config, true);
- 	xe_gt_assert(gt, num_dwords <= max_cfg_dwords);
- 
-@@ -330,9 +333,8 @@ static int pf_push_full_vf_config(struct xe_gt *gt, unsigned int vfid)
- 	xe_gt_assert(gt, num_dwords <= max_cfg_dwords);
- 
- 	num_klvs = xe_guc_klv_count(cfg, num_dwords);
--	err = pf_push_vf_cfg_klvs(gt, vfid, num_klvs, cfg, num_dwords);
-+	err = pf_push_vf_buf_klvs(gt, vfid, num_klvs, buf, num_dwords);
- 
--	kfree(cfg);
- 	return err;
+ 	return cache->sam->gpu_addr + offset;
  }
- 
++
++#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
++#include "tests/xe_guc_buf_kunit.c"
++#endif
 -- 
 2.47.1
 
