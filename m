@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75EABE77188
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 08:06:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5651CE7718B
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 08:50:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B61D10E0FD;
-	Fri, 20 Dec 2024 08:06:04 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E6FC10E0FD;
- Fri, 20 Dec 2024 08:06:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3462071875380339936=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DFE810EF25;
+	Fri, 20 Dec 2024 08:50:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DySKocXu";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96C3B10EF3B;
+ Fri, 20 Dec 2024 08:50:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734684613; x=1766220613;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=ieb7KiBj2Y4Drx5PxL9cZ8q+37Hwi/0Vhl+Qqu0xNdE=;
+ b=DySKocXu8PRFqZ6UJ1fyl+WPAZxR1J+JHgnQOPV8VT+lYYThoc1PgaL1
+ jPPYVkmOpF9UkTCEUm0yjRewphev6snY7/fKkmOf5P7PwuQY1UgX6jPQj
+ CAgrgP5rwl+0E4EDqELY4mj9kMpmExIguxqECyfy1B19fA/uyzoU1XrgM
+ nOopJk4mdpHucz9Qy7lluJp26p+mjdvAZntWU0bQ0fx9S9K8fM53uaokv
+ ECmCWQrxvM+eOEoIqSETrlNzXCjBiBRLwi8/+/6GSw8SvDBPsjMQrl1ZV
+ 0VxllXg8P1Jco3r+JIxSY4uaeUYJg2V6siQKjJ7MpADYjrt7rj5IN22CK Q==;
+X-CSE-ConnectionGUID: ACjdMOyyQQ2JLLaVuCwzMw==
+X-CSE-MsgGUID: YZRz1Nj4SMa4U7PQBv/rDg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="35351914"
+X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="35351914"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2024 00:50:12 -0800
+X-CSE-ConnectionGUID: CsgbDXB2Q8GFyeNsJXuoyw==
+X-CSE-MsgGUID: xeNiZEJBRx6V1iCX/QBWVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="98283335"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.210])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2024 00:50:11 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 2/3] drm/i915/display: Add infra to reduce global state
+ funcs boilerplate
+In-Reply-To: <20241219214909.104869-3-gustavo.sousa@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241219214909.104869-1-gustavo.sousa@intel.com>
+ <20241219214909.104869-3-gustavo.sousa@intel.com>
+Date: Fri, 20 Dec 2024 10:50:05 +0200
+Message-ID: <87o716pwle.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/pmu=3A_PMU_interface_for_?=
- =?utf-8?q?Xe_=28rev10=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 20 Dec 2024 08:06:03 -0000
-Message-ID: <173468196364.710778.17483639080577158831@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241220011910.103280-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20241220011910.103280-1-vinay.belgaumkar@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,139 +67,161 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3462071875380339936==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 19 Dec 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> If we look at how the members of struct intel_global_state_funcs, we see
+> a common pattern repeating itself. Let's add the necessary
+> infra-structure to allow reducing the boilerplate. We do that by
+> adding common generic implementations for each member and adding a macro
+> INTEL_GLOBAL_STATE_DEFAULTS() to be used when initializing an instance
+> of struct intel_global_state_funcs.
+>
+> That way, a global state that does not need custom behavior can have
+> its funcs structure be initialized as in the following example,
+>
+>     static const struct intel_global_state_funcs <prefix>_funcs = {
+>            INTEL_GLOBAL_STATE_DEFAULTS(struct <prefix>_state, <base_member_name>),
+>     };
+>
+> , without the need to implementing the functions.
+>
+> That doesn't come without cost - we will need to store two size_t
+> members -, but that cost is arguably justified by the simplification
+> gained.
+>
+> In an upcoming change we will put that infra into action on existing
+> users.
+>
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_global_state.c | 41 ++++++++++++++++++-
+>  .../gpu/drm/i915/display/intel_global_state.h | 15 +++++++
+>  2 files changed, 54 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_global_state.c b/drivers/gpu/drm/i915/display/intel_global_state.c
+> index cbcd1e91b7be..4b4c33fa99fb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_global_state.c
+> +++ b/drivers/gpu/drm/i915/display/intel_global_state.c
+> @@ -59,7 +59,10 @@ static void __intel_atomic_global_state_free(struct kref *kref)
+>  
+>  	commit_put(obj_state->commit);
+>  
+> -	obj->funcs->atomic_destroy_state(obj, obj_state);
+> +	if (obj->funcs->atomic_destroy_state)
+> +		obj->funcs->atomic_destroy_state(obj, obj_state);
+> +	else
+> +		intel_atomic_global_destroy_state_common(obj, obj_state);
+>  }
+>  
+>  static void intel_atomic_global_state_put(struct intel_global_state *obj_state)
+> @@ -164,7 +167,11 @@ intel_atomic_get_global_obj_state(struct intel_atomic_state *state,
+>  	index = state->num_global_objs;
+>  	memset(&state->global_objs[index], 0, sizeof(*state->global_objs));
+>  
+> -	obj_state = obj->funcs->atomic_duplicate_state(obj);
+> +	if (obj->funcs->atomic_duplicate_state)
+> +		obj_state = obj->funcs->atomic_duplicate_state(obj);
+> +	else
+> +		obj_state = intel_atomic_global_duplicate_state_common(obj);
+> +
+>  	if (!obj_state)
+>  		return ERR_PTR(-ENOMEM);
+>  
+> @@ -382,3 +389,33 @@ intel_atomic_global_state_commit_done(struct intel_atomic_state *state)
+>  		complete_all(&commit->done);
+>  	}
+>  }
+> +
+> +struct intel_global_state *
+> +intel_atomic_global_duplicate_state_common(struct intel_global_obj *obj)
+> +{
+> +	void *state_wrapper;
+> +
+> +	if (WARN_ON(obj->funcs->state_size == 0))
+> +		return NULL;
+> +
+> +	state_wrapper = (void *)obj->state - obj->funcs->base_offset;
+> +
+> +	state_wrapper = kmemdup(state_wrapper, obj->funcs->state_size, GFP_KERNEL);
+> +	if (!state_wrapper)
+> +		return NULL;
+> +
+> +	return state_wrapper + obj->funcs->base_offset;
+> +}
+> +
+> +void intel_atomic_global_destroy_state_common(struct intel_global_obj *obj,
+> +					      struct intel_global_state *state)
+> +{
+> +	void *state_wrapper;
+> +
+> +	if (WARN_ON(obj->funcs->state_size == 0))
+> +		return;
+> +
+> +	state_wrapper = (void *)state - obj->funcs->base_offset;
+> +
+> +	kfree(state_wrapper);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_global_state.h b/drivers/gpu/drm/i915/display/intel_global_state.h
+> index 6506a8e32972..e47e007225cc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_global_state.h
+> +++ b/drivers/gpu/drm/i915/display/intel_global_state.h
+> @@ -8,6 +8,8 @@
+>  
+>  #include <linux/kref.h>
+>  #include <linux/list.h>
+> +#include <linux/stddef.h>
+> +#include <linux/types.h>
+>  
+>  struct drm_i915_private;
+>  struct intel_atomic_state;
+> @@ -15,6 +17,10 @@ struct intel_global_obj;
+>  struct intel_global_state;
+>  
+>  struct intel_global_state_funcs {
+> +	/* state_size and base_offset are initialized by INTEL_GLOBAL_STATE_DEFAULTS() */
+> +	size_t state_size;
+> +	size_t base_offset;
+> +
 
-== Series Details ==
+Gut feeling says these should be part of struct intel_global_state
+rather than struct intel_global_state_funcs. Keyword being "funcs".
 
-Series: drm/xe/pmu: PMU interface for Xe (rev10)
-URL   : https://patchwork.freedesktop.org/series/139121/
-State : success
+They would have to be passed to intel_atomic_global_obj_init() and
+initialized runtime. That's a downside. But then you could do away with
+the funcs struct altogether when defaults are used, and pass NULL.
 
-== Summary ==
+And you could also drop INTEL_GLOBAL_STATE_DEFAULTS() which I don't find
+particularly pretty.
 
-CI Bug Log - changes from xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8_BAT -> xe-pw-139121v10_BAT
-====================================================
+BR,
+Jani.
 
-Summary
--------
+>  	struct intel_global_state *(*atomic_duplicate_state)(struct intel_global_obj *obj);
+>  	void (*atomic_destroy_state)(struct intel_global_obj *obj,
+>  				     struct intel_global_state *state);
+> @@ -26,6 +32,10 @@ struct intel_global_obj {
+>  	const struct intel_global_state_funcs *funcs;
+>  };
+>  
+> +#define INTEL_GLOBAL_STATE_DEFAULTS(type, base_member) \
+> +	.state_size = sizeof(type), \
+> +	.base_offset = offsetof(type, base_member)
+> +
+>  #define intel_for_each_global_obj(obj, dev_priv) \
+>  	list_for_each_entry(obj, &(dev_priv)->display.global.obj_list, head)
+>  
+> @@ -96,4 +106,9 @@ int intel_atomic_global_state_wait_for_dependencies(struct intel_atomic_state *s
+>  
+>  bool intel_atomic_global_state_is_serialized(struct intel_atomic_state *state);
+>  
+> +struct intel_global_state *
+> +intel_atomic_global_duplicate_state_common(struct intel_global_obj *obj);
+> +void intel_atomic_global_destroy_state_common(struct intel_global_obj *obj,
+> +					      struct intel_global_state *state);
+> +
+>  #endif
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 7)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-139121v10_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-adlp-7:         [PASS][1] -> [SKIP][2] ([Intel XE#455]) +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v10/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-
-  * igt@kms_psr@psr-primary-page-flip@edp-1:
-    - bat-adlp-7:         [PASS][3] -> [DMESG-WARN][4] ([Intel XE#3517]) +1 other test dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v10/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
-
-  
-  [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * Linux: xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8 -> xe-pw-139121v10
-
-  IGT_8167: 6e93c2e807b398f24673d010f3f71986a09fef8f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8: ab84fe2ea6aa04785306a9c4b095e4390627cba8
-  xe-pw-139121v10: 139121v10
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v10/index.html
-
---===============3462071875380339936==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pmu: PMU interface for Xe (rev10)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139121/">https://patchwork.freedesktop.org/series/139121/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v10/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v10/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8_BAT -&gt; xe-pw-139121v10_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 7)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-139121v10_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v10/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-primary-page-flip@edp-1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v10/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517">Intel XE#3517</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8 -&gt; xe-pw-139121v10</li>
-</ul>
-<p>IGT_8167: 6e93c2e807b398f24673d010f3f71986a09fef8f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8: ab84fe2ea6aa04785306a9c4b095e4390627cba8<br />
-  xe-pw-139121v10: 139121v10</p>
-
-</body>
-</html>
-
---===============3462071875380339936==--
+-- 
+Jani Nikula, Intel
