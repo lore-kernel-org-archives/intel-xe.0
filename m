@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAA3AE7718C
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 19:42:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4F67E7718B
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 19:42:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B448810E011;
-	Fri, 20 Dec 2024 19:42:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B228310F047;
+	Fri, 20 Dec 2024 19:42:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zm0QhxtR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X/tzZh4E";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CFF510E011
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Dec 2024 19:42:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3438E10E011
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Dec 2024 19:42:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734723739; x=1766259739;
+ t=1734723741; x=1766259741;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MvLVVCoLQNvNy2Rgq3WgZ5obH/bBQw/3HiNixBxmghs=;
- b=Zm0QhxtRQ6Ga/G1hxH1uDPOTzc9LumcI4D47N8yPaBhCx42W2DYaH5Iq
- 18sOKmlz8wbQv77+TvtebNhP2TFhwb17oNItHJz0bK273ZGFpLNu5lZJH
- wVqG7bz/DqNrxgA8EfK+bMyt1j5r7o5XQgK3WaHzd1MwHw5Q5Th3NkQVr
- Bf9iHYAy4KsK4POa20KUHn5fQcCLVzlQK0040iYRej0ewwFJXKpOLFZmW
- tcKvG6hnEOfQ0AF8DfzOlOM6GN6qyyUaGRKQGLjivp7psjv/qFuRz7ePZ
- iDUGuwKrN2g/owgMg8089vF/Nr4a9FovIJEyPrw13vLZmXHCDGllg9KO1 w==;
-X-CSE-ConnectionGUID: n8ViykNnQkSNySrfIKkJiQ==
-X-CSE-MsgGUID: pfL0dbCBRF6FRg6aytZ5/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="38965211"
-X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; d="scan'208";a="38965211"
+ bh=Xxlo8rh04NZOBU/oYi3prZNU69OjxH7Em7EipX/+AMQ=;
+ b=X/tzZh4Exnq+qILwDo1Tn/pBQr8cid6TxdP9T6xjwHItq/lHKB5CEVoY
+ cYrOnUHUMHVODSZGYwbCei1sBUFsXNoIrk+WfpOfTI9mgrhEZXchqhkgZ
+ k9SJhFZi/ivNEZADWcUx0ff484p9TXamRuLpeuMBisEcRRhQziXRUqgLu
+ LPV6Kh5tYv2OMgpA2AV8FyXLqstIo9SCqi0TssEybgds2+0lpxFhKhCbf
+ 84fX00J4U4hEGib53erR5PF3rwxeXQnXC9eSUcR2Tbj6bzFrNHpNy1Xzu
+ HgY48DJp0ndVbGcDaRMuxYpehCfvZ1lkYg6Z6HJKuBz8dHeJI6rXOGLLo g==;
+X-CSE-ConnectionGUID: e1rLT6tzRW2mwl1D9P2sDg==
+X-CSE-MsgGUID: Fdby/eYwSvG3EXOHb2m4bg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="38965214"
+X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; d="scan'208";a="38965214"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 11:42:19 -0800
-X-CSE-ConnectionGUID: DMLNzYeRSBKhDKwshUzmYg==
-X-CSE-MsgGUID: YkMspOMoS+C2RLacl+TqpQ==
+ 20 Dec 2024 11:42:20 -0800
+X-CSE-ConnectionGUID: cRdgE9kEScKSlOUJUeQ2bw==
+X-CSE-MsgGUID: zDLCmsCgSTyiH/KYMp6nsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="99075423"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="99075428"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.5.201])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 11:42:17 -0800
+ 20 Dec 2024 11:42:18 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2 01/11] drm/xe/sa: Always call drm_suballoc_manager_fini()
-Date: Fri, 20 Dec 2024 20:41:54 +0100
-Message-Id: <20241220194205.995-2-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 02/11] drm/xe/sa: Drop redundant NULL assignments
+Date: Fri, 20 Dec 2024 20:41:55 +0100
+Message-Id: <20241220194205.995-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20241220194205.995-1-michal.wajdeczko@intel.com>
 References: <20241220194205.995-1-michal.wajdeczko@intel.com>
@@ -67,43 +67,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-After successful call to drm_suballoc_manager_init() we should
-make sure to call drm_suballoc_manager_fini() as it may include
-some cleanup code even if we didn't start using it for real.
-
-As we can abort init() early due to kvzalloc() failure, we should
-either explicitly call drm_suballoc_manager_fini() or, even better,
-postpone drm_suballoc_manager_init() once we finish all other
-preparation steps, so we can rely on fini() that will do cleanup.
+The sa_manager is drmm_kzalloc'ed so all members are already zero.
+And in case of kvzalloc() failure we are not returning pointer to
+the sa_manager at all, so no point in resetting .bo member.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sa.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_sa.c | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
-index e055bed7ae55..4e7aba445ebc 100644
+index 4e7aba445ebc..eb314ca75355 100644
 --- a/drivers/gpu/drm/xe/xe_sa.c
 +++ b/drivers/gpu/drm/xe/xe_sa.c
-@@ -57,8 +57,6 @@ struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32
- 	}
- 	sa_manager->bo = bo;
- 	sa_manager->is_iomem = bo->vmap.is_iomem;
+@@ -44,8 +44,6 @@ struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32
+ 	if (!sa_manager)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	sa_manager->bo = NULL;
 -
--	drm_suballoc_manager_init(&sa_manager->base, managed_size, align);
- 	sa_manager->gpu_addr = xe_bo_ggtt_addr(bo);
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, size,
+ 					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+ 					  XE_BO_FLAG_GGTT |
+@@ -61,10 +59,8 @@ struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32
  
  	if (bo->vmap.is_iomem) {
-@@ -72,6 +70,7 @@ struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32
+ 		sa_manager->cpu_ptr = kvzalloc(managed_size, GFP_KERNEL);
+-		if (!sa_manager->cpu_ptr) {
+-			sa_manager->bo = NULL;
++		if (!sa_manager->cpu_ptr)
+ 			return ERR_PTR(-ENOMEM);
+-		}
+ 	} else {
+ 		sa_manager->cpu_ptr = bo->vmap.vaddr;
  		memset(sa_manager->cpu_ptr, 0, bo->ttm.base.size);
- 	}
- 
-+	drm_suballoc_manager_init(&sa_manager->base, managed_size, align);
- 	ret = drmm_add_action_or_reset(&xe->drm, xe_sa_bo_manager_fini,
- 				       sa_manager);
- 	if (ret)
 -- 
 2.47.1
 
