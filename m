@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C0DEE7718B
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 05:01:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9018DE77188
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 05:28:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F40210EE94;
-	Fri, 20 Dec 2024 05:01:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d6h7U9wr";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 548FE10EE84;
- Fri, 20 Dec 2024 05:01:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734670917; x=1766206917;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ggL052RCucGYFBrEo1WNXO/NpltLvnvXAWGNheaHNNI=;
- b=d6h7U9wrbHrkxl2VBja5oS8Cj5ie7QTjuLXwlt4+DuXK98r3cG5PYm64
- 0AizWoPyAC5sjCw7oUNaFAOdWwUiJ5SOwSyBXCkrOJZdj/O05nh411GJM
- /UVbL00rOglyJctrMqzUYf9s9mzK6V6rOhxbd7hbP3Eq0P+cAPTmndGf5
- kuHRyuh1k9r1PnAZFSWua49qpUDPz9zxBB78eevRqhACzcMx7VYxBCSrn
- 4y5OBVYtO1nfgxggZKcoeKLfEoRlzzltwR42UiRFS/YzatD3QuiwKdoyL
- 3PDLvdAXFXNbiwbQpAe1wA4DhqLvUwSSCFIzBK67gFTqWEAgdPg68Ol9O Q==;
-X-CSE-ConnectionGUID: Pmc7Lc5wQmOk6Q8Rt7b7aA==
-X-CSE-MsgGUID: Ke51m4iAR2qByfLCx+FvtQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="34929106"
-X-IronPort-AV: E=Sophos;i="6.12,249,1728975600"; d="scan'208";a="34929106"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 21:01:56 -0800
-X-CSE-ConnectionGUID: s1bQ8QhVT2+nyANhslWJqw==
-X-CSE-MsgGUID: BWZBOxd8T6qcGbr7B00aWQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,249,1728975600"; d="scan'208";a="98471447"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa006.jf.intel.com with ESMTP; 19 Dec 2024 21:01:55 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] Revert "drm/i915/hdcp: Don't enable HDCP1.4 directly from
- check_link"
-Date: Fri, 20 Dec 2024 10:31:53 +0530
-Message-Id: <20241220050153.3053540-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 425CC10E0D9;
+	Fri, 20 Dec 2024 05:28:54 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F113810E0D9;
+ Fri, 20 Dec 2024 05:28:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4840538156891308582=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pmu=3A_PMU_interface?=
+ =?utf-8?q?_for_Xe_=28rev10=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 20 Dec 2024 05:28:52 -0000
+Message-ID: <173467253296.669528.4510715668326364082@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241220011910.103280-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20241220011910.103280-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,42 +36,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit 483f7d94a0453564ad9295288c0242136c5f36a0.
-This needs to be reverted since HDCP even after updating the connector
-state HDCP property we don't reenable HDCP until the next commit
-in which the CP Property is set causing compliance to fail.
+--===============4840538156891308582==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index f6e68a0e3b6d..33c705b5ee28 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1166,9 +1166,15 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
- 		goto out;
- 	}
- 
--	intel_hdcp_update_value(connector,
--				DRM_MODE_CONTENT_PROTECTION_DESIRED,
--				true);
-+	ret = intel_hdcp1_enable(connector);
-+	if (ret) {
-+		drm_err(&i915->drm, "Failed to enable hdcp (%d)\n", ret);
-+		intel_hdcp_update_value(connector,
-+					DRM_MODE_CONTENT_PROTECTION_DESIRED,
-+					true);
-+		goto out;
-+	}
-+
- out:
- 	mutex_unlock(&dig_port->hdcp_mutex);
- 	mutex_unlock(&hdcp->mutex);
--- 
-2.34.1
+Series: drm/xe/pmu: PMU interface for Xe (rev10)
+URL   : https://patchwork.freedesktop.org/series/139121/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8_BAT -> xe-pw-139121v10_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-139121v10_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-adlp-7:         [PASS][1] -> [SKIP][2] ([Intel XE#455]) +1 other test skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v10/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+
+  * igt@kms_psr@psr-primary-page-flip@edp-1:
+    - bat-adlp-7:         [PASS][3] -> [DMESG-WARN][4] ([Intel XE#3517]) +1 other test dmesg-warn
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v10/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
+
+  
+  [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8 -> xe-pw-139121v10
+
+  IGT_8167: 6e93c2e807b398f24673d010f3f71986a09fef8f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8: ab84fe2ea6aa04785306a9c4b095e4390627cba8
+  xe-pw-139121v10: 139121v10
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v10/index.html
+
+--===============4840538156891308582==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pmu: PMU interface for Xe (rev10)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139121/">https://patchwork.freedesktop.org/series/139121/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v10/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v10/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8_BAT -&gt; xe-pw-139121v10_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-139121v10_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v10/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip@edp-1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v10/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517">Intel XE#3517</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8 -&gt; xe-pw-139121v10</li>
+</ul>
+<p>IGT_8167: 6e93c2e807b398f24673d010f3f71986a09fef8f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2408-ab84fe2ea6aa04785306a9c4b095e4390627cba8: ab84fe2ea6aa04785306a9c4b095e4390627cba8<br />
+  xe-pw-139121v10: 139121v10</p>
+
+</body>
+</html>
+
+--===============4840538156891308582==--
