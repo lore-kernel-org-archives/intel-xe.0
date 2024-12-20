@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E220E77188
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 03:47:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76E1FE77188
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Dec 2024 03:48:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F91210E369;
-	Fri, 20 Dec 2024 03:47:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4876D10E369;
+	Fri, 20 Dec 2024 03:48:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B30am77j";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SwzkliVk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3307310E369
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Dec 2024 03:47:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B68A210E369
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Dec 2024 03:47:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734666465; x=1766202465;
- h=from:date:message-id:to:cc:subject:in-reply-to:
+ t=1734666480; x=1766202480;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=LtmXqtmdZunApFW09cwYsnYHv9OvwYeXijSW8Jd1xo0=;
- b=B30am77jyiPvKkmqmBfVFd+t40WJzJkIkFMTltVKPDNpSPxRQe+RzCyG
- MDKNUHdBXRckab6Rwd3IeOlwhzJKDHBUhg/X09a7BbIpE3xZBcssBnY5e
- p7dz6PUuuIovMMYfwHKOxv1NJX0IXrUKXtpHvZec6zmIRB6NdAgswgfci
- KLqq4w8/0gYxtU1QxdpcMkChBpE7rjCoxAmNOELyFURJi2KAMddAdITTL
- qH56eoUZTSPPm/eop7DDO0ku8hKHKk85L2H6dillu9mRQGvnl7JYgPDY3
- VG/fdU1sAO34uqRqFuXIpwGblXcwNQtoMKPImr/pc5lZNLlNKgyrhN8mw w==;
-X-CSE-ConnectionGUID: ekl12WaXRdCDyxe4AMPdaQ==
-X-CSE-MsgGUID: KuKKgw/pQi+Cnidn1Mh7NQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="46629722"
-X-IronPort-AV: E=Sophos;i="6.12,249,1728975600"; d="scan'208";a="46629722"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 19:47:45 -0800
-X-CSE-ConnectionGUID: IuidE2K6RtS11KugHqqcGw==
-X-CSE-MsgGUID: CaxSK456Sx6ceynZsaAkLg==
+ bh=shhDCkOV/Bpjc47d1LIMXCSHCtRWIqic1hIq0GaatzM=;
+ b=SwzkliVkdA+z0p0AD/SJRGyA641hd3/ov/CtvkhaB2vNAteHT5WqRpwo
+ SB7m4OVA+1W1oMCxQyyTF0uOwj7eh2h8oDEVomQ1Vznoy8FvXp2zqb/Ij
+ LAOcRi6Ayky8p2iMODIfWNDqvba9PWBR1/A90ODJuU/zLj5VExO4N/7qi
+ RZijPop26XgF+n2TgMQKA1ewXAkU3dN82UPS8rguGqaeWpPcmd2Sfg2JH
+ PhkwLUqYIKHryE0r9+erAs4vkuarRWB3qIE4FlYVQZVqXiiNHTgNWRAsf
+ hqJbYb3vYQm1YG0X7u1ymqsqo/9lUtLbvYSYzwzgMRGhOzU1gW1jQSMxS w==;
+X-CSE-ConnectionGUID: tzS+J9ZhTOWQELjiZZmBPA==
+X-CSE-MsgGUID: n8XzF37aSrahOFQkPQ4NpQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="57682334"
+X-IronPort-AV: E=Sophos;i="6.12,249,1728975600"; d="scan'208";a="57682334"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 19:48:00 -0800
+X-CSE-ConnectionGUID: 0tG/s/YQRuWA0uPuANjHBA==
+X-CSE-MsgGUID: HNQMxTjzQ7yfcbYpAPjwJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102530574"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="98230404"
 Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
  ([10.165.21.142])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 19:47:44 -0800
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 19:48:00 -0800
+Date: Thu, 19 Dec 2024 19:47:59 -0800
+Message-ID: <85jzbv10cw.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Date: Thu, 19 Dec 2024 19:47:44 -0800
-Message-ID: <85ldwb10db.wl-ashutosh.dixit@intel.com>
-0From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Cc: <intel-xe@lists.freedesktop.org>, <jose.souza@intel.com>
-Subject: Re: [PATCH v4 1/2] xe/oa: Fix query mode of operation for OAR/OAC
-In-Reply-To: <20241220002234.554135-2-umesh.nerlige.ramappa@intel.com>
-References: <20241220002234.554135-1-umesh.nerlige.ramappa@intel.com>	<20241220002234.554135-2-umesh.nerlige.ramappa@intel.com>
+Subject: Re: [PATCH v4 2/2] xe/oa: Drop the unused logic to parse context image
+In-Reply-To: <20241220002234.554135-3-umesh.nerlige.ramappa@intel.com>
+References: <20241220002234.554135-1-umesh.nerlige.ramappa@intel.com>	<20241220002234.554135-3-umesh.nerlige.ramappa@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -70,208 +69,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 19 Dec 2024 16:22:33 -0800, Umesh Nerlige Ramappa wrote:
+On Thu, 19 Dec 2024 16:22:34 -0800, Umesh Nerlige Ramappa wrote:
 >
 
 Hi Umesh,
 
-> +static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *reg_lri, u32 count)
->  {
->	struct dma_fence *fence;
->	struct xe_bb *bb;
->	int err;
->
-> -	bb = xe_bb_new(stream->gt, 4 * count, false);
-> +	bb = xe_bb_new(stream->gt, 2 * count + 1, false);
->	if (IS_ERR(bb)) {
->		err = PTR_ERR(bb);
->		goto exit;
->	}
->
-> -	xe_oa_store_flex(stream, lrc, bb, flex, count);
-> +	write_cs_mi_lri(bb, reg_lri, count);
->
-> -	fence = xe_oa_submit_bb(stream, XE_OA_SUBMIT_NO_DEPS, bb);
-> -	if (IS_ERR(fence)) {
-> -		err = PTR_ERR(fence);
-> -		goto free_bb;
-> -	}
-> -	xe_bb_free(bb, fence);
-> -	dma_fence_put(fence);
-> -
-> -	return 0;
-> -free_bb:
-> -	xe_bb_free(bb, NULL);
-> -exit:
-> -	return err;
-> -}
-> -
-> -static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *reg_lri)
-> -{
-> -	struct dma_fence *fence;
-> -	struct xe_bb *bb;
-> -	int err;
-> -
-> -	bb = xe_bb_new(stream->gt, 3, false);
-> -	if (IS_ERR(bb)) {
-> -		err = PTR_ERR(bb);
-> -		goto exit;
-> -	}
-> -
-> -	write_cs_mi_lri(bb, reg_lri, 1);
-> -
-> -	fence = xe_oa_submit_bb(stream, XE_OA_SUBMIT_NO_DEPS, bb);
-> +	fence = xe_oa_submit_bb(stream, XE_OA_SUBMIT_ADD_DEPS, bb);
+> Now that all register configurations are using MI_LOAD_REGISTER_IMM,
+> drop the logic to parse context image for offset.
 
-This looks like a copy-paste error, could you please change this back to
-XE_OA_SUBMIT_NO_DEPS as it used to be.
+Could you also please delete these two lines:
 
+	#include "regs/xe_lrc_layout.h"
+	#include "xe_lrc.h"
 
->	if (IS_ERR(fence)) {
->		err = PTR_ERR(fence);
->		goto free_bb;
-> @@ -762,71 +732,57 @@ static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *re
->  static int xe_oa_configure_oar_context(struct xe_oa_stream *stream, bool enable)
->  {
->	const struct xe_oa_format *format = stream->oa_buffer.format;
-> -	struct xe_lrc *lrc = stream->exec_q->lrc[0];
-> -	u32 regs_offset = xe_lrc_regs_offset(lrc) / sizeof(u32);
->	u32 oacontrol = __format_to_oactrl(format, OAR_OACONTROL_COUNTER_SEL_MASK) |
->		(enable ? OAR_OACONTROL_COUNTER_ENABLE : 0);
->
-> -	struct flex regs_context[] = {
-> +	struct xe_oa_reg reg_lri[] = {
->		{
->			OACTXCONTROL(stream->hwe->mmio_base),
-> -			stream->oa->ctx_oactxctrl_offset[stream->hwe->class] + 1,
->			enable ? OA_COUNTER_RESUME : 0,
->		},
-> +		{
-> +			OAR_OACONTROL,
-> +			oacontrol,
-> +		},
->		{
->			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
-> -			regs_offset + CTX_CONTEXT_CONTROL,
-> -			_MASKED_BIT_ENABLE(CTX_CTRL_OAC_CONTEXT_ENABLE),
-> +			_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
-> +				      enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0)
->		},
->	};
-> -	struct xe_oa_reg reg_lri = { OAR_OACONTROL, oacontrol };
-> -	int err;
-> -
-> -	/* Modify stream hwe context image with regs_context */
-> -	err = xe_oa_modify_ctx_image(stream, stream->exec_q->lrc[0],
-> -				     regs_context, ARRAY_SIZE(regs_context));
-> -	if (err)
-> -		return err;
->
->	/* Apply reg_lri using LRI */
+Looks like we don't have any references to xe_lrc in OA code now :)
 
-This comment only made sense when we had xe_oa_modify_ctx_image, maybe
-delete it now.
-
-> -	return xe_oa_load_with_lri(stream, &reg_lri);
-> +	return xe_oa_load_with_lri(stream, reg_lri, ARRAY_SIZE(reg_lri));
->  }
->
->  static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
->  {
->	const struct xe_oa_format *format = stream->oa_buffer.format;
-> -	struct xe_lrc *lrc = stream->exec_q->lrc[0];
-> -	u32 regs_offset = xe_lrc_regs_offset(lrc) / sizeof(u32);
->	u32 oacontrol = __format_to_oactrl(format, OAR_OACONTROL_COUNTER_SEL_MASK) |
->		(enable ? OAR_OACONTROL_COUNTER_ENABLE : 0);
-> -	struct flex regs_context[] = {
-> +	struct xe_oa_reg reg_lri[] = {
->		{
->			OACTXCONTROL(stream->hwe->mmio_base),
-> -			stream->oa->ctx_oactxctrl_offset[stream->hwe->class] + 1,
->			enable ? OA_COUNTER_RESUME : 0,
->		},
-> +		{
-> +			OAC_OACONTROL,
-> +			oacontrol
-> +		},
->		{
->			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
-> -			regs_offset + CTX_CONTEXT_CONTROL,
-> -			_MASKED_BIT_ENABLE(CTX_CTRL_OAC_CONTEXT_ENABLE) |
-> +			_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
-> +				      enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0) |
->			_MASKED_FIELD(CTX_CTRL_RUN_ALONE, enable ? CTX_CTRL_RUN_ALONE : 0),
->		},
->	};
-> -	struct xe_oa_reg reg_lri = { OAC_OACONTROL, oacontrol };
-> -	int err;
->
->	/* Set ccs select to enable programming of OAC_OACONTROL */
->	xe_mmio_write32(&stream->gt->mmio, __oa_regs(stream)->oa_ctrl,
->			__oa_ccs_select(stream));
->
-> -	/* Modify stream hwe context image with regs_context */
-> -	err = xe_oa_modify_ctx_image(stream, stream->exec_q->lrc[0],
-> -				     regs_context, ARRAY_SIZE(regs_context));
-> -	if (err)
-> -		return err;
-> -
->	/* Apply reg_lri using LRI */
-
-Same for this comment.
-
-> -	return xe_oa_load_with_lri(stream, &reg_lri);
-> +	return xe_oa_load_with_lri(stream, reg_lri, ARRAY_SIZE(reg_lri));
->  }
->
->  static int xe_oa_configure_oa_context(struct xe_oa_stream *stream, bool enable)
-> @@ -2110,8 +2066,8 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
->		if (XE_IOCTL_DBG(oa->xe, !param.exec_q))
->			return -ENOENT;
->
-> -		if (param.exec_q->width > 1)
-> -			drm_dbg(&oa->xe->drm, "exec_q->width > 1, programming only exec_q->lrc[0]\n");
-> +		if (XE_IOCTL_DBG(oa->xe, param.exec_q->width > 1))
-> +			return -EOPNOTSUPP;
->	}
->
->	/*
-> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-> index 3a75a08b6be9..c8ab37fa0d19 100644
-> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-> @@ -223,7 +223,10 @@ static int emit_pipe_imm_ggtt(u32 addr, u32 value, bool stall_only, u32 *dw,
->
->  static u32 get_ppgtt_flag(struct xe_sched_job *job)
->  {
-> -	return job->q->vm ? BIT(8) : 0;
-> +	if (job->q->vm && !job->ggtt)
-> +		return BIT(8);
-> +
-> +	return 0;
->  }
->
->  static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
-> diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-> index f13f333f00be..d942b20a9f29 100644
-> --- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-> @@ -56,6 +56,8 @@ struct xe_sched_job {
->	u32 migrate_flush_flags;
->	/** @ring_ops_flush_tlb: The ring ops need to flush TLB before payload. */
->	bool ring_ops_flush_tlb;
-> +	/** @ggtt: mapped in ggtt. */
-> +	bool ggtt;
->	/** @ptrs: per instance pointers. */
->	struct xe_job_ptrs ptrs[];
->  };
-> --
-> 2.34.1
->
-
-After making the above changes, this is now:
+With that, this is also:
 
 Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-
-If you don't want to send a new version, I think these changes can just be
-made while merging.
