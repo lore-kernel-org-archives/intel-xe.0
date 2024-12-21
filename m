@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2DDFE77188
-	for <intel-xe@archiver.kernel.org>; Sat, 21 Dec 2024 00:38:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4C27E77188
+	for <intel-xe@archiver.kernel.org>; Sat, 21 Dec 2024 00:42:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 489FC10E0BC;
-	Sat, 21 Dec 2024 00:38:32 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DBEC10E0AE;
- Sat, 21 Dec 2024 00:38:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6923240743986900992=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9843710E0AE;
+	Sat, 21 Dec 2024 00:42:31 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AfAsLhSm";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A516010E0BC
+ for <intel-xe@lists.freedesktop.org>; Sat, 21 Dec 2024 00:42:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734741750; x=1766277750;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=oRoe2x0/IBS9nPdFvRDuRV7YEEhKPrD2iAvXlJrmQU0=;
+ b=AfAsLhSm98oXxHSndjeq4L93byqzDcLBS7LkcovHGa6A2IJZOxzQQizB
+ 5lI93CIRVPU2UHPsdLNNoQEU9COC+jOaSjYAHZkHb8xSeymV9dO71w55L
+ IiE7NJHOigCdLkv63h2ejIS9Ng4XLNuKxO6Xci4Ow+qF50hs+rE/XuD3Q
+ 5Oa7mE3P0rvhx1sGcEUv6ZUp+d5rlAJAVA7xUjvMKfHE+IO+VaL/KCaEP
+ nezjNrmNNUIuUnVGU+cFQJwMFHzhfcQJNl0+Hmggu63FRLESCjTNcEWAy
+ 8mgiX1A+2Ljg7Zt+q0h9HQ9eXGyy0om9pxKgbGhScdM17nTFEbPRq0Vhx A==;
+X-CSE-ConnectionGUID: 63EfJ+ZyR6KoaP599GuIUg==
+X-CSE-MsgGUID: r/RMVI1MR6yAge2DdrNI4w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="35462729"
+X-IronPort-AV: E=Sophos;i="6.12,252,1728975600"; d="scan'208";a="35462729"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2024 16:42:16 -0800
+X-CSE-ConnectionGUID: wiLvtF0bQ0OXaCIlqdsmnw==
+X-CSE-MsgGUID: c4LOOuGATVeH1YNU0lefaw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,252,1728975600"; d="scan'208";a="103515881"
+Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
+ ([10.125.108.128])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2024 16:42:17 -0800
+Date: Fri, 20 Dec 2024 18:42:09 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, 
+ stable@vger.kernel.org
+Subject: Re: [PATCH] drm/xe/client: Better correlate exec_queue and GT
+ timestamps
+Message-ID: <7bvt3larl4sobadx57a255cvu7i5lkjpt2tdxa4baa324v6va6@ijl7gzqjh7qo>
+References: <20241212173432.1244440-1-lucas.demarchi@intel.com>
+ <Z2SGzHYsJ+CRoF9p@orsosgc001>
+ <wdcrw3du2ssykmsrda3mvwjhreengeovwasikmixdiowqsfnwj@lsputsgtmha4>
+ <Z2YMiTq5P81dmjVH@orsosgc001>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vf=3A_Post-migration?=
- =?utf-8?q?_recovery_of_GGTT_nodes_and_CTB_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tomasz Lis" <tomasz.lis@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 21 Dec 2024 00:38:31 -0000
-Message-ID: <173474151149.970638.206377059403243227@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241220233409.2956004-1-tomasz.lis@intel.com>
-In-Reply-To: <20241220233409.2956004-1-tomasz.lis@intel.com>
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <Z2YMiTq5P81dmjVH@orsosgc001>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,155 +69,102 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6923240743986900992==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Dec 20, 2024 at 04:32:09PM -0800, Umesh Nerlige Ramappa wrote:
+>On Fri, Dec 20, 2024 at 12:32:16PM -0600, Lucas De Marchi wrote:
+>>On Thu, Dec 19, 2024 at 12:49:16PM -0800, Umesh Nerlige Ramappa wrote:
+>>>On Thu, Dec 12, 2024 at 09:34:32AM -0800, Lucas De Marchi wrote:
+>>>>This partially reverts commit fe4f5d4b6616 ("drm/xe: Clean up VM / exec
+>>>>queue file lock usage."). While it's desired to have the mutex to
+>>>>protect only the reference to the exec queue, getting and dropping each
+>>>>mutex and then later getting the GPU timestamp, doesn't produce a
+>>>>correct result: it introduces multiple opportunities for the task to be
+>>>>scheduled out and thus wrecking havoc the deltas reported to userspace.
+>>>>
+>>>>Also, to better correlate the timestamp from the exec queues with the
+>>>>GPU, disable preemption so they can be updated without allowing the task
+>>>>to be scheduled out. We leave interrupts enabled as that shouldn't be
+>>>>enough disturbance for the deltas to matter to userspace.
+>>>
+>>>Like I said in the past, this is not trivial to solve and I would 
+>>>hate to add anything in the KMD to do so.
+>>
+>>I think the best we can do in the kernel side is to try to guarantee the
+>>correlated counters are sampled together... And that is already very
+>>good per my tests. Also, it'd not only be good from a testing
+>>perspective, but for any userspace trying to make sense of the 2
+>>counters.
+>>
+>>Note that this is not much different from how e.g. perf samples group
+>>events:
+>>
+>>	The unit of scheduling in perf is not an individual event, but rather an
+>>	event group, which may contain one or more events (potentially on
+>>	different PMUs). The notion of an event group is useful for ensuring
+>>	that a set of mathematically related events are all simultaneously
+>>	measured for the same period of time. For example, the number of L1
+>>	cache misses should not be larger than the number of L2 cache accesses.
+>>	Otherwise, it may happen that the events get multiplexed and their
+>>	measurements would no longer be comparable, making the analysis more
+>>	difficult.
+>>
+>>See __perf_event_read() that will call pmu->read() on all sibling events
+>>while disabling preemption:
+>>
+>>	perf_event_read()
+>>	{
+>>		...
+>>		preempt_disable();
+>>		event_cpu = __perf_event_read_cpu(event, event_cpu);
+>>		...
+>>		(void)smp_call_function_single(event_cpu, __perf_event_read, &data, 1);
+>>		preempt_enable();
+>>		...
+>>	}
+>>
+>>so... at least there's prior art for that... for the same reason that
+>>userspace should see the values sampled together.
+>
+>Well, I have used the preempt_disable/enable when fixing some selftest 
+>(i915), but was not happy that there were still some rare failures. If 
+>reducing error rates is the intention, then it's fine. In my mind, the 
+>issue still exists and once in a while we would end up assessing such 
+>a failure. Maybe, in addition, fixing up the IGTs like you suggest 
+>below is a worthwhile option.
 
-== Series Details ==
+for me this fix is not targeted at tests, even if it improves them a
+lot. It's more for consistent userspace behavior.
 
-Series: drm/xe/vf: Post-migration recovery of GGTT nodes and CTB (rev4)
-URL   : https://patchwork.freedesktop.org/series/141439/
-State : success
+>
+>>
+>>>
+>>>For IGT, why not just take 4 samples for the measurement (separate 
+>>>out the 2 counters)
+>>>
+>>>1. get gt timestamp in the first sample
+>>>2. get run ticks in the second sample
+>>>3. get run ticks in the third sample
+>>>4. get gt timestamp in the fourth sample
+>>>
+>>>Rely on 1 and 4 for gt timestamp delta and on 2 and 3 for run 
+>>>ticks delta.
+>>
+>>this won't fix it for the general case: you get rid of the > 100% case,
+>>you make the < 100% much worse.
+>
+>yeah, that's quite possible.
+>
+>>
+>>For a testing perspective I think the non-flaky solution is to stop
+>>calculating percentages and rather check that the execution timestamp
+>>recorded by the GPU very closely matches (minus gpu scheduling delays)
+>>the one we got via fdinfo once the fence signals and we wait for the job
+>>completion.
+>
+>Agree, we should change how we validate the counters in IGT.
 
-== Summary ==
+I have a wip patch to cleanup and submit to igt. I will submit it soon.
 
-CI Bug Log - changes from xe-2413-0eede13975362b755a208b2e2ba322940013f183_BAT -> xe-pw-141439v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-141439v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3517]) +2 other tests dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2413-0eede13975362b755a208b2e2ba322940013f183/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141439v4/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-adlp-7:         [PASS][3] -> [SKIP][4] ([Intel XE#455]) +3 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2413-0eede13975362b755a208b2e2ba322940013f183/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141439v4/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-bmg-1:          [DMESG-WARN][5] ([Intel XE#877]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2413-0eede13975362b755a208b2e2ba322940013f183/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141439v4/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-  [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
-
-
-Build changes
--------------
-
-  * Linux: xe-2413-0eede13975362b755a208b2e2ba322940013f183 -> xe-pw-141439v4
-
-  IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2413-0eede13975362b755a208b2e2ba322940013f183: 0eede13975362b755a208b2e2ba322940013f183
-  xe-pw-141439v4: 141439v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141439v4/index.html
-
---===============6923240743986900992==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/vf: Post-migration recovery of GGTT nodes and CTB (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141439/">https://patchwork.freedesktop.org/series/141439/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141439v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141439v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2413-0eede13975362b755a208b2e2ba322940013f183_BAT -&gt; xe-pw-141439v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-141439v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2413-0eede13975362b755a208b2e2ba322940013f183/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141439v4/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517">Intel XE#3517</a>) +2 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2413-0eede13975362b755a208b2e2ba322940013f183/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141439v4/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2413-0eede13975362b755a208b2e2ba322940013f183/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141439v4/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2413-0eede13975362b755a208b2e2ba322940013f183 -&gt; xe-pw-141439v4</li>
-</ul>
-<p>IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2413-0eede13975362b755a208b2e2ba322940013f183: 0eede13975362b755a208b2e2ba322940013f183<br />
-  xe-pw-141439v4: 141439v4</p>
-
-</body>
-</html>
-
---===============6923240743986900992==--
+Lucas De Marchi
