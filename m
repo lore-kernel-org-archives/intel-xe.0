@@ -4,60 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4C27E77188
-	for <intel-xe@archiver.kernel.org>; Sat, 21 Dec 2024 00:42:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 010B0E7718C
+	for <intel-xe@archiver.kernel.org>; Sat, 21 Dec 2024 00:49:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9843710E0AE;
-	Sat, 21 Dec 2024 00:42:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B94B010E3CF;
+	Sat, 21 Dec 2024 00:49:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AfAsLhSm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oK0VtWpY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A516010E0BC
- for <intel-xe@lists.freedesktop.org>; Sat, 21 Dec 2024 00:42:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5329910E0AE;
+ Sat, 21 Dec 2024 00:49:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734741750; x=1766277750;
+ t=1734742176; x=1766278176;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=oRoe2x0/IBS9nPdFvRDuRV7YEEhKPrD2iAvXlJrmQU0=;
- b=AfAsLhSm98oXxHSndjeq4L93byqzDcLBS7LkcovHGa6A2IJZOxzQQizB
- 5lI93CIRVPU2UHPsdLNNoQEU9COC+jOaSjYAHZkHb8xSeymV9dO71w55L
- IiE7NJHOigCdLkv63h2ejIS9Ng4XLNuKxO6Xci4Ow+qF50hs+rE/XuD3Q
- 5Oa7mE3P0rvhx1sGcEUv6ZUp+d5rlAJAVA7xUjvMKfHE+IO+VaL/KCaEP
- nezjNrmNNUIuUnVGU+cFQJwMFHzhfcQJNl0+Hmggu63FRLESCjTNcEWAy
- 8mgiX1A+2Ljg7Zt+q0h9HQ9eXGyy0om9pxKgbGhScdM17nTFEbPRq0Vhx A==;
-X-CSE-ConnectionGUID: 63EfJ+ZyR6KoaP599GuIUg==
-X-CSE-MsgGUID: r/RMVI1MR6yAge2DdrNI4w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="35462729"
-X-IronPort-AV: E=Sophos;i="6.12,252,1728975600"; d="scan'208";a="35462729"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 16:42:16 -0800
-X-CSE-ConnectionGUID: wiLvtF0bQ0OXaCIlqdsmnw==
-X-CSE-MsgGUID: c4LOOuGATVeH1YNU0lefaw==
+ bh=SzgwfS2cTODjJJ5XiWD7nvBWwFJN8ilIS7chkmT7L8E=;
+ b=oK0VtWpYUvSX54YEqVXApuTCX/ssQxrRMEpdc9On5No2DUnO8n3ynbPX
+ 1X2LK/6j6tH6EFcwHrSkLmVmg3kP7w4omQ5VUUfNiX1tm8y/oBw0Fensy
+ /iwM7MPpmfFBar+b9tkHrnvP23C95H0cgFPl3440obJVZ2r96PkLF6+yf
+ PJtHitBLnQHmI8u9ltTa9UQ4Jz8NzKgXy7C964ByxzpCdwRtRw5VVs4nq
+ PFs238DGgZQ0VtFdaztdIjr4DolUZeGWcBiZnEvE4FrUsL9SZWOzZ1EmS
+ oYqmnXM0U7i4a+LgrvglCV1SXd6v1NEBebh2Yi6dCVTQxPOVZeJQ7XfRx Q==;
+X-CSE-ConnectionGUID: flW4XrpoQtGmQtkTygmJmA==
+X-CSE-MsgGUID: knzJ15phRniKISoJOawcaw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="35518952"
+X-IronPort-AV: E=Sophos;i="6.12,252,1728975600"; d="scan'208";a="35518952"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2024 16:49:36 -0800
+X-CSE-ConnectionGUID: 18HuGdZCQW6o5NlrJiA6sg==
+X-CSE-MsgGUID: bzCuv69gTI++//YcDZWJ7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,252,1728975600"; d="scan'208";a="103515881"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.108.128])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 16:42:17 -0800
-Date: Fri, 20 Dec 2024 18:42:09 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, 
- stable@vger.kernel.org
-Subject: Re: [PATCH] drm/xe/client: Better correlate exec_queue and GT
- timestamps
-Message-ID: <7bvt3larl4sobadx57a255cvu7i5lkjpt2tdxa4baa324v6va6@ijl7gzqjh7qo>
-References: <20241212173432.1244440-1-lucas.demarchi@intel.com>
- <Z2SGzHYsJ+CRoF9p@orsosgc001>
- <wdcrw3du2ssykmsrda3mvwjhreengeovwasikmixdiowqsfnwj@lsputsgtmha4>
- <Z2YMiTq5P81dmjVH@orsosgc001>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="129606671"
+Received: from lkp-server01.sh.intel.com (HELO a46f226878e0) ([10.239.97.150])
+ by fmviesa001.fm.intel.com with ESMTP; 20 Dec 2024 16:49:34 -0800
+Received: from kbuild by a46f226878e0 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tOngR-0001nv-2y;
+ Sat, 21 Dec 2024 00:49:31 +0000
+Date: Sat, 21 Dec 2024 08:49:08 +0800
+From: kernel test robot <lkp@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ uma.shankar@intel.com, arun.r.murthy@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH 2/2] drm/i915/lttpr: Enable Extended Wake Timeout
+Message-ID: <202412210826.fD0cAxev-lkp@intel.com>
+References: <20241213060317.2674290-3-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Z2YMiTq5P81dmjVH@orsosgc001>
+In-Reply-To: <20241213060317.2674290-3-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,99 +71,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Dec 20, 2024 at 04:32:09PM -0800, Umesh Nerlige Ramappa wrote:
->On Fri, Dec 20, 2024 at 12:32:16PM -0600, Lucas De Marchi wrote:
->>On Thu, Dec 19, 2024 at 12:49:16PM -0800, Umesh Nerlige Ramappa wrote:
->>>On Thu, Dec 12, 2024 at 09:34:32AM -0800, Lucas De Marchi wrote:
->>>>This partially reverts commit fe4f5d4b6616 ("drm/xe: Clean up VM / exec
->>>>queue file lock usage."). While it's desired to have the mutex to
->>>>protect only the reference to the exec queue, getting and dropping each
->>>>mutex and then later getting the GPU timestamp, doesn't produce a
->>>>correct result: it introduces multiple opportunities for the task to be
->>>>scheduled out and thus wrecking havoc the deltas reported to userspace.
->>>>
->>>>Also, to better correlate the timestamp from the exec queues with the
->>>>GPU, disable preemption so they can be updated without allowing the task
->>>>to be scheduled out. We leave interrupts enabled as that shouldn't be
->>>>enough disturbance for the deltas to matter to userspace.
->>>
->>>Like I said in the past, this is not trivial to solve and I would 
->>>hate to add anything in the KMD to do so.
->>
->>I think the best we can do in the kernel side is to try to guarantee the
->>correlated counters are sampled together... And that is already very
->>good per my tests. Also, it'd not only be good from a testing
->>perspective, but for any userspace trying to make sense of the 2
->>counters.
->>
->>Note that this is not much different from how e.g. perf samples group
->>events:
->>
->>	The unit of scheduling in perf is not an individual event, but rather an
->>	event group, which may contain one or more events (potentially on
->>	different PMUs). The notion of an event group is useful for ensuring
->>	that a set of mathematically related events are all simultaneously
->>	measured for the same period of time. For example, the number of L1
->>	cache misses should not be larger than the number of L2 cache accesses.
->>	Otherwise, it may happen that the events get multiplexed and their
->>	measurements would no longer be comparable, making the analysis more
->>	difficult.
->>
->>See __perf_event_read() that will call pmu->read() on all sibling events
->>while disabling preemption:
->>
->>	perf_event_read()
->>	{
->>		...
->>		preempt_disable();
->>		event_cpu = __perf_event_read_cpu(event, event_cpu);
->>		...
->>		(void)smp_call_function_single(event_cpu, __perf_event_read, &data, 1);
->>		preempt_enable();
->>		...
->>	}
->>
->>so... at least there's prior art for that... for the same reason that
->>userspace should see the values sampled together.
->
->Well, I have used the preempt_disable/enable when fixing some selftest 
->(i915), but was not happy that there were still some rare failures. If 
->reducing error rates is the intention, then it's fine. In my mind, the 
->issue still exists and once in a while we would end up assessing such 
->a failure. Maybe, in addition, fixing up the IGTs like you suggest 
->below is a worthwhile option.
+Hi Suraj,
 
-for me this fix is not targeted at tests, even if it improves them a
-lot. It's more for consistent userspace behavior.
+kernel test robot noticed the following build errors:
 
->
->>
->>>
->>>For IGT, why not just take 4 samples for the measurement (separate 
->>>out the 2 counters)
->>>
->>>1. get gt timestamp in the first sample
->>>2. get run ticks in the second sample
->>>3. get run ticks in the third sample
->>>4. get gt timestamp in the fourth sample
->>>
->>>Rely on 1 and 4 for gt timestamp delta and on 2 and 3 for run 
->>>ticks delta.
->>
->>this won't fix it for the general case: you get rid of the > 100% case,
->>you make the < 100% much worse.
->
->yeah, that's quite possible.
->
->>
->>For a testing perspective I think the non-flaky solution is to stop
->>calculating percentages and rather check that the execution timestamp
->>recorded by the GPU very closely matches (minus gpu scheduling delays)
->>the one we got via fdinfo once the fence signals and we wait for the job
->>completion.
->
->Agree, we should change how we validate the counters in IGT.
+[auto build test ERROR on linus/master]
+[also build test ERROR on v6.13-rc3 next-20241220]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I have a wip patch to cleanup and submit to igt. I will submit it soon.
+url:    https://github.com/intel-lab-lkp/linux/commits/Suraj-Kandpal/drm-dp-Add-the-DPCD-register-required-for-Extended-wake-timeout/20241213-140525
+base:   linus/master
+patch link:    https://lore.kernel.org/r/20241213060317.2674290-3-suraj.kandpal%40intel.com
+patch subject: [PATCH 2/2] drm/i915/lttpr: Enable Extended Wake Timeout
+config: powerpc-randconfig-001-20241220 (https://download.01.org/0day-ci/archive/20241221/202412210826.fD0cAxev-lkp@intel.com/config)
+compiler: clang version 15.0.7 (https://github.com/llvm/llvm-project 8dfdcc7b7bf66834a761bd8de445840ef68e4d1a)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241221/202412210826.fD0cAxev-lkp@intel.com/reproduce)
 
-Lucas De Marchi
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412210826.fD0cAxev-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/display/intel_dp_link_training.c:148:48: error: initializer overrides prior initialization of this subobject [-Werror,-Winitializer-overrides]
+                           [DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] = 20,
+                                                                       ^~
+   drivers/gpu/drm/i915/display/intel_dp_link_training.c:146:48: note: previous initialization is here
+                           [DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] = 20,
+                                                                       ^~
+   1 error generated.
+
+
+vim +148 drivers/gpu/drm/i915/display/intel_dp_link_training.c
+
+   136	
+   137	void intel_dp_lttpr_wake_timeout_setup(struct intel_dp *intel_dp)
+   138	{
+   139		struct intel_display *display = to_intel_display(intel_dp);
+   140		u8 val = 1;
+   141		int ret;
+   142	
+   143		if (intel_dp_lttpr_transparent_mode_enabled(intel_dp)) {
+   144			static const u8 timeout_mapping[] = {
+   145				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_1_MS] = 1,
+   146				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] = 20,
+   147				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_40_MS] = 40,
+ > 148				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] = 20,
+   149				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_80_MS] = 80,
+   150				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_100_MS] = 100,
+   151			};
+   152	
+   153			ret = drm_dp_dpcd_readb(&intel_dp->aux,
+   154						DP_EXTENDED_DPRX_SLEEP_WAKE_TIMEOUT_REQUEST, &val);
+   155			if (ret != 1) {
+   156				drm_dbg_kms(display->drm,
+   157					    "Failed to read Extended sleep wake timeout request\n");
+   158				return;
+   159			}
+   160	
+   161			val = (val < sizeof(timeout_mapping) && timeout_mapping[val]) ?
+   162				timeout_mapping[val] : 1;
+   163	
+   164			drm_dp_dpcd_writeb(&intel_dp->aux, DP_EXTENDED_DPRX_SLEEP_WAKE_TIMEOUT_GRANT,
+   165					   DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_GRANTED);
+   166		} else {
+   167			ret = drm_dp_dpcd_readb(&intel_dp->aux,
+   168						DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT, &val);
+   169			if (ret != 1) {
+   170				drm_dbg_kms(display->drm,
+   171					    "Failed to read Extended sleep wake timeout request\n");
+   172				return;
+   173			}
+   174	
+   175			val = (val & DP_EXTENDED_WAKE_TIMEOUT_REQUEST_MASK) ?
+   176				(val & DP_EXTENDED_WAKE_TIMEOUT_REQUEST_MASK) * 10 : 1;
+   177	
+   178			drm_dp_dpcd_writeb(&intel_dp->aux, DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT,
+   179					   DP_EXTENDED_WAKE_TIMEOUT_GRANT);
+   180		}
+   181	}
+   182	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
