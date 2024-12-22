@@ -4,94 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CC51E77194
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jan 2025 18:11:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EBF0E77197
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jan 2025 18:11:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37A8C10E7A5;
-	Thu,  2 Jan 2025 18:11:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5980310E0B0;
+	Thu,  2 Jan 2025 18:11:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gl29Q2Gg";
+	dkim=fail reason="signature verification failed" (1024-bit key; secure) header.d=angband.pl header.i=@angband.pl header.b="q2P/pQ0A";
 	dkim-atps=neutral
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
- [209.85.128.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3DE110E077
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Dec 2024 13:08:32 +0000 (UTC)
-Received: by mail-wm1-f42.google.com with SMTP id
- 5b1f17b1804b1-436637e8c8dso63461585e9.1
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Dec 2024 05:08:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1735218451; x=1735823251; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=2xYN5a7hOoppgoAE3bkR8Zunji5zT+kUi/AFcDG3CeI=;
- b=Gl29Q2GgjeMXIuTlwwk7TXmaNjV4vgFNQwRa0nx+vXumJn0W2Xr4U2aRrdar6u5N9d
- lN+SpzfmvFWJYu02X28HwM5rmU9gAKaQkNZaBXashyDaSKR8WqThcfdXoOJ+R7Urtp5k
- WnQ+UsQvMjkHpqTtkdDJ23L/BxJNMJQXTlj5Z9fLrrGjhR2haGgHxF0MYr4cAS7gif5U
- jzVAVD3O5LmcLbAx7slq53CpxrBZD+dtC7IVjvCOHsAuH9duOYcYLEB2eusQnV/HL7nl
- ZpqmweDCCf6VRNrYI6kk96MHmvx5YDKXDQcvvtL6Mps0f8tcul4xN0dfzLyamn0a6/aB
- vNnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1735218451; x=1735823251;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=2xYN5a7hOoppgoAE3bkR8Zunji5zT+kUi/AFcDG3CeI=;
- b=BdZhr0FAJrPjYtOSsuqH8dOwcTf45+0UWx+fh0M8zJeY48C6jL/4Fbwbl5o/OS+hEw
- n3Yra/2KSl1O7Ret2GcZ49nBrg97flrvcT1ymcO4p1KT7phQ+O1UqbvJKx4uOKNeOf79
- sPGu7USp/V5cWf+bBImYrwGlWyLde5f8PXbc/lGJBK16R7/pKVuYmfrtoaw+OSHvOUMx
- cvZQdsFAkT4Rhl/cuqnoehoRjSDGmdtkwO+O5M1yUaQnXZj5UQS4iTbsm1Jd8YELei6T
- QbfmjlEmD+FZgCzp3AUHUYWmw5PBHnKWq+IPuhZBuaq9pzvuIihrmOOVxAHu6NkRLBiD
- fEjg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX+jp63ISZn808BCq/WhlTif8ADgnHl5B2ow+tIX5L0ZnR6UJPOHrcGZjkANs8Y4gDcRSGkzmYhyA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw+IquTap3u7rbf8/VufhIWWieiBCujWQIljyNpNT+0cuPEtL0W
- xNRdCrIL1Fi77H6vczkxagtT1WwtgrlBra5G9MgtODBia5UXSqKjX8ewy2ctJU8=
-X-Gm-Gg: ASbGncuIT0cvwTWla3pG5+c9etdw4dElYKMHvF5qpsTN5Ou2BcDItR3hPUXFdAWlsgf
- S3d95sjNvoSFl6M8qZtgCvCydwFo61W4Cnko1M/u/3/Dt38MNBhT1pu0TxbSVPXh2Qu2ztjLVMc
- o5ofeR06ZdKQGJt2VKJ/e8j5QjB1HVtnAAOgL+wXfiw9IvUSFWrdZ0H/BknBcL7m/AZgGKLzFNM
- Y7FbxTssrJ51XM1s82Cx7PfMK9JgU2ajicffLVsdmKMmg0mVQ8tSvo=
-X-Google-Smtp-Source: AGHT+IGvNY9x8znPid+jlSUugq+7Voy4lhkFD150p7UMeaZJEhSIyuzOQxvdWb877xCzmOFRcxCZRA==
-X-Received: by 2002:a05:600c:4f11:b0:435:9ed3:5698 with SMTP id
- 5b1f17b1804b1-43668b5e09bmr177464715e9.24.1735218451158; 
- Thu, 26 Dec 2024 05:07:31 -0800 (PST)
-Received: from linaro.org ([82.76.168.176]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4364a376846sm264591185e9.0.2024.12.26.05.07.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Dec 2024 05:07:29 -0800 (PST)
-Date: Thu, 26 Dec 2024 15:07:27 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org
-Subject: Re: [PATCH v2 1/4] drm/dp: Add helper to set LTTPRs in transparent
- mode
-Message-ID: <Z21VD82XCOVgVJUh@linaro.org>
-References: <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-0-d5906ed38b28@linaro.org>
- <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-1-d5906ed38b28@linaro.org>
- <Z1mk08SHEd5_vc99@hovoldconsulting.com>
+X-Greylist: delayed 2581 seconds by postgrey-1.36 at gabe;
+ Sun, 22 Dec 2024 12:48:24 UTC
+Received: from vega.angband.pl (vega.angband.pl
+ [IPv6:2001:bc8:1d90:444:dc00:ff:fe0d:3245])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8573210E1B0
+ for <intel-xe@lists.freedesktop.org>; Sun, 22 Dec 2024 12:48:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=angband.pl; 
+ s=vega;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Subject:To:From:Date:Sender:Reply-To:Cc:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=1MOmXSqJFcp0JBjj7YITqZSTRH+wf/hsWK1AzZyO9ZI=; b=q2P/pQ0ADQFATsY77B/9eHsPLF
+ 9BpEX+sbte0qGKiWu0XroqdAfzwgbz97TuDo/TQB0qeVRGV+BgUgJnYwm6nOG56Xv9F69sGjTJe7n
+ Q4P37kDyJ+yGAUQo4KpVOwCTb/fXqiQ5OyoXp0h9LZvdOTHFNAu64fhFWkpjdoWFNF10=;
+Received: from kilobyte by vega.angband.pl with local (Exim 4.96)
+ (envelope-from <kilobyte@angband.pl>) id 1tPKi0-000744-1X
+ for intel-xe@lists.freedesktop.org; Sun, 22 Dec 2024 13:05:20 +0100
+Date: Sun, 22 Dec 2024 13:05:20 +0100
+From: Adam Borowski <kilobyte@angband.pl>
+To: intel-xe@lists.freedesktop.org
+Subject: WARN: event xe_bo_move has unsafe dereference of argument 4
+Message-ID: <20241222120520.GA26952@angband.pl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Z1mk08SHEd5_vc99@hovoldconsulting.com>
-X-Mailman-Approved-At: Thu, 02 Jan 2025 18:11:10 +0000
+Content-Transfer-Encoding: 8bit
+X-Junkbait: aaron@angband.pl, zzyx@angband.pl
+X-SA-Exim-Connect-IP: <locally generated>
+X-SA-Exim-Mail-From: kilobyte@angband.pl
+X-SA-Exim-Scanned: No (on vega.angband.pl); SAEximRunCond expanded to false
+X-Mailman-Approved-At: Thu, 02 Jan 2025 18:11:42 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,124 +59,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 24-12-11 15:42:27, Johan Hovold wrote:
-> On Wed, Dec 11, 2024 at 03:04:12PM +0200, Abel Vesa wrote:
->  
-> > +/**
-> > + * drm_dp_lttpr_set_transparent_mode - set the LTTPR in transparent mode
-> > + * @aux: DisplayPort AUX channel
-> > + * @enable: Enable or disable transparent mode
-> > + *
-> > + * Returns 0 on success or a negative error code on failure.
-> > + */
-> > +int drm_dp_lttpr_set_transparent_mode(struct drm_dp_aux *aux, bool enable)
-> > +{
-> > +	u8 val = enable ? DP_PHY_REPEATER_MODE_TRANSPARENT :
-> > +			  DP_PHY_REPEATER_MODE_NON_TRANSPARENT;
-> > +	int ret = drm_dp_dpcd_writeb(aux, DP_PHY_REPEATER_MODE, val);
-> > +
-> > +	return ret == 1 ? 0 : ret;
-> 
-> This looks correct, but I had to go look at drm_dp_dpcd_writeb() to make
-> sure it never returns 0 (for short transfers).
+Hi!
+Got this warn:
 
-Will follow Dmitry's proposal here.
+[   15.500525] [ T1043] WARNING: CPU: 50 PID: 1043 at kernel/trace/trace_events.c:577 trace_event_raw_init+0xd9/0x450
+[   15.510768] [ T1043] Modules linked in: fjes(+) xe(+) cec drm_gpuvm drm_ttm_helper ttm drm_exec drm_suballoc_helper drm_buddy jc42 gpu_sched drm_display_helper sha256_ssse3 drm_kms_helper ee1004
+[   15.527938] [ T1043] CPU: 50 UID: 0 PID: 1043 Comm: (udev-worker) Not tainted 6.13.0-rc3-00228-g783d0c4ebb49 #1
+[   15.537913] [ T1043] Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./X399 Taichi, BIOS P4.01 05/02/2023
+[   15.548322] [ T1043] RIP: 0010:trace_event_raw_init+0xd9/0x450
+[   15.554055] [ T1043] Code: a3 cf 0f 83 4a 03 00 00 e8 e4 e0 ff ff 84 c0 74 10 8b 0c 24 48 c7 c0 fe ff ff ff 48 d3 c0 49 21 c5 4d 85 ed 0f 84 53 ff ff ff <0f> 0b ba 01 00 00 00 41 f6 c5 01 0f 85 4f 1a d5 ff 66 0f 1f 44 00
+[   15.573470] [ T1043] RSP: 0018:ffffa6f818abfbe0 EFLAGS: 00010206
+[   15.579379] [ T1043] RAX: ffffffffffffffdf RBX: ffffffffc0c088b2 RCX: 0000000000000005
+[   15.587190] [ T1043] RDX: 0000000000000002 RSI: 0000000000000001 RDI: ffffffffc0c088a7
+[   15.595000] [ T1043] RBP: ffffffffc0c087c0 R08: 00000000000000de R09: 00000000000000de
+[   15.602811] [ T1043] R10: 0000000000000000 R11: ffffffffc0c088b2 R12: ffffffffc0c098e0
+[   15.610620] [ T1043] R13: 0000000000000018 R14: 0000000000000000 R15: 0000000000000039
+[   15.618431] [ T1043] FS:  00007f1ce6fd88c0(0000) GS:ffff911a7ea80000(0000) knlGS:0000000000000000
+[   15.627193] [ T1043] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   15.633621] [ T1043] CR2: 00007f1ce61ff25c CR3: 000000209a1e7000 CR4: 00000000003506f0
+[   15.641433] [ T1043] Call Trace:
+[   15.644566] [ T1043]  <TASK>
+[   15.647355] [ T1043]  ? trace_event_raw_init+0xd9/0x450
+[   15.652484] [ T1043]  ? __warn.cold+0x93/0xf3
+[   15.656749] [ T1043]  ? trace_event_raw_init+0xd9/0x450
+[   15.661877] [ T1043]  ? report_bug+0xe2/0x170
+[   15.666141] [ T1043]  ? handle_bug+0x4f/0x90
+[   15.670316] [ T1043]  ? exc_invalid_op+0x13/0x60
+[   15.674836] [ T1043]  ? asm_exc_invalid_op+0x16/0x20
+[   15.679706] [ T1043]  ? trace_event_raw_init+0xd9/0x450
+[   15.684833] [ T1043]  event_init+0x28/0x60
+[   15.688838] [ T1043]  trace_module_notify+0x186/0x230
+[   15.693794] [ T1043]  notifier_call_chain+0x54/0xc0
+[   15.698576] [ T1043]  blocking_notifier_call_chain_robust+0x53/0x90
+[   15.704743] [ T1043]  load_module+0x1f21/0x2240
+[   15.709182] [ T1043]  ? init_module_from_file+0x75/0xa0
+[   15.714310] [ T1043]  init_module_from_file+0x75/0xa0
+[   15.719267] [ T1043]  idempotent_init_module+0xee/0x2c0
+[   15.724395] [ T1043]  __x64_sys_finit_module+0x61/0xc0
+[   15.729438] [ T1043]  do_syscall_64+0x47/0x130
+[   15.733786] [ T1043]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
+[   15.739522] [ T1043] RIP: 0033:0x7f1ce718d5b9
+[   15.743782] [ T1043] Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 37 88 0d 00 f7 d8 64 89 01 48
+[   15.763196] [ T1043] RSP: 002b:00007ffc5ac119b8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+[   15.771441] [ T1043] RAX: ffffffffffffffda RBX: 000055ae066edd80 RCX: 00007f1ce718d5b9
+[   15.779251] [ T1043] RDX: 0000000000000000 RSI: 00007f1ce6fd0541 RDI: 000000000000001b
+[   15.787061] [ T1043] RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000000
+[   15.794871] [ T1043] R10: 00007f1ce7266ac0 R11: 0000000000000246 R12: 00007f1ce6fd0541
+[   15.802681] [ T1043] R13: 0000000000020000 R14: 000055ae066ed440 R15: 0000000000000000
+[   15.810493] [ T1043]  </TASK>
+[   15.813369] [ T1043] ---[ end trace 0000000000000000 ]---
+[   15.818670] [ T1043] event xe_bo_move has unsafe dereference of argument 4
+[   15.825448] [ T1043] print_fmt: "move_lacks_source:%s, migrate object %p [size %zu] from %s to %s device_id:%s", REC->move_lacks_source ? "yes" : "no", REC->bo, REC->size, xe_mem_type_to_name[REC->old_placement], xe_mem_type_to_name[REC->new_placement], __get_str(device_id)
 
-	if (ret < 0)
-        	return ret;
+I see recent fixes to dereference checks in the event machinery from Dec 16
+thus you probably already noticed this and have a fix on the way -- but
+reporting just in case.
 
-	return (ret == 1) ? 0 : -EIO;
 
-
-> 
-> > +}
-> > +EXPORT_SYMBOL(drm_dp_lttpr_set_transparent_mode);
-> 
-> This appears to be what the driver currently uses, but why not
-> EXPORT_SYMBOL_GPL?
-> 
-> > +
-> > +/**
-> > + * drm_dp_lttpr_init - init LTTPR transparency mode according to DP standard
-> > + *
-> > + * @aux: DisplayPort AUX channel
-> > + * @lttpr_count: Number of LTTPRs
-> > + *
-> > + * Returns 0 on success or a negative error code on failure.
-> > + */
-> > +int drm_dp_lttpr_init(struct drm_dp_aux *aux, int lttpr_count)
-> > +{
-> > +	if (!lttpr_count)
-> > +		return 0;
-> > +
-> > +	/*
-> > +	 * See DP Standard v2.0 3.6.6.1 about the explicit disabling of
-> > +	 * non-transparent mode and the disable->enable non-transparent mode
-> > +	 * sequence.
-> > +	 */
-> > +	drm_dp_lttpr_set_transparent_mode(aux, true);
-> 
-> Error handling?
-
-Yes, this makes sense. But other than throwing an error I don't think
-there is much to be done. I'll add an drm_err here just in case. 
-
-> 
-> > +
-> > +	if (lttpr_count > 0 && !drm_dp_lttpr_set_transparent_mode(aux, false))
-> 
-> No need to check lttpr_count again here.
-
-So the logic behind lttpr_count and this transparency mode changing, as
-specified in the DP standard, is as follows:
-
-- If there are 0 LTTPRs counted, then nothing to be done, otherwise set to
-transparent mode.
-
-- Then, if there are between 0 and 8 LTTPRs counted, set non-transparent
-mode successfully.
-
-- Otherwise, rollback to transparent mode.
-
-This last rollback might result in two transparent mode settings without
-a non-transparent one in between, but AFAIU, that is OK. Making sure this
-doesn't happen would just make the implementation more ugly without any
-benefit, IMO.
-
-> 
-> > +		return 0;
-> 
-> I'd check for errors instead of success here and do the rollback before
-> returning -EINVAL.
-> 
-
-Yes, I think it would be more cleaner. Will do that.
-
-> > +
-> > +	/*
-> > +	 * Roll-back to tranparent mode if setting non-tranparent mode failed or
-> > +	 * the number of LTTPRs is invalid
-> > +	 */
-> > +	drm_dp_lttpr_set_transparent_mode(aux, true);
-> > +
-> > +	return -EINVAL;
-> 
-> And return 0 explicitly here.
-
-Yes. Will do that.
-
-> 
-> > +}
-> > +EXPORT_SYMBOL(drm_dp_lttpr_init);
-> 
-> In any case this works well and is needed for external display on the
-> Lenovo ThinkPad T14s, while not breaking the X13s which does not need
-> it:
-> 
-> Tested-by: Johan Hovold <johan+linaro@kernel.org>
-> 
-> Johan
-
-Thanks for reviewing and testing!
-Abel
-
+Meow!
+-- 
+⢀⣴⠾⠻⢶⣦⠀
+⣾⠁⢠⠒⠀⣿⡁ The moon landing was staged, but the director insisted they
+⢿⡄⠘⠷⠚⠋⠀ shoot on location -- so they did.
+⠈⠳⣄⠀⠀⠀⠀
