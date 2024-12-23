@@ -4,182 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0114E7718D
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Dec 2024 10:26:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82543E7718E
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Dec 2024 10:31:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 873FE10E494;
-	Mon, 23 Dec 2024 10:26:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE3B10E4E1;
+	Mon, 23 Dec 2024 10:31:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d7Jw/J7b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J9rjyaW7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9125F10E48A
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Dec 2024 10:26:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D0BF10E4BD;
+ Mon, 23 Dec 2024 10:31:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734949596; x=1766485596;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=ovmZEf+wYocYrQb3CbVI+is6ZbfQ1YoWXOh/ijNkVRc=;
- b=d7Jw/J7bKLC2gZ/vkN3ZE+NozAOul5nNk6p5iuvZJoVkYGxEDPjMEZOK
- JXg3UdU6Q8dVojdf69gk7DTaAn/EArIwm0xKwq0UiHTsbF91m2JiVGTkm
- 7m2W3aL0Vm4oFx2mkJud0kgW2fEbsmRqv0cFSUAyC6Dw6p0VK11LdsR3m
- ljhzD/8ZcthDyVli8rsmQcXfxf1DLYH61SR9NxHysm/Ouox0vBc1yKTv0
- dowyurUgvYGuPWzxBc3wvu6b9OuNAL4/kBwnzYXRpMZMB6ecDjuW8V5M6
- v9PySTWyK+2ncC85RCvv5hVTMtLqq2MSw7LHJG1NlPw2WTawGHMFL5I1x w==;
-X-CSE-ConnectionGUID: rlphAiaaSh29rMGwBsuPog==
-X-CSE-MsgGUID: 3wXbxe1ESeu5AE1Kb/Dptg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11294"; a="46418056"
-X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; d="scan'208";a="46418056"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2024 02:26:34 -0800
-X-CSE-ConnectionGUID: iOy6aExKSBa7bVpax4UJYQ==
-X-CSE-MsgGUID: Wk930xeTRjWBD8IfxHVABg==
+ t=1734949888; x=1766485888;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=yuQIyji4edMNjkCnc36ai5gC3HyCrvCxQ6zuLgaS9xA=;
+ b=J9rjyaW7dmbyTHbSzYPhN78d01zqq2qOHHXUfLgw9AysClMvbccELmrh
+ /Y2B6BrJNzTZ6KZRvomxEqj4tN19B9SeG5rDKRPZesth1lgJpmsJWAp9d
+ gRC+mVuc/9baa8XQsvd2bcm5FkRFVI67CLm9TeE4yuGjF8tdL/d7SUtdK
+ YMGzZFenD/TfP1Q/DjM5SEQcnuDLoGBqik5ldJqUETf0Z5Lv9A9fu8mZ/
+ rXrPM6mtoEwyxzlWIGxDk0zXcDkM1CyK9YlWMX9g5gCO4WADx1jdI9+wN
+ QkCxPP1NLeOyqH4zz4ZYXlDLZ4pDRERiAUJxstkn14N1qxjL9YP4mthKX A==;
+X-CSE-ConnectionGUID: akjaMYAWSG+ba2nLXhG7Nw==
+X-CSE-MsgGUID: mbi3UR7EQdWazhSxRMcDVA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11294"; a="35549739"
+X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; d="scan'208";a="35549739"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2024 02:31:28 -0800
+X-CSE-ConnectionGUID: Jag1zyvASHizmHnqF0ja4A==
+X-CSE-MsgGUID: f+hNblITSDeE0JY3OOX5aw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; d="scan'208";a="98986787"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Dec 2024 02:26:33 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Mon, 23 Dec 2024 02:26:33 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Mon, 23 Dec 2024 02:26:33 -0800
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.43) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 23 Dec 2024 02:26:32 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BRldyLAEA6aCP8zcIp5KrQpjAHvA04ZO0PQp2FGCAYPGituxsqM1ieANWPdZqh4tVn4el7blpuoFunGnWpQZoVkVpnMh/wnTpdVHC9fFtCZBF06BUoxv8Fwwmv+j7bnDq/VsCLOYEXheeVdYwNZsGKvha9nUclFwb2fmoDI6qzSiPuUWGvXenCzuzA8JwqmJhSdnY55mle40H+laDzG7IDW58gU/URaFgF0eRe0ggvtCUIqO2PZbdLVr42s1DGoOpsq8eVAiUk/bDIbxZ2qpBTeL0bUxtFz3uXSQo5TtPgret34HVt8A2LNgO8snfvvlpDt7PtOdle2UmuYso4Q1Pw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cd+LuTXuOZ+UjaTIdzW12/Q+vbkEciSIJ2FDAY2mIOw=;
- b=SqK00zLroPnxul6ecp+z7joMn30lfKdJcE61oE+BFtpBhsgS+XcVxsaiBy0TTCr0qG0deH5qX2gCkLn4N8SRjc5jv+UBpzzs3eDeYbwucc2QfyDJdBacjoxnFux3kSnJdX4VZxcxTtQAt9LaqELT2RNI70/EFLYkiJy4sPKeVx/HnGVnRSGAsufacEuO/gvqk/gtCQTNB+34zrqDYgSnh7D9g170Bqn2dn8HMtWa7oVf671v3fnPdwHh7easnErAUQiz17e9CbLutKCw9VadNqXpp5MwYWaPwFv+jXaKEZ+ia4dgZVS3xC90yuT1oJzh5AIlvJ7e+IDG+A7bmsxdaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MW4PR11MB7056.namprd11.prod.outlook.com (2603:10b6:303:21a::12)
- by MN0PR11MB6205.namprd11.prod.outlook.com (2603:10b6:208:3c7::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.20; Mon, 23 Dec
- 2024 10:26:26 +0000
-Received: from MW4PR11MB7056.namprd11.prod.outlook.com
- ([fe80::c4d8:5a0b:cf67:99c5]) by MW4PR11MB7056.namprd11.prod.outlook.com
- ([fe80::c4d8:5a0b:cf67:99c5%5]) with mapi id 15.20.8272.013; Mon, 23 Dec 2024
- 10:26:26 +0000
-Message-ID: <b6c02a18-70a4-49eb-8d47-a688961b2211@intel.com>
-Date: Mon, 23 Dec 2024 15:56:21 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] drm/xe: Print vm parameter in xe_vma trace
-To: Oak Zeng <oak.zeng@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <Thomas.Hellstrom@linux.intel.com>, <rodrigo.vivi@intel.com>
-References: <20241218164833.2364049-1-oak.zeng@intel.com>
- <20241218164833.2364049-4-oak.zeng@intel.com>
-Content-Language: en-US
-From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20241218164833.2364049-4-oak.zeng@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0075.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:9a::15) To MW4PR11MB7056.namprd11.prod.outlook.com
- (2603:10b6:303:21a::12)
+X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; d="scan'208";a="99693878"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO [10.245.246.74])
+ ([10.245.246.74])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2024 02:31:25 -0800
+Message-ID: <b3145cc1cb5470e00070136add75159e07bbad3a.camel@linux.intel.com>
+Subject: Re: [PATCH 13/26] RFC drm/xe/eudebug: userptr vm pread/pwrite
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Matthew Brost
+ <matthew.brost@intel.com>,  Andrzej Hajda <andrzej.hajda@intel.com>,
+ Dominik Grzegorzek <dominik.grzegorzek@intel.com>, Christian
+ =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  Simona Vetter <simona@ffwll.ch>
+Date: Mon, 23 Dec 2024 11:31:23 +0100
+In-Reply-To: <20241220113108.2386842-1-mika.kuoppala@linux.intel.com>
+References: <20241209133318.1806472-15-mika.kuoppala@linux.intel.com>
+ <20241220113108.2386842-1-mika.kuoppala@linux.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|MN0PR11MB6205:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0d93df97-1c7b-4caa-79f9-08dd233c41a3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?M3c1c1hBY1J0aDl1aW4rcG5QWVR6U1VUWC96cXRzUmZTWk9xQzFoN0t3T3Ev?=
- =?utf-8?B?bjBJN1p2dW16bU5Ba0I2ZlRFaENFWllVMVhxcUY1dzhMRytnYlJ6SG5jem5C?=
- =?utf-8?B?UGxPWVFzcUNrNFVBWTVGWXRSUyt0SXNrbUUwZzFOb3EycE1zZjJiRTNKcWcy?=
- =?utf-8?B?R0duQlBhR1FuZ01ESk80blVVOGtueDBhcXJiSkNBbG0rNmpBcXM0SXZIOFFD?=
- =?utf-8?B?MkRpK3NQUUU4SVZLc1BxL2UybWZrd0RCZDM0eTI5OTMxYnBJNWJjL2ZyVGxt?=
- =?utf-8?B?ZStaWmx5bU5PVWozN2dkaUp0YmFQVVVoSUQwQkZMclNqS0V5OWVJTUh4QTVm?=
- =?utf-8?B?eVpZb2puWXp4YUZieHMzeUlsSUJON0NnbHgxM3FPMzNUdHZjQTVnOFhpb0dz?=
- =?utf-8?B?UDd4ZHJEYVZ3TW1uejVtNitvTkkvUkIyRTNveS9yUjJGaS9uTjIzZUdlMmlz?=
- =?utf-8?B?QkJyNC9YaVpJQnJFeUhydjRNR3NuOFJBUEllbkhaY1NsSnRHbnVya3NXNE00?=
- =?utf-8?B?NytRMVBzYXR3NTB6T0hhRnQrekNVRUdlcXdoM0g3b2dHYnNYYTQ5aXVvUCtp?=
- =?utf-8?B?eWEwSDhtNFc0c0pjQzZ6eG91dUliY2FIcENGMit3MHFYa0tVUXg0Q3pKVjNi?=
- =?utf-8?B?TkVXbU1NTmQ0bXhiWmZuTmVjajBqdFVyOWVzU3VtdkYxcXNLRythSDJSSEJn?=
- =?utf-8?B?bS9maFJWcVpiZmdZQWpJdEdBOUpwdXhzaFdPYlNPeVpxNFhja3A5VU5yOENr?=
- =?utf-8?B?a2UzSElML0JUbkliTDlMeDFDL1hNUStmeUdSbnZwT2hpOTExVEgxbGJiQkVL?=
- =?utf-8?B?N2tFVmZ0eENzQThjQjIwV1RzNjhlZ092Ym9lbHNrTXhtQ25temVNbjFlazZF?=
- =?utf-8?B?V2w5eEJJQkZ3eThncXlUUTJBUmF0NElOL05kS3BzYUoyTk1BeGM2ZHludXFa?=
- =?utf-8?B?TzhIaE95YjhqZGd2OWwva3VOMC93MjZPaStWTkhmTzEwUGhkUVBoV1Bpd1hK?=
- =?utf-8?B?Ri8wWXlPN1RDeXYrb2UxNW5RNGlUWncyelVDMUhEWFMxcTd0UlZ5VTRGMzNy?=
- =?utf-8?B?aVZtMVExREwvNXVsY2h1UzdxTkdvNjA0U0RFT2xOZXhVaUgyU0d5L05rT3dy?=
- =?utf-8?B?c0tqK3VrSzZIRGFpb21jRVZzeU1OUncvYVFpaXF2Q0NJL3hYZ1VYdnJxZkdr?=
- =?utf-8?B?dGFhMkF1NUZLcFRTdW5VWDVLNDlKd2JQK2lOUHEybjZRZzNFdEFoZE12Yk4y?=
- =?utf-8?B?N2l0Qm54QmdCbWV3TTdiZ2x4VUtNQ0o5czlERThLTTdZeGgvNmw5NzdjNUZh?=
- =?utf-8?B?U0QwRlF5eVRqOXA3MDBVN2drQlo3NE5WaEFRNnphNnBJUU9rUVZhdHlrVGp6?=
- =?utf-8?B?WFpmOXAzQndRaDFOOWtBbnpzZ1ptSmczKzJ2a1ZmSkNyUE5rNTEzUlVnZmVF?=
- =?utf-8?B?dndTWWN6eTlTS1FPc2ZSelpHVC9jaTNteHdRT2ZXbTVBRVpIcFVORGNwS0NP?=
- =?utf-8?B?UzV1dVV2eGVEL2V6M3BNeVpuYXd0bXdZMEtSTmhvVVM3N2M4YUpJK0FEczE3?=
- =?utf-8?B?T2VidEM3MXgwKzBQOUF1anQ4c0pUVVljYm5XRmpTb2JxeStjOXIvVVZxb0RO?=
- =?utf-8?B?UmE4ZmRHVTMrSHZla05mN1RCaGRKU2kvSjBWZ0pWVzZ1WTdSZ1VQZi84Y1BG?=
- =?utf-8?B?V0VnWHVwbkNDclp5d3E4RWIvV3M1dHFqem1MN0grcnB1TW9yZ1VROFBOSUZr?=
- =?utf-8?B?Mll4aXNvdXp0dGdBRUgxREhWY2xxZ0kvZS9KNHBPNTBqTmw0NGFOSVdVV2tH?=
- =?utf-8?B?WDhwWkN4ZjZuczUySXVNOHlPbjJIeWVrSTNEdHlJaE9mc3UvVHo4b3E3TVBm?=
- =?utf-8?Q?mcqdlw7JZhXOL?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB7056.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RklrdW5iK0JzUHFrNURvVEIydm1NOUdsMEJWQmVxdDF1S28vSmk5bDlsdmI2?=
- =?utf-8?B?UHVsdTVWTXdpWnpBWlBmKys3YUdaNVpId2t3aDBuTUpXNkFodXZub3NyaGRD?=
- =?utf-8?B?NTl4djlZdm50dWkzLzcyUm10amN5eFdhQWxKQmZodjcvWnZ0UlBhanprNFdK?=
- =?utf-8?B?NS80ZmNOUHMwVEhuc3NkYTY3c0VGd0plcUJGS3ErWXF3UVBkVWhsUnFSNkk0?=
- =?utf-8?B?VXM4TCszY1c3aEFBUXluc2FoRHFSL0hHNGl0YjYyZmlYeEdYTittRW54V1h2?=
- =?utf-8?B?WHpRaXV3L01PZFJwY0p0aWg5SXlJbHYxMHc5c0NIMVNSa0pwSndxeWFyb0NV?=
- =?utf-8?B?THpWMGZ0dDZuU2ZCU2VYeDltWjhNQ2d0dExRdW4zRzg4dGF1OTlRMHYxbENh?=
- =?utf-8?B?Z1hzTDZOU3FGcVd3Uk03ZU5yWmNzQk9lNkpEUzFybENIRnJNTTlrTG5PRkg2?=
- =?utf-8?B?V1czV3Roek1KYWs0WTV0RnlFOW1QbEtsOXVubUdycy8vWEI5Y1FCb285NzU2?=
- =?utf-8?B?ZDljN3I2U3hERm4xQmlIZExudzhpTVVkdVFEQmJSektTWmdHaWE2L0RSZkNV?=
- =?utf-8?B?U3lZWkd0SElqaWQrYVZYTkZydk1vaXhxV1AweFdBR1BJZTJiYjA2OWZTMHJi?=
- =?utf-8?B?TlB0ODZaUmJLNHV3ZHhRMmRTMTRrWlRYc25KSjZBcmtva0o0VjBnTnZpVElJ?=
- =?utf-8?B?L29rdzkvYzFXLzRTcHQ0NlVocHI5VHd4V1krelBlREE3UWJQdGtnUHBmMDlj?=
- =?utf-8?B?UEZkdFYzUDJ5V2szQ0FYWW1NeGtTWHlEYWtMUmtkNWlSazMxbFZGa3ZwUkh5?=
- =?utf-8?B?Vm9jbVFlWmNNYUVjT1ZNYjFHalZDWmdtQWJqL0lDU1laWWtsZEplTjlyRjQw?=
- =?utf-8?B?aWtCaHZNUWZFL3VRSXJMdi8yMXFCRktnU3NtaDRGMVBiRDRVSzNoeXlQMmRs?=
- =?utf-8?B?bi9kQktOOTg2a2xPRUpObUx5d3pOZ3Z0dGQvZjJreGE5U3F4ZUZHVzdvNHZn?=
- =?utf-8?B?SjA2RFhZZStlbEtLRlgvUS9VMm9CSjg1RlM5c2FnZGJKS1k3bkZ6aTZWTFJj?=
- =?utf-8?B?TDlRclVuWFRlTENtR1N5SHlONEdHUHgrMmdlZkdHeW01dytHTFRUYXEvN3hi?=
- =?utf-8?B?bG9sSmNnRzZZdFpWVUNsVkEyeGJYQXRCZzA3OWxZejdBL0R5NzMrNkRDSHFu?=
- =?utf-8?B?TDhXR2I4MXRISUpzRFoxOENDWlNVMVV2RlI3YkR3SXkya0RHRnBMSU92MFg4?=
- =?utf-8?B?VUo4UE05VVpyK0QrZ2lmYVR1OXdnSEwyR1o4di9xYU14dk9Xa2JpdHcrK0V3?=
- =?utf-8?B?cWNNbDlyZVJCU3BCWDBNVTRWWnJZbnprN0RIRlVidGdaWC9kZU9GS09ZMC9i?=
- =?utf-8?B?bDVyL0pZTXVQcHpndmRzVDhzeDN1QWdTYXUwenV6Qm1ZVEJDcU1GNWJPZ3Fm?=
- =?utf-8?B?aWR3TGVWWldjSmFEckQ1VitvS2RSOWR6ZHVyTmFEU1VMQzFxWUpDRkc3dzU0?=
- =?utf-8?B?dy8xM29BeFBNQkZIcjVpVVdKYkNTcU1mamNhbVdMbFZONXprUzBXSVBxb1JN?=
- =?utf-8?B?K2N2aUNCWTMwYStjWEU4NXFZeHNtbGt1TDlaNnZqMHFsWnU3OHRWTWp5SGkr?=
- =?utf-8?B?TUpZam5QOVM0V29BMGxBSCtEV3lNYityTWhSOGhHTEJMUVBaeURaTTF5aml1?=
- =?utf-8?B?YUdVWXhDYXdhU1FWelNQRDdoSDBka1c2UVNqWEE0Z2k5YzNaOWVIVUFrMmdl?=
- =?utf-8?B?d3g2U2prNEJ3elRxL21LRjA1UkIzRExmL0h1T0YrZzk5Sk96L0VSaHNoUWwy?=
- =?utf-8?B?bk1YSlpTcE91cVNBcXJWMTNlYndMbWxMV3h5Z3Yrd1lUd3FvM3lEOFFWZ2hL?=
- =?utf-8?B?Q1J5VGFyU0pzbG4wZ0pRRFkwdUVxbEpKMUxRUm15UzFhT0xGUStBNjVzY2pt?=
- =?utf-8?B?L3VPTFpPVWZ0S2VDd0JTcWI0MjdVaFp3RkV0MHpDNFM5WThKUlBrNDErNzBj?=
- =?utf-8?B?OVlFNEFKTnIwUmZ0OEMvRzB1R1FvWVo2ZlhyTkdJdGNFaHdHc0RuSGNqU0tH?=
- =?utf-8?B?QUpiK0ZlVlNhbTZNZWU0WWpOdHYzMnF5QlJXRTBYL25ERytXbGtWWHhzZTBC?=
- =?utf-8?B?d2JVeURad0JoVFRBUWJjSEh0aUdxR20zNW4yVm9Tays2MWV6QlFwSlFPaTVL?=
- =?utf-8?Q?vbcz6t8V3wAytRPlfmeZ4KM=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0d93df97-1c7b-4caa-79f9-08dd233c41a3
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7056.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2024 10:26:26.5563 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ebGhNomPJz4eIEqzrOaHp6ABS94jNFz6XZJVMBVXMwVoOCiuU4uEUf4wv1AUZUGceiKTRBR2ravGSnRsc7CXs/dPVgY1T7uc6rxe+EYQnSw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6205
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,51 +75,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 18-12-2024 22:18, Oak Zeng wrote:
-> Print the vm that the vma belongs to in the vma trace.
-> This is useful to correlate VMA operations to the VM.
-> 
-> Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+On Fri, 2024-12-20 at 13:31 +0200, Mika Kuoppala wrote:
+> Implement debugger vm access for userptrs.
+>=20
+> When bind is done, take ref to current task so that
+> we know from which vm the address was bound. Then during
+> debugger pread/pwrite we use this target task as
+> parameter to access the debuggee vm with access_process_vm().
+>=20
+> This is based on suggestions from Thomas, Joonas and Simona.
+>=20
+> v2: need to add offset into vma (Dominik)
+>=20
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_trace_bo.h | 7 +++++--
->   1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
-> index a46f7cfd92c6f..ce4d0d7e81017 100644
-> --- a/drivers/gpu/drm/xe/xe_trace_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_trace_bo.h
-> @@ -92,6 +92,7 @@ DECLARE_EVENT_CLASS(xe_vma,
->   		    TP_STRUCT__entry(
->   			     __string(dev, __dev_name_vma(vma))
->   			     __field(struct xe_vma *, vma)
-> +			     __field(struct xe_vm *, vm)
->   			     __field(u32, asid)
->   			     __field(u64, start)
->   			     __field(u64, end)
-> @@ -101,14 +102,16 @@ DECLARE_EVENT_CLASS(xe_vma,
->   		    TP_fast_assign(
->   			   __assign_str(dev);
->   			   __entry->vma = vma;
-> +			   __entry->vm = xe_vma_vm(vma);
->   			   __entry->asid = xe_vma_vm(vma)->usm.asid;
->   			   __entry->start = xe_vma_start(vma);
->   			   __entry->end = xe_vma_end(vma) - 1;
->   			   __entry->ptr = xe_vma_userptr(vma);
->   			   ),
->   
-> -		    TP_printk("dev=%s, vma=%p, asid=0x%05x, start=0x%012llx, end=0x%012llx, userptr=0x%012llx,",
-> -			      __get_str(dev), __entry->vma, __entry->asid, __entry->start,
-> +		    TP_printk("dev=%s, vma=%p, vm=%p, asid=0x%05x, start=0x%012llx, end=0x%012llx, userptr=0x%012llx",
-> +			      __get_str(dev), __entry->vma, __entry->vm,
-> +			      __entry->asid, __entry->start,
+> =C2=A0drivers/gpu/drm/xe/xe_eudebug.c=C2=A0 | 13 +++++++++++++
+> =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 4 ++++
+> =C2=A0drivers/gpu/drm/xe/xe_vm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 28=
+ +++++++++++++++++++++++++++-
+> =C2=A0drivers/gpu/drm/xe/xe_vm_types.h |=C2=A0 6 ++++++
+> =C2=A04 files changed, 50 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_eudebug.c
+> b/drivers/gpu/drm/xe/xe_eudebug.c
+> index 9d87df75348b..8b29192ab110 100644
+> --- a/drivers/gpu/drm/xe/xe_eudebug.c
+> +++ b/drivers/gpu/drm/xe/xe_eudebug.c
+> @@ -3074,6 +3074,19 @@ static int xe_eudebug_vma_access(struct xe_vma
+> *vma, u64 offset_in_vma,
 
-Looks good.
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+AFAICT all across the core mm code, unsigned long is used for mm
+offsets, rather than u64, which we use for gpu- and physical offsets.
 
->   			      __entry->end, __entry->ptr)
->   )
->   
+
+> =C2=A0		xe_bo_put(bo);
+> =C2=A0
+> =C2=A0		return ret;
+> +	} else if (xe_vma_is_userptr(vma)) {
+> +		struct xe_userptr *userptr =3D &to_userptr_vma(vma)-
+> >userptr;
+> +
+> +		/*
+> +		 * XXX: access_remote_vm() would fit as userptr
+> notifier has
+> +		 * mm ref so we would not need to carry task ref at
+> all.
+> +		 * But access_remote_vm is not exported.
+> access_process_vm()
+> +		 * is exported so use it instead.
+> +		 */
+
+Could we add a follow-up patch that exports access_remote_vm() and
+changes this code to use access_remote_vm() instead?
+
+
+
+> +		return access_process_vm(userptr->eudebug.task,
+> +					 xe_vma_userptr(vma) +
+> offset_in_vma,
+> +					 buf, bytes,
+> +					 write ? FOLL_WRITE : 0);
+> =C2=A0	}
+> =C2=A0
+> =C2=A0	return -EINVAL;
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 1cb21325d8dd..235ae2db5188 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -999,6 +999,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm
+> *vm,
+> =C2=A0			}
+> =C2=A0
+> =C2=A0			userptr->notifier_seq =3D LONG_MAX;
+> +
+> +			xe_eudebug_track_userptr_task(userptr);
+> =C2=A0		}
+> =C2=A0
+> =C2=A0		xe_vm_get(vm);
+> @@ -1023,6 +1025,8 @@ static void xe_vma_destroy_late(struct xe_vma
+> *vma)
+> =C2=A0		if (userptr->sg)
+> =C2=A0			xe_hmm_userptr_free_sg(uvma);
+> =C2=A0
+> +		xe_eudebug_untrack_userptr_task(userptr);
+> +
+> =C2=A0		/*
+> =C2=A0		 * Since userptr pages are not pinned, we can't
+> remove
+> =C2=A0		 * the notifer until we're sure the GPU is not
+> accessing
+> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+> index 23adb7442881..4334cf2b0d9d 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.h
+> +++ b/drivers/gpu/drm/xe/xe_vm.h
+> @@ -274,9 +274,35 @@ static inline void vm_dbg(const struct
+> drm_device *dev,
+> =C2=A0			=C2=A0 const char *format, ...)
+> =C2=A0{ /* noop */ }
+> =C2=A0#endif
+> -#endif
+> =C2=A0
+> =C2=A0struct xe_vm_snapshot *xe_vm_snapshot_capture(struct xe_vm *vm);
+> =C2=A0void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap);
+> =C2=A0void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct
+> drm_printer *p);
+> =C2=A0void xe_vm_snapshot_free(struct xe_vm_snapshot *snap);
+> +
+> +#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
+> +static inline void xe_eudebug_track_userptr_task(struct xe_userptr
+> *userptr)
+> +{
+> +	/*
+> +	 * We could use the mm which is on notifier. But
+> +	 * the access_remote_vm() is not exported. Thus
+> +	 * we get reference to task for access_process_vm()
+> +	 */
+> +	userptr->eudebug.task =3D get_task_struct(current);
+> +}
+> +
+> +static inline void xe_eudebug_untrack_userptr_task(struct xe_userptr
+> *userptr)
+> +{
+> +	put_task_struct(userptr->eudebug.task);
+> +}
+> +#else
+> +static inline void xe_eudebug_track_userptr_task(struct xe_userptr
+> *userptr)
+> +{
+> +}
+> +
+> +static inline void xe_eudebug_untrack_userptr_task(struct xe_userptr
+> *userptr)
+> +{
+> +}
+> +#endif /* CONFIG_DRM_XE_EUDEBUG */
+> +
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
+> b/drivers/gpu/drm/xe/xe_vm_types.h
+> index 557b047ebdd7..26176ccbcbbc 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -68,6 +68,12 @@ struct xe_userptr {
+> =C2=A0#if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
+> =C2=A0	u32 divisor;
+> =C2=A0#endif
+> +
+> +#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
+> +	struct {
+> +		struct task_struct *task;
+> +	} eudebug;
+> +#endif
+> =C2=A0};
+> =C2=A0
+> =C2=A0struct xe_vma {
+
+Otherwise LGTM.
+Thanks,
+Thomas
+
 
