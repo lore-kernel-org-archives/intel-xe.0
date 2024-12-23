@@ -4,63 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82543E7718E
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Dec 2024 10:31:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ED4AE7718B
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Dec 2024 13:43:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE3B10E4E1;
-	Mon, 23 Dec 2024 10:31:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3606310E328;
+	Mon, 23 Dec 2024 13:43:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J9rjyaW7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sc6CkpDw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D0BF10E4BD;
- Mon, 23 Dec 2024 10:31:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40F5E10E328
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Dec 2024 13:43:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734949888; x=1766485888;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=yuQIyji4edMNjkCnc36ai5gC3HyCrvCxQ6zuLgaS9xA=;
- b=J9rjyaW7dmbyTHbSzYPhN78d01zqq2qOHHXUfLgw9AysClMvbccELmrh
- /Y2B6BrJNzTZ6KZRvomxEqj4tN19B9SeG5rDKRPZesth1lgJpmsJWAp9d
- gRC+mVuc/9baa8XQsvd2bcm5FkRFVI67CLm9TeE4yuGjF8tdL/d7SUtdK
- YMGzZFenD/TfP1Q/DjM5SEQcnuDLoGBqik5ldJqUETf0Z5Lv9A9fu8mZ/
- rXrPM6mtoEwyxzlWIGxDk0zXcDkM1CyK9YlWMX9g5gCO4WADx1jdI9+wN
- QkCxPP1NLeOyqH4zz4ZYXlDLZ4pDRERiAUJxstkn14N1qxjL9YP4mthKX A==;
-X-CSE-ConnectionGUID: akjaMYAWSG+ba2nLXhG7Nw==
-X-CSE-MsgGUID: mbi3UR7EQdWazhSxRMcDVA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11294"; a="35549739"
-X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; d="scan'208";a="35549739"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2024 02:31:28 -0800
-X-CSE-ConnectionGUID: Jag1zyvASHizmHnqF0ja4A==
-X-CSE-MsgGUID: f+hNblITSDeE0JY3OOX5aw==
+ t=1734961394; x=1766497394;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=92ZDyQHA4dMNZej5iFoSYeJ4l4LHK4HwwqkmzHeinU0=;
+ b=Sc6CkpDwaDiy/8XCVe5ndkVoykz1/96vD30zOXKq4p/6g0aIIgZXh407
+ kCwoJzaOroxqUMRVGe6es49fQXhaDDxaxqj9rh/2Pxq6WfF/VQWoND2fk
+ DqCA9KJ9h4vX1S6Py2txnloyVHQUcfngWNMD+Pq/WT7M8+FegbiS6K3yl
+ p5G6HF5AYA87I21ubKHJ/oeSXyRlidCyu2468T65T/VocmXs4Q4tGKbvg
+ mn0dMrzoiBn58plGUMG42RYiJFBKY1MzdYhRX8s7XR9QzzPkmA3JKicBR
+ PJiBT1fjIEaWdzRLPkaVzusvFE/fo6wwHLmg8fgn2OPqG/AXvCzAZT48f g==;
+X-CSE-ConnectionGUID: ebDoGwQDTpqpPXUa5uEHCA==
+X-CSE-MsgGUID: Y3BUS2mxT+KC6y6F7JCc0A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11295"; a="46432767"
+X-IronPort-AV: E=Sophos;i="6.12,257,1728975600"; d="scan'208";a="46432767"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2024 05:43:13 -0800
+X-CSE-ConnectionGUID: YYPPGDHXQGmWQcjhNSzS+g==
+X-CSE-MsgGUID: 9znoT5lrRkmdynp1fN0i/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; d="scan'208";a="99693878"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO [10.245.246.74])
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="104274567"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO fedora..)
  ([10.245.246.74])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2024 02:31:25 -0800
-Message-ID: <b3145cc1cb5470e00070136add75159e07bbad3a.camel@linux.intel.com>
-Subject: Re: [PATCH 13/26] RFC drm/xe/eudebug: userptr vm pread/pwrite
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>, 
- intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Matthew Brost
- <matthew.brost@intel.com>,  Andrzej Hajda <andrzej.hajda@intel.com>,
- Dominik Grzegorzek <dominik.grzegorzek@intel.com>, Christian
- =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>,  Simona Vetter <simona@ffwll.ch>
-Date: Mon, 23 Dec 2024 11:31:23 +0100
-In-Reply-To: <20241220113108.2386842-1-mika.kuoppala@linux.intel.com>
-References: <20241209133318.1806472-15-mika.kuoppala@linux.intel.com>
- <20241220113108.2386842-1-mika.kuoppala@linux.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2024 05:43:10 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, stable@vger.kernel.org
+Subject: [PATCH] drm/xe/tracing: Fix a potential TP_printk UAF
+Date: Mon, 23 Dec 2024 14:42:50 +0100
+Message-ID: <20241223134250.14345-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,171 +71,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2024-12-20 at 13:31 +0200, Mika Kuoppala wrote:
-> Implement debugger vm access for userptrs.
->=20
-> When bind is done, take ref to current task so that
-> we know from which vm the address was bound. Then during
-> debugger pread/pwrite we use this target task as
-> parameter to access the debuggee vm with access_process_vm().
->=20
-> This is based on suggestions from Thomas, Joonas and Simona.
->=20
-> v2: need to add offset into vma (Dominik)
->=20
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
-> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_eudebug.c=C2=A0 | 13 +++++++++++++
-> =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 4 ++++
-> =C2=A0drivers/gpu/drm/xe/xe_vm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 28=
- +++++++++++++++++++++++++++-
-> =C2=A0drivers/gpu/drm/xe/xe_vm_types.h |=C2=A0 6 ++++++
-> =C2=A04 files changed, 50 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_eudebug.c
-> b/drivers/gpu/drm/xe/xe_eudebug.c
-> index 9d87df75348b..8b29192ab110 100644
-> --- a/drivers/gpu/drm/xe/xe_eudebug.c
-> +++ b/drivers/gpu/drm/xe/xe_eudebug.c
-> @@ -3074,6 +3074,19 @@ static int xe_eudebug_vma_access(struct xe_vma
-> *vma, u64 offset_in_vma,
+The commit
+afd2627f727b ("tracing: Check "%s" dereference via the field and not the TP_printk format")
+exposes potential UAFs in the xe_bo_move trace event.
 
-AFAICT all across the core mm code, unsigned long is used for mm
-offsets, rather than u64, which we use for gpu- and physical offsets.
+Fix those by avoiding dereferencing the
+xe_mem_type_to_name[] array at TP_printk time.
 
+Since some code refactoring has taken place, explicit backporting may
+be needed for kernels older than 6.10.
 
-> =C2=A0		xe_bo_put(bo);
-> =C2=A0
-> =C2=A0		return ret;
-> +	} else if (xe_vma_is_userptr(vma)) {
-> +		struct xe_userptr *userptr =3D &to_userptr_vma(vma)-
-> >userptr;
-> +
-> +		/*
-> +		 * XXX: access_remote_vm() would fit as userptr
-> notifier has
-> +		 * mm ref so we would not need to carry task ref at
-> all.
-> +		 * But access_remote_vm is not exported.
-> access_process_vm()
-> +		 * is exported so use it instead.
-> +		 */
+Fixes: e46d3f813abd ("drm/xe/trace: Extract bo, vm, vma traces")
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v6.11+
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_trace_bo.h | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-Could we add a follow-up patch that exports access_remote_vm() and
-changes this code to use access_remote_vm() instead?
-
-
-
-> +		return access_process_vm(userptr->eudebug.task,
-> +					 xe_vma_userptr(vma) +
-> offset_in_vma,
-> +					 buf, bytes,
-> +					 write ? FOLL_WRITE : 0);
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	return -EINVAL;
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 1cb21325d8dd..235ae2db5188 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -999,6 +999,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm
-> *vm,
-> =C2=A0			}
-> =C2=A0
-> =C2=A0			userptr->notifier_seq =3D LONG_MAX;
-> +
-> +			xe_eudebug_track_userptr_task(userptr);
-> =C2=A0		}
-> =C2=A0
-> =C2=A0		xe_vm_get(vm);
-> @@ -1023,6 +1025,8 @@ static void xe_vma_destroy_late(struct xe_vma
-> *vma)
-> =C2=A0		if (userptr->sg)
-> =C2=A0			xe_hmm_userptr_free_sg(uvma);
-> =C2=A0
-> +		xe_eudebug_untrack_userptr_task(userptr);
-> +
-> =C2=A0		/*
-> =C2=A0		 * Since userptr pages are not pinned, we can't
-> remove
-> =C2=A0		 * the notifer until we're sure the GPU is not
-> accessing
-> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-> index 23adb7442881..4334cf2b0d9d 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.h
-> +++ b/drivers/gpu/drm/xe/xe_vm.h
-> @@ -274,9 +274,35 @@ static inline void vm_dbg(const struct
-> drm_device *dev,
-> =C2=A0			=C2=A0 const char *format, ...)
-> =C2=A0{ /* noop */ }
-> =C2=A0#endif
-> -#endif
-> =C2=A0
-> =C2=A0struct xe_vm_snapshot *xe_vm_snapshot_capture(struct xe_vm *vm);
-> =C2=A0void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap);
-> =C2=A0void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct
-> drm_printer *p);
-> =C2=A0void xe_vm_snapshot_free(struct xe_vm_snapshot *snap);
-> +
-> +#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
-> +static inline void xe_eudebug_track_userptr_task(struct xe_userptr
-> *userptr)
-> +{
-> +	/*
-> +	 * We could use the mm which is on notifier. But
-> +	 * the access_remote_vm() is not exported. Thus
-> +	 * we get reference to task for access_process_vm()
-> +	 */
-> +	userptr->eudebug.task =3D get_task_struct(current);
-> +}
-> +
-> +static inline void xe_eudebug_untrack_userptr_task(struct xe_userptr
-> *userptr)
-> +{
-> +	put_task_struct(userptr->eudebug.task);
-> +}
-> +#else
-> +static inline void xe_eudebug_track_userptr_task(struct xe_userptr
-> *userptr)
-> +{
-> +}
-> +
-> +static inline void xe_eudebug_untrack_userptr_task(struct xe_userptr
-> *userptr)
-> +{
-> +}
-> +#endif /* CONFIG_DRM_XE_EUDEBUG */
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
-> b/drivers/gpu/drm/xe/xe_vm_types.h
-> index 557b047ebdd7..26176ccbcbbc 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -68,6 +68,12 @@ struct xe_userptr {
-> =C2=A0#if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
-> =C2=A0	u32 divisor;
-> =C2=A0#endif
-> +
-> +#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
-> +	struct {
-> +		struct task_struct *task;
-> +	} eudebug;
-> +#endif
-> =C2=A0};
-> =C2=A0
-> =C2=A0struct xe_vma {
-
-Otherwise LGTM.
-Thanks,
-Thomas
-
+diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
+index 1762dd30ba6d..ea50fee50c7d 100644
+--- a/drivers/gpu/drm/xe/xe_trace_bo.h
++++ b/drivers/gpu/drm/xe/xe_trace_bo.h
+@@ -60,8 +60,8 @@ TRACE_EVENT(xe_bo_move,
+ 	    TP_STRUCT__entry(
+ 		     __field(struct xe_bo *, bo)
+ 		     __field(size_t, size)
+-		     __field(u32, new_placement)
+-		     __field(u32, old_placement)
++		     __string(new_placement_name, xe_mem_type_to_name[new_placement])
++		     __string(old_placement_name, xe_mem_type_to_name[old_placement])
+ 		     __string(device_id, __dev_name_bo(bo))
+ 		     __field(bool, move_lacks_source)
+ 			),
+@@ -69,15 +69,15 @@ TRACE_EVENT(xe_bo_move,
+ 	    TP_fast_assign(
+ 		   __entry->bo      = bo;
+ 		   __entry->size = bo->size;
+-		   __entry->new_placement = new_placement;
+-		   __entry->old_placement = old_placement;
++		   __assign_str(new_placement_name);
++		   __assign_str(old_placement_name);
+ 		   __assign_str(device_id);
+ 		   __entry->move_lacks_source = move_lacks_source;
+ 		   ),
+ 	    TP_printk("move_lacks_source:%s, migrate object %p [size %zu] from %s to %s device_id:%s",
+ 		      __entry->move_lacks_source ? "yes" : "no", __entry->bo, __entry->size,
+-		      xe_mem_type_to_name[__entry->old_placement],
+-		      xe_mem_type_to_name[__entry->new_placement], __get_str(device_id))
++		      __get_str(old_placement_name),
++		      __get_str(new_placement_name), __get_str(device_id))
+ );
+ 
+ DECLARE_EVENT_CLASS(xe_vma,
+-- 
+2.47.1
 
