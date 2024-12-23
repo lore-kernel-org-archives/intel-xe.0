@@ -4,183 +4,180 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C97F5E7718B
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Dec 2024 08:18:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A348E7718D
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Dec 2024 08:29:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89FE410E238;
-	Mon, 23 Dec 2024 08:18:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D226D10E238;
+	Mon, 23 Dec 2024 08:29:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dAo60Sfn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eyE1H5e+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B639110E238
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Dec 2024 08:18:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8225D10E19A;
+ Mon, 23 Dec 2024 08:29:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734941932; x=1766477932;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=/LEhqzyblUSvl0jGOUOoG/UlFY/vsd5JuzpPJUa9Ioo=;
- b=dAo60SfnrfB7uvRby5nEN3EFt68/x43V4T3moaJhCOozjFtE3ny7ol7m
- lYkhheZcL25zhZbKLNseFgh9HGc3zKFfb0Lb63EldJaM1a4lqfb6s9719
- ToCHEV4yeWuGZ9Uv5aqeFakG7AUGKM+ckd9g5Pb+zwMVr787ME7Yl6m/r
- lsHjewZ6bVHlbDRCSu83zy52W/oYAu1VKD17esOUctUYpXXRP66TqhoSQ
- gBC5gbwr2raTUqgmxs6Kid/YvN0PD9LYVLCM0cXIQwuoVK2ai25EmhGM4
- rVa4Ll+EiM8SzQQF4th3tB6OiaNNxDXv1LD/fiw6q9p+u7ubWhkVQHtqp Q==;
-X-CSE-ConnectionGUID: liVTlni3SuywB5oOcgPv+w==
-X-CSE-MsgGUID: kHbQAq7iRHuwFDvgNhOkJQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11294"; a="34676337"
-X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; d="scan'208";a="34676337"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2024 00:18:49 -0800
-X-CSE-ConnectionGUID: LoMGF0qYQAqY/mEH5rD8xw==
-X-CSE-MsgGUID: deJC4LhaRRqu0G8CnVDF3Q==
+ t=1734942567; x=1766478567;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=VxDbPuYdfsel2QEeOqLRGolO8ADpwdRYeb3RBlhdk0E=;
+ b=eyE1H5e+OXWANYLBmS+cnNJu6ylqIUzvcRDIkX5jMfD1is9Iq4ZUk4Z/
+ XfgIq3qpteiw4NrHwNQaRnU1120++xSxawv7wlU7LK321vMftUoBYLyW4
+ obMsZ5x+g8oVdUfUErBe6pOq5LvKiCZx6CxIiqIVtmTYQIYI6Ov/vR4hm
+ EQsgNUTtQ2TQCEIhEM4qwjE8GSBTTw+v0GVKm39y9kYeyJBAoAVnx5t+2
+ bGRMBdHYRWzZH/RRP5ix9OSFXuWdwvrAB/ly8z/BjUtjr0U8gZmWStG7+
+ hd1lxh+1KmO3658XXe50uWLUGNEo5itlwM6CP98xQQMWeq8rvx7h5YEjx Q==;
+X-CSE-ConnectionGUID: djYzo5nFQ5KY4g6g6NeqMw==
+X-CSE-MsgGUID: UTpY28BhT+6BGwZSx3AXnA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11294"; a="39181412"
+X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; d="scan'208";a="39181412"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2024 00:29:26 -0800
+X-CSE-ConnectionGUID: 02awsLrKTXqboV6ryBkyPg==
+X-CSE-MsgGUID: YxyY6Q+/SyuC75EBV7e2cw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="104213701"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Dec 2024 00:18:48 -0800
+X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; d="scan'208";a="98917060"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Dec 2024 00:29:26 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Mon, 23 Dec 2024 00:18:46 -0800
+ 15.1.2507.44; Mon, 23 Dec 2024 00:29:25 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Mon, 23 Dec 2024 00:18:46 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.47) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.44 via Frontend Transport; Mon, 23 Dec 2024 00:29:25 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.175)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 23 Dec 2024 00:18:46 -0800
+ 15.1.2507.44; Mon, 23 Dec 2024 00:29:24 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=K4FFt0bpOnVDCUZBAaL908rdRpSdI8uFalBr84vjHrER+YRpMlZ+vkp6zT3gyYrOmbLM/xkWJv6HpVimQQecU+j8rITtRTgCokkUvrngdA/zgP5omL7QTDEHuLF3GGaMLmsHldP8q2vso9+J1jeQMu8Gn/DmzPdksdjUGLUwGcqWenPF1mja6bAlnH8OzEgflChvYKJRakQkgr9ty7s8glVL8MN9t3me2qHCkc3PE2jW6NKns/JI+PmwpEvM7Pm4TEBl49A9NrxTOkOuE5L0DI5YPQ6lPViCs3feH32Whtf7qbPYtVeV0gmGFrl39K2C9k487ED5dU1e1cAr6Unhnw==
+ b=GLlwQXNSU/NERrkp4pU/6aZ4czLS8511k+hOWBcyrI2D1rNJ22487wHCgY6x9hpgP0VZDlrHE0Q/dxiecdAlLd8hExSqQptvX8nJ8l45loc9EcCng6vAi7FEnRzNf/0jH0s7ynXGoXmOJVBsc+rAVrM7s2CNxLM2tS6kxs4eu8eSayRueIGuq7ZMIdHk8LU/E1l1s7XBQ22yEeky515s0H1K6+3QzidPXxa/kIraf5qy4VFldBJrikTF9kCxBhDJSUhIsGI5ufvMnBUhrMeAoyaMS+Q0TfIJBu+0eZqIxA6cVcZZF3h9qrBVMCr4LwKFQdRTja87fyin79VYy104pA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WaWRXFnqtsZv5e5RN0Mi/0m53yj0U7SAKiViF5kLFCw=;
- b=ucppiTHrXasJcaivCRmPF39rWbMXeqDq0n99znM1kA14SMHD+4t27ullSyX0xD0LfjqMcSNdrGANXh4I6DjGD1fm8MBdjlthdHgnzA2hbgc+3lddZ/NdCL4S21863hxAam2Lti1CPrw5v5gNKY7w447aTek01aTzs9L5Cd29r/BYZtIyl7KpaZaJE5VZ/+cyzim30P4awfHp0vDrkhkqV/Wv6/gV9NpeHLXBbupzKt3hm42JZKzBfnHc1ty5YUcIf+Tb4nrOGOYjzOtlqyUcnJEd0+btEEVoFHM6q7TOOJuhXqgjbGbviBmYioPUavRAB0JWf9XkHWESyZQUHsGkew==
+ bh=9yg7gZfN20ARzJBEzOuKVxc3vg4KHheZPUyU/N0HGro=;
+ b=ijrnm+q8iEhyLiHrOJB9iFPdLa5HOAd11sdRbAF2B0gmKPfn/AVZBNYJIDmYGLGBYULoBgyoPkQiCR/+PU8bx7JmXOBw6dVC1ankGm45RzX50UvlZ1tAu0XAkoLMVwA1xdbZv7CIuePpeuxWjhbwD7ahpNbZeT8qflDnvpa3w0ixFyy6s5LawO8J28cpwq1DRoTtyC9c8+9PXYwIzrspWECsFfCCuO/DaeD03RblEO1A9usU4MIVmXiWNXJxcnCVnwpi7Kre5zz+PODt80VE25lN8OIEB2t/m59fB8/97UI35fnv4xkM0qQcZ89yz9Fg4IslhPH8loxVmskYyj485Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB7757.namprd11.prod.outlook.com (2603:10b6:8:103::22)
- by PH7PR11MB7549.namprd11.prod.outlook.com (2603:10b6:510:27b::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.18; Mon, 23 Dec
- 2024 08:18:40 +0000
-Received: from DM4PR11MB7757.namprd11.prod.outlook.com
- ([fe80::60c9:10e5:60f0:13a1]) by DM4PR11MB7757.namprd11.prod.outlook.com
- ([fe80::60c9:10e5:60f0:13a1%2]) with mapi id 15.20.8272.013; Mon, 23 Dec 2024
- 08:18:40 +0000
-Message-ID: <39b856a5-f9a4-4b07-960b-a732d7ed12a8@intel.com>
-Date: Mon, 23 Dec 2024 00:18:38 -0800
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8272.20; Mon, 23 Dec 2024 08:29:05 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.8272.005; Mon, 23 Dec 2024
+ 08:29:05 +0000
+Message-ID: <3843d303-1ced-466f-96b8-eaae33d92ad7@intel.com>
+Date: Mon, 23 Dec 2024 13:58:59 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 4/4] drm/xe/pmu: Add GT frequency events
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-References: <20241220011910.103280-1-vinay.belgaumkar@intel.com>
- <20241220011910.103280-5-vinay.belgaumkar@intel.com>
- <Z2XfA0u32v3tvKiC@intel.com>
+Subject: Re: [RFC v2 1/6] drm/i915/scaler: Add and compute scaling factors
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+References: <20241217180710.1048355-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20241217180710.1048355-2-mitulkumar.ajitkumar.golani@intel.com>
 Content-Language: en-US
-From: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
-In-Reply-To: <Z2XfA0u32v3tvKiC@intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20241217180710.1048355-2-mitulkumar.ajitkumar.golani@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ2PR07CA0003.namprd07.prod.outlook.com
- (2603:10b6:a03:505::26) To DM4PR11MB7757.namprd11.prod.outlook.com
- (2603:10b6:8:103::22)
+X-ClientProxiedBy: PNYP287CA0036.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:23e::11) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB7757:EE_|PH7PR11MB7549:EE_
-X-MS-Office365-Filtering-Correlation-Id: bd0c4759-7d8f-4687-bd86-08dd232a6828
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DM4PR11MB6019:EE_
+X-MS-Office365-Filtering-Correlation-Id: cbeb0676-499d-4c70-0533-08dd232bdcac
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?NTA3UkJLSHBNb2hsSEE3VTl6YXpuUVczb3kwQmhNdWdlSi9vUHY4ZndLUFBr?=
- =?utf-8?B?MmpObE5aOWx0MkFjVlY3L1VYWHhzMXBCem5LeGFFREs2Z2o5QjdNTW82RUlB?=
- =?utf-8?B?REViT3J0b05VbzA5ZDFHN0tURHhDNXFzY3MzQ1B1c2swOUd6Tks2cDBkaXFa?=
- =?utf-8?B?a21jdUJzSzN2d3FQM21zNktnQlJROUxEZkw5VUh1eDBqSWk3OWd3V3dvakZI?=
- =?utf-8?B?eGQ4TFZtU2w5eW1BVWZEdEVxbkZuTUdSWmM5ODBjcHhpS2NEM2NpQkJXNjFi?=
- =?utf-8?B?aDNGS2Jtb3JWOWhjMktzVTRUNFVBeThUbnJCMGlNQmxoWnRyNkNCOVFpdkRr?=
- =?utf-8?B?cHJidFdFU1VOMDNUSWNjSTRMSm9POWVqMUNFMkxpRlc0dXhkbG9lc3JzalYw?=
- =?utf-8?B?MzUvMTBUdncxdVp0U1V6M05qM3ZrTFVCRmNQMGhZYjRheWI1L3pRdEJYbGdL?=
- =?utf-8?B?STI2WE1KWnBLWUY0NVRoSXRhTmZ2eWZyOTBsOFlQbU15c1ZxYkRjeU1YdVBG?=
- =?utf-8?B?ODdWZVdTcm1IeUJwSXNUZFFxYlVrTzBzT3YvVGVqUy8xT3Q3cGRFYTFuOHF6?=
- =?utf-8?B?NEZ2QVJXb1dURC9oSDdxWUtDWG8zMTFOSWQ0WVJ1MWsxalBpbVRRR1F0Q3NR?=
- =?utf-8?B?ZFY0Sml4WDZyQm51Wm4rMCtSS3NXWk5jWmkvRnljL08vcCs5VWdpWDZCYWc4?=
- =?utf-8?B?Rm5RZk1vbDFRdzgybG5RN0gwNllONE1yL2w5b3U1cG5kNnR1ZGJSaWNOcGQ1?=
- =?utf-8?B?TnB6KzBQTFVlZlVFRlNXV3NTSWNTL1p4dVEzcExsbm5PQTgzQ2RmT1h3cHRM?=
- =?utf-8?B?T2hNNFBHUjVHbk1LNFpyejJnVGxNOGFnd3UrOEw1dWxTNzZEcnhvb0wwL2Vn?=
- =?utf-8?B?b3dyQU5oTVVnV3V4VWlhUTdOTmgrMGpEQ2V4RWw3ZXpqbXBpZk1FSUg1a2Nm?=
- =?utf-8?B?WFBPRncybHJSSEIvaFR2OEsreFBtY2o4c0E3Y1ZhUG5lZ0lGQm9qKzdodVBX?=
- =?utf-8?B?cmxWWEF2S05YQ3E5QTRWNlNrZHF4UTl3L0h6ekVYeUZEcjdrZUs4VCsvQ0R1?=
- =?utf-8?B?ajF5TndCZytqcm5lVWRWQ2dxUVMwR3V6bkZlY2tucmE4bUJBRUsxd2NpNkdN?=
- =?utf-8?B?OGdYMG1KRElGb1ZrZms4RnpNVVVCbGJTd25ucDZaMVAxcXJSMm1INm9zQzYr?=
- =?utf-8?B?SUVLc1RnNHVCMld4SGR1czl3WHYvT08wNldoYkQzY0ZOckF1N0FHSnZtM1JS?=
- =?utf-8?B?cVFkOE5mTGxES1lKTmh4VjZPNFEvN1N0YkdOUzZudWlneFJRSDlYbEd0T2FZ?=
- =?utf-8?B?OGR5Wi9TV2JlZXNWZGJCL212VHkvNExqeGZqT2tPZUZpNWFSRmNBNWZjUTFK?=
- =?utf-8?B?Y2tGWGU1TGEycmh0UFRNUUZnd3dCVDlNL1Rac1BFZnh2alRjaWFMeEpWcG5a?=
- =?utf-8?B?T0oyTjROVGhmeDYzZEdXTUcwN095TmwwZDZTRXRibkF4VFF4TVJ6VGU2STlw?=
- =?utf-8?B?YTNibnh3SWh1M3N2YnFmZW4wV2l6bmdaNXlzc3dhT0t3elpHNlIzU0gzOVBJ?=
- =?utf-8?B?TUcvc2tzSk94ZE1xcGRFa1NRdmswbFJWb0UxU1ZTMEpYcTBGVkhHY2M2dk5v?=
- =?utf-8?B?Uko3Ukc2ZlRNbzI2amcvYWg0RDBpdUljVExERGUzZVNrd2d0eElOVlNIb2Jo?=
- =?utf-8?B?S0pBUUU5NXVLVUNYbWhFUkpLMXJpWTlNUWYvcVJXWlMvKyt1blJObStyeU82?=
- =?utf-8?B?c1FZdjJRYVpLSXVkNGR6Mm1JZndnRmFuZlNoeUZZbElNTll3M3VBRnZ6S3VW?=
- =?utf-8?B?L2Z3c2tDTUpyOFh0c0dwQi9kbmNJSzAvQzNjdWpDVkt1YU5FNERnUXdBRExN?=
- =?utf-8?Q?IYy8eqUJ9Dfyg?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NEZlOTYrTWRMcVo0MndQbEoxNUhBektId3NpdGV4d3M4dDVycnpUZlg0RnVF?=
+ =?utf-8?B?YnptYXYzU3VUWU4wNXAzSVNieGpMN2dDOXN6d3FLN0tlaDdmRzd3YUJ4b1Nv?=
+ =?utf-8?B?Q0NyS3lLNmMvQXFoNklWeGJBZEU1QVkzeDlBS05UOUVyOFJPRnRqbjVENGxt?=
+ =?utf-8?B?bUxFWUdYVHZPQTFhS2FmZHVpa21Gb09MZCtmYURMSHJTNjZ3Z3FFNDhHTk5U?=
+ =?utf-8?B?eWtGOHVtNDhIcVpZcVNvMmgvYWpnbFBrcmxxM0xtMHdRR1RidGhlYkk3clBt?=
+ =?utf-8?B?bDZJSXNNUmNQaGlMWGUwajdWcnAxM2JPM0RSSldTbXRyQisxblM3U05BaUVM?=
+ =?utf-8?B?NmI2QUpLUitvTGpVcDdnSGRzbC90Zzc3bHdiNHhPSFhXMEpOcDJrVVJYYkNs?=
+ =?utf-8?B?bVRYNDZZdWJkQ0k0L2FhQ1VSL3k0SWI5aXJMNFEvZFRMK0ZIYXY1QWRTdVB2?=
+ =?utf-8?B?azQwbTJTZUthYUtkNW5yN09SeW44SURYbDlrRWpRVHo3ZzNaTHEySU4wOGYx?=
+ =?utf-8?B?YURGMTA0MWcvU2NXTVBGc1VabFhYdHVsZTE0QTJ5VnF0YjVQcHE3SzBUdUp5?=
+ =?utf-8?B?V2pHTFZMS1FnYlFOdnpWZ2w2d2oxR2d3eGZtQjdyTHdXcUdScElPWm5mTi9t?=
+ =?utf-8?B?ZkRMWVltbWdLbHNaR085R0NTZURndVNHVlFDcWt3UWs2cFJGT2lLWXdneFRL?=
+ =?utf-8?B?WUV5VkhuSU95T1o1S3FBZzlxdnVrN0h3TzNSb2o0OWJGSTBBVnVlUmRRU05n?=
+ =?utf-8?B?QVRZNjhVTEwyay90SndzQzBlSExnd3IrbGtrTjFrVGZBbzRSNnVvc3ZMbWJK?=
+ =?utf-8?B?RTVzNjZXbG43V0IzK2JFeUZkWEs4Y0w3VEpTRnpobDF6Uk5sZjY1d1h0RFNX?=
+ =?utf-8?B?d1UzV1dta3NWV3Z4Q09SZWQyNGxTU2VqcUVTUjFzenAvZWpWWk5JeWY4cUsy?=
+ =?utf-8?B?elUrRUZCdnd1ZzRHNzBMb3l2ZnJaSm1tRDl5VU1td1o5Nm5iVExRQ3U4dUpZ?=
+ =?utf-8?B?clZmY2g4RkJNa0hnZnduZitFUWxzejd2MDRNRWRZWDVEc0N2WDV4R0hTUmJP?=
+ =?utf-8?B?OW8wWFFlZVBjbERlR1FpcUtzTjNIa2hmRCt3cUpLYWZNcVBpSEJIWUJWc3NL?=
+ =?utf-8?B?aU9pcURwUDV1Zm9DV3B6RjE4YWxhQURwcFJZYllRdHNnN05rQ0UrZndERFNW?=
+ =?utf-8?B?dnZ4RFNvN0VIK1RnVUllR3hlRDZ1QWlOOTVFc25ySVZEYUZwUFZhMGNxZjQ4?=
+ =?utf-8?B?YjN3TEJWcWZ2N3BVZ0NkVnhITmJWVzZnTGlpek5zVEZTZW9RcldqNTVXNTNo?=
+ =?utf-8?B?emlZZzlRYi8xNW1YRjVldGpmVyt0SDdkaUJneGxpd0tEalIzSkRyTEVhUWda?=
+ =?utf-8?B?UWtiZ2VhaGFVcjB5T0hpQ3h6N0M4c2E4bnlOZXpRTG8wWmpZYkZ1KzUxSHFL?=
+ =?utf-8?B?ZVlOci9oSHFKT0txZUhybmRFM1ZrZnY5bFQyMDlObERqY0R2dGdzRnhwT00w?=
+ =?utf-8?B?aXp0SHB2WG1oeWNBSk1hd0Jpd0ZvbWRQYUJJRWZhdmEycE4yMUMrLzlBa2dm?=
+ =?utf-8?B?N01wNGZkMk5TOWYySlVxVlk0TSs2aHltVkJpR1lCak5JNVVJRXowR0FVNXRo?=
+ =?utf-8?B?T0ZZRWV2SVBGaW93VURqQUxlNkJ6WnFMTE15aHdWdFN1bkZ6SU5jc2gxQlJs?=
+ =?utf-8?B?ZHFqb3FJM0F5RThnY0hhMHpSdWVKZlYrVXZNM0NpWThlNm9WNkpiOG1aS0Zr?=
+ =?utf-8?B?MGQrUXZtZkpNWkZIN0tuWU5iS1N2aDlldkRYKytMVSsrRjVlclc4a1BiSEpK?=
+ =?utf-8?B?eU5FeDV3Y1BxZ2krY3hkYTR5Q1kvL2JxcnBkVW93VlFMSWZ0S1dUckZiQzNu?=
+ =?utf-8?Q?vp9+rH3v3snWh?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7757.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cjM3UjhZRk1scFlJYnA2a3ovWUNhZXA1NVFjem1BcmNpbkpGQWFtRWJQNkJE?=
- =?utf-8?B?dERhUW5vT2psWTV1TGRqN2t0TEQ5Tlo2K0dMT2tka1ZkTUhPZHJRTGNheWhh?=
- =?utf-8?B?OXZka2IyWUYvRktIQUZmV3FhSExRZ0ZSRlhSYjdoZWJrMUtuUWlWT1JVbVAr?=
- =?utf-8?B?bmNWcWNKNzBxdW93dmxkbGFZK1RKZkpId3hNU0NUendCaDRkUUp2R2hBWjVt?=
- =?utf-8?B?N0REZllrTE1UT2kwWW9jSU1iM3E1dTNCKzNlTkl5ZDFmVlpDWmlpT3Y5VXlh?=
- =?utf-8?B?SXZyeklsOGYyWndYNzBqRjE4NTkyZXF5T1hSQm9BSS9XMjh4ZkhyV0tacFNQ?=
- =?utf-8?B?ZHMxMjM2NW14YWl6TUM5cURwR2VRZ0htY1hHUEZXZlRSNEdLellrUS80KzlM?=
- =?utf-8?B?Q2lQYVVxZGd6bzdVaVBLSG1OdDgyYUZURllQN3lsWURKYmlyVkptYXZ3Q0VX?=
- =?utf-8?B?SFB2SmcvRnNYUm5uWTJ5dTAwUHlFVFZCbHc2Y1Rwcm50WFRmckM2Q1hqbUZl?=
- =?utf-8?B?TFhONHRvcTRsK0xlZmIxRE9rWTZJM3Q4OGYxNENxcXJDaWRIR0JCL2pMazJD?=
- =?utf-8?B?dUplMVpKREs5Yy9uc1dKcEZCVlMzZ25ieEkxaVQ0YlNKUHgvdGN0a25RWHBC?=
- =?utf-8?B?NHp2VmNxMUZpVFREN052RU9IL3BXbXNBOVdLTi9lMTFPdTF3RzE3MCtXT1hs?=
- =?utf-8?B?ejFETUZPdlRsci9oMG80Ym9nK0tZQktlUFJ3YUZ6NzRmUkVKdHdFZ3krUWNv?=
- =?utf-8?B?SXFLUlNFUVpTS2ordGNQVzZDU3dBSUwvMDhsWkRYZHlwVmFFeTNtaGlQMDM5?=
- =?utf-8?B?S2tidURsWldNSDFZME9MTkwzbGowVGFlRXU2dGVoTDU2Tis5d2d2RFpiK3dj?=
- =?utf-8?B?aTZXZVMxamlSRHZ4emhlQkhEaE1aWUFPa2l1R0MydkRVZGpBTjJvKzRiNkxB?=
- =?utf-8?B?ZHJWZ2pVZS8wUkdDOXdwZnVZTEtCaDdQNmNBbFJablg1eHdFRHk4bGYrL0dk?=
- =?utf-8?B?UmE1cDJLTW1sazlhTkQxTmljY01aQzdrSlJnQVZrMjdxRnRWOW9LNk10M1Vv?=
- =?utf-8?B?TFJ4YUtJWVkzT2p0MVJaYmEzTnUzcjNoREI2TWZRRlVRTCtScm9FYjRoYTBm?=
- =?utf-8?B?ZStkN1hJS2M2aDdHV3k3TkJzNEZVY1BaRXdtbnM5b0dySEw3ckJ6T2lNMUVi?=
- =?utf-8?B?Q3E2UE1XZXgvcHUxVU02RHVPU01LMnlKMWdKNjdjUTNITlFreGloVHFMdHVZ?=
- =?utf-8?B?c3hJMXM0bjZjY2hSYkRNN0gwSi9ZOEY4U0hUYTBXclBrcmFrK2VpMTE3c2Uw?=
- =?utf-8?B?NUtENmJxTnlVaVltOGp1MjJDYXVXVW9iSkxNRlVhM2orMnNJNklnekZBTWVt?=
- =?utf-8?B?NnJnN3hQY0xOUWRWSGx3bDVaZDM5VGFYYVdzNjd0aGR4UXFyUzZvSXZ6N3FW?=
- =?utf-8?B?RGNVWHk0VGZqdmZKS2J0R2k1UEVnWkRQeEJPLzNPdkhKdTBzMmJmcmRDSThE?=
- =?utf-8?B?aWxxclM3cW0zWUxQSFFqQ2NmaDdCb1dDZkdHZzJtcUYxZWZmVysrNUhoSCsv?=
- =?utf-8?B?SmtMekQwNlBkZUFKbVE3RzdmTHNiYTlJeEpvZkJMQWlWM3ZwMkxjamN5OFFn?=
- =?utf-8?B?ZlkxRTJ2aml1cmxxMjZ5c2lZdFpYcU1vdDNkalNJcW5PVmFkVHpmTmtQSFlO?=
- =?utf-8?B?Z1dzN25tRnMvbGQrdnlKMWJ3aWVvbjkya1NsU0ZyREQvb05aWC9GdlMxVVpz?=
- =?utf-8?B?UmRUOVBUc1MwWnd4U2wyMlVoMzVqazdIcC8xY1hFdExiV1IyVHlnT1RDTU9Z?=
- =?utf-8?B?VGZpVmdwRG9rcEtQTzNWTURKZVdKL2ZRaE1uUC9sejNTd3d4cWk3WGhrekJQ?=
- =?utf-8?B?YXF6RVVPYWljYnJZZE1aQnloQjlNbmFvK0pGNXlJc1krT05IbFBzaGRhT2ha?=
- =?utf-8?B?MGVTU0xFQTBkZER1RzNkUm4xQUZsblNJbk5EZHF1WWc0MGJJRE15TU1uT1Zj?=
- =?utf-8?B?QytFT0ZPY1E4b0ZUTXJCZXJMMmxCYjFXaDBmc3UvWEhjdXAxOUNXNmtaaFVI?=
- =?utf-8?B?OUw3cm9QMkRDaThTVWdTbDhRR1ZZWkpCallwc3diREovMGNjMG50aDF1Y3d3?=
- =?utf-8?B?RVRUbklXMnRuVG9wSndXMWszRDBic2RtNDJCbFg5MGZCRDk0VXkrQldHbzIx?=
- =?utf-8?B?TkE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd0c4759-7d8f-4687-bd86-08dd232a6828
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7757.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NEJIUWRTMmQ3V0tncFJXOW54eWZXdDlPQ1dnaW1rMnB6VXY0aHRoa1pWM0xO?=
+ =?utf-8?B?SmpheFpUTXhSU09oZVZBY0t1bnhaZ2tIdDVrb2JlTU1acnA2ZlcxeDl5blpB?=
+ =?utf-8?B?VVNXdUR0ZHc4MDNhZi9yYW5mZFhaWFo1MjFTWlplaE5GblV6N2Y3eS9GZm1z?=
+ =?utf-8?B?T29WZGp4dHV2eWgyV2NMd1lDMlYzQXhrSXcxWVpNZEd0b1lGTWxubDV4Qm9s?=
+ =?utf-8?B?cjVzWG5FUno4OVYzSnRBTWlRdFkxWWMzKytTd0dtMFIxMTRiR3ZNNDdEckkz?=
+ =?utf-8?B?U0ZIR1AvaFk4anZNMUVuU3Q0RFpEcXdOZ3pOZnVEdnkzME5EanNuZzBsMm9k?=
+ =?utf-8?B?amRMRWdGNmxzR3hobUJESzk0bUF1R2czY3JPaVJ0c0ZmL2Y1eGxoTU5NWU9O?=
+ =?utf-8?B?M2VZRzNuczJLVEtYZEZLVFlhTC95RHBSQVhlMm1rbGRVektmVElPU3JYd093?=
+ =?utf-8?B?K0tDUnNPMmlnUUxkQ2pEWGF0Rm0rbUtBYWdIanNOT3dhNzVmQXR1WUpSam4v?=
+ =?utf-8?B?SExicm16VlBMdG9Gck85SnJsbXJ1S0hYY0t4UjRPU1A1M01OSEY0Z2swc1VY?=
+ =?utf-8?B?SkhhUFQweHowN2ExV3NkUnF2cnRQMEZROXFVdXhPUzVlejBVaEtaVEpQTnJN?=
+ =?utf-8?B?ZjJLSWh1OVdBY2g4VWtLbm1pQ1lKNnJOVkxFeTF5elBLck1VYi96ZEVLbkpy?=
+ =?utf-8?B?dHZ1M2dWTFR0V3hFVEgwbnhBUExvaU1aVlJSeFJPUmNzMUNjcTZyODRZbmxk?=
+ =?utf-8?B?bHpJUHdHbEZaZ04yY2xKSWQ2TDZhUisyM1cvN2JyRmlTTC9zQW5mWnF4ZVY0?=
+ =?utf-8?B?ZCsrRFJ0L0lxSHhJem1NdkRSZkR6S1c4eUJubDRHUTlvbmhWWUEzYkhQWDJO?=
+ =?utf-8?B?VEF5cy9ZNWg0Yy9ZN2RVckhnMDlLQUd5dEhHSHRrK2ZpclYvU1pBM3hmQmUx?=
+ =?utf-8?B?cFpZUGZYWmJVSE12RGNzSkRRVmhmYzNxL290K3hPQUJIcDRIQ2lWSy9LZ2Fv?=
+ =?utf-8?B?MkpzWnc0N0hXUURGc2UxR1pYZXo1ZnFYYVQrS29LOWNXQU9rQk1zMWZYQW9U?=
+ =?utf-8?B?aDRITXFzWHFTNFJLNmZMN0hlcGprZEJ4UW9Fc2VGZVgyMHFjNVlDclU0T2d5?=
+ =?utf-8?B?ZEdzSzhyLzhrOHFSTlBvSlVTNkpTMGRXOG9zYlo2dk5SQit5QVRGTjhyMTlx?=
+ =?utf-8?B?RGVmQStjVjc0SmlPM0tLaUl4Mk4xVk5Sb2FmUkhNLzl3OHBxR2NBSXFtQlEv?=
+ =?utf-8?B?RFhtL1ZvTmdUNTVrOUZLQWVnV0VNVDlPZXZkazBMZ0dNS0g5N3NkaS9hblha?=
+ =?utf-8?B?MDIxOGtlTUwrT3lzWGF4aTNZOFdxZmpTb2hpLzl0a0Y3MW4zQUt4MFRoNENF?=
+ =?utf-8?B?QnFJci9hYXJMZ3lJNWxkeEFsUTlaNml4Q1pmTEhxeDZESUxVd0MySGY2UmJ6?=
+ =?utf-8?B?MFB6N05qSjRnRktyR3dUNitoWFJnYkxwR2pzSS9xc0o1dC9CUHd4MFB5WU1n?=
+ =?utf-8?B?aDA0V1BqTXVhMXBrTXVLMDFiSlI5NVk3a1ZoQmdiL1crZjFRSFNHbzB0UEQ4?=
+ =?utf-8?B?Rm9BalVsODdiZE00Z3Z6a1BKdDlNSDU2cjFuYlJueTNiV0pMRksvd0oyRmN4?=
+ =?utf-8?B?ZThKczR0YWttQUpFSy9tditsTllvbFN5TUMrT1dOeUV6SURVeG1mN0NyMkps?=
+ =?utf-8?B?dUtBS2gwellQYkdOZzV1K0xuVGY3SWt3eks1eWdvaDdMZTVqWW9HQTgyRXZn?=
+ =?utf-8?B?WDNjeVF3U09ZU3MxMDFycG9IaStpSzd3cS9EZG1QeHpZWXlGcFJBZWE1OTYr?=
+ =?utf-8?B?OEJFci9adTZPTVJZZVNwcFl1ZTBmMGVvdVB1YnU3YlJuZGtzbXZvZXRqZDB4?=
+ =?utf-8?B?MHNkbnY0M0I0MExiUUoxcW1HMG1JU21hNkZxMXlrWDhRZnFKV2JFTnM2QjBG?=
+ =?utf-8?B?MWpNZkxRcklXbHMrSzZ2R0pRUWtubnlTSk5ubHNBZHphRGlhYmZYN0d3RjN4?=
+ =?utf-8?B?Z01aY3NaTThoc0c3ZGJveDgvOStnME9yL0F0alFrM3ZDNzZKelZQZDYxMnlN?=
+ =?utf-8?B?SXFRQnNUbGR6cEIvYmRKSys1TytuQ1RERjNnVXp6dFhCMmNGVTY1N2h2SU10?=
+ =?utf-8?B?OXo2NVY3Y0pnZ1lNSTFxT3hKaEZ4OTIvZ3VhYUZDTzZ6TUNvd2FWcVFvR2R5?=
+ =?utf-8?B?Umc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cbeb0676-499d-4c70-0533-08dd232bdcac
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2024 08:18:40.1577 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2024 08:29:05.2866 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zqSlse/JYbxXiW8Cz6/aUFM5NkBci3kkfzp3wDSt5l3OBhYN1XiarEntKGH+0wViyeZMCJrqwJN6WVBYoO7dPLQ9EBZ64hjoIF5tUoPQL3Q=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7549
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6f6nmoId6fhYXNzBwlJSoeKj7L+tXMHsN9l/5LZ2kkNrx11SOI6SJiHSpOtQSWxA7Ty6suGl3YQ++aKC2rJLxgYBAsEs/bqMqKTCgcCSSj0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6019
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -197,523 +194,51 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 12/20/2024 1:17 PM, Rodrigo Vivi wrote:
-> On Thu, Dec 19, 2024 at 05:19:10PM -0800, Vinay Belgaumkar wrote:
->> Define PMU events for GT frequency (actual and requested). This is
->> a port from the i915 driver implementation, where an internal timer
->> is used to aggregate GT frequencies over certain fixed interval.
->> Following PMU events are being added-
->>
->>    xe_0000_00_02.0/actual-frequency/              [Kernel PMU event]
->>    xe_0000_00_02.0/requested-frequency/           [Kernel PMU event]
->>
->> Standard perf commands can be used to monitor GT frequency-
->>    $ perf stat -e xe_0000_00_02.0/requested-frequency,gt_id=0/ -I1000
->>
->>       1.001175175                700 M    xe/requested-frequency,gt_id=0/
->>       2.005891881                703 M    xe/requested-frequency,gt_id=0/
->>       3.007318169                700 M    xe/requested-frequency,gt_id=0/
->>
->> Actual/requested frequencies will be 0 when GT is suspended.
->>
->> v2: Checkpatch fix, moved timer code to this patch
->> v3: Fix kunit issue
->> v4: Checkpatch warning fixes
->> v5: Make PMU events per device (Lucas)
->> v6: Reuse bits from config mask for gt_id (Lucas)
->> v7: Fix bug in pmu_enable (Riana)
->>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> #v3
->> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_gt.c        |   2 +
->>   drivers/gpu/drm/xe/xe_pmu.c       | 259 +++++++++++++++++++++++++++++-
->>   drivers/gpu/drm/xe/xe_pmu.h       |   2 +
->>   drivers/gpu/drm/xe/xe_pmu_types.h |  26 +++
->>   4 files changed, 288 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->> index 64e60bcf131a..88ce52c63018 100644
->> --- a/drivers/gpu/drm/xe/xe_gt.c
->> +++ b/drivers/gpu/drm/xe/xe_gt.c
->> @@ -939,6 +939,8 @@ int xe_gt_resume(struct xe_gt *gt)
->>   
->>   	xe_gt_idle_enable_pg(gt);
->>   
->> +	xe_pmu_resume(gt);
->> +
->>   	xe_force_wake_put(gt_to_fw(gt), fw_ref);
->>   	xe_gt_dbg(gt, "resumed\n");
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
->> index 1115724a580d..7b0921ef8a1b 100644
->> --- a/drivers/gpu/drm/xe/xe_pmu.c
->> +++ b/drivers/gpu/drm/xe/xe_pmu.c
->> @@ -26,6 +26,8 @@
->>   static cpumask_t xe_pmu_cpumask;
->>   static unsigned int xe_pmu_target_cpu = -1;
->>   
->> +#define FREQUENCY 200
-> this is too generic... please add a better name to represent what this is for...
-> specially in a case that is adding gt frequency stuff this can get very confusing...
-ok, will use sampling_freq or something similar.
+On 12/17/2024 11:37 PM, Mitul Golani wrote:
+> Add scaling factors to scaler_state for a perticular scaler user,
+> use it later to compute scaler prefill latency. Also to extend this
+> when either pipe or plane scaler is in use.
 >
->> +
->>   /**
->>    * DOC: Xe PMU (Performance Monitoring Unit)
->>    *
->> @@ -65,6 +67,29 @@ static unsigned int xe_pmu_target_cpu = -1;
->>    *      2352945
->>    *
->>    * Each value is roughly a 1000ms increment here as well. This is expected GT residency when idle.
->> + *
->> + * PMU frequency events use a software timer to aggregate GT freq values over the time of capture.
->> + * This allows us to calculate a rough average over the timespan. This is why sysfs is the best way
->> + * to obtain instantaneous frequency if accuracy is intended. Advantage of using PMU is that it
->> + * results in lesser CPU utilization as compared to dumping sysfs entries repeatedly.
->> + *
->> + * To list GT frequency events, use the following-
->> + *
->> + * $ perf list | grep frequency
->> + *   xe_0000_00_02.0/actual-frequency/              [Kernel PMU event]
->> + *   xe_0000_00_02.0/requested-frequency/           [Kernel PMU event]
->> + *
->> + * $ perf stat -e xe_0000_00_02.0/requested-frequency,xe_gt_id=0/ -I1000
->> + *             time             counts unit events
->> + *      1.001189056               1950 M    xe_0000_00_02.0/requested-frequency,xe_gt_id=0/
->> + *      2.006388494               1960 M    xe_0000_00_02.0/requested-frequency,xe_gt_id=0/
->> + *      3.007930311               1959 M    xe_0000_00_02.0/requested-frequency,xe_gt_id=0/
->> + *
->> + * Dumping requested freq from sysfs-
->> + * $  while true; do cat /sys/class/drm/card0/device/tile0/gt0/freq0/cur_freq ; sleep 1; done
->> + *    1950
->> + *    1950
->> + *    1950
->>    */
->>   
->>   static struct xe_pmu *event_to_pmu(struct perf_event *event)
->> @@ -90,6 +115,12 @@ static unsigned int pm_bit(const u64 config)
->>   	case XE_PMU_C6_RESIDENCY:
->>   		val = __XE_PMU_C6_RESIDENCY_ENABLED;
->>   		break;
->> +	case XE_PMU_ACTUAL_FREQUENCY:
->> +		val =  __XE_PMU_ACTUAL_FREQUENCY_ENABLED;
->> +		break;
->> +	case XE_PMU_REQUESTED_FREQUENCY:
->> +		val = __XE_PMU_REQUESTED_FREQUENCY_ENABLED;
->> +		break;
->>   	default:
->>   		/*
->>   		 * Events that do not require sampling, or tracking state
->> @@ -106,6 +137,22 @@ static unsigned int config_bit(const u64 config)
->>   	return pm_bit(config);
->>   }
->>   
->> +static u32 config_mask(const u64 config)
->> +{
->> +	unsigned int bit = config_bit(config);
->> +
->> +	if (__builtin_constant_p(config))
->> +		BUILD_BUG_ON(bit >
->> +			     BITS_PER_TYPE(typeof_member(struct xe_pmu,
->> +							 enable)) - 1);
->> +	else
->> +		WARN_ON_ONCE(bit >
->> +			     BITS_PER_TYPE(typeof_member(struct xe_pmu,
->> +							 enable)) - 1);
->> +
->> +	return BIT(config_bit(config));
->> +}
->> +
->>   static unsigned int event_bit(struct perf_event *event)
->>   {
->>   	return config_bit(event->attr.config);
->> @@ -134,6 +181,10 @@ config_status(struct xe_device *xe, u64 config)
->>   		if (xe->info.skip_guc_pc)
->>   			return -ENODEV;
->>   		break;
->> +	case XE_PMU_ACTUAL_FREQUENCY:
->> +		fallthrough;
->> +	case XE_PMU_REQUESTED_FREQUENCY:
->> +		break;
->>   	default:
->>   		return -ENOENT;
->>   	}
->> @@ -198,6 +249,12 @@ store_sample(struct xe_pmu *pmu, unsigned int gt_id, int sample, u64 val)
->>   	pmu->event_sample[gt_id][sample].cur = val;
->>   }
->>   
->> +static void
->> +add_sample_mult(struct xe_pmu *pmu, unsigned int gt_id, int sample, u32 val, u32 mul)
->> +{
->> +	pmu->event_sample[gt_id][sample].cur += mul_u32_u32(val, mul);
->> +}
->> +
->>   static u64 get_c6(struct xe_gt *gt)
->>   {
->>   	struct xe_device *xe = gt_to_xe(gt);
->> @@ -243,6 +300,7 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
->>   {
->>   	struct xe_device *xe =
->>   		container_of(event->pmu, typeof(*xe), pmu.base);
->> +	struct xe_pmu *pmu = &xe->pmu;
->>   	const u64 config = event->attr.config;
->>   	const u64 gt_id = config >> __XE_PMU_GT_SHIFT;
->>   	struct xe_gt *gt = xe_device_get_gt(xe, gt_id);
->> @@ -252,6 +310,18 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
->>   	case XE_PMU_C6_RESIDENCY:
->>   		val = get_c6(gt);
->>   		break;
->> +	case XE_PMU_ACTUAL_FREQUENCY:
->> +		val =
->> +		   div_u64(read_sample(pmu, gt_id,
->> +				       __XE_SAMPLE_FREQ_ACT),
->> +			   USEC_PER_SEC /* to MHz */);
->> +		break;
->> +	case XE_PMU_REQUESTED_FREQUENCY:
->> +		val =
->> +		   div_u64(read_sample(pmu, gt_id,
->> +				       __XE_SAMPLE_FREQ_REQ),
->> +			   USEC_PER_SEC /* to MHz */);
->> +		break;
->>   	default:
->>   		drm_warn(&gt->tile->xe->drm, "unknown pmu event\n");
->>   	}
->> @@ -280,11 +350,153 @@ static void xe_pmu_event_read(struct perf_event *event)
->>   	local64_add(new - prev, &event->count);
->>   }
->>   
->> +static u32 frequency_enabled_mask(void)
->> +{
->> +	unsigned int i;
->> +	u32 mask = 0;
->> +
->> +	for (i = 0; i < XE_PMU_MAX_GT; i++)
->> +		mask |= config_mask(__XE_PMU_ACTUAL_FREQUENCY(i)) |
->> +		config_mask(__XE_PMU_REQUESTED_FREQUENCY(i));
->> +
->> +	return mask;
->> +}
->> +
->> +static bool
->> +frequency_sampling_enabled(struct xe_pmu *pmu, unsigned int gt)
->> +{
->> +	return pmu->enable &
->> +	       (config_mask(__XE_PMU_ACTUAL_FREQUENCY(gt)) |
->> +		config_mask(__XE_PMU_REQUESTED_FREQUENCY(gt)));
->> +}
->> +
->> +static void
->> +frequency_sample(struct xe_gt *gt, unsigned int period_ns)
->> +{
->> +	struct xe_device *xe = gt_to_xe(gt);
->> +	const unsigned int gt_id = gt->info.id;
->> +	struct xe_pmu *pmu = &xe->pmu;
->> +	bool device_awake;
->> +	int ret;
->> +	u32 cur_freq;
->> +
->> +	if (!frequency_sampling_enabled(pmu, gt_id))
->> +		return;
->> +
->> +	/* Report 0/0 (actual/requested) frequency while GT is suspended. */
->> +	device_awake = xe_pm_runtime_get_if_active(xe);
->> +	if (!device_awake)
->> +		return;
->> +
->> +	if (pmu->enable & config_mask(__XE_PMU_ACTUAL_FREQUENCY(gt_id))) {
->> +		u32 val;
->> +
->> +		/*
->> +		 * We take a quick peek here without using forcewake
->> +		 * so that we don't perturb the system under observation
->> +		 * (forcewake => !rc6 => increased power use). We expect
->> +		 * that if the read fails because it is outside of the
->> +		 * mmio power well, then it will return 0 -- in which
->> +		 * case we assume the system is running at the intended
->> +		 * frequency. Fortunately, the read should rarely fail!
->> +		 */
-> I'm just wondering here if we could/should use the latest know valid freq
-> when we read 0...?!
-
-When the system is idle, we want the actual freq to be 0. If we use the 
-last read non-zero value, it will depict incorrect act_freq.
-
-Thanks,
-
-Vinay.
-
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_display_types.h | 2 ++
+>   drivers/gpu/drm/i915/display/skl_scaler.c          | 3 +++
+>   2 files changed, 5 insertions(+)
 >
->> +		val = xe_guc_pc_get_act_freq(&gt->uc.guc.pc);
->> +
->> +		add_sample_mult(pmu, gt_id, __XE_SAMPLE_FREQ_ACT,
->> +				val, period_ns / 1000);
->> +	}
->> +
->> +	if (pmu->enable & config_mask(__XE_PMU_REQUESTED_FREQUENCY(gt_id))) {
->> +		ret = xe_guc_pc_get_cur_freq(&gt->uc.guc.pc, &cur_freq);
->> +		if (!ret)
->> +			add_sample_mult(pmu, gt_id, __XE_SAMPLE_FREQ_REQ,
->> +					cur_freq,
->> +					period_ns / 1000);
->> +	}
->> +
->> +	xe_pm_runtime_put(xe);
->> +}
->> +
->> +static enum hrtimer_restart xe_sample(struct hrtimer *hrtimer)
->> +{
->> +	struct xe_pmu *pmu = container_of(hrtimer, struct xe_pmu, timer);
->> +	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
->> +	u64 period = max_t(u64, 10000, NSEC_PER_SEC / FREQUENCY);
->> +	unsigned int period_ns;
->> +	struct xe_gt *gt;
->> +	unsigned int i;
->> +	ktime_t now;
->> +
->> +	if (!READ_ONCE(pmu->timer_enabled))
->> +		return HRTIMER_NORESTART;
->> +
->> +	now = ktime_get();
->> +	period_ns = ktime_to_ns(ktime_sub(now, pmu->timer_last));
->> +	pmu->timer_last = now;
->> +
->> +	/*
->> +	 * Strictly speaking the passed in period may not be 100% accurate for
->> +	 * all internal calculation, since some amount of time can be spent on
->> +	 * grabbing the forcewake. However the potential error from timer call-
->> +	 * back delay greatly dominates this so we keep it simple.
->> +	 */
->> +
->> +	for_each_gt(gt, xe, i) {
->> +		if (!(pmu->active_gts & BIT(i)))
->> +			continue;
->> +		frequency_sample(gt, period_ns);
->> +	}
->> +
->> +	hrtimer_forward(hrtimer, now, ns_to_ktime(period));
->> +
->> +	return HRTIMER_RESTART;
->> +}
->> +
->> +static bool pmu_needs_timer(struct xe_pmu *pmu)
->> +{
->> +	u32 enable;
->> +
->> +	/*
->> +	 * Only some counters need the sampling timer.
->> +	 *
->> +	 * We start with a bitmask of all currently enabled events.
->> +	 */
->> +	enable = pmu->enable;
->> +
->> +	/*
->> +	 * Mask out all the ones which do not need the timer, or in
->> +	 * other words keep all the ones that could need the timer.
->> +	 */
->> +	enable &= frequency_enabled_mask();
->> +
->> +	/*
->> +	 * If some bits remain it means we need the sampling timer running.
->> +	 */
->> +	return enable;
->> +}
->> +
->> +static void __xe_pmu_maybe_start_timer(struct xe_pmu *pmu)
->> +{
->> +	u64 period = max_t(u64, 10000, NSEC_PER_SEC / FREQUENCY);
->> +
->> +	if (!pmu->timer_enabled && pmu_needs_timer(pmu)) {
->> +		pmu->timer_enabled = true;
->> +		pmu->timer_last = ktime_get();
->> +		hrtimer_start_range_ns(&pmu->timer,
->> +				       ns_to_ktime(period), 0,
->> +				       HRTIMER_MODE_REL_PINNED);
->> +	}
->> +}
->> +
->>   static void xe_pmu_enable(struct perf_event *event)
->>   {
->>   	struct xe_pmu *pmu = event_to_pmu(event);
->> +	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
->> +	struct xe_gt *gt;
->>   	const unsigned int bit = event_bit(event);
->>   	unsigned long flags;
->> +	bool device_awake;
->> +	unsigned int i;
->>   
->>   	if (bit == -1)
->>   		goto update;
->> @@ -302,6 +514,18 @@ static void xe_pmu_enable(struct perf_event *event)
->>   	pmu->enable |= BIT(bit);
->>   	pmu->enable_count[bit]++;
->>   
->> +	/*
->> +	 * Start the sampling timer if needed and not already enabled.
->> +	 */
->> +	__xe_pmu_maybe_start_timer(pmu);
->> +
->> +	device_awake = xe_pm_runtime_get_if_active(xe);
->> +	if (device_awake) {
->> +		for_each_gt(gt, xe, i)
->> +			pmu->active_gts |= BIT(gt->info.id);
->> +		xe_pm_runtime_put(xe);
->> +	}
->> +
->>   	raw_spin_unlock_irqrestore(&pmu->lock, flags);
->>   update:
->>   	/*
->> @@ -331,8 +555,10 @@ static void xe_pmu_disable(struct perf_event *event)
->>   	 * Decrement the reference count and clear the enabled
->>   	 * bitmask when the last listener on an event goes away.
->>   	 */
->> -	if (--pmu->enable_count[bit] == 0)
->> +	if (--pmu->enable_count[bit] == 0) {
->>   		pmu->enable &= ~BIT(bit);
->> +		pmu->timer_enabled &= pmu_needs_timer(pmu);
->> +	}
->>   
->>   	raw_spin_unlock_irqrestore(&pmu->lock, flags);
->>   }
->> @@ -497,6 +723,8 @@ create_event_attributes(struct xe_pmu *pmu)
->>   		const char *unit;
->>   	} events[] = {
->>   		__event(0, "c6-residency", "ms"),
->> +		__event(1, "actual-frequency", "M"),
->> +		__event(2, "requested-frequency", "M"),
->>   	};
->>   
->>   	struct perf_pmu_events_attr *pmu_attr = NULL, *pmu_iter;
->> @@ -705,6 +933,31 @@ void xe_pmu_suspend(struct xe_gt *gt)
->>   	raw_spin_unlock_irq(&pmu->lock);
->>   }
->>   
->> +/**
->> + * xe_pmu_resume() - Restart the timer if needed
->> + * @gt: GT object
->> + */
->> +void xe_pmu_resume(struct xe_gt *gt)
->> +{
->> +	struct xe_device *xe = gt_to_xe(gt);
->> +	struct xe_pmu *pmu = &xe->pmu;
->> +
->> +	if (!pmu->base.event_init)
->> +		return;
->> +
->> +	raw_spin_lock_irq(&pmu->lock);
->> +
->> +	/*
->> +	 * Re-enable sampling timer when GPU goes active.
->> +	 */
->> +	if (pmu->active_gts == 0)
->> +		__xe_pmu_maybe_start_timer(pmu);
->> +
->> +	pmu->active_gts |= BIT(gt->info.id);
->> +
->> +	raw_spin_unlock_irq(&pmu->lock);
->> +}
->> +
->>   /**
->>    * xe_pmu_unregister() - Remove/cleanup PMU registration
->>    * @arg: Ptr to pmu
->> @@ -722,6 +975,8 @@ void xe_pmu_unregister(void *arg)
->>   
->>   	pmu->registered = false;
->>   
->> +	hrtimer_cancel(&pmu->timer);
->> +
->>   	xe_pmu_unregister_cpuhp_state(pmu);
->>   
->>   	perf_pmu_unregister(&pmu->base);
->> @@ -769,6 +1024,8 @@ void xe_pmu_register(struct xe_pmu *pmu)
->>   		return;
->>   
->>   	raw_spin_lock_init(&pmu->lock);
->> +	hrtimer_init(&pmu->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
->> +	pmu->timer.function = xe_sample;
->>   	pmu->cpuhp.cpu = -1;
->>   
->>   	pmu->name = kasprintf(GFP_KERNEL,
->> diff --git a/drivers/gpu/drm/xe/xe_pmu.h b/drivers/gpu/drm/xe/xe_pmu.h
->> index 17f5a8d7d45c..fb6e3819d7bc 100644
->> --- a/drivers/gpu/drm/xe/xe_pmu.h
->> +++ b/drivers/gpu/drm/xe/xe_pmu.h
->> @@ -16,12 +16,14 @@ void xe_pmu_exit(void);
->>   void xe_pmu_register(struct xe_pmu *pmu);
->>   void xe_pmu_unregister(void *arg);
->>   void xe_pmu_suspend(struct xe_gt *gt);
->> +void xe_pmu_resume(struct xe_gt *gt);
->>   #else
->>   static inline int xe_pmu_init(void) { return 0; }
->>   static inline void xe_pmu_exit(void) {}
->>   static inline void xe_pmu_register(struct xe_pmu *pmu) {}
->>   static inline void xe_pmu_unregister(void *arg) {}
->>   static inline void xe_pmu_suspend(struct xe_gt *gt) {}
->> +static inline void xe_pmu_resume(struct xe_gt *gt) {}
->>   #endif
->>   
->>   #endif
->> diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h b/drivers/gpu/drm/xe/xe_pmu_types.h
->> index f47a6e1b109c..5d873bae4a0d 100644
->> --- a/drivers/gpu/drm/xe/xe_pmu_types.h
->> +++ b/drivers/gpu/drm/xe/xe_pmu_types.h
->> @@ -12,6 +12,8 @@
->>   enum {
->>   	__XE_SAMPLE_C6,
->>   	__XE_SAMPLE_C6_LAST_REPORTED,
->> +	__XE_SAMPLE_FREQ_ACT,
->> +	__XE_SAMPLE_FREQ_REQ,
->>   	__XE_NUM_PMU_SAMPLERS
->>   };
->>   
->> @@ -28,7 +30,11 @@ enum {
->>   #define __XE_PMU_PM(x) ___XE_PMU_PM(0, x)
->>   
->>   #define XE_PMU_C6_RESIDENCY                    __XE_PMU_PM(0)
->> +#define XE_PMU_ACTUAL_FREQUENCY			__XE_PMU_PM(1)
->> +#define XE_PMU_REQUESTED_FREQUENCY		__XE_PMU_PM(2)
->>   #define __XE_PMU_C6_RESIDENCY(gt)              ___XE_PMU_PM(gt, 0)
->> +#define __XE_PMU_ACTUAL_FREQUENCY(gt)		___XE_PMU_PM(gt, 1)
->> +#define __XE_PMU_REQUESTED_FREQUENCY(gt)	___XE_PMU_PM(gt, 2)
->>   
->>   /*
->>    * Non-engine events that we need to track enabled-disabled transition and
->> @@ -36,6 +42,8 @@ enum {
->>    */
->>   enum xe_pmu_tracked_events {
->>   	__XE_PMU_C6_RESIDENCY_ENABLED,
->> +	__XE_PMU_ACTUAL_FREQUENCY_ENABLED,
->> +	__XE_PMU_REQUESTED_FREQUENCY_ENABLED,
->>   	__XE_PMU_TRACKED_EVENT_COUNT, /* count marker */
->>   };
->>   
->> @@ -116,6 +124,24 @@ struct xe_pmu {
->>   	 * @sleep_last: Last time GT parked for C6 estimation.
->>   	 */
->>   	ktime_t sleep_last[XE_PMU_MAX_GT];
->> +	/**
->> +	 * @timer: Timer for internal Xe PMU sampling.
->> +	 */
->> +	struct hrtimer timer;
->> +	/**
->> +	 * @timer_last:
->> +	 *
->> +	 * Timestmap of the previous timer invocation.
->> +	 */
->> +	ktime_t timer_last;
->> +	/**
->> +	 * @timer_enabled: Should the internal sampling timer be running.
->> +	 */
->> +	bool timer_enabled;
->> +	/**
->> +	 * @active_gts: GT active mask.
->> +	 */
->> +	unsigned int active_gts;
->>   };
->>   
->>   #endif
->> -- 
->> 2.38.1
->>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index b71416ff5b7f..28b2861df42b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -710,6 +710,8 @@ struct intel_initial_plane_config {
+>   struct intel_scaler {
+>   	u32 mode;
+>   	bool in_use;
+> +	int hscale;
+> +	int vscale;
+
+Probably should fill these in skl_scaler_get_config() and add in 
+intel_pipe_config_compare() to compare.
+
+
+Regards,
+
+Ankit
+
+
+>   };
+>   
+>   struct intel_crtc_scaler_state {
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+> index 11f73659c1b6..e00c6830ef65 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -423,6 +423,9 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
+>   
+>   			return -EINVAL;
+>   		}
+> +
+> +		scaler_state->scalers[*scaler_id].hscale = hscale;
+> +		scaler_state->scalers[*scaler_id].vscale = vscale;
+>   	}
+>   
+>   	drm_dbg_kms(display->drm, "Attached scaler id %u.%u to %s:%d\n",
