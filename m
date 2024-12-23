@@ -4,61 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEB17E7718B
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Dec 2024 15:14:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08167E7718B
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Dec 2024 15:44:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2AAF10E1A8;
-	Mon, 23 Dec 2024 15:14:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A605F10E57E;
+	Mon, 23 Dec 2024 15:44:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TpP2u4XV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="baRjMRCQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30BAE10E1A8
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Dec 2024 15:14:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D73B010E57E
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Dec 2024 15:44:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734966858; x=1766502858;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=Jiq4W90COP7DfzMO4Y4sOddkADkaAAimoovvyWE9rPk=;
- b=TpP2u4XVPU9sUaLfCA3eurnePoU/4iZe4Ei/jQl2fQRLJ30GaezY5l/G
- a5aFCa17uh7zW8Vo4L294Y3UP/w5ET12SPE76Co9uT9iFFOkyIbo/A0HJ
- 2LWTz3mipuX5VGAT1k9rmrTyvoiA5w8BY+vTEjhaz7uoaZNgV/SPOR2TN
- yjrAM8tEovOw/PMYWnqLUfjZ69C+CbbQQ+Fov3K7C7q+xt10ipBCsZrqT
- /Vxu56mJlA3gwnOaIWjV/+uIIbUYpqr6Wd7RWGPL55mWBkU3D7uoPM6lO
- LHXnmknbtyKetFUPMYn3PQE78pGXyxHlGCKS5OkRnWYsSVJ38SpiLEEtD g==;
-X-CSE-ConnectionGUID: t3gEez0WQFyOr8UqzcH+dg==
-X-CSE-MsgGUID: z3jbJ68ATnOfu5H2xVnIxA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11295"; a="38273489"
-X-IronPort-AV: E=Sophos;i="6.12,257,1728975600"; d="scan'208";a="38273489"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2024 07:14:18 -0800
-X-CSE-ConnectionGUID: Mm82vEs/TZS9NNE2NVtScw==
-X-CSE-MsgGUID: LZso1LDBRgmb25Xqe2OLbw==
+ t=1734968690; x=1766504690;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=TpZHRwO5OJ0T/eFLAxSXRvPyiXSKRq72H69y05vzpME=;
+ b=baRjMRCQ7UNXvdPa+xCoc4UJWDnJSbSDDwRgMMB/wyCJeiSc+aGM+Glw
+ EjE+eVNPXkMnJD2zU32BIbknKupsLC+eh2jIiYQytuxzYRO2Zx/XMJeX7
+ 5L/lieS11SLlS4AZuKecGSrRlXnZuD8Y3/KHvOPFVdqOSpee4wUHNZE+k
+ V2FNTpLOIL1tpb6/UbKavn0nNNzrZj6Vj0l/e5Eu8PQXq2dw9MvNENdQ5
+ +cWxP5ISeYQ9ueyWqVpVq1l5xB8t1S+G5v+uQRMZsTy7lPoaZgIfnKVAp
+ 5EPi1x4joV4KYkjVEf8/EM0Of1GkJp6EpVCniyLA0W5n876ZM0bwgFyyP g==;
+X-CSE-ConnectionGUID: XEPfouldRfGA7QPqqv7RPw==
+X-CSE-MsgGUID: 6Pn/GirWRn2oIh74JBW++A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11295"; a="34746414"
+X-IronPort-AV: E=Sophos;i="6.12,257,1728975600"; d="scan'208";a="34746414"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2024 07:44:34 -0800
+X-CSE-ConnectionGUID: VzIyPo3YRaSLYWnTw29tPg==
+X-CSE-MsgGUID: qBubfFTYT/iVtlhrpSFqWg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="104300351"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO [10.245.246.74])
- ([10.245.246.74])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2024 07:14:16 -0800
-Message-ID: <5e4087664d041849533e3585738122132d3ec1f5.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Force write completion of MI_STORE_DATA_IMM
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, "Souza, Jose"
- <jose.souza@intel.com>, Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Date: Mon, 23 Dec 2024 16:14:13 +0100
-In-Reply-To: <Z2MGCDqGmlsYwi+J@lstrano-desk.jf.intel.com>
-References: <20241217160732.46280-1-jose.souza@intel.com>
- <Z2ILvmX9y87iFvZP@lstrano-desk.jf.intel.com>
- <3ebdd73cecef119cbfb7fc902909c8c2adc5b0fc.camel@intel.com>
- <Z2MGCDqGmlsYwi+J@lstrano-desk.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="122506308"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Dec 2024 07:44:34 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Mon, 23 Dec 2024 07:44:33 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Mon, 23 Dec 2024 07:44:33 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.47) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Mon, 23 Dec 2024 07:44:32 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=k6gYoiLbD/7k+sBzwcaGyQHD8UeDZ9vgW/9xnmf91Vq81ruq1P+oGYo9cNZGBGV0CK6012t0LDVHzBHtcAxJrLW7kHDJ2jpTp47rdE+RzSCnMRIlbOhg90KSsYMw2rX+wxnr8ZmS6Cry7sg0zJmxi8ofiN3olsgDEfv2VD1gBQRc3GF1FSIcow60/KQvmx85RbuAPVTmot3amzy8XouMzzQMyvFX4xXjo2GWnGTYYXL4v+0MfaVk9gcYfAZhQ3O1ctSxXg0nHI9sjXyMp98rQDKhZh+rEIB9duJE/3R/W4pHIFV6X/iz1MrbdzilR4/VtDCu0vi9MA66iTLr1bqwWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gfhb+7vO1GR7VnqTX7v0SAU6L3m8m0LSvMBj25q2evo=;
+ b=rXp86bj44d/mP64CoRS2E5+HLcEVfAjQYHvkDaC9cwSRxSeVgZTnITD7GMie4GKvHfw2bh8wQ28zmtANCJMMOGyEtF1k/avnFz01P/Rqvs4MZDz7y4IJwO/h1l9CV/fitRGhWgHk+2kJg1o4elv7RIxNvWyEXtdWaf1Ogq47P5MEgNdg8/2NgMx0TDSYKzvWBLNNqruijwf1wuBrWPskAMYwBwdLFjcX2NdoHLDkxA68u8ekQMO8S1sj7TnbywGLb9ICvBFgC0NvSA8NcvHKX+Gkz90jwdhy/235tJTeX1TiSOBFVBMwK1hXwQD6B5gtKHEOgQ8/zMIhqSc54k9uzg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by IA0PR11MB7695.namprd11.prod.outlook.com (2603:10b6:208:400::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.20; Mon, 23 Dec
+ 2024 15:44:12 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.8272.013; Mon, 23 Dec 2024
+ 15:44:11 +0000
+Date: Mon, 23 Dec 2024 07:44:56 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Gustavo Sousa <gustavo.sousa@intel.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, Radhakrishna Sripada
+ <radhakrishna.sripada@intel.com>, Matt Roper <matthew.d.roper@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, <stable@vger.kernel.org>
+Subject: Re: [PATCH] drm/xe/tracing: Fix a potential TP_printk UAF
+Message-ID: <Z2mFePfn73Fugmrf@lstrano-desk.jf.intel.com>
+References: <20241223134250.14345-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241223134250.14345-1-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: MW4P223CA0018.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:303:80::23) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA0PR11MB7695:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2066f79f-cc27-4f67-606a-08dd2368a58b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?QG94GkadD0Se0qojw1BG2qz3jinPg94RVQp6ebpOJ3XQ1OkralpjgZVWTm?=
+ =?iso-8859-1?Q?OFQswqIqs6gWnM4uqMrkprsTlFOoxjfBz24AN7ajwoOgNxGQ4SZ7DF22Pk?=
+ =?iso-8859-1?Q?QtJtWk6kEiCSRnynA8Y4xQHA0cFgTUpdVyR8/fnezSwBTy7JdPQ/h3i6iu?=
+ =?iso-8859-1?Q?+tv5x1OoaFohm3FsTh1pvZcQGMb3Iw2wR/MvUf2e4nwOu5iiblsMAZzbyD?=
+ =?iso-8859-1?Q?6ETY4kpmxgWSs9Q3kloE6eVZtb4MtZWvNV6wxhGWFL+TRWcDRC4E6enqXr?=
+ =?iso-8859-1?Q?hD6MRyKaPW271tLId3JJCywsq9HFpi/ayfC+7fywghLkcjQfKoa6C2Xutn?=
+ =?iso-8859-1?Q?3qxrM5yHt5979rIfK3RtV0MXppL+VU3VhKsHYUDpnyqNnTR2jMZegexR8i?=
+ =?iso-8859-1?Q?d5FnnGp6s5PuLYqDPkl+ikRaBEzo0G3S2qF/EY/DVjNt9bWosMMxhM9pbi?=
+ =?iso-8859-1?Q?6+MFySSophc7bo/pOjZLjPQ2SCYPfvdS9TsZkqdBCSBog8BXULwba5gioi?=
+ =?iso-8859-1?Q?kyt31abrZu+2D9oUstBJNk9O9oHMweugVg12iD0REQM+UTnxam4vjg8Voa?=
+ =?iso-8859-1?Q?VHPZBVlpDWU9zcPFIINsFNiqLW1pYh9QKztxqK3IKVdZl4AWB/d+uMWKyV?=
+ =?iso-8859-1?Q?N0Wcm2/E+ycjPip4FNNxrsGK8ctGODViXEdvqQHGvJao///bZyYVVEvbBW?=
+ =?iso-8859-1?Q?nTdBxYaKu7way+0V4pSe+bwso9MTSo1t2Y4KyKoNDiVXdB/rfG+AxLfG5y?=
+ =?iso-8859-1?Q?4q6d+eW4oGjW0TjgK4batphtS5FQCTQj5kIaIMfmXvi2Lk2yrBcC11xvNK?=
+ =?iso-8859-1?Q?JI1GuArYI0YVWmG2gqj0w7Scd3bmaSj9E7VYBfcSngAZoV5y+yW/gIfNew?=
+ =?iso-8859-1?Q?hGRIvAEThTwRCcq7UlPyvJSiQVxwMyAtzFc23RWnmE7bzFzMxeWDLM11tx?=
+ =?iso-8859-1?Q?6emZ8dtYFtHfnnNPBAwoI+0xl18OCKl5uAr3tz2ZNzdAPj5Al/Ra3DzlGa?=
+ =?iso-8859-1?Q?NE2T2r2RFXAY86+ULn+frIxPmiK9GaVIXyd56d6NyLGBIshX+uhKc6D1zj?=
+ =?iso-8859-1?Q?x+wRF5vvum/q2pS9RjiSOX9oLtiCx6wO8kbrZv0wQ0WlU8EC8zmLXzuTQl?=
+ =?iso-8859-1?Q?+TWCSWL84Y5O8qsexE0GWRhWcAK+0mwVjs8gad/meuROf8R44FyJ/nC1kB?=
+ =?iso-8859-1?Q?U5/dqpQmyPX6gjsqArhWAnehDaRBWu9TBVXnTQ2+5c7GYUj5umG8AixGEZ?=
+ =?iso-8859-1?Q?IJdpY14sJay52nQ1ODbASjCOhpRUnOzA6ESuVA3sQvaBtu0Gqx38TuipJE?=
+ =?iso-8859-1?Q?8XGMzQbbs2+p9O5PQDultNwxMeNuINo8KwgwqwOzhQ9PTtCxfff8clLRzc?=
+ =?iso-8859-1?Q?Zw1G1r20Ipc1BIPkI1F/j6p0/ZHRgMoMZ3oYZIFNnc/mQ60g+Z2vJCUTGn?=
+ =?iso-8859-1?Q?AZXK/bfKjq0RMiem?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?ahHA7/eZMFs+5dqz34bT7kTF63ZBg8owIcmEnWKFj0jvpXAwTRXDa6dg8y?=
+ =?iso-8859-1?Q?p0XZ7j2mJSVA2l/gLx0yCqu4FEC3MfKXYf77sPt7jBsCExp/6Ezgwep1V1?=
+ =?iso-8859-1?Q?cf/DnuwQ3MD/gor/rLGjFkuLO/5rgKZGGztbIBErXUzlCUIv6CJIMI+zjg?=
+ =?iso-8859-1?Q?wqN089ApatOxKcww3N0nu95qF7frqX7+r2D02rNuWXIFXrW7omIZPFxelO?=
+ =?iso-8859-1?Q?/zntYFN6h0fT2tJI0yRpPiNY5/c3inbcyX1VqZEerv20NoDPNNIZ6E+lNe?=
+ =?iso-8859-1?Q?ki0K8Aa3uwjPz35IKGft/WIKsH421gk2cbiYgxavi1NoFhyK106Sap51LW?=
+ =?iso-8859-1?Q?189SySGnMPRNQfu5HfNLyQ8SkO9lhXpC77hQnQvjhDxxze5+yaB6hXV56w?=
+ =?iso-8859-1?Q?ul3t4sJa8DYHNTwg7uROO087cVkmMDw+SfDu2gzcoaYTKSPhE/q4rCD1cc?=
+ =?iso-8859-1?Q?9kGT2Ya4UXjQMCeiwdpWXoaNEYcxlGz9m6SjVm2ntrRSXtmN61bTaxn0WB?=
+ =?iso-8859-1?Q?ELa8TShXPNFjS/GyfMJRC2QGGWEIawEhefXmKrSTYMj1GzGWuSTQlgKreu?=
+ =?iso-8859-1?Q?adH6KBTtvN5xREYg2DrVC1BN8g5L7Rk4u5uoJkUIozRK5tkkZSxwlm1bUr?=
+ =?iso-8859-1?Q?CPPPdwSc/h5dzGqTcaVTxxCOAzJ6Eu54kC0Po64S9uKfRyXVSQghUtI/aq?=
+ =?iso-8859-1?Q?Agc4Iz82e0iNg8uZskA9sk/A+Oy6p0D8ksdT4XkJW6LBC8XG77uayh2vTY?=
+ =?iso-8859-1?Q?Wh/g0CNY/ExKdyfkzteweDgVDnRHeG+vpV+P15TYBd942CbsVt9EkQHqh3?=
+ =?iso-8859-1?Q?/mCqeJQCsKbD4uyFn70TBUp1srGlRYKuJzMnMPd67okVcxpyw9CozeoJqx?=
+ =?iso-8859-1?Q?WbFa8M2GAmoW6M9AGAhrK2udvQVhwmzGEpuAJUeeBt923IzhIhdT/HhT+9?=
+ =?iso-8859-1?Q?fHj/gPT2uzkH6lPzWk5/FZxUjS1wv+y3NTc2fg0aCqzQaqoxh56kMpcQh+?=
+ =?iso-8859-1?Q?RXqwMsdNAF5dWKbrQcVCU65uqpN6oPZIXL7GPSjZmKAY5sC+C9sQ0Exoux?=
+ =?iso-8859-1?Q?wWF+eivhP+aVd6q9iAUgupnvMAN7mZGPFNktfDxbpltcU3+l0L4kYukOOh?=
+ =?iso-8859-1?Q?vRIQ3fWKsbd4rXtRurUsshwYIhUNtIEsICpVItYpGWqGwKuiWPBNN1ierF?=
+ =?iso-8859-1?Q?VTOemuq+CcSD73CtW+WLvhzX7haeKARWAQqaadp9nehI+G1+4YnIWUt6EO?=
+ =?iso-8859-1?Q?bMfvrjXQ0s6GJLcIwMtVwOsGwryUxLhVZ6vfPvD973ygBY/elASFcOj6fi?=
+ =?iso-8859-1?Q?D7oT0gr50FRaSCUaIYMzMfzMqHdKOBo1wpOSHxKSHbEygeexYlw3a+faZp?=
+ =?iso-8859-1?Q?NiRjjQgxDoWezh7MO0vYKhoVlxj1yejmcIqsgg5p8hKUbWT1cG+SqSPc1o?=
+ =?iso-8859-1?Q?oj3MtISktY6H1z9G/4tLNXh13aheDs44gtLFBVhGvkn2bHezRmOCmpXv7a?=
+ =?iso-8859-1?Q?gPlXLlTY5TB7NRJF0uo2Jg/fDPSh8PtUcfFa2pGEv0BI9SAYXMY2OILblv?=
+ =?iso-8859-1?Q?Zrl2AE1y5D49HdvsNSKRYgieeeaS2ZV5u7OFkvkfLhK3dkO0vc+bg88xP3?=
+ =?iso-8859-1?Q?LQkcUDy16qp+IsozKX4T/TZQ8FetCwDWjYSutQ2/dW4tv3vkCyNffDEA?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2066f79f-cc27-4f67-606a-08dd2368a58b
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2024 15:44:11.9148 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9eoVtK9i0+9kCMPu4h1DJM38UPpLp630Ledr2dZay5MjxpCm3twdCRyTeBSiK9peVaZDaPdeq/mkvlkR0GdsJQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7695
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,210 +180,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-All,
+On Mon, Dec 23, 2024 at 02:42:50PM +0100, Thomas Hellström wrote:
+> The commit
+> afd2627f727b ("tracing: Check "%s" dereference via the field and not the TP_printk format")
+> exposes potential UAFs in the xe_bo_move trace event.
+> 
+> Fix those by avoiding dereferencing the
+> xe_mem_type_to_name[] array at TP_printk time.
+> 
+> Since some code refactoring has taken place, explicit backporting may
+> be needed for kernels older than 6.10.
+> 
+> Fixes: e46d3f813abd ("drm/xe/trace: Extract bo, vm, vma traces")
+> Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: intel-xe@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v6.11+
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_trace_bo.h | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
+> index 1762dd30ba6d..ea50fee50c7d 100644
+> --- a/drivers/gpu/drm/xe/xe_trace_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_trace_bo.h
+> @@ -60,8 +60,8 @@ TRACE_EVENT(xe_bo_move,
+>  	    TP_STRUCT__entry(
+>  		     __field(struct xe_bo *, bo)
+>  		     __field(size_t, size)
+> -		     __field(u32, new_placement)
+> -		     __field(u32, old_placement)
+> +		     __string(new_placement_name, xe_mem_type_to_name[new_placement])
+> +		     __string(old_placement_name, xe_mem_type_to_name[old_placement])
+>  		     __string(device_id, __dev_name_bo(bo))
+>  		     __field(bool, move_lacks_source)
+>  			),
+> @@ -69,15 +69,15 @@ TRACE_EVENT(xe_bo_move,
+>  	    TP_fast_assign(
+>  		   __entry->bo      = bo;
+>  		   __entry->size = bo->size;
+> -		   __entry->new_placement = new_placement;
+> -		   __entry->old_placement = old_placement;
+> +		   __assign_str(new_placement_name);
+> +		   __assign_str(old_placement_name);
+>  		   __assign_str(device_id);
+>  		   __entry->move_lacks_source = move_lacks_source;
+>  		   ),
+>  	    TP_printk("move_lacks_source:%s, migrate object %p [size %zu] from %s to %s device_id:%s",
+>  		      __entry->move_lacks_source ? "yes" : "no", __entry->bo, __entry->size,
+> -		      xe_mem_type_to_name[__entry->old_placement],
+> -		      xe_mem_type_to_name[__entry->new_placement], __get_str(device_id))
 
-On Wed, 2024-12-18 at 09:27 -0800, Matthew Brost wrote:
-> On Wed, Dec 18, 2024 at 08:38:49AM -0700, Souza, Jose wrote:
-> > On Tue, 2024-12-17 at 15:39 -0800, Matthew Brost wrote:
-> > > On Tue, Dec 17, 2024 at 08:07:32AM -0800, Jos=C3=A9 Roberto de Souza
-> > > wrote:
-> > > > With Force write completion unset there is no guarantees of
-> > > > when the
-> > > > write will be globally visible what is not the behavior wanted.
-> > > >=20
-> > >=20
-> > > Do we want this backported? If so, maybe add a fixes?
-> >=20
-> > Not sure, I don't have an actual issue that is fixed by this but I
-> > think would be good to have it backported.
-> > But what do you suggest? Add a fixes tag to the patch removing
-> > force probe from LNL?
-> >=20
->=20
-> Yea fixing LNL force probe removal sounds reasonable to me.
+So is this the UAF? i.e., The Xe module unloads and xe_mem_type_to_name
+is gone?
 
+I noticed that xe_mem_type_to_name is not static, it likely should be.
+Would that help here?
 
-This patch appears very odd to me. What problem is it trying to solve?
-I mean in most of the places where we add a command streamer stall by
-this flag we *don't* want that behaviour.
+Matt
 
-emit_store_imm_ppgtt_posted() explicitly calls out that this is a
-posted write so why make it a flushed write?
-
-emit_store_imm_gtt() has a flushing equivalent in
-emit_flush_imm_ggtt().
-
-emit_pte() is only ever used posted with an explicit flush following
-the pte emits and the actual payload using the emitted ptes.
-
-For the changes in xe_migrate.c, those writes are flushed in the
-migration ring_ops.
-
-For the oa instance, I'm not sure, but it looks like the ring ops will
-be flushing there as well?
-
-So what's the background of this patch? I'm going to leave it out of
-drm-xe-fixes for now.
-
-/Thomas
-
-
->=20
-> Matt
->=20
-> > >=20
-> > > Matt
-> > >=20
-> > > > Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
-> > > > ---
-> > > > =C2=A0drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 13 +++++++=
--
-> > > > -----
-> > > > =C2=A0drivers/gpu/drm/xe/xe_migrate.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | =
-11
-> > > > ++++++++---
-> > > > =C2=A0drivers/gpu/drm/xe/xe_oa.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +++-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_ring_ops.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 6 ++++--
-> > > > =C2=A04 files changed, 22 insertions(+), 12 deletions(-)
-> > > >=20
-> > > > diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-> > > > b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-> > > > index 10ec2920d31b3..f4ee910f09432 100644
-> > > > --- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-> > > > +++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-> > > > @@ -33,12 +33,13 @@
-> > > > =C2=A0#define MI_TOPOLOGY_FILTER		__MI_INSTR(0xD)
-> > > > =C2=A0#define
-> > > > MI_FORCE_WAKEUP			__MI_INSTR(0x1D)
-> > > > =C2=A0
-> > > > -#define MI_STORE_DATA_IMM		__MI_INSTR(0x20)
-> > > > -#define=C2=A0=C2=A0 MI_SDI_GGTT			REG_BIT(22)
-> > > > -#define=C2=A0=C2=A0 MI_SDI_LEN_DW			GENMASK(9, 0)
-> > > > -#define=C2=A0=C2=A0
-> > > > MI_SDI_NUM_DW(x)		REG_FIELD_PREP(MI_SDI_LEN_DW, (x) + 3 - 2)
-> > > > -#define=C2=A0=C2=A0
-> > > > MI_SDI_NUM_QW(x)		(REG_FIELD_PREP(MI_SDI_LEN_DW, 2 * (x) + 3 - 2)|\
-> > > > -					 REG_BIT(21))
-> > > > +#define
-> > > > MI_STORE_DATA_IMM			__MI_INSTR(0x20)
-> > > > +#define=C2=A0=C2=A0 MI_SDI_GGTT				REG_BIT(22)
-> > > > +#define=C2=A0=C2=A0 MI_FORCE_WRITE_COMPLETION_CHECK	REG_BIT(10)
-> > > > +#define=C2=A0=C2=A0
-> > > > MI_SDI_LEN_DW				GENMASK(9, 0)
-> > > > +#define=C2=A0=C2=A0
-> > > > MI_SDI_NUM_DW(x)			REG_FIELD_PREP(MI_SDI_LEN_DW, (x) + 3 - 2)
-> > > > +#define=C2=A0=C2=A0
-> > > > MI_SDI_NUM_QW(x)			(REG_FIELD_PREP(MI_SDI_LEN_DW, 2 * (x) + 3 -2)|\
-> > > > +						 REG_BIT(21))
-> > > > =C2=A0
-> > > > =C2=A0#define MI_LOAD_REGISTER_IMM		__MI_INSTR(0x22)
-> > > > =C2=A0#define=C2=A0=C2=A0 MI_LRI_LRM_CS_MMIO		REG_BIT(19)
-> > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c
-> > > > b/drivers/gpu/drm/xe/xe_migrate.c
-> > > > index 1b97d90aaddaf..8b32fad678782 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_migrate.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> > > > @@ -581,7 +581,9 @@ static void emit_pte(struct xe_migrate *m,
-> > > > =C2=A0	while (ptes) {
-> > > > =C2=A0		u32 chunk =3D min(MAX_PTE_PER_SDI, ptes);
-> > > > =C2=A0
-> > > > -		bb->cs[bb->len++] =3D MI_STORE_DATA_IMM |
-> > > > MI_SDI_NUM_QW(chunk);
-> > > > +		bb->cs[bb->len++] =3D MI_STORE_DATA_IMM |
-> > > > +				=C2=A0=C2=A0=C2=A0
-> > > > MI_FORCE_WRITE_COMPLETION_CHECK |
-> > > > +				=C2=A0=C2=A0=C2=A0 MI_SDI_NUM_QW(chunk);
-> > > > =C2=A0		bb->cs[bb->len++] =3D ofs;
-> > > > =C2=A0		bb->cs[bb->len++] =3D 0;
-> > > > =C2=A0
-> > > > @@ -1223,7 +1225,9 @@ static void write_pgtable(struct xe_tile
-> > > > *tile, struct xe_bb *bb, u64 ppgtt_ofs,
-> > > > =C2=A0		if (!(bb->len & 1))
-> > > > =C2=A0			bb->cs[bb->len++] =3D MI_NOOP;
-> > > > =C2=A0
-> > > > -		bb->cs[bb->len++] =3D MI_STORE_DATA_IMM |
-> > > > MI_SDI_NUM_QW(chunk);
-> > > > +		bb->cs[bb->len++] =3D MI_STORE_DATA_IMM |
-> > > > +				=C2=A0=C2=A0=C2=A0
-> > > > MI_FORCE_WRITE_COMPLETION_CHECK |
-> > > > +				=C2=A0=C2=A0=C2=A0 MI_SDI_NUM_QW(chunk);
-> > > > =C2=A0		bb->cs[bb->len++] =3D lower_32_bits(addr);
-> > > > =C2=A0		bb->cs[bb->len++] =3D upper_32_bits(addr);
-> > > > =C2=A0		if (pt_op->bind)
-> > > > @@ -1388,7 +1392,8 @@ __xe_migrate_update_pgtables(struct
-> > > > xe_migrate *m,
-> > > > =C2=A0			u32 idx =3D 0;
-> > > > =C2=A0
-> > > > =C2=A0			bb->cs[bb->len++] =3D MI_STORE_DATA_IMM
-> > > > |
-> > > > -				MI_SDI_NUM_QW(chunk);
-> > > > +					=C2=A0=C2=A0=C2=A0
-> > > > MI_FORCE_WRITE_COMPLETION_CHECK |
-> > > > +					=C2=A0=C2=A0=C2=A0
-> > > > MI_SDI_NUM_QW(chunk);
-> > > > =C2=A0			bb->cs[bb->len++] =3D ofs;
-> > > > =C2=A0			bb->cs[bb->len++] =3D 0; /*
-> > > > upper_32_bits */
-> > > > =C2=A0
-> > > > diff --git a/drivers/gpu/drm/xe/xe_oa.c
-> > > > b/drivers/gpu/drm/xe/xe_oa.c
-> > > > index 56bf375a9d4bc..ae94490b0eac8 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_oa.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_oa.c
-> > > > @@ -690,7 +690,9 @@ static void xe_oa_store_flex(struct
-> > > > xe_oa_stream *stream, struct xe_lrc *lrc,
-> > > > =C2=A0	u32 offset =3D xe_bo_ggtt_addr(lrc->bo);
-> > > > =C2=A0
-> > > > =C2=A0	do {
-> > > > -		bb->cs[bb->len++] =3D MI_STORE_DATA_IMM |
-> > > > MI_SDI_GGTT | MI_SDI_NUM_DW(1);
-> > > > +		bb->cs[bb->len++] =3D MI_STORE_DATA_IMM |
-> > > > MI_SDI_GGTT |
-> > > > +				=C2=A0=C2=A0=C2=A0
-> > > > MI_FORCE_WRITE_COMPLETION_CHECK |
-> > > > +				=C2=A0=C2=A0=C2=A0 MI_SDI_NUM_DW(1);
-> > > > =C2=A0		bb->cs[bb->len++] =3D offset + flex->offset *
-> > > > sizeof(u32);
-> > > > =C2=A0		bb->cs[bb->len++] =3D 0;
-> > > > =C2=A0		bb->cs[bb->len++] =3D flex->value;
-> > > > diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > > b/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > > index 0be4f489d3e12..3a75a08b6be92 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > > @@ -72,7 +72,8 @@ static int emit_user_interrupt(u32 *dw, int
-> > > > i)
-> > > > =C2=A0
-> > > > =C2=A0static int emit_store_imm_ggtt(u32 addr, u32 value, u32 *dw,
-> > > > int i)
-> > > > =C2=A0{
-> > > > -	dw[i++] =3D MI_STORE_DATA_IMM | MI_SDI_GGTT |
-> > > > MI_SDI_NUM_DW(1);
-> > > > +	dw[i++] =3D MI_STORE_DATA_IMM | MI_SDI_GGTT |
-> > > > +		=C2=A0 MI_FORCE_WRITE_COMPLETION_CHECK |
-> > > > MI_SDI_NUM_DW(1);
-> > > > =C2=A0	dw[i++] =3D addr;
-> > > > =C2=A0	dw[i++] =3D 0;
-> > > > =C2=A0	dw[i++] =3D value;
-> > > > @@ -162,7 +163,8 @@ static int emit_pipe_invalidate(u32
-> > > > mask_flags, bool invalidate_tlb, u32 *dw,
-> > > > =C2=A0static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
-> > > > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 *dw, int i)
-> > > > =C2=A0{
-> > > > -	dw[i++] =3D MI_STORE_DATA_IMM | MI_SDI_NUM_QW(1);
-> > > > +	dw[i++] =3D MI_STORE_DATA_IMM |
-> > > > MI_FORCE_WRITE_COMPLETION_CHECK |
-> > > > +		=C2=A0 MI_SDI_NUM_QW(1);
-> > > > =C2=A0	dw[i++] =3D lower_32_bits(addr);
-> > > > =C2=A0	dw[i++] =3D upper_32_bits(addr);
-> > > > =C2=A0	dw[i++] =3D lower_32_bits(value);
-> > > > --=20
-> > > > 2.47.1
-> > > >=20
-> >=20
-
+> +		      __get_str(old_placement_name),
+> +		      __get_str(new_placement_name), __get_str(device_id))
+>  );
+>  
+>  DECLARE_EVENT_CLASS(xe_vma,
+> -- 
+> 2.47.1
+> 
