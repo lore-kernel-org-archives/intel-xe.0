@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A6BCE7718B
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Dec 2024 18:34:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7BA8E7718B
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Dec 2024 18:35:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E361510E0BD;
-	Mon, 23 Dec 2024 18:34:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A723010E0BD;
+	Mon, 23 Dec 2024 18:35:04 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 431B510E0BD;
- Mon, 23 Dec 2024 18:34:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0410410E0BD;
+ Mon, 23 Dec 2024 18:35:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Remove_=27?=
- =?utf-8?q?Force_write_completion=27_from_MI=5FSTORE=5FDATA=5FIMM?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Remove_=27Force?=
+ =?utf-8?q?_write_completion=27_from_MI=5FSTORE=5FDATA=5FIMM?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 23 Dec 2024 18:34:48 -0000
-Message-ID: <173497888827.2198014.3888276399599597699@b555e5b46a47>
+Date: Mon, 23 Dec 2024 18:35:03 -0000
+Message-ID: <173497890301.2198014.14617243779685729372@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241223182918.126288-1-jose.souza@intel.com>
 In-Reply-To: <20241223182918.126288-1-jose.souza@intel.com>
@@ -48,9 +48,35 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 8fd79761c1b6 drm-tip: 2024y-12m-23d-17h-46m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Remove 'Force write completion' from MI_STORE_DATA_IMM
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b132c7e377f5d1fc7dbe5a96657d128d7e1eeabb
+Author: José Roberto de Souza <jose.souza@intel.com>
+Date:   Mon Dec 23 10:29:18 2024 -0800
+
+    drm/xe: Remove 'Force write completion' from MI_STORE_DATA_IMM
+    
+    In all places the MI_STORE_DATA_IMM are not followed by a read of
+    the same memory address in the same batch buffer and the posted writes
+    are flushed with PIPE_CONTROL or MI_FLUSH_DW in xe_ring_ops.c functions
+    so there is no need to set this register.
+    
+    This is not a revert because I think it is worthy keep the register
+    definition and the comment on top of it so future readers don't
+    get the same wrong conclusion as I did.
+    
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+    Fixes: 1460bb1fef9c ("drm/xe: Force write completion of MI_STORE_DATA_IMM")
+    Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
++ /mt/dim checkpatch 8fd79761c1b6984d01b45a4bc8eb8ad81f6546e4 drm-intel
+b132c7e377f5 drm/xe: Remove 'Force write completion' from MI_STORE_DATA_IMM
 
 
