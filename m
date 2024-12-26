@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CB5FE77188
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CC51E77194
 	for <intel-xe@archiver.kernel.org>; Thu,  2 Jan 2025 18:11:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18F5D10E7A3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37A8C10E7A5;
 	Thu,  2 Jan 2025 18:11:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=linaro.org header.i=@linaro.org header.b="iieaJYY2";
+	dkim=permerror (0-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gl29Q2Gg";
 	dkim-atps=neutral
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
- [209.85.221.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3EEF10E049
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Dec 2024 12:10:51 +0000 (UTC)
-Received: by mail-wr1-f41.google.com with SMTP id
- ffacd0b85a97d-38633b5dbcfso6206740f8f.2
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Dec 2024 04:10:51 -0800 (PST)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
+ [209.85.128.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3DE110E077
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Dec 2024 13:08:32 +0000 (UTC)
+Received: by mail-wm1-f42.google.com with SMTP id
+ 5b1f17b1804b1-436637e8c8dso63461585e9.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Dec 2024 05:08:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1735214990; x=1735819790; darn=lists.freedesktop.org;
+ d=linaro.org; s=google; t=1735218451; x=1735823251; darn=lists.freedesktop.org;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=4yE0d6/fT2fHAjzAIYMLLWaXzKg6hYqakVFryoy6JvQ=;
- b=iieaJYY2CsLjdCc7/QLURDOjLPWQbiT9BsMn1GBf/YUGsxntQjc7WPMDtyBhUorG2E
- TA1wLo7Ruz6fiOLYHiVfpCYyZiSqnaAiODAW1kAsuGcihmLCAT9GJIyqDlTzZerl/L6V
- G0fHFZDMea7eDe2jT+xzWcBvZw7GfyDjEmZV0iCndjUKlCyJbkYdpjKhe1pQXbgb7Qg+
- yfiRO2Jn2YdDoEWk3fEjnke0gxNjG50f+9VGPmpNGs64YLIqrkc8amL5j1bvjME1VmYT
- nLzmSYnSkw2bhTV3gAf5t5j0d2M2O/qT7ISUqfLVeKQ9JvArJ7M/eLUjofzztN8AjrEd
- b/Ww==
+ bh=2xYN5a7hOoppgoAE3bkR8Zunji5zT+kUi/AFcDG3CeI=;
+ b=Gl29Q2GgjeMXIuTlwwk7TXmaNjV4vgFNQwRa0nx+vXumJn0W2Xr4U2aRrdar6u5N9d
+ lN+SpzfmvFWJYu02X28HwM5rmU9gAKaQkNZaBXashyDaSKR8WqThcfdXoOJ+R7Urtp5k
+ WnQ+UsQvMjkHpqTtkdDJ23L/BxJNMJQXTlj5Z9fLrrGjhR2haGgHxF0MYr4cAS7gif5U
+ jzVAVD3O5LmcLbAx7slq53CpxrBZD+dtC7IVjvCOHsAuH9duOYcYLEB2eusQnV/HL7nl
+ ZpqmweDCCf6VRNrYI6kk96MHmvx5YDKXDQcvvtL6Mps0f8tcul4xN0dfzLyamn0a6/aB
+ vNnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1735214990; x=1735819790;
+ d=1e100.net; s=20230601; t=1735218451; x=1735823251;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=4yE0d6/fT2fHAjzAIYMLLWaXzKg6hYqakVFryoy6JvQ=;
- b=TvunKT4AmWY9Snz4BuvDLVwFUZyLqfyfEfhmc0th43SuugrfSnjHMehHrVwLpsKfZU
- G2j0/2eSIZJCqJbzCXWYQEgyGwN1C7sk6RY8q5nl7xIxzyIsjdOgYc9PCKpQ4FZkyjFr
- dY96hE1tlW9u1ISAjJosWqDrO0KJjDziytgdkXytGvZx2TdibzSVxDBWfHFbqbwvxMEg
- 7rJwUii8bsJ6w70frN3Dmy0Fi5L6kd4T0j+tCaBfxBf0opanhNCAmlQxbjm2x+qfCXlM
- 5VeV0HPmOrouQs0qd5Xod0nEB3S6I6bmuIXIrbXpE4f1Rr6yvpxmcQsrWVUtcMlrZYcS
- kJLA==
+ bh=2xYN5a7hOoppgoAE3bkR8Zunji5zT+kUi/AFcDG3CeI=;
+ b=BdZhr0FAJrPjYtOSsuqH8dOwcTf45+0UWx+fh0M8zJeY48C6jL/4Fbwbl5o/OS+hEw
+ n3Yra/2KSl1O7Ret2GcZ49nBrg97flrvcT1ymcO4p1KT7phQ+O1UqbvJKx4uOKNeOf79
+ sPGu7USp/V5cWf+bBImYrwGlWyLde5f8PXbc/lGJBK16R7/pKVuYmfrtoaw+OSHvOUMx
+ cvZQdsFAkT4Rhl/cuqnoehoRjSDGmdtkwO+O5M1yUaQnXZj5UQS4iTbsm1Jd8YELei6T
+ QbfmjlEmD+FZgCzp3AUHUYWmw5PBHnKWq+IPuhZBuaq9pzvuIihrmOOVxAHu6NkRLBiD
+ fEjg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXI8Xv60B0bgxifBnkq6UO/jn6yRxjmIm6X+usmOaJHjOrIpXqHT1RhsjYi2njN//odqmQO9+q6Jw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzablGWCUfvepZDl1Y+p90kxe+hUqiUrDesRSjGbOktaBGyrudT
- +wyJLONMP6fFSG1E461PIjOYK0OXYzfMlDn09Zs0jtgVK84+fKafZvJanl7OgkM=
-X-Gm-Gg: ASbGncs8FQ0BOb5DKSU7pvKYovAfn3uKyDuX/398E05Nw/aH6kmLeimtbKkXC46KHj1
- 8u10O2S96c/TVYSp1jWxTUXvb2YQ4t3c7q6x/XuHCAtwMOCIQiJh5WxroU65j67lSPShmY16Zkg
- pwSWGqoqexImej1HwAlI3f86fHI+LdxSTN7LpgK+lSgDDeXnpluAzbFJG0TAIkGk/kwDjk4w4qO
- mntHOF2//JT3PseAJPFtFvbOLQHcx3y0T4CK6LKEExA9m6mw11CVZY=
-X-Google-Smtp-Source: AGHT+IE7Mzk62uTd4yycH28u5xCSB39eiD96qbQg0fIjJMfiTxkRYB+ECRA3AUQrSJ8HACLT9c1tFw==
-X-Received: by 2002:a05:6000:400b:b0:385:ee3f:5cbf with SMTP id
- ffacd0b85a97d-38a221eab74mr22082237f8f.20.1735214990215; 
- Thu, 26 Dec 2024 04:09:50 -0800 (PST)
+ AJvYcCX+jp63ISZn808BCq/WhlTif8ADgnHl5B2ow+tIX5L0ZnR6UJPOHrcGZjkANs8Y4gDcRSGkzmYhyA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw+IquTap3u7rbf8/VufhIWWieiBCujWQIljyNpNT+0cuPEtL0W
+ xNRdCrIL1Fi77H6vczkxagtT1WwtgrlBra5G9MgtODBia5UXSqKjX8ewy2ctJU8=
+X-Gm-Gg: ASbGncuIT0cvwTWla3pG5+c9etdw4dElYKMHvF5qpsTN5Ou2BcDItR3hPUXFdAWlsgf
+ S3d95sjNvoSFl6M8qZtgCvCydwFo61W4Cnko1M/u/3/Dt38MNBhT1pu0TxbSVPXh2Qu2ztjLVMc
+ o5ofeR06ZdKQGJt2VKJ/e8j5QjB1HVtnAAOgL+wXfiw9IvUSFWrdZ0H/BknBcL7m/AZgGKLzFNM
+ Y7FbxTssrJ51XM1s82Cx7PfMK9JgU2ajicffLVsdmKMmg0mVQ8tSvo=
+X-Google-Smtp-Source: AGHT+IGvNY9x8znPid+jlSUugq+7Voy4lhkFD150p7UMeaZJEhSIyuzOQxvdWb877xCzmOFRcxCZRA==
+X-Received: by 2002:a05:600c:4f11:b0:435:9ed3:5698 with SMTP id
+ 5b1f17b1804b1-43668b5e09bmr177464715e9.24.1735218451158; 
+ Thu, 26 Dec 2024 05:07:31 -0800 (PST)
 Received: from linaro.org ([82.76.168.176]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-38a1c89e1cesm19043982f8f.64.2024.12.26.04.09.47
+ 5b1f17b1804b1-4364a376846sm264591185e9.0.2024.12.26.05.07.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Dec 2024 04:09:48 -0800 (PST)
-Date: Thu, 26 Dec 2024 14:09:46 +0200
+ Thu, 26 Dec 2024 05:07:29 -0800 (PST)
+Date: Thu, 26 Dec 2024 15:07:27 +0200
 From: Abel Vesa <abel.vesa@linaro.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Johan Hovold <johan@kernel.org>
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>,
@@ -71,24 +71,26 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Sean Paul <sean@poorly.run>,
  Marijn Suijten <marijn.suijten@somainline.org>,
  Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>,
- Johan Hovold <johan@kernel.org>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org
 Subject: Re: [PATCH v2 1/4] drm/dp: Add helper to set LTTPRs in transparent
  mode
-Message-ID: <Z21HimmBvwwA7/KD@linaro.org>
+Message-ID: <Z21VD82XCOVgVJUh@linaro.org>
 References: <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-0-d5906ed38b28@linaro.org>
  <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-1-d5906ed38b28@linaro.org>
- <o6xcm7jdcay77b6kltj7zownk6je6umqlmxsuscbbubw4jlr5v@w4zuusufajwx>
+ <Z1mk08SHEd5_vc99@hovoldconsulting.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <o6xcm7jdcay77b6kltj7zownk6je6umqlmxsuscbbubw4jlr5v@w4zuusufajwx>
+In-Reply-To: <Z1mk08SHEd5_vc99@hovoldconsulting.com>
 X-Mailman-Approved-At: Thu, 02 Jan 2025 18:11:10 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -104,33 +106,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 24-12-11 21:22:00, Dmitry Baryshkov wrote:
+On 24-12-11 15:42:27, Johan Hovold wrote:
 > On Wed, Dec 11, 2024 at 03:04:12PM +0200, Abel Vesa wrote:
-> > According to the DisplayPort standard, LTTPRs have two operating
-> > modes:
-> >  - non-transparent - it replies to DPCD LTTPR field specific AUX
-> >    requests, while passes through all other AUX requests
-> >  - transparent - it passes through all AUX requests.
-> > 
-> > Switching between this two modes is done by the DPTX by issuing
-> > an AUX write to the DPCD PHY_REPEATER_MODE register.
-> > 
-> > Add a generic helper that allows switching between these modes.
-> > 
-> > Also add a generic wrapper for the helper that handles the explicit
-> > disabling of non-transparent mode and its disable->enable sequence
-> > mentioned in the DP Standard v2.0 section 3.6.6.1. Do this in order
-> > to move this handling out of the vendor specific driver implementation
-> > into the generic framework.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >  drivers/gpu/drm/display/drm_dp_helper.c | 50 +++++++++++++++++++++++++++++++++
-> >  include/drm/display/drm_dp_helper.h     |  2 ++
-> >  2 files changed, 52 insertions(+)
-> > 
+>  
+> > +/**
+> > + * drm_dp_lttpr_set_transparent_mode - set the LTTPR in transparent mode
+> > + * @aux: DisplayPort AUX channel
+> > + * @enable: Enable or disable transparent mode
+> > + *
+> > + * Returns 0 on success or a negative error code on failure.
+> > + */
+> > +int drm_dp_lttpr_set_transparent_mode(struct drm_dp_aux *aux, bool enable)
+> > +{
+> > +	u8 val = enable ? DP_PHY_REPEATER_MODE_TRANSPARENT :
+> > +			  DP_PHY_REPEATER_MODE_NON_TRANSPARENT;
+> > +	int ret = drm_dp_dpcd_writeb(aux, DP_PHY_REPEATER_MODE, val);
+> > +
+> > +	return ret == 1 ? 0 : ret;
 > 
+> This looks correct, but I had to go look at drm_dp_dpcd_writeb() to make
+> sure it never returns 0 (for short transfers).
+
+Will follow Dmitry's proposal here.
+
+	if (ret < 0)
+        	return ret;
+
+	return (ret == 1) ? 0 : -EIO;
+
+
 > 
+> > +}
+> > +EXPORT_SYMBOL(drm_dp_lttpr_set_transparent_mode);
+> 
+> This appears to be what the driver currently uses, but why not
+> EXPORT_SYMBOL_GPL?
+> 
+> > +
 > > +/**
 > > + * drm_dp_lttpr_init - init LTTPR transparency mode according to DP standard
 > > + *
@@ -150,36 +162,68 @@ On 24-12-11 21:22:00, Dmitry Baryshkov wrote:
 > > +	 * sequence.
 > > +	 */
 > > +	drm_dp_lttpr_set_transparent_mode(aux, true);
+> 
+> Error handling?
+
+Yes, this makes sense. But other than throwing an error I don't think
+there is much to be done. I'll add an drm_err here just in case. 
+
+> 
 > > +
 > > +	if (lttpr_count > 0 && !drm_dp_lttpr_set_transparent_mode(aux, false))
+> 
+> No need to check lttpr_count again here.
+
+So the logic behind lttpr_count and this transparency mode changing, as
+specified in the DP standard, is as follows:
+
+- If there are 0 LTTPRs counted, then nothing to be done, otherwise set to
+transparent mode.
+
+- Then, if there are between 0 and 8 LTTPRs counted, set non-transparent
+mode successfully.
+
+- Otherwise, rollback to transparent mode.
+
+This last rollback might result in two transparent mode settings without
+a non-transparent one in between, but AFAIU, that is OK. Making sure this
+doesn't happen would just make the implementation more ugly without any
+benefit, IMO.
+
+> 
 > > +		return 0;
+> 
+> I'd check for errors instead of success here and do the rollback before
+> returning -EINVAL.
+> 
+
+Yes, I think it would be more cleaner. Will do that.
+
 > > +
 > > +	/*
 > > +	 * Roll-back to tranparent mode if setting non-tranparent mode failed or
 > > +	 * the number of LTTPRs is invalid
 > > +	 */
 > > +	drm_dp_lttpr_set_transparent_mode(aux, true);
-> 
-> This means that if lttpr_count < 0, then there will be two requests to
-> set LTTPRs to a transparent mode. Is that expected?
-
-Yes, exactly. If counting the LTTPRs (see drm_dp_lttpr_count) results in an
-invalid number (e.g. more than 8), then according to the DP standard,
-we need to roll back to transparent mode.
-
-Do you think I need to re-word the comment above more to make it more
-clearer?
-
-> 
 > > +
 > > +	return -EINVAL;
+> 
+> And return 0 explicitly here.
+
+Yes. Will do that.
+
+> 
 > > +}
 > > +EXPORT_SYMBOL(drm_dp_lttpr_init);
-> > +
 > 
-> -- 
-> With best wishes
-> Dmitry
+> In any case this works well and is needed for external display on the
+> Lenovo ThinkPad T14s, while not breaking the X13s which does not need
+> it:
+> 
+> Tested-by: Johan Hovold <johan+linaro@kernel.org>
+> 
+> Johan
 
-Thanks for reviewing,
+Thanks for reviewing and testing!
 Abel
+
