@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5687E7718D
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Dec 2024 13:37:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD542E77188
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Dec 2024 06:11:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 653E410E2C4;
-	Wed, 25 Dec 2024 13:37:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DC4210E73A;
+	Thu, 26 Dec 2024 06:11:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="kD1POdDe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NYmpHRDW";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5423410E087;
- Wed, 25 Dec 2024 13:37:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=2g/sEa5I0ZzWmLPNsEhBpmG1KTu4g+IUPNbDCdnvnuA=; b=kD1POdDekk/oQh8kVHF2dASQpb
- OcVqzH2daG8DTVEc1yKENWFjS1XadnXAnBbptfqmqb1wizp7YpRQx98djot/2xLwHn51mHACgv5he
- pbGFfLpYBXBx0zOjtDpALOdgsftnrNpXVxPgp3dIUjH3IHXaOAMtXpvBjQjVgsh/MvK7cAmwkiXBP
- yUColyt9eP2+4wlQMixlUActNe+lNQ0dAFescBg7Cat5hQZghy4UApFx1XNn1gBp9tsJWX7Fsid5v
- ctOPpa1EC8bAXFf0aN/jKUbQNUqMIISefTxixrMTQhCObc3dCVSQT/XaSn4T/hVgy13m84vxnrvjk
- 1USNxCHw==;
-Received: from [90.241.98.187] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tQRZR-007WMF-5b; Wed, 25 Dec 2024 14:37:05 +0100
-Date: Wed, 25 Dec 2024 13:37:03 +0000
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Message-ID: <Z2wKf7tmElKFdnoP@linux>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A206110E73A;
+ Thu, 26 Dec 2024 06:11:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1735193479; x=1766729479;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=c8EjWFz6dgP8VXOiQeV3u5k67ak6CN52MGJoIoUzKLU=;
+ b=NYmpHRDWyLER7ywO/Fwq4GDhA2VhZfIKvvfH9854uOZvqtLmxgLu92fF
+ x2JaHIJ1eP/0ClLaRP63qPxS0pg0iyBhWuaREXRDFevJkc9gMFGn8sBwT
+ PhVynorzw/Wjd5PXHQR8okeNgqx7sfsxbczSQ/gjz0v6YA0NFO5LkAMZ0
+ bUB9aACAmUHD5x8d/+3RuWvT7uDLG4XC7PbcU7KrwwA1ojG5F3WAkRP0k
+ XmnwX43yBtXZQoBzbB7SuXD4qsgS49iTjJrq5JOnXAloLmhcgYG1+ioWF
+ FQpRehdb56Ca5NDStN+Ihgw11X7bGwRYzh/OjQ5PPCBLaa6MtR3cXzyYQ Q==;
+X-CSE-ConnectionGUID: B4SNYWtrQAeL+OlA+UjBAA==
+X-CSE-MsgGUID: TcSAMDE0RiSdIBkz1suT9Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11296"; a="35500606"
+X-IronPort-AV: E=Sophos;i="6.12,265,1728975600"; d="scan'208";a="35500606"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Dec 2024 22:11:19 -0800
+X-CSE-ConnectionGUID: C3k+OvbUS3W4OTl6HoFB1g==
+X-CSE-MsgGUID: 2Guc4H2cTTuyv8mpzYM98Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="104935388"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by orviesa003.jf.intel.com with ESMTP; 25 Dec 2024 22:11:17 -0800
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Nemesa Garg <nemesa.garg@intel.com>,
+ Vandita Kulkarni <vandita.kulkarni@intel.com>
+Subject: [PATCH] drm/i915/display: Add WA_14018221282
+Date: Thu, 26 Dec 2024 11:36:32 +0530
+Message-Id: <20241226060632.213790-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,44 +65,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+It was observed that the first write to DKL PHY DP Mode
+register was not taking effect, hence rewrite this register.
 
-Hi Dave, Sima,
+v2: Rename function [Mitul]
+v3: Rename function [Jani]
+v4: Add check for display ver 13 [Matt]
 
-Two fixes for the next -rc window.
+Co-developed-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-One is display programming sequence fix for Meteorlake and second fixes
-video decode hangs on DG1 due incorrect power gate programming.
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 4f9c50996446..112a37a58be3 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2099,10 +2099,21 @@ void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder)
+ 	encoder->disable_clock(encoder);
+ }
+ 
++static void
++tgl_dkl_phy_check_and_rewrite(struct drm_i915_private *dev_priv,
++			      enum tc_port tc_port, u32 ln0, u32 ln1)
++{
++	if (ln0 != intel_dkl_phy_read(dev_priv, DKL_DP_MODE(tc_port, 0)))
++		intel_dkl_phy_write(dev_priv, DKL_DP_MODE(tc_port, 0), ln0);
++	if (ln1 != intel_dkl_phy_read(dev_priv, DKL_DP_MODE(tc_port, 1)))
++		intel_dkl_phy_write(dev_priv, DKL_DP_MODE(tc_port, 1), ln1);
++}
++
+ static void
+ icl_program_mg_dp_mode(struct intel_digital_port *dig_port,
+ 		       const struct intel_crtc_state *crtc_state)
+ {
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
+ 	enum tc_port tc_port = intel_encoder_to_tc(&dig_port->base);
+ 	u32 ln0, ln1, pin_assignment;
+@@ -2180,6 +2191,10 @@ icl_program_mg_dp_mode(struct intel_digital_port *dig_port,
+ 	if (DISPLAY_VER(dev_priv) >= 12) {
+ 		intel_dkl_phy_write(dev_priv, DKL_DP_MODE(tc_port, 0), ln0);
+ 		intel_dkl_phy_write(dev_priv, DKL_DP_MODE(tc_port, 1), ln1);
++		 /* WA_14018221282 */
++		if (IS_DISPLAY_VER(display, 12, 13))
++			tgl_dkl_phy_check_and_rewrite(dev_priv, tc_port, ln0, ln1);
++
+ 	} else {
+ 		intel_de_write(dev_priv, MG_DP_MODE(0, tc_port), ln0);
+ 		intel_de_write(dev_priv, MG_DP_MODE(1, tc_port), ln1);
+-- 
+2.25.1
 
-Regards,
-
-Tvrtko
-
-drm-intel-fixes-2024-12-25:
-- Fix C10 pll programming sequence [cx0_phy] (Suraj Kandpal)
-- Fix power gate sequence. [dg1] (Rodrigo Vivi)
-The following changes since commit 4bbf9020becbfd8fc2c3da790855b7042fad455b:
-
-  Linux 6.13-rc4 (2024-12-22 13:22:21 -0800)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2024-12-25
-
-for you to fetch changes up to 20e7c5313ffbf11c34a46395345677adbe890bee:
-
-  drm/i915/dg1: Fix power gate sequence. (2024-12-24 09:41:03 +0000)
-
-----------------------------------------------------------------
-- Fix C10 pll programming sequence [cx0_phy] (Suraj Kandpal)
-- Fix power gate sequence. [dg1] (Rodrigo Vivi)
-
-----------------------------------------------------------------
-Rodrigo Vivi (1):
-      drm/i915/dg1: Fix power gate sequence.
-
-Suraj Kandpal (1):
-      drm/i915/cx0_phy: Fix C10 pll programming sequence
-
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 12 ++++--------
- drivers/gpu/drm/i915/gt/intel_rc6.c          |  2 +-
- 2 files changed, 5 insertions(+), 9 deletions(-)
