@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E645E77188
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Dec 2024 12:52:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55182E77194
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Dec 2024 12:53:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3083410E4CC;
-	Mon, 30 Dec 2024 12:52:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E9B610E4CD;
+	Mon, 30 Dec 2024 12:53:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oCsHKbNO";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ku1c2Cd+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0612510E4CB;
- Mon, 30 Dec 2024 12:52:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FA5A10E4CD;
+ Mon, 30 Dec 2024 12:52:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735563177; x=1767099177;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/M31RbGTDRzIeT8aAjwCdIKjpnlqRtfEA8uwwix1ga4=;
- b=oCsHKbNOSrKZfZTeLpIgE+142hLHwAKovhhAidPgCCuXCafo2sp7zzWA
- DYc/9X+STErmIIgUZwX56JC4+F9jWn/u8/Qiso9WxiLUYH0+fsL3BiB/U
- 1aNd1yuVXcDeRDtNg702yWk89locpMesfa0m3icYE7k1mGu5mrZn1eGbs
- eE7IN+TXt8DwtJapwmLnxVBH/XPDQ0574uCwpWU9WKiN3S35AWbrlxUW+
- pqBOQD3+g/IGr6qibVBSUPbvr5QCedJjn3giWiZBe5o5w1fo2TKopTWow
- YkIxHuhpva/S6Ooel+pSXw+8+kuJuBTHnUwFkv9BEBOTCUXG6SHkVdVCN A==;
-X-CSE-ConnectionGUID: m4GPrdiaST6UukI9mPB9cQ==
-X-CSE-MsgGUID: 820qjBUeRhardbOxWTb1EQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11301"; a="46846500"
-X-IronPort-AV: E=Sophos;i="6.12,276,1728975600"; d="scan'208";a="46846500"
+ t=1735563179; x=1767099179;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=eO17UJigM8JTxlq4sWJZKudi6hLJrqL/9SeYrCwxlac=;
+ b=Ku1c2Cd+LRGYNODV5NSXxieF3eN1au8b/CBfuTQSXXe9I0Cn5orfsFyK
+ dm/ahKfK3oOPCLW9BsGP2swjYsPU6UdmyGtT/8o002zeAaTQp+glPvepD
+ WXAZyr8QjUW1UA5sIwgi9kU7T+gs9bAcJeTQd6L6/X6xk0em/MIJNLLST
+ lNCGPD1u4ZIyURCKLoFmtUl4SX0dmXJ9ksI2rOyliWMFKHSNvwEPEJ2EQ
+ JhmGgl+7EYCAtWNx9DKiuGCx6ur4WVVkQfR8iTy/1zMVJpZupqUcuIjvB
+ uHsi2YYsl1NCkzOlgZgnr2/CwHZ5qmr6WDIX1p2/rIan7a2pvk46Qvzpb w==;
+X-CSE-ConnectionGUID: e432AilkQjql91OkX5pk+Q==
+X-CSE-MsgGUID: f19997LNR8SBkb8jYegiLQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11301"; a="46846504"
+X-IronPort-AV: E=Sophos;i="6.12,276,1728975600"; d="scan'208";a="46846504"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2024 04:52:56 -0800
-X-CSE-ConnectionGUID: pHjKw5zlT42PjLTd1ixrvw==
-X-CSE-MsgGUID: u0BrB3dNQPWZtHczT0DrPQ==
+ 30 Dec 2024 04:52:59 -0800
+X-CSE-ConnectionGUID: DwgoRpr5TFOQGlkl9WRJrw==
+X-CSE-MsgGUID: uyOAPLjsQGm1WWQOoX+vYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="105780633"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="105780640"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2024 04:52:55 -0800
+ 30 Dec 2024 04:52:57 -0800
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: igt-dev@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Auld@freedesktop.org, Matthew <matthew.auld@intel.com>,
 	Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH V6 0/4] Add pci_membarrier test in xe_mmap
-Date: Mon, 30 Dec 2024 18:27:53 +0530
-Message-Id: <20241230125757.2581381-1-tejas.upadhyay@intel.com>
+Subject: [PATCH V6 1/4] lib/i915_drm_local: Remove macros added via merged
+ kernel
+Date: Mon, 30 Dec 2024 18:27:54 +0530
+Message-Id: <20241230125757.2581381-2-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241230125757.2581381-1-tejas.upadhyay@intel.com>
+References: <20241230125757.2581381-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,41 +69,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Series adds,
-1. Remove all local defines which are landed from upstream kernel
-include. Keeping include in igt_gt.h as its common header for all
-such defines.
-2. New flag in mmap_offset ioctl to provide query
-support for special offset.
-3. Adds pci_membarrier subtests xe_mmap test
+The uapi on the kernel side is merged, I915_ENGINE_CLASS_COMPUTE,
+DRM_I915_PERF_PROP_OA_ENGINE_CLASS, DRM_I915_QUERY_GEOMETRY_SUBSLICES
+and DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE  is part of drm-next,
+remove this.
 
-Note: Similar drm-uapi change made here is under review
-in KMD as well
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ lib/i915/i915_drm_local.h | 6 ------
+ 1 file changed, 6 deletions(-)
 
-V6:
- - Modify parallel test to check only diff cross client value
-V5:
- - Add pci-membarrier-parallel subtest
-V4:
- - Check if pci memory barrier is supported
-
-Tejas Upadhyay (4):
-  lib/i915_drm_local: Remove macros added via merged kernel
-  include/drm-uapi-experimental: Move i915_drm_local.h to
-    drm-uapi-experimental
-  include/intel_drm_local.h: Add DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER
-  tests/xe/mmap: add tests for pci mem barrier
-
- .../drm-uapi-experimental/intel_drm_local.h   |  29 +++
- lib/i915/gem_scheduler.c                      |   1 -
- lib/i915/i915_drm_local.h                     |   6 -
- lib/i915/intel_memory_region.h                |   1 -
- lib/igt_gt.h                                  |   2 +-
- tests/intel/xe_mmap.c                         | 190 ++++++++++++++++++
- tools/i915-perf/i915_perf_recorder.c          |   2 -
- 7 files changed, 220 insertions(+), 11 deletions(-)
- create mode 100644 include/drm-uapi-experimental/intel_drm_local.h
-
+diff --git a/lib/i915/i915_drm_local.h b/lib/i915/i915_drm_local.h
+index af0176500..dd646aedf 100644
+--- a/lib/i915/i915_drm_local.h
++++ b/lib/i915/i915_drm_local.h
+@@ -19,12 +19,6 @@ extern "C" {
+  * or local_ prefix and without any #ifndef's. Attempt should be made to
+  * clean these up when kernel uapi headers are sync'd.
+  */
+-#define I915_ENGINE_CLASS_COMPUTE 4
+-
+-#define DRM_I915_QUERY_GEOMETRY_SUBSLICES      6
+-
+-#define DRM_I915_PERF_PROP_OA_ENGINE_CLASS	9
+-#define DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE	10
+ 
+ #if defined(__cplusplus)
+ }
 -- 
 2.34.1
 
