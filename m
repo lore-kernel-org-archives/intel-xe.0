@@ -4,56 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C36C7E77188
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Dec 2024 12:53:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69AFAE77188
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Dec 2024 13:18:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CFFE10E4CB;
-	Mon, 30 Dec 2024 12:53:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08EF510E4AA;
+	Mon, 30 Dec 2024 13:18:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z1y/T+F/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cE7zJ+u3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DABE10E4D8;
- Mon, 30 Dec 2024 12:53:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E88C010E4C9;
+ Mon, 30 Dec 2024 13:18:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735563185; x=1767099185;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8X3uXdGLJQUZ8ygW+AO85Haiw7RQWSClyYbhtRMyH+U=;
- b=Z1y/T+F/cHqNSsNL2vUaLfyWV2RuBNfAo8RLaT7tcpUcg0kUcu2mLwc4
- iAxeH26dGAltxDbT084/j3R4jVfTQmeLFGnP4xg6OXNhmm2e9x8dFGa+s
- pcSxuW2+rh+idPPR1YpTth3Svhe5aSr+X/Tk/jQVkXeLSzQXkt4FDd5Th
- AhJX5T3k2aR4xnY1DUhpPJrmqWQBLDoYHbof8OdboskQKH4PQKqppY97i
- 1gv7oaAl7Im2LupNPGS1iU766Dy9XUop29AGEFyzNj/o6DL0UAfcLKcFw
- qOPpKRRgEC4oTs31CrQ07mPA6080MVkpBmfIK699Z+iSeLd2dYE7bsIIX Q==;
-X-CSE-ConnectionGUID: 9M2mZ1ZhQ3OrT8os7zhL4w==
-X-CSE-MsgGUID: RB38JjkCSJCGyHD5FgE87A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11301"; a="46846514"
-X-IronPort-AV: E=Sophos;i="6.12,276,1728975600"; d="scan'208";a="46846514"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2024 04:53:05 -0800
-X-CSE-ConnectionGUID: RgPQOYpcTnOCPqrrgKdA9g==
-X-CSE-MsgGUID: LD6PuzhoQSSkSeTWSdo9Hw==
+ t=1735564728; x=1767100728;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=F5ZAj3LKhwurq6s36HWd56Hq5EJ47jKU4wzqeBVlBYg=;
+ b=cE7zJ+u3j23mfDy/5Op/7Q+pQ2+BTeo8JE1u7uwPIHiKXpulUCnoMKZo
+ +yvu0mUQe37YV52nBAQ3M0ples1Ki9IsR+6HTeAMibEa44sjJNAlFI0nq
+ F5Mo6X6TuPdo+eQQuq7743tvjzEd0FUZ0DIRh6zHOBu6RVVxEWF8Cg892
+ oVU+pJDjrq3Ygm0zY8+Zwszk0BKOYVjHCna8fY46DA2Ejb7rRQO1Ga6Zp
+ VbN0Hi1IEVSyg4hBvmIKe59P4FTrsBSpl+ukki+JEv70jZSPiUv3uBocA
+ a/K/nrPAAXdbpQFOnPXBw2JbItOSNqvC+maRTDs1/hL+an/mVD3eM+B9Z A==;
+X-CSE-ConnectionGUID: IldzORvgRz234F25BY6VVg==
+X-CSE-MsgGUID: 8B2PZzacStuTHHWjJVuFWA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11301"; a="46534360"
+X-IronPort-AV: E=Sophos;i="6.12,276,1728975600"; d="scan'208";a="46534360"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2024 05:18:47 -0800
+X-CSE-ConnectionGUID: 1OB6ph2LSQ6avqBsaXEV/w==
+X-CSE-MsgGUID: UwVTQ3BoRMSuV3toABd3cw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="105780681"
-Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2024 04:53:03 -0800
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: igt-dev@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Auld@freedesktop.org, Matthew <matthew.auld@intel.com>,
-	Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH V6 4/4] tests/xe/mmap: add tests for pci mem barrier
-Date: Mon, 30 Dec 2024 18:27:57 +0530
-Message-Id: <20241230125757.2581381-5-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241230125757.2581381-1-tejas.upadhyay@intel.com>
-References: <20241230125757.2581381-1-tejas.upadhyay@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,276,1728975600"; d="scan'208";a="100975369"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.167])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2024 05:18:38 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Karol Herbst
+ <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, Danilo Krummrich
+ <dakr@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, Marijn Suijten
+ <marijn.suijten@somainline.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v2 1/4] drm/dp: Add helper to set LTTPRs in transparent
+ mode
+In-Reply-To: <Z21VD82XCOVgVJUh@linaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-0-d5906ed38b28@linaro.org>
+ <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-1-d5906ed38b28@linaro.org>
+ <Z1mk08SHEd5_vc99@hovoldconsulting.com> <Z21VD82XCOVgVJUh@linaro.org>
+Date: Mon, 30 Dec 2024 15:18:35 +0200
+Message-ID: <877c7hpavo.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,260 +83,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We want to make sure that mmap do direct mapping of physical
-page at doorbell space and whole page is accessible in order
-to use pci memory barrier effect effectively.
+On Thu, 26 Dec 2024, Abel Vesa <abel.vesa@linaro.org> wrote:
+> On 24-12-11 15:42:27, Johan Hovold wrote:
+>> On Wed, Dec 11, 2024 at 03:04:12PM +0200, Abel Vesa wrote:
+>>  
+>> > +/**
+>> > + * drm_dp_lttpr_set_transparent_mode - set the LTTPR in transparent mode
+>> > + * @aux: DisplayPort AUX channel
+>> > + * @enable: Enable or disable transparent mode
+>> > + *
+>> > + * Returns 0 on success or a negative error code on failure.
+>> > + */
+>> > +int drm_dp_lttpr_set_transparent_mode(struct drm_dp_aux *aux, bool enable)
+>> > +{
+>> > +	u8 val = enable ? DP_PHY_REPEATER_MODE_TRANSPARENT :
+>> > +			  DP_PHY_REPEATER_MODE_NON_TRANSPARENT;
+>> > +	int ret = drm_dp_dpcd_writeb(aux, DP_PHY_REPEATER_MODE, val);
+>> > +
+>> > +	return ret == 1 ? 0 : ret;
+>> 
+>> This looks correct, but I had to go look at drm_dp_dpcd_writeb() to make
+>> sure it never returns 0 (for short transfers).
+>
+> Will follow Dmitry's proposal here.
+>
+> 	if (ret < 0)
+>         	return ret;
+>
+> 	return (ret == 1) ? 0 : -EIO;
 
-Following subtests are added,
-./build/tests/xe_mmap --r pci-membarrier
-./build/tests/xe_mmap --r pci-membarrier-parallel
-./build/tests/xe_mmap --r pci-membarrier-bad-pagesize
-./build/tests/xe_mmap --r pci-membarrier-bad-object
+Arguably this (well, with ret == len) is what we should've done with
+*all* of the drm_dp_dpcd_*() functions. I don't think there's a single
+case where we'd actually need to know that some but not all data was
+transferred. And if there are, they could be special cased. Now we have
+hundreds of cases where we check against length and it's just cumbersome
+all over the place.
 
-V6(MAuld):
- - checking differnet cross client value is enough in parallel test
-V5:
- - Add pci-membarrier-parallel test
-V3(MAuld):
- - Check if pci memory barrier is supported
-V2(MAuld)
- - use do_ioctl and replace igt_subtest_f with igt_subtest
- - Remove unused define
+The question is, how confusing is it going to be to have some of the new
+functions return 0 instead of len? Very? Extremely?
 
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- tests/intel/xe_mmap.c | 190 ++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 190 insertions(+)
+As painful as it would be, I'd be in favor of changing them all to
+return 0 on ret == len. If we find a volunteer.
 
-diff --git a/tests/intel/xe_mmap.c b/tests/intel/xe_mmap.c
-index d818cc2f8..8e7095e48 100644
---- a/tests/intel/xe_mmap.c
-+++ b/tests/intel/xe_mmap.c
-@@ -64,6 +64,140 @@ test_mmap(int fd, uint32_t placement, uint32_t flags)
- 	gem_close(fd, bo);
- }
- 
-+#define PAGE_SIZE 4096
-+
-+/**
-+ * SUBTEST: pci-membarrier
-+ * Description: create pci memory barrier with write on defined mmap offset.
-+ * Test category: functionality test
-+ *
-+ */
-+static void test_pci_membarrier(int xe)
-+{
-+	uint64_t flags = MAP_SHARED;
-+	unsigned int prot = PROT_WRITE;
-+	uint32_t *ptr;
-+	uint64_t size = PAGE_SIZE;
-+	struct timespec tv;
-+	struct drm_xe_gem_mmap_offset mmo = {
-+		.handle = 0,
-+		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-+	};
-+
-+	do_ioctl(xe, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
-+	ptr = mmap(NULL, size, prot, flags, xe, mmo.offset);
-+	igt_assert(ptr != MAP_FAILED);
-+
-+	/* Check whole page for any errors, also check as
-+	 * we should not read written values back
-+	 */
-+	for (int i = 0; i < size / sizeof(*ptr); i++) {
-+		/* It is expected unconfigured doorbell space
-+		 * will return read value 0xdeadbeef
-+		 */
-+		igt_assert_eq_u32(READ_ONCE(ptr[i]), 0xdeadbeef);
-+
-+		igt_gettime(&tv);
-+		ptr[i] = i;
-+		if (READ_ONCE(ptr[i]) == i) {
-+			while (READ_ONCE(ptr[i]) == i)
-+				;
-+			igt_info("fd:%d value retained for %"PRId64"ns pos:%d\n",
-+					xe, igt_nsec_elapsed(&tv), i);
-+		}
-+		igt_assert_neq(READ_ONCE(ptr[i]), i);
-+	}
-+
-+	munmap(ptr, size);
-+}
-+
-+/**
-+ * SUBTEST: pci-membarrier-parallel
-+ * Description: create parallel pci memory barrier with write on defined mmap offset.
-+ * Test category: functionality test
-+ *
-+ */
-+static void test_pci_membarrier_parallel(int xe, int child)
-+{
-+	unsigned int bad_ns, elapsed;
-+	uint64_t flags = MAP_SHARED;
-+	unsigned int i;
-+	unsigned int prot = PROT_WRITE;
-+	uint32_t *ptr;
-+	uint64_t size = PAGE_SIZE;
-+	struct drm_xe_gem_mmap_offset mmo = {
-+		.handle = 0,
-+		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-+	};
-+	struct timespec total, bad;
-+	int tpos = size / sizeof(*ptr);
-+	int value;
-+
-+	do_ioctl(xe, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
-+	ptr = mmap(NULL, size, prot, flags, xe, mmo.offset);
-+	igt_assert(ptr != MAP_FAILED);
-+
-+	/* Check any random position up to 1K */
-+	i = rand() % (size / sizeof(*ptr));
-+	/* It is expected unconfigured doorbell space
-+	 * will return read value 0xdeadbeef
-+	 */
-+	igt_assert_eq_u32(READ_ONCE(ptr[i]), 0xdeadbeef);
-+
-+	igt_until_timeout(5) {
-+		/* Check clients should not be able to see each other */
-+		if (child != -1)
-+			value = tpos + 1;
-+		else
-+			value = tpos;
-+
-+		WRITE_ONCE(ptr[tpos-1], value);
-+	}
-+	bad_ns = 0;
-+	igt_gettime(&total);
-+	igt_until_timeout(5) { /* XXX sync with parent loop! */
-+		if (READ_ONCE(ptr[tpos-1]) == value) {
-+			igt_gettime(&bad);
-+			while (READ_ONCE(ptr[tpos-1]) == value)
-+				;
-+			bad_ns += igt_nsec_elapsed(&bad);
-+		}
-+	}
-+	elapsed = igt_nsec_elapsed(&total);
-+	if (bad_ns) {
-+		igt_info("Cross-client writes visible %.1f%% of the time.\n",
-+				bad_ns * 100. / elapsed);
-+	}
-+	igt_assert(20 * bad_ns < elapsed); /* Arbitrary 5% threshold */
-+	if (child != -1)
-+		igt_assert_neq(READ_ONCE(ptr[tpos-1]), tpos);
-+	else
-+		igt_assert_neq(READ_ONCE(ptr[tpos-1]), tpos + 1);
-+	igt_assert_eq_u32(READ_ONCE(ptr[tpos-1]), 0xdeadbeef);
-+
-+	munmap(ptr, size);
-+}
-+
-+/**
-+ * SUBTEST: pci-membarrier-bad-pagesize
-+ * Description: Test mmap offset with bad pagesize for pci membarrier.
-+ * Test category: negative test
-+ *
-+ */
-+static void test_bad_pagesize_for_pcimem(int fd)
-+{
-+	uint32_t *map;
-+	uint64_t page_size = PAGE_SIZE * 2;
-+	struct drm_xe_gem_mmap_offset mmo = {
-+		.handle = 0,
-+		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-+	};
-+
-+	do_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
-+	map = mmap(NULL, page_size, PROT_WRITE, MAP_SHARED, fd, mmo.offset);
-+	igt_assert(map == MAP_FAILED);
-+}
-+
- /**
-  * SUBTEST: bad-flags
-  * Description: Test mmap offset with bad flags.
-@@ -126,6 +260,25 @@ static void test_bad_object(int fd)
- 	do_ioctl_err(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo, ENOENT);
- }
- 
-+/**
-+ * SUBTEST: pci-membarrier-bad-object
-+ * Description: Test mmap offset with bad object for pci mem barrier.
-+ * Test category: negative test
-+ *
-+ */
-+static void test_bad_object_for_pcimem(int fd)
-+{
-+	uint64_t size = xe_get_default_alignment(fd);
-+	struct drm_xe_gem_mmap_offset mmo = {
-+		.handle = xe_bo_create(fd, 0, size,
-+				       vram_if_possible(fd, 0),
-+				       DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM),
-+		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-+	};
-+
-+	do_ioctl_err(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo, EINVAL);
-+}
-+
- static jmp_buf jmp;
- 
- __noreturn static void sigtrap(int sig)
-@@ -260,6 +413,16 @@ static void test_cpu_caching(int fd)
- 	assert_caching(fd, system_memory(fd), 0, DRM_XE_GEM_CPU_CACHING_WC + 1, true);
- }
- 
-+static bool is_pci_membarrier_supported(int fd)
-+{
-+	struct drm_xe_gem_mmap_offset mmo = {
-+		.handle = 0,
-+		.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-+	};
-+
-+	return (igt_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo) == 0);
-+}
-+
- igt_main
- {
- 	int fd;
-@@ -278,6 +441,28 @@ igt_main
- 		test_mmap(fd, vram_memory(fd, 0) | system_memory(fd),
- 			  DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM);
- 
-+	igt_subtest("pci-membarrier") {
-+		igt_require(is_pci_membarrier_supported(fd));
-+		test_pci_membarrier(fd);
-+	}
-+
-+	igt_subtest("pci-membarrier-parallel") {
-+		int xe = drm_open_driver(DRIVER_XE);
-+
-+		igt_require(is_pci_membarrier_supported(fd));
-+		igt_fork(child, 1)
-+			test_pci_membarrier_parallel(xe, child);
-+		test_pci_membarrier_parallel(fd, -1);
-+		igt_waitchildren();
-+
-+		close(xe);
-+	}
-+
-+	igt_subtest("pci-membarrier-bad-pagesize") {
-+		igt_require(is_pci_membarrier_supported(fd));
-+		test_bad_pagesize_for_pcimem(fd);
-+	}
-+
- 	igt_subtest("bad-flags")
- 		test_bad_flags(fd);
- 
-@@ -287,6 +472,11 @@ igt_main
- 	igt_subtest("bad-object")
- 		test_bad_object(fd);
- 
-+	igt_subtest("pci-membarrier-bad-object") {
-+		igt_require(is_pci_membarrier_supported(fd));
-+		test_bad_object_for_pcimem(fd);
-+	}
-+
- 	igt_subtest("small-bar") {
- 		igt_require(xe_visible_vram_size(fd, 0));
- 		igt_require(xe_visible_vram_size(fd, 0) < xe_vram_size(fd, 0));
+BR,
+Jani.
+
+
+>
+>
+>> 
+>> > +}
+>> > +EXPORT_SYMBOL(drm_dp_lttpr_set_transparent_mode);
+>> 
+>> This appears to be what the driver currently uses, but why not
+>> EXPORT_SYMBOL_GPL?
+>> 
+>> > +
+>> > +/**
+>> > + * drm_dp_lttpr_init - init LTTPR transparency mode according to DP standard
+>> > + *
+>> > + * @aux: DisplayPort AUX channel
+>> > + * @lttpr_count: Number of LTTPRs
+>> > + *
+>> > + * Returns 0 on success or a negative error code on failure.
+>> > + */
+>> > +int drm_dp_lttpr_init(struct drm_dp_aux *aux, int lttpr_count)
+>> > +{
+>> > +	if (!lttpr_count)
+>> > +		return 0;
+>> > +
+>> > +	/*
+>> > +	 * See DP Standard v2.0 3.6.6.1 about the explicit disabling of
+>> > +	 * non-transparent mode and the disable->enable non-transparent mode
+>> > +	 * sequence.
+>> > +	 */
+>> > +	drm_dp_lttpr_set_transparent_mode(aux, true);
+>> 
+>> Error handling?
+>
+> Yes, this makes sense. But other than throwing an error I don't think
+> there is much to be done. I'll add an drm_err here just in case. 
+>
+>> 
+>> > +
+>> > +	if (lttpr_count > 0 && !drm_dp_lttpr_set_transparent_mode(aux, false))
+>> 
+>> No need to check lttpr_count again here.
+>
+> So the logic behind lttpr_count and this transparency mode changing, as
+> specified in the DP standard, is as follows:
+>
+> - If there are 0 LTTPRs counted, then nothing to be done, otherwise set to
+> transparent mode.
+>
+> - Then, if there are between 0 and 8 LTTPRs counted, set non-transparent
+> mode successfully.
+>
+> - Otherwise, rollback to transparent mode.
+>
+> This last rollback might result in two transparent mode settings without
+> a non-transparent one in between, but AFAIU, that is OK. Making sure this
+> doesn't happen would just make the implementation more ugly without any
+> benefit, IMO.
+>
+>> 
+>> > +		return 0;
+>> 
+>> I'd check for errors instead of success here and do the rollback before
+>> returning -EINVAL.
+>> 
+>
+> Yes, I think it would be more cleaner. Will do that.
+>
+>> > +
+>> > +	/*
+>> > +	 * Roll-back to tranparent mode if setting non-tranparent mode failed or
+>> > +	 * the number of LTTPRs is invalid
+>> > +	 */
+>> > +	drm_dp_lttpr_set_transparent_mode(aux, true);
+>> > +
+>> > +	return -EINVAL;
+>> 
+>> And return 0 explicitly here.
+>
+> Yes. Will do that.
+>
+>> 
+>> > +}
+>> > +EXPORT_SYMBOL(drm_dp_lttpr_init);
+>> 
+>> In any case this works well and is needed for external display on the
+>> Lenovo ThinkPad T14s, while not breaking the X13s which does not need
+>> it:
+>> 
+>> Tested-by: Johan Hovold <johan+linaro@kernel.org>
+>> 
+>> Johan
+>
+> Thanks for reviewing and testing!
+> Abel
+>
+
 -- 
-2.34.1
-
+Jani Nikula, Intel
