@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B3BDE77188
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Dec 2024 15:18:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 806F9E7718F
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Dec 2024 15:57:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8D1D10E50C;
-	Mon, 30 Dec 2024 15:18:21 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 027BB10E50B;
- Mon, 30 Dec 2024 15:18:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1502208065812522976=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_handle_?=
- =?utf-8?q?hdmi_connector_init_failures=2C_and_no_HDMI/DP_cases_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 30 Dec 2024 15:18:21 -0000
-Message-ID: <173557190100.980287.2709257479383002696@b555e5b46a47>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43A6C10E00F;
+	Mon, 30 Dec 2024 15:57:36 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="ZUGlkkpF";
+	dkim-atps=neutral
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B36F410E00F;
+ Mon, 30 Dec 2024 15:57:34 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 6EACB5C5546;
+ Mon, 30 Dec 2024 15:56:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC5CEC4CED0;
+ Mon, 30 Dec 2024 15:57:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1735574252;
+ bh=ytWP7xm1N1BYDdL2xV7knjDbUMPzUcgaIdtH8igoumg=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=ZUGlkkpFcYlpSIW2FGaRQaQYmq6LzPcNgZ9YaXl/LCqbN/xupDlFtzoHzflMoe6Uu
+ 2fhs3uTgT5+9ZdrMwo8jRgEsx40sowK+R95VJ593oFDFcKVAprl9TSM+aCG0lodQJU
+ nR3Pq09eSCGjDvqLzXgqVWIGeMsJpTPp8C++3zQ0=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Francois Dugast <francois.dugast@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ intel-xe@lists.freedesktop.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ John Harrison <John.C.Harrison@Intel.com>, Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 6.12 080/114] drm/xe: Move the coredump registration to the
+ worker thread
+Date: Mon, 30 Dec 2024 16:43:17 +0100
+Message-ID: <20241230154221.171449150@linuxfoundation.org>
+X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20241230154218.044787220@linuxfoundation.org>
+References: <20241230154218.044787220@linuxfoundation.org>
+User-Agent: quilt/0.68
+X-stable: review
 X-Patchwork-Hint: ignore
-References: <cover.1735568047.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1735568047.git.jani.nikula@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +66,156 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1502208065812522976==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+6.12-stable review patch.  If anyone has any objections, please let me know.
 
-== Series Details ==
+------------------
 
-Series: drm/i915/display: handle hdmi connector init failures, and no HDMI/DP cases (rev4)
-URL   : https://patchwork.freedesktop.org/series/142118/
-State : success
+From: John Harrison <John.C.Harrison@Intel.com>
 
-== Summary ==
+[ Upstream commit 5dce85fecb87751ec94526e1ac516dd7871e2e0c ]
 
-CI Bug Log - changes from xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642_BAT -> xe-pw-142118v4_BAT
-====================================================
+Adding lockdep checking to the coredump code showed that there was an
+existing violation. The dev_coredumpm_timeout() call is used to
+register the dump with the base coredump subsystem. However, that
+makes multiple memory allocations, only some of which use the GFP_
+flags passed in. So that also needs to be deferred to the worker
+function where it is safe to allocate with arbitrary flags.
 
-Summary
--------
+In order to not add protoypes for the callback functions, moving the
+_timeout call also means moving the worker thread function to later in
+the file.
 
-  **SUCCESS**
+v2: Rebased after other changes to the worker function.
 
-  No regressions found.
+Fixes: e799485044cb ("drm/xe: Introduce the dev_coredump infrastructure.")
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Francois Dugast <francois.dugast@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: intel-xe@lists.freedesktop.org
+Cc: linux-media@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linaro-mm-sig@lists.linaro.org
+Cc: <stable@vger.kernel.org> # v6.8+
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20241128210824.3302147-3-John.C.Harrison@Intel.com
+(cherry picked from commit 90f51a7f4ec1004fc4ddfbc6d1f1068d85ef4771)
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/xe/xe_devcoredump.c | 73 +++++++++++++++--------------
+ 1 file changed, 39 insertions(+), 34 deletions(-)
 
-  
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index c40c91e27f71..c18e463092af 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -144,36 +144,6 @@ static void xe_devcoredump_snapshot_free(struct xe_devcoredump_snapshot *ss)
+ 	ss->vm = NULL;
+ }
+ 
+-static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
+-{
+-	struct xe_devcoredump_snapshot *ss = container_of(work, typeof(*ss), work);
+-	struct xe_devcoredump *coredump = container_of(ss, typeof(*coredump), snapshot);
+-	struct xe_device *xe = coredump_to_xe(coredump);
+-	unsigned int fw_ref;
+-
+-	xe_pm_runtime_get(xe);
+-
+-	/* keep going if fw fails as we still want to save the memory and SW data */
+-	fw_ref = xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
+-	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
+-		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
+-	xe_vm_snapshot_capture_delayed(ss->vm);
+-	xe_guc_exec_queue_snapshot_capture_delayed(ss->ge);
+-	xe_force_wake_put(gt_to_fw(ss->gt), fw_ref);
+-
+-	xe_pm_runtime_put(xe);
+-
+-	/* Calculate devcoredump size */
+-	ss->read.size = __xe_devcoredump_read(NULL, INT_MAX, coredump);
+-
+-	ss->read.buffer = kvmalloc(ss->read.size, GFP_USER);
+-	if (!ss->read.buffer)
+-		return;
+-
+-	__xe_devcoredump_read(ss->read.buffer, ss->read.size, coredump);
+-	xe_devcoredump_snapshot_free(ss);
+-}
+-
+ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
+ 				   size_t count, void *data, size_t datalen)
+ {
+@@ -222,6 +192,45 @@ static void xe_devcoredump_free(void *data)
+ 		 "Xe device coredump has been deleted.\n");
+ }
+ 
++static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
++{
++	struct xe_devcoredump_snapshot *ss = container_of(work, typeof(*ss), work);
++	struct xe_devcoredump *coredump = container_of(ss, typeof(*coredump), snapshot);
++	struct xe_device *xe = coredump_to_xe(coredump);
++	unsigned int fw_ref;
++
++	/*
++	 * NB: Despite passing a GFP_ flags parameter here, more allocations are done
++	 * internally using GFP_KERNEL expliictly. Hence this call must be in the worker
++	 * thread and not in the initial capture call.
++	 */
++	dev_coredumpm_timeout(gt_to_xe(ss->gt)->drm.dev, THIS_MODULE, coredump, 0, GFP_KERNEL,
++			      xe_devcoredump_read, xe_devcoredump_free,
++			      XE_COREDUMP_TIMEOUT_JIFFIES);
++
++	xe_pm_runtime_get(xe);
++
++	/* keep going if fw fails as we still want to save the memory and SW data */
++	fw_ref = xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
++	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
++		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
++	xe_vm_snapshot_capture_delayed(ss->vm);
++	xe_guc_exec_queue_snapshot_capture_delayed(ss->ge);
++	xe_force_wake_put(gt_to_fw(ss->gt), fw_ref);
++
++	xe_pm_runtime_put(xe);
++
++	/* Calculate devcoredump size */
++	ss->read.size = __xe_devcoredump_read(NULL, INT_MAX, coredump);
++
++	ss->read.buffer = kvmalloc(ss->read.size, GFP_USER);
++	if (!ss->read.buffer)
++		return;
++
++	__xe_devcoredump_read(ss->read.buffer, ss->read.size, coredump);
++	xe_devcoredump_snapshot_free(ss);
++}
++
+ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 				 struct xe_sched_job *job)
+ {
+@@ -305,10 +314,6 @@ void xe_devcoredump(struct xe_sched_job *job)
+ 	drm_info(&xe->drm, "Xe device coredump has been created\n");
+ 	drm_info(&xe->drm, "Check your /sys/class/drm/card%d/device/devcoredump/data\n",
+ 		 xe->drm.primary->index);
+-
+-	dev_coredumpm_timeout(xe->drm.dev, THIS_MODULE, coredump, 0, GFP_KERNEL,
+-			      xe_devcoredump_read, xe_devcoredump_free,
+-			      XE_COREDUMP_TIMEOUT_JIFFIES);
+ }
+ 
+ static void xe_driver_devcoredump_fini(void *arg)
+-- 
+2.39.5
 
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-142118v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][1] ([Intel XE#1033]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142118v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
 
 
-Build changes
--------------
-
-  * Linux: xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642 -> xe-pw-142118v4
-
-  IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642: 08bd590935a5258ffd79355c59adffd72fb2c642
-  xe-pw-142118v4: 142118v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142118v4/index.html
-
---===============1502208065812522976==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: handle hdmi connector init failures, and no HDMI/DP cases (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142118/">https://patchwork.freedesktop.org/series/142118/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142118v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142118v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642_BAT -&gt; xe-pw-142118v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-142118v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142118v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642 -&gt; xe-pw-142118v4</li>
-</ul>
-<p>IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642: 08bd590935a5258ffd79355c59adffd72fb2c642<br />
-  xe-pw-142118v4: 142118v4</p>
-
-</body>
-</html>
-
---===============1502208065812522976==--
