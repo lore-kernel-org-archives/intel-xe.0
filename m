@@ -4,25 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BE0BE7718F
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Dec 2024 14:21:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48537E77188
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Dec 2024 14:21:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5B4C10E0A2;
-	Mon, 30 Dec 2024 14:21:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14C8110E0A2;
+	Mon, 30 Dec 2024 14:21:56 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD80010E4EB;
- Mon, 30 Dec 2024 14:21:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12C4110E0A2;
+ Mon, 30 Dec 2024 14:21:55 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?handle_hdmi_connector_init_failures=2C_and_no_HDMI/DP_cases_=28re?=
- =?utf-8?q?v4=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/display=3A_handl?=
+ =?utf-8?q?e_hdmi_connector_init_failures=2C_and_no_HDMI/DP_cases_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 30 Dec 2024 14:21:28 -0000
-Message-ID: <173556848890.967688.6646245705478111901@b555e5b46a47>
+Date: Mon, 30 Dec 2024 14:21:55 -0000
+Message-ID: <173556851507.964054.13879537068003917809@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <cover.1735568047.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1735568047.git.jani.nikula@intel.com>
@@ -49,14 +48,39 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 08bd590935a5 drm-tip: 2024y-12m-24d-09h-50m-39s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/ddi: change intel_ddi_init_{dp, hdmi}_connector() return type
-Applying: drm/i915/hdmi: propagate errors from intel_hdmi_init_connector()
-Applying: drm/i915/hdmi: add error handling in g4x_hdmi_init()
-Applying: drm/i915/ddi: gracefully handle errors from intel_ddi_init_hdmi_connector()
-Applying: drm/i915/display: add intel_encoder_is_hdmi()
-Applying: drm/i915/ddi: only call shutdown hooks for valid encoders
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b2b2cc9073f221fe551de5d2857d7432ed59fbf0
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Mon Dec 30 16:14:45 2024 +0200
+
+    drm/i915/ddi: only call shutdown hooks for valid encoders
+    
+    DDI might be HDMI or DP only, leaving the other encoder
+    uninitialized. Calling the shutdown hook on an uninitialized encoder may
+    lead to a NULL pointer dereference. Check the encoder types (and thus
+    validity via the DP output_reg or HDMI hdmi_reg checks) before calling
+    the hooks.
+    
+    Reported-and-tested-by: Sergey Senozhatsky <senozhatsky@chromium.org>
+    Closes: https://lore.kernel.org/r/20241031105145.2140590-1-senozhatsky@chromium.org
+    Cc: Sergey Senozhatsky <senozhatsky@chromium.org>
+    Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 08bd590935a5258ffd79355c59adffd72fb2c642 drm-intel
+50689059b74e drm/i915/ddi: change intel_ddi_init_{dp, hdmi}_connector() return type
+cb911f9bd8ee drm/i915/hdmi: propagate errors from intel_hdmi_init_connector()
+06f9fbb601fa drm/i915/hdmi: add error handling in g4x_hdmi_init()
+403e53ebad00 drm/i915/ddi: gracefully handle errors from intel_ddi_init_hdmi_connector()
+bacd6b74ff48 drm/i915/display: add intel_encoder_is_hdmi()
+b2b2cc9073f2 drm/i915/ddi: only call shutdown hooks for valid encoders
 
 
