@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 361C5E77188
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Dec 2024 12:52:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E645E77188
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Dec 2024 12:52:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 051F710E4CB;
-	Mon, 30 Dec 2024 12:52:45 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64B0310E4CB;
- Mon, 30 Dec 2024 12:52:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4681986956017767065=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3083410E4CC;
+	Mon, 30 Dec 2024 12:52:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oCsHKbNO";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0612510E4CB;
+ Mon, 30 Dec 2024 12:52:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1735563177; x=1767099177;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/M31RbGTDRzIeT8aAjwCdIKjpnlqRtfEA8uwwix1ga4=;
+ b=oCsHKbNOSrKZfZTeLpIgE+142hLHwAKovhhAidPgCCuXCafo2sp7zzWA
+ DYc/9X+STErmIIgUZwX56JC4+F9jWn/u8/Qiso9WxiLUYH0+fsL3BiB/U
+ 1aNd1yuVXcDeRDtNg702yWk89locpMesfa0m3icYE7k1mGu5mrZn1eGbs
+ eE7IN+TXt8DwtJapwmLnxVBH/XPDQ0574uCwpWU9WKiN3S35AWbrlxUW+
+ pqBOQD3+g/IGr6qibVBSUPbvr5QCedJjn3giWiZBe5o5w1fo2TKopTWow
+ YkIxHuhpva/S6Ooel+pSXw+8+kuJuBTHnUwFkv9BEBOTCUXG6SHkVdVCN A==;
+X-CSE-ConnectionGUID: m4GPrdiaST6UukI9mPB9cQ==
+X-CSE-MsgGUID: 820qjBUeRhardbOxWTb1EQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11301"; a="46846500"
+X-IronPort-AV: E=Sophos;i="6.12,276,1728975600"; d="scan'208";a="46846500"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2024 04:52:56 -0800
+X-CSE-ConnectionGUID: pHjKw5zlT42PjLTd1ixrvw==
+X-CSE-MsgGUID: u0BrB3dNQPWZtHczT0DrPQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="105780633"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2024 04:52:55 -0800
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: igt-dev@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Auld@freedesktop.org, Matthew <matthew.auld@intel.com>,
+	Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH V6 0/4] Add pci_membarrier test in xe_mmap
+Date: Mon, 30 Dec 2024 18:27:53 +0530
+Message-Id: <20241230125757.2581381-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_fault_injection_f?=
- =?utf-8?q?or_guc_CTB_=26_mmio_send/recv=2E_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 30 Dec 2024 12:52:44 -0000
-Message-ID: <173556316440.937004.12021633796846932384@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241230114347.2534-1-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20241230114347.2534-1-satyanarayana.k.v.p@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,151 +63,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4681986956017767065==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Series adds,
+1. Remove all local defines which are landed from upstream kernel
+include. Keeping include in igt_gt.h as its common header for all
+such defines.
+2. New flag in mmap_offset ioctl to provide query
+support for special offset.
+3. Adds pci_membarrier subtests xe_mmap test
 
-== Series Details ==
+Note: Similar drm-uapi change made here is under review
+in KMD as well
 
-Series: Introduce fault injection for guc CTB & mmio send/recv. (rev2)
-URL   : https://patchwork.freedesktop.org/series/142815/
-State : success
+V6:
+ - Modify parallel test to check only diff cross client value
+V5:
+ - Add pci-membarrier-parallel subtest
+V4:
+ - Check if pci memory barrier is supported
 
-== Summary ==
+Tejas Upadhyay (4):
+  lib/i915_drm_local: Remove macros added via merged kernel
+  include/drm-uapi-experimental: Move i915_drm_local.h to
+    drm-uapi-experimental
+  include/intel_drm_local.h: Add DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER
+  tests/xe/mmap: add tests for pci mem barrier
 
-CI Bug Log - changes from xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642_BAT -> xe-pw-142815v2_BAT
-====================================================
+ .../drm-uapi-experimental/intel_drm_local.h   |  29 +++
+ lib/i915/gem_scheduler.c                      |   1 -
+ lib/i915/i915_drm_local.h                     |   6 -
+ lib/i915/intel_memory_region.h                |   1 -
+ lib/igt_gt.h                                  |   2 +-
+ tests/intel/xe_mmap.c                         | 190 ++++++++++++++++++
+ tools/i915-perf/i915_perf_recorder.c          |   2 -
+ 7 files changed, 220 insertions(+), 11 deletions(-)
+ create mode 100644 include/drm-uapi-experimental/intel_drm_local.h
 
-Summary
--------
+-- 
+2.34.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-142815v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#3517]) -> [PASS][2] +2 other tests pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142815v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][3] ([Intel XE#1033]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142815v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-adlp-7:         [SKIP][5] ([Intel XE#455]) -> [PASS][6] +3 other tests pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142815v2/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-
-  
-  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
-  [Intel XE#3517]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * Linux: xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642 -> xe-pw-142815v2
-
-  IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642: 08bd590935a5258ffd79355c59adffd72fb2c642
-  xe-pw-142815v2: 142815v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142815v2/index.html
-
---===============4681986956017767065==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce fault injection for guc CTB &amp; mmio send/recv. (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142815/">https://patchwork.freedesktop.org/series/142815/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142815v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142815v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642_BAT -&gt; xe-pw-142815v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-142815v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3517">Intel XE#3517</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142815v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142815v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142815v2/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> +3 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642 -&gt; xe-pw-142815v2</li>
-</ul>
-<p>IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642: 08bd590935a5258ffd79355c59adffd72fb2c642<br />
-  xe-pw-142815v2: 142815v2</p>
-
-</body>
-</html>
-
---===============4681986956017767065==--
