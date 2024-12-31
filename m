@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AD08E77188
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Dec 2024 16:21:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85C59E77194
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Dec 2024 16:26:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30BC310E0AE;
-	Tue, 31 Dec 2024 16:21:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E265E10E0EF;
+	Tue, 31 Dec 2024 16:26:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hBQCuQnz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="htL8Lbvr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64CBF10E0AE;
- Tue, 31 Dec 2024 16:21:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7921C10E0AE;
+ Tue, 31 Dec 2024 16:26:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735662066; x=1767198066;
+ t=1735662408; x=1767198408;
  h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:in-reply-to;
- bh=1LXmgETpNd5EnGUlwcYBVtf0covD53xW0TaNE8mPMtM=;
- b=hBQCuQnzmMk8UshCuK+KQreBPs73EEYaKswDni8w8LvheEGyKi4hsJ30
- jChW0c51EX8Vmo/QAq4AU8P49Jbrilmmvvnm1Pgt4sSA/pxaNVbgCvO9k
- tKgoRh3295QSyMMQfLdHX0urSA6LEYm0wwi/Aj+ywyO05jwxZL4jRgjB2
- LFHXmEvnV3ZoBbD+lc+nRkeYIoSfCr3Y7vIHXzfpvVkGtTE9+tPwxCnZA
- MxzCnDZUw2Cj6jyyeBFtUv4z5/LLnQiZNV98f+ElammZAFyH6FWlE52Y/
- tGM458ISc2rXBmqbCQ40v6cB9zBtRPK6DzH4YzbZC2++aVQbxlvkB22If w==;
-X-CSE-ConnectionGUID: GezNVRXCQ/WFuGUTtwke/Q==
-X-CSE-MsgGUID: WPmJXWRXSziNsS9XvHPaiw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="47358985"
-X-IronPort-AV: E=Sophos;i="6.12,279,1728975600"; d="scan'208";a="47358985"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2024 08:21:06 -0800
-X-CSE-ConnectionGUID: OSBkek4uRZWQhiXLNaTUBQ==
-X-CSE-MsgGUID: DGnIWSbYTPSczcnMu92aNg==
+ bh=M1WH21xjQtOFMkyb3VlOpkRxiArNJddb/rBJUOyS7MM=;
+ b=htL8LbvrnDx7JRf2RunTTH2Leyv2G2o0c/zcLAXGWY91wuo9Iucqhu9R
+ 4eXcC9zfXtKUC4+aQM7DTZotO1IuaMZbAWyoxG0h1d04UwN90zdybYNVO
+ 4MEgizq1GQ8/jJF/gib1QZt0Dyj/MrDVBhh+NdFwJVlYGZSMpa0PK/xM0
+ NU4bC87F2yGyx1oD0tMjEttvEgFSXj/VFIJjQNKa0qxBCD3LvUeU3d2h1
+ z+9cncXLyDhDY4zHk6izOEe2rmdqQWRyG4UKeV3DG3Ij7gW6kxxHbWgfb
+ TkDxLRi82+7PAw9jdk+NnC/+0tPpUU8CeP3L3PaG7/OP2267GIEn3C+9O w==;
+X-CSE-ConnectionGUID: UltRXrboT+aA+MUoPnC71Q==
+X-CSE-MsgGUID: mvhaPx7NSF6BS7ZVza7ZkA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="35843707"
+X-IronPort-AV: E=Sophos;i="6.12,279,1728975600"; d="scan'208";a="35843707"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Dec 2024 08:26:47 -0800
+X-CSE-ConnectionGUID: FO/pMQ2KSJKSR7FWDz9YZQ==
+X-CSE-MsgGUID: tl7xYPsFSd+Mm/+m7+YARA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,279,1728975600"; d="scan'208";a="101506151"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="106147814"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2024 08:21:06 -0800
-Date: Tue, 31 Dec 2024 18:21:55 +0200
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Dec 2024 08:26:45 -0800
+Date: Tue, 31 Dec 2024 18:27:36 +0200
 From: Imre Deak <imre.deak@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 08/16] drm/i915/ddi: enable 128b/132b
- TRANS_DDI_FUNC_CTL mode for UHBR SST
-Message-ID: <Z3QaIwXEtd_z0jz-@ideak-desk.fi.intel.com>
+Subject: Re: [PATCH v2 09/16] drm/i915/ddi: 128b/132b SST also needs
+ DP_TP_CTL_MODE_MST
+Message-ID: <Z3QbeEAUr99-I88e@ideak-desk.fi.intel.com>
 References: <cover.1734643485.git.jani.nikula@intel.com>
- <9591645d5ca1982ed2b617465382a00be6be76cc.1734643485.git.jani.nikula@intel.com>
+ <600a928f06d7c77b7b10672b7e09e083caa72c0c.1734643485.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9591645d5ca1982ed2b617465382a00be6be76cc.1734643485.git.jani.nikula@intel.com>
+In-Reply-To: <600a928f06d7c77b7b10672b7e09e083caa72c0c.1734643485.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,37 +70,45 @@ Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Dec 19, 2024 at 11:33:57PM +0200, Jani Nikula wrote:
-> 128b/132b SST needs 128b/132b mode enabled in the TRANS_DDI_FUNC_CTL
-> register.
+On Thu, Dec 19, 2024 at 11:33:58PM +0200, Jani Nikula wrote:
+> It's not very clearly specified, and the hardware bit is ill-named, but
+> 128b/132b SST also needs the MST mode set in the DP_TP_CTL register.
 > 
 > This is preparation for enabling 128b/132b SST. This path is not
 > reachable yet.
-> 
-> v2: Use the MST path instead of SST to also set transport select (Imre)
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 Reviewed-by: Imre Deak <imre.deak@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 4f9c50996446..ce34a619d48a 100644
+> index ce34a619d48a..6f813bf85b23 100644
 > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -561,7 +561,8 @@ intel_ddi_transcoder_func_reg_val_get(struct intel_encoder *encoder,
->  	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_ANALOG)) {
->  		temp |= TRANS_DDI_MODE_SELECT_FDI_OR_128B132B;
->  		temp |= (crtc_state->fdi_lanes - 1) << 1;
-> -	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST)) {
-> +	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST) ||
-> +		   intel_dp_is_uhbr(crtc_state)) {
->  		if (intel_dp_is_uhbr(crtc_state))
->  			temp |= TRANS_DDI_MODE_SELECT_FDI_OR_128B132B;
->  		else
+> @@ -3656,7 +3656,8 @@ static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+>  
+>  	/* 6.d Configure and enable DP_TP_CTL with link training pattern 1 selected */
+>  	dp_tp_ctl = DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_PAT1;
+> -	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST)) {
+> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST) ||
+> +	    intel_dp_is_uhbr(crtc_state)) {
+>  		dp_tp_ctl |= DP_TP_CTL_MODE_MST;
+>  	} else {
+>  		dp_tp_ctl |= DP_TP_CTL_MODE_SST;
+> @@ -3716,7 +3717,8 @@ static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+>  	}
+>  
+>  	dp_tp_ctl = DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_PAT1;
+> -	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST)) {
+> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST) ||
+> +	    intel_dp_is_uhbr(crtc_state)) {
+>  		dp_tp_ctl |= DP_TP_CTL_MODE_MST;
+>  	} else {
+>  		dp_tp_ctl |= DP_TP_CTL_MODE_SST;
 > -- 
 > 2.39.5
 > 
