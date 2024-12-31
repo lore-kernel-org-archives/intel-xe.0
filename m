@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC96DE77194
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Dec 2024 16:27:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81EB9E77188
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Dec 2024 16:27:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71B3410E686;
-	Tue, 31 Dec 2024 16:27:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DCB210E68A;
+	Tue, 31 Dec 2024 16:27:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QMSDvrmj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SjyrbznO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D64E10E0EF;
- Tue, 31 Dec 2024 16:27:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E98110E68A;
+ Tue, 31 Dec 2024 16:27:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735662468; x=1767198468;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9Qt87d+yUe8ve5cNKqZOIUR4joaaInbXbai6bK2/dFU=;
- b=QMSDvrmjo7MjeudxdAiDeHaMHF2I4++ImgD1D3cP+Qutavhteu8p9f12
- mMEyjBUtRuS9Nt01bEZDWOVh2cf4Rd7nZUa6rqI6uB/8c29JX+SzXQtIn
- wtE7yU/KIjCn0TMde4O5nsVnqBBFQtXq3HA3iviPGC1YGmu95kTcbIUFV
- 8y4pE13ji7gl2UQeiMgpZOKnnFpFZzwZw+umGeV6UKu6yosaAq4+qltyk
- MYIY6oxQJXvc6UPY4XHeVEEb2/uMAlpmGIWoE3iMbDRlGJIv5QHv69jIZ
- 9/8QMydjHQ3pBWDkbWOIKw+P2/PFEr4Yz3ny6YMtDBu6k3bLe/zBSAisa w==;
-X-CSE-ConnectionGUID: B4U3pYoXQtecfWiHUD+yDQ==
-X-CSE-MsgGUID: +B0L0fn9TAuKGRa/PoJSlQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="35251974"
-X-IronPort-AV: E=Sophos;i="6.12,279,1728975600"; d="scan'208";a="35251974"
+ t=1735662473; x=1767198473;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=3CtRBsuw4OPMBod/ch3HnxoHjxjy99P2bcKwPKcOt8A=;
+ b=SjyrbznOjnWf1NNAJ/e/Hpd2KUpPSurQyBgJMlaIsXbvvS7LBblE5Pip
+ 4/gzRX/oqUidkvvAaez+UnKImwk6S3mcR/GDqIj+Lg0zwggkyls6yusn1
+ 175QDIMGt5O2m4HN1VCWqeW68ux7le1zkd83HPmMA4EC6H/vjXYjVv1+u
+ oI6qFwXNSyN1aAifB3lVitRodj7BKXr/6PhKqKqStfYcnThwXFffFfCW2
+ T+f4P2PS8YfcwTvOrpzuiRkjyPNlVL2Af5yix3c0ft6GejVw+tfpVR7Nc
+ 9RyZuCijBv+Qlf/Tt2lnXFUHhqJjlZpuLWRsEMGfGsBiZbiao7TUubi9j g==;
+X-CSE-ConnectionGUID: 4sjx+GB5QnW5hdU89uUEIA==
+X-CSE-MsgGUID: JtaJSGBtSsOWx9VmFpFjnQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="35251978"
+X-IronPort-AV: E=Sophos;i="6.12,279,1728975600"; d="scan'208";a="35251978"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2024 08:27:47 -0800
-X-CSE-ConnectionGUID: PIzGEE2cSeit+54W+ljRWw==
-X-CSE-MsgGUID: AxfeeUXgTMK4fXKtk8X8Sw==
+ 31 Dec 2024 08:27:53 -0800
+X-CSE-ConnectionGUID: RSIGLX3bQ0euRBsosczbVQ==
+X-CSE-MsgGUID: GG6ONFUJQVO7NycTn9fYpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,279,1728975600"; d="scan'208";a="100924895"
+X-IronPort-AV: E=Sophos;i="6.12,279,1728975600"; d="scan'208";a="100924923"
 Received: from iklimasz-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.180])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2024 08:27:45 -0800
+ 31 Dec 2024 08:27:50 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, Gustavo Sousa <gustavo.sousa@intel.com>,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 0/4] drm/i915/pmdemand: cleanups
-Date: Tue, 31 Dec 2024 18:27:36 +0200
-Message-Id: <cover.1735662324.git.jani.nikula@intel.com>
+Subject: [PATCH 1/4] drm/i915/pmdemand: convert to_intel_pmdemand_state() to a
+ function
+Date: Tue, 31 Dec 2024 18:27:37 +0200
+Message-Id: <10324781f9f7eae5a92506aaa7a40403efd345dd.1735662324.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1735662324.git.jani.nikula@intel.com>
+References: <cover.1735662324.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -68,34 +71,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Make pmdemand state opaque, convert pmdemand and global state to struct
-intel_display, and make pmdemand independent of i915_drv.h.
+In preparation for making struct intel_pmdemand_state an opaque type,
+convert to_intel_pmdemand_state() to a function.
 
-This is what I'd like to be done to all global state management. All
-opaque, all converted to struct intel_display.
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-BR,
-Jani.
+---
 
+This is the simplest change. There could be other alternatives.
 
-Jani Nikula (4):
-  drm/i915/pmdemand: convert to_intel_pmdemand_state() to a function
-  drm/i915/pmdemand: make struct intel_pmdemand_state opaque
-  drm/i915/pmdemand: convert to struct intel_display
-  drm/i915/display: convert global state to struct intel_display
+Outside of intel_pmdemand.c, this is only used to convert
+display.pmdemand.obj.state to struct intel_pmdemand_state *. Maybe we
+could just pass the global object or state pointer instead? Or we could
+have a function to get the current state from, say, struct
+intel_display? What we currently have is a bit cumbersome.
+---
+ drivers/gpu/drm/i915/display/intel_pmdemand.c | 5 +++++
+ drivers/gpu/drm/i915/display/intel_pmdemand.h | 3 +--
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_bw.c       |   3 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c    |   3 +-
- .../drm/i915/display/intel_display_driver.c   |   8 +-
- .../drm/i915/display/intel_display_power.c    |   4 +-
- .../gpu/drm/i915/display/intel_global_state.c |  42 ++--
- .../gpu/drm/i915/display/intel_global_state.h |   6 +-
- .../drm/i915/display/intel_modeset_setup.c    |  17 +-
- drivers/gpu/drm/i915/display/intel_pmdemand.c | 195 ++++++++++--------
- drivers/gpu/drm/i915/display/intel_pmdemand.h |  51 ++---
- drivers/gpu/drm/i915/display/skl_watermark.c  |   3 +-
- 10 files changed, 170 insertions(+), 162 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+index cdd314956a31..69b40b3735b3 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+@@ -15,6 +15,11 @@
+ #include "intel_pmdemand.h"
+ #include "skl_watermark.h"
+ 
++struct intel_pmdemand_state *to_intel_pmdemand_state(struct intel_global_state *obj_state)
++{
++	return container_of(obj_state, struct intel_pmdemand_state, base);
++}
++
+ static struct intel_global_state *
+ intel_pmdemand_duplicate_state(struct intel_global_obj *obj)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.h b/drivers/gpu/drm/i915/display/intel_pmdemand.h
+index a1c49efdc493..89296364ec3b 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.h
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.h
+@@ -43,8 +43,7 @@ struct intel_pmdemand_state {
+ 	struct pmdemand_params params;
+ };
+ 
+-#define to_intel_pmdemand_state(global_state) \
+-	container_of_const((global_state), struct intel_pmdemand_state, base)
++struct intel_pmdemand_state *to_intel_pmdemand_state(struct intel_global_state *obj_state);
+ 
+ void intel_pmdemand_init_early(struct drm_i915_private *i915);
+ int intel_pmdemand_init(struct drm_i915_private *i915);
 -- 
 2.39.5
 
