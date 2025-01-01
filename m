@@ -4,62 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50D09E7718F
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Jan 2025 13:25:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 221A7E7718F
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Jan 2025 20:55:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFADE10E05D;
-	Wed,  1 Jan 2025 13:25:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27B2C10E39B;
+	Wed,  1 Jan 2025 20:55:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BfyADw/w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WOyKJjXb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C45BF10E05D
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Jan 2025 13:25:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7454D10E1F8;
+ Wed,  1 Jan 2025 20:55:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735737955; x=1767273955;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=O4XVS9kqxmNdfEkA47hUPyNcKcEqoQ9n16YYjiKIE8o=;
- b=BfyADw/wds3gkQUmes79kV2UhtzqzpCDES0IrloGUW+t5hvciunKU2K3
- HztuiY+Gdk2aCGvHisysnW1EEOSC+pMcaegNacnagFB9iHlyJ2rVi0+bM
- 64VgcSGhjRDiLJ+0Vb9qgq0KcPCEoVjlUcSlTsLMax2H/QSgGmB0/UjGb
- zIAejtw6cnwa/6TEDC64eFQkGMU3+ofQHbwnnbKqVLINc2QKitsSBQY7w
- xIH48NhwtlyTcLTSLx6uVhR8V3j5JWqrE14rpYsLuUbJLjCfrMcyq8ghl
- kbz1L7Hfw5nItXqAFBBswdYurr3+lBzoxKr0nR+i9vGxBDDrWy9IO4zW1 Q==;
-X-CSE-ConnectionGUID: d1OVIpd0TiiYgGX2shQHXw==
-X-CSE-MsgGUID: gvSSz6nwQS6KAOqo1GeP/A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="35875940"
-X-IronPort-AV: E=Sophos;i="6.12,282,1728975600"; d="scan'208";a="35875940"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jan 2025 05:25:54 -0800
-X-CSE-ConnectionGUID: OqSxrWGqRAWs3rkpxyH7rA==
-X-CSE-MsgGUID: 4aOUv3tcRk+eB79+eR/HBQ==
+ t=1735764941; x=1767300941;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=wJxE0VhI4245QsBRaUlZMHe9srJx5wH1Gs8qUjCkXj8=;
+ b=WOyKJjXb8ur6bH01UWPuLZ+Lb9IkaEs5EYrtyVewzjX0M495Pww3QEad
+ b2/o92yNf214FZftE97klBLl+IJUrHX0SuAja26T4UOhW7aox1D2N72Dc
+ TK4vbMfqWnLKHmqGUob5V4y9s7UlWC1+TIc8sz28wT2MqJAhERGpxOc8/
+ SVnhHwMDYC1ACR0ytkjE1uWQZQqgHN3Q583Q1lcr/k9dCj1f27l7TdEOE
+ 22/KsN4eEmX+R2qYRigwmV7zXnUSoketamgCipWO8rgdg4+ActhUvBBKu
+ OQeM9asZGGhh1DvY0geDZnB7VaF91cX6ZTuX2CQUG3A+OrgFBOeb4FGps A==;
+X-CSE-ConnectionGUID: sswnBB8DR2aQYbKtXtGJ4A==
+X-CSE-MsgGUID: MzJ41oZTRBqroXOMlWnvzA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="53405766"
+X-IronPort-AV: E=Sophos;i="6.12,283,1728975600"; d="scan'208";a="53405766"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jan 2025 12:55:41 -0800
+X-CSE-ConnectionGUID: 3qFIqEp2QQ6I44z0qmp8mw==
+X-CSE-MsgGUID: Zjq9/VaAT+y6TKOAdzZ7+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102116782"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.109.191])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jan 2025 05:25:54 -0800
-Date: Wed, 1 Jan 2025 07:25:48 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>, 
- intel-xe@lists.freedesktop.org, Gustavo Sousa <gustavo.sousa@intel.com>, 
- Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, stable@vger.kernel.org
-Subject: Re: [PATCH] drm/xe/tracing: Fix a potential TP_printk UAF
-Message-ID: <niinok4526kq3m4ethzcesfbd62jdd5x43yjefpdtarxa4xakq@scwsd6ukojph>
-References: <20241223134250.14345-1-thomas.hellstrom@linux.intel.com>
- <Z2mFePfn73Fugmrf@lstrano-desk.jf.intel.com>
- <de948e6d024abe0bbd5ac30087471c02dff0dc09.camel@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="106377707"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO [10.245.246.202])
+ ([10.245.246.202])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jan 2025 12:55:39 -0800
+Message-ID: <5ca1c5b64c313108ea2aa005ae273f1ba8051e7f.camel@linux.intel.com>
+Subject: Re: [REGRESSION][BISECTED] Re: 6.12.7 stable new error: event
+ xe_bo_move has unsafe dereference of argument 4
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Genes Lists <lists@sapience.com>, Steven Rostedt <rostedt@goodmis.org>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, lucas.demarchi@intel.com,
+ stable@vger.kernel.org, 	regressions@lists.linux.dev, Linus Torvalds
+ <torvalds@linux-foundation.org>
+Date: Wed, 01 Jan 2025 21:55:26 +0100
+In-Reply-To: <0ef755e06b8f0bf1ee4dfd7e743d6222fd795b70.camel@sapience.com>
+References: <2e9332ab19c44918dbaacecd8c039fb0bbe6e1db.camel@sapience.com>
+ <9dee19b6185d325d0e6fa5f7cbba81d007d99166.camel@sapience.com>
+ <20241230141329.5f698715@batman.local.home>
+ <20241230145002.3cc11717@gandalf.local.home>
+ <5f756542aaaf241d512458f306707bda3b249671.camel@sapience.com>
+ <20241230160311.4eec04da@gandalf.local.home>
+ <0ef755e06b8f0bf1ee4dfd7e743d6222fd795b70.camel@sapience.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <de948e6d024abe0bbd5ac30087471c02dff0dc09.camel@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,115 +79,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Dec 23, 2024 at 05:33:10PM +0100, Thomas Hellström wrote:
->On Mon, 2024-12-23 at 07:44 -0800, Matthew Brost wrote:
->> On Mon, Dec 23, 2024 at 02:42:50PM +0100, Thomas Hellström wrote:
->> > The commit
->> > afd2627f727b ("tracing: Check "%s" dereference via the field and
->> > not the TP_printk format")
->> > exposes potential UAFs in the xe_bo_move trace event.
->> >
->> > Fix those by avoiding dereferencing the
->> > xe_mem_type_to_name[] array at TP_printk time.
->> >
->> > Since some code refactoring has taken place, explicit backporting
->> > may
->> > be needed for kernels older than 6.10.
->> >
->> > Fixes: e46d3f813abd ("drm/xe/trace: Extract bo, vm, vma traces")
->> > Cc: Gustavo Sousa <gustavo.sousa@intel.com>
->> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> > Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
->> > Cc: Matt Roper <matthew.d.roper@intel.com>
->> > Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
->> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> > Cc: intel-xe@lists.freedesktop.org
->> > Cc: <stable@vger.kernel.org> # v6.11+
->> > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> > ---
->> >  drivers/gpu/drm/xe/xe_trace_bo.h | 12 ++++++------
->> >  1 file changed, 6 insertions(+), 6 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h
->> > b/drivers/gpu/drm/xe/xe_trace_bo.h
->> > index 1762dd30ba6d..ea50fee50c7d 100644
->> > --- a/drivers/gpu/drm/xe/xe_trace_bo.h
->> > +++ b/drivers/gpu/drm/xe/xe_trace_bo.h
->> > @@ -60,8 +60,8 @@ TRACE_EVENT(xe_bo_move,
->> >  	    TP_STRUCT__entry(
->> >  		     __field(struct xe_bo *, bo)
->> >  		     __field(size_t, size)
->> > -		     __field(u32, new_placement)
->> > -		     __field(u32, old_placement)
->> > +		     __string(new_placement_name,
->> > xe_mem_type_to_name[new_placement])
->> > +		     __string(old_placement_name,
->> > xe_mem_type_to_name[old_placement])
->> >  		     __string(device_id, __dev_name_bo(bo))
->> >  		     __field(bool, move_lacks_source)
->> >  			),
->> > @@ -69,15 +69,15 @@ TRACE_EVENT(xe_bo_move,
->> >  	    TP_fast_assign(
->> >  		   __entry->bo      = bo;
->> >  		   __entry->size = bo->size;
->> > -		   __entry->new_placement = new_placement;
->> > -		   __entry->old_placement = old_placement;
->> > +		   __assign_str(new_placement_name);
->> > +		   __assign_str(old_placement_name);
->> >  		   __assign_str(device_id);
->> >  		   __entry->move_lacks_source = move_lacks_source;
->> >  		   ),
->> >  	    TP_printk("move_lacks_source:%s, migrate object %p
->> > [size %zu] from %s to %s device_id:%s",
->> >  		      __entry->move_lacks_source ? "yes" : "no",
->> > __entry->bo, __entry->size,
->> > -		      xe_mem_type_to_name[__entry->old_placement],
->> > -		      xe_mem_type_to_name[__entry->new_placement],
->> > __get_str(device_id))
->>
->> So is this the UAF? i.e., The Xe module unloads and
->> xe_mem_type_to_name
->> is gone?
->
->I would imagine that's the intention of the warning. However removing
->the xe_module seems to empty the trace buffer of xe_bo_move events.
->Whether there is a race in that process or whether the TP_printk check
->can't distinguish between module local addresses and other addresses is
->hard to tell. In any case, it looks like we need to comply with the
->warning here (I suspect CI refuses to run otherwise), and since it only
->appears to trigger on the xe module load on my system, it's unlikely
->that mentioned commit will be reverted.
+Hi!
 
-it's actually a false positive from afd2627f727b. See explanation
-by Steve at https://lore.kernel.org/all/20241230141329.5f698715@batman.local.home/
-the fix later on
+On Mon, 2024-12-30 at 16:07 -0500, Genes Lists wrote:
+> On Mon, 2024-12-30 at 16:03 -0500, Steven Rostedt wrote:
+> > >=20
+> >=20
+> > I'll start making it into an official patch. Can I add your
+> > "Tested-
+> > by" to it?
+> >=20
+> > -- Steve
+> Terrific thank you and sure:
+> =C2=A0Tested-by: Gene C <arch@sapience.com>
+>=20
+>=20
 
-Lucas De Marchi
+FWIW, we actually worked around this during the holiday in the drm-xe-
+next branch in the xe driver since it was breaking our CI. Was planning
+to include it for drm-xe-fixes for tomorrow. Since xe appeared to be
+the only driver hitting this, our assumption was that it'd be better
+fixed in the driver.
 
+Thanks,
+Thomas
 
->
->
->>
->> I noticed that xe_mem_type_to_name is not static, it likely should
->> be.
->> Would that help here?
->
->No, doesn't help unfortunately.
->
->/Thomas
->
->
->
->>
->> Matt
->>
->> > +		      __get_str(old_placement_name),
->> > +		      __get_str(new_placement_name),
->> > __get_str(device_id))
->> >  );
->> >  
->> >  DECLARE_EVENT_CLASS(xe_vma,
->> > --
->> > 2.47.1
->> >
->
