@@ -4,63 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CED2E77194
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jan 2025 08:47:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ABCEE77188
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jan 2025 09:02:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0B9010E3CC;
-	Thu,  2 Jan 2025 08:47:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dy3t/aRD";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2400F10E232;
- Thu,  2 Jan 2025 08:47:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735807634; x=1767343634;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=CLg8RVFqaid4LC8lEO+Qv4CMbonRv8NfjwmbBt9lCuo=;
- b=dy3t/aRDpxat1avz5hZM3LNc8qOlbMEC+kHohAxKMmXcrblkFVTySSo3
- RkBjM3TogjCYsRZoXtM5ErbqVObqcMRvAvHmDrwE7yQx/73eb64+t92VZ
- 6kv1icx5j+m2Cmm+8+Ez0FUsEvHF0bzo/0Kt4qp456xqNyrkV7MwfNyzk
- CW4BCqF8uT49DrE62x2kxxJUZf7yTFU86WgjeP+cWOMKPjkQPABNb3aWi
- JoYRFtM6SOdy8XZlX5zJ251kdsItUdbX9wux77NS7RCf4yxX7PchJRjlQ
- XDaRhSSvXoXcX/RozaZN+8FwD0H51Q2N9Ul2iXDFJfC9UYZfzoKy/xxnL A==;
-X-CSE-ConnectionGUID: bkzj43e6SM271+m+YO3gAA==
-X-CSE-MsgGUID: rYGyH6ZMRyORKKCx99ABJQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="47451918"
-X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="47451918"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 00:47:14 -0800
-X-CSE-ConnectionGUID: qxxW+LqlRguwIXZKOn1mWA==
-X-CSE-MsgGUID: QAwe1q6UTVerLiZMcH1O6A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101293375"
-Received: from opintica-mobl1 (HELO [10.245.245.107]) ([10.245.245.107])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 00:47:09 -0800
-Message-ID: <f58429b7-5f11-4b78-b577-de32b41299ea@linux.intel.com>
-Date: Thu, 2 Jan 2025 09:47:55 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id D18BB10E2FC;
+	Thu,  2 Jan 2025 09:02:24 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85A7510E18B;
+ Thu,  2 Jan 2025 09:02:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_PSR_DSB_support_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 02 Jan 2025 09:02:24 -0000
+Message-ID: <173580854454.1978598.16219529224075818488@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250102083638.2552066-1-jouni.hogander@intel.com>
+In-Reply-To: <20250102083638.2552066-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,46 +35,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona,
+== Series Details ==
 
-Happy newyear!
+Series: PSR DSB support (rev2)
+URL   : https://patchwork.freedesktop.org/series/142521/
+State : success
 
-Cheers,
-~Maarten
+== Summary ==
 
-drm-misc-fixes-2025-01-02:
-drm-misc-fixes for v6.13-rc6:
-- Only fixes for adv7511 driver, including a use-after-free.
-The following changes since commit 1b684ca15f9d78f45de3cdba7e19611387e16aa7:
+lib/modules/6.13.0-rc4-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc4-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc4-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc4-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc4-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc4-xe+/kernel/kernel/
+lib/modules/6.13.0-rc4-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc4-xe+/kernel/block/
+lib/modules/6.13.0-rc4-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc4-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc4-xe+/build
+lib/modules/6.13.0-rc4-xe+/modules.alias.bin
+lib/modules/6.13.0-rc4-xe+/modules.builtin
+lib/modules/6.13.0-rc4-xe+/modules.softdep
+lib/modules/6.13.0-rc4-xe+/modules.alias
+lib/modules/6.13.0-rc4-xe+/modules.order
+lib/modules/6.13.0-rc4-xe+/modules.symbols
+lib/modules/6.13.0-rc4-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1735808533:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1735808533:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-  drm/sched: Fix drm_sched_fini() docu generation (2024-12-19 16:03:56 +0100)
 
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-01-02
-
-for you to fetch changes up to 79d67c499c3f886202a40c5cb27e747e4fa4d738:
-
-  drm: adv7511: Drop dsi single lane support (2024-12-20 03:53:25 +0200)
-
-----------------------------------------------------------------
-drm-misc-fixes for v6.13-rc6:
-- Only fixes for adv7511 driver, including a use-after-free.
-
-----------------------------------------------------------------
-Biju Das (3):
-      drm: adv7511: Fix use-after-free in adv7533_attach_dsi()
-      dt-bindings: display: adi,adv7533: Drop single lane support
-      drm: adv7511: Drop dsi single lane support
-
-Stefan Ekenberg (1):
-      drm/bridge: adv7511_audio: Update Audio InfoFrame properly
-
- .../devicetree/bindings/display/bridge/adi,adv7533.yaml    |  2 +-
- drivers/gpu/drm/bridge/adv7511/adv7511_audio.c             | 14 ++++++++++++--
- drivers/gpu/drm/bridge/adv7511/adv7511_drv.c               | 10 ++++++++--
- drivers/gpu/drm/bridge/adv7511/adv7533.c                   |  4 +---
- 4 files changed, 22 insertions(+), 8 deletions(-)
