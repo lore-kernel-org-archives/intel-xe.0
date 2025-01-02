@@ -4,85 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9FD2E77194
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jan 2025 04:46:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5B7CE77188
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jan 2025 05:13:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60FA810E1F5;
-	Thu,  2 Jan 2025 04:46:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A10910E27C;
+	Thu,  2 Jan 2025 05:13:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ckpj9MSY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HqCirh2e";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB56E10E1F5;
- Thu,  2 Jan 2025 04:46:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D8EC10E27C;
+ Thu,  2 Jan 2025 05:13:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735793186; x=1767329186;
+ t=1735794783; x=1767330783;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=ilxksOdr1k5OYiCQFJhdVCklOKgWS+Nb3da6XK4nJOU=;
- b=Ckpj9MSY8KC7/JJ+zrfgw08vA8KKgNjybkzyRiIXNLsagWqkHLOoD9xE
- 3+n5Kqtjid5SAWiL9124HrFE3OdJxblEIoheb6IikM4oUfSq/e5lT7CZN
- iKwJfLu10rgLxAPSqFpdsa7ex/LLONyRJAZzpyMFfDlT1Ewvv1539/zRo
- vBLAF6G9rpbVa1Tl58zYJdcDWuS0Itd2l4h/Mz7wvNE6w3RktfIgYledT
- Tdk3odFFOEW8zuH8lMJer8TPk72vuiZdNVQF7BfOgTo90djDo5OeqP30B
- zZGP8mV0atrhpm4+XH/WwycMLI+0g9KA+YEzJ0ZDSdAcAJJL07HvcsplA g==;
-X-CSE-ConnectionGUID: qPu4W7O7RQWmeAHs0nPNYQ==
-X-CSE-MsgGUID: dEdZqbekTOSuR0dOl0Ksyw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="61397674"
-X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="61397674"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jan 2025 20:46:25 -0800
-X-CSE-ConnectionGUID: kw7ELsikSt2yT5SKfpjxUw==
-X-CSE-MsgGUID: Jm+NB4yGRJ2cczd1yfQK4A==
+ bh=d/twjYxUmox7KeEIjk/vWslTnhYNMG9SfmxkfAAuRvw=;
+ b=HqCirh2eAfkoNqeYnS+SAYxs/Eqszxk7fB6f5o97m41gsA9PGfbhRin5
+ vs2FEsv3rcKYk5+LKVfJFxZ+ONB83DbhmNJq8zKHE46m+IFuXiKD5ajHc
+ PH6CK7mlPPYykMWvkt65NQNQ/lcLhy7+JXZzSkAtNfIH4utdrgxGlSdEl
+ jNQu3HM2ub0t2eZ3DmWU0i1SY2fRqNd8CszPEfdIovk1/GW9v1BMhOK9D
+ amt/hIpgvgkKBS8P77zMdb3Ph5hzSYoVsmjHveO4TAVx6PcI6b2tTt87u
+ ks1HLU3sb48wdgaKCFltv31Qzz0NzncLvD4aQOd1CzDsMcFhmdACKWYHc g==;
+X-CSE-ConnectionGUID: 9UURhmvRS424rQYNRT8HWQ==
+X-CSE-MsgGUID: RJkDS5LVR+uFodnqQWNheA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="58489045"
+X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="58489045"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jan 2025 21:13:02 -0800
+X-CSE-ConnectionGUID: rjPN8LDPQWuXkcSu0HS31w==
+X-CSE-MsgGUID: biAJCNICT3GZD6mmiBhPWw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="101834691"
+X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="101258308"
 Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 01 Jan 2025 20:46:25 -0800
+ by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 01 Jan 2025 21:13:01 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
  ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Wed, 1 Jan 2025 20:46:24 -0800
+ 15.1.2507.44; Wed, 1 Jan 2025 21:13:01 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Wed, 1 Jan 2025 20:46:24 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.44 via Frontend Transport; Wed, 1 Jan 2025 21:13:01 -0800
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.48) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 1 Jan 2025 20:46:24 -0800
+ 15.1.2507.44; Wed, 1 Jan 2025 21:13:00 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LcRD7yf9dWFN1N8/2h5yHgxLdOQLSHqczoJJwrysureq7n+UvnqvOSz+sR7WIOnj/arjCfGcHjNxrxURmWqv8dT2A/xZGUeQE0opS/jmU4i8fxV67Gv+xAwUcIvnBdCHIH6ullg787SAbDgKJ9/6vXIAIOkBVpqjc2+cwgA4fDR7eLOgY992AhTVoM/DN07HcPj0qdXynJKCg8xSwGdfx/+vAolcyCj3r7nTIKO2I3rNn0rq2jDtUtp6poLJOIjuihqOh6cs5gv9l7WpZeUA5N6Qs7tRCk80NDackuTftAfCU5TSH7ENMT7swcM+5GQf80jkqOp5rTT0cELyCcEV7Q==
+ b=wbslWPEuAd6+tsy/xfzNqKd26oed9DcvqtCh96poGNesGVGZ/varaz0aOnN01k/43K4d+SHxUmzwdAQtyq9lLE2qFXpnED/v72mGLJUuY1mAYNIKOpY04E74kUEXhxwC+HJWhwYp/AwGRQHpoarjXXYdMMSUseb2ZYG+WsAuTaDE2KSDjd3eUYnrxmlcg/GNkK/7FSnTgs6wuUfxWDTcvK9OPU8EbUTJ1P8cLXVoHwyI/lKbeXcw0hTnrsOkR8OAnSWy1KMpBOE4YCj3lZoY7MunwkJEvndBYsWHWv2aDmDPRPNtWhx6tTtbY59xlGLraTUPy8yPSRMrFiexnx663A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qjCjOme94zoy/jD2h55D29dRstordQlMqg5WVqfV3jk=;
- b=x2TLOqs4Ap7kiC2Tppt9OvVPXqlf23IkdDrBXtOIvzGCTH9K4zXP7DN/j1quEJ1euesvybQT1GfL1C9dTBBiiGpH8cYuS1JHEwybKZY2LVM2vC3i8YtZYq1Pky5AGnZq8o5pwDDwhCilrFzdMNjOtWEelyjHG/QDeSpKw4XOCBZV6qerXnIRNEny/HVKre5fAZtrAp2BOhLE8rXCmy2Fnve1lcBv0Tf+OZ9OC8xttwWCLbzIhQ5oUlFm2gyssw6F9NbVt0CrSuJzeJTbTziDJ/lrsQ6djzb88s2QQTCLAeWBBxzPQe9HYS3iORYfAKBaGwJMVzSYXAJeZXwofrcNmg==
+ bh=YJALpdjHoyfWa5al3e6a5q9vNXI8aBGSMjWQvJSoK0I=;
+ b=NR98JBbcF3DOf+rSIj12OdSjDscQHY6NwHrhsBa3/+g0tsX73XzOEN7xh8h8Rx1QY+3/V0PTXvQIjYKwpsVvetAkufzM0CPLyfsfo1c6Xeb1udXo2dw373RRC7UHfu/cyoCmmmEc6aALa1xNoLg/kwi5EVVtaGcJ7IrdEP+43pYuD8tVo40od06/LSHPhes+j2BTohEpv4rRkEZWAfeEogIEk1TO9q3pLZCfcePMleZakeI/A+AmiIAkBKR5v9prjDI+tWH5NR/gLZyx8YhUJreiIXsa2BjIKiLW54iQVQ7sLzvrky4+9TZtLWWkiT1Ov8FOahb6IDOVFIy7VFVovQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from BL1PR11MB5979.namprd11.prod.outlook.com (2603:10b6:208:386::9)
- by PH7PR11MB7121.namprd11.prod.outlook.com (2603:10b6:510:20c::7)
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
+ by MW3PR11MB4714.namprd11.prod.outlook.com (2603:10b6:303:5d::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8293.18; Thu, 2 Jan
- 2025 04:45:51 +0000
-Received: from BL1PR11MB5979.namprd11.prod.outlook.com
- ([fe80::b0f6:fbc:94be:2372]) by BL1PR11MB5979.namprd11.prod.outlook.com
- ([fe80::b0f6:fbc:94be:2372%7]) with mapi id 15.20.8314.012; Thu, 2 Jan 2025
- 04:45:51 +0000
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/xe/display: Re-use display vmas when possible
-Thread-Topic: [PATCH] drm/xe/display: Re-use display vmas when possible
-Thread-Index: AQHbR01hRxQ4tnJdL023cEqhrE5kVrMDEjXQ
-Date: Thu, 2 Jan 2025 04:45:51 +0000
-Message-ID: <BL1PR11MB59794A440BF95DE3887D1889F9142@BL1PR11MB5979.namprd11.prod.outlook.com>
-References: <20241205193934.49526-1-dev@lankhorst.se>
-In-Reply-To: <20241205193934.49526-1-dev@lankhorst.se>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.12; Thu, 2 Jan
+ 2025 05:12:54 +0000
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::fd8d:bca9:3486:7762]) by SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::fd8d:bca9:3486:7762%3]) with mapi id 15.20.8293.000; Thu, 2 Jan 2025
+ 05:12:54 +0000
+From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+To: "Brost, Matthew" <matthew.brost@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>, "Auld, Matthew"
+ <matthew.auld@intel.com>, "Mrozek, Michal" <michal.mrozek@intel.com>
+Subject: RE: [PATCH V6] drm/xe/mmap: Add mmap support for PCI memory barrier
+Thread-Topic: [PATCH V6] drm/xe/mmap: Add mmap support for PCI memory barrier
+Thread-Index: AQHbUUuZ8TeAJuuNh0iXrSY1tJJzTLMCzU2AgAA5o1A=
+Date: Thu, 2 Jan 2025 05:12:54 +0000
+Message-ID: <SJ1PR11MB62047DC6DA6444AF684FC53E81142@SJ1PR11MB6204.namprd11.prod.outlook.com>
+References: <20241218125628.2270030-1-tejas.upadhyay@intel.com>
+ <Z3XvobR95Pnw5c+w@lstrano-desk.jf.intel.com>
+In-Reply-To: <Z3XvobR95Pnw5c+w@lstrano-desk.jf.intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -90,82 +93,80 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR11MB5979:EE_|PH7PR11MB7121:EE_
-x-ms-office365-filtering-correlation-id: 86c21bdb-6fc0-492d-20d2-08dd2ae855b7
+x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|MW3PR11MB4714:EE_
+x-ms-office365-filtering-correlation-id: 486f5b49-3ce3-44c1-a9e7-08dd2aec1cf8
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|10070799003|1800799024|366016|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?/ED7zo4VilOcsMO8bOgFaTJZ6nqWCOUL1A9LBbmmwNlhrIdIaYXjf/p6Mb66?=
- =?us-ascii?Q?MN/5MxCyvyZUfZPa8b0cjU3JzOqzZH8zanQknXXbB9IpHz8LznW7z1vgi7k/?=
- =?us-ascii?Q?nCVX0WrF468cRtJl0QLPHLUlssdKvVdOCaRCUlPDtUIKCQUCfkhPiV9mSHj+?=
- =?us-ascii?Q?i62unv9OT/zwOlOmMjrDMG5mrfQvE/cnRdLD+3HFl6wM7xNFerU2Kyg7ZmuE?=
- =?us-ascii?Q?Zzv8fwA/46iIm3BXkogdOg4qGLN40DXGIFEcRQ/lesLOlejjR0hw1PVTHkwu?=
- =?us-ascii?Q?o0l8SHNQL1HLxUb2JB/PciYJtRVhFkuIvlVRO+xorKpJlSj7i9Xd8nLznQsU?=
- =?us-ascii?Q?m8wzgrifgH3kQY2QeGy4gMqmw5NWEmSQR0LkvG68NBp5+EMwrRjUmHKsnxA2?=
- =?us-ascii?Q?s1S+EBnV5/bTJfHQ8COmATgTDYFXXxCLC34OHZH5l7Uubg1uk03pkboWh5vl?=
- =?us-ascii?Q?67wA9L7dKbVPHLoNd1VBjoHIDe9WMebfjLL3EUz4IwpVvYu5zXt2QhsOh5CJ?=
- =?us-ascii?Q?DJ+4K9aZ1Oardhk4o8dEh5B+8FhbebZFyHDoIiCwRidBhTx2rQVNNv+NkTyE?=
- =?us-ascii?Q?l5QaVkUZpnnn/yY+Qs+Xj8xJwJannOeRV/Tvut7t2Bo1qkeN4oR7cGIg1yXB?=
- =?us-ascii?Q?kogBcq3dORecq04N/STjZ9yQReAyoCH6Zut2nt9Hb4LINL08WSjPj8UOaNRO?=
- =?us-ascii?Q?TDYcI6MgLr8UL2PoIMw12zKEISFqGloURYsUoQYBPGtMc7Z/HVICifJzIQ8n?=
- =?us-ascii?Q?C4K72rwKOTqYOKdfAlm2LtzrUn0w9GP3ane9j/+yCTDru7wjA5eSla+nTuQs?=
- =?us-ascii?Q?VeEVpzYFTGpY45UGF1tMZXpw6pq7GAog8gd/1shcyuzBXEqjyZ0gugYz960s?=
- =?us-ascii?Q?6hPG6UFR4ll6cjB2LU9ro38rLhVQ1a1tY5ZwxV1oGoenpa7gKnkFw+VZV6vt?=
- =?us-ascii?Q?jtIvgoVcOAgzO/0BwNikjlXuDvvZ5n0bSqgNIFqdBwwUVi26mxNW1jqRwgWu?=
- =?us-ascii?Q?8nu4R+UmyeDxNfm8PxTtj3klofukrxZr6SyXJbVMfrKk98vOHuQmaJoJDTt/?=
- =?us-ascii?Q?KbS1liE2p4wLMh0RUg9jRiv5zJ4JvGP/2dEwzTNPhfs+I6EfQHNXjSnDnitj?=
- =?us-ascii?Q?+g43nlaVPqL/dKNbLywcB3aeND1f6YYfyDVqLIsxNq2w7oyUA7npDbgugrEz?=
- =?us-ascii?Q?3kg8fHuTij4mNO9sG95grqo5xTBXvUIXhoDOkkCJNHozir88oXetdAs4wlMW?=
- =?us-ascii?Q?702H/SkwOvgQSfD5ZB0jyM1lxAngg80BURSW+1xB5MKJiFJJ9kPizBqdRLZi?=
- =?us-ascii?Q?A5XS0wc9csRRfVct2uMvJbefNNkJ117Rnu6ZJAALTsASD1b74JAzskSo1s+O?=
- =?us-ascii?Q?1LCAg4rbS8FRX4E1cOW26fFL522PfRAJKB5Biz6+vhKcd7ukrTmrJTfGHMtc?=
- =?us-ascii?Q?DYRSeggPVkVdGUhZQMCMwr/cJkC/14SE?=
+ ARA:13230040|376014|1800799024|366016|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?IUEDAB6Dn4fFtKVuNqSg0Xk1n9eZ2Ly+IcVyF/PeNgm490EEaIXcIkFY24J5?=
+ =?us-ascii?Q?61bzH8vzkCOF5shEKKaMa4oKuYJHTMG/NeIh22j57iqYIRH9Sy47EcLGgDCZ?=
+ =?us-ascii?Q?d+nWWtOKbK/RnaACRrg6AH3yoH0Y2qIU8Rw3AWYb6N0lbb1X0px4/qANzTN9?=
+ =?us-ascii?Q?FANMQYJPAAXg060Ba6HPT1Xdkqa0ohYARrTIUILu5f+pFAzxZHX2SSpAaNvk?=
+ =?us-ascii?Q?F5cokSRD1uWtVEvKOYyYYQO1OJfebKp08IaHh1ge6eE+p+DZdTJ9hkFuPmUg?=
+ =?us-ascii?Q?85gFG0xquPb7uEBaCRhfILmUmQEZFeDI2VmxU5Dx2qAk8W/8mrRk6IkIAbx+?=
+ =?us-ascii?Q?6flntAVFa5q7tlBHRS0dR61F9LD5Yv+lBqcRQ3W7SNtYYy43MN0vf8v4G4Wh?=
+ =?us-ascii?Q?Z0o/IJ+gzW5v+BF68mjg0jDLGGmFCJeug1PjWIBey4rDaiybCoYoijMm1m1B?=
+ =?us-ascii?Q?SSBZzHtBdNJOwj5VdQDp/F0Dc7y2cI/mymj87gZx5TH2MrBt78yYVpf0oS8D?=
+ =?us-ascii?Q?OFyC2/YWeFUlxbqmtRgzC5p5NfbL5qfStExtMjHwHSdeC4lGYdO8KCZGQ1fx?=
+ =?us-ascii?Q?Oa3b5/rIArUoQHWzzGa12mKPBTmBsXR+676vE7qcyYb7wEsAkQ1i9i+iu1Ho?=
+ =?us-ascii?Q?JqsNtWR+PBLDnzX9UnvUf/jumgrEftIFrntCqqbi3AvH4wxfc/oJdFbqUI7x?=
+ =?us-ascii?Q?XDucOYk/USm+Xu5WLOIkCRFsFz+ld/PimC6sH2WDcqQnakmg4yjxYJe4oJ+t?=
+ =?us-ascii?Q?zLXewoJLpgTMgrWvEl3vlBmITNqfb/iDO+2X/kOZWqulhhv2OGB5C5f3V8I+?=
+ =?us-ascii?Q?ZGdwHJ+Ya/FpyzlYBOsblktBj52b13RXippWuaP5+ghDAqiIlb95Hjdh3u5X?=
+ =?us-ascii?Q?V/8UIsZ2AYCjicodO8xNrMJbJ3eqZ+mZ0EVOXqxPMnDFnOin8s6CWr0TAqOy?=
+ =?us-ascii?Q?OSmrhuPfJ+9PGCnUz1yOUf0mJg99m5+M/kQ331B84EAyzqFhN36TmObRQd+K?=
+ =?us-ascii?Q?BajYY+m4geS2wnX3KRrIwi3iWEe1cBHrxbfSzYBkpMB5ov3dwmEvLCiYehXX?=
+ =?us-ascii?Q?+ONhLFgoywxh3kh8R0ZA6t2P4ZjJP5w7duiKZ4Qjb783aVCBtBKB3Ly/JEYc?=
+ =?us-ascii?Q?YIotw4kUMKWJtZ6ITtfz7myhuZ3Wn5rdfPMuKkRQxmt1vjiR3nahXfIgNaeP?=
+ =?us-ascii?Q?MQUecZlDUKlV6oj9uVcIky5KwXofs/1swJ1sgdWZWBd6ycsR5XwsqXz741K0?=
+ =?us-ascii?Q?tJ1jvlSBxVnbb74jrFlmr7cD6dx7FAxWGq4z0DJaONe5GxRVIBex1eWqRwBl?=
+ =?us-ascii?Q?AyIF4dNHJIiPsn8L3Vl0ST0WX2jrzB/IEMkNUhRNmxy6t94FOyZlMXgZt00V?=
+ =?us-ascii?Q?JWGvRvuGO82hj3V/jLyLopU3MEu2IoLxR8LAfRf8PIap95QSpg=3D=3D?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR11MB5979.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(10070799003)(1800799024)(366016)(38070700018); DIR:OUT;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(7053199007)(38070700018); DIR:OUT;
  SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?o1NkaP/AYeqGZVb61gl37oH6GGiDvheq1qCd4n5Ngknm/g8THKnLmYsG+La7?=
- =?us-ascii?Q?yW++xGE7faNytk33Ks1L9rs2Yj4iAqTL/vlSDvQVscNcetXNr/zRlzA+8nPW?=
- =?us-ascii?Q?RM7j2yvz6gjjd/UH3dr1/BHkJ/baC5Ah8TOIpY7Jxv+jpNmd0WqY2UwPIYw1?=
- =?us-ascii?Q?JsZGzyPALlZ7qPLIAetceX46JCe5HQ5eQS8heqr51gX9He6pF8YPtWk3GlSq?=
- =?us-ascii?Q?XTj6oR8wRUm0zWzMgi/Qzv/wp2pEzxt1WM4TcMkTBK6HE6Rz9l4/I1lrEVLX?=
- =?us-ascii?Q?5WcYhdy3fzZ2JFraRbt10eFQ+MKEd2uaB9TKxvYANeUTe4bOtV89uu0e2vVH?=
- =?us-ascii?Q?sA68F4MHJ4uUlaOlS8K47AIBZMavuF9aWFi0GBqf2gM07laQmLomOy3HkJGN?=
- =?us-ascii?Q?gmh/irqDZRTDI1i20J2bh0eTdNeRxmog2TDOgzgMLafNL4wEh4GfinGgTPU7?=
- =?us-ascii?Q?P4n0LK7kic1m0XU0PXangULXDi9YkD45F0QbMfKVuIn1UMtKOO1nx23uNeVB?=
- =?us-ascii?Q?o7yZ6qcqpfq9F0C8Oxw3VGblnMI22zyBFs9FGXHkaJ5Tb2aULiONM02uDZNV?=
- =?us-ascii?Q?uJMCUEjYaT1GwmPmUNTlCX6E+FJqFnsi0y7ZwXMaqaaOXoNlBrUfHJfeTc73?=
- =?us-ascii?Q?ZqS6XjXP6d8D4uNI7CczFuYrfTxfkHfU2zyREhFofmhD6k3xNNr1pp/gOlsd?=
- =?us-ascii?Q?9DPvuxDv6I63EOoyPLhG3vjwviTCtt7oVStZJl2Mt6u2laFkq15+pyEB4AwM?=
- =?us-ascii?Q?D5E3yNbgSXbQSzHZrVm0+DuZ5SwFzY1YHYAHowsX6rRBwJ2Yt46pBrgssOIl?=
- =?us-ascii?Q?286eJmKuggMQOtn5I9W51WiHXe9IN4B3nSX2SxetegYD6sESBYBCcOxBBtt5?=
- =?us-ascii?Q?s+Q3x3D+EX7FMN4809Fb/ymcxF2uGBnugcOxEsr2W0dajvZ6QPZNtFtkNbNl?=
- =?us-ascii?Q?hbzLADCvAg6YixlcwOpYCvA5kK4JCy7CYKI3bUQboHQrHvxlhw7nIY4Ge8Zk?=
- =?us-ascii?Q?NEHCU6EcPNGJfIHJOHrMtA+C0PJxuQOQX8RUUnzKdpQAFmEMUEkrCbygbhKq?=
- =?us-ascii?Q?AyJoaYfMWK64+weMqFPuYev6yovw5v8jQdKjsGIySGPpjB8YfMWnzpQ3F6JP?=
- =?us-ascii?Q?GCCr2zBYluCpF6X4MejrLe2OWCXP/diTskoYQta+J1s1Vmo+1Z7Jmp3t4bDn?=
- =?us-ascii?Q?Zjl2gI9rvgT39uaLZb/B1YQ7MZZiF11BfGS01UoKQT6/+ENbyIaNGHnWo313?=
- =?us-ascii?Q?cCv2ldC/a2S4rz32j7uqjy1P0riFWbWWm6nEOQr9zg7fZJoKsRsSMocMIqXK?=
- =?us-ascii?Q?I3B+KrBf91Hk8Wko0xXyKXEisEIM0Z92hpjXTiZXFmXU8HyE3SeO78laE5CY?=
- =?us-ascii?Q?5cP9+uJlG/BxuxiQVtZoDjeqewAkWeyqUeRxdoIRxzNYlWNpc146DfCmE93i?=
- =?us-ascii?Q?fYfwSl4r/j1z4VIwTYVBES0OIRU/QIOX/5bzAdzYGgrHHP4go47tC+VgofA8?=
- =?us-ascii?Q?iDOB7d3u4gc+TbK8YTG1pp1DeKhzVHWUYvA0QRean7kcTkLCcwTbTy3uN3fV?=
- =?us-ascii?Q?OZPLt87tNy0AeF/xYikxrHlX2lfRwxrbh212C9GTlWHjyZajzT8FcmhoZTnk?=
- =?us-ascii?Q?2evzsCRnZdacW0nuDa0+O+SM/PFfZnBzndxCb5Sn4GqQ?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ZNB9KtMRRSIa0X6UzqrpTFsYUgFXlWGAF/4QIHTCizp7HFQveid65+nZwae0?=
+ =?us-ascii?Q?T9NoN2Y9Xb5N8Gjo6gA1vnMPzaPCGlyOpc+bq2jlDCntK+dN2MgD7bLZmqCU?=
+ =?us-ascii?Q?sraaLz7+o9e+bPj5IL7rY4sDTwqKfRENxMYIGQWP4wxlM7OpMJ6VtEl3rvp5?=
+ =?us-ascii?Q?C6iuQpfR7ISI3cObC8e4SdWF4fHyxAgdPZ6ZdxbcmB/EAa8AbhHF66OVaNSP?=
+ =?us-ascii?Q?XdQmS13Ixtawb33ar5bbe53fX2G5I5YcIX5Ts52NoNymlkzz1raDVyWzPZwd?=
+ =?us-ascii?Q?JYOc+/k1pVeKLLpRZMPaBuNhPMqVUQPtHyzrgKOxbQ9CKSedhD/n+ZI/lMQE?=
+ =?us-ascii?Q?qmmZ97U6gYhqXah0rstwlS6jfyjY3T0Au9Plo0ZewZu6KmysKsWMdz/gZeyg?=
+ =?us-ascii?Q?+XB6DuxGMe5dVUa765WF+vL+Qty/3JurGmtGkhtYKfEWXaCR+cNNfpnQnzbH?=
+ =?us-ascii?Q?IjjfR4F+BbMS58KIpsnLpFo9Oak6mmi9OI64XULPJbSE2dMhvxipU4d0jf7Y?=
+ =?us-ascii?Q?l0EZJhbYcKPtMv7rKWYPFC2H7xjIzrIwQbg5dt1trvn8TfHfHor6hxWpOVUi?=
+ =?us-ascii?Q?7TnjsWu4ia0VAH8omu3eA80eBTeC+ZumlSLwci8745OtRgNiSONGP+LiKZC9?=
+ =?us-ascii?Q?zeaQtS63G7biGT36HQ3JZDlTcg5uDTyNBr9u2g9kkkuvva/REQjyofYVzNZ/?=
+ =?us-ascii?Q?8wmyeDsDmIAgeDJcH3jC2GUgZAeSZ8k1kjmjmZfTQP5TOhqCr7WnDwCHdpcY?=
+ =?us-ascii?Q?QetGzdXqZujjorB0Y+YhGpNwyMxK0rSj+WJB30dUeJTUPUAZTm/kjW69e1tD?=
+ =?us-ascii?Q?hwDGTujRW0/98L6Iqs3Sk7UmuoVMVPpIIXzA3KZa03szZkMYHzbH/qfgWXda?=
+ =?us-ascii?Q?VfxL64/UrHG7PD5ZMA0ERtgnT6X9LqTaDxL+6JkLaDJMeP5+PIWG4PC4jVfL?=
+ =?us-ascii?Q?LdmtkBi0PViIezns2PVr1b/zuFquA5DwfP4+wosCAH87I9cbf3V7tKVQ8tkb?=
+ =?us-ascii?Q?sE7Kjef3G0i92Sxx7FeGvR5Nd8k3HtfZ5gYEbouh9tyLxxlzIwmYG0jblexP?=
+ =?us-ascii?Q?mQolJYi230v7SnWsrZoxUnDTacR8Dc1uugDqpS2MCmH/iQY4fg8LFT2ZihMK?=
+ =?us-ascii?Q?HySsSCF+WY5WHjsrdNVtwnzw6aw02Cj+8C7BdqLeRR/oTuby7dxxvnlviP8+?=
+ =?us-ascii?Q?nK21FxW6cn3a2ilEASCWoKh1JLckCH1v2G7pgDMP3QKOlNPUO86DwwtNnnV2?=
+ =?us-ascii?Q?an/fpNxbIaFgXChrGOCat6iclVf9Zqe74sk7kQiVdBvnJUEd0DjKcoJRuHDY?=
+ =?us-ascii?Q?YWYqI254dSRNB+D8f5l8cmsStHZvB+uc7p/2X/hie6O+LC/l9Xdd6iR6TqDU?=
+ =?us-ascii?Q?BJSEEvui+L0VzE9RoLtObn/IrbimIAB4Ho/5JsTi+QdjzCRZno5zexYBNpqD?=
+ =?us-ascii?Q?akvbnjJY4un6/Ldh4roJXZ1vzsB+P+i92LlOyUcfUJnI4NGvjFGeDPfJR55d?=
+ =?us-ascii?Q?TJB9FOcPDW2giIMnsyIuxOGx08vMkkH2WhVnuo7WkcmTrR4pwCl4QH9VGT8E?=
+ =?us-ascii?Q?e38iVAwTdKp2PpCVXtFofFEAjWIP8xW4vt/dJcyB?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR11MB5979.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 86c21bdb-6fc0-492d-20d2-08dd2ae855b7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jan 2025 04:45:51.4915 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 486f5b49-3ce3-44c1-a9e7-08dd2aec1cf8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jan 2025 05:12:54.3105 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 92VAyB6D3Cc4FjYm5Xpi0Pm5IExJL6ZtroJvgJbcYxHYArOF4HXsm9QLnKfk6YBtyAMoGA/1V6QzYNpMAnHsAA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7121
+X-MS-Exchange-CrossTenant-userprincipalname: VmJUMHQfa3wrp9twEtWpRzk7f6QPOosNs36897AejHFeLPAp+eJ0pz7zo00Km3bIXjXPABvzA1Twbas+8LKzfsLbzmTrJdLgvKiBZdV2nZ8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4714
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -184,268 +185,321 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 > -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
-> Maarten Lankhorst
-> Sent: Friday, December 6, 2024 1:10 AM
-> To: intel-xe@lists.freedesktop.org
-> Cc: intel-gfx@lists.freedesktop.org; Maarten Lankhorst <dev@lankhorst.se>
-> Subject: [PATCH] drm/xe/display: Re-use display vmas when possible
+> From: Brost, Matthew <matthew.brost@intel.com>
+> Sent: Thursday, January 2, 2025 7:15 AM
+> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
+> Cc: intel-xe@lists.freedesktop.org; dri-devel@lists.freedesktop.org;
+> christian.koenig@amd.com; Auld, Matthew <matthew.auld@intel.com>;
+> Mrozek, Michal <michal.mrozek@intel.com>
+> Subject: Re: [PATCH V6] drm/xe/mmap: Add mmap support for PCI memory
+> barrier
 >=20
-> i915 has this really nice, infrastructure where everything becomes
-> complicated, GGTT needs eviction, etc..
+> On Wed, Dec 18, 2024 at 06:26:28PM +0530, Tejas Upadhyay wrote:
+> > In order to avoid having userspace to use MI_MEM_FENCE, we are adding
+> > a mechanism for userspace to generate a PCI memory barrier with low
+> > overhead (avoiding IOCTL call as well as writing to VRAM will adds
+> > some overhead).
+> >
+> > This is implemented by memory-mapping a page as uncached that is
+> > backed by MMIO on the dGPU and thus allowing userspace to do memory
+> > write to the page without invoking an IOCTL.
+> > We are selecting the MMIO so that it is not accessible from the PCI
+> > bus so that the MMIO writes themselves are ignored, but the PCI memory
+> > barrier will still take action as the MMIO filtering will happen after
+> > the memory barrier effect.
+> >
+> > When we detect special defined offset in mmap(), We are mapping 4K
+> > page which contains the last of page of doorbell MMIO range to
+> > userspace for same purpose.
+> >
+> > For user to query special offset we are adding special flag in
+> > mmap_offset ioctl which needs to be passed as follows, struct
+> > drm_xe_gem_mmap_offset mmo =3D {
+> >         .handle =3D 0, /* this must be 0 */
+> >         .flags =3D DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
+> > };
+> > igt_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo); map =3D
+> mmap(NULL,
+> > size, PROT_WRITE, MAP_SHARED, fd, mmo);
+> >
+> > Note: Test coverage for this is added by IGT
+> >       https://patchwork.freedesktop.org/series/140368/  here.
+> >       UMD implementing test, once PR is ready will attach with
+> >       this patch.
+> >
+> > V6(MAuld)
+> >   - Move physical mmap to fault handler
+> >   - Modify kernel-doc and attach UMD PR when ready
+> > V5(MAuld)
+> >   - Return invalid early in case of non 4K PAGE_SIZE
+> >   - Format kernel-doc and add note for 4K PAGE_SIZE HW limit
+> > V4(MAuld)
+> >   - Add kernel-doc for uapi change
+> >   - Restrict page size to 4K
+> > V3(MAuld)
+> >   - Remove offset defination from UAPI to be able to change later
+> >   - Edit commit message for special flag addition
+> > V2(MAuld)
+> >   - Add fault handler with dummy page to handle unplug device
+> >   - Add Build check for special offset to be below normal start page
+> >   - Test d3hot, mapping seems to be valid in d3hot as well
+> >   - Add more info to commit message
+> >
+> > Test-with: 20241118113606.1490397-1-tejas.upadhyay@intel.com
+> > Cc: Matthew Auld <matthew.auld@intel.com>
+> > Cc: Michal Mrozek <michal.mrozek@intel.com>
+> > Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 >=20
-> Lets not do that, and make the dumbest possible interface instead.
-> Try to retrieve the VMA from old_plane_state, or intel_fbdev if kernel
-> fb.
->=20
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> Do we need a query to see if the Xe driver has this uAPI?
 
-LGTM and it is fixing NOSPC issue for 64 bpp linear framebuffer.
-Reviewed-by: Animesh Manna <animesh.manna@intel.com>
+Currently, I have though of using below to check driver support for this UA=
+PI,
++static bool is_pci_membarrier_supported(int fd)
++{
++       struct drm_xe_gem_mmap_offset mmo =3D {
++               .handle =3D 0,
++               .flags =3D DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
++       };
++
++       return (igt_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo) =3D=3D 0)=
+;
++}
 
-> ---
->  .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
->  drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
->  drivers/gpu/drm/i915/display/intel_fb_pin.c   |  3 +-
->  drivers/gpu/drm/i915/display/intel_fb_pin.h   |  3 +-
->  drivers/gpu/drm/i915/display/intel_fbdev.c    |  5 ++
->  drivers/gpu/drm/i915/display/intel_fbdev.h    |  8 ++++
->  .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  3 ++
->  drivers/gpu/drm/xe/display/xe_fb_pin.c        | 48 +++++++++++++++++--
->  8 files changed, 65 insertions(+), 9 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index d89630b2d5c19..632b2b0723dd7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -1144,7 +1144,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
->  	if (!obj)
->  		return 0;
->=20
-> -	ret =3D intel_plane_pin_fb(new_plane_state);
-> +	ret =3D intel_plane_pin_fb(new_plane_state, old_plane_state);
->  	if (ret)
->  		return ret;
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c
-> b/drivers/gpu/drm/i915/display/intel_cursor.c
-> index ed88a28a3afae..5984310982e73 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> @@ -864,7 +864,7 @@ intel_legacy_cursor_update(struct drm_plane
-> *_plane,
->  	if (ret)
->  		goto out_free;
->=20
-> -	ret =3D intel_plane_pin_fb(new_plane_state);
-> +	ret =3D intel_plane_pin_fb(new_plane_state, old_plane_state);
->  	if (ret)
->  		goto out_free;
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> index d3a86f9c6bc86..dd3ac7f98dfcc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> @@ -252,7 +252,8 @@ intel_plane_fb_min_phys_alignment(const struct
-> intel_plane_state *plane_state)
->  	return plane->min_alignment(plane, fb, 0);
->  }
->=20
-> -int intel_plane_pin_fb(struct intel_plane_state *plane_state)
-> +int intel_plane_pin_fb(struct intel_plane_state *plane_state,
-> +		       const struct intel_plane_state *old_plane_state)
->  {
->  	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
->  	const struct intel_framebuffer *fb =3D
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> index ac0319b53af08..0fc6d90446381 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> @@ -23,7 +23,8 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
->=20
->  void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags);
->=20
-> -int intel_plane_pin_fb(struct intel_plane_state *plane_state);
-> +int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
-> +		       const struct intel_plane_state *old_plane_state);
->  void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
->=20
->  #endif
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> index 00852ff5b2470..6c08081333976 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> @@ -695,3 +695,8 @@ struct intel_framebuffer
-> *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
->=20
->  	return to_intel_framebuffer(fbdev->helper.fb);
->  }
-> +
-> +struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
-> +{
-> +	return fbdev ? fbdev->vma : NULL;
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h
-> b/drivers/gpu/drm/i915/display/intel_fbdev.h
-> index 08de2d5b34338..24a3434558cb6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
-> @@ -17,6 +17,8 @@ struct intel_framebuffer;
->  void intel_fbdev_setup(struct drm_i915_private *dev_priv);
->  void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool
-> synchronous);
->  struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev
-> *fbdev);
-> +struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev);
-> +
->  #else
->  static inline void intel_fbdev_setup(struct drm_i915_private *dev_priv)
->  {
-> @@ -30,6 +32,12 @@ static inline struct intel_framebuffer
-> *intel_fbdev_framebuffer(struct intel_fbd
->  {
->  	return NULL;
->  }
-> +
-> +static inline struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbde=
-v
-> *fbdev)
-> +{
-> +	return NULL;
-> +}
-> +
->  #endif
->=20
->  #endif /* __INTEL_FBDEV_H__ */
-> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-> b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-> index bdae8392e1253..4465c40f81341 100644
-> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-> @@ -10,6 +10,8 @@
->=20
->  #include "xe_ggtt_types.h"
->=20
-> +#include <linux/refcount.h>
-> +
->  /* We don't want these from i915_drm.h in case of Xe */
->  #undef I915_TILING_X
->  #undef I915_TILING_Y
-> @@ -19,6 +21,7 @@
->  struct xe_bo;
->=20
->  struct i915_vma {
-> +	refcount_t ref;
->  	struct xe_bo *bo, *dpt;
->  	struct xe_ggtt_node *node;
->  };
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> index 761510ae06904..8c3a5debe0953 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -9,6 +9,7 @@
->  #include "intel_dpt.h"
->  #include "intel_fb.h"
->  #include "intel_fb_pin.h"
-> +#include "intel_fbdev.h"
->  #include "xe_bo.h"
->  #include "xe_device.h"
->  #include "xe_ggtt.h"
-> @@ -287,6 +288,7 @@ static struct i915_vma *__xe_pin_fb_vma(const
-> struct intel_framebuffer *fb,
->  	if (!vma)
->  		return ERR_PTR(-ENODEV);
->=20
-> +	refcount_set(&vma->ref, 1);
->  	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
->  	    intel_fb_rc_ccs_cc_plane(&fb->base) >=3D 0 &&
->  	    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
-> @@ -345,6 +347,9 @@ static struct i915_vma *__xe_pin_fb_vma(const
-> struct intel_framebuffer *fb,
->=20
->  static void __xe_unpin_fb_vma(struct i915_vma *vma)
->  {
-> +	if (!refcount_dec_and_test(&vma->ref))
-> +		return;
-> +
->  	if (vma->dpt)
->  		xe_bo_unpin_map_no_vm(vma->dpt);
->  	else if (!xe_ggtt_node_allocated(vma->bo->ggtt_node) ||
-> @@ -375,25 +380,58 @@ void intel_fb_unpin_vma(struct i915_vma *vma,
-> unsigned long flags)
->  	__xe_unpin_fb_vma(vma);
->  }
->=20
-> -int intel_plane_pin_fb(struct intel_plane_state *plane_state)
-> +static bool reuse_vma(struct intel_plane_state *new_plane_state,
-> +		      const struct intel_plane_state *old_plane_state)
->  {
-> -	struct drm_framebuffer *fb =3D plane_state->hw.fb;
-> +	struct intel_framebuffer *fb =3D
-> to_intel_framebuffer(new_plane_state->hw.fb);
-> +	struct xe_device *xe =3D to_xe_device(fb->base.dev);
-> +	struct i915_vma *vma;
-> +
-> +	if (old_plane_state->hw.fb =3D=3D new_plane_state->hw.fb &&
-> +	    !memcmp(&old_plane_state->view.gtt,
-> +		    &new_plane_state->view.gtt,
-> +	            sizeof(new_plane_state->view.gtt))) {
-> +		vma =3D old_plane_state->ggtt_vma;
-> +		goto found;
-> +	}
-> +
-> +	if (fb =3D=3D intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
-> +		vma =3D intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
-> +		if (vma)
-> +			goto found;
-> +	}
-> +
-> +	return false;
-> +
-> +found:
-> +	refcount_inc(&vma->ref);
-> +	new_plane_state->ggtt_vma =3D vma;
-> +	return true;
-> +}
-> +
-> +int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
-> +		       const struct intel_plane_state *old_plane_state)
-> +{
-> +	struct drm_framebuffer *fb =3D new_plane_state->hw.fb;
->  	struct drm_gem_object *obj =3D intel_fb_bo(fb);
->  	struct xe_bo *bo =3D gem_to_xe_bo(obj);
->  	struct i915_vma *vma;
->  	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
-> -	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
-> +	struct intel_plane *plane =3D to_intel_plane(new_plane_state-
-> >uapi.plane);
->  	u64 phys_alignment =3D plane->min_alignment(plane, fb, 0);
->=20
-> +	if (reuse_vma(new_plane_state, old_plane_state))
-> +		return 0;
-> +
->  	/* We reject creating !SCANOUT fb's, so this is weird.. */
->  	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags &
-> XE_BO_FLAG_SCANOUT));
->=20
-> -	vma =3D __xe_pin_fb_vma(intel_fb, &plane_state->view.gtt,
-> phys_alignment);
-> +	vma =3D __xe_pin_fb_vma(intel_fb, &new_plane_state->view.gtt,
-> phys_alignment);
->=20
->  	if (IS_ERR(vma))
->  		return PTR_ERR(vma);
->=20
-> -	plane_state->ggtt_vma =3D vma;
-> +	new_plane_state->ggtt_vma =3D vma;
->  	return 0;
->  }
->=20
-> --
-> 2.45.2
+IGT already using this. Please let me know if it makes sense.
 
+Tejas
+>=20
+> Matt
+>=20
+> > ---
+> >  drivers/gpu/drm/xe/xe_bo.c     |  16 ++++-
+> >  drivers/gpu/drm/xe/xe_bo.h     |   2 +
+> >  drivers/gpu/drm/xe/xe_device.c | 103
+> ++++++++++++++++++++++++++++++++-
+> >  include/uapi/drm/xe_drm.h      |  29 +++++++++-
+> >  4 files changed, 147 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> > index e6c896ad5602..86f2c00a0afd 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -2263,9 +2263,23 @@ int xe_gem_mmap_offset_ioctl(struct
+> drm_device *dev, void *data,
+> >  	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+> >  		return -EINVAL;
+> >
+> > -	if (XE_IOCTL_DBG(xe, args->flags))
+> > +	if (XE_IOCTL_DBG(xe, args->flags &
+> > +			 ~DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER))
+> >  		return -EINVAL;
+> >
+> > +	if (args->flags & DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER) {
+> > +		if (XE_IOCTL_DBG(xe, args->handle))
+> > +			return -EINVAL;
+> > +
+> > +		if (XE_IOCTL_DBG(xe, PAGE_SIZE > SZ_4K))
+> > +			return -EINVAL;
+> > +
+> > +		BUILD_BUG_ON(((XE_PCI_BARRIER_MMAP_OFFSET >>
+> XE_PTE_SHIFT) +
+> > +			      SZ_4K) >=3D DRM_FILE_PAGE_OFFSET_START);
+> > +		args->offset =3D XE_PCI_BARRIER_MMAP_OFFSET;
+> > +		return 0;
+> > +	}
+> > +
+> >  	gem_obj =3D drm_gem_object_lookup(file, args->handle);
+> >  	if (XE_IOCTL_DBG(xe, !gem_obj))
+> >  		return -ENOENT;
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> > index d9386ab03140..04995c5ced32 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.h
+> > +++ b/drivers/gpu/drm/xe/xe_bo.h
+> > @@ -75,6 +75,8 @@
+> >
+> >  #define XE_BO_PROPS_INVALID	(-1)
+> >
+> > +#define XE_PCI_BARRIER_MMAP_OFFSET	(0x50 << XE_PTE_SHIFT)
+> > +
+> >  struct sg_table;
+> >
+> >  struct xe_bo *xe_bo_alloc(void);
+> > diff --git a/drivers/gpu/drm/xe/xe_device.c
+> > b/drivers/gpu/drm/xe/xe_device.c index 7f021ec5f8e7..bacfeec9dc0b
+> > 100644
+> > --- a/drivers/gpu/drm/xe/xe_device.c
+> > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > @@ -232,12 +232,113 @@ static long xe_drm_compat_ioctl(struct file
+> > *file, unsigned int cmd, unsigned lo  #define xe_drm_compat_ioctl NULL
+> > #endif
+> >
+> > +static void barrier_open(struct vm_area_struct *vma) {
+> > +	drm_dev_get(vma->vm_private_data);
+> > +}
+> > +
+> > +static void barrier_close(struct vm_area_struct *vma) {
+> > +	drm_dev_put(vma->vm_private_data);
+> > +}
+> > +
+> > +static void barrier_release_dummy_page(struct drm_device *dev, void
+> > +*res) {
+> > +	struct page *dummy_page =3D (struct page *)res;
+> > +
+> > +	__free_page(dummy_page);
+> > +}
+> > +
+> > +static vm_fault_t barrier_fault(struct vm_fault *vmf) {
+> > +	struct drm_device *dev =3D vmf->vma->vm_private_data;
+> > +	struct vm_area_struct *vma =3D vmf->vma;
+> > +	vm_fault_t ret =3D VM_FAULT_NOPAGE;
+> > +	pgprot_t prot;
+> > +	int idx;
+> > +
+> > +	prot =3D vm_get_page_prot(vma->vm_flags);
+> > +
+> > +	if (drm_dev_enter(dev, &idx)) {
+> > +		unsigned long pfn;
+> > +
+> > +#define LAST_DB_PAGE_OFFSET 0x7ff001
+> > +		pfn =3D PHYS_PFN(pci_resource_start(to_pci_dev(dev->dev), 0)
+> +
+> > +				LAST_DB_PAGE_OFFSET);
+> > +		ret =3D vmf_insert_pfn_prot(vma, vma->vm_start, pfn,
+> > +					  pgprot_noncached(prot));
+> > +		drm_dev_exit(idx);
+> > +	} else {
+> > +		struct page *page;
+> > +
+> > +		/* Allocate new dummy page to map all the VA range in this
+> VMA to it*/
+> > +		page =3D alloc_page(GFP_KERNEL | __GFP_ZERO);
+> > +		if (!page)
+> > +			return VM_FAULT_OOM;
+> > +
+> > +		/* Set the page to be freed using drmm release action */
+> > +		if (drmm_add_action_or_reset(dev,
+> barrier_release_dummy_page, page))
+> > +			return VM_FAULT_OOM;
+> > +
+> > +		ret =3D vmf_insert_pfn_prot(vma, vma->vm_start,
+> page_to_pfn(page),
+> > +					  prot);
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static const struct vm_operations_struct vm_ops_barrier =3D {
+> > +	.open =3D barrier_open,
+> > +	.close =3D barrier_close,
+> > +	.fault =3D barrier_fault,
+> > +};
+> > +
+> > +static int xe_pci_barrier_mmap(struct file *filp,
+> > +			       struct vm_area_struct *vma) {
+> > +	struct drm_file *priv =3D filp->private_data;
+> > +	struct drm_device *dev =3D priv->minor->dev;
+> > +
+> > +	if (vma->vm_end - vma->vm_start > SZ_4K)
+> > +		return -EINVAL;
+> > +
+> > +	if (is_cow_mapping(vma->vm_flags))
+> > +		return -EINVAL;
+> > +
+> > +	if (vma->vm_flags & (VM_READ | VM_EXEC))
+> > +		return -EINVAL;
+> > +
+> > +	vm_flags_clear(vma, VM_MAYREAD | VM_MAYEXEC);
+> > +	vm_flags_set(vma, VM_PFNMAP | VM_DONTEXPAND |
+> VM_DONTDUMP | VM_IO);
+> > +	vma->vm_ops =3D &vm_ops_barrier;
+> > +	vma->vm_private_data =3D dev;
+> > +	drm_dev_get(vma->vm_private_data);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int xe_mmap(struct file *filp, struct vm_area_struct *vma) {
+> > +	struct drm_file *priv =3D filp->private_data;
+> > +	struct drm_device *dev =3D priv->minor->dev;
+> > +
+> > +	if (drm_dev_is_unplugged(dev))
+> > +		return -ENODEV;
+> > +
+> > +	switch (vma->vm_pgoff) {
+> > +	case XE_PCI_BARRIER_MMAP_OFFSET >> XE_PTE_SHIFT:
+> > +		return xe_pci_barrier_mmap(filp, vma);
+> > +	}
+> > +
+> > +	return drm_gem_mmap(filp, vma);
+> > +}
+> > +
+> >  static const struct file_operations xe_driver_fops =3D {
+> >  	.owner =3D THIS_MODULE,
+> >  	.open =3D drm_open,
+> >  	.release =3D drm_release_noglobal,
+> >  	.unlocked_ioctl =3D xe_drm_ioctl,
+> > -	.mmap =3D drm_gem_mmap,
+> > +	.mmap =3D xe_mmap,
+> >  	.poll =3D drm_poll,
+> >  	.read =3D drm_read,
+> >  	.compat_ioctl =3D xe_drm_compat_ioctl, diff --git
+> > a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h index
+> > f62689ca861a..cac607a30f6d 100644
+> > --- a/include/uapi/drm/xe_drm.h
+> > +++ b/include/uapi/drm/xe_drm.h
+> > @@ -811,6 +811,32 @@ struct drm_xe_gem_create {
+> >
+> >  /**
+> >   * struct drm_xe_gem_mmap_offset - Input of
+> > &DRM_IOCTL_XE_GEM_MMAP_OFFSET
+> > + *
+> > + * The @flags can be:
+> > + *  - %DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER - For user to query
+> > + special offset
+> > + *  for use in mmap ioctl. Writing to the returned mmap address will
+> > + generate a
+> > + *  PCI memory barrier with low overhead (avoiding IOCTL call as well
+> > + as writing
+> > + *  to VRAM which would also add overhead), acting like an
+> > + MI_MEM_FENCE
+> > + *  instruction.
+> > + *
+> > + *  Note: The mmap size can be at most 4K, due to HW limitations. As
+> > + a result
+> > + *  this interface is only supported on CPU architectures that
+> > + support 4K page
+> > + *  size. The mmap_offset ioctl will detect this and gracefully
+> > + return an
+> > + *  error, where userspace is expected to have a different fallback
+> > + method for
+> > + *  triggering a barrier.
+> > + *
+> > + *  Roughly the usage would be as follows:
+> > + *
+> > + *  .. code-block:: C
+> > + *
+> > + *  struct drm_xe_gem_mmap_offset mmo =3D {
+> > + *	.handle =3D 0, // must be set to 0
+> > + *	.flags =3D DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
+> > + *  };
+> > + *
+> > + *  err =3D ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
+> > + *  map =3D mmap(NULL, size, PROT_WRITE, MAP_SHARED, fd, mmo.offset);
+> > + *  map[i] =3D 0xdeadbeaf; // issue barrier
+> >   */
+> >  struct drm_xe_gem_mmap_offset {
+> >  	/** @extensions: Pointer to the first extension struct, if any */ @@
+> > -819,7 +845,8 @@ struct drm_xe_gem_mmap_offset {
+> >  	/** @handle: Handle for the object being mapped. */
+> >  	__u32 handle;
+> >
+> > -	/** @flags: Must be zero */
+> > +#define DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER     (1 << 0)
+> > +	/** @flags: Flags */
+> >  	__u32 flags;
+> >
+> >  	/** @offset: The fake offset to use for subsequent mmap call */
+> > --
+> > 2.34.1
+> >
