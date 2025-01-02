@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48A9CE77188
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jan 2025 10:30:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 602F1E77188
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jan 2025 10:43:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EADD10E4C0;
-	Thu,  2 Jan 2025 10:30:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qzb7k/au";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 003C410E406;
- Thu,  2 Jan 2025 10:30:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735813839; x=1767349839;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=BJnXMdz4Wt6keyowj70V0S5obEIxnEQtWLQOkciTY9A=;
- b=Qzb7k/au1dP9QUMviDU8RwR2YM5TeS6+rDMJ0FqiRMRRt112IO3Q2I1/
- jhenlWKKpKINBBG1o0YlkpZHVcCfVuT9XJ/C55z1dIbkEWZ/ZoBOeotVu
- 8Ajv6N0H9PrhUnqSfuBaU9Mck48iHu4BaUQoyYZSEPSsZwL26DjvjiW0Z
- kAFyLGlAmp8rEuVXl8L80hr8mBbjnsoLko6j+DP1k2wA2+PRTv55YZLGt
- 8KHVpOKzlzTRr3bHbVVMKM6UxPDeTtLhx4e65Vqblra3yAN8SK/xyWp2A
- vAqUTgZe7R4nyjc9ja79AJjW+FCDKRlU1EEFAabUYLZMvMDP8EU6HPyLT g==;
-X-CSE-ConnectionGUID: o8E6bAzKTL+N5lC/3qL8uA==
-X-CSE-MsgGUID: wk5fLSjbTimrD4uT9S2qWg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="23635167"
-X-IronPort-AV: E=Sophos;i="6.12,285,1728975600"; d="scan'208";a="23635167"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 02:30:38 -0800
-X-CSE-ConnectionGUID: CjLXBsT3Q2+0HeB1d4Fp9g==
-X-CSE-MsgGUID: wFsXni1UTxCc+U91j6oEKQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="132414135"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.212])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 02:30:37 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 07/16] drm/i915/mst: adapt
- intel_dp_mtp_tu_compute_config() for 128b/132b SST
-In-Reply-To: <Z3QY1txezARd21LY@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1734643485.git.jani.nikula@intel.com>
- <d08257a340e685679a1ae89f180e6eadf5164bcc.1734643485.git.jani.nikula@intel.com>
- <Z3QY1txezARd21LY@ideak-desk.fi.intel.com>
-Date: Thu, 02 Jan 2025 12:30:34 +0200
-Message-ID: <87a5c9o6d1.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F68589221;
+	Thu,  2 Jan 2025 10:43:18 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7A6889221;
+ Thu,  2 Jan 2025 10:43:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/dp=3A_128b/132b_uncom?=
+ =?utf-8?q?pressed_SST_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 02 Jan 2025 10:43:16 -0000
+Message-ID: <173581459694.1990809.2530864513424851186@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <cover.1734643485.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1734643485.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,180 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 31 Dec 2024, Imre Deak <imre.deak@intel.com> wrote:
-> On Thu, Dec 19, 2024 at 11:33:56PM +0200, Jani Nikula wrote:
->> Handle 128b/132b SST in intel_dp_mtp_tu_compute_config(). The remote
->> bandwidth overhead and time slot allocation are only relevant for MST;
->> SST only needs the local bandwidth and a check that 64 slots isn't
->> exceeded.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 109 +++++++++++---------
->>  1 file changed, 61 insertions(+), 48 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> index d08824d2fefe..3fbf9163272b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> @@ -257,10 +257,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
->>  
->>  	for (bpp = max_bpp; bpp >= min_bpp; bpp -= step) {
->>  		int local_bw_overhead;
->> -		int remote_bw_overhead;
->>  		int link_bpp_x16;
->> -		int remote_tu;
->> -		fixed20_12 pbn;
->>  
->>  		drm_dbg_kms(display->drm, "Trying bpp %d\n", bpp);
->>  
->> @@ -269,57 +266,73 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
->>  
->>  		local_bw_overhead = intel_dp_mst_bw_overhead(crtc_state,
->>  							     false, dsc_slice_count, link_bpp_x16);
->> -		remote_bw_overhead = intel_dp_mst_bw_overhead(crtc_state,
->> -							      true, dsc_slice_count, link_bpp_x16);
->> -
->>  		intel_dp_mst_compute_m_n(crtc_state,
->>  					 local_bw_overhead,
->>  					 link_bpp_x16,
->>  					 &crtc_state->dp_m_n);
->>  
->> -		/*
->> -		 * The TU size programmed to the HW determines which slots in
->> -		 * an MTP frame are used for this stream, which needs to match
->> -		 * the payload size programmed to the first downstream branch
->> -		 * device's payload table.
->> -		 *
->> -		 * Note that atm the payload's PBN value DRM core sends via
->> -		 * the ALLOCATE_PAYLOAD side-band message matches the payload
->> -		 * size (which it calculates from the PBN value) it programs
->> -		 * to the first branch device's payload table. The allocation
->> -		 * in the payload table could be reduced though (to
->> -		 * crtc_state->dp_m_n.tu), provided that the driver doesn't
->> -		 * enable SSC on the corresponding link.
->> -		 */
->> -		pbn.full = dfixed_const(intel_dp_mst_calc_pbn(adjusted_mode->crtc_clock,
->> -							      link_bpp_x16,
->> -							      remote_bw_overhead));
->> -		remote_tu = DIV_ROUND_UP(pbn.full, pbn_div.full);
->> -
->> -		/*
->> -		 * Aligning the TUs ensures that symbols consisting of multiple
->> -		 * (4) symbol cycles don't get split between two consecutive
->> -		 * MTPs, as required by Bspec.
->> -		 * TODO: remove the alignment restriction for 128b/132b links
->> -		 * on some platforms, where Bspec allows this.
->> -		 */
->> -		remote_tu = ALIGN(remote_tu, 4 / crtc_state->lane_count);
->> -
->> -		/*
->> -		 * Also align PBNs accordingly, since MST core will derive its
->> -		 * own copy of TU from the PBN in drm_dp_atomic_find_time_slots().
->> -		 * The above comment about the difference between the PBN
->> -		 * allocated for the whole path and the TUs allocated for the
->> -		 * first branch device's link also applies here.
->> -		 */
->> -		pbn.full = remote_tu * pbn_div.full;
->> -
->> -		drm_WARN_ON(display->drm, remote_tu < crtc_state->dp_m_n.tu);
->> -		crtc_state->dp_m_n.tu = remote_tu;
->> +		if (intel_dp->is_mst) {
->> +			int remote_bw_overhead;
->> +			int remote_tu;
->> +			fixed20_12 pbn;
->
-> Nit: pbn_div is only used for MST, so would (calculate/look it up from
-> mst_state) here. Also this MST block could be in a separate function,
-> perhaps for symmetry with the SST part in a function too, but this could
-> be a follow-up as well. Either way:
+== Series Details ==
 
-I guess I'm just not sure yet which direction this should be taken. It
-would be easy enough to add the functions, but is that the right
-division? How to handle pbn_div in that case? How is UHBR SST DSC going
-to impact all this?
+Series: drm/i915/dp: 128b/132b uncompressed SST (rev3)
+URL   : https://patchwork.freedesktop.org/series/142548/
+State : success
 
-I know I'm kind of weaseling out of fixing this up front, but I also try
-to avoid adding stuff that we may have to back out of later.
+== Summary ==
 
-I think I'd let this be for now.
+lib/modules/6.13.0-rc4-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc4-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc4-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc4-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc4-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc4-xe+/kernel/kernel/
+lib/modules/6.13.0-rc4-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc4-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc4-xe+/kernel/block/
+lib/modules/6.13.0-rc4-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc4-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc4-xe+/build
+lib/modules/6.13.0-rc4-xe+/modules.alias.bin
+lib/modules/6.13.0-rc4-xe+/modules.builtin
+lib/modules/6.13.0-rc4-xe+/modules.softdep
+lib/modules/6.13.0-rc4-xe+/modules.alias
+lib/modules/6.13.0-rc4-xe+/modules.order
+lib/modules/6.13.0-rc4-xe+/modules.symbols
+lib/modules/6.13.0-rc4-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1735814586:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1735814586:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-> Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-Thanks,
-Jani.
-
->
->> +
->> +			remote_bw_overhead = intel_dp_mst_bw_overhead(crtc_state,
->> +								      true, dsc_slice_count, link_bpp_x16);
->> +
->> +			/*
->> +			 * The TU size programmed to the HW determines which slots in
->> +			 * an MTP frame are used for this stream, which needs to match
->> +			 * the payload size programmed to the first downstream branch
->> +			 * device's payload table.
->> +			 *
->> +			 * Note that atm the payload's PBN value DRM core sends via
->> +			 * the ALLOCATE_PAYLOAD side-band message matches the payload
->> +			 * size (which it calculates from the PBN value) it programs
->> +			 * to the first branch device's payload table. The allocation
->> +			 * in the payload table could be reduced though (to
->> +			 * crtc_state->dp_m_n.tu), provided that the driver doesn't
->> +			 * enable SSC on the corresponding link.
->> +			 */
->> +			pbn.full = dfixed_const(intel_dp_mst_calc_pbn(adjusted_mode->crtc_clock,
->> +								      link_bpp_x16,
->> +								      remote_bw_overhead));
->> +			remote_tu = DIV_ROUND_UP(pbn.full, pbn_div.full);
->> +
->> +			/*
->> +			 * Aligning the TUs ensures that symbols consisting of multiple
->> +			 * (4) symbol cycles don't get split between two consecutive
->> +			 * MTPs, as required by Bspec.
->> +			 * TODO: remove the alignment restriction for 128b/132b links
->> +			 * on some platforms, where Bspec allows this.
->> +			 */
->> +			remote_tu = ALIGN(remote_tu, 4 / crtc_state->lane_count);
->> +
->> +			/*
->> +			 * Also align PBNs accordingly, since MST core will derive its
->> +			 * own copy of TU from the PBN in drm_dp_atomic_find_time_slots().
->> +			 * The above comment about the difference between the PBN
->> +			 * allocated for the whole path and the TUs allocated for the
->> +			 * first branch device's link also applies here.
->> +			 */
->> +			pbn.full = remote_tu * pbn_div.full;
->> +
->> +			drm_WARN_ON(display->drm, remote_tu < crtc_state->dp_m_n.tu);
->> +			crtc_state->dp_m_n.tu = remote_tu;
->> +
->> +			slots = drm_dp_atomic_find_time_slots(state, &intel_dp->mst_mgr,
->> +							      connector->port,
->> +							      dfixed_trunc(pbn));
->> +		} else {
->> +			/* Same as above for remote_tu */
->> +			crtc_state->dp_m_n.tu = ALIGN(crtc_state->dp_m_n.tu,
->> +						      4 / crtc_state->lane_count);
->> +
->> +			if (crtc_state->dp_m_n.tu <= 64)
->> +				slots = crtc_state->dp_m_n.tu;
->> +			else
->> +				slots = -EINVAL;
->> +		}
->>  
->> -		slots = drm_dp_atomic_find_time_slots(state, &intel_dp->mst_mgr,
->> -						      connector->port,
->> -						      dfixed_trunc(pbn));
->>  		if (slots == -EDEADLK)
->>  			return slots;
->>  
->> -- 
->> 2.39.5
->> 
-
--- 
-Jani Nikula, Intel
