@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DE29E77188
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jan 2025 13:39:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5409E77188
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jan 2025 13:53:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CB1B10E32B;
-	Thu,  2 Jan 2025 13:39:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B7F110E6F4;
+	Thu,  2 Jan 2025 13:53:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qh5P/8gz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I4vO9Lb+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FD8D10E3D9;
- Thu,  2 Jan 2025 13:39:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C93810E6EE;
+ Thu,  2 Jan 2025 13:53:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735825170; x=1767361170;
+ t=1735826023; x=1767362023;
  h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:in-reply-to;
- bh=pv4KaFkHXuAb3o+ik4TT+0+hFAmvxwiQ2h/UBatqOWQ=;
- b=Qh5P/8gzu+jdWJJrCZGsrrVuI9qDImvtC7NGr224BMjP8KB1fFvbXLfB
- WukO+T0BuTd4yqk0Qx6xJTEoz/UauX0QZhezwxE30RPhU9LrseYR9bLUX
- uHuc6dpSU7NDELDIo9+hyhOlJGJ9Ycj/oFg1MxoAgDhBbPk7BBlgrrsFp
- p4aZcOyHgGPXYyOhkEmrGjt8jnwudavjbFXJB4OOxiEU/WZQt/7vD1NY3
- LrGERfCXpqR63YZ7dGtYtUR5e5Um2J7eVBUV1glfYjhuWYhajZjmGfLSx
- oN7bBSbAn6mDPeKLKaj95xppTLeAi3Q253EtdSdHznwN7dAkoBvoTSY0N g==;
-X-CSE-ConnectionGUID: QP+PSz8QT0icqN8/qvW+ag==
-X-CSE-MsgGUID: PxvXJvi2RJiVKjvxCl2z5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="47472833"
-X-IronPort-AV: E=Sophos;i="6.12,285,1728975600"; d="scan'208";a="47472833"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 05:39:30 -0800
-X-CSE-ConnectionGUID: IXK8JTm1TiqAGxqq6Itx/g==
-X-CSE-MsgGUID: OyeFVJ+xSyCRlTW7tBjnNg==
+ bh=uFUofVNkwQFYFj3onk4doeE8eT69tQyXfYKkh1B16jE=;
+ b=I4vO9Lb+E0Rv5i4PnYo4hO6tMmwKtk/vL94hNZqO2hTBLe9uguG7nPn+
+ R6qTeL+eGlKP+xs3cM1MElH7Oc6Mhhu6FM0MiF/0HXoD9ecynS6i/2Ox+
+ nqrILYpGPMWgLjWIBVNAMA68XhWwJisPMnppwQ294IS5bG7+pd6tIs//Q
+ d+fRRrzataqfCJHhdbpZFzjtwyNAArCazZHo+UpvrvhwClqUoTdQ/6jRR
+ X0Nx/mhaTgQ6+jNr6AtEblyYvtc8XOAZCMo/iKdwLRvWi5/lPCNh1QzJP
+ Hes3LzmDxXEM81rs7+Knj6nZxcA1d/UAzn8jb3/Wj5+jaWSnhuLTcxHe6 Q==;
+X-CSE-ConnectionGUID: AQXdI6XPTJGU9x2NMdifbA==
+X-CSE-MsgGUID: /cCF2w7eRBqKNf5E1Pjjnw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="35762425"
+X-IronPort-AV: E=Sophos;i="6.12,285,1728975600"; d="scan'208";a="35762425"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2025 05:53:43 -0800
+X-CSE-ConnectionGUID: k4YeoYmcTtmTyeN5c+3tGQ==
+X-CSE-MsgGUID: q17qYiowTum09OdB6/cS+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,285,1728975600"; d="scan'208";a="106375821"
+X-IronPort-AV: E=Sophos;i="6.12,285,1728975600"; d="scan'208";a="101598767"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 05:39:28 -0800
-Date: Thu, 2 Jan 2025 15:40:19 +0200
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2025 05:53:40 -0800
+Date: Thu, 2 Jan 2025 15:54:31 +0200
 From: Imre Deak <imre.deak@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 07/16] drm/i915/mst: adapt
- intel_dp_mtp_tu_compute_config() for 128b/132b SST
-Message-ID: <Z3aXQxerkafANil4@ideak-desk.fi.intel.com>
+Subject: Re: [PATCH v2 10/16] drm/i915/ddi: write payload for 128b/132b SST
+Message-ID: <Z3aalx25SVnaBUcN@ideak-desk.fi.intel.com>
 References: <cover.1734643485.git.jani.nikula@intel.com>
- <d08257a340e685679a1ae89f180e6eadf5164bcc.1734643485.git.jani.nikula@intel.com>
- <Z3QY1txezARd21LY@ideak-desk.fi.intel.com>
- <87a5c9o6d1.fsf@intel.com>
+ <5ce97e5f6c2dd4d5ee3181b2d4ed968eb806534c.1734643485.git.jani.nikula@intel.com>
+ <Z3QerVHWpJ5aN8eT@ideak-desk.fi.intel.com>
+ <877c7do5c9.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87a5c9o6d1.fsf@intel.com>
+In-Reply-To: <877c7do5c9.fsf@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,186 +71,86 @@ Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jan 02, 2025 at 12:30:34PM +0200, Jani Nikula wrote:
+On Thu, Jan 02, 2025 at 12:52:38PM +0200, Jani Nikula wrote:
 > On Tue, 31 Dec 2024, Imre Deak <imre.deak@intel.com> wrote:
-> > On Thu, Dec 19, 2024 at 11:33:56PM +0200, Jani Nikula wrote:
-> >> Handle 128b/132b SST in intel_dp_mtp_tu_compute_config(). The remote
-> >> bandwidth overhead and time slot allocation are only relevant for MST;
-> >> SST only needs the local bandwidth and a check that 64 slots isn't
-> >> exceeded.
+> > On Thu, Dec 19, 2024 at 11:33:59PM +0200, Jani Nikula wrote:
+> >> Write the payload allocation table for 128b/132b SST. Use VCPID 1 and
+> >> start from slot 0, with dp_m_n.tu slots.
+> >> 
+> >> This is preparation for enabling 128b/132b SST. This path is not
+> >> reachable yet. Indeed, we don't yet compute TU for 128b/132b SST.
 > >> 
 > >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > >> ---
-> >>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 109 +++++++++++---------
-> >>  1 file changed, 61 insertions(+), 48 deletions(-)
+> >>  drivers/gpu/drm/i915/display/intel_ddi.c | 11 +++++++++++
+> >>  1 file changed, 11 insertions(+)
 > >> 
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> >> index d08824d2fefe..3fbf9163272b 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> >> @@ -257,10 +257,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> index 6f813bf85b23..64528ff8856e 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> @@ -2669,6 +2669,12 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+> >>  	/* 6.o Configure and enable FEC if needed */
+> >>  	intel_ddi_enable_fec(encoder, crtc_state);
 > >>  
-> >>  	for (bpp = max_bpp; bpp >= min_bpp; bpp -= step) {
-> >>  		int local_bw_overhead;
-> >> -		int remote_bw_overhead;
-> >>  		int link_bpp_x16;
-> >> -		int remote_tu;
-> >> -		fixed20_12 pbn;
-> >>  
-> >>  		drm_dbg_kms(display->drm, "Trying bpp %d\n", bpp);
-> >>  
-> >> @@ -269,57 +266,73 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
-> >>  
-> >>  		local_bw_overhead = intel_dp_mst_bw_overhead(crtc_state,
-> >>  							     false, dsc_slice_count, link_bpp_x16);
-> >> -		remote_bw_overhead = intel_dp_mst_bw_overhead(crtc_state,
-> >> -							      true, dsc_slice_count, link_bpp_x16);
-> >> -
-> >>  		intel_dp_mst_compute_m_n(crtc_state,
-> >>  					 local_bw_overhead,
-> >>  					 link_bpp_x16,
-> >>  					 &crtc_state->dp_m_n);
-> >>  
-> >> -		/*
-> >> -		 * The TU size programmed to the HW determines which slots in
-> >> -		 * an MTP frame are used for this stream, which needs to match
-> >> -		 * the payload size programmed to the first downstream branch
-> >> -		 * device's payload table.
-> >> -		 *
-> >> -		 * Note that atm the payload's PBN value DRM core sends via
-> >> -		 * the ALLOCATE_PAYLOAD side-band message matches the payload
-> >> -		 * size (which it calculates from the PBN value) it programs
-> >> -		 * to the first branch device's payload table. The allocation
-> >> -		 * in the payload table could be reduced though (to
-> >> -		 * crtc_state->dp_m_n.tu), provided that the driver doesn't
-> >> -		 * enable SSC on the corresponding link.
-> >> -		 */
-> >> -		pbn.full = dfixed_const(intel_dp_mst_calc_pbn(adjusted_mode->crtc_clock,
-> >> -							      link_bpp_x16,
-> >> -							      remote_bw_overhead));
-> >> -		remote_tu = DIV_ROUND_UP(pbn.full, pbn_div.full);
-> >> -
-> >> -		/*
-> >> -		 * Aligning the TUs ensures that symbols consisting of multiple
-> >> -		 * (4) symbol cycles don't get split between two consecutive
-> >> -		 * MTPs, as required by Bspec.
-> >> -		 * TODO: remove the alignment restriction for 128b/132b links
-> >> -		 * on some platforms, where Bspec allows this.
-> >> -		 */
-> >> -		remote_tu = ALIGN(remote_tu, 4 / crtc_state->lane_count);
-> >> -
-> >> -		/*
-> >> -		 * Also align PBNs accordingly, since MST core will derive its
-> >> -		 * own copy of TU from the PBN in drm_dp_atomic_find_time_slots().
-> >> -		 * The above comment about the difference between the PBN
-> >> -		 * allocated for the whole path and the TUs allocated for the
-> >> -		 * first branch device's link also applies here.
-> >> -		 */
-> >> -		pbn.full = remote_tu * pbn_div.full;
-> >> -
-> >> -		drm_WARN_ON(display->drm, remote_tu < crtc_state->dp_m_n.tu);
-> >> -		crtc_state->dp_m_n.tu = remote_tu;
-> >> +		if (intel_dp->is_mst) {
-> >> +			int remote_bw_overhead;
-> >> +			int remote_tu;
-> >> +			fixed20_12 pbn;
+> >> +	/* 7.a 128b/132b SST. */
+> >> +	if (!is_mst && intel_dp_is_uhbr(crtc_state)) {
+> >> +		/* VCPID 1, start slot 0 for 128b/132b, tu slots */
+> >> +		drm_dp_dpcd_write_payload(&intel_dp->aux, 1, 0, crtc_state->dp_m_n.tu);
 > >
-> > Nit: pbn_div is only used for MST, so would (calculate/look it up from
-> > mst_state) here. Also this MST block could be in a separate function,
-> > perhaps for symmetry with the SST part in a function too, but this could
-> > be a follow-up as well. Either way:
+> > I would handle the error by sending a modeset retry uevent. Either way:
 > 
-> I guess I'm just not sure yet which direction this should be taken. It
-> would be easy enough to add the functions, but is that the right
-> division? How to handle pbn_div in that case?
-
-It's only needed to calculate PBN, hence only for MST. So the MST helper
-could just use
-
-	drm_atomic_get_new_mst_topology_state()->pbn_div
-
-> How is UHBR SST DSC going to impact all this?
-
-Calculating PBN is only needed for MST, so it doesn't change the SST DSC
-handling.
-
-> I know I'm kind of weaseling out of fixing this up front, but I also try
-> to avoid adding stuff that we may have to back out of later.
+> Mmmh. The MST code calls intel_dp_queue_modeset_retry_for_link() in
+> response to drm_dp_add_payload_part{1,2}() failures, but nothing
+> else. As in, we don't do anything else (we just plunge on with the
+> enable), and we don't even do that much in response to any other errors.
 > 
-> I think I'd let this be for now.
+> Our options are limited anyway.
 
-Ok.
+The right thing to do is to report all these errors to user space, so it
+can recover from it.
 
-> > Reviewed-by: Imre Deak <imre.deak@intel.com>
+> Arguably the MST path payload update has more failure modes than SST,
+> but you'd like to do this:
 > 
-> Thanks,
+> 	ret = drm_dp_dpcd_write_payload(&intel_dp->aux, 1, 0, crtc_state->dp_m_n.tu);
+> 	if (ret < 0)
+> 		intel_dp_queue_modeset_retry_for_link(state, encoder, crtc_state);
+> 
+> in mtl_ddi_pre_enable_dp() and tgl_ddi_pre_enable_dp()?
+
+Yes.
+
+> Overall I'm wondering if this too needs an overhaul. Instead of queueing
+> the retry all over the place, maybe we should just flag it in
+> crtc_state, and have intel_atomic_cleanup_work() do it once afterwards?
+
+Atm it's queued once after detecting the first error, not sure if
+deferring that would be better.
+
+> BR,
 > Jani.
 > 
 > >
+> > Reviewed-by: Imre Deak <imre.deak@intel.com>
+> >
+> >> +	}
 > >> +
-> >> +			remote_bw_overhead = intel_dp_mst_bw_overhead(crtc_state,
-> >> +								      true, dsc_slice_count, link_bpp_x16);
-> >> +
-> >> +			/*
-> >> +			 * The TU size programmed to the HW determines which slots in
-> >> +			 * an MTP frame are used for this stream, which needs to match
-> >> +			 * the payload size programmed to the first downstream branch
-> >> +			 * device's payload table.
-> >> +			 *
-> >> +			 * Note that atm the payload's PBN value DRM core sends via
-> >> +			 * the ALLOCATE_PAYLOAD side-band message matches the payload
-> >> +			 * size (which it calculates from the PBN value) it programs
-> >> +			 * to the first branch device's payload table. The allocation
-> >> +			 * in the payload table could be reduced though (to
-> >> +			 * crtc_state->dp_m_n.tu), provided that the driver doesn't
-> >> +			 * enable SSC on the corresponding link.
-> >> +			 */
-> >> +			pbn.full = dfixed_const(intel_dp_mst_calc_pbn(adjusted_mode->crtc_clock,
-> >> +								      link_bpp_x16,
-> >> +								      remote_bw_overhead));
-> >> +			remote_tu = DIV_ROUND_UP(pbn.full, pbn_div.full);
-> >> +
-> >> +			/*
-> >> +			 * Aligning the TUs ensures that symbols consisting of multiple
-> >> +			 * (4) symbol cycles don't get split between two consecutive
-> >> +			 * MTPs, as required by Bspec.
-> >> +			 * TODO: remove the alignment restriction for 128b/132b links
-> >> +			 * on some platforms, where Bspec allows this.
-> >> +			 */
-> >> +			remote_tu = ALIGN(remote_tu, 4 / crtc_state->lane_count);
-> >> +
-> >> +			/*
-> >> +			 * Also align PBNs accordingly, since MST core will derive its
-> >> +			 * own copy of TU from the PBN in drm_dp_atomic_find_time_slots().
-> >> +			 * The above comment about the difference between the PBN
-> >> +			 * allocated for the whole path and the TUs allocated for the
-> >> +			 * first branch device's link also applies here.
-> >> +			 */
-> >> +			pbn.full = remote_tu * pbn_div.full;
-> >> +
-> >> +			drm_WARN_ON(display->drm, remote_tu < crtc_state->dp_m_n.tu);
-> >> +			crtc_state->dp_m_n.tu = remote_tu;
-> >> +
-> >> +			slots = drm_dp_atomic_find_time_slots(state, &intel_dp->mst_mgr,
-> >> +							      connector->port,
-> >> +							      dfixed_trunc(pbn));
-> >> +		} else {
-> >> +			/* Same as above for remote_tu */
-> >> +			crtc_state->dp_m_n.tu = ALIGN(crtc_state->dp_m_n.tu,
-> >> +						      4 / crtc_state->lane_count);
-> >> +
-> >> +			if (crtc_state->dp_m_n.tu <= 64)
-> >> +				slots = crtc_state->dp_m_n.tu;
-> >> +			else
-> >> +				slots = -EINVAL;
-> >> +		}
+> >>  	if (!is_mst)
+> >>  		intel_dsc_dp_pps_write(encoder, crtc_state);
+> >>  }
+> >> @@ -2808,6 +2814,11 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+> >>  	/* 7.l Configure and enable FEC if needed */
+> >>  	intel_ddi_enable_fec(encoder, crtc_state);
 > >>  
-> >> -		slots = drm_dp_atomic_find_time_slots(state, &intel_dp->mst_mgr,
-> >> -						      connector->port,
-> >> -						      dfixed_trunc(pbn));
-> >>  		if (slots == -EDEADLK)
-> >>  			return slots;
-> >>  
+> >> +	if (!is_mst && intel_dp_is_uhbr(crtc_state)) {
+> >> +		/* VCPID 1, start slot 0 for 128b/132b, tu slots */
+> >> +		drm_dp_dpcd_write_payload(&intel_dp->aux, 1, 0, crtc_state->dp_m_n.tu);
+> >> +	}
+> >> +
+> >>  	if (!is_mst)
+> >>  		intel_dsc_dp_pps_write(encoder, crtc_state);
+> >>  }
 > >> -- 
 > >> 2.39.5
 > >> 
