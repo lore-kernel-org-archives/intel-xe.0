@@ -4,59 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28202E7718B
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Jan 2025 09:39:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C499AE77188
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Jan 2025 09:40:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D25B410E3E8;
-	Thu,  2 Jan 2025 09:39:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LjC3QHUN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91F2610E3E8;
- Thu,  2 Jan 2025 09:39:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735810753; x=1767346753;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=jCBDl8+EpK2lmeC/Ohb+BmkI3r9Bhl5cey3sCG3MBAQ=;
- b=LjC3QHUNi5ZqL0YXBq1sSeVDge/Z4EKY88CfiDhPAcEXY54rVSrnThHu
- hYb97rodFf1WySkiG++OPZcbfO7EV20JVAysUzEPbyfpr5JCczKzfI+J+
- uXACnBnwGdAyU7WlejnnZAJTKa7qjL1/pgKyZLcASW1NJUCM50t4LPwLi
- qHrTxmw1qWaBy7kOO4S5tkWABpebf31Y4eNm9yL26Cz1jYwfJTWeNGqBl
- s54ZNzXeLFo2/AibTjDHFErjfAmcoiT2DB2+an2fbvJaITDsGvxt1Zf/O
- 0iDxWPrIC4ILaQmiQsMrgp+nRcGBC7Yo++0M0zFfjvUMH1kBXvVfM+khG w==;
-X-CSE-ConnectionGUID: vZb58e2GTRmvXDGcHDQZcQ==
-X-CSE-MsgGUID: zxeXG9bRQDWcm2VrBZ+G2A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="46715379"
-X-IronPort-AV: E=Sophos;i="6.12,285,1728975600"; d="scan'208";a="46715379"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 01:39:12 -0800
-X-CSE-ConnectionGUID: oqYzU2H6Sgq5v7vli7I1fg==
-X-CSE-MsgGUID: mJaCb7gZQgOnG8Pt7tAyXA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,285,1728975600"; d="scan'208";a="101956218"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.212])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 01:39:10 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 11/16] drm/i915/ddi: initialize 128b/132b SST DP2
- VFREQ registers
-In-Reply-To: <Z3QhMxIylsbgAN-2@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1734643485.git.jani.nikula@intel.com>
- <38cfa6554f8249605a8af98353f64c6b53d1d106.1734643485.git.jani.nikula@intel.com>
- <Z3QhMxIylsbgAN-2@ideak-desk.fi.intel.com>
-Date: Thu, 02 Jan 2025 11:39:07 +0200
-Message-ID: <87frm1o8qs.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90FA210E3E8;
+	Thu,  2 Jan 2025 09:40:21 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5AEB10E3E8;
+ Thu,  2 Jan 2025 09:40:20 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5141850268779125290=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_PSR_DSB_support_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 02 Jan 2025 09:40:20 -0000
+Message-ID: <173581082067.1988412.17810935990165607592@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250102083638.2552066-1-jouni.hogander@intel.com>
+In-Reply-To: <20250102083638.2552066-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,64 +35,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 31 Dec 2024, Imre Deak <imre.deak@intel.com> wrote:
-> On Thu, Dec 19, 2024 at 11:34:00PM +0200, Jani Nikula wrote:
->> Write the DP2 specific VFREQ registers.
->> 
->> This is preparation for enabling 128b/132b SST. This path is not
->> reachable yet.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_ddi.c | 12 ++++++++++++
->>  1 file changed, 12 insertions(+)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
->> index 64528ff8856e..91e6cd91e91f 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->> @@ -3467,8 +3467,20 @@ static void intel_ddi_enable(struct intel_atomic_state *state,
->>  {
->>  	struct intel_display *display = to_intel_display(encoder);
->>  	struct intel_crtc *pipe_crtc;
->> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
->>  	int i;
->>  
->> +	/* 128b/132b SST */
->> +	if (intel_dp_is_uhbr(crtc_state)) {
->
-> Hm, not sure how this would work on HDMI (FRL), but to be sure shouldn't
-> this check that crtc_state is for a DP (SST) mode?
+--===============5141850268779125290==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-DP MST does not call intel_ddi_enable().
+== Series Details ==
 
-Yes, it's all very subtle, and I hate the way all of the
-DDI/SST/MST/etc. is intertwined, but I feel like it's overall a bigger
-refactoring to clean up.
+Series: PSR DSB support (rev2)
+URL   : https://patchwork.freedesktop.org/series/142521/
+State : success
 
-BR,
-Jani.
+== Summary ==
+
+CI Bug Log - changes from xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642_BAT -> xe-pw-142521v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-142521v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [DMESG-FAIL][1] ([Intel XE#1033]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142521v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
 
 
->
->> +		const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
->> +		u64 crtc_clock_hz = KHz(adjusted_mode->crtc_clock);
->> +
->> +		intel_de_write(display, TRANS_DP2_VFREQHIGH(cpu_transcoder),
->> +			       TRANS_DP2_VFREQ_PIXEL_CLOCK(crtc_clock_hz >> 24));
->> +		intel_de_write(display, TRANS_DP2_VFREQLOW(cpu_transcoder),
->> +			       TRANS_DP2_VFREQ_PIXEL_CLOCK(crtc_clock_hz & 0xffffff));
->> +	}
->> +
->>  	intel_ddi_enable_transcoder_func(encoder, crtc_state);
->>  
->>  	/* Enable/Disable DP2.0 SDP split config before transcoder */
->> -- 
->> 2.39.5
->> 
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel
+  * IGT: IGT_8172 -> IGT_8174
+  * Linux: xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642 -> xe-pw-142521v2
+
+  IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8174: d2004b0623dbccd08502525849b4eef881aa199e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642: 08bd590935a5258ffd79355c59adffd72fb2c642
+  xe-pw-142521v2: 142521v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142521v2/index.html
+
+--===============5141850268779125290==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>PSR DSB support (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142521/">https://patchwork.freedesktop.org/series/142521/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142521v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142521v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642_BAT -&gt; xe-pw-142521v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-142521v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142521v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8172 -&gt; IGT_8174</li>
+<li>Linux: xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642 -&gt; xe-pw-142521v2</li>
+</ul>
+<p>IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8174: d2004b0623dbccd08502525849b4eef881aa199e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2424-08bd590935a5258ffd79355c59adffd72fb2c642: 08bd590935a5258ffd79355c59adffd72fb2c642<br />
+  xe-pw-142521v2: 142521v2</p>
+
+</body>
+</html>
+
+--===============5141850268779125290==--
