@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08DEFE77188
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Jan 2025 09:49:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 018D7E77188
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Jan 2025 09:49:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B533C10E040;
-	Fri,  3 Jan 2025 09:49:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C338510E852;
+	Fri,  3 Jan 2025 09:49:18 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12EE710E040;
- Fri,  3 Jan 2025 09:49:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1397E10E052;
+ Fri,  3 Jan 2025 09:49:18 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Revert_=22drm/i915/h?=
- =?utf-8?q?dcp=3A_Don=27t_enable_HDCP1=2E4_directly_from_check=5Flink=22_=28?=
- =?utf-8?q?rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Revert_=22drm/i915/hdcp?=
+ =?utf-8?q?=3A_Don=27t_enable_HDCP1=2E4_directly_from_check=5Flink=22_=28rev?=
+ =?utf-8?q?2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 03 Jan 2025 09:49:07 -0000
-Message-ID: <173589774706.2535057.13323438718736918352@b555e5b46a47>
+Date: Fri, 03 Jan 2025 09:49:18 -0000
+Message-ID: <173589775807.2535057.12575472599949216838@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250103084517.239998-1-suraj.kandpal@intel.com>
 In-Reply-To: <20250103084517.239998-1-suraj.kandpal@intel.com>
@@ -49,9 +49,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 048d83e7f9da drm-tip: 2025y-01m-03d-00h-59m-13s UTC integration manifest
-=== git am output follows ===
-Applying: Revert "drm/i915/hdcp: Don't enable HDCP1.4 directly from check_link"
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 10b40e9a03ef16caff49c2cd208b333dfd48e048
+Author: Suraj Kandpal <suraj.kandpal@intel.com>
+Date:   Fri Jan 3 14:15:17 2025 +0530
+
+    Revert "drm/i915/hdcp: Don't enable HDCP1.4 directly from check_link"
+    
+    This reverts commit 483f7d94a0453564ad9295288c0242136c5f36a0.
+    This needs to be reverted since HDCP even after updating the connector
+    state HDCP property we don't reenable HDCP until the next commit
+    in which the CP Property is set causing compliance to fail.
+    
+    --v2
+    -Fix build issue [Dnyaneshwar]
+    
+    Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 048d83e7f9dae81c058d31c371634c1c317b3013 drm-intel
+10b40e9a03ef Revert "drm/i915/hdcp: Don't enable HDCP1.4 directly from check_link"
 
 
