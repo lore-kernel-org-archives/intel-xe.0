@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C538EE77188
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Jan 2025 15:20:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FD04E77188
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Jan 2025 15:25:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9242910E8E4;
-	Fri,  3 Jan 2025 15:20:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04A2010E8E4;
+	Fri,  3 Jan 2025 15:25:36 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7548510E8E8;
- Fri,  3 Jan 2025 15:20:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8278246595633646605=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46A5C10E8E4;
+ Fri,  3 Jan 2025 15:25:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/dp=3A_Rework_LTTPR_tran?=
- =?utf-8?q?sparent_mode_handling_and_add_support_to_msm_driver_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/dp=3A_128b/?=
+ =?utf-8?q?132b_uncompressed_SST_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Abel Vesa" <abel.vesa@linaro.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 03 Jan 2025 15:20:47 -0000
-Message-ID: <173591764747.2681719.1672354954142428109@b555e5b46a47>
+Date: Fri, 03 Jan 2025 15:25:35 -0000
+Message-ID: <173591793528.2683783.10993217302031802748@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250103-drm-dp-msm-add-lttpr-transparent-mode-set-v3-0-5c367f4b0763@linaro.org>
-In-Reply-To: <20250103-drm-dp-msm-add-lttpr-transparent-mode-set-v3-0-5c367f4b0763@linaro.org>
+References: <cover.1735912293.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1735912293.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,152 +40,32 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8278246595633646605==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/dp: Rework LTTPR transparent mode handling and add support to msm driver (rev3)
-URL   : https://patchwork.freedesktop.org/series/140802/
+Series: drm/i915/dp: 128b/132b uncompressed SST (rev4)
+URL   : https://patchwork.freedesktop.org/series/142548/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2430-901262fb6987b4fa0dbb26979a6c4e25f0ba8fd2_BAT -> xe-pw-140802v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140802v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [PASS][1] -> [SKIP][2] ([Intel XE#1192]) +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2430-901262fb6987b4fa0dbb26979a6c4e25f0ba8fd2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140802v3/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  * igt@xe_vm@shared-pde2-page:
-    - bat-adlp-vf:        [PASS][3] -> [DMESG-WARN][4] ([Intel XE#3958])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2430-901262fb6987b4fa0dbb26979a6c4e25f0ba8fd2/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140802v3/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][6] ([Intel XE#1192])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2430-901262fb6987b4fa0dbb26979a6c4e25f0ba8fd2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140802v3/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#3958]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 901262fb6987 drm-tip: 2025y-01m-03d-10h-54m-14s UTC integration manifest
+=== git am output follows ===
+Applying: drm/mst: remove mgr parameter and debug logging from drm_dp_get_vc_payload_bw()
+Applying: drm/i915/mst: drop connector parameter from intel_dp_mst_bw_overhead()
+Applying: drm/i915/mst: drop connector parameter from intel_dp_mst_compute_m_n()
+Applying: drm/i915/mst: change return value of mst_stream_find_vcpi_slots_for_bpp()
+Applying: drm/i915/mst: remove crtc_state->pbn
+Applying: drm/i915/mst: split out a helper for figuring out the TU
+Applying: drm/i915/mst: adapt intel_dp_mtp_tu_compute_config() for 128b/132b SST
+Applying: drm/i915/ddi: enable 128b/132b TRANS_DDI_FUNC_CTL mode for UHBR SST
+Applying: drm/i915/ddi: 128b/132b SST also needs DP_TP_CTL_MODE_MST
+Applying: drm/i915/ddi: write payload for 128b/132b SST
+Applying: drm/i915/ddi: initialize 128b/132b SST DP2 VFREQ registers
+Applying: drm/i915/ddi: enable ACT handling for 128b/132b SST
+Applying: drm/i915/ddi: start distinguishing 128b/132b SST and MST at state readout
+Applying: drm/i915/ddi: handle 128b/132b SST in intel_ddi_read_func_ctl()
+Applying: drm/i915/ddi: disable trancoder port select for 128b/132b SST
+Applying: drm/i915/dp: compute config for 128b/132b SST w/o DSC
 
 
-Build changes
--------------
-
-  * Linux: xe-2430-901262fb6987b4fa0dbb26979a6c4e25f0ba8fd2 -> xe-pw-140802v3
-
-  IGT_8174: d2004b0623dbccd08502525849b4eef881aa199e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2430-901262fb6987b4fa0dbb26979a6c4e25f0ba8fd2: 901262fb6987b4fa0dbb26979a6c4e25f0ba8fd2
-  xe-pw-140802v3: 140802v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140802v3/index.html
-
---===============8278246595633646605==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/dp: Rework LTTPR transparent mode handling and add support to msm driver (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140802/">https://patchwork.freedesktop.org/series/140802/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140802v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140802v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2430-901262fb6987b4fa0dbb26979a6c4e25f0ba8fd2_BAT -&gt; xe-pw-140802v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140802v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2430-901262fb6987b4fa0dbb26979a6c4e25f0ba8fd2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140802v3/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@shared-pde2-page:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2430-901262fb6987b4fa0dbb26979a6c4e25f0ba8fd2/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140802v3/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958">Intel XE#3958</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2430-901262fb6987b4fa0dbb26979a6c4e25f0ba8fd2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140802v3/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2430-901262fb6987b4fa0dbb26979a6c4e25f0ba8fd2 -&gt; xe-pw-140802v3</li>
-</ul>
-<p>IGT_8174: d2004b0623dbccd08502525849b4eef881aa199e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2430-901262fb6987b4fa0dbb26979a6c4e25f0ba8fd2: 901262fb6987b4fa0dbb26979a6c4e25f0ba8fd2<br />
-  xe-pw-140802v3: 140802v3</p>
-
-</body>
-</html>
-
---===============8278246595633646605==--
