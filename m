@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA1EBE77188
-	for <intel-xe@archiver.kernel.org>; Sat,  4 Jan 2025 13:10:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E53F9E77188
+	for <intel-xe@archiver.kernel.org>; Sat,  4 Jan 2025 17:30:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68A6210E377;
-	Sat,  4 Jan 2025 13:10:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DC8810E07D;
+	Sat,  4 Jan 2025 17:30:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kuhm0BjF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="elgG7XlF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70D6D10E377
- for <intel-xe@lists.freedesktop.org>; Sat,  4 Jan 2025 13:10:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7AA310E07D;
+ Sat,  4 Jan 2025 17:30:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735996243; x=1767532243;
- h=date:from:to:cc:subject:message-id;
- bh=de0K1q1x4K0mEtzXSTu2SLOVmA3TlQQ/TxrHg3r7S+0=;
- b=kuhm0BjFOmH0SH5M4IIhZvGalpSncRBhJRP6EdD8TvOGSswZFfOqq+cY
- UpEZQjfVwEswjgDWT4pCPioOl03B5ywfxenZUGE7zrE4tmsQeIgVuT72z
- fTBbsAO77sO5MvCAuFC6WmEEmGkA1lGtV5PaW0E7+TG1QBzPsRzGK9Qhi
- VwCHS8KINVqe1MA2dRehoUU4XKxKUo0Uzj0bSqLU5WFA9EsETH/dX9BLu
- Vam/DYRWW0QV7hyglwBr+lGio+KycOgSL8V+Ipb4ZFySsdZoj1Sr9fG/M
- V/sGQN7+T6nV0ql7rVJ4VW8NiHZNWRQgqf5+Vm3L3JLASvjs3l7kq0jni g==;
-X-CSE-ConnectionGUID: 2exLU+vJRNaYZ2KZvbwXbQ==
-X-CSE-MsgGUID: khU117V+QDaKmF0pDPsptw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11304"; a="35913997"
-X-IronPort-AV: E=Sophos;i="6.12,288,1728975600"; d="scan'208";a="35913997"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2025 05:10:42 -0800
-X-CSE-ConnectionGUID: m3Sz10osQuSlaJgNlYspsA==
-X-CSE-MsgGUID: YHspsynfQKuEA1RCXcjTlw==
+ t=1736011802; x=1767547802;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ooZ5uLlD5Z0zmlhyT27OhqQvWoEC/3xqowSG8ylfU+A=;
+ b=elgG7XlFIFU/uX6+JeTp44FFtxt7W2gtFKI7J0yD+SGvFzr6q/F6PF/U
+ Xy2vtmEnLNl+pbn2TAaOz/3gvAG+GcZ2MYVtNmqhN3FYBkXCpHH35pHsa
+ Ur20OodMawrDLXuyK4ydlUIBlRFA1s61cET1C6oEH35vcrSV0mdcR047C
+ FTUW034oJzQRubqSL6fWcodDtVefN3ULgWSr7DnnRgXkkWbyJJgDSeMDi
+ bHmTwNzdUZ0ZNthS0ysakRstqhpXyq/WdyLns6kuSsLrI7ylO16e6wYwg
+ 1W3xos34P8JDYfJxCl3Rdn5wIzf3JFFOOdjN10vFMa4IfW9x3bn5sIKeF g==;
+X-CSE-ConnectionGUID: CYt49sKcSzOFKlqU0L0FHg==
+X-CSE-MsgGUID: D5l8rmHoQiGUWvuLmMHmcg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11305"; a="39989585"
+X-IronPort-AV: E=Sophos;i="6.12,288,1728975600"; d="scan'208";a="39989585"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2025 09:30:00 -0800
+X-CSE-ConnectionGUID: 9M/zepFlQ22I/TjDnrtATA==
+X-CSE-MsgGUID: OsA6ac/VRIGqtQlIGmiwgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,288,1728975600"; d="scan'208";a="102198190"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
- by fmviesa008.fm.intel.com with ESMTP; 04 Jan 2025 05:10:40 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tU3vK-000AvD-2U;
- Sat, 04 Jan 2025 13:10:38 +0000
-Date: Sat, 04 Jan 2025 21:10:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:topic/xe-for-CI] BUILD SUCCESS
- cb9432e080034e6d10612df6905b64ee8124e981
-Message-ID: <202501042101.xukv9kz6-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.12,288,1728975600"; d="scan'208";a="101839899"
+Received: from ldmartin-desk2.corp.intel.com (HELO
+ gjsousa-mobl2.corp.amr.intel.com) ([10.125.110.58])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2025 09:29:58 -0800
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v4 0/2] drm/i915/cmtg: Disable the CMTG
+Date: Sat,  4 Jan 2025 14:29:24 -0300
+Message-ID: <20250104172937.64015-1-gustavo.sousa@intel.com>
+X-Mailer: git-send-email 2.47.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,171 +66,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git topic/xe-for-CI
-branch HEAD: cb9432e080034e6d10612df6905b64ee8124e981  drm/xe/ptl: Define HuC FW version for PTL
+Next version of [1], with review comments addressed.
 
-elapsed time: 1061m
+Note that I have added one extra "squash patch", because I was not sure that was
+the correct way of handling sanitization and thought that having it separate
+would make it easier for reviewers to check the change.
 
-configs tested: 152
-configs skipped: 4
+[1] https://lore.kernel.org/all/20241224165408.43778-1-gustavo.sousa@intel.com/
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Gustavo Sousa (2):
+  drm/i915/cmtg: Disable the CMTG
+  squash! drm/i915/cmtg: Disable the CMTG
 
-tested configs:
-alpha                             allnoconfig    gcc-14.2.0
-alpha                            allyesconfig    gcc-14.2.0
-arc                              allmodconfig    gcc-13.2.0
-arc                               allnoconfig    gcc-13.2.0
-arc                              allyesconfig    gcc-13.2.0
-arc                      axs103_smp_defconfig    gcc-13.2.0
-arc                   randconfig-001-20250104    gcc-13.2.0
-arc                   randconfig-002-20250104    gcc-13.2.0
-arm                              allmodconfig    gcc-14.2.0
-arm                               allnoconfig    clang-17
-arm                              allyesconfig    gcc-14.2.0
-arm                        clps711x_defconfig    clang-19
-arm                          ep93xx_defconfig    clang-20
-arm                            hisi_defconfig    gcc-14.2.0
-arm                        keystone_defconfig    gcc-14.2.0
-arm                        neponset_defconfig    gcc-14.2.0
-arm                   randconfig-001-20250104    clang-20
-arm                   randconfig-002-20250104    clang-20
-arm                   randconfig-003-20250104    gcc-14.2.0
-arm                   randconfig-004-20250104    gcc-14.2.0
-arm                           sunxi_defconfig    gcc-13.2.0
-arm                         wpcm450_defconfig    gcc-14.2.0
-arm64                            allmodconfig    clang-18
-arm64                             allnoconfig    gcc-14.2.0
-arm64                 randconfig-001-20250104    clang-20
-arm64                 randconfig-002-20250104    clang-16
-arm64                 randconfig-003-20250104    gcc-14.2.0
-arm64                 randconfig-004-20250104    gcc-14.2.0
-csky                              allnoconfig    gcc-14.2.0
-csky                  randconfig-001-20250104    gcc-14.2.0
-csky                  randconfig-002-20250104    gcc-14.2.0
-hexagon                          allmodconfig    clang-20
-hexagon                           allnoconfig    clang-20
-hexagon               randconfig-001-20250104    clang-20
-hexagon               randconfig-002-20250104    clang-20
-i386                             allmodconfig    gcc-12
-i386                              allnoconfig    gcc-12
-i386                             allyesconfig    gcc-12
-i386        buildonly-randconfig-001-20250104    clang-19
-i386        buildonly-randconfig-002-20250104    gcc-12
-i386        buildonly-randconfig-003-20250104    clang-19
-i386        buildonly-randconfig-004-20250104    gcc-12
-i386        buildonly-randconfig-005-20250104    clang-19
-i386        buildonly-randconfig-006-20250104    gcc-12
-i386                                defconfig    clang-19
-i386                  randconfig-001-20250104    gcc-12
-i386                  randconfig-002-20250104    gcc-12
-i386                  randconfig-003-20250104    gcc-12
-i386                  randconfig-004-20250104    gcc-12
-i386                  randconfig-005-20250104    gcc-12
-i386                  randconfig-006-20250104    gcc-12
-i386                  randconfig-007-20250104    gcc-12
-loongarch                        allmodconfig    gcc-14.2.0
-loongarch                         allnoconfig    gcc-14.2.0
-loongarch                 loongson3_defconfig    gcc-14.2.0
-loongarch             randconfig-001-20250104    gcc-14.2.0
-loongarch             randconfig-002-20250104    gcc-14.2.0
-m68k                             allmodconfig    gcc-14.2.0
-m68k                              allnoconfig    gcc-14.2.0
-m68k                             allyesconfig    gcc-14.2.0
-m68k                        stmark2_defconfig    gcc-13.2.0
-microblaze                       allmodconfig    gcc-14.2.0
-microblaze                        allnoconfig    gcc-14.2.0
-microblaze                       allyesconfig    gcc-14.2.0
-mips                              allnoconfig    gcc-14.2.0
-mips                         db1xxx_defconfig    gcc-13.2.0
-mips                        qi_lb60_defconfig    clang-18
-mips                   sb1250_swarm_defconfig    gcc-14.2.0
-nios2                            allmodconfig    gcc-14.2.0
-nios2                             allnoconfig    gcc-14.2.0
-nios2                            allyesconfig    gcc-14.2.0
-nios2                 randconfig-001-20250104    gcc-14.2.0
-nios2                 randconfig-002-20250104    gcc-14.2.0
-openrisc                         allmodconfig    gcc-14.2.0
-openrisc                          allnoconfig    gcc-14.2.0
-openrisc                         allyesconfig    gcc-14.2.0
-openrisc                            defconfig    gcc-14.2.0
-parisc                            allnoconfig    gcc-14.2.0
-parisc                           allyesconfig    gcc-14.2.0
-parisc                              defconfig    gcc-14.2.0
-parisc                randconfig-001-20250104    gcc-14.2.0
-parisc                randconfig-002-20250104    gcc-14.2.0
-powerpc                          allmodconfig    gcc-14.2.0
-powerpc                           allnoconfig    gcc-14.2.0
-powerpc                          allyesconfig    clang-16
-powerpc                  mpc885_ads_defconfig    gcc-13.2.0
-powerpc               randconfig-001-20250104    clang-20
-powerpc               randconfig-002-20250104    clang-18
-powerpc               randconfig-003-20250104    gcc-14.2.0
-powerpc                    socrates_defconfig    gcc-14.2.0
-powerpc64             randconfig-001-20250104    gcc-14.2.0
-powerpc64             randconfig-002-20250104    gcc-14.2.0
-powerpc64             randconfig-003-20250104    gcc-14.2.0
-riscv                            allmodconfig    clang-20
-riscv                             allnoconfig    gcc-14.2.0
-riscv                            allyesconfig    clang-20
-riscv                               defconfig    clang-19
-riscv                 randconfig-001-20250104    gcc-14.2.0
-riscv                 randconfig-002-20250104    clang-16
-s390                             allmodconfig    clang-19
-s390                              allnoconfig    clang-20
-s390                             allyesconfig    gcc-14.2.0
-s390                          debug_defconfig    gcc-14.2.0
-s390                                defconfig    clang-15
-s390                  randconfig-001-20250104    clang-20
-s390                  randconfig-002-20250104    clang-20
-sh                               allmodconfig    gcc-14.2.0
-sh                                allnoconfig    gcc-14.2.0
-sh                               allyesconfig    gcc-14.2.0
-sh                                  defconfig    gcc-14.2.0
-sh                        dreamcast_defconfig    gcc-14.2.0
-sh                    randconfig-001-20250104    gcc-14.2.0
-sh                    randconfig-002-20250104    gcc-14.2.0
-sh                          rsk7264_defconfig    gcc-13.2.0
-sh                          rsk7264_defconfig    gcc-14.2.0
-sh                          sdk7786_defconfig    gcc-13.2.0
-sh                   sh7724_generic_defconfig    gcc-14.2.0
-sh                  sh7785lcr_32bit_defconfig    gcc-14.2.0
-sh                            titan_defconfig    gcc-13.2.0
-sparc                            allmodconfig    gcc-14.2.0
-sparc                             allnoconfig    gcc-14.2.0
-sparc                            allyesconfig    gcc-14.2.0
-sparc                 randconfig-001-20250104    gcc-14.2.0
-sparc                 randconfig-002-20250104    gcc-14.2.0
-sparc64                          allmodconfig    gcc-14.2.0
-sparc64                          allyesconfig    gcc-14.2.0
-sparc64                             defconfig    gcc-14.2.0
-sparc64               randconfig-001-20250104    gcc-14.2.0
-sparc64               randconfig-002-20250104    gcc-14.2.0
-um                               alldefconfig    gcc-14.2.0
-um                               allmodconfig    clang-20
-um                                allnoconfig    clang-18
-um                               allyesconfig    gcc-12
-um                                  defconfig    clang-20
-um                             i386_defconfig    gcc-12
-um                    randconfig-001-20250104    gcc-12
-um                    randconfig-002-20250104    gcc-11
-um                           x86_64_defconfig    clang-15
-x86_64                            allnoconfig    clang-19
-x86_64                           allyesconfig    clang-19
-x86_64      buildonly-randconfig-001-20250104    gcc-12
-x86_64      buildonly-randconfig-002-20250104    clang-19
-x86_64      buildonly-randconfig-003-20250104    gcc-12
-x86_64      buildonly-randconfig-004-20250104    gcc-12
-x86_64      buildonly-randconfig-005-20250104    clang-19
-x86_64      buildonly-randconfig-006-20250104    gcc-12
-x86_64                              defconfig    gcc-11
-xtensa                           alldefconfig    gcc-14.2.0
-xtensa                            allnoconfig    gcc-14.2.0
-xtensa                           allyesconfig    gcc-14.2.0
-xtensa                randconfig-001-20250104    gcc-14.2.0
-xtensa                randconfig-002-20250104    gcc-14.2.0
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_cmtg.c     | 251 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_cmtg.h     |  18 ++
+ .../gpu/drm/i915/display/intel_cmtg_regs.h    |  21 ++
+ .../gpu/drm/i915/display/intel_display_core.h |   4 +
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_driver.c   |   5 +
+ .../drm/i915/display/intel_modeset_setup.c    |  20 +-
+ drivers/gpu/drm/i915/i915_reg.h               |   1 +
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ 10 files changed, 318 insertions(+), 5 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_cmtg.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_cmtg.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_cmtg_regs.h
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+-- 
+2.47.1
+
