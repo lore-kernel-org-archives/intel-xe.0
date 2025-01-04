@@ -4,61 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A856BE77188
-	for <intel-xe@archiver.kernel.org>; Sat,  4 Jan 2025 07:20:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9658E77199
+	for <intel-xe@archiver.kernel.org>; Sat,  4 Jan 2025 11:06:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6182F10E0C8;
-	Sat,  4 Jan 2025 07:20:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C3F110E368;
+	Sat,  4 Jan 2025 11:06:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VlTq27vq";
+	dkim=permerror (0-bit key) header.d=sapience.com header.i=@sapience.com header.b="AKMUUHfW";
+	dkim=pass (2048-bit key; secure) header.d=sapience.com header.i=@sapience.com header.b="d3JNL/1S";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 300AA10E0C8
- for <intel-xe@lists.freedesktop.org>; Sat,  4 Jan 2025 07:20:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735975206; x=1767511206;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=1wJJKmjS5umCABm6Goxeyjj7FjPU3ZKUhTI3lyi/VpE=;
- b=VlTq27vqkB/Fh49prsRkYaq2iH2LZnaTh2NlBlSQi2CJeaxGKHoYLUek
- CA8K6rsJldLEDyLj4Qxfl7JXuaD3nknn8DGxzYeWNX/UDP5RAkAEMxihs
- TQQF+1A4HyTNaun9eLha54NKf2md7HvC28sOCvb+OBCKUA9yUJICBlOmX
- 465nRqjrP1JTsVxT+5AvaDY/LQNr3eWi40+XAkbx2V+jtVR5mTOCiR3vH
- IURudUnGg80rAPTkTgwy1RdFzs1twiDyHU1QtXSUUNUTzZ5og2YxoxXJw
- BsRHBODAtkJnQyUO3FYXuczuhOOW1xv2p1a6Rec0DyOnhEY1D7xa+K2Qo g==;
-X-CSE-ConnectionGUID: 0U2ufkaHQAGiDlUo3AazfQ==
-X-CSE-MsgGUID: 7PSSTkkuT8uCflR8VmFEOQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11304"; a="23806786"
-X-IronPort-AV: E=Sophos;i="6.12,288,1728975600"; d="scan'208";a="23806786"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2025 23:20:06 -0800
-X-CSE-ConnectionGUID: EGz4RfmLSCKUVdcEIxjh7g==
-X-CSE-MsgGUID: aFvnHJtUTlqgRbhhv2ccRQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,288,1728975600"; d="scan'208";a="102442703"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.110.22])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2025 23:20:05 -0800
-Date: Sat, 4 Jan 2025 01:19:59 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, 
- stable@vger.kernel.org
-Subject: Re: [PATCH] drm/xe/client: Better correlate exec_queue and GT
- timestamps
-Message-ID: <jamrxboal2ppniepfxpq5uzksd2v35ypymo7irt56oewcan5vh@zxmofyra5ruz>
-References: <20241212173432.1244440-1-lucas.demarchi@intel.com>
- <Z2SGzHYsJ+CRoF9p@orsosgc001>
- <wdcrw3du2ssykmsrda3mvwjhreengeovwasikmixdiowqsfnwj@lsputsgtmha4>
- <Z2YMiTq5P81dmjVH@orsosgc001>
- <7bvt3larl4sobadx57a255cvu7i5lkjpt2tdxa4baa324v6va6@ijl7gzqjh7qo>
+Received: from s1.sapience.com (s1.sapience.com [72.84.236.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6782010E109;
+ Sat,  4 Jan 2025 11:06:15 +0000 (UTC)
+Authentication-Results: dkim-srvy7; dkim=pass (Good ed25519-sha256 
+ signature) header.d=sapience.com header.i=@sapience.com 
+ header.a=ed25519-sha256; dkim=pass (Good 2048 bit rsa-sha256 signature) 
+ header.d=sapience.com header.i=@sapience.com header.a=rsa-sha256
+Received: from srv8.sapience.com (srv8.sapience.com [x.x.x.x])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (secp384r1) server-digest SHA384)
+ (No client certificate requested)
+ by s1.sapience.com (Postfix) with ESMTPS id 59C17480A13;
+ Sat, 04 Jan 2025 06:06:14 -0500 (EST)
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=sapience.com;
+ i=@sapience.com; q=dns/txt; s=dk-ed25519-220413; t=1735988774;
+ h=message-id : subject : from : to : cc : date : in-reply-to :
+ references : content-type : mime-version : from;
+ bh=5Z4RiwazAIutp2/IHEL06g4WrC8k8u+BNBzVA22Ci5Y=;
+ b=AKMUUHfW8/qQZLcJt+lNhIpKPORNPHftPRIhaM+M7Uql7PO3ip9H/cWpV8qfa/qv92e5S
+ aQMwBZkwfi0tDYgAw==
+ARC-Seal: i=1; a=rsa-sha256; d=sapience.com; s=arc6-rsa-220412; t=1735988774; 
+ cv=none;
+ b=ymJs3y2H0rHWTigHI39i00ynAzDyL0pplQ4kjRi8jTEWuhOqcA6ivWMWzbtlLEZiG03PSb3dcYU2aEinSCipF3syopjE6v8pq6gg30gjYymSbfKy+BeaxS9h/fL405IGinOHh3W96EXMCrGTMnkiU8FzxIPpZ4Ptc3AiWlw8EdC4b4T1sn6a3FeMtx6wo7otIdkaFUWpL0u6EH5xNYVqQNdGbK99kPHy1Wpfhr1+nZuSfmTC5prLzlhNtcU796TiJ+TPbpmykP3+ZjcyUE17XXyAIdBteeFVWex3jOfCEfvP6T9ulPMRGnsKp69jkBR5aGhBwvjG1LicVLpb8AVBqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; d=sapience.com; s=arc6-rsa-220412;
+ t=1735988774; c=relaxed/simple;
+ bh=823lCNg0/CmxOSvoh5Xx8jjiDQlyXZxaBTHuFqIdplA=;
+ h=DKIM-Signature:DKIM-Signature:Message-ID:Subject:From:To:Cc:Date:
+ In-Reply-To:References:Autocrypt:Content-Type:User-Agent:
+ MIME-Version;
+ b=HwEQW1HMhSkS0J84hAbCUMlQp5CnQp6CetMzoa2dd+9anDLZvVqvxKchwAWWkWT0Tiw7SsmdwOtkiSO8cQd6DizjBXDIlRBoUhRlZ2HFwoFoJ74Vc+1vE7dN9G/ANpw6BTfzrhcdf9+lFOySjOPRj8eKzLcYOfGFcANRVThRQNpu6QzY2VjVCoyh+Vg+70qQuiHVFtCIIrh/y+FU1IxJkIM4jSj8jhaljthY9tt6I6CsBMT2Lc2IK+an3sSFogasFzemXco/PuDFO/dEDRvzYpSnTiFPG4V1eMyoe//6bE1sd+YnNFdB7pEOoyzv84kIt/lbjo9TbBd6703tNdeP9g==
+ARC-Authentication-Results: i=1; arc-srv8.sapience.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sapience.com;
+ i=@sapience.com; q=dns/txt; s=dk-rsa-220413; t=1735988774;
+ h=message-id : subject : from : to : cc : date : in-reply-to :
+ references : content-type : mime-version : from;
+ bh=5Z4RiwazAIutp2/IHEL06g4WrC8k8u+BNBzVA22Ci5Y=;
+ b=d3JNL/1SdzBoxwtFW09SJmZOJPPQWcJieQyv7CHjFSqkO6c1qacLxoXpMsT35Eprvr1BC
+ DuJyoY47jRzqSzKl5J/rQH4P8d1q+lMp+ZVunf31KwtHJ36qxNW0urQzC2+iJp49iir+cg0
+ 7rH7ySIstHXko77UXDMvTXcBGrqGaOjb+XbPs0A2GY2YNI5+FC6wAknA07xAgspUTn1A24l
+ 8ZwXrytQocoOB4l13UnL+AGtbx+LL8w+D58oHvlPj6eH/IEdvUOuZo6DyxqLLDjtsGLIuwl
+ QfSHYCOyL7qpvkna+feJkEcRFzrqIlvGFswohcoF6n5MVnDbMA0lZohtbDvA==
+Received: from lap7.sapience.com (lap7w.sapience.com [x.x.x.x])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature ECDSA (secp384r1)
+ server-digest SHA384) (No client certificate requested)
+ by srv8.sapience.com (Postfix) with ESMTPS id 1CBBF280011;
+ Sat, 04 Jan 2025 06:06:14 -0500 (EST)
+Message-ID: <53757618ad585771809d0b37915c4d97fab06fdb.camel@sapience.com>
+Subject: [REGRESSION] Re: 6.13-rc1 graphics fail
+From: Genes Lists <lists@sapience.com>
+To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: regressions@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com, 
+ rodrigo.vivi@intel.com, airlied@gmail.com, tzimmermann@suse.de, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Sat, 04 Jan 2025 06:06:13 -0500
+In-Reply-To: <dd13efc9b3fe3e3acd599ca91b714fa92f6cb9a8.camel@sapience.com>
+References: <3b097dddd7095bccabe6791b90899c689f271a35.camel@sapience.com>
+ <Z07Mg2_6y2MW22qV@intel.com>
+ <7db24095f935d874fae466853b0984103f97b40f.camel@sapience.com>
+ <dd13efc9b3fe3e3acd599ca91b714fa92f6cb9a8.camel@sapience.com>
+Autocrypt: addr=lists@sapience.com; prefer-encrypt=mutual;
+ keydata=mDMEXSY9GRYJKwYBBAHaRw8BAQdAwzFfmp+m0ldl2vgmbtPC/XN7/k5vscpADq3BmRy5R
+ 7y0LU1haWwgTGlzdHMgKEwwIDIwMTkwNzEwKSA8bGlzdHNAc2FwaWVuY2UuY29tPoiWBBMWCAA+Ah
+ sBBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEE5YMoUxcbEgQOvOMKc+dlCv6PxQAFAmPJfooFCRl
+ vRHEACgkQc+dlCv6PxQAc/wEA/Dbmg91DOGXll0OW1GKaZQGQDl7fHibMOKRGC6X/emoA+wQR5FIz
+ BnV/PrXbao8LS/h0tSkeXgPsYxrzvfZInIAC
+Content-Type: multipart/signed; micalg="pgp-sha384";
+ protocol="application/pgp-signature"; boundary="=-UrIByhuKGYEPCXDfloez"
+User-Agent: Evolution 3.54.3 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <7bvt3larl4sobadx57a255cvu7i5lkjpt2tdxa4baa324v6va6@ijl7gzqjh7qo>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,107 +98,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Dec 20, 2024 at 06:42:09PM -0600, Lucas De Marchi wrote:
->On Fri, Dec 20, 2024 at 04:32:09PM -0800, Umesh Nerlige Ramappa wrote:
->>On Fri, Dec 20, 2024 at 12:32:16PM -0600, Lucas De Marchi wrote:
->>>On Thu, Dec 19, 2024 at 12:49:16PM -0800, Umesh Nerlige Ramappa wrote:
->>>>On Thu, Dec 12, 2024 at 09:34:32AM -0800, Lucas De Marchi wrote:
->>>>>This partially reverts commit fe4f5d4b6616 ("drm/xe: Clean up VM / exec
->>>>>queue file lock usage."). While it's desired to have the mutex to
->>>>>protect only the reference to the exec queue, getting and dropping each
->>>>>mutex and then later getting the GPU timestamp, doesn't produce a
->>>>>correct result: it introduces multiple opportunities for the task to be
->>>>>scheduled out and thus wrecking havoc the deltas reported to userspace.
->>>>>
->>>>>Also, to better correlate the timestamp from the exec queues with the
->>>>>GPU, disable preemption so they can be updated without allowing the task
->>>>>to be scheduled out. We leave interrupts enabled as that shouldn't be
->>>>>enough disturbance for the deltas to matter to userspace.
->>>>
->>>>Like I said in the past, this is not trivial to solve and I 
->>>>would hate to add anything in the KMD to do so.
->>>
->>>I think the best we can do in the kernel side is to try to guarantee the
->>>correlated counters are sampled together... And that is already very
->>>good per my tests. Also, it'd not only be good from a testing
->>>perspective, but for any userspace trying to make sense of the 2
->>>counters.
->>>
->>>Note that this is not much different from how e.g. perf samples group
->>>events:
->>>
->>>	The unit of scheduling in perf is not an individual event, but rather an
->>>	event group, which may contain one or more events (potentially on
->>>	different PMUs). The notion of an event group is useful for ensuring
->>>	that a set of mathematically related events are all simultaneously
->>>	measured for the same period of time. For example, the number of L1
->>>	cache misses should not be larger than the number of L2 cache accesses.
->>>	Otherwise, it may happen that the events get multiplexed and their
->>>	measurements would no longer be comparable, making the analysis more
->>>	difficult.
->>>
->>>See __perf_event_read() that will call pmu->read() on all sibling events
->>>while disabling preemption:
->>>
->>>	perf_event_read()
->>>	{
->>>		...
->>>		preempt_disable();
->>>		event_cpu = __perf_event_read_cpu(event, event_cpu);
->>>		...
->>>		(void)smp_call_function_single(event_cpu, __perf_event_read, &data, 1);
->>>		preempt_enable();
->>>		...
->>>	}
->>>
->>>so... at least there's prior art for that... for the same reason that
->>>userspace should see the values sampled together.
->>
->>Well, I have used the preempt_disable/enable when fixing some 
->>selftest (i915), but was not happy that there were still some rare 
->>failures. If reducing error rates is the intention, then it's fine. 
->>In my mind, the issue still exists and once in a while we would end 
->>up assessing such a failure. Maybe, in addition, fixing up the IGTs 
->>like you suggest below is a worthwhile option.
->
->for me this fix is not targeted at tests, even if it improves them a
->lot. It's more for consistent userspace behavior.
->
->>
->>>
->>>>
->>>>For IGT, why not just take 4 samples for the measurement 
->>>>(separate out the 2 counters)
->>>>
->>>>1. get gt timestamp in the first sample
->>>>2. get run ticks in the second sample
->>>>3. get run ticks in the third sample
->>>>4. get gt timestamp in the fourth sample
->>>>
->>>>Rely on 1 and 4 for gt timestamp delta and on 2 and 3 for run 
->>>>ticks delta.
->>>
->>>this won't fix it for the general case: you get rid of the > 100% case,
->>>you make the < 100% much worse.
->>
->>yeah, that's quite possible.
->>
->>>
->>>For a testing perspective I think the non-flaky solution is to stop
->>>calculating percentages and rather check that the execution timestamp
->>>recorded by the GPU very closely matches (minus gpu scheduling delays)
->>>the one we got via fdinfo once the fence signals and we wait for the job
->>>completion.
->>
->>Agree, we should change how we validate the counters in IGT.
->
->I have a wip patch to cleanup and submit to igt. I will submit it soon.
 
-Just submitted that as the last patch in the series:
-https://lore.kernel.org/igt-dev/20250104071548.737612-8-lucas.demarchi@intel.com/T/#u
+--=-UrIByhuKGYEPCXDfloez
+Content-Type: multipart/alternative; boundary="=-u28UiC0DxIsmDLkOwaKE"
 
-but I'd also like to apply this one in the kernel and still looking for
-a review.
+--=-u28UiC0DxIsmDLkOwaKE
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-thanks
-Lucas De Marchi
+On Fri, 2024-12-13 at 07:14 -0500, Genes Lists wrote:
+> On Tue, 2024-12-03 at 06:34 -0500, Genes Lists wrote:
+> > On Tue, 2024-12-03 at 11:16 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
+> > > > ...
+> >=20
+> > > Probably https://gitlab.freedesktop.org/drm/i915/kernel/-
+> > > /issues/13057
+> > >=20
+> > Very helpful.
+> >=20
+> > I tested your patch set on Linus' tree commit
+> > cdd30ebb1b9f36159d66f088b61aee264e649d7a :
+> >=20
+> > =C2=A0 =C2=A0=C2=A0https://patchwork.freedesktop.org/series/141911/
+> >=20
+> > and confirm that this fixes the problem=C2=A0
+> >=20
+> > Thank you.
+> >=20
+> >=20
+>=20
+> Just a CC to regressions list for tracking.
+>=20
+> First report here:=C2=A0
+> https://lore.kernel.org/lkml/3b097dddd7095bccabe6791b90899c689f271a35.c
+> amel@sapience.com/
+>=20
+> Fixed by patch set as noted above, but not yet in mainline or linux-
+> next.
+>=20
+> Thank you again Ville for quickly coming up with a fix.
+>=20
+
+Follow up to check on where things stand with getting the fix into
+mainline?=C2=A0
+
+Obviously it would be really good to get this fixed before 6.13 gets
+released.
+
+Thanks and happy 2025!
+
+
+--=20
+Gene
+
+
+--=-u28UiC0DxIsmDLkOwaKE
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><style>pre,code,address {
+  margin: 0px;
+}
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+ol,ul {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+blockquote {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+</style></head><body><div>On Fri, 2024-12-13 at 07:14 -0500, Genes Lists wr=
+ote:</div><blockquote type=3D"cite" style=3D"margin:0 0 0 .8ex; border-left=
+:2px #729fcf solid;padding-left:1ex"><div>On Tue, 2024-12-03 at 06:34 -0500=
+, Genes Lists wrote:<br></div><blockquote type=3D"cite" style=3D"margin:0 0=
+ 0 .8ex; border-left:2px #729fcf solid;padding-left:1ex"><div>On Tue, 2024-=
+12-03 at 11:16 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:<br></div><blockquote t=
+ype=3D"cite" style=3D"margin:0 0 0 .8ex; border-left:2px #729fcf solid;padd=
+ing-left:1ex"><blockquote type=3D"cite" style=3D"margin:0 0 0 .8ex; border-=
+left:2px #729fcf solid;padding-left:1ex"><div>...<br></div></blockquote></b=
+lockquote><div><br></div><blockquote type=3D"cite" style=3D"margin:0 0 0 .8=
+ex; border-left:2px #729fcf solid;padding-left:1ex"><div>Probably <a href=
+=3D"https://gitlab.freedesktop.org/drm/i915/kernel/">https://gitlab.freedes=
+ktop.org/drm/i915/kernel/</a>-<br></div><div>/issues/13057<br></div><div><b=
+r></div></blockquote><div>Very helpful.<br></div><div><br></div><div>I test=
+ed your patch set on Linus' tree commit<br></div><div>cdd30ebb1b9f36159d66f=
+088b61aee264e649d7a :<br></div><div><br></div><div>&nbsp; &nbsp;&nbsp;<a hr=
+ef=3D"https://patchwork.freedesktop.org/series/141911/">https://patchwork.f=
+reedesktop.org/series/141911/</a><br></div><div><br></div><div>and confirm =
+that this fixes the problem&nbsp;<br></div><div><br></div><div>Thank you.<b=
+r></div><div><br></div><div><br></div></blockquote><div><br></div><div>Just=
+ a CC to regressions list for tracking.<br></div><div><br></div><div>First =
+report here:&nbsp;<br></div><div><a href=3D"https://lore.kernel.org/lkml/3b=
+097dddd7095bccabe6791b90899c689f271a35.c">https://lore.kernel.org/lkml/3b09=
+7dddd7095bccabe6791b90899c689f271a35.c</a><br></div><div><a href=3D"mailto:=
+amel@sapience.com">amel@sapience.com</a>/<br></div><div><br></div><div>Fixe=
+d by patch set as noted above, but not yet in mainline or linux-<br></div><=
+div>next.<br></div><div><br></div><div>Thank you again Ville for quickly co=
+ming up with a fix.<br></div><div><br></div></blockquote><div><br></div><di=
+v>Follow up to check on where things stand with getting the fix into mainli=
+ne?&nbsp;</div><div><br></div><div>Obviously it would be really good to get=
+ this fixed before 6.13 gets released.</div><div><br></div><div>Thanks and =
+happy 2025!</div><div><br></div><div><br></div><div><span><pre>-- <br></pre=
+><div><span style=3D"background-color: inherit;">Gene</span></div><div><br>=
+</div></span></div></body></html>
+
+--=-u28UiC0DxIsmDLkOwaKE--
+
+--=-UrIByhuKGYEPCXDfloez
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYJAB0WIQRByXNdQO2KDRJ2iXo5BdB0L6Ze2wUCZ3kWJQAKCRA5BdB0L6Ze
+27bCAQCxdJydOQANoGnlvKGF5h4dInjbzEPlmKhIu2ndAalMmAD/Tcrh/774UiS0
+96MtBgVoCjykgCMlIdfhwnDDB4SdUAE=
+=aWW8
+-----END PGP SIGNATURE-----
+
+--=-UrIByhuKGYEPCXDfloez--
