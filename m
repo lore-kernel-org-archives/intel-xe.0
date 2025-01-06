@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B162FE7719A
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 21:12:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87120E77199
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 21:12:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78AC510EA23;
-	Mon,  6 Jan 2025 21:12:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C1A010EA22;
+	Mon,  6 Jan 2025 21:12:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ky23wHqU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qi9q2YJr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 764D210EA21
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Jan 2025 21:12:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6242210EA22
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Jan 2025 21:12:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736197957; x=1767733957;
+ t=1736197958; x=1767733958;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0iJFwfhvsNUquxEuXX/WrwWNEW5C0CkS1YlUp0o4zQs=;
- b=ky23wHqU1gPbLjaf8odvP3L27hdPo+SBrvyDdhRD3VfaOVLumUFlHez2
- qVS+XZ1+DVJI3Z2O/2kVlc8d2Elhif+oIOdmRg+gyRM8HDVuC3o8VNMHO
- bYiduxwELAy/VKL0d23ezcyGTI0qiUcZ7MehHPfzG2on71zDN5uO94vAJ
- GqRX3gM8H05C33SuLr+Eskpdc28e4Ap43M/nsbHYwZirSykHkc4nq07F0
- GALC/66MEzEoRcvddyiii3FFb+BJpNU+8H0pFSwUb34+vvlmTgJBtAWhs
- /djUJAhI1l/rxb3+heR3jDi+anGGyBK/TXAobBynoq5/AdjEvAanMjsc+ g==;
-X-CSE-ConnectionGUID: dg/H5r7CRY+PGQy2s3swLQ==
-X-CSE-MsgGUID: 3iIg7ZI6SVCkiaYPcD1MmA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="61734938"
-X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="61734938"
+ bh=FLlxujRMcWSn/kUI8Nl1n45ty8oF9oVfC8IBJgM452c=;
+ b=Qi9q2YJrItEW2UQND13K/2GiSdeq/SJDUdHuGbgbEkRmrJ9UnpxnZOnr
+ X3iStEDdMuOeFAE04dtU8GJb6xzHw7UDIzQhxWGMJCk+gGYzPS/17+u6B
+ Ne1g1nS2uCyELXpEtFtX3eJYr8L4nrekwqKMtC8L9XhBESIba83QamZWY
+ B7iNpKnPzjxkMjhzvR82iLmDILjedL0VpTE+uPhM5H7Sftd97rmdJ6z21
+ rPSznq1QIUhW67rgQts/sRpGJnXRJo3xOawTrL1OhTPoD0+xYoZtYG0JI
+ TEILQalIVqvhNZgFNrvQZTTH6epLxp1DFrOLgoc6PtOpbsn7aQ0DMirFd A==;
+X-CSE-ConnectionGUID: rZ+Sy68dScKh380wAYZ/8w==
+X-CSE-MsgGUID: PsXQHRjCSEGBgSbT7hcN2Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="61734940"
+X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="61734940"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2025 13:12:37 -0800
-X-CSE-ConnectionGUID: I+NdvQGSTeuT643R9XweOw==
-X-CSE-MsgGUID: 6V3COzMVTomPYsD57NA+/Q==
+ 06 Jan 2025 13:12:38 -0800
+X-CSE-ConnectionGUID: z3902JFeRlKvz4K+xq20JA==
+X-CSE-MsgGUID: YSvTsc65SkW0Mwzw+J0e2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="107417838"
+X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="107417841"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2025 13:12:37 -0800
+ 06 Jan 2025 13:12:38 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH v4 09/13] drm/xe/pxp: Add a query for PXP status
-Date: Mon,  6 Jan 2025 13:12:06 -0800
-Message-ID: <20250106211212.3418231-10-daniele.ceraolospurio@intel.com>
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v4 10/13] drm/xe/pxp: Add API to mark a BO as using PXP
+Date: Mon,  6 Jan 2025 13:12:07 -0800
+Message-ID: <20250106211212.3418231-11-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250106211212.3418231-1-daniele.ceraolospurio@intel.com>
 References: <20250106211212.3418231-1-daniele.ceraolospurio@intel.com>
@@ -69,194 +71,603 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PXP prerequisites (SW proxy and HuC auth via GSC) are completed
-asynchronously from driver load, which means that userspace can start
-submitting before we're ready to start a PXP session. Therefore, we need
-a query that userspace can use to check not only if PXP is supported but
-also to wait until the prerequisites are done.
+The driver needs to know if a BO is encrypted with PXP to enable the
+display decryption at flip time.
+Furthermore, we want to keep track of the status of the encryption and
+reject any operation that involves a BO that is encrypted using an old
+key. There are two points in time where such checks can kick in:
 
-v2: Improve doc, do not report TYPE_NONE as supported (José)
-v3: Better comments, remove unneeded copy_from_user (John)
+1 - at VM bind time, all operations except for unmapping will be
+    rejected if the key used to encrypt the BO is no longer valid. This
+    check is opt-in via a new VM_BIND flag, to avoid a scenario where a
+    malicious app purposely shares an invalid BO with a non-PXP aware
+    app (such as a compositor). If the VM_BIND was failed, the
+    compositor would be unable to display anything at all. Allowing the
+    bind to go through means that output still works, it just displays
+    garbage data within the bounds of the illegal BO.
+
+2 - at job submission time, if the queue is marked as using PXP, all
+    objects bound to the VM will be checked and the submission will be
+    rejected if any of them was encrypted with a key that is no longer
+    valid.
+
+Note that there is no risk of leaking the encrypted data if a user does
+not opt-in to those checks; the only consequence is that the user will
+not realize that the encryption key is changed and that the data is no
+longer valid.
+
+v2: Better commnnts and descriptions (John), rebase
+
+v3: Properly return the result of key_assign up the stack, do not use
+xe_bo in display headers (Jani)
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pxp.c   | 32 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pxp.h   |  1 +
- drivers/gpu/drm/xe/xe_query.c | 29 +++++++++++++++++++++++++++++
- include/uapi/drm/xe_drm.h     | 35 +++++++++++++++++++++++++++++++++++
- 4 files changed, 97 insertions(+)
+ .../xe/compat-i915-headers/pxp/intel_pxp.h    | 12 ++-
+ drivers/gpu/drm/xe/display/intel_bo.c         |  2 +-
+ drivers/gpu/drm/xe/xe_bo.c                    | 98 ++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_bo.h                    |  5 +
+ drivers/gpu/drm/xe/xe_bo_types.h              |  3 +
+ drivers/gpu/drm/xe/xe_exec.c                  |  6 ++
+ drivers/gpu/drm/xe/xe_pxp.c                   | 90 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_pxp.h                   |  6 ++
+ drivers/gpu/drm/xe/xe_pxp_types.h             | 11 +++
+ drivers/gpu/drm/xe/xe_vm.c                    | 46 ++++++++-
+ drivers/gpu/drm/xe/xe_vm.h                    |  2 +
+ include/uapi/drm/xe_drm.h                     | 19 ++++
+ 12 files changed, 293 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
-index 05ed2e71be63..d46b2c0a06ae 100644
---- a/drivers/gpu/drm/xe/xe_pxp.c
-+++ b/drivers/gpu/drm/xe/xe_pxp.c
-@@ -80,6 +80,38 @@ static bool pxp_prerequisites_done(const struct xe_pxp *pxp)
- 	return ready;
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h b/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
+index 419e8e926f00..d2eb8e1f6c4b 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
+@@ -9,6 +9,8 @@
+ #include <linux/errno.h>
+ #include <linux/types.h>
+ 
++#include "xe_pxp.h"
++
+ struct drm_gem_object;
+ struct xe_pxp;
+ 
+@@ -16,7 +18,15 @@ static inline int intel_pxp_key_check(struct xe_pxp *pxp,
+ 				      struct drm_gem_object *obj,
+ 				      bool assign)
+ {
+-	return -ENODEV;
++	/*
++	 * The assign variable is used in i915 to assign the key to the BO at
++	 * first submission time. In Xe the key is instead assigned at BO
++	 * creation time, so the assign variable must always be false.
++	 */
++	if (assign)
++		return -EINVAL;
++
++	return xe_pxp_obj_key_check(pxp, obj);
  }
  
-+/**
-+ * xe_pxp_get_readiness_status - check whether PXP is ready for userspace use
-+ * @pxp: the xe_pxp pointer (can be NULL if PXP is disabled)
-+ *
-+ * Returns: 0 if PXP is not ready yet, 1 if it is ready, a negative errno value
-+ * if PXP is not supported/enabled or if something went wrong in the
-+ * initialization of the prerequisites. Note that the return values of this
-+ * function follow the uapi (see drm_xe_query_pxp_status), so they can be used
-+ * directly in the query ioctl.
-+ */
-+int xe_pxp_get_readiness_status(struct xe_pxp *pxp)
+ #endif
+diff --git a/drivers/gpu/drm/xe/display/intel_bo.c b/drivers/gpu/drm/xe/display/intel_bo.c
+index b463f5bd4eed..27437c22bd70 100644
+--- a/drivers/gpu/drm/xe/display/intel_bo.c
++++ b/drivers/gpu/drm/xe/display/intel_bo.c
+@@ -25,7 +25,7 @@ bool intel_bo_is_shmem(struct drm_gem_object *obj)
+ 
+ bool intel_bo_is_protected(struct drm_gem_object *obj)
+ {
+-	return false;
++	return xe_bo_is_protected(gem_to_xe_bo(obj));
+ }
+ 
+ void intel_bo_flush_if_display(struct drm_gem_object *obj)
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index e6c896ad5602..d1be8f5071b9 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -6,6 +6,7 @@
+ #include "xe_bo.h"
+ 
+ #include <linux/dma-buf.h>
++#include <linux/nospec.h>
+ 
+ #include <drm/drm_drv.h>
+ #include <drm/drm_gem_ttm_helper.h>
+@@ -24,6 +25,7 @@
+ #include "xe_migrate.h"
+ #include "xe_pm.h"
+ #include "xe_preempt_fence.h"
++#include "xe_pxp.h"
+ #include "xe_res_cursor.h"
+ #include "xe_trace_bo.h"
+ #include "xe_ttm_stolen_mgr.h"
+@@ -2135,6 +2137,93 @@ void xe_bo_vunmap(struct xe_bo *bo)
+ 	__xe_bo_vunmap(bo);
+ }
+ 
++static int gem_create_set_pxp_type(struct xe_device *xe, struct xe_bo *bo, u64 value)
 +{
-+	int ret = 0;
++	if (value == DRM_XE_PXP_TYPE_NONE)
++		return 0;
 +
-+	if (!xe_pxp_is_enabled(pxp))
-+		return -ENODEV;
++	/* we only support DRM_XE_PXP_TYPE_HWDRM for now */
++	if (XE_IOCTL_DBG(xe, value != DRM_XE_PXP_TYPE_HWDRM))
++		return -EINVAL;
 +
-+	/* if the GSC or HuC FW are in an error state, PXP will never work */
-+	if (xe_uc_fw_status_to_error(pxp->gt->uc.huc.fw.status) ||
-+	    xe_uc_fw_status_to_error(pxp->gt->uc.gsc.fw.status))
-+		return -EIO;
-+
-+	xe_pm_runtime_get(pxp->xe);
-+
-+	/* PXP requires both HuC loaded and GSC proxy initialized */
-+	if (pxp_prerequisites_done(pxp))
-+		ret = 1;
-+
-+	xe_pm_runtime_put(pxp->xe);
-+	return ret;
++	return xe_pxp_key_assign(xe->pxp, bo);
 +}
 +
- static bool pxp_session_is_in_play(struct xe_pxp *pxp, u32 id)
- {
- 	struct xe_gt *gt = pxp->gt;
-diff --git a/drivers/gpu/drm/xe/xe_pxp.h b/drivers/gpu/drm/xe/xe_pxp.h
-index 2e0ab186072a..868813cc84b9 100644
---- a/drivers/gpu/drm/xe/xe_pxp.h
-+++ b/drivers/gpu/drm/xe/xe_pxp.h
-@@ -14,6 +14,7 @@ struct xe_pxp;
- 
- bool xe_pxp_is_supported(const struct xe_device *xe);
- bool xe_pxp_is_enabled(const struct xe_pxp *pxp);
-+int xe_pxp_get_readiness_status(struct xe_pxp *pxp);
- 
- int xe_pxp_init(struct xe_device *xe);
- void xe_pxp_irq_handler(struct xe_device *xe, u16 iir);
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index c059639613f7..042f87a688e7 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -24,6 +24,7 @@
- #include "xe_macros.h"
- #include "xe_mmio.h"
- #include "xe_oa.h"
-+#include "xe_pxp.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_wa.h"
- 
-@@ -698,6 +699,33 @@ static int query_oa_units(struct xe_device *xe,
- 	return ret ? -EFAULT : 0;
- }
- 
-+static int query_pxp_status(struct xe_device *xe, struct drm_xe_device_query *query)
++typedef int (*xe_gem_create_set_property_fn)(struct xe_device *xe,
++					     struct xe_bo *bo,
++					     u64 value);
++
++static const xe_gem_create_set_property_fn gem_create_set_property_funcs[] = {
++	[DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY] = gem_create_set_pxp_type,
++};
++
++static int gem_create_user_ext_set_property(struct xe_device *xe,
++					    struct xe_bo *bo,
++					    u64 extension)
 +{
-+	struct drm_xe_query_pxp_status __user *query_ptr = u64_to_user_ptr(query->data);
-+	size_t size = sizeof(struct drm_xe_query_pxp_status);
-+	struct drm_xe_query_pxp_status resp = { 0 };
-+	int ret;
++	u64 __user *address = u64_to_user_ptr(extension);
++	struct drm_xe_ext_set_property ext;
++	int err;
++	u32 idx;
 +
-+	if (query->size == 0) {
-+		query->size = size;
-+		return 0;
-+	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-+		return -EINVAL;
-+	}
-+
-+	ret = xe_pxp_get_readiness_status(xe->pxp);
-+	if (ret < 0)
-+		return ret;
-+
-+	resp.status = ret;
-+	resp.supported_session_types = BIT(DRM_XE_PXP_TYPE_HWDRM);
-+
-+	if (copy_to_user(query_ptr, &resp, size))
++	err = __copy_from_user(&ext, address, sizeof(ext));
++	if (XE_IOCTL_DBG(xe, err))
 +		return -EFAULT;
++
++	if (XE_IOCTL_DBG(xe, ext.property >=
++			 ARRAY_SIZE(gem_create_set_property_funcs)) ||
++	    XE_IOCTL_DBG(xe, ext.pad) ||
++	    XE_IOCTL_DBG(xe, ext.property != DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY))
++		return -EINVAL;
++
++	idx = array_index_nospec(ext.property, ARRAY_SIZE(gem_create_set_property_funcs));
++	if (!gem_create_set_property_funcs[idx])
++		return -EINVAL;
++
++	return gem_create_set_property_funcs[idx](xe, bo, ext.value);
++}
++
++typedef int (*xe_gem_create_user_extension_fn)(struct xe_device *xe,
++					       struct xe_bo *bo,
++					       u64 extension);
++
++static const xe_gem_create_user_extension_fn gem_create_user_extension_funcs[] = {
++	[DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY] = gem_create_user_ext_set_property,
++};
++
++#define MAX_USER_EXTENSIONS	16
++static int gem_create_user_extensions(struct xe_device *xe, struct xe_bo *bo,
++				      u64 extensions, int ext_number)
++{
++	u64 __user *address = u64_to_user_ptr(extensions);
++	struct drm_xe_user_extension ext;
++	int err;
++	u32 idx;
++
++	if (XE_IOCTL_DBG(xe, ext_number >= MAX_USER_EXTENSIONS))
++		return -E2BIG;
++
++	err = __copy_from_user(&ext, address, sizeof(ext));
++	if (XE_IOCTL_DBG(xe, err))
++		return -EFAULT;
++
++	if (XE_IOCTL_DBG(xe, ext.pad) ||
++	    XE_IOCTL_DBG(xe, ext.name >= ARRAY_SIZE(gem_create_user_extension_funcs)))
++		return -EINVAL;
++
++	idx = array_index_nospec(ext.name,
++				 ARRAY_SIZE(gem_create_user_extension_funcs));
++	err = gem_create_user_extension_funcs[idx](xe, bo, extensions);
++	if (XE_IOCTL_DBG(xe, err))
++		return err;
++
++	if (ext.next_extension)
++		return gem_create_user_extensions(xe, bo, ext.next_extension,
++						  ++ext_number);
 +
 +	return 0;
 +}
 +
- static int (* const xe_query_funcs[])(struct xe_device *xe,
- 				      struct drm_xe_device_query *query) = {
- 	query_engines,
-@@ -709,6 +737,7 @@ static int (* const xe_query_funcs[])(struct xe_device *xe,
- 	query_engine_cycles,
- 	query_uc_fw_version,
- 	query_oa_units,
-+	query_pxp_status,
+ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 			struct drm_file *file)
+ {
+@@ -2147,8 +2236,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	u32 handle;
+ 	int err;
+ 
+-	if (XE_IOCTL_DBG(xe, args->extensions) ||
+-	    XE_IOCTL_DBG(xe, args->pad[0] || args->pad[1] || args->pad[2]) ||
++	if (XE_IOCTL_DBG(xe, args->pad[0] || args->pad[1] || args->pad[2]) ||
+ 	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+@@ -2230,6 +2318,12 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 		goto out_vm;
+ 	}
+ 
++	if (args->extensions) {
++		err = gem_create_user_extensions(xe, bo, args->extensions, 0);
++		if (err)
++			goto out_bulk;
++	}
++
+ 	err = drm_gem_handle_create(file, &bo->ttm.base, &handle);
+ 	if (err)
+ 		goto out_bulk;
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index d9386ab03140..28479c9bc20e 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -184,6 +184,11 @@ static inline bool xe_bo_is_pinned(struct xe_bo *bo)
+ 	return bo->ttm.pin_count;
+ }
+ 
++static inline bool xe_bo_is_protected(const struct xe_bo *bo)
++{
++	return bo->pxp_key_instance;
++}
++
+ static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
+ {
+ 	if (likely(bo)) {
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index 46dc9e4e3e46..fd98c755ee4d 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -57,6 +57,9 @@ struct xe_bo {
+ 	 */
+ 	struct list_head client_link;
+ #endif
++	/** @pxp_key_instance: key instance this bo was created against (if any) */
++	u32 pxp_key_instance;
++
+ 	/** @freed: List node for delayed put. */
+ 	struct llist_node freed;
+ 	/** @update_index: Update index if PT BO */
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 31cca938956f..1acc6e55efd5 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -262,6 +262,12 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		goto err_exec;
+ 	}
+ 
++	if (xe_exec_queue_uses_pxp(q)) {
++		err = xe_vm_validate_protected(q->vm);
++		if (err)
++			goto err_exec;
++	}
++
+ 	job = xe_sched_job_create(q, xe_exec_queue_is_parallel(q) ?
+ 				  addresses : &args->address);
+ 	if (IS_ERR(job)) {
+diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
+index d46b2c0a06ae..ae45c663b81d 100644
+--- a/drivers/gpu/drm/xe/xe_pxp.c
++++ b/drivers/gpu/drm/xe/xe_pxp.c
+@@ -8,6 +8,8 @@
+ #include <drm/drm_managed.h>
+ #include <uapi/drm/xe_drm.h>
+ 
++#include "xe_bo.h"
++#include "xe_bo_types.h"
+ #include "xe_device_types.h"
+ #include "xe_exec_queue.h"
+ #include "xe_force_wake.h"
+@@ -185,6 +187,9 @@ static void pxp_terminate(struct xe_pxp *pxp)
+ 
+ 	pxp_invalidate_queues(pxp);
+ 
++	if (pxp->status == XE_PXP_ACTIVE)
++		pxp->key_instance++;
++
+ 	/*
+ 	 * If we have a termination already in progress, we need to wait for
+ 	 * it to complete before queueing another one. Once the first
+@@ -385,6 +390,8 @@ int xe_pxp_init(struct xe_device *xe)
+ 	pxp->xe = xe;
+ 	pxp->gt = gt;
+ 
++	pxp->key_instance = 1;
++
+ 	/*
+ 	 * we'll use the completions to check if there is an action pending,
+ 	 * so we start them as completed and we reinit it when an action is
+@@ -689,3 +696,86 @@ static void pxp_invalidate_queues(struct xe_pxp *pxp)
+ 
+ 	spin_unlock_irq(&pxp->queues.lock);
+ }
++
++/**
++ * xe_pxp_key_assign - mark a BO as using the current PXP key iteration
++ * @pxp: the xe->pxp pointer (it will be NULL if PXP is disabled)
++ * @bo: the BO to mark
++ *
++ * Returns: -ENODEV if PXP is disabled, 0 otherwise.
++ */
++int xe_pxp_key_assign(struct xe_pxp *pxp, struct xe_bo *bo)
++{
++	if (!xe_pxp_is_enabled(pxp))
++		return -ENODEV;
++
++	xe_assert(pxp->xe, !bo->pxp_key_instance);
++
++	/*
++	 * Note that the PXP key handling is inherently racey, because the key
++	 * can theoretically change at any time (although it's unlikely to do
++	 * so without triggers), even right after we copy it. Taking a lock
++	 * wouldn't help because the value might still change as soon as we
++	 * release the lock.
++	 * Userspace needs to handle the fact that their BOs can go invalid at
++	 * any point.
++	 */
++	bo->pxp_key_instance = pxp->key_instance;
++
++	return 0;
++}
++
++/**
++ * xe_pxp_bo_key_check - check if the key used by a xe_bo is valid
++ * @pxp: the xe->pxp pointer (it will be NULL if PXP is disabled)
++ * @bo: the BO we want to check
++ *
++ * Checks whether a BO was encrypted with the current key or an obsolete one.
++ *
++ * Returns: 0 if the key is valid, -ENODEV if PXP is disabled, -EINVAL if the
++ * BO is not using PXP,  -ENOEXEC if the key is not valid.
++ */
++int xe_pxp_bo_key_check(struct xe_pxp *pxp, struct xe_bo *bo)
++{
++	if (!xe_pxp_is_enabled(pxp))
++		return -ENODEV;
++
++	if (!xe_bo_is_protected(bo))
++		return -EINVAL;
++
++	xe_assert(pxp->xe, bo->pxp_key_instance);
++
++	/*
++	 * Note that the PXP key handling is inherently racey, because the key
++	 * can theoretically change at any time (although it's unlikely to do
++	 * so without triggers), even right after we check it. Taking a lock
++	 * wouldn't help because the value might still change as soon as we
++	 * release the lock.
++	 * We mitigate the risk by checking the key at multiple points (on each
++	 * submission involving the BO and right before flipping it on the
++	 * display), but there is still a very small chance that we could
++	 * operate on an invalid BO for a single submission or a single frame
++	 * flip. This is a compromise made to protect the encrypted data (which
++	 * is what the key termination is for).
++	 */
++	if (bo->pxp_key_instance != pxp->key_instance)
++		return -ENOEXEC;
++
++	return 0;
++}
++
++/**
++ * xe_pxp_obj_key_check - check if the key used by a drm_gem_obj is valid
++ * @pxp: the xe->pxp pointer (it will be NULL if PXP is disabled)
++ * @obj: the drm_gem_obj we want to check
++ *
++ * Checks whether a drm_gem_obj was encrypted with the current key or an
++ * obsolete one.
++ *
++ * Returns: 0 if the key is valid, -ENODEV if PXP is disabled, -EINVAL if the
++ * obj is not using PXP,  -ENOEXEC if the key is not valid.
++ */
++int xe_pxp_obj_key_check(struct xe_pxp *pxp, struct drm_gem_object *obj)
++{
++	return xe_pxp_bo_key_check(pxp, gem_to_xe_bo(obj));
++}
+diff --git a/drivers/gpu/drm/xe/xe_pxp.h b/drivers/gpu/drm/xe/xe_pxp.h
+index 868813cc84b9..3dd70eac9da6 100644
+--- a/drivers/gpu/drm/xe/xe_pxp.h
++++ b/drivers/gpu/drm/xe/xe_pxp.h
+@@ -8,6 +8,8 @@
+ 
+ #include <linux/types.h>
+ 
++struct drm_gem_object;
++struct xe_bo;
+ struct xe_device;
+ struct xe_exec_queue;
+ struct xe_pxp;
+@@ -23,4 +25,8 @@ int xe_pxp_exec_queue_set_type(struct xe_pxp *pxp, struct xe_exec_queue *q, u8 t
+ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q);
+ void xe_pxp_exec_queue_remove(struct xe_pxp *pxp, struct xe_exec_queue *q);
+ 
++int xe_pxp_key_assign(struct xe_pxp *pxp, struct xe_bo *bo);
++int xe_pxp_bo_key_check(struct xe_pxp *pxp, struct xe_bo *bo);
++int xe_pxp_obj_key_check(struct xe_pxp *pxp, struct drm_gem_object *obj);
++
+ #endif /* __XE_PXP_H__ */
+diff --git a/drivers/gpu/drm/xe/xe_pxp_types.h b/drivers/gpu/drm/xe/xe_pxp_types.h
+index bd741720f67d..8e4569f0173d 100644
+--- a/drivers/gpu/drm/xe/xe_pxp_types.h
++++ b/drivers/gpu/drm/xe/xe_pxp_types.h
+@@ -112,6 +112,17 @@ struct xe_pxp {
+ 		/** @queues.list: list of exec_queues that use PXP */
+ 		struct list_head list;
+ 	} queues;
++
++	/**
++	 * @key_instance: keep track of the current iteration of the PXP key.
++	 * Note that, due to the time needed for PXP termination and re-start
++	 * to complete, the minimum time between 2 subsequent increases of this
++	 * variable is 50ms, and even that only if there is a continuous attack;
++	 * normal behavior is for this to increase much much slower than that.
++	 * This means that we don't expect this to ever wrap and don't implement
++	 * that case in the code.
++	 */
++	u32 key_instance;
  };
  
- int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ #endif /* __XE_PXP_TYPES_H__ */
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 62b1b6ce255b..501f4d9c8d5d 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -33,6 +33,7 @@
+ #include "xe_pm.h"
+ #include "xe_preempt_fence.h"
+ #include "xe_pt.h"
++#include "xe_pxp.h"
+ #include "xe_res_cursor.h"
+ #include "xe_sync.h"
+ #include "xe_trace_bo.h"
+@@ -2726,7 +2727,8 @@ ALLOW_ERROR_INJECTION(vm_bind_ioctl_ops_execute, ERRNO);
+ 	(DRM_XE_VM_BIND_FLAG_READONLY | \
+ 	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
+ 	 DRM_XE_VM_BIND_FLAG_NULL | \
+-	 DRM_XE_VM_BIND_FLAG_DUMPABLE)
++	 DRM_XE_VM_BIND_FLAG_DUMPABLE | \
++	 DRM_XE_VM_BIND_FLAG_CHECK_PXP)
+ 
+ #ifdef TEST_VM_OPS_ERROR
+ #define SUPPORTED_FLAGS	(SUPPORTED_FLAGS_STUB | FORCE_OP_ERROR)
+@@ -2889,7 +2891,7 @@ static void xe_vma_ops_init(struct xe_vma_ops *vops, struct xe_vm *vm,
+ 
+ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ 					u64 addr, u64 range, u64 obj_offset,
+-					u16 pat_index)
++					u16 pat_index, u32 op, u32 bind_flags)
+ {
+ 	u16 coh_mode;
+ 
+@@ -2933,6 +2935,12 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ 		return  -EINVAL;
+ 	}
+ 
++	/* If a BO is protected it can only be mapped if the key is still valid */
++	if ((bind_flags & DRM_XE_VM_BIND_FLAG_CHECK_PXP) && xe_bo_is_protected(bo) &&
++	    op != DRM_XE_VM_BIND_OP_UNMAP && op != DRM_XE_VM_BIND_OP_UNMAP_ALL)
++		if (XE_IOCTL_DBG(xe, xe_pxp_bo_key_check(xe->pxp, bo) != 0))
++			return -ENOEXEC;
++
+ 	return 0;
+ }
+ 
+@@ -3022,6 +3030,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		u32 obj = bind_ops[i].obj;
+ 		u64 obj_offset = bind_ops[i].obj_offset;
+ 		u16 pat_index = bind_ops[i].pat_index;
++		u32 op = bind_ops[i].op;
++		u32 bind_flags = bind_ops[i].flags;
+ 
+ 		if (!obj)
+ 			continue;
+@@ -3034,7 +3044,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		bos[i] = gem_to_xe_bo(gem_obj);
+ 
+ 		err = xe_vm_bind_ioctl_validate_bo(xe, bos[i], addr, range,
+-						   obj_offset, pat_index);
++						   obj_offset, pat_index, op,
++						   bind_flags);
+ 		if (err)
+ 			goto put_obj;
+ 	}
+@@ -3334,6 +3345,35 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+ 	return ret;
+ }
+ 
++int xe_vm_validate_protected(struct xe_vm *vm)
++{
++	struct drm_gpuva *gpuva;
++	int err = 0;
++
++	if (!vm)
++		return -ENODEV;
++
++	mutex_lock(&vm->snap_mutex);
++
++	drm_gpuvm_for_each_va(gpuva, &vm->gpuvm) {
++		struct xe_vma *vma = gpuva_to_vma(gpuva);
++		struct xe_bo *bo = vma->gpuva.gem.obj ?
++			gem_to_xe_bo(vma->gpuva.gem.obj) : NULL;
++
++		if (!bo)
++			continue;
++
++		if (xe_bo_is_protected(bo)) {
++			err = xe_pxp_bo_key_check(vm->xe->pxp, bo);
++			if (err)
++				break;
++		}
++	}
++
++	mutex_unlock(&vm->snap_mutex);
++	return err;
++}
++
+ struct xe_vm_snapshot {
+ 	unsigned long num_snaps;
+ 	struct {
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 0a2fa6c0815b..f66075f8a6fe 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -215,6 +215,8 @@ struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma,
+ 
+ int xe_vm_invalidate_vma(struct xe_vma *vma);
+ 
++int xe_vm_validate_protected(struct xe_vm *vm);
++
+ static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
+ {
+ 	xe_assert(vm->xe, xe_vm_in_preempt_fence_mode(vm));
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 5c97a758266d..9d1ed07b3130 100644
+index 9d1ed07b3130..149adf3cbbce 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -629,6 +629,39 @@ struct drm_xe_query_uc_fw_version {
- 	__u64 reserved;
- };
+@@ -778,8 +778,23 @@ struct drm_xe_device_query {
+  *  - %DRM_XE_GEM_CPU_CACHING_WC - Allocate the pages as write-combined. This
+  *    is uncached. Scanout surfaces should likely use this. All objects
+  *    that can be placed in VRAM must use this.
++ *
++ * This ioctl supports setting the following properties via the
++ * %DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY extension, which uses the
++ * generic @drm_xe_ext_set_property struct:
++ *
++ *  - %DRM_XE_GEM_CREATE_SET_PROPERTY_PXP_TYPE - set the type of PXP session
++ *    this object will be used with. Valid values are listed in enum
++ *    drm_xe_pxp_session_type. %DRM_XE_PXP_TYPE_NONE is the default behavior, so
++ *    there is no need to explicitly set that. Objects used with session of type
++ *    %DRM_XE_PXP_TYPE_HWDRM will be marked as invalid if a PXP invalidation
++ *    event occurs after their creation. Attempting to flip an invalid object
++ *    will cause a black frame to be displayed instead. Submissions with invalid
++ *    objects mapped in the VM will be rejected.
+  */
+ struct drm_xe_gem_create {
++#define DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY	0
++#define   DRM_XE_GEM_CREATE_SET_PROPERTY_PXP_TYPE	0
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
  
-+/**
-+ * struct drm_xe_query_pxp_status - query if PXP is ready
-+ *
-+ * If PXP is enabled and no fatal error has occurred, the status will be set to
-+ * one of the following values:
-+ * 0: PXP init still in progress
-+ * 1: PXP init complete
-+ *
-+ * If PXP is not enabled or something has gone wrong, the query will be failed
-+ * with one of the following error codes:
-+ * -ENODEV: PXP not supported or disabled;
-+ * -EIO: fatal error occurred during init, so PXP will never be enabled;
-+ * -EINVAL: incorrect value provided as part of the query;
-+ * -EFAULT: error copying the memory between kernel and userspace.
-+ *
-+ * The status can only be 0 in the first few seconds after driver load. If
-+ * everything works as expected, the status will transition to init complete in
-+ * less than 1 second, while in case of errors the driver might take longer to
-+ * start returning an error code, but it should still take less than 10 seconds.
-+ *
-+ * The supported session type bitmask is based on the values in
-+ * enum drm_xe_pxp_session_type. TYPE_NONE is always supported and therefore
-+ * is not reported in the bitmask.
-+ *
-+ */
-+struct drm_xe_query_pxp_status {
-+	/** @status: current PXP status */
-+	__u32 status;
-+
-+	/** @supported_session_types: bitmask of supported PXP session types */
-+	__u32 supported_session_types;
-+};
-+
- /**
-  * struct drm_xe_device_query - Input of &DRM_IOCTL_XE_DEVICE_QUERY - main
-  * structure to query device information
-@@ -648,6 +681,7 @@ struct drm_xe_query_uc_fw_version {
-  *    attributes.
-  *  - %DRM_XE_DEVICE_QUERY_GT_TOPOLOGY
-  *  - %DRM_XE_DEVICE_QUERY_ENGINE_CYCLES
-+ *  - %DRM_XE_DEVICE_QUERY_PXP_STATUS
-  *
-  * If size is set to 0, the driver fills it with the required size for
-  * the requested type of data to query. If size is equal to the required
-@@ -700,6 +734,7 @@ struct drm_xe_device_query {
- #define DRM_XE_DEVICE_QUERY_ENGINE_CYCLES	6
- #define DRM_XE_DEVICE_QUERY_UC_FW_VERSION	7
- #define DRM_XE_DEVICE_QUERY_OA_UNITS		8
-+#define DRM_XE_DEVICE_QUERY_PXP_STATUS		9
- 	/** @query: The type of data to query */
- 	__u32 query;
+@@ -941,6 +956,9 @@ struct drm_xe_vm_destroy {
+  *    will only be valid for DRM_XE_VM_BIND_OP_MAP operations, the BO
+  *    handle MBZ, and the BO offset MBZ. This flag is intended to
+  *    implement VK sparse bindings.
++ *  - %DRM_XE_VM_BIND_FLAG_CHECK_PXP - If the object is encrypted via PXP,
++ *    reject the binding if the encryption key is no longer valid. This
++ *    flag has no effect on BOs that are not marked as using PXP.
+  */
+ struct drm_xe_vm_bind_op {
+ 	/** @extensions: Pointer to the first extension struct, if any */
+@@ -1031,6 +1049,7 @@ struct drm_xe_vm_bind_op {
+ #define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 1)
+ #define DRM_XE_VM_BIND_FLAG_NULL	(1 << 2)
+ #define DRM_XE_VM_BIND_FLAG_DUMPABLE	(1 << 3)
++#define DRM_XE_VM_BIND_FLAG_CHECK_PXP	(1 << 4)
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
  
 -- 
 2.43.0
