@@ -4,57 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FBF5E77188
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 21:12:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63DD3E77198
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 21:12:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C85310EA14;
-	Mon,  6 Jan 2025 21:12:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AE8510EA13;
+	Mon,  6 Jan 2025 21:12:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jdDoxBq6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d3aBVWqn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEBE610E2F1
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Jan 2025 21:12:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7414110E2F1
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Jan 2025 21:12:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736197943; x=1767733943;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=v1krXRoT9PQDl4pK6QQKkv1rSVGYGAVH26dsE61vqOI=;
- b=jdDoxBq67pp6M+6CeVXPiTW3L24k4Ki3O6lYal6FwkB9OCXdus+SVhUc
- mYPDYrnmctZrrD6oRopB1xRULxHaN3boYf0GQCovjImqeND9PN8kU7HpD
- 4+Et3vxYrVbIcbHnxiqx3ODJX9Umg5dgETkBvjPFV1bGTJ9zTBrJYoaEu
- wppfSrHh2b+P9BPaqiFY2lWjnX4L6txf4vO3cfb+5hMMw+gO4maYg2iVv
- MC/iufYvQAUvLKKZDKhrZ0ov6yMof4EsL/uOhKlY4JI6jfvPa8p8ydvyx
- oui+2pgwK4XFjWdkTmJiLzk3RH8QqhiT7ty6WHe+nPHomjrMcqa4EwjQG g==;
-X-CSE-ConnectionGUID: AFjkHX1lS2Ck5YCR5A+E/g==
-X-CSE-MsgGUID: 9I5CAE3bQ5SbBkcXS0kGGQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="61734922"
-X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="61734922"
+ t=1736197948; x=1767733948;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Df9xerhCtOyAIeayyMaTvBMIJzhtvBTv2TFVCXuj8F4=;
+ b=d3aBVWqnXy5FreHbTjEd+uVhQ2Ejj/+nBMznWQwbzbW6SLwTrJlCQF30
+ U7RN0oJN0HSPWoFMTola7OOsUVzqqmh1HNmZsjQi2EwG/9tInf5EjXMNp
+ NV7UDA6yXQBBT4IWb22kleDp/y2/hhrdSYuJmzaHQeVDFHJMsliDL0HqJ
+ CNzB50pK7Nuyf0gbhfFVdRwVuGPPlFp9XdPKiLoHqMdFs9fHoZydeXM2C
+ LcpG71LcR5aMl1uHUfEz9Q7rEGB8QrJp8ZUksnvxZ3fjTZLI9Xi3YesDJ
+ t0VknT8C9HckFdXXImtNbIee2IGtu1V/MgZcxTu+TmaNXhR2DkivjGCWQ g==;
+X-CSE-ConnectionGUID: ByPcjSHDQzu4wwwHEqX/Fg==
+X-CSE-MsgGUID: ct82WHr7QBynxi0PLep0zQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="61734925"
+X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="61734925"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2025 13:12:22 -0800
-X-CSE-ConnectionGUID: aVif3F12SBCghgi7DZ+iYQ==
-X-CSE-MsgGUID: f6Zro4UsTjyDl5l3fcTxWA==
+ 06 Jan 2025 13:12:28 -0800
+X-CSE-ConnectionGUID: hLrkYXqDTZGs6DpfkI7hyw==
+X-CSE-MsgGUID: 7AlsG0PvQ6GIRUBLjmjefw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="107417800"
+X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="107417806"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2025 13:12:22 -0800
+ 06 Jan 2025 13:12:28 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH v4 00/13] Add PXP HWDRM support
-Date: Mon,  6 Jan 2025 13:11:57 -0800
-Message-ID: <20250106211212.3418231-1-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v4 01/13] drm/xe/pxp: Initialize PXP structure and KCR reg
+Date: Mon,  6 Jan 2025 13:11:58 -0800
+Message-ID: <20250106211212.3418231-2-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250106211212.3418231-1-daniele.ceraolospurio@intel.com>
+References: <20250106211212.3418231-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,106 +67,330 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PXP (Protected Xe Path) allows execution and flip to display of protected
-(i.e. encrypted) objects. The HW supports multiple types of PXP, but
-this series only introduces support for PXP HWDRM, which is mainly
-targeted at encrypting data that is going to be displayed.
+As the first step towards adding PXP support, hook in the PXP init
+function, allocate the PXP structure and initialize the KCR register to
+allow PXP HWDRM sessions.
 
-Even though we only plan to support 1 type of PXP for now, the interface
-has been designed to allow support for other PXP types to be added at a
-later point in time.
+v2: remove unneeded includes, free PXP memory on error (John)
 
-A user is expected to mark both BO and exec_queues as using PXP and the
-driver will make sure that PXP is running, that the encryption is
-valid and that no execution happens with an outdated encryption.
-
-The mesa implementation of the new interfaces is in review here:
-https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/30723
-
-The IGT tests for PXP are in review here:
-https://patchwork.freedesktop.org/series/142450/
-
-v2: code cleaned up and fixed while coming out of RFC, addressed review
-feedback in regards to the interface.
-
-v3: code and documentation improvements following review feedback
-
-v4: Major rework of the internal status tracking to avoid doing
-submissions under lock. Split the exec queue patch into 2 for ease of
-review.
-
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: John Harrison <John.C.Harrison@Intel.com>
-
-
-Daniele Ceraolo Spurio (13):
-  drm/xe/pxp: Initialize PXP structure and KCR reg
-  drm/xe/pxp: Allocate PXP execution resources
-  drm/xe/pxp: Add VCS inline termination support
-  drm/xe/pxp: Add GSC session invalidation support
-  drm/xe/pxp: Handle the PXP termination interrupt
-  drm/xe/pxp: Add GSC session initialization support
-  drm/xe/pxp: Add PXP queue tracking and session start
-  drm/xe/pxp: Add userspace and LRC support for PXP-using queues
-  drm/xe/pxp: Add a query for PXP status
-  drm/xe/pxp: Add API to mark a BO as using PXP
-  drm/xe/pxp: add PXP PM support
-  drm/xe/pxp: Add PXP debugfs support
-  drm/xe/pxp: Enable PXP for MTL and LNL
-
- drivers/gpu/drm/xe/Makefile                   |   3 +
- drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h |  41 +
- .../xe/compat-i915-headers/pxp/intel_pxp.h    |  16 +-
- drivers/gpu/drm/xe/display/intel_bo.c         |   2 +-
- .../gpu/drm/xe/instructions/xe_instr_defs.h   |   1 +
- .../gpu/drm/xe/instructions/xe_mfx_commands.h |  28 +
- .../gpu/drm/xe/instructions/xe_mi_commands.h  |   5 +
- drivers/gpu/drm/xe/regs/xe_engine_regs.h      |   1 +
- drivers/gpu/drm/xe/regs/xe_irq_regs.h         |   8 +
- drivers/gpu/drm/xe/regs/xe_pxp_regs.h         |  23 +
- drivers/gpu/drm/xe/xe_bo.c                    |  98 +-
- drivers/gpu/drm/xe/xe_bo.h                    |   5 +
- drivers/gpu/drm/xe/xe_bo_types.h              |   3 +
- drivers/gpu/drm/xe/xe_debugfs.c               |   3 +
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+---
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ .../xe/compat-i915-headers/pxp/intel_pxp.h    |   4 +-
+ drivers/gpu/drm/xe/regs/xe_pxp_regs.h         |  17 +++
  drivers/gpu/drm/xe/xe_device.c                |   6 +
  drivers/gpu/drm/xe/xe_device_types.h          |   8 +-
- drivers/gpu/drm/xe/xe_exec.c                  |   6 +
- drivers/gpu/drm/xe/xe_exec_queue.c            |  60 +-
- drivers/gpu/drm/xe/xe_exec_queue.h            |   5 +
- drivers/gpu/drm/xe/xe_exec_queue_types.h      |   8 +
- drivers/gpu/drm/xe/xe_execlist.c              |   2 +-
- drivers/gpu/drm/xe/xe_irq.c                   |  20 +-
- drivers/gpu/drm/xe/xe_lrc.c                   |  18 +-
- drivers/gpu/drm/xe/xe_lrc.h                   |   7 +-
- drivers/gpu/drm/xe/xe_pci.c                   |   4 +
- drivers/gpu/drm/xe/xe_pm.c                    |  39 +-
- drivers/gpu/drm/xe/xe_pxp.c                   | 901 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_pxp.h                   |  35 +
- drivers/gpu/drm/xe/xe_pxp_debugfs.c           | 120 +++
- drivers/gpu/drm/xe/xe_pxp_debugfs.h           |  13 +
- drivers/gpu/drm/xe/xe_pxp_submit.c            | 588 ++++++++++++
- drivers/gpu/drm/xe/xe_pxp_submit.h            |  22 +
- drivers/gpu/drm/xe/xe_pxp_types.h             | 135 +++
- drivers/gpu/drm/xe/xe_query.c                 |  29 +
- drivers/gpu/drm/xe/xe_ring_ops.c              |   4 +-
- drivers/gpu/drm/xe/xe_vm.c                    | 165 +++-
- drivers/gpu/drm/xe/xe_vm.h                    |   8 +
- drivers/gpu/drm/xe/xe_vm_types.h              |   1 +
- include/uapi/drm/xe_drm.h                     |  94 +-
- 39 files changed, 2493 insertions(+), 42 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/instructions/xe_mfx_commands.h
+ drivers/gpu/drm/xe/xe_pci.c                   |   2 +
+ drivers/gpu/drm/xe/xe_pxp.c                   | 107 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pxp.h                   |  13 +++
+ drivers/gpu/drm/xe/xe_pxp_types.h             |  26 +++++
+ 9 files changed, 180 insertions(+), 4 deletions(-)
  create mode 100644 drivers/gpu/drm/xe/regs/xe_pxp_regs.h
  create mode 100644 drivers/gpu/drm/xe/xe_pxp.c
  create mode 100644 drivers/gpu/drm/xe/xe_pxp.h
- create mode 100644 drivers/gpu/drm/xe/xe_pxp_debugfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_pxp_debugfs.h
- create mode 100644 drivers/gpu/drm/xe/xe_pxp_submit.c
- create mode 100644 drivers/gpu/drm/xe/xe_pxp_submit.h
  create mode 100644 drivers/gpu/drm/xe/xe_pxp_types.h
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 5c97ad6ed738..a55705854d22 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -86,6 +86,7 @@ xe-y += xe_bb.o \
+ 	xe_preempt_fence.o \
+ 	xe_pt.o \
+ 	xe_pt_walk.o \
++	xe_pxp.o \
+ 	xe_query.o \
+ 	xe_range_fence.o \
+ 	xe_reg_sr.o \
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h b/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
+index 5dfc587c8237..419e8e926f00 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
+@@ -10,9 +10,9 @@
+ #include <linux/types.h>
+ 
+ struct drm_gem_object;
+-struct intel_pxp;
++struct xe_pxp;
+ 
+-static inline int intel_pxp_key_check(struct intel_pxp *pxp,
++static inline int intel_pxp_key_check(struct xe_pxp *pxp,
+ 				      struct drm_gem_object *obj,
+ 				      bool assign)
+ {
+diff --git a/drivers/gpu/drm/xe/regs/xe_pxp_regs.h b/drivers/gpu/drm/xe/regs/xe_pxp_regs.h
+new file mode 100644
+index 000000000000..d67cf210d23d
+--- /dev/null
++++ b/drivers/gpu/drm/xe/regs/xe_pxp_regs.h
+@@ -0,0 +1,17 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright(c) 2024, Intel Corporation. All rights reserved.
++ */
++
++#ifndef __XE_PXP_REGS_H__
++#define __XE_PXP_REGS_H__
++
++#include "regs/xe_regs.h"
++
++/* The following registers are only valid on platforms with a media GT */
++
++/* KCR enable/disable control */
++#define KCR_INIT				XE_REG(0x3860f0)
++#define   KCR_INIT_ALLOW_DISPLAY_ME_WRITES	REG_BIT(14)
++
++#endif /* __XE_PXP_REGS_H__ */
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index bf36e4fb4679..da118115daad 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -49,6 +49,7 @@
+ #include "xe_pat.h"
+ #include "xe_pcode.h"
+ #include "xe_pm.h"
++#include "xe_pxp.h"
+ #include "xe_query.h"
+ #include "xe_sriov.h"
+ #include "xe_tile.h"
+@@ -752,6 +753,11 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err_fini_oa;
+ 
++	/* A PXP init failure is not fatal */
++	err = xe_pxp_init(xe);
++	if (err && err != -EOPNOTSUPP)
++		drm_err(&xe->drm, "PXP initialization failed: %pe\n", ERR_PTR(err));
++
+ 	err = drm_dev_register(&xe->drm, 0);
+ 	if (err)
+ 		goto err_fini_display;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 8a7b15972413..2d9d0ea5dbba 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -34,6 +34,7 @@
+ 
+ struct xe_ggtt;
+ struct xe_pat_ops;
++struct xe_pxp;
+ 
+ #define XE_BO_INVALID_OFFSET	LONG_MAX
+ 
+@@ -316,6 +317,8 @@ struct xe_device {
+ 		u8 has_llc:1;
+ 		/** @info.has_mmio_ext: Device has extra MMIO address range */
+ 		u8 has_mmio_ext:1;
++		/** @info.has_pxp: Device has PXP support */
++		u8 has_pxp:1;
+ 		/** @info.has_range_tlb_invalidation: Has range based TLB invalidations */
+ 		u8 has_range_tlb_invalidation:1;
+ 		/** @info.has_sriov: Supports SR-IOV */
+@@ -514,6 +517,9 @@ struct xe_device {
+ 	/** @oa: oa observation subsystem */
+ 	struct xe_oa oa;
+ 
++	/** @pxp: Encapsulate Protected Xe Path support */
++	struct xe_pxp *pxp;
++
+ 	/** @needs_flr_on_fini: requests function-reset on fini */
+ 	bool needs_flr_on_fini;
+ 
+@@ -586,8 +592,6 @@ struct xe_device {
+ 		unsigned int czclk_freq;
+ 		unsigned int fsb_freq, mem_freq, is_ddr3;
+ 	};
+-
+-	void *pxp;
+ #endif
+ };
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 7d146e3e8e21..9c95ecc81b81 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -62,6 +62,7 @@ struct xe_device_desc {
+ 	u8 has_heci_cscfi:1;
+ 	u8 has_llc:1;
+ 	u8 has_mmio_ext:1;
++	u8 has_pxp:1;
+ 	u8 has_sriov:1;
+ 	u8 skip_guc_pc:1;
+ 	u8 skip_mtcfg:1;
+@@ -623,6 +624,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.has_heci_cscfi = desc->has_heci_cscfi;
+ 	xe->info.has_llc = desc->has_llc;
+ 	xe->info.has_mmio_ext = desc->has_mmio_ext;
++	xe->info.has_pxp = desc->has_pxp;
+ 	xe->info.has_sriov = desc->has_sriov;
+ 	xe->info.skip_guc_pc = desc->skip_guc_pc;
+ 	xe->info.skip_mtcfg = desc->skip_mtcfg;
+diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
+new file mode 100644
+index 000000000000..1a4d12d37d96
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_pxp.c
+@@ -0,0 +1,107 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright(c) 2024 Intel Corporation.
++ */
++
++#include "xe_pxp.h"
++
++#include <drm/drm_managed.h>
++
++#include "xe_device_types.h"
++#include "xe_force_wake.h"
++#include "xe_gt.h"
++#include "xe_gt_types.h"
++#include "xe_mmio.h"
++#include "xe_pxp_types.h"
++#include "xe_uc_fw.h"
++#include "regs/xe_pxp_regs.h"
++
++/**
++ * DOC: PXP
++ *
++ * PXP (Protected Xe Path) allows execution and flip to display of protected
++ * (i.e. encrypted) objects. This feature is currently only supported in
++ * integrated parts.
++ */
++
++static bool pxp_is_supported(const struct xe_device *xe)
++{
++	return xe->info.has_pxp && IS_ENABLED(CONFIG_INTEL_MEI_GSC_PROXY);
++}
++
++static int kcr_pxp_set_status(const struct xe_pxp *pxp, bool enable)
++{
++	u32 val = enable ? _MASKED_BIT_ENABLE(KCR_INIT_ALLOW_DISPLAY_ME_WRITES) :
++		  _MASKED_BIT_DISABLE(KCR_INIT_ALLOW_DISPLAY_ME_WRITES);
++	unsigned int fw_ref;
++
++	fw_ref = xe_force_wake_get(gt_to_fw(pxp->gt), XE_FW_GT);
++	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT))
++		return -EIO;
++
++	xe_mmio_write32(&pxp->gt->mmio, KCR_INIT, val);
++	xe_force_wake_put(gt_to_fw(pxp->gt), fw_ref);
++
++	return 0;
++}
++
++static int kcr_pxp_enable(const struct xe_pxp *pxp)
++{
++	return kcr_pxp_set_status(pxp, true);
++}
++
++/**
++ * xe_pxp_init - initialize PXP support
++ * @xe: the xe_device structure
++ *
++ * Initialize the HW state and allocate the objects required for PXP support.
++ * Note that some of the requirement for PXP support (GSC proxy init, HuC auth)
++ * are performed asynchronously as part of the GSC init. PXP can only be used
++ * after both this function and the async worker have completed.
++ *
++ * Returns -EOPNOTSUPP if PXP is not supported, 0 if PXP initialization is
++ * successful, other errno value if there is an error during the init.
++ */
++int xe_pxp_init(struct xe_device *xe)
++{
++	struct xe_gt *gt = xe->tiles[0].media_gt;
++	struct xe_pxp *pxp;
++	int err;
++
++	if (!pxp_is_supported(xe))
++		return -EOPNOTSUPP;
++
++	/* we only support PXP on single tile devices with a media GT */
++	if (xe->info.tile_count > 1 || !gt)
++		return -EOPNOTSUPP;
++
++	/* The GSCCS is required for submissions to the GSC FW */
++	if (!(gt->info.engine_mask & BIT(XE_HW_ENGINE_GSCCS0)))
++		return -EOPNOTSUPP;
++
++	/* PXP requires both GSC and HuC firmwares to be available */
++	if (!xe_uc_fw_is_loadable(&gt->uc.gsc.fw) ||
++	    !xe_uc_fw_is_loadable(&gt->uc.huc.fw)) {
++		drm_info(&xe->drm, "skipping PXP init due to missing FW dependencies");
++		return -EOPNOTSUPP;
++	}
++
++	pxp = drmm_kzalloc(&xe->drm, sizeof(struct xe_pxp), GFP_KERNEL);
++	if (!pxp)
++		return -ENOMEM;
++
++	pxp->xe = xe;
++	pxp->gt = gt;
++
++	err = kcr_pxp_enable(pxp);
++	if (err)
++		goto out_free;
++
++	xe->pxp = pxp;
++
++	return 0;
++
++out_free:
++	drmm_kfree(&xe->drm, pxp);
++	return err;
++}
+diff --git a/drivers/gpu/drm/xe/xe_pxp.h b/drivers/gpu/drm/xe/xe_pxp.h
+new file mode 100644
+index 000000000000..00f5e688c0d9
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_pxp.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright(c) 2024, Intel Corporation. All rights reserved.
++ */
++
++#ifndef __XE_PXP_H__
++#define __XE_PXP_H__
++
++struct xe_device;
++
++int xe_pxp_init(struct xe_device *xe);
++
++#endif /* __XE_PXP_H__ */
+diff --git a/drivers/gpu/drm/xe/xe_pxp_types.h b/drivers/gpu/drm/xe/xe_pxp_types.h
+new file mode 100644
+index 000000000000..4639cf49d267
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_pxp_types.h
+@@ -0,0 +1,26 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright(c) 2024, Intel Corporation. All rights reserved.
++ */
++
++#ifndef __XE_PXP_TYPES_H__
++#define __XE_PXP_TYPES_H__
++
++struct xe_device;
++struct xe_gt;
++
++/**
++ * struct xe_pxp - pxp state
++ */
++struct xe_pxp {
++	/** @xe: Backpoiner to the xe_device struct */
++	struct xe_device *xe;
++
++	/**
++	 * @gt: pointer to the gt that owns the submission-side of PXP
++	 * (VDBOX, KCR and GSC)
++	 */
++	struct xe_gt *gt;
++};
++
++#endif /* __XE_PXP_TYPES_H__ */
 -- 
 2.43.0
 
