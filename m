@@ -4,55 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 947D2E77199
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 21:12:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 212F3E77188
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 21:18:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 656D610EA13;
-	Mon,  6 Jan 2025 21:12:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C112110EA14;
+	Mon,  6 Jan 2025 21:18:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WROcGu3g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="alva0Ra3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6BFB10EA25
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Jan 2025 21:12:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7BB510EA13
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Jan 2025 21:18:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736197961; x=1767733961;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rs1klmr/KPKU8K1wVbAQsfqbWK74sXmTMoRkJq68J4Q=;
- b=WROcGu3ghba/2G9IGZTfE3jCYtwQdJX823uI1ukJ1kKG6dZpzhsX8C74
- OWrKysNau3XZEOKGOcTrM84revX7eU4UUR9dGvSYq1+6RCG0EoRwvCdKZ
- BTpwCl67cOQHcVdISrB/+sHmrtXv+7Ukr05s1gORHyI7r3jP98H7DegzO
- yiw+vUf5YgptqCpiJzE5GlgIoC0pQtvZRUqCZZeIp9/ADqbAeVehVe0NF
- jmhFA20tmnrGeQLzff5AT8coFiJEqe/xXQj4ZIflCEF9Nr2CcuakwlyGX
- eidPonNsU/JcXKEKiQLeSmh74LyocK1Cp/rEoMB667Dkrp+ptLrYXZHEM w==;
-X-CSE-ConnectionGUID: poRh84c5SYmfyVzQdj/usg==
-X-CSE-MsgGUID: lTnRmgAPSEWEjHx7IDlQQQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="61734945"
-X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="61734945"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2025 13:12:41 -0800
-X-CSE-ConnectionGUID: pl39m5+KTj64GOfv3HNroQ==
-X-CSE-MsgGUID: py3W8CB+QtegWyF5Lzb2Gw==
+ t=1736198335; x=1767734335;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=94YWU6KycsL3A5+gG5nEMUAsyR+3CEZRShtGfDFCvDU=;
+ b=alva0Ra3ohLRolD5PjAJTEukhiYB9IVY1uvtv6hWLTi2zQK/TpcuFG1R
+ briS2ZXSxG0Kct7tg7dR3mhj6f4psfpLAdf6N/uNSIgH+koSt/D4B5+kK
+ L6fju49GouVli4rXpQj1xa5SAY+L2fgk7fNFJnbVnIeDkw3oqHvxLMaPO
+ Tpq1sh92kHvqmrXorBw4OanscRKvIhd9FblFP3/7OyTwRmHu6DzBZ/NUn
+ ZNHhhonn7yNabyPRqKYhA/f7am4mWLZcw16UId4psHVcFPt34Ni+5VHzq
+ cGuqOJC3/52Hxrw15dkPHa1JPhip74nuOmeoRhgOh4lABpVUEHx9n1QYu w==;
+X-CSE-ConnectionGUID: izedZZ3MQdSA3WOLl7RJCg==
+X-CSE-MsgGUID: WqbhH5H2QJ2N0QDxxOpcBw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="36056605"
+X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="36056605"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2025 13:18:55 -0800
+X-CSE-ConnectionGUID: YPis3dAfQQ+nI/Gq4IvBmg==
+X-CSE-MsgGUID: aO3D+WxCSu+w/5hXBfoQoA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="107417850"
-Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2025 13:12:41 -0800
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH v4 13/13] drm/xe/pxp: Enable PXP for MTL and LNL
-Date: Mon,  6 Jan 2025 13:12:10 -0800
-Message-ID: <20250106211212.3418231-14-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250106211212.3418231-1-daniele.ceraolospurio@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="102642410"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2025 13:18:55 -0800
+Date: Mon, 06 Jan 2025 13:18:54 -0800
+Message-ID: <855xmr1w01.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: intel-xe@lists.freedesktop.org, John Harrison <John.C.Harrison@Intel.com>
+Subject: Re: [PATCH v4 08/13] drm/xe/pxp: Add userspace and LRC support for
+ PXP-using queues
+In-Reply-To: <20250106211212.3418231-9-daniele.ceraolospurio@intel.com>
 References: <20250106211212.3418231-1-daniele.ceraolospurio@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+ <20250106211212.3418231-9-daniele.ceraolospurio@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,32 +71,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that are the pieces are there, we can turn the feature on.
+On Mon, 06 Jan 2025 13:12:05 -0800, Daniele Ceraolo Spurio wrote:
+>
+> Userspace is required to mark a queue as using PXP to guarantee that the
+> PXP instructions will work. In addition to managing the PXP sessions,
+> when a PXP queue is created the driver will set the relevant bits in
+> its context control register.
+>
+> On submission of a valid PXP queue, the driver will validate all
+> encrypted objects mapped to the VM to ensured they were encrypted with
+> the current key.
+>
+> v2: Remove pxp_types include outside of PXP code (Jani), better comments
+> and code cleanup (John)
+>
+> v3: split the internal PXP management to a separate patch for ease of
+> review. re-order ioctl checks to always return -EINVAL if parameters are
+> invalid, rebase on msix changes.
+>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_engine_regs.h |  1 +
+>  drivers/gpu/drm/xe/xe_exec_queue.c       | 56 +++++++++++++++++++++++-
+>  drivers/gpu/drm/xe/xe_exec_queue.h       |  5 +++
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 +
+>  drivers/gpu/drm/xe/xe_execlist.c         |  2 +-
+>  drivers/gpu/drm/xe/xe_lrc.c              | 18 ++++++--
+>  drivers/gpu/drm/xe/xe_lrc.h              |  4 +-
+>  drivers/gpu/drm/xe/xe_pxp.c              | 35 +++++++++++++--
+>  drivers/gpu/drm/xe/xe_pxp.h              |  4 +-
+>  include/uapi/drm/xe_drm.h                | 40 ++++++++++++++++-
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/xe/xe_pci.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 9c95ecc81b81..b67a6bce0664 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -337,11 +337,13 @@ static const struct xe_device_desc mtl_desc = {
- 	.require_force_probe = true,
- 	PLATFORM(METEORLAKE),
- 	.has_display = true,
-+	.has_pxp = true,
- };
- 
- static const struct xe_device_desc lnl_desc = {
- 	PLATFORM(LUNARLAKE),
- 	.has_display = true,
-+	.has_pxp = true,
- };
- 
- static const struct xe_device_desc bmg_desc = {
--- 
-2.43.0
-
+I believe patches which touch 'include/uapi/drm/xe_drm.h' should be titled
+"drm/xe/pxp/uapi: foo" or "drm/xe/uapi: foo".
