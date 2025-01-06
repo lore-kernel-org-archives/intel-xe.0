@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30211E77199
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 04:36:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C545EE77188
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 04:37:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA48810E57A;
-	Mon,  6 Jan 2025 04:36:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gMFso2OB";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B796A10E57A;
- Mon,  6 Jan 2025 04:36:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736138192; x=1767674192;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ZPVK1vzmcmZZmzAeKqc/UAvpowO3tzilP7U3fthSXME=;
- b=gMFso2OBc4HVQHAv+Csna734LAm3/ZL8zuS6OqgPP9OpWFAO6bhOOTL9
- 15BUVMzk9uNOVu83sq8YVY0ja3mjLCWpMjlIKLmxNmcmMi4hmcBWWAaQu
- /rLhJOFjlPrKtE8vzSM+lgo0l4PjHRsjrP6GmLzpI+zf91ffiVkb2FGZX
- qDr2LIMf811QPXPSorYkDoJLiLnIRB39rjD3kFvKIAlIvjz3+NLJVldh/
- gzgw28G5Sc0AV35Cn06cyCfMEZgEc9dqZb3+ox47GJjF0UmYufMVAPngV
- V3LU5cYsOQfoIwgKF8VaocDmLYencNEU9b+SmsrGCFX0sJDtz8wR8Wx/i w==;
-X-CSE-ConnectionGUID: DRGZgiJjQU2qkjk8iXFqIA==
-X-CSE-MsgGUID: kLjT15qXSSGYmi1vqslo5Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11306"; a="23880606"
-X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="23880606"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2025 20:36:32 -0800
-X-CSE-ConnectionGUID: 50D4DThjQx6HSBLT3ZajFQ==
-X-CSE-MsgGUID: ydSX7roeQtm7hNlTNW30Yg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="107306403"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orviesa004.jf.intel.com with ESMTP; 05 Jan 2025 20:36:30 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v3 6/6] drm/i915/lobf: Add debug print for LOBF
-Date: Mon,  6 Jan 2025 09:45:16 +0530
-Message-Id: <20250106041516.924101-7-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20250106041516.924101-1-animesh.manna@intel.com>
-References: <20250106041516.924101-1-animesh.manna@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9239210E570;
+	Mon,  6 Jan 2025 04:37:18 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AFD510E570;
+ Mon,  6 Jan 2025 04:37:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_SSC_enablement_in_po?=
+ =?utf-8?q?rt_clock_programming?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 06 Jan 2025 04:37:17 -0000
+Message-ID: <173613823742.4175944.8927204142605048267@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250106040821.251114-1-suraj.kandpal@intel.com>
+In-Reply-To: <20250106040821.251114-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,34 +36,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Lobf is enabled part of ALPM configuration and if has_lobf
-is set to true respective bit for LOBF will be set. Add debug
-print while setting the bitfield of LOBF.
+== Series Details ==
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Series: SSC enablement in port clock programming
+URL   : https://patchwork.freedesktop.org/series/143128/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index ab98b48ec47e..0ddb103ba43a 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -376,8 +376,10 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 			ALPM_CTL_EXTENDED_FAST_WAKE_TIME(intel_dp->alpm_parameters.fast_wake_lines);
- 	}
- 
--	if (crtc_state->has_lobf)
-+	if (crtc_state->has_lobf) {
- 		alpm_ctl |= ALPM_CTL_LOBF_ENABLE;
-+		drm_dbg_kms(display->drm, "Link off between frames (LOBF) enabled\n");
-+	}
- 
- 	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(intel_dp->alpm_parameters.check_entry_lines);
- 
--- 
-2.29.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 856baaf960db drm-tip: 2025y-01m-05d-16h-02m-18s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/cx0: Fix SSC enablement in PORT_CLOCK_CTL
+Applying: drm/i915/cx0: Set ssc_enabled for c20 too
+
 
