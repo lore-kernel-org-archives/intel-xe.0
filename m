@@ -4,59 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5574E77199
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 19:20:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63743E77188
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 19:40:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B44C10E9DA;
-	Mon,  6 Jan 2025 19:20:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LMYPzzfL";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 994B310E9DA;
- Mon,  6 Jan 2025 19:20:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736191208; x=1767727208;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=wdHWwUbC/tCb5ZVSbc+f3krI3FwRu9IsxnpA40aiesk=;
- b=LMYPzzfLPLV2LqKke32XbiAHGgybhxvEbKF2IhjUqdc0PGNxW7qr3XNS
- G4lNW20Lui4Rs3HdtG8UZ7bmEkpSEj4eDcQLNLd6sUxpkxyZpwCdcV+S8
- 3Zl6oLodK4LvH763cJLFTo34Jd0UrkWpSgRrfo0Q/BGBqgVnoVkqddSxZ
- emZKd/17eK7tcmiaJNfoFA6m7QzUxAZ5jVvyUKCFQ4k6HkbMrKBdmuUbH
- xoZAjS2om7RFxeQ6DpukBH5JStTBJaJN4noJSe+H6UD+7/ggxFdV0bNeA
- zN2bLU/eIXT5UHHbX1GKcA7Q0qPA0Cc07IKUn2Ucv5dw9WtYOJMGWDJ8Z A==;
-X-CSE-ConnectionGUID: D3sK3yBAQJyS9T4sa7So0A==
-X-CSE-MsgGUID: 6iChJnzHSsSp+xmlpZ3LOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="36365991"
-X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="36365991"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2025 11:20:08 -0800
-X-CSE-ConnectionGUID: 3rOBkgt5ToG2c+kcNIFhbA==
-X-CSE-MsgGUID: ht5qdazoQQeCZjLYH2Od1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="103025431"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.110.91])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2025 11:20:07 -0800
-Date: Mon, 6 Jan 2025 13:20:01 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH topic/core-for-CI] Revert "vmstat: disable vmstat_work on
- vmstat_cpu_down_prep()"
-Message-ID: <dimyd73eptomn5ubep7w2ueoq3f2s6yl2iot6dbzfl6mxnwi5g@e2geki6jpkmd>
-References: <20250106172455.1184656-1-lucas.demarchi@intel.com>
- <20250106172734.GE5725@mdroper-desk1.amr.corp.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15D4310E9E2;
+	Mon,  6 Jan 2025 19:40:05 +0000 (UTC)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE78610E9E2;
+ Mon,  6 Jan 2025 19:40:03 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 47039A41D8B;
+ Mon,  6 Jan 2025 19:38:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEC4EC4CED2;
+ Mon,  6 Jan 2025 19:40:00 +0000 (UTC)
+Date: Mon, 6 Jan 2025 14:41:26 -0500
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Genes Lists <lists@sapience.com>
+Cc: Andrea Amorosi <andrea.amorosi76@gmail.com>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, lucas.demarchi@intel.com,
+ regressions@lists.linux.dev, stable@vger.kernel.org,
+ thomas.hellstrom@linux.intel.com
+Subject: Re: [REGRESSION][BISECTED] Re: 6.12.7 stable new error: event
+ xe_bo_move has unsafe dereference of argument 4
+Message-ID: <20250106144126.20d7f599@gandalf.local.home>
+In-Reply-To: <d5ef54d76188ec51d9e053fd097dc3f5bb6e6519.camel@sapience.com>
+References: <9dee19b6185d325d0e6fa5f7cbba81d007d99166.camel@sapience.com>
+ <73129e45-cf51-4e8d-95e8-49bc39ebc246@gmail.com>
+ <d5ef54d76188ec51d9e053fd097dc3f5bb6e6519.camel@sapience.com>
+X-Mailer: Claws Mail 3.20.0git84 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20250106172734.GE5725@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,24 +50,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jan 06, 2025 at 09:27:34AM -0800, Matt Roper wrote:
->On Mon, Jan 06, 2025 at 09:24:55AM -0800, Lucas De Marchi wrote:
->> This reverts commit adcfb264c3ed51fbbf5068ddf10d309a63683868.
->>
->> It completely tanks the CI and nothing gets tested. This is being either
->> reverted upstream or the fix will conflict with the revert and we will
->> find out when it does.
->>
->> Link: https://lore.kernel.org/all/g4sefofdrwu72ijhse7k57wuvrwhvn2eoqmc4jdoepkcgs7h5n@hmuhkwnye6pe/#t
->> References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13464
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->
->Acked-by: Matt Roper <matthew.d.roper@intel.com>
->
->for putting this in the CI branch until a real fix/revert arrives from
->upstream.
+On Sat, 04 Jan 2025 15:09:10 -0500
+Genes Lists <lists@sapience.com> wrote:
 
-pushed to topic/core-for-CI.
+> On Sat, 2025-01-04 at 18:43 +0100, Andrea Amorosi wrote:
+> > Hi to all,
+> > 
+> > I've just updated my archlinux to |6.12.8-arch1-1 and I still get the
+> > same issue:|
+> > 
+> >   
+> Right - 6.12.8 (and Arch build of same) does not have Steve Rostedt's
+> patch.
+> The patch is in mainline and I believe it will be in 6.12.9.
 
-Thanks
-Lucas De Marchi
+For completeness, the patch in question is this:
+
+  https://lore.kernel.org/20241231000646.324fb5f7@gandalf.local.home
+
+-- Steve
+
+
+> 
+> Since the warning logged is a false positive it is benign.
+> 
+> 
+
