@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29FFDE7719A
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 07:36:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B7DEE77198
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 07:36:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EADE810E5A7;
-	Mon,  6 Jan 2025 07:36:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA00510E5A8;
+	Mon,  6 Jan 2025 07:36:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bLDE3QMy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q8vcm4+W";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CDB010E5A7
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Jan 2025 07:36:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B56AD10E5A9
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Jan 2025 07:36:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736149002; x=1767685002;
+ t=1736149006; x=1767685006;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rID/vpk9yg5jWX/tIfbH6mqdFBtK2vxKTcGYNyoPBIg=;
- b=bLDE3QMyhCq/qoeUl1Em3S2FfxSr21Gz+66RGbtei/NOKPqScQKqk6CR
- JC4pNFAHvGTIjlNo/HJGMUeXk7MQeHH2uKwAwDryrYS/c6MjXbFuJKKKw
- 7Cuj2QbwgqJLlSpBO6vn20ocuHXClz5GKNYWdLimECgz19wGXz9b6MIDZ
- BHWId8WRyXiHDiLYvUCM/K79l0KAsNGOSzFktlddE36k044wM7LXSZ8Ft
- 0IFt3XTgYndIIkigZuwZUFLWlNhZOCegz/KXmQbvEfw1SCgbVD8GL9p6A
- IypPGYD6+bpbwvi7FFmJQsgs9bL+XqLzDSMReEx5eC7tBCtLUehwnkORJ Q==;
-X-CSE-ConnectionGUID: ++JBtKV6TcCW9q9m89rNgA==
-X-CSE-MsgGUID: +UKtsjfYTtile05w1oVB/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11306"; a="46873078"
-X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="46873078"
+ bh=nZzAWkfaD/dRtm4OoNuxcAd8MyFmF0/v0dNp2tNfjG4=;
+ b=Q8vcm4+WDgl3TR8QvFbH9rxAZv2VPabBZTp3XQtE5CN2fq4eoREI4UKR
+ 6zVLsSPbCVOTxACZFrSndukoBxMIpXG39KWdKPxEJyJOoJmtz0knL8uuO
+ Fq+eamNlFeZRfUQy56DpuvlczSoPYGKAjzhcfE9B7hwEQjwxAl+axS4jk
+ PyZtrGKXMRJsKjMlWPBswQ5ucVR1jMlNp/vFMK5VncDCay6rokmQSlp+X
+ up5ew1DURT9PThoBNCPJXTfADa4jEOqdAtzICqA52qwS86ALGM/q4RIBt
+ v5bhN2D9Yw/5K71gToGCGPlsIqvuHlhF2njxBx4NjKPh3EJz6/5iofOIV Q==;
+X-CSE-ConnectionGUID: eDvgoUKDSTCFbzPNNBGuXA==
+X-CSE-MsgGUID: d7yq8MjTR8iH/hjONV2/WQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11306"; a="46873082"
+X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="46873082"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2025 23:36:42 -0800
-X-CSE-ConnectionGUID: smFVflXATHe+bMa/++GFsw==
-X-CSE-MsgGUID: mQNbzp4bS42R9/yYWyivlQ==
+ 05 Jan 2025 23:36:46 -0800
+X-CSE-ConnectionGUID: 0sbqTCh1SHq9F9B9h6C9VA==
+X-CSE-MsgGUID: inhT1SE0RGyl8QbBy1BA5w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="125650749"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="125650769"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2025 23:36:39 -0800
+ 05 Jan 2025 23:36:42 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
@@ -48,9 +48,10 @@ Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
  vinay.belgaumkar@intel.com, ashutosh.dixit@intel.com,
  john.c.harrison@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@intel.com, soham.purkait@intel.com
-Subject: [PATCH v3 07/10] drm/xe/trace: Add trace for engine activity
-Date: Mon,  6 Jan 2025 13:25:56 +0530
-Message-ID: <20250106075600.852080-8-riana.tauro@intel.com>
+Subject: [PATCH v3 08/10] drm/xe/guc: Expose engine activity only for
+ supported GuC version
+Date: Mon,  6 Jan 2025 13:25:57 +0530
+Message-ID: <20250106075600.852080-9-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250106075600.852080-1-riana.tauro@intel.com>
 References: <20250106075600.852080-1-riana.tauro@intel.com>
@@ -70,114 +71,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add engine activity related information to trace events for
-better debuggability
+Engine activity is supported only on GuC submission version >= 1.14.1
+Allow enabling/reading engine activity only on supported
+GuC versions. Warn once if not supported.
 
-v2: add trace for engine activity (Umesh)
+v2: use guc submission version (John)
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_engine_activity.c |  5 +++
- drivers/gpu/drm/xe/xe_trace_guc.h           | 49 +++++++++++++++++++++
- 2 files changed, 54 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_engine_activity.c | 31 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_engine_activity.h |  1 +
+ 2 files changed, 32 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-index 687d90873e97..14950b42d1b1 100644
+index 14950b42d1b1..5aea42f0cded 100644
 --- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
 +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-@@ -15,6 +15,7 @@
- #include "xe_hw_engine.h"
- #include "xe_map.h"
- #include "xe_mmio.h"
-+#include "xe_trace_guc.h"
+@@ -255,6 +255,9 @@ u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe)
+ {
+ 	struct xe_guc *guc =  &hwe->gt->uc.guc;
  
- #define TOTAL_QUANTA 0x8000
- 
-@@ -165,6 +166,8 @@ static u64 get_engine_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
- 		}
- 	}
- 
-+	trace_xe_guc_engine_activity(xe, ea, hwe->name, hwe->instance);
++	if (!xe_guc_engine_activity_supported(guc))
++		return 0;
 +
- 	return ea->total + ea->active;
+ 	return get_engine_active_ticks(guc, hwe);
  }
  
-@@ -198,6 +201,8 @@ static u64 get_engine_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
- 	ea->quanta_remainder_ns = numerator % TOTAL_QUANTA;
- 	ea->quanta = cpu_ns_to_guc_tsc_tick(ea->quanta_ns, cached_metadata->guc_tsc_frequency_hz);
+@@ -268,9 +271,31 @@ u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe)
+ {
+ 	struct xe_guc *guc =  &hwe->gt->uc.guc;
  
-+	trace_xe_guc_engine_activity(xe, ea, hwe->name, hwe->instance);
++	if (!xe_guc_engine_activity_supported(guc))
++		return 0;
 +
- 	return ea->quanta;
+ 	return get_engine_total_ticks(guc, hwe);
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_trace_guc.h b/drivers/gpu/drm/xe/xe_trace_guc.h
-index 23abdd55dc62..156d429d7e79 100644
---- a/drivers/gpu/drm/xe/xe_trace_guc.h
-+++ b/drivers/gpu/drm/xe/xe_trace_guc.h
-@@ -14,6 +14,7 @@
- 
- #include "xe_device_types.h"
- #include "xe_guc_exec_queue_types.h"
-+#include "xe_guc_engine_activity_types.h"
- 
- #define __dev_name_xe(xe)	dev_name((xe)->drm.dev)
- 
-@@ -100,6 +101,54 @@ DEFINE_EVENT_PRINT(xe_guc_ctb, xe_guc_ctb_g2h,
- 
- );
- 
-+TRACE_EVENT(xe_guc_engine_activity,
-+	    TP_PROTO(struct xe_device *xe, struct engine_activity *ea, const char *name,
-+		     u16 instance),
-+	    TP_ARGS(xe, ea, name, instance),
++/**
++ * xe_guc_engine_activity_enable_stats - Enable engine activity stats
++ * @guc: The GuC object
++ *
++ * Engine activity stats is supported from GuC submission version
++ * (1.14.1)
++ *
++ * Return: true if engine activity stats supported, false otherwise
++ */
++bool xe_guc_engine_activity_supported(struct xe_guc *guc)
++{
++	if (GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 14, 1))
++		return true;
 +
-+	    TP_STRUCT__entry(
-+			__string(dev, __dev_name_xe(xe))
-+			__string(name, name)
-+			__field(u32, global_change_num)
-+			__field(u32, guc_tsc_frequency_hz)
-+			__field(u32, lag_latency_usec)
-+			__field(u16, instance)
-+			__field(u16, change_num)
-+			__field(u16, quanta_ratio)
-+			__field(u32, last_update_tick)
-+			__field(u64, active_ticks)
-+			__field(u64, active)
-+			__field(u64, total)
-+			__field(u64, quanta)
-+			__field(u64, last_cpu_ts)
-+	    ),
++	drm_WARN_ON_ONCE(&guc_to_xe(guc)->drm,
++			 "Engine busyness not supported in this GuC version\n");
++	return false;
++}
 +
-+	    TP_fast_assign(
-+			__assign_str(dev);
-+			__assign_str(name);
-+			__entry->global_change_num = ea->metadata.global_change_num;
-+			__entry->guc_tsc_frequency_hz = ea->metadata.guc_tsc_frequency_hz;
-+			__entry->lag_latency_usec = ea->metadata.lag_latency_usec;
-+			__entry->instance = instance;
-+			__entry->change_num = ea->activity.change_num;
-+			__entry->quanta_ratio = ea->activity.quanta_ratio;
-+			__entry->last_update_tick = ea->activity.last_update_tick;
-+			__entry->active_ticks = ea->activity.active_ticks;
-+			__entry->active = ea->active;
-+			__entry->total = ea->total;
-+			__entry->quanta = ea->quanta;
-+			__entry->last_cpu_ts = ea->last_cpu_ts;
-+	    ),
-+
-+	    TP_printk("dev=%s engine %s:%d Active=%llu, quanta=%llu, last_cpu_ts=%llu\n"
-+		      "Activity metadata: global_change_num=%u, guc_tsc_frequency_hz=%u lag_latency_usec=%u\n"
-+		      "Activity data: change_num=%u, quanta_ratio=%u, last_update_tick=%u, active_ticks=%llu\n",
-+		      __get_str(dev), __get_str(name), __entry->instance,
-+		      (__entry->active +  __entry->total), __entry->quanta, __entry->last_cpu_ts,
-+		      __entry->global_change_num, __entry->guc_tsc_frequency_hz,
-+		      __entry->lag_latency_usec, __entry->change_num, __entry->quanta_ratio,
-+		      __entry->last_update_tick, __entry->active_ticks)
-+);
- #endif
+ /**
+  * xe_guc_engine_activity_enable_stats - Enable engine activity stats
+  * @guc: The GuC object
+@@ -281,6 +306,9 @@ void xe_guc_engine_activity_enable_stats(struct xe_guc *guc)
+ {
+ 	int ret;
  
- /* This part must be outside protection */
++	if (!xe_guc_engine_activity_supported(guc))
++		return;
++
+ 	ret = enable_engine_activity_stats(guc);
+ 	if (ret)
+ 		xe_gt_err(guc_to_gt(guc), "failed to enable activity stats%d\n", ret);
+@@ -307,6 +335,9 @@ int xe_guc_engine_activity_init(struct xe_guc *guc)
+ 	struct xe_gt *gt = guc_to_gt(guc);
+ 	int ret;
+ 
++	if (!xe_guc_engine_activity_supported(guc))
++		return 0;
++
+ 	ret = allocate_engine_activity_group(guc);
+ 	if (ret) {
+ 		xe_gt_err(gt, "failed to allocate activity group %d\n", ret);
+diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.h b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
+index 6cd435b81bbe..e2c2f1bb2b59 100644
+--- a/drivers/gpu/drm/xe/xe_guc_engine_activity.h
++++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
+@@ -12,6 +12,7 @@ struct xe_hw_engine;
+ struct xe_guc;
+ 
+ int xe_guc_engine_activity_init(struct xe_guc *guc);
++bool xe_guc_engine_activity_supported(struct xe_guc *guc);
+ void xe_guc_engine_activity_enable_stats(struct xe_guc *guc);
+ u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe);
+ u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe);
 -- 
 2.47.1
 
