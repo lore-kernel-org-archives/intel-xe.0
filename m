@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF73BE77188
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 10:05:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 930D3E77188
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 10:05:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52A3A10E5FB;
-	Mon,  6 Jan 2025 10:05:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5927410E5FB;
+	Mon,  6 Jan 2025 10:05:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fvWcNwgc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f/0gY7QW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E978010E5FB;
- Mon,  6 Jan 2025 10:05:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE2C710E5FB
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Jan 2025 10:05:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736157909; x=1767693909;
+ t=1736157924; x=1767693924;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=hxP5yJZDnQDZgM5eiCHCPUKzI/JPLbfsMUVSeNEcwQo=;
- b=fvWcNwgcMEASwen5TF76vYJcaARtMbB3+d5GBJJNixObteS0e0t11/+U
- r/rdNFFXPIvAd+FY9Q2fWx1RoWOhCaFSPHeNMkaqpqgjFhPbF+h8DXbva
- tF1oToBcgiBUNDfq00iuLWif3MdJwDcoa+EBUepECDoCWp+jt/avd2WgD
- grFNbdYG8uX7n9QJirUXfME7T/FvSYgB5SzOOV1EbZ3qM/inBoeNicRE0
- AK3AfDnFYD9iZSOV7/OFnzpukmuKJ4SKEdGNiUBfpFgyD0jvC8AZm2rol
- wlFCkzaxcz47R3DdAl75ZQIlq2gBTkqUDrfuqcVvqotR39ncfJdvbG32L g==;
-X-CSE-ConnectionGUID: SfHanwWpQxeMlrWHGl5U/w==
-X-CSE-MsgGUID: TgX82lakQOi5cKyBhdfQig==
-X-IronPort-AV: E=McAfee;i="6700,10204,11306"; a="46799057"
-X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="46799057"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2025 02:05:09 -0800
-X-CSE-ConnectionGUID: NuKbgakdRsKkiTXcaLimag==
-X-CSE-MsgGUID: bj79IdnMTXuWTIFQCI1IcA==
+ bh=w5dhyCdZd7faVOLxLqHfvonl2E2lxjMeNlO/DVVR8Ro=;
+ b=f/0gY7QWnmiinkFBrk6I0Hks85Ak36wjiHWqVPo3aK4Z21dlMjCRhXaX
+ qoZa8IY5Ob+E6hL77HkruUMP7Q7cMfGn0fOyACP0Lfce9ryF3AwqFKlz6
+ 891ipoTdlx6xxLQs+S/D93bHFrdJI5eCECz8gd9l3OGAHY0Uo3OfAa3at
+ cgNfsHJeqArDoxRXpX9z1c7goEWgNgZ0i58yQ/oxGTjw8XVKNGqpt/4fS
+ DG6gz0Lnpb8GV+csxrKwieLaTntWOCTl6oa0T3Xyb9QHcLOg9KOCnhXl2
+ v3LdRDAcqQuZPBsSsQI5j2I1rkxsVgGFLrZHVmCxMc2Phtcb81vJXAEqm Q==;
+X-CSE-ConnectionGUID: YBNx2MUMRzewrJOmduiB0w==
+X-CSE-MsgGUID: M57/LVXTRX+R0vICn3IXSg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11306"; a="36178884"
+X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="36178884"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2025 02:05:24 -0800
+X-CSE-ConnectionGUID: 1pjC2hJaSjuBLhT2piOADg==
+X-CSE-MsgGUID: lLwSSumgQdq8u1HoF5wk3A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="107039255"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa005.fm.intel.com with ESMTP; 06 Jan 2025 02:05:07 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Animesh Manna <animesh.manna@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3] drm/i915/display: Adjust Added Wake Time with PKG_C_LATENCY
-Date: Mon,  6 Jan 2025 15:14:08 +0530
-Message-Id: <20250106094408.1011063-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="107460613"
+Received: from nitin-super-server.iind.intel.com ([10.145.169.70])
+ by orviesa003.jf.intel.com with ESMTP; 06 Jan 2025 02:05:22 -0800
+From: Nitin Gote <nitin.r.gote@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: nirmoy.das@intel.com, andi.shyti@intel.com,
+ Nitin Gote <nitin.r.gote@intel.com>
+Subject: [PATCH v1 0/1] drm/xe: Fix all typos in xe
+Date: Mon,  6 Jan 2025 15:56:45 +0530
+Message-Id: <20250106102646.1400146-1-nitin.r.gote@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,53 +64,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Increase the PKG_C_LATENCY Pkg C Latency field by the added wake time.
+fix all typos in files of xe, reported by codespell tool.
 
-v1: Initial version.
-v2: Rebase and cosmetic changes.
-v3:
-- Place latency adjustment early to accomodate round-up. [Suraj]
-- Modify commit description and cosmetic change. [Suraj]
+Nitin Gote (1):
+  drm/xe: Fix all typos under xe
 
-WA: 22020432604
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/Kconfig.debug           | 4 ++--
+ drivers/gpu/drm/xe/abi/guc_capture_abi.h   | 2 +-
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h      | 6 +++---
+ drivers/gpu/drm/xe/regs/xe_reg_defs.h      | 2 +-
+ drivers/gpu/drm/xe/tests/xe_mocs.c         | 2 +-
+ drivers/gpu/drm/xe/xe_bb.c                 | 2 +-
+ drivers/gpu/drm/xe/xe_bo.c                 | 8 ++++----
+ drivers/gpu/drm/xe/xe_bo_doc.h             | 2 +-
+ drivers/gpu/drm/xe/xe_devcoredump.c        | 2 +-
+ drivers/gpu/drm/xe/xe_device.c             | 2 +-
+ drivers/gpu/drm/xe/xe_drm_client.c         | 2 +-
+ drivers/gpu/drm/xe/xe_exec.c               | 2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c               | 2 +-
+ drivers/gpu/drm/xe/xe_gt.h                 | 2 +-
+ drivers/gpu/drm/xe/xe_gt_mcr.c             | 2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 2 +-
+ drivers/gpu/drm/xe/xe_guc_capture.c        | 2 +-
+ drivers/gpu/drm/xe/xe_guc_capture_types.h  | 4 ++--
+ drivers/gpu/drm/xe/xe_guc_ct.c             | 4 ++--
+ drivers/gpu/drm/xe/xe_guc_submit.c         | 2 +-
+ drivers/gpu/drm/xe/xe_hmm.c                | 2 +-
+ drivers/gpu/drm/xe/xe_migrate.c            | 2 +-
+ drivers/gpu/drm/xe/xe_pci.c                | 4 ++--
+ drivers/gpu/drm/xe/xe_pcode.c              | 2 +-
+ drivers/gpu/drm/xe/xe_pm.c                 | 2 +-
+ drivers/gpu/drm/xe/xe_pt.c                 | 2 +-
+ drivers/gpu/drm/xe/xe_rtp.h                | 4 ++--
+ drivers/gpu/drm/xe/xe_uc_fw_types.h        | 2 +-
+ drivers/gpu/drm/xe/xe_vm.c                 | 4 ++--
+ 29 files changed, 40 insertions(+), 40 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 29e8ea91c858..407af5b9f1dc 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2939,7 +2939,17 @@ intel_program_dpkgc_latency(struct intel_atomic_state *state)
- 	}
- 
- 	if (fixed_refresh_rate) {
-+		added_wake_time = DSB_EXE_TIME +
-+			display->sagv.block_time_us;
-+
- 		latency = skl_watermark_max_latency(i915, 1);
-+
-+		/* Wa_22020432604 */
-+		if ((DISPLAY_VER(display) == 20 || DISPLAY_VER(display) == 30) && !latency) {
-+			latency += added_wake_time;
-+			added_wake_time = 0;
-+		}
-+
- 		/* Wa_22020299601 */
- 		if ((latency && max_linetime) &&
- 		    (DISPLAY_VER(display) == 20 || DISPLAY_VER(display) == 30)) {
-@@ -2947,9 +2957,6 @@ intel_program_dpkgc_latency(struct intel_atomic_state *state)
- 		} else if (!latency) {
- 			latency = LNL_PKG_C_LATENCY_MASK;
- 		}
--
--		added_wake_time = DSB_EXE_TIME +
--			display->sagv.block_time_us;
- 	}
- 
- 	clear = LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
 -- 
-2.29.0
+2.25.1
 
