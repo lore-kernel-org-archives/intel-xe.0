@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8217E77188
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 21:12:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDB68E77198
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Jan 2025 21:12:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FB8C10EA1F;
-	Mon,  6 Jan 2025 21:12:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B72510EA21;
+	Mon,  6 Jan 2025 21:12:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cnPVuElv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DduHzO0b";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3973910EA1F
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Jan 2025 21:12:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11F9F10EA26
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Jan 2025 21:12:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736197959; x=1767733959;
+ t=1736197960; x=1767733960;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XzUh/yZtAfiwbqrFVtXMWDWq/RPAcO6QC/zudE0OVC4=;
- b=cnPVuElv110B6myGEJZxY6M+/HaSeybNacR4gmQo8DW/ro4DdHPZfFwS
- vwUJis7E3Xa1GQ9A7NBuT1sh/T/QyjksgWDp1o26yIFaEAYrix1Jji+9k
- ihTK5zM5bOe4pnGY+Hygwm+sgBlvScquNHDtECwAY1Y/AshjmR3f+qCnK
- kWwHZja0RAiFJ1Tb4SvSPFBS/1grBTttPrA1nPSJ74b2TkZOLQmtyAazt
- 0WksAqAUR2EGynHlOUqabNntqANS5hqgBPwO5xU903G+C9lz7ma3q0CqD
- K9Hx3ODjlgvI81fLulMQyh/86dsxMKeWruezkd08GgMGEv2ZcWC3o46pH Q==;
-X-CSE-ConnectionGUID: GP+mrQLUTxaedG7HsWQKlA==
-X-CSE-MsgGUID: ld6K/7fsSvOrwbMivOP8ug==
-X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="61734941"
-X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="61734941"
+ bh=OWZ33JCY4CBpq3/eMVUiIRjqbamucTedBWUX7PWYwXk=;
+ b=DduHzO0b3m46d4HaBizT3A7voeC2Nqc8xWNuuhmHYV8J69xMdRXOg56E
+ 2UeFJjTIxWppEULAHYZzNyPYpbBahkUvpAfZp0gtIZpGTIzDJrR1AxFpp
+ 2Kee9MV3rLvijYo7YNDTVmmvZU6LZyeomMtPMviwCFT0pGZCV4Bjd6wAd
+ 3XeESviy8gtSHNgS7D9iw01k2K908KXzzJGnutEinPJ2uzBHk5DH0SQg9
+ bPf6YyABFF9iEcfo+VSWMIwZzExvvhwRl8S2bYI5oaV9BKymWuU1eFqx+
+ zvHL/TiqiCyrWXFf4CRla4QQ6zdsIbgjYRK4ccaSNnX6cExXqUGElFRi5 Q==;
+X-CSE-ConnectionGUID: VLukByMcSzGHPk8JWHiA6g==
+X-CSE-MsgGUID: s6BuGWKXQba/KLjfCjBtiQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="61734944"
+X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="61734944"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2025 13:12:39 -0800
-X-CSE-ConnectionGUID: pa7sLlvFTUCFxqAV1/+kPw==
-X-CSE-MsgGUID: hsi96LVxQJuyLrA1EpoCTQ==
+ 06 Jan 2025 13:12:40 -0800
+X-CSE-ConnectionGUID: 0XSpA3rvSUeFJklg1Vd3lQ==
+X-CSE-MsgGUID: aZLCSgvGSa2tx722Yk1hXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="107417844"
+X-IronPort-AV: E=Sophos;i="6.12,293,1728975600"; d="scan'208";a="107417847"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2025 13:12:39 -0800
+ 06 Jan 2025 13:12:40 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH v4 11/13] drm/xe/pxp: add PXP PM support
-Date: Mon,  6 Jan 2025 13:12:08 -0800
-Message-ID: <20250106211212.3418231-12-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v4 12/13] drm/xe/pxp: Add PXP debugfs support
+Date: Mon,  6 Jan 2025 13:12:09 -0800
+Message-ID: <20250106211212.3418231-13-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250106211212.3418231-1-daniele.ceraolospurio@intel.com>
 References: <20250106211212.3418231-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,360 +68,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The HW suspend flow kills all PXP HWDRM sessions, so we need to mark all
-the queues and BOs as invalid and do a full termination when PXP is next
-used.
+This patch introduces 2 PXP debugfs entries:
 
-v2: rebase
-v3: rebase on new status flow, defer termination to next PXP use as it
-makes things much easier and allows us to use the same fuction for all
-types of suspend.
+- info: prints the current PXP status and key instance
+- terminate: simulate a termination interrupt
+
+The first one is useful for debug, while the second one can be used for
+testing the termination flow.
+
+v2: move the info prints inside the lock (John)
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: John Harrison <John.C.Harrison@Intel.com>
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/xe_pm.c        |  39 ++++++---
- drivers/gpu/drm/xe/xe_pxp.c       | 128 +++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_pxp.h       |   3 +
- drivers/gpu/drm/xe/xe_pxp_types.h |   7 ++
- 4 files changed, 164 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/Makefile         |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c     |   3 +
+ drivers/gpu/drm/xe/xe_pxp_debugfs.c | 120 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pxp_debugfs.h |  13 +++
+ 4 files changed, 137 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_pxp_debugfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_pxp_debugfs.h
 
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index c6e57af0144c..bfd797516a7c 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -22,6 +22,7 @@
- #include "xe_guc.h"
- #include "xe_irq.h"
- #include "xe_pcode.h"
-+#include "xe_pxp.h"
- #include "xe_trace.h"
- #include "xe_wa.h"
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 970ff5d49ded..9dbab14c7cea 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -87,6 +87,7 @@ xe-y += xe_bb.o \
+ 	xe_pt.o \
+ 	xe_pt_walk.o \
+ 	xe_pxp.o \
++	xe_pxp_debugfs.o \
+ 	xe_pxp_submit.o \
+ 	xe_query.o \
+ 	xe_range_fence.o \
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 492b4877433f..56cb3788e752 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -18,6 +18,7 @@
+ #include "xe_gt_printk.h"
+ #include "xe_guc_ads.h"
+ #include "xe_pm.h"
++#include "xe_pxp_debugfs.h"
+ #include "xe_sriov.h"
+ #include "xe_step.h"
  
-@@ -122,6 +123,10 @@ int xe_pm_suspend(struct xe_device *xe)
- 	drm_dbg(&xe->drm, "Suspending device\n");
- 	trace_xe_pm_suspend(xe, __builtin_return_address(0));
- 
-+	err = xe_pxp_pm_suspend(xe->pxp);
-+	if (err)
-+		goto err;
-+
+@@ -230,5 +231,7 @@ void xe_debugfs_register(struct xe_device *xe)
  	for_each_gt(gt, xe, id)
- 		xe_gt_suspend_prepare(gt);
+ 		xe_gt_debugfs_register(gt);
  
-@@ -130,14 +135,12 @@ int xe_pm_suspend(struct xe_device *xe)
- 	/* FIXME: Super racey... */
- 	err = xe_bo_evict_all(xe);
- 	if (err)
--		goto err;
-+		goto err_pxp;
- 
- 	for_each_gt(gt, xe, id) {
- 		err = xe_gt_suspend(gt);
--		if (err) {
--			xe_display_pm_resume(xe);
--			goto err;
--		}
-+		if (err)
-+			goto err_display;
- 	}
- 
- 	xe_irq_suspend(xe);
-@@ -146,6 +149,11 @@ int xe_pm_suspend(struct xe_device *xe)
- 
- 	drm_dbg(&xe->drm, "Device suspended\n");
- 	return 0;
++	xe_pxp_debugfs_register(xe->pxp);
 +
-+err_display:
-+	xe_display_pm_resume(xe);
-+err_pxp:
-+	xe_pxp_pm_resume(xe->pxp);
- err:
- 	drm_dbg(&xe->drm, "Device suspend failed %d\n", err);
- 	return err;
-@@ -195,6 +203,8 @@ int xe_pm_resume(struct xe_device *xe)
- 	if (err)
- 		goto err;
- 
-+	xe_pxp_pm_resume(xe->pxp);
+ 	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_pxp_debugfs.c b/drivers/gpu/drm/xe/xe_pxp_debugfs.c
+new file mode 100644
+index 000000000000..ccfbacf08efc
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_pxp_debugfs.c
+@@ -0,0 +1,120 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2024 Intel Corporation
++ */
 +
- 	drm_dbg(&xe->drm, "Device resumed\n");
- 	return 0;
- err:
-@@ -389,6 +399,10 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 	 */
- 	xe_rpm_lockmap_acquire(xe);
- 
-+	err = xe_pxp_pm_suspend(xe->pxp);
-+	if (err)
-+		goto out;
++#include "xe_pxp_debugfs.h"
 +
- 	/*
- 	 * Applying lock for entire list op as xe_ttm_bo_destroy and xe_bo_move_notify
- 	 * also checks and delets bo entry from user fault list.
-@@ -404,22 +418,27 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 	if (xe->d3cold.allowed) {
- 		err = xe_bo_evict_all(xe);
- 		if (err)
--			goto out;
-+			goto out_resume;
- 	}
- 
- 	for_each_gt(gt, xe, id) {
- 		err = xe_gt_suspend(gt);
- 		if (err)
--			goto out;
-+			goto out_resume;
- 	}
- 
- 	xe_irq_suspend(xe);
- 
- 	xe_display_pm_runtime_suspend_late(xe);
- 
-+	xe_rpm_lockmap_release(xe);
-+	xe_pm_write_callback_task(xe, NULL);
-+	return 0;
++#include <linux/debugfs.h>
 +
-+out_resume:
-+	xe_display_pm_runtime_resume(xe);
-+	xe_pxp_pm_resume(xe->pxp);
- out:
--	if (err)
--		xe_display_pm_runtime_resume(xe);
- 	xe_rpm_lockmap_release(xe);
- 	xe_pm_write_callback_task(xe, NULL);
- 	return err;
-@@ -472,6 +491,8 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 			goto out;
- 	}
- 
-+	xe_pxp_pm_resume(xe->pxp);
++#include <drm/drm_debugfs.h>
++#include <drm/drm_managed.h>
++#include <drm/drm_print.h>
 +
- out:
- 	xe_rpm_lockmap_release(xe);
- 	xe_pm_write_callback_task(xe, NULL);
-diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
-index ae45c663b81d..0a36d40152d1 100644
---- a/drivers/gpu/drm/xe/xe_pxp.c
-+++ b/drivers/gpu/drm/xe/xe_pxp.c
-@@ -132,6 +132,14 @@ static int pxp_wait_for_session_state(struct xe_pxp *pxp, u32 id, bool in_play)
- 
- static void pxp_invalidate_queues(struct xe_pxp *pxp);
- 
-+static void pxp_invalidate_state(struct xe_pxp *pxp)
++#include "xe_device.h"
++#include "xe_pxp.h"
++#include "xe_pxp_types.h"
++#include "regs/xe_irq_regs.h"
++
++static struct xe_pxp *node_to_pxp(struct drm_info_node *node)
 +{
-+	pxp_invalidate_queues(pxp);
-+
-+	if (pxp->status == XE_PXP_ACTIVE)
-+		pxp->key_instance++;
++	return node->info_ent->data;
 +}
 +
- static int pxp_terminate_hw(struct xe_pxp *pxp)
- {
- 	struct xe_gt *gt = pxp->gt;
-@@ -185,10 +193,16 @@ static void pxp_terminate(struct xe_pxp *pxp)
- 
- 	mutex_lock(&pxp->mutex);
- 
--	pxp_invalidate_queues(pxp);
-+	pxp_invalidate_state(pxp);
- 
--	if (pxp->status == XE_PXP_ACTIVE)
--		pxp->key_instance++;
-+	/*
-+	 * we'll mark the status as needing termination on resume, so no need to
-+	 * emit a termination now.
-+	 */
-+	if (pxp->status == XE_PXP_SUSPENDED) {
-+		mutex_unlock(&pxp->mutex);
-+		return;
-+	}
- 
- 	/*
- 	 * If we have a termination already in progress, we need to wait for
-@@ -219,11 +233,13 @@ static void pxp_terminate(struct xe_pxp *pxp)
- static void pxp_terminate_complete(struct xe_pxp *pxp)
- {
- 	/*
--	 * We expect PXP to be in one of 2 states when we get here:
-+	 * We expect PXP to be in one of 3 states when we get here:
- 	 * - XE_PXP_TERMINATION_IN_PROGRESS: a single termination event was
- 	 * requested and it is now completing, so we're ready to start.
- 	 * - XE_PXP_NEEDS_ADDITIONAL_TERMINATION: a second termination was
- 	 * requested while the first one was still being processed.
-+	 * - XE_PXP_SUSPENDED: PXP is now suspended, so we defer everything to
-+	 * when we come back on resume.
- 	 */
- 	mutex_lock(&pxp->mutex);
- 
-@@ -234,6 +250,9 @@ static void pxp_terminate_complete(struct xe_pxp *pxp)
- 	case XE_PXP_NEEDS_ADDITIONAL_TERMINATION:
- 		pxp->status = XE_PXP_NEEDS_TERMINATION;
- 		break;
-+	case XE_PXP_SUSPENDED:
-+		/* Nothing to do */
-+		break;
- 	default:
- 		drm_err(&pxp->xe->drm,
- 			"PXP termination complete while status was %u\n",
-@@ -391,6 +410,7 @@ int xe_pxp_init(struct xe_device *xe)
- 	pxp->gt = gt;
- 
- 	pxp->key_instance = 1;
-+	pxp->last_suspend_key_instance = 1;
- 
- 	/*
- 	 * we'll use the completions to check if there is an action pending,
-@@ -574,6 +594,7 @@ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
- 		XE_WARN_ON(completion_done(&pxp->termination));
- 		mutex_unlock(&pxp->mutex);
- 		goto wait_for_idle;
-+	case XE_PXP_SUSPENDED:
- 	default:
- 		drm_err(&pxp->xe->drm, "unexpected state during PXP start: %u\n", pxp->status);
- 		ret = -EIO;
-@@ -779,3 +800,102 @@ int xe_pxp_obj_key_check(struct xe_pxp *pxp, struct drm_gem_object *obj)
- {
- 	return xe_pxp_bo_key_check(pxp, gem_to_xe_bo(obj));
- }
-+
-+/**
-+ * xe_pxp_pm_suspend - prepare PXP for HW suspend
-+ * @pxp: the xe->pxp pointer (it will be NULL if PXP is disabled)
-+ *
-+ * Checks whether a BO was encrypted with the current key or an obsolete one.
-+ *
-+ * Returns: 0 if successful, a negative errno value otherwise.
-+ */
-+int xe_pxp_pm_suspend(struct xe_pxp *pxp)
++static const char *pxp_status_to_str(struct xe_pxp *pxp)
 +{
-+	int ret = 0;
-+
-+	if (!xe_pxp_is_enabled(pxp))
-+		return 0;
-+
-+wait_for_activation:
-+	if (!wait_for_completion_timeout(&pxp->activation,
-+					 msecs_to_jiffies(PXP_ACTIVATION_TIMEOUT_MS)))
-+		ret = -ETIMEDOUT;
-+
-+	mutex_lock(&pxp->mutex);
++	lockdep_assert_held(&pxp->mutex);
 +
 +	switch (pxp->status) {
 +	case XE_PXP_ERROR:
-+	case XE_PXP_READY_TO_START:
-+	case XE_PXP_SUSPENDED:
-+	case XE_PXP_TERMINATION_IN_PROGRESS:
-+	case XE_PXP_NEEDS_ADDITIONAL_TERMINATION:
-+		/*
-+		 * If PXP is not running there is nothing to cleanup. If there
-+		 * is a termination pending then no need to issue another one.
-+		 */
-+		break;
-+	case XE_PXP_START_IN_PROGRESS:
-+		mutex_unlock(&pxp->mutex);
-+		goto wait_for_activation;
++		return "error";
 +	case XE_PXP_NEEDS_TERMINATION:
-+		/* If PXP was never used we can skip the cleanup */
-+		if (pxp->key_instance == pxp->last_suspend_key_instance)
-+			break;
-+		fallthrough;
++		return "needs termination";
++	case XE_PXP_TERMINATION_IN_PROGRESS:
++		return "termination in progress";
++	case XE_PXP_READY_TO_START:
++		return "ready to start";
 +	case XE_PXP_ACTIVE:
-+		pxp_invalidate_state(pxp);
-+		break;
++		return "active";
++	case XE_PXP_SUSPENDED:
++		return "suspended";
 +	default:
-+		drm_err(&pxp->xe->drm, "unexpected state during PXP suspend: %u",
-+			pxp->status);
-+		ret = -EIO;
-+		goto out;
++		return "unknown";
 +	}
++};
 +
-+	/*
-+	 * We set this even if we were in error state, hoping the suspend clears
-+	 * the error. Worse case we fail again and go in error state again.
-+	 */
-+	pxp->status = XE_PXP_SUSPENDED;
++static int pxp_info(struct seq_file *m, void *data)
++{
++	struct xe_pxp *pxp = node_to_pxp(m->private);
++	struct drm_printer p = drm_seq_file_printer(m);
++	const char *status;
 +
++	if (!xe_pxp_is_enabled(pxp))
++		return -ENODEV;
++
++	mutex_lock(&pxp->mutex);
++	status = pxp_status_to_str(pxp);
++
++	drm_printf(&p, "status: %s\n", status);
++	drm_printf(&p, "instance counter: %u\n", pxp->key_instance);
 +	mutex_unlock(&pxp->mutex);
 +
-+	/*
-+	 * if there is a termination in progress, wait for it.
-+	 * We need to wait outside the lock because the completion is done from
-+	 * within the lock
-+	 */
-+	if (!wait_for_completion_timeout(&pxp->termination,
-+					 msecs_to_jiffies(PXP_TERMINATION_TIMEOUT_MS)))
-+		ret = -ETIMEDOUT;
-+
-+	pxp->last_suspend_key_instance = pxp->key_instance;
-+
-+out:
-+	return ret;
++	return 0;
 +}
 +
-+/**
-+ * xe_pxp_pm_resume - re-init PXP after HW suspend
-+ * @pxp: the xe->pxp pointer (it will be NULL if PXP is disabled)
-+ */
-+void xe_pxp_pm_resume(struct xe_pxp *pxp)
++static int pxp_terminate(struct seq_file *m, void *data)
 +{
-+	int err;
++	struct xe_pxp *pxp = node_to_pxp(m->private);
++	struct drm_printer p = drm_seq_file_printer(m);
++
++	if (!xe_pxp_is_enabled(pxp))
++		return -ENODEV;
++
++	/* simulate a termination interrupt */
++	spin_lock_irq(&pxp->xe->irq.lock);
++	xe_pxp_irq_handler(pxp->xe, KCR_PXP_STATE_TERMINATED_INTERRUPT);
++	spin_unlock_irq(&pxp->xe->irq.lock);
++
++	drm_printf(&p, "PXP termination queued\n");
++
++	return 0;
++}
++
++static const struct drm_info_list debugfs_list[] = {
++	{"info", pxp_info, 0},
++	{"terminate", pxp_terminate, 0},
++};
++
++void xe_pxp_debugfs_register(struct xe_pxp *pxp)
++{
++	struct drm_minor *minor;
++	struct drm_info_list *local;
++	struct dentry *root;
++	int i;
 +
 +	if (!xe_pxp_is_enabled(pxp))
 +		return;
 +
-+	err = kcr_pxp_enable(pxp);
++	minor = pxp->xe->drm.primary;
++	if (!minor->debugfs_root)
++		return;
 +
-+	mutex_lock(&pxp->mutex);
++#define DEBUGFS_SIZE	(ARRAY_SIZE(debugfs_list) * sizeof(struct drm_info_list))
++	local = drmm_kmalloc(&pxp->xe->drm, DEBUGFS_SIZE, GFP_KERNEL);
++	if (!local)
++		return;
 +
-+	xe_assert(pxp->xe, pxp->status == XE_PXP_SUSPENDED);
++	memcpy(local, debugfs_list, DEBUGFS_SIZE);
++#undef DEBUGFS_SIZE
 +
-+	if (err)
-+		pxp->status = XE_PXP_ERROR;
-+	else
-+		pxp->status = XE_PXP_NEEDS_TERMINATION;
++	for (i = 0; i < ARRAY_SIZE(debugfs_list); ++i)
++		local[i].data = pxp;
 +
-+	mutex_unlock(&pxp->mutex);
++	root = debugfs_create_dir("pxp", minor->debugfs_root);
++	if (IS_ERR(root))
++		return;
++
++	drm_debugfs_create_files(local,
++				 ARRAY_SIZE(debugfs_list),
++				 root, minor);
 +}
-diff --git a/drivers/gpu/drm/xe/xe_pxp.h b/drivers/gpu/drm/xe/xe_pxp.h
-index 3dd70eac9da6..546b156d63aa 100644
---- a/drivers/gpu/drm/xe/xe_pxp.h
-+++ b/drivers/gpu/drm/xe/xe_pxp.h
-@@ -21,6 +21,9 @@ int xe_pxp_get_readiness_status(struct xe_pxp *pxp);
- int xe_pxp_init(struct xe_device *xe);
- void xe_pxp_irq_handler(struct xe_device *xe, u16 iir);
- 
-+int xe_pxp_pm_suspend(struct xe_pxp *pxp);
-+void xe_pxp_pm_resume(struct xe_pxp *pxp);
+diff --git a/drivers/gpu/drm/xe/xe_pxp_debugfs.h b/drivers/gpu/drm/xe/xe_pxp_debugfs.h
+new file mode 100644
+index 000000000000..988466aad50b
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_pxp_debugfs.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2024 Intel Corporation
++ */
 +
- int xe_pxp_exec_queue_set_type(struct xe_pxp *pxp, struct xe_exec_queue *q, u8 type);
- int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q);
- void xe_pxp_exec_queue_remove(struct xe_pxp *pxp, struct xe_exec_queue *q);
-diff --git a/drivers/gpu/drm/xe/xe_pxp_types.h b/drivers/gpu/drm/xe/xe_pxp_types.h
-index 8e4569f0173d..53e9d48d10fb 100644
---- a/drivers/gpu/drm/xe/xe_pxp_types.h
-+++ b/drivers/gpu/drm/xe/xe_pxp_types.h
-@@ -27,6 +27,7 @@ enum xe_pxp_status {
- 	XE_PXP_READY_TO_START,
- 	XE_PXP_START_IN_PROGRESS,
- 	XE_PXP_ACTIVE,
-+	XE_PXP_SUSPENDED,
- };
- 
- /**
-@@ -123,6 +124,12 @@ struct xe_pxp {
- 	 * that case in the code.
- 	 */
- 	u32 key_instance;
-+	/**
-+	 * @last_suspend_key_instance: value of key_instance at the last
-+	 * suspend. Used to check if any PXP session has been created between
-+	 * suspend cycles.
-+	 */
-+	u32 last_suspend_key_instance;
- };
- 
- #endif /* __XE_PXP_TYPES_H__ */
++#ifndef __XE_PXP_DEBUGFS_H__
++#define __XE_PXP_DEBUGFS_H__
++
++struct xe_pxp;
++
++void xe_pxp_debugfs_register(struct xe_pxp *pxp);
++
++#endif /* __XE_PXP_DEBUGFS_H__ */
 -- 
 2.43.0
 
