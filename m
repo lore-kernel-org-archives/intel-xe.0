@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEFDDE77197
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jan 2025 20:04:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CF79E77197
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jan 2025 20:23:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D4E910E081;
-	Tue,  7 Jan 2025 20:04:00 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B7EA10E081;
- Tue,  7 Jan 2025 20:03:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1636571657276526259=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2D4910E790;
+	Tue,  7 Jan 2025 20:23:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J/ioHC2J";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6733A10E790
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Jan 2025 20:23:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736281384; x=1767817384;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qNB6E1ZcCWsYXZ0UPY9xXsTjX9Yj9dv4RVv5kR3Ttdw=;
+ b=J/ioHC2JayOkliUJl2AkbfhgRbCK5YIKv7T2h+KY81NMu05MuXfq2aKG
+ DCEbYbNVoXgH1MO+zaVLrD2ZLM2Nj1V/SAjdB1KP/7SLms+kuTsedquNe
+ K2m1tI91F2gxM+p3jhs7h7BqBmqaaJyyBHNgGVY/JroP3V7cae7E2DiU8
+ JbBQjRjGCfwarNlTQI5YN8sOdjRJHocKd4XsuFJnGpXA0szWiIZqUs+Au
+ POyBur/NZhubtJOwMtd1hqEwl23jJqTX/4Zmj4YNhZOvhAxcIlX7hmLQn
+ +BxcVxE+Bq6O0DWPzPnZhrfoUEui6jEn7XTO/jQMyJeYizPsppZ3cNrmP g==;
+X-CSE-ConnectionGUID: DJp3CcmdR+Owf7MNuTR97A==
+X-CSE-MsgGUID: Tru640cWTS+WSOZS6DReeg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11308"; a="58951979"
+X-IronPort-AV: E=Sophos;i="6.12,296,1728975600"; d="scan'208";a="58951979"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2025 12:23:04 -0800
+X-CSE-ConnectionGUID: f5VXaYCoSbm7+m8l2bGE7w==
+X-CSE-MsgGUID: eCuKI4NpSOK2HxdGrVVu8g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="126164809"
+Received: from bfilipch-desk.jf.intel.com ([10.165.21.204])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2025 12:23:03 -0800
+From: Julia Filipchuk <julia.filipchuk@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Julia Filipchuk <julia.filipchuk@intel.com>
+Subject: [PATCH v3 1/1] drm/xe/guc: Fix GuC log/ct output via debugfs
+Date: Tue,  7 Jan 2025 12:22:52 -0800
+Message-ID: <20250107202252.2642853-1-julia.filipchuk@intel.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Fix_GuC_log/c?=
- =?utf-8?q?t_output_via_debugfs_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Julia Filipchuk" <julia.filipchuk@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 07 Jan 2025 20:03:59 -0000
-Message-ID: <173628023943.1001743.17883893885147016973@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250107181017.2639339-1-julia.filipchuk@intel.com>
-In-Reply-To: <20250107181017.2639339-1-julia.filipchuk@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,141 +61,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1636571657276526259==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Change to disable asci85 GuC logging only when output to devcoredump
+(was temporarily disabled for all code paths).
 
-== Series Details ==
+v2: Ignore only for devcoredump case (not dmesg output).
+v3: Rebase to resolve parent tag mismatch.
 
-Series: drm/xe/guc: Fix GuC log/ct output via debugfs (rev2)
-URL   : https://patchwork.freedesktop.org/series/142982/
-State : success
+Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
+---
+ drivers/gpu/drm/xe/xe_devcoredump.c | 8 +++++---
+ include/drm/drm_print.h             | 2 ++
+ 2 files changed, 7 insertions(+), 3 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 6980304c8903..8e5d1f9866a7 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -424,10 +424,12 @@ void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
+ 	 * Splitting blobs across multiple lines is not compatible with the mesa
+ 	 * debug decoder tool. Note that even dropping the explicit '\n' below
+ 	 * doesn't help because the GuC log is so big some underlying implementation
+-	 * still splits the lines at 512K characters. So just bail completely for
+-	 * the moment.
++	 * still splits the lines at 512K characters.
++	 *
++	 * Only disable from devcoredump output.
+ 	 */
+-	return;
++	if (p->coredump)
++		return;
+ 
+ #define DMESG_MAX_LINE_LEN	800
+ #define MIN_SPACE		(ASCII85_BUFSZ + 2)		/* 85 + "\n\0" */
+diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+index f77fe1531cf8..f5ea7f38ba09 100644
+--- a/include/drm/drm_print.h
++++ b/include/drm/drm_print.h
+@@ -182,6 +182,7 @@ struct drm_printer {
+ 		unsigned int counter;
+ 	} line;
+ 	enum drm_debug_category category;
++	bool coredump;
+ };
+ 
+ void __drm_printfn_coredump(struct drm_printer *p, struct va_format *vaf);
+@@ -335,6 +336,7 @@ drm_coredump_printer(struct drm_print_iterator *iter)
+ 		.printfn = __drm_printfn_coredump,
+ 		.puts = __drm_puts_coredump,
+ 		.arg = iter,
++		.coredump = true,
+ 	};
+ 
+ 	/* Set the internal offset of the iterator to zero */
+-- 
+2.47.1
 
-CI Bug Log - changes from xe-2449-c99dbe9a1eac2329fc66b12dff166b3de0c1bb54_BAT -> xe-pw-142982v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-142982v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_balancer@twice-virtual-rebind:
-    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3958])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2449-c99dbe9a1eac2329fc66b12dff166b3de0c1bb54/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142982v2/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-rebind.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_vm@shared-pde2-page:
-    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#3958] / [Intel XE#3970]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2449-c99dbe9a1eac2329fc66b12dff166b3de0c1bb54/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142982v2/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html
-
-  
-  [Intel XE#3958]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-
-
-Build changes
--------------
-
-  * Linux: xe-2449-c99dbe9a1eac2329fc66b12dff166b3de0c1bb54 -> xe-pw-142982v2
-
-  IGT_8179: 183b33f81365dd4a57fe3100a13d3fb13788d158 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2449-c99dbe9a1eac2329fc66b12dff166b3de0c1bb54: c99dbe9a1eac2329fc66b12dff166b3de0c1bb54
-  xe-pw-142982v2: 142982v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142982v2/index.html
-
---===============1636571657276526259==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Fix GuC log/ct output via debugfs (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142982/">https://patchwork.freedesktop.org/series/142982/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142982v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142982v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2449-c99dbe9a1eac2329fc66b12dff166b3de0c1bb54_BAT -&gt; xe-pw-142982v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-142982v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_exec_balancer@twice-virtual-rebind:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2449-c99dbe9a1eac2329fc66b12dff166b3de0c1bb54/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142982v2/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958">Intel XE#3958</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@shared-pde2-page:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2449-c99dbe9a1eac2329fc66b12dff166b3de0c1bb54/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958">Intel XE#3958</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142982v2/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2449-c99dbe9a1eac2329fc66b12dff166b3de0c1bb54 -&gt; xe-pw-142982v2</li>
-</ul>
-<p>IGT_8179: 183b33f81365dd4a57fe3100a13d3fb13788d158 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2449-c99dbe9a1eac2329fc66b12dff166b3de0c1bb54: c99dbe9a1eac2329fc66b12dff166b3de0c1bb54<br />
-  xe-pw-142982v2: 142982v2</p>
-
-</body>
-</html>
-
---===============1636571657276526259==--
