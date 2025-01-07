@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 899F7E77197
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jan 2025 17:33:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C210FE77198
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jan 2025 17:44:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D8AD10E757;
-	Tue,  7 Jan 2025 17:33:38 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D83010E757;
- Tue,  7 Jan 2025 17:33:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9066449715330559587=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8559B10E76D;
+	Tue,  7 Jan 2025 17:44:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I2Rm8m/h";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12BAF10E761;
+ Tue,  7 Jan 2025 17:43:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736271839; x=1767807839;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=GrD0OXIxzVuHw3hplmT2mt8R2du5jIAzdzYZ7scIxSo=;
+ b=I2Rm8m/hI92PRxYS8YJjJ8NvK4syxDSCzLdvJRdFLGleoFw8zTgrrn2u
+ sJ15daTXq9qWcPBjg1gDXSs/BXP08vfnD9inRrXeysR2HM5xi+KAUOAMP
+ nuc6yFDM7ZqTlpuHY4kj8MXamblr3iUCVt5xfTETdt/44c1zFXusPK9zA
+ q8ud/TdKvygvOfR9xgEuUxR6Lzpndtum7br1nhXSXPJ9U2NbQ3bHhHLW5
+ 3JWNJr06g3+ulCupvlB3PK12KfaKCCz9b+z4upp+NONyT3SAxehN0xui6
+ bkB6QWKRXPMfMek22vedlkmbFZ5QDKShM0Vk8mPgSqeeCu0aGRmRa9RnA A==;
+X-CSE-ConnectionGUID: WfdJhQ+DSgKeSQUPiu1VFg==
+X-CSE-MsgGUID: xv1iITJbSDCxxFqknvZYAA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11308"; a="40139056"
+X-IronPort-AV: E=Sophos;i="6.12,296,1728975600"; d="scan'208";a="40139056"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2025 09:43:59 -0800
+X-CSE-ConnectionGUID: z0I6SNQmQAKesMl/VdKUqA==
+X-CSE-MsgGUID: vWcaqWOYR1eWX8YcrtukhA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="107884810"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.85])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2025 09:43:57 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 1/4] drm/i915/pmdemand: convert
+ to_intel_pmdemand_state() to a function
+In-Reply-To: <173567229762.6883.15275451322743246609@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1735662324.git.jani.nikula@intel.com>
+ <10324781f9f7eae5a92506aaa7a40403efd345dd.1735662324.git.jani.nikula@intel.com>
+ <173567229762.6883.15275451322743246609@intel.com>
+Date: Tue, 07 Jan 2025 19:43:53 +0200
+Message-ID: <87r05eldt2.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_mmap_support_for_pci_me?=
- =?utf-8?q?mbarrier?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 07 Jan 2025 17:33:37 -0000
-Message-ID: <173627121705.976881.17468854094489455660@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250107154750.2942358-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20250107154750.2942358-1-tejas.upadhyay@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,156 +68,104 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9066449715330559587==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 31 Dec 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Jani Nikula (2024-12-31 13:27:37-03:00)
+>>In preparation for making struct intel_pmdemand_state an opaque type,
+>>convert to_intel_pmdemand_state() to a function.
+>>
+>>Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> This looks good to me, so
+>
+> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>
+> , but I'm also taking this opportunity to reply to your comment below.
 
-== Series Details ==
+Thanks. I opted to merge this series as-is, with the idea that we can
+make further improvements on top.
 
-Series: Add mmap support for pci membarrier
-URL   : https://patchwork.freedesktop.org/series/143192/
-State : success
+BR,
+Jani.
 
-== Summary ==
+>
+>>
+>>---
+>>
+>>This is the simplest change. There could be other alternatives.
+>>
+>>Outside of intel_pmdemand.c, this is only used to convert
+>>display.pmdemand.obj.state to struct intel_pmdemand_state *. Maybe we
+>>could just pass the global object or state pointer instead? Or we could
+>>have a function to get the current state from, say, struct
+>>intel_display? What we currently have is a bit cumbersome.
+>
+> I like the idea of the exposed interface receiving only pointers to the
+> generic types and that we make the necessary conversion internally.
+>
+> We currently are only using to_intel_pmdemand_state() to be able to pass
+> the correct argument to other functions exposed by the pmdemand header.
+> Not sure there is much benefit in doing that except for some level of
+> compile-time type-safety?
+>
+> So, I would generally say:
+>
+> - For functions that can operate directly on the display.*.obj member
+>   (e.g. hardware state readout), we just ask for the display struct
+>   pointer as a parameter.
+>
+> - For functions that potentially add the global state to the atomic
+>   state, we also ask for the pointer to the atomic state.
+>
+> - For functions that operate only on the state bits and that could be
+>   called for a state instance that could either be the current one (or
+>   old) or some new state during a commit, we ask for a pointer to the
+>   intel_global_state struct.
+>
+> --
+> Gustavo Sousa
+>
+>>---
+>> drivers/gpu/drm/i915/display/intel_pmdemand.c | 5 +++++
+>> drivers/gpu/drm/i915/display/intel_pmdemand.h | 3 +--
+>> 2 files changed, 6 insertions(+), 2 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+>>index cdd314956a31..69b40b3735b3 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
+>>+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+>>@@ -15,6 +15,11 @@
+>> #include "intel_pmdemand.h"
+>> #include "skl_watermark.h"
+>> 
+>>+struct intel_pmdemand_state *to_intel_pmdemand_state(struct intel_global_state *obj_state)
+>>+{
+>>+        return container_of(obj_state, struct intel_pmdemand_state, base);
+>>+}
+>>+
+>> static struct intel_global_state *
+>> intel_pmdemand_duplicate_state(struct intel_global_obj *obj)
+>> {
+>>diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.h b/drivers/gpu/drm/i915/display/intel_pmdemand.h
+>>index a1c49efdc493..89296364ec3b 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_pmdemand.h
+>>+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.h
+>>@@ -43,8 +43,7 @@ struct intel_pmdemand_state {
+>>         struct pmdemand_params params;
+>> };
+>> 
+>>-#define to_intel_pmdemand_state(global_state) \
+>>-        container_of_const((global_state), struct intel_pmdemand_state, base)
+>>+struct intel_pmdemand_state *to_intel_pmdemand_state(struct intel_global_state *obj_state);
+>> 
+>> void intel_pmdemand_init_early(struct drm_i915_private *i915);
+>> int intel_pmdemand_init(struct drm_i915_private *i915);
+>>-- 
+>>2.39.5
+>>
 
-CI Bug Log - changes from xe-2448-bde58d6ae1762f088585e76d78b5f0efb87154e6_BAT -> xe-pw-143192v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-143192v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
-    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3958])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2448-bde58d6ae1762f088585e76d78b5f0efb87154e6/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143192v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [PASS][3] -> [SKIP][4] ([Intel XE#1192]) +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2448-bde58d6ae1762f088585e76d78b5f0efb87154e6/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143192v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][6] ([Intel XE#1192])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2448-bde58d6ae1762f088585e76d78b5f0efb87154e6/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143192v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#3958]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * Linux: xe-2448-bde58d6ae1762f088585e76d78b5f0efb87154e6 -> xe-pw-143192v1
-
-  IGT_8179: 183b33f81365dd4a57fe3100a13d3fb13788d158 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2448-bde58d6ae1762f088585e76d78b5f0efb87154e6: bde58d6ae1762f088585e76d78b5f0efb87154e6
-  xe-pw-143192v1: 143192v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143192v1/index.html
-
---===============9066449715330559587==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add mmap support for pci membarrier</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143192/">https://patchwork.freedesktop.org/series/143192/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143192v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143192v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2448-bde58d6ae1762f088585e76d78b5f0efb87154e6_BAT -&gt; xe-pw-143192v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-143192v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_exec_basic@twice-bindexecqueue-rebind:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2448-bde58d6ae1762f088585e76d78b5f0efb87154e6/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143192v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958">Intel XE#3958</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2448-bde58d6ae1762f088585e76d78b5f0efb87154e6/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143192v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2448-bde58d6ae1762f088585e76d78b5f0efb87154e6/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143192v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2448-bde58d6ae1762f088585e76d78b5f0efb87154e6 -&gt; xe-pw-143192v1</li>
-</ul>
-<p>IGT_8179: 183b33f81365dd4a57fe3100a13d3fb13788d158 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2448-bde58d6ae1762f088585e76d78b5f0efb87154e6: bde58d6ae1762f088585e76d78b5f0efb87154e6<br />
-  xe-pw-143192v1: 143192v1</p>
-
-</body>
-</html>
-
---===============9066449715330559587==--
+-- 
+Jani Nikula, Intel
