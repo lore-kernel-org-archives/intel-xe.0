@@ -4,60 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79A3DE77199
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Jan 2025 15:13:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A3B2E77197
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Jan 2025 15:14:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AF2010E70D;
-	Tue,  7 Jan 2025 15:13:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2176210E715;
+	Tue,  7 Jan 2025 15:14:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OC56uEAI";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Rd41cNXH";
 	dkim-atps=neutral
 Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52E1010E705;
- Tue,  7 Jan 2025 15:13:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0841C10E70D;
+ Tue,  7 Jan 2025 15:14:38 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 1264DA4179E;
- Tue,  7 Jan 2025 15:11:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26162C4CEE1;
- Tue,  7 Jan 2025 15:13:30 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id BC101A40B5A;
+ Tue,  7 Jan 2025 15:12:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0539AC4CEE1;
+ Tue,  7 Jan 2025 15:14:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1736262811;
- bh=VsVYm09H19ojgrIIsfyk9qwaXLbxKyDUg5Eo18dSfkQ=;
+ s=k20201202; t=1736262876;
+ bh=Qbj+7uegWwo74vBYVbgrZrrD7ctiz1nzweIhyjtfbAg=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=OC56uEAI6rUyWA3b2XO+3g/RB//+0QMApISXjr0YQEFwdb+GoqKPNXWn43vOM2uD8
- T4BE4XGaxGGEeb9TRRhVFJoizC5D1CuiVt1WWCP8vMZFcunXz2cjgqgToOSEFVHjX7
- Mfc0f5uxoydD2u1HF/nbXtudFp4upG1S+vTfJ+EZwK735emOepfwvC/JWmWOQTBAuK
- UOfUipHfOMZpdF2TC0eo6lUBjXV1EyoS0YAlXLbk41GK72npSkgarU9NbjMlhss7Ts
- VWtoU/ZWBwNtOY1V8bXnCnl25bNH4cyOJqnvp0GDQAiZ7rfdlygwOLZ10jidH1NwJd
- tHfi3OSrb57Nw==
-Date: Tue, 7 Jan 2025 16:13:29 +0100
+ b=Rd41cNXH5dFaZZdI3kumY0WslSRmY5kClp39oFV06WMPQI6gEAp1dYH6oXF+40Qn5
+ 4C5JTbUopOkVqr6wg8BgNYTH5wCXIqUyO+tZiBUVYz+bA3rcheDJplTmYCbVlkFCRX
+ /cjeWSNO4o4MtlY8N6mnezaMmeu5HrSnREB9lZAi0xG0rTYJHkOq+b6lSH2pAYkiLh
+ MHnYRj1DqWktO7muIMqVJZe3bUVp8lxVJxIvCzr91PSGKpMpCuitMcgLJn81R11DY3
+ bBniXXsQRGZDLSw0nCq8UGCknay4/V0SNyZ8PYB7xeHb+c2xL/2gzsUog1c8jGrcvi
+ Ahi5hr2IXMj0Q==
+Date: Tue, 7 Jan 2025 16:14:33 +0100
 From: Maxime Ripard <mripard@kernel.org>
-To: Maarten Lankhorst <dev@lankhorst.se>
-Cc: Tejun Heo <tj@kernel.org>, Simona Vetter <simona.vetter@ffwll.ch>, 
- Dave Airlie <airlied@gmail.com>, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, Zefan Li <lizefan.x@bytedance.com>, 
- Johannes Weiner <hannes@cmpxchg.org>, Andrew Morton <akpm@linux-foundation.org>,
- Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
- linux-mm@kvack.org, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH v2 0/7] kernel/cgroups: Add "dmem" memory accounting
- cgroup.
-Message-ID: <20250107-aquamarine-nautilus-of-freedom-bc2208@houat>
-References: <20241213-proud-kind-uakari-df3a70@houat>
- <80c49a80-d49c-4ca5-9568-9f7950618275@lankhorst.se>
- <20241213-gentle-glittering-salamander-22addf@houat>
- <5a50a992-9286-4179-8031-ffb514bca34f@lankhorst.se>
- <20241217-meek-bullfinch-of-luck-2c3468@houat>
- <a69a3500-be17-4899-bdb9-c6a63bf8dc81@lankhorst.se>
- <Z2GwpOQDVshpv-ml@slm.duckdns.org>
- <c0a539e7-0f1b-496a-9848-73a7ada66bfb@lankhorst.se>
- <Z2HBqtKDSTkd1lST@slm.duckdns.org>
- <61b95c08-a3c2-4f92-b6e5-df77fd2491e2@lankhorst.se>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, imre.deak@intel.com, 
+ Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH v3 01/16] drm/mst: remove mgr parameter and debug logging
+ from drm_dp_get_vc_payload_bw()
+Message-ID: <20250107-classy-burrowing-kingfisher-a8a0d1@houat>
+References: <cover.1735912293.git.jani.nikula@intel.com>
+ <72d77e7a7fe69c784e9df048b7e6f250fd7599e4.1735912293.git.jani.nikula@intel.com>
+ <875xmrlzhd.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="pv3xxe53a32ls35b"
+ protocol="application/pgp-signature"; boundary="lftp4l5ikr7sbmnv"
 Content-Disposition: inline
-In-Reply-To: <61b95c08-a3c2-4f92-b6e5-df77fd2491e2@lankhorst.se>
+In-Reply-To: <875xmrlzhd.fsf@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,82 +63,52 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
---pv3xxe53a32ls35b
+--lftp4l5ikr7sbmnv
 Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 0/7] kernel/cgroups: Add "dmem" memory accounting
- cgroup.
+Subject: Re: [PATCH v3 01/16] drm/mst: remove mgr parameter and debug logging
+ from drm_dp_get_vc_payload_bw()
 MIME-Version: 1.0
 
-On Tue, Dec 17, 2024 at 09:17:24PM +0100, Maarten Lankhorst wrote:
-> Hey,
+On Tue, Jan 07, 2025 at 11:55:42AM +0200, Jani Nikula wrote:
+> On Fri, 03 Jan 2025, Jani Nikula <jani.nikula@intel.com> wrote:
+> > The struct drm_dp_mst_topology_mgr *mgr parameter is only used for debug
+> > logging in case the passed in link rate or lane count are zero. There's
+> > no further error checking as such, and the function returns 0.
+> >
+> > There should be no case where the parameters are zero. The returned
+> > value is generally used as a divisor, and if we were hitting this, we'd
+> > be seeing division by zero.
+> >
+> > Just remove the debug logging altogether, along with the mgr parameter,
+> > so that the function can be used in non-MST contexts without the
+> > topology manager.
+> >
+> > v2: Also remove drm_dp_mst_helper_tests_init as unnecessary (Imre)
+> >
+> > Cc: Imre Deak <imre.deak@intel.com>
+> > Cc: Lyude Paul <lyude@redhat.com>
+> > Reviewed-by: Imre Deak <imre.deak@intel.com>
+> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >=20
-> Den 2024-12-17 kl. 19:23, skrev Tejun Heo:
-> > Hello,
-> >=20
-> > On Tue, Dec 17, 2024 at 06:37:22PM +0100, Maarten Lankhorst wrote:
-> > > Den 2024-12-17 kl. 18:11, skrev Tejun Heo:
-> > > > On Tue, Dec 17, 2024 at 03:28:50PM +0100, Maarten Lankhorst wrote:
-> > > > > Now that all patches look good, what is needed to merge the serie=
-s? Without
-> > > > > patch 6/7 as it is a hack for testing.
-> > > >=20
-> > > > There were some questions raised about device naming. One thing we =
-want to
-> > > > get right from the beginning is the basic interface.
-> > > >=20
-> > > > Thanks.
-> > > >=20
-> > > I believe it was solved. The conclusion appears to be that we go with=
- how we
-> > > defined it in this series. drm/$pciid/$regionname. With the only regi=
-ons
-> > > defined now being VRAM. Main memory will be a followup, but requires =
-some
-> > > discussions on hwo to be prevent double accounting, and what to do wi=
-th the
-> > > limited amount of mappable memory.
-> >=20
-> > Provided Johannes is okay with the series, how do you want to route the
-> > series? If you want to route it through drm, that's fine by me and plea=
-se
-> > feel free to add:
-> >=20
-> >   Acked-by: Tejun Heo <tj@kernel.org>
-> >=20
-> > Thanks.
-> >=20
->=20
-> Thank you!
->=20
-> I've discussed this with the DRM maintainers. What was suggested is to
-> create a topic branch, merge it to drm-misc whichwhere it will be picked =
-up
-> into drm.git during the next pull request. At the same time the topic bra=
-nch
-> can be also be merged into the cgroup tree if needed.
->=20
-> The drm-misc tree already handles dma-buf and fbdev core, think DMEM could
-> fit in there too.
+> Maarten, Maxime, Thomas, ack for merging this via drm-intel along with
+> the rest of the series?
 
-FTR, I sent the PR Maarten mentioned yesterday:
-
-https://lore.kernel.org/dri-devel/20250106-shaggy-solid-dogfish-e88ebc@houa=
-t/
+Ack
 
 Maxime
 
---pv3xxe53a32ls35b
+--lftp4l5ikr7sbmnv
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ31EmAAKCRAnX84Zoj2+
-dgqwAXkBqOY80d6YfAI9M6lwC4qCdnkRHsUmVYNK6lBeBimVK5KwjQEv+0pvSl1N
-asN42usBf2tjGAs/PAC3dEudEYLnkyhZxzTjSTWkr9DSpNuRWLC+kJP4KCBWKJTK
-BxZ7dZiYdA==
-=aJ4q
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ31E2QAKCRAnX84Zoj2+
+doxIAX9xbxs0JbnUcGPpZ1jHYUMm3dJqJqNW8YszPhx+yONy8VW4ssd7YtkMa8wM
+7Xd+NS8Bfjo/Um3+fMbifvBuVH9dJvazv0Tw9H2aqJMxzdmMERxu5AbVjmoQUvY0
+/Bl+VlQoyg==
+=zHZG
 -----END PGP SIGNATURE-----
 
---pv3xxe53a32ls35b--
+--lftp4l5ikr7sbmnv--
