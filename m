@@ -4,61 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03C6DE77188
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 22:11:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03DE1E7719A
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 22:43:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76DF510E43E;
-	Wed,  8 Jan 2025 22:11:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFF0F10ECA2;
+	Wed,  8 Jan 2025 22:43:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fv/Dc0Nt";
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="cTQFf1Fr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E0A710E43E
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Jan 2025 22:11:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736374312; x=1767910312;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=mlpB9jdFWipju3tPl+LIrfogeEppJD2GM7aaya9HMpE=;
- b=fv/Dc0NtuxW/XlD+7FSnK7F2T+9uO7t96Jh2B3pItRK69VHEAGT+0Hof
- cAK+n9DBC/esE8Tgl2V2WREC7e26NhICx1QfgYFIldWT6JXp5Cfr/w8dN
- Jj+BtFLkoq3lYo3XDZ0fLUYFM+s5Om0VwhNlk1kTOdvSx+IYYwznNQUpG
- 2KN2l/mLVMob5upddqaTOGPUUE0soB8bKUl5hpQC1PCj9ZljKnngqThT0
- gbyvr+7sX4fpUNaEGEZ1XmmZlqCOFn/6YfNQARPdKTwnlZ7L9HEBDxWyf
- OPi/T2N5WZyfc+Hb8VZgQ8j8cBb0mEP7G4FJuQ+qOVor43kipK5XE4doy w==;
-X-CSE-ConnectionGUID: lwb8VfxmQmykJR6PbBs0ng==
-X-CSE-MsgGUID: XUwjZBpTS7WaX4tDh7PdNQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="47117112"
-X-IronPort-AV: E=Sophos;i="6.12,299,1728975600"; d="scan'208";a="47117112"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 14:11:51 -0800
-X-CSE-ConnectionGUID: RM5POTS4RnSc49fN8pD2+w==
-X-CSE-MsgGUID: DxX4AK1WTDOMg6Xl70Y/tw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108335359"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.111.59])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 14:11:51 -0800
-Date: Wed, 8 Jan 2025 16:11:45 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-Cc: Julia Filipchuk <julia.filipchuk@intel.com>, 
- intel-xe@lists.freedesktop.org,
- =?utf-8?B?Sm9zw6k=?= Roberto de Souza <jose.souza@intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v3 1/1] drm/xe/guc: Fix GuC log/ct output via debugfs
-Message-ID: <qj6jh2z7qncr73nesmsdjaa46rxnm34tf4slp6y4ctv4w2dzv2@lttsv323fanu>
-References: <20250107202252.2642853-1-julia.filipchuk@intel.com>
- <3god5fzcfbzxwlssqdb6eenzedqkykv2scpktlk5uglgf2ro73@bjuq2knwuweh>
- <ef3c1576-74bf-4fbf-be8b-9ff8d24cc24f@intel.com>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56CE110E05C;
+ Wed,  8 Jan 2025 22:43:38 +0000 (UTC)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508HMlxa014796;
+ Wed, 8 Jan 2025 22:43:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ pe4G+UyYb8cZtDj+ltdkPSaWk2YVBHhcyJrZWNEnXxg=; b=cTQFf1FrybgrKyii
+ TEz9QmPqOAKYMBdZHoM8l8zluabyB8DGidjRZ1rDRNGn1RRpjUkhF+D9meZIAF3V
+ pz+aXaSAyzCLIjDj1WvENwnU1FDxRhj7iO4J7hkXA5An9pgYZFtghKaHgZ3jPIlL
+ kGJsn3VwiuqbD5q+4Rapt4w1pQVKG3GblTRh2cxROpSY8jI/ccwoB3/8CbwtadeJ
+ wLWnckYSpuyQnco9qra/wG/HawBRjEDfTki1iyJbIlTozUfqYhY4JP/ITrxnJbbP
+ mGmJeBdSzrJZJH5uN1PMoHBDOKDp1hHbQMVCC1Lwcxh8MZVlOhO9tZ7GcZH27zZu
+ f82rpw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441wq50pke-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 08 Jan 2025 22:43:31 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 508MhUd5021460
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 8 Jan 2025 22:43:30 GMT
+Received: from [10.71.108.79] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 Jan 2025
+ 14:43:29 -0800
+Message-ID: <48c109bc-58c2-416a-ba6a-a15ca754f16d@quicinc.com>
+Date: Wed, 8 Jan 2025 14:43:28 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ef3c1576-74bf-4fbf-be8b-9ff8d24cc24f@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] drm/dp: Add helper to set LTTPRs in transparent
+ mode
+To: Abel Vesa <abel.vesa@linaro.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, Marijn Suijten
+ <marijn.suijten@somainline.org>
+CC: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konradybcio@kernel.org>,
+ Johan Hovold <johan@kernel.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <linux-arm-msm@vger.kernel.org>, <freedreno@lists.freedesktop.org>,
+ Johan Hovold <johan+linaro@kernel.org>
+References: <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-0-918949bc2e3a@linaro.org>
+ <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-1-918949bc2e3a@linaro.org>
+Content-Language: en-US
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-1-918949bc2e3a@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-GUID: R1XT-ytBRZAZ1E1Tb4N3fk9CX-hEtAs7
+X-Proofpoint-ORIG-GUID: R1XT-ytBRZAZ1E1Tb4N3fk9CX-hEtAs7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 priorityscore=1501
+ suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 spamscore=0
+ clxscore=1011 malwarescore=0 mlxlogscore=970 adultscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2501080186
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,149 +105,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-+Jose
-+Rodrigo
 
-On Wed, Jan 08, 2025 at 12:14:49PM -0800, John Harrison wrote:
->On 1/7/2025 13:10, Lucas De Marchi wrote:
->>On Tue, Jan 07, 2025 at 12:22:52PM -0800, Julia Filipchuk wrote:
->>>Change to disable asci85 GuC logging only when output to devcoredump
->>>(was temporarily disabled for all code paths).
->>>
->>>v2: Ignore only for devcoredump case (not dmesg output).
->>>v3: Rebase to resolve parent tag mismatch.
->>>
->>>Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
->>>---
->>>drivers/gpu/drm/xe/xe_devcoredump.c | 8 +++++---
->>>include/drm/drm_print.h             | 2 ++
->>>2 files changed, 7 insertions(+), 3 deletions(-)
->>>
->>>diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c 
->>>b/drivers/gpu/drm/xe/xe_devcoredump.c
->>>index 6980304c8903..8e5d1f9866a7 100644
->>>--- a/drivers/gpu/drm/xe/xe_devcoredump.c
->>>+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
->>>@@ -424,10 +424,12 @@ void xe_print_blob_ascii85(struct 
->>>drm_printer *p, const char *prefix,
->>>     * Splitting blobs across multiple lines is not compatible 
->>>with the mesa
->>>     * debug decoder tool. Note that even dropping the explicit 
->>>'\n' below
->>>     * doesn't help because the GuC log is so big some underlying 
->>>implementation
->>>-     * still splits the lines at 512K characters. So just bail 
->>>completely for
->>>-     * the moment.
->>>+     * still splits the lines at 512K characters.
->>
->>did we investigate where this is done and how we can overcome it? I
->Yes. And the comment could be updated as part of this patch to make it 
->clearer...
->
->
->     * Splitting blobs across multiple lines is not compatible with 
->the mesa
->     * debug decoder tool. Note that even dropping the explicit line 
->wrapping
->     * below doesn't help because the GuC log can be so big it needs 
->to be split
->     * into multiple 2MB chunks, each of which must be printed 
->individually and
->     * therefore will be a separate line.
 
-so there's no "underlying implemenation that splits like at 512K chars"?
-Nowe it's something else: a 2MB chunk because of what?
+On 1/8/2025 6:31 AM, Abel Vesa wrote:
+> According to the DisplayPort standard, LTTPRs have two operating
+> modes:
+>   - non-transparent - it replies to DPCD LTTPR field specific AUX
+>     requests, while passes through all other AUX requests
+>   - transparent - it passes through all AUX requests.
+> 
+> Switching between this two modes is done by the DPTX by issuing
+> an AUX write to the DPCD PHY_REPEATER_MODE register.
+> 
+> Add a generic helper that allows switching between these modes.
+> 
+> Also add a generic wrapper for the helper that handles the explicit
+> disabling of non-transparent mode and its disable->enable sequence
+> mentioned in the DP Standard v2.0 section 3.6.6.1. Do this in order
+> to move this handling out of the vendor specific driver implementation
+> into the generic framework.
+> 
+> Tested-by: Johan Hovold <johan+linaro@kernel.org>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>   drivers/gpu/drm/display/drm_dp_helper.c | 62 +++++++++++++++++++++++++++++++++
+>   include/drm/display/drm_dp_helper.h     |  2 ++
+>   2 files changed, 64 insertions(+)
+> 
 
-I don't really want to keep updating this instead of fixing it.
-
->
->The dump helper could be updated to never add any line feeds, not even 
-
-when you say "dump helper", what exactly are you talking about?
-xe_print_blob_ascii85(), __xe_devcoredump_read(), __drm_puts_coredump()
-or what?
-
-If it's about xe_print_blob_ascii85(), I think this would be the first step:
-drop the \n you are adding. AFAICS calling the print function in chunks
-of 800B would be fine, just don't add any \n. If that still adds \n
-somewhere, we can check how to drop it or you then may have a pretty
-solid argument to adapt the mesa tool with a newline
-continuar char and send them the MR.  
-
->at the end. And then the burden would be on the callers to add line 
->feeds as appropriate. That seems extremely messy, though. And it will 
->break the dmesg output facility. That does need the line wrapping at 
->~800 characters which can't be done from outside the helper.
->
->>
->>understand having to split it into multiple calls, but not something
->>adding a \n. particularly for the functions dealing with seq_file and
->>devcoredump.
->>
->>>+     *
->>>+     * Only disable from devcoredump output.
->>>     */
->>>-    return;
->>>+    if (p->coredump)
->>
->>but we do want the guc log to be inside the devcoredump, so rather than
->>adding more workarounds, can we fix it ?
->The simplest fix is your suggestion of adding an extra white space 
->character at the end of the line in the helper function and updating 
->the mesa tool to support multi-line output. That seems like it should 
->be a trivial update to the mesa tool and it keeps the KMD side simple 
->and consistent across all potential output methods. But Jose seemed 
->absolutely dead set against any updates to the mesa tool at all :(.
->
->The more complex fix is Joonas' idea of using an official structured 
->output format of some sort - TOML, YAML, JSON or whatever. Something 
-
-it actually doesn't fix this particular issue. It fixes others, but not
-this one.
-
-	"Guc Log": "<encoded data .........."
-
-if you need to split lines, you still need something to do do it in
-whatever format you choose. One json I remember working on in the past
-that embeds the binary is the .apj format... example:
-https://firmware.ardupilot.org/Copter/2024-12/2024-12-02-13:12/CubeBlack/arducopter.apj
-
-	{
-	    "board_id": 9,
-	    "magic": "APJFWv1",
-	    "description": "Firmware for a STM32F427xx board",
-	    "image": "eNqUvAlcU1faMH5u7k1yCQGCICCgBoIaRW0EtVSxhg ...
-
-here "image" is base64-encoded  afair. But in your case, just printing
-the json to dmesg wouldn't work because of needing to split the line.
-It wouldn't fix the kind of bugs we had in the past too:  in json it
-would be the equivalent of adding a field to the wrong object and then
-move it elsewhere. An application trying to read that object in the
-previous place would be broken regardless.
-
-toml is more for configuration and yaml isn't a good one for this case
-as it further relies on indentation. I wouldn't oppose to use json, but
-don't expect to have dmesg to magically work because of that.
-
-So let's fix the issue at hand and let the talk about xe's coredump
-format for a later time.
-
->that ideally supports binary data and compression natively and has a 
->helper library that can be included in the kernel source tree. That 
-
-oh no, we'd need to define the schema - there are plenty of json libraries
-in multiple languages for users to choose from  and that would be basically
-then main benefit of using it.
-
-Lucas De Marchi
-
->will then remove any and all confusion over interpretation of the file 
->forever more. But it would require updating all userland tools to use 
->the appropriate helper library.
->
->John.
->
->>
->>Lucas De Marchi
->
+Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
