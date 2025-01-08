@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD4BFE7719B
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 17:04:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43530E77199
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 17:09:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91DED10EC1F;
-	Wed,  8 Jan 2025 17:04:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jtdHMaeg";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD6AA10EC1E;
- Wed,  8 Jan 2025 17:04:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736355873; x=1767891873;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=64F6s2UH7AzImKGIlRffG2b225lKyeFHreWoAH/cMfU=;
- b=jtdHMaeg7NHsUeSM2s3GtGezopOUGRC05fvYSE/ntrpgJfQrRH7UVvhM
- I7X7OZ8AsZFGzNrT1UgDc+QiyWYYQl2ZC1GokUgnytcFbhR0RRnqzPdfn
- l2/eWPeil+vv2D44UWO8/PdGL9OlWza6VDMp7tHJy3pd6IypkadrnreHP
- yoNZ4mXhgpvQj/3B/lL9wC1I76X2ATDz9ANPc+zNrQtAQZcGXuOV0leD0
- rw7PTZdEO4Lk3hAr18la9vUiGx+Yf/ViPYLWukHWqwItnIqS1WFflLsj6
- 7AsfEAAtndfVLba/uQX5Gz3VcGvIm/Z6zCkV8w7HXyaHinzjBIssFiR0E w==;
-X-CSE-ConnectionGUID: 8Wtst64OQbadxrKJevJFOQ==
-X-CSE-MsgGUID: dEu3S4U1TaOLDBuX0KjgYA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="36613845"
-X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="36613845"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 09:04:33 -0800
-X-CSE-ConnectionGUID: ZjlCcF/8QUGYPa33ejGFsw==
-X-CSE-MsgGUID: bq9qRLLPS5m+M49xsgNChA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="102959985"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 09:04:31 -0800
-Date: Wed, 8 Jan 2025 19:05:19 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "Shankar, Uma" <uma.shankar@intel.com>
-Subject: Re: [PATCH 1/2] drm/i915/cx0: Fix SSC enablement in PORT_CLOCK_CTL
-Message-ID: <Z36wT9M6kUToR1r-@ideak-desk.fi.intel.com>
-References: <20250106040821.251114-1-suraj.kandpal@intel.com>
- <20250106040821.251114-2-suraj.kandpal@intel.com>
- <Z31CF9QeIe7erRqE@ideak-desk.fi.intel.com>
- <MW4PR11MB6761744B96F87D810286FAC8E3122@MW4PR11MB6761.namprd11.prod.outlook.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1101A10E175;
+	Wed,  8 Jan 2025 17:09:56 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F6C110E175;
+ Wed,  8 Jan 2025 17:09:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MW4PR11MB6761744B96F87D810286FAC8E3122@MW4PR11MB6761.namprd11.prod.outlook.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/dp=3A_Rework_LTTPR_transpa?=
+ =?utf-8?q?rent_mode_handling_and_add_support_to_msm_driver_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Abel Vesa" <abel.vesa@linaro.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 08 Jan 2025 17:09:54 -0000
+Message-ID: <173635619425.1342332.17517377926588775116@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-0-918949bc2e3a@linaro.org>
+In-Reply-To: <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-0-918949bc2e3a@linaro.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,86 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jan 08, 2025 at 08:04:58AM +0200, Kandpal, Suraj wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Deak, Imre <imre.deak@intel.com>
-> > Sent: Tuesday, January 7, 2025 8:33 PM
-> > To: Kandpal, Suraj <suraj.kandpal@intel.com>
-> > Cc: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; Nautiyal,
-> > Ankit K <ankit.k.nautiyal@intel.com>; Shankar, Uma
-> > <uma.shankar@intel.com>
-> > Subject: Re: [PATCH 1/2] drm/i915/cx0: Fix SSC enablement in
-> > PORT_CLOCK_CTL
-> >
-> > On Mon, Jan 06, 2025 at 09:38:20AM +0530, Suraj Kandpal wrote:
-> > > SSC for PLL_A is enabled for UHBR10 or UHBR20 regardless of the need
-> > > for SSC. This means the ssc_enabled variable had no say to determine
-> > > enablement of SSC on PLL A.
-> >
-> > I don't see the above in the spec. It suggests that SSC should be enabled on
-> > PLL A for MFD, but in any case SSC can only be enabled if the sink supports
-> > SSC, as indicated by dpll_hw_state.cx0pll.ssc_enabled.
-> 
-> Hi Imre,
->
-> You are right In Bspec 74489 under Non-thunderbolt PLL Enable Sequence
-> It says SSC enable to be done on PLLA  for MFD when on UHBR10 or
-> UHBR20 (PLLA is only used for C20 PHY UHBR10 and 20.) and check for
-> ssc_enabled for Native mode to enable SSC but now the issue is that we
-> aren't checking for MFD mode any particular reason for this ? and how
-> would we go about checking if we are in MFD mode or not ?  Also the
-> ssc_enabled bool variable never actually gets set for C20 Phy which
-> makes checking the ssc_enabled Useless, which I fix in the next patch.
+== Series Details ==
 
-Enabling SSC for DP outputs would require more changes than enabling SSC
-in the PLL, AFAICS at least:
+Series: drm/dp: Rework LTTPR transparent mode handling and add support to msm driver (rev4)
+URL   : https://patchwork.freedesktop.org/series/140802/
+State : success
 
-- Check the sink if it supports SSC.
-- Check VBT if it requires SSC to be enabled.
-- If enabling SSC, also enable it in the sink's spread control DPCD register.
-- If enabling SSC, adjust the MST BW calculation.
+== Summary ==
 
-In fact I'm not sure how this works atm on the DG2 SNPS and C10 PHYs,
-where SSC is enabled w/o checking/handling all the above.
+lib/modules/6.13.0-rc6-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc6-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc6-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc6-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc6-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc6-xe+/kernel/kernel/
+lib/modules/6.13.0-rc6-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc6-xe+/kernel/block/
+lib/modules/6.13.0-rc6-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc6-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc6-xe+/build
+lib/modules/6.13.0-rc6-xe+/modules.alias.bin
+lib/modules/6.13.0-rc6-xe+/modules.builtin
+lib/modules/6.13.0-rc6-xe+/modules.softdep
+lib/modules/6.13.0-rc6-xe+/modules.alias
+lib/modules/6.13.0-rc6-xe+/modules.order
+lib/modules/6.13.0-rc6-xe+/modules.symbols
+lib/modules/6.13.0-rc6-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1736356183:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1736356183:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-> Would be great if you could also have a look at that.
-> 
-> Regards,
-> Suraj Kandpal
-> 
-> >
-> > > Bspec: 64568, 74165, 74489, 74491
-> > > Fixes: 237e7be0bf57 ("drm/i915/mtl: For DP2.0 10G and 20G rates use
-> > > MPLLA")
-> > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> > > b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> > > index e768dc6a15b3..3fd959a2773c 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> > > @@ -2747,7 +2747,7 @@ static void intel_program_port_clock_ctl(struct
-> > intel_encoder *encoder,
-> > >     /* TODO: HDMI FRL */
-> > >     /* DP2.0 10G and 20G rates enable MPLLA*/
-> > >     if (crtc_state->port_clock == 1000000 || crtc_state->port_clock ==
-> > 2000000)
-> > > -           val |= crtc_state->dpll_hw_state.cx0pll.ssc_enabled ?
-> > XELPDP_SSC_ENABLE_PLLA : 0;
-> > > +           val |= XELPDP_SSC_ENABLE_PLLA;
-> > >     else
-> > >             val |= crtc_state->dpll_hw_state.cx0pll.ssc_enabled ?
-> > > XELPDP_SSC_ENABLE_PLLB : 0;
-> > >
-> > > --
-> > > 2.34.1
-> > >
+
