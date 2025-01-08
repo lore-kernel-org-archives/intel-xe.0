@@ -4,93 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03DE1E7719A
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 22:43:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78630E77188
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 22:57:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFF0F10ECA2;
-	Wed,  8 Jan 2025 22:43:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4523210E08D;
+	Wed,  8 Jan 2025 22:57:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="cTQFf1Fr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XB8W616J";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56CE110E05C;
- Wed,  8 Jan 2025 22:43:38 +0000 (UTC)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508HMlxa014796;
- Wed, 8 Jan 2025 22:43:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- pe4G+UyYb8cZtDj+ltdkPSaWk2YVBHhcyJrZWNEnXxg=; b=cTQFf1FrybgrKyii
- TEz9QmPqOAKYMBdZHoM8l8zluabyB8DGidjRZ1rDRNGn1RRpjUkhF+D9meZIAF3V
- pz+aXaSAyzCLIjDj1WvENwnU1FDxRhj7iO4J7hkXA5An9pgYZFtghKaHgZ3jPIlL
- kGJsn3VwiuqbD5q+4Rapt4w1pQVKG3GblTRh2cxROpSY8jI/ccwoB3/8CbwtadeJ
- wLWnckYSpuyQnco9qra/wG/HawBRjEDfTki1iyJbIlTozUfqYhY4JP/ITrxnJbbP
- mGmJeBdSzrJZJH5uN1PMoHBDOKDp1hHbQMVCC1Lwcxh8MZVlOhO9tZ7GcZH27zZu
- f82rpw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441wq50pke-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 08 Jan 2025 22:43:31 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 508MhUd5021460
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 8 Jan 2025 22:43:30 GMT
-Received: from [10.71.108.79] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 Jan 2025
- 14:43:29 -0800
-Message-ID: <48c109bc-58c2-416a-ba6a-a15ca754f16d@quicinc.com>
-Date: Wed, 8 Jan 2025 14:43:28 -0800
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C57710E08D
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Jan 2025 22:57:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736377067; x=1767913067;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=qwcSuymj34f1GNonsGKLyHpsC0uAWjAPPqOf7b7rQ+0=;
+ b=XB8W616JW8IaTw/HCpd0GPLgxCiGz4sfjvCCxBoxZa3TmAsBYuFyY+I4
+ 7isouKyjh0/KOZzjf+VbDVk70FWWNk2HTbw5N1QDymjg0oHgUhNXcptVR
+ uAWKuTfJU4Nsijn3KEi85UEtybiMUA8cps9NYSJwl8la1YW2eKLVVTezn
+ SMgtWbhNPvAhuSmC95X8o+wNJrLZIrVJowNpfJWPfmjHL6BY/Yt3qv1vt
+ WX6CvZwvMWhyGovrRnXl7EjJxTdOfFy6jPTsqYzbZVR8sC1NGtsVCZW6v
+ Z6/5J6cXFTd6TRPyKK60dh6a6sA3W+FZREeq4i16/7JK/shwdTCJC+wGn w==;
+X-CSE-ConnectionGUID: 8k4fPcqdSy+gCfhQV0PRDg==
+X-CSE-MsgGUID: 6+rPsaiDQtW/c/FakR7d9w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="36506212"
+X-IronPort-AV: E=Sophos;i="6.12,299,1728975600"; d="scan'208";a="36506212"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2025 14:57:46 -0800
+X-CSE-ConnectionGUID: yyMc2+YNSbuHhs9QGoNGuA==
+X-CSE-MsgGUID: vVSpWuGHRd2+MxmvtpTwrg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,299,1728975600"; d="scan'208";a="103301993"
+Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
+ ([10.125.111.59])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2025 14:57:46 -0800
+Date: Wed, 8 Jan 2025 16:57:40 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, 
+ stable@vger.kernel.org
+Subject: Re: [PATCH] drm/xe/client: Better correlate exec_queue and GT
+ timestamps
+Message-ID: <yucnyvz3vdhvxlpuxsd2c5jyzqpbdcpxoxhw2lbvfvjpndr7nb@7tiqvwmaxg2t>
+References: <20241212173432.1244440-1-lucas.demarchi@intel.com>
+ <Z3xcy2Z3CuwkR9L1@orsosgc001>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] drm/dp: Add helper to set LTTPRs in transparent
- mode
-To: Abel Vesa <abel.vesa@linaro.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, Marijn Suijten
- <marijn.suijten@somainline.org>
-CC: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
- <konradybcio@kernel.org>,
- Johan Hovold <johan@kernel.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-arm-msm@vger.kernel.org>, <freedreno@lists.freedesktop.org>,
- Johan Hovold <johan+linaro@kernel.org>
-References: <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-0-918949bc2e3a@linaro.org>
- <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-1-918949bc2e3a@linaro.org>
-Content-Language: en-US
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-1-918949bc2e3a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: R1XT-ytBRZAZ1E1Tb4N3fk9CX-hEtAs7
-X-Proofpoint-ORIG-GUID: R1XT-ytBRZAZ1E1Tb4N3fk9CX-hEtAs7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 priorityscore=1501
- suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 spamscore=0
- clxscore=1011 malwarescore=0 mlxlogscore=970 adultscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501080186
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <Z3xcy2Z3CuwkR9L1@orsosgc001>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,34 +70,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Mon, Jan 06, 2025 at 02:44:27PM -0800, Umesh Nerlige Ramappa wrote:
+>On Thu, Dec 12, 2024 at 09:34:32AM -0800, Lucas De Marchi wrote:
+>>This partially reverts commit fe4f5d4b6616 ("drm/xe: Clean up VM / exec
+>>queue file lock usage."). While it's desired to have the mutex to
+>>protect only the reference to the exec queue, getting and dropping each
+>>mutex and then later getting the GPU timestamp, doesn't produce a
+>>correct result: it introduces multiple opportunities for the task to be
+>>scheduled out and thus wrecking havoc the deltas reported to userspace.
+>>
+>>Also, to better correlate the timestamp from the exec queues with the
+>>GPU, disable preemption so they can be updated without allowing the task
+>>to be scheduled out. We leave interrupts enabled as that shouldn't be
+>>enough disturbance for the deltas to matter to userspace.
+>
+>Assuming
+>
+>- timestamp from exec queues = xe_exec_queue_update_run_ticks()
+>- GPU timestamp = xe_hw_engine_read_timestamp()
+>
+>shouldn't you also move the xe_hw_engine_read_timestamp() within the 
+>preempt_disable/preempt_enable section?
 
+this is what I thought I had done, but it seems I messed up.
 
-On 1/8/2025 6:31 AM, Abel Vesa wrote:
-> According to the DisplayPort standard, LTTPRs have two operating
-> modes:
->   - non-transparent - it replies to DPCD LTTPR field specific AUX
->     requests, while passes through all other AUX requests
->   - transparent - it passes through all AUX requests.
-> 
-> Switching between this two modes is done by the DPTX by issuing
-> an AUX write to the DPCD PHY_REPEATER_MODE register.
-> 
-> Add a generic helper that allows switching between these modes.
-> 
-> Also add a generic wrapper for the helper that handles the explicit
-> disabling of non-transparent mode and its disable->enable sequence
-> mentioned in the DP Standard v2.0 section 3.6.6.1. Do this in order
-> to move this handling out of the vendor specific driver implementation
-> into the generic framework.
-> 
-> Tested-by: Johan Hovold <johan+linaro@kernel.org>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->   drivers/gpu/drm/display/drm_dp_helper.c | 62 +++++++++++++++++++++++++++++++++
->   include/drm/display/drm_dp_helper.h     |  2 ++
->   2 files changed, 64 insertions(+)
-> 
+>
+>Something like this ..
+>
+>	preempt_disable();
+>
+>	xa_for_each(&xef->exec_queue.xa, i, q)
+>		xe_exec_queue_update_run_ticks(q);
+>
+>	gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+I'd move the gpu_timestamp to be done before the exec queue, so we don't
+call it with the exec queue mutex still taken. AFAIR this is what I was
+doing in the test machine, but sent the wrong version of the patch. Let
+me double check locally here and resend.
+
+thanks
+Lucas De Marchi
+
+>
+>	preempt_enable();
+>
+>Thanks,
+>Umesh
+>
+>>
+>>Test scenario:
+>>
+>>	* IGT'S `xe_drm_fdinfo --r --r utilization-single-full-load`
+>>	* Platform: LNL, where CI occasionally reports failures
+>>	* `stress -c $(nproc)` running in parallel to disturb the
+>>	  system
+>>
+>>This brings a first failure from "after ~150 executions" to "never
+>>occurs after 1000 attempts".
+>>
+>>Cc: stable@vger.kernel.org # v6.11+
+>>Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3512
+>>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>---
+>>drivers/gpu/drm/xe/xe_drm_client.c | 9 +++------
+>>1 file changed, 3 insertions(+), 6 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
+>>index 298a587da7f17..e307b4d6bab5a 100644
+>>--- a/drivers/gpu/drm/xe/xe_drm_client.c
+>>+++ b/drivers/gpu/drm/xe/xe_drm_client.c
+>>@@ -338,15 +338,12 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
+>>
+>>	/* Accumulate all the exec queues from this client */
+>>	mutex_lock(&xef->exec_queue.lock);
+>>-	xa_for_each(&xef->exec_queue.xa, i, q) {
+>>-		xe_exec_queue_get(q);
+>>-		mutex_unlock(&xef->exec_queue.lock);
+>>+	preempt_disable();
+>>
+>>+	xa_for_each(&xef->exec_queue.xa, i, q)
+>>		xe_exec_queue_update_run_ticks(q);
+>>
+>>-		mutex_lock(&xef->exec_queue.lock);
+>>-		xe_exec_queue_put(q);
+>>-	}
+>>+	preempt_enable();
+>>	mutex_unlock(&xef->exec_queue.lock);
+>>
+>>	gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
+>>-- 
+>>2.47.0
+>>
