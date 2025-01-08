@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11E6FE77199
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 13:48:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A6CBE77188
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 13:54:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C932C10E8AA;
-	Wed,  8 Jan 2025 13:48:17 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A070610E437;
- Wed,  8 Jan 2025 13:48:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DA6810EBC3;
+	Wed,  8 Jan 2025 13:54:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P3VxGVeP";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EDB410E8B5
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Jan 2025 13:54:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736344451; x=1767880451;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wb9npVXN504jp70D77js1TLROm7flzGLzKtSnZ6d3O0=;
+ b=P3VxGVePmx6pxtbEcRG4Bnu9cmxBhM1mJAHNB5pkIY483fhLEs6DPXSQ
+ uZb/Fcn/uQ2RS0iWtursz2ikNEd+Yt7Mj9Ig6tPQvUgHPxJmUKXTnB82w
+ 2Qrfr9y54EBbsmHmyRKvqOnjkxMz1JDMurl9LabqDUlHk/0EZoHYXy2ro
+ jQNoYoQ81OmS8aRTIeXz++uiIXpe1L/1qi6TI8a7BizgAj5bxNMzPNNH2
+ 0j+9rHk4QXp+v2qCTzt2tbLCR5kmhzV+RP8sOuVQeuYInNSFH3XIk6FOE
+ 8z1l65GPoSpBPfKJ2g1vzYDyiPHSyFRYqgUyy1vwV9u7lZ5TZUhXdBfaT g==;
+X-CSE-ConnectionGUID: 8Eqx1wS6SXyr0ijRSItFPQ==
+X-CSE-MsgGUID: F43fGCxpTzqHXvmnycD3AQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="40248259"
+X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="40248259"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2025 05:54:11 -0800
+X-CSE-ConnectionGUID: giKVwH36SoCt9+5E3YJc0Q==
+X-CSE-MsgGUID: kE1WBdfEQIKxDMHRxCAsWA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="107719756"
+Received: from nirmoyda-desk.igk.intel.com ([10.211.135.230])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2025 05:54:09 -0800
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>, Gustavo Sousa <gustavo.sousa@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH v2] drm/xe/ptl: Apply Wa_14023061436
+Date: Wed,  8 Jan 2025 15:13:23 +0100
+Message-ID: <20250108141323.311601-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Check_Scaler_and_DSC_Pre?=
- =?utf-8?q?fill_Latency_Against_Vblank_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 08 Jan 2025 13:48:16 -0000
-Message-ID: <173634409666.1307767.9364936222046696885@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250108123541.2101643-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20250108123541.2101643-1-mitulkumar.ajitkumar.golani@intel.com>
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,55 +64,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Enable WMTP for the BTD kernel to address Wa14023061436 by setting the
+proper TDL Chicken Bit.
 
-Series: Check Scaler and DSC Prefill Latency Against Vblank (rev2)
-URL   : https://patchwork.freedesktop.org/series/143159/
-State : warning
+v2: Apply it on engine_was[] as this register is not part of LRC(Matt)
+    Apply it for first_render_or_compute in case this gets extended to
+    compute only platforms(Matt).
 
-== Summary ==
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 3 +++
+ drivers/gpu/drm/xe/xe_wa.c           | 5 +++++
+ 2 files changed, 8 insertions(+)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 930246dd1dd2d36e858d8c53fa5a0b2bcd0e47f3
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:1965:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1965:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1965:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1965:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1965:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1965:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1965:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1965:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1965:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1965:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1965:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1965:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 162f18e975da..b4283ac030f4 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -500,6 +500,9 @@
+ #define   LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK	REG_GENMASK(13, 11)
+ #define   DIS_ATOMIC_CHAINING_TYPED_WRITES	REG_BIT(3)
+ 
++#define TDL_CHICKEN				XE_REG_MCR(0xe5f4, XE_REG_OPTION_MASKED)
++#define   QID_WAIT_FOR_THREAD_NOT_RUN_DISABLE	REG_BIT(12)
++
+ #define LSC_CHICKEN_BIT_0			XE_REG_MCR(0xe7c8)
+ #define   DISABLE_D8_D16_COASLESCE		REG_BIT(30)
+ #define   WR_REQ_CHAINING_DIS			REG_BIT(26)
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 570fe0376402..744dba4fdb58 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -613,6 +613,11 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 	  XE_RTP_ACTIONS(FIELD_SET(SAMPLER_MODE, SMP_WAIT_FETCH_MERGING_COUNTER,
+ 				   SMP_FORCE_128B_OVERFETCH))
+ 	},
++	{ XE_RTP_NAME("14023061436"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3001),
++		       FUNC(xe_rtp_match_first_render_or_compute)),
++	  XE_RTP_ACTIONS(SET(TDL_CHICKEN, QID_WAIT_FOR_THREAD_NOT_RUN_DISABLE))
++	},
+ 
+ 	{}
+ };
+-- 
+2.46.0
 
