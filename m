@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C984E7719A
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 12:39:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2FF5E77188
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 12:44:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14F8B10E0AB;
-	Wed,  8 Jan 2025 12:39:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YArAbKhX";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F7FF10E89C;
- Wed,  8 Jan 2025 12:39:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736339960; x=1767875960;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wM7Za0a4OoyMu19nYapa2G0801DyohJL2nGjYwmkqWQ=;
- b=YArAbKhXwnm1nGeQkRn9sli1f2hWonL/Z7l9pNUa0g5ILzqp+slgl+Co
- k0ZqoY7DOPHGQMMPrpsEbm+CwOB3MlHmK4XSeMGiwUjS4fg7PqvW78g5a
- i38BN+x+6yoNP+uUM8P8Wiw0P9i7b9PPd15TbyzJfwZmbTHeXEwJi9kKX
- /bm/KHTpuydRphEfav/JuHY5TWk2NZX3Gcvh+SwUSbUTE3euy1dS/81NY
- dlXKwZVUPG88sgV8NI5R2ROL4KkGyAnY9tBZ4etNT9L8sEx8P0qwUhtjl
- 2oeOcjD+t+cDG17nKMeeGnCB8pdTjbs13EvYiXnKMudbgImemUSPsPaqS Q==;
-X-CSE-ConnectionGUID: +hfI78uVQR64UAsKTskJyw==
-X-CSE-MsgGUID: Z6LqwylWTya8mRjMCEd0lQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="35855383"
-X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="35855383"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 04:39:12 -0800
-X-CSE-ConnectionGUID: rH5aMEQTRAmD0H93vP7XRA==
-X-CSE-MsgGUID: Ow0O8gveTsCiTUs9Oyk5FQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="102886140"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa006.fm.intel.com with ESMTP; 08 Jan 2025 04:39:10 -0800
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, jani.nikula@intel.com, ville.syrjala@intel.com
-Subject: [PATCH v4 6/7] drm/i915/scaler: Check if vblank is sufficient for
- scaler
-Date: Wed,  8 Jan 2025 18:05:40 +0530
-Message-ID: <20250108123541.2101643-7-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250108123541.2101643-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20250108123541.2101643-1-mitulkumar.ajitkumar.golani@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B68CA10E2D1;
+	Wed,  8 Jan 2025 12:44:47 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0D5C10E2D1;
+ Wed,  8 Jan 2025 12:44:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/psr=3A_clarify_intel?=
+ =?utf-8?q?=5Fpsr=5Fpre=5Fplane=5Fupdate=28=29_conditions?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 08 Jan 2025 12:44:45 -0000
+Message-ID: <173634028597.1292104.12667932930812767245@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250108104721.2278220-1-jani.nikula@intel.com>
+In-Reply-To: <20250108104721.2278220-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,80 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Check if vblank is too short for scaler prefill latency.
+== Series Details ==
 
---v2:
-- Use hweight* family of functions for counting bits. [Jani]
-- Update precision handling for hscale and vscale. [Ankit]
-- Consider chroma downscaling factor during latency
-calculation. [Ankit]
-- Replace function name from scaler_prefill_time to
-scaler_prefill_latency.
+Series: drm/i915/psr: clarify intel_psr_pre_plane_update() conditions
+URL   : https://patchwork.freedesktop.org/series/143234/
+State : success
 
---v3:
-- hscale_k and vscale_k values are already left shifted by 16,
-after multiplying by 1000, those need to be right shifted to 16. [Ankit]
-- Replace YCBCR444 to YCBCR420. [Ankit]
-- Divide by 1000 * 1000 in end to get correct precision. [Ankit]
-- Initialise latency to 0 to avoid any garbage.
+== Summary ==
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 31 ++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+lib/modules/6.13.0-rc6-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc6-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc6-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc6-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc6-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc6-xe+/kernel/kernel/
+lib/modules/6.13.0-rc6-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc6-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc6-xe+/kernel/block/
+lib/modules/6.13.0-rc6-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc6-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc6-xe+/build
+lib/modules/6.13.0-rc6-xe+/modules.alias.bin
+lib/modules/6.13.0-rc6-xe+/modules.builtin
+lib/modules/6.13.0-rc6-xe+/modules.softdep
+lib/modules/6.13.0-rc6-xe+/modules.alias
+lib/modules/6.13.0-rc6-xe+/modules.order
+lib/modules/6.13.0-rc6-xe+/modules.symbols
+lib/modules/6.13.0-rc6-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1736340275:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1736340275:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index f4458d1185b3..fe91854e456c 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2292,6 +2292,36 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
- 	return 0;
- }
- 
-+static int
-+scaler_prefill_latency(const struct intel_crtc_state *crtc_state)
-+{
-+	const struct intel_crtc_scaler_state *scaler_state =
-+					&crtc_state->scaler_state;
-+	int count = hweight32(scaler_state->scaler_users);
-+	int latency = 0;
-+	long long  hscale_k =
-+		mul_u32_u32(scaler_state->scalers[0].hscale, 1000) >> 16;
-+	long long vscale_k =
-+		mul_u32_u32(scaler_state->scalers[0].vscale, 1000) >> 16;
-+
-+	if (!count)
-+		return latency;
-+
-+	if (count > 1) {
-+		int chroma_downscaling_factor =
-+			crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 2 : 1;
-+
-+		latency = (4 * crtc_state->linetime) +
-+			  (chroma_downscaling_factor *
-+			   DIV_ROUND_UP_ULL((4 * crtc_state->linetime * hscale_k * vscale_k),
-+					    1000000));
-+	} else {
-+		latency = 4 * crtc_state->linetime;
-+	}
-+
-+	return latency;
-+}
-+
- static bool
- skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
- 			int wm0_lines, int latency)
-@@ -2302,6 +2332,7 @@ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
- 	/* FIXME missing scaler and DSC pre-fill time */
- 	return crtc_state->framestart_delay +
- 		intel_usecs_to_scanlines(adjusted_mode, latency) +
-+		scaler_prefill_latency(crtc_state) +
- 		wm0_lines >
- 		adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
- }
--- 
-2.46.0
 
