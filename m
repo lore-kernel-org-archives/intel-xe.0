@@ -4,78 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AA31E77188
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 08:53:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EAE6E77199
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 09:24:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B03410E42F;
-	Wed,  8 Jan 2025 08:53:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18AEF10E825;
+	Wed,  8 Jan 2025 09:24:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="no8+FMmj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EPeCVwMl";
 	dkim-atps=neutral
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28A3A10E42F
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Jan 2025 08:53:26 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-4363ae65100so168969275e9.0
- for <intel-xe@lists.freedesktop.org>; Wed, 08 Jan 2025 00:53:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1736326345; x=1736931145; darn=lists.freedesktop.org;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:message-id:subject:cc:to:from:date:from:to:cc:subject
- :date:message-id:reply-to;
- bh=JP018VLwPV0hK3cOGPTiHoAVwa0YSAd3lxx+6rxQn8c=;
- b=no8+FMmjNzDJSsmbBnU+aeuJgEB76Ol48/QiSjsF6vnMbKC/V7/a+vDp7wUvdMskGW
- y0kz9sdwkD9sIqLBIhk8mKaMLPgJY48Z27EiTCVV/eq3umjJJ3TRwfmNMjFhGfNS49D/
- tepwsqLjU+0Gra3nFkMQGeae/kyV/u8RU3txA67A9Bar7X9QRe9bR/35LwO0mIYMZ/UG
- rl370nm6ZfvWmgf6dMcB8z0pepO4KfJtvF9sMZ/qEttYcQtMJpxXrbodyJSskf9Y4OCO
- vW/Z26MpkOWQczDBFCjJqaJ8HGG4eOI6PKKZfe8xkoj1QBTfGfunlueT2PYstJKnOqB3
- q+CA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736326345; x=1736931145;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:message-id:subject:cc:to:from:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=JP018VLwPV0hK3cOGPTiHoAVwa0YSAd3lxx+6rxQn8c=;
- b=qRESvD0eULOmSqI4TkPkA8tI+6bE3wfogrDSGg+cPKhxn8NCb5ullgRy4fNBX3KokZ
- uL+l4U4OUotORQP/oKNHpSrwCGMTPvmrWulsXNYGZ6nptoPykSz/TtKUHHmIYz/4su63
- Lh/kj6CQIZPsGltpGkanD/flgnlEImKFWcxnNBK1SQuVF7oxOjccAFSmCoFAhR1TSoXu
- c08vxYVYxK75Y2KBSM8pO4WeRf6WRYuOwbqevXPbf3PF78b8AWenUnR3XLigZ539ae5Z
- xUhmutmP9tiuSSm4W5KCqmdlXXSOQyVyntnIJ6Sadphket9Zl6OrJ6yHACXoGNBLJwjC
- IWcw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU3K7LWDw/vJ7cpnKE3ZdnBuOjfw5uDoEmqJwap/wS2y2FqvndjDyfL7gv7bcLP9ItcaT5/8S/OhA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzh7gDv1b2QrGTa4SyKsgX1uEN/K6MOCfK1u3GE5bkIebV+vQdS
- fcxpj0fMUxSEgcEpFxkVxF9LmJaIkIj8L/jUA3N+7FUSpFrvl04qchCjipKo6lHPwnxjl2y/LuG
- y
-X-Gm-Gg: ASbGncvVsQAkwD8w9ovbbMheKn2FEa8lHXG8ul3zi+ZbrrXZL/rmYwa/yccb5bjsgAo
- YCqLliwN1fi+/9f9rD03uLrtrKpiJbsVpHVGqFjy8KneW9jtrUAKe3SeDi9ZVGIY42JEgbCTsbK
- GTuIycI10ijtd2E10WEU2KCwrIxBNIDaLQ9xK5g9nKupxq9pgQCZ3AH78ssmhiAXJhXqXvUOXXX
- G80fkuAxjgMt10KO24fJnvQMLyFOqtZ9TWygQMbvuQNNfLU1+QZ2QIov2MByg==
-X-Google-Smtp-Source: AGHT+IHIqqZOLSIy8nKlU099+xiY1TE/M8WEOwgqMg2Q+R1j5urlOdP028lHRQ6DNFXejmLw9S7jkw==
-X-Received: by 2002:a05:600c:3506:b0:434:f4fa:83c4 with SMTP id
- 5b1f17b1804b1-436e26f137dmr12310595e9.29.1736325906293; 
- Wed, 08 Jan 2025 00:45:06 -0800 (PST)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-436e2dc0babsm13161145e9.14.2025.01.08.00.45.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Jan 2025 00:45:05 -0800 (PST)
-Date: Wed, 8 Jan 2025 11:45:02 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
- intel-xe@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
- jani.nikula@intel.com
-Subject: Re: [PATCH v3 3/5] drm/i915/scaler: Compute scaling factors for pipe
- scaler
-Message-ID: <9b0fef6f-9bb9-492d-a984-da825858df47@stanley.mountain>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 794D310E825
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Jan 2025 09:24:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736328258; x=1767864258;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yO0I3cuacL3P7jn308s0xedkKHIB2k0p2V989WMQHgg=;
+ b=EPeCVwMl513sGpBGY4wNBUbSJyvun4NVSKfvRkiB3tqDHKT19Pex7Aht
+ 95UGJ1zImbcFC3KBuzaFgRRbUov9sfhxTXm/mGIsDexkLAXKvJbaohTnD
+ CKHDNYLGaBnUHJAqKCzpRZo1wStyx69mGwtb7e2ljnI4PK+hNU4DcNJtg
+ Gg3IftCLgIzyAAq8qntCFlRUqT3Q5hSXFrGaIX+yWDACmfGs46Zashn/1
+ 12DuCnQmc61i2H7CrFQMDb72ycPPSEsB0BNVn8wSyAig8ND8/W1ki/VcG
+ MIhOIPhUbxy9fzOYNIEvD7YcIHhmh5Zxjpq6deduBmniumsuswuZD2NTs Q==;
+X-CSE-ConnectionGUID: yJs2jXWZTBe8hgyxBLVDOA==
+X-CSE-MsgGUID: 1P25arSJRWqpOEbe26RGJQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11308"; a="53959258"
+X-IronPort-AV: E=Sophos;i="6.12,297,1728975600"; d="scan'208";a="53959258"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2025 01:24:18 -0800
+X-CSE-ConnectionGUID: xsR+boNuTBSyvRe6adItxQ==
+X-CSE-MsgGUID: aOShGEVqR5O3//B30Hf56w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="107067716"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa003.fm.intel.com with ESMTP; 08 Jan 2025 01:24:15 -0800
+From: Raag Jadav <raag.jadav@intel.com>
+To: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ matthew.d.roper@intel.com, andi.shyti@linux.intel.com
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ riana.tauro@intel.com, Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v1] drm/xe/hwmon: expose package and vram temperature
+Date: Wed,  8 Jan 2025 14:54:15 +0530
+Message-Id: <20250108092415.289551-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250106165111.1672722-4-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,186 +65,199 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Mitul,
+Add hwmon support for temp1_input and temp2_input attributes, which will
+expose package and vram temperature in millidegree Celsius. With this in
+place we can monitor temperature using lm-sensors tool.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+---
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 16 +++++
+ drivers/gpu/drm/xe/regs/xe_mchbar_regs.h      |  3 +
+ drivers/gpu/drm/xe/regs/xe_pcode_regs.h       |  2 +
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 63 +++++++++++++++++++
+ 4 files changed, 84 insertions(+)
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Mitul-Golani/drm-i915-scaler-Add-and-compute-scaling-factors/20250107-005708
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20250106165111.1672722-4-mitulkumar.ajitkumar.golani%40intel.com
-patch subject: [PATCH v3 3/5] drm/i915/scaler: Compute scaling factors for pipe scaler
-config: x86_64-randconfig-161-20250107 (https://download.01.org/0day-ci/archive/20250108/202501080440.Cxe0ZHXJ-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202501080440.Cxe0ZHXJ-lkp@intel.com/
-
-smatch warnings:
-drivers/gpu/drm/i915/display/skl_scaler.c:451 intel_atomic_setup_scaler() error: uninitialized symbol 'hscale'.
-drivers/gpu/drm/i915/display/skl_scaler.c:452 intel_atomic_setup_scaler() error: uninitialized symbol 'vscale'.
-
-vim +/hscale +451 drivers/gpu/drm/i915/display/skl_scaler.c
-
-61e24d4de0edbc Mitul Golani  2025-01-06  312  static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
-7488f64e89b02f Ville Syrjälä 2024-11-07  313  				     int num_scalers_need, struct intel_crtc *crtc,
-8976b18249407d Ville Syrjälä 2023-04-18  314  				     const char *name, int idx,
-8976b18249407d Ville Syrjälä 2023-04-18  315  				     struct intel_plane_state *plane_state,
-8976b18249407d Ville Syrjälä 2023-04-18  316  				     int *scaler_id)
-8976b18249407d Ville Syrjälä 2023-04-18  317  {
-3360d4d6d42ab3 Ville Syrjälä 2024-11-07  318  	struct intel_display *display = to_intel_display(crtc);
-61e24d4de0edbc Mitul Golani  2025-01-06  319  	struct intel_crtc_scaler_state *scaler_state =
-61e24d4de0edbc Mitul Golani  2025-01-06  320  					&crtc_state->scaler_state;
-7488f64e89b02f Ville Syrjälä 2024-11-07  321  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-8976b18249407d Ville Syrjälä 2023-04-18  322  	u32 mode;
-7c369018e87617 Mitul Golani  2025-01-06  323  	int hscale, vscale;
-8976b18249407d Ville Syrjälä 2023-04-18  324  
-ecf2afc59c1ea3 Ville Syrjälä 2024-11-07  325  	if (*scaler_id < 0)
-ecf2afc59c1ea3 Ville Syrjälä 2024-11-07  326  		*scaler_id = intel_allocate_scaler(scaler_state, crtc);
-8976b18249407d Ville Syrjälä 2023-04-18  327  
-3360d4d6d42ab3 Ville Syrjälä 2024-11-07  328  	if (drm_WARN(display->drm, *scaler_id < 0,
-8976b18249407d Ville Syrjälä 2023-04-18  329  		     "Cannot find scaler for %s:%d\n", name, idx))
-8976b18249407d Ville Syrjälä 2023-04-18  330  		return -EINVAL;
-8976b18249407d Ville Syrjälä 2023-04-18  331  
-8976b18249407d Ville Syrjälä 2023-04-18  332  	/* set scaler mode */
-8976b18249407d Ville Syrjälä 2023-04-18  333  	if (plane_state && plane_state->hw.fb &&
-8976b18249407d Ville Syrjälä 2023-04-18  334  	    plane_state->hw.fb->format->is_yuv &&
-8976b18249407d Ville Syrjälä 2023-04-18  335  	    plane_state->hw.fb->format->num_planes > 1) {
-8976b18249407d Ville Syrjälä 2023-04-18  336  		struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
-8976b18249407d Ville Syrjälä 2023-04-18  337  
-3360d4d6d42ab3 Ville Syrjälä 2024-11-07  338  		if (DISPLAY_VER(display) == 9) {
-8976b18249407d Ville Syrjälä 2023-04-18  339  			mode = SKL_PS_SCALER_MODE_NV12;
-8976b18249407d Ville Syrjälä 2023-04-18  340  		} else if (icl_is_hdr_plane(dev_priv, plane->id)) {
-8976b18249407d Ville Syrjälä 2023-04-18  341  			/*
-8976b18249407d Ville Syrjälä 2023-04-18  342  			 * On gen11+'s HDR planes we only use the scaler for
-8976b18249407d Ville Syrjälä 2023-04-18  343  			 * scaling. They have a dedicated chroma upsampler, so
-8976b18249407d Ville Syrjälä 2023-04-18  344  			 * we don't need the scaler to upsample the UV plane.
-8976b18249407d Ville Syrjälä 2023-04-18  345  			 */
-8976b18249407d Ville Syrjälä 2023-04-18  346  			mode = PS_SCALER_MODE_NORMAL;
-8976b18249407d Ville Syrjälä 2023-04-18  347  		} else {
-8976b18249407d Ville Syrjälä 2023-04-18  348  			struct intel_plane *linked =
-8976b18249407d Ville Syrjälä 2023-04-18  349  				plane_state->planar_linked_plane;
-8976b18249407d Ville Syrjälä 2023-04-18  350  
-8976b18249407d Ville Syrjälä 2023-04-18  351  			mode = PS_SCALER_MODE_PLANAR;
-8976b18249407d Ville Syrjälä 2023-04-18  352  
-8976b18249407d Ville Syrjälä 2023-04-18  353  			if (linked)
-ebb4e2b03acc3a Ville Syrjälä 2023-04-26  354  				mode |= PS_BINDING_Y_PLANE(linked->id);
-8976b18249407d Ville Syrjälä 2023-04-18  355  		}
-3360d4d6d42ab3 Ville Syrjälä 2024-11-07  356  	} else if (DISPLAY_VER(display) >= 10) {
-8976b18249407d Ville Syrjälä 2023-04-18  357  		mode = PS_SCALER_MODE_NORMAL;
-7488f64e89b02f Ville Syrjälä 2024-11-07  358  	} else if (num_scalers_need == 1 && crtc->num_scalers > 1) {
-8976b18249407d Ville Syrjälä 2023-04-18  359  		/*
-8976b18249407d Ville Syrjälä 2023-04-18  360  		 * when only 1 scaler is in use on a pipe with 2 scalers
-8976b18249407d Ville Syrjälä 2023-04-18  361  		 * scaler 0 operates in high quality (HQ) mode.
-8976b18249407d Ville Syrjälä 2023-04-18  362  		 * In this case use scaler 0 to take advantage of HQ mode
-8976b18249407d Ville Syrjälä 2023-04-18  363  		 */
-3de26c81e9ae4a Ville Syrjälä 2024-11-07  364  		scaler_state->scalers[*scaler_id].in_use = false;
-8976b18249407d Ville Syrjälä 2023-04-18  365  		*scaler_id = 0;
-3de26c81e9ae4a Ville Syrjälä 2024-11-07  366  		scaler_state->scalers[0].in_use = true;
-8976b18249407d Ville Syrjälä 2023-04-18  367  		mode = SKL_PS_SCALER_MODE_HQ;
-8976b18249407d Ville Syrjälä 2023-04-18  368  	} else {
-8976b18249407d Ville Syrjälä 2023-04-18  369  		mode = SKL_PS_SCALER_MODE_DYN;
-8976b18249407d Ville Syrjälä 2023-04-18  370  	}
-8976b18249407d Ville Syrjälä 2023-04-18  371  
-8976b18249407d Ville Syrjälä 2023-04-18  372  	if (plane_state && plane_state->hw.fb) {
-8976b18249407d Ville Syrjälä 2023-04-18  373  		const struct drm_framebuffer *fb = plane_state->hw.fb;
-8976b18249407d Ville Syrjälä 2023-04-18  374  		const struct drm_rect *src = &plane_state->uapi.src;
-8976b18249407d Ville Syrjälä 2023-04-18  375  		const struct drm_rect *dst = &plane_state->uapi.dst;
-7c369018e87617 Mitul Golani  2025-01-06  376  		int max_vscale, max_hscale;
-8976b18249407d Ville Syrjälä 2023-04-18  377  
-8976b18249407d Ville Syrjälä 2023-04-18  378  		/*
-8976b18249407d Ville Syrjälä 2023-04-18  379  		 * FIXME: When two scalers are needed, but only one of
-8976b18249407d Ville Syrjälä 2023-04-18  380  		 * them needs to downscale, we should make sure that
-8976b18249407d Ville Syrjälä 2023-04-18  381  		 * the one that needs downscaling support is assigned
-8976b18249407d Ville Syrjälä 2023-04-18  382  		 * as the first scaler, so we don't reject downscaling
-8976b18249407d Ville Syrjälä 2023-04-18  383  		 * unnecessarily.
-8976b18249407d Ville Syrjälä 2023-04-18  384  		 */
-8976b18249407d Ville Syrjälä 2023-04-18  385  
-3360d4d6d42ab3 Ville Syrjälä 2024-11-07  386  		if (DISPLAY_VER(display) >= 14) {
-8976b18249407d Ville Syrjälä 2023-04-18  387  			/*
-8976b18249407d Ville Syrjälä 2023-04-18  388  			 * On versions 14 and up, only the first
-8976b18249407d Ville Syrjälä 2023-04-18  389  			 * scaler supports a vertical scaling factor
-8976b18249407d Ville Syrjälä 2023-04-18  390  			 * of more than 1.0, while a horizontal
-8976b18249407d Ville Syrjälä 2023-04-18  391  			 * scaling factor of 3.0 is supported.
-8976b18249407d Ville Syrjälä 2023-04-18  392  			 */
-8976b18249407d Ville Syrjälä 2023-04-18  393  			max_hscale = 0x30000 - 1;
-8976b18249407d Ville Syrjälä 2023-04-18  394  			if (*scaler_id == 0)
-8976b18249407d Ville Syrjälä 2023-04-18  395  				max_vscale = 0x30000 - 1;
-8976b18249407d Ville Syrjälä 2023-04-18  396  			else
-8976b18249407d Ville Syrjälä 2023-04-18  397  				max_vscale = 0x10000;
-8976b18249407d Ville Syrjälä 2023-04-18  398  
-3360d4d6d42ab3 Ville Syrjälä 2024-11-07  399  		} else if (DISPLAY_VER(display) >= 10 ||
-8976b18249407d Ville Syrjälä 2023-04-18  400  			   !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
-8976b18249407d Ville Syrjälä 2023-04-18  401  			max_hscale = 0x30000 - 1;
-8976b18249407d Ville Syrjälä 2023-04-18  402  			max_vscale = 0x30000 - 1;
-8976b18249407d Ville Syrjälä 2023-04-18  403  		} else {
-8976b18249407d Ville Syrjälä 2023-04-18  404  			max_hscale = 0x20000 - 1;
-8976b18249407d Ville Syrjälä 2023-04-18  405  			max_vscale = 0x20000 - 1;
-8976b18249407d Ville Syrjälä 2023-04-18  406  		}
-8976b18249407d Ville Syrjälä 2023-04-18  407  
-8976b18249407d Ville Syrjälä 2023-04-18  408  		/*
-8976b18249407d Ville Syrjälä 2023-04-18  409  		 * FIXME: We should change the if-else block above to
-8976b18249407d Ville Syrjälä 2023-04-18  410  		 * support HQ vs dynamic scaler properly.
-8976b18249407d Ville Syrjälä 2023-04-18  411  		 */
-8976b18249407d Ville Syrjälä 2023-04-18  412  
-8976b18249407d Ville Syrjälä 2023-04-18  413  		/* Check if required scaling is within limits */
-8976b18249407d Ville Syrjälä 2023-04-18  414  		hscale = drm_rect_calc_hscale(src, dst, 1, max_hscale);
-8976b18249407d Ville Syrjälä 2023-04-18  415  		vscale = drm_rect_calc_vscale(src, dst, 1, max_vscale);
-8976b18249407d Ville Syrjälä 2023-04-18  416  
-8976b18249407d Ville Syrjälä 2023-04-18  417  		if (hscale < 0 || vscale < 0) {
-3360d4d6d42ab3 Ville Syrjälä 2024-11-07  418  			drm_dbg_kms(display->drm,
-8976b18249407d Ville Syrjälä 2023-04-18  419  				    "Scaler %d doesn't support required plane scaling\n",
-8976b18249407d Ville Syrjälä 2023-04-18  420  				    *scaler_id);
-8976b18249407d Ville Syrjälä 2023-04-18  421  			drm_rect_debug_print("src: ", src, true);
-8976b18249407d Ville Syrjälä 2023-04-18  422  			drm_rect_debug_print("dst: ", dst, false);
-8976b18249407d Ville Syrjälä 2023-04-18  423  
-8976b18249407d Ville Syrjälä 2023-04-18  424  			return -EINVAL;
-8976b18249407d Ville Syrjälä 2023-04-18  425  		}
-7c369018e87617 Mitul Golani  2025-01-06  426  	}
-7c369018e87617 Mitul Golani  2025-01-06  427  
-7c369018e87617 Mitul Golani  2025-01-06  428  	if (crtc_state->pch_pfit.enabled) {
-7c369018e87617 Mitul Golani  2025-01-06  429  		struct drm_rect src;
-7c369018e87617 Mitul Golani  2025-01-06  430  
-7c369018e87617 Mitul Golani  2025-01-06  431  		drm_rect_init(&src, 0, 0,
-7c369018e87617 Mitul Golani  2025-01-06  432  			      drm_rect_width(&crtc_state->pipe_src) << 16,
-7c369018e87617 Mitul Golani  2025-01-06  433  			      drm_rect_height(&crtc_state->pipe_src) << 16);
-7c369018e87617 Mitul Golani  2025-01-06  434  
-7c369018e87617 Mitul Golani  2025-01-06  435  		hscale = drm_rect_calc_hscale(&src, &crtc_state->pch_pfit.dst,
-7c369018e87617 Mitul Golani  2025-01-06  436  					      0, INT_MAX);
-7c369018e87617 Mitul Golani  2025-01-06  437  		vscale = drm_rect_calc_vscale(&src, &crtc_state->pch_pfit.dst,
-7c369018e87617 Mitul Golani  2025-01-06  438  					      0, INT_MAX);
-7c369018e87617 Mitul Golani  2025-01-06  439  
-7c369018e87617 Mitul Golani  2025-01-06  440  		if (hscale < 0 || vscale < 0) {
-7c369018e87617 Mitul Golani  2025-01-06  441  			drm_dbg_kms(display->drm,
-7c369018e87617 Mitul Golani  2025-01-06  442  				    "Scaler %d doesn't support required pipe scaling\n",
-7c369018e87617 Mitul Golani  2025-01-06  443  				    *scaler_id);
-7c369018e87617 Mitul Golani  2025-01-06  444  			drm_rect_debug_print("src: ", &src, true);
-7c369018e87617 Mitul Golani  2025-01-06  445  			drm_rect_debug_print("dst: ", &crtc_state->pch_pfit.dst, false);
-7c369018e87617 Mitul Golani  2025-01-06  446  
-7c369018e87617 Mitul Golani  2025-01-06  447  			return -EINVAL;
-7c369018e87617 Mitul Golani  2025-01-06  448  		}
-7c369018e87617 Mitul Golani  2025-01-06  449  	}
-0641adb4624b5e Mitul Golani  2025-01-06  450  
-0641adb4624b5e Mitul Golani  2025-01-06 @451  	scaler_state->scalers[*scaler_id].hscale = hscale;
-0641adb4624b5e Mitul Golani  2025-01-06 @452  	scaler_state->scalers[*scaler_id].vscale = vscale;
-
-vscale and hscale are initialized if crtc_state->pch_pfit.enabled or
-plane_state->hw.fb is true, but otherwise they aren't.
-
-
-8976b18249407d Ville Syrjälä 2023-04-18  453  
-3360d4d6d42ab3 Ville Syrjälä 2024-11-07  454  	drm_dbg_kms(display->drm, "Attached scaler id %u.%u to %s:%d\n",
-7488f64e89b02f Ville Syrjälä 2024-11-07  455  		    crtc->pipe, *scaler_id, name, idx);
-8976b18249407d Ville Syrjälä 2023-04-18  456  	scaler_state->scalers[*scaler_id].mode = mode;
-8976b18249407d Ville Syrjälä 2023-04-18  457  
-8976b18249407d Ville Syrjälä 2023-04-18  458  	return 0;
-8976b18249407d Ville Syrjälä 2023-04-18  459  }
-
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+index d792a56f59ac..998cfb0ee1a6 100644
+--- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
++++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+@@ -108,3 +108,19 @@ Contact:	intel-xe@lists.freedesktop.org
+ Description:	RO. Package current voltage in millivolt.
+ 
+ 		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp1_input
++Date:		April 2025
++KernelVersion:	6.15
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. Package temperature in millidegree Celsius.
++
++		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_input
++Date:		April 2025
++KernelVersion:	6.15
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. VRAM temperature in millidegree Celsius.
++
++		Only supported for particular Intel Xe graphics platforms.
+diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+index 519dd1067a19..f5e5234857c1 100644
+--- a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+@@ -34,6 +34,9 @@
+ 
+ #define PCU_CR_PACKAGE_ENERGY_STATUS		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x593c)
+ 
++#define PCU_CR_PACKAGE_TEMPERATURE		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5978)
++#define   TEMP_MASK				REG_GENMASK(7, 0)
++
+ #define PCU_CR_PACKAGE_RAPL_LIMIT		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x59a0)
+ #define   PKG_PWR_LIM_1				REG_GENMASK(14, 0)
+ #define   PKG_PWR_LIM_1_EN			REG_BIT(15)
+diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+index 0b0b49d850ae..8846eb9ce2a4 100644
+--- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+@@ -21,6 +21,8 @@
+ #define BMG_PACKAGE_POWER_SKU			XE_REG(0x138098)
+ #define BMG_PACKAGE_POWER_SKU_UNIT		XE_REG(0x1380dc)
+ #define BMG_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
++#define BMG_VRAM_TEMPERATURE			XE_REG(0x1382c0)
++#define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
+ #define BMG_PACKAGE_RAPL_LIMIT			XE_REG(0x138440)
+ #define BMG_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
+ #define BMG_PLATFORM_POWER_LIMIT		XE_REG(0x138460)
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index fde56dad3ab7..5b5c844adf4a 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -6,6 +6,7 @@
+ #include <linux/hwmon-sysfs.h>
+ #include <linux/hwmon.h>
+ #include <linux/types.h>
++#include <linux/units.h>
+ 
+ #include <drm/drm_managed.h>
+ #include "regs/xe_gt_regs.h"
+@@ -20,6 +21,7 @@
+ #include "xe_pm.h"
+ 
+ enum xe_hwmon_reg {
++	REG_TEMP,
+ 	REG_PKG_RAPL_LIMIT,
+ 	REG_PKG_POWER_SKU,
+ 	REG_PKG_POWER_SKU_UNIT,
+@@ -39,6 +41,11 @@ enum xe_hwmon_channel {
+ 	CHANNEL_MAX,
+ };
+ 
++enum xe_hwmon_temp {
++	TEMP_PKG,
++	TEMP_VRAM,
++};
++
+ /*
+  * SF_* - scale factors for particular quantities according to hwmon spec.
+  */
+@@ -84,6 +91,19 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+ 	struct xe_device *xe = hwmon->xe;
+ 
+ 	switch (hwmon_reg) {
++	case REG_TEMP:
++		if (xe->info.platform == XE_BATTLEMAGE) {
++			if (channel == TEMP_PKG)
++				return BMG_PACKAGE_TEMPERATURE;
++			else if (channel == TEMP_VRAM)
++				return BMG_VRAM_TEMPERATURE;
++		} else if (xe->info.platform == XE_DG2) {
++			if (channel == TEMP_PKG)
++				return PCU_CR_PACKAGE_TEMPERATURE;
++			else if (channel == TEMP_VRAM)
++				return BMG_VRAM_TEMPERATURE;
++		}
++		break;
+ 	case REG_PKG_RAPL_LIMIT:
+ 		if (xe->info.platform == XE_BATTLEMAGE) {
+ 			if (channel == CHANNEL_PKG)
+@@ -431,6 +451,7 @@ static const struct attribute_group *hwmon_groups[] = {
+ };
+ 
+ static const struct hwmon_channel_info * const hwmon_info[] = {
++	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT | HWMON_T_LABEL, HWMON_T_INPUT | HWMON_T_LABEL),
+ 	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL,
+ 			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT | HWMON_P_LABEL),
+ 	HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL),
+@@ -506,6 +527,36 @@ static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, int channel, long *valu
+ 	*value = DIV_ROUND_CLOSEST(REG_FIELD_GET(VOLTAGE_MASK, reg_val) * 2500, SF_VOLTAGE);
+ }
+ 
++static umode_t
++xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
++{
++	switch (attr) {
++	case hwmon_temp_input:
++	case hwmon_temp_label:
++		return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_TEMP, channel)) ? 0444 : 0;
++	default:
++		return 0;
++	}
++}
++
++static int
++xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
++{
++	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
++	u64 reg_val;
++
++	switch (attr) {
++	case hwmon_temp_input:
++		reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, channel));
++
++		/* HW register value is in degrees Celsius, convert to millidegrees. */
++		*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
++		return 0;
++	default:
++		return -EOPNOTSUPP;
++	}
++}
++
+ static umode_t
+ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ {
+@@ -667,6 +718,9 @@ xe_hwmon_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+ 	xe_pm_runtime_get(hwmon->xe);
+ 
+ 	switch (type) {
++	case hwmon_temp:
++		ret = xe_hwmon_temp_is_visible(hwmon, attr, channel);
++		break;
+ 	case hwmon_power:
+ 		ret = xe_hwmon_power_is_visible(hwmon, attr, channel);
+ 		break;
+@@ -699,6 +753,9 @@ xe_hwmon_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+ 	xe_pm_runtime_get(hwmon->xe);
+ 
+ 	switch (type) {
++	case hwmon_temp:
++		ret = xe_hwmon_temp_read(hwmon, attr, channel, val);
++		break;
+ 	case hwmon_power:
+ 		ret = xe_hwmon_power_read(hwmon, attr, channel, val);
+ 		break;
+@@ -752,6 +809,12 @@ static int xe_hwmon_read_label(struct device *dev,
+ 			       u32 attr, int channel, const char **str)
+ {
+ 	switch (type) {
++	case hwmon_temp:
++		if (channel == TEMP_PKG)
++			*str = "pkg";
++		else if (channel == TEMP_VRAM)
++			*str = "vram";
++		return 0;
+ 	case hwmon_power:
+ 	case hwmon_energy:
+ 	case hwmon_curr:
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
 
