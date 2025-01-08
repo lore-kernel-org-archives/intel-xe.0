@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93280E77188
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 18:18:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C161E7719A
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 18:26:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53D4710EC58;
-	Wed,  8 Jan 2025 18:18:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="H2l0rVTc";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64AE610EC50;
- Wed,  8 Jan 2025 18:18:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=7bPFexfyl2E9vg03GhDgGsD/6hKiZPvlak9kT5kHh9E=; b=H2l0rVTcYn3DGxzkdtyGTbm8iA
- g/NXAMcSF/165WL5g6GlpjMQByT3e50JlWYQsnhOz48x49xqDBYOnq6/ts0uff/69gVzU/pg+IxQI
- Yy5GP7JDKGuOxwjQOxyk4rpeUfX48g+0MQ5J4ChM9U/Nf8o1iPwZphjIcAr2+A5VLj6kZXOU6MVk1
- gA0UGNJBzOwF9QpAawQO4JDmLEuVujJnPK4S29qK+aiSAzWq/0T2OrBSXOC+EXuauydCrA9poZ4Pf
- JZFtT02FaVxu/0MfG+vQd5bl2Y57TbmfASJDb7MYNTki5BUTEhRmAXNHmdXpEOjgNhcQ3J7tkUNdG
- mm37QGtw==;
-Received: from [90.241.98.187] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tVacz-00DEud-56; Wed, 08 Jan 2025 19:18:01 +0100
-Date: Wed, 8 Jan 2025 18:18:00 +0000
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Message-ID: <Z37BPchEzY0ovIqF@linux>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAD3B10EC5F;
+	Wed,  8 Jan 2025 18:26:28 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 658DE10EC5F;
+ Wed,  8 Jan 2025 18:26:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Add_UAPI_support_for?=
+ =?utf-8?q?_low_latency_hint?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 08 Jan 2025 18:26:27 -0000
+Message-ID: <173636078741.1370994.9258377799495355850@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250108150603.2995709-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20250108150603.2995709-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,40 +36,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-Hi Dave, Sima,
+Series: Add UAPI support for low latency hint
+URL   : https://patchwork.freedesktop.org/series/143257/
+State : success
 
-Just one fix this week - a revert to unbreak HDCP compliance.
+== Summary ==
 
-Should be fine but with a disclaimer that no testing happened. It appears
-CI is on fire due rc6 being severely broken somewhere in the vmstat code.
-Which dumps a large warning on boot in the whole CI farm.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 9cbe590862ef drm-tip: 2025y-01m-08d-13h-55m-18s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/guc: Use exec queue hints for GT frequency
+Applying: drm/uapi: Adjust uniform spacing
 
-Tvrtko
 
-drm-intel-fixes-2025-01-08:
-- Revert "drm/i915/hdcp: Don't enable HDCP1.4 directly from check_link" [hdcp] (Suraj Kandpal)
-The following changes since commit 9d89551994a430b50c4fffcb1e617a057fa76e20:
-
-  Linux 6.13-rc6 (2025-01-05 14:13:40 -0800)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2025-01-08
-
-for you to fetch changes up to 77bf21a03a2ad45cf66f73f13154b1669d9cf52a:
-
-  Revert "drm/i915/hdcp: Don't enable HDCP1.4 directly from check_link" (2025-01-08 08:53:35 +0000)
-
-----------------------------------------------------------------
-- Revert "drm/i915/hdcp: Don't enable HDCP1.4 directly from check_link" [hdcp] (Suraj Kandpal)
-
-----------------------------------------------------------------
-Suraj Kandpal (1):
-      Revert "drm/i915/hdcp: Don't enable HDCP1.4 directly from check_link"
-
- drivers/gpu/drm/i915/display/intel_hdcp.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
