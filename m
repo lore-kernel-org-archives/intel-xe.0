@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A19EE77199
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 10:20:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0195E77188
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 10:30:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8C5410E84F;
-	Wed,  8 Jan 2025 10:20:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RDKxZQad";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5D3110E858
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Jan 2025 10:20:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736331620; x=1767867620;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=E1jtsF1cwxqUUsO/hkT7gKZlQvEk7UPWpkRtnsJsS1A=;
- b=RDKxZQadEf0M9H7LmCW8yh2U1gWF/caBCvAr9eKGCeh5XgVc/HEfHlg3
- 2/A2qL0G6VQ8n8BNa2emVgAwFHKkibKThDdP4eC9cflI5oH8qyG8y7n3T
- XaTywQIseMEi1WvLX6Eq8unYZn3poYirSgOWqN3aOZc1lqWopgdyRpxYL
- TG+ghzNt/2CgM+pdv/CWwpitARYt9Gmjxs6OCizD2cUzr0jyDWay24rrV
- GFTsuIVeIqvE7/NfnOm43g+EDMIq31lAZLlUDYnYioTVH/JmKnkofMApw
- D/xpwIlYkJ9BmzKvDyIeWeTlGB9GwYnAPp1GbTTMd3yFtX/SHwI4cn7Xb g==;
-X-CSE-ConnectionGUID: DmudOfsoSB2afEfkOp1cqw==
-X-CSE-MsgGUID: 182sg39LQ2CxoDcoDJ2Vmw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11308"; a="59014983"
-X-IronPort-AV: E=Sophos;i="6.12,297,1728975600"; d="scan'208";a="59014983"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 02:20:20 -0800
-X-CSE-ConnectionGUID: mdv+tRhaQBOOptUrUNchPg==
-X-CSE-MsgGUID: PzT47CDUSeOUuX9fErtoKw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="133950087"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 02:20:17 -0800
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- aravind.iddamsetty@intel.com, jani.nikula@linux.intel.com,
- matthew.d.roper@intel.com, alexander.usyskin@intel.com
-Subject: [PATCH v2 3/3] drm/xe: Initialize mei-gsc and vsec in survivability
- mode
-Date: Wed,  8 Jan 2025 16:09:59 +0530
-Message-ID: <20250108103959.1219312-4-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250108103959.1219312-1-riana.tauro@intel.com>
-References: <20250108103959.1219312-1-riana.tauro@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8344C10E84D;
+	Wed,  8 Jan 2025 10:30:19 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB5BC10E84D;
+ Wed,  8 Jan 2025 10:30:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4065760325383722384=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/hwmon=3A_expose_pack?=
+ =?utf-8?q?age_and_vram_temperature?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 08 Jan 2025 10:30:18 -0000
+Message-ID: <173633221877.1253517.2066052789702157415@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250108092415.289551-1-raag.jadav@intel.com>
+In-Reply-To: <20250108092415.289551-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,73 +36,176 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Initialize mei-gsc in survivability mode and disable HECI
-interrupts. Also initialize vsec in survivability mode
+--===============4065760325383722384==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
----
- drivers/gpu/drm/xe/xe_heci_gsc.c           | 3 ++-
- drivers/gpu/drm/xe/xe_survivability_mode.c | 7 +++++++
- 2 files changed, 9 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c b/drivers/gpu/drm/xe/xe_heci_gsc.c
-index d765bfd3636b..06dc78d3a812 100644
---- a/drivers/gpu/drm/xe/xe_heci_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
-@@ -12,6 +12,7 @@
- #include "xe_drv.h"
- #include "xe_heci_gsc.h"
- #include "xe_platform_types.h"
-+#include "xe_survivability_mode.h"
- 
- #define GSC_BAR_LENGTH  0x00000FFC
- 
-@@ -200,7 +201,7 @@ void xe_heci_gsc_init(struct xe_device *xe)
- 		return;
- 	}
- 
--	if (!def->use_polling) {
-+	if (!def->use_polling && !xe_survivability_mode_enabled(xe)) {
- 		ret = heci_gsc_irq_setup(xe);
- 		if (ret)
- 			goto fail;
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index 4a978c7018c9..39ab898193a1 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -13,8 +13,10 @@
- 
- #include "xe_device.h"
- #include "xe_gt.h"
-+#include "xe_heci_gsc.h"
- #include "xe_mmio.h"
- #include "xe_pcode_api.h"
-+#include "xe_vsec.h"
- 
- #define MAX_SCRATCH_MMIO 8
- 
-@@ -152,6 +154,10 @@ static void enable_survivability_mode(struct xe_device *xe)
- 		drm_warn(&xe->drm, "Failed to create survivability sysfs files\n");
- 		return;
- 	}
-+
-+	xe_heci_gsc_init(xe);
-+
-+	xe_vsec_init(xe);
- }
- 
- /**
-@@ -203,6 +209,7 @@ void xe_survivability_mode_remove(struct xe_device *xe)
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 
- 	sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_survivability_mode.attr);
-+	xe_heci_gsc_fini(xe);
- 	kfree(survivability->info);
- 	pci_set_drvdata(pdev, NULL);
- }
--- 
-2.47.1
+Series: drm/xe/hwmon: expose package and vram temperature
+URL   : https://patchwork.freedesktop.org/series/143225/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5_BAT -> xe-pw-143225v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-143225v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-143225v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-143225v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_pat@pat-index-xelp@render:
+    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143225v1/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-143225v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
+    - bat-adlp-vf:        [PASS][3] -> [DMESG-FAIL][4] ([Intel XE#3868] / [Intel XE#3958])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143225v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - bat-adlp-vf:        [DMESG-WARN][5] ([Intel XE#3958] / [Intel XE#3970]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-adlp-vf/igt@xe_vm@bind-execqueues-independent.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143225v1/bat-adlp-vf/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  [Intel XE#3868]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3868
+  [Intel XE#3958]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+
+
+Build changes
+-------------
+
+  * Linux: xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5 -> xe-pw-143225v1
+
+  IGT_8179: 183b33f81365dd4a57fe3100a13d3fb13788d158 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5: 8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5
+  xe-pw-143225v1: 143225v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143225v1/index.html
+
+--===============4065760325383722384==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/hwmon: expose package and vram temperature</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143225/">https://patchwork.freedesktop.org/series/143225/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143225v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143225v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5_BAT -&gt; xe-pw-143225v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-143225v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-143225v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-143225v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_pat@pat-index-xelp@render:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143225v1/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-143225v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_exec_basic@twice-bindexecqueue-rebind:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143225v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3868">Intel XE#3868</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958">Intel XE#3958</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_vm@bind-execqueues-independent:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-adlp-vf/igt@xe_vm@bind-execqueues-independent.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958">Intel XE#3958</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143225v1/bat-adlp-vf/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5 -&gt; xe-pw-143225v1</li>
+</ul>
+<p>IGT_8179: 183b33f81365dd4a57fe3100a13d3fb13788d158 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5: 8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5<br />
+  xe-pw-143225v1: 143225v1</p>
+
+</body>
+</html>
+
+--===============4065760325383722384==--
