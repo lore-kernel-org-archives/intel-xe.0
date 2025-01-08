@@ -4,27 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 760E1E77188
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 06:49:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AA31E77188
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Jan 2025 08:53:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 404D110E273;
-	Wed,  8 Jan 2025 06:49:55 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F3B810E273;
- Wed,  8 Jan 2025 06:49:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6056594021351968826=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B03410E42F;
+	Wed,  8 Jan 2025 08:53:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="no8+FMmj";
+	dkim-atps=neutral
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28A3A10E42F
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Jan 2025 08:53:26 +0000 (UTC)
+Received: by mail-wm1-f54.google.com with SMTP id
+ 5b1f17b1804b1-4363ae65100so168969275e9.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 08 Jan 2025 00:53:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1736326345; x=1736931145; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:message-id:subject:cc:to:from:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=JP018VLwPV0hK3cOGPTiHoAVwa0YSAd3lxx+6rxQn8c=;
+ b=no8+FMmjNzDJSsmbBnU+aeuJgEB76Ol48/QiSjsF6vnMbKC/V7/a+vDp7wUvdMskGW
+ y0kz9sdwkD9sIqLBIhk8mKaMLPgJY48Z27EiTCVV/eq3umjJJ3TRwfmNMjFhGfNS49D/
+ tepwsqLjU+0Gra3nFkMQGeae/kyV/u8RU3txA67A9Bar7X9QRe9bR/35LwO0mIYMZ/UG
+ rl370nm6ZfvWmgf6dMcB8z0pepO4KfJtvF9sMZ/qEttYcQtMJpxXrbodyJSskf9Y4OCO
+ vW/Z26MpkOWQczDBFCjJqaJ8HGG4eOI6PKKZfe8xkoj1QBTfGfunlueT2PYstJKnOqB3
+ q+CA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1736326345; x=1736931145;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:message-id:subject:cc:to:from:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=JP018VLwPV0hK3cOGPTiHoAVwa0YSAd3lxx+6rxQn8c=;
+ b=qRESvD0eULOmSqI4TkPkA8tI+6bE3wfogrDSGg+cPKhxn8NCb5ullgRy4fNBX3KokZ
+ uL+l4U4OUotORQP/oKNHpSrwCGMTPvmrWulsXNYGZ6nptoPykSz/TtKUHHmIYz/4su63
+ Lh/kj6CQIZPsGltpGkanD/flgnlEImKFWcxnNBK1SQuVF7oxOjccAFSmCoFAhR1TSoXu
+ c08vxYVYxK75Y2KBSM8pO4WeRf6WRYuOwbqevXPbf3PF78b8AWenUnR3XLigZ539ae5Z
+ xUhmutmP9tiuSSm4W5KCqmdlXXSOQyVyntnIJ6Sadphket9Zl6OrJ6yHACXoGNBLJwjC
+ IWcw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU3K7LWDw/vJ7cpnKE3ZdnBuOjfw5uDoEmqJwap/wS2y2FqvndjDyfL7gv7bcLP9ItcaT5/8S/OhA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzh7gDv1b2QrGTa4SyKsgX1uEN/K6MOCfK1u3GE5bkIebV+vQdS
+ fcxpj0fMUxSEgcEpFxkVxF9LmJaIkIj8L/jUA3N+7FUSpFrvl04qchCjipKo6lHPwnxjl2y/LuG
+ y
+X-Gm-Gg: ASbGncvVsQAkwD8w9ovbbMheKn2FEa8lHXG8ul3zi+ZbrrXZL/rmYwa/yccb5bjsgAo
+ YCqLliwN1fi+/9f9rD03uLrtrKpiJbsVpHVGqFjy8KneW9jtrUAKe3SeDi9ZVGIY42JEgbCTsbK
+ GTuIycI10ijtd2E10WEU2KCwrIxBNIDaLQ9xK5g9nKupxq9pgQCZ3AH78ssmhiAXJhXqXvUOXXX
+ G80fkuAxjgMt10KO24fJnvQMLyFOqtZ9TWygQMbvuQNNfLU1+QZ2QIov2MByg==
+X-Google-Smtp-Source: AGHT+IHIqqZOLSIy8nKlU099+xiY1TE/M8WEOwgqMg2Q+R1j5urlOdP028lHRQ6DNFXejmLw9S7jkw==
+X-Received: by 2002:a05:600c:3506:b0:434:f4fa:83c4 with SMTP id
+ 5b1f17b1804b1-436e26f137dmr12310595e9.29.1736325906293; 
+ Wed, 08 Jan 2025 00:45:06 -0800 (PST)
+Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-436e2dc0babsm13161145e9.14.2025.01.08.00.45.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 08 Jan 2025 00:45:05 -0800 (PST)
+Date: Wed, 8 Jan 2025 11:45:02 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
+ jani.nikula@intel.com
+Subject: Re: [PATCH v3 3/5] drm/i915/scaler: Compute scaling factors for pipe
+ scaler
+Message-ID: <9b0fef6f-9bb9-492d-a984-da825858df47@stanley.mountain>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Expose_modifiers/formats_su?=
- =?utf-8?q?pported_by_async_flips_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 08 Jan 2025 06:49:53 -0000
-Message-ID: <173631899351.1214143.3390473637488793631@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250108-asyn-v3-0-f4399635eec9@intel.com>
-In-Reply-To: <20250108-asyn-v3-0-f4399635eec9@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250106165111.1672722-4-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,183 +87,189 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6056594021351968826==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Mitul,
 
-== Series Details ==
+kernel test robot noticed the following build warnings:
 
-Series: Expose modifiers/formats supported by async flips (rev2)
-URL   : https://patchwork.freedesktop.org/series/140934/
-State : failure
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Mitul-Golani/drm-i915-scaler-Add-and-compute-scaling-factors/20250107-005708
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20250106165111.1672722-4-mitulkumar.ajitkumar.golani%40intel.com
+patch subject: [PATCH v3 3/5] drm/i915/scaler: Compute scaling factors for pipe scaler
+config: x86_64-randconfig-161-20250107 (https://download.01.org/0day-ci/archive/20250108/202501080440.Cxe0ZHXJ-lkp@intel.com/config)
+compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
 
-CI Bug Log - changes from xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5_BAT -> xe-pw-140934v2_BAT
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202501080440.Cxe0ZHXJ-lkp@intel.com/
 
-Summary
--------
+smatch warnings:
+drivers/gpu/drm/i915/display/skl_scaler.c:451 intel_atomic_setup_scaler() error: uninitialized symbol 'hscale'.
+drivers/gpu/drm/i915/display/skl_scaler.c:452 intel_atomic_setup_scaler() error: uninitialized symbol 'vscale'.
 
-  **FAILURE**
+vim +/hscale +451 drivers/gpu/drm/i915/display/skl_scaler.c
 
-  Serious unknown changes coming with xe-pw-140934v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-140934v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+61e24d4de0edbc Mitul Golani  2025-01-06  312  static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
+7488f64e89b02f Ville Syrjälä 2024-11-07  313  				     int num_scalers_need, struct intel_crtc *crtc,
+8976b18249407d Ville Syrjälä 2023-04-18  314  				     const char *name, int idx,
+8976b18249407d Ville Syrjälä 2023-04-18  315  				     struct intel_plane_state *plane_state,
+8976b18249407d Ville Syrjälä 2023-04-18  316  				     int *scaler_id)
+8976b18249407d Ville Syrjälä 2023-04-18  317  {
+3360d4d6d42ab3 Ville Syrjälä 2024-11-07  318  	struct intel_display *display = to_intel_display(crtc);
+61e24d4de0edbc Mitul Golani  2025-01-06  319  	struct intel_crtc_scaler_state *scaler_state =
+61e24d4de0edbc Mitul Golani  2025-01-06  320  					&crtc_state->scaler_state;
+7488f64e89b02f Ville Syrjälä 2024-11-07  321  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+8976b18249407d Ville Syrjälä 2023-04-18  322  	u32 mode;
+7c369018e87617 Mitul Golani  2025-01-06  323  	int hscale, vscale;
+8976b18249407d Ville Syrjälä 2023-04-18  324  
+ecf2afc59c1ea3 Ville Syrjälä 2024-11-07  325  	if (*scaler_id < 0)
+ecf2afc59c1ea3 Ville Syrjälä 2024-11-07  326  		*scaler_id = intel_allocate_scaler(scaler_state, crtc);
+8976b18249407d Ville Syrjälä 2023-04-18  327  
+3360d4d6d42ab3 Ville Syrjälä 2024-11-07  328  	if (drm_WARN(display->drm, *scaler_id < 0,
+8976b18249407d Ville Syrjälä 2023-04-18  329  		     "Cannot find scaler for %s:%d\n", name, idx))
+8976b18249407d Ville Syrjälä 2023-04-18  330  		return -EINVAL;
+8976b18249407d Ville Syrjälä 2023-04-18  331  
+8976b18249407d Ville Syrjälä 2023-04-18  332  	/* set scaler mode */
+8976b18249407d Ville Syrjälä 2023-04-18  333  	if (plane_state && plane_state->hw.fb &&
+8976b18249407d Ville Syrjälä 2023-04-18  334  	    plane_state->hw.fb->format->is_yuv &&
+8976b18249407d Ville Syrjälä 2023-04-18  335  	    plane_state->hw.fb->format->num_planes > 1) {
+8976b18249407d Ville Syrjälä 2023-04-18  336  		struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+8976b18249407d Ville Syrjälä 2023-04-18  337  
+3360d4d6d42ab3 Ville Syrjälä 2024-11-07  338  		if (DISPLAY_VER(display) == 9) {
+8976b18249407d Ville Syrjälä 2023-04-18  339  			mode = SKL_PS_SCALER_MODE_NV12;
+8976b18249407d Ville Syrjälä 2023-04-18  340  		} else if (icl_is_hdr_plane(dev_priv, plane->id)) {
+8976b18249407d Ville Syrjälä 2023-04-18  341  			/*
+8976b18249407d Ville Syrjälä 2023-04-18  342  			 * On gen11+'s HDR planes we only use the scaler for
+8976b18249407d Ville Syrjälä 2023-04-18  343  			 * scaling. They have a dedicated chroma upsampler, so
+8976b18249407d Ville Syrjälä 2023-04-18  344  			 * we don't need the scaler to upsample the UV plane.
+8976b18249407d Ville Syrjälä 2023-04-18  345  			 */
+8976b18249407d Ville Syrjälä 2023-04-18  346  			mode = PS_SCALER_MODE_NORMAL;
+8976b18249407d Ville Syrjälä 2023-04-18  347  		} else {
+8976b18249407d Ville Syrjälä 2023-04-18  348  			struct intel_plane *linked =
+8976b18249407d Ville Syrjälä 2023-04-18  349  				plane_state->planar_linked_plane;
+8976b18249407d Ville Syrjälä 2023-04-18  350  
+8976b18249407d Ville Syrjälä 2023-04-18  351  			mode = PS_SCALER_MODE_PLANAR;
+8976b18249407d Ville Syrjälä 2023-04-18  352  
+8976b18249407d Ville Syrjälä 2023-04-18  353  			if (linked)
+ebb4e2b03acc3a Ville Syrjälä 2023-04-26  354  				mode |= PS_BINDING_Y_PLANE(linked->id);
+8976b18249407d Ville Syrjälä 2023-04-18  355  		}
+3360d4d6d42ab3 Ville Syrjälä 2024-11-07  356  	} else if (DISPLAY_VER(display) >= 10) {
+8976b18249407d Ville Syrjälä 2023-04-18  357  		mode = PS_SCALER_MODE_NORMAL;
+7488f64e89b02f Ville Syrjälä 2024-11-07  358  	} else if (num_scalers_need == 1 && crtc->num_scalers > 1) {
+8976b18249407d Ville Syrjälä 2023-04-18  359  		/*
+8976b18249407d Ville Syrjälä 2023-04-18  360  		 * when only 1 scaler is in use on a pipe with 2 scalers
+8976b18249407d Ville Syrjälä 2023-04-18  361  		 * scaler 0 operates in high quality (HQ) mode.
+8976b18249407d Ville Syrjälä 2023-04-18  362  		 * In this case use scaler 0 to take advantage of HQ mode
+8976b18249407d Ville Syrjälä 2023-04-18  363  		 */
+3de26c81e9ae4a Ville Syrjälä 2024-11-07  364  		scaler_state->scalers[*scaler_id].in_use = false;
+8976b18249407d Ville Syrjälä 2023-04-18  365  		*scaler_id = 0;
+3de26c81e9ae4a Ville Syrjälä 2024-11-07  366  		scaler_state->scalers[0].in_use = true;
+8976b18249407d Ville Syrjälä 2023-04-18  367  		mode = SKL_PS_SCALER_MODE_HQ;
+8976b18249407d Ville Syrjälä 2023-04-18  368  	} else {
+8976b18249407d Ville Syrjälä 2023-04-18  369  		mode = SKL_PS_SCALER_MODE_DYN;
+8976b18249407d Ville Syrjälä 2023-04-18  370  	}
+8976b18249407d Ville Syrjälä 2023-04-18  371  
+8976b18249407d Ville Syrjälä 2023-04-18  372  	if (plane_state && plane_state->hw.fb) {
+8976b18249407d Ville Syrjälä 2023-04-18  373  		const struct drm_framebuffer *fb = plane_state->hw.fb;
+8976b18249407d Ville Syrjälä 2023-04-18  374  		const struct drm_rect *src = &plane_state->uapi.src;
+8976b18249407d Ville Syrjälä 2023-04-18  375  		const struct drm_rect *dst = &plane_state->uapi.dst;
+7c369018e87617 Mitul Golani  2025-01-06  376  		int max_vscale, max_hscale;
+8976b18249407d Ville Syrjälä 2023-04-18  377  
+8976b18249407d Ville Syrjälä 2023-04-18  378  		/*
+8976b18249407d Ville Syrjälä 2023-04-18  379  		 * FIXME: When two scalers are needed, but only one of
+8976b18249407d Ville Syrjälä 2023-04-18  380  		 * them needs to downscale, we should make sure that
+8976b18249407d Ville Syrjälä 2023-04-18  381  		 * the one that needs downscaling support is assigned
+8976b18249407d Ville Syrjälä 2023-04-18  382  		 * as the first scaler, so we don't reject downscaling
+8976b18249407d Ville Syrjälä 2023-04-18  383  		 * unnecessarily.
+8976b18249407d Ville Syrjälä 2023-04-18  384  		 */
+8976b18249407d Ville Syrjälä 2023-04-18  385  
+3360d4d6d42ab3 Ville Syrjälä 2024-11-07  386  		if (DISPLAY_VER(display) >= 14) {
+8976b18249407d Ville Syrjälä 2023-04-18  387  			/*
+8976b18249407d Ville Syrjälä 2023-04-18  388  			 * On versions 14 and up, only the first
+8976b18249407d Ville Syrjälä 2023-04-18  389  			 * scaler supports a vertical scaling factor
+8976b18249407d Ville Syrjälä 2023-04-18  390  			 * of more than 1.0, while a horizontal
+8976b18249407d Ville Syrjälä 2023-04-18  391  			 * scaling factor of 3.0 is supported.
+8976b18249407d Ville Syrjälä 2023-04-18  392  			 */
+8976b18249407d Ville Syrjälä 2023-04-18  393  			max_hscale = 0x30000 - 1;
+8976b18249407d Ville Syrjälä 2023-04-18  394  			if (*scaler_id == 0)
+8976b18249407d Ville Syrjälä 2023-04-18  395  				max_vscale = 0x30000 - 1;
+8976b18249407d Ville Syrjälä 2023-04-18  396  			else
+8976b18249407d Ville Syrjälä 2023-04-18  397  				max_vscale = 0x10000;
+8976b18249407d Ville Syrjälä 2023-04-18  398  
+3360d4d6d42ab3 Ville Syrjälä 2024-11-07  399  		} else if (DISPLAY_VER(display) >= 10 ||
+8976b18249407d Ville Syrjälä 2023-04-18  400  			   !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
+8976b18249407d Ville Syrjälä 2023-04-18  401  			max_hscale = 0x30000 - 1;
+8976b18249407d Ville Syrjälä 2023-04-18  402  			max_vscale = 0x30000 - 1;
+8976b18249407d Ville Syrjälä 2023-04-18  403  		} else {
+8976b18249407d Ville Syrjälä 2023-04-18  404  			max_hscale = 0x20000 - 1;
+8976b18249407d Ville Syrjälä 2023-04-18  405  			max_vscale = 0x20000 - 1;
+8976b18249407d Ville Syrjälä 2023-04-18  406  		}
+8976b18249407d Ville Syrjälä 2023-04-18  407  
+8976b18249407d Ville Syrjälä 2023-04-18  408  		/*
+8976b18249407d Ville Syrjälä 2023-04-18  409  		 * FIXME: We should change the if-else block above to
+8976b18249407d Ville Syrjälä 2023-04-18  410  		 * support HQ vs dynamic scaler properly.
+8976b18249407d Ville Syrjälä 2023-04-18  411  		 */
+8976b18249407d Ville Syrjälä 2023-04-18  412  
+8976b18249407d Ville Syrjälä 2023-04-18  413  		/* Check if required scaling is within limits */
+8976b18249407d Ville Syrjälä 2023-04-18  414  		hscale = drm_rect_calc_hscale(src, dst, 1, max_hscale);
+8976b18249407d Ville Syrjälä 2023-04-18  415  		vscale = drm_rect_calc_vscale(src, dst, 1, max_vscale);
+8976b18249407d Ville Syrjälä 2023-04-18  416  
+8976b18249407d Ville Syrjälä 2023-04-18  417  		if (hscale < 0 || vscale < 0) {
+3360d4d6d42ab3 Ville Syrjälä 2024-11-07  418  			drm_dbg_kms(display->drm,
+8976b18249407d Ville Syrjälä 2023-04-18  419  				    "Scaler %d doesn't support required plane scaling\n",
+8976b18249407d Ville Syrjälä 2023-04-18  420  				    *scaler_id);
+8976b18249407d Ville Syrjälä 2023-04-18  421  			drm_rect_debug_print("src: ", src, true);
+8976b18249407d Ville Syrjälä 2023-04-18  422  			drm_rect_debug_print("dst: ", dst, false);
+8976b18249407d Ville Syrjälä 2023-04-18  423  
+8976b18249407d Ville Syrjälä 2023-04-18  424  			return -EINVAL;
+8976b18249407d Ville Syrjälä 2023-04-18  425  		}
+7c369018e87617 Mitul Golani  2025-01-06  426  	}
+7c369018e87617 Mitul Golani  2025-01-06  427  
+7c369018e87617 Mitul Golani  2025-01-06  428  	if (crtc_state->pch_pfit.enabled) {
+7c369018e87617 Mitul Golani  2025-01-06  429  		struct drm_rect src;
+7c369018e87617 Mitul Golani  2025-01-06  430  
+7c369018e87617 Mitul Golani  2025-01-06  431  		drm_rect_init(&src, 0, 0,
+7c369018e87617 Mitul Golani  2025-01-06  432  			      drm_rect_width(&crtc_state->pipe_src) << 16,
+7c369018e87617 Mitul Golani  2025-01-06  433  			      drm_rect_height(&crtc_state->pipe_src) << 16);
+7c369018e87617 Mitul Golani  2025-01-06  434  
+7c369018e87617 Mitul Golani  2025-01-06  435  		hscale = drm_rect_calc_hscale(&src, &crtc_state->pch_pfit.dst,
+7c369018e87617 Mitul Golani  2025-01-06  436  					      0, INT_MAX);
+7c369018e87617 Mitul Golani  2025-01-06  437  		vscale = drm_rect_calc_vscale(&src, &crtc_state->pch_pfit.dst,
+7c369018e87617 Mitul Golani  2025-01-06  438  					      0, INT_MAX);
+7c369018e87617 Mitul Golani  2025-01-06  439  
+7c369018e87617 Mitul Golani  2025-01-06  440  		if (hscale < 0 || vscale < 0) {
+7c369018e87617 Mitul Golani  2025-01-06  441  			drm_dbg_kms(display->drm,
+7c369018e87617 Mitul Golani  2025-01-06  442  				    "Scaler %d doesn't support required pipe scaling\n",
+7c369018e87617 Mitul Golani  2025-01-06  443  				    *scaler_id);
+7c369018e87617 Mitul Golani  2025-01-06  444  			drm_rect_debug_print("src: ", &src, true);
+7c369018e87617 Mitul Golani  2025-01-06  445  			drm_rect_debug_print("dst: ", &crtc_state->pch_pfit.dst, false);
+7c369018e87617 Mitul Golani  2025-01-06  446  
+7c369018e87617 Mitul Golani  2025-01-06  447  			return -EINVAL;
+7c369018e87617 Mitul Golani  2025-01-06  448  		}
+7c369018e87617 Mitul Golani  2025-01-06  449  	}
+0641adb4624b5e Mitul Golani  2025-01-06  450  
+0641adb4624b5e Mitul Golani  2025-01-06 @451  	scaler_state->scalers[*scaler_id].hscale = hscale;
+0641adb4624b5e Mitul Golani  2025-01-06 @452  	scaler_state->scalers[*scaler_id].vscale = vscale;
 
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-140934v2_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_addfb_basic@addfb25-4-tiled:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-bmg-2/igt@kms_addfb_basic@addfb25-4-tiled.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-bmg-2/igt@kms_addfb_basic@addfb25-4-tiled.html
-    - bat-lnl-2:          [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-lnl-2/igt@kms_addfb_basic@addfb25-4-tiled.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-lnl-2/igt@kms_addfb_basic@addfb25-4-tiled.html
-
-  * igt@runner@aborted:
-    - bat-pvc-2:          NOTRUN -> [FAIL][5]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-pvc-2/igt@runner@aborted.html
-    - bat-atsm-2:         NOTRUN -> [FAIL][6]
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-atsm-2/igt@runner@aborted.html
-
-  * igt@xe_module_load@load:
-    - bat-dg2-oem2:       [PASS][7] -> [ABORT][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-dg2-oem2/igt@xe_module_load@load.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-dg2-oem2/igt@xe_module_load@load.html
-    - bat-adlp-vf:        [PASS][9] -> [DMESG-WARN][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-adlp-vf/igt@xe_module_load@load.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-adlp-vf/igt@xe_module_load@load.html
-    - bat-lnl-1:          [PASS][11] -> [ABORT][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-lnl-1/igt@xe_module_load@load.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-lnl-1/igt@xe_module_load@load.html
-    - bat-bmg-2:          [PASS][13] -> [DMESG-WARN][14]
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-bmg-2/igt@xe_module_load@load.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-bmg-2/igt@xe_module_load@load.html
-    - bat-bmg-1:          [PASS][15] -> [ABORT][16]
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-bmg-1/igt@xe_module_load@load.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-bmg-1/igt@xe_module_load@load.html
-    - bat-lnl-2:          [PASS][17] -> [DMESG-WARN][18]
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-lnl-2/igt@xe_module_load@load.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-lnl-2/igt@xe_module_load@load.html
-
-  
+vscale and hscale are initialized if crtc_state->pch_pfit.enabled or
+plane_state->hw.fb is true, but otherwise they aren't.
 
 
-Build changes
--------------
+8976b18249407d Ville Syrjälä 2023-04-18  453  
+3360d4d6d42ab3 Ville Syrjälä 2024-11-07  454  	drm_dbg_kms(display->drm, "Attached scaler id %u.%u to %s:%d\n",
+7488f64e89b02f Ville Syrjälä 2024-11-07  455  		    crtc->pipe, *scaler_id, name, idx);
+8976b18249407d Ville Syrjälä 2023-04-18  456  	scaler_state->scalers[*scaler_id].mode = mode;
+8976b18249407d Ville Syrjälä 2023-04-18  457  
+8976b18249407d Ville Syrjälä 2023-04-18  458  	return 0;
+8976b18249407d Ville Syrjälä 2023-04-18  459  }
 
-  * Linux: xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5 -> xe-pw-140934v2
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
-  IGT_8179: 183b33f81365dd4a57fe3100a13d3fb13788d158 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5: 8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5
-  xe-pw-140934v2: 140934v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/index.html
-
---===============6056594021351968826==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Expose modifiers/formats supported by async flips (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140934/">https://patchwork.freedesktop.org/series/140934/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5_BAT -&gt; xe-pw-140934v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-140934v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-140934v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-140934v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-4-tiled:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-bmg-2/igt@kms_addfb_basic@addfb25-4-tiled.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-bmg-2/igt@kms_addfb_basic@addfb25-4-tiled.html">ABORT</a></li>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-lnl-2/igt@kms_addfb_basic@addfb25-4-tiled.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-lnl-2/igt@kms_addfb_basic@addfb25-4-tiled.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-pvc-2/igt@runner@aborted.html">FAIL</a></li>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-atsm-2/igt@runner@aborted.html">FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-dg2-oem2/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-adlp-vf/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-adlp-vf/igt@xe_module_load@load.html">DMESG-WARN</a></li>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-lnl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-lnl-1/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-bmg-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-bmg-2/igt@xe_module_load@load.html">DMESG-WARN</a></li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5/bat-lnl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v2/bat-lnl-2/igt@xe_module_load@load.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5 -&gt; xe-pw-140934v2</li>
-</ul>
-<p>IGT_8179: 183b33f81365dd4a57fe3100a13d3fb13788d158 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2452-8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5: 8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5<br />
-  xe-pw-140934v2: 140934v2</p>
-
-</body>
-</html>
-
---===============6056594021351968826==--
