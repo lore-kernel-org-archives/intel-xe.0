@@ -4,59 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47FFDE77197
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 13:58:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2673E77197
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 14:04:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CC9A10EDE9;
-	Thu,  9 Jan 2025 13:58:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81F2110E04C;
+	Thu,  9 Jan 2025 14:04:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H8uhqBvQ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="V/SM2GMU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFB3010EDE9;
- Thu,  9 Jan 2025 13:58:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736431090; x=1767967090;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=EJUHZnn6XLX4XoEdM53C4y2sJS+Yx4hHqVXxeyKgVS8=;
- b=H8uhqBvQfa4MhImMEXuPMoaTX7qMt+sQKwDuyBQf0IVXtFYfcV8SxnjI
- AvaFhqbK9UopzfaM4POc+rhob6GPh4AK1MCjT2PbBTTjWALSbR3SSqQGA
- J259TcshM33LW6lySYjjOe1KX2EbkYyG4GVQk8PVVZOTWTcsOe9ZIKiBF
- JNhfLXrqemLhSOGGAi5L+Bb5xYXJ/0Te/uGaTyWSr5klQwfJK348LS5Mp
- bPG+J25gjtFpUHYviajCn2yW7piRUgVUCZPWW+hGFRP5zGfHAXGBWnNrd
- Nad/mZO/xrebxuKAJoy2NXwBh+wpCuZbIXioTc+gL5ZfPNsb8IvcuAWIF A==;
-X-CSE-ConnectionGUID: nLBOxE4gTeml/EuczdALjQ==
-X-CSE-MsgGUID: ExfNsTG3SD+ap8jJTGOBPQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="59160313"
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="59160313"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 05:58:10 -0800
-X-CSE-ConnectionGUID: NL48F9s4RUuta1KkjADmkQ==
-X-CSE-MsgGUID: cuE50ck4SWOvFodIzuAx/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="108404541"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 05:58:07 -0800
-Date: Thu, 9 Jan 2025 15:58:04 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Matt Atwood <matthew.s.atwood@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9342C10E950;
+ Wed,  8 Jan 2025 22:25:36 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id EE0C4A41CA2;
+ Wed,  8 Jan 2025 22:23:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39E6CC4CED3;
+ Wed,  8 Jan 2025 22:25:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1736375135;
+ bh=U9CVUjI/D6atnZOLe9RQZGpxxZQy7AiGwtA6NT1UoAw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=V/SM2GMUoE47sBQjTtz1XIfbRHweNnbHwesx50zC8lxqA/qQ1cG7wbPI2/gO9+yW7
+ ylx32/ZPRh6wKHkhhUj7mNijobXQK9/kox+oGRRialLUjVTReGAkShu+SSI4H5A5xf
+ /r5vvxI59Dh9v14OQiNEDlBN/9LaS5Ufi4BwhFa3RqNhaftIk7WgkRtAY581OPnXxw
+ XWM5q2A5Yt/mLwWORcd8Dt1pR2gQYEwmrvYRtHO0Mo3G8S1jEL+bRouIlNVzD8XLnQ
+ EZA0dv4+KqD5ORdLgOcqUtOXFnIXNDmUUy2Jcnx6uCTZogOMIt2Pg+7gYtQc+B9doc
+ WVaJ7iGshE4yw==
+Date: Wed, 8 Jan 2025 16:25:31 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>
-Subject: Re: [PATCH] drm/xe: remove unused xe_pciids.h harder, add missing
- PCI ID
-Message-ID: <Z3_V7MHFINUqR6qs@black.fi.intel.com>
-References: <20250109105032.2585416-1-jani.nikula@intel.com>
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Johan Hovold <johan@kernel.org>,
+ dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, Johan Hovold <johan+linaro@kernel.org>
+Subject: Re: [PATCH v4 4/4] drm/msm/dp: Add support for LTTPR handling
+Message-ID: <zfyl7xvkackpv2tfabvcjqt6e3uxxgyxwg6t4fvjrlzeg5m6nf@wc5suvzcm54u>
+References: <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-0-918949bc2e3a@linaro.org>
+ <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-4-918949bc2e3a@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250109105032.2585416-1-jani.nikula@intel.com>
+In-Reply-To: <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-4-918949bc2e3a@linaro.org>
+X-Mailman-Approved-At: Thu, 09 Jan 2025 14:04:24 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,20 +73,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jan 09, 2025 at 12:50:32PM +0200, Jani Nikula wrote:
-> Commit 493454445c95 ("drm/xe: switch to common PCI ID macros") removed
-> xe_pciids.h via drm-intel-next. In the mean time, commit ae78ec0a52c4
-> ("drm/xe/ptl: Add another PTL PCI ID") added to xe_pciids.h via
-> drm-xe-next.
+On Wed, Jan 08, 2025 at 04:31:46PM +0200, Abel Vesa wrote:
+> Link Training Tunable PHY Repeaters (LTTPRs) are defined in DisplayPort
+> 1.4a specification. As the name suggests, these PHY repeaters are
+> capable of adjusting their output for link training purposes.
 > 
-> The two commits were merged in commit 8f109f287fdc ("Merge drm/drm-next
-> into drm-xe-next"), but xe_pciids.h wasn't removed, and the PCI ID
-> wasn't added to pciids.h.
+> According to the DisplayPort standard, LTTPRs have two operating
+> modes:
+>  - non-transparent - it replies to DPCD LTTPR field specific AUX
+>    requests, while passes through all other AUX requests
+>  - transparent - it passes through all AUX requests.
 > 
-> Remove xe_pciids.h, and add the PCI ID to pciids.h.
+> Switching between this two modes is done by the DPTX by issuing
+> an AUX write to the DPCD PHY_REPEATER_MODE register.
+> 
+> The msm DP driver is currently lacking any handling of LTTPRs.
+> This means that if at least one LTTPR is found between DPTX and DPRX,
+> the link training would fail if that LTTPR was not already configured
+> in transparent mode.
+> 
+> The section 3.6.6.1 from the DisplayPort v2.0 specification mandates
+> that before link training with the LTTPR is started, the DPTX may place
+> the LTTPR in non-transparent mode by first switching to transparent mode
+> and then to non-transparent mode. This operation seems to be needed only
+> on first link training and doesn't need to be done again until device is
+> unplugged.
+> 
+> It has been observed on a few X Elite-based platforms which have
+> such LTTPRs in their board design that the DPTX needs to follow the
+> procedure described above in order for the link training to be successful.
+> 
+> So add support for reading the LTTPR DPCD caps to figure out the number
+> of such LTTPRs first. Then, for platforms (or Type-C dongles) that have
+> at least one such an LTTPR, set its operation mode to transparent mode
+> first and then to non-transparent, just like the mentioned section of
+> the specification mandates.
+> 
+> Tested-by: Johan Hovold <johan+linaro@kernel.org>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  drivers/gpu/drm/msm/dp/dp_display.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+> index 24dd37f1682bf5016bb0efbeb44489061deff060..ad09daa4c8ab5c0eb67890509b94e72820bab870 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+> @@ -107,6 +107,8 @@ struct msm_dp_display_private {
+>  	struct msm_dp_event event_list[DP_EVENT_Q_MAX];
+>  	spinlock_t event_lock;
+>  
+> +	u8 lttpr_caps[DP_LTTPR_COMMON_CAP_SIZE];
 
-Unless there's a nuance intended in the subject
+As far as I can see these 8 bytes are read and acted upon only within
+msm_dp_display_lttpr_init() below. Any particular reason why you don't
+just put them on the stack?
 
-s/harder/header
+Regards,
+Bjorn
 
-Raag
+> +
+>  	bool wide_bus_supported;
+>  
+>  	struct msm_dp_audio *audio;
+> @@ -367,12 +369,27 @@ static int msm_dp_display_send_hpd_notification(struct msm_dp_display_private *d
+>  	return 0;
+>  }
+>  
+> +static void msm_dp_display_lttpr_init(struct msm_dp_display_private *dp)
+> +{
+> +	int rc;
+> +
+> +	if (drm_dp_read_lttpr_common_caps(dp->aux, dp->panel->dpcd,
+> +					  dp->lttpr_caps))
+> +		return;
+> +
+> +	rc = drm_dp_lttpr_init(dp->aux, drm_dp_lttpr_count(dp->lttpr_caps));
+> +	if (rc)
+> +		DRM_ERROR("failed to set LTTPRs transparency mode, rc=%d\n", rc);
+> +}
+> +
+>  static int msm_dp_display_process_hpd_high(struct msm_dp_display_private *dp)
+>  {
+>  	struct drm_connector *connector = dp->msm_dp_display.connector;
+>  	const struct drm_display_info *info = &connector->display_info;
+>  	int rc = 0;
+>  
+> +	msm_dp_display_lttpr_init(dp);
+> +
+>  	rc = msm_dp_panel_read_sink_caps(dp->panel, connector);
+>  	if (rc)
+>  		goto end;
+> 
+> -- 
+> 2.34.1
+> 
