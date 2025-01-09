@@ -4,72 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A696E77197
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 14:58:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A045EE77197
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 15:03:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEF9A10EE22;
-	Thu,  9 Jan 2025 14:58:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6771910EE2C;
+	Thu,  9 Jan 2025 15:03:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cghjW+RH";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="ntZkX8HI";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="KRido0aS";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ntZkX8HI";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="KRido0aS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C3EF10EE1B;
- Thu,  9 Jan 2025 14:58:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736434695; x=1767970695;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=vefbR+WxUsl6W1mxf4BqpYTUFUuz57yEjCw3Nj1MESk=;
- b=cghjW+RHi6qJMa4AKhOb/6xenEJRZnuPNroVDwsTs8Nwxq1z9wwyECeO
- dezDmqSAStcw/g0ZbnQxcL1bsN58Ib0g3iVRG6NjXNj/F1jvU/Hp0+k87
- C/efxtFSsV3aZHLKuY8qxoibXefkzMX44C5J7rcikzbQTPNrvV2fQttUg
- HsfAqds8yl+nLLiiupUpGwUWiWYNqcdG9KUlrrPHW66kTR5uXlVIG/qRl
- i6x26BMudrgozdaQsQO5FwtDUEVhJL/GXso9bopmUCI81nwtfoZYVy14T
- iiv/VfaB1a+BhSoKkR/b7yJU6+WHKjy68CshfhjZD2vz+57DfO34lgqy8 w==;
-X-CSE-ConnectionGUID: My4i28gvTiqaxVtUf/3XSw==
-X-CSE-MsgGUID: RG0QBvtKRfuOJ3nAyn1ZpA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="48110946"
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="48110946"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 06:58:14 -0800
-X-CSE-ConnectionGUID: aAxGFyBISeOF2fi1TGSFDw==
-X-CSE-MsgGUID: hUbAKolZSWC8NTenKubm+A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108527826"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 06:58:04 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Joel Granados <joel.granados@kernel.org>, Thomas =?utf-8?Q?Wei=C3=9Fsc?=
- =?utf-8?Q?huh?=
- <linux@weissschuh.net>, Kees Cook <kees@kernel.org>, Luis Chamberlain
- <mcgrof@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
- linux-s390@vger.kernel.org, linux-crypto@vger.kernel.org,
- openipmi-developer@lists.sourceforge.net, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-hyperv@vger.kernel.org, linux-rdma@vger.kernel.org,
- linux-raid@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-serial@vger.kernel.org, xen-devel@lists.xenproject.org,
- linux-aio@kvack.org, linux-fsdevel@vger.kernel.org, netfs@lists.linux.dev,
- codalist@coda.cs.cmu.edu, linux-mm@kvack.org, linux-nfs@vger.kernel.org,
- ocfs2-devel@lists.linux.dev, fsverity@lists.linux.dev,
- linux-xfs@vger.kernel.org, io-uring@vger.kernel.org, bpf@vger.kernel.org,
- kexec@lists.infradead.org, linux-trace-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, apparmor@lists.ubuntu.com,
- linux-security-module@vger.kernel.org, keyrings@vger.kernel.org, Joel
- Granados <joel.granados@kernel.org>
-Subject: Re: [PATCH] treewide: const qualify ctl_tables where applicable
-In-Reply-To: <20250109-jag-ctl_table_const-v1-1-622aea7230cf@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250109-jag-ctl_table_const-v1-1-622aea7230cf@kernel.org>
-Date: Thu, 09 Jan 2025 16:58:01 +0200
-Message-ID: <87frlsjapy.fsf@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 776C510EE27;
+ Thu,  9 Jan 2025 15:03:17 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 157402116D;
+ Thu,  9 Jan 2025 15:03:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1736434996; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3sh7vVw1B49hkDdbVfqLYlvz8obe5G8l/LkcFxQMXdM=;
+ b=ntZkX8HIPc1qGvPW8UM3Evg6Ff9TM4m/+rMTrtZcyvaUoSYG4MrK4zcw+XGDVVaTWpH7VQ
+ 7fbl79Pw4UcW5H8ug3QUw8sp9ufyiWEcAHz3WKEHjB9MqZMiL/ntefZ7I6bgtfudgZeMg4
+ Eezv9GbAWHlf4ZgRNmiE562bHzv0X/I=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1736434996;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3sh7vVw1B49hkDdbVfqLYlvz8obe5G8l/LkcFxQMXdM=;
+ b=KRido0aSgwUv2dnvGXNMHH0PnwD78rt0xuNhPUc3UhOyhb1FS2KDnnaKFfuch02NIZf5DB
+ LvLC3fVQ/RHRQjCg==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=ntZkX8HI;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=KRido0aS
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1736434996; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3sh7vVw1B49hkDdbVfqLYlvz8obe5G8l/LkcFxQMXdM=;
+ b=ntZkX8HIPc1qGvPW8UM3Evg6Ff9TM4m/+rMTrtZcyvaUoSYG4MrK4zcw+XGDVVaTWpH7VQ
+ 7fbl79Pw4UcW5H8ug3QUw8sp9ufyiWEcAHz3WKEHjB9MqZMiL/ntefZ7I6bgtfudgZeMg4
+ Eezv9GbAWHlf4ZgRNmiE562bHzv0X/I=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1736434996;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3sh7vVw1B49hkDdbVfqLYlvz8obe5G8l/LkcFxQMXdM=;
+ b=KRido0aSgwUv2dnvGXNMHH0PnwD78rt0xuNhPUc3UhOyhb1FS2KDnnaKFfuch02NIZf5DB
+ LvLC3fVQ/RHRQjCg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8ED65139AB;
+ Thu,  9 Jan 2025 15:03:15 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id cNeRITPlf2c1awAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 09 Jan 2025 15:03:15 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v2 02/25] drm/dumb-buffers: Provide helper to set pitch and
+ size
+Date: Thu,  9 Jan 2025 15:56:56 +0100
+Message-ID: <20250109150310.219442-3-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20250109150310.219442-1-tzimmermann@suse.de>
+References: <20250109150310.219442-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 157402116D
+X-Spamd-Result: default: False [-1.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; MID_CONTAINS_FROM(1.00)[];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; R_MISSING_CHARSET(0.50)[];
+ NEURAL_HAM_SHORT(-0.20)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ MIME_GOOD(-0.10)[text/plain]; MX_GOOD(-0.01)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:dkim,suse.de:mid,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+];
+ FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,gmail.com,ffwll.ch];
+ RCPT_COUNT_TWELVE(0.00)[19]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FROM_HAS_DN(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ ASN(0.00)[asn:25478, ipnet:::/0, country:RU];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ R_RATELIMIT(0.00)[to_ip_from(RLqtkr6cif1ebgurukgmwdm7xc)];
+ RCVD_TLS_ALL(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
+ TO_DN_SOME(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com]
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,25 +128,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 09 Jan 2025, Joel Granados <joel.granados@kernel.org> wrote:
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index 2406cda75b7b..5384d1bb4923 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -4802,7 +4802,7 @@ int i915_perf_remove_config_ioctl(struct drm_device *dev, void *data,
->  	return ret;
->  }
->  
-> -static struct ctl_table oa_table[] = {
-> +static const struct ctl_table oa_table[] = {
->  	{
->  	 .procname = "perf_stream_paranoid",
->  	 .data = &i915_perf_stream_paranoid,
+Add drm_modes_size_dumb(), a helper to calculate the dumb-buffer
+scanline pitch and allocation size. Implementations of struct
+drm_driver.dumb_create can call the new helper for their size
+computations. There's currently quite a bit of code duplication
+among DRM's memory managers. Each calculates scanline pitch and
+buffer size from the given arguments, but the implementations are
+inconsistent in how they treat alignment and format support. Later
+patches will unify this code on top of drm_mode_size_dumb() as
+much as possible.
 
-For i915,
+drm_mode_size_dumb() uses existing 4CC format helpers to interpret the
+given color mode. This makes the dumb-buffer interface behave similar
+the kernel's video= parameter. Again, current per-driver implementations
+likely have subtle differences or bugs in how they support color modes.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Future directions: one bug is present in the current input validation
+in drm_mode_create_dumb(). The dumb-buffer overflow tests round up any
+given bits-per-pixel value to a multiple of 8. So even one-bit formats,
+such as DRM_FORMAT_C1, require 8 bits per pixel. While not common,
+low-end displays use such formats; with a possible overcommitment of
+memory. At some point, the validation logic in drm_mode_size_dumb() is
+supposed to replace the erronous code.
 
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+---
+ drivers/gpu/drm/drm_dumb_buffers.c | 93 ++++++++++++++++++++++++++++++
+ include/drm/drm_dumb_buffers.h     | 14 +++++
+ 2 files changed, 107 insertions(+)
+ create mode 100644 include/drm/drm_dumb_buffers.h
 
+diff --git a/drivers/gpu/drm/drm_dumb_buffers.c b/drivers/gpu/drm/drm_dumb_buffers.c
+index 9916aaf5b3f2..fd39720bd617 100644
+--- a/drivers/gpu/drm/drm_dumb_buffers.c
++++ b/drivers/gpu/drm/drm_dumb_buffers.c
+@@ -25,6 +25,8 @@
+ 
+ #include <drm/drm_device.h>
+ #include <drm/drm_drv.h>
++#include <drm/drm_dumb_buffers.h>
++#include <drm/drm_fourcc.h>
+ #include <drm/drm_gem.h>
+ #include <drm/drm_mode.h>
+ 
+@@ -57,6 +59,97 @@
+  * a hardware-specific ioctl to allocate suitable buffer objects.
+  */
+ 
++static int drm_mode_align_dumb(struct drm_mode_create_dumb *args,
++			       unsigned long pitch_align,
++			       unsigned long size_align)
++{
++	u32 pitch = args->pitch;
++	u32 size;
++
++	if (!pitch)
++		return -EINVAL;
++
++	if (pitch_align)
++		pitch = roundup(pitch, pitch_align);
++
++	/* overflow checks for 32bit size calculations */
++	if (args->height > U32_MAX / pitch)
++		return -EINVAL;
++
++	if (!size_align)
++		size_align = PAGE_SIZE;
++	else if (!IS_ALIGNED(size_align, PAGE_SIZE))
++		return -EINVAL;
++
++	size = ALIGN(args->height * pitch, size_align);
++	if (!size)
++		return -EINVAL;
++
++	args->pitch = pitch;
++	args->size = size;
++
++	return 0;
++}
++
++/**
++ * drm_mode_size_dumb - Calculates the scanline and buffer sizes for dumb buffers
++ * @dev: DRM device
++ * @args: Parameters for the dumb buffer
++ * @pitch_align: Scanline alignment in bytes
++ * @size_align: Buffer-size alignment in bytes
++ *
++ * The helper drm_mode_size_dumb() calculates the size of the buffer
++ * allocation and the scanline size for a dumb buffer. Callers have to
++ * set the buffers width, height and color mode in the argument @arg.
++ * The helper validates the correctness of the input and tests for
++ * possible overflows. If successful, it returns the dumb buffer's
++ * required scanline pitch and size in &args.
++ *
++ * The parameter @pitch_align allows the driver to specifies an
++ * alignment for the scanline pitch, if the hardware requires any. The
++ * calculated pitch will be a multiple of the alignment. The parameter
++ * @size_align allows to specify an alignment for buffer sizes. The
++ * returned size is always a multiple of PAGE_SIZE.
++ *
++ * Returns:
++ * Zero on success, or a negative error code otherwise.
++ */
++int drm_mode_size_dumb(struct drm_device *dev,
++		       struct drm_mode_create_dumb *args,
++		       unsigned long pitch_align,
++		       unsigned long size_align)
++{
++	u32 fourcc;
++	const struct drm_format_info *info;
++	u64 pitch;
++
++	/*
++	 * The scanline pitch depends on the buffer width and the color
++	 * format. The latter is specified as a color-mode constant for
++	 * which we first have to find the corresponding color format.
++	 *
++	 * Different color formats can have the same color-mode constant.
++	 * For example XRGB8888 and BGRX8888 both have a color mode of 32.
++	 * It is possible to use different formats for dumb-buffer allocation
++	 * and rendering as long as all involved formats share the same
++	 * color-mode constant.
++	 */
++	fourcc = drm_driver_color_mode_format(dev, args->bpp);
++	if (fourcc == DRM_FORMAT_INVALID)
++		return -EINVAL;
++	info = drm_format_info(fourcc);
++	if (!info)
++		return -EINVAL;
++	pitch = drm_format_info_min_pitch(info, 0, args->width);
++	if (!pitch || pitch > U32_MAX)
++		return -EINVAL;
++
++	args->pitch = pitch;
++
++	return drm_mode_align_dumb(args, pitch_align, size_align);
++}
++EXPORT_SYMBOL(drm_mode_size_dumb);
++
+ int drm_mode_create_dumb(struct drm_device *dev,
+ 			 struct drm_mode_create_dumb *args,
+ 			 struct drm_file *file_priv)
+diff --git a/include/drm/drm_dumb_buffers.h b/include/drm/drm_dumb_buffers.h
+new file mode 100644
+index 000000000000..6fe36004b19d
+--- /dev/null
++++ b/include/drm/drm_dumb_buffers.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: MIT */
++
++#ifndef __DRM_DUMB_BUFFERS_H__
++#define __DRM_DUMB_BUFFERS_H__
++
++struct drm_device;
++struct drm_mode_create_dumb;
++
++int drm_mode_size_dumb(struct drm_device *dev,
++		       struct drm_mode_create_dumb *args,
++		       unsigned long pitch_align,
++		       unsigned long size_align);
++
++#endif
 -- 
-Jani Nikula, Intel
+2.47.1
+
