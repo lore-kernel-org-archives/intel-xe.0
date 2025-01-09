@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D1B0E77197
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 13:08:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6409E77197
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 13:30:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 214F210EDBD;
-	Thu,  9 Jan 2025 13:08:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 881A110EDD4;
+	Thu,  9 Jan 2025 13:30:09 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC97E10EDBC;
- Thu,  9 Jan 2025 13:08:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA5A310EDD4;
+ Thu,  9 Jan 2025 13:30:08 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe=3A_remove_unu?=
- =?utf-8?q?sed_xe=5Fpciids=2Eh_harder=2C_add_missing_PCI_ID?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Add_mmap_support_for?=
+ =?utf-8?q?_pci_membarrier_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 09 Jan 2025 13:08:47 -0000
-Message-ID: <173642812776.1626983.11630778657707317657@b555e5b46a47>
+Date: Thu, 09 Jan 2025 13:30:08 -0000
+Message-ID: <173642940875.1634411.10337573734728469772@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250109105032.2585416-1-jani.nikula@intel.com>
-In-Reply-To: <20250109105032.2585416-1-jani.nikula@intel.com>
+References: <20250107154750.2942358-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20250107154750.2942358-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,22 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: remove unused xe_pciids.h harder, add missing PCI ID
-URL   : https://patchwork.freedesktop.org/series/143320/
-State : failure
+Series: Add mmap support for pci membarrier (rev2)
+URL   : https://patchwork.freedesktop.org/series/143192/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: 14e0c4a8247c drm-tip: 2025y-01m-09d-10h-24m-55s UTC integration manifest
 === git am output follows ===
-error: patch failed: include/drm/intel/pciids.h:858
-error: include/drm/intel/pciids.h: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/xe: remove unused xe_pciids.h harder, add missing PCI ID
-Patch failed at 0001 drm/xe: remove unused xe_pciids.h harder, add missing PCI ID
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe/mmap: Add mmap support for PCI memory barrier
 
 
