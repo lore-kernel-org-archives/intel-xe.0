@@ -4,59 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8346CE77197
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 10:50:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4222CE7719A
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 10:52:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CE8C10ED63;
-	Thu,  9 Jan 2025 10:50:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E63110ED66;
+	Thu,  9 Jan 2025 10:52:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PGuYDfxS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UHbvINMZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0CB510ED63;
- Thu,  9 Jan 2025 10:50:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE88410E359;
+ Thu,  9 Jan 2025 10:52:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736419841; x=1767955841;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=M495vlM1pJuhdYy4sbisk8emK4gXwFOie0rSbf5Cr7g=;
- b=PGuYDfxStmsStH3hU/fSZyNvhcLMD02w8YTPaflGZ+jzkqnplFV2WKhB
- qtrOD0+2bzaav6geqDx5c37EmrBIqYO1jDyqG8U+rAwXUuu66VlBdA4Pb
- mNKtmTAPxD6EDFThMLa+a/QjBdh3Nhd1xnpApgJE1mo8ZFM5cNxLN2hA3
- 76sf5VMfnDI5bLf5lQE7dAxGuLwxVVMK0P54256isq8bYmA/3Vcd6F0W9
- RNzWtyw8UenlyeDSqsR2Hc7O/9FUNTk1N4Bw0pKYpj4lKWWwuq5jOHiEl
- nNvf47s7tSrwV10ttaR/XDadXyJtIKJ9lx2KIAB2Z6GufSJxDkOll9BTP Q==;
-X-CSE-ConnectionGUID: IeLVll5gQqaNS3yUaTd2aA==
-X-CSE-MsgGUID: fGwzjHHhQHS2Sqy+WJ1NLQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="36694838"
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="36694838"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 02:50:41 -0800
-X-CSE-ConnectionGUID: Ya/bI54YTWG20OJmIJ/7rw==
-X-CSE-MsgGUID: znezrM5WSgi1GlJ/GQ2OJw==
+ t=1736419964; x=1767955964;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=QBzI2Wbpho1NEfTzBYXTsUD5MhRmFj/3E7Z72jZHa5E=;
+ b=UHbvINMZYLvZIlyOEk2CPxPAqkzObVO/Nr6JqnPxNML3aBYG/0c5+zTA
+ 2OAYYrg97xly0jxYXQxeXSwzpmJ0u7IlPe67dohecLsJxFfhdTmn4z7sb
+ 7U1YixCiEBUX3C3a3+XkiVXqGap6WiUCIuMSzZC+WqafkkkIKZ+CCCfXI
+ qeGx0gdp4aaCC1hue+fwvj/RNeP6smPT6yvsrvkSsithUgfCYKw+cQlwz
+ SrXctFjEi78gABEVakJHSUV2kaFMUZ10MtKxb55Rpjw/syY9PNVxYo8g2
+ QVObOohk3JkC7Wh4lEubFS+nvhg18E3+zhpsZ+dphaIV5KWKpixks0l3C g==;
+X-CSE-ConnectionGUID: EalUXygGQBO1idRVX0P6YQ==
+X-CSE-MsgGUID: gh690MOfSW6QY0Sk/EwETA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="36561813"
+X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="36561813"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2025 02:52:44 -0800
+X-CSE-ConnectionGUID: ngM6lUsGRSOvJdEPOlrkCA==
+X-CSE-MsgGUID: +rldYdQ4ReyMomNA6lK6cA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="103440411"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108481385"
 Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.206])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 02:50:37 -0800
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2025 02:52:40 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, Matt Atwood <matthew.s.atwood@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>
-Subject: [PATCH] drm/xe: remove unused xe_pciids.h harder, add missing PCI ID
-Date: Thu,  9 Jan 2025 12:50:32 +0200
-Message-Id: <20250109105032.2585416-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-MIME-Version: 1.0
+To: Stephen Rothwell <sfr@canb.auug.org.au>, Dave Airlie <airlied@redhat.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?utf-8?Q?Hellstr?=
+ =?utf-8?Q?=C3=B6m?= <thomas.hellstrom@linux.intel.com>, DRM XE List
+ <intel-xe@lists.freedesktop.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>, Matt Atwood
+ <matthew.s.atwood@intel.com>, Matt Roper <matthew.d.roper@intel.com>, DRI
+ <dri-devel@lists.freedesktop.org>
+Subject: Re: linux-next: manual merge of the drm-xe tree with Linus' tree
+In-Reply-To: <20250109164142.07cd8023@canb.auug.org.au>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20241125120921.1bbc1930@canb.auug.org.au>
+ <20241216183801.0d5c9a5f@canb.auug.org.au>
+ <20250109164142.07cd8023@canb.auug.org.au>
+Date: Thu, 09 Jan 2025 12:52:37 +0200
+Message-ID: <87sepsjm2y.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,291 +75,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Commit 493454445c95 ("drm/xe: switch to common PCI ID macros") removed
-xe_pciids.h via drm-intel-next. In the mean time, commit ae78ec0a52c4
-("drm/xe/ptl: Add another PTL PCI ID") added to xe_pciids.h via
-drm-xe-next.
+On Thu, 09 Jan 2025, Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+> Hi all,
+>
+> On Mon, 16 Dec 2024 18:38:01 +1100 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+>>
+>> On Mon, 25 Nov 2024 12:09:21 +1100 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+>> >
+>> > Today's linux-next merge of the drm-xe tree got a conflict in:
+>> > 
+>> >   include/drm/intel/xe_pciids.h
+>> > 
+>> > between commit:
+>> > 
+>> >   493454445c95 ("drm/xe: switch to common PCI ID macros")
+>> > 
+>> > from Linus' tree and commit:
+>> > 
+>> >   ae78ec0a52c4 ("drm/xe/ptl: Add another PTL PCI ID")
+>> > 
+>> > from the drm-xe tree.
+>> > 
+>> > I fixed it up (I deleted the file and added the following merge fix patch)
+>> > and can carry the fix as necessary. This is now fixed as far as linux-next
+>> > is concerned, but any non trivial conflicts should be mentioned to your
+>> > upstream maintainer when your tree is submitted for merging.  You may
+>> > also want to consider cooperating with the maintainer of the conflicting
+>> > tree to minimise any particularly complex conflicts.
+>> > 
+>> > From: Stephen Rothwell <sfr@canb.auug.org.au>
+>> > Date: Mon, 25 Nov 2024 12:05:38 +1100
+>> > Subject: [PATCH] fix up for "drm/xe/ptl: Add another PTL PCI ID"
+>> > 
+>> > interacting with "drm/xe: switch to common PCI ID macros" from Linus'
+>> > tree.
+>> > ---
+>> >  include/drm/intel/pciids.h | 3 ++-
+>> >  1 file changed, 2 insertions(+), 1 deletion(-)
+>> > 
+>> > diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
+>> > index 32480b5563db..7883384acd5e 100644
+>> > --- a/include/drm/intel/pciids.h
+>> > +++ b/include/drm/intel/pciids.h
+>> > @@ -829,6 +829,7 @@
+>> >  	MACRO__(0xB092, ## __VA_ARGS__), \
+>> >  	MACRO__(0xB0A0, ## __VA_ARGS__), \
+>> >  	MACRO__(0xB0A1, ## __VA_ARGS__), \
+>> > -	MACRO__(0xB0A2, ## __VA_ARGS__)
+>> > +	MACRO__(0xB0A2, ## __VA_ARGS__), \
+>> > +	MACRO__(0xB0B0, ## __VA_ARGS__)
+>> >  
+>> >  #endif /* __PCIIDS_H__ */
+>> > -- 
+>> > 2.45.2  
+>> 
+>> OK, so commits ae78ec0a52c4 and 493454445c95 were merged in commit
+>> 
+>>   8f109f287fdc ("Merge drm/drm-next into drm-xe-next")
+>> 
+>> but include/drm/intel/xe_pciids.h was not deleted (it is not longer
+>> referenced anywhere in the tree) and the above patch was not applied :-(
+>> 
+>> Since then that part of the drm-xe tree has been merged into the drm
+>> tree in commit
+>> 
+>>   bdecb30d579e ("Merge tag 'drm-xe-next-2024-12-11' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next")
+>> 
+>> So, include/drm/intel/xe_pciids.h needs to be removed from the drm tree
+>> and the above patch applied there.
+>
+> Ping?
 
-The two commits were merged in commit 8f109f287fdc ("Merge drm/drm-next
-into drm-xe-next"), but xe_pciids.h wasn't removed, and the PCI ID
-wasn't added to pciids.h.
+Thanks for the ping. See [1].
 
-Remove xe_pciids.h, and add the PCI ID to pciids.h.
+BR,
+Jani.
 
-Cc: Matt Atwood <matthew.s.atwood@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Fixes: 8f109f287fdc ("Merge drm/drm-next into drm-xe-next")
-Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
-Closes: https://lore.kernel.org/r/20241125120921.1bbc1930@canb.auug.org.au
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
----
+[1] https://lore.kernel.org/r/20250109105032.2585416-1-jani.nikula@intel.com
 
-The problem has now percolated to at least drm-xe-next, drm-intel-next,
-and drm-next. The conflict resolution in drm-tip adds the missing PCI ID
-to pciids.h, which also means this patch won't apply to drm-tip, only to
-the actual upstream branches.
----
- include/drm/intel/pciids.h    |   3 +-
- include/drm/intel/xe_pciids.h | 235 ----------------------------------
- 2 files changed, 2 insertions(+), 236 deletions(-)
- delete mode 100644 include/drm/intel/xe_pciids.h
 
-diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
-index c6518b0992cf..77c826589ec1 100644
---- a/include/drm/intel/pciids.h
-+++ b/include/drm/intel/pciids.h
-@@ -858,6 +858,7 @@
- 	MACRO__(0xB092, ## __VA_ARGS__), \
- 	MACRO__(0xB0A0, ## __VA_ARGS__), \
- 	MACRO__(0xB0A1, ## __VA_ARGS__), \
--	MACRO__(0xB0A2, ## __VA_ARGS__)
-+	MACRO__(0xB0A2, ## __VA_ARGS__), \
-+	MACRO__(0xB0B0, ## __VA_ARGS__)
- 
- #endif /* __PCIIDS_H__ */
-diff --git a/include/drm/intel/xe_pciids.h b/include/drm/intel/xe_pciids.h
-deleted file mode 100644
-index 16d4b8bb590a..000000000000
---- a/include/drm/intel/xe_pciids.h
-+++ /dev/null
-@@ -1,235 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2022 Intel Corporation
-- */
--
--#ifndef _XE_PCIIDS_H_
--#define _XE_PCIIDS_H_
--
--/*
-- * Lists below can be turned into initializers for a struct pci_device_id
-- * by defining INTEL_VGA_DEVICE:
-- *
-- * #define INTEL_VGA_DEVICE(id, info) { \
-- *	0x8086, id,			\
-- *	~0, ~0,				\
-- *	0x030000, 0xff0000,		\
-- *	(unsigned long) info }
-- *
-- * And then calling like:
-- *
-- * XE_TGL_12_GT1_IDS(INTEL_VGA_DEVICE, ## __VA_ARGS__)
-- *
-- * To turn them into something else, just provide a different macro passed as
-- * first argument.
-- */
--
--/* TGL */
--#define XE_TGL_GT1_IDS(MACRO__, ...)		\
--	MACRO__(0x9A60, ## __VA_ARGS__),	\
--	MACRO__(0x9A68, ## __VA_ARGS__),	\
--	MACRO__(0x9A70, ## __VA_ARGS__)
--
--#define XE_TGL_GT2_IDS(MACRO__, ...)		\
--	MACRO__(0x9A40, ## __VA_ARGS__),	\
--	MACRO__(0x9A49, ## __VA_ARGS__),	\
--	MACRO__(0x9A59, ## __VA_ARGS__),	\
--	MACRO__(0x9A78, ## __VA_ARGS__),	\
--	MACRO__(0x9AC0, ## __VA_ARGS__),	\
--	MACRO__(0x9AC9, ## __VA_ARGS__),	\
--	MACRO__(0x9AD9, ## __VA_ARGS__),	\
--	MACRO__(0x9AF8, ## __VA_ARGS__)
--
--#define XE_TGL_IDS(MACRO__, ...)		\
--	XE_TGL_GT1_IDS(MACRO__, ## __VA_ARGS__),\
--	XE_TGL_GT2_IDS(MACRO__, ## __VA_ARGS__)
--
--/* RKL */
--#define XE_RKL_IDS(MACRO__, ...)		\
--	MACRO__(0x4C80, ## __VA_ARGS__),	\
--	MACRO__(0x4C8A, ## __VA_ARGS__),	\
--	MACRO__(0x4C8B, ## __VA_ARGS__),	\
--	MACRO__(0x4C8C, ## __VA_ARGS__),	\
--	MACRO__(0x4C90, ## __VA_ARGS__),	\
--	MACRO__(0x4C9A, ## __VA_ARGS__)
--
--/* DG1 */
--#define XE_DG1_IDS(MACRO__, ...)		\
--	MACRO__(0x4905, ## __VA_ARGS__),	\
--	MACRO__(0x4906, ## __VA_ARGS__),	\
--	MACRO__(0x4907, ## __VA_ARGS__),	\
--	MACRO__(0x4908, ## __VA_ARGS__),	\
--	MACRO__(0x4909, ## __VA_ARGS__)
--
--/* ADL-S */
--#define XE_ADLS_IDS(MACRO__, ...)		\
--	MACRO__(0x4680, ## __VA_ARGS__),	\
--	MACRO__(0x4682, ## __VA_ARGS__),	\
--	MACRO__(0x4688, ## __VA_ARGS__),	\
--	MACRO__(0x468A, ## __VA_ARGS__),	\
--	MACRO__(0x468B, ## __VA_ARGS__),	\
--	MACRO__(0x4690, ## __VA_ARGS__),	\
--	MACRO__(0x4692, ## __VA_ARGS__),	\
--	MACRO__(0x4693, ## __VA_ARGS__)
--
--/* ADL-P */
--#define XE_ADLP_IDS(MACRO__, ...)		\
--	MACRO__(0x46A0, ## __VA_ARGS__),	\
--	MACRO__(0x46A1, ## __VA_ARGS__),	\
--	MACRO__(0x46A2, ## __VA_ARGS__),	\
--	MACRO__(0x46A3, ## __VA_ARGS__),	\
--	MACRO__(0x46A6, ## __VA_ARGS__),	\
--	MACRO__(0x46A8, ## __VA_ARGS__),	\
--	MACRO__(0x46AA, ## __VA_ARGS__),	\
--	MACRO__(0x462A, ## __VA_ARGS__),	\
--	MACRO__(0x4626, ## __VA_ARGS__),	\
--	MACRO__(0x4628, ## __VA_ARGS__),	\
--	MACRO__(0x46B0, ## __VA_ARGS__),	\
--	MACRO__(0x46B1, ## __VA_ARGS__),	\
--	MACRO__(0x46B2, ## __VA_ARGS__),	\
--	MACRO__(0x46B3, ## __VA_ARGS__),	\
--	MACRO__(0x46C0, ## __VA_ARGS__),	\
--	MACRO__(0x46C1, ## __VA_ARGS__),	\
--	MACRO__(0x46C2, ## __VA_ARGS__),	\
--	MACRO__(0x46C3, ## __VA_ARGS__)
--
--/* ADL-N */
--#define XE_ADLN_IDS(MACRO__, ...)		\
--	MACRO__(0x46D0, ## __VA_ARGS__),	\
--	MACRO__(0x46D1, ## __VA_ARGS__),	\
--	MACRO__(0x46D2, ## __VA_ARGS__),	\
--	MACRO__(0x46D3, ## __VA_ARGS__),	\
--	MACRO__(0x46D4, ## __VA_ARGS__)
--
--/* RPL-S */
--#define XE_RPLS_IDS(MACRO__, ...)		\
--	MACRO__(0xA780, ## __VA_ARGS__),	\
--	MACRO__(0xA781, ## __VA_ARGS__),	\
--	MACRO__(0xA782, ## __VA_ARGS__),	\
--	MACRO__(0xA783, ## __VA_ARGS__),	\
--	MACRO__(0xA788, ## __VA_ARGS__),	\
--	MACRO__(0xA789, ## __VA_ARGS__),	\
--	MACRO__(0xA78A, ## __VA_ARGS__),	\
--	MACRO__(0xA78B, ## __VA_ARGS__)
--
--/* RPL-U */
--#define XE_RPLU_IDS(MACRO__, ...)		\
--	MACRO__(0xA721, ## __VA_ARGS__),	\
--	MACRO__(0xA7A1, ## __VA_ARGS__),	\
--	MACRO__(0xA7A9, ## __VA_ARGS__),	\
--	MACRO__(0xA7AC, ## __VA_ARGS__),	\
--	MACRO__(0xA7AD, ## __VA_ARGS__)
--
--/* RPL-P */
--#define XE_RPLP_IDS(MACRO__, ...)		\
--	MACRO__(0xA720, ## __VA_ARGS__),	\
--	MACRO__(0xA7A0, ## __VA_ARGS__),	\
--	MACRO__(0xA7A8, ## __VA_ARGS__),	\
--	MACRO__(0xA7AA, ## __VA_ARGS__),	\
--	MACRO__(0xA7AB, ## __VA_ARGS__)
--
--/* DG2 */
--#define XE_DG2_G10_IDS(MACRO__, ...)		\
--	MACRO__(0x5690, ## __VA_ARGS__),	\
--	MACRO__(0x5691, ## __VA_ARGS__),	\
--	MACRO__(0x5692, ## __VA_ARGS__),	\
--	MACRO__(0x56A0, ## __VA_ARGS__),	\
--	MACRO__(0x56A1, ## __VA_ARGS__),	\
--	MACRO__(0x56A2, ## __VA_ARGS__),	\
--	MACRO__(0x56BE, ## __VA_ARGS__),	\
--	MACRO__(0x56BF, ## __VA_ARGS__)
--
--#define XE_DG2_G11_IDS(MACRO__, ...)		\
--	MACRO__(0x5693, ## __VA_ARGS__),	\
--	MACRO__(0x5694, ## __VA_ARGS__),	\
--	MACRO__(0x5695, ## __VA_ARGS__),	\
--	MACRO__(0x56A5, ## __VA_ARGS__),	\
--	MACRO__(0x56A6, ## __VA_ARGS__),	\
--	MACRO__(0x56B0, ## __VA_ARGS__),	\
--	MACRO__(0x56B1, ## __VA_ARGS__),	\
--	MACRO__(0x56BA, ## __VA_ARGS__),	\
--	MACRO__(0x56BB, ## __VA_ARGS__),	\
--	MACRO__(0x56BC, ## __VA_ARGS__),	\
--	MACRO__(0x56BD, ## __VA_ARGS__)
--
--#define XE_DG2_G12_IDS(MACRO__, ...)		\
--	MACRO__(0x5696, ## __VA_ARGS__),	\
--	MACRO__(0x5697, ## __VA_ARGS__),	\
--	MACRO__(0x56A3, ## __VA_ARGS__),	\
--	MACRO__(0x56A4, ## __VA_ARGS__),	\
--	MACRO__(0x56B2, ## __VA_ARGS__),	\
--	MACRO__(0x56B3, ## __VA_ARGS__)
--
--#define XE_DG2_IDS(MACRO__, ...)		\
--	XE_DG2_G10_IDS(MACRO__, ## __VA_ARGS__),\
--	XE_DG2_G11_IDS(MACRO__, ## __VA_ARGS__),\
--	XE_DG2_G12_IDS(MACRO__, ## __VA_ARGS__)
--
--#define XE_ATS_M150_IDS(MACRO__, ...)		\
--	MACRO__(0x56C0, ## __VA_ARGS__),	\
--	MACRO__(0x56C2, ## __VA_ARGS__)
--
--#define XE_ATS_M75_IDS(MACRO__, ...)		\
--	MACRO__(0x56C1, ## __VA_ARGS__)
--
--#define XE_ATS_M_IDS(MACRO__, ...)		\
--	XE_ATS_M150_IDS(MACRO__, ## __VA_ARGS__),\
--	XE_ATS_M75_IDS(MACRO__, ## __VA_ARGS__)
--
--/* ARL */
--#define XE_ARL_IDS(MACRO__, ...)		\
--	MACRO__(0x7D41, ## __VA_ARGS__),	\
--	MACRO__(0x7D51, ## __VA_ARGS__),        \
--	MACRO__(0x7D67, ## __VA_ARGS__),	\
--	MACRO__(0x7DD1, ## __VA_ARGS__),	\
--	MACRO__(0xB640, ## __VA_ARGS__)
--
--/* MTL */
--#define XE_MTL_IDS(MACRO__, ...)		\
--	MACRO__(0x7D40, ## __VA_ARGS__),	\
--	MACRO__(0x7D45, ## __VA_ARGS__),	\
--	MACRO__(0x7D55, ## __VA_ARGS__),	\
--	MACRO__(0x7D60, ## __VA_ARGS__),	\
--	MACRO__(0x7DD5, ## __VA_ARGS__)
--
--/* PVC */
--#define XE_PVC_IDS(MACRO__, ...)		\
--	MACRO__(0x0B69, ## __VA_ARGS__),	\
--	MACRO__(0x0B6E, ## __VA_ARGS__),	\
--	MACRO__(0x0BD4, ## __VA_ARGS__),	\
--	MACRO__(0x0BD5, ## __VA_ARGS__),	\
--	MACRO__(0x0BD6, ## __VA_ARGS__),	\
--	MACRO__(0x0BD7, ## __VA_ARGS__),	\
--	MACRO__(0x0BD8, ## __VA_ARGS__),	\
--	MACRO__(0x0BD9, ## __VA_ARGS__),	\
--	MACRO__(0x0BDA, ## __VA_ARGS__),	\
--	MACRO__(0x0BDB, ## __VA_ARGS__),	\
--	MACRO__(0x0BE0, ## __VA_ARGS__),	\
--	MACRO__(0x0BE1, ## __VA_ARGS__),	\
--	MACRO__(0x0BE5, ## __VA_ARGS__)
--
--#define XE_LNL_IDS(MACRO__, ...) \
--	MACRO__(0x6420, ## __VA_ARGS__), \
--	MACRO__(0x64A0, ## __VA_ARGS__), \
--	MACRO__(0x64B0, ## __VA_ARGS__)
--
--#define XE_BMG_IDS(MACRO__, ...) \
--	MACRO__(0xE202, ## __VA_ARGS__), \
--	MACRO__(0xE20B, ## __VA_ARGS__), \
--	MACRO__(0xE20C, ## __VA_ARGS__), \
--	MACRO__(0xE20D, ## __VA_ARGS__), \
--	MACRO__(0xE212, ## __VA_ARGS__)
--
--#define XE_PTL_IDS(MACRO__, ...) \
--	MACRO__(0xB080, ## __VA_ARGS__), \
--	MACRO__(0xB081, ## __VA_ARGS__), \
--	MACRO__(0xB082, ## __VA_ARGS__), \
--	MACRO__(0xB090, ## __VA_ARGS__), \
--	MACRO__(0xB091, ## __VA_ARGS__), \
--	MACRO__(0xB092, ## __VA_ARGS__), \
--	MACRO__(0xB0A0, ## __VA_ARGS__), \
--	MACRO__(0xB0A1, ## __VA_ARGS__), \
--	MACRO__(0xB0A2, ## __VA_ARGS__), \
--	MACRO__(0xB0B0, ## __VA_ARGS__)
--
--#endif
 -- 
-2.39.5
-
+Jani Nikula, Intel
