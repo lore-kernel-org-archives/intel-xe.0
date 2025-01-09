@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6409E77197
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 13:30:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC7C8E77199
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 13:30:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 881A110EDD4;
-	Thu,  9 Jan 2025 13:30:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F2BB10EDD4;
+	Thu,  9 Jan 2025 13:30:21 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA5A310EDD4;
- Thu,  9 Jan 2025 13:30:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFAC310EDD5;
+ Thu,  9 Jan 2025 13:30:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Add_mmap_support_for?=
- =?utf-8?q?_pci_membarrier_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Add_mmap_support_for_pci_?=
+ =?utf-8?q?membarrier_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 09 Jan 2025 13:30:08 -0000
-Message-ID: <173642940875.1634411.10337573734728469772@b555e5b46a47>
+Date: Thu, 09 Jan 2025 13:30:20 -0000
+Message-ID: <173642942097.1634411.12427629474669690728@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250107154750.2942358-1-tejas.upadhyay@intel.com>
 In-Reply-To: <20250107154750.2942358-1-tejas.upadhyay@intel.com>
@@ -48,9 +48,76 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 14e0c4a8247c drm-tip: 2025y-01m-09d-10h-24m-55s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/mmap: Add mmap support for PCI memory barrier
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4d07c78e7e4f2061760ee38e3334db998c884c5e
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Date:   Tue Jan 7 21:17:50 2025 +0530
+
+    drm/xe/mmap: Add mmap support for PCI memory barrier
+    
+    In order to avoid having userspace to use MI_MEM_FENCE,
+    we are adding a mechanism for userspace to generate a
+    PCI memory barrier with low overhead (avoiding IOCTL call
+    as well as writing to VRAM will adds some overhead).
+    
+    This is implemented by memory-mapping a page as uncached
+    that is backed by MMIO on the dGPU and thus allowing userspace
+    to do memory write to the page without invoking an IOCTL.
+    We are selecting the MMIO so that it is not accessible from
+    the PCI bus so that the MMIO writes themselves are ignored,
+    but the PCI memory barrier will still take action as the MMIO
+    filtering will happen after the memory barrier effect.
+    
+    When we detect special defined offset in mmap(), We are mapping
+    4K page which contains the last of page of doorbell MMIO range
+    to userspace for same purpose.
+    
+    For user to query special offset we are adding special flag in
+    mmap_offset ioctl which needs to be passed as follows,
+    struct drm_xe_gem_mmap_offset mmo = {
+            .handle = 0, /* this must be 0 */
+            .flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
+    };
+    igt_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
+    map = mmap(NULL, size, PROT_WRITE, MAP_SHARED, fd, mmo);
+    
+    Note: Test coverage for this is added by IGT
+          https://patchwork.freedesktop.org/series/140368/  here.
+          UMD implementing test, once PR is ready will attach with
+          this patch.
+    
+    V6(MAuld)
+      - Move physical mmap to fault handler
+      - Modify kernel-doc and attach UMD PR when ready
+    V5(MAuld)
+      - Return invalid early in case of non 4K PAGE_SIZE
+      - Format kernel-doc and add note for 4K PAGE_SIZE HW limit
+    V4(MAuld)
+      - Add kernel-doc for uapi change
+      - Restrict page size to 4K
+    V3(MAuld)
+      - Remove offset defination from UAPI to be able to change later
+      - Edit commit message for special flag addition
+    V2(MAuld)
+      - Add fault handler with dummy page to handle unplug device
+      - Add Build check for special offset to be below normal start page
+      - Test d3hot, mapping seems to be valid in d3hot as well
+      - Add more info to commit message
+    
+    Test-with: 20241118113606.1490397-1-tejas.upadhyay@intel.com
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Michal Mrozek <michal.mrozek@intel.com>
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+    Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 14e0c4a8247c9514dc57b2231602fb6d9455802b drm-intel
+4d07c78e7e4f drm/xe/mmap: Add mmap support for PCI memory barrier
 
 
