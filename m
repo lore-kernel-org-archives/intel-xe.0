@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A10BCE77197
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 14:26:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5194CE77197
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 14:30:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56F4310EE00;
-	Thu,  9 Jan 2025 14:26:45 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF89710EDFE;
- Thu,  9 Jan 2025 14:26:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8871434929886621154=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13AD310EDFE;
+	Thu,  9 Jan 2025 14:30:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZNJct0ul";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C97F510EDFE;
+ Thu,  9 Jan 2025 14:30:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736433006; x=1767969006;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=wlpSfFkmg7EwUNE6BeOhnQyn2MJ6SOniBe+Nw0ZlZ7k=;
+ b=ZNJct0ulbayLd9rFRIwEpO1zb/XOnn8YhoIVtE/HoYzFxjNE9Bsu8O1t
+ sV9JNNGdXGuJV9C0C6MS1fIVAmsz6gc1YFAS2GAVmOKwuDRX84gtpgTQ2
+ M88QWSqGbRI7FUQ2aVS5YZ9uZSkuNZ6tvBsKFRgn7Xey79sZvk2d4aJTS
+ +00giK1JQy59ZBcYPzcpcpA74Om9dMaf3YOvZ4rQ9V8hhLCg8Yvzx/bKl
+ lg020z3ehCMRiLvEFcIXf3THNrdCskMI3sALMbztHNzv+yGJIjlpB4Ub/
+ QWNX65ajH43gq2NQorjL/W9gBX78dEkJX/OsEfq+1vsvqfrnFi0PO5zic w==;
+X-CSE-ConnectionGUID: 2rD04Gy5S+yokN1lqk378A==
+X-CSE-MsgGUID: pFv5SQRDSWG7pCoF37ZPyA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="40375649"
+X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="40375649"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2025 06:30:05 -0800
+X-CSE-ConnectionGUID: Kk2wfha1QcKhl83qOunB5g==
+X-CSE-MsgGUID: r8qbOJXRR7afAfLxG5hktg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="107460097"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2025 06:30:02 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Matt
+ Atwood <matthew.s.atwood@intel.com>, Matt Roper
+ <matthew.d.roper@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>
+Subject: Re: [PATCH] drm/xe: remove unused xe_pciids.h harder, add missing
+ PCI ID
+In-Reply-To: <Z3_V7MHFINUqR6qs@black.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250109105032.2585416-1-jani.nikula@intel.com>
+ <Z3_V7MHFINUqR6qs@black.fi.intel.com>
+Date: Thu, 09 Jan 2025 16:29:59 +0200
+Message-ID: <87jzb4jc0o.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_mmap_support_for_pci_me?=
- =?utf-8?q?mbarrier_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 09 Jan 2025 14:26:44 -0000
-Message-ID: <173643280471.1647922.12567433679271586897@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250107154750.2942358-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20250107154750.2942358-1-tejas.upadhyay@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +68,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8871434929886621154==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 09 Jan 2025, Raag Jadav <raag.jadav@intel.com> wrote:
+> On Thu, Jan 09, 2025 at 12:50:32PM +0200, Jani Nikula wrote:
+>> Commit 493454445c95 ("drm/xe: switch to common PCI ID macros") removed
+>> xe_pciids.h via drm-intel-next. In the mean time, commit ae78ec0a52c4
+>> ("drm/xe/ptl: Add another PTL PCI ID") added to xe_pciids.h via
+>> drm-xe-next.
+>> 
+>> The two commits were merged in commit 8f109f287fdc ("Merge drm/drm-next
+>> into drm-xe-next"), but xe_pciids.h wasn't removed, and the PCI ID
+>> wasn't added to pciids.h.
+>> 
+>> Remove xe_pciids.h, and add the PCI ID to pciids.h.
+>
+> Unless there's a nuance intended in the subject
+>
+> s/harder/header
 
-== Series Details ==
-
-Series: Add mmap support for pci membarrier (rev2)
-URL   : https://patchwork.freedesktop.org/series/143192/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-2461-14e0c4a8247c9514dc57b2231602fb6d9455802b_BAT -> xe-pw-143192v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+It's intentionally "remove it harder".
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2461-14e0c4a8247c9514dc57b2231602fb6d9455802b -> xe-pw-143192v2
-
-  IGT_8183: b2dbc6f22815128c0dd5c737504f42e1f1a6ad62 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2461-14e0c4a8247c9514dc57b2231602fb6d9455802b: 14e0c4a8247c9514dc57b2231602fb6d9455802b
-  xe-pw-143192v2: 143192v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143192v2/index.html
-
---===============8871434929886621154==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add mmap support for pci membarrier (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143192/">https://patchwork.freedesktop.org/series/143192/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143192v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143192v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2461-14e0c4a8247c9514dc57b2231602fb6d9455802b_BAT -&gt; xe-pw-143192v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2461-14e0c4a8247c9514dc57b2231602fb6d9455802b -&gt; xe-pw-143192v2</li>
-</ul>
-<p>IGT_8183: b2dbc6f22815128c0dd5c737504f42e1f1a6ad62 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2461-14e0c4a8247c9514dc57b2231602fb6d9455802b: 14e0c4a8247c9514dc57b2231602fb6d9455802b<br />
-  xe-pw-143192v2: 143192v2</p>
-
-</body>
-</html>
-
---===============8871434929886621154==--
+-- 
+Jani Nikula, Intel
