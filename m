@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5194CE77197
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 14:30:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16FA4E77197
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 14:31:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13AD310EDFE;
-	Thu,  9 Jan 2025 14:30:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZNJct0ul";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C97F510EDFE;
- Thu,  9 Jan 2025 14:30:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736433006; x=1767969006;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=wlpSfFkmg7EwUNE6BeOhnQyn2MJ6SOniBe+Nw0ZlZ7k=;
- b=ZNJct0ulbayLd9rFRIwEpO1zb/XOnn8YhoIVtE/HoYzFxjNE9Bsu8O1t
- sV9JNNGdXGuJV9C0C6MS1fIVAmsz6gc1YFAS2GAVmOKwuDRX84gtpgTQ2
- M88QWSqGbRI7FUQ2aVS5YZ9uZSkuNZ6tvBsKFRgn7Xey79sZvk2d4aJTS
- +00giK1JQy59ZBcYPzcpcpA74Om9dMaf3YOvZ4rQ9V8hhLCg8Yvzx/bKl
- lg020z3ehCMRiLvEFcIXf3THNrdCskMI3sALMbztHNzv+yGJIjlpB4Ub/
- QWNX65ajH43gq2NQorjL/W9gBX78dEkJX/OsEfq+1vsvqfrnFi0PO5zic w==;
-X-CSE-ConnectionGUID: 2rD04Gy5S+yokN1lqk378A==
-X-CSE-MsgGUID: pFv5SQRDSWG7pCoF37ZPyA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="40375649"
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="40375649"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 06:30:05 -0800
-X-CSE-ConnectionGUID: Kk2wfha1QcKhl83qOunB5g==
-X-CSE-MsgGUID: r8qbOJXRR7afAfLxG5hktg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="107460097"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 06:30:02 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Matt
- Atwood <matthew.s.atwood@intel.com>, Matt Roper
- <matthew.d.roper@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>
-Subject: Re: [PATCH] drm/xe: remove unused xe_pciids.h harder, add missing
- PCI ID
-In-Reply-To: <Z3_V7MHFINUqR6qs@black.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250109105032.2585416-1-jani.nikula@intel.com>
- <Z3_V7MHFINUqR6qs@black.fi.intel.com>
-Date: Thu, 09 Jan 2025 16:29:59 +0200
-Message-ID: <87jzb4jc0o.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D628F10EE01;
+	Thu,  9 Jan 2025 14:31:29 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FEC810EE01;
+ Thu,  9 Jan 2025 14:31:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=3A_Use_ex?=
+ =?utf-8?q?ec_queue_hints_for_GT_frequency_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 09 Jan 2025 14:31:28 -0000
+Message-ID: <173643308858.1645445.6165721661289357030@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250109120705.3021126-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20250109120705.3021126-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,28 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 09 Jan 2025, Raag Jadav <raag.jadav@intel.com> wrote:
-> On Thu, Jan 09, 2025 at 12:50:32PM +0200, Jani Nikula wrote:
->> Commit 493454445c95 ("drm/xe: switch to common PCI ID macros") removed
->> xe_pciids.h via drm-intel-next. In the mean time, commit ae78ec0a52c4
->> ("drm/xe/ptl: Add another PTL PCI ID") added to xe_pciids.h via
->> drm-xe-next.
->> 
->> The two commits were merged in commit 8f109f287fdc ("Merge drm/drm-next
->> into drm-xe-next"), but xe_pciids.h wasn't removed, and the PCI ID
->> wasn't added to pciids.h.
->> 
->> Remove xe_pciids.h, and add the PCI ID to pciids.h.
->
-> Unless there's a nuance intended in the subject
->
-> s/harder/header
+== Series Details ==
 
-It's intentionally "remove it harder".
+Series: drm/xe/guc: Use exec queue hints for GT frequency (rev2)
+URL   : https://patchwork.freedesktop.org/series/143323/
+State : success
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c9da975358cd drm-tip: 2025y-01m-09d-13h-55m-40s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/guc: Use exec queue hints for GT frequency
 
 
--- 
-Jani Nikula, Intel
