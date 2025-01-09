@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AD27E77197
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 20:01:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AF1DE77197
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 20:05:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16B7110EFDF;
-	Thu,  9 Jan 2025 20:01:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ACF710E051;
+	Thu,  9 Jan 2025 20:05:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HGygw4F3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z22rcstb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F74D10EFDF;
- Thu,  9 Jan 2025 20:01:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D23D210E051
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Jan 2025 20:05:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736452895; x=1767988895;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=haH/tpCk/kiuvNoxP8HB0QRRmdK7UWqNY0Z0pwkap7c=;
- b=HGygw4F3CJwlyMs7KRPIptXEt2LF2NK0CDf7c7jDlV0pO+NUKYClpZmR
- VRwXBiul8wk28QeydtJDt3IGsrJtu7MEWjfRceDJAZ0MwGuA6QQk8maKV
- pWYbwzjX+u2evwSskHyFpt+3bm5Mcj7RjLej6vuXEZe+oAHiB4wUzKlZQ
- qimOQg/FfuHI1kBQjdxzZwuG+PTzvha9IdCf9oIFIMEDsc+5/GpfILz+u
- +B/c0wOV14LOrOOEEWh0flyFbw9EnKxqG6eANjSeBwwNddQQyOltl8Sgr
- TxURdvOik0caYdYbdneCPz0dhFBp7t+SbtWLz5MHbXx/v8Ys98LRM+sI0 A==;
-X-CSE-ConnectionGUID: zkjmpzf8SXaiCMY6hi0nfw==
-X-CSE-MsgGUID: ZimlQ+8NQUymHix0E8gNhg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="36619323"
-X-IronPort-AV: E=Sophos;i="6.12,302,1728975600"; d="scan'208";a="36619323"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 12:01:35 -0800
-X-CSE-ConnectionGUID: WETVTEL6SGWJPgribsx6bQ==
-X-CSE-MsgGUID: 0g4UtPVdSDGgCgTp7dQerg==
+ t=1736453104; x=1767989104;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/XK2cYg/zXNjqR1Mg96Drxtrtb1+I3J73K44HI+kjto=;
+ b=Z22rcstbUjOAKhayRq2wvQNyXSqzo4Dktxp4QRoJw0ykOIbsKL7BtGQa
+ nZf/x798ZcocXIyvBd7/uyxUiGe6COZl8+iLflrgPmr2IMp1VP3bGNKNR
+ 6OvIo89HgbPCpwts3AWst4pw4vpsaNWovJnrFih4mI3Q1Ss8McmH+Ud1V
+ ffoejnd68LLbkcJ06K8tR7E6rilx0Dog7aFBKeyFs8hzfJzBFalbX1ba6
+ CuDhXIUZEL8aHx6x+73hTso5IIkxgiLMk0g1Ym5HUhNSQcmqvC53CuEP2
+ nhhr3gED3mJO5+Cn8NX0OeYWFB2/fYaQF39eAoz7CcPpSuFSaMSgtjJ/h w==;
+X-CSE-ConnectionGUID: d4qc+RrSQyaDlGMNgTqCzQ==
+X-CSE-MsgGUID: ptMOrZXjR3OoYUYXvosKsg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="47229143"
+X-IronPort-AV: E=Sophos;i="6.12,302,1728975600"; d="scan'208";a="47229143"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2025 12:05:03 -0800
+X-CSE-ConnectionGUID: UgQgMKrnQ/mRTDA1mL5lhA==
+X-CSE-MsgGUID: naL6GBDeTSGwFh2FFwIwFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="126798707"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa002.fm.intel.com with ESMTP; 09 Jan 2025 12:01:32 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Fri, 10 Jan 2025 01:15:42 +0530
-Subject: [PATCH v7 14/14] drm/i915/histogram: Enable pipe dithering
+X-IronPort-AV: E=Sophos;i="6.12,302,1728975600"; d="scan'208";a="104060477"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2025 12:05:03 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, stable@vger.kernel.org,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2] drm/xe/client: Better correlate exec_queue and GT
+ timestamps
+Date: Thu,  9 Jan 2025 12:03:40 -0800
+Message-ID: <20250109200340.1774314-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.47.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250110-dpst-v7-14-605cb0271162@intel.com>
-References: <20250110-dpst-v7-0-605cb0271162@intel.com>
-In-Reply-To: <20250110-dpst-v7-0-605cb0271162@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Cc: dmitry.baryshkov@linaro.org, suraj.kandpal@intel.com, 
- uma.shankar@intel.com, 
- "Imported from f20241218-dpst-v7-0-81bfe7d08c2d"@intel.com, 
- 20240705091333.328322-1-mohammed.thasleem@intel.com, 
- Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,44 +67,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable pipe dithering while enabling histogram to overcome some
-atrifacts seen on the screen.
+This partially reverts commit fe4f5d4b6616 ("drm/xe: Clean up VM / exec
+queue file lock usage."). While it's desired to have the mutex to
+protect only the reference to the exec queue, getting and dropping each
+mutex and then later getting the GPU timestamp, doesn't produce a
+correct result: it introduces multiple opportunities for the task to be
+scheduled out and thus wrecking havoc the deltas reported to userspace.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Also, to better correlate the timestamp from the exec queues with the
+GPU, disable preemption so they can be updated without allowing the task
+to be scheduled out. We leave interrupts enabled as that shouldn't be
+enough disturbance for the deltas to matter to userspace.
+
+Test scenario:
+
+	* IGT'S `xe_drm_fdinfo --r utilization-single-full-load`
+	* Platform: LNL, where CI occasionally reports failures
+	* `stress -c $(nproc)` running in parallel to disturb the
+	  system
+
+This brings a first failure from "after ~150 executions" to "never
+occurs after 1000 attempts".
+
+v2: Also keep xe_hw_engine_read_timestamp() call inside the
+    preemption-disabled section (Umesh)
+
+Cc: stable@vger.kernel.org # v6.11+
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3512
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_histogram.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/gpu/drm/xe/xe_drm_client.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c b/drivers/gpu/drm/i915/display/intel_histogram.c
-index d015350b57ed5c8e9aaab71311159bf51e15e9c7..7d0c5d07042c5eb0e33c95e7cadac5c0d1fda379 100644
---- a/drivers/gpu/drm/i915/display/intel_histogram.c
-+++ b/drivers/gpu/drm/i915/display/intel_histogram.c
-@@ -22,6 +22,13 @@
- #define HISTOGRAM_BIN_READ_RETRY_COUNT 5
- #define IET_SAMPLE_FORMAT_1_INT_9_FRACT 0x1000009
+diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
+index 7d55ad846bac5..2220a09bf9751 100644
+--- a/drivers/gpu/drm/xe/xe_drm_client.c
++++ b/drivers/gpu/drm/xe/xe_drm_client.c
+@@ -337,20 +337,18 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
+ 		return;
+ 	}
  
-+static void intel_histogram_enable_dithering(struct intel_display *display,
-+					     enum pipe pipe)
-+{
-+	intel_de_rmw(display, PIPE_MISC(pipe), PIPE_MISC_DITHER_ENABLE,
-+		     PIPE_MISC_DITHER_ENABLE);
-+}
++	/* Let both the GPU timestamp and exec queue be updated together */
++	preempt_disable();
++	gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
 +
- static void set_bin_index_0(struct intel_display *display, enum pipe pipe)
- {
- 	if (DISPLAY_VER(display) >= 20)
-@@ -200,6 +207,10 @@ static int intel_histogram_enable(struct intel_crtc *intel_crtc, u8 mode)
+ 	/* Accumulate all the exec queues from this client */
+ 	mutex_lock(&xef->exec_queue.lock);
+-	xa_for_each(&xef->exec_queue.xa, i, q) {
+-		xe_exec_queue_get(q);
+-		mutex_unlock(&xef->exec_queue.lock);
  
- 	if (histogram->enable)
- 		return 0;
-+
-+	/* Pipe Dithering should be enabled with histogram */
-+	intel_histogram_enable_dithering(display, pipe);
-+
- 	 /* enable histogram, clear DPST_BIN reg and select TC function */
- 	if (DISPLAY_VER(display) >= 20)
- 		intel_de_rmw(display, DPST_CTL(pipe),
-
++	xa_for_each(&xef->exec_queue.xa, i, q)
+ 		xe_exec_queue_update_run_ticks(q);
+ 
+-		mutex_lock(&xef->exec_queue.lock);
+-		xe_exec_queue_put(q);
+-	}
+ 	mutex_unlock(&xef->exec_queue.lock);
+-
+-	gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
++	preempt_enable();
+ 
+ 	xe_force_wake_put(gt_to_fw(hwe->gt), fw_ref);
+ 	xe_pm_runtime_put(xe);
 -- 
-2.25.1
+2.47.0
 
