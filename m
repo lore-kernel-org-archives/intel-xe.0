@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DDEDE7719B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6120EE7719C
 	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 07:32:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7300410ED09;
-	Thu,  9 Jan 2025 07:32:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 191D910ED03;
+	Thu,  9 Jan 2025 07:32:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f/Yt2L0K";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BhL65SOn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D6B910ECFE;
- Thu,  9 Jan 2025 07:32:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13D0710ED1C;
+ Thu,  9 Jan 2025 07:32:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736407921; x=1767943921;
+ t=1736407924; x=1767943924;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Whj9TBUSdM04nLgyI+DdQEGSgN4EBrrXuio6Dn07mi0=;
- b=f/Yt2L0KJU8nZ9vSm6EYpMp3Cvb4Dl9hGgjsl2OD3seG0QFy7fhYHPZn
- 2UADVQGdKLwUvPZhERAg5c70C0ONeIBgJXLduBtw43nMIi0NZT+HNfWNC
- ZwryPR63QvT3cc4YFqKJJ20j5PENIg1xYRYArafYHSgmDuTtdYMfjyRkK
- /JlIwYrweuIDwhxjUCF+jCvr0yU8CYctESph4ktsf1V4RPs4ccBkEDfUo
- 88BmPL+CbqVHrYtnirE8TsMlcqWdNnTuBuRTzfpw28321UPl+JZsgkVHQ
- QKhBJyHp/TylI0AzE+1m+pubHd8X9hQ8Fru2OX/XBQ2mJe6E8fQvNZE3v g==;
-X-CSE-ConnectionGUID: k5d9ZBg/TbquwxVruvYF9g==
-X-CSE-MsgGUID: CulqEKo5SpGyIywE/Ra6PA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="54200565"
-X-IronPort-AV: E=Sophos;i="6.12,300,1728975600"; d="scan'208";a="54200565"
+ bh=M5l9UMthYSCFysJ9yB3yyzuZk6PSEmzJPYLdeSLG+94=;
+ b=BhL65SOnad0ERF4tV7XJ2Fy6IS1uuD6av0oLslHNnMsoOhzMKcrn3zyo
+ wGQYVXktFjF9hZGdCy6AV7wxiHV4fEU6Wy2dH59vIQ89eMi+u+ytYlXDx
+ 2CieiywSYZAYbDL8xua+y1E8J6ixdxYmR9pUnBhCY4ic4aXS9YMBm02pE
+ gqYMX669g69Zj2HMQVVgz5varBPaV2nTyFRKOK/rlVPeX/2osmgryy0RO
+ o/efW/zAvi0krlm7mtFwT2Lw1ZEWp45LCt1IYI/N/RYInKNg364bJ+F76
+ +/f9y7vWY98QiEirUbOOYFsTC3HDM5wpOdTcioPWM4Go1z5/VUuXQvUcW A==;
+X-CSE-ConnectionGUID: bcJiNJT1QzeHIQaXtoSD3A==
+X-CSE-MsgGUID: DpM5xfPtQ0OIUaTOBbwEkQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="54200568"
+X-IronPort-AV: E=Sophos;i="6.12,300,1728975600"; d="scan'208";a="54200568"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 23:32:01 -0800
-X-CSE-ConnectionGUID: 3cegQ1TfQ8mdGLGZMpXXlw==
-X-CSE-MsgGUID: 0tC+jZVARuyzCAW8QOpsTw==
+ 08 Jan 2025 23:32:04 -0800
+X-CSE-ConnectionGUID: c5GT/5gfTviZ7nzY6mxWrQ==
+X-CSE-MsgGUID: RF0PuZEwRcKSFcfrvOlHdw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,300,1728975600"; d="scan'208";a="103297852"
+X-IronPort-AV: E=Sophos;i="6.12,300,1728975600"; d="scan'208";a="103297858"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.185])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 23:32:00 -0800
+ 08 Jan 2025 23:32:03 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v3 02/10] drm/i915/psr: Rename psr_force_hw_tracking_exit as
- intel_psr_force_update
-Date: Thu,  9 Jan 2025 09:31:29 +0200
-Message-ID: <20250109073137.1977494-3-jouni.hogander@intel.com>
+Subject: [PATCH v3 04/10] drm/i915/psr: Add register definitions for SFF_CTL
+ and CFF_CTL registers
+Date: Thu,  9 Jan 2025 09:31:31 +0200
+Message-ID: <20250109073137.1977494-5-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250109073137.1977494-1-jouni.hogander@intel.com>
 References: <20250109073137.1977494-1-jouni.hogander@intel.com>
@@ -71,50 +71,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-psr_force_hw_tracking_exit is misleading name as it is used for PSR1, PSR2
-HW tracking and PSR2 selective fetch. Due to this rename it as
-intel_psr_force_update.
+Add register definitions for SFF_CTL and CFF_CTL registers. Name them as
+LNL_SFF_CTL and LNL_CFF_CTL.
+
+v2: use _MMIO_TRANS instead of _MMIO_TRANS2
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr_regs.h | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 476305010e11..5411d0d6f362 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2310,7 +2310,7 @@ static u32 man_trk_ctl_continuos_full_frame(struct intel_display *display)
- 	       PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+index 9ad7611506e8..795e6b9cc575 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+@@ -251,6 +251,16 @@
+ #define  ADLP_PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME		REG_BIT(14)
+ #define  ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME		REG_BIT(13)
  
--static void psr_force_hw_tracking_exit(struct intel_dp *intel_dp)
-+static void intel_psr_force_update(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
-@@ -2857,7 +2857,7 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
- 
- 		/* Force a PSR exit when enabling CRC to avoid CRC timeouts */
- 		if (crtc_state->crc_enabled && psr->enabled)
--			psr_force_hw_tracking_exit(intel_dp);
-+			intel_psr_force_update(intel_dp);
- 
- 		/*
- 		 * Clear possible busy bits in case we have
-@@ -3254,10 +3254,10 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
- 			 * continuous full frame is disabled, only a single full
- 			 * frame is required
- 			 */
--			psr_force_hw_tracking_exit(intel_dp);
-+			intel_psr_force_update(intel_dp);
- 		}
- 	} else {
--		psr_force_hw_tracking_exit(intel_dp);
-+		intel_psr_force_update(intel_dp);
- 
- 		if (!intel_dp->psr.active && !intel_dp->psr.busy_frontbuffer_bits)
- 			queue_work(dev_priv->unordered_wq, &intel_dp->psr.work);
++#define _LNL_SFF_CTL_A				0x60918
++#define _LNL_SFF_CTL_B				0x61918
++#define LNL_SFF_CTL(tran)			_MMIO_TRANS(tran, _LNL_SFF_CTL_A, _LNL_SFF_CTL_B)
++#define  LNL_SFF_CTL_SF_SINGLE_FULL_FRAME	REG_BIT(1)
++
++#define _LNL_CFF_CTL_A				0x6091c
++#define _LNL_CFF_CTL_B				0x6191c
++#define LNL_CFF_CTL(tran)			_MMIO_TRANS(tran, _LNL_CFF_CTL_A, _LNL_CFF_CTL_B)
++#define  LNL_CFF_CTL_SF_CONTINUOUS_FULL_FRAME	REG_BIT(1)
++
+ /* PSR2 Early transport */
+ #define _PIPE_SRCSZ_ERLY_TPT_A	0x70074
+ #define _PIPE_SRCSZ_ERLY_TPT_B	0x71074
 -- 
 2.43.0
 
