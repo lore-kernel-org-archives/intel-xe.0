@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EF81E77199
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 13:53:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47FFDE77197
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 13:58:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A1E510EDF0;
-	Thu,  9 Jan 2025 13:53:29 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94D6610EDF1;
- Thu,  9 Jan 2025 13:53:27 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CC9A10EDE9;
+	Thu,  9 Jan 2025 13:58:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H8uhqBvQ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFB3010EDE9;
+ Thu,  9 Jan 2025 13:58:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736431090; x=1767967090;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=EJUHZnn6XLX4XoEdM53C4y2sJS+Yx4hHqVXxeyKgVS8=;
+ b=H8uhqBvQfa4MhImMEXuPMoaTX7qMt+sQKwDuyBQf0IVXtFYfcV8SxnjI
+ AvaFhqbK9UopzfaM4POc+rhob6GPh4AK1MCjT2PbBTTjWALSbR3SSqQGA
+ J259TcshM33LW6lySYjjOe1KX2EbkYyG4GVQk8PVVZOTWTcsOe9ZIKiBF
+ JNhfLXrqemLhSOGGAi5L+Bb5xYXJ/0Te/uGaTyWSr5klQwfJK348LS5Mp
+ bPG+J25gjtFpUHYviajCn2yW7piRUgVUCZPWW+hGFRP5zGfHAXGBWnNrd
+ Nad/mZO/xrebxuKAJoy2NXwBh+wpCuZbIXioTc+gL5ZfPNsb8IvcuAWIF A==;
+X-CSE-ConnectionGUID: nLBOxE4gTeml/EuczdALjQ==
+X-CSE-MsgGUID: ExfNsTG3SD+ap8jJTGOBPQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="59160313"
+X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="59160313"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2025 05:58:10 -0800
+X-CSE-ConnectionGUID: NL48F9s4RUuta1KkjADmkQ==
+X-CSE-MsgGUID: cuE50ck4SWOvFodIzuAx/A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="108404541"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2025 05:58:07 -0800
+Date: Thu, 9 Jan 2025 15:58:04 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Matt Atwood <matthew.s.atwood@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>
+Subject: Re: [PATCH] drm/xe: remove unused xe_pciids.h harder, add missing
+ PCI ID
+Message-ID: <Z3_V7MHFINUqR6qs@black.fi.intel.com>
+References: <20250109105032.2585416-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Add_mmap_support_for_pci?=
- =?utf-8?q?_membarrier_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 09 Jan 2025 13:53:27 -0000
-Message-ID: <173643080760.1642990.5488078199073240826@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250107154750.2942358-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20250107154750.2942358-1-tejas.upadhyay@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250109105032.2585416-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +68,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Jan 09, 2025 at 12:50:32PM +0200, Jani Nikula wrote:
+> Commit 493454445c95 ("drm/xe: switch to common PCI ID macros") removed
+> xe_pciids.h via drm-intel-next. In the mean time, commit ae78ec0a52c4
+> ("drm/xe/ptl: Add another PTL PCI ID") added to xe_pciids.h via
+> drm-xe-next.
+> 
+> The two commits were merged in commit 8f109f287fdc ("Merge drm/drm-next
+> into drm-xe-next"), but xe_pciids.h wasn't removed, and the PCI ID
+> wasn't added to pciids.h.
+> 
+> Remove xe_pciids.h, and add the PCI ID to pciids.h.
 
-Series: Add mmap support for pci membarrier (rev2)
-URL   : https://patchwork.freedesktop.org/series/143192/
-State : success
+Unless there's a nuance intended in the subject
 
-== Summary ==
+s/harder/header
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 14e0c4a8247c9514dc57b2231602fb6d9455802b
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+Raag
