@@ -4,43 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46A1CC02185
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jan 2025 13:45:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 464A9C02180
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jan 2025 13:45:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A31310E29A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C21710E317;
 	Mon, 13 Jan 2025 13:45:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=tywoniak.eu header.i=@tywoniak.eu header.b="N5gEzSUn";
+	dkim=pass (2048-bit key; unprotected) header.d=minyard-net.20230601.gappssmtp.com header.i=@minyard-net.20230601.gappssmtp.com header.b="3YK8ds2H";
 	dkim-atps=neutral
-X-Greylist: delayed 533 seconds by postgrey-1.36 at gabe;
- Fri, 10 Jan 2025 17:28:31 UTC
-Received: from out-184.mta1.migadu.com (out-184.mta1.migadu.com
- [95.215.58.184])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7249710E510
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Jan 2025 17:28:31 +0000 (UTC)
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com
+ [IPv6:2607:f8b0:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3A2610EEBB
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Jan 2025 15:45:36 +0000 (UTC)
+Received: by mail-ot1-x336.google.com with SMTP id
+ 46e09a7af769-71e35be77b5so294449a34.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 09 Jan 2025 07:45:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=minyard-net.20230601.gappssmtp.com; s=20230601; t=1736437536; x=1737042336;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:reply-to
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=cgTp2x21PamB5G5tjbV3jPSQRWSgTUkiJmrzV93coW4=;
+ b=3YK8ds2H9Nd+Y+98VlUVvTplicy5vrI0vhUEfHZZkjlL8BCUO5rWp57akp5jAohdmr
+ M56uC9FuI7IxMdez94uzVaTyDMy2BthmHXRNiQ36JN/PBZ9oJYV6bz8qXTdDQBMUF70y
+ zvkYQ4i1JrN+C1Gc4dRqEk2Wvt+ezshU1qN0Lw7Lv6XYhhymkHquPVZRcTXaMFewK9Wh
+ NwLt/pnksnYFEXuRcMoP6q+qAGzMM516UfGVzGvmUFff6FOjnteBtU9e0YZpiPGUCjXS
+ jajwG1swVZWBjZdn9knxY+kScl5haz5S0v73tx5oiXDXPKToovzB0+bjTwEhBt21J47Q
+ k7SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1736437536; x=1737042336;
+ h=in-reply-to:content-disposition:mime-version:references:reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=cgTp2x21PamB5G5tjbV3jPSQRWSgTUkiJmrzV93coW4=;
+ b=Sy3rjdQk5xuZQqs11EDobN4V4v6Jbt4jTSrrs6t6ha+LkSF4OxgvCpYL3GvId6a+0Q
+ jKkTYhOO3lQPAYMFxvZu4ZxfGEz/B21+D8pN6dpHICVjPdK5Trt1dd+PSdfStoD89UJY
+ LmIQyBMc8rQ+NuqReR2ZtJSz+yivnpygtLZ8NA3AblBlCwlsAfcHDnG4QG8RniRqnYyO
+ NnRTNOU5Y3K1jl9kXImdconi6QJQWuFAC4RhLayixaizOLya5TT2ticqJ8yV6NPjF67S
+ OU5HhvmXe2AynbQyJ6YxI3i/Fe8sZ7DH16LR8emZfYVHrmobPBZwQljrjApdu2yxogLJ
+ 3clA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUZ12eGGaY80YQRxqRZmHz5fNRva0zGxGsvTes/7H4SsyR7Rm7l742UtowhNsf9Iphk2HXSPm535Q==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzhZF90KW3nKxeClHghfSCA9bRpHdcEOZh2OctVkq8bzmJQWWgV
+ I9WbHj0nodjHeIRGnwst3Xn6zpBz9jML78kX4XUBLHinQ/yw7OFYyefb3AfnuXc=
+X-Gm-Gg: ASbGncuP9NeJNd8Ipc2bLWGz5/2AwYXcK+oeGuzYL46os1hqY27kRH1rBQxVZu6wRTj
+ sGZCROscNfCZUGIU5hqI6Vq6KiPmgScV6+daaq7SdP8BGd79crlYqdwV+o3rsGbXzmA0AiEolry
+ a3ZWG08EKSi3+QpoyNZ45m7nad+oHsF5cYHyJE45l9AvvA1Igf9U9jHuCt/ippKqPYP3XrPtOq6
+ KpX5KqP9cDSjF0hOBdhGKjabFhDSLHrTpRaZQ8Lp5yfla29YLHEpkmtIKIy
+X-Google-Smtp-Source: AGHT+IHELUnxP9ZvL+e2Ztemz39I9ORoPYZLTVwEa+XG73J5uz7w7yM0cuXu9KZqTaUsGk+1/+jmGA==
+X-Received: by 2002:a05:6830:6610:b0:716:a95d:9ef with SMTP id
+ 46e09a7af769-721e2e000d6mr4949630a34.2.1736437534534; 
+ Thu, 09 Jan 2025 07:45:34 -0800 (PST)
+Received: from mail.minyard.net ([2001:470:b8f6:1b:9076:47eb:1e0a:16fb])
+ by smtp.gmail.com with ESMTPSA id
+ 006d021491bc7-5f882625f0esm386258eaf.9.2025.01.09.07.45.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 09 Jan 2025 07:45:34 -0800 (PST)
+Date: Thu, 9 Jan 2025 09:45:27 -0600
+From: Corey Minyard <corey@minyard.net>
+To: Joel Granados <joel.granados@kernel.org>
+Cc: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ Kees Cook <kees@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
+ linux-s390@vger.kernel.org, linux-crypto@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
+ linux-rdma@vger.kernel.org, linux-raid@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-serial@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-aio@kvack.org,
+ linux-fsdevel@vger.kernel.org, netfs@lists.linux.dev,
+ codalist@coda.cs.cmu.edu, linux-mm@kvack.org,
+ linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
+ fsverity@lists.linux.dev, linux-xfs@vger.kernel.org,
+ io-uring@vger.kernel.org, bpf@vger.kernel.org,
+ kexec@lists.infradead.org, linux-trace-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, apparmor@lists.ubuntu.com,
+ linux-security-module@vger.kernel.org, keyrings@vger.kernel.org
+Subject: Re: [PATCH] treewide: const qualify ctl_tables where applicable
+Message-ID: <Z3_vF3I453flXoZv@mail.minyard.net>
+References: <20250109-jag-ctl_table_const-v1-1-622aea7230cf@kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tywoniak.eu; s=key1;
- t=1736529574;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=UeDkC1+PosNNXObbEcTb6QebaHdNCFJGEfxpl4jxWbI=;
- b=N5gEzSUnPTHzz0CF04awMVEtfFRYWqUlS1JDSYF4+0OkYgYy67bhdBDvzVg6BmyF+oIahc
- msKukw7KUqdAHTOqXvZrOEK47F59LfpdlYXiENPlcOVz/0wNuq/96uAjSspw/YYHF18hct
- 7GGBp2GD/KPy6RNMabowXthM+C9agKQMPIl8kOEKWk1vkDHPhtaLfB+etKJLZ5AWJ+mKVd
- dSJQq2KEF+M8tetGxmmlcdQi0GBj163UZNSRbStjC35peat0kEPO3V42pLPH+/uFWxHZuL
- zMg1t/iFZlhUhPjD7MJ3ERuorBPDUwYENzHeN1rCpPCMVXp3Nw30ipxYgwsHLg==
-Date: Fri, 10 Jan 2025 17:19:31 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: "Emil J Tywoniak" <emil@tywoniak.eu>
-Message-ID: <1686df0ae8f7caf0d97369a685c810e09afdbca1@tywoniak.eu>
-TLS-Required: No
-Subject: oops in xe_bo_evict on 6.12.8
-To: intel-xe@lists.freedesktop.org
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250109-jag-ctl_table_const-v1-1-622aea7230cf@kernel.org>
 X-Mailman-Approved-At: Mon, 13 Jan 2025 13:45:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -53,113 +102,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: corey@minyard.net
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-What's up gamers,
+On Thu, Jan 09, 2025 at 02:16:39PM +0100, Joel Granados wrote:
+> Add the const qualifier to all the ctl_tables in the tree except the
+> ones in ./net dir. The "net" sysctl code is special as it modifies the
+> arrays before passing it on to the registration function.
+> 
+...
+> diff --git a/drivers/char/ipmi/ipmi_poweroff.c b/drivers/char/ipmi/ipmi_poweroff.c
+> index 941d2dcc8c9d..de84f59468a9 100644
+> --- a/drivers/char/ipmi/ipmi_poweroff.c
+> +++ b/drivers/char/ipmi/ipmi_poweroff.c
+> @@ -650,7 +650,7 @@ static struct ipmi_smi_watcher smi_watcher = {
+>  #ifdef CONFIG_PROC_FS
+>  #include <linux/sysctl.h>
+>  
+> -static struct ctl_table ipmi_table[] = {
+> +static const struct ctl_table ipmi_table[] = {
+>  	{ .procname	= "poweroff_powercycle",
+>  	  .data		= &poweroff_powercycle,
+>  	  .maxlen	= sizeof(poweroff_powercycle),
 
-hope this is the right place to report this oops which possibly is due to=
- amdgpu interaction. The community guidelines link for this list (https:/=
-/01.org/linuxgraphics/community) doesn't work. Feel free to redirect me i=
-f not, even to /dev/null. The Video(DRI - Intel) section on kernel bugzil=
-la doesn't seem to get much life.
+For the IPMI portion:
 
-I see there have been recent changes to things around bo eviction on xe a=
-nd today I caught the following oops when spawning a second VS Code windo=
-w in sway with the New Window command (Ctrl+Shift+N). VS Code was not run=
-ning on XWayland. So far I haven't been able to reproduce this. I have am=
-dgpu loaded as a fall back for my ryzen 7900X builtin graphics since I in=
-stalled the funny GPU (Intel Arc B580 / BMG G21). I'm on Mesa 24.3.3.
+Acked-by: Corey Minyard <cminyard@mvista.com>
 
-------------[ cut here ]------------
-workqueue: WQ_MEM_RECLAIM sdma0:drm_sched_run_job_work [gpu_sched] is flu=
-shing !WQ_MEM_RECLAIM events:amdgpu_device_delay_enable_gfx_off [amdgpu]
-WARNING: CPU: 5 PID: 29199 at kernel/workqueue.c:3704 check_flush_depende=
-ncy+0x10f/0x130
-Modules linked in: rfcomm snd_seq_dummy snd_hrtimer snd_seq cmac algif_ha=
-sh algif_skcipher af_alg nft_chain_nat xt_MASQUERADE nf_conntrack_netlink=
- xfrm_user xfrm_algo xt_addrtype overlay af_packet bnep btusb btrtl btint=
-el btbcm btmtk bluetooth mousedev cdc_acm joydev nls_iso8859_1 nls_cp437 =
-vfat fat mei_gsc_proxy mei_gsc mei_me mei xt_conntrack ip6t_rpfilter mt79=
-21e ipt_rpfilter mt7921_common mt792x_lib snd_hda_codec_hdmi mt76_connac_=
-lib edac_mce_amd edac_core mt76 snd_hda_intel amd_atl intel_rapl_msr snd_=
-intel_dspcfg xt_pkttype intel_rapl_common snd_intel_sdw_acpi crct10dif_pc=
-lmul xt_LOG mac80211 snd_usb_audio uvcvideo nf_log_syslog snd_usbmidi_lib=
- crc32_pclmul snd_hda_codec xt_tcpudp polyval_clmulni videobuf2_vmalloc x=
-e snd_ump polyval_generic uvc snd_hda_core ghash_clmulni_intel cfg80211 n=
-ft_compat snd_rawmidi sha512_ssse3 videobuf2_memops spd5118 sha256_ssse3 =
-snd_seq_device videobuf2_v4l2 snd_hwdep r8169 sha1_ssse3 battery sp5100_t=
-co videobuf2_common aesni_intel snd_pcm watchdog realtek gf128mul
- crypto_simd mdio_devres videodev snd_timer cryptd libphy rfkill snd i2c_=
-piix4 drm_gpuvm wmi_bmof rapl libarc4 led_class mc nf_tables i2c_smbus k1=
-0temp soundcore sch_fq_codel tpm_crb rtc_cmos evdev mac_hid tpm_tis gpio_=
-amdpt tiny_power_button tpm_tis_core gpio_generic button uinput hid_xpadn=
-eo(O) ff_memless atkbd libps2 serio vivaldi_fmap loop xt_nat nf_nat nf_co=
-nntrack nf_defrag_ipv6 nf_defrag_ipv4 libcrc32c br_netfilter veth tun tap=
- macvlan bridge stp llc kvm_amd ccp kvm fuse efi_pstore configfs nfnetlin=
-k efivarfs tpm libaescfb ecdh_generic ecc rng_core dmi_sysfs ip_tables x_=
-tables autofs4 ext4 crc32c_generic mbcache jbd2 hid_generic usbhid hid ah=
-ci libahci xhci_pci libata nvme xhci_hcd scsi_mod nvme_core crc32c_intel =
-scsi_common nvme_auth dm_mod dax amdgpu video wmi amdxcp i2c_algo_bit drm=
-_ttm_helper ttm drm_exec gpu_sched drm_suballoc_helper drm_buddy drm_disp=
-lay_helper cec crc16
-CPU: 5 UID: 0 PID: 29199 Comm: kworker/u96:0 Tainted: G        W  O      =
- 6.12.8 #1-NixOS
-Tainted: [W]=3DWARN, [O]=3DOOT_MODULE
-Hardware name: Micro-Star International Co., Ltd. MS-7D75/MAG B650 TOMAHA=
-WK WIFI (MS-7D75), BIOS 1.60 05/30/2023
-Workqueue: sdma0 drm_sched_run_job_work [gpu_sched]
-RIP: 0010:check_flush_dependency+0x10f/0x130
-Code: c0 f3 01 01 90 49 8b 45 18 48 8d b2 c0 00 00 00 48 8d 8b c0 00 00 0=
-0 49 89 e8 48 c7 c7 a0 c7 df b4 48 89 c2 e8 82 7e fd ff 90 <0f> 0b 90 90 =
-e9 0a ff ff ff 80 3d 99 c0 f3 01 00 75 8f e9 42 ff ff
-RSP: 0018:ffff95dd9ef97c60 EFLAGS: 00010046
-RAX: 0000000000000000 RBX: ffff9265c01b8e00 RCX: 0000000000000000
-RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
-RBP: ffffffffc0438c00 R08: 0000000000000000 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000000 R12: ffff92681a13b200
-R13: ffff9265c94338c0 R14: 0000000000000001 R15: ffff9265c01bce00
-FS:  0000000000000000(0000) GS:ffff926cb7e80000(0000) knlGS:0000000000000=
-000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 000000000050d6d0 CR3: 00000002a38d6000 CR4: 0000000000f50ef0
-PKRU: 55555554
-Call Trace:
- <TASK>
- ? check_flush_dependency+0x10f/0x130
- ? __warn.cold+0x93/0xf6
- ? check_flush_dependency+0x10f/0x130
- ? report_bug+0x10d/0x150
- ? srso_alias_return_thunk+0x5/0xfbef5
- ? handle_bug+0x61/0xb0
- ? exc_invalid_op+0x17/0x80
- ? asm_exc_invalid_op+0x1a/0x20
- ? __pfx_amdgpu_device_delay_enable_gfx_off+0x10/0x10 [amdgpu]
- ? check_flush_dependency+0x10f/0x130
- __flush_work+0x10c/0x320
- cancel_delayed_work_sync+0x62/0x80
- amdgpu_gfx_off_ctrl+0xb7/0x150 [amdgpu]
- amdgpu_ring_alloc+0x40/0x70 [amdgpu]
- amdgpu_ib_schedule+0xf0/0x750 [amdgpu]
- amdgpu_job_run+0x8e/0x200 [amdgpu]
- drm_sched_run_job_work+0x283/0x420 [gpu_sched]
- process_one_work+0x18a/0x350
- worker_thread+0x235/0x370
- ? __pfx_worker_thread+0x10/0x10
- ? __pfx_worker_thread+0x10/0x10
- kthread+0xcd/0x100
- ? __pfx_kthread+0x10/0x10
- ret_from_fork+0x31/0x50
- ? __pfx_kthread+0x10/0x10
- ret_from_fork_asm+0x1a/0x30
- </TASK>
----[ end trace 0000000000000000 ]---
-
-I hope this tells you something. I'm willing to switch to some cutting ed=
-ge kernel commit and report back if I get an oops again, so feel free whi=
-ch remote and commit I should go get, or any other troubleshooting steps =
-I could follow.
-
-Thanks for all your hard work,
-
-Emil J. Tywoniak (widlarizer)
