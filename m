@@ -4,117 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5235FC02184
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 15:04:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF35BE77199
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Jan 2025 15:24:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22ACE10EEAA;
-	Thu,  9 Jan 2025 15:04:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="PMV0sihs";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="c/ewjNVp";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="PRsXptM/";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Q2E9J7Wl";
-	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2261F10EEA8;
- Thu,  9 Jan 2025 15:04:01 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 63D0D2117F;
- Thu,  9 Jan 2025 15:03:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1736435008; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=vM22xqKm0qzRdMjFd3I4M82uPWCGafIm9xozDAXbusI=;
- b=PMV0sihsYxjfq2evvVU/cU/rGb8TP5puwgfRrOdDAwd9R8P2XFRAtfGLIfADXpDcm1O3CW
- ZTKtvBYSXwoWxm41ddX+Hr2ovH2n0Vqjdw5RXqLATIWBSkgtIW5J5L87MQa6HgKb7yUPGh
- t3KBMVbvQrKRXVmLDcgOR/5G3k5Bd7I=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1736435008;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=vM22xqKm0qzRdMjFd3I4M82uPWCGafIm9xozDAXbusI=;
- b=c/ewjNVppokMK62w57DhhEI+AYMlWVNcE+uza4H41d0DI93NE2G/SvEqKK+wkIGo77tEni
- wY7Kz/JCiZiCBYCw==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b="PRsXptM/";
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=Q2E9J7Wl
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1736435007; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=vM22xqKm0qzRdMjFd3I4M82uPWCGafIm9xozDAXbusI=;
- b=PRsXptM/HjGeXGFza62p3vMpIqYmsLBJjLyCIVutGnoYBK6NuRvbTPKJQaw4Vuyeuo5pV5
- 8jr9ReAtmELXk24UySJU4YfXGhhBJG+3UhJ7ExHvv7y5V2KBguD1AoZdokuK8V1ZgTPG4E
- FjJyfsz8mhPZLAPip8a/M2wTli4mJB4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1736435007;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=vM22xqKm0qzRdMjFd3I4M82uPWCGafIm9xozDAXbusI=;
- b=Q2E9J7WlWX8zVLj5G71fxVWwnUEfdleLwgzw+dOgOMHcz7uu6Bvb2OOcTfCBpNsv2qAoga
- YmaAMmZfPaW4o+BQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D77DD139AB;
- Thu,  9 Jan 2025 15:03:26 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id MCFTMz7lf2c1awAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 09 Jan 2025 15:03:26 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
- simona@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Zack Rusin <zack.rusin@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Subject: [PATCH v2 22/25] drm/vmwgfx: Compute dumb-buffer sizes with
- drm_mode_size_dumb()
-Date: Thu,  9 Jan 2025 15:57:16 +0100
-Message-ID: <20250109150310.219442-23-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250109150310.219442-1-tzimmermann@suse.de>
-References: <20250109150310.219442-1-tzimmermann@suse.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B77E610E156;
+	Thu,  9 Jan 2025 15:24:05 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD12110E156;
+ Thu,  9 Jan 2025 15:24:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1615124180165524891=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 63D0D2117F
-X-Spamd-Result: default: False [-1.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- SUSPICIOUS_RECIPS(1.50)[]; MID_CONTAINS_FROM(1.00)[];
- NEURAL_HAM_LONG(-1.00)[-1.000]; R_MISSING_CHARSET(0.50)[];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,gmail.com,ffwll.ch];
- ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[21];
- MIME_TRACE(0.00)[0:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:dkim,suse.de:mid,broadcom.com:email,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; FROM_HAS_DN(0.00)[];
- ASN(0.00)[asn:25478, ipnet:::/0, country:RU];
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- DKIM_TRACE(0.00)[suse.de:+]; TO_DN_SOME(0.00)[];
- RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Use_exec_queu?=
+ =?utf-8?q?e_hints_for_GT_frequency_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 09 Jan 2025 15:24:04 -0000
+Message-ID: <173643624484.1659854.7739327560088218524@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250109120705.3021126-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20250109120705.3021126-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,58 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch
-and buffer size. No alignment required.
+--===============1615124180165524891==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Zack Rusin <zack.rusin@broadcom.com>
-Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
----
- drivers/gpu/drm/vmwgfx/vmwgfx_surface.c | 21 ++++-----------------
- 1 file changed, 4 insertions(+), 17 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_surface.c b/drivers/gpu/drm/vmwgfx/vmwgfx_surface.c
-index 5721c74da3e0..a3fbd4148f73 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_surface.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_surface.c
-@@ -34,6 +34,7 @@
- #include "vmw_surface_cache.h"
- #include "device_include/svga3d_surfacedefs.h"
- 
-+#include <drm/drm_dumb_buffers.h>
- #include <drm/ttm/ttm_placement.h>
- 
- #define SVGA3D_FLAGS_64(upper32, lower32) (((uint64_t)upper32 << 32) | lower32)
-@@ -2291,23 +2292,9 @@ int vmw_dumb_create(struct drm_file *file_priv,
- 	 * contents is going to be rendered guest side.
- 	 */
- 	if (!dev_priv->has_mob || !vmw_supports_3d(dev_priv)) {
--		int cpp = DIV_ROUND_UP(args->bpp, 8);
--
--		switch (cpp) {
--		case 1: /* DRM_FORMAT_C8 */
--		case 2: /* DRM_FORMAT_RGB565 */
--		case 4: /* DRM_FORMAT_XRGB8888 */
--			break;
--		default:
--			/*
--			 * Dumb buffers don't allow anything else.
--			 * This is tested via IGT's dumb_buffers
--			 */
--			return -EINVAL;
--		}
--
--		args->pitch = args->width * cpp;
--		args->size = ALIGN(args->pitch * args->height, PAGE_SIZE);
-+		ret = drm_mode_size_dumb(dev, args, 0, 0);
-+		if (ret)
-+			return ret;
- 
- 		ret = vmw_gem_object_create_with_handle(dev_priv, file_priv,
- 							args->size, &args->handle,
--- 
-2.47.1
+Series: drm/xe/guc: Use exec queue hints for GT frequency (rev2)
+URL   : https://patchwork.freedesktop.org/series/143323/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2461-14e0c4a8247c9514dc57b2231602fb6d9455802b_BAT -> xe-pw-143323v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2461-14e0c4a8247c9514dc57b2231602fb6d9455802b -> xe-pw-143323v2
+
+  IGT_8183: b2dbc6f22815128c0dd5c737504f42e1f1a6ad62 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2461-14e0c4a8247c9514dc57b2231602fb6d9455802b: 14e0c4a8247c9514dc57b2231602fb6d9455802b
+  xe-pw-143323v2: 143323v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143323v2/index.html
+
+--===============1615124180165524891==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Use exec queue hints for GT frequency (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143323/">https://patchwork.freedesktop.org/series/143323/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143323v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143323v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2461-14e0c4a8247c9514dc57b2231602fb6d9455802b_BAT -&gt; xe-pw-143323v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2461-14e0c4a8247c9514dc57b2231602fb6d9455802b -&gt; xe-pw-143323v2</li>
+</ul>
+<p>IGT_8183: b2dbc6f22815128c0dd5c737504f42e1f1a6ad62 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2461-14e0c4a8247c9514dc57b2231602fb6d9455802b: 14e0c4a8247c9514dc57b2231602fb6d9455802b<br />
+  xe-pw-143323v2: 143323v2</p>
+
+</body>
+</html>
+
+--===============1615124180165524891==--
