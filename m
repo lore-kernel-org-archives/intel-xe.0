@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EC63E77188
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jan 2025 04:58:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8AA4E7719C
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jan 2025 04:58:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0C4A10EF9D;
-	Fri, 10 Jan 2025 04:58:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A694210EF94;
+	Fri, 10 Jan 2025 04:58:50 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48A0710EF94;
- Fri, 10 Jan 2025 04:58:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FA6210EF9B;
+ Fri, 10 Jan 2025 04:58:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Add_helper_for_range?=
- =?utf-8?q?=5Fbpg=5Foffset_and_minor_fixes?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Add_helper_for_range=5Fbp?=
+ =?utf-8?q?g=5Foffset_and_minor_fixes?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Jan 2025 04:58:39 -0000
-Message-ID: <173648511929.1843415.14259625591711403573@b555e5b46a47>
+Date: Fri, 10 Jan 2025 04:58:50 -0000
+Message-ID: <173648513005.1843433.10189221722774771422@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250110044131.3162682-1-ankit.k.nautiyal@intel.com>
 In-Reply-To: <20250110044131.3162682-1-ankit.k.nautiyal@intel.com>
@@ -48,10 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 4c299eeff0b0 drm-tip: 2025y-01m-10d-04h-24m-45s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/dsc: Use helper to calculate range_bpg_offset
-Applying: drm/i915/dsc: Remove old comment about DSC 444 support
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f344ff03dd84e5f82a2050e42f7941bfd0773847
+Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Date:   Fri Jan 10 10:11:31 2025 +0530
+
+    drm/i915/dsc: Remove old comment about DSC 444 support
+    
+    DSC with YCbCr420 is now supported, so remove the comment mentioning
+    support for only 444 format.
+    
+    Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 4c299eeff0b03f0e988491bc9102594620e67d42 drm-intel
+abe977c4bb94 drm/i915/dsc: Use helper to calculate range_bpg_offset
+f344ff03dd84 drm/i915/dsc: Remove old comment about DSC 444 support
 
 
