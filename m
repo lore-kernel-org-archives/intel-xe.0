@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C35CE77188
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jan 2025 18:45:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFF09E77188
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jan 2025 20:46:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1000210E519;
-	Fri, 10 Jan 2025 18:45:29 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E31D10E519;
- Fri, 10 Jan 2025 18:45:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2337219469141362246=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3CBA10E532;
+	Fri, 10 Jan 2025 20:46:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lfebVfGr";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A323810E532
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Jan 2025 20:46:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736542017; x=1768078017;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UY/lWRIQxCJOeXU1ATCDr+hYvbbn7j9eBlTnW3j5HM0=;
+ b=lfebVfGr+7CnlKWvqEAhR49oRrhDKHt2TxUY5pjL8lw4RCfe5+rI3Ut9
+ IXcqQOToCiPmaOe/wpFB+jDqztA+8yXvTu1PZWoP1gHqNs87oYjN7JrsU
+ FuY6zkR9RJ7j9vEc15mvR1b/gyE62uBRyU+d3Qa6XFj4q3nRzDVa+t+ut
+ AF/sqwR0NrK/EVGDZKOcQm26QKUTpSmE1w1tPYJ1OxhsqqhLzyAdLzkvl
+ J3+UWWH1N6c/e2LmIfWdv98FtyubKerPkyWkA9gbJVmkT8c4XJVeupwsl
+ kBaDYcWdiX5u6AME0WsKyjzMoCwQ1ACigXqxyywCfYwm7kEO8/ZKa2UJq w==;
+X-CSE-ConnectionGUID: zO2vt8HGSd65Aft5Xl5eaQ==
+X-CSE-MsgGUID: 9hnm7CxfSBKwkPxpTxa82g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11311"; a="40530762"
+X-IronPort-AV: E=Sophos;i="6.12,305,1728975600"; d="scan'208";a="40530762"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2025 12:46:56 -0800
+X-CSE-ConnectionGUID: zptWjpjdTYWm6Y0xmvLSqw==
+X-CSE-MsgGUID: T0fcoRGbQOO/tZ3LWW/wdg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="127119216"
+Received: from szeng-desk.jf.intel.com ([10.165.21.160])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2025 12:46:56 -0800
+From: Oak Zeng <oak.zeng@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Thomas.Hellstrom@linux.intel.com
+Subject: [PATCH] drm/xe: Reject BO eviction if BO is bound to current VM
+Date: Fri, 10 Jan 2025 16:01:37 -0500
+Message-Id: <20250110210137.3181576-1-oak.zeng@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Add_locks_in_gtid?=
- =?utf-8?q?le_code?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Jan 2025 18:45:27 -0000
-Message-ID: <173653472750.2033782.9273909799955278552@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250110173308.2412232-2-lucas.demarchi@intel.com>
-In-Reply-To: <20250110173308.2412232-2-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,138 +62,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2337219469141362246==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This is a follow up fix for
+https://patchwork.freedesktop.org/patch/msgid/20241203021929.1919730-1-oak.zeng@intel.com
+The overall goal is to fail vm_bind when there is memory pressure. See more
+details in the commit message of above patch. Abbove patch fixes the issue
+when user pass in a vm_id parameter during gem_create. If user doesn't pass
+in a vm_id during gem_create, above patch doesn't help.
 
-== Series Details ==
+This patch further reject BO eviction (which could be triggered by bo validation)
+if BO is bound to the current VM. vm_bind could fail due to the eviction failure.
+The BO to VM reverse mapping structure is used to determine whether BO is bound
+to VM.
 
-Series: drm/xe: Add locks in gtidle code
-URL   : https://patchwork.freedesktop.org/series/143407/
-State : failure
+v2:
+Move vm_bo definition from function scope to if(evict) clause (Thomas)
+Further constraint the condition by adding ctx->resv (Thomas)
+Add a short comment describe the change.
 
-== Summary ==
+Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-CI Bug Log - changes from xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde_BAT -> xe-pw-143407v1_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 4a623a98d9f1f..b024c63d8d296 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -713,6 +713,21 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		goto out;
+ 	}
+ 
++	/* Reject BO eviction if BO is bound to current VM. */
++	if (evict && ctx->resv) {
++		struct drm_gpuvm_bo *vm_bo;
++
++		drm_gem_for_each_gpuvm_bo(vm_bo, &bo->ttm.base) {
++			struct xe_vm *vm = gpuvm_to_vm(vm_bo->vm);
++
++			if (xe_vm_resv(vm) == ctx->resv &&
++			    xe_vm_in_preempt_fence_mode(vm)) {
++				ret = -EBUSY;
++				goto out;
++			}
++		}
++	}
++
+ 	/*
+ 	 * Failed multi-hop where the old_mem is still marked as
+ 	 * TTM_PL_FLAG_TEMPORARY, should just be a dummy move.
+-- 
+2.26.3
 
-Summary
--------
-
-  **WARNING**
-
-  Minor unknown changes coming with xe-pw-143407v1_BAT need to be verified
-  manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-143407v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-143407v1_BAT:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@xe_gt_freq@freq_fixed_idle:
-    - bat-pvc-2:          [SKIP][1] ([Intel XE#1021]) -> [SKIP][2] +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde/bat-pvc-2/igt@xe_gt_freq@freq_fixed_idle.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143407v1/bat-pvc-2/igt@xe_gt_freq@freq_fixed_idle.html
-
-  
-  [Intel XE#1021]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1021
-
-
-Build changes
--------------
-
-  * IGT: IGT_8186 -> IGT_8188
-  * Linux: xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde -> xe-pw-143407v1
-
-  IGT_8186: 2c6b2f0ed4075aa1ac3d341d612e41343cff4e4d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8188: ef0abf7f39a7ef0ecf2f08c62b90b852c435c755 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde: 00f4619246294b1de4bac42742cfef95c1f37fde
-  xe-pw-143407v1: 143407v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143407v1/index.html
-
---===============2337219469141362246==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add locks in gtidle code</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143407/">https://patchwork.freedesktop.org/series/143407/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143407v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143407v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde_BAT -&gt; xe-pw-143407v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>WARNING</strong></p>
-<p>Minor unknown changes coming with xe-pw-143407v1_BAT need to be verified<br />
-  manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-143407v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-143407v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_gt_freq@freq_fixed_idle:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde/bat-pvc-2/igt@xe_gt_freq@freq_fixed_idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1021">Intel XE#1021</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143407v1/bat-pvc-2/igt@xe_gt_freq@freq_fixed_idle.html">SKIP</a> +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8186 -&gt; IGT_8188</li>
-<li>Linux: xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde -&gt; xe-pw-143407v1</li>
-</ul>
-<p>IGT_8186: 2c6b2f0ed4075aa1ac3d341d612e41343cff4e4d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8188: ef0abf7f39a7ef0ecf2f08c62b90b852c435c755 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde: 00f4619246294b1de4bac42742cfef95c1f37fde<br />
-  xe-pw-143407v1: 143407v1</p>
-
-</body>
-</html>
-
---===============2337219469141362246==--
