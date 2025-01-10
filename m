@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 409D2E77188
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jan 2025 08:13:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 147B0E7719C
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jan 2025 08:54:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1059110EFFF;
-	Fri, 10 Jan 2025 08:13:08 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de
- (metis.whiteo.stw.pengutronix.de [185.203.201.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA03910EFFF
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Jan 2025 08:13:07 +0000 (UTC)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.whiteo.stw.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <p.zabel@pengutronix.de>)
- id 1tWA1z-0008Lc-0Q; Fri, 10 Jan 2025 09:06:11 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e]
- helo=lupine)
- by drehscheibe.grey.stw.pengutronix.de with esmtps (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96)
- (envelope-from <p.zabel@pengutronix.de>) id 1tWA1x-0007gT-21;
- Fri, 10 Jan 2025 09:06:09 +0100
-Received: from pza by lupine with local (Exim 4.96)
- (envelope-from <p.zabel@pengutronix.de>) id 1tWA1x-0001oH-1d;
- Fri, 10 Jan 2025 09:06:09 +0100
-Message-ID: <abd8ec5ad105d61f2ff372f88d7376bdf245acef.camel@pengutronix.de>
-Subject: Re: [PATCH v2 10/25] drm/imx/ipuv3: Compute dumb-buffer sizes with
- drm_mode_size_dumb()
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Thomas Zimmermann <tzimmermann@suse.de>, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com, 
- simona@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
- imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org, 
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev, 
- spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org, 
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org, 
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-Date: Fri, 10 Jan 2025 09:06:09 +0100
-In-Reply-To: <20250109150310.219442-11-tzimmermann@suse.de>
-References: <20250109150310.219442-1-tzimmermann@suse.de>
- <20250109150310.219442-11-tzimmermann@suse.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	by gabe.freedesktop.org (Postfix) with ESMTP id D454510E03D;
+	Fri, 10 Jan 2025 08:54:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DOzTOmkN";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E61610E03D;
+ Fri, 10 Jan 2025 08:54:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736499278; x=1768035278;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=D6k8/ms12mC9HjisgXm6BpEhVItNrMSpJAOgRE/0c10=;
+ b=DOzTOmkNoNENbaqxHIv8quqO9n2t0u8upD22IcWepHjuooKTKQTjNFje
+ u8C4MFcbP4ZT2E2m48ASiah16GwgVWdTlVen/0KTg+ntgLJLfyoz9nOEW
+ /gNTQFEdkeHYb9T3FGk5VUj1pAH6OFDIcwitumwgUWVkyEMGQFyRzIeNY
+ 2ynMdNf/rNYdaKj0rBhXj2EJ9+xGLXgSJtRY7OOVMEDy66r7i5c2HHsNU
+ YVTt/pJNjZ9V9VoBjRDOJtyUlqjEkgqQzTN6P6n00PbSH9HSfFs7pI+dN
+ 6ehX5Z/G4wm2cFFmELES4I0sFeACBVv3J1nyv9k4Ekzzz1Pfx+ALBGFVB Q==;
+X-CSE-ConnectionGUID: 6L3czNPlTv+FKuLdAEg42w==
+X-CSE-MsgGUID: 84ftN+4dQhWhRd2nNCa9PQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="36474792"
+X-IronPort-AV: E=Sophos;i="6.12,303,1728975600"; d="scan'208";a="36474792"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2025 00:54:37 -0800
+X-CSE-ConnectionGUID: IAdXzrHKQKO8f55ASlCbaA==
+X-CSE-MsgGUID: PwoKIz3qSSaWvIYWShQoYA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,303,1728975600"; d="scan'208";a="103728800"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.15])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2025 00:54:35 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com
+Subject: Re: [PATCH v3 01/16] drm/mst: remove mgr parameter and debug
+ logging from drm_dp_get_vc_payload_bw()
+In-Reply-To: <d02d76bbb348018f736b191e503c4bb61e4dd02a.camel@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1735912293.git.jani.nikula@intel.com>
+ <72d77e7a7fe69c784e9df048b7e6f250fd7599e4.1735912293.git.jani.nikula@intel.com>
+ <d02d76bbb348018f736b191e503c4bb61e4dd02a.camel@redhat.com>
+Date: Fri, 10 Jan 2025 10:54:32 +0200
+Message-ID: <87cygvjbg7.fsf@intel.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: intel-xe@lists.freedesktop.org
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,21 +71,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Do, 2025-01-09 at 15:57 +0100, Thomas Zimmermann wrote:
-> Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch and
-> buffer size. The hardware requires the framebuffer width to be a
-> multiple of 8. The scanline pitch has be large enough to support
-> this. Therefore compute the byte size of 8 pixels in the given color
-> mode and align the pitch accordingly.
->=20
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Fabio Estevam <festevam@gmail.com>
+On Thu, 09 Jan 2025, Lyude Paul <lyude@redhat.com> wrote:
+> Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+I've already merged this, but thanks. :)
 
-regards
-Philipp
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel
