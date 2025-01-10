@@ -4,73 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36A94E7719C
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jan 2025 17:14:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CBECE77188
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jan 2025 17:34:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB16710E0DA;
-	Fri, 10 Jan 2025 17:13:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B1C010F159;
+	Fri, 10 Jan 2025 17:34:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dvIdBIrx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jLVrMJeL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50AEF10E09F;
- Fri, 10 Jan 2025 17:13:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EDCB10F159
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Jan 2025 17:34:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736529238; x=1768065238;
- h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version;
- bh=zCD9wMt7oj+kJBhlIcsVVTGT43QE2wPIyfO0mHZuo3E=;
- b=dvIdBIrxNIGSBa5CvffHhrPmfoyABWXRv6Lm+JLdhBXo7Jxpisx0ybxx
- D+5pCcGOkeiC04wiBM0xzGZg7D9mCxhYIqzhNnDHUJmRw+0qy0FE52tV8
- GvmSHSv2AfLj7g/cfAJNim1CYVZl89bXJ9Wm1JHthYgaF043MNvWXoYmJ
- TkL7aC4NWJfDsJU1TGdLYX8LwdHpgTX7fBRC3nelRyBeLGfUrNtk4JlUN
- mLCOBppLonV09u1jthgaTOIRR9uHTd33UkRewg/p+zdtcQe4RsDwBmgXe
- Y/p6QiXwonGs+Fq8zPdDDO6SALGYussiqLX87698LXe33677pLYIaigEz w==;
-X-CSE-ConnectionGUID: J4yGGiUtQMaowP3Op/QIbw==
-X-CSE-MsgGUID: LBg1b85rQSW9nQhdRbxgFw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11311"; a="36712476"
-X-IronPort-AV: E=Sophos;i="6.12,303,1728975600"; d="scan'208";a="36712476"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2025 09:13:58 -0800
-X-CSE-ConnectionGUID: d+N1H3FPQryemumCSoERgQ==
-X-CSE-MsgGUID: skCK+1HISZSgobnkHZdoJg==
+ t=1736530467; x=1768066467;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AomK+yXhCTwaxwN91kgyDT/pEuOjRz3CIDeNVspJNXM=;
+ b=jLVrMJeL/2lPzEdUlPYpN1i6H4ZS7iL2lHPJXqPlO7LaGdMRyutebIzA
+ Y3TgKyUu2ibtqE++TQGDS07Df12aDJMNMrNR5cWvtPl1VxAdtuGu39rQ8
+ 5fw0nD1+Ip3GhPtm7B2vJHpxoGZreqPguaBfAk45XDkhLQJ9hacaydG+J
+ s7d724OMavrshVRFe3cbq4wAGAfxsUZ9bAKuNGF7ixA9PDw7XD0nOX7kE
+ quAhQQ8V/52FD21kj+QGwNWQ1DF4n/ktPX576S/f5NFHU4cdZ3+Dsl0F4
+ nr2hatszpoJLjXZT3CYyLzTpm784ae9jAND/0GwHXAwt+i2eHhfjuMDXx w==;
+X-CSE-ConnectionGUID: efmDZH5ISamCbB7Jh/0fmw==
+X-CSE-MsgGUID: iY1+9GsYR16RoIPuOPBM8A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11311"; a="40596472"
+X-IronPort-AV: E=Sophos;i="6.12,303,1728975600"; d="scan'208";a="40596472"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2025 09:34:27 -0800
+X-CSE-ConnectionGUID: Arwk/8ajQfCIfJGnIidiWA==
+X-CSE-MsgGUID: 462pk9boQieb9hsJ1mPcZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="127073384"
-Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
- ([10.165.21.142])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2025 09:13:57 -0800
-Date: Fri, 10 Jan 2025 09:13:56 -0800
-Message-ID: <8534hqvbfv.wl-ashutosh.dixit@intel.com>
-From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Joel Granados <joel.granados@kernel.org>
-Cc: Thomas =?ISO-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,	Kees Cook
- <kees@kernel.org>,	Luis Chamberlain <mcgrof@kernel.org>,
- linux-arm-kernel@lists.infradead.org,	linux-kernel@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org,	linux-riscv@lists.infradead.org,
- linux-s390@vger.kernel.org,	linux-crypto@vger.kernel.org,
- openipmi-developer@lists.sourceforge.net,	intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org,	intel-xe@lists.freedesktop.org,
- linux-hyperv@vger.kernel.org,	linux-rdma@vger.kernel.org,
- linux-raid@vger.kernel.org,	linux-scsi@vger.kernel.org,
- linux-serial@vger.kernel.org,	xen-devel@lists.xenproject.org,
- linux-aio@kvack.org,	linux-fsdevel@vger.kernel.org,	netfs@lists.linux.dev,
- codalist@coda.cs.cmu.edu,	linux-mm@kvack.org,	linux-nfs@vger.kernel.org,
- ocfs2-devel@lists.linux.dev,	fsverity@lists.linux.dev,
- linux-xfs@vger.kernel.org,	io-uring@vger.kernel.org,	bpf@vger.kernel.org,
- kexec@lists.infradead.org,	linux-trace-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org,	apparmor@lists.ubuntu.com,
- linux-security-module@vger.kernel.org,	keyrings@vger.kernel.org
-Subject: Re: [PATCH] treewide: const qualify ctl_tables where applicable
-In-Reply-To: <20250109-jag-ctl_table_const-v1-1-622aea7230cf@kernel.org>
-References: <20250109-jag-ctl_table_const-v1-1-622aea7230cf@kernel.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
- Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
+X-IronPort-AV: E=Sophos;i="6.12,303,1728975600"; d="scan'208";a="103842309"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2025 09:34:26 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [CI] drm/xe: Add locks in gtidle code
+Date: Fri, 10 Jan 2025 09:33:09 -0800
+Message-ID: <20250110173308.2412232-2-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.47.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,35 +66,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 09 Jan 2025 05:16:39 -0800, Joel Granados wrote:
->
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index 2406cda75b7b..5384d1bb4923 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -4802,7 +4802,7 @@ int i915_perf_remove_config_ioctl(struct drm_device *dev, void *data,
->	return ret;
->  }
->
-> -static struct ctl_table oa_table[] = {
-> +static const struct ctl_table oa_table[] = {
->	{
->	 .procname = "perf_stream_paranoid",
->	 .data = &i915_perf_stream_paranoid,
-> diff --git a/drivers/gpu/drm/xe/xe_observation.c b/drivers/gpu/drm/xe/xe_observation.c
-> index 8ec1b84cbb9e..57cf01efc07f 100644
-> --- a/drivers/gpu/drm/xe/xe_observation.c
-> +++ b/drivers/gpu/drm/xe/xe_observation.c
-> @@ -56,7 +56,7 @@ int xe_observation_ioctl(struct drm_device *dev, void *data, struct drm_file *fi
->	}
->  }
->
-> -static struct ctl_table observation_ctl_table[] = {
-> +static const struct ctl_table observation_ctl_table[] = {
->	{
->	 .procname = "observation_paranoid",
->	 .data = &xe_observation_paranoid,
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-For i915 and xe:
+The update of the residency values needs to be protected by a lock to
+avoid multiple entrypoints, for example when multiple userspace clients
+read the sysfs file. Other in-kernel clients are going to be added to
+sample these values, making the problem worse. Protect those updates
+with a raw_spinlock so it can be called by future integration with perf
+pmu.
 
-Acked-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Suggested-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+
+Extracted from https://patchwork.freedesktop.org/series/139121/ as it's
+a separate issue and can be applied independently.
+
+ drivers/gpu/drm/xe/xe_gt_idle.c       | 23 ++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_gt_idle.h       |  1 +
+ drivers/gpu/drm/xe/xe_gt_idle_types.h |  3 +++
+ 3 files changed, 24 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
+index ffd3ba7f66561..fbbace7b0b12a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.c
++++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+@@ -69,6 +69,8 @@ static u64 get_residency_ms(struct xe_gt_idle *gtidle, u64 cur_residency)
+ {
+ 	u64 delta, overflow_residency, prev_residency;
+ 
++	lockdep_assert_held(&gtidle->lock);
++
+ 	overflow_residency = BIT_ULL(32);
+ 
+ 	/*
+@@ -275,8 +277,21 @@ static ssize_t idle_status_show(struct device *dev,
+ 
+ 	return sysfs_emit(buff, "%s\n", gt_idle_state_to_string(state));
+ }
+-static DEVICE_ATTR_RO(idle_status);
+ 
++u64 xe_gt_idle_residency_msec(struct xe_gt_idle *gtidle)
++{
++	struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
++	u64 residency;
++	unsigned long flags;
++
++	raw_spin_lock_irqsave(&gtidle->lock, flags);
++	residency = get_residency_ms(gtidle, gtidle->idle_residency(pc));
++	raw_spin_unlock_irqrestore(&gtidle->lock, flags);
++
++	return residency;
++}
++
++static DEVICE_ATTR_RO(idle_status);
+ static ssize_t idle_residency_ms_show(struct device *dev,
+ 				      struct device_attribute *attr, char *buff)
+ {
+@@ -285,10 +300,10 @@ static ssize_t idle_residency_ms_show(struct device *dev,
+ 	u64 residency;
+ 
+ 	xe_pm_runtime_get(pc_to_xe(pc));
+-	residency = gtidle->idle_residency(pc);
++	residency = xe_gt_idle_residency_msec(gtidle);
+ 	xe_pm_runtime_put(pc_to_xe(pc));
+ 
+-	return sysfs_emit(buff, "%llu\n", get_residency_ms(gtidle, residency));
++	return sysfs_emit(buff, "%llu\n", residency);
+ }
+ static DEVICE_ATTR_RO(idle_residency_ms);
+ 
+@@ -331,6 +346,8 @@ int xe_gt_idle_init(struct xe_gt_idle *gtidle)
+ 	if (!kobj)
+ 		return -ENOMEM;
+ 
++	raw_spin_lock_init(&gtidle->lock);
++
+ 	if (xe_gt_is_media_type(gt)) {
+ 		snprintf(gtidle->name, sizeof(gtidle->name), "gt%d-mc", gt->info.id);
+ 		gtidle->idle_residency = xe_guc_pc_mc6_residency;
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h b/drivers/gpu/drm/xe/xe_gt_idle.h
+index 4455a6501cb07..591a01e181bcc 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.h
++++ b/drivers/gpu/drm/xe/xe_gt_idle.h
+@@ -17,5 +17,6 @@ void xe_gt_idle_disable_c6(struct xe_gt *gt);
+ void xe_gt_idle_enable_pg(struct xe_gt *gt);
+ void xe_gt_idle_disable_pg(struct xe_gt *gt);
+ int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p);
++u64 xe_gt_idle_residency_msec(struct xe_gt_idle *gtidle);
+ 
+ #endif /* _XE_GT_IDLE_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle_types.h b/drivers/gpu/drm/xe/xe_gt_idle_types.h
+index b8b297a3f8848..a3667c567f8a7 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_idle_types.h
+@@ -6,6 +6,7 @@
+ #ifndef _XE_GT_IDLE_SYSFS_TYPES_H_
+ #define _XE_GT_IDLE_SYSFS_TYPES_H_
+ 
++#include <linux/spinlock.h>
+ #include <linux/types.h>
+ 
+ struct xe_guc_pc;
+@@ -31,6 +32,8 @@ struct xe_gt_idle {
+ 	u64 cur_residency;
+ 	/** @prev_residency: previous residency counter */
+ 	u64 prev_residency;
++	/** @lock: Lock protecting idle residency counters */
++	raw_spinlock_t lock;
+ 	/** @idle_status: get the current idle state */
+ 	enum xe_gt_idle_state (*idle_status)(struct xe_guc_pc *pc);
+ 	/** @idle_residency: get idle residency counter */
+-- 
+2.47.0
+
