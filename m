@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 217A1E77188
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jan 2025 17:45:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3ABC7E7719C
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jan 2025 17:45:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D314710E50C;
-	Fri, 10 Jan 2025 17:45:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F180310E513;
+	Fri, 10 Jan 2025 17:45:10 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADA3C10E50C;
- Fri, 10 Jan 2025 17:44:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B84E10E513;
+ Fri, 10 Jan 2025 17:45:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Add_locks_?=
- =?utf-8?q?in_gtidle_code?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Add_locks_in_gt?=
+ =?utf-8?q?idle_code?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Jan 2025 17:44:59 -0000
-Message-ID: <173653109970.2025511.11251715023868502116@b555e5b46a47>
+Date: Fri, 10 Jan 2025 17:45:10 -0000
+Message-ID: <173653111004.2026544.10522762833943397725@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250110173308.2412232-2-lucas.demarchi@intel.com>
 In-Reply-To: <20250110173308.2412232-2-lucas.demarchi@intel.com>
@@ -48,9 +48,35 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 00f461924629 drm-tip: 2025y-01m-10d-10h-22m-27s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Add locks in gtidle code
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d037f31428610c577c5de978e4aca5f20aaa1684
+Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Date:   Fri Jan 10 09:33:09 2025 -0800
+
+    drm/xe: Add locks in gtidle code
+    
+    The update of the residency values needs to be protected by a lock to
+    avoid multiple entrypoints, for example when multiple userspace clients
+    read the sysfs file. Other in-kernel clients are going to be added to
+    sample these values, making the problem worse. Protect those updates
+    with a raw_spinlock so it can be called by future integration with perf
+    pmu.
+    
+    Suggested-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+    Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 00f4619246294b1de4bac42742cfef95c1f37fde drm-intel
+d037f3142861 drm/xe: Add locks in gtidle code
 
 
