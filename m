@@ -4,187 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C74D1C02183
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jan 2025 13:45:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46A1CC02185
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jan 2025 13:45:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EC8210E2B0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A31310E29A;
 	Mon, 13 Jan 2025 13:45:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="ZKLqGfAl";
-	dkim=pass (1024-bit key; unprotected) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="OrOCCYEB";
+	dkim=pass (2048-bit key; secure) header.d=tywoniak.eu header.i=@tywoniak.eu header.b="N5gEzSUn";
 	dkim-atps=neutral
-Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
- [205.220.165.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAD9B10EE24;
- Thu,  9 Jan 2025 15:01:03 +0000 (UTC)
-Received: from pps.filterd (m0333521.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 509CfnEU010941;
- Thu, 9 Jan 2025 15:00:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
- :content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=corp-2023-11-20; bh=jMUptaI9fqg5+RUs+I
- vqiL3lFR7AmqejQbFAnHpRhQc=; b=ZKLqGfAlKID2gYfwuP+LlcWuWqkWRhqfLC
- 4bMhKd4WlYQVAjthTvyZqd0q7fioOBZdzjqHs/jv2ywfetWrPXV06bV9X4G/Ycfl
- wbYtAciZa6qM0+dDNx14odAb5sY+rDbk/iViTIp6ARSA5g9oWtXwya4FY6wpHzHa
- EN0aiJ6II3L6JnL1fIMMhPI3o6/ZesY2Ery53T5MKvPRXupL86Fd/A6dYZ8CtIML
- W08wSLa7uBN+faiccwo5qvsrhFJX3XnULycouwCV/SyvUagLteCJ0/ZIg2AmADCi
- QJ/0Y+2uU6lYLBQcRj1gAA22kdqSD0a3GJDtLzuxe0cWa/iCgm1A==
-Received: from iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com
- (iadpaimrmta03.appoci.oracle.com [130.35.103.27])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 43xuwb95dc-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 09 Jan 2025 15:00:53 +0000 (GMT)
-Received: from pps.filterd
- (iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
- by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
- with ESMTP id 509EQ3lm010865; Thu, 9 Jan 2025 15:00:52 GMT
-Received: from nam04-bn8-obe.outbound.protection.outlook.com
- (mail-bn8nam04lp2042.outbound.protection.outlook.com [104.47.74.42])
- by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
- 43xueb1ah4-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 09 Jan 2025 15:00:52 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lCFpDHOQhu6xZGt6Sa3mc5WvDHjASrjznsuq3pa9/8gRdKM6+Oy4KZVZGtccD1klyRCKYI4s8NOj3rMlYqtCJQPk3q1RISpnRy0RXOtoz6iBIkBfzQf490DydD1ecW+HLd+tJUy5lJcomhb1wgaebFs/kfxyXocJpyxECvDWC+NDr6usPFLqUXwnqVD0dEgsXNRZ8NHjW8DBk7KM1OgrnCKY77Qk91Et3w3KGd+LAp0s1FEiyk+5RbF8u1SX/vCVYQZ19qR6x3bRXsC0PCOXHtrkysizcmdFRJd04JLEHuK2Yu9Ptt5zXej8v7Q9vRrlM2p/ybIe52aAo73idrKTfw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jMUptaI9fqg5+RUs+IvqiL3lFR7AmqejQbFAnHpRhQc=;
- b=BMRs0/8tL8b3tWch/NJTK/7Pz9rctGrgpf95IuDWE2UOD/7YrppNXhigasORdyjo1UCOFDnODQoI2KqKFmjaxxdPDEGHRhva9ryzSach02Jm1omjqFEhffSxDUXuttDqIVzBg7b2PV/2ZUPXq/MJZuOdhitBXEBQk7l7AeZBf10R4NklOWqWiMRgTYmSrbog0+lcP3fn8KmjjBqcV1AKpq9cQp50h5Wozhz1q0Wp5Xn2e50Bzy/5F8exuPXBvsIDHmmf1lHUwftYWW5Kmmb18hbNBF6GeWJ2y3392RUvdcStbWubWJDRNBfieOzMRm3dszF9MnF4zCucKWSAiIQLRg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jMUptaI9fqg5+RUs+IvqiL3lFR7AmqejQbFAnHpRhQc=;
- b=OrOCCYEBQosTxVVlFghCyGRnSbxwjYNaQBAUHfLPuEhq6USvwVdXmhomijJ2+HEcDnpL+oYdBas0Ko8OQ+Xv4KVr4i+i8oQv9xnL8WUxMcGiDrmVQOfh5BibsNN0vr637OmP1k3h778mNsH+Gk42K9EKIEr5HU0jdteeSRM6tsU=
-Received: from CH0PR10MB5338.namprd10.prod.outlook.com (2603:10b6:610:cb::8)
- by SN7PR10MB7001.namprd10.prod.outlook.com (2603:10b6:806:345::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.10; Thu, 9 Jan
- 2025 15:00:49 +0000
-Received: from CH0PR10MB5338.namprd10.prod.outlook.com
- ([fe80::5cca:2bcc:cedb:d9bf]) by CH0PR10MB5338.namprd10.prod.outlook.com
- ([fe80::5cca:2bcc:cedb:d9bf%6]) with mapi id 15.20.8335.012; Thu, 9 Jan 2025
- 15:00:49 +0000
-To: Joel Granados <joel.granados@kernel.org>
-Cc: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>, Kees Cook
- <kees@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
- linux-s390@vger.kernel.org, linux-crypto@vger.kernel.org,
- openipmi-developer@lists.sourceforge.net,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
- linux-rdma@vger.kernel.org, linux-raid@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-serial@vger.kernel.org,
- xen-devel@lists.xenproject.org, linux-aio@kvack.org,
- linux-fsdevel@vger.kernel.org, netfs@lists.linux.dev,
- codalist@coda.cs.cmu.edu, linux-mm@kvack.org,
- linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
- fsverity@lists.linux.dev, linux-xfs@vger.kernel.org,
- io-uring@vger.kernel.org, bpf@vger.kernel.org,
- kexec@lists.infradead.org, linux-trace-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, apparmor@lists.ubuntu.com,
- linux-security-module@vger.kernel.org, keyrings@vger.kernel.org
-Subject: Re: [PATCH] treewide: const qualify ctl_tables where applicable
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-In-Reply-To: <20250109-jag-ctl_table_const-v1-1-622aea7230cf@kernel.org> (Joel
- Granados's message of "Thu, 09 Jan 2025 14:16:39 +0100")
-Organization: Oracle Corporation
-Message-ID: <yq1ed1c823x.fsf@ca-mkp.ca.oracle.com>
-References: <20250109-jag-ctl_table_const-v1-1-622aea7230cf@kernel.org>
-Date: Thu, 09 Jan 2025 10:00:46 -0500
-Content-Type: text/plain
-X-ClientProxiedBy: SJ2PR07CA0015.namprd07.prod.outlook.com
- (2603:10b6:a03:505::28) To CH0PR10MB5338.namprd10.prod.outlook.com
- (2603:10b6:610:cb::8)
+X-Greylist: delayed 533 seconds by postgrey-1.36 at gabe;
+ Fri, 10 Jan 2025 17:28:31 UTC
+Received: from out-184.mta1.migadu.com (out-184.mta1.migadu.com
+ [95.215.58.184])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7249710E510
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Jan 2025 17:28:31 +0000 (UTC)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH0PR10MB5338:EE_|SN7PR10MB7001:EE_
-X-MS-Office365-Filtering-Correlation-Id: 57ca7bf9-9646-491b-b6df-08dd30be6736
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?1s5eliMSE67bSIt5uQKs2IcnP+0PNCj0WZFBBku5t3uvZomcBm6xiJzzqgmI?=
- =?us-ascii?Q?+XHPLdw+eszd1/QyQrJPQNTTQGoQ0r6A7EHV4YmnZxrMySwRwTMKbnLRjstN?=
- =?us-ascii?Q?jPHt9B18dW5Jc4xUXfLdJMTzatVzshMrKqA/ohaLOkvQRuMJS1QLxJyXvUeb?=
- =?us-ascii?Q?vv5bbjR698U6ikpCZ+PLDFxq5eQ7AZjJs7PdjSCX0pwbzzxDimK80RdbgWGf?=
- =?us-ascii?Q?0AroawK83y5svXx6thDxQjQgBnz4+K64uryopn61Qr46+fQoncUV5i3LKKkg?=
- =?us-ascii?Q?2dOj2x107aOMexqiLArcaMJw7RMKWKtjw8KPvref/3xYIQWalB5vv5y/sn9G?=
- =?us-ascii?Q?hvSfmB3g09Thi1y40nIwusr8OgBFBlSWfJsdvUnZn80PdR1vWrqXTbMJovp1?=
- =?us-ascii?Q?ocEfIVEqBsppyY1WVbmKSpEqYmMlxiIGDBnF8F0p5CrEnsAvXB7Zpi9GuhiH?=
- =?us-ascii?Q?OcbJRt8veDrcu84G9H9eshJunDn9D/un02cG6x8/lMF7M2vd2XL+hW3HGmjL?=
- =?us-ascii?Q?ytkwL/frvsBE/nhleo7zBNXarmoxAtTjjPvSSrMf5F4mVADVMgL30MERFK95?=
- =?us-ascii?Q?1iiHhz1qvu8Ou1hlsxWqHLO90O4fSUounpfRNbzEuRbhIQvel4J+m7ZHXb2m?=
- =?us-ascii?Q?iekRVTSZBCwbNUinUi3LYCfHeBkXjcK3dPKFVFZjUVBmC2LrOrV2nHDtOG3i?=
- =?us-ascii?Q?q2X3joQYJ/tcR9bDhRPZ5tlRikiBOT7VE3yURFC3rNNCZUEa+hOxNFvbYkrS?=
- =?us-ascii?Q?nl5WnQdvm2IM3bafp7Vo+6wNAMuCI3wZQs6j4eAGqKN0KEU0S1Dxh70d4axv?=
- =?us-ascii?Q?H4wTt1q7pr28TlIFNl0PfctPMmHJBdcJaHzBvbNTo5KVYsucjQxhxmDNUVqr?=
- =?us-ascii?Q?8StZ2Vkasxkex+OFgjsBcMUDTR8B2qFSb/MRPh3Rh1+WcbkCGcwPup6I8zpJ?=
- =?us-ascii?Q?1HjTT/a+amAxP4yi/sW4j8pWYTBx2CZIy10YJ8Tbdydy/HH8iekZVSEzxBqn?=
- =?us-ascii?Q?Jv47TpOuTl9MigO3m6ov/6gf71YaU2xnC1/mmgej/oy+twi3Uvr1RJn3ptNg?=
- =?us-ascii?Q?g2cA+a6gKL3SYY9phppNZAe/eEHK1wsx7dhMve3MOpgxGW2qmGa2yQc9AsJO?=
- =?us-ascii?Q?WvFu0MdkMAVN0hJiyMVjuhzicu583QJ58PtDQibgopUVAbCmGMakal+G1RxB?=
- =?us-ascii?Q?HviCgXT+W/c8i1o3H/BGd65sJtxQkFz+3gWKKrITHpS5j7KccnOZj41Sd+6O?=
- =?us-ascii?Q?b6V0wjDzzI1q6lMPVkHyd2rO1/CRq0b8VAvxZWU0oj1z2DJaqoWumNSbr7R6?=
- =?us-ascii?Q?i+w2GAokUpbp82H6N/M8tL4IKOntd5dzeuv1zxQP35Rv6TkvI/xFtagtT+Hc?=
- =?us-ascii?Q?IGINZ4zJUJZy40/LyzmX2agqnz3K?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR10MB5338.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(7416014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WZNn6E1Pa7bGKzLrcJDJZOlfoqcHArJ/1AObxs3buzZgzUpMr8lBMjhap0F9?=
- =?us-ascii?Q?mYMw0mCidu5gzvLAi8PBvxj0uhCHw9K3LgPDSnmUwTYcICw856X+uMf30Tho?=
- =?us-ascii?Q?3FDT/VmGo38Jwp53p8Bfm8qyxp/0LytCAwqwBlGP8VB6MT1LnVmLBLM9uRvY?=
- =?us-ascii?Q?kA3haz6zRHG5ZBQPXop+/6efFgCuyLTz9CCNFA4e0Z8WgSAgJKsQrMsQSN1j?=
- =?us-ascii?Q?qfd2Nxs2aS9uWBaVrZLtVdaco5UmKyhfMudR9asTb3S+nIh/A0o88X3cMlJ8?=
- =?us-ascii?Q?7qQlUIfjM8/WIj3VP4zsJLfxe4UKkL8OnT9BcfIS9GZwhaGqGbKbR+D3jtof?=
- =?us-ascii?Q?rp0tMONITtuY4+MGPUBAtzGYkYwW/6GaTFOibH9vZ0arw4NzmWgaOv8JtRjO?=
- =?us-ascii?Q?oM27MHfMuLwrHzGtM2pe5ezq5WyS6/bWGLo/JLtWb85ItRkBNeGKgSFNXdWj?=
- =?us-ascii?Q?K0WkUnbkLQ3erszvL93qxuLf36uMCiQIrjvziGhCA0AJYJ8O2Q4iV0QYWIWH?=
- =?us-ascii?Q?vxP7YlUjTCdESdXhxyN+z6WxZrd/O3bV77dfkk+l8RfodLl4dMIl3XCHazSZ?=
- =?us-ascii?Q?tNY19C1vkXbpHjyJagJ+Kipdphsm5Nfk029iSFbb7S+qG2POw2Z7OYg6MWLx?=
- =?us-ascii?Q?2KnKr668r8F8/DvynAy2zKi94Zfc+Ex6Ca8HiKQI55EMeIwKnauWfEmXqPEP?=
- =?us-ascii?Q?ybf1A+fy7vO52eWYrVIf/K58IT8RbOy9sXBULZpmF5XaQHLX3KE0Oz9USdQ6?=
- =?us-ascii?Q?YjQngikYaXNrgzbXf8Wsc/skw1gx+kck/Isa2JhBRBShgN8p9WZMyCn6gBw7?=
- =?us-ascii?Q?gZeqcEstNVEKVKK2fGZpkEEqQhmXBcVYFDjY0YvaM5Ceb36ussgJb9YzuNM+?=
- =?us-ascii?Q?zNMSL9o2Rf/sy+xyqe4MTCL8lykXCFbysWguFjNzmXidVzssSDfRv86/cWR+?=
- =?us-ascii?Q?yDIFJpwzweS2h7eoqDO42g0M2HJF2SC0eGjcs5wKAZB13Qj7CyhK7NED+ynV?=
- =?us-ascii?Q?9Q+gNeBoZknbT1X1wZqhrHD5nU+0VQpEhGVKoTYqYp7CRWmdcB6OoMUyXEL6?=
- =?us-ascii?Q?qcQsmxq1otuQP6/vvFXSBbEdxHvE1fIli8t4pxe4PE57V2sHk6djEeRDXxxZ?=
- =?us-ascii?Q?KE0gE0FpKS75eQDRfCZM6yiSgfEs181Te4+8TJpTQ7/2MIVZHG4DkZvtF8In?=
- =?us-ascii?Q?tJrfIrZnPLTE7hb5rdomq6StRLsCkRDPbxpgS4s63GjDXzeI8a7kF6is6GQe?=
- =?us-ascii?Q?MoFw9u2F5ger1qJ30DJuI6ISnVE17NaPINaCxiXeNqNwSfjfizMnMXBRGhwy?=
- =?us-ascii?Q?23RsyQHncvlXPZvcSYXA4FijIuCYOrky+B7oUBqSgdI9fRP84jQbXI/OJDx2?=
- =?us-ascii?Q?uz9U6vTi0uB1nHn6NCs1aOAac2w28+og4LYyE/9//S3ek+8P6IlaDGipvKYV?=
- =?us-ascii?Q?QagAbCVxdUi7LZDS+55o4HF/1TiL5nCXySk+mRU9ASBwxtuDZsf+OPpiIJeJ?=
- =?us-ascii?Q?tH2ppTFQ8SV9JH39LgIEe3yoPCXUojgQHKGRFVPAnLGqFj/Wy9p8fGHjvKCY?=
- =?us-ascii?Q?dxwuK/flWMBwLr1owtHdeGOzFj+sbzhcHME3fP5Sd5WDvk6BgqYwvUYSM3Vu?=
- =?us-ascii?Q?fw=3D=3D?=
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: Z2ezp0GeC+tCAty8oNhH+Bxy14WAfO6YLudztqZns732Dr0QNSgcWLPMEb56XKYzxsISMSnUx1GkxolfLHx8QwH3aPViqoqQPRniwzxVRHjbJRNQSnKucs2z/YFx9ssTzXfjE0G3Qi9taDO5X17op/ReRjMnQ2OQAduZfRc9Qqy3JDI/0eXh2ZWUSh0+GDq+BQKFROJVrTHTnW2o6xNdER+888B1/cz+pmLrD0EvYPmvjrCKQBpkGB8IZYwKuLCB4t0pzswCmFKAxhxYYTuLhER6orCrIWpsZoXZxRqwUfindm1PxU+UfzvfK2NCcRyOazoVvYNENj9yXk3leqQ6Y8l2ijF/gdhZzD/fZZQYvnAc7LEKfcXFULkUL9vbaZTMBWRUAXJuAW0gRCuvA9deA1xfXb8yzPHxOiszwK+r2qgMTA5ec9WUelk3pY8aeq3FQnHvnKk8ooLyMCpeUisQFjoKRzVWGyRWQ8J6T5YYj+xGYdFi0F9jGWX83dtphIz6bHam3CAuzy/gpWh1k+to6CNnv2uO6iwMHozr7LpA+r9oYSwJ8o1AN8jws6/8kVKYGulR99qsLzEvnjqFQNQsyA96ngiGqmo6v1xIeg2yoiU=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 57ca7bf9-9646-491b-b6df-08dd30be6736
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR10MB5338.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2025 15:00:49.1161 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: leHSaRakdAn44d9JTPJGGjwmkjIzP6V+HUsYDpT9nyRHh5QA3A00LFHg8x0aOHYjIzoJs/bIHXolJQXc/ZKEsw5B5oXtdGA/kAFQ3UU4rdI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR10MB7001
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-09_06,2025-01-09_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
- malwarescore=0
- adultscore=0 mlxlogscore=811 suspectscore=0 mlxscore=0 spamscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2411120000 definitions=main-2501090120
-X-Proofpoint-GUID: ujTpPHVSX-fTLPpls6O5X7zV8q5ouFNE
-X-Proofpoint-ORIG-GUID: ujTpPHVSX-fTLPpls6O5X7zV8q5ouFNE
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tywoniak.eu; s=key1;
+ t=1736529574;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=UeDkC1+PosNNXObbEcTb6QebaHdNCFJGEfxpl4jxWbI=;
+ b=N5gEzSUnPTHzz0CF04awMVEtfFRYWqUlS1JDSYF4+0OkYgYy67bhdBDvzVg6BmyF+oIahc
+ msKukw7KUqdAHTOqXvZrOEK47F59LfpdlYXiENPlcOVz/0wNuq/96uAjSspw/YYHF18hct
+ 7GGBp2GD/KPy6RNMabowXthM+C9agKQMPIl8kOEKWk1vkDHPhtaLfB+etKJLZ5AWJ+mKVd
+ dSJQq2KEF+M8tetGxmmlcdQi0GBj163UZNSRbStjC35peat0kEPO3V42pLPH+/uFWxHZuL
+ zMg1t/iFZlhUhPjD7MJ3ERuorBPDUwYENzHeN1rCpPCMVXp3Nw30ipxYgwsHLg==
+Date: Fri, 10 Jan 2025 17:19:31 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: "Emil J Tywoniak" <emil@tywoniak.eu>
+Message-ID: <1686df0ae8f7caf0d97369a685c810e09afdbca1@tywoniak.eu>
+TLS-Required: No
+Subject: oops in xe_bo_evict on 6.12.8
+To: intel-xe@lists.freedesktop.org
+X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Mon, 13 Jan 2025 13:45:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -200,14 +56,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+What's up gamers,
 
-Joel,
+hope this is the right place to report this oops which possibly is due to=
+ amdgpu interaction. The community guidelines link for this list (https:/=
+/01.org/linuxgraphics/community) doesn't work. Feel free to redirect me i=
+f not, even to /dev/null. The Video(DRI - Intel) section on kernel bugzil=
+la doesn't seem to get much life.
 
-> Add the const qualifier to all the ctl_tables in the tree except the
-> ones in ./net dir. The "net" sysctl code is special as it modifies the
-> arrays before passing it on to the registration function.
+I see there have been recent changes to things around bo eviction on xe a=
+nd today I caught the following oops when spawning a second VS Code windo=
+w in sway with the New Window command (Ctrl+Shift+N). VS Code was not run=
+ning on XWayland. So far I haven't been able to reproduce this. I have am=
+dgpu loaded as a fall back for my ryzen 7900X builtin graphics since I in=
+stalled the funny GPU (Intel Arc B580 / BMG G21). I'm on Mesa 24.3.3.
 
-Reviewed-by: Martin K. Petersen <martin.petersen@oracle.com> # SCSI
+------------[ cut here ]------------
+workqueue: WQ_MEM_RECLAIM sdma0:drm_sched_run_job_work [gpu_sched] is flu=
+shing !WQ_MEM_RECLAIM events:amdgpu_device_delay_enable_gfx_off [amdgpu]
+WARNING: CPU: 5 PID: 29199 at kernel/workqueue.c:3704 check_flush_depende=
+ncy+0x10f/0x130
+Modules linked in: rfcomm snd_seq_dummy snd_hrtimer snd_seq cmac algif_ha=
+sh algif_skcipher af_alg nft_chain_nat xt_MASQUERADE nf_conntrack_netlink=
+ xfrm_user xfrm_algo xt_addrtype overlay af_packet bnep btusb btrtl btint=
+el btbcm btmtk bluetooth mousedev cdc_acm joydev nls_iso8859_1 nls_cp437 =
+vfat fat mei_gsc_proxy mei_gsc mei_me mei xt_conntrack ip6t_rpfilter mt79=
+21e ipt_rpfilter mt7921_common mt792x_lib snd_hda_codec_hdmi mt76_connac_=
+lib edac_mce_amd edac_core mt76 snd_hda_intel amd_atl intel_rapl_msr snd_=
+intel_dspcfg xt_pkttype intel_rapl_common snd_intel_sdw_acpi crct10dif_pc=
+lmul xt_LOG mac80211 snd_usb_audio uvcvideo nf_log_syslog snd_usbmidi_lib=
+ crc32_pclmul snd_hda_codec xt_tcpudp polyval_clmulni videobuf2_vmalloc x=
+e snd_ump polyval_generic uvc snd_hda_core ghash_clmulni_intel cfg80211 n=
+ft_compat snd_rawmidi sha512_ssse3 videobuf2_memops spd5118 sha256_ssse3 =
+snd_seq_device videobuf2_v4l2 snd_hwdep r8169 sha1_ssse3 battery sp5100_t=
+co videobuf2_common aesni_intel snd_pcm watchdog realtek gf128mul
+ crypto_simd mdio_devres videodev snd_timer cryptd libphy rfkill snd i2c_=
+piix4 drm_gpuvm wmi_bmof rapl libarc4 led_class mc nf_tables i2c_smbus k1=
+0temp soundcore sch_fq_codel tpm_crb rtc_cmos evdev mac_hid tpm_tis gpio_=
+amdpt tiny_power_button tpm_tis_core gpio_generic button uinput hid_xpadn=
+eo(O) ff_memless atkbd libps2 serio vivaldi_fmap loop xt_nat nf_nat nf_co=
+nntrack nf_defrag_ipv6 nf_defrag_ipv4 libcrc32c br_netfilter veth tun tap=
+ macvlan bridge stp llc kvm_amd ccp kvm fuse efi_pstore configfs nfnetlin=
+k efivarfs tpm libaescfb ecdh_generic ecc rng_core dmi_sysfs ip_tables x_=
+tables autofs4 ext4 crc32c_generic mbcache jbd2 hid_generic usbhid hid ah=
+ci libahci xhci_pci libata nvme xhci_hcd scsi_mod nvme_core crc32c_intel =
+scsi_common nvme_auth dm_mod dax amdgpu video wmi amdxcp i2c_algo_bit drm=
+_ttm_helper ttm drm_exec gpu_sched drm_suballoc_helper drm_buddy drm_disp=
+lay_helper cec crc16
+CPU: 5 UID: 0 PID: 29199 Comm: kworker/u96:0 Tainted: G        W  O      =
+ 6.12.8 #1-NixOS
+Tainted: [W]=3DWARN, [O]=3DOOT_MODULE
+Hardware name: Micro-Star International Co., Ltd. MS-7D75/MAG B650 TOMAHA=
+WK WIFI (MS-7D75), BIOS 1.60 05/30/2023
+Workqueue: sdma0 drm_sched_run_job_work [gpu_sched]
+RIP: 0010:check_flush_dependency+0x10f/0x130
+Code: c0 f3 01 01 90 49 8b 45 18 48 8d b2 c0 00 00 00 48 8d 8b c0 00 00 0=
+0 49 89 e8 48 c7 c7 a0 c7 df b4 48 89 c2 e8 82 7e fd ff 90 <0f> 0b 90 90 =
+e9 0a ff ff ff 80 3d 99 c0 f3 01 00 75 8f e9 42 ff ff
+RSP: 0018:ffff95dd9ef97c60 EFLAGS: 00010046
+RAX: 0000000000000000 RBX: ffff9265c01b8e00 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: ffffffffc0438c00 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: ffff92681a13b200
+R13: ffff9265c94338c0 R14: 0000000000000001 R15: ffff9265c01bce00
+FS:  0000000000000000(0000) GS:ffff926cb7e80000(0000) knlGS:0000000000000=
+000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000000000050d6d0 CR3: 00000002a38d6000 CR4: 0000000000f50ef0
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ ? check_flush_dependency+0x10f/0x130
+ ? __warn.cold+0x93/0xf6
+ ? check_flush_dependency+0x10f/0x130
+ ? report_bug+0x10d/0x150
+ ? srso_alias_return_thunk+0x5/0xfbef5
+ ? handle_bug+0x61/0xb0
+ ? exc_invalid_op+0x17/0x80
+ ? asm_exc_invalid_op+0x1a/0x20
+ ? __pfx_amdgpu_device_delay_enable_gfx_off+0x10/0x10 [amdgpu]
+ ? check_flush_dependency+0x10f/0x130
+ __flush_work+0x10c/0x320
+ cancel_delayed_work_sync+0x62/0x80
+ amdgpu_gfx_off_ctrl+0xb7/0x150 [amdgpu]
+ amdgpu_ring_alloc+0x40/0x70 [amdgpu]
+ amdgpu_ib_schedule+0xf0/0x750 [amdgpu]
+ amdgpu_job_run+0x8e/0x200 [amdgpu]
+ drm_sched_run_job_work+0x283/0x420 [gpu_sched]
+ process_one_work+0x18a/0x350
+ worker_thread+0x235/0x370
+ ? __pfx_worker_thread+0x10/0x10
+ ? __pfx_worker_thread+0x10/0x10
+ kthread+0xcd/0x100
+ ? __pfx_kthread+0x10/0x10
+ ret_from_fork+0x31/0x50
+ ? __pfx_kthread+0x10/0x10
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+---[ end trace 0000000000000000 ]---
 
--- 
-Martin K. Petersen	Oracle Linux Engineering
+I hope this tells you something. I'm willing to switch to some cutting ed=
+ge kernel commit and report back if I get an oops again, so feel free whi=
+ch remote and commit I should go get, or any other troubleshooting steps =
+I could follow.
+
+Thanks for all your hard work,
+
+Emil J. Tywoniak (widlarizer)
