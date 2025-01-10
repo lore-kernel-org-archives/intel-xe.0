@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10D3CE77188
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Jan 2025 15:22:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAE07E7719C
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Jan 2025 15:22:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDE8D10F109;
-	Fri, 10 Jan 2025 15:22:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94B0F10F0FE;
+	Fri, 10 Jan 2025 15:22:13 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAA8B10F109;
- Fri, 10 Jan 2025 15:22:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA62310F0FE;
+ Fri, 10 Jan 2025 15:22:12 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=3A_Use_ex?=
- =?utf-8?q?ec_queue_hints_for_GT_frequency_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=3A_Use_exec_qu?=
+ =?utf-8?q?eue_hints_for_GT_frequency_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Jan 2025 15:22:00 -0000
-Message-ID: <173652252076.1994924.13314574932946317926@b555e5b46a47>
+Date: Fri, 10 Jan 2025 15:22:12 -0000
+Message-ID: <173652253295.1993879.13930145183898573878@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250110144146.3063366-1-tejas.upadhyay@intel.com>
 In-Reply-To: <20250110144146.3063366-1-tejas.upadhyay@intel.com>
@@ -44,13 +44,91 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/guc: Use exec queue hints for GT frequency (rev3)
 URL   : https://patchwork.freedesktop.org/series/143323/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 00f461924629 drm-tip: 2025y-01m-10d-10h-22m-27s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc: Use exec queue hints for GT frequency
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ae80a5f9d5b6e9df31657dbe9638190400c30ad3
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Date:   Fri Jan 10 20:11:46 2025 +0530
+
+    drm/xe/guc: Use exec queue hints for GT frequency
+    
+    Allow user to provide a low latency hint per exec queue. When set,
+    KMD sends a hint to GuC which results in special handling for this
+    exec queue. SLPC will ramp the GT frequency aggressively every time
+    it switches to this exec queue.
+    
+    We need to enable the use of SLPC Compute strategy during init, but
+    it will apply only to exec queues that set this bit during exec queue
+    creation.
+    
+    Improvement with this approach as below:
+    
+    Before,
+    
+    :~$ NEOReadDebugKeys=1 EnableDirectSubmission=0 clpeak --kernel-latency
+    Platform: Intel(R) OpenCL Graphics
+      Device: Intel(R) Graphics [0xe20b]
+        Driver version  : 24.52.0 (Linux x64)
+        Compute units   : 160
+        Clock frequency : 2850 MHz
+        Kernel launch latency : 283.16 us
+    
+    After,
+    
+    :~$ NEOReadDebugKeys=1 EnableDirectSubmission=0 clpeak --kernel-latency
+    Platform: Intel(R) OpenCL Graphics
+      Device: Intel(R) Graphics [0xe20b]
+        Driver version  : 24.52.0 (Linux x64)
+        Compute units   : 160
+        Clock frequency : 2850 MHz
+    
+        Kernel launch latency : 63.38 us
+    
+    UMD will indicate low latency hint with flag as mentioned below,
+    
+    *     struct drm_xe_exec_queue_create exec_queue_create = {
+    *          .flags = DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT or 0
+    *          .extensions = 0,
+    *          .vm_id = vm,
+    *          .num_bb_per_exec = 1,
+    *          .num_eng_per_bb = 1,
+    *          .instances = to_user_pointer(&instance),
+    *     };
+    *     ioctl(fd, DRM_IOCTL_XE_EXEC_QUEUE_CREATE, &exec_queue_create);
+    
+    Link to UMD PR : https://github.com/intel/compute-runtime/pull/794
+    
+    Note: There is outstanding issue on guc side to be not able to switch to max
+    frequency as per strategy indicated by KMD, so for experminet/test result
+    hardcoding apporch was taken and passed to guc as policy. Effort on debugging
+    from guc side is going on in parallel.
+    
+    V3:
+      - Conver user flag to kernel internal flag and use (Oak)
+      - Support query config for use to check kernel support (Jose)
+      - Dont need to take runtime pm (Vinay)
+    V2:
+      - DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT 1 is already planned for other hint(Szymon)
+      - Add motivation to description (Lucas)
+    
+    Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 00f4619246294b1de4bac42742cfef95c1f37fde drm-intel
+ae80a5f9d5b6 drm/xe/guc: Use exec queue hints for GT frequency
+-:52: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#52: 
+Note: There is outstanding issue on guc side to be not able to switch to max
+
+total: 0 errors, 1 warnings, 0 checks, 166 lines checked
 
 
