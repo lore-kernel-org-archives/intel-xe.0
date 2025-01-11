@@ -4,47 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8064DE77188
-	for <intel-xe@archiver.kernel.org>; Sat, 11 Jan 2025 01:22:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 669B1E77188
+	for <intel-xe@archiver.kernel.org>; Sat, 11 Jan 2025 02:15:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2742810E188;
-	Sat, 11 Jan 2025 01:22:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 180FF10E083;
+	Sat, 11 Jan 2025 02:15:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="O8COlAwc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HnihIxZl";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org
- [IPv6:2604:1380:45d1:ec00::3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C86BA10E188
- for <intel-xe@lists.freedesktop.org>; Sat, 11 Jan 2025 01:22:17 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 16DD3A426F1;
- Sat, 11 Jan 2025 01:20:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CEC5C4CED6;
- Sat, 11 Jan 2025 01:22:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1736558535;
- bh=7Rx0HOU6kG9xL1mFiiL4n0AMgLBgaTC7ZDdJw2wN1IQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=O8COlAwcHpCtALzuCV3vBeGECQ4ymvGEx0rP/hIXNmbg/ckG4vT/rOcWWtao6sfCd
- wmXE55RgBOYjupJ6lQmAMkwMtBBuGXPUIQBhMD7UaqqB4cM+S3Vd6HUL1Bw1akczJG
- 3TLf0B7XudYy/w4PaIu4Dyi5kRhv4AScvPUuWPCCZZ8gFqwTpwUPH0j0h7n+tXNSj8
- Yq8tC1NS3z7zZEU//+67QUC9oQM6So9rMO4lTMJOGVcckoPrgBI8cWSRj+A3W+vi7x
- VQz0UtGX+PwH3kXcrYMd1SMWG1j70Lr3Eu4AxHUBdgg4iPv6nrfU5KATrdHMs1I6kj
- F7iDh6X2a3LJA==
-Date: Sat, 11 Jan 2025 02:22:11 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com, 
- matthew.d.roper@intel.com, andi.shyti@linux.intel.com,
- intel-xe@lists.freedesktop.org, 
- anshuman.gupta@intel.com, riana.tauro@intel.com
-Subject: Re: [PATCH v1] drm/xe/hwmon: expose package and vram temperature
-Message-ID: <rz7x4udfdx7s56cu5zlf2k5ckkrvctaji6k5teqg4hsyolpq24@z5ezl4nvtywh>
-References: <20250108092415.289551-1-raag.jadav@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 152BA10E083
+ for <intel-xe@lists.freedesktop.org>; Sat, 11 Jan 2025 02:15:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736561745; x=1768097745;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DhtPg8IiiuCstbfe3ZDtJ+853rN1u9E77EB+RrmyE48=;
+ b=HnihIxZlat6p8oonCM+/QNKSsQuRWY9di+nTkSSZEojkhIy6pK+7qpdq
+ +Fi09cHoAokF7yZFyW8bb5qqCSJJaVI8WrToEIQ10x2l55dKlvbRPltg4
+ ko8krRNMC+0NfxJOPE3Y0IVPPyEbNYR1IpSCLn0CEgFwxcGbAsZJD/dRl
+ 7CK1EODvKu6iQgJ9yvG+1h2fHPRyOPvpT/D7IZc6Io2ikBf/5q4XI5yM2
+ Cr+Vl2QU7osnomT16ApK5ahT/zB52RnimuH5Ul1UjZ/n0A4AXUtw02mm2
+ bmZsSYMkk/Z0/c/QxHyrl0ybPvmiM2ZuA5RMqDW4F2eoLe3XFiRu+mA2k Q==;
+X-CSE-ConnectionGUID: MgmgUMlORb6gVk7AfpxjIw==
+X-CSE-MsgGUID: twFctqDhTj6iQMYmCCxKUw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11311"; a="36889745"
+X-IronPort-AV: E=Sophos;i="6.12,305,1728975600"; d="scan'208";a="36889745"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2025 18:15:44 -0800
+X-CSE-ConnectionGUID: 4KF0ynHGTaiu+HSGjQofxQ==
+X-CSE-MsgGUID: 9mTBRomvSRyllUSc5xOT5g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="103772910"
+Received: from orsosgc001.jf.intel.com ([10.165.21.142])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2025 18:15:44 -0800
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH] drm/xe/oa: Add missing VISACTL mux registers
+Date: Fri, 10 Jan 2025 18:15:39 -0800
+Message-ID: <20250111021539.2920346-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250108092415.289551-1-raag.jadav@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,15 +64,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Raag,
+Add missing VISACTL mux registers required for some OA config's.
 
-On Wed, Jan 08, 2025 at 02:54:15PM +0530, Raag Jadav wrote:
-> Add hwmon support for temp1_input and temp2_input attributes, which will
-> expose package and vram temperature in millidegree Celsius. With this in
-> place we can monitor temperature using lm-sensors tool.
-> 
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Fixes: cdf02fe1a94a ("drm/xe/oa/uapi: Add/remove OA config perf ops")
+Cc: stable@vger.kernel.org
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/xe/xe_oa.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 4e00a77289c50..eeb96b5f49e2a 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -2163,6 +2163,7 @@ static const struct xe_mmio_range xe2_oa_mux_regs[] = {
+ 	{ .start = 0x5194, .end = 0x5194 },	/* SYS_MEM_LAT_MEASURE_MERTF_GRP_3D */
+ 	{ .start = 0x8704, .end = 0x8704 },	/* LMEM_LAT_MEASURE_MCFG_GRP */
+ 	{ .start = 0xB1BC, .end = 0xB1BC },	/* L3_BANK_LAT_MEASURE_LBCF_GFX */
++	{ .start = 0xD0E0, .end = 0xD0F4 },	/* VISACTL */
+ 	{ .start = 0xE18C, .end = 0xE18C },	/* SAMPLER_MODE */
+ 	{ .start = 0xE590, .end = 0xE590 },	/* TDL_LSC_LAT_MEASURE_TDL_GFX */
+ 	{ .start = 0x13000, .end = 0x137FC },	/* PES_0_PESL0 - PES_63_UPPER_PESL3 */
+-- 
+2.47.1
 
-Andi
