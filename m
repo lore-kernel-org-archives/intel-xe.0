@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D512E77188
-	for <intel-xe@archiver.kernel.org>; Sat, 11 Jan 2025 03:14:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DEFCE7719A
+	for <intel-xe@archiver.kernel.org>; Sat, 11 Jan 2025 11:00:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A416410E192;
-	Sat, 11 Jan 2025 03:14:01 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D78E010E053;
- Sat, 11 Jan 2025 03:14:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7087456561416428901=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/oa=3A_Add_missing_VI?=
- =?utf-8?q?SACTL_mux_registers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id F199F10E57A;
+	Sat, 11 Jan 2025 11:00:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U8s7ODKq";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05AF310E57A
+ for <intel-xe@lists.freedesktop.org>; Sat, 11 Jan 2025 11:00:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736593241; x=1768129241;
+ h=date:from:to:cc:subject:message-id;
+ bh=vFzZ31gvqKjvRyeG4s2QMvpQ5WqHVcaRtNxwcBri49s=;
+ b=U8s7ODKqCfJkaD0PcbW0YwH9BBmdJskztLruZO9vWsl3Rh0AGv8IHAzc
+ 0iUfr9J6FqgXWtw3BWEom04o2pxTpJY3aOBWZWzODXCpgAQlx2217FKAd
+ jL6FQJ3qFot54WR61pyydo4a+g55me1a+0MNTayDoIXCOii/K3RmLBRbD
+ ptwBs/wS97NDsdkxP/EUiyTsVwwHZRBRIVswxwVZR3rxa/xYnImZ7YEYp
+ mqN7lbAZHf/5cV6QvUFI6bcV3Zmq04FVmxNrCfbGGlvXE19i4qUBRgNk7
+ gAkJqFxQRGu++ZaCUSSvyiYC8fOC2i/FhdkQ0a6RskN1rsGiibjAk/G9X g==;
+X-CSE-ConnectionGUID: QgKM5BdxQuK4MwkwhmTWyw==
+X-CSE-MsgGUID: 5CjsMXwSSjKoPwca5XsT3w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11311"; a="39698160"
+X-IronPort-AV: E=Sophos;i="6.12,307,1728975600"; d="scan'208";a="39698160"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2025 03:00:38 -0800
+X-CSE-ConnectionGUID: 9QFvtRnTRz60JnIKW48hxw==
+X-CSE-MsgGUID: EZn2Y6pmRcSybJvza0BV4Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,307,1728975600"; d="scan'208";a="103903017"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+ by fmviesa007.fm.intel.com with ESMTP; 11 Jan 2025 03:00:37 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tWZEJ-000KY7-0F;
+ Sat, 11 Jan 2025 11:00:35 +0000
+Date: Sat, 11 Jan 2025 18:59:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 11 Jan 2025 03:14:00 -0000
-Message-ID: <173656524087.2145932.11999856374471208889@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250111021539.2920346-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20250111021539.2920346-1-ashutosh.dixit@intel.com>
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 6a04bb5a2046067681257d5dd69a724856c8fbcb
+Message-ID: <202501111827.vA6S1Tvr-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,195 +61,111 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7087456561416428901==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 6a04bb5a2046067681257d5dd69a724856c8fbcb  drm/xe: remove unused xe_pciids.h harder, add missing PCI ID
 
-== Series Details ==
+elapsed time: 1459m
 
-Series: drm/xe/oa: Add missing VISACTL mux registers
-URL   : https://patchwork.freedesktop.org/series/143423/
-State : failure
+configs tested: 89
+configs skipped: 1
 
-== Summary ==
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-CI Bug Log - changes from xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde_BAT -> xe-pw-143423v1_BAT
-====================================================
+tested configs:
+alpha                             allnoconfig    gcc-14.2.0
+arc                               allnoconfig    gcc-13.2.0
+arc                   randconfig-001-20250110    gcc-13.2.0
+arc                   randconfig-002-20250110    gcc-13.2.0
+arm                               allnoconfig    clang-17
+arm                   randconfig-001-20250110    clang-20
+arm                   randconfig-002-20250110    gcc-14.2.0
+arm                   randconfig-003-20250110    clang-19
+arm                   randconfig-004-20250110    gcc-14.2.0
+arm                             rpc_defconfig    clang-17
+arm64                             allnoconfig    gcc-14.2.0
+arm64                 randconfig-001-20250110    gcc-14.2.0
+arm64                 randconfig-002-20250110    gcc-14.2.0
+arm64                 randconfig-003-20250110    clang-17
+arm64                 randconfig-004-20250110    gcc-14.2.0
+csky                              allnoconfig    gcc-14.2.0
+csky                  randconfig-001-20250110    gcc-14.2.0
+csky                  randconfig-002-20250110    gcc-14.2.0
+hexagon                           allnoconfig    clang-20
+hexagon               randconfig-001-20250110    clang-20
+hexagon               randconfig-002-20250110    clang-20
+i386        buildonly-randconfig-001-20250110    clang-19
+i386        buildonly-randconfig-002-20250110    clang-19
+i386        buildonly-randconfig-003-20250110    clang-19
+i386        buildonly-randconfig-004-20250110    gcc-12
+i386        buildonly-randconfig-005-20250110    gcc-12
+i386        buildonly-randconfig-006-20250110    clang-19
+loongarch                         allnoconfig    gcc-14.2.0
+loongarch             randconfig-001-20250110    gcc-14.2.0
+loongarch             randconfig-002-20250110    gcc-14.2.0
+m68k                              allnoconfig    gcc-14.2.0
+microblaze                        allnoconfig    gcc-14.2.0
+mips                              allnoconfig    gcc-14.2.0
+mips                           ip30_defconfig    gcc-14.2.0
+mips                           ip32_defconfig    clang-20
+mips                   sb1250_swarm_defconfig    gcc-14.2.0
+nios2                             allnoconfig    gcc-14.2.0
+nios2                 randconfig-001-20250110    gcc-14.2.0
+nios2                 randconfig-002-20250110    gcc-14.2.0
+openrisc                          allnoconfig    gcc-14.2.0
+openrisc                         allyesconfig    gcc-14.2.0
+parisc                           allmodconfig    gcc-14.2.0
+parisc                            allnoconfig    gcc-14.2.0
+parisc                           allyesconfig    gcc-14.2.0
+parisc                randconfig-001-20250110    gcc-14.2.0
+parisc                randconfig-002-20250110    gcc-14.2.0
+powerpc                          allmodconfig    gcc-14.2.0
+powerpc                           allnoconfig    gcc-14.2.0
+powerpc                      bamboo_defconfig    clang-20
+powerpc                      ppc6xx_defconfig    gcc-14.2.0
+powerpc               randconfig-001-20250110    clang-20
+powerpc               randconfig-002-20250110    clang-20
+powerpc               randconfig-003-20250110    clang-20
+powerpc64             randconfig-001-20250110    clang-17
+powerpc64             randconfig-002-20250110    clang-19
+powerpc64             randconfig-003-20250110    clang-17
+riscv                             allnoconfig    gcc-14.2.0
+riscv                 randconfig-001-20250110    clang-17
+riscv                 randconfig-002-20250110    clang-20
+s390                             allmodconfig    clang-19
+s390                              allnoconfig    clang-20
+s390                             allyesconfig    gcc-14.2.0
+s390                  randconfig-001-20250110    gcc-14.2.0
+s390                  randconfig-002-20250110    gcc-14.2.0
+sh                               alldefconfig    gcc-14.2.0
+sh                               allmodconfig    gcc-14.2.0
+sh                                allnoconfig    gcc-14.2.0
+sh                               allyesconfig    gcc-14.2.0
+sh                    randconfig-001-20250110    gcc-14.2.0
+sh                    randconfig-002-20250110    gcc-14.2.0
+sh                          urquell_defconfig    gcc-14.2.0
+sparc                            allmodconfig    gcc-14.2.0
+sparc                             allnoconfig    gcc-14.2.0
+sparc                 randconfig-001-20250110    gcc-14.2.0
+sparc                 randconfig-002-20250110    gcc-14.2.0
+sparc64               randconfig-001-20250110    gcc-14.2.0
+sparc64               randconfig-002-20250110    gcc-14.2.0
+um                                allnoconfig    clang-18
+um                    randconfig-001-20250110    clang-20
+um                    randconfig-002-20250110    gcc-12
+x86_64      buildonly-randconfig-001-20250110    gcc-12
+x86_64      buildonly-randconfig-002-20250110    clang-19
+x86_64      buildonly-randconfig-003-20250110    clang-19
+x86_64      buildonly-randconfig-004-20250110    gcc-12
+x86_64      buildonly-randconfig-005-20250110    clang-19
+x86_64      buildonly-randconfig-006-20250110    clang-19
+xtensa                            allnoconfig    gcc-14.2.0
+xtensa                randconfig-001-20250110    gcc-14.2.0
+xtensa                randconfig-002-20250110    gcc-14.2.0
 
-Summary
--------
-
-  **WARNING**
-
-  Minor unknown changes coming with xe-pw-143423v1_BAT need to be verified
-  manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-143423v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-143423v1_BAT:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@xe_gt_freq@freq_fixed_idle:
-    - bat-pvc-2:          [SKIP][1] ([Intel XE#1021]) -> [SKIP][2] +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde/bat-pvc-2/igt@xe_gt_freq@freq_fixed_idle.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143423v1/bat-pvc-2/igt@xe_gt_freq@freq_fixed_idle.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-143423v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_intel_bb@blit-reloc:
-    - bat-adlp-vf:        [PASS][3] -> [DMESG-WARN][4] ([Intel XE#3958])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde/bat-adlp-vf/igt@xe_intel_bb@blit-reloc.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143423v1/bat-adlp-vf/igt@xe_intel_bb@blit-reloc.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [PASS][5] -> [SKIP][6] ([Intel XE#1192]) +1 other test skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143423v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][7] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][8] ([Intel XE#1192])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143423v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#1021]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1021
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#3958]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * IGT: IGT_8186 -> IGT_8188
-  * Linux: xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde -> xe-pw-143423v1
-
-  IGT_8186: 2c6b2f0ed4075aa1ac3d341d612e41343cff4e4d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8188: ef0abf7f39a7ef0ecf2f08c62b90b852c435c755 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde: 00f4619246294b1de4bac42742cfef95c1f37fde
-  xe-pw-143423v1: 143423v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143423v1/index.html
-
---===============7087456561416428901==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/oa: Add missing VISACTL mux registers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143423/">https://patchwork.freedesktop.org/series/143423/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143423v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143423v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde_BAT -&gt; xe-pw-143423v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>WARNING</strong></p>
-<p>Minor unknown changes coming with xe-pw-143423v1_BAT need to be verified<br />
-  manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-143423v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-143423v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_gt_freq@freq_fixed_idle:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde/bat-pvc-2/igt@xe_gt_freq@freq_fixed_idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1021">Intel XE#1021</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143423v1/bat-pvc-2/igt@xe_gt_freq@freq_fixed_idle.html">SKIP</a> +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-143423v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_intel_bb@blit-reloc:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde/bat-adlp-vf/igt@xe_intel_bb@blit-reloc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143423v1/bat-adlp-vf/igt@xe_intel_bb@blit-reloc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958">Intel XE#3958</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143423v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143423v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8186 -&gt; IGT_8188</li>
-<li>Linux: xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde -&gt; xe-pw-143423v1</li>
-</ul>
-<p>IGT_8186: 2c6b2f0ed4075aa1ac3d341d612e41343cff4e4d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8188: ef0abf7f39a7ef0ecf2f08c62b90b852c435c755 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2474-00f4619246294b1de4bac42742cfef95c1f37fde: 00f4619246294b1de4bac42742cfef95c1f37fde<br />
-  xe-pw-143423v1: 143423v1</p>
-
-</body>
-</html>
-
---===============7087456561416428901==--
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
