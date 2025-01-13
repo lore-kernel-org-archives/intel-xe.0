@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5D56E7719F
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jan 2025 13:31:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DB03E7719F
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jan 2025 13:33:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1B0D10E684;
-	Mon, 13 Jan 2025 13:31:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="doHLN4Rl";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB7A310E685;
- Mon, 13 Jan 2025 13:31:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736775085; x=1768311085;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2EpgXsnZKtFdEKmFB4ugPI9M5QuZ3Ls5yODFufgZaJY=;
- b=doHLN4Rl3i/PUxl5YTRBA1LDQo+P0SampGUjvfbRhvAle4gHffkOMSO7
- Fl1PDCGaaHrXcNV5QH6mJ967DHYMKVPm9h2qxD4meaavi8ezlr2EdLXf+
- +cmR1JisGP1MK6OpSvteGZ+7pa4F8jJG58q785LABh1uVh4AU57junDbR
- lzg94WPL+IkddIyaayvJrOWtDkulJwPwvhprDOdfNGGfz3BLKfOa3Zly+
- zrjsnhiOM8Zdc16lXFQjNw6Ki8p5IJULpi6iFHHTxweIZxZFYPvDTZlVl
- Ss+3ri6JZa2FUJnZswM+7Z6MUwqAAf190fH3OUzvFuScaE5Cc+XWA7o19 A==;
-X-CSE-ConnectionGUID: nflwS5g2SKWEHF8M59HyqQ==
-X-CSE-MsgGUID: Ucp5gvzfSNaZx7fHtyO6sg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="40976199"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="40976199"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2025 05:31:25 -0800
-X-CSE-ConnectionGUID: W1iCXJ7bSl+p2MvYuUjxjQ==
-X-CSE-MsgGUID: 9irlC6pCTSGTNVSiqyAOPg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="104655077"
-Received: from unknown (HELO mkuoppal-desk.fi.intel.com) ([10.237.72.193])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2025 05:31:23 -0800
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH 14/27] drm/xe/eudebug: userptr vm access pread/pwrite
-Date: Mon, 13 Jan 2025 15:32:31 +0200
-Message-ID: <20250113133231.374242-1-mika.kuoppala@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <b3145cc1cb5470e00070136add75159e07bbad3a.camel@linux.intel.com>
-References: <b3145cc1cb5470e00070136add75159e07bbad3a.camel@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C798C10E68D;
+	Mon, 13 Jan 2025 13:33:18 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7371D10E68F;
+ Mon, 13 Jan 2025 13:33:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Introduce_drm_sharpness_proper?=
+ =?utf-8?q?ty_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 13 Jan 2025 13:33:17 -0000
+Message-ID: <173677519746.3237056.1221140930405733258@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250113104936.1338290-1-nemesa.garg@intel.com>
+In-Reply-To: <20250113104936.1338290-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,67 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement debugger vm access for userptrs.
+== Series Details ==
 
-When userptr bind is done, mmu notifier is added by core xe.
-Later when debugger wants to access the target memory, this
-notifier can be used as it carries the struct mm of target.
+Series: Introduce drm sharpness property (rev5)
+URL   : https://patchwork.freedesktop.org/series/139954/
+State : success
 
-Implement userptr vm access, for debugger pread/pwrite
-using notifier mm passed to access_remote_vm().
+== Summary ==
 
-This is based on suggestions from Thomas, Joonas and Simona.
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/kernel/
+lib/modules/6.13.0-rc7-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc7-xe+/kernel/block/
+lib/modules/6.13.0-rc7-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc7-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc7-xe+/build
+lib/modules/6.13.0-rc7-xe+/modules.alias.bin
+lib/modules/6.13.0-rc7-xe+/modules.builtin
+lib/modules/6.13.0-rc7-xe+/modules.softdep
+lib/modules/6.13.0-rc7-xe+/modules.alias
+lib/modules/6.13.0-rc7-xe+/modules.order
+lib/modules/6.13.0-rc7-xe+/modules.symbols
+lib/modules/6.13.0-rc7-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1736775186:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1736775186:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-v2: need to add offset into vma (Dominik)
-v3: use exported access_remote_vm (Thomas)
-
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_eudebug.c | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-index 210d9eeab1a7..25f18aa5447b 100644
---- a/drivers/gpu/drm/xe/xe_eudebug.c
-+++ b/drivers/gpu/drm/xe/xe_eudebug.c
-@@ -3077,6 +3077,27 @@ static int xe_eudebug_vma_access(struct xe_vma *vma,
- 
- 		xe_bo_put(bo);
- 
-+		return ret;
-+	} else if (xe_vma_is_userptr(vma)) {
-+		struct xe_userptr *userptr = &to_userptr_vma(vma)->userptr;
-+		struct xe_vm *vm = xe_vma_vm(vma);
-+		struct mm_struct *mm = NULL;
-+		int ret;
-+
-+		down_read(&vm->userptr.notifier_lock);
-+		if (mmget_not_zero(userptr->notifier.mm))
-+			mm = userptr->notifier.mm;
-+		up_read(&vm->userptr.notifier_lock);
-+
-+		if (!mm)
-+			return -EFAULT;
-+
-+		ret = access_remote_vm(mm,
-+				       xe_vma_userptr(vma) + offset_in_vma,
-+				       buf, bytes,
-+				       write ? FOLL_WRITE : 0);
-+		mmput(mm);
-+
- 		return ret;
- 	}
- 
--- 
-2.43.0
 
