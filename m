@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4AF1C02180
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jan 2025 15:39:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB10BC02183
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jan 2025 15:47:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8087510E6E5;
-	Mon, 13 Jan 2025 15:39:33 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E5BE10E6E5;
- Mon, 13 Jan 2025 15:39:32 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 636B110E6F5;
+	Mon, 13 Jan 2025 15:47:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G5vsa0j4";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5ECCB10E6EB;
+ Mon, 13 Jan 2025 15:47:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736783260; x=1768319260;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kZ5e0jSPronL2jHSLN7wbYf04zbNzIrSKLGXxbgVwCM=;
+ b=G5vsa0j4XiH8tAq0gEqwzvtugHezXNo3nJI8dCcW7knzhTOjRnXUwfqn
+ GCuJIzPI7HJkYOaZF8SmRjqBbxX9WWwD5Vgu0cYIzJN8sh6R8S0Vk9zWn
+ Vuwd6KSLblNTi4cLQooVf/i9Z/EMWsfWp784cZ8X13CCrlbRf4MsFJ9Pb
+ NPMt5EbvgIdMW0x6JbcoXrt5LDHoeKAkL1T+3ASR9Ag1D+QKa5OC3nCTI
+ X4g5F0wJfGUqoXZVpRoZwkLkgXiZhKLFQssd1KlF0cu5Q1eSjMtiF5kPg
+ XcaHmmk7XbIXcWAaVOCxqq3Bus9dad0fwGKP5YZvFvH+SvjyVVKt8bMFy A==;
+X-CSE-ConnectionGUID: rpt0JVOJTQWmkEC/kNuLeA==
+X-CSE-MsgGUID: ILPRQnv3TT+B7gE0khJszg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="40818656"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="40818656"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2025 07:47:40 -0800
+X-CSE-ConnectionGUID: imqAQK4uSkGWqnntqPw/6w==
+X-CSE-MsgGUID: pNM2LZioRLKiHWQcRC5Bcg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="109534247"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2025 07:47:38 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/xe/dp: Enable DP tunneling
+Date: Mon, 13 Jan 2025 17:48:32 +0200
+Message-ID: <20250113154832.1004369-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.44.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/display=3A_Re-use?=
- =?utf-8?q?_display_vmas_when_possible_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Jan 2025 15:39:32 -0000
-Message-ID: <173678277264.3289590.8356548857550695186@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241206182032.196307-1-dev@lankhorst.se>
-In-Reply-To: <20241206182032.196307-1-dev@lankhorst.se>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +61,79 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Enable the DP tunneling functionality in the xe driver.
 
-Series: drm/xe/display: Re-use display vmas when possible (rev4)
-URL   : https://patchwork.freedesktop.org/series/136033/
-State : success
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_tunnel.h |  5 +++--
+ drivers/gpu/drm/xe/Kconfig                     | 14 ++++++++++++++
+ drivers/gpu/drm/xe/Makefile                    |  3 +++
+ 3 files changed, 20 insertions(+), 2 deletions(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 26615f392d2232d75d405c54944e21aa1d28c204
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+index e9314cf25a193..7a91b4945eb8d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
++++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+@@ -20,7 +20,8 @@ struct intel_dp;
+ struct intel_encoder;
+ struct intel_link_bw_limits;
+ 
+-#if IS_ENABLED(CONFIG_DRM_I915_DP_TUNNEL) && defined(I915)
++#if (defined(CONFIG_DRM_I915_DP_TUNNEL) && defined(I915)) || \
++	(defined(CONFIG_DRM_XE_DP_TUNNEL) && !defined(I915))
+ 
+ int intel_dp_tunnel_detect(struct intel_dp *intel_dp, struct drm_modeset_acquire_ctx *ctx);
+ void intel_dp_tunnel_disconnect(struct intel_dp *intel_dp);
+@@ -127,6 +128,6 @@ intel_dp_tunnel_mgr_init(struct intel_display *display)
+ 
+ static inline void intel_dp_tunnel_mgr_cleanup(struct intel_display *display) {}
+ 
+-#endif /* CONFIG_DRM_I915_DP_TUNNEL */
++#endif /* CONFIG_DRM_I915_DP_TUNNEL || CONFIG_DRM_XE_DP_TUNNEL */
+ 
+ #endif /* __INTEL_DP_TUNNEL_H__ */
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index b51a2bde73e29..50cf80df51900 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -59,6 +59,20 @@ config DRM_XE_DISPLAY
+ 	help
+ 	  Disable this option only if you want to compile out display support.
+ 
++config DRM_XE_DP_TUNNEL
++	bool "Enable DP tunnel support"
++	depends on DRM_XE
++	depends on USB4
++	select DRM_DISPLAY_DP_TUNNEL
++	default y
++	help
++	  Choose this option to detect DP tunnels and enable the Bandwidth
++	  Allocation mode for such tunnels. This allows using the maximum
++	  resolution allowed by the link BW on all displays sharing the
++	  link BW, for instance on a Thunderbolt link.
++
++	  If in doubt say "Y".
++
+ config DRM_XE_FORCE_PROBE
+ 	string "Force probe xe for selected Intel hardware IDs"
+ 	depends on DRM_XE
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 5c97ad6ed7385..81f63258a7e19 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -301,6 +301,9 @@ ifeq ($(CONFIG_DEBUG_FS),y)
+ 		i915-display/intel_pipe_crc.o
+ endif
+ 
++xe-$(CONFIG_DRM_XE_DP_TUNNEL) += \
++	i915-display/intel_dp_tunnel.o
++
+ obj-$(CONFIG_DRM_XE) += xe.o
+ obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
+ 
+-- 
+2.44.2
 
