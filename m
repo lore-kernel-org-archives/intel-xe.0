@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 807D8C02183
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jan 2025 21:27:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D9C5C02180
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jan 2025 21:27:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 491D910E7D5;
-	Mon, 13 Jan 2025 21:27:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14FFE10E7D5;
+	Mon, 13 Jan 2025 21:27:29 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7873F10E7D5;
- Mon, 13 Jan 2025 21:27:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A32F10E7D5;
+ Mon, 13 Jan 2025 21:27:28 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/dmc=5Fwl=3A?=
- =?utf-8?q?_Track_pipe_interrupt_registers_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/dmc=5Fwl=3A_Trac?=
+ =?utf-8?q?k_pipe_interrupt_registers_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Jan 2025 21:27:10 -0000
-Message-ID: <173680363048.3360825.6748150900231263742@b555e5b46a47>
+Date: Mon, 13 Jan 2025 21:27:28 -0000
+Message-ID: <173680364803.3360825.8382858422543964659@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250113204306.112266-1-gustavo.sousa@intel.com>
 In-Reply-To: <20250113204306.112266-1-gustavo.sousa@intel.com>
@@ -48,11 +48,42 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 20058aae3e61 drm-tip: 2025y-01m-13d-17h-18m-33s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: Use display MMIO functions in intel_display_irq.c
-Applying: drm/i915/display: Wrap IRQ-specific uncore functions
-Applying: drm/i915/dmc_wl: Track pipe interrupt registers
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 925178566ee7d6d26138b59b041256fec1666271
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Mon Jan 13 17:38:58 2025 -0300
+
+    drm/i915/dmc_wl: Track pipe interrupt registers
+    
+    Pipe interrupt registers live in their respective pipes' power wells,
+    which are below PG0. That means that they must also be tracked as
+    registers that are powered-off during dynamic DC states.
+    
+    There are probably more ranges that we need to track down and add to the
+    powered_off_ranges. However, let's make this change only about pipe
+    interrupt registers to fix some vblank timeouts observed due to the DMC
+    wakelock not being taken for those registers.
+    
+    In the future, we might want to replace powered_off_ranges with a new
+    table to represent registers in PG0, which should be probably easier to
+    maintain. Any register not belonging to that table should be considered
+    powered off during dynamic DC states and, as such, requiring the DMC
+    wakelock for access.
+    
+    Bspec: 72519, 71583
+    Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 20058aae3e619821197cd32b736893f1d7917ba3 drm-intel
+e35f918a4385 drm/i915/display: Use display MMIO functions in intel_display_irq.c
+d2a9f6e25991 drm/i915/display: Wrap IRQ-specific uncore functions
+925178566ee7 drm/i915/dmc_wl: Track pipe interrupt registers
 
 
