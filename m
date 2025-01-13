@@ -4,56 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76F5CC02180
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Jan 2025 16:45:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF182C02180
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Jan 2025 16:48:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E9AA10E72B;
-	Mon, 13 Jan 2025 16:45:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B379510E72E;
+	Mon, 13 Jan 2025 16:48:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OlB/wQFW";
+	dkim=permerror (0-bit key) header.d=sapience.com header.i=@sapience.com header.b="ICdZ5kYC";
+	dkim=pass (2048-bit key; secure) header.d=sapience.com header.i=@sapience.com header.b="md32p62r";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5277710E72A;
- Mon, 13 Jan 2025 16:45:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736786709; x=1768322709;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=D/FEDvK/MGCzHnDd2wgr5sAsfkdhqlM2Z38rEqyK2tI=;
- b=OlB/wQFWj3PM0bH+OmqemAfKherlaHWAhutS43lA/IT+MEIol8GKy7+N
- rLL8CxvodduN9iRclDarqqfYzdGBXfJQDY9F7eHGhOY7o9qEbQj3PsBMt
- ahg4Utyim2TmI0U2jA6f3JK8UIZ+bdb0QK3/Ub/1SrYwvsdf829pdewp6
- onXklCYcAq+2FLzDbSSG+u3YKzQr0TC0wNvzil4E111wUwUT8bwh80T8K
- pHCRqU4tDNpBmqwY9Rc0zxT9BipSOdINzXQA9V4igJSNKXWl6j9s4E3bQ
- rmcD+aF6fOpfaBepT1r6WaBDW7Nltl2h2FkAb+q3mQPhWaf+s3f/yd8Oz A==;
-X-CSE-ConnectionGUID: R3ZQhY4JQySodE7hsv94lQ==
-X-CSE-MsgGUID: UsyBR3U2SoaZxCNBiSvVQQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="37086429"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="37086429"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2025 08:45:09 -0800
-X-CSE-ConnectionGUID: DEnqptPxRgS8rJl2kdAGdQ==
-X-CSE-MsgGUID: wC4RiyGhQ2amzwMrqF5xaQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="104313841"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.145])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2025 08:45:07 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Emil J Tywoniak <emil@tywoniak.eu>, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Subject: Re: oops in xe_bo_evict on 6.12.8
-In-Reply-To: <1686df0ae8f7caf0d97369a685c810e09afdbca1@tywoniak.eu>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <1686df0ae8f7caf0d97369a685c810e09afdbca1@tywoniak.eu>
-Date: Mon, 13 Jan 2025 18:45:04 +0200
-Message-ID: <87a5buirxr.fsf@intel.com>
+Received: from s1.sapience.com (s1.sapience.com [72.84.236.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5C4010E72E;
+ Mon, 13 Jan 2025 16:48:30 +0000 (UTC)
+Authentication-Results: dkim-srvy7; dkim=pass (Good ed25519-sha256 
+ signature) header.d=sapience.com header.i=@sapience.com 
+ header.a=ed25519-sha256; dkim=pass (Good 2048 bit rsa-sha256 signature) 
+ header.d=sapience.com header.i=@sapience.com header.a=rsa-sha256
+Received: from srv8.sapience.com (srv8.sapience.com [x.x.x.x])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (secp384r1) server-digest SHA384)
+ (No client certificate requested)
+ by s1.sapience.com (Postfix) with ESMTPS id A510D480A41;
+ Mon, 13 Jan 2025 11:48:29 -0500 (EST)
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=sapience.com;
+ i=@sapience.com; q=dns/txt; s=dk-ed25519-220413; t=1736786909;
+ h=message-id : subject : from : to : cc : date : in-reply-to :
+ references : content-type : mime-version : from;
+ bh=u/YC2T5rfqWAbWfWzUHFz42ptWsYmEPR92N33rWxDU0=;
+ b=ICdZ5kYCWccA3K3n6LxQi7qbHyuSiA0NGpqmAgptrUmeBJCA/nkD8Bv6Xh3qpZiY6WVYl
+ CQpeIMBlBf0DCJwDg==
+ARC-Seal: i=1; a=rsa-sha256; d=sapience.com; s=arc6-rsa-220412; t=1736786909; 
+ cv=none;
+ b=AOYSOxEQC6ZVQfOe7U47CLTo285X5F2m8Uz9j+oiBm27Ajc6cRLzYh1f7b37GFU+FKgkt9zBZj/7lwrzsbLnoforxkyuSRYxZu1QEDMmHamkG8aW1KAzCZjo0wUNNTW/LaPQUbOTFHVRGKrnvgYTzPuSX7SUGLzHPaDEHBUBuqL6ObcAcauCgtn/TmHY1WaRQgPmXNz4u8DdLNjbsUTSAAQZNC5jqrKJviXG2b1pEalpY+KRhjSnnKMT6iJiHlWc+tSDbCUYK8gaDqPHmyyYS8q5VHoiaJwOQUUb4EsHMrfvOfx/DBMj4wiHskl3zglhJKDEIVD7JcwbZt/efH8yOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; d=sapience.com; s=arc6-rsa-220412;
+ t=1736786909; c=relaxed/simple;
+ bh=gXKgdTWxfvNgx24T2zV+JaE5rsZk1jTeEGclnt7mWsw=;
+ h=DKIM-Signature:DKIM-Signature:Message-ID:Subject:From:To:Cc:Date:
+ In-Reply-To:References:Autocrypt:Content-Type:User-Agent:
+ MIME-Version;
+ b=RzyrnPbxPvbYnFlmlN7NfEZHkVK5GJn0EycLC1F7yu3u0Mv3yox0o7AVfaQ5SNvo0Qs9WZjhb+saXN0bKkiufxrH+i8OFDGPVOKCBdL9Pu0+T7QAiw/9sVV6VYaoQg2vsCBegSI61OVBJvEeA7CGW5hMoO5NF2r7NCdEZEM5qW9lRPAtztUXn2+WZ4oeW9ClJ6s5KrIe94JJzAGIuZscEmxsiOoH1pEc+HZcmakFvFft+6rkHFY/yaNceb38ugL/UGEVINFjgSreF7TrU/AdWyBneras5TAkAiE0p2SYV8FNmO0S6GHL/NVHjid0kRRXHNSdfYlKMM8C6CCV5dLh4w==
+ARC-Authentication-Results: i=1; arc-srv8.sapience.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sapience.com;
+ i=@sapience.com; q=dns/txt; s=dk-rsa-220413; t=1736786909;
+ h=message-id : subject : from : to : cc : date : in-reply-to :
+ references : content-type : mime-version : from;
+ bh=u/YC2T5rfqWAbWfWzUHFz42ptWsYmEPR92N33rWxDU0=;
+ b=md32p62rxgVOFtmUnLVggYBN0rA6F8vjQ3Z/yiKUmdXwoTG5P2hwO4RefON/IwwEqLvvV
+ x2j+2fCZKaWtvTJTzC1Iob9BBV+0IGou1ccuo4HWhjXESD8Ny3IUzzvyvQ2+GrO3O48ygRZ
+ 6teFsEhO+G9b95hRasdxuAWBHjWWvNs3p+W+upNirlNZYxxc5+URWSF+vPAfYZU7x8+5WVW
+ rX3CCxdI9Y7DYEn9+aqF+s9CPxG0A+D3EXYrYajJBjuEeFiQQmuaheZWF9FcWamJ9VmRbkS
+ xI2Lq5fmUI99v1VGtDjzNEYn3mke3zZ7RhwcCyC0Y4hPRKQRYVTwqsTx/YbQ==
+Received: from lap7.sapience.com (lap7w.sapience.com [x.x.x.x])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature ECDSA (secp384r1)
+ server-digest SHA384) (No client certificate requested)
+ by srv8.sapience.com (Postfix) with ESMTPS id 6CC52280050;
+ Mon, 13 Jan 2025 11:48:29 -0500 (EST)
+Message-ID: <1c418b7b67b1e75bed5068a86165939648bd1952.camel@sapience.com>
+Subject: Re: [REGRESSION] Re: 6.13-rc1 graphics fail -> resolved
+From: Genes Lists <lists@sapience.com>
+To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: regressions@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com, 
+ rodrigo.vivi@intel.com, airlied@gmail.com, tzimmermann@suse.de, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Mon, 13 Jan 2025 11:48:28 -0500
+In-Reply-To: <53757618ad585771809d0b37915c4d97fab06fdb.camel@sapience.com>
+References: <3b097dddd7095bccabe6791b90899c689f271a35.camel@sapience.com>
+ <Z07Mg2_6y2MW22qV@intel.com>
+ <7db24095f935d874fae466853b0984103f97b40f.camel@sapience.com>
+ <dd13efc9b3fe3e3acd599ca91b714fa92f6cb9a8.camel@sapience.com>
+ <53757618ad585771809d0b37915c4d97fab06fdb.camel@sapience.com>
+Autocrypt: addr=lists@sapience.com; prefer-encrypt=mutual;
+ keydata=mDMEXSY9GRYJKwYBBAHaRw8BAQdAwzFfmp+m0ldl2vgmbtPC/XN7/k5vscpADq3BmRy5R
+ 7y0LU1haWwgTGlzdHMgKEwwIDIwMTkwNzEwKSA8bGlzdHNAc2FwaWVuY2UuY29tPoiWBBMWCAA+Ah
+ sBBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEE5YMoUxcbEgQOvOMKc+dlCv6PxQAFAmPJfooFCRl
+ vRHEACgkQc+dlCv6PxQAc/wEA/Dbmg91DOGXll0OW1GKaZQGQDl7fHibMOKRGC6X/emoA+wQR5FIz
+ BnV/PrXbao8LS/h0tSkeXgPsYxrzvfZInIAC
+Content-Type: multipart/signed; micalg="pgp-sha384";
+ protocol="application/pgp-signature"; boundary="=-lcoIbt6gV8L3KOHuxPSh"
+User-Agent: Evolution 3.54.3 
 MIME-Version: 1.0
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,134 +99,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 10 Jan 2025, "Emil J Tywoniak" <emil@tywoniak.eu> wrote:
-> What's up gamers,
->
-> hope this is the right place to report this oops which possibly is due
-> to amdgpu interaction. The community guidelines link for this list
-> (https://01.org/linuxgraphics/community) doesn't work. Feel free to
-> redirect me if not, even to /dev/null. The Video(DRI - Intel) section
-> on kernel bugzilla doesn't seem to get much life.
 
-For the longest time, the fdo gitlab has been the place to report i915
-[1] (and lately xe [2]) driver bugs, with a bug filing guide at [3].
+--=-lcoIbt6gV8L3KOHuxPSh
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-However, the backtrace is all amdgpu? You only mention xe_bo_evict in
-the subject.
+On Sat, 2025-01-04 at 06:06 -0500, Genes Lists wrote:
+> On Fri, 2024-12-13 at 07:14 -0500, Genes Lists wrote:
+> > On Tue, 2024-12-03 at 06:34 -0500, Genes Lists wrote:
+> > > On Tue, 2024-12-03 at 11:16 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
+> > > > > ...
+> > >=20
+> > > > Probably https://gitlab.freedesktop.org/drm/i915/kernel/-
+> > > > /issues/13057
+> > > >=20
+> > > Very helpful.
+> > >=20
+> > > I tested your patch set on Linus' tree commit
+> > > cdd30ebb1b9f36159d66f088b61aee264e649d7a :
+> > >=20
+> > > =C2=A0 =C2=A0=C2=A0https://patchwork.freedesktop.org/series/141911/
+> > >=20
+> > > and confirm that this fixes the problem=C2=A0
+> > >=20
+> > > Thank you.
+> > >=20
+> > >=20
+> >=20
+> > Just a CC to regressions list for tracking.
+> >=20
+> > First report here:=C2=A0
+> > https://lore.kernel.org/lkml/3b097dddd7095bccabe6791b90899c689f271a
+> > 35.c
+> > amel@sapience.com/
+> >=20
+> > Fixed by patch set as noted above, but not yet in mainline or
+> > linux-
+> > next.
+> >=20
+> > Thank you again Ville for quickly coming up with a fix.
+> >=20
+>=20
+> Follow up to check on where things stand with getting the fix into
+> mainline?=C2=A0
+>=20
+> Obviously it would be really good to get this fixed before 6.13 gets
+> released.
+>=20
+> Thanks and happy 2025!
+>=20
+>=20
 
-Cc: amd-gfx@lists.freedesktop.org
+Update -=C2=A0I no longer see this problem.
 
+Quick test (meaning I booted machine once) using:
 
-BR,
-Jani.
+   linux 6.13-rc7  (previously 6.13-rc1=20
+   mesa 24.3.3     (previously 24.3.0)
 
+Works fine.
 
+I note that the patches
+(https://patchwork.freedesktop.org/series/141911/) are not in the this
+kernel. i.e. the file drivers/gpu/drm/i915/display/intel_fb.c still has
+around line 1694 or so:
 
-[1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/
-[2] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/
-[3] https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+  if (IS_ALIGNED(fb->base.offsets[i], PAGE_SIZE))
 
+whereas the patch changes PAGE_SIZE to 64.
 
->
-> I see there have been recent changes to things around bo eviction on
-> xe and today I caught the following oops when spawning a second VS
-> Code window in sway with the New Window command (Ctrl+Shift+N). VS
-> Code was not running on XWayland. So far I haven't been able to
-> reproduce this. I have amdgpu loaded as a fall back for my ryzen 7900X
-> builtin graphics since I installed the funny GPU (Intel Arc B580 / BMG
-> G21). I'm on Mesa 24.3.3.
->
-> ------------[ cut here ]------------
-> workqueue: WQ_MEM_RECLAIM sdma0:drm_sched_run_job_work [gpu_sched] is flu=
-shing !WQ_MEM_RECLAIM events:amdgpu_device_delay_enable_gfx_off [amdgpu]
-> WARNING: CPU: 5 PID: 29199 at kernel/workqueue.c:3704 check_flush_depende=
-ncy+0x10f/0x130
-> Modules linked in: rfcomm snd_seq_dummy snd_hrtimer snd_seq cmac algif_ha=
-sh algif_skcipher af_alg nft_chain_nat xt_MASQUERADE nf_conntrack_netlink x=
-frm_user xfrm_algo xt_addrtype overlay af_packet bnep btusb btrtl btintel b=
-tbcm btmtk bluetooth mousedev cdc_acm joydev nls_iso8859_1 nls_cp437 vfat f=
-at mei_gsc_proxy mei_gsc mei_me mei xt_conntrack ip6t_rpfilter mt7921e ipt_=
-rpfilter mt7921_common mt792x_lib snd_hda_codec_hdmi mt76_connac_lib edac_m=
-ce_amd edac_core mt76 snd_hda_intel amd_atl intel_rapl_msr snd_intel_dspcfg=
- xt_pkttype intel_rapl_common snd_intel_sdw_acpi crct10dif_pclmul xt_LOG ma=
-c80211 snd_usb_audio uvcvideo nf_log_syslog snd_usbmidi_lib crc32_pclmul sn=
-d_hda_codec xt_tcpudp polyval_clmulni videobuf2_vmalloc xe snd_ump polyval_=
-generic uvc snd_hda_core ghash_clmulni_intel cfg80211 nft_compat snd_rawmid=
-i sha512_ssse3 videobuf2_memops spd5118 sha256_ssse3 snd_seq_device videobu=
-f2_v4l2 snd_hwdep r8169 sha1_ssse3 battery sp5100_tco videobuf2_common aesn=
-i_intel snd_pcm watchdog realtek gf128mul
->  crypto_simd mdio_devres videodev snd_timer cryptd libphy rfkill snd i2c_=
-piix4 drm_gpuvm wmi_bmof rapl libarc4 led_class mc nf_tables i2c_smbus k10t=
-emp soundcore sch_fq_codel tpm_crb rtc_cmos evdev mac_hid tpm_tis gpio_amdp=
-t tiny_power_button tpm_tis_core gpio_generic button uinput hid_xpadneo(O) =
-ff_memless atkbd libps2 serio vivaldi_fmap loop xt_nat nf_nat nf_conntrack =
-nf_defrag_ipv6 nf_defrag_ipv4 libcrc32c br_netfilter veth tun tap macvlan b=
-ridge stp llc kvm_amd ccp kvm fuse efi_pstore configfs nfnetlink efivarfs t=
-pm libaescfb ecdh_generic ecc rng_core dmi_sysfs ip_tables x_tables autofs4=
- ext4 crc32c_generic mbcache jbd2 hid_generic usbhid hid ahci libahci xhci_=
-pci libata nvme xhci_hcd scsi_mod nvme_core crc32c_intel scsi_common nvme_a=
-uth dm_mod dax amdgpu video wmi amdxcp i2c_algo_bit drm_ttm_helper ttm drm_=
-exec gpu_sched drm_suballoc_helper drm_buddy drm_display_helper cec crc16
-> CPU: 5 UID: 0 PID: 29199 Comm: kworker/u96:0 Tainted: G        W  O      =
- 6.12.8 #1-NixOS
-> Tainted: [W]=3DWARN, [O]=3DOOT_MODULE
-> Hardware name: Micro-Star International Co., Ltd. MS-7D75/MAG B650 TOMAHA=
-WK WIFI (MS-7D75), BIOS 1.60 05/30/2023
-> Workqueue: sdma0 drm_sched_run_job_work [gpu_sched]
-> RIP: 0010:check_flush_dependency+0x10f/0x130
-> Code: c0 f3 01 01 90 49 8b 45 18 48 8d b2 c0 00 00 00 48 8d 8b c0 00 00 0=
-0 49 89 e8 48 c7 c7 a0 c7 df b4 48 89 c2 e8 82 7e fd ff 90 <0f> 0b 90 90 e9=
- 0a ff ff ff 80 3d 99 c0 f3 01 00 75 8f e9 42 ff ff
-> RSP: 0018:ffff95dd9ef97c60 EFLAGS: 00010046
-> RAX: 0000000000000000 RBX: ffff9265c01b8e00 RCX: 0000000000000000
-> RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
-> RBP: ffffffffc0438c00 R08: 0000000000000000 R09: 0000000000000000
-> R10: 0000000000000000 R11: 0000000000000000 R12: ffff92681a13b200
-> R13: ffff9265c94338c0 R14: 0000000000000001 R15: ffff9265c01bce00
-> FS:  0000000000000000(0000) GS:ffff926cb7e80000(0000) knlGS:0000000000000=
-000
-> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> CR2: 000000000050d6d0 CR3: 00000002a38d6000 CR4: 0000000000f50ef0
-> PKRU: 55555554
-> Call Trace:
->  <TASK>
->  ? check_flush_dependency+0x10f/0x130
->  ? __warn.cold+0x93/0xf6
->  ? check_flush_dependency+0x10f/0x130
->  ? report_bug+0x10d/0x150
->  ? srso_alias_return_thunk+0x5/0xfbef5
->  ? handle_bug+0x61/0xb0
->  ? exc_invalid_op+0x17/0x80
->  ? asm_exc_invalid_op+0x1a/0x20
->  ? __pfx_amdgpu_device_delay_enable_gfx_off+0x10/0x10 [amdgpu]
->  ? check_flush_dependency+0x10f/0x130
->  __flush_work+0x10c/0x320
->  cancel_delayed_work_sync+0x62/0x80
->  amdgpu_gfx_off_ctrl+0xb7/0x150 [amdgpu]
->  amdgpu_ring_alloc+0x40/0x70 [amdgpu]
->  amdgpu_ib_schedule+0xf0/0x750 [amdgpu]
->  amdgpu_job_run+0x8e/0x200 [amdgpu]
->  drm_sched_run_job_work+0x283/0x420 [gpu_sched]
->  process_one_work+0x18a/0x350
->  worker_thread+0x235/0x370
->  ? __pfx_worker_thread+0x10/0x10
->  ? __pfx_worker_thread+0x10/0x10
->  kthread+0xcd/0x100
->  ? __pfx_kthread+0x10/0x10
->  ret_from_fork+0x31/0x50
->  ? __pfx_kthread+0x10/0x10
->  ret_from_fork_asm+0x1a/0x30
->  </TASK>
-> ---[ end trace 0000000000000000 ]---
->
-> I hope this tells you something. I'm willing to switch to some cutting
-> edge kernel commit and report back if I get an oops again, so feel
-> free which remote and commit I should go get, or any other
-> troubleshooting steps I could follow.
->
-> Thanks for all your hard work,
->
-> Emil J. Tywoniak (widlarizer)
+I have not yet tracked down what has changed but wanted to report back,
+since 6.13 is not far off.
+
+Could it be other kernel patches or perhaps changes in mesa itself?
+Thanks for resolving it.=C2=A0
+
+I will continue to test and report back if I see anything different.
+
+gene
 
 --=20
-Jani Nikula, Intel
+Gene
+
+
+--=-lcoIbt6gV8L3KOHuxPSh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYJAB0WIQRByXNdQO2KDRJ2iXo5BdB0L6Ze2wUCZ4VD3AAKCRA5BdB0L6Ze
+29+GAQDqPq9U47rna6xu60to4v/XS1tldIke6T8g/P6VrP/Z7wEA/jugeRZfnyyA
+W2WxhZXWWc13GR0Vx9ySBlvrwgTy/A0=
+=qiFq
+-----END PGP SIGNATURE-----
+
+--=-lcoIbt6gV8L3KOHuxPSh--
