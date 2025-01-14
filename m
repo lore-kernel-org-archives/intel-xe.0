@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 009AAC02180
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jan 2025 00:38:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99D68C02180
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jan 2025 00:43:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C352910E092;
-	Tue, 14 Jan 2025 00:38:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W4OpopTO";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07B1D10E092
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Jan 2025 00:38:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736815097; x=1768351097;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Qf5688TKZXlcU5M9fcryaFnjnfJY8S5eOl5Vvg3SAo4=;
- b=W4OpopTO0q5zI6JRApRYtoZX5ICD/33R+/5ezRxXVQbCCKd6xdXLgmpk
- J13qXDDgKjE3TpysXDpO6EId8viwtWC/L6sqKWhS6vO9WxFt23xlm9zF+
- eJ+NeCNr31OLOGVbq4MeCI/lneeaRKaCb8T5pFH735LM186Nx4ZkUwXEZ
- MwnErTd9mktPo5EDg+iULBk34yPcRJ7eY/Gft1OeIGW+GCvVkFdbl9w7f
- iN5Qlm+3u+yR6zQTBdto3ICBoiCaAowGhCof09CnFqebSY/X0Q8GiVuSV
- 0K9pJnFRo/KQ/fFMmuas6q69fa9e/hxhI1UFt9VS+tpjNUiRESqN8BJMl w==;
-X-CSE-ConnectionGUID: R/3XHkFnQRSk9/yZRIjrOA==
-X-CSE-MsgGUID: HWIQg4khQGKNLdogDlsGNw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="54514250"
-X-IronPort-AV: E=Sophos;i="6.12,312,1728975600"; d="scan'208";a="54514250"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2025 16:38:16 -0800
-X-CSE-ConnectionGUID: UlpYGskBRLK88uzykW4qCA==
-X-CSE-MsgGUID: nhSUie/fTfGnE43+F/w52Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,312,1728975600"; d="scan'208";a="135471751"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.108.113])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2025 16:38:16 -0800
-Date: Mon, 13 Jan 2025 18:38:11 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Cc: intel-xe@lists.freedesktop.org, stable@vger.kernel.org, 
- Matthew Brost <matthew.brost@intel.com>
-Subject: Re: [PATCH v2] drm/xe/client: Better correlate exec_queue and GT
- timestamps
-Message-ID: <dzljhhqyjtekkpb3uasqa23czry4vidubrhtyfxixdebscptwi@adfnn4pbfzme>
-References: <20250109200340.1774314-1-lucas.demarchi@intel.com>
- <Z4WbJ4DMaPS+LfJ5@orsosgc001>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38BAA10E444;
+	Tue, 14 Jan 2025 00:43:23 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A97110E444;
+ Tue, 14 Jan 2025 00:43:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <Z4WbJ4DMaPS+LfJ5@orsosgc001>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_drm/xe=3A_Mark_ComputeCS_read_?=
+ =?utf-8?q?mode_as_UC_on_iGPU_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 14 Jan 2025 00:43:22 -0000
+Message-ID: <173681540230.3414133.15857301757098178319@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250114002507.114087-1-matthew.brost@intel.com>
+In-Reply-To: <20250114002507.114087-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,94 +36,119 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jan 13, 2025 at 03:00:55PM -0800, Umesh Nerlige Ramappa wrote:
->On Thu, Jan 09, 2025 at 12:03:40PM -0800, Lucas De Marchi wrote:
->>This partially reverts commit fe4f5d4b6616 ("drm/xe: Clean up VM / exec
->>queue file lock usage."). While it's desired to have the mutex to
->>protect only the reference to the exec queue, getting and dropping each
->>mutex and then later getting the GPU timestamp, doesn't produce a
->>correct result: it introduces multiple opportunities for the task to be
->>scheduled out and thus wrecking havoc the deltas reported to userspace.
->>
->>Also, to better correlate the timestamp from the exec queues with the
->>GPU, disable preemption so they can be updated without allowing the task
->>to be scheduled out. We leave interrupts enabled as that shouldn't be
->>enough disturbance for the deltas to matter to userspace.
->>
->>Test scenario:
->>
->>	* IGT'S `xe_drm_fdinfo --r utilization-single-full-load`
->>	* Platform: LNL, where CI occasionally reports failures
->>	* `stress -c $(nproc)` running in parallel to disturb the
->>	  system
->>
->>This brings a first failure from "after ~150 executions" to "never
->>occurs after 1000 attempts".
->>
->>v2: Also keep xe_hw_engine_read_timestamp() call inside the
->>   preemption-disabled section (Umesh)
->>
->>Cc: stable@vger.kernel.org # v6.11+
->>Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>Cc: Matthew Brost <matthew.brost@intel.com>
->>Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3512
->>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>---
->>drivers/gpu/drm/xe/xe_drm_client.c | 14 ++++++--------
->>1 file changed, 6 insertions(+), 8 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
->>index 7d55ad846bac5..2220a09bf9751 100644
->>--- a/drivers/gpu/drm/xe/xe_drm_client.c
->>+++ b/drivers/gpu/drm/xe/xe_drm_client.c
->>@@ -337,20 +337,18 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
->>		return;
->>	}
->>
->>+	/* Let both the GPU timestamp and exec queue be updated together */
->>+	preempt_disable();
->>+	gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
->>+
->>	/* Accumulate all the exec queues from this client */
->>	mutex_lock(&xef->exec_queue.lock);
->
->mutex_lock could sleep and you have disabled preemption above, so not 
->a good idea. I think it will bug check if the lock is contended.
->
->Earlier you had mutex_lock on the outside, so that was fine.
+== Series Details ==
 
-yeah... saw that in the CI test results.
+Series: drm/xe: Mark ComputeCS read mode as UC on iGPU (rev2)
+URL   : https://patchwork.freedesktop.org/series/142512/
+State : failure
 
-So far with the igt patches it seems we eliminated all the issues. I
-will come back to this eventually, but priority is now pretty low.
+== Summary ==
 
-thanks
-Lucas De Marchi
+lib/modules/6.13.0-rc7-xe/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc7-xe/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/842.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc7-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc7-xe/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc7-xe/kernel/block/
+lib/modules/6.13.0-rc7-xe/kernel/block/bfq.ko
+lib/modules/6.13.0-rc7-xe/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc7-xe/build
+lib/modules/6.13.0-rc7-xe/modules.alias.bin
+lib/modules/6.13.0-rc7-xe/modules.builtin
+lib/modules/6.13.0-rc7-xe/modules.softdep
+lib/modules/6.13.0-rc7-xe/modules.alias
+lib/modules/6.13.0-rc7-xe/modules.order
+lib/modules/6.13.0-rc7-xe/modules.symbols
+lib/modules/6.13.0-rc7-xe/modules.dep.bin
++ mv kernel.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1736815399:package_x86_64\r\e[0K'
+[0Ksection_end:1736815399:package_x86_64
+[0K
+++ date +%s
++ echo -e '\e[0Ksection_start:1736815399:build_x86_64_nodebug[collapsed=true]\r\e[0KBuild x86-64 NoDebug'
+[0Ksection_start:1736815399:build_x86_64_nodebug[collapsed=true]
+[0KBuild x86-64 NoDebug
++ mkdir -p build64-nodebug
++ KCONFIG_CONFIG=build64-nodebug/.config
++ ./scripts/kconfig/merge_config.sh -m .ci/kernel/kconfig .ci/kernel/nodebug.fragment
+Using .ci/kernel/kconfig as base
+Merging .ci/kernel/nodebug.fragment
+The merge file '.ci/kernel/nodebug.fragment' does not exist.  Exit.
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
->
->Thanks,
->Umesh
->
->>-	xa_for_each(&xef->exec_queue.xa, i, q) {
->>-		xe_exec_queue_get(q);
->>-		mutex_unlock(&xef->exec_queue.lock);
->>
->>+	xa_for_each(&xef->exec_queue.xa, i, q)
->>		xe_exec_queue_update_run_ticks(q);
->>
->>-		mutex_lock(&xef->exec_queue.lock);
->>-		xe_exec_queue_put(q);
->>-	}
->>	mutex_unlock(&xef->exec_queue.lock);
->>-
->>-	gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
->>+	preempt_enable();
->>
->>	xe_force_wake_put(gt_to_fw(hwe->gt), fw_ref);
->>	xe_pm_runtime_put(xe);
->>-- 
->>2.47.0
->>
+
