@@ -4,53 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F40BE77188
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Jan 2025 20:38:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF758E77188
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Jan 2025 20:40:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49AD810E482;
-	Tue, 14 Jan 2025 20:38:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 632C610E486;
+	Tue, 14 Jan 2025 20:40:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y4M3mgLP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z/VlHlUN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5CD310E482
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Jan 2025 20:38:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AE2C10E0A1
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Jan 2025 20:40:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736887139; x=1768423139;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/rEUXLKhi/Uvhpcmmdfv1mi/R+2WCbuqD9auRYVRZLU=;
- b=Y4M3mgLPWrh7J1McKNv6aQoww7kV/KhBJSGoteIyLM1n72mqzSrtN/jw
- hUHAuSIEU7NOBBiECDuYRv1TtBNwBwxsldJLL904FWm2RDTfGpv/U40k1
- pDgUVNPPPjoxQ8LNDFO7Ucr43qnxQCOheVRw7l7Jy+jazXEit167SvNYn
- VyvDbRzCMvIEq97NKdp/vmWSJJBroH0wmAcvAigzZ5j5WLX3qeubVcgDO
- 4Ig2z/G+/CK/KiLbTCoah5Xhvv6CNREeeTr/E+hUw9xoAtYlw6m54gpT/
- xQK/nHIcA++P+rRgRmLRTOjcalnhg3C198VmfjdE4ddxJUYkStutb5lc6 g==;
-X-CSE-ConnectionGUID: 5s0bqmdSSfmGA3vrSBLJ5A==
-X-CSE-MsgGUID: qk+OHs5tSoqvb2c8OvIqfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11315"; a="37364125"
-X-IronPort-AV: E=Sophos;i="6.12,315,1728975600"; d="scan'208";a="37364125"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2025 12:38:59 -0800
-X-CSE-ConnectionGUID: A3zzyAH4QFqBrmLzbw7OiA==
-X-CSE-MsgGUID: ujjE/dlfRkO/Oc9HyX6dyA==
+ t=1736887241; x=1768423241;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=uYIBmMObNK+dtT9UqO/mPmKNxBNJYvhgodDBE4ME1mA=;
+ b=Z/VlHlUNXorBrXy4GpP2Df30Yc7/BfwMi2LYU7NcXs0/Q8aS4HkdK/Ty
+ LWjb1dr1ICKJ/VVKy3ZYXCmh0FC8SQkSlPsscXcpquRJuVcW9flnWL0kQ
+ tjyrk0SI6Xq5OjE4oAE3HqoJBhE64pu6Myd6itlB5fdc3Q5QMzDP/IDHi
+ QgbBS/ATk8NaVAeImsCm9hfCv1yWrzND3Ky8jcVg/UgP9uaL0neQE/dxn
+ Dj2nIrmg2yN45YzKUyNGiLPeKarcETVOhmsuPxokZyUVy3KkXII9+qvdn
+ zciVO9DNAwvkgZ5QeSN8TLFWkYHV4JpVOEFuDHpNVHAbIQu10a8ig1iZO g==;
+X-CSE-ConnectionGUID: 6Xki8fMGTtedGRxvLjkp9Q==
+X-CSE-MsgGUID: /eyTOXf6QzqZb0djPkW2Bw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11315"; a="48203626"
+X-IronPort-AV: E=Sophos;i="6.12,315,1728975600"; d="scan'208";a="48203626"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2025 12:40:41 -0800
+X-CSE-ConnectionGUID: cxvrcbR+Q+2jCUdIDzkFlg==
+X-CSE-MsgGUID: Y6PPvUtRROqR3u/3ag/DoQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110059419"
-Received: from msatwood-mobl.jf.intel.com ([10.24.12.180])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2025 12:38:55 -0800
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, Francois Dugast <francois.dugast@intel.com>,
- Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH] drm/xe/xe3: Generate and store the L3 bank mask
-Date: Tue, 14 Jan 2025 12:38:53 -0800
-Message-ID: <20250114203853.35055-1-matthew.s.atwood@intel.com>
-X-Mailer: git-send-email 2.45.0
+X-IronPort-AV: E=Sophos;i="6.12,315,1728975600"; d="scan'208";a="109885103"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa004.jf.intel.com with ESMTP; 14 Jan 2025 12:40:39 -0800
+Received: from [10.246.5.201] (mwajdecz-MOBL.ger.corp.intel.com [10.246.5.201])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 6B41A2FC43
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Jan 2025 20:40:38 +0000 (GMT)
+Message-ID: <516af8c7-47b2-4578-a964-f983cd51ac03@intel.com>
+Date: Tue, 14 Jan 2025 21:40:37 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_CI=2EFULL=3A_failure_for_VF=3A_Fix_early_?=
+ =?UTF-8?Q?read_of_GDMID?=
+To: intel-xe@lists.freedesktop.org
+References: <20241114175955.2299-1-michal.wajdeczko@intel.com>
+ <173168324520.285105.17059700662955163503@2413ebb6fbb6>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <173168324520.285105.17059700662955163503@2413ebb6fbb6>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,78 +71,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Francois Dugast <francois.dugast@intel.com>
 
-On Xe3, the register used to indicate which L3 banks are enabled on
-the system is a new one called MIRROR_L3BANK_ENABLE. Each bit
-represents one bank enabled in each node.
-Extend the existing topology code for Xe3 to read this register and
-generate the correct L3 bank mask, which can be read by user space
-throug the topology query.
 
-Bspec: 72573, 73439
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 +++
- drivers/gpu/drm/xe/xe_gt_topology.c  | 16 +++++++++++++---
- 2 files changed, 16 insertions(+), 3 deletions(-)
+On 15.11.2024 16:07, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: VF: Fix early read of GDMID
+> URL   : https://patchwork.freedesktop.org/series/141367/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from xe-2232-4018ba30ba2cc7bcbaed85dd5e77a506dd911b6d_full -> xe-pw-141367v1_full
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with xe-pw-141367v1_full absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in xe-pw-141367v1_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   
+> 
+> Participating hosts (4 -> 4)
+> ------------------------------
+> 
+>   No changes in participating hosts
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in xe-pw-141367v1_full:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index b4283ac030f4..096859072396 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -221,6 +221,9 @@
- 
- #define MIRROR_FUSE1				XE_REG(0x911c)
- 
-+#define MIRROR_L3BANK_ENABLE			XE_REG(0x9130)
-+#define   XE3_L3BANK_ENABLE			REG_GENMASK(31, 0)
-+
- #define XELP_EU_ENABLE				XE_REG(0x9134)	/* "_DISABLE" on Xe_LP */
- #define   XELP_EU_MASK				REG_GENMASK(7, 0)
- #define XELP_GT_SLICE_ENABLE			XE_REG(0x9138)
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-index df2042db7ee6..516c81e3b8dd 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.c
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-@@ -129,7 +129,8 @@ static void
- load_l3_bank_mask(struct xe_gt *gt, xe_l3_bank_mask_t l3_bank_mask)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
--	u32 fuse3 = xe_mmio_read32(&gt->mmio, MIRROR_FUSE3);
-+	struct xe_mmio *mmio = &gt->mmio;
-+	u32 fuse3 = xe_mmio_read32(mmio, MIRROR_FUSE3);
- 
- 	/*
- 	 * PTL platforms with media version 30.00 do not provide proper values
-@@ -143,7 +144,16 @@ load_l3_bank_mask(struct xe_gt *gt, xe_l3_bank_mask_t l3_bank_mask)
- 	if (XE_WA(gt, no_media_l3))
- 		return;
- 
--	if (GRAPHICS_VER(xe) >= 20) {
-+	if (GRAPHICS_VER(xe) >= 30) {
-+		xe_l3_bank_mask_t per_node = {};
-+		u32 meml3_en = REG_FIELD_GET(XE2_NODE_ENABLE_MASK, fuse3);
-+		u32 mirror_l3bank_enable = xe_mmio_read32(mmio, MIRROR_L3BANK_ENABLE);
-+		u32 bank_val = REG_FIELD_GET(XE3_L3BANK_ENABLE, mirror_l3bank_enable);
-+
-+		bitmap_from_arr32(per_node, &bank_val, 32);
-+		gen_l3_mask_from_pattern(xe, l3_bank_mask, per_node, 32,
-+					 meml3_en);
-+	} else if (GRAPHICS_VER(xe) >= 20) {
- 		xe_l3_bank_mask_t per_node = {};
- 		u32 meml3_en = REG_FIELD_GET(XE2_NODE_ENABLE_MASK, fuse3);
- 		u32 bank_val = REG_FIELD_GET(XE2_GT_L3_MODE_MASK, fuse3);
-@@ -155,7 +165,7 @@ load_l3_bank_mask(struct xe_gt *gt, xe_l3_bank_mask_t l3_bank_mask)
- 		xe_l3_bank_mask_t per_node = {};
- 		xe_l3_bank_mask_t per_mask_bit = {};
- 		u32 meml3_en = REG_FIELD_GET(MEML3_EN_MASK, fuse3);
--		u32 fuse4 = xe_mmio_read32(&gt->mmio, XEHP_FUSE4);
-+		u32 fuse4 = xe_mmio_read32(mmio, XEHP_FUSE4);
- 		u32 bank_val = REG_FIELD_GET(GT_L3_EXC_MASK, fuse4);
- 
- 		bitmap_set_value8(per_mask_bit, 0x3, 0);
--- 
-2.45.0
+all KMS, all unrelated
 
+> 
+>   * igt@kms_cursor_crc@cursor-sliding-256x256@pipe-a-edp-1:
+>     - shard-lnl:          [PASS][1] -> [DMESG-WARN][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2232-4018ba30ba2cc7bcbaed85dd5e77a506dd911b6d/shard-lnl-3/igt@kms_cursor_crc@cursor-sliding-256x256@pipe-a-edp-1.html
+>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141367v1/shard-lnl-1/igt@kms_cursor_crc@cursor-sliding-256x256@pipe-a-edp-1.html
+> 
+>   * igt@kms_flip@2x-flip-vs-expired-vblank@ad-dp2-hdmi-a3:
+>     - shard-bmg:          [PASS][3] -> [FAIL][4] +1 other test fail
+>    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2232-4018ba30ba2cc7bcbaed85dd5e77a506dd911b6d/shard-bmg-5/igt@kms_flip@2x-flip-vs-expired-vblank@ad-dp2-hdmi-a3.html
+>    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141367v1/shard-bmg-7/igt@kms_flip@2x-flip-vs-expired-vblank@ad-dp2-hdmi-a3.html
+> 
+>   * igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1:
+>     - shard-lnl:          [PASS][5] -> [FAIL][6] +5 other tests fail
+>    [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2232-4018ba30ba2cc7bcbaed85dd5e77a506dd911b6d/shard-lnl-3/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html
+>    [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141367v1/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html
+> 
+>   * igt@kms_pm_rpm@cursor-dpms:
+>     - shard-bmg:          [PASS][7] -> [INCOMPLETE][8]
+>    [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2232-4018ba30ba2cc7bcbaed85dd5e77a506dd911b6d/shard-bmg-4/igt@kms_pm_rpm@cursor-dpms.html
+>    [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141367v1/shard-bmg-8/igt@kms_pm_rpm@cursor-dpms.html
+> 
+>   
