@@ -4,77 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F6D0C02183
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 17:32:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 138B3C02180
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 17:45:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3899B10E032;
-	Wed, 15 Jan 2025 17:32:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="VlLOEJJe";
-	dkim-atps=neutral
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com
- [209.85.160.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86BAC10E734
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Jan 2025 15:48:36 +0000 (UTC)
-Received: by mail-qt1-f176.google.com with SMTP id
- d75a77b69052e-467a8d2d7f1so54969591cf.1
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Jan 2025 07:48:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1736956056; x=1737560856;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=I/jr6KBLHNTX9a5zOtlZSAW+n3vs5Rh17Yo7aqrlbhI=;
- b=VlLOEJJeSvpxqTmnRE34mu0cFbKatbv7jIr4x39IclXPWXBmvRgFOxNHFzbn70iWD2
- uLFn45Wh1tc7u5kW4vF6+1YUBBif4dHTWnYlqFjeOKwk5IyMUv5ADHRGsVlkaEWYw1cw
- 0wopDWhHXR586oIECVusfqgo6rf3pFSVFkIBXilf+fV3+s3s4SHgW04Jk7LJr85I13uD
- qEOvJ0ULaI3G9BexmBw5B4nXMLdqTHirtjhkdabWy46WYT80lQOnIMaObMcu3oEqvgH9
- JFef5HyvG4SpDafQ+7cJ3t9Rpg4r7NbYsUcOZzS5jwDfeO093FHGhWJh1lE+1ivHSk4c
- WZHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736956056; x=1737560856;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=I/jr6KBLHNTX9a5zOtlZSAW+n3vs5Rh17Yo7aqrlbhI=;
- b=BCLJqogi/c3ZxwdV7MZVKdSws/UIj/9Op3DUjLnealYeZmn3C1fh9bdp9jv4mT9brK
- kFZYtfBX1xJ0bXD2r9HjcyXb8UicsOnW7ZMaoMIfCDC3bAc+aF0o8IuCJSSW1L7SdIco
- oZocI9zwX9s6zs2hjjHEysDnxcfXNUSVVorhVMsuESsSJeBJAmMQ56sY38KSZOLYlugj
- vWPzW9QbH3qcesJRlRLowL4TFhZZuUZkVJ1cxpLPK8cntAptPsFtyKKllTZj8r3AzKge
- RbhV82vvooykcWpneqg/2/hFQfsT8wPOm/vzBZizG5EQoilX94uhyAi2eju5Kydmws/y
- STPw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXsnlaMgYgeaLp94TS0ku3ZD6IDrbhrKkrU99FuI5mWPRVLhtyX38HCxUAJ7wZib/6Yg/1tUnv4/w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyU9AZ4rbfqFT9BE1lnvB04MW1n1MoBWfCNxCxDNw5ZsZ21RFWm
- FnNpAjAt7/9jeCc7+Y2LR1lbH9zdgtiTbJHtvyosZuEhGq/ll268kO+uATN+WjAPLlSc+qL6+qe
- M6yV3vaJiMYEuSFi2tIz8m7u7H1NHAYvr9L3I
-X-Gm-Gg: ASbGncvtLYTzzC7sGn4YBEcL5Q1J9OoEi6TFEna4EMTSsK628mMkiEKMYOcAYbkC8Lm
- 8Iajs36smgCWg5li5TXXTF50MHvdd87sJb1wPTyeA4LyFK6kfQW2OqS81Ad/cB1RwQFG/ZeU=
-X-Google-Smtp-Source: AGHT+IEF5CwAQomz3z3LH/vZ9FSFCgUWfRJMnul51Jr50q1PvNBGuzqUvdKZoOWXXlUqRF8fC77GCzWZc712CcnUFak=
-X-Received: by 2002:ac8:7d43:0:b0:46c:86d8:fb7 with SMTP id
- d75a77b69052e-46c86d81111mr375797091cf.34.1736956055548; Wed, 15 Jan 2025
- 07:47:35 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D363B10E032;
+	Wed, 15 Jan 2025 17:45:22 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E770610E032;
+ Wed, 15 Jan 2025 17:45:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/display=3A_Add_skip_l?=
+ =?utf-8?q?ink_check_quirk_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Denose" <jdenose@google.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 15 Jan 2025 17:45:21 -0000
+Message-ID: <173696312194.4026096.443323093100867446@b555e5b46a47>
+X-Patchwork-Hint: ignore
 References: <20250114190709.1.Ia17111747d0450169dbe902e5d7ef25912a9338e@changeid>
- <87a5bsh27o.fsf@intel.com>
-In-Reply-To: <87a5bsh27o.fsf@intel.com>
-From: Jonathan Denose <jdenose@google.com>
-Date: Wed, 15 Jan 2025 09:47:24 -0600
-X-Gm-Features: AbW1kvaecP3PP2esGnv9CK3Rxi1Sub0FNVZqrE1NDM9-dHv3kjfpc7HrkxwE8rM
-Message-ID: <CAMCVhVOagmBOj5UOr_HdohPApSAuprsObBm107X0q_1UfvSU_w@mail.gmail.com>
-Subject: Re: [PATCH] drm/i915/display: Add skip link check quirk
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- LKML <linux-kernel@vger.kernel.org>
-Cc: rodrigo.vivi@intel.com, intel-gfx@lists.freedesktop.org, 
- David Airlie <airlied@gmail.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
- dri-devel@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, imre.deak@intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Wed, 15 Jan 2025 17:32:01 +0000
+In-Reply-To: <20250114190709.1.Ia17111747d0450169dbe902e5d7ef25912a9338e@changeid>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,125 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jan 15, 2025 at 3:10=E2=80=AFAM Jani Nikula <jani.nikula@linux.inte=
-l.com> wrote:
->
-> On Tue, 14 Jan 2025, Jonathan Denose <jdenose@google.com> wrote:
-> > The display on the Advantech UTC124G3PWWW0E-ES worked fine until commit
-> > "drm/i915/dp: Recheck link state after modeset" was introduced. After
-> > this commit the display flickers intermittently as the driver code
-> > initiates the delayed link recheck in an infinite loop.
-> >
-> > To resolve this issue for the Advantech device, add a quirk to skip ove=
-r
-> > the delayed link recheck.
->
-> It would be better to try to get at the root cause first, instead of
-> blindly skipping required parts. The code's complicated enough without
-> quirks, and removing them afterwards is very difficult.
->
-> Please file a bug according to [1], and attach full dmesg with debugs
-> enabled.
+== Series Details ==
 
-I filed a bug with the full dmesg a few weeks ago:
-https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13344
+Series: drm/i915/display: Add skip link check quirk (rev2)
+URL   : https://patchwork.freedesktop.org/series/143563/
+State : success
 
-> Cc: Imre
->
-> BR,
-> Jani.
->
->
->
-> [1] https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.ht=
-ml
->
->
->
-> >
-> > Signed-off-by: Jonathan Denose <jdenose@google.com>
-> > ---
-> >
-> >  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 4 +++-
-> >  drivers/gpu/drm/i915/display/intel_quirks.c           | 8 ++++++++
-> >  drivers/gpu/drm/i915/display/intel_quirks.h           | 1 +
-> >  3 files changed, 12 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/dr=
-ivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > index 397cc4ebae526..7804ad38b00cd 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > @@ -32,6 +32,7 @@
-> >  #include "intel_encoder.h"
-> >  #include "intel_hotplug.h"
-> >  #include "intel_panel.h"
-> > +#include "intel_quirks.h"
-> >
-> >  #define LT_MSG_PREFIX                        "[CONNECTOR:%d:%s][ENCODE=
-R:%d:%s][%s] "
-> >  #define LT_MSG_ARGS(_intel_dp, _dp_phy)      (_intel_dp)->attached_con=
-nector->base.base.id, \
-> > @@ -1622,7 +1623,8 @@ void intel_dp_start_link_train(struct intel_atomi=
-c_state *state,
-> >               lt_dbg(intel_dp, DP_PHY_DPRX, "Forcing link training fail=
-ure\n");
-> >       } else if (passed) {
-> >               intel_dp->link.seq_train_failures =3D 0;
-> > -             intel_encoder_link_check_queue_work(encoder, 2000);
-> > +             if (!intel_has_quirk(display, QUIRK_SKIP_LINK_CHECK))
-> > +                     intel_encoder_link_check_queue_work(encoder, 2000=
-);
-> >               return;
-> >       }
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/=
-drm/i915/display/intel_quirks.c
-> > index 28f497ae785bb..d472a5f21f8b9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_quirks.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-> > @@ -78,6 +78,12 @@ static void quirk_fw_sync_len(struct intel_dp *intel=
-_dp)
-> >       drm_info(display->drm, "Applying Fast Wake sync pulse count quirk=
-\n");
-> >  }
-> >
-> > +static void quirk_skip_link_check(struct intel_display *display)
-> > +{
-> > +     intel_set_quirk(display, QUIRK_SKIP_LINK_CHECK);
-> > +     drm_info(display->drm, "Applying skip link check quirk\n");
-> > +}
-> > +
-> >  struct intel_quirk {
-> >       int device;
-> >       int subsystem_vendor;
-> > @@ -229,6 +235,8 @@ static struct intel_quirk intel_quirks[] =3D {
-> >       { 0x3184, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
-> >       /* HP Notebook - 14-r206nv */
-> >       { 0x0f31, 0x103c, 0x220f, quirk_invert_brightness },
-> > +     /* Advantech UTC124G3PWWW0E-ES */
-> > +     {0x5a85, 0x8086, 0x2212, quirk_skip_link_check},
-> >  };
-> >
-> >  static const struct intel_dpcd_quirk intel_dpcd_quirks[] =3D {
-> > diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/=
-drm/i915/display/intel_quirks.h
-> > index cafdebda75354..9e8f2816a4fba 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_quirks.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-> > @@ -20,6 +20,7 @@ enum intel_quirk_id {
-> >       QUIRK_LVDS_SSC_DISABLE,
-> >       QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
-> >       QUIRK_FW_SYNC_LEN,
-> > +     QUIRK_SKIP_LINK_CHECK,
-> >  };
-> >
-> >  void intel_init_quirks(struct intel_display *display);
->
-> --
-> Jani Nikula, Intel
---=20
-Jonathan
+== Summary ==
+
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/kernel/
+lib/modules/6.13.0-rc7-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc7-xe+/kernel/block/
+lib/modules/6.13.0-rc7-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc7-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc7-xe+/build
+lib/modules/6.13.0-rc7-xe+/modules.alias.bin
+lib/modules/6.13.0-rc7-xe+/modules.builtin
+lib/modules/6.13.0-rc7-xe+/modules.softdep
+lib/modules/6.13.0-rc7-xe+/modules.alias
+lib/modules/6.13.0-rc7-xe+/modules.order
+lib/modules/6.13.0-rc7-xe+/modules.symbols
+lib/modules/6.13.0-rc7-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1736963111:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1736963111:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
