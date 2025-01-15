@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F8ADC02180
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 23:08:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A622C02180
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 23:09:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D40F410E477;
-	Wed, 15 Jan 2025 23:08:44 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6007810E477;
- Wed, 15 Jan 2025 23:08:43 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 116A710E856;
+	Wed, 15 Jan 2025 23:09:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M+Q7dLTK";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E55110E84D;
+ Wed, 15 Jan 2025 23:09:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736982544; x=1768518544;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Rnz9k0h1jbJK+biULTVBrZXQu/5xhmvTz8hM7cG6+BY=;
+ b=M+Q7dLTKdr5Iwob3KAls6JU9H7Ziwp7BPNe4DNf7L97VmBjCn0ZBbmGd
+ DllOPn27N5Y8WlZef9POH55UKP+5gLH1DevvpMyWKmOeMuu3ztHmufnuB
+ a/jg5dCMQMga4PPD3gfG//uEFb0F6+x1IA2awAYtt7ux1S2c8kMARa7o2
+ 8eZzBrG3PuQ/zypXquANzsb/BHVdwzWotPK3IiXbTpZE2wZ+pQ1DfwHY8
+ znUjBliBoyfKEPWOzYPiyDPrTsVEViXDxAnCCNFNYtiaLFAaBM/vIwcnL
+ GWQ0iG+Nm1YNFNCY8JnGJHWfhk6ljwBAreasSXFEEmSbC0zeXVRNBrOBt A==;
+X-CSE-ConnectionGUID: Kf9jKlFZTLCZ3wWUJo7INg==
+X-CSE-MsgGUID: yGcHu9I9QHOD8QBmIgm68w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11316"; a="47926915"
+X-IronPort-AV: E=Sophos;i="6.13,207,1732608000"; d="scan'208";a="47926915"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2025 15:09:03 -0800
+X-CSE-ConnectionGUID: iBiuIpQWR9aE6lu0w3AHnw==
+X-CSE-MsgGUID: du0c937gQuyI3YXsZmVFuA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="136147982"
+Received: from cataylo2-desk.jf.intel.com ([10.165.21.140])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2025 15:09:03 -0800
+From: Clint Taylor <clinton.a.taylor@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/i915/display: HDMI C10 PLL entry for 265250 MHz
+Date: Wed, 15 Jan 2025 15:08:59 -0800
+Message-Id: <20250115230859.2410966-1-clinton.a.taylor@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/oa=3A_Set_stream-=3Epol?=
- =?utf-8?q?lin_in_xe=5Foa=5Fbuffer=5Fcheck=5Funlocked?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Jan 2025 23:08:43 -0000
-Message-ID: <173698252337.4112286.6754523132644017202@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250115222029.3002103-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20250115222029.3002103-1-ashutosh.dixit@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +61,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Add PLL values for 265.250MHz pixel clock to support recent 3440x1440
+monitors.
 
-Series: drm/xe/oa: Set stream->pollin in xe_oa_buffer_check_unlocked
-URL   : https://patchwork.freedesktop.org/series/143575/
-State : success
+Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-== Summary ==
-
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/events/rapl.ko
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/kernel/
-lib/modules/6.13.0-rc7-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/zstd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/xctr.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/authenc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/keywrap.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cmac.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/essiv.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ccm.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/wp512.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/lrw.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/vmac.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/842.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/md4.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.13.0-rc7-xe+/kernel/block/
-lib/modules/6.13.0-rc7-xe+/kernel/block/bfq.ko
-lib/modules/6.13.0-rc7-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.13.0-rc7-xe+/build
-lib/modules/6.13.0-rc7-xe+/modules.alias.bin
-lib/modules/6.13.0-rc7-xe+/modules.builtin
-lib/modules/6.13.0-rc7-xe+/modules.softdep
-lib/modules/6.13.0-rc7-xe+/modules.alias
-lib/modules/6.13.0-rc7-xe+/modules.order
-lib/modules/6.13.0-rc7-xe+/modules.symbols
-lib/modules/6.13.0-rc7-xe+/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1736982512:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1736982512:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index e768dc6a15b3..c5ea8202a455 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -1620,6 +1620,16 @@ static const struct intel_c10pll_state mtl_c10_hdmi_262750 = {
+ 	.pll[15] = 0x09, .pll[16] = 0x09, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+ };
+ 
++static const struct intel_c10pll_state mtl_c10_hdmi_265250 = {
++	.clock = 265250,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x6A, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0x13, .pll[13] = 0x55, .pll[14] = 0x55,
++	.pll[15] = 0x09, .pll[16] = 0x08, .pll[17] = 0x0F, .pll[18] = 0x85, .pll[19] = 0x23,
++};
++
+ static const struct intel_c10pll_state mtl_c10_hdmi_268500 = {
+ 	.clock = 268500,
+ 	.tx = 0x10,
+@@ -1728,6 +1738,7 @@ static const struct intel_c10pll_state * const mtl_c10_hdmi_tables[] = {
+ 	&mtl_c10_hdmi_209800,
+ 	&mtl_c10_hdmi_241500,
+ 	&mtl_c10_hdmi_262750,
++	&mtl_c10_hdmi_265250,
+ 	&mtl_c10_hdmi_268500,
+ 	&mtl_c10_hdmi_296703,
+ 	&mtl_c10_hdmi_297000,
+-- 
+2.25.1
 
