@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25E5BC02183
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 18:14:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B30DEC02185
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 18:19:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8EAF10E0E1;
-	Wed, 15 Jan 2025 18:14:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7850E10E0E1;
+	Wed, 15 Jan 2025 18:19:24 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8551210E0E1;
- Wed, 15 Jan 2025 18:14:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7035555750921878757=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9313C10E0E1;
+ Wed, 15 Jan 2025 18:19:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Add_ski?=
- =?utf-8?q?p_link_check_quirk_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/mtl=3A_Add_Wa?=
+ =?utf-8?q?=5F22018931422_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Denose" <jdenose@google.com>
+To: "Matt Roper" <matthew.d.roper@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Jan 2025 18:14:40 -0000
-Message-ID: <173696488053.4026096.16534901808835529802@b555e5b46a47>
+Date: Wed, 15 Jan 2025 18:19:23 -0000
+Message-ID: <173696516359.4059606.7676614143957378507@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250114190709.1.Ia17111747d0450169dbe902e5d7ef25912a9338e@changeid>
-In-Reply-To: <20250114190709.1.Ia17111747d0450169dbe902e5d7ef25912a9338e@changeid>
+References: <20250114190242.2026743-2-matthew.d.roper@intel.com>
+In-Reply-To: <20250114190242.2026743-2-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7035555750921878757==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/display: Add skip link check quirk (rev2)
-URL   : https://patchwork.freedesktop.org/series/143563/
+Series: drm/xe/mtl: Add Wa_22018931422 (rev2)
+URL   : https://patchwork.freedesktop.org/series/143524/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2492-72400937e76c02ae6345f0dfa5a598f0b284ab09_BAT -> xe-pw-143563v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: d597e12dca87 drm-tip: 2025y-01m-15d-18h-09m-28s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/mtl: Add Wa_22018931422
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8191 -> IGT_8192
-  * Linux: xe-2492-72400937e76c02ae6345f0dfa5a598f0b284ab09 -> xe-pw-143563v2
-
-  IGT_8191: b8395f7e32e23c9e330e9d90d85f3f3a1dd08bda @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8192: a3b85ce819b99284bef57aafc7d44f50a62e097f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2492-72400937e76c02ae6345f0dfa5a598f0b284ab09: 72400937e76c02ae6345f0dfa5a598f0b284ab09
-  xe-pw-143563v2: 143563v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143563v2/index.html
-
---===============7035555750921878757==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Add skip link check quirk (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143563/">https://patchwork.freedesktop.org/series/143563/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143563v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143563v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2492-72400937e76c02ae6345f0dfa5a598f0b284ab09_BAT -&gt; xe-pw-143563v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8191 -&gt; IGT_8192</li>
-<li>Linux: xe-2492-72400937e76c02ae6345f0dfa5a598f0b284ab09 -&gt; xe-pw-143563v2</li>
-</ul>
-<p>IGT_8191: b8395f7e32e23c9e330e9d90d85f3f3a1dd08bda @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8192: a3b85ce819b99284bef57aafc7d44f50a62e097f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2492-72400937e76c02ae6345f0dfa5a598f0b284ab09: 72400937e76c02ae6345f0dfa5a598f0b284ab09<br />
-  xe-pw-143563v2: 143563v2</p>
-
-</body>
-</html>
-
---===============7035555750921878757==--
