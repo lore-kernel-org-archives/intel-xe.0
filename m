@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE37BC02180
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 16:00:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 752C5C02187
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 16:07:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 793F210E744;
-	Wed, 15 Jan 2025 16:00:20 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A2A110E761;
- Wed, 15 Jan 2025 16:00:19 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B1B510E761;
+	Wed, 15 Jan 2025 16:07:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Ts45NPZA";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8820A10E745;
+ Wed, 15 Jan 2025 16:07:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=wy9jwwaTgLWWE93CU2geKsMOU5PfOaBBkf88ciSqsU0=; b=Ts45NPZAWjqzc8W9P5VSofgazI
+ DcGnLulkZETHHrprsV/6PefH2R4BYW20Lu2hImRuufdze6qZzdE7VuTeBp7QnkFelXSznPllKPBa6
+ eVoniK8EeMq4vIHR+Lml2LBfNFZdlD0xBo0Yv9ZH4LkZ7fJ4KpKUOjdQlhLOZ04cXcg0ItOhPbEcu
+ O/LkxH1p7CYUBimsX4ElGn7Yr/fbWmBfhpUqdBxOSBpexY+b4GOLfdxp/ouHFuGQXt0VLT6c3PrVk
+ TLmMXZbHX261dO3tirLipTPOsALFjrBvOHgU8bleL/oFE7wC3CCowOGd4HbkNiZ/QkgH69Ib1CY8a
+ PIrEcOZg==;
+Received: from [90.241.98.187] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1tY5v0-00G9UZ-Ck; Wed, 15 Jan 2025 17:06:58 +0100
+Date: Wed, 15 Jan 2025 16:06:57 +0000
+From: Tvrtko Ursulin <tursulin@igalia.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-fixes
+Message-ID: <Z4fdIVf68qsqIpiN@linux>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?CI=2C1/2=5D_drm/xe=3A_Introduce_GuC_PC_debugfs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Jan 2025 16:00:19 -0000
-Message-ID: <173695681923.3995849.10576575932276710679@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250115145053.1142023-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20250115145053.1142023-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +64,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: series starting with [CI,1/2] drm/xe: Introduce GuC PC debugfs
-URL   : https://patchwork.freedesktop.org/series/143559/
-State : success
+Hi Dave, Sima,
 
-== Summary ==
+Another one fix week - this time round a kernel workaround for a temporary
+breakage in Mesa, or actually a relaxation of an overly strict alignment
+requirement for clear colour buffers.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast f28dfb722dce66482e5d1741deae312d96c29ee0
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Regards,
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Tvrtko
 
+drm-intel-fixes-2025-01-15:
+- Relax clear color alignment to 64 bytes [fb] (Ville Syrjälä)
+The following changes since commit 5bc55a333a2f7316b58edc7573e8e893f7acb532:
 
+  Linux 6.13-rc7 (2025-01-12 14:37:56 -0800)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2025-01-15
+
+for you to fetch changes up to 1a5401ec3018c101c456cdbda2eaef9482db6786:
+
+  drm/i915/fb: Relax clear color alignment to 64 bytes (2025-01-14 08:15:51 +0000)
+
+----------------------------------------------------------------
+- Relax clear color alignment to 64 bytes [fb] (Ville Syrjälä)
+
+----------------------------------------------------------------
+Ville Syrjälä (1):
+      drm/i915/fb: Relax clear color alignment to 64 bytes
+
+ drivers/gpu/drm/i915/display/intel_fb.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
