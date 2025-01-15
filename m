@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6AD3C02185
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 15:22:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10E05C02185
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 15:22:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 921B010E715;
-	Wed, 15 Jan 2025 15:22:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE4AC10E744;
+	Wed, 15 Jan 2025 15:22:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T5Hqh7VZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ITh2GcOb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFEF110E715
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Jan 2025 15:22:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3361710E738
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Jan 2025 15:22:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736954564; x=1768490564;
+ t=1736954567; x=1768490567;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=lBo/vp9eE4f9Jzox6sW7vlqX+cXa6ujXlfr5qk+nhp8=;
- b=T5Hqh7VZS91Gk0+0R+BJKkeSyn9QLbi6/nif8q+Jg8F2BHdixlj/u9A/
- Eud8R0eoGmdAqFZInFJnlAv4R9lyzuT8gYsCml0NAtwoxut2PwAjS9m6B
- mKPHxkm1ozo1Pgz8JVuyVcJJRrQNshRpWWWN3jKEzT5prI1HGagzcJc1S
- IgqDS+LBR/P/tNKsl4YnNKt9ggeYFs8hirmm3UoRdkNADorE2YO3As9ym
- 7w/z3DTuDc2y6OQbQBr1WTUWptJnmiiReHmQuPKtExYlFNwJZG6p9D//w
- KQ1VrOYZ3VQhHsnTYyVIXBLfxPh5Ji2DX0cgGc1Hq2ocRBOYuKwC3qRh1 w==;
-X-CSE-ConnectionGUID: vHkKeWO3TLubEGpHnw4KUQ==
-X-CSE-MsgGUID: 3sbvSzByRIaXuQR8Ruhcxw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11316"; a="40106950"
-X-IronPort-AV: E=Sophos;i="6.13,206,1732608000"; d="scan'208";a="40106950"
+ bh=vgNld4uOl/tGizQ53c+XM5Q9pPNCPqUwNP/z3cahb6A=;
+ b=ITh2GcOb7DXyotzUvhoVbC11DbOd1B6wzbmEWYMnzIcS0Tzuv19iiXJm
+ DTNsxKYSFaK+I7WZEyLYMECaex1syVX9ayEdhyMOful4C8+i510o3GfHE
+ NJ7x/fXHuz6/3Rg9O/V99BMreTTZv1M1nx+4iR32LFm/Rb34Z2LGJ5prX
+ wWE15bJ4qgGN9YsY9Su8WyIiZ+RV2S9jmlukfZ6Z+OGJug5sxE4cpXI1v
+ YDpqvm0nR0Unfoe6X/5asrzF8sbHUFRiGzeDkmkkjNDhHzRxcFed63jW5
+ zPnZvLz9yAQAPLUpYoG6w+J6jDgJmA1JQzbgyTUmXiiRxHmTrcuqIsRNU g==;
+X-CSE-ConnectionGUID: wCCJ2dM0Tu6GdDqK+vRVSA==
+X-CSE-MsgGUID: yEqgTRsjStKmW+4LSSuw2Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11316"; a="40106954"
+X-IronPort-AV: E=Sophos;i="6.13,206,1732608000"; d="scan'208";a="40106954"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2025 07:22:44 -0800
-X-CSE-ConnectionGUID: 1MHSfqBWRWuDq4JVCXm9bg==
-X-CSE-MsgGUID: st/+qDSLSxevL+aQBSzYZg==
+ 15 Jan 2025 07:22:47 -0800
+X-CSE-ConnectionGUID: CM4mV6ZjTESYiDpQ0lwX7A==
+X-CSE-MsgGUID: dPXUfv25TROMIzY6t2E4WQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,206,1732608000"; d="scan'208";a="110147934"
+X-IronPort-AV: E=Sophos;i="6.13,206,1732608000"; d="scan'208";a="110147940"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa004.jf.intel.com with ESMTP; 15 Jan 2025 07:22:44 -0800
+ by orviesa004.jf.intel.com with ESMTP; 15 Jan 2025 07:22:46 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 1/7] drm/i915/scaler: Add and compute scaling factors
-Date: Wed, 15 Jan 2025 20:49:24 +0530
-Message-ID: <20250115151930.3665295-2-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v5 3/7] drm/i915/scaler: Refactor max_scale computation
+Date: Wed, 15 Jan 2025 20:49:26 +0530
+Message-ID: <20250115151930.3665295-4-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250115151930.3665295-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20250115151930.3665295-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -64,49 +64,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add scaling factors to scaler_state for a particular scaler user.
-These factors will be used later to compute scaler prefill latency.
-Currently, only plane scaling factors are stored, but the same members
-can later be extended to store pipe scaling factors as well.
+Refactor max scaling factor computation into a reusable
+function for scalers.
 
 --v2:
-- Rephrase commit message which corrects typo and information about
-scaling factor storage. [Ankit]
+- Add missing comment. [Ankit]
 
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h | 2 ++
- drivers/gpu/drm/i915/display/skl_scaler.c          | 3 +++
- 2 files changed, 5 insertions(+)
+ drivers/gpu/drm/i915/display/skl_scaler.c | 70 +++++++++++++----------
+ 1 file changed, 41 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 8271e50e3644..603f292996aa 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -711,6 +711,8 @@ struct intel_initial_plane_config {
- struct intel_scaler {
- 	u32 mode;
- 	bool in_use;
-+	int hscale;
-+	int vscale;
- };
- 
- struct intel_crtc_scaler_state {
 diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index a11e09a15e23..67b86f6f62fc 100644
+index 12efa4008027..a832cdccd9fa 100644
 --- a/drivers/gpu/drm/i915/display/skl_scaler.c
 +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -434,6 +434,9 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
+@@ -319,6 +319,44 @@ static int intel_allocate_scaler(struct intel_crtc_scaler_state *scaler_state,
+ 	return -1;
+ }
  
- 			return -EINVAL;
- 		}
++static void
++calculate_max_scale(struct intel_crtc *crtc,
++		    bool is_yuv_semiplanar,
++		    int scaler_id,
++		    int *max_hscale, int *max_vscale)
++{
++	struct intel_display *display = to_intel_display(crtc);
 +
-+		scaler_state->scalers[*scaler_id].hscale = hscale;
-+		scaler_state->scalers[*scaler_id].vscale = vscale;
- 	}
++	/*
++	 * FIXME: When two scalers are needed, but only one of
++	 * them needs to downscale, we should make sure that
++	 * the one that needs downscaling support is assigned
++	 * as the first scaler, so we don't reject downscaling
++	 * unnecessarily.
++	 */
++
++	if (DISPLAY_VER(display) >= 14) {
++		/*
++		 * On versions 14 and up, only the first
++		 * scaler supports a vertical scaling factor
++		 * of more than 1.0, while a horizontal
++		 * scaling factor of 3.0 is supported.
++		 */
++		*max_hscale = 0x30000 - 1;
++
++		if (scaler_id == 0)
++			*max_vscale = 0x30000 - 1;
++		else
++			*max_vscale = 0x10000;
++	} else if (DISPLAY_VER(display) >= 10 || !is_yuv_semiplanar) {
++		*max_hscale = 0x30000 - 1;
++		*max_vscale = 0x30000 - 1;
++	} else {
++		*max_hscale = 0x20000 - 1;
++		*max_vscale = 0x20000 - 1;
++	}
++}
++
+ static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
+ 				     int num_scalers_need, struct intel_crtc *crtc,
+ 				     const char *name, int idx,
+@@ -388,35 +426,9 @@ static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
+ 		const struct drm_rect *dst = &plane_state->uapi.dst;
+ 		int hscale, vscale, max_vscale, max_hscale;
  
- 	drm_dbg_kms(display->drm, "[CRTC:%d:%s] attached scaler id %u.%u to %s:%d\n",
+-		/*
+-		 * FIXME: When two scalers are needed, but only one of
+-		 * them needs to downscale, we should make sure that
+-		 * the one that needs downscaling support is assigned
+-		 * as the first scaler, so we don't reject downscaling
+-		 * unnecessarily.
+-		 */
+-
+-		if (DISPLAY_VER(display) >= 14) {
+-			/*
+-			 * On versions 14 and up, only the first
+-			 * scaler supports a vertical scaling factor
+-			 * of more than 1.0, while a horizontal
+-			 * scaling factor of 3.0 is supported.
+-			 */
+-			max_hscale = 0x30000 - 1;
+-			if (*scaler_id == 0)
+-				max_vscale = 0x30000 - 1;
+-			else
+-				max_vscale = 0x10000;
+-
+-		} else if (DISPLAY_VER(display) >= 10 ||
+-			   !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
+-			max_hscale = 0x30000 - 1;
+-			max_vscale = 0x30000 - 1;
+-		} else {
+-			max_hscale = 0x20000 - 1;
+-			max_vscale = 0x20000 - 1;
+-		}
++		calculate_max_scale(crtc,
++				    intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier),
++				    *scaler_id, &max_hscale, &max_vscale);
+ 
+ 		/*
+ 		 * FIXME: We should change the if-else block above to
 -- 
 2.48.0
 
