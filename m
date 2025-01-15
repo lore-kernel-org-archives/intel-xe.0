@@ -4,79 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB2DCC02183
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 19:55:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10A65C02180
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 20:02:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C69D10E7D4;
-	Wed, 15 Jan 2025 19:55:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C641110E0AE;
+	Wed, 15 Jan 2025 20:02:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="HIACCKFx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SoigCZj0";
 	dkim-atps=neutral
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com
- [IPv6:2a00:1450:4864:20::22b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A17C210E7D4
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Jan 2025 19:55:14 +0000 (UTC)
-Received: by mail-lj1-x22b.google.com with SMTP id
- 38308e7fff4ca-30613802a6bso1945171fa.1
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Jan 2025 11:55:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1736970913; x=1737575713; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=XJN5ebK7OW6iLbSLx/FF2q1Eia/Ds1oU8HSyiubQ6Ok=;
- b=HIACCKFx0/WqtoVQ2ypRp+jjJ3/ZRw8akvso2aKL1VBeeInbSeAyFqQnbAFeKV2J6/
- aGveGwnIxXWCpwLkF1Szse1kYO0BUmDbyE+Gos2W0/nPNIgcqg6Dpb+q63fjzoMZw29j
- 8YlnZDMcX+1xv8gDr5dC4GfVGNhQvFqAg87rJUA06wrBy9jkJbQWVAVa9B/w8PYOGdNG
- lsfCDgHNlEMXl5BJXXtrQEKENhk85+oLj9hxShwLRJb18/1nuw6AyWonmyPBUMnRdVGT
- BtaLOHtAPqappikecYAksEZW1AY/gNTV7B8oltU0EAn2m6BhxEk0FHt+bkCq4872oTRo
- kV7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736970913; x=1737575713;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=XJN5ebK7OW6iLbSLx/FF2q1Eia/Ds1oU8HSyiubQ6Ok=;
- b=Qa87VeFKcwJoD5trV+NuwnXx0s0GrlLMygF2GDaAyHxxgQ1f5Gm+ACKWqosqaoz6vF
- JVqY29h2oNKJ8liNRv6tCU9SAZfYdaBmr4FL+kFJABOIypfhV9JtgWB7JP1fjUOUFKz+
- nHP9Zm7C63jc5Zp7H1Raqxkv9ExDOYYhgSf1iAdfbz4ZrWguC6G8SAkjpB4BtTUV1hRF
- kl1fKAZT8RIqiLJ1RksBsDrc4pdAOl++DuaENcFyrL68zFUm/mhuuXd0znN/zFA6bquU
- 2PbMpYX97cVyH8/QEgSm40y9wpeFqavEexLOhEbI5BDKYS8czQsfoWz8aVo4E0r54DD+
- 9DJQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX5JfXcBEwVUEAJK9ysJyYCjdlmSMzRTRhHlQXKbjtiNWi/E9YruD9DW3oLsGwEYQoboCJON3n73w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzD289h/kO6Zu7RgrZaNhwgnB46sCk8CuOhm/1MFeuw3TAQydEu
- iOSp8UR7F3u5rnAbDtZJJeQIDZ8ux3ePgVoPfoVsFVsyYrDOA3iV5whXsoy1g+Y=
-X-Gm-Gg: ASbGncs+FGYDNfoskdJt8tUfpTFeVrJeu5IC+sPMcvbVxHEWUOaBRMXnjKkuYmDsAbH
- s8wdnMjqS9/Wdedf5/InfuGNn5IEO4VZ1vxzLOcjeUf3xqm45Mzs8c7a+A+IXcGxepIcLD5oA78
- dSv7CQ6jQgFUNs36rjzPUYt34LP76Aa4pnP1BvWTJy9idYL3j14k2DD5QaMXeLBDq6YN64LiCWi
- BwObsPpXf1XpsTC5YFzfwPJfkFN/m1gQKZh+T7epEQq5uq/F811DyA9OoUeoXI8NboqyR0lgU0I
- fTGQIthEd1FBg9I2wxSTDgCrJfMPWqLGzlAx
-X-Google-Smtp-Source: AGHT+IE0ugKkahzj0cfMJc+PsKKs96j5zkj6kkBcy/JRIV0NpqT2n3Lkf/N25YLPDxacK3DZ04wl7w==
-X-Received: by 2002:a05:651c:2223:b0:2ff:a7c1:8c2e with SMTP id
- 38308e7fff4ca-305f45f56a7mr107029291fa.28.1736970912660; 
- Wed, 15 Jan 2025 11:55:12 -0800 (PST)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-305ff1c7a9esm22963101fa.73.2025.01.15.11.55.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Jan 2025 11:55:11 -0800 (PST)
-Date: Wed, 15 Jan 2025 21:55:10 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com, uma.shankar@intel.com,
- Importedfromf20241218-dpst-v7-0-81bfe7d08c2d@intel.com,
- 20240705091333.328322-1-mohammed.thasleem@intel.com
-Subject: Re: [PATCH v7 02/14] drm: Define ImageEnhancemenT LUT structures
- exposed to user
-Message-ID: <i6j3zi5tlnyk2eonmpa5h5qitwgzs2nuzrvsasde3dci6a4ngl@qhbtsjbhq6xr>
-References: <20250110-dpst-v7-0-605cb0271162@intel.com>
- <20250110-dpst-v7-2-605cb0271162@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BB7910E7DB
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Jan 2025 20:02:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736971342; x=1768507342;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=8O12waiSN7JfovkB0RvSayLAm6NU2OjousthqthvjVI=;
+ b=SoigCZj0HWihC9x2ocv1DeVUrFn+zrIGTZrjijb1JGwE0ab/VBOdQE1k
+ mndNMNNzvwBzEnBBoFtpcGU7KEHHtPHU0a7w7LiwhgySARZBzwbtmhoT4
+ 73cKy7Cpp4eOtRPbVvRCDs6jwaN/x79F9v9OrOHyAbge4rBL/sZpD6CNA
+ ozjB/VLunJbLpYTMugEQOwpd5tmRTXoG5N8wbKV8sg2SNxmsJjYw/+EqB
+ YtUPkCu2o13CmcMNilQBo3P8nthFp7vPU8z8nn119OPe/G1kLllfIw1NN
+ +73YhMMt59E12vAhquan8dLBYEWulyCng7bctVr1/OChWo8x3L0Dvuurm g==;
+X-CSE-ConnectionGUID: PhrIe63BRzKGCzwuKtCSGA==
+X-CSE-MsgGUID: +GqfPvOZRM6OG2uxV+nz1Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="37438282"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="37438282"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2025 12:02:22 -0800
+X-CSE-ConnectionGUID: zdw7vQiQQcuLhGaFUIc8mQ==
+X-CSE-MsgGUID: rCyrVwGNQrWJxdJq98lDNg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,207,1732608000"; d="scan'208";a="105785810"
+Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2025 12:02:20 -0800
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: ashutosh.dixit@intel.com, james.ausmus@intel.com,
+ felix.j.degrood@intel.com, matias.a.cabral@intel.com,
+ joshua.santosh.ranjan@intel.com, shubham.kumar@intel.com,
+ matthew.d.roper@intel.com, matthew.olson@intel.com,
+ lucas.demarchi@intel.com, Harish Chegondi <harish.chegondi@intel.com>
+Subject: [PATCH v8 4/7] drm/xe/eustall: Return -EIO error from read() if HW
+ drops data
+Date: Wed, 15 Jan 2025 12:02:10 -0800
+Message-ID: <9dc0f747ae215f9704fe1edec2e7007e19f8dd0b.1736970203.git.harish.chegondi@intel.com>
+X-Mailer: git-send-email 2.47.1
+In-Reply-To: <cover.1736970203.git.harish.chegondi@intel.com>
+References: <cover.1736970203.git.harish.chegondi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250110-dpst-v7-2-605cb0271162@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,126 +71,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 10, 2025 at 01:15:30AM +0530, Arun R Murthy wrote:
-> ImageEnhancemenT(IET) hardware interpolates the LUT value to generate
-> the enhanced output image. LUT takes an input value, outputs a new
-> value based on the data within the LUT. 1D LUT can remap individual
-> input values to new output values based on the LUT sample. LUT can be
-> interpolated by the hardware by multiple modes Ex: Direct Lookup LUT,
-> Multiplicative LUT etc
-> The list of supported mode by hardware along with the format(exponent
-> mantissa) is exposed to user by the iet_lut_caps property. Maximum
-> format being 8.24 i.e 8 exponent and 24 mantissa.
-> For illustration a hardware supporting 1.9 format denotes this as
-> 0x10001FF. In order to know the exponent do a bitwise AND with
-> 0xF000000. The LUT value to be provided by user would be a 10bit value
-> with 1 bit integer and 9 bit fractional value.
-> 
-> Multiple formats can be supported, hence pointer is used over here.
-> User can then provide the LUT with any one of the supported modes in
-> any of the supported formats.
-> The entries in the LUT can vary depending on the hardware capability
-> with max being 255. This will also be exposed as iet_lut_caps so user
-> can generate a LUT with the specified entries.
-> 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  include/uapi/drm/drm_mode.h | 50 +++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
-> 
-> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-> index 7a7039381142bb5dba269bdaec42c18be34e2d05..056c2efef1589848034afc0089f1838c2547bcf8 100644
-> --- a/include/uapi/drm/drm_mode.h
-> +++ b/include/uapi/drm/drm_mode.h
-> @@ -1367,6 +1367,17 @@ struct drm_mode_closefb {
->   */
->  #define DRM_MODE_HISTOGRAM_HSV_MAX_RGB			(1 << 0)
->  
-> +/* LUT values are points on exponential graph with x axis and y-axis y=f(x) */
+If the user space doesn't read the EU stall data fast enough,
+it is possible that the EU stall data buffer can get filled,
+and if the hardware wants to write more data, it simply drops
+data due to unavailable buffer space. In that case, hardware
+sets a bit in a register. If the driver detects data drop,
+the driver read() returns -EIO error to let the user space
+know that HW has dropped data. The -EIO error is returned
+even if there is EU stall data in the buffer. A subsequent
+read by the user space returns the remaining EU stall data.
 
-Huh?
+Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_eu_stall.c | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_eu_stall.h |  1 +
+ 2 files changed, 13 insertions(+)
 
-> +#define DRM_MODE_IET_LOOKUP_LUT				(1 << 0)
-
-Again, what is the reason for a shift? Can these values be OR'd?
-
-> +/*
-> + * LUT values, points on negative exponential graph with x-axis and y-axis
-> + * y = y/x so upon multiplying x, y is obtained, hence multiplicative. The
-
-Can't parse this sentence.
-
-> + * format of LUT can at max be 8.24(8integer 24 fractional) represented by
-> + * u32. Depending on the hardware capability and exponent mantissa can be
-> + * chosen.
-
-What does that mean? How is it choosen?
-
-> + */
-> +#define DRM_MODE_IET_MULTIPLICATIVE			(1 << 1)
-> +
->  /**
->   * struct drm_histogram_caps
->   *
-> @@ -1414,6 +1425,45 @@ struct drm_histogram {
->  	__u32 nr_elements;
->  };
->  
-> +/**
-> + * struct drm_iet_caps
-> + *
-> + * @iet_mode: pixel factor enhancement modes defined in the above macros
-> + * @iet_sample_format: holds the address of an array of u32 LUT sample formats
-> + *		       depending on the hardware capability. Max being 8.24
-> + *		       Doing a bitwise AND will get the present sample.
-> + *		       Ex: for 1 integer 9 fraction AND with 0x10001FF
-
-?? Can hardware support 16.16? 32.0?
-
-> + * @nr_iet_sample_formats: number of iet_sample_formsts supported by the
-> + *			   hardware
-> + * @nr_iet_lut_entries: number of LUT entries
-> + */
-> +struct drm_iet_caps {
-> +	__u8 iet_mode;
-> +	u64 iet_sample_format;
-> +	__u32 nr_iet_sample_formats;
-> +	__u32 nr_iet_lut_entries;
-> +};
-> +
-> +/**
-> + * struct drm_iet_1dlut_sample
-
-Is it supposed to be used with DRM_MODE_IET_MULTIPLICATIVE only? Or is
-it supposed to be used with DRM_MODE_IET_LOOKUP_LUT? In the latter case
-what should be the iet_format value?
-
-> + * @iet_mode: image enhancement mode, this will also convey the channel.
-> + * @iet_format: LUT exponent and mantissa format, max being 8.24
-> + * @data_ptr: pointer to the array of values which is of type u32.
-> + *	      1 channel: 10 bit corrected value and remaining bits are reserved.
-> + *	      multi channel: pointer to struct drm_color_lut
-> + * @nr_elements: number of entries pointed by the data @data_ptr
-> + * @reserved: reserved for future use
-> + * @reserved1: reserved for future use
-> + */
-> +struct drm_iet_1dlut_sample {
-> +	__u8 iet_mode;
-> +	__u32 iet_format;
-> +	__u64 data_ptr;
-> +	__u32 nr_elements;
-> +	__u32 reserved;
-> +	__u32 reserved1;
-> +};
-> +
->  #if defined(__cplusplus)
->  }
->  #endif
-> 
-> -- 
-> 2.25.1
-> 
-
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+index c388d733b857..437782f8433c 100644
+--- a/drivers/gpu/drm/xe/xe_eu_stall.c
++++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+@@ -472,6 +472,7 @@ xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *stream,
+  * before calling read().
+  *
+  * Returns: The number of bytes copied or a negative error code on failure.
++ *	    -EIO if HW drops any EU stall data when the buffer is full.
+  */
+ static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
+ 				       size_t count, loff_t *ppos)
+@@ -485,6 +486,16 @@ static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
+ 		return -EINVAL;
+ 	}
+ 
++	if (bitmap_weight(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS)) {
++		if (!stream->data_drop.reported_to_user) {
++			stream->data_drop.reported_to_user = true;
++			xe_gt_dbg(gt, "EU stall data dropped in XeCores: %*pb\n",
++				  XE_MAX_DSS_FUSE_BITS, stream->data_drop.mask);
++			return -EIO;
++		}
++		stream->data_drop.reported_to_user = false;
++	}
++
+ 	if (!(file->f_flags & O_NONBLOCK)) {
+ 		do {
+ 			if (!stream->pollin) {
+@@ -680,6 +691,7 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+ 	if (!stream->xecore_buf)
+ 		return -ENOMEM;
+ 
++	stream->data_drop.reported_to_user = false;
+ 	bitmap_zero(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS);
+ 
+ 	xe_pm_runtime_get(gt_to_xe(gt));
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.h b/drivers/gpu/drm/xe/xe_eu_stall.h
+index f97c8bf8e852..8bc44e9e98af 100644
+--- a/drivers/gpu/drm/xe/xe_eu_stall.h
++++ b/drivers/gpu/drm/xe/xe_eu_stall.h
+@@ -31,6 +31,7 @@ struct xe_eu_stall_data_stream {
+ 	struct xe_bo *bo;
+ 	struct per_xecore_buf *xecore_buf;
+ 	struct {
++		bool reported_to_user;
+ 		xe_dss_mask_t mask;
+ 	} data_drop;
+ 	struct hrtimer poll_check_timer;
 -- 
-With best wishes
-Dmitry
+2.47.1
+
