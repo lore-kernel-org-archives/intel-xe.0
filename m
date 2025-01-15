@@ -4,59 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90F31C02180
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 10:19:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73BF2C02180
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 10:26:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F80910E5AF;
-	Wed, 15 Jan 2025 10:19:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2081610E5C0;
+	Wed, 15 Jan 2025 10:26:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bigUQgek";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Mljgl0Dv";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qI2Y6oN0";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Mljgl0Dv";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qI2Y6oN0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0686910E5AF
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Jan 2025 10:19:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736936363; x=1768472363;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=sq8QktMXZCBEenEKnNhfbUJnGaxQQoxK8PiGUwzgKbQ=;
- b=bigUQgekevHPncHwRvv4E0Cxp7FFbnkOXd2C/+AOD/A31dKakTEhKaj8
- aJChMeIqPpa1Hth3Dq1GSui5/ghL546Dy/r3pLXoLxSJh+i1tEzZ++KbT
- YyrmNkKKjv/1a6hw5kV48JhC90YKMxydePUUwB/HLP0Jq+nLHR7qmeVjh
- IlfooRPtkcV38zeb6ePYlhCoRC8zW/eC1hLwTA5c63V/3eiYoqm9XDkgw
- INTSCOK3VrYIczfjBug4hrAV5/YXdsI60xE4mDSCTeWfs78HWplke3f6X
- /8muIMT2iNsBt0klY0OsJi3YU5bbahVCrSmoHx/Ae6bpt+L2acohfig3g w==;
-X-CSE-ConnectionGUID: da4/GcfvTt+8tLfMQfvLQQ==
-X-CSE-MsgGUID: ClyRCKqgQeSWs59AhU1ouQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11315"; a="37180821"
-X-IronPort-AV: E=Sophos;i="6.12,317,1728975600"; d="scan'208";a="37180821"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2025 02:19:23 -0800
-X-CSE-ConnectionGUID: r4Vq3Xq0Sq2mSLuj1UqV8A==
-X-CSE-MsgGUID: QJi9/REtS9+J0iq4Ls0U7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,317,1728975600"; d="scan'208";a="104846522"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO [10.245.244.166])
- ([10.245.244.166])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2025 02:19:21 -0800
-Message-ID: <4edb736f-907c-4506-ae77-739d3aa377aa@linux.intel.com>
-Date: Wed, 15 Jan 2025 11:19:18 +0100
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8796710E5BC;
+ Wed, 15 Jan 2025 10:26:04 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 3A60921285;
+ Wed, 15 Jan 2025 10:26:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1736936763; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=o5OaTSBvndaqL7pmKVkJ0tKcrkXR4wXg7zZA1xwdifc=;
+ b=Mljgl0DvQXsyKMdMzmz5ZwZ3V789zCdVdhgaCjuMtwHrT61J2CLPcsqyigpgNfMgt5s9ED
+ NQBLa2bFnxQBC6Lh8kmGl4ElL6IbxkHaMKnpSDKgAWvZ5RgKmpAEVOTkk2jS/7Dqz07SiL
+ vCLaFHZP1mmjRXmvQ/ScFe4UhJimBB4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1736936763;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=o5OaTSBvndaqL7pmKVkJ0tKcrkXR4wXg7zZA1xwdifc=;
+ b=qI2Y6oN0l9JxGfh+RN+mqlivvJYcBaYsV/e1PTdXmK0ZMZeCqm75AAiZVcbCx5W/dssHYm
+ 9npljUHucuH2iADw==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1736936763; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=o5OaTSBvndaqL7pmKVkJ0tKcrkXR4wXg7zZA1xwdifc=;
+ b=Mljgl0DvQXsyKMdMzmz5ZwZ3V789zCdVdhgaCjuMtwHrT61J2CLPcsqyigpgNfMgt5s9ED
+ NQBLa2bFnxQBC6Lh8kmGl4ElL6IbxkHaMKnpSDKgAWvZ5RgKmpAEVOTkk2jS/7Dqz07SiL
+ vCLaFHZP1mmjRXmvQ/ScFe4UhJimBB4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1736936763;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=o5OaTSBvndaqL7pmKVkJ0tKcrkXR4wXg7zZA1xwdifc=;
+ b=qI2Y6oN0l9JxGfh+RN+mqlivvJYcBaYsV/e1PTdXmK0ZMZeCqm75AAiZVcbCx5W/dssHYm
+ 9npljUHucuH2iADw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B2519139CB;
+ Wed, 15 Jan 2025 10:26:02 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id yds5KjqNh2dqKAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Wed, 15 Jan 2025 10:26:02 +0000
+Message-ID: <bc97b92e-7f8a-4b92-af8a-20fa165ead55@suse.de>
+Date: Wed, 15 Jan 2025 11:26:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/xe/display: Move dpt allocation to helper
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <20250114180403.896587-1-juhapekka.heikkila@gmail.com>
- <CH0PR11MB5444F77CC2DE257A7BA51E1DE5182@CH0PR11MB5444.namprd11.prod.outlook.com>
+Subject: Re: [PATCH v2 25/25] drm/xlnx: Compute dumb-buffer sizes with
+ drm_mode_size_dumb()
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20250109150310.219442-1-tzimmermann@suse.de>
+ <20250109150310.219442-26-tzimmermann@suse.de>
+ <cdbe483d-0895-47aa-8c83-1c28220f4a02@ideasonboard.com>
 Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <CH0PR11MB5444F77CC2DE257A7BA51E1DE5182@CH0PR11MB5444.namprd11.prod.outlook.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <cdbe483d-0895-47aa-8c83-1c28220f4a02@ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ FREEMAIL_TO(0.00)[ideasonboard.com,linux.intel.com,kernel.org,gmail.com,ffwll.ch];
+ RCPT_COUNT_TWELVE(0.00)[20]; MIME_TRACE(0.00)[0:+];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ MID_RHS_MATCH_FROM(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,116 +147,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi
 
 
-Den 2025-01-14 kl. 20:22, skrev Cavitt, Jonathan:
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Juha-Pekka Heikkila
-> Sent: Tuesday, January 14, 2025 10:04 AM
-> To: intel-xe@lists.freedesktop.org
-> Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> Subject: [PATCH 1/2] drm/xe/display: Move dpt allocation to helper
+Am 15.01.25 um 11:13 schrieb Tomi Valkeinen:
+> Hi!
+>
+> On 09/01/2025 16:57, Thomas Zimmermann wrote:
+>> Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch and
+>> buffer size. Align the pitch according to hardware requirements.
 >>
->> Simplify __xe_pin_fb_vma_dpt() by moving dpt allocation into helper.
->> This also fixes bug where dpt could have been allocated from system
->> memory when on dgfx.
->>
->> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 >> ---
->>   drivers/gpu/drm/xe/display/xe_fb_pin.c | 67 +++++++++++++++++---------
->>   1 file changed, 43 insertions(+), 24 deletions(-)
+>>   drivers/gpu/drm/xlnx/zynqmp_kms.c | 7 +++++--
+>>   1 file changed, 5 insertions(+), 2 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
->> index 9fa51b84737c..c28885316986 100644
->> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
->> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
->> @@ -77,6 +77,47 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
->>   	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
->>   }
->>   
->> +static struct xe_bo *xe_alloc_dpt_bo(struct xe_device *xe,
->> +				     struct xe_tile *tile0, u64 size,
->> +				     u64 physical_alignment)
->> +{
->> +	struct xe_bo *dpt;
->> +
->> +	/*
->> +	 * If DGFX: try VRAM0 only
->> +	 */
->> +	if (IS_DGFX(xe)) {
->> +		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
->> +						      size, ~0ull,
->> +						      ttm_bo_type_kernel,
->> +						      XE_BO_FLAG_VRAM0 |
->> +						      XE_BO_FLAG_GGTT |
->> +						      XE_BO_FLAG_PAGETABLE,
->> +						      physical_alignment);
->> +	} else {
->> +		/*
->> +		 * For IGFX: first try STOLEN. on fail try SYSTEM.
->> +		 */
->> +		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
->> +						      size, ~0ull,
->> +						      ttm_bo_type_kernel,
->> +						      XE_BO_FLAG_STOLEN |
->> +						      XE_BO_FLAG_GGTT |
->> +						      XE_BO_FLAG_PAGETABLE,
->> +						      physical_alignment);
->> +		if (IS_ERR(dpt)) {
->> +			dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
->> +							      size, ~0ull,
->> +							      ttm_bo_type_kernel,
->> +							      XE_BO_FLAG_SYSTEM |
->> +							      XE_BO_FLAG_GGTT |
->> +							      XE_BO_FLAG_PAGETABLE,
->> +							      physical_alignment);
->> +		}
->> +	}
->> +	return dpt;
-> 
-> We might be able to collapse some of this logic by storing the flags separately:
-> 
-> """
-> static struct xe_bo *xe_alloc_dpt_bo(struct xe_device *xe,
-> 				     struct xe_tile *tile0, u64 size,
-> 				     u64 physical_alignment)
-> {
-> 	struct xe_bo *dpt;
-> 	u32 base_flags = XE_BO_FLAG_GGTT | XE_BO_FLAG_PAGETABLE;
-> 	u32 flags = base_flags;
-> 
-> 	/*
-> 	 * If DGFX: try VRAM0.
-> 	 * If IGFX: try STOLEN.
-> 	 */
-> 	flags |= IS_DGFX(xe) ? XE_BO_FLAG_VRAM0 : XE_BO_FLAG_STOLEN;
-> 
-> 	dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL, size,
-> 					      ~0ull, ttm_bo_type_kernel,
-> 					      flags, physical_alignment);
-> 
-> 	/*
-> 	 * For IGFX, we first try STOLEN, and on a failure we try SYSTEM.
-> 	 * DGFX should only attempt VRAM0
-> 	 */
-> 	if (IS_DGFX(xe) && IS_ERR(dpt))
-> 		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
-> 						      size, ~0ull,
-> 						      ttm_bo_type_kernel,
-> 						      base_flags |
-> 						      XE_BO_FLAG_SYSTEM,
-> 						      physical_alignment);
-> 	return dpt;
-> }
-> """
-> This isn't a particularly necessary compression, but it might be worth considering.
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>Except that fails on both integrated and discrete, due to IS_DGFX() used 
-wrongly here. ;-)
+>> diff --git a/drivers/gpu/drm/xlnx/zynqmp_kms.c 
+>> b/drivers/gpu/drm/xlnx/zynqmp_kms.c
+>> index b47463473472..7ea0cd4f71d3 100644
+>> --- a/drivers/gpu/drm/xlnx/zynqmp_kms.c
+>> +++ b/drivers/gpu/drm/xlnx/zynqmp_kms.c
+>> @@ -19,6 +19,7 @@
+>>   #include <drm/drm_crtc.h>
+>>   #include <drm/drm_device.h>
+>>   #include <drm/drm_drv.h>
+>> +#include <drm/drm_dumb_buffers.h>
+>>   #include <drm/drm_encoder.h>
+>>   #include <drm/drm_fbdev_dma.h>
+>>   #include <drm/drm_fourcc.h>
+>> @@ -363,10 +364,12 @@ static int zynqmp_dpsub_dumb_create(struct 
+>> drm_file *file_priv,
+>>                       struct drm_mode_create_dumb *args)
+>>   {
+>>       struct zynqmp_dpsub *dpsub = to_zynqmp_dpsub(drm);
+>> -    unsigned int pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
+>> +    int ret;
+>>         /* Enforce the alignment constraints of the DMA engine. */
+>> -    args->pitch = ALIGN(pitch, dpsub->dma_align);
+>> +    ret = drm_mode_size_dumb(drm, args, dpsub->dma_align, 0);
+>> +    if (ret)
+>> +        return ret;
+>>         return drm_gem_dma_dumb_create_internal(file_priv, drm, args);
+>>   }
+>
+> I have some trouble with this one.
+>
+> I have sent a series to add some pixel formats:
+>
+> https://lore.kernel.org/all/20250115-xilinx-formats-v2-0-160327ca652a@ideasonboard.com/ 
+>
+>
+> Let's look at XV15. It's similar to NV12, but 10 bits per component, 
+> and some packing and padding.
+>
+> First plane: 3 pixels in a 32 bit group
+> Second plane: 3 pixels in a 64 bit group, 2x2 subsampled
+>
+> So, on average, a pixel on the first plane takes 32 / 3 = 10.666... 
+> bits on a line. That's not a usable number for the 
+> DRM_IOCTL_MODE_CREATE_DUMB ioctl.
+>
+> What I did was to use the pixel group size as "bpp" for 
+> DRM_IOCTL_MODE_CREATE_DUMB. So, e.g., for 720 x 576:
+>
+> Stride for first plane: 720 * (32 / 3) / 8 = 960 bytes
+> Stride for second plane: 720 / 2 * (64 / 3) / 8 = 960 bytes
+>
+> First plane: 720 / 3 = 240 pixel groups
+> Second plane: 720 / 2 / 3 = 120 pixel groups
+>
+> So I allocated the two planes with:
+> 240 x 576 with 32 bitspp
+> 120 x 288 with 64 bitspp
+>
+> This worked, and if I look at the DRM_IOCTL_MODE_CREATE_DUMB in the 
+> docs, I can't right away see anything there that says my tactic was 
+> not allowed.
+>
+> The above doesn't work anymore with this patch, as the code calls 
+> drm_driver_color_mode_format(), which fails for 64 bitspp. It feels a 
+> bit odd that DRM_IOCTL_MODE_CREATE_DUMB will try to guess the RGB 
+> fourcc for a dumb buffer allocation.
+>
+> So, what to do here? Am I doing something silly? What's the correct 
+> way to allocate the buffers for XV15? Should I just use 32 bitspp for 
+> the plane 2 too, and double the width (this works)?
+>
+> Is DRM_IOCTL_MODE_CREATE_DUMB only meant for simple RGB formats? The 
+> xilinx driver can, of course, just not use drm_mode_size_dumb(). But 
+> if so, I guess the limitations of drm_mode_size_dumb() should be 
+> documented.
+>
+> Do we need a new dumb-alloc ioctl that takes the format and plane 
+> number as parameters? Or alternatively a simpler dumb-alloc that 
+> doesn't have width and bpp, but instead takes a stride and height as 
+> parameters? I think those would be easier for the userspace to use, 
+> instead of trying to adjust the parameters to be suitable for the kernel.
 
-Every change, no matter how small, has the opportunity to break things.
+These are all good points. Did you read my discussion with Andy on patch 
+2? I think it resolves all the points you have. The current CREATE_DUMB 
+ioctl is unsuited for anything but the simple RGB formats. The bpp 
+parameter is not very precise. The solution would be a new ioctl call 
+that receives the DRM format and returns a buffer for each individual plane.
 
-Regardless, for both patches:
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+I provided a workaround patch that uses the bpp value directly if 
+drm_driver_color_mode_format() does not support the bpp value. 
+User-space code has to allocate a large enough buffer via the current 
+CREATE_DUMB and compute the individual planes itself. See [1] for an 
+example. [1] 
+https://gitlab.freedesktop.org/mesa/drm/-/blob/main/tests/modetest/buffers.c?ref_type=heads#L302 
+Does this work for you? Otherwise, I guess we should be talking about a 
+possible CREATE_DUMB2 that fixes these shortcomings. Best regards Thomas
+>
+>  Tomi
+>
 
-Cheers,
-~Maarten
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
