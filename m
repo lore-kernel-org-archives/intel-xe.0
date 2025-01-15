@@ -4,48 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C123EC02180
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 15:22:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C92AEC02187
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 15:22:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DB7C10E045;
-	Wed, 15 Jan 2025 15:22:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 928EA10E736;
+	Wed, 15 Jan 2025 15:22:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jyyqjPV9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UwTqZTFz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1563A10E736
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Jan 2025 15:22:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D880710E749
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Jan 2025 15:22:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736954564; x=1768490564;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=YRqFVfsTUOCwdT9XRBDqYrQXefadYVreQhUOUFxVxmE=;
- b=jyyqjPV9Nav98WgLmKzJZp9oBB1o0yX+rCaFepjE6zGhD91pgGx9NZc/
- 7C2BWh5V5GqpRj+87aGfMX+jws6t6xEXQjHSClJ2K3Osqvv7JqruNBqi2
- nOL3f/CP71om1xHaSIhF7bUuqASinYY2Zfn6rZ/MeBoX8bspQJPbLrjiE
- pDl6J+rXFjW83RoKzATjZDSELYVFiMYD9norfoOFZng0A69GRQqYQCI+Y
- k9wwEZPlBDGLRvS6i5wXvvn7E5wMrHDNPQYyp1Od1ia+ZlbE/v+8Y2VaT
- Ojf9Ax5WYb9zpDJE1s4lMur0JUQZolifpp7nyUAsiLhfyETyxg1xnUOVX Q==;
-X-CSE-ConnectionGUID: rii0gUKJRH2O2K2QDLsnqA==
-X-CSE-MsgGUID: nvxX+iknTsCGH2Iq15vWsA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11316"; a="40106948"
-X-IronPort-AV: E=Sophos;i="6.13,206,1732608000"; d="scan'208";a="40106948"
+ t=1736954565; x=1768490565;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=Bme62NuvSUl9gIg8OPNGDs3wSbRVLCwdP2vUtKFG67c=;
+ b=UwTqZTFz5El9IrRwxzizAhQmH4zwDjMWgEkqXJ3Y3y8qlp1ykl9X9sOB
+ pEKbcqzVQ7mzNaf/eP805nObs1rbflPHPrLBwFpS5BU7MftqOuFZd5Nce
+ riFAEW3KCmWO0et7oONZVRSXMjT7unGFE+w9I+ThxECiRlhAYwmG2U5uk
+ i57K8OWnkV3mNIhr49nrhx50q/c2Mf2yz7GOdaIunAAad4Uy29NZW6KdD
+ aFLD/j9MFiKsqCZaneBFQUG3dgJ4G0ZqXPtSHRdoBgbBsC7PNe16uVgNt
+ OGvSmUCH+/IK4qH2wsjzhYBQjJiRm7SONXWDkKkzj3aHa6QuV3wSXXSpL w==;
+X-CSE-ConnectionGUID: 84UmbaD+QTWhWxc7iVos0g==
+X-CSE-MsgGUID: sU8kzRUeThixY/QNItWILA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11316"; a="40106951"
+X-IronPort-AV: E=Sophos;i="6.13,206,1732608000"; d="scan'208";a="40106951"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2025 07:22:43 -0800
-X-CSE-ConnectionGUID: 1mWrDN3YST6UUrT5zlALbw==
-X-CSE-MsgGUID: 0H2PxvW5TuOHTAEhiAhFNg==
+ 15 Jan 2025 07:22:45 -0800
+X-CSE-ConnectionGUID: FmHSQCD4Qa6IUSjyoCVSzg==
+X-CSE-MsgGUID: T5IJSJWxTsWTRYP5lpxM9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,206,1732608000"; d="scan'208";a="110147928"
+X-IronPort-AV: E=Sophos;i="6.13,206,1732608000"; d="scan'208";a="110147936"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa004.jf.intel.com with ESMTP; 15 Jan 2025 07:22:43 -0800
+ by orviesa004.jf.intel.com with ESMTP; 15 Jan 2025 07:22:45 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 0/7] Check Scaler and DSC Prefill Latency Against Vblank
-Date: Wed, 15 Jan 2025 20:49:23 +0530
-Message-ID: <20250115151930.3665295-1-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v5 2/7] drm/i915/scaler: Use crtc_state to setup plane or pipe
+ scaler
+Date: Wed, 15 Jan 2025 20:49:25 +0530
+Message-ID: <20250115151930.3665295-3-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250115151930.3665295-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20250115151930.3665295-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -62,27 +65,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Compute and check if dsc and scaler prefill latency is sufficient with
-respect to vblank.
+Pass crtc_state to intel_atomic_setup_scaler, this will help to
+check if pch_pfit enabled or not and also will be useful to pass
+scaler_state with the same which will be used later to store
+hscale and vscale values.
 
-Previous Revision Reference:
-https://patchwork.freedesktop.org/series/141203/
-https://patchwork.freedesktop.org/series/142745/
+-- v2:
+- Commit message updates. parse to pass. (Ankit)
 
-Mitul Golani (7):
-  drm/i915/scaler: Add and compute scaling factors
-  drm/i915/scaler: Use crtc_state to setup plane or pipe scaler
-  drm/i915/scaler: Refactor max_scale computation
-  drm/i915/scaler: Compute scaling factors for pipe scaler
-  drm/i915/scaler: Limit pipe scaler downscaling factors for YUV420
-  drm/i915/scaler: Check if vblank is sufficient for scaler
-  drm/i915/dsc: Check if vblank is sufficient for dsc prefill
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_scaler.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
- .../drm/i915/display/intel_display_types.h    |   2 +
- drivers/gpu/drm/i915/display/skl_scaler.c     | 123 ++++++++++++------
- drivers/gpu/drm/i915/display/skl_watermark.c  |  84 +++++++++++-
- 3 files changed, 171 insertions(+), 38 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index 67b86f6f62fc..12efa4008027 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -319,13 +319,15 @@ static int intel_allocate_scaler(struct intel_crtc_scaler_state *scaler_state,
+ 	return -1;
+ }
+ 
+-static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_state,
++static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
+ 				     int num_scalers_need, struct intel_crtc *crtc,
+ 				     const char *name, int idx,
+ 				     struct intel_plane_state *plane_state,
+ 				     int *scaler_id)
+ {
+ 	struct intel_display *display = to_intel_display(crtc);
++	struct intel_crtc_scaler_state *scaler_state =
++					&crtc_state->scaler_state;
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	u32 mode;
+ 
+@@ -455,7 +457,7 @@ static int setup_crtc_scaler(struct intel_atomic_state *state,
+ 	struct intel_crtc_scaler_state *scaler_state =
+ 		&crtc_state->scaler_state;
+ 
+-	return intel_atomic_setup_scaler(scaler_state,
++	return intel_atomic_setup_scaler(crtc_state,
+ 					 hweight32(scaler_state->scaler_users),
+ 					 crtc, "CRTC", crtc->base.base.id,
+ 					 NULL, &scaler_state->scaler_id);
+@@ -490,7 +492,7 @@ static int setup_plane_scaler(struct intel_atomic_state *state,
+ 	if (IS_ERR(plane_state))
+ 		return PTR_ERR(plane_state);
+ 
+-	return intel_atomic_setup_scaler(scaler_state,
++	return intel_atomic_setup_scaler(crtc_state,
+ 					 hweight32(scaler_state->scaler_users),
+ 					 crtc, "PLANE", plane->base.base.id,
+ 					 plane_state, &plane_state->scaler_id);
 -- 
 2.48.0
 
