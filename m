@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48EC4C02188
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 20:02:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C18EC02183
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 20:02:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05B2510E7DE;
-	Wed, 15 Jan 2025 20:02:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4540910E7DB;
+	Wed, 15 Jan 2025 20:02:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aD69APPZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dVVS0/vo";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D164510E7DA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8855010E7DA
  for <intel-xe@lists.freedesktop.org>; Wed, 15 Jan 2025 20:02:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1736971342; x=1768507342;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wryhLwcLTAqQ0om47BY4ijH8/SjWAohvPXra2Syw08g=;
- b=aD69APPZBHQwGqzWd30NPObQDkbcFMtnO6ZCPpjl8QMy1yeW24Icgj9Z
- B0pmbMgQSIh6Vdudgb6Hq7ifPbkZoGE4uzs8MmjDENHV93GjgmbLoMU/v
- wd9cAdlzpIOjy1/zMoFAkeiZ8fsuJOB8BXzY5ddZ6+p9b8I0+c6QIr5pq
- REdYgKSnQP+fqgZ03TaWIXSQ1Cv22ZQVHqG1yr8Ykrc1z7MWTOaHgjMd5
- 6tWcMBPKAQA9SMhE6TcfWnb6hCBt3iKsw1ZhXRg4SgSv6mZtj9Abcfxu+
- 3rJU13yHAbOlLCN0c4ei3RxzhfWPP+hnD/KSb9BVxts+fHMt6AByhZ4s2 A==;
-X-CSE-ConnectionGUID: 7mgVbbDERPCuaKX+WZ/tvg==
-X-CSE-MsgGUID: e3MqjvcHRkWNoeGA68l0SQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="37438285"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="37438285"
+ bh=XwpyBpdFqL0uIIAoMdrEBQvslqreYkAIKvnSsCq4fC4=;
+ b=dVVS0/voUzgCb0MAFJDzoQ+FjYikomOL3+lbKapx0KerEGsTiZGA8RcF
+ yx4P1d2qUqirUuKa5m7lENxGGvtPJnvQFp2QLBK2gy+l2KgyhIZNmoayi
+ 8l+/ywg+LmYs+o+ZRItFpocn/vc3ltOeWzfJ8nuuocRE4AVvCdzP8KlXa
+ oOAbIHcpCxD4p7xaNjhMkZR1eA4m2uX4hk4aZ2HHid2ybk9vTx9BNkMLC
+ e++m3Ln9sUNkPldtkeOlUWfXL3t/BQMFMRI5eJhPY1phucOf3bxPAvDEY
+ 0woL826R79NgzFX44Fgy5VZEHmitVpNaNQlrtc4Cp6N78p7+s/QR/QkUB A==;
+X-CSE-ConnectionGUID: 476vbkacRa6KIr2xax7WJA==
+X-CSE-MsgGUID: QqbCLE54TMaFQwcIhObYzQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="37438280"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="37438280"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2025 12:02:22 -0800
-X-CSE-ConnectionGUID: YW96MLD5Rq+Tk5jSTsgP9w==
-X-CSE-MsgGUID: nX+vQX1qSReYnQUBNkPB8g==
+ 15 Jan 2025 12:02:20 -0800
+X-CSE-ConnectionGUID: gztK7vkOQLuNojFLGnMqLA==
+X-CSE-MsgGUID: D4gtyiPlQhyPAaDWgw5HYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,207,1732608000"; d="scan'208";a="105785827"
+X-IronPort-AV: E=Sophos;i="6.13,207,1732608000"; d="scan'208";a="105785804"
 Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2025 12:02:21 -0800
+ 15 Jan 2025 12:02:20 -0800
 From: Harish Chegondi <harish.chegondi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: ashutosh.dixit@intel.com, james.ausmus@intel.com,
@@ -48,14 +48,14 @@ Cc: ashutosh.dixit@intel.com, james.ausmus@intel.com,
  joshua.santosh.ranjan@intel.com, shubham.kumar@intel.com,
  matthew.d.roper@intel.com, matthew.olson@intel.com,
  lucas.demarchi@intel.com, Harish Chegondi <harish.chegondi@intel.com>
-Subject: [PATCH v8 7/7] drm/xe/eustall: Add workaround 22016596838 which
- applies to PVC.
-Date: Wed, 15 Jan 2025 12:02:13 -0800
-Message-ID: <e326bbe2c06ddfa2e7b1d68e5b36c75ee8d189c0.1736970203.git.harish.chegondi@intel.com>
+Subject: [PATCH v8 2/7] drm/xe/uapi: Introduce API for EU stall sampling
+Date: Wed, 15 Jan 2025 12:02:08 -0800
+Message-ID: <e7976be3cc70ce56a2f64edf007bccacbaa2b37b.1736970203.git.harish.chegondi@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <cover.1736970203.git.harish.chegondi@intel.com>
 References: <cover.1736970203.git.harish.chegondi@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,75 +71,465 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add PVC workaround 22016596838 that disables EU DOP gating
-during EU stall sampling.
+A new hardware feature first introduced in PVC gives capability to
+periodically sample EU stall state and record counts for different stall
+reasons, on a per IP basis, aggregate across all EUs in a subslice and
+record the samples in a buffer in each subslice. Eventually, the aggregated
+data is written out to a buffer in the memory. This feature is also
+supported in XE2 and later architecture GPUs.
 
+Use an existing IOCTL - DRM_IOCTL_XE_OBSERVATION as the interface into the
+driver from the user space to do initial setup and obtain a file descriptor
+for the EU stall data stream.  Input parameter to the IOCTL is a struct
+drm_xe_observation_param in which observation_type should be set to
+DRM_XE_OBSERVATION_TYPE_EU_STALL, observation_op should be
+DRM_XE_OBSERVATION_OP_STREAM_OPEN and param should point to a chain of
+drm_xe_ext_set_property structures in which each structure has a pair of
+property and value. The EU stall sampling input properties are defined in
+drm_xe_eu_stall_property_id enum.
+
+With the file descriptor obtained from DRM_IOCTL_XE_OBSERVATION, user space
+can enable and disable EU stall sampling with the IOCTLs:
+DRM_XE_OBSERVATION_IOCTL_ENABLE and DRM_XE_OBSERVATION_IOCTL_DISABLE.
+User space can also call poll() to check for availability of data in the
+buffer. The data can be read with read(). Finally, the file descriptor
+can be closed with close().
+
+v8: Used div_u64 instead of / to fix 32-bit build issue.
+    Changed copyright year in xe_eu_stall.c/h to 2025.
+v7: Renamed input property DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT
+    to DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS to be consistent with
+    OA. Renamed the corresponding internal variables.
+    Fixed some commit messages based on review feedback.
+v6: Change the input sampling rate to GPU cycles instead of
+    GPU cycles multiplier.
+
+Cc: Felix Degrood <felix.j.degrood@intel.com>
 Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_eu_stall.c   | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules |  1 +
- 2 files changed, 17 insertions(+)
+ drivers/gpu/drm/xe/Makefile         |   1 +
+ drivers/gpu/drm/xe/xe_eu_stall.c    | 283 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_eu_stall.h    |  12 ++
+ drivers/gpu/drm/xe/xe_observation.c |  14 ++
+ include/uapi/drm/xe_drm.h           |  38 ++++
+ 5 files changed, 348 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.h
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 7730e0596299..259ccbb0c031 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -33,6 +33,7 @@ xe-y += xe_bb.o \
+ 	xe_device_sysfs.o \
+ 	xe_dma_buf.o \
+ 	xe_drm_client.o \
++	xe_eu_stall.o \
+ 	xe_exec.o \
+ 	xe_execlist.o \
+ 	xe_exec_queue.o \
 diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-index 6acfd369d808..f030a9c1af84 100644
---- a/drivers/gpu/drm/xe/xe_eu_stall.c
+new file mode 100644
+index 000000000000..48dcc7cb7791
+--- /dev/null
 +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-@@ -13,6 +13,7 @@
- 
- #include "xe_bo.h"
- #include "xe_pm.h"
-+#include "xe_wa.h"
- #include "xe_trace.h"
- #include "xe_macros.h"
- #include "xe_device.h"
-@@ -26,6 +27,8 @@
- #include "regs/xe_gt_regs.h"
- #include "regs/xe_eu_stall_regs.h"
- 
-+#include <generated/xe_wa_oob.h>
+@@ -0,0 +1,283 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
 +
- #define POLL_FREQUENCY_HZ 100
- #define POLL_PERIOD_NS (NSEC_PER_SEC / POLL_FREQUENCY_HZ)
++#include <linux/anon_inodes.h>
++#include <linux/types.h>
++#include <linux/poll.h>
++#include <linux/fs.h>
++
++#include <uapi/drm/xe_drm.h>
++
++#include "xe_macros.h"
++#include "xe_device.h"
++#include "xe_eu_stall.h"
++#include "xe_gt_printk.h"
++#include "xe_gt_topology.h"
++#include "xe_observation.h"
++
++/**
++ * struct eu_stall_open_properties - EU stall sampling properties received
++ *				     from user space at open.
++ * @eu_stall_sampling_rate: EU stall sampling rate multiplier.
++ *			    HW will sample every (eu_stall_sampling_rate x 251) cycles.
++ * @wait_num_reports: Minimum number of EU stall data reports to unblock poll().
++ * @gt: GT on which EU stall data will be captured.
++ */
++struct eu_stall_open_properties {
++	u8 eu_stall_sampling_rate;
++	u32 wait_num_reports;
++	struct xe_gt *gt;
++};
++
++/**
++ * num_data_rows - Return the number of EU stall data rows of 64B each
++ *		   for a given data size.
++ *
++ * @data_size: EU stall data size
++ */
++static inline u32
++num_data_rows(u32 data_size)
++{
++	return (data_size >> 6);
++}
++
++static int set_prop_eu_stall_sampling_rate(struct xe_device *xe, u64 value,
++					   struct eu_stall_open_properties *props)
++{
++	value = div_u64(value, 251);
++	if (value == 0 || value > 7) {
++		drm_dbg(&xe->drm, "Invalid EU stall sampling rate %llu\n", value);
++		return -EINVAL;
++	}
++	props->eu_stall_sampling_rate = value;
++	return 0;
++}
++
++static int set_prop_eu_stall_wait_num_reports(struct xe_device *xe, u64 value,
++					      struct eu_stall_open_properties *props)
++{
++	u32 max_wait_num_reports;
++
++	max_wait_num_reports = num_data_rows(SZ_512K * XE_MAX_DSS_FUSE_BITS);
++	if (value == 0 || value > max_wait_num_reports) {
++		drm_dbg(&xe->drm, "Invalid EU stall event report count %llu\n", value);
++		drm_dbg(&xe->drm, "Minimum event report count is 1, maximum is %u\n",
++			max_wait_num_reports);
++		return -EINVAL;
++	}
++	props->wait_num_reports = value;
++	return 0;
++}
++
++static int set_prop_eu_stall_gt_id(struct xe_device *xe, u64 value,
++				   struct eu_stall_open_properties *props)
++{
++	if (value >= xe->info.gt_count) {
++		drm_dbg(&xe->drm, "Invalid GT ID %llu for EU stall sampling\n", value);
++		return -EINVAL;
++	}
++	props->gt = xe_device_get_gt(xe, value);
++	return 0;
++}
++
++typedef int (*set_eu_stall_property_fn)(struct xe_device *xe, u64 value,
++					struct eu_stall_open_properties *props);
++
++static const set_eu_stall_property_fn xe_set_eu_stall_property_funcs[] = {
++	[DRM_XE_EU_STALL_PROP_SAMPLE_RATE] = set_prop_eu_stall_sampling_rate,
++	[DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS] = set_prop_eu_stall_wait_num_reports,
++	[DRM_XE_EU_STALL_PROP_GT_ID] = set_prop_eu_stall_gt_id,
++};
++
++static int xe_eu_stall_user_ext_set_property(struct xe_device *xe, u64 extension,
++					     struct eu_stall_open_properties *props)
++{
++	u64 __user *address = u64_to_user_ptr(extension);
++	struct drm_xe_ext_set_property ext;
++	int err;
++	u32 idx;
++
++	err = __copy_from_user(&ext, address, sizeof(ext));
++	if (XE_IOCTL_DBG(xe, err))
++		return -EFAULT;
++
++	if (XE_IOCTL_DBG(xe, ext.property >= ARRAY_SIZE(xe_set_eu_stall_property_funcs)) ||
++	    XE_IOCTL_DBG(xe, ext.pad))
++		return -EINVAL;
++
++	idx = array_index_nospec(ext.property, ARRAY_SIZE(xe_set_eu_stall_property_funcs));
++	return xe_set_eu_stall_property_funcs[idx](xe, ext.value, props);
++}
++
++typedef int (*xe_eu_stall_user_extension_fn)(struct xe_device *xe, u64 extension,
++					     struct eu_stall_open_properties *props);
++static const xe_eu_stall_user_extension_fn xe_eu_stall_user_extension_funcs[] = {
++	[DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY] = xe_eu_stall_user_ext_set_property,
++};
++
++static int xe_eu_stall_user_extensions(struct xe_device *xe, u64 extension,
++				       struct eu_stall_open_properties *props)
++{
++	u64 __user *address = u64_to_user_ptr(extension);
++	struct drm_xe_user_extension ext;
++	int err;
++	u32 idx;
++
++	err = __copy_from_user(&ext, address, sizeof(ext));
++	if (XE_IOCTL_DBG(xe, err))
++		return -EFAULT;
++
++	if (XE_IOCTL_DBG(xe, ext.pad) ||
++	    XE_IOCTL_DBG(xe, ext.name >= ARRAY_SIZE(xe_eu_stall_user_extension_funcs)))
++		return -EINVAL;
++
++	idx = array_index_nospec(ext.name, ARRAY_SIZE(xe_eu_stall_user_extension_funcs));
++	err = xe_eu_stall_user_extension_funcs[idx](xe, extension, props);
++	if (XE_IOCTL_DBG(xe, err))
++		return err;
++
++	if (ext.next_extension)
++		return xe_eu_stall_user_extensions(xe, ext.next_extension, props);
++
++	return 0;
++}
++
++/**
++ * xe_eu_stall_stream_read - handles userspace read() of a EU stall data stream fd.
++ *
++ * @file: An xe EU stall data stream file
++ * @buf: destination buffer given by userspace
++ * @count: the number of bytes userspace wants to read
++ * @ppos: (inout) file seek position (unused)
++ *
++ * Userspace must enable the EU stall stream with DRM_XE_OBSERVATION_IOCTL_ENABLE
++ * before calling read().
++ *
++ * Returns: The number of bytes copied or a negative error code on failure.
++ */
++static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
++				       size_t count, loff_t *ppos)
++{
++	ssize_t ret = 0;
++
++	return ret;
++}
++
++/**
++ * xe_eu_stall_stream_poll - handles userspace poll() of a EU stall data stream fd.
++ *
++ * @file: An xe EU stall data stream file
++ * @wait: Poll table
++ *
++ * Returns: Bit mask of returned events.
++ */
++static __poll_t
++xe_eu_stall_stream_poll(struct file *file, poll_table *wait)
++{
++	__poll_t ret = 0;
++
++	return ret;
++}
++
++/**
++ * xe_eu_stall_stream_ioctl - support ioctl() of a xe EU stall data stream fd.
++ *
++ * @file: An xe EU stall data stream file
++ * @cmd: the ioctl request
++ * @arg: the ioctl data
++ *
++ * Returns: zero on success or a negative error code.
++ *	    -EINVAL for an unknown ioctl request.
++ */
++static long xe_eu_stall_stream_ioctl(struct file *file,
++				     unsigned int cmd,
++				     unsigned long arg)
++{
++	switch (cmd) {
++	case DRM_XE_OBSERVATION_IOCTL_ENABLE:
++		return 0;
++	case DRM_XE_OBSERVATION_IOCTL_DISABLE:
++		return 0;
++	}
++
++	return -EINVAL;
++}
++
++/**
++ * xe_eu_stall_stream_close - handles userspace close() of a EU stall data
++ *			      stream file.
++ * @inode: anonymous inode associated with file
++ * @file: An xe EU stall data stream file
++ *
++ * Cleans up any resources associated with an open EU stall data stream file.
++ */
++static int xe_eu_stall_stream_close(struct inode *inode, struct file *file)
++{
++	return 0;
++}
++
++static const struct file_operations fops_eu_stall = {
++	.owner		= THIS_MODULE,
++	.llseek		= noop_llseek,
++	.release	= xe_eu_stall_stream_close,
++	.poll		= xe_eu_stall_stream_poll,
++	.read		= xe_eu_stall_stream_read,
++	.unlocked_ioctl = xe_eu_stall_stream_ioctl,
++	.compat_ioctl   = xe_eu_stall_stream_ioctl,
++};
++
++static inline bool has_eu_stall_sampling_support(struct xe_device *xe)
++{
++	return false;
++}
++
++/**
++ * xe_eu_stall_stream_open - Open a xe EU stall data stream fd
++ *
++ * @dev: DRM device pointer
++ * @data: pointer to first struct @drm_xe_ext_set_property in
++ *	  the chain of input properties from the user space.
++ * @file: DRM file pointer
++ *
++ * This function opens a EU stall data stream with input properties from
++ * the user space.
++ *
++ * Returns: EU stall data stream fd on success or a negative error code.
++ */
++int xe_eu_stall_stream_open(struct drm_device *dev,
++			    u64 data,
++			    struct drm_file *file)
++{
++	struct xe_device *xe = to_xe_device(dev);
++	struct eu_stall_open_properties props;
++	int ret, stream_fd;
++
++	memset(&props, 0, sizeof(struct eu_stall_open_properties));
++
++	ret = xe_eu_stall_user_extensions(xe, data, &props);
++	if (ret)
++		return ret;
++
++	if (!props.gt) {
++		drm_dbg(&xe->drm, "GT ID not provided for EU stall sampling\n");
++		return -EINVAL;
++	}
++
++	if (xe_observation_paranoid && !perfmon_capable()) {
++		xe_gt_dbg(props.gt, "Insufficient privileges for EU stall monitoring\n");
++		return -EACCES;
++	}
++
++	if (!has_eu_stall_sampling_support(xe)) {
++		xe_gt_dbg(props.gt, "EU stall monitoring is not supported on this platform\n");
++		return -EPERM;
++	}
++	stream_fd = anon_inode_getfd("[xe_eu_stall]", &fops_eu_stall,
++				     NULL, 0);
++	if (stream_fd < 0)
++		xe_gt_dbg(props.gt, "EU stall inode get fd failed : %d\n", stream_fd);
++
++	return stream_fd;
++}
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.h b/drivers/gpu/drm/xe/xe_eu_stall.h
+new file mode 100644
+index 000000000000..3447958a7a22
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_eu_stall.h
+@@ -0,0 +1,12 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef __XE_EU_STALL_H__
++#define __XE_EU_STALL_H__
++
++int xe_eu_stall_stream_open(struct drm_device *dev,
++			    u64 data,
++			    struct drm_file *file);
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_observation.c b/drivers/gpu/drm/xe/xe_observation.c
+index 8ec1b84cbb9e..cca661de60ac 100644
+--- a/drivers/gpu/drm/xe/xe_observation.c
++++ b/drivers/gpu/drm/xe/xe_observation.c
+@@ -9,6 +9,7 @@
+ #include <uapi/drm/xe_drm.h>
  
-@@ -677,6 +680,14 @@ xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
- 	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_RENDER))
- 		xe_gt_err(gt, "Failed to get RENDER forcewake\n");
+ #include "xe_oa.h"
++#include "xe_eu_stall.h"
+ #include "xe_observation.h"
  
-+	/*
-+	 * Wa_22016596838:pvc
-+	 * Disable EU DOP gating for PVC.
+ u32 xe_observation_paranoid = true;
+@@ -29,6 +30,17 @@ static int xe_oa_ioctl(struct drm_device *dev, struct drm_xe_observation_param *
+ 	}
+ }
+ 
++static int xe_eu_stall_ioctl(struct drm_device *dev, struct drm_xe_observation_param *arg,
++			     struct drm_file *file)
++{
++	switch (arg->observation_op) {
++	case DRM_XE_OBSERVATION_OP_STREAM_OPEN:
++		return xe_eu_stall_stream_open(dev, arg->param, file);
++	default:
++		return -EINVAL;
++	}
++}
++
+ /**
+  * xe_observation_ioctl - The top level observation layer ioctl
+  * @dev: @drm_device
+@@ -51,6 +63,8 @@ int xe_observation_ioctl(struct drm_device *dev, void *data, struct drm_file *fi
+ 	switch (arg->observation_type) {
+ 	case DRM_XE_OBSERVATION_TYPE_OA:
+ 		return xe_oa_ioctl(dev, arg, file);
++	case DRM_XE_OBSERVATION_TYPE_EU_STALL:
++		return xe_eu_stall_ioctl(dev, arg, file);
+ 	default:
+ 		return -EINVAL;
+ 	}
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index f62689ca861a..d9b20afc57c1 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1397,6 +1397,8 @@ struct drm_xe_wait_user_fence {
+ enum drm_xe_observation_type {
+ 	/** @DRM_XE_OBSERVATION_TYPE_OA: OA observation stream type */
+ 	DRM_XE_OBSERVATION_TYPE_OA,
++	/** @DRM_XE_OBSERVATION_TYPE_EU_STALL: EU stall sampling observation stream type */
++	DRM_XE_OBSERVATION_TYPE_EU_STALL,
+ };
+ 
+ /**
+@@ -1729,6 +1731,42 @@ struct drm_xe_oa_stream_info {
+ 	__u64 reserved[3];
+ };
+ 
++/**
++ * enum drm_xe_eu_stall_property_id - EU stall sampling input property ids.
++ *
++ * These properties are passed to the driver at open as a chain of
++ * @drm_xe_ext_set_property structures with @property set to these
++ * properties' enums and @value set to the corresponding values of these
++ * properties. @drm_xe_user_extension base.name should be set to
++ * @DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY.
++ *
++ * With the file descriptor obtained from open, user space must enable
++ * the EU stall stream fd with @DRM_XE_OBSERVATION_IOCTL_ENABLE before
++ * calling read(). EIO errno from read() indicates HW dropped data
++ * due to full buffer.
++ */
++enum drm_xe_eu_stall_property_id {
++#define DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY		0
++	/**
++	 * @DRM_XE_EU_STALL_PROP_GT_ID: @gt_id of the GT on which
++	 * EU stall data will be captured.
 +	 */
-+	if (XE_WA(gt, 22016596838))
-+		xe_gt_mcr_multicast_write(gt, ROW_CHICKEN2,
-+					  _MASKED_BIT_ENABLE(DISABLE_DOP_GATING));
++	DRM_XE_EU_STALL_PROP_GT_ID = 1,
 +
- 	reg_value = gen_eustall_base(stream, true);
- 	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_BASE, reg_value);
- }
-@@ -708,6 +719,11 @@ xe_eu_stall_stream_disable(struct xe_eu_stall_data_stream *stream)
- 	reg_value = gen_eustall_base(stream, false);
- 	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_BASE, reg_value);
- 
-+	/* Wa_22016596838:pvc */
-+	if (XE_WA(gt, 22016596838))
-+		xe_gt_mcr_multicast_write(gt, ROW_CHICKEN2,
-+					  _MASKED_BIT_DISABLE(DISABLE_DOP_GATING));
++	/**
++	 * @DRM_XE_EU_STALL_PROP_SAMPLE_RATE: Sampling rate
++	 * in GPU cycles.
++	 */
++	DRM_XE_EU_STALL_PROP_SAMPLE_RATE,
 +
- 	xe_force_wake_put(gt_to_fw(gt), XE_FW_RENDER);
- 	xe_pm_runtime_put(gt_to_xe(gt));
++	/**
++	 * @DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS: Minimum number of
++	 * EU stall data reports to be present in the kernel buffer
++	 * before unblocking poll or read that is blocked.
++	 */
++	DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS,
++};
++
+ #if defined(__cplusplus)
  }
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 40438c3d9b72..7dad548dbe9f 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -5,6 +5,7 @@
- 22011391025	PLATFORM(DG2)
- 22012727170	SUBPLATFORM(DG2, G11)
- 22012727685	SUBPLATFORM(DG2, G11)
-+22016596838	PLATFORM(PVC)
- 18020744125	PLATFORM(PVC)
- 1509372804	PLATFORM(PVC), GRAPHICS_STEP(A0, C0)
- 1409600907	GRAPHICS_VERSION_RANGE(1200, 1250)
+ #endif
 -- 
 2.47.1
 
