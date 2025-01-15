@@ -4,71 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EADFC02183
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 18:00:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25E5BC02183
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 18:14:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F1E510E289;
-	Wed, 15 Jan 2025 18:00:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="O59TkAiV";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="fzGlQJbE";
-	dkim-atps=neutral
-X-Greylist: delayed 449 seconds by postgrey-1.36 at gabe;
- Wed, 15 Jan 2025 18:00:14 UTC
-Received: from galois.linutronix.de (Galois.linutronix.de
- [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8009A10E0A8;
- Wed, 15 Jan 2025 18:00:14 +0000 (UTC)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1736963561;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=HoxPdbGDiDXMZjZ2YzakPSB0m74gINsG6VFgtuazYj8=;
- b=O59TkAiVIoh/kyWqt3sD2QUaiElCxlt4joNfsm5Vy47rl6VB5TFRsEG8yyBoGzvY2r/6mY
- lQrxl2KFOtZwXB8o2yGswqA28AwPR3ILexVj+8YMlHNoNTQyAqrecm5DQu43fEOAoeu1zB
- AUUJUV3mFLL/jKj4Q1eejS9vRnjN/1NreJFiVLN6lXCv97Xxmp1pRrzkdAR4+8k7oYySE3
- EjRlx3bwRLZ1kPZatpooq203bOQXFsUoJ5K9wvWgIoGkzYbbWPFekFpYB6FKtIibo4IGCl
- 3qtrgWckX7984+Okk9ULQbx1KIxKVOK20qnnIXjJMWBsTxDlkgtJ8kE9XE9ROg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1736963561;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=HoxPdbGDiDXMZjZ2YzakPSB0m74gINsG6VFgtuazYj8=;
- b=fzGlQJbELsuQf/TIokTn215dpIYwMgfAYRUXgXNteW1TJ/rfCFCi40yte9UtrzUzNBp68H
- ns68VXLDVpNCEbAA==
-To: Joel Granados <joel.granados@kernel.org>, Thomas =?utf-8?Q?Wei=C3=9Fsc?=
- =?utf-8?Q?huh?=
- <linux@weissschuh.net>, Kees Cook <kees@kernel.org>, Luis Chamberlain
- <mcgrof@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
- linux-s390@vger.kernel.org, linux-crypto@vger.kernel.org,
- openipmi-developer@lists.sourceforge.net, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-hyperv@vger.kernel.org, linux-rdma@vger.kernel.org,
- linux-raid@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-serial@vger.kernel.org, xen-devel@lists.xenproject.org,
- linux-aio@kvack.org, linux-fsdevel@vger.kernel.org, netfs@lists.linux.dev,
- codalist@coda.cs.cmu.edu, linux-mm@kvack.org, linux-nfs@vger.kernel.org,
- ocfs2-devel@lists.linux.dev, fsverity@lists.linux.dev,
- linux-xfs@vger.kernel.org, io-uring@vger.kernel.org, bpf@vger.kernel.org,
- kexec@lists.infradead.org, linux-trace-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, apparmor@lists.ubuntu.com,
- linux-security-module@vger.kernel.org, keyrings@vger.kernel.org, Song Liu
- <song@kernel.org>, "Steven Rostedt (Google)" <rostedt@goodmis.org>,
- "Martin K. Petersen" <martin.petersen@oracle.com>, "Darrick J. Wong"
- <djwong@kernel.org>, Jani Nikula <jani.nikula@intel.com>, Corey Minyard
- <cminyard@mvista.com>, Joel Granados <joel.granados@kernel.org>
-Subject: Re: [PATCH v2] treewide: const qualify ctl_tables where applicable
-In-Reply-To: <20250110-jag-ctl_table_const-v2-1-0000e1663144@kernel.org>
-References: <20250110-jag-ctl_table_const-v2-1-0000e1663144@kernel.org>
-Date: Wed, 15 Jan 2025 18:52:40 +0100
-Message-ID: <87jzawarrr.ffs@tglx>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8EAF10E0E1;
+	Wed, 15 Jan 2025 18:14:41 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8551210E0E1;
+ Wed, 15 Jan 2025 18:14:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7035555750921878757=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Add_ski?=
+ =?utf-8?q?p_link_check_quirk_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Denose" <jdenose@google.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 15 Jan 2025 18:14:40 -0000
+Message-ID: <173696488053.4026096.16534901808835529802@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250114190709.1.Ia17111747d0450169dbe902e5d7ef25912a9338e@changeid>
+In-Reply-To: <20250114190709.1.Ia17111747d0450169dbe902e5d7ef25912a9338e@changeid>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,21 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 10 2025 at 15:16, Joel Granados wrote:
-> sed:
->     sed --in-place \
->       -e "s/struct ctl_table .table = &uts_kern/const struct ctl_table *table = \&uts_kern/" \
->       kernel/utsname_sysctl.c
->
-> Reviewed-by: Song Liu <song@kernel.org>
-> Acked-by: Steven Rostedt (Google) <rostedt@goodmis.org> # for kernel/trace/
-> Reviewed-by: Martin K. Petersen <martin.petersen@oracle.com> # SCSI
-> Reviewed-by: Darrick J. Wong <djwong@kernel.org> # xfs
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> Acked-by: Corey Minyard <cminyard@mvista.com>
-> Signed-off-by: Joel Granados <joel.granados@kernel.org>
+--===============7035555750921878757==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Acked-by: Thomas Gleixner <tglx@linutronix.de>
+== Series Details ==
+
+Series: drm/i915/display: Add skip link check quirk (rev2)
+URL   : https://patchwork.freedesktop.org/series/143563/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2492-72400937e76c02ae6345f0dfa5a598f0b284ab09_BAT -> xe-pw-143563v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8191 -> IGT_8192
+  * Linux: xe-2492-72400937e76c02ae6345f0dfa5a598f0b284ab09 -> xe-pw-143563v2
+
+  IGT_8191: b8395f7e32e23c9e330e9d90d85f3f3a1dd08bda @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8192: a3b85ce819b99284bef57aafc7d44f50a62e097f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2492-72400937e76c02ae6345f0dfa5a598f0b284ab09: 72400937e76c02ae6345f0dfa5a598f0b284ab09
+  xe-pw-143563v2: 143563v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143563v2/index.html
+
+--===============7035555750921878757==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Add skip link check quirk (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143563/">https://patchwork.freedesktop.org/series/143563/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143563v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143563v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2492-72400937e76c02ae6345f0dfa5a598f0b284ab09_BAT -&gt; xe-pw-143563v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8191 -&gt; IGT_8192</li>
+<li>Linux: xe-2492-72400937e76c02ae6345f0dfa5a598f0b284ab09 -&gt; xe-pw-143563v2</li>
+</ul>
+<p>IGT_8191: b8395f7e32e23c9e330e9d90d85f3f3a1dd08bda @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8192: a3b85ce819b99284bef57aafc7d44f50a62e097f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2492-72400937e76c02ae6345f0dfa5a598f0b284ab09: 72400937e76c02ae6345f0dfa5a598f0b284ab09<br />
+  xe-pw-143563v2: 143563v2</p>
+
+</body>
+</html>
+
+--===============7035555750921878757==--
