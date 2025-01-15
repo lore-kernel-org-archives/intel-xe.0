@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD34FC02180
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 08:44:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93111C02185
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 09:10:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 868C410E562;
-	Wed, 15 Jan 2025 08:44:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C2C210E595;
+	Wed, 15 Jan 2025 09:10:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZUsI+9a7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WI5H/qYk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B557810E562
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Jan 2025 08:44:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C40810E594;
+ Wed, 15 Jan 2025 09:10:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736930690; x=1768466690;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=KFpxxalVysm9lapDA0iL1sDClQO/Yo0AllUya/2KTRQ=;
- b=ZUsI+9a7PkRqEHUQsYVgUD+GCIFaoEOpoNxU8SPSBxjsZ1gdCqcVKpzT
- ZyhIzKomTJPlv3445E35kJJj8j65W70f8kxb2tkX/+6nEEnykn07g87NZ
- BVCSEnh+/r/sEOGT0DBKJne38FE6LUvGXleOvWAig8hiG2z1iaSo7n7w5
- 9BfDvJeWyY32OxhZThX9VYofGjwGOhBeDDrw918H3LyBxcuODR0p6fHap
- qReU4TL+j6LXpw3DQfeZeH0ES0G4SOdCh0pWh8OzihvJIdAQsdlw6z4wx
- 7yj2yioPdl/14U2CMOB02JEs1nftZeSQfVOwJ5PuXJ8StuAEYzuzGk4BL A==;
-X-CSE-ConnectionGUID: 0GS63uSFQ9mYCUSyMp/CZQ==
-X-CSE-MsgGUID: 3Qlh7dOySJaCKjnc+s6m6Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11315"; a="54671603"
-X-IronPort-AV: E=Sophos;i="6.12,316,1728975600"; d="scan'208";a="54671603"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2025 00:44:49 -0800
-X-CSE-ConnectionGUID: n3jnEZZJTV6OLT3mruzW0Q==
-X-CSE-MsgGUID: R3mbrsc/S9qCNp8Pjl1/+g==
+ t=1736932243; x=1768468243;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=LQ8N3YQmtMLxUG2gVPGVGYyiTiSbBwkQQTJ1XWIfTlk=;
+ b=WI5H/qYkrUbcqRJRlCwJ1KrZfYs5TLJyXR0Gl1uB+z6yMXdrARJjxska
+ lZl/m6cCxOXO0SpxpWoskQb7SC5MCNdrRNbOYPDZxeQKPUy7F5ntDG193
+ GsA5JgxNKpQ50ftWD6M+adNNWxK7vyIzGOGN9qtawsR+4bamGKFbaHLdq
+ ZEMrZhgsiAojW2pC7LqKZ3QxY0l8IYzOnL755sLZ9C8liX2lqkblBRQTk
+ yx5ySTUegn/Gy4ToXGsB7E+MhAQlikEl9NGUXMVUC/SpvDCrkU7q1mso5
+ sm5o3PFtKFuvQ2x9690/8xLAqblvBRNfyBQJ554Y5AsdCpNqORskIzxt4 A==;
+X-CSE-ConnectionGUID: 1KiPRnt8TyKefE0Gz9j2sA==
+X-CSE-MsgGUID: uej3a0GoT6uabk8cSHyDnQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11315"; a="37137043"
+X-IronPort-AV: E=Sophos;i="6.12,316,1728975600"; d="scan'208";a="37137043"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2025 01:10:42 -0800
+X-CSE-ConnectionGUID: zYYReisPQ7KqFtgfoh/RVw==
+X-CSE-MsgGUID: lgt5M4RhQPGdo67SKOukFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="110055567"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.51])
- ([10.245.246.51])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2025 00:44:48 -0800
-Message-ID: <815868fae4611bf9dd594dd56393486d653d2c23.camel@linux.intel.com>
-Subject: Re: [PATCH v7 6/8] drm/xe: Use ttm_bo_access in
- xe_vm_snapshot_capture_delayed
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Wed, 15 Jan 2025 09:44:44 +0100
-In-Reply-To: <20241126174615.2665852-7-matthew.brost@intel.com>
-References: <20241126174615.2665852-1-matthew.brost@intel.com>
- <20241126174615.2665852-7-matthew.brost@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.12,316,1728975600"; d="scan'208";a="110038856"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.54])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2025 01:10:38 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jonathan Denose <jdenose@google.com>, LKML <linux-kernel@vger.kernel.org>
+Cc: rodrigo.vivi@intel.com, intel-gfx@lists.freedesktop.org, Jonathan Denose
+ <jdenose@google.com>, David Airlie <airlied@gmail.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Simona Vetter <simona@ffwll.ch>, Tvrtko
+ Ursulin <tursulin@ursulin.net>, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, imre.deak@intel.com
+Subject: Re: [PATCH] drm/i915/display: Add skip link check quirk
+In-Reply-To: <20250114190709.1.Ia17111747d0450169dbe902e5d7ef25912a9338e@changeid>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250114190709.1.Ia17111747d0450169dbe902e5d7ef25912a9338e@changeid>
+Date: Wed, 15 Jan 2025 11:10:35 +0200
+Message-ID: <87a5bsh27o.fsf@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,81 +71,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Matthew
+On Tue, 14 Jan 2025, Jonathan Denose <jdenose@google.com> wrote:
+> The display on the Advantech UTC124G3PWWW0E-ES worked fine until commit
+> "drm/i915/dp: Recheck link state after modeset" was introduced. After
+> this commit the display flickers intermittently as the driver code
+> initiates the delayed link recheck in an infinite loop.
+>
+> To resolve this issue for the Advantech device, add a quirk to skip over
+> the delayed link recheck.
 
-On Tue, 2024-11-26 at 09:46 -0800, Matthew Brost wrote:
-> Non-contiguous mapping of BO in VRAM doesn't work, use ttm_bo_access
-> instead.
->=20
-> v2:
-> =C2=A0- Fix error handling
->=20
-> Fixes: 0eb2a18a8fad ("drm/xe: Implement VM snapshot support for BO's
-> and userptr")
+It would be better to try to get at the root cause first, instead of
+blindly skipping required parts. The code's complicated enough without
+quirks, and removing them afterwards is very difficult.
 
-I've been holding this patch off from stable since it relies on the
-actual access() ttm callback being implemented for xe, and I don't
-believe it is.
+Please file a bug according to [1], and attach full dmesg with debugs
+enabled.
 
-Now with the first PR for 6.14, this will start getting backport
-requests from the stable maintainers and if we don't block them, I
-guess functionality might break?
+Cc: Imre
 
-Would it be possible to provide a sane backport of this functionality
-on top of 6.13-rc? (the drm-xe-fixes branch)?
-
-Thanks,
-Thomas
+BR,
+Jani.
 
 
-> Suggested-by: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+[1] https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+
+
+
+>
+> Signed-off-by: Jonathan Denose <jdenose@google.com>
 > ---
-> =C2=A0drivers/gpu/drm/xe/xe_vm.c | 17 ++++++-----------
-> =C2=A01 file changed, 6 insertions(+), 11 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 1d7faeba157e..2492750505d6 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -3309,7 +3309,6 @@ void xe_vm_snapshot_capture_delayed(struct
-> xe_vm_snapshot *snap)
-> =C2=A0
-> =C2=A0	for (int i =3D 0; i < snap->num_snaps; i++) {
-> =C2=A0		struct xe_bo *bo =3D snap->snap[i].bo;
-> -		struct iosys_map src;
-> =C2=A0		int err;
-> =C2=A0
-> =C2=A0		if (IS_ERR(snap->snap[i].data))
-> @@ -3322,16 +3321,12 @@ void xe_vm_snapshot_capture_delayed(struct
-> xe_vm_snapshot *snap)
-> =C2=A0		}
-> =C2=A0
-> =C2=A0		if (bo) {
-> -			xe_bo_lock(bo, false);
-> -			err =3D ttm_bo_vmap(&bo->ttm, &src);
-> -			if (!err) {
-> -				xe_map_memcpy_from(xe_bo_device(bo),
-> -						=C2=A0=C2=A0 snap-
-> >snap[i].data,
-> -						=C2=A0=C2=A0 &src, snap-
-> >snap[i].bo_ofs,
-> -						=C2=A0=C2=A0 snap-
-> >snap[i].len);
-> -				ttm_bo_vunmap(&bo->ttm, &src);
-> -			}
-> -			xe_bo_unlock(bo);
-> +			err =3D ttm_bo_access(&bo->ttm, snap-
-> >snap[i].bo_ofs,
-> +					=C2=A0=C2=A0=C2=A0 snap->snap[i].data,
-> snap->snap[i].len, 0);
-> +			if (!(err < 0) && err !=3D snap->snap[i].len)
-> +				err =3D -EIO;
-> +			else if (!(err < 0))
-> +				err =3D 0;
-> =C2=A0		} else {
-> =C2=A0			void __user *userptr =3D (void __user
-> *)(size_t)snap->snap[i].bo_ofs;
-> =C2=A0
+>
+>  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 4 +++-
+>  drivers/gpu/drm/i915/display/intel_quirks.c           | 8 ++++++++
+>  drivers/gpu/drm/i915/display/intel_quirks.h           | 1 +
+>  3 files changed, 12 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 397cc4ebae526..7804ad38b00cd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -32,6 +32,7 @@
+>  #include "intel_encoder.h"
+>  #include "intel_hotplug.h"
+>  #include "intel_panel.h"
+> +#include "intel_quirks.h"
+>  
+>  #define LT_MSG_PREFIX			"[CONNECTOR:%d:%s][ENCODER:%d:%s][%s] "
+>  #define LT_MSG_ARGS(_intel_dp, _dp_phy)	(_intel_dp)->attached_connector->base.base.id, \
+> @@ -1622,7 +1623,8 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
+>  		lt_dbg(intel_dp, DP_PHY_DPRX, "Forcing link training failure\n");
+>  	} else if (passed) {
+>  		intel_dp->link.seq_train_failures = 0;
+> -		intel_encoder_link_check_queue_work(encoder, 2000);
+> +		if (!intel_has_quirk(display, QUIRK_SKIP_LINK_CHECK))
+> +			intel_encoder_link_check_queue_work(encoder, 2000);
+>  		return;
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+> index 28f497ae785bb..d472a5f21f8b9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+> @@ -78,6 +78,12 @@ static void quirk_fw_sync_len(struct intel_dp *intel_dp)
+>  	drm_info(display->drm, "Applying Fast Wake sync pulse count quirk\n");
+>  }
+>  
+> +static void quirk_skip_link_check(struct intel_display *display)
+> +{
+> +	intel_set_quirk(display, QUIRK_SKIP_LINK_CHECK);
+> +	drm_info(display->drm, "Applying skip link check quirk\n");
+> +}
+> +
+>  struct intel_quirk {
+>  	int device;
+>  	int subsystem_vendor;
+> @@ -229,6 +235,8 @@ static struct intel_quirk intel_quirks[] = {
+>  	{ 0x3184, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
+>  	/* HP Notebook - 14-r206nv */
+>  	{ 0x0f31, 0x103c, 0x220f, quirk_invert_brightness },
+> +	/* Advantech UTC124G3PWWW0E-ES */
+> +	{0x5a85, 0x8086, 0x2212, quirk_skip_link_check},
+>  };
+>  
+>  static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
+> index cafdebda75354..9e8f2816a4fba 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+> @@ -20,6 +20,7 @@ enum intel_quirk_id {
+>  	QUIRK_LVDS_SSC_DISABLE,
+>  	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
+>  	QUIRK_FW_SYNC_LEN,
+> +	QUIRK_SKIP_LINK_CHECK,
+>  };
+>  
+>  void intel_init_quirks(struct intel_display *display);
 
+-- 
+Jani Nikula, Intel
