@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27150C02180
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 23:12:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94BBEC02180
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Jan 2025 23:38:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3F0910E52C;
-	Wed, 15 Jan 2025 23:12:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3ABA810E84C;
+	Wed, 15 Jan 2025 23:38:06 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E50F10E477;
- Wed, 15 Jan 2025 23:12:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFA9B10E84C;
+ Wed, 15 Jan 2025 23:38:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0881520868796685629=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/oa=3A_Set_stream-?=
- =?utf-8?q?=3Epollin_in_xe=5Foa=5Fbuffer=5Fcheck=5Funlocked?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/oa=3A_Set_stream-=3E?=
+ =?utf-8?q?pollin_in_xe=5Foa=5Fbuffer=5Fcheck=5Funlocked?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Jan 2025 23:12:30 -0000
-Message-ID: <173698275044.4112286.16425148410780620003@b555e5b46a47>
+Date: Wed, 15 Jan 2025 23:38:04 -0000
+Message-ID: <173698428471.4180910.6031680599047149300@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250115222029.3002103-1-ashutosh.dixit@intel.com>
 In-Reply-To: <20250115222029.3002103-1-ashutosh.dixit@intel.com>
@@ -40,33 +40,170 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============0881520868796685629==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/xe/oa: Set stream->pollin in xe_oa_buffer_check_unlocked
 URL   : https://patchwork.freedesktop.org/series/143575/
-State : success
+State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 83dd30e2ec24ab8307774b149fcd998a4191eec2
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+CI Bug Log - changes from xe-2493-58e9a7f21c36be2eb1edc83f9800b8be5916c3d5_BAT -> xe-pw-143575v1_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-143575v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-143575v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-143575v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_pat@pat-index-xelp@render:
+    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2493-58e9a7f21c36be2eb1edc83f9800b8be5916c3d5/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143575v1/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-143575v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_intel_bb@intel-bb-blit-y:
+    - bat-adlp-vf:        [PASS][3] -> [DMESG-WARN][4] ([Intel XE#3958])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2493-58e9a7f21c36be2eb1edc83f9800b8be5916c3d5/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143575v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_intel_bb@intel-bb-blit-x:
+    - bat-adlp-vf:        [DMESG-WARN][5] ([Intel XE#3958]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2493-58e9a7f21c36be2eb1edc83f9800b8be5916c3d5/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143575v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
+
+  
+  [Intel XE#3958]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958
 
 
+Build changes
+-------------
+
+  * Linux: xe-2493-58e9a7f21c36be2eb1edc83f9800b8be5916c3d5 -> xe-pw-143575v1
+
+  IGT_8192: a3b85ce819b99284bef57aafc7d44f50a62e097f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2493-58e9a7f21c36be2eb1edc83f9800b8be5916c3d5: 58e9a7f21c36be2eb1edc83f9800b8be5916c3d5
+  xe-pw-143575v1: 143575v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143575v1/index.html
+
+--===============0881520868796685629==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/oa: Set stream-&gt;pollin in xe_oa_buffer_check_unlocked</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143575/">https://patchwork.freedesktop.org/series/143575/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143575v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143575v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2493-58e9a7f21c36be2eb1edc83f9800b8be5916c3d5_BAT -&gt; xe-pw-143575v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-143575v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-143575v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-143575v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_pat@pat-index-xelp@render:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2493-58e9a7f21c36be2eb1edc83f9800b8be5916c3d5/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143575v1/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-143575v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_intel_bb@intel-bb-blit-y:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2493-58e9a7f21c36be2eb1edc83f9800b8be5916c3d5/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143575v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958">Intel XE#3958</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_intel_bb@intel-bb-blit-x:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2493-58e9a7f21c36be2eb1edc83f9800b8be5916c3d5/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3958">Intel XE#3958</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143575v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2493-58e9a7f21c36be2eb1edc83f9800b8be5916c3d5 -&gt; xe-pw-143575v1</li>
+</ul>
+<p>IGT_8192: a3b85ce819b99284bef57aafc7d44f50a62e097f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2493-58e9a7f21c36be2eb1edc83f9800b8be5916c3d5: 58e9a7f21c36be2eb1edc83f9800b8be5916c3d5<br />
+  xe-pw-143575v1: 143575v1</p>
+
+</body>
+</html>
+
+--===============0881520868796685629==--
