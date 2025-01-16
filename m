@@ -4,37 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 133F7C02183
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31A00C02187
 	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 14:09:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D02C910E97C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D093810E97D;
 	Thu, 16 Jan 2025 14:09:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="GC4JgPWO";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="sAbVtvKb";
 	dkim-atps=neutral
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
  [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F154310E4CD;
- Thu, 16 Jan 2025 10:07:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16B2510E932;
+ Thu, 16 Jan 2025 10:26:53 +0000 (UTC)
 Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
  [91.158.153.178])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5E9B9169;
- Thu, 16 Jan 2025 11:06:54 +0100 (CET)
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 42498526;
+ Thu, 16 Jan 2025 11:25:52 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1737022015;
- bh=5iBWzPVmw+7VsrlU5C002xE3DHz4wSYEG2lvi9WrW80=;
+ s=mail; t=1737023153;
+ bh=Z7ediVkgoetAGoCSEC+NS9LE30jZLpQmaH2NAmg+fKo=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=GC4JgPWOpTh5fUSUYxE2btYpeplZmk/wc1/y1hysA5w7Ekqjjovy5AnVu0+UP/8PB
- WuoMl50q34IhSbq2JjW5zgTeNPTY5ITtuywUrB98SjdmT56zJthdugncYjNOwHs207
- UGK7kRU9a0swMfzHVM6e3yIQ8OXcNHWB1aTeIVnk=
-Message-ID: <e8125edc-928a-47b4-80a3-224c945f6d68@ideasonboard.com>
-Date: Thu, 16 Jan 2025 12:07:49 +0200
+ b=sAbVtvKbp7o8SfyrbwqpGIwVYmdgJpMjZmC6qEgRNe2H25LicDH6k69guisjqJioP
+ 8SncRl1CoC+3SXf6Y8cJQEuIj38aZG4lFFJrCQ0l8buZDLY37H2yUZEQna2GSs0Dn+
+ 1llb/TtQTaZKCXEOlL7x1MNtOgUhrQcJ6XdrIu2U=
+Message-ID: <710224b4-1b40-49e1-9985-3340c6e4138f@ideasonboard.com>
+Date: Thu, 16 Jan 2025 12:26:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 25/25] drm/xlnx: Compute dumb-buffer sizes with
  drm_mode_size_dumb()
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Daniel Stone <daniel@fooishbar.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
 Cc: Thomas Zimmermann <tzimmermann@suse.de>,
  maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
  simona@ffwll.ch, dri-devel@lists.freedesktop.org,
@@ -44,8 +43,13 @@ Cc: Thomas Zimmermann <tzimmermann@suse.de>,
  virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
  linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
  linux-tegra@vger.kernel.org, intel-xe@lists.freedesktop.org,
- xen-devel@lists.xenproject.org, Andy Yan <andyshrk@163.com>
-References: <bc97b92e-7f8a-4b92-af8a-20fa165ead55@suse.de>
+ xen-devel@lists.xenproject.org,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Andy Yan <andyshrk@163.com>, Daniel Stone <daniel@fooishbar.org>
+References: <20250109150310.219442-1-tzimmermann@suse.de>
+ <20250109150310.219442-26-tzimmermann@suse.de>
+ <cdbe483d-0895-47aa-8c83-1c28220f4a02@ideasonboard.com>
+ <bc97b92e-7f8a-4b92-af8a-20fa165ead55@suse.de>
  <f3ba05c7-6e49-4641-a3f9-ba418ebdb7c3@ideasonboard.com>
  <c6735280-7c32-4319-8ca9-a7305d8117c3@suse.de>
  <d67adb03-5cd0-4ac9-af58-cf4446dacee3@ideasonboard.com>
@@ -53,9 +57,9 @@ References: <bc97b92e-7f8a-4b92-af8a-20fa165ead55@suse.de>
  <f35cb350-6be9-48ca-ad7e-e9dd418281d5@ideasonboard.com>
  <4af0b6a7-c16a-4187-bbf5-365a9c86de21@suse.de>
  <e327ad84-b5c9-4480-b873-dc3aca605538@ideasonboard.com>
- <CAPj87rOn=RQ615zyaEdFT2ADfPztU7+heVi0G34Rdg-=QO1cCw@mail.gmail.com>
- <20250116084340.GF6754@pendragon.ideasonboard.com>
- <20250116093854.GG6754@pendragon.ideasonboard.com>
+ <a2bbeb47-2569-4ee0-9265-92bab139bdc6@suse.de>
+ <f3833771-fcd7-45dc-9019-1525fef34429@ideasonboard.com>
+ <CAMuHMdXxYa+Na3XxpLTy=-eUL_zQ9kAiUKYu-E04u3KWApusSA@mail.gmail.com>
 Content-Language: en-US
 From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
@@ -101,9 +105,9 @@ Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
  ueeIlwJl5CpT5l8RpoZXEOVtXYn8zzOJ7oGZYINRV9Pf8qKGLf3Dft7zKBP832I3PQjeok7F
  yjt+9S+KgSFSHP3Pa4E7lsSdWhSlHYNdG/czhoUkSCN09C0rEK93wxACx3vtxPLjXu6RptBw
  3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
-In-Reply-To: <20250116093854.GG6754@pendragon.ideasonboard.com>
+In-Reply-To: <CAMuHMdXxYa+Na3XxpLTy=-eUL_zQ9kAiUKYu-E04u3KWApusSA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 16 Jan 2025 14:09:21 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -121,44 +125,71 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hi,
 
-On 16/01/2025 11:38, Laurent Pinchart wrote:
-> On Thu, Jan 16, 2025 at 10:43:40AM +0200, Laurent Pinchart wrote:
->> On Wed, Jan 15, 2025 at 02:34:26PM +0000, Daniel Stone wrote:
->>> On Wed, 15 Jan 2025 at 14:20, Tomi Valkeinen wrote:
->>>> No disagreement there, we need CREATE_DUMB2.
+On 16/01/2025 12:17, Geert Uytterhoeven wrote:
+> On Thu, Jan 16, 2025 at 11:03 AM Tomi Valkeinen
+> <tomi.valkeinen@ideasonboard.com> wrote:
+>> On 16/01/2025 10:09, Thomas Zimmermann wrote:
+>>> Am 15.01.25 um 15:20 schrieb Tomi Valkeinen:
+>>> [...]
 >>>>
 >>>> My point is that we have the current UAPI, and we have userspace using
 >>>> it, but we don't have clear rules what the ioctl does with specific
 >>>> parameters, and we don't document how it has to be used.
 >>>>
 >>>> Perhaps the situation is bad, and all we can really say is that
->>>> CREATE_DUMB only works for use with simple RGB formats, and the behavior
->>>> for all other formats is platform specific. But I think even that would
->>>> be valuable in the UAPI docs.
+>>>> CREATE_DUMB only works for use with simple RGB formats, and the
+>>>> behavior for all other formats is platform specific. But I think even
+>>>> that would be valuable in the UAPI docs.
 >>>
->>> Yeah, CREATE_DUMB only works for use with simple RGB formats in a
->>> linear layout. Not monochrome or YUV or tiled or displayed rotated or
->>> whatever.
+>>> To be honest, I would not want to specify behavior for anything but the
+>>> linear RGB formats. If anything, I'd take Daniel's reply mail for
+>>> documentation as-is. Anyone stretching the UAPI beyond RGB is on their own.
 >>>
->>> If it happens to accidentally work for other uses, that's fine, but
->>> it's not generically reliable for anything other than simple linear
->>> RGB. It's intended to let you do splash screens, consoles, recovery
->>> password entries, and software-rendered compositors if you really
->>> want. Anything more than that isn't 'dumb'.
+>>>> Thinking about this, I wonder if this change is good for omapdrm or
+>>>> xilinx (probably other platforms too that support non-simple non-RGB
+>>>> formats via dumb buffers): without this patch, in both drivers, the
+>>>> pitch calculations just take the bpp as bit-per-pixels, align it up,
+>>>> and that's it.
+>>>>
+>>>> With this patch we end up using drm_driver_color_mode_format(), and
+>>>> aligning buffers according to RGB formats figured out via heuristics.
+>>>> It does happen to work, for the formats I tested, but it sounds like
+>>>> something that might easily not work, as it's doing adjustments based
+>>>> on wrong format.
+>>>>
+>>>> Should we have another version of drm_mode_size_dumb() which just
+>>>> calculates using the bpp, without the drm_driver_color_mode_format()
+>>>> path? Or does the drm_driver_color_mode_format() path provide some
+>>>> value for the drivers that do not currently do anything similar?
+>>>
+>>> With the RGB-only rule, using drm_driver_color_mode_format() makes
+>>> sense. It aligns dumb buffers and video=, provides error checking, and
+>>> overall harmonizes code. The fallback is only required because of the
+>>> existing odd cases that already bend the UAPI's rules.
 >>
->> We have lots of software out there that rely on CREATE_DUMB supporting
->> YUV linear formats, and lots of drivers (mostly on Arm I suppose) that
->> implement YUV support in CREATE_DUMB. I'm fine replacing it with
->> something better, but I think we need a standard ioctl that can create
->> linear YUV buffers. I've been told many times that DRM doesn't want to
->> standardize buffer allocation further than what CREATE_DUMB is made for.
->> Can we reconsider this rule then ?
+>> I have to disagree here.
+>>
+>> On the platforms I have been using (omap, tidss, xilinx, rcar) the dumb
+>> buffers are the only buffers you can get from the DRM driver. The dumb
+>> buffers have been used to allocate linear and multiplanar YUV buffers
+>> for a very long time on those platforms.
+>>
+>> I tried to look around, but I did not find any mentions that CREATE_DUMB
+>> should only be used for RGB buffers. Is anyone outside the core
+>> developers even aware of it?
+>>
+>> If we don't use dumb buffers there, where do we get the buffers? Maybe
+>> from a v4l2 device or from a gpu device, but often you don't have those.
+>> DMA_HEAP is there, of course.
 > 
-> Actually... Instead of adding a CREATE_DUMB2, it would be best on trying
-> to leverage DMA heaps and deprecate allocating from the KMS device.
+> Why can't there be a variant that takes a proper fourcc format instead of
+> an imprecise bpp value?
 
-If we allocate from DMA heaps, I think we then need a DRM ioctl which 
-will tell you how big buffer(s) you need, based on the size and format.
+There can, but it's somewhat a different topic, although it's been 
+covered a bit in this thread.
+
+My specific concern here is the current CREATE_DUMB, and (not) changing 
+how it behaves.
 
   Tomi
 
