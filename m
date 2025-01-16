@@ -4,73 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 538CFE77188
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 07:43:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D3B4C02180
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 07:51:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D7F710E1C8;
-	Thu, 16 Jan 2025 07:43:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="lsPKti8F";
-	dkim-atps=neutral
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com
- [209.85.219.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DF9010E1C8
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 07:43:19 +0000 (UTC)
-Received: by mail-yb1-f172.google.com with SMTP id
- 3f1490d57ef6-e3a1cfeb711so996381276.0
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Jan 2025 23:43:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1737013338; x=1737618138; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=LdPX8OlHOkR4NaGRp55IEgkJ9YB2z8exnCkiZSikJV8=;
- b=lsPKti8FKPPdVKAfVzfZrocq9bpJfpcnSL34+8vdMu1MaILHoDnGfJGf/QtUUPUeyT
- 1Q5Y7jaXIvzThvMsjy5zBQhyrXiALudWPGA/gyPEbFbea/SvesiVsqQCSns654AREUe4
- m6DmaY5Vd6VwglLjur1SnAHrx0+3Ibl/HAv5QP9eLrQdp465vTGziowIC1leLdQhwa8A
- ywdoOMTLfkpIZdlEnK9osZcOvn97pvJ0uugAxBIkpDtpFv3ng3ghqmgZPcm+Cu2tzhhc
- QWk5/BMZTifZT0maQ/I6JwN29omLulGrJX+Qx6/1wLxxAaAhndnxzeGFytPXDthZEV5d
- 2ePg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737013338; x=1737618138;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=LdPX8OlHOkR4NaGRp55IEgkJ9YB2z8exnCkiZSikJV8=;
- b=B/BEDabm4yp1E3wkB7snY8XGyCUs16G2rVptDX4HpO3PSlbaB3TikmmuzHOBujzvpi
- nYLtskGp6AUuVd74oOd9YbM/mnKLw6PIu3jVV8X/vreT5HGpq4KEou5fNdynepwIz/MB
- VbawzB5PQIDp5zL212YbZzOkKVZ9fXudhmM9T9CfCECvo9AXa2HiYBFd0mr8T4d0yc9s
- x/g1eM7+S8sD1aFKLUA/OGMwZbhc5b5wuCFh48hkxUg7aLOLXNq9AguKoIsIGLpoEZSo
- +tlkukZgCLA0rTHQoWnjdqHaU+F6qEcgFHM1iRuJzV3MCUn4+MfvF9zZvL00OpKJRGF5
- jTtg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXWhyEcWnq3yCQxbQGJcoWNoM6egQXqrDJtMwVxSC4TRov5X0hnYpJ7tw0KYZRbxOddYNCamzkGgA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yye5JEhvoxJ/pJsR9pO7qT+fnRvUaqHbm5GpV7oZq3E1zw08ssH
- VxEN0ZyfkrnU2eKUOWYXT7uU9P09KgDRbh3m2YkOKHB6sbq8KsLSv/eYviwYZTRFQn288TVG11C
- jVLBcV6G7IsPewiXQwDNIXt9/11K/ioNjseLFgdF70fhzbhawmeE=
-X-Gm-Gg: ASbGncvB4J2AszxCtzEjWcRu9UCUScGpHbven2CNN70B0w1yirGfe1Vst3zSC+jGQIG
- Odxb/CI3lB3O712JevnCJGZEcX3jelZuhVZbodSq8ufpjn0YlRoni
-X-Google-Smtp-Source: AGHT+IFh0A/VFc7qGcLPZw0qR04jC0cp5sLGJJHyMqlrhG2QaTLMppoVjFh/WnBGuvtlcvbW7meD7ZGB7xtEg+gozeM=
-X-Received: by 2002:a05:6902:1887:b0:e57:4f59:55d1 with SMTP id
- 3f1490d57ef6-e574f5958eamr13551371276.45.1737013338308; Wed, 15 Jan 2025
- 23:42:18 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 354B710E8D2;
+	Thu, 16 Jan 2025 07:51:20 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A792210E8CF;
+ Thu, 16 Jan 2025 07:51:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6756948328809404141=="
 MIME-Version: 1.0
-References: <20250110-dpst-v7-0-605cb0271162@intel.com>
- <20250110-dpst-v7-1-605cb0271162@intel.com>
- <kwklrd2zjovabsa537jwg3bpqilvhfmxxyr4exmqbi2b35uxej@mhequ6ttibsd>
- <IA0PR11MB73079537444DAA9596F0A837BA1A2@IA0PR11MB7307.namprd11.prod.outlook.com>
-In-Reply-To: <IA0PR11MB73079537444DAA9596F0A837BA1A2@IA0PR11MB7307.namprd11.prod.outlook.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 16 Jan 2025 09:42:07 +0200
-X-Gm-Features: AbW1kvYYHWiNxNczAV9MZfS44Dpz1U21Ygobr5VB-EY6AHC93HuVXuTwTgPZmts
-Message-ID: <CAA8EJpojDKtcG=amuwT7B+iaU_A9EwcvpkyyQ8nupKtsF_79gg@mail.gmail.com>
-Subject: Re: [PATCH v7 01/14] drm: Define histogram structures exposed to user
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Kandpal,
- Suraj" <suraj.kandpal@intel.com>, "Shankar, Uma" <uma.shankar@intel.com>, 
- "Bhattacharjee, Susanta" <susanta.bhattacharjee@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Suppress_printing?=
+ =?utf-8?q?_of_mode_when_running_in_non-sriov_mode=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 16 Jan 2025 07:51:19 -0000
+Message-ID: <173701387967.189358.5789218237309272141@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250116055617.20611-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250116055617.20611-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,180 +36,160 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 16 Jan 2025 at 09:08, Murthy, Arun R <arun.r.murthy@intel.com> wrote:
->
-> > On Fri, Jan 10, 2025 at 01:15:29AM +0530, Arun R Murthy wrote:
-> > > Display Histogram is an array of bins and can be generated in many
-> > > ways referred to as modes.
-> > > Ex: HSV max(RGB), Wighted RGB etc.
-> > >
-> > > Understanding the histogram data format(Ex: HSV max(RGB)) Histogram is
-> > > just the pixel count.
-> > > For a maximum resolution of 10k (10240 x 4320 = 44236800)
-> > > 25 bits should be sufficient to represent this along with a buffer of
-> > > 7 bits(future use) u32 is being considered.
-> > > max(RGB) can be 255 i.e 0xFF 8 bit, considering the most significant 5
-> > > bits, hence 32 bins.
-> > > Below mentioned algorithm illustrates the histogram generation in
-> > > hardware.
-> > >
-> > > hist[32] = {0};
-> > > for (i = 0; i < resolution; i++) {
-> > >     bin = max(RGB[i]);
-> > >     bin = bin >> 3; /* consider the most significant bits */
-> > >     hist[bin]++;
-> > > }
-> > > If the entire image is Red color then max(255,0,0) is 255 so the pixel
-> > > count of each pixels will be placed in the last bin. Hence except
-> > > hist[31] all other bins will have a value zero.
-> > > Generated histogram in this case would be hist[32] =
-> > > {0,0,....44236800}
-> > >
-> > > Description of the structures, properties defined are documented in
-> > > the header file include/uapi/drm/drm_mode.h
-> > >
-> > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> > > ---
-> > >  include/uapi/drm/drm_mode.h | 59
-> > > +++++++++++++++++++++++++++++++++++++++++++++
-> > >  1 file changed, 59 insertions(+)
-> > >
-> > > diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-> > > index
-> > >
-> > c082810c08a8b234ef2672ecf54fc8c05ddc2bd3..7a7039381142bb5dba269bda
-> > ec42
-> > > c18be34e2d05 100644
-> > > --- a/include/uapi/drm/drm_mode.h
-> > > +++ b/include/uapi/drm/drm_mode.h
-> > > @@ -1355,6 +1355,65 @@ struct drm_mode_closefb {
-> > >     __u32 pad;
-> > >  };
-> > >
-> > > +/*
-> > > + * Maximum resolution at present 10k, 10240x4320 = 44236800
-> > > + * can be denoted in 25bits. With an additional 7 bits in buffer each
-> > > +bin
-> > > + * can be a u32 value.
-> > > + * Maximum value of max(RGB) is 255, so max 255 bins.
-> >
-> > HDR planes have higher max value for a component.
-> > Likewise even in an RGB24 case there are 256 possible values. It's not clear why
-> > 0 gets excluded.
-> >
-> This applies to only SDR and excludes HDR.
+--===============6756948328809404141==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Why?
+== Series Details ==
 
-> RGB in hex can have a maximum value of 0xFF { RGB (255, 255, 255) }
->
-> > > + * If the most significant 5 bits are considered, then bins = 0xff >>
-> > > + 3
-> > > + * will be 32 bins.
-> >
-> > If 5 bits are considered, there will be 2^5 bins, no matter of 0xff >> 3.
-> >
-> Agree!
->
-> > > + * For illustration consider a full RED image of 10k resolution
-> > > +considering all
-> > > + * 8 bits histogram would look like hist[255] = {0,0,....44236800}
-> > > +*/
-> > > +#define DRM_MODE_HISTOGRAM_HSV_MAX_RGB                     (1 <<
-> > 0)
-> >
-> > Why do you have a bitshift here?
-> >
-> Bitwise notification is used to differentiate multiple histogram modes.
-> Currently we have max(RGB), upon adding other histogram modes the
-> same can be included here.
+Series: drm/xe: Suppress printing of mode when running in non-sriov mode.
+URL   : https://patchwork.freedesktop.org/series/143584/
+State : success
 
-Define a normal enum. There is no need to use bitmasks for histogram modes.
+== Summary ==
 
->
-> > > +
-> > > +/**
-> > > + * struct drm_histogram_caps
-> > > + *
-> > > + * @histogram_mode: histogram generation modes, defined in the above
-> > > +macros
-> > > + * @bins_count: number of bins for a chosen histogram mode. For
-> > illustration
-> > > + *         refer the above defined histogram mode.
-> > > + */
-> > > +struct drm_histogram_caps {
-> > > +   u8 histogram_mode;
-> > > +   u32 bins_count;
-> > > +};
-> > > +
-> > > +/**
-> > > + * struct drm_histogram_config
-> > > + *
-> > > + * @enable: flag to enable/disable histogram
-> > > + * @hist_mode: histogram mode(HSV max(RGB), RGB, LUMA etc)
-> > > + * @reserved1: Reserved for future use
-> > > + * @reserved2: Reserved for future use
-> > > + * @reserved3: Reserved for future use
-> > > + * @reserved4: Reserved for future use  */ struct
-> > > +drm_histogram_config {
-> > > +   bool enable;
-> > > +   u8 hist_mode;
-> > > +   u32 reserved1;
-> > > +   u32 reserved2;
-> > > +   u32 reserved3;
-> > > +   u32 reserved4;
-> >
-> > What for? Also this struct leaves a 3-byte hole, which might be not so
-> > beneficial.
-> >
-> This is kept for future use. If weighted RGB mode is used for histogram generation
-> then we need 3 variables to get the weightage. For any other new histogram
-> modes or for future usage this is kept reserved.
+CI Bug Log - changes from xe-2495-4cea1f90028925afcf1a0f8a0ef301f90349688c_BAT -> xe-pw-143584v1_BAT
+====================================================
 
-What for? Please don't pollute it with 'reserved' fields. Consider how
-the Color Pipelines data is defined: it has separate 'type' and 'data'
-objects.
-Type can be selected via enum. Data is blob which is parsed according
-to the type.
+Summary
+-------
 
-> Regarding the padding, will re-oder the elements in the struct.
->
-> > > +};
-> > > +
-> > > +/**
-> > > + * struct drm_histogram
-> > > + *
-> > > + * @config: histogram configuration data pointed by struct
-> > > +drm_histogram_config
-> > > + * @data_ptr: pointer to the array of histogram.
-> > > + *       Histogram is an array of bins. Data format for each bin depends
-> > > + *       on the histogram mode. Refer to the above histogram modes for
-> > > + *       more information.
-> > > + * @nr_elements: number of bins in the histogram.
-> > > + */
-> > > +struct drm_histogram {
-> > > +   struct drm_histogram_config config;
-> > > +   __u64 data_ptr;
-> > > +   __u32 nr_elements;
-> > > +};
-> > > +
-> > >  #if defined(__cplusplus)
-> > >  }
-> > >  #endif
-> > >
-> > > --
-> > > 2.25.1
-> > >
-> >
-> Thanks and Regards,
-> Arun R Murthy
-> --------------------
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-143584v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_intel_bb@intel-bb-blit-x:
+    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3970])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2495-4cea1f90028925afcf1a0f8a0ef301f90349688c/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143584v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [PASS][3] -> [SKIP][4] ([Intel XE#1192]) +1 other test skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2495-4cea1f90028925afcf1a0f8a0ef301f90349688c/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143584v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][6] ([Intel XE#1192])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2495-4cea1f90028925afcf1a0f8a0ef301f90349688c/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143584v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
 
 
+Build changes
+-------------
 
--- 
-With best wishes
-Dmitry
+  * IGT: IGT_8192 -> IGT_8193
+  * Linux: xe-2495-4cea1f90028925afcf1a0f8a0ef301f90349688c -> xe-pw-143584v1
+
+  IGT_8192: a3b85ce819b99284bef57aafc7d44f50a62e097f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8193: 84511e278c1c6e598ccc21287a733cfc83d13e8a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2495-4cea1f90028925afcf1a0f8a0ef301f90349688c: 4cea1f90028925afcf1a0f8a0ef301f90349688c
+  xe-pw-143584v1: 143584v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143584v1/index.html
+
+--===============6756948328809404141==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Suppress printing of mode when running in non-sriov mode.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143584/">https://patchwork.freedesktop.org/series/143584/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143584v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143584v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2495-4cea1f90028925afcf1a0f8a0ef301f90349688c_BAT -&gt; xe-pw-143584v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-143584v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_intel_bb@intel-bb-blit-x:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2495-4cea1f90028925afcf1a0f8a0ef301f90349688c/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143584v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2495-4cea1f90028925afcf1a0f8a0ef301f90349688c/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143584v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2495-4cea1f90028925afcf1a0f8a0ef301f90349688c/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143584v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8192 -&gt; IGT_8193</li>
+<li>Linux: xe-2495-4cea1f90028925afcf1a0f8a0ef301f90349688c -&gt; xe-pw-143584v1</li>
+</ul>
+<p>IGT_8192: a3b85ce819b99284bef57aafc7d44f50a62e097f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8193: 84511e278c1c6e598ccc21287a733cfc83d13e8a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2495-4cea1f90028925afcf1a0f8a0ef301f90349688c: 4cea1f90028925afcf1a0f8a0ef301f90349688c<br />
+  xe-pw-143584v1: 143584v1</p>
+
+</body>
+</html>
+
+--===============6756948328809404141==--
