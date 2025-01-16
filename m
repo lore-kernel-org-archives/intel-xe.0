@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05862C02180
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 09:38:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C02EC02183
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 09:39:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2A4B10E916;
-	Thu, 16 Jan 2025 09:38:43 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5570410E90C;
- Thu, 16 Jan 2025 09:38:43 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C93210E916;
+	Thu, 16 Jan 2025 09:39:02 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="n0BH+gjP";
+	dkim-atps=neutral
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C488F10E90C;
+ Thu, 16 Jan 2025 09:39:00 +0000 (UTC)
+Received: from pendragon.ideasonboard.com (unknown [193.209.96.36])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 12F276B5;
+ Thu, 16 Jan 2025 10:38:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1737020281;
+ bh=Sz7XGsB0jJiCVcgAYNC5ZZi+VkFA4hXqTcdj3HBGvi4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=n0BH+gjPklcJM4K7npyiN+OizL+So166OYOAFCGwmyI31sasdC0hnhksHO/5bLnfw
+ HMc/eoseS5N2gVokQXXsjM5itCkOuGjpNUxwyWy3Ek6SdEbjqi0yC6yW0imGRrqVj1
+ 1fRnvPVpWPsdUJLy5MKa4eyuKZRKjUpaQVwa4Knc=
+Date: Thu, 16 Jan 2025 11:38:54 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Daniel Stone <daniel@fooishbar.org>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ airlied@gmail.com, simona@ffwll.ch, dri-devel@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, freedreno@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, imx@lists.linux.dev,
+ linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ Andy Yan <andyshrk@163.com>
+Subject: Re: [PATCH v2 25/25] drm/xlnx: Compute dumb-buffer sizes with
+ drm_mode_size_dumb()
+Message-ID: <20250116093854.GG6754@pendragon.ideasonboard.com>
+References: <bc97b92e-7f8a-4b92-af8a-20fa165ead55@suse.de>
+ <f3ba05c7-6e49-4641-a3f9-ba418ebdb7c3@ideasonboard.com>
+ <c6735280-7c32-4319-8ca9-a7305d8117c3@suse.de>
+ <d67adb03-5cd0-4ac9-af58-cf4446dacee3@ideasonboard.com>
+ <0ea6be58-0e04-4172-87cd-064a3e4a43bc@suse.de>
+ <f35cb350-6be9-48ca-ad7e-e9dd418281d5@ideasonboard.com>
+ <4af0b6a7-c16a-4187-bbf5-365a9c86de21@suse.de>
+ <e327ad84-b5c9-4480-b873-dc3aca605538@ideasonboard.com>
+ <CAPj87rOn=RQ615zyaEdFT2ADfPztU7+heVi0G34Rdg-=QO1cCw@mail.gmail.com>
+ <20250116084340.GF6754@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Add_and_refactor_wor?=
- =?utf-8?q?karounds?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aradhya Bhatia" <aradhya.bhatia@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Jan 2025 09:38:43 -0000
-Message-ID: <173702032334.218583.3944282305371492203@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250116091004.3060996-1-aradhya.bhatia@intel.com>
-In-Reply-To: <20250116091004.3060996-1-aradhya.bhatia@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250116084340.GF6754@pendragon.ideasonboard.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +69,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Jan 16, 2025 at 10:43:40AM +0200, Laurent Pinchart wrote:
+> On Wed, Jan 15, 2025 at 02:34:26PM +0000, Daniel Stone wrote:
+> > On Wed, 15 Jan 2025 at 14:20, Tomi Valkeinen wrote:
+> > > No disagreement there, we need CREATE_DUMB2.
+> > >
+> > > My point is that we have the current UAPI, and we have userspace using
+> > > it, but we don't have clear rules what the ioctl does with specific
+> > > parameters, and we don't document how it has to be used.
+> > >
+> > > Perhaps the situation is bad, and all we can really say is that
+> > > CREATE_DUMB only works for use with simple RGB formats, and the behavior
+> > > for all other formats is platform specific. But I think even that would
+> > > be valuable in the UAPI docs.
+> > 
+> > Yeah, CREATE_DUMB only works for use with simple RGB formats in a
+> > linear layout. Not monochrome or YUV or tiled or displayed rotated or
+> > whatever.
+> > 
+> > If it happens to accidentally work for other uses, that's fine, but
+> > it's not generically reliable for anything other than simple linear
+> > RGB. It's intended to let you do splash screens, consoles, recovery
+> > password entries, and software-rendered compositors if you really
+> > want. Anything more than that isn't 'dumb'.
+> 
+> We have lots of software out there that rely on CREATE_DUMB supporting
+> YUV linear formats, and lots of drivers (mostly on Arm I suppose) that
+> implement YUV support in CREATE_DUMB. I'm fine replacing it with
+> something better, but I think we need a standard ioctl that can create
+> linear YUV buffers. I've been told many times that DRM doesn't want to
+> standardize buffer allocation further than what CREATE_DUMB is made for.
+> Can we reconsider this rule then ?
 
-Series: drm/xe: Add and refactor workarounds
-URL   : https://patchwork.freedesktop.org/series/143594/
-State : success
+Actually... Instead of adding a CREATE_DUMB2, it would be best on trying
+to leverage DMA heaps and deprecate allocating from the KMS device.
 
-== Summary ==
+-- 
+Regards,
 
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/events/rapl.ko
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/kernel/
-lib/modules/6.13.0-rc7-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/zstd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/xctr.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/authenc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/keywrap.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cmac.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/essiv.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ccm.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/wp512.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/lrw.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/vmac.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/842.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/md4.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.13.0-rc7-xe+/kernel/block/
-lib/modules/6.13.0-rc7-xe+/kernel/block/bfq.ko
-lib/modules/6.13.0-rc7-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.13.0-rc7-xe+/build
-lib/modules/6.13.0-rc7-xe+/modules.alias.bin
-lib/modules/6.13.0-rc7-xe+/modules.builtin
-lib/modules/6.13.0-rc7-xe+/modules.softdep
-lib/modules/6.13.0-rc7-xe+/modules.alias
-lib/modules/6.13.0-rc7-xe+/modules.order
-lib/modules/6.13.0-rc7-xe+/modules.symbols
-lib/modules/6.13.0-rc7-xe+/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1737020312:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1737020312:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+Laurent Pinchart
