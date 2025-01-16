@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 640D5C02183
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 18:35:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D852C02183
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 18:50:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AC0510E245;
-	Thu, 16 Jan 2025 18:35:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD1B310E20E;
+	Thu, 16 Jan 2025 18:50:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KHil6vWX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HUZLw0D6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E31A810EA08
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 18:35:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABCEA10E1E5
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 18:50:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737052534; x=1768588534;
+ t=1737053421; x=1768589421;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=5OXmvVN9mprH+QK+C5FbUOpU+oZzu1RB6nrPlSVGllM=;
- b=KHil6vWX2KyFvxsRh4h2y2zm8J6KvHN5fxAmP763DpjOKa4EElorYpD1
- oQHPWmO+80y1tVYVsofwcx9aJrb3wouSreW1Os/pj7CrFCG8c2iwxFYo1
- 4Df6SFBO8QoEYfS8rW6qtPuysTyUDD8MnmWSRHgcLSWN+yoSbjs38iUsF
- RI7O6tY5FNWVloC8Hvb5t9fPA5N5/XtMYwTZsxKUqRM8KSg1Tt8HSoXV2
- VkWC824W7aK1NX5P9yUCLUM7V8xGrofvMbqD7kRVd8/GI4kAGIMkgYwrA
- OZHuaHVHm61Z3rZFQhVurzzz4XJ1450XQAezu4RqltUxBArwLsj9JTd9u g==;
-X-CSE-ConnectionGUID: NEPV6xJdRJmxWXAt2MfM5A==
-X-CSE-MsgGUID: 705W0+0BR6aqAVX+jO/g7g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="25059128"
-X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="25059128"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 10:35:33 -0800
-X-CSE-ConnectionGUID: eN1yDl3rRuqkqSCvjDXcBg==
-X-CSE-MsgGUID: +QBLVXFNQl+z4Cnk3DzIGQ==
+ bh=2ST4bumAFuZ7iVGoqPF7QAwSJiqTH6A7nU0QICgC/2U=;
+ b=HUZLw0D6vSyJMFnsWrzv23wqn8PLZnf5AlmHBsfn2FEOQsgHirM+eGkF
+ 1S0s7H34O90KOXpaOsBTuYnor28Ac3bUiWtO1gGxLes8ba1bXt/irqUu4
+ giJtMR0SF/jUxhuwHyQdugFSS4aporKtJJhHoQrEQAawoZbpqGf5Ht3Z+
+ 5VAv0IsKDLJFs2rbvA3KOD+SPeux3IlQSEeLebd6+e5q0xXF7DDti629w
+ 7zEroEowCut/WcEttuEK8XZWcafIqQ87AAMFTaPECVp6v9+3gLFD0W8Az
+ faTwtYa5jY8IZYTjx6FBwvtb5WB4XCj4hNClt8OmPy+3o0PuKdjv2rM2t g==;
+X-CSE-ConnectionGUID: wOI8Mt2sTXuRp3Odmnt8Tg==
+X-CSE-MsgGUID: hk0vHGU3Q9qVM47g4uV1Yw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="54874371"
+X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="54874371"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 10:50:20 -0800
+X-CSE-ConnectionGUID: 0sTJKou8T9WwaD9ldQI2TQ==
+X-CSE-MsgGUID: CtXVPUeOTrCoO5iMjZJqOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="105541779"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="106050518"
 Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
- by fmviesa007.fm.intel.com with ESMTP; 16 Jan 2025 10:35:34 -0800
+ by orviesa007.jf.intel.com with ESMTP; 16 Jan 2025 10:50:20 -0800
 From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Subject: [topic/xe-for-ci] drm/xe/ptl: Update GuC version for PTL
-Date: Thu, 16 Jan 2025 10:31:44 -0800
-Message-Id: <20250116183144.378985-1-vinay.belgaumkar@intel.com>
+Subject: [PATCH] drm/xe/ptl: Apply Wa_13011645652
+Date: Thu, 16 Jan 2025 10:46:59 -0800
+Message-Id: <20250116184659.384874-1-vinay.belgaumkar@intel.com>
 X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -63,26 +63,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move to GuC 70.38.1.
+Extend Wa_13011645652 to PTL. This WA requires PTL GuC version
+70.37.1. Update to GuC version is posted in this series-
+https://patchwork.freedesktop.org/series/143630/
 
 Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 ---
- drivers/gpu/drm/xe/xe_uc_fw.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_wa_oob.rules | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 9c14b0adad0c..18e06ee9e23f 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -107,7 +107,7 @@ struct fw_blobs_by_type {
- };
- 
- #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)			\
--	fw_def(PANTHERLAKE,	mmp_ver(xe,	guc,	ptl,	70, 36, 0))	\
-+	fw_def(PANTHERLAKE,	mmp_ver(xe,	guc,	ptl,	70, 38, 1))	\
- 	fw_def(BATTLEMAGE,	major_ver(xe,	guc,	bmg,	70, 29, 2))	\
- 	fw_def(LUNARLAKE,	major_ver(xe,	guc,	lnl,	70, 29, 2))	\
- 	fw_def(METEORLAKE,	major_ver(i915,	guc,	mtl,	70, 29, 2))	\
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 40438c3d9b72..228436532282 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -28,6 +28,7 @@
+ 16022287689	GRAPHICS_VERSION(2001)
+ 		GRAPHICS_VERSION(2004)
+ 13011645652	GRAPHICS_VERSION(2004)
++		GRAPHICS_VERSION(3001)
+ 14022293748	GRAPHICS_VERSION(2001)
+ 		GRAPHICS_VERSION(2004)
+ 22019794406	GRAPHICS_VERSION(2001)
 -- 
 2.38.1
 
