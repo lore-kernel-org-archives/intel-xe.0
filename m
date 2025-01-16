@@ -4,58 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5875C02183
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 14:51:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BC24C02183
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 15:01:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2B2810E99F;
-	Thu, 16 Jan 2025 14:51:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51F3610E9A8;
+	Thu, 16 Jan 2025 15:01:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bw+DL3Xp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vx5jxHg5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B17A910E99F
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 14:51:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 447C410E9A5
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 15:01:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737039101; x=1768575101;
+ t=1737039702; x=1768575702;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=z2gC//2g2XsdJsq+9X6EPEqVYlAjDv+eD3AfPdWiw5s=;
- b=Bw+DL3XpNopCEXeqLcKWXrkDGiWIlhdrEPzhCtQqHrcCK1HMqUsbOeiJ
- qMTBehtopfIC2vRq99PMMbpm07xm8KYx64qREX9Ra0ehDmvayyltyJeCI
- abM7uDG+L10FENqnjFnHhnyqm5cCYNBDUa61jJzEE7mwQ+NenAWTrLb4J
- 2L2ehVLnhY/zCCGun+ml57hVZVr87a7VPXBeOvHKcJ/Akfp5EwV1sbs5a
- LCcquGwvE6UNhO0HZEvtfO4zK7h+EKWJiccQpb+oi+Jofs2iMdw0Cr94x
- NYmUwL5Fr2E4ahHeiJMs+NUl953HKib3emChNsrfpRQcQCHaSxJaVPc7h g==;
-X-CSE-ConnectionGUID: cya5CbAlTyynasjXgeNaqw==
-X-CSE-MsgGUID: gQVkJfy2QNOw6i2Z//ToGA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="48015545"
-X-IronPort-AV: E=Sophos;i="6.13,209,1732608000"; d="scan'208";a="48015545"
+ mime-version:in-reply-to;
+ bh=enkbS8zAMlWHjlJUkfIuhjhOveF2Xv2Tic/FdJKlU14=;
+ b=Vx5jxHg5/4MJoZ9bAHWGDp5fU8IEHuwfl0N4oW8OpMjJxKVveJGxVMGE
+ WLyTJgI70hdNG3hXHlJ/3lQfrDQxbXFDA4co08BbgQ5UUChVM3hqwizlB
+ yoHuQqj+amLYv+xjZav/FRFbL9i+aQ312Fj2uCziJckjpM4Wy39i4BZ5c
+ SM1zY+QueSuD2QTEBp15hzbU2XvcWdwPLMDorWKbI2ZBR53RZJBzTklmk
+ K9tGtzKiKgrCAMWlHyRrtmI6MczAzu/IV5+MGwgoI/C/Mm9/RtzkCG7Cn
+ 1pOXHuUoQBiCqee8evB8/s9FcT2R0JotwhrcWNGKDVEmBkVGeXgMog5U0 w==;
+X-CSE-ConnectionGUID: +cc5YiirRHm8YqBQ8koxnw==
+X-CSE-MsgGUID: SOj/aIzPSCSFaULboHT4DA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="48017119"
+X-IronPort-AV: E=Sophos;i="6.13,209,1732608000"; d="scan'208";a="48017119"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 06:51:40 -0800
-X-CSE-ConnectionGUID: gSM2T/IGQya6wz+7ApCVNg==
-X-CSE-MsgGUID: 5lC9dJciT66Qq4oDDX13Kg==
+ 16 Jan 2025 07:01:32 -0800
+X-CSE-ConnectionGUID: NLxCGbJXR1inpnGiViyoEg==
+X-CSE-MsgGUID: 4nW/T8tYQjyJ74SdmEhYZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="106397071"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="106398801"
 Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
  ([10.125.109.57])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 06:51:39 -0800
-Date: Thu, 16 Jan 2025 08:51:40 -0600
+ 16 Jan 2025 07:01:31 -0800
+Date: Thu, 16 Jan 2025 09:01:31 -0600
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org, 
- =?utf-8?Q?Micha=C5=82?= Wajdeczko <michal.wajdeczko@intel.com>
-Subject: Re: [PATCH] drm/xe: Suppress printing of mode when running in
- non-sriov mode.
-Message-ID: <ns2cztumzyalnty6gkyr3sv6tj6l33gzcjvjabccdd5qgdtt53@2r3yworb6nkl>
-References: <20250116055617.20611-1-satyanarayana.k.v.p@intel.com>
+To: Aradhya Bhatia <aradhya.bhatia@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>, 
+ Intel XE List <intel-xe@lists.freedesktop.org>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>, 
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
+Subject: Re: [PATCH v2 2/2] drm/xe/oa: Refactor Wa_18013179988 and
+ Wa_14015568240
+Message-ID: <x7cjfk55rcwjwp7arncmalvnyt73w3z66kwfwgnlm5srzxg4gq@qkbpezds7gtc>
+References: <20250116091004.3060996-1-aradhya.bhatia@intel.com>
+ <20250116091004.3060996-3-aradhya.bhatia@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250116055617.20611-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250116091004.3060996-3-aradhya.bhatia@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,40 +73,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jan 16, 2025 at 11:26:17AM +0530, Satyanarayana K V P wrote:
->The xe_sriov_probe_early() function prints the sriov pf/vf mode on
->driver probe. When running in non-sriov mode, the below debug message
->is seen.
+On Thu, Jan 16, 2025 at 02:40:04PM +0530, Aradhya Bhatia wrote:
+>Refactor Wa_18013179988 and Wa_14015568240, to use the cleaner and
+>newer workaround-check implementation, and drop the use of the platform
+>based switch selection.
 >
->"Running in none mode".
+>While at it, fix the lineage number for the MTL.
 >
->This print does not convey any information. This commit suppresses this
->debug message and shows only when running in PF/VF mode.
+>Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
+>---
+> drivers/gpu/drm/xe/xe_oa.c         | 14 ++++++--------
+> drivers/gpu/drm/xe/xe_wa_oob.rules |  3 +++
+> 2 files changed, 9 insertions(+), 8 deletions(-)
 >
->Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
->Cc: Michał Wajdeczko <michal.wajdeczko@intel.com>
+>diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+>index eeb96b5f49e2..3736e4cd10f7 100644
+>--- a/drivers/gpu/drm/xe/xe_oa.c
+>+++ b/drivers/gpu/drm/xe/xe_oa.c
+>@@ -12,6 +12,8 @@
+> #include <drm/drm_managed.h>
+> #include <uapi/drm/xe_drm.h>
+>
+>+#include <generated/xe_wa_oob.h>
+>+
+> #include "abi/guc_actions_slpc_abi.h"
+> #include "instructions/xe_mi_commands.h"
+> #include "regs/xe_engine_regs.h"
+>@@ -35,6 +37,7 @@
+> #include "xe_sched_job.h"
+> #include "xe_sriov.h"
+> #include "xe_sync.h"
+>+#include "xe_wa.h"
+>
+> #define DEFAULT_POLL_FREQUENCY_HZ 200
+> #define DEFAULT_POLL_PERIOD_NS (NSEC_PER_SEC / DEFAULT_POLL_FREQUENCY_HZ)
+>@@ -1854,22 +1857,17 @@ u32 xe_oa_timestamp_frequency(struct xe_gt *gt)
+> 	u32 reg, shift;
+>
+> 	/*
+>-	 * Wa_18013179988:dg2
+>+	 * Wa_18013179988:dg2/mtl
+> 	 * Wa_14015568240:pvc
+>-	 * Wa_14015846243:mtl
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+this comment should just be dropped so it doesn't get out of sync again
+with what the implementation is doing.
+
+> 	 */
+>-	switch (gt_to_xe(gt)->info.platform) {
+>-	case XE_DG2:
+>-	case XE_PVC:
+>-	case XE_METEORLAKE:
+>+	if (XE_WA(gt, 18013179988) || XE_WA(gt, 14015568240)) {
+> 		xe_pm_runtime_get(gt_to_xe(gt));
+> 		reg = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
+> 		xe_pm_runtime_put(gt_to_xe(gt));
+>
+> 		shift = REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, reg);
+> 		return gt->info.reference_clock << (3 - shift);
+>-
+>-	default:
+>+	} else {
+> 		return gt->info.reference_clock;
+> 	}
+> }
+>diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+>index 536b91cc4d3f..b79b78d5feba 100644
+>--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
+>+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+>@@ -44,3 +44,6 @@ no_media_l3	MEDIA_VERSION(3000)
+> 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0)
+> 16021333562	GRAPHICS_VERSION_RANGE(1200, 1300)
+> 14016712196	GRAPHICS_VERSION_RANGE(1255, 1274)
+>+14015568240	GRAPHICS_VERSION_RANGE(1255, 1260)
+
+why not 1274 as upper end?
+
+>+18013179988	GRAPHICS_VERSION(1255)
+>+		GRAPHICS_VERSION_RANGE(1270, 1300)
+
+humn... I think you are missing the fact that the graphics/media
+versions use **inclusive** ranges:
+
+/**                                                                                      
+  * XE_RTP_RULE_GRAPHICS_VERSION_RANGE - Create rule matching a range of graphics version
+  * @ver_start__: First graphics IP version to match
+  * @ver_end__: Last graphics IP version to match
+  *
+  * Note that the range matching this rule is [ @ver_start__, @ver_end__ ], i.e.
+  * inclusive on both sides
+  *
+  * Refer to XE_RTP_RULES() for expected usage.
+  */
+
+So assuming we want to drop 1260, this would be:
+
+
+18013179988	GRAPHICS_VERSION(1255)
+		GRAPHICS_VERSION_RANGE(1270, 1274)
 
 Lucas De Marchi
 
->---
-> drivers/gpu/drm/xe/xe_sriov.c | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
->index 04e2f539ccd9..a0eab44c0e76 100644
->--- a/drivers/gpu/drm/xe/xe_sriov.c
->+++ b/drivers/gpu/drm/xe/xe_sriov.c
->@@ -81,7 +81,7 @@ void xe_sriov_probe_early(struct xe_device *xe)
-> 	xe->sriov.__mode = mode;
-> 	xe_assert(xe, xe->sriov.__mode);
->
->-	if (has_sriov)
->+	if (IS_SRIOV(xe))
-> 		drm_info(&xe->drm, "Running in %s mode\n",
-> 			 xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
-> }
 >-- 
->2.35.3
+>2.34.1
 >
