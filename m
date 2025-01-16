@@ -4,27 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8D00C02187
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 10:35:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71FCDC02180
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 10:36:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7363C10E92F;
-	Thu, 16 Jan 2025 10:35:12 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 320D610E92F;
- Thu, 16 Jan 2025 10:35:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FBED10E930;
+	Thu, 16 Jan 2025 10:36:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Xe7pvhcv";
+	dkim-atps=neutral
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com
+ [209.85.167.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C8B910E930
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 10:36:40 +0000 (UTC)
+Received: by mail-lf1-f52.google.com with SMTP id
+ 2adb3069b0e04-53e399e3310so857382e87.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 02:36:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1737023739; x=1737628539; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=gprmJm/Cl6p6869D60XQ3XjbtrOWLJEOxZITgqe2J5o=;
+ b=Xe7pvhcvb9BQ7O4nt/y0DJLp/g1zsI7ocpGZCYyrWLZBc7HY+hdOcrlriV7yfJyNt7
+ UVLRZaisx41pC4N4YIlCUsMeaTxXOyAqTL3AM6Ysc1GVfl87VOE85bWQ1deXMraY9EkV
+ RGanrzn29+urwkvKxH5lFtD8Zg3zxKU8f3AG03EuFqqjcF6QexNxt2vYzqQc/9VIxv3K
+ Jn/MQ61Z2QC0ndh/oZHDzS4JEU++p37KhLCbRjrWTHsasU78OhklWXF7QCBlGyH66c42
+ TXpQr0xtlEG+35vTUOKwjyK0lZMcCwNMg2wCcSFnMyMRJulexoebk8iVoBuwwSmQGKjL
+ Uj4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1737023739; x=1737628539;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=gprmJm/Cl6p6869D60XQ3XjbtrOWLJEOxZITgqe2J5o=;
+ b=Se+av6arIBSQ5iYhiD98KzRRfB3/LPcMSy6VSpFF+HHpqlMR6KzFLhgwLq8+6t68VC
+ Cx/hvCu1BtO9hFHqFXvY78WmrBB5uYxlNteVddVqDYS4fYYpnaORwjE/v1V0M9N1Jp/D
+ x06GbqKabJ0+Em4ZC1HAXsVKWW0x/lnazLt2T1g1hOJc2+p5yEzGMog9swI/UovNQ2hF
+ s+AYDBuZ+RN+kQFd3QSZY699wVk5jt8WbInSpw5MOs/wSfjaJEJJEnkXfcUZN7KEYrqT
+ hJM2cPPrJ560TXaK4nE5bqpICDGQFq2si8jMhThYIK3eU/8lCd5sHlE/xogg6OcjBB6w
+ domw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU8s+lQMAhuLkysmt6NGWrDBKuDijOI+ThRuvz6ss49ArRV4j7QNfUOt50xctDxXkQtlVWJXZ1Pzw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwTFm1ZNgw54KdG1BEVolGdtRxkGlKpGRPFwDkVmRLzR48gTKlV
+ +LJWAOnP9nJ2Bs1JGldsh4czD+YNBpD7Ksk37DLdYVtj0o7wYZu1GUrvxr2MdG4=
+X-Gm-Gg: ASbGncu0/21KMGqpX61YsUEAFRoxgxzy6Gg08bkqbOYz//GkziX3Wq7oAk58AnAf+ku
+ E8SacpXr7bvVoBreKsZyjI0X7s0c3KSblEx2EP/+nEU4ovH1AIb45m1AP9BV9vgmL6/tRfgKROA
+ gxUxoENPM/DCNBU573wHX7gPa8GvuOjoSWXOObk62AMCV+LoU4IiJ7G/c5Wi6zOOmFRRyMEKwHS
+ au39shHfis4AYopd/QYq8nGPY3PtnESYInSdjHdZCQ5ic0PYqtOws4lnEYh1qZAiFMbkdms4l1V
+ Qs0FeN4SrImzxsT6asUzr9bMzdb3RFa7Uq5B
+X-Google-Smtp-Source: AGHT+IH3G1Mnr8k23AF5/dIs7iAuJyOHJCwOMDmvWc4umnN+swRWG+FLBCp9QsFSdvm1xDWFrQeEdg==
+X-Received: by 2002:a05:6512:3d27:b0:540:20a9:9ab5 with SMTP id
+ 2adb3069b0e04-54284824476mr9777793e87.50.1737023738809; 
+ Thu, 16 Jan 2025 02:35:38 -0800 (PST)
+Received: from eriador.lumag.spb.ru
+ (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5428be49d6esm2261466e87.50.2025.01.16.02.35.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 16 Jan 2025 02:35:37 -0800 (PST)
+Date: Thu, 16 Jan 2025 12:35:35 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, 
+ airlied@gmail.com, simona@ffwll.ch, dri-devel@lists.freedesktop.org, 
+ linux-mediatek@lists.infradead.org, freedreno@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, 
+ imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, 
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org, 
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-tegra@vger.kernel.org, 
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Andy Yan <andyshrk@163.com>, Daniel Stone <daniel@fooishbar.org>
+Subject: Re: [PATCH v2 25/25] drm/xlnx: Compute dumb-buffer sizes with
+ drm_mode_size_dumb()
+Message-ID: <xz5ncq67bgmdase2jg3cfvyaxpiwhol2eqpfzow6dqpauvslo5@2w3rw27lhnxo>
+References: <f3ba05c7-6e49-4641-a3f9-ba418ebdb7c3@ideasonboard.com>
+ <c6735280-7c32-4319-8ca9-a7305d8117c3@suse.de>
+ <d67adb03-5cd0-4ac9-af58-cf4446dacee3@ideasonboard.com>
+ <0ea6be58-0e04-4172-87cd-064a3e4a43bc@suse.de>
+ <f35cb350-6be9-48ca-ad7e-e9dd418281d5@ideasonboard.com>
+ <4af0b6a7-c16a-4187-bbf5-365a9c86de21@suse.de>
+ <e327ad84-b5c9-4480-b873-dc3aca605538@ideasonboard.com>
+ <a2bbeb47-2569-4ee0-9265-92bab139bdc6@suse.de>
+ <f3833771-fcd7-45dc-9019-1525fef34429@ideasonboard.com>
+ <CAMuHMdXxYa+Na3XxpLTy=-eUL_zQ9kAiUKYu-E04u3KWApusSA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/dp=3A_Correct_max_com?=
- =?utf-8?q?pressed_bpp_bounds_by_using_link_bpp?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Jan 2025 10:35:11 -0000
-Message-ID: <173702371119.218583.16138842002914391081@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250116095416.68325-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250116095416.68325-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdXxYa+Na3XxpLTy=-eUL_zQ9kAiUKYu-E04u3KWApusSA@mail.gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +108,85 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Jan 16, 2025 at 11:17:50AM +0100, Geert Uytterhoeven wrote:
+> On Thu, Jan 16, 2025 at 11:03 AM Tomi Valkeinen
+> <tomi.valkeinen@ideasonboard.com> wrote:
+> > On 16/01/2025 10:09, Thomas Zimmermann wrote:
+> > > Am 15.01.25 um 15:20 schrieb Tomi Valkeinen:
+> > > [...]
+> > >>
+> > >> My point is that we have the current UAPI, and we have userspace using
+> > >> it, but we don't have clear rules what the ioctl does with specific
+> > >> parameters, and we don't document how it has to be used.
+> > >>
+> > >> Perhaps the situation is bad, and all we can really say is that
+> > >> CREATE_DUMB only works for use with simple RGB formats, and the
+> > >> behavior for all other formats is platform specific. But I think even
+> > >> that would be valuable in the UAPI docs.
+> > >
+> > > To be honest, I would not want to specify behavior for anything but the
+> > > linear RGB formats. If anything, I'd take Daniel's reply mail for
+> > > documentation as-is. Anyone stretching the UAPI beyond RGB is on their own.
+> > >
+> > >> Thinking about this, I wonder if this change is good for omapdrm or
+> > >> xilinx (probably other platforms too that support non-simple non-RGB
+> > >> formats via dumb buffers): without this patch, in both drivers, the
+> > >> pitch calculations just take the bpp as bit-per-pixels, align it up,
+> > >> and that's it.
+> > >>
+> > >> With this patch we end up using drm_driver_color_mode_format(), and
+> > >> aligning buffers according to RGB formats figured out via heuristics.
+> > >> It does happen to work, for the formats I tested, but it sounds like
+> > >> something that might easily not work, as it's doing adjustments based
+> > >> on wrong format.
+> > >>
+> > >> Should we have another version of drm_mode_size_dumb() which just
+> > >> calculates using the bpp, without the drm_driver_color_mode_format()
+> > >> path? Or does the drm_driver_color_mode_format() path provide some
+> > >> value for the drivers that do not currently do anything similar?
+> > >
+> > > With the RGB-only rule, using drm_driver_color_mode_format() makes
+> > > sense. It aligns dumb buffers and video=, provides error checking, and
+> > > overall harmonizes code. The fallback is only required because of the
+> > > existing odd cases that already bend the UAPI's rules.
+> >
+> > I have to disagree here.
+> >
+> > On the platforms I have been using (omap, tidss, xilinx, rcar) the dumb
+> > buffers are the only buffers you can get from the DRM driver. The dumb
+> > buffers have been used to allocate linear and multiplanar YUV buffers
+> > for a very long time on those platforms.
+> >
+> > I tried to look around, but I did not find any mentions that CREATE_DUMB
+> > should only be used for RGB buffers. Is anyone outside the core
+> > developers even aware of it?
+> >
+> > If we don't use dumb buffers there, where do we get the buffers? Maybe
+> > from a v4l2 device or from a gpu device, but often you don't have those.
+> > DMA_HEAP is there, of course.
+> 
+> Why can't there be a variant that takes a proper fourcc format instead of
+> an imprecise bpp value?
 
-Series: drm/i915/dp: Correct max compressed bpp bounds by using link bpp
-URL   : https://patchwork.freedesktop.org/series/143596/
-State : success
+Backwards compatibility. We can add an IOCTL for YUV / etc. But
+userspace must be able to continue allocating YUV buffers through
+CREATE_DUMB.
 
-== Summary ==
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> -- 
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/events/rapl.ko
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/kernel/
-lib/modules/6.13.0-rc7-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/zstd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/xctr.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/authenc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/keywrap.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cmac.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/essiv.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ccm.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/wp512.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/lrw.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/vmac.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/842.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/md4.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.13.0-rc7-xe+/kernel/block/
-lib/modules/6.13.0-rc7-xe+/kernel/block/bfq.ko
-lib/modules/6.13.0-rc7-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.13.0-rc7-xe+/build
-lib/modules/6.13.0-rc7-xe+/modules.alias.bin
-lib/modules/6.13.0-rc7-xe+/modules.builtin
-lib/modules/6.13.0-rc7-xe+/modules.softdep
-lib/modules/6.13.0-rc7-xe+/modules.alias
-lib/modules/6.13.0-rc7-xe+/modules.order
-lib/modules/6.13.0-rc7-xe+/modules.symbols
-lib/modules/6.13.0-rc7-xe+/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1737023691:package_x86_64_nodebug\r\e[0K'
-+ sync
-[0Ksection_end:1737023691:package_x86_64_nodebug
-[0K
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+-- 
+With best wishes
+Dmitry
