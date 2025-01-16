@@ -4,54 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38BB7C02180
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 11:45:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86282C02180
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 12:26:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDA5110E947;
-	Thu, 16 Jan 2025 11:45:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D91810E57E;
+	Thu, 16 Jan 2025 12:26:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wo/RWtq2";
+	dkim=pass (2048-bit key; unprotected) header.d=fooishbar.org header.i=@fooishbar.org header.b="o9PpJ35b";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2456510E947
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 11:45:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737027950; x=1768563950;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=2wJAt96NzEVGMT9X39laTTfjCeFQw+n1cX/jHNIsA7Q=;
- b=Wo/RWtq2QGJtXPNBEZ2RLTY1v71H5utjNYJUdYI4x0lZ1+JaEumaBrhU
- 4/5VrYqIBEH7H/Zs7sj0w2xZjGBW0SpPy77CAC25iuV1smU9QphXWPT0M
- rsYExvxCxPAXaHrL8hFBffdSBL90p0HJimEc4CZ1i2OdYHGuR6n0bTb9V
- uilggha78+Iyb7W54eOg3+MU2zZ41y4B44PrRN9dv7aURL9CJeXc53GpQ
- hNL/727//DtAv0BEgWbcNAh3dLikVsxqEubWv+KgzT+lQXkDFDDnUmPe/
- 1L0GgEicGiq05l/jj1fPsFc8GWO9d+BzmJRPL6PFTy+5pPoBFwhb4tTYC Q==;
-X-CSE-ConnectionGUID: kCmYMrptR0ywNsz1leXq1Q==
-X-CSE-MsgGUID: 5Ptl/UAERE61tDJbLnOBLw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="37528611"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="37528611"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 03:45:50 -0800
-X-CSE-ConnectionGUID: GCa34RSfQ4Wu9/kfimHhFw==
-X-CSE-MsgGUID: ZlZ8ctQqTsih7jGofmTTVA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="142743357"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
- by orviesa001.jf.intel.com with ESMTP; 16 Jan 2025 03:45:49 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tYOJm-000Rl5-1x;
- Thu, 16 Jan 2025 11:45:46 +0000
-Date: Thu, 16 Jan 2025 19:45:45 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- 79a21fc921d7aafaf69d00b4938435b81bf66022
-Message-ID: <202501161939.4tqFuTRC-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com
+ [209.85.219.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6FA010E57E
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 12:25:59 +0000 (UTC)
+Received: by mail-qv1-f50.google.com with SMTP id
+ 6a1803df08f44-6d8f65ef5abso7735726d6.3
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 04:25:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=fooishbar.org; s=google; t=1737030299; x=1737635099;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=GBwF2KOXlFDp1MGeRltem3iAJtpX3AYE0x8w+f0gonM=;
+ b=o9PpJ35b49a8+Ar0WHRHCRBYskVDPbovO68pOGVMXqWrpEfOKwO+1TF8h6h0cnLE9T
+ JSO5TZZiHYVsWojUp1Bkpr6OTZ2lsU4fHenqsG7BVA/9QeQHv5kRp7w5y+KeeVQZk5ci
+ +0RxRBNOCHjhB5tojqd/kGdDJDYOu98KHLZ4stSJ9Wjs358j0rsPjKzSVgMYSmxQmmCr
+ a5k84vHMT4Dl51DKNBmm9QVsm8e2/mfa8BPgH6L2oETGPmLq7zT6ItMJKjY72HPUV08w
+ v3E734iJ8VxjR0Mt3YhC3rjFoSX91sXz3ZscPudRRa55tFHoLdTHwaPXuMEBiE6JaZYE
+ 7p5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1737030299; x=1737635099;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=GBwF2KOXlFDp1MGeRltem3iAJtpX3AYE0x8w+f0gonM=;
+ b=iqCLsoDNU2skU3WAakP1aLJW+al1COYTK8sxcwC9N9Ow5q/p3a1UXeF9YECgAKa8Up
+ psBxR9kZ/c5JQgukmnN7efgX5WmlYVL3Ko/9E81QUcveuAOFuoTo/EmZZvRrxatD9w6n
+ kM6SCodPXVWH4UqyetAdHfj/aw2+8Qe7TuGSGAQGPxv464aNH3aofkN2TUPvI42FzaQD
+ 7LjREVH783P22mBL4k045h9PCu6wAHLipNOhGodrxOj4tECiLTTV5ipy/KOf6vxP4/Uq
+ /082CjKKCWE5m7jfh84c+XwtoeofdsxXh2EArsLXDwnj31+t7CETJbJlOA6IG/huLFJN
+ eBoQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU4O6mj76PHr78J/nsclefdJAHkoVI5GBRtNOqv34Ah4FeO5IKpimZUPwxN8LhUxqfCEVi8kv937w==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy+Y7hKIyQgLfPD1fXChSbqoeGv6Twrk7Dv1HBObNNoQvlulfKN
+ cRr6cQxYVXxvbRmbJgIWumqlaMxPlLBCm+v2J5eBd6TdudsU+w2Mfbr0wmO0jgtCl1zAtogr2fC
+ d7tLUxyqpxGcJ5nOqEcZ7o0WccBtvGuLHGje2GQ==
+X-Gm-Gg: ASbGncvbQ1zNkTdlEwfPRPjCTaTFr1iaMaQwCQbAA4GrIM91t2vxOm5eo7e53rSxOl6
+ Otqe+P6964YA0BIuUqpoVH/KepiiWC4CnVT4=
+X-Google-Smtp-Source: AGHT+IHYPoThOqCGG0mIrocl9o1givl0D/RoYwWOKY0kUiZ64KPF9cSvP+6N1Rd6ke2PYtdS9xOibflODkJbaGvT990=
+X-Received: by 2002:a05:6214:528e:b0:6d9:3016:d0e7 with SMTP id
+ 6a1803df08f44-6df9b2b1a21mr442378366d6.29.1737030298608; Thu, 16 Jan 2025
+ 04:24:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+References: <f3ba05c7-6e49-4641-a3f9-ba418ebdb7c3@ideasonboard.com>
+ <c6735280-7c32-4319-8ca9-a7305d8117c3@suse.de>
+ <d67adb03-5cd0-4ac9-af58-cf4446dacee3@ideasonboard.com>
+ <0ea6be58-0e04-4172-87cd-064a3e4a43bc@suse.de>
+ <f35cb350-6be9-48ca-ad7e-e9dd418281d5@ideasonboard.com>
+ <4af0b6a7-c16a-4187-bbf5-365a9c86de21@suse.de>
+ <e327ad84-b5c9-4480-b873-dc3aca605538@ideasonboard.com>
+ <a2bbeb47-2569-4ee0-9265-92bab139bdc6@suse.de>
+ <f3833771-fcd7-45dc-9019-1525fef34429@ideasonboard.com>
+ <CAMuHMdXxYa+Na3XxpLTy=-eUL_zQ9kAiUKYu-E04u3KWApusSA@mail.gmail.com>
+ <xz5ncq67bgmdase2jg3cfvyaxpiwhol2eqpfzow6dqpauvslo5@2w3rw27lhnxo>
+In-Reply-To: <xz5ncq67bgmdase2jg3cfvyaxpiwhol2eqpfzow6dqpauvslo5@2w3rw27lhnxo>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Thu, 16 Jan 2025 12:24:47 +0000
+X-Gm-Features: AbW1kvarRJv1VyJjUo1t8ScK0brJ2o4-Qq6ABYK10edUo6rgOW2PAccCb4uQWlM
+Message-ID: <CAPj87rNS7quwfqDmxyrW8_vQ6tnrcfWUn=81aTduDXtmdVkkAg@mail.gmail.com>
+Subject: Re: [PATCH v2 25/25] drm/xlnx: Compute dumb-buffer sizes with
+ drm_mode_size_dumb()
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, 
+ airlied@gmail.com, simona@ffwll.ch, dri-devel@lists.freedesktop.org, 
+ linux-mediatek@lists.infradead.org, freedreno@lists.freedesktop.org, 
+ linux-arm-msm@vger.kernel.org, imx@lists.linux.dev, 
+ linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org, 
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-tegra@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ xen-devel@lists.xenproject.org, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Andy Yan <andyshrk@163.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,113 +105,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: 79a21fc921d7aafaf69d00b4938435b81bf66022  drm/xe/oa: Add missing VISACTL mux registers
+On Thu, 16 Jan 2025 at 10:35, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+> On Thu, Jan 16, 2025 at 11:17:50AM +0100, Geert Uytterhoeven wrote:
+> > On Thu, Jan 16, 2025 at 11:03=E2=80=AFAM Tomi Valkeinen
+> > <tomi.valkeinen@ideasonboard.com> wrote:
+> > > On the platforms I have been using (omap, tidss, xilinx, rcar) the du=
+mb
+> > > buffers are the only buffers you can get from the DRM driver. The dum=
+b
+> > > buffers have been used to allocate linear and multiplanar YUV buffers
+> > > for a very long time on those platforms.
+> > >
+> > > I tried to look around, but I did not find any mentions that CREATE_D=
+UMB
+> > > should only be used for RGB buffers. Is anyone outside the core
+> > > developers even aware of it?
+> > >
+> > > If we don't use dumb buffers there, where do we get the buffers? Mayb=
+e
+> > > from a v4l2 device or from a gpu device, but often you don't have tho=
+se.
+> > > DMA_HEAP is there, of course.
+> >
+> > Why can't there be a variant that takes a proper fourcc format instead =
+of
+> > an imprecise bpp value?
+>
+> Backwards compatibility. We can add an IOCTL for YUV / etc. But
+> userspace must be able to continue allocating YUV buffers through
+> CREATE_DUMB.
 
-elapsed time: 1449m
+Right. If allocating YUYV dumb buffers works on AM68 today, then we
+need to keep that working. But it doesn't mean we should go out of our
+way to make CREATE_DUMB work for every YUV format on every device.
 
-configs tested: 94
-configs skipped: 3
+Currently, drivers are free to implement their own ioctls for anything
+specific they have. But like Laurent said, standardising on heaps and
+how to communicate requirements to userspace wrt heap selection / size
+/ alignment / etc is imo a better path forward for something generic.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                            allnoconfig    gcc-14.2.0
-alpha                           allyesconfig    gcc-14.2.0
-arc                             allmodconfig    gcc-13.2.0
-arc                              allnoconfig    gcc-13.2.0
-arc                             allyesconfig    gcc-13.2.0
-arc                  randconfig-001-20250115    gcc-13.2.0
-arc                  randconfig-002-20250115    gcc-13.2.0
-arc                       vdk_hs38_defconfig    gcc-13.2.0
-arm                              allnoconfig    clang-17
-arm                             allyesconfig    gcc-14.2.0
-arm                           mmp2_defconfig    gcc-14.2.0
-arm                  randconfig-001-20250115    clang-16
-arm                  randconfig-002-20250115    clang-20
-arm                  randconfig-003-20250115    clang-20
-arm                  randconfig-004-20250115    clang-20
-arm                        s3c6400_defconfig    gcc-14.2.0
-arm64                           allmodconfig    clang-18
-arm64                            allnoconfig    gcc-14.2.0
-arm64                randconfig-001-20250115    clang-20
-arm64                randconfig-002-20250115    gcc-14.2.0
-arm64                randconfig-003-20250115    clang-18
-arm64                randconfig-004-20250115    gcc-14.2.0
-csky                             allnoconfig    gcc-14.2.0
-csky                 randconfig-001-20250115    gcc-14.2.0
-csky                 randconfig-002-20250115    gcc-14.2.0
-hexagon                         allmodconfig    clang-20
-hexagon                          allnoconfig    clang-20
-hexagon                         allyesconfig    clang-18
-hexagon              randconfig-001-20250115    clang-20
-hexagon              randconfig-002-20250115    clang-19
-i386                            allmodconfig    gcc-12
-i386                             allnoconfig    gcc-12
-i386                            allyesconfig    gcc-12
-i386       buildonly-randconfig-001-20250115    clang-19
-i386       buildonly-randconfig-002-20250115    gcc-12
-i386       buildonly-randconfig-003-20250115    gcc-12
-i386       buildonly-randconfig-004-20250115    gcc-12
-i386       buildonly-randconfig-005-20250115    gcc-12
-i386       buildonly-randconfig-006-20250115    gcc-12
-i386                               defconfig    clang-19
-loongarch                        allnoconfig    gcc-14.2.0
-loongarch            randconfig-001-20250115    gcc-14.2.0
-loongarch            randconfig-002-20250115    gcc-14.2.0
-m68k                            allmodconfig    gcc-14.2.0
-m68k                            allyesconfig    gcc-14.2.0
-nios2                randconfig-001-20250115    gcc-14.2.0
-nios2                randconfig-002-20250115    gcc-14.2.0
-openrisc                         allnoconfig    gcc-14.2.0
-openrisc                        allyesconfig    gcc-14.2.0
-parisc                          allmodconfig    gcc-14.2.0
-parisc                           allnoconfig    gcc-14.2.0
-parisc                          allyesconfig    gcc-14.2.0
-parisc               randconfig-001-20250115    gcc-14.2.0
-parisc               randconfig-002-20250115    gcc-14.2.0
-powerpc                         allmodconfig    gcc-14.2.0
-powerpc                          allnoconfig    gcc-14.2.0
-powerpc              randconfig-001-20250115    gcc-14.2.0
-powerpc              randconfig-002-20250115    gcc-14.2.0
-powerpc              randconfig-003-20250115    gcc-14.2.0
-powerpc64            randconfig-001-20250115    gcc-14.2.0
-powerpc64            randconfig-002-20250115    gcc-14.2.0
-powerpc64            randconfig-003-20250115    clang-18
-riscv                            allnoconfig    gcc-14.2.0
-riscv                randconfig-001-20250115    gcc-14.2.0
-riscv                randconfig-002-20250115    clang-16
-s390                            allmodconfig    clang-19
-s390                             allnoconfig    clang-20
-s390                            allyesconfig    gcc-14.2.0
-s390                 randconfig-001-20250115    clang-20
-s390                 randconfig-002-20250115    clang-15
-sh                              allmodconfig    gcc-14.2.0
-sh                              allyesconfig    gcc-14.2.0
-sh                   randconfig-001-20250115    gcc-14.2.0
-sh                   randconfig-002-20250115    gcc-14.2.0
-sparc                randconfig-001-20250115    gcc-14.2.0
-sparc                randconfig-002-20250115    gcc-14.2.0
-sparc64              randconfig-001-20250115    gcc-14.2.0
-sparc64              randconfig-002-20250115    gcc-14.2.0
-um                              allmodconfig    clang-20
-um                               allnoconfig    clang-18
-um                              allyesconfig    gcc-12
-um                   randconfig-001-20250115    clang-18
-um                   randconfig-002-20250115    gcc-12
-x86_64                           allnoconfig    clang-19
-x86_64                          allyesconfig    clang-19
-x86_64     buildonly-randconfig-001-20250115    gcc-12
-x86_64     buildonly-randconfig-002-20250115    gcc-12
-x86_64     buildonly-randconfig-003-20250115    clang-19
-x86_64     buildonly-randconfig-004-20250115    clang-19
-x86_64     buildonly-randconfig-005-20250115    gcc-12
-x86_64     buildonly-randconfig-006-20250115    clang-19
-x86_64                             defconfig    gcc-11
-xtensa               randconfig-001-20250115    gcc-14.2.0
-xtensa               randconfig-002-20250115    gcc-14.2.0
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Cheers,
+Daniel
