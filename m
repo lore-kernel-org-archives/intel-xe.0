@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA178C02183
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 13:16:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55DC1C02187
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 13:28:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92A8B10E95F;
-	Thu, 16 Jan 2025 13:16:11 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5C8610E95F;
- Thu, 16 Jan 2025 13:16:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id D228D10E961;
+	Thu, 16 Jan 2025 13:28:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VZx7btnJ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55F9010E961
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 13:28:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737034121; x=1768570121;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=s9DlBp6SPnvR5iyEU3RjaSaSAqsIgQixW92n6VsVI7E=;
+ b=VZx7btnJmKlF61LsE3aCPkVQ4ARRjQj4YbstG79ljrEAwTKYQPoq5ZUv
+ D/1tX+am2FtGZWATeq3pR4yur8qf9QW7fYirjF8pQZxUa1EGyA08ZUXt/
+ OsZTdbgKknmhjNgzTr2TraRgjvVyEpT+HtUtaXDtP5x4XXbBHR1y6wLou
+ 6TEHxMQIQjxx5eavdnYlrZbLBxPVi+/T2ppG2n3bhRatw1h36UP48OW4E
+ O2POJ8MG07HIiCtMlRqoCtRKSbR3AaAS3sXaHoLWOMKQVI7ZSts17fYGb
+ +4eZSKrosrBhoi0ODBz39GieK4yBC2h9ZFhgTvPvEpn8bFcpq5PPbzg39 g==;
+X-CSE-ConnectionGUID: qK1c9NloRRalC/Nn21bC0A==
+X-CSE-MsgGUID: HbT7Y20CRbucxsxBs2zjfg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11316"; a="37574288"
+X-IronPort-AV: E=Sophos;i="6.13,209,1732608000"; d="scan'208";a="37574288"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 05:28:40 -0800
+X-CSE-ConnectionGUID: Ypj6R5ogTJaKiArSkxWNxA==
+X-CSE-MsgGUID: GSdQ4r1KRVK5Yi2VF+rtiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,209,1732608000"; d="scan'208";a="110472847"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 05:28:39 -0800
+Date: Thu, 16 Jan 2025 15:28:36 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+Cc: intel-xe@lists.freedesktop.org, matthew.d.roper@intel.com
+Subject: Re: [PATCH 1/2] drm/xe: Refactor dma_mask_size
+Message-ID: <Z4kJhOH5Pp_LqTk8@black.fi.intel.com>
+References: <20250116125447.4025927-1-sai.teja.pottumuttu@intel.com>
+ <20250116125447.4025927-2-sai.teja.pottumuttu@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Add_missing_SP?=
- =?utf-8?q?DX_license_identifiers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Jan 2025 13:16:10 -0000
-Message-ID: <173703337093.268104.3425418929540788030@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250116124532.1480351-1-francois.dugast@intel.com>
-In-Reply-To: <20250116124532.1480351-1-francois.dugast@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250116125447.4025927-2-sai.teja.pottumuttu@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +64,13 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Jan 16, 2025 at 06:24:46PM +0530, Sai Teja Pottumuttu wrote:
+> dma_mask_size is more related to the platform than the GT IP.
 
-Series: drm/xe: Add missing SPDX license identifiers
-URL   : https://patchwork.freedesktop.org/series/143605/
-State : success
+Nit: Unless there's uncertainty intended here, I'd drop 'more' and
+make it definitive.
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 50d15a728295807727a2642284d639fc71ecaa15
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+Raag
