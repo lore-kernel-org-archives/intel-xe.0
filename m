@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6510C02183
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 14:21:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF671C02183
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 14:26:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5CF210E97D;
-	Thu, 16 Jan 2025 14:21:57 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4AA210E97D;
- Thu, 16 Jan 2025 14:21:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA82010E985;
+	Thu, 16 Jan 2025 14:26:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h+4eDW5W";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 784A910E986;
+ Thu, 16 Jan 2025 14:26:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737037598; x=1768573598;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=1qkZKYmO6vP1SsNvTBs61jAbmVfmY36zLSsS4OTIjsc=;
+ b=h+4eDW5Wtc8AtJ2IxIyv2MbNXikC9pS2mdrEZDOiIp6h1c/ATNR7NRaJ
+ akFPjqK7auUJZeXbivsGPOLPHvHjtnssY/npv8EGJsBMzoPiWUrfonQe6
+ 7bXP7NOhMyUeeoT2YQsqYjs+Np6JR/4gLU0fG1mE7eRt1lhtvEf1buKBg
+ OYm6Tr6NSUQApvB5hg0X8qDTcYRYErnPIkM3PyRm0+OUSHweWemJklmTi
+ r9IBdtFzkQdHAmonVOERtYgvmqLHeyxIfoMWWB6QGQJp1G6J41RsVaqp1
+ mnYD/E5k53WHNPDGwKhO1UUXAJlAHAe7YR3J054QJoStsvxF5zxpXHzYJ Q==;
+X-CSE-ConnectionGUID: ZvMyJt1hTfuQHf3d0SmF9A==
+X-CSE-MsgGUID: AfQ0P0ayQ9uNmeg+1CMkkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="37541898"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="37541898"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 06:26:38 -0800
+X-CSE-ConnectionGUID: LUJoLFQiR+6hOajXdZVGRg==
+X-CSE-MsgGUID: OlZso482TOyEiAlTqk2SnA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="142776958"
+Received: from puneetse-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.125.109.57])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 06:26:38 -0800
+Date: Thu, 16 Jan 2025 08:26:36 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ jani.nikula@intel.com
+Subject: Re: [PATCH] drm/xe: Add missing SPDX license identifiers
+Message-ID: <u7wm5gyzznr7obtgmnrnafh4lliyqgxvx5umg6o2iqxmxscc5j@wnctmzdwxk7t>
+References: <20250116124532.1480351-1-francois.dugast@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Refactor_some_graphi?=
- =?utf-8?q?cs_descriptor_flags?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sai Teja Pottumuttu" <sai.teja.pottumuttu@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Jan 2025 14:21:56 -0000
-Message-ID: <173703731666.304946.7525364389784212694@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250116125447.4025927-1-sai.teja.pottumuttu@intel.com>
-In-Reply-To: <20250116125447.4025927-1-sai.teja.pottumuttu@intel.com>
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250116124532.1480351-1-francois.dugast@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,28 +66,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Jan 16, 2025 at 01:45:32PM +0100, Francois Dugast wrote:
+>Ensure all Xe driver files have a proper SPDX license identifier, add it
+>in files where it was missing.
+>
+>Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+>---
+> drivers/gpu/drm/xe/Kconfig.profile                           | 1 +
+> drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h | 5 +++++
+> 2 files changed, 6 insertions(+)
+>
+>diff --git a/drivers/gpu/drm/xe/Kconfig.profile b/drivers/gpu/drm/xe/Kconfig.profile
+>index ba17a25e8db3..7530df998148 100644
+>--- a/drivers/gpu/drm/xe/Kconfig.profile
+>+++ b/drivers/gpu/drm/xe/Kconfig.profile
+>@@ -1,3 +1,4 @@
+>+# SPDX-License-Identifier: GPL-2.0-only
+> config DRM_XE_JOB_TIMEOUT_MAX
+> 	int "Default max job timeout (ms)"
+> 	default 10000 # milliseconds
+>diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
+>index cb6c7598824b..a1ff59288a3d 100644
+>--- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
+>+++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
+>@@ -1,3 +1,8 @@
+>+/* SPDX-License-Identifier: MIT */
+>+/*
+>+ * Copyright © 2024 Intel Corporation
 
-Series: Refactor some graphics descriptor flags
-URL   : https://patchwork.freedesktop.org/series/143608/
-State : failure
+		^2025
 
-== Summary ==
+otherwise,  Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 50d15a728295 drm-tip: 2025y-01m-16d-11h-45m-35s UTC integration manifest
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_pci.c:238
-error: drivers/gpu/drm/xe/xe_pci.c: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/xe: Refactor dma_mask_size
-Patch failed at 0001 drm/xe: Refactor dma_mask_size
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Lucas De Marchi
 
-
+>+ */
+>+
+> #ifndef _I915_GEM_STOLEN_H_
+> #define _I915_GEM_STOLEN_H_
+>
+>-- 
+>2.43.0
+>
