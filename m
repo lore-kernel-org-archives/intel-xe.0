@@ -4,55 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D30AC02187
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 13:07:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73C5BC02180
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 13:12:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67F5110E954;
-	Thu, 16 Jan 2025 13:07:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41A1D10E95A;
+	Thu, 16 Jan 2025 13:12:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eHHNqU9F";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="J848hTDV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0886510E954
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 13:07:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737032820; x=1768568820;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=pDglbSy8NAS9z4d5eoOaLQR29F85BMmq5kgvs9OcHiI=;
- b=eHHNqU9Fk9VE8nyVMkR/s06uE1XXCtzvTZHcIs54iBvX1V9KUhDkvb1W
- dSvgoV+PYCyt+dBfZ/9lDeoRp5vHczG8NVYYr97x2AFB3Pm+7gDqaVMVN
- Fr6ObXDmoGzKLKxcDrKPkBaXREx8FMuEzKAuYV5/ePMsTacBBgq54n6tR
- l3r+GJ/ulcVbGYBxZO0MKs4qv/jNaznjmm70n2P0BqCILhf+fxxFfn0or
- 1j9Z9gPw/cemZw87Jno6xUhtRNlLbGTJmHw9timjKlcbG/igYjHhsop9n
- Imr6yFKVXPIa7w3gTEBd7PdBtHfctRASa6cZiwcdYUd/to71R+Yejm3fB A==;
-X-CSE-ConnectionGUID: cDiNk4usREyctiX2SBxe8Q==
-X-CSE-MsgGUID: X8woNQYkR62NMp5tkuc/NA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11316"; a="41095130"
-X-IronPort-AV: E=Sophos;i="6.13,209,1732608000"; d="scan'208";a="41095130"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 05:06:59 -0800
-X-CSE-ConnectionGUID: G/RyPbhiSem12SKWa4gk/w==
-X-CSE-MsgGUID: HxpAb4JIQt2blxML+FRAJg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,209,1732608000"; d="scan'208";a="106076756"
-Received: from spottumu-desk.iind.intel.com ([10.145.152.200])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 05:06:58 -0800
-From: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
-	sai.teja.pottumuttu@intel.com
-Subject: [PATCH 2/2] drm/xe: Refactor max_remote_tiles
-Date: Thu, 16 Jan 2025 18:24:47 +0530
-Message-Id: <20250116125447.4025927-3-sai.teja.pottumuttu@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250116125447.4025927-1-sai.teja.pottumuttu@intel.com>
-References: <20250116125447.4025927-1-sai.teja.pottumuttu@intel.com>
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com
+ [IPv6:2a00:1450:4864:20::132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A754F10E95A
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 13:12:15 +0000 (UTC)
+Received: by mail-lf1-x132.google.com with SMTP id
+ 2adb3069b0e04-54026562221so1001507e87.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 05:12:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1737033134; x=1737637934; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=h7ncLon1TjtOkO7Jtfuh3RQuT+tEFbDDlX3FlP1aHWo=;
+ b=J848hTDVP33eDquSXZR4z4/7EwV9C4S0q/EJPEfoqQ1NR56WnH2tbnBQyK5hDKO4Hh
+ JCx3K9FIzIDbc2XwZYP/5damv0LjB0XQNcRlikUDKkzcmWmIti7B56m0My8HEU/xUgqs
+ vQr1YQvjYuSwKFsgcxvA9a15e/XFFcSQ4BSArBrYhkXu9NY6JsfT/tP3YWmv6eYBqlI7
+ IWdjLkWZETpymj5AU7xUtwtJkYMaPoKBEQjZzGxc8uQJ6bFn5S3Vnl8d34O9yEYi/lnr
+ 5NTTueDEjcpbQtn2jDb+W77opPqdR703uGzIB9KA0Qvu7Yi6W0ycWaKGBpk+xIHxeKV2
+ Hdyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1737033134; x=1737637934;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=h7ncLon1TjtOkO7Jtfuh3RQuT+tEFbDDlX3FlP1aHWo=;
+ b=A/PdoBNO4zkyKV0rzGPrfvonF6oBVbUaug4J3qYuMvzFnbtG5Xlej7A7QdEoWUnPC0
+ brhRLiaKGDTMugbYETtv6Ddh2TH7dm/7WMpltsIbUJX4g4RLWATJAsnA/QC41/VdGvp1
+ 979tT/rPDfMsPh8zQzbdzYVH6iwSGrpz70ykV9T+7EEhpIAZ/QA1g/wa+Nwuv9FJp38v
+ 1g/AC1qRnz7GQPxDvA3PqDctnlevsW3irZtqyEK13S9dSgdnPjTqPYtCNYp/L9WEGNiU
+ XuIA3Vrv3xSwNytBiIhUG0GxtWT/s4ozbJyNTrNa9E0XnOMd0YrT4sgqUD9zDQ0EbnV9
+ iG/A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWkA82waG/JVJFf/TUosmyoDdnAzXME+SDrG9yGqLjfMdrpyeLW7G66RuteqbTpMiAfUQ6zZ6ISEg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwSteDY7jTwlKwB/IQYunizSU+4dsrjXw7Ymt4rTNWd5p8tE3da
+ FOkPEINs9XEkoskCS0mgM9F+B442QDlx95bchnDHQr6vPPkg10v/hbBvi9j7M7yCXHA7AlZ5m5e
+ Xda8=
+X-Gm-Gg: ASbGncskakP/GuYpv6lers0laeOfEQdT7Dpfd43MLx1R9OKn7z3hji2YB8saPvDwpXG
+ cdbZQeI+mvQcOFz1lduDA/qJ0dkIdpwxrusn4Ix790BbwOBNI1pZjQVQ9sB+IRrPVPv2iYgtScy
+ MLIAeaCWZwYrRyQQF57ogny54sbU8eCFV3QWTzXxqK7rYgAPI6JQ0IaJcjRWKqNl+9YPKY3kJy4
+ WA6C5oi36mGd5IrqTu9El5NmIbyS8NCPZZbz2BdsgAkqaAe44OzZlhiDTTT1x0nwf2aocs+/j73
+ Kfh/iNI4V9728sMeIg8HiBTx2o22md/TJhXL
+X-Google-Smtp-Source: AGHT+IEpXMThqRec54vTBqA0y7vQZbmyuXWzxn2oKQjjbQlRhMvvxIERX9Cq1PEOWtqoz3n5WqcZDA==
+X-Received: by 2002:a05:6512:3c98:b0:53e:389d:8ce4 with SMTP id
+ 2adb3069b0e04-54284577f93mr11880082e87.34.1737033133824; 
+ Thu, 16 Jan 2025 05:12:13 -0800 (PST)
+Received: from eriador.lumag.spb.ru
+ (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5428be4994esm2313389e87.40.2025.01.16.05.12.11
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 16 Jan 2025 05:12:12 -0800 (PST)
+Date: Thu, 16 Jan 2025 15:12:10 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Kandpal,
+ Suraj" <suraj.kandpal@intel.com>, 
+ "Shankar, Uma" <uma.shankar@intel.com>, "Bhattacharjee,
+ Susanta" <susanta.bhattacharjee@intel.com>
+Subject: Re: [PATCH v7 02/14] drm: Define ImageEnhancemenT LUT structures
+ exposed to user
+Message-ID: <6fiprampyjzkkyofaavdpe4dgeoomwahtwkh2dsclxegz4u472@irq2yelghle5>
+References: <20250110-dpst-v7-0-605cb0271162@intel.com>
+ <20250110-dpst-v7-2-605cb0271162@intel.com>
+ <i6j3zi5tlnyk2eonmpa5h5qitwgzs2nuzrvsasde3dci6a4ngl@qhbtsjbhq6xr>
+ <IA0PR11MB73075A89DAA5BF7D783125EEBA1A2@IA0PR11MB7307.namprd11.prod.outlook.com>
+ <CAA8EJprDgcyZTgz9QX0X51sC=F6ogXsMkDLfbSypH1kSm5hJzg@mail.gmail.com>
+ <IA0PR11MB73072FF4CF32A40E670CD9CEBA1A2@IA0PR11MB7307.namprd11.prod.outlook.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <IA0PR11MB73072FF4CF32A40E670CD9CEBA1A2@IA0PR11MB7307.namprd11.prod.outlook.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,78 +100,230 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-max_remote_tiles is more related to the platform than the GT IP. Thus
-move it to platform descriptor from graphics descriptor. Note that the
-FIXME is no more required, thus it can be dropped.
+On Thu, Jan 16, 2025 at 12:33:30PM +0000, Murthy, Arun R wrote:
+> > > > On Fri, Jan 10, 2025 at 01:15:30AM +0530, Arun R Murthy wrote:
+> > > > > ImageEnhancemenT(IET) hardware interpolates the LUT value to
+> > > > > generate the enhanced output image. LUT takes an input value,
+> > > > > outputs a new value based on the data within the LUT. 1D LUT can
+> > > > > remap individual input values to new output values based on the
+> > > > > LUT sample. LUT can be interpolated by the hardware by multiple
+> > > > > modes Ex: Direct Lookup LUT, Multiplicative LUT etc The list of
+> > > > > supported mode by hardware along with the format(exponent
+> > > > > mantissa) is exposed to user by the iet_lut_caps property. Maximum
+> > > > > format being 8.24 i.e 8 exponent and 24 mantissa.
+> > > > > For illustration a hardware supporting 1.9 format denotes this as
+> > > > > 0x10001FF. In order to know the exponent do a bitwise AND with
+> > > > > 0xF000000. The LUT value to be provided by user would be a 10bit
+> > > > > value with 1 bit integer and 9 bit fractional value.
+> > > > >
+> > > > > Multiple formats can be supported, hence pointer is used over here.
+> > > > > User can then provide the LUT with any one of the supported modes
+> > > > > in any of the supported formats.
+> > > > > The entries in the LUT can vary depending on the hardware
+> > > > > capability with max being 255. This will also be exposed as
+> > > > > iet_lut_caps so user can generate a LUT with the specified entries.
+> > > > >
+> > > > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> > > > > ---
+> > > > >  include/uapi/drm/drm_mode.h | 50
+> > > > > +++++++++++++++++++++++++++++++++++++++++++++
+> > > > >  1 file changed, 50 insertions(+)
+> > > > >
+> > > > > diff --git a/include/uapi/drm/drm_mode.h
+> > > > > b/include/uapi/drm/drm_mode.h index
+> > > > >
+> > > >
+> > 7a7039381142bb5dba269bdaec42c18be34e2d05..056c2efef1589848034afc00
+> > > > 89f1
+> > > > > 838c2547bcf8 100644
+> > > > > --- a/include/uapi/drm/drm_mode.h
+> > > > > +++ b/include/uapi/drm/drm_mode.h
+> > > > > @@ -1367,6 +1367,17 @@ struct drm_mode_closefb {
+> > > > >   */
+> > > > >  #define DRM_MODE_HISTOGRAM_HSV_MAX_RGB                     (1 <<
+> > > > 0)
+> > > > >
+> > > > > +/* LUT values are points on exponential graph with x axis and
+> > > > > +y-axis
+> > > > > +y=f(x) */
+> > > >
+> > > > Huh?
+> > > >
+> > > This f(x) can be the algorithm defined  by the user space algorithm to
+> > > generate the lookup table. Generation of the LUT value is left to the user
+> > space algorithm.
+> > > When this LUT table is passed to the hardware its just signifies how
+> > > hardware should use this table to get the LUT value. In this mode it's a direct
+> > lookup table.
+> > 
+> > Your documentation should be describing what is expected from the userspace.
+> > What is y, x and f(x)? How is it being used?
+> > 
+> Sure will add the above explanation in the patch documentation.
+> 
+> > >
+> > > > > +#define DRM_MODE_IET_LOOKUP_LUT                            (1 <<
+> > > > 0)
+> > > >
+> > > > Again, what is the reason for a shift? Can these values be OR'd?
+> > > >
+> > > Yes can be OR'd values as well.
+> > > Let me know if this has to be changed?
+> > > Just chose bitwise shift to denote the multiple modes.
+> > 
+> > What does it mean if drm_iet_1dlut_sample.iet_mode contains OR of two
+> > values?
+> > 
+> iet_mode in struct drm_iet_caps can be OR of two such modes,
+> which means that the hardware supports both of the modes.
+> Drm_iet_1dlut_sample.iet_mode tells the hardware which iet 
+> mode is used in generating the LUT value. Because hardware 
+> will have to interpret the LUT value based on the mode.
 
-Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
----
- drivers/gpu/drm/xe/xe_pci.c       | 9 +++------
- drivers/gpu/drm/xe/xe_pci_types.h | 2 --
- 2 files changed, 3 insertions(+), 8 deletions(-)
+Yes. That's why I asked about the drm_iet_1dlut_sample.iet_mode, not the
+caps. It makes no sense to allow ORing several modes there. So the list
+of modes should be a simple enum and caps should use BIT(val).
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index f59c1acae23f..7f17e5ea6edd 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -55,6 +55,7 @@ struct xe_device_desc {
- 	enum xe_platform platform;
- 
- 	u8 dma_mask_size;
-+	u8 max_remote_tiles:2;
- 
- 	u8 require_force_probe:1;
- 	u8 is_dgfx:1;
-@@ -136,7 +137,6 @@ static const struct xe_graphics_desc graphics_xehpc = {
- 		BIT(XE_HW_ENGINE_CCS2) | BIT(XE_HW_ENGINE_CCS3),
- 
- 	XE_HP_FEATURES,
--	.max_remote_tiles = 1,
- 	.va_bits = 57,
- 	.vm_max_level = 4,
- 	.vram_flags = XE_VRAM_FLAGS_NEED64K,
-@@ -329,6 +329,7 @@ static const __maybe_unused struct xe_device_desc pvc_desc = {
- 	.dma_mask_size = 52,
- 	.has_display = false,
- 	.has_heci_gscfi = 1,
-+	.max_remote_tiles = 1,
- 	.require_force_probe = true,
- };
- 
-@@ -635,6 +636,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.probe_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
- 				 xe_modparam.probe_display &&
- 				 desc->has_display;
-+	xe->info.tile_count = 1 + desc->max_remote_tiles;
- 
- 	err = xe_tile_init_early(xe_device_get_root_tile(xe), xe, 0);
- 	if (err)
-@@ -706,12 +708,7 @@ static int xe_info_init(struct xe_device *xe,
- 	 * version 13 or higher has an additional dedicated media GT.  And
- 	 * depending on the graphics IP there may be additional "remote tiles."
- 	 * All of these together determine the overall GT count.
--	 *
--	 * FIXME: 'tile_count' here is misnamed since the rest of the driver
--	 * treats it as the number of GTs rather than just the number of tiles.
- 	 */
--	xe->info.tile_count = 1 + graphics_desc->max_remote_tiles;
--
- 	for_each_remote_tile(tile, xe, id) {
- 		int err;
- 
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index 7437415a54d5..b96423844952 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -19,8 +19,6 @@ struct xe_graphics_desc {
- 
- 	u64 hw_engine_mask;	/* hardware engines provided by graphics IP */
- 
--	u8 max_remote_tiles:2;
--
- 	u8 has_asid:1;
- 	u8 has_atomic_enable_pte_bit:1;
- 	u8 has_flat_ccs:1;
+> 
+> > >
+> > > > > +/*
+> > > > > + * LUT values, points on negative exponential graph with x-axis
+> > > > > +and y-axis
+> > > > > + * Y = y/x so upon multiplying x, y is obtained, hence
+> > > > > +multiplicative. The
+> > > >
+> > > > Can't parse this sentence.
+> > > >
+> > > We need x and y points in the exponential graph.
+> > > For retrieving the value Y on the graph the value passed by the user
+> > > is in the format y/x In order to get the Y points on the graph the value has to
+> > be multiplied by x.
+> > > This is a floating point value when compared with an integer value
+> > > with the direct lookup mode.
+> > 
+> > Again, what are x and y? Bin indices? Pixel counts? Number of CPUs in the
+> > current generation?
+> > 
+> It depends on the mode for direct lookup both x and y are pixels and for
+> multiplicative mode X co-ordinate is proportional to the pixel value and
+> the Y co-ordinate is the multiplier factor, i.e X-axis in pixels and Y-axis 
+> is OutPixel/InPixel
+
+Please expand the description. An engineer, who has no Intel
+documentation, should be able to understand your description.
+
+> > > > > + * format of LUT can at max be 8.24(8integer 24 fractional)
+> > > > > + represented by
+> > > > > + * u32. Depending on the hardware capability and exponent
+> > > > > + mantissa can be
+> > > > > + * chosen.
+> > > >
+> > > > What does that mean? How is it choosen?
+> > > >
+> > > The max value that these kind of 1DLUT can be is 8.24
+> > 
+> > Why?
+> > 
+> 32bit is the container and within this if we choose 16.16 then it doesn’t
+> make sense to boost the pixel by 2^16
+> Hence set aside 8 bit for integer 2^8  thereby boosting the pixel by 255
+> and that’s a huge boost factor.
+> Remaining 24 bits out of the container 32 is fractional value. This is the
+> optimal value for implementing in the hardware as well as per the
+> hardware design.
+
+Generic API means that there is no particular hardware design. However
+the rest of the description makes sense. Please add it to the commit
+message.
+
+> 
+> > > Hardware design can choose anything within this range. This depends on
+> > > the accuracy required by hardware keeping in mind the hardware cost
+> > > for implementation.
+> > > Just a precision for 32bit value.
+> > >
+> > > > > + */
+> > > > > +#define DRM_MODE_IET_MULTIPLICATIVE                        (1 << 1)
+> > > > > +
+> > > > >  /**
+> > > > >   * struct drm_histogram_caps
+> > > > >   *
+> > > > > @@ -1414,6 +1425,45 @@ struct drm_histogram {
+> > > > >     __u32 nr_elements;
+> > > > >  };
+> > > > >
+> > > > > +/**
+> > > > > + * struct drm_iet_caps
+> > > > > + *
+> > > > > + * @iet_mode: pixel factor enhancement modes defined in the above
+> > > > > +macros
+> > > > > + * @iet_sample_format: holds the address of an array of u32 LUT
+> > > > > +sample
+> > > > formats
+> > > > > + *                depending on the hardware capability. Max being 8.24
+> > > > > + *                Doing a bitwise AND will get the present sample.
+> > > > > + *                Ex: for 1 integer 9 fraction AND with 0x10001FF
+> > > >
+> > > > ?? Can hardware support 16.16? 32.0?
+> > > >
+> > > No, for a 1D LUT maximum floating number can be 8.24
+> > 
+> > Why? Is it a limitation of the Intel hardware or just a random API choice?
+> > 
+> As explained above this an optimal value yielding to a huge boost factor of
+> 255.99. This is as per the hardware design.
+> 
+> > > Hence hardware will have to adhere to anything within this range.
+> > >
+> > > > > + * @nr_iet_sample_formats: number of iet_sample_formsts supported
+> > > > > + by
+> > > > the
+> > > > > + *                    hardware
+> > > > > + * @nr_iet_lut_entries: number of LUT entries  */ struct
+> > > > > +drm_iet_caps {
+> > > > > +   __u8 iet_mode;
+> > > > > +   u64 iet_sample_format;
+> > > > > +   __u32 nr_iet_sample_formats;
+> > > > > +   __u32 nr_iet_lut_entries;
+> > > > > +};
+> > > > > +
+> > > > > +/**
+> > > > > + * struct drm_iet_1dlut_sample
+> > > >
+> > > > Is it supposed to be used with DRM_MODE_IET_MULTIPLICATIVE only? Or
+> > > > is it supposed to be used with DRM_MODE_IET_LOOKUP_LUT? In the
+> > > > latter case what should be the iet_format value?
+> > > >
+> > > The struct iet_1dlut_sample will be used for all the IET modes i.e
+> > > direct lookup and multiplicative.
+> > > The element iet_sample_format will not be applicable for direct
+> > > lookup. This will be used for multiplicative and the value what it can
+> > > hold for multiplicative is mentioned in the above description.
+> > > I missed adding this info in the description, will add it in the next version.
+> > 
+> > And some other formats will also require additional data. This multi-format
+> > structure sounds bad from my POV.
+> > 
+> Will try generalize this structure across the modes.
+> Its only for direct lookup mode we will not need any iet_sample_format.
+> For other modes such as multiplicative, additive etc we will need to mention
+> the iet_sample_format.
+
+There might be other modes which require more data.
+
+> Top view of this LUT is just a lookup table which says for a particular pixel
+> value in the LUT table, what is the output value and this output value
+> is the pixel value that is replaced in the incoming image.
+> Now generation of this LUT can be done different methods referred to as
+> modes over here.
+> So one variable to mention the type of mode and other to specify the
+> internal details of the selected mode.
+> Will reframe accordingly.
+> 
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
