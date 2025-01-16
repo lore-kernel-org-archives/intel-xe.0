@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66A10C02187
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 00:11:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69F03C02183
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 00:11:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 243EB10E873;
-	Thu, 16 Jan 2025 00:11:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10E5110E84D;
+	Thu, 16 Jan 2025 00:11:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZyrEZX/A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HIJN8oTk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F34010E855
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 00:11:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F60910E877
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Jan 2025 00:11:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736986297; x=1768522297;
+ t=1736986303; x=1768522303;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bRR6S4zjEopvPHRe4wabaWhh1GpncqqmkoiUz2vX3BA=;
- b=ZyrEZX/Arv24qKOJWO74InHA8MdCeHK2VF2U2unw0zx3QJvTLrlgeNk1
- WlrcMSQDW6uR54XGtmSteC3aDcGubXNDB1lPk7Ms0ZqbYpdF6M1k2Y23F
- xhxgZGG/GRAiX1fNEuIjv3CYEluFk0oPoZjSBmOmNxLhvwSP5ZabifmDM
- o1HsIphVKA26a4krTaD7ViJ/r8sQQrm2SBZlpx+Vb72cIMqPPNurqjmhJ
- qQRNP8lEePEwQ0WdVHp5LjaTMwjqVgYfXAq0jZNZglGGc5sQzwiFsMVvF
- c+HCLK++irNIujBct3h9Ihc0Pvq+ke9bXuDCEBVTBHkqYQEb+ntgFT+Xn A==;
-X-CSE-ConnectionGUID: A7OGk0i6RCaV8Arzp7mFMA==
-X-CSE-MsgGUID: xkDchho7RviVdIyxN+bOxA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11316"; a="47832087"
-X-IronPort-AV: E=Sophos;i="6.13,207,1732608000"; d="scan'208";a="47832087"
+ bh=OWZ33JCY4CBpq3/eMVUiIRjqbamucTedBWUX7PWYwXk=;
+ b=HIJN8oTkACw+Dl+/9wFT8Q19qRSvM/cN0rLtwakFEJRvAaCPJBzz8y/5
+ M/hso+E0vFy7onUa+TyX9Hrz1/eqC9R9fiFiNwHwCqDFqpVzK19YRTSB/
+ BpmMrvwU5VSPXxuAbdYPaDZr2tAC61yXPqtg5k+ajIQUdQm+BJCxPf1dY
+ a1TLOFFXB+P7sFdicrhBoW/zxXQvf0oxMjvVrpnq5v7jpdVSzNs1E1cfo
+ zl4Z12j/5qvnOa2hIhYDiy0Z+DOmK4Dib+qWLt1ztI+tA5D0gkttZEpzP
+ XmaE7thcXgfOEqb+MM07NWa1ZdG9cCM4hE5d38zdLOX5dnAvzXvLS0qHc g==;
+X-CSE-ConnectionGUID: COkPX9hUQw2VqEEfUAYxUQ==
+X-CSE-MsgGUID: 7u3zK/itRcW1/i4CyrlUtw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11316"; a="47832112"
+X-IronPort-AV: E=Sophos;i="6.13,207,1732608000"; d="scan'208";a="47832112"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2025 16:11:37 -0800
-X-CSE-ConnectionGUID: JTwN43p7RMuerU6P4M3+Lw==
-X-CSE-MsgGUID: XqDQql9tSpGbk8S2MdO5Hg==
+ 15 Jan 2025 16:11:43 -0800
+X-CSE-ConnectionGUID: GXrkcSDtS66CFXIqE/NHVw==
+X-CSE-MsgGUID: WPq+erHiSoaTSKEiVuO6Dg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,207,1732608000"; d="scan'208";a="105072990"
+X-IronPort-AV: E=Sophos;i="6.13,207,1732608000"; d="scan'208";a="105073052"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2025 16:11:37 -0800
+ 15 Jan 2025 16:11:42 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
  John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH v5 09/13] drm/xe/pxp/uapi: Add a query for PXP status
-Date: Wed, 15 Jan 2025 16:11:05 -0800
-Message-ID: <20250116001110.4158032-10-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v5 12/13] drm/xe/pxp: Add PXP debugfs support
+Date: Wed, 15 Jan 2025 16:11:08 -0800
+Message-ID: <20250116001110.4158032-13-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250116001110.4158032-1-daniele.ceraolospurio@intel.com>
 References: <20250116001110.4158032-1-daniele.ceraolospurio@intel.com>
@@ -69,195 +68,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PXP prerequisites (SW proxy and HuC auth via GSC) are completed
-asynchronously from driver load, which means that userspace can start
-submitting before we're ready to start a PXP session. Therefore, we need
-a query that userspace can use to check not only if PXP is supported but
-also to wait until the prerequisites are done.
+This patch introduces 2 PXP debugfs entries:
 
-v2: Improve doc, do not report TYPE_NONE as supported (José)
-v3: Better comments, remove unneeded copy_from_user (John)
+- info: prints the current PXP status and key instance
+- terminate: simulate a termination interrupt
+
+The first one is useful for debug, while the second one can be used for
+testing the termination flow.
+
+v2: move the info prints inside the lock (John)
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
 Cc: John Harrison <John.C.Harrison@Intel.com>
 Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/xe_pxp.c   | 32 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pxp.h   |  1 +
- drivers/gpu/drm/xe/xe_query.c | 29 +++++++++++++++++++++++++++++
- include/uapi/drm/xe_drm.h     | 35 +++++++++++++++++++++++++++++++++++
- 4 files changed, 97 insertions(+)
+ drivers/gpu/drm/xe/Makefile         |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c     |   3 +
+ drivers/gpu/drm/xe/xe_pxp_debugfs.c | 120 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pxp_debugfs.h |  13 +++
+ 4 files changed, 137 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_pxp_debugfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_pxp_debugfs.h
 
-diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
-index 9875878ef7d2..827e8fbe00fa 100644
---- a/drivers/gpu/drm/xe/xe_pxp.c
-+++ b/drivers/gpu/drm/xe/xe_pxp.c
-@@ -80,6 +80,38 @@ static bool pxp_prerequisites_done(const struct xe_pxp *pxp)
- 	return ready;
- }
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 970ff5d49ded..9dbab14c7cea 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -87,6 +87,7 @@ xe-y += xe_bb.o \
+ 	xe_pt.o \
+ 	xe_pt_walk.o \
+ 	xe_pxp.o \
++	xe_pxp_debugfs.o \
+ 	xe_pxp_submit.o \
+ 	xe_query.o \
+ 	xe_range_fence.o \
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 492b4877433f..56cb3788e752 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -18,6 +18,7 @@
+ #include "xe_gt_printk.h"
+ #include "xe_guc_ads.h"
+ #include "xe_pm.h"
++#include "xe_pxp_debugfs.h"
+ #include "xe_sriov.h"
+ #include "xe_step.h"
  
-+/**
-+ * xe_pxp_get_readiness_status - check whether PXP is ready for userspace use
-+ * @pxp: the xe_pxp pointer (can be NULL if PXP is disabled)
-+ *
-+ * Returns: 0 if PXP is not ready yet, 1 if it is ready, a negative errno value
-+ * if PXP is not supported/enabled or if something went wrong in the
-+ * initialization of the prerequisites. Note that the return values of this
-+ * function follow the uapi (see drm_xe_query_pxp_status), so they can be used
-+ * directly in the query ioctl.
+@@ -230,5 +231,7 @@ void xe_debugfs_register(struct xe_device *xe)
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_debugfs_register(gt);
+ 
++	xe_pxp_debugfs_register(xe->pxp);
++
+ 	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_pxp_debugfs.c b/drivers/gpu/drm/xe/xe_pxp_debugfs.c
+new file mode 100644
+index 000000000000..ccfbacf08efc
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_pxp_debugfs.c
+@@ -0,0 +1,120 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2024 Intel Corporation
 + */
-+int xe_pxp_get_readiness_status(struct xe_pxp *pxp)
++
++#include "xe_pxp_debugfs.h"
++
++#include <linux/debugfs.h>
++
++#include <drm/drm_debugfs.h>
++#include <drm/drm_managed.h>
++#include <drm/drm_print.h>
++
++#include "xe_device.h"
++#include "xe_pxp.h"
++#include "xe_pxp_types.h"
++#include "regs/xe_irq_regs.h"
++
++static struct xe_pxp *node_to_pxp(struct drm_info_node *node)
 +{
-+	int ret = 0;
++	return node->info_ent->data;
++}
++
++static const char *pxp_status_to_str(struct xe_pxp *pxp)
++{
++	lockdep_assert_held(&pxp->mutex);
++
++	switch (pxp->status) {
++	case XE_PXP_ERROR:
++		return "error";
++	case XE_PXP_NEEDS_TERMINATION:
++		return "needs termination";
++	case XE_PXP_TERMINATION_IN_PROGRESS:
++		return "termination in progress";
++	case XE_PXP_READY_TO_START:
++		return "ready to start";
++	case XE_PXP_ACTIVE:
++		return "active";
++	case XE_PXP_SUSPENDED:
++		return "suspended";
++	default:
++		return "unknown";
++	}
++};
++
++static int pxp_info(struct seq_file *m, void *data)
++{
++	struct xe_pxp *pxp = node_to_pxp(m->private);
++	struct drm_printer p = drm_seq_file_printer(m);
++	const char *status;
 +
 +	if (!xe_pxp_is_enabled(pxp))
 +		return -ENODEV;
 +
-+	/* if the GSC or HuC FW are in an error state, PXP will never work */
-+	if (xe_uc_fw_status_to_error(pxp->gt->uc.huc.fw.status) ||
-+	    xe_uc_fw_status_to_error(pxp->gt->uc.gsc.fw.status))
-+		return -EIO;
++	mutex_lock(&pxp->mutex);
++	status = pxp_status_to_str(pxp);
 +
-+	xe_pm_runtime_get(pxp->xe);
-+
-+	/* PXP requires both HuC loaded and GSC proxy initialized */
-+	if (pxp_prerequisites_done(pxp))
-+		ret = 1;
-+
-+	xe_pm_runtime_put(pxp->xe);
-+	return ret;
-+}
-+
- static bool pxp_session_is_in_play(struct xe_pxp *pxp, u32 id)
- {
- 	struct xe_gt *gt = pxp->gt;
-diff --git a/drivers/gpu/drm/xe/xe_pxp.h b/drivers/gpu/drm/xe/xe_pxp.h
-index 2e0ab186072a..868813cc84b9 100644
---- a/drivers/gpu/drm/xe/xe_pxp.h
-+++ b/drivers/gpu/drm/xe/xe_pxp.h
-@@ -14,6 +14,7 @@ struct xe_pxp;
- 
- bool xe_pxp_is_supported(const struct xe_device *xe);
- bool xe_pxp_is_enabled(const struct xe_pxp *pxp);
-+int xe_pxp_get_readiness_status(struct xe_pxp *pxp);
- 
- int xe_pxp_init(struct xe_device *xe);
- void xe_pxp_irq_handler(struct xe_device *xe, u16 iir);
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index c059639613f7..042f87a688e7 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -24,6 +24,7 @@
- #include "xe_macros.h"
- #include "xe_mmio.h"
- #include "xe_oa.h"
-+#include "xe_pxp.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_wa.h"
- 
-@@ -698,6 +699,33 @@ static int query_oa_units(struct xe_device *xe,
- 	return ret ? -EFAULT : 0;
- }
- 
-+static int query_pxp_status(struct xe_device *xe, struct drm_xe_device_query *query)
-+{
-+	struct drm_xe_query_pxp_status __user *query_ptr = u64_to_user_ptr(query->data);
-+	size_t size = sizeof(struct drm_xe_query_pxp_status);
-+	struct drm_xe_query_pxp_status resp = { 0 };
-+	int ret;
-+
-+	if (query->size == 0) {
-+		query->size = size;
-+		return 0;
-+	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-+		return -EINVAL;
-+	}
-+
-+	ret = xe_pxp_get_readiness_status(xe->pxp);
-+	if (ret < 0)
-+		return ret;
-+
-+	resp.status = ret;
-+	resp.supported_session_types = BIT(DRM_XE_PXP_TYPE_HWDRM);
-+
-+	if (copy_to_user(query_ptr, &resp, size))
-+		return -EFAULT;
++	drm_printf(&p, "status: %s\n", status);
++	drm_printf(&p, "instance counter: %u\n", pxp->key_instance);
++	mutex_unlock(&pxp->mutex);
 +
 +	return 0;
 +}
 +
- static int (* const xe_query_funcs[])(struct xe_device *xe,
- 				      struct drm_xe_device_query *query) = {
- 	query_engines,
-@@ -709,6 +737,7 @@ static int (* const xe_query_funcs[])(struct xe_device *xe,
- 	query_engine_cycles,
- 	query_uc_fw_version,
- 	query_oa_units,
-+	query_pxp_status,
- };
- 
- int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 5c97a758266d..9d1ed07b3130 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -629,6 +629,39 @@ struct drm_xe_query_uc_fw_version {
- 	__u64 reserved;
- };
- 
-+/**
-+ * struct drm_xe_query_pxp_status - query if PXP is ready
-+ *
-+ * If PXP is enabled and no fatal error has occurred, the status will be set to
-+ * one of the following values:
-+ * 0: PXP init still in progress
-+ * 1: PXP init complete
-+ *
-+ * If PXP is not enabled or something has gone wrong, the query will be failed
-+ * with one of the following error codes:
-+ * -ENODEV: PXP not supported or disabled;
-+ * -EIO: fatal error occurred during init, so PXP will never be enabled;
-+ * -EINVAL: incorrect value provided as part of the query;
-+ * -EFAULT: error copying the memory between kernel and userspace.
-+ *
-+ * The status can only be 0 in the first few seconds after driver load. If
-+ * everything works as expected, the status will transition to init complete in
-+ * less than 1 second, while in case of errors the driver might take longer to
-+ * start returning an error code, but it should still take less than 10 seconds.
-+ *
-+ * The supported session type bitmask is based on the values in
-+ * enum drm_xe_pxp_session_type. TYPE_NONE is always supported and therefore
-+ * is not reported in the bitmask.
-+ *
-+ */
-+struct drm_xe_query_pxp_status {
-+	/** @status: current PXP status */
-+	__u32 status;
++static int pxp_terminate(struct seq_file *m, void *data)
++{
++	struct xe_pxp *pxp = node_to_pxp(m->private);
++	struct drm_printer p = drm_seq_file_printer(m);
 +
-+	/** @supported_session_types: bitmask of supported PXP session types */
-+	__u32 supported_session_types;
++	if (!xe_pxp_is_enabled(pxp))
++		return -ENODEV;
++
++	/* simulate a termination interrupt */
++	spin_lock_irq(&pxp->xe->irq.lock);
++	xe_pxp_irq_handler(pxp->xe, KCR_PXP_STATE_TERMINATED_INTERRUPT);
++	spin_unlock_irq(&pxp->xe->irq.lock);
++
++	drm_printf(&p, "PXP termination queued\n");
++
++	return 0;
++}
++
++static const struct drm_info_list debugfs_list[] = {
++	{"info", pxp_info, 0},
++	{"terminate", pxp_terminate, 0},
 +};
 +
- /**
-  * struct drm_xe_device_query - Input of &DRM_IOCTL_XE_DEVICE_QUERY - main
-  * structure to query device information
-@@ -648,6 +681,7 @@ struct drm_xe_query_uc_fw_version {
-  *    attributes.
-  *  - %DRM_XE_DEVICE_QUERY_GT_TOPOLOGY
-  *  - %DRM_XE_DEVICE_QUERY_ENGINE_CYCLES
-+ *  - %DRM_XE_DEVICE_QUERY_PXP_STATUS
-  *
-  * If size is set to 0, the driver fills it with the required size for
-  * the requested type of data to query. If size is equal to the required
-@@ -700,6 +734,7 @@ struct drm_xe_device_query {
- #define DRM_XE_DEVICE_QUERY_ENGINE_CYCLES	6
- #define DRM_XE_DEVICE_QUERY_UC_FW_VERSION	7
- #define DRM_XE_DEVICE_QUERY_OA_UNITS		8
-+#define DRM_XE_DEVICE_QUERY_PXP_STATUS		9
- 	/** @query: The type of data to query */
- 	__u32 query;
- 
++void xe_pxp_debugfs_register(struct xe_pxp *pxp)
++{
++	struct drm_minor *minor;
++	struct drm_info_list *local;
++	struct dentry *root;
++	int i;
++
++	if (!xe_pxp_is_enabled(pxp))
++		return;
++
++	minor = pxp->xe->drm.primary;
++	if (!minor->debugfs_root)
++		return;
++
++#define DEBUGFS_SIZE	(ARRAY_SIZE(debugfs_list) * sizeof(struct drm_info_list))
++	local = drmm_kmalloc(&pxp->xe->drm, DEBUGFS_SIZE, GFP_KERNEL);
++	if (!local)
++		return;
++
++	memcpy(local, debugfs_list, DEBUGFS_SIZE);
++#undef DEBUGFS_SIZE
++
++	for (i = 0; i < ARRAY_SIZE(debugfs_list); ++i)
++		local[i].data = pxp;
++
++	root = debugfs_create_dir("pxp", minor->debugfs_root);
++	if (IS_ERR(root))
++		return;
++
++	drm_debugfs_create_files(local,
++				 ARRAY_SIZE(debugfs_list),
++				 root, minor);
++}
+diff --git a/drivers/gpu/drm/xe/xe_pxp_debugfs.h b/drivers/gpu/drm/xe/xe_pxp_debugfs.h
+new file mode 100644
+index 000000000000..988466aad50b
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_pxp_debugfs.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#ifndef __XE_PXP_DEBUGFS_H__
++#define __XE_PXP_DEBUGFS_H__
++
++struct xe_pxp;
++
++void xe_pxp_debugfs_register(struct xe_pxp *pxp);
++
++#endif /* __XE_PXP_DEBUGFS_H__ */
 -- 
 2.43.0
 
