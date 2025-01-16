@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F374C02183
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 20:30:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71383C02183
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 20:31:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FF9410E2DC;
-	Thu, 16 Jan 2025 20:30:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E36410E231;
+	Thu, 16 Jan 2025 20:31:25 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34C4010E231;
- Thu, 16 Jan 2025 20:30:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAC6A10E231;
+ Thu, 16 Jan 2025 20:31:23 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5B1/2=5D_drm/modeset=3A_Handle_tiled_displays_in_pan=5Fdisplay?=
- =?utf-8?q?=5Fatomic=2E?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5B1?=
+ =?utf-8?q?/2=5D_drm/modeset=3A_Handle_tiled_displays_in_pan=5Fdisplay=5Fato?=
+ =?utf-8?q?mic=2E?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Jan 2025 20:30:57 -0000
-Message-ID: <173705945721.388727.13266795973685087103@b555e5b46a47>
+Date: Thu, 16 Jan 2025 20:31:23 -0000
+Message-ID: <173705948382.304946.14611149618771072960@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250116142825.3933-1-dev@lankhorst.se>
 In-Reply-To: <20250116142825.3933-1-dev@lankhorst.se>
@@ -49,10 +49,45 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 94cf137e7476 drm-tip: 2025y-01m-16d-19h-29m-05s UTC integration manifest
-=== git am output follows ===
-Applying: drm/modeset: Handle tiled displays in pan_display_atomic.
-Applying: drm/client: Handle tiled displays better
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c19ea2b89ecf7e0337eddd95f6ae056f05eefc9e
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Thu Jan 16 15:28:25 2025 +0100
+
+    drm/client: Handle tiled displays better
+    
+    When testing on my tiled display, initially the tiled display is
+    detected correctly:
+    [90376.523692] xe 0000:67:00.0: [drm:drm_client_firmware_config.isra.0 [drm]] fallback: Not all outputs enabled
+    [90376.523713] xe 0000:67:00.0: [drm:drm_client_firmware_config.isra.0 [drm]] Enabled: 0, detected: 2
+    ...
+    [90376.523967] xe 0000:67:00.0: [drm:drm_client_modeset_probe [drm]] [CRTC:82:pipe A] desired mode 1920x2160 set (1920,0)
+    [90376.524020] xe 0000:67:00.0: [drm:drm_client_modeset_probe [drm]] [CRTC:134:pipe B] desired mode 1920x2160 set (0,0)
+    
+    But then, when modes have been set:
+    [90379.729525] xe 0000:67:00.0: [drm:drm_client_firmware_config.isra.0 [drm]] [CONNECTOR:287:DP-4] on [CRTC:82:pipe A]: 1920x2160
+    [90379.729640] xe 0000:67:00.0: [drm:drm_client_firmware_config.isra.0 [drm]] [CONNECTOR:289:DP-5] on [CRTC:134:pipe B]: 1920x2160
+    ...
+    [90379.730036] xe 0000:67:00.0: [drm:drm_client_modeset_probe [drm]] [CRTC:82:pipe A] desired mode 1920x2160 set (0,0)
+    [90379.730124] xe 0000:67:00.0: [drm:drm_client_modeset_probe [drm]] [CRTC:134:pipe B] desired mode 1920x2160 set (0,0)
+    
+    Call drm_client_get_tile_offsets() in drm_client_firmware_config() as
+    well, to ensure that the offset is set correctly.
+    
+    This has to be done as a separate pass, as the tile order may not be
+    equal to the drm connector order.
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 94cf137e747640246cf996a17ca3cebdbd7cbdde drm-intel
+06794727a8a3 drm/modeset: Handle tiled displays in pan_display_atomic.
+c19ea2b89ecf drm/client: Handle tiled displays better
 
 
