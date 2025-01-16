@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02EA3C02180
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 09:19:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E561C02183
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Jan 2025 09:19:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE9BC10E90A;
-	Thu, 16 Jan 2025 09:19:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A1DD10E90A;
+	Thu, 16 Jan 2025 09:19:22 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAF5E10E90A;
- Thu, 16 Jan 2025 09:19:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C897D10E90C;
+ Thu, 16 Jan 2025 09:19:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Add_and_re?=
- =?utf-8?q?factor_workarounds?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Add_and_refacto?=
+ =?utf-8?q?r_workarounds?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Aradhya Bhatia" <aradhya.bhatia@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Jan 2025 09:19:09 -0000
-Message-ID: <173701914995.215065.8621031987524288720@b555e5b46a47>
+Date: Thu, 16 Jan 2025 09:19:20 -0000
+Message-ID: <173701916081.215065.4882632113330216338@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250116091004.3060996-1-aradhya.bhatia@intel.com>
 In-Reply-To: <20250116091004.3060996-1-aradhya.bhatia@intel.com>
@@ -48,10 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 4cea1f900289 drm-tip: 2025y-01m-16d-00h-44m-25s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe: Add Wa_16021333562 and Wa_14016712196
-Applying: drm/xe/oa: Refactor Wa_18013179988 and Wa_14015568240
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1ff3a750e72a59f7e32427d067f002b76f13d1ec
+Author: Aradhya Bhatia <aradhya.bhatia@intel.com>
+Date:   Thu Jan 16 14:40:04 2025 +0530
+
+    drm/xe/oa: Refactor Wa_18013179988 and Wa_14015568240
+    
+    Refactor Wa_18013179988 and Wa_14015568240, to use the cleaner and
+    newer workaround-check implementation, and drop the use of the platform
+    based switch selection.
+    
+    While at it, fix the lineage number for the MTL.
+    
+    Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
++ /mt/dim checkpatch 4cea1f90028925afcf1a0f8a0ef301f90349688c drm-intel
+abf1c87937e9 drm/xe/xe: Add Wa_16021333562 and Wa_14016712196
+1ff3a750e72a drm/xe/oa: Refactor Wa_18013179988 and Wa_14015568240
 
 
