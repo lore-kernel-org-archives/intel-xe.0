@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 165A2C02183
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 08:38:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A63DFC02183
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 08:43:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D348810E2E6;
-	Fri, 17 Jan 2025 08:38:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CCAC10E2E6;
+	Fri, 17 Jan 2025 08:43:00 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38AE210E2E6;
- Fri, 17 Jan 2025 08:38:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6824540001215341566=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57ED410E2E6;
+ Fri, 17 Jan 2025 08:42:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Extended_Wake_Timeout_=28re?=
- =?utf-8?q?v2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Check_Scaler_and_DSC?=
+ =?utf-8?q?_Prefill_Latency_Against_Vblank_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Jan 2025 08:38:01 -0000
-Message-ID: <173710308122.610111.14162673929186094296@b555e5b46a47>
+Date: Fri, 17 Jan 2025 08:42:59 -0000
+Message-ID: <173710337935.649603.15692798964861941035@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250117054850.1189650-1-suraj.kandpal@intel.com>
-In-Reply-To: <20250117054850.1189650-1-suraj.kandpal@intel.com>
+References: <20250117074422.3965519-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20250117074422.3965519-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,23 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6824540001215341566==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Extended Wake Timeout (rev2)
-URL   : https://patchwork.freedesktop.org/series/142516/
+Series: Check Scaler and DSC Prefill Latency Against Vblank (rev5)
+URL   : https://patchwork.freedesktop.org/series/143159/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2503-d8c883b9b7702b39eb913a72fd7158ad9a6ea11f_BAT -> xe-pw-142516v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 7)
-------------------------------
-
-  Missing    (2): bat-lnl-2 bat-adlp-vm 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: a15d2a84505e drm-tip: 2025y-01m-17d-07h-55m-26s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/scaler: Add and compute scaling factors
+Applying: drm/i915/scaler: Use crtc_state to setup plane or pipe scaler
+Applying: drm/i915/scaler: Refactor max_scale computation
+Applying: drm/i915/scaler: Compute scaling factors for pipe scaler
+Applying: drm/i915/scaler: Limit pipe scaler downscaling factors for YUV420
+Applying: drm/i915/scaler: Check if vblank is sufficient for scaler
+Applying: drm/i915/dsc: Check if vblank is sufficient for dsc prefill
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2503-d8c883b9b7702b39eb913a72fd7158ad9a6ea11f -> xe-pw-142516v2
-
-  IGT_8195: 8195
-  xe-2503-d8c883b9b7702b39eb913a72fd7158ad9a6ea11f: d8c883b9b7702b39eb913a72fd7158ad9a6ea11f
-  xe-pw-142516v2: 142516v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v2/index.html
-
---===============6824540001215341566==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Extended Wake Timeout (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142516/">https://patchwork.freedesktop.org/series/142516/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2503-d8c883b9b7702b39eb913a72fd7158ad9a6ea11f_BAT -&gt; xe-pw-142516v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 7)</h2>
-<p>Missing    (2): bat-lnl-2 bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2503-d8c883b9b7702b39eb913a72fd7158ad9a6ea11f -&gt; xe-pw-142516v2</li>
-</ul>
-<p>IGT_8195: 8195<br />
-  xe-2503-d8c883b9b7702b39eb913a72fd7158ad9a6ea11f: d8c883b9b7702b39eb913a72fd7158ad9a6ea11f<br />
-  xe-pw-142516v2: 142516v2</p>
-
-</body>
-</html>
-
---===============6824540001215341566==--
