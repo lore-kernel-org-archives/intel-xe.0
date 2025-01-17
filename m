@@ -4,59 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21F31C02183
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 19:23:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC26AC02183
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 19:31:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2D3510EB6F;
-	Fri, 17 Jan 2025 19:23:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62A2310EB7C;
+	Fri, 17 Jan 2025 19:31:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qs3RpHFV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K+Gv45FG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9CC210EB6F;
- Fri, 17 Jan 2025 19:23:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEA3810EB74
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Jan 2025 19:31:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737141784; x=1768677784;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Zq8uWJLTHWc76ny0pfw626Q9Q+LEadxNgHIbDbz4DWI=;
- b=Qs3RpHFVoMI7Nxw9nqJ+WGUzM8GXPzTMawHX+38iB6MQ5ckztTvwLjtL
- UTfoK0eOU2cOSkzen0D39/nt22CXZ5iyM+qAHfIh5ihYbiCXXSwZtRnCS
- 63GzYZsF5aZ9pc/cb9Ww2iyjVO/j9DMNMkuDqFEtz0tkRW5c8cGlXV1cp
- pPcSMgRwb9sA8hrG33KZmR6Y4GSdhvkjdFNLlSkU1mESCz+Mzt5PSEk8I
- J6OlQtOG7pmsfSPxtokpOYtkEUK1ZC6eGRZnAyB6XX5EQlbmmYohMeekE
- J9UkJGO+FT46C+OAbQota/9tX9kHwQr6LGja5GoCeUjrfVKYR0a7/ptiP A==;
-X-CSE-ConnectionGUID: 3EU3m2aPRH+Oam3TsaFe5Q==
-X-CSE-MsgGUID: TgYiAf43QlWWnf6hAGL4gw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="60057351"
-X-IronPort-AV: E=Sophos;i="6.13,213,1732608000"; d="scan'208";a="60057351"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2025 11:23:04 -0800
-X-CSE-ConnectionGUID: 5U/MS53uQQWOz6W4qa8UCg==
-X-CSE-MsgGUID: AQVLhIBmTzyoCE4Ms5DSOA==
+ t=1737142287; x=1768678287;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=WwTlX3QUogxmLla8xWuJVNTbWUru3JcUqR5747hSmcg=;
+ b=K+Gv45FGkVnVJlXP2qyHkZUSeQQNhyHOzPHMMjOWBmSPF+2o5DAlADnb
+ SZlWOmkKtFdt5LCq8xOlQxyPfzT8kSGUS9ab8KPw3XUIlpkWn1RtzdjA9
+ f6+0gLFUp3nRfARn2cY9Q0xRJTl7fK8iapZB4c0NMk/ttPljl5vR2Q8o7
+ KkYjNtDOPhTiKn3bu7itIO7hX2m7TmogBVG7y1S/sahVbDUSu3vr1s8c5
+ TWgIVNRm2ruELdnzYTUBMTAuK9cFSTy1amad3lwttgmmE+7BvI3eRQXHk
+ w20nXyg1VM16SjpgFpEpVW1ko9pA84UwfmVUm5rgXFJ/3puwzJx3/u38g Q==;
+X-CSE-ConnectionGUID: L7yBccm9SECB7MRKK63uYg==
+X-CSE-MsgGUID: 0r9jht7ET8ilOBu9XXoxpg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="48583687"
+X-IronPort-AV: E=Sophos;i="6.13,213,1732608000"; d="scan'208";a="48583687"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2025 11:31:27 -0800
+X-CSE-ConnectionGUID: /QjEgHCERTW44ZDmo45ZGQ==
+X-CSE-MsgGUID: BmWKZ/hvRxmPANAoAJ5UAA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,213,1732608000"; d="scan'208";a="106067106"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 17 Jan 2025 11:23:01 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Jan 2025 21:22:59 +0200
-Date: Fri, 17 Jan 2025 21:22:59 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v3 06/10] drm/i915/psr: Allow writing PSR2_MAN_TRK_CTL
- using DSB
-Message-ID: <Z4quE2WnwYfiEIwT@intel.com>
-References: <20250109073137.1977494-1-jouni.hogander@intel.com>
- <20250109073137.1977494-7-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110526940"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+ by fmviesa005.fm.intel.com with ESMTP; 17 Jan 2025 11:31:25 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tYs3v-000TdF-0z;
+ Fri, 17 Jan 2025 19:31:23 +0000
+Date: Sat, 18 Jan 2025 03:30:29 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ b1231ff7ea0689d04040a44864c265bc11612fa8
+Message-ID: <202501180323.lTnZZEdA-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250109073137.1977494-7-jouni.hogander@intel.com>
-X-Patchwork-Hint: comment
+Content-Type: text/plain; charset=us-ascii
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,105 +66,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jan 09, 2025 at 09:31:33AM +0200, Jouni Högander wrote:
-> Allow writing PSR2_MAN_TRK_CTL using DSB by using intel_de_write_dsb. Do
-> not check intel_dp->psr.lock being held when using DSB. This assertion
-> doesn't make sense as in case of using DSB the actual write happens later
-> and we are not taking intel_dp->psr.lock mutex over dsb commit.
-> 
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c |  2 +-
->  drivers/gpu/drm/i915/display/intel_psr.c     | 16 ++++++++++------
->  drivers/gpu/drm/i915/display/intel_psr.h     |  4 +++-
->  3 files changed, 14 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 4271da219b41..5a5100f147a6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7089,7 +7089,7 @@ static void commit_pipe_pre_planes(struct intel_atomic_state *state,
->  			intel_pipe_fastset(old_crtc_state, new_crtc_state);
->  	}
->  
-> -	intel_psr2_program_trans_man_trk_ctl(new_crtc_state);
-> +	intel_psr2_program_trans_man_trk_ctl(NULL, new_crtc_state);
->  
->  	intel_atomic_update_watermarks(state, crtc);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 85ecedd3162d..1e99329b70a1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -2330,7 +2330,8 @@ static void intel_psr_force_update(struct intel_dp *intel_dp)
->  	intel_de_write(display, CURSURFLIVE(display, intel_dp->psr.pipe), 0);
->  }
->  
-> -void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_state)
-> +void intel_psr2_program_trans_man_trk_ctl(struct intel_dsb *dsb,
-> +					  const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_display *display = to_intel_display(crtc_state);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> @@ -2344,20 +2345,23 @@ void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_st
->  					     crtc_state->uapi.encoder_mask) {
->  		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->  
-> -		lockdep_assert_held(&intel_dp->psr.lock);
-> +		if (!dsb)
-> +			lockdep_assert_held(&intel_dp->psr.lock);
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: b1231ff7ea0689d04040a44864c265bc11612fa8  drm/xe: Mark ComputeCS read mode as UC on iGPU
 
-The question now becomes what exactly that lock is protecting, why
-is that important for the mmio path, and how is it not an issue
-for the DSB path?
+elapsed time: 1446m
 
-> +
->  		if (DISPLAY_VER(display) < 20 && intel_dp->psr.psr2_sel_fetch_cff_enabled)
->  			return;
->  		break;
->  	}
->  
-> -	intel_de_write(display, PSR2_MAN_TRK_CTL(display, cpu_transcoder),
-> -		       crtc_state->psr2_man_track_ctl);
-> +	intel_de_write_dsb(display, dsb,
-> +			   PSR2_MAN_TRK_CTL(display, cpu_transcoder),
-> +			   crtc_state->psr2_man_track_ctl);
->  
->  	if (!crtc_state->enable_psr2_su_region_et)
->  		return;
->  
-> -	intel_de_write(display, PIPE_SRCSZ_ERLY_TPT(crtc->pipe),
-> -		       crtc_state->pipe_srcsz_early_tpt);
-> +	intel_de_write_dsb(display, dsb, PIPE_SRCSZ_ERLY_TPT(crtc->pipe),
-> +			   crtc_state->pipe_srcsz_early_tpt);
->  }
->  
->  static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-> index 956be263c09e..fc807817863e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.h
-> @@ -17,6 +17,7 @@ struct intel_crtc;
->  struct intel_crtc_state;
->  struct intel_display;
->  struct intel_dp;
-> +struct intel_dsb;
->  struct intel_encoder;
->  struct intel_plane;
->  struct intel_plane_state;
-> @@ -55,7 +56,8 @@ void intel_psr_wait_for_idle_locked(const struct intel_crtc_state *new_crtc_stat
->  bool intel_psr_enabled(struct intel_dp *intel_dp);
->  int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  				struct intel_crtc *crtc);
-> -void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_state);
-> +void intel_psr2_program_trans_man_trk_ctl(struct intel_dsb *dsb,
-> +					  const struct intel_crtc_state *crtc_state);
->  void intel_psr_pause(struct intel_dp *intel_dp);
->  void intel_psr_resume(struct intel_dp *intel_dp);
->  bool intel_psr_needs_block_dc_vblank(const struct intel_crtc_state *crtc_state);
-> -- 
-> 2.43.0
+configs tested: 87
+configs skipped: 4
 
--- 
-Ville Syrjälä
-Intel
+The following configs have been built successfully.
+More configs may be tested in the coming days.
+
+tested configs:
+alpha                             allnoconfig    gcc-14.2.0
+alpha                               defconfig    gcc-14.2.0
+arc                               allnoconfig    gcc-13.2.0
+arc                                 defconfig    gcc-13.2.0
+arc                   randconfig-001-20250117    gcc-13.2.0
+arc                   randconfig-002-20250117    gcc-13.2.0
+arm                               allnoconfig    clang-17
+arm                   randconfig-001-20250117    clang-18
+arm                   randconfig-002-20250117    gcc-14.2.0
+arm                   randconfig-003-20250117    gcc-14.2.0
+arm                   randconfig-004-20250117    clang-16
+arm                             rpc_defconfig    clang-17
+arm                       versatile_defconfig    gcc-14.2.0
+arm64                             allnoconfig    gcc-14.2.0
+arm64                 randconfig-001-20250117    gcc-14.2.0
+arm64                 randconfig-002-20250117    clang-18
+arm64                 randconfig-003-20250117    clang-20
+arm64                 randconfig-004-20250117    gcc-14.2.0
+csky                              allnoconfig    gcc-14.2.0
+csky                  randconfig-001-20250117    gcc-14.2.0
+csky                  randconfig-002-20250117    gcc-14.2.0
+hexagon                          alldefconfig    clang-15
+hexagon                           allnoconfig    clang-20
+hexagon               randconfig-001-20250117    clang-20
+hexagon               randconfig-002-20250117    clang-20
+i386        buildonly-randconfig-001-20250117    clang-19
+i386        buildonly-randconfig-002-20250117    clang-19
+i386        buildonly-randconfig-003-20250117    gcc-12
+i386        buildonly-randconfig-004-20250117    gcc-12
+i386        buildonly-randconfig-005-20250117    clang-19
+i386        buildonly-randconfig-006-20250117    gcc-11
+loongarch                         allnoconfig    gcc-14.2.0
+loongarch             randconfig-001-20250117    gcc-14.2.0
+loongarch             randconfig-002-20250117    gcc-14.2.0
+m68k                              allnoconfig    gcc-14.2.0
+m68k                       m5275evb_defconfig    gcc-14.2.0
+m68k                           sun3_defconfig    gcc-14.2.0
+m68k                           virt_defconfig    gcc-14.2.0
+microblaze                        allnoconfig    gcc-14.2.0
+mips                              allnoconfig    gcc-14.2.0
+mips                          ath25_defconfig    clang-16
+nios2                         10m50_defconfig    gcc-14.2.0
+nios2                             allnoconfig    gcc-14.2.0
+nios2                 randconfig-001-20250117    gcc-14.2.0
+nios2                 randconfig-002-20250117    gcc-14.2.0
+openrisc                            defconfig    gcc-14.2.0
+parisc                              defconfig    gcc-14.2.0
+parisc                randconfig-001-20250117    gcc-14.2.0
+parisc                randconfig-002-20250117    gcc-14.2.0
+powerpc                     rainier_defconfig    gcc-14.2.0
+powerpc               randconfig-001-20250117    gcc-14.2.0
+powerpc               randconfig-002-20250117    gcc-14.2.0
+powerpc               randconfig-003-20250117    gcc-14.2.0
+powerpc64             randconfig-001-20250117    clang-16
+powerpc64             randconfig-002-20250117    clang-20
+powerpc64             randconfig-003-20250117    gcc-14.2.0
+riscv                 randconfig-001-20250117    gcc-14.2.0
+riscv                 randconfig-002-20250117    gcc-14.2.0
+s390                             allmodconfig    clang-19
+s390                             allyesconfig    gcc-14.2.0
+s390                                defconfig    clang-15
+s390                  randconfig-001-20250117    gcc-14.2.0
+s390                  randconfig-002-20250117    clang-20
+sh                               allmodconfig    gcc-14.2.0
+sh                                allnoconfig    gcc-14.2.0
+sh                               allyesconfig    gcc-14.2.0
+sh                    randconfig-001-20250117    gcc-14.2.0
+sh                    randconfig-002-20250117    gcc-14.2.0
+sparc                            allmodconfig    gcc-14.2.0
+sparc                             allnoconfig    gcc-14.2.0
+sparc                 randconfig-001-20250117    gcc-14.2.0
+sparc                 randconfig-002-20250117    gcc-14.2.0
+sparc64               randconfig-001-20250117    gcc-14.2.0
+sparc64               randconfig-002-20250117    gcc-14.2.0
+um                    randconfig-001-20250117    clang-20
+um                    randconfig-002-20250117    gcc-12
+x86_64                            allnoconfig    clang-19
+x86_64      buildonly-randconfig-001-20250117    gcc-12
+x86_64      buildonly-randconfig-002-20250117    gcc-12
+x86_64      buildonly-randconfig-003-20250117    gcc-12
+x86_64      buildonly-randconfig-004-20250117    gcc-12
+x86_64      buildonly-randconfig-005-20250117    gcc-12
+x86_64      buildonly-randconfig-006-20250117    clang-19
+x86_64                              defconfig    gcc-11
+xtensa                            allnoconfig    gcc-14.2.0
+xtensa                randconfig-001-20250117    gcc-14.2.0
+xtensa                randconfig-002-20250117    gcc-14.2.0
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
