@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44471C02183
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 17:22:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85C7DC02183
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 17:22:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12D4F10E336;
-	Fri, 17 Jan 2025 17:22:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49FC789ABE;
+	Fri, 17 Jan 2025 17:22:35 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8FD610E336;
- Fri, 17 Jan 2025 17:22:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76C9910E336;
+ Fri, 17 Jan 2025 17:22:34 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_MAINTAINERS=3A_Also_?=
- =?utf-8?q?exclude_xe_for_drm-misc?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_MAINTAINERS=3A_Also_exclu?=
+ =?utf-8?q?de_xe_for_drm-misc?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Jan 2025 17:22:05 -0000
-Message-ID: <173713452588.801064.17494657104630513008@b555e5b46a47>
+Date: Fri, 17 Jan 2025 17:22:34 -0000
+Message-ID: <173713455448.801064.16373703143066862570@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250117164529.393503-1-lucas.demarchi@intel.com>
 In-Reply-To: <20250117164529.393503-1-lucas.demarchi@intel.com>
@@ -48,9 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: db09bf4e722f drm-tip: 2025y-01m-17d-16h-36m-02s UTC integration manifest
-=== git am output follows ===
-Applying: MAINTAINERS: Also exclude xe for drm-misc
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f7cee7316f33478fcc48659ddbbe17e6ad6774a8
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Fri Jan 17 08:45:29 2025 -0800
+
+    MAINTAINERS: Also exclude xe for drm-misc
+    
+    When the xe driver was added, it didn't extend the exclude entries for
+    drm-misc, as done in commit 5a44d50f0072 ("MAINTAINERS: Update drm-misc
+    entry to match all drivers"). Exclude it like is done for i915 and other
+    drivers with dedicated maintainers.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch db09bf4e722f65089b91798e6d490d21b8dd8143 drm-intel
+f7cee7316f33 MAINTAINERS: Also exclude xe for drm-misc
 
 
