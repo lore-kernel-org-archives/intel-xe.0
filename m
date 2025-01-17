@@ -4,171 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46783C02188
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 18:52:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE196C02183
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 19:02:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C879710EB6B;
-	Fri, 17 Jan 2025 18:52:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA2A910EB70;
+	Fri, 17 Jan 2025 19:02:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nKnVx/+5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fZ+OP+Vk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C590610E1A0;
- Fri, 17 Jan 2025 18:52:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0ACA910EB6D
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Jan 2025 19:02:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737139937; x=1768675937;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=q46A7hZ31GvAK6GzEsxYf5j8p9+5PsjeoKQdQxgZLeo=;
- b=nKnVx/+5eJpINTPLOWEU60vpfsJPjewMDxAiDQbJfz3RFG30SxaX4S6q
- ak4Ob3Jj6z6382zv6ATjGrIYf++SswKPAz+BEQ1DjfTyVJiP51T7NFzi8
- R9stzTrFgDBFmF1V6ECkWEDuEyJXMXqnICcNus/+1H2krILWS/d6E+DyW
- jfAXMRiC9nvX/YuBZHsMxv+fAl7JlAu31WV3zAxIS+Naze1IPQ9QuDRsb
- srdzH5xkAtGvihFk7ThL2rBVFSUgZcZpRBh7tL+YrZz3FYL+rNDX8fd2n
- 3TP1XBFPj6p6pBVw7E+eYenzWALolyAGHNmCdP4Rzz2DpfyrI9QO/K2Co A==;
-X-CSE-ConnectionGUID: Zq+ZPuPYSKuME+4rUanV3Q==
-X-CSE-MsgGUID: 3XxFgB/hRGCqatSWvuFRSw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="36793734"
-X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; d="scan'208";a="36793734"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2025 10:52:16 -0800
-X-CSE-ConnectionGUID: kqBFTDhyQtGkYlD14MyrPQ==
-X-CSE-MsgGUID: cTzUcgfiSc2FyZ4Ayd+Lsg==
+ t=1737140577; x=1768676577;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=YsjYKuaGiqAeJjy6upxdQp7iqMMMrp4hFkHRdgCYNHo=;
+ b=fZ+OP+Vk6soZTg6rLi5NE8lejTeM65OlmqJhf7+sJKzCXF73oTFwUukY
+ rWQg2M5lAQ4H/yRm9YNkE+cWxWoi8E2owx9+C0KrkRf8xFwq+Q2A/Dj6q
+ tRgGEm+iScl4hfFGfsPB0xFTjOuq2OjtY8Ek9G1twUnoHbX2iV9o/wJ35
+ lXzLjxPSSdC9tLTbLjDWz4FRqoVDz0JEGHEGn/wxBfEl17/VqfBXxtIXz
+ j+9SeVRcrDSGcow5vbNpuCTkniUMm8iwnLO0QNcpEljHqvbcYssAn7hy/
+ fMh/4W8jUotV2gM0ZakBEJ927EhkY//X6P8tZwae/ds1rb3a0OqMk+B2P A==;
+X-CSE-ConnectionGUID: G3STkIjPQf2QbGJUn4MHNA==
+X-CSE-MsgGUID: wiwYh4tPQ6iBNMLQTnbV5g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="48247698"
+X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; d="scan'208";a="48247698"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2025 11:02:56 -0800
+X-CSE-ConnectionGUID: vRIOX2cWS+y7h6QtcFpl5w==
+X-CSE-MsgGUID: O5hv+GJpTfWDFHb7fE2cZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110987588"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 17 Jan 2025 10:52:16 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Fri, 17 Jan 2025 10:52:15 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Fri, 17 Jan 2025 10:52:15 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.46) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Fri, 17 Jan 2025 10:52:14 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=id9saN2YdchWtG6fRG3ehwKsUrSoePGHHFTYj3ubeaJphfOl6/nhoemC2957GRIuJ1SXsPlxWL0CJ4/ZjlvdcZygKSXEb1tS2K8sgAKIBsiFujQR6DMAqjI/wzyCCvcXNm7nJ7TqlLXlHTAjbX1J33Tv2oVNqnSLZG1SVQDxWMOKSIlzYIcVyJrYsOhNNEtXY94nqL/RLiBPyM555Ob7CgUmO6eQw1ifhJgzptAVixrA9AkHkcwXlKkJ/XS8P+44a9WrXrJsUYm2twaW4GtmvcBO+40jCbCk7qojsiCV0hOf0lUJv5va8+Qq6y2zIzVSi6a9HzCStFkwX/WcKOH+NA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FDe/aL865ytOjl4wSEHcCRzIAwZlufZamlN3gI8k/J0=;
- b=nPWdkJIReVIDVLv0MDq+FUlLmQHR+tkFD1jBqdEdt2qRkYw/6kMy8ayncwWppyMMfal7ihiE+hefcrX16EoE7iLeY2wXu5J3LjSEVAyDkonWvHapRj7bCg/abDiZkI8jsiZzLhHPzPStyjUaIKhEUFvFNLaB5Adry6mhRSXHZ9MrV7lHhvxSe6ct6QCIMDsC4d0rAjc9XtHsKUVQ03OB9JBKf6OUitkqBQm2ZbxPpRbx3vWf0Pg9P76cUWYmUsnJJrufbF2thMhshSJ2uacUzI/4/sFcQLVCqlvmcB1AgkTaW6E2jj1T84AmTaE3A8THG1QV7dfd/95WnkCtanVgSA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA1PR11MB8859.namprd11.prod.outlook.com (2603:10b6:806:469::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.17; Fri, 17 Jan
- 2025 18:52:11 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.8356.014; Fri, 17 Jan 2025
- 18:52:11 +0000
-Date: Fri, 17 Jan 2025 10:53:03 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <apopple@nvidia.com>, <airlied@gmail.com>, <christian.koenig@amd.com>,
- <thomas.hellstrom@linux.intel.com>, <simona.vetter@ffwll.ch>,
- <felix.kuehling@amd.com>, <dakr@kernel.org>
-Subject: Re: [PATCH v3 05/30] drm/gpusvm: Add support for GPU Shared Virtual
- Memory
-Message-ID: <Z4qnD5AmFDdmhwxq@lstrano-desk.jf.intel.com>
-References: <20241217233348.3519726-1-matthew.brost@intel.com>
- <20241217233348.3519726-6-matthew.brost@intel.com>
- <0416fa97-1734-4565-a352-f045a6c0a15a@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0416fa97-1734-4565-a352-f045a6c0a15a@intel.com>
-X-ClientProxiedBy: MW4PR04CA0125.namprd04.prod.outlook.com
- (2603:10b6:303:84::10) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA1PR11MB8859:EE_
-X-MS-Office365-Filtering-Correlation-Id: 46be7f62-596e-43bb-a7a8-08dd37280ce8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?Yk2XetfaRBQYmS+o0hZ+UU2azLQ2MbKVZzBh6OvaCkgLCmoEVZ8PrdObr9?=
- =?iso-8859-1?Q?CiJLCpox/pOjoDgrMb3E3sinrMRhYbgxOfNuxo3NasI28ITWou4cRkZ4yF?=
- =?iso-8859-1?Q?BXzmbGRppri95tgpWqrH7A6Xqvv2ePp323m/pHsFzXh95rwKrndOmXkC0R?=
- =?iso-8859-1?Q?o8Iu6T3OGNHBQ+OIQxXeRv3MT9JBSiz9s2zAW1dX/zmlwixV8UR8wAha95?=
- =?iso-8859-1?Q?RyhaNYjFpujM81VmPZ0XjYcyDn+aHdz2dcQS7WexkP1h8QlLuOiVoqk6Rg?=
- =?iso-8859-1?Q?03OcpS+/Lt9LgtTixZHq4APh7fy5TdaQ09C2tFEM+99qRTUHVTmIHLNdrP?=
- =?iso-8859-1?Q?eWXrKyhrcVRkrnygaNl7uoylotjoOhiamsJbRXfBqtwlX5zf64iCrjy+tB?=
- =?iso-8859-1?Q?t8wH6a7oa0HQ1OJ5NXbgBAPss4LPNcEs3/Kwqin4sMOa2A2fqZc1gDvGGX?=
- =?iso-8859-1?Q?3D4ACwhKFl9Vgr9a+urns8uGJQjVyGnRPXtPS1duvC7GQ5cDPTrU5EIJK9?=
- =?iso-8859-1?Q?Um+izJPHCZm4sCPpezOtBsFyuRm8NEUiRx048AOL6iOHYQzfpLZ9bvTOXj?=
- =?iso-8859-1?Q?CYBNs5G8NOTqSBQb8Jz2w7Pd9SICP1FFhp/ziSwurw+JsmLNMZzxw8je9Y?=
- =?iso-8859-1?Q?mPalM8N9CopWM1aKgePWsFi5iyxFd+lzNVTg+PizgGB1O1SVWmrgBc40Rq?=
- =?iso-8859-1?Q?F4BMSCvrCXfmqvkSVqSDwbrjnoIIGqp+v5iI2W4P563Q29mXk7+VaHEZ5b?=
- =?iso-8859-1?Q?ffPojCiPwI4GFj8Vy5G0P5nn/KxZJiQYHQf1rA1E8UWd/wPxJivZnisVE3?=
- =?iso-8859-1?Q?bWnPmoIcTpdk2e6/D9CjBIiexgNu+m9XFA6suNVqXBzXl8JgHgjFRE3oPs?=
- =?iso-8859-1?Q?2w0Nv9n86TJDUULiUZ6INzxBXfaI9CslovWQMY4UTHzrZxjG9ORrM4oj4n?=
- =?iso-8859-1?Q?7rx/0E20bX9OuE39BBOM7mjEyZXOccW1h+oNLzZcBWat/mQDwLoIO+Sh/X?=
- =?iso-8859-1?Q?lUwnDeJwaiMEgJGEZq0Y6aKmAtlaCMax3cqQaOa+lT9kApweQQANNgFZ5T?=
- =?iso-8859-1?Q?Mxt9/o8hNp9BRMIwDzu0TFt8Hd48PoTBoAkJ08kvdxZwfyFgowYmKjF49K?=
- =?iso-8859-1?Q?+HHn1tFMqMn/zpxFbgnEKujObI3V9FcT6FUcn0AgTxlQu285JytyA3YuwD?=
- =?iso-8859-1?Q?sRkzeaZhywxBvzqC8ZQS+jBCsC00MPK11xezE8uDkjNV+zaJSLHsw0rOSv?=
- =?iso-8859-1?Q?rNY2JXEG/50ap+k81RnwlnIBN4wyD1Q4YGcLv8dECNG0uKUArcRfVYvIsZ?=
- =?iso-8859-1?Q?DmRZys8jYe9Vtkp1bkIxnoepvq6j18xDFK1Y+AICWErt3wmHTJo+Kv6kLX?=
- =?iso-8859-1?Q?5eyORPYyeWD5oEkPgxKDvPK7yWACYUuSdTMqwMgo2FyMeF5N0kRAPowcIh?=
- =?iso-8859-1?Q?JHbk3Zf2j5g9SKs4?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?J+0wWyCvyz91YJWubkZKMLC+tSVr3fQ0pxqflNj2dVstZfUFmcnclwB48q?=
- =?iso-8859-1?Q?rizTaEJ3gteXnn/emw4sbHShEh4T3yMIqNJqVnvq+GQlC0ozRsGUMwlB3g?=
- =?iso-8859-1?Q?hAXZcCrm6x7ucRf9Ng8JDkdSpcRpfmNXfplGDAuStTahIdLwbMzMKjchuY?=
- =?iso-8859-1?Q?zhoH+qb2pvO/7vCJa4oXIZhGvqBUJ3JYkGQOh+ukKdxT6KBJM0mmoJxyaK?=
- =?iso-8859-1?Q?zN50wEBPLUYP2hWOm8dGWEXZ0SH7aG9dSNdu2zWOZ5BuZSe41rpUWJg6kx?=
- =?iso-8859-1?Q?uxg8KcWscUzyS727oesbK2jIPcSjy3uc+RRzn151R7cFbT4/UX1eEXKxyZ?=
- =?iso-8859-1?Q?RfxYJ+nIwrXg39NJLiJitblocbghZ2QFGApUXuIY6/AqJ35d/nGy9kmEx7?=
- =?iso-8859-1?Q?MKL/Z9/vKc9aXlQ7t90QAEJYo53MlEo5exmy72Y3ctcrwlmHQDYEptLlkW?=
- =?iso-8859-1?Q?knhu51J9cVi8lpzvlZvLdmCF3W0Swo2MicKm9tdvWvfpiYU1lA16upO5VK?=
- =?iso-8859-1?Q?dI1XdCSLpcj+YRSe1KP59Uir/Eeeed9T2aNeH+iJXfWuQgU9oJUO5C6OEO?=
- =?iso-8859-1?Q?a463CF0xnW0vfLTL0exxwDEn/NcApd0EQeij1JoVIFXIe9r2r4gSbduOzP?=
- =?iso-8859-1?Q?hWaJtxYQV9dMyw54nhKWRCrpwUHKnu9A0agb9FXs1NlhiVCDYz9xhiTmjX?=
- =?iso-8859-1?Q?Xp0x21kiz8B2eTUYs5hVM+0XD40W1J58YKv0MhurBXmksbpgymXFAo6Qw1?=
- =?iso-8859-1?Q?JiU3Ww+20XgtbEFDh1MeJB5vodUdGqFJytA3JYRRW3mj1Rg6muLjoTCSop?=
- =?iso-8859-1?Q?+CVBDKGE7Gwq9M11Ek+W/MNeh/6hbPfJtR/LtMg4L0SBPGuLwDY2C9i/Yb?=
- =?iso-8859-1?Q?PGyf+EfQnOv+GeXbfaNrxoZU086PQxRPUj8KrVKRBG+uOcB7gwJy7myPbC?=
- =?iso-8859-1?Q?p/YvxjGMfx3LdaRu05Ug1GTquMksFpndFA149PkCrIFBhTyXNemTxpSDHZ?=
- =?iso-8859-1?Q?RGiO4UB2UHDMKd9OmykEZyVdbbFxYTwNlasMf5YyYS9f3wWueBX5kwev+e?=
- =?iso-8859-1?Q?PJkfv0GiG1CcJIx/cgh7jqROOMY/+bUR+NtUFH8jx1clMykd6tc6O+9DCS?=
- =?iso-8859-1?Q?uGHp9IeAV8KRKaGIr3SQugc2zYUuJQCQWZM3rDq06GO2P1/zUEGfeg93u+?=
- =?iso-8859-1?Q?PXXdp3dN3ylCjZIsK0sxBQDoCVfJp+muSiR79JQBqO42XtRCcwEj1xPGnP?=
- =?iso-8859-1?Q?AUg0Xk1tPdZWy1Sw0UWcIpkI5vNQo/k6NiOThWo3SX7hRsPboRU6Y0yyzC?=
- =?iso-8859-1?Q?lJhyDFtKy/X2ZEKHJ0vDl0yBZHQWLs56hC/UwTZUNVonBxrfLIGNbSyVew?=
- =?iso-8859-1?Q?dRSWFqnmVg3J0U0d4Vst8wDGLv0BCUkJWTQ2GsiT22Oq1t7TDa835bkMJ7?=
- =?iso-8859-1?Q?MTJoV432t+y9ux2YsUWG9ycXu7PBw1qQu7F+ZuITfExg40AwO8FN+v83K6?=
- =?iso-8859-1?Q?E0QKMn3bUU/odYKPcfKAtyBfhVrGJjNR2rLaBy+0lkMHGZPo3gOqhxxBiV?=
- =?iso-8859-1?Q?EO9BJAqqhfm83DSlRBN+Jk1WFrQEsdlIzNxobmoQBabbBqRuXz0SYyg9rD?=
- =?iso-8859-1?Q?JhI8O7pwbkzpNNUBY/10bJqNzA8jzr4KOCT3eCq6HmW47cPlhiP6szrQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46be7f62-596e-43bb-a7a8-08dd37280ce8
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2025 18:52:11.3731 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: d2uybiINQdXz9t5VcvWq1hCfEqLWScqWmUotXceBm2oyTCmiGpKlLR42qzFCTE0YUFkDv+QBGXIX1AEbjS1wbQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8859
-X-OriginatorOrg: intel.com
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="143161919"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2025 11:02:57 -0800
+Date: Fri, 17 Jan 2025 11:02:56 -0800
+Message-ID: <85jzate00v.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Harish Chegondi <harish.chegondi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>, <james.ausmus@intel.com>,
+ <felix.j.degrood@intel.com>, 
+ <matias.a.cabral@intel.com>, <joshua.santosh.ranjan@intel.com>,
+ <shubham.kumar@intel.com>, 
+ <matthew.d.roper@intel.com>, <matthew.olson@intel.com>,
+ <lucas.demarchi@intel.com>
+Subject: Re: [PATCH v8 2/7] drm/xe/uapi: Introduce API for EU stall sampling
+In-Reply-To: <e7976be3cc70ce56a2f64edf007bccacbaa2b37b.1736970203.git.harish.chegondi@intel.com>
+References: <cover.1736970203.git.harish.chegondi@intel.com>	<e7976be3cc70ce56a2f64edf007bccacbaa2b37b.1736970203.git.harish.chegondi@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -183,2811 +75,557 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 17, 2025 at 10:26:16AM +0200, Gwan-gyeong Mun wrote:
-> 
-> 
-> On 12/18/24 1:33 AM, Matthew Brost wrote:
-> > This patch introduces support for GPU Shared Virtual Memory (SVM) in the
-> > Direct Rendering Manager (DRM) subsystem. SVM allows for seamless
-> > sharing of memory between the CPU and GPU, enhancing performance and
-> > flexibility in GPU computing tasks.
-> > 
-> > The patch adds the necessary infrastructure for SVM, including data
-> > structures and functions for managing SVM ranges and notifiers. It also
-> > provides mechanisms for allocating, deallocating, and migrating memory
-> > regions between system RAM and GPU VRAM.
-> > 
-> > This is largely inspired by GPUVM.
-> > 
-> > v2:
-> >   - Take order into account in check pages
-> >   - Clear range->pages in get pages error
-> >   - Drop setting dirty or accessed bit in get pages (Vetter)
-> >   - Remove mmap assert for cpu faults
-> >   - Drop mmap write lock abuse (Vetter, Christian)
-> >   - Decouple zdd from range (Vetter, Oak)
-> >   - Add drm_gpusvm_range_evict, make it work with coherent pages
-> >   - Export drm_gpusvm_evict_to_sram, only use in BO evict path (Vetter)
-> >   - mmget/put in drm_gpusvm_evict_to_sram
-> >   - Drop range->vram_alloation variable
-> >   - Don't return in drm_gpusvm_evict_to_sram until all pages detached
-> >   - Don't warn on mixing sram and device pages
-> >   - Update kernel doc
-> >   - Add coherent page support to get pages
-> >   - Use DMA_FROM_DEVICE rather than DMA_BIDIRECTIONAL
-> >   - Add struct drm_gpusvm_vram and ops (Thomas)
-> >   - Update the range's seqno if the range is valid (Thomas)
-> >   - Remove the is_unmapped check before hmm_range_fault (Thomas)
-> >   - Use drm_pagemap (Thomas)
-> >   - Drop kfree_mapping (Thomas)
-> >   - dma mapp pages under notifier lock (Thomas)
-> >   - Remove ctx.prefault
-> >   - Remove ctx.mmap_locked
-> >   - Add ctx.check_pages
-> >   - s/vram/devmem (Thomas)
-> > v3:
-> >   - Fix memory leak drm_gpusvm_range_get_pages
-> >   - Only migrate pages with same zdd on CPU fault
-> >   - Loop over al VMAs in drm_gpusvm_range_evict
-> >   - Make GPUSVM a drm level module
-> >   - GPL or MIT license
-> >   - Update main kernel doc (Thomas)
-> >   - Prefer foo() vs foo for functions in kernel doc (Thomas)
-> >   - Prefer functions over macros (Thomas)
-> >   - Use unsigned long vs u64 for addresses (Thomas)
-> >   - Use standard interval_tree (Thomas)
-> >   - s/drm_gpusvm_migration_put_page/drm_gpusvm_migration_unlock_put_page (Thomas)
-> >   - Drop err_out label in drm_gpusvm_range_find_or_insert (Thomas)
-> >   - Fix kernel doc in drm_gpusvm_range_free_pages (Thomas)
-> >   - Newlines between functions defs in header file (Thomas)
-> >   - Drop shall language in driver vfunc kernel doc (Thomas)
-> >   - Move some static inlines from head to C file (Thomas)
-> >   - Don't allocate pages under page lock in drm_gpusvm_migrate_populate_ram_pfn (Thomas)
-> >   - Change check_pages to a threshold
-> > 
-> > Cc: Simona Vetter <simona.vetter@ffwll.ch>
-> > Cc: Dave Airlie <airlied@redhat.com>
-> > Cc: Christian König <christian.koenig@amd.com>
-> > Cc: <dri-devel@lists.freedesktop.org>
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > ---
-> >   drivers/gpu/drm/Kconfig      |    8 +
-> >   drivers/gpu/drm/Makefile     |    1 +
-> >   drivers/gpu/drm/drm_gpusvm.c | 2220 ++++++++++++++++++++++++++++++++++
-> >   include/drm/drm_gpusvm.h     |  445 +++++++
-> >   4 files changed, 2674 insertions(+)
-> >   create mode 100644 drivers/gpu/drm/drm_gpusvm.c
-> >   create mode 100644 include/drm/drm_gpusvm.h
-> > 
-> > diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> > index 2f51546b0b88..5524cb1ed9dd 100644
-> > --- a/drivers/gpu/drm/Kconfig
-> > +++ b/drivers/gpu/drm/Kconfig
-> > @@ -278,6 +278,14 @@ config DRM_GPUVM
-> >   	  GPU-VM representation providing helpers to manage a GPUs virtual
-> >   	  address space
-> > +config DRM_GPUSVM
-> > +	tristate
-> > +	depends on DRM
-> > +	depends on DEVICE_MIGRATION
-> > +	help
-> > +	  GPU-SVM representation providing helpers to manage a GPUs shared
-> > +	  virtual memory
-> > +
-> >   config DRM_BUDDY
-> >   	tristate
-> >   	depends on DRM
-> > diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> > index 19fb370fbc56..ca5d44441fb6 100644
-> > --- a/drivers/gpu/drm/Makefile
-> > +++ b/drivers/gpu/drm/Makefile
-> > @@ -104,6 +104,7 @@ obj-$(CONFIG_DRM_PANEL_BACKLIGHT_QUIRKS) += drm_panel_backlight_quirks.o
-> >   #
-> >   obj-$(CONFIG_DRM_EXEC) += drm_exec.o
-> >   obj-$(CONFIG_DRM_GPUVM) += drm_gpuvm.o
-> > +obj-$(CONFIG_DRM_GPUSVM) += drm_gpusvm.o
-> >   obj-$(CONFIG_DRM_BUDDY) += drm_buddy.o
-> > diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-> > new file mode 100644
-> > index 000000000000..29ce2c7d1c8c
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/drm_gpusvm.c
-> > @@ -0,0 +1,2220 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> > +/*
-> > + * Copyright © 2024 Intel Corporation
-> > + *
-> > + * Authors:
-> > + *     Matthew Brost <matthew.brost@intel.com>
-> > + */
-> > +
-> > +#include <linux/dma-mapping.h>
-> > +#include <linux/hmm.h>
-> > +#include <linux/memremap.h>
-> > +#include <linux/migrate.h>
-> > +#include <linux/mm_types.h>
-> > +#include <linux/pagemap.h>
-> > +#include <linux/slab.h>
-> > +
-> > +#include <drm/drm_device.h>
-> > +#include <drm/drm_gpusvm.h>
-> > +#include <drm/drm_pagemap.h>
-> > +#include <drm/drm_print.h>
-> > +
-> > +/**
-> > + * DOC: Overview
-> > + *
-> > + * GPU Shared Virtual Memory (GPU SVM) layer for the Direct Rendering Manager (DRM)
-> > + *
-> > + * The GPU SVM layer is a component of the DRM framework designed to manage shared
-> > + * virtual memory between the CPU and GPU. It enables efficient data exchange and
-> > + * processing for GPU-accelerated applications by allowing memory sharing and
-> > + * synchronization between the CPU's and GPU's virtual address spaces.
-> > + *
-> > + * Key GPU SVM Components:
-> > + * - Notifiers: Notifiers: Used for tracking memory intervals and notifying the
-> > + *		GPU of changes, notifiers are sized based on a GPU SVM
-> > + *		initialization parameter, with a recommendation of 512M or
-> > + *		larger. They maintain a Red-BlacK tree and a list of ranges that
-> > + *		fall within the notifier interval. Notifiers are tracked within
-> > + *		a GPU SVM Red-BlacK tree and list and are dynamically inserted
-> > + *		or removed as ranges within the interval are created or
-> > + *		destroyed.
-> > + * - Ranges: Represent memory ranges mapped in a DRM device and managed
-> > + *	     by GPU SVM. They are sized based on an array of chunk sizes, which
-> > + *	     is a GPU SVM initialization parameter, and the CPU address space.
-> > + *	     Upon GPU fault, the largest aligned chunk that fits within the
-> > + *	     faulting CPU address space is chosen for the range size. Ranges are
-> > + *	     expected to be dynamically allocated on GPU fault and removed on an
-> > + *	     MMU notifier UNMAP event. As mentioned above, ranges are tracked in
-> > + *	     a notifier's Red-Black tree.
-> > + * - Operations: Define the interface for driver-specific GPU SVM operations
-> > + *               such as range allocation, notifier allocation, and
-> > + *               invalidations.
-> > + * - Device Memory Allocations: Embedded structure containing enough information
-> > + *                              for GPU SVM to migrate to / from device memory.
-> > + * - Device Memory Operations: Define the interface for driver-specific device
-> > + *                             memory operations release memory, populate pfns,
-> > + *                             and copy to / from device memory.
-> > + *
-> > + * This layer provides interfaces for allocating, mapping, migrating, and
-> > + * releasing memory ranges between the CPU and GPU. It handles all core memory
-> > + * management interactions (DMA mapping, HMM, and migration) and provides
-> > + * driver-specific virtual functions (vfuncs). This infrastructure is sufficient
-> > + * to build the expected driver components for an SVM implementation as detailed
-> > + * below.
-> > + *
-> > + * Expected Driver Components:
-> > + * - GPU page fault handler: Used to create ranges and notifiers based on the
-> > + *			     fault address, optionally migrate the range to
-> > + *			     device memory, and create GPU bindings.
-> > + * - Garbage collector: Used to unmap and destroy GPU bindings for ranges.
-> > + *			Ranges are expected to be added to the garbage collector
-> > + *			upon a MMU_NOTIFY_UNMAP event in notifier callback.
-> > + * - Notifier callback: Used to invalidate and DMA unmap GPU bindings for
-> > + *			ranges.
-> > + */
-> > +
-> > +/**
-> > + * DOC: Locking
-> > + *
-> > + * GPU SVM handles locking for core MM interactions, i.e., it locks/unlocks the
-> > + * mmap lock as needed.
-> > + *
-> > + * GPU SVM introduces a global notifier lock, which safeguards the notifier's
-> > + * range RB tree and list, as well as the range's DMA mappings and sequence
-> > + * number. GPU SVM manages all necessary locking and unlocking operations,
-> > + * except for the recheck range's pages being valid
-> > + * (drm_gpusvm_range_pages_valid) when the driver is committing GPU bindings. This
-> > + * lock corresponds to the 'driver->update' lock mentioned in the HMM
-> > + * documentation (TODO: Link). Future revisions may transition from a GPU SVM
-> > + * global lock to a per-notifier lock if finer-grained locking is deemed
-> > + * necessary.
-> > + *
-> > + * In addition to the locking mentioned above, the driver should implement a
-> > + * lock to safeguard core GPU SVM function calls that modify state, such as
-> > + * drm_gpusvm_range_find_or_insert and drm_gpusvm_range_remove. This lock is
-> > + * denoted as 'driver_svm_lock' in code examples. Finer grained driver side
-> > + * locking should also be possible for concurrent GPU fault processing within a
-> > + * single GPU SVM. The 'driver_svm_lock' can be via drm_gpusvm_driver_set_lock
-> > + * to add annotations to GPU SVM.
-> > + */
-> > +
-> > +/**
-> > + * DOC: Migration
-> > + *
-> > + * The migration support is quite simple, allowing migration between RAM and
-> > + * device memory at the range granularity. For example, GPU SVM currently does not
-> > + * support mixing RAM and device memory pages within a range. This means that upon GPU
-> > + * fault, the entire range can be migrated to device memory, and upon CPU fault, the
-> > + * entire range is migrated to RAM. Mixed RAM and device memory storage within a range
-> > + * could be added in the future if required.
-> > + *
-> > + * The reasoning for only supporting range granularity is as follows: it
-> > + * simplifies the implementation, and range sizes are driver-defined and should
-> > + * be relatively small.
-> > + */
-> > +
-> > +/**
-> > + * DOC: Partial Unmapping of Ranges
-> > + *
-> > + * Partial unmapping of ranges (e.g., 1M out of 2M is unmapped by CPU resulting
-> > + * in MMU_NOTIFY_UNMAP event) presents several challenges, with the main one
-> > + * being that a subset of the range still has CPU and GPU mappings. If the
-> > + * backing store for the range is in device memory, a subset of the backing store has
-> > + * references. One option would be to split the range and device memory backing store,
-> > + * but the implementation for this would be quite complicated. Given that
-> > + * partial unmappings are rare and driver-defined range sizes are relatively
-> > + * small, GPU SVM does not support splitting of ranges.
-> > + *
-> > + * With no support for range splitting, upon partial unmapping of a range, the
-> > + * driver is expected to invalidate and destroy the entire range. If the range
-> > + * has device memory as its backing, the driver is also expected to migrate any
-> > + * remaining pages back to RAM.
-> > + */
-> > +
-> > +/**
-> > + * DOC: Examples
-> > + *
-> > + * This section provides three examples of how to build the expected driver
-> > + * components: the GPU page fault handler, the garbage collector, and the
-> > + * notifier callback.
-> > + *
-> > + * The generic code provided does not include logic for complex migration
-> > + * policies, optimized invalidations, fined grained driver locking, or other
-> > + * potentially required driver locking (e.g., DMA-resv locks).
-> > + *
-> > + * 1) GPU page fault handler
-> > + *
-> > + *	int driver_bind_range(struct drm_gpusvm *gpusvm, struct drm_gpusvm_range *range)
-> > + *	{
-> > + *		int err = 0;
-> > + *
-> > + *		driver_alloc_and_setup_memory_for_bind(gpusvm, range);
-> > + *
-> > + *		drm_gpusvm_notifier_lock(gpusvm);
-> > + *		if (drm_gpusvm_range_pages_valid(range))
-> > + *			driver_commit_bind(gpusvm, range);
-> > + *		else
-> > + *			err = -EAGAIN;
-> > + *		drm_gpusvm_notifier_unlock(gpusvm);
-> > + *
-> > + *		return err;
-> > + *	}
-> > + *
-> > + *	int driver_gpu_fault(struct drm_gpusvm *gpusvm, unsigned long fault_addr,
-> > + *			     unsigned long gpuva_start, unsigned long gpuva_end)
-> > + *	{
-> > + *		struct drm_gpusvm_ctx ctx = {};
-> > + *		int err;
-> > + *
-> > + *		driver_svm_lock();
-> > + *	retry:
-> > + *		// Always process UNMAPs first so view of GPU SVM ranges is current
-> > + *		driver_garbage_collector(gpusvm);
-> > + *
-> > + *		range = drm_gpusvm_range_find_or_insert(gpusvm, fault_addr,
-> > + *							gpuva_start, gpuva_end,
-> > + *						        &ctx);
-> > + *		if (IS_ERR(range)) {
-> > + *			err = PTR_ERR(range);
-> > + *			goto unlock;
-> > + *		}
-> > + *
-> > + *		if (driver_migration_policy(range)) {
-> > + *			devmem = driver_alloc_devmem();
-> > + *			err = drm_gpusvm_migrate_to_devmem(gpusvm, range,
-> > + *							   devmem_allocation,
-> > + *							   &ctx);
-> > + *			if (err)	// CPU mappings may have changed
-> > + *				goto retry;
-> > + *		}
-> > + *
-> > + *		err = drm_gpusvm_range_get_pages(gpusvm, range, &ctx);
-> > + *		if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM) {	// CPU mappings changed
-> > + *			if (err == -EOPNOTSUPP)
-> > + *				drm_gpusvm_range_evict(gpusvm, range);
-> > + *			goto retry;
-> > + *		} else if (err) {
-> > + *			goto unlock;
-> > + *		}
-> > + *
-> > + *		err = driver_bind_range(gpusvm, range);
-> > + *		if (err == -EAGAIN)	// CPU mappings changed
-> > + *			goto retry
-> > + *
-> > + *	unlock:
-> > + *		driver_svm_unlock();
-> > + *		return err;
-> > + *	}
-> > + *
-> > + * 2) Garbage Collector.
-> > + *
-> > + *	void __driver_garbage_collector(struct drm_gpusvm *gpusvm,
-> > + *					struct drm_gpusvm_range *range)
-> > + *	{
-> > + *		assert_driver_svm_locked(gpusvm);
-> > + *
-> > + *		// Partial unmap, migrate any remaining device memory pages back to RAM
-> > + *		if (range->flags.partial_unmap)
-> > + *			drm_gpusvm_range_evict(gpusvm, range);
-> > + *
-> > + *		driver_unbind_range(range);
-> > + *		drm_gpusvm_range_remove(gpusvm, range);
-> > + *	}
-> > + *
-> > + *	void driver_garbage_collector(struct drm_gpusvm *gpusvm)
-> > + *	{
-> > + *		assert_driver_svm_locked(gpusvm);
-> > + *
-> > + *		for_each_range_in_garbage_collector(gpusvm, range)
-> > + *			__driver_garbage_collector(gpusvm, range);
-> > + *	}
-> > + *
-> > + * 3) Notifier callback.
-> > + *
-> > + *	void driver_invalidation(struct drm_gpusvm *gpusvm,
-> > + *				 struct drm_gpusvm_notifier *notifier,
-> > + *				 const struct mmu_notifier_range *mmu_range)
-> > + *	{
-> > + *		struct drm_gpusvm_ctx ctx = { .in_notifier = true, };
-> > + *		struct drm_gpusvm_range *range = NULL;
-> > + *
-> > + *		driver_invalidate_device_pages(gpusvm, mmu_range->start, mmu_range->end);
-> > + *
-> > + *		drm_gpusvm_for_each_range(range, notifier, mmu_range->start,
-> > + *					  mmu_range->end) {
-> > + *			drm_gpusvm_range_unmap_pages(gpusvm, range, &ctx);
-> > + *
-> > + *			if (mmu_range->event != MMU_NOTIFY_UNMAP)
-> > + *				continue;
-> > + *
-> > + *			drm_gpusvm_range_set_unmapped(range, mmu_range);
-> > + *			driver_garbage_collector_add(gpusvm, range);
-> > + *		}
-> > + *	}
-> > + */
-> > +
-> > +/**
-> > + * npages_in_range() - Calculate the number of pages in a given range
-> > + * @start: The start address of the range
-> > + * @end: The end address of the range
-> > + *
-> > + * This macro calculates the number of pages in a given memory range,
-> > + * specified by the start and end addresses. It divides the difference
-> > + * between the end and start addresses by the page size (PAGE_SIZE) to
-> > + * determine the number of pages in the range.
-> > + *
-> > + * Return: The number of pages in the specified range.
-> > + */
-> > +static unsigned long
-> > +npages_in_range(unsigned long start, unsigned long end)
-> > +{
-> > +	return (end - start) >> PAGE_SHIFT;
-> > +}
-> > +
-> > +/**
-> > + * struct drm_gpusvm_zdd - GPU SVM zone device data
-> > + *
-> > + * @refcount: Reference count for the zdd
-> > + * @destroy_work: Work structure for asynchronous zdd destruction
-> > + * @devmem_allocation: device memory allocation
-> > + * @device_private_page_owner: Device private pages owner
-> > + *
-> > + * This structure serves as a generic wrapper installed in
-> > + * page->zone_device_data. It provides infrastructure for looking up a device
-> > + * memory allocation upon CPU page fault and asynchronously releasing device
-> > + * memory once the CPU has no page references. Asynchronous release is useful
-> > + * because CPU page references can be dropped in IRQ contexts, while releasing
-> > + * device memory likely requires sleeping locks.
-> > + */
-> > +struct drm_gpusvm_zdd {
-> > +	struct kref refcount;
-> > +	struct work_struct destroy_work;
-> > +	struct drm_gpusvm_devmem *devmem_allocation;
-> > +	void *device_private_page_owner;
-> > +};
-> > +
-> > +/**
-> > + * drm_gpusvm_zdd_destroy_work_func() - Work function for destroying a zdd
-> > + * @w: Pointer to the work_struct
-> > + *
-> > + * This function releases device memory, puts GPU SVM range, and frees zdd.
-> > + */
-> > +static void drm_gpusvm_zdd_destroy_work_func(struct work_struct *w)
-> > +{
-> > +	struct drm_gpusvm_zdd *zdd =
-> > +		container_of(w, struct drm_gpusvm_zdd, destroy_work);
-> > +	const struct drm_gpusvm_devmem_ops *ops = zdd->devmem_allocation ?
-> > +		zdd->devmem_allocation->ops : NULL;
-> > +
-> > +	if (zdd->devmem_allocation && ops->devmem_release)
-> > +		ops->devmem_release(zdd->devmem_allocation);
-> > +	kfree(zdd);
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_zdd_alloc() - Allocate a zdd structure.
-> > + * @device_private_page_owner: Device private pages owner
-> > + *
-> > + * This function allocates and initializes a new zdd structure. It sets up the
-> > + * reference count and initializes the destroy work.
-> > + *
-> > + * Returns:
-> > + * Pointer to the allocated zdd on success, ERR_PTR() on failure.
-> > + */
-> > +static struct drm_gpusvm_zdd *
-> > +drm_gpusvm_zdd_alloc(void *device_private_page_owner)
-> > +{
-> > +	struct drm_gpusvm_zdd *zdd;
-> > +
-> > +	zdd = kmalloc(sizeof(*zdd), GFP_KERNEL);
-> > +	if (!zdd)
-> > +		return NULL;
-> > +
-> > +	kref_init(&zdd->refcount);
-> > +	INIT_WORK(&zdd->destroy_work, drm_gpusvm_zdd_destroy_work_func);
-> > +	zdd->devmem_allocation = NULL;
-> > +	zdd->device_private_page_owner = device_private_page_owner;
-> > +
-> > +	return zdd;
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_zdd_get() - Get a reference to a zdd structure.
-> > + * @zdd: Pointer to the zdd structure.
-> > + *
-> > + * This function increments the reference count of the provided zdd structure.
-> > + *
-> > + * Returns: Pointer to the zdd structure.
-> > + */
-> > +static struct drm_gpusvm_zdd *drm_gpusvm_zdd_get(struct drm_gpusvm_zdd *zdd)
-> > +{
-> > +	kref_get(&zdd->refcount);
-> > +	return zdd;
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_zdd_destroy() - Destroy a zdd structure.
-> > + * @ref: Pointer to the reference count structure.
-> > + *
-> > + * This function queues the destroy_work of the zdd for asynchronous destruction.
-> > + */
-> > +static void drm_gpusvm_zdd_destroy(struct kref *ref)
-> > +{
-> > +	struct drm_gpusvm_zdd *zdd =
-> > +		container_of(ref, struct drm_gpusvm_zdd, refcount);
-> > +
-> > +	if (zdd->devmem_allocation)
-> > +		WRITE_ONCE(zdd->devmem_allocation->detached, true);
-> > +	schedule_work(&zdd->destroy_work);
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_zdd_put() - Put a zdd reference.
-> > + * @zdd: Pointer to the zdd structure.
-> > + *
-> > + * This function decrements the reference count of the provided zdd structure
-> > + * and schedules its destruction if the count drops to zero.
-> > + */
-> > +static void drm_gpusvm_zdd_put(struct drm_gpusvm_zdd *zdd)
-> > +{
-> > +	kref_put(&zdd->refcount, drm_gpusvm_zdd_destroy);
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_range_find() - Find GPU SVM range from GPU SVM notifier
-> > + * @notifier: Pointer to the GPU SVM notifier structure.
-> > + * @start: Start address of the range
-> > + * @end: End address of the range
-> > + *
-> > + * Return: A pointer to the drm_gpusvm_range if found or NULL
-> > + */
-> > +struct drm_gpusvm_range *
-> > +drm_gpusvm_range_find(struct drm_gpusvm_notifier *notifier, unsigned long start,
-> > +		      unsigned long end)
-> > +{
-> > +	struct interval_tree_node *itree;
-> > +
-> > +	itree = interval_tree_iter_first(&notifier->root, start, end - 1);
-> > +
-> > +	if (itree)
-> > +		return container_of(itree, struct drm_gpusvm_range, itree);
-> > +	else
-> > +		return NULL;
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_range_find);
-> > +
-> > +/**
-> > + * drm_gpusvm_for_each_range_safe() - Safely iterate over GPU SVM ranges in a notifier
-> > + * @range__: Iterator variable for the ranges
-> > + * @next__: Iterator variable for the ranges temporay storage
-> > + * @notifier__: Pointer to the GPU SVM notifier
-> > + * @start__: Start address of the range
-> > + * @end__: End address of the range
-> > + *
-> > + * This macro is used to iterate over GPU SVM ranges in a notifier while
-> > + * removing ranges from it.
-> > + */
-> > +#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
-> > +	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
-> > +	     (next__) = __drm_gpusvm_range_next(range__);				\
-> > +	     (range__) && (range__->itree.start < (end__));				\
-> > +	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
-> > +
-> > +/**
-> > + * __drm_gpusvm_notifier_next() - get the next drm_gpusvm_notifier in the list
-> > + * @notifier: a pointer to the current drm_gpusvm_notifier
-> > + *
-> > + * Return: A pointer to the next drm_gpusvm_notifier if available, or NULL if
-> > + *         the current notifier is the last one or if the input notifier is
-> > + *         NULL.
-> > + */
-> > +static struct drm_gpusvm_notifier *
-> > +__drm_gpusvm_notifier_next(struct drm_gpusvm_notifier *notifier)
-> > +{
-> > +	if (notifier && !list_is_last(&notifier->entry,
-> > +				      &notifier->gpusvm->notifier_list))
-> > +		return list_next_entry(notifier, entry);
-> > +
-> > +	return NULL;
-> > +}
-> > +
-> > +static struct drm_gpusvm_notifier *
-> > +notifier_iter_first(struct rb_root_cached *root, unsigned long start,
-> > +		    unsigned long last)
-> > +{
-> > +	struct interval_tree_node *itree;
-> > +
-> > +	itree = interval_tree_iter_first(root, start, last);
-> > +
-> > +	if (itree)
-> > +		return container_of(itree, struct drm_gpusvm_notifier, itree);
-> > +	else
-> > +		return NULL;
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_for_each_notifier() - Iterate over GPU SVM notifiers in a gpusvm
-> > + * @notifier__: Iterator variable for the notifiers
-> > + * @notifier__: Pointer to the GPU SVM notifier
-> > + * @start__: Start address of the notifier
-> > + * @end__: End address of the notifier
-> > + *
-> > + * This macro is used to iterate over GPU SVM notifiers in a gpusvm.
-> > + */
-> > +#define drm_gpusvm_for_each_notifier(notifier__, gpusvm__, start__, end__)		\
-> > +	for ((notifier__) = notifier_iter_first(&(gpusvm__)->root, (start__), (end__) - 1);	\
-> > +	     (notifier__) && (notifier__->itree.start < (end__));			\
-> > +	     (notifier__) = __drm_gpusvm_notifier_next(notifier__))
-> > +
-> > +/**
-> > + * drm_gpusvm_for_each_notifier_safe() - Safely iterate over GPU SVM notifiers in a gpusvm
-> > + * @notifier__: Iterator variable for the notifiers
-> > + * @next__: Iterator variable for the notifiers temporay storage
-> > + * @notifier__: Pointer to the GPU SVM notifier
-> > + * @start__: Start address of the notifier
-> > + * @end__: End address of the notifier
-> > + *
-> > + * This macro is used to iterate over GPU SVM notifiers in a gpusvm while
-> > + * removing notifiers from it.
-> > + */
-> > +#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
-> > +	for ((notifier__) = notifier_iter_first(&(gpusvm__)->root, (start__), (end__) - 1),	\
-> > +	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
-> > +	     (notifier__) && (notifier__->itree.start < (end__));			\
-> > +	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
-> > +
-> > +/**
-> > + * drm_gpusvm_notifier_invalidate() - Invalidate a GPU SVM notifier.
-> > + * @mni: Pointer to the mmu_interval_notifier structure.
-> > + * @mmu_range: Pointer to the mmu_notifier_range structure.
-> > + * @cur_seq: Current sequence number.
-> > + *
-> > + * This function serves as a generic MMU notifier for GPU SVM. It sets the MMU
-> > + * notifier sequence number and calls the driver invalidate vfunc under
-> > + * gpusvm->notifier_lock.
-> > + *
-> > + * Returns:
-> > + * true if the operation succeeds, false otherwise.
-> > + */
-> > +static bool
-> > +drm_gpusvm_notifier_invalidate(struct mmu_interval_notifier *mni,
-> > +			       const struct mmu_notifier_range *mmu_range,
-> > +			       unsigned long cur_seq)
-> > +{
-> > +	struct drm_gpusvm_notifier *notifier =
-> > +		container_of(mni, typeof(*notifier), notifier);
-> > +	struct drm_gpusvm *gpusvm = notifier->gpusvm;
-> > +
-> > +	if (!mmu_notifier_range_blockable(mmu_range))
-> > +		return false;
-> > +
-> > +	down_write(&gpusvm->notifier_lock);
-> > +	mmu_interval_set_seq(mni, cur_seq);
-> > +	gpusvm->ops->invalidate(gpusvm, notifier, mmu_range);
-> > +	up_write(&gpusvm->notifier_lock);
-> > +
-> > +	return true;
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_notifier_ops - MMU interval notifier operations for GPU SVM
-> > + */
-> > +static const struct mmu_interval_notifier_ops drm_gpusvm_notifier_ops = {
-> > +	.invalidate = drm_gpusvm_notifier_invalidate,
-> > +};
-> > +
-> > +/**
-> > + * drm_gpusvm_init() - Initialize the GPU SVM.
-> > + * @gpusvm: Pointer to the GPU SVM structure.
-> > + * @name: Name of the GPU SVM.
-> > + * @drm: Pointer to the DRM device structure.
-> > + * @mm: Pointer to the mm_struct for the address space.
-> > + * @device_private_page_owner: Device private pages owner.
-> > + * @mm_start: Start address of GPU SVM.
-> > + * @mm_range: Range of the GPU SVM.
-> > + * @notifier_size: Size of individual notifiers.
-> > + * @ops: Pointer to the operations structure for GPU SVM.
-> > + * @chunk_sizes: Pointer to the array of chunk sizes used in range allocation.
-> > + *               Entries should be powers of 2 in descending order with last
-> > + *               entry being SZ_4K.
-> > + * @num_chunks: Number of chunks.
-> > + *
-> > + * This function initializes the GPU SVM.
-> > + *
-> > + * Returns:
-> > + * 0 on success, a negative error code on failure.
-> > + */
-> > +int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
-> > +		    const char *name, struct drm_device *drm,
-> > +		    struct mm_struct *mm, void *device_private_page_owner,
-> > +		    unsigned long mm_start, unsigned long mm_range,
-> > +		    unsigned long notifier_size,
-> > +		    const struct drm_gpusvm_ops *ops,
-> > +		    const unsigned long *chunk_sizes, int num_chunks)
-> > +{
-> > +	if (!ops->invalidate || !num_chunks)
-> > +		return -EINVAL;
-> > +
-> > +	gpusvm->name = name;
-> > +	gpusvm->drm = drm;
-> > +	gpusvm->mm = mm;
-> > +	gpusvm->device_private_page_owner = device_private_page_owner;
-> > +	gpusvm->mm_start = mm_start;
-> > +	gpusvm->mm_range = mm_range;
-> > +	gpusvm->notifier_size = notifier_size;
-> > +	gpusvm->ops = ops;
-> > +	gpusvm->chunk_sizes = chunk_sizes;
-> > +	gpusvm->num_chunks = num_chunks;
-> > +
-> > +	mmgrab(mm);
-> > +	gpusvm->root = RB_ROOT_CACHED;
-> > +	INIT_LIST_HEAD(&gpusvm->notifier_list);
-> > +
-> > +	init_rwsem(&gpusvm->notifier_lock);
-> > +
-> > +	fs_reclaim_acquire(GFP_KERNEL);
-> > +	might_lock(&gpusvm->notifier_lock);
-> > +	fs_reclaim_release(GFP_KERNEL);
-> > +
-> > +#ifdef CONFIG_LOCKDEP
-> > +	gpusvm->lock_dep_map = NULL;
-> > +#endif
-> > +
-> > +	return 0;
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_init);
-> > +
-> > +/**
-> > + * drm_gpusvm_notifier_find() - Find GPU SVM notifier
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @fault_addr: Fault address
-> > + *
-> > + * This function finds the GPU SVM notifier associated with the fault address.
-> > + *
-> > + * Returns:
-> > + * Pointer to the GPU SVM notifier on success, NULL otherwise.
-> > + */
-> > +static struct drm_gpusvm_notifier *
-> > +drm_gpusvm_notifier_find(struct drm_gpusvm *gpusvm,
-> > +			 unsigned long fault_addr)
-> > +{
-> > +	return notifier_iter_first(&gpusvm->root, fault_addr, fault_addr + 1);
-> > +}
-> > +
-> > +/**
-> > + * to_drm_gpusvm_notifier() - retrieve the container struct for a given rbtree node
-> > + * @node: a pointer to the rbtree node embedded within a drm_gpusvm_notifier struct
-> > + *
-> > + * Return: A pointer to the containing drm_gpusvm_notifier structure.
-> > + */
-> > +static struct drm_gpusvm_notifier *to_drm_gpusvm_notifier(struct rb_node *node)
-> > +{
-> > +	return container_of(node, struct drm_gpusvm_notifier, itree.rb);
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_notifier_insert() - Insert GPU SVM notifier
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @notifier: Pointer to the GPU SVM notifier structure
-> > + *
-> > + * This function inserts the GPU SVM notifier into the GPU SVM RB tree and list.
-> > + */
-> > +static void drm_gpusvm_notifier_insert(struct drm_gpusvm *gpusvm,
-> > +				       struct drm_gpusvm_notifier *notifier)
-> > +{
-> > +	struct rb_node *node;
-> > +	struct list_head *head;
-> > +
-> > +	interval_tree_insert(&notifier->itree, &gpusvm->root);
-> > +
-> > +	node = rb_prev(&notifier->itree.rb);
-> > +	if (node)
-> > +		head = &(to_drm_gpusvm_notifier(node))->entry;
-> > +	else
-> > +		head = &gpusvm->notifier_list;
-> > +
-> > +	list_add(&notifier->entry, head);
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_notifier_remove() - Remove GPU SVM notifier
-> > + * @gpusvm: Pointer to the GPU SVM tructure
-> > + * @notifier: Pointer to the GPU SVM notifier structure
-> > + *
-> > + * This function removes the GPU SVM notifier from the GPU SVM RB tree and list.
-> > + */
-> > +static void drm_gpusvm_notifier_remove(struct drm_gpusvm *gpusvm,
-> > +				       struct drm_gpusvm_notifier *notifier)
-> > +{
-> > +	interval_tree_remove(&notifier->itree, &gpusvm->root);
-> > +	list_del(&notifier->entry);
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_fini() - Finalize the GPU SVM.
-> > + * @gpusvm: Pointer to the GPU SVM structure.
-> > + *
-> > + * This function finalizes the GPU SVM by cleaning up any remaining ranges and
-> > + * notifiers, and dropping a reference to struct MM.
-> > + */
-> > +void drm_gpusvm_fini(struct drm_gpusvm *gpusvm)
-> > +{
-> > +	struct drm_gpusvm_notifier *notifier, *next;
-> > +
-> > +	drm_gpusvm_for_each_notifier_safe(notifier, next, gpusvm, 0, LONG_MAX) {
-> > +		struct drm_gpusvm_range *range, *__next;
-> > +
-> > +		/*
-> > +		 * Remove notifier first to avoid racing with any invalidation
-> > +		 */
-> > +		mmu_interval_notifier_remove(&notifier->notifier);
-> > +		notifier->flags.removed = true;
-> > +
-> > +		drm_gpusvm_for_each_range_safe(range, __next, notifier, 0,
-> > +					       LONG_MAX)
-> > +			drm_gpusvm_range_remove(gpusvm, range);
-> > +	}
-> > +
-> > +	mmdrop(gpusvm->mm);
-> > +	WARN_ON(!RB_EMPTY_ROOT(&gpusvm->root.rb_root));
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_fini);
-> > +
-> > +/**
-> > + * drm_gpusvm_notifier_alloc() - Allocate GPU SVM notifier
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @fault_addr: Fault address
-> > + *
-> > + * This function allocates and initializes the GPU SVM notifier structure.
-> > + *
-> > + * Returns:
-> > + * Pointer to the allocated GPU SVM notifier on success, ERR_PTR() on failure.
-> > + */
-> > +static struct drm_gpusvm_notifier *
-> > +drm_gpusvm_notifier_alloc(struct drm_gpusvm *gpusvm, unsigned long fault_addr)
-> > +{
-> > +	struct drm_gpusvm_notifier *notifier;
-> > +
-> > +	if (gpusvm->ops->notifier_alloc)
-> > +		notifier = gpusvm->ops->notifier_alloc();
-> > +	else
-> > +		notifier = kzalloc(sizeof(*notifier), GFP_KERNEL);
-> > +
-> > +	if (!notifier)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	notifier->gpusvm = gpusvm;
-> > +	notifier->itree.start = ALIGN_DOWN(fault_addr, gpusvm->notifier_size);
-> > +	notifier->itree.last = ALIGN(fault_addr + 1, gpusvm->notifier_size) - 1;
-> > +	INIT_LIST_HEAD(&notifier->entry);
-> > +	notifier->root = RB_ROOT_CACHED;
-> > +	INIT_LIST_HEAD(&notifier->range_list);
-> > +
-> > +	return notifier;
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_notifier_free() - Free GPU SVM notifier
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @notifier: Pointer to the GPU SVM notifier structure
-> > + *
-> > + * This function frees the GPU SVM notifier structure.
-> > + */
-> > +static void drm_gpusvm_notifier_free(struct drm_gpusvm *gpusvm,
-> > +				     struct drm_gpusvm_notifier *notifier)
-> > +{
-> > +	WARN_ON(!RB_EMPTY_ROOT(&notifier->root.rb_root));
-> > +
-> > +	if (gpusvm->ops->notifier_free)
-> > +		gpusvm->ops->notifier_free(notifier);
-> > +	else
-> > +		kfree(notifier);
-> > +}
-> > +
-> > +/**
-> > + * to_drm_gpusvm_range() - retrieve the container struct for a given rbtree node
-> > + * @node: a pointer to the rbtree node embedded within a drm_gpusvm_range struct
-> > + *
-> > + * Return: A pointer to the containing drm_gpusvm_range structure.
-> > + */
-> > +static struct drm_gpusvm_range *to_drm_gpusvm_range(struct rb_node *node)
-> > +{
-> > +	return container_of(node, struct drm_gpusvm_range, itree.rb);
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_range_insert() - Insert GPU SVM range
-> > + * @notifier: Pointer to the GPU SVM notifier structure
-> > + * @range: Pointer to the GPU SVM range structure
-> > + *
-> > + * This function inserts the GPU SVM range into the notifier RB tree and list.
-> > + */
-> > +static void drm_gpusvm_range_insert(struct drm_gpusvm_notifier *notifier,
-> > +				    struct drm_gpusvm_range *range)
-> > +{
-> > +	struct rb_node *node;
-> > +	struct list_head *head;
-> > +
-> > +	drm_gpusvm_notifier_lock(notifier->gpusvm);
-> > +	interval_tree_insert(&range->itree, &notifier->root);
-> > +
-> > +	node = rb_prev(&range->itree.rb);
-> > +	if (node)
-> > +		head = &(to_drm_gpusvm_range(node))->entry;
-> > +	else
-> > +		head = &notifier->range_list;
-> > +
-> > +	list_add(&range->entry, head);
-> > +	drm_gpusvm_notifier_unlock(notifier->gpusvm);
-> > +}
-> > +
-> > +/**
-> > + * __drm_gpusvm_range_remove() - Remove GPU SVM range
-> > + * @notifier: Pointer to the GPU SVM notifier structure
-> > + * @range: Pointer to the GPU SVM range structure
-> > + *
-> > + * This macro removes the GPU SVM range from the notifier RB tree and list.
-> > + */
-> > +static void __drm_gpusvm_range_remove(struct drm_gpusvm_notifier *notifier,
-> > +				      struct drm_gpusvm_range *range)
-> > +{
-> > +	interval_tree_remove(&range->itree, &notifier->root);
-> > +	list_del(&range->entry);
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_range_alloc() - Allocate GPU SVM range
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @notifier: Pointer to the GPU SVM notifier structure
-> > + * @fault_addr: Fault address
-> > + * @chunk_size: Chunk size
-> > + * @migrate_devmem: Flag indicating whether to migrate device memory
-> > + *
-> > + * This function allocates and initializes the GPU SVM range structure.
-> > + *
-> > + * Returns:
-> > + * Pointer to the allocated GPU SVM range on success, ERR_PTR() on failure.
-> > + */
-> > +static struct drm_gpusvm_range *
-> > +drm_gpusvm_range_alloc(struct drm_gpusvm *gpusvm,
-> > +		       struct drm_gpusvm_notifier *notifier,
-> > +		       unsigned long fault_addr, unsigned long chunk_size,
-> > +		       bool migrate_devmem)
-> > +{
-> > +	struct drm_gpusvm_range *range;
-> > +
-> > +	if (gpusvm->ops->range_alloc)
-> > +		range = gpusvm->ops->range_alloc(gpusvm);
-> > +	else
-> > +		range = kzalloc(sizeof(*range), GFP_KERNEL);
-> > +
-> > +	if (!range)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	kref_init(&range->refcount);
-> > +	range->gpusvm = gpusvm;
-> > +	range->notifier = notifier;
-> > +	range->itree.start = ALIGN_DOWN(fault_addr, chunk_size);
-> > +	range->itree.last = ALIGN(fault_addr + 1, chunk_size) - 1;
-> > +	INIT_LIST_HEAD(&range->entry);
-> > +	range->notifier_seq = LONG_MAX;
-> > +	range->flags.migrate_devmem = migrate_devmem ? 1 : 0;
-> > +
-> > +	return range;
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_check_pages() - Check pages
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @notifier: Pointer to the GPU SVM notifier structure
-> > + * @start: Start address
-> > + * @end: End address
-> > + *
-> > + * Check if pages between start and end have been faulted in on the CPU. Use to
-> > + * prevent migration of pages without CPU backing store.
-> > + *
-> > + * Returns:
-> > + * True if pages have been faulted into CPU, False otherwise
-> > + */
-> > +static bool drm_gpusvm_check_pages(struct drm_gpusvm *gpusvm,
-> > +				   struct drm_gpusvm_notifier *notifier,
-> > +				   unsigned long start, unsigned long end)
-> > +{
-> > +	struct hmm_range hmm_range = {
-> > +		.default_flags = 0,
-> > +		.notifier = &notifier->notifier,
-> > +		.start = start,
-> > +		.end = end,
-> > +		.dev_private_owner = gpusvm->device_private_page_owner,
-> > +	};
-> > +	unsigned long timeout =
-> > +		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
-> > +	unsigned long *pfns;
-> > +	unsigned long npages = npages_in_range(start, end);
-> > +	int err, i;
-> > +
-> > +	mmap_assert_locked(gpusvm->mm);
-> > +
-> > +	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
-> > +	if (!pfns)
-> > +		return false;
-> > +
-> > +	hmm_range.notifier_seq = mmu_interval_read_begin(&notifier->notifier);
-> > +	hmm_range.hmm_pfns = pfns;
-> > +
-> > +	while (true) {
-> > +		err = hmm_range_fault(&hmm_range);
-> > +		if (err == -EBUSY) {
-> > +			if (time_after(jiffies, timeout))
-> > +				break;
-> > +
-> > +			hmm_range.notifier_seq = mmu_interval_read_begin(&notifier->notifier);
-> > +			continue;
-> > +		}
-> > +		break;
-> > +	}
-> > +	if (err)
-> > +		goto err_free;
-> > +
-> > +	for (i = 0; i < npages;) {
-> > +		if (!(pfns[i] & HMM_PFN_VALID)) {
-> > +			err = -EFAULT;
-> > +			goto err_free;
-> > +		}
-> > +		i += 0x1 << hmm_pfn_to_map_order(pfns[i]);
-> > +	}
-> > +
-> > +err_free:
-> > +	kvfree(pfns);
-> > +	return err ? false : true;
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_range_chunk_size() - Determine chunk size for GPU SVM range
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @notifier: Pointer to the GPU SVM notifier structure
-> > + * @vas: Pointer to the virtual memory area structure
-> Hi Matthew Brost,
-> 
-> mm core mainly uses vma as the naming of the structure vm_area_struct
-> variable.
-> can you consider changing vas to vma for the same recognition as mm core?
-> ( vas naming is used in this function, as well as many of the functions
-> introduced in this patch. )
+On Wed, 15 Jan 2025 12:02:08 -0800, Harish Chegondi wrote:
+>
 
-This is intentional. We are not in core MM rather a GPU driver. GPUs
-also have VMAs, grep for vma in DRM subsystem. These are GPU VMAs while
-a vm_area_struct is a CPU VMA. To avoid confusing GPU VMAs and CPU VMAs,
-I decided on 'vas' for the latter in this code.
+This patch doesn't compile :/
 
-> > + * @fault_addr: Fault address
-> > + * @gpuva_start: Start address of GPUVA which mirrors CPU
-> > + * @gpuva_end: End address of GPUVA which mirrors CPU
-> > + * @check_pages_threshold: Check CPU pages for present threshold
-> > + *
-> > + * This function determines the chunk size for the GPU SVM range based on the
-> > + * fault address, GPU SVM chunk sizes, existing GPU SVM ranges, and the virtual
-> > + * memory area boundaries.
-> > + *
-> > + * Returns:
-> > + * Chunk size on success, LONG_MAX on failure.
-> > + */
-> > +static unsigned long
-> > +drm_gpusvm_range_chunk_size(struct drm_gpusvm *gpusvm,
-> > +			    struct drm_gpusvm_notifier *notifier,
-> > +			    struct vm_area_struct *vas,
-> > +			    unsigned long fault_addr,
-> > +			    unsigned long gpuva_start,
-> > +			    unsigned long gpuva_end,
-> > +			    unsigned long check_pages_threshold)
-> > +{
-> > +	unsigned long start, end;
-> > +	int i = 0;
-> > +
-> > +retry:
-> > +	for (; i < gpusvm->num_chunks; ++i) {
-> > +		start = ALIGN_DOWN(fault_addr, gpusvm->chunk_sizes[i]);
-> > +		end = ALIGN(fault_addr + 1, gpusvm->chunk_sizes[i]);
-> > +
-> > +		if (start >= vas->vm_start && end <= vas->vm_end &&
-> > +		    start >= notifier->itree.start &&
-> > +		    end <= notifier->itree.last + 1 &&
-> > +		    start >= gpuva_start && end <= gpuva_end)
-> > +			break;
-> > +	}
-> > +
-> > +	if (i == gpusvm->num_chunks)
-> > +		return LONG_MAX;
-> > +
-> > +	/*
-> > +	 * If allocation more than page, ensure not to overlap with existing
-> > +	 * ranges.
-> > +	 */
-> > +	if (end - start != SZ_4K) {
-> > +		struct drm_gpusvm_range *range;
-> > +
-> > +		range = drm_gpusvm_range_find(notifier, start, end);
-> > +		if (range) {
-> > +			++i;
-> > +			goto retry;
-> > +		}
-> > +
-> > +		/*
-> > +		 * XXX: Only create range on pages CPU has faulted in. Without
-> > +		 * this check, or prefault, on BMG 'xe_exec_system_allocator --r
-> > +		 * process-many-malloc' fails. In the failure case, each process
-> > +		 * mallocs 16k but the CPU VMA is ~128k which results in 64k SVM
-> > +		 * ranges. When migrating the SVM ranges, some processes fail in
-> > +		 * drm_gpusvm_migrate_to_devmem with 'migrate.cpages != npages'
-> > +		 * and then upon drm_gpusvm_range_get_pages device pages from
-> > +		 * other processes are collected + faulted in which creates all
-> > +		 * sorts of problems. Unsure exactly how this happening, also
-> > +		 * problem goes away if 'xe_exec_system_allocator --r
-> > +		 * process-many-malloc' mallocs at least 64k at a time.
-> > +		 */
-> > +		if (end - start <= check_pages_threshold &&
-> > +		    !drm_gpusvm_check_pages(gpusvm, notifier, start, end)) {
-> > +			++i;
-> > +			goto retry;
-> > +		}
-> > +	}
-> > +
-> > +	return end - start;
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_range_find_or_insert() - Find or insert GPU SVM range
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @fault_addr: Fault address
-> > + * @gpuva_start: Start address of GPUVA which mirrors CPU
-> > + * @gpuva_end: End address of GPUVA which mirrors CPU
-> > + * @ctx: GPU SVM context
-> > + *
-> > + * This function finds or inserts a newly allocated a GPU SVM range based on the
-> > + * fault address. Caller must hold a lock to protect range lookup and insertion.
-> > + *
-> > + * Returns:
-> > + * Pointer to the GPU SVM range on success, ERR_PTR() on failure.
-> > + */
-> > +struct drm_gpusvm_range *
-> > +drm_gpusvm_range_find_or_insert(struct drm_gpusvm *gpusvm,
-> > +				unsigned long fault_addr,
-> > +				unsigned long gpuva_start,
-> > +				unsigned long gpuva_end,
-> > +				const struct drm_gpusvm_ctx *ctx)
-> > +{
-> > +	struct drm_gpusvm_notifier *notifier;
-> > +	struct drm_gpusvm_range *range;
-> > +	struct mm_struct *mm = gpusvm->mm;
-> > +	struct vm_area_struct *vas;
-> > +	bool notifier_alloc = false;
-> > +	unsigned long chunk_size;
-> > +	int err;
-> > +	bool migrate_devmem;
-> > +
-> > +	drm_gpusvm_driver_lock_held(gpusvm);
-> > +
-> > +	if (fault_addr < gpusvm->mm_start ||
-> > +	    fault_addr > gpusvm->mm_start + gpusvm->mm_range)
-> > +		return ERR_PTR(-EINVAL);
-> > +
-> > +	if (!mmget_not_zero(mm))
-> > +		return ERR_PTR(-EFAULT);
-> > +
-> > +	notifier = drm_gpusvm_notifier_find(gpusvm, fault_addr);
-> > +	if (!notifier) {
-> > +		notifier = drm_gpusvm_notifier_alloc(gpusvm, fault_addr);
-> > +		if (IS_ERR(notifier)) {
-> > +			err = PTR_ERR(notifier);
-> > +			goto err_mmunlock;
-> > +		}
-> > +		notifier_alloc = true;
-> > +		err = mmu_interval_notifier_insert(&notifier->notifier,
-> > +						   mm, notifier->itree.start,
-> > +						   notifier->itree.last -
-> > +						   notifier->itree.start + 1,
-> > +						   &drm_gpusvm_notifier_ops);
-> > +		if (err)
-> > +			goto err_notifier;
-> > +	}
-> > +
-> > +	mmap_read_lock(mm);
-> > +
-> > +	vas = vma_lookup(mm, fault_addr);
-> > +	if (!vas) {
-> > +		err = -ENOENT;
-> > +		goto err_notifier_remove;
-> > +	}
-> > +
-> > +	if (!ctx->read_only && !(vas->vm_flags & VM_WRITE)) {
-> > +		err = -EPERM;
-> > +		goto err_notifier_remove;
-> > +	}
-> > +
-> > +	range = drm_gpusvm_range_find(notifier, fault_addr, fault_addr + 1);
-> > +	if (range)
-> > +		goto out_mmunlock;
-> > +	/*
-> > +	 * XXX: Short-circuiting migration based on migrate_vma_* current
-> > +	 * limitations. If/when migrate_vma_* add more support, this logic will
-> > +	 * have to change.
-> > +	 */
-> > +	migrate_devmem = ctx->devmem_possible &&
-> > +		vma_is_anonymous(vas) && !is_vm_hugetlb_page(vas);
-> > +
-> > +	chunk_size = drm_gpusvm_range_chunk_size(gpusvm, notifier, vas,
-> > +						 fault_addr, gpuva_start,
-> > +						 gpuva_end, migrate_devmem &&
-> > +						 ctx->check_pages_threshold);
-> > +	if (chunk_size == LONG_MAX) {
-> > +		err = -EINVAL;
-> > +		goto err_notifier_remove;
-> > +	}
-> > +
-> > +	range = drm_gpusvm_range_alloc(gpusvm, notifier, fault_addr, chunk_size,
-> > +				       migrate_devmem);
-> > +	if (IS_ERR(range)) {
-> > +		err = PTR_ERR(range);
-> > +		goto err_notifier_remove;
-> > +	}
-> > +
-> > +	drm_gpusvm_range_insert(notifier, range);
-> > +	if (notifier_alloc)
-> > +		drm_gpusvm_notifier_insert(gpusvm, notifier);
-> > +
-> > +out_mmunlock:
-> > +	mmap_read_unlock(mm);
-> > +	mmput(mm);
-> > +
-> > +	return range;
-> > +
-> > +err_notifier_remove:
-> > +	mmap_read_unlock(mm);
-> > +	if (notifier_alloc)
-> > +		mmu_interval_notifier_remove(&notifier->notifier);
-> > +err_notifier:
-> > +	if (notifier_alloc)
-> > +		drm_gpusvm_notifier_free(gpusvm, notifier);
-> > +err_mmunlock:
-> > +	mmput(mm);
-> > +	return ERR_PTR(err);
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_range_find_or_insert);
-> > +
-> > +/**
-> > + * __drm_gpusvm_range_unmap_pages() - Unmap pages associated with a GPU SVM range (internal)
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @range: Pointer to the GPU SVM range structure
-> > + * @npages: Number of pages to unmap
-> > + *
-> > + * This function unmap pages associated with a GPU SVM range. Assumes and
-> > + * asserts correct locking is in place when called.
-> > + */
-> > +static void __drm_gpusvm_range_unmap_pages(struct drm_gpusvm *gpusvm,
-> > +					   struct drm_gpusvm_range *range,
-> > +					   unsigned long npages)
-> > +{
-> > +	unsigned long i, j;
-> > +	struct drm_pagemap *dpagemap = range->dpagemap;
-> > +	struct device *dev = gpusvm->drm->dev;
-> > +
-> > +	lockdep_assert_held(&gpusvm->notifier_lock);
-> > +
-> > +	if (range->flags.has_dma_mapping) {
-> > +		for (i = 0, j = 0; i < npages; j++) {
-> > +			struct drm_pagemap_dma_addr *addr = &range->dma_addr[j];
-> > +
-> > +			if (addr->proto == DRM_INTERCONNECT_SYSTEM)
-> > +				dma_unmap_page(dev,
-> > +					       addr->addr,
-> > +					       PAGE_SIZE << addr->order,
-> > +					       addr->dir);
-> > +			else if (dpagemap && dpagemap->ops->unmap_dma)
-> > +				dpagemap->ops->unmap_dma(dpagemap,
-> > +							 dev,
-> > +							 *addr);
-> > +			i += 1 << addr->order;
-> > +		}
-> > +		range->flags.has_devmem_pages = false;
-> > +		range->flags.has_dma_mapping = false;
-> > +		range->dpagemap = NULL;
-> > +	}
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_range_free_pages() - Free pages associated with a GPU SVM range
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @range: Pointer to the GPU SVM range structure
-> > + *
-> > + * This function frees the dma address array associated with a GPU SVM range.
-> > + */
-> > +static void drm_gpusvm_range_free_pages(struct drm_gpusvm *gpusvm,
-> > +					struct drm_gpusvm_range *range)
-> > +{
-> > +	lockdep_assert_held(&gpusvm->notifier_lock);
-> > +
-> > +	if (range->dma_addr) {
-> > +		kvfree(range->dma_addr);
-> > +		range->dma_addr = NULL;
-> > +	}
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_range_remove() - Remove GPU SVM range
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @range: Pointer to the GPU SVM range to be removed
-> > + *
-> > + * This function removes the specified GPU SVM range and also removes the parent
-> > + * GPU SVM notifier if no more ranges remain in the notifier. The caller must
-> > + * hold a lock to protect range and notifier removal.
-> > + */
-> > +void drm_gpusvm_range_remove(struct drm_gpusvm *gpusvm,
-> > +			     struct drm_gpusvm_range *range)
-> > +{
-> > +	unsigned long npages = npages_in_range(range->itree.start,
-> > +					       range->itree.last + 1);
-> > +	struct drm_gpusvm_notifier *notifier;
-> > +
-> > +	drm_gpusvm_driver_lock_held(gpusvm);
-> > +
-> > +	notifier = drm_gpusvm_notifier_find(gpusvm, range->itree.start);
-> > +	if (WARN_ON_ONCE(!notifier))
-> > +		return;
-> > +
-> > +	drm_gpusvm_notifier_lock(gpusvm);
-> > +	__drm_gpusvm_range_unmap_pages(gpusvm, range, npages);
-> > +	drm_gpusvm_range_free_pages(gpusvm, range);
-> > +	__drm_gpusvm_range_remove(notifier, range);
-> > +	drm_gpusvm_notifier_unlock(gpusvm);
-> > +
-> > +	drm_gpusvm_range_put(range);
-> > +
-> > +	if (RB_EMPTY_ROOT(&notifier->root.rb_root)) {
-> > +		if (!notifier->flags.removed)
-> > +			mmu_interval_notifier_remove(&notifier->notifier);
-> > +		drm_gpusvm_notifier_remove(gpusvm, notifier);
-> > +		drm_gpusvm_notifier_free(gpusvm, notifier);
-> > +	}
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_range_remove);
-> > +
-> > +/**
-> > + * drm_gpusvm_range_get() - Get a reference to GPU SVM range
-> > + * @range: Pointer to the GPU SVM range
-> > + *
-> > + * This function increments the reference count of the specified GPU SVM range.
-> > + *
-> > + * Returns:
-> > + * Pointer to the GPU SVM range.
-> > + */
-> > +struct drm_gpusvm_range *
-> > +drm_gpusvm_range_get(struct drm_gpusvm_range *range)
-> > +{
-> > +	kref_get(&range->refcount);
-> > +
-> > +	return range;
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_range_get);
-> > +
-> > +/**
-> > + * drm_gpusvm_range_destroy() - Destroy GPU SVM range
-> > + * @refcount: Pointer to the reference counter embedded in the GPU SVM range
-> > + *
-> > + * This function destroys the specified GPU SVM range when its reference count
-> > + * reaches zero. If a custom range-free function is provided, it is invoked to
-> > + * free the range; otherwise, the range is deallocated using kfree().
-> > + */
-> > +static void drm_gpusvm_range_destroy(struct kref *refcount)
-> > +{
-> > +	struct drm_gpusvm_range *range =
-> > +		container_of(refcount, struct drm_gpusvm_range, refcount);
-> > +	struct drm_gpusvm *gpusvm = range->gpusvm;
-> > +
-> > +	if (gpusvm->ops->range_free)
-> > +		gpusvm->ops->range_free(range);
-> > +	else
-> > +		kfree(range);
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_range_put() - Put a reference to GPU SVM range
-> > + * @range: Pointer to the GPU SVM range
-> > + *
-> > + * This function decrements the reference count of the specified GPU SVM range
-> > + * and frees it when the count reaches zero.
-> > + */
-> > +void drm_gpusvm_range_put(struct drm_gpusvm_range *range)
-> > +{
-> > +	kref_put(&range->refcount, drm_gpusvm_range_destroy);
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_range_put);
-> > +
-> > +/**
-> > + * drm_gpusvm_range_pages_valid() - GPU SVM range pages valid
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @range: Pointer to the GPU SVM range structure
-> > + *
-> > + * This function determines if a GPU SVM range pages are valid. Expected be
-> > + * called holding gpusvm->notifier_lock and as the last step before committing a
-> > + * GPU binding. This is akin to a notifier seqno check in the HMM documentation
-> > + * but due to wider notifiers (i.e., notifiers which span multiple ranges) this
-> > + * function is required for finer grained checking (i.e., per range) if pages
-> > + * are valid.
-> > + *
-> > + * Returns:
-> > + * True if GPU SVM range has valid pages, False otherwise
-> > + */
-> > +bool drm_gpusvm_range_pages_valid(struct drm_gpusvm *gpusvm,
-> > +				  struct drm_gpusvm_range *range)
-> > +{
-> > +	lockdep_assert_held(&gpusvm->notifier_lock);
-> > +
-> > +	return range->flags.has_devmem_pages || range->flags.has_dma_mapping;
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_range_pages_valid);
-> > +
-> > +/**
-> > + * drm_gpusvm_range_pages_valid_unlocked() - GPU SVM range pages valid unlocked
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @range: Pointer to the GPU SVM range structure
-> > + *
-> > + * This function determines if a GPU SVM range pages are valid. Expected be
-> > + * called without holding gpusvm->notifier_lock.
-> > + *
-> > + * Returns:
-> > + * True if GPU SVM range has valid pages, False otherwise
-> > + */
-> > +static bool
-> > +drm_gpusvm_range_pages_valid_unlocked(struct drm_gpusvm *gpusvm,
-> > +				      struct drm_gpusvm_range *range)
-> > +{
-> > +	bool pages_valid;
-> > +
-> > +	if (!range->dma_addr)
-> > +		return false;
-> > +
-> > +	drm_gpusvm_notifier_lock(gpusvm);
-> > +	pages_valid = drm_gpusvm_range_pages_valid(gpusvm, range);
-> > +	if (!pages_valid)
-> > +		drm_gpusvm_range_free_pages(gpusvm, range);
-> > +	drm_gpusvm_notifier_unlock(gpusvm);
-> > +
-> > +	return pages_valid;
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_range_get_pages() - Get pages for a GPU SVM range
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @range: Pointer to the GPU SVM range structure
-> > + * @ctx: GPU SVM context
-> > + *
-> > + * This function gets pages for a GPU SVM range and ensures they are mapped for
-> > + * DMA access.
-> > + *
-> > + * Returns:
-> > + * 0 on success, negative error code on failure.
-> > + */
-> > +int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
-> > +			       struct drm_gpusvm_range *range,
-> > +			       const struct drm_gpusvm_ctx *ctx)
-> > +{
-> > +	struct mmu_interval_notifier *notifier = &range->notifier->notifier;
-> > +	struct hmm_range hmm_range = {
-> > +		.default_flags = HMM_PFN_REQ_FAULT | (ctx->read_only ? 0 :
-> > +			HMM_PFN_REQ_WRITE),
-> > +		.notifier = notifier,
-> > +		.start = range->itree.start,
-> > +		.end = range->itree.last + 1,
-> > +		.dev_private_owner = gpusvm->device_private_page_owner,
-> > +	};
-> > +	struct mm_struct *mm = gpusvm->mm;
-> > +	struct drm_gpusvm_zdd *zdd;
-> > +	unsigned long timeout =
-> > +		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
-> > +	unsigned long i, j;
-> > +	unsigned long npages = npages_in_range(range->itree.start,
-> > +					       range->itree.last + 1);
-> > +	unsigned long num_dma_mapped;
-> > +	unsigned int order = 0;
-> > +	unsigned long *pfns;
-> > +	struct page **pages;
-> > +	int err = 0;
-> > +	struct dev_pagemap *pagemap;
-> > +	struct drm_pagemap *dpagemap;
-> > +
-> > +retry:
-> > +	hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
-> > +	if (drm_gpusvm_range_pages_valid_unlocked(gpusvm, range))
-> > +		goto set_seqno;
-> > +
-> > +	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
-> > +	if (!pfns)
-> > +		return -ENOMEM;
-> > +
-> > +	if (!mmget_not_zero(mm)) {
-> > +		err = -EFAULT;
-> > +		goto err_free;
-> > +	}
-> > +
-> > +	hmm_range.hmm_pfns = pfns;
-> > +	while (true) {
-> > +		mmap_read_lock(mm);
-> > +		err = hmm_range_fault(&hmm_range);
-> > +		mmap_read_unlock(mm);
-> > +
-> > +		if (err == -EBUSY) {
-> > +			if (time_after(jiffies, timeout))
-> > +				break;
-> > +
-> > +			hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
-> > +			continue;
-> > +		}
-> > +		break;
-> > +	}
-> > +	mmput(mm);
-> > +	if (err)
-> > +		goto err_free;
-> > +
-> > +	pages = (struct page **)pfns;
-> > +map_pages:
-> > +	/*
-> > +	 * Perform all dma mappings under the notifier lock to not
-> > +	 * access freed pages. A notifier will either block on
-> > +	 * the notifier lock or unmap dma.
-> > +	 */
-> > +	drm_gpusvm_notifier_lock(gpusvm);
-> > +	if (mmu_interval_read_retry(notifier, hmm_range.notifier_seq)) {
-> > +		drm_gpusvm_notifier_unlock(gpusvm);
-> > +		kvfree(pfns);
-> > +		goto retry;
-> > +	}
-> > +
-> > +	if (!range->dma_addr) {
-> > +		/* Unlock and restart mapping to allocate memory. */
-> > +		drm_gpusvm_notifier_unlock(gpusvm);
-> > +		range->dma_addr = kvmalloc_array(npages, sizeof(*range->dma_addr),
-> > +						 GFP_KERNEL);
-> > +		if (!range->dma_addr) {
-> > +			err = -ENOMEM;
-> > +			goto err_free;
-> > +		}
-> > +		goto map_pages;
-> > +	}
-> > +
-> > +	zdd = NULL;
-> > +	num_dma_mapped = 0;
-> > +	for (i = 0, j = 0; i < npages; ++j) {
-> > +		struct page *page = hmm_pfn_to_page(pfns[i]);
-> > +
-> > +		order = hmm_pfn_to_map_order(pfns[i]);
-> > +		if (is_device_private_page(page) || is_device_coherent_page(page)) {
-> > +			if (zdd != page->zone_device_data && i > 0) {
-> > +				err = -EOPNOTSUPP;
-> > +				goto err_unmap;
-> > +			}
-> > +			zdd = page->zone_device_data;
-> > +			if (pagemap != page->pgmap) {
-> > +				if (i > 0) {
-> > +					err = -EOPNOTSUPP;
-> > +					goto err_unmap;
-> > +				}
-> > +
-> > +				pagemap = page->pgmap;
-> > +				dpagemap = zdd->devmem_allocation->dpagemap;
-> > +				if (drm_WARN_ON(gpusvm->drm, !dpagemap)) {
-> > +					/*
-> > +					 * Raced. This is not supposed to happen
-> > +					 * since hmm_range_fault() should've migrated
-> > +					 * this page to system.
-> > +					 */
-> > +					err = -EAGAIN;
-> > +					goto err_unmap;
-> > +				}
-> > +			}
-> > +			range->dma_addr[j] =
-> > +				dpagemap->ops->map_dma(dpagemap, gpusvm->drm->dev,
-> > +						       page, order,
-> > +						       DMA_BIDIRECTIONAL);
-> > +			if (dma_mapping_error(gpusvm->drm->dev, range->dma_addr[j].addr)) {
-> > +				err = -EFAULT;
-> > +				goto err_unmap;
-> > +			}
-> > +
-> > +			pages[i] = page;
-> > +		} else {
-> > +			dma_addr_t addr;
-> > +
-> > +			if (is_zone_device_page(page) || zdd) {
-> > +				err = -EOPNOTSUPP;
-> > +				goto err_unmap;
-> > +			}
-> > +
-> > +			addr = dma_map_page(gpusvm->drm->dev,
-> > +					    page, 0,
-> > +					    PAGE_SIZE << order,
-> > +					    DMA_BIDIRECTIONAL);
-> > +			if (dma_mapping_error(gpusvm->drm->dev, addr)) {
-> > +				err = -EFAULT;
-> > +				goto err_unmap;
-> > +			}
-> > +
-> > +			range->dma_addr[j] = drm_pagemap_dma_addr_encode
-> > +				(addr, DRM_INTERCONNECT_SYSTEM, order,
-> > +				 DMA_BIDIRECTIONAL);
-> > +		}
-> > +		i += 1 << order;
-> > +		num_dma_mapped = i;
-> > +	}
-> > +
-> > +	range->flags.has_dma_mapping = true;
-> > +	if (zdd) {
-> > +		range->flags.has_devmem_pages = true;
-> > +		range->dpagemap = dpagemap;
-> > +	}
-> > +
-> > +	drm_gpusvm_notifier_unlock(gpusvm);
-> > +	kvfree(pfns);
-> > +set_seqno:
-> > +	range->notifier_seq = hmm_range.notifier_seq;
-> > +
-> > +	return 0;
-> > +
-> > +err_unmap:
-> > +	__drm_gpusvm_range_unmap_pages(gpusvm, range, num_dma_mapped);
-> > +	drm_gpusvm_notifier_unlock(gpusvm);
-> > +err_free:
-> > +	kvfree(pfns);
-> > +	if (err == -EAGAIN)
-> > +		goto retry;
-> > +	return err;
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_range_get_pages);
-> > +
-> > +/**
-> > + * drm_gpusvm_range_unmap_pages() - Unmap pages associated with a GPU SVM range
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @range: Pointer to the GPU SVM range structure
-> > + * @ctx: GPU SVM context
-> > + *
-> > + * This function unmaps pages associated with a GPU SVM range. If @in_notifier
-> > + * is set, it is assumed that gpusvm->notifier_lock is held in write mode; if it
-> > + * is clear, it acquires gpusvm->notifier_lock in read mode. Must be called on
-> > + * each GPU SVM range attached to notifier in gpusvm->ops->invalidate for IOMMU
-> > + * security model.
-> > + */
-> > +void drm_gpusvm_range_unmap_pages(struct drm_gpusvm *gpusvm,
-> > +				  struct drm_gpusvm_range *range,
-> > +				  const struct drm_gpusvm_ctx *ctx)
-> > +{
-> > +	unsigned long npages = npages_in_range(range->itree.start,
-> > +					       range->itree.last + 1);
-> > +
-> > +	if (ctx->in_notifier)
-> > +		lockdep_assert_held_write(&gpusvm->notifier_lock);
-> > +	else
-> > +		drm_gpusvm_notifier_lock(gpusvm);
-> > +
-> > +	__drm_gpusvm_range_unmap_pages(gpusvm, range, npages);
-> > +
-> > +	if (!ctx->in_notifier)
-> > +		drm_gpusvm_notifier_unlock(gpusvm);
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_range_unmap_pages);
-> > +
-> > +/**
-> > + * drm_gpusvm_migration_unlock_put_page() - Put a migration page
-> > + * @page: Pointer to the page to put
-> > + *
-> > + * This function unlocks and puts a page.
-> > + */
-> > +static void drm_gpusvm_migration_unlock_put_page(struct page *page)
-> > +{
-> > +	unlock_page(page);
-> > +	put_page(page);
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_migration_unlock_put_pages() - Put migration pages
-> > + * @npages: Number of pages
-> > + * @migrate_pfn: Array of migrate page frame numbers
-> > + *
-> > + * This function unlocks and puts an array of pages.
-> > + */
-> > +static void drm_gpusvm_migration_unlock_put_pages(unsigned long npages,
-> > +						  unsigned long *migrate_pfn)
-> > +{
-> > +	unsigned long i;
-> > +
-> > +	for (i = 0; i < npages; ++i) {
-> > +		struct page *page;
-> > +
-> > +		if (!migrate_pfn[i])
-> > +			continue;
-> > +
-> > +		page = migrate_pfn_to_page(migrate_pfn[i]);
-> > +		drm_gpusvm_migration_unlock_put_page(page);
-> > +		migrate_pfn[i] = 0;
-> > +	}
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_get_devmem_page() - Get a reference to a device memory page
-> > + * @page: Pointer to the page
-> > + * @zdd: Pointer to the GPU SVM zone device data
-> > + *
-> > + * This function associates the given page with the specified GPU SVM zone
-> > + * device data and initializes it for zone device usage.
-> > + */
-> > +static void drm_gpusvm_get_devmem_page(struct page *page,
-> > +				     struct drm_gpusvm_zdd *zdd)
-> > +{
-> > +	page->zone_device_data = drm_gpusvm_zdd_get(zdd);
-> > +	zone_device_page_init(page);
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_migrate_map_pages() - Map migration pages for GPU SVM migration
-> > + * @dev: The device for which the pages are being mapped
-> > + * @dma_addr: Array to store DMA addresses corresponding to mapped pages
-> > + * @migrate_pfn: Array of migrate page frame numbers to map
-> > + * @npages: Number of pages to map
-> > + * @dir: Direction of data transfer (e.g., DMA_BIDIRECTIONAL)
-> > + *
-> > + * This function maps pages of memory for migration usage in GPU SVM. It
-> > + * iterates over each page frame number provided in @migrate_pfn, maps the
-> > + * corresponding page, and stores the DMA address in the provided @dma_addr
-> > + * array.
-> > + *
-> > + * Return: 0 on success, -EFAULT if an error occurs during mapping.
-> > + */
-> > +static int drm_gpusvm_migrate_map_pages(struct device *dev,
-> > +					dma_addr_t *dma_addr,
-> > +					unsigned long *migrate_pfn,
-> > +					unsigned long npages,
-> > +					enum dma_data_direction dir)
-> > +{
-> > +	unsigned long i;
-> > +
-> > +	for (i = 0; i < npages; ++i) {
-> > +		struct page *page = migrate_pfn_to_page(migrate_pfn[i]);
-> > +
-> > +		if (!page)
-> > +			continue;
-> > +
-> > +		if (WARN_ON_ONCE(is_zone_device_page(page)))
-> > +			return -EFAULT;
-> > +
-> > +		dma_addr[i] = dma_map_page(dev, page, 0, PAGE_SIZE, dir);
-> > +		if (dma_mapping_error(dev, dma_addr[i]))
-> > +			return -EFAULT;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_migrate_unmap_pages() - Unmap pages previously mapped for GPU SVM migration
-> > + * @dev: The device for which the pages were mapped
-> > + * @dma_addr: Array of DMA addresses corresponding to mapped pages
-> > + * @npages: Number of pages to unmap
-> > + * @dir: Direction of data transfer (e.g., DMA_BIDIRECTIONAL)
-> > + *
-> > + * This function unmaps previously mapped pages of memory for GPU Shared Virtual
-> > + * Memory (SVM). It iterates over each DMA address provided in @dma_addr, checks
-> > + * if it's valid and not already unmapped, and unmaps the corresponding page.
-> > + */
-> > +static void drm_gpusvm_migrate_unmap_pages(struct device *dev,
-> > +					   dma_addr_t *dma_addr,
-> > +					   unsigned long npages,
-> > +					   enum dma_data_direction dir)
-> > +{
-> > +	unsigned long i;
-> > +
-> > +	for (i = 0; i < npages; ++i) {
-> > +		if (!dma_addr[i] || dma_mapping_error(dev, dma_addr[i]))
-> > +			continue;
-> > +
-> > +		dma_unmap_page(dev, dma_addr[i], PAGE_SIZE, dir);
-> > +	}
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_migrate_to_devmem() - Migrate GPU SVM range to device memory
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @range: Pointer to the GPU SVM range structure
-> > + * @devmem_allocation: Pointer to the device memory allocation. The caller
-> > + *                     should hold a reference to the device memory allocation,
-> > + *                     which should be dropped via ops->devmem_release or upon
-> > + *                     the failure of this function.
-> > + * @ctx: GPU SVM context
-> > + *
-> > + * This function migrates the specified GPU SVM range to device memory. It performs the
-> > + * necessary setup and invokes the driver-specific operations for migration to
-> > + * device memory. Upon successful return, @devmem_allocation can safely reference @range
-> > + * until ops->devmem_release is called which only upon successful return.
-> > + *
-> > + * Returns:
-> > + * 0 on success, negative error code on failure.
-> > + */
-> > +int drm_gpusvm_migrate_to_devmem(struct drm_gpusvm *gpusvm,
-> > +				 struct drm_gpusvm_range *range,
-> > +				 struct drm_gpusvm_devmem *devmem_allocation,
-> > +				 const struct drm_gpusvm_ctx *ctx)
-> > +{
-> > +	const struct drm_gpusvm_devmem_ops *ops = devmem_allocation->ops;
-> > +	unsigned long start = range->itree.start, end = range->itree.last + 1;
-> > +	struct migrate_vma migrate = {
-> > +		.start		= start,
-> > +		.end		= end,
-> > +		.pgmap_owner	= gpusvm->device_private_page_owner,
-> > +		.flags		= MIGRATE_VMA_SELECT_SYSTEM,
-> > +	};
-> > +	struct mm_struct *mm = gpusvm->mm;
-> > +	unsigned long i, npages = npages_in_range(start, end);
-> > +	struct vm_area_struct *vas;
-> > +	struct drm_gpusvm_zdd *zdd = NULL;
-> > +	struct page **pages;
-> > +	dma_addr_t *dma_addr;
-> > +	void *buf;
-> > +	int err;
-> > +
-> > +	if (!range->flags.migrate_devmem)
-> > +		return -EINVAL;
-> > +
-> > +	if (!ops->populate_devmem_pfn || !ops->copy_to_devmem ||
-> > +	    !ops->copy_to_ram)
-> > +		return -EOPNOTSUPP;
-> > +
-> > +	if (!mmget_not_zero(mm)) {
-> > +		err = -EFAULT;
-> > +		goto err_out;
-> > +	}
-> > +	mmap_read_lock(mm);
-> > +
-> > +	vas = vma_lookup(mm, start);
-> > +	if (!vas) {
-> > +		err = -ENOENT;
-> > +		goto err_mmunlock;
-> > +	}
-> > +
-> > +	if (end > vas->vm_end || start < vas->vm_start) {
-> > +		err = -EINVAL;
-> > +		goto err_mmunlock;
-> > +	}
-> > +
-> > +	if (!vma_is_anonymous(vas)) {
-> > +		err = -EBUSY;
-> > +		goto err_mmunlock;
-> > +	}
-> > +
-> > +	buf = kvcalloc(npages, 2 * sizeof(*migrate.src) + sizeof(*dma_addr) +
-> > +		       sizeof(*pages), GFP_KERNEL);
-> > +	if (!buf) {
-> > +		err = -ENOMEM;
-> > +		goto err_mmunlock;
-> > +	}
-> > +	dma_addr = buf + (2 * sizeof(*migrate.src) * npages);
-> > +	pages = buf + (2 * sizeof(*migrate.src) + sizeof(*dma_addr)) * npages;
-> > +
-> > +	zdd = drm_gpusvm_zdd_alloc(gpusvm->device_private_page_owner);
-> > +	if (!zdd) {
-> > +		err = -ENOMEM;
-> > +		goto err_free;
-> > +	}
-> > +
-> > +	migrate.vma = vas;
-> > +	migrate.src = buf;
-> > +	migrate.dst = migrate.src + npages;
-> > +
-> > +	err = migrate_vma_setup(&migrate);
-> > +	if (err)
-> > +		goto err_free;
-> > +
-> > +	if (!migrate.cpages) {
-> > +		err = -EFAULT;
-> > +		goto err_free;
-> > +	}
-> > +
-> > +	if (migrate.cpages != npages) {
-> > +		err = -EBUSY;
-> > +		goto err_finalize;
-> > +	}
-> > +
-> > +	err = ops->populate_devmem_pfn(devmem_allocation, npages, migrate.dst);
-> > +	if (err)
-> > +		goto err_finalize;
-> > +
-> > +	err = drm_gpusvm_migrate_map_pages(devmem_allocation->dev, dma_addr,
-> > +					   migrate.src, npages, DMA_TO_DEVICE);
-> > +	if (err)
-> > +		goto err_finalize;
-> > +
-> > +	for (i = 0; i < npages; ++i) {
-> > +		struct page *page = pfn_to_page(migrate.dst[i]);
-> > +
-> > +		pages[i] = page;
-> > +		migrate.dst[i] = migrate_pfn(migrate.dst[i]);
-> > +		drm_gpusvm_get_devmem_page(page, zdd);
-> > +	}
-> > +
-> > +	err = ops->copy_to_devmem(pages, dma_addr, npages);
-> > +	if (err)
-> > +		goto err_finalize;
-> > +
-> > +	/* Upon success bind devmem allocation to range and zdd */
-> > +	WRITE_ONCE(zdd->devmem_allocation, devmem_allocation);	/* Owns ref */
-> > +
-> > +err_finalize:
-> > +	if (err)
-> > +		drm_gpusvm_migration_unlock_put_pages(npages, migrate.dst);
-> > +	migrate_vma_pages(&migrate);
-> > +	migrate_vma_finalize(&migrate);
-> > +	drm_gpusvm_migrate_unmap_pages(devmem_allocation->dev, dma_addr, npages,
-> > +				       DMA_TO_DEVICE);
-> > +err_free:
-> > +	if (zdd)
-> > +		drm_gpusvm_zdd_put(zdd);
-> > +	kvfree(buf);
-> > +err_mmunlock:
-> > +	mmap_read_unlock(mm);
-> > +	mmput(mm);
-> > +err_out:
-> > +	return err;
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_migrate_to_devmem);
-> > +
-> > +/**
-> > + * drm_gpusvm_migrate_populate_ram_pfn() - Populate RAM PFNs for a VM area
-> > + * @vas: Pointer to the VM area structure, can be NULL
-> > + * @fault_page: Fault page
-> > + * @npages: Number of pages to populate
-> > + * @mpages: Number of pages to migrate
-> > + * @src_mpfn: Source array of migrate PFNs
-> > + * @mpfn: Array of migrate PFNs to populate
-> > + * @addr: Start address for PFN allocation
-> > + *
-> > + * This function populates the RAM migrate page frame numbers (PFNs) for the
-> > + * specified VM area structure. It allocates and locks pages in the VM area for
-> > + * RAM usage. If vas is non-NULL use alloc_page_vma for allocation, if NULL use
-> > + * alloc_page for allocation.
-> > + *
-> > + * Returns:
-> > + * 0 on success, negative error code on failure.
-> > + */
-> > +static int drm_gpusvm_migrate_populate_ram_pfn(struct vm_area_struct *vas,
-> > +					       struct page *fault_page,
-> > +					       unsigned long npages,
-> > +					       unsigned long *mpages,
-> > +					       unsigned long *src_mpfn,
-> > +					       unsigned long *mpfn,
-> > +					       unsigned long addr)
-> > +{
-> > +	unsigned long i;
-> > +
-> > +	for (i = 0; i < npages; ++i, addr += PAGE_SIZE) {
-> > +		struct page *page, *src_page;
-> > +
-> > +		if (!(src_mpfn[i] & MIGRATE_PFN_MIGRATE))
-> > +			continue;
-> > +
-> > +		if (fault_page) {
-> > +			src_page = migrate_pfn_to_page(src_mpfn[i]);
-> > +			if (src_page->zone_device_data !=
-> > +			    fault_page->zone_device_data)
-> > +				continue;
-> > +		}
-> > +
-> > +		if (vas)
-> > +			page = alloc_page_vma(GFP_HIGHUSER, vas, addr);
-> > +		else
-> > +			page = alloc_page(GFP_HIGHUSER);
-> > +
-> > +		if (!page)
-> > +			goto free_pages;
-> > +
-> > +		mpfn[i] = migrate_pfn(page_to_pfn(page));
-> > +	}
-> > +
-> > +	for (i = 0; i < npages; ++i) {
-> > +		struct page *page = migrate_pfn_to_page(mpfn[i]);
-> > +
-> > +		if (!page)
-> > +			continue;
-> > +
-> > +		WARN_ON_ONCE(!trylock_page(page));
-> > +		++*mpages;
-> > +	}
-> > +
-> > +	return 0;
-> > +
-> > +free_pages:
-> > +	for (i = 0; i < npages; ++i) {
-> > +		struct page *page = migrate_pfn_to_page(mpfn[i]);
-> > +
-> > +		if (!page)
-> > +			continue;
-> > +
-> > +		put_page(page);
-> > +		mpfn[i] = 0;
-> > +	}
-> > +	return -ENOMEM;
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_evict_to_ram() - Evict GPU SVM range to RAM
-> > + * @devmem_allocation: Pointer to the device memory allocation
-> > + *
-> > + * Similar to __drm_gpusvm_migrate_to_ram but does not require mmap lock and
-> > + * migration done via migrate_device_* functions.
-> > + *
-> > + * Returns:
-> > + * 0 on success, negative error code on failure.
-> > + */
-> > +int drm_gpusvm_evict_to_ram(struct drm_gpusvm_devmem *devmem_allocation)
-> > +{
-> > +	const struct drm_gpusvm_devmem_ops *ops = devmem_allocation->ops;
-> > +	unsigned long npages, mpages = 0;
-> > +	struct page **pages;
-> > +	unsigned long *src, *dst;
-> > +	dma_addr_t *dma_addr;
-> > +	void *buf;
-> > +	int i, err = 0;
-> > +
-> > +	npages = devmem_allocation->size >> PAGE_SHIFT;
-> > +
-> > +retry:
-> > +	if (!mmget_not_zero(devmem_allocation->mm))
-> > +		return -EFAULT;
-> > +
-> > +	buf = kvcalloc(npages, 2 * sizeof(*src) + sizeof(*dma_addr) +
-> > +		       sizeof(*pages), GFP_KERNEL);
-> > +	if (!buf) {
-> > +		err = -ENOMEM;
-> > +		goto err_out;
-> > +	}
-> > +	src = buf;
-> > +	dst = buf + (sizeof(*src) * npages);
-> > +	dma_addr = buf + (2 * sizeof(*src) * npages);
-> > +	pages = buf + (2 * sizeof(*src) + sizeof(*dma_addr)) * npages;
-> > +
-> > +	err = ops->populate_devmem_pfn(devmem_allocation, npages, src);
-> > +	if (err)
-> > +		goto err_free;
-> > +
-> > +	err = migrate_device_pfns(src, npages);
-> > +	if (err)
-> > +		goto err_free;
-> > +
-> > +	err = drm_gpusvm_migrate_populate_ram_pfn(NULL, NULL, npages, &mpages,
-> > +						  src, dst, 0);
-> > +	if (err || !mpages)
-> > +		goto err_finalize;
-> > +
-> > +	err = drm_gpusvm_migrate_map_pages(devmem_allocation->dev, dma_addr,
-> > +					   dst, npages, DMA_FROM_DEVICE);
-> > +	if (err)
-> > +		goto err_finalize;
-> > +
-> > +	for (i = 0; i < npages; ++i)
-> > +		pages[i] = migrate_pfn_to_page(src[i]);
-> > +
-> > +	err = ops->copy_to_ram(pages, dma_addr, npages);
-> > +	if (err)
-> > +		goto err_finalize;
-> > +
-> > +err_finalize:
-> > +	if (err)
-> > +		drm_gpusvm_migration_unlock_put_pages(npages, dst);
-> > +	migrate_device_pages(src, dst, npages);
-> > +	migrate_device_finalize(src, dst, npages);
-> > +	drm_gpusvm_migrate_unmap_pages(devmem_allocation->dev, dma_addr, npages,
-> > +				       DMA_FROM_DEVICE);
-> > +err_free:
-> > +	kvfree(buf);
-> > +err_out:
-> > +	mmput_async(devmem_allocation->mm);
-> > +	if (!err && !READ_ONCE(devmem_allocation->detached)) {
-> > +		cond_resched();
-> > +		goto retry;
-> > +	}
-> > +
-> > +	return err;
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_evict_to_ram);
-> > +
-> > +/**
-> > + * __drm_gpusvm_migrate_to_ram() - Migrate GPU SVM range to RAM (internal)
-> > + * @vas: Pointer to the VM area structure
-> > + * @device_private_page_owner: Device private pages owner
-> > + * @page: Pointer to the page for fault handling (can be NULL)
-> > + * @fault_addr: Fault address
-> > + * @size: Size of migration
-> > + *
-> > + * This internal function performs the migration of the specified GPU SVM range
-> > + * to RAM. It sets up the migration, populates + dma maps RAM PFNs, and
-> > + * invokes the driver-specific operations for migration to RAM.
-> > + *
-> > + * Returns:
-> > + * 0 on success, negative error code on failure.
-> > + */
-> > +static int __drm_gpusvm_migrate_to_ram(struct vm_area_struct *vas,
-> > +				       void *device_private_page_owner,
-> > +				       struct page *page,
-> > +				       unsigned long fault_addr,
-> > +				       unsigned long size)
-> > +{
-> > +	struct migrate_vma migrate = {
-> > +		.vma		= vas,
-> > +		.pgmap_owner	= device_private_page_owner,
-> > +		.flags		= MIGRATE_VMA_SELECT_DEVICE_PRIVATE |
-> > +			MIGRATE_VMA_SELECT_DEVICE_COHERENT,
-> > +		.fault_page	= page,
-> > +	};
-> > +	struct drm_gpusvm_zdd *zdd;
-> > +	const struct drm_gpusvm_devmem_ops *ops;
-> > +	struct device *dev;
-> > +	unsigned long npages, mpages = 0;
-> > +	struct page **pages;
-> > +	dma_addr_t *dma_addr;
-> > +	unsigned long start, end;
-> > +	void *buf;
-> > +	int i, err = 0;
-> > +
-> > +	start = ALIGN_DOWN(fault_addr, size);
-> > +	end = ALIGN(fault_addr + 1, size);
-> > +
-> > +	/* Corner where VMA area struct has been partially unmapped */
-> > +	if (start < vas->vm_start)
-> > +		start = vas->vm_start;
-> > +	if (end > vas->vm_end)
-> > +		end = vas->vm_end;
-> > +
-> > +	migrate.start = start;
-> > +	migrate.end = end;
-> > +	npages = npages_in_range(start, end);
-> > +
-> > +	buf = kvcalloc(npages, 2 * sizeof(*migrate.src) + sizeof(*dma_addr) +
-> > +		       sizeof(*pages), GFP_KERNEL);
-> > +	if (!buf) {
-> > +		err = -ENOMEM;
-> > +		goto err_out;
-> > +	}
-> > +	dma_addr = buf + (2 * sizeof(*migrate.src) * npages);
-> > +	pages = buf + (2 * sizeof(*migrate.src) + sizeof(*dma_addr)) * npages;
-> > +
-> > +	migrate.vma = vas;
-> > +	migrate.src = buf;
-> > +	migrate.dst = migrate.src + npages;
-> > +
-> > +	err = migrate_vma_setup(&migrate);
-> > +	if (err)
-> > +		goto err_free;
-> > +
-> > +	/* Raced with another CPU fault, nothing to do */
-> > +	if (!migrate.cpages)
-> > +		goto err_free;
-> > +
-> > +	if (!page) {
-> > +		for (i = 0; i < npages; ++i) {
-> > +			if (!(migrate.src[i] & MIGRATE_PFN_MIGRATE))
-> > +				continue;
-> > +
-> > +			page = migrate_pfn_to_page(migrate.src[i]);
-> > +			break;
-> > +		}
-> > +
-> > +		if (!page)
-> > +			goto err_finalize;
-> If you goto to err_finalize through this error case, the uninitialized dev
-> will be passed to drm_gpusvm_migrate_unmap_pages().
-> 
+> A new hardware feature first introduced in PVC gives capability to
+> periodically sample EU stall state and record counts for different stall
+> reasons, on a per IP basis, aggregate across all EUs in a subslice and
+> record the samples in a buffer in each subslice. Eventually, the aggregat=
+ed
+> data is written out to a buffer in the memory. This feature is also
+> supported in XE2 and later architecture GPUs.
+>
+> Use an existing IOCTL - DRM_IOCTL_XE_OBSERVATION as the interface into the
+> driver from the user space to do initial setup and obtain a file descript=
+or
+> for the EU stall data stream.  Input parameter to the IOCTL is a struct
+> drm_xe_observation_param in which observation_type should be set to
+> DRM_XE_OBSERVATION_TYPE_EU_STALL, observation_op should be
+> DRM_XE_OBSERVATION_OP_STREAM_OPEN and param should point to a chain of
+> drm_xe_ext_set_property structures in which each structure has a pair of
+> property and value. The EU stall sampling input properties are defined in
+> drm_xe_eu_stall_property_id enum.
+>
+> With the file descriptor obtained from DRM_IOCTL_XE_OBSERVATION, user spa=
+ce
+> can enable and disable EU stall sampling with the IOCTLs:
+> DRM_XE_OBSERVATION_IOCTL_ENABLE and DRM_XE_OBSERVATION_IOCTL_DISABLE.
+> User space can also call poll() to check for availability of data in the
+> buffer. The data can be read with read(). Finally, the file descriptor
+> can be closed with close().
+>
+> v8: Used div_u64 instead of / to fix 32-bit build issue.
+>     Changed copyright year in xe_eu_stall.c/h to 2025.
+> v7: Renamed input property DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT
+>     to DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS to be consistent with
+>     OA. Renamed the corresponding internal variables.
+>     Fixed some commit messages based on review feedback.
+> v6: Change the input sampling rate to GPU cycles instead of
+>     GPU cycles multiplier.
+>
+> Cc: Felix Degrood <felix.j.degrood@intel.com>
+> Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile         |   1 +
+>  drivers/gpu/drm/xe/xe_eu_stall.c    | 283 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_eu_stall.h    |  12 ++
+>  drivers/gpu/drm/xe/xe_observation.c |  14 ++
+>  include/uapi/drm/xe_drm.h           |  38 ++++
+>  5 files changed, 348 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.h
+>
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 7730e0596299..259ccbb0c031 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -33,6 +33,7 @@ xe-y +=3D xe_bb.o \
+>	xe_device_sysfs.o \
+>	xe_dma_buf.o \
+>	xe_drm_client.o \
+> +	xe_eu_stall.o \
+>	xe_exec.o \
+>	xe_execlist.o \
+>	xe_exec_queue.o \
+> diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_=
+stall.c
+> new file mode 100644
+> index 000000000000..48dcc7cb7791
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+> @@ -0,0 +1,283 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =A9 2025 Intel Corporation
+> + */
+> +
+> +#include <linux/anon_inodes.h>
+> +#include <linux/types.h>
+> +#include <linux/poll.h>
+> +#include <linux/fs.h>
+> +
+> +#include <uapi/drm/xe_drm.h>
+> +
+> +#include "xe_macros.h"
+> +#include "xe_device.h"
+> +#include "xe_eu_stall.h"
+> +#include "xe_gt_printk.h"
+> +#include "xe_gt_topology.h"
+> +#include "xe_observation.h"
+> +
+> +/**
+> + * struct eu_stall_open_properties - EU stall sampling properties receiv=
+ed
+> + *				     from user space at open.
+> + * @eu_stall_sampling_rate: EU stall sampling rate multiplier.
+> + *			    HW will sample every (eu_stall_sampling_rate x 251) cycles.
+> + * @wait_num_reports: Minimum number of EU stall data reports to unblock=
+ poll().
+> + * @gt: GT on which EU stall data will be captured.
+> + */
+> +struct eu_stall_open_properties {
+> +	u8 eu_stall_sampling_rate;
+> +	u32 wait_num_reports;
 
-Yep. The code works as drm_gpusvm_migrate_unmap_pages loops over the dma
-mappings which will not exist. I suppose I could short circuit this on
-if (dev) if you prefer.
+nit but the recommendation is to just use generic types, viz 'int', unless
+you have specific needs to use u8/u32 etc.
 
-Matt
+> +	struct xe_gt *gt;
+> +};
+> +
+> +/**
+> + * num_data_rows - Return the number of EU stall data rows of 64B each
+> + *		   for a given data size.
+> + *
+> + * @data_size: EU stall data size
+> + */
+> +static inline u32
+> +num_data_rows(u32 data_size)
 
-> Br,
-> G.G.
-> > +	}
-> > +	zdd = page->zone_device_data;
-> > +	ops = zdd->devmem_allocation->ops;
-> > +	dev = zdd->devmem_allocation->dev;
-> > +
-> > +	err = drm_gpusvm_migrate_populate_ram_pfn(vas, page, npages, &mpages,
-> > +						  migrate.src, migrate.dst,
-> > +						  start);
-> > +	if (err)
-> > +		goto err_finalize;
-> > +
-> > +	err = drm_gpusvm_migrate_map_pages(dev, dma_addr, migrate.dst, npages,
-> > +					   DMA_FROM_DEVICE);
-> > +	if (err)
-> > +		goto err_finalize;
-> > +
-> > +	for (i = 0; i < npages; ++i)
-> > +		pages[i] = migrate_pfn_to_page(migrate.src[i]);
-> > +
-> > +	err = ops->copy_to_ram(pages, dma_addr, npages);
-> > +	if (err)
-> > +		goto err_finalize;
-> > +
-> > +err_finalize:
-> > +	if (err)
-> > +		drm_gpusvm_migration_unlock_put_pages(npages, migrate.dst);
-> > +	migrate_vma_pages(&migrate);
-> > +	migrate_vma_finalize(&migrate);
-> > +	drm_gpusvm_migrate_unmap_pages(dev, dma_addr, npages,
-> > +				       DMA_FROM_DEVICE);
-> > +err_free:
-> > +	kvfree(buf);
-> > +err_out:
-> > +
-> > +	return err;
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_range_evict() - Evict GPU SVM range
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @range: Pointer to the GPU SVM range to be removed
-> > + *
-> > + * This function evicts the specified GPU SVM range.
-> > + */
-> > +void drm_gpusvm_range_evict(struct drm_gpusvm *gpusvm,
-> > +			    struct drm_gpusvm_range *range)
-> > +{
-> > +	struct mm_struct *mm = gpusvm->mm;
-> > +	struct vm_area_struct *vas;
-> > +	unsigned long start = range->itree.start, end = range->itree.last + 1;
-> > +
-> > +	if (!mmget_not_zero(mm))
-> > +		return;
-> > +
-> > +	mmap_read_lock(mm);
-> > +
-> > +	/*
-> > +	 * Loop required to find all VMAs for the corner case when partial
-> > +	 * unmappings have occurred.
-> > +	 */
-> > +again:
-> > +	vas = find_vma(mm, start);
-> > +	if (!vas)
-> > +		goto unlock;
-> > +
-> > +	if (end <= vas->vm_start || start >= vas->vm_end)
-> > +		goto unlock;
-> > +
-> > +	__drm_gpusvm_migrate_to_ram(vas, gpusvm->device_private_page_owner,
-> > +				    NULL, start,
-> > +				    range->itree.last - range->itree.start + 1);
-> > +	if (vas->vm_end < end) {
-> > +		start = vas->vm_end;
-> > +		goto again;
-> > +	}
-> > +unlock:
-> > +	mmap_read_unlock(mm);
-> > +	mmput(mm);
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_range_evict);
-> > +
-> > +/**
-> > + * drm_gpusvm_page_free() - Put GPU SVM zone device data associated with a page
-> > + * @page: Pointer to the page
-> > + *
-> > + * This function is a callback used to put the GPU SVM zone device data
-> > + * associated with a page when it is being released.
-> > + */
-> > +static void drm_gpusvm_page_free(struct page *page)
-> > +{
-> > +	drm_gpusvm_zdd_put(page->zone_device_data);
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_migrate_to_ram() - Migrate GPU SVM range to RAM (page fault handler)
-> > + * @vmf: Pointer to the fault information structure
-> > + *
-> > + * This function is a page fault handler used to migrate a GPU SVM range to RAM.
-> > + * It retrieves the GPU SVM range information from the faulting page and invokes
-> > + * the internal migration function to migrate the range back to RAM.
-> > + *
-> > + * Returns:
-> > + * VM_FAULT_SIGBUS on failure, 0 on success.
-> > + */
-> > +static vm_fault_t drm_gpusvm_migrate_to_ram(struct vm_fault *vmf)
-> > +{
-> > +	struct drm_gpusvm_zdd *zdd = vmf->page->zone_device_data;
-> > +	int err;
-> > +
-> > +	err = __drm_gpusvm_migrate_to_ram(vmf->vma,
-> > +					  zdd->device_private_page_owner,
-> > +					  vmf->page, vmf->address,
-> > +					  zdd->devmem_allocation->size);
-> > +
-> > +	return err ? VM_FAULT_SIGBUS : 0;
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_pagemap_ops() - Device page map operations for GPU SVM
-> > + */
-> > +static const struct dev_pagemap_ops drm_gpusvm_pagemap_ops = {
-> > +	.page_free = drm_gpusvm_page_free,
-> > +	.migrate_to_ram = drm_gpusvm_migrate_to_ram,
-> > +};
-> > +
-> > +/**
-> > + * drm_gpusvm_pagemap_ops_get() - Retrieve GPU SVM device page map operations
-> > + *
-> > + * Returns:
-> > + * Pointer to the GPU SVM device page map operations structure.
-> > + */
-> > +const struct dev_pagemap_ops *drm_gpusvm_pagemap_ops_get(void)
-> > +{
-> > +	return &drm_gpusvm_pagemap_ops;
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_pagemap_ops_get);
-> > +
-> > +/**
-> > + * drm_gpusvm_has_mapping() - Check if GPU SVM has mapping for the given address range
-> > + * @gpusvm: Pointer to the GPU SVM structure.
-> > + * @start: Start address
-> > + * @end: End address
-> > + *
-> > + * Returns:
-> > + * True if GPU SVM has mapping, False otherwise
-> > + */
-> > +bool drm_gpusvm_has_mapping(struct drm_gpusvm *gpusvm, unsigned long start,
-> > +			    unsigned long end)
-> > +{
-> > +	struct drm_gpusvm_notifier *notifier;
-> > +
-> > +	drm_gpusvm_for_each_notifier(notifier, gpusvm, start, end) {
-> > +		struct drm_gpusvm_range *range = NULL;
-> > +
-> > +		drm_gpusvm_for_each_range(range, notifier, start, end)
-> > +			return true;
-> > +	}
-> > +
-> > +	return false;
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_has_mapping);
-> > +
-> > +/**
-> > + * drm_gpusvm_range_set_unmapped() - Mark a GPU SVM range as unmapped
-> > + * @range: Pointer to the GPU SVM range structure.
-> > + * @mmu_range: Pointer to the MMU notifier range structure.
-> > + *
-> > + * This function marks a GPU SVM range as unmapped and sets the partial_unmap flag
-> > + * if the range partially falls within the provided MMU notifier range.
-> > + */
-> > +void drm_gpusvm_range_set_unmapped(struct drm_gpusvm_range *range,
-> > +				   const struct mmu_notifier_range *mmu_range)
-> > +{
-> > +	lockdep_assert_held_write(&range->gpusvm->notifier_lock);
-> > +
-> > +	range->flags.unmapped = true;
-> > +	if (range->itree.start < mmu_range->start ||
-> > +	    range->itree.last + 1 > mmu_range->end)
-> > +		range->flags.partial_unmap = true;
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_range_set_unmapped);
-> > +
-> > +/**
-> > + * drm_gpusvm_devmem_init() - Initialize a GPU SVM device memory allocation
-> > + *
-> > + * @dev: Pointer to the device structure which device memory allocation belongs to
-> > + * @mm: Pointer to the mm_struct for the address space
-> > + * @ops: Pointer to the operations structure for GPU SVM device memory
-> > + * @dpagemap: The struct drm_pagemap we're allocating from.
-> > + * @size: Size of device memory allocation
-> > + */
-> > +void drm_gpusvm_devmem_init(struct drm_gpusvm_devmem *devmem_allocation,
-> > +			    struct device *dev, struct mm_struct *mm,
-> > +			    const struct drm_gpusvm_devmem_ops *ops,
-> > +			    struct drm_pagemap *dpagemap, size_t size)
-> > +{
-> > +	devmem_allocation->dev = dev;
-> > +	devmem_allocation->mm = mm;
-> > +	devmem_allocation->ops = ops;
-> > +	devmem_allocation->dpagemap = dpagemap;
-> > +	devmem_allocation->size = size;
-> > +}
-> > +EXPORT_SYMBOL_GPL(drm_gpusvm_devmem_init);
-> > +
-> > +MODULE_DESCRIPTION("DRM GPUSVM");
-> > +MODULE_LICENSE("GPL");
-> > diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-> > new file mode 100644
-> > index 000000000000..2fb6980d0cf1
-> > --- /dev/null
-> > +++ b/include/drm/drm_gpusvm.h
-> > @@ -0,0 +1,445 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
-> > +/*
-> > + * Copyright © 2024 Intel Corporation
-> > + */
-> > +
-> > +#ifndef __DRM_GPUSVM_H__
-> > +#define __DRM_GPUSVM_H__
-> > +
-> > +#include <linux/kref.h>
-> > +#include <linux/interval_tree.h>
-> > +#include <linux/mmu_notifier.h>
-> > +
-> > +struct dev_pagemap_ops;
-> > +struct drm_device;
-> > +struct drm_gpusvm;
-> > +struct drm_gpusvm_notifier;
-> > +struct drm_gpusvm_ops;
-> > +struct drm_gpusvm_range;
-> > +struct drm_gpusvm_devmem;
-> > +struct drm_pagemap;
-> > +struct drm_pagemap_dma_addr;
-> > +
-> > +/**
-> > + * struct drm_gpusvm_devmem_ops - Operations structure for GPU SVM device memory
-> > + *
-> > + * This structure defines the operations for GPU Shared Virtual Memory (SVM)
-> > + * device memory. These operations are provided by the GPU driver to manage device memory
-> > + * allocations and perform operations such as migration between device memory and system
-> > + * RAM.
-> > + */
-> > +struct drm_gpusvm_devmem_ops {
-> > +	/**
-> > +	 * @devmem_release: Release device memory allocation (optional)
-> > +	 * @devmem_allocation: device memory allocation
-> > +	 *
-> > +	 * Release device memory allocation and drop a reference to device
-> > +	 * memory allocation.
-> > +	 */
-> > +	void (*devmem_release)(struct drm_gpusvm_devmem *devmem_allocation);
-> > +
-> > +	/**
-> > +	 * @populate_devmem_pfn: Populate device memory PFN (required for migration)
-> > +	 * @devmem_allocation: device memory allocation
-> > +	 * @npages: Number of pages to populate
-> > +	 * @pfn: Array of page frame numbers to populate
-> > +	 *
-> > +	 * Populate device memory page frame numbers (PFN).
-> > +	 *
-> > +	 * Returns:
-> > +	 * 0 on success, a negative error code on failure.
-> > +	 */
-> > +	int (*populate_devmem_pfn)(struct drm_gpusvm_devmem *devmem_allocation,
-> > +				   unsigned long npages, unsigned long *pfn);
-> > +
-> > +	/**
-> > +	 * @copy_to_devmem: Copy to device memory (required for migration)
-> > +	 * @pages: Pointer to array of device memory pages (destination)
-> > +	 * @dma_addr: Pointer to array of DMA addresses (source)
-> > +	 * @npages: Number of pages to copy
-> > +	 *
-> > +	 * Copy pages to device memory.
-> > +	 *
-> > +	 * Returns:
-> > +	 * 0 on success, a negative error code on failure.
-> > +	 */
-> > +	int (*copy_to_devmem)(struct page **pages,
-> > +			      dma_addr_t *dma_addr,
-> > +			      unsigned long npages);
-> > +
-> > +	/**
-> > +	 * @copy_to_ram: Copy to system RAM (required for migration)
-> > +	 * @pages: Pointer to array of device memory pages (source)
-> > +	 * @dma_addr: Pointer to array of DMA addresses (destination)
-> > +	 * @npages: Number of pages to copy
-> > +	 *
-> > +	 * Copy pages to system RAM.
-> > +	 *
-> > +	 * Returns:
-> > +	 * 0 on success, a negative error code on failure.
-> > +	 */
-> > +	int (*copy_to_ram)(struct page **pages,
-> > +			   dma_addr_t *dma_addr,
-> > +			   unsigned long npages);
-> > +};
-> > +
-> > +/**
-> > + * struct drm_gpusvm_devmem - Structure representing a GPU SVM device memory allocation
-> > + *
-> > + * @dev: Pointer to the device structure which device memory allocation belongs to
-> > + * @mm: Pointer to the mm_struct for the address space
-> > + * @ops: Pointer to the operations structure for GPU SVM device memory
-> > + * @dpagemap: The struct drm_pagemap of the pages this allocation belongs to.
-> > + * @size: Size of device memory allocation
-> > + * @detached: device memory allocations is detached from device pages
-> > + */
-> > +struct drm_gpusvm_devmem {
-> > +	struct device *dev;
-> > +	struct mm_struct *mm;
-> > +	const struct drm_gpusvm_devmem_ops *ops;
-> > +	struct drm_pagemap *dpagemap;
-> > +	size_t size;
-> > +	bool detached;
-> > +};
-> > +
-> > +/**
-> > + * struct drm_gpusvm_ops - Operations structure for GPU SVM
-> > + *
-> > + * This structure defines the operations for GPU Shared Virtual Memory (SVM).
-> > + * These operations are provided by the GPU driver to manage SVM ranges and
-> > + * notifiers.
-> > + */
-> > +struct drm_gpusvm_ops {
-> > +	/**
-> > +	 * @notifier_alloc: Allocate a GPU SVM notifier (optional)
-> > +	 *
-> > +	 * Allocate a GPU SVM notifier.
-> > +	 *
-> > +	 * Returns:
-> > +	 * Pointer to the allocated GPU SVM notifier on success, NULL on failure.
-> > +	 */
-> > +	struct drm_gpusvm_notifier *(*notifier_alloc)(void);
-> > +
-> > +	/**
-> > +	 * @notifier_free: Free a GPU SVM notifier (optional)
-> > +	 * @notifier: Pointer to the GPU SVM notifier to be freed
-> > +	 *
-> > +	 * Free a GPU SVM notifier.
-> > +	 */
-> > +	void (*notifier_free)(struct drm_gpusvm_notifier *notifier);
-> > +
-> > +	/**
-> > +	 * @range_alloc: Allocate a GPU SVM range (optional)
-> > +	 * @gpusvm: Pointer to the GPU SVM
-> > +	 *
-> > +	 * Allocate a GPU SVM range.
-> > +	 *
-> > +	 * Returns:
-> > +	 * Pointer to the allocated GPU SVM range on success, NULL on failure.
-> > +	 */
-> > +	struct drm_gpusvm_range *(*range_alloc)(struct drm_gpusvm *gpusvm);
-> > +
-> > +	/**
-> > +	 * @range_free: Free a GPU SVM range (optional)
-> > +	 * @range: Pointer to the GPU SVM range to be freed
-> > +	 *
-> > +	 * Free a GPU SVM range.
-> > +	 */
-> > +	void (*range_free)(struct drm_gpusvm_range *range);
-> > +
-> > +	/**
-> > +	 * @invalidate: Invalidate GPU SVM notifier (required)
-> > +	 * @gpusvm: Pointer to the GPU SVM
-> > +	 * @notifier: Pointer to the GPU SVM notifier
-> > +	 * @mmu_range: Pointer to the mmu_notifier_range structure
-> > +	 *
-> > +	 * Invalidate the GPU page tables. It can safely walk the notifier range
-> > +	 * RB tree/list in this function. Called while holding the notifier lock.
-> > +	 */
-> > +	void (*invalidate)(struct drm_gpusvm *gpusvm,
-> > +			   struct drm_gpusvm_notifier *notifier,
-> > +			   const struct mmu_notifier_range *mmu_range);
-> > +};
-> > +
-> > +/**
-> > + * struct drm_gpusvm_notifier - Structure representing a GPU SVM notifier
-> > + *
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @notifier: MMU interval notifier
-> > + * @itree: Interval tree node for the notifier (inserted in GPU SVM)
-> > + * @entry: List entry to fast interval tree traversal
-> > + * @root: Cached root node of the RB tree containing ranges
-> > + * @range_list: List head containing of ranges in the same order they appear in
-> > + *              interval tree. This is useful to keep iterating ranges while
-> > + *              doing modifications to RB tree.
-> > + * @flags.removed: Flag indicating whether the MMU interval notifier has been
-> > + *                 removed
-> > + *
-> > + * This structure represents a GPU SVM notifier.
-> > + */
-> > +struct drm_gpusvm_notifier {
-> > +	struct drm_gpusvm *gpusvm;
-> > +	struct mmu_interval_notifier notifier;
-> > +	struct interval_tree_node itree;
-> > +	struct list_head entry;
-> > +	struct rb_root_cached root;
-> > +	struct list_head range_list;
-> > +	struct {
-> > +		u32 removed : 1;
-> > +	} flags;
-> > +};
-> > +
-> > +/**
-> > + * struct drm_gpusvm_range - Structure representing a GPU SVM range
-> > + *
-> > + * @gpusvm: Pointer to the GPU SVM structure
-> > + * @notifier: Pointer to the GPU SVM notifier
-> > + * @refcount: Reference count for the range
-> > + * @itree: Interval tree node for the range (inserted in GPU SVM notifier)
-> > + * @entry: List entry to fast interval tree traversal
-> > + * @notifier_seq: Notifier sequence number of the range's pages
-> > + * @dma_addr: DMA address array
-> > + * @dpagemap: The struct drm_pagemap of the device pages we're dma-mapping.
-> > + *            Note this is assuming only one drm_pagemap per range is allowed.
-> > + * @flags.migrate_devmem: Flag indicating whether the range can be migrated to device memory
-> > + * @flags.unmapped: Flag indicating if the range has been unmapped
-> > + * @flags.partial_unmap: Flag indicating if the range has been partially unmapped
-> > + * @flags.has_devmem_pages: Flag indicating if the range has devmem pages
-> > + * @flags.has_dma_mapping: Flag indicating if the range has a DMA mapping
-> > + *
-> > + * This structure represents a GPU SVM range used for tracking memory ranges
-> > + * mapped in a DRM device.
-> > + */
-> > +struct drm_gpusvm_range {
-> > +	struct drm_gpusvm *gpusvm;
-> > +	struct drm_gpusvm_notifier *notifier;
-> > +	struct kref refcount;
-> > +	struct interval_tree_node itree;
-> > +	struct list_head entry;
-> > +	unsigned long notifier_seq;
-> > +	struct drm_pagemap_dma_addr *dma_addr;
-> > +	struct drm_pagemap *dpagemap;
-> > +	struct {
-> > +		/* All flags below must be set upon creation */
-> > +		u16 migrate_devmem : 1;
-> > +		/* All flags below must be set / cleared under notifier lock */
-> > +		u16 unmapped : 1;
-> > +		u16 partial_unmap : 1;
-> > +		u16 has_devmem_pages : 1;
-> > +		u16 has_dma_mapping : 1;
-> > +	} flags;
-> > +};
-> > +
-> > +/**
-> > + * struct drm_gpusvm - GPU SVM structure
-> > + *
-> > + * @name: Name of the GPU SVM
-> > + * @drm: Pointer to the DRM device structure
-> > + * @mm: Pointer to the mm_struct for the address space
-> > + * @device_private_page_owner: Device private pages owner
-> > + * @mm_start: Start address of GPU SVM
-> > + * @mm_range: Range of the GPU SVM
-> > + * @notifier_size: Size of individual notifiers
-> > + * @ops: Pointer to the operations structure for GPU SVM
-> > + * @chunk_sizes: Pointer to the array of chunk sizes used in range allocation.
-> > + *               Entries should be powers of 2 in descending order.
-> > + * @num_chunks: Number of chunks
-> > + * @notifier_lock: Read-write semaphore for protecting notifier operations
-> > + * @root: Cached root node of the Red-Black tree containing GPU SVM notifiers
-> > + * @notifier_list: list head containing of notifiers in the same order they
-> > + *                 appear in interval tree. This is useful to keep iterating
-> > + *                 notifiers while doing modifications to RB tree.
-> > + *
-> > + * This structure represents a GPU SVM (Shared Virtual Memory) used for tracking
-> > + * memory ranges mapped in a DRM (Direct Rendering Manager) device.
-> > + *
-> > + * No reference counting is provided, as this is expected to be embedded in the
-> > + * driver VM structure along with the struct drm_gpuvm, which handles reference
-> > + * counting.
-> > + */
-> > +struct drm_gpusvm {
-> > +	const char *name;
-> > +	struct drm_device *drm;
-> > +	struct mm_struct *mm;
-> > +	void *device_private_page_owner;
-> > +	unsigned long mm_start;
-> > +	unsigned long mm_range;
-> > +	unsigned long notifier_size;
-> > +	const struct drm_gpusvm_ops *ops;
-> > +	const unsigned long *chunk_sizes;
-> > +	int num_chunks;
-> > +	struct rw_semaphore notifier_lock;
-> > +	struct rb_root_cached root;
-> > +	struct list_head notifier_list;
-> > +#ifdef CONFIG_LOCKDEP
-> > +	/**
-> > +	 * @lock_dep_map: Annotates drm_gpusvm_range_find_or_insert and
-> > +	 * drm_gpusvm_range_remove with a driver provided lock.
-> > +	 */
-> > +	struct lockdep_map *lock_dep_map;
-> > +#endif
-> > +};
-> > +
-> > +/**
-> > + * struct drm_gpusvm_ctx - DRM GPU SVM context
-> > + *
-> > + * @check_pages_threshold: Check CPU pages for present if chunk is less than or
-> > + *                         equal to threshold. If not present, reduce chunk
-> > + *                         size.
-> > + * @in_notifier: entering from a MMU notifier
-> > + * @read_only: operating on read-only memory
-> > + * @devmem_possible: possible to use device memory
-> > + *
-> > + * Context that is DRM GPUSVM is operating in (i.e. user arguments).
-> > + */
-> > +struct drm_gpusvm_ctx {
-> > +	unsigned long check_pages_threshold;
-> > +	unsigned int in_notifier :1;
-> > +	unsigned int read_only :1;
-> > +	unsigned int devmem_possible :1;
-> > +};
-> > +
-> > +int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
-> > +		    const char *name, struct drm_device *drm,
-> > +		    struct mm_struct *mm, void *device_private_page_owner,
-> > +		    unsigned long mm_start, unsigned long mm_range,
-> > +		    unsigned long notifier_size,
-> > +		    const struct drm_gpusvm_ops *ops,
-> > +		    const unsigned long *chunk_sizes, int num_chunks);
-> > +
-> > +void drm_gpusvm_fini(struct drm_gpusvm *gpusvm);
-> > +
-> > +void drm_gpusvm_free(struct drm_gpusvm *gpusvm);
-> > +
-> > +struct drm_gpusvm_range *
-> > +drm_gpusvm_range_find_or_insert(struct drm_gpusvm *gpusvm,
-> > +				unsigned long fault_addr,
-> > +				unsigned long gpuva_start,
-> > +				unsigned long gpuva_end,
-> > +				const struct drm_gpusvm_ctx *ctx);
-> > +
-> > +void drm_gpusvm_range_remove(struct drm_gpusvm *gpusvm,
-> > +			     struct drm_gpusvm_range *range);
-> > +
-> > +void drm_gpusvm_range_evict(struct drm_gpusvm *gpusvm,
-> > +			    struct drm_gpusvm_range *range);
-> > +
-> > +struct drm_gpusvm_range *
-> > +drm_gpusvm_range_get(struct drm_gpusvm_range *range);
-> > +
-> > +void drm_gpusvm_range_put(struct drm_gpusvm_range *range);
-> > +
-> > +bool drm_gpusvm_range_pages_valid(struct drm_gpusvm *gpusvm,
-> > +				  struct drm_gpusvm_range *range);
-> > +
-> > +int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
-> > +			       struct drm_gpusvm_range *range,
-> > +			       const struct drm_gpusvm_ctx *ctx);
-> > +
-> > +void drm_gpusvm_range_unmap_pages(struct drm_gpusvm *gpusvm,
-> > +				  struct drm_gpusvm_range *range,
-> > +				  const struct drm_gpusvm_ctx *ctx);
-> > +
-> > +int drm_gpusvm_migrate_to_devmem(struct drm_gpusvm *gpusvm,
-> > +				 struct drm_gpusvm_range *range,
-> > +				 struct drm_gpusvm_devmem *devmem_allocation,
-> > +				 const struct drm_gpusvm_ctx *ctx);
-> > +
-> > +int drm_gpusvm_evict_to_ram(struct drm_gpusvm_devmem *devmem_allocation);
-> > +
-> > +const struct dev_pagemap_ops *drm_gpusvm_pagemap_ops_get(void);
-> > +
-> > +bool drm_gpusvm_has_mapping(struct drm_gpusvm *gpusvm, unsigned long start,
-> > +			    unsigned long end);
-> > +
-> > +struct drm_gpusvm_range *
-> > +drm_gpusvm_range_find(struct drm_gpusvm_notifier *notifier, unsigned long start,
-> > +		      unsigned long end);
-> > +
-> > +void drm_gpusvm_range_set_unmapped(struct drm_gpusvm_range *range,
-> > +				   const struct mmu_notifier_range *mmu_range);
-> > +
-> > +void drm_gpusvm_devmem_init(struct drm_gpusvm_devmem *devmem_allocation,
-> > +			    struct device *dev, struct mm_struct *mm,
-> > +			    const struct drm_gpusvm_devmem_ops *ops,
-> > +			    struct drm_pagemap *dpagemap, size_t size);
-> > +
-> > +#ifdef CONFIG_LOCKDEP
-> > +/**
-> > + * drm_gpusvm_driver_set_lock() - Set the lock protecting accesses to GPU SVM
-> > + * @gpusvm: Pointer to the GPU SVM structure.
-> > + * @lock: the lock used to protect the gpuva list. The locking primitive
-> > + * must contain a dep_map field.
-> > + *
-> > + * Call this to annotate drm_gpusvm_range_find_or_insert and
-> > + * drm_gpusvm_range_remove.
-> > + */
-> > +#define drm_gpusvm_driver_set_lock(gpusvm, lock) \
-> > +	do { \
-> > +		if (!WARN((gpusvm)->lock_dep_map, \
-> > +			  "GPUSVM range lock should be set only once."))\
-> > +			(gpusvm)->lock_dep_map = &(lock)->dep_map;	\
-> > +	} while (0)
-> > +#define drm_gpusvm_driver_lock_held(gpusvm) \
-> > +	do { \
-> > +		if ((gpusvm)->lock_dep_map)	\
-> > +			lock_is_held((gpusvm)->lock_dep_map);	\
-> > +	} while (0)
-> > +#else
-> > +#define drm_gpusvm_driver_set_lock(gpusvm, lock) do {} while (0)
-> > +#define drm_gpusvm_driver_lock_held(gpusvm) do {} while (0)
-> > +#endif
-> > +
-> > +/**
-> > + * drm_gpusvm_notifier_lock() - Lock GPU SVM notifier
-> > + * @gpusvm__: Pointer to the GPU SVM structure.
-> > + *
-> > + * Abstract client usage GPU SVM notifier lock, take lock
-> > + */
-> > +#define drm_gpusvm_notifier_lock(gpusvm__)	\
-> > +	down_read(&(gpusvm__)->notifier_lock)
-> > +
-> > +/**
-> > + * drm_gpusvm_notifier_unlock() - Unlock GPU SVM notifier
-> > + * @gpusvm__: Pointer to the GPU SVM structure.
-> > + *
-> > + * Abstract client usage GPU SVM notifier lock, drop lock
-> > + */
-> > +#define drm_gpusvm_notifier_unlock(gpusvm__)	\
-> > +	up_read(&(gpusvm__)->notifier_lock)
-> > +
-> > +/**
-> > + * __drm_gpusvm_range_next() - Get the next GPU SVM range in the list
-> > + * @range: a pointer to the current GPU SVM range
-> > + *
-> > + * Return: A pointer to the next drm_gpusvm_range if available, or NULL if the
-> > + *         current range is the last one or if the input range is NULL.
-> > + */
-> > +static inline struct drm_gpusvm_range *
-> > +__drm_gpusvm_range_next(struct drm_gpusvm_range *range)
-> > +{
-> > +	if (range && !list_is_last(&range->entry,
-> > +				   &range->notifier->range_list))
-> > +		return list_next_entry(range, entry);
-> > +
-> > +	return NULL;
-> > +}
-> > +
-> > +/**
-> > + * drm_gpusvm_for_each_range() - Iterate over GPU SVM ranges in a notifier
-> > + * @range__: Iterator variable for the ranges. If set, it indicates the start of
-> > + *	     the iterator. If NULL, call drm_gpusvm_range_find() to get the range.
-> > + * @notifier__: Pointer to the GPU SVM notifier
-> > + * @start__: Start address of the range
-> > + * @end__: End address of the range
-> > + *
-> > + * This macro is used to iterate over GPU SVM ranges in a notifier. It is safe
-> > + * to use while holding the driver SVM lock or the notifier lock.
-> > + */
-> > +#define drm_gpusvm_for_each_range(range__, notifier__, start__, end__)	\
-> > +	for ((range__) = (range__) ?:					\
-> > +	     drm_gpusvm_range_find((notifier__), (start__), (end__));	\
-> > +	     (range__) && (range__->itree.start < (end__));		\
-> > +	     (range__) = __drm_gpusvm_range_next(range__))
-> > +
-> > +#endif /* __DRM_GPUSVM_H__ */
-> 
+Remove inline, put on a single line.
+
+Is something like num_cachelines() a better name?
+
+> +{
+> +	return (data_size >> 6);
+> +}
+> +
+> +static int set_prop_eu_stall_sampling_rate(struct xe_device *xe, u64 val=
+ue,
+> +					   struct eu_stall_open_properties *props)
+> +{
+> +	value =3D div_u64(value, 251);
+> +	if (value =3D=3D 0 || value > 7) {
+> +		drm_dbg(&xe->drm, "Invalid EU stall sampling rate %llu\n", value);
+> +		return -EINVAL;
+> +	}
+> +	props->eu_stall_sampling_rate =3D value;
+> +	return 0;
+> +}
+> +
+> +static int set_prop_eu_stall_wait_num_reports(struct xe_device *xe, u64 =
+value,
+> +					      struct eu_stall_open_properties *props)
+> +{
+> +	u32 max_wait_num_reports;
+> +
+> +	max_wait_num_reports =3D num_data_rows(SZ_512K * XE_MAX_DSS_FUSE_BITS);
+
+Can't we just add the final function to this patch?
+
+        max_wait_num_reports =3D num_data_rows(per_xecore_buf_size * XE_MAX=
+_DSS_FUSE_BITS);
+
+> +	if (value =3D=3D 0 || value > max_wait_num_reports) {
+> +		drm_dbg(&xe->drm, "Invalid EU stall event report count %llu\n", value);
+> +		drm_dbg(&xe->drm, "Minimum event report count is 1, maximum is %u\n",
+> +			max_wait_num_reports);
+> +		return -EINVAL;
+> +	}
+> +	props->wait_num_reports =3D value;
+> +	return 0;
+> +}
+> +
+> +static int set_prop_eu_stall_gt_id(struct xe_device *xe, u64 value,
+> +				   struct eu_stall_open_properties *props)
+> +{
+> +	if (value >=3D xe->info.gt_count) {
+> +		drm_dbg(&xe->drm, "Invalid GT ID %llu for EU stall sampling\n", value);
+> +		return -EINVAL;
+> +	}
+> +	props->gt =3D xe_device_get_gt(xe, value);
+> +	return 0;
+> +}
+> +
+> +typedef int (*set_eu_stall_property_fn)(struct xe_device *xe, u64 value,
+> +					struct eu_stall_open_properties *props);
+> +
+> +static const set_eu_stall_property_fn xe_set_eu_stall_property_funcs[] =
+=3D {
+> +	[DRM_XE_EU_STALL_PROP_SAMPLE_RATE] =3D set_prop_eu_stall_sampling_rate,
+> +	[DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS] =3D set_prop_eu_stall_wait_num_=
+reports,
+> +	[DRM_XE_EU_STALL_PROP_GT_ID] =3D set_prop_eu_stall_gt_id,
+> +};
+> +
+> +static int xe_eu_stall_user_ext_set_property(struct xe_device *xe, u64 e=
+xtension,
+> +					     struct eu_stall_open_properties *props)
+> +{
+> +	u64 __user *address =3D u64_to_user_ptr(extension);
+> +	struct drm_xe_ext_set_property ext;
+> +	int err;
+> +	u32 idx;
+> +
+> +	err =3D __copy_from_user(&ext, address, sizeof(ext));
+> +	if (XE_IOCTL_DBG(xe, err))
+> +		return -EFAULT;
+> +
+> +	if (XE_IOCTL_DBG(xe, ext.property >=3D ARRAY_SIZE(xe_set_eu_stall_prope=
+rty_funcs)) ||
+> +	    XE_IOCTL_DBG(xe, ext.pad))
+> +		return -EINVAL;
+> +
+> +	idx =3D array_index_nospec(ext.property, ARRAY_SIZE(xe_set_eu_stall_pro=
+perty_funcs));
+> +	return xe_set_eu_stall_property_funcs[idx](xe, ext.value, props);
+> +}
+> +
+> +typedef int (*xe_eu_stall_user_extension_fn)(struct xe_device *xe, u64 e=
+xtension,
+> +					     struct eu_stall_open_properties *props);
+> +static const xe_eu_stall_user_extension_fn xe_eu_stall_user_extension_fu=
+ncs[] =3D {
+> +	[DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY] =3D xe_eu_stall_user_ext_set_p=
+roperty,
+> +};
+> +
+> +static int xe_eu_stall_user_extensions(struct xe_device *xe, u64 extensi=
+on,
+> +				       struct eu_stall_open_properties *props)
+> +{
+> +	u64 __user *address =3D u64_to_user_ptr(extension);
+> +	struct drm_xe_user_extension ext;
+> +	int err;
+> +	u32 idx;
+> +
+> +	err =3D __copy_from_user(&ext, address, sizeof(ext));
+> +	if (XE_IOCTL_DBG(xe, err))
+> +		return -EFAULT;
+> +
+> +	if (XE_IOCTL_DBG(xe, ext.pad) ||
+> +	    XE_IOCTL_DBG(xe, ext.name >=3D ARRAY_SIZE(xe_eu_stall_user_extensio=
+n_funcs)))
+> +		return -EINVAL;
+> +
+> +	idx =3D array_index_nospec(ext.name, ARRAY_SIZE(xe_eu_stall_user_extens=
+ion_funcs));
+> +	err =3D xe_eu_stall_user_extension_funcs[idx](xe, extension, props);
+> +	if (XE_IOCTL_DBG(xe, err))
+> +		return err;
+> +
+> +	if (ext.next_extension)
+> +		return xe_eu_stall_user_extensions(xe, ext.next_extension, props);
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * xe_eu_stall_stream_read - handles userspace read() of a EU stall data=
+ stream fd.
+> + *
+> + * @file: An xe EU stall data stream file
+> + * @buf: destination buffer given by userspace
+> + * @count: the number of bytes userspace wants to read
+> + * @ppos: (inout) file seek position (unused)
+> + *
+> + * Userspace must enable the EU stall stream with DRM_XE_OBSERVATION_IOC=
+TL_ENABLE
+> + * before calling read().
+> + *
+> + * Returns: The number of bytes copied or a negative error code on failu=
+re.
+> + */
+> +static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *b=
+uf,
+> +				       size_t count, loff_t *ppos)
+> +{
+> +	ssize_t ret =3D 0;
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * xe_eu_stall_stream_poll - handles userspace poll() of a EU stall data=
+ stream fd.
+> + *
+> + * @file: An xe EU stall data stream file
+> + * @wait: Poll table
+> + *
+> + * Returns: Bit mask of returned events.
+> + */
+> +static __poll_t
+> +xe_eu_stall_stream_poll(struct file *file, poll_table *wait)
+> +{
+> +	__poll_t ret =3D 0;
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * xe_eu_stall_stream_ioctl - support ioctl() of a xe EU stall data stre=
+am fd.
+> + *
+> + * @file: An xe EU stall data stream file
+> + * @cmd: the ioctl request
+> + * @arg: the ioctl data
+> + *
+> + * Returns: zero on success or a negative error code.
+> + *	    -EINVAL for an unknown ioctl request.
+> + */
+
+What is the purpose of providing documenatation for static functions, such
+as the functions above? There is no useful information in such
+documentation at all.
+
+Let's save some lines of code and vertical real estate and provide
+documenation only for functions which are exposed in a .h. Unless there is
+a "real" reason for providing documentation for something.
+
+> +static long xe_eu_stall_stream_ioctl(struct file *file,
+> +				     unsigned int cmd,
+> +				     unsigned long arg)
+> +{
+> +	switch (cmd) {
+> +	case DRM_XE_OBSERVATION_IOCTL_ENABLE:
+> +		return 0;
+> +	case DRM_XE_OBSERVATION_IOCTL_DISABLE:
+> +		return 0;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +/**
+> + * xe_eu_stall_stream_close - handles userspace close() of a EU stall da=
+ta
+> + *			      stream file.
+> + * @inode: anonymous inode associated with file
+> + * @file: An xe EU stall data stream file
+> + *
+> + * Cleans up any resources associated with an open EU stall data stream =
+file.
+> + */
+> +static int xe_eu_stall_stream_close(struct inode *inode, struct file *fi=
+le)
+> +{
+> +	return 0;
+> +}
+> +
+
+Not sure why you've introduced these empty functions in this patch, they
+should just be introduced in later patches where they have valid bodies.
+
+The idea is that the initial patches should just add lines of code, not
+remove lines of code. If you see the initial OA patches, there is not even
+a single line of deleted code:
+
+	git log --stat 67977882a2f1..392bf22238ff
+
+Don't worry about adding a few lines of code to the later patches.
+
+Anyway I don't want you to spend too much time changing patches again, so
+I'm ok leaving things as is too. Just let me know if it's going to be a
+problem and what you prefer. I am just letting you know what the preferred
+practice is.
+
+> +static const struct file_operations fops_eu_stall =3D {
+> +	.owner		=3D THIS_MODULE,
+> +	.llseek		=3D noop_llseek,
+> +	.release	=3D xe_eu_stall_stream_close,
+> +	.poll		=3D xe_eu_stall_stream_poll,
+> +	.read		=3D xe_eu_stall_stream_read,
+> +	.unlocked_ioctl =3D xe_eu_stall_stream_ioctl,
+> +	.compat_ioctl   =3D xe_eu_stall_stream_ioctl,
+> +};
+> +
+> +static inline bool has_eu_stall_sampling_support(struct xe_device *xe)
+> +{
+> +	return false;
+> +}
+> +
+> +/**
+> + * xe_eu_stall_stream_open - Open a xe EU stall data stream fd
+> + *
+> + * @dev: DRM device pointer
+> + * @data: pointer to first struct @drm_xe_ext_set_property in
+> + *	  the chain of input properties from the user space.
+> + * @file: DRM file pointer
+> + *
+> + * This function opens a EU stall data stream with input properties from
+> + * the user space.
+> + *
+> + * Returns: EU stall data stream fd on success or a negative error code.
+> + */
+> +int xe_eu_stall_stream_open(struct drm_device *dev,
+> +			    u64 data,
+> +			    struct drm_file *file)
+> +{
+> +	struct xe_device *xe =3D to_xe_device(dev);
+> +	struct eu_stall_open_properties props;
+> +	int ret, stream_fd;
+> +
+> +	memset(&props, 0, sizeof(struct eu_stall_open_properties));
+
+struct eu_stall_open_properties props =3D {};
+
+> +
+> +	ret =3D xe_eu_stall_user_extensions(xe, data, &props);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!props.gt) {
+> +		drm_dbg(&xe->drm, "GT ID not provided for EU stall sampling\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (xe_observation_paranoid && !perfmon_capable()) {
+> +		xe_gt_dbg(props.gt, "Insufficient privileges for EU stall monitoring\n=
+");
+> +		return -EACCES;
+> +	}
+
+This check should be the first check right at the top of the function.
+
+> +
+> +	if (!has_eu_stall_sampling_support(xe)) {
+> +		xe_gt_dbg(props.gt, "EU stall monitoring is not supported on this plat=
+form\n");
+> +		return -EPERM;
+> +	}
+> +	stream_fd =3D anon_inode_getfd("[xe_eu_stall]", &fops_eu_stall,
+> +				     NULL, 0);
+
+Move to previous line, lines can be upto 100 char in length..
+
+> +	if (stream_fd < 0)
+> +		xe_gt_dbg(props.gt, "EU stall inode get fd failed : %d\n", stream_fd);
+> +
+> +	return stream_fd;
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_eu_stall.h b/drivers/gpu/drm/xe/xe_eu_=
+stall.h
+> new file mode 100644
+> index 000000000000..3447958a7a22
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_eu_stall.h
+> @@ -0,0 +1,12 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright =A9 2025 Intel Corporation
+> + */
+> +
+> +#ifndef __XE_EU_STALL_H__
+> +#define __XE_EU_STALL_H__
+> +
+> +int xe_eu_stall_stream_open(struct drm_device *dev,
+> +			    u64 data,
+> +			    struct drm_file *file);
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_observation.c b/drivers/gpu/drm/xe/xe_=
+observation.c
+> index 8ec1b84cbb9e..cca661de60ac 100644
+> --- a/drivers/gpu/drm/xe/xe_observation.c
+> +++ b/drivers/gpu/drm/xe/xe_observation.c
+> @@ -9,6 +9,7 @@
+>  #include <uapi/drm/xe_drm.h>
+>
+>  #include "xe_oa.h"
+> +#include "xe_eu_stall.h"
+>  #include "xe_observation.h"
+>
+>  u32 xe_observation_paranoid =3D true;
+> @@ -29,6 +30,17 @@ static int xe_oa_ioctl(struct drm_device *dev, struct =
+drm_xe_observation_param *
+>	}
+>  }
+>
+> +static int xe_eu_stall_ioctl(struct drm_device *dev, struct drm_xe_obser=
+vation_param *arg,
+> +			     struct drm_file *file)
+> +{
+> +	switch (arg->observation_op) {
+> +	case DRM_XE_OBSERVATION_OP_STREAM_OPEN:
+> +		return xe_eu_stall_stream_open(dev, arg->param, file);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+>  /**
+>   * xe_observation_ioctl - The top level observation layer ioctl
+>   * @dev: @drm_device
+> @@ -51,6 +63,8 @@ int xe_observation_ioctl(struct drm_device *dev, void *=
+data, struct drm_file *fi
+>	switch (arg->observation_type) {
+>	case DRM_XE_OBSERVATION_TYPE_OA:
+>		return xe_oa_ioctl(dev, arg, file);
+> +	case DRM_XE_OBSERVATION_TYPE_EU_STALL:
+> +		return xe_eu_stall_ioctl(dev, arg, file);
+>	default:
+>		return -EINVAL;
+>	}
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index f62689ca861a..d9b20afc57c1 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -1397,6 +1397,8 @@ struct drm_xe_wait_user_fence {
+>  enum drm_xe_observation_type {
+>	/** @DRM_XE_OBSERVATION_TYPE_OA: OA observation stream type */
+>	DRM_XE_OBSERVATION_TYPE_OA,
+> +	/** @DRM_XE_OBSERVATION_TYPE_EU_STALL: EU stall sampling observation st=
+ream type */
+> +	DRM_XE_OBSERVATION_TYPE_EU_STALL,
+>  };
+>
+>  /**
+> @@ -1729,6 +1731,42 @@ struct drm_xe_oa_stream_info {
+>	__u64 reserved[3];
+>  };
+>
+> +/**
+> + * enum drm_xe_eu_stall_property_id - EU stall sampling input property i=
+ds.
+> + *
+> + * These properties are passed to the driver at open as a chain of
+> + * @drm_xe_ext_set_property structures with @property set to these
+> + * properties' enums and @value set to the corresponding values of these
+> + * properties. @drm_xe_user_extension base.name should be set to
+> + * @DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY.
+> + *
+> + * With the file descriptor obtained from open, user space must enable
+> + * the EU stall stream fd with @DRM_XE_OBSERVATION_IOCTL_ENABLE before
+> + * calling read(). EIO errno from read() indicates HW dropped data
+> + * due to full buffer.
+> + */
+> +enum drm_xe_eu_stall_property_id {
+> +#define DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY		0
+> +	/**
+> +	 * @DRM_XE_EU_STALL_PROP_GT_ID: @gt_id of the GT on which
+> +	 * EU stall data will be captured.
+> +	 */
+> +	DRM_XE_EU_STALL_PROP_GT_ID =3D 1,
+> +
+> +	/**
+> +	 * @DRM_XE_EU_STALL_PROP_SAMPLE_RATE: Sampling rate
+> +	 * in GPU cycles.
+> +	 */
+> +	DRM_XE_EU_STALL_PROP_SAMPLE_RATE,
+> +
+> +	/**
+> +	 * @DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS: Minimum number of
+> +	 * EU stall data reports to be present in the kernel buffer
+> +	 * before unblocking poll or read that is blocked.
+> +	 */
+> +	DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS,
+> +};
+> +
+>  #if defined(__cplusplus)
+>  }
+>  #endif
+> --
+> 2.47.1
+>
