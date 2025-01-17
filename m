@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67309C02183
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 05:18:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7565AC02183
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 05:23:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A21410EA51;
-	Fri, 17 Jan 2025 05:18:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k+YzsuDz";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32C2010EA4E;
- Fri, 17 Jan 2025 05:18:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737091111; x=1768627111;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ytAgTvNOX7ouxRU6hzJATf6e5YrhIiozfA2CT0SfFG8=;
- b=k+YzsuDzoBQx+EyRTOmJfJiAe0cmiVdbm9XMYK2BzcvYVm8BlrvxoMVd
- SxUG3GaMDDnePaDr8t+RHBUv4fnpz8b1joF8cCWma5ELh9IAfOp0MSsnQ
- jVEyQo558oL+XgKFDKf3PdyrCMKpI7t5S+VLlUijsyNjHzUxo+SeMvR0A
- eqX83ZuOUpVF2VT5JIaK5L46j1RQtkkkp8uN69pkB62B649s/04kFIiZG
- oZl0zQHJ96kWuRTgeX0hjwZoI2z2r8Vdhgu7vdFr0DDzmuwaQklgC1o3H
- GyQMRD+tF/jhytjZr0HzgPrkC9kK0nhfQZ3ijmeC3aHaMjeKGwpmllOTm g==;
-X-CSE-ConnectionGUID: l6QislPcQ0uIKNq0+5vYPw==
-X-CSE-MsgGUID: AV78Vi5HRV2wrdgiI++T6Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="48930097"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="48930097"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 21:18:31 -0800
-X-CSE-ConnectionGUID: R+QqfdAcT66MXq/28hg0Ug==
-X-CSE-MsgGUID: BMURu18OT1qx7tsp4DsHMA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="105546910"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 21:18:29 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2] drm/i915/dp: Correct max compressed bpp bounds by using
- link bpp
-Date: Fri, 17 Jan 2025 10:37:13 +0530
-Message-ID: <20250117050713.152012-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4085110EA51;
+	Fri, 17 Jan 2025 05:23:27 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB7E910EA52;
+ Fri, 17 Jan 2025 05:23:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/hdcp=3A_Use_correct_f?=
+ =?utf-8?q?unction_to_check_if_encoder_is_HDMI_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 17 Jan 2025 05:23:25 -0000
+Message-ID: <173709140582.574234.16695564320636522330@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250117041247.1084381-1-suraj.kandpal@intel.com>
+In-Reply-To: <20250117041247.1084381-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,58 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While setting the bounds for compressed bpp, we ensure that the
-compressed bpp is less than the pipe bpp.
+== Series Details ==
 
-This causes an issue with the 420 output format, where the effective
-link bpp (or output bpp) is half that of the pipe bpp. Therefore instead
-of using pipe bpp, use the output bpp to set the bounds for the
-compressed bpp.
+Series: drm/i915/hdcp: Use correct function to check if encoder is HDMI (rev3)
+URL   : https://patchwork.freedesktop.org/series/143580/
+State : success
 
-v2: Use identifier output_bpp instead of link_bpp (Imre)
+== Summary ==
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/kernel/
+lib/modules/6.13.0-rc7-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc7-xe+/kernel/block/
+lib/modules/6.13.0-rc7-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc7-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc7-xe+/build
+lib/modules/6.13.0-rc7-xe+/modules.alias.bin
+lib/modules/6.13.0-rc7-xe+/modules.builtin
+lib/modules/6.13.0-rc7-xe+/modules.softdep
+lib/modules/6.13.0-rc7-xe+/modules.alias
+lib/modules/6.13.0-rc7-xe+/modules.order
+lib/modules/6.13.0-rc7-xe+/modules.symbols
+lib/modules/6.13.0-rc7-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1737091395:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1737091395:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 1ad25c37f3c2..f390216824cd 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2068,9 +2068,10 @@ icl_dsc_compute_link_config(struct intel_dp *intel_dp,
- 			    int timeslots)
- {
- 	int i, ret;
-+	int output_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
- 
- 	/* Compressed BPP should be less than the Input DSC bpp */
--	dsc_max_bpp = min(dsc_max_bpp, pipe_bpp - 1);
-+	dsc_max_bpp = min(dsc_max_bpp, output_bpp - 1);
- 
- 	for (i = 0; i < ARRAY_SIZE(valid_dsc_bpp); i++) {
- 		if (valid_dsc_bpp[i] < dsc_min_bpp)
-@@ -2111,6 +2112,7 @@ xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	u8 bppx16_incr = drm_dp_dsc_sink_bpp_incr(connector->dp.dsc_dpcd);
-+	int output_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
- 	u16 compressed_bppx16;
- 	u8 bppx16_step;
- 	int ret;
-@@ -2121,7 +2123,7 @@ xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
- 		bppx16_step = 16 / bppx16_incr;
- 
- 	/* Compressed BPP should be less than the Input DSC bpp */
--	dsc_max_bpp = min(dsc_max_bpp << 4, (pipe_bpp << 4) - bppx16_step);
-+	dsc_max_bpp = min(dsc_max_bpp << 4, (output_bpp << 4) - bppx16_step);
- 	dsc_min_bpp = dsc_min_bpp << 4;
- 
- 	for (compressed_bppx16 = dsc_max_bpp;
--- 
-2.45.2
 
