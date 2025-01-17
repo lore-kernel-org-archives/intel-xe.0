@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A642FC0218A
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 07:47:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A420C02183
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 07:47:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E09310EA83;
-	Fri, 17 Jan 2025 07:47:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19BE510EA82;
+	Fri, 17 Jan 2025 07:47:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MXH9zgwq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VqEIhU1G";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2CA410EA7D
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Jan 2025 07:47:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AE2310EA81
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Jan 2025 07:47:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737100058; x=1768636058;
+ t=1737100061; x=1768636061;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=GwFBFf1TyTZ/tKM1emj2QXoeiWqsNEUyH3tIUQNn82g=;
- b=MXH9zgwqAQbuFRjeajyhQuRGAPmEJCuST41SRkQ26Fe1s3UGSIFw5Izq
- IjbeLkrDMD70h2RDC/CEzJ0nGzmi56doPG7/pY9U73lYQj9apHzm/oCCX
- 1pAUBfg1uYLjE0qL9pRozw3kioP7RlCPoEnKEnvYxteemFpuPNX4ovPZE
- cJYdcziDsmGtXfVD6e1o69UAs6QXIg+gxDGPn0pt7RRrDgC1eYuq6QUbS
- eI2zo0IAuQoc/AaSuUSeP+F5iLqFVAHYCMPLAe04BCvd3PipuJGXFzOR+
- A1FWAb2z0m2ENRuX+ErRO3V/8hfUaXz60zR3janD1CNXP7fO6I8FPCPyP g==;
-X-CSE-ConnectionGUID: sGbez5YlSJClm+zXG6UVHA==
-X-CSE-MsgGUID: /nkVIDJ2TUu4llq5lQ4l0Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="37760748"
-X-IronPort-AV: E=Sophos;i="6.13,211,1732608000"; d="scan'208";a="37760748"
+ bh=3Nxakm7tIHIt8qjf6Ssycd8dx3NMvW9TJ20XC3Q+lOw=;
+ b=VqEIhU1G/8cedamBprW76Ml2/UJMpxeU9KGKp0UO2cvrzO4CXG9UuP1D
+ IK1vcsrlSQpHqpsmDSx1oCvgFc1tDLb8SkA49Hn1k0kaDN9BQpjh0O1ea
+ yBBtWNrnHPWHka2IZdIbCFCliEgfc58V5j05NMZYLggPAZhRGLnrmV7Mf
+ 6yK1q39GYkzUYOSPFu2u+ljyiJ1yaRQgV+BndukUk8t9K45OqKErPLfrk
+ wPGnZ68CIipZC3SyJoriNpe5zVW8fk0rIjYqpzrTEwPglQkj4eZMdmdOQ
+ R5No9u3IeVzTDXI3QPdUn6I2U9LZVeac2aqugSo3uMnvMCY/ImjFd/RCD Q==;
+X-CSE-ConnectionGUID: tMALaza9TKCxXzQW8+dqgg==
+X-CSE-MsgGUID: vykL2TTsS1iwCUUGMhEX5w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="37760755"
+X-IronPort-AV: E=Sophos;i="6.13,211,1732608000"; d="scan'208";a="37760755"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 23:47:37 -0800
-X-CSE-ConnectionGUID: Oj7je2IaQzKggMYjBpHXTQ==
-X-CSE-MsgGUID: 7qsKAE0dSvOftoZB7w1z9Q==
+ 16 Jan 2025 23:47:41 -0800
+X-CSE-ConnectionGUID: d+v3QyoBQOCX4qioiXaDsA==
+X-CSE-MsgGUID: M3TnvHtJSA+qIMS2+KCJUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,211,1732608000"; d="scan'208";a="105687938"
+X-IronPort-AV: E=Sophos;i="6.13,211,1732608000"; d="scan'208";a="105687949"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa007.fm.intel.com with ESMTP; 16 Jan 2025 23:47:37 -0800
+ by fmviesa007.fm.intel.com with ESMTP; 16 Jan 2025 23:47:40 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 3/7] drm/i915/scaler: Refactor max_scale computation
-Date: Fri, 17 Jan 2025 13:14:17 +0530
-Message-ID: <20250117074422.3965519-4-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v7 6/7] drm/i915/scaler: Check if vblank is sufficient for
+ scaler
+Date: Fri, 17 Jan 2025 13:14:20 +0530
+Message-ID: <20250117074422.3965519-7-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250117074422.3965519-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20250117074422.3965519-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -64,106 +65,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Refactor max scaling factor computation into a reusable
-function for scalers.
+High refresh rate panels which may have small line times
+and vblank sizes, Check if vblank size is sufficient for
+enabled scaler users.
 
 --v2:
-- Add missing comment. [Ankit]
+- Use hweight* family of functions for counting bits. [Jani]
+- Update precision handling for hscale and vscale. [Ankit]
+- Consider chroma downscaling factor during latency
+calculation. [Ankit]
+- Replace function name from scaler_prefill_time to
+scaler_prefill_latency.
 
+--v3:
+- hscale_k and vscale_k values are already left shifted
+by 16, after multiplying by 1000, those need to be right
+shifted to 16. [Ankit]
+- Replace YCBCR444 to YCBCR420. [Ankit]
+- Divide by 1000 * 1000 in end to get correct precision. [Ankit]
+- Initialise latency to 0 to avoid any garbage.
+
+--v4:
+- Elaborate commit message and add Bspec number. [Ankit]
+- Improvise latency calculation. [Ankit]
+- Use ceiling value for down scaling factor when less than 1
+as per bspec. [Ankit]
+- Correct linetime calculation. [Ankit]
+- Consider cdclk prefill adjustment while prefill
+computation.[Ankit]
+
+--v5:
+- Add Bspec link in commit message trailer. [Ankit]
+- Correct hscale, vscale data type.
+- Use intel_crtc_compute_min_cdclk. [Ankit]
+
+--v6:
+- Update FIXME comment.
+- Use cdclk_state->logical.cdclk instead of
+intel_crtc_compute_min_cdclk. [Ankit]
+
+Bspec: 70151
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_scaler.c | 70 +++++++++++++----------
- 1 file changed, 41 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 50 +++++++++++++++++++-
+ 1 file changed, 49 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 12efa4008027..a832cdccd9fa 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -319,6 +319,44 @@ static int intel_allocate_scaler(struct intel_crtc_scaler_state *scaler_state,
- 	return -1;
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index f4458d1185b3..c8e540dd66cc 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -2292,6 +2292,53 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
+ 	return 0;
  }
  
-+static void
-+calculate_max_scale(struct intel_crtc *crtc,
-+		    bool is_yuv_semiplanar,
-+		    int scaler_id,
-+		    int *max_hscale, int *max_vscale)
++static int
++cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
 +{
-+	struct intel_display *display = to_intel_display(crtc);
++	struct intel_atomic_state *state =
++		to_intel_atomic_state(crtc_state->uapi.state);
++	const struct intel_cdclk_state *cdclk_state;
 +
-+	/*
-+	 * FIXME: When two scalers are needed, but only one of
-+	 * them needs to downscale, we should make sure that
-+	 * the one that needs downscaling support is assigned
-+	 * as the first scaler, so we don't reject downscaling
-+	 * unnecessarily.
-+	 */
++	cdclk_state = intel_atomic_get_cdclk_state(state);
++	if (IS_ERR(cdclk_state))
++		return PTR_ERR(cdclk_state);
 +
-+	if (DISPLAY_VER(display) >= 14) {
-+		/*
-+		 * On versions 14 and up, only the first
-+		 * scaler supports a vertical scaling factor
-+		 * of more than 1.0, while a horizontal
-+		 * scaling factor of 3.0 is supported.
-+		 */
-+		*max_hscale = 0x30000 - 1;
-+
-+		if (scaler_id == 0)
-+			*max_vscale = 0x30000 - 1;
-+		else
-+			*max_vscale = 0x10000;
-+	} else if (DISPLAY_VER(display) >= 10 || !is_yuv_semiplanar) {
-+		*max_hscale = 0x30000 - 1;
-+		*max_vscale = 0x30000 - 1;
-+	} else {
-+		*max_hscale = 0x20000 - 1;
-+		*max_vscale = 0x20000 - 1;
-+	}
++	return min(1, DIV_ROUND_UP(crtc_state->pixel_rate,
++				   2 * cdclk_state->logical.cdclk));
 +}
 +
- static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
- 				     int num_scalers_need, struct intel_crtc *crtc,
- 				     const char *name, int idx,
-@@ -388,35 +426,9 @@ static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
- 		const struct drm_rect *dst = &plane_state->uapi.dst;
- 		int hscale, vscale, max_vscale, max_hscale;
++static int
++scaler_prefill_latency(const struct intel_crtc_state *crtc_state)
++{
++	const struct intel_crtc_scaler_state *scaler_state =
++					&crtc_state->scaler_state;
++	int num_scaler_users = hweight32(scaler_state->scaler_users);
++	int latency = 0;
++	int linetime =
++		intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
++					 DIV_ROUND_UP(1000 * crtc_state->hw.adjusted_mode.htotal,
++						      crtc_state->pixel_rate));
++	u64 hscale_k, vscale_k;
++
++	if (!num_scaler_users)
++		return latency;
++
++	latency = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode, 4 * linetime);
++
++	if (num_scaler_users > 1) {
++		int chroma_downscaling_factor =
++			crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 2 : 1;
++		hscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].hscale, 1000) >> 16);
++		vscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].vscale, 1000) >> 16);
++
++		latency += chroma_downscaling_factor *
++			   DIV_ROUND_UP_ULL((4 * linetime * hscale_k * vscale_k),
++					    1000000);
++	}
++
++	return latency * cdclk_prefill_adjustment(crtc_state);
++}
++
+ static bool
+ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
+ 			int wm0_lines, int latency)
+@@ -2299,9 +2346,10 @@ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
  
--		/*
--		 * FIXME: When two scalers are needed, but only one of
--		 * them needs to downscale, we should make sure that
--		 * the one that needs downscaling support is assigned
--		 * as the first scaler, so we don't reject downscaling
--		 * unnecessarily.
--		 */
--
--		if (DISPLAY_VER(display) >= 14) {
--			/*
--			 * On versions 14 and up, only the first
--			 * scaler supports a vertical scaling factor
--			 * of more than 1.0, while a horizontal
--			 * scaling factor of 3.0 is supported.
--			 */
--			max_hscale = 0x30000 - 1;
--			if (*scaler_id == 0)
--				max_vscale = 0x30000 - 1;
--			else
--				max_vscale = 0x10000;
--
--		} else if (DISPLAY_VER(display) >= 10 ||
--			   !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
--			max_hscale = 0x30000 - 1;
--			max_vscale = 0x30000 - 1;
--		} else {
--			max_hscale = 0x20000 - 1;
--			max_vscale = 0x20000 - 1;
--		}
-+		calculate_max_scale(crtc,
-+				    intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier),
-+				    *scaler_id, &max_hscale, &max_vscale);
- 
- 		/*
- 		 * FIXME: We should change the if-else block above to
+-	/* FIXME missing scaler and DSC pre-fill time */
++	/* FIXME missing DSC pre-fill time */
+ 	return crtc_state->framestart_delay +
+ 		intel_usecs_to_scanlines(adjusted_mode, latency) +
++		scaler_prefill_latency(crtc_state) +
+ 		wm0_lines >
+ 		adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
+ }
 -- 
 2.48.1
 
