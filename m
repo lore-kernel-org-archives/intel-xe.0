@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E493C02183
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 13:31:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E088C02183
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 13:31:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 114D810EAF2;
-	Fri, 17 Jan 2025 13:31:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2718410EAF3;
+	Fri, 17 Jan 2025 13:31:38 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A24C10EAF1;
- Fri, 17 Jan 2025 13:31:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F10CE10EAF1;
+ Fri, 17 Jan 2025 13:31:36 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display=3A_Cl?=
- =?utf-8?q?arify_XE=5FIOCTL=5FDBG_message?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/display=3A_Clarify?=
+ =?utf-8?q?_XE=5FIOCTL=5FDBG_message?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Jan 2025 13:31:27 -0000
-Message-ID: <173712068717.720268.13624839437287788857@b555e5b46a47>
+Date: Fri, 17 Jan 2025 13:31:36 -0000
+Message-ID: <173712069698.721130.9454325182063264035@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250117115305.53113-1-dev@lankhorst.se>
 In-Reply-To: <20250117115305.53113-1-dev@lankhorst.se>
@@ -44,13 +44,36 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/display: Clarify XE_IOCTL_DBG message
 URL   : https://patchwork.freedesktop.org/series/143673/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 515c8b0666df drm-tip: 2025y-01m-17d-12h-49m-21s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/display: Clarify XE_IOCTL_DBG message
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e7abe9b57aced73a98c30c480a64572aa1ac2247
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Fri Jan 17 12:53:05 2025 +0100
+
+    drm/xe/display: Clarify XE_IOCTL_DBG message
+    
+    This should make it easier to understand from userspace why importing BO
+    fails.
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 515c8b0666df99c5aaa378e4d46fa39a910e8903 drm-intel
+e7abe9b57ace drm/xe/display: Clarify XE_IOCTL_DBG message
+-:19: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#19: FILE: drivers/gpu/drm/xe/display/intel_fb_bo.c:27:
+ 
++
+
+total: 0 errors, 0 warnings, 1 checks, 48 lines checked
 
 
