@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9F31C02183
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 12:48:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8063BC0218A
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 12:49:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B48BC10E0EE;
-	Fri, 17 Jan 2025 12:48:36 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE74E10E0EE;
- Fri, 17 Jan 2025 12:48:35 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 421C110E1E6;
+	Fri, 17 Jan 2025 12:49:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TtyWBktM";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECEA410E0EE;
+ Fri, 17 Jan 2025 12:49:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737118149; x=1768654149;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=/8Mw3zjrHYZfHh4PRX5KRA2+Seui/gSu88QaAvritGs=;
+ b=TtyWBktM/hp58TVQRHROCnUmzr0i0FGaT0/9l5Lwm+8kXqtBGAOa4kO4
+ 3MLdn0ZLDj+w9O1F3cCc8lem/J2cZ5OM5l8aUpkycM1Yfx18gqmmSKr58
+ xiHgd4yRt/GhaAPZILpAoXAJaQodsZxzO+lu69wItzW5H7ybl7lBt7lbj
+ bKg2yEkmU2WrtHHpiIDsKDVj3KEMYDhTYuRptRsMtbSgQmz8sCq68mXkj
+ R9zSocPiOwT5pRjF95Ovqtaquo5sgNHd7ejM/hhF8d9g6i2XVgykB1ZEu
+ i8Ko+WtpUkNHu2xXIcXtWTyKiPBAZG+PTT9KLzzMg31hsjfzxXszcOEsX w==;
+X-CSE-ConnectionGUID: YJETmMkPSU6CHFnjxOr1Bg==
+X-CSE-MsgGUID: IxGOI12PToyLwlZT85ra6w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="37459109"
+X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; d="scan'208";a="37459109"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2025 04:49:08 -0800
+X-CSE-ConnectionGUID: 3Q9AyIcwRx+Ta0bVh7fvZg==
+X-CSE-MsgGUID: Ckck1Dv4RjG4cG+EeIgqJA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; d="scan'208";a="105979448"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 17 Jan 2025 04:49:06 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Jan 2025 14:49:05 +0200
+Date: Fri, 17 Jan 2025 14:49:04 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ ville.syrjala@intel.com, santhosh.reddy.guddati@intel.com,
+ jani.saarinen@intel.com, jouni.hogander@intel.com
+Subject: Re: [PATCH v3 1/4] drm/i915/display: avoid calling fbc activate if
+ fbc is active
+Message-ID: <Z4pRwB6mkTDNMAEu@intel.com>
+References: <20250114120719.191372-1-vinod.govindapillai@intel.com>
+ <20250114120719.191372-2-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/xe=5Flpg=3A_Port_2_WAs_?=
- =?utf-8?q?from_i915_to_Xe_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aradhya Bhatia" <aradhya.bhatia@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Jan 2025 12:48:35 -0000
-Message-ID: <173711811571.720268.4061861819834495724@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250115080048.2282183-1-aradhya.bhatia@intel.com>
-In-Reply-To: <20250115080048.2282183-1-aradhya.bhatia@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250114120719.191372-2-vinod.govindapillai@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +70,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Jan 14, 2025 at 02:07:16PM +0200, Vinod Govindapillai wrote:
+> If FBC is already active, we don't need to call FBC activate
+> routine again during the post plane update. As this will
+> explicitly call the nuke and also rewrite the FBC ctl registers.
+> "intel_atomic_commit_tail-> intel_post_plane_update->
+> intel_fbc_post_update-> _intel_fbc_post_update" path will be
+> executed during the normal flip cases. FBC HW will nuke on sync
+> flip event and driver do not need to call the nuke explicitly.
+> This is much more relevant in case of dirty rectangle support
+> in FBC with the followup patches. Nuke on flip in that case will
+> remove all the benefits of fetching only the modified region.
+> 
+> The front buffer rendering sequence will call intel_fbc_flush()
+> and which will call intel_fbc_nuke() or intel_fbc_activate()
+> based on FBC status explicitly and won't get impacted by this
+> change.
+> 
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbc.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> index df05904bac8a..fd540ff5e57e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -1561,7 +1561,8 @@ static void __intel_fbc_post_update(struct intel_fbc *fbc)
+>  	fbc->flip_pending = false;
+>  	fbc->busy_bits = 0;
+>  
+> -	intel_fbc_activate(fbc);
+> +	if (!fbc->active)
+> +		intel_fbc_activate(fbc);
 
-Series: drm/xe/xe_lpg: Port 2 WAs from i915 to Xe (rev2)
-URL   : https://patchwork.freedesktop.org/series/143547/
-State : success
+We'll need to keep the actual activate part (eg. to update the fence).
+But we should be able to elide the explicit nuke if FBC was already
+active (that implies a flip nuke has occurred anyway, vs. if FBC was
+previously disabled then it might have been disabled by a frontbuffer
+invalidate and if it hasn't been disabled for a full frame then the
+hardware won't automagically cause a nuke when we reactivate it).
 
-== Summary ==
+>  }
+>  
+>  void intel_fbc_post_update(struct intel_atomic_state *state,
+> -- 
+> 2.43.0
 
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/events/rapl.ko
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/kernel/
-lib/modules/6.13.0-rc7-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/zstd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/xctr.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/authenc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/keywrap.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cmac.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/essiv.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ccm.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/wp512.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/lrw.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/vmac.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/842.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/md4.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.13.0-rc7-xe+/kernel/block/
-lib/modules/6.13.0-rc7-xe+/kernel/block/bfq.ko
-lib/modules/6.13.0-rc7-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.13.0-rc7-xe+/build
-lib/modules/6.13.0-rc7-xe+/modules.alias.bin
-lib/modules/6.13.0-rc7-xe+/modules.builtin
-lib/modules/6.13.0-rc7-xe+/modules.softdep
-lib/modules/6.13.0-rc7-xe+/modules.alias
-lib/modules/6.13.0-rc7-xe+/modules.order
-lib/modules/6.13.0-rc7-xe+/modules.symbols
-lib/modules/6.13.0-rc7-xe+/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1737118104:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1737118104:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+-- 
+Ville Syrjälä
+Intel
