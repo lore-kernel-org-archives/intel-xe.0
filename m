@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49DA2C02183
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 13:43:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C4F0C02183
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 13:50:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1219410E30E;
-	Fri, 17 Jan 2025 13:43:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mYH7vh8o";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67B0410E30E;
- Fri, 17 Jan 2025 13:43:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737121388; x=1768657388;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=CoGiWG2rW9MhhjNE/JY6kpIzHHm3L79+3ov3VN5lFnc=;
- b=mYH7vh8oUyXz+h5LCZr3YadIruHQ8bITMQgQLCTuyywrBjk0ywnCMubh
- yRHfPnH+hCkaFSHzmxYMwq1i28gZSXQzPCZoLWu6hGrTluB63LisOKGqJ
- N+QL45uoDdn9i1zUDkijnzyJgaqGNM9T+/ixZIx7XCor7HcW33jjq/XPK
- mjgT8HaVN/LoEIRqt7StmQOQLfimi7v7qvHgm0ZzZo+21rePz1kjVVRZD
- GWrJva79+dIJBtImoIs+IuZp702S1Wd/VU/S0voyLA1pBtDdBJguN5/F5
- NQERHlcGi1TffQKcJtNzJFCvM1r8dPJvW74BuJPLhjWUwGKVtZk9sGDKW A==;
-X-CSE-ConnectionGUID: fGFRWg3BTy23Uhvx0eymOQ==
-X-CSE-MsgGUID: sVtPAzU6QWKkeVEhtHNAlg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="48969789"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="48969789"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2025 05:43:08 -0800
-X-CSE-ConnectionGUID: ZeyrZKKnSque87rv7g/0Lw==
-X-CSE-MsgGUID: 3TtJU7tQRqus0uaM0orHbw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; d="scan'208";a="105863753"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2025 05:43:06 -0800
-Date: Fri, 17 Jan 2025 15:43:56 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH] drm/xe/dp: Enable DP tunneling
-Message-ID: <Z4penNQp6END713d@ideak-desk.fi.intel.com>
-References: <20250113154832.1004369-1-imre.deak@intel.com>
- <7yf2cupxywnzqcrfrvqeoqfa4tphosvofdcoiqfyngp4svyh6t@3opldfjkgohj>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAB3610EAF6;
+	Fri, 17 Jan 2025 13:50:54 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AD2A10EAF4;
+ Fri, 17 Jan 2025 13:50:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7yf2cupxywnzqcrfrvqeoqfa4tphosvofdcoiqfyngp4svyh6t@3opldfjkgohj>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/display=3A_Clarify_XE?=
+ =?utf-8?q?=5FIOCTL=5FDBG_message?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 17 Jan 2025 13:50:53 -0000
+Message-ID: <173712185349.721130.13614147357171580614@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250117115305.53113-1-dev@lankhorst.se>
+In-Reply-To: <20250117115305.53113-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,107 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jan 16, 2025 at 02:32:21PM -0600, Lucas De Marchi wrote:
-> On Mon, Jan 13, 2025 at 05:48:32PM +0200, Imre Deak wrote:
-> > Enable the DP tunneling functionality in the xe driver.
-> > 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> > drivers/gpu/drm/i915/display/intel_dp_tunnel.h |  5 +++--
-> > drivers/gpu/drm/xe/Kconfig                     | 14 ++++++++++++++
-> > drivers/gpu/drm/xe/Makefile                    |  3 +++
-> > 3 files changed, 20 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
-> > index e9314cf25a193..7a91b4945eb8d 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
-> > @@ -20,7 +20,8 @@ struct intel_dp;
-> > struct intel_encoder;
-> > struct intel_link_bw_limits;
-> > 
-> > -#if IS_ENABLED(CONFIG_DRM_I915_DP_TUNNEL) && defined(I915)
-> > +#if (defined(CONFIG_DRM_I915_DP_TUNNEL) && defined(I915)) || \
-> > +	(defined(CONFIG_DRM_XE_DP_TUNNEL) && !defined(I915))
-> > 
-> > int intel_dp_tunnel_detect(struct intel_dp *intel_dp, struct drm_modeset_acquire_ctx *ctx);
-> > void intel_dp_tunnel_disconnect(struct intel_dp *intel_dp);
-> > @@ -127,6 +128,6 @@ intel_dp_tunnel_mgr_init(struct intel_display *display)
-> > 
-> > static inline void intel_dp_tunnel_mgr_cleanup(struct intel_display *display) {}
-> > 
-> > -#endif /* CONFIG_DRM_I915_DP_TUNNEL */
-> > +#endif /* CONFIG_DRM_I915_DP_TUNNEL || CONFIG_DRM_XE_DP_TUNNEL */
-> > 
-> > #endif /* __INTEL_DP_TUNNEL_H__ */
-> > diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-> > index b51a2bde73e29..50cf80df51900 100644
-> > --- a/drivers/gpu/drm/xe/Kconfig
-> > +++ b/drivers/gpu/drm/xe/Kconfig
-> > @@ -59,6 +59,20 @@ config DRM_XE_DISPLAY
-> > 	help
-> > 	  Disable this option only if you want to compile out display support.
-> > 
-> > +config DRM_XE_DP_TUNNEL
-> > +	bool "Enable DP tunnel support"
-> > +	depends on DRM_XE
-> > +	depends on USB4
-> > +	select DRM_DISPLAY_DP_TUNNEL
-> > +	default y
-> > +	help
-> > +	  Choose this option to detect DP tunnels and enable the Bandwidth
-> > +	  Allocation mode for such tunnels. This allows using the maximum
-> > +	  resolution allowed by the link BW on all displays sharing the
-> > +	  link BW, for instance on a Thunderbolt link.
-> > +
-> > +	  If in doubt say "Y".
-> > +
-> > config DRM_XE_FORCE_PROBE
-> > 	string "Force probe xe for selected Intel hardware IDs"
-> > 	depends on DRM_XE
-> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> > index 5c97ad6ed7385..81f63258a7e19 100644
-> > --- a/drivers/gpu/drm/xe/Makefile
-> > +++ b/drivers/gpu/drm/xe/Makefile
-> > @@ -301,6 +301,9 @@ ifeq ($(CONFIG_DEBUG_FS),y)
-> > 		i915-display/intel_pipe_crc.o
-> > endif
-> > 
-> > +xe-$(CONFIG_DRM_XE_DP_TUNNEL) += \
-> > +	i915-display/intel_dp_tunnel.o
-> 
-> something looks wrong here. We shouldn't build anything in i915-display/ if
-> we don't have DRM_XE_DISPLAY. Are you missing a
-> 
-> 	depends on XE_DISPLAY
-> ?
+== Series Details ==
 
-Yes, thanks for spotting that, I missed the possibility for a
-non-display build. Will follow up with a fix for this.
+Series: drm/xe/display: Clarify XE_IOCTL_DBG message
+URL   : https://patchwork.freedesktop.org/series/143673/
+State : success
 
-> and in fact, with the .config I get:
-> 
-> In file included from
-> ../drivers/gpu/drm/i915/display/intel_display_core.h:23,
-> from ../drivers/gpu/drm/i915/display/intel_dp_tunnel.c:9:
-> ../drivers/gpu/drm/i915/display/intel_display_power.h:12:10: fatal error:
-> intel_wakeref.h: No such file or directory       12 | #include
-> "intel_wakeref.h"
-> 
-> because we don't setup the right include directories.
-> We used to test in CI a display-disabled build, not sure what happened
-> with that.
-> 
-> Lucas De Marchi
-> 
-> > +
-> > obj-$(CONFIG_DRM_XE) += xe.o
-> > obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
-> > 
-> > -- 
-> > 2.44.2
-> > 
+== Summary ==
+
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-rc7-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/kernel/
+lib/modules/6.13.0-rc7-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-rc7-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-rc7-xe+/kernel/block/
+lib/modules/6.13.0-rc7-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-rc7-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-rc7-xe+/build
+lib/modules/6.13.0-rc7-xe+/modules.alias.bin
+lib/modules/6.13.0-rc7-xe+/modules.builtin
+lib/modules/6.13.0-rc7-xe+/modules.softdep
+lib/modules/6.13.0-rc7-xe+/modules.alias
+lib/modules/6.13.0-rc7-xe+/modules.order
+lib/modules/6.13.0-rc7-xe+/modules.symbols
+lib/modules/6.13.0-rc7-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1737121842:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1737121842:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
