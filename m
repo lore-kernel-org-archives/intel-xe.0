@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12DF9C02185
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 09:48:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24B4EC02183
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 10:35:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF25010E306;
-	Fri, 17 Jan 2025 09:48:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF56810EAC8;
+	Fri, 17 Jan 2025 10:35:40 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6E3710E306;
- Fri, 17 Jan 2025 09:48:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0897738910134493575=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1129610EAC8;
+ Fri, 17 Jan 2025 10:35:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Check_Scaler_and_DSC_Prefil?=
- =?utf-8?q?l_Latency_Against_Vblank_=28rev5=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_Provide_?=
+ =?utf-8?q?more_information_on_display_faults_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Jan 2025 09:48:21 -0000
-Message-ID: <173710730187.649603.6040232019182453492@b555e5b46a47>
+Date: Fri, 17 Jan 2025 10:35:40 -0000
+Message-ID: <173711014007.679380.10283588187642806871@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250117074422.3965519-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20250117074422.3965519-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20250116174758.18298-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250116174758.18298-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,24 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0897738910134493575==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Check Scaler and DSC Prefill Latency Against Vblank (rev5)
-URL   : https://patchwork.freedesktop.org/series/143159/
+Series: drm/i915: Provide more information on display faults (rev2)
+URL   : https://patchwork.freedesktop.org/series/143626/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2503-d8c883b9b7702b39eb913a72fd7158ad9a6ea11f_BAT -> xe-pw-143159v5_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 48e878178132 drm-tip: 2025y-01m-17d-09h-51m-47s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915: Add missing else to the if ladder in missing else
+Applying: drm/i915: Introduce a minimal plane error state
+Applying: drm/i915: Pimp display fault reporting
+Applying: drm/i915: Hook in display GTT faults for IVB/HSW
+Applying: drm/i915: Hook in display GTT faults for ILK/SNB
+Applying: drm/i915: Introduce i915_error_regs
+Applying: drm/i915: Un-invert {i9xx,i965}_error_mask()
+Applying: drm/i915: Hook up display fault interrupts for VLV/CHV
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2503-d8c883b9b7702b39eb913a72fd7158ad9a6ea11f -> xe-pw-143159v5
-
-  IGT_8195: 8195
-  xe-2503-d8c883b9b7702b39eb913a72fd7158ad9a6ea11f: d8c883b9b7702b39eb913a72fd7158ad9a6ea11f
-  xe-pw-143159v5: 143159v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143159v5/index.html
-
---===============0897738910134493575==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Check Scaler and DSC Prefill Latency Against Vblank (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143159/">https://patchwork.freedesktop.org/series/143159/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143159v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143159v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2503-d8c883b9b7702b39eb913a72fd7158ad9a6ea11f_BAT -&gt; xe-pw-143159v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2503-d8c883b9b7702b39eb913a72fd7158ad9a6ea11f -&gt; xe-pw-143159v5</li>
-</ul>
-<p>IGT_8195: 8195<br />
-  xe-2503-d8c883b9b7702b39eb913a72fd7158ad9a6ea11f: d8c883b9b7702b39eb913a72fd7158ad9a6ea11f<br />
-  xe-pw-143159v5: 143159v5</p>
-
-</body>
-</html>
-
---===============0897738910134493575==--
