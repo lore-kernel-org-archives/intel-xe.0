@@ -4,58 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ACD8C02185
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 16:45:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04D25C02183
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 16:46:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4802110EB37;
-	Fri, 17 Jan 2025 16:45:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDD8010EB39;
+	Fri, 17 Jan 2025 16:46:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I017qijv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RPKV4xZ3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40AA110E30A;
- Fri, 17 Jan 2025 16:45:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5A1110E30A;
+ Fri, 17 Jan 2025 16:46:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737132350; x=1768668350;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=BJb8wUQNZPxoztB5IMNL3/I40pQJ5K1tdMGQeju4yIM=;
- b=I017qijvYg28KCXINXhC4qFTVbuggu15Z4NKMJl57cSHyKlN1t/37hcI
- vUxh0t5sDuTDtg0XDhrlt/CnTnej1KiGlt/P4DccHAUbQgSAf8HQUj/JQ
- VSz7RMifV3OLoQV/oeq3fHdEt0LuGBZ/Abif+1HdNoKE+7T4wKLScNuK9
- eYLJPCgizANRcGuyafaFz+QNxc87PWVx/isDHNdQpeLQMO/YecEFYUETu
- jBUkWU6f3a27sNZYCrBe1IJstd1ZVMjQqGy49Tih9GOtZ7ARuN/hwl8K3
- DnWT0RKvndBOR5mXAfN6zMoH3D5EoYe7CtwLrP8NUq6wLGgW1oLL7cCow w==;
-X-CSE-ConnectionGUID: XDKAELItRLO6MgZHOSuZIA==
-X-CSE-MsgGUID: D0Hao5BBQV6cGkadyzu1Lw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="41499354"
-X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; d="scan'208";a="41499354"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2025 08:45:50 -0800
-X-CSE-ConnectionGUID: Fv6tx4/CQ7GmlsjMRtZFug==
-X-CSE-MsgGUID: FUyZpiP1Rg+2s45cs3IcdA==
+ t=1737132362; x=1768668362;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=smtMEKMFg2joDxqGpvogsGor0llzvrHrJmlRezXQmmA=;
+ b=RPKV4xZ3fpGUeCRVXUJq8UcFdbbigJrBudrsM7fgGV+MHQa1c2cD95nW
+ Vc7d9paGLd0KkkK6uEdUUlc3bgCJw4jG3a8b0YauhtFUDa+O/PBILIKK2
+ G2SLrzN5eL4s1WylPs64yjybylBQ8JKU47u1/+8+fPcBwxY2pxfQLCEgM
+ JsIjbKv0iunpqbA5vq6UDwSBh054CwyuJW+hpQ8O0+n6Y/tbtZWG2t317
+ t/YkjoS5I6NQqJrL8LNB75ZaPbZAmtyLCpnGX6qUSN2KAihyP/bTrUPHV
+ YcqG3JmYJmOEJRM24EAwQCS47bM2y1hFoE4jA6MkruVj7MzfdPYhimZ4v Q==;
+X-CSE-ConnectionGUID: HirwiqWxTbqZPQ3vUPue6A==
+X-CSE-MsgGUID: +1123Ho5RlWDdLUzF/6StQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="37262734"
+X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; d="scan'208";a="37262734"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2025 08:46:02 -0800
+X-CSE-ConnectionGUID: Rl6b7NIdSSKkkMx13nDUVQ==
+X-CSE-MsgGUID: nDd46iHvToS2GDktnSs0Sg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; d="scan'208";a="136684613"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2025 08:45:50 -0800
+X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; d="scan'208";a="106024735"
+Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
+ ([10.125.109.133])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2025 08:46:01 -0800
+Date: Fri, 17 Jan 2025 10:45:56 -0600
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Cc: dri-devel@lists.freedesktop.org,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH] MAINTAINERS: Also exclude xe for drm-misc
-Date: Fri, 17 Jan 2025 08:45:29 -0800
-Message-ID: <20250117164529.393503-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.48.0
+To: Imre Deak <imre.deak@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH] drm/xe/dp: Enable DP tunneling
+Message-ID: <v5e2tnq6b7fr6rmi2mg24bf2x7jbljguce47s63ucugpvbiupa@z6r5kfxz6wth>
+References: <20250113154832.1004369-1-imre.deak@intel.com>
+ <87cygqis8l.fsf@intel.com>
+ <Z4VQK2mRtmeT_t6I@ideak-desk.fi.intel.com>
+ <7br5fcyxwpapyyd646rqyja47wjxmgpnhvyramt64kumqevyua@codb2qklp2hu>
+ <Z4p9jbQqkgRDb-HA@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <Z4p9jbQqkgRDb-HA@ideak-desk.fi.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,28 +73,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When the xe driver was added, it didn't extend the exclude entries for
-drm-misc, as done in commit 5a44d50f0072 ("MAINTAINERS: Update drm-misc
-entry to match all drivers"). Exclude it like is done for i915 and other
-drivers with dedicated maintainers.
+On Fri, Jan 17, 2025 at 05:55:57PM +0200, Imre Deak wrote:
+>On Thu, Jan 16, 2025 at 02:38:34PM -0600, Lucas De Marchi wrote:
+>> On Mon, Jan 13, 2025 at 07:40:59PM +0200, Imre Deak wrote:
+>> > On Mon, Jan 13, 2025 at 06:38:34PM +0200, Jani Nikula wrote:
+>> > > On Mon, 13 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
+>> > > > Enable the DP tunneling functionality in the xe driver.
+>> > > >
+>> > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+>> > > > ---
+>> > > >  drivers/gpu/drm/i915/display/intel_dp_tunnel.h |  5 +++--
+>> > > >  drivers/gpu/drm/xe/Kconfig                     | 14 ++++++++++++++
+>> > > >  drivers/gpu/drm/xe/Makefile                    |  3 +++
+>> > > >  3 files changed, 20 insertions(+), 2 deletions(-)
+>> > > >
+>> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+>> > > > index e9314cf25a193..7a91b4945eb8d 100644
+>> > > > --- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+>> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+>> > > > @@ -20,7 +20,8 @@ struct intel_dp;
+>> > > >  struct intel_encoder;
+>> > > >  struct intel_link_bw_limits;
+>> > > >
+>> > > > -#if IS_ENABLED(CONFIG_DRM_I915_DP_TUNNEL) && defined(I915)
+>> > > > +#if (defined(CONFIG_DRM_I915_DP_TUNNEL) && defined(I915)) || \
+>> > > > +	(defined(CONFIG_DRM_XE_DP_TUNNEL) && !defined(I915))
+>> > >
+>> > > Please retain IS_ENABLED for checking kconfig symbols.
+>> >
+>> > Ok, missed that, will change it.
+>> >
+>> > > >  int intel_dp_tunnel_detect(struct intel_dp *intel_dp, struct drm_modeset_acquire_ctx *ctx);
+>> > > >  void intel_dp_tunnel_disconnect(struct intel_dp *intel_dp);
+>> > > > @@ -127,6 +128,6 @@ intel_dp_tunnel_mgr_init(struct intel_display *display)
+>> > > >
+>> > > >  static inline void intel_dp_tunnel_mgr_cleanup(struct intel_display *display) {}
+>> > > >
+>> > > > -#endif /* CONFIG_DRM_I915_DP_TUNNEL */
+>> > > > +#endif /* CONFIG_DRM_I915_DP_TUNNEL|| CONFIG_DRM_XE_DP_TUNNEL */
+>> > > >
+>> > > >  #endif /* __INTEL_DP_TUNNEL_H__ */
+>> > > > diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+>> > > > index b51a2bde73e29..50cf80df51900 100644
+>> > > > --- a/drivers/gpu/drm/xe/Kconfig
+>> > > > +++ b/drivers/gpu/drm/xe/Kconfig
+>> > > > @@ -59,6 +59,20 @@ config DRM_XE_DISPLAY
+>> > > >  	help
+>> > > >  	  Disable this option only if you want to compile out display support.
+>> > > >
+>> > > > +config DRM_XE_DP_TUNNEL
+>> > > > +	bool "Enable DP tunnel support"
+>> > > > +	depends on DRM_XE
+>> > > > +	depends on USB4
+>> > > > +	select DRM_DISPLAY_DP_TUNNEL
+>> > > > +	default y
+>> > > > +	help
+>> > > > +	  Choose this option to detect DP tunnels and enable the Bandwidth
+>> > > > +	  Allocation mode for such tunnels. This allows using the maximum
+>> > > > +	  resolution allowed by the link BW on all displays sharing the
+>> > > > +	  link BW, for instance on a Thunderbolt link.
+>> > > > +
+>> > > > +	  If in doubt say "Y".
+>> > > > +
+>> > >
+>> > > I'm sort of wondering why we have this (and the i915 one) as
+>> > > user-selectable config options at all. Is it ever reasonable for the
+>> > > user to disable this if USB4 is enabled?
+>> >
+>> > On platforms that don't support DP tunneling, while supporting other
+>> > USB4 functionality (or for systems w/o any TypeC/DP connectors) it would
+>> > make sense to disable this option.
+>>
+>> isn't this too fine grained? if we expose every single functionality of
+>> the driver like this we will bury distros on configs and exponentially
+>> explode the testing combination. And yes, this broke the build for me.
+>
+>The tunneling functionality depends on USB4, BW allocation could fail
+>without that. The option being user selectable also makes sense to me,
+>as it has a size (~30kB) and runtime overhead (detecting tunnels and
+>allocating/freeing BW), only required if the user has a dock/multiple
+>displays.
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+I will leave this up to the display maintainers - I still think it's too
+fine grained to have this option as user selectable and worse, in 2
+drivers.... does the user have to know which driver officially support
+that hardware to enable one and disable the other? 
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d32d0a9428234..30d8e47a0e5f3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7606,6 +7606,7 @@ X:	drivers/gpu/drm/nouveau/
- X:	drivers/gpu/drm/radeon/
- X:	drivers/gpu/drm/renesas/rcar-du/
- X:	drivers/gpu/drm/tegra/
-+X:	drivers/gpu/drm/xe/
- 
- DRM DRIVERS FOR ALLWINNER A10
- M:	Maxime Ripard <mripard@kernel.org>
--- 
-2.48.0
-
+Lucas De Marchi
