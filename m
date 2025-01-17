@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37ADFC02185
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 15:22:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61A8DC02183
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 15:23:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0457510EB1A;
-	Fri, 17 Jan 2025 15:22:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27B9610EAF4;
+	Fri, 17 Jan 2025 15:23:08 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 990F510EAF4;
- Fri, 17 Jan 2025 15:22:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC2CD10EAF4;
+ Fri, 17 Jan 2025 15:23:06 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_CI_test_without_DSB?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_CI_test_without_DSB?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Jan 2025 15:22:44 -0000
-Message-ID: <173712736462.767746.1822059289310258274@b555e5b46a47>
+Date: Fri, 17 Jan 2025 15:23:06 -0000
+Message-ID: <173712738689.767746.770619200319814876@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250117133943.20289-1-dev@lankhorst.se>
 In-Reply-To: <20250117133943.20289-1-dev@lankhorst.se>
@@ -43,13 +43,30 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: CI test without DSB
 URL   : https://patchwork.freedesktop.org/series/143674/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 515c8b0666df drm-tip: 2025y-01m-17d-12h-49m-21s UTC integration manifest
-=== git am output follows ===
-Applying: CI test without DSB
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit fe0a9ab1907c0604b7802adf4090de66dae60483
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Fri Jan 17 14:39:42 2025 +0100
+
+    CI test without DSB
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 515c8b0666df99c5aaa378e4d46fa39a910e8903 drm-intel
+fe0a9ab1907c CI test without DSB
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
 
 
