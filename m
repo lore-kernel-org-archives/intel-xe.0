@@ -4,27 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2C6AC02183
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 05:28:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C39DC02183
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Jan 2025 05:40:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DBC310EA52;
-	Fri, 17 Jan 2025 05:28:13 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6B1210EA52;
- Fri, 17 Jan 2025 05:28:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC54C10EA53;
+	Fri, 17 Jan 2025 05:40:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="MeD2Mih1";
+	dkim-atps=neutral
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D496810EA53
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Jan 2025 05:40:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1737092418;
+ bh=3Gcr4u6GWQB/R9NXrSCOWD4JvrXfXkzDxfhy3/8rC8M=;
+ h=Date:From:To:Cc:Subject:From;
+ b=MeD2Mih1RE1UZYI8PYBpPyTbV0lTH9WHzWK1t1VpB281pWVp/l3C402yvQMno0n2+
+ 5bSn9qk/lDZHpGN8eD8rr/amEABrvvx8WlNgRGBlksNvkfRLXsQIoTfsIu5qFtCNNW
+ 5NhGtEhB7nMtwCxPu27BhUmi+TL7rddJ/kD8riq0dQndPIX8SM4nZe5PXuSmhb9LMN
+ l3mkofVtg31B0WhxCylunuTJvHcytlKjOCjObMjrhQwVURhebK6AdJ5gU6ld6Y1TWR
+ HL3ngZctZCXb577qYzsovLHo6R0XdMnkWPihU3kxQ+NQB2uhD+g7FuBilTuOJyQx67
+ 9TuZvJTIwVGhg==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4YZ7qP453rz4xSY;
+ Fri, 17 Jan 2025 16:40:17 +1100 (AEDT)
+Date: Fri, 17 Jan 2025 16:40:23 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0?=
+ =?UTF-8?B?csO2bQ==?= <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>, Tejas Upadhyay
+ <tejas.upadhyay@intel.com>, DRM XE List <intel-xe@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>
+Subject: linux-next: build warning after merge of the drm-xe tree
+Message-ID: <20250117164023.3fdc00b9@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/hdcp=3A_Use_cor?=
- =?utf-8?q?rect_function_to_check_if_encoder_is_HDMI_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Jan 2025 05:28:12 -0000
-Message-ID: <173709169274.588873.8929231397837129266@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250117041247.1084381-1-suraj.kandpal@intel.com>
-In-Reply-To: <20250117041247.1084381-1-suraj.kandpal@intel.com>
+Content-Type: multipart/signed; boundary="Sig_/seh82hf=ba+2xjJ5.MYG6N4";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +55,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--Sig_/seh82hf=ba+2xjJ5.MYG6N4
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Series: drm/i915/hdcp: Use correct function to check if encoder is HDMI (rev3)
-URL   : https://patchwork.freedesktop.org/series/143580/
-State : warning
+Hi all,
 
-== Summary ==
+After merging the drm-xe tree, today's linux-next build (htmldocs)
+produced this warning:
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast d8c883b9b7702b39eb913a72fd7158ad9a6ea11f
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/display/intel_display_types.h:1976:24: warning: unreplaced symbol '<noident>'
+Documentation/gpu/driver-uapi:29: include/uapi/drm/xe_drm.h:817: WARNING: B=
+ullet list ends without a blank line; unexpected unindent.
+Documentation/gpu/driver-uapi:29: include/uapi/drm/xe_drm.h:835: WARNING: D=
+efinition list ends without a blank line; unexpected unindent.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Introduced by commit
 
+  75d37750a753 ("drm/xe/mmap: Add mmap support for PCI memory barrier")
 
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/seh82hf=ba+2xjJ5.MYG6N4
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmeJ7UcACgkQAVBC80lX
+0Gw1dQf+J98+vN7J5yPnCCWKw4T7Hbis6/KAJ9HPoupFkFQt7lL1ep7Y875zhKrN
+Ic0pT8jpN4XGF4+7U94hyEce8a3l0ZSJ90PpBSV1qkENevNHw37vFSuVtyjEp6oW
+p95hAqM9PB1OYXjiTyPe+fYCwFDmiIGeeQ1YQi32dCB+Ey35jY9y//C6lHOi9Zp6
+2RxoI70VDAAvZ8440pLzC/4BpNCLwhxZqXysIJzZlQKRqNFkmnXgAfeaM5dDGHNb
+MHZFLByPj669fW5zjcP1Kgn+NbCceFG1wxds+rahF6nk82E9ghLJ4G/Y2ArYnJyN
+6JmjjPcZPPurhO6CQ0nnltGpluhrYA==
+=WUP/
+-----END PGP SIGNATURE-----
+
+--Sig_/seh82hf=ba+2xjJ5.MYG6N4--
