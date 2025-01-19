@@ -4,66 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62411C02191
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 386AEC02190
 	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 13:30:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CB1D10E5B5;
-	Tue, 21 Jan 2025 13:30:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D120310E5AF;
+	Tue, 21 Jan 2025 13:30:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="V4vpkKHa";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Z0osBaiu";
 	dkim-atps=neutral
-Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE67410E031;
- Tue, 21 Jan 2025 01:15:08 +0000 (UTC)
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
- [209.85.218.54]) (Authenticated sender: zamundaaa)
- by letterbox.kde.org (Postfix) with ESMTPSA id C6B4932415B;
- Tue, 21 Jan 2025 01:15:07 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
- t=1737422107; bh=hM2fgf0olfRkEwK6dyP6s2sEQFyODgPiSs8QRRD7534=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=V4vpkKHaKnd/oT3woE4w9DgLXF4+huS+pPTtoaJN8WKYhvFvJNO/hOKpFb5qf+Mcq
- B9mZ/JBkX0lvoa14cb6y8pu7cAKpKgb6/xIBVGwR7eg9TYVBY0tyxWO3mdw8Xehi6n
- oBbqZD9x+KsJhBHhf2XNfU2U52vLsKind42IraqoJ1axkivBuxXkMvvSXETZIXB6R9
- Xmpe6yP2hUO+GzfFxUmVhjW1DS96UXqEC7whcQP+60tekUELi7bl6KjGGYjtzBXe7F
- kwXQPnR7w1DTscc7pfYOxG0/gYE9XbTl3NhRp2j0biPhIzoiUE4lhclCZZCxrDgVLm
- A7jr0ZpSnPB3w==
-Received: by mail-ej1-f54.google.com with SMTP id
- a640c23a62f3a-aaf57c2e0beso1020153366b.3; 
- Mon, 20 Jan 2025 17:15:07 -0800 (PST)
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
+ [IPv6:2a00:1450:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D70EF10E008;
+ Sun, 19 Jan 2025 09:09:38 +0000 (UTC)
+Received: by mail-wm1-x329.google.com with SMTP id
+ 5b1f17b1804b1-436202dd7f6so39512055e9.0; 
+ Sun, 19 Jan 2025 01:09:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1737277777; x=1737882577; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=GpRQfPo+dIVvMcJc83bhcvAD0N42aVYCbsSTsOGPCsU=;
+ b=Z0osBaiuBhp5KHx2oe9WN6QMMxCXIcUft1IXLuecykWgPwOu496sDGGz30FSyH0Nnh
+ QPQ82hWjlset0bNsF13T3ENi7PuMR2IXz2IGluhkrcYboRa1sPOF/XSi0pqMQOF+cgHs
+ DiBkGqbwFnuLFvFiMXwU/Zh5Ytt8Op7N+5jwxPwtmNoflDgXYPgBbDjXtdgqKb5luZqc
+ 7VYkFkRbRkxqCde1eZaqemsF0Ltk/ZMGBrwPgcNeoTlVFdQ2OdBLU4JAgDL4/ZkUjZye
+ ZbBOKQdO9LP5WPEbRSt0U1sS2ASxJrCjn0xA1lzTITjnSzIwtj6kBkWhpN5t5eGjVOb6
+ bljw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1737277777; x=1737882577;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=GpRQfPo+dIVvMcJc83bhcvAD0N42aVYCbsSTsOGPCsU=;
+ b=s35bb2rN/eXn534hbY26AK2B98gD1IJh2K5gPzxBqu2KV8/rcLTNg4YxxshAWaoV35
+ e7GAfUOHgvrMb5LTwN4zqY6XU7R8z1wE3h2KEv03FVpjaOY3QjwgKMlnIqlxDrIu2Ngq
+ K9fscmPtJq+MFffL6H+tlR41UbXS75GQL8S5GkPDFU3+fF9BMmU9+xtDlavg1UlHD0or
+ 9f7a80PrhWaISi+hdxe4EiNGs52PwvyORTLXXNGPhFGtxQHgxMaLlE54fjA0mLGQwl3A
+ jvu/OJanhd4wMFDFdCAsDNmk7FwdVIV1qmg6rQUcbhRPNAqEUuAsN4GlApdMY+zygWVz
+ Pdsg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUtv1kVJLbF95mJXkJCGAbY9YNVr69h3r0EPXCAe5SND+CJSKtn2twd6cSrJ+iaqQOfmABsI5/RV4q+@lists.freedesktop.org,
- AJvYcCWCGMDnLHQJyXzpjV4JpnDih2/KsOEYkhaqB9fwAjVCnnpvqy4tGw1OcuRavJKyPOBXlwzYLSnD@lists.freedesktop.org,
- AJvYcCWchc8o6dPqD42Pf7h006gaS9e3iF/9m/ztpqsi3CWuLn5JDCH7zp7yW7MqNG7MOLXNehbYxqJPuw7E@lists.freedesktop.org,
- AJvYcCXaZa7ERIWFgyIkvVYRve0725RvdK37Mga6DAlEgw9gaHB/QD1o5SuT33xHaI0nIgGMEFJF0cPJJ1Y=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzKt67vdd14gmvfRjGzhgKQUJhdEJIyS3GIPfDyJr4O9QW6Ncw3
- /nQ9D2KohDL2S64RtViPicfIw6JS6fmvoEcR5FJ3LalWOLjntbuBpHwAMaKr3mqkDOo+AwAf2Eb
- dT3C2BWIZYaMsb2UMf1pGw5B9NQo=
-X-Google-Smtp-Source: AGHT+IHMrdZmZYN6AneS0M7yk0oJgsGbOhYYMwHUnQJVRQueCtdy9Lh5FdsaXzAZ1DBLPn5H6+vQ6quf6I5I7PDV7ek=
-X-Received: by 2002:a17:907:1c19:b0:aa6:acd6:b30d with SMTP id
- a640c23a62f3a-ab38b4c63f2mr1366856566b.48.1737422107129; Mon, 20 Jan 2025
- 17:15:07 -0800 (PST)
+ AJvYcCUDFwpAI4pVoMkqwWGzVw7Vuo6nwNxElvBKI5GTkkBXEorzxth2jjlZuH5E0b4GZ4ZUZl84ek18MRc=@lists.freedesktop.org,
+ AJvYcCUMz3BcxifhDt55NTquG/kWIG04Hb6uFxDoDOwwILadwXGby5FbSsHp7LJkfvFoXN938xDVU0u5GME=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwZCjL3pmwfNyYvDtImlU25AP8wG+wonEkJVk2e07HtBgky7U/C
+ kGDyGmxhwhL2zrIHs4Un2xbx2j2Dzta0trduGIezKQ6xylz3R5RN
+X-Gm-Gg: ASbGnct7HDnym4+PpJ6LzBQvD4uFm7zi42WAT62AYRQJyWv3n3AudJa0uV2o7n1cON9
+ bGC74QBcCApoZMrMiQpGoldkdvK0HGitTqBt2Xs5DWw9XCc2EqMHKy+cEk9qf2HtVvblriSoKG+
+ B80+Skxpw2Kj9jmX1FhPlJaqP4AdBUwt3AgvzcMDjTBZwHYA+XUDxXpmbJDJ5tL+/UCWZJ0z28r
+ aMYX9zRHEUwO1a3ODj3mv/tiEhmLdfs1vGoXknx3FJsbrMgjPb11240ifZvcKGfh0fOOqq7vqOm
+ EBweV2Tj120f45gQH/8I1sYvDL3wUXSv
+X-Google-Smtp-Source: AGHT+IEuKIzgPC9hm5HdrQMLOvk5XY5pw6JdVTD0sbRLPHCvA9Cnqc+BT5boheqzFsu1pqtmM2wImg==
+X-Received: by 2002:a05:600c:3b02:b0:434:a781:f5d5 with SMTP id
+ 5b1f17b1804b1-4389143ba53mr84319045e9.30.1737277777068; 
+ Sun, 19 Jan 2025 01:09:37 -0800 (PST)
+Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-437c75298adsm156216465e9.30.2025.01.19.01.09.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 19 Jan 2025 01:09:36 -0800 (PST)
+Date: Sun, 19 Jan 2025 09:09:35 +0000
+From: David Laight <david.laight.linux@gmail.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, David Laight
+ <David.Laight@aculab.com>, Arnd Bergmann <arnd@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Jens Axboe
+ <axboe@kernel.dk>, Matthew Wilcox <willy@infradead.org>, Christoph Hellwig
+ <hch@infradead.org>, Andrew Morton <akpm@linux-foundation.org>, Andy
+ Shevchenko <andriy.shevchenko@linux.intel.com>, Dan Carpenter
+ <dan.carpenter@linaro.org>, "Jason A . Donenfeld" <Jason@zx2c4.com>,
+ "pedro.falcato@gmail.com" <pedro.falcato@gmail.com>, Mateusz Guzik
+ <mjguzik@gmail.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, Lorenzo
+ Stoakes <lorenzo.stoakes@oracle.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>, Simona
+ Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: Buiild error in i915/xe
+Message-ID: <20250119090935.7c690f85@pumpkin>
+In-Reply-To: <f3939490-0f55-410f-81fe-0e9f03874546@roeck-us.net>
+References: <c50365d214e04f9ba256d417c8bebbc0@AcuMS.aculab.com>
+ <34d53778977747f19cce2abb287bb3e6@AcuMS.aculab.com>
+ <ce600782-1012-47e3-ba3d-41c5a4b7a7b7@roeck-us.net>
+ <20250118170959.3aa56f4d@pumpkin>
+ <29ef57a1-e4dd-4d5d-8726-f1f79c698b66@roeck-us.net>
+ <CAHk-=whAxUvW-APU42yWfCKHF5NhPLoTida9Jo=A9ZGGgjb18Q@mail.gmail.com>
+ <20250118221123.5bb65e64@pumpkin>
+ <f3939490-0f55-410f-81fe-0e9f03874546@roeck-us.net>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 MIME-Version: 1.0
-References: <20241128153707.1294347-1-raag.jadav@intel.com>
- <20241128153707.1294347-3-raag.jadav@intel.com>
-In-Reply-To: <20241128153707.1294347-3-raag.jadav@intel.com>
-From: Xaver Hugl <xaver.hugl@kde.org>
-Date: Tue, 21 Jan 2025 02:14:56 +0100
-X-Gmail-Original-Message-ID: <CAFZQkGy3R0TMY5CARPQZF70fdKGLX8GQjV_YQAHzEXsiuNHj+w@mail.gmail.com>
-X-Gm-Features: AbW1kvYyDEzcmVwbdo9c6XA4vihWY2IEO2N6qS2J1gV67gtMuD21gh51qrRQ3Dk
-Message-ID: <CAFZQkGy3R0TMY5CARPQZF70fdKGLX8GQjV_YQAHzEXsiuNHj+w@mail.gmail.com>
-Subject: Re: [PATCH v10 2/4] drm/doc: Document device wedged event
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com, 
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com, 
- andriy.shevchenko@linux.intel.com, lina@asahilina.net, 
- michal.wajdeczko@intel.com, christian.koenig@amd.com, 
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com, 
- aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com, 
- alexander.deucher@amd.com, andrealmeid@igalia.com, 
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 21 Jan 2025 13:30:48 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,17 +108,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> +It is the responsibility of the consumer to make sure that the device or
-> +its resources are not in use by any process before attempting recovery.
-I'm not convinced this is actually doable in practice, outside of
-killing all apps that aren't the one trying to recover the GPU.
-Is this just about not crashing those processes if they don't handle
-GPU hotunplugs well, about leaks, or something else?
+On Sat, 18 Jan 2025 14:58:48 -0800
+Guenter Roeck <linux@roeck-us.net> wrote:
 
-> +With IOCTLs blocked and device already 'wedged', all device memory should
-> +be unmapped and file descriptors should be closed to prevent leaks.
-Afaiu from a userspace POV, a rebind is just like a GPU hotunplug +
-hotplug with matching "remove" and "add" udev events. As long as the
-application cleans up resources related to the device when it receives
-the event, there should be no leaks with a normal hotunplug... Is this
-different enough that we can't have the same expectations?
+> On 1/18/25 14:11, David Laight wrote:
+> > On Sat, 18 Jan 2025 13:21:39 -0800
+> > Linus Torvalds <torvalds@linux-foundation.org> wrote:
+> >   
+> >> On Sat, 18 Jan 2025 at 09:49, Guenter Roeck <linux@roeck-us.net> wrote:  
+> >>>
+> >>> No idea why the compiler would know that the values are invalid.  
+> >>
+> >> It's not that the compiler knows tat they are invalid, but I bet what
+> >> happens is in scale() (and possibly other places that do similar
+> >> checks), which does this:
+> >>
+> >>          WARN_ON(source_min > source_max);
+> >>          ...
+> >>          source_val = clamp(source_val, source_min, source_max);
+> >>
+> >> and the compiler notices that the ordering comparison in the first
+> >> WARN_ON() is the same as the one in clamp(), so it basically converts
+> >> the logic to
+> >>
+> >>          if (source_min > source_max) {
+> >>                  WARN(..);
+> >>                  /* Do the clamp() knowing that source_min > source_max */
+> >>                  source_val = clamp(source_val, source_min, source_max);
+> >>          } else {
+> >>                  /* Do the clamp knowing that source_min <= source_max */
+> >>                  source_val = clamp(source_val, source_min, source_max);
+> >>          }
+> >>
+> >> (obviously I dropped the other WARN_ON in the conversion, it wasn't
+> >> relevant for this case).
+> >>
+> >> And now that first clamp() case is done with source_min > source_max,
+> >> and it triggers that build error because that's invalid.
+> >>
+> >> So the condition is not statically true in the *source* code, but in
+> >> the "I have moved code around to combine tests" case it now *is*
+> >> statically true as far as the compiler is concerned.  
+> > 
+> > Well spotted :-)
+> > 
+> > One option would be to move the WARN_ON() below the clamp() and
+> > add an OPTIMISER_HIDE_VAR(source_max) between them.
+> > 
+> > Or do something more sensible than the WARN().
+> > Perhaps return target_min on any such errors?
+> >   
+> 
+> This helps:
+> 
+> -       WARN_ON(source_min > source_max);
+> -       WARN_ON(target_min > target_max);
+> -
+>          /* defensive */
+>          source_val = clamp(source_val, source_min, source_max);
+> 
+> +       WARN_ON(source_min > source_max);
+> +       WARN_ON(target_min > target_max);
+
+That is a 'quick fix' ...
+
+Much better would be to replace the WARN() with (say):
+	if (target_min >= target_max)
+		return target_min;
+	if (source_min >= source_max)
+		return target_min + (target_max - target_min)/2;
+So that the return values are actually in range (in as much as one is defined).
+Note that the >= cpmparisons also remove a divide by zero.
+
+	David
+
+> 
+> Guenter
+> 
+
