@@ -4,98 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F136FC02199
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 13:30:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93D63C0218E
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 13:31:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABD3810E5BC;
-	Tue, 21 Jan 2025 13:30:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58A6B10E5C1;
+	Tue, 21 Jan 2025 13:31:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EtfltalA";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vWU1A4F9";
 	dkim-atps=neutral
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
- [IPv6:2a00:1450:4864:20::32a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A700B10E0DA;
- Mon, 20 Jan 2025 18:41:47 +0000 (UTC)
-Received: by mail-wm1-x32a.google.com with SMTP id
- 5b1f17b1804b1-4362f61757fso49216505e9.2; 
- Mon, 20 Jan 2025 10:41:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1737398506; x=1738003306; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=DIBwpgd4nZZVUOe5igOTj25p3iSQrZ0QRAo6bvYlPtM=;
- b=EtfltalAO1jHaoH2C8X7TrnC7MtIA7h/lZmU5FSfh9Dq1hNSCOAH2WSqPs1lBhoA0O
- 1bBOTDG6Rtvmhr/+ynF03rEAICb7djbhEMAbldjIeeP/rCI7lVbGCVlO8tK+QP9r8hne
- WFDMhPIg7qmhJjT71dyC1Vc76tsoG+1/rOm1+XwKPbEU7naD6V5FpTz4asK75h2yp0eO
- TxJq2UqZ1BGSRdenc/XNkb3euSNrfFxYzTTMx/AwD0ZtbhccVZA523M7h+bICjSE80W3
- ZUxe4ZuWXNXDHustAm1lxS8pj95ljzlS+XxBI8dkvnerFi1QaNdmY98tQ0PObBINfful
- SyYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737398506; x=1738003306;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=DIBwpgd4nZZVUOe5igOTj25p3iSQrZ0QRAo6bvYlPtM=;
- b=DwMtfdrjKtp+wADtb+EnEgU0WjbauaxUL9QECgN0DskdFcXKsmOZpjsxT/WoHw0nmo
- 7V2PFimqk/Kh9jEL1WaxA9vhTLc/zUnWrS8mtcjqFaRo7TrcEDDkXJsLVToS3UJ2Lmui
- wlvPuMjGcjY7InvvNcqKpEl40I+Ntrs/86Sl/ZPKyDakRuqjCBz9SLlAhR/lNNsL15cX
- 0FW27mtj6pMxz6vdX38XA+UFF6WcX7nHQA3B3Gpm3edNyNpPICCbJUMzL/TvfG/U7C+u
- uOTprRq9JtcHVRpELpAxrnw41KOumRQsUHSuvINJsZk56tLMxFSrwdc4HtTM0aaXZqpO
- 7sGg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXZDVga/hqDaQqa+0t64JaWXA97/jOrvCPGvcA732UNsBa+KrC1WVM86i8YYGndII6SDCHM8N6IAC0=@lists.freedesktop.org,
- AJvYcCXtoZhz09N58NdfKDogofsQDF2NLebRO14411zcwMCGPPsr8c04imqcT0o7/SPoHzL2rRI2m4+uCrA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxk7eLcpw/0byEYgkmundYs5+e8fhgEHNtObV27APsDI2uT483S
- N9kgOwiX/xCRN6yc/7fDTttnk7tBRHddZYo5HsO8C1IPohwqEkZw
-X-Gm-Gg: ASbGncthNKQ8pymYPZcJVx3oIhSNrPNkQMMoKlfVZfGT1PVeauP+kw8KVphKsbQ5GJk
- Cs653ELj+rg0M9wEnOos7go+75khmBp/dR0SZDUFFRPbW14s8KEiOeVJtDf53itHDiYkVvxyM3P
- NtFjeNx494VgmHAnEFuTXlJQchImYwMzdxufUBZ+cWU9pMLqx285D0y39Oa0pXwfmtprwy4WGbw
- 2KV/avoN4vvsjaIs4C48ilVdn6jHkjhEohKb/EwvHZuhtECItQ9Oqa/Sg/aWZk0EZSuJbBpO6QY
- 4MmwdUFohu7BbEccuuKqlimUqkff6T4m
-X-Google-Smtp-Source: AGHT+IEn3fWuuB2LneTt6yQ3PstmeBWVOQXwkDbyDPfhPGTU6q73G1l86IByTH3i/KUxwcvQA0z7UA==
-X-Received: by 2002:a05:600c:4f05:b0:434:fe62:28c1 with SMTP id
- 5b1f17b1804b1-438913ef83bmr125983915e9.18.1737398505721; 
- Mon, 20 Jan 2025 10:41:45 -0800 (PST)
-Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-43890462195sm148506615e9.30.2025.01.20.10.41.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Jan 2025 10:41:45 -0800 (PST)
-Date: Mon, 20 Jan 2025 18:41:43 +0000
-From: David Laight <david.laight.linux@gmail.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Linus Torvalds
- <torvalds@linux-foundation.org>, David Laight <David.Laight@aculab.com>,
- Arnd Bergmann <arnd@kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, Jens Axboe <axboe@kernel.dk>, Matthew
- Wilcox <willy@infradead.org>, Christoph Hellwig <hch@infradead.org>, Andrew
- Morton <akpm@linux-foundation.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Dan Carpenter
- <dan.carpenter@linaro.org>, "Jason A . Donenfeld" <Jason@zx2c4.com>,
- "pedro.falcato@gmail.com" <pedro.falcato@gmail.com>, Mateusz Guzik
- <mjguzik@gmail.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, Lorenzo
- Stoakes <lorenzo.stoakes@oracle.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: Buiild error in i915/xe
-Message-ID: <20250120184143.47615b21@pumpkin>
-In-Reply-To: <0a65de6c-74d5-4d3e-be75-0aa9ecc82da1@roeck-us.net>
-References: <c50365d214e04f9ba256d417c8bebbc0@AcuMS.aculab.com>
- <34d53778977747f19cce2abb287bb3e6@AcuMS.aculab.com>
- <ce600782-1012-47e3-ba3d-41c5a4b7a7b7@roeck-us.net>
- <20250118170959.3aa56f4d@pumpkin>
- <29ef57a1-e4dd-4d5d-8726-f1f79c698b66@roeck-us.net>
- <CAHk-=whAxUvW-APU42yWfCKHF5NhPLoTida9Jo=A9ZGGgjb18Q@mail.gmail.com>
- <20250118221123.5bb65e64@pumpkin>
- <f3939490-0f55-410f-81fe-0e9f03874546@roeck-us.net>
- <20250119090935.7c690f85@pumpkin> <87ed0xrcb8.fsf@intel.com>
- <20250120111551.435176c4@pumpkin> <878qr5ras2.fsf@intel.com>
- <0a65de6c-74d5-4d3e-be75-0aa9ecc82da1@roeck-us.net>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C1BA10E094;
+ Sun, 19 Jan 2025 15:22:57 +0000 (UTC)
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
+ [91.158.153.178])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id EAD45446;
+ Sun, 19 Jan 2025 16:21:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1737300115;
+ bh=CTvWZ10sB6Bpu7OwRCTU/O0pKZ8mB6w+tH5Yr4dSd4E=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=vWU1A4F9YgGtIhbdQyreotqH6d1Ml2MZ0LSMmJD+E3aF7hT7Iyt2tb7DnjVNF+Pxr
+ Ur2IAlVdyYB0u9eTY9nLS1iOqf1rbDS74NQte5xiZiorKZzIDc2ltm+dCMDxo3gGnD
+ tQCGpMKCUDl0+FP1sNJGb4wT3uTFLGuXW16Hvc0Q=
+Message-ID: <cf34be39-ce92-4ea5-b548-03008c163d31@ideasonboard.com>
+Date: Sun, 19 Jan 2025 17:22:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 25/25] drm/xlnx: Compute dumb-buffer sizes with
+ drm_mode_size_dumb()
+To: Sui Jingfeng <sui.jingfeng@linux.dev>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
+ simona@ffwll.ch, dri-devel@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, freedreno@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, imx@lists.linux.dev,
+ linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-tegra@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ xen-devel@lists.xenproject.org,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Andy Yan <andyshrk@163.com>, Daniel Stone <daniel@fooishbar.org>
+References: <f3ba05c7-6e49-4641-a3f9-ba418ebdb7c3@ideasonboard.com>
+ <c6735280-7c32-4319-8ca9-a7305d8117c3@suse.de>
+ <d67adb03-5cd0-4ac9-af58-cf4446dacee3@ideasonboard.com>
+ <0ea6be58-0e04-4172-87cd-064a3e4a43bc@suse.de>
+ <f35cb350-6be9-48ca-ad7e-e9dd418281d5@ideasonboard.com>
+ <4af0b6a7-c16a-4187-bbf5-365a9c86de21@suse.de>
+ <e327ad84-b5c9-4480-b873-dc3aca605538@ideasonboard.com>
+ <a2bbeb47-2569-4ee0-9265-92bab139bdc6@suse.de>
+ <f3833771-fcd7-45dc-9019-1525fef34429@ideasonboard.com>
+ <CAMuHMdXxYa+Na3XxpLTy=-eUL_zQ9kAiUKYu-E04u3KWApusSA@mail.gmail.com>
+ <xz5ncq67bgmdase2jg3cfvyaxpiwhol2eqpfzow6dqpauvslo5@2w3rw27lhnxo>
+ <b97fcd2f-516a-4172-aef3-631418564cfa@linux.dev>
+ <ef52dab0-058f-408f-a298-c4b2453a3d2f@ideasonboard.com>
+ <f4562dbf-b132-4cfd-8f7e-43cd69f2673f@linux.dev>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <f4562dbf-b132-4cfd-8f7e-43cd69f2673f@linux.dev>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 21 Jan 2025 13:30:48 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -111,121 +125,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 20 Jan 2025 06:15:30 -0800
-Guenter Roeck <linux@roeck-us.net> wrote:
+On 19/01/2025 16:59, Sui Jingfeng wrote:
 
-> On 1/20/25 03:21, Jani Nikula wrote:
-> > On Mon, 20 Jan 2025, David Laight <david.laight.linux@gmail.com> wrote:  
-> >> On Mon, 20 Jan 2025 12:48:11 +0200
-> >> Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> >>  
-> >>> On Sun, 19 Jan 2025, David Laight <david.laight.linux@gmail.com> wrote:  
-> >>>> On Sat, 18 Jan 2025 14:58:48 -0800
-> >>>> Guenter Roeck <linux@roeck-us.net> wrote:
-> >>>>     
-> >>>>> On 1/18/25 14:11, David Laight wrote:  
-> >>>>>> On Sat, 18 Jan 2025 13:21:39 -0800
-> >>>>>> Linus Torvalds <torvalds@linux-foundation.org> wrote:
-> >>>>>>        
-> >>>>>>> On Sat, 18 Jan 2025 at 09:49, Guenter Roeck <linux@roeck-us.net> wrote:  
-> >>>>>>>>
-> >>>>>>>> No idea why the compiler would know that the values are invalid.  
-> >>>>>>>
-> >>>>>>> It's not that the compiler knows tat they are invalid, but I bet what
-> >>>>>>> happens is in scale() (and possibly other places that do similar
-> >>>>>>> checks), which does this:
-> >>>>>>>
-> >>>>>>>           WARN_ON(source_min > source_max);
-> >>>>>>>           ...
-> >>>>>>>           source_val = clamp(source_val, source_min, source_max);
-> >>>>>>>
-> >>>>>>> and the compiler notices that the ordering comparison in the first
-> >>>>>>> WARN_ON() is the same as the one in clamp(), so it basically converts
-> >>>>>>> the logic to
-> >>>>>>>
-> >>>>>>>           if (source_min > source_max) {
-> >>>>>>>                   WARN(..);
-> >>>>>>>                   /* Do the clamp() knowing that source_min > source_max */
-> >>>>>>>                   source_val = clamp(source_val, source_min, source_max);
-> >>>>>>>           } else {
-> >>>>>>>                   /* Do the clamp knowing that source_min <= source_max */
-> >>>>>>>                   source_val = clamp(source_val, source_min, source_max);
-> >>>>>>>           }
-> >>>>>>>
-> >>>>>>> (obviously I dropped the other WARN_ON in the conversion, it wasn't
-> >>>>>>> relevant for this case).
-> >>>>>>>
-> >>>>>>> And now that first clamp() case is done with source_min > source_max,
-> >>>>>>> and it triggers that build error because that's invalid.
-> >>>>>>>
-> >>>>>>> So the condition is not statically true in the *source* code, but in
-> >>>>>>> the "I have moved code around to combine tests" case it now *is*
-> >>>>>>> statically true as far as the compiler is concerned.  
-> >>>>>>
-> >>>>>> Well spotted :-)
-> >>>>>>
-> >>>>>> One option would be to move the WARN_ON() below the clamp() and
-> >>>>>> add an OPTIMISER_HIDE_VAR(source_max) between them.
-> >>>>>>
-> >>>>>> Or do something more sensible than the WARN().
-> >>>>>> Perhaps return target_min on any such errors?
-> >>>>>>        
-> >>>>>
-> >>>>> This helps:
-> >>>>>
-> >>>>> -       WARN_ON(source_min > source_max);
-> >>>>> -       WARN_ON(target_min > target_max);
-> >>>>> -
-> >>>>>           /* defensive */
-> >>>>>           source_val = clamp(source_val, source_min, source_max);
-> >>>>>
-> >>>>> +       WARN_ON(source_min > source_max);
-> >>>>> +       WARN_ON(target_min > target_max);  
-> >>>>
-> >>>> That is a 'quick fix' ...
-> >>>>
-> >>>> Much better would be to replace the WARN() with (say):
-> >>>> 	if (target_min >= target_max)
-> >>>> 		return target_min;
-> >>>> 	if (source_min >= source_max)
-> >>>> 		return target_min + (target_max - target_min)/2;
-> >>>> So that the return values are actually in range (in as much as one is defined).
-> >>>> Note that the >= cpmparisons also remove a divide by zero.  
-> >>>
-> >>> I want the loud and early warnings for clear bugs instead of
-> >>> "gracefully" silencing the errors only to be found through debugging
-> >>> user reports.  
-> >>
-> >> A user isn't going to notice a WARN() - not until you tell them to look for it.
-> >> In any case even if you output a message you really want to return a 'sane'
-> >> value, who knows what effect a very out of range value is going to have.  
-> > 
-> > The point is, we'll catch the WARN in CI before it goes out to users.
-> >   
+>>>> But userspace must be able to continue allocating YUV buffers through
+>>>> CREATE_DUMB.
+>>>
+>>> I think, allocating YUV buffers through CREATE_DUMB interface is just
+>>> an *abuse* and *misuse* of this API for now.
+>>>
+>>> Take the NV12 format as an example, NV12 is YUV420 planar format, have
+>>> two planar: the Y-planar and the UV-planar. The Y-planar appear first
+>>> in memory as an array of unsigned char values. The Y-planar is followed
+>>> immediately by the UV-planar, which is also an array of unsigned char
+>>> values that contains packed U (Cb) and V (Cr) samples.
+>>>
+>>> But the 'drm_mode_create_dumb' structure is only intend to provide
+>>> descriptions for *one* planar.
+>>>
+>>> struct drm_mode_create_dumb {
+>>>      __u32 height;
+>>>      __u32 width;
+>>>      __u32 bpp;
+>>>      __u32 flags;
+>>>      __u32 handle;
+>>>      __u32 pitch;
+>>>      __u64 size;
+>>> };
+>>>
+>>> An width x height NV12 image takes up width*height*(1 + 1/4 + 1/4) 
+>>> bytes.
+>>>
+>>> So we can allocate an *equivalent* sized buffer to store the NV12 raw 
+>>> data.
+>>>
+>>> Either 'width * (height * 3/2)' where each pixel take up 8 bits,
+>>> or just 'with * height' where each pixels take up 12 bits.
+>>>
+>>> However, all those math are just equivalents description to the original
+>>> NV12 format, neither are concrete correct physical description.
+>>
+>> I don't see the problem. Allocating dumb buffers, if we don't have any 
+>> heuristics related to RGB behind it, is essentially just allocating a 
+>> specific amount of memory, defined by width, height and bitsperpixel.
+>>
+> I think, the problem will be that the 'width', 'height' and 'bpp'
+> are originally used to describe one plane. Those three parameters
+> has perfectly defined physical semantics.
 > 
-> It isn't going to catch the divide by 0 error, and it obviously doesn't
-> catch the build problem on parisc with gcc 13.x because the CI isn't
-> testing it.
+> But with multi planar formats, take NV12 image as an example,
+> for a 2×2 square of pixels, there are 4 Y samples but only 1 U
+> sample and 1 V sample. This format requires 4x8+1x8+1x8=48 bits
+> to store the 2x2 square.
 > 
-> How about disabling DRM_XE on architectures where it isn't supported,
-> matching DRM_I915 ?
-
-That'll just bite back later.
-As Linus spotted the compiler is just 'optimising' some code paths.
-It could happen for any architecture including x64.
-The repeated tests are basically slightly odd, although you might only
-expect them to be present in debug builds.
-
-An alternative would be to replace the clamp() with:
-	if (source_val <= source_min)
-		return target_min;
-	if (source_val >= source_max)
-		return target_max;
-
-	David
-
+> So its depth is 12 bits per pixel (48 / (2 * 2)).
 > 
-> Thanks,
-> Guenter
+> so my problem is that the mentioned 12bpp in this example only
+> make sense in mathematics, it doesn't has a good physical
+> interpret. Do you agree with me on this technique point?
 > 
+>> If I want to create an NV12 framebuffer, I allocate two dumb buffers, 
+>> one for Y and one for UV planes, and size them accordingly. And then 
+>> create the DRM framebuffer with those.
+>>
+> Then how you fill the value of the 'width', 'height' and 'bpp' of each 
+> dumb buffers?
+
+For 640x480-NV12:
+plane 0: width = 640, height = 480, bpp = 8
+plane 1: width = 640 / 2, height = 480 / 2, bpp = 16
+
+> Why not allocate storage for the whole on one shoot?
+
+You can, if you adjust the parameters accordingly. However, if the 
+strides of the planes are not equal, I guess it might cause problems on 
+some platforms.
+
+But I think it's usually simpler to allocate one buffer per plane, and 
+perhaps even better as it doesn't require as large contiguous memory area.
+
+> The modetest in libdrm can be an good example, send it[1] to you as an 
+> reference.
+
+Right, so modetest already does it successfully. So... What is the issue?
+
+Everyone agrees that CREATE_DUMB is not the best ioctl to allocate 
+buffers, and one can't consider it to work identically across the 
+platforms. But it's what we have and what has been used for ages.
+
+  Tomi
 
