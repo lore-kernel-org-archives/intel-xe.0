@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8219C02196
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E28D1C02195
 	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 13:30:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B979610E59E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0FDA10E5AA;
 	Tue, 21 Jan 2025 13:30:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="xMqoqpXw";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="heGdHto3";
 	dkim-atps=neutral
-X-Greylist: delayed 560 seconds by postgrey-1.36 at gabe;
- Sun, 19 Jan 2025 11:38:47 UTC
-Received: from out-182.mta1.migadu.com (out-182.mta1.migadu.com
- [95.215.58.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 133D310E06C
- for <intel-xe@lists.freedesktop.org>; Sun, 19 Jan 2025 11:38:47 +0000 (UTC)
-Message-ID: <b97fcd2f-516a-4172-aef3-631418564cfa@linux.dev>
+X-Greylist: delayed 12631 seconds by postgrey-1.36 at gabe;
+ Sun, 19 Jan 2025 15:00:00 UTC
+Received: from out-171.mta1.migadu.com (out-171.mta1.migadu.com
+ [IPv6:2001:41d0:203:375::ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6743210E02C
+ for <intel-xe@lists.freedesktop.org>; Sun, 19 Jan 2025 15:00:00 +0000 (UTC)
+Message-ID: <f4562dbf-b132-4cfd-8f7e-43cd69f2673f@linux.dev>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1737286164;
+ t=1737298788;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=uuK0LkbEgQqPgK0yPnR5LzoggyynezSlKlKR/CKdeTY=;
- b=xMqoqpXwM+10B3buteMukau9UQmlGuAXyj0ur9aXSA7WbWzwRnMniPiQaxTWp6qqTY2fRw
- kdeVaGsloeyKfqel8VbZAIHcFFD77zLC4uiMyod2/pw8443jMEAy0AngMSBb8Lp3KLn9lX
- baphMPg1zk5Qs828ODB8iVWTCpuol5w=
-Date: Sun, 19 Jan 2025 19:29:14 +0800
+ bh=zNY9fo693oU2B1dKi7Yad0MtryDjxzNQa/7Ip1S7xnQ=;
+ b=heGdHto3F+5K7JCqIvHDGXf1N0wnwZf1k6Vn1a+AfaN8emD7p116EZNmNhdoe3qOiN8MSL
+ BAskCcm13dLRGLlnl2OBU60SLqXM+CELdtyiknyOyqOXKvH7THRFFzoAh4sZgSEp9q/ASO
+ MFarzvKjz35Ws/S8kauuETysIOP9JiM=
+Date: Sun, 19 Jan 2025 22:59:36 +0800
 MIME-Version: 1.0
 Subject: Re: [PATCH v2 25/25] drm/xlnx: Compute dumb-buffer sizes with
  drm_mode_size_dumb()
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, airlied@gmail.com, simona@ffwll.ch,
- dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+Cc: Thomas Zimmermann <tzimmermann@suse.de>,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
+ simona@ffwll.ch, dri-devel@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, freedreno@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, imx@lists.linux.dev,
+ linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-tegra@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ xen-devel@lists.xenproject.org,
  Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
  Andy Yan <andyshrk@163.com>, Daniel Stone <daniel@fooishbar.org>
 References: <f3ba05c7-6e49-4641-a3f9-ba418ebdb7c3@ideasonboard.com>
@@ -58,11 +59,13 @@ References: <f3ba05c7-6e49-4641-a3f9-ba418ebdb7c3@ideasonboard.com>
  <f3833771-fcd7-45dc-9019-1525fef34429@ideasonboard.com>
  <CAMuHMdXxYa+Na3XxpLTy=-eUL_zQ9kAiUKYu-E04u3KWApusSA@mail.gmail.com>
  <xz5ncq67bgmdase2jg3cfvyaxpiwhol2eqpfzow6dqpauvslo5@2w3rw27lhnxo>
+ <b97fcd2f-516a-4172-aef3-631418564cfa@linux.dev>
+ <ef52dab0-058f-408f-a298-c4b2453a3d2f@ideasonboard.com>
 Content-Language: en-US
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 From: Sui Jingfeng <sui.jingfeng@linux.dev>
-In-Reply-To: <xz5ncq67bgmdase2jg3cfvyaxpiwhol2eqpfzow6dqpauvslo5@2w3rw27lhnxo>
+In-Reply-To: <ef52dab0-058f-408f-a298-c4b2453a3d2f@ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
@@ -83,131 +86,160 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hi,
 
-On 2025/1/16 18:35, Dmitry Baryshkov wrote:
-> On Thu, Jan 16, 2025 at 11:17:50AM +0100, Geert Uytterhoeven wrote:
->> On Thu, Jan 16, 2025 at 11:03 AM Tomi Valkeinen
->> <tomi.valkeinen@ideasonboard.com> wrote:
->>> On 16/01/2025 10:09, Thomas Zimmermann wrote:
->>>> Am 15.01.25 um 15:20 schrieb Tomi Valkeinen:
->>>> [...]
->>>>> My point is that we have the current UAPI, and we have userspace using
->>>>> it, but we don't have clear rules what the ioctl does with specific
->>>>> parameters, and we don't document how it has to be used.
->>>>>
->>>>> Perhaps the situation is bad, and all we can really say is that
->>>>> CREATE_DUMB only works for use with simple RGB formats, and the
->>>>> behavior for all other formats is platform specific. But I think even
->>>>> that would be valuable in the UAPI docs.
->>>> To be honest, I would not want to specify behavior for anything but the
->>>> linear RGB formats. If anything, I'd take Daniel's reply mail for
->>>> documentation as-is. Anyone stretching the UAPI beyond RGB is on their own.
->>>>
->>>>> Thinking about this, I wonder if this change is good for omapdrm or
->>>>> xilinx (probably other platforms too that support non-simple non-RGB
->>>>> formats via dumb buffers): without this patch, in both drivers, the
->>>>> pitch calculations just take the bpp as bit-per-pixels, align it up,
->>>>> and that's it.
->>>>>
->>>>> With this patch we end up using drm_driver_color_mode_format(), and
->>>>> aligning buffers according to RGB formats figured out via heuristics.
->>>>> It does happen to work, for the formats I tested, but it sounds like
->>>>> something that might easily not work, as it's doing adjustments based
->>>>> on wrong format.
->>>>>
->>>>> Should we have another version of drm_mode_size_dumb() which just
->>>>> calculates using the bpp, without the drm_driver_color_mode_format()
->>>>> path? Or does the drm_driver_color_mode_format() path provide some
->>>>> value for the drivers that do not currently do anything similar?
->>>> With the RGB-only rule, using drm_driver_color_mode_format() makes
->>>> sense. It aligns dumb buffers and video=, provides error checking, and
->>>> overall harmonizes code. The fallback is only required because of the
->>>> existing odd cases that already bend the UAPI's rules.
->>> I have to disagree here.
->>>
->>> On the platforms I have been using (omap, tidss, xilinx, rcar) the dumb
->>> buffers are the only buffers you can get from the DRM driver. The dumb
->>> buffers have been used to allocate linear and multiplanar YUV buffers
->>> for a very long time on those platforms.
->>>
->>> I tried to look around, but I did not find any mentions that CREATE_DUMB
->>> should only be used for RGB buffers. Is anyone outside the core
->>> developers even aware of it?
->>>
->>> If we don't use dumb buffers there, where do we get the buffers? Maybe
->>> from a v4l2 device or from a gpu device, but often you don't have those.
->>> DMA_HEAP is there, of course.
->> Why can't there be a variant that takes a proper fourcc format instead of
->> an imprecise bpp value?
-> Backwards compatibility. We can add an IOCTL for YUV / etc.
-
-[...]
-
-> But userspace must be able to continue allocating YUV buffers through
-> CREATE_DUMB.
-
-I think, allocating YUV buffers through CREATE_DUMB interface is just
-an *abuse* and *misuse* of this API for now.
-
-Take the NV12 format as an example, NV12 is YUV420 planar format, have
-two planar: the Y-planar and the UV-planar. The Y-planar appear first
-in memory as an array of unsigned char values. The Y-planar is followed
-immediately by the UV-planar, which is also an array of unsigned char
-values that contains packed U (Cb) and V (Cr) samples.
-
-But the 'drm_mode_create_dumb' structure is only intend to provide
-descriptions for *one* planar.
-
-struct drm_mode_create_dumb {
-     __u32 height;
-     __u32 width;
-     __u32 bpp;
-     __u32 flags;
-     __u32 handle;
-     __u32 pitch;
-     __u64 size;
-};
-
-An width x height NV12 image takes up width*height*(1 + 1/4 + 1/4) bytes.
-
-So we can allocate an *equivalent* sized buffer to store the NV12 raw data.
-
-Either 'width * (height * 3/2)' where each pixel take up 8 bits,
-or just 'with * height' where each pixels take up 12 bits.
-
-However, all those math are just equivalents description to the original
-NV12 format, neither are concrete correct physical description.
-
-Therefore, allocating YUV buffers through the dumb interface is just an
-abuse for that API. We certainly can abuse more by allocating two dumb
-buffers, one for Y-planer, another one for the UV-planer. But again,dumb buffers can be (and must be) used for *scanout* directly. What will yield if I commit the YUV buffers you allocated to the CRTC directly?
-
-In other words, You can allocated buffers via the dumb APIs to store anything,
-but the key point is that how can we interpret it.
-
-As Daniel puts it, the semantics of that API is well defined for simple RGB
-formats. Usages on non linear RGB dumb buffers are considered as undefined
-behavior.
-
-Peoples can still abusing it at the user-space though, but the kernel don't
-have to guarantee that the user-space *must* to be able to continue doing
-balabala..., That's it.
-
-
-Best regards,
-Sui
-
->> Gr{oetje,eeting}s,
+On 2025/1/19 20:18, Tomi Valkeinen wrote:
+> Hi,
+>
+> On 19/01/2025 13:29, Sui Jingfeng wrote:
+>> Hi,
 >>
->>                          Geert
+>> On 2025/1/16 18:35, Dmitry Baryshkov wrote:
+>>> On Thu, Jan 16, 2025 at 11:17:50AM +0100, Geert Uytterhoeven wrote:
+>>>> On Thu, Jan 16, 2025 at 11:03 AM Tomi Valkeinen
+>>>> <tomi.valkeinen@ideasonboard.com> wrote:
+>>>>> On 16/01/2025 10:09, Thomas Zimmermann wrote:
+>>>>>> Am 15.01.25 um 15:20 schrieb Tomi Valkeinen:
+>>>>>> [...]
+>>>>>>> My point is that we have the current UAPI, and we have userspace 
+>>>>>>> using
+>>>>>>> it, but we don't have clear rules what the ioctl does with specific
+>>>>>>> parameters, and we don't document how it has to be used.
+>>>>>>>
+>>>>>>> Perhaps the situation is bad, and all we can really say is that
+>>>>>>> CREATE_DUMB only works for use with simple RGB formats, and the
+>>>>>>> behavior for all other formats is platform specific. But I think 
+>>>>>>> even
+>>>>>>> that would be valuable in the UAPI docs.
+>>>>>> To be honest, I would not want to specify behavior for anything 
+>>>>>> but the
+>>>>>> linear RGB formats. If anything, I'd take Daniel's reply mail for
+>>>>>> documentation as-is. Anyone stretching the UAPI beyond RGB is on 
+>>>>>> their own.
+>>>>>>
+>>>>>>> Thinking about this, I wonder if this change is good for omapdrm or
+>>>>>>> xilinx (probably other platforms too that support non-simple 
+>>>>>>> non-RGB
+>>>>>>> formats via dumb buffers): without this patch, in both drivers, the
+>>>>>>> pitch calculations just take the bpp as bit-per-pixels, align it 
+>>>>>>> up,
+>>>>>>> and that's it.
+>>>>>>>
+>>>>>>> With this patch we end up using drm_driver_color_mode_format(), and
+>>>>>>> aligning buffers according to RGB formats figured out via 
+>>>>>>> heuristics.
+>>>>>>> It does happen to work, for the formats I tested, but it sounds 
+>>>>>>> like
+>>>>>>> something that might easily not work, as it's doing adjustments 
+>>>>>>> based
+>>>>>>> on wrong format.
+>>>>>>>
+>>>>>>> Should we have another version of drm_mode_size_dumb() which just
+>>>>>>> calculates using the bpp, without the 
+>>>>>>> drm_driver_color_mode_format()
+>>>>>>> path? Or does the drm_driver_color_mode_format() path provide some
+>>>>>>> value for the drivers that do not currently do anything similar?
+>>>>>> With the RGB-only rule, using drm_driver_color_mode_format() makes
+>>>>>> sense. It aligns dumb buffers and video=, provides error 
+>>>>>> checking, and
+>>>>>> overall harmonizes code. The fallback is only required because of 
+>>>>>> the
+>>>>>> existing odd cases that already bend the UAPI's rules.
+>>>>> I have to disagree here.
+>>>>>
+>>>>> On the platforms I have been using (omap, tidss, xilinx, rcar) the 
+>>>>> dumb
+>>>>> buffers are the only buffers you can get from the DRM driver. The 
+>>>>> dumb
+>>>>> buffers have been used to allocate linear and multiplanar YUV buffers
+>>>>> for a very long time on those platforms.
+>>>>>
+>>>>> I tried to look around, but I did not find any mentions that 
+>>>>> CREATE_DUMB
+>>>>> should only be used for RGB buffers. Is anyone outside the core
+>>>>> developers even aware of it?
+>>>>>
+>>>>> If we don't use dumb buffers there, where do we get the buffers? 
+>>>>> Maybe
+>>>>> from a v4l2 device or from a gpu device, but often you don't have 
+>>>>> those.
+>>>>> DMA_HEAP is there, of course.
+>>>> Why can't there be a variant that takes a proper fourcc format 
+>>>> instead of
+>>>> an imprecise bpp value?
+>>> Backwards compatibility. We can add an IOCTL for YUV / etc.
 >>
->> -- 
->> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>> [...]
 >>
->> In personal conversations with technical people, I call myself a hacker. But
->> when I'm talking to journalists I just say "programmer" or something like that.
->>                                  -- Linus Torvalds
+>>> But userspace must be able to continue allocating YUV buffers through
+>>> CREATE_DUMB.
+>>
+>> I think, allocating YUV buffers through CREATE_DUMB interface is just
+>> an *abuse* and *misuse* of this API for now.
+>>
+>> Take the NV12 format as an example, NV12 is YUV420 planar format, have
+>> two planar: the Y-planar and the UV-planar. The Y-planar appear first
+>> in memory as an array of unsigned char values. The Y-planar is followed
+>> immediately by the UV-planar, which is also an array of unsigned char
+>> values that contains packed U (Cb) and V (Cr) samples.
+>>
+>> But the 'drm_mode_create_dumb' structure is only intend to provide
+>> descriptions for *one* planar.
+>>
+>> struct drm_mode_create_dumb {
+>>      __u32 height;
+>>      __u32 width;
+>>      __u32 bpp;
+>>      __u32 flags;
+>>      __u32 handle;
+>>      __u32 pitch;
+>>      __u64 size;
+>> };
+>>
+>> An width x height NV12 image takes up width*height*(1 + 1/4 + 1/4) 
+>> bytes.
+>>
+>> So we can allocate an *equivalent* sized buffer to store the NV12 raw 
+>> data.
+>>
+>> Either 'width * (height * 3/2)' where each pixel take up 8 bits,
+>> or just 'with * height' where each pixels take up 12 bits.
+>>
+>> However, all those math are just equivalents description to the original
+>> NV12 format, neither are concrete correct physical description.
+>
+> I don't see the problem. Allocating dumb buffers, if we don't have any 
+> heuristics related to RGB behind it, is essentially just allocating a 
+> specific amount of memory, defined by width, height and bitsperpixel.
+>
+I think, the problem will be that the 'width', 'height' and 'bpp'
+are originally used to describe one plane. Those three parameters
+has perfectly defined physical semantics.
+
+But with multi planar formats, take NV12 image as an example,
+for a 2×2 square of pixels, there are 4 Y samples but only 1 U
+sample and 1 V sample. This format requires 4x8+1x8+1x8=48 bits
+to store the 2x2 square.
+
+So its depth is 12 bits per pixel (48 / (2 * 2)).
+
+so my problem is that the mentioned 12bpp in this example only
+make sense in mathematics, it doesn't has a good physical
+interpret. Do you agree with me on this technique point?
+     
+
+> If I want to create an NV12 framebuffer, I allocate two dumb buffers, 
+> one for Y and one for UV planes, and size them accordingly. And then 
+> create the DRM framebuffer with those.
+>
+Then how you fill the value of the 'width', 'height' and 'bpp' of each dumb buffers?
+
+Why not allocate storage for the whole on one shoot?
+
+The modetest in libdrm can be an good example, send it[1] to you as an reference.
+
+[1] https://gitlab.freedesktop.org/mesa/drm/-/blob/main/tests/modetest/buffers.c?ref_type=heads#L114
 
 -- 
+
 Best regards,
 Sui
 
