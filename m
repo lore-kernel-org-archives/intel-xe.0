@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DA3BC02185
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Jan 2025 06:20:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8390CC02188
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Jan 2025 06:20:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D7D110E2F6;
-	Mon, 20 Jan 2025 06:20:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DF1910E2FF;
+	Mon, 20 Jan 2025 06:20:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pe0s0ypz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mn+QL6zl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFABC10E2F3
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Jan 2025 06:20:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 677BC10E2FF
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Jan 2025 06:20:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737354042; x=1768890042;
+ t=1737354045; x=1768890045;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QOvMHenIGyCjMEs0JHRLJxds+ud2eezSkIvsS/3+XTM=;
- b=Pe0s0ypziSLuOhXIqrlqtt5NTOQzrC43koerUAQhj37QBy2t/TG+QFbd
- 0dwb9M+/7I42O66QieegE9eQ7vrhPcE0P8mWxsqJlCNiJ/8HkLyfOHSXK
- RTm7eYF4Oj+ffhcWbnACrgoL3drorhzxYN178DztD9b9NlifKprAm7KyG
- lg807fiOyqiD6Ip4GrayrJZ9IMnIKOlz0dE2dD8M5PelFInZuurtWBMlg
- Wcu4OFbOZP94ZhWHlnh8pdoZeKJSYnlkMm+MWYNQuXcX/tQFiRI46iaTj
- AiZR4LxVaM3eXauJGGYt7FWWpRxarGTyJWHWQmMcM8N8GrflJTu+5qS3t w==;
-X-CSE-ConnectionGUID: B/yoHyu2SoG5WaLXhrMEIw==
-X-CSE-MsgGUID: O7YAWVmiRIKAHfFF0RW+fA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11320"; a="37953789"
-X-IronPort-AV: E=Sophos;i="6.13,218,1732608000"; d="scan'208";a="37953789"
+ bh=Lafike4cso58FzWiELpieJtpbjGerfokd2+j1T56MJM=;
+ b=mn+QL6zlba+XhKrWNcbKwNRbFXWsc7b5i8Q6DnshD4oaRiuocpLXCpbF
+ yOrGOOT4gCMdBx4X4+9C+hCjOUGqij2BQ53r9RXRnYPbKTcGZEpAXUToi
+ kjZ+nR70Ko2hSd9yFR+LG3Q9C2fwY6wBG0GfBGEwaNPgdksNzT2ld987T
+ Tm2bEV3f1CKqn+209h+++z7opt+8l+w3FXsF+O/kc25ADjX+rdWTF1+61
+ AFTOC4BhIp0nURY7wiNJN46v17VXnnw+Su+O3kUT3eXyVcrE+Ee+YFdA4
+ hnpFts/WFxXYibUU2WXyoCpp6MK2OOMNeVCyAqYkaJxbbo5Odm/rSNJ4o Q==;
+X-CSE-ConnectionGUID: A2iYbgEATBKuls+WhowolA==
+X-CSE-MsgGUID: dBAkZspNSYuqnHNnRcTMgg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11320"; a="37953802"
+X-IronPort-AV: E=Sophos;i="6.13,218,1732608000"; d="scan'208";a="37953802"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2025 22:20:42 -0800
-X-CSE-ConnectionGUID: s1MNEzsPTwC4C1/7hQjDWg==
-X-CSE-MsgGUID: EVKT/RhkTA2Ldgueckn8cQ==
+ 19 Jan 2025 22:20:45 -0800
+X-CSE-ConnectionGUID: u/2um2MYRQucu6x1hAVGUg==
+X-CSE-MsgGUID: Tug21d+PQaOyfTyAkA2IMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,218,1732608000"; d="scan'208";a="111370329"
+X-IronPort-AV: E=Sophos;i="6.13,218,1732608000"; d="scan'208";a="111370339"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2025 22:20:41 -0800
+ 19 Jan 2025 22:20:43 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@intel.com, jani.nikula@linux.intel.com,
  alexander.usyskin@intel.com
-Subject: [PATCH v3 1/3] drm/xe: Add functions and sysfs for boot survivability
-Date: Mon, 20 Jan 2025 12:10:40 +0530
-Message-ID: <20250120064042.2596178-2-riana.tauro@intel.com>
+Subject: [PATCH v3 2/3] drm/xe: Enable Boot Survivability mode
+Date: Mon, 20 Jan 2025 12:10:41 +0530
+Message-ID: <20250120064042.2596178-3-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250120064042.2596178-1-riana.tauro@intel.com>
 References: <20250120064042.2596178-1-riana.tauro@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,396 +68,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Boot Survivability is a software based workflow for recovering a system
-in a failed boot state. Here system recoverability is concerned with
-recovering the firmware responsible for boot.
+Enable boot survivability mode if pcode initialization fails and
+if boot status indicates a failure. In this mode, drm card is not
+exposed and driver probe returns success after loading the bare minimum
+to allow firmware to be flashed via mei.
 
-This is implemented by loading the driver with bare minimum (no drm card)
-to allow the firmware to be flashed through mei-gsc and collect telemetry.
-The driver's probe flow is modified such that it enters survivability mode
-when pcode initialization is incomplete and boot status denotes a failure.
-In this mode, drm card is not exposed and presence of survivability_mode
-entry in PCI sysfs  is used to indicate survivability mode and
-provide additional information required for debug
+v2: abstract survivability mode variable
+    add BMG check inside function (Jani, Rodrigo)
 
-This patch adds initialization functions and exposes admin
-readable sysfs entries
-
-The new sysfs will have the below layout
-
-	/sys/bus/.../bdf
-             	     ├── survivability_mode
-
-v2: reorder headers
-    fix doc
-    remove survivability info and use mode to display information
-    use separate function for logging survivability information
-    for critical error (Rodrigo)
-
-v3: use for loop
-    use dev logs instead of drm
-    use helper function for aux history(Rodrigo)
-    remove unnecessary error check of greater than max_scratch
-    as we are reading only 3 bit
+v3: return -EBUSY during system suspend (Anshuman)
+    check survivability mode in pci probe only
+    on error
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Acked-by: Ashwin Kumar Kulkarni <ashwin.kumar.kulkarni@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                   |   1 +
- drivers/gpu/drm/xe/xe_device_types.h          |   4 +
- drivers/gpu/drm/xe/xe_pcode_api.h             |  14 ++
- drivers/gpu/drm/xe/xe_survivability_mode.c    | 215 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_survivability_mode.h    |  17 ++
- .../gpu/drm/xe/xe_survivability_mode_types.h  |  35 +++
- 6 files changed, 286 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_survivability_mode.c
- create mode 100644 drivers/gpu/drm/xe/xe_survivability_mode.h
- create mode 100644 drivers/gpu/drm/xe/xe_survivability_mode_types.h
+ drivers/gpu/drm/xe/xe_device.c             |  7 ++++++-
+ drivers/gpu/drm/xe/xe_pci.c                | 23 ++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_survivability_mode.c | 16 +++++++++++++++
+ drivers/gpu/drm/xe/xe_survivability_mode.h |  1 +
+ 4 files changed, 44 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 5c97ad6ed738..fb1cb98ce891 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -95,6 +95,7 @@ xe-y += xe_bb.o \
- 	xe_sa.o \
- 	xe_sched_job.o \
- 	xe_step.o \
-+	xe_survivability_mode.o \
- 	xe_sync.o \
- 	xe_tile.o \
- 	xe_tile_sysfs.o \
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 8a7b15972413..0f5a052150c9 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -21,6 +21,7 @@
- #include "xe_pt_types.h"
- #include "xe_sriov_types.h"
- #include "xe_step_types.h"
-+#include "xe_survivability_mode_types.h"
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
- #define TEST_VM_OPS_ERROR
-@@ -341,6 +342,9 @@ struct xe_device {
- 		u8 skip_pcode:1;
- 	} info;
- 
-+	/** @survivability: survivability information for device */
-+	struct xe_survivability survivability;
-+
- 	/** @irq: device interrupt state */
- 	struct {
- 		/** @irq.lock: lock for processing irq's on this device */
-diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-index f153ce96f69a..4e373b8199ca 100644
---- a/drivers/gpu/drm/xe/xe_pcode_api.h
-+++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-@@ -49,6 +49,20 @@
- /* Domain IDs (param2) */
- #define     PCODE_MBOX_DOMAIN_HBM		0x2
- 
-+#define PCODE_SCRATCH_ADDR(x)		XE_REG(0x138320 + ((x) * 4))
-+/* PCODE_SCRATCH0 */
-+#define   AUXINFO_REG_OFFSET		REG_GENMASK(17, 15)
-+#define   OVERFLOW_REG_OFFSET		REG_GENMASK(14, 12)
-+#define   HISTORY_TRACKING		REG_BIT(11)
-+#define   OVERFLOW_SUPPORT		REG_BIT(10)
-+#define   AUXINFO_SUPPORT		REG_BIT(9)
-+#define   BOOT_STATUS			REG_GENMASK(3, 1)
-+#define      CRITICAL_FAILURE		4
-+#define      NON_CRITICAL_FAILURE	7
-+
-+/* Auxillary info bits */
-+#define   AUXINFO_HISTORY_OFFSET	REG_GENMASK(31, 29)
-+
- struct pcode_err_decode {
- 	int errno;
- 	const char *str;
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-new file mode 100644
-index 000000000000..b27757b4ef5d
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -0,0 +1,215 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 731f9213780c..ca51ff91ee07 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -51,6 +51,7 @@
+ #include "xe_pm.h"
+ #include "xe_query.h"
+ #include "xe_sriov.h"
 +#include "xe_survivability_mode.h"
-+#include "xe_survivability_mode_types.h"
+ #include "xe_tile.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_ttm_sys_mgr.h"
+@@ -587,8 +588,12 @@ int xe_device_probe_early(struct xe_device *xe)
+ 	update_device_info(xe);
+ 
+ 	err = xe_pcode_probe_early(xe);
+-	if (err)
++	if (err) {
++		if (xe_survivability_mode_required(xe))
++			xe_survivability_mode_init(xe);
 +
-+#include <linux/kobject.h>
-+#include <linux/pci.h>
-+#include <linux/sysfs.h>
+ 		return err;
++	}
+ 
+ 	err = wait_for_lmem_ready(xe);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 7d146e3e8e21..b9a1eb423a33 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -30,6 +30,7 @@
+ #include "xe_pm.h"
+ #include "xe_sriov.h"
+ #include "xe_step.h"
++#include "xe_survivability_mode.h"
+ #include "xe_tile.h"
+ 
+ enum toggle_d3cold {
+@@ -768,6 +769,9 @@ static void xe_pci_remove(struct pci_dev *pdev)
+ 	if (IS_SRIOV_PF(xe))
+ 		xe_pci_sriov_configure(pdev, 0);
+ 
++	if (xe_survivability_mode_enabled(xe))
++		return xe_survivability_mode_remove(xe);
 +
-+#include "xe_device.h"
-+#include "xe_gt.h"
-+#include "xe_mmio.h"
-+#include "xe_pcode_api.h"
+ 	xe_device_remove(xe);
+ 	xe_pm_runtime_fini(xe);
+ 	pci_set_drvdata(pdev, NULL);
+@@ -840,8 +844,19 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 		return err;
+ 
+ 	err = xe_device_probe_early(xe);
+-	if (err)
 +
-+#define MAX_SCRATCH_MMIO 8
++	/*
++	 * In Boot Survivability mode, no drm card is exposed
++	 * and driver is loaded with bare minimum to allow
++	 * for firmware to be flashed through mei. Return
++	 * success if survivability mode is enabled.
++	 */
++	if (err) {
++		if (xe_survivability_mode_enabled(xe))
++			return 0;
 +
+ 		return err;
++	}
+ 
+ 	err = xe_info_init(xe, desc->graphics, desc->media);
+ 	if (err)
+@@ -928,9 +943,13 @@ static void d3cold_toggle(struct pci_dev *pdev, enum toggle_d3cold toggle)
+ static int xe_pci_suspend(struct device *dev)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(dev);
++	struct xe_device *xe = pdev_to_xe_device(pdev);
+ 	int err;
+ 
+-	err = xe_pm_suspend(pdev_to_xe_device(pdev));
++	if (xe_survivability_mode_enabled(xe))
++		return -EBUSY;
++
++	err = xe_pm_suspend(xe);
+ 	if (err)
+ 		return err;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
+index b27757b4ef5d..e1ce14d8dec2 100644
+--- a/drivers/gpu/drm/xe/xe_survivability_mode.c
++++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+@@ -144,6 +144,19 @@ static void enable_survivability_mode(struct pci_dev *pdev)
+ 	}
+ }
+ 
 +/**
-+ * DOC: Xe Boot Survivability
-+ *
-+ * Boot Survivability is a software based workflow for recovering a system in a failed boot state
-+ * Here system recoverability is concerned with recovering the firmware responsible for boot.
-+ *
-+ * This is implemented by loading the driver with bare minimum (no drm card) to allow the firmware
-+ * to be flashed through mei and collect telemetry. The driver's probe flow is modified
-+ * such that it enters survivability mode when pcode initialization is incomplete and boot status
-+ * denotes a failure. The driver then  populates the survivability_mode PCI sysfs indicating
-+ * survivability mode and provides additional information required for debug
-+ *
-+ * KMD exposes below admin-only readable sysfs in survivability mode
-+ *
-+ * device/survivability_mode: The presence of this file indicates that the card is in survivability
-+ *			      mode. Also, provides additional information on why the driver entered
-+ *			      survivability mode.
-+ *
-+ *			      Capability Information - Provides boot status
-+ *			      Postcode Information   - Provides information about the failure
-+ *			      Overflow Information   - Provides history of previous failures
-+ *			      Auxillary Information  - Certain failures may have information in
-+ *						       addition to postcode information
-+ */
-+
-+static u32 aux_history_offset(u32 reg_value)
-+{
-+	return REG_FIELD_GET(AUXINFO_HISTORY_OFFSET, reg_value);
-+}
-+
-+static void set_survivability_info(struct xe_device *xe, struct xe_survivability_info *info,
-+				   int id, char *name)
-+{
-+	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-+
-+	strscpy(info[id].name, name, sizeof(info[id].name));
-+	info[id].reg = PCODE_SCRATCH_ADDR(id).raw;
-+	info[id].value = xe_mmio_read32(mmio, PCODE_SCRATCH_ADDR(id));
-+}
-+
-+static void populate_survivability_info(struct xe_device *xe)
-+{
-+	struct xe_survivability *survivability = &xe->survivability;
-+	struct xe_survivability_info *info = survivability->info;
-+	u32 id = 0, reg_value;
-+	int index;
-+	char name[NAME_MAX];
-+
-+	set_survivability_info(xe, info, id, "Capability Info");
-+	reg_value = info[id].value;
-+
-+	if (reg_value & HISTORY_TRACKING) {
-+		id++;
-+		set_survivability_info(xe, info, id, "Postcode Info");
-+
-+		if (reg_value & OVERFLOW_SUPPORT) {
-+			id = REG_FIELD_GET(OVERFLOW_REG_OFFSET, reg_value);
-+			set_survivability_info(xe, info, id, "Overflow Info");
-+		}
-+	}
-+
-+	if (reg_value & AUXINFO_SUPPORT) {
-+		id = REG_FIELD_GET(AUXINFO_REG_OFFSET, reg_value);
-+
-+		for (index = 0; id && reg_value; index++, reg_value = info[id].value,
-+		     id = aux_history_offset(reg_value)) {
-+			snprintf(name, NAME_MAX, "Auxillary Info %d", index);
-+			set_survivability_info(xe, info, id, name);
-+		}
-+	}
-+}
-+
-+static void log_survivability_info(struct pci_dev *pdev)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	struct xe_survivability *survivability = &xe->survivability;
-+	struct xe_survivability_info *info = survivability->info;
-+	int id;
-+
-+	dev_info(&pdev->dev, "Survivability Boot Status : Critical Failure (%d)\n",
-+		 survivability->boot_status);
-+	for (id = 0; id < MAX_SCRATCH_MMIO; id++) {
-+		if (info[id].reg)
-+			dev_info(&pdev->dev, "%s: 0x%x - 0x%x\n", info[id].name,
-+				 info[id].reg, info[id].value);
-+	}
-+}
-+
-+static ssize_t survivability_mode_show(struct device *dev,
-+				       struct device_attribute *attr, char *buff)
-+{
-+	struct pci_dev *pdev = to_pci_dev(dev);
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	struct xe_survivability *survivability = &xe->survivability;
-+	struct xe_survivability_info *info = survivability->info;
-+	int index = 0, count = 0;
-+
-+	for (index = 0; index < MAX_SCRATCH_MMIO; index++) {
-+		if (info[index].reg)
-+			count += sysfs_emit_at(buff, count, "%s: 0x%x - 0x%x\n", info[index].name,
-+					       info[index].reg, info[index].value);
-+	}
-+
-+	return count;
-+}
-+
-+static DEVICE_ATTR_ADMIN_RO(survivability_mode);
-+
-+static void enable_survivability_mode(struct pci_dev *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	struct xe_survivability *survivability = &xe->survivability;
-+	int ret = 0;
-+
-+	/* set survivability mode */
-+	survivability->mode = true;
-+	dev_info(dev, "In Survivability Mode\n");
-+
-+	/* create survivability mode sysfs */
-+	ret = sysfs_create_file(&dev->kobj, &dev_attr_survivability_mode.attr);
-+	if (ret) {
-+		dev_warn(dev, "Failed to create survivability sysfs files\n");
-+		return;
-+	}
-+}
-+
-+/**
-+ * xe_survivability_mode_required- checks if survivability mode is required
++ * xe_survivability_mode_enabled - check if survivability mode is enabled
 + * @xe: xe device instance
 + *
-+ * This function reads the boot status of Pcode capability register
-+ *
-+ * Return: true if boot status indicates failure, false otherwise
++ * Returns true if in survivability mode, false otherwise
 + */
-+bool xe_survivability_mode_required(struct xe_device *xe)
++bool xe_survivability_mode_enabled(struct xe_device *xe)
 +{
 +	struct xe_survivability *survivability = &xe->survivability;
-+	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-+	u32 data;
 +
-+	data = xe_mmio_read32(mmio, PCODE_SCRATCH_ADDR(0));
-+	survivability->boot_status = REG_FIELD_GET(BOOT_STATUS, data);
-+
-+	return (survivability->boot_status == NON_CRITICAL_FAILURE ||
-+		survivability->boot_status == CRITICAL_FAILURE);
++	return survivability->mode;
 +}
 +
-+/**
-+ * xe_survivability_mode_remove - remove survivability mode
-+ * @xe: xe device instance
-+ *
-+ * clean up sysfs entries of survivability mode
-+ */
-+void xe_survivability_mode_remove(struct xe_device *xe)
-+{
-+	struct xe_survivability *survivability = &xe->survivability;
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	struct device *dev = &pdev->dev;
+ /**
+  * xe_survivability_mode_required- checks if survivability mode is required
+  * @xe: xe device instance
+@@ -158,6 +171,9 @@ bool xe_survivability_mode_required(struct xe_device *xe)
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+ 	u32 data;
+ 
++	if (!IS_DGFX(xe) || xe->info.platform < XE_BATTLEMAGE)
++		return false;
 +
-+	sysfs_remove_file(&dev->kobj, &dev_attr_survivability_mode.attr);
-+	kfree(survivability->info);
-+	pci_set_drvdata(pdev, NULL);
-+}
-+
-+/**
-+ * xe_survivability_mode_init - Initialize the survivability mode
-+ * @xe: xe device instance
-+ *
-+ * Initializes the sysfs and required actions to enter survivability mode
-+ */
-+void xe_survivability_mode_init(struct xe_device *xe)
-+{
-+	struct xe_survivability *survivability = &xe->survivability;
-+	struct xe_survivability_info *info;
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+
-+	survivability->size = MAX_SCRATCH_MMIO;
-+
-+	info = kcalloc(survivability->size, sizeof(*info), GFP_KERNEL);
-+	if (!info)
-+		return;
-+
-+	survivability->info = info;
-+
-+	populate_survivability_info(xe);
-+
-+	/* Only log debug information and exit if it is a critical failure */
-+	if (survivability->boot_status == CRITICAL_FAILURE) {
-+		log_survivability_info(pdev);
-+		kfree(survivability->info);
-+		return;
-+	}
-+
-+	enable_survivability_mode(pdev);
-+}
+ 	data = xe_mmio_read32(mmio, PCODE_SCRATCH_ADDR(0));
+ 	survivability->boot_status = REG_FIELD_GET(BOOT_STATUS, data);
+ 
 diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.h b/drivers/gpu/drm/xe/xe_survivability_mode.h
-new file mode 100644
-index 000000000000..410e3ee5f5d1
---- /dev/null
+index 410e3ee5f5d1..f530507a22c6 100644
+--- a/drivers/gpu/drm/xe/xe_survivability_mode.h
 +++ b/drivers/gpu/drm/xe/xe_survivability_mode.h
-@@ -0,0 +1,17 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#ifndef _XE_SURVIVABILITY_MODE_H_
-+#define _XE_SURVIVABILITY_MODE_H_
-+
-+#include <linux/types.h>
-+
-+struct xe_device;
-+
-+void xe_survivability_mode_init(struct xe_device *xe);
-+void xe_survivability_mode_remove(struct xe_device *xe);
-+bool xe_survivability_mode_required(struct xe_device *xe);
-+
-+#endif /* _XE_SURVIVABILITY_MODE_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode_types.h b/drivers/gpu/drm/xe/xe_survivability_mode_types.h
-new file mode 100644
-index 000000000000..19d433e253df
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode_types.h
-@@ -0,0 +1,35 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#ifndef _XE_SURVIVABILITY_MODE_TYPES_H_
-+#define _XE_SURVIVABILITY_MODE_TYPES_H_
-+
-+#include <linux/limits.h>
-+#include <linux/types.h>
-+
-+struct xe_survivability_info {
-+	char name[NAME_MAX];
-+	u32 reg;
-+	u32 value;
-+};
-+
-+/**
-+ * struct xe_survivability: Contains survivability mode information
-+ */
-+struct xe_survivability {
-+	/** @info: struct that holds survivability info from scratch registers */
-+	struct xe_survivability_info *info;
-+
-+	/** @size: number of scratch registers */
-+	u32 size;
-+
-+	/** @boot_status: indicates critical/non critical boot failure */
-+	u8 boot_status;
-+
-+	/** @mode: boolean to indicate survivability mode */
-+	bool mode;
-+};
-+
-+#endif /* _XE_SURVIVABILITY_MODE_TYPES_H_ */
+@@ -12,6 +12,7 @@ struct xe_device;
+ 
+ void xe_survivability_mode_init(struct xe_device *xe);
+ void xe_survivability_mode_remove(struct xe_device *xe);
++bool xe_survivability_mode_enabled(struct xe_device *xe);
+ bool xe_survivability_mode_required(struct xe_device *xe);
+ 
+ #endif /* _XE_SURVIVABILITY_MODE_H_ */
 -- 
 2.47.1
 
