@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78195C02185
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Jan 2025 06:08:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35FD2C02188
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Jan 2025 06:08:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 423B310E2F3;
-	Mon, 20 Jan 2025 06:08:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0400210E2F6;
+	Mon, 20 Jan 2025 06:08:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ni5hJRde";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jIlf1/P5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F73010E2F1
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Jan 2025 06:08:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9815410E2F6
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Jan 2025 06:08:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737353334; x=1768889334;
+ t=1737353336; x=1768889336;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=O8sEJs9fAaiUhs19ibIerlSbA7YZJN8GMDNN4L/EI5g=;
- b=Ni5hJRdeEv1wlqjSe1i8eDB9FUj4LZ+QtfNZN0BqEYg01vZ9RtrX9sW6
- YQIF6BPAtoU/ACAtexraue2DsKQBUhODlviH7ZvSKPeQ/cBqR0zB8GmjM
- sMzL1NIvltqwhGiSYTJ2wf/5TMLRNOpaL5bKkKiwkfuLY1QzTbnxAWLN9
- zU4Nuo8E/qIYv+QOcqIhjKXSQHb6ziCG5nPcgfkjCv+6zI4qyvy3WZVPq
- X3/tjHU1fhXAZIadWG8SYHVEaHBGBezCfCesPoG0dRnEbKCC9d37KpsyM
- X1NzXIDaY2q4dpRKajV6z0H/D4vfcxvmPWFGcbbM7ihtt0lNSVEA1sSmk g==;
-X-CSE-ConnectionGUID: PFjTtilXSee8nmPTpbYJYQ==
-X-CSE-MsgGUID: qPsy3cW+RMe2VUYgv5jKTA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11320"; a="48380350"
-X-IronPort-AV: E=Sophos;i="6.13,218,1732608000"; d="scan'208";a="48380350"
+ bh=ZSIRTS/3u2PnrZVfRiWZpYq8s5ZPVg3CZBWav8Ycpbg=;
+ b=jIlf1/P5kzR5aDNB0nOasiPp3YCSaROTqwgdFkicJbnPTp7ZDeXcQIE6
+ gUMNrUSZOFPxndvD8CbjkVoTUJJuawfjhHeHCnZxPR7dH0K/AgDDJq49m
+ 4w4fhNkuWdQXwosREBWFA6VPVPzMAf7rurQMH7hIqmiUaSwfGK0Y9rPwx
+ 1rOQUfSE9DF/FScu40ChMOLvZYRQUupSCFF9gie32dZEXgmGiFnca9V8/
+ 0x5GKe+H9R3G82OdQt221Mljbvbn9CMbIpFCJsr8gb5UEl7XmgNYrjxeV
+ BkuvBaTphztOCeKfBDVnHK54wAC9tCzovyGIXQdCuzcQHSUdlPbVMhgLx g==;
+X-CSE-ConnectionGUID: G+tEQIrDRZC7VOt9Pd080A==
+X-CSE-MsgGUID: f331CiXdQtSpfpHyQFq60g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11320"; a="48380351"
+X-IronPort-AV: E=Sophos;i="6.13,218,1732608000"; d="scan'208";a="48380351"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2025 22:08:54 -0800
-X-CSE-ConnectionGUID: qz4SxSG+SzCtI2PYivts2w==
-X-CSE-MsgGUID: 7PnWjY4XTIWFPuqV4kRn+Q==
+ 19 Jan 2025 22:08:56 -0800
+X-CSE-ConnectionGUID: TQrF2ADHTjO3z0z6iPcrRw==
+X-CSE-MsgGUID: SgBL4Xr/STuF2Z1lD1fcpw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="106221995"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="106222014"
 Received: from aradhyab-desk.iind.intel.com ([10.145.169.55])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2025 22:08:50 -0800
+ 19 Jan 2025 22:08:53 -0800
 From: Aradhya Bhatia <aradhya.bhatia@intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>
 Cc: Intel XE List <intel-xe@lists.freedesktop.org>,
@@ -49,9 +49,9 @@ Cc: Intel XE List <intel-xe@lists.freedesktop.org>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Ayaz A Siddiqui <ayaz.siddiqui@intel.com>,
  Aradhya Bhatia <aradhya.bhatia@intel.com>
-Subject: [PATCH v3 1/2] drm/xe/xe: Add Wa_16021333562 and Wa_14016712196
-Date: Mon, 20 Jan 2025 11:39:15 +0530
-Message-Id: <20250120060916.778406-2-aradhya.bhatia@intel.com>
+Subject: [PATCH v3 2/2] drm/xe/oa: Refactor WAs to use XE_WA() macro
+Date: Mon, 20 Jan 2025 11:39:16 +0530
+Message-Id: <20250120060916.778406-3-aradhya.bhatia@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250120060916.778406-1-aradhya.bhatia@intel.com>
 References: <20250120060916.778406-1-aradhya.bhatia@intel.com>
@@ -71,60 +71,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Wa_16021333562 and Wa_14016712196 are permanent workarounds that apply
-to multiple platforms. Wa_16021333562 applies to platforms ranging from
-TGL (12.00) to Xe_LPM (13.00), while Wa_14016712196 from DG2 (12.55) to
-Xe_LPG (12.74).
+Refactor Wa_18013179988, Wa_14015568240, Wa_1508761755, and
+Wa_1509372804, to use the proper workaround-check implementation for
+out-of-band workarounds, XE_WA(), and drop the use of the platform
+based WA selection.
 
 Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ads.c    | 5 +++++
- drivers/gpu/drm/xe/xe_ring_ops.c   | 3 +++
- drivers/gpu/drm/xe/xe_wa_oob.rules | 4 ++++
- 3 files changed, 12 insertions(+)
+ drivers/gpu/drm/xe/xe_oa.c         | 30 +++++++++---------------------
+ drivers/gpu/drm/xe/xe_wa_oob.rules |  5 +++++
+ 2 files changed, 14 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index fab259adc380..8ef044ddd682 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -376,6 +376,11 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
- 					GUC_WORKAROUND_KLV_ID_BACK_TO_BACK_RCS_ENGINE_RESET,
- 					&offset, &remain);
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index eeb96b5f49e2..493b48a399d5 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -12,6 +12,8 @@
+ #include <drm/drm_managed.h>
+ #include <uapi/drm/xe_drm.h>
  
-+	if (XE_WA(gt, 16021333562))
-+		guc_waklv_enable_simple(ads,
-+					GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED,
-+					&offset, &remain);
++#include <generated/xe_wa_oob.h>
 +
- 	size = guc_ads_waklv_size(ads) - remain;
- 	if (!size)
- 		return;
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 9f327f27c072..22c226c30df9 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -192,6 +192,9 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
- 		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
+ #include "abi/guc_actions_slpc_abi.h"
+ #include "instructions/xe_mi_commands.h"
+ #include "regs/xe_engine_regs.h"
+@@ -35,6 +37,7 @@
+ #include "xe_sched_job.h"
+ #include "xe_sriov.h"
+ #include "xe_sync.h"
++#include "xe_wa.h"
  
-+	if (XE_WA(gt, 14016712196))
-+		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH, 0, 0);
-+
- 	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
+ #define DEFAULT_POLL_FREQUENCY_HZ 200
+ #define DEFAULT_POLL_PERIOD_NS (NSEC_PER_SEC / DEFAULT_POLL_FREQUENCY_HZ)
+@@ -808,11 +811,8 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ 	struct xe_mmio *mmio = &stream->gt->mmio;
+ 	u32 sqcnt1;
+ 
+-	/*
+-	 * Wa_1508761755:xehpsdv, dg2
+-	 * Enable thread stall DOP gating and EU DOP gating.
+-	 */
+-	if (stream->oa->xe->info.platform == XE_DG2) {
++	/* Enable thread stall DOP gating and EU DOP gating. */
++	if (XE_WA(stream->gt, 1508761755)) {
+ 		xe_gt_mcr_multicast_write(stream->gt, ROW_CHICKEN,
+ 					  _MASKED_BIT_DISABLE(STALL_DOP_GATING_DISABLE));
+ 		xe_gt_mcr_multicast_write(stream->gt, ROW_CHICKEN2,
+@@ -1061,11 +1061,10 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ 	int ret;
+ 
+ 	/*
+-	 * Wa_1508761755:xehpsdv, dg2
+ 	 * EU NOA signals behave incorrectly if EU clock gating is enabled.
+ 	 * Disable thread stall DOP gating and EU DOP gating.
+ 	 */
+-	if (stream->oa->xe->info.platform == XE_DG2) {
++	if (XE_WA(stream->gt, 1508761755)) {
+ 		xe_gt_mcr_multicast_write(stream->gt, ROW_CHICKEN,
+ 					  _MASKED_BIT_ENABLE(STALL_DOP_GATING_DISABLE));
+ 		xe_gt_mcr_multicast_write(stream->gt, ROW_CHICKEN2,
+@@ -1716,12 +1715,10 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+ 	}
+ 
+ 	/*
+-	 * Wa_1509372804:pvc
+-	 *
+ 	 * GuC reset of engines causes OA to lose configuration
+ 	 * state. Prevent this by overriding GUCRC mode.
+ 	 */
+-	if (stream->oa->xe->info.platform == XE_PVC) {
++	if (XE_WA(stream->gt, 1509372804)) {
+ 		ret = xe_guc_pc_override_gucrc_mode(&gt->uc.guc.pc,
+ 						    SLPC_GUCRC_MODE_GUCRC_NO_RC6);
+ 		if (ret)
+@@ -1853,23 +1850,14 @@ u32 xe_oa_timestamp_frequency(struct xe_gt *gt)
+ {
+ 	u32 reg, shift;
+ 
+-	/*
+-	 * Wa_18013179988:dg2
+-	 * Wa_14015568240:pvc
+-	 * Wa_14015846243:mtl
+-	 */
+-	switch (gt_to_xe(gt)->info.platform) {
+-	case XE_DG2:
+-	case XE_PVC:
+-	case XE_METEORLAKE:
++	if (XE_WA(gt, 18013179988) || XE_WA(gt, 14015568240)) {
+ 		xe_pm_runtime_get(gt_to_xe(gt));
+ 		reg = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
+ 		xe_pm_runtime_put(gt_to_xe(gt));
+ 
+ 		shift = REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, reg);
+ 		return gt->info.reference_clock << (3 - shift);
+-
+-	default:
++	} else {
+ 		return gt->info.reference_clock;
+ 	}
  }
- 
 diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 40438c3d9b72..d7f7d617d490 100644
+index d7f7d617d490..5537b674ab53 100644
 --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
 +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -42,3 +42,7 @@
- no_media_l3	MEDIA_VERSION(3000)
- 14022866841	GRAPHICS_VERSION(3000), GRAPHICS_STEP(A0, B0)
- 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0)
-+16021333562	GRAPHICS_VERSION_RANGE(1200, 1274)
-+		MEDIA_VERSION(1300)
-+14016712196	GRAPHICS_VERSION(1255)
+@@ -46,3 +46,8 @@ no_media_l3	MEDIA_VERSION(3000)
+ 		MEDIA_VERSION(1300)
+ 14016712196	GRAPHICS_VERSION(1255)
+ 		GRAPHICS_VERSION_RANGE(1270, 1274)
++14015568240	GRAPHICS_VERSION_RANGE(1255, 1260)
++18013179988	GRAPHICS_VERSION(1255)
 +		GRAPHICS_VERSION_RANGE(1270, 1274)
++1508761755	GRAPHICS_VERSION(1255)
++		GRAPHICS_VERSION(1260), GRAPHICS_STEP(A0, B0)
 -- 
 2.34.1
 
