@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86298C02181
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Jan 2025 12:52:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02BF4C02185
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Jan 2025 12:57:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 556C110E3E5;
-	Mon, 20 Jan 2025 12:52:57 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBDA010E3E3;
- Mon, 20 Jan 2025 12:52:55 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAF1F10E3E3;
+	Mon, 20 Jan 2025 12:57:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PLgf7JaO";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98B0D10E351;
+ Mon, 20 Jan 2025 12:57:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737377871; x=1768913871;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LOP1Yvj3Cnj04OJjRzfrS6m8pB5BmhLieaCdbMpCWrw=;
+ b=PLgf7JaOVVa9c2crLQfzE++RHAWFeDX/nF1A8ITd1uW5ZuzRqMI7a7kX
+ d+7o9J59tpLHqqM+fvyNe6Jg3e5yhqlujhZT3wxNlmV2VLJV6QfODhfGS
+ 7zoQP+mQ40UmnpDjX90RdZ+HWW/XGmSwr2D7KtmixywTbYmGIInMXUgsW
+ A56zyfFjejv4Vj/Wxg4qEPP9mqOWOx/4DCoybcsN/p6FY8k+Wgsw/xJ0Y
+ dn3IxPDg0GjOIzduq1Y0sBGTyBz0pvCbLoqxxPrbui/kSjbkalEXFVy1s
+ ZqTGHEpPZ5PxohvWeIj9lygY6J62yii0HwC+0j/+6edoHnz2KDtgqyv0T g==;
+X-CSE-ConnectionGUID: kgTNei53RQuUwmJeajg4KA==
+X-CSE-MsgGUID: oYZs86khRY6wTpm6pz0Gug==
+X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="37930625"
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="37930625"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2025 04:57:50 -0800
+X-CSE-ConnectionGUID: C45E3iPfTNmppc12i57cxQ==
+X-CSE-MsgGUID: b0s554BBQrWoKLEzgy9o5w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="106326405"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by fmviesa006.fm.intel.com with ESMTP; 20 Jan 2025 04:57:48 -0800
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, jani.nikula@intel.com, ville.syrjala@intel.com
+Subject: [PATCH v8 0/7] Check Scaler and DSC Prefill Latency Against Vblank
+Date: Mon, 20 Jan 2025 18:24:32 +0530
+Message-ID: <20250120125439.4188626-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Add_HDMI_PLL_Algorithm_f?=
- =?utf-8?q?or_SNPS/C10PHY_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 20 Jan 2025 12:52:55 -0000
-Message-ID: <173737757596.2142905.1096960352424270978@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250120042122.1029481-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250120042122.1029481-1-ankit.k.nautiyal@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,40 +61,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Compute and check if dsc and scaler prefill latency is sufficient with
+respect to vblank.
 
-Series: Add HDMI PLL Algorithm for SNPS/C10PHY (rev5)
-URL   : https://patchwork.freedesktop.org/series/135396/
-State : warning
+Previous Revision Reference:
+https://patchwork.freedesktop.org/series/141203/
+https://patchwork.freedesktop.org/series/142745/
 
-== Summary ==
+Mitul Golani (7):
+  drm/i915/scaler: Add and compute scaling factors
+  drm/i915/scaler: Use crtc_state to setup plane or pipe scaler
+  drm/i915/scaler: Refactor max_scale computation
+  drm/i915/scaler: Compute scaling factors for pipe scaler
+  drm/i915/scaler: Limit pipe scaler downscaling factors for YUV420
+  drm/i915/scaler: Check if vblank is sufficient for scaler
+  drm/i915/dsc: Check if vblank is sufficient for dsc prefill
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 4d9c78b35c395ed49796502224f3a421b0ce65ef
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/display/intel_display_types.h:1963:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1963:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c:106:17: warning: cast truncates bits from constant value (e8d4a51000 becomes d4a51000)
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/skl_scaler.c     | 123 ++++++++++++------
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  84 +++++++++++-
+ 3 files changed, 171 insertions(+), 38 deletions(-)
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.48.1
 
