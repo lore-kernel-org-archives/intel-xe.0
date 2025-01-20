@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49CA2C02185
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Jan 2025 04:32:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69E55C02185
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Jan 2025 04:32:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 109D910E2B2;
-	Mon, 20 Jan 2025 04:32:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EAD610E2C3;
+	Mon, 20 Jan 2025 04:32:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PvQ7pdji";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TLeCVQwO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A4C410E2A2;
- Mon, 20 Jan 2025 04:32:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0520210E2A2;
+ Mon, 20 Jan 2025 04:32:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737347564; x=1768883564;
+ t=1737347568; x=1768883568;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0SAmeA410O2KKteijFY9i5NU1U6B9cGLyd3OOq+veM8=;
- b=PvQ7pdjiMLpKSXp+BFp9j/YTJrJCNVTm2YyEcQCla7BbIRiE/txu5+TX
- q4uRIuOohFGSSuE2YsItGBl8ephXrV37s05j1M2hw+kKKZ7aSqjoAXSSR
- SHdiF4D53ur6dwFp/cnnnfe7lMz+an1nS/p2vmLyXPuSiYFwlr9GQHuoD
- 0mTgnE34YwXJjAfU/fEdNDxtXlYaaTIvQP5s40kBNVvh7RTb8cETBWsLC
- Al/gDbbMBVYiBrpf8CRDUE+jAPyH53zkCQDbHrln2/HtJBhgtXBx4OgJ/
- okConGHfUsP/7J/ekIldfGxIRoCKfGGZulGb2ND6eyZrVif8BdPndDTkq Q==;
-X-CSE-ConnectionGUID: PeP4Cg2MT52FUTbrRA4V/g==
-X-CSE-MsgGUID: vUrdIvIGSXyfAT7T8GlMWA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11320"; a="48700038"
-X-IronPort-AV: E=Sophos;i="6.13,218,1732608000"; d="scan'208";a="48700038"
+ bh=wOXzlAnMVakXiydBFiTCENUgEUQQcORz/5Q+OnSuMoY=;
+ b=TLeCVQwOybJYsiZCaY+A1CLf180gqcYm2MPF1qL9MBf/JnRsWEMer820
+ KlIkH2KOmz37oMx6fDnUx20t2gQ3oJUABoo5EHXofbUGUyeucqizPVLEl
+ s2BsfacVDtV8Txc2sub6854PMAGBOObJsPGalu4sfTr8LsRLj61Xsfa8i
+ r3XMnV81d8JQiowRQZk1vfDdZaj3eK22BvUERuovYS5B39+0EK6V/PULE
+ ULOYyNxM4tq/PpMMAe9GGkv9iWhuwoqpDUniarAs2CR+9dy07KDxraBRW
+ jkJvAU6pGHp2+dBJVZnNEZ8huQEoooslPRInzwxI5xuqoVBQxAEeZ/73e Q==;
+X-CSE-ConnectionGUID: BFqkj6vNTiKnrd4FTOCuSw==
+X-CSE-MsgGUID: Lst5k9SkSfqLScTPnrtGbw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11320"; a="48700061"
+X-IronPort-AV: E=Sophos;i="6.13,218,1732608000"; d="scan'208";a="48700061"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2025 20:32:44 -0800
-X-CSE-ConnectionGUID: 3K+6oXWORluZQAqF7JKKCQ==
-X-CSE-MsgGUID: s2OrlZX+SM60hi8BKRVPgQ==
+ 19 Jan 2025 20:32:48 -0800
+X-CSE-ConnectionGUID: yEmjtv5ZSqG8Hto4WkyaPw==
+X-CSE-MsgGUID: PMKPaOUpRrG+granplJAhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,218,1732608000"; d="scan'208";a="106315688"
+X-IronPort-AV: E=Sophos;i="6.13,218,1732608000"; d="scan'208";a="106315701"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2025 20:32:42 -0800
+ 19 Jan 2025 20:32:46 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com,
 	suraj.kandpal@intel.com
-Subject: [PATCH 3/5] drm/i915/cx0_phy_regs: Add C10 registers bits
-Date: Mon, 20 Jan 2025 09:51:19 +0530
-Message-ID: <20250120042122.1029481-4-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 5/5] drm/i915/cx0_phy: Use HDMI PLL algorithm for C10 PHY
+Date: Mon, 20 Jan 2025 09:51:21 +0530
+Message-ID: <20250120042122.1029481-6-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250120042122.1029481-1-ankit.k.nautiyal@intel.com>
 References: <20250120042122.1029481-1-ankit.k.nautiyal@intel.com>
@@ -68,57 +68,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add C10 register bits to be used for computing HDMI PLLs with
-algorithm.
+Try HDMI PLL alogorithm for C10 PHY, if there are no pre-computed tables.
+Also get rid of the helpers to get rate for HDMI for C10/20 PHY, as we no
+longer depend only on pre-computed tables.
 
-v2: Add bspec reference. (Suraj)
-
-Bspec: 74166
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 49 +++++---------------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h |  1 -
+ drivers/gpu/drm/i915/display/intel_hdmi.c    | 10 ----
+ 3 files changed, 11 insertions(+), 49 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-index 91eb1d423c71..da27cff878a1 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-@@ -218,10 +218,34 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 058013c74991..1c7d9467e81c 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -18,6 +18,7 @@
+ #include "intel_hdmi.h"
+ #include "intel_panel.h"
+ #include "intel_psr.h"
++#include "intel_snps_hdmi_pll.h"
+ #include "intel_tc.h"
  
- /* C10 Vendor Registers */
- #define PHY_C10_VDR_PLL(idx)		(0xC00 + (idx))
-+#define   C10_PLL0_SSC_EN		REG_BIT8(0)
-+#define   C10_PLL0_DIVCLK_EN		REG_BIT8(1)
-+#define   C10_PLL0_DIV5CLK_EN		REG_BIT8(2)
-+#define   C10_PLL0_WORDDIV2_EN		REG_BIT8(3)
- #define   C10_PLL0_FRACEN		REG_BIT8(4)
-+#define   C10_PLL0_PMIX_EN		REG_BIT8(5)
-+#define   C10_PLL0_ANA_FREQ_VCO_MASK	REG_GENMASK8(7, 6)
-+#define   C10_PLL1_DIV_MULTIPLIER_MASK	REG_GENMASK8(7, 0)
-+#define   C10_PLL2_MULTIPLIERL_MASK	REG_GENMASK8(7, 0)
- #define   C10_PLL3_MULTIPLIERH_MASK	REG_GENMASK8(3, 0)
-+#define   C10_PLL8_SSC_UP_SPREAD	REG_BIT(5)
-+#define   C10_PLL9_FRACN_DENL_MASK	REG_GENMASK8(7, 0)
-+#define   C10_PLL10_FRACN_DENH_MASK	REG_GENMASK8(7, 0)
-+#define   C10_PLL11_FRACN_QUOT_L_MASK	REG_GENMASK8(7, 0)
-+#define   C10_PLL12_FRACN_QUOT_H_MASK	REG_GENMASK8(7, 0)
-+#define   C10_PLL13_FRACN_REM_L_MASK	REG_GENMASK8(7, 0)
-+#define   C10_PLL14_FRACN_REM_H_MASK	REG_GENMASK8(7, 0)
- #define   C10_PLL15_TXCLKDIV_MASK	REG_GENMASK8(2, 0)
- #define   C10_PLL15_HDMIDIV_MASK	REG_GENMASK8(5, 3)
-+#define   C10_PLL15_PIXELCLKDIV_MASK	REG_GENMASK8(7, 6)
-+#define   C10_PLL16_ANA_CPINT		REG_GENMASK8(6, 0)
-+#define   C10_PLL16_ANA_CPINTGS_L	REG_BIT(7)
-+#define   C10_PLL17_ANA_CPINTGS_H_MASK	REG_GENMASK8(5, 0)
-+#define   C10_PLL17_ANA_CPPROP_L_MASK	REG_GENMASK8(7, 6)
-+#define   C10_PLL18_ANA_CPPROP_H_MASK	REG_GENMASK8(4, 0)
-+#define   C10_PLL18_ANA_CPPROPGS_L_MASK	REG_GENMASK8(7, 5)
-+#define   C10_PLL19_ANA_CPPROPGS_H_MASK	REG_GENMASK8(3, 0)
-+#define   C10_PLL19_ANA_V2I_MASK	REG_GENMASK8(5, 4)
+ #define MB_WRITE_COMMITTED      true
+@@ -2003,19 +2004,6 @@ static const struct intel_c20pll_state * const mtl_c20_hdmi_tables[] = {
+ 	NULL,
+ };
  
- #define PHY_C10_VDR_CMN(idx)		(0xC20 + (idx))
- #define   C10_CMN0_REF_RANGE		REG_FIELD_PREP(REG_GENMASK(4, 0), 1)
+-static int intel_c10_phy_check_hdmi_link_rate(int clock)
+-{
+-	const struct intel_c10pll_state * const *tables = mtl_c10_hdmi_tables;
+-	int i;
+-
+-	for (i = 0; tables[i]; i++) {
+-		if (clock == tables[i]->clock)
+-			return MODE_OK;
+-	}
+-
+-	return MODE_CLOCK_RANGE;
+-}
+-
+ static const struct intel_c10pll_state * const *
+ intel_c10pll_tables_get(struct intel_crtc_state *crtc_state,
+ 			struct intel_encoder *encoder)
+@@ -2077,6 +2065,16 @@ static int intel_c10pll_calc_state(struct intel_crtc_state *crtc_state,
+ 		}
+ 	}
+ 
++	/* For HDMI PLLs try SNPS PHY algorithm, if there are no precomputed tables */
++	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
++		intel_snps_hdmi_pll_compute_c10pll(&crtc_state->dpll_hw_state.cx0pll.c10,
++						   crtc_state->port_clock);
++		intel_c10pll_update_pll(crtc_state, encoder);
++		crtc_state->dpll_hw_state.cx0pll.use_c10 = true;
++
++		return 0;
++	}
++
+ 	return -EINVAL;
+ }
+ 
+@@ -2281,31 +2279,6 @@ static int intel_c20_compute_hdmi_tmds_pll(struct intel_crtc_state *crtc_state)
+ 	return 0;
+ }
+ 
+-static int intel_c20_phy_check_hdmi_link_rate(int clock)
+-{
+-	const struct intel_c20pll_state * const *tables = mtl_c20_hdmi_tables;
+-	int i;
+-
+-	for (i = 0; tables[i]; i++) {
+-		if (clock == tables[i]->clock)
+-			return MODE_OK;
+-	}
+-
+-	if (clock >= 25175 && clock <= 594000)
+-		return MODE_OK;
+-
+-	return MODE_CLOCK_RANGE;
+-}
+-
+-int intel_cx0_phy_check_hdmi_link_rate(struct intel_hdmi *hdmi, int clock)
+-{
+-	struct intel_digital_port *dig_port = hdmi_to_dig_port(hdmi);
+-
+-	if (intel_encoder_is_c10phy(&dig_port->base))
+-		return intel_c10_phy_check_hdmi_link_rate(clock);
+-	return intel_c20_phy_check_hdmi_link_rate(clock);
+-}
+-
+ static const struct intel_c20pll_state * const *
+ intel_c20_pll_tables_get(struct intel_crtc_state *crtc_state,
+ 			 struct intel_encoder *encoder)
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+index 711168882684..573fa7d3e88f 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+@@ -41,7 +41,6 @@ bool intel_cx0pll_compare_hw_state(const struct intel_cx0pll_state *a,
+ 				   const struct intel_cx0pll_state *b);
+ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
+ 				     const struct intel_crtc_state *crtc_state);
+-int intel_cx0_phy_check_hdmi_link_rate(struct intel_hdmi *hdmi, int clock);
+ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
+ 
+ #endif /* __INTEL_CX0_PHY_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 9a4bc3c4611d..3b51238022f4 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -1909,16 +1909,6 @@ hdmi_port_clock_valid(struct intel_hdmi *hdmi,
+ 	if (intel_encoder_is_tc(encoder) && clock > 500000 && clock < 532800)
+ 		return MODE_CLOCK_RANGE;
+ 
+-	/*
+-	 * SNPS PHYs' MPLLB table-based programming can only handle a fixed
+-	 * set of link rates.
+-	 *
+-	 * FIXME: We will hopefully get an algorithmic way of programming
+-	 * the MPLLB for HDMI in the future.
+-	 */
+-	if (DISPLAY_VER(display) >= 14)
+-		return intel_cx0_phy_check_hdmi_link_rate(hdmi, clock);
+-
+ 	return MODE_OK;
+ }
+ 
 -- 
 2.45.2
 
