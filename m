@@ -4,69 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3A82C0219B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3A57C0219A
 	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 13:30:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B619E10E5BD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9A1710E5BF;
 	Tue, 21 Jan 2025 13:30:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="YY0vmGRw";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NkDdpuhH";
 	dkim-atps=neutral
-Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com
- [91.218.175.186])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C2EA10E230
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Jan 2025 03:34:54 +0000 (UTC)
-Message-ID: <3d4e4bda-f465-4c8a-97c4-846b2f3ecb54@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1737344078;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=R9tPeFJh3Z8KzRS9nqqf16JZtB2EUc5uK4Rq+n7DfNw=;
- b=YY0vmGRwrZUTBrUrgVqfAahrdf8E2LNioasg7jg8ibtK9oZUoF3Gyb6ENECPTEd6jx4ozD
- dCAprAdgpk+wCkRotDFwZGdWs/yRlXxl8a6R+PVCHx5z5L1Gon1hTd9+nMflzGPYruxiHZ
- vu7GbnHgrZEtNupovuNQyF4Ah1bgbyA=
-Date: Mon, 20 Jan 2025 11:34:27 +0800
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
+ [IPv6:2a00:1450:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20B6010E050;
+ Mon, 20 Jan 2025 11:15:56 +0000 (UTC)
+Received: by mail-wm1-x336.google.com with SMTP id
+ 5b1f17b1804b1-4364a37a1d7so43046845e9.3; 
+ Mon, 20 Jan 2025 03:15:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1737371754; x=1737976554; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Grk9J6/b9VBuQn2GFV1dMGR5fuj1yzKJkHNAQSI0qz8=;
+ b=NkDdpuhH83HJiCvOa9U0dzgJ9HRhJpHKXnoyQ5wL9tAu9RKL7+5c5puIbIcKzISvAp
+ 2ffVxJSc8m9446krYUdph8WPl8RJgstsewthELH4lBgnXin3FXfIo9Hv1/NGe6PePjr/
+ kyqix9yZ7kQb/Sp7Q1xfLMhTk1on+5WLZ0P50F39EQwOeMkL5wvIyfvbdHHiZ1B3+yHM
+ w1/WlGj3QzIBGa0rGB1Fywdj/gJFnzZCop3seldBEcPVWrcoXevRgebIAYqXVp2jbRlt
+ jfvYosQPVI4/MDy3K5Fdj6H99FpLkx2m7o2VvPJ+N4i3gVcBdmqETIdMZgPCxFjLtSjJ
+ oVHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1737371754; x=1737976554;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Grk9J6/b9VBuQn2GFV1dMGR5fuj1yzKJkHNAQSI0qz8=;
+ b=rpp5QktoiM+5qPhCL8ozEi15d4YK+kH1qZvPLyjFldHQHzMu2o+V4cEHIf7+3rJicM
+ 7Bia8M0kPKjaK7GVZu5fjUXbybMb74vsRJvUt8ESvaZo90IKnBRE62hh493IdCkOkHQA
+ DfcRlhLNa3sGX6EPt0E7CwBRE4Vrc7k91HTgg+iABxz5YvE61Otv/3GAeo3ofLmTnmT4
+ 2ryUWgh6RHHdCRrjr8Pt69p9ApnPpubjxK31f5TxS4AzszsnWwKZv12XXc0NsY4V7V/U
+ yLPbtPFv58Q2pPo+huIIP0Dg4AplBxq3jGkDXD1eYMZVNLNpX4Jh/j1t+qpPYrsGaDQY
+ vtLw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVqmyY7o52T4bBtT2N6dLTcR6HK5e1B3lYJ9bjn8o3A2xSxvnH4cpBK8hYVmyeqsFmDdu9PSBk6PUs=@lists.freedesktop.org,
+ AJvYcCW7yKejYz3ggyLAy4O/sIZohaEpjjjsdBEvDtkGL13O2/mB4gLNzpO4hoNEDMntqzjxSdfv5D1RDdk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxrDk7gak+kiacwWHnW+jE7bSlMc+lOvly5wXPGg0DHA/Hc03SY
+ QrJpTDy+Db6jXjDkkLH9oOROuSceBqSjhpc9PDGBt0m8fhzP13fRqF+0qQ==
+X-Gm-Gg: ASbGncs9ckZXD1FNfVDTOkl3oR2PLK1R8VHpO8UE7xX4rG17BRGFIvEIFOsJM3rabap
+ Bt0Jl9aNJLCCApJVaHoSuExxv0q3yQ7c++h8ncc2hITWD92mQSmVRhCQ7IaSGb5qpAHhoQE3zxr
+ XtJxh/Iyu08PVCLi77NZKa48hNat5QWFtfGGf3vAhEeVSjyY9ljdVyWtr1fvZnebq23GjpPnq8A
+ 8o67JKacEomxRAw/ojbtj/bElgkxrDkhNE/Y8ERV8G4fVYcWSkkyldeBON0TV5JLHqdHAHHI5Mw
+ KktIZdeU9rO+ouzmI3IeAvUV8/lSdUHV
+X-Google-Smtp-Source: AGHT+IFbr5mR//NKB/G8R+Pcmr8O/z0UAE/kTlXY81rkDpzp5l4T8SB64QRh8jdEVqTvLMPJctdhdw==
+X-Received: by 2002:a05:600c:a45:b0:436:faeb:2a0b with SMTP id
+ 5b1f17b1804b1-438913e32bemr123863535e9.15.1737371752518; 
+ Mon, 20 Jan 2025 03:15:52 -0800 (PST)
+Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-43890413053sm136694905e9.10.2025.01.20.03.15.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 20 Jan 2025 03:15:52 -0800 (PST)
+Date: Mon, 20 Jan 2025 11:15:51 +0000
+From: David Laight <david.laight.linux@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, Linus Torvalds
+ <torvalds@linux-foundation.org>, David Laight <David.Laight@aculab.com>,
+ Arnd Bergmann <arnd@kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, Jens Axboe <axboe@kernel.dk>, Matthew
+ Wilcox <willy@infradead.org>, Christoph Hellwig <hch@infradead.org>, Andrew
+ Morton <akpm@linux-foundation.org>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Dan Carpenter
+ <dan.carpenter@linaro.org>, "Jason A . Donenfeld" <Jason@zx2c4.com>,
+ "pedro.falcato@gmail.com" <pedro.falcato@gmail.com>, Mateusz Guzik
+ <mjguzik@gmail.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, Lorenzo
+ Stoakes <lorenzo.stoakes@oracle.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>, Simona
+ Vetter <simona@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: Buiild error in i915/xe
+Message-ID: <20250120111551.435176c4@pumpkin>
+In-Reply-To: <87ed0xrcb8.fsf@intel.com>
+References: <c50365d214e04f9ba256d417c8bebbc0@AcuMS.aculab.com>
+ <34d53778977747f19cce2abb287bb3e6@AcuMS.aculab.com>
+ <ce600782-1012-47e3-ba3d-41c5a4b7a7b7@roeck-us.net>
+ <20250118170959.3aa56f4d@pumpkin>
+ <29ef57a1-e4dd-4d5d-8726-f1f79c698b66@roeck-us.net>
+ <CAHk-=whAxUvW-APU42yWfCKHF5NhPLoTida9Jo=A9ZGGgjb18Q@mail.gmail.com>
+ <20250118221123.5bb65e64@pumpkin>
+ <f3939490-0f55-410f-81fe-0e9f03874546@roeck-us.net>
+ <20250119090935.7c690f85@pumpkin> <87ed0xrcb8.fsf@intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 25/25] drm/xlnx: Compute dumb-buffer sizes with
- drm_mode_size_dumb()
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
- simona@ffwll.ch, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, freedreno@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, imx@lists.linux.dev,
- linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, intel-xe@lists.freedesktop.org,
- xen-devel@lists.xenproject.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Andy Yan <andyshrk@163.com>, Daniel Stone <daniel@fooishbar.org>
-References: <20250109150310.219442-1-tzimmermann@suse.de>
- <20250109150310.219442-26-tzimmermann@suse.de>
- <cdbe483d-0895-47aa-8c83-1c28220f4a02@ideasonboard.com>
- <bc97b92e-7f8a-4b92-af8a-20fa165ead55@suse.de>
- <f3ba05c7-6e49-4641-a3f9-ba418ebdb7c3@ideasonboard.com>
- <c6735280-7c32-4319-8ca9-a7305d8117c3@suse.de>
- <d67adb03-5cd0-4ac9-af58-cf4446dacee3@ideasonboard.com>
- <0ea6be58-0e04-4172-87cd-064a3e4a43bc@suse.de>
- <f35cb350-6be9-48ca-ad7e-e9dd418281d5@ideasonboard.com>
- <4af0b6a7-c16a-4187-bbf5-365a9c86de21@suse.de>
- <e327ad84-b5c9-4480-b873-dc3aca605538@ideasonboard.com>
- <a2bbeb47-2569-4ee0-9265-92bab139bdc6@suse.de>
- <f3833771-fcd7-45dc-9019-1525fef34429@ideasonboard.com>
- <CAMuHMdXxYa+Na3XxpLTy=-eUL_zQ9kAiUKYu-E04u3KWApusSA@mail.gmail.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-In-Reply-To: <CAMuHMdXxYa+Na3XxpLTy=-eUL_zQ9kAiUKYu-E04u3KWApusSA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 21 Jan 2025 13:30:48 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,73 +109,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+On Mon, 20 Jan 2025 12:48:11 +0200
+Jani Nikula <jani.nikula@linux.intel.com> wrote:
 
-On 2025/1/16 18:17, Geert Uytterhoeven wrote:
-> On Thu, Jan 16, 2025 at 11:03 AM Tomi Valkeinen
-> <tomi.valkeinen@ideasonboard.com> wrote:
->> On 16/01/2025 10:09, Thomas Zimmermann wrote:
->>> Am 15.01.25 um 15:20 schrieb Tomi Valkeinen:
->>> [...]
->>>> My point is that we have the current UAPI, and we have userspace using
->>>> it, but we don't have clear rules what the ioctl does with specific
->>>> parameters, and we don't document how it has to be used.
->>>>
->>>> Perhaps the situation is bad, and all we can really say is that
->>>> CREATE_DUMB only works for use with simple RGB formats, and the
->>>> behavior for all other formats is platform specific. But I think even
->>>> that would be valuable in the UAPI docs.
->>> To be honest, I would not want to specify behavior for anything but the
->>> linear RGB formats. If anything, I'd take Daniel's reply mail for
->>> documentation as-is. Anyone stretching the UAPI beyond RGB is on their own.
->>>
->>>> Thinking about this, I wonder if this change is good for omapdrm or
->>>> xilinx (probably other platforms too that support non-simple non-RGB
->>>> formats via dumb buffers): without this patch, in both drivers, the
->>>> pitch calculations just take the bpp as bit-per-pixels, align it up,
->>>> and that's it.
->>>>
->>>> With this patch we end up using drm_driver_color_mode_format(), and
->>>> aligning buffers according to RGB formats figured out via heuristics.
->>>> It does happen to work, for the formats I tested, but it sounds like
->>>> something that might easily not work, as it's doing adjustments based
->>>> on wrong format.
->>>>
->>>> Should we have another version of drm_mode_size_dumb() which just
->>>> calculates using the bpp, without the drm_driver_color_mode_format()
->>>> path? Or does the drm_driver_color_mode_format() path provide some
->>>> value for the drivers that do not currently do anything similar?
->>> With the RGB-only rule, using drm_driver_color_mode_format() makes
->>> sense. It aligns dumb buffers and video=, provides error checking, and
->>> overall harmonizes code. The fallback is only required because of the
->>> existing odd cases that already bend the UAPI's rules.
->> I have to disagree here.
->>
->> On the platforms I have been using (omap, tidss, xilinx, rcar) the dumb
->> buffers are the only buffers you can get from the DRM driver. The dumb
->> buffers have been used to allocate linear and multiplanar YUV buffers
->> for a very long time on those platforms.
->>
->> I tried to look around, but I did not find any mentions that CREATE_DUMB
->> should only be used for RGB buffers. Is anyone outside the core
->> developers even aware of it?
->>
->> If we don't use dumb buffers there, where do we get the buffers? Maybe
->> from a v4l2 device or from a gpu device, but often you don't have those.
->> DMA_HEAP is there, of course.
-> Why can't there be a variant that takes a proper fourcc format instead of
-> an imprecise bpp value?
+> On Sun, 19 Jan 2025, David Laight <david.laight.linux@gmail.com> wrote:
+> > On Sat, 18 Jan 2025 14:58:48 -0800
+> > Guenter Roeck <linux@roeck-us.net> wrote:
+> >  
+> >> On 1/18/25 14:11, David Laight wrote:  
+> >> > On Sat, 18 Jan 2025 13:21:39 -0800
+> >> > Linus Torvalds <torvalds@linux-foundation.org> wrote:
+> >> >     
+> >> >> On Sat, 18 Jan 2025 at 09:49, Guenter Roeck <linux@roeck-us.net> wrote:    
+> >> >>>
+> >> >>> No idea why the compiler would know that the values are invalid.    
+> >> >>
+> >> >> It's not that the compiler knows tat they are invalid, but I bet what
+> >> >> happens is in scale() (and possibly other places that do similar
+> >> >> checks), which does this:
+> >> >>
+> >> >>          WARN_ON(source_min > source_max);
+> >> >>          ...
+> >> >>          source_val = clamp(source_val, source_min, source_max);
+> >> >>
+> >> >> and the compiler notices that the ordering comparison in the first
+> >> >> WARN_ON() is the same as the one in clamp(), so it basically converts
+> >> >> the logic to
+> >> >>
+> >> >>          if (source_min > source_max) {
+> >> >>                  WARN(..);
+> >> >>                  /* Do the clamp() knowing that source_min > source_max */
+> >> >>                  source_val = clamp(source_val, source_min, source_max);
+> >> >>          } else {
+> >> >>                  /* Do the clamp knowing that source_min <= source_max */
+> >> >>                  source_val = clamp(source_val, source_min, source_max);
+> >> >>          }
+> >> >>
+> >> >> (obviously I dropped the other WARN_ON in the conversion, it wasn't
+> >> >> relevant for this case).
+> >> >>
+> >> >> And now that first clamp() case is done with source_min > source_max,
+> >> >> and it triggers that build error because that's invalid.
+> >> >>
+> >> >> So the condition is not statically true in the *source* code, but in
+> >> >> the "I have moved code around to combine tests" case it now *is*
+> >> >> statically true as far as the compiler is concerned.    
+> >> > 
+> >> > Well spotted :-)
+> >> > 
+> >> > One option would be to move the WARN_ON() below the clamp() and
+> >> > add an OPTIMISER_HIDE_VAR(source_max) between them.
+> >> > 
+> >> > Or do something more sensible than the WARN().
+> >> > Perhaps return target_min on any such errors?
+> >> >     
+> >> 
+> >> This helps:
+> >> 
+> >> -       WARN_ON(source_min > source_max);
+> >> -       WARN_ON(target_min > target_max);
+> >> -
+> >>          /* defensive */
+> >>          source_val = clamp(source_val, source_min, source_max);
+> >> 
+> >> +       WARN_ON(source_min > source_max);
+> >> +       WARN_ON(target_min > target_max);  
+> >
+> > That is a 'quick fix' ...
+> >
+> > Much better would be to replace the WARN() with (say):
+> > 	if (target_min >= target_max)
+> > 		return target_min;
+> > 	if (source_min >= source_max)
+> > 		return target_min + (target_max - target_min)/2;
+> > So that the return values are actually in range (in as much as one is defined).
+> > Note that the >= cpmparisons also remove a divide by zero.  
+> 
+> I want the loud and early warnings for clear bugs instead of
+> "gracefully" silencing the errors only to be found through debugging
+> user reports.
 
-The 'flags' parameter of the 'struct drm_mode_create_dumb' doesn't gets
-in used so far, I guess the situation will be much better if passing a
-correct fourcc code from the user-space to kernel is allowed.
+A user isn't going to notice a WARN() - not until you tell them to look for it.
+In any case even if you output a message you really want to return a 'sane'
+value, who knows what effect a very out of range value is going to have.
 
+	David
 
-> Gr{oetje,eeting}s,
->
->                          Geert
->
--- 
-Best regards,
-Sui
 
