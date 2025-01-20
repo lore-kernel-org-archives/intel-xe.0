@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C6CAC02182
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Jan 2025 12:58:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12B70C02182
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Jan 2025 13:19:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4604810E401;
-	Mon, 20 Jan 2025 12:58:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T9/6vrX/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D867810E3E3;
- Mon, 20 Jan 2025 12:58:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737377886; x=1768913886;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=MT1O6Z87VW3M9jdT9iAYShp+ghFJakARA1XiIeadJy8=;
- b=T9/6vrX/9sRev2JwFbFV3w7tP8NsQxPgz+DAvqs0n99pf7AE44PFVWQs
- oB6F1l+1UzubNpEkNi9btP+q2cCLYrwXYRJKzuldpUZJtGpt27t3vPxWn
- ppt2lsUwoDDb0KeTzr5gzZvQ5VjoBgx2j0mOCy0cnfOucYInoDvwnd5Bk
- 91kqrSXlg22wDbsOt8FtwtLE6okD8HPp+zOSqrWKPHw7chnqNtxxKtJxY
- KJRaKb2jyC34EKfeFz41DH4hRO5xLl2JxXnumFx404m1YhrK8mKNmO7Zy
- FvnlcJYtLaRTlWHxySwmuF6WJnhMXwSOR5U9RSpDIAPyvK5PAwm3X2Big Q==;
-X-CSE-ConnectionGUID: ib+oPGsDTnibLr2fy51XPA==
-X-CSE-MsgGUID: nYoCheDwS92XdSKgs//KuA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="37930654"
-X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="37930654"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2025 04:58:06 -0800
-X-CSE-ConnectionGUID: 1e6jukVQSL6xyan9UotUXQ==
-X-CSE-MsgGUID: ZvECYpD4SB6vaMRLCSQg3w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="106326454"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa006.fm.intel.com with ESMTP; 20 Jan 2025 04:58:03 -0800
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, jani.nikula@intel.com, ville.syrjala@intel.com
-Subject: [PATCH v8 7/7] drm/i915/dsc: Check if vblank is sufficient for dsc
- prefill
-Date: Mon, 20 Jan 2025 18:24:39 +0530
-Message-ID: <20250120125439.4188626-8-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250120125439.4188626-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20250120125439.4188626-1-mitulkumar.ajitkumar.golani@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF4AD10E40C;
+	Mon, 20 Jan 2025 13:19:33 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4862B10E40C;
+ Mon, 20 Jan 2025 13:19:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2774832893450656609=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_HDMI_PLL_Algorithm_for_?=
+ =?utf-8?q?SNPS/C10PHY_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 20 Jan 2025 13:19:32 -0000
+Message-ID: <173737917228.2142905.10590038458823625270@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250120042122.1029481-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250120042122.1029481-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,106 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-High refresh rate panels which may have small line times
-and vblank sizes, Check if vblank size is sufficient for
-dsc prefill latency.
+--===============2774832893450656609==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---v2:
-- Consider chroma downscaling factor in latency calculation. [Ankit]
-- Replace with appropriate function name.
+== Series Details ==
 
---v3:
-- Remove FIXME tag.[Ankit]
-- Replace Ycbcr444 to Ycbcr420.[Ankit]
-- Correct precision. [Ankit]
-- Use some local valiables like linetime_factor and latency to
-adjust precision.
-- Declare latency to 0 initially to avoid returning any garbage values.
-- Account for second scaler downscaling factor as well. [Ankit]
+Series: Add HDMI PLL Algorithm for SNPS/C10PHY (rev5)
+URL   : https://patchwork.freedesktop.org/series/135396/
+State : success
 
---v4:
-- Improvise hscale and vscale calculation. [Ankit]
-- Use appropriate name for number of scaler users. [Ankit]
-- Update commit message and rebase.
-- Add linetime and cdclk prefill adjustment calculation. [Ankit]
+== Summary ==
 
---v5:
-- Update bspec link in trailer. [Ankit]
-- Correct hscale, vscale datatype. [Ankit]
-- Use intel_crtc_compute_min_cdclk. [Ankit]
+CI Bug Log - changes from xe-2514-4d9c78b35c395ed49796502224f3a421b0ce65ef_BAT -> xe-pw-135396v5_BAT
+====================================================
 
---v6:
-- Use cdclk_state->logical.cdclk instead of
-intel_crtc_compute_min_cdclk. [Ankit]
+Summary
+-------
 
---v7:
-- Fix linetime calculation. [Ankit]
-- Reduce redandancy use of variables. [Ankit]
-- Fix typos. [Ankit]
-- Update calculation for precision. [Ankit]
+  **SUCCESS**
 
-Bspec: 70151
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 32 +++++++++++++++++++-
- 1 file changed, 31 insertions(+), 1 deletion(-)
+  No regressions found.
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 448d320e0d47..89e8da70c333 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2310,6 +2310,36 @@ cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
- 				   2 * cdclk_state->logical.cdclk));
- }
- 
-+static int
-+dsc_prefill_latency(const struct intel_crtc_state *crtc_state)
-+{
-+	const struct intel_crtc_scaler_state *scaler_state =
-+					&crtc_state->scaler_state;
-+	int linetime = DIV_ROUND_UP(1000 * crtc_state->hw.adjusted_mode.htotal,
-+				    crtc_state->hw.adjusted_mode.clock);
-+	u32 dsc_prefill_latency;
-+	int num_scaler_users = hweight32(scaler_state->scaler_users);
-+	int chroma_downscaling_factor =
-+		crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 2 : 1;
-+	u64 hscale_k, vscale_k;
-+
-+	if (!crtc_state->dsc.compression_enable || !num_scaler_users)
-+		return dsc_prefill_latency;
-+
-+	dsc_prefill_latency = DIV_ROUND_UP(15 * linetime * chroma_downscaling_factor, 10);
-+
-+	for (int i = 0; i < num_scaler_users; i++) {
-+		hscale_k = max(1000, mul_u32_u32(scaler_state->scalers[i].hscale, 1000) >> 16);
-+		vscale_k = max(1000, mul_u32_u32(scaler_state->scalers[i].vscale, 1000) >> 16);
-+		dsc_prefill_latency = DIV_ROUND_UP_ULL(dsc_prefill_latency * hscale_k * vscale_k,
-+						       1000000);
-+	}
-+
-+	dsc_prefill_latency *= cdclk_prefill_adjustment(crtc_state);
-+
-+	return intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode, dsc_prefill_latency);
-+}
-+
- static int
- scaler_prefill_latency(const struct intel_crtc_state *crtc_state)
- {
-@@ -2350,10 +2380,10 @@ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
- 
--	/* FIXME missing DSC pre-fill time */
- 	return crtc_state->framestart_delay +
- 		intel_usecs_to_scanlines(adjusted_mode, latency) +
- 		scaler_prefill_latency(crtc_state) +
-+		dsc_prefill_latency(crtc_state) +
- 		wm0_lines >
- 		adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
- }
--- 
-2.48.1
+  
 
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-135396v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - bat-dg2-oem2:       [SKIP][1] ([i915#5274]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2514-4d9c78b35c395ed49796502224f3a421b0ce65ef/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135396v5/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  
+  [i915#5274]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5274
+
+
+Build changes
+-------------
+
+  * Linux: xe-2514-4d9c78b35c395ed49796502224f3a421b0ce65ef -> xe-pw-135396v5
+
+  IGT_8199: 8df1895672949617992cddbc33c5d683865879e8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2514-4d9c78b35c395ed49796502224f3a421b0ce65ef: 4d9c78b35c395ed49796502224f3a421b0ce65ef
+  xe-pw-135396v5: 135396v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135396v5/index.html
+
+--===============2774832893450656609==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add HDMI PLL Algorithm for SNPS/C10PHY (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135396/">https://patchwork.freedesktop.org/series/135396/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135396v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135396v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2514-4d9c78b35c395ed49796502224f3a421b0ce65ef_BAT -&gt; xe-pw-135396v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-135396v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_force_connector_basic@prune-stale-modes:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2514-4d9c78b35c395ed49796502224f3a421b0ce65ef/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5274">i915#5274</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135396v5/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2514-4d9c78b35c395ed49796502224f3a421b0ce65ef -&gt; xe-pw-135396v5</li>
+</ul>
+<p>IGT_8199: 8df1895672949617992cddbc33c5d683865879e8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2514-4d9c78b35c395ed49796502224f3a421b0ce65ef: 4d9c78b35c395ed49796502224f3a421b0ce65ef<br />
+  xe-pw-135396v5: 135396v5</p>
+
+</body>
+</html>
+
+--===============2774832893450656609==--
