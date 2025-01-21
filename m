@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6D44C02182
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 12:11:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CE63C02182
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 12:12:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9602310E58F;
-	Tue, 21 Jan 2025 12:11:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VehAbT1L";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8660F10E58F
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Jan 2025 12:11:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737461463; x=1768997463;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=wsMLTtGT70IJJ2iQsMNUHjZTgp+WB9HM/jAanqWQmy8=;
- b=VehAbT1LYdOGHXSAvL0UX/MMANycEjugCc/AiXzGBMkm9ZubT7A3oWoq
- i4laKUUlupFEj1S5FcZUZa5t1QtAnr/MY+D0n7VTj3cp+uZTaSFpg0Q50
- 3oKENNVB1V300pNUNJMGafjPd2Qt+HFHpB15uaR89G1cjBSs3Zj8iffKD
- 4ix98aaQdv5uFSe3gtdPot+Gb+OPuH6sMycUGNN2uKEjtSucIkcg0zS83
- JBMo2rNS6B/3cGN4LGJDLpwYlulWdHdQNPN8J5e8GUYJklKBeVOJqc149
- xv3q5Gv+2KL65KGm76t8gTQ4452SXmJj/Ki1WiNUoWRlkSqbuLasMU8GH g==;
-X-CSE-ConnectionGUID: c3GH5mJxRiu5WiW/SLeUFQ==
-X-CSE-MsgGUID: LaJKjaoZTO6SxB4qWxFmYA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="48863683"
-X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="48863683"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 04:11:03 -0800
-X-CSE-ConnectionGUID: enaza7j7TxyE1uJNE4dllQ==
-X-CSE-MsgGUID: oGfI1+ajQwi2zchhJ6F3Qw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="137622943"
-Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.186])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 04:11:02 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: Re: [PATCH 00/11] GuC changes for flicker-free boot.
-In-Reply-To: <20241210083111.230484-1-dev@lankhorst.se>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241210083111.230484-1-dev@lankhorst.se>
-Date: Tue, 21 Jan 2025 14:10:58 +0200
-Message-ID: <87ikq8pdt9.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id F01CB10E58F;
+	Tue, 21 Jan 2025 12:12:34 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE77310E58F;
+ Tue, 21 Jan 2025 12:12:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/guc=3A_Fix_sizeof=2832?=
+ =?utf-8?q?=29_typo?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 21 Jan 2025 12:12:33 -0000
+Message-ID: <173746155370.2577785.11679514860758012054@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250121094832.588-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250121094832.588-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,70 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 10 Dec 2024, Maarten Lankhorst <dev@lankhorst.se> wrote:
-> Ignore the first 5 patches in this series, it's sent as a separate series.
-> https://patchwork.freedesktop.org/series/142241/
+== Series Details ==
 
-For them I've replied in [1] that they need more explanations in the
-commit messages.
+Series: drm/xe/guc: Fix sizeof(32) typo
+URL   : https://patchwork.freedesktop.org/series/143787/
+State : success
 
-BR,
-Jani.
+== Summary ==
+
+lib/modules/6.13.0-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-xe+/kernel/kernel/
+lib/modules/6.13.0-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-xe+/kernel/crypto/
+lib/modules/6.13.0-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-xe+/kernel/block/
+lib/modules/6.13.0-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-xe+/build
+lib/modules/6.13.0-xe+/modules.alias.bin
+lib/modules/6.13.0-xe+/modules.builtin
+lib/modules/6.13.0-xe+/modules.softdep
+lib/modules/6.13.0-xe+/modules.alias
+lib/modules/6.13.0-xe+/modules.order
+lib/modules/6.13.0-xe+/modules.symbols
+lib/modules/6.13.0-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
+[0Ksection_end:1737461542:package_x86_64_nodebug
+[0K
++ echo -e '\e[0Ksection_end:1737461542:package_x86_64_nodebug\r\e[0K'
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
-[1] https://lore.kernel.org/r/871pyh16pa.fsf@intel.com
-
-
-> I would like review on patch 6-10 instead, those are the changes related
-> to the GuC init sequence.
->
-> Instead of all the separate steps, the init sequence is simplified and made
-> more uniform. We create a xe_guc_init_noalloc that performs all early
-> initialisation required to make VF work. We also initialise the MCR instance 0
-> registers for VRAM readout, later on we enable the other MCR registers.
->
-> Maarten Lankhorst (11):
->   drm/xe/display: Add intel_plane_initial_vblank_wait
->   drm/xe: Remove double pageflip
->   drm/xe: Move suballocator init to after display init
->   drm/xe: Defer irq init until after xe_display_init_noaccel
->   drm/xe/display: Use a single early init call for display
->   drm/xe: Defer memirq init until needed
->   drm/xe/sriov: Move VF bootstrap and query_config to vf_guc_init
->   drm/xe: Simplify GuC early initialisation
->   drm/xe: Make it possible to read instance0 MCR registers after
->     xe_gt_mcr_init_early
->   drm/xe: Split init of xe_gt_init_hwconfig to xe_gt_init and *_early
->   drm/xe: Do not attempt to bootstrap VF in execlists mode
->
->  drivers/gpu/drm/i915/display/intel_display.c  |  6 +-
->  .../drm/i915/display/intel_plane_initial.c    |  7 +-
->  .../drm/i915/display/intel_plane_initial.h    |  2 +
->  drivers/gpu/drm/xe/display/xe_display.c       | 73 +++++--------------
->  drivers/gpu/drm/xe/display/xe_display.h       |  8 +-
->  drivers/gpu/drm/xe/display/xe_plane_initial.c | 29 +++++---
->  drivers/gpu/drm/xe/tests/xe_guc_relay_test.c  |  2 +-
->  drivers/gpu/drm/xe/xe_device.c                | 50 +++----------
->  drivers/gpu/drm/xe/xe_gt.c                    | 73 ++++++++++---------
->  drivers/gpu/drm/xe/xe_gt.h                    |  1 -
->  drivers/gpu/drm/xe/xe_gt_mcr.c                | 47 +++++++-----
->  drivers/gpu/drm/xe/xe_gt_sriov_vf.c           |  4 +-
->  drivers/gpu/drm/xe/xe_gt_types.h              |  2 +
->  drivers/gpu/drm/xe/xe_guc.c                   | 56 ++++++++------
->  drivers/gpu/drm/xe/xe_guc.h                   |  1 +
->  drivers/gpu/drm/xe/xe_guc_ct.c                | 28 ++++---
->  drivers/gpu/drm/xe/xe_guc_ct.h                |  1 +
->  drivers/gpu/drm/xe/xe_guc_relay.c             |  6 +-
->  drivers/gpu/drm/xe/xe_guc_relay.h             |  2 +-
->  drivers/gpu/drm/xe/xe_huc.h                   |  1 +
->  drivers/gpu/drm/xe/xe_tile.c                  | 19 ++++-
->  drivers/gpu/drm/xe/xe_tile.h                  |  1 +
->  drivers/gpu/drm/xe/xe_uc.c                    | 21 ++++++
->  drivers/gpu/drm/xe/xe_uc.h                    |  1 +
->  24 files changed, 231 insertions(+), 210 deletions(-)
-
--- 
-Jani Nikula, Intel
