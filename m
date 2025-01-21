@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6D88C0218C
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 15:27:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00241C02182
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 15:29:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E45510E1FB;
-	Tue, 21 Jan 2025 15:27:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PxTcUnyB";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 918DC10E1FB;
- Tue, 21 Jan 2025 15:27:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737473264; x=1769009264;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=2ScYngx43+Vo+7fL7HuTQMTb9DxCGy5CtTn6l/84BYY=;
- b=PxTcUnyBBz8VB6cFfIcL+wXDO+sWZ/ntVXrZWhuDjLxTw+AN8dAZCi/m
- CBhRZFfsP/IcqU2Zt2ZyKXZdmsJOhbn8HvXqOeIKkvM8IJaNwzhqGpCw1
- rJTTIpMOTUagnYq6hVA/TIZjuOSvaGWtX6W4VyFTbBtMpP+4SqlyuyZmg
- 3h15ka8y7d95n0r4ZqUWLtBOblwfi8R4t5NnRBRjFPyvB0ZUsLdzLgn9S
- XQXBhwvFtip1GtsHOF/wsmidl8B4oWm5GAtFbmBOM154SZiamqqpTpFqI
- LLh4h4g/649y/+a8bTDESlKCebvAUTC/LP6ix9S3PIrqBopYvadNdrvKR w==;
-X-CSE-ConnectionGUID: ajvOTdNST7ePhx20QYscGQ==
-X-CSE-MsgGUID: E1/0SUIMSrudjrpy4D9C4Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="49307096"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="49307096"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 07:27:44 -0800
-X-CSE-ConnectionGUID: 18t3f6oDQVSI7jUJ+yxv8A==
-X-CSE-MsgGUID: WyvojPSJQJmAQWgEsTMNQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="106628092"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 07:27:42 -0800
-Date: Tue, 21 Jan 2025 17:28:36 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH] drm/xe/dp: Enable DP tunneling
-Message-ID: <Z4-9JIZQjC1cGJsK@ideak-desk.fi.intel.com>
-References: <20250113154832.1004369-1-imre.deak@intel.com>
- <87cygqis8l.fsf@intel.com>
- <Z4VQK2mRtmeT_t6I@ideak-desk.fi.intel.com>
- <7br5fcyxwpapyyd646rqyja47wjxmgpnhvyramt64kumqevyua@codb2qklp2hu>
- <Z4p9jbQqkgRDb-HA@ideak-desk.fi.intel.com>
- <v5e2tnq6b7fr6rmi2mg24bf2x7jbljguce47s63ucugpvbiupa@z6r5kfxz6wth>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE7C810E5E2;
+	Tue, 21 Jan 2025 15:29:07 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2755610E5E2;
+ Tue, 21 Jan 2025 15:29:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <v5e2tnq6b7fr6rmi2mg24bf2x7jbljguce47s63ucugpvbiupa@z6r5kfxz6wth>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/i915/display=3A_Add_?=
+ =?utf-8?q?WA=5F14018221282_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 21 Jan 2025 15:29:06 -0000
+Message-ID: <173747334615.2635986.2253988116933298353@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241226060632.213790-1-nemesa.garg@intel.com>
+In-Reply-To: <20241226060632.213790-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,59 +36,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 17, 2025 at 10:45:56AM -0600, Lucas De Marchi wrote:
-> [...]
-> > > > > > diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-> > > > > > index b51a2bde73e29..50cf80df51900 100644
-> > > > > > --- a/drivers/gpu/drm/xe/Kconfig
-> > > > > > +++ b/drivers/gpu/drm/xe/Kconfig
-> > > > > > @@ -59,6 +59,20 @@ config DRM_XE_DISPLAY
-> > > > > >  	help
-> > > > > >  	  Disable this option only if you want to compile out display support.
-> > > > > >
-> > > > > > +config DRM_XE_DP_TUNNEL
-> > > > > > +	bool "Enable DP tunnel support"
-> > > > > > +	depends on DRM_XE
-> > > > > > +	depends on USB4
-> > > > > > +	select DRM_DISPLAY_DP_TUNNEL
-> > > > > > +	default y
-> > > > > > +	help
-> > > > > > +	  Choose this option to detect DP tunnels and enable the Bandwidth
-> > > > > > +	  Allocation mode for such tunnels. This allows using the maximum
-> > > > > > +	  resolution allowed by the link BW on all displays sharing the
-> > > > > > +	  link BW, for instance on a Thunderbolt link.
-> > > > > > +
-> > > > > > +	  If in doubt say "Y".
-> > > > > > +
-> > > > >
-> > > > > I'm sort of wondering why we have this (and the i915 one) as
-> > > > > user-selectable config options at all. Is it ever reasonable for the
-> > > > > user to disable this if USB4 is enabled?
-> > > >
-> > > > On platforms that don't support DP tunneling, while supporting other
-> > > > USB4 functionality (or for systems w/o any TypeC/DP connectors) it would
-> > > > make sense to disable this option.
-> > > 
-> > > isn't this too fine grained? if we expose every single functionality of
-> > > the driver like this we will bury distros on configs and exponentially
-> > > explode the testing combination. And yes, this broke the build for me.
-> > 
-> > The tunneling functionality depends on USB4, BW allocation could fail
-> > without that. The option being user selectable also makes sense to me,
-> > as it has a size (~30kB) and runtime overhead (detecting tunnels and
-> > allocating/freeing BW), only required if the user has a dock/multiple
-> > displays.
-> 
-> I will leave this up to the display maintainers - I still think it's too
-> fine grained to have this option as user selectable and worse, in 2
-> drivers.... does the user have to know which driver officially support
-> that hardware to enable one and disable the other?
+== Series Details ==
 
-All the display options should be configured at one place, but that's
-only feasible with a separate display module (which is the goal afaik).
+Series: drm/i915/display: Add WA_14018221282 (rev3)
+URL   : https://patchwork.freedesktop.org/series/142469/
+State : success
 
-> Lucas De Marchi
+== Summary ==
+
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 1895bff23f876faf3d3be7da46172eb4bb49453e
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+Okay!
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
