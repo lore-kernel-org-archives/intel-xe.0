@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAAEFC02182
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 16:52:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDE33C02182
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 16:59:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 992BE10E082;
-	Tue, 21 Jan 2025 16:52:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D55310E606;
+	Tue, 21 Jan 2025 16:59:55 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 719F210E082;
- Tue, 21 Jan 2025 16:52:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3733980528152007523=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67B5B10E604;
+ Tue, 21 Jan 2025 16:59:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/uapi=3A_Use_hint_for?=
- =?utf-8?q?_guc_to_set_GT_frequency?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/fbdev=3A_Di?=
+ =?utf-8?q?scard_large_BIOS_framebuffers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+To: "Atharva Tiwari" <evepolonium@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 21 Jan 2025 16:52:35 -0000
-Message-ID: <173747835545.2649833.18272397186617908568@b555e5b46a47>
+Date: Tue, 21 Jan 2025 16:59:54 -0000
+Message-ID: <173747879441.2635986.11564219832745895327@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250121131605.1115338-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20250121131605.1115338-1-tejas.upadhyay@intel.com>
+References: <20250121104210.3159-1-evepolonium@gmail.com>
+In-Reply-To: <20250121104210.3159-1-evepolonium@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,152 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3733980528152007523==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/uapi: Use hint for guc to set GT frequency
-URL   : https://patchwork.freedesktop.org/series/143793/
+Series: drm/i915/fbdev: Discard large BIOS framebuffers
+URL   : https://patchwork.freedesktop.org/series/143794/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2519-3c328e144cb5e41131a265c4fc4bce222e5112e2_BAT -> xe-pw-143793v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-143793v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_balancer@twice-virtual-rebind:
-    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4078])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2519-3c328e144cb5e41131a265c4fc4bce222e5112e2/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v1/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-rebind.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [PASS][3] -> [SKIP][4] ([Intel XE#1192]) +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2519-3c328e144cb5e41131a265c4fc4bce222e5112e2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][6] ([Intel XE#1192])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2519-3c328e144cb5e41131a265c4fc4bce222e5112e2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#4078]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: d471f521da38 drm-tip: 2025y-01m-21d-15h-30m-11s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/fbdev: Discard large BIOS framebuffers
 
 
-Build changes
--------------
-
-  * Linux: xe-2519-3c328e144cb5e41131a265c4fc4bce222e5112e2 -> xe-pw-143793v1
-
-  IGT_8203: 3dce04be4ed4c0e729d80f70caff8ae8a869b5c0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2519-3c328e144cb5e41131a265c4fc4bce222e5112e2: 3c328e144cb5e41131a265c4fc4bce222e5112e2
-  xe-pw-143793v1: 143793v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v1/index.html
-
---===============3733980528152007523==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/uapi: Use hint for guc to set GT frequency</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143793/">https://patchwork.freedesktop.org/series/143793/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2519-3c328e144cb5e41131a265c4fc4bce222e5112e2_BAT -&gt; xe-pw-143793v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-143793v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_exec_balancer@twice-virtual-rebind:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2519-3c328e144cb5e41131a265c4fc4bce222e5112e2/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v1/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2519-3c328e144cb5e41131a265c4fc4bce222e5112e2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2519-3c328e144cb5e41131a265c4fc4bce222e5112e2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2519-3c328e144cb5e41131a265c4fc4bce222e5112e2 -&gt; xe-pw-143793v1</li>
-</ul>
-<p>IGT_8203: 3dce04be4ed4c0e729d80f70caff8ae8a869b5c0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2519-3c328e144cb5e41131a265c4fc4bce222e5112e2: 3c328e144cb5e41131a265c4fc4bce222e5112e2<br />
-  xe-pw-143793v1: 143793v1</p>
-
-</body>
-</html>
-
---===============3733980528152007523==--
