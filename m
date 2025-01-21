@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF642C02182
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 12:42:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAFA6C02182
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 12:53:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B670510E0AC;
-	Tue, 21 Jan 2025 12:42:42 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56B8610E0AC;
- Tue, 21 Jan 2025 12:42:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7736420868177909496=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B317810E0F6;
+	Tue, 21 Jan 2025 12:53:05 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7236010E0F6
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Jan 2025 12:53:04 +0000 (UTC)
+Message-ID: <c5b5eb9f-794a-42aa-abde-aa3016e071c8@lankhorst.se>
+Date: Tue, 21 Jan 2025 13:53:02 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Fix_sizeof=28?=
- =?utf-8?q?32=29_typo?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 21 Jan 2025 12:42:41 -0000
-Message-ID: <173746336134.2595557.14673259164583688530@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250121094832.588-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20250121094832.588-1-michal.wajdeczko@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/11] GuC changes for flicker-free boot.
+To: Jani Nikula <jani.nikula@linux.intel.com>, intel-xe@lists.freedesktop.org
+References: <20241210083111.230484-1-dev@lankhorst.se>
+ <87ikq8pdt9.fsf@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <87ikq8pdt9.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,145 +36,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7736420868177909496==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hey,
 
-== Series Details ==
+On 2025-01-21 13:10, Jani Nikula wrote:
+> On Tue, 10 Dec 2024, Maarten Lankhorst <dev@lankhorst.se> wrote:
+>> Ignore the first 5 patches in this series, it's sent as a separate series.
+>> https://patchwork.freedesktop.org/series/142241/
+> 
+> For them I've replied in [1] that they need more explanations in the
+> commit messages.
+> 
+Thanks, I'll try to clarify and reword those commits, then send a new 
+version.
 
-Series: drm/xe/guc: Fix sizeof(32) typo
-URL   : https://patchwork.freedesktop.org/series/143787/
-State : success
+Xe init sequence has to support memirq's, but obviously memirq's require 
+memory allocations. Right now this happens before FB handover. Similarly 
+GuC also performs some initialisations that happen before FB handover. 
+Lastly we are also doing loading the other UC too early.
 
-== Summary ==
+Any of these will cause the initial FB to be garbled. The solution is to 
+change the µC load ordering to be the minimal required to support VF,
+delay any GT and µC initialisation until after FB handover, and only 
+then enable memirqs and all interrupts.
 
-CI Bug Log - changes from xe-2518-bb123c6e757601d42f71952d879b35f97472d56b_BAT -> xe-pw-143787v1_BAT
-====================================================
+This obviously means that FB handover has to run on Xe without 
+interrupts enabled. It cannot be enabled because of memirq's.
 
-Summary
--------
+I chose to deviate here from i915, because it supports platforms that 
+don't have a strict distinction between display and graphics.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-143787v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_intel_bb@render@render-ymajor-256:
-    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4078]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2518-bb123c6e757601d42f71952d879b35f97472d56b/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143787v1/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_pat@pat-index-xelp@render:
-    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#3970] / [Intel XE#4078]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2518-bb123c6e757601d42f71952d879b35f97472d56b/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143787v1/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
-
-  
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#4078]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078
-
-
-Build changes
--------------
-
-  * IGT: IGT_8201 -> IGT_8202
-  * Linux: xe-2518-bb123c6e757601d42f71952d879b35f97472d56b -> xe-pw-143787v1
-
-  IGT_8201: dcc73646ce05a91bb4537e50ee6fa7ac5e8ff4ed @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8202: 9106f62ab151804d5f545bc0707a37c3512a2476 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2518-bb123c6e757601d42f71952d879b35f97472d56b: bb123c6e757601d42f71952d879b35f97472d56b
-  xe-pw-143787v1: 143787v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143787v1/index.html
-
---===============7736420868177909496==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Fix sizeof(32) typo</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143787/">https://patchwork.freedesktop.org/series/143787/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143787v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143787v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2518-bb123c6e757601d42f71952d879b35f97472d56b_BAT -&gt; xe-pw-143787v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-143787v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_intel_bb@render@render-ymajor-256:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2518-bb123c6e757601d42f71952d879b35f97472d56b/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143787v1/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_pat@pat-index-xelp@render:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2518-bb123c6e757601d42f71952d879b35f97472d56b/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143787v1/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8201 -&gt; IGT_8202</li>
-<li>Linux: xe-2518-bb123c6e757601d42f71952d879b35f97472d56b -&gt; xe-pw-143787v1</li>
-</ul>
-<p>IGT_8201: dcc73646ce05a91bb4537e50ee6fa7ac5e8ff4ed @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8202: 9106f62ab151804d5f545bc0707a37c3512a2476 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2518-bb123c6e757601d42f71952d879b35f97472d56b: bb123c6e757601d42f71952d879b35f97472d56b<br />
-  xe-pw-143787v1: 143787v1</p>
-
-</body>
-</html>
-
---===============7736420868177909496==--
+Cheers,
+~Maarten
