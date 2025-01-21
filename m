@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D492EC02182
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 18:03:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1286FC0218B
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 18:04:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4BBE10E5B4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF78810E61B;
 	Tue, 21 Jan 2025 18:03:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cHQ61vwF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d2cvNzA5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 820C110E5B4
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 982FC10E61B
  for <intel-xe@lists.freedesktop.org>; Tue, 21 Jan 2025 18:03:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1737482639; x=1769018639;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2iOCqmx1xMMypiyUn42n73+31E/8k/oyy7elEK5G/jA=;
- b=cHQ61vwFpSMkT8ByoE+ZlU5rlCz5Bid5FfIklwe0a6rVH8cSC+m49/u4
- d+nCjVWUhsKiMGNhYwKLApc2px/31kfe/MT45BqhlYi0fm7bvXO6MwK3t
- 7mOERG/d27+SoXfqrQARZsaSzdvmLaudCCdvnX9vtlDPpAIwEbYJpa8+T
- zbQE+p1DtLkBJgw4uzbLIR9kNALS3mg8n2VcGWFMLqNMxvO05iwqsoLDh
- mrQNFwtzpduIof5QYt80s/pLoYJ8bBQXfPPK15aJMf88q+zNCYa/wfCNf
- 7Lk29xT7xBcKKLWnJJI5m1UonefmzpRs1KrAvsGsqyIlokZgTfZgxUogo w==;
-X-CSE-ConnectionGUID: fL88OmgqTr2TDB2bRgxzZw==
-X-CSE-MsgGUID: bg5jscRATOa7fFufig1yTg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="37933929"
-X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="37933929"
+ bh=YDzfovw/+3+79dX9rVwW0JedK9/gQd8E1ryqhApGSlA=;
+ b=d2cvNzA59bNkmt8FZZwyJqjzVdAGdTmVf1lkOzYTvKjQDliTmSUe/QHl
+ n3SyivvsT6B4qKEaX0ru0O5lsmruMdpuF5FeCnAjtWVUQciNWHtNBtyQw
+ zFpGIJqXw2z3HQ7PgJfTXSNAHSYLU0IfCGAykSxrXa6Lj+iYDMg7evT/z
+ YTqYUQgh/+l+gTt92C3nvIxKNdMr7Ea9d5YE5vTkcpW0MZou00upt+9j0
+ TUUsdtaWhQkOf0YY/m4GfcMK0IOoEkwWeXHJ1v/8XP3exBP/Ld7ogSMZ9
+ NyuEazN1GZG1DajGt4XNCBouVdnfsKtHD56429mUtyM360S8kQ8XlZB5K g==;
+X-CSE-ConnectionGUID: ZVvZbHoYQ8yIzda2diH7nQ==
+X-CSE-MsgGUID: DrlIKSo+TeG29x+H7AOXqg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="37933930"
+X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="37933930"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Jan 2025 10:03:59 -0800
-X-CSE-ConnectionGUID: It5AycXeT5Gyyf7yv51aAg==
-X-CSE-MsgGUID: 1nDmy8YrQKSXrZ328x3HfA==
+X-CSE-ConnectionGUID: 2841iNJYQmug0NdRud9vxg==
+X-CSE-MsgGUID: guTBrEmyRdOyjIF/Iewx2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="106663484"
+X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="106663487"
 Received: from orsosgc001.jf.intel.com ([10.165.21.142])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Jan 2025 10:03:58 -0800
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH 1/2] drm/xe/oa: Set stream->pollin in
- xe_oa_buffer_check_unlocked
-Date: Tue, 21 Jan 2025 10:03:53 -0800
-Message-ID: <20250121180354.3221570-2-ashutosh.dixit@intel.com>
+Subject: [PATCH 2/2] drm/xe/oa: Fix locking for stream->pollin
+Date: Tue, 21 Jan 2025 10:03:54 -0800
+Message-ID: <20250121180354.3221570-3-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250121180354.3221570-1-ashutosh.dixit@intel.com>
 References: <20250121180354.3221570-1-ashutosh.dixit@intel.com>
@@ -67,58 +66,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We rely on stream->pollin to decide whether or not to block during
-poll/read calls. However, currently there are blocking read code paths
-which don't even set stream->pollin. The best place to consistently set
-stream->pollin for all code paths is therefore to set it in
-xe_oa_buffer_check_unlocked.
+Previously locking was not implemented for stream->pollin. Now
+stream->pollin should be accessed under stream->oa_buffer.ptr_lock.
 
-Fixes: e936f885f1e9 ("drm/xe/oa/uapi: Expose OA stream fd")
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_oa.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 6a08e6c92835f..fa873f3d0a9d1 100644
+index fa873f3d0a9d1..9de62ce4b9e42 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -237,7 +237,6 @@ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
- 	u32 tail, hw_tail, partial_report_size, available;
- 	int report_size = stream->oa_buffer.format->size;
- 	unsigned long flags;
--	bool pollin;
+@@ -530,6 +530,7 @@ static ssize_t xe_oa_read(struct file *file, char __user *buf,
+ 			  size_t count, loff_t *ppos)
+ {
+ 	struct xe_oa_stream *stream = file->private_data;
++	unsigned long flags;
+ 	size_t offset = 0;
+ 	int ret;
  
- 	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
+@@ -562,8 +563,10 @@ static ssize_t xe_oa_read(struct file *file, char __user *buf,
+ 	 * Also in case of -EIO, we have already waited for data before returning
+ 	 * -EIO, so need to wait again
+ 	 */
++	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
+ 	if (ret != -ENOSPC && ret != -EIO)
+ 		stream->pollin = false;
++	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
  
-@@ -282,11 +281,11 @@ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
- 	stream->oa_buffer.tail = tail;
+ 	/* Possible values for ret are 0, -EFAULT, -ENOSPC, -EIO, -EINVAL, ... */
+ 	return offset ?: (ret ?: -EAGAIN);
+@@ -573,6 +576,7 @@ static __poll_t xe_oa_poll_locked(struct xe_oa_stream *stream,
+ 				  struct file *file, poll_table *wait)
+ {
+ 	__poll_t events = 0;
++	unsigned long flags;
  
- 	available = xe_oa_circ_diff(stream, stream->oa_buffer.tail, stream->oa_buffer.head);
--	pollin = available >= stream->wait_num_reports * report_size;
-+	stream->pollin = available >= stream->wait_num_reports * report_size;
+ 	poll_wait(file, &stream->poll_wq, wait);
  
- 	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
+@@ -582,8 +586,10 @@ static __poll_t xe_oa_poll_locked(struct xe_oa_stream *stream,
+ 	 * in use. We rely on hrtimer xe_oa_poll_check_timer_cb to notify us when there
+ 	 * are samples to read
+ 	 */
++	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
+ 	if (stream->pollin)
+ 		events |= EPOLLIN;
++	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
  
--	return pollin;
-+	return stream->pollin;
+ 	return events;
  }
- 
- static enum hrtimer_restart xe_oa_poll_check_timer_cb(struct hrtimer *hrtimer)
-@@ -294,10 +293,8 @@ static enum hrtimer_restart xe_oa_poll_check_timer_cb(struct hrtimer *hrtimer)
- 	struct xe_oa_stream *stream =
- 		container_of(hrtimer, typeof(*stream), poll_check_timer);
- 
--	if (xe_oa_buffer_check_unlocked(stream)) {
--		stream->pollin = true;
-+	if (xe_oa_buffer_check_unlocked(stream))
- 		wake_up(&stream->poll_wq);
--	}
- 
- 	hrtimer_forward_now(hrtimer, ns_to_ktime(stream->poll_period_ns));
- 
 -- 
 2.47.1
 
