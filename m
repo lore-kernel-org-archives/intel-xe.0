@@ -4,113 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93D63C0218E
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 13:31:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0B8AC02182
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 13:40:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58A6B10E5C1;
-	Tue, 21 Jan 2025 13:31:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99AE710E592;
+	Tue, 21 Jan 2025 13:40:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vWU1A4F9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mc6AGytz";
 	dkim-atps=neutral
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C1BA10E094;
- Sun, 19 Jan 2025 15:22:57 +0000 (UTC)
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
- [91.158.153.178])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id EAD45446;
- Sun, 19 Jan 2025 16:21:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1737300115;
- bh=CTvWZ10sB6Bpu7OwRCTU/O0pKZ8mB6w+tH5Yr4dSd4E=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=vWU1A4F9YgGtIhbdQyreotqH6d1Ml2MZ0LSMmJD+E3aF7hT7Iyt2tb7DnjVNF+Pxr
- Ur2IAlVdyYB0u9eTY9nLS1iOqf1rbDS74NQte5xiZiorKZzIDc2ltm+dCMDxo3gGnD
- tQCGpMKCUDl0+FP1sNJGb4wT3uTFLGuXW16Hvc0Q=
-Message-ID: <cf34be39-ce92-4ea5-b548-03008c163d31@ideasonboard.com>
-Date: Sun, 19 Jan 2025 17:22:51 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA07310E592;
+ Tue, 21 Jan 2025 13:40:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737466827; x=1769002827;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=WBmnldHfdBRkGsbeSgtmkh5O2QPNuQLqpHOfumaajEw=;
+ b=mc6AGytzenNjkHYU3XxImrgekwoLrcKxHSsa/a+4809tydnZcEjlaNFW
+ 9P5fzuFbEExeI8/qQFA1+bjqaugQPM0XBQ7zCj8rA/1hhyH+f3Gd+ebka
+ TazCQkbx0NbbBuiCmw/xX3YnAf3V9RWK7IKRBULcvzK20KL+w9aB6Sacx
+ 4wf2UsTrn7cqtJkZ0oFphWw6uHPT8w2NwZSpYn26daQPwiXJXT4ySrM6g
+ 8ijyMIpFinNJ3e7G5lqfgAYNMyeeXpkToXXLdkq40xxWADWbu+RkRqYuv
+ P9Tar5KOu79OPg60c/mlSCVd5OPH3u8K8716rKiC3uSj0XnI3GVHa5VxN A==;
+X-CSE-ConnectionGUID: 5631eRlASj+oc10YF54FGw==
+X-CSE-MsgGUID: xtmSZuFyQSCJkbb+DoUS9A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="37793473"
+X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="37793473"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2025 05:40:26 -0800
+X-CSE-ConnectionGUID: 8HPENCmKSWmnhwq0GaJgzw==
+X-CSE-MsgGUID: 7bHHzFaMS1OL4alY/u8QuQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="106922408"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 21 Jan 2025 05:40:24 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 21 Jan 2025 15:40:23 +0200
+Date: Tue, 21 Jan 2025 15:40:23 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v3 4/5] drm/i915/display: Populate list of async
+ supported formats/modifiers
+Message-ID: <Z4-jxyzDQfE3hzxY@intel.com>
+References: <20250108-asyn-v3-0-f4399635eec9@intel.com>
+ <20250108-asyn-v3-4-f4399635eec9@intel.com>
+ <Z462TS-6qRPz7eOb@intel.com>
+ <IA0PR11MB7307C0119A52004DC634EC00BAE62@IA0PR11MB7307.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 25/25] drm/xlnx: Compute dumb-buffer sizes with
- drm_mode_size_dumb()
-To: Sui Jingfeng <sui.jingfeng@linux.dev>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
- simona@ffwll.ch, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, freedreno@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, imx@lists.linux.dev,
- linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, intel-xe@lists.freedesktop.org,
- xen-devel@lists.xenproject.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Andy Yan <andyshrk@163.com>, Daniel Stone <daniel@fooishbar.org>
-References: <f3ba05c7-6e49-4641-a3f9-ba418ebdb7c3@ideasonboard.com>
- <c6735280-7c32-4319-8ca9-a7305d8117c3@suse.de>
- <d67adb03-5cd0-4ac9-af58-cf4446dacee3@ideasonboard.com>
- <0ea6be58-0e04-4172-87cd-064a3e4a43bc@suse.de>
- <f35cb350-6be9-48ca-ad7e-e9dd418281d5@ideasonboard.com>
- <4af0b6a7-c16a-4187-bbf5-365a9c86de21@suse.de>
- <e327ad84-b5c9-4480-b873-dc3aca605538@ideasonboard.com>
- <a2bbeb47-2569-4ee0-9265-92bab139bdc6@suse.de>
- <f3833771-fcd7-45dc-9019-1525fef34429@ideasonboard.com>
- <CAMuHMdXxYa+Na3XxpLTy=-eUL_zQ9kAiUKYu-E04u3KWApusSA@mail.gmail.com>
- <xz5ncq67bgmdase2jg3cfvyaxpiwhol2eqpfzow6dqpauvslo5@2w3rw27lhnxo>
- <b97fcd2f-516a-4172-aef3-631418564cfa@linux.dev>
- <ef52dab0-058f-408f-a298-c4b2453a3d2f@ideasonboard.com>
- <f4562dbf-b132-4cfd-8f7e-43cd69f2673f@linux.dev>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <f4562dbf-b132-4cfd-8f7e-43cd69f2673f@linux.dev>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 21 Jan 2025 13:30:48 +0000
+In-Reply-To: <IA0PR11MB7307C0119A52004DC634EC00BAE62@IA0PR11MB7307.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,92 +75,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 19/01/2025 16:59, Sui Jingfeng wrote:
-
->>>> But userspace must be able to continue allocating YUV buffers through
->>>> CREATE_DUMB.
->>>
->>> I think, allocating YUV buffers through CREATE_DUMB interface is just
->>> an *abuse* and *misuse* of this API for now.
->>>
->>> Take the NV12 format as an example, NV12 is YUV420 planar format, have
->>> two planar: the Y-planar and the UV-planar. The Y-planar appear first
->>> in memory as an array of unsigned char values. The Y-planar is followed
->>> immediately by the UV-planar, which is also an array of unsigned char
->>> values that contains packed U (Cb) and V (Cr) samples.
->>>
->>> But the 'drm_mode_create_dumb' structure is only intend to provide
->>> descriptions for *one* planar.
->>>
->>> struct drm_mode_create_dumb {
->>>      __u32 height;
->>>      __u32 width;
->>>      __u32 bpp;
->>>      __u32 flags;
->>>      __u32 handle;
->>>      __u32 pitch;
->>>      __u64 size;
->>> };
->>>
->>> An width x height NV12 image takes up width*height*(1 + 1/4 + 1/4) 
->>> bytes.
->>>
->>> So we can allocate an *equivalent* sized buffer to store the NV12 raw 
->>> data.
->>>
->>> Either 'width * (height * 3/2)' where each pixel take up 8 bits,
->>> or just 'with * height' where each pixels take up 12 bits.
->>>
->>> However, all those math are just equivalents description to the original
->>> NV12 format, neither are concrete correct physical description.
->>
->> I don't see the problem. Allocating dumb buffers, if we don't have any 
->> heuristics related to RGB behind it, is essentially just allocating a 
->> specific amount of memory, defined by width, height and bitsperpixel.
->>
-> I think, the problem will be that the 'width', 'height' and 'bpp'
-> are originally used to describe one plane. Those three parameters
-> has perfectly defined physical semantics.
+On Tue, Jan 21, 2025 at 03:34:20AM +0000, Murthy, Arun R wrote:
+> > On Wed, Jan 08, 2025 at 11:09:02AM +0530, Arun R Murthy wrote:
+> > > Populate the list of formats/modifiers supported by async flip.
+> > > Register a async property and expose the same to user through blob.
+> > >
+> > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/skl_universal_plane.c | 51
+> > > ++++++++++++++++++++++
+> > >  1 file changed, 51 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > > b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > > index
+> > >
+> > ff9764cac1e71959e56283f61b5192ea261cec7a..e5e47f2219dae62e76cbde2e
+> > fb40
+> > > 266b047ab2b2 100644
+> > > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > > @@ -170,6 +170,44 @@ static const u32 icl_hdr_plane_formats[] = {
+> > >  	DRM_FORMAT_XVYU16161616,
+> > >  };
+> > >
+> > > +static u64 tgl_asyn_modifiers[] = {
+> > > +	DRM_FORMAT_MOD_LINEAR,
+> > > +	I915_FORMAT_MOD_X_TILED,
+> > > +	I915_FORMAT_MOD_Y_TILED,
+> > > +	I915_FORMAT_MOD_4_TILED,
+> > > +	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
+> > > +	I915_FORMAT_MOD_4_TILED_MTL_RC_CCS,
+> > > +	I915_FORMAT_MOD_4_TILED_DG2_RC_CCS,
+> > > +	I915_FORMAT_MOD_4_TILED_BMG_CCS,
+> > > +	I915_FORMAT_MOD_4_TILED_LNL_CCS,
+> > > +};
+> > > +
+> > > +static u64 icl_async_modifiers[] = {
+> > > +	I915_FORMAT_MOD_X_TILED,
+> > > +	I915_FORMAT_MOD_Y_TILED,
+> > > +	I915_FORMAT_MOD_Yf_TILED,
+> > > +	I915_FORMAT_MOD_Y_TILED_CCS,
+> > > +	I915_FORMAT_MOD_Yf_TILED_CCS,
+> > > +};
+> > > +
+> > > +static u64 skl_async_modifiers[] = {
+> > > +	I915_FORMAT_MOD_X_TILED,
+> > > +	I915_FORMAT_MOD_Y_TILED,
+> > > +	I915_FORMAT_MOD_Yf_TILED,
+> > > +};
+> > > +
+> > > +static u32 intel_async_formats[] = {
+> > > +	DRM_FORMAT_RGB565,
+> > > +	DRM_FORMAT_XRGB8888,
+> > > +	DRM_FORMAT_XBGR8888,
+> > > +	DRM_FORMAT_ARGB8888,
+> > > +	DRM_FORMAT_ABGR8888,
+> > > +	DRM_FORMAT_XRGB2101010,
+> > > +	DRM_FORMAT_XBGR2101010,
+> > > +	DRM_FORMAT_XRGB16161616F,
+> > > +	DRM_FORMAT_XBGR16161616F,
+> > > +};
+> > 
+> > I've just pushed my .can_async_flip() thing. I'm thinking with that all this can
+> > just disappear and we can have a completely generic implementation. Eg
+> > something like:
+> > 
+> Thanks, will rebase and push!
 > 
-> But with multi planar formats, take NV12 image as an example,
-> for a 2×2 square of pixels, there are 4 Y samples but only 1 U
-> sample and 1 V sample. This format requires 4x8+1x8+1x8=48 bits
-> to store the 2x2 square.
-> 
-> So its depth is 12 bits per pixel (48 / (2 * 2)).
-> 
-> so my problem is that the mentioned 12bpp in this example only
-> make sense in mathematics, it doesn't has a good physical
-> interpret. Do you agree with me on this technique point?
-> 
->> If I want to create an NV12 framebuffer, I allocate two dumb buffers, 
->> one for Y and one for UV planes, and size them accordingly. And then 
->> create the DRM framebuffer with those.
->>
-> Then how you fill the value of the 'width', 'height' and 'bpp' of each 
-> dumb buffers?
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+> > intel_plane_format_mod_supported_async()
+> > {
+> > 	// some generic checks here (eg. reject planar formats)
+> > 
+> > 	return plane->format_mod_supported() &&
+> > 		plane->can_async_flip();
+> > }
 
-For 640x480-NV12:
-plane 0: width = 640, height = 480, bpp = 8
-plane 1: width = 640 / 2, height = 480 / 2, bpp = 16
+Actually for this one I think it'd probably make sense to call the 
+normal format_mod_supported() before doing any other checks, just 
+in case we ever get situations where the parameters come directly
+from userspace. It's better to filter out completely bogus values
+as early as possible, and the normal format_mod_supported() already
+has to be prepared for garbage values.
 
-> Why not allocate storage for the whole on one shoot?
+> > 
+> > > +
+> > >  int skl_format_to_fourcc(int format, bool rgb_order, bool alpha)  {
+> > >  	switch (format) {
+> > > @@ -2613,6 +2651,7 @@ skl_universal_plane_create(struct
+> > drm_i915_private *dev_priv,
+> > >  	unsigned int supported_rotations;
+> > >  	unsigned int supported_csc;
+> > >  	const u64 *modifiers;
+> > > +	u64 *async_modifiers;
+> > >  	const u32 *formats;
+> > >  	int num_formats;
+> > >  	int ret;
+> > > @@ -2715,6 +2754,18 @@ skl_universal_plane_create(struct
+> > drm_i915_private *dev_priv,
+> > >  	if (ret)
+> > >  		goto fail;
+> > >
+> > > +	if (DISPLAY_VER(dev_priv) >= 12)
+> > > +		async_modifiers = tgl_asyn_modifiers;
+> > > +	else if (DISPLAY_VER(dev_priv) == 11)
+> > > +		async_modifiers = icl_async_modifiers;
+> > > +	else
+> > > +		async_modifiers = skl_async_modifiers;
+> > > +
+> > > +	drm_plane_create_format_blob(&dev_priv->drm, &plane->base,
+> > > +				     async_modifiers, sizeof(async_modifiers),
+> > > +				     intel_async_formats,
+> > > +				     sizeof(intel_async_formats), true);
+> > > +
+> > >  	if (DISPLAY_VER(dev_priv) >= 13)
+> > >  		supported_rotations = DRM_MODE_ROTATE_0 |
+> > DRM_MODE_ROTATE_180;
+> > >  	else
+> > >
+> > > --
+> > > 2.25.1
+> > 
+> > --
+> > Ville Syrj�l�
+> > Intel
 
-You can, if you adjust the parameters accordingly. However, if the 
-strides of the planes are not equal, I guess it might cause problems on 
-some platforms.
-
-But I think it's usually simpler to allocate one buffer per plane, and 
-perhaps even better as it doesn't require as large contiguous memory area.
-
-> The modetest in libdrm can be an good example, send it[1] to you as an 
-> reference.
-
-Right, so modetest already does it successfully. So... What is the issue?
-
-Everyone agrees that CREATE_DUMB is not the best ioctl to allocate 
-buffers, and one can't consider it to work identically across the 
-platforms. But it's what we have and what has been used for ages.
-
-  Tomi
-
+-- 
+Ville Syrj�l�
+Intel
