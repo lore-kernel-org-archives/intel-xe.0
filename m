@@ -4,21 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D865C0218B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ADB2C0218C
 	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 14:29:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3A7710E5CC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB39610E5CE;
 	Tue, 21 Jan 2025 14:29:30 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E78CC10E5CC
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Jan 2025 14:29:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87E0910E5C5
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Jan 2025 14:29:27 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>,
-	Ilia Levi <ilia.levi@intel.com>
-Subject: [PATCH 2/3] drm/xe: Defer irq init until after xe_display_init_noaccel
-Date: Tue, 21 Jan 2025 15:28:49 +0100
-Message-ID: <20250121142850.4960-2-dev@lankhorst.se>
+Cc: Maarten Lankhorst <dev@lankhorst.se>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 3/3] drm/xe/display: Use a single early init call for display
+Date: Tue, 21 Jan 2025 15:28:50 +0100
+Message-ID: <20250121142850.4960-3-dev@lankhorst.se>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250121142850.4960-1-dev@lankhorst.se>
 References: <20250121142850.4960-1-dev@lankhorst.se>
@@ -38,44 +37,196 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As stated in previous commit, we have to move interrupt handling
-until after xe_display_init_noaccel, as using memirqs would require
-an allocation.
+Now that interrupts are disabled for xe_display_init_noaccel,
+both xe_display_init_noirq and xe_display_init_noaccel run in the same
+context.
 
-A full solution will of course require memirq allocation to be moved,
-but the first part only focuses on the required changes to display.
+This means that we can get rid of the 3 different init calls. Without
+interrupts, nothing is touching display up to this point.
+Unify those 3 early display calls into a single xe_display_init_early(),
+this makes the init sequence cleaner, and display less tangled during
+init.
 
-Reviewed-by: Ilia Levi <ilia.levi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_device.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 73 +++++++------------------
+ drivers/gpu/drm/xe/display/xe_display.h |  8 +--
+ drivers/gpu/drm/xe/xe_device.c          | 10 +---
+ 3 files changed, 22 insertions(+), 69 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 96ba9595bf2ac..651799c946ace 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -101,19 +101,25 @@ int xe_display_create(struct xe_device *xe)
+ 	return drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
+ }
+ 
+-static void xe_display_fini_nommio(struct drm_device *dev, void *dummy)
++static void xe_display_fini_early(void *arg)
+ {
+-	struct xe_device *xe = to_xe_device(dev);
++	struct xe_device *xe = arg;
+ 	struct intel_display *display = &xe->display;
+ 
+ 	if (!xe->info.probe_display)
+ 		return;
+ 
++	intel_display_driver_remove_nogem(display);
++	intel_display_driver_remove_noirq(display);
++	intel_opregion_cleanup(display);
+ 	intel_power_domains_cleanup(display);
+ }
+ 
+-int xe_display_init_nommio(struct xe_device *xe)
++int xe_display_init_early(struct xe_device *xe)
+ {
++	struct intel_display *display = &xe->display;
++	int err;
++
+ 	if (!xe->info.probe_display)
+ 		return 0;
+ 
+@@ -123,29 +129,6 @@ int xe_display_init_nommio(struct xe_device *xe)
+ 	/* This must be called before any calls to HAS_PCH_* */
+ 	intel_detect_pch(xe);
+ 
+-	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_nommio, xe);
+-}
+-
+-static void xe_display_fini_noirq(void *arg)
+-{
+-	struct xe_device *xe = arg;
+-	struct intel_display *display = &xe->display;
+-
+-	if (!xe->info.probe_display)
+-		return;
+-
+-	intel_display_driver_remove_noirq(display);
+-	intel_opregion_cleanup(display);
+-}
+-
+-int xe_display_init_noirq(struct xe_device *xe)
+-{
+-	struct intel_display *display = &xe->display;
+-	int err;
+-
+-	if (!xe->info.probe_display)
+-		return 0;
+-
+ 	intel_display_driver_early_probe(display);
+ 
+ 	/* Early display init.. */
+@@ -162,38 +145,20 @@ int xe_display_init_noirq(struct xe_device *xe)
+ 	intel_display_device_info_runtime_init(display);
+ 
+ 	err = intel_display_driver_probe_noirq(display);
+-	if (err) {
+-		intel_opregion_cleanup(display);
+-		return err;
+-	}
+-
+-	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_noirq, xe);
+-}
+-
+-static void xe_display_fini_noaccel(void *arg)
+-{
+-	struct xe_device *xe = arg;
+-	struct intel_display *display = &xe->display;
+-
+-	if (!xe->info.probe_display)
+-		return;
+-
+-	intel_display_driver_remove_nogem(display);
+-}
+-
+-int xe_display_init_noaccel(struct xe_device *xe)
+-{
+-	struct intel_display *display = &xe->display;
+-	int err;
+-
+-	if (!xe->info.probe_display)
+-		return 0;
++	if (err)
++		goto err_opregion;
+ 
+ 	err = intel_display_driver_probe_nogem(display);
+ 	if (err)
+-		return err;
++		goto err_noirq;
+ 
+-	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_noaccel, xe);
++	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_early, xe);
++err_noirq:
++	intel_display_driver_remove_noirq(display);
++	intel_power_domains_cleanup(display);
++err_opregion:
++	intel_opregion_cleanup(display);
++	return err;
+ }
+ 
+ int xe_display_init(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
+index 233f81a26c255..e2a99624f7064 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.h
++++ b/drivers/gpu/drm/xe/display/xe_display.h
+@@ -20,9 +20,7 @@ int xe_display_create(struct xe_device *xe);
+ 
+ int xe_display_probe(struct xe_device *xe);
+ 
+-int xe_display_init_nommio(struct xe_device *xe);
+-int xe_display_init_noirq(struct xe_device *xe);
+-int xe_display_init_noaccel(struct xe_device *xe);
++int xe_display_init_early(struct xe_device *xe);
+ int xe_display_init(struct xe_device *xe);
+ void xe_display_fini(struct xe_device *xe);
+ 
+@@ -54,9 +52,7 @@ static inline int xe_display_create(struct xe_device *xe) { return 0; }
+ 
+ static inline int xe_display_probe(struct xe_device *xe) { return 0; }
+ 
+-static inline int xe_display_init_nommio(struct xe_device *xe) { return 0; }
+-static inline int xe_display_init_noirq(struct xe_device *xe) { return 0; }
+-static inline int xe_display_init_noaccel(struct xe_device *xe) { return 0; }
++static inline int xe_display_init_early(struct xe_device *xe) { return 0; }
+ static inline int xe_display_init(struct xe_device *xe) { return 0; }
+ static inline void xe_display_fini(struct xe_device *xe) {}
+ 
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index bd6191e1ed3e7..2e008528a9f92 100644
+index 2e008528a9f92..2f526fc3fb809 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -808,10 +808,6 @@ int xe_device_probe(struct xe_device *xe)
+@@ -746,10 +746,6 @@ int xe_device_probe(struct xe_device *xe)
+ 		return err;
+ 
+ 	xe->info.mem_region_mask = 1;
+-	err = xe_display_init_nommio(xe);
+-	if (err)
+-		return err;
+-
+ 	err = xe_set_dma_info(xe);
+ 	if (err)
+ 		return err;
+@@ -804,10 +800,6 @@ int xe_device_probe(struct xe_device *xe)
  	if (err)
  		return err;
  
--	err = xe_irq_install(xe);
+-	err = xe_display_init_noirq(xe);
 -	if (err)
--		goto err;
+-		return err;
 -
  	err = probe_has_flat_ccs(xe);
  	if (err)
  		goto err;
-@@ -845,6 +841,10 @@ int xe_device_probe(struct xe_device *xe)
- 			goto err;
- 	}
- 
-+	err = xe_irq_install(xe);
-+	if (err)
-+		goto err;
-+
- 	for_each_gt(gt, xe, id) {
- 		last_gt = id;
+@@ -831,7 +823,7 @@ int xe_device_probe(struct xe_device *xe)
+ 	 * This is the reason the first allocation needs to be done
+ 	 * inside display.
+ 	 */
+-	err = xe_display_init_noaccel(xe);
++	err = xe_display_init_early(xe);
+ 	if (err)
+ 		goto err;
  
 -- 
 2.43.0
