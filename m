@@ -4,95 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 386AEC02190
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7CC7C02194
 	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 13:30:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D120310E5AF;
-	Tue, 21 Jan 2025 13:30:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9322B10E5B8;
+	Tue, 21 Jan 2025 13:30:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Z0osBaiu";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Yvmxvy5A";
 	dkim-atps=neutral
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
- [IPv6:2a00:1450:4864:20::329])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D70EF10E008;
- Sun, 19 Jan 2025 09:09:38 +0000 (UTC)
-Received: by mail-wm1-x329.google.com with SMTP id
- 5b1f17b1804b1-436202dd7f6so39512055e9.0; 
- Sun, 19 Jan 2025 01:09:38 -0800 (PST)
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
+ [209.85.214.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A3E810E172;
+ Tue, 21 Jan 2025 10:43:19 +0000 (UTC)
+Received: by mail-pl1-f175.google.com with SMTP id
+ d9443c01a7336-21670dce0a7so113022605ad.1; 
+ Tue, 21 Jan 2025 02:43:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1737277777; x=1737882577; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=GpRQfPo+dIVvMcJc83bhcvAD0N42aVYCbsSTsOGPCsU=;
- b=Z0osBaiuBhp5KHx2oe9WN6QMMxCXIcUft1IXLuecykWgPwOu496sDGGz30FSyH0Nnh
- QPQ82hWjlset0bNsF13T3ENi7PuMR2IXz2IGluhkrcYboRa1sPOF/XSi0pqMQOF+cgHs
- DiBkGqbwFnuLFvFiMXwU/Zh5Ytt8Op7N+5jwxPwtmNoflDgXYPgBbDjXtdgqKb5luZqc
- 7VYkFkRbRkxqCde1eZaqemsF0Ltk/ZMGBrwPgcNeoTlVFdQ2OdBLU4JAgDL4/ZkUjZye
- ZbBOKQdO9LP5WPEbRSt0U1sS2ASxJrCjn0xA1lzTITjnSzIwtj6kBkWhpN5t5eGjVOb6
- bljw==
+ d=gmail.com; s=20230601; t=1737456138; x=1738060938; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=4Tl/gGsRPHRlKfMk3m6GA72SRpbhaa2/0Y9Q3kM0kF0=;
+ b=Yvmxvy5AtKtog8lwCmzEKkBTnT4f3V8NEFljKi8/CKaVCMocBFod3LkbmQ8VzyOdgs
+ 3HSv/EgCqkHg5TvM2HMdouU+gvO9VfUQAdpCtq5LgdsT5PNP6sq+BbJV/wSdZDjoktvk
+ 9o+I0oF3wRJaQaVvY7cBjK8jXbP+aTxUC1aPRXBO91Yg2Zl0rrmPzQSDJonp90OQ70IS
+ mLox0HjWvraSB1Kf8F6m/7PMhohs648QHQ0ncg1+3aX3QMI91QPad6AZnhUuZE7Eq418
+ o65UVCNwM4zgiNCwYzi9cHDkxP3RiZVzIliwiKvXfR++7AjHJsovZmeD+6kmsbLHBAhN
+ yrzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737277777; x=1737882577;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=GpRQfPo+dIVvMcJc83bhcvAD0N42aVYCbsSTsOGPCsU=;
- b=s35bb2rN/eXn534hbY26AK2B98gD1IJh2K5gPzxBqu2KV8/rcLTNg4YxxshAWaoV35
- e7GAfUOHgvrMb5LTwN4zqY6XU7R8z1wE3h2KEv03FVpjaOY3QjwgKMlnIqlxDrIu2Ngq
- K9fscmPtJq+MFffL6H+tlR41UbXS75GQL8S5GkPDFU3+fF9BMmU9+xtDlavg1UlHD0or
- 9f7a80PrhWaISi+hdxe4EiNGs52PwvyORTLXXNGPhFGtxQHgxMaLlE54fjA0mLGQwl3A
- jvu/OJanhd4wMFDFdCAsDNmk7FwdVIV1qmg6rQUcbhRPNAqEUuAsN4GlApdMY+zygWVz
- Pdsg==
+ d=1e100.net; s=20230601; t=1737456138; x=1738060938;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=4Tl/gGsRPHRlKfMk3m6GA72SRpbhaa2/0Y9Q3kM0kF0=;
+ b=da5fKLmeSVZbY8jIR36Sa9kZumgrWBaEfFcIofr+CZ4L/oujlmdlLe/wLneF2eUTKO
+ I+0O6wryHevzeC/PUwsV+aYoX0OghQU48S3Cjs/MezwqecCwhiqXGNQbCiD9tJPtWRuW
+ dC81HuT/YzcpxtGIRutUfw/KFwz5FIwnNnKddV2uFlYRgckylXOMNL3MCoiPgY9ABoSb
+ 6SaNgD1A/fOssO657H6cUkjoJZvyBm476dXCX9kyPzjvr4bWQeuuQrjY3UZ3pDcoPSj7
+ 5lRe7k+ncQiDhxc47urX5b9SfOk62JIJsjSAmC+/X445gSFNwhXj5EJcnNntAhnBwvwD
+ nJxQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUDFwpAI4pVoMkqwWGzVw7Vuo6nwNxElvBKI5GTkkBXEorzxth2jjlZuH5E0b4GZ4ZUZl84ek18MRc=@lists.freedesktop.org,
- AJvYcCUMz3BcxifhDt55NTquG/kWIG04Hb6uFxDoDOwwILadwXGby5FbSsHp7LJkfvFoXN938xDVU0u5GME=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwZCjL3pmwfNyYvDtImlU25AP8wG+wonEkJVk2e07HtBgky7U/C
- kGDyGmxhwhL2zrIHs4Un2xbx2j2Dzta0trduGIezKQ6xylz3R5RN
-X-Gm-Gg: ASbGnct7HDnym4+PpJ6LzBQvD4uFm7zi42WAT62AYRQJyWv3n3AudJa0uV2o7n1cON9
- bGC74QBcCApoZMrMiQpGoldkdvK0HGitTqBt2Xs5DWw9XCc2EqMHKy+cEk9qf2HtVvblriSoKG+
- B80+Skxpw2Kj9jmX1FhPlJaqP4AdBUwt3AgvzcMDjTBZwHYA+XUDxXpmbJDJ5tL+/UCWZJ0z28r
- aMYX9zRHEUwO1a3ODj3mv/tiEhmLdfs1vGoXknx3FJsbrMgjPb11240ifZvcKGfh0fOOqq7vqOm
- EBweV2Tj120f45gQH/8I1sYvDL3wUXSv
-X-Google-Smtp-Source: AGHT+IEuKIzgPC9hm5HdrQMLOvk5XY5pw6JdVTD0sbRLPHCvA9Cnqc+BT5boheqzFsu1pqtmM2wImg==
-X-Received: by 2002:a05:600c:3b02:b0:434:a781:f5d5 with SMTP id
- 5b1f17b1804b1-4389143ba53mr84319045e9.30.1737277777068; 
- Sun, 19 Jan 2025 01:09:37 -0800 (PST)
-Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+ AJvYcCUqMjjfrgR9qkUk4v+TWc/0ODhZ9nj395aMf+LbHjgJsPK/0h85rTs4StChx5MNJwi36PfOspuYDO0=@lists.freedesktop.org,
+ AJvYcCUr/unrKVhL2E4GFkuuN8m++aABk8kaPPWjaIBgbUOxVPbEXwkyBeIz0Qi3V/WeqCRo8E2B0l6Ajqk5@lists.freedesktop.org,
+ AJvYcCX9chaVztTqQYevJxGO8STD+/9Ci+q7yUilKq39nRU0AVUBHgHnocR39rgEYaoaYyqVyNktC0T6U/M=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwaaKnnCxumVJ3adDclIQXQ3xXhuMQqBW7Gsdm0HTMpFnsXdMis
+ /CIMoNJowGeDSmhsj6YYRiGpSTwQf4hiplOFiUuqTgWaIaQhp/9L
+X-Gm-Gg: ASbGncttpwaBokdmMy6I+n2t3imuHFI7ZXxoG6MqBqpTzqPaSLdZ1rXaCmOJtNQsLIQ
+ I6zNTrSXG53hiOqWq5DbAUTqjQBLMdmS3xeFxeOQ3kcoFrl50EryXcctTAV7vNWBWyOfp0aO0zf
+ 3EFz1ON7OxB8bItZ33GAIn+8uDIC22UTvGVj2Iy6JbESEO08AIWVsEf9/gF0Bb+F2cIIfIkCvM4
+ BkfKEIRJ4fEkYPCejNK42AnBG/Ym0Tmx9Emoyb3sbnYPN2rg5fkMlZecSoj/2gZLKeLd4oC/N9U
+ VRgLZyxmkQo2Aw==
+X-Google-Smtp-Source: AGHT+IEmzmf6qo4FU3cYsSFHCkv37zpXSq5rQ/sBf1cVkK9FRuF5itxEGPjy+jpxoBb9gzGq+/K0BQ==
+X-Received: by 2002:a17:902:f545:b0:215:6e01:ad19 with SMTP id
+ d9443c01a7336-21c35587f37mr272882875ad.29.1737456138578; 
+ Tue, 21 Jan 2025 02:42:18 -0800 (PST)
+Received: from localhost.localdomain
+ ([2401:4900:8899:7ee7:e6fd:4c4f:524d:ebac])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-437c75298adsm156216465e9.30.2025.01.19.01.09.36
+ d9443c01a7336-21c2cea0966sm76063255ad.37.2025.01.21.02.42.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 19 Jan 2025 01:09:36 -0800 (PST)
-Date: Sun, 19 Jan 2025 09:09:35 +0000
-From: David Laight <david.laight.linux@gmail.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, David Laight
- <David.Laight@aculab.com>, Arnd Bergmann <arnd@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Jens Axboe
- <axboe@kernel.dk>, Matthew Wilcox <willy@infradead.org>, Christoph Hellwig
- <hch@infradead.org>, Andrew Morton <akpm@linux-foundation.org>, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>, Dan Carpenter
- <dan.carpenter@linaro.org>, "Jason A . Donenfeld" <Jason@zx2c4.com>,
- "pedro.falcato@gmail.com" <pedro.falcato@gmail.com>, Mateusz Guzik
- <mjguzik@gmail.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, Lorenzo
- Stoakes <lorenzo.stoakes@oracle.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: Buiild error in i915/xe
-Message-ID: <20250119090935.7c690f85@pumpkin>
-In-Reply-To: <f3939490-0f55-410f-81fe-0e9f03874546@roeck-us.net>
-References: <c50365d214e04f9ba256d417c8bebbc0@AcuMS.aculab.com>
- <34d53778977747f19cce2abb287bb3e6@AcuMS.aculab.com>
- <ce600782-1012-47e3-ba3d-41c5a4b7a7b7@roeck-us.net>
- <20250118170959.3aa56f4d@pumpkin>
- <29ef57a1-e4dd-4d5d-8726-f1f79c698b66@roeck-us.net>
- <CAHk-=whAxUvW-APU42yWfCKHF5NhPLoTida9Jo=A9ZGGgjb18Q@mail.gmail.com>
- <20250118221123.5bb65e64@pumpkin>
- <f3939490-0f55-410f-81fe-0e9f03874546@roeck-us.net>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
+ Tue, 21 Jan 2025 02:42:18 -0800 (PST)
+From: Atharva Tiwari <evepolonium@gmail.com>
+To: 
+Cc: evepolonium@gmail.com, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/i915/fbdev: Discard large BIOS framebuffers
+Date: Tue, 21 Jan 2025 16:12:10 +0530
+Message-Id: <20250121104210.3159-1-evepolonium@gmail.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 21 Jan 2025 13:30:48 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -108,81 +93,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, 18 Jan 2025 14:58:48 -0800
-Guenter Roeck <linux@roeck-us.net> wrote:
+On certain 4K panels, the BIOS framebuffer
+exceeds the panel's required dimensions,
+leading to display corruption.
+This patch introduces a validation check to address the issue.
 
-> On 1/18/25 14:11, David Laight wrote:
-> > On Sat, 18 Jan 2025 13:21:39 -0800
-> > Linus Torvalds <torvalds@linux-foundation.org> wrote:
-> >   
-> >> On Sat, 18 Jan 2025 at 09:49, Guenter Roeck <linux@roeck-us.net> wrote:  
-> >>>
-> >>> No idea why the compiler would know that the values are invalid.  
-> >>
-> >> It's not that the compiler knows tat they are invalid, but I bet what
-> >> happens is in scale() (and possibly other places that do similar
-> >> checks), which does this:
-> >>
-> >>          WARN_ON(source_min > source_max);
-> >>          ...
-> >>          source_val = clamp(source_val, source_min, source_max);
-> >>
-> >> and the compiler notices that the ordering comparison in the first
-> >> WARN_ON() is the same as the one in clamp(), so it basically converts
-> >> the logic to
-> >>
-> >>          if (source_min > source_max) {
-> >>                  WARN(..);
-> >>                  /* Do the clamp() knowing that source_min > source_max */
-> >>                  source_val = clamp(source_val, source_min, source_max);
-> >>          } else {
-> >>                  /* Do the clamp knowing that source_min <= source_max */
-> >>                  source_val = clamp(source_val, source_min, source_max);
-> >>          }
-> >>
-> >> (obviously I dropped the other WARN_ON in the conversion, it wasn't
-> >> relevant for this case).
-> >>
-> >> And now that first clamp() case is done with source_min > source_max,
-> >> and it triggers that build error because that's invalid.
-> >>
-> >> So the condition is not statically true in the *source* code, but in
-> >> the "I have moved code around to combine tests" case it now *is*
-> >> statically true as far as the compiler is concerned.  
-> > 
-> > Well spotted :-)
-> > 
-> > One option would be to move the WARN_ON() below the clamp() and
-> > add an OPTIMISER_HIDE_VAR(source_max) between them.
-> > 
-> > Or do something more sensible than the WARN().
-> > Perhaps return target_min on any such errors?
-> >   
-> 
-> This helps:
-> 
-> -       WARN_ON(source_min > source_max);
-> -       WARN_ON(target_min > target_max);
-> -
->          /* defensive */
->          source_val = clamp(source_val, source_min, source_max);
-> 
-> +       WARN_ON(source_min > source_max);
-> +       WARN_ON(target_min > target_max);
+Signed-off-by: Atharva Tiwari <evepolonium@gmail.com>
+---
+ drivers/gpu/drm/i915/display/intel_fbdev.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-That is a 'quick fix' ...
-
-Much better would be to replace the WARN() with (say):
-	if (target_min >= target_max)
-		return target_min;
-	if (source_min >= source_max)
-		return target_min + (target_max - target_min)/2;
-So that the return values are actually in range (in as much as one is defined).
-Note that the >= cpmparisons also remove a divide by zero.
-
-	David
-
-> 
-> Guenter
-> 
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index 00852ff5b247..e8cf06772c31 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -197,10 +197,10 @@ static int intelfb_create(struct drm_fb_helper *helper,
+ 	ifbdev->fb = NULL;
+ 
+ 	if (fb &&
+-	    (sizes->fb_width > fb->base.width ||
+-	     sizes->fb_height > fb->base.height)) {
++	    (sizes->fb_width != fb->base.width ||
++	     sizes->fb_height != fb->base.height)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+-			    "BIOS fb too small (%dx%d), we require (%dx%d),"
++			    "BIOS fb dimensions mismatch (%dx%d), we require (%dx%d),"
+ 			    " releasing it\n",
+ 			    fb->base.width, fb->base.height,
+ 			    sizes->fb_width, sizes->fb_height);
+-- 
+2.39.5
 
