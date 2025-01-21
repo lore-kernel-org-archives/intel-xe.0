@@ -4,162 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67CA6C02182
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 16:29:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23C1BC02182
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 16:39:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5C1110E0BE;
-	Tue, 21 Jan 2025 16:29:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D69E510E1B0;
+	Tue, 21 Jan 2025 16:39:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TP6Ptet6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ff0Gqkel";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E15C310E0BE
- for <Intel-Xe@lists.freedesktop.org>; Tue, 21 Jan 2025 16:29:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46C3010E1B0
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Jan 2025 16:39:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737476986; x=1769012986;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=+JzVKVjG5EfhBoIC7UD25X7hPqZjD6eeGua8Aec23NU=;
- b=TP6Ptet6+NW8jj76fIVv/1DTKe5EdicH7ZbYfwkiJ5wZbp1XZrhBfWEo
- DYfaOXMQpJeie59DMNlWqX1VBjrOezpDuAGyN8FdzAtUr7OOj9THqTpn2
- 78nl1d4zoO9II37nkwq/K1G0Sw357+jb7IA1d5YpMRlYNII92Atc6E7fM
- waNd5047PGfmiOUotxaZfLPME+DXRKrkCvEDaBJxZr0iMqQPsg3LrDKBH
- moyT3cpFZBb//fTTrJRaLtYqQWJ/+mmotLA8e32acHShMEYw32ujtX0uu
- 8LdJQgIbUKuQieFqOsX1+yIJB/R5mIUAuGnoSXa+Jt3K2z6a0LPdkDMAo Q==;
-X-CSE-ConnectionGUID: 8TzftKDgTgG8dGun3psOlA==
-X-CSE-MsgGUID: EB09aPh3QemJPVH6iDxmSA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="48565078"
-X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="48565078"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 08:29:46 -0800
-X-CSE-ConnectionGUID: fi2Iuv7+RKGx65CfO8iBig==
-X-CSE-MsgGUID: Wvo21KkITkOKarE0pNc+fw==
+ t=1737477563; x=1769013563;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=vxTG184W1wuElig9Iha+7evOXdPN7YTOUq660mGAbdI=;
+ b=Ff0GqkelguTBfO52QhWK6YyVTJB2RyXdy+OslHFpLQMuQEr6k7olIJVl
+ +ORpxB76nFEYDvoM/KFkUjil2/O9iywhPC/GIKApSGKpqvdgaMyUoMIRe
+ +9BUwQmtIlpfIoUCn+qbg7Hxufwdj3jbWWndnzxptAvSroEzedmVrdbnA
+ +m1Lz2ZsE92LSUDQ7w8SEh3snK1YZxZZGo37Fqxs4Kuz3flZvBAlb4JKk
+ e3KCjY8DiqiIU/pgl5wh+zlVbLEd5vM9ORMhFFAbx6NSTHgEd3LIxVr0i
+ aHkZDQ20GTMXAb8RxY7JxzVkoKGLtSjVjZrlXSlOSjjQpuGEWcPs+rMXH w==;
+X-CSE-ConnectionGUID: v6L8HSKiQnW9OEzbbfTptg==
+X-CSE-MsgGUID: utaHieTWRUqQ+Ny877twaw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="37775679"
+X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="37775679"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2025 08:39:22 -0800
+X-CSE-ConnectionGUID: t+B5/1VeSOumVT4VtQ1JRQ==
+X-CSE-MsgGUID: O3mVGpQVTh2K6Z+ayOgraQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="111848339"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 21 Jan 2025 08:29:45 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 21 Jan 2025 08:29:45 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Tue, 21 Jan 2025 08:29:45 -0800
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.49) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 21 Jan 2025 08:29:42 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xnC56PJTIiMoN6dE6oX2yOvKuoaW6dONJ5GPiYKYMQeFcfwv3ZX7iw5p1K9oNYd40dYlyucx311Ie0sLfK9WjLmA8h+8G0mKIwhF36dGfy89mf0xC37zEf4Ihv1+cFpetyuoGofb6oy/jrzcAeVlI8+chZDZFWBXQTsTnBfgL1E1aPWf/tFLDnH64rHncjB2BiG8ebxyeoBOVLeuIQ3cNb86+02iyehPfuz5PNZyeZ1yRxiBArD53/TLlExgzkgPhRsP3c8KXEBXg7DYewXkZKacnSKeqi2o5L/SdAO9xrlRqq+EcIUD2nXqJEKH5wihhTPgxkkCeuC24GEmMXx8cQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ldc3sSXodA/BmQ5nfEoV4+SwjiS0lJG2hPDqneVbYVw=;
- b=oeNY5MWQa5t7BGZrAGjv6wFynfyI0v54QGn/B3WKNylkt4D+k/koqtmRBSeXAxqmbDR2V72jLlN+eLc8ReKeRYCkIIceMqUdFs/Wt5uZfqFbI8A96/ZzUxjkXHJXVxXKohsPqwq0Sxopl8wAtKBL/5S1CFPqjmi1y/eZK8Sy+v7MZU8zR16mU1fErvexASHPOZFymxXkM/uglR+kYc+o7ijm8NEq3ifPKvLAjDZH6XoTjgP5fh4CjYt9RbgLLVlm9OmWu/zsMOnoJRF9GPj0zQH6egvIrvaoq9r8IR3Vq1+pjjxk/HBFQk7cpsAn+3x8Dg3dPg/BQJqlY2+OaiMR3w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7SPRMB0046.namprd11.prod.outlook.com (2603:10b6:510:1f6::20)
- by CY5PR11MB6306.namprd11.prod.outlook.com (2603:10b6:930:22::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.16; Tue, 21 Jan
- 2025 16:29:26 +0000
-Received: from PH7SPRMB0046.namprd11.prod.outlook.com
- ([fe80::5088:3f5b:9a15:61dc]) by PH7SPRMB0046.namprd11.prod.outlook.com
- ([fe80::5088:3f5b:9a15:61dc%6]) with mapi id 15.20.8356.020; Tue, 21 Jan 2025
- 16:29:26 +0000
-Date: Tue, 21 Jan 2025 11:29:23 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: <John.C.Harrison@intel.com>
-CC: <Intel-Xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe: Upgrade complaint about missing slice info
-Message-ID: <Z4_LYzVd6jfUTUXj@intel.com>
-References: <20250118005403.2960807-1-John.C.Harrison@Intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250118005403.2960807-1-John.C.Harrison@Intel.com>
-X-ClientProxiedBy: MW4PR03CA0298.namprd03.prod.outlook.com
- (2603:10b6:303:b5::33) To PH7SPRMB0046.namprd11.prod.outlook.com
- (2603:10b6:510:1f6::20)
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="137724114"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.245.155])
+ ([10.245.245.155])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2025 08:39:21 -0800
+Message-ID: <843b18ca-5a2e-483e-97d9-d2db96c4138c@intel.com>
+Date: Tue, 21 Jan 2025 16:39:18 +0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7SPRMB0046:EE_|CY5PR11MB6306:EE_
-X-MS-Office365-Filtering-Correlation-Id: cc768834-a2db-4ff0-4984-08dd3a38c549
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?7nrpRCVBBt86EuErqpMc+jOTZX3r2Kjq0pkDdoH2ET94XA+vD14wDLNKSYPT?=
- =?us-ascii?Q?wPfQ8/oA/akhEmbpJYOLVWawZq1XWz1dDa6LbPkgFY8DOLSJuglD9OayFBgF?=
- =?us-ascii?Q?BOnOUHvUe4f2Y4Aujh4mkpy5SIq2ar2LN9lG4lBVDl7IsnD0X6TyynuXH3Ig?=
- =?us-ascii?Q?fgSpnvA4opzeeWe07LfISUCGSpeYXKs2x/sneS4G6O/E8873gNPVKpbFIYnE?=
- =?us-ascii?Q?ChcJSaQ84PsoyKeKCQ5swhTOnaOqWHLkgBrILQk71KfXwtOA0gddGn2MRHLf?=
- =?us-ascii?Q?mmcf4jECVE6zaNDLpFA6UE/Lxg7yHPWYn1/08p6USbUA781euRQ7j1Y8946u?=
- =?us-ascii?Q?AsgPGVS46ufiMN8ukKIpyUeJ8jJyjR1iCqvvQnG9M/PJtItVOr2tJcBQl01w?=
- =?us-ascii?Q?j6VRSBxBJCihIOPbYNdhXtsva4tABwQdmicPsSJFkN2115W7nyc3LXWLYMwj?=
- =?us-ascii?Q?l3CGD4EsUEbLJYmLoHhiBdloHtxoB7ca6LLPISxqTGRQRP9fguQIEDEaIoKV?=
- =?us-ascii?Q?thCU5KDdpumK8vUGJnS7Lv2WL5i3LwPwnla8gBB0hGWLeQr37yht1kq6eoba?=
- =?us-ascii?Q?6Qvks0TyZuy6dl1VvUOJF8gNFFZ/lTxxKignNpGDfRisXkAz4rzBu9wZn+vt?=
- =?us-ascii?Q?jB8gKINvJjksBhsWHTRi1ltip8mEp56scogMdSFExRDdttxcplQEdes2GNN7?=
- =?us-ascii?Q?EsVnF2jJqQiTPPas2JTVWoY5o/ALz99pCutls8PPNMDb/ulupXBC1i0clRVM?=
- =?us-ascii?Q?Wwg3X65iJatDosaiPWFYlJoqPHCuxK4ywSenf3Tljj3JjLyh3xujDVYP7nf8?=
- =?us-ascii?Q?ug/aZH/htG53DeNbk1IKTkqE5FyMat29ivKVlLBIzJiumBOmlzQAycd5dohn?=
- =?us-ascii?Q?85lhN02j86Fxw3GEkgHEQHMgDJKfkT7wnJV7o6OkdS6jS8bBDhF0z+WqXXTd?=
- =?us-ascii?Q?XNsUGRDDqTvhvi5kaMxDwab4fUBCyw5IQHvYNzopRDrW0WEormjLi9TO/hLM?=
- =?us-ascii?Q?FqmtSDmmCUdCV77W8ButWxrDfQENeNq23kvSJ2iSTVHJKd/b4Ysvz0bUiQiM?=
- =?us-ascii?Q?gMxZw4RE27upNONXxdiUkcTvaE7fjfeismWNVIJAU16fiPhUO3yyIbQzM3XP?=
- =?us-ascii?Q?i5B49XXEpo8LcCuvlVz/YSXYJdQ8hXxshz2QMP1BQKqMaZONHmrbvbHev2rP?=
- =?us-ascii?Q?UF+wXtYSzmc8lNoALFg3VAdCpiWAfg0f7KEWTdpXDOIoWZI0MOzHKIbn3rF8?=
- =?us-ascii?Q?8DfjFCiiEloeY8TK4/p/hgv76Yw2WIPzLg4FbSYcf0PNe0jKgkU5gpaYbiqg?=
- =?us-ascii?Q?ylZHyte7hKMPV6qQwsvywV04dtpwqfPFKTi3hjQ3fVBsYMbgDhBFc5+2YLht?=
- =?us-ascii?Q?xSYyFkzqF10JVG03BZtFqXt3n5YG?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7SPRMB0046.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?b5isGEdTUPyHX6uoL9KRufhlr5tnJYHOcvzZiylt8vMwvhvUyFzq4k1l4hcY?=
- =?us-ascii?Q?wXYvqoIVuvEyVe1/NH9cnlxvIWNGoiXMx+i9gh/r9wrOjYvEMfUqrYzMxxv1?=
- =?us-ascii?Q?CrQUBeuzR0K6ZJMzvPvZ7IamWOcEloG5RSBEkJeQSrDjp4eymGhhkNFkOYvc?=
- =?us-ascii?Q?CwP88PdpIAKiRJQ+Y8JtUeyh8FPWa4yALd6ZTSlS+B+9SlSQgBFsSzgF38+7?=
- =?us-ascii?Q?K2wkbYUGJf89FzJotEnbuKZoSMAxxJK7/B9Fj6AGrdS+EqyJSeAUhMhkKsOu?=
- =?us-ascii?Q?UgzDK9uRr1Ng1FA3aK/MeI0vcLWEo3dE9LwkYMsn0o1idhSKiiDRnc0BVYGu?=
- =?us-ascii?Q?xYxQJ1fcFokbeoy53BPPJ2EDJZiPTnNdCQQjK67Se7KsnW4F2uOZr8DozfNZ?=
- =?us-ascii?Q?2JrKuD0fF3wZFvuIrervogF74udU2PeNy/oaOBCNLlWYiCXf8OaCXWXf4cU3?=
- =?us-ascii?Q?8kQc0XVU+UgD/PbHOErl03eTQE+bWdw3CDhc1AX7s3RYqKyLCXDDlVmarhEe?=
- =?us-ascii?Q?WtwCtL7NkSK2PNMrgtUXedfwlRwOv91VpXu6B0iPnXWR/8yjkUP7FWdlsS6H?=
- =?us-ascii?Q?eq5okge3T/JsAn8BB9IAi4je+YgaFVQTnUOpdYU8+yZQTUr0ZtJZZN3HbD5Y?=
- =?us-ascii?Q?BMbHIEkplo5p+G0k2DgwFo3+5oHpHlq/rDIBd0HhPpf6eK1siz+pdE0g8yMU?=
- =?us-ascii?Q?1XVQIErtQNNKR+Bjwgcij1ZgM4odDTyRiNxDYttmCRaC0tzIkLDR+AmrU3VN?=
- =?us-ascii?Q?CH+yL6k/q+nxWb6hSsZJUSW+pLtQ3ubY0KfMx0fUkMIREg/IFhI96uBb1hxf?=
- =?us-ascii?Q?XNbNqd/NdW+eky3G+Aga9sVz/hQQr2huRyzk8Onslb/3WwJ1gKut+xkb49gB?=
- =?us-ascii?Q?hNpFOJ6ktdGpAjt8s6je7ZHz5EqhxtGRu8+HRJPjTBldKHq+AnjJfKjvA0s6?=
- =?us-ascii?Q?rurwaDvDpZHy+t9NXF0LCiuZtbqZn9jwlgqB5MJfdhWVC3Ii2Zcwyrgzv+Ca?=
- =?us-ascii?Q?RLOVjgPaoz6vDJOB022b39wrrq3ERmQtW5EO/9aIDsK9I+u/eIWkL6GuLkfY?=
- =?us-ascii?Q?iG/bASU7uY6r8B+5jdcmqWXJCGJEcNMJI9TF+VLsd8P/OHvWL0WyqDidViZ+?=
- =?us-ascii?Q?JqHPo0t3nJRV9P6tDakdaVniZmVY7g7HIhg9GkGzyFJTH2vfp2Lf/7vWvVNI?=
- =?us-ascii?Q?FtlUvW11Le5yH9Q9QyNYUpeyQ2LFur6CuYdgb2MgabRdBVi2zfFXoQg0Qcc9?=
- =?us-ascii?Q?yOTdMLsQA/6uiRsERcNg9uxRDFQh8dqZlhaHV046Ug2rz1wUTb9jhcx6qvrz?=
- =?us-ascii?Q?wNOuHm0qXSMyJ3dHTefBzNpgNzvlBxHY0jjxcZgKwGsChaAtioaeRslusxoI?=
- =?us-ascii?Q?9VnQg++5nmrzNilTzGiCqYB1S0OU9gGRVBywhlkbO+aYSWIfP9owc4uZ/GKL?=
- =?us-ascii?Q?hqRyPy7SNmX+lV7VADFWn8zLm8H0NlFN1SHJ3vSepT/dbBY87OJlBcL6hlbz?=
- =?us-ascii?Q?GXD9KgJt9eDqFAOKjd4EcLwVEYqwLBslZ5h9XZzNLe+WYCA+QaqioMAKN/L3?=
- =?us-ascii?Q?jRvE9TVS+7l0hzXj9M6QvTgl+sdRLMdOmFaaU1ZKkHClkyJVB841ZtjpC1AN?=
- =?us-ascii?Q?aA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc768834-a2db-4ff0-4984-08dd3a38c549
-X-MS-Exchange-CrossTenant-AuthSource: PH7SPRMB0046.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2025 16:29:26.1254 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xBI0PZZ1MO8MyMpGLWVcctF/6JrNMSerlRc3w79KVamBtcEHcIl8cA8kPC6CPJEj6qz8njMtkcECmOeSDU6GQA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6306
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4] drm/xe/uapi: Use hint for guc to set GT frequency
+To: Tejas Upadhyay <tejas.upadhyay@intel.com>, intel-xe@lists.freedesktop.org
+Cc: michal.mrozek@intel.com, vinay.belgaumkar@intel.com,
+ szymon.morek@intel.com, jose.souza@intel.com
+References: <20250121131605.1115338-1-tejas.upadhyay@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20250121131605.1115338-1-tejas.upadhyay@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,48 +70,288 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 17, 2025 at 04:54:03PM -0800, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
+On 21/01/2025 13:16, Tejas Upadhyay wrote:
+> Allow user to provide a low latency hint. When set,
+> KMD sends a hint to GuC which results in special handling for that process.
+> SLPC will ramp the GT frequency aggressively every time
+> it switches to this process.
 > 
-> The steering code needs to know slice/subslice counts and this
-> information should be retrieved from the hwconfig table. However,
-> earlier platforms don't have it, hence the KMD has a fallback path.
-> Newer platforms really should have the entries and if they are missing
-> that is a bug that needs to be fixed in the table.
+> We need to enable the use of SLPC Compute strategy during init, but
+> it will apply only to processes that set this bit during process
+> creation.
 > 
-> So update the complaint to be an error on newer platforms and remove
-> it completely for older ones that we know are bad (but are not POR for
-> the Xe driver anyway). Also, re-word the message a little to make it
-> clearer what the issue is.
+> Improvement with this approach as below:
 > 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> Before,
+> 
+> :~$ NEOReadDebugKeys=1 EnableDirectSubmission=0 clpeak --kernel-latency
+> Platform: Intel(R) OpenCL Graphics
+>    Device: Intel(R) Graphics [0xe20b]
+>      Driver version  : 24.52.0 (Linux x64)
+>      Compute units   : 160
+>      Clock frequency : 2850 MHz
+>      Kernel launch latency : 283.16 us
+> 
+> After,
+> 
+> :~$ NEOReadDebugKeys=1 EnableDirectSubmission=0 clpeak --kernel-latency
+> Platform: Intel(R) OpenCL Graphics
+>    Device: Intel(R) Graphics [0xe20b]
+>      Driver version  : 24.52.0 (Linux x64)
+>      Compute units   : 160
+>      Clock frequency : 2850 MHz
+> 
+>      Kernel launch latency : 63.38 us
+> 
+> UMD will indicate low latency hint with flag as mentioned below,
+> 
+> *     struct drm_xe_exec_queue_create exec_queue_create = {
+> *          .flags = DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT or 0
+> *          .extensions = 0,
+> *          .vm_id = vm,
+> *          .num_bb_per_exec = 1,
+> *          .num_eng_per_bb = 1,
+> *          .instances = to_user_pointer(&instance),
+> *     };
+> *     ioctl(fd, DRM_IOCTL_XE_EXEC_QUEUE_CREATE, &exec_queue_create);
+> 
+> Link to UMD PR : https://github.com/intel/compute-runtime/pull/794
+> 
+> V4:
+>    - To make it clear, dont use exec queue word (Vinay)
+>    - Correct typo in description of flag (Jose/Vinay)
+>    - rename set_strategy api and replace ctx with exec queue(Vinay)
+>    - Start with 0th bit to indentify user flags (Jose)
+> V3:
+>    - Conver user flag to kernel internal flag and use (Oak)
+>    - Support query config for use to check kernel support (Jose)
+>    - Dont need to take runtime pm (Vinay)
+> V2:
+>    - DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT 1 is already planned for other hint(Szymon)
+>    - Add motivation to description (Lucas)
+> 
+> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_gt_mcr.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
+>   drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h |  3 +++
+>   drivers/gpu/drm/xe/xe_exec_queue.c            | 11 ++++++++---
+>   drivers/gpu/drm/xe/xe_exec_queue_types.h      |  3 ++-
+>   drivers/gpu/drm/xe/xe_guc_pc.c                | 16 ++++++++++++++++
+>   drivers/gpu/drm/xe/xe_guc_submit.c            |  8 ++++++++
+>   drivers/gpu/drm/xe/xe_query.c                 |  3 ++-
+>   include/uapi/drm/xe_drm.h                     |  7 ++++++-
+>   7 files changed, 45 insertions(+), 6 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-> index a1676b787fdc..605aad3554e7 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-> @@ -341,7 +341,13 @@ static unsigned int dss_per_group(struct xe_gt *gt)
->  	return DIV_ROUND_UP(max_subslices, max_slices);
->  
->  fallback:
-> -	xe_gt_dbg(gt, "GuC hwconfig cannot provide dss/slice; using typical fallback values\n");
-> +	/*
-> +	 * Some older platforms don't have tables or don't have complete tables.
-> +	 * Newer platforms should always have the required info.
-> +	 */
-> +	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 2000)
-> +		xe_gt_err(gt, "Slice/Subslice counts missing from hwconfig table; using typical fallback values\n");
+> diff --git a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
+> index 85abe4f09ae2..c50075b8270f 100644
+> --- a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
+> @@ -174,6 +174,9 @@ struct slpc_task_state_data {
+>   	};
+>   } __packed;
+>   
+> +#define SLPC_EXEC_QUEUE_FREQ_REQ_IS_COMPUTE	REG_BIT(28)
+> +#define SLPC_OPTIMIZED_STRATEGY_COMPUTE		REG_BIT(0)
 > +
+>   struct slpc_shared_data_header {
+>   	/* Total size in bytes of this shared buffer. */
+>   	u32 size;
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> index 8948f50ee58f..bd33fb318677 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -544,6 +544,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+>   	struct drm_xe_engine_class_instance __user *user_eci =
+>   		u64_to_user_ptr(args->instances);
+>   	struct xe_hw_engine *hwe;
+> +	unsigned long flags;
+>   	struct xe_vm *vm;
+>   	struct xe_gt *gt;
+>   	struct xe_tile *tile;
+> @@ -553,7 +554,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+>   	u32 len;
+>   	int err;
+>   
+> -	if (XE_IOCTL_DBG(xe, args->flags) ||
+> +	if (XE_IOCTL_DBG(xe, args->flags &&
+> +			 !(args->flags & DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT)) ||
 
-is the information useless on older platform? Shouldn't we keep that as
-informative at least?
+flags & ~DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT
 
->  	if (gt_to_xe(gt)->info.platform == XE_PVC)
->  		return 8;
->  	else if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1250)
-> -- 
-> 2.47.0
-> 
+Otherwise this allows any flags value so long as the 
+DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT bit is set.
+
+>   	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>   		return -EINVAL;
+>   
+> @@ -570,6 +572,9 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+>   	if (XE_IOCTL_DBG(xe, eci[0].gt_id >= xe->info.gt_count))
+>   		return -EINVAL;
+>   
+> +	if (args->flags & DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT)
+> +		flags |= EXEC_QUEUE_FLAG_LOW_LATENCY;
+> +
+>   	if (eci[0].engine_class == DRM_XE_ENGINE_CLASS_VM_BIND) {
+>   		if (XE_IOCTL_DBG(xe, args->width != 1) ||
+>   		    XE_IOCTL_DBG(xe, args->num_placements != 1) ||
+> @@ -578,8 +583,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+>   
+>   		for_each_tile(tile, xe, id) {
+>   			struct xe_exec_queue *new;
+> -			u32 flags = EXEC_QUEUE_FLAG_VM;
+>   
+> +			flags |= EXEC_QUEUE_FLAG_VM;
+>   			if (id)
+>   				flags |= EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD;
+>   
+> @@ -626,7 +631,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+>   		}
+>   
+>   		q = xe_exec_queue_create(xe, vm, logical_mask,
+> -					 args->width, hwe, 0,
+> +					 args->width, hwe, flags,
+>   					 args->extensions);
+>   		up_read(&vm->lock);
+>   		xe_vm_put(vm);
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> index 5af5419cec7a..30dc129a6b09 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> @@ -85,7 +85,8 @@ struct xe_exec_queue {
+>   #define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(3)
+>   /* kernel exec_queue only, set priority to highest level */
+>   #define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(4)
+> -
+> +/* flag to indicate low latency hint to guc */
+> +#define EXEC_QUEUE_FLAG_LOW_LATENCY		BIT(5)
+>   	/**
+>   	 * @flags: flags for this exec queue, should statically setup aside from ban
+>   	 * bit
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+> index 44b5211066ef..e926f89e4ce9 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+> @@ -1014,6 +1014,17 @@ static int slpc_set_policies(struct xe_guc_pc *pc)
+>   	return 0;
+>   }
+>   
+> +static int pc_action_set_strategy(struct xe_guc_pc *pc, u32 val)
+> +{
+> +	int ret = 0;
+> +
+> +	ret = pc_action_set_param(pc,
+> +				  SLPC_PARAM_STRATEGIES,
+> +				  val);
+> +
+> +	return ret;
+> +}
+> +
+>   /**
+>    * xe_guc_pc_start - Start GuC's Power Conservation component
+>    * @pc: Xe_GuC_PC instance
+> @@ -1077,6 +1088,11 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+>   	}
+>   
+>   	ret = pc_action_setup_gucrc(pc, GUCRC_FIRMWARE_CONTROL);
+> +	if (ret)
+> +		goto out;
+> +
+> +	/* Enable SLPC Optimized Strategy for compute */
+> +	ret = pc_action_set_strategy(pc, SLPC_OPTIMIZED_STRATEGY_COMPUTE);
+>   
+>   out:
+>   	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 913c74d6e2ae..be7551756eb9 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -15,6 +15,7 @@
+>   #include <drm/drm_managed.h>
+>   
+>   #include "abi/guc_actions_abi.h"
+> +#include "abi/guc_actions_slpc_abi.h"
+>   #include "abi/guc_klvs_abi.h"
+>   #include "regs/xe_lrc_layout.h"
+>   #include "xe_assert.h"
+> @@ -400,6 +401,7 @@ static void __guc_exec_queue_policy_add_##func(struct exec_queue_policy *policy,
+>   MAKE_EXEC_QUEUE_POLICY_ADD(execution_quantum, EXECUTION_QUANTUM)
+>   MAKE_EXEC_QUEUE_POLICY_ADD(preemption_timeout, PREEMPTION_TIMEOUT)
+>   MAKE_EXEC_QUEUE_POLICY_ADD(priority, SCHEDULING_PRIORITY)
+> +MAKE_EXEC_QUEUE_POLICY_ADD(slpc_exec_queue_freq_req, SLPM_GT_FREQUENCY)
+>   #undef MAKE_EXEC_QUEUE_POLICY_ADD
+>   
+>   static const int xe_exec_queue_prio_to_guc[] = {
+> @@ -414,14 +416,20 @@ static void init_policies(struct xe_guc *guc, struct xe_exec_queue *q)
+>   	struct exec_queue_policy policy;
+>   	enum xe_exec_queue_priority prio = q->sched_props.priority;
+>   	u32 timeslice_us = q->sched_props.timeslice_us;
+> +	u32 slpc_exec_queue_freq_req = 0;
+>   	u32 preempt_timeout_us = q->sched_props.preempt_timeout_us;
+>   
+>   	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
+>   
+> +	if (q->flags & EXEC_QUEUE_FLAG_LOW_LATENCY)
+> +		slpc_exec_queue_freq_req |= SLPC_EXEC_QUEUE_FREQ_REQ_IS_COMPUTE;
+> +
+>   	__guc_exec_queue_policy_start_klv(&policy, q->guc->id);
+>   	__guc_exec_queue_policy_add_priority(&policy, xe_exec_queue_prio_to_guc[prio]);
+>   	__guc_exec_queue_policy_add_execution_quantum(&policy, timeslice_us);
+>   	__guc_exec_queue_policy_add_preemption_timeout(&policy, preempt_timeout_us);
+> +	__guc_exec_queue_policy_add_slpc_exec_queue_freq_req(&policy,
+> +							     slpc_exec_queue_freq_req);
+>   
+>   	xe_guc_ct_send(&guc->ct, (u32 *)&policy.h2g,
+>   		       __guc_exec_queue_policy_action_size(&policy), 0, 0);
+> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> index c059639613f7..136280c0c6b9 100644
+> --- a/drivers/gpu/drm/xe/xe_query.c
+> +++ b/drivers/gpu/drm/xe/xe_query.c
+> @@ -334,7 +334,8 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+>   		xe->info.devid | (xe->info.revid << 16);
+>   	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
+>   		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
+> -			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM;
+> +			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM |
+> +			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
+>   	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
+>   		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
+>   	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index cac607a30f6d..1abad0c6e242 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -393,6 +393,8 @@ struct drm_xe_query_mem_regions {
+>    *
+>    *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM - Flag is set if the device
+>    *      has usable VRAM
+> + *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY - Flag is set if the device
+> + *      has low latency hint support
+>    *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
+>    *    required by this device, typically SZ_4K or SZ_64K
+>    *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
+> @@ -409,6 +411,7 @@ struct drm_xe_query_config {
+>   #define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
+>   #define DRM_XE_QUERY_CONFIG_FLAGS			1
+>   	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
+> +	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
+>   #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+>   #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+>   #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
+> @@ -1124,6 +1127,7 @@ struct drm_xe_vm_bind {
+>    *         .engine_class = DRM_XE_ENGINE_CLASS_RENDER,
+>    *     };
+>    *     struct drm_xe_exec_queue_create exec_queue_create = {
+> + *          .flags = DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT or 0
+>    *          .extensions = 0,
+>    *          .vm_id = vm,
+>    *          .num_bb_per_exec = 1,
+> @@ -1150,7 +1154,8 @@ struct drm_xe_exec_queue_create {
+>   	/** @vm_id: VM to use for this exec queue */
+>   	__u32 vm_id;
+>   
+> -	/** @flags: MBZ */
+> +#define DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT	(1 << 0)
+> +	/** @flags: flags to use for this exec queue */
+>   	__u32 flags;
+>   
+>   	/** @exec_queue_id: Returned exec queue ID */
+
