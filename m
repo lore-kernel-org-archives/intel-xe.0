@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12173C02182
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 08:03:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB0F8C02185
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Jan 2025 08:11:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9A9610E4F3;
-	Tue, 21 Jan 2025 08:03:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F1tQPv0S";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C2F010E0F0;
- Tue, 21 Jan 2025 08:03:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737446589; x=1768982589;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=4IlwIyOiNVaUb2wT21B1H5m3caBcaE3w6fBDrOeTH8w=;
- b=F1tQPv0SPIRDSUUxPKzj7VSqGTu5WMvyQW028ihta50ig7zYuAB0OWnv
- IEnrvHXHn1dvgwFqdk8lv8v91WnQPz2FezpQu21BLXXmM70SV6ZNpEqBe
- dmzQgdDCfNaI8teCAqcn3v9PEcKXUQ1/DpUdCaUp2bK6EfubYyXBxWcD7
- lOBcFKq29ofciMwdo2pXO63NFMiH2aeCsiYQRmTZgOoVnDr95skZfECaj
- EZeJJZMdvBVH5AYfKwZdmbJLaVNwvdyr5hoZBMwHEQNEok4T+vbKADqUo
- gWIZQ5kz5fMIV8h+nZfGwi7J9srDw9DGiQljRpuA4LDSzzpsNmWnzqzfW w==;
-X-CSE-ConnectionGUID: 9z/3AhziTBaqm7WBZKpjzQ==
-X-CSE-MsgGUID: pYGraMX/QVuWMGfOoy7O4A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="37955299"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="37955299"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 00:03:08 -0800
-X-CSE-ConnectionGUID: Y5KUXnF8Qk6bo2tYHN/krA==
-X-CSE-MsgGUID: p57F4Wr1Qpq0+yr734Ra6A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,221,1732608000"; d="scan'208";a="106853390"
-Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.186])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 00:03:03 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Guenter
- Roeck <linux@roeck-us.net>, Linus Torvalds
- <torvalds@linux-foundation.org>, David Laight
- <david.laight.linux@gmail.com>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH] drm/i915/backlight: Return immediately when scale()
- finds invalid parameters
-In-Reply-To: <20250121061746.2730572-1-linux@roeck-us.net>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250121061746.2730572-1-linux@roeck-us.net>
-Date: Tue, 21 Jan 2025 10:03:00 +0200
-Message-ID: <87o700ppaj.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5966510E4F4;
+	Tue, 21 Jan 2025 08:11:00 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B26310E4F4;
+ Tue, 21 Jan 2025 08:10:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/dp=3A_Guarantee_a_min?=
+ =?utf-8?q?imum_HBlank_time_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 21 Jan 2025 08:10:59 -0000
+Message-ID: <173744705910.2514914.11734144740076316236@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250121-hblank-v8-1-b05752f4aa5a@intel.com>
+In-Reply-To: <20250121-hblank-v8-1-b05752f4aa5a@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,80 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 20 Jan 2025, Guenter Roeck <linux@roeck-us.net> wrote:
-> The scale() functions detects invalid parameters, but continues
-> its calculations anyway. This causes bad results if negative values
-> are used for unsigned operations. Worst case, a division by 0 error
-> will be seen if source_min == source_max.
->
-> On top of that, after v6.13, the sequence of WARN_ON() followed by clamp()
-> may result in a build error with gcc 13.x.
->
-> drivers/gpu/drm/i915/display/intel_backlight.c: In function 'scale':
-> include/linux/compiler_types.h:542:45: error:
-> 	call to '__compiletime_assert_415' declared with attribute error:
-> 	clamp() low limit source_min greater than high limit source_max
->
-> This happens if the compiler decides to rearrange the code as follows.
->
->         if (source_min > source_max) {
->                 WARN(..);
->                 /* Do the clamp() knowing that source_min > source_max */
->                 source_val = clamp(source_val, source_min, source_max);
->         } else {
->                 /* Do the clamp knowing that source_min <= source_max */
->                 source_val = clamp(source_val, source_min, source_max);
->         }
->
-> Fix the problem by evaluating the return values from WARN_ON and returning
-> immediately after a warning. While at it, fix divide by zero error seen
-> if source_min == source_max.
+== Series Details ==
 
-Thanks for the effort in tracking this down.
+Series: drm/i915/dp: Guarantee a minimum HBlank time (rev8)
+URL   : https://patchwork.freedesktop.org/series/139268/
+State : success
 
-> Analyzed-by: Linus Torvalds <torvalds@linux-foundation.org>
-> Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
-> Suggested-by: David Laight <david.laight.linux@gmail.com>
-> Cc: David Laight <david.laight.linux@gmail.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
-> ---
->  drivers/gpu/drm/i915/display/intel_backlight.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-> index 3f81a726cc7d..ad49bd4a1c12 100644
-> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-> @@ -40,8 +40,11 @@ static u32 scale(u32 source_val,
->  {
->  	u64 target_val;
->  
-> -	WARN_ON(source_min > source_max);
-> -	WARN_ON(target_min > target_max);
-> +	if (WARN_ON(target_min > target_max))
-> +		return target_min;
-> +
-> +	if (WARN_ON(source_min > source_max) || source_min == source_max)
-> +		return target_min + (target_max - target_min) / 2;
+== Summary ==
 
-There's really no need to be this fancy, though. Years down the line
-someone's going to think that mean value calculation is something we
-need to preserve, but we don't. I'd just return target_max everywhere.
-And source_min == source_max could be a warn too.
+lib/modules/6.13.0-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-xe+/kernel/kernel/
+lib/modules/6.13.0-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-xe+/kernel/crypto/
+lib/modules/6.13.0-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-xe+/kernel/block/
+lib/modules/6.13.0-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-xe+/build
+lib/modules/6.13.0-xe+/modules.alias.bin
+lib/modules/6.13.0-xe+/modules.builtin
+lib/modules/6.13.0-xe+/modules.softdep
+lib/modules/6.13.0-xe+/modules.alias
+lib/modules/6.13.0-xe+/modules.order
+lib/modules/6.13.0-xe+/modules.symbols
+lib/modules/6.13.0-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
+[0Ksection_end:1737447049:package_x86_64_nodebug
+[0K
++ echo -e '\e[0Ksection_end:1737447049:package_x86_64_nodebug\r\e[0K'
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
-BR,
-Jani.
-
-
->  
->  	/* defensive */
->  	source_val = clamp(source_val, source_min, source_max);
-
--- 
-Jani Nikula, Intel
