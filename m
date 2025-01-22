@@ -4,27 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DAFFC02182
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 08:48:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7535C02182
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 09:06:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3690B10E251;
-	Wed, 22 Jan 2025 08:48:23 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FEC210E251;
- Wed, 22 Jan 2025 08:48:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1365570543422287987=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 860CD10E69B;
+	Wed, 22 Jan 2025 09:06:05 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BCC610E699;
+ Wed, 22 Jan 2025 09:06:04 +0000 (UTC)
+Received: from 91-155-255-183.elisa-laajakaista.fi ([91.155.255.183]
+ helo=[192.168.100.133])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1taWgT-00000003zYP-2iT9; Wed, 22 Jan 2025 11:06:03 +0200
+Message-ID: <56e59e5c283bf749c8c047efc5f36d91459fae17.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
+Date: Wed, 22 Jan 2025 11:06:00 +0200
+In-Reply-To: <20250117220747.87927-3-gustavo.sousa@intel.com>
+References: <20250117220747.87927-1-gustavo.sousa@intel.com>
+ <20250117220747.87927-3-gustavo.sousa@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3-1 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Extended_Wake_Timeout_=28re?=
- =?utf-8?q?v4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Jan 2025 08:48:22 -0000
-Message-ID: <173753570231.2988612.30236218512400830@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250122053358.1545039-1-suraj.kandpal@intel.com>
-In-Reply-To: <20250122053358.1545039-1-suraj.kandpal@intel.com>
+Subject: Re: [PATCH 2/4] drm/i915/dmc_wl: Add debugfs for untracked offsets
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,157 +41,96 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1365570543422287987==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 2025-01-17 at 19:06 -0300, Gustavo Sousa wrote:
+> The DMC wakelock code needs to keep track of register offsets that need
+> the wakelock for proper access. If one of the necessary offsets are
+> missed, then the failure in asserting the wakelock is very likely to
+> cause problems down the road.
+>=20
+> A miss could happen for at least two different reasons:
+>=20
+> - We might have forgotten to add the offset (or range) to the relevant
+>   tables tracked by the driver in the first place.
+>=20
+> - Or updates to either the DMC firmware or the display IP that require
+>   new offsets to be tracked and we fail to realize that.
+>=20
+> To help capture these cases, let's introduce a debugfs interface for the
+> DMC wakelock.
+>=20
+> In this part, we export a buffer containing offsets of registers that
+> were considered not needing the wakelock by our driver. In an upcoming
+> change we will also allow defining an extra set of offset ranges to be
+> tracked by our driver.
+>=20
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
 
-== Series Details ==
+This looks great overall!
 
-Series: Extended Wake Timeout (rev4)
-URL   : https://patchwork.freedesktop.org/series/142516/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b_BAT -> xe-pw-142516v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-142516v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [PASS][1] -> [SKIP][2] ([Intel XE#1192]) +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  * igt@xe_pat@pat-index-xelp@render:
-    - bat-adlp-vf:        [PASS][3] -> [DMESG-WARN][4] ([Intel XE#3970] / [Intel XE#4078]) +1 other test dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][6] ([Intel XE#1192])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#4078]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+A couple of comments below.
 
 
-Build changes
--------------
+[...]
+> +static bool untracked_has_recent_offset(struct intel_display *display, u=
+32 offset)
+> +{
+> +	struct intel_dmc_wl_dbg *dbg =3D &display->wl.dbg;
+> +	int look_back =3D 32;
+> +	size_t i;
+> +
+> +	if (look_back > dbg->untracked.len)
+> +		look_back =3D dbg->untracked.len;
+> +
+> +	i =3D dbg->untracked.head;
+> +
+> +	while (look_back--) {
+> +		if (i =3D=3D 0)
+> +			i =3D dbg->untracked.size;
 
-  * Linux: xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b -> xe-pw-142516v4
+If size < 32, you would check some values twice, right? Probably not a
+real case scenario, and it wouldn't matter much, but it took me a bit
+to wrap my head around this.
 
-  IGT_8205: f3225e64a7c52e515ab7ec14e6e3f63679718928 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b: a5efe95724accce6ccd3e0c840fdd3bf5d6f369b
-  xe-pw-142516v4: 142516v4
+[...]
+> +void intel_dmc_wl_debugfs_log_untracked(struct intel_display *display, u=
+32 offset)
+> +{
+> +	struct intel_dmc_wl_dbg *dbg =3D &display->wl.dbg;
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&dbg->lock, flags);
+> +
+> +	if (!dbg->untracked.size)
+> +		goto out_unlock;
+> +
+> +	/* Save some space by not repeating recent offsets. */
+> +	if (untracked_has_recent_offset(display, offset))
+> +		goto out_unlock;
+> +
+> +	dbg->untracked.offsets[dbg->untracked.head] =3D offset;
+> +	dbg->untracked.head =3D (dbg->untracked.head + 1) % dbg->untracked.size=
+;
+> +	if (dbg->untracked.len < dbg->untracked.size)
+> +		dbg->untracked.len++;
+> +
+> +	if (dbg->untracked.len =3D=3D dbg->untracked.size && !dbg->untracked.ov=
+erflow) {
+> +		dbg->untracked.overflow =3D true;
+> +		drm_warn(display->drm, "Overflow detected in DMC wakelock debugfs untr=
+acked offsets\n");
+> +	}
 
-== Logs ==
+Couldn't it be useful to print overflows every time they occur? Maybe
+convert overflow to a uint to track how many times it happened? (though
+maybe this is a bit overkill).
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/index.html
+[...]
 
---===============1365570543422287987==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--
+Cheers,
+Luca.
 
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Extended Wake Timeout (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142516/">https://patchwork.freedesktop.org/series/142516/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b_BAT -&gt; xe-pw-142516v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-142516v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp@render:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b -&gt; xe-pw-142516v4</li>
-</ul>
-<p>IGT_8205: f3225e64a7c52e515ab7ec14e6e3f63679718928 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b: a5efe95724accce6ccd3e0c840fdd3bf5d6f369b<br />
-  xe-pw-142516v4: 142516v4</p>
-
-</body>
-</html>
-
---===============1365570543422287987==--
