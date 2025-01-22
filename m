@@ -4,55 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACAE2C02182
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 04:02:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0088C02181
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 04:04:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53CEE10E656;
-	Wed, 22 Jan 2025 04:02:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5D3E10E194;
+	Wed, 22 Jan 2025 04:04:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b5JlpqCR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hyHuF9f8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5991C10E656
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Jan 2025 04:02:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6895610E194
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jan 2025 04:04:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737518529; x=1769054529;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hL1oNpp318YS5oJO4wG8wtJCcpRdoiTOcrpWcZgV4ZU=;
- b=b5JlpqCRrGIDET8pBZVMFHiaNUuGPI0HWNPtRPgftAjhTZa0tiy4Cps7
- KgZA2ZmrxPNmHHDmxOziBqN233nTrdRbzecEfYwH/qjPIe9fAd6XkAkie
- O5sDsjuohtSN+UHUEgwaUoEtfhMFGdMEe3XIBRb+ONbW7dZ6EAfFLGKOh
- Ms6PuDEJLHwS9ZqY1cZgS1ZvmEbYT1GaGZblCGfXy5dVA9cp1OPSyUb17
- FiCPFMZzZPCVid3S2dwmFaIWfRZJM8J1P4bVzhQnnHJO89PSGGvFqjETw
- FxlJWTi0KlH5fudrsRbl5DiCjBenc5SmA7CqZPwP3b5kvJO1qc+6JAs6x Q==;
-X-CSE-ConnectionGUID: orzyCiTKTVKai04oSYR/pw==
-X-CSE-MsgGUID: 5msqHC7ISZaOxjuMUWFV8w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="38112771"
-X-IronPort-AV: E=Sophos;i="6.13,224,1732608000"; d="scan'208";a="38112771"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 20:02:08 -0800
-X-CSE-ConnectionGUID: gUfYpN6KSrWhnKEsF7/QkQ==
-X-CSE-MsgGUID: DS5KoxW+R/6JIGcNP95zsg==
+ t=1737518693; x=1769054693;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=nT3HawYKZj2z9Kl8HNSwYqPIk1bZg6zAPiN/dVH9Iy8=;
+ b=hyHuF9f84X8xXrS2xIlHyg/uIsQB8fVyPREAydIucsKciAzJSBplDymQ
+ IimRk4GYRl0hruTcDXrMq2N00xwlnL+9Q5aUs7LEgqQLKnJGpxXULd2ZA
+ KgjPuBzxxGS0L+6NmPHainsYWi/Wp9yKmqe5i5IIAkX4B+cdBL6vogyj1
+ uMyd5aoErhmdLEC5LbrbwfTLgum0swmpJt2vW6uMv23O1dcsGAdER7gmu
+ c8Yck40v+BW4XREZ87BPEphZs/RJY19n7SF6OyW3/5fghbXT+wfniKyxw
+ 91VuB3YubUzfHiuAhbUG6b+i/TP0U3t461bxukFmk+rkVxqaapqEa/ZnZ Q==;
+X-CSE-ConnectionGUID: fxP71+2iRautGNbjZUDz9g==
+X-CSE-MsgGUID: KwMaR/mXTXK2i1sBjUqqpw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="48454642"
+X-IronPort-AV: E=Sophos;i="6.13,224,1732608000"; d="scan'208";a="48454642"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2025 20:04:53 -0800
+X-CSE-ConnectionGUID: rEDpsD5xRRGYtpFQlCy4xA==
+X-CSE-MsgGUID: 0ss7IjQ+TBCnFitHaqROBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112088663"
-Received: from orsosgc001.jf.intel.com ([10.165.21.142])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 20:02:08 -0800
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2 2/2] drm/xe/oa: Fix locking for stream->pollin
-Date: Tue, 21 Jan 2025 20:02:04 -0800
-Message-ID: <20250122040204.3239397-3-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250122040204.3239397-1-ashutosh.dixit@intel.com>
-References: <20250122040204.3239397-1-ashutosh.dixit@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="111992540"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2025 20:04:53 -0800
+Date: Tue, 21 Jan 2025 20:04:52 -0800
+Message-ID: <85bjvzlcij.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Subject: Re: [PATCH 2/2] drm/xe/oa: Fix locking for stream->pollin
+In-Reply-To: <Z5ArZ_qOzM7OosC6@intel.com>
+References: <20250121180354.3221570-1-ashutosh.dixit@intel.com>	<20250121180354.3221570-3-ashutosh.dixit@intel.com>	<Z5ArZ_qOzM7OosC6@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,77 +70,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Previously locking was skipped for stream->pollin. This "mostly" worked
-because pollin is u32/bool, even when stream->pollin is accessed
-concurrently in multiple threads. However, with stream->pollin moving under
-stream->oa_buffer.ptr_lock in this series, implement the correct way to
-access stream->pollin, which is to access it under
-stream->oa_buffer.ptr_lock.
+On Tue, 21 Jan 2025 15:19:03 -0800, Rodrigo Vivi wrote:
+>
 
-v2: Update commit message to explain the "why" of this change (Rodrigo)
-    Document the change in scope for stream->oa_buffer.ptr_lock (Rodrigo)
+Hi Rodrigo,
 
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/xe/xe_oa.c       | 6 ++++++
- drivers/gpu/drm/xe/xe_oa_types.h | 2 +-
- 2 files changed, 7 insertions(+), 1 deletion(-)
+> On Tue, Jan 21, 2025 at 10:03:54AM -0800, Ashutosh Dixit wrote:
+> > Previously locking was not implemented for stream->pollin. Now
+> > stream->pollin should be accessed under stream->oa_buffer.ptr_lock.
+>
+> This commit message fails to explain why. Why it was not needed
+> before and why it is needed now?
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index fa873f3d0a9d1..9de62ce4b9e42 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -530,6 +530,7 @@ static ssize_t xe_oa_read(struct file *file, char __user *buf,
- 			  size_t count, loff_t *ppos)
- {
- 	struct xe_oa_stream *stream = file->private_data;
-+	unsigned long flags;
- 	size_t offset = 0;
- 	int ret;
- 
-@@ -562,8 +563,10 @@ static ssize_t xe_oa_read(struct file *file, char __user *buf,
- 	 * Also in case of -EIO, we have already waited for data before returning
- 	 * -EIO, so need to wait again
- 	 */
-+	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
- 	if (ret != -ENOSPC && ret != -EIO)
- 		stream->pollin = false;
-+	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
- 
- 	/* Possible values for ret are 0, -EFAULT, -ENOSPC, -EIO, -EINVAL, ... */
- 	return offset ?: (ret ?: -EAGAIN);
-@@ -573,6 +576,7 @@ static __poll_t xe_oa_poll_locked(struct xe_oa_stream *stream,
- 				  struct file *file, poll_table *wait)
- {
- 	__poll_t events = 0;
-+	unsigned long flags;
- 
- 	poll_wait(file, &stream->poll_wq, wait);
- 
-@@ -582,8 +586,10 @@ static __poll_t xe_oa_poll_locked(struct xe_oa_stream *stream,
- 	 * in use. We rely on hrtimer xe_oa_poll_check_timer_cb to notify us when there
- 	 * are samples to read
- 	 */
-+	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
- 	if (stream->pollin)
- 		events |= EPOLLIN;
-+	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
- 
- 	return events;
- }
-diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-index 52e33c37d5ee8..5c4ea13f646fc 100644
---- a/drivers/gpu/drm/xe/xe_oa_types.h
-+++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -159,7 +159,7 @@ struct xe_oa_buffer {
- 	/** @vaddr: mapped vaddr of the OA buffer */
- 	u8 *vaddr;
- 
--	/** @ptr_lock: Lock protecting reads/writes to head/tail pointers */
-+	/** @ptr_lock: Lock protecting reads/writes to head/tail pointers and stream->pollin */
- 	spinlock_t ptr_lock;
- 
- 	/** @head: Cached head to read from */
--- 
-2.47.1
+I've sent a v2 and explained this in the v2 commit message.
 
+> Also, please make sure that the lock really makes sense and
+> we are not just increasing the scope of a locking that was
+> designed for something else...
+
+It is increasing the scope of a previous lock, but to me it looks ok after
+the change introduced in Patch 1 of this series. IMO it is better to
+increase the scope of one previous lock rather then introduce yet another
+lock. I have also updated the comment for the lock to reflect this change
+in v2.
+
+> and that the locking guidelines are followed... [1]
+>
+> [1] - https://blog.ffwll.ch/2022/07/locking-engineering.html
+
+Locking guidelines are followed, it is just a spinlock protecting
+concurrent data modification. I've also checked there are no ABBA lock
+inversion issues: when multiple locks are taken they are always taken by
+taking stream->stream_lock first, followed by stream->oa_buffer.ptr_lock.
+
+Thanks.
+--
+Ashutosh
+
+
+
+> >
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_oa.c | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> > index fa873f3d0a9d1..9de62ce4b9e42 100644
+> > --- a/drivers/gpu/drm/xe/xe_oa.c
+> > +++ b/drivers/gpu/drm/xe/xe_oa.c
+> > @@ -530,6 +530,7 @@ static ssize_t xe_oa_read(struct file *file, char __user *buf,
+> >			  size_t count, loff_t *ppos)
+> >  {
+> >	struct xe_oa_stream *stream = file->private_data;
+> > +	unsigned long flags;
+> >	size_t offset = 0;
+> >	int ret;
+> >
+> > @@ -562,8 +563,10 @@ static ssize_t xe_oa_read(struct file *file, char __user *buf,
+> >	 * Also in case of -EIO, we have already waited for data before returning
+> >	 * -EIO, so need to wait again
+> >	 */
+> > +	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
+> >	if (ret != -ENOSPC && ret != -EIO)
+> >		stream->pollin = false;
+> > +	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
+> >
+> >	/* Possible values for ret are 0, -EFAULT, -ENOSPC, -EIO, -EINVAL, ... */
+> >	return offset ?: (ret ?: -EAGAIN);
+> > @@ -573,6 +576,7 @@ static __poll_t xe_oa_poll_locked(struct xe_oa_stream *stream,
+> >				  struct file *file, poll_table *wait)
+> >  {
+> >	__poll_t events = 0;
+> > +	unsigned long flags;
+> >
+> >	poll_wait(file, &stream->poll_wq, wait);
+> >
+> > @@ -582,8 +586,10 @@ static __poll_t xe_oa_poll_locked(struct xe_oa_stream *stream,
+> >	 * in use. We rely on hrtimer xe_oa_poll_check_timer_cb to notify us when there
+> >	 * are samples to read
+> >	 */
+> > +	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
+> >	if (stream->pollin)
+> >		events |= EPOLLIN;
+> > +	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
+> >
+> >	return events;
+> >  }
+> > --
+> > 2.47.1
+> >
