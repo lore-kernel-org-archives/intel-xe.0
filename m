@@ -4,27 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC408C02182
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 04:33:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1439BC02181
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 04:48:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CA2410E283;
-	Wed, 22 Jan 2025 04:33:38 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA0AB10E283;
- Wed, 22 Jan 2025 04:33:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC0F510E663;
+	Wed, 22 Jan 2025 04:48:43 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SXS0yejQ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1415E10E2D4;
+ Wed, 22 Jan 2025 04:48:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737521322; x=1769057322;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=iMaXACMURgli3ZtGpip9gpyVmugdXalQ98jx7Q9T6ko=;
+ b=SXS0yejQEEnuAqVdD9G4tiiHUwRH+AZDMm1tUowKVbzHxr0nB5rr+49o
+ +QPOHIvA2wh5Q3kEg408No7y3kxt5yod91FNAPXyEgwBqGIuPby3mld4x
+ FZRM3FUBmbujDlECYz/U1DL4tM3D7GO3UCE3CYTv//gJmBu84lOYi9O9S
+ ourBXXta4pCsydomdZ+FJR3RKGArtnyrb9QdpbB2qqOJLTGLXo42d1HCh
+ dpoP+JFrI4XgvNSZzdc4CX68Zf1gvu9QvBzsfpc5tejL1MwdDrOIWpUIm
+ twtwLveXb+2rEI0IW/clVLUmqvv5/k9nfMLCRk57BNoy6VPzbUe4p6Dio A==;
+X-CSE-ConnectionGUID: U09vFCqMQdC4fGs8spnlBw==
+X-CSE-MsgGUID: 5O0u6rtuQK2ih/XUF42L2A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="48628750"
+X-IronPort-AV: E=Sophos;i="6.13,224,1732608000"; d="scan'208";a="48628750"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2025 20:48:42 -0800
+X-CSE-ConnectionGUID: 3irDzB9/R/CdJfHQYz4KNQ==
+X-CSE-MsgGUID: rD5B8qHZTiCjrUj9Dlyyhw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,224,1732608000"; d="scan'208";a="107556201"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2025 20:48:37 -0800
+Date: Wed, 22 Jan 2025 06:48:34 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Xaver Hugl <xaver.hugl@kde.org>
+Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, lina@asahilina.net,
+ michal.wajdeczko@intel.com, christian.koenig@amd.com,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
+ alexander.deucher@amd.com, andrealmeid@igalia.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
+Subject: Re: [PATCH v10 0/4] Introduce DRM device wedged event
+Message-ID: <Z5B4ogLqSMT7aE-r@black.fi.intel.com>
+References: <20241128153707.1294347-1-raag.jadav@intel.com>
+ <CAFZQkGwJ4qgHV8WTp2=svJ_VXhb-+Y8_VNtKB=jLsk6DqMYp9w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_stream-=3Epollin_fixes_?=
- =?utf-8?q?=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Jan 2025 04:33:37 -0000
-Message-ID: <173752041768.2906154.6555585005736747622@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250122040204.3239397-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20250122040204.3239397-1-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFZQkGwJ4qgHV8WTp2=svJ_VXhb-+Y8_VNtKB=jLsk6DqMYp9w@mail.gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +72,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Jan 21, 2025 at 01:59:47AM +0100, Xaver Hugl wrote:
+> Hi,
+> 
+> I experimented with using this in KWin, and
+> https://invent.kde.org/plasma/kwin/-/merge_requests/7027/diffs?commit_id=6da40f1b9e2bc94615a436de4778880cee16f940
+> makes it fall back to a software renderer when a rebind is required to
+> recover the GPU.
+> Making it also survive the rebind properly is more challenging
+> (current version of the MR doesn't do it for you and just crashes if
+> you do it with a udev rule or manually), but it's doable - and not a
+> problem of the API.
+> 
+> I'd really like to have the PID of the client that triggered the GPU
+> reset, so that we can kill it if multiple resets are triggered in a
+> row (or switch to software rendering if it's KWin itself) and show a
+> user-friendly notification about why their app(s) crashed, but that
+> can be added later.
 
-Series: stream->pollin fixes (rev2)
-URL   : https://patchwork.freedesktop.org/series/143808/
-State : success
+Excellent! While we have our consumer implementation in progress, it's
+always good to have wider adoption.
 
-== Summary ==
+Thank you for your contribution.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast a5efe95724accce6ccd3e0c840fdd3bf5d6f369b
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+Raag
