@@ -4,32 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7535C02182
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 09:06:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95E41C02181
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 09:09:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 860CD10E69B;
-	Wed, 22 Jan 2025 09:06:05 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BCC610E699;
- Wed, 22 Jan 2025 09:06:04 +0000 (UTC)
-Received: from 91-155-255-183.elisa-laajakaista.fi ([91.155.255.183]
- helo=[192.168.100.133])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1taWgT-00000003zYP-2iT9; Wed, 22 Jan 2025 11:06:03 +0200
-Message-ID: <56e59e5c283bf749c8c047efc5f36d91459fae17.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
-Date: Wed, 22 Jan 2025 11:06:00 +0200
-In-Reply-To: <20250117220747.87927-3-gustavo.sousa@intel.com>
-References: <20250117220747.87927-1-gustavo.sousa@intel.com>
- <20250117220747.87927-3-gustavo.sousa@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3-1 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59CE710E69C;
+	Wed, 22 Jan 2025 09:09:42 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2452110E69B;
+ Wed, 22 Jan 2025 09:09:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/4] drm/i915/dmc_wl: Add debugfs for untracked offsets
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/dp=3A_Guara?=
+ =?utf-8?q?ntee_a_minimum_HBlank_time_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 22 Jan 2025 09:09:42 -0000
+Message-ID: <173753698214.2997145.12331241454956045806@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250122-hblank-v9-1-90afda006685@intel.com>
+In-Reply-To: <20250122-hblank-v9-1-90afda006685@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,96 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2025-01-17 at 19:06 -0300, Gustavo Sousa wrote:
-> The DMC wakelock code needs to keep track of register offsets that need
-> the wakelock for proper access. If one of the necessary offsets are
-> missed, then the failure in asserting the wakelock is very likely to
-> cause problems down the road.
->=20
-> A miss could happen for at least two different reasons:
->=20
-> - We might have forgotten to add the offset (or range) to the relevant
->   tables tracked by the driver in the first place.
->=20
-> - Or updates to either the DMC firmware or the display IP that require
->   new offsets to be tracked and we fail to realize that.
->=20
-> To help capture these cases, let's introduce a debugfs interface for the
-> DMC wakelock.
->=20
-> In this part, we export a buffer containing offsets of registers that
-> were considered not needing the wakelock by our driver. In an upcoming
-> change we will also allow defining an extra set of offset ranges to be
-> tracked by our driver.
->=20
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> ---
+== Series Details ==
 
-This looks great overall!
+Series: drm/i915/dp: Guarantee a minimum HBlank time (rev9)
+URL   : https://patchwork.freedesktop.org/series/139268/
+State : success
 
-A couple of comments below.
+== Summary ==
 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 71b6a6ef0f37 drm-tip: 2025y-01m-22d-07h-37m-49s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/dp: Guarantee a minimum HBlank time
 
-[...]
-> +static bool untracked_has_recent_offset(struct intel_display *display, u=
-32 offset)
-> +{
-> +	struct intel_dmc_wl_dbg *dbg =3D &display->wl.dbg;
-> +	int look_back =3D 32;
-> +	size_t i;
-> +
-> +	if (look_back > dbg->untracked.len)
-> +		look_back =3D dbg->untracked.len;
-> +
-> +	i =3D dbg->untracked.head;
-> +
-> +	while (look_back--) {
-> +		if (i =3D=3D 0)
-> +			i =3D dbg->untracked.size;
-
-If size < 32, you would check some values twice, right? Probably not a
-real case scenario, and it wouldn't matter much, but it took me a bit
-to wrap my head around this.
-
-[...]
-> +void intel_dmc_wl_debugfs_log_untracked(struct intel_display *display, u=
-32 offset)
-> +{
-> +	struct intel_dmc_wl_dbg *dbg =3D &display->wl.dbg;
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&dbg->lock, flags);
-> +
-> +	if (!dbg->untracked.size)
-> +		goto out_unlock;
-> +
-> +	/* Save some space by not repeating recent offsets. */
-> +	if (untracked_has_recent_offset(display, offset))
-> +		goto out_unlock;
-> +
-> +	dbg->untracked.offsets[dbg->untracked.head] =3D offset;
-> +	dbg->untracked.head =3D (dbg->untracked.head + 1) % dbg->untracked.size=
-;
-> +	if (dbg->untracked.len < dbg->untracked.size)
-> +		dbg->untracked.len++;
-> +
-> +	if (dbg->untracked.len =3D=3D dbg->untracked.size && !dbg->untracked.ov=
-erflow) {
-> +		dbg->untracked.overflow =3D true;
-> +		drm_warn(display->drm, "Overflow detected in DMC wakelock debugfs untr=
-acked offsets\n");
-> +	}
-
-Couldn't it be useful to print overflows every time they occur? Maybe
-convert overflow to a uint to track how many times it happened? (though
-maybe this is a bit overkill).
-
-[...]
-
---
-Cheers,
-Luca.
 
