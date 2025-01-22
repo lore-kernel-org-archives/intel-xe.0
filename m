@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA718C0218C
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 11:11:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC41AC02181
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 11:32:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FB8610E6C0;
-	Wed, 22 Jan 2025 11:11:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R+dhs6sW";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28DE410E306;
- Wed, 22 Jan 2025 11:11:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737544264; x=1769080264;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=lM8XE7OmyysYeg7ZJsWGLyeXle11y1R4KtyH5tGw250=;
- b=R+dhs6sWD/4bMNAgIts0tapcSNVCBvEzVLasGR9BDD6HOwvTHGFdXnhl
- adMkHc57LlqMwMNT/wAlC1paqQB1EIbBsw6NCIxAlaNE2VZ4xeGMduMOE
- j9VnM2aIgZOz6T+1nzx3fKJQswhM/+HdpLvIoeFwjhHos199fnR4Y9QFs
- vTAD2OdPszcBU7flRdZ72a26vZ9MKBy3E2OZCeiAoXdKccVit8rRMFmlz
- RjyLSx5ozIJuxLM4HbwWD3iXUWCX5vUa6D12n36It9AVJ/GiUkEg0SNQV
- phoNNs0jlsE5X+QErobjQu1kVdZh4ZprCCCqtxdCiZljUD/lheY3yb8It Q==;
-X-CSE-ConnectionGUID: gbmxbCiGQeOYxONTqW/4Ww==
-X-CSE-MsgGUID: FkWAz+8zQXOo8QXr1q1cxg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="38020831"
-X-IronPort-AV: E=Sophos;i="6.13,225,1732608000"; d="scan'208";a="38020831"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2025 03:11:04 -0800
-X-CSE-ConnectionGUID: +tVOOnx/S5OSr59GeWMWNw==
-X-CSE-MsgGUID: EXYoqCsSSSWSLrkb3AnCSg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,225,1732608000"; d="scan'208";a="112119294"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.30])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2025 03:11:01 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com
-Subject: Re: [PATCH 3/5] drm/i915/cx0_phy_regs: Add C10 registers bits
-In-Reply-To: <20250120042122.1029481-4-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250120042122.1029481-1-ankit.k.nautiyal@intel.com>
- <20250120042122.1029481-4-ankit.k.nautiyal@intel.com>
-Date: Wed, 22 Jan 2025 13:10:57 +0200
-Message-ID: <87y0z3nlxa.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B1B010E6C6;
+	Wed, 22 Jan 2025 11:32:00 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F45A10E6C6;
+ Wed, 22 Jan 2025 11:31:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3896598416089499045=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pmu=3A_PMU_interface?=
+ =?utf-8?q?_for_Xe_=28rev14=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 22 Jan 2025 11:31:59 -0000
+Message-ID: <173754551951.3040803.11143406556007040044@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250122062341.1100173-1-lucas.demarchi@intel.com>
+In-Reply-To: <20250122062341.1100173-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,68 +36,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 20 Jan 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> Add C10 register bits to be used for computing HDMI PLLs with
-> algorithm.
->
-> v2: Add bspec reference. (Suraj)
->
-> Bspec: 74166
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_cx0_phy_regs.h | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> index 91eb1d423c71..da27cff878a1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> @@ -218,10 +218,34 @@
->  
->  /* C10 Vendor Registers */
->  #define PHY_C10_VDR_PLL(idx)		(0xC00 + (idx))
-> +#define   C10_PLL0_SSC_EN		REG_BIT8(0)
-> +#define   C10_PLL0_DIVCLK_EN		REG_BIT8(1)
-> +#define   C10_PLL0_DIV5CLK_EN		REG_BIT8(2)
-> +#define   C10_PLL0_WORDDIV2_EN		REG_BIT8(3)
->  #define   C10_PLL0_FRACEN		REG_BIT8(4)
-> +#define   C10_PLL0_PMIX_EN		REG_BIT8(5)
-> +#define   C10_PLL0_ANA_FREQ_VCO_MASK	REG_GENMASK8(7, 6)
-> +#define   C10_PLL1_DIV_MULTIPLIER_MASK	REG_GENMASK8(7, 0)
-> +#define   C10_PLL2_MULTIPLIERL_MASK	REG_GENMASK8(7, 0)
->  #define   C10_PLL3_MULTIPLIERH_MASK	REG_GENMASK8(3, 0)
-> +#define   C10_PLL8_SSC_UP_SPREAD	REG_BIT(5)
+--===============3896598416089499045==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-All of the reg bits and masks should use the same width, i.e. REG_BIT8()
-here.
+== Series Details ==
 
-> +#define   C10_PLL9_FRACN_DENL_MASK	REG_GENMASK8(7, 0)
-> +#define   C10_PLL10_FRACN_DENH_MASK	REG_GENMASK8(7, 0)
-> +#define   C10_PLL11_FRACN_QUOT_L_MASK	REG_GENMASK8(7, 0)
-> +#define   C10_PLL12_FRACN_QUOT_H_MASK	REG_GENMASK8(7, 0)
-> +#define   C10_PLL13_FRACN_REM_L_MASK	REG_GENMASK8(7, 0)
-> +#define   C10_PLL14_FRACN_REM_H_MASK	REG_GENMASK8(7, 0)
->  #define   C10_PLL15_TXCLKDIV_MASK	REG_GENMASK8(2, 0)
->  #define   C10_PLL15_HDMIDIV_MASK	REG_GENMASK8(5, 3)
-> +#define   C10_PLL15_PIXELCLKDIV_MASK	REG_GENMASK8(7, 6)
-> +#define   C10_PLL16_ANA_CPINT		REG_GENMASK8(6, 0)
-> +#define   C10_PLL16_ANA_CPINTGS_L	REG_BIT(7)
+Series: drm/xe/pmu: PMU interface for Xe (rev14)
+URL   : https://patchwork.freedesktop.org/series/139121/
+State : success
 
-Ditto.
+== Summary ==
 
-> +#define   C10_PLL17_ANA_CPINTGS_H_MASK	REG_GENMASK8(5, 0)
-> +#define   C10_PLL17_ANA_CPPROP_L_MASK	REG_GENMASK8(7, 6)
-> +#define   C10_PLL18_ANA_CPPROP_H_MASK	REG_GENMASK8(4, 0)
-> +#define   C10_PLL18_ANA_CPPROPGS_L_MASK	REG_GENMASK8(7, 5)
-> +#define   C10_PLL19_ANA_CPPROPGS_H_MASK	REG_GENMASK8(3, 0)
-> +#define   C10_PLL19_ANA_V2I_MASK	REG_GENMASK8(5, 4)
->  
->  #define PHY_C10_VDR_CMN(idx)		(0xC20 + (idx))
->  #define   C10_CMN0_REF_RANGE		REG_FIELD_PREP(REG_GENMASK(4, 0), 1)
+CI Bug Log - changes from xe-2530-71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07_BAT -> xe-pw-139121v14_BAT
+====================================================
 
--- 
-Jani Nikula, Intel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-139121v14_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_basic@twice-userptr-rebind:
+    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4078]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2530-71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v14/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
+    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#3970] / [Intel XE#4078]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2530-71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v14/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+
+  * igt@xe_intel_bb@render@render-linear-256:
+    - bat-adlp-vf:        [DMESG-WARN][5] ([Intel XE#4078]) -> [PASS][6] +2 other tests pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2530-71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v14/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html
+
+  
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#4078]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078
+
+
+Build changes
+-------------
+
+  * Linux: xe-2530-71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07 -> xe-pw-139121v14
+
+  IGT_8205: f3225e64a7c52e515ab7ec14e6e3f63679718928 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2530-71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07: 71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07
+  xe-pw-139121v14: 139121v14
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v14/index.html
+
+--===============3896598416089499045==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pmu: PMU interface for Xe (rev14)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139121/">https://patchwork.freedesktop.org/series/139121/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v14/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v14/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2530-71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07_BAT -&gt; xe-pw-139121v14_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-139121v14_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_exec_basic@twice-userptr-rebind:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2530-71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v14/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_exec_basic@twice-bindexecqueue-rebind:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2530-71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v14/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_intel_bb@render@render-linear-256:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2530-71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139121v14/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2530-71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07 -&gt; xe-pw-139121v14</li>
+</ul>
+<p>IGT_8205: f3225e64a7c52e515ab7ec14e6e3f63679718928 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2530-71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07: 71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07<br />
+  xe-pw-139121v14: 139121v14</p>
+
+</body>
+</html>
+
+--===============3896598416089499045==--
