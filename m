@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4A95C02182
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 23:33:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5C7CC02181
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 23:33:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD7C710E26F;
-	Wed, 22 Jan 2025 23:33:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E6A310E2DE;
+	Wed, 22 Jan 2025 23:33:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZauCYphr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e70LEame";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A111410E2DE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8724E10E21C
  for <Intel-Xe@lists.freedesktop.org>; Wed, 22 Jan 2025 23:33:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1737588805; x=1769124805;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gXtCtSnH97WUL/PtQqj1CJjctFu/8MXnU7txdHlBBYk=;
- b=ZauCYphr2a0ggFhXikLmbtkliwHUN0LUX6OZn8aW2ZKp+Ybfj9Tzsjc/
- OZ4tfOkVjqVYk6dRS8Q0CqxaVGTJnrf5hGo1TfGAK54cWhCYPPofkW1CC
- RYM2crjt3fn2fHLXnqjZ41ud8gZChfu9DDKDll/XwNubH6nNfJBeU2JhY
- tBcDoOMfBkVlXXCFP6G28mjVU/E3CTnIbIhfz2nPjo04mOX1L1H/g5Hbo
- EGu9YT5Ngi7QGX+McuhCvp/e9/FMG+1N6EBDBzgxDu6tQc+CrD5w1C90u
- Xv6nI5wO7TTtfgwdD1eil7lWoAAgZpcoJ/RGjnNwv3hTg1zsEKhnL+5QE A==;
-X-CSE-ConnectionGUID: OKtwH+CRSFKUuh3FFHI6kg==
-X-CSE-MsgGUID: W8F2fOAOSRCoxWQdBistDQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37950136"
-X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="37950136"
+ bh=5Pt2xyQ3USD6yPRsvyH9PifvkxNr4na5cD5smmI/mkY=;
+ b=e70LEamenKkLtPfRsM4z/GRtNHjU++t7PgSGFcQEK14PjGCEv3uuq17J
+ Io/tt8oikhWQX2ypiSNzCcgThXNYxlf8e7huLnjM8TUYUc1xeLsSI+6Uv
+ ny0FaTJ1qRAMXYqgQmeMHvbXyqlfq9gJ/avgIi62BNBqzlQ/dZxOqd7Zo
+ VHsfX3vJ6O8MJcKkoNXbpCPp1ODLWSDSJjZpImTF5RNkwFms+Sip6I8tt
+ Q00JNDd3MQATzmHYLvdL3W2XtmU83si6nBygyHeKPmBd+MhZr/KhCicda
+ q4cF6X7Mj+33ujqKse2x0cvWYbkty2mGWaTstQHgSGD2LlYXNwTfgflc/ Q==;
+X-CSE-ConnectionGUID: mRHyCpRQS72ZJbYo3GSjbA==
+X-CSE-MsgGUID: RBljd8dvTJqZukDIHh3WfA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37950133"
+X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="37950133"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2025 15:33:25 -0800
-X-CSE-ConnectionGUID: BJ0EXdHkTviR1nay0WSoSQ==
-X-CSE-MsgGUID: NXOKBnl1SVWMhS+Dy7XfjQ==
+ 22 Jan 2025 15:33:24 -0800
+X-CSE-ConnectionGUID: On6TgOiZTzqGz9vibXBOnQ==
+X-CSE-MsgGUID: 1IGOd20zSi+TUEjvwuyd+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="112315802"
+X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="112315800"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
  by orviesa004.jf.intel.com with ESMTP; 22 Jan 2025 15:33:05 -0800
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
 Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH v2 3/3] Partially revert "drm/xe: Revert some changes that
- break a mesa debug tool"
-Date: Wed, 22 Jan 2025 15:33:04 -0800
-Message-ID: <20250122233305.3667730-4-John.C.Harrison@Intel.com>
+Subject: [PATCH v2 2/3] drm/xe/devcoredump: Temporarily disable the line
+ wrapping of ASCII85 output
+Date: Wed, 22 Jan 2025 15:33:03 -0800
+Message-ID: <20250122233305.3667730-3-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20250122233305.3667730-1-John.C.Harrison@Intel.com>
 References: <20250122233305.3667730-1-John.C.Harrison@Intel.com>
@@ -70,39 +70,28 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-This reverts part of:
-  commit a53da2fb25a3 ("drm/xe: Revert some changes that break a mesa
-  debug tool")
-
-The KMD has been updated to avoid the line wrapping issue of the mesa
-tool. The section heading issue has not been fixed yet, however. So
-that part of the original revert remains.
+Line wrapping is required for doing emergency dumps to dmesg. However,
+it currently breaks a mesa debug tool. So temporarily disable the wraps.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c | 9 ---------
- 1 file changed, 9 deletions(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 18a7ddb561d8..81a461d62770 100644
+index 81dc7795c065..18a7ddb561d8 100644
 --- a/drivers/gpu/drm/xe/xe_devcoredump.c
 +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -420,15 +420,6 @@ void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
- 	char buff[ASCII85_BUFSZ], *line_buff;
- 	size_t line_pos = 0;
+@@ -462,7 +462,8 @@ void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
+ 		line_pos += strlen(line_buff + line_pos);
  
--	/*
--	 * Splitting blobs across multiple lines is not compatible with the mesa
--	 * debug decoder tool. Note that even dropping the explicit '\n' below
--	 * doesn't help because the GuC log is so big some underlying implementation
--	 * still splits the lines at 512K characters. So just bail completely for
--	 * the moment.
--	 */
--	return;
--
- #define DMESG_MAX_LINE_LEN	800
- #define MIN_SPACE		(ASCII85_BUFSZ + 2)		/* 85 + "\n\0" */
+ 		if ((line_pos + MIN_SPACE) >= DMESG_MAX_LINE_LEN) {
+-			line_buff[line_pos++] = '\n';
++			/* Line wrapping currently breaks a mesa debug tool. */
++			/* line_buff[line_pos++] = '\n'; */
+ 			line_buff[line_pos++] = 0;
  
+ 			drm_puts(p, line_buff);
 -- 
 2.47.0
 
