@@ -4,55 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B1FAC02182
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 21:46:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCA8CC02181
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 21:50:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F5E510E237;
-	Wed, 22 Jan 2025 21:46:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86F3810E0B0;
+	Wed, 22 Jan 2025 21:50:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R8HCx2Xy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="igVvW+cd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAF8E10E1B7
- for <Intel-Xe@lists.freedesktop.org>; Wed, 22 Jan 2025 21:46:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29E6F10E1CD
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Jan 2025 21:50:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737582363; x=1769118363;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6ibyAXhHYJQ6thuRV0DXQzJC2RH1aiWOePoxh7fnfcg=;
- b=R8HCx2XyU0gpaBapUmC2qcpFmLfYZ+prZWN7Aib97rehBwBXyUvqCs3h
- t4zmvNo+MiPDNEtWct9LxWrEbmzPC46MJ4h39Oo0c1PEiceLsLM3iUHo2
- f2CbRTP5JFiTsL4sKmaxadhihKJNT3izzK2jIUKH3ElcuzZJ5SnKpftjF
- HXS49Ouud5oGSIgqGWnINFErKSTxuAnB9jmxDrmDAICdDwGLgbHaH/Vem
- LGbNtmF40vcb0eq/99dBomXsBVuMSg4FRubJNVfLc8hWUDIw6P/2U0UuZ
- MX8ROhwPMJf/DkztY6fI7wFfzkYjkuKkkZ4TMEMSnMRb+7Da/Rq7N3MfQ A==;
-X-CSE-ConnectionGUID: AhDCKPOlTDi76A//VAFzCQ==
-X-CSE-MsgGUID: cYah7fn+R+2xlFJB+ShoMQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37947607"
-X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="37947607"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2025 13:46:03 -0800
-X-CSE-ConnectionGUID: ywD2u4DhThmjvSO/AAcYrg==
-X-CSE-MsgGUID: JwxO6cL7StmyJ3tmP92TFA==
+ t=1737582643; x=1769118643;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Dd/thARMO4F6n7hFqsIDl5zpLLzbezcW15Z2h1rBEfw=;
+ b=igVvW+cdcKeq9sFYuIu2Psjo//wi6AnQF7lQyZ5umBzHm6Sgil5BJohT
+ t8U9xbcl/99DmLr67BA87eJTFhTyhMCKKf3DwQEmxxgQJVo91xMgdj+/V
+ SCZknPPFN2SffHzmKr++oGkxzmPUhpNFXvxH8VdvEW0QGZQzl9SPa698Z
+ ndhzGjSJtQm2nL9l2GSBBT+Ym96WTOU9mZOvKbRwsA8YwoQ7n1kjN+GCH
+ +6vNzCIc3OuSs5QY2idRuhABB8KW6BWbFOJk5idWjKeCVRP7fexbMWzav
+ C+/NrcaxMZPWH2G0FVz4rp0O57WDJJJOCkhI2jAClKraXJtq8dkGPLMm4 A==;
+X-CSE-ConnectionGUID: eBlbR8TbTCKQ0L8nf3ob0Q==
+X-CSE-MsgGUID: fI/7985HQSKJZ539QPGktg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="41730975"
+X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="41730975"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2025 13:50:42 -0800
+X-CSE-ConnectionGUID: F+f15QjmRu2RRUetnN62Yw==
+X-CSE-MsgGUID: f8aUOiOHR4S2npXpW+rjbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="112239268"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by orviesa003.jf.intel.com with ESMTP; 22 Jan 2025 13:46:02 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-Xe@Lists.FreeDesktop.Org
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH 1/3] drm/xe/guc: Explicitly name each chunk of GuC log data in
- a dump
-Date: Wed, 22 Jan 2025 13:45:59 -0800
-Message-ID: <20250122214601.3560156-2-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250122214601.3560156-1-John.C.Harrison@Intel.com>
-References: <20250122214601.3560156-1-John.C.Harrison@Intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112365815"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.80.89])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2025 13:50:41 -0800
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 0/3] Fix SRIOV RPM resume lockdep issues
+Date: Wed, 22 Jan 2025 22:49:52 +0100
+Message-Id: <20250122214955.632-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,34 +65,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+Attempt to fix SRIOV lockdep issues reported by Thomas in [1]
 
-A mesa devcoredump decoding tool does not cope with line wrapped
-ASCII85 data. The GuC log is saved and printed in chunks. Only the
-first chunk was named, thus subsequent chunks were effectively line
-wrapped data. So add names to all the chunks instead.
+[1] https://lore.kernel.org/intel-xe/3e13401972fd49240f486fd7d47580e576794c78.camel@intel.com/
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/xe/xe_guc_log.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Michal Wajdeczko (3):
+  drm/xe/pf: Use GuC Buffer Cache during policy provisioning
+  drm/xe/pf: Add reclaim annotation to the PF master mutex
+  drm/xe: Don't treat SR-IOV platforms as reclaim unsafe
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index 80151ff6a71f..e3e3958b243a 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -207,8 +207,10 @@ void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_
- 	remain = snapshot->size;
- 	for (i = 0; i < snapshot->num_chunks; i++) {
- 		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
-+		char name[20];
- 
--		xe_print_blob_ascii85(p, i ? NULL : "Log data", snapshot->copy[i], 0, size);
-+		snprintf(name, sizeof(name), "Log data %d", i);
-+		xe_print_blob_ascii85(p, name, snapshot->copy[i], 0, size);
- 		remain -= size;
- 	}
- }
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c | 50 +++++++++++-----------
+ drivers/gpu/drm/xe/xe_pm.c                 |  2 +-
+ drivers/gpu/drm/xe/xe_sriov_pf.c           | 19 +++++++-
+ 3 files changed, 43 insertions(+), 28 deletions(-)
+
 -- 
-2.47.0
+2.47.1
 
