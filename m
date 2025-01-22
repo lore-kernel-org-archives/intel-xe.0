@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FD70C02181
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 23:28:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2A2AC02181
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 23:33:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C4FB10E004;
-	Wed, 22 Jan 2025 23:28:19 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BA5910E004;
- Wed, 22 Jan 2025 23:28:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68C7F10E004;
+	Wed, 22 Jan 2025 23:33:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ANyGSr8R";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94FAB10E26F
+ for <Intel-Xe@lists.freedesktop.org>; Wed, 22 Jan 2025 23:33:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737588805; x=1769124805;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iPYyLfDTq236NXMAHf4WjodOEj1Um7l12xOUGooceGI=;
+ b=ANyGSr8RRABMebt0msOanKdwF7ffjyqCAEeP2x0d3Cg0bsG+YOvjbHYG
+ XpUetlXFnv8RYuJJO/V/9WItzFsQie/IHEvasoX4wDVr0e6w6pPse1XJM
+ 5jq7IVOsf2Rd8axhN863EvtRcY7C+po5OUG4KS0aGEPSy2CZk7v2FRnHk
+ 1bXHbb+9prbHLbgFt7HQ94FPaeDXHZKEUmbOffVSeq2nWza/hXLDBGo4M
+ 4RD/JUB7iM73ZDBE+MZr3wXyfcCZuy9jClH1DsC7WwwJCgVqQRYo8lyh5
+ SHuDJP07KBRe+qzX2c9qETKJn+2A+WgsSdiSGG6RaHZT5sFzRZq/nKcKl g==;
+X-CSE-ConnectionGUID: maeRPfmjTEun9m3u7sAazQ==
+X-CSE-MsgGUID: 9nTqK/nLSz+YDHwIZ2iddw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37950135"
+X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="37950135"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2025 15:33:25 -0800
+X-CSE-ConnectionGUID: zCnUbNaASTOgeAGn6MQe8A==
+X-CSE-MsgGUID: 0OCMrOJ/TTKVOfE1Soj6Dg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="112315796"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by orviesa004.jf.intel.com with ESMTP; 22 Jan 2025 15:33:05 -0800
+From: John.C.Harrison@Intel.com
+To: Intel-Xe@Lists.FreeDesktop.Org
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH v2 0/3] Re-instate GuC logs in debugfs & devcoredump
+Date: Wed, 22 Jan 2025 15:33:01 -0800
+Message-ID: <20250122233305.3667730-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.47.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Add_PXP_HWDRM_support_?=
- =?utf-8?q?=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Jan 2025 23:28:18 -0000
-Message-ID: <173758849810.3263273.11841571979678729512@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250116001110.4158032-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20250116001110.4158032-1-daniele.ceraolospurio@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +62,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: John Harrison <John.C.Harrison@Intel.com>
 
-Series: Add PXP HWDRM support (rev6)
-URL   : https://patchwork.freedesktop.org/series/136052/
-State : success
+Remove the appareance of line wrapping in the GuC log output to
+prevent confusing a mesa tool and re-instate GuC logs in both
+devcoredump and debugfs.
 
-== Summary ==
+v2: Fix string size.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast db7cf8d52a41001ea2780cf834fed3dc490343d2
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
 
+John Harrison (3):
+  drm/xe/guc: Explicitly name each chunk of GuC log data in a dump
+  drm/xe/devcoredump: Temporarily disable the line wrapping of ASCII85
+    output
+  Partially revert "drm/xe: Revert some changes that break a mesa debug
+    tool"
+
+ drivers/gpu/drm/xe/xe_devcoredump.c | 12 ++----------
+ drivers/gpu/drm/xe/xe_guc_log.c     |  4 +++-
+ 2 files changed, 5 insertions(+), 11 deletions(-)
+
+-- 
+2.47.0
 
