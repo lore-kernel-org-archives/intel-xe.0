@@ -4,27 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93ED5C02181
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 09:58:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5515C02181
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 10:19:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FF5610E3A6;
-	Wed, 22 Jan 2025 09:58:39 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75C5B10E3A6;
- Wed, 22 Jan 2025 09:58:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3259584381735322509=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E71F10E2FE;
+	Wed, 22 Jan 2025 10:19:40 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A662E10E2FE;
+ Wed, 22 Jan 2025 10:19:39 +0000 (UTC)
+Received: from 91-155-255-183.elisa-laajakaista.fi ([91.155.255.183]
+ helo=[192.168.100.133])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1taXpg-00000003zem-3bdA; Wed, 22 Jan 2025 12:19:37 +0200
+Message-ID: <540ff319476ce72f625d1c2205fbd4eb2f726333.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
+Date: Wed, 22 Jan 2025 12:19:35 +0200
+In-Reply-To: <20250117220747.87927-4-gustavo.sousa@intel.com>
+References: <20250117220747.87927-1-gustavo.sousa@intel.com>
+ <20250117220747.87927-4-gustavo.sousa@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3-1 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Guarantee_a_?=
- =?utf-8?q?minimum_HBlank_time_=28rev9=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Jan 2025 09:58:38 -0000
-Message-ID: <173753991847.3008751.18188009488110688267@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250122-hblank-v9-1-90afda006685@intel.com>
-In-Reply-To: <20250122-hblank-v9-1-90afda006685@intel.com>
+Subject: Re: [PATCH 3/4] drm/i915/dmc_wl: Add extra_ranges debugfs
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +41,94 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3259584381735322509==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 2025-01-17 at 19:06 -0300, Gustavo Sousa wrote:
+> We already have a way of finding the set of untracked offsets for which
+> there has been one or more MMIO operations via the
+> "intel_dmc_wl/untracked" debugfs interface.
+>=20
+> However, in order to try adding one or more of those registers to the
+> set of tracked offsets, one would need to manually change the source
+> code and re-compile the driver.
+>=20
+> To make debugging easier, also add a "intel_dmc_wl/extra_ranges" debugfs
+> interface so that extra offsets to be tracked can be defined during
+> runtime, removing the need of re-compilation or even module reloading.
+>=20
+> With "intel_dmc_wl/untracked" and "intel_dmc_wl/extra_ranges", one could
+> even come up with a search algorithm to find missing offsets when
+> debugging a failing test case in a similar fashion to git-bisect. Such
+> an algorithm is subject for a future tool, probably implemented in
+> another repository (e.g. IGT).
+>=20
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
 
-== Series Details ==
-
-Series: drm/i915/dp: Guarantee a minimum HBlank time (rev9)
-URL   : https://patchwork.freedesktop.org/series/139268/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b_BAT -> xe-pw-139268v9_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+Some comments below.
 
 
-Changes
--------
+[...]
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c b/driver=
+s/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
+> index 41e59d775fe5..1493d296ac98 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
 
-  No changes found
+[...]
+> +bool intel_dmc_wl_debugfs_offset_in_extra_ranges(struct intel_display *d=
+isplay, u32 offset)
+> +{
+> +	struct intel_dmc_wl_dbg *dbg =3D &display->wl.dbg;
+> +	bool ret =3D false;
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&dbg->lock, flags);
+> +
+> +	if (!dbg->extra_ranges)
+> +		goto out_unlock;
+> +
+> +	for (int i =3D 0; dbg->extra_ranges[i].start; i++) {
+> +		u32 end =3D dbg->extra_ranges[i].end ?: dbg->extra_ranges[i].start;
+> +
+> +		if (dbg->extra_ranges[i].start <=3D offset && offset <=3D end) {
+> +			ret =3D true;
+> +			goto out_unlock;
+> +		}
+> +	}
+> +
+> +out_unlock:
+> +	spin_unlock_irqrestore(&dbg->lock, flags);
+> +
+> +	return ret;
+> +}
 
-
-Build changes
--------------
-
-  * Linux: xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b -> xe-pw-139268v9
-
-  IGT_8205: f3225e64a7c52e515ab7ec14e6e3f63679718928 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b: a5efe95724accce6ccd3e0c840fdd3bf5d6f369b
-  xe-pw-139268v9: 139268v9
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v9/index.html
-
---===============3259584381735322509==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Guarantee a minimum HBlank time (rev9)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139268/">https://patchwork.freedesktop.org/series/139268/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v9/index.html</a></td></tr>
-
-</table>
+This function is probably almost identical than the one used to check
+the hard-coded ranges, isn't it? In that case, couldn't you just pass
+the ranges array (in this case dbg->extra_ranges) to the same function?
 
 
-    <h1>CI Bug Log - changes from xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b_BAT -&gt; xe-pw-139268v9_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b -&gt; xe-pw-139268v9</li>
-</ul>
-<p>IGT_8205: f3225e64a7c52e515ab7ec14e6e3f63679718928 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b: a5efe95724accce6ccd3e0c840fdd3bf5d6f369b<br />
-  xe-pw-139268v9: 139268v9</p>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.h b/driver=
+s/gpu/drm/i915/display/intel_dmc_wl_debugfs.h
+> index 9437c324966f..ae61217a2789 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.h
+> @@ -11,6 +11,11 @@
+> =20
+>  struct intel_display;
+> =20
+> +struct intel_dmc_wl_dbg_extra_range {
+> +	u32 start;
+> +	u32 end;
+> +};
+> +
 
-</body>
-</html>
+Why do you need another struct for this?
 
---===============3259584381735322509==--
+[...]
+
+--
+Cheers,
+Luca.
+
