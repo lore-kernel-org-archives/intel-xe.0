@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A527EC02182
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 10:42:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8E8AC02181
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 10:44:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7109410E0B7;
-	Wed, 22 Jan 2025 10:42:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LLAXtj5C";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BD8610E6B2;
- Wed, 22 Jan 2025 10:42:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737542567; x=1769078567;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ERcN6r2tS6AQncP5oZ/LvWKA9Tj/B0TFyMGyqBan7w8=;
- b=LLAXtj5CDb7IC4OTVIhSczknkrXGVb34xhN5FeWmBQrk3jEnYODmE2Ub
- A9C+LYEl9G88dWkSiAZ11gE/yBiVz/hBUBA7gIXET1C+wxaw/ogfLsQzx
- J1NoXimo8mzjUKK3E70f24p3YPa4YQIrnXK55Kwjje4uK2vuDAZqzBdIb
- wq15z/xgWspx1o+qzx8DOvj3SZzJrFfJLPYR3bVZyJHcmQYv64/lb2EUV
- kutUB/YGrG0PwWG7sTrGNWCskCoPjK5fzsk88Ach8veNAISZHLlx4k0SW
- sUIEpSSe60qJnsD7zd0diUkaOwjAwUEJBI5x1RxE6f8h7j/ybkRva8IFN Q==;
-X-CSE-ConnectionGUID: IoPSYxwXSISr0bV2C1vwGQ==
-X-CSE-MsgGUID: tadpDTvlRCOxrY7aSmDbjg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="48487606"
-X-IronPort-AV: E=Sophos;i="6.13,225,1732608000"; d="scan'208";a="48487606"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2025 02:42:43 -0800
-X-CSE-ConnectionGUID: eWRakCarS6uy7oo8PRtidw==
-X-CSE-MsgGUID: N12AC80tSim5TxhIJLj/AA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="111733237"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.30])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2025 02:42:39 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
- santhosh.reddy.guddati@intel.com, jani.saarinen@intel.com
-Subject: Re: [PATCH v4 6/6] drm/i915/xe3: introduce a dirty rectangle state
- variable
-In-Reply-To: <20250122093006.405711-7-vinod.govindapillai@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250122093006.405711-1-vinod.govindapillai@intel.com>
- <20250122093006.405711-7-vinod.govindapillai@intel.com>
-Date: Wed, 22 Jan 2025 12:42:36 +0200
-Message-ID: <875xm7p1sz.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74C4B10E0B7;
+	Wed, 22 Jan 2025 10:44:38 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F21F10E0B7;
+ Wed, 22 Jan 2025 10:44:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/pmu=3A_PMU_in?=
+ =?utf-8?q?terface_for_Xe_=28rev14=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 22 Jan 2025 10:44:37 -0000
+Message-ID: <173754267705.3008751.1381430419843632116@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250122062341.1100173-1-lucas.demarchi@intel.com>
+In-Reply-To: <20250122062341.1100173-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,73 +36,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 22 Jan 2025, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
-> To avoid programming garbage to dirty rectangle registers,
-> introduce a state variable to track the validity of the
-> dirty rectangle update scenarios. Program the dirty rectangle
-> coordinate only if this state variable is valid.
->
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index 033eb4a3eab0..ab8acb1cc090 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -91,6 +91,7 @@ struct intel_fbc_state {
->  	u16 interval;
->  	s8 fence_id;
->  	struct drm_rect dirty_rect;
-> +	bool dr_valid;
+== Series Details ==
 
-Please let's try to avoid inventing new acronyms for every little
-thing. I don't think we want to be guessing what "dr_valid" means.
+Series: drm/xe/pmu: PMU interface for Xe (rev14)
+URL   : https://patchwork.freedesktop.org/series/139121/
+State : success
 
-Adding context would help:
+== Summary ==
 
-	struct {
-		struct drm_rect rect;
-		bool valid;
-	} dirty_rect;
-
-Or similar.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 71b6a6ef0f37 drm-tip: 2025y-01m-22d-07h-37m-49s UTC integration manifest
+=== git am output follows ===
+.git/rebase-apply/patch:399: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: perf/core: Add PMU_EVENT_ATTR_ID_STRING
+Applying: drm/xe/pmu: Enable PMU interface
+Applying: drm/xe/pmu: Assert max gt
+Applying: drm/xe/pmu: Extract xe_pmu_event_update()
+Applying: drm/xe/pmu: Add attribute skeleton
+Applying: drm/xe/pmu: Get/put runtime pm on event init
+Applying: drm/xe/pmu: Add GT C6 events
 
 
->  };
->  
->  struct intel_fbc {
-> @@ -1227,6 +1228,9 @@ __intel_fbc_program_dirty_rect(struct intel_dsb *dsb, struct intel_plane *plane)
->  	if (fbc_state->plane != plane)
->  		return;
->  
-> +	if (!fbc_state->dr_valid)
-> +		return;
-> +
->  	intel_de_write_dsb(display, dsb, XE3_FBC_DIRTY_RECT(fbc->id),
->  			   FBC_DIRTY_RECT_START_LINE(fbc_state->dirty_rect.y1) |
->  			   FBC_DIRTY_RECT_END_LINE(fbc_state->dirty_rect.y2));
-> @@ -1314,6 +1318,8 @@ intel_fbc_compute_dirty_rect(struct intel_atomic_state *state,
->  		if (!fbc || plane->pipe != crtc->pipe)
->  			continue;
->  
-> +		fbc->state.dr_valid = false;
-> +
->  		/* If plane not visible, dirty rect might have invalid coordinates */
->  		if (!new_plane_state->uapi.visible)
->  			continue;
-> @@ -1323,6 +1329,8 @@ intel_fbc_compute_dirty_rect(struct intel_atomic_state *state,
->  			continue;
->  
->  		__intel_fbc_compute_dirty_rect(plane, old_plane_state, new_plane_state);
-> +
-> +		fbc->state.dr_valid = true;
->  	}
->  }
-
--- 
-Jani Nikula, Intel
