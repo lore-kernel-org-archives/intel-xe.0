@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E29F6C02181
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 11:06:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA718C0218C
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 11:11:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE74B10E228;
-	Wed, 22 Jan 2025 11:06:22 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8755710E228;
- Wed, 22 Jan 2025 11:06:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FB8610E6C0;
+	Wed, 22 Jan 2025 11:11:05 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R+dhs6sW";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28DE410E306;
+ Wed, 22 Jan 2025 11:11:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737544264; x=1769080264;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=lM8XE7OmyysYeg7ZJsWGLyeXle11y1R4KtyH5tGw250=;
+ b=R+dhs6sWD/4bMNAgIts0tapcSNVCBvEzVLasGR9BDD6HOwvTHGFdXnhl
+ adMkHc57LlqMwMNT/wAlC1paqQB1EIbBsw6NCIxAlaNE2VZ4xeGMduMOE
+ j9VnM2aIgZOz6T+1nzx3fKJQswhM/+HdpLvIoeFwjhHos199fnR4Y9QFs
+ vTAD2OdPszcBU7flRdZ72a26vZ9MKBy3E2OZCeiAoXdKccVit8rRMFmlz
+ RjyLSx5ozIJuxLM4HbwWD3iXUWCX5vUa6D12n36It9AVJ/GiUkEg0SNQV
+ phoNNs0jlsE5X+QErobjQu1kVdZh4ZprCCCqtxdCiZljUD/lheY3yb8It Q==;
+X-CSE-ConnectionGUID: gbmxbCiGQeOYxONTqW/4Ww==
+X-CSE-MsgGUID: FkWAz+8zQXOo8QXr1q1cxg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="38020831"
+X-IronPort-AV: E=Sophos;i="6.13,225,1732608000"; d="scan'208";a="38020831"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2025 03:11:04 -0800
+X-CSE-ConnectionGUID: +tVOOnx/S5OSr59GeWMWNw==
+X-CSE-MsgGUID: EXYoqCsSSSWSLrkb3AnCSg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,225,1732608000"; d="scan'208";a="112119294"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.30])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2025 03:11:01 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com
+Subject: Re: [PATCH 3/5] drm/i915/cx0_phy_regs: Add C10 registers bits
+In-Reply-To: <20250120042122.1029481-4-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250120042122.1029481-1-ankit.k.nautiyal@intel.com>
+ <20250120042122.1029481-4-ankit.k.nautiyal@intel.com>
+Date: Wed, 22 Jan 2025 13:10:57 +0200
+Message-ID: <87y0z3nlxa.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/xe/pmu=3A_PMU_interf?=
- =?utf-8?q?ace_for_Xe_=28rev14=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Jan 2025 11:06:21 -0000
-Message-ID: <173754398154.3036404.11883879281819716933@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250122062341.1100173-1-lucas.demarchi@intel.com>
-In-Reply-To: <20250122062341.1100173-1-lucas.demarchi@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,102 +66,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 20 Jan 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> Add C10 register bits to be used for computing HDMI PLLs with
+> algorithm.
+>
+> v2: Add bspec reference. (Suraj)
+>
+> Bspec: 74166
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_cx0_phy_regs.h | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> index 91eb1d423c71..da27cff878a1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> @@ -218,10 +218,34 @@
+>  
+>  /* C10 Vendor Registers */
+>  #define PHY_C10_VDR_PLL(idx)		(0xC00 + (idx))
+> +#define   C10_PLL0_SSC_EN		REG_BIT8(0)
+> +#define   C10_PLL0_DIVCLK_EN		REG_BIT8(1)
+> +#define   C10_PLL0_DIV5CLK_EN		REG_BIT8(2)
+> +#define   C10_PLL0_WORDDIV2_EN		REG_BIT8(3)
+>  #define   C10_PLL0_FRACEN		REG_BIT8(4)
+> +#define   C10_PLL0_PMIX_EN		REG_BIT8(5)
+> +#define   C10_PLL0_ANA_FREQ_VCO_MASK	REG_GENMASK8(7, 6)
+> +#define   C10_PLL1_DIV_MULTIPLIER_MASK	REG_GENMASK8(7, 0)
+> +#define   C10_PLL2_MULTIPLIERL_MASK	REG_GENMASK8(7, 0)
+>  #define   C10_PLL3_MULTIPLIERH_MASK	REG_GENMASK8(3, 0)
+> +#define   C10_PLL8_SSC_UP_SPREAD	REG_BIT(5)
 
-Series: drm/xe/pmu: PMU interface for Xe (rev14)
-URL   : https://patchwork.freedesktop.org/series/139121/
-State : warning
+All of the reg bits and masks should use the same width, i.e. REG_BIT8()
+here.
 
-== Summary ==
+> +#define   C10_PLL9_FRACN_DENL_MASK	REG_GENMASK8(7, 0)
+> +#define   C10_PLL10_FRACN_DENH_MASK	REG_GENMASK8(7, 0)
+> +#define   C10_PLL11_FRACN_QUOT_L_MASK	REG_GENMASK8(7, 0)
+> +#define   C10_PLL12_FRACN_QUOT_H_MASK	REG_GENMASK8(7, 0)
+> +#define   C10_PLL13_FRACN_REM_L_MASK	REG_GENMASK8(7, 0)
+> +#define   C10_PLL14_FRACN_REM_H_MASK	REG_GENMASK8(7, 0)
+>  #define   C10_PLL15_TXCLKDIV_MASK	REG_GENMASK8(2, 0)
+>  #define   C10_PLL15_HDMIDIV_MASK	REG_GENMASK8(5, 3)
+> +#define   C10_PLL15_PIXELCLKDIV_MASK	REG_GENMASK8(7, 6)
+> +#define   C10_PLL16_ANA_CPINT		REG_GENMASK8(6, 0)
+> +#define   C10_PLL16_ANA_CPINTGS_L	REG_BIT(7)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 71b6a6ef0f37fe2d812dc2bd6d4b0d2d52096d07
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:1964:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1964:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1964:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1964:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1964:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1964:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1964:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1964:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1964:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1964:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1964:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1964:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1977:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1977:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
-+drivers/gpu/drm/i915/gt/intel_reset.c:1544:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_active.c:1063:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/i915_irq.c:453:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:453:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:461:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:461:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:503:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:503:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:511:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:511:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:559:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:559:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:562:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:562:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:566:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:566:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/intel_uncore.c:1925:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1926:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1927:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1928:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1993:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1994:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1995:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2015:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2016:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2017:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_wakeref.c:145:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
+Ditto.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+> +#define   C10_PLL17_ANA_CPINTGS_H_MASK	REG_GENMASK8(5, 0)
+> +#define   C10_PLL17_ANA_CPPROP_L_MASK	REG_GENMASK8(7, 6)
+> +#define   C10_PLL18_ANA_CPPROP_H_MASK	REG_GENMASK8(4, 0)
+> +#define   C10_PLL18_ANA_CPPROPGS_L_MASK	REG_GENMASK8(7, 5)
+> +#define   C10_PLL19_ANA_CPPROPGS_H_MASK	REG_GENMASK8(3, 0)
+> +#define   C10_PLL19_ANA_V2I_MASK	REG_GENMASK8(5, 4)
+>  
+>  #define PHY_C10_VDR_CMN(idx)		(0xC20 + (idx))
+>  #define   C10_CMN0_REF_RANGE		REG_FIELD_PREP(REG_GENMASK(4, 0), 1)
 
-
+-- 
+Jani Nikula, Intel
