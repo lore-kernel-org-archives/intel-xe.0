@@ -4,33 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 673CAC0218C
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 08:24:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DAFFC02182
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 08:48:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C56B10E68F;
-	Wed, 22 Jan 2025 08:24:00 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18B9A10E68A;
- Wed, 22 Jan 2025 08:23:59 +0000 (UTC)
-Received: from 91-155-255-183.elisa-laajakaista.fi ([91.155.255.183]
- helo=[192.168.100.133])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1taW1j-00000003zW8-3bWd; Wed, 22 Jan 2025 10:23:57 +0200
-Message-ID: <1a597663c34b48c93ff7ce264f2c63aa625247fa.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
-Date: Wed, 22 Jan 2025 10:23:54 +0200
-In-Reply-To: <20250117220747.87927-2-gustavo.sousa@intel.com>
-References: <20250117220747.87927-1-gustavo.sousa@intel.com>
- <20250117220747.87927-2-gustavo.sousa@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3-1 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3690B10E251;
+	Wed, 22 Jan 2025 08:48:23 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FEC210E251;
+ Wed, 22 Jan 2025 08:48:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1365570543422287987=="
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/4] drm/i915/dmc_wl: Pass offset instead of reg to
- range table iterator
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Extended_Wake_Timeout_=28re?=
+ =?utf-8?q?v4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 22 Jan 2025 08:48:22 -0000
+Message-ID: <173753570231.2988612.30236218512400830@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250122053358.1545039-1-suraj.kandpal@intel.com>
+In-Reply-To: <20250122053358.1545039-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,20 +36,157 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2025-01-17 at 19:06 -0300, Gustavo Sousa wrote:
-> We will add another function that checks the offset in an upcoming
-> change. Instead of passing the reg variable to only extract the offset
-> later, let's extract the offset before so that we do not need to repeat
-> ourselves.
->=20
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> ---
+--===============1365570543422287987==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+== Series Details ==
 
---
-Cheers,
-Luca.
+Series: Extended Wake Timeout (rev4)
+URL   : https://patchwork.freedesktop.org/series/142516/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b_BAT -> xe-pw-142516v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-142516v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [PASS][1] -> [SKIP][2] ([Intel XE#1192]) +1 other test skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  * igt@xe_pat@pat-index-xelp@render:
+    - bat-adlp-vf:        [PASS][3] -> [DMESG-WARN][4] ([Intel XE#3970] / [Intel XE#4078]) +1 other test dmesg-warn
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][6] ([Intel XE#1192])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#4078]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b -> xe-pw-142516v4
+
+  IGT_8205: f3225e64a7c52e515ab7ec14e6e3f63679718928 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b: a5efe95724accce6ccd3e0c840fdd3bf5d6f369b
+  xe-pw-142516v4: 142516v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/index.html
+
+--===============1365570543422287987==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Extended Wake Timeout (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142516/">https://patchwork.freedesktop.org/series/142516/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b_BAT -&gt; xe-pw-142516v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-142516v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp@render:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142516v4/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b -&gt; xe-pw-142516v4</li>
+</ul>
+<p>IGT_8205: f3225e64a7c52e515ab7ec14e6e3f63679718928 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2529-a5efe95724accce6ccd3e0c840fdd3bf5d6f369b: a5efe95724accce6ccd3e0c840fdd3bf5d6f369b<br />
+  xe-pw-142516v4: 142516v4</p>
+
+</body>
+</html>
+
+--===============1365570543422287987==--
