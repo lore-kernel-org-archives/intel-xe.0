@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFBD0C02181
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 07:48:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 042E4C02181
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Jan 2025 07:48:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EEF810E67D;
-	Wed, 22 Jan 2025 07:48:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7F7410E1EF;
+	Wed, 22 Jan 2025 07:48:20 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CFAB10E1EF;
- Wed, 22 Jan 2025 07:48:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78C4510E1EF;
+ Wed, 22 Jan 2025 07:48:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Extended_Wake_Timeou?=
- =?utf-8?q?t_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Extended_Wake_Timeout_=28?=
+ =?utf-8?q?rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Jan 2025 07:48:06 -0000
-Message-ID: <173753208604.2961807.10260364011218110046@b555e5b46a47>
+Date: Wed, 22 Jan 2025 07:48:19 -0000
+Message-ID: <173753209948.2961807.3264565485667286407@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250122053358.1545039-1-suraj.kandpal@intel.com>
 In-Reply-To: <20250122053358.1545039-1-suraj.kandpal@intel.com>
@@ -48,11 +48,38 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: a5efe95724ac drm-tip: 2025y-01m-21d-23h-22m-35s UTC integration manifest
-=== git am output follows ===
-Applying: drm/dp: Add the DPCD register required for Extended wake timeout
-Applying: drm/display/dp: Define function to setup Extended wake time
-Applying: drm/i915/lttpr: Enable Extended Wake Timeout
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 86f9c6bac98514985da7e6ad57f7d378e42381d9
+Author: Suraj Kandpal <suraj.kandpal@intel.com>
+Date:   Wed Jan 22 11:03:58 2025 +0530
+
+    drm/i915/lttpr: Enable Extended Wake Timeout
+    
+    Usually retimers take around 30 to 40ms to exit all devices from
+    sleep state. Extended wake timeout mechanism helps to give
+    that additional time.
+    
+    --v2
+    -Grant the requested time only if greater than 1ms [Arun/Jani]
+    -Reframe commit message [Arun]
+    
+    --v3
+    -Move the function to drm_core [Dmitry/Jani]
+    
+    Spec: DP v2.1 Section 3.6.12.3
+    Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+    Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
++ /mt/dim checkpatch a5efe95724accce6ccd3e0c840fdd3bf5d6f369b drm-intel
+73ffad977cdb drm/dp: Add the DPCD register required for Extended wake timeout
+1d0fbfed1ad5 drm/display/dp: Define function to setup Extended wake time
+86f9c6bac985 drm/i915/lttpr: Enable Extended Wake Timeout
 
 
