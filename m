@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51B3DC0218D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1AD3C0218F
 	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 04:19:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8D0510E147;
-	Thu, 23 Jan 2025 04:19:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E9E610E343;
+	Thu, 23 Jan 2025 04:19:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HK3vc792";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cqPV/ZA6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7632910E147
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3FFE10E332
  for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 04:19:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1737605989; x=1769141989;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=wpfQQiDwPkBcGzVllHiTFJefl9ehIU88uIp2X8dLiG8=;
- b=HK3vc792SJNvTrkR/JZKb+/kmhsDb2HXIsGFfYaiiVv3MHqBFrvdpsUs
- OEx1uUAoTkf/s+T8UW/LS2cjSri67kOxANt6eDKjX+NV2bdIGv4SZPn8z
- pcZBDkXj70M0M6NwwBJ48XROasA+1VFTCHo8mGcABMGCKP9oflSndMgRX
- YI2AzZSjVG5AxFN31cSJNYOYxxhV2z5Yy6AScxscApPNE4VqbBtx3WrU9
- hd2ifiC2q44//4j3+T4EJK4e2JB4F2MzyOkkYif8N+dsGAp4eTD0IYWef
- L7lBtCXwQmHl2+7kFy+qg8nlpDBdcFZz+IMq7SBawYL3/WPkJZO2GBlo+ A==;
-X-CSE-ConnectionGUID: 9TawJv9CR4ufylkvmlEOvg==
-X-CSE-MsgGUID: w1VuweZLSYSQslvkTHO4KQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37971639"
-X-IronPort-AV: E=Sophos;i="6.13,227,1732608000"; d="scan'208";a="37971639"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kfMQCKnN9aYD9rKOyeMqV6cOStHkGZqvWze4mSZw8ig=;
+ b=cqPV/ZA6Qzt69WiCXEmnxejx5BuCN0e4OepbSGqS+GAiNqx6TiEdKJzP
+ qsRQy+TwlCEqZ/GqHOpSwW6UMUM5UF6/JlbWL/p6cwBFVcQSPdZcCtG7w
+ iW/BGl/HfDDiRdVR55fft9lcgF8ab3fL+5F+KYyYtxwZxSdOQ8IkgP7U8
+ QtE355quAGbMPDTCXvp6sVN6XGaTQZ5PAcyov3jA4N2ODtsdowv20QY/f
+ UZRZlJ8CLsekf0yl5uBhJDxER47HxSBRkusEp55kBRGWc44BvYlR0yitc
+ GsojTb4ukuJOEaaiN28EivSSB9VMchS7qNafqdfacUew+acFgQU4Uh2Gr Q==;
+X-CSE-ConnectionGUID: vrrN25n1RFypueLVbBKi+A==
+X-CSE-MsgGUID: eDmlGOOKR1ugvdUGJ3cprw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37971654"
+X-IronPort-AV: E=Sophos;i="6.13,227,1732608000"; d="scan'208";a="37971654"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Jan 2025 20:19:48 -0800
-X-CSE-ConnectionGUID: UK1W15HGSQa66UztOFj5Qg==
-X-CSE-MsgGUID: r4jxoB5KQ6uR+oHhAb5xRQ==
+X-CSE-ConnectionGUID: LcCuuFbgTnWuIBfGehGrnw==
+X-CSE-MsgGUID: 2sUoIL1sQ12pSNP6HdzWhg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="107202052"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="107202055"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Jan 2025 20:19:47 -0800
@@ -47,10 +47,12 @@ Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
  Riana Tauro <riana.tauro@intel.com>, Peter Zijlstra <peterz@infradead.org>,
  linux-perf-users@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v15 0/6] drm/xe/pmu: PMU interface for Xe
-Date: Wed, 22 Jan 2025 20:19:17 -0800
-Message-ID: <20250123041923.1892837-1-lucas.demarchi@intel.com>
+Subject: [PATCH v15 1/6] drm/xe/pmu: Enable PMU interface
+Date: Wed, 22 Jan 2025 20:19:18 -0800
+Message-ID: <20250123041923.1892837-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250123041923.1892837-1-lucas.demarchi@intel.com>
+References: <20250123041923.1892837-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -68,62 +70,447 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Previous versions: https://patchwork.freedesktop.org/series/139121/
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-For perf/core: first patch adds a new macro in include/linux/perf_event.h.
-If it's ok, I'd like to merge it through the drm branch so we can add the
-pmu implementation to the xe driver. I'm also Cc'ing linux-perf-users@vger.kernel.org
-on the other patches to show its usage.
+Basic PMU enabling patch. Setup the basic framework
+for adding events/timers. This patch was previously
+reviewed here -
+https://patchwork.freedesktop.org/series/119504/
 
-For "drm/xe/pmu: Enable PMU interface", previously from several authors,
-I squashed several changes I suggested in the past to clean it up and
-reduce boilerplate code that resulted from copy-paste from i915. More
-detailed changes can be found at
-https://gitlab.freedesktop.org/demarchi/xe/-/tags/tip-xe-pmu-v13
+Based on previous versions by Bommu Krishnaiah, Aravind Iddamsetty and
+Riana Tauro, using i915 and rapl as reference implementation.
 
-I tested this on Lunar Lake and ADL with and without workload running
-and the gt-c6 residency seems reasonable.
-
-v13: this only has 1 event as Vinay said he will rebase the
-frequency event on top.
-
-v14
-  - simplify the gt-c6 event: no more estimate based on suspend time
-since we can't take the spinlock. A simpler version is to get runtime pm
-when initializing the event and putting it back when it's done.  In
-future we can come back with fancier things that don´t block the runtime
-pm.
-
-v15:
-  - clean up no longer needed include files
-  - drop no longer needed struct members
-  - drop patch adding PMU_EVENT_ATTR_ID_STRING: this can be done later
-    on top if desired, converting more drivers. There's no pressure need
-    to be different than the other drivers. Instead, do the attributes
-    similarly to drivers/iommu/intel/perfmon.c, but still keep a single
-    macro to define both event, scale and event group
-
-Lucas De Marchi (4):
-  drm/xe/pmu: Assert max gt
-  drm/xe/pmu: Extract xe_pmu_event_update()
-  drm/xe/pmu: Add attribute skeleton
-  drm/xe/pmu: Get/put runtime pm on event init
-
-Vinay Belgaumkar (2):
-  drm/xe/pmu: Enable PMU interface
-  drm/xe/pmu: Add GT C6 events
-
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
  drivers/gpu/drm/xe/Makefile          |   2 +
  drivers/gpu/drm/xe/xe_device.c       |   3 +
  drivers/gpu/drm/xe/xe_device_types.h |   4 +
- drivers/gpu/drm/xe/xe_pmu.c          | 361 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pmu.c          | 289 +++++++++++++++++++++++++++
  drivers/gpu/drm/xe/xe_pmu.h          |  18 ++
- drivers/gpu/drm/xe/xe_pmu_types.h    |  39 +++
- 6 files changed, 427 insertions(+)
+ drivers/gpu/drm/xe/xe_pmu_types.h    |  35 ++++
+ 6 files changed, 351 insertions(+)
  create mode 100644 drivers/gpu/drm/xe/xe_pmu.c
  create mode 100644 drivers/gpu/drm/xe/xe_pmu.h
  create mode 100644 drivers/gpu/drm/xe/xe_pmu_types.h
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 68861db5f27ce..aa0d981663e4c 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -305,6 +305,8 @@ endif
+ xe-$(CONFIG_DRM_XE_DP_TUNNEL) += \
+ 	i915-display/intel_dp_tunnel.o
+ 
++xe-$(CONFIG_PERF_EVENTS) += xe_pmu.o
++
+ obj-$(CONFIG_DRM_XE) += xe.o
+ obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index bd6191e1ed3e7..f3f754beb812b 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -49,6 +49,7 @@
+ #include "xe_pat.h"
+ #include "xe_pcode.h"
+ #include "xe_pm.h"
++#include "xe_pmu.h"
+ #include "xe_query.h"
+ #include "xe_sriov.h"
+ #include "xe_tile.h"
+@@ -871,6 +872,8 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ 	xe_oa_register(xe);
+ 
++	xe_pmu_register(&xe->pmu);
++
+ 	xe_debugfs_register(xe);
+ 
+ 	xe_hwmon_register(xe);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 16ebb2859877f..58e79e19deaad 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -18,6 +18,7 @@
+ #include "xe_memirq_types.h"
+ #include "xe_oa_types.h"
+ #include "xe_platform_types.h"
++#include "xe_pmu_types.h"
+ #include "xe_pt_types.h"
+ #include "xe_sriov_types.h"
+ #include "xe_step_types.h"
+@@ -514,6 +515,9 @@ struct xe_device {
+ 		int mode;
+ 	} wedged;
+ 
++	/** @pmu: performance monitoring unit */
++	struct xe_pmu pmu;
++
+ #ifdef TEST_VM_OPS_ERROR
+ 	/**
+ 	 * @vm_inject_error_position: inject errors at different places in VM
+diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+new file mode 100644
+index 0000000000000..b3da3863928af
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_pmu.c
+@@ -0,0 +1,289 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#include <drm/drm_drv.h>
++#include <linux/device.h>
++
++#include "xe_device.h"
++#include "xe_pmu.h"
++
++/**
++ * DOC: Xe PMU (Performance Monitoring Unit)
++ *
++ * Expose events/counters like GT-C6 residency and GT frequency to user land via
++ * the perf interface. Events are per device. The GT can be selected with an
++ * extra config sub-field (bits 60-63).
++ *
++ * All events are listed in sysfs:
++ *
++ *     $ ls -ld /sys/bus/event_source/devices/xe_*
++ *     $ ls /sys/bus/event_source/devices/xe_0000_00_02.0/events/
++ *     $ ls /sys/bus/event_source/devices/xe_0000_00_02.0/format/
++ *
++ * The format directory has info regarding the configs that can be used.
++ * The standard perf tool can be used to grep for a certain event as well.
++ * Example:
++ *
++ *     $ perf list | grep gt-c6
++ *
++ * To sample a specific event for a GT at regular intervals:
++ *
++ *     $ perf stat -e <event_name,gt=> -I <interval>
++ */
++
++#define XE_PMU_EVENT_GT_MASK		GENMASK_ULL(63, 60)
++#define XE_PMU_EVENT_ID_MASK		GENMASK_ULL(11, 0)
++
++static unsigned int config_to_event_id(u64 config)
++{
++	return FIELD_GET(XE_PMU_EVENT_ID_MASK, config);
++}
++
++static unsigned int config_to_gt_id(u64 config)
++{
++	return FIELD_GET(XE_PMU_EVENT_GT_MASK, config);
++}
++
++static struct xe_gt *event_to_gt(struct perf_event *event)
++{
++	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
++	u64 gt = config_to_gt_id(event->attr.config);
++
++	return xe_device_get_gt(xe, gt);
++}
++
++static bool event_supported(struct xe_pmu *pmu, unsigned int gt,
++			    unsigned int id)
++{
++	if (gt >= XE_MAX_GT_PER_TILE)
++		return false;
++
++	return false;
++}
++
++static void xe_pmu_event_destroy(struct perf_event *event)
++{
++	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
++
++	drm_WARN_ON(&xe->drm, event->parent);
++	drm_dev_put(&xe->drm);
++}
++
++static int xe_pmu_event_init(struct perf_event *event)
++{
++	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
++	struct xe_pmu *pmu = &xe->pmu;
++	unsigned int id, gt;
++
++	if (!pmu->registered)
++		return -ENODEV;
++
++	if (event->attr.type != event->pmu->type)
++		return -ENOENT;
++
++	/* unsupported modes and filters */
++	if (event->attr.sample_period) /* no sampling */
++		return -EINVAL;
++
++	if (event->cpu < 0)
++		return -EINVAL;
++
++	gt = config_to_gt_id(event->attr.config);
++	id = config_to_event_id(event->attr.config);
++	if (!event_supported(pmu, gt, id))
++		return -ENOENT;
++
++	if (has_branch_stack(event))
++		return -EOPNOTSUPP;
++
++	if (!event->parent) {
++		drm_dev_get(&xe->drm);
++		event->destroy = xe_pmu_event_destroy;
++	}
++
++	return 0;
++}
++
++static u64 __xe_pmu_event_read(struct perf_event *event)
++{
++	struct xe_gt *gt = event_to_gt(event);
++	u64 val = 0;
++
++	if (!gt)
++		return 0;
++
++	return val;
++}
++
++static void xe_pmu_event_read(struct perf_event *event)
++{
++	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
++	struct hw_perf_event *hwc = &event->hw;
++	struct xe_pmu *pmu = &xe->pmu;
++	u64 prev, new;
++
++	if (!pmu->registered) {
++		event->hw.state = PERF_HES_STOPPED;
++		return;
++	}
++
++	prev = local64_read(&hwc->prev_count);
++	do {
++		new = __xe_pmu_event_read(event);
++	} while (!local64_try_cmpxchg(&hwc->prev_count, &prev, new));
++
++	local64_add(new - prev, &event->count);
++}
++
++static void xe_pmu_enable(struct perf_event *event)
++{
++	/*
++	 * Store the current counter value so we can report the correct delta
++	 * for all listeners. Even when the event was already enabled and has
++	 * an existing non-zero value.
++	 */
++	local64_set(&event->hw.prev_count, __xe_pmu_event_read(event));
++}
++
++static void xe_pmu_event_start(struct perf_event *event, int flags)
++{
++	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
++	struct xe_pmu *pmu = &xe->pmu;
++
++	if (!pmu->registered)
++		return;
++
++	xe_pmu_enable(event);
++	event->hw.state = 0;
++}
++
++static void xe_pmu_event_stop(struct perf_event *event, int flags)
++{
++	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
++	struct xe_pmu *pmu = &xe->pmu;
++
++	if (pmu->registered)
++		if (flags & PERF_EF_UPDATE)
++			xe_pmu_event_read(event);
++
++	event->hw.state = PERF_HES_STOPPED;
++}
++
++static int xe_pmu_event_add(struct perf_event *event, int flags)
++{
++	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
++	struct xe_pmu *pmu = &xe->pmu;
++
++	if (!pmu->registered)
++		return -ENODEV;
++
++	if (flags & PERF_EF_START)
++		xe_pmu_event_start(event, flags);
++
++	return 0;
++}
++
++static void xe_pmu_event_del(struct perf_event *event, int flags)
++{
++	xe_pmu_event_stop(event, PERF_EF_UPDATE);
++}
++
++PMU_FORMAT_ATTR(gt,	"config:60-63");
++PMU_FORMAT_ATTR(event,	"config:0-11");
++
++static struct attribute *pmu_format_attrs[] = {
++	&format_attr_event.attr,
++	&format_attr_gt.attr,
++	NULL,
++};
++
++static const struct attribute_group pmu_format_attr_group = {
++	.name = "format",
++	.attrs = pmu_format_attrs,
++};
++
++static struct attribute *pmu_event_attrs[] = {
++	/* No events yet */
++	NULL,
++};
++
++static const struct attribute_group pmu_events_attr_group = {
++	.name = "events",
++	.attrs = pmu_event_attrs,
++};
++
++/**
++ * xe_pmu_unregister() - Remove/cleanup PMU registration
++ * @arg: Ptr to pmu
++ */
++static void xe_pmu_unregister(void *arg)
++{
++	struct xe_pmu *pmu = arg;
++	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
++
++	if (!pmu->registered)
++		return;
++
++	pmu->registered = false;
++
++	perf_pmu_unregister(&pmu->base);
++	kfree(pmu->name);
++}
++
++/**
++ * xe_pmu_register() - Define basic PMU properties for Xe and add event callbacks.
++ * @pmu: the PMU object
++ *
++ * Returns 0 on success and an appropriate error code otherwise
++ */
++int xe_pmu_register(struct xe_pmu *pmu)
++{
++	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
++	static const struct attribute_group *attr_groups[] = {
++		&pmu_format_attr_group,
++		&pmu_events_attr_group,
++		NULL
++	};
++	int ret = -ENOMEM;
++	char *name;
++
++	if (IS_SRIOV_VF(xe))
++		return 0;
++
++	name = kasprintf(GFP_KERNEL, "xe_%s",
++			 dev_name(xe->drm.dev));
++	if (!name)
++		goto err;
++
++	/* tools/perf reserves colons as special. */
++	strreplace(name, ':', '_');
++
++	pmu->name		= name;
++	pmu->base.attr_groups	= attr_groups;
++	pmu->base.scope		= PERF_PMU_SCOPE_SYS_WIDE;
++	pmu->base.module	= THIS_MODULE;
++	pmu->base.task_ctx_nr	= perf_invalid_context;
++	pmu->base.event_init	= xe_pmu_event_init;
++	pmu->base.add		= xe_pmu_event_add;
++	pmu->base.del		= xe_pmu_event_del;
++	pmu->base.start		= xe_pmu_event_start;
++	pmu->base.stop		= xe_pmu_event_stop;
++	pmu->base.read		= xe_pmu_event_read;
++
++	ret = perf_pmu_register(&pmu->base, pmu->name, -1);
++	if (ret)
++		goto err_name;
++
++	pmu->registered = true;
++
++	return devm_add_action_or_reset(xe->drm.dev, xe_pmu_unregister, pmu);
++
++err_name:
++	kfree(name);
++err:
++	drm_err(&xe->drm, "Failed to register PMU (ret=%d)!\n", ret);
++
++	return ret;
++}
+diff --git a/drivers/gpu/drm/xe/xe_pmu.h b/drivers/gpu/drm/xe/xe_pmu.h
+new file mode 100644
+index 0000000000000..60c37126f87ec
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_pmu.h
+@@ -0,0 +1,18 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_PMU_H_
++#define _XE_PMU_H_
++
++#include "xe_pmu_types.h"
++
++#if IS_ENABLED(CONFIG_PERF_EVENTS)
++int xe_pmu_register(struct xe_pmu *pmu);
++#else
++static inline int xe_pmu_register(struct xe_pmu *pmu) { return 0; }
++#endif
++
++#endif
++
+diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h b/drivers/gpu/drm/xe/xe_pmu_types.h
+new file mode 100644
+index 0000000000000..0e8faae6bc1b3
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_pmu_types.h
+@@ -0,0 +1,35 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_PMU_TYPES_H_
++#define _XE_PMU_TYPES_H_
++
++#include <linux/perf_event.h>
++#include <linux/spinlock_types.h>
++
++#define XE_PMU_MAX_GT 2
++
++/**
++ * struct xe_pmu - PMU related data per Xe device
++ *
++ * Stores per device PMU info that includes event/perf attributes and sampling
++ * counters across all GTs for this device.
++ */
++struct xe_pmu {
++	/**
++	 * @base: PMU base.
++	 */
++	struct pmu base;
++	/**
++	 * @registered: PMU is registered and not in the unregistering process.
++	 */
++	bool registered;
++	/**
++	 * @name: Name as registered with perf core.
++	 */
++	const char *name;
++};
++
++#endif
 -- 
 2.48.0
 
