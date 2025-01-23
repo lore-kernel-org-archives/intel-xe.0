@@ -4,61 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11E68C02182
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 15:02:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDBF9C02182
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 15:03:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC60510E83D;
-	Thu, 23 Jan 2025 15:02:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9304C10E83D;
+	Thu, 23 Jan 2025 15:03:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PlfzLyBq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BzKCOplm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E50F10E83D
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 15:02:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A499510E845
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 15:03:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737644564; x=1769180564;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=JSa8IZanCFdpSB4VLX962V77071gUzd35x1P2zuPQTo=;
- b=PlfzLyBqJOo0akPFrKN0pahIngd3SC9p+LnGuKnUAUciorMXC1lAmkkW
- F9ALMCkYb1mKcsetXamdT5/evX9QQaQOMKoDjjMNxscKyijlUKgyQJ7/r
- 7mX6Ki21HL9eHI57dQSN/GF9QeYLfnP3sP63Ojpfr88sEn7h49Gjm6Q/9
- ExOFpVDPWQ7Qhlj9fI+mPoBge9aLyknKCP2W1c1FCodAAISwUItXKvTtI
- PWNlqje42SCiduRiRmbrq10DoRQVgNvABRFJHMO91h0tdxo/u1nOidXIg
- Lkw+jL793R9FE6GDm8kdxCONHgdUprSBdclPuKSZAEp1WdcuK/6iAs3ym g==;
-X-CSE-ConnectionGUID: GAIxalRiS6md7xpbaFykNQ==
-X-CSE-MsgGUID: OVV3faRTRh6dA9KSDVbYqQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="37840562"
-X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="37840562"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2025 07:02:44 -0800
-X-CSE-ConnectionGUID: zhVUO0u8Sympm7QGx23EMQ==
-X-CSE-MsgGUID: T63pRoITRCqtju/QA5XmrA==
+ t=1737644597; x=1769180597;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=sq6BfLp6la96UD8EbLBhFMahpmkUP+LitIsixg4S8Ro=;
+ b=BzKCOplmOpbSc3xioZcAuk4r6bZCYLZ+Iuxwb/9Q931XPQdRh2R4KAub
+ D31hBDtKwAh0o928l61S1lFQZBPCz003mBLyrXWH68Cvrr25qXQu48qaY
+ HO++IK9OK82Mx1CdGBGB0ixsjFhOKl6yZskjefuB6P/Knj6R0Q7hNRvkD
+ XZ+GXuebMFBZwU5zS0gA9U57VOGhF0AZSJx2LOASuGXDpuPr4xzvOdOiL
+ R4ws1C2NieduJI6aD+LO4eBorbDHf+o8Cqplcazd4Icp3XPd1Mggl6hm+
+ IfvNJus6MFrYifIc4zWTIJFQu03O93qDps4KagJO245A01fO0lEbuWg2b w==;
+X-CSE-ConnectionGUID: gF1dXZtsQVu4d7vwMx3BAg==
+X-CSE-MsgGUID: qBqepP5pQMyFvyzpyjt3Cw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="41813731"
+X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="41813731"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2025 07:03:16 -0800
+X-CSE-ConnectionGUID: 96SMszuZQJeytiCnLAL9hQ==
+X-CSE-MsgGUID: C+uKpSBQSASoplWKaVCV7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="112481371"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.245.14])
- ([10.245.245.14])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2025 07:02:31 -0800
-Message-ID: <a8c7fb80-1d0d-4715-b74d-1f558cb18d3b@intel.com>
-Date: Thu, 23 Jan 2025 15:02:29 +0000
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="107592554"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Jan 2025 07:03:12 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Thu, 23 Jan 2025 07:03:11 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Thu, 23 Jan 2025 07:03:11 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.41) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Thu, 23 Jan 2025 07:03:11 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CIZIIUp0/XVQi179ZAMuGeecTG78yqHnLxMh/hA1e8QO7ceLpTQYJMjtGhmpdePKywO0Eyr5Fbl2wt14HWthmt6UDFcdTdu/J4DtKhGlRy63KP4LsPYxeFokK+ilFJySusJTovA9hjSYg1KGnn/D0cMi784J2QXa/qx2VKR3MMD7UZSKYS92knfUpMPLfC2SVVsUqXEhuFZ9plg/LaBH9VnQYzzviZ3qpVFCFiMvTUiCvTHjA+y8EnBtdYIDOgHw1aR0mMSV3krYUXUq/TIyWgstsMhysFWzgzv0suinwJQsDtGzHZusDmFxBuqQus1HCtfLHPpI0741ui+d8o/mxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jbm6Z3vcnXdhnMjlKXy7unC0JZz7edpvhNTxmV8PzR8=;
+ b=KWcOkPYzdD3+qMAr0j7C0+5vn5+j4I6syE4w9MfxmDlKviO85h+N0u2tyNKqM9KRs7vzV7Ltzh5LEMG9gUqokDlsgiRnXh0WpTfOeeJb7EhWnN496h5Kj6dGPGiadcDkB/UuxEyP8EI9/25Q8Ws7jvee53V28z4SQrDKwCxoVQZIY/asUYU1I7HosNWdimebAu2BrO40ZTSCvaNgTH73AXmDquH21962JVJwG6DWArGymbVi6DBCg96hy6KgXMKdsGeGOAwzlnOvEEbin0Lrww7H673NJzO0suX1Iy5JqWkj4S2DsMIz89kpTbNjla9HmAiC4ySc1LjGd44yaA1Xhg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
+ SA0PR11MB4703.namprd11.prod.outlook.com (2603:10b6:806:9f::18) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8377.17; Thu, 23 Jan 2025 15:02:55 +0000
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::d3ba:63fc:10be:dfca]) by DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::d3ba:63fc:10be:dfca%3]) with mapi id 15.20.8356.020; Thu, 23 Jan 2025
+ 15:02:55 +0000
+Message-ID: <b1fcdb65-c9b8-4dae-a54b-042742202ffe@intel.com>
+Date: Thu, 23 Jan 2025 20:32:39 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] drm/xe: use backup object for pinned save/restore
-To: "K V P, Satyanarayana" <satyanarayana.k.v.p@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Brost, Matthew" <matthew.brost@intel.com>
-References: <20241218121837.226393-9-matthew.auld@intel.com>
- <20241218121837.226393-10-matthew.auld@intel.com>
- <LV3PR11MB86952D6AFA03C881D28B03F5F9E02@LV3PR11MB8695.namprd11.prod.outlook.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <LV3PR11MB86952D6AFA03C881D28B03F5F9E02@LV3PR11MB8695.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v15 4/6] drm/xe/pmu: Add attribute skeleton
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Vinay Belgaumkar
+ <vinay.belgaumkar@intel.com>, Peter Zijlstra <peterz@infradead.org>,
+ <linux-perf-users@vger.kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20250123041923.1892837-1-lucas.demarchi@intel.com>
+ <20250123041923.1892837-5-lucas.demarchi@intel.com>
+ <c0f2047a-9c6e-4a31-a8f8-0f287c09e242@intel.com>
+ <xmu2uobe7p76cqpbyzyx7psfzm4aueta5egslo7ru3vgo3gqvb@7wwv5aym65hw>
+Content-Language: en-US
+From: Riana Tauro <riana.tauro@intel.com>
+In-Reply-To: <xmu2uobe7p76cqpbyzyx7psfzm4aueta5egslo7ru3vgo3gqvb@7wwv5aym65hw>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN2PR01CA0168.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:26::23) To DS0PR11MB7958.namprd11.prod.outlook.com
+ (2603:10b6:8:f9::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|SA0PR11MB4703:EE_
+X-MS-Office365-Filtering-Correlation-Id: ba62175c-6082-4c99-e983-08dd3bbf040c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?RzJ0YUVwU0hDbTh1VXJKTzdGakpUTUR2T0NUY2xIOWtDZnI2NTF1Qk40M00x?=
+ =?utf-8?B?OUx2ODFkQ0k2VndFZmtlbVdCeUxMeXVLeE9sRkY0dm9UNnZPa3EyMWkybkxy?=
+ =?utf-8?B?MjVIRlFTNTY4ajl1cGQ1dyttd1plUlNQLytqenFOcWZGSml1ZlB3N2tKMitR?=
+ =?utf-8?B?bHVvU2NaMjhpYU42Q2FSYk9qUjJZUFdQbnVjR29Wd3l2SE1sT3FNMUdLaXlS?=
+ =?utf-8?B?d3dXTHZVZGx1NHZGTmtXRzVaZUJFcDR4cS9HSnl3dXptcjdBaXB6dkNFSExr?=
+ =?utf-8?B?QjVQdkxvc1ZXY2xsamJXMmtha016YnBQbXZQWkgvR09qS0FUaFoxNDhqaXo1?=
+ =?utf-8?B?R05qVkN3SjNkM0p6V0hYRlREQm5rK2VKTDhscFFQV3F6SzNMWDVwQXdtVFgz?=
+ =?utf-8?B?dHVoVXZlMjNuaXNOMWNTdll0UW1yOXlPT25KOFdvdFRuTFl1Y3hYcjJvOGFv?=
+ =?utf-8?B?VnNtOGhuVnR6VzI5bnBKcmdHV2gwbWNSWC9BaVNyaVNURHFwbWZEeUoxdERa?=
+ =?utf-8?B?V2p5TlVTZ05OUUVGenBwZUxCVFNuQTBPcUlTcis2ZWpTNU5iZnRHUUNzdjhr?=
+ =?utf-8?B?VU9rL056UDZwNzdXUVJIcGFJRVVYdmlobWJHQ1E5Uk1uVVNVRFFJVnRtc0VE?=
+ =?utf-8?B?Q1pLS3VRVlpnSGx3VEN3RlNGaHNEOGtpQ3JtYjBLY2dGRjFGMitta2VNR0ha?=
+ =?utf-8?B?UHRJUzBWbS9tUklEMk93eUtTY0tUaU5ucnF0R1VHRUsvYS9IdnVjVGV1V3lj?=
+ =?utf-8?B?SGh5WHBOUjNoUkg3bzNBdmRDNU9BQ21YOG1DamRvV0VrdkZvVlN2eHJZUURl?=
+ =?utf-8?B?OVNMZVZURVFlem5lS0luQ25oNkVwRThLajJFdnN6dmQrTXo0ME52ajZuS3cv?=
+ =?utf-8?B?MkQzNDRvb09SYzRsVnVqd0R0RHEwK093SmZWZU9DV0JlMnA3NUJnbHd0aUZX?=
+ =?utf-8?B?ZWYwM0lSaFAvU3hYZHdoOXplYnB5R0lCVzgwd0lnendUaDFHYnE0Zis4TmVw?=
+ =?utf-8?B?MktNcW8ybFRJSDRJdmlXRFN3MWN1WGZ5cXFzVEhkczNsK0xqQUU0TFVFYTVX?=
+ =?utf-8?B?a0s3cFpVbUtEaU9ZTmhtUWFHeWNEaGxTQWtYeitXdWhHbXR1aFI3dGF1cnJi?=
+ =?utf-8?B?bHZDZFNvcjN1Yk5YQUlpWmpGQ2pqc3FIRkNaSUVSdXJMYWpKckxhQVNzZ01m?=
+ =?utf-8?B?YkR3RlN3L29PcW1jNXRpZW4wcHBuTVN1cFVIVHU4K3pPOVF0YkNjL0ZLUXRL?=
+ =?utf-8?B?SVFlcEw5cFRPeUF6WDBjQ2JFTHVyeUlYQ1d1RUUvTEFPdllFeXBtemg3R0Z2?=
+ =?utf-8?B?RkYxazV2eWNqRTRlZmJ5RkpKQTNvOG8wVGZiRmZrMXZqb1NYRGw1dGlqMEZP?=
+ =?utf-8?B?T0RXUllRYm1sN1ZBUURZTVJSa0JFT0p1dlplSmx3S3FQSHV6NjhpTm8xT1RF?=
+ =?utf-8?B?ekNoY1YweVdPRUVPOUNTVXNtNmQwTC8yNFNZZUFLdDM0U29iZlFQYVYrcm93?=
+ =?utf-8?B?TGFnbnBRbjZTZ25tRkxmaU4wb1VvNVJIWC9oeERCYk43TFlIeTc0ZEZEYzRZ?=
+ =?utf-8?B?R09rRU40TTFLZ1I0VlJ3NndEZmVMRytERzFtSkluS2MrYUpGRVY1Rkxwb3gv?=
+ =?utf-8?B?anVvbGlpdU5aeEVuR1VHM1FOMVR5aDd5dEh5c2lVZzVobzR3STZDbG9MTWJC?=
+ =?utf-8?B?SytBMENhZmZET3oyOWYxRGZQSjZvam42aTBEVjNxcEJDR1Y3bDl0eW93THlo?=
+ =?utf-8?B?aVdPRVVNdW5ncVFyUFNZZmJQYldwZHdmSDE5MWhXa2x0blJ6VXZDbm9iempD?=
+ =?utf-8?B?UU51TS8vNHNjSTlUSmVocWtROHMvbm51Rk1vYk4yWEdidkwzRGV6RmNPYjlx?=
+ =?utf-8?Q?ysRfxNM7Atz/X?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YVFhS3dyeHcyWStsb243bHBNL0pEZlN5cFZNV09VcHo2MGVUdC95d1RIREZj?=
+ =?utf-8?B?UTZFcWN3SVhQT2Rqdk5mSU04Z2ZDL21pcTIwSnNTemQ1RHhNUzYwQUZWS293?=
+ =?utf-8?B?cnFxb09ick9PQ3hxUW45SnpGMUIraDR0VlRHVWtROHhWVUEySzJvV1RCeVVU?=
+ =?utf-8?B?aUdIWWNJOTlFSDVobEtKd2JqRkRhemdDbERyZEtmcS96eXZXOUJXRXQzbUp3?=
+ =?utf-8?B?RldNNEtPSUxyRFF4M1FadHowNFVPdk05VDRkOVRxNVJWWXViN3RHNHpacFdi?=
+ =?utf-8?B?UTVBclArNVhXeFdJb2diRHkvMEFtYWhzWDkrQk9NWUxxcHVXU3Yzd3pURDds?=
+ =?utf-8?B?NTBMcDB5RXYxbkVZckswUlBlSFRIaGdQOWQ5dUdUUDRVdjUrdnhQeko5aGp1?=
+ =?utf-8?B?SjJLSWxNaTd5ZWNjSkh3Kzc4MXB1eUdYRzNSaEdhdkplZUlvMnhRQlVZaVFQ?=
+ =?utf-8?B?ZTFQUys3LzI2SExNRE5ZekpOY1NrWTA5WXY2TDg1RTdaaDgrTTNyTkVtYllW?=
+ =?utf-8?B?b3RYZ0plWkhHZXJhZ21JQi90R0FldWFRaDZnZXdpZ2NTbThkZWZFYzhoamFM?=
+ =?utf-8?B?YXRGY0dYeUsvaHpBZ2xSK1BycWE2Y205SmY0M3JTd05iQUs1NUZjRWNYM1Zx?=
+ =?utf-8?B?eENRbEpjWk5aNVkxQmhwUUs3dGthUWxLaEw3SUhianBGMVl4SmdwOEZvKysy?=
+ =?utf-8?B?eStLVnJqOXNyNVl1dEdUTWhJdmlWQUt1Q1BxSk5hWE82VWswMGprUHpRTWFT?=
+ =?utf-8?B?b1hoeEY0ODV1TGgwZFJOQWkxZWZjSXpBYU13NDRORFliNDFZQy9uYzZTaTlX?=
+ =?utf-8?B?NDNYTkdkL2pCRTBFM2tlR2d0cEp2OUkwRWdCcjJ6UXd5T080YzVETTd5QUVU?=
+ =?utf-8?B?dkJveFQ0TmZzSXZmL25yUVBneUJjeXZ3MlZvN0d1aUlMajRQT0ZadzNQaUJo?=
+ =?utf-8?B?NmUvMElIMWp6QXc0NGg5bjN6ODhrQlZ6Z0VnOUVJOGNiaTg2QlhHWFRKelVU?=
+ =?utf-8?B?U3BiYk1QazNsUlYxclZrcm14ajBMOTZHYzFlSFBLM3ZyaFJXakN2RUhmN1RG?=
+ =?utf-8?B?MVF5OE0wMUtyTUF6U1JNUmtseUFqUVUwOVMwMitXalNQazd6Q2d2elFyZkp4?=
+ =?utf-8?B?KzlWTzN1aUpTTk5xOG52YVJXc0poRDlFTk1Ram12MVh5cG14NHhZRTQxSHNY?=
+ =?utf-8?B?V0diTUNmSXR0UUl6UWJrLzJNcGVMWUYwSE1KNzFmWWU1VE5NRlBVc2I3UHlS?=
+ =?utf-8?B?YUNrNG9ibE5GS0xvSXpjY1ZZcFhleURJWTF0aDZ1dGVHaGZuMjljeDUxWWls?=
+ =?utf-8?B?R2tpMHIvcE5FYVdSa3NJQzJpaEJxYnh6ZEp4blo4TGttRFBDSVdBVTFrTGs5?=
+ =?utf-8?B?dzV2RlJMV2txa1VqSE1YOUg3Ymd6RkdHSFM1MllNUlVuYTNjZ1ZRQzNTL3V0?=
+ =?utf-8?B?ZHRGcENGRlF2VnNiemM5ZjIrbHJIUTdxbFhnYndDQnoxM21XSDRzK2pYelJX?=
+ =?utf-8?B?L1hwTmhtNm5CMmRMZ1FNTTM5TVh5UjFtdnh6cGx1a2JWaU1YVXl4WXIxTjFL?=
+ =?utf-8?B?RzgvTE95T1o3bGNrR3lML1hqdFNnR0JRZlQvRzJ6WWVTbnlidWkrUWZvY2R1?=
+ =?utf-8?B?MUZ2MWtQOG5uemZxR1gxMVdSaWM2RXVuOWhoMGNtZzhXbC95QmFWZlFzMWdn?=
+ =?utf-8?B?eHhRNEs1cUZsR0tEZGhMWjlJQWMvMmZ0UGk3ZWtXSnlsb3VQUGtuS0NJOFVa?=
+ =?utf-8?B?VnNHQ0U1OTJveXE3dnJXMjlOVnVxcmZkb05CdnlNM2p1R2FiVmNBSVkxNWJu?=
+ =?utf-8?B?RkRabS9ibnJVYVhlNkpSZkVsSEF1UHVCb09SaytHWkJXM1pLMmo5bHBuMjcy?=
+ =?utf-8?B?ZFM2aEFESUovMlhlbHhwN2NpMUJld3BvcHVyTHR2T24zZ1RFWEpWRU9XZzNy?=
+ =?utf-8?B?WmhLVlp3aHZqSk5BcVo2VHVXdkxpRDdBSUZMYjM3N21HODNTSWhqREtBSnMr?=
+ =?utf-8?B?b1RYNTNqRXNTcUVSZUNJeGxPOTR5Z0JoVyszUTBGZlo5S0ZxUjlvR0M0WFR2?=
+ =?utf-8?B?WXNKeDdmUXdEcWg2bGpURG9tZTg5M2RFaXFycldPbmpUM1ltVHpIYlhSd2lh?=
+ =?utf-8?Q?BZBU+szPjG1YnODoKlDaFKWHi?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ba62175c-6082-4c99-e983-08dd3bbf040c
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2025 15:02:55.2905 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: x6MJfr4rtANnjrpvTEu0YFu/9gZSVcariPtWSA0pYFHfU1fuWaEcOsY4B0h7ZM5Lj90KfPfatWcWbmeZuoz2TA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4703
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,503 +197,194 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 23/01/2025 07:39, K V P, Satyanarayana wrote:
->> -----Original Message-----
->> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
->> Matthew Auld
->> Sent: Wednesday, December 18, 2024 5:49 PM
->> To: intel-xe@lists.freedesktop.org
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>; Brost, Matthew
->> <matthew.brost@intel.com>
->> Subject: [PATCH v2 1/7] drm/xe: use backup object for pinned save/restore
->>
->> Currently we move pinned objects, relying on the fact that the lpfn/fpfn
->> will force the placement to occupy the same pages when restoring.
->> However this then limits all such pinned objects to be contig
->> underneath. In addition it is likely a little fragile moving pinned
->> objects in the first place. Rather than moving such objects rather copy
->> the page contents to a secondary system memory object, that way the VRAM
->> pages never move and remain pinned. This also opens the door for
->> eventually having non-contig pinned objects that can also be
->> saved/restored using blitter.
->>
->> v2:
->>   - Make sure to drop the fence ref.
->>   - Handle NULL bo->migrate.
->>
->> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1182
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_bo.c       | 293 +++++++++++++++----------------
->>   drivers/gpu/drm/xe/xe_bo_evict.c |   8 -
->>   drivers/gpu/drm/xe/xe_bo_types.h |   2 +
->>   3 files changed, 144 insertions(+), 159 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->> index e6c896ad5602..fa2d74a56283 100644
->> --- a/drivers/gpu/drm/xe/xe_bo.c
->> +++ b/drivers/gpu/drm/xe/xe_bo.c
->> @@ -780,79 +780,44 @@ static int xe_bo_move(struct ttm_buffer_object
->> *ttm_bo, bool evict,
->>   		xe_pm_runtime_get_noresume(xe);
->>   	}
->>
->> -	if (xe_bo_is_pinned(bo) && !xe_bo_is_user(bo)) {
->> -		/*
->> -		 * Kernel memory that is pinned should only be moved on
->> suspend
->> -		 * / resume, some of the pinned memory is required for the
->> -		 * device to resume / use the GPU to move other evicted
->> memory
->> -		 * (user memory) around. This likely could be optimized a bit
->> -		 * futher where we find the minimum set of pinned memory
->> -		 * required for resume but for simplity doing a memcpy for all
->> -		 * pinned memory.
->> -		 */
->> -		ret = xe_bo_vmap(bo);
->> -		if (!ret) {
->> -			ret = ttm_bo_move_memcpy(ttm_bo, ctx,
->> new_mem);
->> -
->> -			/* Create a new VMAP once kernel BO back in VRAM
->> */
->> -			if (!ret && resource_is_vram(new_mem)) {
->> -				struct xe_mem_region *vram =
->> res_to_mem_region(new_mem);
->> -				void __iomem *new_addr = vram->mapping +
->> -					(new_mem->start << PAGE_SHIFT);
->> -
->> -				if (XE_WARN_ON(new_mem->start ==
->> XE_BO_INVALID_OFFSET)) {
->> -					ret = -EINVAL;
->> -					xe_pm_runtime_put(xe);
->> -					goto out;
->> -				}
->> -
->> -				xe_assert(xe, new_mem->start ==
->> -					  bo->placements->fpfn);
->> -
->> -				iosys_map_set_vaddr_iomem(&bo->vmap,
->> new_addr);
->> -			}
->> -		}
->> -	} else {
->> -		if (move_lacks_source) {
->> -			u32 flags = 0;
->> +	if (move_lacks_source) {
->> +		u32 flags = 0;
->>
->> -			if (mem_type_is_vram(new_mem->mem_type))
->> -				flags |= XE_MIGRATE_CLEAR_FLAG_FULL;
->> -			else if (handle_system_ccs)
->> -				flags |=
->> XE_MIGRATE_CLEAR_FLAG_CCS_DATA;
->> +		if (mem_type_is_vram(new_mem->mem_type))
->> +			flags |= XE_MIGRATE_CLEAR_FLAG_FULL;
->> +		else if (handle_system_ccs)
->> +			flags |= XE_MIGRATE_CLEAR_FLAG_CCS_DATA;
->>
->> -			fence = xe_migrate_clear(migrate, bo, new_mem,
->> flags);
->> -		}
->> -		else
->> -			fence = xe_migrate_copy(migrate, bo, bo, old_mem,
->> -						new_mem,
->> handle_system_ccs);
->> -		if (IS_ERR(fence)) {
->> -			ret = PTR_ERR(fence);
->> -			xe_pm_runtime_put(xe);
->> -			goto out;
->> -		}
->> -		if (!move_lacks_source) {
->> -			ret = ttm_bo_move_accel_cleanup(ttm_bo, fence,
->> evict,
->> -							true, new_mem);
->> -			if (ret) {
->> -				dma_fence_wait(fence, false);
->> -				ttm_bo_move_null(ttm_bo, new_mem);
->> -				ret = 0;
->> -			}
->> -		} else {
->> -			/*
->> -			 * ttm_bo_move_accel_cleanup() may blow up if
->> -			 * bo->resource == NULL, so just attach the
->> -			 * fence and set the new resource.
->> -			 */
->> -			dma_resv_add_fence(ttm_bo->base.resv, fence,
->> -					   DMA_RESV_USAGE_KERNEL);
->> +		fence = xe_migrate_clear(migrate, bo, new_mem, flags);
->> +	} else {
->> +		fence = xe_migrate_copy(migrate, bo, bo, old_mem,
->> new_mem,
->> +					handle_system_ccs);
->> +	}
->> +	if (IS_ERR(fence)) {
->> +		ret = PTR_ERR(fence);
->> +		xe_pm_runtime_put(xe);
->> +		goto out;
->> +	}
->> +	if (!move_lacks_source) {
->> +		ret = ttm_bo_move_accel_cleanup(ttm_bo, fence, evict, true,
->> +						new_mem);
->> +		if (ret) {
->> +			dma_fence_wait(fence, false);
->>   			ttm_bo_move_null(ttm_bo, new_mem);
->> +			ret = 0;
->>   		}
->> -
->> -		dma_fence_put(fence);
->> +	} else {
->> +		/*
->> +		 * ttm_bo_move_accel_cleanup() may blow up if
->> +		 * bo->resource == NULL, so just attach the
->> +		 * fence and set the new resource.
->> +		 */
->> +		dma_resv_add_fence(ttm_bo->base.resv, fence,
->> +				   DMA_RESV_USAGE_KERNEL);
->> +		ttm_bo_move_null(ttm_bo, new_mem);
->>   	}
->>
->> +	dma_fence_put(fence);
->>   	xe_pm_runtime_put(xe);
->>
->>   out:
->> @@ -884,59 +849,79 @@ static int xe_bo_move(struct ttm_buffer_object
->> *ttm_bo, bool evict,
->>    */
->>   int xe_bo_evict_pinned(struct xe_bo *bo)
->>   {
->> -	struct ttm_place place = {
->> -		.mem_type = XE_PL_TT,
->> -	};
->> -	struct ttm_placement placement = {
->> -		.placement = &place,
->> -		.num_placement = 1,
->> -	};
->> -	struct ttm_operation_ctx ctx = {
->> -		.interruptible = false,
->> -		.gfp_retry_mayfail = true,
->> -	};
->> -	struct ttm_resource *new_mem;
->> -	int ret;
->> +	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
->> +	struct xe_bo *backup;
->> +	bool unmap = false;
->> +	int ret = 0;
->>
->> -	xe_bo_assert_held(bo);
->> +	xe_bo_lock(bo, false);
->>
->> -	if (WARN_ON(!bo->ttm.resource))
->> -		return -EINVAL;
->> +	if (WARN_ON(!bo->ttm.resource)) {
->> +		ret = -EINVAL;
->> +		goto out_unlock_bo;
->> +	}
->>
->> -	if (WARN_ON(!xe_bo_is_pinned(bo)))
->> -		return -EINVAL;
->> +	if (WARN_ON(!xe_bo_is_pinned(bo))) {
->> +		ret = -EINVAL;
->> +		goto out_unlock_bo;
->> +	}
->>
->>   	if (!xe_bo_is_vram(bo))
->> -		return 0;
->> +		goto out_unlock_bo;
->> +
->> +	backup = xe_bo_create_locked(xe, NULL, NULL, bo->size,
->> ttm_bo_type_kernel,
->> +				     XE_BO_FLAG_SYSTEM |
->> XE_BO_FLAG_NEEDS_CPU_ACCESS |
->> +				     XE_BO_FLAG_PINNED);
->> +	if (IS_ERR(backup)) {
->> +		ret = PTR_ERR(backup);
->> +		goto out_unlock_bo;
->> +	}
->>
->> -	ret = ttm_bo_mem_space(&bo->ttm, &placement, &new_mem,
->> &ctx);
->> -	if (ret)
->> -		return ret;
->> +	if (!xe_bo_is_user(bo)) {
->> +		ret = xe_bo_vmap(backup);
->> +		if (ret)
->> +			goto out_backup;
->>
->> -	if (!bo->ttm.ttm) {
->> -		bo->ttm.ttm = xe_ttm_tt_create(&bo->ttm, 0);
->> -		if (!bo->ttm.ttm) {
->> -			ret = -ENOMEM;
->> -			goto err_res_free;
->> +		if (iosys_map_is_null(&bo->vmap)) {
->> +			ret = xe_bo_vmap(bo);
->> +			if (ret)
->> +				goto out_backup;
->> +			unmap = true;
->>   		}
->> -	}
->>
->> -	ret = ttm_bo_populate(&bo->ttm, &ctx);
->> -	if (ret)
->> -		goto err_res_free;
->> +		xe_map_memcpy_from(xe, backup->vmap.vaddr, &bo-
->>> vmap, 0,
->> +				   bo->size);
->> +	} else {
->> +		struct xe_migrate *migrate;
->> +		struct dma_fence *fence;
->>
->> -	ret = dma_resv_reserve_fences(bo->ttm.base.resv, 1);
->> -	if (ret)
->> -		goto err_res_free;
->> +		if (bo->tile)
->> +			migrate = bo->tile->migrate;
->> +		else
->> +			migrate = mem_type_to_migrate(xe, bo-
->>> ttm.resource->mem_type);
->>
->> -	ret = xe_bo_move(&bo->ttm, false, &ctx, new_mem, NULL);
->> -	if (ret)
->> -		goto err_res_free;
->> +		fence = xe_migrate_copy(migrate, bo, backup,
->> +					bo->ttm.resource, backup-
->>> ttm.resource,
->> +					false);
->> +		if (IS_ERR(fence)) {
->> +			ret = PTR_ERR(fence);
->> +			goto out_backup;
->> +		}
->>
->> -	return 0;
->> +		dma_fence_put(fence);
->> +	}
->>
->> -err_res_free:
->> -	ttm_resource_free(&bo->ttm, &new_mem);
->> +	bo->backup_obj = backup;
->> +
->> +out_backup:
->> +	xe_bo_vunmap(backup);
->> +	xe_bo_unlock(backup);
->> +	if (ret)
->> +		xe_bo_put(backup);
->> +out_unlock_bo:
->> +	if (unmap)
->> +		xe_bo_vunmap(bo);
->> +	xe_bo_unlock(bo);
->>   	return ret;
->>   }
->>
->> @@ -957,47 +942,69 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
->>   		.interruptible = false,
->>   		.gfp_retry_mayfail = false,
->>   	};
->> -	struct ttm_resource *new_mem;
->> -	struct ttm_place *place = &bo->placements[0];
->> +	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
->> +	struct xe_bo *backup = bo->backup_obj;
->> +	bool unmap = false;
->>   	int ret;
->>
->> -	xe_bo_assert_held(bo);
->> +	if (!backup)
->> +		return 0;
->>
->> -	if (WARN_ON(!bo->ttm.resource))
->> -		return -EINVAL;
->> +	xe_bo_lock(backup, false);
->>
->> -	if (WARN_ON(!xe_bo_is_pinned(bo)))
->> -		return -EINVAL;
->> +	ret = ttm_bo_validate(&backup->ttm, &backup->placement, &ctx);
->> +	if (ret)
->> +		goto out_backup;
->>
->> -	if (WARN_ON(xe_bo_is_vram(bo)))
->> -		return -EINVAL;
->> +	if (WARN_ON(!dma_resv_trylock(bo->ttm.base.resv))) {
->> +		ret = -EBUSY;
->> +		goto out_backup;
->> +	}
->>
->> -	if (WARN_ON(!bo->ttm.ttm && !xe_bo_is_stolen(bo)))
->> -		return -EINVAL;
->> +	if (!xe_bo_is_user(bo)) {
->> +		ret = xe_bo_vmap(backup);
->> +		if (ret)
->> +			goto out_unlock_bo;
->>
->> -	if (!mem_type_is_vram(place->mem_type))
->> -		return 0;
->> +		if (iosys_map_is_null(&bo->vmap)) {
->> +			ret = xe_bo_vmap(bo);
->> +			if (ret)
->> +				goto out_unlock_bo;
->> +			unmap = true;
->> +		}
->>
->> -	ret = ttm_bo_mem_space(&bo->ttm, &bo->placement, &new_mem,
->> &ctx);
->> -	if (ret)
->> -		return ret;
->> +		xe_map_memcpy_to(xe, &bo->vmap, 0, backup-
->>> vmap.vaddr,
->> +				 bo->size);
->> +	} else {
->> +		struct xe_migrate *migrate;
->> +		struct dma_fence *fence;
->>
->> -	ret = ttm_bo_populate(&bo->ttm, &ctx);
->> -	if (ret)
->> -		goto err_res_free;
->> +		if (bo->tile)
->> +			migrate = bo->tile->migrate;
->> +		else
->> +			migrate = mem_type_to_migrate(xe, bo-
->>> ttm.resource->mem_type);
->>
->> -	ret = dma_resv_reserve_fences(bo->ttm.base.resv, 1);
->> -	if (ret)
->> -		goto err_res_free;
->> +		fence = xe_migrate_copy(migrate, backup, bo,
->> +					backup->ttm.resource, bo-
->>> ttm.resource,
->> +					false);
->> +		if (IS_ERR(fence)) {
->> +			ret = PTR_ERR(fence);
->> +			goto out_unlock_bo;
->> +		}
->>
->> -	ret = xe_bo_move(&bo->ttm, false, &ctx, new_mem, NULL);
->> -	if (ret)
->> -		goto err_res_free;
->> +		dma_fence_put(fence);
->> +	}
->>
->> -	return 0;
->> +	bo->backup_obj = NULL;
->>
->> -err_res_free:
->> -	ttm_resource_free(&bo->ttm, &new_mem);
->> +out_unlock_bo:
->> +	xe_bo_unlock(bo);
->> +out_backup:
->> +	if (unmap)
->> +		xe_bo_vunmap(backup);
->> +	xe_bo_unlock(backup);
->> +	if (!bo->backup_obj)
->> +		xe_bo_put(backup);
->>   	return ret;
->>   }
->>
->> @@ -1921,22 +1928,6 @@ int xe_bo_pin(struct xe_bo *bo)
->>   	if (err)
->>   		return err;
->>
->> -	/*
->> -	 * For pinned objects in on DGFX, which are also in vram, we expect
->> -	 * these to be in contiguous VRAM memory. Required eviction /
->> restore
->> -	 * during suspend / resume (force restore to same physical address).
->> -	 */
->> -	if (IS_DGFX(xe) && !(IS_ENABLED(CONFIG_DRM_XE_DEBUG) &&
->> -	    bo->flags & XE_BO_FLAG_INTERNAL_TEST)) {
->> -		if (mem_type_is_vram(place->mem_type)) {
->> -			xe_assert(xe, place->flags &
->> TTM_PL_FLAG_CONTIGUOUS);
->> -
->> -			place->fpfn = (xe_bo_addr(bo, 0, PAGE_SIZE) -
->> -				       vram_region_gpu_offset(bo-
->>> ttm.resource)) >> PAGE_SHIFT;
->> -			place->lpfn = place->fpfn + (bo->size >> PAGE_SHIFT);
->> -		}
->> -	}
->> -
->>   	if (mem_type_is_vram(place->mem_type) || bo->flags &
->> XE_BO_FLAG_GGTT) {
->>   		spin_lock(&xe->pinned.lock);
->>   		list_add_tail(&bo->pinned_link, &xe-
->>> pinned.kernel_bo_present);
->> diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c
->> b/drivers/gpu/drm/xe/xe_bo_evict.c
->> index 6a40eedd9db1..96764d8169f4 100644
->> --- a/drivers/gpu/drm/xe/xe_bo_evict.c
->> +++ b/drivers/gpu/drm/xe/xe_bo_evict.c
->> @@ -69,9 +69,7 @@ int xe_bo_evict_all(struct xe_device *xe)
->>   		list_move_tail(&bo->pinned_link, &still_in_list);
->>   		spin_unlock(&xe->pinned.lock);
->>
->> -		xe_bo_lock(bo, false);
->>   		ret = xe_bo_evict_pinned(bo);
->> -		xe_bo_unlock(bo);
->>   		xe_bo_put(bo);
-> 
-> Any specific reason for removing locks in this function?
 
-Just that now we need two locks, one for the bo here and another for the 
-backup object, and they both need to be held at the same time when 
-performing the copy. If you do lock(bo) -> lock(backup) you will likely 
-get some kind of lockdep splat, if you don't also use the proper locking 
-ctx and have the proper backoff and reacquire dance with dma-resv. But 
-since bo here is pinned nothing should be able to see it outside of the 
-suspend-resume code here so trylock should be enough. On the other hand 
-the backup object could be contented so proper lock is needed there. So 
-here I am changing this to lock(backup) -> trylock(bo), and it felt 
-reasonable to hide that detail in evict_pinned.
 
+On 1/23/2025 8:18 PM, Lucas De Marchi wrote:
+> On Thu, Jan 23, 2025 at 07:24:22PM +0530, Riana Tauro wrote:
+>> Hi Lucas
+>>
+>> On 1/23/2025 9:49 AM, Lucas De Marchi wrote:
+>>> Add the generic support for defining new attributes. This uses
+>>> gt-c6-residency as first attribute to bootstrap it, but its
+>>> implementation will be added by a follow up commit: until proper support
+>>> is added, it will always be invisible in sysfs since the corresponding
+>>> bit is not set in the supported_events bitmap.
+>>>
+>>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/xe/xe_pmu.c       | 60 ++++++++++++++++++++++++++++---
+>>>  drivers/gpu/drm/xe/xe_pmu_types.h |  4 +++
+>>>  2 files changed, 60 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+>>> index 33598272db6aa..5e5a9fcf30ace 100644
+>>> --- a/drivers/gpu/drm/xe/xe_pmu.c
+>>> +++ b/drivers/gpu/drm/xe/xe_pmu.c
+>>> @@ -46,6 +46,8 @@ static unsigned int config_to_gt_id(u64 config)
+>>>      return FIELD_GET(XE_PMU_EVENT_GT_MASK, config);
+>>>  }
+>>> +#define XE_PMU_EVENT_GT_C6_RESIDENCY    0x01
+>>> +
+>>>  static struct xe_gt *event_to_gt(struct perf_event *event)
+>>>  {
+>>>      struct xe_device *xe = container_of(event->pmu, typeof(*xe), 
+>>> pmu.base);
+>>> @@ -60,7 +62,8 @@ static bool event_supported(struct xe_pmu *pmu, 
+>>> unsigned int gt,
+>>>      if (gt >= XE_MAX_GT_PER_TILE)
+>>>          return false;
+>>> -    return false;
+>>> +    return id < sizeof(pmu->supported_events) * BITS_PER_BYTE &&
+>>> +        pmu->supported_events & BIT_ULL(id);
+>>>  }
+>>>  static void xe_pmu_event_destroy(struct perf_event *event)
+>>> @@ -210,16 +213,62 @@ static const struct attribute_group 
+>>> pmu_format_attr_group = {
+>>>      .attrs = pmu_format_attrs,
+>>>  };
+>>> -static struct attribute *pmu_event_attrs[] = {
+>>> -    /* No events yet */
+>>> +static ssize_t event_attr_show(struct device *dev,
+>>> +                   struct device_attribute *attr, char *buf)
+>>> +{
+>>> +    struct perf_pmu_events_attr *pmu_attr =
+>>> +        container_of(attr, struct perf_pmu_events_attr, attr);
+>>> +
+>>> +    return sprintf(buf, "event=%#04llx\n", pmu_attr->id);
+>>> +}
+>>> +
+>>> +#define XE_EVENT_ATTR(name_, v_, id_, unit_)                \
+>>> +    PMU_EVENT_ATTR(name_, pmu_event_ ## v_, id_, event_attr_show)    \
+>>> +    PMU_EVENT_ATTR_STRING(name_.unit, pmu_event_unit_ ## v_, 
+>>> unit_)    \
+>>> +    static struct attribute *pmu_attr_ ##v_[] = {            \
+>>> +        &pmu_event_ ##v_.attr.attr,                \
+>>> +        &pmu_event_unit_ ##v_.attr.attr,            \
+>>> +        NULL                            \
+>>> +    };                                \
+>>> +    static umode_t is_visible_##v_(struct kobject *kobj,        \
+>>> +                       struct attribute *attr, int idx) \
+>>> +    {                                \
+>>> +        struct perf_pmu_events_attr *pmu_attr;            \
+>>> +        struct xe_pmu *pmu;                    \
+>>> +                                    \
+>>> +        pmu_attr = container_of(attr, typeof(*pmu_attr), attr.attr); \
+>>> +        pmu = container_of(dev_get_drvdata(kobj_to_dev(kobj)),    \
+>>> +                   typeof(*pmu), base);            \
+>>> +                                    \
+>>> +        return event_supported(pmu, 0, id_) ? attr->mode : 0;    \
+>>> +    }                                \
+>>> +    static const struct attribute_group pmu_group_ ##v_ = {        \
+>>> +        .name = "events",                    \
+>>> +        .attrs = pmu_attr_ ## v_,                \
+>>> +        .is_visible = is_visible_ ## v_,            \
+>>> +    }
+>>> +
+>> There will be some events that do not have the unit. The previous rev 
+>> was simpler to handle such events
+>>
+>> Can the previous revision be retained?
 > 
->>   		if (ret) {
->>   			spin_lock(&xe->pinned.lock);
->> @@ -103,9 +101,7 @@ int xe_bo_evict_all(struct xe_device *xe)
->>   		list_move_tail(&bo->pinned_link, &xe->pinned.evicted);
->>   		spin_unlock(&xe->pinned.lock);
->>
->> -		xe_bo_lock(bo, false);
->>   		ret = xe_bo_evict_pinned(bo);
->> -		xe_bo_unlock(bo);
->>   		xe_bo_put(bo);
->>   		if (ret)
->>   			return ret;
->> @@ -143,9 +139,7 @@ int xe_bo_restore_kernel(struct xe_device *xe)
->>   		list_move_tail(&bo->pinned_link, &xe-
->>> pinned.kernel_bo_present);
->>   		spin_unlock(&xe->pinned.lock);
->>
->> -		xe_bo_lock(bo, false);
->>   		ret = xe_bo_restore_pinned(bo);
->> -		xe_bo_unlock(bo);
->>   		if (ret) {
->>   			xe_bo_put(bo);
->>   			return ret;
->> @@ -213,9 +207,7 @@ int xe_bo_restore_user(struct xe_device *xe)
->>   		xe_bo_get(bo);
->>   		spin_unlock(&xe->pinned.lock);
->>
->> -		xe_bo_lock(bo, false);
->>   		ret = xe_bo_restore_pinned(bo);
->> -		xe_bo_unlock(bo);
->>   		xe_bo_put(bo);
->>   		if (ret) {
->>   			spin_lock(&xe->pinned.lock);
->> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h
->> b/drivers/gpu/drm/xe/xe_bo_types.h
->> index 46dc9e4e3e46..a1f1f637aa87 100644
->> --- a/drivers/gpu/drm/xe/xe_bo_types.h
->> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
->> @@ -27,6 +27,8 @@ struct xe_vm;
->>   struct xe_bo {
->>   	/** @ttm: TTM base buffer object */
->>   	struct ttm_buffer_object ttm;
->> +	/** @backup_obj: The backup object when pinned and suspended
->> (vram only) */
->> +	struct xe_bo *backup_obj;
->>   	/** @size: Size of this buffer object */
->>   	size_t size;
->>   	/** @flags: flags for this buffer object */
->> --
->> 2.47.1
+> that would depend on merging the first patch in perf/core or bring that
+> define here.
 > 
+> I think we can live with the similar approach of other drivers above and
+> in future try to add PMU_EVENT_ATTR_ID_STRING. However I'd like to have pmu
+> merged in xe without depending on that.
+Sorry, my bad. I missed that the core patch was removed in this series
+  And if we simply add the macro
+> in xe, it means it will probably stay forever with nobody cleaning it up
+> later.
+> 
+> Also, what event are you talking about? 
+The upcoming per-engine-class-activity counters. They are similar to the 
+per-client and have no units.
+There are 2 or 3 alternatives:
+> 
+> 1) add a unit
+> 
+> 2) add an indirection to the macro above to allow defining an event
+> without unit. That's doable by having 3 macros: __XE_EVENT_ATTR,
+> XE_EVENT_ATTR, and XE_EVENT_ATTR_WITH_UNIT. Then you'd have:
+> 
+> XE_EVENT_ATTR_WITH_UNIT(foo, ...)
+> XE_EVENT_ATTR(bar, ...)
+> 
+> 
+> 3) Ungroup the macro so the group is separate, then we'd do:
+> 
+>      XE_EVENT_ATTR(foo)
+>      XE_EVENT_ATTR_UNIT(foo, "ms")
+>      XE_EVENT_GROUP(foo, &pmu_event_foo.attr.attr,
+>                 &pmu_event_unit_foo.attr.attr)
+> 
+>      XE_EVENT_ATTR(bar)
+>      XE_EVENT_GROUP(bar, &pmu_event_bar.attr.attr)
+> 
+Yeah will have to seperate it out.
+Sorry for the confusion.
+
+Thanks
+Riana
+> Lucas De Marchi
+> 
+>>
+>> Thanks
+>> Riana
+>>> +XE_EVENT_ATTR(gt-c6-residency, gt_c6_residency, 
+>>> XE_PMU_EVENT_GT_C6_RESIDENCY, "ms");
+>>> +
+>>> +static struct attribute *pmu_empty_event_attrs[] = {
+>>> +    /* Empty - all events are added as groups with .attr_update() */
+>>>      NULL,
+>>>  };
+>>>  static const struct attribute_group pmu_events_attr_group = {
+>>>      .name = "events",
+>>> -    .attrs = pmu_event_attrs,
+>>> +    .attrs = pmu_empty_event_attrs,
+>>>  };
+>>> +static const struct attribute_group *pmu_events_attr_update[] = {
+>>> +    &pmu_group_gt_c6_residency,
+>>> +    NULL,
+>>> +};
+>>> +
+>>> +static void set_supported_events(struct xe_pmu *pmu)
+>>> +{
+>>> +}
+>>> +
+>>>  /**
+>>>   * xe_pmu_unregister() - Remove/cleanup PMU registration
+>>>   * @arg: Ptr to pmu
+>>> @@ -270,6 +319,7 @@ int xe_pmu_register(struct xe_pmu *pmu)
+>>>      pmu->name        = name;
+>>>      pmu->base.attr_groups    = attr_groups;
+>>> +    pmu->base.attr_update    = pmu_events_attr_update;
+>>>      pmu->base.scope        = PERF_PMU_SCOPE_SYS_WIDE;
+>>>      pmu->base.module    = THIS_MODULE;
+>>>      pmu->base.task_ctx_nr    = perf_invalid_context;
+>>> @@ -280,6 +330,8 @@ int xe_pmu_register(struct xe_pmu *pmu)
+>>>      pmu->base.stop        = xe_pmu_event_stop;
+>>>      pmu->base.read        = xe_pmu_event_read;
+>>> +    set_supported_events(pmu);
+>>> +
+>>>      ret = perf_pmu_register(&pmu->base, pmu->name, -1);
+>>>      if (ret)
+>>>          goto err_name;
+>>> diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h b/drivers/gpu/drm/xe/ 
+>>> xe_pmu_types.h
+>>> index 0e8faae6bc1b3..f5ba4d56622cb 100644
+>>> --- a/drivers/gpu/drm/xe/xe_pmu_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_pmu_types.h
+>>> @@ -30,6 +30,10 @@ struct xe_pmu {
+>>>       * @name: Name as registered with perf core.
+>>>       */
+>>>      const char *name;
+>>> +    /**
+>>> +     * @supported_events: Bitmap of supported events, indexed by 
+>>> event id
+>>> +     */
+>>> +    u64 supported_events;
+>>>  };
+>>>  #endif
+>>
 
