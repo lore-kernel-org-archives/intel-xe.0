@@ -4,185 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C960C02182
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 21:16:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09338C02182
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 21:29:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3BD210E8A4;
-	Thu, 23 Jan 2025 21:16:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A438810E0DB;
+	Thu, 23 Jan 2025 21:29:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TnohnRl5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="foqQ7uPm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0275410E8A4
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 21:16:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93A8710E0DB
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 21:29:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737667017; x=1769203017;
- h=message-id:date:subject:from:to:cc:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=aa4jW4HwDtw4iwEKRmT6T+j5wyWms4/khxXNWEGMM8c=;
- b=TnohnRl5jp+d/C+GRmRMfEeMiZu3PB+6HSebrw6lrlmi8BcqiejLlceV
- KkbWvpOuNFgyEZQfWaGFvy3Gv3l3JH3Lz6299FgPDg0vL+I1cmI2cJp4S
- mmOp3nBQeu2oKluOcSBeVs7emm5pXh2+E/ZPLg4BbDgdCDZpj/koqYcBf
- CELxiT4b7S5oX8XFs/Nyjt7ngGFVeMXpD78PV3PGte44u5/Q5yLiCJ/LD
- S1/L6kd/bXxLzq+m8U22hO8N3VMiTizTkJlXUSV8ldtTfRWtKMXeo8aFE
- GktCCGplKfZBHw74nFc0CysydrKPyIJ/pA11cGjq+4y4FLdM6zCZFHPdc Q==;
-X-CSE-ConnectionGUID: aKyrOi53S9qSXKdivzNEpw==
-X-CSE-MsgGUID: PJNf9tAFRUy79aEgsj8TVg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="48856564"
-X-IronPort-AV: E=Sophos;i="6.13,229,1732608000"; d="scan'208";a="48856564"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2025 13:16:56 -0800
-X-CSE-ConnectionGUID: i6eriy98RWa+PMgwxr0xsQ==
-X-CSE-MsgGUID: 62lj+AJJQfOroMYJe1VTKg==
+ t=1737667765; x=1769203765;
+ h=date:from:to:cc:subject:message-id;
+ bh=kUweZaR0OAAi41yoBZ8pVjRTsXADP/hzMvRgMKJW8No=;
+ b=foqQ7uPmk1MkDXscuKx3klbUUPPg3QFPjPLsl1yoItlhaDbSCj3bFY9j
+ knnG3Yqd9eSTShAedUcNzz4OlBiusC3Irp1lPvLl2qkFr4dsyRcHAjs1r
+ Gsx3AtjbSYfwlllR9x8QXkGpZuOVL3Dj3tsnPOqWrbVNgXPTAsL57G5m0
+ UHohVLeOQckexg5NT6aSmx5HTdi+RR2hyxPsoL8goLULGVUAC4ZKPdTXt
+ 13eHhRoZB4GeH11tLg8ZO6pZ3RTJQG32ImQBodvoAPev9ul8HtmIb5w24
+ ENeCBx8uAwqYtpGodmxdQ/AGdD6aOGhXGGaZWcMLqzBWUhl/YlSmRKNnW Q==;
+X-CSE-ConnectionGUID: VnKt24RUTUS34kWYknYKsA==
+X-CSE-MsgGUID: XoNQYFTiTRC7Q/HPGGjh6g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="38108444"
+X-IronPort-AV: E=Sophos;i="6.13,229,1732608000"; d="scan'208";a="38108444"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2025 13:29:25 -0800
+X-CSE-ConnectionGUID: GDjousWoRieRV+OE3jlv+w==
+X-CSE-MsgGUID: JnYrwEpZRdKn83dZ51uJiQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,229,1732608000"; d="scan'208";a="108123417"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Jan 2025 13:16:56 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 23 Jan 2025 13:16:56 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 23 Jan 2025 13:16:56 -0800
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.48) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 23 Jan 2025 13:16:55 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vqrNqRVktAsfIZs6byRl0i7fyEJ2nmwpkPBtWIe1ji4eOaMWFGfQ4S0nXizKo/Rw3znFvYk2yuhytgejq1x37V550ps3hcem/QNVXOvrKal4dKRtSJ6M7q299oMjUJGDSHjBg7Mdmplco1KvCTYqogvHtZkSGJQsFMzfJX47ftTf87eEyeqJK1xQRfaRENUBBjc/NwlpjDuljRauIat4rbt64+BFR7uy0FbYx9nG62FICoO87qOLDaLV6WY0ggW4s5NaTEmIPI9rt8InVoR7PJjaWLJvlvjOEQwagXl97XflLiTJIirZtIHJs077fOfJG7nGJ6cPugnTkJnVo2xN7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BbpI4kcvGNOdLzByE6f9juDhpK1UpU32QtFkcpKhJM4=;
- b=HeEO9n1zztb0Vx8kEEKV45mcahILjZNSODrX6Tlgm5O7pJkkv42pa9CLnnk99SjrtI3r5ZhfF16RjoZqpvx16Uv19ZZENjm3izUYLfDDcDY/KBOoD5DB1ptgj37NeGLi60Xmsmc8jOclrZMdb6TevDgM4IvZrNKCi9WLsEf7VPvjVKelU5FXifZHTY9LM2Mes1J6E6biKHXic2lk2bdrlePaSA8aY/145KIdT1uhMRLdKoYwR/81BZxaJq3E5QXInU9oq3E3mDYszKG+d2BTvlnq7gHhR7wvcf4KNSLikgTp8bqGCK9ZPn4W6DoFsyQ0zjCdVomn+Wro9zHinOoAbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ2PR11MB8450.namprd11.prod.outlook.com (2603:10b6:a03:578::13)
- by IA0PR11MB7864.namprd11.prod.outlook.com (2603:10b6:208:3df::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.18; Thu, 23 Jan
- 2025 21:16:53 +0000
-Received: from SJ2PR11MB8450.namprd11.prod.outlook.com
- ([fe80::5c1b:f14a:ef14:121e]) by SJ2PR11MB8450.namprd11.prod.outlook.com
- ([fe80::5c1b:f14a:ef14:121e%4]) with mapi id 15.20.8377.009; Thu, 23 Jan 2025
- 21:16:53 +0000
-Message-ID: <5c2a2ad5-fa34-40cb-a81f-891405c3a79d@intel.com>
-Date: Thu, 23 Jan 2025 13:16:51 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] drm/xe: Fix and re-enable xe_print_blob_ascii85()
-From: John Harrison <john.c.harrison@intel.com>
-To: =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: Julia Filipchuk <julia.filipchuk@intel.com>, <stable@vger.kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20250123202307.95103-1-jose.souza@intel.com>
- <20250123202307.95103-2-jose.souza@intel.com>
- <eaba2ac8-2396-4779-9147-7066995899b7@intel.com>
-Content-Language: en-GB
-In-Reply-To: <eaba2ac8-2396-4779-9147-7066995899b7@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW4PR03CA0252.namprd03.prod.outlook.com
- (2603:10b6:303:b4::17) To SJ2PR11MB8450.namprd11.prod.outlook.com
- (2603:10b6:a03:578::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR11MB8450:EE_|IA0PR11MB7864:EE_
-X-MS-Office365-Filtering-Correlation-Id: 208750af-34b2-4865-e86c-08dd3bf3424d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?akQ3ejA1RzNncUpUbXRObTNUR040VkRSN3dnNWVBUlRrR0Z4TDlMNktIWWps?=
- =?utf-8?B?Z2lIVjg2Q09zN3Yyb05WQTBFRGorK0VNdTQ2YUY4NWd3WUxpbmd1ai9pQWNp?=
- =?utf-8?B?cVVYSWZlcHk1aWtKTWxCNWgrejRlSm45YTRIcGMzVkozY3Z1Q014bmhUaXRr?=
- =?utf-8?B?bjRZZUo4VUhBY1dBTS9aeGVMVlVtQTdSWWZtQnlrTnJic3AvVEk2UTEvY3cz?=
- =?utf-8?B?bmI2L2xrVkZtL0FQR1RnZGhjS0pPSzBwa0lhV2JoWlVFMEkwQWNVbXo0dVZQ?=
- =?utf-8?B?TFZzOVZpb2JHYnRzbGdkQjJKdXJ5SzR4S1ZiQ2x5dmtCeW1OdVNoc0NxQ00r?=
- =?utf-8?B?MEREYkxGbzFhcGFLVVVjdWJPc1hkeDgwazczdUpTK0JQZ3FwWVVsRWJvWGNj?=
- =?utf-8?B?MWNpblRWWlZWZUFJcVY0Ry9OOHNpSXFUdFZDYWU0bnVrVTNmZDgrdm8rRnhW?=
- =?utf-8?B?Y2YxNGFha09IaVpHb2hlcVdNWGRkNUcrYkh1Umd0U2tLZ2p6VkZrRjZHQTZ6?=
- =?utf-8?B?enVIOW4wQlh6R0NvVkl5bzhRU2ZQTTQ3aDVnTHdnbG9zbzFkcHNYS2t2aTVV?=
- =?utf-8?B?ekxjeXJLRlZuM2lQa0lRU3Y2UlZsRjRvTGRaV0hJWE9NYkp6UVloTEwxelZz?=
- =?utf-8?B?T3JtNlNSOWM1S0x5TFpzL2cwY01wRGtYbERFV2l4eUhLYk94eTRLYk5jdHFa?=
- =?utf-8?B?UWFBQUx2TkpOb0NVSm9PNTN5Ujg2aUVNQzZYMUZYQXZjalBobHJ1NXMxQU9L?=
- =?utf-8?B?ek1IQThwcU8wZ1YxYk80N1FzeVo3SzltVE1YSXk3bFNKZ1l5MW8xK28ydlJX?=
- =?utf-8?B?SFhUY2dwSVIzaFI2NW1lS1BHK0kvQjdLNGlUdW5WcTl2WjFxd1JPdFBQZytK?=
- =?utf-8?B?ZlBXcVNBWXd3SVR1NDdiaDRVMTRCVlZEWU9jMS9sK1A2bE9MZlRla3lzK1Ra?=
- =?utf-8?B?S0gyYUdZcXMwdlhUdG5zck81cDZOUk5uZUNybE1ad3JqemhhUXREZDY5OVR0?=
- =?utf-8?B?dUVwUFRjeEZIS0dtWDVnaExZN2pMWjVMRnZyZStRaklPZ1hQbnZsR3VFMitG?=
- =?utf-8?B?SC84czZqYWJ3ZWNvbFdSK3diaUk2MDZWMjZ3ZzNLNExVdVJzb00wNUt4aHRG?=
- =?utf-8?B?dXhLV2JjQ1FFMDJlb211UmJYaDNMUEtzWDhIZlVjM1Z1dWNJUDIzaUdGbGY3?=
- =?utf-8?B?ZFV6ckg4VzFIR3dpMUkweGpVS3hreXYxMmNqYmE2SysySXB2VWFZSVBuZWJi?=
- =?utf-8?B?NDBFNis1MDBuaHd1TEVvN3Z4Sk5ja2t2elUvZEV0Mk1zVmxSNEdVWmI2OFo3?=
- =?utf-8?B?QitocTNidXpOZndlVEF5cE52NlVTTGVYa0k1WGNkYU1LbUxpSHZkR09SRm4w?=
- =?utf-8?B?RVJsYURDdjdvVmZoZFQ2RitHRmVRZ0hRY3Z5SnFRNGsxL3duTjlJOGxsVGxj?=
- =?utf-8?B?RFFKRUVVS0F4QlorUWNhc3c5V1RmQmUwazRpMURCTXNQWmt3RjlMOW5vNGFD?=
- =?utf-8?B?V1hIai9vRmJSaE1SMWtFRVRVWUtFa1gyS09DbmtKQnVKNTRvQStPYlJ2TGlZ?=
- =?utf-8?B?MWcxeHhDVEpWdEkxaE0wbFIwaDkvL09nZU5LVmdIclRsWmhoRVY3ZFQ5Z1hL?=
- =?utf-8?B?K3RnY3huZE0zMnJjVkZJSzN2Z0RtRUlMTzBVTjYyYWhJVG1qeXplT1VFVGhw?=
- =?utf-8?B?WlVUajRJanNMUGg1Q2VjUDN3VDFjRURSSzBtNjZZVTg1Qkl1OUxjMVN6OHUz?=
- =?utf-8?B?dUFPdWNEd2JZT1M1TzV1eE1iRXlrazA1LytSdGJ4K1R6WEhkOGNUMXFMNFRo?=
- =?utf-8?B?SGU3aHVZWm1RTFdpRGJXRUpOWGg0UE5QeHhQd1FoUitIREdTN3lTZ2pDSUVD?=
- =?utf-8?Q?VprIr9MwhMkos?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ2PR11MB8450.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bjdvSHU2QkMvaU5lU2o2TmlGWmpLU0lTSzlEOG8xOGJoREF6UENNZTlnTitv?=
- =?utf-8?B?STJIM0xEY3pVRjhMVWIvazJwWjl3aGlvWDZ2Y3VzbDlZSVdQcUJZZkw1WkR6?=
- =?utf-8?B?ZjZyc20ycUFaK3h5SThUZnI1N1JEamljS0RwZEhFQThnTUxqV25KQ2cxc1lF?=
- =?utf-8?B?dmN1L0lVRDlkRWxPT3ZqY2VYM2Y4dWJmWmpSK0Nad3NQNkdHUENBeVZLMTVn?=
- =?utf-8?B?YlJkckNmY3FqUlZ1SWd0Nzd6NnlqVGRORTNGeG9kOUp1dk5yNFAvRWt5OGZq?=
- =?utf-8?B?TnRwMnBHdWt5bmFqOStScExoUmNaSjJLbjlWVXowQmt2SUFSTUhZcDlsNWly?=
- =?utf-8?B?bDZtTzlVMld0MTdTdHlGSGJNTmdHcVZYcTN4SDdnMjdzMkx0NUI4SlM3ZnF5?=
- =?utf-8?B?bTgremt2V29KdEhlMXAzZ2Ywbmw0Wk9WcUhKalhodldTTXA4WFlXVDZydDFk?=
- =?utf-8?B?VjJ0Q0hSZk5uaU50S1RHNmRWbUx3RGQyTXJxWmFyR0FVdm5rN0FyVnl3Q2xo?=
- =?utf-8?B?amRsYWlkc2RBLzZTK0tCZnNNR2FEeFh3dVlIOFdWNGZwMFJnSjFYcGxxdlNh?=
- =?utf-8?B?SWxCd1c1Y2wzdHVRNXVFY1lkekx4Nk52Wk40ZHdTOUtBNmdCc21zMWR2UkJF?=
- =?utf-8?B?QTdjWEZ3MDBzSUNrM2pYS2l2VVMzWnFIVm5IbklXakNFVjJ1UXBWU0d2U1hu?=
- =?utf-8?B?SVFxOXFxSlhpMlowL0ZDa29Qd1A0S2xLaWhqOWlLM05kOHh6aHdzTUVJRnFN?=
- =?utf-8?B?NHZiUS90enM2NTBOUWE2YXNWby9lL3ZaTUkzaHpwS3ZnbmdZOXg3c3dldTNN?=
- =?utf-8?B?aDdINUk1aFJObjZCZ2JJWmVtRXMydk1PY0dhN1YrL2JkTjAycTducGo3NzRq?=
- =?utf-8?B?TXVMQXc2cHh6MlFBaFhEZmY2aWNVQ0paZUlKZTlvdVNWOWtMRG9jRldkblBN?=
- =?utf-8?B?OFN0Q3VDcjJjRnhUc09ZdnVsTitaTTRJYzFpbHZ4MCtRa1JXTG05cGxQQnFM?=
- =?utf-8?B?TkhCTER0SHZ5aDJ1bEx2bkFLRjdQenQ4Rlk2eGhGcXdZS09jK1g4ZTF0T0Y2?=
- =?utf-8?B?Uk5TbkI4VlZsT1EzZ2VxUVA5a2VuanNVUHRwaFJCdTAvOGw0SGZQelkycXRx?=
- =?utf-8?B?QXFKWjhYMWV4cXJaSTZybmhES0d6Vmt5T1A5VlhpSSs0SE1YOUw4UWhTSlkz?=
- =?utf-8?B?bDBhVkFadmgwY1ZMa2dRR0RrVEFFVm85c0pSSUVrUlY1eFZxQzBsQ3E5ODZB?=
- =?utf-8?B?UUJ1cXY4Q1RRUTlVS09uZ2NWRlM3bWZHcnFQVUtMVUdsaGpKK1p3bkZRSmpB?=
- =?utf-8?B?eWxMaUMrSXB5U055UHpWd2FkSkduTnFKdmlNQm5zbUhiTmZERUIvOWd0Mk03?=
- =?utf-8?B?TG8wbElLYTBzcXJmb2Q3bkVJNm1DelJpMFYwMG1ISkw1WkFWYlRLUXRHQTJI?=
- =?utf-8?B?TFZYRlUvOVVSdzZSQW1WOFU3em9uNkE3elkzNnp2dk5WY3RkQkdiTE1Ga1h2?=
- =?utf-8?B?ZFF5aVMxaUZDWWJwbTh1L3MxZkZOcG1iZW9QT2JjMHVzcVF6UXFESjJBbzRJ?=
- =?utf-8?B?ek83aUwyc3dhSTdpZndMWnJ1Q1RJQ2NLYkFUSjFpSE5melQ4WmI1cXZGSU9k?=
- =?utf-8?B?VGhTN2VnN29JVjJIeG9rRU92SmV6Mk1JV3lrSUhvczlmTjlkMWRJaWtXbXpL?=
- =?utf-8?B?SE9KS0JFaXowYWVFZE1tZVNwc2loL1BwcnZCdGtVaGFkQ2dlSytEQ1RubjVB?=
- =?utf-8?B?ZTByYlFwakdacFRRazMrbEIvOVd3M1F0VUR5OFJ1WVJ5TXpBbjhudVJGWFBx?=
- =?utf-8?B?b3FGdHhpNDBRaHp2b0pEdW0xMi9XTFFUWWhFTkduQXkzZzd0UnJIMmxzUFEw?=
- =?utf-8?B?L2Y3YUMrMlA0aHI3U2ZEUTQwVGZGOVdJS0trWlFnUE43NW9aY0xwTWlPM1A1?=
- =?utf-8?B?NWF6d1ZYSmdHbEFQbnhnTVBuUlFNc0tpZGxDUkwzcnhzcXVTRVRHNGJhdnE3?=
- =?utf-8?B?NHBOa0JGK1crVkVFOS9ES0tmbVFIdWZwZmVVM0gyTnI2eFdQeXUrQ0tmZkQ2?=
- =?utf-8?B?aU0zY1RZbmorNHBoK3IrNjRqcjhhSE1kcVZqU2ppaHpVdXBqNFMxZnlpa2g0?=
- =?utf-8?B?Rlh1YWZvUUtXQWtBNzN2QTJGaGxPNHBHRnJmQklCWkhsUkdkNXRMTkV1WElq?=
- =?utf-8?B?dWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 208750af-34b2-4865-e86c-08dd3bf3424d
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR11MB8450.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2025 21:16:53.3332 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JlM4eLKqRnkZnw3EliDvgbZ32+dEBeShS9zIGzjPH1tbxOzA7eMtxm6KE1oYFFTqsaTp3WCSSm3jtOsU/8Z4qEIcOYgrvKaWosXSgp/SeFw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7864
-X-OriginatorOrg: intel.com
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="107433283"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+ by orviesa010.jf.intel.com with ESMTP; 23 Jan 2025 13:29:24 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tb4lN-000bjH-1w;
+ Thu, 23 Jan 2025 21:29:21 +0000
+Date: Fri, 24 Jan 2025 05:28:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ dddc53806dd2a10e210d5ea08caec6d3f92440b2
+Message-ID: <202501240521.4Df8oMGY-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,207 +64,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 1/23/2025 13:14, John Harrison wrote:
-> On 1/23/2025 12:22, José Roberto de Souza wrote:
->> From: Lucas De Marchi <lucas.demarchi@intel.com>
->>
->> Commit 70fb86a85dc9 ("drm/xe: Revert some changes that break a mesa
->> debug tool") partially reverted some changes to workaround breakage
->> caused to mesa tools. However, in doing so it also broke fetching the
->> GuC log via debugfs since xe_print_blob_ascii85() simply bails out.
->>
->> The fix is to avoid the extra newlines: the devcoredump interface is
->> line-oriented and adding random newlines in the middle breaks it. If a
->> tool is able to parse it by looking at the data and checking for chars
->> that are out of the ascii85 space, it can still do so. A format change
->> that breaks the line-oriented output on devcoredump however needs better
->> coordination with existing tools.
->>
->> v2:
->> - added suffix description comment
->>
->> Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
->> Cc: John Harrison <John.C.Harrison@Intel.com>
->> Cc: Julia Filipchuk <julia.filipchuk@intel.com>
->> Cc: José Roberto de Souza <jose.souza@intel.com>
->> Cc: stable@vger.kernel.org
->> Fixes: 70fb86a85dc9 ("drm/xe: Revert some changes that break a mesa 
->> debug tool")
->> Fixes: ec1455ce7e35 ("drm/xe/devcoredump: Add ASCII85 dump helper 
->> function")
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_devcoredump.c | 33 +++++++++++------------------
->>   drivers/gpu/drm/xe/xe_devcoredump.h |  2 +-
->>   drivers/gpu/drm/xe/xe_guc_ct.c      |  3 ++-
->>   drivers/gpu/drm/xe/xe_guc_log.c     |  4 +++-
->>   4 files changed, 18 insertions(+), 24 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c 
->> b/drivers/gpu/drm/xe/xe_devcoredump.c
->> index 81dc7795c0651..6f73b1ba0f2aa 100644
->> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
->> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
->> @@ -395,42 +395,33 @@ int xe_devcoredump_init(struct xe_device *xe)
->>   /**
->>    * xe_print_blob_ascii85 - print a BLOB to some useful location in 
->> ASCII85
->>    *
->> - * The output is split to multiple lines because some print targets, 
->> e.g. dmesg
->> - * cannot handle arbitrarily long lines. Note also that printing to 
->> dmesg in
->> - * piece-meal fashion is not possible, each separate call to 
->> drm_puts() has a
->> - * line-feed automatically added! Therefore, the entire output line 
->> must be
->> - * constructed in a local buffer first, then printed in one atomic 
->> output call.
->> + * The output is split to multiple print calls because some print 
->> targets, e.g.
->> + * dmesg cannot handle arbitrarily long lines. These targets may add 
->> newline
->> + * between calls.
-> As per earlier comments, this change implies that dmesg output is now 
-> supported as long as a newline is added between calls. That is very 
-> definitely not the case.
->
->>    *
->>    * There is also a scheduler yield call to prevent the 'task has 
->> been stuck for
->>    * 120s' kernel hang check feature from firing when printing to a 
->> slow target
->>    * such as dmesg over a serial port.
->>    *
->> - * TODO: Add compression prior to the ASCII85 encoding to shrink 
->> huge buffers down.
->> - *
->>    * @p: the printer object to output to
->>    * @prefix: optional prefix to add to output string
->> + * @suffix: optional suffix to add at the end. 0 disables it and is
->> + *          not added to the output, which is useful when using 
->> multiple calls
->> + *          to dump data to @p
->>    * @blob: the Binary Large OBject to dump out
->>    * @offset: offset in bytes to skip from the front of the BLOB, 
->> must be a multiple of sizeof(u32)
->>    * @size: the size in bytes of the BLOB, must be a multiple of 
->> sizeof(u32)
->>    */
->> -void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
->> +void xe_print_blob_ascii85(struct drm_printer *p, const char 
->> *prefix, char suffix,
->>                  const void *blob, size_t offset, size_t size)
->>   {
->>       const u32 *blob32 = (const u32 *)blob;
->>       char buff[ASCII85_BUFSZ], *line_buff;
->>       size_t line_pos = 0;
->>   -    /*
->> -     * Splitting blobs across multiple lines is not compatible with 
->> the mesa
->> -     * debug decoder tool. Note that even dropping the explicit '\n' 
->> below
->> -     * doesn't help because the GuC log is so big some underlying 
->> implementation
->> -     * still splits the lines at 512K characters. So just bail 
->> completely for
->> -     * the moment.
->> -     */
->> -    return;
->> -
->>   #define DMESG_MAX_LINE_LEN    800
->> -#define MIN_SPACE        (ASCII85_BUFSZ + 2)        /* 85 + "\n\0" */
->> +    /* Always leave space for the suffix char and the \0 */
->> +#define MIN_SPACE        (ASCII85_BUFSZ + 2)    /* 85 + "<suffix>\0" */
->>         if (size & 3)
->>           drm_printf(p, "Size not word aligned: %zu", size);
->> @@ -462,7 +453,6 @@ void xe_print_blob_ascii85(struct drm_printer *p, 
->> const char *prefix,
->>           line_pos += strlen(line_buff + line_pos);
->>             if ((line_pos + MIN_SPACE) >= DMESG_MAX_LINE_LEN) {
->> -            line_buff[line_pos++] = '\n';
-> Again, as already commented, do not completely remove this line. It is 
-> an absolute requirement for dmesg output. And dmesg output is an 
-> important debug facility.
->
-> It should be temporarily commented out with a comment saying "this is 
-> required for dumping to dmesg but currently breaks a mesa debug tool 
-> so is disabled by default". That way it is clear what a developer 
-> needs to do to re-enable dmesg output locally.
->
->>               line_buff[line_pos++] = 0;
->>                 drm_puts(p, line_buff);
->> @@ -474,10 +464,11 @@ void xe_print_blob_ascii85(struct drm_printer 
->> *p, const char *prefix,
->>           }
->>       }
->>   +    if (suffix)
->> +        line_buff[line_pos++] = suffix;
->> +
->>       if (line_pos) {
->> -        line_buff[line_pos++] = '\n';
->>           line_buff[line_pos++] = 0;
->> -
->>           drm_puts(p, line_buff);
->>       }
->>   diff --git a/drivers/gpu/drm/xe/xe_devcoredump.h 
->> b/drivers/gpu/drm/xe/xe_devcoredump.h
->> index 6a17e6d601022..5391a80a4d1ba 100644
->> --- a/drivers/gpu/drm/xe/xe_devcoredump.h
->> +++ b/drivers/gpu/drm/xe/xe_devcoredump.h
->> @@ -29,7 +29,7 @@ static inline int xe_devcoredump_init(struct 
->> xe_device *xe)
->>   }
->>   #endif
->>   -void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
->> +void xe_print_blob_ascii85(struct drm_printer *p, const char 
->> *prefix, char suffix,
->>                  const void *blob, size_t offset, size_t size);
->>     #endif
->> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c 
->> b/drivers/gpu/drm/xe/xe_guc_ct.c
->> index 8b65c5e959cc2..50c8076b51585 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
->> @@ -1724,7 +1724,8 @@ void xe_guc_ct_snapshot_print(struct 
->> xe_guc_ct_snapshot *snapshot,
->>                  snapshot->g2h_outstanding);
->>             if (snapshot->ctb)
->> -            xe_print_blob_ascii85(p, "CTB data", snapshot->ctb, 0, 
->> snapshot->ctb_size);
->> +            xe_print_blob_ascii85(p, "CTB data", '\n',
->> +                          snapshot->ctb, 0, snapshot->ctb_size);
->>       } else {
->>           drm_puts(p, "CT disabled\n");
->>       }
->> diff --git a/drivers/gpu/drm/xe/xe_guc_log.c 
->> b/drivers/gpu/drm/xe/xe_guc_log.c
->> index 80151ff6a71f8..44482ea919924 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_log.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_log.c
->> @@ -207,8 +207,10 @@ void xe_guc_log_snapshot_print(struct 
->> xe_guc_log_snapshot *snapshot, struct drm_
->>       remain = snapshot->size;
->>       for (i = 0; i < snapshot->num_chunks; i++) {
->>           size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
->> +        const char *prefix = i ? NULL : "Log data";
->> +        char suffix = i == snapshot->num_chunks - 1 ? '\n' : 0;
->>   -        xe_print_blob_ascii85(p, i ? NULL : "Log data", 
->> snapshot->copy[i], 0, size);
->> +        xe_print_blob_ascii85(p, prefix, suffix, snapshot->copy[i], 
->> 0, size);
-> I thought you were saying that these need to follow the mesa 
-> requirement of "[name].length" + "[name].data"?
->
-> John.
-Sorry, patch 2 wasn't showing up at first. Just saw it now!
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: dddc53806dd2a10e210d5ea08caec6d3f92440b2  drm/xe/ptl: Apply Wa_13011645652
 
-John.
+elapsed time: 1366m
 
->
->
->>           remain -= size;
->>       }
->>   }
->
+configs tested: 195
+configs skipped: 7
 
+The following configs have been built successfully.
+More configs may be tested in the coming days.
+
+tested configs:
+alpha                             allnoconfig    gcc-14.2.0
+alpha                            allyesconfig    gcc-14.2.0
+alpha                               defconfig    gcc-14.2.0
+arc                              allmodconfig    clang-18
+arc                              allmodconfig    gcc-13.2.0
+arc                               allnoconfig    gcc-13.2.0
+arc                               allnoconfig    gcc-14.2.0
+arc                              allyesconfig    clang-18
+arc                              allyesconfig    gcc-13.2.0
+arc                                 defconfig    gcc-14.2.0
+arc                   randconfig-001-20250123    gcc-13.2.0
+arc                   randconfig-002-20250123    gcc-13.2.0
+arm                              allmodconfig    clang-18
+arm                              allmodconfig    gcc-14.2.0
+arm                               allnoconfig    clang-17
+arm                               allnoconfig    gcc-14.2.0
+arm                              allyesconfig    clang-18
+arm                              allyesconfig    gcc-14.2.0
+arm                                 defconfig    gcc-14.2.0
+arm                   randconfig-001-20250123    clang-20
+arm                   randconfig-002-20250123    gcc-14.2.0
+arm                   randconfig-003-20250123    gcc-14.2.0
+arm                   randconfig-004-20250123    gcc-14.2.0
+arm64                            allmodconfig    clang-18
+arm64                             allnoconfig    gcc-14.2.0
+arm64                               defconfig    gcc-14.2.0
+arm64                 randconfig-001-20250123    gcc-14.2.0
+arm64                 randconfig-002-20250123    clang-20
+arm64                 randconfig-003-20250123    clang-20
+arm64                 randconfig-004-20250123    clang-16
+csky                             alldefconfig    gcc-14.2.0
+csky                              allnoconfig    gcc-14.2.0
+csky                                defconfig    gcc-14.2.0
+csky                  randconfig-001-20250123    gcc-14.2.0
+csky                  randconfig-002-20250123    gcc-14.2.0
+hexagon                          allmodconfig    clang-20
+hexagon                           allnoconfig    clang-20
+hexagon                           allnoconfig    gcc-14.2.0
+hexagon                             defconfig    gcc-14.2.0
+hexagon               randconfig-001-20250123    clang-20
+hexagon               randconfig-001-20250123    gcc-14.2.0
+hexagon               randconfig-002-20250123    clang-20
+hexagon               randconfig-002-20250123    gcc-14.2.0
+i386                             allmodconfig    clang-19
+i386                              allnoconfig    clang-19
+i386                             allyesconfig    clang-19
+i386        buildonly-randconfig-001-20250123    gcc-12
+i386        buildonly-randconfig-002-20250123    clang-19
+i386        buildonly-randconfig-003-20250123    gcc-12
+i386        buildonly-randconfig-004-20250123    clang-19
+i386        buildonly-randconfig-005-20250123    gcc-12
+i386        buildonly-randconfig-006-20250123    clang-19
+i386                                defconfig    clang-19
+i386                  randconfig-001-20250123    gcc-12
+i386                  randconfig-002-20250123    gcc-12
+i386                  randconfig-003-20250123    gcc-12
+i386                  randconfig-004-20250123    gcc-12
+i386                  randconfig-005-20250123    gcc-12
+i386                  randconfig-006-20250123    gcc-12
+i386                  randconfig-007-20250123    gcc-12
+i386                  randconfig-011-20250123    gcc-12
+i386                  randconfig-012-20250123    gcc-12
+i386                  randconfig-013-20250123    gcc-12
+i386                  randconfig-014-20250123    gcc-12
+i386                  randconfig-015-20250123    gcc-12
+i386                  randconfig-016-20250123    gcc-12
+i386                  randconfig-017-20250123    gcc-12
+loongarch                        allmodconfig    gcc-14.2.0
+loongarch                         allnoconfig    gcc-14.2.0
+loongarch                           defconfig    gcc-14.2.0
+loongarch             randconfig-001-20250123    gcc-14.2.0
+loongarch             randconfig-002-20250123    gcc-14.2.0
+m68k                             allmodconfig    gcc-14.2.0
+m68k                              allnoconfig    gcc-14.2.0
+m68k                             allyesconfig    gcc-14.2.0
+m68k                                defconfig    gcc-14.2.0
+m68k                          multi_defconfig    gcc-14.2.0
+microblaze                       allmodconfig    gcc-14.2.0
+microblaze                        allnoconfig    gcc-14.2.0
+microblaze                       allyesconfig    gcc-14.2.0
+microblaze                          defconfig    gcc-14.2.0
+mips                              allnoconfig    gcc-14.2.0
+mips                        bcm63xx_defconfig    gcc-14.2.0
+mips                  cavium_octeon_defconfig    gcc-14.2.0
+mips                         db1xxx_defconfig    gcc-14.2.0
+mips                        qi_lb60_defconfig    gcc-14.2.0
+nios2                             allnoconfig    gcc-14.2.0
+nios2                               defconfig    gcc-14.2.0
+nios2                 randconfig-001-20250123    gcc-14.2.0
+nios2                 randconfig-002-20250123    gcc-14.2.0
+openrisc                          allnoconfig    clang-20
+openrisc                          allnoconfig    gcc-14.2.0
+openrisc                         allyesconfig    gcc-14.2.0
+openrisc                            defconfig    gcc-12
+parisc                           allmodconfig    gcc-14.2.0
+parisc                            allnoconfig    clang-20
+parisc                            allnoconfig    gcc-14.2.0
+parisc                           allyesconfig    gcc-14.2.0
+parisc                              defconfig    gcc-12
+parisc                randconfig-001-20250123    gcc-14.2.0
+parisc                randconfig-002-20250123    gcc-14.2.0
+parisc64                            defconfig    gcc-14.2.0
+powerpc                          allmodconfig    gcc-14.2.0
+powerpc                           allnoconfig    clang-20
+powerpc                           allnoconfig    gcc-14.2.0
+powerpc                          allyesconfig    clang-16
+powerpc                 mpc834x_itx_defconfig    gcc-14.2.0
+powerpc                    mvme5100_defconfig    gcc-14.2.0
+powerpc                      pmac32_defconfig    gcc-14.2.0
+powerpc               randconfig-001-20250123    gcc-14.2.0
+powerpc               randconfig-002-20250123    clang-18
+powerpc               randconfig-002-20250123    gcc-14.2.0
+powerpc               randconfig-003-20250123    gcc-14.2.0
+powerpc                     tqm8555_defconfig    gcc-14.2.0
+powerpc64             randconfig-001-20250123    gcc-14.2.0
+powerpc64             randconfig-002-20250123    clang-16
+powerpc64             randconfig-002-20250123    gcc-14.2.0
+riscv                            allmodconfig    clang-20
+riscv                             allnoconfig    clang-20
+riscv                             allnoconfig    gcc-14.2.0
+riscv                            allyesconfig    clang-20
+riscv                               defconfig    gcc-12
+riscv                    nommu_k210_defconfig    gcc-14.2.0
+riscv                 randconfig-001-20250123    gcc-14.2.0
+riscv                 randconfig-002-20250123    clang-20
+s390                             allmodconfig    clang-19
+s390                             allmodconfig    gcc-14.2.0
+s390                              allnoconfig    clang-20
+s390                             allyesconfig    gcc-14.2.0
+s390                                defconfig    gcc-12
+s390                  randconfig-001-20250123    gcc-14.2.0
+s390                  randconfig-002-20250123    clang-15
+s390                       zfcpdump_defconfig    gcc-14.2.0
+sh                               allmodconfig    gcc-14.2.0
+sh                                allnoconfig    gcc-14.2.0
+sh                               allyesconfig    gcc-14.2.0
+sh                                  defconfig    gcc-12
+sh                    randconfig-001-20250123    gcc-14.2.0
+sh                    randconfig-002-20250123    gcc-14.2.0
+sh                          rsk7203_defconfig    gcc-14.2.0
+sh                   secureedge5410_defconfig    gcc-14.2.0
+sh                          urquell_defconfig    gcc-14.2.0
+sparc                            allmodconfig    gcc-14.2.0
+sparc                             allnoconfig    gcc-14.2.0
+sparc                 randconfig-001-20250123    gcc-14.2.0
+sparc                 randconfig-002-20250123    gcc-14.2.0
+sparc64                             defconfig    gcc-12
+sparc64               randconfig-001-20250123    gcc-14.2.0
+sparc64               randconfig-002-20250123    gcc-14.2.0
+um                               allmodconfig    clang-20
+um                                allnoconfig    clang-18
+um                                allnoconfig    clang-20
+um                               allyesconfig    gcc-12
+um                                  defconfig    gcc-12
+um                             i386_defconfig    gcc-12
+um                    randconfig-001-20250123    gcc-12
+um                    randconfig-002-20250123    gcc-11
+um                           x86_64_defconfig    gcc-12
+x86_64                            allnoconfig    clang-19
+x86_64                           allyesconfig    clang-19
+x86_64      buildonly-randconfig-001-20250123    clang-19
+x86_64      buildonly-randconfig-002-20250123    clang-19
+x86_64      buildonly-randconfig-003-20250123    clang-19
+x86_64      buildonly-randconfig-003-20250123    gcc-12
+x86_64      buildonly-randconfig-004-20250123    clang-19
+x86_64      buildonly-randconfig-004-20250123    gcc-12
+x86_64      buildonly-randconfig-005-20250123    clang-19
+x86_64      buildonly-randconfig-006-20250123    clang-19
+x86_64                              defconfig    clang-19
+x86_64                                  kexec    clang-19
+x86_64                randconfig-001-20250123    clang-19
+x86_64                randconfig-002-20250123    clang-19
+x86_64                randconfig-003-20250123    clang-19
+x86_64                randconfig-004-20250123    clang-19
+x86_64                randconfig-005-20250123    clang-19
+x86_64                randconfig-006-20250123    clang-19
+x86_64                randconfig-007-20250123    clang-19
+x86_64                randconfig-008-20250123    clang-19
+x86_64                randconfig-071-20250123    clang-19
+x86_64                randconfig-072-20250123    clang-19
+x86_64                randconfig-073-20250123    clang-19
+x86_64                randconfig-074-20250123    clang-19
+x86_64                randconfig-075-20250123    clang-19
+x86_64                randconfig-076-20250123    clang-19
+x86_64                randconfig-077-20250123    clang-19
+x86_64                randconfig-078-20250123    clang-19
+x86_64                               rhel-9.4    clang-19
+x86_64                           rhel-9.4-bpf    clang-19
+x86_64                         rhel-9.4-kunit    clang-19
+x86_64                           rhel-9.4-ltp    clang-19
+x86_64                          rhel-9.4-rust    clang-19
+xtensa                            allnoconfig    gcc-14.2.0
+xtensa                  cadence_csp_defconfig    gcc-14.2.0
+xtensa                randconfig-001-20250123    gcc-14.2.0
+xtensa                randconfig-002-20250123    gcc-14.2.0
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
