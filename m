@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43279C02181
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31DC2C02182
 	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 01:14:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E592510E3CA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAE6910E152;
 	Thu, 23 Jan 2025 01:14:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jZiPFZkX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qiyb3qiZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D03710E152
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25F8810E3CA
  for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 01:14:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1737594863; x=1769130863;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hVTFnmfvm3H8qcrh2Q9ZCZS5doqesc9ikOS7XetrTBc=;
- b=jZiPFZkXpiXMuQIacEWTJf/AI0DMm615WTWbqDS7dfV9PhKbGjFdMNxF
- HHJ09xR2wa/AVaOLT9KObQNpmTub6GUll3Y9L4VgoWFLoWyr9OavD1QZz
- 9cXgzb3ye01AGcp7I5piEl9lP8IioJJfzlU8hxYg4Mgbqjvqa3IirRnWe
- OyKX5PXJ2G22xw1yGMsa1EjTOFKebz8NVSKFWq1iaQWFoO93gBToqQsLx
- hMjrowlKkxzW2VsOolyddPI7obepCKi5UCeUnxoJduTUXmmBDs2j3Eyut
- v8ajjihMcV7a4eWXgviY3dzPNt5yRIVCPo87bElWmAl2/8nwIPlQZm2tK w==;
-X-CSE-ConnectionGUID: ztC6KvkiQESSvKnIgT+t9w==
-X-CSE-MsgGUID: auANc5HESX+ORN5B0OTZUQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37967065"
-X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="37967065"
+ bh=5ywU+ejKrcr5jUEMJc8Wc3T7UmaiYHSHc7PAEkstvPo=;
+ b=Qiyb3qiZvTu9ZjAzOKrhj5O27PT6Q7zToo8bS+3vgvB5qll/v4xorZFG
+ r6E7YiX88wIMAUZtw8Pv151//odGeV7Xuk91ZkMeLb1gLxtLtlhfbx828
+ KuATqg2WifF6Mo+AvZIe0pk0rnUEZvqF1Bn4X/Vbo67Z5YGG6tGZZ5v2q
+ FMnF0isb0IwwrPN6MxOLno7fdw3GDX740oPmGFdPcxP+KDzj1qKlUGflF
+ iaSOwuLgCLfBzxeDeXcj6SlbbqkuM5A62cifjBjJ7WG6j6nYDLLHIezVJ
+ SEknkHo6AJK2BCet87Vb71sX9pWipJr7eiYTtBBUFauTgiVQXPOTqb4c/ A==;
+X-CSE-ConnectionGUID: g9a2XquURje9GNPgP7GuAg==
+X-CSE-MsgGUID: ZGAagzTySlahzc2Sz1rtVw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37967062"
+X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="37967062"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Jan 2025 17:14:22 -0800
-X-CSE-ConnectionGUID: zkxGfu3PS/ahS/XXqTaurA==
-X-CSE-MsgGUID: rhf4OINAQ62gtxiElbvGnA==
+X-CSE-ConnectionGUID: PlibRnilT4STplcZc/55vg==
+X-CSE-MsgGUID: +nrTcuWYQq2DEELO8ojKaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="107124122"
+X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="107124112"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Jan 2025 17:14:22 -0800
@@ -45,10 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jose.souza@intel.com, lionel.g.landwerlin@intel.com,
  carlos.santa@intel.com, rodrigo.vivi@intel.com
-Subject: [RFC PATCH 5/6] drm/xe: Add replay_offset and replay_length lines to
- LRC HWCTX snapshot
-Date: Wed, 22 Jan 2025 17:15:12 -0800
-Message-Id: <20250123011513.362430-6-matthew.brost@intel.com>
+Subject: [RFC PATCH 2/6] drm/xe: Add "null_sparse" type to VM snap properties
+Date: Wed, 22 Jan 2025 17:15:09 -0800
+Message-Id: <20250123011513.362430-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250123011513.362430-1-matthew.brost@intel.com>
 References: <20250123011513.362430-1-matthew.brost@intel.com>
@@ -69,83 +68,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add replay_offset and replay_length lines to LRC HWCTX snapshot with the
-idea being this information can be used extract the data which needs to
-be pass to exec queue extension DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
-so GPU hang can be replayed via a Mesa tool.
+Add "null_sparse" type to VM snap properties indicating the VMA reads
+zero and writes are droppped. This is useful information for debug and
+will help build a robust GPU hang replay tool.
 
-The additional lines look like:
+The current format is:
 
-[HWCTX].replay_offset: 0x%x
-[HWCTX].replay_length: 0x%x
+[<vma address>]: <permissions>|<type>
+
+Permissions has two options, either "read_only" or "read_write".
+
+Type has three options, either "userptr", "null_sparse", or "bo".
 
 Cc: José Roberto de Souza <jose.souza@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c       | 8 ++++++++
- drivers/gpu/drm/xe/xe_lrc.h       | 1 +
- drivers/gpu/drm/xe/xe_lrc_types.h | 3 +++
- 3 files changed, 12 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index bbb9ffbf6367..1ad3ab59fce2 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -896,6 +896,9 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 5f9651a4c364..469b00150d87 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3242,6 +3242,7 @@ struct xe_vm_snapshot {
+ 		unsigned long len;
+ #define XE_VM_SNAP_FLAG_USERPTR		BIT(0)
+ #define XE_VM_SNAP_FLAG_READ_ONLY	BIT(1)
++#define XE_VM_SNAP_FLAG_IS_NULL		BIT(2)
+ 		unsigned long flags;
+ 		struct xe_bo *bo;
+ 		void *data;
+@@ -3299,6 +3300,8 @@ struct xe_vm_snapshot *xe_vm_snapshot_capture(struct xe_vm *vm)
  
- 	kref_init(&lrc->refcount);
- 	lrc->flags = 0;
-+	lrc->replay_size = xe_gt_lrc_size(gt, hwe->class);
-+	if (xe_gt_has_indirect_ring_state(gt))
-+		lrc->replay_size -= LRC_INDIRECT_RING_STATE_SIZE;
- 	lrc_size = ring_size + xe_gt_lrc_size(gt, hwe->class);
- 	if (xe_gt_has_indirect_ring_state(gt))
- 		lrc->flags |= XE_LRC_FLAG_INDIRECT_RING_STATE;
-@@ -1671,6 +1674,8 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
- 	snapshot->lrc_bo = xe_bo_get(lrc->bo);
- 	snapshot->lrc_offset = xe_lrc_pphwsp_offset(lrc);
- 	snapshot->lrc_size = lrc->bo->size - snapshot->lrc_offset;
-+	snapshot->replay_offset = 0;
-+	snapshot->replay_size = lrc->replay_size;
- 	snapshot->lrc_snapshot = NULL;
- 	snapshot->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
- 	snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
-@@ -1745,6 +1750,9 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
- 	}
+ 			snap->snap[i].bo_ofs = xe_vma_userptr(vma);
+ 			snap->snap[i].flags |= XE_VM_SNAP_FLAG_USERPTR;
++		} else if (xe_vma_is_null(vma)) {
++			snap->snap[i].flags |= XE_VM_SNAP_FLAG_IS_NULL;
+ 		} else {
+ 			snap->snap[i].data = ERR_PTR(-ENOENT);
+ 		}
+@@ -3319,7 +3322,8 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
+ 		struct xe_bo *bo = snap->snap[i].bo;
+ 		int err;
  
- 	drm_printf(p, "\n\t[HWCTX].length: 0x%lx\n", snapshot->lrc_size - LRC_PPHWSP_SIZE);
-+	drm_printf(p, "\n\t[HWCTX].replay_offset: 0x%lx\n", snapshot->replay_offset);
-+	drm_printf(p, "\n\t[HWCTX].replay_length: 0x%lx\n", snapshot->replay_size);
+-		if (IS_ERR(snap->snap[i].data))
++		if (IS_ERR(snap->snap[i].data) ||
++		    snap->snap[i].flags & XE_VM_SNAP_FLAG_IS_NULL)
+ 			continue;
+ 
+ 		snap->snap[i].data = kvmalloc(snap->snap[i].len, GFP_USER);
+@@ -3371,6 +3375,8 @@ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
+ 		drm_printf(p, "[%llx].properties: %s|%s\n", snap->snap[i].ofs,
+ 			   snap->snap[i].flags & XE_VM_SNAP_FLAG_READ_ONLY ?
+ 			   "read_only" : "read_write",
++			   snap->snap[i].flags & XE_VM_SNAP_FLAG_IS_NULL ?
++			   "null_sparse" :
+ 			   snap->snap[i].flags & XE_VM_SNAP_FLAG_USERPTR ?
+ 			   "userptr" : "bo");
+ 
+@@ -3380,6 +3386,9 @@ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
+ 			continue;
+ 		}
+ 
++		if (snap->snap[i].flags & XE_VM_SNAP_FLAG_IS_NULL)
++			continue;
 +
- 	drm_puts(p, "\t[HWCTX].data: ");
- 	for (; i < snapshot->lrc_size; i += sizeof(u32)) {
- 		u32 *val = snapshot->lrc_snapshot + i;
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 4206e6a8b50a..848d64511ca8 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -23,6 +23,7 @@ struct xe_lrc_snapshot {
- 	struct xe_bo *lrc_bo;
- 	void *lrc_snapshot;
- 	unsigned long lrc_size, lrc_offset;
-+	unsigned long replay_size, replay_offset;
+ 		drm_printf(p, "[%llx].data: ", snap->snap[i].ofs);
  
- 	u32 context_desc;
- 	u32 ring_addr;
-diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-index 71ecb453f811..c2766719ff77 100644
---- a/drivers/gpu/drm/xe/xe_lrc_types.h
-+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-@@ -25,6 +25,9 @@ struct xe_lrc {
- 	/** @size: size of lrc including any indirect ring state page */
- 	u32 size;
- 
-+	/** @replay_size: Size LRC needed for replaying a hang */
-+	u32 replay_size;
-+
- 	/** @tile: tile which this LRC belongs to */
- 	struct xe_tile *tile;
- 
+ 		for (j = 0; j < snap->snap[i].len; j += sizeof(u32)) {
 -- 
 2.34.1
 
