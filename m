@@ -4,72 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BACB0C02182
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 14:55:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4C39C02182
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 14:59:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 881C310E206;
-	Thu, 23 Jan 2025 14:55:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 938CC10E84C;
+	Thu, 23 Jan 2025 14:59:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="RzRa2e53";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nbci7Zhj";
 	dkim-atps=neutral
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF04E10E206
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 14:55:29 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-4361b6f9faeso6996575e9.1
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 06:55:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1737644128; x=1738248928; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=upW0o11czM3rq1xyIyTJu9A6ZGTiL/ktJa+3JV8KCvY=;
- b=RzRa2e537o1ucY5AFR5e/9ROfT5Gkv9HKT7on/WCVH12ABHpyoL+n+Rcu+fpt3mYF6
- EGe/n5sUqXrYKaHWw8h9euh0m8JvczuEABk/RA9PQYnAn/IOT5zETcU5dv+eQve4USmo
- 6andFBkvCVLujH3G5ScpLABSIRvAnpzES/BBk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737644128; x=1738248928;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=upW0o11czM3rq1xyIyTJu9A6ZGTiL/ktJa+3JV8KCvY=;
- b=mHFAcfhC8vEv2LDoibZh/DmtgsdgOd4x1UdxT8JMpivHVy0vC5lgRakQUjyM0JyAgo
- zIZTSGiDVM3x/rhstdQx/3YXRb3ejdlG8rRXtIRkbKdXGPS1BZhHfO+1hpINMVZ+50Td
- g7M6et/6SnQCBskbOcL7l+wirhe75OSDM/gBkeJZKoCko4DJ8+gXwnzNGKZ+aaIq0pO7
- 7r7nahOx94iSZ5TjHa0Vpj1O30DC0RujYgJPYAExzunkMdayBwgdDtd9WpessFFtbT/w
- gp44iJ8wo1LhpcYfT9zjluLQGHGarPrjFeGsb1GPgE5hxXz/jYEk/PYJ19JWfNNJfzb/
- 0GDw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWSInRDzix5HDm+CQfB5ayj7c2GkGTRxgsjgoEsqLTdGljSxTik9bA/Nr/FcHmH9lKSOSCwbCId/Q==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YywLOXvGHzBxnWQJGc7euH9ICPE7lpyxQsLJboxX3ro4HOBM8IB
- 94oEb2+3x1ZGb+xmiLclP7810SfL7UhlbClUhfdrLxIx5v8W6dIGdAiZ4azNw5s=
-X-Gm-Gg: ASbGncukXufAXIFP5iXxP//G0aL0RHwh/9vmrCdv/l14ps509XhGTF+zOagKCqWas1g
- m3Z7N+9kY5N2hoBPrCfdaHQS0ONRFmAGOpylgw+xI7bg67MPQlKdrLXwm1HqhA75rxEq02EKW9L
- ZQCMiEJ8KyvaG2cXhzCCyJHsnTv1L8iJV6tPf2zmnIuOvGCCMLE+CnALEreG2HaRbCnw7N11hds
- BAXJTs/wfx/6sQ5L9UagIkBnfE7Re0KX3bxse1k+DtTDm27pMy0ylr54wzT6X69S+Ttuvkah31n
- 4ndFBG0I7FHdE8HQ
-X-Google-Smtp-Source: AGHT+IE7BhkUFF2qHI0G/tCUqF6t2iGENyy5rwl62Zw7BY/QQn9skwrSBU8Fm+gu4mBqm2ES4RoHjw==
-X-Received: by 2002:a05:600c:5110:b0:42c:b8c9:16c8 with SMTP id
- 5b1f17b1804b1-438b885b8c1mr34261125e9.10.1737644128137; 
- Thu, 23 Jan 2025 06:55:28 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-438b318aae1sm67298595e9.1.2025.01.23.06.55.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Jan 2025 06:55:27 -0800 (PST)
-Date: Thu, 23 Jan 2025 15:55:24 +0100
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, simona.vetter@ffwll.ch
-Subject: Re: [PATCH 0/2] drm: add header tests
-Message-ID: <Z5JYXICinxvDXN2J@phenom.ffwll.local>
-References: <cover.1737556766.git.jani.nikula@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E49F110E844
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 14:59:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737644363; x=1769180363;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=FBzYMtSjqfM7p/d6XIe2NK6Oa9E03Khm9cQkOjfvEHY=;
+ b=nbci7Zhj+G1Kmfb85Bfj+KvrVFKPveRtk+XTy9g09NxuI0EkzYkne/yH
+ jqO7XADJ94N9p+M/d8ms5E1fTagcaFvrDmeJGARKyox0LJQRAo5nDRz5z
+ Pv3EgtJx+rcxo3BkrMCT1SPbBqMje59bTXq65veJeH5kn12Z66bNyZSm7
+ 8vodojx52DjQNGlCf2joymsS+/QeNPk73yGw/snPqMneWlpUJBhOPp4km
+ gIQoi9u+tn386719wlZdYCqrEUWVJQWuKpV5Nd4rDzSOJJxQt3dFfxYtW
+ ehJPDoWJ5ZV9zHIdq8GCdmGzkRrb622d89sCwaCHrffH5dK3EhIivSZxs w==;
+X-CSE-ConnectionGUID: 24pLq69zQhWbTzsLj7nnzA==
+X-CSE-MsgGUID: qzyr8M9GSuCNWbsfAxvX9A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="49134577"
+X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="49134577"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2025 06:59:22 -0800
+X-CSE-ConnectionGUID: 5bnGgniCTmWT6lxW0Ppa6Q==
+X-CSE-MsgGUID: 0pDk5M6uQ+KlhWftR0hEmA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="107294353"
+Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
+ ([10.125.110.196])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2025 06:59:21 -0800
+Date: Thu, 23 Jan 2025 08:59:16 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, 
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Riana Tauro <riana.tauro@intel.com>, 
+ Peter Zijlstra <peterz@infradead.org>, linux-perf-users@vger.kernel.org
+Subject: Re: [PATCH v15 3/6] drm/xe/pmu: Extract xe_pmu_event_update()
+Message-ID: <djk45hhruejm5yzsvyn7jfmby6holhyhfk74xnbkxmot2yqmwf@l2kz7pjdxvvp>
+References: <20250123041923.1892837-1-lucas.demarchi@intel.com>
+ <20250123041923.1892837-4-lucas.demarchi@intel.com>
+ <Z5IX2Rixtx6csrKO@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <cover.1737556766.git.jani.nikula@intel.com>
-X-Operating-System: Linux phenom 6.12.3-amd64 
+In-Reply-To: <Z5IX2Rixtx6csrKO@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,35 +72,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jan 22, 2025 at 04:41:32PM +0200, Jani Nikula wrote:
-> Add CONFIG_DRM_HEADER_TEST to ensure drm headers are self-contained and
-> pass kernel-doc. And for starters, fix one header that this catches.
-> 
-> Jani Nikula (2):
->   drm/client: include types.h to make drm_client_event.h self-contained
->   drm: ensure drm headers are self-contained and pass kernel-doc
+On Thu, Jan 23, 2025 at 05:20:09AM -0500, Rodrigo Vivi wrote:
+>On Wed, Jan 22, 2025 at 08:19:20PM -0800, Lucas De Marchi wrote:
+>> Like other pmu drivers, keep the update separate from the read so it can
+>> be called from other methods (like stop()) without side effects.
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_pmu.c | 24 +++++++++++++++---------
+>>  1 file changed, 15 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+>> index df93ba96bdc1e..33598272db6aa 100644
+>> --- a/drivers/gpu/drm/xe/xe_pmu.c
+>> +++ b/drivers/gpu/drm/xe/xe_pmu.c
+>> @@ -117,18 +117,11 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
+>>  	return val;
+>>  }
+>>
+>> -static void xe_pmu_event_read(struct perf_event *event)
+>> +static void xe_pmu_event_update(struct perf_event *event)
+>>  {
+>> -	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
+>>  	struct hw_perf_event *hwc = &event->hw;
+>> -	struct xe_pmu *pmu = &xe->pmu;
+>>  	u64 prev, new;
+>>
+>> -	if (!pmu->registered) {
+>> -		event->hw.state = PERF_HES_STOPPED;
+>> -		return;
+>> -	}
+>> -
+>>  	prev = local64_read(&hwc->prev_count);
+>>  	do {
+>>  		new = __xe_pmu_event_read(event);
+>
+>I really have the feeling that the names are inverted, and that this
+>function should be the one actually called read, but I double
+>checked and everybody else is doing the same, so I guess I just need
+>more coffee...
 
-I guess we should give this another shot. On the series:
+yeah... that's because "read" here is used in 2 different contexts:
 
-Acked-by: Simona Vetter <simona.vetter@ffwll.ch>
+1) as implementation of the perf_pmu functor. We are implementing the
+.event_read() so we call the function xe_pmu_event_read()
+2) as the verb implying we are reading the HW since it's commonly used
+in xe, so we call the function __xe_pmu_event_read()
 
+however the perf_pmu implies that the HW values are updated not only in
+the .read() call, but also in e.g. in the .stop() call. So we have
 
-> 
->  Kbuild                         |  1 +
->  drivers/gpu/drm/Kconfig        | 11 +++++++++++
->  drivers/gpu/drm/Makefile       | 18 ++++++++++++++++++
->  include/Kbuild                 |  1 +
->  include/drm/Makefile           | 18 ++++++++++++++++++
->  include/drm/drm_client_event.h |  2 ++
->  6 files changed, 51 insertions(+)
->  create mode 100644 include/Kbuild
->  create mode 100644 include/drm/Makefile
-> 
-> -- 
-> 2.39.5
-> 
+	xe_pmu_event_stop
+	  xe_pmu_event_update
+	    __xe_pmu_event_read
 
--- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+and
+
+	xe_pmu_event_read
+	  xe_pmu_event_update
+	    __xe_pmu_event_read
+
+__xe_pmu_event_read could be called event_hw_readout() or something like
+that if it helps clearing up the confusion. Thoughts?
+
+>
+>Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+let me know what you think about the rename above and I will keep your
+r-b.
+
+thanks
+Lucas De Marchi
+
+>
+>> @@ -137,6 +130,19 @@ static void xe_pmu_event_read(struct perf_event *event)
+>>  	local64_add(new - prev, &event->count);
+>>  }
+>>
+>> +static void xe_pmu_event_read(struct perf_event *event)
+>> +{
+>> +	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
+>> +	struct xe_pmu *pmu = &xe->pmu;
+>> +
+>> +	if (!pmu->registered) {
+>> +		event->hw.state = PERF_HES_STOPPED;
+>> +		return;
+>> +	}
+>> +
+>> +	xe_pmu_event_update(event);
+>> +}
+>> +
+>>  static void xe_pmu_enable(struct perf_event *event)
+>>  {
+>>  	/*
+>> @@ -166,7 +172,7 @@ static void xe_pmu_event_stop(struct perf_event *event, int flags)
+>>
+>>  	if (pmu->registered)
+>>  		if (flags & PERF_EF_UPDATE)
+>> -			xe_pmu_event_read(event);
+>> +			xe_pmu_event_update(event);
+>>
+>>  	event->hw.state = PERF_HES_STOPPED;
+>>  }
+>> --
+>> 2.48.0
+>>
