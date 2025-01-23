@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8129CC02181
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 02:52:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29E63C02182
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 03:06:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B8BC10E0DC;
-	Thu, 23 Jan 2025 02:52:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0A0010E26D;
+	Thu, 23 Jan 2025 03:06:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QYK1l6tl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZZFd89I6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0A8D10E0DC
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 02:52:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C1AE10E26D
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 03:04:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737600723; x=1769136723;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=DVlpopePaKOxDZ5CK8DLDwOTaGnO+/pxVhzi0yIcadc=;
- b=QYK1l6tlMFfwiG7hVRPM+uAapVbIDla/uxbcdaDG1aYF8xmxumcoXBta
- By/F56tcjOcZcTTJGfS/Unt34sGLaDxC1bE+//siNjBfctuxWSR+HXFvk
- 739RGmd7v8HoVLoC9DZ5fTMaFEY37d4CM/MBIAx2FMxNr2C4/Fl+VfPuX
- cxLRs0d2XxOHlDAWEfmC7lwNAkp+KHEZECR5h870448Q8pZgJSwyHMMQH
- XMF1f/QtDVX0oDxZ43pmuyHFJjx9v+EzEoAScimWASbNcBTrsWYylc8WR
- p00UZEdqz4/D89yO8sAjP6M/WHkbviJrRhgZZObeV37E6GzdktY5Vm4E4 A==;
-X-CSE-ConnectionGUID: fZBBTnCeSH+g9C7yJtmG/Q==
-X-CSE-MsgGUID: 6vJ4Bt/mRVy4FZHxXyub1g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37972945"
-X-IronPort-AV: E=Sophos;i="6.13,227,1732608000"; d="scan'208";a="37972945"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2025 18:52:03 -0800
-X-CSE-ConnectionGUID: 2g1rbeZjTe2OGF90Pxryyw==
-X-CSE-MsgGUID: OXmzZ2GyR6WqFVInKYDAaQ==
+ t=1737601462; x=1769137462;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=S+i2XF9jNF7dIcMiZgmNqDr0x6u9zDLoDmsMwLqKOyY=;
+ b=ZZFd89I64j15Mng68TfeQSoVKRuPOHXPz+0dTvUkzS6swwSLa99fJXI2
+ UgqXXRR65F6JcUQAWT+TB6W8WLlZ00FhHoW5tySXA1BTWCINGvcdKmDQL
+ bjuI31jiFeOq7jcgrp92vd5MupQUHh+heSLY6MYpbglK6etQCcP0rU7XL
+ PYYHQToPqw/52hCRQBaTz2lgq22kdW4hnDu/usonxw2ycugXILIrnCQXN
+ jObnTXSJuaJSkoMEVM+NS0KZKO9aLayiWIca0wyRp7wp6xAIxBbkoRGnQ
+ 9OFSlC5GrFySb81uQlF0a5SbzQ4G3EgJWHZpldel126PDxt4Q6TDX3PMH A==;
+X-CSE-ConnectionGUID: vghOSO+TROq5bcXN3Y3RvA==
+X-CSE-MsgGUID: udIpFSo6TbSefuoXRTTQzg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="38251472"
+X-IronPort-AV: E=Sophos;i="6.13,227,1732608000"; d="scan'208";a="38251472"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2025 19:04:22 -0800
+X-CSE-ConnectionGUID: vhi0ghq+Q2mibi6k15z7zQ==
+X-CSE-MsgGUID: Fst8l/C2S2SGcoa9CawIRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,227,1732608000"; d="scan'208";a="112351937"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2025 18:52:00 -0800
-Date: Thu, 23 Jan 2025 04:51:57 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- matthew.d.roper@intel.com, andi.shyti@linux.intel.com,
- Karthik Poosa <karthik.poosa@intel.com>,
- intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com
-Subject: Re: [PATCH v1] drm/xe/hwmon: expose package and vram temperature
-Message-ID: <Z5GuzT7R0WZTr3r3@black.fi.intel.com>
-References: <20250108092415.289551-1-raag.jadav@intel.com>
- <94e0bc3e-897c-48e2-950d-777d40519ab7@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <94e0bc3e-897c-48e2-950d-777d40519ab7@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,227,1732608000"; d="scan'208";a="107439305"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2025 19:04:21 -0800
+Date: Wed, 22 Jan 2025 19:04:21 -0800
+Message-ID: <85frlafcy2.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Subject: Re: [PATCH v2 2/2] drm/xe/oa: Fix locking for stream->pollin
+In-Reply-To: <Z5DHG7-R3pRmSmvx@intel.com>
+References: <20250122040204.3239397-1-ashutosh.dixit@intel.com>	<20250122040204.3239397-3-ashutosh.dixit@intel.com>	<Z5DHG7-R3pRmSmvx@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,129 +70,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jan 21, 2025 at 01:56:05PM +0530, Riana Tauro wrote:
-> Hi Raag
-> 
-> On 1/8/2025 2:54 PM, Raag Jadav wrote:
-> > Add hwmon support for temp1_input and temp2_input attributes, which will
-> > expose package and vram temperature in millidegree Celsius. With this in
-> > place we can monitor temperature using lm-sensors tool.
-> > 
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > ---
-> >   .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 16 +++++
-> >   drivers/gpu/drm/xe/regs/xe_mchbar_regs.h      |  3 +
-> >   drivers/gpu/drm/xe/regs/xe_pcode_regs.h       |  2 +
-> >   drivers/gpu/drm/xe/xe_hwmon.c                 | 63 +++++++++++++++++++
-> >   4 files changed, 84 insertions(+)
-> > 
-> > diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > index d792a56f59ac..998cfb0ee1a6 100644
-> > --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > @@ -108,3 +108,19 @@ Contact:	intel-xe@lists.freedesktop.org
-> >   Description:	RO. Package current voltage in millivolt.
-> >   		Only supported for particular Intel Xe graphics platforms.
-> > +
-> > +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp1_input
-> > +Date:		April 2025
-> > +KernelVersion:	6.15
-> > +Contact:	intel-xe@lists.freedesktop.org
-> > +Description:	RO. Package temperature in millidegree Celsius.
-> > +
-> > +		Only supported for particular Intel Xe graphics platforms.
-> > +
-> > +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_input
-> > +Date:		April 2025
-> > +KernelVersion:	6.15
-> > +Contact:	intel-xe@lists.freedesktop.org
-> > +Description:	RO. VRAM temperature in millidegree Celsius.
-> > +
-> > +		Only supported for particular Intel Xe graphics platforms.
-> > diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> > index 519dd1067a19..f5e5234857c1 100644
-> > --- a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> > +++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> > @@ -34,6 +34,9 @@
-> >   #define PCU_CR_PACKAGE_ENERGY_STATUS		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x593c)
-> > +#define PCU_CR_PACKAGE_TEMPERATURE		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5978)
-> > +#define   TEMP_MASK				REG_GENMASK(7, 0)
-> > +
-> >   #define PCU_CR_PACKAGE_RAPL_LIMIT		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x59a0)
-> >   #define   PKG_PWR_LIM_1				REG_GENMASK(14, 0)
-> >   #define   PKG_PWR_LIM_1_EN			REG_BIT(15)
-> > diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > index 0b0b49d850ae..8846eb9ce2a4 100644
-> > --- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > +++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > @@ -21,6 +21,8 @@
-> >   #define BMG_PACKAGE_POWER_SKU			XE_REG(0x138098)
-> >   #define BMG_PACKAGE_POWER_SKU_UNIT		XE_REG(0x1380dc)
-> >   #define BMG_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
-> > +#define BMG_VRAM_TEMPERATURE			XE_REG(0x1382c0)
-> > +#define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
-> indentation.
+On Wed, 22 Jan 2025 02:23:23 -0800, Rodrigo Vivi wrote:
+>
 
-It's a git quirk, you won't see it in file.
+Hi Rodrigo,
 
-> Also you are using the same for DG2. Should have a common name
+Thanks for your inputs, it helped me look at the code more closely and
+clarify some things.
 
-Just following the conventions.
+I have responded to your comments below, but in case you don't want to go
+through that, the summary is that I would like to drop this patch from
+consideration at this time, basically because it needs more changes.
 
-> >   #define BMG_PACKAGE_RAPL_LIMIT			XE_REG(0x138440)
-> >   #define BMG_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
-> >   #define BMG_PLATFORM_POWER_LIMIT		XE_REG(0x138460)
-> > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> > index fde56dad3ab7..5b5c844adf4a 100644
-> > --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> > @@ -6,6 +6,7 @@
-> >   #include <linux/hwmon-sysfs.h>
-> >   #include <linux/hwmon.h>
-> >   #include <linux/types.h>
-> > +#include <linux/units.h>
-> >   #include <drm/drm_managed.h>
-> >   #include "regs/xe_gt_regs.h"
-> > @@ -20,6 +21,7 @@
-> >   #include "xe_pm.h"
-> >   enum xe_hwmon_reg {
-> > +	REG_TEMP,
-> add to the end
-> >   	REG_PKG_RAPL_LIMIT,
-> >   	REG_PKG_POWER_SKU,
-> >   	REG_PKG_POWER_SKU_UNIT,
-> > @@ -39,6 +41,11 @@ enum xe_hwmon_channel {
-> >   	CHANNEL_MAX,
-> >   };
-> > +enum xe_hwmon_temp {
-> > +	TEMP_PKG,
-> > +	TEMP_VRAM,
-> > +};
-> Can't the existing channel enum be used here?
+> On Tue, Jan 21, 2025 at 08:02:04PM -0800, Ashutosh Dixit wrote:
+> > Previously locking was skipped for stream->pollin. This "mostly" worked
+> > because pollin is u32/bool, even when stream->pollin is accessed
+> > concurrently in multiple threads. However, with stream->pollin moving under
+> > stream->oa_buffer.ptr_lock in this series, implement the correct way to
+> > access stream->pollin, which is to access it under
+> > stream->oa_buffer.ptr_lock.
+> >
+> > v2: Update commit message to explain the "why" of this change (Rodrigo)
+> >     Document the change in scope for stream->oa_buffer.ptr_lock (Rodrigo)
+>
+> First of all thanks for the rework.
+> But I believe I didn't have enough coffee today yet, because
+> I'm still failing to understand why...
+>
+> Breaking your explanation to see if I can understand:
+> 'mostly' - Why mostly? Did we face bugs?
+>
+> 'worked because pollin is u32/bool' - this sounds like 'works by luck'
 
-Nope, that'd break the indexes.
+No, there are no known bugs in the current code in the kernel. That is what
+'mostly' is supposed to mean: basically the requirements on this code are
+pretty lax, and even if writes into the boolean stream->pollin from
+different threads cross each other, or they stomp on each other, things
+work out. So not 'works by luck' or 'works most of the time' but the code
+works even in absence of this locking.
 
-> > +
-> >   /*
-> >    * SF_* - scale factors for particular quantities according to hwmon spec.
-> >    */
-> > @@ -84,6 +91,19 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
-> >   	struct xe_device *xe = hwmon->xe;
-> >   	switch (hwmon_reg) {
-> > +	case REG_TEMP:
-> > +		if (xe->info.platform == XE_BATTLEMAGE) {
-> > +			if (channel == TEMP_PKG)
-> > +				return BMG_PACKAGE_TEMPERATURE;
-> > +			else if (channel == TEMP_VRAM)
-> > +				return BMG_VRAM_TEMPERATURE;
-> > +		} else if (xe->info.platform == XE_DG2) {
-> > +			if (channel == TEMP_PKG)
-> > +				return PCU_CR_PACKAGE_TEMPERATURE;
-> > +			else if (channel == TEMP_VRAM)
-> > +				return BMG_VRAM_TEMPERATURE;
-> > +		}
-> Common code for bmg and dg2. Can be moved out
+>
+> 'with stream->pollin moving under stream->oa_buffer.ptr_lock' - Why?
+>
+> I believe this is the main why that I had yesterday and that continues
+> today. Why are we using the oa_buffer pointer lock to also protect
+> the a stream variable?
+>
+> Why don't you use the stream_lock? Or why don't you create a dedicated
+> polling_lock?
+>
 
-Again, the conventions + easier to add new platforms this way.
+So, stream->oa_buffer.ptr_lock _is_ the correct lock to use for
+'stream->pollin', because 'stream->pollin' is intimately connected to the
+same pointers 'ptr_lock' is protecting. You can see this in Patch 1.
 
-Raag
+Also, there is basically one 'struct xe_oa_buffer' per stream (and stream_lock
+is a mutex which can't be used from interrupt context).
+
+So rather than using a stream level lock, we can just move pollin into
+stream->oa_buffer. So it will become stream->oa_buffer.pollin.
+
+> I'm sorry for not been clear yesterday, wasting your time and 1 cycle...
+
+No, thanks for your comments, it made me think about all this.
+
+> > @@ -562,8 +563,10 @@ static ssize_t xe_oa_read(struct file *file, char __user *buf,
+> >	 * Also in case of -EIO, we have already waited for data before returning
+> >	 * -EIO, so need to wait again
+> >	 */
+> > +	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
+> >	if (ret != -ENOSPC && ret != -EIO)
+> >		stream->pollin = false;
+> > +	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
+
+Also this is the part I don't like, this should be moved into
+xe_oa_append_reports() where stream->oa_buffer.ptr_lock is already
+held. Otherwise we are dropping and re-grabbing the lock etc.
+
+So imo the basic direction of this patch is correct but I want to make all
+these changes and resubmit this as part of a separate series. So please
+ignore this patch for now. I will go ahead and merge Patch 1 since that is
+ok and was already reviewed as a separate series:
+
+https://patchwork.freedesktop.org/series/143575/
+
+Thanks.
+--
+Ashutosh
+
+
+
+> >
+> >	/* Possible values for ret are 0, -EFAULT, -ENOSPC, -EIO, -EINVAL, ... */
+> >	return offset ?: (ret ?: -EAGAIN);
+> > @@ -573,6 +576,7 @@ static __poll_t xe_oa_poll_locked(struct xe_oa_stream *stream,
+> >				  struct file *file, poll_table *wait)
+> >  {
+> >	__poll_t events = 0;
+> > +	unsigned long flags;
+> >
+> >	poll_wait(file, &stream->poll_wq, wait);
+> >
+> > @@ -582,8 +586,10 @@ static __poll_t xe_oa_poll_locked(struct xe_oa_stream *stream,
+> >	 * in use. We rely on hrtimer xe_oa_poll_check_timer_cb to notify us when there
+> >	 * are samples to read
+> >	 */
+> > +	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
+> >	if (stream->pollin)
+> >		events |= EPOLLIN;
+> > +	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
+> >
+> >	return events;
+> >  }
+> > diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+> > index 52e33c37d5ee8..5c4ea13f646fc 100644
+> > --- a/drivers/gpu/drm/xe/xe_oa_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_oa_types.h
+> > @@ -159,7 +159,7 @@ struct xe_oa_buffer {
+> >	/** @vaddr: mapped vaddr of the OA buffer */
+> >	u8 *vaddr;
+> >
+> > -	/** @ptr_lock: Lock protecting reads/writes to head/tail pointers */
+> > +	/** @ptr_lock: Lock protecting reads/writes to head/tail pointers and stream->pollin */
+> >	spinlock_t ptr_lock;
+> >
+> >	/** @head: Cached head to read from */
+> > --
+> > 2.47.1
+> >
