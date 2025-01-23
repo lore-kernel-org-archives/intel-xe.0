@@ -4,190 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A306DC02182
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 14:14:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D427C0218B
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 14:21:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5354C10E009;
-	Thu, 23 Jan 2025 14:14:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60EBD10E090;
+	Thu, 23 Jan 2025 14:21:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bbDvSBnu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="msc8hO3O";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D37F010E009
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 14:14:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BFDF10E090
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 14:21:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737641696; x=1769177696;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=3UkpP/Ar7hmrChThBRbQWJkqz7cYU7HHefjlQYauKnQ=;
- b=bbDvSBnuuoRGQy6VaVPs/77ZMuBTP3lC5GuObjdATwFxvD2JYP06hN5g
- Qq/uytJzx18GifWO2A+n2u+MH2ju+rlTbZ0rj+py0+Nq10Lab6AYp4ViU
- 6ui0Egqo1L0n4rZHucDEu77InghkKVlc/S5gFZ+7FJHJXqSd7Hti77Del
- JboQxSvX5I+IFBtEntfXYuW0jjP1EVlqqFSRT6YTZNUu3Rwyj4HhSBKts
- 3g7KHAltiKQ+ywmFxy2HfHxrMyBESfgeRO6PeLHKF7Xq1mtCDCMKPlqGV
- LMDR/4rlIHjpSm7YTfVrYdP3o2nNsSGy7oNjYPraMh+bWcz/wRsMXkP7S w==;
-X-CSE-ConnectionGUID: 4bIAYcNVQmiB178m+T/nIQ==
-X-CSE-MsgGUID: D1SL4uBJQ6udNYti9UuiBA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="60610137"
-X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="60610137"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2025 06:14:56 -0800
-X-CSE-ConnectionGUID: YIK1yfpUSVCphXeWiny6UQ==
-X-CSE-MsgGUID: 4J6SN5tmRNi/zARMuNjlMA==
+ t=1737642076; x=1769178076;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=xw5j5gIoQiuLKqA2QCgDxxo866u6YEnOAUUYlyYSH4Q=;
+ b=msc8hO3OvFvVeqc2iOvfXvMGFHyBXihtvbGDtK83txTedOaiuaLNPZ56
+ Amwp0QUX845RapkA1tsspuZd7R+5XMQ/iM1TatzTECdTmZu2D23OWhQq1
+ O2hP7WCk3MzXWDBosfmG4+PrCejLSi9mszi3LqiEnX7rBI1DVrvAGpYo1
+ lj564KvRsoM3pHftGX48A/cK10oX8cM/J9AMqctUuOp94BjV6c3NtE4nC
+ DqOOrugAOe6m7wWC7KNsmiPknZvfeIQSgAZ99Pg8iXkGZSDyL4aGvoUsY
+ ItOpBNrSAkOUyF9stPy98p8tUe4Vvr0QfN2Wc1IaHxX5A33s/skHT7vbt g==;
+X-CSE-ConnectionGUID: smv3ssoeT66u4n9WKKOQYQ==
+X-CSE-MsgGUID: AWcXMlc9RmiMgYrOT3rpwg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="37399481"
+X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="37399481"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2025 06:21:16 -0800
+X-CSE-ConnectionGUID: XQrVDF/QSFqWHVNzto+yhA==
+X-CSE-MsgGUID: OjPzaVbhR962WEwHByslLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="111492630"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Jan 2025 06:14:55 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 23 Jan 2025 06:14:54 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 23 Jan 2025 06:14:54 -0800
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.49) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 23 Jan 2025 06:14:54 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xOMeIVLoUQcTEd6BDJOVvWTTXzSDiqdJCFakHgnN5+H0wHoLqS9fdsjhbKgsBVCQuTeolt6cMTPDwOe+jPfn19rAPTcuF5cWcxdtK82EDCI+O6MikRuF0qNUd0ieRhpgM6io61tAK+L/ki8qd3MS8VSZXOb9G8y4QcrPSihC8CvXe2PwRs/ktmflUzBMESg4wGGnzM6ZsgrPjvijoVX9yFJl/VAt4g230Ki/L7O18//RuTn+EaH2Ah3Qwzyb0XUWqYvF2gpogM3kbUOl4TllCapOn9nEnlXDtSrDBKMc5qUKFguoA+AVxyk/I6o4Jr2DZ6J1SQBdo19KAaM682e1gw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3UkpP/Ar7hmrChThBRbQWJkqz7cYU7HHefjlQYauKnQ=;
- b=wmGJhZE2xduZpK8ZoEzMMGc+o9RxfjYb27LiVhzULTKMOD/+fPRJVMNwYbNrq8NbUij8+4Xkyx9HGAsjhUVMMdH12Bm2DVCEYdiyu17KshhS5VwzuDf3mTaRcgaaELY+SJ/JHzgXE/ANw14YVHAQf5LfPjgv5q+RPsp48PFPjjnml7a1zmB3LcybInKDrM+KIcmWYG4tUVBM7yzj46RRaYk5rIqegz9Kzm01Ze+qvJVd9euhRJxLDhMTQvGRSOY3yxENmNMc51lq92UYrVarMo5EPZe/25yrgsvm+TGNnOlb0tqnvSU6Wog7wf9WN72dZskc2fayHfYoLXOHrNco+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB8179.namprd11.prod.outlook.com (2603:10b6:8:18e::22)
- by CH3PR11MB7371.namprd11.prod.outlook.com (2603:10b6:610:151::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.17; Thu, 23 Jan
- 2025 14:14:11 +0000
-Received: from DM4PR11MB8179.namprd11.prod.outlook.com
- ([fe80::f5c2:eb59:d98c:e8ba]) by DM4PR11MB8179.namprd11.prod.outlook.com
- ([fe80::f5c2:eb59:d98c:e8ba%5]) with mapi id 15.20.8356.020; Thu, 23 Jan 2025
- 14:14:11 +0000
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "De
- Marchi, Lucas" <lucas.demarchi@intel.com>
-CC: "Harrison, John C" <john.c.harrison@intel.com>, "Vivi, Rodrigo"
- <rodrigo.vivi@intel.com>, "stable@vger.kernel.org" <stable@vger.kernel.org>,
+X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="107282980"
+Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
+ ([10.125.110.196])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2025 06:21:15 -0800
+Date: Thu, 23 Jan 2025 08:21:09 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Cc: "Harrison, John C" <john.c.harrison@intel.com>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>, 
  "Filipchuk, Julia" <julia.filipchuk@intel.com>
-Subject: Re: [PATCH 1/2] drm/xe/devcoredump: Move exec queue snapshot to
- Contexts section
-Thread-Topic: [PATCH 1/2] drm/xe/devcoredump: Move exec queue snapshot to
- Contexts section
-Thread-Index: AQHbbVVMFHgSix08VkSGVxA9T7ZR57MkZ3cA
-Date: Thu, 23 Jan 2025 14:14:11 +0000
-Message-ID: <f16aac40a9ea1ab40d1083228cd0b460e1d217e3.camel@intel.com>
-References: <20250123051112.1938193-1-lucas.demarchi@intel.com>
- <20250123051112.1938193-2-lucas.demarchi@intel.com>
-In-Reply-To: <20250123051112.1938193-2-lucas.demarchi@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB8179:EE_|CH3PR11MB7371:EE_
-x-ms-office365-filtering-correlation-id: 4e02ea50-3044-4a85-64dc-08dd3bb83578
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?L29XOCswQ01pN3lrYVJ5eGtDNzgxNWUyU2RXSlM5dldVL2tScHZyeUlldGRD?=
- =?utf-8?B?WGg5ZVpNbk5KRlNVcm1VOEU5amEvZ1ZrNHd4NEpKdUw3R2NGb0VrRlZ6ZWhJ?=
- =?utf-8?B?di8vNjVEbWhkcUswbGhaN2w0SFl6OU1kbGZqTVY5SGg2UzBEaGlaQnZDdmFa?=
- =?utf-8?B?MEZFYXRYWFliMmxTRWpRY2RTWWZ5MU1tQ0xQQVl2cjlXTVJZYnZyMDN2VXVD?=
- =?utf-8?B?c01KQWZVbzgzeGM2TnZMa2pzNXZtY3VEbFlKeW5ZelpIWWd0MEZXZWVnbEFO?=
- =?utf-8?B?K3BJeHk1VXI5ajhDTmFLalJKTEZsc3hQUG5mNjluYzM4UDNNQ08yekdSdzAy?=
- =?utf-8?B?V1J4Yit6NUVWeG1KVTd6cFNaRkRESmhmOEUva0N6bHNjQ2gwQzFBQ2VRbTVB?=
- =?utf-8?B?eXR5d0pPREpXL2JrbjdqOUs4YklFcys4RzRHeko1UDY5Z0FIcG1PZ1RMNXMr?=
- =?utf-8?B?VllyMjJKYVYvMVFmMDJWVnErNGw5QXBxUlFqci82V01lbUJ6Y0NpL21ETlNO?=
- =?utf-8?B?QnRBRUc2d3FmUUFrTTAyUDNiSmVvcUdrcGtmbkZZR2lLc1NYRDJtRGhINmZS?=
- =?utf-8?B?MHdFNzhLODEvYjR4RTRGWGVtbE1JM1BrUFIxWHNGWlFwKzFWL0pYYjNWeFlq?=
- =?utf-8?B?UXFqLzBZR01nUWF0NEVzOVZXc2Y3NVpDSTFheUdXMHM0SGo2bGg5UldrK0cv?=
- =?utf-8?B?WTYvamZtSXhBU1FpZjdhSmxhYVdhbWt6cDFhdlhMNitZVGpuZFp0RHJ1bHVX?=
- =?utf-8?B?WGxhMkxMU3F5SThWNXFTWHQ2dmNIQTVLUVg4TE43VzVGT3oyampVRzRWMU5n?=
- =?utf-8?B?MmhkeDNVZ2pjd1pDNHkrTDVacVhSOE5FeWcvTFEzSi9GTjU2bmlsekFoNTRY?=
- =?utf-8?B?R2g0K1RUclRJcHZUeXptbVlodVBJWklMK2Y0aDNNWFJzL1lLemNIVmlubWlP?=
- =?utf-8?B?M252UkJTMjlHTjJMRXhsM1dObEIyakRqV1pRVWkyU1Q2LzBRbFBOQjh1NlhF?=
- =?utf-8?B?TUxickN1ZEZXUFhMSWRXZWhGVnpleWtncE9OYzBxRE5IUGtPTlNQcUxpeExB?=
- =?utf-8?B?RVVxZlV2MWhzUm9SYTRYbUlhSFAzUTFVV3M0L3EzY1BxRUNSSHRPOXZGS2pM?=
- =?utf-8?B?Y0NiRkhwNTFCemhockVuUUxtZVZuMlFYN2wzT29sbUhHUzdldHBZOWdLSDYv?=
- =?utf-8?B?UzNzNkRvWU5TVnhmb05DTFdlRzlqU1YyOTI4Z2cxUXZSQ0MyOTl2N3hkQWM2?=
- =?utf-8?B?MDk3L0lQclNuR0RYd3diZVc1UjlNNXI3VTI4dTNYL3ZuUER6UWdlZFZJNDAy?=
- =?utf-8?B?NmN3V2NRQlYxRzNlSi9GdisyazVDK2ZUb0lWU29EVXU2WGMwRlhRUjdGb0hh?=
- =?utf-8?B?WTltZnpxRHpxbmlWd1ZxS05yRHZYYWJDeWZwVjhYSDBIQ2R6TjY1N3BRK2FB?=
- =?utf-8?B?QzFhMWlpaUswVklyeTVzNU5DaVhsQWVOcERkZFRPM3VvbzluSjBtbVRCWG51?=
- =?utf-8?B?V3g1U0N0QUFkcFNrclhjdzBrK2k5MkNqaXB4aGNuQXAxM2dXUUVrWTRHY2VV?=
- =?utf-8?B?SHBxSXZkRCswQzVHRW1lK3lNMG0raU5EZG8zdTlpMHkwT3JlQ2k5cGpqS2FG?=
- =?utf-8?B?dTIvSlVYWG1EZEpacDBvUEppbVY4R1Q2NW9xZ0FhMHR0YzYyTTkyOVFwN1dq?=
- =?utf-8?B?cVFSZ3FtTTZJMWluT0prekRac2M3MDlKRmxjeGpQSGRrY0RrcFY0Vk1zVEh5?=
- =?utf-8?B?ZG9kcWdwZDZrZ0dmUlB4Y2pCcTlkcjQzUk5kbWErUUh3ZzhRUjBxVzEwK3kz?=
- =?utf-8?B?ZnBUZWQvNXpoYzVUWDlKWkZkMmV4bFZhN3pYTS9oeGowNitaQWNJWGpGYm1S?=
- =?utf-8?B?eDBaelpiUEZZbnFkSmpNaTJyZllJQlVoak1ja2RTMVlCVlYyVks2M0IvaDhy?=
- =?utf-8?Q?oyqWavmo8lNBy53FO+MZS2MM32ewkUme?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB8179.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dkRWZnJVU1dlWWdRVUlqYUFiZm9ZWnp5eG04QVZSTk85Y2hpblZZSUZrakxX?=
- =?utf-8?B?cHIyM05sWmNTQk5xSjBaNjlnVU1raEkvN01JMlJEcHlwOWRTK1lxd3VZMGFD?=
- =?utf-8?B?TDlzZVAyOEFwR0ZySStyU0FhaEVzWlpTaEw5TlRiajJaMU9lSUE1TE5aMkdD?=
- =?utf-8?B?dldNSWhndGRIT1BaN1VaUHJObWVFQ1I2SGh4T1dGcWw0eGpBQTExaHZzREc1?=
- =?utf-8?B?MzYreW02enJjY25wdHhJbVhCbDFTa2Vld2J0cm1HZXZ1ejFORXQ5c1M3QVpp?=
- =?utf-8?B?eEhkaEFrVUduVk55aGNXSUx0NzVoUlV0bUJrUVljQ0EyQ2s5Tm9tQm1sTXJ2?=
- =?utf-8?B?OFpwK3NIdERKcEdGRDJwYmtWYStMSkV6N2I2M0pOaFcwQjZaZXJJUUl4QWdR?=
- =?utf-8?B?R0pXbGtjT3VJVkswK3pneTl4dzh5Vkt6aFlvU3kyMzNIb2NZdkNEV0pQK1dV?=
- =?utf-8?B?anE5ZWFqQ3k3TllhRzRNQ01wTlRCdDRhZkhUcWlpSEljOEo5cng1bnQ0aGNs?=
- =?utf-8?B?YWxmcVNmR0E0Y014OVZuQ0tUNmtXcnZaVHB0VWZLVitIY0g3YXk4U1NDVzRX?=
- =?utf-8?B?a1hlT2ppZEFmdit3ZFEzSDk0bEdmUXdhMlNXNzduSzlXVFRPSDR3ZUNVYTVC?=
- =?utf-8?B?WmhnWnVudUNuajZ6T1cxUHdTMTlsUm5KN3Exa2dwaUhydVNEcHB2RGxJcWxW?=
- =?utf-8?B?Q2ZCZWF2c0krMzVkUmlOVHlsZ2J5bENxZ0o1VGQwT3NjbCtYWDN2SmUrcTh4?=
- =?utf-8?B?MC8rWXNhTGpkVWxkc1NoWGl1SVB5YkpVR0dmQjVYUzZBK2FMMXhYVFVmdDlI?=
- =?utf-8?B?dlFLbkVNUGVHZCtEVEp3ZWpSYjJ6MjhSSW1SRTVvMlZTZkE3NmlvR1VrbFhj?=
- =?utf-8?B?TExWN3A1enVvdjlKVHBPNzE3MW9Oem1OdDl5My9ybzZxdGJ1eDJNVk9zanpR?=
- =?utf-8?B?L0x4d1ptVzEvb2w3amdHcGRIeTBEWVpISXdkV2dOVGNPczRCVkE1amIzWHpU?=
- =?utf-8?B?YlJMeEt5aERtR2pGd2ZVbHZuaDZYZ20weXg1TUh0V2JjNnVNaDRrUEZLdW5s?=
- =?utf-8?B?aVAxQmE3Q2tVaER2SEZodHlaRGx0Um1OWjJQWGFuS0VEZGVmeG1sbWJwTkxQ?=
- =?utf-8?B?SjJOYzBabmwxa1loUDlNd09xSkE3citER2s2SnB3VWVCa2U5WFVCK1NMNjVD?=
- =?utf-8?B?M3RWYXJ3aFRMejNnR2Y3WFRFK2ZSc3FJVXJ0UHYrSFd6QW5DeFd1TkRETGI3?=
- =?utf-8?B?RVpqeFFmdVlETkxjOCtycGFtek5rVmlBOEZDdWYwK1VQSzEwMk1BOXR3YXN3?=
- =?utf-8?B?UHhKOHpXVGZjeVc2Ulo3ZnVWaEl6OTlYckJqSlMranI4ZE5YWXBMMDk4NG15?=
- =?utf-8?B?WUl0eXBiYU81VFgrcXg0ck1TUVN2Q2RFZ0N6TVkyTFordk10OWI0REJlODFy?=
- =?utf-8?B?dnRZM2tLMy9GdlQ5bFNaM1RNbU5DWlZnUmhkUEJZeUJtbDEvQ3IyUTFFR1Bk?=
- =?utf-8?B?ZFcwUkJlM1RRVUJLaEQyRVQzb0xZeExyYm05WEkzRU9WYm5xbE4vdlpmL0dC?=
- =?utf-8?B?Z1N2R0Y3dG1hRjlyS3lGMDlCNEdvZVdwTTNkdWgwdENKSVh1U2pFQW5mZnhv?=
- =?utf-8?B?R2xKSTRjeWRVWTE4ZWwrVzBoMU8vVkNNVnpla0ZQRGdmUitCNzZXSE9oamx2?=
- =?utf-8?B?YXFaNmlPbkRqQTJudzVMNCtmRlpxaEVxREFuTWtHcDZPVmdWRWhyWkp6VkQ4?=
- =?utf-8?B?NXVRQitsWGpLQ2trdlhiUXF0RjR5ODF1MWpKSDBTMWdMVVR5OGxMSm5BNU50?=
- =?utf-8?B?WDRiVlNtZFRKUkhDRnAyMVdmR3JNVUVRbFBxRWVPYzdGQ0V4VXNHQVRJWUV1?=
- =?utf-8?B?QlFHcnI3clI4MVg3bjFDenFvbkdYTEtsMHhoNTNRL0J1aWVieGtMZy9MTEtr?=
- =?utf-8?B?V2F4ZWM2M3I4Y3RjNUMvTFZjNWx2cHozcGNLMWNUSVdTalB2OHIrU0dBSVZi?=
- =?utf-8?B?bUZaamY0eTZ4UU56TUlOenl3Qm9SQXZaalVOTkhzWHNreko5RWhkWUQ1UXVa?=
- =?utf-8?B?NlVSVjY5eS90RzUrelpzdE5NdTdtb0FTVUcwSUNzYmhOcjg2dTFhUE1kMGxY?=
- =?utf-8?B?bkF5L093UGdMY2hlOW5XM2lFOThnTzdRZHFwUzF0YXJTK0E3WUdLaGJHMS9C?=
- =?utf-8?B?eXc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <174B5F46053D294A9EC8747819F08D3E@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Subject: Re: [PATCH v3 1/1] drm/xe/guc: Fix GuC log/ct output via debugfs
+Message-ID: <hnxbihlemnmm6donzbjbkozhylj7bsbfizigrsif5gsdo2wszk@flicwtvlvyzz>
+References: <qj6jh2z7qncr73nesmsdjaa46rxnm34tf4slp6y4ctv4w2dzv2@lttsv323fanu>
+ <789cbf9a-fbd8-44e8-a528-22a6c098189e@intel.com>
+ <zkjzktceuth45bignihe2vy5j3durxymlur5ama4npxjtraetp@2cta2iw2pq7r>
+ <b33cc2e2-d29a-4325-a92f-529ba55efc09@intel.com>
+ <b5lvicq2uiplspkfzbx6im5c2bwt6xzajedqpvn4uyqns4sjvm@guonfjgyryju>
+ <2e2d831f-6b1f-457c-8166-ce8362182a55@intel.com>
+ <fd81f8850ce77cd3f2a1769bf0187d6e851fbceb.camel@intel.com>
+ <b4b250ac8dbe7ba53c62da206d4eff7a40ac2b86.camel@intel.com>
+ <afe8b57c-4eb1-4c2c-90a4-52fab482ed89@intel.com>
+ <8e24f76d303857cb9a2e373f9a3c440ceb90e648.camel@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB8179.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e02ea50-3044-4a85-64dc-08dd3bb83578
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2025 14:14:11.3232 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: j7PNFGsuxIlIthZIvaimVaLq6beSDuujx4NU4P1p2sDWxQhOkmCa2LHdC9jdhqUzBNZfLBlWP2SRAWEfSjXsgQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7371
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8e24f76d303857cb9a2e373f9a3c440ceb90e648.camel@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -202,40 +80,505 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDI1LTAxLTIyIGF0IDIxOjExIC0wODAwLCBMdWNhcyBEZSBNYXJjaGkgd3JvdGU6
-DQo+IEhhdmluZyB0aGUgZXhlYyBxdWV1ZSBzbmFwc2hvdCBpbnNpZGUgYSAiR3VDIENUIiBzZWN0
-aW9uIHdhcyBhbHdheXMNCj4gd3JvbmcuICBDb21taXQgYzI4ZmQ2YzM1OGRiICgiZHJtL3hlL2Rl
-dmNvcmVkdW1wOiBJbXByb3ZlIHNlY3Rpb24NCj4gaGVhZGluZ3MgYW5kIGFkZCB0aWxlIGluZm8i
-KSB0cmllZCB0byBmaXggdGhhdCBidWcsIGJ1dCB3aXRoIHRoYXQgYWxzbw0KPiBicm9rZSB0aGUg
-bWVzYSB0b29sIHRoYXQgcGFyc2VzIHRoZSBkZXZjb3JlZHVtcCwgaGVuY2UgaXQgd2FzIHJldmVy
-dGVkDQo+IGluIGNvbW1pdCA3MGZiODZhODVkYzkgKCJkcm0veGU6IFJldmVydCBzb21lIGNoYW5n
-ZXMgdGhhdCBicmVhayBhIG1lc2ENCj4gZGVidWcgdG9vbCIpLg0KPiANCj4gV2l0aCB0aGUgbWVz
-YSB0b29sIGFsc28gZml4ZWQsIHRoaXMgY2FuIHByb3BhZ2F0ZSBhcyBhIGZpeCBvbiBib3RoDQo+
-IGtlcm5lbCBhbmQgdXNlcnNwYWNlIHNpZGUgdG8gYXZvaWQgdW5uZWNlc3NhcnkgaGVhZGFjaGUg
-Zm9yIGEgZGVidWcNCj4gZmVhdHVyZS4NCg0KVGhpcyB3aWxsIGJyZWFrIG9sZGVyIHZlcnNpb25z
-IG9mIHRoZSBNZXNhIHBhcnNlci4gSXMgdGhpcyByZWFsbHkgbmVjZXNzYXJ5Pw0KSXMgaXQgd29y
-dGggYnJlYWtpbmcgdGhlIHRvb2w/IEluIG15IG9waW5pb24sIGl0IGlzIG5vdC4NCg0KQWxzbywg
-ZG8gd2UgbmVlZCB0byBkaXNjdXNzIHRoaXMgbm93PyBXb3VsZG4ndCBpdCBiZSBiZXR0ZXIgdG8g
-Zm9jdXMgb24gYnJpbmdpbmcgdGhlIEd1QyBsb2cgaW4gZmlyc3Q/DQoNCj4gDQo+IENjOiBKb2hu
-IEhhcnJpc29uIDxKb2huLkMuSGFycmlzb25ASW50ZWwuY29tPg0KPiBDYzogSnVsaWEgRmlsaXBj
-aHVrIDxqdWxpYS5maWxpcGNodWtAaW50ZWwuY29tPg0KPiBDYzogSm9zw6kgUm9iZXJ0byBkZSBT
-b3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+IENjOiBzdGFibGVAdmdlci5rZXJuZWwub3Jn
-DQo+IEZpeGVzOiA3MGZiODZhODVkYzkgKCJkcm0veGU6IFJldmVydCBzb21lIGNoYW5nZXMgdGhh
-dCBicmVhayBhIG1lc2EgZGVidWcgdG9vbCIpDQo+IFNpZ25lZC1vZmYtYnk6IEx1Y2FzIERlIE1h
-cmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2Ry
-bS94ZS94ZV9kZXZjb3JlZHVtcC5jIHwgNiArLS0tLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGlu
-c2VydGlvbigrKSwgNSBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0veGUveGVfZGV2Y29yZWR1bXAuYyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZjb3Jl
-ZHVtcC5jDQo+IGluZGV4IDgxZGM3Nzk1YzA2NTEuLmE3OTQ2YTc2Nzc3ZTcgMTAwNjQ0DQo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZjb3JlZHVtcC5jDQo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS94ZS94ZV9kZXZjb3JlZHVtcC5jDQo+IEBAIC0xMTksMTEgKzExOSw3IEBAIHN0YXRp
-YyBzc2l6ZV90IF9feGVfZGV2Y29yZWR1bXBfcmVhZChjaGFyICpidWZmZXIsIHNpemVfdCBjb3Vu
-dCwNCj4gIAlkcm1fcHV0cygmcCwgIlxuKioqKiBHdUMgQ1QgKioqKlxuIik7DQo+ICAJeGVfZ3Vj
-X2N0X3NuYXBzaG90X3ByaW50KHNzLT5ndWMuY3QsICZwKTsNCj4gIA0KPiAtCS8qDQo+IC0JICog
-RG9uJ3QgYWRkIGEgbmV3IHNlY3Rpb24gaGVhZGVyIGhlcmUgYmVjYXVzZSB0aGUgbWVzYSBkZWJ1
-ZyBkZWNvZGVyDQo+IC0JICogdG9vbCBleHBlY3RzIHRoZSBjb250ZXh0IGluZm9ybWF0aW9uIHRv
-IGJlIGluIHRoZSAnR3VDIENUJyBzZWN0aW9uLg0KPiAtCSAqLw0KPiAtCS8qIGRybV9wdXRzKCZw
-LCAiXG4qKioqIENvbnRleHRzICoqKipcbiIpOyAqLw0KPiArCWRybV9wdXRzKCZwLCAiXG4qKioq
-IENvbnRleHRzICoqKipcbiIpOw0KPiAgCXhlX2d1Y19leGVjX3F1ZXVlX3NuYXBzaG90X3ByaW50
-KHNzLT5nZSwgJnApOw0KPiAgDQo+ICAJZHJtX3B1dHMoJnAsICJcbioqKiogSm9iICoqKipcbiIp
-Ow0KDQo=
+On Thu, Jan 23, 2025 at 08:02:28AM -0600, Jose Souza wrote:
+>On Wed, 2025-01-22 at 13:09 -0800, John Harrison wrote:
+>> On 1/22/2025 10:29, Souza, Jose wrote:
+>> > On Wed, 2025-01-22 at 08:59 -0800, José Roberto de Souza wrote:
+>> > > On Wed, 2025-01-22 at 08:45 -0800, John Harrison wrote:
+>> > > > On 1/9/2025 14:43, Lucas De Marchi wrote:
+>> > > > > On Thu, Jan 09, 2025 at 12:40:51PM -0800, John Harrison wrote:
+>> > > > > > On 1/9/2025 07:39, Lucas De Marchi wrote:
+>> > > > > > > On Wed, Jan 08, 2025 at 03:59:58PM -0800, John Harrison wrote:
+>> > > > > > > > On 1/8/2025 14:11, Lucas De Marchi wrote:
+>> > > > > > > > > +Jose
+>> > > > > > > > > +Rodrigo
+>> > > > > > > > >
+>> > > > > > > > > On Wed, Jan 08, 2025 at 12:14:49PM -0800, John Harrison wrote:
+>> > > > > > > > > > On 1/7/2025 13:10, Lucas De Marchi wrote:
+>> > > > > > > > > > > On Tue, Jan 07, 2025 at 12:22:52PM -0800, Julia Filipchuk wrote:
+>> > > > > > > > > > > > Change to disable asci85 GuC logging only when output to
+>> > > > > > > > > > > > devcoredump
+>> > > > > > > > > > > > (was temporarily disabled for all code paths).
+>> > > > > > > > > > > >
+>> > > > > > > > > > > > v2: Ignore only for devcoredump case (not dmesg output).
+>> > > > > > > > > > > > v3: Rebase to resolve parent tag mismatch.
+>> > > > > > > > > > > >
+>> > > > > > > > > > > > Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
+>> > > > > > > > > > > > ---
+>> > > > > > > > > > > > drivers/gpu/drm/xe/xe_devcoredump.c | 8 +++++---
+>> > > > > > > > > > > > include/drm/drm_print.h             | 2 ++
+>> > > > > > > > > > > > 2 files changed, 7 insertions(+), 3 deletions(-)
+>> > > > > > > > > > > >
+>> > > > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c
+>> > > > > > > > > > > > b/drivers/gpu/drm/xe/xe_devcoredump.c
+>> > > > > > > > > > > > index 6980304c8903..8e5d1f9866a7 100644
+>> > > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_devcoredump.c
+>> > > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+>> > > > > > > > > > > > @@ -424,10 +424,12 @@ void xe_print_blob_ascii85(struct
+>> > > > > > > > > > > > drm_printer *p, const char *prefix,
+>> > > > > > > > > > > >       * Splitting blobs across multiple lines is not compatible
+>> > > > > > > > > > > > with the mesa
+>> > > > > > > > > > > >       * debug decoder tool. Note that even dropping the explicit
+>> > > > > > > > > > > > '\n' below
+>> > > > > > > > > > > >       * doesn't help because the GuC log is so big some
+>> > > > > > > > > > > > underlying implementation
+>> > > > > > > > > > > > -     * still splits the lines at 512K characters. So just bail
+>> > > > > > > > > > > > completely for
+>> > > > > > > > > > > > -     * the moment.
+>> > > > > > > > > > > > +     * still splits the lines at 512K characters.
+>> > > > > > > > > > > did we investigate where this is done and how we can overcome it? I
+>> > > > > > > > > > Yes. And the comment could be updated as part of this patch to
+>> > > > > > > > > > make it clearer...
+>> > > > > > > > > >
+>> > > > > > > > > >
+>> > > > > > > > > >       * Splitting blobs across multiple lines is not compatible
+>> > > > > > > > > > with the mesa
+>> > > > > > > > > >       * debug decoder tool. Note that even dropping the explicit
+>> > > > > > > > > > line wrapping
+>> > > > > > > > > >       * below doesn't help because the GuC log can be so big it
+>> > > > > > > > > > needs to be split
+>> > > > > > > > > >       * into multiple 2MB chunks, each of which must be printed
+>> > > > > > > > > > individually and
+>> > > > > > > > > >       * therefore will be a separate line.
+>> > > > > > > > > so there's no "underlying implemenation that splits like at 512K
+>> > > > > > > > > chars"?
+>> > > > > > > > > Nowe it's something else: a 2MB chunk because of what?
+>> > > > > > > > The GuC log is captured in multiple 2MB chunks because we can't
+>> > > > > > > > kmalloc a full 16MB block at a single time irrespective of memory
+>> > > > > > > > fragmentation - the kmalloc function aborts with a page size error
+>> > > > > > > > above 8MB, I recall. Might even have been 4MB? The 2MB chunks
+>> > > > > > > > become approx 512K characters of ASCII85 output (when mostly full
+>> > > > > > > > of zeros). Because each chunk is a separate bo object the memory is
+>> > > > > > > > not contiguous so each must be printed with a separate call to
+>> > > > > > > > xe_print_blob_ascii85(). If xe_print_blob_ascii85() includes a
+>> > > > > > > > terminating line feed at the end of the print then that means
+>> > > > > > > > multiple lines for the GuC log.
+>> > > > > > > now it makes sense... and contradicts what was said earlier about the
+>> > > > > > > "underlying implementation still splits the lines at 512K characters".
+>> > > > > > > It's this very function that is splitting it.
+>> > > > > > The initial comment was written before the situation was fully
+>> > > > > > understood because it was a quick hack to get the mesa debug tool
+>> > > > > > working again.
+>> > > > > >
+>> > > > > > The split is a combination of the helper function adding a linefeed
+>> > > > > > to the end of the output and the GuC log being so large it must be
+>> > > > > > split into multiple malloc buffers. But it is not related to the 800
+>> > > > > > character line wrapping within the helper's output.
+>> > > > @Lucas, are you happy with the above now? If the patch is updated with
+>> > > > the comment as above can we get it merged? We currently have no access
+>> > > > to GuC logs via debugfs which makes debugging issues difficult. Multiple
+>> > > > people have already complained about this not working.
+>> >
+>> > I thought it was agreed that the line break were not necessary and was being added because of the way GuC log output code was written, so why it is
+>> > still being used?
+>> As per earlier comments, removing the line breaks requires doing hacky
+>> things and/or having messy interfaces in the kernel. Being understood is
+>> not the same thing as saying removing it is the perfect solution.
+>
+>we have years of i915 having no line breaks and no issues.
+
+This is done in
+https://patchwork.freedesktop.org/series/143872/
+
+>
+>>
+>> Whereas supporting wrapped lines is defensive programming. It makes the
+>> tool more robust for when core dump files arrive from random end users
+>> that have passed them through who knows what text editor or email tool.
+>>
+>
+>it should be shared compressed or decoded(with mesa or other too).
+>
+>>
+>> >
+>> > In my opinion this patch is changing a struct that is used by all drm drivers, not sure if we can change without an ack from a drm maintainer.
+>> >
+>> > Also would be nice if GuC log follow the same pattern as other binaries in devcoredump like:
+>> >
+>> >
+>> > [HWCTX].length: 0x1000
+>> > [HWCTX].data: xxxxx
+
+yeah, if you want to re-create the struct binary first by decoding it
+from devcoredump and as a second step handle the data, that's useful.
+
+Ideally we'd add the encoded size though, otherwise you'd have to decode
+even the fields you don't care about since you can't just jump e.g.
+0x100 bytes to get the next one.
+
+I don't think it'd work for mesa to prevent random chars getting in the
+way since mesa skips fields it's not interest into. You'd have to parse
+every single field and it'd take just an addition of a new field to
+break the parser again since we don't have annotation of fields that are
+encoded or what algo is used for encoding it.
+
+If we add the decoded size, we may need to be careful what key to use so
+it's clear what it is and that it doesn't prevent us from adding the
+encoded size in future, which IMO is more useful when parsing binaries,
+but harder to add in this case.
+
+Lucas De Marchi
+
+>> >
+>> > [200000].length: 0x40000
+>> > [200000].data: xxxxx
+>> I'm not seeing how that helps.
+>
+>First consistency, second we can re-use the same code that parses other binaries to parse this one too.
+>
+>>
+>> The size above is the decoded size. That does not tell you anything
+>> about the amount of ASCII85 data because the encoding is variable
+>> length. The ASCII85 spec includes basic run length encoding of zero
+>> filled data. So the amount of ASCII data is not a simple function of the
+>> input buffer size.
+>
+>At least for the other binaries I need to know the whole binary size, allocate the memory, then I will start to decode and store that in the allocated
+>memory. Then at last I can check if the number of bytes decoded match with length, to make sure nothing was lost.
+>
+>>
+>> >
+>> > And again we should avoid break the Mesa parser as much as possible, customers open bugs and attach it. And soon the same devcoredump will be used to
+>> > replay the batch buffer and all the context that cause the GPU hang in simulator and real HW.
+>> Avoiding breaks is not the same thing as not allowing improvements.
+>>
+>> >
+>> > > >
+>> > > > > > > > > I don't really want to keep updating this instead of fixing it.
+>> > > > > > > > >
+>> > > > > > > > > > The dump helper could be updated to never add any line feeds, not
+>> > > > > > > > > > even
+>> > > > > > > > > when you say "dump helper", what exactly are you talking about?
+>> > > > > > > > > xe_print_blob_ascii85(), __xe_devcoredump_read(),
+>> > > > > > > > > __drm_puts_coredump()
+>> > > > > > > > > or what?
+>> > > > > > > > xe_print_blob_ascii85
+>> > > > > > > >
+>> > > > > > > > > If it's about xe_print_blob_ascii85(), I think this would be the
+>> > > > > > > > > first step:
+>> > > > > > > > > drop the \n you are adding. AFAICS calling the print function in
+>> > > > > > > > > chunks
+>> > > > > > > > > of 800B would be fine, just don't add any \n. If that still adds \n
+>> > > > > > > > > somewhere, we can check how to drop it or you then may have a pretty
+>> > > > > > > > > solid argument to adapt the mesa tool with a newline
+>> > > > > > > > > continuar char and send them the MR.
+>> > > > > > > > As above, the chunking is at the next level out. So dropping the
+>> > > > > > > > 800 byte \n won't help with the GuC log still being split into
+>> > > > > > > > multiple lines. You have to either move the terminating \n outside
+>> > > > > > > > of the helper and into the callers or add a bool parameter to
+>> > > > > > > > enable/disable it. Either of which is just messy.
+>> > > > > > > If the caller knows it's calling the function multiple times to
+>> > > > > > > continue
+>> > > > > > > previous data, it's not unreasonable to have an arg to terminate it or
+>> > > > > > > not. It's for example what python does with its 'end' arg to the
+>> > > > > > > print()
+>> > > > > > > function.
+>> > > > > > Just because someone else does it does not make it clean or the best
+>> > > > > > solution.
+>> > > > > >
+>> > > > > > > > Or extend the helper to take an array/list of pointers in a
+>> > > > > > > > scatter/gather fashion.
+>> > > > > > > >
+>> > > > > > > > And if you drop the 800B \n then you break the dmesg output
+>> > > > > > > > facility. Which means we can't get logs out from CI panic type
+>> > > > > > > > situations.
+>> > > > > > > Or that we should have another way to get a devcoredump. I don't think
+>> > > > > > > we are going to print the devcoredump to dmesg when the kernel panics.
+>> > > > > > > We may print it when we fail to probe, but the cpu should still be very
+>> > > > > > > much alive - we tie the devcoredump lifecycle to the lifecycle of the
+>> > > > > > > device, so we don't have an opportunity to get that data.
+>> > > > > > >
+>> > > > > > > The workaround you add is to dump the whole thing to dmesg, but we
+>> > > > > > > could
+>> > > > > > > dump it somewhere else like a debugfs that is tied to the module
+>> > > > > > > lifecycle.
+>> > > > > > The point is to get usable logs out of CI. There are multiple
+>> > > > > > situations in which CI fails to save logs. By 'panic' I was more
+>> > > > > > meaning situations where we have very rare bugs that can't be hit
+>> > > > > > locally and for which CI is not providing useful logs. I.e. we are in
+>> > > > > > a panic about how to debug it and dumping via dmesg is the only
+>> > > > > > viable option.
+>> > > > > >
+>> > > > > > > The dmesg (kmsg) format already contains other things you have to
+>> > > > > > > ignore
+>> > > > > > > to extract the message:
+>> > > > > > >
+>> > > > > > >   * /dev/kmsg exports the structured data in the following line
+>> > > > > > > format:            *
+>> > > > > > > "<level>,<sequnum>,<timestamp>,<contflag>[,additional_values, ...
+>> > > > > > > ];<message text>\n"
+>> > > > > > >
+>> > > > > > > so you will always have to preprocess it, ignore lines that don't
+>> > > > > > > belong
+>> > > > > > > to the log, etc.
+>> > > > > > I never said this was not the case. The GuC log decoding tool already
+>> > > > > > copes with myriad different dmesg, syslog, serial console, etc.
+>> > > > > > output formats.
+>> > > > > >
+>> > > > > > > And if you print it correctly, you can even make use of the LOG_CONT to
+>> > > > > > > mark the new line as continuation of the previous one.
+>> > > > > > Reconstructing split lines has never been a problem for GuC decoder
+>> > > > > > tool. It is only the mesa tool that has a problem with line feeds.
+>> > > > > >
+>> > > > > > > > > > at the end. And then the burden would be on the callers to add
+>> > > > > > > > > > line feeds as appropriate. That seems extremely messy, though.
+>> > > > > > > > > > And it will break the dmesg output facility. That does need the
+>> > > > > > > > > > line wrapping at ~800 characters which can't be done from outside
+>> > > > > > > > > > the helper.
+>> > > > > > > > > >
+>> > > > > > > > > > > understand having to split it into multiple calls, but not
+>> > > > > > > > > > > something
+>> > > > > > > > > > > adding a \n. particularly for the functions dealing with
+>> > > > > > > > > > > seq_file and
+>> > > > > > > > > > > devcoredump.
+>> > > > > > > > > > >
+>> > > > > > > > > > > > +     *
+>> > > > > > > > > > > > +     * Only disable from devcoredump output.
+>> > > > > > > > > > > >       */
+>> > > > > > > > > > > > -    return;
+>> > > > > > > > > > > > +    if (p->coredump)
+>> > > > > > > > > > > but we do want the guc log to be inside the devcoredump, so
+>> > > > > > > > > > > rather than
+>> > > > > > > > > > > adding more workarounds, can we fix it ?
+>> > > > > > > > > > The simplest fix is your suggestion of adding an extra white
+>> > > > > > > > > > space character at the end of the line in the helper function and
+>> > > > > > > > > > updating the mesa tool to support multi-line output. That seems
+>> > > > > > > > > > like it should be a trivial update to the mesa tool and it keeps
+>> > > > > > > > > > the KMD side simple and consistent across all potential output
+>> > > > > > > > > > methods. But Jose seemed absolutely dead set against any updates
+>> > > > > > > > > > to the mesa tool at all :(.
+>> > > > > > > > > >
+>> > > > > > > > > > The more complex fix is Joonas' idea of using an official
+>> > > > > > > > > > structured output format of some sort - TOML, YAML, JSON or
+>> > > > > > > > > > whatever. Something
+>> > > > > > > > > it actually doesn't fix this particular issue. It fixes others,
+>> > > > > > > > > but not
+>> > > > > > > > > this one.
+>> > > > > > > > If we do it properly then it fixes everything. The format library
+>> > > > > > > > would have helper functions that the devcoredump code can call to
+>> > > > > > > but we are *NOT* going to export a library for that. You are just
+>> > > > > > > shifting the problem to "we have only one userspace that is our own
+>> > > > > > > library, deal with it".
+>> > > > > > No. By library, I mean libjson or libyaml or whatever. The whole
+>> > > > > > point of using an externally defined file format is that you can use
+>> > > > > > an externally written library to read that format. Whatever userspace
+>> > > > > > tool only has to worry about processing data/value pairs or whatever
+>> > > > > > you get from the library's read interface, it no longer has to worry
+>> > > > > > about file formats, character encodings, line wraps, etc. All that is
+>> > > > > > handled by the third party library / file format definition.
+>> > > > > >
+>> > > > > > > > print integers, bools, strings and BLOBs. The debugfs/sysfs output
+>> > > > > > > > would just stream the encoded output exactly as is. The dmesg
+>> > > > > > > > output layer would add the 800 character line wrapping in a way
+>> > > > > > > > that the dmesg decoder can undo before passing to the decoder library.
+>> > > > > > > >
+>> > > > > > > > >      "Guc Log": "<encoded data .........."
+>> > > > > > > > >
+>> > > > > > > > > if you need to split lines, you still need something to do do it in
+>> > > > > > > > > whatever format you choose. One json I remember working on in the
+>> > > > > > > > > past
+>> > > > > > > > > that embeds the binary is the .apj format... example:
+>> > > > > > > > > https://firmware.ardupilot.org/Copter/2024-12/2024-12-02-13:12/CubeBlack/arducopter.apj
+>> > > > > > > > >
+>> > > > > > > > >
+>> > > > > > > > >
+>> > > > > > > > >
+>> > > > > > > > >      {
+>> > > > > > > > >          "board_id": 9,
+>> > > > > > > > >          "magic": "APJFWv1",
+>> > > > > > > > >          "description": "Firmware for a STM32F427xx board",
+>> > > > > > > > >          "image": "eNqUvAlcU1faMH5u7k1yCQGCICCgBoIaRW0EtVSxhg ...
+>> > > > > > > > >
+>> > > > > > > > > here "image" is base64-encoded  afair. But in your case, just
+>> > > > > > > > > printing
+>> > > > > > > > > the json to dmesg wouldn't work because of needing to split the line.
+>> > > > > > > > > It wouldn't fix the kind of bugs we had in the past too: in json it
+>> > > > > > > > > would be the equivalent of adding a field to the wrong object and
+>> > > > > > > > > then
+>> > > > > > > > > move it elsewhere. An application trying to read that object in the
+>> > > > > > > > > previous place would be broken regardless.
+>> > > > > > > > >
+>> > > > > > > > > toml is more for configuration and yaml isn't a good one for this
+>> > > > > > > > > case
+>> > > > > > > > > as it further relies on indentation. I wouldn't oppose to use
+>> > > > > > > > > json, but
+>> > > > > > > > > don't expect to have dmesg to magically work because of that.
+>> > > > > > > > TOML basically says 'use base64 and print it as a string'. And it
+>> > > > > > > > supports multi-line strings, so the reader would have to drop
+>> > > > > > > > newlines within a base64 object before doing the base64 decode. Or
+>> > > > > > > > just use a base64 decoder that ignores whitespace.
+>> > > > > > > >
+>> > > > > > > > YAML seems to make even more explicit. From the 1.2.2 spec page:
+>> > > > > > > >      picture: !!binary |
+>> > > > > > > >       R0lGODlhDAAMAIQAAP//9/X
+>> > > > > > >       ^ space here for line continuation, as I mentioned.
+>> > > > > > >
+>> > > > > > > >       17unp5WZmZgAAAOfn515eXv
+>> > > > > > > >       Pz7Y6OjuDg4J+fn5OTk6enp
+>> > > > > > > >       56enmleECcgggoBADs=
+>> > > > > > > >
+>> > > > > > > > So the userland reader just gets binary data straight out of the
+>> > > > > > > > decoder library with no processing required.
+>> > > > > > > A decoder library that we are *NOT* going to write.
+>> > > > > > As above, the decoder library is definitely not written by us. It is
+>> > > > > > libyaml or some such.
+>> > > > > >
+>> > > > > > >
+>> > > > > > > >
+>> > > > > > > > > So let's fix the issue at hand and let the talk about xe's coredump
+>> > > > > > > > > format for a later time.
+>> > > > > > > > The issue at hand is that we have two fundamentally conflicting
+>> > > > > > > > requirements. DMesg output requires line wrapping but the mesa tool
+>> > > > > > > > has been coded in such a way that it breaks when given wrapped
+>> > > > > > > > lines. There is nothing we can do about dmesg but making the mesa
+>> > > > > > > > tool's parser more robust does not seem difficult.
+>> > > > > > > >
+>> > > > > > > > Switching to an externally defined encoding scheme that internally
+>> > > > > > > > manages binary objects and supports wrapped lines would fix all
+>> > > > > > > > issues and guarantee future compatibility.
+>> > > > > > > >
+>> > > > > > > > Note that line wrapping is not the only problem with the current
+>> > > > > > > > mesa tool. Unless it has been updated since? The tool breaks if the
+>> > > > > > > > context information is not part of the "GuC Communication
+>> > > > > > > > Transport" section. Which is totally incorrect. Context state is
+>> > > > > > > > very definitely not part
+>> > > > > > > We reverted it because it's not ok to just move it to the "correct"
+>> > > > > > > place and break the users. If it's in the incorrect place and we know
+>> > > > > > > there's this parser already using it incorrectly, we can treat as a bug
+>> > > > > > > in the kernel and adjust the userspace (it'd be considered a bug there
+>> > > > > > > too and backported to their earlier releases).  What we don't do is
+>> > > > > > > simply merge the fix and break userspace.
+>> > > > > > Can we not repeat old arguments? No-one realised that that change
+>> > > > > > would break userspace. Or if they did, there was confusion over what
+>> > > > > > exactly had or had not been tested and was causing a problem.
+>> > > > > > Certainly it was not an intentional "merge and everyone be damned".
+>> > > > > >
+>> > > > > > My point was that there are multiple issues here. Line feeds is only
+>> > > > > > one. But using a structured file format would prevent both of the
+>> > > > > > problems we have currently hit.
+>> > > > > >
+>> > > > > > > Send the fix to the mesa tool if you want to change this in the kernel.
+>> > > > > > When I can finally work out how to build mesa (it seems to require
+>> > > > > > libraries that are newer than any Ubuntu release has access to!?) and
+>> > > > > https://docs.mesa3d.org/install.html has the docs for that.
+>> > > > Pretty sure that's what I was following last time.
+>> > > >
+>> > > > > For ubuntu, in our internal docs we document to install deps with:
+>> > > > >
+>> > > > >      sudo apt build-dep mesa
+>> > > > >
+>> > > > > You can disable stuff you don't use. Our internal docs have this useful
+>> > > > > set of args:
+>> > > > >
+>> > > > >      meson setup \
+>> > > > >          -Dprefix=/usr \
+>> > > > >          -Dgallium-rusticl=false \
+>> > > > >          -Dgallium-drivers=iris \
+>> > > > >          -Dvulkan-drivers=intel \
+>> > > > >          build
+>> > > > >
+>> > > > > I think you are probably talking about the llvm dep, that can be
+>> > > > > workarounded by the setup flags above.
+>> > > > I don't recall what the specific problem was last time. It looks like I
+>> > > > have managed to get everything installed this time. However, the build
+>> > > > does not appear to include the aubinator program. Nothing in
+>> > > > src/intel/tools appears to get built at all. And I can't find any
+>> > > > mention of how to build or use it in the Mesa docs or elsewhere.
+>> > > Add -Dtools=intel to build it.
+>> And how does one use it? Are there any regression tests that one can run
+>> to verify operation?
+>>
+>> John.
+>>
+>> > >
+>> > > >
+>> > > > > > have spent time learning yet another code base and how the tool is
+>> > > > > > implemented...
+>> > > > > >
+>> > > > > > > And as I said, for this particular change it doesn't matter if it's a
+>> > > > > > > custom format, json, toml or whatever... the bug would still be the
+>> > > > > > > same.
+>> > > > > > Ideally not. Part of moving to a structured file format would be
+>> > > > > > ensuring that the structure of the data is correct.
+>> > > > > >
+>> > > > > > > > of the GuC CT layer. That absolutely needs to be fixed. And
+>> > > > > > > > generally, anything we can do to make the decoding more robust and
+>> > > > > > > > future proof would be a very good thing.
+>> > > > > > > >
+>> > > > > > > > Note that the devcoredump content is highly dependent upon the
+>> > > > > > > > internal workings of the driver. It is going to change over time.
+>> > > > > > > > So the more robust the decoder, the better chance it has of not
+>> > > > > > > > breaking when some new piece of data is added to the dump or an
+>> > > > > > > > existing item removed or modified.
+>> > > > > > > >
+>> > > > > > > > > > that ideally supports binary data and compression natively and
+>> > > > > > > > > > has a helper library that can be included in the kernel source
+>> > > > > > > > > > tree. That
+>> > > > > > > > > oh no, we'd need to define the schema - there are plenty of json
+>> > > > > > > > > libraries
+>> > > > > > > > > in multiple languages for users to choose from  and that would be
+>> > > > > > > > > basically
+>> > > > > > > > > then main benefit of using it.
+>> > > > > > > > Well, we can certainly define extra formats on top of a base format
+>> > > > > > > > but it seems like it would be simpler if the base format supported
+>> > > > > > > > all the data types we need already. Doesn't really matter either
+>> > > > > > > > way as long as the underlying file format supports all the uses we
+>> > > > > > > > want of it.
+>> > > > > > > My point is that we are not going to add a decoder library that all
+>> > > > > > > userspace consumers have to use. The kernel interface is not a library.
+>> > > > > > > You are relying on having just one userspace to not break userspace.
+>> > > > > > That is not at all what I am saying.
+>> > > > > >
+>> > > > > > > The benefit of a common format like json, toml etc is exactly that it's
+>> > > > > > > a format already understood by hundreds of libraries and we can even do
+>> > > > > > > something like this instead of having to write our own parser:
+>> > > > > > >
+>> > > > > > > cat devcoredump | jq '.[] | .foo, .bar'
+>> > > > > > That is exactly what I am saying.
+>> > > > > >
+>> > > > > > The mesa debug tool becomes something like:
+>> > > > > >      #include <libyaml>
+>> > > > > >
+>> > > > > >      info = yaml.read_file(file_name);
+>> > > > > >      foreach_engine(info.engines, i)
+>> > > > > >          printf( "Got hang on %s\n", info.engines[i].name );
+>> > > > > >
+>> > > > > > The external library handles all the file encoding issues. The tool
+>> > > > > > just has to put meaning to the fields returned from that library.
+>> > > > > to reiterate my point that it doesn't fix all the problems:
+>> > > > >
+>> > > > > if you move something from info.guc_ct.bla to info.contexts.bla
+>> > > > > (exactly what happened in the other bug) you may still break stuff,
+>> > > > > regardless of using a better well-known format.
+>> > > > But having the structure means that data will not be added to the wrong
+>> > > > section in the first place.
+>> > > >
+>> > > > The problem here was that we had no structure to begin with. Then
+>> > > > structure started to be added. But a tool was already making incorrect
+>> > > > assumptions based on the lack of structure.
+>> > > >
+>> > > > Sure, when something needs to be moved, that will still cause the same
+>> > > > kind of issue. But that is much less likely to happen if we are more
+>> > > > careful about adding new entries within a sensible structure to begin with.
+>> > > >
+>> > > > John.
+>> > > >
+>> > > > > Lucas De Marchi
+>> > > > >
+>> > > > > > John.
+>> > > > > >
+>> > > > > > > Lucas De Marchi
+>> > > > > > >
+>> > > > > > > > John.
+>> > > > > > > >
+>> > > > > > > > > Lucas De Marchi
+>> > > > > > > > >
+>> > > > > > > > > > will then remove any and all confusion over interpretation of the
+>> > > > > > > > > > file forever more. But it would require updating all userland
+>> > > > > > > > > > tools to use the appropriate helper library.
+>> > > > > > > > > >
+>> > > > > > > > > > John.
+>> > > > > > > > > >
+>> > > > > > > > > > > Lucas De Marchi
+>>
+>
