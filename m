@@ -4,82 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7999C02182
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 10:34:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47AC0C02182
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 10:34:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DF5010E7CE;
-	Thu, 23 Jan 2025 10:34:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DAFF10E7CC;
+	Thu, 23 Jan 2025 10:34:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FVoi6x76";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="lyW10yfs";
 	dkim-atps=neutral
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com
- [IPv6:2a00:1450:4864:20::533])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E573810E6BD;
- Wed, 22 Jan 2025 11:15:44 +0000 (UTC)
-Received: by mail-ed1-x533.google.com with SMTP id
- 4fb4d7f45d1cf-5d9f0a6ad83so4640978a12.2; 
- Wed, 22 Jan 2025 03:15:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1737544543; x=1738149343; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=3N7KQWc5ZSYL4c3U+Bo/Fk2vvjtKAhcZmZ6nzcJVsV8=;
- b=FVoi6x760lbTBCRxfO7tbmEa35eJVCJa7YTxcBsUbKtRaXjaovpqjYVPNwpLFsHLDe
- Cc4tGNnQX7qAjdUZd/vOqrDzOX5Csf2Q6VNbbXh8WIBsDGlh+vZSBq6hNDSUZCMB8MDU
- yEGA85aRqL59csRO+AQHEU1XWoAXbYdE86fXKXMvaAJ+FOwUps9N9kV3L7T8G5Zbt0Te
- enfxRa2kmQUknEQ1UlwdS2GFHfDt1OTdzAx3/zuTUKNM1VPHET6sKdmQjn40iLgIna/r
- H9tLi6qa5dxYjh3BDW8el6yEl8VTrBih2musj94vmTWrgxuRbi4/zdw7uGm6Bfv5bhWj
- aIxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737544543; x=1738149343;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=3N7KQWc5ZSYL4c3U+Bo/Fk2vvjtKAhcZmZ6nzcJVsV8=;
- b=u09GwEf9zc/9mWWwEo2/spGtitFFGuxCyXJoe1V0iocurOZwNmGcBVxR7FtUMbKsW5
- NMTyTo24K+i1r5CV/Gm0yOU0jTTD2hTbwCjJmxHyeu9PHtloj1JoDXAAbd33G0GGBqK+
- eFBw8t/d7aGzlFYXWooLm5cNJT5AEUlP47EIsjvd0mVlFPMcl8U4o7oE+qA1YRIhjnSH
- iGSBifqjzG6+X77DLrL1kB8bukWzJsFLPF7fcbfOZohgSzqSuGkl27ZjCEF9gdVWcm9o
- gG0oVUqgnvAazkFIed2FyZUvj345ZMgijBG7trWtzTVpxmTbTfYRT+cegsnBX+bZ/5ED
- rwsA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUCKmLGR3P0fT0CKr6QHvdiNrAezU5z8RUOoFdI4bGqvHBQH1l7juVQ5urNBE0YX8A8TmpSploHWNc=@lists.freedesktop.org,
- AJvYcCW0pbcG5ViJTx6ZezaFolleEb/ES5huupi0rhxlWDY4B8njFAgQ52LCwE3vXBGR7bPNXaBhH30KMcE=@lists.freedesktop.org,
- AJvYcCWqpb6sTRVS0U+eidTVIhokedZwZIXaYaKiPVDHnnsM9PFfh94qB5RBbs3YWVklKT4sLP3XhHNOGKvq@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YybIfLveOdEEVqTcEWzzNogNO+U+ttu/XQ5Yq6a7sGa3xHGS2Oq
- Ko3gYBCcM8yE+DwkXmlFSt3D+tNNB5ci0wMkmQHwdwMVlbHuELxtromUWakhKkRX7KfC2EAU8nQ
- Fhu89Mb/S04cNcx1UfG5lanNm1nc=
-X-Gm-Gg: ASbGncuz9EatPsaGV31PXdFhr8F18yqDVgeELj4RnnmIko62Hl/tvehjaiSE4vaP+iv
- gQCD/YhohbtwN4aWruVFG5q+2gNvXXWRUxKk+9jOn3prGaUO8X94wfkND+a2iyv8x1y+2y99+tS
- lCWj5VmQ8=
-X-Google-Smtp-Source: AGHT+IFgz5YD2/eL7o6fQ5cyTA4ydywFqk8/+MSm88wqp8wQKkf5L8zUNwvIOar+Rg1bS9e/JOQf+nS36W9EB2VHACI=
-X-Received: by 2002:a17:907:969f:b0:ab2:b863:b7fa with SMTP id
- a640c23a62f3a-ab38b43b915mr2064916966b.44.1737544543181; Wed, 22 Jan 2025
- 03:15:43 -0800 (PST)
-MIME-Version: 1.0
-References: <20241017075725.207384-1-giedriuswork@gmail.com>
- <CALt+6nqxMZjuZuOKaj8Cx4dcNZx0n-0F9aa97d-vZoMWeN=bOw@mail.gmail.com>
- <Zyk8dFthM0EA2A_K@intel.com>
-In-Reply-To: <Zyk8dFthM0EA2A_K@intel.com>
-From: =?UTF-8?Q?Giedrius_Statkevi=C4=8Dius?= <giedriuswork@gmail.com>
-Date: Wed, 22 Jan 2025 13:15:31 +0200
-X-Gm-Features: AbW1kvbJVUteULK-nbFo57ZObMeweZV6uJOdBdm9RnyIRoQ5uhfPq6KQacKM6ig
-Message-ID: <CALt+6noH3qSJNFYeVmhhGahcFiUsti5Rbt8+ef8QKOi37neaEQ@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/i915/lspcon: do not hardcode settle timeout
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
+X-Greylist: delayed 598 seconds by postgrey-1.36 at gabe;
+ Thu, 23 Jan 2025 07:43:14 UTC
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5067110E780;
+ Thu, 23 Jan 2025 07:43:14 +0000 (UTC)
+Received: from smtp1.mailbox.org (unknown [10.196.197.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4Ydt2x1QV9z9sWp;
+ Thu, 23 Jan 2025 08:33:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1737617593; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=pafGZP171TKVXmmTNtfdIkH/JLfRofR6L9YfhmD45jE=;
+ b=lyW10yfsdoKC9khVw9jNmQQjpXd/IpvM0GENMUQG4ShV8XOOqjm/LPE0R7H2th4muEIaww
+ WjWGoh0BAWCFJX9B1qk8du3Kt58QKRUC0Ge1iJGXX7tDbaRkH3zzd1MyOqNFUNE4LWtTnA
+ ZHxS83eGnU7TcUn45ektfe2nG2rLtuoSRq3Z3UwhPFP4g9edzj2p7EtYo96EGGNiALZVWP
+ c9S2JgPiw/mfMODTFYK5JEz9pj8xFBlTNA+rQvHuuNZjMKghxgF7TAx8WQAiasC8dCWHJE
+ a5A29twSa5ZfOqnphJ+ERRMcVAtkimJEY1P1GJC5V+sjGzEqGq0UxhYyBuaG5Q==
+Message-ID: <af5aac800f7d2153aa3c315584f70c55378c1b2b.camel@mailbox.org>
+Subject: Re: [PATCH] drm/sched: Use struct for drm_sched_init() params
+From: Philipp Stanner <phasta@mailbox.org>
+To: Boris Brezillon <boris.brezillon@collabora.com>, Philipp Stanner
+ <phasta@kernel.org>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Xinhui Pan
+ <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>, Russell King
+ <linux+etnaviv@armlinux.org.uk>,  Christian Gmeiner
+ <christian.gmeiner@gmail.com>, Frank Binns <frank.binns@imgtec.com>, Matt
+ Coster <matt.coster@imgtec.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Qiang Yu <yuq825@gmail.com>,  Rob
+ Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, Konrad Dybcio
+ <konradybcio@kernel.org>,  Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Marijn Suijten
+ <marijn.suijten@somainline.org>, Karol Herbst <kherbst@redhat.com>, Lyude
+ Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, Rob Herring
+ <robh@kernel.org>, Steven Price <steven.price@arm.com>, Liviu Dudau
+ <liviu.dudau@arm.com>, Luben Tuikov <ltuikov89@gmail.com>, Matthew Brost
+ <matthew.brost@intel.com>, Melissa Wen <mwen@igalia.com>, 
+ =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Sunil Khatri <sunil.khatri@amd.com>,  Lijo Lazar <lijo.lazar@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, Ma Jun <Jun.Ma2@amd.com>, 
+ Yunxiang Li <Yunxiang.Li@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,  linux-kernel@vger.kernel.org,
+ etnaviv@lists.freedesktop.org,  lima@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org,  freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org,  intel-xe@lists.freedesktop.org
+Date: Thu, 23 Jan 2025 08:33:01 +0100
+In-Reply-To: <20250122181227.491b7881@collabora.com>
+References: <20250122140818.45172-3-phasta@kernel.org>
+ <20250122181227.491b7881@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MBO-RS-ID: 8a70febfe27100aa303
+X-MBO-RS-META: sw7fmubqh1x18f97mnek9yippijrrm9p
 X-Mailman-Approved-At: Thu, 23 Jan 2025 10:33:56 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -92,29 +89,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello,
+On Wed, 2025-01-22 at 18:16 +0100, Boris Brezillon wrote:
+> On Wed, 22 Jan 2025 15:08:20 +0100
+> Philipp Stanner <phasta@kernel.org> wrote:
+>=20
+> > =C2=A0int drm_sched_init(struct drm_gpu_scheduler *sched,
+> > - =C2=A0=C2=A0 const struct drm_sched_backend_ops *ops,
+> > - =C2=A0=C2=A0 struct workqueue_struct *submit_wq,
+> > - =C2=A0=C2=A0 u32 num_rqs, u32 credit_limit, unsigned int hang_limit,
+> > - =C2=A0=C2=A0 long timeout, struct workqueue_struct *timeout_wq,
+> > - =C2=A0=C2=A0 atomic_t *score, const char *name, struct device *dev);
+> > + const struct drm_sched_init_params *params);
+>=20
+>=20
+> Another nit: indenting is messed up here.
 
-On Mon, 4 Nov 2024 at 23:28, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
->
-> On Mon, Nov 04, 2024 at 02:09:46PM +0200, Giedrius Statkevi=C4=8Dius wrot=
-e:
-> > Hello,
-> >
-> > Kind ping.
->
-> There was a pipe underun in CI... I honestly don't believe this patch is
-> causing it, but anyway I decided to trigger a retest there before I push =
-this.
->
-> Thanks for the patch and review.
+That was done on purpose.
 
-
-Ping. Could we merge this patch? This plus another patch (that I have yet t=
-o
-send) fixes replugging the HDMI cable on my laptop.
-
-Best regards,
-Giedrius
+I never got why so many like to intend to the opening brackets,
+because:
+   1. The kernel coding guide line does not demand it
+   2. It mixes tabs with spaces
+   3. It doesn't create an identical level of intendation
+   4. It wastes huge amount of space and does not solve the problem of
+      long names, but might even make it worse:
+      https://elixir.bootlin.com/linux/v6.13-
+      rc3/source/drivers/gpu/drm/scheduler/sched_main.c#L1296
