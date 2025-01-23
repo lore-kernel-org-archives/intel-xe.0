@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EFFCC0218C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C2F0C0218D
 	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 01:14:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB6FC10E3CB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F067910E3D3;
 	Thu, 23 Jan 2025 01:14:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MiUnwkv6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j+WpK+R7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4067310E041
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 01:14:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF51E10E041
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 01:14:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737594863; x=1769130863;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OnRn2xy7+0r8s0krSRQ+mBhCkrc6lBLosF42bqgsRz8=;
- b=MiUnwkv6PsJR8Tb+qzxvcDO72jbHMiw5bzR/kv37SkRonsOnCCvhSZva
- dkUSea2K7JUDog0sW2gO8Ipin3/B01EstfOrih1Z6SlrVyqitj6u8lB09
- ULJvnvn4R8A3leIJcRw1a+/k/YGBQONFVvPoS7AvIlvjWNj1Qpyaa0X19
- RTkfLlsEopFJbi3DAKCcljnbaMf2PfpPqpJ9aAkGGnAmDaimD+QdOOduj
- 3Sq9bDBDDDK5NpOcP2TEpPFzazszCdrrj2gk9HKqfgOHw2ML0n5G7CQRN
- 2S5n3eyVBi/CZ10o8gzkUUVxzstu6dAk/L37c+u64pevLQHkvbvG2VP2k w==;
-X-CSE-ConnectionGUID: OrD4jzsVT9+8HFfXSGuIjw==
-X-CSE-MsgGUID: sdOZe/UiTzyZXRsDsx6dSA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37967064"
-X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="37967064"
+ t=1737594862; x=1769130862;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EcSC3HFzBZZ3wA9MnSMZtkSM+5Tb//30/8yRDIsdy7w=;
+ b=j+WpK+R7zthP8EOvSLZTSEru8SqoSUXBsTRuCNmh4dTikJiKLMbbGIYL
+ eNTHN0PzwhB4ap5+szfQ2GjD0Vjv82ch6wQS7WmBUyOCuampqTobdp7lX
+ MgS6aiKVsbUym6PmG5dJOamsi4dPv6a/7yRwVABrAYfMPvBKQWfAbS3Hl
+ /nGE+zBfRcWnZ0qKS1w/ffNNcqJ2Zn+76x0Pp/Q0lq8DqRZzE7AXWXUl8
+ ABYL3ixeAlS0tWYWzlDPGacgOdwAvr0uSqjgTmFXrDZzv3YCOdzftjdul
+ 6325LEGW6BcG2W62Zv2SKEjWJpkn+3pkrkv9kkzGKtk+1UkbyFMPvTUcH A==;
+X-CSE-ConnectionGUID: VAyFuhXIQr6XQCV1JACFhA==
+X-CSE-MsgGUID: foIYT9aSTMm7J5AosAfzMg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37967060"
+X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="37967060"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Jan 2025 17:14:22 -0800
-X-CSE-ConnectionGUID: WClrh0DvRyapSKunbjyFag==
-X-CSE-MsgGUID: jbCU+a6/Rpq5njA4K8ElqQ==
+X-CSE-ConnectionGUID: Gzv64cqARjeO3yLB18VJDw==
+X-CSE-MsgGUID: hU5XX7PPTZ2MyFKx4jj4IA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="107124119"
+X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="107124105"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Jan 2025 17:14:22 -0800
@@ -45,13 +45,10 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jose.souza@intel.com, lionel.g.landwerlin@intel.com,
  carlos.santa@intel.com, rodrigo.vivi@intel.com
-Subject: [RFC PATCH 4/6] drm/xe/uapi: Add
- DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
-Date: Wed, 22 Jan 2025 17:15:11 -0800
-Message-Id: <20250123011513.362430-5-matthew.brost@intel.com>
+Subject: [RFC PATCH 0/6] Add support for Mesa GPU hang replay tool 
+Date: Wed, 22 Jan 2025 17:15:07 -0800
+Message-Id: <20250123011513.362430-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250123011513.362430-1-matthew.brost@intel.com>
-References: <20250123011513.362430-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -69,43 +66,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE which accepts a user pointer
-to populate the exec queue state so that a GPU hang can be replayed via
-a Mesa tool.
+Add support for the Mesa GPU hang replay tool, which exists in the i915.
 
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- include/uapi/drm/xe_drm.h | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+The main changes are as follows:
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index e2160330ad01..0fe8c2e8b022 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -204,8 +204,12 @@ struct drm_xe_ext_set_property {
- 	/** @pad: MBZ */
- 	__u32 pad;
- 
--	/** @value: property value */
--	__u64 value;
-+	union {
-+		/** @value: property value */
-+		__u64 value;
-+		/** @ptr: pointer to user value */
-+		__u64 ptr;
-+	};
- 
- 	/** @reserved: Reserved */
- 	__u64 reserved[2];
-@@ -1137,6 +1141,7 @@ struct drm_xe_exec_queue_create {
- #define DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY		0
- #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
- #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
-+#define   DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE		2
- 
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
+- Update devcoredump to include additional information, allowing the
+  Mesa tool to extract everything it needs to replay a GPU hang. These
+  updates are designed to remain compatible with the existing Mesa
+  devcoredump parser.
+- Introduce the DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE extension, which
+  enables setting the execution queue state to the hung execution queue
+  state.
+
+This is being sent as an RFC, as the Mesa uAPI tool has yet to be developed. The tool is a prerequisite for merging this change.
+
+Matt
+
+Matthew Brost (6):
+  drm/xe: Add properties line to VM snapshot capture
+  drm/xe: Add "null_sparse" type to VM snap properties
+  drm/xe: Add mem_region to properties line in VM snapshot capture
+  drm/xe/uapi: Add DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
+  drm/xe: Add replay_offset and replay_length lines to LRC HWCTX
+    snapshot
+  drm/xe: Implement DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
+
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 29 +++++++++++++++-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  3 ++
+ drivers/gpu/drm/xe/xe_execlist.c         |  2 +-
+ drivers/gpu/drm/xe/xe_lrc.c              | 40 ++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_lrc.h              |  4 ++-
+ drivers/gpu/drm/xe/xe_lrc_types.h        |  3 ++
+ drivers/gpu/drm/xe/xe_vm.c               | 42 +++++++++++++++++++++++-
+ include/uapi/drm/xe_drm.h                |  9 +++--
+ 8 files changed, 120 insertions(+), 12 deletions(-)
+
 -- 
 2.34.1
 
