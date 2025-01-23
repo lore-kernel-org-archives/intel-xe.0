@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31DC2C02182
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EFFCC0218C
 	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 01:14:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAE6910E152;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB6FC10E3CB;
 	Thu, 23 Jan 2025 01:14:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qiyb3qiZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MiUnwkv6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25F8810E3CA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4067310E041
  for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 01:14:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1737594863; x=1769130863;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5ywU+ejKrcr5jUEMJc8Wc3T7UmaiYHSHc7PAEkstvPo=;
- b=Qiyb3qiZvTu9ZjAzOKrhj5O27PT6Q7zToo8bS+3vgvB5qll/v4xorZFG
- r6E7YiX88wIMAUZtw8Pv151//odGeV7Xuk91ZkMeLb1gLxtLtlhfbx828
- KuATqg2WifF6Mo+AvZIe0pk0rnUEZvqF1Bn4X/Vbo67Z5YGG6tGZZ5v2q
- FMnF0isb0IwwrPN6MxOLno7fdw3GDX740oPmGFdPcxP+KDzj1qKlUGflF
- iaSOwuLgCLfBzxeDeXcj6SlbbqkuM5A62cifjBjJ7WG6j6nYDLLHIezVJ
- SEknkHo6AJK2BCet87Vb71sX9pWipJr7eiYTtBBUFauTgiVQXPOTqb4c/ A==;
-X-CSE-ConnectionGUID: g9a2XquURje9GNPgP7GuAg==
-X-CSE-MsgGUID: ZGAagzTySlahzc2Sz1rtVw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37967062"
-X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="37967062"
+ bh=OnRn2xy7+0r8s0krSRQ+mBhCkrc6lBLosF42bqgsRz8=;
+ b=MiUnwkv6PsJR8Tb+qzxvcDO72jbHMiw5bzR/kv37SkRonsOnCCvhSZva
+ dkUSea2K7JUDog0sW2gO8Ipin3/B01EstfOrih1Z6SlrVyqitj6u8lB09
+ ULJvnvn4R8A3leIJcRw1a+/k/YGBQONFVvPoS7AvIlvjWNj1Qpyaa0X19
+ RTkfLlsEopFJbi3DAKCcljnbaMf2PfpPqpJ9aAkGGnAmDaimD+QdOOduj
+ 3Sq9bDBDDDK5NpOcP2TEpPFzazszCdrrj2gk9HKqfgOHw2ML0n5G7CQRN
+ 2S5n3eyVBi/CZ10o8gzkUUVxzstu6dAk/L37c+u64pevLQHkvbvG2VP2k w==;
+X-CSE-ConnectionGUID: OrD4jzsVT9+8HFfXSGuIjw==
+X-CSE-MsgGUID: sdOZe/UiTzyZXRsDsx6dSA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37967064"
+X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="37967064"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Jan 2025 17:14:22 -0800
-X-CSE-ConnectionGUID: PlibRnilT4STplcZc/55vg==
-X-CSE-MsgGUID: +nrTcuWYQq2DEELO8ojKaQ==
+X-CSE-ConnectionGUID: WClrh0DvRyapSKunbjyFag==
+X-CSE-MsgGUID: jbCU+a6/Rpq5njA4K8ElqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="107124112"
+X-IronPort-AV: E=Sophos;i="6.13,226,1732608000"; d="scan'208";a="107124119"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Jan 2025 17:14:22 -0800
@@ -45,9 +45,10 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jose.souza@intel.com, lionel.g.landwerlin@intel.com,
  carlos.santa@intel.com, rodrigo.vivi@intel.com
-Subject: [RFC PATCH 2/6] drm/xe: Add "null_sparse" type to VM snap properties
-Date: Wed, 22 Jan 2025 17:15:09 -0800
-Message-Id: <20250123011513.362430-3-matthew.brost@intel.com>
+Subject: [RFC PATCH 4/6] drm/xe/uapi: Add
+ DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
+Date: Wed, 22 Jan 2025 17:15:11 -0800
+Message-Id: <20250123011513.362430-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250123011513.362430-1-matthew.brost@intel.com>
 References: <20250123011513.362430-1-matthew.brost@intel.com>
@@ -68,74 +69,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add "null_sparse" type to VM snap properties indicating the VMA reads
-zero and writes are droppped. This is useful information for debug and
-will help build a robust GPU hang replay tool.
-
-The current format is:
-
-[<vma address>]: <permissions>|<type>
-
-Permissions has two options, either "read_only" or "read_write".
-
-Type has three options, either "userptr", "null_sparse", or "bo".
+Add DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE which accepts a user pointer
+to populate the exec queue state so that a GPU hang can be replayed via
+a Mesa tool.
 
 Cc: José Roberto de Souza <jose.souza@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ include/uapi/drm/xe_drm.h | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 5f9651a4c364..469b00150d87 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3242,6 +3242,7 @@ struct xe_vm_snapshot {
- 		unsigned long len;
- #define XE_VM_SNAP_FLAG_USERPTR		BIT(0)
- #define XE_VM_SNAP_FLAG_READ_ONLY	BIT(1)
-+#define XE_VM_SNAP_FLAG_IS_NULL		BIT(2)
- 		unsigned long flags;
- 		struct xe_bo *bo;
- 		void *data;
-@@ -3299,6 +3300,8 @@ struct xe_vm_snapshot *xe_vm_snapshot_capture(struct xe_vm *vm)
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index e2160330ad01..0fe8c2e8b022 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -204,8 +204,12 @@ struct drm_xe_ext_set_property {
+ 	/** @pad: MBZ */
+ 	__u32 pad;
  
- 			snap->snap[i].bo_ofs = xe_vma_userptr(vma);
- 			snap->snap[i].flags |= XE_VM_SNAP_FLAG_USERPTR;
-+		} else if (xe_vma_is_null(vma)) {
-+			snap->snap[i].flags |= XE_VM_SNAP_FLAG_IS_NULL;
- 		} else {
- 			snap->snap[i].data = ERR_PTR(-ENOENT);
- 		}
-@@ -3319,7 +3322,8 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
- 		struct xe_bo *bo = snap->snap[i].bo;
- 		int err;
+-	/** @value: property value */
+-	__u64 value;
++	union {
++		/** @value: property value */
++		__u64 value;
++		/** @ptr: pointer to user value */
++		__u64 ptr;
++	};
  
--		if (IS_ERR(snap->snap[i].data))
-+		if (IS_ERR(snap->snap[i].data) ||
-+		    snap->snap[i].flags & XE_VM_SNAP_FLAG_IS_NULL)
- 			continue;
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
+@@ -1137,6 +1141,7 @@ struct drm_xe_exec_queue_create {
+ #define DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY		0
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
++#define   DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE		2
  
- 		snap->snap[i].data = kvmalloc(snap->snap[i].len, GFP_USER);
-@@ -3371,6 +3375,8 @@ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
- 		drm_printf(p, "[%llx].properties: %s|%s\n", snap->snap[i].ofs,
- 			   snap->snap[i].flags & XE_VM_SNAP_FLAG_READ_ONLY ?
- 			   "read_only" : "read_write",
-+			   snap->snap[i].flags & XE_VM_SNAP_FLAG_IS_NULL ?
-+			   "null_sparse" :
- 			   snap->snap[i].flags & XE_VM_SNAP_FLAG_USERPTR ?
- 			   "userptr" : "bo");
- 
-@@ -3380,6 +3386,9 @@ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
- 			continue;
- 		}
- 
-+		if (snap->snap[i].flags & XE_VM_SNAP_FLAG_IS_NULL)
-+			continue;
-+
- 		drm_printf(p, "[%llx].data: ", snap->snap[i].ofs);
- 
- 		for (j = 0; j < snap->snap[i].len; j += sizeof(u32)) {
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
 -- 
 2.34.1
 
