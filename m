@@ -4,167 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE79EC02182
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 17:39:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFB98C02182
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 17:44:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E26410E2B0;
-	Thu, 23 Jan 2025 17:39:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EFD310E2BB;
+	Thu, 23 Jan 2025 17:44:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I+zITGIc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e+fu0NW8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E832D10E2B0
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 17:39:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A36A10E2BB
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 17:44:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737653987; x=1769189987;
+ t=1737654284; x=1769190284;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=t5f2WxBqDgDNIZz/jdX7SZGWmU+ZW6MHAK9nVMzv138=;
- b=I+zITGIc69pD0rNYGg6ssB+UbNUdNX0WzWaTolEtYf1AAHRfsJdjTwzY
- jRjRAVqH4QCdMq+wZrz6KVQLpM2ei4UPSEzd5NnGcoJPRdVff7eMqvq9g
- 0Obq8XGs/CvGT51lVVMG+hVGkWLQhVqhLSNtHRSLAELEQpy0VncMrANu9
- EGMmU8mBOh8H6SI59ODEGY4AcyAevCb65w9LTaQjMmX/ituJmX+d6EVif
- KFIlEO+O3QrhAQ9QD5uH43C+BezKaD9LYz+lO8MTUgyvSAWcfLUF89CWr
- Kald1/+GbPbSfL2j0W4jD/5c8wZUGY323JA75npwl03as0w00S0Sb3zXa w==;
-X-CSE-ConnectionGUID: I4zdadj2RlucwPB3wt/O5w==
-X-CSE-MsgGUID: bmKO7Fe9TA6+L6Ik7+Zpfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="38421509"
-X-IronPort-AV: E=Sophos;i="6.13,229,1732608000"; d="scan'208";a="38421509"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2025 09:39:46 -0800
-X-CSE-ConnectionGUID: O9NVsV8MSKa90quLhcLdHg==
-X-CSE-MsgGUID: Ebj8aflGRFuhT/VxiiZSLA==
+ bh=6e1tFgvETeRpU9fxPU7FUeLHUxWWjAcZLNTecWlycic=;
+ b=e+fu0NW8eYOoZE6Tia2gFf9qeVllu21nn1LRQwQADREOBWVV57oWwPA2
+ F8l6yVr9VfK0v9WSfC2ngRbhwgAJ/+vUuJ25bEEern8X5xJjlQlkYXXg6
+ IKYQb/RVB9134viaZFnRM6SFcU9mTe+MMuUKFZX/6tJryGn6EZzfFJuzW
+ dvSJ2ejDkgNJSz10q+N7rIeQvAiMv5JwYoRU6QXeME8y+NHrzeBvDM1LA
+ fDt6BdclTJA1osE6invtEjuUwczI5DFGG5KSQp492XIyIwsdkF+OCvOnX
+ x3cXWchJ7EQ18BnNmBQnlx5mXQwf7ShXSQfEalxlQ1iIcKXUbLdVGnKwk Q==;
+X-CSE-ConnectionGUID: v1+HYp67SLOBO+01uaPaJA==
+X-CSE-MsgGUID: eQoeoarrQ1qhRHz7DZjMdQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="38086961"
+X-IronPort-AV: E=Sophos;i="6.13,229,1732608000"; d="scan'208";a="38086961"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2025 09:44:43 -0800
+X-CSE-ConnectionGUID: 9kz0cOy2TzquTfIHZN47hw==
+X-CSE-MsgGUID: Yau6zq9BRy63ZsUYeWCTcw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,229,1732608000"; d="scan'208";a="108131308"
+X-IronPort-AV: E=Sophos;i="6.13,229,1732608000"; d="scan'208";a="108072108"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Jan 2025 09:39:46 -0800
+ by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Jan 2025 09:44:43 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 23 Jan 2025 09:39:46 -0800
+ 15.1.2507.44; Thu, 23 Jan 2025 09:44:43 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 23 Jan 2025 09:39:46 -0800
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.47) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.44 via Frontend Transport; Thu, 23 Jan 2025 09:44:43 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.175)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 23 Jan 2025 09:39:45 -0800
+ 15.1.2507.44; Thu, 23 Jan 2025 09:44:42 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QkWY8EMviXZ5oLurBW7D/Bm851TQ1lx2+QembfoMtlI+uOnUHMsUn4PAZJSH2qEygr/N1otKyFXZLnipmglxFVi9zhC6KeeUuHmAVrcKsMyNxDRWgCZbMXWBKgIN/iusRD9XsLvy5d0dUwe5OyM/yP4UKMTJQhFSjtyd+Nb8oN6UqYu4K7hXV/bVdPw/mbukox8kicpV5tuq57RIiOGK2MXMjc/BhVbIMpoTOXMdUDZxwcqOKEfLiF46H3gLGP/kgY+TRbhPM2MLSxRBtStB6ejAD0jVjcxtIUfcEDAzjVlLL10I7iu0VQ5t7f0p+OcfLW3qGxpcDzfs+6gFp32VMA==
+ b=A2JF7+HIe5G9fv6eA+IZja9gKZE987FOudDYKw+8F1kdl3QgOqblZqmhpf4qMVLI3fzqbrPWcTJy0Y6TpnSwnwvtIm68scMABPWeSpriAgD2EjW2JvCplVgq5RVoEBVjj1AaTCO8oYgU4V4OqZLv+poxQR5ZrIvsU1dRpgEFFxkT62Ure/kOiSCZ0Dtl1geN5HcBR5pWyyLoVrlYRiPsuskHJgu8wi65oGvEucg7teTd/RBRLcnVTd0sPi2BX3nW78ufsmKud6iT6rL4MFYDXnzOObtrgZx0mNNoPDBB2K28tf/ye92cSAqOzt/UvVNdxFaIwPQc1ziddiseyKTQjQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5dDLtiFj5wsBcxlqpuRwVDz6G7k/Y01Cjyd30mTpvUI=;
- b=au8dnJBu6kXxsbBrD1CY6N5yM6fq3r1JQ4lfQdt+KRhZTD3I1MGuOloWbznWrPtTpTBYBNuSi8ZTISr8RWRONIum20a/fxAI0uL5t89CFp1+pkLTSWIY5G0O9NqAxiwCn19sKBCJ500wjCmb95ZuKg5BDl0JFd2D1bIdAAUnQ9pGX3xCpC+7uK+R+6C4ab4e8f+FkL4TEn92/dv6CNWk+sTBvejYoMht+yKf6cgT4DPgQyhie/OW2FyXQxoC5WsZAvnM+Ixoyzo6alGj9xfbydt9O6d3SlmB83+SvgDSctIv+WexoSuF/OuZKWUW/naiu4xZlsEuH8RloHm7rToHmQ==
+ bh=ZMPEePS54gqGWRTWqpuYb9FnGg38LzTEEW6XTlc0obE=;
+ b=i6R5XQKphtSXOG+QUjczAtk4wY9TNDdXtLcGwfB3gqiL768kAfpQ9ziUGigxe2KE0fLPrQ2Hz7DOCteEXfC+/tBt/WlwcSb/4XWOQSOQfFPm1VIxRlcnZC4ZyiMqVvCp0GbMPp8PDMBrgcRxPw1BCVBIig2Vt+BdCGnvOLARxmy4MZYaAe6ZJvu8s/jiI/yYNM6IKZVzN4sdxwcIcoIMIeBcWd0ZVtGD0wFLnrGMO2Ru+qoN+dbRD23JhIf9bI1QNKI5ECwR6JmIU74LF9o6K6n9zmiSkI8W6k4x3YRRj0vpmDBQxYg6GShyyijOaU8hUWL9IwrYxZgdSaeZU04U/Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH8PR11MB7144.namprd11.prod.outlook.com (2603:10b6:510:22c::12)
+ by BY1PR11MB8077.namprd11.prod.outlook.com (2603:10b6:a03:527::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.20; Thu, 23 Jan
- 2025 17:39:43 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.17; Thu, 23 Jan
+ 2025 17:44:26 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.8356.020; Thu, 23 Jan 2025
- 17:39:43 +0000
-Date: Thu, 23 Jan 2025 09:40:36 -0800
+ 17:44:26 +0000
+Date: Thu, 23 Jan 2025 09:45:20 -0800
 From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-CC: <jose.souza@intel.com>, <lionel.g.landwerlin@intel.com>,
- <carlos.santa@intel.com>, <rodrigo.vivi@intel.com>
-Subject: Re: [RFC PATCH 6/6] drm/xe: Implement
- DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
-Message-ID: <Z5J/FJU4m1fTe4UB@lstrano-desk.jf.intel.com>
-References: <20250123011513.362430-1-matthew.brost@intel.com>
- <20250123011513.362430-7-matthew.brost@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH 2/3] drm/xe/pf: Add reclaim annotation to the PF master
+ mutex
+Message-ID: <Z5KAMCcpczq4gL37@lstrano-desk.jf.intel.com>
+References: <20250122214955.632-1-michal.wajdeczko@intel.com>
+ <20250122214955.632-3-michal.wajdeczko@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250123011513.362430-7-matthew.brost@intel.com>
-X-ClientProxiedBy: MW4PR03CA0322.namprd03.prod.outlook.com
- (2603:10b6:303:dd::27) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20250122214955.632-3-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: MW3PR06CA0024.namprd06.prod.outlook.com
+ (2603:10b6:303:2a::29) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH8PR11MB7144:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4da812a8-6b06-4b18-8457-08dd3bd4eb93
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|BY1PR11MB8077:EE_
+X-MS-Office365-Filtering-Correlation-Id: f653dfff-b15e-49b0-73a8-08dd3bd59486
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?0sxkGHKI4ap+jDyO3t8371+xxU5xm9v+I1ucj3pkoMeDvWtVK5AraCrx/5?=
- =?iso-8859-1?Q?8RUGAM39zd9IDFl9WHjI6rs46nKSDCBHxu14lmaqte453Il4duQHdurG1W?=
- =?iso-8859-1?Q?TmNC7MIsEgiFl4Y4ErJn65Xan06Zvi5UtNz1Omm3NQR85mNIQc8AXa+BTJ?=
- =?iso-8859-1?Q?fVDLS+oi1nFpGdKhzDSlq3hqRx+T/61v06mZmRYO8RtnBNxebTS+OOAx3C?=
- =?iso-8859-1?Q?NmdDqI0zoZ8Qid9b2YPtsV+oSDKmGda9IT/BSCt1TYCym/A6XZ4hS4jTPA?=
- =?iso-8859-1?Q?ECuKtQggCl+YBa/gNiYwJSN1U/yKAOkdM8sZ+f8xnZwyd7hWDbDp+o4hK5?=
- =?iso-8859-1?Q?tJBFUpe7voxctc65+5+pnwamI9mzDX7nIcFqd7OZ4TWGeb/AUe59RJ/Gqt?=
- =?iso-8859-1?Q?/+23d/IABmqeMgxTpJ52GZdkUqJ+IpPOswypY16S0pq1QRtoYZwiwSlM1F?=
- =?iso-8859-1?Q?RLeNiuG+mp3GkIWg5sd5aiK4SDneyyTfCFM+bgRlqvLM5ZKEP2hYHwGD1J?=
- =?iso-8859-1?Q?uvIdbZ7QH1X4kWfz1hdVhzwkEXyKS/d0EM0SbGYjofGQcdg3GTXHN2sjMU?=
- =?iso-8859-1?Q?wP0J/dUvlSA+5gIzujbi3D5qmMKjNgnsikq6lXizo3I/nIExbnk4UGyf3A?=
- =?iso-8859-1?Q?wOjtd56zG6wo1PI2feUrZMUGF2OwJ/cVvGE4GdCgZsOgpglS4cHGNJuFg1?=
- =?iso-8859-1?Q?mmrHtq1LlDAs8Ez4pzr2OGrqgwMypqd0SW3KoT6m1CK0GlEkl11oRd6DcR?=
- =?iso-8859-1?Q?XcBdkEjJvweUj0lqqSS603lFRafq0gkxrK4DxagUsXcWx5e12h4dIipbw+?=
- =?iso-8859-1?Q?s+W0TUfki4ve9nEWGDLHtkWREIJwI/B0kBZ8BAl7MWTF4tNdY+4GSarZxg?=
- =?iso-8859-1?Q?g1gB1sZstAHVfVV+YuX6EdD2JTzd12zc1t95LO6v5o3xaYbqB9893N/7up?=
- =?iso-8859-1?Q?C6LzE8Z7/l7FQIeMjjjWWZZfmy6zAwUI2YZ1Yt4cWSfanUaQOh8kcSYSUW?=
- =?iso-8859-1?Q?tRwkU4TJzSIxy1R33f2ANZDLJ+L+e1Z6UeoV6cN+r3jY7KuiYrN97oHHwf?=
- =?iso-8859-1?Q?WLD/HHD+JvwKBhxcFN7+k8PCNBo/goXa+gGs0WvXCIjf69frIXkGJlMoI8?=
- =?iso-8859-1?Q?XfWTSGmR6roa0m6vkio1PdcN7vdzYJgu5up4KmG8qS58NCoyA0R0TeEDVW?=
- =?iso-8859-1?Q?dlwHt/SGNSFSZcVwBIJzm6sLTJQNPSozjsCljbK5g6GDL7GU43Q0GquUqM?=
- =?iso-8859-1?Q?9dETqxs8wR9d6wdKU6vVPgCWp0Wnn+eJYXrJ7RPSWJkSgK+W3GPL7zA/ts?=
- =?iso-8859-1?Q?A7s0MIfoFoqalRSENOVqNplS5AmdfQLuz3wZ+tYxACKSZMuX56SyeUFUWo?=
- =?iso-8859-1?Q?gFyHywmbeRgmkN5/i0GJ5u9hKS18Y/xhMvT6WpJ/XZjNpZ2nFtStOWZbLa?=
- =?iso-8859-1?Q?aI1gZVgC2TbEDFnF?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?RhsksZnOQf/Xz6pPCKRZtrBuZf46peY31f+27PoLw9Ik6Vpwexus0Q9Avd?=
+ =?iso-8859-1?Q?S7/Ab+mNMkBFEnsI0CyUgLNqrG4UBjXKK3pjdWa0Cot99Q+oBdtwzwFJt7?=
+ =?iso-8859-1?Q?WNdQF+tOGqntk8ROiatkw7t5RBCwpWuPnF1cqTh96Q7QCog5+S8z6IJWWN?=
+ =?iso-8859-1?Q?J9W+E3yp88HZeZ0Aqke3STUUWAXs//VAh7uYW8AyOumPOpmbQyrqIdYOmq?=
+ =?iso-8859-1?Q?Mk0Kd+Qw31UNfFQwcQRqu74ouxvFXpxBh5Ew6OFEywHMp59Hay9ycPFvw+?=
+ =?iso-8859-1?Q?57zRvAPXADamgzMUCgpn3iQ/l2FlpN2U5tTaBR1FppkLy6ucr6kPNszx2c?=
+ =?iso-8859-1?Q?qaep935eEzJn2yWv2zLM75pitT9RyVLK0fjoMyF7Cx6cMV0LP6aKwn8R8U?=
+ =?iso-8859-1?Q?qcMiNbd5tIcSHS2yBCTXYg/kdPv9keOt5N9iSOAyfVcb3Ayvdu2jhhAjul?=
+ =?iso-8859-1?Q?2QIa+/QmQ2lGYxHZam6wr5RWVC0YfDv01uJL+X8eYr37akcc2YqCF0cQ9n?=
+ =?iso-8859-1?Q?GuBUw5yxDAuaAhBh54pFrTr0P1a+GC5dntiCkEiOkWgWFoTD838OQ3nnRl?=
+ =?iso-8859-1?Q?M9anEE+cqvxO6n6+QGWd3BIv/R/WAAfSlKZv24fYv1bQfb8iceag9AvT23?=
+ =?iso-8859-1?Q?lLFpJh7L3cAx90flzcnBRgmoyMJZB6D3QQaZ9Ng2oe5GglM6zo1ebMOv/o?=
+ =?iso-8859-1?Q?DicyDuZgIYR+9hp7NTQOGz6Dj+R9v6NrnpNjDuGtKZuTYjzcaJqjcep6EH?=
+ =?iso-8859-1?Q?qk7EbGypHH0I384PzIurRXBnaxeWID5rMvAAWwcTg32Nh0+Ns7Dbj7esCV?=
+ =?iso-8859-1?Q?rsRr7KMFf9mEKcyrN8/4ly8lZeTKGB7/kl/QBKUQeFh5Rrhw2FW8o6TS+E?=
+ =?iso-8859-1?Q?Z/DJQoaGlNOF3Uzddbxez4sT4unoMHZrcOnut71uSRY3SH10hd1QeiYksC?=
+ =?iso-8859-1?Q?uwQaf+1oUqmSREk4O2+RGL/YOGNJJsM5RbnxGZ0gM55NqTLymYZ/S1RL9x?=
+ =?iso-8859-1?Q?6FRcKpkx+eFUplrKcZd7lh773gg5Q6cQ2n167ftX8TIEZp42ldASKA8Rub?=
+ =?iso-8859-1?Q?HdEBOUK8AqeswZ/Tt3fR793H3enbGipDjGT4dF1jXgZ3vX4a42c3VoSvNt?=
+ =?iso-8859-1?Q?2wmz1fy5rJrCbHjPxDpKbQS4H6I9KaLRTu3+V8++Cvwu9lN2C/CWq7Qqgg?=
+ =?iso-8859-1?Q?ie377NJsngafW9uSlVnweSBQd+SgJHc8ufl07GXBqoxNpEi469BwEyw1FW?=
+ =?iso-8859-1?Q?dTKFIYuWsiHywunS9UwyVPSXE2xLqRY9KFivpkchc0j61gbCjkD6O/0fQ0?=
+ =?iso-8859-1?Q?BKrq0cE4FlQGScIDbt68N9xvyfvazVnfw0LPkMGI1H/pKFex/w8J8gAvWW?=
+ =?iso-8859-1?Q?JD+pXQb9LIwFjyuzxlojo0cpZA0E8pVG9rrOlNqc0UNbZRalNrLQMlTtmL?=
+ =?iso-8859-1?Q?REfHREXZYZdFSmyK?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?7X0QVidB5hnMU0tqjESh0LfMzlO5NhzkK1WxoMm7AHqEzwy4lnGXt8Qhvh?=
- =?iso-8859-1?Q?w4a/J/iIMAcW8jn6Ze4UNHrVB/Y1/mjtnfltmBhs2v0SxcRFuSwzBRNH4m?=
- =?iso-8859-1?Q?72FiHEePTBvdzeJ7evsyGPwaoCj0nm/FMBs/QrJoTkg5+QwO3Ml7mjqDVd?=
- =?iso-8859-1?Q?/EhjPB1NgtJsHcXB50s8rjZL7OJd9ONNe47VB7oQzLjw7aFTBPOmwqa1IE?=
- =?iso-8859-1?Q?z5LpLiHETOqimaadk3oLhT4yzcwxpPrhz2aRZ6B8HM7C8f6t/5pqAi5FBq?=
- =?iso-8859-1?Q?R+aqhaWeSu5i+BwxwLlwbl6Vkah76AZPTALTcB7L+a8Ndx3i4PuG11goeb?=
- =?iso-8859-1?Q?Qqaxgq68Nf2SSg/esl7kJd4tk+MMhh3mipMCPpppDX00opfamHwasuGde+?=
- =?iso-8859-1?Q?lVnRnqHFKfPkcmLW5jOVDEwSVWAl5fp0A2c27SqMC444iz50PTaNCY8Z9U?=
- =?iso-8859-1?Q?1p/v5ZJkvZU7v/KO+430CVkQe9YN1bUmfabGGBdRoAXOTboixLqbpKld9R?=
- =?iso-8859-1?Q?7ob8T04VjP8K5b1mpx5Ve83bnsVdf415+4/IAWwTcEjJj/G99vD6omVCHP?=
- =?iso-8859-1?Q?We1X5jUjEWZl1L44zVxekyIW2l+NUTOfPL3NYcgaE8wHbQ8IMRYjKcZ30l?=
- =?iso-8859-1?Q?XdX6BMDwHM9chgG4GFeBAmoFFYu7kVFJGDIlH+ftQjzql9dTjSq40ckn36?=
- =?iso-8859-1?Q?V9ZeVFTfZ8vrCm2cwpBR4Uhsaj9NT/xdRjY0Bp9gEsGgozQhYyT4hjzgH2?=
- =?iso-8859-1?Q?Qrhd8hv6oASXD9MtDNYqy0HRWmEws1/hcODps78ClzCNuWueS4vFAfrEQP?=
- =?iso-8859-1?Q?kxAmYuqYT1g1f6Fmnm0a+QNAt5HSgomWLaDGD9W68J+7hqF3kS0KaEt+XB?=
- =?iso-8859-1?Q?FotbvKQB7k4J+JE0+H50L9Y081JLF3zGYxda1sYCgelnY7K+lhr8fK5MrR?=
- =?iso-8859-1?Q?zB+Wc4LmPYnYCNlJk8LenXxDsHFYp/trzw2y53e133rzIaubHCZ9wQxaIo?=
- =?iso-8859-1?Q?kNkxtGf3IqTyj1wLMSRBVj/byFFTuc1hDNyhdXFJjIN+GeARuOnuWO6sz8?=
- =?iso-8859-1?Q?JdZObZ7ZOQQUr9e3dpD8cu8Dkafi/ai62qGcXccuw1daQFY56zZq3pPAbE?=
- =?iso-8859-1?Q?gzMQUcRmCgok14ObsKzXh0228ebgKtg82DMrCj1WFRLcYey6kqmyxLrD0W?=
- =?iso-8859-1?Q?gAovGyL5A96Rc/OWEzpgm/9AbAqeO38cpMgUNBlfsx3towFghtXwZ91KDt?=
- =?iso-8859-1?Q?sQkdaJY9y3XsN31AuKlUDqinwM0O3x2dxVGxyYyuu/dtiNSTFpbk0E+iMr?=
- =?iso-8859-1?Q?RFM9HJKd9prWYBzprsABmElf2F+7+HLvwCrtuAQGIi52NGINOPstYB3KHU?=
- =?iso-8859-1?Q?6G6kpb2TyJDO9qqDhI7Q0yf3spPyboUj5wfI74PabCWjI8e6LtSw9U5uem?=
- =?iso-8859-1?Q?KIF4BPzAPvJbjlXx0u9cZhz3eDgirZsl4brzoYpWIISHYv0GnxpzeS2Dta?=
- =?iso-8859-1?Q?egWHgglARPSXtKgmN31XLdAXYbHzDtkCO26IDWwGPOSARR5oBCZV37Zw2p?=
- =?iso-8859-1?Q?W/CrCE7p0X7pN8qaWzga3lv0ngJoqBl9jvVWnOjdJ5n/1qH8T8x78QzqH1?=
- =?iso-8859-1?Q?J/PJ5xixaYzXMkDRGGjU3FTjzu5fs1MZKdoxil59jNEkNMpH1gak5yNg?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?yXpbanjGc94itRWPHwe+Rn4okJoD/EWXh/cxv0SzKSywZV9Exc9oinxEln?=
+ =?iso-8859-1?Q?UqWgkPK0soe8s8VHMN8vyWVT/bixC6Wj1YtM2qhlekRyM/bSN+MTOjyaMt?=
+ =?iso-8859-1?Q?Ztx3JFVCvRLjjtw8dRns4IfzR9NGnxG8PqVJ6I/VsbOGMtwuWnPi9hXR3i?=
+ =?iso-8859-1?Q?WE4g4pLJ3oTqB7D1EbE+o0byV2ZWlCcBRsmsLPvEbefpt4CayAc5X73Kor?=
+ =?iso-8859-1?Q?+nzODYSZXxl31w9LwT5mF3dIRgxvz5QvmGb535jN99XEFG5T/uO6T6TkZl?=
+ =?iso-8859-1?Q?OQPii6WH/ykQyjg5PfEbx/Bimbepjxyo2FheDC8+hqMdjezdfbMmf82yGS?=
+ =?iso-8859-1?Q?sXoKE15ux+puunjtpndg1PoBPisoUDgT/PSec3QAmgPCACIkUKqyyARXaR?=
+ =?iso-8859-1?Q?qvWzR4Redq8bAwhM3edMgjUmIFAxU1viXqwx3Y+WFvLySFnyNLkL/6UmOf?=
+ =?iso-8859-1?Q?zri750Srvvyel+nmiFVD0K2ABRt7wPEz59c24GHkrtYqfbPJ+lPe6qn/jN?=
+ =?iso-8859-1?Q?fGmUdVlBdyrJfAWQscTXWVkZGvwal8I0qs8FiWwIQMuILRimzMq683cNBd?=
+ =?iso-8859-1?Q?91n88aQNyfApVI1gG/c7byDIIyqT7LPduiFHBh8Jm58ofYwBUE6DCtGPEg?=
+ =?iso-8859-1?Q?22sZUpw8DUz4ySlbfNETyq8WPzLwrCUM4XLeXfgdgLyW1t7R/oMQHP2WLw?=
+ =?iso-8859-1?Q?F4yQVda6tX77y8Aivn5PhzdFChjtxMhKLDSUXfFxN4uoH72QLdlMKcLvln?=
+ =?iso-8859-1?Q?m0Sf5x/fPvu41GX/dRXm0cg3zxUvO+R4/3dekxKr8H/mbnDJovblUM7qfc?=
+ =?iso-8859-1?Q?bCEb2w0u2blHkAVu+6+hrUKB4q+BCcpD/N/HVzi5Lga/q7DYkIj7Z3wqIR?=
+ =?iso-8859-1?Q?LK6HoNN4pXbVTLVcftaGPjX4lwVc3C5XH0eiG9VOE/htMvjGGN1QCtDzrI?=
+ =?iso-8859-1?Q?aGtKk1JC6dnjIkcXRFLpQeJcQ3NAJZvl5zrAhXwq4kQ86bVlETKjzMRlSU?=
+ =?iso-8859-1?Q?AiBku7Of4iahX3D7NqXJ1JL3DbBgzPoxDF0ehHryx7XjqNG+QWjAQaYTX2?=
+ =?iso-8859-1?Q?wAcfglpehJcrfbxHntuLsokKhjECCxllVgC+MTjS7xnliLWiqGzKjLO68d?=
+ =?iso-8859-1?Q?r+fIJXeyDU1w+gpx/C8kKmdapda6DbcM2B0nupXmpDABMUJuMiu36aFy2l?=
+ =?iso-8859-1?Q?awQN5FCN/uz7V1UQMnfmwvb6qZnyqkLJU2mdQCYbdgqCJfSNSCYdIcc4W0?=
+ =?iso-8859-1?Q?PfVH3CAExfg2RP3QN8sPRyXpCaygLcHthf92D2VvsHSZjCBDq+d3XHqfi3?=
+ =?iso-8859-1?Q?gR8VeBy0QLxA2Dsb2z3iECzhtTGhq0sgjuUR/384Yh0UzuNen1Es32qmGk?=
+ =?iso-8859-1?Q?AZNEkAyfffq+FziIK2oNIn4Wqsy+Ky+xytiXeifgIHrZ+SbDRdVqf+c7tZ?=
+ =?iso-8859-1?Q?TLpdC0s7g+gl0UdGPnShkc6Xo9+hBtOxs6uP59N2TddZyJ1oBSeoV5gb4H?=
+ =?iso-8859-1?Q?h5SMmGZzC/ky1WYat8ewzhi/mGYiT8BlNbkYpnPeK/tcyS1G7lD+mDYzmj?=
+ =?iso-8859-1?Q?cN7Yq2RhUcfwx2qrsIN5y4wtqBuvpC56WeqouPmTuY6hBSMuiABn4Rvu2W?=
+ =?iso-8859-1?Q?ZHuQfD2frz1S+11v52yBn9Aiuf2NCDNQiC4dr+s4ZIyDDBgNpjbW15Cw?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4da812a8-6b06-4b18-8457-08dd3bd4eb93
+X-MS-Exchange-CrossTenant-Network-Message-Id: f653dfff-b15e-49b0-73a8-08dd3bd59486
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2025 17:39:42.9435 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2025 17:44:26.3777 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DLFZEyVk3RBOUBll6sM6rSXw69DuJzGPoSF5UMnQEsn6uXngHmo0fFOiv4hxn48CyhB1LwJJyCbO41dOx1vzcw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7144
+X-MS-Exchange-CrossTenant-UserPrincipalName: YXshgFCmo2pIRL20hWKC/NRKjhiT2HNjjBqjB0pJJ67ObO5r8FUilSCZpk2uwKZis2tYxmR98nhuPP9NWrn1eA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8077
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -180,242 +180,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jan 22, 2025 at 05:15:13PM -0800, Matthew Brost wrote:
-> Implement DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE which sets the exec
-> queue default state to user data passed in. The intent is for a Mesa
-> tool to use this replay GPU hangs.
+On Wed, Jan 22, 2025 at 10:49:54PM +0100, Michal Wajdeczko wrote:
+> We need to avoid making allocations with PF master mutex held
+> as we are doing VFs reprovisioning during reset/resume steps.
+> Add annotation around PF master mutex to catch undesired uses.
 > 
-> Cc: José Roberto de Souza <jose.souza@intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-Ugh, missed a check exec_queue_user_ext_set_property which will reject
-this new property. One line change so will not resend series but Mesa
-should ping me for the fix before trying to implement to tool.
-
-Matt
+Awesome to see this fixed.
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
 > ---
->  drivers/gpu/drm/xe/xe_exec_queue.c       | 29 +++++++++++++++++-
->  drivers/gpu/drm/xe/xe_exec_queue_types.h |  3 ++
->  drivers/gpu/drm/xe/xe_execlist.c         |  2 +-
->  drivers/gpu/drm/xe/xe_lrc.c              | 38 ++++++++++++++++++------
->  drivers/gpu/drm/xe/xe_lrc.h              |  3 +-
->  5 files changed, 63 insertions(+), 12 deletions(-)
+>  drivers/gpu/drm/xe/xe_sriov_pf.c | 19 ++++++++++++++++++-
+>  1 file changed, 18 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index 7e1abbbfba12..46fd9b2c87bd 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -44,6 +44,7 @@ static void __xe_exec_queue_free(struct xe_exec_queue *q)
->  	if (q->xef)
->  		xe_file_put(q->xef);
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
+> index 0f721ae17b26..2286a08657b0 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_pf.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
+> @@ -10,6 +10,7 @@
+>  #include "xe_module.h"
+>  #include "xe_sriov.h"
+>  #include "xe_sriov_pf.h"
+> +#include "xe_sriov_pf_helpers.h"
+>  #include "xe_sriov_printk.h"
 >  
-> +	kvfree(q->replay_state);
->  	kfree(q);
+>  static unsigned int wanted_max_vfs(struct xe_device *xe)
+> @@ -37,6 +38,13 @@ static bool pf_continue_as_native(struct xe_device *xe, const char *why)
+>  	return false;
 >  }
 >  
-> @@ -120,7 +121,8 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
->  	}
->  
->  	for (i = 0; i < q->width; ++i) {
-> -		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec);
-> +		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, q->replay_state,
-> +					  SZ_16K, q->msix_vec);
->  		if (IS_ERR(q->lrc[i])) {
->  			err = PTR_ERR(q->lrc[i]);
->  			goto err_unlock;
-> @@ -405,6 +407,30 @@ static int exec_queue_set_timeslice(struct xe_device *xe, struct xe_exec_queue *
->  	return 0;
->  }
->  
-> +static int exec_queue_set_hang_replay_state(struct xe_device *xe,
-> +					    struct xe_exec_queue *q,
-> +					    u64 value)
+> +static void pf_primelockdep(struct xe_device *xe)
 > +{
-> +	size_t size = xe_gt_lrc_hang_replay_size(q->gt, q->class);
-> +	u64 __user *address = u64_to_user_ptr(value);
-> +	void *ptr;
+> +	fs_reclaim_acquire(GFP_KERNEL);
+> +	might_lock(xe_sriov_pf_master_mutex(xe));
+> +	fs_reclaim_release(GFP_KERNEL);
+> +}
+> +
+>  /**
+>   * xe_sriov_pf_readiness - Check if PF functionality can be enabled.
+>   * @xe: the &xe_device to check
+> @@ -80,9 +88,18 @@ bool xe_sriov_pf_readiness(struct xe_device *xe)
+>   */
+>  int xe_sriov_pf_init_early(struct xe_device *xe)
+>  {
 > +	int err;
 > +
-> +	ptr = kvmalloc(size, GFP_KERNEL);
-> +	if (!ptr)
-> +		return -ENOMEM;
+>  	xe_assert(xe, IS_SRIOV_PF(xe));
+>  
+> -	return drmm_mutex_init(&xe->drm, &xe->sriov.pf.master_lock);
+> +	err = drmm_mutex_init(&xe->drm, &xe->sriov.pf.master_lock);
+> +	if (err)
+> +		return err;
 > +
-> +	err = __copy_from_user(ptr, address, size);
-> +	if (XE_IOCTL_DBG(xe, err)) {
-> +		kvfree(ptr);
-> +		return -EFAULT;
-> +	}
-> +
-> +	q->replay_state = ptr;
+> +	if (IS_ENABLED(CONFIG_LOCKDEP))
+> +		pf_primelockdep(xe);
 > +
 > +	return 0;
-> +}
-> +
->  typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
->  					     struct xe_exec_queue *q,
->  					     u64 value);
-> @@ -412,6 +438,7 @@ typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
->  static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
->  	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
->  	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
-> +	[DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE] = exec_queue_set_hang_replay_state,
->  };
->  
->  static int exec_queue_user_ext_set_property(struct xe_device *xe,
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> index 5af5419cec7a..3c81dcd22ce3 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> @@ -130,6 +130,9 @@ struct xe_exec_queue {
->  		struct list_head link;
->  	} lr;
->  
-> +	/** @replay_state: GPU hang replay state */
-> +	void *replay_state;
-> +
->  	/** @ops: submission backend exec queue operations */
->  	const struct xe_exec_queue_ops *ops;
->  
-> diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-> index 5ef96deaa881..468d9b2d4404 100644
-> --- a/drivers/gpu/drm/xe/xe_execlist.c
-> +++ b/drivers/gpu/drm/xe/xe_execlist.c
-> @@ -269,7 +269,7 @@ struct xe_execlist_port *xe_execlist_port_create(struct xe_device *xe,
->  
->  	port->hwe = hwe;
->  
-> -	port->lrc = xe_lrc_create(hwe, NULL, SZ_16K, XE_IRQ_DEFAULT_MSIX);
-> +	port->lrc = xe_lrc_create(hwe, NULL, NULL, SZ_16K, XE_IRQ_DEFAULT_MSIX);
->  	if (IS_ERR(port->lrc)) {
->  		err = PTR_ERR(port->lrc);
->  		goto err;
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index 1ad3ab59fce2..96f76b6b0aa4 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -45,7 +45,16 @@ lrc_to_xe(struct xe_lrc *lrc)
->  	return gt_to_xe(lrc->fence_ctx.gt);
 >  }
->  
-> -size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class)
-> +/**
-> + * xe_gt_lrc_hang_replay_size() - Hang replay size
-> + * @gt: The GT
-> + * @class: Hardware engine class
-> + *
-> + * Determine size of GPU hang replay state for a GT and hardware engine class.
-> + *
-> + * Return: Size of GPU hang replay size
-> + */
-> +size_t xe_gt_lrc_hang_replay_size(struct xe_gt *gt, enum xe_engine_class class)
->  {
->  	struct xe_device *xe = gt_to_xe(gt);
->  	size_t size;
-> @@ -74,6 +83,13 @@ size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class)
->  		size = 2 * SZ_4K;
->  	}
->  
-> +	return size;
-> +}
-> +
-> +size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class)
-> +{
-> +	size_t size = xe_gt_lrc_hang_replay_size(gt, class);
-> +
->  	/* Add indirect ring state page */
->  	if (xe_gt_has_indirect_ring_state(gt))
->  		size += LRC_INDIRECT_RING_STATE_SIZE;
-> @@ -883,7 +899,8 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
->  #define PVC_CTX_ACC_CTR_THOLD	(0x2a + 1)
->  
->  static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
-> -		       struct xe_vm *vm, u32 ring_size, u16 msix_vec)
-> +		       struct xe_vm *vm, void *replay_state, u32 ring_size,
-> +		       u16 msix_vec)
->  {
->  	struct xe_gt *gt = hwe->gt;
->  	struct xe_tile *tile = gt_to_tile(gt);
-> @@ -896,9 +913,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->  
->  	kref_init(&lrc->refcount);
->  	lrc->flags = 0;
-> -	lrc->replay_size = xe_gt_lrc_size(gt, hwe->class);
-> -	if (xe_gt_has_indirect_ring_state(gt))
-> -		lrc->replay_size -= LRC_INDIRECT_RING_STATE_SIZE;
-> +	lrc->replay_size = xe_gt_lrc_hang_replay_size(gt, hwe->class);
->  	lrc_size = ring_size + xe_gt_lrc_size(gt, hwe->class);
->  	if (xe_gt_has_indirect_ring_state(gt))
->  		lrc->flags |= XE_LRC_FLAG_INDIRECT_RING_STATE;
-> @@ -924,7 +939,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->  	xe_hw_fence_ctx_init(&lrc->fence_ctx, hwe->gt,
->  			     hwe->fence_irq, hwe->name);
->  
-> -	if (!gt->default_lrc[hwe->class]) {
-> +	if (!gt->default_lrc[hwe->class] && !replay_state) {
->  		init_data = empty_lrc_data(hwe);
->  		if (!init_data) {
->  			err = -ENOMEM;
-> @@ -937,7 +952,11 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->  	 * values
->  	 */
->  	map = __xe_lrc_pphwsp_map(lrc);
-> -	if (!init_data) {
-> +	if (replay_state) {
-> +		xe_map_memset(xe, &map, 0, 0, LRC_PPHWSP_SIZE);	/* PPHWSP */
-> +		xe_map_memcpy_to(xe, &map, LRC_PPHWSP_SIZE, replay_state,
-> +				 xe_gt_lrc_hang_replay_size(gt, hwe->class));
-> +	} else if (!init_data) {
->  		xe_map_memset(xe, &map, 0, 0, LRC_PPHWSP_SIZE);	/* PPHWSP */
->  		xe_map_memcpy_to(xe, &map, LRC_PPHWSP_SIZE,
->  				 gt->default_lrc[hwe->class] + LRC_PPHWSP_SIZE,
-> @@ -1022,6 +1041,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->   * xe_lrc_create - Create a LRC
->   * @hwe: Hardware Engine
->   * @vm: The VM (address space)
-> + * @replay_state: GPU hang replay state
->   * @ring_size: LRC ring size
->   * @msix_vec: MSI-X interrupt vector (for platforms that support it)
->   *
-> @@ -1031,7 +1051,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->   * upon failure.
->   */
->  struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
-> -			     u32 ring_size, u16 msix_vec)
-> +			     void *replay_state, u32 ring_size, u16 msix_vec)
->  {
->  	struct xe_lrc *lrc;
->  	int err;
-> @@ -1040,7 +1060,7 @@ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
->  	if (!lrc)
->  		return ERR_PTR(-ENOMEM);
->  
-> -	err = xe_lrc_init(lrc, hwe, vm, ring_size, msix_vec);
-> +	err = xe_lrc_init(lrc, hwe, vm, replay_state, ring_size, msix_vec);
->  	if (err) {
->  		kfree(lrc);
->  		return ERR_PTR(err);
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-> index 848d64511ca8..9f90911df0c2 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.h
-> +++ b/drivers/gpu/drm/xe/xe_lrc.h
-> @@ -43,7 +43,7 @@ struct xe_lrc_snapshot {
->  #define LRC_PPHWSP_SCRATCH_ADDR (0x34 * 4)
->  
->  struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
-> -			     u32 ring_size, u16 msix_vec);
-> +			     void *replay_state, u32 ring_size, u16 msix_vec);
->  void xe_lrc_destroy(struct kref *ref);
 >  
 >  /**
-> @@ -70,6 +70,7 @@ static inline void xe_lrc_put(struct xe_lrc *lrc)
->  	kref_put(&lrc->refcount, xe_lrc_destroy);
->  }
->  
-> +size_t xe_gt_lrc_hang_replay_size(struct xe_gt *gt, enum xe_engine_class class);
->  size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
->  u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
->  u32 xe_lrc_regs_offset(struct xe_lrc *lrc);
 > -- 
-> 2.34.1
+> 2.47.1
 > 
