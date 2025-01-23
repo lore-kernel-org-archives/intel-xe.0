@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5174DC0218B
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 18:03:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 586F9C02182
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Jan 2025 18:03:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B62210E88E;
-	Thu, 23 Jan 2025 18:03:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE4010E890;
+	Thu, 23 Jan 2025 18:03:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NqqW6DSI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H60pF2Ez";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C30610E88E
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 18:03:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0B2E10E890
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Jan 2025 18:03:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737655422; x=1769191422;
+ t=1737655425; x=1769191425;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=27maxQOVid9+Minx7FyXvnK5oYyPcJhXdxqdR53S+nw=;
- b=NqqW6DSISoH4woIaTrq4yJP5FnJJNlt5qeR+NaV1TeCFiLebWKouSoP7
- DTKfddUTJooFozYCYDXs5+Ek84p7uyAm5f+OwtTLbCj2Z+VXqlDyKYPZK
- oZRWnEHExBM2+jJ+Eo32gD4oYf2Qg2p2eQOPyHm3XPRc1CBpoxaaCwztu
- r0cMVX2lgxwi2nL9YO3c5jMuazyk+EHQYhWXLtnAEwrvr86Tl/cB89Oto
- YnN0kFGUpP0WMTC5KJ3nizJs1/oEM/FGOw4pG0nOC+MzPiRrmMzoA1Jys
- pcZ/OGHl5T5fmPA6cARKOzSmlprhPMDAT3JbrRJhhu2Ha18TLVlovVlzY A==;
-X-CSE-ConnectionGUID: uycFEK8NQgOxp2BdNVfUog==
-X-CSE-MsgGUID: Gm/+MY9IRjC9RAaIzd73/w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="49162872"
-X-IronPort-AV: E=Sophos;i="6.13,229,1732608000"; d="scan'208";a="49162872"
+ bh=cW7jcUFNrj2mvWw8jeu+Rtam0fH1JHAfuTg3AyxzGTM=;
+ b=H60pF2EzEvQwbV8/o2obkWAqKa4PD/HOEKn/52uWNVzLxzLV0PswD+eP
+ ULDS0/E68vLRwtP2MTma1Wo0TAhoLia1ymb9dYQAvJtkv5jhevm8RCvXb
+ wfnPiKEsdOY+cTb+EKCLzoEp+v+4uGxKLGquk/N9TdWGrZT/nADfAHmvP
+ JY3M7tZuHo3znJIqMSjCboTTo5Yq841OBEI0XCs9FW8EfCgQ0OWE56RlS
+ BGf56MBsk0V72mh2obwyFH211ZyLmE3ssBqMWB1cMPOzfoph8FhLl9MZg
+ gqGmCNKeKxD3e18BfgAx/DLrbCwwU161g8knc3zWRhp0SLiRd28mc9anx g==;
+X-CSE-ConnectionGUID: iPIFpUJ/SgW08nkzu6cVgQ==
+X-CSE-MsgGUID: ncT6NqpzQpibJ4d63ysnkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="49162879"
+X-IronPort-AV: E=Sophos;i="6.13,229,1732608000"; d="scan'208";a="49162879"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2025 10:03:42 -0800
-X-CSE-ConnectionGUID: k0QDV1qSTaSCelgYAx5YlA==
-X-CSE-MsgGUID: UY1mlTMETbODCfbdoQX77A==
+ 23 Jan 2025 10:03:44 -0800
+X-CSE-ConnectionGUID: okhSLNUaSSel23ilxu/8JA==
+X-CSE-MsgGUID: VBikDHsPR3ObltLr8GmBvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="107964037"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="107964073"
 Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2025 10:03:40 -0800
+ 23 Jan 2025 10:03:43 -0800
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Julia Filipchuk <julia.filipchuk@intel.com>, stable@vger.kernel.org,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 1/3] drm/xe: Fix and re-enable xe_print_blob_ascii85()
-Date: Thu, 23 Jan 2025 09:59:41 -0800
-Message-ID: <20250123180320.66198-2-jose.souza@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Subject: [PATCH 3/3] drm/xe: Drop duplicated information about GT tile in
+ devcoredump
+Date: Thu, 23 Jan 2025 09:59:43 -0800
+Message-ID: <20250123180320.66198-4-jose.souza@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250123180320.66198-1-jose.souza@intel.com>
 References: <20250123180320.66198-1-jose.souza@intel.com>
@@ -70,153 +70,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Lucas De Marchi <lucas.demarchi@intel.com>
+The GT tile is already available but was added again in commit
+c28fd6c358db ("drm/xe/devcoredump: Improve section headings and add tile info"),
+so here deleting it.
 
-Commit 70fb86a85dc9 ("drm/xe: Revert some changes that break a mesa
-debug tool") partially reverted some changes to workaround breakage
-caused to mesa tools. However, in doing so it also broke fetching the
-GuC log via debugfs since xe_print_blob_ascii85() simply bails out.
+Here a devcoredump example with the duplicated information:
 
-The fix is to avoid the extra newlines: the devcoredump interface is
-line-oriented and adding random newlines in the middle breaks it. If a
-tool is able to parse it by looking at the data and checking for chars
-that are out of the ascii85 space, it can still do so. A format change
-that breaks the line-oriented output on devcoredump however needs better
-coordination with existing tools.
+**** Xe Device Coredump ****
+Reason: Timedout job - seqno=4294967170, lrc_seqno=4294967170, guc_id=13, flags=0x0
+kernel: 6.13.0-zeh-xe+
+module: xe
+Snapshot time: 1737573530.243521319
+Uptime: 2588.041930284
+Process: deqp-vk [8850]
+PCI ID: 0x64a0
+PCI revision: 0x04
+GT id: 0
+	Tile: 0
+	Type: main
+	IP ver: 20.4.4
+	CS reference clock: 19200000
+GT id: 1
+	Tile: 0
+	Type: media
+	IP ver: 20.0.4
+	CS reference clock: 19200000
 
-Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+**** GT #0 ****
+	Tile: 0
+
+**** GuC Log ****
+....
+
 Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: stable@vger.kernel.org
-Fixes: 70fb86a85dc9 ("drm/xe: Revert some changes that break a mesa debug tool")
-Fixes: ec1455ce7e35 ("drm/xe/devcoredump: Add ASCII85 dump helper function")
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c | 30 +++++++++--------------------
- drivers/gpu/drm/xe/xe_devcoredump.h |  2 +-
- drivers/gpu/drm/xe/xe_guc_ct.c      |  3 ++-
- drivers/gpu/drm/xe/xe_guc_log.c     |  4 +++-
- 4 files changed, 15 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 81dc7795c0651..1c86e6456d60f 100644
+index 1c86e6456d60f..2996945ffee39 100644
 --- a/drivers/gpu/drm/xe/xe_devcoredump.c
 +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -395,42 +395,30 @@ int xe_devcoredump_init(struct xe_device *xe)
- /**
-  * xe_print_blob_ascii85 - print a BLOB to some useful location in ASCII85
-  *
-- * The output is split to multiple lines because some print targets, e.g. dmesg
-- * cannot handle arbitrarily long lines. Note also that printing to dmesg in
-- * piece-meal fashion is not possible, each separate call to drm_puts() has a
-- * line-feed automatically added! Therefore, the entire output line must be
-- * constructed in a local buffer first, then printed in one atomic output call.
-+ * The output is split to multiple print calls because some print targets, e.g.
-+ * dmesg cannot handle arbitrarily long lines. These targets may add newline
-+ * between calls.
-  *
-  * There is also a scheduler yield call to prevent the 'task has been stuck for
-  * 120s' kernel hang check feature from firing when printing to a slow target
-  * such as dmesg over a serial port.
-  *
-- * TODO: Add compression prior to the ASCII85 encoding to shrink huge buffers down.
-- *
-  * @p: the printer object to output to
-  * @prefix: optional prefix to add to output string
-  * @blob: the Binary Large OBject to dump out
-  * @offset: offset in bytes to skip from the front of the BLOB, must be a multiple of sizeof(u32)
-  * @size: the size in bytes of the BLOB, must be a multiple of sizeof(u32)
-  */
--void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
-+void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix, char suffix,
- 			   const void *blob, size_t offset, size_t size)
- {
- 	const u32 *blob32 = (const u32 *)blob;
- 	char buff[ASCII85_BUFSZ], *line_buff;
- 	size_t line_pos = 0;
+@@ -111,9 +111,6 @@ static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
+ 	drm_printf(&p, "Process: %s [%d]\n", ss->process_name, ss->pid);
+ 	xe_device_snapshot_print(xe, &p);
  
--	/*
--	 * Splitting blobs across multiple lines is not compatible with the mesa
--	 * debug decoder tool. Note that even dropping the explicit '\n' below
--	 * doesn't help because the GuC log is so big some underlying implementation
--	 * still splits the lines at 512K characters. So just bail completely for
--	 * the moment.
--	 */
--	return;
+-	drm_printf(&p, "\n**** GT #%d ****\n", ss->gt->info.id);
+-	drm_printf(&p, "\tTile: %d\n", ss->gt->tile->id);
 -
- #define DMESG_MAX_LINE_LEN	800
--#define MIN_SPACE		(ASCII85_BUFSZ + 2)		/* 85 + "\n\0" */
-+	/* Always leave space for the suffix char and the \0 */
-+#define MIN_SPACE		(ASCII85_BUFSZ + 2)	/* 85 + "<suffix>\0" */
- 
- 	if (size & 3)
- 		drm_printf(p, "Size not word aligned: %zu", size);
-@@ -462,7 +450,6 @@ void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
- 		line_pos += strlen(line_buff + line_pos);
- 
- 		if ((line_pos + MIN_SPACE) >= DMESG_MAX_LINE_LEN) {
--			line_buff[line_pos++] = '\n';
- 			line_buff[line_pos++] = 0;
- 
- 			drm_puts(p, line_buff);
-@@ -474,10 +461,11 @@ void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
- 		}
- 	}
- 
-+	if (suffix)
-+		line_buff[line_pos++] = suffix;
-+
- 	if (line_pos) {
--		line_buff[line_pos++] = '\n';
- 		line_buff[line_pos++] = 0;
--
- 		drm_puts(p, line_buff);
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.h b/drivers/gpu/drm/xe/xe_devcoredump.h
-index 6a17e6d601022..5391a80a4d1ba 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.h
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.h
-@@ -29,7 +29,7 @@ static inline int xe_devcoredump_init(struct xe_device *xe)
- }
- #endif
- 
--void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
-+void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix, char suffix,
- 			   const void *blob, size_t offset, size_t size);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 8b65c5e959cc2..50c8076b51585 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1724,7 +1724,8 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
- 			   snapshot->g2h_outstanding);
- 
- 		if (snapshot->ctb)
--			xe_print_blob_ascii85(p, "CTB data", snapshot->ctb, 0, snapshot->ctb_size);
-+			xe_print_blob_ascii85(p, "CTB data", '\n',
-+					      snapshot->ctb, 0, snapshot->ctb_size);
- 	} else {
- 		drm_puts(p, "CT disabled\n");
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index 80151ff6a71f8..44482ea919924 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -207,8 +207,10 @@ void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_
- 	remain = snapshot->size;
- 	for (i = 0; i < snapshot->num_chunks; i++) {
- 		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
-+		const char *prefix = i ? NULL : "Log data";
-+		char suffix = i == snapshot->num_chunks - 1 ? '\n' : 0;
- 
--		xe_print_blob_ascii85(p, i ? NULL : "Log data", snapshot->copy[i], 0, size);
-+		xe_print_blob_ascii85(p, prefix, suffix, snapshot->copy[i], 0, size);
- 		remain -= size;
- 	}
- }
+ 	drm_puts(&p, "\n**** GuC Log ****\n");
+ 	xe_guc_log_snapshot_print(ss->guc.log, &p);
+ 	drm_puts(&p, "\n**** GuC CT ****\n");
 -- 
 2.48.1
 
