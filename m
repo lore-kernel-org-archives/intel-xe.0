@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7336AC02181
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 13:36:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC922C02181
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 13:54:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4171110E0EB;
-	Fri, 24 Jan 2025 13:36:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mR6F/5Tc";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D454510E0EB
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Jan 2025 13:36:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737725762; x=1769261762;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=aOhlgMVurE8+QuK8KdZsEFOr7ZiuRLseORZjeo9WI+Q=;
- b=mR6F/5TcjbVlllSm74qhzbzUP4AD7ciQhj/OVTzvSSYmvXqGeujpnynj
- 5BnRQCWYv9hCnIiYGe4HbxJgTgQjDfMJTchYxwkdXIr0x+HEP/mL4ob6L
- jTo6y+TbKEdHFT7oaJtosqbGkv6lHuJKHmWmBWeKyd0r/osiGbLpfLZx3
- DxuXJBmtKmV+Bz57opLAtLSLRlGmvewcNvjErMu7q+WNnAx0mt98z6kC8
- A+0BNTQ673j+k5JChGfWr791t/qZt60PRakUsKJjgNrLJvNXado1NSoeC
- NiZnVqvQih/XVDRMf7iQ44qQhN9ecNauWe/fTGeho40Nyc/i5tAv2jxQj g==;
-X-CSE-ConnectionGUID: XnweOAjNRtGuRu9A+SvVbw==
-X-CSE-MsgGUID: V3KvOfRUQR6EzKlH79N3mQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="55804885"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="55804885"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 05:36:02 -0800
-X-CSE-ConnectionGUID: 0dHRmhGXR+qEH+WZocztHg==
-X-CSE-MsgGUID: WmBOd8JUR1Gg95zzQe8ehg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="138644612"
-Received: from ayaz-z790i-aorus-ultra.iind.intel.com ([10.190.238.64])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 05:35:59 -0800
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: michal.mrozek@intel.com, vinay.belgaumkar@intel.com,
- szymon.morek@intel.com, jose.souza@intel.com, matthew.auld@intel.com,
- rodrigo.vivi@intel.com
-Subject: [PATCH V6] drm/xe/uapi: Use hint for guc to set GT frequency
-Date: Fri, 24 Jan 2025 19:03:17 +0530
-Message-ID: <20250124133317.1472951-1-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 700F310E0DD;
+	Fri, 24 Jan 2025 13:54:02 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1ED710E0DD;
+ Fri, 24 Jan 2025 13:54:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2502624739249120220=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/uapi=3A_Use_hint_for?=
+ =?utf-8?q?_guc_to_set_GT_frequency_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 24 Jan 2025 13:54:00 -0000
+Message-ID: <173772684091.4056260.639661030615236767@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250124124315.1466013-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20250124124315.1466013-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,301 +36,253 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow user to provide a low latency hint. When set,
-KMD sends a hint to GuC which results in special handling for that process.
-SLPC will ramp the GT frequency aggressively every time
-it switches to this process.
+--===============2502624739249120220==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-We need to enable the use of SLPC Compute strategy during init, but
-it will apply only to processes that set this bit during process
-creation.
+== Series Details ==
 
-Improvement with this approach as below:
+Series: drm/xe/uapi: Use hint for guc to set GT frequency (rev2)
+URL   : https://patchwork.freedesktop.org/series/143793/
+State : success
 
-Before,
+== Summary ==
 
-:~$ NEOReadDebugKeys=1 EnableDirectSubmission=0 clpeak --kernel-latency
-Platform: Intel(R) OpenCL Graphics
-  Device: Intel(R) Graphics [0xe20b]
-    Driver version  : 24.52.0 (Linux x64)
-    Compute units   : 160
-    Clock frequency : 2850 MHz
-    Kernel launch latency : 283.16 us
+CI Bug Log - changes from xe-2548-897537fb818365733977947214c799d61675895f_BAT -> xe-pw-143793v2_BAT
+====================================================
 
-After,
+Summary
+-------
 
-:~$ NEOReadDebugKeys=1 EnableDirectSubmission=0 clpeak --kernel-latency
-Platform: Intel(R) OpenCL Graphics
-  Device: Intel(R) Graphics [0xe20b]
-    Driver version  : 24.52.0 (Linux x64)
-    Compute units   : 160
-    Clock frequency : 2850 MHz
+  **SUCCESS**
 
-    Kernel launch latency : 63.38 us
+  No regressions found.
 
-Link to UMD PR : https://github.com/intel/compute-runtime/pull/794
+  
 
-V6:
-  - init flags, remove redundant flags check (MAuld)
-V5:
-  - Move uapi doc to documentation and GuC ABI specific change (Rodrigo)
-  - Modify logic to restrict exec queue flags (MAuld)
-V4:
-  - To make it clear, dont use exec queue word (Vinay)
-  - Correct typo in description of flag (Jose/Vinay)
-  - rename set_strategy api and replace ctx with exec queue(Vinay)
-  - Start with 0th bit to indentify user flags (Jose)
-V3:
-  - Conver user flag to kernel internal flag and use (Oak)
-  - Support query config for use to check kernel support (Jose)
-  - Dont need to take runtime pm (Vinay)
-V2:
-  - DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT 1 is already planned for other hint(Szymon)
-  - Add motivation to description (Lucas)
+Participating hosts (7 -> 7)
+------------------------------
 
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- Documentation/gpu/drm-uapi.rst                | 18 ++++++++++++++++++
- drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h |  3 +++
- drivers/gpu/drm/xe/xe_exec_queue.c            | 10 +++++++---
- drivers/gpu/drm/xe/xe_exec_queue_types.h      |  2 ++
- drivers/gpu/drm/xe/xe_guc_pc.c                | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.c            |  8 ++++++++
- drivers/gpu/drm/xe/xe_query.c                 |  3 ++-
- include/uapi/drm/xe_drm.h                     |  7 ++++++-
- 8 files changed, 62 insertions(+), 5 deletions(-)
+  Additional (1): bat-bmg-2 
+  Missing    (1): bat-adlp-vm 
 
-diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
-index b75cc9a70d1f..234c38ef26e3 100644
---- a/Documentation/gpu/drm-uapi.rst
-+++ b/Documentation/gpu/drm-uapi.rst
-@@ -583,3 +583,21 @@ dma-buf interoperability
- 
- Please see Documentation/userspace-api/dma-buf-alloc-exchange.rst for
- information on how dma-buf is integrated and exposed within DRM.
-+
-+Low latency hint by user
-+========================
-+
-+Allow users to provide a hint to kernel for cases demanding low latency profile.
-+
-+user need to indicate low latency hint with flag while creating exec queue
-+as mentioned below,
-+
-+     struct drm_xe_exec_queue_create exec_queue_create = {
-+          .flags = DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT
-+          .extensions = 0,
-+          .vm_id = vm,
-+          .num_bb_per_exec = 1,
-+          .num_eng_per_bb = 1,
-+          .instances = to_user_pointer(&instance),
-+     };
-+     ioctl(fd, DRM_IOCTL_XE_EXEC_QUEUE_CREATE, &exec_queue_create);
-diff --git a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-index 85abe4f09ae2..b28c8fa061f7 100644
---- a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-@@ -174,6 +174,9 @@ struct slpc_task_state_data {
- 	};
- } __packed;
- 
-+#define SLPC_CTX_FREQ_REQ_IS_COMPUTE		REG_BIT(28)
-+#define SLPC_OPTIMIZED_STRATEGY_COMPUTE		REG_BIT(0)
-+
- struct slpc_shared_data_header {
- 	/* Total size in bytes of this shared buffer. */
- 	u32 size;
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 8948f50ee58f..0c116faaccf7 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -549,11 +549,12 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 	struct xe_tile *tile;
- 	struct xe_exec_queue *q = NULL;
- 	u32 logical_mask;
-+	u32 flags = 0;
- 	u32 id;
- 	u32 len;
- 	int err;
- 
--	if (XE_IOCTL_DBG(xe, args->flags) ||
-+	if (XE_IOCTL_DBG(xe, args->flags & ~DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT) ||
- 	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
-@@ -570,6 +571,9 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 	if (XE_IOCTL_DBG(xe, eci[0].gt_id >= xe->info.gt_count))
- 		return -EINVAL;
- 
-+	if (args->flags & DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT)
-+		flags |= EXEC_QUEUE_FLAG_LOW_LATENCY;
-+
- 	if (eci[0].engine_class == DRM_XE_ENGINE_CLASS_VM_BIND) {
- 		if (XE_IOCTL_DBG(xe, args->width != 1) ||
- 		    XE_IOCTL_DBG(xe, args->num_placements != 1) ||
-@@ -578,8 +582,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 
- 		for_each_tile(tile, xe, id) {
- 			struct xe_exec_queue *new;
--			u32 flags = EXEC_QUEUE_FLAG_VM;
- 
-+			flags |= EXEC_QUEUE_FLAG_VM;
- 			if (id)
- 				flags |= EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD;
- 
-@@ -626,7 +630,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 		}
- 
- 		q = xe_exec_queue_create(xe, vm, logical_mask,
--					 args->width, hwe, 0,
-+					 args->width, hwe, flags,
- 					 args->extensions);
- 		up_read(&vm->lock);
- 		xe_vm_put(vm);
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 5af5419cec7a..b6fdc7ca687e 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -85,6 +85,8 @@ struct xe_exec_queue {
- #define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(3)
- /* kernel exec_queue only, set priority to highest level */
- #define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(4)
-+/* flag to indicate low latency hint to guc */
-+#define EXEC_QUEUE_FLAG_LOW_LATENCY		BIT(5)
- 
- 	/**
- 	 * @flags: flags for this exec queue, should statically setup aside from ban
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 44b5211066ef..e926f89e4ce9 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -1014,6 +1014,17 @@ static int slpc_set_policies(struct xe_guc_pc *pc)
- 	return 0;
- }
- 
-+static int pc_action_set_strategy(struct xe_guc_pc *pc, u32 val)
-+{
-+	int ret = 0;
-+
-+	ret = pc_action_set_param(pc,
-+				  SLPC_PARAM_STRATEGIES,
-+				  val);
-+
-+	return ret;
-+}
-+
- /**
-  * xe_guc_pc_start - Start GuC's Power Conservation component
-  * @pc: Xe_GuC_PC instance
-@@ -1077,6 +1088,11 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
- 	}
- 
- 	ret = pc_action_setup_gucrc(pc, GUCRC_FIRMWARE_CONTROL);
-+	if (ret)
-+		goto out;
-+
-+	/* Enable SLPC Optimized Strategy for compute */
-+	ret = pc_action_set_strategy(pc, SLPC_OPTIMIZED_STRATEGY_COMPUTE);
- 
- out:
- 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 913c74d6e2ae..f2ce3086838c 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -15,6 +15,7 @@
- #include <drm/drm_managed.h>
- 
- #include "abi/guc_actions_abi.h"
-+#include "abi/guc_actions_slpc_abi.h"
- #include "abi/guc_klvs_abi.h"
- #include "regs/xe_lrc_layout.h"
- #include "xe_assert.h"
-@@ -400,6 +401,7 @@ static void __guc_exec_queue_policy_add_##func(struct exec_queue_policy *policy,
- MAKE_EXEC_QUEUE_POLICY_ADD(execution_quantum, EXECUTION_QUANTUM)
- MAKE_EXEC_QUEUE_POLICY_ADD(preemption_timeout, PREEMPTION_TIMEOUT)
- MAKE_EXEC_QUEUE_POLICY_ADD(priority, SCHEDULING_PRIORITY)
-+MAKE_EXEC_QUEUE_POLICY_ADD(slpc_exec_queue_freq_req, SLPM_GT_FREQUENCY)
- #undef MAKE_EXEC_QUEUE_POLICY_ADD
- 
- static const int xe_exec_queue_prio_to_guc[] = {
-@@ -414,14 +416,20 @@ static void init_policies(struct xe_guc *guc, struct xe_exec_queue *q)
- 	struct exec_queue_policy policy;
- 	enum xe_exec_queue_priority prio = q->sched_props.priority;
- 	u32 timeslice_us = q->sched_props.timeslice_us;
-+	u32 slpc_exec_queue_freq_req = 0;
- 	u32 preempt_timeout_us = q->sched_props.preempt_timeout_us;
- 
- 	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
- 
-+	if (q->flags & EXEC_QUEUE_FLAG_LOW_LATENCY)
-+		slpc_exec_queue_freq_req |= SLPC_CTX_FREQ_REQ_IS_COMPUTE;
-+
- 	__guc_exec_queue_policy_start_klv(&policy, q->guc->id);
- 	__guc_exec_queue_policy_add_priority(&policy, xe_exec_queue_prio_to_guc[prio]);
- 	__guc_exec_queue_policy_add_execution_quantum(&policy, timeslice_us);
- 	__guc_exec_queue_policy_add_preemption_timeout(&policy, preempt_timeout_us);
-+	__guc_exec_queue_policy_add_slpc_exec_queue_freq_req(&policy,
-+							     slpc_exec_queue_freq_req);
- 
- 	xe_guc_ct_send(&guc->ct, (u32 *)&policy.h2g,
- 		       __guc_exec_queue_policy_action_size(&policy), 0, 0);
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index c059639613f7..136280c0c6b9 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -334,7 +334,8 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 		xe->info.devid | (xe->info.revid << 16);
- 	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
- 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
--			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM;
-+			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM |
-+			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
- 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
- 		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
- 	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index e2160330ad01..decbb3b2df36 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -393,6 +393,8 @@ struct drm_xe_query_mem_regions {
-  *
-  *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM - Flag is set if the device
-  *      has usable VRAM
-+ *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY - Flag is set if the device
-+ *      has low latency hint support
-  *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
-  *    required by this device, typically SZ_4K or SZ_64K
-  *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
-@@ -409,6 +411,7 @@ struct drm_xe_query_config {
- #define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
- #define DRM_XE_QUERY_CONFIG_FLAGS			1
- 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
-+	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
- #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
- #define DRM_XE_QUERY_CONFIG_VA_BITS			3
- #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
-@@ -1124,6 +1127,7 @@ struct drm_xe_vm_bind {
-  *         .engine_class = DRM_XE_ENGINE_CLASS_RENDER,
-  *     };
-  *     struct drm_xe_exec_queue_create exec_queue_create = {
-+ *          .flags = DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT
-  *          .extensions = 0,
-  *          .vm_id = vm,
-  *          .num_bb_per_exec = 1,
-@@ -1150,7 +1154,8 @@ struct drm_xe_exec_queue_create {
- 	/** @vm_id: VM to use for this exec queue */
- 	__u32 vm_id;
- 
--	/** @flags: MBZ */
-+#define DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT	(1 << 0)
-+	/** @flags: flags to use for this exec queue */
- 	__u32 flags;
- 
- 	/** @exec_queue_id: Returned exec queue ID */
--- 
-2.43.0
+Known issues
+------------
 
+  Here are the changes found in xe-pw-143793v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@nullptr:
+    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@fbdev@nullptr.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][2] ([Intel XE#2233])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][3] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2482]) +3 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-bmg-2:          NOTRUN -> [SKIP][5] ([Intel XE#2434] / [Intel XE#2548])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_psr@psr-primary-page-flip:
+    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@kms_psr@psr-primary-page-flip.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-off:
+    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-off.html
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-2:          NOTRUN -> [SKIP][8] ([Intel XE#2229])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-bmg-2:          NOTRUN -> [SKIP][9] ([Intel XE#1420])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-bmg-2:          NOTRUN -> [SKIP][10] ([Intel XE#2245])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#2236])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
+
+  * igt@xe_sriov_flr@flr-vf1-clear:
+    - bat-bmg-2:          NOTRUN -> [SKIP][12] ([Intel XE#3342])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@xe_sriov_flr@flr-vf1-clear.html
+
+  
+  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
+  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
+  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
+  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
+  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
+  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
+
+
+Build changes
+-------------
+
+  * Linux: xe-2548-897537fb818365733977947214c799d61675895f -> xe-pw-143793v2
+
+  IGT_8207: 9f36f9f9e8825a67b762630c2b31628ddcda5c10 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2548-897537fb818365733977947214c799d61675895f: 897537fb818365733977947214c799d61675895f
+  xe-pw-143793v2: 143793v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/index.html
+
+--===============2502624739249120220==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/uapi: Use hint for guc to set GT frequency (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143793/">https://patchwork.freedesktop.org/series/143793/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2548-897537fb818365733977947214c799d61675895f_BAT -&gt; xe-pw-143793v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>Additional (1): bat-bmg-2 <br />
+  Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-143793v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@nullptr:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@fbdev@nullptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@kms_psr@psr-primary-page-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143793v2/bat-bmg-2/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2548-897537fb818365733977947214c799d61675895f -&gt; xe-pw-143793v2</li>
+</ul>
+<p>IGT_8207: 9f36f9f9e8825a67b762630c2b31628ddcda5c10 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2548-897537fb818365733977947214c799d61675895f: 897537fb818365733977947214c799d61675895f<br />
+  xe-pw-143793v2: 143793v2</p>
+
+</body>
+</html>
+
+--===============2502624739249120220==--
