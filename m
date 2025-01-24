@@ -4,111 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 561F9C0218C
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 08:29:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1DEFC02181
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 09:01:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B83E10E918;
-	Fri, 24 Jan 2025 08:29:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="JQ8dZu9g";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="7bfgr94b";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Wp5TAYXU";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="u+Esgftw";
-	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B96810E2B8;
- Fri, 24 Jan 2025 08:29:36 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id D681D1F38F;
- Fri, 24 Jan 2025 08:29:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1737707375; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=y+tmx7eWnJ7qvWaN9HX6ZeHVjgCS8dsZQjFEghbUT6g=;
- b=JQ8dZu9gbamtuOyCu0IGePS56hdrQZcW8SPvHzOhWJR29KlVjavAyTgRs4E5T8pYoeo4FD
- xvNEt2Kw5Pyd7q9csh12g1fdkYqX6wkqlaKq/wbVYv0nQdS/0hXqBc72evVlAuSxkstbfd
- BYx/Qtdtric198RebYeaC+14ETKaOlk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1737707375;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=y+tmx7eWnJ7qvWaN9HX6ZeHVjgCS8dsZQjFEghbUT6g=;
- b=7bfgr94bPSWuwR+bGVzQugvC4O6KbYYJmgnH62zFee7bEYoENqWjdBykWatkKFjVEpMKZA
- mlYtFvJ/uwRGtmAQ==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Wp5TAYXU;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=u+Esgftw
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1737707374; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=y+tmx7eWnJ7qvWaN9HX6ZeHVjgCS8dsZQjFEghbUT6g=;
- b=Wp5TAYXUAl9n9aSpX0fQkw/OiLV2qEuDZh+SsjcN9JP/qwHZLi3inbHatxzXDFn9mFXXa/
- vuaYzgqHNzoMu06qqvhfUwXjztmifjiQ9V/G7qEYApNa+1QeGkq4cDMNUsIUoz1sBKCInv
- 3vN48s1TOToeEjFUPrU5THV8CZCqQ4U=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1737707374;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=y+tmx7eWnJ7qvWaN9HX6ZeHVjgCS8dsZQjFEghbUT6g=;
- b=u+Esgftw/uwsq/fD/K+sKyHDBN7+XV0f0jnnCi3E0vu59IbT/7MWKQv2azN4eXqI2YhDgY
- vFKuyeUdcRaaokBw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 727C7139CB;
- Fri, 24 Jan 2025 08:29:34 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id KcGlGm5Pk2cAcQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 24 Jan 2025 08:29:34 +0000
-Date: Fri, 24 Jan 2025 09:29:32 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20250124082932.GA13715@linux.fritz.box>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FD8910E923;
+	Fri, 24 Jan 2025 09:01:40 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48D3B10E920;
+ Fri, 24 Jan 2025 09:01:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8974868341970832186=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Rspamd-Queue-Id: D681D1F38F
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- MIME_GOOD(-0.10)[text/plain]; MX_GOOD(-0.01)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
- MIME_TRACE(0.00)[0:+]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_TLS_ALL(0.00)[];
- RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- ASN(0.00)[asn:25478, ipnet:::/0, country:RU];
- RCVD_VIA_SMTP_AUTH(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
- MISSING_XM_UA(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,
- imap1.dmz-prg2.suse.org:rdns, suse.de:dkim]
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_DRM_device_wedged?=
+ =?utf-8?q?_event_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 24 Jan 2025 09:01:39 -0000
+Message-ID: <173770929929.3924039.11519496698043247734@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250124055300.1111274-1-raag.jadav@intel.com>
+In-Reply-To: <20250124055300.1111274-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,78 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+--===============8974868341970832186==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-here's the weekly PR for drm-misc-fixes.
+== Series Details ==
 
-Best regards
-Thomas
+Series: Introduce DRM device wedged event (rev9)
+URL   : https://patchwork.freedesktop.org/series/138070/
+State : success
 
-drm-misc-fixes-2025-01-24:
-Short summary of fixes pull:
+== Summary ==
 
-bochs:
-- Fix double-free on driver removal
+CI Bug Log - changes from xe-2545-c35325ae97e22ecd5a13cd04f71217e9676a4847_BAT -> xe-pw-138070v9_BAT
+====================================================
 
-client:
-- Improve support for tile-based modes
-- Fix fbdev Kconfig select rules
+Summary
+-------
 
-xlnx:
-- zynqmp_dp: Add locking to DP-bridge enable helper
-The following changes since commit ef84aee151bd6c2c9223c8b430cae21d57b5e1c1:
+  **SUCCESS**
 
-  drm/bridge: ite-it6263: Prevent error pointer dereference in probe() (2025-01-15 11:27:08 +0800)
+  No regressions found.
 
-are available in the Git repository at:
+  
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-01-24
+Participating hosts (8 -> 4)
+------------------------------
 
-for you to fetch changes up to 0a1ee19d46b71691c5acdf234bb6105913bd9add:
+  Missing    (4): bat-bmg-1 bat-adlp-vf bat-bmg-2 bat-atsm-2 
 
-  drm: zynqmp_dp: Unlock on error in zynqmp_dp_bridge_atomic_enable() (2025-01-24 09:26:45 +0200)
 
-----------------------------------------------------------------
-Short summary of fixes pull:
+Changes
+-------
 
-bochs:
-- Fix double-free on driver removal
+  No changes found
 
-client:
-- Improve support for tile-based modes
-- Fix fbdev Kconfig select rules
 
-xlnx:
-- zynqmp_dp: Add locking to DP-bridge enable helper
+Build changes
+-------------
 
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm: select DRM_KMS_HELPER from DRM_GEM_SHMEM_HELPER
+  * Linux: xe-2545-c35325ae97e22ecd5a13cd04f71217e9676a4847 -> xe-pw-138070v9
 
-Dan Carpenter (1):
-      drm: zynqmp_dp: Unlock on error in zynqmp_dp_bridge_atomic_enable()
+  IGT_8207: 9f36f9f9e8825a67b762630c2b31628ddcda5c10 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2545-c35325ae97e22ecd5a13cd04f71217e9676a4847: c35325ae97e22ecd5a13cd04f71217e9676a4847
+  xe-pw-138070v9: 138070v9
 
-Maarten Lankhorst (2):
-      drm/modeset: Handle tiled displays in pan_display_atomic.
-      drm/client: Handle tiled displays better
+== Logs ==
 
-Thomas Zimmermann (1):
-      drm/bochs: Do not put DRM device in PCI remove callback
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138070v9/index.html
 
- drivers/gpu/drm/Kconfig              |  3 +++
- drivers/gpu/drm/drm_client_modeset.c |  9 +++++++++
- drivers/gpu/drm/drm_fb_helper.c      | 14 ++++++++------
- drivers/gpu/drm/tiny/bochs.c         |  1 -
- drivers/gpu/drm/xlnx/zynqmp_dp.c     |  3 +--
- 5 files changed, 21 insertions(+), 9 deletions(-)
+--===============8974868341970832186==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introduce DRM device wedged event (rev9)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138070/">https://patchwork.freedesktop.org/series/138070/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138070v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138070v9/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2545-c35325ae97e22ecd5a13cd04f71217e9676a4847_BAT -&gt; xe-pw-138070v9_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 4)</h2>
+<p>Missing    (4): bat-bmg-1 bat-adlp-vf bat-bmg-2 bat-atsm-2 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2545-c35325ae97e22ecd5a13cd04f71217e9676a4847 -&gt; xe-pw-138070v9</li>
+</ul>
+<p>IGT_8207: 9f36f9f9e8825a67b762630c2b31628ddcda5c10 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2545-c35325ae97e22ecd5a13cd04f71217e9676a4847: c35325ae97e22ecd5a13cd04f71217e9676a4847<br />
+  xe-pw-138070v9: 138070v9</p>
+
+</body>
+</html>
+
+--===============8974868341970832186==--
