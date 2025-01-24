@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA114C0218C
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 05:04:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A223C0218D
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 05:04:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABC4810E8CF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B27D710E8D0;
 	Fri, 24 Jan 2025 05:04:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EQyMXY0R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nvo66Kz8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01C9510E253
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAFF210E253
  for <intel-xe@lists.freedesktop.org>; Fri, 24 Jan 2025 05:04:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737695082; x=1769231082;
+ t=1737695081; x=1769231081;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WBb6zhij9PTIg1FH91Kxd5/8i71QyvTJMNo9tpbeTRE=;
- b=EQyMXY0Rador+K2eW5uuB34D6igugFGmlEYpO9LA4EJyn+ViM1Dy8ntU
- q6LRgHCqQqkB8eQfYlMDWBWxjKykLLgXnkbt8EUthZ9+7A7P/+X6DmfDa
- a5V6VEHjAhpLXw44WzEhJxDmywrDYiSr9p39w3uothcsguMeAmmaqR3Ir
- M92siRwOsa7ZWktPtofcFRTaXkAOwhEUsiKmhPwT6nlACYN7oi+kASHIP
- QmsJ471IWxt6gZm7t7P0W/xxmy8zRfdujZjm9inr1pbNSPMifGXzAMryZ
- FdmH5NCE+LPnVjShECxI46pWxWo5cqmeVXhyxaPUUwMGoJQPNF74hDSuk A==;
-X-CSE-ConnectionGUID: /N6RJMcGTrSx0B6lF5/D6g==
-X-CSE-MsgGUID: DcrpzMaoTH68VG+dH0YWbQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="38253080"
-X-IronPort-AV: E=Sophos;i="6.13,230,1732608000"; d="scan'208";a="38253080"
+ bh=sU2zceit82BkL6W3a8LC3UYg5h23YrZLnJeaoynkC5k=;
+ b=Nvo66Kz86gogXvLjr2qCGmssXRxx4hHu66GVpgK4Md+8TK7Ip47fhsPZ
+ iHe6Uhf56rExap4R62XSoppDTabEzskXV2Dae7wIJPkPHE7j8gt7Wmit6
+ +lj3vnzZl2voeZkOAHhnqBjoEYdX9DZAY9/SJgfHa4/liWWyB4uEtwS4X
+ pRo2ajq4EfzC0ZZr9X4iyDVi3LHAmBeWKyN13OpFlNy4zTZN8iuAC/Lnh
+ fWClYe92hn8XuJkTzviUf2nFhfGPH+mM+Ga40RfQKmc82tlVQsYIDBy6s
+ p+C28BvpXr996Xj91zYDV0Uxg74ME3DvO6jSDzgR/6+nGCXumipTSeQeQ w==;
+X-CSE-ConnectionGUID: /QtDr7GXSh6XcvTu2Rxd5Q==
+X-CSE-MsgGUID: 8Q6DW13OS52IgO+2rBMFRA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="38253077"
+X-IronPort-AV: E=Sophos;i="6.13,230,1732608000"; d="scan'208";a="38253077"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jan 2025 21:04:41 -0800
-X-CSE-ConnectionGUID: PYs95WSjS7KvxeDdaxjZgw==
-X-CSE-MsgGUID: 5KZHOAItRx6BNizlEpHvNA==
+X-CSE-ConnectionGUID: NQqY42ZMSCaBQyjOdkEJ/A==
+X-CSE-MsgGUID: 9hF4oQtTSqCMIH1e7yE6tg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112304770"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112304764"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jan 2025 21:04:40 -0800
@@ -45,9 +45,9 @@ From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI 4/6] drm/xe/pmu: Get/put runtime pm on event init
-Date: Thu, 23 Jan 2025 21:04:09 -0800
-Message-ID: <20250124050411.2189060-4-lucas.demarchi@intel.com>
+Subject: [CI 2/6] drm/xe/pmu: Assert max gt
+Date: Thu, 23 Jan 2025 21:04:07 -0800
+Message-ID: <20250124050411.2189060-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250124050411.2189060-1-lucas.demarchi@intel.com>
 References: <20250124050411.2189060-1-lucas.demarchi@intel.com>
@@ -67,45 +67,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When the event is created, make sure runtime pm is taken and later put:
-in order to read an event counter the GPU needs to remain accessible and
-doing a get/put during perf's read is not possible it's holding a
-raw_spinlock.
+XE_PMU_MAX_GT needs to be used due to a circular dependency, but we
+should make sure it doesn't go out of sync with XE_PMU_MAX_GT. Add a
+compile check for that.
 
-Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pmu.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/xe/xe_pmu.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
-index 33598272db6aa..6678340d6195b 100644
+index b3da3863928af..df93ba96bdc1e 100644
 --- a/drivers/gpu/drm/xe/xe_pmu.c
 +++ b/drivers/gpu/drm/xe/xe_pmu.c
-@@ -7,6 +7,7 @@
- #include <linux/device.h>
+@@ -249,6 +249,8 @@ int xe_pmu_register(struct xe_pmu *pmu)
+ 	int ret = -ENOMEM;
+ 	char *name;
  
- #include "xe_device.h"
-+#include "xe_pm.h"
- #include "xe_pmu.h"
- 
- /**
-@@ -68,6 +69,7 @@ static void xe_pmu_event_destroy(struct perf_event *event)
- 	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
- 
- 	drm_WARN_ON(&xe->drm, event->parent);
-+	xe_pm_runtime_put(xe);
- 	drm_dev_put(&xe->drm);
- }
- 
-@@ -100,6 +102,7 @@ static int xe_pmu_event_init(struct perf_event *event)
- 
- 	if (!event->parent) {
- 		drm_dev_get(&xe->drm);
-+		xe_pm_runtime_get(xe);
- 		event->destroy = xe_pmu_event_destroy;
- 	}
++	BUILD_BUG_ON(XE_MAX_GT_PER_TILE != XE_PMU_MAX_GT);
++
+ 	if (IS_SRIOV_VF(xe))
+ 		return 0;
  
 -- 
 2.48.0
