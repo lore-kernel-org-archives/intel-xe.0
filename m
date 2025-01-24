@@ -4,66 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3E7BC0218B
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 12:49:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A08E2C0218B
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 12:50:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6EA310E06C;
-	Fri, 24 Jan 2025 12:49:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D2C910E06C;
+	Fri, 24 Jan 2025 12:50:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h2wejfHH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZJNWzmk+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D05A010E06C;
- Fri, 24 Jan 2025 12:49:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 826F910E06C
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Jan 2025 12:50:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737722963; x=1769258963;
+ t=1737723030; x=1769259030;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=7TXQH2lKGmLSLCNnKH/Nc7rpzzhyIFp5lhUkzegze80=;
- b=h2wejfHHUe2vfEZgv2DeoC8g+uaIJeiGruHonkSCgo+XLFCSxRVP7Px7
- xaFO+2v/YfqoXyqW9iWHtmUgiz19WXfN4eyXOFLs9Looo6Xxi8Z8bOmrf
- tKxDLmXZTIx96UgSm81UKmSgrVLgU0vtZdbvT+Bjwl+Gvrbmms3sbgoKD
- G4XfPwKNwo226N3fqzeF0BrWw7kB8Dr8fHgVlR0Yv8oUMgFc+8BunCeKH
- Lnr9K5BkknNIE3UUVPxIqdwMYjPu5HafbUuvYf41Rmss9VsNLyrdverJn
- FWcppbd/GskB4UwwP1jLEondkXJMw0ONZWFST6dPa7XwtYiqcRgDMyz4m A==;
-X-CSE-ConnectionGUID: dHFB6QX7QTOoXCvF/+SmmA==
-X-CSE-MsgGUID: X70xJk8KRFmTyOsybuanGQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38507717"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38507717"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ mime-version:in-reply-to;
+ bh=tPkXrc4waqbmD3lwvbmuyVqMG2nHHo36zSMBtmrDyTc=;
+ b=ZJNWzmk+RXJknIy0fK9H+mvobEiO1Uqdfn2j6Pl2j/hrHBuaUH2KdXFO
+ 9ny7uJvbaP1oVT43IVvX+XNnNaczfxGwkIlxnSAx5d77gWMQ/S54NvsmI
+ Qq5AuqOppyA1mJp92C/sTRYg1GjE/BKmRJWCRLYg/1TiH6NROn1+rgcB+
+ iPRBUJozw7id8kiwi6Zz6R0RE79QMUyvaUNRilolVmbHtgu8FUl7UaPpC
+ GhKpVhbrQsef/zwFGZuajaKsK5E6g/94hioZNuFWHjflgh2IfBh61Bojx
+ /pNOPuyVl5MA4p9c+qxZC7zJg2NkC3ga7+Z1FoJ9bOJXxZY8aX2vv5avt w==;
+X-CSE-ConnectionGUID: tYJVPjmxScqGmJ4gmYvjwA==
+X-CSE-MsgGUID: OnGltMX8StqHIgyFDZMiPw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38507806"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38507806"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 04:49:22 -0800
-X-CSE-ConnectionGUID: MRewB3eNSE2qEIgJ3o91gw==
-X-CSE-MsgGUID: bL5r5b8lTfSf4BuywnfrNQ==
+ 24 Jan 2025 04:50:30 -0800
+X-CSE-ConnectionGUID: w6ZYPKx6QNusumgtnx8wyg==
+X-CSE-MsgGUID: ZFeFag1fSDWYP0ogQHLz5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="107884679"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 24 Jan 2025 04:49:20 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 24 Jan 2025 14:49:19 +0200
-Date: Fri, 24 Jan 2025 14:49:19 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Manna, Animesh" <animesh.manna@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Syrjala, Ville" <ville.syrjala@intel.com>
-Subject: Re: [PATCH v4 11/13] drm/i915/display: Evade scanline 0 as well if
- PSR1 or PSR2 is enabled
-Message-ID: <Z5OMT6x4G-Km9X_I@intel.com>
-References: <20250124105625.822459-1-jouni.hogander@intel.com>
- <20250124105625.822459-12-jouni.hogander@intel.com>
- <Z5N73tdHQqLOKhk7@intel.com>
- <dbf6d20903c2ca8dbab3437b0af7ad414b14f99c.camel@intel.com>
- <Z5OJjKVW5QJEKrPP@intel.com>
- <78d2f599c2ebffb3936071048b3e8d3a343de5c1.camel@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="107685024"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2025 04:50:28 -0800
+Date: Fri, 24 Jan 2025 14:50:25 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: "Nilawar, Badal" <badal.nilawar@intel.com>, lucas.demarchi@intel.com,
+ rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
+ andi.shyti@linux.intel.com, Karthik Poosa <karthik.poosa@intel.com>,
+ intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com
+Subject: Re: [PATCH v1] drm/xe/hwmon: expose package and vram temperature
+Message-ID: <Z5OMkeSZT5us_PM-@black.fi.intel.com>
+References: <20250108092415.289551-1-raag.jadav@intel.com>
+ <94e0bc3e-897c-48e2-950d-777d40519ab7@intel.com>
+ <Z5GuzT7R0WZTr3r3@black.fi.intel.com>
+ <bc971c1c-bcf1-40f4-a7fd-52107ebec05b@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <78d2f599c2ebffb3936071048b3e8d3a343de5c1.camel@intel.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <bc971c1c-bcf1-40f4-a7fd-52107ebec05b@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,89 +72,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 24, 2025 at 12:41:11PM +0000, Hogander, Jouni wrote:
-> On Fri, 2025-01-24 at 14:37 +0200, Ville Syrjälä wrote:
-> > On Fri, Jan 24, 2025 at 11:57:10AM +0000, Hogander, Jouni wrote:
-> > > On Fri, 2025-01-24 at 13:39 +0200, Ville Syrjälä wrote:
-> > > > On Fri, Jan 24, 2025 at 12:56:22PM +0200, Jouni Högander wrote:
-> > > > > PIPEDSL is reading as 0 when in SRDENT(PSR1) or
-> > > > > DEEP_SLEEP(PSR2).
-> > > > > On
-> > > > > wake-up scanline counting starts from vblank_start - 1. We
-> > > > > don't
-> > > > > know if
-> > > > > wake-up is already ongoing when evasion starts. In worst case
-> > > > > PIPEDSL could
-> > > > > start reading valid value right after checking the scanline. In
-> > > > > this
-> > > > > scenario we wouldn't have enough time to write all registers.
-> > > > > To
-> > > > > tackle
-> > > > > this evade scanline 0 as well. As a drawback we have 1 frame
-> > > > > delay
-> > > > > in flip
-> > > > > when waking up.
-> > > > > 
-> > > > > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/display/intel_dsb.c | 12 ++++++++++++
-> > > > >  1 file changed, 12 insertions(+)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c
-> > > > > b/drivers/gpu/drm/i915/display/intel_dsb.c
-> > > > > index bb77ded8bf726..914f0be4491c4 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_dsb.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> > > > > @@ -528,6 +528,18 @@ void intel_dsb_vblank_evade(struct
-> > > > > intel_atomic_state *state,
-> > > > >  	int latency = intel_usecs_to_scanlines(&crtc_state-
-> > > > > > hw.adjusted_mode, 20);
-> > > > >  	int start, end;
-> > > > >  
-> > > > > +	/*
-> > > > > +	 * PIPEDSL is reading as 0 when in SRDENT(PSR1) or
-> > > > > DEEP_SLEEP(PSR2). On
-> > > > > +	 * wake-up scanline counting starts from vblank_start
-> > > > > - 1.
-> > > > > We don't know
-> > > > > +	 * if wake-up is already ongoing when evasion starts.
-> > > > > In
-> > > > > worst case
-> > > > > +	 * PIPEDSL could start reading valid value right after
-> > > > > checking the
-> > > > > +	 * scanline. In this scenario we wouldn't have enough
-> > > > > time
-> > > > > to write all
-> > > > > +	 * registers. To tackle this evade scanline 0 as well.
-> > > > > As
-> > > > > a drawback we
-> > > > > +	 * have 1 frame delay in flip when waking up.
-> > > > > +	 */
-> > > > > +	if (crtc_state->has_psr && !crtc_state-
-> > > > > >has_panel_replay)
-> > > > 
-> > > > What's the deal with panel replay here?
-> > > 
-> > > I couldn't see PIPEDSL returning 0 when using Panel Replay. Even on
-> > > same setup with PSR I saw it, but with PR I couldn't see.
-> > 
-> > Hmm. Are you sure it's reaching DC5/6?
-> > 
-> > Though I suppose it's possible that panel replay (unlike PSR)
-> > does pretty much everything from the DMC's DC state handler,
-> > so as soon as you read the register it restores things fully
-> > enough that you get the vblank_start-1 response...
+On Fri, Jan 24, 2025 at 11:46:05AM +0530, Riana Tauro wrote:
+> Hi Raag
 > 
-> Maybe we just add that evasion without checking panel replay. It
-> shouldn't be too expensive anyways. What do you think?
+> On 1/23/2025 8:21 AM, Raag Jadav wrote:
+> > On Tue, Jan 21, 2025 at 01:56:05PM +0530, Riana Tauro wrote:
+> > > Hi Raag
+> > > 
+> > > On 1/8/2025 2:54 PM, Raag Jadav wrote:
+> > > > Add hwmon support for temp1_input and temp2_input attributes, which will
+> > > > expose package and vram temperature in millidegree Celsius. With this in
+> > > > place we can monitor temperature using lm-sensors tool.
+> > > > 
+> > > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > > > ---
+> > > >    .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 16 +++++
+> > > >    drivers/gpu/drm/xe/regs/xe_mchbar_regs.h      |  3 +
+> > > >    drivers/gpu/drm/xe/regs/xe_pcode_regs.h       |  2 +
+> > > >    drivers/gpu/drm/xe/xe_hwmon.c                 | 63 +++++++++++++++++++
+> > > >    4 files changed, 84 insertions(+)
+> > > > 
+> > > > diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+> > > > index d792a56f59ac..998cfb0ee1a6 100644
+> > > > --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+> > > > +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+> > > > @@ -108,3 +108,19 @@ Contact:	intel-xe@lists.freedesktop.org
+> > > >    Description:	RO. Package current voltage in millivolt.
+> > > >    		Only supported for particular Intel Xe graphics platforms.
+> > > > +
+> > > > +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp1_input
+> > > > +Date:		April 2025
+> > > > +KernelVersion:	6.15
+> > > > +Contact:	intel-xe@lists.freedesktop.org
+> > > > +Description:	RO. Package temperature in millidegree Celsius.
+> > > > +
+> > > > +		Only supported for particular Intel Xe graphics platforms.
+> > > > +
+> > > > +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_input
+> > > > +Date:		April 2025
+> > > > +KernelVersion:	6.15
+> > > > +Contact:	intel-xe@lists.freedesktop.org
+> > > > +Description:	RO. VRAM temperature in millidegree Celsius.
+> > > > +
+> > > > +		Only supported for particular Intel Xe graphics platforms.
+> > > > diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+> > > > index 519dd1067a19..f5e5234857c1 100644
+> > > > --- a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+> > > > +++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+> > > > @@ -34,6 +34,9 @@
+> > > >    #define PCU_CR_PACKAGE_ENERGY_STATUS		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x593c)
+> > > > +#define PCU_CR_PACKAGE_TEMPERATURE		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5978)
+> > > > +#define   TEMP_MASK				REG_GENMASK(7, 0)
+> > > > +
+> > > >    #define PCU_CR_PACKAGE_RAPL_LIMIT		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x59a0)
+> > > >    #define   PKG_PWR_LIM_1				REG_GENMASK(14, 0)
+> > > >    #define   PKG_PWR_LIM_1_EN			REG_BIT(15)
+> > > > diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> > > > index 0b0b49d850ae..8846eb9ce2a4 100644
+> > > > --- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> > > > +++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> > > > @@ -21,6 +21,8 @@
+> > > >    #define BMG_PACKAGE_POWER_SKU			XE_REG(0x138098)
+> > > >    #define BMG_PACKAGE_POWER_SKU_UNIT		XE_REG(0x1380dc)
+> > > >    #define BMG_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
+> > > > +#define BMG_VRAM_TEMPERATURE			XE_REG(0x1382c0)
+> > > > +#define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
+> > > indentation.
+> > 
+> > It's a git quirk, you won't see it in file.
+> > 
+> > > Also you are using the same for DG2. Should have a common name
+> > 
+> > Just following the conventions.
+> Did not find this convention in the file.
+> BMG_VRAM_TEMPERATURE is used in both dg2 and bmg and has a bmg prefix.
+> Doesn't seem right		
 
-Yeah, that seems fine to me.
+That's what we use for pcode registers.
 
-But I still think you should try to double check that it
-really reaches DC6 with panel replay despite PIPDSL not
-getting reset, so that we at least understand a bit better
-what is actually happening.
-
--- 
-Ville Syrjälä
-Intel
+Raag
