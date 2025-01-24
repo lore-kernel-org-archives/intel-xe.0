@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A223C0218D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 621DAC0218E
 	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 05:04:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B27D710E8D0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D41ED10E8D1;
 	Fri, 24 Jan 2025 05:04:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nvo66Kz8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X9OMdyU2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAFF210E253
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Jan 2025 05:04:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ACE410E8D0
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Jan 2025 05:04:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737695081; x=1769231081;
+ t=1737695082; x=1769231082;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sU2zceit82BkL6W3a8LC3UYg5h23YrZLnJeaoynkC5k=;
- b=Nvo66Kz86gogXvLjr2qCGmssXRxx4hHu66GVpgK4Md+8TK7Ip47fhsPZ
- iHe6Uhf56rExap4R62XSoppDTabEzskXV2Dae7wIJPkPHE7j8gt7Wmit6
- +lj3vnzZl2voeZkOAHhnqBjoEYdX9DZAY9/SJgfHa4/liWWyB4uEtwS4X
- pRo2ajq4EfzC0ZZr9X4iyDVi3LHAmBeWKyN13OpFlNy4zTZN8iuAC/Lnh
- fWClYe92hn8XuJkTzviUf2nFhfGPH+mM+Ga40RfQKmc82tlVQsYIDBy6s
- p+C28BvpXr996Xj91zYDV0Uxg74ME3DvO6jSDzgR/6+nGCXumipTSeQeQ w==;
-X-CSE-ConnectionGUID: /QtDr7GXSh6XcvTu2Rxd5Q==
-X-CSE-MsgGUID: 8Q6DW13OS52IgO+2rBMFRA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="38253077"
-X-IronPort-AV: E=Sophos;i="6.13,230,1732608000"; d="scan'208";a="38253077"
+ bh=agZnPfQCzgoLbBLDCioYb10KEh+rytQbRWRikU5yUJs=;
+ b=X9OMdyU2d/jwu11BNsvHAOZvoC0QU/b67hnM1PdjzJSAnz+yC67GcC1v
+ fYjm3YJliNY7Z9JXVaSEFW+h/znZp2xVt+hVkNeGNw89ZEvvhA+QABtmx
+ 9Fr/CciceifuZldfxLGwNX59qv4r8SPrs/+hdwQOSC2LYgpzFYXwGDbjv
+ F60t8bDcz6XjScVkjgnAy+a1VzUOFAK+UoRh07WuB84GRIkO292t4tpth
+ 60QQwcPqqDMhK0U8XRCpy4+BJ0zCKhrCyu3yGtHnTjAWLT4RRB6177zrW
+ WVs6eu7TScRT9g8bTcKjx6DNu8yg+81gh5rHgFnVP9McYFWB3sf66xf6j A==;
+X-CSE-ConnectionGUID: 4y8HdRC9R9SW5UQ6tAq5PQ==
+X-CSE-MsgGUID: UIKif94gSSuiwownmksyTQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="38253082"
+X-IronPort-AV: E=Sophos;i="6.13,230,1732608000"; d="scan'208";a="38253082"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jan 2025 21:04:41 -0800
-X-CSE-ConnectionGUID: NQqY42ZMSCaBQyjOdkEJ/A==
-X-CSE-MsgGUID: 9hF4oQtTSqCMIH1e7yE6tg==
+X-CSE-ConnectionGUID: IyULS/FsS0q5gC2DEZW+mg==
+X-CSE-MsgGUID: e42Xa77HQqOL8gJwRqblBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112304764"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112304776"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2025 21:04:40 -0800
+ 23 Jan 2025 21:04:41 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI 2/6] drm/xe/pmu: Assert max gt
-Date: Thu, 23 Jan 2025 21:04:07 -0800
-Message-ID: <20250124050411.2189060-2-lucas.demarchi@intel.com>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Riana Tauro <riana.tauro@intel.com>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Subject: [CI 6/6] drm/xe/pmu: Add GT C6 events
+Date: Thu, 23 Jan 2025 21:04:11 -0800
+Message-ID: <20250124050411.2189060-6-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250124050411.2189060-1-lucas.demarchi@intel.com>
 References: <20250124050411.2189060-1-lucas.demarchi@intel.com>
@@ -67,29 +68,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-XE_PMU_MAX_GT needs to be used due to a circular dependency, but we
-should make sure it doesn't go out of sync with XE_PMU_MAX_GT. Add a
-compile check for that.
+Provide a PMU interface for GT C6 residency counters. The interface is
+similar to the one available for i915, but gt is passed in the config
+when creating the event.
+
+Sample usage and output:
+
+	$ perf list | grep gt-c6
+	  xe_0000_00_02.0/gt-c6-residency/                   [Kernel PMU event]
+
+	$ tail /sys/bus/event_source/devices/xe_0000_00_02.0/events/gt-c6-residency*
+	==> /sys/bus/event_source/devices/xe_0000_00_02.0/events/gt-c6-residency <==
+	event=0x01
+
+	==> /sys/bus/event_source/devices/xe_0000_00_02.0/events/gt-c6-residency.unit <==
+	ms
+
+	$ perf stat -e xe_0000_00_02.0/gt-c6-residency,gt=0/ -I1000
+	#           time             counts unit events
+	     1.001196056              1,001 ms   xe_0000_00_02.0/gt-c6-residency,gt=0/
+	     2.005216219              1,003 ms   xe_0000_00_02.0/gt-c6-residency,gt=0/
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pmu.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/xe/xe_pmu.c | 23 ++++++++++++++++++-----
+ 1 file changed, 18 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
-index b3da3863928af..df93ba96bdc1e 100644
+index 6e19e08dd6176..3910a82328ee3 100644
 --- a/drivers/gpu/drm/xe/xe_pmu.c
 +++ b/drivers/gpu/drm/xe/xe_pmu.c
-@@ -249,6 +249,8 @@ int xe_pmu_register(struct xe_pmu *pmu)
- 	int ret = -ENOMEM;
- 	char *name;
+@@ -7,6 +7,7 @@
+ #include <linux/device.h>
  
-+	BUILD_BUG_ON(XE_MAX_GT_PER_TILE != XE_PMU_MAX_GT);
+ #include "xe_device.h"
++#include "xe_gt_idle.h"
+ #include "xe_pm.h"
+ #include "xe_pmu.h"
+ 
+@@ -47,6 +48,8 @@ static unsigned int config_to_gt_id(u64 config)
+ 	return FIELD_GET(XE_PMU_EVENT_GT_MASK, config);
+ }
+ 
++#define XE_PMU_EVENT_GT_C6_RESIDENCY	0x01
 +
- 	if (IS_SRIOV_VF(xe))
+ static struct xe_gt *event_to_gt(struct perf_event *event)
+ {
+ 	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
+@@ -113,12 +116,16 @@ static int xe_pmu_event_init(struct perf_event *event)
+ static u64 __xe_pmu_event_read(struct perf_event *event)
+ {
+ 	struct xe_gt *gt = event_to_gt(event);
+-	u64 val = 0;
+ 
+ 	if (!gt)
  		return 0;
  
+-	return val;
++	switch (config_to_event_id(event->attr.config)) {
++	case XE_PMU_EVENT_GT_C6_RESIDENCY:
++		return xe_gt_idle_residency_msec(&gt->gtidle);
++	}
++
++	return 0;
+ }
+ 
+ static void xe_pmu_event_update(struct perf_event *event)
+@@ -214,8 +221,8 @@ static const struct attribute_group pmu_format_attr_group = {
+ 	.attrs = pmu_format_attrs,
+ };
+ 
+-__maybe_unused static ssize_t event_attr_show(struct device *dev,
+-					      struct device_attribute *attr, char *buf)
++static ssize_t event_attr_show(struct device *dev,
++			       struct device_attribute *attr, char *buf)
+ {
+ 	struct perf_pmu_events_attr *pmu_attr =
+ 		container_of(attr, struct perf_pmu_events_attr, attr);
+@@ -262,6 +269,8 @@ __maybe_unused static ssize_t event_attr_show(struct device *dev,
+ 	XE_EVENT_ATTR(name_, v_, id_)					\
+ 	XE_EVENT_ATTR_GROUP(v_, id_, &pmu_event_ ##v_.attr.attr)
+ 
++XE_EVENT_ATTR_SIMPLE(gt-c6-residency, gt_c6_residency, XE_PMU_EVENT_GT_C6_RESIDENCY, "ms");
++
+ static struct attribute *pmu_empty_event_attrs[] = {
+ 	/* Empty - all events are added as groups with .attr_update() */
+ 	NULL,
+@@ -273,12 +282,16 @@ static const struct attribute_group pmu_events_attr_group = {
+ };
+ 
+ static const struct attribute_group *pmu_events_attr_update[] = {
+-	/* No events yet */
++	&pmu_group_gt_c6_residency,
+ 	NULL,
+ };
+ 
+ static void set_supported_events(struct xe_pmu *pmu)
+ {
++	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
++
++	if (!xe->info.skip_guc_pc)
++		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_GT_C6_RESIDENCY);
+ }
+ 
+ /**
 -- 
 2.48.0
 
