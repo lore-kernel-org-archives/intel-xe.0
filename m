@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F2A0C02181
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 11:39:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E1BAC02181
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 11:43:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDEFF10E921;
-	Fri, 24 Jan 2025 11:39:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD4B710E91C;
+	Fri, 24 Jan 2025 11:43:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NynClMPF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nlNi0f06";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7ADED10E88D;
- Fri, 24 Jan 2025 11:39:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11B0910E91C;
+ Fri, 24 Jan 2025 11:43:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737718781; x=1769254781;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6NQMJKzMQMcuTuNh6dUSnD0pen9wYcTLvnfCnpZAETU=;
- b=NynClMPFhNZjZL14fya1eHcdoINZdntBVKdwskAxeaKE8lTMpNDCBXX1
- 8G92WG2Mi8qnn1uz/IARHFQQzvfZy/GLQ44WN8uhTiL//XlyOBk47eRRv
- Leu1ldfFq6STaROyrJcOwcdD9TTrqY/A20PxdUIeukCveW5rRvOKr91my
- 7JMpjkuoYJ4V5+1rA4wz94Fo+MvTv4eL/7rsSvDgAwpDSrfu7jVn/T2o9
- Eeb9ZAP+BLwaYcoHi0HPDF7zb5iG1TD/xhZ7zoMElnP69GeGotnYnRWyO
- GHdtUMicTqzx0qELlFySPDCtkj93+qjTTcPKwo38Sq2dJAxtjnrECc++u w==;
-X-CSE-ConnectionGUID: j3O42YllR0SwqS/fBGKCFg==
-X-CSE-MsgGUID: 3MA28X6kSLOSE036o2NkTg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="49237807"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="49237807"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 03:39:41 -0800
-X-CSE-ConnectionGUID: LFW7iyeZSPOUUlsxd7+foA==
-X-CSE-MsgGUID: IXpDCGMoQHKc/jn7S5b05w==
+ t=1737719009; x=1769255009;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=VEKsLt12dnqg4HgPQuqFysSwgwC7V2bKAtkyJQeD2hE=;
+ b=nlNi0f066koMox2DsRhvdWDgc1PxhVuVr9chDi1RaLEi3vcjdFCICf2m
+ XHQDp7JSWJvJmXD7paP2tUtDiFcaTeJ9H2k3Za7A7bbMvPmNTh5LEZKDL
+ 3MnbgBQbTjR88AOV8qG9OjFQa11mms+Qs8UKIlu60/A+/bR3NESZqbfK3
+ o+gAlpSYcFXlpCSd4LnKUPKeHY5uRe9h0qoWfvGpqn6I41C6EobiRiHAW
+ 2hAOtdo7Z/JY8tRyZqrFZIpJ/iLSwLqhtGeuVSgivv/Uajd5ohD+Pf2k+
+ Fpkzd/93I8USAFklOv0m0fy+nYSLFCQbf1rdI1VWlCHPgH9Go9xO17bJp w==;
+X-CSE-ConnectionGUID: 7Pt01LXbRziddrFIDjuutA==
+X-CSE-MsgGUID: GreUSrAKQD2laLz917bteQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="55795874"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="55795874"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2025 03:43:29 -0800
+X-CSE-ConnectionGUID: Q2U0P5t6TFK2iUuw6uI0GQ==
+X-CSE-MsgGUID: qztmHK4RQ6m7aiDPuVgyTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="112757850"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.245.138])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 03:39:39 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v5 11/13] drm/i915/display: Evade scanline 0 as well if PSR1
- or PSR2 is enabled
-Date: Fri, 24 Jan 2025 13:39:04 +0200
-Message-ID: <20250124113906.850488-12-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250124113906.850488-1-jouni.hogander@intel.com>
-References: <20250124113906.850488-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="107873981"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 24 Jan 2025 03:43:26 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 24 Jan 2025 13:43:25 +0200
+Date: Fri, 24 Jan 2025 13:43:25 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ animesh.manna@intel.com, ville.syrjala@intel.com
+Subject: Re: [PATCH v4 12/13] drm/i915/display: Ensure we have "Frame Change"
+ event in DSB commit
+Message-ID: <Z5N83bbvxBKm4yEQ@intel.com>
+References: <20250124105625.822459-1-jouni.hogander@intel.com>
+ <20250124105625.822459-13-jouni.hogander@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250124105625.822459-13-jouni.hogander@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,42 +72,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PIPEDSL is reading as 0 when in SRDENT(PSR1) or DEEP_SLEEP(PSR2). On
-wake-up scanline counting starts from vblank_start - 1. We don't know if
-wake-up is already ongoing when evasion starts. In worst case PIPEDSL could
-start reading valid value right after checking the scanline. In this
-scenario we wouldn't have enough time to write all registers. To tackle
-this evade scanline 0 as well. As a drawback we have 1 frame delay in flip
-when waking up.
+On Fri, Jan 24, 2025 at 12:56:23PM +0200, Jouni Högander wrote:
+> We may have commit which doesn't have any non-arming plane register
+> writes. In that case there aren't "Frame Change" event before DSB vblank
+> evasion which hangs as PIPEDSL register is reading as 0 when PSR state is
+> SRDENT(PSR1) or DEEP_SLEEP(PSR2). Handle this by adding dummy write
+> triggering the "Frame Change" event.
+> 
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index a189aa437d972..cd7e960bd29f1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7666,6 +7666,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+>  		intel_atomic_get_old_crtc_state(state, crtc);
+>  	struct intel_crtc_state *new_crtc_state =
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+> +	struct intel_display *display = to_intel_display(crtc);
+>  
+>  	if (!new_crtc_state->hw.active)
+>  		return;
+> @@ -7708,6 +7709,15 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+>  		intel_crtc_planes_update_noarm(new_crtc_state->dsb_commit,
+>  					       state, crtc);
+>  
+> +		/*
+> +		 * Ensure we have "Frame Change" event when PSR state is
+> +		 * SRDENT(PSR1) or DEEP_SLEEP(PSR2). Otherwise DSB vblank
+> +		 * evasion hangs as PIPEDSL is reading as 0.
+> +		 */
+> +		if (new_crtc_state->has_psr && !new_crtc_state->has_panel_replay)
+> +			intel_de_write_dsb(display, new_crtc_state->dsb_commit,
+> +					   CURSURFLIVE(display, crtc->pipe), 0);
 
-Signed-off-by: Jouni HÃ¶gander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsb.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+I don't really want to see the low level detais right here.
+So we should probably should stuff this into some kind of 
+intel_dsb_ensure_psr_frame_change() function or something
+along those lines.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 1fb3bb8c5d5b0..75829e1ed8008 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -528,6 +528,18 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
- 	int latency = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode, 20);
- 	int start, end;
- 
-+	/*
-+	 * PIPEDSL is reading as 0 when in SRDENT(PSR1) or DEEP_SLEEP(PSR2). On
-+	 * wake-up scanline counting starts from vblank_start - 1. We don't know
-+	 * if wake-up is already ongoing when evasion starts. In worst case
-+	 * PIPEDSL could start reading valid value right after checking the
-+	 * scanline. In this scenario we wouldn't have enough time to write all
-+	 * registers. To tackle this evade scanline 0 as well. As a drawback we
-+	 * have 1 frame delay in flip when waking up.
-+	 */
-+	if (crtc_state->has_psr && !crtc_state->has_panel_replay)
-+		intel_dsb_wait_scanline_out(state, dsb, 0, 0);
-+
- 	if (pre_commit_is_vrr_active(state, crtc)) {
- 		int vblank_delay = intel_vrr_vblank_delay(crtc_state);
- 
+> +
+>  		intel_dsb_vblank_evade(state, new_crtc_state->dsb_commit);
+>  
+>  		if (intel_crtc_needs_color_update(new_crtc_state))
+> -- 
+> 2.43.0
+
 -- 
-2.43.0
-
+Ville Syrjälä
+Intel
