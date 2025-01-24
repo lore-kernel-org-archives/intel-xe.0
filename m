@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFA87C02181
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 05:46:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CD2DC0218C
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 05:47:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5858410E8D2;
-	Fri, 24 Jan 2025 05:46:35 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0967E10E8D2;
- Fri, 24 Jan 2025 05:46:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id D13BD10E8D7;
+	Fri, 24 Jan 2025 05:47:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aEvdZbAt";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B06A710E8D2;
+ Fri, 24 Jan 2025 05:47:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737697635; x=1769233635;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VJ1uGlFjedj2/PdDc3pOkMujCDGK/UFY9DBwvUPLOxI=;
+ b=aEvdZbAtCJiXIZ1R5f4VA9jnq6+jwGFgY+fSG/uUDAkP08SpjKr7ggfX
+ eHS4VFJbWvP2MXlTu9cbqG8otsXCF6DtCsQCuRqdFRdXqgTzsnUcPx4fd
+ vxJnBhU9+pq5Y30oV7QhkVAPc9mhMZMsOg7zX1Hl9KolqqST94QKBY9r2
+ V47wAU6g8Cuo1OiD290gelkYLSysONNpVz/qhyFot6rCNl6uXxC3NSGC5
+ ewyjeAN9RpxUWhrIvRs/8BwKg2Or6iiPBjWSvWC9K9/5M5H3fln6uxh/i
+ di3MPRaR1kDmBTrhWwVZAew+iFgCyutD/aYBxxP0gMAEfPzJCTRbDw6ve A==;
+X-CSE-ConnectionGUID: yoc4VAP1Sn20TRD6/D9L9Q==
+X-CSE-MsgGUID: 1obRTxZsQWm0MaNjIqRx8w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="37429294"
+X-IronPort-AV: E=Sophos;i="6.13,230,1732608000"; d="scan'208,223";a="37429294"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2025 21:47:15 -0800
+X-CSE-ConnectionGUID: PwJJpqEfSD2ARS9yhofXJQ==
+X-CSE-MsgGUID: TapHUkNnQ1aCW7ZRnbHRsQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+ d="scan'208,223";a="107525968"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa010.jf.intel.com with ESMTP; 23 Jan 2025 21:47:13 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: uma.shankar@intel.com, arun.r.murthy@intel.com, ben.kao@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 0/7] Enable Aux based Nits brightness control for eDP
+Date: Fri, 24 Jan 2025 11:16:24 +0530
+Message-Id: <20250124054631.1796456-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5BCI=2C1?=
- =?utf-8?q?/6=5D_drm/xe/pmu=3A_Enable_PMU_interface?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 24 Jan 2025 05:46:34 -0000
-Message-ID: <173769759403.3878903.410102424516199344@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250124050411.2189060-1-lucas.demarchi@intel.com>
-In-Reply-To: <20250124050411.2189060-1-lucas.demarchi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +63,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From eDP 1.5 we are supposed to use the VESA pathways to control
+brightness. But still did not have the Nits brightness control coded
+in. This series enables NITS based backlight control over AUX using
+VESA pathways.
 
-Series: series starting with [CI,1/6] drm/xe/pmu: Enable PMU interface
-URL   : https://patchwork.freedesktop.org/series/143907/
-State : success
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3669
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-== Summary ==
+Suraj Kandpal (7):
+  drm/dp: Add eDP 1.5 bit definition
+  drm/i915/backlight: Use proper interface based on eDP version
+  drm/i915/backlight: Check Nits based brightness control for VESA
+  drm/i915/backlight: Modify function to get VESA brightness in NITS
+  drm/i915/backlight: Add function to change brightness in NITS for VESA
+  drm/i915/backlight: Setup NITS based brightness via VESA
+  drm/i915/backlight: Enable Nits based brightness
 
-lib/modules/6.13.0-xe+/kernel/arch/x86/events/rapl.ko
-lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/
-lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.13.0-xe+/kernel/kernel/
-lib/modules/6.13.0-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.13.0-xe+/kernel/crypto/
-lib/modules/6.13.0-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.13.0-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.13.0-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.13.0-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.13.0-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.13.0-xe+/kernel/crypto/zstd.ko
-lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.13.0-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/xctr.ko
-lib/modules/6.13.0-xe+/kernel/crypto/authenc.ko
-lib/modules/6.13.0-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/keywrap.ko
-lib/modules/6.13.0-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/sm3.ko
-lib/modules/6.13.0-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.13.0-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.13.0-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.13.0-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.13.0-xe+/kernel/crypto/cmac.ko
-lib/modules/6.13.0-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.13.0-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.13.0-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/essiv.ko
-lib/modules/6.13.0-xe+/kernel/crypto/ccm.ko
-lib/modules/6.13.0-xe+/kernel/crypto/wp512.ko
-lib/modules/6.13.0-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.13.0-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.13.0-xe+/kernel/crypto/lrw.ko
-lib/modules/6.13.0-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.13.0-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.13.0-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.13.0-xe+/kernel/crypto/vmac.ko
-lib/modules/6.13.0-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.13.0-xe+/kernel/crypto/842.ko
-lib/modules/6.13.0-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.13.0-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.13.0-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.13.0-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.13.0-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/md4.ko
-lib/modules/6.13.0-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.13.0-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/lz4.ko
-lib/modules/6.13.0-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.13.0-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.13.0-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.13.0-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/sm4.ko
-lib/modules/6.13.0-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.13.0-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.13.0-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.13.0-xe+/kernel/crypto/async_tx/
-lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.13.0-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.13.0-xe+/kernel/block/
-lib/modules/6.13.0-xe+/kernel/block/bfq.ko
-lib/modules/6.13.0-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.13.0-xe+/build
-lib/modules/6.13.0-xe+/modules.alias.bin
-lib/modules/6.13.0-xe+/modules.builtin
-lib/modules/6.13.0-xe+/modules.softdep
-lib/modules/6.13.0-xe+/modules.alias
-lib/modules/6.13.0-xe+/modules.order
-lib/modules/6.13.0-xe+/modules.symbols
-lib/modules/6.13.0-xe+/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1737697579:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1737697579:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+ .../drm/i915/display/intel_display_types.h    |   1 +
+ .../drm/i915/display/intel_dp_aux_backlight.c | 178 ++++++++++++++----
+ include/drm/display/drm_dp.h                  |   1 +
+ 3 files changed, 139 insertions(+), 41 deletions(-)
 
+-- 
+2.34.1
 
