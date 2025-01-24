@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EBD2C0218E
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 11:39:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9296C0218E
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 11:39:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C10410E8BE;
-	Fri, 24 Jan 2025 11:39:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E8DF10E8AD;
+	Fri, 24 Jan 2025 11:39:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jMwKk1Aw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WrT61PtD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C250F10E7EC;
- Fri, 24 Jan 2025 11:39:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00B5B10E8AD;
+ Fri, 24 Jan 2025 11:39:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737718768; x=1769254768;
+ t=1737718776; x=1769254776;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cuOhf+NIqTh7WByxtessDDjDxFIHIGk49u1WbED85aQ=;
- b=jMwKk1Aw86dAjLgpnfeVpV/IztRek6U2EqEjmJVjzaWx039ZGBsKKIM/
- 4XmdBxmwbZnSHX4e2ACD1QAYAZaM8p2yBGoOyWiDY24gC/Ts/73aYW4vU
- +zf2jn3+jgXtU6bxPVd9I29Q4hcUSOXEdthBxKMui2M+B9JD1gul9Dtb5
- TrQbUgw9xSxC+aM5lxShu9bHceeYJZGx9OJCJnfxFEY2TVBQ7e9SGrV8s
- GyA0Lc9KWCuFB09o5t5vajQ4xy0lSGctwPb045R156tFGeGc2sbvzxav7
- sdVEhaaAkyxXbS/uZphQaVpD+NV4OsgJTVRg2XyN+5Nv2CvkEYFjYmfRv Q==;
-X-CSE-ConnectionGUID: Ct9+XMstRxacK4qU0JZeRw==
-X-CSE-MsgGUID: UCfMcAltQcyguSFMeKl0hA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="49237762"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="49237762"
+ bh=Q3x0xjhUP2UvvH3xWP50MuGAh+lkPPpCuWEDlLRHvxE=;
+ b=WrT61PtDMMaqVSNy0U03OsQjx3cpmB2GA0H/dLig7kucQYcE8VQAadQb
+ TK9/aTFCQcspBryU0REaVyWxd9kxOsCkf1OspfW5pf7T6zBAyEKVhi2G9
+ m1Lx8Ja/4g3aZ7Q9xGrmGmLf0SVpt5H5B4igbmwk99gLAPWKo+I+Zixky
+ HiVhM5FbH2+b+1EFf+vrD5qcHykvHCFGdw6pgw9g/mgzc82zEQqIQkxV3
+ kUaxgNjNTu/Or0DGpFU/N79PPNkj/4plNieMpRD14dNRWttognAk2GV5Q
+ rTVnrtZleIlAIzKf5eudZz62CuMzCufa1nylY7DXXqKoWyTqZZTPnOkwr w==;
+X-CSE-ConnectionGUID: uS69lVgtTGSSaMr2GQ7rWg==
+X-CSE-MsgGUID: Uorq6zNLQVKF1+36k2erLA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="49237790"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="49237790"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 03:39:28 -0800
-X-CSE-ConnectionGUID: D4QVdlsrQgK6tV1yVBi1bw==
-X-CSE-MsgGUID: RIrnHi/6SWyZb8TcRwwXSQ==
+ 24 Jan 2025 03:39:36 -0800
+X-CSE-ConnectionGUID: YPY8iSUMRsaq+hd81JgeWA==
+X-CSE-MsgGUID: yXsbTN38R7etmzv4U3N1Nw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="112757819"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="112757839"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.138])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 03:39:26 -0800
+ 24 Jan 2025 03:39:34 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
  Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v5 03/13] drm/i915/psr: Split setting sff and cff bits away
- from intel_psr_force_update
-Date: Fri, 24 Jan 2025 13:38:56 +0200
-Message-ID: <20250124113906.850488-4-jouni.hogander@intel.com>
+Subject: [PATCH v5 08/13] drm/i915/psr: Add intel_psr_is_psr_mode_changing
+Date: Fri, 24 Jan 2025 13:39:01 +0200
+Message-ID: <20250124113906.850488-9-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250124113906.850488-1-jouni.hogander@intel.com>
 References: <20250124113906.850488-1-jouni.hogander@intel.com>
@@ -72,143 +71,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a clean-up and a preparation for adding own SFF and CFF registers
-for LunarLake onwards.
+Add new interface for checking possible PSR/PR mode change. We need this
+information to decide if DSB can be used.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 Reviewed-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 88 +++++++++---------------
- 1 file changed, 31 insertions(+), 57 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 20 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_psr.h |  2 ++
+ 2 files changed, 22 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 5605da120c6c5..4df03d00c4b74 100644
+index c6712312a04d4..c68105a4a987b 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2327,15 +2327,6 @@ static u32 man_trk_ctl_continuos_full_frame(struct intel_display *display)
- static void intel_psr_force_update(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
--
--	if (intel_dp->psr.psr2_sel_fetch_enabled)
--		intel_de_write(display,
--			       PSR2_MAN_TRK_CTL(display, cpu_transcoder),
--			       man_trk_ctl_enable_bit_get(display) |
--			       man_trk_ctl_partial_frame_bit_get(display) |
--			       man_trk_ctl_single_full_frame_bit_get(display) |
--			       man_trk_ctl_continuos_full_frame(display));
- 
- 	/*
- 	 * Display WA #0884: skl+
-@@ -3135,31 +3126,31 @@ static void intel_psr_work(struct work_struct *work)
- 	mutex_unlock(&intel_dp->psr.lock);
+@@ -225,6 +225,26 @@ bool intel_psr_needs_aux_io_power(struct intel_encoder *encoder,
+ 	       intel_encoder_can_psr(encoder);
  }
  
--static void _psr_invalidate_handle(struct intel_dp *intel_dp)
-+static void intel_psr_configure_full_frame_update(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
- 
--	if (intel_dp->psr.psr2_sel_fetch_enabled) {
--		u32 val;
-+	if (!intel_dp->psr.psr2_sel_fetch_enabled)
-+		return;
- 
--		if (intel_dp->psr.psr2_sel_fetch_cff_enabled) {
--			/* Send one update otherwise lag is observed in screen */
--			intel_de_write(display,
--				       CURSURFLIVE(display, intel_dp->psr.pipe),
--				       0);
--			return;
-+	intel_de_write(display,
-+		       PSR2_MAN_TRK_CTL(display, cpu_transcoder),
-+		       man_trk_ctl_enable_bit_get(display) |
-+		       man_trk_ctl_partial_frame_bit_get(display) |
-+		       man_trk_ctl_single_full_frame_bit_get(display) |
-+		       man_trk_ctl_continuos_full_frame(display));
++/**
++ * intel_psr_is_psr_mode_changing - Check if PSR/PR mode is changing
++ * @old_crtc_state: pointer to old intel_crtc_state
++ * @new_crtc_state: pointer to new intel_crtc_state
++ *
++ * This can be used to figure out if PSR/PR mode is changing between old and new
++ * crtc state.
++ *
++ * Returns true if mode is changing, false if mode is not changing.
++ */
++bool intel_psr_is_psr_mode_changing(const struct intel_crtc_state *old_crtc_state,
++				    const struct intel_crtc_state *new_crtc_state)
++{
++	return old_crtc_state->has_psr != new_crtc_state->has_psr ||
++		old_crtc_state->has_sel_update != new_crtc_state->has_sel_update ||
++		old_crtc_state->has_panel_replay != new_crtc_state->has_panel_replay ||
++		old_crtc_state->enable_psr2_su_region_et !=
++		new_crtc_state->enable_psr2_su_region_et;
 +}
 +
-+static void _psr_invalidate_handle(struct intel_dp *intel_dp)
-+{
-+	if (intel_dp->psr.psr2_sel_fetch_enabled) {
-+		if (!intel_dp->psr.psr2_sel_fetch_cff_enabled) {
-+			intel_dp->psr.psr2_sel_fetch_cff_enabled = true;
-+			intel_psr_configure_full_frame_update(intel_dp);
- 		}
- 
--		val = man_trk_ctl_enable_bit_get(display) |
--		      man_trk_ctl_partial_frame_bit_get(display) |
--		      man_trk_ctl_continuos_full_frame(display);
--		intel_de_write(display,
--			       PSR2_MAN_TRK_CTL(display, cpu_transcoder),
--			       val);
--		intel_de_write(display,
--			       CURSURFLIVE(display, intel_dp->psr.pipe), 0);
--		intel_dp->psr.psr2_sel_fetch_cff_enabled = true;
-+		intel_psr_force_update(intel_dp);
- 	} else {
- 		intel_psr_exit(intel_dp);
- 	}
-@@ -3240,44 +3231,27 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
+ static bool psr_global_enabled(struct intel_dp *intel_dp)
  {
  	struct intel_display *display = to_intel_display(intel_dp);
- 	struct drm_i915_private *dev_priv = to_i915(display->drm);
--	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+index e6eba6633a92b..a88d67b9d17ee 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.h
++++ b/drivers/gpu/drm/i915/display/intel_psr.h
+@@ -26,6 +26,8 @@ struct intel_plane_state;
+ 				    (intel_dp)->psr.source_panel_replay_support)
  
- 	if (intel_dp->psr.psr2_sel_fetch_enabled) {
- 		if (intel_dp->psr.psr2_sel_fetch_cff_enabled) {
- 			/* can we turn CFF off? */
--			if (intel_dp->psr.busy_frontbuffer_bits == 0) {
--				u32 val = man_trk_ctl_enable_bit_get(display) |
--					man_trk_ctl_partial_frame_bit_get(display) |
--					man_trk_ctl_single_full_frame_bit_get(display) |
--					man_trk_ctl_continuos_full_frame(display);
--
--				/*
--				 * Set psr2_sel_fetch_cff_enabled as false to allow selective
--				 * updates. Still keep cff bit enabled as we don't have proper
--				 * SU configuration in case update is sent for any reason after
--				 * sff bit gets cleared by the HW on next vblank.
--				 */
--				intel_de_write(display,
--					       PSR2_MAN_TRK_CTL(display, cpu_transcoder),
--					       val);
--				intel_de_write(display,
--					       CURSURFLIVE(display, intel_dp->psr.pipe),
--					       0);
-+			if (intel_dp->psr.busy_frontbuffer_bits == 0)
- 				intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
--			}
--		} else {
--			/*
--			 * continuous full frame is disabled, only a single full
--			 * frame is required
--			 */
--			intel_psr_force_update(intel_dp);
- 		}
--	} else {
--		intel_psr_force_update(intel_dp);
- 
--		if (!intel_dp->psr.active && !intel_dp->psr.busy_frontbuffer_bits)
--			queue_work(dev_priv->unordered_wq, &intel_dp->psr.work);
-+		/*
-+		 * Still keep cff bit enabled as we don't have proper SU
-+		 * configuration in case update is sent for any reason after
-+		 * sff bit gets cleared by the HW on next vblank.
-+		 */
-+		intel_psr_configure_full_frame_update(intel_dp);
- 	}
-+
-+	intel_psr_force_update(intel_dp);
-+
-+	if (!intel_dp->psr.psr2_sel_fetch_enabled && !intel_dp->psr.active &&
-+	    !intel_dp->psr.busy_frontbuffer_bits)
-+		queue_work(dev_priv->unordered_wq, &intel_dp->psr.work);
- }
- 
- /**
+ bool intel_encoder_can_psr(struct intel_encoder *encoder);
++bool intel_psr_is_psr_mode_changing(const struct intel_crtc_state *old_crtc_state,
++				    const struct intel_crtc_state *new_crtc_state);
+ bool intel_psr_needs_aux_io_power(struct intel_encoder *encoder,
+ 				  const struct intel_crtc_state *crtc_state);
+ void intel_psr_init_dpcd(struct intel_dp *intel_dp);
 -- 
 2.43.0
 
