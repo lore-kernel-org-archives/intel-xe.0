@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF112C0218B
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 10:57:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4B92C02181
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 11:05:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E9EA10E94B;
-	Fri, 24 Jan 2025 10:57:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PkjY/WF4";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 081B510E947;
- Fri, 24 Jan 2025 10:57:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737716232; x=1769252232;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DoS0BCU4yr/28UvnssS7qrM8Vdsh3Q2GufwpeLsqQf0=;
- b=PkjY/WF42betmsR1vvXGsCyNg0xs97HpudcI1D+znkCtQhTZAH9fXnwI
- CgedrP6uRYJaKDhlNSiHurixoGy3dr1Iln+uC8ApY/rYO8ny9gq6vjlJv
- EbGONJsHD6vIX8uq+KuFEcw2z+KYRI5xDhq/w+P/127cVMhKCNWF0yxHi
- HG3VcRA66YIv4k3RFUnATjMXoim9Nr8Lqh6D7wIBLSQcWVMN2TEs3BdJB
- k6Vr8o6ZPQogC4cGbFqR7jwktZnyJit3a9GHpW0rowNoHAksxVixteuxZ
- nvrLkk6k9Rrzuy13QsYzL2cxF9ovtYsaCS3vmidLx+DnF+OZHn/CY5cHr A==;
-X-CSE-ConnectionGUID: cSgBxg3RRf+yH5azqEHpXA==
-X-CSE-MsgGUID: u/9EPvFNS8ODRniPIs2f4Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="55660109"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="55660109"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 02:57:12 -0800
-X-CSE-ConnectionGUID: c/eql0+aQ52r8ZyyMs0Tsw==
-X-CSE-MsgGUID: NAxGme7yRCq7AK2Aqomz4A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="107864310"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.245.138])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 02:57:10 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: animesh.manna@intel.com, ville.syrjala@intel.com,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v4 13/13] drm/i915/psr: Allow DSB usage when PSR is enabled
-Date: Fri, 24 Jan 2025 12:56:24 +0200
-Message-ID: <20250124105625.822459-14-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250124105625.822459-1-jouni.hogander@intel.com>
-References: <20250124105625.822459-1-jouni.hogander@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D75510E7C3;
+	Fri, 24 Jan 2025 11:05:13 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED5BE10E7C3;
+ Fri, 24 Jan 2025 11:05:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_PSR_DSB_support_=28r?=
+ =?utf-8?q?ev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 24 Jan 2025 11:05:11 -0000
+Message-ID: <173771671196.3993470.4434650102176814119@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250124105625.822459-1-jouni.hogander@intel.com>
+In-Reply-To: <20250124105625.822459-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,31 +36,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now as we have correct PSR2_MAN_TRK_CTL handling in place we can allow DSB
-usage also when PSR is enabled for LunarLake onwards.
+== Series Details ==
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: PSR DSB support (rev4)
+URL   : https://patchwork.freedesktop.org/series/142521/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index cd7e960bd29f1..08743e85382ee 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7679,7 +7679,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 		new_crtc_state->update_planes &&
- 		!new_crtc_state->vrr.enable &&
- 		!new_crtc_state->do_async_flip &&
--		!new_crtc_state->has_psr &&
-+		(DISPLAY_VER(display) >= 20 || !new_crtc_state->has_psr) &&
- 		!new_crtc_state->scaler_state.scaler_users &&
- 		!old_crtc_state->scaler_state.scaler_users &&
- 		!intel_crtc_needs_modeset(new_crtc_state) &&
--- 
-2.43.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 5b338c20b801 drm-tip: 2025y-01m-24d-10h-28m-05s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/i915/display/intel_display.c:7679
+error: drivers/gpu/drm/i915/display/intel_display.c: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm/i915/psr: Use PSR2_MAN_TRK_CTL CFF bit only to send full update
+Applying: drm/i915/psr: Rename psr_force_hw_tracking_exit as intel_psr_force_update
+Applying: drm/i915/psr: Split setting sff and cff bits away from intel_psr_force_update
+Applying: drm/i915/psr: Add register definitions for SFF_CTL and CFF_CTL registers
+Applying: drm/i915/psr: Use SFF_CTL on invalidate/flush for LunarLake onwards
+Applying: drm/i915/psr: Allow writing PSR2_MAN_TRK_CTL using DSB
+Applying: drm/i915/psr: Changes for PSR2_MAN_TRK_CTL handling when DSB is in use
+Applying: drm/i915/psr: Add intel_psr_is_psr_mode_changing
+Applying: drm/i915/display: Don't use DSB if psr mode changing
+Applying: drm/i915/psr: Remove DSB_SKIP_WAITS_EN chicken bit
+Applying: drm/i915/display: Evade scanline 0 as well if PSR1 or PSR2 is enabled
+Applying: drm/i915/display: Ensure we have "Frame Change" event in DSB commit
+Applying: drm/i915/psr: Allow DSB usage when PSR is enabled
+Patch failed at 0013 drm/i915/psr: Allow DSB usage when PSR is enabled
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
