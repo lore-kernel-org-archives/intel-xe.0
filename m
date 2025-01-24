@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6854C02181
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 20:43:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA3FDC0218B
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 20:44:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7ED0510E04A;
-	Fri, 24 Jan 2025 20:43:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F30810E16F;
+	Fri, 24 Jan 2025 20:44:06 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AC9C10E04A;
- Fri, 24 Jan 2025 20:43:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1BDE10E16F;
+ Fri, 24 Jan 2025 20:44:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/pf=3A_Use_GuC?=
- =?utf-8?q?_Buffer_Cache_during_policy_provisioning?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/pf=3A_Use_GuC_Buff?=
+ =?utf-8?q?er_Cache_during_policy_provisioning?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 24 Jan 2025 20:43:55 -0000
-Message-ID: <173775143516.3232.16144641642809979234@b555e5b46a47>
+Date: Fri, 24 Jan 2025 20:44:05 -0000
+Message-ID: <173775144578.4147336.4680690452888930766@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250124185247.676-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20250124185247.676-1-michal.wajdeczko@intel.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: b36df02c99e3 drm-tip: 2025y-01m-24d-16h-09m-54s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/pf: Use GuC Buffer Cache during policy provisioning
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 98aa30a3e15116abc032f83c3a2a1831e3bf9179
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Fri Jan 24 19:52:47 2025 +0100
+
+    drm/xe/pf: Use GuC Buffer Cache during policy provisioning
+    
+    Start using GuC buffer cache for the SRIOV policy configuration
+    actions. This is a required step before we could declare SRIOV
+    PF as being a reclaim safe.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
++ /mt/dim checkpatch b36df02c99e3246ba2a90e951c71797327374db7 drm-intel
+98aa30a3e151 drm/xe/pf: Use GuC Buffer Cache during policy provisioning
 
 
