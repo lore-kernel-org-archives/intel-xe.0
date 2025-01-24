@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77E51C0218C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF649C0218D
 	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 15:12:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E45610E9B0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B375810E9B2;
 	Fri, 24 Jan 2025 15:12:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O12IuY10";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lJ3WK5ml";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDE0210E9B3;
- Fri, 24 Jan 2025 15:12:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF8C810E9A3;
+ Fri, 24 Jan 2025 15:12:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737731542; x=1769267542;
+ t=1737731535; x=1769267535;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BE7sxjMHCEEsz2qcNEjfIqX8XlOqyRUfguUqFD/ysGo=;
- b=O12IuY10ATynk1Pl9rcpsQDm77/O9YZqoI/gzecHT34wk2Wd9J/lDqnz
- 6/Z4YTvDJgayb9F+odn9airrNYbVSB8qyZAQCwljTsTzU3nlk6i9F6rFV
- tPkpT1OkpMxA8X8hPb9jBiWJ4R+QvYAALZEGTL18onGtjVEWyhtNtuN0Y
- tceuBetPtSdaTBfYJcLq7AUrYN9cr9iqzA4Cp02pZTS/noYvG201HbVZ/
- W/GnPIakKvyWmrM8mBhLWAs5mk7XOKoMRR4GuF/pJBd9KO2AtAy1zuIB0
- BJT3K71N5dJThkOJ4cEWKDJSTVJERMsdWS99yqGk3S5/B9n/fK8/NJhS7 A==;
-X-CSE-ConnectionGUID: DvWGcGwaTQK4w4mCvdFFSQ==
-X-CSE-MsgGUID: MAxq/asFSWyKFqMZKF/nfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38177425"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38177425"
+ bh=db7uUJPXJVoamB7x/rV2bkX0HFiU59kzs1BvP33kWhg=;
+ b=lJ3WK5ml66vSEM1bWRv55MXfqpAqZUatiejO74mPubivTMqNrB4CDy4j
+ 1zQP6lpQ0IzhEihQUySP7fF1F/4unCjK9pdVplJXonmjKaJgA5Ac/IW5P
+ rJREjbcad3TczvZcPKDo4g4GwMbO14KAXSILMcBsFYk/LjsDUJB3LPEr7
+ 1N1k6z2VAAy17+jMt+i2ZtnGguVPueThN1EzunPhVI5nFwl4s+nuscjUK
+ sO/O2gfYK1QJbzuA2s+lJbRln1KLQQp59z4rN/FVmUHRGUOoeKw84WS18
+ TjhJrWwGfx+vTcMgYBRhe42MLHOiPS51NV4pt7K6DxEVkYe0r1BrKvBjI g==;
+X-CSE-ConnectionGUID: glofmMd2TXm2qiXKVmGyZA==
+X-CSE-MsgGUID: cpirWiJYQ/CvO3yxwVacgw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38177416"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38177416"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:12:22 -0800
-X-CSE-ConnectionGUID: yfY3gt8GTxOpwCcNW0Wo1A==
-X-CSE-MsgGUID: YibdD+9wQ2WnT8ubRwiHeA==
+ 24 Jan 2025 07:12:15 -0800
+X-CSE-ConnectionGUID: y5ctJpitRf6bW++8WkjziA==
+X-CSE-MsgGUID: Fm539E83TcK0su5Wg6gNqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108221391"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108221330"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:12:20 -0800
+ 24 Jan 2025 07:12:13 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 20/35] drm/i915/vrr: Avoid sending PUSH when VRR TG is used
- with Fixed refresh rate
-Date: Fri, 24 Jan 2025 20:30:05 +0530
-Message-ID: <20250124150020.2271747-21-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 17/35] drm/i915/display: Add vrr mode to crtc_state dump
+Date: Fri, 24 Jan 2025 20:30:02 +0530
+Message-ID: <20250124150020.2271747-18-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250124150020.2271747-1-ankit.k.nautiyal@intel.com>
 References: <20250124150020.2271747-1-ankit.k.nautiyal@intel.com>
@@ -68,64 +67,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As per the spec, the PUSH enable must be set if not configuring for a
-fixed refresh rate (i.e Vmin == Flipline == Vmax is not true).
+Print Vrr mode along with other vrr members in crtc_state dump.
 
-v2: Use helper intel_vrr_use_push(). (Ville)
-v3: directly use the condition, instead of checking for VRR mode.
-
-Bspec: 68925
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> (v1)
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+ .../drm/i915/display/intel_crtc_state_dump.c    | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 65bbe40881d6..34e44cd52353 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -437,13 +437,18 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
- 			       VRR_VSYNC_START(crtc_state->vrr.vsync_start));
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+index 34d200a17ba6..7b8247af4897 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+@@ -172,6 +172,20 @@ vlv_dump_csc(struct drm_printer *p, const char *name,
+ 			   csc->coeff[3 * i + 2]);
  }
  
-+static bool intel_vrr_use_push(const struct intel_crtc_state *crtc_state)
++static const char * const vrrtg_mode_str[] = {
++	[INTEL_VRRTG_MODE_NONE] = "none",
++	[INTEL_VRRTG_MODE_VRR] = "vrr",
++	[INTEL_VRRTG_MODE_CMRR] = "cmrr",
++};
++
++static const char *intel_vrrtg_mode_name(enum intel_vrrtg_mode mode)
 +{
-+	return crtc_state->vrr.flipline != crtc_state->vrr.vmax;
++	if (mode >= ARRAY_SIZE(vrrtg_mode_str))
++		return "invalid";
++
++	return vrrtg_mode_str[mode];
 +}
 +
- void intel_vrr_send_push(struct intel_dsb *dsb,
- 			 const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+ 			   struct intel_atomic_state *state,
+ 			   const char *context)
+@@ -292,8 +306,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+ 		   pipe_config->hw.adjusted_mode.crtc_vdisplay,
+ 		   pipe_config->framestart_delay, pipe_config->msa_timing_delay);
  
--	if (!intel_vrrtg_is_enabled(crtc_state))
-+	if (!intel_vrr_use_push(crtc_state))
- 		return;
+-	drm_printf(&p, "vrr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d\n",
++	drm_printf(&p, "vrr: %s mode: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d\n",
+ 		   str_yes_no(intel_vrrtg_is_enabled(pipe_config)),
++		   intel_vrrtg_mode_name(pipe_config->vrr.mode),
+ 		   pipe_config->vrr.vmin, pipe_config->vrr.vmax, pipe_config->vrr.flipline,
+ 		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband);
  
- 	if (dsb)
-@@ -462,7 +467,7 @@ bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state)
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 
--	if (!intel_vrrtg_is_enabled(crtc_state))
-+	if (!intel_vrr_use_push(crtc_state))
- 		return false;
- 
- 	return intel_de_read(display, TRANS_PUSH(display, cpu_transcoder)) & TRANS_PUSH_SEND;
-@@ -476,8 +481,9 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
- 	if (!intel_vrrtg_is_enabled(crtc_state))
- 		return;
- 
--	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
--		       TRANS_PUSH_EN);
-+	if (intel_vrr_use_push(crtc_state))
-+		intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
-+			       TRANS_PUSH_EN);
- 
- 	if (crtc_state->vrr.mode == INTEL_VRRTG_MODE_CMRR) {
- 		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
 -- 
 2.45.2
 
