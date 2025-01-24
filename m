@@ -4,82 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C26E1C02181
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 10:42:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94014C0218B
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 10:56:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7406F10E7DF;
-	Fri, 24 Jan 2025 10:42:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B38C10E428;
+	Fri, 24 Jan 2025 10:56:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="gEAQmToE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mvVRBTAG";
 	dkim-atps=neutral
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D476510E7DF
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Jan 2025 10:42:04 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-4362f61757fso19835975e9.2
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Jan 2025 02:42:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1737715323; x=1738320123; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=LEMkBFBGAz91UL682z8DEvmvnG+YVr2nxf2Sty5wrA0=;
- b=gEAQmToE4dDtbs+Bth1Gmmdv/JXfL+8wZVt+DcjCMmcGc7USPX7FtIEYlhzIW+U20g
- OuTNCbWJ8jaRpZ/GjE77Z7TYzLxGbbzeCoJ8mC7/JgBW3gq9PIWs+2wRCfcNS9tNYbhr
- OhcdNp1DteZuGbMmZeV9fM6vBH/vNxNjw3/nM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737715323; x=1738320123;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=LEMkBFBGAz91UL682z8DEvmvnG+YVr2nxf2Sty5wrA0=;
- b=aMovhvnoJnT3KPP90zRH26kZ6IVPtafMAjfEyiro+KJJbohUuUbhCQLvfOlu4EGpf8
- m9cOaYIlGwjonUrrxss3VZXgC5uhC78i0vF+iLUkUKigxepxFp/yVvOKjkkA0tSwDxE9
- /rLf3XJtRWXsJbPYBV8C87CtCvXex3gl6+1Yyr+vPcTDRJM75LIaAw0XLdpIaYkZmNvP
- vySIXA74DhMmWrX9k5li+/CJ1QO1aZcQdk3O4iQkjF/eCx/wfwU2+hBbyfYl/DWh8yOd
- C0cIfDuFwHTpdx/CEwQuvxpG5w2PNE/nInnFwMT3H/QIMZOxHemXmK8IYdvnf7OrsrXL
- jU7g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUVIFT0Sfbanvpg+2ZJIMezgcsxCoXbc+71EW5jYgjZeyrRnqIyC5aRLo6WuhbCR5u6f4BsLmk2UA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzg7eiZ+JuwmO89QSOC6OgnvC8/JF4pEhmCUmVNpSazGocwb219
- t3+mI5znrzQGb7dymggzLdZsrQ9nHXGtoM46HAk9fRzrtQdECMjS+yLiUdG0zR4=
-X-Gm-Gg: ASbGncsh284ydnMNhKpafHaRxWfZ4RMc9sKjwFsGcfEuqpUnPt1aJG6UhbCRz+wRPz/
- njPLde9A/L9g9qdOwLgxTE3iOrYec9Dk5SIUBHqi+j+1afu67oXc38Q0cQSkzuwCN5qL3Aq8tBA
- BqXWrdRVbNcycj9oGJFlsNO7BO/tRm5rDmLxeqqeqdsNVxCsY+6aIwUaBRQYne6xoSfrsy6qTkF
- /k1afo++QzMdoGQWT28gtZ9vkQ85ohFNRCv/wl/PfWS7x3YeidLdUfPNyg90zjDMkGNUd4BGqNI
- /i6RNumsxlDF0UoR
-X-Google-Smtp-Source: AGHT+IGxcHQ073OHTXbA6LCWZq/bLG2+an6Uq8KVDF9rDOXyu5Vz6d0xoM/4cy2CJ9cwqh7al1imcQ==
-X-Received: by 2002:a05:600c:1986:b0:434:feb1:adbb with SMTP id
- 5b1f17b1804b1-4389143a662mr281418685e9.31.1737715322947; 
- Fri, 24 Jan 2025 02:42:02 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-38c2a188915sm2268564f8f.41.2025.01.24.02.42.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Jan 2025 02:42:02 -0800 (PST)
-Date: Fri, 24 Jan 2025 11:42:00 +0100
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: Re: [PULL] drm-misc-fixes
-Message-ID: <Z5NueDr3MeL9biwd@phenom.ffwll.local>
-References: <20250124082932.GA13715@linux.fritz.box>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF58C10E058;
+ Fri, 24 Jan 2025 10:56:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737716208; x=1769252208;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dONqlsewN/JiZrR5JE/9J+7zVRQLxPhaSbAhQ95W4J8=;
+ b=mvVRBTAGfhlPTaayt4m1CCxvHGQnkD53um1JN6rm7qkvNTLVxo/OZKz4
+ iVNugQeR2qzau4pBp3VeDq7nypYpeN2vZ/JrcdD6EhRxGFoeXNhSbnSab
+ lzJsnrOVRxZwLYKdQ92OVi7gJVVQoj5kFiVhZV5sktQ8F0JVaj8rX7kEL
+ h0ajwLCvF6kdsuucEbiHeogLAzr/e0+GFfPd0JT3kiMoNxP7ih8wcrLsF
+ uypw6VFzC3S2UyorSzOFuvT/b4JV6rugUh8BJmnszaJlwKhz0RPYh6M5J
+ Hsi287oc7/FJLaFtkZ3xml7fldCsEc1bmqNo9KlKrcrccTZ12ARstzotC A==;
+X-CSE-ConnectionGUID: rTaURVd/T3OGenMXt9e5Rw==
+X-CSE-MsgGUID: DJyFuAYXQ0OoP0BXIBSnrQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="55660052"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="55660052"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2025 02:56:47 -0800
+X-CSE-ConnectionGUID: HR1zE8s4SIuUpXV6+xt4DQ==
+X-CSE-MsgGUID: gvNywCmeSFe8dfWrC1QHIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="107864227"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.245.138])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2025 02:56:44 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: animesh.manna@intel.com, ville.syrjala@intel.com,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v4 00/13] PSR DSB support
+Date: Fri, 24 Jan 2025 12:56:11 +0200
+Message-ID: <20250124105625.822459-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250124082932.GA13715@linux.fritz.box>
-X-Operating-System: Linux phenom 6.12.3-amd64 
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,85 +69,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 24, 2025 at 09:29:32AM +0100, Thomas Zimmermann wrote:
-> Hi Dave, Sima,
-> 
-> here's the weekly PR for drm-misc-fixes.
-> 
-> Best regards
-> Thomas
-> 
-> drm-misc-fixes-2025-01-24:
-> Short summary of fixes pull:
-> 
-> bochs:
-> - Fix double-free on driver removal
-> 
-> client:
-> - Improve support for tile-based modes
-> - Fix fbdev Kconfig select rules
-> 
-> xlnx:
-> - zynqmp_dp: Add locking to DP-bridge enable helper
-> The following changes since commit ef84aee151bd6c2c9223c8b430cae21d57b5e1c1:
-> 
->   drm/bridge: ite-it6263: Prevent error pointer dereference in probe() (2025-01-15 11:27:08 +0800)
-> 
-> are available in the Git repository at:
-> 
->   https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-01-24
+This patch set is doing necessary modifications to support PSR update
+using DSB on LunarLake onwards
 
-Pulled, thanks a lot.
--Sima
+It is not necessary to wait for PSR1 to idle or PSR2 to exit DEEP
+sleep at the begin of commit This is left out from DSB commit. There
+might be room for optimization for non-DSB as well because such wait
+is not supposed to be necessary at the begin of update.
 
-> 
-> for you to fetch changes up to 0a1ee19d46b71691c5acdf234bb6105913bd9add:
-> 
->   drm: zynqmp_dp: Unlock on error in zynqmp_dp_bridge_atomic_enable() (2025-01-24 09:26:45 +0200)
-> 
-> ----------------------------------------------------------------
-> Short summary of fixes pull:
-> 
-> bochs:
-> - Fix double-free on driver removal
-> 
-> client:
-> - Improve support for tile-based modes
-> - Fix fbdev Kconfig select rules
-> 
-> xlnx:
-> - zynqmp_dp: Add locking to DP-bridge enable helper
-> 
-> ----------------------------------------------------------------
-> Arnd Bergmann (1):
->       drm: select DRM_KMS_HELPER from DRM_GEM_SHMEM_HELPER
-> 
-> Dan Carpenter (1):
->       drm: zynqmp_dp: Unlock on error in zynqmp_dp_bridge_atomic_enable()
-> 
-> Maarten Lankhorst (2):
->       drm/modeset: Handle tiled displays in pan_display_atomic.
->       drm/client: Handle tiled displays better
-> 
-> Thomas Zimmermann (1):
->       drm/bochs: Do not put DRM device in PCI remove callback
-> 
->  drivers/gpu/drm/Kconfig              |  3 +++
->  drivers/gpu/drm/drm_client_modeset.c |  9 +++++++++
->  drivers/gpu/drm/drm_fb_helper.c      | 14 ++++++++------
->  drivers/gpu/drm/tiny/bochs.c         |  1 -
->  drivers/gpu/drm/xlnx/zynqmp_dp.c     |  3 +--
->  5 files changed, 21 insertions(+), 9 deletions(-)
-> 
-> -- 
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Frankenstrasse 146, 90461 Nuernberg, Germany
-> GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-> HRB 36809 (AG Nuernberg)
+PSR mutex is not locked when performing DSB commit. It is not
+necessary as we are currently using DSB only when sending updates
+towards panel. I.e. not using it when changing PSR mode. Also
+necessary changes are made to use PSR2_MAN_TRK_CTL only in
+DSB. Frontbuffer updates and legacy cursor updates are using SFF_CTL
+register to perform full frame updates.
+
+DSB_SKIP_WAITS_EN is removed to ensure all waits are performed when
+PSR is active. PSR "Frame Change" event is manually triggered at the
+begin of each DSB commit by adding CURSURFLIVE register write.
+
+Possibe problem with DSB commit when PSR is already waking up is
+avoided by evadding scanline 0.
+
+v4:
+  - remove DSB_SKIP_WAITS_EN
+  - Add CURSURFLIVE register write at the begin of DSB commit
+  - evade scanline 0
+v3:
+  - do not use DSB when PSR mode is changing
+v2:
+  - use _MMIO_TRANS instead of _MMIO_TRANS2
+  - drop evasion from intel_psr_configure_full_frame_update
+
+Jouni Högander (13):
+  drm/i915/psr: Use PSR2_MAN_TRK_CTL CFF bit only to send full update
+  drm/i915/psr: Rename psr_force_hw_tracking_exit as
+    intel_psr_force_update
+  drm/i915/psr: Split setting sff and cff bits away from
+    intel_psr_force_update
+  drm/i915/psr: Add register definitions for SFF_CTL and CFF_CTL
+    registers
+  drm/i915/psr: Use SFF_CTL on invalidate/flush for LunarLake onwards
+  drm/i915/psr: Allow writing PSR2_MAN_TRK_CTL using DSB
+  drm/i915/psr: Changes for PSR2_MAN_TRK_CTL handling when DSB is in use
+  drm/i915/psr: Add intel_psr_is_psr_mode_changing
+  drm/i915/display: Don't use DSB if psr mode changing
+  drm/i915/psr: Remove DSB_SKIP_WAITS_EN chicken bit
+  drm/i915/display: Evade scanline 0 as well if PSR1 or PSR2 is enabled
+  drm/i915/display: Ensure we have "Frame Change" event in DSB commit
+  drm/i915/psr: Allow DSB usage when PSR is enabled
+
+ drivers/gpu/drm/i915/display/intel_display.c  |  20 ++-
+ drivers/gpu/drm/i915/display/intel_dsb.c      |  17 ++-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 139 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_psr.h      |   6 +-
+ drivers/gpu/drm/i915/display/intel_psr_regs.h |  10 ++
+ 5 files changed, 118 insertions(+), 74 deletions(-)
 
 -- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.43.0
+
