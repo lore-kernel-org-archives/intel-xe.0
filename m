@@ -4,65 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB906C02181
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 15:20:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F027C02181
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Jan 2025 15:25:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8439510E0FD;
-	Fri, 24 Jan 2025 15:20:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2CFA10E9BE;
+	Fri, 24 Jan 2025 15:25:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CuteTLPj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U7Zc+9GS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EA3310E0FD
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Jan 2025 15:20:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A52F10E0FD;
+ Fri, 24 Jan 2025 15:25:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737732040; x=1769268040;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=n7+EGSVMuei9+wzqYp5ngqvIGh9LUjx7N4MD+NXWYzw=;
- b=CuteTLPjDDEUnR1YiRxqRMQA7lp5qBdMtm6ac1K6cS5Y9NvGW2Tyldof
- AwUdX+9YpB9w3LhECUlmtAer9gQKl8VPrN1kR6Ld8Fm7ObgoVpuhas2xs
- Uol1ScmQ9cbkoR1vW7FsvNffRaWMuHrdarhLpJgUK7m3VBQyDuLFsxTpe
- 9/+YBWzFVCwoqxxUhZjDApCYcXJH4q1ievQlO0lIbFGfB8micakC6vvcw
- fh06iTtA0+F9LnV6VCubUl1uQmYg0y1qwm0GGuKPyUWzii45XxamoliKD
- 1+ymVGf6uRzKyea82ROCgl8x6WzoJXcBW8wgjV+Q2OcoxIyjqS4HUhrqQ Q==;
-X-CSE-ConnectionGUID: bIN7KCqFQRWb4Lw4kfG29Q==
-X-CSE-MsgGUID: 7l6SVimHQvmLIXHqR8vylw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="48774724"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="48774724"
+ t=1737732349; x=1769268349;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=CAfWjep+J16UMghG37ZOA9R6zyiuVu7tuxsjAaLBIjQ=;
+ b=U7Zc+9GSj6qfClYqeSvZYalbE+fFTV6LQNicf7TJm5OTt7Ucp7usStxR
+ M8BUzA6LmsUBpRbWVVvLw+IeG+fMIw+hxBbXU3g0WujRYjOn2LkWf4K9E
+ vpOpUzf1dzxsWoppiouqu+q2jxl55njtuQ+jmo38x77wzyqwZp1DyvWqJ
+ MNjdh18Qe0Ifp2VFvNtbpbQInbigoqrDeBno5unn8+Vs4NQik/eqZ6rg/
+ RzNDkhwlJcyMwHsz63fs2smfQWjqXV7nH9XcQ1waKaj9oYbBf3mWtsk3E
+ 7F2el+3b+zpXEo8rZ+tTL5+JPkZd4d740M5pOKeTyA0rM1uys/4WCO//v Q==;
+X-CSE-ConnectionGUID: MINiiEeNSVibMqGwhNJltQ==
+X-CSE-MsgGUID: KzraSI07Sr2bznznTc6AIA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38147795"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38147795"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:20:39 -0800
-X-CSE-ConnectionGUID: RHl93CUETKqAXyl2t6Ls2g==
-X-CSE-MsgGUID: tInkox6uQG+jFNL382Xgyg==
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2025 07:25:49 -0800
+X-CSE-ConnectionGUID: viOqjY6ZQd+C3OtDRCJSqQ==
+X-CSE-MsgGUID: UwP7Ne4wTiGMkM+ut92fUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112425182"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:20:36 -0800
-Date: Fri, 24 Jan 2025 17:20:33 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Nilawar, Badal" <badal.nilawar@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
- andi.shyti@linux.intel.com, Karthik Poosa <karthik.poosa@intel.com>,
- intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- anvesh.bakwad@intel.com, saikishore.konda@intel.com
-Subject: Re: [PATCH v1] drm/xe/hwmon: expose package and vram temperature
-Message-ID: <Z5OvwSv5OykmbTNK@black.fi.intel.com>
-References: <20250108092415.289551-1-raag.jadav@intel.com>
- <94e0bc3e-897c-48e2-950d-777d40519ab7@intel.com>
- <Z5GuzT7R0WZTr3r3@black.fi.intel.com>
- <bc971c1c-bcf1-40f4-a7fd-52107ebec05b@intel.com>
- <a79e18b1-49da-4f14-bd7d-06bc497fa004@intel.com>
- <Z5OImvYNno8VDci5@black.fi.intel.com>
- <fba28165-eea6-41dd-938d-9db749eb9f60@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112425879"
+Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
+ [10.245.245.174]) ([10.245.245.174])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2025 07:25:45 -0800
+Message-ID: <0d4a18f4-222c-4767-9169-e6350ce8fea5@linux.intel.com>
+Date: Fri, 24 Jan 2025 16:25:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-next-fixes
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <fba28165-eea6-41dd-938d-9db749eb9f60@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,141 +76,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 24, 2025 at 08:27:14PM +0530, Nilawar, Badal wrote:
-> 
-> On 24-01-2025 18:03, Raag Jadav wrote:
-> > On Fri, Jan 24, 2025 at 05:29:16PM +0530, Nilawar, Badal wrote:
-> > > On 24-01-2025 11:46, Riana Tauro wrote:
-> > > > Hi Raag
-> > > > 
-> > > > On 1/23/2025 8:21 AM, Raag Jadav wrote:
-> > > > > On Tue, Jan 21, 2025 at 01:56:05PM +0530, Riana Tauro wrote:
-> > > > > > Hi Raag
-> > > > > > 
-> > > > > > On 1/8/2025 2:54 PM, Raag Jadav wrote:
-> > > > > > > Add hwmon support for temp1_input and temp2_input
-> > > > > > > attributes, which will
-> > > > > > > expose package and vram temperature in millidegree Celsius.
-> > > > > > > With this in
-> > > > > > > place we can monitor temperature using lm-sensors tool.
-> > > > > > > 
-> > > > > > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > > > > > > ---
-> > > > > > >  †† .../ABI/testing/sysfs-driver-intel-xe-hwmon†† | 16 +++++
-> > > > > > >  †† drivers/gpu/drm/xe/regs/xe_mchbar_regs.h††††† |† 3 +
-> > > > > > >  †† drivers/gpu/drm/xe/regs/xe_pcode_regs.h†††††† |† 2 +
-> > > > > > >  †† drivers/gpu/drm/xe/xe_hwmon.c†††††††††††††††† | 63
-> > > > > > > +++++++++++++++++++
-> > > > > > >  †† 4 files changed, 84 insertions(+)
-> > > > > > > 
-> > > > > > > diff --git
-> > > > > > > a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > > > > > > b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > > > > > > index d792a56f59ac..998cfb0ee1a6 100644
-> > > > > > > --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > > > > > > +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > > > > > > @@ -108,3 +108,19 @@ Contact: intel-xe@lists.freedesktop.org
-> > > > > > >  †† Description:††† RO. Package current voltage in millivolt.
-> > > > > > >  †††††††††† Only supported for particular Intel Xe graphics platforms.
-> > > > > > > +
-> > > > > > > +What: /sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp1_input
-> > > > > > > +Date:††††††† April 2025
-> > > > > > > +KernelVersion:††† 6.15
-> > > > > > > +Contact:††† intel-xe@lists.freedesktop.org
-> > > > > > > +Description:††† RO. Package temperature in millidegree Celsius.
-> > > > > > > +
-> > > > > > > +††††††† Only supported for particular Intel Xe graphics platforms.
-> > > > > > > +
-> > > > > > > +What: /sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_input
-> > > > > > > +Date:††††††† April 2025
-> > > > > > > +KernelVersion:††† 6.15
-> > > > > > > +Contact:††† intel-xe@lists.freedesktop.org
-> > > > > > > +Description:††† RO. VRAM temperature in millidegree Celsius.
-> > > > > > > +
-> > > > > > > +††††††† Only supported for particular Intel Xe graphics platforms.
-> > > > > > > diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> > > > > > > b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> > > > > > > index 519dd1067a19..f5e5234857c1 100644
-> > > > > > > --- a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> > > > > > > +++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> > > > > > > @@ -34,6 +34,9 @@
-> > > > > > >  †† #define PCU_CR_PACKAGE_ENERGY_STATUS
-> > > > > > > XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x593c)
-> > > > > > > +#define PCU_CR_PACKAGE_TEMPERATURE
-> > > > > > > XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5978)
-> > > > > > > +#define†† TEMP_MASK††††††††††††††† REG_GENMASK(7, 0)
-> > > > > > > +
-> > > > > > >  †† #define PCU_CR_PACKAGE_RAPL_LIMIT
-> > > > > > > XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x59a0)
-> > > > > > >  †† #define†† PKG_PWR_LIM_1††††††††††††††† REG_GENMASK(14, 0)
-> > > > > > >  †† #define†† PKG_PWR_LIM_1_EN††††††††††† REG_BIT(15)
-> > > > > > > diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > > > > > > b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > > > > > > index 0b0b49d850ae..8846eb9ce2a4 100644
-> > > > > > > --- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > > > > > > +++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > > > > > > @@ -21,6 +21,8 @@
-> > > > > > >  †† #define BMG_PACKAGE_POWER_SKU††††††††††† XE_REG(0x138098)
-> > > > > > >  †† #define BMG_PACKAGE_POWER_SKU_UNIT XE_REG(0x1380dc)
-> > > > > > >  †† #define BMG_PACKAGE_ENERGY_STATUS††††††† XE_REG(0x138120)
-> > > > > > > +#define BMG_VRAM_TEMPERATURE††††††††††† XE_REG(0x1382c0)
-> > > > > > > +#define BMG_PACKAGE_TEMPERATURE††††††††††† XE_REG(0x138434)
-> > > > > > indentation.
-> > > > > It's a git quirk, you won't see it in file.
-> > > > > 
-> > > > > > Also you are using the same for DG2. Should have a common name
-> > > > > Just following the conventions.
-> > > > Did not find this convention in the file.
-> > > > BMG_VRAM_TEMPERATURE is used in both dg2 and bmg and has a bmg prefix.
-> > > > Doesn't seem right
-> > > > > > >  †† #define BMG_PACKAGE_RAPL_LIMIT††††††††††† XE_REG(0x138440)
-> > > > > > >  †† #define BMG_PLATFORM_ENERGY_STATUS XE_REG(0x138458)
-> > > > > > >  †† #define BMG_PLATFORM_POWER_LIMIT††††††† XE_REG(0x138460)
-> > > > > > > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c
-> > > > > > > b/drivers/gpu/drm/xe/xe_hwmon.c
-> > > > > > > index fde56dad3ab7..5b5c844adf4a 100644
-> > > > > > > --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> > > > > > > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> > > > > > > @@ -6,6 +6,7 @@
-> > > > > > >  †† #include <linux/hwmon-sysfs.h>
-> > > > > > >  †† #include <linux/hwmon.h>
-> > > > > > >  †† #include <linux/types.h>
-> > > > > > > +#include <linux/units.h>
-> > > > > > >  †† #include <drm/drm_managed.h>
-> > > > > > >  †† #include "regs/xe_gt_regs.h"
-> > > > > > > @@ -20,6 +21,7 @@
-> > > > > > >  †† #include "xe_pm.h"
-> > > > > > >  †† enum xe_hwmon_reg {
-> > > > > > > +††† REG_TEMP,
-> > > > > > add to the end
-> > > > > > >  †††††† REG_PKG_RAPL_LIMIT,
-> > > > > > >  †††††† REG_PKG_POWER_SKU,
-> > > > > > >  †††††† REG_PKG_POWER_SKU_UNIT,
-> > > > > > > @@ -39,6 +41,11 @@ enum xe_hwmon_channel {
-> > > > > > >  †††††† CHANNEL_MAX,
-> > > > > > >  †† };
-> > > > > > > +enum xe_hwmon_temp {
-> > > > > > > +††† TEMP_PKG,
-> > > > > > > +††† TEMP_VRAM,
-> > > > > > > +};
-> > > > > > Can't the existing channel enum be used here?
-> > > > > Nope, that'd break the indexes.
-> > > > @badal/@karthik Are multiple indexes for the same channel okay?
-> > > > 
-> > > > In the current code, for dg2 only channel 1 is exposed for power and
-> > > > channel 0 skipped. Something like that needs to be done here too?
-> > > 
-> > > Thanks for looping me in this. Yes, Channel 0 represent card specific
-> > > attributes and Channel 1 represent package specific attributes. That's how
-> > > it should be followed.
-> > > With that BMG_PACKAGE_TEMPERATURE should go under CHANNEL_PKG. For
-> > > BMG_VRAM_TEMPERATURE new channel (channel 3) should be added in enum
-> > > xe_hwmon_channel.
-> > And how does that work with hwmon_channel_info?
-> 
-> Check curr_crit implementation.
-> HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL)
+Hi Dave, Simona,
 
-Exactly, and hence the separate enums for temp channels.
+Oops, I messsed up the pull request, didn't see the other commits in the 
+branch.
 
-Raag
+Additionally:
+- Fix bogus Kconfig change in cgroup/rdma
+- Kernel doc fixup for xlnx.
+- virtio UAF in virtgpu
+
+Cheers,
+~Maarten
+
+drm-misc-next-fixes-2025-01-24:
+drm-misc-next-fixes for v6.14-rc1:
+- Fix a serious regression from commit e4b5ccd392b9 ("drm/v3d: Ensure
+   job pointer is set to NULL after job completion")
+The following changes since commit 07c5b277208cf9a9e9cf31bf0143977d7f030aa1:
+
+   Merge v6.13 into drm-next (2025-01-23 14:42:21 +0100)
+
+are available in the Git repository at:
+
+   https://gitlab.freedesktop.org/drm/misc/kernel.git 
+tags/drm-misc-next-fixes-2025-01-24
+
+for you to fetch changes up to 6e64d6b3a3c39655de56682ec83e894978d23412:
+
+   drm/v3d: Assign job pointer to NULL before signaling the fence 
+(2025-01-23 16:15:01 -0300)
+
+----------------------------------------------------------------
+drm-misc-next-fixes for v6.14-rc1:
+- Fix a serious regression from commit e4b5ccd392b9 ("drm/v3d: Ensure
+   job pointer is set to NULL after job completion")
+
+----------------------------------------------------------------
+Geert Uytterhoeven (1):
+       cgroup/rdma: Drop bogus PAGE_COUNTER select
+
+Maarten Lankhorst (1):
+       Merge remote-tracking branch 'drm/drm-next' into drm-misc-next-fixes
+
+Ma√≠ra Canal (1):
+       drm/v3d: Assign job pointer to NULL before signaling the fence
+
+Tomi Valkeinen (1):
+       drm: xlnx: zynqmp_dpsub: Fix kernel doc
+
+Vivek Kasireddy (1):
+       drm/virtio: Fix UAF in virtgpu_dma_buf_free_obj()
+
+  Documentation/gpu/zynqmp.rst           |  2 --
+  drivers/gpu/drm/v3d/v3d_irq.c          | 16 ++++++++++++----
+  drivers/gpu/drm/virtio/virtgpu_prime.c | 11 ++++++-----
+  drivers/gpu/drm/xlnx/zynqmp_dpsub.h    |  1 +
+  init/Kconfig                           |  1 -
+  5 files changed, 19 insertions(+), 12 deletions(-)
