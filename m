@@ -4,67 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86F13C02182
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Jan 2025 07:14:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F4FCC0218C
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Jan 2025 21:55:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25A4710E2C5;
-	Sat, 25 Jan 2025 07:14:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD9A010E029;
+	Sat, 25 Jan 2025 21:55:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JlFg6wcz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lu8ealcO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D66910E2C5
- for <intel-xe@lists.freedesktop.org>; Sat, 25 Jan 2025 07:14:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 456F610E029
+ for <intel-xe@lists.freedesktop.org>; Sat, 25 Jan 2025 21:55:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737789282; x=1769325282;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=ehgDmFROYIzxe7pX6zeVgpQW74TDDei6uMPdJFI1kSY=;
- b=JlFg6wczgRnx3g0rfYbCwYXMfvNuUiVhZXYs4/7SCYuqE56F2q8zKRqK
- Jc+rguDyD3h9UuWeSbIqiOHQTctxnJ96VQY8gaHz3AgIQhjo+l/NchF9x
- he0ACXsldff6KmHdM+L+3BDD573p6iq748Oay9Ya9cziHnZST113tFPvU
- RxkVO71/otCJUj9AYmHhpuHjqr9FC497w1vYn6+8A8E0s/+NJHBOPaLqX
- Qu8uOCR3Wb1ikku1ssPp3okqYooGrfwfl2A0LlxHs9kEP3ew546WN6gtE
- +qOoICw3i0i+APsvDdfo3I7exEHB5PXjC0gv4HcvIK1tpDAw9ZOfUZ/t8 A==;
-X-CSE-ConnectionGUID: GApAzC7MRcuDdbXvWDFhig==
-X-CSE-MsgGUID: CTNaq+9gTKWSXAvXA2znlg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="48914078"
-X-IronPort-AV: E=Sophos;i="6.13,233,1732608000"; d="scan'208";a="48914078"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 23:14:41 -0800
-X-CSE-ConnectionGUID: 5bnbELLsQouyz0QwiOm2ng==
-X-CSE-MsgGUID: 8C63rLy4SBCYCnANuXaadA==
+ t=1737842121; x=1769378121;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qU4giWMcmN3t09XIVRpC+T/cbJjJyjRbwhQSv5+T9Cs=;
+ b=lu8ealcOpu7I1rRRKBXdc3thUa/GaK7nXA+bT3cH85flqQfbQc1cUV1a
+ IrL0/dj5WuCdN776g+JZvc7g3PrS/iB+RF+h71xrON7sot8nd9qHHGMXh
+ 7Nzu6PZvqfcCkbMYrBNCjHalKIEGPFUkJzmhup7GcbjW6cV8L9C2EQdVl
+ i8QDNuatUhSkyG0e78zzEvJHmhSLSrpSnRxpGdnc3wzbiEJ2JkiAev63l
+ nKgccu5xDkX+R0PUr+HOi4N5xxUBhLsHd9yECFBhAZ9OOT0o3DMerY2SB
+ Soxh9S083MA2iIoznGpTdwnzsJr6998CODi+6FxvqEi0rrXU387KUk9BL g==;
+X-CSE-ConnectionGUID: 908NKyxWTe+urpx/q2S9PA==
+X-CSE-MsgGUID: kL9Rvip7QeqedFXhNsfibQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11326"; a="37604198"
+X-IronPort-AV: E=Sophos;i="6.13,235,1732608000"; d="scan'208";a="37604198"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2025 13:55:20 -0800
+X-CSE-ConnectionGUID: OPK0p5jCRKSxWXhBZdLeVw==
+X-CSE-MsgGUID: JuxmZXcGRGqiz6McMu9BcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="138830115"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 23:14:38 -0800
-Date: Sat, 25 Jan 2025 09:14:35 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Nilawar, Badal" <badal.nilawar@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
- andi.shyti@linux.intel.com, Karthik Poosa <karthik.poosa@intel.com>,
- intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- anvesh.bakwad@intel.com, saikishore.konda@intel.com
-Subject: Re: [PATCH v1] drm/xe/hwmon: expose package and vram temperature
-Message-ID: <Z5SPWwiB15ptK4hR@black.fi.intel.com>
-References: <20250108092415.289551-1-raag.jadav@intel.com>
- <94e0bc3e-897c-48e2-950d-777d40519ab7@intel.com>
- <Z5GuzT7R0WZTr3r3@black.fi.intel.com>
- <bc971c1c-bcf1-40f4-a7fd-52107ebec05b@intel.com>
- <a79e18b1-49da-4f14-bd7d-06bc497fa004@intel.com>
- <Z5OImvYNno8VDci5@black.fi.intel.com>
- <fba28165-eea6-41dd-938d-9db749eb9f60@intel.com>
- <Z5OvwSv5OykmbTNK@black.fi.intel.com>
- <d9ba4385-ec55-4f16-b0c1-9a493c9319a8@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,235,1732608000"; d="scan'208";a="113083215"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.113.167])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2025 13:55:19 -0800
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH] drm/xe/pf: Move VFs reprovisioning to worker
+Date: Sat, 25 Jan 2025 22:55:05 +0100
+Message-Id: <20250125215505.720-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <d9ba4385-ec55-4f16-b0c1-9a493c9319a8@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,150 +67,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 24, 2025 at 09:37:55PM +0530, Nilawar, Badal wrote:
-> On 24-01-2025 20:50, Raag Jadav wrote:
-> > On Fri, Jan 24, 2025 at 08:27:14PM +0530, Nilawar, Badal wrote:
-> > > On 24-01-2025 18:03, Raag Jadav wrote:
-> > > > On Fri, Jan 24, 2025 at 05:29:16PM +0530, Nilawar, Badal wrote:
-> > > > > On 24-01-2025 11:46, Riana Tauro wrote:
-> > > > > > Hi Raag
-> > > > > > 
-> > > > > > On 1/23/2025 8:21 AM, Raag Jadav wrote:
-> > > > > > > On Tue, Jan 21, 2025 at 01:56:05PM +0530, Riana Tauro wrote:
-> > > > > > > > Hi Raag
-> > > > > > > > 
-> > > > > > > > On 1/8/2025 2:54 PM, Raag Jadav wrote:
-> > > > > > > > > Add hwmon support for temp1_input and temp2_input
-> > > > > > > > > attributes, which will
-> > > > > > > > > expose package and vram temperature in millidegree Celsius.
-> > > > > > > > > With this in
-> > > > > > > > > place we can monitor temperature using lm-sensors tool.
-> > > > > > > > > 
-> > > > > > > > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > > > > > > > > ---
-> > > > > > > > >   †† .../ABI/testing/sysfs-driver-intel-xe-hwmon†† | 16 +++++
-> > > > > > > > >   †† drivers/gpu/drm/xe/regs/xe_mchbar_regs.h††††† |† 3 +
-> > > > > > > > >   †† drivers/gpu/drm/xe/regs/xe_pcode_regs.h†††††† |† 2 +
-> > > > > > > > >   †† drivers/gpu/drm/xe/xe_hwmon.c†††††††††††††††† | 63
-> > > > > > > > > +++++++++++++++++++
-> > > > > > > > >   †† 4 files changed, 84 insertions(+)
-> > > > > > > > > 
-> > > > > > > > > diff --git
-> > > > > > > > > a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > > > > > > > > b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > > > > > > > > index d792a56f59ac..998cfb0ee1a6 100644
-> > > > > > > > > --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > > > > > > > > +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > > > > > > > > @@ -108,3 +108,19 @@ Contact: intel-xe@lists.freedesktop.org
-> > > > > > > > >   †† Description:††† RO. Package current voltage in millivolt.
-> > > > > > > > >   †††††††††† Only supported for particular Intel Xe graphics platforms.
-> > > > > > > > > +
-> > > > > > > > > +What: /sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp1_input
-> > > > > > > > > +Date:††††††† April 2025
-> > > > > > > > > +KernelVersion:††† 6.15
-> > > > > > > > > +Contact:††† intel-xe@lists.freedesktop.org
-> > > > > > > > > +Description:††† RO. Package temperature in millidegree Celsius.
-> > > > > > > > > +
-> > > > > > > > > +††††††† Only supported for particular Intel Xe graphics platforms.
-> > > > > > > > > +
-> > > > > > > > > +What: /sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_input
-> > > > > > > > > +Date:††††††† April 2025
-> > > > > > > > > +KernelVersion:††† 6.15
-> > > > > > > > > +Contact:††† intel-xe@lists.freedesktop.org
-> > > > > > > > > +Description:††† RO. VRAM temperature in millidegree Celsius.
-> > > > > > > > > +
-> > > > > > > > > +††††††† Only supported for particular Intel Xe graphics platforms.
-> > > > > > > > > diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> > > > > > > > > b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> > > > > > > > > index 519dd1067a19..f5e5234857c1 100644
-> > > > > > > > > --- a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> > > > > > > > > +++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> > > > > > > > > @@ -34,6 +34,9 @@
-> > > > > > > > >   †† #define PCU_CR_PACKAGE_ENERGY_STATUS
-> > > > > > > > > XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x593c)
-> > > > > > > > > +#define PCU_CR_PACKAGE_TEMPERATURE
-> > > > > > > > > XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5978)
-> > > > > > > > > +#define†† TEMP_MASK††††††††††††††† REG_GENMASK(7, 0)
-> > > > > > > > > +
-> > > > > > > > >   †† #define PCU_CR_PACKAGE_RAPL_LIMIT
-> > > > > > > > > XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x59a0)
-> > > > > > > > >   †† #define†† PKG_PWR_LIM_1††††††††††††††† REG_GENMASK(14, 0)
-> > > > > > > > >   †† #define†† PKG_PWR_LIM_1_EN††††††††††† REG_BIT(15)
-> > > > > > > > > diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > > > > > > > > b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > > > > > > > > index 0b0b49d850ae..8846eb9ce2a4 100644
-> > > > > > > > > --- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > > > > > > > > +++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > > > > > > > > @@ -21,6 +21,8 @@
-> > > > > > > > >   †† #define BMG_PACKAGE_POWER_SKU††††††††††† XE_REG(0x138098)
-> > > > > > > > >   †† #define BMG_PACKAGE_POWER_SKU_UNIT XE_REG(0x1380dc)
-> > > > > > > > >   †† #define BMG_PACKAGE_ENERGY_STATUS††††††† XE_REG(0x138120)
-> > > > > > > > > +#define BMG_VRAM_TEMPERATURE††††††††††† XE_REG(0x1382c0)
-> > > > > > > > > +#define BMG_PACKAGE_TEMPERATURE††††††††††† XE_REG(0x138434)
-> > > > > > > > indentation.
-> > > > > > > It's a git quirk, you won't see it in file.
-> > > > > > > 
-> > > > > > > > Also you are using the same for DG2. Should have a common name
-> > > > > > > Just following the conventions.
-> > > > > > Did not find this convention in the file.
-> > > > > > BMG_VRAM_TEMPERATURE is used in both dg2 and bmg and has a bmg prefix.
-> > > > > > Doesn't seem right
-> > > > > > > > >   †† #define BMG_PACKAGE_RAPL_LIMIT††††††††††† XE_REG(0x138440)
-> > > > > > > > >   †† #define BMG_PLATFORM_ENERGY_STATUS XE_REG(0x138458)
-> > > > > > > > >   †† #define BMG_PLATFORM_POWER_LIMIT††††††† XE_REG(0x138460)
-> > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c
-> > > > > > > > > b/drivers/gpu/drm/xe/xe_hwmon.c
-> > > > > > > > > index fde56dad3ab7..5b5c844adf4a 100644
-> > > > > > > > > --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> > > > > > > > > @@ -6,6 +6,7 @@
-> > > > > > > > >   †† #include <linux/hwmon-sysfs.h>
-> > > > > > > > >   †† #include <linux/hwmon.h>
-> > > > > > > > >   †† #include <linux/types.h>
-> > > > > > > > > +#include <linux/units.h>
-> > > > > > > > >   †† #include <drm/drm_managed.h>
-> > > > > > > > >   †† #include "regs/xe_gt_regs.h"
-> > > > > > > > > @@ -20,6 +21,7 @@
-> > > > > > > > >   †† #include "xe_pm.h"
-> > > > > > > > >   †† enum xe_hwmon_reg {
-> > > > > > > > > +††† REG_TEMP,
-> > > > > > > > add to the end
-> > > > > > > > >   †††††† REG_PKG_RAPL_LIMIT,
-> > > > > > > > >   †††††† REG_PKG_POWER_SKU,
-> > > > > > > > >   †††††† REG_PKG_POWER_SKU_UNIT,
-> > > > > > > > > @@ -39,6 +41,11 @@ enum xe_hwmon_channel {
-> > > > > > > > >   †††††† CHANNEL_MAX,
-> > > > > > > > >   †† };
-> > > > > > > > > +enum xe_hwmon_temp {
-> > > > > > > > > +††† TEMP_PKG,
-> > > > > > > > > +††† TEMP_VRAM,
-> > > > > > > > > +};
-> > > > > > > > Can't the existing channel enum be used here?
-> > > > > > > Nope, that'd break the indexes.
-> > > > > > @badal/@karthik Are multiple indexes for the same channel okay?
-> > > > > > 
-> > > > > > In the current code, for dg2 only channel 1 is exposed for power and
-> > > > > > channel 0 skipped. Something like that needs to be done here too?
-> > > > > Thanks for looping me in this. Yes, Channel 0 represent card specific
-> > > > > attributes and Channel 1 represent package specific attributes. That's how
-> > > > > it should be followed.
-> > > > > With that BMG_PACKAGE_TEMPERATURE should go under CHANNEL_PKG. For
-> > > > > BMG_VRAM_TEMPERATURE new channel (channel 3) should be added in enum
-> > > > > xe_hwmon_channel.
-> > > > And how does that work with hwmon_channel_info?
-> > > Check curr_crit implementation.
-> > > HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL)
-> > Exactly, and hence the separate enums for temp channels.
-> 
-> 
-> No, we want temp2_input for package (channel 2) temperature and temp3_input
-> (Channel 3) for VRAM temperature.
-> Just for information, in i915 we create separate hwmon node for each layer
-> i.e. package, gt0 and gt1. During review of xe hwmon implementation upstream
-> architect recommended that there should be single node for a device. So we
-> are using channel based approach. So lets stick to that approach.
+Since the GuC is reset during GT reset, we need to re-send the
+entire SR-IOV provisioning configuration to the GuC. But since
+this whole configuration is protected by the PF master mutex and
+we can't avoid making allocations under this mutex (like during
+LMEM provisioning), we can't do this reprovisioning from gt-reset
+path if we want to be reclaim-safe. Move VFs reprovisioning to a
+async worker that we will start from the gt-reset path.
 
-And what about fan channels? Are they to be indexed from 4 and on?
-I'm not sure if we'd want to abuse hwmon_channel_info in such a way.
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_sriov_pf.c       | 53 ++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h | 10 +++++
+ 2 files changed, 56 insertions(+), 7 deletions(-)
 
-Raag
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+index 6f906c8e8108..d66478deab98 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+@@ -15,7 +15,11 @@
+ #include "xe_gt_sriov_pf_helpers.h"
+ #include "xe_gt_sriov_pf_migration.h"
+ #include "xe_gt_sriov_pf_service.h"
++#include "xe_gt_sriov_printk.h"
+ #include "xe_mmio.h"
++#include "xe_pm.h"
++
++static void pf_worker_restart_func(struct work_struct *w);
+ 
+ /*
+  * VF's metadata is maintained in the flexible array where:
+@@ -41,6 +45,11 @@ static int pf_alloc_metadata(struct xe_gt *gt)
+ 	return 0;
+ }
+ 
++static void pf_init_workers(struct xe_gt *gt)
++{
++	INIT_WORK(&gt->sriov.pf.workers.restart, pf_worker_restart_func);
++}
++
+ /**
+  * xe_gt_sriov_pf_init_early - Prepare SR-IOV PF data structures on PF.
+  * @gt: the &xe_gt to initialize
+@@ -65,6 +74,8 @@ int xe_gt_sriov_pf_init_early(struct xe_gt *gt)
+ 	if (err)
+ 		return err;
+ 
++	pf_init_workers(gt);
++
+ 	return 0;
+ }
+ 
+@@ -155,14 +166,42 @@ void xe_gt_sriov_pf_sanitize_hw(struct xe_gt *gt, unsigned int vfid)
+ 	pf_clear_vf_scratch_regs(gt, vfid);
+ }
+ 
+-/**
+- * xe_gt_sriov_pf_restart - Restart SR-IOV support after a GT reset.
+- * @gt: the &xe_gt
+- *
+- * This function can only be called on PF.
+- */
+-void xe_gt_sriov_pf_restart(struct xe_gt *gt)
++static void pf_restart(struct xe_gt *gt)
+ {
++	struct xe_device *xe = gt_to_xe(gt);
++
++	xe_pm_runtime_get(xe);
+ 	xe_gt_sriov_pf_config_restart(gt);
+ 	xe_gt_sriov_pf_control_restart(gt);
++	xe_pm_runtime_put(xe);
++
++	xe_gt_sriov_dbg(gt, "restart completed\n");
++}
++
++static void pf_worker_restart_func(struct work_struct *w)
++{
++	struct xe_gt *gt = container_of(w, typeof(*gt), sriov.pf.workers.restart);
++
++	pf_restart(gt);
++}
++
++static void pf_queue_restart(struct xe_gt *gt)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++
++	xe_gt_assert(gt, IS_SRIOV_PF(xe));
++
++	if (!queue_work(xe->sriov.wq, &gt->sriov.pf.workers.restart))
++		xe_gt_sriov_dbg(gt, "restart already in queue!\n");
++}
++
++/**
++ * xe_gt_sriov_pf_restart - Restart SR-IOV support after a GT reset.
++ * @gt: the &xe_gt
++ *
++ * This function can only be called on PF.
++ */
++void xe_gt_sriov_pf_restart(struct xe_gt *gt)
++{
++	pf_queue_restart(gt);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
+index 0426b1a77069..a64a6835ad65 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
+@@ -35,8 +35,17 @@ struct xe_gt_sriov_metadata {
+ 	struct xe_gt_sriov_state_snapshot snapshot;
+ };
+ 
++/**
++ * struct xe_gt_sriov_pf_workers - GT level workers used by the PF.
++ */
++struct xe_gt_sriov_pf_workers {
++	/** @restart: worker that executes actions post GT reset */
++	struct work_struct restart;
++};
++
+ /**
+  * struct xe_gt_sriov_pf - GT level PF virtualization data.
++ * @workers: workers data.
+  * @service: service data.
+  * @control: control data.
+  * @policy: policy data.
+@@ -45,6 +54,7 @@ struct xe_gt_sriov_metadata {
+  * @vfs: metadata for all VFs.
+  */
+ struct xe_gt_sriov_pf {
++	struct xe_gt_sriov_pf_workers workers;
+ 	struct xe_gt_sriov_pf_service service;
+ 	struct xe_gt_sriov_pf_control control;
+ 	struct xe_gt_sriov_pf_policy policy;
+-- 
+2.47.1
+
