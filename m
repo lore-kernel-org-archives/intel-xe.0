@@ -4,57 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A32DFC0218C
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Jan 2025 12:02:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D04BBC02188
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Jan 2025 12:06:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7030310E509;
-	Mon, 27 Jan 2025 12:02:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k7Wb1lHT";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19D5810E4FF;
- Mon, 27 Jan 2025 12:02:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737979366; x=1769515366;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=1uKCGdscUx/MtCWw0JqqlwUrFd8Bb62A0b5OlIQ9vtc=;
- b=k7Wb1lHTCVh5xnCKh+MDuMMCkHpHyn0+1RSIGPY7fIsouk3CwOKyeKm3
- Crv7Yzw6MYlUt6gp31h6IvWZINXWVxPqcZPHh1lSEzFp5MTm6GouJ40dx
- igi44MHW+B1zAPMCQN9bCnhyLd1yiB+dfBBO/dSI1nnq+55oe2jSfbsAP
- bUIsjdgymHbLYqZrCqoiqNYraje2kdwocwYL+NMiCibQNORr0bBNWLHya
- pugvilusqpzkzrkEvIF3st/LfizLKVVIYuI0gQwD+2qak59O6ZjXzTIGg
- AvdMdZOzvPLixs0CMXAUly54P8M5DaAw5AWcQ6zeRHtLrsNGrHJYCyhzL g==;
-X-CSE-ConnectionGUID: cqc6hLqXSXyQJxfDIMEqQA==
-X-CSE-MsgGUID: tdmRCWv/RHCgvmYqOPrUnA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="38466941"
-X-IronPort-AV: E=Sophos;i="6.13,238,1732608000"; d="scan'208";a="38466941"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 04:02:45 -0800
-X-CSE-ConnectionGUID: t4qQI8EpSWuQh3NZICj/Zg==
-X-CSE-MsgGUID: ZitO0uSYR8KRAZ070wejcQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,238,1732608000"; d="scan'208";a="108950117"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.14])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 04:02:43 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 4/4] drm/i915/dmc_wl: Enable the debugfs only with
- enable_dmc_wl_debugfs=1
-In-Reply-To: <87zfjca2jg.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250117220747.87927-1-gustavo.sousa@intel.com>
- <20250117220747.87927-5-gustavo.sousa@intel.com>
- <87zfjca2jg.fsf@intel.com>
-Date: Mon, 27 Jan 2025 14:02:40 +0200
-Message-ID: <87wmega2hr.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B87410E228;
+	Mon, 27 Jan 2025 12:06:00 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F0BE10E228;
+ Mon, 27 Jan 2025 12:05:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6732247739874416844=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_PSR_DSB_support_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 27 Jan 2025 12:05:59 -0000
+Message-ID: <173797955911.1367699.14032145960518541629@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250127102846.1237560-1-jouni.hogander@intel.com>
+In-Reply-To: <20250127102846.1237560-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,120 +35,156 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 27 Jan 2025, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Fri, 17 Jan 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
->> We use a spinlock to protect DMC wakelock debugfs data, since it is also
->> accessed by the core DMC wakelock logic. Taking the spinlock when the
->> debugfs is not in use introduces a small but unnecessary penalty.
->>
->> Since the debugfs functionality is only expected to be used for, uh,
->> debugging sessions, let's protect it behind a module parameter
->> enable_dmc_wl_debugfs. That way, we only take the lock if the feature
->> was enabled in the first place.
->
-> If the debug struct were an opaque pointer, you could check for that
-> being != NULL. Register the debugfs always, and have that initialize
-> everything as needed?
+--===============6732247739874416844==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-...the underlying point being that I'm generally against adding any new
-module parameters.
+== Series Details ==
 
-BR,
-Jani.
+Series: PSR DSB support (rev6)
+URL   : https://patchwork.freedesktop.org/series/142521/
+State : success
 
->
-> BR,
-> Jani.
->
->>
->> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->> ---
->>  .../gpu/drm/i915/display/intel_display_params.c  |  5 +++++
->>  .../gpu/drm/i915/display/intel_display_params.h  |  1 +
->>  .../gpu/drm/i915/display/intel_dmc_wl_debugfs.c  | 16 +++++++++++++++-
->>  3 files changed, 21 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
->> index c4f1ab43fc0c..bc36d1b0ef87 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
->> @@ -133,6 +133,11 @@ intel_display_param_named_unsafe(enable_dmc_wl, int, 0400,
->>  	"(-1=use per-chip default, 0=disabled, 1=enabled, 2=match any register, 3=always locked) "
->>  	"Default: -1");
->>  
->> +intel_display_param_named_unsafe(enable_dmc_wl_debugfs, bool, 0400,
->> +	"Enable DMC wakelock debugfs"
->> +	"(0=disabled, 1=enabled) "
->> +	"Default: 0");
->> +
->>  __maybe_unused
->>  static void _param_print_bool(struct drm_printer *p, const char *driver_name,
->>  			      const char *name, bool val)
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
->> index 5317138e6044..cb7dc1bc6846 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
->> @@ -48,6 +48,7 @@ struct drm_printer;
->>  	param(bool, psr_safest_params, false, 0400) \
->>  	param(bool, enable_psr2_sel_fetch, true, 0400) \
->>  	param(int, enable_dmc_wl, -1, 0400) \
->> +	param(bool, enable_dmc_wl_debugfs, false, 0400) \
->>  
->>  #define MEMBER(T, member, ...) T member;
->>  struct intel_display_params {
->> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c b/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
->> index 1493d296ac98..f4e4c7a5a730 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
->> @@ -37,6 +37,9 @@
->>   * which exports a buffer of untracked register offsets and also allows extra
->>   * register offsets to be tracked by the driver.
->>   *
->> + * The debugfs directory is only exported if the module parameter
->> + * enable_dmc_wl_debugfs=1 is passed.
->> + *
->>   * Untracked offsets
->>   * -----------------
->>   *
->> @@ -411,6 +414,9 @@ void intel_dmc_wl_debugfs_register(struct intel_display *display)
->>  {
->>  	struct dentry *dir;
->>  
->> +	if (!display->params.enable_dmc_wl_debugfs)
->> +		return;
->> +
->>  	if (!HAS_DMC_WAKELOCK(display))
->>  		return;
->>  
->> @@ -453,6 +459,9 @@ void intel_dmc_wl_debugfs_log_untracked(struct intel_display *display, u32 offse
->>  	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
->>  	unsigned long flags;
->>  
->> +	if (!display->params.enable_dmc_wl_debugfs)
->> +		return;
->> +
->>  	spin_lock_irqsave(&dbg->lock, flags);
->>  
->>  	if (!dbg->untracked.size)
->> @@ -479,9 +488,14 @@ void intel_dmc_wl_debugfs_log_untracked(struct intel_display *display, u32 offse
->>  bool intel_dmc_wl_debugfs_offset_in_extra_ranges(struct intel_display *display, u32 offset)
->>  {
->>  	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
->> -	bool ret = false;
->> +	bool ret;
->>  	unsigned long flags;
->>  
->> +	if (!display->params.enable_dmc_wl_debugfs)
->> +		return false;
->> +
->> +	ret = false;
->> +
->>  	spin_lock_irqsave(&dbg->lock, flags);
->>  
->>  	if (!dbg->extra_ranges)
+== Summary ==
 
--- 
-Jani Nikula, Intel
+CI Bug Log - changes from xe-2554-006a892140827b356eb4ad5a5e9b947477791ba8_BAT -> xe-pw-142521v6_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-142521v6_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [PASS][1] -> [SKIP][2] ([Intel XE#1192]) +1 other test skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2554-006a892140827b356eb4ad5a5e9b947477791ba8/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142521v6/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  * igt@xe_vm@shared-pte-page:
+    - bat-adlp-vf:        [PASS][3] -> [DMESG-WARN][4] ([Intel XE#4078])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2554-006a892140827b356eb4ad5a5e9b947477791ba8/bat-adlp-vf/igt@xe_vm@shared-pte-page.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142521v6/bat-adlp-vf/igt@xe_vm@shared-pte-page.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][6] ([Intel XE#1192])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2554-006a892140827b356eb4ad5a5e9b947477791ba8/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142521v6/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#4078]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-2554-006a892140827b356eb4ad5a5e9b947477791ba8 -> xe-pw-142521v6
+
+  IGT_8209: 07ec14a8b00849e82a6ee7aff433c8f564787bf0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2554-006a892140827b356eb4ad5a5e9b947477791ba8: 006a892140827b356eb4ad5a5e9b947477791ba8
+  xe-pw-142521v6: 142521v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142521v6/index.html
+
+--===============6732247739874416844==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>PSR DSB support (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142521/">https://patchwork.freedesktop.org/series/142521/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142521v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142521v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2554-006a892140827b356eb4ad5a5e9b947477791ba8_BAT -&gt; xe-pw-142521v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-142521v6_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2554-006a892140827b356eb4ad5a5e9b947477791ba8/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142521v6/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_vm@shared-pte-page:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2554-006a892140827b356eb4ad5a5e9b947477791ba8/bat-adlp-vf/igt@xe_vm@shared-pte-page.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142521v6/bat-adlp-vf/igt@xe_vm@shared-pte-page.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2554-006a892140827b356eb4ad5a5e9b947477791ba8/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142521v6/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2554-006a892140827b356eb4ad5a5e9b947477791ba8 -&gt; xe-pw-142521v6</li>
+</ul>
+<p>IGT_8209: 07ec14a8b00849e82a6ee7aff433c8f564787bf0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2554-006a892140827b356eb4ad5a5e9b947477791ba8: 006a892140827b356eb4ad5a5e9b947477791ba8<br />
+  xe-pw-142521v6: 142521v6</p>
+
+</body>
+</html>
+
+--===============6732247739874416844==--
