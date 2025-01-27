@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8450FC0218C
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Jan 2025 10:29:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9314C02188
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Jan 2025 10:29:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5002810E3A6;
-	Mon, 27 Jan 2025 10:29:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B59DE10E4F5;
+	Mon, 27 Jan 2025 10:29:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RbvU4H+X";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZHq0sf2h";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 564FD10E4F2;
- Mon, 27 Jan 2025 10:29:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CE5410E4F5;
+ Mon, 27 Jan 2025 10:29:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737973753; x=1769509753;
+ t=1737973759; x=1769509759;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lVQz+o+X353SdVWqyVBYfaMAcJ0/ZNHivFGwPNv3ACA=;
- b=RbvU4H+Xtx+BKwlBCMtR8oC7a9ErxGxTZPCJHQGmazpvjyuxxsVZisSF
- ZzOjSNPPOCSj0rwwEY6g6li0oY8AGU1nO8MkTamXdOOqf+9dAGrX3+XyV
- 0kXTKKzxOiiCuR3/kEnwhwcAhK+kMbWpRJSV44zq+HCpAkeVZkiBC/Y6i
- k4A02aYPqV3x3/LibRkYzfKnl/sFITO+hI/5xyAS3hwIwXFLWhIrtIU9L
- FJLShfV9KPKQHMGQ9SpVNMsBuYvt5S9w+QuW70pXrIiS7xFDazqTWdMEm
- giRgpm7AkIs4Q1VxLS531ZaRQA0d1plo6wcPZCbHhI/tXQ2I9kN6OXOK+ w==;
-X-CSE-ConnectionGUID: IHjUJItBQmOJQ5sbW9Fjhg==
-X-CSE-MsgGUID: YHjYlGAkRM+J/7sHfjyWAA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="38529860"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="38529860"
+ bh=JbGoeDw7x0Pntr6HFiJkuRzhfeVqN/impzT1otHpZ64=;
+ b=ZHq0sf2hrHfyTapEvsxoy/RRFvkniavKrZGCrBbx3bas/CHtYUOVmk17
+ wIfPX/2b7t6rg7paebv+3DqnNVSQaQO2DNnYo+TQGwD9iBiy/WoaPseJL
+ R+a+KSERTKUnHH0GW2ZV8HbUnNGiSLPCiKL49xgMibTzE0yhlQfI8dPQM
+ n6woUeGC59CvKyoE1DgH/HiHYKWWRETljKVaR0lni7w3fWoPq+Q+SzkHQ
+ LRa+jfCnUEpdLccIP3f10DTGcRs+9DhoDnkMCL5wxIGrFLBRZXvFhcXzr
+ 0BoGVNP7jgcJoR2GeqFH5HaHLmcc0RXwrX7jZ8mIlKRgUGOAtQ0kHGZca w==;
+X-CSE-ConnectionGUID: VykH0n27To6DYExji3xGGQ==
+X-CSE-MsgGUID: LOBhB7RATui1vV+yZeeBSw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="38529869"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="38529869"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 02:29:13 -0800
-X-CSE-ConnectionGUID: e3Wvjkz6SGi32YFWbP39Ng==
-X-CSE-MsgGUID: DuGHvabVQx2SUk+0cDgoQg==
+ 27 Jan 2025 02:29:19 -0800
+X-CSE-ConnectionGUID: ZLNoJQU8QgSjgN8hTdMmOA==
+X-CSE-MsgGUID: a5N4httFRG+9s5AW9zIong==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108837847"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108837894"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.95])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 02:29:12 -0800
+ 27 Jan 2025 02:29:18 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: animesh.manna@intel.com, ville.syrjala@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v6 04/12] drm/i915/psr: Add register definitions for SFF_CTL
- and CFF_CTL registers
-Date: Mon, 27 Jan 2025 12:28:38 +0200
-Message-ID: <20250127102846.1237560-5-jouni.hogander@intel.com>
+Subject: [PATCH v6 07/12] drm/i915/psr: Changes for PSR2_MAN_TRK_CTL handling
+ when DSB is in use
+Date: Mon, 27 Jan 2025 12:28:41 +0200
+Message-ID: <20250127102846.1237560-8-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250127102846.1237560-1-jouni.hogander@intel.com>
 References: <20250127102846.1237560-1-jouni.hogander@intel.com>
@@ -72,38 +72,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add register definitions for SFF_CTL and CFF_CTL registers. Name them as
-LNL_SFF_CTL and LNL_CFF_CTL.
+Do needed changes to handle PSR2_MAN_TRK_CTL correctly when DSB is in use:
 
-v2: use _MMIO_TRANS instead of _MMIO_TRANS2
+1. Write PSR2_MAN_TRK_CTL in commit_pipe_pre_planes only when not using
+   DSB.
+2. Add PSR2_MAN_TRK_CTL writing into DSB commit in
+   intel_atomic_dsb_finish.
+
+Taking PSR lock over DSB commit is not needed because PSR2_MAN_TRK_CTL is
+now written only by DSB.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 Reviewed-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr_regs.h | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-index 9ad7611506e88..795e6b9cc575c 100644
---- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-@@ -251,6 +251,16 @@
- #define  ADLP_PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME		REG_BIT(14)
- #define  ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME		REG_BIT(13)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index aed35f203fd8d..5db2af86d0c8a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7143,7 +7143,8 @@ static void commit_pipe_pre_planes(struct intel_atomic_state *state,
+ 			intel_pipe_fastset(old_crtc_state, new_crtc_state);
+ 	}
  
-+#define _LNL_SFF_CTL_A				0x60918
-+#define _LNL_SFF_CTL_B				0x61918
-+#define LNL_SFF_CTL(tran)			_MMIO_TRANS(tran, _LNL_SFF_CTL_A, _LNL_SFF_CTL_B)
-+#define  LNL_SFF_CTL_SF_SINGLE_FULL_FRAME	REG_BIT(1)
-+
-+#define _LNL_CFF_CTL_A				0x6091c
-+#define _LNL_CFF_CTL_B				0x6191c
-+#define LNL_CFF_CTL(tran)			_MMIO_TRANS(tran, _LNL_CFF_CTL_A, _LNL_CFF_CTL_B)
-+#define  LNL_CFF_CTL_SF_CONTINUOUS_FULL_FRAME	REG_BIT(1)
-+
- /* PSR2 Early transport */
- #define _PIPE_SRCSZ_ERLY_TPT_A	0x70074
- #define _PIPE_SRCSZ_ERLY_TPT_B	0x71074
+-	intel_psr2_program_trans_man_trk_ctl(NULL, new_crtc_state);
++	if (!new_crtc_state->use_dsb)
++		intel_psr2_program_trans_man_trk_ctl(NULL, new_crtc_state);
+ 
+ 	intel_atomic_update_watermarks(state, crtc);
+ }
+@@ -7731,6 +7732,8 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 					       new_crtc_state);
+ 		bdw_set_pipe_misc(new_crtc_state->dsb_commit,
+ 				  new_crtc_state);
++		intel_psr2_program_trans_man_trk_ctl(new_crtc_state->dsb_commit,
++						     new_crtc_state);
+ 		intel_crtc_planes_update_arm(new_crtc_state->dsb_commit,
+ 					     state, crtc);
+ 
 -- 
 2.43.0
 
