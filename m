@@ -4,81 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81370C02191
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Jan 2025 14:56:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A882CC02188
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Jan 2025 15:01:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 662F310E564;
-	Mon, 27 Jan 2025 14:56:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 774FC10E563;
+	Mon, 27 Jan 2025 15:01:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BuKj0iHJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d4XFHDMu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BBD610E562;
- Mon, 27 Jan 2025 14:56:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5825010E563
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Jan 2025 15:01:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737989774; x=1769525774;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=jgZ2GO8S3cXCdWyE6ZvOdFoqm0rhCqZC3ICQKad44uQ=;
- b=BuKj0iHJ48Gx+nTZ/8FZ/okqJRToh+XsyoHplzTwQ+49LCIKjgiRunw5
- 0v7gJPzAVmUIs1jIcj/fpIqcc6UBScS52OI5ly11dKE2WiWov9bZn9Duz
- 8OwncxnsZ45Ki5HDNpVBInsGEwFAOn+lZJ9Jqxa9yDWFQSpAFU8a1ifdn
- UpATii2MmiwSOtqa8mWDYW0vHkA5GgDYn6kPuEElSXK/Hfc6CBp4j+HT1
- IoDGPxpe5LZDUjhxVQzmK2PW9EXN6JmyazBexskA+EB4knuAV2//ekw2F
- HQPpR1sNy1+PFJkrgc8l1yb6P2831a8UGIQ11zIAMVyZeuElG+Kt2iUXn Q==;
-X-CSE-ConnectionGUID: x03Trv7TSV+XgDi9IGSe1w==
-X-CSE-MsgGUID: M3kWjM5/TNar7uQN/tBXjg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="49104684"
-X-IronPort-AV: E=Sophos;i="6.13,238,1732608000"; d="scan'208";a="49104684"
+ t=1737990087; x=1769526087;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=wjrJ65xCCKYw+VIQkiQKt3xFOnrjuQuVkXMYD4vepv4=;
+ b=d4XFHDMuKNo4GH+8uoaYHYhojHUyi90M5Sld5njioqQkBAq38X7Po/0l
+ YNpPfGpjItMorLg9x/J4IqJRWyrRFCTq46I/XjwRONJFi10wboWw6PNEf
+ kftCqZ3SDAYR5m6EGo21HDSzlAF/1qyfmI3yzNWw2N+q2iXAt0AMgCg18
+ L5YLNSQgSH4/7W5s7beq7vy2hSJH2BLyNmTLBxoFoCwMkHl3IrRlH7kFJ
+ p2CoH8v+qYcr9fi8m5TaBv+jfZqmL/ZAd/z6Y6X9LFn+UcQFviseAqPPp
+ j2tnXJKGj1hOHqk6USBDGHbRe6ERd+baY+ZssXgtf3GIgvS/pBRuGJgZW w==;
+X-CSE-ConnectionGUID: 4tLSSDwnTCuZIIYEd9O2Ng==
+X-CSE-MsgGUID: 3Hb3j9M6ScGOGpi8UOP/9g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="49105333"
+X-IronPort-AV: E=Sophos;i="6.13,238,1732608000"; d="scan'208";a="49105333"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 06:56:13 -0800
-X-CSE-ConnectionGUID: Z9Coz29cQ6uqfPwc/L4sHg==
-X-CSE-MsgGUID: XE2pskZGQO2Q6A9y4rThjA==
+ 27 Jan 2025 07:01:27 -0800
+X-CSE-ConnectionGUID: FuL8b1yqRIqQKXQnfCP1yQ==
+X-CSE-MsgGUID: LFBWoYF/T/68cwGPEhe4tA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113598177"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.14])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 06:56:01 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Joel Granados <joel.granados@kernel.org>, Ard Biesheuvel <ardb@kernel.org>
-Cc: Alexander Gordeev <agordeev@linux.ibm.com>, Thomas =?utf-8?Q?Wei=C3=9F?=
- =?utf-8?Q?schuh?=
- <linux@weissschuh.net>, Kees Cook <kees@kernel.org>, Luis Chamberlain
- <mcgrof@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-crypto@vger.kernel.org, openipmi-developer@lists.sourceforge.net,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
- linux-rdma@vger.kernel.org, linux-raid@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-serial@vger.kernel.org,
- xen-devel@lists.xenproject.org, linux-aio@kvack.org,
- linux-fsdevel@vger.kernel.org, netfs@lists.linux.dev,
- codalist@coda.cs.cmu.edu, linux-mm@kvack.org, linux-nfs@vger.kernel.org,
- ocfs2-devel@lists.linux.dev, fsverity@lists.linux.dev,
- linux-xfs@vger.kernel.org, io-uring@vger.kernel.org, bpf@vger.kernel.org,
- kexec@lists.infradead.org, linux-trace-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, apparmor@lists.ubuntu.com,
- linux-security-module@vger.kernel.org, keyrings@vger.kernel.org, Song Liu
- <song@kernel.org>, "Steven Rostedt (Google)" <rostedt@goodmis.org>,
- "Martin K. Petersen" <martin.petersen@oracle.com>, "Darrick J. Wong"
- <djwong@kernel.org>, Corey Minyard <cminyard@mvista.com>
-Subject: Re: Re: Re: [PATCH v2] treewide: const qualify ctl_tables where
- applicable
-In-Reply-To: <f4lfo2fb7ajogucsvisfd5sg2avykavmkizr6ycsllcrco4mo3@qt2zx4zp57zh>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250110-jag-ctl_table_const-v2-1-0000e1663144@kernel.org>
- <Z4+jwDBrZNRgu85S@li-008a6a4c-3549-11b2-a85c-c5cc2836eea2.ibm.com>
- <nslqrapp4v3rknjgtfk4cg64ha7rewrrg24aslo2e5jmxfwce5@t4chrpuk632k>
- <CAMj1kXEZPe8zk7s67SADK9wVH3cfBup-sAZSC6_pJyng9QT7aw@mail.gmail.com>
- <f4lfo2fb7ajogucsvisfd5sg2avykavmkizr6ycsllcrco4mo3@qt2zx4zp57zh>
-Date: Mon, 27 Jan 2025 16:55:58 +0200
-Message-ID: <87jzag9ugx.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113599261"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa005.jf.intel.com with ESMTP; 27 Jan 2025 07:01:26 -0800
+Received: from [10.246.5.201] (mwajdecz-MOBL.ger.corp.intel.com [10.246.5.201])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 40D6E28799
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Jan 2025 15:01:25 +0000 (GMT)
+Message-ID: <829c1e47-ef2c-4efa-b745-76d80af7d485@intel.com>
+Date: Mon, 27 Jan 2025 16:01:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?B?UmU6IOKclyBYZS5DSS5GdWxsOiBmYWlsdXJlIGZvciBkcm0veGUvcGY6?=
+ =?UTF-8?Q?_Use_GuC_Buffer_Cache_during_policy_provisioning?=
+To: intel-xe@lists.freedesktop.org
+References: <20250124185247.676-1-michal.wajdeczko@intel.com>
+ <173777733997.99963.1606818443566568312@b555e5b46a47>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <173777733997.99963.1606818443566568312@b555e5b46a47>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,73 +71,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 27 Jan 2025, Joel Granados <joel.granados@kernel.org> wrote:
-> On Wed, Jan 22, 2025 at 01:41:35PM +0100, Ard Biesheuvel wrote:
->> On Wed, 22 Jan 2025 at 13:25, Joel Granados <joel.granados@kernel.org> wrote:
->> >
->> > On Tue, Jan 21, 2025 at 02:40:16PM +0100, Alexander Gordeev wrote:
->> > > On Fri, Jan 10, 2025 at 03:16:08PM +0100, Joel Granados wrote:
->> > >
->> > > Hi Joel,
->> > >
->> > > > Add the const qualifier to all the ctl_tables in the tree except for
->> > > > watchdog_hardlockup_sysctl, memory_allocation_profiling_sysctls,
->> > > > loadpin_sysctl_table and the ones calling register_net_sysctl (./net,
->> > > > drivers/inifiniband dirs). These are special cases as they use a
->> > > > registration function with a non-const qualified ctl_table argument or
->> > > > modify the arrays before passing them on to the registration function.
->> > > >
->> > > > Constifying ctl_table structs will prevent the modification of
->> > > > proc_handler function pointers as the arrays would reside in .rodata.
->> > > > This is made possible after commit 78eb4ea25cd5 ("sysctl: treewide:
->> > > > constify the ctl_table argument of proc_handlers") constified all the
->> > > > proc_handlers.
->> > >
->> > > I could identify at least these occurences in s390 code as well:
->> > Hey Alexander
->> >
->> > Thx for bringing these to my attention. I had completely missed them as
->> > the spatch only deals with ctl_tables outside functions.
->> >
->> > Short answer:
->> > These should not be included in the current patch because they are a
->> > different pattern from how sysctl tables are usually used. So I will not
->> > include them.
->> >
->> > With that said, I think it might be interesting to look closer at them
->> > as they seem to be complicating the proc_handler (I have to look at them
->> > closer).
->> >
->> > I see that they are defining a ctl_table struct within the functions and
->> > just using the data (from the incoming ctl_table) to forward things down
->> > to proc_do{u,}intvec_* functions. This is very odd and I have only seen
->> > it done in order to change the incoming ctl_table (which is not what is
->> > being done here).
->> >
->> > I will take a closer look after the merge window and circle back with
->> > more info. Might take me a while as I'm not very familiar with s390
->> > code; any additional information on why those are being used inside the
->> > functions would be helpfull.
->> >
->> 
->> Using const data on the stack is not as useful, because the stack is
->> always mapped writable.
->> 
->> Global data structures marked 'const' will be moved into an ELF
->> section that is typically mapped read-only in its entirely, and so the
->> data cannot be modified by writing to it directly. No such protection
->> is possible for the stack, and so the constness there is only enforced
->> at compile time.
-> I completely agree with you. No reason to use const within those
-> functions. But why define those ctl_tables in function to begin with.
-> Can't you just use the ones that are defined outside the functions?
-
-You could have static const within functions too. You get the rodata
-protection and function local scope, best of both worlds?
-
-BR,
-Jani.
 
 
--- 
-Jani Nikula, Intel
+On 25.01.2025 04:55, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/xe/pf: Use GuC Buffer Cache during policy provisioning
+> URL   : https://patchwork.freedesktop.org/series/143949/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from xe-2549-b36df02c99e3246ba2a90e951c71797327374db7_full -> xe-pw-143949v1_full
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with xe-pw-143949v1_full absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in xe-pw-143949v1_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   
+> 
+> Participating hosts (4 -> 4)
+> ------------------------------
+> 
+>   No changes in participating hosts
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in xe-pw-143949v1_full:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+
+all unrelated, all in KMS
+
+>   * igt@kms_rotation_crc@primary-y-tiled-reflect-x-0:
+>     - shard-adlp:         [PASS][1] -> [DMESG-WARN][2] +3 other tests dmesg-warn
+>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2549-b36df02c99e3246ba2a90e951c71797327374db7/shard-adlp-2/igt@kms_rotation_crc@primary-y-tiled-reflect-x-0.html
+>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143949v1/shard-adlp-2/igt@kms_rotation_crc@primary-y-tiled-reflect-x-0.html
+
+<3> [531.599943] xe 0000:00:02.0: [drm] *ERROR* AUX B/DDI B/PHY B: did
+not complete or timeout within 10ms (status 0xad40023f)
+<3> [531.610408] xe 0000:00:02.0: [drm] *ERROR* AUX B/DDI B/PHY B: did
+not complete or timeout within 10ms (status 0xad40023f)
+
+> 
+>   * igt@kms_sequence@queue-idle@pipe-b-dp-2:
+>     - shard-bmg:          NOTRUN -> [INCOMPLETE][3] +2 other tests incomplete
+>    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143949v1/shard-bmg-4/igt@kms_sequence@queue-idle@pipe-b-dp-2.html
+> 
+>   * igt@kms_setmode@basic:
+>     - shard-bmg:          [PASS][4] -> [INCOMPLETE][5] +1 other test incomplete
+>    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2549-b36df02c99e3246ba2a90e951c71797327374db7/shard-bmg-4/igt@kms_setmode@basic.html
+>    [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143949v1/shard-bmg-7/igt@kms_setmode@basic.html
+
+we don't have PF on BMG
+
+
