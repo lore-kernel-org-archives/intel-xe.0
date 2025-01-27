@@ -4,58 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C099DC0218A
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Jan 2025 13:36:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5DC5C02188
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Jan 2025 13:50:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 851DE10E515;
-	Mon, 27 Jan 2025 13:36:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B55E10E113;
+	Mon, 27 Jan 2025 13:50:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eJwhY1no";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ITreSYYk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 473CE10E512;
- Mon, 27 Jan 2025 13:36:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737984962; x=1769520962;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=s/zet9ijvWRDuHWY07MsI08F+XJ0PvkVlq1k2SDqTqI=;
- b=eJwhY1noe55BpSLcfQih0+I5xV0BTV8JXx743i2/Zj2cegNKBe8KV2tG
- Fm+NOeuovl+Ppqg9MUCkwUv60b1XkjqZddo4ekStGASvqA78cDYjwiDJq
- 1/nfBF0MP/wts3QgiDlxCaL5OA3MNMHX7y79Shre0RUYg3nmEMzWgXY/b
- J9HoG6Vx1sJwTpDyv790ywqSHYoGLHaHxLedGe7SvNaicVjSEamQidewC
- RkOybjclpMgc86foDbRgvatfuyqciAOHEly5CrJNNHYXtLydb7imkm+7T
- MgS/mpeA8C4FLxs8ZwvDvmmkxEstPf+nXLQja0xsYRYz8640OimIv/FgF A==;
-X-CSE-ConnectionGUID: diWhnPJPQ522tp/F4KKOeQ==
-X-CSE-MsgGUID: 4dC0pSt8TR+KhMg2V603Dg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="37696642"
-X-IronPort-AV: E=Sophos;i="6.13,238,1732608000"; d="scan'208";a="37696642"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 05:36:01 -0800
-X-CSE-ConnectionGUID: PY4OxEXrSdG6otYt0XE7JQ==
-X-CSE-MsgGUID: fn7tg1PfRImr4cf9STOlKg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,238,1732608000"; d="scan'208";a="113472754"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.14])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 05:36:00 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 4/4] drm/i915/dmc_wl: Enable the debugfs only with
- enable_dmc_wl_debugfs=1
-In-Reply-To: <173798426246.2736.2009100469112133541@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250117220747.87927-1-gustavo.sousa@intel.com>
- <20250117220747.87927-5-gustavo.sousa@intel.com>
- <87zfjca2jg.fsf@intel.com>
- <173798426246.2736.2009100469112133541@intel.com>
-Date: Mon, 27 Jan 2025 15:35:57 +0200
-Message-ID: <87r04o9y6a.fsf@intel.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AE5110E113;
+ Mon, 27 Jan 2025 13:50:01 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 554B0A4154E;
+ Mon, 27 Jan 2025 13:48:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 881ACC4CED2;
+ Mon, 27 Jan 2025 13:49:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1737985800;
+ bh=laZX1iWKmTFe6EBXe6dQ6V5dBHky9feUPubV8bbHYy0=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=ITreSYYkYqJo0yzT/NmeCNaU8ylN9fF82uixbVQhbAMNhn/x1ksvsdeN2BZIjx7Av
+ 6jRzLOfnz1KOiZ8BN/+a6yzSKjX86nOzP6ewnKK12LbyYoLRgr6MitIVZMs+Q9nRjt
+ 1O56sOuQWf9/oW9JBeL1K1Ep9SPnbGRY0gAqf1BfWdrmsV6P6rbrAzrEzJaWATIpCg
+ PxgyGHOSh+1Dp+na/sGNdWcGsgzNCRs4/nnMHS16Kt8UOkwJO9cYsDiIOKruHAZkDs
+ tuJVwo0MPlNeiRHuQkLVgJEWRQ8mSboCfx8PwGZonQ0+bdJkEjI8BLPDWS5oZchNDY
+ iBi9Q4ViZ4cfA==
+Date: Mon, 27 Jan 2025 14:49:55 +0100
+From: Joel Granados <joel.granados@kernel.org>
+To: Ard Biesheuvel <ardb@kernel.org>
+Cc: Alexander Gordeev <agordeev@linux.ibm.com>, 
+ Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ Kees Cook <kees@kernel.org>, 
+ Luis Chamberlain <mcgrof@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-riscv@lists.infradead.org, 
+ linux-s390@vger.kernel.org, linux-crypto@vger.kernel.org, 
+ openipmi-developer@lists.sourceforge.net, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
+ linux-rdma@vger.kernel.org, 
+ linux-raid@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-serial@vger.kernel.org, 
+ xen-devel@lists.xenproject.org, linux-aio@kvack.org,
+ linux-fsdevel@vger.kernel.org, 
+ netfs@lists.linux.dev, codalist@coda.cs.cmu.edu, linux-mm@kvack.org, 
+ linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
+ fsverity@lists.linux.dev, 
+ linux-xfs@vger.kernel.org, io-uring@vger.kernel.org, bpf@vger.kernel.org, 
+ kexec@lists.infradead.org, linux-trace-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, apparmor@lists.ubuntu.com,
+ linux-security-module@vger.kernel.org, 
+ keyrings@vger.kernel.org, Song Liu <song@kernel.org>, 
+ "Steven Rostedt (Google)" <rostedt@goodmis.org>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>, 
+ "Darrick J. Wong" <djwong@kernel.org>, Jani Nikula <jani.nikula@intel.com>, 
+ Corey Minyard <cminyard@mvista.com>
+Subject: Re: Re: Re: [PATCH v2] treewide: const qualify ctl_tables where
+ applicable
+Message-ID: <f4lfo2fb7ajogucsvisfd5sg2avykavmkizr6ycsllcrco4mo3@qt2zx4zp57zh>
+References: <20250110-jag-ctl_table_const-v2-1-0000e1663144@kernel.org>
+ <Z4+jwDBrZNRgu85S@li-008a6a4c-3549-11b2-a85c-c5cc2836eea2.ibm.com>
+ <nslqrapp4v3rknjgtfk4cg64ha7rewrrg24aslo2e5jmxfwce5@t4chrpuk632k>
+ <CAMj1kXEZPe8zk7s67SADK9wVH3cfBup-sAZSC6_pJyng9QT7aw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMj1kXEZPe8zk7s67SADK9wVH3cfBup-sAZSC6_pJyng9QT7aw@mail.gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,131 +85,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 27 Jan 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Jani Nikula (2025-01-27 09:01:39-03:00)
->>On Fri, 17 Jan 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
->>> We use a spinlock to protect DMC wakelock debugfs data, since it is also
->>> accessed by the core DMC wakelock logic. Taking the spinlock when the
->>> debugfs is not in use introduces a small but unnecessary penalty.
->>>
->>> Since the debugfs functionality is only expected to be used for, uh,
->>> debugging sessions, let's protect it behind a module parameter
->>> enable_dmc_wl_debugfs. That way, we only take the lock if the feature
->>> was enabled in the first place.
->>
->>If the debug struct were an opaque pointer, you could check for that
->>being != NULL. Register the debugfs always, and have that initialize
->>everything as needed?
->
-> Hm... I'm failing to see how this would keep us from having to take the
-> spinlock once we have the pointer being non-NULL.
->
-> The idea of the parameter is to protect us from taking the spinlock when
-> we are not debugging DMC wakelock offsets.
+On Wed, Jan 22, 2025 at 01:41:35PM +0100, Ard Biesheuvel wrote:
+> On Wed, 22 Jan 2025 at 13:25, Joel Granados <joel.granados@kernel.org> wrote:
+> >
+> > On Tue, Jan 21, 2025 at 02:40:16PM +0100, Alexander Gordeev wrote:
+> > > On Fri, Jan 10, 2025 at 03:16:08PM +0100, Joel Granados wrote:
+> > >
+> > > Hi Joel,
+> > >
+> > > > Add the const qualifier to all the ctl_tables in the tree except for
+> > > > watchdog_hardlockup_sysctl, memory_allocation_profiling_sysctls,
+> > > > loadpin_sysctl_table and the ones calling register_net_sysctl (./net,
+> > > > drivers/inifiniband dirs). These are special cases as they use a
+> > > > registration function with a non-const qualified ctl_table argument or
+> > > > modify the arrays before passing them on to the registration function.
+> > > >
+> > > > Constifying ctl_table structs will prevent the modification of
+> > > > proc_handler function pointers as the arrays would reside in .rodata.
+> > > > This is made possible after commit 78eb4ea25cd5 ("sysctl: treewide:
+> > > > constify the ctl_table argument of proc_handlers") constified all the
+> > > > proc_handlers.
+> > >
+> > > I could identify at least these occurences in s390 code as well:
+> > Hey Alexander
+> >
+> > Thx for bringing these to my attention. I had completely missed them as
+> > the spatch only deals with ctl_tables outside functions.
+> >
+> > Short answer:
+> > These should not be included in the current patch because they are a
+> > different pattern from how sysctl tables are usually used. So I will not
+> > include them.
+> >
+> > With that said, I think it might be interesting to look closer at them
+> > as they seem to be complicating the proc_handler (I have to look at them
+> > closer).
+> >
+> > I see that they are defining a ctl_table struct within the functions and
+> > just using the data (from the incoming ctl_table) to forward things down
+> > to proc_do{u,}intvec_* functions. This is very odd and I have only seen
+> > it done in order to change the incoming ctl_table (which is not what is
+> > being done here).
+> >
+> > I will take a closer look after the merge window and circle back with
+> > more info. Might take me a while as I'm not very familiar with s390
+> > code; any additional information on why those are being used inside the
+> > functions would be helpfull.
+> >
+> 
+> Using const data on the stack is not as useful, because the stack is
+> always mapped writable.
+> 
+> Global data structures marked 'const' will be moved into an ELF
+> section that is typically mapped read-only in its entirely, and so the
+> data cannot be modified by writing to it directly. No such protection
+> is possible for the stack, and so the constness there is only enforced
+> at compile time.
+I completely agree with you. No reason to use const within those
+functions. But why define those ctl_tables in function to begin with.
+Can't you just use the ones that are defined outside the functions?
 
-If you only allocate and assign the pointer when you enable the feature
-via debugfs, wouldn't that achieve the goal?
+Best
 
-BR,
-Jani.
-
->
-> --
-> Gustavo Sousa
->
->>
->>BR,
->>Jani.
->>
->>>
->>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->>> ---
->>>  .../gpu/drm/i915/display/intel_display_params.c  |  5 +++++
->>>  .../gpu/drm/i915/display/intel_display_params.h  |  1 +
->>>  .../gpu/drm/i915/display/intel_dmc_wl_debugfs.c  | 16 +++++++++++++++-
->>>  3 files changed, 21 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
->>> index c4f1ab43fc0c..bc36d1b0ef87 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
->>> @@ -133,6 +133,11 @@ intel_display_param_named_unsafe(enable_dmc_wl, int, 0400,
->>>          "(-1=use per-chip default, 0=disabled, 1=enabled, 2=match any register, 3=always locked) "
->>>          "Default: -1");
->>>  
->>> +intel_display_param_named_unsafe(enable_dmc_wl_debugfs, bool, 0400,
->>> +        "Enable DMC wakelock debugfs"
->>> +        "(0=disabled, 1=enabled) "
->>> +        "Default: 0");
->>> +
->>>  __maybe_unused
->>>  static void _param_print_bool(struct drm_printer *p, const char *driver_name,
->>>                                const char *name, bool val)
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
->>> index 5317138e6044..cb7dc1bc6846 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
->>> @@ -48,6 +48,7 @@ struct drm_printer;
->>>          param(bool, psr_safest_params, false, 0400) \
->>>          param(bool, enable_psr2_sel_fetch, true, 0400) \
->>>          param(int, enable_dmc_wl, -1, 0400) \
->>> +        param(bool, enable_dmc_wl_debugfs, false, 0400) \
->>>  
->>>  #define MEMBER(T, member, ...) T member;
->>>  struct intel_display_params {
->>> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c b/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
->>> index 1493d296ac98..f4e4c7a5a730 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
->>> @@ -37,6 +37,9 @@
->>>   * which exports a buffer of untracked register offsets and also allows extra
->>>   * register offsets to be tracked by the driver.
->>>   *
->>> + * The debugfs directory is only exported if the module parameter
->>> + * enable_dmc_wl_debugfs=1 is passed.
->>> + *
->>>   * Untracked offsets
->>>   * -----------------
->>>   *
->>> @@ -411,6 +414,9 @@ void intel_dmc_wl_debugfs_register(struct intel_display *display)
->>>  {
->>>          struct dentry *dir;
->>>  
->>> +        if (!display->params.enable_dmc_wl_debugfs)
->>> +                return;
->>> +
->>>          if (!HAS_DMC_WAKELOCK(display))
->>>                  return;
->>>  
->>> @@ -453,6 +459,9 @@ void intel_dmc_wl_debugfs_log_untracked(struct intel_display *display, u32 offse
->>>          struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
->>>          unsigned long flags;
->>>  
->>> +        if (!display->params.enable_dmc_wl_debugfs)
->>> +                return;
->>> +
->>>          spin_lock_irqsave(&dbg->lock, flags);
->>>  
->>>          if (!dbg->untracked.size)
->>> @@ -479,9 +488,14 @@ void intel_dmc_wl_debugfs_log_untracked(struct intel_display *display, u32 offse
->>>  bool intel_dmc_wl_debugfs_offset_in_extra_ranges(struct intel_display *display, u32 offset)
->>>  {
->>>          struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
->>> -        bool ret = false;
->>> +        bool ret;
->>>          unsigned long flags;
->>>  
->>> +        if (!display->params.enable_dmc_wl_debugfs)
->>> +                return false;
->>> +
->>> +        ret = false;
->>> +
->>>          spin_lock_irqsave(&dbg->lock, flags);
->>>  
->>>          if (!dbg->extra_ranges)
->>
->>-- 
->>Jani Nikula, Intel
 
 -- 
-Jani Nikula, Intel
+
+Joel Granados
