@@ -4,54 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B828C02188
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Jan 2025 11:10:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DEE2C0218C
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Jan 2025 11:16:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64A3610E2FB;
-	Mon, 27 Jan 2025 11:10:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5D1910E2FB;
+	Mon, 27 Jan 2025 11:16:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CW1QffBy";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="RrzLYm/h";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2683410E2FB
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Jan 2025 11:10:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737976249; x=1769512249;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=kHiw7f+hup0J8eLTAFiOHn0WqBykJTfmXepqVs27/5o=;
- b=CW1QffByoFHVR9Rpo1F61T8Ct7n4yVKMP7+68AicEyi7VVzrNSwp7mKo
- fOx6v7oFlAGHcjSC8L3QccaYgOvxx82J4BkDQXMvC5YiQG5rB0SMn5vzp
- LCVbW55mU6pj9Yjzjmd82J5xdPCKxcjCpcI3uYBeUktBv53QGwYL0lMyF
- STzp2POXgTwyr3LEXW0SZVHwvLr3qlBaRsoyd4ta20pZmHwauStHA2WA7
- 6G++9fMjqx7EXri0ZB4Hgkt5ZbEvucJ0Xk/+mnv5VfxlEph05qxFPLsMZ
- dVuRPW3DkK3fSFvcxhOv8HiTDUXJRzwQr+sh7Z8rgBOgVPtd5vQqVwu2u w==;
-X-CSE-ConnectionGUID: wmAFbowBTgOQTJ9Gk066WA==
-X-CSE-MsgGUID: xkiNgzQaRZiK5TdR0FpPMA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11327"; a="49026612"
-X-IronPort-AV: E=Sophos;i="6.13,238,1732608000"; d="scan'208";a="49026612"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 03:10:48 -0800
-X-CSE-ConnectionGUID: 1P5sL7koTJyzQLMzK0NZJg==
-X-CSE-MsgGUID: NZfH1xHgTImBgpnuK/GJkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,238,1732608000"; d="scan'208";a="108989883"
-Received: from ayaz-z790i-aorus-ultra.iind.intel.com ([10.190.238.64])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 03:10:46 -0800
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: michal.mrozek@intel.com, vinay.belgaumkar@intel.com,
- szymon.morek@intel.com, jose.souza@intel.com, matthew.auld@intel.com,
- rodrigo.vivi@intel.com
-Subject: [PATCH V7] drm/xe/uapi: Use hint for guc to set GT frequency
-Date: Mon, 27 Jan 2025 16:37:51 +0530
-Message-ID: <20250127110751.1548253-1-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-Greylist: delayed 3198 seconds by postgrey-1.36 at gabe;
+ Mon, 27 Jan 2025 11:16:51 UTC
+Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0A0D10E0B7;
+ Mon, 27 Jan 2025 11:16:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=yD/D2+nscyMs4rmMHdMo35IBdi5XMB2qp4Gun29olS8=; b=RrzLYm/hJNnp8Iawo14KFujD1B
+ dgYwgU2sXAB2bMOc9kXkeA1pldRUvEnrwMkqpmid5ZG2T6C+urJ9CSzsBpe9RtIPWCrAWnBpljibR
+ NCL6ZpDEQlc8P0nyaYxJv9b3f+hD7oAFcvRg0KxuASNAfECabdSEHqH5mfkKhKTa+iasGrkDGffGL
+ O0Vdbzy0TulqAF9xPP+B9kv/majU4pzGgGln2J31ccubtKed6WKjOkM/Vm0VeXrPumVpaX4lCq49c
+ LrHuuFQcN2b9LiiRnxYAalDysrPaEgHdgn6/jid11xHnyJox4jSl4p6w+0FiYVDp2hLfQdw/BcZRd
+ 6rPRc1Ag==;
+Received: from [194.136.85.206] (port=38530 helo=eldfell)
+ by whm50.louhi.net with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96.2)
+ (envelope-from <pekka.paalanen@haloniitty.fi>) id 1tcMHD-00016b-2a;
+ Mon, 27 Jan 2025 12:23:31 +0200
+Date: Mon, 27 Jan 2025 12:23:28 +0200
+From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: Xaver Hugl <xaver.hugl@kde.org>, airlied@gmail.com, simona@ffwll.ch,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
+ lina@asahilina.net, michal.wajdeczko@intel.com, christian.koenig@amd.com,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
+ alexander.deucher@amd.com, andrealmeid@igalia.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
+Subject: Re: [PATCH v10 2/4] drm/doc: Document device wedged event
+Message-ID: <20250127122328.6d85bca1@eldfell>
+In-Reply-To: <Z5CAkXSOpNiiFbv4@black.fi.intel.com>
+References: <20241128153707.1294347-1-raag.jadav@intel.com>
+ <20241128153707.1294347-3-raag.jadav@intel.com>
+ <CAFZQkGy3R0TMY5CARPQZF70fdKGLX8GQjV_YQAHzEXsiuNHj+w@mail.gmail.com>
+ <Z5CAkXSOpNiiFbv4@black.fi.intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/WDsb8DKWCL+/WckgwZn74cK";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - whm50.louhi.net
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - haloniitty.fi
+X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
+ pekka.paalanen@haloniitty.fi
+X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,301 +83,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow user to provide a low latency hint. When set,
-KMD sends a hint to GuC which results in special handling for that process.
-SLPC will ramp the GT frequency aggressively every time
-it switches to this process.
+--Sig_/WDsb8DKWCL+/WckgwZn74cK
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-We need to enable the use of SLPC Compute strategy during init, but
-it will apply only to processes that set this bit during process
-creation.
+On Wed, 22 Jan 2025 07:22:25 +0200
+Raag Jadav <raag.jadav@intel.com> wrote:
 
-Improvement with this approach as below:
+> On Tue, Jan 21, 2025 at 02:14:56AM +0100, Xaver Hugl wrote:
+> > > +It is the responsibility of the consumer to make sure that the devic=
+e or
+> > > +its resources are not in use by any process before attempting recove=
+ry. =20
+> > I'm not convinced this is actually doable in practice, outside of
+> > killing all apps that aren't the one trying to recover the GPU.
+> > Is this just about not crashing those processes if they don't handle
+> > GPU hotunplugs well, about leaks, or something else? =20
+>=20
+> Correct, all of it. And since the compositor is in charge of device resou=
+rces,
+> this way it atleast has the opportunity to recover the device and recreate
+> context without all the userspace violence.
 
-Before,
+Hi Raag,
 
-:~$ NEOReadDebugKeys=1 EnableDirectSubmission=0 clpeak --kernel-latency
-Platform: Intel(R) OpenCL Graphics
-  Device: Intel(R) Graphics [0xe20b]
-    Driver version  : 24.52.0 (Linux x64)
-    Compute units   : 160
-    Clock frequency : 2850 MHz
-    Kernel launch latency : 283.16 us
+sorry, I haven't followed this series, so I wonder, why should
+userspace be part of recovering the device? Why doesn't the kernel
+automatically load a new driver instance with a new DRM device node?
 
-After,
+Of course userspace needs to deal with stuff suddenly erroring out, and
+destroy existing related resources, then wait for a working device
+to appear and rebuild all state. The kernel driver already needs to
+make the existing open stuff inert and harmless, why does it need an
+acknowledgement from userspace to unbind and re-bind?
 
-:~$ NEOReadDebugKeys=1 EnableDirectSubmission=0 clpeak --kernel-latency
-Platform: Intel(R) OpenCL Graphics
-  Device: Intel(R) Graphics [0xe20b]
-    Driver version  : 24.52.0 (Linux x64)
-    Compute units   : 160
-    Clock frequency : 2850 MHz
+> I'm not entirely aware of its feasibility though, perhaps something for t=
+he
+> consumers to experiment.
 
-    Kernel launch latency : 63.38 us
+If consumers mean userspace, then no, not reliably. But the kernel can
+do it.
 
-UMD Compute PR : https://github.com/intel/compute-runtime/pull/794
-UMD Mesa PR :  https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/33214
+I see in the commit message written:
 
-v7(Jose):
-  - Update UMD PR
-  - applicable to all gpus
-V6:
-  - init flags, remove redundant flags check (MAuld)
-V5:
-  - Move uapi doc to documentation and GuC ABI specific change (Rodrigo)
-  - Modify logic to restrict exec queue flags (MAuld)
-V4:
-  - To make it clear, dont use exec queue word (Vinay)
-  - Correct typo in description of flag (Jose/Vinay)
-  - rename set_strategy api and replace ctx with exec queue(Vinay)
-  - Start with 0th bit to indentify user flags (Jose)
-V3:
-  - Conver user flag to kernel internal flag and use (Oak)
-  - Support query config for use to check kernel support (Jose)
-  - Dont need to take runtime pm (Vinay)
-V2:
-  - DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT 1 is already planned for other hint(Szymon)
-  - Add motivation to description (Lucas)
+	"For example, if the driver supports multiple recovery methods,
+	consumers can opt for the suitable one based on policy
+	definition."
 
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- Documentation/gpu/drm-uapi.rst                | 18 ++++++++++++++++++
- drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h |  3 +++
- drivers/gpu/drm/xe/xe_exec_queue.c            | 10 +++++++---
- drivers/gpu/drm/xe/xe_exec_queue_types.h      |  2 ++
- drivers/gpu/drm/xe/xe_guc_pc.c                | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.c            |  8 ++++++++
- drivers/gpu/drm/xe/xe_query.c                 |  2 ++
- include/uapi/drm/xe_drm.h                     |  7 ++++++-
- 8 files changed, 62 insertions(+), 4 deletions(-)
+How could consumers know what to do? How can they guess what would be
+enough to recover the device? Isn't that the kernel driver's job to
+know?
 
-diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
-index b75cc9a70d1f..234c38ef26e3 100644
---- a/Documentation/gpu/drm-uapi.rst
-+++ b/Documentation/gpu/drm-uapi.rst
-@@ -583,3 +583,21 @@ dma-buf interoperability
- 
- Please see Documentation/userspace-api/dma-buf-alloc-exchange.rst for
- information on how dma-buf is integrated and exposed within DRM.
-+
-+Low latency hint by user
-+========================
-+
-+Allow users to provide a hint to kernel for cases demanding low latency profile.
-+
-+user need to indicate low latency hint with flag while creating exec queue
-+as mentioned below,
-+
-+     struct drm_xe_exec_queue_create exec_queue_create = {
-+          .flags = DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT
-+          .extensions = 0,
-+          .vm_id = vm,
-+          .num_bb_per_exec = 1,
-+          .num_eng_per_bb = 1,
-+          .instances = to_user_pointer(&instance),
-+     };
-+     ioctl(fd, DRM_IOCTL_XE_EXEC_QUEUE_CREATE, &exec_queue_create);
-diff --git a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-index 85abe4f09ae2..b28c8fa061f7 100644
---- a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-@@ -174,6 +174,9 @@ struct slpc_task_state_data {
- 	};
- } __packed;
- 
-+#define SLPC_CTX_FREQ_REQ_IS_COMPUTE		REG_BIT(28)
-+#define SLPC_OPTIMIZED_STRATEGY_COMPUTE		REG_BIT(0)
-+
- struct slpc_shared_data_header {
- 	/* Total size in bytes of this shared buffer. */
- 	u32 size;
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 8948f50ee58f..0c116faaccf7 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -549,11 +549,12 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 	struct xe_tile *tile;
- 	struct xe_exec_queue *q = NULL;
- 	u32 logical_mask;
-+	u32 flags = 0;
- 	u32 id;
- 	u32 len;
- 	int err;
- 
--	if (XE_IOCTL_DBG(xe, args->flags) ||
-+	if (XE_IOCTL_DBG(xe, args->flags & ~DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT) ||
- 	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
-@@ -570,6 +571,9 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 	if (XE_IOCTL_DBG(xe, eci[0].gt_id >= xe->info.gt_count))
- 		return -EINVAL;
- 
-+	if (args->flags & DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT)
-+		flags |= EXEC_QUEUE_FLAG_LOW_LATENCY;
-+
- 	if (eci[0].engine_class == DRM_XE_ENGINE_CLASS_VM_BIND) {
- 		if (XE_IOCTL_DBG(xe, args->width != 1) ||
- 		    XE_IOCTL_DBG(xe, args->num_placements != 1) ||
-@@ -578,8 +582,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 
- 		for_each_tile(tile, xe, id) {
- 			struct xe_exec_queue *new;
--			u32 flags = EXEC_QUEUE_FLAG_VM;
- 
-+			flags |= EXEC_QUEUE_FLAG_VM;
- 			if (id)
- 				flags |= EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD;
- 
-@@ -626,7 +630,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 		}
- 
- 		q = xe_exec_queue_create(xe, vm, logical_mask,
--					 args->width, hwe, 0,
-+					 args->width, hwe, flags,
- 					 args->extensions);
- 		up_read(&vm->lock);
- 		xe_vm_put(vm);
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 5af5419cec7a..b6fdc7ca687e 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -85,6 +85,8 @@ struct xe_exec_queue {
- #define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(3)
- /* kernel exec_queue only, set priority to highest level */
- #define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(4)
-+/* flag to indicate low latency hint to guc */
-+#define EXEC_QUEUE_FLAG_LOW_LATENCY		BIT(5)
- 
- 	/**
- 	 * @flags: flags for this exec queue, should statically setup aside from ban
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 44b5211066ef..e926f89e4ce9 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -1014,6 +1014,17 @@ static int slpc_set_policies(struct xe_guc_pc *pc)
- 	return 0;
- }
- 
-+static int pc_action_set_strategy(struct xe_guc_pc *pc, u32 val)
-+{
-+	int ret = 0;
-+
-+	ret = pc_action_set_param(pc,
-+				  SLPC_PARAM_STRATEGIES,
-+				  val);
-+
-+	return ret;
-+}
-+
- /**
-  * xe_guc_pc_start - Start GuC's Power Conservation component
-  * @pc: Xe_GuC_PC instance
-@@ -1077,6 +1088,11 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
- 	}
- 
- 	ret = pc_action_setup_gucrc(pc, GUCRC_FIRMWARE_CONTROL);
-+	if (ret)
-+		goto out;
-+
-+	/* Enable SLPC Optimized Strategy for compute */
-+	ret = pc_action_set_strategy(pc, SLPC_OPTIMIZED_STRATEGY_COMPUTE);
- 
- out:
- 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 913c74d6e2ae..f2ce3086838c 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -15,6 +15,7 @@
- #include <drm/drm_managed.h>
- 
- #include "abi/guc_actions_abi.h"
-+#include "abi/guc_actions_slpc_abi.h"
- #include "abi/guc_klvs_abi.h"
- #include "regs/xe_lrc_layout.h"
- #include "xe_assert.h"
-@@ -400,6 +401,7 @@ static void __guc_exec_queue_policy_add_##func(struct exec_queue_policy *policy,
- MAKE_EXEC_QUEUE_POLICY_ADD(execution_quantum, EXECUTION_QUANTUM)
- MAKE_EXEC_QUEUE_POLICY_ADD(preemption_timeout, PREEMPTION_TIMEOUT)
- MAKE_EXEC_QUEUE_POLICY_ADD(priority, SCHEDULING_PRIORITY)
-+MAKE_EXEC_QUEUE_POLICY_ADD(slpc_exec_queue_freq_req, SLPM_GT_FREQUENCY)
- #undef MAKE_EXEC_QUEUE_POLICY_ADD
- 
- static const int xe_exec_queue_prio_to_guc[] = {
-@@ -414,14 +416,20 @@ static void init_policies(struct xe_guc *guc, struct xe_exec_queue *q)
- 	struct exec_queue_policy policy;
- 	enum xe_exec_queue_priority prio = q->sched_props.priority;
- 	u32 timeslice_us = q->sched_props.timeslice_us;
-+	u32 slpc_exec_queue_freq_req = 0;
- 	u32 preempt_timeout_us = q->sched_props.preempt_timeout_us;
- 
- 	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
- 
-+	if (q->flags & EXEC_QUEUE_FLAG_LOW_LATENCY)
-+		slpc_exec_queue_freq_req |= SLPC_CTX_FREQ_REQ_IS_COMPUTE;
-+
- 	__guc_exec_queue_policy_start_klv(&policy, q->guc->id);
- 	__guc_exec_queue_policy_add_priority(&policy, xe_exec_queue_prio_to_guc[prio]);
- 	__guc_exec_queue_policy_add_execution_quantum(&policy, timeslice_us);
- 	__guc_exec_queue_policy_add_preemption_timeout(&policy, preempt_timeout_us);
-+	__guc_exec_queue_policy_add_slpc_exec_queue_freq_req(&policy,
-+							     slpc_exec_queue_freq_req);
- 
- 	xe_guc_ct_send(&guc->ct, (u32 *)&policy.h2g,
- 		       __guc_exec_queue_policy_action_size(&policy), 0, 0);
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index c059639613f7..64acb3488406 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -335,6 +335,8 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
- 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
- 			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM;
-+	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
-+			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
- 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
- 		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
- 	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index e2160330ad01..decbb3b2df36 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -393,6 +393,8 @@ struct drm_xe_query_mem_regions {
-  *
-  *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM - Flag is set if the device
-  *      has usable VRAM
-+ *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY - Flag is set if the device
-+ *      has low latency hint support
-  *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
-  *    required by this device, typically SZ_4K or SZ_64K
-  *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
-@@ -409,6 +411,7 @@ struct drm_xe_query_config {
- #define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
- #define DRM_XE_QUERY_CONFIG_FLAGS			1
- 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
-+	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
- #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
- #define DRM_XE_QUERY_CONFIG_VA_BITS			3
- #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
-@@ -1124,6 +1127,7 @@ struct drm_xe_vm_bind {
-  *         .engine_class = DRM_XE_ENGINE_CLASS_RENDER,
-  *     };
-  *     struct drm_xe_exec_queue_create exec_queue_create = {
-+ *          .flags = DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT
-  *          .extensions = 0,
-  *          .vm_id = vm,
-  *          .num_bb_per_exec = 1,
-@@ -1150,7 +1154,8 @@ struct drm_xe_exec_queue_create {
- 	/** @vm_id: VM to use for this exec queue */
- 	__u32 vm_id;
- 
--	/** @flags: MBZ */
-+#define DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT	(1 << 0)
-+	/** @flags: flags to use for this exec queue */
- 	__u32 flags;
- 
- 	/** @exec_queue_id: Returned exec queue ID */
--- 
-2.43.0
+(More important for userspace would be know if dmabuf fds remain
+pointing to valid memory retaining its contents or if the contents are
+lost. Userspace cannot tell which device a dmabuf originates from,
+AFAIK, so this would need to be added in the generic dmabuf UAPI.)
 
+	"Consumers can also choose to have the device available for
+	debugging or additional data collection before performing the
+	recovery."
+
+Couldn't the wedged driver instance remain detached from the hardware
+while a new driver instance initializes? Then debug data remains until
+the wedged device is fully closed from userspace, or maybe devcore dump
+retains it.
+
+I presume that WEDGED=3Dnone case should retain the debug data somehow as
+well.
+
+> > > +With IOCTLs blocked and device already 'wedged', all device memory s=
+hould
+
+btw. when I see "blocked" I think of the function call not returning
+yet. But in this patch "blocked" seems to be synonymous for "returns
+an error immediately". Would it be possible to avoid the word "blocked"
+for this?
+
+> > > +be unmapped and file descriptors should be closed to prevent leaks. =
+=20
+> > Afaiu from a userspace POV, a rebind is just like a GPU hotunplug +
+> > hotplug with matching "remove" and "add" udev events. As long as the
+> > application cleans up resources related to the device when it receives
+> > the event, there should be no leaks with a normal hotunplug... Is this
+> > different enough that we can't have the same expectations? =20
+>=20
+> The thing about "remove" event is that it is generated *after* we opt for=
+ an
+> unbind, and at that point it might be already too late if userspace doesn=
+'t
+> get enough time to clean things up while the device is removed with a live
+> client resulting in unknown consequences.
+>=20
+> The idea here is to clean things up *before* we opt for an unbind leaving
+> no room for side effects.
+
+Something here feels fragile. There should not be a deadline for
+userspace to finish cleaning up. What was described for KMS device nodes
+in this same document seems like a more reliable approach: keep the
+dead driver instance around until userspace has closed all references
+to it. The device node could be removed earlier.
+
+
+Thanks,
+pq
+
+--Sig_/WDsb8DKWCL+/WckgwZn74cK
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmeXXqAACgkQI1/ltBGq
+qqcM/Q/+Ipt9pMHVb7G+gEvEnhJkrg1fVIHMg2XIo3dIkwC7T8Jrtv8D8eRsbQ6Y
+SRlCSt2FjhlzcLDVVz3li5BgYxyHvEoFdu7KNvgmPydLvdXvUIsBDpluSHhzOCFf
+b3XgaplCG7QlsQMAkP5w0PATD3J0yp8izHFwtlIymst7loPhmTqDd8fJNCfhpA1a
+1qLe3Y8fE+1gzVA3ScrH+H+wWLXi3hKPM5S8ukghCkTUqrO1pc41HDVt2yQ+0UR4
+d2DPAgUayv2uVJvU3mVUpYAU519xFswrtFJ5oGtHMf1aAb4GS4GvUDmQr0TE2ZVo
+l0gc9v1RQ7KLGy3nTNu56a8d3rSYML4OoG569IlW7OyzncE9rsofMMAJ8Z4snzoY
+0+A8lQsJX76gxgdDk7NEZgPdm/9SzY5pZmR/uVn2/ilrnozOy57xKNIU1uYS//IG
+iXGCj8gk+zPUyvId1eLFsCLELOnujTK3g7llRYXR5axdQn2/GElJ4nPbGi0KyZWQ
+whJ6u48Qek6n+3aX1tjuL6EeIhW9aiTXQ4PmS4owwKvi0SB+vys8WRwFvynDLP5Z
+BNq9mUASWrRZE6M7qycKhcAjccZuDyAfz//++5clDmfL05dIntTYzctamLilwWdy
+wsRSNEB/o2ikguHw6NOSTTRL1Lk4usLjPQwoAIi0+kWvEMCjXr4=
+=axF5
+-----END PGP SIGNATURE-----
+
+--Sig_/WDsb8DKWCL+/WckgwZn74cK--
