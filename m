@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E870C02190
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 16:56:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CB0CC0218A
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 16:59:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 695C610E6D8;
-	Tue, 28 Jan 2025 16:56:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EPu1fudL";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 165F810E6D7;
- Tue, 28 Jan 2025 16:56:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738083365; x=1769619365;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=FBZHpowYmvsWYp8CbWNExlzuLWmJ9xMmICnBH6xmqoM=;
- b=EPu1fudL2pEC371/ft+Vpsq4/hMDU2ijDFJ28QHm8KMpzYKBnvvIt6DH
- L7L5P82MpLHu0pjWqaLEtOKlv2pFgFlkhnKndijZfLwIvaUnT0F74Cof2
- EfVAsf/Z+wSjLlrmrg7Ktjevy8Kpza8uAdthpsubzkYJXYRhPwVvkFaVl
- ideNL9ONK+ulDBzIUvg9SJhbsCmgS5Rms3NmwOxhlfq+Y6WKJXrXVGcoq
- spZgcB9aMSkpg9WSRU3IuWBv8RQSnL6k7U4WKJTM1IcxVLhnaapkLW7vc
- D0rz33hem7nMTHSZLxFUmhWfREbrjVPgsEnCYCP0UdhjIIqm4UGS2fm4t Q==;
-X-CSE-ConnectionGUID: 0ooNHAZUTdiZB3yz5LSUYw==
-X-CSE-MsgGUID: rYG/y/zOQXiEsClXbwroNA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="42239812"
-X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="42239812"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 08:56:04 -0800
-X-CSE-ConnectionGUID: QVDbf7asRSewc/o88rwDdg==
-X-CSE-MsgGUID: OM7PsWR7SiuFE3r4ivzTGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="108889411"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 28 Jan 2025 08:56:01 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 28 Jan 2025 18:56:00 +0200
-Date: Tue, 28 Jan 2025 18:56:00 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/5] drm/i915: Move VT-d alignment into
- plane->min_alignment()
-Message-ID: <Z5kMIMhfNERQp_FL@intel.com>
-References: <20250122151755.6928-1-ville.syrjala@linux.intel.com>
- <20250122151755.6928-2-ville.syrjala@linux.intel.com>
- <878qqwbn6d.fsf@intel.com> <Z5e35V4CqZ3m40y-@intel.com>
- <Z5fCEEIgHItifhwQ@intel.com> <87h65j9spc.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED81D10E6D2;
+	Tue, 28 Jan 2025 16:59:21 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96EF010E127;
+ Tue, 28 Jan 2025 16:59:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87h65j9spc.fsf@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/guc=3A_Fix_size=5Ft_pri?=
+ =?utf-8?q?nt_format?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 28 Jan 2025 16:59:21 -0000
+Message-ID: <173808356161.2012514.12257553315836333931@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250128154242.3371687-1-lucas.demarchi@intel.com>
+In-Reply-To: <20250128154242.3371687-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,71 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jan 28, 2025 at 11:46:23AM +0200, Jani Nikula wrote:
-> On Mon, 27 Jan 2025, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > On Mon, Jan 27, 2025 at 06:44:21PM +0200, Ville Syrjälä wrote:
-> >> On Mon, Jan 27, 2025 at 11:50:34AM +0200, Jani Nikula wrote:
-> >> > On Wed, 22 Jan 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> >> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >> > >
-> >> > > Currently we don't account for the VT-d alignment w/a in
-> >> > > plane->min_alignment() which means that panning inside a larger
-> >> > > framebuffer can still cause the plane SURF to be misaligned.
-> >> > > Fix the issue by moving the VT-d alignment w/a into
-> >> > > plane->min_alignment() itself (for the affected platforms).
-> >> > >
-> >> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >> > > ---
-> >> > >  drivers/gpu/drm/i915/display/i9xx_plane.c          | 10 ++++++++++
-> >> > >  drivers/gpu/drm/i915/display/intel_cursor.c        |  5 +++++
-> >> > >  drivers/gpu/drm/i915/display/intel_fb_pin.c        |  8 --------
-> >> > >  drivers/gpu/drm/i915/display/intel_sprite.c        |  5 +++++
-> >> > >  drivers/gpu/drm/i915/display/skl_universal_plane.c |  4 ++++
-> >> > >  5 files changed, 24 insertions(+), 8 deletions(-)
-> >> > >
-> >> > > diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> >> > > index ed171fbf8720..19cc34babef3 100644
-> >> > > --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> >> > > +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> >> > > @@ -780,9 +780,14 @@ unsigned int vlv_plane_min_alignment(struct intel_plane *plane,
-> >> > >  				     const struct drm_framebuffer *fb,
-> >> > >  				     int color_plane)
-> >> > >  {
-> >> > > +	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-> >> > > +
-> >> > >  	if (intel_plane_can_async_flip(plane, fb->modifier))
-> >> > >  		return 256 * 1024;
-> >> > >  
-> >> > > +	if (intel_scanout_needs_vtd_wa(i915))
-> >> > > +		return 256 * 1024;
-> >> > 
-> >> > Nitpick, would be great to convert intel_scanout_needs_vtd_wa() to
-> >> > struct intel_display first, so we wouldn't have to introduce so many new
-> >> > struct drm_i915_private uses.
-> >> 
-> >> I didn't really want to add intel_display stuff to the
-> >> gem side (where this is being used currently). Once
-> >> its all moved into the display code (patch 3) then it
-> >> makes more sense.
-> 
-> Roger.
-> 
-> > BTW I do have full conversion of all the low level
-> > plane code (+ a bunch of other stuff including
-> > intel_display_power_{put,get}() stuff) done locally.
-> > But I have quite a few series on the list already
-> > needing review, so not sure I should also post that
-> > one right now. I can, if you especially want something
-> > mundane to read?
-> 
-> I might be up for just that, actually.
+== Series Details ==
 
-Apparently I already posted that. Go figure.
-https://patchwork.freedesktop.org/series/143942/
+Series: drm/xe/guc: Fix size_t print format
+URL   : https://patchwork.freedesktop.org/series/144039/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+lib/modules/6.13.0-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-xe+/kernel/kernel/
+lib/modules/6.13.0-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-xe+/kernel/crypto/
+lib/modules/6.13.0-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-xe+/kernel/block/
+lib/modules/6.13.0-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-xe+/build
+lib/modules/6.13.0-xe+/modules.alias.bin
+lib/modules/6.13.0-xe+/modules.builtin
+lib/modules/6.13.0-xe+/modules.softdep
+lib/modules/6.13.0-xe+/modules.alias
+lib/modules/6.13.0-xe+/modules.order
+lib/modules/6.13.0-xe+/modules.symbols
+lib/modules/6.13.0-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1738083551:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1738083551:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
