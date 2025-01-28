@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08CA2C02190
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 16:06:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 421D6C0218A
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 16:12:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF00810E6A8;
-	Tue, 28 Jan 2025 16:06:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g57D9eDd";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B1FC10E6AD;
- Tue, 28 Jan 2025 16:06:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738080387; x=1769616387;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=etqs1QrZjOC9vPztEAi8VEnzJ+Dp0FlU9zuLSpxlJI0=;
- b=g57D9eDdcdcV3EMFDRTjtclJuNq1R5BWfJmAReuCcZyWA/eHj9QgeY31
- prS/s6JTt5JQ2ZrYUMt5RxAmT1ZuUwhdHGzZmMC8LqQBag+l1t5IfU5SZ
- wnxnU5WRSFPtjCPyPb3XKCWbsinDmO77Ol37+YXu06VC+N4JCmfBC4jqN
- 5hj0S9fDYAijNcM1Ra+H9LQmp5ME0e/3MDFwkQDbEGUgrwmdcuwFf/ioA
- Az57Qrh1mx2a63bWtTLwFSGuUp/J9twfAyp6RBPwLXjUUfz5MBRMT6mNv
- sIac9cD7Tnpvlog0jWUfSCw0sYZM0N16wFBzlfeMTq8VDHtNwmiDXhedN Q==;
-X-CSE-ConnectionGUID: /rBkhm39QtOqu40XtN9ElQ==
-X-CSE-MsgGUID: isUS5/oDTGOoozI39APseA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="38745069"
-X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="38745069"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 08:06:26 -0800
-X-CSE-ConnectionGUID: +jFgLQNLTd+gFftIz6aK/Q==
-X-CSE-MsgGUID: 58CwPwapQQGqp1euEYZUjA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="145977032"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa001.jf.intel.com with ESMTP; 28 Jan 2025 08:06:24 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Tue, 28 Jan 2025 21:21:19 +0530
-Subject: [PATCH v8 13/14] drm/i915/histogram: Histogram changes for Display 20+
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A49010E6A8;
+	Tue, 28 Jan 2025 16:12:33 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AA5E10E69E;
+ Tue, 28 Jan 2025 16:12:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2570636341062090232=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250128-dpst-v8-13-871b94d777f8@intel.com>
-References: <20250128-dpst-v8-0-871b94d777f8@intel.com>
-In-Reply-To: <20250128-dpst-v8-0-871b94d777f8@intel.com>
-To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com, dmitry.baryshkov@linaro.org, 
- Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/sched=3A_Use_struct_for?=
+ =?utf-8?q?_drm=5Fsched=5Finit=28=29_params_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Philipp Stanner" <phasta@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 28 Jan 2025 16:12:32 -0000
+Message-ID: <173808075202.1995979.6332880219603139865@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250128142927.103290-2-phasta@kernel.org>
+In-Reply-To: <20250128142927.103290-2-phasta@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,229 +36,157 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In Display 20+, new registers are added for setting index, reading
-histogram and writing the IET.
+--===============2570636341062090232==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Removed duplicate code (Jani)
-v3: Moved histogram core changes to earlier patches (Jani/Suraj)
-v4: Rebased after addressing comments on patch 1
-v5: Added the retry logic from patch3 and rebased the patch series
-v6: optimize wite_iet() (Suraj)
+== Series Details ==
 
-Bspec: 68895
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_histogram.c     | 108 +++++++++++++++------
- .../gpu/drm/i915/display/intel_histogram_regs.h    |  25 +++++
- 2 files changed, 104 insertions(+), 29 deletions(-)
+Series: drm/sched: Use struct for drm_sched_init() params (rev2)
+URL   : https://patchwork.freedesktop.org/series/143883/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c b/drivers/gpu/drm/i915/display/intel_histogram.c
-index dd4ab30795df48011013c019d7525e046cdd5404..f6844449e4bb6167116d223af316e5f3a5e8707c 100644
---- a/drivers/gpu/drm/i915/display/intel_histogram.c
-+++ b/drivers/gpu/drm/i915/display/intel_histogram.c
-@@ -22,6 +22,37 @@
- #define HISTOGRAM_BIN_READ_RETRY_COUNT 5
- #define IET_SAMPLE_FORMAT_1_INT_9_FRACT 0x1000009
- 
-+static void set_bin_index_0(struct intel_display *display, enum pipe pipe)
-+{
-+	if (DISPLAY_VER(display) >= 20)
-+		intel_de_rmw(display, DPST_IE_INDEX(pipe),
-+			     DPST_IE_BIN_INDEX_MASK, DPST_IE_BIN_INDEX(0));
-+	else
-+		intel_de_rmw(display, DPST_CTL(pipe),
-+			     DPST_CTL_BIN_REG_MASK,
-+			     DPST_CTL_BIN_REG_CLEAR);
-+}
-+
-+static void write_iet(struct intel_display *display, enum pipe pipe,
-+			      u32 *data)
-+{
-+	int i;
-+
-+	for (i = 0; i < HISTOGRAM_IET_LENGTH; i++) {
-+		if (DISPLAY_VER(display) >= 20)
-+			intel_de_rmw(display, DPST_IE_BIN(pipe),
-+				     DPST_IE_BIN_DATA_MASK,
-+				     DPST_IE_BIN_DATA(data[i]));
-+		else
-+			intel_de_rmw(display, DPST_BIN(pipe),
-+				     DPST_BIN_DATA_MASK,
-+				     DPST_BIN_DATA(data[i]));
-+
-+		drm_dbg_atomic(display->drm, "iet_lut[%d]=%x\n",
-+			       i, data[i]);
-+	}
-+}
-+
- static bool intel_histogram_get_data(struct intel_crtc *intel_crtc)
- {
- 	struct intel_display *display = to_intel_display(intel_crtc);
-@@ -29,12 +60,27 @@ static bool intel_histogram_get_data(struct intel_crtc *intel_crtc)
- 	int index;
- 	u32 dpstbin;
- 
-+	if (DISPLAY_VER(display) >= 20)
-+		intel_de_rmw(display, DPST_HIST_INDEX(intel_crtc->pipe),
-+			     DPST_HIST_BIN_INDEX_MASK,
-+			     DPST_HIST_BIN_INDEX(0));
-+	else
-+		intel_de_rmw(display, DPST_CTL(intel_crtc->pipe),
-+			     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_BIN_REG_MASK, 0);
-+
- 	for (index = 0; index < ARRAY_SIZE(histogram->bin_data); index++) {
--		dpstbin = intel_de_read(display, DPST_BIN(intel_crtc->pipe));
-+		dpstbin = intel_de_read(display, (DISPLAY_VER(display) >= 20 ?
-+					DPST_HIST_BIN(intel_crtc->pipe) :
-+					DPST_BIN(intel_crtc->pipe)));
- 		if (!(dpstbin & DPST_BIN_BUSY)) {
--			histogram->bin_data[index] = dpstbin & DPST_BIN_DATA_MASK;
--		} else
-+			histogram->bin_data[index] = dpstbin & (DISPLAY_VER(display) >= 20 ?
-+								DPST_HIST_BIN_DATA_MASK :
-+								DPST_BIN_DATA_MASK);
-+		} else {
-+			drm_err(display->drm, "Histogram bin busy, retyring\n");
-+			fsleep(2);
- 			return false;
-+		}
- 	}
- 	return true;
- }
-@@ -62,8 +108,6 @@ static void intel_histogram_handle_int_work(struct work_struct *work)
- 	 * Set DPST_CTL Bin Reg function select to TC
- 	 * Set DPST_CTL Bin Register Index to 0
- 	 */
--	intel_de_rmw(display, DPST_CTL(intel_crtc->pipe),
--		     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_BIN_REG_MASK, 0);
- 	for (retry = 0; retry < HISTOGRAM_BIN_READ_RETRY_COUNT; retry++) {
- 		if (intel_histogram_get_data(intel_crtc)) {
- 			u32 *data;
-@@ -156,17 +200,27 @@ static int intel_histogram_enable(struct intel_crtc *intel_crtc, u8 mode)
- 
- 	if (histogram->enable)
- 		return 0;
--
--	 /* enable histogram, clear DPST_CTL bin reg func select to TC */
--	intel_de_rmw(display, DPST_CTL(pipe),
--		     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_IE_HIST_EN |
--		     DPST_CTL_HIST_MODE | DPST_CTL_IE_TABLE_VALUE_FORMAT |
--		     DPST_CTL_ENHANCEMENT_MODE_MASK | DPST_CTL_IE_MODI_TABLE_EN,
--		     ((mode == DRM_MODE_HISTOGRAM_HSV_MAX_RGB) ?
--		      DPST_CTL_BIN_REG_FUNC_TC : 0) | DPST_CTL_IE_HIST_EN |
--		     DPST_CTL_HIST_MODE_HSV |
--		     DPST_CTL_IE_TABLE_VALUE_FORMAT_1INT_9FRAC |
--		     DPST_CTL_EN_MULTIPLICATIVE | DPST_CTL_IE_MODI_TABLE_EN);
-+	 /* enable histogram, clear DPST_BIN reg and select TC function */
-+	if (DISPLAY_VER(display) >= 20)
-+		intel_de_rmw(display, DPST_CTL(pipe),
-+			     DPST_CTL_IE_HIST_EN |
-+			     DPST_CTL_HIST_MODE,
-+			     DPST_CTL_IE_HIST_EN |
-+			     DPST_CTL_HIST_MODE_HSV);
-+	else
-+		 /* enable histogram, clear DPST_CTL bin reg func select to TC */
-+		intel_de_rmw(display, DPST_CTL(pipe),
-+			     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_IE_HIST_EN |
-+			     DPST_CTL_HIST_MODE |
-+			     DPST_CTL_IE_TABLE_VALUE_FORMAT |
-+			     DPST_CTL_ENHANCEMENT_MODE_MASK |
-+			     DPST_CTL_IE_MODI_TABLE_EN,
-+			     ((mode == DRM_MODE_HISTOGRAM_HSV_MAX_RGB) ?
-+			      DPST_CTL_BIN_REG_FUNC_TC : 0) |
-+			     DPST_CTL_IE_HIST_EN |
-+			     DPST_CTL_HIST_MODE_HSV |
-+			     DPST_CTL_IE_TABLE_VALUE_FORMAT_1INT_9FRAC |
-+			     DPST_CTL_EN_MULTIPLICATIVE | DPST_CTL_IE_MODI_TABLE_EN);
- 
- 	/* Re-Visit: check if wait for one vblank is required */
- 	drm_crtc_wait_one_vblank(&intel_crtc->base);
-@@ -244,7 +298,6 @@ int intel_histogram_set_iet_lut(struct intel_crtc *intel_crtc,
- 	struct intel_histogram *histogram = intel_crtc->histogram;
- 	struct intel_display *display = to_intel_display(intel_crtc);
- 	int pipe = intel_crtc->pipe;
--	int i = 0;
- 	struct drm_iet_1dlut_sample *iet;
- 	u32 *data;
- 	int ret;
-@@ -262,15 +315,15 @@ int intel_histogram_set_iet_lut(struct intel_crtc *intel_crtc,
- 		return -EINVAL;
- 	}
- 
--	/* Set DPST_CTL Bin Reg function select to IE & wait for a vblabk */
--	intel_de_rmw(display, DPST_CTL(pipe),
--		     DPST_CTL_BIN_REG_FUNC_SEL, DPST_CTL_BIN_REG_FUNC_IE);
- 
--	drm_crtc_wait_one_vblank(&intel_crtc->base);
-+	if (DISPLAY_VER(display) < 20) {
-+		/* Set DPST_CTL Bin Reg function select to IE & wait for a vblabk */
-+		intel_de_rmw(display, DPST_CTL(pipe),
-+			     DPST_CTL_BIN_REG_FUNC_SEL,
-+			     DPST_CTL_BIN_REG_FUNC_IE);
-+	}
- 
--	 /* Set DPST_CTL Bin Register Index to 0 */
--	intel_de_rmw(display, DPST_CTL(pipe),
--		     DPST_CTL_BIN_REG_MASK, DPST_CTL_BIN_REG_CLEAR);
-+	set_bin_index_0(display, pipe);
- 
- 	iet = (struct drm_iet_1dlut_sample *)blob->data;
- 	data = kzalloc(sizeof(data) * iet->nr_elements, GFP_KERNEL);
-@@ -281,11 +334,8 @@ int intel_histogram_set_iet_lut(struct intel_crtc *intel_crtc,
- 	if (ret)
- 		return ret;
- 
--	for (i = 0; i < HISTOGRAM_IET_LENGTH; i++) {
--		intel_de_rmw(display, DPST_BIN(pipe),
--			     DPST_BIN_DATA_MASK, data[i]);
--		drm_dbg_atomic(display->drm, "iet_lut[%d]=%x\n", i, data[i]);
--	}
-+	write_iet(display, pipe, data);
-+
- 	kfree(data);
- 	drm_property_blob_put(intel_crtc->base.state->iet_lut);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram_regs.h b/drivers/gpu/drm/i915/display/intel_histogram_regs.h
-index 213c9f483567cb19a47b44953749f6baf0afe9e7..3fbb9c2deaae6278d5a832dfb61ef860de0c6f21 100644
---- a/drivers/gpu/drm/i915/display/intel_histogram_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_histogram_regs.h
-@@ -45,6 +45,31 @@
- #define _DPST_BIN_B					0x491C4
- #define DPST_BIN(pipe)					_MMIO_PIPE(pipe, _DPST_BIN_A, _DPST_BIN_B)
- #define  DPST_BIN_DATA_MASK				REG_GENMASK(23, 0)
-+#define  DPST_BIN_DATA(val)				REG_FIELD_PREP(DPST_BIN_DATA_MASK, val)
- #define  DPST_BIN_BUSY					REG_BIT(31)
- 
-+#define _DPST_HIST_INDEX_A				0x490D8
-+#define _DPST_HIST_INDEX_B				0x491D8
-+#define DPST_HIST_INDEX(pipe)				_MMIO_PIPE(pipe, _DPST_HIST_INDEX_A, _DPST_HIST_INDEX_B)
-+#define  DPST_HIST_BIN_INDEX_MASK			REG_GENMASK(4, 0)
-+#define  DPST_HIST_BIN_INDEX(val)			REG_FIELD_PREP(DPST_HIST_BIN_INDEX_MASK, val)
-+
-+#define _DPST_HIST_BIN_A				0x490C4
-+#define _DPST_HIST_BIN_B				0x491C4
-+#define DPST_HIST_BIN(pipe)				_MMIO_PIPE(pipe, _DPST_HIST_BIN_A, _DPST_HIST_BIN_B)
-+#define  DPST_HIST_BIN_BUSY				REG_BIT(31)
-+#define  DPST_HIST_BIN_DATA_MASK				REG_GENMASK(30, 0)
-+
-+#define _DPST_IE_BIN_A					0x490CC
-+#define _DPST_IE_BIN_B					0x491CC
-+#define DPST_IE_BIN(pipe)				_MMIO_PIPE(pipe, _DPST_IE_BIN_A, _DPST_IE_BIN_B)
-+#define	 DPST_IE_BIN_DATA_MASK				REG_GENMASK(9, 0)
-+#define  DPST_IE_BIN_DATA(val)				REG_FIELD_PREP(DPST_IE_BIN_DATA_MASK, val)
-+
-+#define _DPST_IE_INDEX_A				0x490DC
-+#define _DPST_IE_INDEX_B				0x491DC
-+#define DPST_IE_INDEX(pipe)				_MMIO_PIPE(pipe, _DPST_IE_INDEX_A, _DPST_IE_INDEX_B)
-+#define  DPST_IE_BIN_INDEX_MASK				REG_GENMASK(6, 0)
-+#define  DPST_IE_BIN_INDEX(val)				REG_FIELD_PREP(DPST_IE_BIN_INDEX_MASK, val)
-+
- #endif /* __INTEL_HISTOGRAM_REGS_H__ */
+== Summary ==
 
--- 
-2.25.1
+CI Bug Log - changes from xe-2564-016c921dcfd5d324bbd5c8326fd9fecc7b5fbb84_BAT -> xe-pw-143883v2_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-143883v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [PASS][1] -> [SKIP][2] ([Intel XE#1192]) +1 other test skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2564-016c921dcfd5d324bbd5c8326fd9fecc7b5fbb84/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143883v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  * igt@xe_pat@pat-index-xelp@render:
+    - bat-adlp-vf:        [PASS][3] -> [DMESG-WARN][4] ([Intel XE#3970] / [Intel XE#4078]) +1 other test dmesg-warn
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2564-016c921dcfd5d324bbd5c8326fd9fecc7b5fbb84/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143883v2/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][6] ([Intel XE#1192])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2564-016c921dcfd5d324bbd5c8326fd9fecc7b5fbb84/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143883v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#4078]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-2564-016c921dcfd5d324bbd5c8326fd9fecc7b5fbb84 -> xe-pw-143883v2
+
+  IGT_8212: 76102a17560c6e6fc6528db29286b0266ccc48ef @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2564-016c921dcfd5d324bbd5c8326fd9fecc7b5fbb84: 016c921dcfd5d324bbd5c8326fd9fecc7b5fbb84
+  xe-pw-143883v2: 143883v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143883v2/index.html
+
+--===============2570636341062090232==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/sched: Use struct for drm_sched_init() params (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143883/">https://patchwork.freedesktop.org/series/143883/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143883v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143883v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2564-016c921dcfd5d324bbd5c8326fd9fecc7b5fbb84_BAT -&gt; xe-pw-143883v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-143883v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2564-016c921dcfd5d324bbd5c8326fd9fecc7b5fbb84/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143883v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp@render:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2564-016c921dcfd5d324bbd5c8326fd9fecc7b5fbb84/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143883v2/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2564-016c921dcfd5d324bbd5c8326fd9fecc7b5fbb84/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143883v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2564-016c921dcfd5d324bbd5c8326fd9fecc7b5fbb84 -&gt; xe-pw-143883v2</li>
+</ul>
+<p>IGT_8212: 76102a17560c6e6fc6528db29286b0266ccc48ef @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2564-016c921dcfd5d324bbd5c8326fd9fecc7b5fbb84: 016c921dcfd5d324bbd5c8326fd9fecc7b5fbb84<br />
+  xe-pw-143883v2: 143883v2</p>
+
+</body>
+</html>
+
+--===============2570636341062090232==--
