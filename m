@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 380E3C0218A
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 09:51:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B765EC02191
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 10:29:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04FC310E632;
-	Tue, 28 Jan 2025 09:51:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bntE1TpP";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03B3E10E63B;
- Tue, 28 Jan 2025 09:51:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738057860; x=1769593860;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Iu3AO+UrlqFk5Kv5JuEqsK0QZjFQslGkKAyjgvcVzPo=;
- b=bntE1TpPhPrV0q1EGu62s9KRCTeeXEG7r+hCvWDQVa90qhI+GOfxLO3u
- 0eg8ZI5zO+uE6MzIvEbiae83JTtlJD+DxxGGo9x9rJF8Gv/PtojhqNHcX
- 7ltH/JyKki+YTfcsLB52zLSHr/rkbJS/R/A27rX/kWWHR0dyy4SSppHLm
- dKBnHFVzB9EeXQUNAcr0Ml8mzSYDWeLWjwf/bkN1wUfei+Fpjf0eFEJ9n
- 6qh2H0iAHBA+VOI1UUJju9Z5z5SiEQ4KH8Hz6KF9i9mIDr3G+qkl/Q8jU
- R2nU4kGIgTlumYMD3ngRZMNLFg3CFa6qZOpOw5a9plwjN7wM3hle0TSss w==;
-X-CSE-ConnectionGUID: Sxz0p2SyRsmFRwwIgYOl9A==
-X-CSE-MsgGUID: U99kaWAiRN+hAgTB1zZRqA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="38673590"
-X-IronPort-AV: E=Sophos;i="6.13,240,1732608000"; d="scan'208";a="38673590"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 01:51:00 -0800
-X-CSE-ConnectionGUID: Q53XSHz+TVmBsizV4z5+/w==
-X-CSE-MsgGUID: 3SCVT27vQyap1prtdLW5pw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,240,1732608000"; d="scan'208";a="108660381"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.130])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 01:50:57 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>, Ville Syrjala
- <ville.syrjala@linux.intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Subject: RE: [PATCH] drm/i915: Give i915 and xe each their own display
- tracepoints
-In-Reply-To: <CH0PR11MB54445354D7CADC3046E2905EE5EC2@CH0PR11MB5444.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250127213055.640-1-ville.syrjala@linux.intel.com>
- <CH0PR11MB54445354D7CADC3046E2905EE5EC2@CH0PR11MB5444.namprd11.prod.outlook.com>
-Date: Tue, 28 Jan 2025 11:50:54 +0200
-Message-ID: <87ed0n9sht.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8196510E63E;
+	Tue, 28 Jan 2025 10:29:48 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 936BA10E63E;
+ Tue, 28 Jan 2025 10:29:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Enable_Survivability?=
+ =?utf-8?q?_mode_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 28 Jan 2025 10:29:46 -0000
+Message-ID: <173806018659.1863695.15717391686305596840@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250128095632.1294722-1-riana.tauro@intel.com>
+In-Reply-To: <20250128095632.1294722-1-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,22 +36,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 27 Jan 2025, "Cavitt, Jonathan" <jonathan.cavitt@intel.com> wrote:
-> Though it would probably be good to file an issue report detailing
-> the issue this fixes, then mark this patch as having fixed that
-> reported issue.
+== Series Details ==
 
-While I occasionally do request that when we get patches out of left
-field, and I want to ensure we have a full understanding of the problem,
-please let's not add extra hurdles for ourselves for fixing stuff.
+Series: Enable Survivability mode (rev7)
+URL   : https://patchwork.freedesktop.org/series/142464/
+State : success
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 73c0fe019ff4 drm-tip: 2025y-01m-28d-03h-44m-22s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Add functions and sysfs for boot survivability
+Applying: drm/xe: Enable Boot Survivability mode
+Applying: drm/xe: Initialize mei-gsc and vsec in survivability mode
 
 
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel
