@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2A29C0218A
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 23:12:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49B5AC0218A
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 23:13:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD15B10E17E;
-	Tue, 28 Jan 2025 23:12:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12C2210E11F;
+	Tue, 28 Jan 2025 23:13:14 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4355B88F94;
- Tue, 28 Jan 2025 23:12:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD39D10E11F;
+ Tue, 28 Jan 2025 23:13:12 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5B1?=
- =?utf-8?q?/3=5D_drm/xe=3A_Add_a_function_to_zap_page_table_by_address_range?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_series_starting_with_=5B1/3=5D?=
+ =?utf-8?q?_drm/xe=3A_Add_a_function_to_zap_page_table_by_address_range?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Oak Zeng" <oak.zeng@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Jan 2025 23:12:38 -0000
-Message-ID: <173810595826.2133681.3309151840142732008@b555e5b46a47>
+Date: Tue, 28 Jan 2025 23:13:12 -0000
+Message-ID: <173810599276.2133674.7295693163385307534@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250128222145.3849874-1-oak.zeng@intel.com>
 In-Reply-To: <20250128222145.3849874-1-oak.zeng@intel.com>
@@ -44,43 +44,61 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [1/3] drm/xe: Add a function to zap page table by address range
 URL   : https://patchwork.freedesktop.org/series/144072/
-State : success
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit cb0f1cdb1d31379f15c7b5e96e66a8c4d48691ee
-Author: Oak Zeng <oak.zeng@intel.com>
-Date:   Tue Jan 28 17:21:45 2025 -0500
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_vm.c:41:10: fatal error: i915_drv.h: No such file or directory
+   41 | #include "i915_drv.h"
+      |          ^~~~~~~~~~~~
+compilation terminated.
+make[7]: *** [../scripts/Makefile.build:194: drivers/gpu/drm/xe/xe_vm.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:440: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:440: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:440: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:440: drivers] Error 2
+make[2]: *** [/kernel/Makefile:1989: .] Error 2
+make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
-    drm/xe: Allow scratch page under fault mode for certain platform
-    
-    Normally scratch page is not allowed when a vm is operate under page
-    fault mode, i.e., in the existing codes, DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE
-    and DRM_XE_VM_CREATE_FLAG_FAULT_MODE are mutual exclusive. The reason
-    is fault mode relies on recoverable page to work, while scratch page
-    can mute recoverable page fault.
-    
-    On xe2 and xe3, HW prefetching can cause page fault interrupt. Due to
-    page fault interrupt overhead (i.e., need Guc and KMD involved to fix
-    the page fault), HW prefetching can be slowed by many orders of magnitude.
-    
-    Fix this problem by allowing scratch page under fault mode for xe2 and xe3.
-    With scratch page in place, HW prefetching could always hit scratch page
-    instead of causing interrupt.
-    
-    Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-+ /mt/dim checkpatch 8f3ba847175bfd495cbfe5b51d3cdfd8d32d24db drm-intel
-fc3c14dbb3cb drm/xe: Add a function to zap page table by address range
-108d849b4e71 drm/xe: Clear scratch page before vm_bind
-cb0f1cdb1d31 drm/xe: Allow scratch page under fault mode for certain platform
+[23:12:39] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[23:12:43] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
