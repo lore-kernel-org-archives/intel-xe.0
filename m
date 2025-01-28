@@ -4,57 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 154B6C0218D
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 09:36:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78AD0C0218A
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 09:38:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D367510E614;
-	Tue, 28 Jan 2025 09:36:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4390F10E612;
+	Tue, 28 Jan 2025 09:38:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cn/ZlM01";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I0uFOV60";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 223CF10E616
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Jan 2025 09:36:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1967F10E612;
+ Tue, 28 Jan 2025 09:38:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738056974; x=1769592974;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XVDtxoGWPVP4Ss9dQXBOSWto+VrW+2cgEi9u8iAZRgw=;
- b=Cn/ZlM01HAytS1FFg/rIy5IPKF/1Dmu1UCd/4HTrK7IWlkEmKpaS7WJe
- Yx6OVqBAvZ6SSP9Xo0bThmSncS7PucCB1wqnWAVF7XOSckf7zUPiPnr0N
- Cy/NVOYyTgj196KvC4nlgCQCPMFbKtsaEiyn5YJE3b1uimI8LxWsX3Z6Y
- 5YKIlkjY7H1GiScGsuRkT/CY2gIEte4lC1JOj5RLn9lyNQwkvJB9pTSU1
- 1AWaGE/4mkb+TgOSVM4L6KrCv1hSJhAGEU9wk/tCuZg3m/5pWxrvAbwpE
- oFhM0KZtpE9iGi5lMbp/N7dIN+m4vlc92pGerWNIKYmDIuicZLAnQE/cx Q==;
-X-CSE-ConnectionGUID: 8/YX0ZrnTAmWgy1tojHCHA==
-X-CSE-MsgGUID: Dl+S6sypQ2ueoOX1s7snRw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="49950898"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="49950898"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 01:36:13 -0800
-X-CSE-ConnectionGUID: 5FPx3JgtSQ2jRYVjnaFf9Q==
-X-CSE-MsgGUID: ccqFr3fuSTqeuepKcj2LQg==
+ t=1738057082; x=1769593082;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=0OmVlqjNNBWDciJjn8c2KrLdS+04Lyx4uar8CJn7mK4=;
+ b=I0uFOV60veSJjEG2DmC5bt2IcRFKbUfOEpm2ze9XhJnpMqBOPzAi7Dp0
+ yVmknQvvkqjSwct9jGrU7jaat2iJeXZWPCsxQmFJKyKJ+M6Jlxo9TAe1d
+ +T2YhT9EEkKTiTkhs7arbXF8hIlz+weITRKdxEzW3xJH0s0sUq5WPmwfO
+ dBEQSJ4cY/z+2+IrbwD2gR4LTY+02A4jHuoHF7FkPkFmgr4f9oEgWNMNJ
+ CdOqM2QPBRX8VzHoaFnhrzDAzMT9S17Hfhq8I6rzKC1rxJggN+MEh1657
+ KEkP+kp1wq4J4ta9EmFzumLDbfWGCsCGsDvyVkI+cY1IiE2pzoiricwCl Q==;
+X-CSE-ConnectionGUID: t4nCgrN0QvKUnkqHocLbbQ==
+X-CSE-MsgGUID: 3nQINScGS4auGPtNixlgNw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="38568590"
+X-IronPort-AV: E=Sophos;i="6.13,240,1732608000"; d="scan'208";a="38568590"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2025 01:38:02 -0800
+X-CSE-ConnectionGUID: zeU0ymB6Qjiw5yMC4bCJMw==
+X-CSE-MsgGUID: myfb1sMlR7ymjVtXsqMshw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,240,1732608000"; d="scan'208";a="108492230"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 01:36:12 -0800
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com,
-	anshuman.gupta@intel.com,
-	rodrigo.vivi@intel.com
-Subject: [PATCH v6 3/3] drm/xe: Initialize mei-gsc and vsec in survivability
- mode
-Date: Tue, 28 Jan 2025 15:26:32 +0530
-Message-ID: <20250128095632.1294722-4-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250128095632.1294722-1-riana.tauro@intel.com>
-References: <20250128095632.1294722-1-riana.tauro@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113818126"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2025 01:37:56 -0800
+Date: Tue, 28 Jan 2025 11:37:53 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+Cc: Xaver Hugl <xaver.hugl@kde.org>, airlied@gmail.com, simona@ffwll.ch,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
+ lina@asahilina.net, michal.wajdeczko@intel.com,
+ christian.koenig@amd.com, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ himal.prasad.ghimiray@intel.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, alexander.deucher@amd.com,
+ andrealmeid@igalia.com, amd-gfx@lists.freedesktop.org,
+ kernel-dev@igalia.com
+Subject: Re: [PATCH v10 2/4] drm/doc: Document device wedged event
+Message-ID: <Z5ilcc0hC8nvz0Li@black.fi.intel.com>
+References: <20241128153707.1294347-1-raag.jadav@intel.com>
+ <20241128153707.1294347-3-raag.jadav@intel.com>
+ <CAFZQkGy3R0TMY5CARPQZF70fdKGLX8GQjV_YQAHzEXsiuNHj+w@mail.gmail.com>
+ <Z5CAkXSOpNiiFbv4@black.fi.intel.com>
+ <20250127122328.6d85bca1@eldfell>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250127122328.6d85bca1@eldfell>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,72 +79,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Initialize mei-gsc in survivability mode and disable HECI
-interrupts. Also initialize vsec in survivability mode
+On Mon, Jan 27, 2025 at 12:23:28PM +0200, Pekka Paalanen wrote:
+> On Wed, 22 Jan 2025 07:22:25 +0200
+> Raag Jadav <raag.jadav@intel.com> wrote:
+> 
+> > On Tue, Jan 21, 2025 at 02:14:56AM +0100, Xaver Hugl wrote:
+> > > > +It is the responsibility of the consumer to make sure that the device or
+> > > > +its resources are not in use by any process before attempting recovery.  
+> > > I'm not convinced this is actually doable in practice, outside of
+> > > killing all apps that aren't the one trying to recover the GPU.
+> > > Is this just about not crashing those processes if they don't handle
+> > > GPU hotunplugs well, about leaks, or something else?  
+> > 
+> > Correct, all of it. And since the compositor is in charge of device resources,
+> > this way it atleast has the opportunity to recover the device and recreate
+> > context without all the userspace violence.
+> 
+> Hi Raag,
+> 
+> sorry, I haven't followed this series, so I wonder, why should
+> userspace be part of recovering the device? Why doesn't the kernel
+> automatically load a new driver instance with a new DRM device node?
 
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Alexander Usyskin <alexander.usyskin@intel.com>
----
- drivers/gpu/drm/xe/xe_heci_gsc.c           | 3 ++-
- drivers/gpu/drm/xe/xe_survivability_mode.c | 7 +++++++
- 2 files changed, 9 insertions(+), 1 deletion(-)
+There are things like bus level reset (PCI SBR) and re-enumeration that are
+not possible from driver context (or atleast I'm not aware of it), so a new
+instance is just as useful/less as the old one.
 
-diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c b/drivers/gpu/drm/xe/xe_heci_gsc.c
-index d765bfd3636b..06dc78d3a812 100644
---- a/drivers/gpu/drm/xe/xe_heci_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
-@@ -12,6 +12,7 @@
- #include "xe_drv.h"
- #include "xe_heci_gsc.h"
- #include "xe_platform_types.h"
-+#include "xe_survivability_mode.h"
- 
- #define GSC_BAR_LENGTH  0x00000FFC
- 
-@@ -200,7 +201,7 @@ void xe_heci_gsc_init(struct xe_device *xe)
- 		return;
- 	}
- 
--	if (!def->use_polling) {
-+	if (!def->use_polling && !xe_survivability_mode_enabled(xe)) {
- 		ret = heci_gsc_irq_setup(xe);
- 		if (ret)
- 			goto fail;
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index 633f5effa349..c619560af74f 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -12,8 +12,10 @@
- 
- #include "xe_device.h"
- #include "xe_gt.h"
-+#include "xe_heci_gsc.h"
- #include "xe_mmio.h"
- #include "xe_pcode_api.h"
-+#include "xe_vsec.h"
- 
- #define MAX_SCRATCH_MMIO 8
- 
-@@ -142,6 +144,10 @@ static void enable_survivability_mode(struct pci_dev *pdev)
- 		dev_warn(dev, "Failed to create survivability sysfs files\n");
- 		return;
- 	}
-+
-+	xe_heci_gsc_init(xe);
-+
-+	xe_vsec_init(xe);
- }
- 
- /**
-@@ -194,6 +200,7 @@ void xe_survivability_mode_remove(struct xe_device *xe)
- 	struct device *dev = &pdev->dev;
- 
- 	sysfs_remove_file(&dev->kobj, &dev_attr_survivability_mode.attr);
-+	xe_heci_gsc_fini(xe);
- 	kfree(survivability->info);
- 	pci_set_drvdata(pdev, NULL);
- }
--- 
-2.47.1
+> Of course userspace needs to deal with stuff suddenly erroring out, and
+> destroy existing related resources, then wait for a working device
+> to appear and rebuild all state. The kernel driver already needs to
+> make the existing open stuff inert and harmless, why does it need an
+> acknowledgement from userspace to unbind and re-bind?
 
+Rebind is kind of a stepping stone to the above.
+
+> > I'm not entirely aware of its feasibility though, perhaps something for the
+> > consumers to experiment.
+> 
+> If consumers mean userspace, then no, not reliably. But the kernel can
+> do it.
+
+Can you please elaborate or refer to an example?
+
+> I see in the commit message written:
+> 
+> 	"For example, if the driver supports multiple recovery methods,
+> 	consumers can opt for the suitable one based on policy
+> 	definition."
+> 
+> How could consumers know what to do? How can they guess what would be
+> enough to recover the device? Isn't that the kernel driver's job to
+> know?
+
+Yes, 'WEDGED=' value are the known methods that are expected to work. The
+policy is how the consumer can decide which one to opt for depending on the
+scenario. For example, the less drastic method could work in most cases, but
+you'd probably want to opt for a more drastic method for repeat offences or
+perhaps if something more serious is discovered from "optional telemetry
+collection".
+
+> (More important for userspace would be know if dmabuf fds remain
+> pointing to valid memory retaining its contents or if the contents are
+> lost. Userspace cannot tell which device a dmabuf originates from,
+> AFAIK, so this would need to be added in the generic dmabuf UAPI.)
+
+Not sure if I understand, perhaps Christian can shed some light here.
+
+> 	"Consumers can also choose to have the device available for
+> 	debugging or additional data collection before performing the
+> 	recovery."
+> 
+> Couldn't the wedged driver instance remain detached from the hardware
+> while a new driver instance initializes? Then debug data remains until
+> the wedged device is fully closed from userspace, or maybe devcore dump
+> retains it.
+> 
+> I presume that WEDGED=none case should retain the debug data somehow as
+> well.
+
+Indeed, but it's optional so depends on the driver.
+
+> > > > +With IOCTLs blocked and device already 'wedged', all device memory should
+> 
+> btw. when I see "blocked" I think of the function call not returning
+> yet. But in this patch "blocked" seems to be synonymous for "returns
+> an error immediately". Would it be possible to avoid the word "blocked"
+> for this?
+
+It is meant as "blocking the access", but fair enough. We can have a quick
+fix later on if it's not too big of a concern.
+
+> > > > +be unmapped and file descriptors should be closed to prevent leaks.  
+> > > Afaiu from a userspace POV, a rebind is just like a GPU hotunplug +
+> > > hotplug with matching "remove" and "add" udev events. As long as the
+> > > application cleans up resources related to the device when it receives
+> > > the event, there should be no leaks with a normal hotunplug... Is this
+> > > different enough that we can't have the same expectations?  
+> > 
+> > The thing about "remove" event is that it is generated *after* we opt for an
+> > unbind, and at that point it might be already too late if userspace doesn't
+> > get enough time to clean things up while the device is removed with a live
+> > client resulting in unknown consequences.
+> > 
+> > The idea here is to clean things up *before* we opt for an unbind leaving
+> > no room for side effects.
+> 
+> Something here feels fragile. There should not be a deadline for
+> userspace to finish cleaning up. What was described for KMS device nodes
+> in this same document seems like a more reliable approach: keep the
+> dead driver instance around until userspace has closed all references
+> to it. The device node could be removed earlier.
+
+I'm not sure if I'm following here. The driver instance will exist as long
+as the dead device exists, which the consumer can remove if/when it chooses
+to trigger an unbind from userspace. There is no deadline for it.
+
+The consumer can choose to rely on hotplug events if it wishes, but the point
+here is that it doesn't guarantee a clean recovery in all cases.
+
+Raag
