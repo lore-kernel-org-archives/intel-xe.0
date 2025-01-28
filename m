@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 576FAC02197
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 18:37:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01EC6C02190
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 18:47:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AFDF10E6F8;
-	Tue, 28 Jan 2025 18:37:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lzCZ0N9s";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 643B210E29A;
- Tue, 28 Jan 2025 18:36:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738089414; x=1769625414;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=gYziqWTJpfVReSvW/y9qZRQndjBMU6yiROLU+hjjLMM=;
- b=lzCZ0N9sm/OSHmiiiVDas7Ws1EKgYyDdADSYf68HOtvgcnOot0vUxePY
- TTwuBtLL0xSY00R7YNyjrXaoB+nwLGXk/3govmzjhSIt3HDudumYOAHta
- 48k3+fwO9znjGMtU8hUi1BznV7DjnNTb/u3Kn3B3UFNI00xM0KyBUsgmP
- 7GfNlxLeOmjVmdkTiIQb6+mmakOcTbTl0fZv5HsGM22i0MrWvmO2cIMEs
- NFY4t75nF7AIUZx5VIlt1b2+gg4YcstdQ/vsDUX/EBR5qBCotPUaO6C88
- XmVpVGDJUY1TP+J4HDtdDizhsrjEuctNT4nNv0/eTqlpfZQzO0ECGMCv1 w==;
-X-CSE-ConnectionGUID: ET8xd+wBQEazibkB5oQFGA==
-X-CSE-MsgGUID: xPEhEbnFQ+WotEWZYdkb0g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="38288836"
-X-IronPort-AV: E=Sophos;i="6.13,242,1732608000"; d="scan'208";a="38288836"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 10:36:54 -0800
-X-CSE-ConnectionGUID: CfqCxZjvSDOtHGxPZPx4ng==
-X-CSE-MsgGUID: oUF7d/7oTEaJb5sEnRJSQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="109735306"
-Received: from aalteres-desk1.fm.intel.com ([10.1.39.140])
- by orviesa008.jf.intel.com with ESMTP; 28 Jan 2025 10:36:54 -0800
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- dri-devel@lists.freedesktop.org,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- John Harrison <john.c.harrison@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Zhanjun Dong <zhanjun.dong@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v6 1/6] drm/xe/guc: Rename __guc_capture_parsed_output
-Date: Tue, 28 Jan 2025 10:36:47 -0800
-Message-Id: <20250128183653.4027915-2-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250128183653.4027915-1-alan.previn.teres.alexis@intel.com>
-References: <20250128183653.4027915-1-alan.previn.teres.alexis@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCEE610E1F1;
+	Tue, 28 Jan 2025 18:47:12 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A27E510E1F1;
+ Tue, 28 Jan 2025 18:47:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Display_Global_Histogram_=28re?=
+ =?utf-8?q?v9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 28 Jan 2025 18:47:11 -0000
+Message-ID: <173809003165.2049724.10746025618473878186@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250128-dpst-v8-0-871b94d777f8@intel.com>
+In-Reply-To: <20250128-dpst-v8-0-871b94d777f8@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,376 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since '__guc_capture_parsed_output *' is a handle that
-is retrieved, stored and relinquished by an entity
-external to GuC (i.e. xe_devcoredump), lets rename it to
-something formal without the'__' prefix and export it
-via give a header file.
+== Series Details ==
 
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
----
- drivers/gpu/drm/xe/xe_devcoredump_types.h     |  2 +-
- drivers/gpu/drm/xe/xe_guc_capture.c           | 83 ++++++-------------
- drivers/gpu/drm/xe/xe_guc_capture.h           |  2 +-
- .../drm/xe/xe_guc_capture_snapshot_types.h    | 53 ++++++++++++
- drivers/gpu/drm/xe/xe_hw_engine.c             |  2 +-
- drivers/gpu/drm/xe/xe_hw_engine_types.h       |  5 --
- 6 files changed, 81 insertions(+), 66 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_snapshot_types.h
+Series: Display Global Histogram (rev9)
+URL   : https://patchwork.freedesktop.org/series/138867/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-index 1a1d16a96b2d..c94ce21043a8 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
-+++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-@@ -58,7 +58,7 @@ struct xe_devcoredump_snapshot {
- 	 * this single-node tracker works because devcoredump will always only
- 	 * produce one hw-engine capture per devcoredump event
- 	 */
--	struct __guc_capture_parsed_output *matched_node;
-+	struct xe_guc_capture_snapshot *matched_node;
- 	/** @vm: Snapshot of VM state */
- 	struct xe_vm_snapshot *vm;
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-index f6d523e4c5fe..e04c87739267 100644
---- a/drivers/gpu/drm/xe/xe_guc_capture.c
-+++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-@@ -26,6 +26,7 @@
- #include "xe_guc_ads.h"
- #include "xe_guc_capture.h"
- #include "xe_guc_capture_types.h"
-+#include "xe_guc_capture_snapshot_types.h"
- #include "xe_guc_ct.h"
- #include "xe_guc_exec_queue_types.h"
- #include "xe_guc_log.h"
-@@ -53,40 +54,6 @@ struct __guc_capture_bufstate {
- 	u32 wr;
- };
- 
--/*
-- * struct __guc_capture_parsed_output - extracted error capture node
-- *
-- * A single unit of extracted error-capture output data grouped together
-- * at an engine-instance level. We keep these nodes in a linked list.
-- * See cachelist and outlist below.
-- */
--struct __guc_capture_parsed_output {
--	/*
--	 * A single set of 3 capture lists: a global-list
--	 * an engine-class-list and an engine-instance list.
--	 * outlist in __guc_capture_parsed_output will keep
--	 * a linked list of these nodes that will eventually
--	 * be detached from outlist and attached into to
--	 * xe_codedump in response to a context reset
--	 */
--	struct list_head link;
--	bool is_partial;
--	u32 eng_class;
--	u32 eng_inst;
--	u32 guc_id;
--	u32 lrca;
--	u32 type;
--	bool locked;
--	enum xe_hw_engine_snapshot_source_id source;
--	struct gcap_reg_list_info {
--		u32 vfid;
--		u32 num_regs;
--		struct guc_mmio_reg *regs;
--	} reginfo[GUC_STATE_CAPTURE_TYPE_MAX];
--#define GCAP_PARSED_REGLIST_INDEX_GLOBAL   BIT(GUC_STATE_CAPTURE_TYPE_GLOBAL)
--#define GCAP_PARSED_REGLIST_INDEX_ENGCLASS BIT(GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS)
--};
--
- /*
-  * Define all device tables of GuC error capture register lists
-  * NOTE:
-@@ -287,7 +254,7 @@ struct xe_guc_state_capture {
- 
- static void
- guc_capture_remove_stale_matches_from_list(struct xe_guc_state_capture *gc,
--					   struct __guc_capture_parsed_output *node);
-+					   struct xe_guc_capture_snapshot *node);
- 
- static const struct __guc_mmio_reg_descr_group *
- guc_capture_get_device_reglist(struct xe_device *xe)
-@@ -841,7 +808,7 @@ static void check_guc_capture_size(struct xe_guc *guc)
- }
- 
- static void
--guc_capture_add_node_to_list(struct __guc_capture_parsed_output *node,
-+guc_capture_add_node_to_list(struct xe_guc_capture_snapshot *node,
- 			     struct list_head *list)
- {
- 	list_add(&node->link, list);
-@@ -849,7 +816,7 @@ guc_capture_add_node_to_list(struct __guc_capture_parsed_output *node,
- 
- static void
- guc_capture_add_node_to_outlist(struct xe_guc_state_capture *gc,
--				struct __guc_capture_parsed_output *node)
-+				struct xe_guc_capture_snapshot *node)
- {
- 	guc_capture_remove_stale_matches_from_list(gc, node);
- 	guc_capture_add_node_to_list(node, &gc->outlist);
-@@ -857,14 +824,14 @@ guc_capture_add_node_to_outlist(struct xe_guc_state_capture *gc,
- 
- static void
- guc_capture_add_node_to_cachelist(struct xe_guc_state_capture *gc,
--				  struct __guc_capture_parsed_output *node)
-+				  struct xe_guc_capture_snapshot *node)
- {
- 	guc_capture_add_node_to_list(node, &gc->cachelist);
- }
- 
- static void
- guc_capture_free_outlist_node(struct xe_guc_state_capture *gc,
--			      struct __guc_capture_parsed_output *n)
-+			      struct xe_guc_capture_snapshot *n)
- {
- 	if (n) {
- 		n->locked = 0;
-@@ -876,9 +843,9 @@ guc_capture_free_outlist_node(struct xe_guc_state_capture *gc,
- 
- static void
- guc_capture_remove_stale_matches_from_list(struct xe_guc_state_capture *gc,
--					   struct __guc_capture_parsed_output *node)
-+					   struct xe_guc_capture_snapshot *node)
- {
--	struct __guc_capture_parsed_output *n, *ntmp;
-+	struct xe_guc_capture_snapshot *n, *ntmp;
- 	int guc_id = node->guc_id;
- 
- 	list_for_each_entry_safe(n, ntmp, &gc->outlist, link) {
-@@ -888,7 +855,7 @@ guc_capture_remove_stale_matches_from_list(struct xe_guc_state_capture *gc,
- }
- 
- static void
--guc_capture_init_node(struct xe_guc *guc, struct __guc_capture_parsed_output *node)
-+guc_capture_init_node(struct xe_guc *guc, struct xe_guc_capture_snapshot *node)
- {
- 	struct guc_mmio_reg *tmp[GUC_STATE_CAPTURE_TYPE_MAX];
- 	int i;
-@@ -1067,13 +1034,13 @@ guc_capture_log_get_register(struct xe_guc *guc, struct __guc_capture_bufstate *
- 	return 0;
- }
- 
--static struct __guc_capture_parsed_output *
-+static struct xe_guc_capture_snapshot *
- guc_capture_get_prealloc_node(struct xe_guc *guc)
- {
--	struct __guc_capture_parsed_output *found = NULL;
-+	struct xe_guc_capture_snapshot *found = NULL;
- 
- 	if (!list_empty(&guc->capture->cachelist)) {
--		struct __guc_capture_parsed_output *n, *ntmp;
-+		struct xe_guc_capture_snapshot *n, *ntmp;
- 
- 		/* get first avail node from the cache list */
- 		list_for_each_entry_safe(n, ntmp, &guc->capture->cachelist, link) {
-@@ -1081,7 +1048,7 @@ guc_capture_get_prealloc_node(struct xe_guc *guc)
- 			break;
- 		}
- 	} else {
--		struct __guc_capture_parsed_output *n, *ntmp;
-+		struct xe_guc_capture_snapshot *n, *ntmp;
- 
- 		/*
- 		 * traverse reversed and steal back the oldest node already
-@@ -1100,11 +1067,11 @@ guc_capture_get_prealloc_node(struct xe_guc *guc)
- 	return found;
- }
- 
--static struct __guc_capture_parsed_output *
--guc_capture_clone_node(struct xe_guc *guc, struct __guc_capture_parsed_output *original,
-+static struct xe_guc_capture_snapshot *
-+guc_capture_clone_node(struct xe_guc *guc, struct xe_guc_capture_snapshot *original,
- 		       u32 keep_reglist_mask)
- {
--	struct __guc_capture_parsed_output *new;
-+	struct xe_guc_capture_snapshot *new;
- 	int i;
- 
- 	new = guc_capture_get_prealloc_node(guc);
-@@ -1146,7 +1113,7 @@ guc_capture_extract_reglists(struct xe_guc *guc, struct __guc_capture_bufstate *
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	struct guc_state_capture_group_header_t ghdr = {0};
- 	struct guc_state_capture_header_t hdr = {0};
--	struct __guc_capture_parsed_output *node = NULL;
-+	struct xe_guc_capture_snapshot *node = NULL;
- 	struct guc_mmio_reg *regs = NULL;
- 	int i, numlists, numregs, ret = 0;
- 	enum guc_state_capture_type datatype;
-@@ -1439,11 +1406,11 @@ void xe_guc_capture_process(struct xe_guc *guc)
- 		__guc_capture_process_output(guc);
- }
- 
--static struct __guc_capture_parsed_output *
-+static struct xe_guc_capture_snapshot *
- guc_capture_alloc_one_node(struct xe_guc *guc)
- {
- 	struct drm_device *drm = guc_to_drm(guc);
--	struct __guc_capture_parsed_output *new;
-+	struct xe_guc_capture_snapshot *new;
- 	int i;
- 
- 	new = drmm_kzalloc(drm, sizeof(*new), GFP_KERNEL);
-@@ -1468,7 +1435,7 @@ guc_capture_alloc_one_node(struct xe_guc *guc)
- static void
- __guc_capture_create_prealloc_nodes(struct xe_guc *guc)
- {
--	struct __guc_capture_parsed_output *node = NULL;
-+	struct xe_guc_capture_snapshot *node = NULL;
- 	int i;
- 
- 	for (i = 0; i < PREALLOC_NODES_MAX_COUNT; ++i) {
-@@ -1583,7 +1550,7 @@ xe_engine_manual_capture(struct xe_hw_engine *hwe, struct xe_hw_engine_snapshot
- 	struct xe_devcoredump *devcoredump = &xe->devcoredump;
- 	enum guc_capture_list_class_type capture_class;
- 	const struct __guc_mmio_reg_descr_group *list;
--	struct __guc_capture_parsed_output *new;
-+	struct xe_guc_capture_snapshot *new;
- 	enum guc_state_capture_type type;
- 	u16 guc_id = 0;
- 	u32 lrca = 0;
-@@ -1849,7 +1816,7 @@ void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm
-  *
-  * Returns: found guc-capture node ptr else NULL
-  */
--struct __guc_capture_parsed_output *
-+struct xe_guc_capture_snapshot *
- xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q)
- {
- 	struct xe_hw_engine *hwe;
-@@ -1878,7 +1845,7 @@ xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q)
- 	}
- 
- 	if (guc_class <= GUC_LAST_ENGINE_CLASS) {
--		struct __guc_capture_parsed_output *n, *ntmp;
-+		struct xe_guc_capture_snapshot *n, *ntmp;
- 		struct xe_guc *guc =  &q->gt->uc.guc;
- 		u16 guc_id = q->guc->id;
- 		u32 lrca = xe_lrc_ggtt_addr(q->lrc[0]);
-@@ -1931,7 +1898,7 @@ xe_engine_snapshot_capture_for_queue(struct xe_exec_queue *q)
- 			coredump->snapshot.hwe[id] =
- 				xe_hw_engine_snapshot_capture(hwe, q);
- 		} else {
--			struct __guc_capture_parsed_output *new;
-+			struct xe_guc_capture_snapshot *new;
- 
- 			new = xe_guc_capture_get_matching_and_lock(q);
- 			if (new) {
-@@ -1965,7 +1932,7 @@ void xe_guc_capture_put_matched_nodes(struct xe_guc *guc)
- {
- 	struct xe_device *xe = guc_to_xe(guc);
- 	struct xe_devcoredump *devcoredump = &xe->devcoredump;
--	struct __guc_capture_parsed_output *n = devcoredump->snapshot.matched_node;
-+	struct xe_guc_capture_snapshot *n = devcoredump->snapshot.matched_node;
- 
- 	if (n) {
- 		guc_capture_remove_stale_matches_from_list(guc->capture, n);
-diff --git a/drivers/gpu/drm/xe/xe_guc_capture.h b/drivers/gpu/drm/xe/xe_guc_capture.h
-index 20a078dc4b85..046989fba3b1 100644
---- a/drivers/gpu/drm/xe/xe_guc_capture.h
-+++ b/drivers/gpu/drm/xe/xe_guc_capture.h
-@@ -50,7 +50,7 @@ size_t xe_guc_capture_ads_input_worst_size(struct xe_guc *guc);
- const struct __guc_mmio_reg_descr_group *
- xe_guc_capture_get_reg_desc_list(struct xe_gt *gt, u32 owner, u32 type,
- 				 enum guc_capture_list_class_type capture_class, bool is_ext);
--struct __guc_capture_parsed_output *xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q);
-+struct xe_guc_capture_snapshot *xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q);
- void xe_engine_manual_capture(struct xe_hw_engine *hwe, struct xe_hw_engine_snapshot *snapshot);
- void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm_printer *p);
- void xe_engine_snapshot_capture_for_queue(struct xe_exec_queue *q);
-diff --git a/drivers/gpu/drm/xe/xe_guc_capture_snapshot_types.h b/drivers/gpu/drm/xe/xe_guc_capture_snapshot_types.h
-new file mode 100644
-index 000000000000..0be2c809a7ce
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_guc_capture_snapshot_types.h
-@@ -0,0 +1,53 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2021-2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_GUC_CAPTURE_SNAPSHOT_TYPES_H
-+#define _XE_GUC_CAPTURE_SNAPSHOT_TYPES_H
-+
-+#include <linux/types.h>
-+#include <abi/guc_capture_abi.h>
-+
-+struct guc_mmio_reg;
-+
-+enum xe_guc_capture_snapshot_source {
-+	XE_ENGINE_CAPTURE_SOURCE_MANUAL,
-+	XE_ENGINE_CAPTURE_SOURCE_GUC
-+};
-+
-+/*
-+ * struct xe_guc_capture_snapshot - extracted error capture node
-+ *
-+ * A single unit of extracted error-capture output data grouped together
-+ * at an engine-instance level. We keep these nodes in a linked list.
-+ * See cachelist and outlist below.
-+ */
-+struct xe_guc_capture_snapshot {
-+	/*
-+	 * A single set of 3 capture lists: a global-list
-+	 * an engine-class-list and an engine-instance list.
-+	 * outlist in xe_guc_state_capture will keep
-+	 * a linked list of these nodes that will eventually
-+	 * be detached from outlist and attached into to
-+	 * xe_codedump in response to a context reset
-+	 */
-+	struct list_head link;
-+	bool is_partial;
-+	u32 eng_class;
-+	u32 eng_inst;
-+	u32 guc_id;
-+	u32 lrca;
-+	u32 type;
-+	bool locked;
-+	enum xe_guc_capture_snapshot_source source;
-+	struct gcap_reg_list_info {
-+		u32 vfid;
-+		u32 num_regs;
-+		struct guc_mmio_reg *regs;
-+	} reginfo[GUC_STATE_CAPTURE_TYPE_MAX];
-+#define GCAP_PARSED_REGLIST_INDEX_GLOBAL   BIT(GUC_STATE_CAPTURE_TYPE_GLOBAL)
-+#define GCAP_PARSED_REGLIST_INDEX_ENGCLASS BIT(GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS)
-+};
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index fc447751fe78..a99e3160724b 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -843,7 +843,7 @@ struct xe_hw_engine_snapshot *
- xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe, struct xe_exec_queue *q)
- {
- 	struct xe_hw_engine_snapshot *snapshot;
--	struct __guc_capture_parsed_output *node;
-+	struct xe_guc_capture_snapshot *node;
- 
- 	if (!xe_hw_engine_is_valid(hwe))
- 		return NULL;
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-index e4191a7a2c31..de69e2628f2f 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-@@ -152,11 +152,6 @@ struct xe_hw_engine {
- 	struct xe_hw_engine_group *hw_engine_group;
- };
- 
--enum xe_hw_engine_snapshot_source_id {
--	XE_ENGINE_CAPTURE_SOURCE_MANUAL,
--	XE_ENGINE_CAPTURE_SOURCE_GUC
--};
--
- /**
-  * struct xe_hw_engine_snapshot - Hardware engine snapshot
-  *
--- 
-2.34.1
+== Summary ==
+
+lib/modules/6.13.0-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-xe+/kernel/kernel/
+lib/modules/6.13.0-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-xe+/kernel/crypto/
+lib/modules/6.13.0-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-xe+/kernel/block/
+lib/modules/6.13.0-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-xe+/build
+lib/modules/6.13.0-xe+/modules.alias.bin
+lib/modules/6.13.0-xe+/modules.builtin
+lib/modules/6.13.0-xe+/modules.softdep
+lib/modules/6.13.0-xe+/modules.alias
+lib/modules/6.13.0-xe+/modules.order
+lib/modules/6.13.0-xe+/modules.symbols
+lib/modules/6.13.0-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1738090020:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1738090020:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
