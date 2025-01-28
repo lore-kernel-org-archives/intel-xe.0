@@ -4,61 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8444FC0218D
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 11:10:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5138C02193
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 11:22:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F4BB10E668;
-	Tue, 28 Jan 2025 11:10:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E12F10E666;
+	Tue, 28 Jan 2025 11:22:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZfyQzOIB";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="foTouGKI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0CBF10E668
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Jan 2025 11:10:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738062655; x=1769598655;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=sLOfR7P1TAB5lxj4SUacwrJd3lTyYbitWXIFp8LmjzI=;
- b=ZfyQzOIBsQlJ9BppftvI2qoBLbfajlkiaCfw5MWlx7MLyDb2FrAeX7es
- v1mSOOyYpNzaZuFIpEX0Y7IkGWNUWnYeZfErB5KPvsfCrV2h0ZjQ64q4R
- OuzAiCwrGdNXICFNoAhYJcghC4iDW0qKrdwdtkMyqZQ0xcD2UFDQE3CkD
- PBT7vte6CIssQC510QGb8FtNfpzyRQRzThhFpDaBgOIVnU3Y0GiIt4/eY
- rS4jUfl3CWyfz4IZzXlTfm8Wce84tKvzTYwUV0GYeOz7XX835L4+DncT5
- IAklBo0xrq0K4DF72HvIFBpfPFEwSZRM6dwSkJDGGYkz14n/JWXJka0nu g==;
-X-CSE-ConnectionGUID: Hgz/GHdmS1WMm99KHP/DBw==
-X-CSE-MsgGUID: 3ulN24r5StSpk2jr+WfgBg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="38246465"
-X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="38246465"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 03:10:55 -0800
-X-CSE-ConnectionGUID: //55sZCNTK6q17A9pXm8Vw==
-X-CSE-MsgGUID: 7nO2hgdKTveNUDW76qpGUA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="132001593"
-Received: from tmistat-dev.igk.intel.com ([10.211.135.226])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 03:10:53 -0800
-From: Jakub Kolakowski <jakub1.kolakowski@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Jakub Kolakowski <jakub1.kolakowski@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- Adam Miszczak <adam.miszczak@linux.intel.com>,
- Lukasz Laguna <lukasz.laguna@intel.com>,
- Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Subject: [PATCH 1/1] drm/xe/pf: Add runtime registers for graphics gen >= 30
-Date: Tue, 28 Jan 2025 11:03:00 +0000
-Message-Id: <20250128110300.2840596-2-jakub1.kolakowski@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250128110300.2840596-1-jakub1.kolakowski@intel.com>
-References: <20250128110300.2840596-1-jakub1.kolakowski@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B9AD10E0AA;
+ Tue, 28 Jan 2025 11:22:43 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 3179E5C5D79;
+ Tue, 28 Jan 2025 11:22:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98109C4CEDF;
+ Tue, 28 Jan 2025 11:22:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1738063362;
+ bh=AJfDJn9pFkPItjs+l9CjDlC33TdlTCE01Kr4mfJIOJE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=foTouGKI5Xpt6DiifiySGU1Px4B0JlxynZkL/A+4GJ+F1wUAFkM/N4G83a9sI8N06
+ lsMHA2F0I+BGkV1h4oylhwmSeJznMzbN+UJy9qwbYRK5QlpfqNfv8Msq/ndA/iDm4I
+ JYp3P2GR22dNEIcBnZOOATJGYPU+gMIFK9XfLLma3B24+UKToDLZL/ZLBF6bwp16qy
+ HMKr9svtYad8MrCuOMMF5t2I0WLB8bGS9HGYMu9w94+SD6sanYCztaTmP2cubx4D+F
+ lhSPEntAtoYhJR/j92VqRwE5MifEf7tNzvj9NQnTwv0sbHofELHMou005/QzH1lonP
+ yczCENnq4hKEA==
+Date: Tue, 28 Jan 2025 12:22:37 +0100
+From: Joel Granados <joel.granados@kernel.org>
+To: Matthew Wilcox <willy@infradead.org>
+Cc: Jani Nikula <jani.nikula@intel.com>, Ard Biesheuvel <ardb@kernel.org>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>, 
+ Kees Cook <kees@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, 
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-crypto@vger.kernel.org, 
+ openipmi-developer@lists.sourceforge.net, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
+ linux-rdma@vger.kernel.org, 
+ linux-raid@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-serial@vger.kernel.org, 
+ xen-devel@lists.xenproject.org, linux-aio@kvack.org,
+ linux-fsdevel@vger.kernel.org, 
+ netfs@lists.linux.dev, codalist@coda.cs.cmu.edu, linux-mm@kvack.org, 
+ linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
+ fsverity@lists.linux.dev, 
+ linux-xfs@vger.kernel.org, io-uring@vger.kernel.org, bpf@vger.kernel.org, 
+ kexec@lists.infradead.org, linux-trace-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, apparmor@lists.ubuntu.com,
+ linux-security-module@vger.kernel.org, 
+ keyrings@vger.kernel.org, Song Liu <song@kernel.org>, 
+ "Steven Rostedt (Google)" <rostedt@goodmis.org>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>, 
+ "Darrick J. Wong" <djwong@kernel.org>, Corey Minyard <cminyard@mvista.com>
+Subject: Re: Re: Re: Re: [PATCH v2] treewide: const qualify ctl_tables where
+ applicable
+Message-ID: <u2fwibsnbfvulxj6adigla6geiafh2vuve4hcyo4vmeytwjl7p@oz6xonrq5225>
+References: <20250110-jag-ctl_table_const-v2-1-0000e1663144@kernel.org>
+ <Z4+jwDBrZNRgu85S@li-008a6a4c-3549-11b2-a85c-c5cc2836eea2.ibm.com>
+ <nslqrapp4v3rknjgtfk4cg64ha7rewrrg24aslo2e5jmxfwce5@t4chrpuk632k>
+ <CAMj1kXEZPe8zk7s67SADK9wVH3cfBup-sAZSC6_pJyng9QT7aw@mail.gmail.com>
+ <f4lfo2fb7ajogucsvisfd5sg2avykavmkizr6ycsllcrco4mo3@qt2zx4zp57zh>
+ <87jzag9ugx.fsf@intel.com> <Z5epb86xkHQ3BLhp@casper.infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z5epb86xkHQ3BLhp@casper.infradead.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,61 +87,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add missing runtime registers for graphics versions of 3000 or higher.
-This is required for Xe3 where additionally we have
-MIRROR_L3BANK_ENABLE register.
+On Mon, Jan 27, 2025 at 03:42:39PM +0000, Matthew Wilcox wrote:
+> On Mon, Jan 27, 2025 at 04:55:58PM +0200, Jani Nikula wrote:
+> > You could have static const within functions too. You get the rodata
+> > protection and function local scope, best of both worlds?
+> 
+> timer_active is on the stack, so it can't be static const.
+> 
+> Does this really need to be cc'd to such a wide distribution list?
+That is a very good question. I removed 160 people from the original
+e-mail and left the ones that where previously involved with this patch
+and left all the lists for good measure. But it seems I can reduce it
+even more.
 
-Signed-off-by: Jakub Kolakowski <jakub1.kolakowski@intel.com>
-Suggested-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
-Cc: Adam Miszczak <adam.miszczak@linux.intel.com>
-Cc: Jakub Kolakowski <jakub1.kolakowski@intel.com>
-Cc: Lukasz Laguna <lukasz.laguna@intel.com>
-Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Piotr Piorkowski <piotr.piorkowski@intel.com>
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c | 23 ++++++++++++++++++++-
- 1 file changed, 22 insertions(+), 1 deletion(-)
+How about this: For these treewide efforts I just leave the people that
+are/were involved in the series and add two lists: linux-kernel and
+linux-hardening.
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-index 924e75b94aec..6b5f849a0722 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-@@ -176,11 +176,32 @@ static const struct xe_reg ver_2000_runtime_regs[] = {
- 	TIMESTAMP_OVERRIDE,		/* _MMIO(0x44074) */
- };
- 
-+static const struct xe_reg ver_3000_runtime_regs[] = {
-+	RPM_CONFIG0,			/* _MMIO(0x0d00) */
-+	XEHP_FUSE4,			/* _MMIO(0x9114) */
-+	MIRROR_FUSE3,			/* _MMIO(0x9118) */
-+	MIRROR_FUSE1,			/* _MMIO(0x911c) */
-+	MIRROR_L3BANK_ENABLE,		/* _MMIO(0x9130) */
-+	XELP_EU_ENABLE,			/* _MMIO(0x9134) */
-+	XELP_GT_GEOMETRY_DSS_ENABLE,	/* _MMIO(0x913c) */
-+	GT_VEBOX_VDBOX_DISABLE,		/* _MMIO(0x9140) */
-+	XEHP_GT_COMPUTE_DSS_ENABLE,	/* _MMIO(0x9144) */
-+	XEHPC_GT_COMPUTE_DSS_ENABLE_EXT,/* _MMIO(0x9148) */
-+	XE2_GT_COMPUTE_DSS_2,		/* _MMIO(0x914c) */
-+	XE2_GT_GEOMETRY_DSS_1,		/* _MMIO(0x9150) */
-+	XE2_GT_GEOMETRY_DSS_2,		/* _MMIO(0x9154) */
-+	CTC_MODE,			/* _MMIO(0xa26c) */
-+	HUC_KERNEL_LOAD_INFO,		/* _MMIO(0xc1dc) */
-+};
-+
- static const struct xe_reg *pick_runtime_regs(struct xe_device *xe, unsigned int *count)
- {
- 	const struct xe_reg *regs;
- 
--	if (GRAPHICS_VERx100(xe) >= 2000) {
-+	if (GRAPHICS_VERx100(xe) >= 3000) {
-+		*count = ARRAY_SIZE(ver_3000_runtime_regs);
-+		regs = ver_3000_runtime_regs;
-+	} else if (GRAPHICS_VERx100(xe) >= 2000) {
- 		*count = ARRAY_SIZE(ver_2000_runtime_regs);
- 		regs = ver_2000_runtime_regs;
- 	} else if (GRAPHICS_VERx100(xe) >= 1270) {
+Unless someone screams, I'll try this out on my next treewide.
+
+Thx for the feedback
+
+Best
+
 -- 
-2.25.1
 
+Joel Granados
