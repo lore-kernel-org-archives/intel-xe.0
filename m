@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3627C0218A
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 16:50:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E870C02190
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 16:56:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8023110E6D2;
-	Tue, 28 Jan 2025 16:50:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 695C610E6D8;
+	Tue, 28 Jan 2025 16:56:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fmv6xm1m";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EPu1fudL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BDE710E6D2;
- Tue, 28 Jan 2025 16:50:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 165F810E6D7;
+ Tue, 28 Jan 2025 16:56:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738083037; x=1769619037;
+ t=1738083365; x=1769619365;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=CcpTzW+Myz0uq+ztAMic142fNR9kBrGffuAKmPbQ77U=;
- b=fmv6xm1mh3Hk22qr47lx0D8RFDaIH22u7m9Uu+bz8aGL5fWqdGZCYerP
- ZEwfka6cFuHPn+xRo3y5bNWX1Rsi3/zox+6ZmIf4OAY3VJBiLAma5tDcN
- okVpsBSWF6bx8tyjk+jV1Pri4zUE55A9ntVgM66kBd/WXmS/15JgOJhtd
- MFv3zYSe8Sugq1kFHhGAqO3Ebr2aoJHQZXeLju7R+4zQP0njaLgCUBNOB
- AJgC6G4foTUl9B/gweQAbP14zHfcnyPy1bU/NJaIlA8JygvdM444JsTtT
- 0khhahUolh1Z3EA4ekG/lPE+oblGSd8Ld/Qhooa4KZGxrbJ5t4lG6VM5E Q==;
-X-CSE-ConnectionGUID: syI0TvDUTl2JpR5yOjX4XA==
-X-CSE-MsgGUID: d3CbfdaQSyyXypGLhKwDtg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="42239184"
-X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="42239184"
+ bh=FBZHpowYmvsWYp8CbWNExlzuLWmJ9xMmICnBH6xmqoM=;
+ b=EPu1fudL2pEC371/ft+Vpsq4/hMDU2ijDFJ28QHm8KMpzYKBnvvIt6DH
+ L7L5P82MpLHu0pjWqaLEtOKlv2pFgFlkhnKndijZfLwIvaUnT0F74Cof2
+ EfVAsf/Z+wSjLlrmrg7Ktjevy8Kpza8uAdthpsubzkYJXYRhPwVvkFaVl
+ ideNL9ONK+ulDBzIUvg9SJhbsCmgS5Rms3NmwOxhlfq+Y6WKJXrXVGcoq
+ spZgcB9aMSkpg9WSRU3IuWBv8RQSnL6k7U4WKJTM1IcxVLhnaapkLW7vc
+ D0rz33hem7nMTHSZLxFUmhWfREbrjVPgsEnCYCP0UdhjIIqm4UGS2fm4t Q==;
+X-CSE-ConnectionGUID: 0ooNHAZUTdiZB3yz5LSUYw==
+X-CSE-MsgGUID: rYG/y/zOQXiEsClXbwroNA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="42239812"
+X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="42239812"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 08:50:36 -0800
-X-CSE-ConnectionGUID: 9Z9l8TdgQoe+X8H1SNALqg==
-X-CSE-MsgGUID: EjwSibfDQNme7tlvVjuIZA==
+ 28 Jan 2025 08:56:04 -0800
+X-CSE-ConnectionGUID: QVDbf7asRSewc/o88rwDdg==
+X-CSE-MsgGUID: OM7PsWR7SiuFE3r4ivzTGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="108888014"
+X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="108889411"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 28 Jan 2025 08:50:33 -0800
+ by fmviesa008.fm.intel.com with SMTP; 28 Jan 2025 08:56:01 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 28 Jan 2025 18:50:32 +0200
-Date: Tue, 28 Jan 2025 18:50:32 +0200
+ Tue, 28 Jan 2025 18:56:00 +0200
+Date: Tue, 28 Jan 2025 18:56:00 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/i915: Give i915 and xe each their own display
- tracepoints
-Message-ID: <Z5kK2M-90Qn882af@intel.com>
-References: <20250127213055.640-1-ville.syrjala@linux.intel.com>
- <CH0PR11MB54445354D7CADC3046E2905EE5EC2@CH0PR11MB5444.namprd11.prod.outlook.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/5] drm/i915: Move VT-d alignment into
+ plane->min_alignment()
+Message-ID: <Z5kMIMhfNERQp_FL@intel.com>
+References: <20250122151755.6928-1-ville.syrjala@linux.intel.com>
+ <20250122151755.6928-2-ville.syrjala@linux.intel.com>
+ <878qqwbn6d.fsf@intel.com> <Z5e35V4CqZ3m40y-@intel.com>
+ <Z5fCEEIgHItifhwQ@intel.com> <87h65j9spc.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CH0PR11MB54445354D7CADC3046E2905EE5EC2@CH0PR11MB5444.namprd11.prod.outlook.com>
+In-Reply-To: <87h65j9spc.fsf@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,42 +73,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jan 27, 2025 at 09:40:12PM +0000, Cavitt, Jonathan wrote:
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Ville Syrjala
-> Sent: Monday, January 27, 2025 1:31 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: intel-xe@lists.freedesktop.org
-> Subject: [PATCH] drm/i915: Give i915 and xe each their own display tracepoints
-> > 
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Currently we just define the display tracpoints with
-> > TRACE_SYSTEM i915. However the code gets included separately
-> > in i915 and xe, and now both modules are competing for the
-> > same tracpoints. Apparently whichever module is loaded first
-> > gets the tracepoints and the other guy is left with nothing.
-> > 
-> > Give each module its own set of display tracpoints so that
-> > things work even when both modules are loaded.
-> > 
-> > This one had me stumped for a bit when after a reboot I lost
-> > all i915 display tracpoints (on account of the new kernel
-> > also including xe, and something also ended up loading it
-> > before I manually loaded i915).
+On Tue, Jan 28, 2025 at 11:46:23AM +0200, Jani Nikula wrote:
+> On Mon, 27 Jan 2025, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> > On Mon, Jan 27, 2025 at 06:44:21PM +0200, Ville Syrjälä wrote:
+> >> On Mon, Jan 27, 2025 at 11:50:34AM +0200, Jani Nikula wrote:
+> >> > On Wed, 22 Jan 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> >> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >> > >
+> >> > > Currently we don't account for the VT-d alignment w/a in
+> >> > > plane->min_alignment() which means that panning inside a larger
+> >> > > framebuffer can still cause the plane SURF to be misaligned.
+> >> > > Fix the issue by moving the VT-d alignment w/a into
+> >> > > plane->min_alignment() itself (for the affected platforms).
+> >> > >
+> >> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >> > > ---
+> >> > >  drivers/gpu/drm/i915/display/i9xx_plane.c          | 10 ++++++++++
+> >> > >  drivers/gpu/drm/i915/display/intel_cursor.c        |  5 +++++
+> >> > >  drivers/gpu/drm/i915/display/intel_fb_pin.c        |  8 --------
+> >> > >  drivers/gpu/drm/i915/display/intel_sprite.c        |  5 +++++
+> >> > >  drivers/gpu/drm/i915/display/skl_universal_plane.c |  4 ++++
+> >> > >  5 files changed, 24 insertions(+), 8 deletions(-)
+> >> > >
+> >> > > diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> >> > > index ed171fbf8720..19cc34babef3 100644
+> >> > > --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+> >> > > +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> >> > > @@ -780,9 +780,14 @@ unsigned int vlv_plane_min_alignment(struct intel_plane *plane,
+> >> > >  				     const struct drm_framebuffer *fb,
+> >> > >  				     int color_plane)
+> >> > >  {
+> >> > > +	struct drm_i915_private *i915 = to_i915(plane->base.dev);
+> >> > > +
+> >> > >  	if (intel_plane_can_async_flip(plane, fb->modifier))
+> >> > >  		return 256 * 1024;
+> >> > >  
+> >> > > +	if (intel_scanout_needs_vtd_wa(i915))
+> >> > > +		return 256 * 1024;
+> >> > 
+> >> > Nitpick, would be great to convert intel_scanout_needs_vtd_wa() to
+> >> > struct intel_display first, so we wouldn't have to introduce so many new
+> >> > struct drm_i915_private uses.
+> >> 
+> >> I didn't really want to add intel_display stuff to the
+> >> gem side (where this is being used currently). Once
+> >> its all moved into the display code (patch 3) then it
+> >> makes more sense.
 > 
-> s/tracpoints/tracepoints
+> Roger.
 > 
-> Also, the last sentence in this commit message probably isn't
-> necessary, but it doesn't detract from anything, so I won't block
-> on its removal.
+> > BTW I do have full conversion of all the low level
+> > plane code (+ a bunch of other stuff including
+> > intel_display_power_{put,get}() stuff) done locally.
+> > But I have quite a few series on the list already
+> > needing review, so not sure I should also post that
+> > one right now. I can, if you especially want something
+> > mundane to read?
+> 
+> I might be up for just that, actually.
 
-Yeah, probably doesn't add anything of value. Dropped.
-
-> Just fix the tracepoints spelling and this is:
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-
-Thanks.
+Apparently I already posted that. Go figure.
+https://patchwork.freedesktop.org/series/143942/
 
 -- 
 Ville Syrjälä
