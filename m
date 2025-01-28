@@ -4,27 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3455CC0218A
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 11:25:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACFACC02193
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 11:38:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA9CB10E668;
-	Tue, 28 Jan 2025 11:25:38 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5EF710E668;
- Tue, 28 Jan 2025 11:25:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8039947004369042195=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34E9110E66F;
+	Tue, 28 Jan 2025 11:38:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="oy0bVQhu";
+	dkim-atps=neutral
+Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D78E10E190;
+ Tue, 28 Jan 2025 11:38:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=Cax5VVE1FBXLtV5rAkGDYyeqn6F+PmH2sWIcspZqQmA=; b=oy0bVQhuWWRNUrfXjqTfoWLFea
+ Z6fX7evmnj4ZXBaulL8FpEqXQcH78hMFKbXKxQPuskHh3uUbsKpMhjmekkEBjVk0tMSJEl0SYbyAZ
+ cXRs64lQ/EIdqt+vA5lIf1B8WUC2/ej8M/u0csi+eWO5PWUeHh8m0bo5sayqrrOd7SFwSFIfiScMy
+ uNAdhs208Pvt1zFTl8zoAVsnVAoydrEh70Wc2BUy1uKPJQAHmoL6tT16jZgLB5gpTyFIYq2NhfBMQ
+ otfz0Rp8bl1hostB9d1PnbD6e9wFNAzqZDjUf69txYV+gKPqbvx1ZJkzfuuE7M7KFET34E4o/yFng
+ ZWwf3Igw==;
+Received: from [194.136.85.206] (port=51020 helo=eldfell)
+ by whm50.louhi.net with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96.2)
+ (envelope-from <pekka.paalanen@haloniitty.fi>) id 1tcjv9-0001aW-2Q;
+ Tue, 28 Jan 2025 13:38:19 +0200
+Date: Tue, 28 Jan 2025 13:38:09 +0200
+From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: Xaver Hugl <xaver.hugl@kde.org>, airlied@gmail.com, simona@ffwll.ch,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
+ lina@asahilina.net, michal.wajdeczko@intel.com, christian.koenig@amd.com,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
+ alexander.deucher@amd.com, andrealmeid@igalia.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
+Subject: Re: [PATCH v10 2/4] drm/doc: Document device wedged event
+Message-ID: <20250128133809.1e5ed2be@eldfell>
+In-Reply-To: <Z5ilcc0hC8nvz0Li@black.fi.intel.com>
+References: <20241128153707.1294347-1-raag.jadav@intel.com>
+ <20241128153707.1294347-3-raag.jadav@intel.com>
+ <CAFZQkGy3R0TMY5CARPQZF70fdKGLX8GQjV_YQAHzEXsiuNHj+w@mail.gmail.com>
+ <Z5CAkXSOpNiiFbv4@black.fi.intel.com>
+ <20250127122328.6d85bca1@eldfell>
+ <Z5ilcc0hC8nvz0Li@black.fi.intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Enable_Survivability_mode_?=
- =?utf-8?q?=28rev7=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Jan 2025 11:25:36 -0000
-Message-ID: <173806353686.1863695.3591770186363900678@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250128095632.1294722-1-riana.tauro@intel.com>
-In-Reply-To: <20250128095632.1294722-1-riana.tauro@intel.com>
+Content-Type: multipart/signed; boundary="Sig_/B=BzF7y2RMP=D2.kl/VkcSu";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - whm50.louhi.net
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - haloniitty.fi
+X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
+ pekka.paalanen@haloniitty.fi
+X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,249 +80,175 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8039947004369042195==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/B=BzF7y2RMP=D2.kl/VkcSu
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+On Tue, 28 Jan 2025 11:37:53 +0200
+Raag Jadav <raag.jadav@intel.com> wrote:
 
-Series: Enable Survivability mode (rev7)
-URL   : https://patchwork.freedesktop.org/series/142464/
-State : success
+> On Mon, Jan 27, 2025 at 12:23:28PM +0200, Pekka Paalanen wrote:
+> > On Wed, 22 Jan 2025 07:22:25 +0200
+> > Raag Jadav <raag.jadav@intel.com> wrote:
+> >  =20
+> > > On Tue, Jan 21, 2025 at 02:14:56AM +0100, Xaver Hugl wrote: =20
+> > > > > +It is the responsibility of the consumer to make sure that the d=
+evice or
+> > > > > +its resources are not in use by any process before attempting re=
+covery.   =20
+> > > > I'm not convinced this is actually doable in practice, outside of
+> > > > killing all apps that aren't the one trying to recover the GPU.
+> > > > Is this just about not crashing those processes if they don't handle
+> > > > GPU hotunplugs well, about leaks, or something else?   =20
+> > >=20
+> > > Correct, all of it. And since the compositor is in charge of device r=
+esources,
+> > > this way it atleast has the opportunity to recover the device and rec=
+reate
+> > > context without all the userspace violence. =20
+> >=20
+> > Hi Raag,
+> >=20
+> > sorry, I haven't followed this series, so I wonder, why should
+> > userspace be part of recovering the device? Why doesn't the kernel
+> > automatically load a new driver instance with a new DRM device node? =20
+>=20
+> There are things like bus level reset (PCI SBR) and re-enumeration that a=
+re
+> not possible from driver context (or atleast I'm not aware of it), so a n=
+ew
+> instance is just as useful/less as the old one.
 
-== Summary ==
+Ok, "not possible from driver context" is a key revelation. I wonder if
+starting an overview section with that in the documentation would help
+getting the right mindset.
 
-CI Bug Log - changes from xe-2562-73c0fe019ff4bf312f6ae1114f0ca63bd13ea4b7_BAT -> xe-pw-142464v7_BAT
-====================================================
+Did I miss that somewhere?
 
-Summary
--------
+I thought bus level reset meant resetting the PCI device by some bus
+API. Clearly mistaken, I suppose you mean resetting the whole bus
+including everything on it?
 
-  **SUCCESS**
+> > I see in the commit message written:
+> >=20
+> > 	"For example, if the driver supports multiple recovery methods,
+> > 	consumers can opt for the suitable one based on policy
+> > 	definition."
+> >=20
+> > How could consumers know what to do? How can they guess what would be
+> > enough to recover the device? Isn't that the kernel driver's job to
+> > know? =20
+>=20
+> Yes, 'WEDGED=3D' value are the known methods that are expected to work. T=
+he
+> policy is how the consumer can decide which one to opt for depending on t=
+he
+> scenario. For example, the less drastic method could work in most cases, =
+but
+> you'd probably want to opt for a more drastic method for repeat offences =
+or
+> perhaps if something more serious is discovered from "optional telemetry
+> collection".
 
-  No regressions found.
+Aha, cool.
 
-  
+> > (More important for userspace would be know if dmabuf fds remain
+> > pointing to valid memory retaining its contents or if the contents are
+> > lost. Userspace cannot tell which device a dmabuf originates from,
+> > AFAIK, so this would need to be added in the generic dmabuf UAPI.) =20
+>=20
+> Not sure if I understand, perhaps Christian can shed some light here.
 
-Participating hosts (8 -> 8)
-------------------------------
+A system might have multiple GPUs, and one GPU going down may leave all
+the rest working as usual. A Wayland compositor would want to tell the
+difference between still-good and possibly or definitely lost dmabufs
+it received from its clients.
 
-  Additional (1): bat-bmg-1 
-  Missing    (1): bat-adlp-vm 
+But this is off-topic in this thread I believe, nothing to the series
+at hand.
 
-Known issues
-------------
+> > > > > +With IOCTLs blocked and device already 'wedged', all device memo=
+ry should =20
+> >=20
+> > btw. when I see "blocked" I think of the function call not returning
+> > yet. But in this patch "blocked" seems to be synonymous for "returns
+> > an error immediately". Would it be possible to avoid the word "blocked"
+> > for this? =20
+>=20
+> It is meant as "blocking the access", but fair enough. We can have a quick
+> fix later on if it's not too big of a concern.
 
-  Here are the changes found in xe-pw-142464v7_BAT that come from known issues:
+Sure, I don't mind.
 
-### IGT changes ###
+> > > > > +be unmapped and file descriptors should be closed to prevent lea=
+ks.   =20
+> > > > Afaiu from a userspace POV, a rebind is just like a GPU hotunplug +
+> > > > hotplug with matching "remove" and "add" udev events. As long as the
+> > > > application cleans up resources related to the device when it recei=
+ves
+> > > > the event, there should be no leaks with a normal hotunplug... Is t=
+his
+> > > > different enough that we can't have the same expectations?   =20
+> > >=20
+> > > The thing about "remove" event is that it is generated *after* we opt=
+ for an
+> > > unbind, and at that point it might be already too late if userspace d=
+oesn't
+> > > get enough time to clean things up while the device is removed with a=
+ live
+> > > client resulting in unknown consequences.
+> > >=20
+> > > The idea here is to clean things up *before* we opt for an unbind lea=
+ving
+> > > no room for side effects. =20
+> >=20
+> > Something here feels fragile. There should not be a deadline for
+> > userspace to finish cleaning up. What was described for KMS device nodes
+> > in this same document seems like a more reliable approach: keep the
+> > dead driver instance around until userspace has closed all references
+> > to it. The device node could be removed earlier. =20
+>=20
+> I'm not sure if I'm following here. The driver instance will exist as long
+> as the dead device exists, which the consumer can remove if/when it choos=
+es
+> to trigger an unbind from userspace. There is no deadline for it.
 
-#### Issues hit ####
+I was going by your words: "it might be already too late if userspace
+doesn't get enough time to clean things up".
 
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-bmg-1:          NOTRUN -> [SKIP][1] ([Intel XE#2233])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+> The consumer can choose to rely on hotplug events if it wishes, but the p=
+oint
+> here is that it doesn't guarantee a clean recovery in all cases.
 
-  * igt@kms_dsc@dsc-basic:
-    - bat-bmg-1:          NOTRUN -> [SKIP][2] ([Intel XE#2244])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-bmg-1:          NOTRUN -> [SKIP][3] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-off:
-    - bat-bmg-1:          NOTRUN -> [SKIP][4] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-off.html
-
-  * igt@xe_intel_bb@render@render-ymajor-256:
-    - bat-adlp-vf:        [PASS][5] -> [DMESG-WARN][6] ([Intel XE#4078]) +1 other test dmesg-warn
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2562-73c0fe019ff4bf312f6ae1114f0ca63bd13ea4b7/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-1:          NOTRUN -> [SKIP][7] ([Intel XE#2229])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-bmg-1:          NOTRUN -> [SKIP][8] ([Intel XE#1420])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-1:          NOTRUN -> [SKIP][9] ([Intel XE#2245])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-bmg-1:          NOTRUN -> [SKIP][10] ([Intel XE#2236])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html
-
-  * igt@xe_sriov_flr@flr-vf1-clear:
-    - bat-bmg-1:          NOTRUN -> [SKIP][11] ([Intel XE#3342])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@xe_sriov_flr@flr-vf1-clear.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_balancer@twice-parallel-userptr-rebind:
-    - bat-adlp-vf:        [DMESG-WARN][12] ([Intel XE#4078]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2562-73c0fe019ff4bf312f6ae1114f0ca63bd13ea4b7/bat-adlp-vf/igt@xe_exec_balancer@twice-parallel-userptr-rebind.html
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-adlp-vf/igt@xe_exec_balancer@twice-parallel-userptr-rebind.html
-
-  
-  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
-  [Intel XE#4078]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078
-
-
-Build changes
--------------
-
-  * IGT: IGT_8210 -> IGT_8212
-  * Linux: xe-2562-73c0fe019ff4bf312f6ae1114f0ca63bd13ea4b7 -> xe-pw-142464v7
-
-  IGT_8210: 6ccdcffdb1aa67cf90a3f9cae99502ae327de57a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8212: 76102a17560c6e6fc6528db29286b0266ccc48ef @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2562-73c0fe019ff4bf312f6ae1114f0ca63bd13ea4b7: 73c0fe019ff4bf312f6ae1114f0ca63bd13ea4b7
-  xe-pw-142464v7: 142464v7
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/index.html
-
---===============8039947004369042195==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable Survivability mode (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142464/">https://patchwork.freedesktop.org/series/142464/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/index.html</a></td></tr>
-
-</table>
+Clearly I don't understand the whole picture here. No worries,
+nevermind.
 
 
-    <h1>CI Bug Log - changes from xe-2562-73c0fe019ff4bf312f6ae1114f0ca63bd13ea4b7_BAT -&gt; xe-pw-142464v7_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>Additional (1): bat-bmg-1 <br />
-  Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-142464v7_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_intel_bb@render@render-ymajor-256:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2562-73c0fe019ff4bf312f6ae1114f0ca63bd13ea4b7/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-bmg-1/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_balancer@twice-parallel-userptr-rebind:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2562-73c0fe019ff4bf312f6ae1114f0ca63bd13ea4b7/bat-adlp-vf/igt@xe_exec_balancer@twice-parallel-userptr-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142464v7/bat-adlp-vf/igt@xe_exec_balancer@twice-parallel-userptr-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8210 -&gt; IGT_8212</li>
-<li>Linux: xe-2562-73c0fe019ff4bf312f6ae1114f0ca63bd13ea4b7 -&gt; xe-pw-142464v7</li>
-</ul>
-<p>IGT_8210: 6ccdcffdb1aa67cf90a3f9cae99502ae327de57a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8212: 76102a17560c6e6fc6528db29286b0266ccc48ef @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2562-73c0fe019ff4bf312f6ae1114f0ca63bd13ea4b7: 73c0fe019ff4bf312f6ae1114f0ca63bd13ea4b7<br />
-  xe-pw-142464v7: 142464v7</p>
+Thanks,
+pq
 
-</body>
-</html>
+--Sig_/B=BzF7y2RMP=D2.kl/VkcSu
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
---===============8039947004369042195==--
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmeYwaEACgkQI1/ltBGq
+qqesNhAAhIiqicalz5Fb2lGKFYSceSRQCkSA6YX6Outjyyob9n6/Cggx1GZc9tyl
+kPpSGq3uxttTBEBfO+YjvT5NOV6I7SOv1XThfwAtUCTD2xU+3gp0CBxP6Jt1vIOr
+N+GaydjKm69Pc2tLO4rm8TfeAF+njQ2NBf5qkbRN5a5K6eWZCI4fkV07kAsq4JJo
+sSOWDZLHC9tWr2BixmaXEXBlY4LCjeQgitvaFRCpZWayhZcVcnS5XhFQPC98l2pm
+3ZWeVRDtdT0F3JtF1Q/dh08SZ7+AkhoUEo+y+zpzJVISHNh4VF1InkUdhmL5b+VX
+NxbZiKnX+CROkMxG8X433huyZFc/mXZFV7oV1HHTH0jIqUsAT38vV/f8yfUL9rkH
+qCdNrpk9Yw4RDGpuX7jBzDefsFUL/e/9ugho8xtI470EGcYMXTBt0x+eeLH3c2pp
+xMoWSVpDDx91jXUu4t5DB5Orxuizz7h+L61Npl/FodCOd55kQETMovMSvCgheAd8
+Q6Kqt5Qmcj/0TpaBIoQfVcNt2knrX0BBKMQrJMEgD9n8JfVRpOjP8wxJKN42/9Zw
+PSchC5zkNLMRDisTvD6+I0cg1V+RS2/TxMpq4RQLT4h3L3PvEgvkyk9YXe82kqnb
+oAFefbdsPc40B8W2P+DeRQYdKGmY8KBmCo+2QSY48RSzZn1uEaM=
+=qgtN
+-----END PGP SIGNATURE-----
+
+--Sig_/B=BzF7y2RMP=D2.kl/VkcSu--
