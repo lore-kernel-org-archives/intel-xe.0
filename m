@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4434DC0218A
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 15:51:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D18C8C02190
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 15:54:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D93F10E12E;
-	Tue, 28 Jan 2025 15:51:00 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8900610E12E;
- Tue, 28 Jan 2025 15:50:58 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96FF210E693;
+	Tue, 28 Jan 2025 15:54:36 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZCMImb8x";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02E8E10E68E;
+ Tue, 28 Jan 2025 15:54:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738079675; x=1769615675;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=n3c6MJwACKBdjr4PfmDWc1wYQ3+53W+zsbNMVyZG/WM=;
+ b=ZCMImb8xljBnajAgCWzq34T5h1GMQa4VWCswzxFQ9mrgDmhokHLsDPHd
+ rAns5cibjee/lUj0UIeC/kyOVw8IVwkK6PVsICygKp1klDyZunQ5g4k1y
+ QexWFuiGGHik5XFYzCTfm2v873Fi+yffDFzG1wjmQuej+PRG9O22t/+o3
+ iH6Y+lw+mMdXaaZ+x1TCp3U/vKJXkFBCEfcDKxVnKZWqGFSItEuExw9zj
+ L25HE0THf85Mmpe3j9dU6D1bRAw6ax6noCTQDd3J/BV43AwAFsd4filVy
+ edYiABXA1BlGyHG5hrXZp/UpMuZvvHOl8IUiZe86CBSQnr9wcCPH62fYd A==;
+X-CSE-ConnectionGUID: bY4/EvwCT1elAoUxnjgygQ==
+X-CSE-MsgGUID: lx+PSN/PRiy4di8GecrnlA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="49228079"
+X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="49228079"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2025 07:54:34 -0800
+X-CSE-ConnectionGUID: 8NVVxTxTTaqjLAVX7+EOzA==
+X-CSE-MsgGUID: Sg1M81ttQrWWivSf+BJOHA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="139635231"
+Received: from slindbla-desk.ger.corp.intel.com (HELO
+ vgovind2-mobl3.intel.com) ([10.245.246.171])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2025 07:54:32 -0800
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
+ santhosh.reddy.guddati@intel.com, jani.saarinen@intel.com
+Subject: [PATCH v5 0/7] drm/i915/xe3: FBC Dirty rect feature support
+Date: Tue, 28 Jan 2025 17:54:11 +0200
+Message-ID: <20250128155418.305595-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/sched=3A_Use_struct_?=
- =?utf-8?q?for_drm=5Fsched=5Finit=28=29_params_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Philipp Stanner" <phasta@kernel.org>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Jan 2025 15:50:58 -0000
-Message-ID: <173807945855.1984891.16266281159736809927@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250128142927.103290-2-phasta@kernel.org>
-In-Reply-To: <20250128142927.103290-2-phasta@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +65,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Dirty rect support for FBC in xe3 onwards based on the comments after the
+initial RFC series.
 
-Series: drm/sched: Use struct for drm_sched_init() params (rev2)
-URL   : https://patchwork.freedesktop.org/series/143883/
-State : success
+v2: Dirty rect related compute and storage moved to fbc state (Ville)
 
-== Summary ==
+V3: Dont call fbc activate if FBC is already active
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast f85f4e698972bc6021185ccba59e6e3638a8e060
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+v4: Dirty rect compute and programming moved within DSB scope
+    New changes are added as separate patches to make it easy for review
+    But could be squashed if the reviews as ok.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+v5: add HAS_FBC_DIRTY_RECT()
+    FBC Damage area updates in 3 steps. 
+    1. As part of plane_atomic_check() get, adjust coordinates and store
+       the merged damage area in plane_state
+    2. Atomic_commit, update merged damage are to fbc_state and prepare the
+       damage area satifying all conditions
+    3  update the FBC dirty rect registers as part of DSB commit.
 
+Vinod Govindapillai (7):
+  drm/i915/xe3: add register definitions for fbc dirty rect support
+  drm/i915/xe3: introduce HAS_FBC_DIRTY_RECT() for FBC dirty rect
+    support
+  drm/i915/display: get old_plane_state to the check_plane routine
+  drm/i915/display: update and store the plane damage clips
+  drm/i915/xe3: avoid calling fbc activate if fbc is active
+  drm/i915/xe3: dirty rect support for FBC
+  drm/i915/xe3: disable FBC if PSR2 selective fetch is enabled
+
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |   1 +
+ .../gpu/drm/i915/display/intel_atomic_plane.c |   7 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |   2 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   7 +
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |   3 +
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 133 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_fbc.h      |   6 +
+ drivers/gpu/drm/i915/display/intel_fbc_regs.h |   9 ++
+ drivers/gpu/drm/i915/display/intel_sprite.c   |   2 +
+ .../drm/i915/display/skl_universal_plane.c    |  48 +++++++
+ 11 files changed, 216 insertions(+), 3 deletions(-)
+
+-- 
+2.43.0
 
