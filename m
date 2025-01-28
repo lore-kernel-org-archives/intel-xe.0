@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61ADEC0218A
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 17:22:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4BD2C0218A
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 17:26:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 281AE10E125;
-	Tue, 28 Jan 2025 17:22:24 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E0CA10E125;
- Tue, 28 Jan 2025 17:22:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0719330260921950086=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F9A810E125;
+	Tue, 28 Jan 2025 17:26:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aKP5dMqC";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27D7A10E125;
+ Tue, 28 Jan 2025 17:26:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738085195; x=1769621195;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=W9DBThybSjXLFIe6NQiW57zM+AX2YsC54bWGPkMR7e8=;
+ b=aKP5dMqCekp5ndYpngiPpjXqtv1vV/Hd+IpvDlMoHf2rFxO9p6SHy9Wt
+ gTWQvtZi1Ayq9OcX+QyEyTY6R/cVcHjzJFBjdWyhR7/UZBFS5fRGdO5nA
+ 4FyLOfYYN50Dd8bn7I0l3aTZx9XSglmaxv1ikS9LY/dNy697pwOmh6D+e
+ AGsCSq9NsqCK67469OBWacurxJo0x//B7BWa6AnUXvUIe6YxFCjhs78TV
+ VSIf5sTFJ/MnRbuX+BYIBsfVcHbTaclEaYfT2coXcIrDFRSyyCA9cVFZI
+ W4YVfzUBZq9q+uVW31wWkcTvvSrwJJ+yqqZ+FcDrDHgs4gCufm56ZAdSW w==;
+X-CSE-ConnectionGUID: 4gi3Z+FtSEGaDBZ6OU4OHA==
+X-CSE-MsgGUID: WHPgnNdkR9aZmZbmz9MNdQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="42510656"
+X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="42510656"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2025 09:26:34 -0800
+X-CSE-ConnectionGUID: uyMYEAtFT9K4ohjUhkO03g==
+X-CSE-MsgGUID: vXqeuv9DS3uY9FSdf2V8PQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="145998742"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO [10.245.246.161])
+ ([10.245.246.161])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2025 09:26:32 -0800
+Message-ID: <e6e8571882bde6bf1887039ccc6aee989f395e95.camel@linux.intel.com>
+Subject: Re: [PATCH v3 03/30] mm/migrate: Trylock device page in do_swap_page
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com, 
+ simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
+Date: Tue, 28 Jan 2025 18:26:29 +0100
+In-Reply-To: <20241217233348.3519726-4-matthew.brost@intel.com>
+References: <20241217233348.3519726-1-matthew.brost@intel.com>
+ <20241217233348.3519726-4-matthew.brost@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Fix_size=5Ft_?=
- =?utf-8?q?print_format?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Jan 2025 17:22:23 -0000
-Message-ID: <173808494350.2016846.3449839833874285068@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250128154242.3371687-1-lucas.demarchi@intel.com>
-In-Reply-To: <20250128154242.3371687-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,246 +69,303 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0719330260921950086==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 2024-12-17 at 15:33 -0800, Matthew Brost wrote:
+> Avoid multiple CPU page faults to the same device page racing by
+> trying
+> to lock the page in do_swap_page before taking an extra reference to
+> the
+> page. This prevents scenarios where multiple CPU page faults each
+> take
+> an extra reference to a device page, which could abort migration in
+> folio_migrate_mapping. With the device page being locked in
+> do_swap_page, the migrate_vma_* functions need to be updated to avoid
+> locking the fault_page argument.
+>=20
+> Prior to this change, a livelock scenario could occur in Xe's (Intel
+> GPU
+> DRM driver) SVM implementation if enough threads faulted the same
+> device
+> page.
+>=20
+> v3:
+> =C2=A0- Put page after unlocking page (Alistair)
+> =C2=A0- Warn on spliting a TPH which is fault page (Alistair)
+> =C2=A0- Warn on dst page =3D=3D fault page (Alistair)
+>=20
+> Cc: Alistair Popple <apopple@nvidia.com>
+> Cc: Philip Yang <Philip.Yang@amd.com>
+> Cc: Felix Kuehling <felix.kuehling@amd.com>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Suggested-by: Simona Vetter <simona.vetter@ffwll.ch>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+> =C2=A0mm/memory.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 13 ++=
+++++---
+> =C2=A0mm/migrate_device.c | 64 ++++++++++++++++++++++++++++++++----------=
+-
+> --
+> =C2=A02 files changed, 55 insertions(+), 22 deletions(-)
+>=20
+> diff --git a/mm/memory.c b/mm/memory.c
+> index 75c2dfd04f72..ae8b11131dad 100644
+> --- a/mm/memory.c
+> +++ b/mm/memory.c
+> @@ -4267,10 +4267,15 @@ vm_fault_t do_swap_page(struct vm_fault *vmf)
+> =C2=A0			 * Get a page reference while we know the
+> page can't be
+> =C2=A0			 * freed.
+> =C2=A0			 */
+> -			get_page(vmf->page);
+> -			pte_unmap_unlock(vmf->pte, vmf->ptl);
+> -			ret =3D vmf->page->pgmap->ops-
+> >migrate_to_ram(vmf);
+> -			put_page(vmf->page);
+> +			if (trylock_page(vmf->page)) {
+> +				get_page(vmf->page);
 
-== Series Details ==
+A couple of questions that I and Matt have been discussing around this
+change and that we aren't completely cleare about. Perhaps somebody
+else has some input:
 
-Series: drm/xe/guc: Fix size_t print format
-URL   : https://patchwork.freedesktop.org/series/144039/
-State : success
+1) The livelock occurs because we do a page reference check in
+migrate_vma_check_page(). However judging from the documentation it
+still uses a page refcount to determine whether it's pinned.=C2=A0
 
-== Summary ==
-
-CI Bug Log - changes from xe-2565-f85f4e698972bc6021185ccba59e6e3638a8e060_BAT -> xe-pw-144039v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 7)
-------------------------------
-
-  Additional (1): bat-bmg-1 
-  Missing    (2): bat-dg2-oem2 bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-144039v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-bmg-1:          NOTRUN -> [SKIP][1] ([Intel XE#2233])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-bmg-1:          NOTRUN -> [SKIP][2] ([Intel XE#2244])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-bmg-1:          NOTRUN -> [SKIP][3] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-off:
-    - bat-bmg-1:          NOTRUN -> [SKIP][4] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-off.html
-
-  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
-    - bat-adlp-vf:        [PASS][5] -> [DMESG-FAIL][6] ([Intel XE#3868] / [Intel XE#4078])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2565-f85f4e698972bc6021185ccba59e6e3638a8e060/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-1:          NOTRUN -> [SKIP][7] ([Intel XE#2229])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-bmg-1:          NOTRUN -> [SKIP][8] ([Intel XE#1420])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-1:          NOTRUN -> [SKIP][9] ([Intel XE#2245])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-bmg-1:          NOTRUN -> [SKIP][10] ([Intel XE#2236])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html
-
-  * igt@xe_sriov_flr@flr-vf1-clear:
-    - bat-bmg-1:          NOTRUN -> [SKIP][11] ([Intel XE#3342])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@xe_sriov_flr@flr-vf1-clear.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind:
-    - bat-adlp-vf:        [DMESG-WARN][12] ([Intel XE#4078]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2565-f85f4e698972bc6021185ccba59e6e3638a8e060/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind.html
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind.html
-
-  
-  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
-  [Intel XE#3868]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3868
-  [Intel XE#4078]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078
+If we were to use folio_maybe_dma_pinned() which uses the pin-count
+instead problem would be solved? However if there already is a refcount
+that we don't know about, that holder could possibly upgrade it to a
+pin-count. Does anybody know why not folio_maybe_dma_pinned() is used?
 
 
-Build changes
--------------
 
-  * Linux: xe-2565-f85f4e698972bc6021185ccba59e6e3638a8e060 -> xe-pw-144039v1
-
-  IGT_8212: 76102a17560c6e6fc6528db29286b0266ccc48ef @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2565-f85f4e698972bc6021185ccba59e6e3638a8e060: f85f4e698972bc6021185ccba59e6e3638a8e060
-  xe-pw-144039v1: 144039v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/index.html
-
---===============0719330260921950086==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> +				pte_unmap_unlock(vmf->pte, vmf-
+> >ptl);
+> +				ret =3D vmf->page->pgmap->ops-
+> >migrate_to_ram(vmf);
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+2) Second question is allocating memory under a page-lock. There
+appears to be code avoiding that, arguing that page-locks may be taken
+during reclaim. At least unless GFP_NOFS is used. Here we'd allow
+GFP_KERNEL allocations under page-locks but can argue that it's only
+device_private pages that are safe. Although some drivers do GFP_KERNEL
+locks also under ordinary page-locks in migrate_to_ram(), probably
+arguing that those pages are taken off LRU. Seems a bit fragile, is
+there any known policy regarding this?
+
+Thanks,
+Thomas
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Fix size_t print format</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144039/">https://patchwork.freedesktop.org/series/144039/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+> +				unlock_page(vmf->page);
+> +				put_page(vmf->page);
+> +			} else {
+> +				pte_unmap_unlock(vmf->pte, vmf-
+> >ptl);
+> +			}
+> =C2=A0		} else if (is_hwpoison_entry(entry)) {
+> =C2=A0			ret =3D VM_FAULT_HWPOISON;
+> =C2=A0		} else if (is_pte_marker_entry(entry)) {
+> diff --git a/mm/migrate_device.c b/mm/migrate_device.c
+> index 19960743f927..3470357d9bae 100644
+> --- a/mm/migrate_device.c
+> +++ b/mm/migrate_device.c
+> @@ -60,6 +60,8 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+> =C2=A0				=C2=A0=C2=A0 struct mm_walk *walk)
+> =C2=A0{
+> =C2=A0	struct migrate_vma *migrate =3D walk->private;
+> +	struct folio *fault_folio =3D migrate->fault_page ?
+> +		page_folio(migrate->fault_page) : NULL;
+> =C2=A0	struct vm_area_struct *vma =3D walk->vma;
+> =C2=A0	struct mm_struct *mm =3D vma->vm_mm;
+> =C2=A0	unsigned long addr =3D start, unmapped =3D 0;
+> @@ -88,11 +90,16 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+> =C2=A0
+> =C2=A0			folio_get(folio);
+> =C2=A0			spin_unlock(ptl);
+> +			/* FIXME support THP */
+> +			if (WARN_ON_ONCE(fault_folio =3D=3D folio))
+> +				return
+> migrate_vma_collect_skip(start, end,
+> +								walk
+> );
+> =C2=A0			if (unlikely(!folio_trylock(folio)))
+> =C2=A0				return
+> migrate_vma_collect_skip(start, end,
+> =C2=A0								walk
+> );
+> =C2=A0			ret =3D split_folio(folio);
+> -			folio_unlock(folio);
+> +			if (fault_folio !=3D folio)
+> +				folio_unlock(folio);
+> =C2=A0			folio_put(folio);
+> =C2=A0			if (ret)
+> =C2=A0				return
+> migrate_vma_collect_skip(start, end,
+> @@ -192,7 +199,7 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+> =C2=A0		 * optimisation to avoid walking the rmap later with
+> =C2=A0		 * try_to_migrate().
+> =C2=A0		 */
+> -		if (folio_trylock(folio)) {
+> +		if (fault_folio =3D=3D folio || folio_trylock(folio)) {
+> =C2=A0			bool anon_exclusive;
+> =C2=A0			pte_t swp_pte;
+> =C2=A0
+> @@ -204,7 +211,8 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+> =C2=A0
+> =C2=A0				if
+> (folio_try_share_anon_rmap_pte(folio, page)) {
+> =C2=A0					set_pte_at(mm, addr, ptep,
+> pte);
+> -					folio_unlock(folio);
+> +					if (fault_folio !=3D folio)
+> +						folio_unlock(folio);
+> =C2=A0					folio_put(folio);
+> =C2=A0					mpfn =3D 0;
+> =C2=A0					goto next;
+> @@ -363,6 +371,8 @@ static unsigned long
+> migrate_device_unmap(unsigned long *src_pfns,
+> =C2=A0					=C2=A0 unsigned long npages,
+> =C2=A0					=C2=A0 struct page *fault_page)
+> =C2=A0{
+> +	struct folio *fault_folio =3D fault_page ?
+> +		page_folio(fault_page) : NULL;
+> =C2=A0	unsigned long i, restore =3D 0;
+> =C2=A0	bool allow_drain =3D true;
+> =C2=A0	unsigned long unmapped =3D 0;
+> @@ -427,7 +437,8 @@ static unsigned long
+> migrate_device_unmap(unsigned long *src_pfns,
+> =C2=A0		remove_migration_ptes(folio, folio, 0);
+> =C2=A0
+> =C2=A0		src_pfns[i] =3D 0;
+> -		folio_unlock(folio);
+> +		if (fault_folio !=3D folio)
+> +			folio_unlock(folio);
+> =C2=A0		folio_put(folio);
+> =C2=A0		restore--;
+> =C2=A0	}
+> @@ -536,6 +547,8 @@ int migrate_vma_setup(struct migrate_vma *args)
+> =C2=A0		return -EINVAL;
+> =C2=A0	if (args->fault_page && !is_device_private_page(args-
+> >fault_page))
+> =C2=A0		return -EINVAL;
+> +	if (args->fault_page && !PageLocked(args->fault_page))
+> +		return -EINVAL;
+> =C2=A0
+> =C2=A0	memset(args->src, 0, sizeof(*args->src) * nr_pages);
+> =C2=A0	args->cpages =3D 0;
+> @@ -799,19 +812,13 @@ void migrate_vma_pages(struct migrate_vma
+> *migrate)
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL(migrate_vma_pages);
+> =C2=A0
+> -/*
+> - * migrate_device_finalize() - complete page migration
+> - * @src_pfns: src_pfns returned from migrate_device_range()
+> - * @dst_pfns: array of pfns allocated by the driver to migrate
+> memory to
+> - * @npages: number of pages in the range
+> - *
+> - * Completes migration of the page by removing special migration
+> entries.
+> - * Drivers must ensure copying of page data is complete and visible
+> to the CPU
+> - * before calling this.
+> - */
+> -void migrate_device_finalize(unsigned long *src_pfns,
+> -			unsigned long *dst_pfns, unsigned long
+> npages)
+> +static void __migrate_device_finalize(unsigned long *src_pfns,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long *dst_pfns,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long npages,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct page *fault_page)
+> =C2=A0{
+> +	struct folio *fault_folio =3D fault_page ?
+> +		page_folio(fault_page) : NULL;
+> =C2=A0	unsigned long i;
+> =C2=A0
+> =C2=A0	for (i =3D 0; i < npages; i++) {
+> @@ -824,6 +831,7 @@ void migrate_device_finalize(unsigned long
+> *src_pfns,
+> =C2=A0
+> =C2=A0		if (!page) {
+> =C2=A0			if (dst) {
+> +				WARN_ON_ONCE(fault_folio =3D=3D dst);
+> =C2=A0				folio_unlock(dst);
+> =C2=A0				folio_put(dst);
+> =C2=A0			}
+> @@ -834,6 +842,7 @@ void migrate_device_finalize(unsigned long
+> *src_pfns,
+> =C2=A0
+> =C2=A0		if (!(src_pfns[i] & MIGRATE_PFN_MIGRATE) || !dst) {
+> =C2=A0			if (dst) {
+> +				WARN_ON_ONCE(fault_folio =3D=3D dst);
+> =C2=A0				folio_unlock(dst);
+> =C2=A0				folio_put(dst);
+> =C2=A0			}
+> @@ -841,7 +850,8 @@ void migrate_device_finalize(unsigned long
+> *src_pfns,
+> =C2=A0		}
+> =C2=A0
+> =C2=A0		remove_migration_ptes(src, dst, 0);
+> -		folio_unlock(src);
+> +		if (fault_folio !=3D src)
+> +			folio_unlock(src);
+> =C2=A0
+> =C2=A0		if (folio_is_zone_device(src))
+> =C2=A0			folio_put(src);
+> @@ -849,6 +859,7 @@ void migrate_device_finalize(unsigned long
+> *src_pfns,
+> =C2=A0			folio_putback_lru(src);
+> =C2=A0
+> =C2=A0		if (dst !=3D src) {
+> +			WARN_ON_ONCE(fault_folio =3D=3D dst);
+> =C2=A0			folio_unlock(dst);
+> =C2=A0			if (folio_is_zone_device(dst))
+> =C2=A0				folio_put(dst);
+> @@ -857,6 +868,22 @@ void migrate_device_finalize(unsigned long
+> *src_pfns,
+> =C2=A0		}
+> =C2=A0	}
+> =C2=A0}
+> +
+> +/*
+> + * migrate_device_finalize() - complete page migration
+> + * @src_pfns: src_pfns returned from migrate_device_range()
+> + * @dst_pfns: array of pfns allocated by the driver to migrate
+> memory to
+> + * @npages: number of pages in the range
+> + *
+> + * Completes migration of the page by removing special migration
+> entries.
+> + * Drivers must ensure copying of page data is complete and visible
+> to the CPU
+> + * before calling this.
+> + */
+> +void migrate_device_finalize(unsigned long *src_pfns,
+> +			unsigned long *dst_pfns, unsigned long
+> npages)
+> +{
+> +	return __migrate_device_finalize(src_pfns, dst_pfns, npages,
+> NULL);
+> +}
+> =C2=A0EXPORT_SYMBOL(migrate_device_finalize);
+> =C2=A0
+> =C2=A0/**
+> @@ -872,7 +899,8 @@ EXPORT_SYMBOL(migrate_device_finalize);
+> =C2=A0 */
+> =C2=A0void migrate_vma_finalize(struct migrate_vma *migrate)
+> =C2=A0{
+> -	migrate_device_finalize(migrate->src, migrate->dst, migrate-
+> >npages);
+> +	__migrate_device_finalize(migrate->src, migrate->dst,
+> migrate->npages,
+> +				=C2=A0 migrate->fault_page);
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL(migrate_vma_finalize);
+> =C2=A0
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2565-f85f4e698972bc6021185ccba59e6e3638a8e060_BAT -&gt; xe-pw-144039v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 7)</h2>
-<p>Additional (1): bat-bmg-1 <br />
-  Missing    (2): bat-dg2-oem2 bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-144039v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@twice-bindexecqueue-rebind:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2565-f85f4e698972bc6021185ccba59e6e3638a8e060/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3868">Intel XE#3868</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-bmg-1/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2565-f85f4e698972bc6021185ccba59e6e3638a8e060/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144039v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2565-f85f4e698972bc6021185ccba59e6e3638a8e060 -&gt; xe-pw-144039v1</li>
-</ul>
-<p>IGT_8212: 76102a17560c6e6fc6528db29286b0266ccc48ef @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2565-f85f4e698972bc6021185ccba59e6e3638a8e060: f85f4e698972bc6021185ccba59e6e3638a8e060<br />
-  xe-pw-144039v1: 144039v1</p>
-
-</body>
-</html>
-
---===============0719330260921950086==--
