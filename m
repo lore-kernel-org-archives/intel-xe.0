@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61844C0218A
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 16:06:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD4BDC02196
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Jan 2025 16:06:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A6FD10E69E;
-	Tue, 28 Jan 2025 16:06:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F0F410E6A8;
+	Tue, 28 Jan 2025 16:06:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G3kzZ+hY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nrgpBErD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5066310E6B9;
- Tue, 28 Jan 2025 16:06:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 462A910E6D0;
+ Tue, 28 Jan 2025 16:06:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738080370; x=1769616370;
+ t=1738080377; x=1769616377;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=GSun3UaspKYZc1WENDXtPI4d+H7m4wDlNmQqloAXNks=;
- b=G3kzZ+hYS59x274XVVDR2gKNUgEoavMNEJm2/rwgh/3YClQeiIwxsjR/
- HfaRHoS9oTwycheA6m/z3QY47ulILUx+s1DZmTQoLV5BjerhQg43je4fD
- m3JGz1MQNqOi1RnPnWcyHjivXEGgyyXMKdADvi047e1xy/++POP5ymZyU
- PxoYV4T+gbIhvZDpnbAD01JKaA43m1gYyj45Qr8TDorRXRlI4+/9jKSo/
- kwlMEH11QujH5SaEZWk0OJtvf4AdRvUPJK3a4hiKGg5ZP1G1X7ngrAmPg
- /6kAKCS33WbA2meDV+6tulvZQeDIlHVv49NwgIs9tejk7r93daDPvJ7dK w==;
-X-CSE-ConnectionGUID: Fh4IbmUpSva9u7DO0ZfTKQ==
-X-CSE-MsgGUID: 87UDEH/SQ+OiJdTr99ygQQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="38745028"
-X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="38745028"
+ bh=tytZRYyfYA3y2izhmQ9swOxEnWGAipvdacrNR4XZ45M=;
+ b=nrgpBErDF+wCiPMpMT93sFu+UjutidSO4Jjmw2HMwDl0oDG4zAyDirFi
+ w3W2o7x38BzjevP93OqBdTHlag013knoCYc/47cUshOMDS6ARPwqGstpA
+ Xe5sYQsqgagaE67eYvfkd4F2McPwLq5xHjZDBZiPC+XNVlITbEn1T2qgW
+ 4qyG2aBq3pJg+G7vknFMYSrL8IXfdcmFd7DSx2dLXEjN6HSeNnJiqrQoC
+ /bA97DCUEsitjBl42HX9RU3Yv9Gu2pUWslt0GrbIG67peXDqeUTRFElSr
+ qxE9yyb+f+Y1ivP1cCfSA/5wKYWH9N2vjlagyetERx4nf+ZLpllILfDzp g==;
+X-CSE-ConnectionGUID: 2skRwZ20RGe0g/fDL0kZQw==
+X-CSE-MsgGUID: f8CgoEkZRqOZjeA4lv7aqQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="38745045"
+X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="38745045"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 08:06:10 -0800
-X-CSE-ConnectionGUID: eV0AW1b3TrqLul6Iiwhupw==
-X-CSE-MsgGUID: 0tVTsit4STSf+Ph0lq5Wag==
+ 28 Jan 2025 08:06:17 -0800
+X-CSE-ConnectionGUID: ObUR8fJOSa+u3s6otdjOoA==
+X-CSE-MsgGUID: UO+GMQFbTDGMYGwd66oXDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="145976941"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="145976991"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa001.jf.intel.com with ESMTP; 28 Jan 2025 08:06:08 -0800
+ by orviesa001.jf.intel.com with ESMTP; 28 Jan 2025 08:06:14 -0800
 From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Tue, 28 Jan 2025 21:21:12 +0530
-Subject: [PATCH v8 06/14] drm/i915/histogram: Add support for histogram
+Date: Tue, 28 Jan 2025 21:21:15 +0530
+Subject: [PATCH v8 09/14] drm/i915/histogram: Hook i915 histogram with drm
+ histogram
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250128-dpst-v8-6-871b94d777f8@intel.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250128-dpst-v8-9-871b94d777f8@intel.com>
 References: <20250128-dpst-v8-0-871b94d777f8@intel.com>
 In-Reply-To: <20250128-dpst-v8-0-871b94d777f8@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
@@ -68,268 +69,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Statistics is generated from the image frame that is coming to display
-and an event is sent to user after reading this histogram data.
-
-v2: forward declaration in header file along with error handling (Jani)
-v3: Replaced i915 with intel_display (Suraj)
-v4: Removed dithering enable/disable (Vandita)
-    New patch for histogram register definitions (Suraj)
-v5: IET LUT pgm follow the seq in spec and removed change to TC at end
-    (Suraj)
-v8: Retained only the Histogram part and move IET LUT to a different
-    patch.
+Handle histogram caps and histogram config property in i915 driver. Fill
+the histogram hardware capability and act upon the histogram config
+property to enable/disable histogram in i915.
 
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                      |   1 +
- drivers/gpu/drm/i915/display/intel_display_types.h |   2 +
- drivers/gpu/drm/i915/display/intel_histogram.c     | 157 +++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_histogram.h     |  48 +++++++
- 4 files changed, 208 insertions(+)
+ drivers/gpu/drm/i915/display/intel_crtc.c    |  7 +++++++
+ drivers/gpu/drm/i915/display/intel_display.c | 12 ++++++++++++
+ 2 files changed, 19 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 4caa8e30bc98387d45212fbc7cea8b38687bd0d5..f993b19174ba79c0bcc34994619937be7d2797ed 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -270,6 +270,7 @@ i915-y += \
- 	display/intel_hdcp.o \
- 	display/intel_hdcp_gsc.o \
- 	display/intel_hdcp_gsc_message.o \
-+	display/intel_histogram.o \
- 	display/intel_hotplug.o \
- 	display/intel_hotplug_irq.o \
- 	display/intel_hti.o \
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index cb51b7936f9338caaf14b1c6f7bbcc4327da4ef1..761fefed9376439c0ee5d346e8110a219ad0a586 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1434,6 +1434,8 @@ struct intel_crtc {
- 	/* for loading single buffered registers during vblank */
- 	struct pm_qos_request vblank_pm_qos;
- 
-+	struct intel_histogram *histogram;
-+
- #ifdef CONFIG_DEBUG_FS
- 	struct intel_pipe_crc pipe_crc;
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c b/drivers/gpu/drm/i915/display/intel_histogram.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..26eae8f40d0bf642546d583546782e22d5cefa9c
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_histogram.c
-@@ -0,0 +1,157 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#include <drm/drm_device.h>
-+#include <drm/drm_file.h>
-+#include <drm/drm_vblank.h>
-+
-+#include "i915_reg.h"
-+#include "i915_drv.h"
-+#include "intel_de.h"
-+#include "intel_display.h"
-+#include "intel_display_types.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index e69b28779ac551bde56c9c3d394e784275a9b69e..b90017409a23de2a214ca43d32ba537998ea0f78 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -28,6 +28,7 @@
+ #include "intel_drrs.h"
+ #include "intel_dsi.h"
+ #include "intel_fifo_underrun.h"
 +#include "intel_histogram.h"
-+#include "intel_histogram_regs.h"
+ #include "intel_pipe_crc.h"
+ #include "intel_psr.h"
+ #include "intel_sprite.h"
+@@ -211,6 +212,7 @@ static struct intel_crtc *intel_crtc_alloc(void)
+ static void intel_crtc_free(struct intel_crtc *crtc)
+ {
+ 	intel_crtc_destroy_state(&crtc->base, crtc->base.state);
++	intel_histogram_finish(crtc);
+ 	kfree(crtc);
+ }
+ 
+@@ -381,6 +383,11 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
+ 						BIT(DRM_SCALING_FILTER_DEFAULT) |
+ 						BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
+ 
++	intel_histogram_init(crtc);
++	if (drm_crtc_create_histogram_property(&crtc->base,
++					       crtc->histogram->caps))
++		drm_err(&dev_priv->drm, "Failed to initialize histogram properties\n");
 +
-+/* 3.0% of the pipe's current pixel count, hw does x4 */
-+#define HISTOGRAM_GUARDBAND_THRESHOLD_DEFAULT 300
-+/* Precision factor for threshold guardband */
-+#define HISTOGRAM_GUARDBAND_PRECISION_FACTOR 10000
-+#define HISTOGRAM_DEFAULT_GUARDBAND_DELAY 0x04
-+
-+int intel_histogram_atomic_check(struct intel_crtc *intel_crtc)
-+{
-+	struct intel_histogram *histogram = intel_crtc->histogram;
-+
-+	/* TODO: Restrictions for enabling histogram */
-+	histogram->can_enable = true;
-+
-+	return 0;
-+}
-+
-+static int intel_histogram_enable(struct intel_crtc *intel_crtc, u8 mode)
-+{
-+	struct intel_display *display = to_intel_display(intel_crtc);
-+	struct intel_histogram *histogram = intel_crtc->histogram;
-+	int pipe = intel_crtc->pipe;
-+	u64 res;
-+	u32 gbandthreshold;
-+
-+	if (!histogram || !histogram->can_enable)
-+		return -EINVAL;
-+
-+	if (histogram->enable)
-+		return 0;
-+
-+	 /* enable histogram, clear DPST_CTL bin reg func select to TC */
-+	intel_de_rmw(display, DPST_CTL(pipe),
-+		     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_IE_HIST_EN |
-+		     DPST_CTL_HIST_MODE | DPST_CTL_IE_TABLE_VALUE_FORMAT |
-+		     DPST_CTL_ENHANCEMENT_MODE_MASK | DPST_CTL_IE_MODI_TABLE_EN,
-+		     ((mode == DRM_MODE_HISTOGRAM_HSV_MAX_RGB) ?
-+		      DPST_CTL_BIN_REG_FUNC_TC : 0) | DPST_CTL_IE_HIST_EN |
-+		     DPST_CTL_HIST_MODE_HSV |
-+		     DPST_CTL_IE_TABLE_VALUE_FORMAT_1INT_9FRAC |
-+		     DPST_CTL_EN_MULTIPLICATIVE | DPST_CTL_IE_MODI_TABLE_EN);
-+
-+	/* Re-Visit: check if wait for one vblank is required */
-+	drm_crtc_wait_one_vblank(&intel_crtc->base);
-+
-+	/* TODO: Program GuardBand Threshold needs to be moved to modeset path */
-+	res = (intel_crtc->config->hw.adjusted_mode.vtotal *
-+	       intel_crtc->config->hw.adjusted_mode.htotal);
-+
-+	gbandthreshold = (res *	HISTOGRAM_GUARDBAND_THRESHOLD_DEFAULT) /
-+			  HISTOGRAM_GUARDBAND_PRECISION_FACTOR;
-+
-+	/* Enable histogram interrupt mode */
-+	intel_de_rmw(display, DPST_GUARD(pipe),
-+		     DPST_GUARD_THRESHOLD_GB_MASK |
-+		     DPST_GUARD_INTERRUPT_DELAY_MASK | DPST_GUARD_HIST_INT_EN,
-+		     DPST_GUARD_THRESHOLD_GB(gbandthreshold) |
-+		     DPST_GUARD_INTERRUPT_DELAY(HISTOGRAM_DEFAULT_GUARDBAND_DELAY) |
-+		     DPST_GUARD_HIST_INT_EN);
-+
-+	/* Clear pending interrupts has to be done on separate write */
-+	intel_de_rmw(display, DPST_GUARD(pipe),
-+		     DPST_GUARD_HIST_EVENT_STATUS, 1);
-+
-+	histogram->enable = true;
-+
-+	return 0;
-+}
-+
-+static void intel_histogram_disable(struct intel_crtc *intel_crtc)
-+{
-+	struct intel_display *display = to_intel_display(intel_crtc);
-+	struct intel_histogram *histogram = intel_crtc->histogram;
-+	int pipe = intel_crtc->pipe;
-+
-+	if (!histogram)
-+		return;
-+
-+	/* If already disabled return */
-+	if (histogram->enable)
-+		return;
-+
-+	/* Clear pending interrupts and disable interrupts */
-+	intel_de_rmw(display, DPST_GUARD(pipe),
-+		     DPST_GUARD_HIST_INT_EN | DPST_GUARD_HIST_EVENT_STATUS, 0);
-+
-+	/* disable DPST_CTL Histogram mode */
-+	intel_de_rmw(display, DPST_CTL(pipe),
-+		     DPST_CTL_IE_HIST_EN, 0);
-+
-+	histogram->enable = false;
-+}
-+
-+int intel_histogram_update(struct intel_crtc *intel_crtc,
-+			   struct drm_histogram_config *config)
-+{
-+	struct intel_display *display = to_intel_display(intel_crtc);
-+
-+	if (config->enable) {
-+		if (config->hist_mode != DRM_MODE_HISTOGRAM_HSV_MAX_RGB) {
-+			drm_err(display->drm,
-+				"Only max(RGB) mode is supported for histogram\n");
-+			return -EINVAL;
-+		}
-+		return intel_histogram_enable(intel_crtc, config->hist_mode);
+ 	intel_color_crtc_init(crtc);
+ 	intel_drrs_crtc_init(crtc);
+ 	intel_crtc_crc_init(crtc);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7d68d652c1bc91acc68281c4761f688f3779bd79..c38a33ee90aef144931215254f178ba955f998b0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -93,6 +93,7 @@
+ #include "intel_fifo_underrun.h"
+ #include "intel_frontbuffer.h"
+ #include "intel_hdmi.h"
++#include "intel_histogram.h"
+ #include "intel_hotplug.h"
+ #include "intel_link_bw.h"
+ #include "intel_lvds.h"
+@@ -4675,6 +4676,12 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+ 	if (ret)
+ 		return ret;
+ 
++	if (crtc_state->uapi.histogram_updated) {
++		ret = intel_histogram_atomic_check(crtc);
++		if (ret)
++			return ret;
 +	}
 +
-+	intel_histogram_disable(intel_crtc);
-+	return 0;
-+}
+ 	return 0;
+ }
+ 
+@@ -7933,6 +7940,11 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 		 */
+ 		old_crtc_state->dsb_color_vblank = fetch_and_zero(&new_crtc_state->dsb_color_vblank);
+ 		old_crtc_state->dsb_commit = fetch_and_zero(&new_crtc_state->dsb_commit);
 +
-+void intel_histogram_finish(struct intel_crtc *intel_crtc)
-+{
-+	struct intel_histogram *histogram = intel_crtc->histogram;
-+
-+	kfree(histogram);
-+}
-+
-+int intel_histogram_init(struct intel_crtc *crtc)
-+{
-+	struct intel_histogram *histogram;
-+	struct drm_histogram_caps *histogram_caps;
-+
-+	/* Allocate histogram internal struct */
-+	histogram = kzalloc(sizeof(*histogram), GFP_KERNEL);
-+	if (!histogram)
-+		return -ENOMEM;
-+	histogram_caps = kzalloc(sizeof(*histogram_caps), GFP_KERNEL);
-+	if (!histogram_caps)
-+		return -ENOMEM;
-+
-+	histogram_caps->histogram_mode = DRM_MODE_HISTOGRAM_HSV_MAX_RGB;
-+	histogram_caps->bins_count = HISTOGRAM_BIN_COUNT;
-+
-+	crtc->histogram = histogram;
-+	histogram->crtc = crtc;
-+	histogram->can_enable = false;
-+	histogram->caps = histogram_caps;
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram.h b/drivers/gpu/drm/i915/display/intel_histogram.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..5ea19ef2d3ecadf1ac159a784f51278fdde593de
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_histogram.h
-@@ -0,0 +1,48 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_HISTOGRAM_H__
-+#define __INTEL_HISTOGRAM_H__
-+
-+#include <linux/types.h>
-+#include <linux/workqueue.h>
-+
-+struct delayed_work;
-+struct drm_property_blob;
-+struct drm_histogram_config;
-+struct drm_histogram_caps;
-+struct intel_crtc;
-+
-+#define HISTOGRAM_BIN_COUNT                    32
-+
-+struct intel_histogram {
-+	struct drm_histogram_caps *caps;
-+	struct intel_crtc *crtc;
-+	struct delayed_work work;
-+	bool enable;
-+	bool can_enable;
-+	u32 bin_data[HISTOGRAM_BIN_COUNT];
-+};
-+
-+enum intel_global_hist_status {
-+	INTEL_HISTOGRAM_ENABLE,
-+	INTEL_HISTOGRAM_DISABLE,
-+};
-+
-+enum intel_global_histogram {
-+	INTEL_HISTOGRAM,
-+};
-+
-+enum intel_global_hist_lut {
-+	INTEL_HISTOGRAM_PIXEL_FACTOR,
-+};
-+
-+int intel_histogram_atomic_check(struct intel_crtc *intel_crtc);
-+int intel_histogram_update(struct intel_crtc *intel_crtc,
-+			   struct drm_histogram_config *config);
-+int intel_histogram_init(struct intel_crtc *intel_crtc);
-+void intel_histogram_finish(struct intel_crtc *intel_crtc);
-+
-+#endif /* __INTEL_HISTOGRAM_H__ */
++		if (new_crtc_state->uapi.histogram_updated)
++			intel_histogram_update(crtc,
++					       (struct drm_histogram_config *)
++					       new_crtc_state->uapi.histogram_enable->data);
+ 	}
+ 
+ 	/* Underruns don't always raise interrupts, so check manually */
 
 -- 
 2.25.1
