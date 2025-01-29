@@ -4,58 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1CC0C02192
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 08:48:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58A34C02192
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 08:49:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E90210E769;
-	Wed, 29 Jan 2025 08:48:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13DE610E76F;
+	Wed, 29 Jan 2025 08:49:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QQ0OlCSH";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="D+6QRneb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41E8010E769
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 08:48:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738140516; x=1769676516;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=LW3PLBDVHT2Em3ixoEnnyMOQTJlURojYXdi9ux/+RzM=;
- b=QQ0OlCSH6bQjDzvrJt/OdsNuRLQ8FM2X8Gw8noPJ3BxkUqafcNww+wdW
- S1Mrtf1R75Won0CBSbIsVbWUhLx5OPQvYqhJ6SAxpNrQ5K+mY3ayEHGbQ
- Ybl46XKbi5eHTEGQd7mUamvyA1KdtactBmYVlLjTmaVRXkt6ZHUl4N6WZ
- PzZmefTU46vrkZH60nXrKVP+XobU66YZchk43R4PMSkA2I29L1yozsTfo
- 2Och3C0dhEzKLet7mrjYgfyY/5XCXRzrPoaTbnSHBykK1rGXOUyN5HhcZ
- Kc8DiZ3jppUajX6TnuRcBhX37uRBUzrqNEbeBhG4ykfeft7WAS+wYScUj A==;
-X-CSE-ConnectionGUID: Cd/IAd4aQHOtn/Jo8eV/5A==
-X-CSE-MsgGUID: WiIi458ERqGB0H/o6O/EDw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="37886987"
-X-IronPort-AV: E=Sophos;i="6.13,242,1732608000"; d="scan'208";a="37886987"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 00:48:36 -0800
-X-CSE-ConnectionGUID: Mv7WC4V7R2eyhf+IOM330Q==
-X-CSE-MsgGUID: wlaQruOIT0qi5Ju8MbHTYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="109884059"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.246.222])
- ([10.245.246.222])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 00:48:34 -0800
-Message-ID: <3b2a187d95499778863376bbeffdc5aba1f77ea6.camel@linux.intel.com>
-Subject: Re: [PATCH 1/3] drm/xe: Add a function to zap page table by address
- range
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Oak Zeng <oak.zeng@intel.com>, intel-xe@lists.freedesktop.org
-Cc: joonas.lahtinen@linux.intel.com
-Date: Wed, 29 Jan 2025 09:48:30 +0100
-In-Reply-To: <20250128222145.3849874-1-oak.zeng@intel.com>
-References: <20250128222145.3849874-1-oak.zeng@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5122B10E769;
+ Wed, 29 Jan 2025 08:49:19 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 631165C027D;
+ Wed, 29 Jan 2025 08:48:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAFA1C4CED3;
+ Wed, 29 Jan 2025 08:49:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1738140558;
+ bh=bkecGghn49Q0kcBr4/Q4RAYEqTU2lzStxg+kMBkUviM=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=D+6QRnebTmdCsTn/fBIyawZ8F2h5FOi1VkBceKjrJE9gQqYhsE4MpI+DUnmOyvn9r
+ jy2STn2XFJrPEPFrh+vO/ZWYbctxdvY6UR3Ry6YZK+y8a1MhcK6ynlBs1p1BMMkJ1P
+ w6gLTDQPv35AYJJgnh4TzBlS6e9ascDPFne+p1YDjEpGVHG5PR2AxRH9J1o9Q9BPKi
+ anvTB+Oa86UvplOCcaBDT4qhHCCSJO/P11ip4o+2DBjUNcnkNIz/KxsEnezLq+wofc
+ pmlKCTkKHhEdUE5jBQ13DTAnVV4ZlV/QW5dr1RzqeBZB57C+fkYnuuFh6jqnxMpijz
+ QxNX1fm0X2YKQ==
+Date: Wed, 29 Jan 2025 09:49:13 +0100
+From: Joel Granados <joel.granados@kernel.org>
+To: Paul Moore <paul@paul-moore.com>
+Cc: Matthew Wilcox <willy@infradead.org>, 
+ Jani Nikula <jani.nikula@intel.com>, Ard Biesheuvel <ardb@kernel.org>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>, 
+ Kees Cook <kees@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, 
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-crypto@vger.kernel.org, 
+ openipmi-developer@lists.sourceforge.net, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
+ linux-rdma@vger.kernel.org, 
+ linux-raid@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-serial@vger.kernel.org, 
+ xen-devel@lists.xenproject.org, linux-aio@kvack.org,
+ linux-fsdevel@vger.kernel.org, 
+ netfs@lists.linux.dev, codalist@coda.cs.cmu.edu, linux-mm@kvack.org, 
+ linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
+ fsverity@lists.linux.dev, 
+ linux-xfs@vger.kernel.org, io-uring@vger.kernel.org, bpf@vger.kernel.org, 
+ kexec@lists.infradead.org, linux-trace-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, apparmor@lists.ubuntu.com,
+ linux-security-module@vger.kernel.org, 
+ keyrings@vger.kernel.org, Song Liu <song@kernel.org>, 
+ "Steven Rostedt (Google)" <rostedt@goodmis.org>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>, 
+ "Darrick J. Wong" <djwong@kernel.org>, Corey Minyard <cminyard@mvista.com>
+Subject: Re: Re: Re: Re: Re: [PATCH v2] treewide: const qualify ctl_tables
+ where applicable
+Message-ID: <umk5gfo7iq7krppvqsal57hlzds26bdqd3g7kccjzuudjikdws@k2oknd6zx6g7>
+References: <20250110-jag-ctl_table_const-v2-1-0000e1663144@kernel.org>
+ <Z4+jwDBrZNRgu85S@li-008a6a4c-3549-11b2-a85c-c5cc2836eea2.ibm.com>
+ <nslqrapp4v3rknjgtfk4cg64ha7rewrrg24aslo2e5jmxfwce5@t4chrpuk632k>
+ <CAMj1kXEZPe8zk7s67SADK9wVH3cfBup-sAZSC6_pJyng9QT7aw@mail.gmail.com>
+ <f4lfo2fb7ajogucsvisfd5sg2avykavmkizr6ycsllcrco4mo3@qt2zx4zp57zh>
+ <87jzag9ugx.fsf@intel.com> <Z5epb86xkHQ3BLhp@casper.infradead.org>
+ <u2fwibsnbfvulxj6adigla6geiafh2vuve4hcyo4vmeytwjl7p@oz6xonrq5225>
+ <CAHC9VhQnB_bsQaezBfAcA0bE7Zoc99QXrvO1qjpHA-J8+_doYg@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHC9VhQnB_bsQaezBfAcA0bE7Zoc99QXrvO1qjpHA-J8+_doYg@mail.gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,83 +91,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2025-01-28 at 17:21 -0500, Oak Zeng wrote:
-> Add a function xe_pt_zap_range. This is similar to xe_pt_zap_ptes
-> but is used when we don't have a vma to work with, such as zap
-> a range mapped to scratch page where we don't have vma.
->=20
-> Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+On Tue, Jan 28, 2025 at 10:43:10AM -0500, Paul Moore wrote:
+> On Tue, Jan 28, 2025 at 6:22 AM Joel Granados <joel.granados@kernel.org> wrote:
+> > On Mon, Jan 27, 2025 at 03:42:39PM +0000, Matthew Wilcox wrote:
+> > > On Mon, Jan 27, 2025 at 04:55:58PM +0200, Jani Nikula wrote:
+> > > > You could have static const within functions too. You get the rodata
+> > > > protection and function local scope, best of both worlds?
+> > >
+> > > timer_active is on the stack, so it can't be static const.
+> > >
+> > > Does this really need to be cc'd to such a wide distribution list?
+> > That is a very good question. I removed 160 people from the original
+> > e-mail and left the ones that where previously involved with this patch
+> > and left all the lists for good measure. But it seems I can reduce it
+> > even more.
+> >
+> > How about this: For these treewide efforts I just leave the people that
+> > are/were involved in the series and add two lists: linux-kernel and
+> > linux-hardening.
+> >
+> > Unless someone screams, I'll try this out on my next treewide.
+> 
+> I'm not screaming about it :) but anything that touches the LSM,
+I'll consider it as a scream :) So I'll keep my previous approach of
+leaving only personal mails that are involved, but leaving all the lists
+that b4 suggests.
 
-As I think also Matt mentions, The zap functionality works only when it
-exactly matches a pre-bound range (like in this case a vma) and there
-is something cleaning up the zapped ptes afterwards. Typically that's a
-rebind or an unbind.
+> SELinux, or audit code (or matches the regex in MAINTAINERS) I would
+> prefer to see on the associated mailing list.
 
-Thanks,
-Thomas
+General comment sent to the void:
+It is tricky to know exactly who wants to be informed of all this and
+who thinks its useless. I think that if we want more focus it should
+come from automated tools like b4. Maybe some string in MAINTAINERS
+stating that the list should not be used in cases of tree-wide commits?
 
+Best
 
+-- 
 
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_pt.c | 28 ++++++++++++++++++++++++++++
-> =C2=A0drivers/gpu/drm/xe/xe_pt.h |=C2=A0 2 ++
-> =C2=A02 files changed, 30 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index 1ddcc7e79a93..2363260da6a6 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -792,6 +792,34 @@ static const struct xe_pt_walk_ops
-> xe_pt_zap_ptes_ops =3D {
-> =C2=A0	.pt_entry =3D xe_pt_zap_ptes_entry,
-> =C2=A0};
-> =C2=A0
-> +/**
-> + * xe_pt_zap_range() - Zap (zero) gpu ptes of an virtual address
-> range
-> + * @tile: The tile we're zapping for.
-> + * @vm: The vm we're zapping for.
-> + * @start: Start of the virtual address range, inclusive.
-> + * @end: End of the virtual address range, exclusive.
-> + *
-> + * This is similar to xe_pt_zap_ptes() but it's used when we don't
-> have a
-> + * vma to work with. This is used for example when we're clearing
-> the scratch
-> + * page mapping during vm_bind.
-> + *
-> + */
-> +void xe_pt_zap_range(struct xe_tile *tile, struct xe_vm *vm, u64
-> start, u64 end)
-> +{
-> +	struct xe_pt_zap_ptes_walk xe_walk =3D {
-> +		.base =3D {
-> +			.ops =3D &xe_pt_zap_ptes_ops,
-> +			.shifts =3D xe_normal_pt_shifts,
-> +			.max_level =3D XE_PT_HIGHEST_LEVEL,
-> +		},
-> +		.tile =3D tile,
-> +	};
-> +	struct xe_pt *pt =3D vm->pt_root[tile->id];
-> +
-> +	(void)xe_pt_walk_shared(&pt->base, pt->level, start,
-> +				end, &xe_walk.base);
-> +}
-> +
-> =C2=A0/**
-> =C2=A0 * xe_pt_zap_ptes() - Zap (zero) gpu ptes of an address range
-> =C2=A0 * @tile: The tile we're zapping for.
-> diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
-> index 9ab386431cad..b166b324f455 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.h
-> +++ b/drivers/gpu/drm/xe/xe_pt.h
-> @@ -43,4 +43,6 @@ void xe_pt_update_ops_abort(struct xe_tile *tile,
-> struct xe_vma_ops *vops);
-> =C2=A0
-> =C2=A0bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma);
-> =C2=A0
-> +void xe_pt_zap_range(struct xe_tile *tile, struct xe_vm *vm, u64
-> start, u64 end);
-> +
-> =C2=A0#endif
-
+Joel Granados
