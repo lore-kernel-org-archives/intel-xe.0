@@ -4,76 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0B6FC02190
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 15:20:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA518C0218D
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 15:35:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C29010E81A;
-	Wed, 29 Jan 2025 15:20:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Dcf5ATEt";
-	dkim-atps=neutral
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
- [209.85.214.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDF6710E818;
- Wed, 29 Jan 2025 15:20:37 +0000 (UTC)
-Received: by mail-pl1-f175.google.com with SMTP id
- d9443c01a7336-21636268e43so8646375ad.2; 
- Wed, 29 Jan 2025 07:20:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1738164037; x=1738768837; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=qFGmRLdcnEHphoxu4YASMEMuX4i5VL6d/Y/97Aq2pSQ=;
- b=Dcf5ATEtTWhzqZZKFwYokZ/CcOYlITCPhv1Ey2yVq0JSzyFiQfWO6vgL8lt3NcNU7R
- EA0PdOyaPmf22PMmni/F0nyJp3ppdt79AA7KizF8rOEucq/3cvGrTnHNYlySOTq74n/E
- Jtumgozt1x/g+O/Jv1rOUk2KAckdlMy5+o44Q2ZxSy8oytaep5u8mJKs5ws8OGfWDnsB
- pu291s+YCjEY7azpXPPNWYvH5tQb4TNlwNG7bUoKV6JnQFrU2ML8wuRQgxFzqIwhGHgo
- p+bBIE4t69VZBseNuBq5YkX5i2jguPYOqUfTquapdv2VO3LT7BfQ/C1bya3WsdfnfFZv
- 2lgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738164037; x=1738768837;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=qFGmRLdcnEHphoxu4YASMEMuX4i5VL6d/Y/97Aq2pSQ=;
- b=RHChRedpqDc3LI/8LXqH7cvPaQT7V2TybrNaUXWGgBzncQxScOLLG7poOIwVANZFaW
- UYu3+eQciRFilqF7kQItSmcxlJWXbYJovYoZI/NfrdasE3M8wkL02gFM45YooxOZherh
- /IKwKs+hxkkRjIgEops5d6073vEz2+CeTjpssxmcnWVDdiCPEI8o8DSdJn5tYRIQ0Agy
- p7Js5TjCTfprIzc4kRKxpqHylchV9IbiXnoZsgl+GYichuMJXKoTJ96SBrhMUEuwGI1u
- 4NuIJbsoT2ZJ165Rr5hMmqpx4bDgxI7J/J5BpDpiYbDk5HHP3WYk1yub52xeXQxxdph/
- njsw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVTlnYAXg9hBUcQBOybEqwWGSC8n+lM14ne7WvR+FPcz3QEWrPcMr30amEJdnV4vwlvodfB6Z0wvk0=@lists.freedesktop.org,
- AJvYcCVatMig7+zqbZLQbUOANyY/f26Sd+jS4u8cJ/rHZUI+oQSXFPfmZ5sjq7K7L4v/JUlPFRZDy1bG30U=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwI+Sw122+rYMeDbgxVmlVTZmdSd8lR55mPkVQZUuCA7aksXMUx
- iG23XuMlsXHeegeaG9TAcLRkmf8mzs3tOfwslYLMggYqSlkLj4Sfoy3MvNDlpTqEeBiZXTZLHbb
- zCznyaKBLHX8QxUCrdIpT92XecvJ9u3GC
-X-Gm-Gg: ASbGnctetd8qHZi3qDuz5orogk1CClLam/S0tsScJltEJYzhqdCAeyxlSp1QDTFkiVS
- LGI9qDotVFFvZ90aPAw7R02pZkqsGQYZNh+H/wTVV4zjbEBBmTe0u3KYKb8AFyHqgCdeMhbh/FQ
- ==
-X-Google-Smtp-Source: AGHT+IEsvuaabO2fi3xyQsQB500rcIfT5RlObw3msbMY6qBoq5QnjUbLobPdfEudPmNJJN5tkeY3m1v/DINMJefvppU=
-X-Received: by 2002:a17:903:124a:b0:21c:1140:1379 with SMTP id
- d9443c01a7336-21dd7c6230emr54001275ad.13.1738164035793; Wed, 29 Jan 2025
- 07:20:35 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B260310E0F8;
+	Wed, 29 Jan 2025 15:35:32 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05F9C10E04C;
+ Wed, 29 Jan 2025 15:35:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7609888399402090779=="
 MIME-Version: 1.0
-References: <20240228140225.858145-1-juhapekka.heikkila@gmail.com>
- <875xy01vd8.fsf@intel.com> <72a58a16-d7aa-4b85-bd67-40cd87366b0b@ursulin.net>
- <CAJ=qYWRZZd4FmYXxqaT5hm5RqOQsNow4UbG=fdQFr_odSGUrEQ@mail.gmail.com>
- <71c2213c-4445-4285-aab8-6d7ad6f5a723@ursulin.net>
-In-Reply-To: <71c2213c-4445-4285-aab8-6d7ad6f5a723@ursulin.net>
-From: =?UTF-8?Q?Juha=2DPekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
-Date: Wed, 29 Jan 2025 17:20:25 +0200
-X-Gm-Features: AWEUYZlc96AN0KERHpUlrol2XWP5ChuUjiZsC5efRyDaFeJUMblB8c4NLrl98pM
-Message-ID: <CAJ=qYWQuCQtVU9nu-xFj5OPBK87cQU9uqRKk=NWuzSsSns39-A@mail.gmail.com>
-Subject: Re: [PATCH] drm/i915/display: Disable AuxCCS framebuffers if built
- for Xe
-To: Tvrtko Ursulin <tursulin@ursulin.net>, 
- =?UTF-8?Q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, intel-xe@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, "Souza, Jose" <jose.souza@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Allow_d?=
+ =?utf-8?q?isplay_PHYs_to_reset_power_state?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kahola" <mika.kahola@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 29 Jan 2025 15:35:32 -0000
+Message-ID: <173816493201.2474231.753737427468132361@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250129130105.198817-1-mika.kahola@intel.com>
+In-Reply-To: <20250129130105.198817-1-mika.kahola@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,45 +36,253 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jan 29, 2025 at 10:44=E2=80=AFAM Tvrtko Ursulin <tursulin@ursulin.n=
-et> wrote:
->
->
-> On 28/01/2025 15:55, Juha-Pekka Heikkil=C3=A4 wrote:
-> > On Tue, Jan 28, 2025 at 3:08=E2=80=AFPM Tvrtko Ursulin <tursulin@ursuli=
-n.net> wrote:
-> >>
-> >>
-> >> Hi,
-> >>
-> >> On 05/03/2024 16:44, Jani Nikula wrote:
-> >>> On Wed, 28 Feb 2024, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.co=
-m> wrote:
-> >>>> AuxCCS framebuffers don't work on Xe driver hence disable them
-> >>>> from plane capabilities until they are fixed. FlatCCS framebuffers
-> >>>> work and they are left enabled. CCS is left untouched for i915
-> >>>> driver.
-> >>
-> >> I couldn't find the answer in the below linked issue or in the thread =
--
-> >> is it known what exactly is missing/broken to make this work and are
-> >> there any plans to do it? Or perhaps not if gen12lp is not intended to
-> >> be supported?
-> >
-> > As far as I know devices with AuxCCS are not intended to be supported.
-> >
-> > As for this patch, from display point of view these would work the same
-> > as before, just put compressed fb on screen and enable decompression
-> > but I figure there are parts missing from gem side to support AuxCCS.
->
-> Right, I can dig in and try to figure out what are those missing GEM
-> bits but I was hoping someone might know straight away to save me that
-> initial digging around.
+--===============7609888399402090779==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I wonder if Zbigniew would be able to give pointers, he's been working
-with this stuff at least on igt side.
+== Series Details ==
 
-/Juha-Pekka
+Series: drm/i915/display: Allow display PHYs to reset power state
+URL   : https://patchwork.freedesktop.org/series/144103/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2569-683350734da38bc7332a3b87c9f2faf6bbeeb5a3_BAT -> xe-pw-144103v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 6)
+------------------------------
+
+  Additional (1): bat-bmg-2 
+  Missing    (3): bat-adlp-vf bat-adlp-vm bat-atsm-2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-144103v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@nullptr:
+    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@fbdev@nullptr.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][2] ([Intel XE#2233])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][3] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2482]) +3 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-bmg-2:          NOTRUN -> [SKIP][5] ([Intel XE#2434] / [Intel XE#2548])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_psr@psr-primary-page-flip:
+    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@kms_psr@psr-primary-page-flip.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-off:
+    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-off.html
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-2:          NOTRUN -> [SKIP][8] ([Intel XE#2229])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-bmg-2:          NOTRUN -> [SKIP][9] ([Intel XE#1420])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-bmg-2:          NOTRUN -> [SKIP][10] ([Intel XE#2245])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#2236])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
+
+  * igt@xe_sriov_flr@flr-vf1-clear:
+    - bat-bmg-2:          NOTRUN -> [SKIP][12] ([Intel XE#3342])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@xe_sriov_flr@flr-vf1-clear.html
+
+  
+  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
+  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
+  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
+  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
+  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
+  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
+
+
+Build changes
+-------------
+
+  * Linux: xe-2569-683350734da38bc7332a3b87c9f2faf6bbeeb5a3 -> xe-pw-144103v1
+
+  IGT_8214: 7a8a3744466fbb89127201077f030033c72df948 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2569-683350734da38bc7332a3b87c9f2faf6bbeeb5a3: 683350734da38bc7332a3b87c9f2faf6bbeeb5a3
+  xe-pw-144103v1: 144103v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/index.html
+
+--===============7609888399402090779==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Allow display PHYs to reset power state</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144103/">https://patchwork.freedesktop.org/series/144103/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2569-683350734da38bc7332a3b87c9f2faf6bbeeb5a3_BAT -&gt; xe-pw-144103v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 6)</h2>
+<p>Additional (1): bat-bmg-2 <br />
+  Missing    (3): bat-adlp-vf bat-adlp-vm bat-atsm-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-144103v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@nullptr:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@fbdev@nullptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@kms_psr@psr-primary-page-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144103v1/bat-bmg-2/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2569-683350734da38bc7332a3b87c9f2faf6bbeeb5a3 -&gt; xe-pw-144103v1</li>
+</ul>
+<p>IGT_8214: 7a8a3744466fbb89127201077f030033c72df948 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2569-683350734da38bc7332a3b87c9f2faf6bbeeb5a3: 683350734da38bc7332a3b87c9f2faf6bbeeb5a3<br />
+  xe-pw-144103v1: 144103v1</p>
+
+</body>
+</html>
+
+--===============7609888399402090779==--
