@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F6D9C0218D
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 04:19:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 682FFC0218D
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 04:32:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F090F10E77B;
-	Wed, 29 Jan 2025 04:19:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 230C010E2A9;
+	Wed, 29 Jan 2025 04:32:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JZR6jbdc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mb+JH6gP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 062F510E77B
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 04:19:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C17EC10E2A9
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 04:32:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738124367; x=1769660367;
+ t=1738125162; x=1769661162;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=Sb7327TSS6bHtOWs5UBcTxCeGP6xkxuZCmFK8am/eMY=;
- b=JZR6jbdcYwK30J+z8DDngG3KS8rhmnvsIN+4R01mNNTlWqxDzr0rKiLu
- aEdZsXKiybksTrejITA4YRlJUR5P1rwWI+eee/psJTyN7ZzVtmeF1fjNY
- aKejuN4kYPLo1AbFvqN4smo0nvqRNBUDRki2ScLkkajvWgGzzoOu9O4Nh
- 2uBiNqLzbCIRUPEwyH9HyFBniIlicZun6psAA5bZ2Sc92z0o0MsAO6ta+
- dSEzE7DqLsnesDHOw1z6plYru5Vz1RzjWUb3q7UJ2fSvEOmra2b779HVe
- F6qRFxRZzpNRxrJkRwfE66i6Er0UnlLSBXT2g20YRBXqyL38E1Cv8UEba Q==;
-X-CSE-ConnectionGUID: 6RaFbrgjTdiRhUwpECdRUw==
-X-CSE-MsgGUID: yR6YQHeLSRKyOzqSc/sCHQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="56166692"
-X-IronPort-AV: E=Sophos;i="6.13,242,1732608000"; d="scan'208";a="56166692"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 20:12:26 -0800
-X-CSE-ConnectionGUID: fwrKfQDjQ2+3PM0QS8BPAA==
-X-CSE-MsgGUID: utq+YjoNTnOXT/0GtQq1/A==
+ bh=pGLS0sb6z6Dr9c25uaMV2SCFWjegp8CZxo7yECZx3ho=;
+ b=mb+JH6gPNggfJspQE/P2vYwPNxq+oiOo16HVtUxjyotYVK3bEDRFqlum
+ 1yk/I/QW8JHPHnkfZIxnH4sTgoh9Bklb1J/RlXfWcGY/TtH+AuJ7hps3B
+ ao/e8nulzE8dsFpUEvsGi35kTj6dEjE+mCkLX5z0HQXfPnSrgzI4oITMH
+ EsL0P37XUaysO+U522mLKOsn5PUYvsV1TeBcbNk/QUcalxJUSBa6QocTp
+ 6D2TgnXqdIppu/keFiZyd5p/z/xtg6lEuSXTi+v5K/RSqh3sd8W6u/cfk
+ UAOXVqCrNds/CRfAynYpv8ZxTbQM/5YFzilnK+bviIFTvsL1oPi3fEYA5 w==;
+X-CSE-ConnectionGUID: dd2Z1rolSXORbnINJHrIZw==
+X-CSE-MsgGUID: t5xWggWDSYmW617iFsMslQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="38661135"
+X-IronPort-AV: E=Sophos;i="6.13,242,1732608000"; d="scan'208";a="38661135"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2025 20:32:41 -0800
+X-CSE-ConnectionGUID: 1oV2zrbFT92w9YEiHCoq2g==
+X-CSE-MsgGUID: 8w1rcq5uSbydCVqhr16yeA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,242,1732608000"; d="scan'208";a="109459782"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="139795250"
 Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
  ([10.165.21.142])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 20:12:25 -0800
-Date: Tue, 28 Jan 2025 20:12:25 -0800
-Message-ID: <85a5bafec6.wl-ashutosh.dixit@intel.com>
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2025 20:32:41 -0800
+Date: Tue, 28 Jan 2025 20:32:40 -0800
+Message-ID: <858qqufdef.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Harish Chegondi <harish.chegondi@intel.com>
 Cc: <intel-xe@lists.freedesktop.org>
 Subject: Re: [PATCH v8 4 3/7] drm/xe/eustall: Implement EU stall sampling APIs
  for Xe_HPC
-In-Reply-To: <28e9b33c1fd5164d611d1ea3caa45388278efe43.1736970203.git.harish.chegondi@intel.com>
-References: <cover.1736970203.git.harish.chegondi@intel.com>	<28e9b33c1fd5164d611d1ea3caa45388278efe43.1736970203.git.harish.chegondi@intel.com>
+In-Reply-To: <85a5bafec6.wl-ashutosh.dixit@intel.com>
+References: <cover.1736970203.git.harish.chegondi@intel.com>
+ <28e9b33c1fd5164d611d1ea3caa45388278efe43.1736970203.git.harish.chegondi@intel.com>
+ <85a5bafec6.wl-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -70,418 +72,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 15 Jan 2025 12:02:09 -0800, Harish Chegondi wrote:
+On Tue, 28 Jan 2025 20:12:25 -0800, Dixit, Ashutosh wrote:
 >
-
-Hi Harish,
-
-Reveiw #4 on the same patch. Final review on this version of the patch. I
-have suggested some low level code changes which should work but would need
-to be verified (the code, as well as tested).
-
-Also, I don't understand really what's going on in these circ buffer
-functions with the overflow bits. So I need some explanation as to what the
-code is doing and whether what's going on here is really correct.
-
-So basically what I don't understand here is whether:
-
-	if (write_offset > read_offset)
-
-should really be
-
-	if (write_offset >= read_offset)
-
-Basically what happens when 'write_offset == read_offset'. We should be
-using the overflow bits "somehow" according to me in this case but we don't
-seem to be doing that.
-
-This is repeated several times in my comments below. But if you have an
-explanation just explain it here, don't have to repeat it each time.
-
-> @@ -144,6 +230,236 @@ static int xe_eu_stall_user_extensions(struct xe_device *xe, u64 extension,
->	return 0;
->  }
+> On Wed, 15 Jan 2025 12:02:09 -0800, Harish Chegondi wrote:
+> >
 >
-> +/**
-> + * buf_data_size - Calculate the number of bytes in a circular buffer
-> + *		   given the read and write pointers and the size of
-> + *		   the buffer.
-> + *
-> + * @buf_size: Size of the circular buffer
-> + * @read_ptr: Read pointer with an additional overflow bit
-> + * @write_ptr: Write pointer with an additional overflow bit
-> + *
-> + * Since the read and write pointers have an additional overflow bit,
-> + * this function calculates the offsets from the pointers and use the
-> + * offsets to calculate the data size in the buffer.
-> + *
-> + * Returns: number of bytes of data in the buffer
-> + */
-> +static u32
-> +buf_data_size(size_t buf_size, u32 read_ptr, u32 write_ptr)
-> +{
-> +	u32 read_offset, write_offset, size = 0;
-> +
-> +	read_offset = read_ptr & (buf_size - 1);
-> +	write_offset = write_ptr & (buf_size - 1);
-> +
-> +	if (write_offset > read_offset)
-
->=
-
-See xe_oa_circ_diff. Surprised to see such a basic "bug" (though looks like
-it is offset by other code so maybe not a real bug). Am I missing something
-(e.g. because of the overflow bits)?
-
-> +		size = write_offset - read_offset;
-> +	else
-> +		size = buf_size - read_offset + write_offset;
-> +
-> +	return size;
-
-Though I think we should be using the overflow bits here to determine if
-the buffer is empty or full. Why are we not doing that?
-
-Basically what happens when 'write_offset == read_offset'? Shouldn't we
-look at overflow bits to figure out if buffer is empty or full?
-
-> +}
-> +
-> +/**
-> + * eu_stall_data_buf_check - check for EU stall data in the buffer
-> + *
-> + * @stream: xe EU stall data stream instance
-> + *
-> + * Returns: true if the EU stall buffer contains minimum stall data as
-> + *	    specified by the event report count, else false.
-> + */
-> +static bool
-> +eu_stall_data_buf_check(struct xe_eu_stall_data_stream *stream)
-> +{
-> +	u32 read_ptr, write_ptr_reg, write_ptr, total_data = 0;
-> +	u32 buf_size = stream->per_xecore_buf_size;
-> +	struct xe_gt *gt = stream->gt;
-> +	struct per_xecore_buf *xecore_buf;
-> +	bool min_data_present;
-> +	u16 group, instance;
-> +	unsigned int xecore;
-> +
-> +	min_data_present = false;
-
-Init this above where it is declared.
-
-> +	for_each_dss_steering(xecore, gt, group, instance) {
-> +		xecore_buf = &stream->xecore_buf[xecore];
-> +		mutex_lock(&xecore_buf->lock);
-> +		read_ptr = xecore_buf->read;
-> +		write_ptr_reg = xe_gt_mcr_unicast_read(gt, XEHPC_EUSTALL_REPORT,
-> +						       group, instance);
-> +		write_ptr = REG_FIELD_GET(XEHPC_EUSTALL_REPORT_WRITE_PTR_MASK, write_ptr_reg);
-> +		write_ptr <<= 6;
-> +		write_ptr &= ((buf_size << 1) - 1);
-> +		if (write_ptr != read_ptr && !min_data_present) {
-
-Check for the first condition is not needed after the suggested change to
-buf_data_size above.
-
-So this is:
-		if (!min_data_present) {
-
-> +			total_data += buf_data_size(buf_size, read_ptr, write_ptr);
-> +			/*
-> +			 * Check if there are at least minimum number of stall data
-> +			 * rows for poll() to indicate that the data is present.
-> +			 * Each stall data row is 64B (cacheline size).
-> +			 */
-> +			if (num_data_rows(total_data) >= stream->wait_num_reports)
-> +				min_data_present = true;
-> +		}
-> +		if (write_ptr_reg & XEHPC_EUSTALL_REPORT_OVERFLOW_DROP)
-> +			set_bit(xecore, stream->data_drop.mask);
-> +		xecore_buf->write = write_ptr;
-> +		mutex_unlock(&xecore_buf->lock);
-> +	}
-> +	return min_data_present;
-> +}
-> +
-> +static void
-> +clear_dropped_eviction_line_bit(struct xe_gt *gt, u16 group, u16 instance)
-> +{
-> +	u32 write_ptr_reg;
-> +
-> +	/* On PVC, the overflow bit has to be cleared by writing 1 to it. */
-> +	write_ptr_reg = _MASKED_BIT_ENABLE(XEHPC_EUSTALL_REPORT_OVERFLOW_DROP);
-> +
-> +	xe_gt_mcr_unicast_write(gt, XEHPC_EUSTALL_REPORT, write_ptr_reg, group, instance);
-> +}
-
-Ideally all this handling of dropped data should be in the -EIO patch. So
-that should become the dropped packet handling patch. But anyway, let's
-focus on the code, not the patches.
-
-> +
-> +static int
-> +xe_eu_stall_data_buf_read(struct xe_eu_stall_data_stream *stream,
-> +			  char __user *buf, size_t count,
-> +			  size_t *total_size, struct xe_gt *gt,
-> +			  u16 group, u16 instance, unsigned int xecore)
-> +{
-> +	u32 read_ptr_reg, read_ptr, write_ptr;
-> +	u8 *xecore_start_vaddr, *read_vaddr;
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	struct per_xecore_buf *xecore_buf;
-> +	size_t size, copy_size, buf_size;
-> +	u32 read_offset, write_offset;
-> +	unsigned long record_size;
-> +
-> +	/* Hardware increments the read and write pointers such that they can
-> +	 * overflow into one additional bit. For example, a 256KB size buffer
-> +	 * offset pointer needs 18 bits. But HW uses 19 bits for the read and
-> +	 * write pointers. This technique avoids wasting a slot in the buffer.
-
-OK, but here I don't see overflow bits being used in this code to
-distinguish between buffer empty and full.
-
-> +	 * Read and write offsets are calculated from the pointers in order to
-> +	 * check if the write pointer has wrapped around the array.
-> +	 */
-> +	xecore_buf = &stream->xecore_buf[xecore];
-> +	mutex_lock(&xecore_buf->lock);
-> +	xecore_start_vaddr = xecore_buf->vaddr;
-> +	read_ptr = xecore_buf->read;
-> +	write_ptr = xecore_buf->write;
-> +	buf_size = stream->per_xecore_buf_size;
-> +	read_offset = read_ptr & (buf_size - 1);
-> +	write_offset = write_ptr & (buf_size - 1);
-> +
-> +	if (write_ptr == read_ptr) {
-> +		mutex_unlock(&xecore_buf->lock);
-> +		return 0;
-> +	}
-
-No need I think again, remove this if statement and let the code fall
-through. Let's avoid these if statements where possible.
-
-> +
-> +	trace_xe_eu_stall_data_read(group, instance, read_ptr, write_ptr,
-> +				    read_offset, write_offset, *total_size);
-> +	/* If write pointer offset is less than the read pointer offset,
-> +	 * it means, write pointer has wrapped around the array.
-> +	 */
-> +	if (write_offset > read_offset)
-
-Once again, why not >= ?
-
-> +		size = write_offset - read_offset;
-> +	else
-> +		size = buf_size - read_offset + write_offset;
-
-Replace the above code section with:
-
-	size = buf_data_size(buf_size, read_ptr, write_ptr);
-
-> +
-> +	/* Read only the data that the user space buffer can accommodate */
-> +	if ((*total_size + size) > count) {
-> +		record_size = xe_eu_stall_data_record_size(xe);
-
-Maybe it makes sense to add the record size to the stream, so we don't need
-to this platform check each time. We can just initialize the record size at
-init time.
-
-> +		size = count - *total_size;
-> +		size = (size / record_size) * record_size;
-> +	}
-
-Let's replace this code section by something like:
-
-		xe_assert(xe, count >= *total_size);
-		size = min_t(size_t, count - *total_size, size);
-		size = (size / record_size) * record_size;
-> +
-> +	if (size == 0) {
-> +		mutex_unlock(&xecore_buf->lock);
-> +		return 0;
-> +	}
-
-Remove, again let the code fall through the if-else ladder
-below. copy_to_user should handle 0 byte copies (i.e. ignore them). But
-check that. Wouldn't this work?
-
-> +
-> +	read_vaddr = xecore_start_vaddr + read_offset;
-> +
-> +	if (write_offset > read_offset) {
-
->= , again, with the same overflow bit issue potentially.
-
-> +		if (copy_to_user((buf + *total_size), read_vaddr, size)) {
-> +			mutex_unlock(&xecore_buf->lock);
-> +			return -EFAULT;
-> +		}
-> +	} else {
-> +		if (size >= (buf_size - read_offset))
-> +			copy_size = buf_size - read_offset;
-> +		else
-> +			copy_size = size;
-> +		if (copy_to_user((buf + *total_size), read_vaddr, copy_size)) {
-> +			mutex_unlock(&xecore_buf->lock);
-> +			return -EFAULT;
-> +		}
-> +		if (copy_to_user((buf + *total_size + copy_size),
-> +				 xecore_start_vaddr, size - copy_size)) {
-> +			mutex_unlock(&xecore_buf->lock);
-> +			return -EFAULT;
-
-These copies look correct to me. Though not sure if we should replace all
-these error return with a 'goto exit' so that we have all returns from the
-end of the function. Do mutex_unlock etc.  in exit. But anyway, probably ok
-as is too.
-
-> +		}
-> +	}
-> +
-> +	*total_size += size;
-> +	read_ptr += size;
-> +
-> +	/* Read pointer can overflow into one additional bit */
-> +	read_ptr &= ((buf_size << 1) - 1);
-
-Outer brackets not needed unless compiler complains.
-
-> +	read_ptr_reg = REG_FIELD_PREP(XEHPC_EUSTALL_REPORT1_READ_PTR_MASK, (read_ptr >> 6));
-> +	read_ptr_reg &= XEHPC_EUSTALL_REPORT1_READ_PTR_MASK;
-
-Why? Doesn't REG_FIELD_PREP already do this?
-
-> +	read_ptr_reg = _MASKED_FIELD(XEHPC_EUSTALL_REPORT1_READ_PTR_MASK, read_ptr_reg);
-> +	xe_gt_mcr_unicast_write(gt, XEHPC_EUSTALL_REPORT1, read_ptr_reg, group, instance);
-> +	if (test_bit(xecore, stream->data_drop.mask)) {
-> +		clear_dropped_eviction_line_bit(gt, group, instance);
-> +		clear_bit(xecore, stream->data_drop.mask);
-> +	}
-
-Ideally, this dropped data stuff should be in the -EIO patch.
-
-> +	xecore_buf->read = read_ptr;
-> +	mutex_unlock(&xecore_buf->lock);
-> +	trace_xe_eu_stall_data_read(group, instance, read_ptr, write_ptr,
-> +				    read_offset, write_offset, *total_size);
-
-Why another trace?
-
-> +	return 0;
-> +}
-> +
-> +/**
-> + * xe_eu_stall_stream_read_locked - copy EU stall counters data from the
-> + *				    per xecore buffers to the userspace buffer
-> + * @stream: A stream opened for EU stall count metrics
-> + * @buf: destination buffer given by userspace
-> + * @count: the number of bytes userspace wants to read
-> + * @ppos: (inout) file seek position (unused)
-> + *
-> + * Returns: Number of bytes copied or a negative error code
-> + * If we've successfully copied any data then reporting that takes
-> + * precedence over any internal error status, so the data isn't lost.
-> + */
-> +static ssize_t
-> +xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *stream,
-> +			       struct file *file, char __user *buf,
-> +			       size_t count, loff_t *ppos)
-
-Don't need ppos in this static function.
-
-> +{
-> +	struct xe_gt *gt = stream->gt;
-> +	size_t total_size = 0;
-> +	u16 group, instance;
-> +	unsigned int xecore;
-> +	int ret = 0;
-> +
-> +	if (count == 0)
-> +		return -EINVAL;
-
-This should not be needed (and if it is needed it should be in
-xe_eu_stall_stream_read). It should get handled automatically in
-xe_eu_stall_data_buf_read with suggested changes. If not let's see.
-
-> +
-> +	for_each_dss_steering(xecore, gt, group, instance) {
-> +		ret = xe_eu_stall_data_buf_read(stream, buf, count, &total_size,
-> +						gt, group, instance, xecore);
-> +		if (ret || count == total_size)
-> +			goto exit;
-
-break
-
-> +	}
-> +exit:
-> +	if (total_size)
-> +		return total_size;
-> +	else if (ret)
-> +		return ret;
-> +	else
-> +		return -EAGAIN;
-
-return total_size ?: (ret ?: -EAGAIN);
-
-See xe_oa_read.
-
-> +}
-> +
->  /**
->   * xe_eu_stall_stream_read - handles userspace read() of a EU stall data stream fd.
->   *
-> @@ -160,11 +476,265 @@ static int xe_eu_stall_user_extensions(struct xe_device *xe, u64 extension,
->  static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
->				       size_t count, loff_t *ppos)
->  {
-> -	ssize_t ret = 0;
-> +	struct xe_eu_stall_data_stream *stream = file->private_data;
-> +	struct xe_gt *gt = stream->gt;
-> +	ssize_t ret;
-> +
-> +	if (!stream->enabled) {
-> +		xe_gt_dbg(gt, "EU stall data stream not enabled to read\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (!(file->f_flags & O_NONBLOCK)) {
-> +		do {
-> +			if (!stream->pollin) {
-
-This is not needed. wait_event_interruptible automatically checks if cond
-is true before waiting, it will not wait if cond is true. See
-xe_oa_wait_unlocked.
-
-> +				ret = wait_event_interruptible(stream->poll_wq, stream->pollin);
-> +				if (ret)
-> +					return -EINTR;
-> +			}
-> +
-> +			mutex_lock(&gt->eu_stall->lock);
-> +			ret = xe_eu_stall_stream_read_locked(stream, file, buf, count, ppos);
-> +			mutex_unlock(&gt->eu_stall->lock);
-> +		} while (ret == -EAGAIN);
-> +	} else {
-> +		mutex_lock(&gt->eu_stall->lock);
-> +		ret = xe_eu_stall_stream_read_locked(stream, file, buf, count, ppos);
-> +		mutex_unlock(&gt->eu_stall->lock);
-> +	}
-> +
-> +	stream->pollin = false;
-
-Generally speaking this doesn't work if user buffer is too small, in that
-case we don't want user thread to block when it calls in the next time to
-read. See bcad588dea538 . But since this is a corner case, I am ok fixing
-this after the initial merge.
-
+> Hi Harish,
 >
->	return ret;
->  }
+> Reveiw #4 on the same patch. Final review on this version of the patch. I
+> have suggested some low level code changes which should work but would need
+> to be verified (the code, as well as tested).
 >
+> Also, I don't understand really what's going on in these circ buffer
+> functions with the overflow bits. So I need some explanation as to what the
+> code is doing and whether what's going on here is really correct.
+>
+> So basically what I don't understand here is whether:
+>
+>	if (write_offset > read_offset)
+>
+> should really be
+>
+>	if (write_offset >= read_offset)
+>
+> Basically what happens when 'write_offset == read_offset'. We should be
+> using the overflow bits "somehow" according to me in this case but we don't
+> seem to be doing that.
+>
+> This is repeated several times in my comments below. But if you have an
+> explanation just explain it here, don't have to repeat it each time.
 
-Thanks.
---
-Ashutosh
+Let's have one or two centralized functions to do this everywhere rather
+than compute read/write offsets everywhere. For example a correct
+buf_data_size() function should return how many bytes are in the buffer,
+taking into account whether the buffer is empty or full. And then this
+function will be called everywhere where we need to do this. And we can
+have more than one such centralized function. Similar to xe_oa_circ_diff
+and xe_oa_circ_incr for OA.
+
+> > +static u32
+> > +buf_data_size(size_t buf_size, u32 read_ptr, u32 write_ptr)
+> > +{
+> > +	u32 read_offset, write_offset, size = 0;
+> > +
+> > +	read_offset = read_ptr & (buf_size - 1);
+> > +	write_offset = write_ptr & (buf_size - 1);
+> > +
+> > +	if (write_offset > read_offset)
