@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A1E1C02193
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B00DC0218F
 	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 19:51:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 887B510E885;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E5AA10E887;
 	Wed, 29 Jan 2025 19:51:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HuNVQ4G9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ij1yutWD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4236510E177;
- Wed, 29 Jan 2025 19:51:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBD8E10E177;
+ Wed, 29 Jan 2025 19:51:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1738180280; x=1769716280;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=HbdphFBOs6QEj3+6AUoIm2WzF/q3MDTxDlAk1XFxXDk=;
- b=HuNVQ4G9BU5KGFTdTppYS2gw4lZTkGDD9OrN7jE0LxNm9xjTehLkYZ0B
- 4lvZGeIYU+mAgERxFbIpc42MNQxQJgriUkSqieOj4fkTWk9XSDke7m/1D
- sZaUgXe+KKzMmmls5Fu5HMtTgYeu5f5q/o6jTJDU3XzQJzQlWjvFm3vSo
- Tv2HeVXCyM4LRikzQRdTTrHxgs4gC/QJj2MWTaOalckJN5HAy2oDXSmQg
- WYJJnjJi14eatOM1D58qI+mXjmTFmciInvVZzFRCiVhk7giQCxrIgVuSd
- WWCDAt8yk375S/LMUREUftHAASWQQ13rCOKvhEr6F4ZFzo2pauc8Nkk89 w==;
-X-CSE-ConnectionGUID: kheLvIDlSLaJDl66/QxvOQ==
-X-CSE-MsgGUID: cNn9u1ECRnCPUfWeXtGrtg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50132717"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="50132717"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kJIMNdbUvU3Ao280imIOAe2qe9hwgnfMcJiZ+Hd2rgY=;
+ b=ij1yutWDCE6hE8H8bdDfdaDv9FaEfrO1KWr5lYUwABnUhRL4WBtiJKdX
+ DvJRBft1yb8zXb+8uMJHjNIMNPiadqTpSFQG41pvRjRwFsedL9EwIOqFY
+ p79s/8X6MgnQWsJ20oXNmH62gn5MmwNLLNX/V0TUa/kVwh7dU+bowwnZD
+ eZbx7T8Xm9pzd8xS2yFC0XBbQRqI2+p9a6q/Xl3XaGoDKMKb2kLYGQncJ
+ 5d8ccv+ElEUJMAp9URHpFClzI537OMSBE3w1fyywJli5YTMo9fYnM1zY2
+ RpgxNpcGqWETdIgNf47jq8M9EgW1K540YhCNK/sEtJ9qOeZLTr+mWX5O7 w==;
+X-CSE-ConnectionGUID: AUv3W7voQCGjnzFk+kUzxQ==
+X-CSE-MsgGUID: KgUUjZDsRQmSOJEQYrhyrA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50132700"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="50132700"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Jan 2025 11:51:20 -0800
-X-CSE-ConnectionGUID: BklwPYEhQC2eKBmyLfBiog==
-X-CSE-MsgGUID: CavaRi/gSmCHd7imTQfiSw==
+X-CSE-ConnectionGUID: SZOp0G6UQJKwiOPEz4kg0A==
+X-CSE-MsgGUID: 20JvvdM3TDmDI7/dqYrhdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="132392104"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="132392097"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 11:51:20 -0800
+ 29 Jan 2025 11:51:19 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v4 02/33] mm/migrate: Add migrate_device_pfns
-Date: Wed, 29 Jan 2025 11:51:41 -0800
-Message-Id: <20250129195212.745731-3-matthew.brost@intel.com>
+Subject: [PATCH v4 00/33] Introduce GPU SVM and Xe SVM implementation
+Date: Wed, 29 Jan 2025 11:51:39 -0800
+Message-Id: <20250129195212.745731-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250129195212.745731-1-matthew.brost@intel.com>
-References: <20250129195212.745731-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,116 +68,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add migrate_device_pfns which prepares an array of pre-populated device
-pages for migration. This is needed for eviction of known set of
-non-contiguous devices pages to cpu pages which is a common case for SVM
-in DRM drivers using TTM.
+Version 4 of GPU SVM. Thanks to everyone (especially Sima, Thomas,
+Alistair, Himal) for their numerous reviews on revision 1, 2, 3  and for
+helping to address many design issues.
 
-v2:
- - s/migrate_device_vma_range/migrate_device_prepopulated_range
- - Drop extra mmu invalidation (Vetter)
-v3:
- - s/migrate_device_prepopulated_range/migrate_device_pfns (Alistar)
- - Use helper to lock device pages (Alistar)
- - Update commit message with why this is required (Alistar)
+This version has been tested with IGT [1] on PVC, BMG, and LNL. Also
+tested with level0 (UMD) PR [2].
 
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- include/linux/migrate.h |  1 +
- mm/migrate_device.c     | 52 +++++++++++++++++++++++++++++------------
- 2 files changed, 38 insertions(+), 15 deletions(-)
+Major changes in v2:
+- Dropped mmap write abuse
+- core MM locking and retry loops instead of driver locking to avoid races
+- Removed physical to virtual references
+- Embedded structure/ops for drm_gpusvm_devmem
+- Fixed mremap and fork issues
+- Added DRM pagemap
+- Included RFC documentation in the kernel doc
 
-diff --git a/include/linux/migrate.h b/include/linux/migrate.h
-index 002e49b2ebd9..6254746648cc 100644
---- a/include/linux/migrate.h
-+++ b/include/linux/migrate.h
-@@ -229,6 +229,7 @@ void migrate_vma_pages(struct migrate_vma *migrate);
- void migrate_vma_finalize(struct migrate_vma *migrate);
- int migrate_device_range(unsigned long *src_pfns, unsigned long start,
- 			unsigned long npages);
-+int migrate_device_pfns(unsigned long *src_pfns, unsigned long npages);
- void migrate_device_pages(unsigned long *src_pfns, unsigned long *dst_pfns,
- 			unsigned long npages);
- void migrate_device_finalize(unsigned long *src_pfns,
-diff --git a/mm/migrate_device.c b/mm/migrate_device.c
-index 9cf26592ac93..19960743f927 100644
---- a/mm/migrate_device.c
-+++ b/mm/migrate_device.c
-@@ -876,6 +876,22 @@ void migrate_vma_finalize(struct migrate_vma *migrate)
- }
- EXPORT_SYMBOL(migrate_vma_finalize);
- 
-+static unsigned long migrate_device_pfn_lock(unsigned long pfn)
-+{
-+	struct folio *folio;
-+
-+	folio = folio_get_nontail_page(pfn_to_page(pfn));
-+	if (!folio)
-+		return 0;
-+
-+	if (!folio_trylock(folio)) {
-+		folio_put(folio);
-+		return 0;
-+	}
-+
-+	return migrate_pfn(pfn) | MIGRATE_PFN_MIGRATE;
-+}
-+
- /**
-  * migrate_device_range() - migrate device private pfns to normal memory.
-  * @src_pfns: array large enough to hold migrating source device private pfns.
-@@ -900,29 +916,35 @@ int migrate_device_range(unsigned long *src_pfns, unsigned long start,
- {
- 	unsigned long i, pfn;
- 
--	for (pfn = start, i = 0; i < npages; pfn++, i++) {
--		struct folio *folio;
-+	for (pfn = start, i = 0; i < npages; pfn++, i++)
-+		src_pfns[i] = migrate_device_pfn_lock(pfn);
- 
--		folio = folio_get_nontail_page(pfn_to_page(pfn));
--		if (!folio) {
--			src_pfns[i] = 0;
--			continue;
--		}
-+	migrate_device_unmap(src_pfns, npages, NULL);
- 
--		if (!folio_trylock(folio)) {
--			src_pfns[i] = 0;
--			folio_put(folio);
--			continue;
--		}
-+	return 0;
-+}
-+EXPORT_SYMBOL(migrate_device_range);
- 
--		src_pfns[i] = migrate_pfn(pfn) | MIGRATE_PFN_MIGRATE;
--	}
-+/**
-+ * migrate_device_pfns() - migrate device private pfns to normal memory.
-+ * @src_pfns: pre-popluated array of source device private pfns to migrate.
-+ * @npages: number of pages to migrate.
-+ *
-+ * Similar to migrate_device_range() but supports non-contiguous pre-popluated
-+ * array of device pages to migrate.
-+ */
-+int migrate_device_pfns(unsigned long *src_pfns, unsigned long npages)
-+{
-+	unsigned long i;
-+
-+	for (i = 0; i < npages; i++)
-+		src_pfns[i] = migrate_device_pfn_lock(src_pfns[i]);
- 
- 	migrate_device_unmap(src_pfns, npages, NULL);
- 
- 	return 0;
- }
--EXPORT_SYMBOL(migrate_device_range);
-+EXPORT_SYMBOL(migrate_device_pfns);
- 
- /*
-  * Migrate a device coherent folio back to normal memory. The caller should have
+Major changes in v3:
+- Move GPU SVM and DRM pagemap to DRM level
+- Mostly addresses Thomas's feedback, lots of small changes documented
+  in each individual patch change log
+
+Major changes in v4:
+- Pull documentation patch in
+- Fix Kconfig / VRAM migration issue
+- Address feedback which came out of internal multi-GPU implementation
+
+Known issues in v4:
+- Check pages still exists, changed to threshold in this version which
+  is better but still need to root cause cross process page finding on
+  small user allocations.
+
+Matt
+
+[1] https://patchwork.freedesktop.org/series/137545/#rev3
+[2] https://github.com/intel/compute-runtime/pull/782
+
+Matthew Brost (29):
+  drm/xe: Retry BO allocation
+  mm/migrate: Add migrate_device_pfns
+  mm/migrate: Trylock device page in do_swap_page
+  drm/gpusvm: Add support for GPU Shared Virtual Memory
+  drm/xe: Select DRM_GPUSVM Kconfig
+  drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR flag
+  drm/xe: Add SVM init / close / fini to faulting VMs
+  drm/xe: Nuke VM's mapping upon close
+  drm/xe: Add SVM range invalidation and page fault handler
+  drm/gpuvm: Add DRM_GPUVA_OP_DRIVER
+  drm/xe: Add (re)bind to SVM page fault handler
+  drm/xe: Add SVM garbage collector
+  drm/xe: Add unbind to SVM garbage collector
+  drm/xe: Do not allow CPU address mirror VMA unbind if the GPU has
+    bindings
+  drm/xe: Enable CPU address mirror uAPI
+  drm/xe/uapi: Add DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR
+  drm/xe: Add migrate layer functions for SVM support
+  drm/xe: Add SVM device memory mirroring
+  drm/xe: Add drm_gpusvm_devmem to xe_bo
+  drm/xe: Add GPUSVM device memory copy vfunc functions
+  drm/xe: Add Xe SVM populate_devmem_pfn GPU SVM vfunc
+  drm/xe: Add Xe SVM devmem_release GPU SVM vfunc
+  drm/xe: Add BO flags required for SVM
+  drm/xe: Add SVM VRAM migration
+  drm/xe: Basic SVM BO eviction
+  drm/xe: Add SVM debug
+  drm/xe: Add modparam for SVM notifier size
+  drm/xe: Add always_migrate_to_vram modparam
+  drm/doc: gpusvm: Add GPU SVM documentation
+
+Thomas Hellström (4):
+  drm/pagemap: Add DRM pagemap
+  drm/xe/bo: Introduce xe_bo_put_async
+  drm/xe: Add dma_addr res cursor
+  drm/xe: Add drm_pagemap ops to SVM
+
+ Documentation/gpu/rfc/gpusvm.rst            |   84 +
+ Documentation/gpu/rfc/index.rst             |    4 +
+ drivers/gpu/drm/Kconfig                     |    9 +
+ drivers/gpu/drm/Makefile                    |    1 +
+ drivers/gpu/drm/drm_gpusvm.c                | 2240 +++++++++++++++++++
+ drivers/gpu/drm/xe/Kconfig                  |   10 +
+ drivers/gpu/drm/xe/Makefile                 |    1 +
+ drivers/gpu/drm/xe/xe_bo.c                  |   63 +-
+ drivers/gpu/drm/xe/xe_bo.h                  |   14 +
+ drivers/gpu/drm/xe/xe_bo_types.h            |    4 +
+ drivers/gpu/drm/xe/xe_device.c              |    3 +
+ drivers/gpu/drm/xe/xe_device_types.h        |   22 +
+ drivers/gpu/drm/xe/xe_gt_pagefault.c        |   17 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   24 +
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |    2 +
+ drivers/gpu/drm/xe/xe_migrate.c             |  175 ++
+ drivers/gpu/drm/xe/xe_migrate.h             |   10 +
+ drivers/gpu/drm/xe/xe_module.c              |    7 +
+ drivers/gpu/drm/xe/xe_module.h              |    2 +
+ drivers/gpu/drm/xe/xe_pt.c                  |  393 +++-
+ drivers/gpu/drm/xe/xe_pt.h                  |    5 +
+ drivers/gpu/drm/xe/xe_pt_types.h            |    2 +
+ drivers/gpu/drm/xe/xe_query.c               |    5 +-
+ drivers/gpu/drm/xe/xe_res_cursor.h          |  116 +-
+ drivers/gpu/drm/xe/xe_svm.c                 |  946 ++++++++
+ drivers/gpu/drm/xe/xe_svm.h                 |   84 +
+ drivers/gpu/drm/xe/xe_tile.c                |    5 +
+ drivers/gpu/drm/xe/xe_vm.c                  |  375 +++-
+ drivers/gpu/drm/xe/xe_vm.h                  |   15 +-
+ drivers/gpu/drm/xe/xe_vm_types.h            |   57 +
+ include/drm/drm_gpusvm.h                    |  445 ++++
+ include/drm/drm_gpuvm.h                     |    5 +
+ include/drm/drm_pagemap.h                   |  105 +
+ include/linux/migrate.h                     |    1 +
+ include/uapi/drm/xe_drm.h                   |   22 +-
+ mm/memory.c                                 |   13 +-
+ mm/migrate_device.c                         |  116 +-
+ 37 files changed, 5245 insertions(+), 157 deletions(-)
+ create mode 100644 Documentation/gpu/rfc/gpusvm.rst
+ create mode 100644 drivers/gpu/drm/drm_gpusvm.c
+ create mode 100644 drivers/gpu/drm/xe/xe_svm.c
+ create mode 100644 drivers/gpu/drm/xe/xe_svm.h
+ create mode 100644 include/drm/drm_gpusvm.h
+ create mode 100644 include/drm/drm_pagemap.h
+
 -- 
 2.34.1
 
