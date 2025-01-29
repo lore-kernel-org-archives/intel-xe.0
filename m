@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF240C02193
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7811C02190
 	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 14:46:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A69710E80C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A8F310E80D;
 	Wed, 29 Jan 2025 14:46:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LQnlED/M";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E96A10E80C;
- Wed, 29 Jan 2025 14:46:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738162016; x=1769698016;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OagL8z8uTy1WL6+iLhlFS234e5w9uWNJsTSiP/esuJk=;
- b=LQnlED/M9owRCHeA449QALn7NO599rYkoVc8ZAsm0DDgTAYFmIkQ8ckz
- 6XRn+pg0GdRspIkZIdK7cHW4r2dbw035f7rRt7ofQHiYFXmqCVtlFQOTD
- zAPooK8dv6Lg62+pVgud1ildEvxclNCbGJ4TC3pt2Xg01Q3cGwNo5PDWw
- 9czt20SPCKCG1ndGMAtNGwzlEvqB/sJw6d/zdd//2Zu7K1rILcA61QUo7
- AZII+EDP598Qr4hdX5bYAvLFblzCQCmYlg2ju8YglCiNqxDnyl4Z16aW1
- uCToxrGSpYBRyhy1fyfesTRlzFF7nyUFk3veusWGJr8/211QKu1PBLK3C Q==;
-X-CSE-ConnectionGUID: cfECmW4UQceqUgWPUOopcQ==
-X-CSE-MsgGUID: IEPW2lMLSzeTtPkZqVyTsA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="64040603"
-X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; d="scan'208";a="64040603"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 06:46:56 -0800
-X-CSE-ConnectionGUID: HmBS77xmScSfc5TmZUBfnw==
-X-CSE-MsgGUID: CVgCg99YRiCxir7Fb09rbA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113057001"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.235])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 06:46:54 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	imre.deak@intel.com
-Subject: [PATCH 2/6] drm/i915/dp: change the order of
- intel_dp_mtp_tu_compute_config() params
-Date: Wed, 29 Jan 2025 16:46:34 +0200
-Message-Id: <ea9669edc5973cdbca92aeb4e168850015e9d1bb.1738161945.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1738161945.git.jani.nikula@intel.com>
-References: <cover.1738161945.git.jani.nikula@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28F3510E811;
+ Wed, 29 Jan 2025 14:46:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?Allow_display_PHYs_to_reset_power_state?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kahola" <mika.kahola@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 29 Jan 2025 14:46:55 -0000
+Message-ID: <173816201516.2457158.1419216980425844442@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250129130105.198817-1-mika.kahola@intel.com>
+In-Reply-To: <20250129130105.198817-1-mika.kahola@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,75 +36,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pointers first, bpp params in min, max, step. This is slightly more
-natural to follow.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c     | 2 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 8 +++-----
- drivers/gpu/drm/i915/display/intel_dp_mst.h | 3 +--
- 3 files changed, 5 insertions(+), 8 deletions(-)
+Series: drm/i915/display: Allow display PHYs to reset power state
+URL   : https://patchwork.freedesktop.org/series/144103/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index d367f9c2fa23..c387de69d55e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2643,9 +2643,9 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 		if (!ret && intel_dp_is_uhbr(pipe_config))
- 			ret = intel_dp_mtp_tu_compute_config(intel_dp,
- 							     pipe_config,
-+							     conn_state,
- 							     pipe_config->pipe_bpp,
- 							     pipe_config->pipe_bpp,
--							     conn_state,
- 							     0, false);
- 		if (ret)
- 			dsc_needed = true;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 2acc26aad6a0..98d7cdddfead 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -211,9 +211,8 @@ static int intel_dp_mst_dsc_get_slice_count(const struct intel_connector *connec
- 
- int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
- 				   struct intel_crtc_state *crtc_state,
--				   int max_bpp, int min_bpp,
- 				   struct drm_connector_state *conn_state,
--				   int step, bool dsc)
-+				   int min_bpp, int max_bpp, int step, bool dsc)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct drm_atomic_state *state = crtc_state->uapi.state;
-@@ -380,9 +379,8 @@ static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
- 	mst_state->pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
- 						      crtc_state->lane_count);
- 
--	return intel_dp_mtp_tu_compute_config(intel_dp, crtc_state,
--					      max_bpp, min_bpp,
--					      conn_state, step, dsc);
-+	return intel_dp_mtp_tu_compute_config(intel_dp, crtc_state, conn_state,
-+					      min_bpp, max_bpp, step, dsc);
- }
- 
- static int mst_stream_compute_link_config(struct intel_dp *intel_dp,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-index c6bdc1d190a4..a713a1c10154 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-@@ -33,8 +33,7 @@ bool intel_dp_mst_verify_dpcd_state(struct intel_dp *intel_dp);
- 
- int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
- 				   struct intel_crtc_state *crtc_state,
--				   int max_bpp, int min_bpp,
- 				   struct drm_connector_state *conn_state,
--				   int step, bool dsc);
-+				   int min_bpp, int max_bpp, int step, bool dsc);
- 
- #endif /* __INTEL_DP_MST_H__ */
--- 
-2.39.5
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: bdfc862a5c71 drm-tip: 2025y-01m-29d-14h-11m-06s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: Drop crtc_state from C10/C20 pll programming
+Applying: drm/i915/display: Allow display PHYs to reset power state
+
 
