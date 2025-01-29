@@ -4,57 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4FEEC02192
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 09:57:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87071C0218D
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 10:34:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86E7510E787;
-	Wed, 29 Jan 2025 09:57:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12DAE10E798;
+	Wed, 29 Jan 2025 10:34:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K82RVmHS";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="UnC3WMBZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CE6510E77C
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 09:56:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738144616; x=1769680616;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=sy30lrgiT7xN6V/sGxazGAxywOWOZb1CrzAIUjrA0sk=;
- b=K82RVmHSRH+RJPMicZ19Cv4FRUdbAQs2aSGcEd+WnczEsjalKULfDmOK
- I9Vilux561qDFnMk8grU1anhEqOJzcfg0DiWWupS5ZKCqoX1q6wqeHTzK
- Tki/ZgZGJkQGaa0Bn5mkSnyZI+mprwodCO3TWaZagoNGKGEBSxuk2dMTl
- jRAMg+/+4OFE/Cm98UmTqlIIhEzgbZBZUljngUqLMAXlBPk0bnYObC20l
- c8lWux5ZCNWquDIgeJ5KgVZj4uD7ZbxzjWQj0t04+HSE/6n94u5qmsQ8y
- vNBZ41F6qWzFeQwHVm8EoIUxm/RVD0MAb9bvfueaB7wPlL9H2MG+lEqnX g==;
-X-CSE-ConnectionGUID: 0KKSKfBNQ1u8yTaj9yVGYQ==
-X-CSE-MsgGUID: 5yhanhp9QOWhOO9NRw3wGA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="42579526"
-X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; d="scan'208";a="42579526"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 01:56:46 -0800
-X-CSE-ConnectionGUID: Ppn6tjV/S5ib5asXC6wlUA==
-X-CSE-MsgGUID: U2haYhpYTwGK3EvjrREPTg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; d="scan'208";a="108958269"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 01:56:44 -0800
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
- umesh.nerlige.ramappa@intel.com, lucas.demarchi@intel.com,
- vinay.belgaumkar@intel.com, soham.purkait@intel.com
-Subject: [PATCH v4 7/8] drm/xe/xe_pmu: Add pmu support for per-function engine
- activity stats
-Date: Wed, 29 Jan 2025 15:46:50 +0530
-Message-ID: <20250129101653.1976699-8-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250129101653.1976699-1-riana.tauro@intel.com>
-References: <20250129101653.1976699-1-riana.tauro@intel.com>
-MIME-Version: 1.0
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2075.outbound.protection.outlook.com [40.107.220.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEE6C10E798;
+ Wed, 29 Jan 2025 10:34:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kNII3qZR2Irg6l7HeqCJdEXB8KkY76MjlBlRKdaXBqL2bbpqFxay3Uu6GsEO0R0W7f4W8MFvpY/SfKmJdokQkxYsQOKayOhjsdmhiRDYCgcewectEqDbKOOysRtECoSIoVYONJ9Jxrcd42tyBqHNJJffmxw9eF98pl8ZPgoWM1Su6R+rx5nRMbh1RthU7FQhMBNEnMu+JPpdfZS89SM2qgRTN3eVn1b2iY8ku7gx5Nt5CuOiTRGhA91VhYgT1Vz3m66gn+DMta0glm7o4h5HClG/rUyQZUG5AAbidW0x+isx7TNxjAjTT6/Yycko/CfjN2S8N/xxyy4Scxw1fLQi7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=o9ALlhjF1CPg88sJuH/LZMi3tsn6wwmQ7G+Gd2z5afw=;
+ b=xqG+K09NOiuYtY7hIdaZpX8lR2hprYPJX7vQcRcGiKbmb+nCoYHQxViHEoZfP5WbGfq9KepG6NSI5PA32r9zd+W+9PHGNU8K/YEo82rR0msKPPKHeMKMu/6ho8SzCt0DJE2aJ4Sl7/HmJEffO47TzjbSj5CGKfPmGLl9tgBA5gEp/0hbIKGPf3XQQ+tvjutUYoKtOeY+2FtJcssAYjsv7USSPVrexjvdLnNlCJvByat/AnqKwn2kNligTa79JMjcRpSoRkp+NsRLL5lBkkTj4g2mI0JkajSGVhhGQB8Yvq9FHYosKiwFvF+o4D37IHCSvCaHCvtn9m8vrQ08WRLU8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o9ALlhjF1CPg88sJuH/LZMi3tsn6wwmQ7G+Gd2z5afw=;
+ b=UnC3WMBZXEanudpVnkGKophnGg6fkaIaBFcaFrRC2aszxWSyUB7gya+C2ukh9fF+QnSiDrzpH3/vsTVXwRufxkUz+jWPelS8eZL5lLrRR6fiaB+r4UVYASkGUkIN7NOg3EWLO+3PxVpsNdow/VC71PggvO7PfLobh6X8qvw9qp0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by DM3PR12MB9389.namprd12.prod.outlook.com (2603:10b6:0:46::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8377.22; Wed, 29 Jan 2025 10:33:58 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%6]) with mapi id 15.20.8377.021; Wed, 29 Jan 2025
+ 10:33:58 +0000
+Message-ID: <39142118-2f55-4ecb-bc7b-50705afaf4c8@amd.com>
+Date: Wed, 29 Jan 2025 11:33:52 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 13/26] RFC drm/xe/eudebug: userptr vm pread/pwrite
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>, intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
+ Simona Vetter <simona@ffwll.ch>
+References: <20241209133318.1806472-15-mika.kuoppala@linux.intel.com>
+ <20241220113108.2386842-1-mika.kuoppala@linux.intel.com>
+ <2eadfcd7-5cbd-4f3c-86aa-7e5a50df01d8@amd.com>
+ <173813781464.9444.9979122540723604978@jlahtine-mobl.ger.corp.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <173813781464.9444.9979122540723604978@jlahtine-mobl.ger.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0121.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:b9::19) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DM3PR12MB9389:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5b98c60e-5fd8-4461-b983-08dd40506fa2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?MXRlbmxpdHZ0dkl3MzJCQUNodGNsRlF1NHV4VnVqOUhFSy9BaWV5amkwVENi?=
+ =?utf-8?B?bVpBYVltR3d5K2RUbXAyRFlpYThrVk14UHNRNGJYTTNFb3hZamk5dXRjY2V5?=
+ =?utf-8?B?R0JUS0t5MjVvME9kejlyeXdiOXV5c1Z0OHVYckNWTzFPdU5LRXR4aUhHQjZo?=
+ =?utf-8?B?QlFVbEc4QWpOSTBqNndSeUh0NXU0bmtZMGJQQ1pXVVRmdjYvc3BMZFhOMCs4?=
+ =?utf-8?B?cXJ4Q2RsTitVbmdmN2VHMUh1Q2crd0k3S2xoWmpMY0tMNWR2YzlWMmZFanJN?=
+ =?utf-8?B?Ti9rVDdNTUhneiszN2R3eXMvZTJHd1kvY1FFTkY4VER3aEpkczI5TGdtZDRX?=
+ =?utf-8?B?TDBjWXBDN1NCa1ZEUWhPUXk3WTEvcEFSVENJSFFUMUd5L3hHbkd3SFNsOXZS?=
+ =?utf-8?B?cm0rN0l1aE5SNEVKQWxBSmxtYjI0MllFb2pqbnlVeFJocUQwNG43ZUt1dHN4?=
+ =?utf-8?B?MHp1RSt2OVR2eFlXQnFQTVllOS91V0t0N0xmYlduemhxNnIxMTQ1dlFBTUI4?=
+ =?utf-8?B?cGxEN3FIaVI4ZjlkaEhsN2ExYmF4TmwwVDhLanVWdXVqMEY0SUdFOGJvYU8y?=
+ =?utf-8?B?TEVtRFFRdkVFWitXSzZjUldwcXdNNEgzV2trd3dGdmhwTFI0NFVZOFV1L2pN?=
+ =?utf-8?B?MVlRZjFnTFFFYWgxMkJUMXNnSlEwVzJEcVk4Q2hpV2tpdmVVVjI2UzB3N2tX?=
+ =?utf-8?B?ZlhORnRIMTk5cHpLVHRiWEpGTDNmdG5BSWg0V2tjVlRiZHJpanViYVdFK2lL?=
+ =?utf-8?B?amJ0aENBTFlTUzA0dEpsaCtHa2R4YmFtTy9Lb0NKOVNtNVg3QmZIWjR4Q2h3?=
+ =?utf-8?B?Q05UeU9TblI5OTNVY3BPbVNBTEJrakIxUlhDNXRVUDFYdXVkZis4d25NUmJq?=
+ =?utf-8?B?Qk5FQXJmdjZnSStzNUpMTFVhTWI5Y1F4TXJzeFdUbm9JR2VFY0hCcFVjOWdW?=
+ =?utf-8?B?VmozblV3a2ZIdE4yMHpVckxZL3dPNmJtYlZuQ1lvd28xbkJ3dElkMTlPUnNn?=
+ =?utf-8?B?cGdweW00Z21Zb29ZbDY3cWlKYittWSs3SEJ5M1AwbVU2NXF5R1pXM1VvWHRI?=
+ =?utf-8?B?anNRRUlDclBnQ3BqSi8wK1IydHdyREdieVdFT29oWkhoNVhaVXBkeVFCcEVT?=
+ =?utf-8?B?T0hvcHA1U1J0Tjk1VHBHM24zRk9PMnBsZ3FTU2svMW5ZMWhwNkU2VlcyZndE?=
+ =?utf-8?B?cmdWR1d3VlZxeE1NNWlEVzFpVVVPUGFIYzY5dDhhVUpXdjdEMFVKbDVrWi8y?=
+ =?utf-8?B?cWpGZnVOd25hZkloZGRLNnhRTEFkbVdoWkdXQmdUYldDdzJiTXhCZEVQZWo0?=
+ =?utf-8?B?RHAvdmtENTNvVEpITy94cTJKUTdjQ3M4ZGlsVDQ2Z0JUWHJ1UzgyQ2VWWXZ5?=
+ =?utf-8?B?M2JvU2hpdG9BeGk5dEgvMzZlNlE3cFFrUzRUYXRYYkdMcmpsTDdEaDR5bHBl?=
+ =?utf-8?B?KzlXWGhMU3dPZUNnUVNOeTI0R0tNckhaNHJVaUNQWkRwQm0xbmIyVE5xVkIv?=
+ =?utf-8?B?bFJuUVNmeng2cEl5MjJzWTdkcDMycFl0Mi90K1JZRjZEMHp3VCtLV2dUYVhX?=
+ =?utf-8?B?aVRqSXdUbnhUSFhhd0R4c3NvRnFCU25URWd6MkJuT3E4NE9CZzVaWEhKREVk?=
+ =?utf-8?B?K3QxU24wS2paelBFc250U0s2b0JZNERmSndsQ2tnNzVoNk1Od2ttL3hqdjh5?=
+ =?utf-8?B?VUJZVk8xTHVkakRKRDdsempnamthUTFSZSs2V3FhVGhqOGJqVGxFSGk5VmYz?=
+ =?utf-8?B?Nm5nUkswZTViSHRRVDZ0L3pJUEcvamVzcklqcnhtaURTSWkxc3BqRTllaGwx?=
+ =?utf-8?B?Q0NsRDZBOVRxVElTNGFxUWs2ZWlQRkxHdWovc1l6OHNmQkZDTjZ3VmF3cUJR?=
+ =?utf-8?Q?YwltvQTBstuVj?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NFpQYzdZTmdYdjc2OERldUZWL2lWK2dXSE1WYkY4TTdrR2JNWmtjdFY1VDRE?=
+ =?utf-8?B?Q3VkWjZ4SWNEd2lmTktsdzBKVDVaUmtUcWpwK2haaHNDQWpUZTRGNHdZeG1H?=
+ =?utf-8?B?dkpXS21lRE9QZnNkUENjRVpESmlLbVlOa0JDNUg2R0ZTTWdseVo5aHBFUDFh?=
+ =?utf-8?B?Nkd6VngzRnB3YVJYRWp1VHAySWZWYTVySTlDSklrbFBUam5xNk9rT1d2N1pX?=
+ =?utf-8?B?b1NPT3IwRzVzekVnVGJCN1RlYmVHVjJWQythNEFyMGl3VzhGTFIwVVVtWW13?=
+ =?utf-8?B?d0lTNWRnM2c1cmhvNmhhc2tBT1pYaWhySFo1TjBwNVZhaU1vMDMxbU9YYkV5?=
+ =?utf-8?B?b3BoQmxKb2M1akY2NGZWMlVBUHhVcHFIUjRDSVlUN1k5NEkxUGlNZ3ViNWZm?=
+ =?utf-8?B?cHk4N1Npa2lXaVRLeWRMYVdIbzRUNEFZYnB0WU1oRXVGRjl6dzBrUjdhN3Uz?=
+ =?utf-8?B?V2dRTzQ3aWRCWENNYmYvUVUwbjUxZXlmRE9sRXZ4OWVFcXdBOUdhWVRoM003?=
+ =?utf-8?B?VUFQa1JHbGVDSzl0WTZMVm9VTStOR25mRHFNaWFJdmxDYjBicnBrVVlLaEJ5?=
+ =?utf-8?B?TkpWT3FmbVRhRFF0Mi95RU9TYkJTcWltSkppZEFPRk56THloK1gvQy80QWhq?=
+ =?utf-8?B?K3I1THhrY3dBRTU1Z3B4ZXRHK09MMnp2dmlUYmZ0bkJnWDN6RUlkK3F3NlZj?=
+ =?utf-8?B?OXB5ampDN05wSWZNd3pQN2NMcFpVSCtSL3c0VzBEbU9pY2RCYlpJM3BEb2NF?=
+ =?utf-8?B?Q1lLUGtGemdDTTI2YlhMMTNIRFBzMnlraWdldVpXMnRjcjdaWUR1Q3p1bHRV?=
+ =?utf-8?B?bzZoMXJRaENLb3FxL3BwRzJGU2ZUSVpmbmZod09aL3ZNaElMYkUxM2x0YTlE?=
+ =?utf-8?B?QmhHelJGaC9ySXlKVVhGYWFqVE90QVNadDhjZEp1RWtDWCtuY09ndnlJQTVC?=
+ =?utf-8?B?aHg3SUhhZ0x2cktxeFQ0L1kzNFkyek5CSmIzMlJFcEdyTUFSeW5BenJPdytU?=
+ =?utf-8?B?WHZNVXNtNW43UzVGU1JvdzQ2TzdkTHVkOCtSb3pLdkg4Vyt6YnozQVlJNHdM?=
+ =?utf-8?B?eStLelhhMHlWb0RNcVZoRG5vZiszaUdPUkVuUThaRFhqWkRNTWdRTThOSURR?=
+ =?utf-8?B?Zk0vQ1NiN09NTVVFMVdNbzB1Qmt0YWo0aTY4bnB1aDJ1RldZNUkzZWJ0dWND?=
+ =?utf-8?B?cWRNdlI3aEtPdkhNZjJCdmt2aGhnK3RBaytjRHRnZmdSRSs5TGhUSVBKck1w?=
+ =?utf-8?B?L1FCcmsrWWIrNEVkM0l0dzlMeWgxOTMwcERIN2FSeHhDUlp0d29tdm1NWFlI?=
+ =?utf-8?B?S0ZHeWN4MWRHU1grc3ZKWjVWQVhFb1orRm9qKzVJR04zTjVYcVVuUnN3TlRq?=
+ =?utf-8?B?Sk5lUk9PdGw3Vll3TGJLOGN2VFY4WlJkakdDdTdvSHdaUC9QOTRpMGlGSHFQ?=
+ =?utf-8?B?aFJ0dEtraGJjcHdBTlVRS0JVVFh6dUtJR3diNzN2TG1YMUxoU0h5ZG5lcjRR?=
+ =?utf-8?B?Q1ZmZkFKc09nekpxVWtDN1RaeUl5VVpiSTVUMk1nbisxWDRzODdFL2N3TVMz?=
+ =?utf-8?B?SkN1bE1xZzQyWWxON1FHcWZjY21FMndEd01NakUwbURzcDRyTzIvSnZjWEZm?=
+ =?utf-8?B?SEU0cHZiSGFlTkMyOS9LSjEzK3VjdDFncUo1OFFaTXB1YzZOMWk1K3F2cVRB?=
+ =?utf-8?B?UjZsSUpHc2d3dDVrYTh1U1J4Z0lHZ2YydENzbldkWWExckJzYjErL1V2M3Nj?=
+ =?utf-8?B?LzkxSXJLR3JMT0VXTW52MWFpcStPQS9rdnIxQlJxWGgxV3gyUDVzTHpjemtl?=
+ =?utf-8?B?TWtra2pCOWRSaHZuZlVlam01UndZaHE4ME5Jam1pY1BlSFhLaTNCcG01dXBI?=
+ =?utf-8?B?UDhNRG1ZcGdva2YyOVVvS3VlR3BvUms3aHRSYTJYdjJHYzJhbmVCMVQ2aGNI?=
+ =?utf-8?B?bWQwQWE2d3oyUUFKVGhNQzFxeTJndXpTZHlGaTZzcGlaMjk1RTNyTEpLN0Q5?=
+ =?utf-8?B?b1RpbkRRNHhLSGtvYzdpMmdqZEpLVXBKaW5Ba2d1emlTb1VNMHJOK2xWNlpB?=
+ =?utf-8?B?YzZ6NTBFMFJXOXF2eDFqSHFDUXhpd3BaNkZmUGkreE94YStRV2RCZU1rWWxI?=
+ =?utf-8?Q?eGJfHo9bFOp1LqV0ZU9HqXDai?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b98c60e-5fd8-4461-b983-08dd40506fa2
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2025 10:33:57.5668 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zkErtt13CQ2KozXC9Z47L2reC8vTkt8j8FT25VMsnAupL8fYiNiV/ZqaikQyAFyF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR12MB9389
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,162 +167,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add pmu support for per-function per-engine-class engine activity
-stats.
+Am 29.01.25 um 09:03 schrieb Joonas Lahtinen:
+> Quoting Christian König (2024-12-20 14:56:14)
+>> Am 20.12.24 um 12:31 schrieb Mika Kuoppala:
+>>> Implement debugger vm access for userptrs.
+>>>
+>>> When bind is done, take ref to current task so that
+>>> we know from which vm the address was bound. Then during
+>>> debugger pread/pwrite we use this target task as
+>>> parameter to access the debuggee vm with access_process_vm().
+>>>
+>>> This is based on suggestions from Thomas, Joonas and Simona.
+>> Yeah that looks much saner to me. I still have a couple of comments on
+>> the general approach, but I'm going to write that up after my vacation.
+> I see you've had some issues with mail servers, so just pinging here to
+> see if any replies have got lost.
 
-per-function per-engine-class activity is enabled when num_vfs
-are set. If num_vfs is set to 2, then the applicable function ids
-are
+No, I'm just overworked and have like 10 things I need to take care of 
+at the same time :(
 
-0 - Global per-engine-class activity
-1 - PF per-engine-class activity
-2,3 - per-VF per-engine-class activity from PF
+> Would be great to reach a consensus on the high level details before
+> spinning off further series addressing the smaller items.
 
-This can be read from perf tool as shown below
+I would say that attaching debug metadata to the GPU VMA doesn't look 
+like the best design, but if you just do that inside XE it won't affect 
+any other part of the kernel.
 
-./perf stat -e xe_<bdf>/engine-active-ticks,gt=0,engine_class=0,
-			 engine_instance=0,function=1/ -I 1000
+My other concern I have is using ptrace_may_access, I would still try to 
+avoid that.
 
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
----
- drivers/gpu/drm/xe/xe_pmu.c | 45 ++++++++++++++++++++++++++++++-------
- 1 file changed, 37 insertions(+), 8 deletions(-)
+What if you first grab the DRM render node file descriptor which 
+represents the GPU address space you want to debug with pidfd_getfd() 
+and then either create the eudebug file descriptor from an IOCTL or 
+implement the necessary IOCTLs on the DRM render node directly?
 
-diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
-index 15e9a57aa429..2968fc9a358c 100644
---- a/drivers/gpu/drm/xe/xe_pmu.c
-+++ b/drivers/gpu/drm/xe/xe_pmu.c
-@@ -12,6 +12,7 @@
- #include "xe_hw_engine.h"
- #include "xe_pm.h"
- #include "xe_pmu.h"
-+#include "xe_sriov_pf_helpers.h"
- 
- /**
-  * DOC: Xe PMU (Performance Monitoring Unit)
-@@ -29,15 +30,21 @@
-  *
-  *        60        56        52        48        44        40        36        32
-  * | - - - - | - - - - | - - - - | - - - - | - - - - | - - - - | - - - - | - - - - |
-- *   [ gt ]
-+ *   [ gt ]    [             function              ]
-  *
-  *        28        24        20        16        12         8         4         0
-  * | - - - - | - - - - | - - - - | - - - - | - - - - | - - - - | - - - - | - - - - |
-  *            [   engine_class  ] [ engine_instance ] [         event             ]
-  *
-- * engine_class and engine_instance bits will be applicable for
-+ * function, engine_class and engine_instance bits will be applicable for
-  * per-engine-class activity events (engine-active-ticks, engine-total-ticks)
-  *
-+ * Function id applicable for per-engine-class activity
-+ *
-+ * 0 - global per-engine-class activity
-+ * 1 - PF per-engine-class activity
-+ * 2 .. (num_vfs + 1) - per-VF per-engine-class activity from PF
-+ *
-  * The standard perf tool can be used to grep for a certain event as well.
-  * Example:
-  *
-@@ -49,6 +56,7 @@
-  */
- 
- #define XE_PMU_EVENT_GT_MASK			GENMASK_ULL(63, 60)
-+#define XE_PMU_EVENT_FUNCTION_MASK		GENMASK_ULL(59, 44)
- #define XE_PMU_EVENT_ENGINE_CLASS_MASK		GENMASK_ULL(27, 20)
- #define XE_PMU_EVENT_ENGINE_INSTANCE_MASK	GENMASK_ULL(19, 12)
- #define XE_PMU_EVENT_ID_MASK			GENMASK_ULL(11, 0)
-@@ -58,6 +66,11 @@ static unsigned int config_to_event_id(u64 config)
- 	return FIELD_GET(XE_PMU_EVENT_ID_MASK, config);
- }
- 
-+static unsigned int config_to_function_id(u64 config)
-+{
-+	return FIELD_GET(XE_PMU_EVENT_FUNCTION_MASK, config);
-+}
-+
- static unsigned int config_to_engine_class(u64 config)
- {
- 	return FIELD_GET(XE_PMU_EVENT_ENGINE_CLASS_MASK, config);
-@@ -116,7 +129,7 @@ static bool event_supported(struct xe_pmu *pmu, unsigned int gt,
- static bool event_param_valid(struct perf_event *event)
- {
- 	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
--	unsigned int engine_class, engine_instance;
-+	unsigned int engine_class, engine_instance, function_id;
- 	u64 config = event->attr.config;
- 	struct xe_gt *gt;
- 
-@@ -124,18 +137,28 @@ static bool event_param_valid(struct perf_event *event)
- 	if (!gt)
- 		return false;
- 
-+	function_id = config_to_function_id(config);
-+	if (function_id && !IS_SRIOV_PF(xe))
-+		return false;
-+
- 	engine_class = config_to_engine_class(config);
- 	engine_instance = config_to_engine_instance(config);
- 
- 	switch (config_to_event_id(config)) {
- 	case XE_PMU_EVENT_GT_C6_RESIDENCY:
--		if (engine_class || engine_instance)
-+		if (engine_class || engine_instance || function_id)
- 			return false;
- 		break;
- 	case XE_PMU_EVENT_ENGINE_ACTIVE_TICKS:
- 	case XE_PMU_EVENT_ENGINE_TOTAL_TICKS:
- 		if (!event_to_hwe(event))
- 			return false;
-+		/*
-+		 * Two additional functions are required for global(0)
-+		 * and PF(1) when SRIOV is enabled
-+		 */
-+		if (function_id > xe_sriov_pf_get_totalvfs(xe) + 1)
-+			return false;
- 		break;
- 	}
- 
-@@ -194,15 +217,19 @@ static u64 read_engine_events(struct perf_event *event)
- {
- 	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
- 	struct xe_hw_engine *hwe;
--	u64 val = 0;
-+	unsigned int function_id;
-+	u64 val = 0, config;
-+
-+	config = event->attr.config;
-+	function_id = config_to_function_id(config);
- 
- 	hwe = event_to_hwe(event);
- 	if (!hwe)
- 		drm_warn(&xe->drm, "unknown pmu engine\n");
--	else if (config_to_event_id(event->attr.config) == XE_PMU_EVENT_ENGINE_ACTIVE_TICKS)
--		val = xe_guc_engine_activity_active_ticks(hwe, 0);
-+	else if (config_to_event_id(config) == XE_PMU_EVENT_ENGINE_ACTIVE_TICKS)
-+		val = xe_guc_engine_activity_active_ticks(hwe, function_id);
- 	else
--		val = xe_guc_engine_activity_total_ticks(hwe, 0);
-+		val = xe_guc_engine_activity_total_ticks(hwe, function_id);
- 
- 	return val;
- }
-@@ -305,6 +332,7 @@ static void xe_pmu_event_del(struct perf_event *event, int flags)
- }
- 
- PMU_FORMAT_ATTR(gt,			"config:60-63");
-+PMU_FORMAT_ATTR(function,		"config:44-59");
- PMU_FORMAT_ATTR(engine_class,		"config:20-27");
- PMU_FORMAT_ATTR(engine_instance,	"config:12-19");
- PMU_FORMAT_ATTR(event,			"config:0-11");
-@@ -313,6 +341,7 @@ static struct attribute *pmu_format_attrs[] = {
- 	&format_attr_event.attr,
- 	&format_attr_engine_class.attr,
- 	&format_attr_engine_instance.attr,
-+	&format_attr_function.attr,
- 	&format_attr_gt.attr,
- 	NULL,
- };
--- 
-2.47.1
+That would make it unnecessary to export ptrace_may_access.
+
+Regards,
+Christian.
+
+>
+> Regards, Joonas
+>
+>> Regards,
+>> Christian.
 
