@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 201A8C0218F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2288EC02194
 	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 20:01:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D78A210E8A8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC23910E8A1;
 	Wed, 29 Jan 2025 20:01:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ab5V89ld";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gmu5FnCt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F035210E89C;
- Wed, 29 Jan 2025 20:01:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 466D310E887;
+ Wed, 29 Jan 2025 20:01:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738180893; x=1769716893;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=0m22DV12DoJ0fXFK3N+FHD9MyimfB1HyYtkB2ul77hg=;
- b=Ab5V89ldLvn+KPuWU3aKyk60C/3sU3y7zmVhpTKYbPFAr6wRN9WOCtFz
- NyvaJYmA3canf6i2vasRhhrm7zIOPPp6WFIOAwtrT29N3/yxUhtYGVZyG
- yrstqUBgRLOsLak4db11CLvIDuzJOaFkrJpKHfKLKVjgpOXDsVRxvP7Zk
- VbSxo+TlqD/m8V7qPndOEH5neld7VNKOb8l1fjC7jLwAi00+mqOTm799A
- 7QYL6aU/zplvO0YxcHbVmqUzrcEZlKXUI5Jt6Huy6SXOSfb7VJataqX7Z
- fj2jXheFES6bs2m3krEyV/sD8gNNRlz0Um+lcAIeCW+w8CcZvNTzzMFA4 A==;
-X-CSE-ConnectionGUID: foqmIw5sSVep7MnN4pXgnQ==
-X-CSE-MsgGUID: mguc1n6qTlKqaXk5auX1Xw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="38977693"
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="38977693"
+ t=1738180888; x=1769716888;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=S0LM0XpRO0Jl+UJQEV69qtO9wz0EnZ8xvtyFA1jUFWA=;
+ b=gmu5FnCtC5z16W7zyDqUARD81a+KJZ5bf86T+3/XyrYJY5JHpOlyia6g
+ AMWw8YSEA7paygOzUFRtldRtopHVuP+Ttft1olp26Da0Qt5UcDNUua/SW
+ Dst9/8856ljjOnzFizxoDbCrpbBpKVcQMQUMrXgkH/29pG3LkVynlqDAl
+ ur0YtwHit2JYdu1sZpkP3cTmV8lnHibxQpAl/XgKG5WpXdJeYATaNdAkw
+ 0w21+Xuy+nBms627Zgb0TxqeIVxQuCg6j+/h52GRedDAfRQ7R2hWoS4Mc
+ mNiF3lHFtb9zvCXJejv/dbTZONFKchGgIfzC08wTYBLxUFleCOeSURgmT g==;
+X-CSE-ConnectionGUID: lLxd2JCQSq24GzmFTJx2/g==
+X-CSE-MsgGUID: Oi3PORNVT+i3l01reOFh4g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="38977673"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="38977673"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 12:01:33 -0800
-X-CSE-ConnectionGUID: n5Xm9RG1T26Wr9axWtYwBQ==
-X-CSE-MsgGUID: 1L6OGLkvT2Cqzu5zsVPQwg==
+ 29 Jan 2025 12:01:28 -0800
+X-CSE-ConnectionGUID: QwC+hvQaRiyDu/xvEcJOdQ==
+X-CSE-MsgGUID: 4Baij0fBQ4CC24EhO9qHng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113750900"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113750890"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 12:01:32 -0800
+ 29 Jan 2025 12:01:27 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 06/17] drm/i915/ddi: Simplify the port disabling via
+Cc: Imre Deak <imre.deak@gmail.com>
+Subject: [PATCH 02/17] drm/i915/ddi: Fix HDMI port width programming in
  DDI_BUF_CTL
-Date: Wed, 29 Jan 2025 22:02:10 +0200
-Message-ID: <20250129200221.2508101-7-imre.deak@intel.com>
+Date: Wed, 29 Jan 2025 22:02:06 +0200
+Message-ID: <20250129200221.2508101-3-imre.deak@intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20250129200221.2508101-1-imre.deak@intel.com>
 References: <20250129200221.2508101-1-imre.deak@intel.com>
@@ -67,70 +68,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A port can be disabled only via a modeset (or during HW state
-sanitization) when the port is enabled. Thus it's not required to check
-the port's enabled state before disabling it. In any case if the port
-happened to be disabled, the following disabling would be just a nop and
-waiting for the buffer's idle state should succeed. Simplify the
-disabling sequence accordingly.
+From: Imre Deak <imre.deak@gmail.com>
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
+Fix the port width programming in the DDI_BUF_CTL register on MTLP+,
+where this had an off-by-one error.
+
+Signed-off-by: Imre Deak <imre.deak@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 23 +++++------------------
- 1 file changed, 5 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 2 +-
+ drivers/gpu/drm/i915/i915_reg.h          | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 3138dc4034797..24c56d2aa5f31 100644
+index dc319f37b1be9..36e7dde422d37 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3062,17 +3062,12 @@ static void mtl_disable_ddi_buf(struct intel_encoder *encoder,
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	enum port port = encoder->port;
--	u32 val;
+@@ -3501,7 +3501,7 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
+ 		intel_de_rmw(dev_priv, XELPDP_PORT_BUF_CTL1(dev_priv, port),
+ 			     XELPDP_PORT_WIDTH_MASK | XELPDP_PORT_REVERSAL, port_buf);
  
- 	/* 3.b Clear DDI_CTL_DE Enable to 0. */
--	val = intel_de_read(dev_priv, DDI_BUF_CTL(port));
--	if (val & DDI_BUF_CTL_ENABLE) {
--		val &= ~DDI_BUF_CTL_ENABLE;
--		intel_de_write(dev_priv, DDI_BUF_CTL(port), val);
-+	intel_de_rmw(dev_priv, DDI_BUF_CTL(port), DDI_BUF_CTL_ENABLE, 0);
+-		buf_ctl |= DDI_PORT_WIDTH(lane_count);
++		buf_ctl |= DDI_PORT_WIDTH(crtc_state->lane_count);
  
--		/* 3.c Poll for PORT_BUF_CTL Idle Status == 1, timeout after 100us */
--		mtl_wait_ddi_buf_idle(dev_priv, port);
--	}
-+	/* 3.c Poll for PORT_BUF_CTL Idle Status == 1, timeout after 100us */
-+	mtl_wait_ddi_buf_idle(dev_priv, port);
- 
- 	/* 3.d Disable D2D Link */
- 	mtl_ddi_disable_d2d_link(encoder);
-@@ -3089,15 +3084,8 @@ static void disable_ddi_buf(struct intel_encoder *encoder,
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	enum port port = encoder->port;
--	bool wait = false;
--	u32 val;
- 
--	val = intel_de_read(dev_priv, DDI_BUF_CTL(port));
--	if (val & DDI_BUF_CTL_ENABLE) {
--		val &= ~DDI_BUF_CTL_ENABLE;
--		intel_de_write(dev_priv, DDI_BUF_CTL(port), val);
--		wait = true;
--	}
-+	intel_de_rmw(dev_priv, DDI_BUF_CTL(port), DDI_BUF_CTL_ENABLE, 0);
- 
- 	if (intel_crtc_has_dp_encoder(crtc_state))
- 		intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
-@@ -3105,8 +3093,7 @@ static void disable_ddi_buf(struct intel_encoder *encoder,
- 
- 	intel_ddi_disable_fec(encoder, crtc_state);
- 
--	if (wait)
--		intel_wait_ddi_buf_idle(dev_priv, port);
-+	intel_wait_ddi_buf_idle(dev_priv, port);
- }
- 
- static void intel_disable_ddi_buf(struct intel_encoder *encoder,
+ 		if (DISPLAY_VER(dev_priv) >= 20)
+ 			buf_ctl |= XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 03da51b03fb90..04e47d0a8ab92 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3635,7 +3635,7 @@ enum skl_power_gate {
+ #define  DDI_BUF_IS_IDLE			(1 << 7)
+ #define  DDI_BUF_CTL_TC_PHY_OWNERSHIP		REG_BIT(6)
+ #define  DDI_A_4_LANES				(1 << 4)
+-#define  DDI_PORT_WIDTH(width)			(((width) - 1) << 1)
++#define  DDI_PORT_WIDTH(width)			(((width) == 3 ? 4 : ((width) - 1)) << 1)
+ #define  DDI_PORT_WIDTH_MASK			(7 << 1)
+ #define  DDI_PORT_WIDTH_SHIFT			1
+ #define  DDI_INIT_DISPLAY_DETECTED		(1 << 0)
 -- 
 2.44.2
 
