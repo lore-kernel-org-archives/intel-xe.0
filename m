@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C65F5C02193
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4FEEC02192
 	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 09:57:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 867D610E784;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86E7510E787;
 	Wed, 29 Jan 2025 09:57:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C932ruNl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K82RVmHS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AF9F10E77A
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 09:56:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CE6510E77C
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 09:56:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738144615; x=1769680615;
+ t=1738144616; x=1769680616;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hSa66nbB27Z9iHL0R2rqUWxAu7u9kgowA9XnMUjGLk0=;
- b=C932ruNlhUaFj8D+NXWOELKAgy+oTG4B7P1t8ixt9p4QZRLwEEFHjWr3
- zkxl1pLCzV5uBYDzIBQSEdB1ZBATT122qFdnGQxsCs47KJdxkJoU85oCJ
- l0cLdT0imFUys9V/3J6jWknwVA5Z9RXNqRd7ytEBS57W/5wCv+aw/JGXO
- NjjVxeXwXys1URDJ5kbLF/3MQNVzTpi2fK5PqWXS9XzRQtrKU9ej+s+bu
- a1IYCMwDwYXkfNJCeuQez1ZUgaby0x8jaG2kTFW3oxBqyZsLsVlPKH1Dh
- UyCRtDTEccruKXoEMitHYLfCsjfKePM8kdJbUAqFseh+5//3WNDjlySn0 g==;
-X-CSE-ConnectionGUID: bXlVye2sTMWca3pNEC7aew==
-X-CSE-MsgGUID: vYMBSiHhQC+Z6Pt7MK5m5g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="42579507"
-X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; d="scan'208";a="42579507"
+ bh=sy30lrgiT7xN6V/sGxazGAxywOWOZb1CrzAIUjrA0sk=;
+ b=K82RVmHSRH+RJPMicZ19Cv4FRUdbAQs2aSGcEd+WnczEsjalKULfDmOK
+ I9Vilux561qDFnMk8grU1anhEqOJzcfg0DiWWupS5ZKCqoX1q6wqeHTzK
+ Tki/ZgZGJkQGaa0Bn5mkSnyZI+mprwodCO3TWaZagoNGKGEBSxuk2dMTl
+ jRAMg+/+4OFE/Cm98UmTqlIIhEzgbZBZUljngUqLMAXlBPk0bnYObC20l
+ c8lWux5ZCNWquDIgeJ5KgVZj4uD7ZbxzjWQj0t04+HSE/6n94u5qmsQ8y
+ vNBZ41F6qWzFeQwHVm8EoIUxm/RVD0MAb9bvfueaB7wPlL9H2MG+lEqnX g==;
+X-CSE-ConnectionGUID: 0KKSKfBNQ1u8yTaj9yVGYQ==
+X-CSE-MsgGUID: 5yhanhp9QOWhOO9NRw3wGA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="42579526"
+X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; d="scan'208";a="42579526"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 01:56:41 -0800
-X-CSE-ConnectionGUID: N2BC3qLZShWEyeH7J1T8nA==
-X-CSE-MsgGUID: AVSbnWCpQp2oIkWhahI4/w==
+ 29 Jan 2025 01:56:46 -0800
+X-CSE-ConnectionGUID: Ppn6tjV/S5ib5asXC6wlUA==
+X-CSE-MsgGUID: U2haYhpYTwGK3EvjrREPTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; d="scan'208";a="108958166"
+X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; d="scan'208";a="108958269"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 01:56:38 -0800
+ 29 Jan 2025 01:56:44 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
  umesh.nerlige.ramappa@intel.com, lucas.demarchi@intel.com,
  vinay.belgaumkar@intel.com, soham.purkait@intel.com
-Subject: [PATCH v4 5/8] drm/xe/guc: Bump minimum required GuC version to
- v70.36.0
-Date: Wed, 29 Jan 2025 15:46:48 +0530
-Message-ID: <20250129101653.1976699-6-riana.tauro@intel.com>
+Subject: [PATCH v4 7/8] drm/xe/xe_pmu: Add pmu support for per-function engine
+ activity stats
+Date: Wed, 29 Jan 2025 15:46:50 +0530
+Message-ID: <20250129101653.1976699-8-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250129101653.1976699-1-riana.tauro@intel.com>
 References: <20250129101653.1976699-1-riana.tauro@intel.com>
@@ -69,63 +69,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The VF API version for this release is 1.17.1
+Add pmu support for per-function per-engine-class engine activity
+stats.
 
-Bump the minimum required version to v70.36.0 to support
-engine activity.
+per-function per-engine-class activity is enabled when num_vfs
+are set. If num_vfs is set to 2, then the applicable function ids
+are
 
-Suggested-by: John Harrison <John.C.Harrison@Intel.com>
+0 - Global per-engine-class activity
+1 - PF per-engine-class activity
+2,3 - per-VF per-engine-class activity from PF
+
+This can be read from perf tool as shown below
+
+./perf stat -e xe_<bdf>/engine-active-ticks,gt=0,engine_class=0,
+			 engine_instance=0,function=1/ -I 1000
+
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/xe_uc_fw.c | 28 ++++++++++++++--------------
- 1 file changed, 14 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_pmu.c | 45 ++++++++++++++++++++++++++++++-------
+ 1 file changed, 37 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 18e06ee9e23f..d9ff285c5d1d 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -108,17 +108,17 @@ struct fw_blobs_by_type {
+diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+index 15e9a57aa429..2968fc9a358c 100644
+--- a/drivers/gpu/drm/xe/xe_pmu.c
++++ b/drivers/gpu/drm/xe/xe_pmu.c
+@@ -12,6 +12,7 @@
+ #include "xe_hw_engine.h"
+ #include "xe_pm.h"
+ #include "xe_pmu.h"
++#include "xe_sriov_pf_helpers.h"
  
- #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)			\
- 	fw_def(PANTHERLAKE,	mmp_ver(xe,	guc,	ptl,	70, 38, 1))	\
--	fw_def(BATTLEMAGE,	major_ver(xe,	guc,	bmg,	70, 29, 2))	\
--	fw_def(LUNARLAKE,	major_ver(xe,	guc,	lnl,	70, 29, 2))	\
--	fw_def(METEORLAKE,	major_ver(i915,	guc,	mtl,	70, 29, 2))	\
--	fw_def(PVC,		mmp_ver(xe,	guc,	pvc,	70, 29, 2))	\
--	fw_def(DG2,		major_ver(i915,	guc,	dg2,	70, 29, 2))	\
--	fw_def(DG1,		major_ver(i915,	guc,	dg1,	70, 29, 2))	\
--	fw_def(ALDERLAKE_N,	major_ver(i915,	guc,	tgl,	70, 29, 2))	\
--	fw_def(ALDERLAKE_P,	major_ver(i915,	guc,	adlp,	70, 29, 2))	\
--	fw_def(ALDERLAKE_S,	major_ver(i915,	guc,	tgl,	70, 29, 2))	\
--	fw_def(ROCKETLAKE,	major_ver(i915,	guc,	tgl,	70, 29, 2))	\
--	fw_def(TIGERLAKE,	major_ver(i915,	guc,	tgl,	70, 29, 2))
-+	fw_def(BATTLEMAGE,	major_ver(xe,	guc,	bmg,	70, 36, 0))	\
-+	fw_def(LUNARLAKE,	major_ver(xe,	guc,	lnl,	70, 36, 0))	\
-+	fw_def(METEORLAKE,	major_ver(i915,	guc,	mtl,	70, 36, 0))	\
-+	fw_def(PVC,		mmp_ver(xe,	guc,	pvc,	70, 36, 0))	\
-+	fw_def(DG2,		major_ver(i915,	guc,	dg2,	70, 36, 0))	\
-+	fw_def(DG1,		major_ver(i915,	guc,	dg1,	70, 36, 0))	\
-+	fw_def(ALDERLAKE_N,	major_ver(i915,	guc,	tgl,	70, 36, 0))	\
-+	fw_def(ALDERLAKE_P,	major_ver(i915,	guc,	adlp,	70, 36, 0))	\
-+	fw_def(ALDERLAKE_S,	major_ver(i915,	guc,	tgl,	70, 36, 0))	\
-+	fw_def(ROCKETLAKE,	major_ver(i915,	guc,	tgl,	70, 36, 0))	\
-+	fw_def(TIGERLAKE,	major_ver(i915,	guc,	tgl,	70, 36, 0))
+ /**
+  * DOC: Xe PMU (Performance Monitoring Unit)
+@@ -29,15 +30,21 @@
+  *
+  *        60        56        52        48        44        40        36        32
+  * | - - - - | - - - - | - - - - | - - - - | - - - - | - - - - | - - - - | - - - - |
+- *   [ gt ]
++ *   [ gt ]    [             function              ]
+  *
+  *        28        24        20        16        12         8         4         0
+  * | - - - - | - - - - | - - - - | - - - - | - - - - | - - - - | - - - - | - - - - |
+  *            [   engine_class  ] [ engine_instance ] [         event             ]
+  *
+- * engine_class and engine_instance bits will be applicable for
++ * function, engine_class and engine_instance bits will be applicable for
+  * per-engine-class activity events (engine-active-ticks, engine-total-ticks)
+  *
++ * Function id applicable for per-engine-class activity
++ *
++ * 0 - global per-engine-class activity
++ * 1 - PF per-engine-class activity
++ * 2 .. (num_vfs + 1) - per-VF per-engine-class activity from PF
++ *
+  * The standard perf tool can be used to grep for a certain event as well.
+  * Example:
+  *
+@@ -49,6 +56,7 @@
+  */
  
- #define XE_HUC_FIRMWARE_DEFS(fw_def, mmp_ver, no_ver)		\
- 	fw_def(PANTHERLAKE,	mmp_ver(xe,	huc,		ptl, 10, 2, 1))	\
-@@ -320,9 +320,9 @@ static int guc_read_css_info(struct xe_uc_fw *uc_fw, struct uc_css_header *css)
+ #define XE_PMU_EVENT_GT_MASK			GENMASK_ULL(63, 60)
++#define XE_PMU_EVENT_FUNCTION_MASK		GENMASK_ULL(59, 44)
+ #define XE_PMU_EVENT_ENGINE_CLASS_MASK		GENMASK_ULL(27, 20)
+ #define XE_PMU_EVENT_ENGINE_INSTANCE_MASK	GENMASK_ULL(19, 12)
+ #define XE_PMU_EVENT_ID_MASK			GENMASK_ULL(11, 0)
+@@ -58,6 +66,11 @@ static unsigned int config_to_event_id(u64 config)
+ 	return FIELD_GET(XE_PMU_EVENT_ID_MASK, config);
+ }
  
- 	xe_gt_assert(gt, uc_fw->type == XE_UC_FW_TYPE_GUC);
++static unsigned int config_to_function_id(u64 config)
++{
++	return FIELD_GET(XE_PMU_EVENT_FUNCTION_MASK, config);
++}
++
+ static unsigned int config_to_engine_class(u64 config)
+ {
+ 	return FIELD_GET(XE_PMU_EVENT_ENGINE_CLASS_MASK, config);
+@@ -116,7 +129,7 @@ static bool event_supported(struct xe_pmu *pmu, unsigned int gt,
+ static bool event_param_valid(struct perf_event *event)
+ {
+ 	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
+-	unsigned int engine_class, engine_instance;
++	unsigned int engine_class, engine_instance, function_id;
+ 	u64 config = event->attr.config;
+ 	struct xe_gt *gt;
  
--	/* We don't support GuC releases older than 70.29.2 */
--	if (MAKE_GUC_VER_STRUCT(*release) < MAKE_GUC_VER(70, 29, 2)) {
--		xe_gt_err(gt, "Unsupported GuC v%u.%u.%u! v70.29.2 or newer is required\n",
-+	/* We don't support GuC releases older than 70.36.0 */
-+	if (MAKE_GUC_VER_STRUCT(*release) < MAKE_GUC_VER(70, 36, 0)) {
-+		xe_gt_err(gt, "Unsupported GuC v%u.%u.%u! v70.36.0 or newer is required\n",
- 			  release->major, release->minor, release->patch);
- 		return -EINVAL;
+@@ -124,18 +137,28 @@ static bool event_param_valid(struct perf_event *event)
+ 	if (!gt)
+ 		return false;
+ 
++	function_id = config_to_function_id(config);
++	if (function_id && !IS_SRIOV_PF(xe))
++		return false;
++
+ 	engine_class = config_to_engine_class(config);
+ 	engine_instance = config_to_engine_instance(config);
+ 
+ 	switch (config_to_event_id(config)) {
+ 	case XE_PMU_EVENT_GT_C6_RESIDENCY:
+-		if (engine_class || engine_instance)
++		if (engine_class || engine_instance || function_id)
+ 			return false;
+ 		break;
+ 	case XE_PMU_EVENT_ENGINE_ACTIVE_TICKS:
+ 	case XE_PMU_EVENT_ENGINE_TOTAL_TICKS:
+ 		if (!event_to_hwe(event))
+ 			return false;
++		/*
++		 * Two additional functions are required for global(0)
++		 * and PF(1) when SRIOV is enabled
++		 */
++		if (function_id > xe_sriov_pf_get_totalvfs(xe) + 1)
++			return false;
+ 		break;
  	}
+ 
+@@ -194,15 +217,19 @@ static u64 read_engine_events(struct perf_event *event)
+ {
+ 	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
+ 	struct xe_hw_engine *hwe;
+-	u64 val = 0;
++	unsigned int function_id;
++	u64 val = 0, config;
++
++	config = event->attr.config;
++	function_id = config_to_function_id(config);
+ 
+ 	hwe = event_to_hwe(event);
+ 	if (!hwe)
+ 		drm_warn(&xe->drm, "unknown pmu engine\n");
+-	else if (config_to_event_id(event->attr.config) == XE_PMU_EVENT_ENGINE_ACTIVE_TICKS)
+-		val = xe_guc_engine_activity_active_ticks(hwe, 0);
++	else if (config_to_event_id(config) == XE_PMU_EVENT_ENGINE_ACTIVE_TICKS)
++		val = xe_guc_engine_activity_active_ticks(hwe, function_id);
+ 	else
+-		val = xe_guc_engine_activity_total_ticks(hwe, 0);
++		val = xe_guc_engine_activity_total_ticks(hwe, function_id);
+ 
+ 	return val;
+ }
+@@ -305,6 +332,7 @@ static void xe_pmu_event_del(struct perf_event *event, int flags)
+ }
+ 
+ PMU_FORMAT_ATTR(gt,			"config:60-63");
++PMU_FORMAT_ATTR(function,		"config:44-59");
+ PMU_FORMAT_ATTR(engine_class,		"config:20-27");
+ PMU_FORMAT_ATTR(engine_instance,	"config:12-19");
+ PMU_FORMAT_ATTR(event,			"config:0-11");
+@@ -313,6 +341,7 @@ static struct attribute *pmu_format_attrs[] = {
+ 	&format_attr_event.attr,
+ 	&format_attr_engine_class.attr,
+ 	&format_attr_engine_instance.attr,
++	&format_attr_function.attr,
+ 	&format_attr_gt.attr,
+ 	NULL,
+ };
 -- 
 2.47.1
 
