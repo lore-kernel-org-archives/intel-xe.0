@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D8BCC0218D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 532E5C02193
 	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 20:02:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFD7010E88F;
-	Wed, 29 Jan 2025 20:02:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1676610E8A0;
+	Wed, 29 Jan 2025 20:02:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mUbp9/Cp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LRxlDvIU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AADA610E8AB;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED20D10E8AA;
  Wed, 29 Jan 2025 20:01:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1738180917; x=1769716917;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=7wTE5eq/gsTZ+bmnqapWApK95QJXUGwCUf8KXQnrk+k=;
- b=mUbp9/Cpj5lOJLVQ50CtguDYWZdtMV/nSFYCoDu38RIFo9uNQyj6vQ1O
- wqtTf/k53sWkNTvRck3WDABeGhk+Ryetk214P1R3CVasj6vnWXYEY77cK
- Hr1cV9RnPbx8Z2b6Zb+RdYzEYacrKBuwGuRgL2pIDBvznHIHDykVp38oD
- iSA5VyC5dvQvcqGPP9Dm4k7IQZXwjtmEs0stN0Vat/6PhiBOaH8NUc2BT
- O5i15VqE0FLzfymRyKWDHP9QjxSgYHrLhHgj3FPQfiqjOD6WudXV5+Caj
- NXsZNBajULiMEhE6ROq33wqiMXcF3dqrjUQab6lqX1L4mCya7FGWPKyF5 g==;
-X-CSE-ConnectionGUID: zmQ+Hr/9RPyMOoHvFzxEyw==
-X-CSE-MsgGUID: b8mQzPw7RaOQzNlsp2e20g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="38977737"
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="38977737"
+ bh=HvrQBvZz0GNu8J/IJF4DZbBIMzbzmagjWxxifeK2g0g=;
+ b=LRxlDvIUpldfgdWcUqlBv7OZk7h9gWG6kAr0ymqyEY1LqaR82kwk32pw
+ R04OvuhY2xmXYBmjQUVhxRdRpdgIL2TTCbzfqMHJl7ycO0kFHRBGMsOWF
+ EfiweuFJnNzRtrB9NYLV04GbECzbX0+yyr2FjIdFvfNGTB20sQ7vQu8zQ
+ inEzaCflp9L+J/3I1GW3pkJNzPgeASOkenB77WWLvMsCOPFpWoF/mcuf8
+ WYaime+zb17U8Ak8alkKsOu446p8KoX/L0UL8a8UV1hT25sF4+AoSlXQN
+ 5Yc5IgQ7AyV0D71RkcpWHwqdcLdNxfG6hDqLsAi6hXZdoO9XfepVOgNZL g==;
+X-CSE-ConnectionGUID: QLjwLYDsQyGoit4gCNsJqA==
+X-CSE-MsgGUID: kcUkqoE6Skav88kXON/7zQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="38977751"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="38977751"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 12:01:41 -0800
-X-CSE-ConnectionGUID: vU7fflPqTxiM0j2+j7VYiA==
-X-CSE-MsgGUID: BZ/DJMtISyC8rTeOPULWuw==
+ 29 Jan 2025 12:01:44 -0800
+X-CSE-ConnectionGUID: Cr3OmCl1T3SPLRzOl8TtVQ==
+X-CSE-MsgGUID: PDV4jHbhTViUnHN9PzK71w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113750912"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113750917"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 12:01:40 -0800
+ 29 Jan 2025 12:01:42 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 13/17] drm/i915/ddi: Factor out a helper to get DDI_BUF_CTL's
- config value
-Date: Wed, 29 Jan 2025 22:02:17 +0200
-Message-ID: <20250129200221.2508101-14-imre.deak@intel.com>
+Subject: [PATCH 15/17] drm/i915/ddi: Reuse helper to compute the HDMI
+ PORT_BUF_CTL1 config
+Date: Wed, 29 Jan 2025 22:02:19 +0200
+Message-ID: <20250129200221.2508101-16-imre.deak@intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20250129200221.2508101-1-imre.deak@intel.com>
 References: <20250129200221.2508101-1-imre.deak@intel.com>
@@ -67,85 +67,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Factor out a function to get the configuration fields in the DDI_BUF_CTL
-register. This can be used for configuring an HDMI output as well.
+Reuse the existing helper to compute the configuration value of the
+XELPDP_PORT_BUF_CTL1 register for HDMI outputs instead of open-coding
+this.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 32 ++++++++++++++++--------
- 1 file changed, 21 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 21 +++++++--------------
+ 1 file changed, 7 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 64c42505f2ad6..dd8ae5cf96c70 100644
+index e03ec9a235d33..431db1e6b6f07 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -333,45 +333,55 @@ static int dp_phy_lane_stagger_delay(int port_clock)
- 	return DIV_ROUND_UP(port_clock, intel_dp_link_symbol_size(port_clock) * 1000);
+@@ -2607,9 +2607,12 @@ static void mtl_port_buf_ctl_program(struct intel_encoder *encoder,
+ 	enum port port = encoder->port;
+ 	u32 val = 0;
+ 
++	if (DISPLAY_VER(display) < 14)
++		return;
++
+ 	val |= XELPDP_PORT_WIDTH(crtc_state->lane_count);
+ 
+-	if (intel_dp_is_uhbr(crtc_state))
++	if (intel_crtc_has_dp_encoder(crtc_state) && intel_dp_is_uhbr(crtc_state))
+ 		val |= XELPDP_PORT_BUF_PORT_DATA_40BIT;
+ 	else
+ 		val |= XELPDP_PORT_BUF_PORT_DATA_10BIT;
+@@ -2618,7 +2621,8 @@ static void mtl_port_buf_ctl_program(struct intel_encoder *encoder,
+ 		val |= XELPDP_PORT_REVERSAL;
+ 
+ 	intel_de_rmw(display, XELPDP_PORT_BUF_CTL1(display, port),
+-		     XELPDP_PORT_WIDTH_MASK | XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK,
++		     XELPDP_PORT_WIDTH_MASK | XELPDP_PORT_REVERSAL |
++		     XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK,
+ 		     val);
  }
  
--static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
--				      const struct intel_crtc_state *crtc_state)
-+static u32 intel_ddi_buf_ctl_config_val(struct intel_encoder *encoder,
-+					const struct intel_crtc_state *crtc_state)
+@@ -3418,7 +3422,6 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
  {
  	struct intel_display *display = to_intel_display(encoder);
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
--	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	u32 val = 0;
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+-	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 	struct drm_connector *connector = conn_state->connector;
+ 	enum port port = encoder->port;
  
- 	/* DDI_BUF_CTL_ENABLE will be set by intel_ddi_prepare_link_retrain() later */
--	intel_dp->DP = DDI_PORT_WIDTH(crtc_state->lane_count) |
-+	val |= DDI_PORT_WIDTH(crtc_state->lane_count) |
- 		DDI_BUF_TRANS_SELECT(0);
+@@ -3485,17 +3488,7 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
+ 	 * is filled with lane count, already set in the crtc_state.
+ 	 * The same is required to be filled in PORT_BUF_CTL for C10/20 Phy.
+ 	 */
+-	if (DISPLAY_VER(dev_priv) >= 14) {
+-		u32 port_buf = 0;
+-
+-		port_buf |= XELPDP_PORT_WIDTH(crtc_state->lane_count);
+-
+-		if (dig_port->lane_reversal)
+-			port_buf |= XELPDP_PORT_REVERSAL;
+-
+-		intel_de_rmw(dev_priv, XELPDP_PORT_BUF_CTL1(dev_priv, port),
+-			     XELPDP_PORT_WIDTH_MASK | XELPDP_PORT_REVERSAL, port_buf);
+-	}
++	mtl_port_buf_ctl_program(encoder, crtc_state);
  
- 	if (dig_port->lane_reversal)
--		intel_dp->DP |= DDI_BUF_PORT_REVERSAL;
-+		val |= DDI_BUF_PORT_REVERSAL;
- 	if (dig_port->ddi_a_4_lanes)
--		intel_dp->DP |= DDI_A_4_LANES;
-+		val |= DDI_A_4_LANES;
- 
- 	if (DISPLAY_VER(i915) >= 14) {
- 		if (intel_dp_is_uhbr(crtc_state))
--			intel_dp->DP |= DDI_BUF_PORT_DATA_40BIT;
-+			val |= DDI_BUF_PORT_DATA_40BIT;
- 		else
--			intel_dp->DP |= DDI_BUF_PORT_DATA_10BIT;
-+			val |= DDI_BUF_PORT_DATA_10BIT;
- 	}
- 
- 	if (IS_ALDERLAKE_P(i915) && intel_encoder_is_tc(encoder)) {
--		intel_dp->DP |= ddi_buf_phy_link_rate(crtc_state->port_clock);
-+		val |= ddi_buf_phy_link_rate(crtc_state->port_clock);
- 		/*
- 		 * TODO: remove the following once DDI_BUF_CTL is updated via
- 		 * an RMW everywhere.
- 		 */
- 		if (!intel_tc_port_in_tbt_alt_mode(dig_port))
--			intel_dp->DP |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
-+			val |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
- 	}
- 
- 	if (IS_DISPLAY_VER(display, 11, 13) && intel_encoder_is_tc(encoder)) {
- 		int delay = dp_phy_lane_stagger_delay(crtc_state->port_clock);
- 
--		intel_dp->DP |= DDI_BUF_LANE_STAGGER_DELAY(delay);
-+		val |= DDI_BUF_LANE_STAGGER_DELAY(delay);
- 	}
-+
-+	return val;
-+}
-+
-+static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
-+				      const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+
-+	intel_dp->DP = intel_ddi_buf_ctl_config_val(encoder, crtc_state);
+ 	intel_enable_ddi_buf(encoder, intel_ddi_buf_ctl_config_val(encoder, crtc_state));
  }
- 
- static u32 intel_ddi_buf_ctl_config_mask(struct intel_encoder *encoder)
 -- 
 2.44.2
 
