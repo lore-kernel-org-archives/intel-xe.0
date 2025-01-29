@@ -4,82 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6E75C0218D
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 08:44:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1CC0C02192
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 08:48:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51B3C10E40E;
-	Wed, 29 Jan 2025 08:44:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E90210E769;
+	Wed, 29 Jan 2025 08:48:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="X3X6Pw9w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QQ0OlCSH";
 	dkim-atps=neutral
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6C7D10E411
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 08:44:10 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id
- 5b1f17b1804b1-43618283d48so46664365e9.1
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 00:44:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1738140249; x=1738745049;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=LQ7UQFc0W24PUIHdo7OrS6QM+0vcBB9sQvwA8ufJ07I=;
- b=X3X6Pw9wdwPHLqumh4jvgCpXGr0YZQAGK0Tk9daNnacqQnsQbzgsrVUmKgg6nn4lKj
- PV3bjehVFZeZ1RivsvB+nhrjRkQuv7+edNnxrLr50jZERynPsoAtvaXP0YLVpKdviaSx
- 9Qq1UKNeJDFaqBEjFQAX1X3ixkLO7NUqBU0tc+sf/QB2bwPL12+Qd38ZWPG0q8qu5Oyt
- JrDuJ0ld0pWLrvr3ZpnDpvdSUkkcuQzCrf5oqyuzXqxjJ4fXSEI/vjJTRZn12Ouebo/x
- QhTAFHfyI6g9wTSqjWeEi7LRwg0I/0HG4I6W9YPK0s4k4r2BIT8dRbc7s3Jt48d1QAs+
- ptLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738140249; x=1738745049;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=LQ7UQFc0W24PUIHdo7OrS6QM+0vcBB9sQvwA8ufJ07I=;
- b=gkxRgMFqg4PRNmyiimBex2rEU0sb1uMZSAbkJH5o8/Chd3CrwI5mRSg3ZC5jjlORxx
- Lcz8ezeOux4o1Fjf93Rp/Yb+7sHOMXDEYUIWp2xYA70d8sjieM5rQtDAjQfXv0H7bnTP
- TgIWJ41MGRHvmwCDVCR/urspH8ZZFWZM+3dhM6518VicG57lnbgK+kIg3j/5kZUe4gdf
- IJTAkKcz3H5waMGkOayaOWCmPRKDGIn5TyUqknEfgxt0gturfawjbozNc/BTtNgXK61Q
- rbocUO6IYt86Zc+kWTjUQD1KFfcM80lQxmvSprpZOCy9LJMwbj/VTJjw033DCcycb23J
- /G0Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU1tRmPNG4/WSbpw2ITzHq8PNsk20LNKD73exTH0q0kZa2Ksybg53jYUx0RK7otHa14yk9Rl6rHNw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yylp/VN6Ujez6tyAhir6hxLXL5qNqmzq3rIgwisoO+SlvqYSvLk
- fbZB0Bu6HxX2zWAJiXZJm45h3gilSQY2cLf0MtGjkcB8ii+3Xon6PB8gvEN2BQw=
-X-Gm-Gg: ASbGnct5laYQegY12icvr6hXCkLsZKhVEFxmoog0xk37O3OvtODJTEaCaK9kLRwowgb
- ROZt9TkKKybAzTEAjDDCCcd59TOJ5GacRc+Sv/e4YmyJmN9hPW6FeIIsA0NZTTdsQhSR2E6X7zA
- Gloan+TDaNz8a7ih28z6X6+lSM9x6cE8OsZJCicR6JNx1Pgsi2B3N6lFFmzH90qDqXT1NahCFi7
- 8aYu9cMjUYEf0ebtWgzBPwrVdeSOCUPfgqEhW1tLFx4FEGbcgh8wRsNmikAWpEGFivVINBL5fX4
- QyYlqSOnE1RWhwgrvLaTjMmUnRxOGCY=
-X-Google-Smtp-Source: AGHT+IEBUc1AFI04kLkOWVHYK0u+8wdNlFR9LHspIVFaCsbs4hRxd3Wttd9cC2GJBb+7SrD3BwveTQ==
-X-Received: by 2002:a05:6000:4008:b0:386:459e:655d with SMTP id
- ffacd0b85a97d-38c51952173mr1758736f8f.20.1738140249095; 
- Wed, 29 Jan 2025 00:44:09 -0800 (PST)
-Received: from [192.168.0.101] ([90.241.98.187])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-38c2a1bb0c9sm16551520f8f.78.2025.01.29.00.44.08
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 29 Jan 2025 00:44:08 -0800 (PST)
-Message-ID: <71c2213c-4445-4285-aab8-6d7ad6f5a723@ursulin.net>
-Date: Wed, 29 Jan 2025 08:44:07 +0000
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41E8010E769
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 08:48:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738140516; x=1769676516;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=LW3PLBDVHT2Em3ixoEnnyMOQTJlURojYXdi9ux/+RzM=;
+ b=QQ0OlCSH6bQjDzvrJt/OdsNuRLQ8FM2X8Gw8noPJ3BxkUqafcNww+wdW
+ S1Mrtf1R75Won0CBSbIsVbWUhLx5OPQvYqhJ6SAxpNrQ5K+mY3ayEHGbQ
+ Ybl46XKbi5eHTEGQd7mUamvyA1KdtactBmYVlLjTmaVRXkt6ZHUl4N6WZ
+ PzZmefTU46vrkZH60nXrKVP+XobU66YZchk43R4PMSkA2I29L1yozsTfo
+ 2Och3C0dhEzKLet7mrjYgfyY/5XCXRzrPoaTbnSHBykK1rGXOUyN5HhcZ
+ Kc8DiZ3jppUajX6TnuRcBhX37uRBUzrqNEbeBhG4ykfeft7WAS+wYScUj A==;
+X-CSE-ConnectionGUID: Cd/IAd4aQHOtn/Jo8eV/5A==
+X-CSE-MsgGUID: WiIi458ERqGB0H/o6O/EDw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="37886987"
+X-IronPort-AV: E=Sophos;i="6.13,242,1732608000"; d="scan'208";a="37886987"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2025 00:48:36 -0800
+X-CSE-ConnectionGUID: Mv7WC4V7R2eyhf+IOM330Q==
+X-CSE-MsgGUID: wlaQruOIT0qi5Ju8MbHTYw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="109884059"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.246.222])
+ ([10.245.246.222])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2025 00:48:34 -0800
+Message-ID: <3b2a187d95499778863376bbeffdc5aba1f77ea6.camel@linux.intel.com>
+Subject: Re: [PATCH 1/3] drm/xe: Add a function to zap page table by address
+ range
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Oak Zeng <oak.zeng@intel.com>, intel-xe@lists.freedesktop.org
+Cc: joonas.lahtinen@linux.intel.com
+Date: Wed, 29 Jan 2025 09:48:30 +0100
+In-Reply-To: <20250128222145.3849874-1-oak.zeng@intel.com>
+References: <20250128222145.3849874-1-oak.zeng@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/display: Disable AuxCCS framebuffers if built
- for Xe
-To: =?UTF-8?Q?Juha-Pekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- "Souza, Jose" <jose.souza@intel.com>
-References: <20240228140225.858145-1-juhapekka.heikkila@gmail.com>
- <875xy01vd8.fsf@intel.com> <72a58a16-d7aa-4b85-bd67-40cd87366b0b@ursulin.net>
- <CAJ=qYWRZZd4FmYXxqaT5hm5RqOQsNow4UbG=fdQFr_odSGUrEQ@mail.gmail.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <CAJ=qYWRZZd4FmYXxqaT5hm5RqOQsNow4UbG=fdQFr_odSGUrEQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,61 +70,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, 2025-01-28 at 17:21 -0500, Oak Zeng wrote:
+> Add a function xe_pt_zap_range. This is similar to xe_pt_zap_ptes
+> but is used when we don't have a vma to work with, such as zap
+> a range mapped to scratch page where we don't have vma.
+>=20
+> Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 
-On 28/01/2025 15:55, Juha-Pekka Heikkilä wrote:
-> On Tue, Jan 28, 2025 at 3:08 PM Tvrtko Ursulin <tursulin@ursulin.net> wrote:
->>
->>
->> Hi,
->>
->> On 05/03/2024 16:44, Jani Nikula wrote:
->>> On Wed, 28 Feb 2024, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com> wrote:
->>>> AuxCCS framebuffers don't work on Xe driver hence disable them
->>>> from plane capabilities until they are fixed. FlatCCS framebuffers
->>>> work and they are left enabled. CCS is left untouched for i915
->>>> driver.
->>
->> I couldn't find the answer in the below linked issue or in the thread -
->> is it known what exactly is missing/broken to make this work and are
->> there any plans to do it? Or perhaps not if gen12lp is not intended to
->> be supported?
-> 
-> As far as I know devices with AuxCCS are not intended to be supported.
-> 
-> As for this patch, from display point of view these would work the same
-> as before, just put compressed fb on screen and enable decompression
-> but I figure there are parts missing from gem side to support AuxCCS.
+As I think also Matt mentions, The zap functionality works only when it
+exactly matches a pre-bound range (like in this case a vma) and there
+is something cleaning up the zapped ptes afterwards. Typically that's a
+rebind or an unbind.
 
-Right, I can dig in and try to figure out what are those missing GEM 
-bits but I was hoping someone might know straight away to save me that 
-initial digging around.
+Thanks,
+Thomas
 
-Regards,
 
-Tvrtko
 
->>>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/933
->>>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
->>>
->>> Acked-by: Jani Nikula <jani.nikula@intel.com>
->>>
->>>
->>>> ---
->>>>    drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 +++
->>>>    1 file changed, 3 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->>>> index e941e2e4fd14..860574d04f88 100644
->>>> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
->>>> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->>>> @@ -2295,6 +2295,9 @@ static u8 skl_get_plane_caps(struct drm_i915_private *i915,
->>>>       if (HAS_4TILE(i915))
->>>>               caps |= INTEL_PLANE_CAP_TILING_4;
->>>>
->>>> +    if (!IS_ENABLED(I915) && !HAS_FLAT_CCS(i915))
->>>> +            return caps;
->>>> +
->>>>       if (skl_plane_has_rc_ccs(i915, pipe, plane_id)) {
->>>>               caps |= INTEL_PLANE_CAP_CCS_RC;
->>>>               if (DISPLAY_VER(i915) >= 12)
->>>
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_pt.c | 28 ++++++++++++++++++++++++++++
+> =C2=A0drivers/gpu/drm/xe/xe_pt.h |=C2=A0 2 ++
+> =C2=A02 files changed, 30 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index 1ddcc7e79a93..2363260da6a6 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -792,6 +792,34 @@ static const struct xe_pt_walk_ops
+> xe_pt_zap_ptes_ops =3D {
+> =C2=A0	.pt_entry =3D xe_pt_zap_ptes_entry,
+> =C2=A0};
+> =C2=A0
+> +/**
+> + * xe_pt_zap_range() - Zap (zero) gpu ptes of an virtual address
+> range
+> + * @tile: The tile we're zapping for.
+> + * @vm: The vm we're zapping for.
+> + * @start: Start of the virtual address range, inclusive.
+> + * @end: End of the virtual address range, exclusive.
+> + *
+> + * This is similar to xe_pt_zap_ptes() but it's used when we don't
+> have a
+> + * vma to work with. This is used for example when we're clearing
+> the scratch
+> + * page mapping during vm_bind.
+> + *
+> + */
+> +void xe_pt_zap_range(struct xe_tile *tile, struct xe_vm *vm, u64
+> start, u64 end)
+> +{
+> +	struct xe_pt_zap_ptes_walk xe_walk =3D {
+> +		.base =3D {
+> +			.ops =3D &xe_pt_zap_ptes_ops,
+> +			.shifts =3D xe_normal_pt_shifts,
+> +			.max_level =3D XE_PT_HIGHEST_LEVEL,
+> +		},
+> +		.tile =3D tile,
+> +	};
+> +	struct xe_pt *pt =3D vm->pt_root[tile->id];
+> +
+> +	(void)xe_pt_walk_shared(&pt->base, pt->level, start,
+> +				end, &xe_walk.base);
+> +}
+> +
+> =C2=A0/**
+> =C2=A0 * xe_pt_zap_ptes() - Zap (zero) gpu ptes of an address range
+> =C2=A0 * @tile: The tile we're zapping for.
+> diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
+> index 9ab386431cad..b166b324f455 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.h
+> +++ b/drivers/gpu/drm/xe/xe_pt.h
+> @@ -43,4 +43,6 @@ void xe_pt_update_ops_abort(struct xe_tile *tile,
+> struct xe_vma_ops *vops);
+> =C2=A0
+> =C2=A0bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma);
+> =C2=A0
+> +void xe_pt_zap_range(struct xe_tile *tile, struct xe_vm *vm, u64
+> start, u64 end);
+> +
+> =C2=A0#endif
+
