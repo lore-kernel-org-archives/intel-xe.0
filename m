@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66594C02192
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 09:56:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A4E6C0218D
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 09:56:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3790710E77B;
-	Wed, 29 Jan 2025 09:56:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D887010E77C;
+	Wed, 29 Jan 2025 09:56:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KyqHpAGD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RtluYn3P";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 439F610E77B
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 09:56:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20A5410E77C
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 09:56:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738144589; x=1769680589;
+ t=1738144592; x=1769680592;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XNUB3tMm+sWvlIGSaWyX5/INM0Fgkbm48HhdYNYQLQQ=;
- b=KyqHpAGDREspoKjb21FweklYIFRQkDzo/4rS/KLBv4KM9O14EVTZZBmT
- lI4wlMEv4L2hP0d5U2R4fJDK3F/w83Tt2m9+zyhbntK4W+MKYqcm1mE1E
- gPY+/grSx2hg6iMIDl2KPLnWW/kPhGyHt1S0hUnXtKRFuQiNSdKcVPRuJ
- GISVYwUrz90zQcW66aLyqgaGGrNj1Pb7CE3h21RkPgkJDHFMShcff2W9y
- vVxEQF0qiLaaGCp2DCJdh2PPSchSxKqOZACJnQdDGe1qy+R477azi71jS
- f42yJueeLaOgP99eCtx7Vhe8uTFn49z02kmwwHNVfruSHjWOI+2kt2m8i g==;
-X-CSE-ConnectionGUID: zoqyHxKGSnu/E+SuSI7T4g==
-X-CSE-MsgGUID: ztraphsAQiepxYt2G7izBg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="42579468"
-X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; d="scan'208";a="42579468"
+ bh=1gbTv1OvqFf6Kf2mFZzY/0+CJ7beibpMrb2hRJq5600=;
+ b=RtluYn3Pkmgy99BKQD5gD0o67sHlKjaj90GTqSFAqFfNDIeQwQF0LfmB
+ NwJpou74K8S5RIu1doV4wOH0VVnvpaGgk/BGsKBbhunvGRXuYomJd8kSw
+ Y2NocwWdKP8nbCJKzj+Kg9QbmR3pau6rNpw/jisJaIEIP0z91A48fl99P
+ ZQ8eUFfuaMdyOCml1zkSvfUuk1HtKjuax0vsDUDiL14jBDUdZ3eOPeooE
+ qljmERtzDTtAUN0omBtzgAg+lqEmW2ml4pfiivTNzn9EaL413L1pWFOi+
+ lEKBJNtZslABqaUVkdoeZDTtLVZj6K9HrWmjLBsJ1HrTYeZZ38aGvI38x A==;
+X-CSE-ConnectionGUID: V3fSflCSRLe/Na4VO9h45A==
+X-CSE-MsgGUID: Pdzki8EyTYWIg3q9NfcjiA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="42579485"
+X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; d="scan'208";a="42579485"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 01:56:29 -0800
-X-CSE-ConnectionGUID: NcNY1Dw8Sh6aJ1yP9yJ6LA==
-X-CSE-MsgGUID: VSTaRMKsTbWerZkEhK2T8Q==
+ 29 Jan 2025 01:56:32 -0800
+X-CSE-ConnectionGUID: k9lVMQbVTbqWVDTR30Y/NA==
+X-CSE-MsgGUID: 8J9joEO1RUux9gxA18S8yw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; d="scan'208";a="108958121"
+X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; d="scan'208";a="108958126"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 01:56:26 -0800
+ 29 Jan 2025 01:56:29 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
  umesh.nerlige.ramappa@intel.com, lucas.demarchi@intel.com,
  vinay.belgaumkar@intel.com, soham.purkait@intel.com
-Subject: [PATCH v4 1/8] drm/xe: Add per-engine-class activity support
-Date: Wed, 29 Jan 2025 15:46:44 +0530
-Message-ID: <20250129101653.1976699-2-riana.tauro@intel.com>
+Subject: [PATCH v4 2/8] drm/xe/trace: Add trace for engine activity
+Date: Wed, 29 Jan 2025 15:46:45 +0530
+Message-ID: <20250129101653.1976699-3-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250129101653.1976699-1-riana.tauro@intel.com>
 References: <20250129101653.1976699-1-riana.tauro@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,577 +68,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GuC provides support to read engine counters to calculate the
-engine activity. KMD exposes two counters via the PMU interface to
-calculate engine activity
+Add engine activity related information to trace events for
+better debuggability
 
-Engine Active Ticks(engine-active-ticks) - number of active ticks for engine
-Engine Total Ticks (engine-total-ticks) - total ticks of engine
+v2: add trace for engine activity (Umesh)
 
-Engine activity percentage can be calculated as below
-Engine activity % = (engine active ticks/engine total ticks) * 100.
-
-v2: fix cosmetic review comments
-    add forcewake for gpm_ts (Umesh)
-
-v3: fix CI hooks error
-    change function parameters and unpin bo on error
-    of allocate_activity_buffers
-    fix kernel-doc (Umesh)
-    use engine activity (Umesh, Lucas)
-    rename xe_engine_activity to xe_guc_engine_*
-    fix commit message to use per-engine class(Lucas)
-
-v4: remove forcewake as engine is already running
-    when reading gpm timestamp
+v3: use hex for quanta_ratio
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                   |   1 +
- drivers/gpu/drm/xe/abi/guc_actions_abi.h      |   1 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   2 +
- drivers/gpu/drm/xe/xe_guc_engine_activity.c   | 317 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_engine_activity.h   |  18 +
- .../gpu/drm/xe/xe_guc_engine_activity_types.h |  89 +++++
- drivers/gpu/drm/xe/xe_guc_fwif.h              |  19 ++
- drivers/gpu/drm/xe/xe_guc_types.h             |   4 +
- 8 files changed, 451 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_guc_engine_activity.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_engine_activity.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
+ drivers/gpu/drm/xe/xe_guc_engine_activity.c |  5 +++
+ drivers/gpu/drm/xe/xe_trace_guc.h           | 49 +++++++++++++++++++++
+ 2 files changed, 54 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 328aff36831b..7e93461c60bd 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -33,6 +33,7 @@ xe-y += xe_bb.o \
- 	xe_device_sysfs.o \
- 	xe_dma_buf.o \
- 	xe_drm_client.o \
-+	xe_guc_engine_activity.o \
- 	xe_exec.o \
- 	xe_execlist.o \
- 	xe_exec_queue.o \
-diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-index fee385532fb0..ec516e838ee8 100644
---- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-@@ -140,6 +140,7 @@ enum xe_guc_action {
- 	XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC = 0x4601,
- 	XE_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
- 	XE_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
-+	XE_GUC_ACTION_SET_DEVICE_ENGINE_ACTIVITY_BUFFER = 0x550C,
- 	XE_GUC_ACTION_NOTIFY_MEMORY_CAT_ERROR = 0x6000,
- 	XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC = 0x6002,
- 	XE_GUC_ACTION_PAGE_FAULT_RES_DESC = 0x6003,
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 096859072396..124cc398798e 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -358,6 +358,8 @@
- #define   RENDER_AWAKE_STATUS			REG_BIT(1)
- #define   MEDIA_SLICE0_AWAKE_STATUS		REG_BIT(0)
- 
-+#define MISC_STATUS_0				XE_REG(0xa500)
-+
- #define FORCEWAKE_MEDIA_VDBOX(n)		XE_REG(0xa540 + (n) * 4)
- #define FORCEWAKE_MEDIA_VEBOX(n)		XE_REG(0xa560 + (n) * 4)
- #define FORCEWAKE_GSC				XE_REG(0xa618)
 diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-new file mode 100644
-index 000000000000..088209b9c228
---- /dev/null
+index 088209b9c228..9c08af273397 100644
+--- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
 +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-@@ -0,0 +1,317 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+#include "xe_guc_engine_activity.h"
-+
-+#include "abi/guc_actions_abi.h"
-+#include "regs/xe_gt_regs.h"
-+
-+#include "xe_bo.h"
-+#include "xe_force_wake.h"
-+#include "xe_gt_printk.h"
-+#include "xe_guc.h"
-+#include "xe_guc_ct.h"
-+#include "xe_hw_engine.h"
-+#include "xe_map.h"
-+#include "xe_mmio.h"
-+
-+#define TOTAL_QUANTA 0x8000
-+
-+static struct iosys_map engine_activity_map(struct xe_guc *guc, struct xe_hw_engine *hwe)
-+{
-+	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-+	struct engine_activity_buffer *buffer = &engine_activity->device_buffer;
-+	u16 guc_class = xe_engine_class_to_guc_class(hwe->class);
-+	size_t offset = 0;
-+
-+	offset = offsetof(struct guc_engine_activity_data,
-+			  engine_activity[guc_class][hwe->logical_instance]);
-+
-+	return IOSYS_MAP_INIT_OFFSET(&buffer->activity_bo->vmap, offset);
-+}
-+
-+static struct iosys_map engine_metadata_map(struct xe_guc *guc)
-+{
-+	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-+	struct engine_activity_buffer *buffer = &engine_activity->device_buffer;
-+
-+	return buffer->metadata_bo->vmap;
-+}
-+
-+static int allocate_engine_activity_group(struct xe_guc *guc)
-+{
-+	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-+	u32 num_activity_group = 1;
-+
-+	engine_activity->eag = kmalloc_array(num_activity_group,
-+					     sizeof(struct engine_activity_group),
-+					     GFP_KERNEL);
-+
-+	if (!engine_activity->eag)
-+		return -ENOMEM;
-+
-+	memset(engine_activity->eag, 0, num_activity_group * sizeof(struct engine_activity_group));
-+	engine_activity->num_activity_group = num_activity_group;
-+
-+	return 0;
-+}
-+
-+static int allocate_engine_activity_buffers(struct xe_guc *guc,
-+					    struct engine_activity_buffer *buffer)
-+{
-+	u32 metadata_size = sizeof(struct guc_engine_activity_metadata);
-+	u32 size = sizeof(struct guc_engine_activity_data);
-+	struct xe_gt *gt = guc_to_gt(guc);
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_bo *bo, *metadata_bo;
-+
-+	metadata_bo = xe_managed_bo_create_pin_map(gt_to_xe(gt), tile, PAGE_ALIGN(metadata_size),
-+						   XE_BO_FLAG_SYSTEM |
-+						   XE_BO_FLAG_GGTT |
-+						   XE_BO_FLAG_GGTT_INVALIDATE);
-+	if (IS_ERR(metadata_bo))
-+		return PTR_ERR(metadata_bo);
-+
-+	bo = xe_managed_bo_create_pin_map(gt_to_xe(gt), tile, PAGE_ALIGN(size),
-+					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-+					  XE_BO_FLAG_GGTT |
-+					  XE_BO_FLAG_GGTT_INVALIDATE);
-+
-+	if (IS_ERR(bo)) {
-+		xe_bo_unpin_map_no_vm(metadata_bo);
-+		return PTR_ERR(bo);
-+	}
-+
-+	buffer->metadata_bo = metadata_bo;
-+	buffer->activity_bo = bo;
-+	return 0;
-+}
-+
-+static struct engine_activity *hw_engine_to_engine_activity(struct xe_hw_engine *hwe)
-+{
-+	struct xe_guc *guc = &hwe->gt->uc.guc;
-+	struct engine_activity_group *eag = &guc->engine_activity.eag[0];
-+	u16 guc_class = xe_engine_class_to_guc_class(hwe->class);
-+
-+	return &eag->engine[guc_class][hwe->logical_instance];
-+}
-+
-+static u64 cpu_ns_to_guc_tsc_tick(ktime_t ns, u32 freq)
-+{
-+	return mul_u64_u32_div(ns, freq, NSEC_PER_SEC);
-+}
-+
-+#define read_engine_activity_record(xe_, map_, field_) \
-+	xe_map_rd_field(xe_, map_, 0, struct guc_engine_activity, field_)
-+
-+#define read_metadata_record(xe_, map_, field_) \
-+	xe_map_rd_field(xe_, map_, 0, struct guc_engine_activity_metadata, field_)
-+
-+static u64 get_engine_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
-+{
-+	struct engine_activity *ea = hw_engine_to_engine_activity(hwe);
-+	struct guc_engine_activity *cached_activity = &ea->activity;
-+	struct guc_engine_activity_metadata *cached_metadata = &ea->metadata;
-+	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-+	struct iosys_map activity_map, metadata_map;
-+	struct xe_device *xe =  guc_to_xe(guc);
-+	struct xe_gt *gt = guc_to_gt(guc);
-+	u32 last_update_tick, global_change_num;
-+	u64 active_ticks, gpm_ts;
-+	u16 change_num;
-+
-+	activity_map = engine_activity_map(guc, hwe);
-+	metadata_map = engine_metadata_map(guc);
-+	global_change_num = read_metadata_record(xe, &metadata_map, global_change_num);
-+
-+	/* GuC has not initialized activity data yet, return 0 */
-+	if (!global_change_num)
-+		goto update;
-+
-+	if (global_change_num == cached_metadata->global_change_num)
-+		goto update;
-+	else
-+		cached_metadata->global_change_num = global_change_num;
-+
-+	change_num = read_engine_activity_record(xe, &activity_map, change_num);
-+
-+	if (!change_num || change_num == cached_activity->change_num)
-+		goto update;
-+
-+	/* read engine activity values */
-+	last_update_tick = read_engine_activity_record(xe, &activity_map, last_update_tick);
-+	active_ticks = read_engine_activity_record(xe, &activity_map, active_ticks);
-+
-+	/* activity calculations */
-+	ea->running = !!last_update_tick;
-+	ea->total += active_ticks - cached_activity->active_ticks;
-+	ea->active = 0;
-+
-+	/* cache the counter */
-+	cached_activity->change_num = change_num;
-+	cached_activity->last_update_tick = last_update_tick;
-+	cached_activity->active_ticks = active_ticks;
-+
-+update:
-+	if (ea->running) {
-+		gpm_ts = xe_mmio_read64_2x32(&gt->mmio, MISC_STATUS_0) >>
-+			 engine_activity->gpm_timestamp_shift;
-+		ea->active = lower_32_bits(gpm_ts) - cached_activity->last_update_tick;
-+	}
-+
-+	return ea->total + ea->active;
-+}
-+
-+static u64 get_engine_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
-+{
-+	struct engine_activity *ea = hw_engine_to_engine_activity(hwe);
-+	struct guc_engine_activity_metadata *cached_metadata = &ea->metadata;
-+	struct guc_engine_activity *cached_activity = &ea->activity;
-+	struct iosys_map activity_map, metadata_map;
-+	struct xe_device *xe = guc_to_xe(guc);
-+	ktime_t now, cpu_delta;
-+	u64 numerator;
-+	u16 quanta_ratio;
-+
-+	activity_map = engine_activity_map(guc, hwe);
-+	metadata_map = engine_metadata_map(guc);
-+
-+	if (!cached_metadata->guc_tsc_frequency_hz)
-+		cached_metadata->guc_tsc_frequency_hz = read_metadata_record(xe, &metadata_map,
-+									     guc_tsc_frequency_hz);
-+
-+	quanta_ratio = read_engine_activity_record(xe, &activity_map, quanta_ratio);
-+	cached_activity->quanta_ratio = quanta_ratio;
-+
-+	/* Total ticks calculations */
-+	now = ktime_get();
-+	cpu_delta = now - ea->last_cpu_ts;
-+	ea->last_cpu_ts = now;
-+	numerator = (ea->quanta_remainder_ns + cpu_delta) * cached_activity->quanta_ratio;
-+	ea->quanta_ns += numerator / TOTAL_QUANTA;
-+	ea->quanta_remainder_ns = numerator % TOTAL_QUANTA;
-+	ea->quanta = cpu_ns_to_guc_tsc_tick(ea->quanta_ns, cached_metadata->guc_tsc_frequency_hz);
-+
-+	return ea->quanta;
-+}
-+
-+static int enable_engine_activity_stats(struct xe_guc *guc)
-+{
-+	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-+	struct engine_activity_buffer *buffer = &engine_activity->device_buffer;
-+	u32 metadata_ggtt_addr = xe_bo_ggtt_addr(buffer->metadata_bo);
-+	u32 ggtt_addr = xe_bo_ggtt_addr(buffer->activity_bo);
-+	int len = 0;
-+	u32 action[5];
-+
-+	action[len++] = XE_GUC_ACTION_SET_DEVICE_ENGINE_ACTIVITY_BUFFER;
-+	action[len++] = metadata_ggtt_addr;
-+	action[len++] = 0;
-+	action[len++] = ggtt_addr;
-+	action[len++] = 0;
-+
-+	/* Blocking here to ensure the buffers are ready before reading them */
-+	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
-+}
-+
-+static void engine_activity_set_cpu_ts(struct xe_guc *guc)
-+{
-+	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-+	struct engine_activity_group *eag = &engine_activity->eag[0];
-+	int i, j;
-+
-+	for (i = 0; i < GUC_MAX_ENGINE_CLASSES; i++)
-+		for (j = 0; j < GUC_MAX_INSTANCES_PER_CLASS; j++)
-+			eag->engine[i][j].last_cpu_ts = ktime_get();
-+}
-+
-+static u32 gpm_timestamp_shift(struct xe_gt *gt)
-+{
-+	u32 reg;
-+
-+	reg = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
-+
-+	return 3 - REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, reg);
-+}
-+
-+/**
-+ * xe_guc_engine_activity_active_ticks - Get engine active ticks
-+ * @hwe: The hw_engine object
-+ *
-+ * Return: accumulated ticks @hwe was active since engine activity stats were enabled.
-+ */
-+u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe)
-+{
-+	struct xe_guc *guc =  &hwe->gt->uc.guc;
-+
-+	return get_engine_active_ticks(guc, hwe);
-+}
-+
-+/**
-+ * xe_guc_engine_activity_total_ticks - Get engine total ticks
-+ * @hwe: The hw_engine object
-+ *
-+ * Return: accumulated quanta of ticks allocated for the engine
-+ */
-+u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe)
-+{
-+	struct xe_guc *guc =  &hwe->gt->uc.guc;
-+
-+	return get_engine_total_ticks(guc, hwe);
-+}
-+
-+/**
-+ * xe_guc_engine_activity_enable_stats - Enable engine activity stats
-+ * @guc: The GuC object
-+ *
-+ * Enable engine activity stats and set initial timestamps
-+ */
-+void xe_guc_engine_activity_enable_stats(struct xe_guc *guc)
-+{
-+	int ret;
-+
-+	ret = enable_engine_activity_stats(guc);
-+	if (ret)
-+		xe_gt_err(guc_to_gt(guc), "failed to enable activity stats%d\n", ret);
-+	else
-+		engine_activity_set_cpu_ts(guc);
-+}
-+
-+static void engine_activity_fini(void *arg)
-+{
-+	struct xe_guc_engine_activity *engine_activity = arg;
-+
-+	kfree(engine_activity->eag);
-+}
-+
-+/**
-+ * xe_guc_engine_activity_init - Initialize the engine activity data
-+ * @guc: The GuC object
-+ *
-+ * Return: 0 on success, negative error code otherwise.
-+ */
-+int xe_guc_engine_activity_init(struct xe_guc *guc)
-+{
-+	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-+	struct xe_gt *gt = guc_to_gt(guc);
-+	int ret;
-+
-+	ret = allocate_engine_activity_group(guc);
-+	if (ret) {
-+		xe_gt_err(gt, "failed to allocate activity group %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = allocate_engine_activity_buffers(guc, &engine_activity->device_buffer);
-+	if (ret) {
-+		xe_gt_err(gt, "failed to allocate activity buffers%d\n", ret);
-+		kfree(engine_activity->eag);
-+		return ret;
-+	}
-+
-+	engine_activity->gpm_timestamp_shift = gpm_timestamp_shift(gt);
-+
-+	return devm_add_action_or_reset(gt_to_xe(gt)->drm.dev, engine_activity_fini,
-+					engine_activity);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.h b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
-new file mode 100644
-index 000000000000..c00f3da5513d
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#ifndef _XE_GUC_ENGINE_ACTIVITY_H_
-+#define _XE_GUC_ENGINE_ACTIVITY_H_
-+
-+#include <linux/types.h>
-+
-+struct xe_hw_engine;
-+struct xe_guc;
-+
-+int xe_guc_engine_activity_init(struct xe_guc *guc);
-+void xe_guc_engine_activity_enable_stats(struct xe_guc *guc);
-+u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe);
-+u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe);
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
-new file mode 100644
-index 000000000000..a2ab327d3eec
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
-@@ -0,0 +1,89 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#ifndef _XE_GUC_ENGINE_ACTIVITY_TYPES_H_
-+#define _XE_GUC_ENGINE_ACTIVITY_TYPES_H_
-+
-+#include <linux/types.h>
-+
-+#include "xe_guc_fwif.h"
-+/**
-+ * struct engine_activity - Engine specific activity data
-+ *
-+ * Contains engine specific activity data and snapshot of the
-+ * structures from GuC
-+ */
-+struct engine_activity {
-+	/** @active: current activity */
-+	u64 active;
-+
-+	/** @last_cpu_ts: cpu timestamp in nsec of previous sample */
-+	u64 last_cpu_ts;
-+
-+	/** @quanta: total quanta used on HW */
-+	u64 quanta;
-+
-+	/** @quanta_ns: total quanta_ns used on HW */
-+	u64 quanta_ns;
-+
-+	/**
-+	 * @quanta_remainder_ns: remainder when the CPU time is scaled as
-+	 * per the quanta_ratio. This remainder is used in subsequent
-+	 * quanta calculations.
-+	 */
-+	u64 quanta_remainder_ns;
-+
-+	/** @total: total engine activity */
-+	u64 total;
-+
-+	/** @running: true if engine is running some work */
-+	bool running;
-+
-+	/** @metadata: snapshot of engine activity metadata */
-+	struct guc_engine_activity_metadata metadata;
-+
-+	/** @activity: snapshot of engine activity counter */
-+	struct guc_engine_activity activity;
-+};
-+
-+/**
-+ * struct engine_activity_group - Activity data for all engines
-+ */
-+struct engine_activity_group {
-+	/** @engine: engine specific activity data */
-+	struct engine_activity engine[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
-+};
-+
-+/**
-+ * struct engine_activity_buffer - engine activity buffers
-+ *
-+ * This contains the buffers allocated for metadata and activity data
-+ */
-+struct engine_activity_buffer {
-+	/** @activity_bo: object allocated to hold activity data */
-+	struct xe_bo *activity_bo;
-+
-+	/** @metadata_bo: object allocated to hold activity metadata */
-+	struct xe_bo *metadata_bo;
-+};
-+
-+/**
-+ * struct xe_guc_engine_activity - Data used by engine activity implementation
-+ */
-+struct xe_guc_engine_activity {
-+	/** @gpm_timestamp_shift: Right shift value for the gpm timestamp */
-+	u32 gpm_timestamp_shift;
-+
-+	/** @num_activity_group: number of activity groups */
-+	u32 num_activity_group;
-+
-+	/** @eag: holds the device level engine activity data */
-+	struct engine_activity_group *eag;
-+
-+	/** @device_buffer: buffer object for global engine activity */
-+	struct engine_activity_buffer device_buffer;
-+};
-+#endif
-+
-diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-index 057153f89b30..6f57578b07cb 100644
---- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-+++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-@@ -208,6 +208,25 @@ struct guc_engine_usage {
- 	struct guc_engine_usage_record engines[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
- } __packed;
+@@ -15,6 +15,7 @@
+ #include "xe_hw_engine.h"
+ #include "xe_map.h"
+ #include "xe_mmio.h"
++#include "xe_trace_guc.h"
  
-+/* Engine Activity stats */
-+struct guc_engine_activity {
-+	u16 change_num;
-+	u16 quanta_ratio;
-+	u32 last_update_tick;
-+	u64 active_ticks;
-+} __packed;
+ #define TOTAL_QUANTA 0x8000
+ 
+@@ -160,6 +161,8 @@ static u64 get_engine_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
+ 		ea->active = lower_32_bits(gpm_ts) - cached_activity->last_update_tick;
+ 	}
+ 
++	trace_xe_guc_engine_activity(xe, ea, hwe->name, hwe->instance);
 +
-+struct guc_engine_activity_data {
-+	struct guc_engine_activity engine_activity[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
-+} __packed;
+ 	return ea->total + ea->active;
+ }
+ 
+@@ -193,6 +196,8 @@ static u64 get_engine_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
+ 	ea->quanta_remainder_ns = numerator % TOTAL_QUANTA;
+ 	ea->quanta = cpu_ns_to_guc_tsc_tick(ea->quanta_ns, cached_metadata->guc_tsc_frequency_hz);
+ 
++	trace_xe_guc_engine_activity(xe, ea, hwe->name, hwe->instance);
 +
-+struct guc_engine_activity_metadata {
-+	u32 guc_tsc_frequency_hz;
-+	u32 lag_latency_usec;
-+	u32 global_change_num;
-+	u32 reserved;
-+} __packed;
-+
- /* This action will be programmed in C1BC - SOFT_SCRATCH_15_REG */
- enum xe_guc_recv_message {
- 	XE_GUC_RECV_MSG_CRASH_DUMP_POSTED = BIT(1),
-diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-index 573aa6308380..63bac64429a5 100644
---- a/drivers/gpu/drm/xe/xe_guc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_types.h
-@@ -13,6 +13,7 @@
- #include "xe_guc_ads_types.h"
- #include "xe_guc_buf_types.h"
- #include "xe_guc_ct_types.h"
+ 	return ea->quanta;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_trace_guc.h b/drivers/gpu/drm/xe/xe_trace_guc.h
+index 23abdd55dc62..78949db9cfce 100644
+--- a/drivers/gpu/drm/xe/xe_trace_guc.h
++++ b/drivers/gpu/drm/xe/xe_trace_guc.h
+@@ -14,6 +14,7 @@
+ 
+ #include "xe_device_types.h"
+ #include "xe_guc_exec_queue_types.h"
 +#include "xe_guc_engine_activity_types.h"
- #include "xe_guc_fwif.h"
- #include "xe_guc_log_types.h"
- #include "xe_guc_pc_types.h"
-@@ -103,6 +104,9 @@ struct xe_guc {
- 	/** @relay: GuC Relay Communication used in SR-IOV */
- 	struct xe_guc_relay relay;
  
-+	/** @engine_activity: Device specific engine activity */
-+	struct xe_guc_engine_activity engine_activity;
+ #define __dev_name_xe(xe)	dev_name((xe)->drm.dev)
+ 
+@@ -100,6 +101,54 @@ DEFINE_EVENT_PRINT(xe_guc_ctb, xe_guc_ctb_g2h,
+ 
+ );
+ 
++TRACE_EVENT(xe_guc_engine_activity,
++	    TP_PROTO(struct xe_device *xe, struct engine_activity *ea, const char *name,
++		     u16 instance),
++	    TP_ARGS(xe, ea, name, instance),
 +
- 	/**
- 	 * @notify_reg: Register which is written to notify GuC of H2G messages
- 	 */
++	    TP_STRUCT__entry(
++			__string(dev, __dev_name_xe(xe))
++			__string(name, name)
++			__field(u32, global_change_num)
++			__field(u32, guc_tsc_frequency_hz)
++			__field(u32, lag_latency_usec)
++			__field(u16, instance)
++			__field(u16, change_num)
++			__field(u16, quanta_ratio)
++			__field(u32, last_update_tick)
++			__field(u64, active_ticks)
++			__field(u64, active)
++			__field(u64, total)
++			__field(u64, quanta)
++			__field(u64, last_cpu_ts)
++	    ),
++
++	    TP_fast_assign(
++			__assign_str(dev);
++			__assign_str(name);
++			__entry->global_change_num = ea->metadata.global_change_num;
++			__entry->guc_tsc_frequency_hz = ea->metadata.guc_tsc_frequency_hz;
++			__entry->lag_latency_usec = ea->metadata.lag_latency_usec;
++			__entry->instance = instance;
++			__entry->change_num = ea->activity.change_num;
++			__entry->quanta_ratio = ea->activity.quanta_ratio;
++			__entry->last_update_tick = ea->activity.last_update_tick;
++			__entry->active_ticks = ea->activity.active_ticks;
++			__entry->active = ea->active;
++			__entry->total = ea->total;
++			__entry->quanta = ea->quanta;
++			__entry->last_cpu_ts = ea->last_cpu_ts;
++	    ),
++
++	    TP_printk("dev=%s engine %s:%d Active=%llu, quanta=%llu, last_cpu_ts=%llu\n"
++		      "Activity metadata: global_change_num=%u, guc_tsc_frequency_hz=%u lag_latency_usec=%u\n"
++		      "Activity data: change_num=%u, quanta_ratio=0x%x, last_update_tick=%u, active_ticks=%llu\n",
++		      __get_str(dev), __get_str(name), __entry->instance,
++		      (__entry->active +  __entry->total), __entry->quanta, __entry->last_cpu_ts,
++		      __entry->global_change_num, __entry->guc_tsc_frequency_hz,
++		      __entry->lag_latency_usec, __entry->change_num, __entry->quanta_ratio,
++		      __entry->last_update_tick, __entry->active_ticks)
++);
+ #endif
+ 
+ /* This part must be outside protection */
 -- 
 2.47.1
 
