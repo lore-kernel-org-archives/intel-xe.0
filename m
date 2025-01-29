@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 664A1C02193
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F955C0218D
 	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 17:42:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2542510E84F;
-	Wed, 29 Jan 2025 17:42:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C538710E850;
+	Wed, 29 Jan 2025 17:41:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l0FYVzbU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bb9uEpGJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C87410E84F
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 17:41:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD79010E850
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 17:41:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738172519; x=1769708519;
+ t=1738172516; x=1769708516;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=HYYaFbkooNTOhfENgAb0RJDfjauCvtxVxyNNAx7++Pg=;
- b=l0FYVzbUrRke1NGlJnM5Pvfqh4bnQd2ktywNUSRqkKcLDfO1A5iz5Ii0
- /0v1ToU7PImNVXFwvC7B6ihsKUu8Ax6QXeW72q9wM07gZqSyg/DvsDKdO
- oOJxBILW6+GQgS+z/9/IJK7JO59QVE+f+pxm2IfKtBdBp5YvumZuZEfU5
- ddklkr5nB2iH7ntmWPHSbBs+Zb5UTgJhokCMm86KlGRjUV7RPP+0T4Ipa
- wQalxjByONAVhlxIRUCgcF9gt49D8On+f5QZJ4NPmgoqZELGwh6rAQeHa
- tl8XWcN/HKqmcFFJoMdFF/cNoVGJQUfW/6psyoSwzReBgre7idfidjnID Q==;
-X-CSE-ConnectionGUID: k1pM7fi/ToGyDpoIv/ipTA==
-X-CSE-MsgGUID: eDzmSaMcRtuqVpy8ONJDiA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="49354465"
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="49354465"
+ bh=nXa6TbGVFJoPnT0Ao2LrIa8pHAjydfk+GrKb+n9xgNg=;
+ b=Bb9uEpGJdXxG6ENnrxqhsfpDDdx/MUhGfMjOAUhiSWSziL17/hNsA11a
+ Ks69TCtk+FNs7nkFwbVT9wGgKaR5HOHZjxW+NMA+f/HNnng/LhnCB5bke
+ Rj+HGZOWKXmTZAbunxfBkEnJKPfzIrZYd1jqcdxbCpGRBKfk/gbyxL9Jw
+ o3Ew3kXTRxQFanFR+ExKtXLDnXq0qVk28chz0GpyzlhnZHjcuhiX46qfi
+ a2aoORDTU6QbyXbngbUtJWHGoVqeOkvhgyDCHzFJ9FZkqno/x3t7CeAFv
+ lIX4qTI2CTktrkOMsWQPWAgQEoFm8MhRIyBV8v3nPNP5HNjIe97Z5gaFr w==;
+X-CSE-ConnectionGUID: gd0daxbHSU69wnZ1CPg2kQ==
+X-CSE-MsgGUID: tCxH8PksROK6ioRBjwqL4A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="49354457"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="49354457"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 09:41:59 -0800
-X-CSE-ConnectionGUID: gMFsuTlsSp+F1u9Nb9hXGA==
-X-CSE-MsgGUID: ZCNcdj3eQfKnU2LpwNMU7Q==
+ 29 Jan 2025 09:41:56 -0800
+X-CSE-ConnectionGUID: NXOi3Q6xSIyAgxg8+Vk8Fg==
+X-CSE-MsgGUID: ZfWg8ONaSWarpX6ZqBCxiw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="108991709"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="108991703"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 09:41:58 -0800
+ 29 Jan 2025 09:41:56 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 08/13] drm/xe/pxp/uapi: Add userspace and LRC support for
- PXP-using queues
-Date: Wed, 29 Jan 2025 09:41:32 -0800
-Message-ID: <20250129174140.948829-9-daniele.ceraolospurio@intel.com>
+Subject: [CI 04/13] drm/xe/pxp: Add GSC session invalidation support
+Date: Wed, 29 Jan 2025 09:41:28 -0800
+Message-ID: <20250129174140.948829-5-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250129174140.948829-1-daniele.ceraolospurio@intel.com>
 References: <20250129174140.948829-1-daniele.ceraolospurio@intel.com>
@@ -66,463 +65,323 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Userspace is required to mark a queue as using PXP to guarantee that the
-PXP instructions will work. In addition to managing the PXP sessions,
-when a PXP queue is created the driver will set the relevant bits in
-its context control register.
+After a session is terminated, we need to inform the GSC so that it can
+clean up its side of the allocation. This is done by sending an
+invalidation command with the session ID.
+The invalidation will be triggered in response to a termination,
+interrupt, whose handling is coming in the next patch in the series.
 
-On submission of a valid PXP queue, the driver will validate all
-encrypted objects mapped to the VM to ensured they were encrypted with
-the current key.
-
-v2: Remove pxp_types include outside of PXP code (Jani), better comments
-and code cleanup (John)
-
-v3: split the internal PXP management to a separate patch for ease of
-review. re-order ioctl checks to always return -EINVAL if parameters are
-invalid, rebase on msix changes.
+v2: Better comment and error messages (John)
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: John Harrison <John.C.Harrison@Intel.com>
 Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |  1 +
- drivers/gpu/drm/xe/xe_exec_queue.c       | 56 +++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_exec_queue.h       |  5 +++
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 +
- drivers/gpu/drm/xe/xe_execlist.c         |  2 +-
- drivers/gpu/drm/xe/xe_lrc.c              | 18 ++++++--
- drivers/gpu/drm/xe/xe_lrc.h              |  4 +-
- drivers/gpu/drm/xe/xe_pxp.c              | 35 +++++++++++++--
- drivers/gpu/drm/xe/xe_pxp.h              |  4 +-
- include/uapi/drm/xe_drm.h                | 40 ++++++++++++++++-
- 10 files changed, 153 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h |  13 +
+ drivers/gpu/drm/xe/xe_pxp_submit.c            | 228 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pxp_submit.h            |   3 +
+ 3 files changed, 244 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index d86219dedde2..c8fd3d5ca502 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -132,6 +132,7 @@
- #define RING_EXECLIST_STATUS_HI(base)		XE_REG((base) + 0x234 + 4)
- 
- #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
-+#define	  CTX_CTRL_PXP_ENABLE			REG_BIT(10)
- #define	  CTX_CTRL_OAC_CONTEXT_ENABLE		REG_BIT(8)
- #define	  CTX_CTRL_RUN_ALONE			REG_BIT(7)
- #define	  CTX_CTRL_INDIRECT_RING_STATE_ENABLE	REG_BIT(4)
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 2ec4e2eb6f2a..6051db78d706 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -25,6 +25,7 @@
- #include "xe_ring_ops_types.h"
- #include "xe_trace.h"
- #include "xe_vm.h"
-+#include "xe_pxp.h"
- 
- enum xe_exec_queue_sched_prop {
- 	XE_EXEC_QUEUE_JOB_TIMEOUT = 0,
-@@ -38,6 +39,8 @@ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue
- 
- static void __xe_exec_queue_free(struct xe_exec_queue *q)
- {
-+	if (xe_exec_queue_uses_pxp(q))
-+		xe_pxp_exec_queue_remove(gt_to_xe(q->gt)->pxp, q);
- 	if (q->vm)
- 		xe_vm_put(q->vm);
- 
-@@ -113,6 +116,21 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
- {
- 	struct xe_vm *vm = q->vm;
- 	int i, err;
-+	u32 flags = 0;
-+
-+	/*
-+	 * PXP workloads executing on RCS or CCS must run in isolation (i.e. no
-+	 * other workload can use the EUs at the same time). On MTL this is done
-+	 * by setting the RUNALONE bit in the LRC, while starting on Xe2 there
-+	 * is a dedicated bit for it.
-+	 */
-+	if (xe_exec_queue_uses_pxp(q) &&
-+	    (q->class == XE_ENGINE_CLASS_RENDER || q->class == XE_ENGINE_CLASS_COMPUTE)) {
-+		if (GRAPHICS_VER(gt_to_xe(q->gt)) >= 20)
-+			flags |= XE_LRC_CREATE_PXP;
-+		else
-+			flags |= XE_LRC_CREATE_RUNALONE;
-+	}
- 
- 	if (vm) {
- 		err = xe_vm_lock(vm, true);
-@@ -121,7 +139,7 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
- 	}
- 
- 	for (i = 0; i < q->width; ++i) {
--		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec);
-+		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec, flags);
- 		if (IS_ERR(q->lrc[i])) {
- 			err = PTR_ERR(q->lrc[i]);
- 			goto err_unlock;
-@@ -166,6 +184,19 @@ struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *v
- 	if (err)
- 		goto err_post_alloc;
- 
-+	/*
-+	 * We can only add the queue to the PXP list after the init is complete,
-+	 * because the PXP termination can call exec_queue_kill and that will
-+	 * go bad if the queue is only half-initialized. This means that we
-+	 * can't do it when we handle the PXP extension in __xe_exec_queue_alloc
-+	 * and we need to do it here instead.
-+	 */
-+	if (xe_exec_queue_uses_pxp(q)) {
-+		err = xe_pxp_exec_queue_add(xe->pxp, q);
-+		if (err)
-+			goto err_post_alloc;
-+	}
-+
- 	return q;
- 
- err_post_alloc:
-@@ -254,6 +285,9 @@ void xe_exec_queue_destroy(struct kref *ref)
- 	struct xe_exec_queue *q = container_of(ref, struct xe_exec_queue, refcount);
- 	struct xe_exec_queue *eq, *next;
- 
-+	if (xe_exec_queue_uses_pxp(q))
-+		xe_pxp_exec_queue_remove(gt_to_xe(q->gt)->pxp, q);
-+
- 	xe_exec_queue_last_fence_put_unlocked(q);
- 	if (!(q->flags & EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD)) {
- 		list_for_each_entry_safe(eq, next, &q->multi_gt_list,
-@@ -409,6 +443,22 @@ static int exec_queue_set_timeslice(struct xe_device *xe, struct xe_exec_queue *
- 	return 0;
- }
- 
-+static int
-+exec_queue_set_pxp_type(struct xe_device *xe, struct xe_exec_queue *q, u64 value)
-+{
-+	if (value == DRM_XE_PXP_TYPE_NONE)
-+		return 0;
-+
-+	/* we only support HWDRM sessions right now */
-+	if (XE_IOCTL_DBG(xe, value != DRM_XE_PXP_TYPE_HWDRM))
-+		return -EINVAL;
-+
-+	if (!xe_pxp_is_enabled(xe->pxp))
-+		return -ENODEV;
-+
-+	return xe_pxp_exec_queue_set_type(xe->pxp, q, DRM_XE_PXP_TYPE_HWDRM);
-+}
-+
- typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
- 					     struct xe_exec_queue *q,
- 					     u64 value);
-@@ -416,6 +466,7 @@ typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
- static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
- 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
- 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
-+	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE] = exec_queue_set_pxp_type,
+diff --git a/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h b/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
+index f3c4cf10ba20..f0da65ccdda2 100644
+--- a/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
++++ b/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
+@@ -31,6 +31,7 @@ enum pxp_status {
+ 	PXP_STATUS_NOT_READY = 0x100e,
+ 	PXP_STATUS_PLATFCONFIG_KF1_NOVERIF = 0x101a,
+ 	PXP_STATUS_PLATFCONFIG_KF1_BAD = 0x101f,
++	PXP_STATUS_PLATFCONFIG_FIXED_KF1_NOT_SUPPORTED = 0x1037,
+ 	PXP_STATUS_OP_NOT_PERMITTED = 0x4013
  };
  
- static int exec_queue_user_ext_set_property(struct xe_device *xe,
-@@ -435,7 +486,8 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
- 			 ARRAY_SIZE(exec_queue_set_property_funcs)) ||
- 	    XE_IOCTL_DBG(xe, ext.pad) ||
- 	    XE_IOCTL_DBG(xe, ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY &&
--			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE))
-+			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE &&
-+			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE))
- 		return -EINVAL;
+@@ -49,6 +50,7 @@ struct pxp_cmd_header {
+ 	u32 buffer_len;
+ } __packed;
  
- 	idx = array_index_nospec(ext.property, ARRAY_SIZE(exec_queue_set_property_funcs));
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index 90c7f73eab88..17bc50a7f05a 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -57,6 +57,11 @@ static inline bool xe_exec_queue_is_parallel(struct xe_exec_queue *q)
- 	return q->width > 1;
++#define PXP43_CMDID_INVALIDATE_STREAM_KEY 0x00000007
+ #define PXP43_CMDID_NEW_HUC_AUTH 0x0000003F /* MTL+ */
+ 
+ /* PXP-Input-Packet: HUC Auth-only */
+@@ -63,4 +65,15 @@ struct pxp43_huc_auth_out {
+ 	struct pxp_cmd_header header;
+ } __packed;
+ 
++/* PXP-Input-Packet: Invalidate Stream Key */
++struct pxp43_inv_stream_key_in {
++	struct pxp_cmd_header header;
++	u32 rsvd[3];
++} __packed;
++
++/* PXP-Output-Packet: Invalidate Stream Key */
++struct pxp43_inv_stream_key_out {
++	struct pxp_cmd_header header;
++	u32 rsvd;
++} __packed;
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pxp_submit.c b/drivers/gpu/drm/xe/xe_pxp_submit.c
+index 326baea679a3..f5f6b18c1054 100644
+--- a/drivers/gpu/drm/xe/xe_pxp_submit.c
++++ b/drivers/gpu/drm/xe/xe_pxp_submit.c
+@@ -15,9 +15,13 @@
+ #include "xe_gsc_submit.h"
+ #include "xe_gt.h"
+ #include "xe_lrc.h"
++#include "xe_map.h"
+ #include "xe_pxp_types.h"
+ #include "xe_sched_job.h"
+ #include "xe_vm.h"
++#include "abi/gsc_command_header_abi.h"
++#include "abi/gsc_pxp_commands_abi.h"
++#include "instructions/xe_gsc_commands.h"
+ #include "instructions/xe_mfx_commands.h"
+ #include "instructions/xe_mi_commands.h"
+ 
+@@ -311,3 +315,227 @@ int xe_pxp_submit_session_termination(struct xe_pxp *pxp, u32 id)
+ 
+ 	return 0;
  }
- 
-+static inline bool xe_exec_queue_uses_pxp(struct xe_exec_queue *q)
++
++static bool
++is_fw_err_platform_config(u32 type)
 +{
-+	return q->pxp.type;
++	switch (type) {
++	case PXP_STATUS_ERROR_API_VERSION:
++	case PXP_STATUS_PLATFCONFIG_KF1_NOVERIF:
++	case PXP_STATUS_PLATFCONFIG_KF1_BAD:
++	case PXP_STATUS_PLATFCONFIG_FIXED_KF1_NOT_SUPPORTED:
++		return true;
++	default:
++		break;
++	}
++	return false;
 +}
 +
- bool xe_exec_queue_is_lr(struct xe_exec_queue *q);
- 
- bool xe_exec_queue_ring_full(struct xe_exec_queue *q);
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 6d85a069947f..6eb7ff091534 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -132,6 +132,8 @@ struct xe_exec_queue {
- 
- 	/** @pxp: PXP info tracking */
- 	struct {
-+		/** @pxp.type: PXP session type used by this queue */
-+		u8 type;
- 		/** @pxp.link: link into the list of PXP exec queues */
- 		struct list_head link;
- 	} pxp;
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index 5ef96deaa881..779a52daf3d7 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -269,7 +269,7 @@ struct xe_execlist_port *xe_execlist_port_create(struct xe_device *xe,
- 
- 	port->hwe = hwe;
- 
--	port->lrc = xe_lrc_create(hwe, NULL, SZ_16K, XE_IRQ_DEFAULT_MSIX);
-+	port->lrc = xe_lrc_create(hwe, NULL, SZ_16K, XE_IRQ_DEFAULT_MSIX, 0);
- 	if (IS_ERR(port->lrc)) {
- 		err = PTR_ERR(port->lrc);
- 		goto err;
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index bbb9ffbf6367..df3ceddede07 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -883,7 +883,8 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
- #define PVC_CTX_ACC_CTR_THOLD	(0x2a + 1)
- 
- static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
--		       struct xe_vm *vm, u32 ring_size, u16 msix_vec)
-+		       struct xe_vm *vm, u32 ring_size, u16 msix_vec,
-+		       u32 init_flags)
- {
- 	struct xe_gt *gt = hwe->gt;
- 	struct xe_tile *tile = gt_to_tile(gt);
-@@ -979,6 +980,16 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 				     RING_CTL_SIZE(lrc->ring.size) | RING_VALID);
- 	}
- 
-+	if (init_flags & XE_LRC_CREATE_RUNALONE)
-+		xe_lrc_write_ctx_reg(lrc, CTX_CONTEXT_CONTROL,
-+				     xe_lrc_read_ctx_reg(lrc, CTX_CONTEXT_CONTROL) |
-+				     _MASKED_BIT_ENABLE(CTX_CTRL_RUN_ALONE));
-+
-+	if (init_flags & XE_LRC_CREATE_PXP)
-+		xe_lrc_write_ctx_reg(lrc, CTX_CONTEXT_CONTROL,
-+				     xe_lrc_read_ctx_reg(lrc, CTX_CONTEXT_CONTROL) |
-+				     _MASKED_BIT_ENABLE(CTX_CTRL_PXP_ENABLE));
-+
- 	xe_lrc_write_ctx_reg(lrc, CTX_TIMESTAMP, 0);
- 
- 	if (xe->info.has_asid && vm)
-@@ -1021,6 +1032,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
-  * @vm: The VM (address space)
-  * @ring_size: LRC ring size
-  * @msix_vec: MSI-X interrupt vector (for platforms that support it)
-+ * @flags: LRC initialization flags
-  *
-  * Allocate and initialize the Logical Ring Context (LRC).
-  *
-@@ -1028,7 +1040,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
-  * upon failure.
-  */
- struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
--			     u32 ring_size, u16 msix_vec)
-+			     u32 ring_size, u16 msix_vec, u32 flags)
- {
- 	struct xe_lrc *lrc;
- 	int err;
-@@ -1037,7 +1049,7 @@ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
- 	if (!lrc)
- 		return ERR_PTR(-ENOMEM);
- 
--	err = xe_lrc_init(lrc, hwe, vm, ring_size, msix_vec);
-+	err = xe_lrc_init(lrc, hwe, vm, ring_size, msix_vec, flags);
- 	if (err) {
- 		kfree(lrc);
- 		return ERR_PTR(err);
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index b27e80cd842a..0b40f349ab95 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -42,8 +42,10 @@ struct xe_lrc_snapshot {
- #define LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR (0x34 * 4)
- #define LRC_PPHWSP_PXP_INVAL_SCRATCH_ADDR (0x40 * 4)
- 
-+#define XE_LRC_CREATE_RUNALONE 0x1
-+#define XE_LRC_CREATE_PXP 0x2
- struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
--			     u32 ring_size, u16 msix_vec);
-+			     u32 ring_size, u16 msix_vec, u32 flags);
- void xe_lrc_destroy(struct kref *ref);
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
-index 69d49e34e34d..b32121273e0d 100644
---- a/drivers/gpu/drm/xe/xe_pxp.c
-+++ b/drivers/gpu/drm/xe/xe_pxp.c
-@@ -6,6 +6,7 @@
- #include "xe_pxp.h"
- 
- #include <drm/drm_managed.h>
-+#include <uapi/drm/xe_drm.h>
- 
- #include "xe_device_types.h"
- #include "xe_exec_queue.h"
-@@ -47,7 +48,7 @@ bool xe_pxp_is_supported(const struct xe_device *xe)
- 	return xe->info.has_pxp && IS_ENABLED(CONFIG_INTEL_MEI_GSC_PROXY);
- }
- 
--static bool pxp_is_enabled(const struct xe_pxp *pxp)
-+bool xe_pxp_is_enabled(const struct xe_pxp *pxp)
- {
- 	return pxp;
- }
-@@ -249,7 +250,7 @@ void xe_pxp_irq_handler(struct xe_device *xe, u16 iir)
- {
- 	struct xe_pxp *pxp = xe->pxp;
- 
--	if (!pxp_is_enabled(pxp)) {
-+	if (!xe_pxp_is_enabled(pxp)) {
- 		drm_err(&xe->drm, "PXP irq 0x%x received with PXP disabled!\n", iir);
- 		return;
- 	}
-@@ -424,6 +425,27 @@ static int __pxp_start_arb_session(struct xe_pxp *pxp)
- 	return ret;
- }
- 
-+/**
-+ * xe_pxp_exec_queue_set_type - Mark a queue as using PXP
-+ * @pxp: the xe->pxp pointer (it will be NULL if PXP is disabled)
-+ * @q: the queue to mark as using PXP
-+ * @type: the type of PXP session this queue will use
-+ *
-+ * Returns 0 if the selected PXP type is supported, -ENODEV otherwise.
-+ */
-+int xe_pxp_exec_queue_set_type(struct xe_pxp *pxp, struct xe_exec_queue *q, u8 type)
++static const char *
++fw_err_to_string(u32 type)
 +{
-+	if (!xe_pxp_is_enabled(pxp))
-+		return -ENODEV;
++	switch (type) {
++	case PXP_STATUS_ERROR_API_VERSION:
++		return "ERR_API_VERSION";
++	case PXP_STATUS_NOT_READY:
++		return "ERR_NOT_READY";
++	case PXP_STATUS_PLATFCONFIG_KF1_NOVERIF:
++	case PXP_STATUS_PLATFCONFIG_KF1_BAD:
++	case PXP_STATUS_PLATFCONFIG_FIXED_KF1_NOT_SUPPORTED:
++		return "ERR_PLATFORM_CONFIG";
++	default:
++		break;
++	}
++	return NULL;
++}
 +
-+	/* we only support HWDRM sessions right now */
-+	xe_assert(pxp->xe, type == DRM_XE_PXP_TYPE_HWDRM);
++static int pxp_pkt_submit(struct xe_exec_queue *q, u64 batch_addr)
++{
++	struct xe_gt *gt = q->gt;
++	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_sched_job *job;
++	struct dma_fence *fence;
++	long timeout;
 +
-+	q->pxp.type = type;
++	xe_assert(xe, q->hwe->engine_id == XE_HW_ENGINE_GSCCS0);
++
++	job = xe_sched_job_create(q, &batch_addr);
++	if (IS_ERR(job))
++		return PTR_ERR(job);
++
++	xe_sched_job_arm(job);
++	fence = dma_fence_get(&job->drm.s_fence->finished);
++	xe_sched_job_push(job);
++
++	timeout = dma_fence_wait_timeout(fence, false, HZ);
++	dma_fence_put(fence);
++	if (timeout < 0)
++		return timeout;
++	else if (!timeout)
++		return -ETIME;
 +
 +	return 0;
 +}
 +
- static void __exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
- {
- 	spin_lock_irq(&pxp->queues.lock);
-@@ -449,9 +471,12 @@ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
- {
- 	int ret = 0;
- 
--	if (!pxp_is_enabled(pxp))
-+	if (!xe_pxp_is_enabled(pxp))
- 		return -ENODEV;
- 
-+	/* we only support HWDRM sessions right now */
-+	xe_assert(pxp->xe, q->pxp.type == DRM_XE_PXP_TYPE_HWDRM);
++static void emit_pxp_heci_cmd(struct xe_device *xe, struct iosys_map *batch,
++			      u64 addr_in, u32 size_in, u64 addr_out, u32 size_out)
++{
++	u32 len = 0;
 +
- 	/*
- 	 * Runtime suspend kills PXP, so we take a reference to prevent it from
- 	 * happening while we have active queues that use PXP
-@@ -589,7 +614,7 @@ void xe_pxp_exec_queue_remove(struct xe_pxp *pxp, struct xe_exec_queue *q)
- {
- 	bool need_pm_put = false;
- 
--	if (!pxp_is_enabled(pxp))
-+	if (!xe_pxp_is_enabled(pxp))
- 		return;
- 
- 	spin_lock_irq(&pxp->queues.lock);
-@@ -599,6 +624,8 @@ void xe_pxp_exec_queue_remove(struct xe_pxp *pxp, struct xe_exec_queue *q)
- 		need_pm_put = true;
- 	}
- 
-+	q->pxp.type = DRM_XE_PXP_TYPE_NONE;
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, GSC_HECI_CMD_PKT);
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, lower_32_bits(addr_in));
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, upper_32_bits(addr_in));
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, size_in);
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, lower_32_bits(addr_out));
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, upper_32_bits(addr_out));
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, size_out);
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, 0);
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, MI_BATCH_BUFFER_END);
++}
 +
- 	spin_unlock_irq(&pxp->queues.lock);
- 
- 	if (need_pm_put)
-diff --git a/drivers/gpu/drm/xe/xe_pxp.h b/drivers/gpu/drm/xe/xe_pxp.h
-index f482567c27b5..2e0ab186072a 100644
---- a/drivers/gpu/drm/xe/xe_pxp.h
-+++ b/drivers/gpu/drm/xe/xe_pxp.h
-@@ -12,13 +12,13 @@ struct xe_device;
- struct xe_exec_queue;
- struct xe_pxp;
- 
--#define DRM_XE_PXP_HWDRM_DEFAULT_SESSION 0xF /* TODO: move to uapi */
--
- bool xe_pxp_is_supported(const struct xe_device *xe);
-+bool xe_pxp_is_enabled(const struct xe_pxp *pxp);
- 
- int xe_pxp_init(struct xe_device *xe);
- void xe_pxp_irq_handler(struct xe_device *xe, u16 iir);
- 
-+int xe_pxp_exec_queue_set_type(struct xe_pxp *pxp, struct xe_exec_queue *q, u8 type);
- int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q);
- void xe_pxp_exec_queue_remove(struct xe_pxp *pxp, struct xe_exec_queue *q);
- 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index e2160330ad01..9d53834c4c0a 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1114,6 +1114,24 @@ struct drm_xe_vm_bind {
- /**
-  * struct drm_xe_exec_queue_create - Input of &DRM_IOCTL_XE_EXEC_QUEUE_CREATE
-  *
-+ * This ioctl supports setting the following properties via the
-+ * %DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY extension, which uses the
-+ * generic @drm_xe_ext_set_property struct:
-+ *
-+ *  - %DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY - set the queue priority.
-+ *    CAP_SYS_NICE is required to set a value above normal.
-+ *  - %DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE - set the queue timeslice
-+ *    duration in microseconds.
-+ *  - %DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE - set the type of PXP session
-+ *    this queue will be used with. Valid values are listed in enum
-+ *    drm_xe_pxp_session_type. %DRM_XE_PXP_TYPE_NONE is the default behavior, so
-+ *    there is no need to explicitly set that. When a queue of type
-+ *    %DRM_XE_PXP_TYPE_HWDRM is created, the PXP default HWDRM session
-+ *    (%XE_PXP_HWDRM_DEFAULT_SESSION) will be started, if isn't already running.
-+ *    Given that going into a power-saving state kills PXP HWDRM sessions,
-+ *    runtime PM will be blocked while queues of this type are alive.
-+ *    All PXP queues will be killed if a PXP invalidation event occurs.
-+ *
-  * The example below shows how to use @drm_xe_exec_queue_create to create
-  * a simple exec_queue (no parallel submission) of class
-  * &DRM_XE_ENGINE_CLASS_RENDER.
-@@ -1137,7 +1155,7 @@ struct drm_xe_exec_queue_create {
- #define DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY		0
- #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
- #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
--
-+#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE		2
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
- 
-@@ -1756,6 +1774,26 @@ struct drm_xe_oa_stream_info {
- 	__u64 reserved[3];
- };
- 
-+/**
-+ * enum drm_xe_pxp_session_type - Supported PXP session types.
-+ *
-+ * We currently only support HWDRM sessions, which are used for protected
-+ * content that ends up being displayed, but the HW supports multiple types, so
-+ * we might extend support in the future.
-+ */
-+enum drm_xe_pxp_session_type {
-+	/** @DRM_XE_PXP_TYPE_NONE: PXP not used */
-+	DRM_XE_PXP_TYPE_NONE = 0,
-+	/**
-+	 * @DRM_XE_PXP_TYPE_HWDRM: HWDRM sessions are used for content that ends
-+	 * up on the display.
++#define GSC_PENDING_RETRY_MAXCOUNT 40
++#define GSC_PENDING_RETRY_PAUSE_MS 50
++static int gsccs_send_message(struct xe_pxp_gsc_client_resources *gsc_res,
++			      void *msg_in, size_t msg_in_size,
++			      void *msg_out, size_t msg_out_size_max)
++{
++	struct xe_device *xe = gsc_res->vm->xe;
++	const size_t max_msg_size = gsc_res->inout_size - sizeof(struct intel_gsc_mtl_header);
++	u32 wr_offset;
++	u32 rd_offset;
++	u32 reply_size;
++	u32 min_reply_size = 0;
++	int ret;
++	int retry = GSC_PENDING_RETRY_MAXCOUNT;
++
++	if (msg_in_size > max_msg_size || msg_out_size_max > max_msg_size)
++		return -ENOSPC;
++
++	wr_offset = xe_gsc_emit_header(xe, &gsc_res->msg_in, 0,
++				       HECI_MEADDRESS_PXP,
++				       gsc_res->host_session_handle,
++				       msg_in_size);
++
++	/* NOTE: zero size packets are used for session-cleanups */
++	if (msg_in && msg_in_size) {
++		xe_map_memcpy_to(xe, &gsc_res->msg_in, wr_offset,
++				 msg_in, msg_in_size);
++		min_reply_size = sizeof(struct pxp_cmd_header);
++	}
++
++	/* Make sure the reply header does not contain stale data */
++	xe_gsc_poison_header(xe, &gsc_res->msg_out, 0);
++
++	/*
++	 * The BO is mapped at address 0 of the PPGTT, so no need to add its
++	 * base offset when calculating the in/out addresses.
 +	 */
-+	DRM_XE_PXP_TYPE_HWDRM = 1,
-+};
++	emit_pxp_heci_cmd(xe, &gsc_res->batch, PXP_BB_SIZE,
++			  wr_offset + msg_in_size, PXP_BB_SIZE + gsc_res->inout_size,
++			  wr_offset + msg_out_size_max);
 +
-+/* ID of the protected content session managed by Xe when PXP is active */
-+#define DRM_XE_PXP_HWDRM_DEFAULT_SESSION 0xf
++	xe_device_wmb(xe);
 +
- #if defined(__cplusplus)
- }
- #endif
++	/*
++	 * If the GSC needs to communicate with CSME to complete our request,
++	 * it'll set the "pending" flag in the return header. In this scenario
++	 * we're expected to wait 50ms to give some time to the proxy code to
++	 * handle the GSC<->CSME communication and then try again. Note that,
++	 * although in most case the 50ms window is enough, the proxy flow is
++	 * not actually guaranteed to complete within that time period, so we
++	 * might have to try multiple times, up to a worst case of 2 seconds,
++	 * after which the request is considered aborted.
++	 */
++	do {
++		ret = pxp_pkt_submit(gsc_res->q, 0);
++		if (ret)
++			break;
++
++		if (xe_gsc_check_and_update_pending(xe, &gsc_res->msg_in, 0,
++						    &gsc_res->msg_out, 0)) {
++			ret = -EAGAIN;
++			msleep(GSC_PENDING_RETRY_PAUSE_MS);
++		}
++	} while (--retry && ret == -EAGAIN);
++
++	if (ret) {
++		drm_err(&xe->drm, "failed to submit GSC PXP message (%pe)\n", ERR_PTR(ret));
++		return ret;
++	}
++
++	ret = xe_gsc_read_out_header(xe, &gsc_res->msg_out, 0,
++				     min_reply_size, &rd_offset);
++	if (ret) {
++		drm_err(&xe->drm, "invalid GSC reply for PXP (%pe)\n", ERR_PTR(ret));
++		return ret;
++	}
++
++	if (msg_out && min_reply_size) {
++		reply_size = xe_map_rd_field(xe, &gsc_res->msg_out, rd_offset,
++					     struct pxp_cmd_header, buffer_len);
++		reply_size += sizeof(struct pxp_cmd_header);
++
++		if (reply_size > msg_out_size_max) {
++			drm_warn(&xe->drm, "PXP reply size overflow: %u (%zu)\n",
++				 reply_size, msg_out_size_max);
++			reply_size = msg_out_size_max;
++		}
++
++		xe_map_memcpy_from(xe, msg_out, &gsc_res->msg_out,
++				   rd_offset, reply_size);
++	}
++
++	xe_gsc_poison_header(xe, &gsc_res->msg_in, 0);
++
++	return ret;
++}
++
++/**
++ * xe_pxp_submit_session_invalidation - submits a PXP GSC invalidation
++ * @gsc_res: the pxp client resources
++ * @id: the session to invalidate
++ *
++ * Submit a message to the GSC FW to notify it that a session has been
++ * terminated and is therefore invalid.
++ *
++ * Returns 0 if the submission is successful, an errno value otherwise.
++ */
++int xe_pxp_submit_session_invalidation(struct xe_pxp_gsc_client_resources *gsc_res, u32 id)
++{
++	struct xe_device *xe = gsc_res->vm->xe;
++	struct pxp43_inv_stream_key_in msg_in = {0};
++	struct pxp43_inv_stream_key_out msg_out = {0};
++	int ret = 0;
++
++	/*
++	 * Stream key invalidation reuses the same version 4.2 input/output
++	 * command format but firmware requires 4.3 API interaction
++	 */
++	msg_in.header.api_version = PXP_APIVER(4, 3);
++	msg_in.header.command_id = PXP43_CMDID_INVALIDATE_STREAM_KEY;
++	msg_in.header.buffer_len = sizeof(msg_in) - sizeof(msg_in.header);
++
++	msg_in.header.stream_id = FIELD_PREP(PXP_CMDHDR_EXTDATA_SESSION_VALID, 1);
++	msg_in.header.stream_id |= FIELD_PREP(PXP_CMDHDR_EXTDATA_APP_TYPE, 0);
++	msg_in.header.stream_id |= FIELD_PREP(PXP_CMDHDR_EXTDATA_SESSION_ID, id);
++
++	ret = gsccs_send_message(gsc_res, &msg_in, sizeof(msg_in),
++				 &msg_out, sizeof(msg_out));
++	if (ret) {
++		drm_err(&xe->drm, "Failed to invalidate PXP stream-key %u (%pe)\n",
++			id, ERR_PTR(ret));
++	} else if (msg_out.header.status != 0) {
++		ret = -EIO;
++
++		if (is_fw_err_platform_config(msg_out.header.status))
++			drm_info_once(&xe->drm,
++				      "Failed to invalidate PXP stream-key %u: BIOS/SOC 0x%08x(%s)\n",
++				      id, msg_out.header.status,
++				      fw_err_to_string(msg_out.header.status));
++		else
++			drm_dbg(&xe->drm, "Failed to invalidate stream-key %u, s=0x%08x\n",
++				id, msg_out.header.status);
++	}
++
++	return ret;
++}
+diff --git a/drivers/gpu/drm/xe/xe_pxp_submit.h b/drivers/gpu/drm/xe/xe_pxp_submit.h
+index 4ee8c0acfed9..48fdc9b09116 100644
+--- a/drivers/gpu/drm/xe/xe_pxp_submit.h
++++ b/drivers/gpu/drm/xe/xe_pxp_submit.h
+@@ -9,10 +9,13 @@
+ #include <linux/types.h>
+ 
+ struct xe_pxp;
++struct xe_pxp_gsc_client_resources;
+ 
+ int xe_pxp_allocate_execution_resources(struct xe_pxp *pxp);
+ void xe_pxp_destroy_execution_resources(struct xe_pxp *pxp);
+ 
+ int xe_pxp_submit_session_termination(struct xe_pxp *pxp, u32 id);
++int xe_pxp_submit_session_invalidation(struct xe_pxp_gsc_client_resources *gsc_res,
++				       u32 id);
+ 
+ #endif /* __XE_PXP_SUBMIT_H__ */
 -- 
 2.43.0
 
