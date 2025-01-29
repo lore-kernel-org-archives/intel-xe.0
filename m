@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66E3FC021A6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1377BC02195
 	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 19:51:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE2EB10E8B9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE2E610E8B8;
 	Wed, 29 Jan 2025 19:51:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SxvSRfRF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XtZGQMP1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3989010E8AC;
- Wed, 29 Jan 2025 19:51:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AF8010E891;
+ Wed, 29 Jan 2025 19:51:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738180287; x=1769716287;
+ t=1738180284; x=1769716284;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=udAYvU6NHprmQPlHjKE6UqgqDIF3Y3IPLbRor61gWQQ=;
- b=SxvSRfRFDtn5POmDzTRuXJVOvwjohJP0gSO9LCHqtc/J2mrZPvLB9zKo
- KB2FJxxldDEFMbtbYj4HOuOuJJgj1m+cBnMj2aLMuiopj8LLsZBpxVxfo
- IZqsW/Oa2WrRjxD3JComD++P4w+UqwJDdIMMxgR4wc9VxnhEQ3uDt17cg
- W5TbTz3paV5Q+wRUbT+fZNB4t9oYfImi/iRPuQef5OmOuyfwMNtzdmEY+
- /lnW5xlXEMjcSzVvPY0yQNSCKWl+/5x74PZlKBJCWUBAkWTy/Hnq0Aarz
- SpiEKPXMErzmIprrK6DI65fJR0NmkWLDJp9drVNFXiM8ZbnAvDmzy+BcB g==;
-X-CSE-ConnectionGUID: ZmtszIEHRPSOBLwt/hsjQQ==
-X-CSE-MsgGUID: 0+kI+wNSQ2GdP2XwfehV7w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50132910"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="50132910"
+ bh=JmeS7DyHZuCHU/L0T5wLQ7rKtJMJTVil4pPXyDZNEvI=;
+ b=XtZGQMP1RYSF/QWt7Lqtbtbw/J+OeFZw+OQE/rzwV1z8n1X9PCITZjqx
+ Hf/AZstME9gTMNW1f70vs5Sxlfp0GSePO0gFnCFf8JQHSEqOmH56mysCh
+ zWsaSCZSFoZe3YcGZowy/wHfyX3kYl/Us3KDm8ajFYS7VxN/DTEceHQgC
+ vVDfYm+r3Te0v/fY0dhiIN16ty+fGg+/R3T4VbbypItD1cR1vXPUXFhoG
+ X5xaJqi0sElJDyDEo9Xa0ayvK3ol5zUmLC7PRnmcuuHtbFDRyD0vxjZGj
+ uu/7KrrauNGoxjaYg2ZiQXPZTVKBqr0LRN5hA7h0L4F9nQTw72dhdvq1c Q==;
+X-CSE-ConnectionGUID: y2VyO+YbSkCxmqLXI7kHLA==
+X-CSE-MsgGUID: 5ysbASgAS2GWubm8oG9XJA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50132829"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="50132829"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 11:51:27 -0800
-X-CSE-ConnectionGUID: KM2MNz8lSkOIcmMGD17oyA==
-X-CSE-MsgGUID: oSJ0j8v1SviG+g0/DsUbaw==
+ 29 Jan 2025 11:51:24 -0800
+X-CSE-ConnectionGUID: 8YTenRRsRgC2K8mUCxq+nQ==
+X-CSE-MsgGUID: r7O1BsbxQPO5roxisq69jw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="132392211"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="132392166"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 11:51:27 -0800
+ 29 Jan 2025 11:51:24 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v4 33/33] drm/doc: gpusvm: Add GPU SVM documentation
-Date: Wed, 29 Jan 2025 11:52:12 -0800
-Message-Id: <20250129195212.745731-34-matthew.brost@intel.com>
+Subject: [PATCH v4 20/33] drm/xe: Add migrate layer functions for SVM support
+Date: Wed, 29 Jan 2025 11:51:59 -0800
+Message-Id: <20250129195212.745731-21-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250129195212.745731-1-matthew.brost@intel.com>
 References: <20250129195212.745731-1-matthew.brost@intel.com>
@@ -69,124 +69,232 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add documentation for agree upon GPU SVM design principles, current
-status, and future plans.
+Add functions which migrate to / from VRAM accepting a single DPA
+argument (VRAM) and array of dma addresses (SRAM). Used for SVM
+migrations.
 
-v4:
- - Address Thomas's feedback
+v2:
+ - Don't unlock job_mutex in error path of xe_migrate_vram
+v3:
+ - Kernel doc (Thomas)
+ - Better commit message (Thomas)
+ - s/dword/num_dword (Thomas)
+ - Return error to large of migration (Thomas)
 
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- Documentation/gpu/rfc/gpusvm.rst | 84 ++++++++++++++++++++++++++++++++
- Documentation/gpu/rfc/index.rst  |  4 ++
- 2 files changed, 88 insertions(+)
- create mode 100644 Documentation/gpu/rfc/gpusvm.rst
+ drivers/gpu/drm/xe/xe_migrate.c | 175 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_migrate.h |  10 ++
+ 2 files changed, 185 insertions(+)
 
-diff --git a/Documentation/gpu/rfc/gpusvm.rst b/Documentation/gpu/rfc/gpusvm.rst
-new file mode 100644
-index 000000000000..2d88f5981981
---- /dev/null
-+++ b/Documentation/gpu/rfc/gpusvm.rst
-@@ -0,0 +1,84 @@
-+===============
-+GPU SVM Section
-+===============
-+
-+Agreed upon design principles
-+=============================
-+
-+* migrate_to_ram path
-+	* Rely only on core MM concepts (migration PTEs, page references, and
-+	  page locking). The reasoning is that this is not required, can lead to
-+	  livelock cases, and is generally not a good idea to seal races using
-+	  driver-invented locks.
-+	* No driver specific locks other than locks for hardware interaction in
-+	  this path.
-+	* Partial migration is supported (i.e., a subset of pages attempting to
-+	  migrate can actually migrate, with only the faulting page guaranteed
-+	  to migrate).
-+	* Driver handles mixed migrations via retry loops rather than locking.
-+* Eviction
-+	* Only looking at physical memory data structures and locks as opposed to
-+	  looking at virtual memory data structures and locks.
-+	* No looking at mm/vma structs or relying on those being locked.
-+* GPU fault side
-+	* mmap_read only used around core MM functions which require this lock
-+	  and should strive to take mmap_read lock only in GPU SVM layer.
-+	* Big retry loop to handle all races with the mmu notifier under the gpu
-+	  pagetable locks/mmu notifier range lock/whatever we end up calling
-+          those.
-+	* Races (especially against concurrent eviction or migrate_to_ram)
-+	  should not be handled on the fault side by trying to hold locks;
-+	  rather, they should be handled using retry loops. One possible
-+	  exception is holding a BO's dma-resv lock during the initial migration
-+	  to VRAM, as this is a well-defined lock that can be taken underneath
-+	  the mmap_read lock.
-+* Physical memory to virtual backpointer
-+	* Does not work, no pointers from physical memory to virtual should
-+	  exist.
-+	* Physical memory backpointer (page->zone_device_data) should be stable
-+	  from allocation to page free.
-+* GPU pagetable locking
-+	* Notifier lock only protects range tree, pages valid state for a range
-+	  (rather than seqno due to wider notifiers), pagetable entries, and
-+	  mmu notifier seqno tracking, it is not a global lock to protect
-+          against races.
-+	* All races handled with big retry as mentioned above.
-+
-+Overview of current design
-+==========================
-+
-+Current design is simple as possible to get a working basline in which can be
-+built upon.
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/drm_gpusvm.c
-+   :doc: Overview
-+   :doc: Locking
-+   :doc: Migrataion
-+   :doc: Partial Unmapping of Ranges
-+   :doc: Examples
-+
-+Possible future design features
-+===============================
-+
-+* Concurrent GPU faults
-+	* CPU faults are concurrent so makes sense to have concurrent GPU
-+	  faults.
-+	* Should be possible with fined grained locking in the driver GPU
-+	  fault handler.
-+	* No expected GPU SVM changes required.
-+* Ranges with mixed system and device pages
-+	* Can be added if required to drm_gpusvm_get_pages fairly easily.
-+* Multi-GPU support
-+	* Work in progress and patches expected after initially landing on GPU
-+	  SVM.
-+	* Ideally can be done with little to no changes to GPU SVM.
-+* Drop ranges in favor of radix tree
-+	* May be desirable for faster notifiers.
-+* Compound device pages
-+	* Nvidia, AMD, and Intel all have agreed expensive core MM functions in
-+	  migrate device layer are a performance bottleneck, having compound
-+	  device pages should help increase performance by reducing the number
-+	  of these expensive calls.
-+* Higher order dma mapping for migration
-+	* 4k dma mapping adversely affects migration performance on Intel
-+	  hardware, higher order (2M) dma mapping should help here.
-diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
-index 476719771eef..396e535377fb 100644
---- a/Documentation/gpu/rfc/index.rst
-+++ b/Documentation/gpu/rfc/index.rst
-@@ -16,6 +16,10 @@ host such documentation:
- * Once the code has landed move all the documentation to the right places in
-   the main core, helper or driver sections.
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 278bc96cf593..df4282c71bf0 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1544,6 +1544,181 @@ void xe_migrate_wait(struct xe_migrate *m)
+ 		dma_fence_wait(m->fence, false);
+ }
  
-+.. toctree::
++static u32 pte_update_cmd_size(u64 size)
++{
++	u32 num_dword;
++	u64 entries = DIV_ROUND_UP(size, XE_PAGE_SIZE);
 +
-+    gpusvm.rst
++	XE_WARN_ON(size > MAX_PREEMPTDISABLE_TRANSFER);
++	/*
++	 * MI_STORE_DATA_IMM command is used to update page table. Each
++	 * instruction can update maximumly 0x1ff pte entries. To update
++	 * n (n <= 0x1ff) pte entries, we need:
++	 * 1 dword for the MI_STORE_DATA_IMM command header (opcode etc)
++	 * 2 dword for the page table's physical location
++	 * 2*n dword for value of pte to fill (each pte entry is 2 dwords)
++	 */
++	num_dword = (1 + 2) * DIV_ROUND_UP(entries, 0x1ff);
++	num_dword += entries * 2;
 +
- .. toctree::
++	return num_dword;
++}
++
++static void build_pt_update_batch_sram(struct xe_migrate *m,
++				       struct xe_bb *bb, u32 pt_offset,
++				       dma_addr_t *sram_addr, u32 size)
++{
++	u16 pat_index = tile_to_xe(m->tile)->pat.idx[XE_CACHE_WB];
++	u32 ptes;
++	int i = 0;
++
++	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
++	while (ptes) {
++		u32 chunk = min(0x1ffU, ptes);
++
++		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
++		bb->cs[bb->len++] = pt_offset;
++		bb->cs[bb->len++] = 0;
++
++		pt_offset += chunk * 8;
++		ptes -= chunk;
++
++		while (chunk--) {
++			u64 addr = sram_addr[i++] & PAGE_MASK;
++
++			xe_tile_assert(m->tile, addr);
++			addr = m->q->vm->pt_ops->pte_encode_addr(m->tile->xe,
++								 addr, pat_index,
++								 0, false, 0);
++			bb->cs[bb->len++] = lower_32_bits(addr);
++			bb->cs[bb->len++] = upper_32_bits(addr);
++		}
++	}
++}
++
++enum xe_migrate_copy_dir {
++	XE_MIGRATE_COPY_TO_VRAM,
++	XE_MIGRATE_COPY_TO_SRAM,
++};
++
++static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
++					 unsigned long npages,
++					 dma_addr_t *sram_addr, u64 vram_addr,
++					 const enum xe_migrate_copy_dir dir)
++{
++	struct xe_gt *gt = m->tile->primary_gt;
++	struct xe_device *xe = gt_to_xe(gt);
++	struct dma_fence *fence = NULL;
++	u32 batch_size = 2;
++	u64 src_L0_ofs, dst_L0_ofs;
++	u64 round_update_size;
++	struct xe_sched_job *job;
++	struct xe_bb *bb;
++	u32 update_idx, pt_slot = 0;
++	int err;
++
++	if (npages * PAGE_SIZE > MAX_PREEMPTDISABLE_TRANSFER)
++		return ERR_PTR(-EINVAL);
++
++	round_update_size = npages * PAGE_SIZE;
++	batch_size += pte_update_cmd_size(round_update_size);
++	batch_size += EMIT_COPY_DW;
++
++	bb = xe_bb_new(gt, batch_size, true);
++	if (IS_ERR(bb)) {
++		err = PTR_ERR(bb);
++		return ERR_PTR(err);
++	}
++
++	build_pt_update_batch_sram(m, bb, pt_slot * XE_PAGE_SIZE,
++				   sram_addr, round_update_size);
++
++	if (dir == XE_MIGRATE_COPY_TO_VRAM) {
++		src_L0_ofs = xe_migrate_vm_addr(pt_slot, 0);
++		dst_L0_ofs = xe_migrate_vram_ofs(xe, vram_addr, false);
++
++	} else {
++		src_L0_ofs = xe_migrate_vram_ofs(xe, vram_addr, false);
++		dst_L0_ofs = xe_migrate_vm_addr(pt_slot, 0);
++	}
++
++	bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
++	update_idx = bb->len;
++
++	emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, round_update_size,
++		  XE_PAGE_SIZE);
++
++	job = xe_bb_create_migration_job(m->q, bb,
++					 xe_migrate_batch_base(m, true),
++					 update_idx);
++	if (IS_ERR(job)) {
++		err = PTR_ERR(job);
++		goto err;
++	}
++
++	xe_sched_job_add_migrate_flush(job, 0);
++
++	mutex_lock(&m->job_mutex);
++	xe_sched_job_arm(job);
++	fence = dma_fence_get(&job->drm.s_fence->finished);
++	xe_sched_job_push(job);
++
++	dma_fence_put(m->fence);
++	m->fence = dma_fence_get(fence);
++	mutex_unlock(&m->job_mutex);
++
++	xe_bb_free(bb, fence);
++
++	return fence;
++
++err:
++	xe_bb_free(bb, NULL);
++
++	return ERR_PTR(err);
++}
++
++/**
++ * xe_migrate_to_vram() - Migrate to VRAM
++ * @m: The migration context.
++ * @npages: Number of pages to migrate.
++ * @src_addr: Array of dma addresses (source of migrate)
++ * @dst_addr: Device physical address of VRAM (destination of migrate)
++ *
++ * Copy from an array dma addresses to a VRAM device physical address
++ *
++ * Return: dma fence for migrate to signal completion on succees, ERR_PTR on
++ * failure
++ */
++struct dma_fence *xe_migrate_to_vram(struct xe_migrate *m,
++				     unsigned long npages,
++				     dma_addr_t *src_addr,
++				     u64 dst_addr)
++{
++	return xe_migrate_vram(m, npages, src_addr, dst_addr,
++			       XE_MIGRATE_COPY_TO_VRAM);
++}
++
++/**
++ * xe_migrate_from_vram() - Migrate from VRAM
++ * @m: The migration context.
++ * @npages: Number of pages to migrate.
++ * @src_addr: Device physical address of VRAM (source of migrate)
++ * @dst_addr: Array of dma addresses (destination of migrate)
++ *
++ * Copy from a VRAM device physical address to an array dma addresses
++ *
++ * Return: dma fence for migrate to signal completion on succees, ERR_PTR on
++ * failure
++ */
++struct dma_fence *xe_migrate_from_vram(struct xe_migrate *m,
++				       unsigned long npages,
++				       u64 src_addr,
++				       dma_addr_t *dst_addr)
++{
++	return xe_migrate_vram(m, npages, dst_addr, src_addr,
++			       XE_MIGRATE_COPY_TO_SRAM);
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ #include "tests/xe_migrate.c"
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 0109866e398a..6ff9a963425c 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -95,6 +95,16 @@ struct xe_migrate_pt_update {
  
-     i915_gem_lmem.rst
+ struct xe_migrate *xe_migrate_init(struct xe_tile *tile);
+ 
++struct dma_fence *xe_migrate_to_vram(struct xe_migrate *m,
++				     unsigned long npages,
++				     dma_addr_t *src_addr,
++				     u64 dst_addr);
++
++struct dma_fence *xe_migrate_from_vram(struct xe_migrate *m,
++				       unsigned long npages,
++				       u64 src_addr,
++				       dma_addr_t *dst_addr);
++
+ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 				  struct xe_bo *src_bo,
+ 				  struct xe_bo *dst_bo,
 -- 
 2.34.1
 
