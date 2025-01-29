@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80FB9C02197
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 17:42:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1757C02195
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 17:42:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4805310E868;
-	Wed, 29 Jan 2025 17:42:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E15C10E865;
+	Wed, 29 Jan 2025 17:42:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iqQInJ4E";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UykGl7t1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D70F410E85F
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 17:42:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13D4F10E850
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 17:41:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738172521; x=1769708521;
+ t=1738172518; x=1769708518;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=uBrhFjqedOw4ukKUXJ7bAwGmmLAcKUVkDFfaSwSdojE=;
- b=iqQInJ4ExfmMdlUzgJeiJa/FF1FaZz3JV5V8i+cnU4qtz3Fa5AblSsMm
- KFG+fnk6Qnmn+AcmRWuvVMZ8oKC8lra1MJfNdVcwCLNWN3YQ3rBW2HaRL
- eBBKNMmVy+DGCcmY6F7ZabmFFhCmh5CzfkXigKKadZOxCbPLQEqkP1H9j
- 7bPRUeroju/LcYhRO3tbmpD5nQ+KEN1C3HHe8utiqzwm8QrOhFszTEvEl
- p9E0zHyr1MoYRNfCmQFBXRGQBe2Cst8U2DKpfok2dhyUzqy9v2IZXUG36
- QXTIlwh+u9jBm9eQzIFiv8JafLrj/UjLlQGkqX20Xt5/fPJzXSKS+puOR g==;
-X-CSE-ConnectionGUID: 8pETTMIjTGqSb7tBXJKpKg==
-X-CSE-MsgGUID: QKgys3WrRWi37DPho4tshQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="49354474"
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="49354474"
+ bh=FdGEtA6885SSwNmiDWeg7p0eH2cb46n70rvBeErTwYw=;
+ b=UykGl7t1rRw+9OdMdT047bXyszsCgCnAPnum64wsokH7aMUCdhuAa6el
+ bZJbp1iJxWdME6h17lfwLSTB9d2vEaU8CyUye6ovW6E6+Z2Jhk8tZpC6G
+ i5uGBKqNW7a+GWqC5wBIIWR8MaaIdylG232SfisHFbXHLrJx3C2yrzsFU
+ rFpFC2Np6EoT2yoUUu4cbWqBz7Gi9UmCQ+QEC8BiyhDVwydgUX/cMuu1V
+ l3PN3xCaWamkURNiYFaJactqgo6nhwobt0i5+MOA+2V8ve7vfUhvbpBrV
+ 6gvc1EOkbamoRUdntF+hEvcK23zC2yVAxAL570W+v71Prwcx5DbIQ443k Q==;
+X-CSE-ConnectionGUID: P2z3bgksRmGbsbZ9zewWkg==
+X-CSE-MsgGUID: g4lpbDXZTI+0KBPtF1DOVg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="49354463"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="49354463"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 09:42:01 -0800
-X-CSE-ConnectionGUID: VpXdNK6zQDyatuE53et9KQ==
-X-CSE-MsgGUID: M5A3etbWQ52nMYZf9hWmQQ==
+ 29 Jan 2025 09:41:58 -0800
+X-CSE-ConnectionGUID: Bb8oraVNRL6WhDzKxWBBEA==
+X-CSE-MsgGUID: WE8y+N9MSAymt65YSiwg/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="108991716"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="108991707"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 09:42:01 -0800
+ 29 Jan 2025 09:41:58 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 12/13] drm/xe/pxp: Add PXP debugfs support
-Date: Wed, 29 Jan 2025 09:41:36 -0800
-Message-ID: <20250129174140.948829-13-daniele.ceraolospurio@intel.com>
+Subject: [CI 07/13] drm/xe/pxp: Add PXP queue tracking and session start
+Date: Wed, 29 Jan 2025 09:41:31 -0800
+Message-ID: <20250129174140.948829-8-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250129174140.948829-1-daniele.ceraolospurio@intel.com>
 References: <20250129174140.948829-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,205 +65,596 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch introduces 2 PXP debugfs entries:
+We expect every queue that uses PXP to be marked as doing so, to allow
+the driver to correctly manage the encryption status. The API for doing
+this from userspace is coming in the next patch, while this patch
+implement the management side of things. When a PXP queue is created,
+the driver will do the following:
 
-- info: prints the current PXP status and key instance
-- terminate: simulate a termination interrupt
+- Start the default PXP session if it is not already running;
+- assign an rpm ref to the queue to keep for its lifetime (this is
+  required because PXP HWDRM sessions are killed by the HW suspend flow).
 
-The first one is useful for debug, while the second one can be used for
-testing the termination flow.
+Since PXP start and termination can race each other, this patch also
+introduces locking and a state machine to keep track of the pending
+operations. Note that since we'll need to take the lock from the
+suspend/resume paths as well, we can't do submissions while holding it,
+which means we need a slightly more complicated state machine to keep
+track of intermediate steps.
 
-v2: move the info prints inside the lock (John)
+v4: new patch in the series, split from the following interface patch to
+keep review manageable. Lock and status rework to not do submissions
+under lock.
+
+v5: Improve comments and error logs (John)
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: John Harrison <John.C.Harrison@Intel.com>
 Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/Makefile         |   1 +
- drivers/gpu/drm/xe/xe_debugfs.c     |   3 +
- drivers/gpu/drm/xe/xe_pxp_debugfs.c | 120 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pxp_debugfs.h |  13 +++
- 4 files changed, 137 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_pxp_debugfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_pxp_debugfs.h
+ drivers/gpu/drm/xe/xe_exec_queue.c       |   1 +
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |   6 +
+ drivers/gpu/drm/xe/xe_pxp.c              | 383 ++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_pxp.h              |   5 +
+ drivers/gpu/drm/xe/xe_pxp_types.h        |  30 ++
+ 5 files changed, 419 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 9d5448fc5f59..6f9af99ce834 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -88,6 +88,7 @@ xe-y += xe_bb.o \
- 	xe_pt.o \
- 	xe_pt_walk.o \
- 	xe_pxp.o \
-+	xe_pxp_debugfs.o \
- 	xe_pxp_submit.o \
- 	xe_query.o \
- 	xe_range_fence.o \
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 492b4877433f..56cb3788e752 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -18,6 +18,7 @@
- #include "xe_gt_printk.h"
- #include "xe_guc_ads.h"
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 252bfa11cae9..2ec4e2eb6f2a 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -78,6 +78,7 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+ 	INIT_LIST_HEAD(&q->lr.link);
+ 	INIT_LIST_HEAD(&q->multi_gt_link);
+ 	INIT_LIST_HEAD(&q->hw_engine_group_link);
++	INIT_LIST_HEAD(&q->pxp.link);
+ 
+ 	q->sched_props.timeslice_us = hwe->eclass->sched_props.timeslice_us;
+ 	q->sched_props.preempt_timeout_us =
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 5af5419cec7a..6d85a069947f 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -130,6 +130,12 @@ struct xe_exec_queue {
+ 		struct list_head link;
+ 	} lr;
+ 
++	/** @pxp: PXP info tracking */
++	struct {
++		/** @pxp.link: link into the list of PXP exec queues */
++		struct list_head link;
++	} pxp;
++
+ 	/** @ops: submission backend exec queue operations */
+ 	const struct xe_exec_queue_ops *ops;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
+index 1452a4763ac2..69d49e34e34d 100644
+--- a/drivers/gpu/drm/xe/xe_pxp.c
++++ b/drivers/gpu/drm/xe/xe_pxp.c
+@@ -8,9 +8,13 @@
+ #include <drm/drm_managed.h>
+ 
+ #include "xe_device_types.h"
++#include "xe_exec_queue.h"
+ #include "xe_force_wake.h"
++#include "xe_guc_submit.h"
++#include "xe_gsc_proxy.h"
+ #include "xe_gt.h"
+ #include "xe_gt_types.h"
++#include "xe_huc.h"
+ #include "xe_mmio.h"
  #include "xe_pm.h"
-+#include "xe_pxp_debugfs.h"
- #include "xe_sriov.h"
- #include "xe_step.h"
+ #include "xe_pxp_submit.h"
+@@ -29,6 +33,15 @@
  
-@@ -230,5 +231,7 @@ void xe_debugfs_register(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_debugfs_register(gt);
+ #define ARB_SESSION DRM_XE_PXP_HWDRM_DEFAULT_SESSION /* shorter define */
  
-+	xe_pxp_debugfs_register(xe->pxp);
-+
- 	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
- }
-diff --git a/drivers/gpu/drm/xe/xe_pxp_debugfs.c b/drivers/gpu/drm/xe/xe_pxp_debugfs.c
-new file mode 100644
-index 000000000000..ccfbacf08efc
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_pxp_debugfs.c
-@@ -0,0 +1,120 @@
-+// SPDX-License-Identifier: MIT
 +/*
-+ * Copyright © 2024 Intel Corporation
++ * A submission to GSC can take up to 250ms to complete, so use a 300ms
++ * timeout for activation where only one of those is involved. Termination
++ * additionally requires a submission to VCS and an interaction with KCR, so
++ * bump the timeout to 500ms for that.
 + */
++#define PXP_ACTIVATION_TIMEOUT_MS 300
++#define PXP_TERMINATION_TIMEOUT_MS 500
 +
-+#include "xe_pxp_debugfs.h"
-+
-+#include <linux/debugfs.h>
-+
-+#include <drm/drm_debugfs.h>
-+#include <drm/drm_managed.h>
-+#include <drm/drm_print.h>
-+
-+#include "xe_device.h"
-+#include "xe_pxp.h"
-+#include "xe_pxp_types.h"
-+#include "regs/xe_irq_regs.h"
-+
-+static struct xe_pxp *node_to_pxp(struct drm_info_node *node)
+ bool xe_pxp_is_supported(const struct xe_device *xe)
+ {
+ 	return xe->info.has_pxp && IS_ENABLED(CONFIG_INTEL_MEI_GSC_PROXY);
+@@ -39,6 +52,40 @@ static bool pxp_is_enabled(const struct xe_pxp *pxp)
+ 	return pxp;
+ }
+ 
++static bool pxp_prerequisites_done(const struct xe_pxp *pxp)
 +{
-+	return node->info_ent->data;
++	struct xe_gt *gt = pxp->gt;
++	unsigned int fw_ref;
++	bool ready;
++
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++
++	/*
++	 * If force_wake fails we could falsely report the prerequisites as not
++	 * done even if they are; the consequence of this would be that the
++	 * callers won't go ahead with using PXP, but if force_wake doesn't work
++	 * the GT is very likely in a bad state so not really a problem to abort
++	 * PXP. Therefore, we can just log the force_wake error and not escalate
++	 * it.
++	 */
++	XE_WARN_ON(!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL));
++
++	/* PXP requires both HuC authentication via GSC and GSC proxy initialized */
++	ready = xe_huc_is_authenticated(&gt->uc.huc, XE_HUC_AUTH_VIA_GSC) &&
++		xe_gsc_proxy_init_done(&gt->uc.gsc);
++
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++
++	return ready;
 +}
 +
-+static const char *pxp_status_to_str(struct xe_pxp *pxp)
++static bool pxp_session_is_in_play(struct xe_pxp *pxp, u32 id)
++{
++	struct xe_gt *gt = pxp->gt;
++
++	return xe_mmio_read32(&gt->mmio, KCR_SIP) & BIT(id);
++}
++
+ static int pxp_wait_for_session_state(struct xe_pxp *pxp, u32 id, bool in_play)
+ {
+ 	struct xe_gt *gt = pxp->gt;
+@@ -48,14 +95,15 @@ static int pxp_wait_for_session_state(struct xe_pxp *pxp, u32 id, bool in_play)
+ 			      250, NULL, false);
+ }
+ 
+-static void pxp_terminate(struct xe_pxp *pxp)
++static void pxp_invalidate_queues(struct xe_pxp *pxp);
++
++static int pxp_terminate_hw(struct xe_pxp *pxp)
+ {
+-	int ret = 0;
+-	struct xe_device *xe = pxp->xe;
+ 	struct xe_gt *gt = pxp->gt;
+ 	unsigned int fw_ref;
++	int ret = 0;
+ 
+-	drm_dbg(&xe->drm, "Terminating PXP\n");
++	drm_dbg(&pxp->xe->drm, "Terminating PXP\n");
+ 
+ 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+ 	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT)) {
+@@ -80,14 +128,83 @@ static void pxp_terminate(struct xe_pxp *pxp)
+ 
+ out:
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	return ret;
++}
+ 
+-	if (ret)
++static void mark_termination_in_progress(struct xe_pxp *pxp)
 +{
 +	lockdep_assert_held(&pxp->mutex);
 +
-+	switch (pxp->status) {
-+	case XE_PXP_ERROR:
-+		return "error";
-+	case XE_PXP_NEEDS_TERMINATION:
-+		return "needs termination";
-+	case XE_PXP_TERMINATION_IN_PROGRESS:
-+		return "termination in progress";
-+	case XE_PXP_READY_TO_START:
-+		return "ready to start";
-+	case XE_PXP_ACTIVE:
-+		return "active";
-+	case XE_PXP_SUSPENDED:
-+		return "suspended";
-+	default:
-+		return "unknown";
-+	}
-+};
++	reinit_completion(&pxp->termination);
++	pxp->status = XE_PXP_TERMINATION_IN_PROGRESS;
++}
 +
-+static int pxp_info(struct seq_file *m, void *data)
++static void pxp_terminate(struct xe_pxp *pxp)
 +{
-+	struct xe_pxp *pxp = node_to_pxp(m->private);
-+	struct drm_printer p = drm_seq_file_printer(m);
-+	const char *status;
++	int ret = 0;
++	struct xe_device *xe = pxp->xe;
 +
-+	if (!xe_pxp_is_enabled(pxp))
-+		return -ENODEV;
++	if (!wait_for_completion_timeout(&pxp->activation,
++					 msecs_to_jiffies(PXP_ACTIVATION_TIMEOUT_MS)))
++		drm_err(&xe->drm, "failed to wait for PXP start before termination\n");
 +
 +	mutex_lock(&pxp->mutex);
-+	status = pxp_status_to_str(pxp);
 +
-+	drm_printf(&p, "status: %s\n", status);
-+	drm_printf(&p, "instance counter: %u\n", pxp->key_instance);
++	pxp_invalidate_queues(pxp);
++
++	/*
++	 * If we have a termination already in progress, we need to wait for
++	 * it to complete before queueing another one. Once the first
++	 * termination is completed we'll set the state back to
++	 * NEEDS_TERMINATION and leave it to the pxp start code to issue it.
++	 */
++	if (pxp->status == XE_PXP_TERMINATION_IN_PROGRESS) {
++		pxp->status = XE_PXP_NEEDS_ADDITIONAL_TERMINATION;
++		mutex_unlock(&pxp->mutex);
++		return;
++	}
++
++	mark_termination_in_progress(pxp);
++
 +	mutex_unlock(&pxp->mutex);
 +
-+	return 0;
++	ret = pxp_terminate_hw(pxp);
++	if (ret) {
+ 		drm_err(&xe->drm, "PXP termination failed: %pe\n", ERR_PTR(ret));
++		mutex_lock(&pxp->mutex);
++		pxp->status = XE_PXP_ERROR;
++		complete_all(&pxp->termination);
++		mutex_unlock(&pxp->mutex);
++	}
+ }
+ 
+ static void pxp_terminate_complete(struct xe_pxp *pxp)
+ {
+-	/* TODO mark the session as ready to start */
++	/*
++	 * We expect PXP to be in one of 2 states when we get here:
++	 * - XE_PXP_TERMINATION_IN_PROGRESS: a single termination event was
++	 * requested and it is now completing, so we're ready to start.
++	 * - XE_PXP_NEEDS_ADDITIONAL_TERMINATION: a second termination was
++	 * requested while the first one was still being processed.
++	 */
++	mutex_lock(&pxp->mutex);
++
++	switch (pxp->status) {
++	case XE_PXP_TERMINATION_IN_PROGRESS:
++		pxp->status = XE_PXP_READY_TO_START;
++		break;
++	case XE_PXP_NEEDS_ADDITIONAL_TERMINATION:
++		pxp->status = XE_PXP_NEEDS_TERMINATION;
++		break;
++	default:
++		drm_err(&pxp->xe->drm,
++			"PXP termination complete while status was %u\n",
++			pxp->status);
++	}
++
++	complete_all(&pxp->termination);
++
++	mutex_unlock(&pxp->mutex);
+ }
+ 
+ static void pxp_irq_work(struct work_struct *work)
+@@ -229,10 +346,24 @@ int xe_pxp_init(struct xe_device *xe)
+ 	if (!pxp)
+ 		return -ENOMEM;
+ 
++	INIT_LIST_HEAD(&pxp->queues.list);
++	spin_lock_init(&pxp->queues.lock);
+ 	INIT_WORK(&pxp->irq.work, pxp_irq_work);
+ 	pxp->xe = xe;
+ 	pxp->gt = gt;
+ 
++	/*
++	 * we'll use the completions to check if there is an action pending,
++	 * so we start them as completed and we reinit it when an action is
++	 * triggered.
++	 */
++	init_completion(&pxp->activation);
++	init_completion(&pxp->termination);
++	complete_all(&pxp->termination);
++	complete_all(&pxp->activation);
++
++	mutex_init(&pxp->mutex);
++
+ 	pxp->irq.wq = alloc_ordered_workqueue("pxp-wq", 0);
+ 	if (!pxp->irq.wq) {
+ 		err = -ENOMEM;
+@@ -259,3 +390,243 @@ int xe_pxp_init(struct xe_device *xe)
+ 	drmm_kfree(&xe->drm, pxp);
+ 	return err;
+ }
++
++static int __pxp_start_arb_session(struct xe_pxp *pxp)
++{
++	int ret;
++	unsigned int fw_ref;
++
++	fw_ref = xe_force_wake_get(gt_to_fw(pxp->gt), XE_FW_GT);
++	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT))
++		return -EIO;
++
++	if (pxp_session_is_in_play(pxp, ARB_SESSION)) {
++		ret = -EEXIST;
++		goto out_force_wake;
++	}
++
++	ret = xe_pxp_submit_session_init(&pxp->gsc_res, ARB_SESSION);
++	if (ret) {
++		drm_err(&pxp->xe->drm, "Failed to init PXP arb session: %pe\n", ERR_PTR(ret));
++		goto out_force_wake;
++	}
++
++	ret = pxp_wait_for_session_state(pxp, ARB_SESSION, true);
++	if (ret) {
++		drm_err(&pxp->xe->drm, "PXP ARB session failed to go in play%pe\n", ERR_PTR(ret));
++		goto out_force_wake;
++	}
++
++	drm_dbg(&pxp->xe->drm, "PXP ARB session is active\n");
++
++out_force_wake:
++	xe_force_wake_put(gt_to_fw(pxp->gt), fw_ref);
++	return ret;
 +}
 +
-+static int pxp_terminate(struct seq_file *m, void *data)
++static void __exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
 +{
-+	struct xe_pxp *pxp = node_to_pxp(m->private);
-+	struct drm_printer p = drm_seq_file_printer(m);
++	spin_lock_irq(&pxp->queues.lock);
++	list_add_tail(&q->pxp.link, &pxp->queues.list);
++	spin_unlock_irq(&pxp->queues.lock);
++}
 +
-+	if (!xe_pxp_is_enabled(pxp))
++/**
++ * xe_pxp_exec_queue_add - add a queue to the PXP list
++ * @pxp: the xe->pxp pointer (it will be NULL if PXP is disabled)
++ * @q: the queue to add to the list
++ *
++ * If PXP is enabled and the prerequisites are done, start the PXP ARB
++ * session (if not already running) and add the queue to the PXP list. Note
++ * that the queue must have previously been marked as using PXP with
++ * xe_pxp_exec_queue_set_type.
++ *
++ * Returns 0 if the PXP ARB session is running and the queue is in the list,
++ * -ENODEV if PXP is disabled, -EBUSY if the PXP prerequisites are not done,
++ * other errno value if something goes wrong during the session start.
++ */
++int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
++{
++	int ret = 0;
++
++	if (!pxp_is_enabled(pxp))
 +		return -ENODEV;
 +
-+	/* simulate a termination interrupt */
-+	spin_lock_irq(&pxp->xe->irq.lock);
-+	xe_pxp_irq_handler(pxp->xe, KCR_PXP_STATE_TERMINATED_INTERRUPT);
-+	spin_unlock_irq(&pxp->xe->irq.lock);
++	/*
++	 * Runtime suspend kills PXP, so we take a reference to prevent it from
++	 * happening while we have active queues that use PXP
++	 */
++	xe_pm_runtime_get(pxp->xe);
 +
-+	drm_printf(&p, "PXP termination queued\n");
++	if (!pxp_prerequisites_done(pxp)) {
++		ret = -EBUSY;
++		goto out;
++	}
 +
-+	return 0;
++wait_for_idle:
++	/*
++	 * if there is an action in progress, wait for it. We need to wait
++	 * outside the lock because the completion is done from within the lock.
++	 * Note that the two action should never be pending at the same time.
++	 */
++	if (!wait_for_completion_timeout(&pxp->termination,
++					 msecs_to_jiffies(PXP_TERMINATION_TIMEOUT_MS))) {
++		ret = -ETIMEDOUT;
++		goto out;
++	}
++
++	if (!wait_for_completion_timeout(&pxp->activation,
++					 msecs_to_jiffies(PXP_ACTIVATION_TIMEOUT_MS))) {
++		ret = -ETIMEDOUT;
++		goto out;
++	}
++
++	mutex_lock(&pxp->mutex);
++
++	/* If PXP is not already active, turn it on */
++	switch (pxp->status) {
++	case XE_PXP_ERROR:
++		ret = -EIO;
++		break;
++	case XE_PXP_ACTIVE:
++		__exec_queue_add(pxp, q);
++		mutex_unlock(&pxp->mutex);
++		goto out;
++	case XE_PXP_READY_TO_START:
++		pxp->status = XE_PXP_START_IN_PROGRESS;
++		reinit_completion(&pxp->activation);
++		break;
++	case XE_PXP_START_IN_PROGRESS:
++		/* If a start is in progress then the completion must not be done */
++		XE_WARN_ON(completion_done(&pxp->activation));
++		mutex_unlock(&pxp->mutex);
++		goto wait_for_idle;
++	case XE_PXP_NEEDS_TERMINATION:
++		mark_termination_in_progress(pxp);
++		break;
++	case XE_PXP_TERMINATION_IN_PROGRESS:
++	case XE_PXP_NEEDS_ADDITIONAL_TERMINATION:
++		/* If a termination is in progress then the completion must not be done */
++		XE_WARN_ON(completion_done(&pxp->termination));
++		mutex_unlock(&pxp->mutex);
++		goto wait_for_idle;
++	default:
++		drm_err(&pxp->xe->drm, "unexpected state during PXP start: %u\n", pxp->status);
++		ret = -EIO;
++		break;
++	}
++
++	mutex_unlock(&pxp->mutex);
++
++	if (ret)
++		goto out;
++
++	if (!completion_done(&pxp->termination)) {
++		ret = pxp_terminate_hw(pxp);
++		if (ret) {
++			drm_err(&pxp->xe->drm, "PXP termination failed before start\n");
++			mutex_lock(&pxp->mutex);
++			pxp->status = XE_PXP_ERROR;
++			mutex_unlock(&pxp->mutex);
++
++			goto out;
++		}
++
++		goto wait_for_idle;
++	}
++
++	/* All the cases except for start should have exited earlier */
++	XE_WARN_ON(completion_done(&pxp->activation));
++	ret = __pxp_start_arb_session(pxp);
++
++	mutex_lock(&pxp->mutex);
++
++	complete_all(&pxp->activation);
++
++	/*
++	 * Any other process should wait until the state goes away from
++	 * XE_PXP_START_IN_PROGRESS, so if the state is not that something went
++	 * wrong. Mark the status as needing termination and try again.
++	 */
++	if (pxp->status != XE_PXP_START_IN_PROGRESS) {
++		drm_err(&pxp->xe->drm, "unexpected state after PXP start: %u\n", pxp->status);
++		pxp->status = XE_PXP_NEEDS_TERMINATION;
++		mutex_unlock(&pxp->mutex);
++		goto wait_for_idle;
++	}
++
++	/* If everything went ok, update the status and add the queue to the list */
++	if (!ret) {
++		pxp->status = XE_PXP_ACTIVE;
++		__exec_queue_add(pxp, q);
++	} else {
++		pxp->status = XE_PXP_ERROR;
++	}
++
++	mutex_unlock(&pxp->mutex);
++
++out:
++	/*
++	 * in the successful case the PM ref is released from
++	 * xe_pxp_exec_queue_remove
++	 */
++	if (ret)
++		xe_pm_runtime_put(pxp->xe);
++
++	return ret;
 +}
 +
-+static const struct drm_info_list debugfs_list[] = {
-+	{"info", pxp_info, 0},
-+	{"terminate", pxp_terminate, 0},
++/**
++ * xe_pxp_exec_queue_remove - remove a queue from the PXP list
++ * @pxp: the xe->pxp pointer (it will be NULL if PXP is disabled)
++ * @q: the queue to remove from the list
++ *
++ * If PXP is enabled and the exec_queue is in the list, the queue will be
++ * removed from the list and its PM reference will be released. It is safe to
++ * call this function multiple times for the same queue.
++ */
++void xe_pxp_exec_queue_remove(struct xe_pxp *pxp, struct xe_exec_queue *q)
++{
++	bool need_pm_put = false;
++
++	if (!pxp_is_enabled(pxp))
++		return;
++
++	spin_lock_irq(&pxp->queues.lock);
++
++	if (!list_empty(&q->pxp.link)) {
++		list_del_init(&q->pxp.link);
++		need_pm_put = true;
++	}
++
++	spin_unlock_irq(&pxp->queues.lock);
++
++	if (need_pm_put)
++		xe_pm_runtime_put(pxp->xe);
++}
++
++static void pxp_invalidate_queues(struct xe_pxp *pxp)
++{
++	struct xe_exec_queue *tmp, *q;
++
++	spin_lock_irq(&pxp->queues.lock);
++
++	/*
++	 * Removing a queue from the PXP list requires a put of the RPM ref that
++	 * the queue holds to keep the PXP session alive, which can't be done
++	 * under spinlock. Since it is safe to kill a queue multiple times, we
++	 * can leave the invalid queue in the list for now and postpone the
++	 * removal and associated RPM put to when the queue is destroyed.
++	 */
++	list_for_each_entry(tmp, &pxp->queues.list, pxp.link) {
++		q = xe_exec_queue_get_unless_zero(tmp);
++
++		if (!q)
++			continue;
++
++		xe_exec_queue_kill(q);
++		xe_exec_queue_put(q);
++	}
++
++	spin_unlock_irq(&pxp->queues.lock);
++}
+diff --git a/drivers/gpu/drm/xe/xe_pxp.h b/drivers/gpu/drm/xe/xe_pxp.h
+index 39435c644dcd..f482567c27b5 100644
+--- a/drivers/gpu/drm/xe/xe_pxp.h
++++ b/drivers/gpu/drm/xe/xe_pxp.h
+@@ -9,6 +9,8 @@
+ #include <linux/types.h>
+ 
+ struct xe_device;
++struct xe_exec_queue;
++struct xe_pxp;
+ 
+ #define DRM_XE_PXP_HWDRM_DEFAULT_SESSION 0xF /* TODO: move to uapi */
+ 
+@@ -17,4 +19,7 @@ bool xe_pxp_is_supported(const struct xe_device *xe);
+ int xe_pxp_init(struct xe_device *xe);
+ void xe_pxp_irq_handler(struct xe_device *xe, u16 iir);
+ 
++int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q);
++void xe_pxp_exec_queue_remove(struct xe_pxp *pxp, struct xe_exec_queue *q);
++
+ #endif /* __XE_PXP_H__ */
+diff --git a/drivers/gpu/drm/xe/xe_pxp_types.h b/drivers/gpu/drm/xe/xe_pxp_types.h
+index 311d08111b5f..bd741720f67d 100644
+--- a/drivers/gpu/drm/xe/xe_pxp_types.h
++++ b/drivers/gpu/drm/xe/xe_pxp_types.h
+@@ -6,7 +6,10 @@
+ #ifndef __XE_PXP_TYPES_H__
+ #define __XE_PXP_TYPES_H__
+ 
++#include <linux/completion.h>
+ #include <linux/iosys-map.h>
++#include <linux/mutex.h>
++#include <linux/spinlock.h>
+ #include <linux/types.h>
+ #include <linux/workqueue.h>
+ 
+@@ -16,6 +19,16 @@ struct xe_device;
+ struct xe_gt;
+ struct xe_vm;
+ 
++enum xe_pxp_status {
++	XE_PXP_ERROR = -1,
++	XE_PXP_NEEDS_TERMINATION = 0, /* starting status */
++	XE_PXP_NEEDS_ADDITIONAL_TERMINATION,
++	XE_PXP_TERMINATION_IN_PROGRESS,
++	XE_PXP_READY_TO_START,
++	XE_PXP_START_IN_PROGRESS,
++	XE_PXP_ACTIVE,
 +};
 +
-+void xe_pxp_debugfs_register(struct xe_pxp *pxp)
-+{
-+	struct drm_minor *minor;
-+	struct drm_info_list *local;
-+	struct dentry *root;
-+	int i;
+ /**
+  * struct xe_pxp_gsc_client_resources - resources for GSC submission by a PXP
+  * client. The GSC FW supports multiple GSC client active at the same time.
+@@ -82,6 +95,23 @@ struct xe_pxp {
+ #define PXP_TERMINATION_REQUEST  BIT(0)
+ #define PXP_TERMINATION_COMPLETE BIT(1)
+ 	} irq;
 +
-+	if (!xe_pxp_is_enabled(pxp))
-+		return;
++	/** @mutex: protects the pxp status and the queue list */
++	struct mutex mutex;
++	/** @status: the current pxp status */
++	enum xe_pxp_status status;
++	/** @activation: completion struct that tracks pxp start */
++	struct completion activation;
++	/** @termination: completion struct that tracks terminations */
++	struct completion termination;
 +
-+	minor = pxp->xe->drm.primary;
-+	if (!minor->debugfs_root)
-+		return;
-+
-+#define DEBUGFS_SIZE	(ARRAY_SIZE(debugfs_list) * sizeof(struct drm_info_list))
-+	local = drmm_kmalloc(&pxp->xe->drm, DEBUGFS_SIZE, GFP_KERNEL);
-+	if (!local)
-+		return;
-+
-+	memcpy(local, debugfs_list, DEBUGFS_SIZE);
-+#undef DEBUGFS_SIZE
-+
-+	for (i = 0; i < ARRAY_SIZE(debugfs_list); ++i)
-+		local[i].data = pxp;
-+
-+	root = debugfs_create_dir("pxp", minor->debugfs_root);
-+	if (IS_ERR(root))
-+		return;
-+
-+	drm_debugfs_create_files(local,
-+				 ARRAY_SIZE(debugfs_list),
-+				 root, minor);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_pxp_debugfs.h b/drivers/gpu/drm/xe/xe_pxp_debugfs.h
-new file mode 100644
-index 000000000000..988466aad50b
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_pxp_debugfs.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef __XE_PXP_DEBUGFS_H__
-+#define __XE_PXP_DEBUGFS_H__
-+
-+struct xe_pxp;
-+
-+void xe_pxp_debugfs_register(struct xe_pxp *pxp);
-+
-+#endif /* __XE_PXP_DEBUGFS_H__ */
++	/** @queues: management of exec_queues that use PXP */
++	struct {
++		/** @queues.lock: spinlock protecting the queue management */
++		spinlock_t lock;
++		/** @queues.list: list of exec_queues that use PXP */
++		struct list_head list;
++	} queues;
+ };
+ 
+ #endif /* __XE_PXP_TYPES_H__ */
 -- 
 2.43.0
 
