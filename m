@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6990C0218D
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 14:47:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB29BC0218D
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 14:47:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ECA710E80F;
-	Wed, 29 Jan 2025 14:47:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TNcdrW46";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC8AC10E80F;
- Wed, 29 Jan 2025 14:47:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738162029; x=1769698029;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2CQ4jOenFJUhRQX5hh7iUAULaQaRZqgAbkQw6tjcZhs=;
- b=TNcdrW46BWv6B4hYXe/5/1PuUX+2PDvQpl99q+jDm18BxX+yQ+0MSv+K
- jByAYoGsNTJmCcjTF6cU11ftb1QuG7QfhjXbf8mbFPO2ZhHPL0Awx5z5a
- mgIqRB2YFXZylDbmah5mXHJCN9tkHSwbRfFpScfWFGNmWKQ+SdNsH34SF
- BybcfgozouAGRs3GCJO/p2Bt7CYAyWS0YxEbFuNyv4V07Bp2jGwL7E9YU
- vNA/PmQGE4ohvC19Y/nR4RYsHEtH7YbY0UNQjVuT224QVJc+N8eNtbw1J
- glDzU6WveOTn/Qt6CmUPA7D6XXkhL+ArcoCuvraHniAHboI9pMwXdE1KM g==;
-X-CSE-ConnectionGUID: mrIy7LnaTU6aixrmXSL+Ow==
-X-CSE-MsgGUID: cPjorRLYRtqEQNa2LHxTsw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="64040647"
-X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; d="scan'208";a="64040647"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 06:47:08 -0800
-X-CSE-ConnectionGUID: u9FNSr7rQF69QLx7imacvw==
-X-CSE-MsgGUID: V/dsfaSFR4+D6lrfxURkFg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113057047"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.235])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 06:47:04 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	imre.deak@intel.com
-Subject: [PATCH 4/6] drm/i915/mst: handle mst pbn_div in
- intel_dp_mtp_tu_compute_config()
-Date: Wed, 29 Jan 2025 16:46:36 +0200
-Message-Id: <0cc1b507601c9964ebae7d50b1f90b1ce00acb11.1738161945.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1738161945.git.jani.nikula@intel.com>
-References: <cover.1738161945.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9729910E812;
+	Wed, 29 Jan 2025 14:47:13 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B31E010E80D;
+ Wed, 29 Jan 2025 14:47:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_Allow?=
+ =?utf-8?q?_display_PHYs_to_reset_power_state?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kahola" <mika.kahola@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 29 Jan 2025 14:47:10 -0000
+Message-ID: <173816203072.2457158.6751199770834820729@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250129130105.198817-1-mika.kahola@intel.com>
+In-Reply-To: <20250129130105.198817-1-mika.kahola@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,102 +36,83 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move mst_state->pbn_div calculation to intel_dp_mtp_tu_compute_config()
-to allow further refactoring.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 31 ++++++++++-----------
- 1 file changed, 14 insertions(+), 17 deletions(-)
+Series: drm/i915/display: Allow display PHYs to reset power state
+URL   : https://patchwork.freedesktop.org/series/144103/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index ea1b05224c06..8786c8751c82 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -216,15 +216,25 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct drm_atomic_state *state = crtc_state->uapi.state;
-+	struct drm_dp_mst_topology_state *mst_state = NULL;
- 	struct intel_connector *connector =
- 		to_intel_connector(conn_state->connector);
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
--	fixed20_12 pbn_div;
-+	bool is_mst = intel_dp->is_mst;
- 	int bpp, slots = -EINVAL;
- 	int dsc_slice_count = 0;
- 	int max_dpt_bpp;
- 
-+	if (is_mst) {
-+		mst_state = drm_atomic_get_mst_topology_state(state, &intel_dp->mst_mgr);
-+		if (IS_ERR(mst_state))
-+			return PTR_ERR(mst_state);
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit dbc1a9be7a2c4d66aa434320d555cee2e83404a0
+Author: Mika Kahola <mika.kahola@intel.com>
+Date:   Wed Jan 29 15:01:05 2025 +0200
+
+    drm/i915/display: Allow display PHYs to reset power state
+    
+    The dedicated display PHYs reset to a power state that blocks S0ix,
+    increasing idle system power. After a system reset (cold boot,
+    S3/4/5, warm reset) if a dedicated PHY is not being brought up
+    shortly, use these steps to move the PHY to the lowest power state
+    to save power.
+    
+    1. Follow the PLL Enable Sequence, using any valid frequency such as DP 1.62 GHz.
+       This brings lanes out of reset and enables the PLL to allow powerdown to be moved
+       to the Disable state.
+    2. Follow PLL Disable Sequence. This moves powerdown to the Disable state and disables the PLL.
+    
+    Signed-off-by: Mika Kahola <mika.kahola@intel.com>
++ /mt/dim checkpatch bdfc862a5c719d934efbdedb050ef891b9feef15 drm-intel
+b058aca4ea7f drm/i915/display: Drop crtc_state from C10/C20 pll programming
+-:53: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2053:
++					      const struct intel_c10pll_state * const *tables, int port_clock, bool is_dp,
+
+-:94: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2083:
++						 crtc_state->port_clock, intel_crtc_has_dp_encoder(crtc_state),
+
+-:248: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#248: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3092:
++			      intel_crtc_has_dp_encoder(crtc_state), crtc_state->port_clock, crtc_state->lane_count);
+
+-:250: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#250: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3094:
 +
-+		mst_state->pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
-+							      crtc_state->lane_count);
-+	}
-+
- 	if (dsc) {
- 		if (!intel_dp_supports_fec(intel_dp, connector, crtc_state))
- 			return -EINVAL;
-@@ -232,9 +242,6 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
- 		crtc_state->fec_enable = !intel_dp_is_uhbr(crtc_state);
- 	}
- 
--	pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
--					   crtc_state->lane_count);
--
- 	max_dpt_bpp = intel_dp_mst_max_dpt_bpp(crtc_state, dsc);
- 	if (max_bpp > max_dpt_bpp) {
- 		drm_dbg_kms(display->drm, "Limiting bpp to max DPT bpp (%d -> %d)\n",
-@@ -270,7 +277,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
- 					 link_bpp_x16,
- 					 &crtc_state->dp_m_n);
- 
--		if (intel_dp->is_mst) {
-+		if (is_mst) {
- 			int remote_bw_overhead;
- 			int remote_tu;
- 			fixed20_12 pbn;
-@@ -295,7 +302,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
- 			pbn.full = dfixed_const(intel_dp_mst_calc_pbn(adjusted_mode->crtc_clock,
- 								      link_bpp_x16,
- 								      remote_bw_overhead));
--			remote_tu = DIV_ROUND_UP(pbn.full, pbn_div.full);
-+			remote_tu = DIV_ROUND_UP(pbn.full, mst_state->pbn_div.full);
- 
- 			/*
- 			 * Aligning the TUs ensures that symbols consisting of multiple
-@@ -313,7 +320,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
- 			 * allocated for the whole path and the TUs allocated for the
- 			 * first branch device's link also applies here.
- 			 */
--			pbn.full = remote_tu * pbn_div.full;
-+			pbn.full = remote_tu * mst_state->pbn_div.full;
- 
- 			drm_WARN_ON(display->drm, remote_tu < crtc_state->dp_m_n.tu);
- 			crtc_state->dp_m_n.tu = remote_tu;
-@@ -365,16 +372,6 @@ static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
- 					      struct drm_connector_state *conn_state,
- 					      int step, bool dsc)
- {
--	struct drm_atomic_state *state = crtc_state->uapi.state;
--	struct drm_dp_mst_topology_state *mst_state;
--
--	mst_state = drm_atomic_get_mst_topology_state(state, &intel_dp->mst_mgr);
--	if (IS_ERR(mst_state))
--		return PTR_ERR(mst_state);
--
--	mst_state->pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
--						      crtc_state->lane_count);
--
- 	return intel_dp_mtp_tu_compute_config(intel_dp, crtc_state, conn_state,
- 					      min_bpp, max_bpp, step, dsc);
- }
--- 
-2.39.5
++}
+
+total: 0 errors, 3 warnings, 1 checks, 225 lines checked
+dbc1a9be7a2c drm/i915/display: Allow display PHYs to reset power state
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#12: 
+1. Follow the PLL Enable Sequence, using any valid frequency such as DP 1.62 GHz.
+
+-:52: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#52: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3587:
++			if (REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val) == XELPDP_DDI_CLOCK_SELECT_NONE) {
+
+-:55: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#55: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3590:
++				intel_c10pll_calc_state_from_table(encoder, mtl_c10_edp_tables, port_clock, true, &pll_state);
+
+-:55: WARNING:LINE_SPACING: Missing a blank line after declarations
+#55: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3590:
++				int port_clock = 162000;
++				intel_c10pll_calc_state_from_table(encoder, mtl_c10_edp_tables, port_clock, true, &pll_state);
+
+total: 0 errors, 4 warnings, 0 checks, 72 lines checked
+
 
