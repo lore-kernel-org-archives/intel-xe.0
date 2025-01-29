@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBECFC02193
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 20:01:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D8BCC0218D
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 20:02:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 883C310E89D;
-	Wed, 29 Jan 2025 20:01:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFD7010E88F;
+	Wed, 29 Jan 2025 20:02:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jM18nmL0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mUbp9/Cp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 625B010E88F;
- Wed, 29 Jan 2025 20:01:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AADA610E8AB;
+ Wed, 29 Jan 2025 20:01:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738180913; x=1769716913;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ObVtlcP77zvVBys9uz+fP1lD2I0L1wlTwiNmrducPeo=;
- b=jM18nmL0QhIA5oZX25mbJGT9mmHcjX5Ok33cN/pYz5xnMmw9QvszPdi8
- xAHSs73eZorLKb18ix20D6NnVnXuJK3U8plTy8m8fjzFeLnPAsnMx+JZ9
- 3YWyc2qC5CNvlpESGrL1y/ZGAS4GYLfTvZXQ1RXw+5cRrtffO61mmz9hQ
- v+FoIo3ZKn4pC6oCEh60efUgfSBIvdB3XCuC5wVQvZRPiA54yIJVf3OSz
- ODeCaNUJ1uJpssgyabrl67cM37MNHCq8DGAWhhgGed30vU6D2DYxLqOUQ
- agAzdKweRMSqSMzIQCH+cNU4r40b5qcT6klUwBhlKqlAOTTxyyJnNajMi g==;
-X-CSE-ConnectionGUID: KpqoZpccQ3aHz7EKv4eLxQ==
-X-CSE-MsgGUID: ThfncO7PSmqWfPY5S1WbEQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="38977717"
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="38977717"
+ t=1738180917; x=1769716917;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=7wTE5eq/gsTZ+bmnqapWApK95QJXUGwCUf8KXQnrk+k=;
+ b=mUbp9/Cpj5lOJLVQ50CtguDYWZdtMV/nSFYCoDu38RIFo9uNQyj6vQ1O
+ wqtTf/k53sWkNTvRck3WDABeGhk+Ryetk214P1R3CVasj6vnWXYEY77cK
+ Hr1cV9RnPbx8Z2b6Zb+RdYzEYacrKBuwGuRgL2pIDBvznHIHDykVp38oD
+ iSA5VyC5dvQvcqGPP9Dm4k7IQZXwjtmEs0stN0Vat/6PhiBOaH8NUc2BT
+ O5i15VqE0FLzfymRyKWDHP9QjxSgYHrLhHgj3FPQfiqjOD6WudXV5+Caj
+ NXsZNBajULiMEhE6ROq33wqiMXcF3dqrjUQab6lqX1L4mCya7FGWPKyF5 g==;
+X-CSE-ConnectionGUID: zmQ+Hr/9RPyMOoHvFzxEyw==
+X-CSE-MsgGUID: b8mQzPw7RaOQzNlsp2e20g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="38977737"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="38977737"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 12:01:39 -0800
-X-CSE-ConnectionGUID: FQ7UrJdPRkCyq2eSHLB7zA==
-X-CSE-MsgGUID: 2tQLq5LkRKalXzwyL+SbyA==
+ 29 Jan 2025 12:01:41 -0800
+X-CSE-ConnectionGUID: vU7fflPqTxiM0j2+j7VYiA==
+X-CSE-MsgGUID: BZ/DJMtISyC8rTeOPULWuw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113750909"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113750912"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 12:01:37 -0800
+ 29 Jan 2025 12:01:40 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@gmail.com>
-Subject: [PATCH 11/17] drm/i915/ddi: Sanitize DDI_BUF_CTL register definitions
-Date: Wed, 29 Jan 2025 22:02:15 +0200
-Message-ID: <20250129200221.2508101-12-imre.deak@intel.com>
+Subject: [PATCH 13/17] drm/i915/ddi: Factor out a helper to get DDI_BUF_CTL's
+ config value
+Date: Wed, 29 Jan 2025 22:02:17 +0200
+Message-ID: <20250129200221.2508101-14-imre.deak@intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20250129200221.2508101-1-imre.deak@intel.com>
 References: <20250129200221.2508101-1-imre.deak@intel.com>
@@ -67,60 +67,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Imre Deak <imre.deak@gmail.com>
+Factor out a function to get the configuration fields in the DDI_BUF_CTL
+register. This can be used for configuring an HDMI output as well.
 
-Align the DDI_BUF_CTL register flag definitions with how this is done
-elsewhere.
-
-Signed-off-by: Imre Deak <imre.deak@gmail.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h | 22 ++++++++++++----------
- 1 file changed, 12 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 32 ++++++++++++++++--------
+ 1 file changed, 21 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 7fe4e71fc08ec..5cee6a96270af 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3621,27 +3621,29 @@ enum skl_power_gate {
- #define _DDI_BUF_CTL_B				0x64100
- /* Known as DDI_CTL_DE in MTL+ */
- #define DDI_BUF_CTL(port) _MMIO_PORT(port, _DDI_BUF_CTL_A, _DDI_BUF_CTL_B)
--#define  DDI_BUF_CTL_ENABLE			(1 << 31)
-+#define  DDI_BUF_CTL_ENABLE			REG_BIT(31)
- #define  XE2LPD_DDI_BUF_D2D_LINK_ENABLE		REG_BIT(29)
- #define  XE2LPD_DDI_BUF_D2D_LINK_STATE		REG_BIT(28)
--#define  DDI_BUF_TRANS_SELECT(n)	((n) << 24)
--#define  DDI_BUF_EMP_MASK			(0xf << 24)
--#define  DDI_BUF_PHY_LINK_RATE(r)		((r) << 20)
-+#define  DDI_BUF_EMP_MASK			REG_GENMASK(27, 24)
-+#define  DDI_BUF_TRANS_SELECT(n)		REG_FIELD_PREP(DDI_BUF_EMP_MASK, n)
-+#define  DDI_BUF_PHY_LINK_RATE_MASK		REG_GENMASK(23, 20)
-+#define  DDI_BUF_PHY_LINK_RATE(r)		REG_FIELD_PREP(DDI_BUF_PHY_LINK_RATE_MASK, r)
- #define  DDI_BUF_PORT_DATA_MASK			REG_GENMASK(19, 18)
- #define  DDI_BUF_PORT_DATA_10BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 0)
- #define  DDI_BUF_PORT_DATA_20BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 1)
- #define  DDI_BUF_PORT_DATA_40BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 2)
--#define  DDI_BUF_PORT_REVERSAL			(1 << 16)
-+#define  DDI_BUF_PORT_REVERSAL			REG_BIT(16)
- #define  DDI_BUF_LANE_STAGGER_DELAY_MASK	REG_GENMASK(15, 8)
- #define  DDI_BUF_LANE_STAGGER_DELAY(symbols)	REG_FIELD_PREP(DDI_BUF_LANE_STAGGER_DELAY_MASK, \
- 							       symbols)
--#define  DDI_BUF_IS_IDLE			(1 << 7)
-+#define  DDI_BUF_IS_IDLE			REG_BIT(7)
- #define  DDI_BUF_CTL_TC_PHY_OWNERSHIP		REG_BIT(6)
--#define  DDI_A_4_LANES				(1 << 4)
--#define  DDI_PORT_WIDTH(width)			(((width) == 3 ? 4 : ((width) - 1)) << 1)
--#define  DDI_PORT_WIDTH_MASK			(7 << 1)
-+#define  DDI_A_4_LANES				REG_BIT(4)
-+#define  DDI_PORT_WIDTH_MASK			REG_GENMASK(3, 1)
-+#define  DDI_PORT_WIDTH(width)			REG_FIELD_PREP(DDI_PORT_WIDTH_MASK, \
-+							       (width) == 3 ? 4 : (width) - 1)
- #define  DDI_PORT_WIDTH_SHIFT			1
--#define  DDI_INIT_DISPLAY_DETECTED		(1 << 0)
-+#define  DDI_INIT_DISPLAY_DETECTED		REG_BIT(0)
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 64c42505f2ad6..dd8ae5cf96c70 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -333,45 +333,55 @@ static int dp_phy_lane_stagger_delay(int port_clock)
+ 	return DIV_ROUND_UP(port_clock, intel_dp_link_symbol_size(port_clock) * 1000);
+ }
  
- /* DDI Buffer Translations */
- #define _DDI_BUF_TRANS_A		0x64E00
+-static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
+-				      const struct intel_crtc_state *crtc_state)
++static u32 intel_ddi_buf_ctl_config_val(struct intel_encoder *encoder,
++					const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
++	u32 val = 0;
+ 
+ 	/* DDI_BUF_CTL_ENABLE will be set by intel_ddi_prepare_link_retrain() later */
+-	intel_dp->DP = DDI_PORT_WIDTH(crtc_state->lane_count) |
++	val |= DDI_PORT_WIDTH(crtc_state->lane_count) |
+ 		DDI_BUF_TRANS_SELECT(0);
+ 
+ 	if (dig_port->lane_reversal)
+-		intel_dp->DP |= DDI_BUF_PORT_REVERSAL;
++		val |= DDI_BUF_PORT_REVERSAL;
+ 	if (dig_port->ddi_a_4_lanes)
+-		intel_dp->DP |= DDI_A_4_LANES;
++		val |= DDI_A_4_LANES;
+ 
+ 	if (DISPLAY_VER(i915) >= 14) {
+ 		if (intel_dp_is_uhbr(crtc_state))
+-			intel_dp->DP |= DDI_BUF_PORT_DATA_40BIT;
++			val |= DDI_BUF_PORT_DATA_40BIT;
+ 		else
+-			intel_dp->DP |= DDI_BUF_PORT_DATA_10BIT;
++			val |= DDI_BUF_PORT_DATA_10BIT;
+ 	}
+ 
+ 	if (IS_ALDERLAKE_P(i915) && intel_encoder_is_tc(encoder)) {
+-		intel_dp->DP |= ddi_buf_phy_link_rate(crtc_state->port_clock);
++		val |= ddi_buf_phy_link_rate(crtc_state->port_clock);
+ 		/*
+ 		 * TODO: remove the following once DDI_BUF_CTL is updated via
+ 		 * an RMW everywhere.
+ 		 */
+ 		if (!intel_tc_port_in_tbt_alt_mode(dig_port))
+-			intel_dp->DP |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
++			val |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+ 	}
+ 
+ 	if (IS_DISPLAY_VER(display, 11, 13) && intel_encoder_is_tc(encoder)) {
+ 		int delay = dp_phy_lane_stagger_delay(crtc_state->port_clock);
+ 
+-		intel_dp->DP |= DDI_BUF_LANE_STAGGER_DELAY(delay);
++		val |= DDI_BUF_LANE_STAGGER_DELAY(delay);
+ 	}
++
++	return val;
++}
++
++static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
++				      const struct intel_crtc_state *crtc_state)
++{
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++
++	intel_dp->DP = intel_ddi_buf_ctl_config_val(encoder, crtc_state);
+ }
+ 
+ static u32 intel_ddi_buf_ctl_config_mask(struct intel_encoder *encoder)
 -- 
 2.44.2
 
