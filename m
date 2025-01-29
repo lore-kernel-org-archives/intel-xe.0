@@ -4,60 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAC68C0218D
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 08:21:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6E75C0218D
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Jan 2025 08:44:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 900F110E2BE;
-	Wed, 29 Jan 2025 08:21:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51B3C10E40E;
+	Wed, 29 Jan 2025 08:44:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EGvT8PGt";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="X3X6Pw9w";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8B7110E755
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 08:21:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738138914; x=1769674914;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=S++AKQhG3i8AbAjBBmLtwzkU0MlXy4b0EGdAL8ppyl8=;
- b=EGvT8PGtamXg34LrdUnAG2iZXmpPm8BC1TYX0vXOTeOwlgpzsSC3l6Je
- ix9dJj7rJuf/2VWWJmoadZlDTvii0rAyoJLb4EQ7wPSrkAT7M2QmfKbd2
- 6QzUyTo52XEQ5ZttmeSJEZSAExQ+uM1DiTRk1UZNLnPQxLR8GXtR/80dX
- pSLJgTg31jbxLsWKpZdtEw5NYgbmNTsPGGqm/+JjWXOLujB5bMDoUL04n
- 5s9R9CJ2hkMFUzyK+LUHd78cP/hyzhQVQez7LIBW2xSj3/RJayZZJ6GO2
- QBZxddYbbux0C2XM7Mu9oX1lFpKjz7XU9ogV7fGV+krXT56zr7cHWF/yE Q==;
-X-CSE-ConnectionGUID: t5sUzz+tSZGegxMtePPmmg==
-X-CSE-MsgGUID: e9TGj4+XR76ZON/HSa9gpQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="49229721"
-X-IronPort-AV: E=Sophos;i="6.13,242,1732608000"; d="scan'208";a="49229721"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 00:21:53 -0800
-X-CSE-ConnectionGUID: P3FOCFnNQCi6DYCd4XEXdA==
-X-CSE-MsgGUID: gCgItrMFTpySEguojcODnQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,242,1732608000"; d="scan'208";a="113999358"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.246.222])
- ([10.245.246.222])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 00:21:52 -0800
-Message-ID: <3f8fa3accc06366710b24f8145d5b23268ea9b5d.camel@linux.intel.com>
-Subject: Re: [PATCH 2/3] drm/xe: Clear scratch page before vm_bind
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, Oak Zeng <oak.zeng@intel.com>
-Cc: intel-xe@lists.freedesktop.org, joonas.lahtinen@linux.intel.com
-Date: Wed, 29 Jan 2025 09:21:49 +0100
-In-Reply-To: <Z5m22oRBNKgHPy0B@lstrano-desk.jf.intel.com>
-References: <20250128222145.3849874-1-oak.zeng@intel.com>
- <20250128222145.3849874-2-oak.zeng@intel.com>
- <Z5ll8YZidnxz9Pp6@lstrano-desk.jf.intel.com>
- <Z5m22oRBNKgHPy0B@lstrano-desk.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
+ [209.85.128.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6C7D10E411
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 08:44:10 +0000 (UTC)
+Received: by mail-wm1-f52.google.com with SMTP id
+ 5b1f17b1804b1-43618283d48so46664365e9.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Jan 2025 00:44:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1738140249; x=1738745049;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=LQ7UQFc0W24PUIHdo7OrS6QM+0vcBB9sQvwA8ufJ07I=;
+ b=X3X6Pw9wdwPHLqumh4jvgCpXGr0YZQAGK0Tk9daNnacqQnsQbzgsrVUmKgg6nn4lKj
+ PV3bjehVFZeZ1RivsvB+nhrjRkQuv7+edNnxrLr50jZERynPsoAtvaXP0YLVpKdviaSx
+ 9Qq1UKNeJDFaqBEjFQAX1X3ixkLO7NUqBU0tc+sf/QB2bwPL12+Qd38ZWPG0q8qu5Oyt
+ JrDuJ0ld0pWLrvr3ZpnDpvdSUkkcuQzCrf5oqyuzXqxjJ4fXSEI/vjJTRZn12Ouebo/x
+ QhTAFHfyI6g9wTSqjWeEi7LRwg0I/0HG4I6W9YPK0s4k4r2BIT8dRbc7s3Jt48d1QAs+
+ ptLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1738140249; x=1738745049;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=LQ7UQFc0W24PUIHdo7OrS6QM+0vcBB9sQvwA8ufJ07I=;
+ b=gkxRgMFqg4PRNmyiimBex2rEU0sb1uMZSAbkJH5o8/Chd3CrwI5mRSg3ZC5jjlORxx
+ Lcz8ezeOux4o1Fjf93Rp/Yb+7sHOMXDEYUIWp2xYA70d8sjieM5rQtDAjQfXv0H7bnTP
+ TgIWJ41MGRHvmwCDVCR/urspH8ZZFWZM+3dhM6518VicG57lnbgK+kIg3j/5kZUe4gdf
+ IJTAkKcz3H5waMGkOayaOWCmPRKDGIn5TyUqknEfgxt0gturfawjbozNc/BTtNgXK61Q
+ rbocUO6IYt86Zc+kWTjUQD1KFfcM80lQxmvSprpZOCy9LJMwbj/VTJjw033DCcycb23J
+ /G0Q==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU1tRmPNG4/WSbpw2ITzHq8PNsk20LNKD73exTH0q0kZa2Ksybg53jYUx0RK7otHa14yk9Rl6rHNw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yylp/VN6Ujez6tyAhir6hxLXL5qNqmzq3rIgwisoO+SlvqYSvLk
+ fbZB0Bu6HxX2zWAJiXZJm45h3gilSQY2cLf0MtGjkcB8ii+3Xon6PB8gvEN2BQw=
+X-Gm-Gg: ASbGnct5laYQegY12icvr6hXCkLsZKhVEFxmoog0xk37O3OvtODJTEaCaK9kLRwowgb
+ ROZt9TkKKybAzTEAjDDCCcd59TOJ5GacRc+Sv/e4YmyJmN9hPW6FeIIsA0NZTTdsQhSR2E6X7zA
+ Gloan+TDaNz8a7ih28z6X6+lSM9x6cE8OsZJCicR6JNx1Pgsi2B3N6lFFmzH90qDqXT1NahCFi7
+ 8aYu9cMjUYEf0ebtWgzBPwrVdeSOCUPfgqEhW1tLFx4FEGbcgh8wRsNmikAWpEGFivVINBL5fX4
+ QyYlqSOnE1RWhwgrvLaTjMmUnRxOGCY=
+X-Google-Smtp-Source: AGHT+IEBUc1AFI04kLkOWVHYK0u+8wdNlFR9LHspIVFaCsbs4hRxd3Wttd9cC2GJBb+7SrD3BwveTQ==
+X-Received: by 2002:a05:6000:4008:b0:386:459e:655d with SMTP id
+ ffacd0b85a97d-38c51952173mr1758736f8f.20.1738140249095; 
+ Wed, 29 Jan 2025 00:44:09 -0800 (PST)
+Received: from [192.168.0.101] ([90.241.98.187])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-38c2a1bb0c9sm16551520f8f.78.2025.01.29.00.44.08
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 29 Jan 2025 00:44:08 -0800 (PST)
+Message-ID: <71c2213c-4445-4285-aab8-6d7ad6f5a723@ursulin.net>
+Date: Wed, 29 Jan 2025 08:44:07 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/display: Disable AuxCCS framebuffers if built
+ for Xe
+To: =?UTF-8?Q?Juha-Pekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ "Souza, Jose" <jose.souza@intel.com>
+References: <20240228140225.858145-1-juhapekka.heikkila@gmail.com>
+ <875xy01vd8.fsf@intel.com> <72a58a16-d7aa-4b85-bd67-40cd87366b0b@ursulin.net>
+ <CAJ=qYWRZZd4FmYXxqaT5hm5RqOQsNow4UbG=fdQFr_odSGUrEQ@mail.gmail.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <CAJ=qYWRZZd4FmYXxqaT5hm5RqOQsNow4UbG=fdQFr_odSGUrEQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,150 +94,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2025-01-28 at 21:04 -0800, Matthew Brost wrote:
-> On Tue, Jan 28, 2025 at 03:19:13PM -0800, Matthew Brost wrote:
-> > On Tue, Jan 28, 2025 at 05:21:44PM -0500, Oak Zeng wrote:
-> > > When a vm runs under fault mode, if scratch page is enabled, we
-> > > need
-> > > to clear the scratch page mapping before vm_bind for the vm_bind
-> > > address range. Under fault mode, we depend on recoverable page
-> > > fault
-> > > to establish mapping in page table. If scratch page is not
-> > > cleared,
-> > > GPU access of address won't cause page fault because it always
-> > > hits
-> > > the existing scratch page mapping.
-> > >=20
-> > > When vm_bind with IMMEDIATE flag, there is no need of clearing as
-> > > immediate bind can overwrite the scratch page mapping.
-> > >=20
-> > > So far only is xe2 and xe3 products are allowed to enable scratch
-> > > page
-> > > under fault mode. On other platform we don't allow scratch page
-> > > under
-> > > fault mode, so no need of such clearing.
-> > >=20
-> > > Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-> > > ---
-> > > =C2=A0drivers/gpu/drm/xe/xe_vm.c | 32 +++++++++++++++++++++++++++++++=
-+
-> > > =C2=A01 file changed, 32 insertions(+)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/xe/xe_vm.c
-> > > b/drivers/gpu/drm/xe/xe_vm.c
-> > > index 690330352d4c..196d347c6ac0 100644
-> > > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > > @@ -38,6 +38,7 @@
-> > > =C2=A0#include "xe_trace_bo.h"
-> > > =C2=A0#include "xe_wa.h"
-> > > =C2=A0#include "xe_hmm.h"
-> > > +#include "i915_drv.h"
-> > > =C2=A0
-> > > =C2=A0static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
-> > > =C2=A0{
-> > > @@ -2917,6 +2918,34 @@ static int
-> > > xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo
-> > > *bo,
-> > > =C2=A0	return 0;
-> > > =C2=A0}
-> > > =C2=A0
-> > > +static bool __xe_vm_needs_clear_scratch_pages(struct xe_device
-> > > *xe,
-> > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm *vm,
-> > > u32 bind_flags)
-> > > +{
-> > > +	if (!xe_vm_in_fault_mode(vm))
-> > > +		return false;
-> > > +
-> > > +	if (!xe_vm_has_scratch(vm))
-> > > +		return false;
-> > > +
-> > > +	if (bind_flags & DRM_XE_VM_BIND_FLAG_IMMEDIATE)
-> > > +		return false;
-> > > +
-> > > +	if (!(IS_LUNARLAKE(xe) || IS_BATTLEMAGE(xe) ||
-> > > IS_PANTHERLAKE(xe)))
-> > > +		return false;
-> > > +
-> > > +	return true;
-> > > +}
-> > > +
-> > > +static void __xe_vm_clear_scratch_pages(struct xe_device *xe,
-> > > struct xe_vm *vm,
-> > > +					u64 start, u64 end)
-> > > +{
-> > > +	struct xe_tile *tile;
-> > > +	u8 id;
-> > > +
-> > > +	for_each_tile(tile, xe, id)
-> > > +		xe_pt_zap_range(tile, vm, start, end);
-> > > +}
-> > > +
-> > > =C2=A0int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct
-> > > drm_file *file)
-> > > =C2=A0{
-> > > =C2=A0	struct xe_device *xe =3D to_xe_device(dev);
-> > > @@ -3062,6 +3091,9 @@ int xe_vm_bind_ioctl(struct drm_device
-> > > *dev, void *data, struct drm_file *file)
-> > > =C2=A0		u32 prefetch_region =3D
-> > > bind_ops[i].prefetch_mem_region_instance;
-> > > =C2=A0		u16 pat_index =3D bind_ops[i].pat_index;
-> > > =C2=A0
-> > > +		if (__xe_vm_needs_clear_scratch_pages(xe, vm,
-> > > flags))
-> > > +			__xe_vm_clear_scratch_pages(xe, vm,
-> > > addr, addr + range);
-> >=20
-> > A few things...
-> >=20
-> > - I believe this is only needed for bind user operations or
-> > internal MAP
-> > =C2=A0 GPU VMA operations.
-> > - I believe a TLB invalidation will be required.
-> > - I don't think calling zap PTEs range works here, given how the
-> > scratch
-> > =C2=A0 tables are set up (i.e., new PTEs need to be created pointing to
-> > an
-> > =C2=A0 invalid state).
-> > - This series appears to be untested based on the points above.
-> >=20
-> > Therefore, instead of this series, I believe you will need to fully
-> > update the bind pipeline to process MAP GPU VMA operations here.
-> >=20
-> > So roughly...
-> >=20
-> > - Maybe include a bit in xe_vma_op_map that specifies "invalidate
-> > on
-> > =C2=A0 bind," set in vm_bind_ioctl_ops_create, since this will need to
-> > be
-> > =C2=A0 wired throughout the bind pipeline.
-> > - Don't validate backing memory in this case.
-> > - Ensure that xe_vma_ops_incr_pt_update_ops is called in this case
-> > for
-> > =C2=A0 MAP operations, forcing entry into the xe_pt.c backend.
-> > - Update xe_pt_stage_bind_walk with a variable that indicates
-> > clearing
-> > =C2=A0 the PTE. Instead of calling pte_encode_vma in
-> > xe_pt_stage_bind_entry,
-> > =C2=A0 set this variable for PT bind operations derived from MAP
-> > operations
-> > =C2=A0 that meet the "invalidate on bind" condition.
->=20
-> Ugh, typos / nonsense here. Let me try again.
->=20
-> "Update xe_pt_stage_bind_walk with a variable that indicates clearing
-> the PTE, set this for MAP ops that meet the 'invalidate on bind'
-> condition. When this variable is set, instead of calling
-> pte_encode_vma
-> in xe_pt_stage_bind_entry, call a function which encodes an invalid
-> PTE."
->=20
-> Matt
 
-I agree with Matt here. This needs to look just like a regular bind,
-with the exception that PTEs are cleared instead of pointing towards
-valid pages.
+On 28/01/2025 15:55, Juha-Pekka Heikkilä wrote:
+> On Tue, Jan 28, 2025 at 3:08 PM Tvrtko Ursulin <tursulin@ursulin.net> wrote:
+>>
+>>
+>> Hi,
+>>
+>> On 05/03/2024 16:44, Jani Nikula wrote:
+>>> On Wed, 28 Feb 2024, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com> wrote:
+>>>> AuxCCS framebuffers don't work on Xe driver hence disable them
+>>>> from plane capabilities until they are fixed. FlatCCS framebuffers
+>>>> work and they are left enabled. CCS is left untouched for i915
+>>>> driver.
+>>
+>> I couldn't find the answer in the below linked issue or in the thread -
+>> is it known what exactly is missing/broken to make this work and are
+>> there any plans to do it? Or perhaps not if gen12lp is not intended to
+>> be supported?
+> 
+> As far as I know devices with AuxCCS are not intended to be supported.
+> 
+> As for this patch, from display point of view these would work the same
+> as before, just put compressed fb on screen and enable decompression
+> but I figure there are parts missing from gem side to support AuxCCS.
 
-/Thomas
+Right, I can dig in and try to figure out what are those missing GEM 
+bits but I was hoping someone might know straight away to save me that 
+initial digging around.
 
+Regards,
+
+Tvrtko
+
+>>>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/933
+>>>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>>>
+>>> Acked-by: Jani Nikula <jani.nikula@intel.com>
+>>>
+>>>
+>>>> ---
+>>>>    drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 +++
+>>>>    1 file changed, 3 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>>>> index e941e2e4fd14..860574d04f88 100644
+>>>> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>>>> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>>>> @@ -2295,6 +2295,9 @@ static u8 skl_get_plane_caps(struct drm_i915_private *i915,
+>>>>       if (HAS_4TILE(i915))
+>>>>               caps |= INTEL_PLANE_CAP_TILING_4;
+>>>>
+>>>> +    if (!IS_ENABLED(I915) && !HAS_FLAT_CCS(i915))
+>>>> +            return caps;
+>>>> +
+>>>>       if (skl_plane_has_rc_ccs(i915, pipe, plane_id)) {
+>>>>               caps |= INTEL_PLANE_CAP_CCS_RC;
+>>>>               if (DISPLAY_VER(i915) >= 12)
+>>>
