@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FBDFC0218A
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 11:18:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89FEEC0218A
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 11:27:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EB3010E03D;
-	Thu, 30 Jan 2025 11:18:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IxMcZ8tK";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 178F210E03D;
- Thu, 30 Jan 2025 11:18:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738235884; x=1769771884;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=613kyMMGMs3HHOgkG0vQJO3qbtFuDPEmnvTM0DdDPqo=;
- b=IxMcZ8tKWD3G97xV25L5i3/iAk2VuyxLI9w/KvZT593YwC5bIDMsBoaF
- otJMZK/gU92BDP69TCO1NBICiHdu//r8LNJvZnJdwEXaT9icnokN2wCLR
- nJ/f9bPhSAMf0jCilbKZS3elgkwejT1zMbw25JMe1CtxrwzUnFUfphZph
- FTeRvFW1/8HaQpR7wKRlQX8H9y0lxmcTTOlYCkT/AAM8NTbCpneHqBD+a
- UOkddyGqOJN+VOCuqKD6CipEbhWJly+pqIPamTmXtFsY9HFvEISvn396S
- bIn3IlV6ByC8+Uj5GrMwj6giY/ZJu8AAAWONwkzarJ4aCGdLznnjgRI1L w==;
-X-CSE-ConnectionGUID: e3hir2ZyR2ygetCC76QYhw==
-X-CSE-MsgGUID: xfOFzPSGRbeVDlR3gn0Jaw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="49428414"
-X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="49428414"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 03:18:03 -0800
-X-CSE-ConnectionGUID: Z2DMT8g/QCiHeqGSi6CIoQ==
-X-CSE-MsgGUID: 8gD6nDQAQYu9c8Vz1JE27Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="109281809"
-Received: from dneilan-mobl1.ger.corp.intel.com (HELO [10.245.244.112])
- ([10.245.244.112])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 03:18:01 -0800
-Message-ID: <4cdb6d9a-cf7b-4d2f-b214-c5c53f7b9714@intel.com>
-Date: Thu, 30 Jan 2025 11:17:58 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D02810E945;
+	Thu, 30 Jan 2025 11:27:52 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B89A10E94F;
+ Thu, 30 Jan 2025 11:27:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/33] drm/gpusvm: Add support for GPU Shared Virtual
- Memory
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
- thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
- felix.kuehling@amd.com, dakr@kernel.org
-References: <20250129195212.745731-1-matthew.brost@intel.com>
- <20250129195212.745731-7-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250129195212.745731-7-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_TTM_shrinker_helpers_and?=
+ =?utf-8?q?_xe_buffer_object_shrinker_=28rev17=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 30 Jan 2025 11:27:51 -0000
+Message-ID: <173823647161.2839450.15281123564171122529@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250130101325.3068-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250130101325.3068-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,221 +36,116 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 29/01/2025 19:51, Matthew Brost wrote:
-> This patch introduces support for GPU Shared Virtual Memory (SVM) in the
-> Direct Rendering Manager (DRM) subsystem. SVM allows for seamless
-> sharing of memory between the CPU and GPU, enhancing performance and
-> flexibility in GPU computing tasks.
-> 
-> The patch adds the necessary infrastructure for SVM, including data
-> structures and functions for managing SVM ranges and notifiers. It also
-> provides mechanisms for allocating, deallocating, and migrating memory
-> regions between system RAM and GPU VRAM.
-> 
-> This is largely inspired by GPUVM.
-> 
-> v2:
->   - Take order into account in check pages
->   - Clear range->pages in get pages error
->   - Drop setting dirty or accessed bit in get pages (Vetter)
->   - Remove mmap assert for cpu faults
->   - Drop mmap write lock abuse (Vetter, Christian)
->   - Decouple zdd from range (Vetter, Oak)
->   - Add drm_gpusvm_range_evict, make it work with coherent pages
->   - Export drm_gpusvm_evict_to_sram, only use in BO evict path (Vetter)
->   - mmget/put in drm_gpusvm_evict_to_sram
->   - Drop range->vram_alloation variable
->   - Don't return in drm_gpusvm_evict_to_sram until all pages detached
->   - Don't warn on mixing sram and device pages
->   - Update kernel doc
->   - Add coherent page support to get pages
->   - Use DMA_FROM_DEVICE rather than DMA_BIDIRECTIONAL
->   - Add struct drm_gpusvm_vram and ops (Thomas)
->   - Update the range's seqno if the range is valid (Thomas)
->   - Remove the is_unmapped check before hmm_range_fault (Thomas)
->   - Use drm_pagemap (Thomas)
->   - Drop kfree_mapping (Thomas)
->   - dma mapp pages under notifier lock (Thomas)
->   - Remove ctx.prefault
->   - Remove ctx.mmap_locked
->   - Add ctx.check_pages
->   - s/vram/devmem (Thomas)
-> v3:
->   - Fix memory leak drm_gpusvm_range_get_pages
->   - Only migrate pages with same zdd on CPU fault
->   - Loop over al VMAs in drm_gpusvm_range_evict
->   - Make GPUSVM a drm level module
->   - GPL or MIT license
->   - Update main kernel doc (Thomas)
->   - Prefer foo() vs foo for functions in kernel doc (Thomas)
->   - Prefer functions over macros (Thomas)
->   - Use unsigned long vs u64 for addresses (Thomas)
->   - Use standard interval_tree (Thomas)
->   - s/drm_gpusvm_migration_put_page/drm_gpusvm_migration_unlock_put_page (Thomas)
->   - Drop err_out label in drm_gpusvm_range_find_or_insert (Thomas)
->   - Fix kernel doc in drm_gpusvm_range_free_pages (Thomas)
->   - Newlines between functions defs in header file (Thomas)
->   - Drop shall language in driver vfunc kernel doc (Thomas)
->   - Move some static inlines from head to C file (Thomas)
->   - Don't allocate pages under page lock in drm_gpusvm_migrate_populate_ram_pfn (Thomas)
->   - Change check_pages to a threshold
-> v4:
->   - Fix NULL ptr deref in drm_gpusvm_migrate_populate_ram_pfn (Thomas, Himal)
->   - Fix check pages threshold
->   - Check for range being unmapped under notifier lock in get pages (Testing)
->   - Fix characters per line
->   - Drop WRITE_ONCE for zdd->devmem_allocation assignment (Thomas)
->   - Use completion for devmem_allocation->detached (Thomas)
->   - Make GPU SVM depend on ZONE_DEVICE (CI)
->   - Use hmm_range_fault for eviction (Thomas)
->   - Drop zdd worker (Thomas)
-> 
-> Cc: Simona Vetter <simona.vetter@ffwll.ch>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: <dri-devel@lists.freedesktop.org>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> ---
+== Series Details ==
 
-<snip>
+Series: TTM shrinker helpers and xe buffer object shrinker (rev17)
+URL   : https://patchwork.freedesktop.org/series/131815/
+State : warning
 
-> +/**
-> + * __drm_gpusvm_migrate_to_ram() - Migrate GPU SVM range to RAM (internal)
-> + * @vas: Pointer to the VM area structure
-> + * @device_private_page_owner: Device private pages owner
-> + * @page: Pointer to the page for fault handling (can be NULL)
-> + * @fault_addr: Fault address
-> + * @size: Size of migration
-> + *
-> + * This internal function performs the migration of the specified GPU SVM range
-> + * to RAM. It sets up the migration, populates + dma maps RAM PFNs, and
-> + * invokes the driver-specific operations for migration to RAM.
-> + *
-> + * Returns:
-> + * 0 on success, negative error code on failure.
-> + */
-> +static int __drm_gpusvm_migrate_to_ram(struct vm_area_struct *vas,
-> +				       void *device_private_page_owner,
-> +				       struct page *page,
-> +				       unsigned long fault_addr,
-> +				       unsigned long size)
-> +{
-> +	struct migrate_vma migrate = {
-> +		.vma		= vas,
-> +		.pgmap_owner	= device_private_page_owner,
-> +		.flags		= MIGRATE_VMA_SELECT_DEVICE_PRIVATE |
-> +			MIGRATE_VMA_SELECT_DEVICE_COHERENT,
-> +		.fault_page	= page,
-> +	};
-> +	struct drm_gpusvm_zdd *zdd;
-> +	const struct drm_gpusvm_devmem_ops *ops;
-> +	struct device *dev;
-> +	unsigned long npages, mpages = 0;
-> +	struct page **pages;
-> +	dma_addr_t *dma_addr;
-> +	unsigned long start, end;
-> +	void *buf;
-> +	int i, err = 0;
-> +
-> +	start = ALIGN_DOWN(fault_addr, size);
-> +	end = ALIGN(fault_addr + 1, size);
-> +
-> +	/* Corner where VMA area struct has been partially unmapped */
-> +	if (start < vas->vm_start)
-> +		start = vas->vm_start;
-> +	if (end > vas->vm_end)
-> +		end = vas->vm_end;
-> +
-> +	migrate.start = start;
-> +	migrate.end = end;
-> +	npages = npages_in_range(start, end);
-> +
-> +	buf = kvcalloc(npages, 2 * sizeof(*migrate.src) + sizeof(*dma_addr) +
-> +		       sizeof(*pages), GFP_KERNEL);
-> +	if (!buf) {
-> +		err = -ENOMEM;
-> +		goto err_out;
-> +	}
-> +	dma_addr = buf + (2 * sizeof(*migrate.src) * npages);
-> +	pages = buf + (2 * sizeof(*migrate.src) + sizeof(*dma_addr)) * npages;
-> +
-> +	migrate.vma = vas;
-> +	migrate.src = buf;
-> +	migrate.dst = migrate.src + npages;
-> +
-> +	err = migrate_vma_setup(&migrate);
-> +	if (err)
-> +		goto err_free;
-> +
-> +	/* Raced with another CPU fault, nothing to do */
-> +	if (!migrate.cpages)
-> +		goto err_free;
-> +
-> +	if (!page) {
-> +		for (i = 0; i < npages; ++i) {
-> +			if (!(migrate.src[i] & MIGRATE_PFN_MIGRATE))
-> +				continue;
-> +
-> +			page = migrate_pfn_to_page(migrate.src[i]);
-> +			break;
-> +		}
-> +
-> +		if (!page)
-> +			goto err_finalize;
-> +	}
-> +	zdd = page->zone_device_data;
-> +	ops = zdd->devmem_allocation->ops;
-> +	dev = zdd->devmem_allocation->dev;
-> +
-> +	err = drm_gpusvm_migrate_populate_ram_pfn(vas, page, npages, &mpages,
-> +						  migrate.src, migrate.dst,
-> +						  start);
-> +	if (err)
-> +		goto err_finalize;
-> +
-> +	err = drm_gpusvm_migrate_map_pages(dev, dma_addr, migrate.dst, npages,
-> +					   DMA_FROM_DEVICE);
-> +	if (err)
-> +		goto err_finalize;
-> +
-> +	for (i = 0; i < npages; ++i)
-> +		pages[i] = migrate_pfn_to_page(migrate.src[i]);
-> +
-> +	err = ops->copy_to_ram(pages, dma_addr, npages);
-> +	if (err)
-> +		goto err_finalize;
-> +
-> +err_finalize:
-> +	if (err)
-> +		drm_gpusvm_migration_unlock_put_pages(npages, migrate.dst);
-> +	migrate_vma_pages(&migrate);
-> +	migrate_vma_finalize(&migrate);
-> +	drm_gpusvm_migrate_unmap_pages(dev, dma_addr, npages,
-> +				       DMA_FROM_DEVICE);
+== Summary ==
 
-clang for me is throwing:
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast c2a5da40b8b1c5af77dcdabed8516069949fea3b
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_display_types.h:1966:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1966:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1966:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1966:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1966:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1966:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1966:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1966:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1966:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1966:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1966:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1966:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1979:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1979:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c:106:17: warning: cast truncates bits from constant value (e8d4a51000 becomes d4a51000)
++drivers/gpu/drm/i915/gt/intel_reset.c:1544:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_active.c:1063:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/i915_irq.c:453:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:453:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:461:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:461:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:503:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:503:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:511:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:511:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:559:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:559:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:562:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:562:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:566:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:566:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/intel_uncore.c:1925:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1926:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1927:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1928:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1993:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1994:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1995:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2015:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2016:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2017:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_wakeref.c:145:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
++drivers/gpu/drm/ttm/ttm_bo.c:1194:31: warning: symbol 'ttm_swap_ops' was not declared. Should it be static?
++drivers/gpu/drm/ttm/ttm_bo_util.c:324:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:324:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:324:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:327:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:327:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:327:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:330:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:330:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:330:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:436:28:    expected void volatile [noderef] __iomem *addr
++drivers/gpu/drm/ttm/ttm_bo_util.c:436:28:    got void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:436:28: warning: incorrect type in argument 1 (different address spaces)
 
-drivers/gpu/drm/drm_gpusvm.c:2017:7: error: variable 'dev' is used 
-uninitialized whenever 'if' condition is true 
-[-Werror,-Wsometimes-uninitialized]
-  2017 |                 if (!page)
-       |                     ^~~~~
-drivers/gpu/drm/drm_gpusvm.c:2047:33: note: uninitialized use occurs here
-  2047 |         drm_gpusvm_migrate_unmap_pages(dev, dma_addr, npages,
-       |                                        ^~~
-drivers/gpu/drm/drm_gpusvm.c:2017:3: note: remove the 'if' if its 
-condition is always false
-  2017 |                 if (!page)
-       |                 ^~~~~~~~~~
-  2018 |                         goto err_finalize;
-       |                         ~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/drm_gpusvm.c:1966:20: note: initialize the variable 
-'dev' to silence this warning
-  1966 |         struct device *dev;
-       |                           ^
-       |                            = NULL
-1 error generated.
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
