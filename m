@@ -4,53 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08D28C0218A
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 04:55:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF80AC0218A
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 05:14:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5C9910E13B;
-	Thu, 30 Jan 2025 04:55:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F6EE10E13B;
+	Thu, 30 Jan 2025 05:14:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bUSr9XXr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zeq2fGqt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58A3B10E13B
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jan 2025 04:55:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4837110E13B
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Jan 2025 05:14:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738212943; x=1769748943;
+ t=1738214060; x=1769750060;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=NN7l7jBU+OGCvg9m3BVgTCZ0bAN8DStyvhFYGKWxnac=;
- b=bUSr9XXruKIMQlWIyhaK2IoU89+4psIOL4B6ngo2x8Eb9qvMADd8BnN1
- AJ+DghhmIKXl8nRnikZ1KTSeCREMiHHxnq/0fTI/Wxjhqi84fie8hfKfG
- Nd2YpykMb6N4S/+MdFu5myf62QLqSMIR3h07Mwae45Ro4cBlIX/mpKM7u
- L72wtQ2v3sueanBpHcvPynVBGiSsHh2+/IyrBYonUPmQJBXN+OR6kOjVC
- tFKv6iyTTPAekDFirxFVG6kXogmvp8xtKgqSsKT7n5K/x1lNHWBWE5yx4
- R3sJN29+bn+sB4bYghI7knTypCAMdgv6xYFMEpbHjTVnoJHOFv2kI69lH A==;
-X-CSE-ConnectionGUID: +uRToWgMRBaizQC4L0VJSA==
-X-CSE-MsgGUID: bdvGeOL1TDGJuDMMdjF/jA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="61220342"
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="61220342"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 20:55:43 -0800
-X-CSE-ConnectionGUID: DVUnfVrpQ7q8hmK3Dw7Kqw==
-X-CSE-MsgGUID: XhdSzlteRzS1uLGm1cRljQ==
+ bh=NAqfUKab4uAjJhKUAbQhv4tXo3R10VK/EgGZfSFGC74=;
+ b=Zeq2fGqtuEJtjux/U+mo0exVB/EO27D0ZZR7KS1XpH7ycBRtK/6m/rUq
+ G/caiXakKAvLzYBQ4I3G+bFmhbQy9MjeS+nto8Bh6cWcPQgq16kFErP65
+ XoFCKF6r4YNmvXMWXWdCYAyaQ041a19VB3gJ+Nua9etWeng3vc9tbQEzV
+ j0m8tWM3MjtPEpCtrGNPRKn/b9utLiJCTkekSSTVJ2jZK4OcpJUK7atQo
+ PWMI0a3Zu9Q8wheAoKlwqagLApn3XluYfDq0+LegOfrUOUsxypamTXzbb
+ DMIeAPw2Ik832gOAeSs8lLl3G5XyL7XzPsY7ho7JtGFOWJm15CRb+RedY w==;
+X-CSE-ConnectionGUID: jJH13+XpSSicyHjFrUmD1Q==
+X-CSE-MsgGUID: fu0HfZcgQRymZ4IA6FOVuQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="50133180"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="50133180"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2025 21:14:20 -0800
+X-CSE-ConnectionGUID: rHUszgkuQP6Cw+tysS0w1Q==
+X-CSE-MsgGUID: v/JavG3NTNWkX4HmN7WQZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="109132619"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="109083438"
 Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
  ([10.165.21.142])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 20:55:42 -0800
-Date: Wed, 29 Jan 2025 20:55:42 -0800
-Message-ID: <855xlwgasx.wl-ashutosh.dixit@intel.com>
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2025 21:14:20 -0800
+Date: Wed, 29 Jan 2025 21:14:19 -0800
+Message-ID: <854j1gg9xw.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Harish Chegondi <harish.chegondi@intel.com>
-Cc: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v8 5/7] drm/xe/eustall: Add EU stall sampling support for
- Xe2
-In-Reply-To: <b192bec80378c3a7532fad983d910b896846fc3a.1736970203.git.harish.chegondi@intel.com>
-References: <cover.1736970203.git.harish.chegondi@intel.com>	<b192bec80378c3a7532fad983d910b896846fc3a.1736970203.git.harish.chegondi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>, <james.ausmus@intel.com>,
+ <felix.j.degrood@intel.com>, 
+ <matias.a.cabral@intel.com>, <joshua.santosh.ranjan@intel.com>,
+ <shubham.kumar@intel.com>, 
+ <matthew.d.roper@intel.com>, <matthew.olson@intel.com>,
+ <lucas.demarchi@intel.com>
+Subject: Re: [PATCH v8 7/7] drm/xe/eustall: Add workaround 22016596838 which
+ applies to PVC.
+In-Reply-To: <e326bbe2c06ddfa2e7b1d68e5b36c75ee8d189c0.1736970203.git.harish.chegondi@intel.com>
+References: <cover.1736970203.git.harish.chegondi@intel.com>	<e326bbe2c06ddfa2e7b1d68e5b36c75ee8d189c0.1736970203.git.harish.chegondi@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -70,104 +75,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 15 Jan 2025 12:02:11 -0800, Harish Chegondi wrote:
+On Wed, 15 Jan 2025 12:02:13 -0800, Harish Chegondi wrote:
+>
+> Add PVC workaround 22016596838 that disables EU DOP gating
+> during EU stall sampling.
+>
+> Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_eu_stall.c   | 16 ++++++++++++++++
+>  drivers/gpu/drm/xe/xe_wa_oob.rules |  1 +
+>  2 files changed, 17 insertions(+)
+>
 > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-> index 437782f8433c..d72f80a9dfe4 100644
+> index 6acfd369d808..f030a9c1af84 100644
 > --- a/drivers/gpu/drm/xe/xe_eu_stall.c
 > +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-> @@ -73,6 +73,42 @@ struct xe_eu_stall_data_pvc {
->	__u64 unused[6];
->  } __packed;
+> @@ -13,6 +13,7 @@
 >
-> +/**
-> + * struct xe_eu_stall_data_xe2 - EU stall data format for LNL, BMG
-> + *
-> + * Bits		Field
-> + * 0  to 28	IP (addr)
-> + * 29 to 36	Tdr count
-> + * 37 to 44	other count
-> + * 45 to 52	control count
-> + * 53 to 60	pipestall count
-> + * 61 to 68	send count
-> + * 69 to 76	dist_acc count
-> + * 77 to 84	sbid count
-> + * 85 to 92	sync count
-> + * 93 to 100	inst_fetch count
-> + * 101 to 108	Active count
-> + * 109 to 111	Exid
-> + * 112		EndFlag (is always 1)
-> + */
-> +struct xe_eu_stall_data_xe2 {
-> +	__u64 ip_addr:29;
-> +	__u64 tdr_count:8;
-> +	__u64 other_count:8;
-> +	__u64 control_count:8;
-> +	__u64 pipestall_count:8;
-> +	__u64 send_count:8;
-> +	__u64 dist_acc_count:8;
-> +	__u64 sbid_count:8;
-> +	__u64 sync_count:8;
-> +	__u64 inst_fetch_count:8;
-> +	__u64 active_count:8;
-> +	__u64 ex_id:3;
-> +	__u64 end_flag:1;
-> +	__u64 unused_bits:15;
-> +	__u64 unused[6];
-> +} __packed;
+>  #include "xe_bo.h"
+>  #include "xe_pm.h"
+> +#include "xe_wa.h"
+>  #include "xe_trace.h"
+>  #include "xe_macros.h"
+>  #include "xe_device.h"
+> @@ -26,6 +27,8 @@
+>  #include "regs/xe_gt_regs.h"
+>  #include "regs/xe_eu_stall_regs.h"
+>
+> +#include <generated/xe_wa_oob.h>
 
-Same question about whether or not to retain this struct. Retain it if we
-want to document this information otherwise drop it and just keep sizeof.
+include in alphabetical order.
 
 > +
->  static u64 per_xecore_buf_size = SZ_512K;
+>  #define POLL_FREQUENCY_HZ 100
+>  #define POLL_PERIOD_NS (NSEC_PER_SEC / POLL_FREQUENCY_HZ)
 >
->  static unsigned long
-> @@ -83,6 +119,8 @@ xe_eu_stall_data_record_size(struct xe_device *xe)
+> @@ -677,6 +680,14 @@ xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
+>	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_RENDER))
+>		xe_gt_err(gt, "Failed to get RENDER forcewake\n");
 >
->	if (platform == XE_PVC)
->		record_size = sizeof(struct xe_eu_stall_data_pvc);
-> +	else if ((platform == XE_LUNARLAKE) || (platform == XE_BATTLEMAGE))
-
-'else if (GRAPHICS_VER(xe) >= 20)' so that we don't have to keep adding
-each individual platform.
-
-> +		record_size = sizeof(struct xe_eu_stall_data_xe2);
->
->	return record_size;
->  }
-> @@ -311,10 +349,16 @@ eu_stall_data_buf_check(struct xe_eu_stall_data_stream *stream)
->  static void
->  clear_dropped_eviction_line_bit(struct xe_gt *gt, u16 group, u16 instance)
->  {
-> +	struct xe_device *xe = gt_to_xe(gt);
->	u32 write_ptr_reg;
->
-> -	/* On PVC, the overflow bit has to be cleared by writing 1 to it. */
-> -	write_ptr_reg = _MASKED_BIT_ENABLE(XEHPC_EUSTALL_REPORT_OVERFLOW_DROP);
-> +	/* On PVC, the overflow bit has to be cleared by writing 1 to it.
-> +	 * On other GPUs, the bit has to be cleared by writing 0 to it.
+> +	/*
+> +	 * Wa_22016596838:pvc
+> +	 * Disable EU DOP gating for PVC.
 > +	 */
-> +	if (GRAPHICS_VER(xe) >= 20)
-> +		write_ptr_reg = _MASKED_BIT_DISABLE(XEHPC_EUSTALL_REPORT_OVERFLOW_DROP);
-> +	else
-> +		write_ptr_reg = _MASKED_BIT_ENABLE(XEHPC_EUSTALL_REPORT_OVERFLOW_DROP);
->
->	xe_gt_mcr_unicast_write(gt, XEHPC_EUSTALL_REPORT, write_ptr_reg, group, instance);
->  }
-> @@ -882,7 +926,9 @@ static const struct file_operations fops_eu_stall = {
->
->  static inline bool has_eu_stall_sampling_support(struct xe_device *xe)
->  {
-> -	return ((xe->info.platform == XE_PVC) ? true : false);
-> +	return ((xe->info.platform == XE_PVC ||
-> +		 xe->info.platform == XE_LUNARLAKE ||
-> +		 xe->info.platform == XE_BATTLEMAGE) ? true : false);
 
-Same here, use (GRAPHICS_VER(xe) >= 20).
+Are these comments needed? Other places with XE_WA don't have them? Anyway
+should be ok.
 
+> +	if (XE_WA(gt, 22016596838))
+> +		xe_gt_mcr_multicast_write(gt, ROW_CHICKEN2,
+> +					  _MASKED_BIT_ENABLE(DISABLE_DOP_GATING));
+> +
+>	reg_value = gen_eustall_base(stream, true);
+>	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_BASE, reg_value);
 >  }
+> @@ -708,6 +719,11 @@ xe_eu_stall_stream_disable(struct xe_eu_stall_data_stream *stream)
+>	reg_value = gen_eustall_base(stream, false);
+>	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_BASE, reg_value);
 >
->  /**
+> +	/* Wa_22016596838:pvc */
+> +	if (XE_WA(gt, 22016596838))
+> +		xe_gt_mcr_multicast_write(gt, ROW_CHICKEN2,
+> +					  _MASKED_BIT_DISABLE(DISABLE_DOP_GATING));
+> +
+>	xe_force_wake_put(gt_to_fw(gt), XE_FW_RENDER);
+>	xe_pm_runtime_put(gt_to_xe(gt));
+>  }
+> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+> index 40438c3d9b72..7dad548dbe9f 100644
+> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
+> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+> @@ -5,6 +5,7 @@
+>  22011391025	PLATFORM(DG2)
+>  22012727170	SUBPLATFORM(DG2, G11)
+>  22012727685	SUBPLATFORM(DG2, G11)
+> +22016596838	PLATFORM(PVC)
+>  18020744125	PLATFORM(PVC)
+>  1509372804	PLATFORM(PVC), GRAPHICS_STEP(A0, C0)
+>  1409600907	GRAPHICS_VERSION_RANGE(1200, 1250)
 > --
 > 2.47.1
 >
