@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C05D1C0218A
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 13:33:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 651BFC0218A
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 13:44:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7248B10E96E;
-	Thu, 30 Jan 2025 13:33:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A70RQ333";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2818310E96E;
- Thu, 30 Jan 2025 13:33:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738244014; x=1769780014;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=Mw/nz86tSp155/fFjspzmKYhmLpxMMBasCLKAkJpLec=;
- b=A70RQ333f1ew3hwAcagOWz9b6w6isYY2lEmcuvAOiw8ygAH6yuhxNTvQ
- I/mTfGN+pyupNirfC/yr8QLPjgIF3qe9QC7l0g/AZZ77J2Kep5fh6wbgF
- oqKUXNbK95pSC+E2t4Mjel3UrAIs4XZ94IjJ/OA3qATKJvFeUwUy2dnEh
- nGaMRTZ11GylSNAcDiz3lVFyKQShHMioBWNjFUDNKd3xlIFQ1J4oLYDCu
- Sm+tHUZnnN1XcHCEfm++7R7pSoRpFudKqK3oKbGveSGF+t/kKmZOzuvB6
- poz3X2WpD8hMJzbHsD4Y++kyeHUws+je/iNLcjFwG9YY8y9fnIcKOfS8h A==;
-X-CSE-ConnectionGUID: rMTDS3lUQi2LncHDydAJLg==
-X-CSE-MsgGUID: 0L8EOqt8R8u4YbAoHCMJ5Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="56325179"
-X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="56325179"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 05:33:33 -0800
-X-CSE-ConnectionGUID: w34JlYT2ShCEO7mdE8iveg==
-X-CSE-MsgGUID: sLP7VzKPS3WxyhT1i4YLGw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="114353751"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 05:33:31 -0800
-Date: Thu, 30 Jan 2025 15:34:28 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 05/17] drm/i915/ddi: Simplify the port enabling via
- DDI_BUF_CTL
-Message-ID: <Z5t_5F4oPlzErAPi@ideak-desk.fi.intel.com>
-References: <20250129200221.2508101-1-imre.deak@intel.com>
- <20250129200221.2508101-6-imre.deak@intel.com>
- <875xlw8qit.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30A4010E972;
+	Thu, 30 Jan 2025 13:44:39 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBAD110E96E;
+ Thu, 30 Jan 2025 13:44:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5569080548671762966=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <875xlw8qit.fsf@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Workaround_fixes=2C_improve?=
+ =?utf-8?q?ments=2C_additions_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 30 Jan 2025 13:44:37 -0000
+Message-ID: <173824467775.2866734.13996810894468867789@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250130110337.11237-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250130110337.11237-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,80 +36,520 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jan 30, 2025 at 01:55:38PM +0200, Jani Nikula wrote:
-> On Wed, 29 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
-> > In the past intel_digital_port::dp.prepare_link_retrain() could be
-> > called directly (vs. from a modeset) to retrain an enabled link. In that
-> > case the port had to be first disabled and then re-enabled. That changed
-> > with commit 2885d283cce5 ("drm/i915/dp: Retrain SST links via a modeset
-> > commit"), after which the only way prepare_link_retrain() can be called
-> > is from a modeset during link training when the port is still disabled.
-> > Simplify things accordingly, assuming the disabled port state.
-> >
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_ddi.c | 23 ++++-------------------
-> >  1 file changed, 4 insertions(+), 19 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > index 6192c0d3c87a5..3138dc4034797 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > @@ -3743,8 +3743,8 @@ static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
-> >  	 * necessary disable and enable port
-> >  	 */
-> >  	dp_tp_ctl = intel_de_read(display, dp_tp_ctl_reg(encoder, crtc_state));
-> > -	if (dp_tp_ctl & DP_TP_CTL_ENABLE)
-> > -		mtl_disable_ddi_buf(encoder, crtc_state);
-> > +
-> > +	drm_WARN_ON(display->drm, dp_tp_ctl & DP_TP_CTL_ENABLE);
-> >  
-> >  	/* 6.d Configure and enable DP_TP_CTL with link training pattern 1 selected */
-> >  	dp_tp_ctl = DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_PAT1;
-> > @@ -3787,26 +3787,11 @@ static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
-> >  	struct intel_encoder *encoder = &dig_port->base;
-> >  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> >  	enum port port = encoder->port;
-> > -	u32 dp_tp_ctl, ddi_buf_ctl;
-> > -	bool wait = false;
-> > +	u32 dp_tp_ctl;
-> >  
-> >  	dp_tp_ctl = intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
-> >  
-> > -	if (dp_tp_ctl & DP_TP_CTL_ENABLE) {
-> > -		ddi_buf_ctl = intel_de_read(dev_priv, DDI_BUF_CTL(port));
-> > -		if (ddi_buf_ctl & DDI_BUF_CTL_ENABLE) {
-> > -			intel_de_write(dev_priv, DDI_BUF_CTL(port),
-> > -				       ddi_buf_ctl & ~DDI_BUF_CTL_ENABLE);
-> > -			wait = true;
-> > -		}
-> > -
-> > -		dp_tp_ctl &= ~DP_TP_CTL_ENABLE;
-> > -		intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), dp_tp_ctl);
-> > -		intel_de_posting_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
-> > -
-> > -		if (wait)
-> > -			intel_wait_ddi_buf_idle(dev_priv, port);
-> > -	}
-> > +	drm_WARN_ON(&dev_priv->drm, dp_tp_ctl & DP_TP_CTL_ENABLE);
-> 
-> Please don't add new dev_priv uses. Add the local display variable and
-> use display->drm.
+--===============5569080548671762966==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ok, will update that.
+== Series Details ==
 
-> With that fixed,
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> 
-> >  
-> >  	dp_tp_ctl = DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_PAT1;
-> >  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST) ||
-> 
-> -- 
-> Jani Nikula, Intel
+Series: Workaround fixes, improvements, additions (rev2)
+URL   : https://patchwork.freedesktop.org/series/144112/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b_BAT -> xe-pw-144112v2_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-144112v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-144112v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-144112v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-1:          [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+    - bat-adlp-vf:        [PASS][3] -> [DMESG-WARN][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-adlp-vf/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-adlp-vf/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
+    - bat-atsm-2:         [PASS][5] -> [DMESG-WARN][6] +1 other test dmesg-warn
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+
+  * igt@xe_compute@compute-square:
+    - bat-pvc-2:          [PASS][7] -> [FAIL][8] +1 other test fail
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-pvc-2/igt@xe_compute@compute-square.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-pvc-2/igt@xe_compute@compute-square.html
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-3-tile-0-system-memory (NEW):
+    - bat-adlp-vf:        NOTRUN -> [FAIL][9] +3 other tests fail
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-adlp-vf/igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-3-tile-0-system-memory.html
+
+  * igt@xe_module_load@load:
+    - bat-lnl-1:          [PASS][10] -> [ABORT][11]
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-lnl-1/igt@xe_module_load@load.html
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-lnl-1/igt@xe_module_load@load.html
+    - bat-bmg-2:          [PASS][12] -> [DMESG-WARN][13] +1 other test dmesg-warn
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-bmg-2/igt@xe_module_load@load.html
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-bmg-2/igt@xe_module_load@load.html
+    - bat-lnl-2:          [PASS][14] -> [ABORT][15]
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-lnl-2/igt@xe_module_load@load.html
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-lnl-2/igt@xe_module_load@load.html
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - bat-adlp-vf:        [PASS][16] -> [INCOMPLETE][17] +1 other test incomplete
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-adlp-vf/igt@xe_vm@bind-execqueues-independent.html
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-adlp-vf/igt@xe_vm@bind-execqueues-independent.html
+
+  * igt@xe_vm@munmap-style-unbind-userptr-inval-front:
+    - bat-pvc-2:          [PASS][18] -> [SKIP][19] +7 other tests skip
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-pvc-2/igt@xe_vm@munmap-style-unbind-userptr-inval-front.html
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-pvc-2/igt@xe_vm@munmap-style-unbind-userptr-inval-front.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b_BAT and xe-pw-144112v2_BAT:
+
+### New IGT tests (18) ###
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-2-tile-0-system-memory:
+    - Statuses : 1 dmesg-fail(s)
+    - Exec time: [0.03] s
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-3-tile-0-system-memory:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-4-tile-0-system-memory:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-5-tile-0-system-memory:
+    - Statuses : 1 dmesg-fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-6-tile-0-system-memory:
+    - Statuses : 1 dmesg-fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-7-tile-0-system-memory:
+    - Statuses : 1 dmesg-fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-1-tile-0-system-memory:
+    - Statuses : 1 dmesg-fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-2-tile-0-system-memory:
+    - Statuses : 1 dmesg-fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-3-tile-0-system-memory:
+    - Statuses : 1 dmesg-fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-2-tile-0-system-memory:
+    - Statuses : 1 dmesg-fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-3-tile-0-system-memory:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-4-tile-0-system-memory:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-5-tile-0-system-memory:
+    - Statuses : 1 dmesg-fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-6-tile-0-system-memory:
+    - Statuses : 1 dmesg-fail(s)
+    - Exec time: [0.01] s
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-7-tile-0-system-memory:
+    - Statuses : 1 dmesg-fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_enhance-instance-1-tile-0-system-memory:
+    - Statuses : 1 dmesg-fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_enhance-instance-2-tile-0-system-memory:
+    - Statuses : 1 dmesg-fail(s)
+    - Exec time: [0.02] s
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_enhance-instance-3-tile-0-system-memory:
+    - Statuses : 1 dmesg-fail(s)
+    - Exec time: [0.01] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-144112v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-1-tile-0-system-memory (NEW):
+    - bat-adlp-vf:        NOTRUN -> [DMESG-FAIL][20] ([Intel XE#4078]) +13 other tests dmesg-fail
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-adlp-vf/igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-1-tile-0-system-memory.html
+
+  * igt@xe_exec_threads@threads-basic:
+    - bat-adlp-vf:        [PASS][21] -> [DMESG-FAIL][22] ([Intel XE#4078]) +50 other tests dmesg-fail
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-adlp-vf/igt@xe_exec_threads@threads-basic.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-adlp-vf/igt@xe_exec_threads@threads-basic.html
+
+  * igt@xe_live_ktest@xe_dma_buf:
+    - bat-bmg-2:          [PASS][23] -> [SKIP][24] ([Intel XE#1192]) +2 other tests skip
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-bmg-2/igt@xe_live_ktest@xe_dma_buf.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-bmg-2/igt@xe_live_ktest@xe_dma_buf.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-bmg-1:          [PASS][25] -> [SKIP][26] ([Intel XE#1192]) +2 other tests skip
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html
+    - bat-atsm-2:         [PASS][27] -> [SKIP][28] ([Intel XE#1192]) +2 other tests skip
+   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
+   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
+
+  * igt@xe_pat@pat-index-xelp@render:
+    - bat-adlp-vf:        [PASS][29] -> [DMESG-WARN][30] ([Intel XE#3970] / [Intel XE#4078])
+   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+
+  
+#### Warnings ####
+
+  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
+    - bat-adlp-vf:        [DMESG-WARN][31] ([Intel XE#3970] / [Intel XE#4078]) -> [DMESG-FAIL][32] ([Intel XE#4078])
+   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#4078]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8214 -> IGT_8216
+  * Linux: xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b -> xe-pw-144112v2
+
+  IGT_8214: 7a8a3744466fbb89127201077f030033c72df948 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8216: b7ebe99077e2a0ae39fff84cdaefa7851a513cb3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b: c2a5da40b8b1c5af77dcdabed8516069949fea3b
+  xe-pw-144112v2: 144112v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/index.html
+
+--===============5569080548671762966==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Workaround fixes, improvements, additions (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144112/">https://patchwork.freedesktop.org/series/144112/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b_BAT -&gt; xe-pw-144112v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-144112v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-144112v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-144112v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-adlp-vf/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-adlp-vf/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_compute@compute-square:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-pvc-2/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-pvc-2/igt@xe_compute@compute-square.html">FAIL</a> +1 other test fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-3-tile-0-system-memory (NEW):</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-adlp-vf/igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-3-tile-0-system-memory.html">FAIL</a> +3 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-lnl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-lnl-1/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-bmg-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-bmg-2/igt@xe_module_load@load.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-lnl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-lnl-2/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_vm@bind-execqueues-independent:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-adlp-vf/igt@xe_vm@bind-execqueues-independent.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-adlp-vf/igt@xe_vm@bind-execqueues-independent.html">INCOMPLETE</a> +1 other test incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_vm@munmap-style-unbind-userptr-inval-front:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-pvc-2/igt@xe_vm@munmap-style-unbind-userptr-inval-front.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-pvc-2/igt@xe_vm@munmap-style-unbind-userptr-inval-front.html">SKIP</a> +7 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b_BAT and xe-pw-144112v2_BAT:</p>
+<h3>New IGT tests (18)</h3>
+<ul>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-2-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 dmesg-fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-3-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-4-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-5-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 dmesg-fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-6-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 dmesg-fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-7-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 dmesg-fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-1-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 dmesg-fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-2-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 dmesg-fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-3-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 dmesg-fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-2-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 dmesg-fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-3-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-4-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-5-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 dmesg-fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-6-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 dmesg-fail(s)</li>
+<li>Exec time: [0.01] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-7-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 dmesg-fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_enhance-instance-1-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 dmesg-fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_enhance-instance-2-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 dmesg-fail(s)</li>
+<li>Exec time: [0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_enhance-instance-3-tile-0-system-memory:</p>
+<ul>
+<li>Statuses : 1 dmesg-fail(s)</li>
+<li>Exec time: [0.01] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-144112v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-1-tile-0-system-memory (NEW):</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-adlp-vf/igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-1-tile-0-system-memory.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) +13 other tests dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_threads@threads-basic:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-adlp-vf/igt@xe_exec_threads@threads-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-adlp-vf/igt@xe_exec_threads@threads-basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) +50 other tests dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_dma_buf:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-bmg-2/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-bmg-2/igt@xe_live_ktest@xe_dma_buf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp@render:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_exec_basic@twice-bindexecqueue-rebind:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144112v2/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8214 -&gt; IGT_8216</li>
+<li>Linux: xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b -&gt; xe-pw-144112v2</li>
+</ul>
+<p>IGT_8214: 7a8a3744466fbb89127201077f030033c72df948 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8216: b7ebe99077e2a0ae39fff84cdaefa7851a513cb3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b: c2a5da40b8b1c5af77dcdabed8516069949fea3b<br />
+  xe-pw-144112v2: 144112v2</p>
+
+</body>
+</html>
+
+--===============5569080548671762966==--
