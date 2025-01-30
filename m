@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0390FC0218A
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 11:40:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 346F8C0218A
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 11:48:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDE7A10E14C;
-	Thu, 30 Jan 2025 11:40:16 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3354210E14C;
- Thu, 30 Jan 2025 11:40:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8722396505075838588=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id F202610E93E;
+	Thu, 30 Jan 2025 11:48:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fNKmNySn";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8742610E93E;
+ Thu, 30 Jan 2025 11:48:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738237685; x=1769773685;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=zPRKYSkSIp1B597dOBZGSw48PZBo7z7JREirRyHtzoo=;
+ b=fNKmNySneu7DB5FF2psA/OAHYH8fLIfkQ+Y8H6MlONKTUnTd0Yz3Y8Yj
+ byQfgsXCWhNoGAFzKNWQxaa/iQNPUPCKUVgaUKdquCA2qaVamgO5b7U+t
+ oT70uVE8dgw50FxWjfEC+DmN4CmMx7M0HC2silhVtU+IbEAL/nCijMmHp
+ LgThAQy1xdQL7zrG0Hox5bBHIeMHUt2RE093/Wjlle8CRjn9GF7uX44E3
+ o8g+rVUnd28XtsKMKMvFA+o/9QjdrGAExtT9vWnQTxqz/XOxXZF8jbB/r
+ eHOTk3+uHNBRAyNfbSw31xRBN8bd7r1dTXfrvxjIoV5RsDnBfzDbQVf9J A==;
+X-CSE-ConnectionGUID: GlHFZGHYTDGju/qFspBl1g==
+X-CSE-MsgGUID: /xtNv50CTrWufK9igzFkSQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="26380638"
+X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="26380638"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 03:47:54 -0800
+X-CSE-ConnectionGUID: NOiYoa8cRm+bYw5dV1USqg==
+X-CSE-MsgGUID: CGEM7uXOSOef8l6i7irgzQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="109112439"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.68])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 03:47:52 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 01/17] drm/i915/dsi: Use TRANS_DDI_FUNC_CTL's own port
+ width macro
+In-Reply-To: <20250129200221.2508101-2-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250129200221.2508101-1-imre.deak@intel.com>
+ <20250129200221.2508101-2-imre.deak@intel.com>
+Date: Thu, 30 Jan 2025 13:47:49 +0200
+Message-ID: <87ed0k8qvu.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_TTM_shrinker_helpers_and_xe?=
- =?utf-8?q?_buffer_object_shrinker_=28rev17=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 30 Jan 2025 11:40:16 -0000
-Message-ID: <173823721620.2841903.5548142729696021615@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250130101325.3068-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250130101325.3068-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +65,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8722396505075838588==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 29 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
+> The format of the port width field in the DDI_BUF_CTL and the
+> TRANS_DDI_FUNC_CTL registers are different starting with MTL, where the
+> x3 lane mode for HDMI FRL has a different encoding in the two registers.
+> To account for this use the TRANS_DDI_FUNC_CTL's own port width macro.
+>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-== Series Details ==
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: TTM shrinker helpers and xe buffer object shrinker (rev17)
-URL   : https://patchwork.freedesktop.org/series/131815/
-State : success
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> index ee1c3fb500a73..11bfb357508b7 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -809,8 +809,8 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
+>  		/* select data lane width */
+>  		tmp = intel_de_read(display,
+>  				    TRANS_DDI_FUNC_CTL(display, dsi_trans));
+> -		tmp &= ~DDI_PORT_WIDTH_MASK;
+> -		tmp |= DDI_PORT_WIDTH(intel_dsi->lane_count);
+> +		tmp &= ~TRANS_DDI_PORT_WIDTH_MASK;
+> +		tmp |= TRANS_DDI_PORT_WIDTH(intel_dsi->lane_count);
+>  
+>  		/* select input pipe */
+>  		tmp &= ~TRANS_DDI_EDP_INPUT_MASK;
 
-== Summary ==
-
-CI Bug Log - changes from xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b_BAT -> xe-pw-131815v17_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8214 -> IGT_8216
-  * Linux: xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b -> xe-pw-131815v17
-
-  IGT_8214: 7a8a3744466fbb89127201077f030033c72df948 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8216: b7ebe99077e2a0ae39fff84cdaefa7851a513cb3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b: c2a5da40b8b1c5af77dcdabed8516069949fea3b
-  xe-pw-131815v17: 131815v17
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v17/index.html
-
---===============8722396505075838588==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>TTM shrinker helpers and xe buffer object shrinker (rev17)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131815/">https://patchwork.freedesktop.org/series/131815/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v17/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131815v17/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b_BAT -&gt; xe-pw-131815v17_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8214 -&gt; IGT_8216</li>
-<li>Linux: xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b -&gt; xe-pw-131815v17</li>
-</ul>
-<p>IGT_8214: 7a8a3744466fbb89127201077f030033c72df948 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8216: b7ebe99077e2a0ae39fff84cdaefa7851a513cb3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2572-c2a5da40b8b1c5af77dcdabed8516069949fea3b: c2a5da40b8b1c5af77dcdabed8516069949fea3b<br />
-  xe-pw-131815v17: 131815v17</p>
-
-</body>
-</html>
-
---===============8722396505075838588==--
+-- 
+Jani Nikula, Intel
