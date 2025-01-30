@@ -4,52 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F487C0218A
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 09:32:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED5A6C0218A
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 09:33:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB2F510E908;
-	Thu, 30 Jan 2025 09:32:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="AZpZfMBr";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2EE410E908
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jan 2025 09:32:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=3XoOqwemVmEO1o6hdvlMvnzb+HM6plT/U+8xj2rB1pM=; b=AZpZfMBr5OMr99o3MtNO0t1od+
- 2TNi0+I2HZz9ojDdB7kpUxExWY7FSGgZ5PAEpqP0gAUMdJSqDarHd8nDUPVKTRuLc2nqV5dHzUFYo
- yvKost2tii+opIj0QafxG44FywuRyAvuSuZzxEPFIIUIjHLKbPmo4+8agpOu3RimyCPUlF6/XWj3z
- GzZHYpuIBh6Xm/veIPHUOV8R53NYzEMoyfRoj3Xn7IA05kzoZk8Ol7FnoDy0rcBDgVCSfF4ujXbyW
- Y08ZbwihieyxkakhnvQCimN9kYPHiPTujvAZLcLKw2P8XLAg1+OdQkeS6H6fRMdxeiTxRr0/gdvAC
- LUs9PNzQ==;
-Received: from [90.241.98.187] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tdQu8-000yGs-KI; Thu, 30 Jan 2025 10:32:14 +0100
-Message-ID: <0ff0719b-5b3b-4977-8a2c-0d7e8756f5c9@igalia.com>
-Date: Thu, 30 Jan 2025 09:32:13 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBA5010E906;
+	Thu, 30 Jan 2025 09:33:44 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E840F10E90D;
+ Thu, 30 Jan 2025 09:33:43 +0000 (UTC)
+Received: from 91-155-255-183.elisa-laajakaista.fi ([91.155.255.183]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1tdQvc-00000004F6I-32bq; Thu, 30 Jan 2025 11:33:42 +0200
+Message-ID: <a771937e530fe5b5852a0eebf1adf5ad61df0106.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
+Date: Thu, 30 Jan 2025 11:33:39 +0200
+In-Reply-To: <173764327664.34727.14226347289032890419@intel.com>
+References: <20250117220747.87927-1-gustavo.sousa@intel.com>
+ <20250117220747.87927-3-gustavo.sousa@intel.com>
+ <56e59e5c283bf749c8c047efc5f36d91459fae17.camel@coelho.fi>
+ <173764327664.34727.14226347289032890419@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3-1 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] drm/xe: Move a couple static workarounds/tunings to
- the static list
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
- Matt Roper <matthew.d.roper@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-References: <20250129155627.93827-1-tvrtko.ursulin@igalia.com>
- <20250129155627.93827-6-tvrtko.ursulin@igalia.com>
- <rbkdanimsdvosq3ew3x5c6kutwlhpdduxx54uqeisbgnhi3kad@gok7pmvgfs2x>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <rbkdanimsdvosq3ew3x5c6kutwlhpdduxx54uqeisbgnhi3kad@gok7pmvgfs2x>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 2/4] drm/i915/dmc_wl: Add debugfs for untracked offsets
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,151 +46,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Thu, 2025-01-23 at 11:41 -0300, Gustavo Sousa wrote:
+> Quoting Luca Coelho (2025-01-22 06:06:00-03:00)
+> > On Fri, 2025-01-17 at 19:06 -0300, Gustavo Sousa wrote:
+> > > The DMC wakelock code needs to keep track of register offsets that ne=
+ed
+> > > the wakelock for proper access. If one of the necessary offsets are
+> > > missed, then the failure in asserting the wakelock is very likely to
+> > > cause problems down the road.
+> > >=20
+> > > A miss could happen for at least two different reasons:
+> > >=20
+> > > - We might have forgotten to add the offset (or range) to the relevan=
+t
+> > >   tables tracked by the driver in the first place.
+> > >=20
+> > > - Or updates to either the DMC firmware or the display IP that requir=
+e
+> > >   new offsets to be tracked and we fail to realize that.
+> > >=20
+> > > To help capture these cases, let's introduce a debugfs interface for =
+the
+> > > DMC wakelock.
+> > >=20
+> > > In this part, we export a buffer containing offsets of registers that
+> > > were considered not needing the wakelock by our driver. In an upcomin=
+g
+> > > change we will also allow defining an extra set of offset ranges to b=
+e
+> > > tracked by our driver.
+> > >=20
+> > > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> > > ---
+> >=20
+> > This looks great overall!
+> >=20
+> > A couple of comments below.
+> >=20
+> >=20
+> > [...]
+> > > +static bool untracked_has_recent_offset(struct intel_display *displa=
+y, u32 offset)
+> > > +{
+> > > +        struct intel_dmc_wl_dbg *dbg =3D &display->wl.dbg;
+> > > +        int look_back =3D 32;
+> > > +        size_t i;
+> > > +
+> > > +        if (look_back > dbg->untracked.len)
+> > > +                look_back =3D dbg->untracked.len;
+> > > +
+> > > +        i =3D dbg->untracked.head;
+> > > +
+> > > +        while (look_back--) {
+> > > +                if (i =3D=3D 0)
+> > > +                        i =3D dbg->untracked.size;
+> >=20
+> > If size < 32, you would check some values twice, right? Probably not a
+> > real case scenario, and it wouldn't matter much, but it took me a bit
+> > to wrap my head around this.
+>=20
+> Nope. If look_back is greater than the current number of offsets, it
+> will be just reset to that count (see the "if (look_back >
+> dbg->untracked.len)" above).
+>=20
+> Note that the number of valid elements in the circular buffer is tracked
+> with untracked.len, while untracked.size is actually the capacity. Maybe
+> I should have used that name for the member instead?
 
-On 29/01/2025 18:51, Lucas De Marchi wrote:
-> On Wed, Jan 29, 2025 at 03:56:27PM +0000, Tvrtko Ursulin wrote:
->> One workaround and one tuning are completely static so can be moved to 
->> the
->> respective static lists in xe_wa.c and xa_tunings.c respectively.
-> 
-> We can enable the tracker to make them show up in debugfs if needed, but
-> that wouldn't be in the WA file. See more details below.
+Yeah, maybe untracked.len and untracked.max_len? Dunno, it's also fine
+as it is.  I was blind focusing on the loop itself and didn't see the
+if above it.
 
-Crossed my mind if that would be possible but the lists are local to the 
-functions so looked hard. Anyway, also lets go below..
 
->> Advantage being that they will be shown in debugfs as active, when 
->> active.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Cc: Matt Roper <matthew.d.roper@intel.com>
->> ---
->> drivers/gpu/drm/xe/xe_hw_engine.c | 22 ----------------------
->> drivers/gpu/drm/xe/xe_tuning.c    |  8 ++++++++
->> drivers/gpu/drm/xe/xe_wa.c        | 16 ++++++++++++++++
->> 3 files changed, 24 insertions(+), 22 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c 
->> b/drivers/gpu/drm/xe/xe_hw_engine.c
->> index fc447751fe78..423fb43a1a4a 100644
->> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
->> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
->> @@ -437,28 +437,6 @@ hw_engine_setup_default_state(struct xe_hw_engine 
->> *hwe)
->>                        ring_cmd_cctl_val,
->>                        XE_RTP_ACTION_FLAG(ENGINE_BASE)))
->>         },
->> -        /*
->> -         * To allow the GSC engine to go idle on MTL we need to enable
->> -         * idle messaging and set the hysteresis value (we use 0xA=5us
->> -         * as recommended in spec). On platforms after MTL this is
->> -         * enabled by default.
->> -         */
->> -        { XE_RTP_NAME("MTL GSCCS IDLE MSG enable"),
->> -          XE_RTP_RULES(MEDIA_VERSION(1300), ENGINE_CLASS(OTHER)),
->> -          XE_RTP_ACTIONS(CLR(RING_PSMI_CTL(0),
->> -                     IDLE_MSG_DISABLE,
->> -                     XE_RTP_ACTION_FLAG(ENGINE_BASE)),
->> -                 FIELD_SET(RING_PWRCTX_MAXCNT(0),
->> -                       IDLE_WAIT_TIME,
->> -                       0xA,
->> -                       XE_RTP_ACTION_FLAG(ENGINE_BASE)))
->> -        },
->> -        /* Enable Priority Mem Read */
->> -        { XE_RTP_NAME("Priority_Mem_Read"),
->> -          XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 
->> XE_RTP_END_VERSION_UNDEFINED)),
->> -          XE_RTP_ACTIONS(SET(CSFE_CHICKEN1(0), CS_PRIORITY_MEM_READ,
->> -                     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
->> -        },
->>         {}
->>     };
->>
->> diff --git a/drivers/gpu/drm/xe/xe_tuning.c 
->> b/drivers/gpu/drm/xe/xe_tuning.c
->> index c5c5a6fba406..f9d178ae0a73 100644
->> --- a/drivers/gpu/drm/xe/xe_tuning.c
->> +++ b/drivers/gpu/drm/xe/xe_tuning.c
->> @@ -10,6 +10,7 @@
->> #include <drm/drm_managed.h>
->>
->> #include "regs/xe_gt_regs.h"
->> +#include "regs/xe_engine_regs.h"
->> #include "xe_gt_types.h"
->> #include "xe_platform_types.h"
->> #include "xe_rtp.h"
->> @@ -95,6 +96,13 @@ static const struct xe_rtp_entry_sr 
->> engine_tunings[] = {
-> 
-> these will end up as a register for guc to save restore, not the same
-> thing as setting up the default engine context, so there maybe side
-> effects of this change.
+> > [...]
+> > > +void intel_dmc_wl_debugfs_log_untracked(struct intel_display *displa=
+y, u32 offset)
+> > > +{
+> > > +        struct intel_dmc_wl_dbg *dbg =3D &display->wl.dbg;
+> > > +        unsigned long flags;
+> > > +
+> > > +        spin_lock_irqsave(&dbg->lock, flags);
+> > > +
+> > > +        if (!dbg->untracked.size)
+> > > +                goto out_unlock;
+> > > +
+> > > +        /* Save some space by not repeating recent offsets. */
+> > > +        if (untracked_has_recent_offset(display, offset))
+> > > +                goto out_unlock;
+> > > +
+> > > +        dbg->untracked.offsets[dbg->untracked.head] =3D offset;
+> > > +        dbg->untracked.head =3D (dbg->untracked.head + 1) % dbg->unt=
+racked.size;
+> > > +        if (dbg->untracked.len < dbg->untracked.size)
+> > > +                dbg->untracked.len++;
+> > > +
+> > > +        if (dbg->untracked.len =3D=3D dbg->untracked.size && !dbg->u=
+ntracked.overflow) {
+> > > +                dbg->untracked.overflow =3D true;
+> > > +                drm_warn(display->drm, "Overflow detected in DMC wak=
+elock debugfs untracked offsets\n");
+> > > +        }
+> >=20
+> > Couldn't it be useful to print overflows every time they occur? Maybe
+> > convert overflow to a uint to track how many times it happened? (though
+> > maybe this is a bit overkill).
+>=20
+> The warning is just to let the user know that the buffer doesn't have
+> every untracked offset that has been seen since enabling the logging.
+> The best thing to do in this case is to try a bigger size or try to
+> reduce the execution to be tracked (maybe a smaller test case).
+>=20
+> I'm not sure how providing a count would be useful here.
 
-Ok.
+It would at least make it easier to know how to size the buffer for the
+next run. ;) But that's moot.
 
-> 
->>                ENGINE_CLASS(RENDER)),
->>       XE_RTP_ACTIONS(SET(SAMPLER_MODE, 
->> INDIRECT_STATE_BASE_ADDR_OVERRIDE))
->>     },
->> +
->> +    { XE_RTP_NAME("Priority_Mem_Read"),
->> +      XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 
->> XE_RTP_END_VERSION_UNDEFINED)),
->> +      XE_RTP_ACTIONS(SET(CSFE_CHICKEN1(0), CS_PRIORITY_MEM_READ,
->> +                 XE_RTP_ACTION_FLAG(ENGINE_BASE)))
->> +    },
->> +
->>     {}
->> };
->>
->> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
->> index 744dba4fdb58..1380bcf17fac 100644
->> --- a/drivers/gpu/drm/xe/xe_wa.c
->> +++ b/drivers/gpu/drm/xe/xe_wa.c
->> @@ -458,6 +458,22 @@ static const struct xe_rtp_entry_sr engine_was[] = {
->>                FUNC(xe_rtp_match_first_render_or_compute)),
->>       XE_RTP_ACTIONS(SET(ROW_CHICKEN2, DISABLE_TDL_SVHS_GATING))
->>     },
->> +    /*
->> +     * To allow the GSC engine to go idle on MTL we need to enable
->> +     * idle messaging and set the hysteresis value (we use 0xA=5us
->> +     * as recommended in spec). On platforms after MTL this is
->> +     * enabled by default.
->> +     */
->> +    { XE_RTP_NAME("MTL GSCCS IDLE MSG enable"),
-> 
-> tunning != WA... this table should only contains entries that are actual
-> documented hw WAs.
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-I try to asses which one and was swayed by the "we need" above. Sounded 
-like the thing is doing two things. One is "need", other is tuning the 
-hysteresis. Anyway I'll drop this patch, there is bigger fish to fry.
-
-Regards,
-
-Tvrtko
-
-> 
-> there's a debugfs file to dump the default context, however it seems we
-> are missing it for gsc.
-> 
-> 
-> Lucas De Marchi
-> 
->> +      XE_RTP_RULES(MEDIA_VERSION(1300), ENGINE_CLASS(OTHER)),
->> +      XE_RTP_ACTIONS(CLR(RING_PSMI_CTL(0),
->> +                 IDLE_MSG_DISABLE,
->> +                 XE_RTP_ACTION_FLAG(ENGINE_BASE)),
->> +             FIELD_SET(RING_PWRCTX_MAXCNT(0),
->> +                   IDLE_WAIT_TIME,
->> +                   0xA,
->> +                   XE_RTP_ACTION_FLAG(ENGINE_BASE)))
->> +    },
->>
->>     /* Xe2_LPG */
->>
->> -- 
->> 2.48.0
->>
+--
+Cheers,
+Luca.
