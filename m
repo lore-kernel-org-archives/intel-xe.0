@@ -4,182 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 274FFC0218F
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 14:38:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1308C0218A
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 14:41:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFF8010E99E;
-	Thu, 30 Jan 2025 14:38:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8955C10E9A2;
+	Thu, 30 Jan 2025 14:41:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FHtKyC+s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DZi9Ccv4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 554A510E99D;
- Thu, 30 Jan 2025 14:38:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E7D910E99B
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Jan 2025 14:41:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738247914; x=1769783914;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=3cMUV43fFlxYzn50RX5OQS3O1axwrqW/8T7idgenv7M=;
- b=FHtKyC+s4dkMaLlv6RfX8OI3YLXAf2ze6giVzRfMupx5rWd6v8Uf0imc
- Vw3knB+ESZOkFksWxFRYI3IT9pjy2rtZUUceLmwUqmE7M85Vb6BPZrPct
- cfXBu48YgpfhZBPeBQ8FNS49h7Tk4Lq5sWTtv21l4Lvvr2Sda4sdZ64S3
- x5+2K8gQsCW2skEhQjsg/64RpA1bUUVEmbBfSALxsg9Mt/8knUIN7g+Fj
- +R1x0xLPanfL9KDMM9BMChwPorLaUR4lt4V5RWDUBfYzGyfqM9FG9IRzU
- J/uprZ5dXjXatEbNNO5i56J0mfqTuLojoMlgHIvp7+IgWagjnMcyhNd6B g==;
-X-CSE-ConnectionGUID: Y/OdXDtCSk2+P2gvko5xmA==
-X-CSE-MsgGUID: NyKoKxCCRomsKI0X/QnouQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="56218209"
-X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="56218209"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 06:38:10 -0800
-X-CSE-ConnectionGUID: N1+qUBz1S7CUfbmq3BLejA==
-X-CSE-MsgGUID: 37b173q6S2KZZBfMqf4ASw==
+ t=1738248074; x=1769784074;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=kbMj2ewVx6z8uOBi4jB9sWToadWtA/kv5nJO6WmhE3o=;
+ b=DZi9Ccv47NAhQS2jaUAp2hDRj99t9fM4R0uat1rw7ggKxHHAR0/uTVax
+ rKups3XsxMLcGbAg2QGaHTgPbJ7nduTwCv8W5zUwdO+fGuD9eLYKMHJf1
+ mCHfW417LesjC+qmdt3FHfX760lguNTf22qnzhL/Ni5/iwfIF9BVQKqQR
+ oN96AJJ1j5c61pcnibkCsbQiOND8dO4M08p/feO0vC6PFbJgMq3EyT3Vo
+ tdIchPn6x5TnGcXrffQQNWv6VNULH3cXYBe+HWFuEzdXb0xCUvmV6NbXO
+ 0NemoH1vD0Pj3ysyePgsn9QQ1Z9xzJNl3wiBMqrVNRi90o/rzN6leca0B w==;
+X-CSE-ConnectionGUID: 0WGrRIiqQVqzLb8TfAvtAQ==
+X-CSE-MsgGUID: PoQTAVVCRUyLG2Z/DwsWHA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50213215"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="50213215"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 06:41:14 -0800
+X-CSE-ConnectionGUID: Tui52TojRaejCAPYbOJAIQ==
+X-CSE-MsgGUID: Cl0QshJAQuK7bCg3l6C/nw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="109483317"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 30 Jan 2025 06:38:10 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 30 Jan 2025 06:38:09 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 30 Jan 2025 06:38:09 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.45) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 30 Jan 2025 06:38:09 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QGmKNKYXiG8F9267ip12BJemIodHj0bCM9kGqVhsN1BlMo2EnEJ8TjluZkIVPwDsczPe5/j5H0/odVzpknbl42IZKIfqStpfLrBhAfVxo6lyYuT1eR5KFLBcWaMA051mxm9/jXc4uAgpfD1C7zAK2l7izOxmVctIXJpSjf8bCEkery8K/VZd1fWLxZIyK0L1uclHkwp/OnrLvY4W2Zj7sKpzuFJIYnIKBZwGJn0Y0r7TybHZvs+YJIzgqyxCYEufhgl6V4ntFwav2DLUWMoBwzAdvVnZcvZl27PzAhgZwGXfnvjmPoC+esmQeSNBEHQz0PxGWkyDrwxUTMQSiarvpA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EDKu7JZFb6wV0Inq9RPkK3ImWfA2xdiMwEVuW7Of35I=;
- b=DqC17PS8fLDOZ2xggtygowDxwZ2rVyd03zliiXU2uOnhGse9ep5yICpAFNN/DSP9fW2wfkyLCLuiUH+k+/ayxbMa2H3sMCFK+DtjtxQQOuU06vK8A3vnx3gLUHvNGiFKHA7orge3yC1kSj/lbyWXu6QRCqLawJ9gaoZemvmSE2mLJAxnTNKi6on+QBPHTSvnP30TFGKhbjf7YEf7DffzF1h46UYcGMXfAV6/r2ZiZM7LgG/gW3GrF94PHhIHca5/O6tAGlhtLPoHB9+PUbKcyxKfdBwHnHTXn/2v0ebxNnEcpeUPtiPDJGO90HQss71Dr7Pd72TdXb+Ok3yP71Fw9A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by SJ2PR11MB7476.namprd11.prod.outlook.com (2603:10b6:a03:4c4::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.20; Thu, 30 Jan
- 2025 14:37:40 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.8398.017; Thu, 30 Jan 2025
- 14:37:40 +0000
-Message-ID: <5b1506ae-b42e-4e40-8290-be183d18b412@intel.com>
-Date: Thu, 30 Jan 2025 20:07:33 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/6] Add AS_SDP to fastset
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-CC: <uma.shankar@intel.com>, <ville.syrjala@linux.intel.com>
-References: <20250130051609.1796524-1-mitulkumar.ajitkumar.golani@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250130051609.1796524-1-mitulkumar.ajitkumar.golani@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0034.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:97::6) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="109904940"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa010.fm.intel.com with ESMTP; 30 Jan 2025 06:41:12 -0800
+Received: from [10.245.96.215] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.245.96.215])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id C60482FC49
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Jan 2025 14:41:11 +0000 (GMT)
+Message-ID: <8a6de7f5-7428-4be0-a2c8-944ef6a403f5@intel.com>
+Date: Thu, 30 Jan 2025 15:41:10 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SJ2PR11MB7476:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3547d36f-8d14-43de-719d-08dd413ba5c7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?elpWa3A2WXdKc01VZE9DUmhhYm8zTkZUd2loVmFRRVBaNGdqMlc5UzgzL3hI?=
- =?utf-8?B?cy9oQ2twYldsY2RTd1FmSVl1QlloVUJTZmR6RVVXVWxrRlp4aXkzQTNVQ3RW?=
- =?utf-8?B?L2pTQ0xHVVdDazU4Zmp2Q1V4Y050dzVUZDNZTFZ0cEhGV2ViQmhlcWtBa2Ev?=
- =?utf-8?B?RUJINUU5V3JZeExUZFhCUklIUk1IOU93bzRPckdSOU1VTFhzVkFTZnBub2Nv?=
- =?utf-8?B?QS8zQ1NGK0U4MEdONk9nbmNCcHRIZmRHWFVpcTlnOHlLT2diajFDNGV5MUFl?=
- =?utf-8?B?b2lUdVR4VE5TYVQrbnl3Z3kzMGVMOVhvQkpZa2srWm12czdrSFVmNGlhRnJI?=
- =?utf-8?B?UHBqTWdOb05uS3hhZzd4ZmU0RS85VWJic1h0NExNeTRlb3c2SnJCZ2hVL2p4?=
- =?utf-8?B?dUwzTzdlQ1NWRjJpUGgwM285cC9RU2Qva1FnaEtnRWR3bG9YVDNMRGRHZVdy?=
- =?utf-8?B?OUVLNkJMQ0FyUldSNlBKaUcyQTFkUThPM01zQTRnTHVReUZRbThYWUo3d0E2?=
- =?utf-8?B?Slo4TDk0WjR5clpQRDNWcHZ4Q0JmSkNDcFRIZmZJbEZVSGxvZHdNaEtpKzBC?=
- =?utf-8?B?OEJ3WDBUODBGTmVCVjJvZnpHSXorQmRvSzQxNSs3TXA2Yk0wRk1MTWovVGtM?=
- =?utf-8?B?dkw0N3FOWlZFTWE0WGQ1THZLenR0U2xFcmd5YldoQ0F2L1NKL2YvRzJGNDJQ?=
- =?utf-8?B?MUFURFcxUW9XbEN2b25yUlRKc0phTmN5U2lvNzFaQ2JNekJIelB1bFBDM2p3?=
- =?utf-8?B?NjVwK2R2elJEM2I2Y25SWm5tQjZsWWo5a253UUFEWEd6UUY2T3UyZXAyaDdC?=
- =?utf-8?B?bC9Sek5KTisrZjkydFpVMFBCWG01Z3I0QXdYMFB0Q0hraXNlUGltV1ZPaWJs?=
- =?utf-8?B?bzJZY0dBdHdabnkrL2pSOU5wdVBqdVlqRGV3eDUxZ3g0YkZSRDQxeDVOWkFw?=
- =?utf-8?B?RTRjUHpQc29oWktvOGt0ZkdOQzZSVlc3MG5uSndNQk9JWGxLNHIwNGx3ckN3?=
- =?utf-8?B?Nlh5QVZhOU9kcU1PbXdjdnM0Y1BsMi9PUk1ndmxHcWRCSnl3YnhlRVFGVE1y?=
- =?utf-8?B?bkZUNDhKQjFJZDR0L05JeXIwUytDR1d3Z3VpTzhUWXg5UWJUV1Q4TDZyWWpq?=
- =?utf-8?B?U21hNjFIOXpNN0xDRC8vUllmaGZpa1pVUkp1ZWJWWlZ3UlNpYXJEdUYzWHZo?=
- =?utf-8?B?SWtnRjRiU2tYSHZNMHYrRkFkRmltZkxEcDl6VW1kWHU3dnNxSjNBVmRGaEVz?=
- =?utf-8?B?QThmWEtKMytRUVdRUGxqM3V6RG1JWGR2cW93U2pPUWM5YkJ6eWdYSE8yRDJu?=
- =?utf-8?B?KzN6Mk9XNzc3RW5HeHpmL2p1L0tqcHpzaVloUllaVjNXYzJqQ0s2dTN2eWkv?=
- =?utf-8?B?QjFVdHFkZk1lcmxsSDNESUF1L2Z4MmJEejA1SkJIclA5bm9jMjllVU9RMVpz?=
- =?utf-8?B?NzQ5Ynd3MWpBbnJkSVlxZ3pRcUFoeVEzR2dlaTNYQVlOREIvOVpSdE4zV3NV?=
- =?utf-8?B?bG1TREU0VThQeHhjcHUvYko1N1JtaSs4ODFDL3E2OTY2ckM2WW9LbjQ4aUxI?=
- =?utf-8?B?eFEzNC9tdTd2dDNCQ1R2NEdxamwranMxM0w0UWtab3dZK0UvRVp4ZTQrSzlY?=
- =?utf-8?B?eGFSd2lhRitYcnJCVlo0MW9XalgwMW9Uek9jZEpOVmlIeGM3R0RZSzhOOG5r?=
- =?utf-8?B?WHdmb3NpZ2lMOS9XT0ZMdDlMbkNITGRXSmRtbllWalRhVHpyV1FMaElqSC82?=
- =?utf-8?B?WFZaRnN0SkQweGFMNHA4MUVDcGNtLzdIdG5FODFzNExIRlpXejdVUlpLeGVJ?=
- =?utf-8?B?ZVpKNThGWnZvcTdNeFFTMHk5SkV6MDM5eGVrUzVPTXhDbUNReVg2empoNEhC?=
- =?utf-8?Q?0nGbt1jzfSAq3?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RUVzRGFTQ2JoQ3B4cFZrSExaMWg5U09MSCtEd1RsakdTbVc5NjJVWHlRL2ZY?=
- =?utf-8?B?TDU3MXk5MWp0RWx0N0VRaXRWQnU1N0VPa2wyOWxpc2IramxqTDBwRnBVMmVF?=
- =?utf-8?B?djNmMlZzQ3hXU0RsbW1RMVZMdnNQY0VKR3F6dG52clVrY3k4ZUVYN3VRMk1o?=
- =?utf-8?B?UWF1c2lsNmR0b1BxNFlSSTcyVGcxWFRyZnBPYXNCS280ckMxMkVoNzNIM0xv?=
- =?utf-8?B?VFhOYkFzRy9aM21hSEFycUlpZys3MVYrb3RRcXg3YnVraVJzY292dXFVTzFD?=
- =?utf-8?B?L3dwVVhKbXdYQlRyQXY1Snc2RytsdHZyT1VPN2M0OFpCMHo0UnZiUEVwald3?=
- =?utf-8?B?bndWSkpscHJJdjV1YUlMc2ZIWFJZVUZzN05Ld2xBZmx2cVY0aHU2YlFZeENL?=
- =?utf-8?B?aS9VMDBoZHpwUkJUZzd3LzZkZ2VUcE9BU1QvKzBrK0lrZWRIaHN6NGh3aFlz?=
- =?utf-8?B?cWFjNm4ydlVWRzNjNDd1UXp0OS9vU3NpTjl6WWhzOEZyUFI5SmZQTzBqSlp4?=
- =?utf-8?B?c1VoY3NrSDlLa3dzdW1jSmVUdERSNk01VVg5WHRRQUtoWUJHWW5kQjMxbEdZ?=
- =?utf-8?B?SnBiemhjeUpCRFVJQ1AxekhEdVpveEdrZjlZajRPMVRUeEpxZWRhbXBzV2Qz?=
- =?utf-8?B?emkwY3VIckhlM2hUV0VCalVzNzh0Q1dPdmx0ZC9aclZFUjRkejRiVnRta1U4?=
- =?utf-8?B?QThVdDAxc3g5T3ordmxBY2M2WnB3OHdBZFpuUW5EMDg1QVlubVlJNWE1Tmxz?=
- =?utf-8?B?N1JQQnJHVXVkYm82ZGRmNVlsdEh4aDZzRVJNMGg5OE1MV0padlk1b0Fqd1Ft?=
- =?utf-8?B?L1VwMnVlYXdoNlE3Q2xDUU9ZRjJMN0RuSGpWTGF5ZjJrejhCRVdxVG9LOFZy?=
- =?utf-8?B?VStlOXlPdjhuMG9DcGtLWmZUUDcyUStrWUJqK1NXYm1qZTBXVy9mWXZvQzhW?=
- =?utf-8?B?alhJY012NDU0aml6T1JBc1hnTUlhcE4yS3hKcnJjN2xhSC9TZzdENHBsZ0Np?=
- =?utf-8?B?cFFtS1dBMjk2bWsrd0R3UGxsQ3VucHhTelBYRmxGL3ZMRGJFRFFOSldmekdB?=
- =?utf-8?B?U0o3VnFOaEtBSlJTMUNjb1JjMisvcnkwT3NlUlhzK0RRKzhDTmhrVjNNaUlh?=
- =?utf-8?B?L2pFUHlHblNhUWg2ZjZYSytPRlVZWnVBS0pxbVRQbGlDaWE4dTRsQUF3QWR4?=
- =?utf-8?B?REhHUFhrbXBtdzFvSjNrSUQwTlkvODc3OEgwMER0TlRyaDlLaWlQdFJLank1?=
- =?utf-8?B?NmdLbXc5OUxyZTNIL2t2MnFBVkJYeFBJMEJYdlBVOFpPVVRrUEhTMW8rSWpk?=
- =?utf-8?B?ZktwRTBER0k3UTlQZlVuelF4YkxPcVBBNk14TXdPMlRkTkJIbExNcWRKK0ly?=
- =?utf-8?B?N3VUUXc5OWdqSXNISUwxaXFPSmhLWWVxZ2MxZjV4eWpWSElTdll3WjE2N0la?=
- =?utf-8?B?dUFaRnVjT0p1WWVYY0pNMU5abkhZV0l6cEt1M2czRFQ3TEhHN0hXT0pIeDRO?=
- =?utf-8?B?azZmdTJpM0ZScW1BTkVlWGcxUVFkUjJSR0ZFUFA0OHRRb1E3V05YdDJDckRo?=
- =?utf-8?B?MkVvelBCMHk0WlJERFR3MGFGZlEvOGpEeE9TMXhEVy9QM2lxUTYzRmQzbDJP?=
- =?utf-8?B?SFRUOGVSVFFPQzF2UnF4OHZ0L0szSGo2YXZBTC84d0I2QWlMUG5SWWxUeDll?=
- =?utf-8?B?YktvQXNsaUp6RjRXU2J3ckpqUHA0NDJPTmtsZVQ1d2k1K1laSk13eHRqeVZM?=
- =?utf-8?B?YUZ6dEwvbzJzbktZU0t1N1ZjdjA2NnZiWjBrTHJnd1p5bVhaenNWOXBLbWFy?=
- =?utf-8?B?SkgxSmhEcDdyQXZVd3phcVZCYTl2Ny96TDRiZGE2a3NvYmFFSmYzZFlSZ2tH?=
- =?utf-8?B?Nk1lWVA1Q2wra3Z0V3Riem56UGNhVDZvc3B3cTYzeE1BNlVwVWNWZThDT0sz?=
- =?utf-8?B?UCt6SE9laElYL1NPakduWG00dG1ScnJRUlNtbjQzclIvN2RjM3hmRVRKbCto?=
- =?utf-8?B?bTkrQlZqZ0ZxWTl5YzFiR2VOTXhOaFRTc2hvakNTbEtITzJZRUZSZm02UVFl?=
- =?utf-8?B?NThrNVlCRGE0Wi9kdll0R2lQUmJva05mekx5Q202bHZjcGhTTmVrL1QrRGNx?=
- =?utf-8?B?ZXZ5K1d0UXZUNHZVS2lxZit2dVhZOWJ3alg4RmJBMU5JK1BWbng1cFkzbGV3?=
- =?utf-8?B?U2c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3547d36f-8d14-43de-719d-08dd413ba5c7
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2025 14:37:40.0971 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TZkPaaDr7j0LSr8hD1ezsdegVQtJsAj82C3LyX4mgLjaXhFCn1sc/EZurCp/IsCWEahgwqRt+vYaTcyGl4OpOOu0/4tSmdBgyiYUtY/DdWw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7476
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?B?UmU6IOKclyBYZS5DSS5GdWxsOiBmYWlsdXJlIGZvciBQRjogTWl0aWdh?=
+ =?UTF-8?Q?te_unexpected_GuC_VF_config_checks?=
+To: intel-xe@lists.freedesktop.org
+References: <20250129195947.764-1-michal.wajdeczko@intel.com>
+ <173821155926.2729658.4957710089600267876@b555e5b46a47>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <173821155926.2729658.4957710089600267876@b555e5b46a47>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -195,31 +73,125 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 1/30/2025 10:46 AM, Mitul Golani wrote:
-> vrr enable disable should happen with fastset, where
-> adptive sync SDP should not block it to full modeset.
->
-> Ankit Nautiyal (1):
->    drm/i915/dp: fix the Adaptive sync Operation mode for SDP
->
-> Mitul Golani (5):
->    drm/i915/vrr: Add crtc_state dump for vrr.vsync params
->    drm/i915/vrr: Compute vrr.vsync_{start, end} during full modeset
->    drm/i915/dp: Compute as_sdp.vtotal based on vrr timings
->    drm/i915/dp: Compute as_sdp based on if vrr possible
->    drm/i915/display: Move as sdp params change to fastset
+
+On 30.01.2025 05:32, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: PF: Mitigate unexpected GuC VF config checks
+> URL   : https://patchwork.freedesktop.org/series/144120/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from xe-2571-45746920fb499b7ad35883c94ebfbedda6c40139_full -> xe-pw-144120v1_full
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with xe-pw-144120v1_full absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in xe-pw-144120v1_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   
+> 
+> Participating hosts (4 -> 4)
+> ------------------------------
+> 
+>   No changes in participating hosts
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in xe-pw-144120v1_full:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@core_hotunplug@hotrebind-lateclose:
+>     - shard-dg2-set2:     [PASS][1] -> [ABORT][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2571-45746920fb499b7ad35883c94ebfbedda6c40139/shard-dg2-463/igt@core_hotunplug@hotrebind-lateclose.html
+>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144120v1/shard-dg2-463/igt@core_hotunplug@hotrebind-lateclose.html
+
+unrelated, from non-PF run, from the audio/sound:
+
+<4> [201.700469] refcount_t: addition on 0; use-after-free.
+<4> [201.700485] WARNING: CPU: 6 PID: 548 at lib/refcount.c:25
+refcount_warn_saturate+0x12e/0x150
+<4> [201.700645] Workqueue: pm pm_runtime_work
+<4> [201.700653] RIP: 0010:refcount_warn_saturate+0x12e/0x150
+<4> [201.700690] Call Trace:
+<4> [201.700692]  <TASK>
+<4> [201.700695]  ? show_regs+0x6c/0x80
+<4> [201.700701]  ? __warn+0x93/0x1c0
+<4> [201.700707]  ? refcount_warn_saturate+0x12e/0x150
+<4> [201.700713]  ? report_bug+0x182/0x1b0
+<4> [201.700720]  ? handle_bug+0x6e/0xb0
+<4> [201.700725]  ? exc_invalid_op+0x18/0x80
+<4> [201.700730]  ? asm_exc_invalid_op+0x1b/0x20
+<4> [201.700741]  ? refcount_warn_saturate+0x12e/0x150
+<4> [201.700747]  ? refcount_warn_saturate+0x12e/0x150
+<4> [201.700752]  kobject_get+0x7c/0x80
+<4> [201.700758]  get_device+0x13/0x30
+<4> [201.700763]  snd_jack_report+0xa0/0x220 [snd]
+<4> [201.700779]  ? __pfx_hda_codec_runtime_resume+0x10/0x10 [snd_hda_codec]
+<4> [201.700797]  snd_hda_jack_report_sync+0x8e/0xe0 [snd_hda_codec]
+<4> [201.700815]  hda_call_codec_resume+0x139/0x160 [snd_hda_codec]
+<4> [201.700829]  ? __pfx_hda_codec_runtime_resume+0x10/0x10 [snd_hda_codec]
+<4> [201.700843]  hda_codec_runtime_resume+0x30/0x80 [snd_hda_codec]
+<4> [201.700856]  __rpm_callback+0x4d/0x170
+<4> [201.700861]  ? ktime_get_mono_fast_ns+0x39/0xd0
+<4> [201.700867]  ? __pfx_hda_codec_runtime_resume+0x10/0x10 [snd_hda_codec]
+<4> [201.700881]  rpm_callback+0x64/0x70
+<4> [201.700886]  ? __pfx_hda_codec_runtime_resume+0x10/0x10 [snd_hda_codec]
+<4> [201.700899]  rpm_resume+0x594/0x790
+<4> [201.700908]  pm_runtime_work+0x8c/0xf0
+<4> [201.700914]  process_one_work+0x21c/0x740
+<4> [201.700924]  worker_thread+0x1db/0x3c0
+
+> 
+>   * igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-6:
+>     - shard-dg2-set2:     NOTRUN -> [DMESG-WARN][3] +1 other test dmesg-warn
+>    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144120v1/shard-dg2-436/igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-6.html
+
+unrelated, from non-PF run, from KMS:
+
+<4> [184.185338] xe 0000:03:00.0: [drm] vblank wait timed out on crtc 0
+<4> [184.185376] WARNING: CPU: 12 PID: 5724 at
+drivers/gpu/drm/drm_vblank.c:1307 drm_wait_one_vblank+0x1fe/0x220
 
 
-Thanks for the patches and reviews. Pushed to drm-intel-next.
+> 
+>   * igt@kms_sequence@queue-busy@pipe-c-dp-4:
+>     - shard-dg2-set2:     NOTRUN -> [INCOMPLETE][4]
+>    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144120v1/shard-dg2-436/igt@kms_sequence@queue-busy@pipe-c-dp-4.html
 
-Regards,
+unrelated, from non-PF run, another CI glitch ?
 
-Ankit
+<7>[  253.529989] [IGT] kms_sequence: finished subtest pipe-C-DP-4, SUCCESS
+<7>[  258.475150] [IGT] kms_sequence: exiting, ret=0
 
->
->   .../drm/i915/display/intel_crtc_state_dump.c  |  5 ++--
->   drivers/gpu/drm/i915/display/intel_display.c  |  5 ++--
->   drivers/gpu/drm/i915/display/intel_dp.c       |  8 +++---
->   drivers/gpu/drm/i915/display/intel_vrr.c      | 25 ++++++++-----------
->   4 files changed, 19 insertions(+), 24 deletions(-)
->
+> 
+>   * igt@xe_pm@d3hot-mmap-vram:
+>     - shard-dg2-set2:     [PASS][5] -> [FAIL][6]
+>    [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2571-45746920fb499b7ad35883c94ebfbedda6c40139/shard-dg2-463/igt@xe_pm@d3hot-mmap-vram.html
+>    [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144120v1/shard-dg2-463/igt@xe_pm@d3hot-mmap-vram.html
+
+must be unrelated, from non-PF run,
+btw, there are dmesg logs from DG2(native) and ADLP(PF-mode) and both
+are suspending/resuming
+
+Starting subtest: d3hot-mmap-vram
+(xe_pm:3238) CRITICAL: Test assertion failure function test_mmap, file
+../tests/intel/xe_pm.c:687:
+(xe_pm:3238) CRITICAL: Failed assertion: in_d3(device, d_state)
+(xe_pm:3238) CRITICAL: Last errno: 2, No such file or directory
+Subtest d3hot-mmap-vram failed.
+
+
