@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CFD6C02193
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 05:19:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6073BC0218A
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 05:19:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1735E10E8EB;
-	Thu, 30 Jan 2025 05:19:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E54610E24C;
+	Thu, 30 Jan 2025 05:19:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KMSfmasg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VkYHdbuu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5663910E8E3;
- Thu, 30 Jan 2025 05:19:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8690010E8EE;
+ Thu, 30 Jan 2025 05:19:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738214362; x=1769750362;
+ t=1738214367; x=1769750367;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DxAOlWmuigpmyRQVK6XRDvPHTpUb1saBQtgYMYbdjSo=;
- b=KMSfmasgqoYarwqGjdyYbYaADHvHKUinsnbqCvps2/Lf0JsRioSI5cy6
- jcGB1Ea3YFJjavsPxRjLUX76OQtR3v0P/EEdZm3GaUK6u5NrTTMxgwFD7
- TpYX91NDBKNnccbrNUj0BqA75my9omFz/Dv+Cv/7N4p8Ema+8Oi+fkfbU
- DFaVBa5fu55vLpdGON5rE+qGjSp6D50QqUYFBoDcU88wb6V0Ybbjivgs4
- yWeC+c2ezBSCcx27wYngbkOkFY0IFlqkV9t+yffDgoQxYAyfTGrdDe7JD
- V58uuvrT6lPz6/WGXFkuPFk1uhs4z62vklIqzTW6ZwUSJSFwAvo0BtCiD w==;
-X-CSE-ConnectionGUID: 5AijHuyBRvWS+5Ae577SBQ==
-X-CSE-MsgGUID: 5m/G3WOYSIK9VbkZyJzDaA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="50133482"
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="50133482"
+ bh=Mfb2TSGwnbk31NPtHgFjm0lZsxvOBAit7sSf7vc69fI=;
+ b=VkYHdbuu2j4RQZOujjnYk8SvXeNc77q8i0okCeMxVTzObXvkUBZwxXX+
+ NZsN8vZyjNXVRSlPFzrDFAUOPkJz+tfvd8JNLaLekyug/lML7h+4NvmsY
+ 4mzVwZrDHmVIDSiLQfMvBMaYOveREattIEMjicZHhRP9+VJ6F9olT9eO9
+ ihWR+A9eqq86fyg94NwZr0g+KUzeXjhzUDyPwLqxvndY8/QeAfs3vPfPG
+ dcs1mnC71Rt9uSOlAIW5h382i4JAT2M6ogGzSj191RddN3a2kkManuhXc
+ uFpevap7jQqGGfRfcZuQJ/3fiy9j0DbAmizsMfW2GQGp7YaEQE2aoh2fN Q==;
+X-CSE-ConnectionGUID: b6SWAhgcQSmwwfkTdXTLPw==
+X-CSE-MsgGUID: hFSyEnwXQC6CkNExXyxuoA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="50133485"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="50133485"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 21:19:22 -0800
-X-CSE-ConnectionGUID: 1aoNjQxvR7WY+k+YGEbldQ==
-X-CSE-MsgGUID: R/Ee8q8xSIegoijQxirpgA==
+ 29 Jan 2025 21:19:26 -0800
+X-CSE-ConnectionGUID: FEqOfrrdQSCITwU12HkqmA==
+X-CSE-MsgGUID: C4OE49UIS3etqcfJWJq2vg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="109060357"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="109060367"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa006.fm.intel.com with ESMTP; 29 Jan 2025 21:19:20 -0800
+ by fmviesa006.fm.intel.com with ESMTP; 29 Jan 2025 21:19:24 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH v6 4/6] drm/i915/dp: Compute as_sdp.vtotal based on vrr timings
-Date: Thu, 30 Jan 2025 10:46:07 +0530
-Message-ID: <20250130051609.1796524-5-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v6 6/6] drm/i915/display: Move as sdp params change to fastset
+Date: Thu, 30 Jan 2025 10:46:09 +0530
+Message-ID: <20250130051609.1796524-7-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250130051609.1796524-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20250130051609.1796524-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -67,45 +67,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Compute as_sdp.vtotal based on minimum vtotal calculated
-during vrr computation.
-
---v2:
- - make a separate patch and update to vmin only [Ankit].
-
---v3:
- - Update vtotal to vmin for cmrr case as well [Ankit].
-
---v4:
- - update vtotal with wrapper function of vmin [Ville]
+as_sdp param changes from vrr to cmrr should happen to fastset.
+Changing as_sdp params should not trigger any modeset.
 
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 591e4fa20c16..f876dbeb6121 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2834,15 +2834,14 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
- 	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
- 	as_sdp->length = 0x9;
- 	as_sdp->duration_incr_ms = 0;
-+	as_sdp->vtotal = intel_vrr_vmin_vtotal(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7d68d652c1bc..60867b5b03ec 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5752,10 +5752,11 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	PIPE_CONF_CHECK_INFOFRAME(avi);
+ 	PIPE_CONF_CHECK_INFOFRAME(spd);
+ 	PIPE_CONF_CHECK_INFOFRAME(hdmi);
+-	if (!fastset)
++	if (!fastset) {
+ 		PIPE_CONF_CHECK_INFOFRAME(drm);
++		PIPE_CONF_CHECK_DP_AS_SDP(as_sdp);
++	}
+ 	PIPE_CONF_CHECK_DP_VSC_SDP(vsc);
+-	PIPE_CONF_CHECK_DP_AS_SDP(as_sdp);
  
- 	if (crtc_state->cmrr.enable) {
- 		as_sdp->mode = DP_AS_SDP_FAVT_TRR_REACHED;
--		as_sdp->vtotal = adjusted_mode->vtotal;
- 		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
- 		as_sdp->target_rr_divider = true;
- 	} else {
- 		as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
--		as_sdp->vtotal = adjusted_mode->vtotal;
- 		as_sdp->target_rr = 0;
- 	}
- }
+ 	PIPE_CONF_CHECK_X(sync_mode_slaves_mask);
+ 	PIPE_CONF_CHECK_I(master_transcoder);
 -- 
 2.48.1
 
