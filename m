@@ -4,43 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D75DC0218A
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 11:03:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FC7BC02190
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 11:03:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B9CE10E936;
-	Thu, 30 Jan 2025 11:03:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFB7E10E935;
+	Thu, 30 Jan 2025 11:03:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="cGfXrY9q";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="o34i1H9f";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 730E210E935
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jan 2025 11:03:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E53C10E939
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Jan 2025 11:03:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
- Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=EXWToQJNldVDWC8DEiMkUMsS5CLsgZFE6/cN8yYSQ4A=; b=cGfXrY9q17RtIWFQCxKode22J3
- VXG0OepuI/YZO40LP7lzoG0X7h5Qe9ThbFApB3gciLiOd4Y7Gr7ljXFuT14l4TyzJkRx5CcRC5VQJ
- d8YwPWamI1nM+g3vOal65bjB4YmsNqnW8fss01dW7Fcynp/VL/ucn/aP9jN0HsWnnSl7NjyRZVylR
- Ia63bE8GWyL4Owurgde0RwG/RnZHp30PjNbHAkwaOXg3rqDFtR/V8GcUISQeWh9lVcKeq7N5qIN8l
- PUuxSft2NphgubW4UoI06mwLWjaT0l037ViZkbVcP8L8udcS6aHyjiTuzeJJQum41sXJRIKv8Q3ve
- 3BeUhj7A==;
+ bh=OWnTygmJoGYleKVfsebWzKymRYPMz+IfFa0bnwUiwKA=; b=o34i1H9fCK/jPf7BmHLarKqvkU
+ TzkjDFg+byiPC1X3gfUlTxoI64gVkbTkXHxUt/5XSBDfdD3L4UzCD8eEDsmBLEpe7TDPS9EmVh8Rn
+ qOp9ZkZ/iPKY8/xIdQSec/fMZCtxsQAUo5F5xINojpa8BjvcJz55lRlS+mmL3BEn8dh1vw6SLTJ3U
+ PgyzSHwnw3oM5Gg1QS3heWLpCodTVsXAMsUckqRaZ3SLc4H6PusG4NiaKQlQUAyIQ4bWnqOrphZiZ
+ Zw4iXEGzQYGo5NyJDKqTIY+8i+N020nD9HCj3vLIxN2Uf9Qv5kI9Hpe3a09b6BC1Lxu1lwVj+JOkT
+ 2Bg9UOxA==;
 Received: from [90.241.98.187] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tdSKc-000zzE-DV; Thu, 30 Jan 2025 12:03:40 +0100
+ id 1tdSKe-000zzS-G2; Thu, 30 Jan 2025 12:03:42 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v2 0/4] Workaround fixes, improvements, additions
-Date: Thu, 30 Jan 2025 11:03:33 +0000
-Message-ID: <20250130110337.11237-1-tvrtko.ursulin@igalia.com>
+Subject: [PATCH 3/4] drm/xe/gen12: L3 recommended hashing mask
+Date: Thu, 30 Jan 2025 11:03:36 +0000
+Message-ID: <20250130110337.11237-4-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250130110337.11237-1-tvrtko.ursulin@igalia.com>
+References: <20250130110337.11237-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -57,46 +59,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A few things here.
-
-0001:
-I think per engine GT workarounds are broken. None apply since engines are not
-set up yet.
-
-0002-003:
-I did a small audit of i915 vs xe workarounds and tunings with focus on ADL-P
-and found some deltas. But without access to the internal database and even
-up to date PRMs it is required if someone double checks the two.
-
-Motivation being that there is some interest to make xe work on ADL-P as good as
-possible.
-
-0004:
-With the split between workarounds and tunings it feels useful to expose the
-list of latter in debugfs too.
+According to the i915 codebase xe missed to set the recommended
+performance tuning for L3 hashing which is applicable to all legacy XeLP
+platforms. Lets add it.
 
 v2:
- * Attempt to fix first patch.
- * L3 hashing patch tidy.
+ * Rename prefixes to XELP_.
+ * Tweak version end point.
 
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+References: c46c5fb725be ("drm/i915/gen12: Apply recommended L3 hashing mask")
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Matt Roper <matthew.d.roper@intel.com>
+---
+I could not find the reference to this in the public docs, including
+confirmation whether 0xb004 even exists on for example TGL. Then for ADL I
+don't see that PRMs have been made public at all.
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 5 ++++-
+ drivers/gpu/drm/xe/xe_tuning.c       | 6 ++++++
+ 2 files changed, 10 insertions(+), 1 deletion(-)
 
-Tvrtko Ursulin (4):
-  drm/xe: Fix GT "for each engine" workaround handling
-  drm/xe/gen12: Add Wa_1604555607
-  drm/xe/gen12: L3 recommended hashing mask
-  drm/xe: Add performance tunings to debugfs
-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  5 +-
- drivers/gpu/drm/xe/xe_device.c       | 18 +++++++
- drivers/gpu/drm/xe/xe_gt.c           | 10 ++--
- drivers/gpu/drm/xe/xe_gt_debugfs.c   | 11 +++++
- drivers/gpu/drm/xe/xe_gt_types.h     | 10 ++++
- drivers/gpu/drm/xe/xe_tuning.c       | 73 ++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_tuning.h       |  3 ++
- 7 files changed, 120 insertions(+), 10 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 096859072396..bc7bfffabd0b 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -362,10 +362,13 @@
+ #define FORCEWAKE_MEDIA_VEBOX(n)		XE_REG(0xa560 + (n) * 4)
+ #define FORCEWAKE_GSC				XE_REG(0xa618)
+ 
++/* L3 Cache Control */
++#define XELP_GARBCNTL				XE_REG(0xb004)
++#define   XELP_BUS_HASH_CTL_BIT_EXC		REG_BIT(7)
++
+ #define XEHPC_LNCFMISCCFGREG0			XE_REG_MCR(0xb01c, XE_REG_OPTION_MASKED)
+ #define   XEHPC_OVRLSCCC			REG_BIT(0)
+ 
+-/* L3 Cache Control */
+ #define LNCFCMOCS_REG_COUNT			32
+ #define XELP_LNCFCMOCS(i)			XE_REG(0xb020 + (i) * 4)
+ #define XEHP_LNCFCMOCS(i)			XE_REG_MCR(0xb020 + (i) * 4)
+diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
+index 9e7ec36dbd47..f108f26e5b2a 100644
+--- a/drivers/gpu/drm/xe/xe_tuning.c
++++ b/drivers/gpu/drm/xe/xe_tuning.c
+@@ -107,6 +107,12 @@ static const struct xe_rtp_entry_sr lrc_tunings[] = {
+ 						FF_MODE2_TDS_TIMER_128))
+ 	},
+ 
++	{ XE_RTP_NAME("Tuning: L3 Hashing Mask"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250),
++		       FUNC(xe_rtp_match_first_render_or_compute)),
++	  XE_RTP_ACTIONS(CLR(XELP_GARBCNTL, XELP_BUS_HASH_CTL_BIT_EXC))
++	},
++
+ 	/* DG2 */
+ 
+ 	{ XE_RTP_NAME("Tuning: L3 cache"),
 -- 
 2.48.0
 
