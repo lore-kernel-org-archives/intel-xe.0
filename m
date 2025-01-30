@@ -4,172 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64B99C0218D
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 22:36:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B11FC0218A
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 22:37:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F72E10E9EB;
-	Thu, 30 Jan 2025 22:36:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F46010E9E8;
+	Thu, 30 Jan 2025 22:37:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZuTLlo+O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OHhTSfIv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7F8C10E9EB
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jan 2025 22:36:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62E6010E9E8;
+ Thu, 30 Jan 2025 22:37:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738276578; x=1769812578;
+ t=1738276647; x=1769812647;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=J0f/DovxH4bmxQ2FgFjAaDdsqPxsdxtuQx0KdsCaeak=;
- b=ZuTLlo+O5C7hGoFCu6QetgrdQU5hNp+GjnI6vahXF1C+6HkrL3tESWHS
- vjLoutH9U4MNnvK+i9v/NBG9lvO7hKF0O7zJ5bWUfPJOxt3ZopnCABXg/
- JpBs/DIbTnvbrhz72wMUGnBOT3noZZTXuOf85NpHjtfWNLxMFN2yTAzuM
- 7xLlyXQEOD1G6iHLZtObj/dP0JB96WhJbulGaUjyeNkp5OWl1PnUKsh0P
- ZZmbAPzRi0/4mHZHk78fDxCa8h7LaMjiJ10EfuZYsUplaMgYGBxEkieVL
- 38SEZDoo4WE8cfAsNFtTMfByJHodQrc1haW3WvEbai95ncKyCeBAHT/93 w==;
-X-CSE-ConnectionGUID: urbaqQT6Tc61WynZ6bIRDg==
-X-CSE-MsgGUID: lA4X0czsRkG2TBiAEYFKrA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="42767563"
-X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="42767563"
+ bh=sZyb0/DngIuN/qlZcsBzMobsHpaMOTLLRA7FfNJrXho=;
+ b=OHhTSfIvqaYXk7Yr+PyezKGdxNr5aks0JFxwoW0r5Sp3mFnfz2I/fLmY
+ SKZXr20x4JdsFbjKIue3QxjfZJJOJfejgZhNnJOuTWl9Wk62PY+OojyHP
+ ou6kYbHfyLbk0Zr6XzELc/AXu+S0DwN7w6GORhbJr93CbMY3E1oAva91G
+ p6sNXaIoYBVe2POcPFu2bx+Vk0MypsAZGO//xXgW5LZ6YFjYQ06aR6+Z6
+ 5odS5c5/fxMxxIdOCEgmzahEGgbQcCcYNvYc9AjPlcAJe6uLesHZUC3hZ
+ yj6/sHQ7VjpFWOTrjbXinFPHaSUj9eVUHAilHd/ui0r6lzmF7oXtN6u6Z Q==;
+X-CSE-ConnectionGUID: 0EjVhNukQvmR1VWGvlSzEw==
+X-CSE-MsgGUID: 7sKg23VWT5eYxmApCPOW5Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="42767711"
+X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="42767711"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 14:36:17 -0800
-X-CSE-ConnectionGUID: ws7FSZHDTu+av7pZUa1pYw==
-X-CSE-MsgGUID: FR0FlwGJR/a4kDxYwAV8sA==
+ 30 Jan 2025 14:37:27 -0800
+X-CSE-ConnectionGUID: qTQqouwsTve8mdz5lwxg6Q==
+X-CSE-MsgGUID: HLJr5RcnRb64XzYyzuTI3A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="109416826"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="109417280"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
  by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 30 Jan 2025 14:36:17 -0800
+ 30 Jan 2025 14:37:26 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 30 Jan 2025 14:36:16 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ 15.1.2507.44; Thu, 30 Jan 2025 14:37:26 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 30 Jan 2025 14:36:16 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.170)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.44 via Frontend Transport; Thu, 30 Jan 2025 14:37:26 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.174)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 30 Jan 2025 14:36:14 -0800
+ 15.1.2507.44; Thu, 30 Jan 2025 14:37:26 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=knV2YUWM29ZkDd4UM9PNSPkxZufO0jCf85fsZoh9NCJBOQRMEUDRA5JzfmZVMqn4dy1GzVDUwr3nhNu8hzzo4ItrULSVSoep/4llf9nfS+bfWL3q58Tf/BtkMq9hnCJ6d7fcBjkh+T66OIW5pmaDWpAx3dYQOceTdyAkA1i0xB8w3L/T3tU14Gkir9HnGXYVxAU/qe1bw3LM0pJk58YnLvA3E8/JPhsdem4cz0wCwL9WsR1zHXIsluvyK2FJuoaEg98RDMAVCMc2L3xncZ3qKEJBy8D8KzifZyF7GkX405HUYgyqBFiJCCFtAiaOfpPy7qAwzX3RJwuF69aG7fScIw==
+ b=HstV5tiiLKcEFcBHleX/eVs6OteCA12QudJ79HFJq4RKDvzKCq15q60OluARFimIT1dmZxsvH3BADpkf2S3LFOSdA9U8BwIs4jUkXR2W1HPdqsNtwspFYjm/SGjh/SQvvqfmRZWrtDtgOoGma5G8v7E4/7WkDCGWe2Hpq1ggRV966A8HNqpMVuWn2VP9B8h2SSsuC41sLLLvkjvb5wxTsWhSeKb+3AT6b4hdVO86lA1EbsnuAFMjy7aXLykVvcc8A0q+TJCa4FcDat1P65EbnCuOac/dw5F7IaZCSMM3f+Pho6bqGWg3t5xkyeFQO739i99X5GNEXeY9D4UoMSZ17g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NlLXKFR0vv3FZWuw4EMZ7jgvKLNKDuD9AZEc4g7Do30=;
- b=MfAnU7m09c3XPZfpVXR+/wCqgpo7rLr8WZiSmnQpODJ0L1a/8Rm1PwwFl/FvfEOzZP0/r3jQjExv80sIxUs0iXVu/8i6d6vhwk0mS6xjZINZyv/jIgKvekLfCq4vsps4cm/lySgy2NGE779bP+cazr+LROQA7gWXZdLb8kShLlqDd4iuHWrcEzAho8FMJKey+ihevoxSDmO9L7WlfjlaQOGdd+MX9GTMaJ6BhMMJ1m16HpJ00ElZ7e16E7st2FnfJL9KzaJTfASq9O+Wewp+oCWsk1ybpMYl++vb81wNhKy/uky1ClprDIMy4iKhYBO14hqxPFxIhKCjTA3qPNNv/A==
+ bh=gH34LC8EJsBj2UMtjpZjLghBEye6SJqCo645CEZc7wY=;
+ b=aS8N90G6iDofgZg7hmPihqRwJ56gJ7jDBPhh2NbH45FCb6LpMSJR+gmg3urzq86UcAZQuuoQFTT6qb/HfeugEvXUKjhd2E9RQ8gq/wIvM7Uqvqg90uWKpBjqk4ePhuSKzdwp9auyH9pybSEdj4YaMRXA60x/q6HwgpcciVvPh3b0ECL8d2VQY/ePpJXjyzNfcEsl1lUq1QnErVqueHU6HY177r/Ah9WnHiMfL0HG5TDeVgMKohl/Wibm/W1FI2JkUqvIWUraD9IkC6erloNk0hUyU5MVzNyw7ACwHjAiu7yR/yz/CertaPCWozJssLwQ2ZeH8GABFXMtN/PPrnix8g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from SN7PR11MB8282.namprd11.prod.outlook.com (2603:10b6:806:269::11)
- by SA2PR11MB5147.namprd11.prod.outlook.com (2603:10b6:806:118::19)
+ by PH7PR11MB6056.namprd11.prod.outlook.com (2603:10b6:510:1d4::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.18; Thu, 30 Jan
- 2025 22:36:10 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.20; Thu, 30 Jan
+ 2025 22:37:18 +0000
 Received: from SN7PR11MB8282.namprd11.prod.outlook.com
  ([fe80::f9d9:8daa:178b:3e72]) by SN7PR11MB8282.namprd11.prod.outlook.com
  ([fe80::f9d9:8daa:178b:3e72%5]) with mapi id 15.20.8377.021; Thu, 30 Jan 2025
- 22:36:09 +0000
-Date: Thu, 30 Jan 2025 17:36:03 -0500
+ 22:37:18 +0000
+Date: Thu, 30 Jan 2025 17:37:14 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-CC: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <lucas.demarchi@intel.com>, <vinay.belgaumkar@intel.com>,
- <soham.purkait@intel.com>, Himal Prasad Ghimiray
- <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH v4 1/8] drm/xe: Add per-engine-class activity support
-Message-ID: <Z5v-00L-GsSTye0h@intel.com>
-References: <20250129101653.1976699-1-riana.tauro@intel.com>
- <20250129101653.1976699-2-riana.tauro@intel.com>
- <Z5rHtFUIbLNRfBfk@orsosgc001> <Z5rlgedsHPm6lhSw@intel.com>
- <d2bb059f-61a3-4e5c-bd84-b8a746a10f87@intel.com>
+To: Alan Previn <alan.previn.teres.alexis@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>, John Harrison
+ <john.c.harrison@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ "Zhanjun Dong" <zhanjun.dong@intel.com>
+Subject: Re: [PATCH v6 1/6] drm/xe/guc: Rename __guc_capture_parsed_output
+Message-ID: <Z5v_GhV2xJYZB3mw@intel.com>
+References: <20250128183653.4027915-1-alan.previn.teres.alexis@intel.com>
+ <20250128183653.4027915-2-alan.previn.teres.alexis@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <d2bb059f-61a3-4e5c-bd84-b8a746a10f87@intel.com>
-X-ClientProxiedBy: MW4PR03CA0121.namprd03.prod.outlook.com
- (2603:10b6:303:8c::6) To SN7PR11MB8282.namprd11.prod.outlook.com
+In-Reply-To: <20250128183653.4027915-2-alan.previn.teres.alexis@intel.com>
+X-ClientProxiedBy: MW2PR16CA0025.namprd16.prod.outlook.com (2603:10b6:907::38)
+ To SN7PR11MB8282.namprd11.prod.outlook.com
  (2603:10b6:806:269::11)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR11MB8282:EE_|SA2PR11MB5147:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8754ded7-cc88-4221-dbc2-08dd417e7e33
+X-MS-TrafficTypeDiagnostic: SN7PR11MB8282:EE_|PH7PR11MB6056:EE_
+X-MS-Office365-Filtering-Correlation-Id: cce79675-43b0-4e85-6dc1-08dd417ea74c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?oQ0axbH9DaBiLPDa6itQldiH73489YwF9vjhoFJXF6JpaEqZlVwqD4K6jU?=
- =?iso-8859-1?Q?2pSU0Yn48mbGppHzzvNF0u1DtdCyeiW0ugppBzzE9VkbrA6pQIVe+Bhi/j?=
- =?iso-8859-1?Q?/KJH7v28ZQf0r6XpRYffAAbbT/MAcBAwGRpIgrd6dHwLFwAC8Jiix3KwNx?=
- =?iso-8859-1?Q?ucwozXbhGcxhw030iYBzm7afUwQB26xmWLQM2KL7ksvnSF3zjEdRfNRwgT?=
- =?iso-8859-1?Q?/v+C84y+MT9YauzIXzKn0nFgfmiAkpRaUzDL6/Wpdg6tnm9vzbn3b1xgpy?=
- =?iso-8859-1?Q?GVp7Fa9l7RRwujx9apGcIbT0n7Z1sY4L/uFMf4dsYu7th2E/XZswyk7t0/?=
- =?iso-8859-1?Q?NPE2z3YltbRxIK/OHt+6vIPF2H5D/JnM4YNMX7opqasITHi6+Pl46MDZ/V?=
- =?iso-8859-1?Q?VP6U7eLSAjM+Y5Nmog9j7ZN7qUOelpJ/G0MqYaIAB+oGgDFmVK4bW78MhN?=
- =?iso-8859-1?Q?CSvOqELatkmKf+MaV7bvDvNK3RbDOK6ba9UClusy1wTdnbcuT6o/DnVNbU?=
- =?iso-8859-1?Q?6IW1bsrmaWtnIG2aZ0rtsaJWPF6CObtpJN7iqg/yTC9AJwHgscBtTT6UuB?=
- =?iso-8859-1?Q?UYTBPVcsD0MTm/VVcVQIj1PgsQLO4/G1MjtB2z+Uz/kIFZ18wvEzC/+qNy?=
- =?iso-8859-1?Q?wFlpA74r8jMiLkc1j0Hr9z8czXaUF+enR9DUQSY31i5rZaXJXJfKC2bjFx?=
- =?iso-8859-1?Q?YcFvNpamemh1J8y2LT0QryGWuoX8YjMJJx+a+6BQLnubxrP4zq5SEbV/qJ?=
- =?iso-8859-1?Q?yyFxJ1luDuH3XFYT4Tjl17UPIU6QJtb+oP/m9SSBEL1kHyf6VC6+BfRNg/?=
- =?iso-8859-1?Q?sdTgqQVlQVB+rJRYjnM4H4s5LPBYx1wH+2Dmnz2wxOJO0lb9KF1apoxS/o?=
- =?iso-8859-1?Q?9OaYGxfxPnT7ZPeXpUXUrsUrTN+6/KMpotY2E0Gkj+Im4m8Kt5ykZWz1MZ?=
- =?iso-8859-1?Q?TN/kdM1GE45Rem8k6V2zDVNWy8te1mkUKGMBGC9Q4qXmqBcTkfRIrmFozF?=
- =?iso-8859-1?Q?dPL3+sK+gG7J6fTiVFej2dFZXKXJ9VAz4uoSNTjcFHYEnrgrQncjOPl3NA?=
- =?iso-8859-1?Q?heU9aNwCpwzK6vP+npH1RuWaPSZTnWuuEM2ukbGBf3ixs2eF1jlYKzHMxt?=
- =?iso-8859-1?Q?Q1Cfyn4Ft6tlOQNbSN9ae8/iTLOojRTqKewoQvAGzjEV6E1BUN2+iij3iA?=
- =?iso-8859-1?Q?xzA70C2kDmtBECGwM5QwR7h/8JPW5wxAOMW006/myfqIgqtntQ2TV2RNL8?=
- =?iso-8859-1?Q?vQRl/ZnjQKkl5ikamq33O3D1eCqrbVWQEzwAMLp2XNc+lCr6+l1zX4aGie?=
- =?iso-8859-1?Q?IA/zBJHzFUG1BlukztWHJb76IIyVS3qReLHLxK5jfSL3cazpkksyA2rpii?=
- =?iso-8859-1?Q?d2HUmSQWCA9FJO0uP1lPfOWtaCvSNweQMYp7dWO7/P3paSkkxjcthetWId?=
- =?iso-8859-1?Q?+6/xZ+DsmcGszbQ5?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?+Xf0XhVqUA6Yi1E3yqlEffPP8VvZI0K675FHOQKw8H8ii1xiQAFukiIR7k?=
+ =?iso-8859-1?Q?afXyCPvd4+LEZmcDabiP8/GsC7eL/Oy1DDbs41Dx1r9O4IdPis0GtDkE9n?=
+ =?iso-8859-1?Q?Fba5LtpkxwsSgofKDPKXOmq9O26PwrioPCOsMNUnfVqsVJxemtg4MYu6WH?=
+ =?iso-8859-1?Q?nm4eKTDbyBFHpqM9WBX0tzp9DpvSLnpYvK55HCJNzF7O0nEcOz3w9cDpzv?=
+ =?iso-8859-1?Q?2ETA0vK1Z/J1KXPW+bVx0aST0DBodrNviQrIlYIixcPUvt69OXVSSXrPYu?=
+ =?iso-8859-1?Q?6VDEaGhQzAaxn9b5+mhMgLT4rTy11SCs6AE1ibhY94REwd6v3qViVomVvk?=
+ =?iso-8859-1?Q?DHGKmcvM6bZZxu8ImNyKBL3GPQpEn87QiB66vminNgDw/jks0Ul36mbxSE?=
+ =?iso-8859-1?Q?ATmpawxPwzaHi8ip5vog1D3RLbmaKijYEzQ1YfAB9KYCigifV3oFJZOxr7?=
+ =?iso-8859-1?Q?l/At0CmKorJS+g5Mh+ns4Qcr6HWzF3LRnsdMSIc1+5amQpsm9Ae/Tp3Qvu?=
+ =?iso-8859-1?Q?KpC86qQ7TItt8fDIMim0tKRzjnf7BWRz5SW/zkbHbVWWLgZL7Q2xrTKBwJ?=
+ =?iso-8859-1?Q?OVPVK2xn1H1D9aBquukSOKvdERG542tnA8crWd/vUluEsl5jnwpfrJDbls?=
+ =?iso-8859-1?Q?gnk6X5kU6aEw0t6OPpbC8h/LEhfneF5M4rWLzVtpHRWibjzUvwI5sWiCwi?=
+ =?iso-8859-1?Q?ZYf5hiskH5nPQ1ZctYweFqgfJ5VhRaGFNS8nh75q9Q4TDOwCK9AfH2SM68?=
+ =?iso-8859-1?Q?Tfze5eCMixfwJadCJfppyW/o+kML9ORXkzkFSg19AkkyEYe060SrsDVvwd?=
+ =?iso-8859-1?Q?efYTdaTiU1z83hLfPJy3xAbMBfjQSVFQf7bc8JbA2I8kL/CPWQrBE2NfR1?=
+ =?iso-8859-1?Q?l3aUfgAYjtqoWHdUKy/GYWEqMB+M58TG+oEsNh6r+VwWIdbrMudB1oQE/J?=
+ =?iso-8859-1?Q?xRYBfTw5tKdWlssV6yOiaSXYfiZwxNzZpxpwVkYATOP93iz47ylSuV8PZL?=
+ =?iso-8859-1?Q?GOVZcwUAPBd3d7jqiljgzVe6GQMDBW6luv4lEC8raPwt5/AgvUOjyXYndx?=
+ =?iso-8859-1?Q?bq6pAoWKqtdK+/i8SdLksxAFysDiQKMwHTFI6rFCbglkjUD3iMpwqX/JBu?=
+ =?iso-8859-1?Q?v4yj/Jbu+dG0gQdKbTH3bhd1B+vntVMwRiL36g1i5mGIIDrIP1qOsrywEK?=
+ =?iso-8859-1?Q?TlxsxTIsEcoqbrO5GTQtGydI8PvIhYd2XoSZwCd27vsaONjEeWbijJ/7MQ?=
+ =?iso-8859-1?Q?qmgXvNx0sZSu1UEqERuiT0JIZg8qmeDrqpfT2ZTD6oLaWrvtBwUU3veu5Y?=
+ =?iso-8859-1?Q?8ghg+Z4kOiiAFJ8+6ksRT/xqOTMGmemhMKoGnVW7hOTDo/C4yaHRUxSMDO?=
+ =?iso-8859-1?Q?kWZ2LILV51oGvQ9wgph+3XqSPilEBNbPXmvX9OcbVVfWI+tvbL+X0etRvp?=
+ =?iso-8859-1?Q?5YB4BRp/GBK61mVe?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR11MB8282.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?r/NbV3drSBq/fIXAQZnzqZ3Ql7rJuXuKMxgoUhYwfVZq7RORLV0z+cMfy2?=
- =?iso-8859-1?Q?gqEpqzPy6x8hOXgBlOtAqLeRbYfb04UnLMLO/DlhSEj3VJwi03yOIW/ru6?=
- =?iso-8859-1?Q?dY3gK30k0vZYYE8Aock7UJaT8Fy4F1okqPp1mbuCYMTO1lBMJ9kavs70v6?=
- =?iso-8859-1?Q?zgIqAoTO00hUNJh+afyGwOtiFiUc0P980IwxdIaGoQh4frXgj6vmW+zwDk?=
- =?iso-8859-1?Q?BVHSOZWKLsgEQGapE6iwWt9I3PKZEbZpnVq8c48AQK3lrZNBO2QojArltU?=
- =?iso-8859-1?Q?HV1OVxH45K3/3jXCxjbkYl55hpQi04f/gBE99+hSEUX5bzvX3CHyNEFTyV?=
- =?iso-8859-1?Q?RDyeliVAJyGHWgIRZXbLAf3IY8uL3/i9fGupeq5Au4RYE5dfEgfaqXC2wo?=
- =?iso-8859-1?Q?e4VaU2LC4Jzq4+ygPCfE4x4MHGzT8aP0knDOdrAOVgSvco9QSIMAP9/n++?=
- =?iso-8859-1?Q?1TN9KMrNnmYjnQ2cSjWvjwXDBav2enpE3sZEFKk7PPjSjrgLjNcXGEOe3Y?=
- =?iso-8859-1?Q?oBV6TfSVEu/TBBlVjbCrbjQ9Yqf/uhVWMqQtDZSwXvM76VUKOKcnClhfyi?=
- =?iso-8859-1?Q?AC+Z29zrVKe9yHe9L6vtP9KgLEFHyMwc8gR+1Jk7FQFBQn0YmJoEc9oF51?=
- =?iso-8859-1?Q?13LhPjHJGfCnpNXbunym49M8lKbqy5+/fxDNT3zUFwORtILXFZ0Q5cc6oY?=
- =?iso-8859-1?Q?IU+5QflhdWFbNl+PLxXfhWXX3+s89HXy/mvvvCXZ5YT8LPfqbZgNAS4UCJ?=
- =?iso-8859-1?Q?xD0YoeuPyLjS3X1/OZP/GJnApNyiRFidQKx87CKlbeSiYuH8h7CJZCoFIn?=
- =?iso-8859-1?Q?sr0UcoixUKYEoqmGZ+E3na/WZq5ZAJ0Vu9Up40wxFdqqHR+OHlGi0eLVCF?=
- =?iso-8859-1?Q?UHhXTw4/z0si64QUnBW8xujxqqNsTcipj9wa9Aw4qL8m/einqaxtkaseMi?=
- =?iso-8859-1?Q?EUTPSn4XZAGmwF897kjz+9BOI4kk5v0MUDi6eDUqWHN+qUp+x7geivirKv?=
- =?iso-8859-1?Q?riTMxrJgWV+DMERzrGpGE6zRc45YuiKUHY4EPqwUEpIivxz+v/xKbs7QJ/?=
- =?iso-8859-1?Q?pD4gLrQYSeMHdec3yZ92C0d4txeIz13aZF6cBptcB60rNft53MOhQ9g8f9?=
- =?iso-8859-1?Q?x2fa3Wt0RiiW3lD5kKfbE8jv0V5J0ZsRE5UI9NfGzrlx9JeaxlCNa8sudg?=
- =?iso-8859-1?Q?OxmL7N/h6O62L4+W/5Mh11UtQyemytXTLpwPIHof6XoYiug90SSQ85ZJ2V?=
- =?iso-8859-1?Q?m73h2y9I4eBPs7+UlxgrCKO1LR6m8uC+z4+MrfTl8T6eNI1IKZWGW7/jo1?=
- =?iso-8859-1?Q?NlniE+ZRhlxEGIoyeP89QhBxmktVn5Vi7OBU+h28e4GWinA+PERg4QK5H9?=
- =?iso-8859-1?Q?e7ZCQvjJRwCr3NPw65UdZQc4qnFIbl1ru1vlxGj4kl/bBLljwD+drSkiPM?=
- =?iso-8859-1?Q?9PvdsjWTUIAaeqMEMFtAUAiL+KGbNwTgWSRHVm3lb+3Kvt10wv6RcdblON?=
- =?iso-8859-1?Q?f8JfSkKzjfxvIxVfD0t5OlhEg3M2zmv/i8GkcvRo6DGJm5B9/QtCVtSYFm?=
- =?iso-8859-1?Q?kQCdkgcg+i7VUfNZ5L9uGiS+tZSMj2azQCdqsEGOUiNHJv1zSIaOWPas7i?=
- =?iso-8859-1?Q?q1gAgijYqXxfKxcjuTFgJEJjMZ/I8gSTNpb0YwyGrErVq2xX5g/D/E2w?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?GT/lSf5rv8Vq+x1CtxZ8LsSFiqNf63kjgf5mEhtaPU1D4+XPUXaDJOz4cq?=
+ =?iso-8859-1?Q?Lb8nHGJMxZubG6knj7+HYyfQScwWSWecJ3BVFiZIA4GWuildKl0S3yVx0U?=
+ =?iso-8859-1?Q?DFvA94z5GNP2zP6Q7HQfl6JJRZk09EmbNkgoWlBB4mIXRV2AcIMm9XjLr7?=
+ =?iso-8859-1?Q?J31RbKNNa50mCwm/Iq7BV7bIzOzpatUG0X/wHtQJP2KGLbRPbO2hSZI/Cf?=
+ =?iso-8859-1?Q?cDkt4JFG7y+0wsyiQAKbevoi6RnB6Hm3wwtNmJhGKyFRqZOnnZgveNscct?=
+ =?iso-8859-1?Q?1JYqbnAAEf8fJpwSQxlzlMpzewMKKbP5univqW/FUE8U7E5r0I+DaFI36u?=
+ =?iso-8859-1?Q?IqIOEyM+gmXZsJMwj2uScp5rM9awkkAAMSYWsaiu8+dxqHYNElKVfwVX47?=
+ =?iso-8859-1?Q?+PJ+GCkL5CY5qHAAL8iDhxBrFzkd+gxWZH68t0hzjbL2nSatTGbDFuaC/f?=
+ =?iso-8859-1?Q?srxye3XsD7N/DWVmkfdmCqPDNNgAL4ea3zA1GgiLpW8BTUJUk/LYHmUF61?=
+ =?iso-8859-1?Q?MJazw+Vi7x8DrAeyaVeFmY1QhDVr2XKZBSs5xr2zYXNxoDj3BJecslPO64?=
+ =?iso-8859-1?Q?ksog3V1mmP2riFiozHxIynUPHr1bPB1ww2r8NvN2QneyvC4RHNso6JR8Z5?=
+ =?iso-8859-1?Q?8Vf7v2lihCy8+orHCbUTV061dCMjFu2XWGzDuI1Hkkl6OidOpYdMEQycWi?=
+ =?iso-8859-1?Q?okSat3kdEnDWnWdUZkBmEma7P4yF3PRvLL2xbHHbQkc2Zo/DnPHe89wWnO?=
+ =?iso-8859-1?Q?AsMF/CjVnVbFpZQaf7MuTe8TzdbQWEJvG0jWTKQ9sroRKABNbx9a6phTyh?=
+ =?iso-8859-1?Q?NQj2DeBFGzZV6a5FYNaACv/9hpFDIlOp8PXxMdJjOKHEd0pG7TRRJ6guBr?=
+ =?iso-8859-1?Q?ogu72lj9QzIQ05UYEBepR76YyYSvOw5vOWVbwiCjmw5AfmQxTU3wWb5JMN?=
+ =?iso-8859-1?Q?XPaOeutidqfzhp99ahNoVmCGhxsCtUB4f0IK6yvcpJyl59qvXFqlrETreq?=
+ =?iso-8859-1?Q?orFd5VXhWdeLFol/+cAtBWnCzhrfVFdk6GQcLhumHIFHzVsbRAxeqm/dVy?=
+ =?iso-8859-1?Q?VDBzKIEYrJOYdi2sI9v+e9rYrkvG33TKUmyRnpxgYS45OarUau9sldzBwz?=
+ =?iso-8859-1?Q?bd142oZe32/Nudif8JjoF9jd0QIWBOXyVKXp2Ns+tWHx8Ypw6jlISXc0/I?=
+ =?iso-8859-1?Q?FS/kNd2s203QdfWiwoNJN7YigRIMaom8t8Z5dCiLaeOKyoCbihHOwWIsEn?=
+ =?iso-8859-1?Q?ZlIODs18TyrchVDUqhMWlTK6RrRFdwhxPHK6/FRaTt1VSA2Y+GSgEeLVzS?=
+ =?iso-8859-1?Q?pp99JQkVuORuryM6DTUrdmK/UrXY9xVW+WT3UhpdrTzD2PsudW3ImP71Xe?=
+ =?iso-8859-1?Q?yZ6/IkxQiXiDldYv0n0sxhxEcScNKqUs8scyl6RNW3PXisSIRD56Dw031e?=
+ =?iso-8859-1?Q?FZJ1KMFvIh8jaxAg5E7PS+bhER24SN5JBHx/vlTrrjmT38bpIsG1J032mn?=
+ =?iso-8859-1?Q?xK3UaJnmVzGwH2/4akcaMn0I5xgOm4Ez1Pc/YCaF0hXmCziFTtmqkLpEy0?=
+ =?iso-8859-1?Q?j0ovwv6DtkN4Ae6bwme6M6j0+d1KS1/yVXlr7Rzv1E4NnEywMj8YVc9eSj?=
+ =?iso-8859-1?Q?xgSISABUnqoCNs15PTHi1EYCMDw0Arb7MRdbvTeoAaE5HFUi9ssEJXlA?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8754ded7-cc88-4221-dbc2-08dd417e7e33
+X-MS-Exchange-CrossTenant-Network-Message-Id: cce79675-43b0-4e85-6dc1-08dd417ea74c
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB8282.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2025 22:36:09.8717 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2025 22:37:18.8104 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CHYKOPlowQPNweXEUjNC98ZsLfLSOEj43dUo8Qop4sWuQkHMib1za9NtESCivtFIahcd/saSOECl+in0DgKRfw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5147
+X-MS-Exchange-CrossTenant-UserPrincipalName: bbin2wCwZEoCOxL71311mVe2ONrBvW2x2YJGcfXAowFiybO0P0cCvy7qdoXGuWLaWzgiADmJ5vkDJ+wx4rbIBg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6056
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -185,661 +181,382 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jan 30, 2025 at 10:19:24AM +0530, Riana Tauro wrote:
-> Hi Umesh/Rodrigo
+On Tue, Jan 28, 2025 at 10:36:47AM -0800, Alan Previn wrote:
+> Since '__guc_capture_parsed_output *' is a handle that
+> is retrieved, stored and relinquished by an entity
+> external to GuC (i.e. xe_devcoredump), lets rename it to
+> something formal without the'__' prefix and export it
+> via give a header file.
 > 
-> On 1/30/2025 8:05 AM, Rodrigo Vivi wrote:
-> > On Wed, Jan 29, 2025 at 04:28:36PM -0800, Umesh Nerlige Ramappa wrote:
-> > > On Wed, Jan 29, 2025 at 03:46:44PM +0530, Riana Tauro wrote:
-> > > > GuC provides support to read engine counters to calculate the
-> > > > engine activity. KMD exposes two counters via the PMU interface to
-> > > > calculate engine activity
-> > > > 
-> > > > Engine Active Ticks(engine-active-ticks) - number of active ticks for engine
-> > > > Engine Total Ticks (engine-total-ticks) - total ticks of engine
-> > > > 
-> > > > Engine activity percentage can be calculated as below
-> > > > Engine activity % = (engine active ticks/engine total ticks) * 100.
-> > > > 
-> > > > v2: fix cosmetic review comments
-> > > >     add forcewake for gpm_ts (Umesh)
-> > > > 
-> > > > v3: fix CI hooks error
-> > > >     change function parameters and unpin bo on error
-> > > >     of allocate_activity_buffers
-> > > >     fix kernel-doc (Umesh)
-> > > >     use engine activity (Umesh, Lucas)
-> > > >     rename xe_engine_activity to xe_guc_engine_*
-> > > >     fix commit message to use per-engine class(Lucas)
-> > > > 
-> > > > v4: remove forcewake as engine is already running
-> > > >     when reading gpm timestamp
-> > > 
-> > > + Rodrigo
-> > > 
-> > > Sorry, I think I mentioned offline that the runtime pm get is sufficient for
-> > > reading this register, but it's not. It does need a forcewake of the GT
-> > > domain.  At the same time, we cannot use the xe_force_wake_get because of
-> > > the lockdep issue you mentioned and also I assume that xe_force_wake_get may
-> > > sleep and the event may be read from irq context.
-> The lockdep issue is due to perf holding a raw_spinlock and forcewake having
-> a spinlock. In 6.13 due to config PROVE_RAW_LOCK_NESTING being enabled was
-> seeing this issue. Latest patch has disabled this due to issues with i915.
+> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_devcoredump_types.h     |  2 +-
+>  drivers/gpu/drm/xe/xe_guc_capture.c           | 83 ++++++-------------
+>  drivers/gpu/drm/xe/xe_guc_capture.h           |  2 +-
+>  .../drm/xe/xe_guc_capture_snapshot_types.h    | 53 ++++++++++++
+>  drivers/gpu/drm/xe/xe_hw_engine.c             |  2 +-
+>  drivers/gpu/drm/xe/xe_hw_engine_types.h       |  5 --
+>  6 files changed, 81 insertions(+), 66 deletions(-)
+>  create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_snapshot_types.h
 > 
-> [  465.359017] =============================
-> [  465.363050] [ BUG: Invalid wait context ]
-> [  465.367063] 6.13.0-rc5-xe #11 Tainted: G     U
-> [  465.372544] -----------------------------
-> [  465.376555] swapper/0/0 is trying to lock:
-> [  465.380652] ffff88810d5b8098 (&fw->lock){....}-{3:3}, at:
-> xe_force_wake_get+0x1f9/0x8c0 [xe]
-> [  465.389168] other info that might help us debug this:
-> [  465.394221] context-{5:5}
-> [  465.396847] 1 lock held by swapper/0/0:
-> [  465.400682]  #0: ffff88885f031fb8 (&cpuctx_lock){....}-{2:2}, at:
-> __perf_event_read+0x60/0x230
-> [  465.409295] stack backtrace:
+> diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+> index 1a1d16a96b2d..c94ce21043a8 100644
+> --- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
+> +++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+> @@ -58,7 +58,7 @@ struct xe_devcoredump_snapshot {
+>  	 * this single-node tracker works because devcoredump will always only
+>  	 * produce one hw-engine capture per devcoredump event
+>  	 */
+> -	struct __guc_capture_parsed_output *matched_node;
+> +	struct xe_guc_capture_snapshot *matched_node;
+>  	/** @vm: Snapshot of VM state */
+>  	struct xe_vm_snapshot *vm;
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+> index f6d523e4c5fe..e04c87739267 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_capture.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+> @@ -26,6 +26,7 @@
+>  #include "xe_guc_ads.h"
+>  #include "xe_guc_capture.h"
+>  #include "xe_guc_capture_types.h"
+> +#include "xe_guc_capture_snapshot_types.h"
+>  #include "xe_guc_ct.h"
+>  #include "xe_guc_exec_queue_types.h"
+>  #include "xe_guc_log.h"
+> @@ -53,40 +54,6 @@ struct __guc_capture_bufstate {
+>  	u32 wr;
+>  };
+>  
+> -/*
+> - * struct __guc_capture_parsed_output - extracted error capture node
+> - *
+> - * A single unit of extracted error-capture output data grouped together
+> - * at an engine-instance level. We keep these nodes in a linked list.
+> - * See cachelist and outlist below.
+> - */
+> -struct __guc_capture_parsed_output {
+> -	/*
+> -	 * A single set of 3 capture lists: a global-list
+> -	 * an engine-class-list and an engine-instance list.
+> -	 * outlist in __guc_capture_parsed_output will keep
+> -	 * a linked list of these nodes that will eventually
+> -	 * be detached from outlist and attached into to
+> -	 * xe_codedump in response to a context reset
+> -	 */
+> -	struct list_head link;
+> -	bool is_partial;
+> -	u32 eng_class;
+> -	u32 eng_inst;
+> -	u32 guc_id;
+> -	u32 lrca;
+> -	u32 type;
+> -	bool locked;
+> -	enum xe_hw_engine_snapshot_source_id source;
+> -	struct gcap_reg_list_info {
+> -		u32 vfid;
+> -		u32 num_regs;
+> -		struct guc_mmio_reg *regs;
+> -	} reginfo[GUC_STATE_CAPTURE_TYPE_MAX];
+> -#define GCAP_PARSED_REGLIST_INDEX_GLOBAL   BIT(GUC_STATE_CAPTURE_TYPE_GLOBAL)
+> -#define GCAP_PARSED_REGLIST_INDEX_ENGCLASS BIT(GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS)
+> -};
+> -
+>  /*
+>   * Define all device tables of GuC error capture register lists
+>   * NOTE:
+> @@ -287,7 +254,7 @@ struct xe_guc_state_capture {
+>  
+>  static void
+>  guc_capture_remove_stale_matches_from_list(struct xe_guc_state_capture *gc,
+> -					   struct __guc_capture_parsed_output *node);
+> +					   struct xe_guc_capture_snapshot *node);
+>  
+>  static const struct __guc_mmio_reg_descr_group *
+>  guc_capture_get_device_reglist(struct xe_device *xe)
+> @@ -841,7 +808,7 @@ static void check_guc_capture_size(struct xe_guc *guc)
+>  }
+>  
+>  static void
+> -guc_capture_add_node_to_list(struct __guc_capture_parsed_output *node,
+> +guc_capture_add_node_to_list(struct xe_guc_capture_snapshot *node,
+>  			     struct list_head *list)
+>  {
+>  	list_add(&node->link, list);
+> @@ -849,7 +816,7 @@ guc_capture_add_node_to_list(struct __guc_capture_parsed_output *node,
+>  
+>  static void
+>  guc_capture_add_node_to_outlist(struct xe_guc_state_capture *gc,
+> -				struct __guc_capture_parsed_output *node)
+> +				struct xe_guc_capture_snapshot *node)
+>  {
+>  	guc_capture_remove_stale_matches_from_list(gc, node);
+>  	guc_capture_add_node_to_list(node, &gc->outlist);
+> @@ -857,14 +824,14 @@ guc_capture_add_node_to_outlist(struct xe_guc_state_capture *gc,
+>  
+>  static void
+>  guc_capture_add_node_to_cachelist(struct xe_guc_state_capture *gc,
+> -				  struct __guc_capture_parsed_output *node)
+> +				  struct xe_guc_capture_snapshot *node)
+>  {
+>  	guc_capture_add_node_to_list(node, &gc->cachelist);
+>  }
+>  
+>  static void
+>  guc_capture_free_outlist_node(struct xe_guc_state_capture *gc,
+> -			      struct __guc_capture_parsed_output *n)
+> +			      struct xe_guc_capture_snapshot *n)
+>  {
+>  	if (n) {
+>  		n->locked = 0;
+> @@ -876,9 +843,9 @@ guc_capture_free_outlist_node(struct xe_guc_state_capture *gc,
+>  
+>  static void
+>  guc_capture_remove_stale_matches_from_list(struct xe_guc_state_capture *gc,
+> -					   struct __guc_capture_parsed_output *node)
+> +					   struct xe_guc_capture_snapshot *node)
+>  {
+> -	struct __guc_capture_parsed_output *n, *ntmp;
+> +	struct xe_guc_capture_snapshot *n, *ntmp;
+>  	int guc_id = node->guc_id;
+>  
+>  	list_for_each_entry_safe(n, ntmp, &gc->outlist, link) {
+> @@ -888,7 +855,7 @@ guc_capture_remove_stale_matches_from_list(struct xe_guc_state_capture *gc,
+>  }
+>  
+>  static void
+> -guc_capture_init_node(struct xe_guc *guc, struct __guc_capture_parsed_output *node)
+> +guc_capture_init_node(struct xe_guc *guc, struct xe_guc_capture_snapshot *node)
+>  {
+>  	struct guc_mmio_reg *tmp[GUC_STATE_CAPTURE_TYPE_MAX];
+>  	int i;
+> @@ -1067,13 +1034,13 @@ guc_capture_log_get_register(struct xe_guc *guc, struct __guc_capture_bufstate *
+>  	return 0;
+>  }
+>  
+> -static struct __guc_capture_parsed_output *
+> +static struct xe_guc_capture_snapshot *
+>  guc_capture_get_prealloc_node(struct xe_guc *guc)
+>  {
+> -	struct __guc_capture_parsed_output *found = NULL;
+> +	struct xe_guc_capture_snapshot *found = NULL;
+>  
+>  	if (!list_empty(&guc->capture->cachelist)) {
+> -		struct __guc_capture_parsed_output *n, *ntmp;
+> +		struct xe_guc_capture_snapshot *n, *ntmp;
+>  
+>  		/* get first avail node from the cache list */
+>  		list_for_each_entry_safe(n, ntmp, &guc->capture->cachelist, link) {
+> @@ -1081,7 +1048,7 @@ guc_capture_get_prealloc_node(struct xe_guc *guc)
+>  			break;
+>  		}
+>  	} else {
+> -		struct __guc_capture_parsed_output *n, *ntmp;
+> +		struct xe_guc_capture_snapshot *n, *ntmp;
+>  
+>  		/*
+>  		 * traverse reversed and steal back the oldest node already
+> @@ -1100,11 +1067,11 @@ guc_capture_get_prealloc_node(struct xe_guc *guc)
+>  	return found;
+>  }
+>  
+> -static struct __guc_capture_parsed_output *
+> -guc_capture_clone_node(struct xe_guc *guc, struct __guc_capture_parsed_output *original,
+> +static struct xe_guc_capture_snapshot *
+> +guc_capture_clone_node(struct xe_guc *guc, struct xe_guc_capture_snapshot *original,
+>  		       u32 keep_reglist_mask)
+>  {
+> -	struct __guc_capture_parsed_output *new;
+> +	struct xe_guc_capture_snapshot *new;
+>  	int i;
+>  
+>  	new = guc_capture_get_prealloc_node(guc);
+> @@ -1146,7 +1113,7 @@ guc_capture_extract_reglists(struct xe_guc *guc, struct __guc_capture_bufstate *
+>  	struct xe_gt *gt = guc_to_gt(guc);
+>  	struct guc_state_capture_group_header_t ghdr = {0};
+>  	struct guc_state_capture_header_t hdr = {0};
+> -	struct __guc_capture_parsed_output *node = NULL;
+> +	struct xe_guc_capture_snapshot *node = NULL;
+>  	struct guc_mmio_reg *regs = NULL;
+>  	int i, numlists, numregs, ret = 0;
+>  	enum guc_state_capture_type datatype;
+> @@ -1439,11 +1406,11 @@ void xe_guc_capture_process(struct xe_guc *guc)
+>  		__guc_capture_process_output(guc);
+>  }
+>  
+> -static struct __guc_capture_parsed_output *
+> +static struct xe_guc_capture_snapshot *
+>  guc_capture_alloc_one_node(struct xe_guc *guc)
+>  {
+>  	struct drm_device *drm = guc_to_drm(guc);
+> -	struct __guc_capture_parsed_output *new;
+> +	struct xe_guc_capture_snapshot *new;
+>  	int i;
+>  
+>  	new = drmm_kzalloc(drm, sizeof(*new), GFP_KERNEL);
+> @@ -1468,7 +1435,7 @@ guc_capture_alloc_one_node(struct xe_guc *guc)
+>  static void
+>  __guc_capture_create_prealloc_nodes(struct xe_guc *guc)
+>  {
+> -	struct __guc_capture_parsed_output *node = NULL;
+> +	struct xe_guc_capture_snapshot *node = NULL;
+>  	int i;
+>  
+>  	for (i = 0; i < PREALLOC_NODES_MAX_COUNT; ++i) {
+> @@ -1583,7 +1550,7 @@ xe_engine_manual_capture(struct xe_hw_engine *hwe, struct xe_hw_engine_snapshot
+>  	struct xe_devcoredump *devcoredump = &xe->devcoredump;
+>  	enum guc_capture_list_class_type capture_class;
+>  	const struct __guc_mmio_reg_descr_group *list;
+> -	struct __guc_capture_parsed_output *new;
+> +	struct xe_guc_capture_snapshot *new;
+>  	enum guc_state_capture_type type;
+>  	u16 guc_id = 0;
+>  	u32 lrca = 0;
+> @@ -1849,7 +1816,7 @@ void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm
+>   *
+>   * Returns: found guc-capture node ptr else NULL
+>   */
+> -struct __guc_capture_parsed_output *
+> +struct xe_guc_capture_snapshot *
+>  xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q)
+>  {
+>  	struct xe_hw_engine *hwe;
+> @@ -1878,7 +1845,7 @@ xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q)
+>  	}
+>  
+>  	if (guc_class <= GUC_LAST_ENGINE_CLASS) {
+> -		struct __guc_capture_parsed_output *n, *ntmp;
+> +		struct xe_guc_capture_snapshot *n, *ntmp;
+>  		struct xe_guc *guc =  &q->gt->uc.guc;
+>  		u16 guc_id = q->guc->id;
+>  		u32 lrca = xe_lrc_ggtt_addr(q->lrc[0]);
+> @@ -1931,7 +1898,7 @@ xe_engine_snapshot_capture_for_queue(struct xe_exec_queue *q)
+>  			coredump->snapshot.hwe[id] =
+>  				xe_hw_engine_snapshot_capture(hwe, q);
+>  		} else {
+> -			struct __guc_capture_parsed_output *new;
+> +			struct xe_guc_capture_snapshot *new;
+>  
+>  			new = xe_guc_capture_get_matching_and_lock(q);
+>  			if (new) {
+> @@ -1965,7 +1932,7 @@ void xe_guc_capture_put_matched_nodes(struct xe_guc *guc)
+>  {
+>  	struct xe_device *xe = guc_to_xe(guc);
+>  	struct xe_devcoredump *devcoredump = &xe->devcoredump;
+> -	struct __guc_capture_parsed_output *n = devcoredump->snapshot.matched_node;
+> +	struct xe_guc_capture_snapshot *n = devcoredump->snapshot.matched_node;
+>  
+>  	if (n) {
+>  		guc_capture_remove_stale_matches_from_list(guc->capture, n);
+> diff --git a/drivers/gpu/drm/xe/xe_guc_capture.h b/drivers/gpu/drm/xe/xe_guc_capture.h
+> index 20a078dc4b85..046989fba3b1 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_capture.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_capture.h
+> @@ -50,7 +50,7 @@ size_t xe_guc_capture_ads_input_worst_size(struct xe_guc *guc);
+>  const struct __guc_mmio_reg_descr_group *
+>  xe_guc_capture_get_reg_desc_list(struct xe_gt *gt, u32 owner, u32 type,
+>  				 enum guc_capture_list_class_type capture_class, bool is_ext);
+> -struct __guc_capture_parsed_output *xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q);
+> +struct xe_guc_capture_snapshot *xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q);
+>  void xe_engine_manual_capture(struct xe_hw_engine *hwe, struct xe_hw_engine_snapshot *snapshot);
+>  void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm_printer *p);
+>  void xe_engine_snapshot_capture_for_queue(struct xe_exec_queue *q);
+> diff --git a/drivers/gpu/drm/xe/xe_guc_capture_snapshot_types.h b/drivers/gpu/drm/xe/xe_guc_capture_snapshot_types.h
+> new file mode 100644
+> index 000000000000..0be2c809a7ce
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_guc_capture_snapshot_types.h
+> @@ -0,0 +1,53 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2021-2024 Intel Corporation
+
+2025
+
+then
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 
-hmmm I had forgotten about this...
-
-Lucas, since you were the last one that looked into it,
-would be feasible to switch at least the xe_force_wake towards
-raw_spinlock?
-
-
-> 
-> 
-> Since in this case we are checking mmio only when engine is running
-> and gt will be active. i thought we could remove it.
-> 
-> >>> +	if (ea->running) {
-> >>> +		gpm_ts = xe_mmio_read64_2x32(&gt->mmio, MISC_STATUS_0) >>
-> >>> +			 engine_activity->gpm_timestamp_shift;
-> >>> +		ea->active = lower_32_bits(gpm_ts) -
-> cached_activity->last_update_tick;
-> >>> +	}
-> 
-> But yeah, gt might enter c6 just after reading ea->running. To avoid this,as
-> lucas suggested have to use hr timer.
-> 
-> I thought if needed, will add it as part of a separate series.
-> I can add the forcewake back as the config is removed and add hr timer in
-> another series.
-> 
-> Thanks
-> Riana
-> > 
-> > I don't understand this statement entirely. force wake get cannot sleep.
-> > It is based on spin locks. It should not be issuing any lockdep here.
-> > It is quite simple flow with minimal or none interdependency. Remember
-> > that in i915 for instance it exists and lives in the middle of every
-> > mmio read and write call...
-> > 
-> > > 
-> > > I would check if we can add a helper xe_force_wake_get_if_active() and just
-> > > use that to bump up the wakeref.
-> > 
-> > I would prefer to not complicate things...
-> > 
-> > > 
-> > > @Rodrigo, @Vinay Any thoughts on this ^ ?
-> > 
-> > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> > 
-> > > 
-> > > Thanks,
-> > > Umesh
-> > > 
-> > > > 
-> > > > Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> > > > Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> > > > ---
-> > > > drivers/gpu/drm/xe/Makefile                   |   1 +
-> > > > drivers/gpu/drm/xe/abi/guc_actions_abi.h      |   1 +
-> > > > drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   2 +
-> > > > drivers/gpu/drm/xe/xe_guc_engine_activity.c   | 317 ++++++++++++++++++
-> > > > drivers/gpu/drm/xe/xe_guc_engine_activity.h   |  18 +
-> > > > .../gpu/drm/xe/xe_guc_engine_activity_types.h |  89 +++++
-> > > > drivers/gpu/drm/xe/xe_guc_fwif.h              |  19 ++
-> > > > drivers/gpu/drm/xe/xe_guc_types.h             |   4 +
-> > > > 8 files changed, 451 insertions(+)
-> > > > create mode 100644 drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> > > > create mode 100644 drivers/gpu/drm/xe/xe_guc_engine_activity.h
-> > > > create mode 100644 drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> > > > index 328aff36831b..7e93461c60bd 100644
-> > > > --- a/drivers/gpu/drm/xe/Makefile
-> > > > +++ b/drivers/gpu/drm/xe/Makefile
-> > > > @@ -33,6 +33,7 @@ xe-y += xe_bb.o \
-> > > > 	xe_device_sysfs.o \
-> > > > 	xe_dma_buf.o \
-> > > > 	xe_drm_client.o \
-> > > > +	xe_guc_engine_activity.o \
-> > > > 	xe_exec.o \
-> > > > 	xe_execlist.o \
-> > > > 	xe_exec_queue.o \
-> > > > diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-> > > > index fee385532fb0..ec516e838ee8 100644
-> > > > --- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-> > > > +++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-> > > > @@ -140,6 +140,7 @@ enum xe_guc_action {
-> > > > 	XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC = 0x4601,
-> > > > 	XE_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
-> > > > 	XE_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
-> > > > +	XE_GUC_ACTION_SET_DEVICE_ENGINE_ACTIVITY_BUFFER = 0x550C,
-> > > > 	XE_GUC_ACTION_NOTIFY_MEMORY_CAT_ERROR = 0x6000,
-> > > > 	XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC = 0x6002,
-> > > > 	XE_GUC_ACTION_PAGE_FAULT_RES_DESC = 0x6003,
-> > > > diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> > > > index 096859072396..124cc398798e 100644
-> > > > --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> > > > +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> > > > @@ -358,6 +358,8 @@
-> > > > #define   RENDER_AWAKE_STATUS			REG_BIT(1)
-> > > > #define   MEDIA_SLICE0_AWAKE_STATUS		REG_BIT(0)
-> > > > 
-> > > > +#define MISC_STATUS_0				XE_REG(0xa500)
-> > > > +
-> > > > #define FORCEWAKE_MEDIA_VDBOX(n)		XE_REG(0xa540 + (n) * 4)
-> > > > #define FORCEWAKE_MEDIA_VEBOX(n)		XE_REG(0xa560 + (n) * 4)
-> > > > #define FORCEWAKE_GSC				XE_REG(0xa618)
-> > > > diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> > > > new file mode 100644
-> > > > index 000000000000..088209b9c228
-> > > > --- /dev/null
-> > > > +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> > > > @@ -0,0 +1,317 @@
-> > > > +// SPDX-License-Identifier: MIT
-> > > > +/*
-> > > > + * Copyright © 2025 Intel Corporation
-> > > > + */
-> > > > +#include "xe_guc_engine_activity.h"
-> > > > +
-> > > > +#include "abi/guc_actions_abi.h"
-> > > > +#include "regs/xe_gt_regs.h"
-> > > > +
-> > > > +#include "xe_bo.h"
-> > > > +#include "xe_force_wake.h"
-> > > > +#include "xe_gt_printk.h"
-> > > > +#include "xe_guc.h"
-> > > > +#include "xe_guc_ct.h"
-> > > > +#include "xe_hw_engine.h"
-> > > > +#include "xe_map.h"
-> > > > +#include "xe_mmio.h"
-> > > > +
-> > > > +#define TOTAL_QUANTA 0x8000
-> > > > +
-> > > > +static struct iosys_map engine_activity_map(struct xe_guc *guc, struct xe_hw_engine *hwe)
-> > > > +{
-> > > > +	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> > > > +	struct engine_activity_buffer *buffer = &engine_activity->device_buffer;
-> > > > +	u16 guc_class = xe_engine_class_to_guc_class(hwe->class);
-> > > > +	size_t offset = 0;
-> > > > +
-> > > > +	offset = offsetof(struct guc_engine_activity_data,
-> > > > +			  engine_activity[guc_class][hwe->logical_instance]);
-> > > > +
-> > > > +	return IOSYS_MAP_INIT_OFFSET(&buffer->activity_bo->vmap, offset);
-> > > > +}
-> > > > +
-> > > > +static struct iosys_map engine_metadata_map(struct xe_guc *guc)
-> > > > +{
-> > > > +	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> > > > +	struct engine_activity_buffer *buffer = &engine_activity->device_buffer;
-> > > > +
-> > > > +	return buffer->metadata_bo->vmap;
-> > > > +}
-> > > > +
-> > > > +static int allocate_engine_activity_group(struct xe_guc *guc)
-> > > > +{
-> > > > +	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> > > > +	u32 num_activity_group = 1;
-> > > > +
-> > > > +	engine_activity->eag = kmalloc_array(num_activity_group,
-> > > > +					     sizeof(struct engine_activity_group),
-> > > > +					     GFP_KERNEL);
-> > > > +
-> > > > +	if (!engine_activity->eag)
-> > > > +		return -ENOMEM;
-> > > > +
-> > > > +	memset(engine_activity->eag, 0, num_activity_group * sizeof(struct engine_activity_group));
-> > > > +	engine_activity->num_activity_group = num_activity_group;
-> > > > +
-> > > > +	return 0;
-> > > > +}
-> > > > +
-> > > > +static int allocate_engine_activity_buffers(struct xe_guc *guc,
-> > > > +					    struct engine_activity_buffer *buffer)
-> > > > +{
-> > > > +	u32 metadata_size = sizeof(struct guc_engine_activity_metadata);
-> > > > +	u32 size = sizeof(struct guc_engine_activity_data);
-> > > > +	struct xe_gt *gt = guc_to_gt(guc);
-> > > > +	struct xe_tile *tile = gt_to_tile(gt);
-> > > > +	struct xe_bo *bo, *metadata_bo;
-> > > > +
-> > > > +	metadata_bo = xe_managed_bo_create_pin_map(gt_to_xe(gt), tile, PAGE_ALIGN(metadata_size),
-> > > > +						   XE_BO_FLAG_SYSTEM |
-> > > > +						   XE_BO_FLAG_GGTT |
-> > > > +						   XE_BO_FLAG_GGTT_INVALIDATE);
-> > > > +	if (IS_ERR(metadata_bo))
-> > > > +		return PTR_ERR(metadata_bo);
-> > > > +
-> > > > +	bo = xe_managed_bo_create_pin_map(gt_to_xe(gt), tile, PAGE_ALIGN(size),
-> > > > +					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-> > > > +					  XE_BO_FLAG_GGTT |
-> > > > +					  XE_BO_FLAG_GGTT_INVALIDATE);
-> > > > +
-> > > > +	if (IS_ERR(bo)) {
-> > > > +		xe_bo_unpin_map_no_vm(metadata_bo);
-> > > > +		return PTR_ERR(bo);
-> > > > +	}
-> > > > +
-> > > > +	buffer->metadata_bo = metadata_bo;
-> > > > +	buffer->activity_bo = bo;
-> > > > +	return 0;
-> > > > +}
-> > > > +
-> > > > +static struct engine_activity *hw_engine_to_engine_activity(struct xe_hw_engine *hwe)
-> > > > +{
-> > > > +	struct xe_guc *guc = &hwe->gt->uc.guc;
-> > > > +	struct engine_activity_group *eag = &guc->engine_activity.eag[0];
-> > > > +	u16 guc_class = xe_engine_class_to_guc_class(hwe->class);
-> > > > +
-> > > > +	return &eag->engine[guc_class][hwe->logical_instance];
-> > > > +}
-> > > > +
-> > > > +static u64 cpu_ns_to_guc_tsc_tick(ktime_t ns, u32 freq)
-> > > > +{
-> > > > +	return mul_u64_u32_div(ns, freq, NSEC_PER_SEC);
-> > > > +}
-> > > > +
-> > > > +#define read_engine_activity_record(xe_, map_, field_) \
-> > > > +	xe_map_rd_field(xe_, map_, 0, struct guc_engine_activity, field_)
-> > > > +
-> > > > +#define read_metadata_record(xe_, map_, field_) \
-> > > > +	xe_map_rd_field(xe_, map_, 0, struct guc_engine_activity_metadata, field_)
-> > > > +
-> > > > +static u64 get_engine_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
-> > > > +{
-> > > > +	struct engine_activity *ea = hw_engine_to_engine_activity(hwe);
-> > > > +	struct guc_engine_activity *cached_activity = &ea->activity;
-> > > > +	struct guc_engine_activity_metadata *cached_metadata = &ea->metadata;
-> > > > +	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> > > > +	struct iosys_map activity_map, metadata_map;
-> > > > +	struct xe_device *xe =  guc_to_xe(guc);
-> > > > +	struct xe_gt *gt = guc_to_gt(guc);
-> > > > +	u32 last_update_tick, global_change_num;
-> > > > +	u64 active_ticks, gpm_ts;
-> > > > +	u16 change_num;
-> > > > +
-> > > > +	activity_map = engine_activity_map(guc, hwe);
-> > > > +	metadata_map = engine_metadata_map(guc);
-> > > > +	global_change_num = read_metadata_record(xe, &metadata_map, global_change_num);
-> > > > +
-> > > > +	/* GuC has not initialized activity data yet, return 0 */
-> > > > +	if (!global_change_num)
-> > > > +		goto update;
-> > > > +
-> > > > +	if (global_change_num == cached_metadata->global_change_num)
-> > > > +		goto update;
-> > > > +	else
-> > > > +		cached_metadata->global_change_num = global_change_num;
-> > > > +
-> > > > +	change_num = read_engine_activity_record(xe, &activity_map, change_num);
-> > > > +
-> > > > +	if (!change_num || change_num == cached_activity->change_num)
-> > > > +		goto update;
-> > > > +
-> > > > +	/* read engine activity values */
-> > > > +	last_update_tick = read_engine_activity_record(xe, &activity_map, last_update_tick);
-> > > > +	active_ticks = read_engine_activity_record(xe, &activity_map, active_ticks);
-> > > > +
-> > > > +	/* activity calculations */
-> > > > +	ea->running = !!last_update_tick;
-> > > > +	ea->total += active_ticks - cached_activity->active_ticks;
-> > > > +	ea->active = 0;
-> > > > +
-> > > > +	/* cache the counter */
-> > > > +	cached_activity->change_num = change_num;
-> > > > +	cached_activity->last_update_tick = last_update_tick;
-> > > > +	cached_activity->active_ticks = active_ticks;
-> > > > +
-> > > > +update:
-> > > > +	if (ea->running) {
-> > > > +		gpm_ts = xe_mmio_read64_2x32(&gt->mmio, MISC_STATUS_0) >>
-> > > > +			 engine_activity->gpm_timestamp_shift;
-> > > > +		ea->active = lower_32_bits(gpm_ts) - cached_activity->last_update_tick;
-> > > > +	}
-> > > > +
-> > > > +	return ea->total + ea->active;
-> > > > +}
-> > > > +
-> > > > +static u64 get_engine_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
-> > > > +{
-> > > > +	struct engine_activity *ea = hw_engine_to_engine_activity(hwe);
-> > > > +	struct guc_engine_activity_metadata *cached_metadata = &ea->metadata;
-> > > > +	struct guc_engine_activity *cached_activity = &ea->activity;
-> > > > +	struct iosys_map activity_map, metadata_map;
-> > > > +	struct xe_device *xe = guc_to_xe(guc);
-> > > > +	ktime_t now, cpu_delta;
-> > > > +	u64 numerator;
-> > > > +	u16 quanta_ratio;
-> > > > +
-> > > > +	activity_map = engine_activity_map(guc, hwe);
-> > > > +	metadata_map = engine_metadata_map(guc);
-> > > > +
-> > > > +	if (!cached_metadata->guc_tsc_frequency_hz)
-> > > > +		cached_metadata->guc_tsc_frequency_hz = read_metadata_record(xe, &metadata_map,
-> > > > +									     guc_tsc_frequency_hz);
-> > > > +
-> > > > +	quanta_ratio = read_engine_activity_record(xe, &activity_map, quanta_ratio);
-> > > > +	cached_activity->quanta_ratio = quanta_ratio;
-> > > > +
-> > > > +	/* Total ticks calculations */
-> > > > +	now = ktime_get();
-> > > > +	cpu_delta = now - ea->last_cpu_ts;
-> > > > +	ea->last_cpu_ts = now;
-> > > > +	numerator = (ea->quanta_remainder_ns + cpu_delta) * cached_activity->quanta_ratio;
-> > > > +	ea->quanta_ns += numerator / TOTAL_QUANTA;
-> > > > +	ea->quanta_remainder_ns = numerator % TOTAL_QUANTA;
-> > > > +	ea->quanta = cpu_ns_to_guc_tsc_tick(ea->quanta_ns, cached_metadata->guc_tsc_frequency_hz);
-> > > > +
-> > > > +	return ea->quanta;
-> > > > +}
-> > > > +
-> > > > +static int enable_engine_activity_stats(struct xe_guc *guc)
-> > > > +{
-> > > > +	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> > > > +	struct engine_activity_buffer *buffer = &engine_activity->device_buffer;
-> > > > +	u32 metadata_ggtt_addr = xe_bo_ggtt_addr(buffer->metadata_bo);
-> > > > +	u32 ggtt_addr = xe_bo_ggtt_addr(buffer->activity_bo);
-> > > > +	int len = 0;
-> > > > +	u32 action[5];
-> > > > +
-> > > > +	action[len++] = XE_GUC_ACTION_SET_DEVICE_ENGINE_ACTIVITY_BUFFER;
-> > > > +	action[len++] = metadata_ggtt_addr;
-> > > > +	action[len++] = 0;
-> > > > +	action[len++] = ggtt_addr;
-> > > > +	action[len++] = 0;
-> > > > +
-> > > > +	/* Blocking here to ensure the buffers are ready before reading them */
-> > > > +	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
-> > > > +}
-> > > > +
-> > > > +static void engine_activity_set_cpu_ts(struct xe_guc *guc)
-> > > > +{
-> > > > +	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> > > > +	struct engine_activity_group *eag = &engine_activity->eag[0];
-> > > > +	int i, j;
-> > > > +
-> > > > +	for (i = 0; i < GUC_MAX_ENGINE_CLASSES; i++)
-> > > > +		for (j = 0; j < GUC_MAX_INSTANCES_PER_CLASS; j++)
-> > > > +			eag->engine[i][j].last_cpu_ts = ktime_get();
-> > > > +}
-> > > > +
-> > > > +static u32 gpm_timestamp_shift(struct xe_gt *gt)
-> > > > +{
-> > > > +	u32 reg;
-> > > > +
-> > > > +	reg = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
-> > > > +
-> > > > +	return 3 - REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, reg);
-> > > > +}
-> > > > +
-> > > > +/**
-> > > > + * xe_guc_engine_activity_active_ticks - Get engine active ticks
-> > > > + * @hwe: The hw_engine object
-> > > > + *
-> > > > + * Return: accumulated ticks @hwe was active since engine activity stats were enabled.
-> > > > + */
-> > > > +u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe)
-> > > > +{
-> > > > +	struct xe_guc *guc =  &hwe->gt->uc.guc;
-> > > > +
-> > > > +	return get_engine_active_ticks(guc, hwe);
-> > > > +}
-> > > > +
-> > > > +/**
-> > > > + * xe_guc_engine_activity_total_ticks - Get engine total ticks
-> > > > + * @hwe: The hw_engine object
-> > > > + *
-> > > > + * Return: accumulated quanta of ticks allocated for the engine
-> > > > + */
-> > > > +u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe)
-> > > > +{
-> > > > +	struct xe_guc *guc =  &hwe->gt->uc.guc;
-> > > > +
-> > > > +	return get_engine_total_ticks(guc, hwe);
-> > > > +}
-> > > > +
-> > > > +/**
-> > > > + * xe_guc_engine_activity_enable_stats - Enable engine activity stats
-> > > > + * @guc: The GuC object
-> > > > + *
-> > > > + * Enable engine activity stats and set initial timestamps
-> > > > + */
-> > > > +void xe_guc_engine_activity_enable_stats(struct xe_guc *guc)
-> > > > +{
-> > > > +	int ret;
-> > > > +
-> > > > +	ret = enable_engine_activity_stats(guc);
-> > > > +	if (ret)
-> > > > +		xe_gt_err(guc_to_gt(guc), "failed to enable activity stats%d\n", ret);
-> > > > +	else
-> > > > +		engine_activity_set_cpu_ts(guc);
-> > > > +}
-> > > > +
-> > > > +static void engine_activity_fini(void *arg)
-> > > > +{
-> > > > +	struct xe_guc_engine_activity *engine_activity = arg;
-> > > > +
-> > > > +	kfree(engine_activity->eag);
-> > > > +}
-> > > > +
-> > > > +/**
-> > > > + * xe_guc_engine_activity_init - Initialize the engine activity data
-> > > > + * @guc: The GuC object
-> > > > + *
-> > > > + * Return: 0 on success, negative error code otherwise.
-> > > > + */
-> > > > +int xe_guc_engine_activity_init(struct xe_guc *guc)
-> > > > +{
-> > > > +	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> > > > +	struct xe_gt *gt = guc_to_gt(guc);
-> > > > +	int ret;
-> > > > +
-> > > > +	ret = allocate_engine_activity_group(guc);
-> > > > +	if (ret) {
-> > > > +		xe_gt_err(gt, "failed to allocate activity group %d\n", ret);
-> > > > +		return ret;
-> > > > +	}
-> > > > +
-> > > > +	ret = allocate_engine_activity_buffers(guc, &engine_activity->device_buffer);
-> > > > +	if (ret) {
-> > > > +		xe_gt_err(gt, "failed to allocate activity buffers%d\n", ret);
-> > > > +		kfree(engine_activity->eag);
-> > > > +		return ret;
-> > > > +	}
-> > > > +
-> > > > +	engine_activity->gpm_timestamp_shift = gpm_timestamp_shift(gt);
-> > > > +
-> > > > +	return devm_add_action_or_reset(gt_to_xe(gt)->drm.dev, engine_activity_fini,
-> > > > +					engine_activity);
-> > > > +}
-> > > > diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.h b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
-> > > > new file mode 100644
-> > > > index 000000000000..c00f3da5513d
-> > > > --- /dev/null
-> > > > +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
-> > > > @@ -0,0 +1,18 @@
-> > > > +/* SPDX-License-Identifier: MIT */
-> > > > +/*
-> > > > + * Copyright © 2025 Intel Corporation
-> > > > + */
-> > > > +
-> > > > +#ifndef _XE_GUC_ENGINE_ACTIVITY_H_
-> > > > +#define _XE_GUC_ENGINE_ACTIVITY_H_
-> > > > +
-> > > > +#include <linux/types.h>
-> > > > +
-> > > > +struct xe_hw_engine;
-> > > > +struct xe_guc;
-> > > > +
-> > > > +int xe_guc_engine_activity_init(struct xe_guc *guc);
-> > > > +void xe_guc_engine_activity_enable_stats(struct xe_guc *guc);
-> > > > +u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe);
-> > > > +u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe);
-> > > > +#endif
-> > > > diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
-> > > > new file mode 100644
-> > > > index 000000000000..a2ab327d3eec
-> > > > --- /dev/null
-> > > > +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
-> > > > @@ -0,0 +1,89 @@
-> > > > +/* SPDX-License-Identifier: MIT */
-> > > > +/*
-> > > > + * Copyright © 2025 Intel Corporation
-> > > > + */
-> > > > +
-> > > > +#ifndef _XE_GUC_ENGINE_ACTIVITY_TYPES_H_
-> > > > +#define _XE_GUC_ENGINE_ACTIVITY_TYPES_H_
-> > > > +
-> > > > +#include <linux/types.h>
-> > > > +
-> > > > +#include "xe_guc_fwif.h"
-> > > > +/**
-> > > > + * struct engine_activity - Engine specific activity data
-> > > > + *
-> > > > + * Contains engine specific activity data and snapshot of the
-> > > > + * structures from GuC
-> > > > + */
-> > > > +struct engine_activity {
-> > > > +	/** @active: current activity */
-> > > > +	u64 active;
-> > > > +
-> > > > +	/** @last_cpu_ts: cpu timestamp in nsec of previous sample */
-> > > > +	u64 last_cpu_ts;
-> > > > +
-> > > > +	/** @quanta: total quanta used on HW */
-> > > > +	u64 quanta;
-> > > > +
-> > > > +	/** @quanta_ns: total quanta_ns used on HW */
-> > > > +	u64 quanta_ns;
-> > > > +
-> > > > +	/**
-> > > > +	 * @quanta_remainder_ns: remainder when the CPU time is scaled as
-> > > > +	 * per the quanta_ratio. This remainder is used in subsequent
-> > > > +	 * quanta calculations.
-> > > > +	 */
-> > > > +	u64 quanta_remainder_ns;
-> > > > +
-> > > > +	/** @total: total engine activity */
-> > > > +	u64 total;
-> > > > +
-> > > > +	/** @running: true if engine is running some work */
-> > > > +	bool running;
-> > > > +
-> > > > +	/** @metadata: snapshot of engine activity metadata */
-> > > > +	struct guc_engine_activity_metadata metadata;
-> > > > +
-> > > > +	/** @activity: snapshot of engine activity counter */
-> > > > +	struct guc_engine_activity activity;
-> > > > +};
-> > > > +
-> > > > +/**
-> > > > + * struct engine_activity_group - Activity data for all engines
-> > > > + */
-> > > > +struct engine_activity_group {
-> > > > +	/** @engine: engine specific activity data */
-> > > > +	struct engine_activity engine[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
-> > > > +};
-> > > > +
-> > > > +/**
-> > > > + * struct engine_activity_buffer - engine activity buffers
-> > > > + *
-> > > > + * This contains the buffers allocated for metadata and activity data
-> > > > + */
-> > > > +struct engine_activity_buffer {
-> > > > +	/** @activity_bo: object allocated to hold activity data */
-> > > > +	struct xe_bo *activity_bo;
-> > > > +
-> > > > +	/** @metadata_bo: object allocated to hold activity metadata */
-> > > > +	struct xe_bo *metadata_bo;
-> > > > +};
-> > > > +
-> > > > +/**
-> > > > + * struct xe_guc_engine_activity - Data used by engine activity implementation
-> > > > + */
-> > > > +struct xe_guc_engine_activity {
-> > > > +	/** @gpm_timestamp_shift: Right shift value for the gpm timestamp */
-> > > > +	u32 gpm_timestamp_shift;
-> > > > +
-> > > > +	/** @num_activity_group: number of activity groups */
-> > > > +	u32 num_activity_group;
-> > > > +
-> > > > +	/** @eag: holds the device level engine activity data */
-> > > > +	struct engine_activity_group *eag;
-> > > > +
-> > > > +	/** @device_buffer: buffer object for global engine activity */
-> > > > +	struct engine_activity_buffer device_buffer;
-> > > > +};
-> > > > +#endif
-> > > > +
-> > > > diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-> > > > index 057153f89b30..6f57578b07cb 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-> > > > +++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-> > > > @@ -208,6 +208,25 @@ struct guc_engine_usage {
-> > > > 	struct guc_engine_usage_record engines[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
-> > > > } __packed;
-> > > > 
-> > > > +/* Engine Activity stats */
-> > > > +struct guc_engine_activity {
-> > > > +	u16 change_num;
-> > > > +	u16 quanta_ratio;
-> > > > +	u32 last_update_tick;
-> > > > +	u64 active_ticks;
-> > > > +} __packed;
-> > > > +
-> > > > +struct guc_engine_activity_data {
-> > > > +	struct guc_engine_activity engine_activity[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
-> > > > +} __packed;
-> > > > +
-> > > > +struct guc_engine_activity_metadata {
-> > > > +	u32 guc_tsc_frequency_hz;
-> > > > +	u32 lag_latency_usec;
-> > > > +	u32 global_change_num;
-> > > > +	u32 reserved;
-> > > > +} __packed;
-> > > > +
-> > > > /* This action will be programmed in C1BC - SOFT_SCRATCH_15_REG */
-> > > > enum xe_guc_recv_message {
-> > > > 	XE_GUC_RECV_MSG_CRASH_DUMP_POSTED = BIT(1),
-> > > > diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-> > > > index 573aa6308380..63bac64429a5 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_guc_types.h
-> > > > +++ b/drivers/gpu/drm/xe/xe_guc_types.h
-> > > > @@ -13,6 +13,7 @@
-> > > > #include "xe_guc_ads_types.h"
-> > > > #include "xe_guc_buf_types.h"
-> > > > #include "xe_guc_ct_types.h"
-> > > > +#include "xe_guc_engine_activity_types.h"
-> > > > #include "xe_guc_fwif.h"
-> > > > #include "xe_guc_log_types.h"
-> > > > #include "xe_guc_pc_types.h"
-> > > > @@ -103,6 +104,9 @@ struct xe_guc {
-> > > > 	/** @relay: GuC Relay Communication used in SR-IOV */
-> > > > 	struct xe_guc_relay relay;
-> > > > 
-> > > > +	/** @engine_activity: Device specific engine activity */
-> > > > +	struct xe_guc_engine_activity engine_activity;
-> > > > +
-> > > > 	/**
-> > > > 	 * @notify_reg: Register which is written to notify GuC of H2G messages
-> > > > 	 */
-> > > > -- 
-> > > > 2.47.1
-> > > > 
+> + */
+> +
+> +#ifndef _XE_GUC_CAPTURE_SNAPSHOT_TYPES_H
+> +#define _XE_GUC_CAPTURE_SNAPSHOT_TYPES_H
+> +
+> +#include <linux/types.h>
+> +#include <abi/guc_capture_abi.h>
+> +
+> +struct guc_mmio_reg;
+> +
+> +enum xe_guc_capture_snapshot_source {
+> +	XE_ENGINE_CAPTURE_SOURCE_MANUAL,
+> +	XE_ENGINE_CAPTURE_SOURCE_GUC
+> +};
+> +
+> +/*
+> + * struct xe_guc_capture_snapshot - extracted error capture node
+> + *
+> + * A single unit of extracted error-capture output data grouped together
+> + * at an engine-instance level. We keep these nodes in a linked list.
+> + * See cachelist and outlist below.
+> + */
+> +struct xe_guc_capture_snapshot {
+> +	/*
+> +	 * A single set of 3 capture lists: a global-list
+> +	 * an engine-class-list and an engine-instance list.
+> +	 * outlist in xe_guc_state_capture will keep
+> +	 * a linked list of these nodes that will eventually
+> +	 * be detached from outlist and attached into to
+> +	 * xe_codedump in response to a context reset
+> +	 */
+> +	struct list_head link;
+> +	bool is_partial;
+> +	u32 eng_class;
+> +	u32 eng_inst;
+> +	u32 guc_id;
+> +	u32 lrca;
+> +	u32 type;
+> +	bool locked;
+> +	enum xe_guc_capture_snapshot_source source;
+> +	struct gcap_reg_list_info {
+> +		u32 vfid;
+> +		u32 num_regs;
+> +		struct guc_mmio_reg *regs;
+> +	} reginfo[GUC_STATE_CAPTURE_TYPE_MAX];
+> +#define GCAP_PARSED_REGLIST_INDEX_GLOBAL   BIT(GUC_STATE_CAPTURE_TYPE_GLOBAL)
+> +#define GCAP_PARSED_REGLIST_INDEX_ENGCLASS BIT(GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS)
+> +};
+> +
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+> index fc447751fe78..a99e3160724b 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> @@ -843,7 +843,7 @@ struct xe_hw_engine_snapshot *
+>  xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe, struct xe_exec_queue *q)
+>  {
+>  	struct xe_hw_engine_snapshot *snapshot;
+> -	struct __guc_capture_parsed_output *node;
+> +	struct xe_guc_capture_snapshot *node;
+>  
+>  	if (!xe_hw_engine_is_valid(hwe))
+>  		return NULL;
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> index e4191a7a2c31..de69e2628f2f 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> @@ -152,11 +152,6 @@ struct xe_hw_engine {
+>  	struct xe_hw_engine_group *hw_engine_group;
+>  };
+>  
+> -enum xe_hw_engine_snapshot_source_id {
+> -	XE_ENGINE_CAPTURE_SOURCE_MANUAL,
+> -	XE_ENGINE_CAPTURE_SOURCE_GUC
+> -};
+> -
+>  /**
+>   * struct xe_hw_engine_snapshot - Hardware engine snapshot
+>   *
+> -- 
+> 2.34.1
 > 
