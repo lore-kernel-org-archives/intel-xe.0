@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E06EEC0218A
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 21:31:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC1ACC02193
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 21:33:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0E5E10E0EF;
-	Thu, 30 Jan 2025 21:31:39 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9B8310E0EF;
- Thu, 30 Jan 2025 21:31:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8330810E9D7;
+	Thu, 30 Jan 2025 21:33:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="evsKtZzP";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB5DA10E9DD;
+ Thu, 30 Jan 2025 21:33:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738272793; x=1769808793;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=plis1QLamZ5pL49QcIykFQyZJ3GSomWKkBj7oe7LcqY=;
+ b=evsKtZzPsCajrB7Ki4AdcPsVA34dhXY4yg1XGyJg5vJyhECwfWj0iyOM
+ 57t8mRg0S6VfsXfiOvbdToXSmSnJhv9NgZ0w2uaZfTK3nUIANXRcCpA/w
+ SJnA7UkfuNx/6jAC7U0t1Of1+67gBGGeoE+08U1XyEv8kHP6aI9/lIm7G
+ MCBxdzyLFp0RcGaqp8eKxi/0pzE+iJIhBNGRIaQdvvOKYi50yLbJSCQhO
+ F7Fy50Iic47A+wvICyJ7+yaqgIIDKKUnj24gGo8OdnNvI350M5QY1nuEF
+ 611i5CbseBGVE9U+ybcOqyKALTIKHOVMHSY9BAUJifoErB0I0d1FzXRsN A==;
+X-CSE-ConnectionGUID: H95siE43QqqjYsCvkMT2YQ==
+X-CSE-MsgGUID: hFn6vFR8S32mTWL7DLtAOw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="49829613"
+X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="49829613"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 13:33:13 -0800
+X-CSE-ConnectionGUID: 93mJFEg6R02vHWAezDgGXw==
+X-CSE-MsgGUID: /dX268xxSdKHzAYwf9eXCg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="109904680"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 13:33:12 -0800
+Date: Thu, 30 Jan 2025 23:34:04 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 4/6] drm/i915/mst: handle mst pbn_div in
+ intel_dp_mtp_tu_compute_config()
+Message-ID: <Z5vwTAiplbeI-Sm1@ideak-desk.fi.intel.com>
+References: <cover.1738161945.git.jani.nikula@intel.com>
+ <0cc1b507601c9964ebae7d50b1f90b1ce00acb11.1738161945.git.jani.nikula@intel.com>
+ <Z5uLY1QC72jrT_JC@ideak-desk.fi.intel.com>
+ <8734h080na.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/xe3=3A_FBC_Dirt?=
- =?utf-8?q?y_rect_feature_support_=28rev7=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 30 Jan 2025 21:31:38 -0000
-Message-ID: <173827269895.2983009.13473413995890827575@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250130210027.591927-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20250130210027.591927-1-vinod.govindapillai@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8734h080na.fsf@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,103 +67,120 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Jan 30, 2025 at 11:14:33PM +0200, Jani Nikula wrote:
+> On Thu, 30 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
+> > On Wed, Jan 29, 2025 at 04:46:36PM +0200, Jani Nikula wrote:
+> >> Move mst_state->pbn_div calculation to intel_dp_mtp_tu_compute_config()
+> >> to allow further refactoring.
+> >> 
+> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 31 ++++++++++-----------
+> >>  1 file changed, 14 insertions(+), 17 deletions(-)
+> >> 
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> >> index ea1b05224c06..8786c8751c82 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> >> @@ -216,15 +216,25 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+> >>  {
+> >>  	struct intel_display *display = to_intel_display(intel_dp);
+> >>  	struct drm_atomic_state *state = crtc_state->uapi.state;
+> >> +	struct drm_dp_mst_topology_state *mst_state = NULL;
+> >>  	struct intel_connector *connector =
+> >>  		to_intel_connector(conn_state->connector);
+> >>  	const struct drm_display_mode *adjusted_mode =
+> >>  		&crtc_state->hw.adjusted_mode;
+> >> -	fixed20_12 pbn_div;
+> >> +	bool is_mst = intel_dp->is_mst;
+> >>  	int bpp, slots = -EINVAL;
+> >>  	int dsc_slice_count = 0;
+> >>  	int max_dpt_bpp;
+> >>  
+> >> +	if (is_mst) {^
+> >> +		mst_state = drm_atomic_get_mst_topology_state(state, &intel_dp->mst_mgr);
+> >> +		if (IS_ERR(mst_state))
+> >> +			return PTR_ERR(mst_state);
+> >> +
+> >> +		mst_state->pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
+> >> +							      crtc_state->lane_count);
+> >> +	}
+> >> +
+> >
+> > This could've been in the if (intel_dp->is_mst) block, since SST doesn't
+> > use pbn_div. In any case the patch is correct:
+> 
+> Uh, there's the if (is_mst)?
 
-Series: drm/i915/xe3: FBC Dirty rect feature support (rev7)
-URL   : https://patchwork.freedesktop.org/series/141526/
-State : warning
+I meant the MST block below, but missed that it's within the loop
+through bpps:/ So nvm my comment above.
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 54974a9354d844eca54feeec70870790fac17160
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:1968:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1968:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1968:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1968:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1968:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1968:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1968:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1968:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1968:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1968:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1968:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1968:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1981:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1981:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c:106:17: warning: cast truncates bits from constant value (e8d4a51000 becomes d4a51000)
-+drivers/gpu/drm/i915/gt/intel_reset.c:1541:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_active.c:1063:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/i915_irq.c:453:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:453:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:461:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:461:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:503:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:503:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:511:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:511:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:559:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:559:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:562:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:562:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:566:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:566:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/intel_uncore.c:1925:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1926:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1927:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1928:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1993:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1994:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1995:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2015:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2016:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2017:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_wakeref.c:145:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+> > Reviewed-by: Imre Deak <imre.deak@intel.com>
+> >
+> >>  	if (dsc) {
+> >>  		if (!intel_dp_supports_fec(intel_dp, connector, crtc_state))
+> >>  			return -EINVAL;
+> >> @@ -232,9 +242,6 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+> >>  		crtc_state->fec_enable = !intel_dp_is_uhbr(crtc_state);
+> >>  	}
+> >>  
+> >> -	pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
+> >> -					   crtc_state->lane_count);
+> >> -
+> >>  	max_dpt_bpp = intel_dp_mst_max_dpt_bpp(crtc_state, dsc);
+> >>  	if (max_bpp > max_dpt_bpp) {
+> >>  		drm_dbg_kms(display->drm, "Limiting bpp to max DPT bpp (%d -> %d)\n",
+> >> @@ -270,7 +277,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+> >>  					 link_bpp_x16,
+> >>  					 &crtc_state->dp_m_n);
+> >>  
+> >> -		if (intel_dp->is_mst) {
+> >> +		if (is_mst) {
+> >>  			int remote_bw_overhead;
+> >>  			int remote_tu;
+> >>  			fixed20_12 pbn;
+> >> @@ -295,7 +302,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+> >>  			pbn.full = dfixed_const(intel_dp_mst_calc_pbn(adjusted_mode->crtc_clock,
+> >>  								      link_bpp_x16,
+> >>  								      remote_bw_overhead));
+> >> -			remote_tu = DIV_ROUND_UP(pbn.full, pbn_div.full);
+> >> +			remote_tu = DIV_ROUND_UP(pbn.full, mst_state->pbn_div.full);
+> >>  
+> >>  			/*
+> >>  			 * Aligning the TUs ensures that symbols consisting of multiple
+> >> @@ -313,7 +320,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+> >>  			 * allocated for the whole path and the TUs allocated for the
+> >>  			 * first branch device's link also applies here.
+> >>  			 */
+> >> -			pbn.full = remote_tu * pbn_div.full;
+> >> +			pbn.full = remote_tu * mst_state->pbn_div.full;
+> >>  
+> >>  			drm_WARN_ON(display->drm, remote_tu < crtc_state->dp_m_n.tu);
+> >>  			crtc_state->dp_m_n.tu = remote_tu;
+> >> @@ -365,16 +372,6 @@ static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
+> >>  					      struct drm_connector_state *conn_state,
+> >>  					      int step, bool dsc)
+> >>  {
+> >> -	struct drm_atomic_state *state = crtc_state->uapi.state;
+> >> -	struct drm_dp_mst_topology_state *mst_state;
+> >> -
+> >> -	mst_state = drm_atomic_get_mst_topology_state(state, &intel_dp->mst_mgr);
+> >> -	if (IS_ERR(mst_state))
+> >> -		return PTR_ERR(mst_state);
+> >> -
+> >> -	mst_state->pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
+> >> -						      crtc_state->lane_count);
+> >> -
+> >>  	return intel_dp_mtp_tu_compute_config(intel_dp, crtc_state, conn_state,
+> >>  					      min_bpp, max_bpp, step, dsc);
+> >>  }
+> >> -- 
+> >> 2.39.5
+> >> 
+> 
+> -- 
+> Jani Nikula, Intel
