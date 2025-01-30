@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFE9AC0218A
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 10:03:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 769BBC0218A
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 10:03:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 762F310E921;
-	Thu, 30 Jan 2025 10:03:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D1FC10E921;
+	Thu, 30 Jan 2025 10:03:59 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA45310E921;
- Thu, 30 Jan 2025 10:03:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43EC610E921;
+ Thu, 30 Jan 2025 10:03:58 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Refactor_some_graphi?=
- =?utf-8?q?cs_descriptor_flags_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Refactor_some_graphics_de?=
+ =?utf-8?q?scriptor_flags_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Sai Teja Pottumuttu" <sai.teja.pottumuttu@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 30 Jan 2025 10:03:37 -0000
-Message-ID: <173823141795.2815826.7193309192483438643@b555e5b46a47>
+Date: Thu, 30 Jan 2025 10:03:58 -0000
+Message-ID: <173823143827.2815825.16973456133256675875@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250130085804.4136497-1-sai.teja.pottumuttu@intel.com>
 In-Reply-To: <20250130085804.4136497-1-sai.teja.pottumuttu@intel.com>
@@ -48,10 +48,32 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: c2a5da40b8b1 drm-tip: 2025y-01m-29d-20h-15m-11s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Refactor dma_mask_size
-Applying: drm/xe: Refactor max_remote_tiles
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a23f90535c6dfc8458cfd5791d566f5de9cc71dc
+Author: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+Date:   Thu Jan 30 14:28:04 2025 +0530
+
+    drm/xe: Refactor max_remote_tiles
+    
+    max_remote_tiles is more related to the platform than the GT IP. Thus
+    move it to platform descriptor from graphics descriptor. Note that the
+    FIXME is no more required, thus it can be dropped.
+    
+    v2: Rebase
+    v3: Change the position of comment (MattR)
+    
+    Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch c2a5da40b8b1c5af77dcdabed8516069949fea3b drm-intel
+13113ad300f7 drm/xe: Refactor dma_mask_size
+a23f90535c6d drm/xe: Refactor max_remote_tiles
 
 
