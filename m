@@ -4,187 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01411C0218A
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 13:13:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 794D5C0218A
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 13:20:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFEB110E95C;
-	Thu, 30 Jan 2025 13:13:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2112C10E960;
+	Thu, 30 Jan 2025 13:20:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eov0AAtg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CZFvCY4w";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 758B310E95C;
- Thu, 30 Jan 2025 13:13:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEDAF10E34B
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Jan 2025 13:20:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738242827; x=1769778827;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=3mhrzdLvUgFy0+Bs6hdHFO0OfaqPO5LlGJKdHyXyEt0=;
- b=Eov0AAtgRZeCbxz15w/IjbR+PeaXd0c7bOPQ0QeZyM8remyoAV1eslAq
- EwVYo0x0s/inGFPljYUf63hkYuj30NM7wNBr4LEH3n+vgFv+8c1Y4wKHl
- uWh9FtZCkA2dBUZiZ5zBgbNQ/eNubPcmAX01qzd83eNBHlIUqkvJT4IXI
- TGmprzr7XFjR0g0E0V8uNac/EiiIGGgT6UJ9bg9nXopI6QtPI2INd9Pmv
- vw00gValkkALkJyYUYvwIpofMTW4cRNfQ+Zp2UxWkb3zJakqgsY5dchiq
- vrpGcommpCWPNKW7oa8Ag2TbzJVnNg3Pkf4ri7TdO0wDgXO1Qa//XFdzy w==;
-X-CSE-ConnectionGUID: O9H7zAO5RnygO8Yuj8xjzA==
-X-CSE-MsgGUID: LX/AxQMDRNCU+q444aUFxA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="41618243"
-X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="41618243"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 05:13:46 -0800
-X-CSE-ConnectionGUID: Kur4aPUeSdOMSarbOHcyTg==
-X-CSE-MsgGUID: VDkLuGBlQ2CoARKf7mInCQ==
+ t=1738243252; x=1769779252;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=DHygKcJdesm74UwZt0Lz0l0hDYiNAjbCZVtwtY0npys=;
+ b=CZFvCY4w3GhkC3syQQMcFcdFMzSWnOTgtcZwZgXsB2g4Q2O+H9GjOp1K
+ EhCMZ4GwcSYc+1ovhqX8zBsXJIKrb1vX1xji2YUAZPjeTiC+T5Ls+xDrL
+ E/ESntPWo+UHa20DP7lDDlk2iTpk856rZkDLNJ143oO6ZseKEjmIFklDT
+ cQYP+KmHwQNJj4S1iyWbJkVK4CtpvJKpARgtrP9jk4m71ucXAshbdt/MM
+ rtEHjXty1k+FkQb27m6sEO9GfFMPvxZcQLNkj6a7+F6TAnr+68743OS8N
+ f6cZM/4kqHWyOjEEiN6+UnB1m2yvNp/9dwlBQTix0zm3oYBz21AsJHF9H w==;
+X-CSE-ConnectionGUID: tG9Plaj+SX6GE66kTqzszA==
+X-CSE-MsgGUID: +BM3NJ0uSEmdMp1qCeB1KA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="61256928"
+X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="61256928"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 05:20:51 -0800
+X-CSE-ConnectionGUID: UcenCFSeT22I1KuheI9n5Q==
+X-CSE-MsgGUID: 2eDHkafPTlSosTD6V2/AEA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="109461695"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 30 Jan 2025 05:13:46 -0800
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113329162"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 30 Jan 2025 05:20:51 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 30 Jan 2025 05:13:45 -0800
+ 15.1.2507.44; Thu, 30 Jan 2025 05:20:50 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 30 Jan 2025 05:13:45 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.45) by
+ 15.1.2507.44 via Frontend Transport; Thu, 30 Jan 2025 05:20:50 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.49) by
  edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 30 Jan 2025 05:13:45 -0800
+ 15.1.2507.44; Thu, 30 Jan 2025 05:20:49 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=npYxwtj41qNVsnBQEDDLiX+iZc09j3PbNz5gObHgYRUxZstj5V+eTrUqgi1SynmIoNrRym5Ghs8mehPb0231vp5WgWypUpvPo3qABa6XdVdpRhb2//IAwdrY6pW4xNd8Pq8VvoGCVV+3H6pzBYzZKi5V98NrDmS+p07kB8sVFDNnuNmHUrY6cQl27IFSHu69ru8CDQP/q4j/QP2yrebYZrfVLoGsXM4mFDX1aQu5I/n9Z7WQ0uVa2vkRueXiRi5uRmzRznNy9Df5SahKF+u/7WgoUPkeps9M+iugFHYjQHuBmLLWQX7gViJEf+0bMa1fR3WzjZf57gZESQuw7HfnOQ==
+ b=KGT6ksoBTSPlWLG9ZdT+SuqoiPr1CwF7miNiwQ6dAPpb949qWTDpivW4usybqdNARUpDZdtDwy1v1k0y4f0pq/jEHavCkU2EiUdbmsAl6gAS2gtktygoIM0xBbbw9Jpp/THrLWabsPoyKBKHXucwdCQK1u0+FuZjwH6Eq/wgxSlyk6OD/LvJu7U0thXJs6y/7bXYKYJjGaxpO1EcNkAeBXNmT9wk2Z6DaoDQpcWa/nqJ4ef9oxjXs9FcqNWWaEJS/Wg3na502PcnV+7NrHjz26UtfCB4oavnuCfg6tygnQ1QZD03/3SN/iOM0jqvVVkAGDzzPwR98tcZQs6VvZAlNg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=q3fXm1EWpm/Svc//gE0nsqEoKM6018bqbfhuytJpVb4=;
- b=dP09yZM+h+gasm9vh7u894MVUkHzt+c5u1GORejjW9iIu8+TyO8Bv+loOigB/XoPPfOIh/OqKT/aaiRDmncNKRRzh6IWfv+8r7S8BIIv0usGFGsk5vAfsIc0lOz40GSkILSQ9HLHxbnQvaqned4UlptYlW4FD753Qf2xHILLAu9MNKyH0GU1Z9QJTK0lTG/RTuQxU+Ng1OSRBKJfbCwogOOx2jyZ+drUdKYhBV4kX6rXhFSFkNEZnlE8cvwIGm6Qch9R4l0YDr0cOGbutk1uyGFZLzdsqnXFAq1t9ODzjTSd80Wxa+mOOi9o/IXu2cdD0rDnOarhBnt9kElZsiDy3w==
+ bh=Y6vK4dp00/VVKYxWBJAd/nMNjqDBBH1S4ypHj+kdzqM=;
+ b=O9JvbL242REODhz13liGh6p6Sm74MO3ROyF0TYJ6wY7VXvmLXe+3BbdpJjB2hzoeI9x7MTmOnFlsuj5IEEWBuzJHCd11grYCAET+WjL52lcwdD3YCCb0G2Gc/jyUp3eRH6+bC0tHd7GS96XUbAkQUTaZ4kTg59Fz3SxkeK3Y8krgbjP54LwQNguqLfcy4CRIsXkh0Q2GnL2ZeVgziEBS52puVvNMH58ydUTf62K4fkBvSs+zo+tzzHQEoGo8Eralbd7gyBsAELtauVH/iIfps3E20Z4HtRV6VPGZScmWaq9OECBwD9YkZgnsL0RwXlnrlpUQ0vkMaOQ3mMeprPbIug==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7904.namprd11.prod.outlook.com (2603:10b6:8:f8::8) by
- CH3PR11MB7762.namprd11.prod.outlook.com (2603:10b6:610:151::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.23; Thu, 30 Jan
- 2025 13:13:43 +0000
-Received: from DS0PR11MB7904.namprd11.prod.outlook.com
- ([fe80::f97d:d6b8:112a:7739]) by DS0PR11MB7904.namprd11.prod.outlook.com
- ([fe80::f97d:d6b8:112a:7739%4]) with mapi id 15.20.8377.021; Thu, 30 Jan 2025
- 13:13:42 +0000
-Message-ID: <e2cf8b22-b00b-4447-a4d8-1415388b5530@intel.com>
-Date: Thu, 30 Jan 2025 15:13:22 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/33] drm/gpusvm: Add support for GPU Shared Virtual
- Memory
-To: Matthew Auld <matthew.auld@intel.com>, Matthew Brost
- <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>
-CC: <himal.prasad.ghimiray@intel.com>, <apopple@nvidia.com>,
- <airlied@gmail.com>, <thomas.hellstrom@linux.intel.com>,
- <simona.vetter@ffwll.ch>, <felix.kuehling@amd.com>, <dakr@kernel.org>
-References: <20250129195212.745731-1-matthew.brost@intel.com>
- <20250129195212.745731-7-matthew.brost@intel.com>
- <4cdb6d9a-cf7b-4d2f-b214-c5c53f7b9714@intel.com>
-Content-Language: en-US
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-In-Reply-To: <4cdb6d9a-cf7b-4d2f-b214-c5c53f7b9714@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com (2603:10b6:5:394::7) by
+ DS0PR11MB6543.namprd11.prod.outlook.com (2603:10b6:8:d1::10) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8398.20; Thu, 30 Jan 2025 13:20:07 +0000
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::927a:9c08:26f7:5b39]) by DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::927a:9c08:26f7:5b39%6]) with mapi id 15.20.8398.020; Thu, 30 Jan 2025
+ 13:20:07 +0000
+Date: Thu, 30 Jan 2025 14:20:03 +0100
+From: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 2/2] drm/xe/pf: Reset GuC VF config when unprovisioning
+ critical resource
+Message-ID: <2rxhlmc3nsobs2oy7kinybmo3v2fw6np2ghvvohha67htb6hzl@g6kp6ex3bwe3>
+References: <20250129195947.764-1-michal.wajdeczko@intel.com>
+ <20250129195947.764-3-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MI1P293CA0029.ITAP293.PROD.OUTLOOK.COM
- (2603:10a6:290:3::15) To DS0PR11MB7904.namprd11.prod.outlook.com
- (2603:10b6:8:f8::8)
+In-Reply-To: <20250129195947.764-3-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: ZR2P278CA0014.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:50::20) To DM4PR11MB5373.namprd11.prod.outlook.com
+ (2603:10b6:5:394::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7904:EE_|CH3PR11MB7762:EE_
-X-MS-Office365-Filtering-Correlation-Id: 15e304da-fcc7-418d-57c1-08dd412feb4a
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5373:EE_|DS0PR11MB6543:EE_
+X-MS-Office365-Filtering-Correlation-Id: 466724eb-00e1-42ff-f6b8-08dd4130d084
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?NzY3NGdJZERQdUt3MkVBa3pUcHk3emUwSUlHYzUzTWRsejBJRytNMFhNTTFU?=
- =?utf-8?B?MTl1d2RFZ0dKUWFpdW4vQjNmbERLRWxvUVd5OXBYUjB3WERFWlphSHVzaklM?=
- =?utf-8?B?Z1RXSUV6dmlhZlVUNWZUcGJpRFg0VXRJSzZQNG43a2toSXFqekdiMGVDRWdP?=
- =?utf-8?B?UjZ0dTY4QVJUajFIVTgxaDNWM0hTNjJ0dkE3ODMzdU9qK215T044RzY2b1pW?=
- =?utf-8?B?K1pvbWoydy85VFJCNE9FMCt1ME9BTGVoUyszR1FabldMaGlZeW9TYlVvK3ZQ?=
- =?utf-8?B?ZXBGd3g4ekZUNEZObEZWd0FUMmVYZXY5TFZsZC9nN0RNUk5pVzdCWGVqRUh4?=
- =?utf-8?B?YVFTQnNtbE93RjZOQTE3YUNYQTRuenZTNUlsanpNcERwUm90Y01FNTVUTTYw?=
- =?utf-8?B?OElTTG55UkxsZG5qSUhVcXN6SFVZL1ZmWGNxUmlHNnVVWW9WOUl6RUNNa1p5?=
- =?utf-8?B?dHg3ZEVBc0JLc2xoME83L2g1ZnFBZ1ZTRWpWRkYyUlY3V2FiTVBCeGRCUWJa?=
- =?utf-8?B?eXh6VXgxLzhBNG1wYThGTlB6Q0NTN2pPSnlhb1EwN0lDbkcvY0xXdUFaMi9h?=
- =?utf-8?B?VkZ4dytxcmxrRTBMOWdNUXorRVZ5VklMbkwrZmNIWTFEK2tHRjVnOG5XVTht?=
- =?utf-8?B?dnhoTWE3aHhWV05Ua1NlcVl1OU9NQjduMVBKd1k1SnNtQVVQbmFsQjM2Q1Yy?=
- =?utf-8?B?UzFJSTRMWFNQbm5STy9CdnlvdktXOHF1dUswMUhDbXRNajBSdDN6bjZoTzRS?=
- =?utf-8?B?UXlqR003M0phVUpBQkVrZENvZERKZlhaV3hSWFAyZHFXUGlKdkxEZDl4b0h3?=
- =?utf-8?B?dUJHL3pQVTV0aW41Smg5ZG96WFVlV0w1aTZMZFpib3d5WnprMmhjc0FaQkl3?=
- =?utf-8?B?cXRQdDlLNGpWSitXY2NPUzFOb3Z6aDVWRTU3V050bVZoa1VHWVVVNmx5MTJS?=
- =?utf-8?B?Q2pkczNzZ2poQmpQRTBFY2todFV1OFpPUVNEdDlIdHZwU2diRkRXamlzeWUv?=
- =?utf-8?B?R3p2OUxqQVc5TTVlcDBaZWJTLzZxbThFaVpFQk44NmNFdHhaaXdnUDJwU0Qv?=
- =?utf-8?B?VCswR1A1LzVKcHB1SVNEdDNVM0ttekpIa0NhN0hwRUZLSmh4K3gxOG96Rnhu?=
- =?utf-8?B?VWhzM2NnVTg3ZVlTR2dBek5rRzIxdTI5dXpSVDNYaHlobVZ6RzV3ck9yc2k0?=
- =?utf-8?B?ekh6Sk41Y3E4YzltMDBxSWtPbHp6bE1iK0YxZ21DbVRQTDYybWNDTzNBT2h5?=
- =?utf-8?B?VktyWEtCaUZwVmZPVEp4RHNsNzlPV2NFRTVncnhaYVAxcXRiYUY4c0xQdm1C?=
- =?utf-8?B?MmZPU3VoYjgzWDgxdnp2VFV2Qlg5QnRrN1hSV1hGaVlDSkdtMjlDL2VaVDV1?=
- =?utf-8?B?QVNoOTM0S0NwRzhQWE5YdFFDVU9zOVM5WlZnditiTGlVN3YxR0tIRU50N1VL?=
- =?utf-8?B?aW5oQ05jdWhxeit5MUZvQkVGT3p1M2RMNnk4a25OSmcrcHUyREpyRmRVSHFn?=
- =?utf-8?B?UHNyMGtvd3l2Y1ZvY2ZXUTB0azZrU21YSU05ZmdxbkFLa0Q2UzRPRzdUZ3RV?=
- =?utf-8?B?Mkoya3VKR1hEWi9qSllpZE4rZ21YdHRIWTZCNXBuMC9YZi8rSzYydEdmc3pP?=
- =?utf-8?B?dVhrbW1wSjJiOXpCMTVOWjF4b2pkZFBwZmVCUTNoT2JiL3dlMmRLY3lWbG5v?=
- =?utf-8?B?SWR5ZXRDYmxISFFxUTFPNDBiYVhRZlRrdFlvaVRDbitoWS9idlN2N3hGVkR1?=
- =?utf-8?B?Z3Bzczl0THFWZzZlcDJSV0k0dUpTSHBSWlkyM0lXSkFmS1Nvbkk5YTFpZ3RF?=
- =?utf-8?B?ZFVGcnBFWHAyTW9IUWxnbG5HUGlJaVBWRm1ITmNFbG54Q2R5dWJRbDRmS1Vn?=
- =?utf-8?Q?bnJ85b0BmD9dr?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WDZ4R1lwTHUvYnBVdURlU041SEZNR1dWR0t0N0RBSW5LUXpQa2ZBZDU2NW1K?=
+ =?utf-8?B?V0ZyNG85aGF0VGlKVDRyY1FKVlZZVkhiVFhYVmFjTG9nTU9Fcml2RlNIdU8w?=
+ =?utf-8?B?eG1VZ1VtTnN3WHc2SFNlQVhvQktCdVJYMWhOK3lzbkI4Z1BKY0cwZTUvZXR0?=
+ =?utf-8?B?RHhjNnkzWUZlaE5LSDY4bVg0czFRMzdBa2hnUmdsRDlFeG8yWlJoV3ZQUGc2?=
+ =?utf-8?B?YmtBZUdlZSs4WEEvem14SnNNakpGeHM0NmJsTk56bkFvZGJjK24xZkRVV2NN?=
+ =?utf-8?B?ZTltYTZWOEJkUjRRRVArZWQvUzVpZ2tlOExnRXZOZ2dIdVZMZEZrMnNwQVMy?=
+ =?utf-8?B?aCthVjZGQWp3TExrcVNFV0Y3b2xhV21PYWFPdWVaZVFrd25uM1NKVFAvOWlt?=
+ =?utf-8?B?QklDdVZtdHFvOVh6TS9XUnFpVnIvamNKbmxTTUViekc0eXFoWkFaUGF2RU5T?=
+ =?utf-8?B?ZEVJcWVQekhGWHBMOEUreDNXc3dEeHo5MUt1WUJRUzFYdzlJelc0Q2pIeU9j?=
+ =?utf-8?B?UTdiZEVBZGhjSVRoQmZZSDYvYlVob0FXS2N6OFVWeDNCOEJWZkNmdDFxK09s?=
+ =?utf-8?B?bzl3ei9ZVE9PUWh4K3g0RzZVb05uelIzLzZDNmhDa2hXVG9kMnVlajdyS0xJ?=
+ =?utf-8?B?OWk3SkxpSWhZTnlGNk8wcDVxUHR0UXpYeWoxVlBnQ3RmRTBKdUlmQjVpWTZ5?=
+ =?utf-8?B?RTcyOFJOT0V2RzRhbVVVZkhiZzl1V2FDYVNhVVo3WFJmbXcva05MMHRLMzFS?=
+ =?utf-8?B?NWhSUkZIRUg4Vk4ydGF3QlZWaWtzVWErdlRURlhlZTJ6VHd5VW93amJWQXVW?=
+ =?utf-8?B?T1FTeWlZVC9YV2JHcWNpN1dVVGFWMzhoczgyTjB6OHB3T3BQcVVZOGUvNk93?=
+ =?utf-8?B?VThlNHNtcGRIQlUzakEzMnp2cWJSVWxQWGJ5bUN6NlY4WC83WnhkdWxXbGFR?=
+ =?utf-8?B?UW5RUmI1SVAxeGsxcmF5OFhSU0ZGZ1RGbXZNQU9zT3FST09NMTl6d05DVG1F?=
+ =?utf-8?B?VHZFM0w0R01selpOY0hvYjdlZXpXZ0h0K1FLK2lGdm9YTWtIY0Y5MUhweHpo?=
+ =?utf-8?B?VEFEUUM2Q2pTMUR0azhPYzVVZVBZNElsd09oOFRYc1pITVVnUlJ2WDd0LzFX?=
+ =?utf-8?B?c0ZMZWRhR2hTazJqR0tXVXhVQ1gzZmxtNTUxejhiOHZia0tydEk2TXpaaDNh?=
+ =?utf-8?B?RXBwZTY5SXZJYTEwWWl0M0ppL2RuZ29hajdvdjJIdVpOOWhkajlFQk9FcU1G?=
+ =?utf-8?B?V0pocjEwRjBtc1BIOEwxRnp0WktFNWI3bTRwV1dpVjJGS1ZJdUVjM2toT0hF?=
+ =?utf-8?B?Y1hvVUl2WC9FMnMxNURMWlRlZW5EZG15Q2U3QWNsT2xPWk1aakRmRDhpd2RC?=
+ =?utf-8?B?ZXBsL0VUclI3Y21KcHdFRnFiRzZiT3JLMmhjMVA3MHFyTXJ6U0ZPZGtCS1dq?=
+ =?utf-8?B?elRUWUJiWk5aTm53WFY5RGhNdk5iMk5XTXV4S2s5YzhTYWhURVB3YXYrN0hw?=
+ =?utf-8?B?L2dlVEFjVVc0b2M4R2wzRk1Kc2d1ZW5YRm9pNUp4b1FBSWxORXhSNWhzNlpw?=
+ =?utf-8?B?VTFKSlVlY0RSWU5PK3NmYmthK0RUelVTSGlHaE5OWGhHRmtFeEpCbEtvdkNm?=
+ =?utf-8?B?WlBJU2tyVCtnUUJLM0pxaVNsWnl0SUN1WERTcm96MkRVRUpvbWlDTlNBenMy?=
+ =?utf-8?B?N1p5em9Dek9nbktpaUdtYlAvd1JYN3NmTndjdW0vN2xQOTE4eUY1ZnJKTXE4?=
+ =?utf-8?B?azl6cGNSS0VvaEZRdlYrVG81Um93R3cxaks4QzhpSGx4TjBOMUt6SnQxQzU0?=
+ =?utf-8?B?TWRBaFhqeFZmaEpEWDhTU1ZNRXZYZ05TSXZRSlExYmsrZEtza3ZBZjVZa09Q?=
+ =?utf-8?Q?X1SMxf2drubGa?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7904.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5373.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NW1JS1dxWWIzSTRKa2VUWUwxUzVYWmtodjFRQW5NY1ZOU2FLdWN4ZlhNZXli?=
- =?utf-8?B?ZTFKa2JxR0Q0WUVXT0JBcVN1QlU5VDVFR1FrbjlaWENZdGo2dHFqdXozWWNB?=
- =?utf-8?B?RzQ2QUVJZkFlQmx6Z3RJQkFvMXJXdkVlTC8vMGVwNFpFR2FBcThkZ040MndP?=
- =?utf-8?B?RjAyMUZTWmplWGVVaFdtYW1WRW9VZ2VjQytXdjFlbHRyd2U0S2s5RWFvUnFF?=
- =?utf-8?B?anBFd2IwUTdiaG9Ec0Y4d0crLzJHUWd1RUpVT2Vhd3UxS0VWRTgrVk5Bb1Rk?=
- =?utf-8?B?cVZCbG5iU1UwakphRXlqSmQ4clhOQ29BZGdyYlpERVc0amNQelZxWHkxa1V0?=
- =?utf-8?B?Z05aRitZOTROVjc2RVZRck9rL3BhYm5MNk1QMTVwMTRlSzk5cnJJYXhpQmxy?=
- =?utf-8?B?RGhhOVJHbnl6NkEvOXNuRmdMbmhXUThWSDBmRC9ZSC9keC8zWTNidmJvS2Nz?=
- =?utf-8?B?TDA0STdIamhWWDE5bG9tTGorc2tTYndiZ2ZCcXc1dTY1ZGpuVlBHcTJrWFcv?=
- =?utf-8?B?cnhDcE1PNlRiOHJYR3BYNENIQ3dkKzhpRUplbWNoNm5NV1AzeXB2RHJONUth?=
- =?utf-8?B?YWdualhuVCszTWY2eFNIS24vbW5mYVFSSmVkRUp0eVdXZzNmNnB1Uk4vUXlV?=
- =?utf-8?B?MWZnY0xYeFRJNGlzb2V2dkVuWHljdGZ6V3U0bTU4bUxnaHhocUI2bkl6alpF?=
- =?utf-8?B?eFNDbFFxTFBJNzE1aXRmYnBCUEt5RkM3MzhGTVhGZGRtTEVVM0hvdVJ6bjA0?=
- =?utf-8?B?ME5yWithY1Q2c2ViMFJUNFBDWUVYaGhXWHlzOVRlQjk1K2pHQzB1UGFkRFgw?=
- =?utf-8?B?bXdUV0FSRDcxakJ1VUYxQTMwU3NjMm14c1pKSDREUmdONnFBdEZjamM5YWFR?=
- =?utf-8?B?UkNVeW9XN245SDRFdnh0YldEN29JR0F4N1MvamhuazAwTUE0WjNrUUZOdEk2?=
- =?utf-8?B?NXRFbjVnR1NSWjB0U2Y1U3NET1M5L1F3YTBXSU41Vm44cm1iLzJHczhweHB6?=
- =?utf-8?B?QWpHdjNkZUVTem1kR2Q3QWZ4d08yWWh6WEdSR0hRc1RQUXk2eW1CZW1UOHNj?=
- =?utf-8?B?YytNbTg0bElrb05paVEyY1ZFM1pwanVlZnVkWDdRSEFCTEdjV1Y4cFZwN0Ew?=
- =?utf-8?B?Y25Sc0x4dTZiRTJpMnl1akVJMy9SQk5JbjVrVkNURXJRZzUwZXZWOVNqOGd5?=
- =?utf-8?B?MTdLeWd0cHQ1cTBnSUNCb2RwU1NZLzIwb2RheGdSdmRvZjBISUprMzVKWGJy?=
- =?utf-8?B?aldUbllBa2Y3Q3FsODFjdUZ4alRudmgwVXRtc01MZ0FjU2xkWWpkcmR4VHps?=
- =?utf-8?B?NUJqNXYxTmVNUGhDeXY2U1lmenQvRzR2M0Y5dDloTHhLdVlEb2crWFVDZXh6?=
- =?utf-8?B?eWkwT3dNMVR1akR4cGFqRWdxVzdSdkJuUC9mTnpSOFNvaVhTa3F3T1BEcVRn?=
- =?utf-8?B?QnZkYlpNaGk2Q2NXTFN1dXNQQWFLc1IzR2h1TVVBbEhjWkVXYVRUUXhuV2JK?=
- =?utf-8?B?elRxcGhGTzY4N0dOMCt2NnZmZU5JUllVWitmeHlicEFiOGwvUmpSVExOMWtU?=
- =?utf-8?B?MmdCVEpBWVpGdUU3RjJYNlkxdlpUQ3hVSCtsSE5rdG5UVGdiSTBXRmJpTCtF?=
- =?utf-8?B?QnJvY1FiLzRJNkxvL0R3dnRFZE41QnFzclhMckpNaElNRzk2K3g2ZUpnRkdN?=
- =?utf-8?B?ZmVtWlpYYmJXT29Oa1M3N1ZlTTVORE5tZTI4VjMyKzFDRFlWODEwZ09MRldZ?=
- =?utf-8?B?SmVtejdaR3lIUnRpNm5jeDdMOGc5Qm5SUVFZcUYrNE1WcGZFbkpIUGFiak1q?=
- =?utf-8?B?YzhVdFFQVy9PdGFDVVcyV2VKcThZR2FaaGFKVEM2MVcvYlpFZkRYcEdSWTZD?=
- =?utf-8?B?Y0dZVUVZYlA1Y2xuTW9rYlcyYmdUbzg3SFJsV2kvRkEvbnZMQkt6NTZQSFpk?=
- =?utf-8?B?WDVTMU85VlErejZneVB4OXkrMkJsUFcrQjM5d3BPWmdnWDdrYjNXZFJKQ1ls?=
- =?utf-8?B?WnIya1JTcGpBdFpIejdGUWFndnpiLzM4M3UzMEVlVEhrM2Rja3dPSzB5TzlF?=
- =?utf-8?B?OUNEZ1k2TThZQ014YmU5Wm5xNW1qWXRYeURyLzZyeEpWaGNvSHpHWXZFYk9G?=
- =?utf-8?B?ZEd3Zi92OElFVjhwLzdVOStKTXd1TmxNUGxST2R5N0IzOTJQNzUxOUdWWS8y?=
- =?utf-8?B?Y0E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15e304da-fcc7-418d-57c1-08dd412feb4a
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7904.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OXhlWXVDRkQ4WG01Y0ViTWl6REpadXkxS0dQNzgxSzBqY1JLSVNlZVNheW9r?=
+ =?utf-8?B?OTNySWQ3RlVOVWZTY2lNZlJkMjJLbkRwcjFwOGNmRlhYTWNKdzVuNEVTMVE3?=
+ =?utf-8?B?cTJXdlREOXNpUWl0U2JrcVo5c29pYWRIbUlXTlFlbzY0QUxmM3Y2enV2YXkz?=
+ =?utf-8?B?WDgwSUxQVktrcFI1Y0FuYUlMNElJY21OdUg2QTFGSDVXSE9NbFVqOVlhYUt2?=
+ =?utf-8?B?eVhtRFJSYzh1SkFCeE1SZUtHR1ZPaWRaZHh3QlZNZEdFWC9sMkVYVnNMQjcy?=
+ =?utf-8?B?Y1pJMFFmTUJQTHBGbGRlK2xnVVVkSm9TYzVYOWx2cWZKbDVzakdta3V5eW9z?=
+ =?utf-8?B?ZXZyMU1wWmNyUW5wR3ZjVHNVcTJBQjNzQStDT21yRnJNYjBQR0k2eDJaQU05?=
+ =?utf-8?B?NS9iMHNENHlxenNkMGNLQm9ObHhUTUhDN05oTC9oR05BNUw3QTZ0b0NyYWli?=
+ =?utf-8?B?a1BiNHBQUy9QR05jcmZ1UzhZUElZK1hlUkZKdDZzK3daUXJqdTNyM3FlQTVo?=
+ =?utf-8?B?dkFBMXFDZXRtL3lkZG9PNXYzQ1Vsd0taZ1NZdlJQS2ZaYUtjcDU0S0VSa2Fu?=
+ =?utf-8?B?czB3UW9XQUUzajQxSitPV1FLMnMvYUxtZWcrM3pvQmRsVE1CbkpxT3dFcGg5?=
+ =?utf-8?B?MjVKSjFSSFZHeHN0QmFHSmpCT1hpMkRIeUxrTWV5cDVXZFFWVEVHaGRyeUVr?=
+ =?utf-8?B?QTNHQmJ2MjZzNVo5Zkw2ZUdkNVZYcWhhOVlnTWZmMUZRSE5objdMaFU0bTR5?=
+ =?utf-8?B?TStHRUJNR3UwWlQ0dEhQbFFBcDFQOEQ3TGVDSU9VcTBCcU1EaTR5OXRscDBW?=
+ =?utf-8?B?Q1prSFRqNG1WbVlwWFhwZ0tVcXFuTENTVEdFbVlpRTV5MTROdUYyeklCTTFP?=
+ =?utf-8?B?Ym5yakg3L0pwY0gvc05ZZEl5T1N3RitINVkvR2EzM2hUdTk4dlhReEJtR25p?=
+ =?utf-8?B?aXNrVUtiOEhiTXBnOVI2YnNvQXZob3k3QzRHY0F5ckRyMFBWZUFFYXBjVGx6?=
+ =?utf-8?B?cHJ5ZEVPYU5qby9WY2VsemhxUmdOQmlNU1VZTjMzS2VJUHREZHJxaXd6MUox?=
+ =?utf-8?B?dWx3ZUQ1TURob0dFUUdNR2tPUVR2S3prc2JvVm1Ub1J5ZjBCVUJFaFZBTEhL?=
+ =?utf-8?B?VVNrVGRqMXZrK3ZEa3FOY1FMbDNsSExINTMvdWQ0bk55Q3NwRTZpekNDazM1?=
+ =?utf-8?B?WjhZT0hMWDVjbWM4akJoTlRPSHMxeHdqRHZQWnJmZG41bG9RRXZqclREM295?=
+ =?utf-8?B?bDlRM0ZiKzRDQktFbDdhMVM3RHBoWGpONElCU2JpMW5qNFpKZCtFWThTQjVP?=
+ =?utf-8?B?dHdYcmoxbmcwb3FyOXpFclhLSDJWbWRhWG1EalhITmdHT0dLTmwxSDJNK2Er?=
+ =?utf-8?B?RUVlNWV2TzM4RVc1UjhhOUVYbjhabDFodkZYNHcwc2NhMHNUNkVOQy82eU5p?=
+ =?utf-8?B?R0ZiVDdjNG9Xd3NFbHd6RC9CdU5QY1VGN3MyZUN6Y0doWXp2bjJCWHpoZDg3?=
+ =?utf-8?B?L2ZqMnpROHV4cWhRd0EzMkFqVG5BekJSY2tVQmVYOXdqNWx4UGwzMXBockd2?=
+ =?utf-8?B?U1hKTjg3UWVhSGNrK2pYdEF5cm1KS1p3NHJDVHNzS1J1WW1yNllaN0hXVHFU?=
+ =?utf-8?B?bGdjUkx1TEFoSWpIMHVvY29CdnRqbEhwUElpbmFTeVphcUhwZ1U0NzJTUkVW?=
+ =?utf-8?B?WVVwWnhwQkpzWjZtZ004c1dQaUt1TUMwcUYvb29ZZ3lkY0ZaMy9SNmVjVmRX?=
+ =?utf-8?B?Lzd4Mk1wWjNCRW9wVGJNM2pYOEh1YUhkblE0dEp6aXBhMHQwOHgxQjZQdGlK?=
+ =?utf-8?B?aFRDOFdaTm85SUhhVXdXbzEzdHo3c3lmMXdtSFpDU2cxaFA2NUptNjNkMHlY?=
+ =?utf-8?B?a1hXM01xWUVNblR3SFZvamZUZlRnTjFnd1B4UndYQk5oR0hadkF2am9Fc2lN?=
+ =?utf-8?B?SzZDK2hSMXNRQmo1ODBKVWMxYURpZlkxVkZRdTRNMzZNalZ0em9ENHhCYWo2?=
+ =?utf-8?B?T0lhOGw1TzNhTFlDaEcySGVaSTM2cklhcEdkSzZ5WXJDMlhnZnpiQkI2QVFo?=
+ =?utf-8?B?VFBLQ0FlVXA0ckpINHFnQmpqV29ManArSG9LUzJKY2VxMXN2SmlUMWNYMGVu?=
+ =?utf-8?B?Q1ZHVXdlOHF1a0xmRFJyd2pmMUdhQzRHMlU2TGtrNXQ4NkJQandaNzZjVVdO?=
+ =?utf-8?B?MXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 466724eb-00e1-42ff-f6b8-08dd4130d084
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5373.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2025 13:13:42.6987 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2025 13:20:07.3040 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eRn86KZWggJTBp078vu2haijftDsxxHgbfWkpYfsOWTibd7Zn/aLAek/JUN0QuQVSMljoqjEucxlOEeEWE3VkYnxeGXazKUHZ54HeqqIDho=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7762
+X-MS-Exchange-CrossTenant-UserPrincipalName: l14Mc8rRpNZQgnDL/ZXractYpEo25LxKgTrvyamjrU3dL7oo0NT1TpMAsQ6eQHx0O8qvTvKaODWBsyFqNQzy4MbKldjzfYbCMFGxzoEYqyE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6543
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -200,241 +194,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 1/30/25 1:17 PM, Matthew Auld wrote:
-> On 29/01/2025 19:51, Matthew Brost wrote:
->> This patch introduces support for GPU Shared Virtual Memory (SVM) in the
->> Direct Rendering Manager (DRM) subsystem. SVM allows for seamless
->> sharing of memory between the CPU and GPU, enhancing performance and
->> flexibility in GPU computing tasks.
->>
->> The patch adds the necessary infrastructure for SVM, including data
->> structures and functions for managing SVM ranges and notifiers. It also
->> provides mechanisms for allocating, deallocating, and migrating memory
->> regions between system RAM and GPU VRAM.
->>
->> This is largely inspired by GPUVM.
->>
->> v2:
->>   - Take order into account in check pages
->>   - Clear range->pages in get pages error
->>   - Drop setting dirty or accessed bit in get pages (Vetter)
->>   - Remove mmap assert for cpu faults
->>   - Drop mmap write lock abuse (Vetter, Christian)
->>   - Decouple zdd from range (Vetter, Oak)
->>   - Add drm_gpusvm_range_evict, make it work with coherent pages
->>   - Export drm_gpusvm_evict_to_sram, only use in BO evict path (Vetter)
->>   - mmget/put in drm_gpusvm_evict_to_sram
->>   - Drop range->vram_alloation variable
->>   - Don't return in drm_gpusvm_evict_to_sram until all pages detached
->>   - Don't warn on mixing sram and device pages
->>   - Update kernel doc
->>   - Add coherent page support to get pages
->>   - Use DMA_FROM_DEVICE rather than DMA_BIDIRECTIONAL
->>   - Add struct drm_gpusvm_vram and ops (Thomas)
->>   - Update the range's seqno if the range is valid (Thomas)
->>   - Remove the is_unmapped check before hmm_range_fault (Thomas)
->>   - Use drm_pagemap (Thomas)
->>   - Drop kfree_mapping (Thomas)
->>   - dma mapp pages under notifier lock (Thomas)
->>   - Remove ctx.prefault
->>   - Remove ctx.mmap_locked
->>   - Add ctx.check_pages
->>   - s/vram/devmem (Thomas)
->> v3:
->>   - Fix memory leak drm_gpusvm_range_get_pages
->>   - Only migrate pages with same zdd on CPU fault
->>   - Loop over al VMAs in drm_gpusvm_range_evict
->>   - Make GPUSVM a drm level module
->>   - GPL or MIT license
->>   - Update main kernel doc (Thomas)
->>   - Prefer foo() vs foo for functions in kernel doc (Thomas)
->>   - Prefer functions over macros (Thomas)
->>   - Use unsigned long vs u64 for addresses (Thomas)
->>   - Use standard interval_tree (Thomas)
->>   - s/drm_gpusvm_migration_put_page/ 
->> drm_gpusvm_migration_unlock_put_page (Thomas)
->>   - Drop err_out label in drm_gpusvm_range_find_or_insert (Thomas)
->>   - Fix kernel doc in drm_gpusvm_range_free_pages (Thomas)
->>   - Newlines between functions defs in header file (Thomas)
->>   - Drop shall language in driver vfunc kernel doc (Thomas)
->>   - Move some static inlines from head to C file (Thomas)
->>   - Don't allocate pages under page lock in 
->> drm_gpusvm_migrate_populate_ram_pfn (Thomas)
->>   - Change check_pages to a threshold
->> v4:
->>   - Fix NULL ptr deref in drm_gpusvm_migrate_populate_ram_pfn (Thomas, 
->> Himal)
->>   - Fix check pages threshold
->>   - Check for range being unmapped under notifier lock in get pages 
->> (Testing)
->>   - Fix characters per line
->>   - Drop WRITE_ONCE for zdd->devmem_allocation assignment (Thomas)
->>   - Use completion for devmem_allocation->detached (Thomas)
->>   - Make GPU SVM depend on ZONE_DEVICE (CI)
->>   - Use hmm_range_fault for eviction (Thomas)
->>   - Drop zdd worker (Thomas)
->>
->> Cc: Simona Vetter <simona.vetter@ffwll.ch>
->> Cc: Dave Airlie <airlied@redhat.com>
->> Cc: Christian König <christian.koenig@amd.com>
->> Cc: <dri-devel@lists.freedesktop.org>
->> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> ---
+On Wed, Jan 29, 2025 at 08:59:47PM +0100, Michal Wajdeczko wrote:
+> GuC firmware counts received VF configuration KLVs and may start
+> validation of the complete VF config even if some resources where
+> unprovisioned in the meantime, leading to unexpected errors like:
 > 
-> <snip>
+>  $ echo 1 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/contexts_quota
+>  $ echo 0 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/contexts_quota
+>  $ echo 1 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/doorbells_quota
+>  $ echo 0 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/doorbells_quota
+>  $ echo 1 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/ggtt_quota
+>  tee: '/sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/ggtt_quota': Input/output error
 > 
->> +/**
->> + * __drm_gpusvm_migrate_to_ram() - Migrate GPU SVM range to RAM 
->> (internal)
->> + * @vas: Pointer to the VM area structure
->> + * @device_private_page_owner: Device private pages owner
->> + * @page: Pointer to the page for fault handling (can be NULL)
->> + * @fault_addr: Fault address
->> + * @size: Size of migration
->> + *
->> + * This internal function performs the migration of the specified GPU 
->> SVM range
->> + * to RAM. It sets up the migration, populates + dma maps RAM PFNs, and
->> + * invokes the driver-specific operations for migration to RAM.
->> + *
->> + * Returns:
->> + * 0 on success, negative error code on failure.
->> + */
->> +static int __drm_gpusvm_migrate_to_ram(struct vm_area_struct *vas,
->> +                       void *device_private_page_owner,
->> +                       struct page *page,
->> +                       unsigned long fault_addr,
->> +                       unsigned long size)
->> +{
->> +    struct migrate_vma migrate = {
->> +        .vma        = vas,
->> +        .pgmap_owner    = device_private_page_owner,
->> +        .flags        = MIGRATE_VMA_SELECT_DEVICE_PRIVATE |
->> +            MIGRATE_VMA_SELECT_DEVICE_COHERENT,
->> +        .fault_page    = page,
->> +    };
->> +    struct drm_gpusvm_zdd *zdd;
->> +    const struct drm_gpusvm_devmem_ops *ops;
->> +    struct device *dev;
->> +    unsigned long npages, mpages = 0;
->> +    struct page **pages;
->> +    dma_addr_t *dma_addr;
->> +    unsigned long start, end;
->> +    void *buf;
->> +    int i, err = 0;
->> +
->> +    start = ALIGN_DOWN(fault_addr, size);
->> +    end = ALIGN(fault_addr + 1, size);
->> +
->> +    /* Corner where VMA area struct has been partially unmapped */
->> +    if (start < vas->vm_start)
->> +        start = vas->vm_start;
->> +    if (end > vas->vm_end)
->> +        end = vas->vm_end;
->> +
->> +    migrate.start = start;
->> +    migrate.end = end;
->> +    npages = npages_in_range(start, end);
->> +
->> +    buf = kvcalloc(npages, 2 * sizeof(*migrate.src) + 
->> sizeof(*dma_addr) +
->> +               sizeof(*pages), GFP_KERNEL);
->> +    if (!buf) {
->> +        err = -ENOMEM;
->> +        goto err_out;
->> +    }
->> +    dma_addr = buf + (2 * sizeof(*migrate.src) * npages);
->> +    pages = buf + (2 * sizeof(*migrate.src) + sizeof(*dma_addr)) * 
->> npages;
->> +
->> +    migrate.vma = vas;
->> +    migrate.src = buf;
->> +    migrate.dst = migrate.src + npages;
->> +
->> +    err = migrate_vma_setup(&migrate);
->> +    if (err)
->> +        goto err_free;
->> +
->> +    /* Raced with another CPU fault, nothing to do */
->> +    if (!migrate.cpages)
->> +        goto err_free;
->> +
->> +    if (!page) {
->> +        for (i = 0; i < npages; ++i) {
->> +            if (!(migrate.src[i] & MIGRATE_PFN_MIGRATE))
->> +                continue;
->> +
->> +            page = migrate_pfn_to_page(migrate.src[i]);
->> +            break;
->> +        }
->> +
->> +        if (!page)
->> +            goto err_finalize;
->> +    }
->> +    zdd = page->zone_device_data;
->> +    ops = zdd->devmem_allocation->ops;
->> +    dev = zdd->devmem_allocation->dev;
->> +
->> +    err = drm_gpusvm_migrate_populate_ram_pfn(vas, page, npages, 
->> &mpages,
->> +                          migrate.src, migrate.dst,
->> +                          start);
->> +    if (err)
->> +        goto err_finalize;
->> +
->> +    err = drm_gpusvm_migrate_map_pages(dev, dma_addr, migrate.dst, 
->> npages,
->> +                       DMA_FROM_DEVICE);
->> +    if (err)
->> +        goto err_finalize;
->> +
->> +    for (i = 0; i < npages; ++i)
->> +        pages[i] = migrate_pfn_to_page(migrate.src[i]);
->> +
->> +    err = ops->copy_to_ram(pages, dma_addr, npages);
->> +    if (err)
->> +        goto err_finalize;
->> +
->> +err_finalize:
->> +    if (err)
->> +        drm_gpusvm_migration_unlock_put_pages(npages, migrate.dst);
->> +    migrate_vma_pages(&migrate);
->> +    migrate_vma_finalize(&migrate);
->> +    drm_gpusvm_migrate_unmap_pages(dev, dma_addr, npages,
->> +                       DMA_FROM_DEVICE);
+> To mitigate this problem trigger explicit VF config reset after
+> unprovisioning any of the critical resources (GGTT, context or
+> doorbell IDs) that GuC is monitoring.
 > 
-> clang for me is throwing:
-> 
-> drivers/gpu/drm/drm_gpusvm.c:2017:7: error: variable 'dev' is used 
-> uninitialized whenever 'if' condition is true [-Werror,-Wsometimes- 
-> uninitialized]
->   2017 |                 if (!page)
->        |                     ^~~~~
-> drivers/gpu/drm/drm_gpusvm.c:2047:33: note: uninitialized use occurs here
->   2047 |         drm_gpusvm_migrate_unmap_pages(dev, dma_addr, npages,
->        |                                        ^~~
-> drivers/gpu/drm/drm_gpusvm.c:2017:3: note: remove the 'if' if its 
-> condition is always false
->   2017 |                 if (!page)
->        |                 ^~~~~~~~~~
->   2018 |                         goto err_finalize;
->        |                         ~~~~~~~~~~~~~~~~~
-> drivers/gpu/drm/drm_gpusvm.c:1966:20: note: initialize the variable 
-> 'dev' to silence this warning
->   1966 |         struct device *dev;
->        |                           ^
->        |                            = NULL
-> 1 error generated.
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-I also reported this issue in the v3 patch, but it doesn't seem to have 
-been fixed in v4 yet.
+Reviewed-by: Michał Winiarski <michal.winiarski@intel.com>
 
-https://lore.kernel.org/dri-devel/0416fa97-1734-4565-a352-f045a6c0a15a@intel.com/
-
-Br,
-
-G.G.
-
+-Michał
