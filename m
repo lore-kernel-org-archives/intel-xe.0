@@ -4,79 +4,187 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 887F9C0218A
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 16:23:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCD9EC02190
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 16:23:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4384510E05B;
-	Thu, 30 Jan 2025 16:23:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8278010E372;
+	Thu, 30 Jan 2025 16:23:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="N61kroRT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CJDyuszb";
 	dkim-atps=neutral
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 544DE10E05B
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jan 2025 16:23:33 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id
- 5b1f17b1804b1-438a3216fc2so10383655e9.1
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Jan 2025 08:23:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1738254212; x=1738859012;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=2gRL2ejq866foXhhMZ3F9U8sU8x4jqEc84k8XulzlnI=;
- b=N61kroRTPjq79rdbGUTzKXXqbqNLM9Iy45hMj9OyPC/bYlhS2XAOfojh4eBhqNfw5e
- XcTO33Usyhrwmy27A88zdXo4yaEQR1TdnLUT2Gu6l23B4N8PFVfQYW9YwfTWI0OfRTmi
- AYcsdN36nES74tiCqaNwGiVY0KYqaNwZFg+12id70BpsVXhaglBjpG6HJuVkp1VlYnsc
- HZeoIF2hL/0bEnxs6E/DRrtOXjdwsSq+sHdgb4L+0EF3JkPdmnYwTvc7jYKhs1yVzlaW
- put15g1Kzl7NpLUmABhhXfnoAkotobywiHcP+T0MUh3ZShGSAVB6GCFzfuKGYhdXOMIK
- nqxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738254212; x=1738859012;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=2gRL2ejq866foXhhMZ3F9U8sU8x4jqEc84k8XulzlnI=;
- b=A7pWVzzEdgMNGLVmoF0jFkPoFSCTElWzYu4YzfdCSyQvv9TTkpkWCsfurpDcw1AKE1
- i5HtjM2XCAl16mFVi9ALPFGT/+KVOVyXgqLtkw3KfdK5XnaV1kqCc5jPpMhst0NY9FfZ
- Drxc28r34UvPdf6eYeh9ofqLSi3e0AEwZWGbr7U2NIJAOXGSIker23Yh7hff6LpOs4zo
- 43Njnp9UMARHcTJRiTecI0SygK0DH7FfszYlfd65dv4Es6GErZTPvbSCqEt8gY0/6Gd6
- kD4HNF15sL4IoShKL0fi81T8SnknMKEs7rZW1mkwYrwdPNXRxENKF8aP1WzhjsIruZUW
- sjYA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXpRNmcp+KoZvSqrVU+sV49cHXp9WPgXCL1rMXNHtEo3P3F4xZeH48MAOdWmUSmJpt2t6Iazbr3xg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx6IGYXSVJhAjwrfCOtm8GfCIq1SDDt7jaJC6zpYKRxZSYdruvq
- Ex5eO1FFDA8gChfqeJSj1L59yLr7ipTbVTaE3sgMjF7qE+Ix+qjMN9EkArpitzo=
-X-Gm-Gg: ASbGncuC7LbfjUvKbsGOYsJzYfBf855W/UG7ShXg2rFLQ/OcdV3u5CvemeKoIKF38Q0
- SwgGOm1NnChU6cImt+nCcGI1qOR4pqk6+8lnp9oARuulCzkj3a1DOTvexTXVujBzK38qTEQ5V1y
- /tN/C87I+z6pZJgjO9mAviRaUXk80Ke6ONlHmA07LSFXAMuZVxKGqDzfburWL+XRbC3zUls3wNX
- IbrBX6s7BZgkbz/HWdkFznWs6ZbGht8c4G5Z6si/Q29TWZ4ktktesH2A2xs7ICYxq3PVmpsUGUQ
- zaQ8ZTgrDhr8Fa2d4oHizZIJeI+oUOw=
-X-Google-Smtp-Source: AGHT+IGcIkcWpW9Y4J+75q7UE964RqM+mP6V9+1wIFKxtVczMAdYkuQka25VW4AeNTcjTYjqt6OYxQ==
-X-Received: by 2002:a05:600c:5119:b0:438:a432:7c44 with SMTP id
- 5b1f17b1804b1-438dc40b281mr61888325e9.21.1738254211659; 
- Thu, 30 Jan 2025 08:23:31 -0800 (PST)
-Received: from [192.168.0.101] ([90.241.98.187])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-438e244f087sm27710275e9.29.2025.01.30.08.23.30
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 30 Jan 2025 08:23:31 -0800 (PST)
-Message-ID: <eb065591-0c0d-4e5d-8996-38f825556e38@ursulin.net>
-Date: Thu, 30 Jan 2025 16:23:30 +0000
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AF7F10E05B;
+ Thu, 30 Jan 2025 16:23:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738254231; x=1769790231;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=k4y/XMAx1L7vtK85n02r+CUlGQxpPgookHo13FwVWnI=;
+ b=CJDyuszb5apPFGWLYOhXp18LogHJ9I5jI2GuIR/NHE4dEsHifLHDcmiK
+ r+nO5f9x2I/q05NFAymLVfBxuh/jmwyTWYxJsBBARQoPdHSMh3/oeRpGl
+ P4gPkk4nBjndhG5GjOxYRLnEYYDTYxcN8ZzrMejNPjKGL9+kKl+hMOcNl
+ zHIT9hHvC16vro6/Q1cmNgQWMzbUnwiyDauRXE+EZCdhdlxYwjPYF0VNa
+ EGpI9KiTspuVV1yjL1NEnyXHHO23d25f5VvECx+OQkZC1qjLeL/HHuYiU
+ ZAtt0bZTy0xWW6eIFmnETJTJj6vckeKsX29oQeu1OyvVQUvKP1XngholW g==;
+X-CSE-ConnectionGUID: O1pJknZ3Tzazr5ydH7+euA==
+X-CSE-MsgGUID: ij+Af5wnRCON+XdGulhIEA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50229009"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="50229009"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 08:23:47 -0800
+X-CSE-ConnectionGUID: Xfl0EyEcSNan3NjDticmpw==
+X-CSE-MsgGUID: xRKwl5dQQGelMQdcpyihvw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="109221438"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 30 Jan 2025 08:23:47 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Thu, 30 Jan 2025 08:23:46 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Thu, 30 Jan 2025 08:23:46 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.46) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Thu, 30 Jan 2025 08:23:45 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ENDQowqr/gxdHvDPtATnrgR6qz3BJKbZErY0MsGKsca0i/sF1OZwBAO64EZrXOi91UUsh+KwfPv69yvpm+cmR0fTFfgdypc4RQxk2Fg2TCkhw7gBozTXiXdQakd3EdFi1QxOaC6B82x5wlY6w1Kd1fr6eDTyWgdMRok4C9DMtRlnXk8ShvWq/JkPiBpzL4TgtgLPE3oBI/xpMn1BVibfJblojf4wYot98dswMA6OsyU9Jg/Ihnu06tv+bYj5YBdA67NkiREYcOWap1FKXVLaf59bglPhLg4K6f8RcoOLhB4+augDv/fbvPsfZKhz5pfz7xYi+EmT73imsIwIyh9OEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Fw6VvWpKP59Vws/DLzRg2mJpSqA1+xKQPRSfUs2l7mA=;
+ b=QzsMenvGwQ1SJkLNBb3StbPZ4u2I2rKz9srtaQ9JvL90l91dR3floS3gf/266JzRPbY5JBQoqmhNM4g+Cf4P40Fg9UFGCEu/JYv23UP7Dk3/boTdfq5T0STSAGU4ft6l3CDDAt5job83VFqVluoUHCvkUC2fpJieRW9dH6IA5zfb75MflaXOA4t/RB+Md/pqHUaXjXxXIBzB0f3mK7YJEd6ffFPpsIYeW7JEVLctx5l9n+RESLaMtcsc8lSS7s9UxqD2mLQB3r4l5QvdG0+GoJUGvwliLeAg6NxTX+wy1aJwiiERrBtmnLvJnzgFzzKOYo3KKNO1qUKiQiF1QZzFiw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by PH7PR11MB6475.namprd11.prod.outlook.com (2603:10b6:510:1f1::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.20; Thu, 30 Jan
+ 2025 16:23:16 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.8398.018; Thu, 30 Jan 2025
+ 16:23:16 +0000
+Date: Thu, 30 Jan 2025 08:24:11 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+CC: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <himal.prasad.ghimiray@intel.com>,
+ <apopple@nvidia.com>, <airlied@gmail.com>,
+ <thomas.hellstrom@linux.intel.com>, <simona.vetter@ffwll.ch>,
+ <felix.kuehling@amd.com>, <dakr@kernel.org>
+Subject: Re: [PATCH v4 23/33] drm/xe: Add drm_pagemap ops to SVM
+Message-ID: <Z5unq405AHZWGre0@lstrano-desk.jf.intel.com>
+References: <20250129195212.745731-1-matthew.brost@intel.com>
+ <20250129195212.745731-24-matthew.brost@intel.com>
+ <9851fe89-e2f6-4153-bbc0-7e1358155e9d@intel.com>
+ <0e325482-ab21-4fac-a916-5809bcc39b40@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0e325482-ab21-4fac-a916-5809bcc39b40@intel.com>
+X-ClientProxiedBy: MW4PR02CA0003.namprd02.prod.outlook.com
+ (2603:10b6:303:16d::30) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] drm/xe: Fix GT "for each engine" workaround handling
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-References: <20250130110337.11237-1-tvrtko.ursulin@igalia.com>
- <20250130110337.11237-2-tvrtko.ursulin@igalia.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20250130110337.11237-2-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH7PR11MB6475:EE_
+X-MS-Office365-Filtering-Correlation-Id: 439ffc25-3353-4091-b2f1-08dd414a6668
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZS9YSFJTNGpDcVB2eE45OUFaUE50cnN6UlhQbjhEWXVyckIxdVJZMU00cjh4?=
+ =?utf-8?B?M0lFcFhpMVNmdTdJTTl2dEtUV08rMDdBV0lQcTRlSVRsZWZ3dFQ4dE9kTnQ0?=
+ =?utf-8?B?QzU4eWl1aW91KzZOZ1pTVVJNQkF6REoySEJ3QVdKa0FvNnVtTlR2bUZJVFNS?=
+ =?utf-8?B?RzhrcWFORDFWdTU1bk0reDhxOG5INk5BOGxZQ01EMVU4UVhIRUpsN2xib1Mz?=
+ =?utf-8?B?bUMyaTJHc3NYVGEycjBiTmd5emtJU1hhSUpNSkxRYkNNT0s1L1dDNWNPMDl1?=
+ =?utf-8?B?dTRuajk0L0F4WVRqNjd0UmxFeGRUMDFCNnRSMTU2YS9LTStjU1U5NjI4K3RX?=
+ =?utf-8?B?NWNLNC9qQlFEdGtsK0tiK24yK1MrVGFIY2VvMHk3b2EvNzE0ZUN4ckU2Y0pX?=
+ =?utf-8?B?WkIvVEhPZ0R4TVQyWm5ZNDlYZ0RiMVhLYnJrdFJRV1pxY0RHdDg3a0FBYTdy?=
+ =?utf-8?B?RTBreG1QUjBWQkp4ek4yQlA1UjMxMnhWT094Mzk5TnJpaEFYKzRNT0Y2M2t0?=
+ =?utf-8?B?TUplK1BvWTlxbldHTDRkSVJ4Ky8zOGRnT3JhdWZvZ0tHeWRPMGJSMjB4MCtv?=
+ =?utf-8?B?WHBqVDVDU2NMajkrVDRpWm00OFArRDg1RmttOTVRdi9Xcyt1b3NjUUlHTGxL?=
+ =?utf-8?B?Y2hocHh0SXhzZ0xndTlNdHFFQzZyUEZZVDlFQ3VFQlREUE1DVU1GdE42RTBS?=
+ =?utf-8?B?NDc5OElPdTNqKytSRzhldFVqNE81MjVEYTFGOFYrL1NJMGllaVBTNmlmY2hD?=
+ =?utf-8?B?aGV1eXBTS2lrVm13REF0ZVQzZ0hxSkYvc25qclQrNktkNTJHc29OVy95ckFI?=
+ =?utf-8?B?NFhObW1sbXN3N1JwbUlSc3BHR0FFWnpQZHdsaTBRcTBBaU9nRmo3YjdXeHNi?=
+ =?utf-8?B?dnVkOG9CSVdDTDRFay9uaVlWbGJVc0NkV0xaZmI0TnJaNFphK1BzZ3Fnc2l3?=
+ =?utf-8?B?MUJSYlY0Q3ZHRkJoSkh4T2QrOExscGdUUVR3RlkxRk05aFlWd3lWeVl5OEZI?=
+ =?utf-8?B?M3BlK0lTUERCWk9HdkpKU0JZcVNSVHZFUGl2dm1aZlg3TzRLSnppT3dFRThZ?=
+ =?utf-8?B?MDBmcUNSRjM0Tlh5SWcxZXA2TTZ5YTdqVjJzS2g1Smc5Mm1ML1dmUHN4Z093?=
+ =?utf-8?B?ZWRLSVZ2STBoV1dPQVRwbWJLcGkvRVhSWlhKRFNoRVhsaHMzUE1ZOFhYQUFm?=
+ =?utf-8?B?SW85UU53eDJkUjhnUmc1b2VsK2N5bXBuZjEyQnh1M2VHZXFWalV4VDhpOTBs?=
+ =?utf-8?B?OGNPUDNRNDhRZkZWaUw4eEkyck4vWTgyVVNDS2M4SDFGb2JBWGsxdGJRNDBp?=
+ =?utf-8?B?dGNGeDlTZU9HM2lrckVOcDJuWThtWklYNE05UXdOVkhCWE00YnpHVHd3RlBU?=
+ =?utf-8?B?NjFNd1o2MG0wc2JhR1M0aUhONy9xcXdVS1lubzBOYmgwZ2w2UmYyWmV0dXlS?=
+ =?utf-8?B?akM0QlZTeVBEcG9QenlkYUdMczBRVHZBZE43dU16dTdyV3hDL0FYUURuNnRq?=
+ =?utf-8?B?cFpYT1FWZlBRNzdRUXBxcnQvbzVneXBRZUtMUU1kQlR2NEFjcXNkK2NuVWdL?=
+ =?utf-8?B?c05tV00vSmd5VWZ2bGRNeEcyQlFPNnpGNHFtVE0ybjUvUTJkS21NZndkakJR?=
+ =?utf-8?B?NU9aRjBtK3hETXRKZWcvcS9QSHZiQkNLWG0wUXliWkhCNG8ybWFRVnJQN2dU?=
+ =?utf-8?B?WWJsODV5a0JzeWNSR211QlN5RHdNVlBZR1JBZEU2eE9ta3BLMjVScnpMc2RO?=
+ =?utf-8?B?TVM1Mm5uVzAyQ2ZjRmNiSFBia0hRWDFyTnlodlA1Q25ZNEdjTE52bjlaODFG?=
+ =?utf-8?B?SjBFWDh5V3ZFUXpXWjJrMkRKaFZYM1FDWjRkdWVDZXZPL3MxbW5rR0ZUYVZp?=
+ =?utf-8?Q?TykyyFq6KZK7i?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cUtRY0tRZE9CY1lLeW5qUDJoMmc0UmNQdGZpbG9tOTgzdTVNcDBvanZ2M1BW?=
+ =?utf-8?B?bEhORnVyOVZOeFpwQlFidEVyQk1Cd2NZc1g5azc4dkRFRHJMTDFpWjlFcnJk?=
+ =?utf-8?B?ZmdaSzF4aG9tMVhZbzBQK3AycU5tRGhVaTJQd1laSkIyRTdyTktKa1BhSjBL?=
+ =?utf-8?B?S2J5WmVJNTB0UVErYWQ2T2RYMWtsQkxIc2M4UENqVVlQZWh0N0Mxb1ZKdjJy?=
+ =?utf-8?B?R0ovWDdMSjlIYW1XdUUyZGtCR0RYbDVERDBwSWtHaWFTUXdSVVU3WjJmZmJs?=
+ =?utf-8?B?ZllKejhGY1Ruck5HV2pXTEZuem11cEJNZkQydVpESWIyb3FUWFM3Mit2TDJl?=
+ =?utf-8?B?R2NPL0dxOGNQcHZGYmVtUExQSkRQWFBxNlQ1dHE4eXFQNWs3V25wZ2lFQmZi?=
+ =?utf-8?B?L0FTQmpnVExHS3d1d3kvcU16WHFydzRwVW9HUHUvRnFidjBkaUtXd2Z4c01D?=
+ =?utf-8?B?cXRoMVd1VmRmRFBvZmlKMHpyb2dySzdTQ1laeUJRZWpGTEpyYW1WRm1udkZk?=
+ =?utf-8?B?bXZBYWdKQUNNbThQZVdBK3NWRnpaa2NHVU9mZmRDSjZhcGErYk40dklFY1k0?=
+ =?utf-8?B?cTZHWnBrczhlT2VhVjF4cnhLM0xuWHNyQ0l0cFBhN0hJVFpyaWpqL29KMjk3?=
+ =?utf-8?B?Si9ab2xaM2lFRmFPNHd4ek55WU5NbURDaG5WMkhoNDM3Y2Jra0FuRXVYcDBY?=
+ =?utf-8?B?Y29pQm1STVZxWnBBY1c3YnZkSVdHdkZoUHdSYkdEeEN5UnNLUTN0MkFmVDFi?=
+ =?utf-8?B?QjZnbDkyczNRdmNuanVnYWVyeGdoOVlMZkVyOUcrZUFQNHlSYzU3RThOaG13?=
+ =?utf-8?B?bnc2NmQzMC9sQmNZWTFwQWhZeUdteEhRUytSa3NwbEJYVXgrM2ZEUnZBcnBz?=
+ =?utf-8?B?REdNZldkTnhZZm1YZG1SaFdpQ243NFZWUTdDMkNIamR4UmhoTzJ1MEZWWjQ3?=
+ =?utf-8?B?cVpnT1lKRjNqKzlydmtmQ1oxOTZiQTFlYWJ1TTdaaXFMOXFENW9kSkZJZDNx?=
+ =?utf-8?B?a3Z5S3gzajI4S2s0YmZjWFFyc2JqcjZxeHhOOTM1RFFhNUhxaVljRGhUS0Zs?=
+ =?utf-8?B?WXRZOVNtK2QvSzJlQmdzWngxQ3hrME5wSEFBV1JDajNjOTNWcXRteEhvVmxL?=
+ =?utf-8?B?QmVVaDF2Nk5Gdm0rSHNGUWwvUDhCbGV2WVZkdk1NTjhBRTVwNFR2cG1Objg1?=
+ =?utf-8?B?THF2bDB4dTIyQ2dZNXkrRFFjUXdUYmtWUzhERWphdFdlSTMyNU1JaWh0UGtM?=
+ =?utf-8?B?UlFKVHNpWUJDc3JWdFh2UWpiM1JPblAyQ05qMGhTZ2xvTEVvYVhCSkVwa3Fp?=
+ =?utf-8?B?NnRJUFVSSkpjdWxoNVM2NzdtQm81N05QSzI2NUpYZ1QxRmhyenVtYzVRdi9a?=
+ =?utf-8?B?N1h6R2JZdGhpcUF5eVRoMEUvcUZJTjJKbmI2dHJ4ejFwZXlWdUNHZDhUNWJh?=
+ =?utf-8?B?WjdLcTJuSkVONnArWFdiZzU5SitWVUFpblJJSGpjdEZPRUlMY3VROWk0YUVV?=
+ =?utf-8?B?ZjgxQjBiVlVtR3BDZTJtR20vV2hNVGpqZE1iK0xRSkxUSEtNK20xcFR4Z3hZ?=
+ =?utf-8?B?YWRETWFhMU84cXJyWEpJK3JsNnBTcUlXS0cxeHdqUDdteU1Wa2hMdkpmeTZY?=
+ =?utf-8?B?R3NkVzczTk1sMkpLMkIrdjVBWEx0aDROL2hPS0FGMGZyRjVFYjB1a2UvM0hF?=
+ =?utf-8?B?WWN3Skd1T3JrNy9mREVITU5FL1JZUFplTkZsbUo0MktIdDhCWjZUai9MdWpK?=
+ =?utf-8?B?ZXFscW1wWXpGUUwxS1RGWXFoQVpMbVIzU0FpcnNvZWRrUzN1WEs4SU9kMk15?=
+ =?utf-8?B?VndQRENXMGVnWndvTWhMNlhxVk03d29IbERqMDhuV1VIL3NITXFFNFdVbmVK?=
+ =?utf-8?B?NTY2SzlXRTdCZXRDK2grcjIvcVpvNUp5eDExTkR3RUZDUWlRYWxpUE5HWmJC?=
+ =?utf-8?B?UE56UzM3TG12bHRZOHh5V0lLZnh3WXdGQjJEZ3JubmFyZ1BQcDRsck52WWgw?=
+ =?utf-8?B?Vk1uN2czQUVXZVBZV0hlN1MyTkJ4TjFjZWVwUUVQN3BiaUdkTFdsSy95NklO?=
+ =?utf-8?B?NDViMERJWm5GS3dSUEtITDVFbnI3ZUN5U08zWWZDT2NXVnlNS0JoZWQ5L1ll?=
+ =?utf-8?B?WGhhU0FNQ3pydGRwbFVxK1NzVmM3VWFZSHp2V0g4am5DN085d3dxU1k0clE1?=
+ =?utf-8?B?Mnc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 439ffc25-3353-4091-b2f1-08dd414a6668
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2025 16:23:15.9848 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kXOecWt79y3uXmyzKfntqy9wyBGQlVgNq9UN9ktgftO5aWbQeu/ustH/VSakhxksJ0RZd2jMGWA04mFR6qpAzA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6475
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,110 +199,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Thu, Jan 30, 2025 at 03:24:13PM +0200, Gwan-gyeong Mun wrote:
+> 
+> 
+> On 1/30/25 12:54 PM, Matthew Auld wrote:
+> > On 29/01/2025 19:52, Matthew Brost wrote:
+> > > From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > 
+> > > Add support for mapping device pages to Xe SVM by attaching drm_pagemap
+> > > to a memory region, which is then linked to a GPU SVM devmem allocation.
+> > > This enables GPU SVM to derive the device page address.
+> > > 
+> > > v3:
+> > >   - Better commit message (Thomas)
+> > >   - New drm_pagemap.h location
+> > > 
+> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> > > ---
+> > >   drivers/gpu/drm/xe/xe_device_types.h |  6 ++++++
+> > >   drivers/gpu/drm/xe/xe_svm.c          | 31 ++++++++++++++++++++++++++++
+> > >   2 files changed, 37 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/
+> > > xe/xe_device_types.h
+> > > index da5bf145324b..eb3702db5c17 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > > @@ -10,6 +10,7 @@
+> > >   #include <drm/drm_device.h>
+> > >   #include <drm/drm_file.h>
+> > > +#include <drm/drm_pagemap.h>
+> > >   #include <drm/ttm/ttm_device.h>
+> > >   #include "xe_devcoredump_types.h"
+> > > @@ -106,6 +107,11 @@ struct xe_mem_region {
+> > >       void __iomem *mapping;
+> > >       /** @pagemap: Used to remap device memory as ZONE_DEVICE */
+> > >       struct dev_pagemap pagemap;
+> > > +    /**
+> > > +     * @dpagemap: The struct drm_pagemap of the ZONE_DEVICE memory
+> > > +     * pages of this tile.
+> > > +     */
+> > > +    struct drm_pagemap dpagemap;
+> > >       /**
+> > >        * @hpa_base: base host physical address
+> > >        *
+> > > diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+> > > index 985ac20c5b07..869a155fc9f7 100644
+> > > --- a/drivers/gpu/drm/xe/xe_svm.c
+> > > +++ b/drivers/gpu/drm/xe/xe_svm.c
+> > > @@ -450,6 +450,33 @@ bool xe_svm_has_mapping(struct xe_vm *vm, u64
+> > > start, u64 end)
+> > >   }
+> > >   #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
+> > > +static struct drm_pagemap_dma_addr
+> > > +xe_drm_pagemap_map_dma(struct drm_pagemap *dpagemap,
+> > > +               struct device *dev,
+> > > +               struct page *page,
+> > > +               unsigned int order,
+> > > +               enum dma_data_direction dir)
+> > > +{
+> > > +    struct device *pgmap_dev = dpagemap->dev;
+> > > +    enum drm_interconnect_protocol prot;
+> > > +    dma_addr_t addr;
+> > > +
+> > > +    if (pgmap_dev == dev) {
+> > > +        addr = xe_mem_region_page_to_dpa(page_to_mr(page), page);
+> > > +        prot = XE_INTERCONNECT_VRAM;
+> > > +    } else {
+> > > +        addr = DMA_MAPPING_ERROR;
+> > > +        prot = 0;
+> > > +    }
+> > > +
+> > > +    return drm_pagemap_dma_addr_encode(addr, prot, order, dir);
+> > > +}
+> > > +
+> > > +static const struct drm_pagemap_ops xe_drm_pagemap_ops = {
+> > > +    .map_dma = xe_drm_pagemap_map_dma,
+> > > +};
+> > > +
+> > > +>>>>>>> 133db8ade5f0 (drm/xe: Add drm_pagemap ops to SVM)
+> > 
+> > Some leftover rebase damage here?
+> > 
 
-On 30/01/2025 11:03, Tvrtko Ursulin wrote:
-> Any rules using engine matching are currently broken due RTP processing
-> happening in early init before the list of hardware engines has been
-> initialised.
-> 
-> Fix it my moving the engine initialisation to earlier in the init process
-> and process the workaround and tuning lists just before the GuC load will
-> happen.
-> 
-> Looking at the debugfs gt0/workarounds on ADL-P we notice 14011060649
-> should be present while we see, before:
-> 
-> GT Workarounds
-> 	14011059788
-> 	14015795083
-> 
-> And after:
-> 
-> GT Workarounds
-> 	14011060649
-> 	14011059788
-> 	14015795083
-> 
-> v2:
->   * Moved OOB back to early init.
->   * Moved engine init and WA processing to earlier phase.
->   * Improved commit message.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> ---
-> Lets see if this explodes in CI...
-> ---
->   drivers/gpu/drm/xe/xe_device.c | 18 ++++++++++++++++++
->   drivers/gpu/drm/xe/xe_gt.c     |  6 ------
->   2 files changed, 18 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index f3f754beb812..9d8dfee9dad2 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -55,6 +55,7 @@
->   #include "xe_tile.h"
->   #include "xe_ttm_stolen_mgr.h"
->   #include "xe_ttm_sys_mgr.h"
-> +#include "xe_tuning.h"
->   #include "xe_vm.h"
->   #include "xe_vram.h"
->   #include "xe_vsec.h"
-> @@ -793,6 +794,23 @@ int xe_device_probe(struct xe_device *xe)
->   	}
->   
->   	for_each_gt(gt, xe, id) {
-> +		unsigned int fw_ref;
-> +
-> +		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> +		if (!fw_ref)
-> +			return -ETIMEDOUT;
-> +
-> +		err = xe_hw_engines_init_early(gt);
+Yep.
 
-Nope, this is now too early according to the CI. Back to the drawing board.
+> FYI, when applying this series to the latest drm-tip for testing, the line
+> did not cause problems for auto-merging on my side. I applied the patch with
+> “git am -3 ”.
 
-Regards,
+Patch 29 deletes this line so the series as whole compiles and runs.
 
-Tvrtko
+Will fixup this patch.
 
-> +		if (err) {
-> +			xe_force_wake_put(gt_to_fw(gt), fw_ref);
-> +			return err;
-> +		}
-> +
-> +		xe_force_wake_put(gt_to_fw(gt), fw_ref);
-> +
-> +		xe_wa_process_gt(gt);
-> +		xe_tuning_process_gt(gt);
-> +
->   		err = xe_gt_init_hwconfig(gt);
->   		if (err)
->   			return err;
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 01a4a852b8f4..c3711987737e 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -380,9 +380,7 @@ int xe_gt_init_early(struct xe_gt *gt)
->   	if (err)
->   		return err;
->   
-> -	xe_wa_process_gt(gt);
->   	xe_wa_process_oob(gt);
-> -	xe_tuning_process_gt(gt);
->   
->   	xe_force_wake_init_gt(gt, gt_to_fw(gt));
->   	spin_lock_init(&gt->global_invl_lock);
-> @@ -430,10 +428,6 @@ static int gt_fw_domain_init(struct xe_gt *gt)
->   	/* Rerun MCR init as we now have hw engine list */
->   	xe_gt_mcr_init(gt);
->   
-> -	err = xe_hw_engines_init_early(gt);
-> -	if (err)
-> -		goto err_force_wake;
-> -
->   	err = xe_hw_engine_class_sysfs_init(gt);
->   	if (err)
->   		goto err_force_wake;
+Matt
+
+> > >   /**
+> > >    * xe_devm_add: Remap and provide memmap backing for device memory
+> > >    * @tile: tile that the memory region belongs to
+> > > @@ -482,6 +509,10 @@ int xe_devm_add(struct xe_tile *tile, struct
+> > > xe_mem_region *mr)
+> > >       mr->pagemap.ops = drm_gpusvm_pagemap_ops_get();
+> > >       mr->pagemap.owner = xe_svm_devm_owner(xe);
+> > >       addr = devm_memremap_pages(dev, &mr->pagemap);
+> > > +
+> > > +    mr->dpagemap.dev = dev;
+> > > +    mr->dpagemap.ops = &xe_drm_pagemap_ops;
+> > > +
+> > >       if (IS_ERR(addr)) {
+> > >           devm_release_mem_region(dev, res->start, resource_size(res));
+> > >           ret = PTR_ERR(addr);
+> > 
+> 
