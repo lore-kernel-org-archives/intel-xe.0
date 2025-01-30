@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEF2EC02193
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 05:19:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92B53C0218A
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Jan 2025 05:19:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAA2910E24E;
-	Thu, 30 Jan 2025 05:19:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DEF310E8E2;
+	Thu, 30 Jan 2025 05:19:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TcukYXEY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jKIpKw9q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DD6D10E249;
- Thu, 30 Jan 2025 05:19:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 673F610E252;
+ Thu, 30 Jan 2025 05:19:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738214356; x=1769750356;
+ t=1738214361; x=1769750361;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Go6kSLsbtp8przDIz/wG0ggNBsxoeUYWkWrtPsdqa8o=;
- b=TcukYXEYWtJ1yRRQ7syHd2+0l+J0wuaujzantLQcs8zGPE1GEKLJmgWJ
- Qj0JJOZ9gALBcpBYRxNPgr6RaQJV6HUF4KW07fye6TlotTInilU9M9ZLH
- q5pxssHlwQ2AoUIVMeIW2Us0CYZv3pW8wl4KjpGkAHqCknHeTkYbWII0Z
- rUuTxWFNbchsdY4WWU3LriS5iGUSF0VaEc5wkVzIispRjV8LVWf+BKXu+
- 0aba+J+UKnyqdlHLqOsHTXrDBdjOjm71zmnGsm8wDPyKQHrNDHj5OZ5A1
- FnoTyqkbFxVG0vSK1svd+eM2GXBPIlTH2MPvPuXHdX92Ou3jdqxsVzVwz w==;
-X-CSE-ConnectionGUID: ZkFFvUXHQPSofaQXGXodOQ==
-X-CSE-MsgGUID: qr9XNWmISxmUtOCykYzpuA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="50133475"
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="50133475"
+ bh=t6wjxT3UTNFGKsSBQLzBCyA+RQ0jf8EgVCCl/LpP+kk=;
+ b=jKIpKw9qNvhXH91GXNICiSHTbP+WGugkM+thvF26u3rkPI4h4R0EuZqd
+ FK4Oz52gQYiOwrGpcjx8VkJ0WE4cKeeABFZfDSdE3tXV848rD0U+qWIVZ
+ 3KzlTozQVrLHzz7aCfkUE1wN/FeG8IMc3Du1EJNTK/t3Y9RhJ1Xcndmd1
+ Na2+OOU2yS4+xSXQb011O3BCGWBUhtd77RFsfe6H+jZvsIBEQrgHfHFUN
+ PzPJQKDfnElpGlldvDppNWQBxb/ircfgDSr2Z7UjKmeh7hmvD97VO+TII
+ it3lbuYYuNweOAy6gGXxcb3h/Yr5JdFAKgBjxYl+OhBd8D5eZDvoamYM+ Q==;
+X-CSE-ConnectionGUID: kJojRrctSve2u9Qh/xKOXQ==
+X-CSE-MsgGUID: R4bvII6jRx29eilFsOd+GA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="50133480"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="50133480"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 21:19:16 -0800
-X-CSE-ConnectionGUID: pPjZvxt8TD2NAGXA4gQiYA==
-X-CSE-MsgGUID: 2LwEJazCQP6RQzkh2cYLTw==
+ 29 Jan 2025 21:19:20 -0800
+X-CSE-ConnectionGUID: ikw4V9IKSiORmL/d0pHHOQ==
+X-CSE-MsgGUID: TTCyaa3XQECYjAw7amh9wg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="109060345"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="109060352"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa006.fm.intel.com with ESMTP; 29 Jan 2025 21:19:14 -0800
+ by fmviesa006.fm.intel.com with ESMTP; 29 Jan 2025 21:19:18 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH v6 1/6] drm/i915/vrr: Add crtc_state dump for vrr.vsync params
-Date: Thu, 30 Jan 2025 10:46:04 +0530
-Message-ID: <20250130051609.1796524-2-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v6 3/6] drm/i915/dp: fix the Adaptive sync Operation mode for
+ SDP
+Date: Thu, 30 Jan 2025 10:46:06 +0530
+Message-ID: <20250130051609.1796524-4-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250130051609.1796524-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20250130051609.1796524-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -67,39 +68,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add crtc_state dump for vrr.vsync_{start/end} params to track the
-state correctly.
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
---v2:
-- remove vrr_ pretext and use space instead of underscore (Jani).
+Currently we support Adaptive sync operation mode with dynamic frame
+rate, but instead the operation mode with fixed rate is set.
+This was initially set correctly in the earlier version of changes but
+later got changed, while defining a macro for the same.
 
---v3:
-- Rebase to latest drm-tip.
-
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Fixes: a5bd5991cb8a ("drm/i915/display: Compute AS SDP parameters")
+Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 1fbaa67e2fea..36076e8d639b 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -292,10 +292,11 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		   pipe_config->hw.adjusted_mode.crtc_vdisplay,
- 		   pipe_config->framestart_delay, pipe_config->msa_timing_delay);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index a286e5e31c4d..591e4fa20c16 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2831,7 +2831,6 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
  
--	drm_printf(&p, "vrr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d\n",
-+	drm_printf(&p, "vrr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d vsync start: %d, vsync end: %d\n",
- 		   str_yes_no(pipe_config->vrr.enable),
- 		   pipe_config->vrr.vmin, pipe_config->vrr.vmax, pipe_config->vrr.flipline,
--		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband);
-+		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
-+		   pipe_config->vrr.vsync_start, pipe_config->vrr.vsync_end);
+ 	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
  
- 	drm_printf(&p, "vrr: vmin vblank: %d, vmax vblank: %d, vmin vtotal: %d, vmax vtotal: %d\n",
- 		   intel_vrr_vmin_vblank_start(pipe_config), intel_vrr_vmax_vblank_start(pipe_config),
+-	/* Currently only DP_AS_SDP_AVT_FIXED_VTOTAL mode supported */
+ 	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
+ 	as_sdp->length = 0x9;
+ 	as_sdp->duration_incr_ms = 0;
+@@ -2842,7 +2841,7 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
+ 		as_sdp->target_rr_divider = true;
+ 	} else {
+-		as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
++		as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
+ 		as_sdp->vtotal = adjusted_mode->vtotal;
+ 		as_sdp->target_rr = 0;
+ 	}
 -- 
 2.48.1
 
