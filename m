@@ -4,47 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F063EC02194
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 14:21:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39893C0218F
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 14:25:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBF5D10E289;
-	Fri, 31 Jan 2025 14:21:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DADBD10E1EC;
+	Fri, 31 Jan 2025 14:25:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="PatsaGhF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ga9RVFNL";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C503C10E289
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Jan 2025 14:20:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=ln+Uk5cQDV5qvVobdlHVrqC2E8M8fnHQF6HISzrAjfQ=; b=PatsaGhFd3X2aAG62NLKHYj7pd
- q5+wCBiwR7UH/QObHplEe4/LbQzcuwYPN9g43dP/Pn2ZBRLNXF2+gVjmtfEcvvZjiPvGeK8vW3jBC
- gSwrZQYetjFQUR47RENJrRcUD0qFRi5GJtktjr3IYBHBNUKza/EpfmlLATPB5zsiaEupiuXmvnU0F
- AplR4DM8lAMX1BUctbFe65O65iUMWUmkTDvIAm0C+UFvTQMKVaquYvjGQQm3oCD8Fz2GPm3Zi0GyW
- kJ0c22vZcMhfdE7SjEJlzugOn832NHiC7HulEx+WoEnelEA/aIksKzWYowPfAZWG1s/EMPf6XeAPi
- jb3sj41A==;
-Received: from [90.241.98.187] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tdrt1-001ViY-QL; Fri, 31 Jan 2025 15:20:53 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Subject: [PATCH 1/2] drm/xe/display: Add support for AuxCCS
-Date: Fri, 31 Jan 2025 14:20:44 +0000
-Message-ID: <20250131142045.47785-2-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250131142045.47785-1-tvrtko.ursulin@igalia.com>
-References: <20250131142045.47785-1-tvrtko.ursulin@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2168910E1EC;
+ Fri, 31 Jan 2025 14:25:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738333529; x=1769869529;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=cuRHCwo0z7Fqy3TBD/RHQBJmcmhAlcfKYdGmOyyehpU=;
+ b=Ga9RVFNLhoYR62lKq8jDKuEB15uVIEGGxGiS1bgbs0o7R+4HQ2XL/9Nr
+ Qaq4Zg13yMexGpTFt3E7z+jeOy9tUE/Qzv3GfNq5xwObQ+0ox/C5PbEcd
+ Hk7fTeMgUq6bu1MT83Ro8JukNwIxscImw6eFw8445hSt5p7l1QPfbzyDq
+ mLr2+D1YGbZ8AxQnUg5kNuKi4Qf3ueyNrbKwuq32CFEaKmcVS/x/nBlHG
+ ZR8d3I3aE62GZzjBsxymDwHbt9T+M62cq7Fl/sZ5e3cabJW8cZzDvfn8a
+ HDO5/zSki0jNpQm9pm3kUOCzCoN39m3dlJlycQ923zEjXVMSwiZmqfQQq w==;
+X-CSE-ConnectionGUID: 79SYylmtSF+GkcUyIUlvcQ==
+X-CSE-MsgGUID: 0Rx/WLqJTO6lfg6ukJlUhA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="42557405"
+X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="42557405"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 06:25:29 -0800
+X-CSE-ConnectionGUID: IFo0ZYW9QGGbuurHAcP/2g==
+X-CSE-MsgGUID: VxKarN3RSAqxqqTtO7vuDg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113664091"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 06:25:28 -0800
+Date: Fri, 31 Jan 2025 16:26:24 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 05/14] drm/i915/dp: Move max DSC BPP reduction one level
+ higher
+Message-ID: <Z5zdkN58_u4gdozL@ideak-desk.fi.intel.com>
+References: <cover.1738327620.git.jani.nikula@intel.com>
+ <62fa7f18ea49dce24c5d0ee7b2f0cbde9e2b609c.1738327620.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <62fa7f18ea49dce24c5d0ee7b2f0cbde9e2b609c.1738327620.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,164 +65,107 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for mapping the auxiliary CCS buffer into the DPT page tables.
+On Fri, Jan 31, 2025 at 02:49:58PM +0200, Jani Nikula wrote:
+> Now that {icl,xelpd}_dsc_compute_link_config() take .4 fixed point as
+> parameter, move the common max DSC BPP reduction one level higher. Use
+> intel_dp_dsc_bpp_step() to compute the step, and pass on to both
+> platform specific functions. (Though it's unused for now in
+> icl_dsc_compute_link_config()).
+> 
+> We can drop the pipe_bpp and connector parameters.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-This will allow for more power efficiency by enabling the render
-compression frame buffer modifiers such as
-I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS in a following patch.
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-We do this by refactoring the code a bit so handling for the linear
-auxiliary frame buffer can be added in a tidy way. Also replace some
-hardcoded constants and tighten the loops a bit.
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 107 ++++++++++++++++++-------
- 1 file changed, 80 insertions(+), 27 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 25ce032bb293..33de9d5c9866 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -47,35 +47,98 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
- 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
- }
- 
--static void
--write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
--		   u32 bo_ofs, u32 width, u32 height, u32 src_stride,
--		   u32 dst_stride)
-+static unsigned int
-+write_dpt_padding(struct iosys_map *map, unsigned int dest, unsigned int pad)
-+{
-+	while (pad--) {
-+		iosys_map_wr(map, dest, u64, 0);
-+		dest += sizeof(u64);
-+	}
-+
-+	return dest;
-+}
-+
-+static unsigned int
-+write_dpt_remapped_linear(struct xe_bo *bo, struct iosys_map *map,
-+			  unsigned int dest,
-+			  const struct intel_remapped_plane_info *plane)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
- 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
- 	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index)
- 		= ggtt->pt_ops->pte_encode_bo;
--	u32 column, row;
-+	const u16 pat = xe->pat.idx[XE_CACHE_NONE];
-+	u64 src = plane->offset * XE_PAGE_SIZE;
-+	unsigned int size = plane->size;
- 
--	for (row = 0; row < height; row++) {
--		u32 src_idx = src_stride * row + bo_ofs;
-+	while (size--) {
-+		iosys_map_wr(map, dest, u64, pte_encode_bo(bo, src, pat));
-+		dest += sizeof(u64);
-+		src += XE_PAGE_SIZE;
-+	}
- 
--		for (column = 0; column < width; column++) {
--			iosys_map_wr(map, *dpt_ofs, u64,
--				     pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
--				     xe->pat.idx[XE_CACHE_NONE]));
-+	return dest;
-+}
-+
-+static unsigned int
-+write_dpt_remapped_tiled(struct xe_bo *bo, struct iosys_map *map,
-+			 unsigned int dest,
-+			 const struct intel_remapped_plane_info *plane)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
-+	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index)
-+		= ggtt->pt_ops->pte_encode_bo;
-+	const unsigned int next_row =
-+		(plane->src_stride - plane->width) * XE_PAGE_SIZE;
-+	const u16 pat = xe->pat.idx[XE_CACHE_NONE];
-+	u64 src = plane->offset * XE_PAGE_SIZE;
-+	unsigned int column, row;
- 
--			*dpt_ofs += 8;
--			src_idx++;
-+	for (row = 0; row < plane->height; row++, src += next_row) {
-+		for (column = 0; column < plane->width; column++) {
-+			iosys_map_wr(map, dest, u64,
-+				     pte_encode_bo(bo, src, pat));
-+			dest += sizeof(u64);
-+			src += XE_PAGE_SIZE;
- 		}
- 
- 		/* The DE ignores the PTEs for the padding tiles */
--		*dpt_ofs += (dst_stride - width) * 8;
-+		dest = write_dpt_padding(map, dest,
-+					 plane->dst_stride - plane->width);
- 	}
- 
--	/* Align to next page */
--	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
-+	return dest;
-+}
-+
-+static void
-+write_dpt_remapped(struct xe_bo *bo,
-+		   const struct intel_remapped_info *remap_info,
-+		   struct iosys_map *map)
-+{
-+	unsigned int i, dest = 0;
-+
-+	for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++) {
-+		const struct intel_remapped_plane_info *plane =
-+						&remap_info->plane[i];
-+
-+		if (!plane->width && !plane->height && !plane->linear)
-+			continue;
-+
-+		if (remap_info->plane_alignment) {
-+			unsigned int index = dest / sizeof(u64);
-+			unsigned int pad;
-+
-+			pad = ALIGN(index,
-+				    remap_info->plane_alignment) - index;
-+			dest = write_dpt_padding(map, dest, pad);
-+		}
-+
-+		if (plane->linear)
-+			dest = write_dpt_remapped_linear(bo, map, dest, plane);
-+		else
-+			dest = write_dpt_remapped_tiled(bo, map, dest, plane);
-+	}
- }
- 
- static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
-@@ -137,17 +200,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
- 		}
- 	} else if (view->type == I915_GTT_VIEW_REMAPPED) {
--		const struct intel_remapped_info *remap_info = &view->remapped;
--		u32 i, dpt_ofs = 0;
--
--		for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++)
--			write_dpt_remapped(bo, &dpt->vmap, &dpt_ofs,
--					   remap_info->plane[i].offset,
--					   remap_info->plane[i].width,
--					   remap_info->plane[i].height,
--					   remap_info->plane[i].src_stride,
--					   remap_info->plane[i].dst_stride);
--
-+		write_dpt_remapped(bo, &view->remapped, &dpt->vmap);
- 	} else {
- 		const struct intel_rotation_info *rot_info = &view->rotated;
- 		u32 i, dpt_ofs = 0;
--- 
-2.48.0
-
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 32 +++++++++++--------------
+>  1 file changed, 14 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index b13d806c9de7..4e7b3dd4067c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2079,14 +2079,10 @@ icl_dsc_compute_link_config(struct intel_dp *intel_dp,
+>  			    const struct link_config_limits *limits,
+>  			    int min_bpp_x16,
+>  			    int max_bpp_x16,
+> -			    int pipe_bpp,
+> +			    int bpp_step_x16,
+>  			    int timeslots)
+>  {
+>  	int i, ret;
+> -	int output_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
+> -
+> -	/* Compressed BPP should be less than the Input DSC bpp */
+> -	max_bpp_x16 = min(max_bpp_x16, fxp_q4_from_int(output_bpp - 1));
+>  
+>  	for (i = ARRAY_SIZE(valid_dsc_bpp) - 1; i >= 0; i--) {
+>  		if (valid_dsc_bpp[i] < fxp_q4_to_int(min_bpp_x16) ||
+> @@ -2116,24 +2112,17 @@ icl_dsc_compute_link_config(struct intel_dp *intel_dp,
+>   */
+>  static int
+>  xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
+> -			      const struct intel_connector *connector,
+>  			      struct intel_crtc_state *pipe_config,
+>  			      const struct link_config_limits *limits,
+>  			      int min_bpp_x16,
+>  			      int max_bpp_x16,
+> -			      int pipe_bpp,
+> +			      int bpp_step_x16,
+>  			      int timeslots)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+> -	int output_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
+> -	int bpp_x16, bpp_step_x16;
+> +	int bpp_x16;
+>  	int ret;
+>  
+> -	bpp_step_x16 = intel_dp_dsc_bpp_step_x16(connector);
+> -
+> -	/* Compressed BPP should be less than the Input DSC bpp */
+> -	max_bpp_x16 = min(max_bpp_x16, fxp_q4_from_int(output_bpp) - bpp_step_x16);
+> -
+>  	for (bpp_x16 = max_bpp_x16; bpp_x16 >= min_bpp_x16; bpp_x16 -= bpp_step_x16) {
+>  		if (intel_dp->force_dsc_fractional_bpp_en &&
+>  		    !fxp_q4_to_frac(bpp_x16))
+> @@ -2165,9 +2154,10 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+>  	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+> +	int output_bpp;
+>  	int dsc_min_bpp;
+>  	int dsc_max_bpp;
+> -	int min_bpp_x16, max_bpp_x16;
+> +	int min_bpp_x16, max_bpp_x16, bpp_step_x16;
+>  	int dsc_joiner_max_bpp;
+>  	int num_joined_pipes = intel_crtc_num_joined_pipes(pipe_config);
+>  
+> @@ -2182,11 +2172,17 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
+>  	min_bpp_x16 = fxp_q4_from_int(dsc_min_bpp);
+>  	max_bpp_x16 = fxp_q4_from_int(dsc_max_bpp);
+>  
+> +	bpp_step_x16 = intel_dp_dsc_bpp_step_x16(connector);
+> +
+> +	/* Compressed BPP should be less than the Input DSC bpp */
+> +	output_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
+> +	max_bpp_x16 = min(max_bpp_x16, fxp_q4_from_int(output_bpp) - bpp_step_x16);
+> +
+>  	if (DISPLAY_VER(display) >= 13)
+> -		return xelpd_dsc_compute_link_config(intel_dp, connector, pipe_config, limits,
+> -						     min_bpp_x16, max_bpp_x16, pipe_bpp, timeslots);
+> +		return xelpd_dsc_compute_link_config(intel_dp, pipe_config, limits,
+> +						     min_bpp_x16, max_bpp_x16, bpp_step_x16, timeslots);
+>  	return icl_dsc_compute_link_config(intel_dp, pipe_config, limits,
+> -					   min_bpp_x16, max_bpp_x16, pipe_bpp, timeslots);
+> +					   min_bpp_x16, max_bpp_x16, bpp_step_x16, timeslots);
+>  }
+>  
+>  int intel_dp_dsc_min_src_input_bpc(void)
+> -- 
+> 2.39.5
+> 
