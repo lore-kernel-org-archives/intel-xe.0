@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 967B6C0218F
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 12:50:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48479C02194
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 12:50:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5755810E1EA;
-	Fri, 31 Jan 2025 12:50:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 161FC10E086;
+	Fri, 31 Jan 2025 12:50:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ScmNmAXM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HyL0NOej";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDE0510E1EA;
- Fri, 31 Jan 2025 12:50:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42BFD10E086;
+ Fri, 31 Jan 2025 12:50:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738327823; x=1769863823;
+ t=1738327833; x=1769863833;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BGET/UU/2bV5Re6ziqCj4p0mZbhPAXcfyFDC0FmfJTA=;
- b=ScmNmAXM+frcFaCE7PMgz2PfchyHi5EnED0JFNZbzdcI1YWWzIsvKjOV
- +rKhqfFJ/JpIfMdGRCATaibhxU5pe97gs1wqME7rl3LgXtzMaLAbX9m7D
- 22paNeNir7/VjxsHPdt+GQ+7FZUYL2drsb/ecYK2NVWooodMJ0WeALgBZ
- m/H4etb8P25hQBGmV3unDO9uAp4weiqcI/HLY7fdSo+dDN+/ztJ1N3FTI
- jmzIHNX04oAPq9+a9B1RByuL2V2GjeVqfYz/ArB7iu4HnwsXBU88z7bVI
- tODZg6tcoWprI7wBidZKzl2GZPQ7cSWAGX2Q7YMnIz7jJ6PTt4LFZp9iA g==;
-X-CSE-ConnectionGUID: NiNnrQtET3SI7M32R4xZgw==
-X-CSE-MsgGUID: UncN1CtZThKD0y4aDhwMNQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="38798437"
-X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="38798437"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 04:50:22 -0800
-X-CSE-ConnectionGUID: zlk9dCfuRNSr/+XeEPvKNA==
-X-CSE-MsgGUID: h4Zkr3+dTomk03TDK+2HBQ==
+ bh=TfIo486Cpc5xIsQbo1/pbfZser2wB0+c4Ks2AOiE8/s=;
+ b=HyL0NOej8n/gX+X0vkMgDHzCRz//9rv0QlZEHlk3ZIhNIMY3SAXyw8/o
+ zuiLiFaKHvopoALCpDnR/QA8L41rng5270afgWNzxHKjsCJJrf/fO4+3n
+ lMe2u2V5oi2GYIiwMQ9oNYq1mAY53wydpv7Y0xFH0acat2QOLPQxp3oVO
+ CdtEqoCBR+9EC296AFKE4yV1K21Xe4UydEwh8MXwf+5fCppybvck6ND2l
+ 2UWV0Ot7VoMdpgI1g8KoKj6h98+ePYci2TlUBY2AkD/7YNY2w/KSlGyJW
+ zzcC2WQ3OMpLQFwXJf6yeDlkP3XHIcg4Jmh+DRhFrDl8XhQwL7sYkpPsD w==;
+X-CSE-ConnectionGUID: rX2o5J/AQxSwtLtcKbZPmw==
+X-CSE-MsgGUID: wMwdLne+T0S4kGnY4g/vPA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="38599490"
+X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="38599490"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 04:50:33 -0800
+X-CSE-ConnectionGUID: VxHEaCLaQoOppG7GnBtQHw==
+X-CSE-MsgGUID: WH1SzbbDTtKhixwpU7cxMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="110203309"
+X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="114616966"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.174])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 04:50:20 -0800
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 04:50:31 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: imre.deak@intel.com, jani.nikula@intel.com,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>, stable@vger.kernel.org
-Subject: [PATCH 01/14] drm/i915/dp: Iterate DSC BPP from high to low on all
- platforms
-Date: Fri, 31 Jan 2025 14:49:54 +0200
-Message-Id: <3bba67923cbcd13a59d26ef5fa4bb042b13c8a9b.1738327620.git.jani.nikula@intel.com>
+Cc: imre.deak@intel.com,
+	jani.nikula@intel.com
+Subject: [PATCH 03/14] drm/i915/dp: Rename some variables in
+ xelpd_dsc_compute_link_config()
+Date: Fri, 31 Jan 2025 14:49:56 +0200
+Message-Id: <91dd6ef53683b624a978101cca7322ea3e5e2f7b.1738327620.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1738327620.git.jani.nikula@intel.com>
 References: <cover.1738327620.git.jani.nikula@intel.com>
@@ -71,43 +71,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Commit 1c56e9a39833 ("drm/i915/dp: Get optimal link config to have best
-compressed bpp") tries to find the best compressed bpp for the
-link. However, it iterates from max to min bpp on display 13+, and from
-min to max on other platforms. This presumably leads to minimum
-compressed bpp always being chosen on display 11-12.
+Use the _x16 suffix for all .4 fixed point variables. Drop compressed_
+prefix, as it's implied from the precision suffix.
 
-Iterate from high to low on all platforms to actually use the best
-possible compressed bpp.
+As dsc_min_bpp and dsc_max_bpp change domain from int to .4 in the
+middle of the function, they remain the same for now.
 
-Fixes: 1c56e9a39833 ("drm/i915/dp: Get optimal link config to have best compressed bpp")
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: <stable@vger.kernel.org> # v6.7+
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 19 ++++++++-----------
+ 1 file changed, 8 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index d1b4fd542a1f..ecf192262eb9 100644
+index a7a5bb2075da..02d1a5453b46 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2073,11 +2073,10 @@ icl_dsc_compute_link_config(struct intel_dp *intel_dp,
+@@ -2126,31 +2126,28 @@ xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 	int output_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
+-	u16 compressed_bppx16;
+-	u8 bppx16_step;
++	int bpp_x16, bpp_step_x16;
+ 	int ret;
+ 
+-	bppx16_step = intel_dp_dsc_bpp_step_x16(connector);
++	bpp_step_x16 = intel_dp_dsc_bpp_step_x16(connector);
+ 
  	/* Compressed BPP should be less than the Input DSC bpp */
- 	dsc_max_bpp = min(dsc_max_bpp, output_bpp - 1);
+-	dsc_max_bpp = min(dsc_max_bpp << 4, (output_bpp << 4) - bppx16_step);
++	dsc_max_bpp = min(dsc_max_bpp << 4, (output_bpp << 4) - bpp_step_x16);
+ 	dsc_min_bpp = dsc_min_bpp << 4;
  
--	for (i = 0; i < ARRAY_SIZE(valid_dsc_bpp); i++) {
--		if (valid_dsc_bpp[i] < dsc_min_bpp)
-+	for (i = ARRAY_SIZE(valid_dsc_bpp) - 1; i >= 0; i--) {
-+		if (valid_dsc_bpp[i] < dsc_min_bpp ||
-+		    valid_dsc_bpp[i] > dsc_max_bpp)
+-	for (compressed_bppx16 = dsc_max_bpp;
+-	     compressed_bppx16 >= dsc_min_bpp;
+-	     compressed_bppx16 -= bppx16_step) {
++	for (bpp_x16 = dsc_max_bpp; bpp_x16 >= dsc_min_bpp; bpp_x16 -= bpp_step_x16) {
+ 		if (intel_dp->force_dsc_fractional_bpp_en &&
+-		    !fxp_q4_to_frac(compressed_bppx16))
++		    !fxp_q4_to_frac(bpp_x16))
  			continue;
--		if (valid_dsc_bpp[i] > dsc_max_bpp)
--			break;
- 
  		ret = dsc_compute_link_config(intel_dp,
  					      pipe_config,
+ 					      limits,
+-					      compressed_bppx16,
++					      bpp_x16,
+ 					      timeslots);
+ 		if (ret == 0) {
+-			pipe_config->dsc.compressed_bpp_x16 = compressed_bppx16;
++			pipe_config->dsc.compressed_bpp_x16 = bpp_x16;
+ 			if (intel_dp->force_dsc_fractional_bpp_en &&
+-			    fxp_q4_to_frac(compressed_bppx16))
++			    fxp_q4_to_frac(bpp_x16))
+ 				drm_dbg_kms(display->drm,
+ 					    "Forcing DSC fractional bpp\n");
+ 
 -- 
 2.39.5
 
