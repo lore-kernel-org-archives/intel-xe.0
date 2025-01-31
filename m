@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C5E3C02194
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 13:39:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F788C0218F
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 13:44:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01DB310EAB5;
-	Fri, 31 Jan 2025 13:39:01 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4C5B10EAB5;
- Fri, 31 Jan 2025 13:38:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5763086170000311209=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_dsc_fix=2C_r?=
- =?utf-8?q?efactoring_and_cleanups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 31 Jan 2025 13:38:59 -0000
-Message-ID: <173833073986.3219246.17030264056646118396@b555e5b46a47>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id E01D310EAB9;
+	Fri, 31 Jan 2025 13:44:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O4GOUdoL";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6B7C10EAB5;
+ Fri, 31 Jan 2025 13:44:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738331074; x=1769867074;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=mYy+ow/5gT0bqxe/TBsAJp6YJPofK+w4PlaZTRMwrbU=;
+ b=O4GOUdoL/dbVqu3G+glM79uxQ6K7niHCeliEk+T+iEObJy/jtw/z2arh
+ 6OQ8aHdXsh0fTPRVMnea815SWDZ79/oZESDA0z6KohtYMASe2TW+cdbEN
+ Z8DX9Xj6r23kVnrQ+PdfkPKv8pEieXL3gposE2zKYEPtA1J7Zz0IE5u+3
+ SihQYjtxZTbA+G08VB9i+v2zrLDDKzobSr9fSXL2+YRFK31O2Uhn1PqUo
+ oX3PKCTymCirG907u7z+4KXp4DtrpsaNA0VCzu2KIK4QmNa+ex9p3nVP5
+ 02T420GcczWfCZqgzM1C3V7M9eBmZf2Y5A16Ou5QDomwN3LfdPYycgs0k Q==;
+X-CSE-ConnectionGUID: IgyCqOhGR3S1hYfFmE+g1w==
+X-CSE-MsgGUID: sBg8kXICTmWKLkIXLxsbYQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="64261065"
+X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="64261065"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 05:44:33 -0800
+X-CSE-ConnectionGUID: VwDjQ/woQW6o9CoB54bQkA==
+X-CSE-MsgGUID: U9N0maMfSYe3np3u+dYUwg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="132889148"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 05:44:32 -0800
+Date: Fri, 31 Jan 2025 15:45:29 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 02/14] drm/i915/dp: Add intel_dp_dsc_bpp_step_x16()
+ helper to get DSC BPP precision
+Message-ID: <Z5zT-QAD_RRYbzCX@ideak-desk.fi.intel.com>
 References: <cover.1738327620.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1738327620.git.jani.nikula@intel.com>
+ <ed109ed88a6ae3849871ec341cb5ab2088097dd3.1738327620.git.jani.nikula@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ed109ed88a6ae3849871ec341cb5ab2088097dd3.1738327620.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +65,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5763086170000311209==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Jan 31, 2025 at 02:49:55PM +0200, Jani Nikula wrote:
+> Add a platform independent helper for getting the supported DSC BPP step
+> for the link.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 21 ++++++++++++++++-----
+>  1 file changed, 16 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index ecf192262eb9..a7a5bb2075da 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2054,6 +2054,21 @@ static int dsc_src_max_compressed_bpp(struct intel_dp *intel_dp)
+>  		return 27;
+>  }
+>  
+> +/*
+> + * Note: for pre-13 display you still need to check the validity of each step.
+> + */
+> +static int intel_dp_dsc_bpp_step_x16(const struct intel_connector *connector)
 
-== Series Details ==
+Nit: there was a guideline that these KMS objects should be passed around via
+non-const pointers vs. state pointers which should be const if possible.
 
-Series: drm/i915/dp: dsc fix, refactoring and cleanups
-URL   : https://patchwork.freedesktop.org/series/144178/
-State : success
+> +{
+> +	struct intel_display *display = to_intel_display(connector);
+> +	u8 incr = drm_dp_dsc_sink_bpp_incr(connector->dp.dsc_dpcd);
+> +
+> +	if (DISPLAY_VER(display) < 14 || !incr)
+> +		return fxp_q4_from_int(1);
+> +
+> +	/* fxp q4 */
+> +	return 16 / incr;
 
-== Summary ==
+Nit: could've been fxp_q4_from_int(1) / incr;
 
-CI Bug Log - changes from xe-2580-7998f28da73c50ffddff38ac74f5aa48a76a0b0a_BAT -> xe-pw-144178v1_BAT
-====================================================
+Regardless of the nits, patch looks ok:
 
-Summary
--------
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 7)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2580-7998f28da73c50ffddff38ac74f5aa48a76a0b0a -> xe-pw-144178v1
-
-  IGT_8218: fafef52e0a83fec5f8c4f8df851d27319467762b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2580-7998f28da73c50ffddff38ac74f5aa48a76a0b0a: 7998f28da73c50ffddff38ac74f5aa48a76a0b0a
-  xe-pw-144178v1: 144178v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144178v1/index.html
-
---===============5763086170000311209==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: dsc fix, refactoring and cleanups</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144178/">https://patchwork.freedesktop.org/series/144178/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144178v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144178v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2580-7998f28da73c50ffddff38ac74f5aa48a76a0b0a_BAT -&gt; xe-pw-144178v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 7)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2580-7998f28da73c50ffddff38ac74f5aa48a76a0b0a -&gt; xe-pw-144178v1</li>
-</ul>
-<p>IGT_8218: fafef52e0a83fec5f8c4f8df851d27319467762b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2580-7998f28da73c50ffddff38ac74f5aa48a76a0b0a: 7998f28da73c50ffddff38ac74f5aa48a76a0b0a<br />
-  xe-pw-144178v1: 144178v1</p>
-
-</body>
-</html>
-
---===============5763086170000311209==--
+> +}
+> +
+>  /*
+>   * From a list of valid compressed bpps try different compressed bpp and find a
+>   * suitable link configuration that can support it.
+> @@ -2110,16 +2125,12 @@ xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
+>  			      int timeslots)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+> -	u8 bppx16_incr = drm_dp_dsc_sink_bpp_incr(connector->dp.dsc_dpcd);
+>  	int output_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
+>  	u16 compressed_bppx16;
+>  	u8 bppx16_step;
+>  	int ret;
+>  
+> -	if (DISPLAY_VER(display) < 14 || bppx16_incr <= 1)
+> -		bppx16_step = 16;
+> -	else
+> -		bppx16_step = 16 / bppx16_incr;
+> +	bppx16_step = intel_dp_dsc_bpp_step_x16(connector);
+>  
+>  	/* Compressed BPP should be less than the Input DSC bpp */
+>  	dsc_max_bpp = min(dsc_max_bpp << 4, (output_bpp << 4) - bppx16_step);
+> -- 
+> 2.39.5
+> 
