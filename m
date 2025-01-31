@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B36A4C02190
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 14:51:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 506F0C0218F
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 14:58:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7673E10EAD2;
-	Fri, 31 Jan 2025 14:51:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GDM207H4";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01D6210EAD1;
- Fri, 31 Jan 2025 14:51:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738335080; x=1769871080;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=QY33ECqvaW8J6tjMILw5/zzRRH7/4t/sy6VF+a1HRds=;
- b=GDM207H4g9yPSG5ND0AdCXSbafvkn7AKRUOytkl8KQ3qU86db/RhUnho
- MBjDnE4ZmDQBvBP+w5OVUd7pe2b+tTxVKfuh3Cdn8NeYODas7wTQLspa9
- awF0cxWkzWpSmVo1kw2StpUDk/0rv+7GhDL7kfcHoFUOUw5nlCusYtVis
- XcKOQeHwtyWLvh+BdZ02JGDOkLlzIId+jEWJABFPDETzLmPipjbw/LY7L
- Ts8NfnFjYy/Uop2PofyDL5nH+qt6nKGeqV5rKI4A0PrIbqKJd/I25PZBn
- q3Eh8pS1k165BgAF7aWvwXoIOaBw2ZwxMuOjTnbqSVeSyzm++LtGkIuPS A==;
-X-CSE-ConnectionGUID: Z0PfRM6vQ9aL4EyiVBPsnA==
-X-CSE-MsgGUID: aFR8KqigQJeKMxE5cwrrkw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="41736738"
-X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="41736738"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 06:51:19 -0800
-X-CSE-ConnectionGUID: peGtpaOaT0uYCSWXcSbCow==
-X-CSE-MsgGUID: GvxQAV9URVGqxAZE/LOWFw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110097117"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 06:51:18 -0800
-Date: Fri, 31 Jan 2025 16:52:14 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 10/14] drm/i915/dp: Simplify input BPP checks in
- intel_dp_dsc_compute_pipe_bpp()
-Message-ID: <Z5zjnvO7PFYKcCZ8@ideak-desk.fi.intel.com>
-References: <cover.1738327620.git.jani.nikula@intel.com>
- <5559b14d6af4e001677f23454d6bd8b3606b3d7a.1738327620.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F2E610EAD7;
+	Fri, 31 Jan 2025 14:58:36 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B1A110EAD5;
+ Fri, 31 Jan 2025 14:58:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5559b14d6af4e001677f23454d6bd8b3606b3d7a.1738327620.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_AuxCCS_handling_and_render_com?=
+ =?utf-8?q?pression_modifiers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 31 Jan 2025 14:58:35 -0000
+Message-ID: <173833551516.3229824.10104937650533276650@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250131142045.47785-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250131142045.47785-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,59 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 31, 2025 at 02:50:03PM +0200, Jani Nikula wrote:
-> Drop the extra local variables and simplify the conditions. We don't
-> have to try to special case the loop condition and break in the validity
-> checks.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+Series: AuxCCS handling and render compression modifiers
+URL   : https://patchwork.freedesktop.org/series/144186/
+State : success
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 10 ++--------
->  1 file changed, 2 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 185c9f7e8538..7a8a4df1bf1e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2202,8 +2202,6 @@ static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
->  {
->  	const struct intel_connector *connector =
->  		to_intel_connector(conn_state->connector);
-> -	int dsc_max_bpp;
-> -	int dsc_min_bpp;
->  	u8 dsc_bpc[3] = {};
->  	int forced_bpp, pipe_bpp;
->  	int num_bpc, i, ret;
-> @@ -2219,9 +2217,6 @@ static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
->  		}
->  	}
->  
-> -	dsc_max_bpp = limits->pipe.max_bpp;
-> -	dsc_min_bpp = limits->pipe.min_bpp;
-> -
->  	/*
->  	 * Get the maximum DSC bpc that will be supported by any valid
->  	 * link configuration and compressed bpp.
-> @@ -2229,10 +2224,9 @@ static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
->  	num_bpc = drm_dp_dsc_sink_supported_input_bpcs(connector->dp.dsc_dpcd, dsc_bpc);
->  	for (i = 0; i < num_bpc; i++) {
->  		pipe_bpp = dsc_bpc[i] * 3;
-> -		if (pipe_bpp < dsc_min_bpp)
-> -			break;
-> -		if (pipe_bpp > dsc_max_bpp)
-> +		if (pipe_bpp < limits->pipe.min_bpp || pipe_bpp > limits->pipe.max_bpp)
->  			continue;
-> +
->  		ret = dsc_compute_compressed_bpp(intel_dp, connector, pipe_config,
->  						 limits, pipe_bpp, timeslots);
->  		if (ret == 0) {
-> -- 
-> 2.39.5
-> 
+== Summary ==
+
+lib/modules/6.13.0-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.13.0-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.13.0-xe+/kernel/kernel/
+lib/modules/6.13.0-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.13.0-xe+/kernel/crypto/
+lib/modules/6.13.0-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.13.0-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.13.0-xe+/kernel/crypto/zstd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.13.0-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.13.0-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/xctr.ko
+lib/modules/6.13.0-xe+/kernel/crypto/authenc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/keywrap.ko
+lib/modules/6.13.0-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm3.ko
+lib/modules/6.13.0-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.13.0-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cmac.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.13.0-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/essiv.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ccm.ko
+lib/modules/6.13.0-xe+/kernel/crypto/wp512.ko
+lib/modules/6.13.0-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.13.0-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lrw.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.13.0-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.13.0-xe+/kernel/crypto/vmac.ko
+lib/modules/6.13.0-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.13.0-xe+/kernel/crypto/842.ko
+lib/modules/6.13.0-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.13.0-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/md4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.13.0-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/lz4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.13.0-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/sm4.ko
+lib/modules/6.13.0-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.13.0-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.13.0-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.13.0-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.13.0-xe+/kernel/block/
+lib/modules/6.13.0-xe+/kernel/block/bfq.ko
+lib/modules/6.13.0-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.13.0-xe+/build
+lib/modules/6.13.0-xe+/modules.alias.bin
+lib/modules/6.13.0-xe+/modules.builtin
+lib/modules/6.13.0-xe+/modules.softdep
+lib/modules/6.13.0-xe+/modules.alias
+lib/modules/6.13.0-xe+/modules.order
+lib/modules/6.13.0-xe+/modules.symbols
+lib/modules/6.13.0-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1738335504:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1738335504:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
