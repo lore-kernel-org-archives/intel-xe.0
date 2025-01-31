@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B069C02194
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 22:31:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA009C0218F
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 22:32:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C17810E265;
-	Fri, 31 Jan 2025 22:31:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F83F10E2CC;
+	Fri, 31 Jan 2025 22:32:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZWk3xykq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JlsO44F/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7938510E226
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0EAE10E226
  for <intel-xe@lists.freedesktop.org>; Fri, 31 Jan 2025 22:31:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1738362718; x=1769898718;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eBPiai/R0KqH6OyJp0PxVabUPF6B2kIWDSLBmrYqQcM=;
- b=ZWk3xykqB5laRqpfovS+l583B59qnOkYyEg+yUn2uR5OhYY2DokbVk41
- dELUcI0feGjbTFbzu1yM7IhSOjARpJpW6DnLNOkRNoNecmarGYXYY0klh
- KgTgWmNHElHC2kU2A3AOK2nL0i/rZ1mKY0FbowQHnhWsT5Ay8qFP16m5s
- tz8g3goMY/rzfU6LvU+LYb9XiKZ/YOMaif/hzcslaMRdHnf87XvwA4NBc
- Br3XguBFF89tWKvV93GH8jmi6jCdOmkPihP0mAeXJAofvk2ZQwGnv/6SQ
- fawaEmItLMS29FzOMM+GLHqfYx5zritDvChCr1xg/CSE6PqOfHhNM4Wvq A==;
-X-CSE-ConnectionGUID: MxEzX0W5QY+XtPCZYj2UkA==
-X-CSE-MsgGUID: MDeKzlfyRwWsCoW03Yf8DA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="38149066"
-X-IronPort-AV: E=Sophos;i="6.13,249,1732608000"; d="scan'208";a="38149066"
+ bh=lYO+qufL8b+5sIRffcDzARI+OgtPRXmYKQkYZeVqd2c=;
+ b=JlsO44F/kqn58i7e1UwZiE4j2UoLAsUpySNjMWXOExcDU3Siab/4lBuK
+ N12L20i3/kdXMoHG14xSCRqSJpzBrCSJMXXMYQZgJs1Dp7RltfRC7KjJ5
+ RVgCiTe1d+HJqaN0J5bS4lqiQgXOyUemTImS7qh2dPCDMZZqOLeAGxUPH
+ /ts5LK+XlSbgNT3CVhJ+rqSuDGcdpikAUrcpm3tgRD4sZ9ONu4O94l1PO
+ YsNNU8BItdgZTMgW6es3cxGEYDPD9ZYPJkTvfRXNgKjU5tgy/QsUrBosw
+ r2j0o5UbCwS1NC4KyOgCfpdDZRoLDWeYh/zfVZmHwGKCeJ+Ux91nkSlDI Q==;
+X-CSE-ConnectionGUID: G+7X4CAZTkaokkWFr5KYeA==
+X-CSE-MsgGUID: y3BgezYpQ4iH6BlxlG9pXw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="38149072"
+X-IronPort-AV: E=Sophos;i="6.13,249,1732608000"; d="scan'208";a="38149072"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 14:31:56 -0800
-X-CSE-ConnectionGUID: xsNaAktLQAWejBQvYwn5ng==
-X-CSE-MsgGUID: F58Wxn2LT4mJm+byhSthMQ==
+ 31 Jan 2025 14:31:57 -0800
+X-CSE-ConnectionGUID: GgEEsRGGROymflSoidID9w==
+X-CSE-MsgGUID: 6QrADVRbSAOm+5A30V3m+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110622319"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110622328"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 Jan 2025 14:31:56 -0800
@@ -48,9 +48,9 @@ Cc: Matt Roper <matthew.d.roper@intel.com>,
  Francois Dugast <francois.dugast@intel.com>,
  Maarten Lankhorst <dev@lankhorst.se>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 4/7] drm/xe: Stop ignoring errors from xe_ttm_stolen_mgr_init()
-Date: Fri, 31 Jan 2025 14:31:37 -0800
-Message-ID: <20250131223140.4144292-5-lucas.demarchi@intel.com>
+Subject: [PATCH 7/7] drm/xe: Move oa fini to xe_oa
+Date: Fri, 31 Jan 2025 14:31:40 -0800
+Message-ID: <20250131223140.4144292-8-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250131223140.4144292-1-lucas.demarchi@intel.com>
 References: <20250131223140.4144292-1-lucas.demarchi@intel.com>
@@ -70,98 +70,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Make sure to differentiate normal behavior, e.g. there's no stolen, from
-allocation errors or failure to initialize lower layers.
+Like done with other functions, cleanup the error handling in
+xe_device_probe() by moving the OA fini to be handled by xe_oa.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c         |  4 +++-
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 17 +++++++++--------
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h |  2 +-
- 3 files changed, 13 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |  7 +----
+ drivers/gpu/drm/xe/xe_oa.c     | 48 +++++++++++++++++-----------------
+ drivers/gpu/drm/xe/xe_oa.h     |  1 -
+ 3 files changed, 25 insertions(+), 31 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 2e874906d4f31..e519f435b1606 100644
+index bea626f6b4cbf..aa6632cc22305 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -826,7 +826,9 @@ int xe_device_probe(struct xe_device *xe)
- 	}
+@@ -863,7 +863,7 @@ int xe_device_probe(struct xe_device *xe)
  
- 	/* Allocate and map stolen after potential VRAM resize */
--	xe_ttm_stolen_mgr_init(xe);
-+	err = xe_ttm_stolen_mgr_init(xe);
-+	if (err)
+ 	err = xe_display_init(xe);
+ 	if (err)
+-		goto err_fini_oa;
 +		return err;
  
- 	/*
- 	 * Now that GT is initialized (TTM in particular),
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-index 423856cc18d40..e1a1200fdf22d 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -201,17 +201,16 @@ static u64 detect_stolen(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
- #endif
+ 	err = drm_dev_register(&xe->drm, 0);
+ 	if (err)
+@@ -889,9 +889,6 @@ int xe_device_probe(struct xe_device *xe)
+ err_fini_display:
+ 	xe_display_driver_remove(xe);
+ 
+-err_fini_oa:
+-	xe_oa_fini(xe);
+-
+ 	return err;
  }
  
--void xe_ttm_stolen_mgr_init(struct xe_device *xe)
-+int xe_ttm_stolen_mgr_init(struct xe_device *xe)
- {
--	struct xe_ttm_stolen_mgr *mgr = drmm_kzalloc(&xe->drm, sizeof(*mgr), GFP_KERNEL);
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	struct xe_ttm_stolen_mgr *mgr;
- 	u64 stolen_size, io_size;
- 	int err;
+@@ -909,8 +906,6 @@ void xe_device_remove(struct xe_device *xe)
  
--	if (!mgr) {
--		drm_dbg_kms(&xe->drm, "Stolen mgr init failed\n");
--		return;
--	}
-+	mgr = drmm_kzalloc(&xe->drm, sizeof(*mgr), GFP_KERNEL);
-+	if (!mgr)
-+		return -ENOMEM;
+ 	xe_device_remove_display(xe);
  
- 	if (IS_SRIOV_VF(xe))
- 		stolen_size = 0;
-@@ -224,7 +223,7 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+-	xe_oa_fini(xe);
+-
+ 	xe_heci_gsc_fini(xe);
+ }
  
- 	if (!stolen_size) {
- 		drm_dbg_kms(&xe->drm, "No stolen memory support\n");
--		return;
-+		return 0;
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index fa873f3d0a9d1..2c640185bdeca 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -2641,6 +2641,27 @@ static void xe_oa_init_supported_formats(struct xe_oa *oa)
  	}
+ }
  
- 	/*
-@@ -240,7 +239,7 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
- 				     io_size, PAGE_SIZE);
- 	if (err) {
- 		drm_dbg_kms(&xe->drm, "Stolen mgr init failed: %i\n", err);
--		return;
-+		return err;
- 	}
- 
- 	drm_dbg_kms(&xe->drm, "Initialized stolen memory support with %llu bytes\n",
-@@ -248,6 +247,8 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
- 
- 	if (io_size)
- 		mgr->mapping = devm_ioremap_wc(&pdev->dev, mgr->io_base, io_size);
++static int destroy_config(int id, void *p, void *data)
++{
++	xe_oa_config_put(p);
 +
 +	return 0;
++}
++
++static void xe_oa_fini(void *arg)
++{
++	struct xe_device *xe = arg;
++	struct xe_oa *oa = &xe->oa;
++
++	if (!oa->xe)
++		return;
++
++	idr_for_each(&oa->metrics_idr, destroy_config, oa);
++	idr_destroy(&oa->metrics_idr);
++
++	oa->xe = NULL;
++}
++
+ /**
+  * xe_oa_init - OA initialization during device probe
+  * @xe: @xe_device
+@@ -2672,31 +2693,10 @@ int xe_oa_init(struct xe_device *xe)
+ 	}
+ 
+ 	xe_oa_init_supported_formats(oa);
+-	return 0;
+-exit:
+-	oa->xe = NULL;
+-	return ret;
+-}
+ 
+-static int destroy_config(int id, void *p, void *data)
+-{
+-	xe_oa_config_put(p);
+-	return 0;
+-}
+-
+-/**
+- * xe_oa_fini - OA de-initialization during device remove
+- * @xe: @xe_device
+- */
+-void xe_oa_fini(struct xe_device *xe)
+-{
+-	struct xe_oa *oa = &xe->oa;
+-
+-	if (!oa->xe)
+-		return;
+-
+-	idr_for_each(&oa->metrics_idr, destroy_config, oa);
+-	idr_destroy(&oa->metrics_idr);
++	return devm_add_action_or_reset(xe->drm.dev, xe_oa_fini, xe);
+ 
++exit:
+ 	oa->xe = NULL;
++	return ret;
  }
+diff --git a/drivers/gpu/drm/xe/xe_oa.h b/drivers/gpu/drm/xe/xe_oa.h
+index 87a38820c317d..eb36ce250c615 100644
+--- a/drivers/gpu/drm/xe/xe_oa.h
++++ b/drivers/gpu/drm/xe/xe_oa.h
+@@ -15,7 +15,6 @@ struct xe_gt;
+ struct xe_hw_engine;
  
- u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset)
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-index 1777245ff8101..8e877d1e839bd 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-@@ -12,7 +12,7 @@ struct ttm_resource;
- struct xe_bo;
- struct xe_device;
- 
--void xe_ttm_stolen_mgr_init(struct xe_device *xe);
-+int xe_ttm_stolen_mgr_init(struct xe_device *xe);
- int xe_ttm_stolen_io_mem_reserve(struct xe_device *xe, struct ttm_resource *mem);
- bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe);
- u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset);
+ int xe_oa_init(struct xe_device *xe);
+-void xe_oa_fini(struct xe_device *xe);
+ void xe_oa_register(struct xe_device *xe);
+ void xe_oa_unregister(struct xe_device *xe);
+ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *file);
 -- 
 2.48.0
 
