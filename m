@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13DAEC0218F
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 13:31:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E76F7C02192
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 13:35:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AC7F10E0D6;
-	Fri, 31 Jan 2025 13:31:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE3EE10EAB3;
+	Fri, 31 Jan 2025 13:35:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BrUVm08l";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bjnqqw3w";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D048310E0D6;
- Fri, 31 Jan 2025 13:31:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9344F10EAB3
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Jan 2025 13:35:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738330304; x=1769866304;
- h=date:from:to:cc:subject:message-id:reply-to:references:
+ t=1738330535; x=1769866535;
+ h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=acxBtP3naVLbc/nuu2Xr7tOIoK71doyEyfio1+8KUkk=;
- b=BrUVm08lGkiI0WY/8+EJ8lJkNlu57O9Zn6jn9UsmeqQaF3zzuBszdOtj
- GfHG46lpuuGLrlCyl0CRA8c6Bvc5R53jMYNuNDwsLLzqZoceJkrzPucE6
- LOS3mtgOq+0bCq0v9NUrIljbyTaxfvvZ+JevmNJtpAkDktzojkeDvjkLH
- W4bJQm8B7D90L71xgrb/4JG3DoQR61uGygN7MLQeuY8mjAq8MggaqMijf
- i8tS9qI9cnknWWAK8YG66vfs/190ZSHTBSfeEf+jYMDxDAx8uciSByOKX
- Qn6nP3uXZXXS0PEUYcKcdJvOgiINFJlQR9GdZ7JRoTaEV8/AmA3ACertT Q==;
-X-CSE-ConnectionGUID: xftI4QQoTWKhHTvTBuGnMg==
-X-CSE-MsgGUID: NPZwvz8pSQqlsB1rpdOpjw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="56326110"
-X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="56326110"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 05:31:44 -0800
-X-CSE-ConnectionGUID: YOdfq9UORaeFIO1OFIifaw==
-X-CSE-MsgGUID: Vzm88yZzRYe7aZHt/ka6jw==
+ bh=P9q7U8EY7TE9ogRk0eiUoKwTQ+jt+arrFvKbhD2U5Yc=;
+ b=bjnqqw3whHevO0B1VZhCC162ravFxqFo5OfCDWGFGjGjKWG0joDpt8Op
+ W4bDFbUyocKU3HN8swMjYHvC/99dqzZ7KpWQXgFzed7WPLwnnyJbIwSIM
+ 1qcsFsuTv4yRvIJe8cG/eqJn5vCuIQvpxaYQvzlJCKcAOK/c6eoFtxDmB
+ 2p1HdsidY6yy1cUO8m446g1QgoZD2ZHGKJooKeTmkpotmuzUjYI6F6Q8I
+ 8dTKKStoeTQ4Has63Bi3Fz0Gt3/aBeQo+0pOXihMQyhUTlhmBe1/swgWr
+ xNspfuVlhCvsyzsUvixi6297z3IEMP4rrWsyMXQJFGyC27/Om3bw2rRpv A==;
+X-CSE-ConnectionGUID: MOPGjHKVRPSCsY1BiurLFg==
+X-CSE-MsgGUID: aTpiDm52Q5CBfanfxNU+RQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="38102750"
+X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="38102750"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 05:35:35 -0800
+X-CSE-ConnectionGUID: wgqrwzp+T1WsYSLCbPh+IA==
+X-CSE-MsgGUID: l0dpoCXEQReXxpBISPJlmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="114778336"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 05:31:41 -0800
-Date: Fri, 31 Jan 2025 15:32:36 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>, stable@vger.kernel.org
-Subject: Re: [PATCH 01/14] drm/i915/dp: Iterate DSC BPP from high to low on
- all platforms
-Message-ID: <Z5zQ9BjEkA_PN9Ns@ideak-desk.fi.intel.com>
-References: <cover.1738327620.git.jani.nikula@intel.com>
- <3bba67923cbcd13a59d26ef5fa4bb042b13c8a9b.1738327620.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="114636460"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.175])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 05:35:31 -0800
+Date: Fri, 31 Jan 2025 14:35:27 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ matthew.d.roper@intel.com, andi.shyti@linux.intel.com,
+ intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ riana.tauro@intel.com, badal.nilawar@intel.com, karthik.poosa@intel.com
+Subject: Re: [PATCH v2] drm/xe/hwmon: expose package and vram temperature
+Message-ID: <Z5zRn9tijHkPxrhy@ashyti-mobl2.lan>
+References: <20250131054502.1528555-1-raag.jadav@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3bba67923cbcd13a59d26ef5fa4bb042b13c8a9b.1738327620.git.jani.nikula@intel.com>
+In-Reply-To: <20250131054502.1528555-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,51 +67,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 31, 2025 at 02:49:54PM +0200, Jani Nikula wrote:
-> Commit 1c56e9a39833 ("drm/i915/dp: Get optimal link config to have best
-> compressed bpp") tries to find the best compressed bpp for the
-> link. However, it iterates from max to min bpp on display 13+, and from
-> min to max on other platforms. This presumably leads to minimum
-> compressed bpp always being chosen on display 11-12.
-> 
-> Iterate from high to low on all platforms to actually use the best
-> possible compressed bpp.
-> 
-> Fixes: 1c56e9a39833 ("drm/i915/dp: Get optimal link config to have best compressed bpp")
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: <stable@vger.kernel.org> # v6.7+
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Hi Raag,
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+...
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 7 +++----
->  1 file changed, 3 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index d1b4fd542a1f..ecf192262eb9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2073,11 +2073,10 @@ icl_dsc_compute_link_config(struct intel_dp *intel_dp,
->  	/* Compressed BPP should be less than the Input DSC bpp */
->  	dsc_max_bpp = min(dsc_max_bpp, output_bpp - 1);
+> diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+> index 519dd1067a19..f5e5234857c1 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+> @@ -34,6 +34,9 @@
 >  
-> -	for (i = 0; i < ARRAY_SIZE(valid_dsc_bpp); i++) {
-> -		if (valid_dsc_bpp[i] < dsc_min_bpp)
-> +	for (i = ARRAY_SIZE(valid_dsc_bpp) - 1; i >= 0; i--) {
-> +		if (valid_dsc_bpp[i] < dsc_min_bpp ||
-> +		    valid_dsc_bpp[i] > dsc_max_bpp)
->  			continue;
-> -		if (valid_dsc_bpp[i] > dsc_max_bpp)
-> -			break;
+>  #define PCU_CR_PACKAGE_ENERGY_STATUS		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x593c)
 >  
->  		ret = dsc_compute_link_config(intel_dp,
->  					      pipe_config,
-> -- 
-> 2.39.5
-> 
+> +#define PCU_CR_PACKAGE_TEMPERATURE		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5978)
+> +#define   TEMP_MASK				REG_GENMASK(7, 0)
+
+is it called TEMP also in the docs? It can somehow be confused
+with "temporary".
+
+In any case:
+
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+Thanks,
+Andi
