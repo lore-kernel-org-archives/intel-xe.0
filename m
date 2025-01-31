@@ -4,57 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B14FC0218F
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 15:26:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89B14C0218F
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 15:37:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4592F10E393;
-	Fri, 31 Jan 2025 15:26:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40AF610E01F;
+	Fri, 31 Jan 2025 15:37:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SiZNd4Xf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L1QiWDum";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7457310E393;
- Fri, 31 Jan 2025 15:26:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AAFB10E01F
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Jan 2025 15:37:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738337190; x=1769873190;
- h=date:from:to:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=XoTqNgGJK6DtUFz1OIDJf0+aWM3LTdr3maAdHLPXAzw=;
- b=SiZNd4Xf46IuI4s+/j7VnTZkgjPeaYW6bdRxp9Cw1SdTXLAcYreLa87Y
- UnzTFswDouuFt9gfIObvx0bTgnjmFFtNGnPTkDBPL1lDbWZuCMOVrrDlZ
- 4E0Xpf0XtQ38UqyNQ0JZl18ujg1RsO85jvquDm+zXi3hmJVn/RTZQcDFW
- w0EcPjE2wnmQVKppL2fM2f+cDvZBjKY7iL8qMVKEkpMm5atZElM3bpNbK
- jSiVyuGdZJKcHkS+3oTyqjgZpMue28dy4e9l92fKBnW0hFtO9S+wcMNa0
- Ob4MGIg4yUuCYGHiRcRl0VJmOF+Ntrlvf0mE4YYecdLDv4w9X9Z+X2XZc g==;
-X-CSE-ConnectionGUID: axWIqQvGS8O+Pr4dI8aAbQ==
-X-CSE-MsgGUID: yob8DZv2TIGWNn+Vw1euAQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="38790287"
-X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="38790287"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 07:26:30 -0800
-X-CSE-ConnectionGUID: pSUn7/H+RCCtfMYMeLM7xA==
-X-CSE-MsgGUID: l3xkmzGlSHWep77Foer46A==
+ t=1738337854; x=1769873854;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Sdc22J7pVujoLVcZsGuwJjurT/LcBKIlPcs+haIMzcA=;
+ b=L1QiWDumBhBGBp8x/bOZ1rbgKaE9Osz0yw9SJJaWli+Oyjf9TRzf1RyD
+ FaiT+33gCULKHkYRvaFTRE1SD9fKkcS42S2+Gk7Uf+k/gzKaXBH0umbPh
+ FgqrLcnhZEjP4kF1izmKfZHeV/WM/Tzi1lWvylUc9aThl0CpZ5/BBw/bQ
+ zPs+EMFaYpm9h0iVIkmpIdKLC1ok8qsPR3KoI2Uw+64sYr1qtCEtB9xN6
+ yeGJ5YojGkoXMpsbkZT5VKJ18pUD1um5jwzIgaA2w/jnfpbQVfaDcCbAu
+ mewr01EzIJGWW/srapbt5FnvzwleWaryqzJc907ZuAY5F+CghBvaAfCxb Q==;
+X-CSE-ConnectionGUID: rqfg6wtXQDeV2vItGKqpKw==
+X-CSE-MsgGUID: bWgcJ+5RQCOP2rVWtCAPnw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="50294199"
+X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="50294199"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 07:37:33 -0800
+X-CSE-ConnectionGUID: ch5B7Ku5QSStC2XN765Ruw==
+X-CSE-MsgGUID: ybZn6oHMTHCT9b5PBKMNvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="114806661"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 07:26:29 -0800
-Date: Fri, 31 Jan 2025 17:27:25 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 11/14] drm/i915/dp: Use int for compressed BPP in
- dsc_compute_link_config()
-Message-ID: <Z5zr3W7aAWTXnlfT@ideak-desk.fi.intel.com>
-References: <cover.1738327620.git.jani.nikula@intel.com>
- <b8f9aebc4e40afeed3d723f98cae96c9c927a480.1738327620.git.jani.nikula@intel.com>
- <Z5zncd8R16GC1Lvf@ideak-desk.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="110240411"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.82.100])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 07:37:30 -0800
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+Subject: [PATCH] drm/xe/relay: Don't use GFP_KERNEL for new transactions
+Date: Fri, 31 Jan 2025 16:37:13 +0100
+Message-Id: <20250131153713.808-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z5zncd8R16GC1Lvf@ideak-desk.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,70 +64,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 31, 2025 at 05:08:33PM +0200, Imre Deak wrote:
-> On Fri, Jan 31, 2025 at 02:50:04PM +0200, Jani Nikula wrote:
-> > Just use ints unless there are actual reasons to do otherwise. Here,
-> > there are not.
-> > 
-> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 7a8a4df1bf1e..7c6d277729d0 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -1926,7 +1926,7 @@ static bool intel_dp_dsc_supports_format(const struct intel_connector *connector
-> >  	return drm_dp_dsc_sink_supports_format(connector->dp.dsc_dpcd, sink_dsc_format);
-> >  }
-> >  
-> > -static bool is_bw_sufficient_for_dsc_config(u16 compressed_bppx16, u32 link_clock,
-> > +static bool is_bw_sufficient_for_dsc_config(int dsc_bpp_x16, u32 link_clock,
-> >  					    u32 lane_count, u32 mode_clock,
-> >  					    enum intel_output_format output_format,
-> >  					    int timeslots)
-> > @@ -1934,7 +1934,7 @@ static bool is_bw_sufficient_for_dsc_config(u16 compressed_bppx16, u32 link_cloc
-> >  	u32 available_bw, required_bw;
-> >  
-> >  	available_bw = (link_clock * lane_count * timeslots * 16)  / 8;
-> > -	required_bw = compressed_bppx16 * (intel_dp_mode_to_fec_clock(mode_clock));
-> > +	required_bw = dsc_bpp_x16 * (intel_dp_mode_to_fec_clock(mode_clock));
-> 
-> This reduces the range for dsc_bpp_x16 and mode_clock where the above
-> multiply won't overflow, but afaics with the current max values of those
-> this is still ok:
+VFs use a relay transaction during the resume/reset flow and use
+of the GFP_KERNEL flag may conflict with the reclaim:
 
-Actually it doesn't reduce the range, since intel_dp_mode_to_fec_clock()
-returns u32, so nvm the above comment.
+     -> #0 (fs_reclaim){+.+.}-{0:0}:
+ [ ]        __lock_acquire+0x1874/0x2bc0
+ [ ]        lock_acquire+0xd2/0x310
+ [ ]        fs_reclaim_acquire+0xc5/0x100
+ [ ]        mempool_alloc_noprof+0x5c/0x1b0
+ [ ]        __relay_get_transaction+0xdc/0xa10 [xe]
+ [ ]        relay_send_to+0x251/0xe50 [xe]
+ [ ]        xe_guc_relay_send_to_pf+0x79/0x3a0 [xe]
+ [ ]        xe_gt_sriov_vf_connect+0x90/0x4d0 [xe]
+ [ ]        xe_uc_init_hw+0x157/0x3b0 [xe]
+ [ ]        do_gt_restart+0x1ae/0x650 [xe]
+ [ ]        xe_gt_resume+0xb6/0x120 [xe]
+ [ ]        xe_pm_runtime_resume+0x15b/0x370 [xe]
+ [ ]        xe_pci_runtime_resume+0x73/0x90 [xe]
+ [ ]        pci_pm_runtime_resume+0xa0/0x100
+ [ ]        __rpm_callback+0x4d/0x170
+ [ ]        rpm_callback+0x64/0x70
+ [ ]        rpm_resume+0x594/0x790
+ [ ]        __pm_runtime_resume+0x4e/0x90
+ [ ]        xe_pm_runtime_get_ioctl+0x9c/0x160 [xe]
 
-> Reviewed-by: Imre Deak <imre.deak@intel.com>
-> 
-> >  
-> >  	return available_bw > required_bw;
-> >  }
-> > @@ -1942,7 +1942,7 @@ static bool is_bw_sufficient_for_dsc_config(u16 compressed_bppx16, u32 link_cloc
-> >  static int dsc_compute_link_config(struct intel_dp *intel_dp,
-> >  				   struct intel_crtc_state *pipe_config,
-> >  				   const struct link_config_limits *limits,
-> > -				   u16 compressed_bppx16,
-> > +				   int dsc_bpp_x16,
-> >  				   int timeslots)
-> >  {
-> >  	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
-> > @@ -1957,7 +1957,7 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
-> >  		for (lane_count = limits->min_lane_count;
-> >  		     lane_count <= limits->max_lane_count;
-> >  		     lane_count <<= 1) {
-> > -			if (!is_bw_sufficient_for_dsc_config(compressed_bppx16, link_rate,
-> > +			if (!is_bw_sufficient_for_dsc_config(dsc_bpp_x16, link_rate,
-> >  							     lane_count, adjusted_mode->clock,
-> >  							     pipe_config->output_format,
-> >  							     timeslots))
-> > -- 
-> > 2.39.5
-> > 
+Since we have a preallocated pool of relay transactions, which
+should cover all our normal relay use cases, we may use the
+GFP_NOWAIT flag when allocating new outgoing transactions.
+
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_relay.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_guc_relay.c b/drivers/gpu/drm/xe/xe_guc_relay.c
+index 8f62de026724..e5dc94f3e618 100644
+--- a/drivers/gpu/drm/xe/xe_guc_relay.c
++++ b/drivers/gpu/drm/xe/xe_guc_relay.c
+@@ -225,7 +225,7 @@ __relay_get_transaction(struct xe_guc_relay *relay, bool incoming, u32 remote, u
+ 	 * with CTB lock held which is marked as used in the reclaim path.
+ 	 * Btw, that's one of the reason why we use mempool here!
+ 	 */
+-	txn = mempool_alloc(&relay->pool, incoming ? GFP_ATOMIC : GFP_KERNEL);
++	txn = mempool_alloc(&relay->pool, incoming ? GFP_ATOMIC : GFP_NOWAIT);
+ 	if (!txn)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-- 
+2.47.1
+
