@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CF90C02190
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 05:43:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7246C02190
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 05:44:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDE0F10EA18;
-	Fri, 31 Jan 2025 05:43:57 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2AED10EA18;
- Fri, 31 Jan 2025 05:43:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C38C10EA17;
+	Fri, 31 Jan 2025 05:44:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jKdT1Gec";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D3EC10EA17
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Jan 2025 05:44:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738302296; x=1769838296;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jKMJY/+B/K4JP5KZrVriVCM/XJpVUsVOwm8pnWnXI/A=;
+ b=jKdT1GecxUh3pxM2K0ZkG7GyHtWaNAVxjz91zB+qa5Q4gaf4vLscvWso
+ MBLH0AifJvfhoJldnYGMS2rdjsZXuX7WIkwhYkQeDiG2xof4PTgUAWl1S
+ DLU0+nNCj9cRmUoaQisruzqTZSO+OlEoQdY1RMjhaWSc0t2mo5DTRQ38O
+ eGQCPutuOM9XlDIP7pjov9OQoviBcRSw/IukkCdA74Ws6RiBCO4wqT99C
+ IOvrgfdkCTabnM4by2IP6cpY1t3X7vk+tgHVARr4Dj4oI9Fe39fATKI+n
+ 0DP7GlZ6I0m3hAWqFYE3/CaGq5dRD4R04LKKuANiXcX/EjyU+uRa+W8E4 Q==;
+X-CSE-ConnectionGUID: VRI0Xl+DQTiKOu4KgQsppQ==
+X-CSE-MsgGUID: SN+JtQ/pQYeJteYPVRAfhA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="39030630"
+X-IronPort-AV: E=Sophos;i="6.13,247,1732608000"; d="scan'208";a="39030630"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 21:44:56 -0800
+X-CSE-ConnectionGUID: /yfJdl9bSYOgc+yuPUT4XA==
+X-CSE-MsgGUID: BibNnsmgRYyY0GWOn0meqQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="140424252"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa001.fm.intel.com with ESMTP; 30 Jan 2025 21:44:53 -0800
+From: Raag Jadav <raag.jadav@intel.com>
+To: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ matthew.d.roper@intel.com, andi.shyti@linux.intel.com
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ riana.tauro@intel.com, badal.nilawar@intel.com, karthik.poosa@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v2] drm/xe/hwmon: expose package and vram temperature
+Date: Fri, 31 Jan 2025 11:15:02 +0530
+Message-Id: <20250131054502.1528555-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/pmu=3A_Add_GT_freq?=
- =?utf-8?q?uency_events?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 31 Jan 2025 05:43:56 -0000
-Message-ID: <173830223699.3100100.3085288190858181321@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250131044728.4107618-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20250131044728.4107618-1-vinay.belgaumkar@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,93 +63,202 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Add hwmon support for temp2_input and temp3_input attributes, which will
+expose package and vram temperature in millidegree Celsius. With this in
+place we can monitor temperature using lm-sensors tool.
 
-Series: drm/xe/pmu: Add GT frequency events
-URL   : https://patchwork.freedesktop.org/series/144164/
-State : warning
+v2: Reuse existing channels (Badal, Karthik)
 
-== Summary ==
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 16 +++++
+ drivers/gpu/drm/xe/regs/xe_mchbar_regs.h      |  3 +
+ drivers/gpu/drm/xe/regs/xe_pcode_regs.h       |  2 +
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 60 +++++++++++++++++++
+ 4 files changed, 81 insertions(+)
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 9709bad4d266de20aafc34830a0826d4e25617b1
-Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Date:   Thu Jan 30 20:47:28 2025 -0800
-
-    drm/xe/pmu: Add GT frequency events
-    
-    Define PMU events for GT frequency (actual and requested). This is
-    a port from the i915 driver implementation, where an internal timer
-    is used to aggregate GT frequencies over certain fixed interval.
-    Following PMU events are being added-
-    
-      xe_0000_00_02.0/gt-actual-frequency/              [Kernel PMU event]
-      xe_0000_00_02.0/gt-requested-frequency/           [Kernel PMU event]
-    
-    Standard perf commands can be used to monitor GT frequency-
-      $ perf stat -e xe_0000_00_02.0/gt-requested-frequency,gt=0/ -I1000
-    
-         1.001175175                700 M    xe/gt-requested-frequency,gt=0/
-         2.005891881                703 M    xe/gt-requested-frequency,gt=0/
-         3.007318169                700 M    xe/gt-requested-frequency,gt=0/
-    
-    Actual frequencies will be reported as 0 when GT is suspended.
-    
-    Cc: Riana Tauro <riana.tauro@intel.com>
-    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-    Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-+ /mt/dim checkpatch 0c2a60e7f1e779d87754254d9e3443beedbb684e drm-intel
-9709bad4d266 drm/xe/pmu: Add GT frequency events
--:100: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'event' may be better as '(event)' to avoid precedence issues
-#100: FILE: drivers/gpu/drm/xe/xe_pmu.c:183:
-+#define CONFIG_EVENT_ENABLED(config, event) \
-+	(FIELD_GET(XE_PMU_EVENT_ID_MASK, config) & event)
-
--:103: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'config' - possible side-effects?
-#103: FILE: drivers/gpu/drm/xe/xe_pmu.c:186:
-+#define CONFIG_EVENT_ENABLED_GT(config, event, gt) \
-+	(CONFIG_EVENT_ENABLED(config, event) && \
-+	(FIELD_GET(XE_PMU_EVENT_GT_MASK, config) == gt))
-
--:103: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'gt' may be better as '(gt)' to avoid precedence issues
-#103: FILE: drivers/gpu/drm/xe/xe_pmu.c:186:
-+#define CONFIG_EVENT_ENABLED_GT(config, event, gt) \
-+	(CONFIG_EVENT_ENABLED(config, event) && \
-+	(FIELD_GET(XE_PMU_EVENT_GT_MASK, config) == gt))
-
--:239: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#239: FILE: drivers/gpu/drm/xe/xe_pmu.c:412:
-+XE_EVENT_ATTR_SIMPLE(gt-actual-frequency, gt_actual_frequency,
-                        ^
-
--:239: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#239: FILE: drivers/gpu/drm/xe/xe_pmu.c:412:
-+XE_EVENT_ATTR_SIMPLE(gt-actual-frequency, gt_actual_frequency,
-                               ^
-
--:241: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#241: FILE: drivers/gpu/drm/xe/xe_pmu.c:414:
-+XE_EVENT_ATTR_SIMPLE(gt-requested-frequency, gt_requested_frequency,
-                        ^
-
--:241: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#241: FILE: drivers/gpu/drm/xe/xe_pmu.c:414:
-+XE_EVENT_ATTR_SIMPLE(gt-requested-frequency, gt_requested_frequency,
-                                  ^
-
-total: 0 errors, 0 warnings, 7 checks, 281 lines checked
-
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+index d792a56f59ac..9bce281314df 100644
+--- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
++++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+@@ -108,3 +108,19 @@ Contact:	intel-xe@lists.freedesktop.org
+ Description:	RO. Package current voltage in millivolt.
+ 
+ 		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_input
++Date:		March 2025
++KernelVersion:	6.14
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. Package temperature in millidegree Celsius.
++
++		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp3_input
++Date:		March 2025
++KernelVersion:	6.14
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. VRAM temperature in millidegree Celsius.
++
++		Only supported for particular Intel Xe graphics platforms.
+diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+index 519dd1067a19..f5e5234857c1 100644
+--- a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+@@ -34,6 +34,9 @@
+ 
+ #define PCU_CR_PACKAGE_ENERGY_STATUS		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x593c)
+ 
++#define PCU_CR_PACKAGE_TEMPERATURE		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5978)
++#define   TEMP_MASK				REG_GENMASK(7, 0)
++
+ #define PCU_CR_PACKAGE_RAPL_LIMIT		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x59a0)
+ #define   PKG_PWR_LIM_1				REG_GENMASK(14, 0)
+ #define   PKG_PWR_LIM_1_EN			REG_BIT(15)
+diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+index 0b0b49d850ae..8846eb9ce2a4 100644
+--- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+@@ -21,6 +21,8 @@
+ #define BMG_PACKAGE_POWER_SKU			XE_REG(0x138098)
+ #define BMG_PACKAGE_POWER_SKU_UNIT		XE_REG(0x1380dc)
+ #define BMG_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
++#define BMG_VRAM_TEMPERATURE			XE_REG(0x1382c0)
++#define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
+ #define BMG_PACKAGE_RAPL_LIMIT			XE_REG(0x138440)
+ #define BMG_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
+ #define BMG_PLATFORM_POWER_LIMIT		XE_REG(0x138460)
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index fde56dad3ab7..7f327e334212 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -6,6 +6,7 @@
+ #include <linux/hwmon-sysfs.h>
+ #include <linux/hwmon.h>
+ #include <linux/types.h>
++#include <linux/units.h>
+ 
+ #include <drm/drm_managed.h>
+ #include "regs/xe_gt_regs.h"
+@@ -20,6 +21,7 @@
+ #include "xe_pm.h"
+ 
+ enum xe_hwmon_reg {
++	REG_TEMP,
+ 	REG_PKG_RAPL_LIMIT,
+ 	REG_PKG_POWER_SKU,
+ 	REG_PKG_POWER_SKU_UNIT,
+@@ -36,6 +38,7 @@ enum xe_hwmon_reg_operation {
+ enum xe_hwmon_channel {
+ 	CHANNEL_CARD,
+ 	CHANNEL_PKG,
++	CHANNEL_VRAM,
+ 	CHANNEL_MAX,
+ };
+ 
+@@ -84,6 +87,19 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+ 	struct xe_device *xe = hwmon->xe;
+ 
+ 	switch (hwmon_reg) {
++	case REG_TEMP:
++		if (xe->info.platform == XE_BATTLEMAGE) {
++			if (channel == CHANNEL_PKG)
++				return BMG_PACKAGE_TEMPERATURE;
++			else if (channel == CHANNEL_VRAM)
++				return BMG_VRAM_TEMPERATURE;
++		} else if (xe->info.platform == XE_DG2) {
++			if (channel == CHANNEL_PKG)
++				return PCU_CR_PACKAGE_TEMPERATURE;
++			else if (channel == CHANNEL_VRAM)
++				return BMG_VRAM_TEMPERATURE;
++		}
++		break;
+ 	case REG_PKG_RAPL_LIMIT:
+ 		if (xe->info.platform == XE_BATTLEMAGE) {
+ 			if (channel == CHANNEL_PKG)
+@@ -431,6 +447,8 @@ static const struct attribute_group *hwmon_groups[] = {
+ };
+ 
+ static const struct hwmon_channel_info * const hwmon_info[] = {
++	HWMON_CHANNEL_INFO(temp, HWMON_T_LABEL, HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_INPUT | HWMON_T_LABEL),
+ 	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL,
+ 			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT | HWMON_P_LABEL),
+ 	HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL),
+@@ -506,6 +524,36 @@ static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, int channel, long *valu
+ 	*value = DIV_ROUND_CLOSEST(REG_FIELD_GET(VOLTAGE_MASK, reg_val) * 2500, SF_VOLTAGE);
+ }
+ 
++static umode_t
++xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
++{
++	switch (attr) {
++	case hwmon_temp_input:
++	case hwmon_temp_label:
++		return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_TEMP, channel)) ? 0444 : 0;
++	default:
++		return 0;
++	}
++}
++
++static int
++xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
++{
++	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
++	u64 reg_val;
++
++	switch (attr) {
++	case hwmon_temp_input:
++		reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, channel));
++
++		/* HW register value is in degrees Celsius, convert to millidegrees. */
++		*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
++		return 0;
++	default:
++		return -EOPNOTSUPP;
++	}
++}
++
+ static umode_t
+ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ {
+@@ -667,6 +715,9 @@ xe_hwmon_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+ 	xe_pm_runtime_get(hwmon->xe);
+ 
+ 	switch (type) {
++	case hwmon_temp:
++		ret = xe_hwmon_temp_is_visible(hwmon, attr, channel);
++		break;
+ 	case hwmon_power:
+ 		ret = xe_hwmon_power_is_visible(hwmon, attr, channel);
+ 		break;
+@@ -699,6 +750,9 @@ xe_hwmon_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+ 	xe_pm_runtime_get(hwmon->xe);
+ 
+ 	switch (type) {
++	case hwmon_temp:
++		ret = xe_hwmon_temp_read(hwmon, attr, channel, val);
++		break;
+ 	case hwmon_power:
+ 		ret = xe_hwmon_power_read(hwmon, attr, channel, val);
+ 		break;
+@@ -752,6 +806,12 @@ static int xe_hwmon_read_label(struct device *dev,
+ 			       u32 attr, int channel, const char **str)
+ {
+ 	switch (type) {
++	case hwmon_temp:
++		if (channel == CHANNEL_PKG)
++			*str = "pkg";
++		else if (channel == CHANNEL_VRAM)
++			*str = "vram";
++		return 0;
+ 	case hwmon_power:
+ 	case hwmon_energy:
+ 	case hwmon_curr:
+-- 
+2.34.1
 
