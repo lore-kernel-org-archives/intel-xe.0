@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7170DC02194
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23F6AC02195
 	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 22:32:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3875B10E43D;
-	Fri, 31 Jan 2025 22:32:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD00710E439;
+	Fri, 31 Jan 2025 22:32:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JXxfiXwj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gxELWZJT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 395F310E226
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A406A10E265
  for <intel-xe@lists.freedesktop.org>; Fri, 31 Jan 2025 22:31:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738362717; x=1769898717;
+ t=1738362718; x=1769898718;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sAhjr89bTYS/H/N+6KjIFqIkU4KefnOFSm33i7d9X3c=;
- b=JXxfiXwjyus5ITgBC+f9mA7WY+Pzp4COtx20Uzcx5xWe7ka6Io6Wf6RS
- ZR4HnHYtZzhCpuhQEfXl/4VYcAZxhE+jFqxt5JkEA5ppIHNT0zJ1bAEN8
- LR0cBFCY+wuBYwzEeiu1G7YNR1Yfb1XtLnNiLGB4Au6EPyXFENlU0Zn13
- elkcW0WZISYK7nZrjXwB4o1Qm05LTYkn7aCbI6NoM2o3iwGYHXzj6h/oE
- G/wNV3ywku7PK6MZuh4dro5xDhGf7kCwNVOMhL7UFuuiS68Tf2VJSfZGP
- CAeKtqAAt7PuAIfu83YrdUDOltmwj9ZLgTuvrXidVlJYTAQOq4J0rRt6J g==;
-X-CSE-ConnectionGUID: MJT3a79/Svy+3gnrjsRjxA==
-X-CSE-MsgGUID: uSH9t4QTT86uIrXtRjQsFg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="38149061"
-X-IronPort-AV: E=Sophos;i="6.13,249,1732608000"; d="scan'208";a="38149061"
+ bh=6mIKW/Zx39q0rg04uH7D/M63lwN3C03xYvSZft/SlyY=;
+ b=gxELWZJTu+GeQ9ru4JiAn0C1DKrvFMVSzGogZnH/r/Gd2ToCGgusCKWf
+ yKaQHfY64kaPR+qE67eM64zJGDSkjEywAJi2Gjj9/k8aJ+YD9Fkj7SSqa
+ S0+juvboURIWHe3MLhNAs8N/jecRmz0PpsSy/hp5t0HDEVyImEM0u0kDs
+ qJCCrqwyLMBvF3taEujnpIw1Xfwho7KawGQvvfsidvj9pEWzZfuweDDx+
+ Amnf9qc4KCNlCLFInl8YUO8NKHI2qTwM09gK12fVbJdJCxmzZewWAkWu4
+ g0/vECfutwZfcQPX1nYTPir2aGRLYoOermwVakIskVzBosST4KgV4pTNe Q==;
+X-CSE-ConnectionGUID: RtngyOb/SM6KXkSSmmQIwQ==
+X-CSE-MsgGUID: Z4UXOk33SWOQ2lTdoJopdw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="38149070"
+X-IronPort-AV: E=Sophos;i="6.13,249,1732608000"; d="scan'208";a="38149070"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 14:31:56 -0800
-X-CSE-ConnectionGUID: IdQ0WYTgT1mPP/4UyTWIZQ==
-X-CSE-MsgGUID: aLMbKBXqSHuoRjecIMUQuw==
+ 31 Jan 2025 14:31:57 -0800
+X-CSE-ConnectionGUID: OoBp38FWQeynlCMy5msu7A==
+X-CSE-MsgGUID: qKYDWfsjS5Cg64jQ/Q3sTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110622313"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110622325"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 Jan 2025 14:31:56 -0800
@@ -47,11 +47,10 @@ Cc: Matt Roper <matthew.d.roper@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Francois Dugast <francois.dugast@intel.com>,
  Maarten Lankhorst <dev@lankhorst.se>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Dani Liberman <dliberman@habana.ai>, Ohad Sharabi <osharabi@habana.ai>
-Subject: [PATCH 2/7] drm/xe: Fix error handling in xe_irq_install()
-Date: Fri, 31 Jan 2025 14:31:35 -0800
-Message-ID: <20250131223140.4144292-3-lucas.demarchi@intel.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH 6/7] drm/xe: Cleanup extra calls to  xe_hw_fence_irq_finish()
+Date: Fri, 31 Jan 2025 14:31:39 -0800
+Message-ID: <20250131223140.4144292-7-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250131223140.4144292-1-lucas.demarchi@intel.com>
 References: <20250131223140.4144292-1-lucas.demarchi@intel.com>
@@ -71,61 +70,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When devm_add_action_or_reset() fails, it already calls the function
-passed as parameter and that function is already free'ing the irqs.
-Drop the goto and just return.
+Now that xe_gt_remove is handled entirely by xe_gt, it's clear there are
+some extra calls to xe_hw_fence_irq_finish() that aren't necessary.
+Neither all_fw_domain_init() or gt_fw_domain_init() need to do that
+since it's handled by the caller on any error.
 
-The caller, xe_device_probe(), should also do the same thing instead of
-wrongly doing `goto err` and calling the unrelated xe_display_fini()
-function.
-
-Cc: Dani Liberman <dliberman@habana.ai>
-Cc: Ohad Sharabi <osharabi@habana.ai>
-Fixes: 14d25d8d684d ("drm/xe: change old msi irq api to a new one")
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c |  2 +-
- drivers/gpu/drm/xe/xe_irq.c    | 14 +-------------
- 2 files changed, 2 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c | 15 ++++-----------
+ 1 file changed, 4 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 589bbe21c32b4..2e874906d4f31 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -846,7 +846,7 @@ int xe_device_probe(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 48f6fd8c14b65..b05a0f27cc88c 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -388,13 +388,11 @@ static void dump_pat_on_error(struct xe_gt *gt)
+ static int gt_fw_domain_init(struct xe_gt *gt)
+ {
+ 	unsigned int fw_ref;
+-	int err, i;
++	int err;
  
- 	err = xe_irq_install(xe);
- 	if (err)
--		goto err;
-+		return err;
+ 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+-	if (!fw_ref) {
+-		err = -ETIMEDOUT;
+-		goto err_hw_fence_irq;
+-	}
++	if (!fw_ref)
++		return -ETIMEDOUT;
  
- 	for_each_gt(gt, xe, id) {
- 		last_gt = id;
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 32f5a67a917b5..08552ee3fb94b 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -757,19 +757,7 @@ int xe_irq_install(struct xe_device *xe)
+ 	if (!xe_gt_is_media_type(gt)) {
+ 		err = xe_ggtt_init(gt_to_tile(gt)->mem.ggtt);
+@@ -435,9 +433,6 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+ err_force_wake:
+ 	dump_pat_on_error(gt);
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+-err_hw_fence_irq:
+-	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
+-		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
  
- 	xe_irq_postinstall(xe);
- 
--	err = devm_add_action_or_reset(xe->drm.dev, irq_uninstall, xe);
--	if (err)
--		goto free_irq_handler;
--
--	return 0;
--
--free_irq_handler:
--	if (xe_device_has_msix(xe))
--		xe_irq_msix_free(xe);
--	else
--		xe_irq_msi_free(xe);
--
--	return err;
-+	return devm_add_action_or_reset(xe->drm.dev, irq_uninstall, xe);
+ 	return err;
  }
+@@ -445,7 +440,7 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+ static int all_fw_domain_init(struct xe_gt *gt)
+ {
+ 	unsigned int fw_ref;
+-	int err, i;
++	int err;
  
- static void xe_irq_msi_synchronize_irq(struct xe_device *xe)
+ 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+ 	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL)) {
+@@ -523,8 +518,6 @@ static int all_fw_domain_init(struct xe_gt *gt)
+ 
+ err_force_wake:
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+-	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
+-		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
+ 
+ 	return err;
+ }
 -- 
 2.48.0
 
