@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 889B4C0218D
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 08:44:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60E3FC0218D
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 09:20:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 530F110EA3B;
-	Fri, 31 Jan 2025 08:44:25 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5267710EA3B;
- Fri, 31 Jan 2025 08:44:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3253590750860281855=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 223FA10E169;
+	Fri, 31 Jan 2025 09:20:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WYWNTDIi";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F77910E169;
+ Fri, 31 Jan 2025 09:20:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738315227; x=1769851227;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=zDsLQOfdrqNSU3rovraOg4VWUVGnKTlAF7aOPzsl/Zs=;
+ b=WYWNTDIiEvk6GuTLJFnEKH/ak1pyfX/1+LT/pUdIdaR6BUziRppAmUNF
+ 0/5TwoiFwkPaHCRcOumCNEKgLrjTWbsKy2+euYAWigAQwf7LGTMVLpfqH
+ tJrbYnOQVOGmQ1eEPlLtXdV1fVttpvQzfJS/OFua5jMeIH/64tT/Lpz4b
+ Z+BGC7ECUGBueo9sLZRAxnxr+pkBRTEAmTGhYPQUbnK5nNcYL5nQJZxiL
+ sK8mkMfUzvi1sWe9tN7zOifpWdkNYn8kxVf2f+0TIdk7NZhfC3eGUBiYS
+ j7mvNSgWdPOq04P2K90/Ytn5CxmNVtUG+WwMhA97Jux9hBKn1xu8u7BLA Q==;
+X-CSE-ConnectionGUID: FfYzm+nLQJy4YlyxDp1qRA==
+X-CSE-MsgGUID: sDUz5vJhSXSvBhVfQOvhnA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="42632257"
+X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="42632257"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 01:20:27 -0800
+X-CSE-ConnectionGUID: P98TqD6CS92g7flwHcebnQ==
+X-CSE-MsgGUID: y9y3ap9AToi0LcA+s8+xXQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110033719"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.174])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 01:20:26 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: imre.deak@intel.com, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 6/6] drm/i915/mst: use min_array() and max_array()
+ instead of hand-rolling
+In-Reply-To: <Z5uPGjP3hcIRhRPL@ideak-desk.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1738161945.git.jani.nikula@intel.com>
+ <62a104535c01c667a99ec209c3218a13355568cf.1738161945.git.jani.nikula@intel.com>
+ <Z5uOGpuKew_qiWJU@ideak-desk.fi.intel.com>
+ <Z5uPGjP3hcIRhRPL@ideak-desk.fi.intel.com>
+Date: Fri, 31 Jan 2025 11:20:22 +0200
+Message-ID: <87zfj7731l.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Skip_survivabilit?=
- =?utf-8?q?y_mode_for_VF?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 31 Jan 2025 08:44:24 -0000
-Message-ID: <173831306432.3146289.4779368933518374384@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250131080527.2256475-1-riana.tauro@intel.com>
-In-Reply-To: <20250131080527.2256475-1-riana.tauro@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,141 +67,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3253590750860281855==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 30 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
+> On Thu, Jan 30, 2025 at 04:35:06PM +0200, Imre Deak wrote:
+>> On Wed, Jan 29, 2025 at 04:46:38PM +0200, Jani Nikula wrote:
+>> > Improve code clarity by using existing min_array() and max_array()
+>> > helpers to find the lowest and highest values in an array.
+>> > 
+>> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> 
+>> Reviewed-by: Imre Deak <imre.deak@intel.com>
+>> 
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 13 +++----------
+>> >  1 file changed, 3 insertions(+), 10 deletions(-)
+>> > 
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> > index a4ed4f379d1e..60b003bcd1ee 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> > @@ -391,7 +391,7 @@ static int mst_stream_dsc_compute_link_config(struct intel_dp *intel_dp,
+>> >  {
+>> >  	struct intel_display *display = to_intel_display(intel_dp);
+>> >  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+>> > -	int i, num_bpc;
+>> > +	int num_bpc;
+>> >  	u8 dsc_bpc[3] = {};
+>> >  	int min_bpp, max_bpp, sink_min_bpp, sink_max_bpp;
+>> >  	int min_compressed_bpp, max_compressed_bpp;
+>> > @@ -405,15 +405,8 @@ static int mst_stream_dsc_compute_link_config(struct intel_dp *intel_dp,
+>> >  	drm_dbg_kms(display->drm, "DSC Source supported min bpp %d max bpp %d\n",
+>> >  		    min_bpp, max_bpp);
+>> >  
+>> > -	sink_max_bpp = dsc_bpc[0] * 3;
+>> > -	sink_min_bpp = sink_max_bpp;
+>> > -
+>> > -	for (i = 1; i < num_bpc; i++) {
+>> > -		if (sink_min_bpp > dsc_bpc[i] * 3)
+>> > -			sink_min_bpp = dsc_bpc[i] * 3;
+>> > -		if (sink_max_bpp < dsc_bpc[i] * 3)
+>> > -			sink_max_bpp = dsc_bpc[i] * 3;
+>> > -	}
+>> > +	sink_min_bpp = min_array(dsc_bpc, num_bpc) * 3;
+>> > +	sink_max_bpp = max_array(dsc_bpc, num_bpc) * 3;
+>
+> Does linux/minmax.h need to be included explicitly for this?
 
-== Series Details ==
+It's included from kernel.h, so I figured not.
 
-Series: drm/xe: Skip survivability mode for VF
-URL   : https://patchwork.freedesktop.org/series/144169/
-State : success
+Series pushed to din, thanks for the reviews.
 
-== Summary ==
+BR,
+Jani.
 
-CI Bug Log - changes from xe-2578-0c2a60e7f1e779d87754254d9e3443beedbb684e_BAT -> xe-pw-144169v1_BAT
-====================================================
+>
+>> >  
+>> >  	drm_dbg_kms(display->drm, "DSC Sink supported min bpp %d max bpp %d\n",
+>> >  		    sink_min_bpp, sink_max_bpp);
+>> > -- 
+>> > 2.39.5
+>> > 
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (7 -> 6)
-------------------------------
-
-  Missing    (1): bat-bmg-1 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-144169v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
-    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3970] / [Intel XE#4078])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2578-0c2a60e7f1e779d87754254d9e3443beedbb684e/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144169v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_balancer@twice-virtual-rebind:
-    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#4078]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2578-0c2a60e7f1e779d87754254d9e3443beedbb684e/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144169v1/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-rebind.html
-
-  
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#4078]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078
-
-
-Build changes
--------------
-
-  * Linux: xe-2578-0c2a60e7f1e779d87754254d9e3443beedbb684e -> xe-pw-144169v1
-
-  IGT_8218: fafef52e0a83fec5f8c4f8df851d27319467762b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2578-0c2a60e7f1e779d87754254d9e3443beedbb684e: 0c2a60e7f1e779d87754254d9e3443beedbb684e
-  xe-pw-144169v1: 144169v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144169v1/index.html
-
---===============3253590750860281855==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Skip survivability mode for VF</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144169/">https://patchwork.freedesktop.org/series/144169/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144169v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144169v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2578-0c2a60e7f1e779d87754254d9e3443beedbb684e_BAT -&gt; xe-pw-144169v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 6)</h2>
-<p>Missing    (1): bat-bmg-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-144169v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_exec_basic@twice-bindexecqueue-rebind:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2578-0c2a60e7f1e779d87754254d9e3443beedbb684e/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144169v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_balancer@twice-virtual-rebind:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2578-0c2a60e7f1e779d87754254d9e3443beedbb684e/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144169v1/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2578-0c2a60e7f1e779d87754254d9e3443beedbb684e -&gt; xe-pw-144169v1</li>
-</ul>
-<p>IGT_8218: fafef52e0a83fec5f8c4f8df851d27319467762b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2578-0c2a60e7f1e779d87754254d9e3443beedbb684e: 0c2a60e7f1e779d87754254d9e3443beedbb684e<br />
-  xe-pw-144169v1: 144169v1</p>
-
-</body>
-</html>
-
---===============3253590750860281855==--
+-- 
+Jani Nikula, Intel
