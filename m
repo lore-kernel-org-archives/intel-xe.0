@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEF43C0218F
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 23:38:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3D08C0218F
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 23:38:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5C3910E0F5;
-	Fri, 31 Jan 2025 23:38:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99A0710E0F5;
+	Fri, 31 Jan 2025 23:38:44 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 158C110E0F5;
- Fri, 31 Jan 2025 23:38:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78B3910E226;
+ Fri, 31 Jan 2025 23:38:43 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Remove_xe?=
- =?utf-8?q?=5Fdummy=5Fexit=28=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Remove_xe=5Fdum?=
+ =?utf-8?q?my=5Fexit=28=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 31 Jan 2025 23:38:32 -0000
-Message-ID: <173836671208.3314805.3561643120868512471@b555e5b46a47>
+Date: Fri, 31 Jan 2025 23:38:43 -0000
+Message-ID: <173836672348.3314806.768309836114113400@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250131223908.4147195-1-lucas.demarchi@intel.com>
 In-Reply-To: <20250131223908.4147195-1-lucas.demarchi@intel.com>
@@ -48,9 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 01f54d1da1ff drm-tip: 2025y-01m-31d-19h-58m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Remove xe_dummy_exit()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4789c47e300840003c900393556abdde50fe8688
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Fri Jan 31 14:39:08 2025 -0800
+
+    drm/xe: Remove xe_dummy_exit()
+    
+    Since commit 014125c64d09 ("drm/xe: Support 'nomodeset' kernel
+    command-line option") the dummy exit is not needed anymore since the
+    caller check for a NULL pointer. Drop it.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 01f54d1da1ffffff78047186f62b5916dfd43939 drm-intel
+4789c47e3008 drm/xe: Remove xe_dummy_exit()
 
 
