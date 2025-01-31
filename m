@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89B14C0218F
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 15:37:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67019C0218F
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Jan 2025 15:37:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40AF610E01F;
-	Fri, 31 Jan 2025 15:37:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33B4710E01F;
+	Fri, 31 Jan 2025 15:37:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L1QiWDum";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZQ30qg/2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AAFB10E01F
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Jan 2025 15:37:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9033410E384;
+ Fri, 31 Jan 2025 15:37:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738337854; x=1769873854;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Sdc22J7pVujoLVcZsGuwJjurT/LcBKIlPcs+haIMzcA=;
- b=L1QiWDumBhBGBp8x/bOZ1rbgKaE9Osz0yw9SJJaWli+Oyjf9TRzf1RyD
- FaiT+33gCULKHkYRvaFTRE1SD9fKkcS42S2+Gk7Uf+k/gzKaXBH0umbPh
- FgqrLcnhZEjP4kF1izmKfZHeV/WM/Tzi1lWvylUc9aThl0CpZ5/BBw/bQ
- zPs+EMFaYpm9h0iVIkmpIdKLC1ok8qsPR3KoI2Uw+64sYr1qtCEtB9xN6
- yeGJ5YojGkoXMpsbkZT5VKJ18pUD1um5jwzIgaA2w/jnfpbQVfaDcCbAu
- mewr01EzIJGWW/srapbt5FnvzwleWaryqzJc907ZuAY5F+CghBvaAfCxb Q==;
-X-CSE-ConnectionGUID: rqfg6wtXQDeV2vItGKqpKw==
-X-CSE-MsgGUID: bWgcJ+5RQCOP2rVWtCAPnw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="50294199"
-X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="50294199"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 07:37:33 -0800
-X-CSE-ConnectionGUID: ch5B7Ku5QSStC2XN765Ruw==
-X-CSE-MsgGUID: ybZn6oHMTHCT9b5PBKMNvQ==
+ t=1738337865; x=1769873865;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=yJ+e6YC3zVsxaBeOY3kWA9xlGIb0JHmDQxZcbmBSL1A=;
+ b=ZQ30qg/2S3u/GstQZv0iFipiqWNaA5r+BhvqYcCyIuDe1RHI7l4Sqgww
+ DskdeI2tCnr8U7v1s6j0uLhKWPwLINgIqqQzxoHOT73cAe5ajEjkB7Klf
+ hBnmfiAd+Xhid63S04MMV0/HhkACu1snN4m1KZMCTIiL+sa2IllH7R2ZN
+ v/GuycMPAhJ7Ywr+5s+BRrRxc8nX5rnqnCH7oknTD0de7J5n3MfFenGEp
+ ceIFY4B+gXtjsmJj2BD138jNx3zb1RMvq3Mq46mO7mAoEnJDbdmtLWsHE
+ pLHrCEdJ5vwmji2ZUzODrsphh0Qw/TnL1fzhxbqJ18hQJmQVhhhshxSsx g==;
+X-CSE-ConnectionGUID: yvfpP4nyQuC7x8nkf6/cvw==
+X-CSE-MsgGUID: tOhjuEYLQ0eJDf3Cv3IEvA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="38791670"
+X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="38791670"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 07:37:45 -0800
+X-CSE-ConnectionGUID: sutVXC8DQtez+5SthyG2eg==
+X-CSE-MsgGUID: I8NmRdtSSs6hCIYKrlrFGA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="110240411"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.82.100])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 07:37:30 -0800
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
-Subject: [PATCH] drm/xe/relay: Don't use GFP_KERNEL for new transactions
-Date: Fri, 31 Jan 2025 16:37:13 +0100
-Message-Id: <20250131153713.808-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="114808669"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 07:37:44 -0800
+Date: Fri, 31 Jan 2025 17:38:40 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 13/14] drm/i915/dp: Pass connector state all the way to
+ dsc_compute_link_config()
+Message-ID: <Z5zugLQsw9GApnjj@ideak-desk.fi.intel.com>
+References: <cover.1738327620.git.jani.nikula@intel.com>
+ <645d950a80df5fd4441d69aba4893ab263b3e555.1738327620.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <645d950a80df5fd4441d69aba4893ab263b3e555.1738327620.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,58 +65,83 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VFs use a relay transaction during the resume/reset flow and use
-of the GFP_KERNEL flag may conflict with the reclaim:
+On Fri, Jan 31, 2025 at 02:50:06PM +0200, Jani Nikula wrote:
+> Going forward, we'll need the connector state in
+> dsc_compute_link_config(). Pass it along through the chain. Maintain the
+> same parameter order where relevant.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 0f1fa4afb808..25160a5d12eb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1941,6 +1941,7 @@ static bool is_bw_sufficient_for_dsc_config(int dsc_bpp_x16, u32 link_clock,
+>  
+>  static int dsc_compute_link_config(struct intel_dp *intel_dp,
+>  				   struct intel_crtc_state *pipe_config,
+> +				   struct drm_connector_state *conn_state,
 
-     -> #0 (fs_reclaim){+.+.}-{0:0}:
- [ ]        __lock_acquire+0x1874/0x2bc0
- [ ]        lock_acquire+0xd2/0x310
- [ ]        fs_reclaim_acquire+0xc5/0x100
- [ ]        mempool_alloc_noprof+0x5c/0x1b0
- [ ]        __relay_get_transaction+0xdc/0xa10 [xe]
- [ ]        relay_send_to+0x251/0xe50 [xe]
- [ ]        xe_guc_relay_send_to_pf+0x79/0x3a0 [xe]
- [ ]        xe_gt_sriov_vf_connect+0x90/0x4d0 [xe]
- [ ]        xe_uc_init_hw+0x157/0x3b0 [xe]
- [ ]        do_gt_restart+0x1ae/0x650 [xe]
- [ ]        xe_gt_resume+0xb6/0x120 [xe]
- [ ]        xe_pm_runtime_resume+0x15b/0x370 [xe]
- [ ]        xe_pci_runtime_resume+0x73/0x90 [xe]
- [ ]        pci_pm_runtime_resume+0xa0/0x100
- [ ]        __rpm_callback+0x4d/0x170
- [ ]        rpm_callback+0x64/0x70
- [ ]        rpm_resume+0x594/0x790
- [ ]        __pm_runtime_resume+0x4e/0x90
- [ ]        xe_pm_runtime_get_ioctl+0x9c/0x160 [xe]
+This patchset doesn't seem to use conn_state here, this change could've
+been left for later to see how it's actually used.
 
-Since we have a preallocated pool of relay transactions, which
-should cover all our normal relay use cases, we may use the
-GFP_NOWAIT flag when allocating new outgoing transactions.
+>  				   const struct link_config_limits *limits,
+>  				   int dsc_bpp_x16,
+>  				   int timeslots)
+> @@ -2098,13 +2099,14 @@ static bool intel_dp_dsc_valid_bpp(struct intel_dp *intel_dp, int bpp_x16)
+>   * try depend on the source (platform) and sink.
+>   */
+>  static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
+> -				      const struct intel_connector *connector,
+>  				      struct intel_crtc_state *pipe_config,
+> +				      struct drm_connector_state *conn_state,
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
-Cc: Michał Winiarski <michal.winiarski@intel.com>
-Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_guc_relay.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Could this be const?
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_relay.c b/drivers/gpu/drm/xe/xe_guc_relay.c
-index 8f62de026724..e5dc94f3e618 100644
---- a/drivers/gpu/drm/xe/xe_guc_relay.c
-+++ b/drivers/gpu/drm/xe/xe_guc_relay.c
-@@ -225,7 +225,7 @@ __relay_get_transaction(struct xe_guc_relay *relay, bool incoming, u32 remote, u
- 	 * with CTB lock held which is marked as used in the reclaim path.
- 	 * Btw, that's one of the reason why we use mempool here!
- 	 */
--	txn = mempool_alloc(&relay->pool, incoming ? GFP_ATOMIC : GFP_KERNEL);
-+	txn = mempool_alloc(&relay->pool, incoming ? GFP_ATOMIC : GFP_NOWAIT);
- 	if (!txn)
- 		return ERR_PTR(-ENOMEM);
- 
--- 
-2.47.1
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
+>  				      const struct link_config_limits *limits,
+>  				      int pipe_bpp,
+>  				      int timeslots)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+> +	const struct intel_connector *connector = to_intel_connector(conn_state->connector);
+>  	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+>  	int output_bpp;
+>  	int dsc_min_bpp;
+> @@ -2138,6 +2140,7 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
+>  
+>  		ret = dsc_compute_link_config(intel_dp,
+>  					      pipe_config,
+> +					      conn_state,
+>  					      limits,
+>  					      bpp_x16,
+>  					      timeslots);
+> @@ -2209,7 +2212,7 @@ static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+>  	forced_bpp = intel_dp_force_dsc_pipe_bpp(intel_dp, limits);
+>  
+>  	if (forced_bpp) {
+> -		ret = dsc_compute_compressed_bpp(intel_dp, connector, pipe_config,
+> +		ret = dsc_compute_compressed_bpp(intel_dp, pipe_config, conn_state,
+>  						 limits, forced_bpp, timeslots);
+>  		if (ret == 0) {
+>  			pipe_config->pipe_bpp = forced_bpp;
+> @@ -2227,7 +2230,7 @@ static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+>  		if (pipe_bpp < limits->pipe.min_bpp || pipe_bpp > limits->pipe.max_bpp)
+>  			continue;
+>  
+> -		ret = dsc_compute_compressed_bpp(intel_dp, connector, pipe_config,
+> +		ret = dsc_compute_compressed_bpp(intel_dp, pipe_config, conn_state,
+>  						 limits, pipe_bpp, timeslots);
+>  		if (ret == 0) {
+>  			pipe_config->pipe_bpp = pipe_bpp;
+> -- 
+> 2.39.5
+> 
