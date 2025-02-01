@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F815C0218A
-	for <intel-xe@archiver.kernel.org>; Sat,  1 Feb 2025 06:37:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95032C0218A
+	for <intel-xe@archiver.kernel.org>; Sat,  1 Feb 2025 06:57:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA23610E233;
-	Sat,  1 Feb 2025 06:37:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39A8110E1D8;
+	Sat,  1 Feb 2025 06:57:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jy/+d4YK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MsyrmmDr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B0A210E233
- for <intel-xe@lists.freedesktop.org>; Sat,  1 Feb 2025 06:37:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70AB310E1D8
+ for <intel-xe@lists.freedesktop.org>; Sat,  1 Feb 2025 06:57:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738391873; x=1769927873;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=pAKNo1zLA4jLyrqkvRikzd16gm5AaDZGVREg8CCX13w=;
- b=jy/+d4YKaSgwlleN30BEDsrk6sOEIEFbslcX/Y6gB2cx3w91Q7E3if4c
- pO3euMf9tpPx6R/w53oK77RI6l5fnhB5tDBXsfDE8KBU0fuYhS2uPkPY2
- UZn1y+jK4X81uV4aT1bHpMJxzTsE9n2BLfb6/uRCq+fmrOPUPqtO/XcNQ
- nbif3JFwyyikeRhklf2cc9ZZo/8oBme33mvavEdvQqkoViIjYdjrkFV7I
- IpzsI1oQEtvCmvYvaaq8GR53wsj5DGG77ZWuFDKCUZ/3r+LmsJgfeBcF+
- cvHr6Vch42Ul8uKFC9OtGf+IXuilB3I816ZxbAfDSHuyqkIpXN6G/08X4 g==;
-X-CSE-ConnectionGUID: a6n4/nIZRQOfKIxmNCY9pA==
-X-CSE-MsgGUID: Y3zUND7LRquJ1HQzKVnPOQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="56386857"
-X-IronPort-AV: E=Sophos;i="6.13,250,1732608000"; d="scan'208";a="56386857"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 22:37:52 -0800
-X-CSE-ConnectionGUID: PH1XlYapRq2IYPuksJpcqA==
-X-CSE-MsgGUID: Zm1draMWRiSfcrwd0h33Hw==
+ t=1738393061; x=1769929061;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=KU0CoD90UVylND9Cwn1+kXV/lSiAlfQuDofbwBHaVOA=;
+ b=MsyrmmDrKsvsEzXgYV5+dbypva7RLPBz+dN10FzwpviCL6or/CG8Apik
+ kAG19Vbk3k2MLGs7LHeZ7sxuh24uIuv+iAKpyWkvmxFGX20jO6hf3tdTU
+ 0aUbtLy/XrtoPk4dkGD9X6GtETgN/PAxrLyLfqikdpzNkeVnYVsoJOfxG
+ 63gwiLyJWG0Gj8lt7/X4VoNEChwJctpjRu7BrlJemvllrNLNi9pnljpe1
+ b0eyXWQ1ZOOysCC0Fr0ZD8fxl6R1Ks5qi/4D7lbYMzZv2xwd5+Qn5hxKL
+ scGDuLnNMU/GhJk+hXmeNPpsS2/pASIK7GOs2cqcZAjRgkuRbCRkzUaH+ Q==;
+X-CSE-ConnectionGUID: Bm7vSYBDTsi4wQv+Snfy/w==
+X-CSE-MsgGUID: qMOTCdk+R5+X1xO8X4OTQQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="61430571"
+X-IronPort-AV: E=Sophos;i="6.13,250,1732608000"; d="scan'208";a="61430571"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 22:57:40 -0800
+X-CSE-ConnectionGUID: 5l8qWgJwT96tUcn21Ia0pg==
+X-CSE-MsgGUID: D3EIzrWcQH+dxHoz6FtR6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,250,1732608000"; d="scan'208";a="110388895"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 22:37:48 -0800
-Date: Sat, 1 Feb 2025 08:37:45 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Poosa, Karthik" <karthik.poosa@intel.com>
-Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- matthew.d.roper@intel.com, andi.shyti@linux.intel.com,
- intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- riana.tauro@intel.com, badal.nilawar@intel.com
-Subject: Re: [PATCH v2] drm/xe/hwmon: expose package and vram temperature
-Message-ID: <Z53BOTXFSsZ5WKFs@black.fi.intel.com>
-References: <20250131054502.1528555-1-raag.jadav@intel.com>
- <2c9ce022-56a6-4d25-a274-32d9013f8c49@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2c9ce022-56a6-4d25-a274-32d9013f8c49@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,250,1732608000"; d="scan'208";a="109647845"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 22:57:39 -0800
+Date: Fri, 31 Jan 2025 22:57:39 -0800
+Message-ID: <85plk2due4.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Harish Chegondi <harish.chegondi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v8 4/7] drm/xe/eustall: Return -EIO error from read() if
+ HW drops data
+In-Reply-To: <85r04ied3n.wl-ashutosh.dixit@intel.com>
+References: <cover.1736970203.git.harish.chegondi@intel.com>	<9dc0f747ae215f9704fe1edec2e7007e19f8dd0b.1736970203.git.harish.chegondi@intel.com>	<857c6cgb94.wl-ashutosh.dixit@intel.com>	<Z50ku-fhUr3ip6lz@intel.com>	<85wmeaenx9.wl-ashutosh.dixit@intel.com>	<Z51VxJa6KjavSAol@intel.com>	<85r04ied3n.wl-ashutosh.dixit@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,193 +70,198 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 31, 2025 at 08:13:15PM +0530, Poosa, Karthik wrote:
-> On 31-01-2025 11:15, Raag Jadav wrote:
-> > Add hwmon support for temp2_input and temp3_input attributes, which will
-> 
-> Add hwmon support for temp2_input and temp3_input attributes for supported platforms
-> 
-> > expose package and vram temperature in millidegree Celsius. With this in
-> > place we can monitor temperature using lm-sensors tool.
-> 
-> With these changes, package and vram temperatures can be monitored using lm-sensors tool.
+On Fri, 31 Jan 2025 16:13:32 -0800, Dixit, Ashutosh wrote:
+>
+> On Fri, 31 Jan 2025 14:59:16 -0800, Harish Chegondi wrote:
+> >
+> > On Fri, Jan 31, 2025 at 12:19:46PM -0800, Dixit, Ashutosh wrote:
+> > > On Fri, 31 Jan 2025 11:30:03 -0800, Harish Chegondi wrote:
+> > > >
+> > > > On Wed, Jan 29, 2025 at 08:45:59PM -0800, Dixit, Ashutosh wrote:
+> > > > > On Wed, 15 Jan 2025 12:02:10 -0800, Harish Chegondi wrote:
+> > > > > >
+> > > > > > If the user space doesn't read the EU stall data fast enough,
+> > > > > > it is possible that the EU stall data buffer can get filled,
+> > > > > > and if the hardware wants to write more data, it simply drops
+> > > > > > data due to unavailable buffer space. In that case, hardware
+> > > > > > sets a bit in a register. If the driver detects data drop,
+> > > > > > the driver read() returns -EIO error to let the user space
+> > > > > > know that HW has dropped data. The -EIO error is returned
+> > > > > > even if there is EU stall data in the buffer. A subsequent
+> > > > > > read by the user space returns the remaining EU stall data.
+> > > > >
+> > > > > As I mentioned earlier, entire dropped packet handling should be in this
+> > > > > patch, so we can see the entire logic around this. So data_drop struct
+> > > > > should be defined in this patch.
+> > > > I worded the commit message that this commit is about read() returning
+> > > > -EIO when data is dropped. So, I didn't put all the data drop code in
+> > > > this patch. Sure, I can reword the commit message and move the code
+> > > > into this patch.
+> > >
+> > > Yeah, the "unit of functionality" is not returning -EIO, it is "dropped
+> > > data handling", so that whole unit should be in a separate patch. This one,
+> > > I don't want to compromise on.
+> > > > >
+> > > > > >
+> > > > > > Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/xe/xe_eu_stall.c | 12 ++++++++++++
+> > > > > >  drivers/gpu/drm/xe/xe_eu_stall.h |  1 +
+> > > > > >  2 files changed, 13 insertions(+)
+> > > > > >
+> > > > > > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+> > > > > > index c388d733b857..437782f8433c 100644
+> > > > > > --- a/drivers/gpu/drm/xe/xe_eu_stall.c
+> > > > > > +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+> > > > > > @@ -472,6 +472,7 @@ xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *stream,
+> > > > > >   * before calling read().
+> > > > > >   *
+> > > > > >   * Returns: The number of bytes copied or a negative error code on failure.
+> > > > > > + *	    -EIO if HW drops any EU stall data when the buffer is full.
+> > > > > >   */
+> > > > > >  static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
+> > > > > >				       size_t count, loff_t *ppos)
+> > > > > > @@ -485,6 +486,16 @@ static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
+> > > > > >		return -EINVAL;
+> > > > > >	}
+> > > > > >
+> > > > > > +	if (bitmap_weight(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS)) {
+> > > > >
+> > > > > Since data_drop.mask is being touched elsewhere under xecore_buf->lock,
+> > > > > here also it should be accessed under the same lock. So this returning -EIO
+> > > > > should probably be moved into xe_eu_stall_stream_read_locked?
+> > > > data_drop.mask is being accessed via set_bit(), clear_bit(), test_bit()
+> > > > and bitmap_weight(). set_bit() and clear_bit() are atomic operations,
+> > > > but test_bit() and bitmap_weight() are not atomic. So, not all the code
+> > > > accessing the mask need to be under lock. The code that is under lock is
+> > > > under the buffer lock, whereas xe_eu_stall_stream_read_locked() is under
+> > > > gt->eu_stall->lock. So, moving this code into xe_eu_stall_stream_read_locked
+> > > > would not make any difference. I think this code can exist outside of a
+> > > > lock. If one read() just misses a data drop, the subsequent read would
+> > > > report the data drop.
+> > >
+> > > OK, let me see what happens with my suggestion below (starting with "I had
+> > > also outlined another...") and then we can see if the locking will be ok or
+> > > not.
+> > >
+> > > > >
+> > > > > > +		if (!stream->data_drop.reported_to_user) {
+> > > > > > +			stream->data_drop.reported_to_user = true;
+> > > > > > +			xe_gt_dbg(gt, "EU stall data dropped in XeCores: %*pb\n",
+> > > > > > +				  XE_MAX_DSS_FUSE_BITS, stream->data_drop.mask);
+> > > > > > +			return -EIO;
+> > > > > > +		}
+> > > > > > +		stream->data_drop.reported_to_user = false;
+> > > > >
+> > > > > I don't think this logic is correct. We should set this to false only after
+> > > > > we have cleared all set bits (e.g. only after bitmap_weight) otherwise we
+> > > > > might keep returning -EIO multiple times?
+> > > > If the subsequent read() reads all the data from all the subslices, it
+> > > > would clear all the bits. But if the user buffer is small and it doesn't
+> > > > read all the data from all the subslices, some bits can continue to be
+> > > > set and can cause multiple alternate -EIO returns. Ideally, the user
+> > > > buffer should be big enough to accomodate all the data from the kernel
+> > > > buffer.
+> > >
+> > > Afaik we are not exposing a minimum user buffer size in the uapi, but we
+> > > could too.
+> > Starting patch series v6, the per subslice buffer size is being exposed
+> > to the user space via the query IOCTL. Recommended user buffer size is:
+> > number of subslices x per subslice buffer size which is same as the
+> > kernel buffer size.
+>
+> Recommended is one thing, requiring a particular minimum buffer size is
+> another. One idea would be to return an error from read() if we see a
+> buffer size smaller than the recommended. We could check if UMD's are ok
+> with that and enforce it in the driver.
+>
+> Anyway, just an idea, not saying we have to do it. If we don't, it would be
+> good to have a test to make sure buffers smaller than the recommended are
+> not causing any other issue. Plus make sure the driver handles it
+> correctly, which as I commented earlier, at present it doesn't. I also said
+> we can fix that after the initial merge.
 
-That's pretty much what it already says, doesn't it?
+I will make another observation in this connection. Likely this is not an
+issue if leave pollin set when we return from read when the user buffer was
+small and we could not return all available data. But something to bear in
+mind. Let us say we have 10 dss's. When we start returning data we always
+start from dss 1. Say in a read call we start from dss 1 and return till
+dss 5. In the next read call we again start at dss 1. It would be better if
+we start at dss 6. So in first read call we return data from dss 1-5, in
+the next read call from dss 6-10, and so on.
 
-> > v2: Reuse existing channels (Badal, Karthik)
-> Add a new channel for VRAM temperature, channel 3.
-> > 
-> > Signed-off-by: Raag Jadav<raag.jadav@intel.com>
-> > Reviewed-by: Andi Shyti<andi.shyti@linux.intel.com>
-> > ---
-> >   .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 16 +++++
-> >   drivers/gpu/drm/xe/regs/xe_mchbar_regs.h      |  3 +
-> >   drivers/gpu/drm/xe/regs/xe_pcode_regs.h       |  2 +
-> >   drivers/gpu/drm/xe/xe_hwmon.c                 | 60 +++++++++++++++++++
-> >   4 files changed, 81 insertions(+)
-> > 
-> > diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > index d792a56f59ac..9bce281314df 100644
-> > --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > @@ -108,3 +108,19 @@ Contact:	intel-xe@lists.freedesktop.org
-> >   Description:	RO. Package current voltage in millivolt.
-> >   		Only supported for particular Intel Xe graphics platforms.
-> > +
-> > +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_input
-> > +Date:		March 2025
-> 
-> January 2025,
-> 
-> February 2025, if there is a next revision after v2
-> 
-> > +KernelVersion:	6.14
-> > +Contact:	intel-xe@lists.freedesktop.org
-> > +Description:	RO. Package temperature in millidegree Celsius.
-> > +
-> > +		Only supported for particular Intel Xe graphics platforms.
-> > +
-> > +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp3_input
-> > +Date:		March 2025
-> 
-> January 2025
-> 
-> February 2025, if there is a next revision after v2
+But maybe if there's no data in dss 1-5 since we already returned all data
+in the previous call, we will be ok. If not, there's a chance dss 6-10 will
+start dropping data because we are not reading those dss's frequently enough.
 
-Something to follow: https://hansen.beer/~dave/phb/
-
-> > +KernelVersion:	6.14
-> > +Contact:	intel-xe@lists.freedesktop.org
-> > +Description:	RO. VRAM temperature in millidegree Celsius.
-> > +
-> > +		Only supported for particular Intel Xe graphics platforms.
-> > diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> > index 519dd1067a19..f5e5234857c1 100644
-> > --- a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> > +++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> > @@ -34,6 +34,9 @@
-> >   #define PCU_CR_PACKAGE_ENERGY_STATUS		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x593c)
-> > +#define PCU_CR_PACKAGE_TEMPERATURE		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5978)
-> > +#define   TEMP_MASK				REG_GENMASK(7, 0)
-> TEMP_MASK -> TEMPERATURE_MASK
-
-This is consistent with other GENMASK() macros here.
-
-> >   #define PCU_CR_PACKAGE_RAPL_LIMIT		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x59a0)
-> >   #define   PKG_PWR_LIM_1				REG_GENMASK(14, 0)
-> >   #define   PKG_PWR_LIM_1_EN			REG_BIT(15)
-> > diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > index 0b0b49d850ae..8846eb9ce2a4 100644
-> > --- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > +++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > @@ -21,6 +21,8 @@
-> >   #define BMG_PACKAGE_POWER_SKU			XE_REG(0x138098)
-> >   #define BMG_PACKAGE_POWER_SKU_UNIT		XE_REG(0x1380dc)
-> >   #define BMG_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
-> > +#define BMG_VRAM_TEMPERATURE			XE_REG(0x1382c0)
-> > +#define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
-> >   #define BMG_PACKAGE_RAPL_LIMIT			XE_REG(0x138440)
-> >   #define BMG_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
-> >   #define BMG_PLATFORM_POWER_LIMIT		XE_REG(0x138460)
-> > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> > index fde56dad3ab7..7f327e334212 100644
-> > --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> > @@ -6,6 +6,7 @@
-> >   #include <linux/hwmon-sysfs.h>
-> >   #include <linux/hwmon.h>
-> >   #include <linux/types.h>
-> > +#include <linux/units.h>
-> >   #include <drm/drm_managed.h>
-> >   #include "regs/xe_gt_regs.h"
-> > @@ -20,6 +21,7 @@
-> >   #include "xe_pm.h"
-> >   enum xe_hwmon_reg {
-> > +	REG_TEMP,
-> 
-> Any specific reason for adding this at the beginning of enum ?
-
-This follows the ordering of enum hwmon_sensor_types (as the rest of the patch).
-
-> Generally addition is at the end for any new enums.
-> 
-> >   	REG_PKG_RAPL_LIMIT,
-> >   	REG_PKG_POWER_SKU,
-> >   	REG_PKG_POWER_SKU_UNIT,
-> > @@ -36,6 +38,7 @@ enum xe_hwmon_reg_operation {
-> >   enum xe_hwmon_channel {
-> >   	CHANNEL_CARD,
-> >   	CHANNEL_PKG,
-> > +	CHANNEL_VRAM,
-> >   	CHANNEL_MAX,
-> >   };
-> > @@ -84,6 +87,19 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
-> >   	struct xe_device *xe = hwmon->xe;
-> >   	switch (hwmon_reg) {
-> > +	case REG_TEMP:
-> > +		if (xe->info.platform == XE_BATTLEMAGE) {
-> > +			if (channel == CHANNEL_PKG)
-> > +				return BMG_PACKAGE_TEMPERATURE;
-> > +			else if (channel == CHANNEL_VRAM)
-> > +				return BMG_VRAM_TEMPERATURE;
-> > +		} else if (xe->info.platform == XE_DG2) {
-> > +			if (channel == CHANNEL_PKG)
-> > +				return PCU_CR_PACKAGE_TEMPERATURE;
-> > +			else if (channel == CHANNEL_VRAM)
-> > +				return BMG_VRAM_TEMPERATURE;
-> 
-> This doesn't look good.
-> 
-> Can you add PCU_CR_VRAM_TEMPERATURE with same offset in
-> xe/regs/xe_mchbar_regs.h ?
-
-It's not mchbar register.
-
-> > +		}
-> > +		break;
-> >   	case REG_PKG_RAPL_LIMIT:
-> >   		if (xe->info.platform == XE_BATTLEMAGE) {
-> >   			if (channel == CHANNEL_PKG)
-> > @@ -431,6 +447,8 @@ static const struct attribute_group *hwmon_groups[] = {
-> >   };
-> >   static const struct hwmon_channel_info * const hwmon_info[] = {
-> > +	HWMON_CHANNEL_INFO(temp, HWMON_T_LABEL, HWMON_T_INPUT | HWMON_T_LABEL,
-> > +			   HWMON_T_INPUT | HWMON_T_LABEL),
-> >   	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL,
-> >   			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT | HWMON_P_LABEL),
-> >   	HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL),
-> > @@ -506,6 +524,36 @@ static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, int channel, long *valu
-> >   	*value = DIV_ROUND_CLOSEST(REG_FIELD_GET(VOLTAGE_MASK, reg_val) * 2500, SF_VOLTAGE);
-> >   }
-> > +static umode_t
-> > +xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
-> > +{
-> > +	switch (attr) {
-> > +	case hwmon_temp_input:
-> > +	case hwmon_temp_label:
-> > +		return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_TEMP, channel)) ? 0444 : 0;
-> > +	default:
-> > +		return 0;
-> > +	}
-> > +}
-> > +
-> > +static int
-> > +xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
-> > +{
-> > +	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
-> > +	u64 reg_val;
-> > +
-> > +	switch (attr) {
-> > +	case hwmon_temp_input:
-> > +		reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, channel));
-> > +
-> > +		/* HW register value is in degrees Celsius, convert to millidegrees. */
-> > +		*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
-> > +		return 0;
-> > +	default:
-> > +		return -EOPNOTSUPP;
-> Can you add debug log, printing the unsupported attr ?
-
-We don't have it for others, anything special about this one?
-
-Raag
+>
+>
+> > >
+> > > I had also outlined another simple way of doing this in my follow up to
+> > > this email, which doesn't have such issues. What do you think of that?
+> > I don't think driver dropping data is a good idea. The HW drops data
+> > only when the buffer is full. Even though HW drops some data, a buffer
+> > full of day will be useful to the user space.
+>
+> I don't see a how that can be true. If an app is using the data for
+> profiling, missing data would mean they might be mis-reporting hotspots
+> etc.
+>
+> Have we checked with UMD's what they would do if they saw -EIO? Do they
+> e.g. abandon data collection? One option, if acceptable, is actually to
+> return -EIO and disable the stream and not return any more data after
+> returning -EIO, just return -EINVAL from read(). If that data is not useful
+> to UMD's, that is.
+>
+> > >
+> > > > >
+> > > > > If HW continues to drop data and keep setting the line, while we are
+> > > > > resetting the bit, it is possible bitmap_weight might never become 0. I
+> > > > > think that is ok, we have returned -EIO at least once to indicate to
+> > > > > userspace that it is not reading data fast enough and HW is dropping data.
+> > > > >
+> > > > > Or we may return -EIO multiple times as is happening here, where
+> > > > > reported_to_user is set to 0 before all bits might have been cleared. So
+> > > > > what is happening here might be ok too.
+> > > > >
+> > > > > To see this clearly and evaluate it is why I am saying move all of this
+> > > > > data drop handling and -EIO return into this one patch. So we can decide
+> > > > > which approach to take: return -EIO just once or return multiple times.
+> > I will move all the data drop code into this patch.
+> > > > >
+> > > > > We can also maybe defer this patch and merge the other stuff first if it's
+> > > > > a separate patch.
+> > > > >
+> > > > > So maybe this is ok, maybe not, anyway something to think about.
+> > > > >
+> > > > > > +	}
+> > > > > > +
+> > > > > >	if (!(file->f_flags & O_NONBLOCK)) {
+> > > > > >		do {
+> > > > > >			if (!stream->pollin) {
+> > > > > > @@ -680,6 +691,7 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+> > > > > >	if (!stream->xecore_buf)
+> > > > > >		return -ENOMEM;
+> > > > > >
+> > > > > > +	stream->data_drop.reported_to_user = false;
+> > > > > >	bitmap_zero(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS);
+> > > > >
+> > > > > Stream is kzalloc'd, why do you need to init these?
+> > > > >
+> > > > > >
+> > > > > >	xe_pm_runtime_get(gt_to_xe(gt));
+> > > > > > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.h b/drivers/gpu/drm/xe/xe_eu_stall.h
+> > > > > > index f97c8bf8e852..8bc44e9e98af 100644
+> > > > > > --- a/drivers/gpu/drm/xe/xe_eu_stall.h
+> > > > > > +++ b/drivers/gpu/drm/xe/xe_eu_stall.h
+> > > > > > @@ -31,6 +31,7 @@ struct xe_eu_stall_data_stream {
+> > > > > >	struct xe_bo *bo;
+> > > > > >	struct per_xecore_buf *xecore_buf;
+> > > > > >	struct {
+> > > > > > +		bool reported_to_user;
+> > > > > >		xe_dss_mask_t mask;
+> > > > > >	} data_drop;
+> > > > > >	struct hrtimer poll_check_timer;
+> > > > > > --
+> > > > > > 2.47.1
+> > > > > >
