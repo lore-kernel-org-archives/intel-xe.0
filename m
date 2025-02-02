@@ -4,45 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37692C02195
-	for <intel-xe@archiver.kernel.org>; Sun,  2 Feb 2025 13:52:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 022C1C0218F
+	for <intel-xe@archiver.kernel.org>; Sun,  2 Feb 2025 13:52:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2739B10E28A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4F7A10E328;
 	Sun,  2 Feb 2025 13:52:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=asahilina.net header.i=@asahilina.net header.b="Ji5IC4Py";
+	dkim=pass (2048-bit key; secure) header.d=asahilina.net header.i=@asahilina.net header.b="KDN6Tkkz";
 	dkim-atps=neutral
 Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1989210E28A;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11CED10E27D;
  Sun,  2 Feb 2025 13:52:22 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
  (Authenticated sender: sendonly@marcansoft.com)
- by mail.marcansoft.com (Postfix) with ESMTPSA id 5B93B4269B;
- Sun,  2 Feb 2025 13:45:08 +0000 (UTC)
+ by mail.marcansoft.com (Postfix) with ESMTPSA id D841F426EE;
+ Sun,  2 Feb 2025 13:45:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=asahilina.net;
- s=default; t=1738503910;
- bh=3AvMwJ2jULJvu6H8cVIc1G7+NuSo81Y/MeyNFbPbV8I=;
- h=From:Subject:Date:To:Cc;
- b=Ji5IC4PydnxsZxDxaqzMBdWkRSyC74+bIxQs1UCGEKyTynR95nD7ygDHzTYpmsCBr
- jU51iUNuu3VzDWU+uLunEBdeXUlGs/20+/BaR96jKexDIhEO2WnfVB52HDbOKcOQqM
- MZXy687jmGWPiW+jrxj5f/tmnvbNsHiCo1J9uXic8mtMqao5kzj8lGogI7vqunzL+U
- lMMYpL3CB5y2t2eyegRjnOKZ+OSqA+7sw6s8oDBfXUwAHnJKJ6wOU24QP6oDAvJtd1
- bFASQDpb9uhDzNVc5nBzGsqLknGti8rQARaozoodEiZoVMnRzOB7AgW8ZrprbTRMv1
- qfOJcwaPLJnUg==
+ s=default; t=1738503914;
+ bh=vxT04nszNYnFWNQ4+iuLe6XKk4Je/y1ergi0uu+bCHg=;
+ h=From:Date:Subject:References:In-Reply-To:To:Cc;
+ b=KDN6TkkzHhvOod6q6xg2oh/wlYnvxjXhCbKdhwi2f4dEcYHUoyDrTk5pmV9B1YF6R
+ PZ1DVimctqwo0SNYcRqmbOpeD624p32Dgxyd7xJRUXa+86XbIBt0G2/oztXEaUWFmz
+ iZLtbEnOL/RYwleYQRMh5tk9JpubBEE+IGj1WanGImjn0K0lTO1eOeF03Vi1vexrJd
+ Ekb+wj6CelKdQbIwqYmztPxigF/CiuAX5zXg6QVpVJRj701fO8a1RVAZ2dpUdwshvn
+ Q9gm/jFr90bWjNSFkD9rQr+m4/yJzoeCGvCdWunWA13e1f3P2n3mQjgm0w6Gwl4td5
+ QtXSuuZszfqUA==
 From: Asahi Lina <lina@asahilina.net>
-Subject: [PATCH 0/4] drm/gpuvm: Add support for single-page-filled mappings
-Date: Sun, 02 Feb 2025 22:34:49 +0900
-Message-Id: <20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net>
+Date: Sun, 02 Feb 2025 22:34:51 +0900
+Subject: [PATCH 2/4] drm/gpuvm: Plumb through flags into drm_gpuva_op_map
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHl0n2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDIKGbXlBalqtbnJmXnpOqW5AIVGBkamxsYpZobmJmbq4E1FdQlJqWWQE
- 2Mzq2thYAixoWp2MAAAA=
-X-Change-ID: 20250202-gpuvm-single-page-253346a74677
+Message-Id: <20250202-gpuvm-single-page-v1-2-8cbd44fdcbd4@asahilina.net>
+References: <20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net>
+In-Reply-To: <20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
@@ -58,11 +56,11 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  asahi@lists.linux.dev, Asahi Lina <lina@asahilina.net>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1738503908; l=2980;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1738503908; l=4333;
  i=lina@asahilina.net; s=20240902; h=from:subject:message-id;
- bh=3AvMwJ2jULJvu6H8cVIc1G7+NuSo81Y/MeyNFbPbV8I=;
- b=N+BAOegpxo9UAn5W5vwEtkBj+YvWzILm1x1cmu8zmxtnc3lvtyTW+g9+kRg303d2e7RY12OKB
- fJ7OLEyFGHQDqA/Bf1+k/DzKPmhK2sTSI5HbJZj+/gUYsnzLVK2HZtn
+ bh=vxT04nszNYnFWNQ4+iuLe6XKk4Je/y1ergi0uu+bCHg=;
+ b=gq/c4I9HNcHote0XtkmkSy3/lY0B+7nyJD32jSqR5hh4eG49+tHaiYx0JhiGuUBGPUn765jVm
+ oeC+6314nFjCWYQW4Gfb1UWAKiQ9jczJPEcPGDEDhYtEC1cHomvHJrT
 X-Developer-Key: i=lina@asahilina.net; a=ed25519;
  pk=tpv7cWfUnHNw5jwf6h4t0gGgglt3/xcwlfs0+A/uUu8=
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -79,68 +77,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some hardware requires dummy page mappings to efficiently implement
-Vulkan sparse features. These mappings consist of the same physical
-memory page, repeated for a large range of address space (e.g. 16GiB).
-
-Add support for this to drm_gpuvm. Currently, drm_gpuvm expects BO
-ranges to correspond 1:1 to virtual memory ranges that are mapped, and
-does math on the BO offset accordingly. To make single page mappings
-work, we need a way to turn off that math, keeping the BO offset always
-constant and pointing to the same page (typically BO offset 0).
-
-To make this work, we need to handle all the corner cases when these
-mappings intersect with regular mappings. The rules are simply to never
-mix or merge a "regular" mapping with a single page mapping.
-
-drm_gpuvm has support for a flags field in drm_gpuva objects. This is
-normally managed by drivers directly. We can introduce a
-DRM_GPUVA_SINGLE_PAGE flag to handle this. However, to make it work,
-sm_map and friends need to know ahead of time whether the new mapping is
-a single page mapping or not. Therefore, we need to add an argument to
-these functions so drivers can provide the flags to be filled into
-drm_gpuva.flags.
-
-These changes should not affect any existing drivers that use drm_gpuvm
-other than the API change:
-
-- imagination: Does not use flags at all
-- nouveau: Only uses drm_gpuva_invalidate(), which is only called on
-  existing drm_gpuva objects (after the map steps)
-- panthor: Does not use flags at all
-- xe: Does not use drm_gpuva_init_from_op() or
-  drm_gpuva_remap()/drm_gpuva_map() (which call it). This means that the
-flags field of the gpuva object is managed by the driver only, so these
-changes cannot clobber it.
-
-Note that the way this is implemented, drm_gpuvm does not need to know
-the GPU page size. It only has to never do math on the BO offset to meet
-the requirements.
-
-I suspect that after this change there could be some cleanup possible in
-the xe driver (which right now passes flags around in various
-driver-specific ways from the map step through to drm_gpuva objects),
-but I'll leave that to the Xe folks.
+Now that the map API functions take a flags argument, plumb it through
+into the drm_gpuva_op_map structure so that drivers can retrieve the
+value that was passed. Similarly, for remap calls, take the flags from
+the existing drm_gpuva.
 
 Signed-off-by: Asahi Lina <lina@asahilina.net>
 ---
-Asahi Lina (4):
-      drm/gpuvm: Add a flags argument to drm_gpuvm_sm_map[_*]
-      drm/gpuvm: Plumb through flags into drm_gpuva_op_map
-      drm/gpuvm: Add DRM_GPUVA_SINGLE_PAGE flag and logic
-      drm/gpuvm: Plumb through flags into drm_gpuva_init
+ drivers/gpu/drm/drm_gpuvm.c | 22 +++++++++++++++++-----
+ include/drm/drm_gpuvm.h     |  5 +++++
+ 2 files changed, 22 insertions(+), 5 deletions(-)
 
- drivers/gpu/drm/drm_gpuvm.c            | 72 ++++++++++++++++++++++++++--------
- drivers/gpu/drm/imagination/pvr_vm.c   |  3 +-
- drivers/gpu/drm/nouveau/nouveau_uvmm.c |  3 +-
- drivers/gpu/drm/panthor/panthor_mmu.c  |  3 +-
- drivers/gpu/drm/xe/xe_vm.c             |  3 +-
- include/drm/drm_gpuvm.h                | 26 +++++++++---
- 6 files changed, 84 insertions(+), 26 deletions(-)
----
-base-commit: ffd294d346d185b70e28b1a28abe367bbfe53c04
-change-id: 20250202-gpuvm-single-page-253346a74677
+diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+index 9733460d737667035541b488657154afb56872e3..7443be1fe4de4653ec40ca4b874df30297af7faf 100644
+--- a/drivers/gpu/drm/drm_gpuvm.c
++++ b/drivers/gpu/drm/drm_gpuvm.c
+@@ -2054,7 +2054,8 @@ EXPORT_SYMBOL_GPL(drm_gpuva_unmap);
+ static int
+ op_map_cb(const struct drm_gpuvm_ops *fn, void *priv,
+ 	  u64 addr, u64 range,
+-	  struct drm_gem_object *obj, u64 offset)
++	  struct drm_gem_object *obj, u64 offset,
++	  enum drm_gpuva_flags flags)
+ {
+ 	struct drm_gpuva_op op = {};
+ 
+@@ -2063,6 +2064,7 @@ op_map_cb(const struct drm_gpuvm_ops *fn, void *priv,
+ 	op.map.va.range = range;
+ 	op.map.gem.obj = obj;
+ 	op.map.gem.offset = offset;
++	op.map.flags = flags;
+ 
+ 	return fn->sm_step_map(&op, priv);
+ }
+@@ -2102,7 +2104,8 @@ static int
+ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 		   const struct drm_gpuvm_ops *ops, void *priv,
+ 		   u64 req_addr, u64 req_range,
+-		   struct drm_gem_object *req_obj, u64 req_offset)
++		   struct drm_gem_object *req_obj, u64 req_offset,
++		   enum drm_gpuva_flags req_flags)
+ {
+ 	struct drm_gpuva *va, *next;
+ 	u64 req_end = req_addr + req_range;
+@@ -2143,6 +2146,7 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 					.va.range = range - req_range,
+ 					.gem.obj = obj,
+ 					.gem.offset = offset + req_range,
++					.flags = va->flags,
+ 				};
+ 				struct drm_gpuva_op_unmap u = {
+ 					.va = va,
+@@ -2161,6 +2165,7 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 				.va.range = ls_range,
+ 				.gem.obj = obj,
+ 				.gem.offset = offset,
++				.flags = va->flags,
+ 			};
+ 			struct drm_gpuva_op_unmap u = { .va = va };
+ 
+@@ -2189,6 +2194,7 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 					.gem.obj = obj,
+ 					.gem.offset = offset + ls_range +
+ 						      req_range,
++					.flags = va->flags,
+ 				};
+ 
+ 				ret = op_remap_cb(ops, priv, &p, &n, &u);
+@@ -2221,6 +2227,7 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 					.va.range = end - req_end,
+ 					.gem.obj = obj,
+ 					.gem.offset = offset + req_end - addr,
++					.flags = va->flags,
+ 				};
+ 				struct drm_gpuva_op_unmap u = {
+ 					.va = va,
+@@ -2237,7 +2244,8 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 
+ 	return op_map_cb(ops, priv,
+ 			 req_addr, req_range,
+-			 req_obj, req_offset);
++			 req_obj, req_offset,
++			 req_flags);
+ }
+ 
+ static int
+@@ -2266,6 +2274,7 @@ __drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm,
+ 			prev.va.range = req_addr - addr;
+ 			prev.gem.obj = obj;
+ 			prev.gem.offset = offset;
++			prev.flags = va->flags;
+ 
+ 			prev_split = true;
+ 		}
+@@ -2275,6 +2284,7 @@ __drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm,
+ 			next.va.range = end - req_end;
+ 			next.gem.obj = obj;
+ 			next.gem.offset = offset + (req_end - addr);
++			next.flags = va->flags;
+ 
+ 			next_split = true;
+ 		}
+@@ -2345,7 +2355,8 @@ drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
+ 
+ 	return __drm_gpuvm_sm_map(gpuvm, ops, priv,
+ 				  req_addr, req_range,
+-				  req_obj, req_offset);
++				  req_obj, req_offset,
++				  req_flags);
+ }
+ EXPORT_SYMBOL_GPL(drm_gpuvm_sm_map);
+ 
+@@ -2538,7 +2549,8 @@ drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
+ 
+ 	ret = __drm_gpuvm_sm_map(gpuvm, &gpuvm_list_ops, &args,
+ 				 req_addr, req_range,
+-				 req_obj, req_offset);
++				 req_obj, req_offset,
++				 req_flags);
+ 	if (ret)
+ 		goto err_free_ops;
+ 
+diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+index cb045378803646a9645c002c57183c915d35befb..42b29adfabdaf193b1e1a02f9ab48ab0dd0e60d4 100644
+--- a/include/drm/drm_gpuvm.h
++++ b/include/drm/drm_gpuvm.h
+@@ -851,6 +851,11 @@ struct drm_gpuva_op_map {
+ 		 */
+ 		struct drm_gem_object *obj;
+ 	} gem;
++
++	/**
++	 * @flags: requested flags for the &drm_gpuva for this mapping
++	 */
++	enum drm_gpuva_flags flags;
+ };
+ 
+ /**
 
-Cheers,
-~~ Lina
+-- 
+2.47.1
 
