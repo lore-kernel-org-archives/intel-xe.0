@@ -4,88 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E7E3C02193
-	for <intel-xe@archiver.kernel.org>; Sun,  2 Feb 2025 22:56:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C040EC02192
+	for <intel-xe@archiver.kernel.org>; Sun,  2 Feb 2025 23:56:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A85310E02E;
-	Sun,  2 Feb 2025 22:56:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59BE910E0C2;
+	Sun,  2 Feb 2025 23:56:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nKaRFTdn";
+	dkim=pass (2048-bit key; secure) header.d=asahilina.net header.i=@asahilina.net header.b="aObAO7Gf";
 	dkim-atps=neutral
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4F7F10E046;
- Sun,  2 Feb 2025 13:27:12 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id
- 5b1f17b1804b1-43635796b48so21395995e9.0; 
- Sun, 02 Feb 2025 05:27:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1738502831; x=1739107631; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=WAvOQI1Wn4DH9Wv7uUKNmkcHNCqY1/iZtJSY08Wnp3U=;
- b=nKaRFTdnhg+Tto1tqkOweOaxUZzGpTh4faAPU50vw1+I/hJ6OmD7IyKcuMSoYX0E8o
- Z9LFvaGAmLz9URYSljaf/5wC3/6navmL0GFOtycQVIwm0qaSInxznoDlkiw6GqLEvRBB
- VuOHGQl8aKGkWun/YpijvJHiSvWjLUbjk/7aS2Ip73G+APGHgcb5jTeAL4F0yZqXB9+7
- XXNeThsYcv2TEF17PayCBGkqHu91lZ0QGC6bPjH2lGqOV8Puoe1foiWyZHe+VPskO1yG
- 8FvNZ71/38ZLAdcTdlVMAQYwYZdpGRr28DsLGcnG2DkSL8OG4te4k4p1eyBdRYUofsMb
- Xy0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738502831; x=1739107631;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=WAvOQI1Wn4DH9Wv7uUKNmkcHNCqY1/iZtJSY08Wnp3U=;
- b=iiRXXTqyezfM+Q5AhbQpUY3G0Ip1pDuD7LDsx+nqRvvpcvNfrNnBup4BRYmbCZ/OY5
- oVnpexwHvzdc56RMRZpmFYkKhxwyqCFIOD+VaWpNs8JNrb2iHAVv2VA6VwDgqcZtFF12
- Hh6aF8AeX1UAXTMSOsta+u0bYuTnSuLAyL7oub5W2MSjgPbHJ8w8tEBSMW4TsctFCZys
- kUfYtPdJXy5lcmDD/L/b34PAxGg+FE20mGEjO3oMuyjB6LoC4dw3/IZr1v17O/0l+2k4
- 0zchFKEILjwgZFv5sbZ3fmUCdB58C1SnVWgjozfNJ6lsjOgNiyHUK4rCGtkNMCR1T5/L
- 4jQA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX61arZkrxceIjAu91rIJZSewx5QBo29HXIt8h8ql31m3EnczlgqgydemlHtDuQ49B/n2tDvEaFDKwo@lists.freedesktop.org,
- AJvYcCXAB+uQxOg4sN0zoac5eDIESePR5fTxCVVoP5ssi+UZjGUPOi2JGRgKAkavmGKt5Xp4adbHPpk4LEc=@lists.freedesktop.org,
- AJvYcCXToiMEZWV0SwML//7kOjIYg3YVY1Art5W7i6Rpay7NXqm4OPUb5FrgTdNKv+MSs6r+SHjT7xrQOQk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxwJs51Oxxs2tb83vljxfvtAW4V0oS7Y1j+tzqFG2hH+uqFRrOv
- E0b5Yn5ujALufjiF1Lj5gPEZ9kSdtADFQhJ1mHZyL5cvfusjt+Gx
-X-Gm-Gg: ASbGncsafdCgx+gfSj0jksUtX0sTttWR01S/HryphD7SlgvDOlx2udMXF/TAiQbTLUU
- iW8DpI3pgSfqpl+9QNLpybiAEgq+FC1uFJTad+ZLgHFGJSau75JkMrdx0002AyogieT3uTSe0kW
- V+SAo9UuXLC9SRp+s+DjcIUK4qF99RYGNytJtT2VD+/Wu9MY4a3rLZFGYkroLvvThFpvJkB82eB
- Dccw3Lrh/2UewTJlQ7bwx8GAzJQilqXYXHbzyIjqmEm65Nb+xolLAu5rxrNnvkQL/4TIiLRRMWp
- Lw7Ituvheirf72CBvTluaBv88/QVelc6uVdmX4GDfOpkbnIb82PHCw==
-X-Google-Smtp-Source: AGHT+IFhxc419TFWlww4Aer27PrCQcXjY0iJFZ6vSCeovYji+JiCAIeiqg0F1EozClpYtrlYh0mnDw==
-X-Received: by 2002:a05:600c:34c6:b0:436:1b77:b5aa with SMTP id
- 5b1f17b1804b1-438e6ed5faamr75285655e9.8.1738502830692; 
- Sun, 02 Feb 2025 05:27:10 -0800 (PST)
-Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-438e23d444bsm122686965e9.8.2025.02.02.05.27.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 02 Feb 2025 05:27:10 -0800 (PST)
-Date: Sun, 2 Feb 2025 13:27:09 +0000
-From: David Laight <david.laight.linux@gmail.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Guenter Roeck
- <linux@roeck-us.net>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH v2] drm/i915/backlight: Return immediately when scale()
- finds invalid parameters
-Message-ID: <20250202132709.3ab54376@pumpkin>
-In-Reply-To: <CAHk-=wix3Rgt+8yBHDdeb_F+c8TzL5aidtCiUEpF+TBc6SCLiQ@mail.gmail.com>
-References: <20250121145203.2851237-1-linux@roeck-us.net>
- <Z5AmlJ8stVQ4L5jS@intel.com>
- <CAHk-=wix3Rgt+8yBHDdeb_F+c8TzL5aidtCiUEpF+TBc6SCLiQ@mail.gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4701610E0C2;
+ Sun,  2 Feb 2025 23:56:09 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: lina@asahilina.net)
+ by mail.marcansoft.com (Postfix) with ESMTPSA id B7858425F5;
+ Sun,  2 Feb 2025 23:56:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=asahilina.net;
+ s=default; t=1738540566;
+ bh=XxSMXL+/QTvPenPoEdFCaxa+GXolURGhYNxTlnUOi/w=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To;
+ b=aObAO7GfWqEeA7trzJ86f/XnseVBckks3Wp4/oXznHSilYgYVoqZIWDOvj71xgkib
+ lgmCn4V/J95HXPuWr/BC9UezFlKNi7fChuM++IKjdHyEnniFWEdcFH3P80QjT4GKT8
+ 7FXJpcyV5rxXbJB/o77o3DyY6W0ZxXjoEFTCGaMdjI9Qu614oQ9ehN29qeFz5nc71y
+ n6Vb2X9YqAd8aVCrFAhZkk9YlgsEa1fvwSHKLjn9QIyM149G8f40pXF85PmeGbCrRC
+ CDm8c7tFbkfvpwTOQgds27hLzVDN6ZHCf/i3csfpUeE+/V/ONQ2WElOVQKGkCcKlui
+ L9Utcl2DNDEPA==
+Message-ID: <4a431b98-cccc-495e-b72e-02362828c96b@asahilina.net>
+Date: Mon, 3 Feb 2025 08:56:03 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] drm/gpuvm: Add support for single-page-filled mappings
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, asahi@lists.linux.dev
+References: <20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net>
+ <Z5-_O8vkCO0LXcl7@pollux.localdomain>
+Content-Language: en-US
+From: Asahi Lina <lina@asahilina.net>
+In-Reply-To: <Z5-_O8vkCO0LXcl7@pollux.localdomain>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sun, 02 Feb 2025 22:56:44 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,21 +71,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 21 Jan 2025 15:15:09 -0800
-Linus Torvalds <torvalds@linux-foundation.org> wrote:
 
-> On Tue, 21 Jan 2025 at 14:59, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> >
-> > I'm pushing this soon to drm-intel-next, unless Linus want to take
-> > this one directly to his tree  
+
+On 2/3/25 3:53 AM, Danilo Krummrich wrote:
+> Hi Lina,
 > 
-> Let's just go through the proper channels and go through the drm tree.
+> On Sun, Feb 02, 2025 at 10:34:49PM +0900, Asahi Lina wrote:
+>> Some hardware requires dummy page mappings to efficiently implement
+>> Vulkan sparse features. These mappings consist of the same physical
+>> memory page, repeated for a large range of address space (e.g. 16GiB).
+>>
+>> Add support for this to drm_gpuvm. Currently, drm_gpuvm expects BO
+>> ranges to correspond 1:1 to virtual memory ranges that are mapped, and
+>> does math on the BO offset accordingly. To make single page mappings
+>> work, we need a way to turn off that math, keeping the BO offset always
+>> constant and pointing to the same page (typically BO offset 0).
+>>
+>> To make this work, we need to handle all the corner cases when these
+>> mappings intersect with regular mappings. The rules are simply to never
+>> mix or merge a "regular" mapping with a single page mapping.
+>>
+>> drm_gpuvm has support for a flags field in drm_gpuva objects. This is
+>> normally managed by drivers directly. We can introduce a
+>> DRM_GPUVA_SINGLE_PAGE flag to handle this. However, to make it work,
+>> sm_map and friends need to know ahead of time whether the new mapping is
+>> a single page mapping or not. Therefore, we need to add an argument to
+>> these functions so drivers can provide the flags to be filled into
+>> drm_gpuva.flags.
+>>
+>> These changes should not affect any existing drivers that use drm_gpuvm
+>> other than the API change:
+>>
+>> - imagination: Does not use flags at all
+>> - nouveau: Only uses drm_gpuva_invalidate(), which is only called on
+>>   existing drm_gpuva objects (after the map steps)
+>> - panthor: Does not use flags at all
+>> - xe: Does not use drm_gpuva_init_from_op() or
+>>   drm_gpuva_remap()/drm_gpuva_map() (which call it). This means that the
+>> flags field of the gpuva object is managed by the driver only, so these
+>> changes cannot clobber it.
+>>
+>> Note that the way this is implemented, drm_gpuvm does not need to know
+>> the GPU page size. It only has to never do math on the BO offset to meet
+>> the requirements.
+>>
+>> I suspect that after this change there could be some cleanup possible in
+>> the xe driver (which right now passes flags around in various
+>> driver-specific ways from the map step through to drm_gpuva objects),
+>> but I'll leave that to the Xe folks.
+>>
+>> Signed-off-by: Asahi Lina <lina@asahilina.net>
+>> ---
+>> Asahi Lina (4):
+>>       drm/gpuvm: Add a flags argument to drm_gpuvm_sm_map[_*]
+>>       drm/gpuvm: Plumb through flags into drm_gpuva_op_map
+>>       drm/gpuvm: Add DRM_GPUVA_SINGLE_PAGE flag and logic
+>>       drm/gpuvm: Plumb through flags into drm_gpuva_init
 > 
-> Unless I've issed something, I think this is only an active issue on
-> parisc (and only with certain compiler versions at that), so it isn't
-> some super-urgent thing that needs to be expedited.
+> Without looking into any details yet:
+> 
+> This is a bit of tricky one, since we're not even close to having a user for
+> this new feature upstream yet, are we?
 
-It probably wants pushing into rc-2.
-The build bot is complaining again.
+I'd hope we're at least somewhere "this year" close to upstreaming
+drm/asahi!
 
-	David
+> 
+> I wonder if we could do an exception by adding some KUnit tests (which
+> admittedly I never got to) validating things with and without this new feature.
+> 
+> Speaking of tests, how did you validate this change to validate the behavior
+> without DRM_GPUVA_SINGLE_PAGE?
+
+Mostly just making sure our driver passes GL/Vulkan CTS including sparse
+after this change. I do want to put together some low-level tests in
+igt-gpu-tools, but I haven't gotten around to it yet...
+
+~~ Lina
+
