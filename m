@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65B7DC02192
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Feb 2025 09:20:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33992C02192
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Feb 2025 09:22:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11E0810E2BE;
-	Mon,  3 Feb 2025 09:20:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA6D410E3F5;
+	Mon,  3 Feb 2025 09:22:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nruKytkZ";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="mZjjl17G";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E08910E2BE
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Feb 2025 09:20:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738574444; x=1770110444;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=BtsqaDGVmFooPuRUcb6WPz0D2EW6S3VEZo9BiJHF8Ao=;
- b=nruKytkZ9sJwbzlFp4I2sz9Acao1FVuw/adbpsNprIr3QFPUV8Z+kW1F
- 6dGaoZQgggkI+G95PayDGdiP1Cek2vnROBslOtsUrEI+2F0KXRNy4CQF9
- IN0yDeRQ2WMwMXM0orKNt3XpYC9G/XpM7cGeS3EBw84Ql1sAggs0iWpVZ
- C+JD1t98E3vjMS4Y5L5ua8QpGzhCGwTjEhv8PuA6rElQdQLdKP1XXx2Ds
- hFjW95hnpfORmGAmNswYP4kJgNX5yhQffxGYkCjyDtW4DIA6fhemy0ehO
- J5Jzgq8uz9Pzi0kOTZCV5sI20JiDMIBK1ySODLczHZQ+EkHSpGXt2e5WR Q==;
-X-CSE-ConnectionGUID: OO6M6HBPRBOh0DUfT88ETQ==
-X-CSE-MsgGUID: jwi8PUCdTkG55LmrNtVsZw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11334"; a="38294209"
-X-IronPort-AV: E=Sophos;i="6.13,255,1732608000"; d="scan'208";a="38294209"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2025 01:20:43 -0800
-X-CSE-ConnectionGUID: EYRnXCfHRsWcILICt8/F9Q==
-X-CSE-MsgGUID: CAbxHhWhSUeZnJLRwlMpfg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,255,1732608000"; d="scan'208";a="115244387"
-Received: from mbernato-mobl1.ger.corp.intel.com (HELO [10.245.99.135])
- ([10.245.99.135])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2025 01:20:42 -0800
-Message-ID: <19409b7a-e2a8-4d6a-8b57-9bf83209be13@linux.intel.com>
-Date: Mon, 3 Feb 2025 10:20:39 +0100
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D55CF10E2BE;
+ Mon,  3 Feb 2025 09:22:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1738574522;
+ bh=7U7Yl06go+bByThCK2iknqMhLcveevfT0vv3Dt817BE=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=mZjjl17G/l4cbQnyEM4LJ3L6AlSgH9HNznFxRBcOM+deSS9In+FxlBMtMNguZtZ7g
+ ZKzfzSJ20gpG0ptp6q06ib3xOM8EmhNQzEBdcwwHXk2Zhq4OJga8AUfTo5kNJYuX43
+ TmYli/TCRaQglmoMKZPfvX45JJPzsXBfytXYAHwEpBZWVybgj6HKTj0btx/Nti/kHB
+ JkNdmhDK8LpB8r2GI8q8xjT6eGFUAbKnkWLbfE3qdJnd/8R79EB7+uzEF++k76rX//
+ QShXOzJsCXJDsOTziqWjRfsqF/9GzNiiCyfh5FRFnup14+afaqwrhkVOlU8B6TrFkH
+ Rmv7GLyGpHOpg==
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 31D4917E07B3;
+ Mon,  3 Feb 2025 10:22:01 +0100 (CET)
+Date: Mon, 3 Feb 2025 10:21:53 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Danilo Krummrich <dakr@kernel.org>, asahi@lists.linux.dev
+Cc: Asahi Lina <lina@asahilina.net>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Frank Binns <frank.binns@imgtec.com>, Matt
+ Coster <matt.coster@imgtec.com>, Karol Herbst <kherbst@redhat.com>, Lyude
+ Paul <lyude@redhat.com>, Steven Price <steven.price@arm.com>, Liviu Dudau
+ <liviu.dudau@arm.com>, Lucas De Marchi <lucas.demarchi@intel.com>, Thomas
+ =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Rodrigo
+ Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, akash.goel@arm.com
+Subject: Re: [PATCH 0/4] drm/gpuvm: Add support for single-page-filled mappings
+Message-ID: <20250203102153.145229e0@collabora.com>
+In-Reply-To: <Z5-_O8vkCO0LXcl7@pollux.localdomain>
+References: <20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net>
+ <Z5-_O8vkCO0LXcl7@pollux.localdomain>
+Organization: Collabora
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/relay: Don't use GFP_KERNEL for new transactions
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
-References: <20250131153713.808-1-michal.wajdeczko@intel.com>
-Content-Language: en-US
-From: "Bernatowicz, Marcin" <marcin.bernatowicz@linux.intel.com>
-In-Reply-To: <20250131153713.808-1-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,60 +70,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
++Akash with whom we've been discussing adding a 'REPEAT' mode to
+drm_gpuvm/panthor.
 
+On Sun, 2 Feb 2025 19:53:47 +0100
+Danilo Krummrich <dakr@kernel.org> wrote:
 
-On 1/31/2025 4:37 PM, Michal Wajdeczko wrote:
-> VFs use a relay transaction during the resume/reset flow and use
-> of the GFP_KERNEL flag may conflict with the reclaim:
+> Hi Lina,
 > 
->       -> #0 (fs_reclaim){+.+.}-{0:0}:
->   [ ]        __lock_acquire+0x1874/0x2bc0
->   [ ]        lock_acquire+0xd2/0x310
->   [ ]        fs_reclaim_acquire+0xc5/0x100
->   [ ]        mempool_alloc_noprof+0x5c/0x1b0
->   [ ]        __relay_get_transaction+0xdc/0xa10 [xe]
->   [ ]        relay_send_to+0x251/0xe50 [xe]
->   [ ]        xe_guc_relay_send_to_pf+0x79/0x3a0 [xe]
->   [ ]        xe_gt_sriov_vf_connect+0x90/0x4d0 [xe]
->   [ ]        xe_uc_init_hw+0x157/0x3b0 [xe]
->   [ ]        do_gt_restart+0x1ae/0x650 [xe]
->   [ ]        xe_gt_resume+0xb6/0x120 [xe]
->   [ ]        xe_pm_runtime_resume+0x15b/0x370 [xe]
->   [ ]        xe_pci_runtime_resume+0x73/0x90 [xe]
->   [ ]        pci_pm_runtime_resume+0xa0/0x100
->   [ ]        __rpm_callback+0x4d/0x170
->   [ ]        rpm_callback+0x64/0x70
->   [ ]        rpm_resume+0x594/0x790
->   [ ]        __pm_runtime_resume+0x4e/0x90
->   [ ]        xe_pm_runtime_get_ioctl+0x9c/0x160 [xe]
+> On Sun, Feb 02, 2025 at 10:34:49PM +0900, Asahi Lina wrote:
+> > Some hardware requires dummy page mappings to efficiently implement
+> > Vulkan sparse features. These mappings consist of the same physical
+> > memory page, repeated for a large range of address space (e.g. 16GiB).
+> > 
+> > Add support for this to drm_gpuvm. Currently, drm_gpuvm expects BO
+> > ranges to correspond 1:1 to virtual memory ranges that are mapped, and
+> > does math on the BO offset accordingly. To make single page mappings
+> > work, we need a way to turn off that math, keeping the BO offset always
+> > constant and pointing to the same page (typically BO offset 0).
+> > 
+> > To make this work, we need to handle all the corner cases when these
+> > mappings intersect with regular mappings. The rules are simply to never
+> > mix or merge a "regular" mapping with a single page mapping.
+> > 
+> > drm_gpuvm has support for a flags field in drm_gpuva objects. This is
+> > normally managed by drivers directly. We can introduce a
+> > DRM_GPUVA_SINGLE_PAGE flag to handle this. However, to make it work,
+> > sm_map and friends need to know ahead of time whether the new mapping is
+> > a single page mapping or not. Therefore, we need to add an argument to
+> > these functions so drivers can provide the flags to be filled into
+> > drm_gpuva.flags.
+> > 
+> > These changes should not affect any existing drivers that use drm_gpuvm
+> > other than the API change:
+> > 
+> > - imagination: Does not use flags at all
+> > - nouveau: Only uses drm_gpuva_invalidate(), which is only called on
+> >   existing drm_gpuva objects (after the map steps)
+> > - panthor: Does not use flags at all
+> > - xe: Does not use drm_gpuva_init_from_op() or
+> >   drm_gpuva_remap()/drm_gpuva_map() (which call it). This means that the
+> > flags field of the gpuva object is managed by the driver only, so these
+> > changes cannot clobber it.
+> > 
+> > Note that the way this is implemented, drm_gpuvm does not need to know
+> > the GPU page size. It only has to never do math on the BO offset to meet
+> > the requirements.
+> > 
+> > I suspect that after this change there could be some cleanup possible in
+> > the xe driver (which right now passes flags around in various
+> > driver-specific ways from the map step through to drm_gpuva objects),
+> > but I'll leave that to the Xe folks.
+> > 
+> > Signed-off-by: Asahi Lina <lina@asahilina.net>
+> > ---
+> > Asahi Lina (4):
+> >       drm/gpuvm: Add a flags argument to drm_gpuvm_sm_map[_*]
+> >       drm/gpuvm: Plumb through flags into drm_gpuva_op_map
+> >       drm/gpuvm: Add DRM_GPUVA_SINGLE_PAGE flag and logic
+> >       drm/gpuvm: Plumb through flags into drm_gpuva_init  
 > 
-> Since we have a preallocated pool of relay transactions, which
-> should cover all our normal relay use cases, we may use the
-> GFP_NOWAIT flag when allocating new outgoing transactions.
+> Without looking into any details yet:
 > 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> ---
-> Cc: Michał Winiarski <michal.winiarski@intel.com>
-> Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_guc_relay.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_relay.c b/drivers/gpu/drm/xe/xe_guc_relay.c
-> index 8f62de026724..e5dc94f3e618 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_relay.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_relay.c
-> @@ -225,7 +225,7 @@ __relay_get_transaction(struct xe_guc_relay *relay, bool incoming, u32 remote, u
->   	 * with CTB lock held which is marked as used in the reclaim path.
->   	 * Btw, that's one of the reason why we use mempool here!
->   	 */
-> -	txn = mempool_alloc(&relay->pool, incoming ? GFP_ATOMIC : GFP_KERNEL);
-> +	txn = mempool_alloc(&relay->pool, incoming ? GFP_ATOMIC : GFP_NOWAIT);
->   	if (!txn)
->   		return ERR_PTR(-ENOMEM);
->   
+> This is a bit of tricky one, since we're not even close to having a user for
+> this new feature upstream yet, are we?
 
-LGTM. I tested this patch and no longer see the lockdep warning.
+Actually, we would be interesting in having this feature hooked up in
+panthor. One use case we have is Vulkan sparse bindings, of course. But
+we also have cases where we need to map a dummy page repeatedly on the
+FW side. The approach we've been considering is slightly different:
+pass a DRM_GPUVA_REPEAT_FLAG along with GEM range, so we can repeat a
+range of the GEM (see the below diff, which is completely untested by
+the way), but I think we'd be fine with this SINGLE_PAGE flag.
 
-Tested-by: Marcin Bernatowicz marcin.bernatowicz@linux.intel.com
-Reviewed-by: Marcin Bernatowicz marcin.bernatowicz@linux.intel.com
+--->8---
+diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+index f9eb56f24bef..ea61f3ffaddf 100644
+--- a/drivers/gpu/drm/drm_gpuvm.c
++++ b/drivers/gpu/drm/drm_gpuvm.c
+@@ -2053,16 +2053,17 @@ EXPORT_SYMBOL_GPL(drm_gpuva_unmap);
+ 
+ static int
+ op_map_cb(const struct drm_gpuvm_ops *fn, void *priv,
+-      u64 addr, u64 range,
+-      struct drm_gem_object *obj, u64 offset)
++      u64 addr, u64 va_range,
++      struct drm_gem_object *obj, u64 offset, u64 gem_range)
+ {
+     struct drm_gpuva_op op = {};
+ 
+     op.op = DRM_GPUVA_OP_MAP;
+     op.map.va.addr = addr;
+-    op.map.va.range = range;
++    op.map.va.range = va_range;
+     op.map.gem.obj = obj;
+     op.map.gem.offset = offset;
++    op.map.gem.range = gem_range;
+ 
+     return fn->sm_step_map(&op, priv);
+ }
+@@ -2102,7 +2103,8 @@ static int
+ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+            const struct drm_gpuvm_ops *ops, void *priv,
+            u64 req_addr, u64 req_range,
+-           struct drm_gem_object *req_obj, u64 req_offset)
++           struct drm_gem_object *req_obj,
++           u64 req_offset, u64 req_gem_range)
+ {
+     struct drm_gpuva *va, *next;
+     u64 req_end = req_addr + req_range;
+@@ -2237,7 +2239,7 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 
+     return op_map_cb(ops, priv,
+              req_addr, req_range,
+-             req_obj, req_offset);
++             req_obj, req_offset, req_gem_range);
+ }
+ 
+ static int
+@@ -2344,10 +2346,43 @@ drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
+ 
+     return __drm_gpuvm_sm_map(gpuvm, ops, priv,
+                   req_addr, req_range,
+-                  req_obj, req_offset);
++                  req_obj, req_offset, 0);
+ }
+ EXPORT_SYMBOL_GPL(drm_gpuvm_sm_map);
+ 
++/**
++ * drm_gpuvm_sm_map_repeat() - repeatedly maps a GEM range over a VA range
++ * @gpuvm: the &drm_gpuvm representing the GPU VA space
++ * @priv: pointer to a driver private data structure
++ * @req_addr: the start address of the new mapping
++ * @req_range: the range of the new mapping
++ * @req_obj: the &drm_gem_object to map
++ * @req_offset: the offset within the &drm_gem_object
++ * @req_gem_range: the offset within the &drm_gem_object
++ *
++ * Same as drm_gpuvm_sm_map() except it repeats a GEM range over a VA range
++ *
++ * Returns: 0 on success or a negative error code
++ */
++int
++drm_gpuvm_sm_map_repeat(struct drm_gpuvm *gpuvm, void *priv,
++            u64 req_addr, u64 req_range,
++            struct drm_gem_object *req_obj,
++            u64 req_offset, u64 req_gem_range)
++{
++    const struct drm_gpuvm_ops *ops = gpuvm->ops;
++
++    if (unlikely(!(ops && ops->sm_step_map &&
++               ops->sm_step_remap &&
++               ops->sm_step_unmap)))
++        return -EINVAL;
++
++    return __drm_gpuvm_sm_map(gpuvm, ops, priv,
++                  req_addr, req_range,
++                  req_obj, req_offset, req_gem_range);
++}
++EXPORT_SYMBOL_GPL(drm_gpuvm_sm_map_repeat);
++
+ /**
+  * drm_gpuvm_sm_unmap() - creates the &drm_gpuva_ops to split on unmap
+  * @gpuvm: the &drm_gpuvm representing the GPU VA space
+@@ -2536,7 +2571,7 @@ drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
+ 
+     ret = __drm_gpuvm_sm_map(gpuvm, &gpuvm_list_ops, &args,
+                  req_addr, req_range,
+-                 req_obj, req_offset);
++                 req_obj, req_offset, 0);
+     if (ret)
+         goto err_free_ops;
+ 
+diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+index 00d4e43b76b6..8157ede365d1 100644
+--- a/include/drm/drm_gpuvm.h
++++ b/include/drm/drm_gpuvm.h
+@@ -846,6 +846,14 @@ struct drm_gpuva_op_map {
+          */
+         u64 offset;
+ 
++        /**
++         * @gem.range: the range of the GEM to map
++         *
++         * If smaller than va.range, the GEM range should be mapped
++         * multiple times over the VA range.
++         */
++        u64 range;
++
+         /**
+          * @gem.obj: the &drm_gem_object to map
+          */
+@@ -1203,6 +1211,11 @@ int drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
+              u64 addr, u64 range,
+              struct drm_gem_object *obj, u64 offset);
+ 
++int drm_gpuvm_sm_map_repeat(struct drm_gpuvm *gpuvm, void *priv,
++                u64 addr, u64 range,
++                struct drm_gem_object *obj,
++                u64 offset, u64 gem_range);
++
+ int drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm, void *priv,
+                u64 addr, u64 range);
