@@ -4,107 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70DE7C02196
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Feb 2025 10:58:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00C93C02193
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Feb 2025 11:24:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E39FB10E49B;
-	Mon,  3 Feb 2025 10:58:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="b/QtydVI";
-	dkim-atps=neutral
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36B6F10E495
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Feb 2025 10:58:29 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-4368a293339so49773195e9.3
- for <intel-xe@lists.freedesktop.org>; Mon, 03 Feb 2025 02:58:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1738580308; x=1739185108; darn=lists.freedesktop.org;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=YU2toixtghG/UIHIgDfi+TrJAb+KbxkNuLjUS/jgDXM=;
- b=b/QtydVI0PW6nP7mnZhaz4NrS/bPOegsLHzbo9qeJVYF/DxGU2pJwa2DcZmAvm3rKq
- saA5cxL/UkfNG5yis2Hx2Ocj8A68ohiVI9ZHaCveBNcvzWuTOhCiC8ito5aHsWsu8+eu
- 8gsh6GhGnFaAMqPLyxdBcie884m9x6e1JCpk1Jpj85fEUoe9yG6VfgfCh3ORA6hUH8OD
- omxI6d/AgaT/2fr8hTyEa2dCN3VHtUL2WMm0PIEYRFccWT2X7x7PPiubyTpxI9uu1PUr
- G7PEpUcDZWcVH8aJ6AW8oi66bGMWo33ZACJFH4mxz+IIsoc7ECeBXiePa/Cc6Xwxvlxg
- RL9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738580308; x=1739185108;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=YU2toixtghG/UIHIgDfi+TrJAb+KbxkNuLjUS/jgDXM=;
- b=W+z0lfZGUcT7FmlmSpoXs46tepCEp4/DGhaWHqYUre+1fA3btdnKZV+yJ+mtJ0oSt/
- RZGWyq6IzS1K+v7r6jkZ5uKT8m2RVLK1T5JWCc+yJNFE/A25suXkD9ilT6GGhiwFN8UW
- 4qnl3yQRJ7tmd1I2ZRtRjgAec+tGdR9xFCPb/SBbr4VOcrUfBGxH+JJDnCR3nPgqHRoS
- ujJfOfhOcHnc0bKXD9qDYCt9RrDEU1zWIZJeeKWx2KX9I8hUYNf99kfs8odo1adlHeYu
- faGv87YbOdXwzrmxxVnwiDqBMvpkcqOl6kcJM09fC5vEwXvTuDQNQLdbf9Aq8X8sE+vn
- 3YaA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVWZ8YiH1jfO66S4zsCwUjsMDbAC+MHgWPcsXvlYROCjKq7G+v4ASFa5NQ7gP1Qh4Gwd5ADM60wKA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx9bOvG56Ec7oR00D7EruKYxQnH4nuJ0ZAkdo7qi+nv/4f4ZKu2
- lWR05mGsz0dt1rJWou9qlXb9vbjrpU9zSUEehhLp6bz3u64S1WRC9lqIauw7A3k=
-X-Gm-Gg: ASbGncu1IV1zrwq6FBm9EnIZZCBbhV9WmQFBB7m2UstqGqobD5K30AgZIiL/iWRV4Jl
- 4DGtO8/yxrve9izEF0Me3+kKUe6K9ZoaAghX3XAWeQyWcVR69kUM7fFnomxpy7CxApnE+YHwOOC
- CfPlAl9puFOW4JxDdxzjArKAMYVmfzZWZV7TQaMm3MsLoH9sPC3AiAHnCA0uYFF7o7acxaUjVGn
- 7kMBJ1c41HG7yvpyeXeiANaFcQDK5+3Z0dqnsS7VIRBp6k1GtTedV1FLBScGK7wCcb8lEJOLTTs
- PCXt7DUh203auCw=
-X-Google-Smtp-Source: AGHT+IG3sxZoF1BxKwDs6D8yKh85vjYaq2CGCwZLuA4JBiE6X/IAqNanFP9ag+j0VZ8Qqg5mgek9bg==
-X-Received: by 2002:a05:600c:35d1:b0:436:1971:2a4 with SMTP id
- 5b1f17b1804b1-438dc3cc9f1mr185238805e9.17.1738580307609; 
- Mon, 03 Feb 2025 02:58:27 -0800 (PST)
-Received: from [127.0.1.1] ([86.123.96.125]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-38c5c13a0efsm12555083f8f.60.2025.02.03.02.58.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 Feb 2025 02:58:27 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Mon, 03 Feb 2025 12:57:59 +0200
-Subject: [PATCH v5 4/4] drm/msm/dp: Add support for LTTPR handling
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1F8C10E490;
+	Mon,  3 Feb 2025 11:24:18 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 910A510E484
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Feb 2025 11:24:17 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A63471476
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Feb 2025 03:24:41 -0800 (PST)
+Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
+ [10.121.207.14])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 0C34F3F58B
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Feb 2025 03:24:16 -0800 (PST)
+Date: Mon, 3 Feb 2025 11:23:53 +0000
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: Boris Brezillon <boris.brezillon@collabora.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, asahi@lists.linux.dev,
+ Asahi Lina <lina@asahilina.net>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Steven Price <steven.price@arm.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ akash.goel@arm.com
+Subject: Re: [PATCH 0/4] drm/gpuvm: Add support for single-page-filled mappings
+Message-ID: <Z6CnSZz_Dm3YpZbx@e110455-lin.cambridge.arm.com>
+References: <20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net>
+ <Z5-_O8vkCO0LXcl7@pollux.localdomain>
+ <20250203102153.145229e0@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250203-drm-dp-msm-add-lttpr-transparent-mode-set-v5-4-c865d0e56d6e@linaro.org>
-References: <20250203-drm-dp-msm-add-lttpr-transparent-mode-set-v5-0-c865d0e56d6e@linaro.org>
-In-Reply-To: <20250203-drm-dp-msm-add-lttpr-transparent-mode-set-v5-0-c865d0e56d6e@linaro.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
- Danilo Krummrich <dakr@redhat.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Johan Hovold <johan@kernel.org>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
- freedreno@lists.freedesktop.org, Abel Vesa <abel.vesa@linaro.org>, 
- Johan Hovold <johan+linaro@kernel.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3226; i=abel.vesa@linaro.org; 
- h=from:subject:message-id;
- bh=Jh+EL4p/6JSMFadATMQ/dMawzZEL4l2MOkq/1iyumns=; 
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnoKFIouFywSlDaZiCw4jErWqSRIqEpI3epr4AW
- pUfu6e93kKJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZ6ChSAAKCRAbX0TJAJUV
- VkinEADM92QE1zN3OdqwoLmwOoyxpCMwh545d6+dM1Jydy6p2+/Kc4BB1xjuxNF1HNo5rtoqH07
- ym9dN4Q2Qq7XF1KIk/3CrsDT4I6xsQyH+dZXcInkRjCUYzr92gP/vw1kR3ZEqKR0MhGKoby+vee
- AMNZ73KL9sbyxqDOSvYlfU64YT+4M3Y0RjyunUFlc8d0B77KoL9D1lf+9S/cf/VIG5xt10eHvCI
- Y/7TVphY3czZAV8pnzwIf8rvKl8ovXxM1wuxLd5rbHSICbG9xkbeuPm9Gk0ayUP21CpdlnMwnrO
- ZgiMbd646uADECWUTsnLP+vy/yGmYdZk+wxCNssoiv8Uwdn5ZBIDrTreTRLOTRfs0yrkWKw+2Rr
- nvsWS9eg48JbmcR2ZEUHO9TK8fTbA7zOnb/X1M9Xm6dTObpCTrH/1WvFKyJHOT+F8lkUhOhWYM5
- FHml27aV+44Peh/GLto6Qzz4d2+f92sCsBH9ywrCKadg7S/0e9kxiYCsVG5CPv74tlxnI1MJTIk
- 38joR4PETewNrhxKk1ppq87XoZJCSGrVxk/IZsbYHALamKacJUTrn6kJ91yS/mNIU23LtyOTkdh
- M2PhJ+2wRSHuQtQv19TyrWt+d38PCVc5NM4iGWqb0J4QbPzEgPwhp1xeCLwRcvp1mk/vM6udNFY
- hRWMZsNaZcQlw7w==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250203102153.145229e0@collabora.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,83 +61,225 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Link Training Tunable PHY Repeaters (LTTPRs) are defined in DisplayPort
-1.4a specification. As the name suggests, these PHY repeaters are
-capable of adjusting their output for link training purposes.
+On Mon, Feb 03, 2025 at 10:21:53AM +0100, Boris Brezillon wrote:
+> +Akash with whom we've been discussing adding a 'REPEAT' mode to
+> drm_gpuvm/panthor.
+> 
+> On Sun, 2 Feb 2025 19:53:47 +0100
+> Danilo Krummrich <dakr@kernel.org> wrote:
+> 
+> > Hi Lina,
+> > 
+> > On Sun, Feb 02, 2025 at 10:34:49PM +0900, Asahi Lina wrote:
+> > > Some hardware requires dummy page mappings to efficiently implement
+> > > Vulkan sparse features. These mappings consist of the same physical
+> > > memory page, repeated for a large range of address space (e.g. 16GiB).
+> > > 
+> > > Add support for this to drm_gpuvm. Currently, drm_gpuvm expects BO
+> > > ranges to correspond 1:1 to virtual memory ranges that are mapped, and
+> > > does math on the BO offset accordingly. To make single page mappings
+> > > work, we need a way to turn off that math, keeping the BO offset always
+> > > constant and pointing to the same page (typically BO offset 0).
+> > > 
+> > > To make this work, we need to handle all the corner cases when these
+> > > mappings intersect with regular mappings. The rules are simply to never
+> > > mix or merge a "regular" mapping with a single page mapping.
+> > > 
+> > > drm_gpuvm has support for a flags field in drm_gpuva objects. This is
+> > > normally managed by drivers directly. We can introduce a
+> > > DRM_GPUVA_SINGLE_PAGE flag to handle this. However, to make it work,
+> > > sm_map and friends need to know ahead of time whether the new mapping is
+> > > a single page mapping or not. Therefore, we need to add an argument to
+> > > these functions so drivers can provide the flags to be filled into
+> > > drm_gpuva.flags.
+> > > 
+> > > These changes should not affect any existing drivers that use drm_gpuvm
+> > > other than the API change:
+> > > 
+> > > - imagination: Does not use flags at all
+> > > - nouveau: Only uses drm_gpuva_invalidate(), which is only called on
+> > >   existing drm_gpuva objects (after the map steps)
+> > > - panthor: Does not use flags at all
+> > > - xe: Does not use drm_gpuva_init_from_op() or
+> > >   drm_gpuva_remap()/drm_gpuva_map() (which call it). This means that the
+> > > flags field of the gpuva object is managed by the driver only, so these
+> > > changes cannot clobber it.
+> > > 
+> > > Note that the way this is implemented, drm_gpuvm does not need to know
+> > > the GPU page size. It only has to never do math on the BO offset to meet
+> > > the requirements.
+> > > 
+> > > I suspect that after this change there could be some cleanup possible in
+> > > the xe driver (which right now passes flags around in various
+> > > driver-specific ways from the map step through to drm_gpuva objects),
+> > > but I'll leave that to the Xe folks.
+> > > 
+> > > Signed-off-by: Asahi Lina <lina@asahilina.net>
+> > > ---
+> > > Asahi Lina (4):
+> > >       drm/gpuvm: Add a flags argument to drm_gpuvm_sm_map[_*]
+> > >       drm/gpuvm: Plumb through flags into drm_gpuva_op_map
+> > >       drm/gpuvm: Add DRM_GPUVA_SINGLE_PAGE flag and logic
+> > >       drm/gpuvm: Plumb through flags into drm_gpuva_init  
+> > 
+> > Without looking into any details yet:
+> > 
+> > This is a bit of tricky one, since we're not even close to having a user for
+> > this new feature upstream yet, are we?
+> 
+> Actually, we would be interesting in having this feature hooked up in
+> panthor. One use case we have is Vulkan sparse bindings, of course. But
+> we also have cases where we need to map a dummy page repeatedly on the
+> FW side. The approach we've been considering is slightly different:
+> pass a DRM_GPUVA_REPEAT_FLAG along with GEM range, so we can repeat a
+> range of the GEM (see the below diff, which is completely untested by
+> the way), but I think we'd be fine with this SINGLE_PAGE flag.
 
-According to the DisplayPort standard, LTTPRs have two operating
-modes:
- - non-transparent - it replies to DPCD LTTPR field specific AUX
-   requests, while passes through all other AUX requests
- - transparent - it passes through all AUX requests.
+Unless I've misunderstood the intent completely, it looks like Xe also wants
+something similar although they call it CPU_ADDR_MIRROR for some reason:
 
-Switching between these two modes is done by the DPTX by issuing
-an AUX write to the DPCD PHY_REPEATER_MODE register.
+https://lore.kernel.org/r/20250129195212.745731-9-matthew.brost@intel.com
 
-The msm DP driver is currently lacking any handling of LTTPRs.
-This means that if at least one LTTPR is found between DPTX and DPRX,
-the link training would fail if that LTTPR was not already configured
-in transparent mode.
+Best regards,
+Liviu
 
-The section 3.6.6.1 from the DisplayPort v2.0 specification mandates
-that before link training with the LTTPR is started, the DPTX may place
-the LTTPR in non-transparent mode by first switching to transparent mode
-and then to non-transparent mode. This operation seems to be needed only
-on first link training and doesn't need to be done again until device is
-unplugged.
-
-It has been observed on a few X Elite-based platforms which have
-such LTTPRs in their board design that the DPTX needs to follow the
-procedure described above in order for the link training to be successful.
-
-So add support for reading the LTTPR DPCD caps to figure out the number
-of such LTTPRs first. Then, for platforms (or Type-C dongles) that have
-at least one such an LTTPR, set its operation mode to transparent mode
-first and then to non-transparent, just like the mentioned section of
-the specification mandates.
-
-Tested-by: Johan Hovold <johan+linaro@kernel.org>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- drivers/gpu/drm/msm/dp/dp_display.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-index 24dd37f1682bf5016bb0efbeb44489061deff060..1dd8f94e27475ae5b5b25d80f758968e6818f6cc 100644
---- a/drivers/gpu/drm/msm/dp/dp_display.c
-+++ b/drivers/gpu/drm/msm/dp/dp_display.c
-@@ -367,6 +367,19 @@ static int msm_dp_display_send_hpd_notification(struct msm_dp_display_private *d
- 	return 0;
- }
- 
-+static void msm_dp_display_lttpr_init(struct msm_dp_display_private *dp)
-+{
-+	u8 lttpr_caps[DP_LTTPR_COMMON_CAP_SIZE];
-+	int rc;
-+
-+	if (drm_dp_read_lttpr_common_caps(dp->aux, dp->panel->dpcd, lttpr_caps))
-+		return;
-+
-+	rc = drm_dp_lttpr_init(dp->aux, drm_dp_lttpr_count(lttpr_caps));
-+	if (rc)
-+		DRM_ERROR("failed to set LTTPRs transparency mode, rc=%d\n", rc);
-+}
-+
- static int msm_dp_display_process_hpd_high(struct msm_dp_display_private *dp)
- {
- 	struct drm_connector *connector = dp->msm_dp_display.connector;
-@@ -377,6 +390,8 @@ static int msm_dp_display_process_hpd_high(struct msm_dp_display_private *dp)
- 	if (rc)
- 		goto end;
- 
-+	msm_dp_display_lttpr_init(dp);
-+
- 	msm_dp_link_process_request(dp->link);
- 
- 	if (!dp->msm_dp_display.is_edp)
+> 
+> --->8---
+> diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+> index f9eb56f24bef..ea61f3ffaddf 100644
+> --- a/drivers/gpu/drm/drm_gpuvm.c
+> +++ b/drivers/gpu/drm/drm_gpuvm.c
+> @@ -2053,16 +2053,17 @@ EXPORT_SYMBOL_GPL(drm_gpuva_unmap);
+>  
+>  static int
+>  op_map_cb(const struct drm_gpuvm_ops *fn, void *priv,
+> -      u64 addr, u64 range,
+> -      struct drm_gem_object *obj, u64 offset)
+> +      u64 addr, u64 va_range,
+> +      struct drm_gem_object *obj, u64 offset, u64 gem_range)
+>  {
+>      struct drm_gpuva_op op = {};
+>  
+>      op.op = DRM_GPUVA_OP_MAP;
+>      op.map.va.addr = addr;
+> -    op.map.va.range = range;
+> +    op.map.va.range = va_range;
+>      op.map.gem.obj = obj;
+>      op.map.gem.offset = offset;
+> +    op.map.gem.range = gem_range;
+>  
+>      return fn->sm_step_map(&op, priv);
+>  }
+> @@ -2102,7 +2103,8 @@ static int
+>  __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>             const struct drm_gpuvm_ops *ops, void *priv,
+>             u64 req_addr, u64 req_range,
+> -           struct drm_gem_object *req_obj, u64 req_offset)
+> +           struct drm_gem_object *req_obj,
+> +           u64 req_offset, u64 req_gem_range)
+>  {
+>      struct drm_gpuva *va, *next;
+>      u64 req_end = req_addr + req_range;
+> @@ -2237,7 +2239,7 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>  
+>      return op_map_cb(ops, priv,
+>               req_addr, req_range,
+> -             req_obj, req_offset);
+> +             req_obj, req_offset, req_gem_range);
+>  }
+>  
+>  static int
+> @@ -2344,10 +2346,43 @@ drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
+>  
+>      return __drm_gpuvm_sm_map(gpuvm, ops, priv,
+>                    req_addr, req_range,
+> -                  req_obj, req_offset);
+> +                  req_obj, req_offset, 0);
+>  }
+>  EXPORT_SYMBOL_GPL(drm_gpuvm_sm_map);
+>  
+> +/**
+> + * drm_gpuvm_sm_map_repeat() - repeatedly maps a GEM range over a VA range
+> + * @gpuvm: the &drm_gpuvm representing the GPU VA space
+> + * @priv: pointer to a driver private data structure
+> + * @req_addr: the start address of the new mapping
+> + * @req_range: the range of the new mapping
+> + * @req_obj: the &drm_gem_object to map
+> + * @req_offset: the offset within the &drm_gem_object
+> + * @req_gem_range: the offset within the &drm_gem_object
+> + *
+> + * Same as drm_gpuvm_sm_map() except it repeats a GEM range over a VA range
+> + *
+> + * Returns: 0 on success or a negative error code
+> + */
+> +int
+> +drm_gpuvm_sm_map_repeat(struct drm_gpuvm *gpuvm, void *priv,
+> +            u64 req_addr, u64 req_range,
+> +            struct drm_gem_object *req_obj,
+> +            u64 req_offset, u64 req_gem_range)
+> +{
+> +    const struct drm_gpuvm_ops *ops = gpuvm->ops;
+> +
+> +    if (unlikely(!(ops && ops->sm_step_map &&
+> +               ops->sm_step_remap &&
+> +               ops->sm_step_unmap)))
+> +        return -EINVAL;
+> +
+> +    return __drm_gpuvm_sm_map(gpuvm, ops, priv,
+> +                  req_addr, req_range,
+> +                  req_obj, req_offset, req_gem_range);
+> +}
+> +EXPORT_SYMBOL_GPL(drm_gpuvm_sm_map_repeat);
+> +
+>  /**
+>   * drm_gpuvm_sm_unmap() - creates the &drm_gpuva_ops to split on unmap
+>   * @gpuvm: the &drm_gpuvm representing the GPU VA space
+> @@ -2536,7 +2571,7 @@ drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
+>  
+>      ret = __drm_gpuvm_sm_map(gpuvm, &gpuvm_list_ops, &args,
+>                   req_addr, req_range,
+> -                 req_obj, req_offset);
+> +                 req_obj, req_offset, 0);
+>      if (ret)
+>          goto err_free_ops;
+>  
+> diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+> index 00d4e43b76b6..8157ede365d1 100644
+> --- a/include/drm/drm_gpuvm.h
+> +++ b/include/drm/drm_gpuvm.h
+> @@ -846,6 +846,14 @@ struct drm_gpuva_op_map {
+>           */
+>          u64 offset;
+>  
+> +        /**
+> +         * @gem.range: the range of the GEM to map
+> +         *
+> +         * If smaller than va.range, the GEM range should be mapped
+> +         * multiple times over the VA range.
+> +         */
+> +        u64 range;
+> +
+>          /**
+>           * @gem.obj: the &drm_gem_object to map
+>           */
+> @@ -1203,6 +1211,11 @@ int drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
+>               u64 addr, u64 range,
+>               struct drm_gem_object *obj, u64 offset);
+>  
+> +int drm_gpuvm_sm_map_repeat(struct drm_gpuvm *gpuvm, void *priv,
+> +                u64 addr, u64 range,
+> +                struct drm_gem_object *obj,
+> +                u64 offset, u64 gem_range);
+> +
+>  int drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm, void *priv,
+>                 u64 addr, u64 range);
 
 -- 
-2.34.1
-
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
