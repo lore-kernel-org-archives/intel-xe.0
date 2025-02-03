@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 373BAC02192
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Feb 2025 16:15:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 209D5C02192
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Feb 2025 16:15:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F25B710E0F8;
-	Mon,  3 Feb 2025 16:15:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAE4410E0F8;
+	Mon,  3 Feb 2025 16:15:25 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E44010E0F8;
- Mon,  3 Feb 2025 16:15:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D9BF10E0F8;
+ Mon,  3 Feb 2025 16:15:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/dp=3A_Add_s?=
- =?utf-8?q?upport_for_DP_UHBR_SST_DSC?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/dp=3A_Add_suppor?=
+ =?utf-8?q?t_for_DP_UHBR_SST_DSC?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 03 Feb 2025 16:15:09 -0000
-Message-ID: <173859930964.378729.11355340552907281484@b555e5b46a47>
+Date: Mon, 03 Feb 2025 16:15:24 -0000
+Message-ID: <173859932431.378729.12060064403303224792@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250203160834.2708027-1-jani.nikula@intel.com>
 In-Reply-To: <20250203160834.2708027-1-jani.nikula@intel.com>
@@ -44,13 +44,36 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/dp: Add support for DP UHBR SST DSC
 URL   : https://patchwork.freedesktop.org/series/144266/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 907133c4b6b5 drm-tip: 2025y-02m-03d-14h-45m-40s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/dp: Add support for DP UHBR SST DSC
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8575e2b3ab1ba59911a8b81cc8f322c0c47b59bf
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Mon Feb 3 18:08:34 2025 +0200
+
+    drm/i915/dp: Add support for DP UHBR SST DSC
+    
+    Drop the UHBR limitation from DP SST DSC, and handle SST DSC bandwidth
+    computation for UHBR using intel_dp_mtp_tu_compute_config().
+    
+    Cc: Imre Deak <imre.deak@intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 907133c4b6b53621c4e90697c1cc85ccef3f5711 drm-intel
+8575e2b3ab1b drm/i915/dp: Add support for DP UHBR SST DSC
+-:50: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#50: FILE: drivers/gpu/drm/i915/display/intel_dp.c:1986:
++								     lane_count, adjusted_mode->clock,
+
+total: 0 errors, 1 warnings, 0 checks, 51 lines checked
 
 
