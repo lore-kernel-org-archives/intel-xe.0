@@ -4,165 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90EFCC02192
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Feb 2025 14:22:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF683C02194
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Feb 2025 14:29:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BD4710E4F8;
-	Mon,  3 Feb 2025 14:22:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67D9510E502;
+	Mon,  3 Feb 2025 14:29:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eUHIBtkM";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="DuGhZ99A";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8907210E25E
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Feb 2025 14:21:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738592520; x=1770128520;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=d2UM0sFQBiXWWu8htJTdXuShriHdc/H09AtyS3OXRhQ=;
- b=eUHIBtkMTIMf4Q5zM9hlMHoMBUad4Q3/Agw749uboCS+P//ybGa60EX0
- Wa6kVr0bgeRzXUCdJKMQD/IUDUgyf6ML1BF93Bo9uOuLgzLCokq1up/5R
- QCDC4rWCUSI69C11mP93LB5lt37yh1unxM5ZgJPrhINO4bs5YlZp1IZ+w
- 35dLi2XcNuatORxibLa8EiA+8yGke1fa5hTvdbGjEl+wDCzRhKBWH0XaB
- EDZzUt8LapNqgYsqxGqaiVsCMOU8jmawU9Mrm2XVfpyXY9xYyuHaAT/wT
- K0at0GBA3cnUAX3dqJHyuvwZ7BLWIuIqSO7AiSNI8yuF18YFVr6ney0tJ A==;
-X-CSE-ConnectionGUID: JduNlNULSwaqeCmz6YH/gQ==
-X-CSE-MsgGUID: 2Sfz/0oJQL+RbPN1XtPr3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="50076893"
-X-IronPort-AV: E=Sophos;i="6.13,256,1732608000"; d="scan'208";a="50076893"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2025 06:21:59 -0800
-X-CSE-ConnectionGUID: Wt7lSDHZSlus4kvZTRR17Q==
-X-CSE-MsgGUID: 4QzFfJZbTwGjrfK6l59M2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,256,1732608000"; d="scan'208";a="110867705"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 03 Feb 2025 06:21:56 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Mon, 3 Feb 2025 06:21:55 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Mon, 3 Feb 2025 06:21:55 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.175)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 3 Feb 2025 06:21:54 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SPytF4XtIjXEIlaJ2FoYQBN1mvb0yffrbmQFQlCoPtDCx95AdZbHkUgCEIiZhpHTtEgJRfP8WgNZmF9LLr84qn3fWI1AZQLXq7mvuqyVBAl1Epk+BWh5Rd8VgVEJjsAGkep8ZNgbPcWlcznCVDfEgM52SYiEkeZy/DuxVVUvO/4/gyJq7Xu4IqTU3Int4rrv+GUg/eFtf2VaHgEfakXPUoPUdYoOFRDZW56N/rTw9YHPh/eZf3CTP7H1Kn41Nmg+pff0DU3wxzePatBE0aLu/U986rBomEnV2T48Rjlg0zR7XxOAvumCyNT/cBDxg+yBZUuFoLmc2MqyNby+jqRgEA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BD6JzUEdM6XgdpcuK6FmjgyEBenswcytmBLwjVsEwFA=;
- b=bJGLCBdh/9BQRODiNrXDx3yjbrvuNYBZ2aEsydHqjW4jkTYIETUwUqEdR9+NYP+cptxzGlk3ZnSU6wIDS//WjV0Vm716Ql7WE8rGpk05/M6fvKZwFG3whCYAVSeNT4LJUK9QR3q6pLMKuCxrQZ3nT3IktY9rH1IfXRTEvbjPdbhpL0FBxnGR/XVuBq97BUf88q45Bd/O4WnWac/f2yJVXVXFTvVBOZbMHEhtFtP0JR6PLHoECdESY7VcyJBdZqmxwmBFCeQqIaUWL70bv1kZPWBAaUM9HxBKCPRQhQ09iDuJko8rgiV4Ero7lBcYE+RCGzzl6bkKWkxxilKkcFSNQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
- by CH3PR11MB7866.namprd11.prod.outlook.com (2603:10b6:610:124::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.23; Mon, 3 Feb
- 2025 14:21:38 +0000
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::5461:fa8c:58b8:e10d]) by CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::5461:fa8c:58b8:e10d%4]) with mapi id 15.20.8398.021; Mon, 3 Feb 2025
- 14:21:38 +0000
-Date: Mon, 3 Feb 2025 15:21:29 +0100
-From: Francois Dugast <francois.dugast@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Matt Roper <matthew.d.roper@intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
-Subject: Re: [PATCH 3/7] drm/xe: Fix xe_tile_init_noalloc() error propagation
-Message-ID: <Z6DQ6aG3iiW3msZh@fdugast-desk>
-References: <20250131223140.4144292-1-lucas.demarchi@intel.com>
- <20250131223140.4144292-4-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250131223140.4144292-4-lucas.demarchi@intel.com>
-Organization: Intel Corporation
-X-ClientProxiedBy: ZR2P278CA0044.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:47::6) To CY8PR11MB7828.namprd11.prod.outlook.com
- (2603:10b6:930:78::8)
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
+ [209.85.167.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D09E610E4FE
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Feb 2025 14:29:10 +0000 (UTC)
+Received: by mail-lf1-f53.google.com with SMTP id
+ 2adb3069b0e04-54024aa9febso4487916e87.1
+ for <intel-xe@lists.freedesktop.org>; Mon, 03 Feb 2025 06:29:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1738592949; x=1739197749; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=Fe4Q/DRIIrkW1EpeCwCgG29YyiSxj0a6BvsfU0z5Psc=;
+ b=DuGhZ99ASV8+4HsiwnQck/v+elZ8vugNpypyA6Va5EPTmF+QJ4iOLEdUyB3UoxEUdi
+ 1b4NHzKWIK+quRL7pC1bWsq/8TcQUvHvRDzVeEnc24wKF/hcDpUxtyAbdtMEoGDHFsbZ
+ nwQA6jmPNOTLvV/pAwczj/PQvRLvcLFx+iVnUu4d+t9q/aJPRoAQ5toJuW+gXzv0inu+
+ tnj4iFDBadDATbEYbMXtuXpq3bIJUBaalfmPlMrwUMLC5lNLEIAnhGPgB264pmQFYTaC
+ x3Zo59Fom4VJyiLWdz3yXfFyM9YJ0tSR5YFxJpsADZl6oczYI5BDSD09fGgzDSHpyJZ1
+ 5LAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1738592949; x=1739197749;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Fe4Q/DRIIrkW1EpeCwCgG29YyiSxj0a6BvsfU0z5Psc=;
+ b=bNijDRRHyuzCvL0uXh9V7OiPUSh3LE1NH01RtCgKqsuI42/GlIx7AhmWS2ZP5m4yte
+ ydP6/LEBbZxHUNuQb2jPTqtKpE4rmEzyTTycyrhRfrp1SoyOa/nkgV6Somzr2FKvC+b2
+ GM77txCI/Pnr5OOncH4TBjIALQ1ySMg460JRAOwmY5uSpTmltuodR3CvxTFqm34iN5UW
+ IuEhTuwM5n/0MCqj3Vtd1Ekqnb2sHhddx9ixBoJk+OvrSvWeqegazPuYwRfSZmuNFfrI
+ +OlfeSyd0vtCR1BmhTDeqHuqvY5nWjXqHm9OeEv5SAqX5nuh6YPHFCIiCd64ritRv19D
+ AWTQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVkvetOV2Ectz6Rs5PYbRDn4RnYOo1cKh2cYhhzWmhOW51tab5PARxzkIrnp8/RjJfE+JVeEIzQRg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyXeSNw2oYVD0gVS2O/SETg9s2m7uJ3EdP5Fz4cFsea2WV4Kf8h
+ 2lK+SZfXDjNPiRRAe87nuKfuOBA4kLF/CAwsh2ybUnSJJKYglAQl9dEWqLF5CZE=
+X-Gm-Gg: ASbGnctguhcOSoJNpK51b6GSaE8Y0vD9BASnTOa2Um/iuG53NPwV7y7+5j71Z+vSf69
+ QES4WswG7q/MvzWAJPxz4m7FLZhtruKGb8DhKskuWG8mSKJiWr2R6WfVGHFnRmVwTty49IHgdML
+ ZzAQ2uftkCV3dYO1S6gleSspra3g8wPM8e0d48/bKKssXrPYvnmmE+Uz7NzGMqFUhMvd7vZXlYO
+ o98WKqia7mWDKqRfH68LU2PX4V5K2VDUgHyByURJ98o3/YWBdKOQy0lbPvjccv7J742gIJuvVYo
+ d4LknOjeOEOgVecELluuwObALv6MHLHIEtySUXnq8fQdjIzcwhT3174+tHUZs/gXiM6/VHU=
+X-Google-Smtp-Source: AGHT+IExpISW4A9NBYLe/eUHhUm4OiraqJx3D/HFyEVGSsv6FQMJHoejQlBCGWRe4itczr/wgtNZJg==
+X-Received: by 2002:a05:6512:1383:b0:542:2a0b:cdd4 with SMTP id
+ 2adb3069b0e04-543e4c3fba5mr6465348e87.47.1738592948844; 
+ Mon, 03 Feb 2025 06:29:08 -0800 (PST)
+Received: from eriador.lumag.spb.ru
+ (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-543ebeb0666sm1297993e87.110.2025.02.03.06.29.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 03 Feb 2025 06:29:08 -0800 (PST)
+Date: Mon, 3 Feb 2025 16:29:05 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Johan Hovold <johan@kernel.org>,
+ dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, 
+ Johan Hovold <johan+linaro@kernel.org>, Imre Deak <imre.deak@intel.com>
+Subject: Re: [PATCH v5 0/4] drm/dp: Rework LTTPR transparent mode handling
+ and add support to msm driver
+Message-ID: <estdb6w4vmcd43jar5rzivjpo6hhmov52jv6tghjqm3xefd56t@spcodpfftmns>
+References: <20250203-drm-dp-msm-add-lttpr-transparent-mode-set-v5-0-c865d0e56d6e@linaro.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|CH3PR11MB7866:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6e9031c7-950a-48b3-e377-08dd445e124d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?wxCjhMf1wTxnNtVE2gxj76/c4pmJ6o5SuY0+/Jgq6WmGhrCSIBH9RUGPXt3P?=
- =?us-ascii?Q?FLADt0TRcUU8QnTaJPJr8C1JvNqvY9QSlMejaop89GNcYNuwh2hnai0biJ3j?=
- =?us-ascii?Q?3dipO589CL4+N3BK++jbaKc5AumfLAXQArHgbcPHeUhc23aRtf5d6ySYO8Nk?=
- =?us-ascii?Q?DJDNtRnQCqftXI6CN9xDoUxVYNoC4IwL5QyqIpXRgH1Il14roxWCeOh4/qaI?=
- =?us-ascii?Q?FaMKyzd7EcRtYpPRKViT81fFQeybZ7tLtGEx9L67vtmQ3x7nJbTqDj1kEgTL?=
- =?us-ascii?Q?d+Y9T+mlFm7yfNGZQFJQpIeEdLXrC2MK5qLVE2kpphgih5HB/IZMJi3P56ga?=
- =?us-ascii?Q?LJOXrQ8aUuIfBOqfrJdBvr3mS86431Hm4fqqYG6ZFB6vsCU2858q9QoUqPdC?=
- =?us-ascii?Q?AxjdwWyza2MeAlygFsVZ4uvBYVSFTRpi5q7erG1/2buK1J7EKhEArcjfMCsR?=
- =?us-ascii?Q?HoTkFiCBQrtgZdhGonvPxZZeXrX9MuMy+2SNiV6pY4DvpGehoeN29TqefeEh?=
- =?us-ascii?Q?VPdjCSbQAy1/CCa7Cpl0/hx103lN0VrxFF8k2B8dvnTAZ7mid52LTyYV1mCJ?=
- =?us-ascii?Q?0uuJBusTaaFYfSqVkWSrLKHbC4dg/VY4+L9mNME9bRhcRv7HnJylpC+x0IiI?=
- =?us-ascii?Q?7eRVMHYX/oE095ctutFo9wo+K3y7ULgSQPrwpAm2kp/Zo86nAUmQHh4Rsr4p?=
- =?us-ascii?Q?OaX2CjqPLidLdalvSZDVwqGAW0fcBy8jaFkvzyv2Iz4GCiI/nAdANh+PlPYu?=
- =?us-ascii?Q?4IbMNmXHhirryJ3idNRdrtI9+Oopop+DF7B07YsuViDTTbwd1YxJRnJ8wvyJ?=
- =?us-ascii?Q?icgXASsGQmel0lxuqDlbBMVZWb3co1ZxSq09YktKsl4Z/Iq52YKX/La1V2UK?=
- =?us-ascii?Q?8FtO/v4d+QrcgdC4rr11N50znWosOTUQ4IVP3qEriBnWl5TecjGQhkuHaBco?=
- =?us-ascii?Q?NiicOpnT/7FxcIZGsGvmKKZsumMRM4HXtbkVvUeDl+F+Pio8DKQc0EtZjCO9?=
- =?us-ascii?Q?hAKBhTdN2KtqpWpxd2P51ONbYw8lGMYDT/LT7YYjha6sBiltrdRhImZ2V595?=
- =?us-ascii?Q?AwTfwLYYvA2VWDP+HXlc5VwIVLHPt58OeHY5FQ0F2cCvMF8JFz+oAmv5D27P?=
- =?us-ascii?Q?FpcJ8IToiwHEtKvElFNP4OXfw/nTdDjmo2PiSrtalSkt5rWGiJOsFElTKZ+S?=
- =?us-ascii?Q?AnvNzWzeYT23pEQGjHogRAAaanTRY8jAs8hdFmLxgUsGa4JwgxZdIPY2Lg5p?=
- =?us-ascii?Q?NmAeXMA6nNIPNkcaGTfPzPTP9MhV/gyiKur9pgEAkKitEH/MU8Wm6938X3Pz?=
- =?us-ascii?Q?0FDjvVmCdv8HLYFCIV17Ytb8OTQJJyNX5g1yFztT26vnHg++ZdX0R3+1QgsN?=
- =?us-ascii?Q?ORrtWTZVCr+VWfj3QD+tmlzq2vU0?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8Z/ChrASnzHnPZ1p7RPaaxhLlRWX4XEqIEBJwQhfP2z/wTHjPOWljV8Gpyrz?=
- =?us-ascii?Q?CZ1czOeOIKJW/z+ABk8S6n0Nah4kGSrvOjJdbDZSg10IxmwkRIF5XOPzuHLb?=
- =?us-ascii?Q?MFPKMYYIcotqBHWMAI+VfTCAbVyr5oNgpqAL1NN0g6Khcd6k8vZ4X/3tkISa?=
- =?us-ascii?Q?UP7MJs43Wecb1k2PRKAdJLNNZPq1NOlrygL+9WAuUDfbXMKtc4h/ejPLoqfE?=
- =?us-ascii?Q?I5Vky8gzPWhq4rqKCb0fM/siOJA/LaatZZvNAvD8eRtKVnrynyreUm6sLaFd?=
- =?us-ascii?Q?3K8hw0YhW5KIFXWEAr2uF6WKUG9g3iUvNG+6KgvR7k9MUnWO7i9nerwDZg0t?=
- =?us-ascii?Q?dxMY9i5IC+o9/UuGf4N15/MHAw95UR1bArOub8WGNuTImws8QG7wFtw0vy+Z?=
- =?us-ascii?Q?zCGtbNFIjtqU77hW+aHP4VvR6Uq8N0DzgQBKwSrCtUnTji/gygE76pGpyIiH?=
- =?us-ascii?Q?8vMbCg9dDytEvDeYyKB9zicKZ+JXmnL6Bz0ll1ejPhh1b2c9rqyFzIRJQaaO?=
- =?us-ascii?Q?4ovsHKMQYhkuOkeCO8tlOUboLBObDzNU0GnMvqE7J5OmztWiBeXQkCcjUASt?=
- =?us-ascii?Q?GasfIbdyNYTXPACWlHuX1bH5juT4C9yjgcaXZ8ni3BINum2Yc9P0RIE7+Hrn?=
- =?us-ascii?Q?ciSTrjeBgAxWznuUu2Fz2JL0rzAseQ5M8vwPdXLFVO9vtTTG5xLbFSt+Vmcw?=
- =?us-ascii?Q?bIPRmRLCzIOb75hUFmdMqmC5hzWMMlp9yty1/5rk0PFtgspuZUOEl0Z5m7RR?=
- =?us-ascii?Q?alBaIDSFgLLeKF35hYk5MZgYvXgpjZ+ihkVrDr8efv9auHeYhtPzVYWoRTM+?=
- =?us-ascii?Q?VRYmpqSewKhNwpDYy40TYXRoV6hHAd1xnIKS4Pix2W+Qn4Uck69XkAi8qSs/?=
- =?us-ascii?Q?RZIUOaoRNS9kpura7N3ouD+nYKOjG317GeGr+jSVIEnczbEiCQxMug6KwC4h?=
- =?us-ascii?Q?Hm1U1JA4ZGQi2tzUJu09vG5pTSkKn3gA9C1TIZixRiH+1FtQX0Tk92QwTwXK?=
- =?us-ascii?Q?+J/2wU/LhW2biTYsVRY20ERhg5qx1LxnJbZwBdPw1+GHFgi3m3WgClBRov2b?=
- =?us-ascii?Q?gQI3FvbhJp/rmvjoWjt4MokcXct6jgjAlj3RtA7LMlH2vX6pYtsB0Afveu5r?=
- =?us-ascii?Q?hefsrz/SkDeIXJU995PlEtwLYXLttlbOCLOpETGHuu0AaD7w0rvMtbhaYSvb?=
- =?us-ascii?Q?ho0SOFzyPmDlWzmipjq4rlSi3pKTgXR++dXluNt4Q5esThm2xXOfuV8vcDaf?=
- =?us-ascii?Q?Zst/nXaG5t5AQeGFaBAraMYzRTa+h5XYKHwL+ejmdAFMaPNnq1GHUqCUTAf4?=
- =?us-ascii?Q?Ba60gdHCCdDTGkQPHcPihPWZWFSbC9NGIvWHkkljGgb5icBp5NC6NPYmDeol?=
- =?us-ascii?Q?K4TN498AidO3IMUqF/kNiGK6SzaaIrC1dY8Arxxd2x8XJbfdh68ISr5fEa60?=
- =?us-ascii?Q?X3IPh+/DB4S0hls334frlMms/W/vk8AFj4EmANYVlb+JZsVvvvy8e7rfWEtE?=
- =?us-ascii?Q?vJ56NzRl7JjxvaW1L9Hp52plos0CEEhSNR3TfRQkAQZFH2xUD9QYv91l/VW1?=
- =?us-ascii?Q?GhrzwWDpCvhX5fmHgRT7kDNfKh9K2SAXtXEsafbtXQ8fEv984HIZS5N5qAfn?=
- =?us-ascii?Q?kw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e9031c7-950a-48b3-e377-08dd445e124d
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2025 14:21:38.2012 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kfzjbxvrAjONbufkcg5KfTqkXJEDG7qw2JP881zli7Se27+TMlQLm/F9DXQ9fljjuE+VHJhuJrB9FAv7eif/YS538ixHeZIB2BlHRKgA+T4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7866
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250203-drm-dp-msm-add-lttpr-transparent-mode-set-v5-0-c865d0e56d6e@linaro.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,36 +104,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 31, 2025 at 02:31:36PM -0800, Lucas De Marchi wrote:
-> Propagate the error to the caller so initialization properly stops if
-> sysfs creation fails.
+On Mon, Feb 03, 2025 at 12:57:55PM +0200, Abel Vesa wrote:
+> Looking at both i915 and nouveau DP drivers, both are setting the first
+> LTTPR (if found) in transparent mode first and then in non-transparent
+> mode, just like the DP v2.0 specification mentions in section 3.6.6.1.
 > 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Being part of the standard, setting the LTTPR in a specific operation mode
+> can be easily moved in the generic framework. So do that by adding a new
+> helper.
+> 
+> Then, the msm DP driver is lacking any kind of support for LTTPR handling,
+> so add it by reading the LTTPR caps for figuring out the number of LTTPRs
+> found on plug detect and then do exactly what the i915 and nouveau drivers
+> do with respect to toggling through operating modes, just like the
+> up-mentioned section from DP spec describes.
+> 
+> At some point, link training per sub-segment will probably be needed, but
+> for now, toggling the operating modes seems to be enough at least for the
+> X Elite-based platforms that this patchset has been tested on.
 
-Maybe with Fixes: e3d0839aa5017?
+As it seems that everybody is more or less happy with the patches,
+should we pick the series into drm-misc-next now? Then i915 and msm
+drivers can submerge a fresh-after-rc1 (or fresh-with-rc1?) trees into
+the trees, reducing a risk of the conflicts during the next development
+cycle?
 
-In any case:
-Reviewed-by: Francois Dugast <francois.dugast@intel.com>
-
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->  drivers/gpu/drm/xe/xe_tile.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
+> Changes in v5:
+> - Added kernel-doc () suffix and semicolon after "Return" for
+>   drm_dp_lttpr_set_transparent_mode, and dropped the extra blank
+>   line from kernel-doc of drm_dp_lttpr_init, like Bjorn suggested
+> - Picked up Abhinav's R-b tag.
+> - Moved the lttpr_caps on stack, as suggested by Bjorn and Abhinav in
+>   the msm implementation.
+> - Moved the msm_dp_display_lttpr_init call after msm_dp_panel_read_sink_caps,
+>   as Abhinav suggested.
+> - Link to v4: https://lore.kernel.org/r/20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-0-918949bc2e3a@linaro.org
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-> index 2825553b568f7..377438ea6b838 100644
-> --- a/drivers/gpu/drm/xe/xe_tile.c
-> +++ b/drivers/gpu/drm/xe/xe_tile.c
-> @@ -172,9 +172,7 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
->  
->  	xe_wa_apply_tile_workarounds(tile);
->  
-> -	err = xe_tile_sysfs_init(tile);
-> -
-> -	return 0;
-> +	return xe_tile_sysfs_init(tile);
->  }
->  
->  int xe_tile_init(struct xe_tile *tile)
+> Changes in v4:
+> - Picked up Dmitry's and Johan's R-b tags for the drm generic and drm
+>   msm patches.
+> - Moved the comment about the roll-back to transparent mode inside the
+>   if statement and fixed the typos, like Johan suggested.
+> - Added more details in the commit message for the i915 changes. Details
+>   about the update that the lttpr_common_caps need w.r.t. rollback to
+>   transparent mode in case of failure.
+> - Link to v3: https://lore.kernel.org/r/20250103-drm-dp-msm-add-lttpr-transparent-mode-set-v3-0-5c367f4b0763@linaro.org
+> 
+> Changes in v3:
+> - Picked-up T-b tag from Johan for the drm/dp transparent mode set helper
+>   patch
+> - Re-worked the return value of the drm/dp transparet mode set helper
+> - Added some more details about what the values of the lttpr_count arg
+>   is expected to be for the drm_dp_lttpr_init(), like Johan suggested.
+> - Re-worked the non-transparent mode disable->enable so that the rollback
+>   doesn't happen unless enable failed.
+> - Picked-up Lyude's R-b tag for the nouveau patch.
+> - Dropped extra parantesis at the end of the drm_dp_lttpr_init() call in
+>   i915 patch.
+> - Picked-up Johan's T-b tag for the drm/msm/dp patch.
+> - Added some error handling and an error message in the
+>   msm_dp_display_lttpr_init(), while dropping the unnecessary lttpr_count
+>   local variable.
+> - Link to v2: https://lore.kernel.org/r/20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-0-d5906ed38b28@linaro.org
+> 
+> Changes in v2:
+> - Added new wrapper over the set_transparent new helper in order to
+>   move the non-transparent disable and the its enable->disable sequence
+>   mentioned in the DP standard section 3.6.6.1 entirely in the generic
+>   implemetation.
+> - Switch all 3 drivers to use the new wrapper.
+> - Fixed the return value of the helper to return 0 on success and
+>   negative value on error.
+> - Added explanation about the transparent/non-transparent modes into the
+>   msm dp commit message.
+> - Dropped the condition for non-eDP in msm DP driver since it is allowed
+>   to try to get the number of LTTPRs even on eDP and it will be always
+>   0 anyway.
+> - Dropped the RFC prefix
+> - Link to v1: https://lore.kernel.org/r/20241031-drm-dp-msm-add-lttpr-transparent-mode-set-v1-0-cafbb9855f40@linaro.org
+> 
+> ---
+> Abel Vesa (4):
+>       drm/dp: Add helper to set LTTPRs in transparent mode
+>       drm/nouveau/dp: Use the generic helper to control LTTPR transparent mode
+>       drm/i915/dp: Use the generic helper to control LTTPR transparent mode
+>       drm/msm/dp: Add support for LTTPR handling
+> 
+>  drivers/gpu/drm/display/drm_dp_helper.c            | 61 ++++++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_dp_link_training.c  | 24 ++-------
+>  drivers/gpu/drm/msm/dp/dp_display.c                | 15 ++++++
+>  drivers/gpu/drm/nouveau/nouveau_dp.c               | 17 +-----
+>  include/drm/display/drm_dp_helper.h                |  2 +
+>  5 files changed, 85 insertions(+), 34 deletions(-)
+> ---
+> base-commit: 00f3246adeeacbda0bd0b303604e46eb59c32e6e
+> change-id: 20241031-drm-dp-msm-add-lttpr-transparent-mode-set-136cd5bfde07
+> 
+> Best regards,
 > -- 
-> 2.48.0
+> Abel Vesa <abel.vesa@linaro.org>
 > 
+
+-- 
+With best wishes
+Dmitry
