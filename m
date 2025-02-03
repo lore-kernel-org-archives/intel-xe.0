@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 987F8C02192
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Feb 2025 16:08:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51888C02196
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Feb 2025 16:08:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 636B510E06F;
-	Mon,  3 Feb 2025 16:08:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D75210E06F;
+	Mon,  3 Feb 2025 16:08:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hZwER/HO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dL1/fBTx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F8A110E04E
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Feb 2025 16:08:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28E8510E4CB;
+ Mon,  3 Feb 2025 16:08:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738598900; x=1770134900;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=aUa5kG90S95f5RTln5kYlbyQIhGzfMkoxgDxEddmmlA=;
- b=hZwER/HOp9Iu8YDnF21DVYfw17L6jkPK3HqKUFSUcz5jMzMdWg4Buqvy
- QK2PQ3YIOt8hg1AoNYpNlYjNDuPEVs+L53TTYn+XdumHU7jNPSAukxIcN
- nuRQl5Ih23KfN2FYfkKyw9y638aDudRE3Gfv7W488JH/wzCtI1xhY1eyp
- 0/nuMq2p/1mPyj1sK+HXe3IqH+Le51zzLhkWeP3yIGKPGSKJbNd1o6BHT
- SH+N1uF+8AtPOQlnivbkbMhmdk0xaGf9XVUi6SRrhZgKG5MF0gVoRQqoT
- syGgADk2ninEThctJa+UKXt8S+BCWUzYcm3vSGepa9EbZI9JUJsUdTOUD w==;
-X-CSE-ConnectionGUID: zavqbLwfSNKm0vPT+lCaZA==
-X-CSE-MsgGUID: HLkFBat1QBqtr0P3exl+BA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="39128695"
-X-IronPort-AV: E=Sophos;i="6.13,256,1732608000"; d="scan'208";a="39128695"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2025 08:08:20 -0800
-X-CSE-ConnectionGUID: rX8/hd9bTW2D9Qe0JoJHbg==
-X-CSE-MsgGUID: a9yttebBSNS8B/tU5CbyEg==
+ t=1738598920; x=1770134920;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=J6yoKNAXV8eR4UQ/KVhU4xr4jPxyr3FDjTUa4eTB90w=;
+ b=dL1/fBTxNGXEtK2aj9lpQ6qXL8uOJeH1Qz4u25ynx7ThFzfVGfYODBrG
+ 1FfQe7toVf5N4pBR0IaSFRirqWg921Wzcw4u/oPgtjnoTa7neGweo8JiY
+ VmG39RKRVGmnvjEH/Mzys1im3R/IQXiyGMhxwRF+EVCkWSop6c6qvjgNN
+ aY80kKVdI44hAZlq+izT/KMtlhAP34bIYWi7rdDf50AtglVIi796heocJ
+ 6OtLtVmQmZKdYuO8QbJEZirbupcfULUBa4dZgtfOHNndV0ceZkp664/fB
+ P5tckdFHoFbKczjlMcFXwwqb0ZXIQAeoPCD4/MZGEyJhn5gCTqczqy12H A==;
+X-CSE-ConnectionGUID: sXCt+oJsS72hIu6cszNsbA==
+X-CSE-MsgGUID: Zsk9U+ehSYWHxMnbx1ZB4g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="50088911"
+X-IronPort-AV: E=Sophos;i="6.13,256,1732608000"; d="scan'208";a="50088911"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2025 08:08:40 -0800
+X-CSE-ConnectionGUID: 6vr/hNoHThSxteAxoeMSUw==
+X-CSE-MsgGUID: L4T09EmET4eqzPbkchrXag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="147537953"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2025 08:08:19 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Raag Jadav <raag.jadav@intel.com>
-Subject: Re: [PATCH] drm/xe: Remove xe_dummy_exit()
-Date: Mon,  3 Feb 2025 08:08:05 -0800
-Message-ID: <173859884294.359233.10717991704913292347.b4-ty@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250131223908.4147195-1-lucas.demarchi@intel.com>
-References: <20250131223908.4147195-1-lucas.demarchi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="111175165"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.71])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2025 08:08:38 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com,
+	jani.nikula@intel.com
+Subject: [PATCH] drm/i915/dp: Add support for DP UHBR SST DSC
+Date: Mon,  3 Feb 2025 18:08:34 +0200
+Message-Id: <20250203160834.2708027-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,19 +68,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Drop the UHBR limitation from DP SST DSC, and handle SST DSC bandwidth
+computation for UHBR using intel_dp_mtp_tu_compute_config().
 
-On Fri, 31 Jan 2025 14:39:08 -0800, Lucas De Marchi wrote:
-> Since commit 014125c64d09 ("drm/xe: Support 'nomodeset' kernel
-> command-line option") the dummy exit is not needed anymore since the
-> caller check for a NULL pointer. Drop it.
-> 
-> 
+Cc: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 35 +++++++++++++++++++------
+ 1 file changed, 27 insertions(+), 8 deletions(-)
 
-Applied to drm-xe-next, thanks for the review!
-
-[1/1] drm/xe: Remove xe_dummy_exit()
-      commit: ae5d9cde9b762fd4b7259e1f93a94e0c7f04681c
-
-Best regards,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index cc6aba353c11..eb8f6806166c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1958,15 +1958,37 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ 		for (lane_count = limits->min_lane_count;
+ 		     lane_count <= limits->max_lane_count;
+ 		     lane_count <<= 1) {
+-			if (!is_bw_sufficient_for_dsc_config(dsc_bpp_x16, link_rate,
+-							     lane_count, adjusted_mode->clock,
+-							     pipe_config->output_format,
+-							     timeslots))
+-				continue;
+ 
++			/*
++			 * FIXME: intel_dp_mtp_tu_compute_config() requires
++			 * ->lane_count and ->port_clock set before we know
++			 * they'll work. If we end up failing altogether,
++			 * they'll remain in crtc state. This shouldn't matter,
++			 * as we'd then bail out from compute config, but it's
++			 * just ugly.
++			 */
+ 			pipe_config->lane_count = lane_count;
+ 			pipe_config->port_clock = link_rate;
+ 
++			if (drm_dp_is_uhbr_rate(link_rate)) {
++				int ret;
++
++				ret = intel_dp_mtp_tu_compute_config(intel_dp,
++								     pipe_config,
++								     conn_state,
++								     dsc_bpp_x16,
++								     dsc_bpp_x16,
++								     0, true);
++				if (ret)
++					continue;
++			} else {
++				if (!is_bw_sufficient_for_dsc_config(dsc_bpp_x16, link_rate,
++								     lane_count, adjusted_mode->clock,
++								     pipe_config->output_format,
++								     timeslots))
++					continue;
++			}
++
+ 			return 0;
+ 		}
+ 	}
+@@ -2493,9 +2515,6 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
+ 	limits->min_rate = intel_dp_min_link_rate(intel_dp);
+ 	limits->max_rate = intel_dp_max_link_rate(intel_dp);
+ 
+-	/* FIXME 128b/132b SST+DSC support missing */
+-	if (!is_mst && dsc)
+-		limits->max_rate = min(limits->max_rate, 810000);
+ 	limits->min_rate = min(limits->min_rate, limits->max_rate);
+ 
+ 	limits->min_lane_count = intel_dp_min_lane_count(intel_dp);
 -- 
-Lucas De Marchi <lucas.demarchi@intel.com>
+2.39.5
+
