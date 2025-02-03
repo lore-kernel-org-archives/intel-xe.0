@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05FA1C02192
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Feb 2025 14:29:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB9D3C02192
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Feb 2025 14:35:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4D8610E502;
-	Mon,  3 Feb 2025 14:29:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8A5710E519;
+	Mon,  3 Feb 2025 14:35:09 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 296B810E502;
- Mon,  3 Feb 2025 14:29:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7011646892482164006=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C44310E52E;
+ Mon,  3 Feb 2025 14:35:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/dp=3A_Rework_LTTPR_tran?=
- =?utf-8?q?sparent_mode_handling_and_add_support_to_msm_driver_=28rev5=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Use_VRR_timing_gener?=
+ =?utf-8?q?ator_for_fixed_refresh_rate_modes_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Abel Vesa" <abel.vesa@linaro.org>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 03 Feb 2025 14:29:54 -0000
-Message-ID: <173859299416.350570.13340898764444819735@b555e5b46a47>
+Date: Mon, 03 Feb 2025 14:35:09 -0000
+Message-ID: <173859330924.350570.486021640727605530@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250203-drm-dp-msm-add-lttpr-transparent-mode-set-v5-0-c865d0e56d6e@linaro.org>
-In-Reply-To: <20250203-drm-dp-msm-add-lttpr-transparent-mode-set-v5-0-c865d0e56d6e@linaro.org>
+References: <20250203123840.3855874-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250203123840.3855874-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,44 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7011646892482164006==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/dp: Rework LTTPR transparent mode handling and add support to msm driver (rev5)
-URL   : https://patchwork.freedesktop.org/series/140802/
+Series: Use VRR timing generator for fixed refresh rate modes (rev3)
+URL   : https://patchwork.freedesktop.org/series/141152/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2584-01f54d1da1ffffff78047186f62b5916dfd43939_BAT -> xe-pw-140802v5_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8219 -> IGT_8220
-  * Linux: xe-2584-01f54d1da1ffffff78047186f62b5916dfd43939 -> xe-pw-140802v5
-
-  IGT_8219: d92c8eadff2a4e5b4d90cf8c8c52936263d29394 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8220: 8220
-  xe-2584-01f54d1da1ffffff78047186f62b5916dfd43939: 01f54d1da1ffffff78047186f62b5916dfd43939
-  xe-pw-140802v5: 140802v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140802v5/index.html
-
---===============7011646892482164006==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 3c17a49b1e97 drm-tip: 2025y-02m-03d-13h-54m-56s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/vrr: Remove unwanted comment
+Applying: drm/i915:vrr: Separate out functions to compute vmin and vmax
+Applying: drm/i915/vrr: Make helpers for cmrr and vrr timings
+Applying: drm/i915/vrr: Simplify CMRR Enable Check in intel_vrr_get_config
+Applying: drm/i915/vrr: Introduce new field for VRR mode
+Applying: drm/i915/vrr: Fill VRR timing generator mode for CMRR and VRR
+Applying: drm/i915/display: Remove vrr.enable and instead check vrr.mode != NONE
+Applying: drm/i915/display: Absorb cmrr attributes into vrr struct
+Applying: drm/i915/display: Add vrr mode to crtc_state dump
+Applying: drm/i915/vrr: Disable CMRR
+Applying: drm/i915/display: Update intel_crtc_vrr_{enable/disable}
+Applying: drm/i915/vrr: Use crtc_vtotal for vmin
+Applying: drm/i915/vrr: Prepare for fixed refresh rate timings
+Applying: drm/i915/dp: Avoid vrr compute config for HDMI sink
+Applying: drm/i915/vrr: Introduce VRR mode Fixed RR
+Applying: drm/i915/display: Enable MSA Ignore Timing PAR only when in not fixed_rr mode
+Applying: drm/i915/hdmi: Use VRR Timing generator for HDMI
+Applying: drm/i915/display: Disable PSR before disabling VRR
+Applying: drm/i915/psr: Allow PSR for fixed refrsh rate with VRR TG
+Applying: drm/i915/display: Extend WA 14015406119 for PSR2
+Applying: drm/i915/vrr: Handle joiner with vrr
+Applying: drm/i915/vrr: Refactor condition for computing vmax and LRR
+Applying: drm/i915/display: Pass vrr.mode to intel_crtc_update_active_timings()
+Applying: drm/i915/vblank: Add crtc active timings for fixed_rr mode
+Applying: drm/i915/vrr: Always set vrr vmax/vmin/flipline in vrr_{enable/disable}
+Applying: drm/i915/display: Use fixed_rr timings in modeset sequence
+Applying: drm/i915/vrr: Always use VRR timing generator for MTL+
+Applying: drm/i915/vblank: Avoid warning for platforms that always use VRR TG
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/dp: Rework LTTPR transparent mode handling and add support to msm driver (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140802/">https://patchwork.freedesktop.org/series/140802/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140802v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140802v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2584-01f54d1da1ffffff78047186f62b5916dfd43939_BAT -&gt; xe-pw-140802v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8219 -&gt; IGT_8220</li>
-<li>Linux: xe-2584-01f54d1da1ffffff78047186f62b5916dfd43939 -&gt; xe-pw-140802v5</li>
-</ul>
-<p>IGT_8219: d92c8eadff2a4e5b4d90cf8c8c52936263d29394 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8220: 8220<br />
-  xe-2584-01f54d1da1ffffff78047186f62b5916dfd43939: 01f54d1da1ffffff78047186f62b5916dfd43939<br />
-  xe-pw-140802v5: 140802v5</p>
-
-</body>
-</html>
-
---===============7011646892482164006==--
