@@ -4,80 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 062A0C02194
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 11:38:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FD6DC02194
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 11:50:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C690C10E0B4;
-	Tue,  4 Feb 2025 11:38:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="zYpgyNnw";
-	dkim-atps=neutral
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
- [209.85.128.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF15210E0B4
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Feb 2025 11:38:56 +0000 (UTC)
-Received: by mail-wm1-f46.google.com with SMTP id
- 5b1f17b1804b1-4363ae65100so63743855e9.0
- for <intel-xe@lists.freedesktop.org>; Tue, 04 Feb 2025 03:38:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1738669135; x=1739273935;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:content-language:references
- :to:from:subject:user-agent:mime-version:date:message-id:from:to:cc
- :subject:date:message-id:reply-to;
- bh=wq5070dP+dsG0+qq09M3Zmy/HXW46IB+XhRA6571TL4=;
- b=zYpgyNnwyoFITGJil5Mh2uq8k3BYqVoHRGvbakRZ+zMr+5ZAVMCBUBA/Ytr4Y9Coxo
- AuRGcUPrS1AJ8cQeYzw7z/4LZ/J1XJDMYEP+QF8a5S7FSk+BdSkiEK8ZH5WbYvNiaF5W
- mAPk2Wk9dlNuTuosFANbbREGhreyaWV60ELkHGcwevdmF65eV56TU/XkIFfWcnMorPg7
- j7gJZstd1xqtO8u9od3xTkVdQ/QYUK7eEE/mUmvGn0WV6ONxEviZ4nkOt+7QMZWIYlgu
- vmMCiSpaXG9uEJ/ONzH0YmoVOBGr5/2LBDDs3Qzuy4qGFqwUlSShQWxDo/gmDK//RzYt
- eYRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738669135; x=1739273935;
- h=content-transfer-encoding:in-reply-to:content-language:references
- :to:from:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=wq5070dP+dsG0+qq09M3Zmy/HXW46IB+XhRA6571TL4=;
- b=QGCZHBxY+nXt2RuHXlKs2p9RTZU/JyHokw8/HMpV988zxxGPLxyx8HpFwULCpO2wVb
- hFcM1joO77CN5qhsP3awCc+qtTwBVStuO8+G6RZUhrium87YJkeEjihsVh4iQ2/aoSaG
- hzmMI060u2svGLa94vzZDizaXhK65JV+3rVc6KzoUNEee/BMrDQ3WK2A5ZmMe/Q7Ukrp
- HsH8ahBA0MYBwW5MgD4+hl6BjHGaxfOPUg/PBcmZmfE+Z9xnzxFSzgEuW4uroVYUb2V+
- T1bYmzQP6foG4huHGkWonf8fVQcIoiGuQD2WWfjVZ70F60IAgHGAK/rINdqt1jpNXPVl
- OkqA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVR7EGl6QZR/2I8ZdBpk1LvCzt9qD9B70lq+Z6xFRkd41RRUUdrPObzAM/f7QTzxLrXU9aKzRa3sQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxMr2BFPuFfSSWW9y2Yx1G/1aOoI/4IuzuPnJ2BAtIFfZBxXnDA
- zkZ9wUotYOS0gt/7PZNpLPe8WkD9lHqh4+Iec2HHDwnWG0WsCcT/W8T1w774GL/O0pqBkyUiz6D
- z
-X-Gm-Gg: ASbGnct9ej2hKyY+3RxI/Dx+PCzYtSxDdzqirz/ccooIIsmoeouePgJE0zrLM+BtjSC
- FUdgnK4VcuTwtXcw3AQpKGt5W5nCULDWODd6+9mO4t27pJ3s4zO2RE+Mu7uW4mTQjlboSLy7LNy
- 0nIH5L9bSAgldtuyZEPXE69PcSfVVrYDskDtvpFNnb3xFx0VG10MbjXdgwE68k41Lilg79AqlK3
- 0F8zjc7w3LChHbwUTGsbNb3gqVpRtJbXpR8r4CDhplr/l4cg9s63K7UQ8kFrR2zmAPDkxCcnYmL
- vdOp5GXkQ6wnnXswA06BwdBVYqFVfac=
-X-Google-Smtp-Source: AGHT+IE8jDwWiztMOjiumNU9YJfZiWnLFY6bCRLlRgib9hHVY6R+gaBBw9Kbe5Y/4zwXtGMr3jxbIQ==
-X-Received: by 2002:a05:600c:3b8d:b0:434:f0df:9fd with SMTP id
- 5b1f17b1804b1-438dc3ab58bmr263455105e9.2.1738669134988; 
- Tue, 04 Feb 2025 03:38:54 -0800 (PST)
-Received: from [192.168.0.101] ([90.241.98.187])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-38c5c0ec02bsm15764744f8f.13.2025.02.04.03.38.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 04 Feb 2025 03:38:54 -0800 (PST)
-Message-ID: <221a2230-1fff-4f9c-9be4-7a2ef4db2776@ursulin.net>
-Date: Tue, 4 Feb 2025 11:38:53 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id E988C10E5F9;
+	Tue,  4 Feb 2025 11:50:20 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6271C10E5F8;
+ Tue,  4 Feb 2025 11:50:20 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6467008376370006127=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe/display: Unify display page table mapping
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- intel-xe@lists.freedesktop.org
-References: <20250114180403.896587-1-juhapekka.heikkila@gmail.com>
- <20250114180403.896587-2-juhapekka.heikkila@gmail.com>
- <64decd28-e020-4a53-9766-7d57a5137c86@ursulin.net>
-Content-Language: en-GB
-In-Reply-To: <64decd28-e020-4a53-9766-7d57a5137c86@ursulin.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Use_an_explici?=
+ =?utf-8?q?t_check_to_see_if_the_device_has_LMTT_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 04 Feb 2025 11:50:20 -0000
+Message-ID: <173866982039.826766.5368970014231345468@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250204105124.795989-1-piotr.piorkowski@intel.com>
+In-Reply-To: <20250204105124.795989-1-piotr.piorkowski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,215 +36,187 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============6467008376370006127==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 04/02/2025 11:25, Tvrtko Ursulin wrote:
-> 
-> On 14/01/2025 18:04, Juha-Pekka Heikkila wrote:
->> Unify writing of remapped and straight DPTs. Take out writing of
->> rotated DPT since Xe doesn't support any platform that does
->> 90 degree rotated framebuffers.
-> 
-> Consider giving my series which fixes AuxCSS a look instead? Given there 
-> is external interest to have all that work on ADL-P. I could respin with 
-> rotated cleaned up in a similar fashion I did for remapped. Maintenance 
-> cost is minimal since it is all very contained.
+== Series Details ==
 
-Oh ADL-P does not support hardware rotation. I missed the fact it is 
-display version 13..
+Series: drm/xe/pf: Use an explicit check to see if the device has LMTT (rev2)
+URL   : https://patchwork.freedesktop.org/series/142212/
+State : success
 
-But the point regarding changes to remapping code are still valid I 
-think, since to suport aux plane the refactoring from this patch looks 
-in the wrong direction.
+== Summary ==
 
-Regards,
+CI Bug Log - changes from xe-2591-d3f7add53c15ed866828937f140ac252c19f2411_BAT -> xe-pw-142212v2_BAT
+====================================================
 
-Tvrtko
->> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
->> ---
->>   drivers/gpu/drm/xe/display/xe_fb_pin.c | 141 +++++++++----------------
->>   1 file changed, 48 insertions(+), 93 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c 
->> b/drivers/gpu/drm/xe/display/xe_fb_pin.c
->> index c28885316986..70322f28eee5 100644
->> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
->> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
->> @@ -14,66 +14,44 @@
->>   #include "xe_ggtt.h"
->>   #include "xe_pm.h"
->> -static void
->> -write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 
->> *dpt_ofs, u32 bo_ofs,
->> -          u32 width, u32 height, u32 src_stride, u32 dst_stride)
->> +static void encode_and_write_pte(struct xe_bo *bo, struct iosys_map 
->> *map,
->> +                 u32 *ofs, u32 src_idx, struct xe_device *xe)
->>   {
->> -    struct xe_device *xe = xe_bo_device(bo);
->>       struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
->> -    u32 column, row;
->> -
->> -    /* TODO: Maybe rewrite so we can traverse the bo addresses 
->> sequentially,
->> -     * by writing dpt/ggtt in a different order?
->> -     */
->> -
->> -    for (column = 0; column < width; column++) {
->> -        u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
->> -
->> -        for (row = 0; row < height; row++) {
->> -            u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * 
->> XE_PAGE_SIZE,
->> -                                  xe->pat.idx[XE_CACHE_NONE]);
->> -
->> -            iosys_map_wr(map, *dpt_ofs, u64, pte);
->> -            *dpt_ofs += 8;
->> -            src_idx -= src_stride;
->> -        }
->> -
->> -        /* The DE ignores the PTEs for the padding tiles */
->> -        *dpt_ofs += (dst_stride - height) * 8;
->> -    }
->> -
->> -    /* Align to next page */
->> -    *dpt_ofs = ALIGN(*dpt_ofs, 4096);
->> +    u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
->> +                          xe->pat.idx[XE_CACHE_NONE]);
->> +    iosys_map_wr(map, *ofs, u64, pte);
->> +    *ofs += 8;
->>   }
->> -static void
->> -write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 
->> *dpt_ofs,
->> -           u32 bo_ofs, u32 width, u32 height, u32 src_stride,
->> -           u32 dst_stride)
->> +static void write_dpt(struct xe_bo *bo, struct iosys_map *map, u32 
->> *dpt_ofs,
->> +              const struct intel_remapped_plane_info *plane,
->> +              enum i915_gtt_view_type type)
->>   {
->>       struct xe_device *xe = xe_bo_device(bo);
->> -    struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
->> -    u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index)
->> -        = ggtt->pt_ops->pte_encode_bo;
->> -    u32 column, row;
->> -
->> -    for (row = 0; row < height; row++) {
->> -        u32 src_idx = src_stride * row + bo_ofs;
->> -
->> -        for (column = 0; column < width; column++) {
->> -            iosys_map_wr(map, *dpt_ofs, u64,
->> -                     pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
->> -                     xe->pat.idx[XE_CACHE_NONE]));
->> -
->> -            *dpt_ofs += 8;
->> -            src_idx++;
->> +    const u32 dpt_even = (plane->dst_stride - plane->width) * 8;
->> +    const u32 dest_width = plane->width;
->> +    const u32 dest_height = plane->height;
->> +    u32 src_idx;
->> +
->> +    for (u32 row = 0; row < dest_height; ++row) {
->> +        for (u32 column = 0; column < dest_width; ++column) {
->> +            switch (type) {
->> +            case I915_GTT_VIEW_NORMAL:
->> +                src_idx = plane->offset + column;
->> +                break;
->> +            case I915_GTT_VIEW_REMAPPED:
->> +                src_idx = plane->offset +
->> +                    row * plane->src_stride + column;
->> +                break;
->> +            default:
->> +                WARN(1, "Unsupported GTT view type: %d", type);
->> +                return;
->> +            }
->> +            encode_and_write_pte(bo, map, dpt_ofs, src_idx, xe);
->>           }
->> -
->> -        /* The DE ignores the PTEs for the padding tiles */
->> -        *dpt_ofs += (dst_stride - width) * 8;
->> +        *dpt_ofs += dpt_even;
->>       }
->> -
->> -    /* Align to next page */
->>       *dpt_ofs = ALIGN(*dpt_ofs, 4096);
->>   }
->> @@ -125,59 +103,36 @@ static int __xe_pin_fb_vma_dpt(const struct 
->> intel_framebuffer *fb,
->>   {
->>       struct xe_device *xe = to_xe_device(fb->base.dev);
->>       struct xe_tile *tile0 = xe_device_get_root_tile(xe);
->> -    struct xe_ggtt *ggtt = tile0->mem.ggtt;
->>       struct drm_gem_object *obj = intel_fb_bo(&fb->base);
->>       struct xe_bo *bo = gem_to_xe_bo(obj), *dpt;
->>       u32 dpt_size, size = bo->ttm.base.size;
->> +    const struct intel_remapped_plane_info *plane;
->> +    u32 i, plane_count, dpt_ofs = 0;
->> +    struct intel_remapped_plane_info normal_plane;
->> -    if (view->type == I915_GTT_VIEW_NORMAL)
->> +    if (view->type == I915_GTT_VIEW_NORMAL) {
->>           dpt_size = ALIGN(size / XE_PAGE_SIZE * 8, XE_PAGE_SIZE);
->> -    else if (view->type == I915_GTT_VIEW_REMAPPED)
->> -        dpt_size = 
->> ALIGN(intel_remapped_info_size(&fb->remapped_view.gtt.remapped) * 8,
->> -                 XE_PAGE_SIZE);
->> -    else
->> -        /* display uses 4K tiles instead of bytes here, convert to 
->> entries.. */
->> -        dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
->> +        normal_plane.offset = 0;
->> +        normal_plane.width = size / XE_PAGE_SIZE;
->> +        normal_plane.height = 1;
->> +        normal_plane.src_stride = size / XE_PAGE_SIZE;
->> +        normal_plane.dst_stride = size / XE_PAGE_SIZE;
->> +        plane = &normal_plane;
->> +        plane_count = 1;
->> +    } else {
->> +        dpt_size = ALIGN(intel_remapped_info_size(&view->remapped) * 8,
->>                    XE_PAGE_SIZE);
->> +        plane = view->remapped.plane;
->> +        plane_count = ARRAY_SIZE(view->remapped.plane);
->> +    }
->>       dpt = xe_alloc_dpt_bo(xe, tile0, dpt_size, physical_alignment);
->>       if (IS_ERR(dpt))
->>           return PTR_ERR(dpt);
->> -    if (view->type == I915_GTT_VIEW_NORMAL) {
->> -        u32 x;
->> -
->> -        for (x = 0; x < size / XE_PAGE_SIZE; x++) {
->> -            u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x * XE_PAGE_SIZE,
->> -                                  xe->pat.idx[XE_CACHE_NONE]);
->> -
->> -            iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
->> -        }
->> -    } else if (view->type == I915_GTT_VIEW_REMAPPED) {
->> -        const struct intel_remapped_info *remap_info = &view->remapped;
->> -        u32 i, dpt_ofs = 0;
->> -
->> -        for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++)
->> -            write_dpt_remapped(bo, &dpt->vmap, &dpt_ofs,
->> -                       remap_info->plane[i].offset,
->> -                       remap_info->plane[i].width,
->> -                       remap_info->plane[i].height,
->> -                       remap_info->plane[i].src_stride,
->> -                       remap_info->plane[i].dst_stride);
->> -
->> -    } else {
->> -        const struct intel_rotation_info *rot_info = &view->rotated;
->> -        u32 i, dpt_ofs = 0;
->> -
->> -        for (i = 0; i < ARRAY_SIZE(rot_info->plane); i++)
->> -            write_dpt_rotated(bo, &dpt->vmap, &dpt_ofs,
->> -                      rot_info->plane[i].offset,
->> -                      rot_info->plane[i].width,
->> -                      rot_info->plane[i].height,
->> -                      rot_info->plane[i].src_stride,
->> -                      rot_info->plane[i].dst_stride);
->> -    }
->> +    for (i = 0; i < plane_count; i++)
->> +        write_dpt(bo, &dpt->vmap, &dpt_ofs, &plane[i], view->type);
->>       vma->dpt = dpt;
->>       vma->node = dpt->ggtt_node[tile0->id];
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 7)
+------------------------------
+
+  Missing    (2): bat-bmg-1 bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-142212v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229] / [Intel XE#455]) +1 other test skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142212v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#2229])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142212v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [SKIP][3] ([Intel XE#1192]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2591-d3f7add53c15ed866828937f140ac252c19f2411/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142212v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  * igt@xe_pat@pat-index-xelp@render:
+    - bat-adlp-vf:        [DMESG-WARN][5] ([Intel XE#3970] / [Intel XE#4078]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2591-d3f7add53c15ed866828937f140ac252c19f2411/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142212v2/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][7] ([Intel XE#1192]) -> [SKIP][8] ([Intel XE#2229] / [Intel XE#455])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2591-d3f7add53c15ed866828937f140ac252c19f2411/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142212v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#4078]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8222 -> IGT_8223
+  * Linux: xe-2591-d3f7add53c15ed866828937f140ac252c19f2411 -> xe-pw-142212v2
+
+  IGT_8222: 1cb35b0ba29858e1fe0f61c0c70164fe858bb271 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8223: ccfe042787b082c06402ff9af257f8338b8edd5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2591-d3f7add53c15ed866828937f140ac252c19f2411: d3f7add53c15ed866828937f140ac252c19f2411
+  xe-pw-142212v2: 142212v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142212v2/index.html
+
+--===============6467008376370006127==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pf: Use an explicit check to see if the device has LMTT (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142212/">https://patchwork.freedesktop.org/series/142212/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142212v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142212v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2591-d3f7add53c15ed866828937f140ac252c19f2411_BAT -&gt; xe-pw-142212v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 7)</h2>
+<p>Missing    (2): bat-bmg-1 bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-142212v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142212v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142212v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2591-d3f7add53c15ed866828937f140ac252c19f2411/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142212v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp@render:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2591-d3f7add53c15ed866828937f140ac252c19f2411/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4078">Intel XE#4078</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142212v2/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2591-d3f7add53c15ed866828937f140ac252c19f2411/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142212v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8222 -&gt; IGT_8223</li>
+<li>Linux: xe-2591-d3f7add53c15ed866828937f140ac252c19f2411 -&gt; xe-pw-142212v2</li>
+</ul>
+<p>IGT_8222: 1cb35b0ba29858e1fe0f61c0c70164fe858bb271 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8223: ccfe042787b082c06402ff9af257f8338b8edd5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2591-d3f7add53c15ed866828937f140ac252c19f2411: d3f7add53c15ed866828937f140ac252c19f2411<br />
+  xe-pw-142212v2: 142212v2</p>
+
+</body>
+</html>
+
+--===============6467008376370006127==--
