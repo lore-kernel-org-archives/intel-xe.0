@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8771AC02194
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 18:05:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84070C02194
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 18:05:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54B7F10E044;
-	Tue,  4 Feb 2025 18:05:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E49D10E370;
+	Tue,  4 Feb 2025 18:05:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dotpiddt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gE+PDFjB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75F2910E044
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Feb 2025 18:05:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0D9510E37B
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Feb 2025 18:05:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738692337; x=1770228337;
+ t=1738692343; x=1770228343;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=n/MgSvQwnlaj+0au0P/uNwSCSmpG0+tCR7tLaWvM7qA=;
- b=Dotpiddt8coOCHyyCzbWyJQx52dTDujOPN6S/OKpucW21K2e8Brm9E7m
- KliBkypG0icXU6/QASd3eU5iLUQHKoWChegXX8P0y0m2d793Oq2bT7E1U
- EPGP6h+988yrKsxDMrXnRghk+WTdIcCZvtI5CrGx2D/C0FYM7lEUnJ0fB
- i06v+Te+jzQvIBooaxKadaB3Nl9dHhQ5AYln/6zmFFjxd+W5T8hvKXWu5
- QAct749OaY4UXOIMhZqTGev0gIfs+KHha5nL0mQNTtFAuRVGRO7kQMSVR
- sjrKvyQqhGTqY7hbYSmyJ6wpXEP4cZQX6NjC9Iq3CfmVqLB2AnXrIH0s4 g==;
-X-CSE-ConnectionGUID: m2MT/tU1TIOZhrWTnqk1VQ==
-X-CSE-MsgGUID: IQDOwikVR/akY0AqkRUIZg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50651341"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="50651341"
+ bh=AXX4+WnS5NT05ftOx+9ssmqhErjSlgN/p9qhISAs36g=;
+ b=gE+PDFjBtpv8uqgM2qnvYJaII2ocZG2tMtvphscdykHx3vgr18UK7n+y
+ UeASlXlukViK4IdowiflQaIa4RDge/r9ndJ8WemxP5gSyCt8tsIR79rEt
+ 8TeSAT3D72gmOprkhx7DuEg5zc3PS7RYyPbE0G+YqYs2FZWyKFYOOl560
+ IN2N4aYbOPhfjYzUqqrsRdHYntPGDzkWCeXlfDtvhoTsqECUdCIwlHXjI
+ ouWfGhU+fll77dtAVy4lvNUiWFgOpIv6+t2JKzfARo5nsdAhYRRcsPDvD
+ HezYDw2njhD3cq/D1KWVkrqGtU+VJo7MKfPLxRNxXs8QyVEW9oIz4HuWY w==;
+X-CSE-ConnectionGUID: cV0kTESOTRKubY+x1+/4qw==
+X-CSE-MsgGUID: OxjDtQf8QXGGLxNLtidKLA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50651347"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="50651347"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 10:05:37 -0800
-X-CSE-ConnectionGUID: zGnBO7YcQOyJ8QJ5+1aKzQ==
-X-CSE-MsgGUID: FQr+BKSXS7uEFC+HCg4ZcQ==
+ 04 Feb 2025 10:05:43 -0800
+X-CSE-ConnectionGUID: Msw92HMXQEqxPCgqF3GeCg==
+X-CSE-MsgGUID: pdUWq+v0S0yXvsWcpm1UOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,259,1732608000"; d="scan'208";a="115701632"
+X-IronPort-AV: E=Sophos;i="6.13,259,1732608000"; d="scan'208";a="115701689"
 Received: from mbernato-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.83.184])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 10:05:35 -0800
+ 04 Feb 2025 10:05:41 -0800
 From: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH 1/3] drm/xe/vf: Return EOPNOTSUPP for
- DRM_XE_DEVICE_QUERY_ENGINE_CYCLES if VF
-Date: Tue,  4 Feb 2025 19:05:20 +0100
-Message-Id: <20250204180522.2327214-2-marcin.bernatowicz@linux.intel.com>
+Subject: [PATCH 2/3] drm/xe/vf: Return error code from
+ xe_hw_engine_read_timestamp()
+Date: Tue,  4 Feb 2025 19:05:21 +0100
+Message-Id: <20250204180522.2327214-3-marcin.bernatowicz@linux.intel.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20250204180522.2327214-1-marcin.bernatowicz@linux.intel.com>
 References: <20250204180522.2327214-1-marcin.bernatowicz@linux.intel.com>
@@ -72,32 +73,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-RING_TIMESTAMP registers are not available for VF (Virtual Function)
-drivers. Return -EOPNOTSUPP when the DRM_XE_DEVICE_QUERY_ENGINE_CYCLES
-ioctl is invoked on a VF device.
+Modify xe_hw_engine_read_timestamp() to return an error code instead
+of a u64 timestamp. Return -EOPNOTSUPP when called from Virtual Function
+(VF) mode to avoid reading the inaccessible RING_TIMESTAMP register.
+
+Update function signature to pass the timestamp via a pointer argument.
 
 Signed-off-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Michał Winiarski <michal.winiarski@intel.com>
 Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/xe/xe_hw_engine.c | 10 ++++++++--
+ drivers/gpu/drm/xe/xe_hw_engine.h |  2 +-
+ 2 files changed, 9 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index c059639613f7..69b0f1478d7d 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -120,6 +120,9 @@ query_engine_cycles(struct xe_device *xe,
- 	struct xe_gt *gt;
- 	unsigned int fw_ref;
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index fc447751fe78..ab91c15f3a8b 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -981,9 +981,15 @@ const char *xe_hw_engine_class_to_str(enum xe_engine_class class)
+ 	return NULL;
+ }
  
-+	if (IS_SRIOV_VF(xe))
+-u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe)
++int xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe, u64 *gpu_timestamp)
+ {
+-	return xe_mmio_read64_2x32(&hwe->gt->mmio, RING_TIMESTAMP(hwe->mmio_base));
++	if (IS_SRIOV_VF(gt_to_xe(hwe->gt)))
 +		return -EOPNOTSUPP;
 +
- 	if (query->size == 0) {
- 		query->size = size;
- 		return 0;
++	*gpu_timestamp = xe_mmio_read64_2x32(&hwe->gt->mmio,
++					     RING_TIMESTAMP(hwe->mmio_base));
++
++	return 0;
+ }
+ 
+ enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe)
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+index 6b5f9fa2a594..df377da82770 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+@@ -73,7 +73,7 @@ static inline bool xe_hw_engine_is_valid(struct xe_hw_engine *hwe)
+ }
+ 
+ const char *xe_hw_engine_class_to_str(enum xe_engine_class class);
+-u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe);
++int xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe, u64 *gpu_timestamp);
+ enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe);
+ 
+ void xe_hw_engine_mmio_write32(struct xe_hw_engine *hwe, struct xe_reg reg, u32 val);
 -- 
 2.31.1
 
