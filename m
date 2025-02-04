@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C053C02194
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 11:24:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFBD6C02194
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 11:25:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04F1210E5F6;
-	Tue,  4 Feb 2025 11:24:46 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0303C10E5F5;
- Tue,  4 Feb 2025 11:24:45 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/pf=3A_Use_an_explicit_c?=
- =?utf-8?q?heck_to_see_if_the_device_has_LMTT_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F60910E5F6;
+	Tue,  4 Feb 2025 11:25:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i1OZChLd";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A77310E5F5;
+ Tue,  4 Feb 2025 11:25:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738668326; x=1770204326;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=n9JD9VszPaiHemIj7pCO4WV3BloOkJjFGVruvdPzQ80=;
+ b=i1OZChLdQ1C2QVoJuG2tbkjWOBhMEIu1mNCQKp8S29UBUW2qHLneqfGn
+ MY4y7JLJnZNb+r2zqJYq28ArNo9Y2pyXeN4HYdpmS1nQdyFZmOIBz3e8f
+ 5XUS8/JKqqepxb57nGBqIkP8ktDIYLUTMFIHcfJWOp90f9WadNlNguKQG
+ io78Si6r4xhhEC+NSVjvBXhXeduXxxrDxO1G5Xrpdd6ImykWyA/QN11NF
+ 0X8xlcjHIyAX0KeaAa4C9xfsyrnWMt7xuBK3x13a3ffm9Z/eaOyZnQDzA
+ rZqBANjwe7Gpeb8wmonDD9gvIdIiRr6tO8wthPgRtxogTyQ9q9X+Q+erQ g==;
+X-CSE-ConnectionGUID: pOATXAxWQfayPTTw1morWg==
+X-CSE-MsgGUID: IGiRUIxbTJ2A69tfdzji1Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="49446587"
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="49446587"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 03:25:26 -0800
+X-CSE-ConnectionGUID: 1YaNnMGZQuKGccowoujNfg==
+X-CSE-MsgGUID: Ltf4wZnbQTqk7o6O/PMGFA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="111425165"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.139])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 03:25:25 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 04 Feb 2025 11:24:45 -0000
-Message-ID: <173866828500.826766.5447822006734148151@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250204105124.795989-1-piotr.piorkowski@intel.com>
-In-Reply-To: <20250204105124.795989-1-piotr.piorkowski@intel.com>
+Subject: Re: [PATCH 0/5] drm/i915: Improve the display VT-d workarounds
+In-Reply-To: <20250122151755.6928-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250122151755.6928-1-ville.syrjala@linux.intel.com>
+Date: Tue, 04 Feb 2025 13:25:22 +0200
+Message-ID: <87pljy54v1.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +66,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 22 Jan 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Try to make the display VT-d workarounds more robust.
 
-Series: drm/xe/pf: Use an explicit check to see if the device has LMTT (rev2)
-URL   : https://patchwork.freedesktop.org/series/142212/
-State : success
+Okay, so I didn't hunt all the details in bspec, and I'm not sure if
+anyone's going to, so I'm just going to trust you. Everything else
+checks out and makes sense.
 
-== Summary ==
+Series is
 
-lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/events/amd/
-lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
-lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/events/rapl.ko
-lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/
-lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.14.0-rc1-xe+/kernel/kernel/
-lib/modules/6.14.0-rc1-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/zstd.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/xctr.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/authenc.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm3.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/cmac.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/essiv.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/ccm.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/wp512.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/lrw.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/842.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/md4.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/lz4.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm4.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.14.0-rc1-xe+/kernel/block/
-lib/modules/6.14.0-rc1-xe+/kernel/block/bfq.ko
-lib/modules/6.14.0-rc1-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.14.0-rc1-xe+/build
-lib/modules/6.14.0-rc1-xe+/modules.alias.bin
-lib/modules/6.14.0-rc1-xe+/modules.builtin
-lib/modules/6.14.0-rc1-xe+/modules.softdep
-lib/modules/6.14.0-rc1-xe+/modules.alias
-lib/modules/6.14.0-rc1-xe+/modules.order
-lib/modules/6.14.0-rc1-xe+/modules.symbols
-lib/modules/6.14.0-rc1-xe+/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1738668272:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1738668272:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 
+
+>
+> Ville Syrj=C3=A4l=C3=A4 (5):
+>   drm/i915: Move VT-d alignment into plane->min_alignment()
+>   drm/i915: Use more optimal VTd alignment for planes
+>   drm/i915: Calculate the VT-d guard size in the display code
+>   drm/i915: Use per-plane VT-d guard numbers
+>   drm/i915/fbdev: Use fb->normal_view.gtt
+>
+>  drivers/gpu/drm/i915/display/i9xx_plane.c     | 15 ++++++
+>  drivers/gpu/drm/i915/display/intel_cursor.c   |  8 ++++
+>  .../drm/i915/display/intel_display_types.h    |  2 +
+>  drivers/gpu/drm/i915/display/intel_fb.c       | 48 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_fb.h       |  3 ++
+>  drivers/gpu/drm/i915/display/intel_fb_pin.c   | 20 ++++----
+>  drivers/gpu/drm/i915/display/intel_fb_pin.h   |  1 +
+>  drivers/gpu/drm/i915/display/intel_fbdev.c    |  7 ++-
+>  drivers/gpu/drm/i915/display/intel_overlay.c  |  2 +-
+>  drivers/gpu/drm/i915/display/intel_sprite.c   | 15 ++++++
+>  .../drm/i915/display/skl_universal_plane.c    |  7 +++
+>  drivers/gpu/drm/i915/gem/i915_gem_domain.c    | 15 ++----
+>  drivers/gpu/drm/i915/gem/i915_gem_object.h    |  2 +-
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c        |  1 +
+>  drivers/gpu/drm/xe/display/xe_plane_initial.c |  2 +-
+>  15 files changed, 120 insertions(+), 28 deletions(-)
+
+--=20
+Jani Nikula, Intel
