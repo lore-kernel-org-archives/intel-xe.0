@@ -4,56 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 547B7C02194
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 11:04:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D19CC02194
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 11:12:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C7E010E5EE;
-	Tue,  4 Feb 2025 11:04:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0973310E09A;
+	Tue,  4 Feb 2025 11:12:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xyc5fhuW";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="p2yBA8aM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95DD610E5EE;
- Tue,  4 Feb 2025 11:04:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738667057; x=1770203057;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/6iiA15ZABxOqMXh6bep5De8K1oIKuYUUfIcPVKvWVU=;
- b=Xyc5fhuWkclwIXvT8xUdcI0rkjCp/BdtfcBvdMc4iSPlhO54Flyijbk7
- 1d1gsOdUvpFQ6C6/iozDcOEw/UKt6zf95M8BVr9teswAs3YRfzDJdhefr
- wVJ2YTBYfew1W358I3Mosg7yR1E+dBhlrsS0Jab0r2aFkVYaKTpd3udI3
- tRauLCH4lS/kambo86sHp9z5hccMbHloc7C9WA3vjog9nn3G2CR1Ld0hJ
- 17adpb6sOs9wJzF+S4pgFX+LRxdKyqkt4EJ6ibNNPkrPCjidsb254Lpei
- yIltdebvfUKOLx40OhuKj/f14Dht5hloh/jwn5lNI4/7XNKkN+5jjbMUq Q==;
-X-CSE-ConnectionGUID: ZbqE2xhkSMKfgHIXmRVAIw==
-X-CSE-MsgGUID: UIW8ZioxTdqDN60a828SOw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="49802623"
-X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="49802623"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 03:04:17 -0800
-X-CSE-ConnectionGUID: WOfEJLKxRkCF9HWWtmWiKQ==
-X-CSE-MsgGUID: 09jZnW4wTfetOYBX23DwHw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="110553279"
-Received: from unknown (HELO sorvi2.fi.intel.com) ([10.237.72.194])
- by orviesa006.jf.intel.com with ESMTP; 04 Feb 2025 03:04:15 -0800
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: imre.deak@intel.com, jani.nikula@linux.intel.com,
- Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v2 2/2] drm/i915/display: Allow display PHYs to reset power
- state
-Date: Tue,  4 Feb 2025 12:53:58 +0200
-Message-ID: <20250204105358.284687-3-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250204105358.284687-1-mika.kahola@intel.com>
-References: <20250204105358.284687-1-mika.kahola@intel.com>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3060810E09A
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Feb 2025 11:12:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:Cc:
+ References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID
+ :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+ Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe
+ :List-Post:List-Owner:List-Archive;
+ bh=x5xqKSQ9es1oZK7YmAArs5yMcOsV13E44+/9ajpHwj8=; b=p2yBA8aMEAen9agj7TJSlRj1Pt
+ Q7izxEm/BNjRhCmP/3VlIrT1elDLNsI1Bfs3DEOtHPVnpZ8jwa0p3FLjFdmfhzLVaso2QryIp/GCV
+ j/l5KASJ8r2Do+hzyUeNLl+qoYW1T+JfBkIr+1P24R2xaiOs9/c4JzUUQ3E51K31N8lBcCVFWaSnU
+ wfBVEpINamNo0xjB9KX19nzc65eW9PDDJQag9/e2dN94m+Hc3VYO3yv8KHTEzXX9Kkh4erDQ+94jI
+ gDuaHgnUUL2lWtE/euIwluGEsqti276Xt81zwJSFvqXA+Y/of8OcfYLM22AjfYDg8CCf71P7I6jhG
+ TOFH2cfA==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1tfGrA-003OjB-Bf; Tue, 04 Feb 2025 12:12:46 +0100
+Message-ID: <eb3a3729-e8ef-4868-b8ff-b6efd66ef4fa@igalia.com>
+Date: Tue, 4 Feb 2025 11:12:45 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_AuxCCS_hand?=
+ =?UTF-8?Q?ling_and_render_compression_modifiers?=
+To: intel-xe@lists.freedesktop.org
+References: <20250131142045.47785-1-tvrtko.ursulin@igalia.com>
+ <173835518689.3314806.6980040255427143980@b555e5b46a47>
+Content-Language: en-GB
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Jani Nikula <jani.nikula@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <173835518689.3314806.6980040255427143980@b555e5b46a47>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,133 +61,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The dedicated display PHYs reset to a power state that blocks S0ix,
-increasing idle system power. After a system reset (cold boot,
-S3/4/5, warm reset) if a dedicated PHY is not being brought up
-shortly, use these steps to move the PHY to the lowest power state
-to save power.
 
-1. Follow the PLL Enable Sequence, using any valid frequency such as DP 1.62 GHz.
-   This brings lanes out of reset and enables the PLL to allow powerdown to be moved
-   to the Disable state.
-2. Follow PLL Disable Sequence. This moves powerdown to the Disable state and disables the PLL.
++ Rodrigo and Jani for possible CI/display insights or adding correct Cc 
+please.
 
-v2: Rename WA function to more descriptive (Jani)
-    For PTL, only port A needs this wa
-    Add helpers to check presence of C10 phy and pll enabling (Imre)
+On 31/01/2025 20:26, Patchwork wrote:
+> igt@kms_flip_tiling@flip-change-tiling@pipe-a-hdmi-a-1-y-rc-ccs-cc-to-y-mc-ccs (NEW):
+> 
+>   * shard-adlp: NOTRUN -> FAIL
+>     <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v1/shard-adlp-2/igt@kms_flip_tiling@flip-change-tiling@pipe-a-hdmi-a-1-y-rc-ccs-cc-to-y-mc-ccs.html> +66 other tests fail
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 45 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  1 +
- .../drm/i915/display/intel_display_reset.c    |  2 +
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  2 +
- 4 files changed, 50 insertions(+)
+Two things here.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index bffe3d4bbe8b..bd33ebb8c71e 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3559,3 +3559,48 @@ void intel_cx0pll_state_verify(struct intel_atomic_state *state,
- 	else
- 		intel_c20pll_state_verify(new_crtc_state, crtc, encoder, &mpll_hw_state.c20);
- }
-+
-+static bool intel_cx0_pll_is_enabled(struct intel_display *display, enum port port)
-+{
-+	u32 val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, port));
-+
-+	if (REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val) == XELPDP_DDI_CLOCK_SELECT_NONE)
-+		return false;
-+
-+	return true;
-+}
-+/*
-+ * WA 14022081154
-+ * The dedicated display PHYs reset to a power state that blocks S0ix, increasing idle
-+ * system power. After a system reset (cold boot, S3/4/5, warm reset) if a dedicated
-+ * PHY is not being brought up shortly, use these steps to move the PHY to the lowest
-+ * power state to save power. For PTL the workaround is needed only for port A. Port B
-+ * is not connected.
-+ *
-+ * 1. Follow the PLL Enable Sequence, using any valid frequency such as DP 1.62 GHz.
-+ *    This brings lanes out of reset and enables the PLL to allow powerdown to be moved
-+ *    to the Disable state.
-+ * 2. Follow PLL Disable Sequence. This moves powerdown to the Disable state and disables the PLL.
-+ */
-+void ptl_power_save_wa(struct intel_display *display)
-+{
-+	struct intel_encoder *encoder;
-+
-+	if (DISPLAY_VER(display) != 30)
-+		return;
-+
-+	for_each_intel_encoder(display->drm, encoder) {
-+		struct intel_cx0pll_state pll_state = {};
-+		int port_clock = 162000;
-+
-+		if (!intel_encoder_is_c10phy(encoder))
-+			continue;
-+
-+		if (intel_cx0_pll_is_enabled(display, encoder->port))
-+			continue;
-+
-+		intel_c10pll_calc_state_from_table(encoder, mtl_c10_edp_tables, port_clock, true, &pll_state);
-+		__intel_cx0pll_enable(encoder, &pll_state, true, port_clock, 4);
-+		intel_cx0pll_disable(encoder);
-+	}
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index 573fa7d3e88f..06346e4c5079 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-@@ -42,5 +42,6 @@ bool intel_cx0pll_compare_hw_state(const struct intel_cx0pll_state *a,
- void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
- 				     const struct intel_crtc_state *crtc_state);
- int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
-+void ptl_power_save_wa(struct intel_display *display);
- 
- #endif /* __INTEL_CX0_PHY_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
-index 093b386c95e8..b75827ff9c7e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_reset.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
-@@ -7,6 +7,7 @@
- 
- #include "i915_drv.h"
- #include "intel_clock_gating.h"
-+#include "intel_cx0_phy.h"
- #include "intel_display_driver.h"
- #include "intel_display_reset.h"
- #include "intel_display_types.h"
-@@ -116,6 +117,7 @@ void intel_display_reset_finish(struct drm_i915_private *i915)
- 		intel_pps_unlock_regs_wa(display);
- 		intel_display_driver_init_hw(display);
- 		intel_clock_gating_init(i915);
-+		ptl_power_save_wa(display);
- 		intel_hpd_init(i915);
- 
- 		ret = __intel_display_driver_resume(display, state, ctx);
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index b8fa04d3cd5c..24893d2f79e3 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -27,6 +27,7 @@
- #include "bxt_dpio_phy_regs.h"
- #include "i915_drv.h"
- #include "i915_reg.h"
-+#include "intel_cx0_phy.h"
- #include "intel_de.h"
- #include "intel_display_types.h"
- #include "intel_dkl_phy.h"
-@@ -4552,6 +4553,7 @@ static void sanitize_dpll_state(struct drm_i915_private *i915,
- 		return;
- 
- 	adlp_cmtg_clock_gating_wa(i915, pll);
-+	ptl_power_save_wa(&i915->display);
- 
- 	if (pll->active_mask)
- 		return;
--- 
-2.43.0
+First it seems to be some sort of a race condition in crc collection 
+and/or vblank counter handling. Tests work individually but fail one run 
+in sequence. Bad CRC also varies run to run, while visually things look 
+fine to me on screen. Also a delay before collecting the crc seems to 
+improve things.
 
+I instrumented things a bit but I don't really understand it. For 
+example collecting the reference CRC appears to have some "collect it at 
+the next vblank logic", but I am not sure that works correctly. Ie.
+
+Working case:
+==========================================
+
+Getting the reference CRC:
+------------------------------------------
+(kms_flip_tiling:14174) igt_pipe_crc-DEBUG: crc for vblank 703868, 
+target 703869; crc[0]=b82b36e4
+(kms_flip_tiling:14174) igt_pipe_crc-DEBUG: crc for vblank 703869, 
+target 703869; crc[0]=b82b36e4
+
+reference_crc[0]=b82b36e4
+
+Compare after flip:
+
+(kms_flip_tiling:14174) igt_pipe_crc-DEBUG: crc for vblank 703870, 
+target 703872; crc[0]=b82b36e4
+(kms_flip_tiling:14174) igt_pipe_crc-DEBUG: crc for vblank 703871, 
+target 703872; crc[0]=2aa66f1d
+(kms_flip_tiling:14174) igt_pipe_crc-DEBUG: crc for vblank 703872, 
+target 703872; crc[0]=b82b36e4
+
+reference_crc[0]=b82b36e4 crc[0]=b82b36e4
+
+
+Failing case:
+==========================================
+
+Getting the reference CRC:
+------------------------------------------
+(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698273, 
+target 698278; crc[0]=b82b36e4
+(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698274, 
+target 698278; crc[0]=b82b36e4
+(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698275, 
+target 698278; crc[0]=b82b36e4
+(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698276, 
+target 698278; crc[0]=b82b36e4
+(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698277, 
+target 698278; crc[0]=b82b36e4
+(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698278, 
+target 698278; crc[0]=7b978b62
+
+reference_crc[0]=7b978b62
+
+Compare after flip:
+------------------------------------------
+(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698279, 
+target 698281; crc[0]=dbec96bd
+(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698280, 
+target 698281; crc[0]=da444d0a
+(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698281, 
+target 698281; crc[0]=b82b36e4
+
+reference_crc[0]=7b978b62 crc[0]=b82b36e4
+
+(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: CRC mismatch at index 0: 
+0x7b978b62 != 0xb82b36e4
+
+Second thing - how come xe shards have ADL-P when xe does not support 
+it, while i915 shards don't, when it does? :))
+
+Regards,
+
+Tvrtko
