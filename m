@@ -4,80 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EB3EC0218F
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 08:58:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCC2FC0218F
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 09:08:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B1BC10E299;
-	Tue,  4 Feb 2025 08:58:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9162710E2C7;
+	Tue,  4 Feb 2025 09:08:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="x47sXSiF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m/Uuf4H6";
 	dkim-atps=neutral
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 651C410E299
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Feb 2025 08:58:40 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id
- 5b1f17b1804b1-436ce2ab251so36357595e9.1
- for <intel-xe@lists.freedesktop.org>; Tue, 04 Feb 2025 00:58:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1738659519; x=1739264319;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=AkdPoAQ1Aae3LjCL/dNZypVPbdSgZyo6LeKnFDKvFSM=;
- b=x47sXSiFLWMeVYN+s2t7ONE2MM/ZKIaTyxwhE7nL86QRdwqB5nx4CB/8IwXfNR+4mt
- 30/sTDApPIIkXdw/I85ZDZptPALCNpmx3J3z3LjwVVEMwC8Q95u5SstghkgjmeiWH7DP
- he8GzjYN34f/hjeLaggjqBLpx7zViY2uYfkuVD7+A0TtyE/UnNpC/XXLdqzRwtt/A1Xv
- 1In0lAE7lq1bkTznwXuSKmfPODNp7WOaSOiFziOlT3m6m29sKMxnMV/MEsflCjeiXOI3
- tDUoKxEQWKU3mxLZLpGIz3roL1Hz+KNSsoWNweC68uxaOrvlbWSZOkoGA/5en2zuDpVm
- dqRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738659519; x=1739264319;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=AkdPoAQ1Aae3LjCL/dNZypVPbdSgZyo6LeKnFDKvFSM=;
- b=wpsOi6WrVd4mSgFcuHle2Z5ob80HIw/w6smksqEhmz9DK/ysmFH8SSWIYan4u0n317
- /eU4RIdYeVt9fl1x57IYRXSJbbsOyFslhU/MbojkEBNvlWl5i52To0dFQevc7WrIR97V
- hkxr67tv5wxigXEbQHYBCq0FxajwTmUM7c5JwT3p+5su3/rK8EfQ1PlBALto1ipMl1Et
- 0YD/JNzzg2X1QarTm7PSNbn4WPR7G6Ssu6TKYaYYdv7+menScb2SwTA78omJmaLOeoSP
- j4KP2inDS370a/xX8ixHusJcbtxp6K41qKplFcgcSzSeHkTztmc+zEh+3QHzPxNaBvPs
- 6BAw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW3QN0cnFJCX2bo5zAKwwo+hBI3NLzZiWDo6qHgiTobnO8sI0G9py7Cpf2Nkqf2l1CpbSTJY9D1lg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzNNHcQU6WZCSoMC5b+k7tchk2j06T49MWXtftcN0lXTqObMo13
- u82q+T9FWVhSju6CLD2IPkujdYriVNzj46R/MNnwLrnNqCSX3Y2AjpIlNCYiiN8=
-X-Gm-Gg: ASbGnctHqU5c3Km1SkHsZdQMEYGqWAenG7MkGHkZR6nTe3diMglZvVhemOsegwfjNCd
- xX7AuG/h3AblTyv4CGxxQt3WIq0NSdJa6Hg7KN5ywlaVm5N25UX+LCSJcQxjKaUomQ0+6i7Sxpg
- iinJfmxF7WW/9XfAk35fQZPD/baBjWfYcansvWowvR/Bf/EI8c+suNfl3N2e3MVGQ0IDKxsDZxc
- GrGNVQcAlDGX2KGxyYwIzkvPFLHH4R5Z+YzYxvPe4lwGrSVXuSUrWDRTdM6eF65n/8lb7rZ9pc+
- MFtmqEwRUFaQOArjqO6dKIuFpQt2n+o=
-X-Google-Smtp-Source: AGHT+IFcF10FVf9PPrMrfz500wgXpGW6E00pYJWNifq3LC28RsoNhV9GUu83YxPKRaOYfJ6R7iOnqA==
-X-Received: by 2002:a05:600c:4f55:b0:436:51bb:7a43 with SMTP id
- 5b1f17b1804b1-438dc3ab675mr236296745e9.5.1738659518647; 
- Tue, 04 Feb 2025 00:58:38 -0800 (PST)
-Received: from [192.168.0.101] ([90.241.98.187])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-438e23e6b62sm182834075e9.24.2025.02.04.00.58.37
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 04 Feb 2025 00:58:38 -0800 (PST)
-Message-ID: <37e94776-ea74-4fb7-ae50-ab999324df7f@ursulin.net>
-Date: Tue, 4 Feb 2025 08:58:37 +0000
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EC5410E2BF;
+ Tue,  4 Feb 2025 09:08:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738660106; x=1770196106;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Gi25TnoPymAcShEegDzURm88XyeUkJ6qzGHgyKPhSrM=;
+ b=m/Uuf4H6cE6cMm9RPyeKLU6ktEn8A2VH+0gZyUMwuXgxHOrVx3gQsccl
+ ymSNvhlYljd8RXo+DonpLS2jXYQ/Y+UZYHHZORy/fVrzZHFiVddMzRvWo
+ xm3xc4YtqDregDBHs8qMEJ9Y4O67bC6ktS9U5F7pVHBL+YFg6McLfNyQg
+ vJZC5F1SyYIqx3KPV49Odsksy5f7sere3sIinUpqOfADI+bNXImLf3yTd
+ Q8Lr5JSdIAg3rnwIaSpItCIyfthsbyC+3NAEEJKAC4m91InLzrVsYaIph
+ XB8QnzJXCCeJBwEvlPChjbrODEH6fAohfEKPWNOI9REacHaHCNNcaIDtz w==;
+X-CSE-ConnectionGUID: KfvyUc3PTuSM5htpxTNKVw==
+X-CSE-MsgGUID: 7N3ePmfCTH+tvl9Ou11rbg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="39278887"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="39278887"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 01:08:25 -0800
+X-CSE-ConnectionGUID: DXskLADMT2aIfrleQnGEcw==
+X-CSE-MsgGUID: 9LxNDVPLTz2ajQnNd9lMBw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="115540023"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.139])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 01:08:23 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
+ santhosh.reddy.guddati@intel.com, jani.saarinen@intel.com
+Subject: Re: [PATCH v6 3/7] drm/damage-helper: add const qualifier in
+ drm_atomic_helper_damage_merged()
+In-Reply-To: <20250130210027.591927-4-vinod.govindapillai@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250130210027.591927-1-vinod.govindapillai@intel.com>
+ <20250130210027.591927-4-vinod.govindapillai@intel.com>
+Date: Tue, 04 Feb 2025 11:08:19 +0200
+Message-ID: <878qqm6prw.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/7] Cleanup error handling on probe
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Francois Dugast <francois.dugast@intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>
-References: <20250131223140.4144292-1-lucas.demarchi@intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20250131223140.4144292-1-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,43 +71,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Thu, 30 Jan 2025, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
+> Add a const qualifier for the "state" parameter as well as we could
+> use this helper to get the combined damage in cases of const
+> drm_plane_state as well. Needed mainly for xe driver big joiner cases
+> where we need to track the damage from immutable plane state.
 
-On 31/01/2025 22:31, Lucas De Marchi wrote:
-> Mixing style with goto and devm_add_action_or_reset() is very confusing
-> and error prone. Clean that up. The only missing one is one of the
-> display calls, but that can be done in parallel to the review of these
-> first patches.
-> 
-> This received limited load/unload tests on LNL and may very well not be
-> 100%.
+Needs to be sent to dri-devel.
 
-Is this series hinting you are looking into making heavier refactorings 
-in the init code? Triggered by me recently discovering GT-per-engine 
-workarounds are not working?
+>
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> ---
+>  drivers/gpu/drm/drm_damage_helper.c | 2 +-
+>  include/drm/drm_damage_helper.h     | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_damage_helper.c b/drivers/gpu/drm/drm_damage_helper.c
+> index afb02aae707b..44a5a36806e3 100644
+> --- a/drivers/gpu/drm/drm_damage_helper.c
+> +++ b/drivers/gpu/drm/drm_damage_helper.c
+> @@ -308,7 +308,7 @@ EXPORT_SYMBOL(drm_atomic_helper_damage_iter_next);
+>   * True if there is valid plane damage otherwise false.
+>   */
+>  bool drm_atomic_helper_damage_merged(const struct drm_plane_state *old_state,
+> -				     struct drm_plane_state *state,
+> +				     const struct drm_plane_state *state,
+>  				     struct drm_rect *rect)
+>  {
+>  	struct drm_atomic_helper_damage_iter iter;
+> diff --git a/include/drm/drm_damage_helper.h b/include/drm/drm_damage_helper.h
+> index effda42cce31..a58cbcd11276 100644
+> --- a/include/drm/drm_damage_helper.h
+> +++ b/include/drm/drm_damage_helper.h
+> @@ -78,7 +78,7 @@ bool
+>  drm_atomic_helper_damage_iter_next(struct drm_atomic_helper_damage_iter *iter,
+>  				   struct drm_rect *rect);
+>  bool drm_atomic_helper_damage_merged(const struct drm_plane_state *old_state,
+> -				     struct drm_plane_state *state,
+> +				     const struct drm_plane_state *state,
+>  				     struct drm_rect *rect);
+>  
+>  #endif
 
-Regards,
-
-Tvrtko
-
-> Lucas De Marchi (7):
->    drm/xe: Fix xe_display_fini() calls
->    drm/xe: Fix error handling in xe_irq_install()
->    drm/xe: Fix xe_tile_init_noalloc() error propagation
->    drm/xe: Stop ignoring errors from xe_ttm_stolen_mgr_init()
->    drm/xe: Cleanup unwind of gt initialization
->    drm/xe: Cleanup extra calls to  xe_hw_fence_irq_finish()
->    drm/xe: Move oa fini to xe_oa
-> 
->   drivers/gpu/drm/xe/display/xe_display.c | 22 +++++-----
->   drivers/gpu/drm/xe/display/xe_display.h |  2 -
->   drivers/gpu/drm/xe/xe_device.c          | 53 ++++++++-----------------
->   drivers/gpu/drm/xe/xe_gt.c              | 52 ++++++++++--------------
->   drivers/gpu/drm/xe/xe_gt.h              |  1 -
->   drivers/gpu/drm/xe/xe_irq.c             | 14 +------
->   drivers/gpu/drm/xe/xe_oa.c              | 48 +++++++++++-----------
->   drivers/gpu/drm/xe/xe_oa.h              |  1 -
->   drivers/gpu/drm/xe/xe_tile.c            |  4 +-
->   drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c  | 17 ++++----
->   drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h  |  2 +-
->   11 files changed, 86 insertions(+), 130 deletions(-)
-> 
+-- 
+Jani Nikula, Intel
