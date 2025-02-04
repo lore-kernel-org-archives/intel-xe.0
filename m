@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D7A6C02194
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 14:05:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 574B9C02194
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 14:16:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC83F10E659;
-	Tue,  4 Feb 2025 14:05:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26BF910E659;
+	Tue,  4 Feb 2025 14:16:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mxr/si5B";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EVDLStL2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F24110E65A;
- Tue,  4 Feb 2025 14:05:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F87910E659
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Feb 2025 14:16:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738677924; x=1770213924;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=6g0M/B3rl19QZ/wsc262/2ERfFx15AvKbQjmq95U30c=;
- b=mxr/si5BYhIDg1bqhK1zV17GbKWat5ES2D+5IBpxu2jglhV0ezQmDHv3
- 4xZMPt4222B1OprstqEHcJ6wf/5I/f81RkAhlBtT3+BCt0i4g68yQao16
- zGYjoUIPrfbK2/fGMx1PhNzZkDahxRE/wlkVB1hEp8Ce+WQX2zYqCyHNK
- jgaoNMbMC0WwBpYdJINJmdeUtLVHSLX/Xb2SI25tNOu/Z8hYvm2u4sDc0
- uP1ymyZ1APVIeE4eNdEAYje+KSMtw7g90OvSIo2KStcgU92ECHaX7QSmQ
- ozmYB8PWhZD4wy2akG2OTu3yJC+AXgNjmT2s/PtniOBK89MteDh/twnQG A==;
-X-CSE-ConnectionGUID: oyP6mb5rRLKvdpgJSbknxw==
-X-CSE-MsgGUID: 5g6qXT69Qri999TiE0O7Ow==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="38415759"
-X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="38415759"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 06:05:24 -0800
-X-CSE-ConnectionGUID: 8ZTujtCDRrSHNPDgfSvORg==
-X-CSE-MsgGUID: 3ZXaU7gKR1ygG9l/3qgDGg==
+ t=1738678582; x=1770214582;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=ExMJabx+zqmFfBiZC4bhkG4vA9UJktweEhfhFVJrSDs=;
+ b=EVDLStL2zPd1+PG0DqOgUUWPlQ6YjXt77TJYc/9ZiQ8JeSF1V1SP5Dvl
+ 9IbxbWARa+NqyjJV4Y1WOquxG2VY6IBihUnj2XMa0SJKehp9m37Cka3cW
+ QJylj/BgwXMJNSjQWDDWTzJwBu7pGLqz+Ri5c1QICchWbMxk6DotfRykA
+ kdF6g99GymmUmpZoN4RfRLSMpd4Dhl6Pkxe7HiHaT9AinWp/sv9BXO3i8
+ h0y5jvJcO1ehGeVEjQrtpjUt50atawYF9/2u+zz0GYBzD+boETKZOSV3P
+ wFOmOwmvdJeYeO7SCE3FozwH6QSMdTqNaN3vVYDefIxcUFls1OIWvtcE7 g==;
+X-CSE-ConnectionGUID: znVjdUWGT8arnxpzbSsQ1Q==
+X-CSE-MsgGUID: wOv0XYq9RM+AJns271VtOA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="56634442"
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="56634442"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 06:16:14 -0800
+X-CSE-ConnectionGUID: uTN+IVOnS6+7s42Gc3IRyQ==
+X-CSE-MsgGUID: enE6XWKtTLmiQY9VhAoaYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="115226484"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.139])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 06:05:21 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2] drm/i915/psr: clarify intel_psr_pre_plane_update()
- conditions
-Date: Tue,  4 Feb 2025 16:05:18 +0200
-Message-Id: <20250204140518.2971530-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="141464843"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa001.fm.intel.com with ESMTP; 04 Feb 2025 06:16:12 -0800
+Received: from [10.246.16.98] (mwajdecz-MOBL.ger.corp.intel.com [10.246.16.98])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 3F18C32CB8
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Feb 2025 14:16:11 +0000 (GMT)
+Message-ID: <e8367336-a7f2-4168-85e5-4d69bffe8aca@intel.com>
+Date: Tue, 4 Feb 2025 15:16:10 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?B?UmU6IOKclyBYZS5DSS5GdWxsOiBmYWlsdXJlIGZvciBkcm0veGUvdmY6?=
+ =?UTF-8?Q?_Don=27t_try_to_trigger_a_full_GT_reset_if_VF?=
+To: intel-xe@lists.freedesktop.org
+References: <20250131182502.852-1-michal.wajdeczko@intel.com>
+ <173837834899.3381961.8949692042875050724@b555e5b46a47>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <173837834899.3381961.8949692042875050724@b555e5b46a47>
 Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,81 +71,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Make the conditions easier to follow. We don't do anything for
-!psr->enabled, so hoist psr->enabled check higher, avoiding all the
-checks when !psr->enabled. Stop the bitwise OR abuse on booleans by
-removing the temporary variable altogether.
 
-v2: Rebase
 
-Cc: Jouni Högander <jouni.hogander@intel.com>
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Jouni Högander <jouni.hogander@intel.com> # v1
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 46 +++++++++++-------------
- 1 file changed, 21 insertions(+), 25 deletions(-)
+On 01.02.2025 03:52, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/xe/vf: Don't try to trigger a full GT reset if VF
+> URL   : https://patchwork.freedesktop.org/series/144198/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from xe-2583-12fb3dcbf0667f1ed3c3caff321de4a1ad3d4a7a_full -> xe-pw-144198v1_full
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with xe-pw-144198v1_full absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in xe-pw-144198v1_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   
+> 
+> Participating hosts (4 -> 4)
+> ------------------------------
+> 
+>   No changes in participating hosts
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in xe-pw-144198v1_full:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 2bdb6c9c2283..861e50ceef85 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2804,34 +2804,30 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
- 					     old_crtc_state->uapi.encoder_mask) {
- 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 		struct intel_psr *psr = &intel_dp->psr;
--		bool needs_to_disable = false;
- 
- 		mutex_lock(&psr->lock);
- 
--		/*
--		 * Reasons to disable:
--		 * - PSR disabled in new state
--		 * - All planes will go inactive
--		 * - Changing between PSR versions
--		 * - Region Early Transport changing
--		 * - Display WA #1136: skl, bxt
--		 */
--		needs_to_disable |= intel_crtc_needs_modeset(new_crtc_state);
--		needs_to_disable |= !new_crtc_state->has_psr;
--		needs_to_disable |= !new_crtc_state->active_planes;
--		needs_to_disable |= new_crtc_state->has_sel_update != psr->sel_update_enabled;
--		needs_to_disable |= new_crtc_state->enable_psr2_su_region_et !=
--			psr->su_region_et_enabled;
--		needs_to_disable |= new_crtc_state->has_panel_replay !=
--			psr->panel_replay_enabled;
--		needs_to_disable |= DISPLAY_VER(i915) < 11 &&
--			new_crtc_state->wm_level_disabled;
--
--		if (psr->enabled && needs_to_disable)
--			intel_psr_disable_locked(intel_dp);
--		else if (psr->enabled && new_crtc_state->wm_level_disabled)
--			/* Wa_14015648006 */
--			wm_optimization_wa(intel_dp, new_crtc_state);
-+		if (psr->enabled) {
-+			/*
-+			 * Reasons to disable:
-+			 * - PSR disabled in new state
-+			 * - All planes will go inactive
-+			 * - Changing between PSR versions
-+			 * - Region Early Transport changing
-+			 * - Display WA #1136: skl, bxt
-+			 */
-+			if (intel_crtc_needs_modeset(new_crtc_state) ||
-+			    !new_crtc_state->has_psr ||
-+			    !new_crtc_state->active_planes ||
-+			    new_crtc_state->has_sel_update != psr->sel_update_enabled ||
-+			    new_crtc_state->enable_psr2_su_region_et != psr->su_region_et_enabled ||
-+			    new_crtc_state->has_panel_replay != psr->panel_replay_enabled ||
-+			    (DISPLAY_VER(i915) < 11 && new_crtc_state->wm_level_disabled))
-+				intel_psr_disable_locked(intel_dp);
-+			else if (new_crtc_state->wm_level_disabled)
-+				/* Wa_14015648006 */
-+				wm_optimization_wa(intel_dp, new_crtc_state);
-+		}
- 
- 		mutex_unlock(&psr->lock);
- 	}
--- 
-2.39.5
+mostly the CI noise
+
+> 
+>   * igt@kms_cursor_crc@cursor-alpha-transparent@pipe-a-hdmi-a-3:
+>     - shard-bmg:          NOTRUN -> [INCOMPLETE][1]
+>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144198v1/shard-bmg-6/igt@kms_cursor_crc@cursor-alpha-transparent@pipe-a-hdmi-a-3.html
+
+<7>[  312.079117] [IGT] kms_cursor_crc: starting subtest
+cursor-alpha-transparent
+<7>[  312.080226] [IGT] kms_cursor_crc: starting dynamic subtest
+pipe-A-HDMI-A-3
+
+...
+
+<7>[  312.908927] [IGT] kms_cursor_crc: finished subtest
+pipe-D-HDMI-A-3, SUCCESS
+<7>[  312.909196] [IGT] kms_cursor_crc: finished subtest
+cursor-alpha-transparent, SUCCESS
+
+> 
+>   * igt@kms_flip@plain-flip-ts-check@d-hdmi-a2:
+>     - shard-dg2-set2:     NOTRUN -> [FAIL][2] +2 other tests fail
+>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144198v1/shard-dg2-432/igt@kms_flip@plain-flip-ts-check@d-hdmi-a2.html
+
+Expected frametime: 16667us; measured 16884.4us +- 6.439us accuracy 0.11%
+vblank interval differs from modeline! expected 16666.7us, measured
+16884us +- 6.439us, difference 217.8us (33.8 sigma)
+
+but must be unrelated
+
+> 
+>   * igt@kms_rotation_crc@multiplane-rotation:
+>     - shard-bmg:          [PASS][3] -> [INCOMPLETE][4] +3 other tests incomplete
+>    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2583-12fb3dcbf0667f1ed3c3caff321de4a1ad3d4a7a/shard-bmg-5/igt@kms_rotation_crc@multiplane-rotation.html
+>    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144198v1/shard-bmg-4/igt@kms_rotation_crc@multiplane-rotation.html
+
+no details, but must be unrelated
+
+> 
+>   * igt@kms_vblank@ts-continuation-suspend:
+>     - shard-dg2-set2:     [PASS][5] -> [INCOMPLETE][6] +1 other test incomplete
+>    [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2583-12fb3dcbf0667f1ed3c3caff321de4a1ad3d4a7a/shard-dg2-466/igt@kms_vblank@ts-continuation-suspend.html
+>    [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144198v1/shard-dg2-463/igt@kms_vblank@ts-continuation-suspend.html
+
+<6> [202.309712] [IGT] kms_vblank: starting subtest ts-continuation-suspend
+<6> [202.310601] [IGT] kms_vblank: starting dynamic subtest pipe-A-HDMI-A-6
+
+suspend...resume
+
+<6> [204.196559] [IGT] kms_vblank: finished subtest pipe-A-HDMI-A-6, SUCCESS
+
 
