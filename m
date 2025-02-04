@@ -4,49 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D19CC02194
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 11:12:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77DDCC02194
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 11:14:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0973310E09A;
-	Tue,  4 Feb 2025 11:12:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4122F10E09A;
+	Tue,  4 Feb 2025 11:14:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="p2yBA8aM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ApWV5CgD";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3060810E09A
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Feb 2025 11:12:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:Cc:
- References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID
- :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
- Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe
- :List-Post:List-Owner:List-Archive;
- bh=x5xqKSQ9es1oZK7YmAArs5yMcOsV13E44+/9ajpHwj8=; b=p2yBA8aMEAen9agj7TJSlRj1Pt
- Q7izxEm/BNjRhCmP/3VlIrT1elDLNsI1Bfs3DEOtHPVnpZ8jwa0p3FLjFdmfhzLVaso2QryIp/GCV
- j/l5KASJ8r2Do+hzyUeNLl+qoYW1T+JfBkIr+1P24R2xaiOs9/c4JzUUQ3E51K31N8lBcCVFWaSnU
- wfBVEpINamNo0xjB9KX19nzc65eW9PDDJQag9/e2dN94m+Hc3VYO3yv8KHTEzXX9Kkh4erDQ+94jI
- gDuaHgnUUL2lWtE/euIwluGEsqti276Xt81zwJSFvqXA+Y/of8OcfYLM22AjfYDg8CCf71P7I6jhG
- TOFH2cfA==;
-Received: from [90.241.98.187] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tfGrA-003OjB-Bf; Tue, 04 Feb 2025 12:12:46 +0100
-Message-ID: <eb3a3729-e8ef-4868-b8ff-b6efd66ef4fa@igalia.com>
-Date: Tue, 4 Feb 2025 11:12:45 +0000
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B448B10E09A;
+ Tue,  4 Feb 2025 11:14:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738667676; x=1770203676;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=qoH6UCB4p3/uIwGpMKAkeCONASI/glkTQ5cXVb4il0o=;
+ b=ApWV5CgDtt8QvLO040FU3q1myqhLuHkDreHfIUZSw7+oOLFwXZpaOQK/
+ NjQ3ELpj5+rkv5r4rRDX/D//gIXj3yEgvpKuFAFCfWsbKO7P2wMX2aYJr
+ 9elww7XEEU8jrpDXOYUajazkMmGh0EfPFxavI0GTZnvEVDBLedU3DSvWs
+ zSiSImNqQ+sJXa0jhbuUiN/Ege8foBCfdhA4Wx91T7+1I8K/M2qUBzyfB
+ sB4yzNg+5aPl2J9EWorTAbIJP5A4ZbjdyVGFTN4Ow/bratKlXOhimj7Xd
+ yLKn1gUelrTNTdwAXv0IpfrQO5ULujbU2Zyra5jCI7s/W/XRDBxIXKdmv Q==;
+X-CSE-ConnectionGUID: au7/UcQ/T6qtUGvaXs1c0w==
+X-CSE-MsgGUID: 0e2jLtJwSi6suoZFUM0GSQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="38891477"
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="38891477"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 03:14:36 -0800
+X-CSE-ConnectionGUID: +N/ZpQY7RMG8wLwmayM7BQ==
+X-CSE-MsgGUID: cCUww8HJTnCaFI/2Vy2aRg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="115561019"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.139])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 03:14:34 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 00/11] drm/i915: intel_display conversions and some
+ debug improvements
+In-Reply-To: <20250124163040.8886-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250124163040.8886-1-ville.syrjala@linux.intel.com>
+Date: Tue, 04 Feb 2025 13:14:30 +0200
+Message-ID: <87v7tq55d5.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_AuxCCS_hand?=
- =?UTF-8?Q?ling_and_render_compression_modifiers?=
-To: intel-xe@lists.freedesktop.org
-References: <20250131142045.47785-1-tvrtko.ursulin@igalia.com>
- <173835518689.3314806.6980040255427143980@b555e5b46a47>
-Content-Language: en-GB
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Jani Nikula <jani.nikula@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <173835518689.3314806.6980040255427143980@b555e5b46a47>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,89 +70,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Fri, 24 Jan 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Convert a bunch of stuff over to struct intel_display, and
+> finish off with a few debug print improvements.
 
-+ Rodrigo and Jani for possible CI/display insights or adding correct Cc 
-please.
+Good stuff. Series is
 
-On 31/01/2025 20:26, Patchwork wrote:
-> igt@kms_flip_tiling@flip-change-tiling@pipe-a-hdmi-a-1-y-rc-ccs-cc-to-y-mc-ccs (NEW):
-> 
->   * shard-adlp: NOTRUN -> FAIL
->     <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v1/shard-adlp-2/igt@kms_flip_tiling@flip-change-tiling@pipe-a-hdmi-a-1-y-rc-ccs-cc-to-y-mc-ccs.html> +66 other tests fail
-
-Two things here.
-
-First it seems to be some sort of a race condition in crc collection 
-and/or vblank counter handling. Tests work individually but fail one run 
-in sequence. Bad CRC also varies run to run, while visually things look 
-fine to me on screen. Also a delay before collecting the crc seems to 
-improve things.
-
-I instrumented things a bit but I don't really understand it. For 
-example collecting the reference CRC appears to have some "collect it at 
-the next vblank logic", but I am not sure that works correctly. Ie.
-
-Working case:
-==========================================
-
-Getting the reference CRC:
-------------------------------------------
-(kms_flip_tiling:14174) igt_pipe_crc-DEBUG: crc for vblank 703868, 
-target 703869; crc[0]=b82b36e4
-(kms_flip_tiling:14174) igt_pipe_crc-DEBUG: crc for vblank 703869, 
-target 703869; crc[0]=b82b36e4
-
-reference_crc[0]=b82b36e4
-
-Compare after flip:
-
-(kms_flip_tiling:14174) igt_pipe_crc-DEBUG: crc for vblank 703870, 
-target 703872; crc[0]=b82b36e4
-(kms_flip_tiling:14174) igt_pipe_crc-DEBUG: crc for vblank 703871, 
-target 703872; crc[0]=2aa66f1d
-(kms_flip_tiling:14174) igt_pipe_crc-DEBUG: crc for vblank 703872, 
-target 703872; crc[0]=b82b36e4
-
-reference_crc[0]=b82b36e4 crc[0]=b82b36e4
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 
-Failing case:
-==========================================
+> Ville Syrj=C3=A4l=C3=A4 (11):
+>   drm/i915: Decouple i915_gem_dumb_create() from the display a bit
+>   drm/i915: Decouple intel_fb_bo.h interfaces from driver specific types
+>   drm/i915: Convert intel_crtc.c to struct intel_display
+>   drm/i915: Convert intel_fb.c to struct intel_display
+>   drm/i915: Convert intel_display_power_{get,put}*() to intel_display
+>   drm/i915: Convert i9xx_plane.c to struct intel_display
+>   drm/i915: Finish intel_sprite.c struct intel_display conversion
+>   drm/i915: Convert intel_cursor.c to struct intel_display
+>   drm/i915: Convert skl_univeral_plane.c to struct intel_display
+>   drm/i915: Use DRM_RECT_FMT & co. for plane debugs
+>   drm/i915: Pimp plane debugs
+>
+>  drivers/gpu/drm/i915/display/g4x_dp.c         |   9 +-
+>  drivers/gpu/drm/i915/display/g4x_hdmi.c       |   8 +-
+>  drivers/gpu/drm/i915/display/i9xx_plane.c     | 262 +++++------
+>  drivers/gpu/drm/i915/display/i9xx_plane.h     |   6 +-
+>  drivers/gpu/drm/i915/display/icl_dsi.c        |  11 +-
+>  .../gpu/drm/i915/display/intel_atomic_plane.c |  24 +-
+>  drivers/gpu/drm/i915/display/intel_audio.c    |   9 +-
+>  drivers/gpu/drm/i915/display/intel_cdclk.c    |   8 +-
+>  drivers/gpu/drm/i915/display/intel_crt.c      |  16 +-
+>  drivers/gpu/drm/i915/display/intel_crtc.c     |  65 +--
+>  drivers/gpu/drm/i915/display/intel_crtc.h     |   7 +-
+>  drivers/gpu/drm/i915/display/intel_cursor.c   | 174 ++++----
+>  drivers/gpu/drm/i915/display/intel_cursor.h   |   4 +-
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  13 +-
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  63 +--
+>  drivers/gpu/drm/i915/display/intel_display.c  |  74 +--
+>  drivers/gpu/drm/i915/display/intel_display.h  |   2 +-
+>  .../drm/i915/display/intel_display_debugfs.c  |   5 +-
+>  .../drm/i915/display/intel_display_driver.c   |   2 +-
+>  .../gpu/drm/i915/display/intel_display_irq.c  |  10 +-
+>  .../drm/i915/display/intel_display_power.c    |  85 ++--
+>  .../drm/i915/display/intel_display_power.h    |  54 +--
+>  drivers/gpu/drm/i915/display/intel_dmc.c      |   7 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c       |   7 +-
+>  drivers/gpu/drm/i915/display/intel_dp_aux.c   |   5 +-
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  55 ++-
+>  drivers/gpu/drm/i915/display/intel_fb.c       | 249 ++++++-----
+>  drivers/gpu/drm/i915/display/intel_fb.h       |  11 +-
+>  drivers/gpu/drm/i915/display/intel_fb_bo.c    |  18 +-
+>  drivers/gpu/drm/i915/display/intel_fb_bo.h    |   8 +-
+>  drivers/gpu/drm/i915/display/intel_gmbus.c    |  10 +-
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     |  10 +-
+>  drivers/gpu/drm/i915/display/intel_hotplug.c  |   5 +-
+>  drivers/gpu/drm/i915/display/intel_lvds.c     |   5 +-
+>  .../drm/i915/display/intel_modeset_setup.c    |   6 +-
+>  drivers/gpu/drm/i915/display/intel_pipe_crc.c |   5 +-
+>  drivers/gpu/drm/i915/display/intel_pps.c      |  18 +-
+>  drivers/gpu/drm/i915/display/intel_sdvo.c     |   3 +-
+>  drivers/gpu/drm/i915/display/intel_sprite.c   | 110 ++---
+>  drivers/gpu/drm/i915/display/intel_sprite.h   |   6 +-
+>  drivers/gpu/drm/i915/display/intel_tc.c       |  78 ++--
+>   drivers/gpu/drm/i915/display/intel_vdsc.c     |   5 +-
+>  drivers/gpu/drm/i915/display/intel_vga.c      |   5 +-
+>  drivers/gpu/drm/i915/display/skl_scaler.c     |  13 +-
+>  .../drm/i915/display/skl_universal_plane.c    | 422 +++++++++---------
+>  .../drm/i915/display/skl_universal_plane.h    |   8 +-
+>  drivers/gpu/drm/i915/display/skl_watermark.c  |   5 +-
+>  drivers/gpu/drm/i915/display/vlv_dsi.c        |   4 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_create.c    |   2 +-
+>  drivers/gpu/drm/i915/gt/intel_gt_pm.c         |   6 +-
+>  drivers/gpu/drm/xe/display/intel_fb_bo.c      |   7 +-
+>  51 files changed, 1019 insertions(+), 985 deletions(-)
 
-Getting the reference CRC:
-------------------------------------------
-(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698273, 
-target 698278; crc[0]=b82b36e4
-(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698274, 
-target 698278; crc[0]=b82b36e4
-(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698275, 
-target 698278; crc[0]=b82b36e4
-(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698276, 
-target 698278; crc[0]=b82b36e4
-(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698277, 
-target 698278; crc[0]=b82b36e4
-(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698278, 
-target 698278; crc[0]=7b978b62
-
-reference_crc[0]=7b978b62
-
-Compare after flip:
-------------------------------------------
-(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698279, 
-target 698281; crc[0]=dbec96bd
-(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698280, 
-target 698281; crc[0]=da444d0a
-(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: crc for vblank 698281, 
-target 698281; crc[0]=b82b36e4
-
-reference_crc[0]=7b978b62 crc[0]=b82b36e4
-
-(kms_flip_tiling:14145) igt_pipe_crc-DEBUG: CRC mismatch at index 0: 
-0x7b978b62 != 0xb82b36e4
-
-Second thing - how come xe shards have ADL-P when xe does not support 
-it, while i915 shards don't, when it does? :))
-
-Regards,
-
-Tvrtko
+--=20
+Jani Nikula, Intel
