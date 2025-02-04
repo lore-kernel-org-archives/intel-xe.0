@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8625C02196
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 14:04:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D7A6C02194
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 14:05:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2D2310E5AE;
-	Tue,  4 Feb 2025 14:04:10 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11E4C10E5AE;
- Tue,  4 Feb 2025 14:04:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC83F10E659;
+	Tue,  4 Feb 2025 14:05:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mxr/si5B";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F24110E65A;
+ Tue,  4 Feb 2025 14:05:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738677924; x=1770213924;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6g0M/B3rl19QZ/wsc262/2ERfFx15AvKbQjmq95U30c=;
+ b=mxr/si5BYhIDg1bqhK1zV17GbKWat5ES2D+5IBpxu2jglhV0ezQmDHv3
+ 4xZMPt4222B1OprstqEHcJ6wf/5I/f81RkAhlBtT3+BCt0i4g68yQao16
+ zGYjoUIPrfbK2/fGMx1PhNzZkDahxRE/wlkVB1hEp8Ce+WQX2zYqCyHNK
+ jgaoNMbMC0WwBpYdJINJmdeUtLVHSLX/Xb2SI25tNOu/Z8hYvm2u4sDc0
+ uP1ymyZ1APVIeE4eNdEAYje+KSMtw7g90OvSIo2KStcgU92ECHaX7QSmQ
+ ozmYB8PWhZD4wy2akG2OTu3yJC+AXgNjmT2s/PtniOBK89MteDh/twnQG A==;
+X-CSE-ConnectionGUID: oyP6mb5rRLKvdpgJSbknxw==
+X-CSE-MsgGUID: 5g6qXT69Qri999TiE0O7Ow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="38415759"
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="38415759"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 06:05:24 -0800
+X-CSE-ConnectionGUID: 8ZTujtCDRrSHNPDgfSvORg==
+X-CSE-MsgGUID: 3ZXaU7gKR1ygG9l/3qgDGg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="115226484"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.139])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 06:05:21 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v2] drm/i915/psr: clarify intel_psr_pre_plane_update()
+ conditions
+Date: Tue,  4 Feb 2025 16:05:18 +0200
+Message-Id: <20250204140518.2971530-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Enable_Aux_based_Nits_br?=
- =?utf-8?q?ightness_control_for_eDP_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 04 Feb 2025 14:04:09 -0000
-Message-ID: <173867784906.876953.14023040784651941789@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250204125009.2609726-1-suraj.kandpal@intel.com>
-In-Reply-To: <20250204125009.2609726-1-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,57 +68,84 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Make the conditions easier to follow. We don't do anything for
+!psr->enabled, so hoist psr->enabled check higher, avoiding all the
+checks when !psr->enabled. Stop the bitwise OR abuse on booleans by
+removing the temporary variable altogether.
 
-Series: Enable Aux based Nits brightness control for eDP (rev2)
-URL   : https://patchwork.freedesktop.org/series/143910/
-State : warning
+v2: Rebase
 
-== Summary ==
+Cc: Jouni Högander <jouni.hogander@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Jouni Högander <jouni.hogander@intel.com> # v1
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 46 +++++++++++-------------
+ 1 file changed, 21 insertions(+), 25 deletions(-)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 22287f579e2c24a2137ffee294e7ac9e157fd1c5
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 2bdb6c9c2283..861e50ceef85 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2804,34 +2804,30 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
+ 					     old_crtc_state->uapi.encoder_mask) {
+ 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+ 		struct intel_psr *psr = &intel_dp->psr;
+-		bool needs_to_disable = false;
+ 
+ 		mutex_lock(&psr->lock);
+ 
+-		/*
+-		 * Reasons to disable:
+-		 * - PSR disabled in new state
+-		 * - All planes will go inactive
+-		 * - Changing between PSR versions
+-		 * - Region Early Transport changing
+-		 * - Display WA #1136: skl, bxt
+-		 */
+-		needs_to_disable |= intel_crtc_needs_modeset(new_crtc_state);
+-		needs_to_disable |= !new_crtc_state->has_psr;
+-		needs_to_disable |= !new_crtc_state->active_planes;
+-		needs_to_disable |= new_crtc_state->has_sel_update != psr->sel_update_enabled;
+-		needs_to_disable |= new_crtc_state->enable_psr2_su_region_et !=
+-			psr->su_region_et_enabled;
+-		needs_to_disable |= new_crtc_state->has_panel_replay !=
+-			psr->panel_replay_enabled;
+-		needs_to_disable |= DISPLAY_VER(i915) < 11 &&
+-			new_crtc_state->wm_level_disabled;
 -
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:1967:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1967:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1967:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1967:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1967:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1967:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1967:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1967:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1967:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1967:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1967:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1967:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1980:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1980:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c:106:17: warning: cast truncates bits from constant value (e8d4a51000 becomes d4a51000)
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-		if (psr->enabled && needs_to_disable)
+-			intel_psr_disable_locked(intel_dp);
+-		else if (psr->enabled && new_crtc_state->wm_level_disabled)
+-			/* Wa_14015648006 */
+-			wm_optimization_wa(intel_dp, new_crtc_state);
++		if (psr->enabled) {
++			/*
++			 * Reasons to disable:
++			 * - PSR disabled in new state
++			 * - All planes will go inactive
++			 * - Changing between PSR versions
++			 * - Region Early Transport changing
++			 * - Display WA #1136: skl, bxt
++			 */
++			if (intel_crtc_needs_modeset(new_crtc_state) ||
++			    !new_crtc_state->has_psr ||
++			    !new_crtc_state->active_planes ||
++			    new_crtc_state->has_sel_update != psr->sel_update_enabled ||
++			    new_crtc_state->enable_psr2_su_region_et != psr->su_region_et_enabled ||
++			    new_crtc_state->has_panel_replay != psr->panel_replay_enabled ||
++			    (DISPLAY_VER(i915) < 11 && new_crtc_state->wm_level_disabled))
++				intel_psr_disable_locked(intel_dp);
++			else if (new_crtc_state->wm_level_disabled)
++				/* Wa_14015648006 */
++				wm_optimization_wa(intel_dp, new_crtc_state);
++		}
+ 
+ 		mutex_unlock(&psr->lock);
+ 	}
+-- 
+2.39.5
 
