@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9B7CC02194
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 12:48:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C964C02196
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 12:48:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEDA810E339;
-	Tue,  4 Feb 2025 12:48:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6276C10E18D;
+	Tue,  4 Feb 2025 12:48:26 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3331710E18D;
- Tue,  4 Feb 2025 12:48:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4FDF10E18D;
+ Tue,  4 Feb 2025 12:48:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/pf=3A_Use_an_?=
- =?utf-8?q?explicit_check_to_see_if_the_device_has_LMTT_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/pf=3A_Use_an_expli?=
+ =?utf-8?q?cit_check_to_see_if_the_device_has_LMTT_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 04 Feb 2025 12:48:09 -0000
-Message-ID: <173867328920.876947.9182761541158838846@b555e5b46a47>
+Date: Tue, 04 Feb 2025 12:48:24 -0000
+Message-ID: <173867330480.876953.9715889240362047026@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250204122658.813847-1-piotr.piorkowski@intel.com>
 In-Reply-To: <20250204122658.813847-1-piotr.piorkowski@intel.com>
@@ -48,9 +48,40 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 6f1872a8c999 drm-tip: 2025y-02m-04d-12h-44m-39s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/pf: Use an explicit check to see if the device has LMTT
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2147366e48400d14cf9f5bb7bccf022aa20fef1e
+Author: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Date:   Tue Feb 4 13:26:58 2025 +0100
+
+    drm/xe/pf: Use an explicit check to see if the device has LMTT
+    
+    So far, the main condition for using LMTT has been to check that
+    the device is a discrete gfx. In addition, we have checked, using
+    assertions, that the device is PF.
+    Instead, let's add a dedicated function to check if the device
+    supports LMTT.
+    
+    v2:
+     - use xe_has_device_lmtt only when necessary - leave IS_DGFX for other
+       things related to LMEM provisioning
+    v3:
+     - remove IS_SRIOV_PF condition from xe_device_has_lmtt (Michal
+       Wajdeczko)
+     - keep IS_SRIOV_PF asserts in LMTT-related code (Michal Wajdeczko)
+    
+    Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Michał Winiarski <michal.winiarski@intel.com>
+    Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
++ /mt/dim checkpatch 6f1872a8c999fbc84c732a28aac31bc8ea783909 drm-intel
+2147366e4840 drm/xe/pf: Use an explicit check to see if the device has LMTT
 
 
