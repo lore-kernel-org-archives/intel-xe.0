@@ -4,187 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E46F5C02193
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 18:02:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C30FC02193
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 18:05:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF8B610E044;
-	Tue,  4 Feb 2025 18:02:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DD8110E044;
+	Tue,  4 Feb 2025 18:05:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="chUtoy8L";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="0NraPJc2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A18910E044;
- Tue,  4 Feb 2025 18:02:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738692170; x=1770228170;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=ChBhSu089Fl/I0g8voWhLN3F+ESp9mS8OT7or9iaQN4=;
- b=chUtoy8Lf4azjTgIpfTlv/Nbpp4PbuWHUfix+lbCAdGpB1sSMA56dxSR
- RgHlGrh9jR3oBTmFWb20IguplyrT7DwOsOtKd4eFqiE45N767nodNu1HA
- f3mrYvaydHUQMurhPiA3CfdY2xjqjR9tTxr0OH5Y2+QAchuG+TMED9s1f
- zk1GYO/FuvcWKnjRiyGaiC8PJQM24YZz4hRyl3HehPF/RcycewATHhxv/
- BJZON8g061ngzFRfw1rKT29fcww9uAryK7xBOompZywMgjkT+JtmmWoVB
- eMW+B7oVGdAkxLmsLwUfkE5I/GYKW/Bc7mQwdTAOKqDD24d2Zclsi7f+E g==;
-X-CSE-ConnectionGUID: 2w3C27AMR1+lmCC8lsMjhQ==
-X-CSE-MsgGUID: 1nbgDEJ4SMKTfEMOakh69g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="42073144"
-X-IronPort-AV: E=Sophos;i="6.13,259,1732608000"; d="scan'208";a="42073144"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 10:02:49 -0800
-X-CSE-ConnectionGUID: 9ts6WoFFSP+qQy4lTJBFUg==
-X-CSE-MsgGUID: xErJtHxRSs+Ll5hOVrsNVg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,259,1732608000"; d="scan'208";a="111208449"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 04 Feb 2025 10:02:34 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 4 Feb 2025 10:02:30 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Tue, 4 Feb 2025 10:02:30 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.41) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 4 Feb 2025 10:02:27 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gW8ARqH/hCc6amwfQnry8J21DScWv094l9kxqyZcnZoz7kuZXoWy7mmRySQS6RbUVBq88t57j2UXj0k3aAej+9JrEelNlW/PcBpOHCBZQkIbCLBexjtElksQMvGBskexqY6U9/UOMSfT/zAJOsgR+177TyNaL9P7vYfTmrI4m5Le0bz9cvbQRxtrJs8+gwY00VMBxNJIZR7D2iAjPsNCMWnOV9D3gONv1FpRCraiegJBjR3zdaMNvDcLiifeyhvVxnhSLHieqzpr4NDTXC8gGSI8LXbKnXJVSLiq8DiOOo40kawTcYrh8aFAFNIOJ/38qMD87RYwSaB9BqRuAP7FoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ChBhSu089Fl/I0g8voWhLN3F+ESp9mS8OT7or9iaQN4=;
- b=DhzBD2auRQCt3kBlmGi9z3LKmQVR/8SHAguA6gW9nT22/o4MBFCCa1833h87esKzk3Jz2wvDHs7RbxJzfWz3pDWqmcWBwJsqLkUx8KmIp4kb//GLx0MV/q3yVl3voSWoNbVVocMKpv0YIWkXa5mVYI9bOOXQFZafVek43062ofRm/aRj/orLC9c+csoJPZ0a5TORB18EwWT6Zv0TGswcqc5UtE2by1qnfTMNUllJUTBTtkdr1gIollEuKbnwbxZwuv6+h7hYo9RnRnDua9cm0utF/zQstbdSFP/lWlJj5PGBk1IgPsmwTtetp0clM5oCQ6vOIbXawJ/AHkGPdRUOZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM8PR11MB5655.namprd11.prod.outlook.com (2603:10b6:8:28::10) by
- DS7PR11MB6247.namprd11.prod.outlook.com (2603:10b6:8:98::22) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8398.24; Tue, 4 Feb 2025 18:02:25 +0000
-Received: from DM8PR11MB5655.namprd11.prod.outlook.com
- ([fe80::f6db:9044:ad81:33d9]) by DM8PR11MB5655.namprd11.prod.outlook.com
- ([fe80::f6db:9044:ad81:33d9%6]) with mapi id 15.20.8398.021; Tue, 4 Feb 2025
- 18:02:25 +0000
-From: "Saarinen, Jani" <jani.saarinen@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "Deak, Imre" <imre.deak@intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/i915/dp: Add support for DP UHBR SST DSC
-Thread-Topic: [PATCH] drm/i915/dp: Add support for DP UHBR SST DSC
-Thread-Index: AQHbdlXsmrp/PlWgbU+xM+RajBvT37M3VDYAgAAGAYCAABazUA==
-Date: Tue, 4 Feb 2025 18:02:25 +0000
-Message-ID: <DM8PR11MB5655FA7F16A60D9BB2FE2D01E0F42@DM8PR11MB5655.namprd11.prod.outlook.com>
-References: <20250203160834.2708027-1-jani.nikula@intel.com>
- <Z6I93PkEez_WdgOM@ideak-desk.fi.intel.com> <87frkt64uy.fsf@intel.com>
-In-Reply-To: <87frkt64uy.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR11MB5655:EE_|DS7PR11MB6247:EE_
-x-ms-office365-filtering-correlation-id: 0a6d6986-020a-4f71-0c35-08dd454614b6
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|38070700018|7053199007; 
-x-microsoft-antispam-message-info: =?utf-8?B?b1hHTFBIdUhaeWFtTGxtRFUrZnJMSUhPZ09hYWYwYXQvWHo0QjI2dVJrVEZR?=
- =?utf-8?B?S01jWlh5a3hzZ01BMk95dXpDbXRWZExMN2ZyOXd6SGNXaExVaDNDWVg0cVVW?=
- =?utf-8?B?VTBKTVhMS1RXS25RUWtOUXpZSm5mSUFOeGNRaFJub1RpZDZjUjRaUEh2UDRF?=
- =?utf-8?B?RXRQdS90clN1MWFMK0xNeDJDTnZweENJNVRBTUlWTVhhd3BqbVRBcW9QS0x5?=
- =?utf-8?B?VGZNNWJUd3g0dDhiK3pPWU5SUElnRVI5VGpWUjk5b0NqQmpCZGZ0bXoraFZ5?=
- =?utf-8?B?d2VlSDFMUEpzcHlvNW9mTFlyWUYzd1h5bFBPbHNLVmF4eVFGd0NXVUgxOHhQ?=
- =?utf-8?B?SzY4aFJ3d2dhdnp1dmhYeVJydlBYSTh5S3pheXExUG00cTlRUTZhSUVtWWNr?=
- =?utf-8?B?WmcyRkowU2pFN2ZUemZKOEN1alEzNzFrb0R6eW9MRHBoblg5SlVCTXJJMmN5?=
- =?utf-8?B?VHNRNUpVM3o0ZXhPelNFUzJhOHlqenVjWjd6TlpOdjJkbURBS3lCUyttNkZp?=
- =?utf-8?B?VXBhcnNXa0J6N3JpaTBMejR3Z3I4NVQxalg1cEZaL2R4ZnFoZ2dhUGowdWJC?=
- =?utf-8?B?TmQvaW1WY3c5OVhiZTQxQmZVOW0veVpHVCt2cDd5UnJ6eDBqT1dSelBmYndZ?=
- =?utf-8?B?ai84ZkVhajIvd3N5ZFltMHJWYVZQdHV0MFpObnRWeFpMWGh4S29UeGNyaWpj?=
- =?utf-8?B?cUZFOTJOcFBpRkF5eEVWQ2FmNzE2LzJFNFVOWC9BY0FoTGppZEdITGNDODJF?=
- =?utf-8?B?NXVRM3hEcDlVWHNGK3FvUkszZy9NTXhUV1RUQUNvRHYzWmY4RnBuMXh2ODAy?=
- =?utf-8?B?TzJXMmk0ZkRMMWxvS3dXWlNyNUtDNkJpZVIzQVZ0NnJDbDljR2RJRUwyaXo0?=
- =?utf-8?B?bkRmd29KZ2o5MGxCaVE4WTIxSVNCQ1QrVytMY1FuWDQxTWNNUVRFbHRxY2hT?=
- =?utf-8?B?T2tId3dQYjRPY2ErMXpTc2tidVpEZzRsNlVmZzJJSVdrek9CbVdRWmplaXpW?=
- =?utf-8?B?UHlrbytweWVxQVNqbU9vQXM3aTNnblUxRUpkVkZiYUxiMVpKRDZnMENFd3R0?=
- =?utf-8?B?T1NFRTV6a2laV0pCNFZ6MS9wbzFzV0FJbTdSZHRiY2EyaU10QVlXWjYyRVFh?=
- =?utf-8?B?OFc4M3NUWlVyOG12N3Y0RHoxZFROcGdPMWlmNFBSMVpGdG4yRGdYUUd2OW9u?=
- =?utf-8?B?bktjRGlpTFg2NmYrS0tJaW9JTkFPVG9aNVhsWkRPZHpXYzFJZkkzUkpQQlFv?=
- =?utf-8?B?QzY2SG1wVGZ3andsTGw3bjF2KzI4RUx6STc2RjFzaVZXNjM4UGJXWVhrQTNz?=
- =?utf-8?B?MlNjNTNabUpjNWNMK1M5QjczUGIrbVlGQ1ZmekxGZndaTHYyZlZZTHV6MGxO?=
- =?utf-8?B?ZFpMTE5zSDNwSnVFeE5XMzNzdUZYZVFDdnBCMmhxK25GcjllUVlwNTFGd3Nk?=
- =?utf-8?B?YzRld1R6RGNRUE9GSVo4RElJS2FFeW9xdzFHbXd5Y0I1ZUNWTUdOMm5JK3dw?=
- =?utf-8?B?cTAvcUtzYnIvWEhEUDRhYkE5YnVua0VVYTk0Z3VGOU1FL0l0c3E0VElobURz?=
- =?utf-8?B?QWp6Z2lPTVJURnFXM1d4N1ZHWEhySkMzNWMwS0J4cW5JU0dsUHhObldLYWdX?=
- =?utf-8?B?UHdJMmptZm1pMTB0bmV6QVUyQVA1V3hwWG11STlpQUlTTmtLc05aK1dBTlMz?=
- =?utf-8?B?bVUva3IxSWxoOWNacUg4RWY0V3J6UXREUjVHdDdRV3FnRFJGT3F1ZzEzcW1a?=
- =?utf-8?B?V0JRQnRTbitmR0k3Mi9abEdmVmVFcGRIUWxYbFoxTVJxRG5GdVdpdDU2RXFH?=
- =?utf-8?B?bzJ2MkhNbEMxTi9UbFhiWHJUQndMTTgwZHhwWjNySTdCc1JiZy85b0xMUXI2?=
- =?utf-8?B?bnpTNExTUmhaaVdFUlAzdnoxc2JTcFcrVkRmRk1GZ2hhL3oyd1hRaG5namls?=
- =?utf-8?Q?h+vqKUqZoDID+aej1lXDv1z8hbDEEW4J?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR11MB5655.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700018)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?V0NWbGlZZGhVU1VtbnFtYlJVQk1GRHZmWjlJbjJCUEpCRVBUVnhxL1JaVzha?=
- =?utf-8?B?MTN6R1ZORUtVaW5SUlVpSUU4RUhxTnhvbklaM0VZWVRqYnZYaFRTdXdUU0ZQ?=
- =?utf-8?B?Z21QUVVITE5UQithT1NHRlhwZ1ZIejZPL3Z3c1l5U1JsR0xaMGxRMkpIQ05B?=
- =?utf-8?B?VXZ3bkd3ZFFsSThmdWlTQmR0cWkrY1pJRC8ybk5tQXlIcmxLKzZrK3d6SXpF?=
- =?utf-8?B?aVFOcUdsRE5vZjNYQ0dVVzVldUNhVk9BckFTak94dTZlelh5aXNkdmdYcXdP?=
- =?utf-8?B?K3Baem8vTnRGcG1SM1JjQ2lyenUxanRJSnZJb1JBbFU5bEh1MUM1RDA5TUpR?=
- =?utf-8?B?RkxQS1QyeTAzci80M3h3aGpZUE4zNUtLSCtTVWFwUGZoaW4weVRDZ3VXZThZ?=
- =?utf-8?B?eVN1L0hORTliZ2lPTGpYN251bkRlcDU0eDZrVS94YlhJNElXcWdEV0loOEYz?=
- =?utf-8?B?ODhCM3BnQSsrTStTVlNMS0tTSndyNmR4RUU5NGFwT3BKRHJMZXBXQldIbktj?=
- =?utf-8?B?TlBVQlVmTVp1YXJTdmtnb1Y1bTdYMFZ6WVBieVdJNnhkdjVSVFBQRG9kVG1r?=
- =?utf-8?B?ekhUSGE1VTdTM2twUmMrOXhaWUFRRi9jK0VjQ1RMbU1qOXo5SG1TUWhqTXhI?=
- =?utf-8?B?azNWZjBCUDJDamlVU3E4dUpDTjVsVWZITW54RlVZYWx6VTFXVWh5ZlBnZFor?=
- =?utf-8?B?aGVoaFUrSjdzZisyYU45N1g2dHZrcHFIM1FRQUlDOWZXUXdWNDFXTGtKTjZl?=
- =?utf-8?B?QTZPNThUU004UlIvRnlwVEtoSzNxYS9RTEVBV1VPYXRKb2FQbUFtczIyeVNJ?=
- =?utf-8?B?RlVmTE9CVmRqTld5Q2crWlI5aDE4VXJDdkc5SG1XenhFUEpsVUNDZis3TzBk?=
- =?utf-8?B?QkRNZzM2VGZUUTBNV2hXNGFMRVo4bjljaGtFa3lnSDhsakRLeW5OcWhrRWJo?=
- =?utf-8?B?bUpuZWZtNzc2dEJMTVM3aWwyaHJZWmVGSk1FZXBJQkM4UjNIWVJoMHZvbnBl?=
- =?utf-8?B?RzVocnk1c1dOUm1VdTV5S3IvQVRTMlBuUnpRZFBVeWNBZkxkanAyOVA5Mmc4?=
- =?utf-8?B?UXhzVWh4WmdIcjVjV0RHekdma3lERmJCZmU3TDZHY2pqTS9oRG9mM2szcE1v?=
- =?utf-8?B?S2duVThXQ2pKRC80cHVac3FsS2Z6VXJabVhSUVNXbmFlUnhvejFWcVRkK3VP?=
- =?utf-8?B?M3JGaU9WQWJrRDFobGJLQTFLWDdhOWlMS2hpRHdxcVJrV2dqNlQvcGNqSGZu?=
- =?utf-8?B?VGlWMUczRk15aUZFWEFIaXE3Q0ZDQkNzTVpVdlZ3SXU2a0F4bEUwTzFpUkRn?=
- =?utf-8?B?ZVl6NTNTOVA4c2dZbEVuU1BySFhWQkZyUEkzM0lIWlJXREtxVDF3S2dqWVRU?=
- =?utf-8?B?UVU5M0dBcGhKVzJkMjFQWUN6Q1JHcmRtUW9YMm9Odkc2Y2ZDbm9GTDd0dDhu?=
- =?utf-8?B?Y0tDZVBIWUhzYVlTTFFycUdXMEdqQWJBNzF5dGxyaG5zTG9GNG56Vks1enF5?=
- =?utf-8?B?VGJ5aHBXVHV6dW8vQXFYOE9pcFAxMkdBWFdKWmNtNTRFYUpRaXV6SW5WZVRa?=
- =?utf-8?B?WjdDbGw4WHYvS2NLQVdReUswMmswOVNhRWJQS0VJNjJhbW4raWl2UkFVeXVT?=
- =?utf-8?B?S21RRVhzN3BEeUJlYjVXYzZ6a2dheHRlUE5LZHVXa1lEcDl5VGExZFJDUERj?=
- =?utf-8?B?MUU5RzF3b0FNR3RLVTJwRk1ZNWFnM1AvVkI4S2VIR2RUY3RLNHNkSlBqa0gx?=
- =?utf-8?B?aUdxZEdwZGpkbWg3V0hOSUNKMnV5ZWhhLzlGTldEUk1hNUorQ1NFTjhmTW1O?=
- =?utf-8?B?Yk0vcWJHWWc3Mis0cnBIWng1WDB6S1pNQWQyVmViR052bFZlTDhzSkVHd0I5?=
- =?utf-8?B?L3VnSFpES3Q0Sk95czBCeTVTQW5FekdBOEtPMnlybkE2WFo0TGN4ZE54OWpt?=
- =?utf-8?B?alFUOUYxOUtlQmRra3hnUlFoYnFvck9JTUE3V1dLNXphck5QVjhFa0RHNEkv?=
- =?utf-8?B?cmg4QXBhbzBMeUVXaGVIKzVFK0ZFcndYemd5bGZGbHVBT3g1bHVyRUVTYTVz?=
- =?utf-8?B?NWVOSEVKQUVSUGc1TzdSYTRvenl5dG1PR0M1OGp2Wm5zZlZCMmNiQXJLUlg3?=
- =?utf-8?Q?VP4qpfCao5ft4gcHlNka2jFvs?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
+ [209.85.128.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D96D10E044
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Feb 2025 18:05:21 +0000 (UTC)
+Received: by mail-wm1-f42.google.com with SMTP id
+ 5b1f17b1804b1-43618283dedso60393305e9.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 04 Feb 2025 10:05:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1738692320; x=1739297120;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=PBd8EJExzBOec022kfM5YG4kVN+TfRBjcrl/luxeCxk=;
+ b=0NraPJc2vyRQ+HfQuYdpqxUG6BWybUzMl+FWVuw5erON6uoAJH0rKy9BH+4EbcHmib
+ dhGNPQ1/ry9Awx41H66APF2W0baIZ0dqsyytCuVmreh5gPT3ilNPtKmwxVIWN+vSwsnn
+ LVRjGotRZISlyslpGQvquQ7oHOTv4zrk7XJjtNf3ERdPlG3D7dGFbBGXmA5BVtHM3qwh
+ 0F8AuQfp7dgwkO3YRd8rJeEIYsHcE9guJuMCZzZpB8BzcxkRfA9H8FY9au8FdEA2eyXn
+ GgesYF0RGREB71ocV21lLHcpIWV4O6FbamdkMw//O462hmPpaTpd9u/gs24TzrjpDFn0
+ nx+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1738692320; x=1739297120;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=PBd8EJExzBOec022kfM5YG4kVN+TfRBjcrl/luxeCxk=;
+ b=Tt0Zy0AOE62plPvh6CdlafqZ5V+FutUjZsyNcroEUumPRY/ZHpatFjrbyXAMrb38Oj
+ hzj7F9lbZrsxMR7tzhBXkGdOVzfTlsKB0s2v+4AikcKYpmnpELSXa773Tog0O+nv67FT
+ XlFsjyRNK/R7FLAQljb6Q1HuRUbwF38Ajo7HzAJBER8T9Q4z34vtgM31EYOnuPNvAM4G
+ OpoC0ZKWRCnQUzpkpD3hA5ArB+Po5Ql9DaaO7iyvgwraybG6Bk9bEbyq+Xtbcy1OgNjZ
+ 6Y9wT+a8Gqc7pTzc84lOWjaaM5CF0KI/GxfBMGuH8jZ2l369vNvTOY+6xmCH7xbPmEKo
+ Hnlw==
+X-Gm-Message-State: AOJu0YzoqpFTeI3kgSRx7c0RBTLYZ5Z6Q1gc874H9Q3D6gYcZ0MRLRhj
+ iA1zDGrXELudiQsyzYRjbz5psn1s+/LcVkmYyxtOKSS6nVuECHZUGrHvQC1EPoAtws9QtLnv1Ul
+ n
+X-Gm-Gg: ASbGnctEJCtt6BDA0gGe2jAYLM2dtNx/yi+B0+bHnYQPt488iQRK43zupfgh24ubn/s
+ 6WBSE+2jjH7Y+jyD8NTSNLOfjbkHAMoydNawvM97+OxnFsYthzhgnsrfU/8DWbPaKgfPsg8JcY9
+ zOl/Ug/6VUdf7geeJVEzGZSr3CKS6uTxYzwoIUYKJlREuE/iK0l5kpQq2hAn2+LY1JdCy0Kc6ki
+ sA2j0xwkVRuYVCQrAIJbYUcjHV3e0aiHm/7XHH4CR20xIgcgxO7zlCKTNIPBbyhWC9Q7wuJHDuG
+ xu87pfnopr4n91TgsRrE+Jh15VTfVY4=
+X-Google-Smtp-Source: AGHT+IGSXEXPnahGlXzJB4mBX5Wn6wCY7nFJDHsUU33V+o7re7mub7Bk0OcwguYHuf26yD21Xo+ImQ==
+X-Received: by 2002:a05:600c:4e07:b0:438:a20b:6a62 with SMTP id
+ 5b1f17b1804b1-438dc4213c2mr200629465e9.28.1738692318917; 
+ Tue, 04 Feb 2025 10:05:18 -0800 (PST)
+Received: from [192.168.0.101] ([90.241.98.187])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-438dcc2c4ddsm230789325e9.17.2025.02.04.10.05.18
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 04 Feb 2025 10:05:18 -0800 (PST)
+Message-ID: <bfe83139-0d16-4dcb-b3cc-d43c3d365e89@ursulin.net>
+Date: Tue, 4 Feb 2025 18:05:17 +0000
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5655.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0a6d6986-020a-4f71-0c35-08dd454614b6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Feb 2025 18:02:25.3540 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: CTHikuTrpf02WTH5c+SGsfqY2kQfRMAAe/O60l87nlyUwMihATKyb4Xhk1rdNtGbhdLQIEYz84nlZGSyCQzBWw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6247
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/xe/display: Unify display page table mapping
+To: =?UTF-8?Q?Juha-Pekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
+Cc: intel-xe@lists.freedesktop.org
+References: <20250114180403.896587-1-juhapekka.heikkila@gmail.com>
+ <20250114180403.896587-2-juhapekka.heikkila@gmail.com>
+ <64decd28-e020-4a53-9766-7d57a5137c86@ursulin.net>
+ <221a2230-1fff-4f9c-9be4-7a2ef4db2776@ursulin.net>
+ <CAJ=qYWTotU_P6X-HOtkBCNzG4hEcw-=Ch5ymHYyBh0POa8HUQw@mail.gmail.com>
+ <ca83eabe-d2cf-4ee9-a51d-82809d07a447@ursulin.net>
+ <CAJ=qYWSUabag3Xcw-zyAPjtFbxqyyfHSP=72tEtV+MZobiEETw@mail.gmail.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <CAJ=qYWSUabag3Xcw-zyAPjtFbxqyyfHSP=72tEtV+MZobiEETw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -199,66 +94,306 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-SGksIA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEludGVsLWdmeCA8
-aW50ZWwtZ2Z4LWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPiBPbiBCZWhhbGYgT2YgSmFu
-aQ0KPiBOaWt1bGENCj4gU2VudDogVHVlc2RheSwgNCBGZWJydWFyeSAyMDI1IDE4LjQwDQo+IFRv
-OiBEZWFrLCBJbXJlIDxpbXJlLmRlYWtAaW50ZWwuY29tPg0KPiBDYzogaW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZzsgaW50ZWwteGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IFN1Ympl
-Y3Q6IFJlOiBbUEFUQ0hdIGRybS9pOTE1L2RwOiBBZGQgc3VwcG9ydCBmb3IgRFAgVUhCUiBTU1Qg
-RFNDDQo+IA0KPiBPbiBUdWUsIDA0IEZlYiAyMDI1LCBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRl
-bC5jb20+IHdyb3RlOg0KPiA+IE9uIE1vbiwgRmViIDAzLCAyMDI1IGF0IDA2OjA4OjM0UE0gKzAy
-MDAsIEphbmkgTmlrdWxhIHdyb3RlOg0KPiA+PiBEcm9wIHRoZSBVSEJSIGxpbWl0YXRpb24gZnJv
-bSBEUCBTU1QgRFNDLCBhbmQgaGFuZGxlIFNTVCBEU0MNCj4gPj4gYmFuZHdpZHRoIGNvbXB1dGF0
-aW9uIGZvciBVSEJSIHVzaW5nDQo+IGludGVsX2RwX210cF90dV9jb21wdXRlX2NvbmZpZygpLg0K
-PiA+Pg0KPiA+PiBDYzogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPg0KPiA+PiBTaWdu
-ZWQtb2ZmLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPg0KPiA+DQo+ID4g
-UmV2aWV3ZWQtYnk6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4NCj4gPg0KPiA+IFdp
-dGggdGhlIERQVCBicHAgYW5kIGJwcF9zdGVwIGZpeGVzIG9uIHRoZSBsaXN0LCB0aGlzIHNlZW1z
-IHRvIHdvcmsgb24NCj4gPiBhDQo+ID4gRFAyLjAgZG9jayBvbiAoU1NUKSBVSEJSIGxpbmsvRFND
-IG1vZGUuDQo+IA0KPiBcby8NCj4gDQo+IFRoYW5rcyBmb3IgdGhlIHJldmlldyBhbmQgdGVzdGlu
-ZyENCkF3ZXNvbWUsIHRoYW5rcyBKYW5pIE4gYW5kIEltcmUhIA0KDQo+ID4NCkJyLA0KSmFuaQ0K
-PiA+PiAtLS0NCj4gPj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyB8
-IDM1DQo+ID4+ICsrKysrKysrKysrKysrKysrKystLS0tLS0NCj4gPj4gIDEgZmlsZSBjaGFuZ2Vk
-LCAyNyBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygtKQ0KPiA+Pg0KPiA+PiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jDQo+ID4+IGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jDQo+ID4+IGluZGV4IGNjNmFiYTM1M2Mx
-MS4uZWI4ZjY4MDYxNjZjIDEwMDY0NA0KPiA+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RwLmMNCj4gPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kcC5jDQo+ID4+IEBAIC0xOTU4LDE1ICsxOTU4LDM3IEBAIHN0YXRpYyBpbnQgZHNj
-X2NvbXB1dGVfbGlua19jb25maWcoc3RydWN0DQo+IGludGVsX2RwICppbnRlbF9kcCwNCj4gPj4g
-IAkJZm9yIChsYW5lX2NvdW50ID0gbGltaXRzLT5taW5fbGFuZV9jb3VudDsNCj4gPj4gIAkJICAg
-ICBsYW5lX2NvdW50IDw9IGxpbWl0cy0+bWF4X2xhbmVfY291bnQ7DQo+ID4+ICAJCSAgICAgbGFu
-ZV9jb3VudCA8PD0gMSkgew0KPiA+PiAtCQkJaWYgKCFpc19id19zdWZmaWNpZW50X2Zvcl9kc2Nf
-Y29uZmlnKGRzY19icHBfeDE2LA0KPiBsaW5rX3JhdGUsDQo+ID4+IC0JCQkJCQkJICAgICBsYW5l
-X2NvdW50LA0KPiBhZGp1c3RlZF9tb2RlLT5jbG9jaywNCj4gPj4gLQkJCQkJCQkgICAgIHBpcGVf
-Y29uZmlnLQ0KPiA+b3V0cHV0X2Zvcm1hdCwNCj4gPj4gLQkJCQkJCQkgICAgIHRpbWVzbG90cykp
-DQo+ID4+IC0JCQkJY29udGludWU7DQo+ID4+DQo+ID4+ICsJCQkvKg0KPiA+PiArCQkJICogRklY
-TUU6IGludGVsX2RwX210cF90dV9jb21wdXRlX2NvbmZpZygpDQo+IHJlcXVpcmVzDQo+ID4+ICsJ
-CQkgKiAtPmxhbmVfY291bnQgYW5kIC0+cG9ydF9jbG9jayBzZXQgYmVmb3JlIHdlIGtub3cNCj4g
-Pj4gKwkJCSAqIHRoZXknbGwgd29yay4gSWYgd2UgZW5kIHVwIGZhaWxpbmcgYWx0b2dldGhlciwN
-Cj4gPj4gKwkJCSAqIHRoZXknbGwgcmVtYWluIGluIGNydGMgc3RhdGUuIFRoaXMgc2hvdWxkbid0
-IG1hdHRlciwNCj4gPj4gKwkJCSAqIGFzIHdlJ2QgdGhlbiBiYWlsIG91dCBmcm9tIGNvbXB1dGUg
-Y29uZmlnLCBidXQgaXQncw0KPiA+PiArCQkJICoganVzdCB1Z2x5Lg0KPiA+PiArCQkJICovDQo+
-ID4+ICAJCQlwaXBlX2NvbmZpZy0+bGFuZV9jb3VudCA9IGxhbmVfY291bnQ7DQo+ID4+ICAJCQlw
-aXBlX2NvbmZpZy0+cG9ydF9jbG9jayA9IGxpbmtfcmF0ZTsNCj4gPj4NCj4gPj4gKwkJCWlmIChk
-cm1fZHBfaXNfdWhicl9yYXRlKGxpbmtfcmF0ZSkpIHsNCj4gPj4gKwkJCQlpbnQgcmV0Ow0KPiA+
-PiArDQo+ID4+ICsJCQkJcmV0ID0NCj4gaW50ZWxfZHBfbXRwX3R1X2NvbXB1dGVfY29uZmlnKGlu
-dGVsX2RwLA0KPiA+PiArDQo+IHBpcGVfY29uZmlnLA0KPiA+PiArCQkJCQkJCQkgICAgIGNvbm5f
-c3RhdGUsDQo+ID4+ICsNCj4gZHNjX2JwcF94MTYsDQo+ID4+ICsNCj4gZHNjX2JwcF94MTYsDQo+
-ID4+ICsJCQkJCQkJCSAgICAgMCwgdHJ1ZSk7DQo+ID4+ICsJCQkJaWYgKHJldCkNCj4gPj4gKwkJ
-CQkJY29udGludWU7DQo+ID4+ICsJCQl9IGVsc2Ugew0KPiA+PiArCQkJCWlmDQo+ICghaXNfYndf
-c3VmZmljaWVudF9mb3JfZHNjX2NvbmZpZyhkc2NfYnBwX3gxNiwgbGlua19yYXRlLA0KPiA+PiAr
-CQkJCQkJCQkgICAgIGxhbmVfY291bnQsDQo+IGFkanVzdGVkX21vZGUtPmNsb2NrLA0KPiA+PiAr
-DQo+IHBpcGVfY29uZmlnLT5vdXRwdXRfZm9ybWF0LA0KPiA+PiArCQkJCQkJCQkgICAgIHRpbWVz
-bG90cykpDQo+ID4+ICsJCQkJCWNvbnRpbnVlOw0KPiA+PiArCQkJfQ0KPiA+PiArDQo+ID4+ICAJ
-CQlyZXR1cm4gMDsNCj4gPj4gIAkJfQ0KPiA+PiAgCX0NCj4gPj4gQEAgLTI0OTMsOSArMjUxNSw2
-IEBAIGludGVsX2RwX2NvbXB1dGVfY29uZmlnX2xpbWl0cyhzdHJ1Y3QgaW50ZWxfZHANCj4gKmlu
-dGVsX2RwLA0KPiA+PiAgCWxpbWl0cy0+bWluX3JhdGUgPSBpbnRlbF9kcF9taW5fbGlua19yYXRl
-KGludGVsX2RwKTsNCj4gPj4gIAlsaW1pdHMtPm1heF9yYXRlID0gaW50ZWxfZHBfbWF4X2xpbmtf
-cmF0ZShpbnRlbF9kcCk7DQo+ID4+DQo+ID4+IC0JLyogRklYTUUgMTI4Yi8xMzJiIFNTVCtEU0Mg
-c3VwcG9ydCBtaXNzaW5nICovDQo+ID4+IC0JaWYgKCFpc19tc3QgJiYgZHNjKQ0KPiA+PiAtCQls
-aW1pdHMtPm1heF9yYXRlID0gbWluKGxpbWl0cy0+bWF4X3JhdGUsIDgxMDAwMCk7DQo+ID4+ICAJ
-bGltaXRzLT5taW5fcmF0ZSA9IG1pbihsaW1pdHMtPm1pbl9yYXRlLCBsaW1pdHMtPm1heF9yYXRl
-KTsNCj4gPj4NCj4gPj4gIAlsaW1pdHMtPm1pbl9sYW5lX2NvdW50ID0gaW50ZWxfZHBfbWluX2xh
-bmVfY291bnQoaW50ZWxfZHApOw0KPiA+PiAtLQ0KPiA+PiAyLjM5LjUNCj4gPj4NCj4gDQo+IC0t
-DQo+IEphbmkgTmlrdWxhLCBJbnRlbA0K
+
+On 04/02/2025 13:11, Juha-Pekka Heikkilä wrote:
+> On Tue, Feb 4, 2025 at 2:31 PM Tvrtko Ursulin <tursulin@ursulin.net> wrote:
+>>
+>>
+>> On 04/02/2025 12:10, Juha-Pekka Heikkilä wrote:
+>>> On Tue, Feb 4, 2025 at 1:38 PM Tvrtko Ursulin <tursulin@ursulin.net> wrote:
+>>>>
+>>>>
+>>>> On 04/02/2025 11:25, Tvrtko Ursulin wrote:
+>>>>>
+>>>>> On 14/01/2025 18:04, Juha-Pekka Heikkila wrote:
+>>>>>> Unify writing of remapped and straight DPTs. Take out writing of
+>>>>>> rotated DPT since Xe doesn't support any platform that does
+>>>>>> 90 degree rotated framebuffers.
+>>>>>
+>>>>> Consider giving my series which fixes AuxCSS a look instead? Given there
+>>>>> is external interest to have all that work on ADL-P. I could respin with
+>>>>> rotated cleaned up in a similar fashion I did for remapped. Maintenance
+>>>>> cost is minimal since it is all very contained.
+>>>>
+>>>> Oh ADL-P does not support hardware rotation. I missed the fact it is
+>>>> display version 13..
+>>>>
+>>>> But the point regarding changes to remapping code are still valid I
+>>>> think, since to suport aux plane the refactoring from this patch looks
+>>>> in the wrong direction.
+>>>>
+>>>
+>>> Yea, I kinda agree here with Tvrtko. I did earlier mention this to
+>>> JSaa. That aux thing will need to be checked.
+>>
+>> Ah cool, fingers crossed.
+>>
+>>> Though, how far are we with your set Tvrtko? It did seem lot kms_ccs
+>>> tests failed.
+>>> https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v1/shards-all.html?testfilter=kms_ccs.*crc.*gen12&hosts=adlp
+>>>
+>>> Did you check you had compression when you had clean image on your
+>>> machine? (aux surface was not zeroes) Those failures on my link ci are
+>>> with failing crc which mean the picture on screen was not correct.
+>>
+>> I was looking into this just this morning and posted some
+>> half-conclusions here:
+>>
+>> https://lore.kernel.org/intel-xe/eb3a3729-e8ef-4868-b8ff-b6efd66ef4fa@igalia.com/T/#u
+>>
+>> When you say test with a clear image that I did not. I smoke tested it
+>> in desktop usage and looked at kms_flip_tiling which visually looks
+>> correct but as the above msg-id talks about, something is potentially
+>> fishy with crc collections and/or vblank handling. Since display isn't
+>> my area of expertise that is as far as I could get.
+> 
+> Those test explicitly testing for flipping and such may show there
+> something interesting but imo unrelated to this situation (for now).
+> 
+> If you have adlp machine where you see the screen you could try those
+> kms_ccs crc tests, you can run the tests in interactive mode with
+> '--i' parameter where the test always stop at commit so you'll see
+> what's there on screen. On kms_ccs I would not expect any vblank/other
+> issues to interfere crc because kms_ccs uses
+> igt_pipe_crc_collect_crc() to get the crc, what this mean is once the
+> test image is on screen crc counting is started, collected one crc and
+> crc counting is stopped .. to get the first crc this way few vblanks
+> have passed already since getting image on screen. Then on kms_ccs
+> test there is -c flag which should check there is something written on
+> aux surface. Getting these to work reliably I think is the first
+> thing...and on that subject I'd at first concentrate just one gen12rc
+> ccs, not ccs-cc and not mc ccs. I'd get these results by myself but
+> I'm bit of recovering at home and don't have needed hw in my hands.
+
+kms_crc with and without -c are both a complete pass.
+
+> On that lore.kernel.org thread where you mention "Bad CRC also varies
+> run to run, while visually things look fine to me on screen. Also a
+> delay before collecting the crc seems to improve things." could be
+> quite much anything, my first quess with those always is some
+> alignment missed somewhere.
+
+Going back to kms_flip_tiling it is hard to figure out what's up. Good 
+news is that I have spotted some visual glitching but it mostly only 
+happens withing the first few frames after commit of the reference frame.
+
+For instance when I add a loop such as:
+
+diff --git a/tests/intel/kms_flip_tiling.c b/tests/intel/kms_flip_tiling.c
+index e937c21716ad..5538fe88c5a0 100644
+--- a/tests/intel/kms_flip_tiling.c
++++ b/tests/intel/kms_flip_tiling.c
+@@ -131,7 +131,10 @@ test_flip_tiling(data_t *data, enum pipe pipe, 
+igt_output_t *output, uint64_t mo
+                       "commit failed with " IGT_MODIFIER_FMT "\n",
+                       IGT_MODIFIER_ARGS(modifier[1]));
+         pipe_crc_new(data, pipe);
+-       igt_pipe_crc_get_current(data->drm_fd, data->pipe_crc, 
+&reference_crc);
++       ret = 20;
++       while (ret--)
++               igt_pipe_crc_get_current(data->drm_fd, data->pipe_crc,
++                                        &reference_crc);
+
+         /* Commit the first fb. */
+         igt_plane_set_fb(primary, &data->fb[0]);
+
+All tests pass.
+
+Could this be interacting with some other display feature like fbc or psr?
+
+There is also something interesting with CRC if I put a sleep into that 
+loop. Apparently something gets powered off and CRC garbage such as 
+0xffffffff starts appearing. But only if there is a sleep for like 
+250ms. A busy loop can go for 3000 frames and not hit that.
+
+Regards,
+
+Tvrtko
+
+>>>>>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>>>>>> ---
+>>>>>>     drivers/gpu/drm/xe/display/xe_fb_pin.c | 141 +++++++++----------------
+>>>>>>     1 file changed, 48 insertions(+), 93 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>>>>> b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>>>>> index c28885316986..70322f28eee5 100644
+>>>>>> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>>>>> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>>>>> @@ -14,66 +14,44 @@
+>>>>>>     #include "xe_ggtt.h"
+>>>>>>     #include "xe_pm.h"
+>>>>>> -static void
+>>>>>> -write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32
+>>>>>> *dpt_ofs, u32 bo_ofs,
+>>>>>> -          u32 width, u32 height, u32 src_stride, u32 dst_stride)
+>>>>>> +static void encode_and_write_pte(struct xe_bo *bo, struct iosys_map
+>>>>>> *map,
+>>>>>> +                 u32 *ofs, u32 src_idx, struct xe_device *xe)
+>>>>>>     {
+>>>>>> -    struct xe_device *xe = xe_bo_device(bo);
+>>>>>>         struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+>>>>>> -    u32 column, row;
+>>>>>> -
+>>>>>> -    /* TODO: Maybe rewrite so we can traverse the bo addresses
+>>>>>> sequentially,
+>>>>>> -     * by writing dpt/ggtt in a different order?
+>>>>>> -     */
+>>>>>> -
+>>>>>> -    for (column = 0; column < width; column++) {
+>>>>>> -        u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
+>>>>>> -
+>>>>>> -        for (row = 0; row < height; row++) {
+>>>>>> -            u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx *
+>>>>>> XE_PAGE_SIZE,
+>>>>>> -                                  xe->pat.idx[XE_CACHE_NONE]);
+>>>>>> -
+>>>>>> -            iosys_map_wr(map, *dpt_ofs, u64, pte);
+>>>>>> -            *dpt_ofs += 8;
+>>>>>> -            src_idx -= src_stride;
+>>>>>> -        }
+>>>>>> -
+>>>>>> -        /* The DE ignores the PTEs for the padding tiles */
+>>>>>> -        *dpt_ofs += (dst_stride - height) * 8;
+>>>>>> -    }
+>>>>>> -
+>>>>>> -    /* Align to next page */
+>>>>>> -    *dpt_ofs = ALIGN(*dpt_ofs, 4096);
+>>>>>> +    u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
+>>>>>> +                          xe->pat.idx[XE_CACHE_NONE]);
+>>>>>> +    iosys_map_wr(map, *ofs, u64, pte);
+>>>>>> +    *ofs += 8;
+>>>>>>     }
+>>>>>> -static void
+>>>>>> -write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32
+>>>>>> *dpt_ofs,
+>>>>>> -           u32 bo_ofs, u32 width, u32 height, u32 src_stride,
+>>>>>> -           u32 dst_stride)
+>>>>>> +static void write_dpt(struct xe_bo *bo, struct iosys_map *map, u32
+>>>>>> *dpt_ofs,
+>>>>>> +              const struct intel_remapped_plane_info *plane,
+>>>>>> +              enum i915_gtt_view_type type)
+>>>>>>     {
+>>>>>>         struct xe_device *xe = xe_bo_device(bo);
+>>>>>> -    struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+>>>>>> -    u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index)
+>>>>>> -        = ggtt->pt_ops->pte_encode_bo;
+>>>>>> -    u32 column, row;
+>>>>>> -
+>>>>>> -    for (row = 0; row < height; row++) {
+>>>>>> -        u32 src_idx = src_stride * row + bo_ofs;
+>>>>>> -
+>>>>>> -        for (column = 0; column < width; column++) {
+>>>>>> -            iosys_map_wr(map, *dpt_ofs, u64,
+>>>>>> -                     pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
+>>>>>> -                     xe->pat.idx[XE_CACHE_NONE]));
+>>>>>> -
+>>>>>> -            *dpt_ofs += 8;
+>>>>>> -            src_idx++;
+>>>>>> +    const u32 dpt_even = (plane->dst_stride - plane->width) * 8;
+>>>>>> +    const u32 dest_width = plane->width;
+>>>>>> +    const u32 dest_height = plane->height;
+>>>>>> +    u32 src_idx;
+>>>>>> +
+>>>>>> +    for (u32 row = 0; row < dest_height; ++row) {
+>>>>>> +        for (u32 column = 0; column < dest_width; ++column) {
+>>>>>> +            switch (type) {
+>>>>>> +            case I915_GTT_VIEW_NORMAL:
+>>>>>> +                src_idx = plane->offset + column;
+>>>>>> +                break;
+>>>>>> +            case I915_GTT_VIEW_REMAPPED:
+>>>>>> +                src_idx = plane->offset +
+>>>>>> +                    row * plane->src_stride + column;
+>>>>>> +                break;
+>>>>>> +            default:
+>>>>>> +                WARN(1, "Unsupported GTT view type: %d", type);
+>>>>>> +                return;
+>>>>>> +            }
+>>>>>> +            encode_and_write_pte(bo, map, dpt_ofs, src_idx, xe);
+>>>>>>             }
+>>>>>> -
+>>>>>> -        /* The DE ignores the PTEs for the padding tiles */
+>>>>>> -        *dpt_ofs += (dst_stride - width) * 8;
+>>>>>> +        *dpt_ofs += dpt_even;
+>>>>>>         }
+>>>>>> -
+>>>>>> -    /* Align to next page */
+>>>>>>         *dpt_ofs = ALIGN(*dpt_ofs, 4096);
+>>>>>>     }
+>>>>>> @@ -125,59 +103,36 @@ static int __xe_pin_fb_vma_dpt(const struct
+>>>>>> intel_framebuffer *fb,
+>>>>>>     {
+>>>>>>         struct xe_device *xe = to_xe_device(fb->base.dev);
+>>>>>>         struct xe_tile *tile0 = xe_device_get_root_tile(xe);
+>>>>>> -    struct xe_ggtt *ggtt = tile0->mem.ggtt;
+>>>>>>         struct drm_gem_object *obj = intel_fb_bo(&fb->base);
+>>>>>>         struct xe_bo *bo = gem_to_xe_bo(obj), *dpt;
+>>>>>>         u32 dpt_size, size = bo->ttm.base.size;
+>>>>>> +    const struct intel_remapped_plane_info *plane;
+>>>>>> +    u32 i, plane_count, dpt_ofs = 0;
+>>>>>> +    struct intel_remapped_plane_info normal_plane;
+>>>>>> -    if (view->type == I915_GTT_VIEW_NORMAL)
+>>>>>> +    if (view->type == I915_GTT_VIEW_NORMAL) {
+>>>>>>             dpt_size = ALIGN(size / XE_PAGE_SIZE * 8, XE_PAGE_SIZE);
+>>>>>> -    else if (view->type == I915_GTT_VIEW_REMAPPED)
+>>>>>> -        dpt_size =
+>>>>>> ALIGN(intel_remapped_info_size(&fb->remapped_view.gtt.remapped) * 8,
+>>>>>> -                 XE_PAGE_SIZE);
+>>>>>> -    else
+>>>>>> -        /* display uses 4K tiles instead of bytes here, convert to
+>>>>>> entries.. */
+>>>>>> -        dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
+>>>>>> +        normal_plane.offset = 0;
+>>>>>> +        normal_plane.width = size / XE_PAGE_SIZE;
+>>>>>> +        normal_plane.height = 1;
+>>>>>> +        normal_plane.src_stride = size / XE_PAGE_SIZE;
+>>>>>> +        normal_plane.dst_stride = size / XE_PAGE_SIZE;
+>>>>>> +        plane = &normal_plane;
+>>>>>> +        plane_count = 1;
+>>>>>> +    } else {
+>>>>>> +        dpt_size = ALIGN(intel_remapped_info_size(&view->remapped) * 8,
+>>>>>>                      XE_PAGE_SIZE);
+>>>>>> +        plane = view->remapped.plane;
+>>>>>> +        plane_count = ARRAY_SIZE(view->remapped.plane);
+>>>>>> +    }
+>>>>>>         dpt = xe_alloc_dpt_bo(xe, tile0, dpt_size, physical_alignment);
+>>>>>>         if (IS_ERR(dpt))
+>>>>>>             return PTR_ERR(dpt);
+>>>>>> -    if (view->type == I915_GTT_VIEW_NORMAL) {
+>>>>>> -        u32 x;
+>>>>>> -
+>>>>>> -        for (x = 0; x < size / XE_PAGE_SIZE; x++) {
+>>>>>> -            u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x * XE_PAGE_SIZE,
+>>>>>> -                                  xe->pat.idx[XE_CACHE_NONE]);
+>>>>>> -
+>>>>>> -            iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
+>>>>>> -        }
+>>>>>> -    } else if (view->type == I915_GTT_VIEW_REMAPPED) {
+>>>>>> -        const struct intel_remapped_info *remap_info = &view->remapped;
+>>>>>> -        u32 i, dpt_ofs = 0;
+>>>>>> -
+>>>>>> -        for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++)
+>>>>>> -            write_dpt_remapped(bo, &dpt->vmap, &dpt_ofs,
+>>>>>> -                       remap_info->plane[i].offset,
+>>>>>> -                       remap_info->plane[i].width,
+>>>>>> -                       remap_info->plane[i].height,
+>>>>>> -                       remap_info->plane[i].src_stride,
+>>>>>> -                       remap_info->plane[i].dst_stride);
+>>>>>> -
+>>>>>> -    } else {
+>>>>>> -        const struct intel_rotation_info *rot_info = &view->rotated;
+>>>>>> -        u32 i, dpt_ofs = 0;
+>>>>>> -
+>>>>>> -        for (i = 0; i < ARRAY_SIZE(rot_info->plane); i++)
+>>>>>> -            write_dpt_rotated(bo, &dpt->vmap, &dpt_ofs,
+>>>>>> -                      rot_info->plane[i].offset,
+>>>>>> -                      rot_info->plane[i].width,
+>>>>>> -                      rot_info->plane[i].height,
+>>>>>> -                      rot_info->plane[i].src_stride,
+>>>>>> -                      rot_info->plane[i].dst_stride);
+>>>>>> -    }
+>>>>>> +    for (i = 0; i < plane_count; i++)
+>>>>>> +        write_dpt(bo, &dpt->vmap, &dpt_ofs, &plane[i], view->type);
+>>>>>>         vma->dpt = dpt;
+>>>>>>         vma->node = dpt->ggtt_node[tile0->id];
