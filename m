@@ -4,185 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 371C6C02198
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 12:27:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F762C02194
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 12:31:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E961810E5FD;
-	Tue,  4 Feb 2025 12:27:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCC9110E320;
+	Tue,  4 Feb 2025 12:31:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PU7mFlp1";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="oE6VQ9KK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D74210E5FD
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Feb 2025 12:27:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738672036; x=1770208036;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=LdFOyI9Xb1HVfyct8XguIvoOAr5jjZXfjbKTRYTX9Ps=;
- b=PU7mFlp1XuYEZzPh85dMH0i9XW58ypuCx06s4bIZmcuBZ7HpILGoAZvE
- zik87pQ/Payiqo014oXBGls9tlU/nAenttv5KI++zpqGZdGG/8CsoA6xE
- nusxqtrqZKRVzotH6iUf9jVpnHPasFebY6KU0rt2kvG/dQm//cp+wagB9
- JgNtHxUBe7nGEyoKsyLBRh6AQKFY60Sw6sk9OEfXIT6xOzvkmqiWkW4tC
- izTfB6WS0En+xVChaHvJlHAG14e732nKfuTL/W4PhNnePONiB/kmNcqOP
- 5RN8hLttQUm64XE0cg2mPCNOxwfnVREDSGoLO6EfScYZaJo3ytAxyJB5L g==;
-X-CSE-ConnectionGUID: FekYyLVuSd6rIMvggRaeqg==
-X-CSE-MsgGUID: U4dYP2t4QjOXj0Rq4L1QhA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39332498"
-X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="39332498"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 04:27:16 -0800
-X-CSE-ConnectionGUID: BITXJmd/Q6+u46i2mEOS7A==
-X-CSE-MsgGUID: aXvWbTn3RqyI/yBMMtMd0g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="115578901"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 04 Feb 2025 04:27:17 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 4 Feb 2025 04:27:15 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Tue, 4 Feb 2025 04:27:15 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 4 Feb 2025 04:27:15 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KI3B9HjXUKkhsOhUn8U34nvfc51eLejiALeob19ZHcbwBmcqzqN5yMJ07jElEo6ttFwiGskIQtptAAtf2pbqglVfp0cLMHDfBIOJcjatVnIslbO9S1/auO3e7Yoi5XinYLBIog4Ual6KFAxQ5hlfatkZsw4fOzNsRn1McE8G0jsg41bPVbpqspaUrd0Wec+91Mjk/ahaxC2rLH8nMqGeCAuody3jx0mDfly1clHB8AwuCOrO7Wf4vfeYX9nPhB8BagVVi/muMxjEpjtksdXeeuuMX6YJ6Xn8hS9UpwFath+TNrg2vj0cCW9G/eY0a5/uPI3SoDcfSeztPJPseEolHg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y9a5b81KChemtdKjdAznTS3KOOgxfGZ+DwktPo3AiPM=;
- b=zA2/SYyQ6CUpTEDaHZiKTa6skdVeAmmwp2WhNXTw5LelPZ66DK2uW1yS4v0slW3DAXwxAOq59VzLoTEn3pkTugA6MO9QmJQwoBqsY7Wg4uG7G9AIOQF/5czRVKh4z/SoIZjsTGWnKmX3AOOuX+PDhfbZSr9ltek7aGKFviucNP8LmxKkluQsdnBg01ZmtASelPqHYqK2qYAcY2v9X4rEWnLcU4DR3ko3yeSZaGY9qZKKy10hQHCEkm2WuN4vk67WJ4bwPRmgNMCXY95HXCIcFkeakSkM9o2Mgq5TlgblP3UmeeVm8UKLkjJFFlDeIVVIwJBeWp8vDQ219nLgISHDtg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
- by IA1PR11MB6417.namprd11.prod.outlook.com (2603:10b6:208:3ab::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.18; Tue, 4 Feb
- 2025 12:27:13 +0000
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::3225:d4ad:74a:6d7a%6]) with mapi id 15.20.8398.021; Tue, 4 Feb 2025
- 12:27:13 +0000
-From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>, "Michal
- Wajdeczko" <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?=
- <michal.winiarski@intel.com>, Satyanarayana K V P
- <satyanarayana.k.v.p@intel.com>
-Subject: [PATCH v3 1/1] drm/xe/pf: Use an explicit check to see if the device
- has LMTT
-Date: Tue, 4 Feb 2025 13:26:58 +0100
-Message-ID: <20250204122658.813847-2-piotr.piorkowski@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250204122658.813847-1-piotr.piorkowski@intel.com>
-References: <20250204122658.813847-1-piotr.piorkowski@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MI1P293CA0023.ITAP293.PROD.OUTLOOK.COM (2603:10a6:290:3::9)
- To MN0PR11MB6135.namprd11.prod.outlook.com
- (2603:10b6:208:3c9::9)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B3E110E320
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Feb 2025 12:31:43 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-43618283d48so40892845e9.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 04 Feb 2025 04:31:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1738672302; x=1739277102;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=tuW9eKdKEwPRNGfVkrfgRbOQdlbg6qSpdDYS3VJ2iuI=;
+ b=oE6VQ9KKvHgtoNfHZIzBJrObAZdY32+Yv77d3zxDBLZl3MaF0XTvBJM6IviAdBVhrx
+ VvGMB0SUyB+f6Q0Y1yxw5iQG8ewSBI4aWYxVWcSSPRBUgruFXFWMVK+cofLpUB1NBFuP
+ nmCacLZGa1Q935p0hR+lhnmopcBjVwCSckftuF4W2BS9bARn1MrmIIhiym849YXa+/ca
+ ZSmkR1l5Qz5zFxKarkc4wHuaCDpJESuF7dmbqMVGiFpRFPha1PWWQwx0FzpQ5ieeUHmN
+ dGb//3RdpMOPGizAtwlWllRNPhu3aPJuY8zb+vq5ctoK9jQrs6Hjz9Pp8YrvQ1Aawn4M
+ OrZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1738672302; x=1739277102;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=tuW9eKdKEwPRNGfVkrfgRbOQdlbg6qSpdDYS3VJ2iuI=;
+ b=ub3djpE3Bt9CHHwgeHMSd+YiRVN3aZlZRy+6aNeQLuzzrFuGNo6e7gRUM+LgnHFuHp
+ YZA6g+J+Mta/MyWe3PzLczSfC0Roogk0nUNdeTIWS/MuQ1Te/OovRcdsvQEJLJe6SOQy
+ 9c3qC+EmnZsme7O05WODi2NukwPPwmdEFVJhLJoV9Vf05gfqL7I5xY09qWFSpdD27sIZ
+ 3t6HEIjFxDHgkQ/O6q2MHjj3Da//kKzE7Av9ZuUEq+L6onzo2seZ8OVPofaA5YCBjCfi
+ YpwD1E9gW17XDr0aLFkHFw9vHY5aB1Nq7CLWQAgQBbInhVdFS8Zz/aC9zm721rhiMqhZ
+ 6gxw==
+X-Gm-Message-State: AOJu0Yy7DQ1FqRgf4iwSiCZQiHu6R440F3Qj4bPXFr/8bEcEBwgh30pp
+ ZlRavLUrokbzv6AClSkgrqVVbqILj7w2OOTRhr7YZhTvCzw9EH7zWEXqIFwLrQ8=
+X-Gm-Gg: ASbGnct9pgUN4Py/0lRfUNfIQ9kdv9V7cxsWnjxthkse4pFT5FDeztce1HKtc77M5aS
+ UfCLETbUPyn787tw0FJNAJjm5QNaWEUZorOGoCooZ/iX77r1waow9CfZ+6XRF97LnnEdC8/To50
+ zZuVLLVbnc1/YjJviHDhOT42H2lK+P2Azst0LHwmCeM6mMjBO/8WjdUInFqynicEU7ROcL2AGdN
+ +3PtfDZ9ZIhZbrYbMlF5ASN1j8kD1TAcRiK9J8f2HVEW7eclCX1GD3mGIWvoL2pCQcwGnzzh1wM
+ M3LrmTCwIUmXA8juy3gvVtbDGA//qvQ=
+X-Google-Smtp-Source: AGHT+IELBXEu0Ot7akBmonFfTOQkC5wk+82DJ9pKsgBMtfZMmSvxp2LtDoPfiTWkv3af4P0Bo3DkWg==
+X-Received: by 2002:a05:600c:4e01:b0:435:136:75f6 with SMTP id
+ 5b1f17b1804b1-438dc34b179mr252227935e9.0.1738672301864; 
+ Tue, 04 Feb 2025 04:31:41 -0800 (PST)
+Received: from [192.168.0.101] ([90.241.98.187])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-438dcc265c0sm223405665e9.10.2025.02.04.04.31.40
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 04 Feb 2025 04:31:40 -0800 (PST)
+Message-ID: <ca83eabe-d2cf-4ee9-a51d-82809d07a447@ursulin.net>
+Date: Tue, 4 Feb 2025 12:31:40 +0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|IA1PR11MB6417:EE_
-X-MS-Office365-Filtering-Correlation-Id: ba3210a2-57cf-44a6-4ae9-08dd4517410c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bjdQQmV6UlpZUnp2SXlmM1V6Y20vWVVaOWY1RUhZNnNuZm5VKzVydVNMTUY4?=
- =?utf-8?B?aGhSMG1YRUFzb1hpMXJ6UHczb0dWWlNhYUpSUmczTnB2WThzZ3dQTGZBaDlI?=
- =?utf-8?B?eG5iT1oreHYrV0F3RGVUWFVKZnk3VEtmdGpnVEt4VVRLWWEvbDdVZUZBSHJr?=
- =?utf-8?B?RC96ZHhiTUFpYTZ1WnorV253R1pQb2Z0STlVbllBVUFneDBlSTc2Ni83QkRR?=
- =?utf-8?B?TXF3dS9uV0VYRkVwOXFBZ2d5Rm5vbGtLbWhqbDVoZnlGWDVqb3dUaUJld1pi?=
- =?utf-8?B?QmhuMEhra0RsNSthNVBoSUZxK2pmcktRWHQ4eGpwMzN4K3dhTUc5MWVMUzgv?=
- =?utf-8?B?eXRQRUx1RzRVS09henFFOHJVU0Urd3VoR1JGRGxadlhHRVd6WE9nVE96RmhD?=
- =?utf-8?B?bUE3a0d2bXZ3cSsvRzRMNVpoRXRZVnZCNUtQbkw1SHlOQTNmL2dhYlhFQUw0?=
- =?utf-8?B?VDRSdVhYMUxaUGJROU92dVhnc0RWY0RvR0M3ajJRR2JxLzRKZ212SWtMcllC?=
- =?utf-8?B?Q1ViSUpMa0VDaDBUREpwa0Y0d1ptUlNTTzgvUkh3WnNvMGs5OXVZYk9wOXEw?=
- =?utf-8?B?YTkzTitLV1VGUllvSjhuUXQ3SEE1T3ZhTTlhcStlVHdnZ2czUnVlK3lqQ2Nm?=
- =?utf-8?B?b3pIMHJaY1RBdEZrd2JCZEg0d1BIWngwaUJUTVptS0lRdkpLNUNFbS9RQU8v?=
- =?utf-8?B?cnMrYUN3OHNJUFNheHlSeHpiZnV4blNPVlk1ekJxOVFFTnlxVEZyempiam5o?=
- =?utf-8?B?NElYbVROYWt1UVFZRm42U291ZnRsdkRQaHlmQXZrUXI4SzFwNzc1Y1A0bmQr?=
- =?utf-8?B?MEFhR0s5U3ZqemlXTStEcVhnd2h1ZCtFUXozMW5sbHNxRWdJeStmeTduOEZm?=
- =?utf-8?B?MkdrT3N5aHN5cWhZWkhjdGR2Z1VOeE9DUDE0eFIyUzhJb1FzN2VIU3lFRC91?=
- =?utf-8?B?L3ZBMlFjRC9GMHhYMTdWKzJKQWErK1JCQTF5dm9QSnhmTGdoeXM1alJUUmlo?=
- =?utf-8?B?MlZ2czJwcUNGVVdLdCtTOFQ2VTBnc0xBc3JBY2VmZStNbjhseWhibjFiT1NQ?=
- =?utf-8?B?VG5yTFEyemRJVC92OHFGZVJuU3hHOU8zWU5pY0wyUEJXN3Z5K3cwV2RoNkZF?=
- =?utf-8?B?THR0SGhGeHFRWGZZZHUvdUpNdW13aGhaN0p5WllGTlpVMlhhMENWaWVVRHo5?=
- =?utf-8?B?UTZKTkFrb0VrdDU3QUtDUk54cmd6MEl4Vko1MTJjTUNQaWxkSERlV203WmxE?=
- =?utf-8?B?UzhINUJNdnNnazg3RHJYVE1RU09GWEhsb1NLbkh0Wi93NDFyNk9rVmpRL21l?=
- =?utf-8?B?QWRIanpuZDhvUGYrTVBpY3RpNmZHeDdQdFNIeUdnLzBlZVFPaWZBcFBSR2pn?=
- =?utf-8?B?OUdnSHpId3pFNGxlbmpBemxJOVRLWWtTZUZGQnBXR25ZWERocU0xdUZ5eFpz?=
- =?utf-8?B?eCtqQ0FEMTBCM3YxRk9MSnJXVnY1S3FNR2o4ajZ5R1Q3RS95eSsvMm5IN0RU?=
- =?utf-8?B?OXRBU254VlNycXRFbFhVZVZ2VDRYdFhiYzZHRWZQYTNQdkYvZGxTSysreHhy?=
- =?utf-8?B?Tkl3c2wxR3ozRGNUSXRyZVVLNEFqTmFwbkpmRklrYTFNZ2paUEc5S0NGbUxq?=
- =?utf-8?B?aDFuTncyYTBRblY5Uk9naWhKQS96R1JhNTdnOHZrV002ZTZTbERFZDQ1a0Rl?=
- =?utf-8?B?ZDRycXNyb2xFcGRsZlJJL1A1QUwzeEVUVzBhYXJnOUtsbGlzZDhtem83N1Mx?=
- =?utf-8?B?Y1QvVTgva3pSSnIxZzJFM3pxQUMwc29ydjFEMk5tdFlScXowdmpWaEdjUzJK?=
- =?utf-8?B?UzNOcHE3dmpGNDhWMWtmSThKNGtCa1djR2haOXVTbytmV1IyRDB1QXRPTkhw?=
- =?utf-8?Q?B7x+QtaASZ6uv?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L1hCOWZIZHBTWmVOUFBtT25BMzlKcWNUMHowRWFsT3dDWXljT1Roc3JoQVR5?=
- =?utf-8?B?Q1NCUThqbG1sdjA0YnNQdHhHTitwZCt6eDVHMS9tSFdkSzNOazFEQXRRRU1P?=
- =?utf-8?B?RVl2ajIvSFB0cUtvWUhQL0tGOEYyTkhUOEhLWVRZVmMxMkN5TG5mdTg2Mmw1?=
- =?utf-8?B?N0h3R05JNWFWbWpDQkUwZUtIRzJFSEtJQ0Q0cTBQbEVxbXNaRVF1N0x2WWVW?=
- =?utf-8?B?NExhMmI1TGU2TVZqL0JKWGhDdGRXWi9MRklsWUJvUmlqRVVBTVJ6anlqWDRY?=
- =?utf-8?B?UnF2bzFpQkw2QWdHUExMU3ZjRFU5VmdCVU5UOFJWYmVpWWhHM29RWVJvV2dt?=
- =?utf-8?B?SVdDQ0JLcXJ1SG5VQTZwT2U3ejQ1cUZ3M1dBSGhNMlFibVpybEhmZ0x2L0xi?=
- =?utf-8?B?WkI4ZGNjbVE5MzRmY2FFeFA3WnlEOFZkYlBhU2xuejBJdmp2S3ZEU1Ftdys4?=
- =?utf-8?B?cWRkNTB0TkhyMDFGTjhETmVZeTEzQWhZaExsN1NKKzFoTHpzR2Vmejc4aWJW?=
- =?utf-8?B?em5HWkl4MHh3d3hKc3o4R0NyTnhFODZ6VThBUGpNQ2RnN2EweExqKzMweEhP?=
- =?utf-8?B?MHNqbFFSeW43Q05KS0N3UEI5cnpoaXhGQ0Rwdm5mekc3ZWNaT0ticUJwbGxD?=
- =?utf-8?B?R3NpTlJYUWpOM0trbkxDTll4NEZCcnRoYkZnMG9LUEVIRUs5Z21mdFRKOHRV?=
- =?utf-8?B?aVFiSVBRWVpjRjg4L29ldDJhcnFVTkdUdjJ0dS90SUwycTFybGlWS0hWMmla?=
- =?utf-8?B?bk16bHF4WHBnQ3BiQisvTGpFRXpzdTJhenRUTitNRHE1L1BESWR6YkJMUWpE?=
- =?utf-8?B?WmhhdlJ0ZUYzWE5tZWozOFRpdjk5REc5bkh4V3BFT0R0TGh4Rjl2cWJUL3Q0?=
- =?utf-8?B?elVYd3d2WDVEVW9aRFJjZUZJMDRWOGc4eDBlZy9EaTFrWGV2ZUJXd01hK3U4?=
- =?utf-8?B?M3VNNGV0eXZ3V0NtU0xxb2dyOUhuZ3RjUG14dkZhcTlhQ3EwVkR0RjZ2bmNJ?=
- =?utf-8?B?SE9mYkRGL205MEs1aHp2WmZsV04wbjZzWHNmVEZRTjlDczlRZ2x5YTExZEFN?=
- =?utf-8?B?TmRxVGVXVURpbFZzZG14cWp1dXgyOUhIY3BYK1JpYTNiSkM5YzY2bEtXdmJz?=
- =?utf-8?B?Ni8wU3E1cmZZaDBPelF5RkNxV0szd1dmRitDTFV6WmkySEQ0MzM2TlRnS0Zq?=
- =?utf-8?B?MXg4YmNWSmJCc2YzMHVUd0xVMVcweXlxZXcvbmp2TEJOZXlKQjNvUDBlOVoz?=
- =?utf-8?B?RG4zM2JZZUFyMzR0UThXOUhmQlVHejgrK2pCbTdkb29EU1NjNEFtQkZhRkI2?=
- =?utf-8?B?VXVheUFTQ29ZbUFmblk0TFdmbmRGNHA4aks2NndvN3gyKytzUHhGNGN4dDhR?=
- =?utf-8?B?SDU5RDludGJaaHdhbzZ4akJGbWhFYy9HODhwSnpBR2N0a3o0VWlrSUdaemRu?=
- =?utf-8?B?YmNibTlta1picnhRaVJadGEzazJCQzNOTU4zWGZuaWFJT3FIdVVTLzhVZkRw?=
- =?utf-8?B?QUU0YkpleGIxUGFIb01FR2lmeDR2VDVhR29uQjVMZ0E2b3hWWncrWldFQmQ3?=
- =?utf-8?B?enpnT0tCRHZYQm9mdHFRdUtNUFlwRC94NkJlZERJdmc2TW5BaWxmNlVubjJJ?=
- =?utf-8?B?MFdNRGpzbjRTQnY0eGQrWHFrenF1emtwU2VKMnM1bVhvZC9HUmE1NDFpK1BT?=
- =?utf-8?B?OHI5V09JSWRDdktyQzB2SmhUMkwwcUora0hrL2xYdzFMVXpCK3VTY2NpODNR?=
- =?utf-8?B?UUs0b09YbURzQkcrRlhXNGl2MEk1S2ExYTNmSHZkRXE3VmNDK0I2K3ZVOTB4?=
- =?utf-8?B?TERoa2F4UUVIT0xSVXYwR3FYV3g4U1EvUnBKZlpCTHdhNUZxTWhPVnIrSkdq?=
- =?utf-8?B?ZmkxU2g1QU1CUXhKOW5VOG9GZUtkVmlnRUFScHQ5enEyakJCSEQ4dTA3aG0w?=
- =?utf-8?B?byszWVFvMC9PSGR2MG1lZTdjK2d3Ymh2TTh1TXhXeHE5TmI3ZEFjYzdqdXFK?=
- =?utf-8?B?TXBGOGt4STdoZVFkaFpob3gwMUhNQ1pnS21UOXF1b0hSbThJemtZVFZGd1lG?=
- =?utf-8?B?em9OcWdscG1XSVVEbE9XN3h2ZlBmSFRXRHFCZzRwSVptSzBtWHg1ck9TenlB?=
- =?utf-8?B?ZUZWODJVSWRaSnArVXlDb0x1Z1hsMEdaOGN2SXJGcWFvNDRrNDJPZzdVbUVK?=
- =?utf-8?B?ZlE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba3210a2-57cf-44a6-4ae9-08dd4517410c
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2025 12:27:13.5223 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tSiow8v+kJE72YTvGchzgsRcBnjA22NgeWxlQ6VS5j3UnqMasDOg1lFkdBFjjJaSq4pGmucJiN4CyKrCgIMf7ftUlV0Dy6gm+AYCfLeOkg0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6417
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/xe/display: Unify display page table mapping
+To: =?UTF-8?Q?Juha-Pekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
+Cc: intel-xe@lists.freedesktop.org
+References: <20250114180403.896587-1-juhapekka.heikkila@gmail.com>
+ <20250114180403.896587-2-juhapekka.heikkila@gmail.com>
+ <64decd28-e020-4a53-9766-7d57a5137c86@ursulin.net>
+ <221a2230-1fff-4f9c-9be4-7a2ef4db2776@ursulin.net>
+ <CAJ=qYWTotU_P6X-HOtkBCNzG4hEcw-=Ch5ymHYyBh0POa8HUQw@mail.gmail.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <CAJ=qYWTotU_P6X-HOtkBCNzG4hEcw-=Ch5ymHYyBh0POa8HUQw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,138 +91,242 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-So far, the main condition for using LMTT has been to check that
-the device is a discrete gfx. In addition, we have checked, using
-assertions, that the device is PF.
-Instead, let's add a dedicated function to check if the device
-supports LMTT.
+On 04/02/2025 12:10, Juha-Pekka Heikkilä wrote:
+> On Tue, Feb 4, 2025 at 1:38 PM Tvrtko Ursulin <tursulin@ursulin.net> wrote:
+>>
+>>
+>> On 04/02/2025 11:25, Tvrtko Ursulin wrote:
+>>>
+>>> On 14/01/2025 18:04, Juha-Pekka Heikkila wrote:
+>>>> Unify writing of remapped and straight DPTs. Take out writing of
+>>>> rotated DPT since Xe doesn't support any platform that does
+>>>> 90 degree rotated framebuffers.
+>>>
+>>> Consider giving my series which fixes AuxCSS a look instead? Given there
+>>> is external interest to have all that work on ADL-P. I could respin with
+>>> rotated cleaned up in a similar fashion I did for remapped. Maintenance
+>>> cost is minimal since it is all very contained.
+>>
+>> Oh ADL-P does not support hardware rotation. I missed the fact it is
+>> display version 13..
+>>
+>> But the point regarding changes to remapping code are still valid I
+>> think, since to suport aux plane the refactoring from this patch looks
+>> in the wrong direction.
+>>
+> 
+> Yea, I kinda agree here with Tvrtko. I did earlier mention this to
+> JSaa. That aux thing will need to be checked.
 
-v2:
- - use xe_has_device_lmtt only when necessary - leave IS_DGFX for other
-   things related to LMEM provisioning
-v3:
- - remove IS_SRIOV_PF condition from xe_device_has_lmtt (Michal
-   Wajdeczko)
- - keep IS_SRIOV_PF asserts in LMTT-related code (Michal Wajdeczko)
+Ah cool, fingers crossed.
 
-Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Michał Winiarski <michal.winiarski@intel.com>
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+> Though, how far are we with your set Tvrtko? It did seem lot kms_ccs
+> tests failed.
+> https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v1/shards-all.html?testfilter=kms_ccs.*crc.*gen12&hosts=adlp
+> 
+> Did you check you had compression when you had clean image on your
+> machine? (aux surface was not zeroes) Those failures on my link ci are
+> with failing crc which mean the picture on screen was not correct.
 
----
- drivers/gpu/drm/xe/xe_device.h             |  5 +++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 21 +++++++++++++--------
- drivers/gpu/drm/xe/xe_lmtt.c               |  4 ++--
- 3 files changed, 20 insertions(+), 10 deletions(-)
+I was looking into this just this morning and posted some 
+half-conclusions here:
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index fc3c2af3fb7f..0bc3bc8e6803 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -170,6 +170,11 @@ static inline bool xe_device_uses_memirq(struct xe_device *xe)
- 	return xe_device_has_memirq(xe) && (IS_SRIOV_VF(xe) || xe_device_has_msix(xe));
- }
- 
-+static inline bool xe_device_has_lmtt(struct xe_device *xe)
-+{
-+	return IS_DGFX(xe);
-+}
-+
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
- 
- void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index b1d994d65589..5c3e9e5bd051 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -1336,7 +1336,7 @@ static void pf_reset_vf_lmtt(struct xe_device *xe, unsigned int vfid)
- 	struct xe_tile *tile;
- 	unsigned int tid;
- 
--	xe_assert(xe, IS_DGFX(xe));
-+	xe_assert(xe, xe_device_has_lmtt(xe));
- 	xe_assert(xe, IS_SRIOV_PF(xe));
- 
- 	for_each_tile(tile, xe, tid) {
-@@ -1357,7 +1357,7 @@ static int pf_update_vf_lmtt(struct xe_device *xe, unsigned int vfid)
- 	unsigned int tid;
- 	int err;
- 
--	xe_assert(xe, IS_DGFX(xe));
-+	xe_assert(xe, xe_device_has_lmtt(xe));
- 	xe_assert(xe, IS_SRIOV_PF(xe));
- 
- 	total = 0;
-@@ -1434,7 +1434,8 @@ static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
- 		if (unlikely(err))
- 			return err;
- 
--		pf_reset_vf_lmtt(xe, vfid);
-+		if (xe_device_has_lmtt(xe))
-+			pf_reset_vf_lmtt(xe, vfid);
- 		pf_release_vf_config_lmem(gt, config);
- 	}
- 	xe_gt_assert(gt, !config->lmem_obj);
-@@ -1454,9 +1455,11 @@ static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
- 
- 	config->lmem_obj = bo;
- 
--	err = pf_update_vf_lmtt(xe, vfid);
--	if (unlikely(err))
--		goto release;
-+	if (xe_device_has_lmtt(xe)) {
-+		err = pf_update_vf_lmtt(xe, vfid);
-+		if (unlikely(err))
-+			goto release;
-+	}
- 
- 	err = pf_push_vf_cfg_lmem(gt, vfid, bo->size);
- 	if (unlikely(err))
-@@ -1467,7 +1470,8 @@ static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
- 	return 0;
- 
- reset_lmtt:
--	pf_reset_vf_lmtt(xe, vfid);
-+	if (xe_device_has_lmtt(xe))
-+		pf_reset_vf_lmtt(xe, vfid);
- release:
- 	pf_release_vf_config_lmem(gt, config);
- 	return err;
-@@ -1981,7 +1985,8 @@ static void pf_release_vf_config(struct xe_gt *gt, unsigned int vfid)
- 		pf_release_vf_config_ggtt(gt, config);
- 		if (IS_DGFX(xe)) {
- 			pf_release_vf_config_lmem(gt, config);
--			pf_update_vf_lmtt(xe, vfid);
-+			if (xe_device_has_lmtt(xe))
-+				pf_update_vf_lmtt(xe, vfid);
- 		}
- 	}
- 	pf_release_config_ctxs(gt, config);
-diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
-index a60ceae4c6dd..89393dcb53d9 100644
---- a/drivers/gpu/drm/xe/xe_lmtt.c
-+++ b/drivers/gpu/drm/xe/xe_lmtt.c
-@@ -164,7 +164,7 @@ int xe_lmtt_init(struct xe_lmtt *lmtt)
- 	lmtt_assert(lmtt, IS_SRIOV_PF(xe));
- 	lmtt_assert(lmtt, !lmtt->ops);
- 
--	if (!IS_DGFX(xe))
-+	if (!xe_device_has_lmtt(xe))
- 		return 0;
- 
- 	if (xe_has_multi_level_lmtt(xe))
-@@ -486,7 +486,7 @@ u64 xe_lmtt_estimate_pt_size(struct xe_lmtt *lmtt, u64 size)
- 	u64 pt_size;
- 
- 	lmtt_assert(lmtt, IS_SRIOV_PF(lmtt_to_xe(lmtt)));
--	lmtt_assert(lmtt, IS_DGFX(lmtt_to_xe(lmtt)));
-+	lmtt_assert(lmtt, xe_device_has_lmtt(lmtt_to_xe(lmtt)));
- 	lmtt_assert(lmtt, lmtt->ops);
- 
- 	pt_size = PAGE_ALIGN(lmtt->ops->lmtt_pte_size(level) *
--- 
-2.34.1
+https://lore.kernel.org/intel-xe/eb3a3729-e8ef-4868-b8ff-b6efd66ef4fa@igalia.com/T/#u
 
+When you say test with a clear image that I did not. I smoke tested it 
+in desktop usage and looked at kms_flip_tiling which visually looks 
+correct but as the above msg-id talks about, something is potentially 
+fishy with crc collections and/or vblank handling. Since display isn't 
+my area of expertise that is as far as I could get.
+
+Regards,
+
+Tvrtko
+
+>>>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>>>> ---
+>>>>    drivers/gpu/drm/xe/display/xe_fb_pin.c | 141 +++++++++----------------
+>>>>    1 file changed, 48 insertions(+), 93 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>>> b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>>> index c28885316986..70322f28eee5 100644
+>>>> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>>> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>>> @@ -14,66 +14,44 @@
+>>>>    #include "xe_ggtt.h"
+>>>>    #include "xe_pm.h"
+>>>> -static void
+>>>> -write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32
+>>>> *dpt_ofs, u32 bo_ofs,
+>>>> -          u32 width, u32 height, u32 src_stride, u32 dst_stride)
+>>>> +static void encode_and_write_pte(struct xe_bo *bo, struct iosys_map
+>>>> *map,
+>>>> +                 u32 *ofs, u32 src_idx, struct xe_device *xe)
+>>>>    {
+>>>> -    struct xe_device *xe = xe_bo_device(bo);
+>>>>        struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+>>>> -    u32 column, row;
+>>>> -
+>>>> -    /* TODO: Maybe rewrite so we can traverse the bo addresses
+>>>> sequentially,
+>>>> -     * by writing dpt/ggtt in a different order?
+>>>> -     */
+>>>> -
+>>>> -    for (column = 0; column < width; column++) {
+>>>> -        u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
+>>>> -
+>>>> -        for (row = 0; row < height; row++) {
+>>>> -            u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx *
+>>>> XE_PAGE_SIZE,
+>>>> -                                  xe->pat.idx[XE_CACHE_NONE]);
+>>>> -
+>>>> -            iosys_map_wr(map, *dpt_ofs, u64, pte);
+>>>> -            *dpt_ofs += 8;
+>>>> -            src_idx -= src_stride;
+>>>> -        }
+>>>> -
+>>>> -        /* The DE ignores the PTEs for the padding tiles */
+>>>> -        *dpt_ofs += (dst_stride - height) * 8;
+>>>> -    }
+>>>> -
+>>>> -    /* Align to next page */
+>>>> -    *dpt_ofs = ALIGN(*dpt_ofs, 4096);
+>>>> +    u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
+>>>> +                          xe->pat.idx[XE_CACHE_NONE]);
+>>>> +    iosys_map_wr(map, *ofs, u64, pte);
+>>>> +    *ofs += 8;
+>>>>    }
+>>>> -static void
+>>>> -write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32
+>>>> *dpt_ofs,
+>>>> -           u32 bo_ofs, u32 width, u32 height, u32 src_stride,
+>>>> -           u32 dst_stride)
+>>>> +static void write_dpt(struct xe_bo *bo, struct iosys_map *map, u32
+>>>> *dpt_ofs,
+>>>> +              const struct intel_remapped_plane_info *plane,
+>>>> +              enum i915_gtt_view_type type)
+>>>>    {
+>>>>        struct xe_device *xe = xe_bo_device(bo);
+>>>> -    struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+>>>> -    u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index)
+>>>> -        = ggtt->pt_ops->pte_encode_bo;
+>>>> -    u32 column, row;
+>>>> -
+>>>> -    for (row = 0; row < height; row++) {
+>>>> -        u32 src_idx = src_stride * row + bo_ofs;
+>>>> -
+>>>> -        for (column = 0; column < width; column++) {
+>>>> -            iosys_map_wr(map, *dpt_ofs, u64,
+>>>> -                     pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
+>>>> -                     xe->pat.idx[XE_CACHE_NONE]));
+>>>> -
+>>>> -            *dpt_ofs += 8;
+>>>> -            src_idx++;
+>>>> +    const u32 dpt_even = (plane->dst_stride - plane->width) * 8;
+>>>> +    const u32 dest_width = plane->width;
+>>>> +    const u32 dest_height = plane->height;
+>>>> +    u32 src_idx;
+>>>> +
+>>>> +    for (u32 row = 0; row < dest_height; ++row) {
+>>>> +        for (u32 column = 0; column < dest_width; ++column) {
+>>>> +            switch (type) {
+>>>> +            case I915_GTT_VIEW_NORMAL:
+>>>> +                src_idx = plane->offset + column;
+>>>> +                break;
+>>>> +            case I915_GTT_VIEW_REMAPPED:
+>>>> +                src_idx = plane->offset +
+>>>> +                    row * plane->src_stride + column;
+>>>> +                break;
+>>>> +            default:
+>>>> +                WARN(1, "Unsupported GTT view type: %d", type);
+>>>> +                return;
+>>>> +            }
+>>>> +            encode_and_write_pte(bo, map, dpt_ofs, src_idx, xe);
+>>>>            }
+>>>> -
+>>>> -        /* The DE ignores the PTEs for the padding tiles */
+>>>> -        *dpt_ofs += (dst_stride - width) * 8;
+>>>> +        *dpt_ofs += dpt_even;
+>>>>        }
+>>>> -
+>>>> -    /* Align to next page */
+>>>>        *dpt_ofs = ALIGN(*dpt_ofs, 4096);
+>>>>    }
+>>>> @@ -125,59 +103,36 @@ static int __xe_pin_fb_vma_dpt(const struct
+>>>> intel_framebuffer *fb,
+>>>>    {
+>>>>        struct xe_device *xe = to_xe_device(fb->base.dev);
+>>>>        struct xe_tile *tile0 = xe_device_get_root_tile(xe);
+>>>> -    struct xe_ggtt *ggtt = tile0->mem.ggtt;
+>>>>        struct drm_gem_object *obj = intel_fb_bo(&fb->base);
+>>>>        struct xe_bo *bo = gem_to_xe_bo(obj), *dpt;
+>>>>        u32 dpt_size, size = bo->ttm.base.size;
+>>>> +    const struct intel_remapped_plane_info *plane;
+>>>> +    u32 i, plane_count, dpt_ofs = 0;
+>>>> +    struct intel_remapped_plane_info normal_plane;
+>>>> -    if (view->type == I915_GTT_VIEW_NORMAL)
+>>>> +    if (view->type == I915_GTT_VIEW_NORMAL) {
+>>>>            dpt_size = ALIGN(size / XE_PAGE_SIZE * 8, XE_PAGE_SIZE);
+>>>> -    else if (view->type == I915_GTT_VIEW_REMAPPED)
+>>>> -        dpt_size =
+>>>> ALIGN(intel_remapped_info_size(&fb->remapped_view.gtt.remapped) * 8,
+>>>> -                 XE_PAGE_SIZE);
+>>>> -    else
+>>>> -        /* display uses 4K tiles instead of bytes here, convert to
+>>>> entries.. */
+>>>> -        dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
+>>>> +        normal_plane.offset = 0;
+>>>> +        normal_plane.width = size / XE_PAGE_SIZE;
+>>>> +        normal_plane.height = 1;
+>>>> +        normal_plane.src_stride = size / XE_PAGE_SIZE;
+>>>> +        normal_plane.dst_stride = size / XE_PAGE_SIZE;
+>>>> +        plane = &normal_plane;
+>>>> +        plane_count = 1;
+>>>> +    } else {
+>>>> +        dpt_size = ALIGN(intel_remapped_info_size(&view->remapped) * 8,
+>>>>                     XE_PAGE_SIZE);
+>>>> +        plane = view->remapped.plane;
+>>>> +        plane_count = ARRAY_SIZE(view->remapped.plane);
+>>>> +    }
+>>>>        dpt = xe_alloc_dpt_bo(xe, tile0, dpt_size, physical_alignment);
+>>>>        if (IS_ERR(dpt))
+>>>>            return PTR_ERR(dpt);
+>>>> -    if (view->type == I915_GTT_VIEW_NORMAL) {
+>>>> -        u32 x;
+>>>> -
+>>>> -        for (x = 0; x < size / XE_PAGE_SIZE; x++) {
+>>>> -            u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x * XE_PAGE_SIZE,
+>>>> -                                  xe->pat.idx[XE_CACHE_NONE]);
+>>>> -
+>>>> -            iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
+>>>> -        }
+>>>> -    } else if (view->type == I915_GTT_VIEW_REMAPPED) {
+>>>> -        const struct intel_remapped_info *remap_info = &view->remapped;
+>>>> -        u32 i, dpt_ofs = 0;
+>>>> -
+>>>> -        for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++)
+>>>> -            write_dpt_remapped(bo, &dpt->vmap, &dpt_ofs,
+>>>> -                       remap_info->plane[i].offset,
+>>>> -                       remap_info->plane[i].width,
+>>>> -                       remap_info->plane[i].height,
+>>>> -                       remap_info->plane[i].src_stride,
+>>>> -                       remap_info->plane[i].dst_stride);
+>>>> -
+>>>> -    } else {
+>>>> -        const struct intel_rotation_info *rot_info = &view->rotated;
+>>>> -        u32 i, dpt_ofs = 0;
+>>>> -
+>>>> -        for (i = 0; i < ARRAY_SIZE(rot_info->plane); i++)
+>>>> -            write_dpt_rotated(bo, &dpt->vmap, &dpt_ofs,
+>>>> -                      rot_info->plane[i].offset,
+>>>> -                      rot_info->plane[i].width,
+>>>> -                      rot_info->plane[i].height,
+>>>> -                      rot_info->plane[i].src_stride,
+>>>> -                      rot_info->plane[i].dst_stride);
+>>>> -    }
+>>>> +    for (i = 0; i < plane_count; i++)
+>>>> +        write_dpt(bo, &dpt->vmap, &dpt_ofs, &plane[i], view->type);
+>>>>        vma->dpt = dpt;
+>>>>        vma->node = dpt->ggtt_node[tile0->id];
