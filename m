@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ACF1C02197
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 13:59:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7135AC02194
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Feb 2025 14:00:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB17410E654;
-	Tue,  4 Feb 2025 13:59:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fTW9JRk8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0717D10E654;
- Tue,  4 Feb 2025 13:59:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738677557; x=1770213557;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qBuSuq9M0evr1ZjyHRYX8qqqO0AM0AsYNIVeYfAZsLo=;
- b=fTW9JRk8yJRI8qRCNkcO7kSjbRbZ2sSmgq52jzv/b7FWSjGqctgJCoBI
- b9DqagEJJx3WSHI7x2SilpAoJyNE3YTO46fPL8Y4/IIHv/H+pPO8RXs12
- fW6EEZSl68zLREKeAYKZrzHsLnTGAuTz5oFv5IVcYQp37z5BoVhZQwwhi
- X0/dEi8exIbhx+lnVG3/X0+fodoPlN3leNoROvryGAdn619rSbrK818SF
- YilTZTWv4bdB9M1qV7kVi7ufGft3lUyUwsKRUsnTM9nhjm+V/ZYGvsRi8
- hXpFaSBz15efqp7KJOv5KAqBgajPVOfAFDyzuMy3bOqac3cNceS6sD3qk A==;
-X-CSE-ConnectionGUID: THO3m7K/TO2JMUrgHRIbBQ==
-X-CSE-MsgGUID: D0RU3k2ITny0wuUa8+N8aQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39359077"
-X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="39359077"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 05:59:17 -0800
-X-CSE-ConnectionGUID: Pk81JitxQCiV68L5/eQzqg==
-X-CSE-MsgGUID: 8aDaCLJeRNmqw+gv1IcNtQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="110484305"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.139])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 05:59:15 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH v2 6/6] drm/i915/lspcon: rename interfaces to intel_lspcon_*
- to unify
-Date: Tue,  4 Feb 2025 15:58:43 +0200
-Message-Id: <15e8c4133aee89181e6776a44e58f2573cfe23f2.1738677489.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1738677489.git.jani.nikula@intel.com>
-References: <cover.1738677489.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F3DB10E34A;
+	Tue,  4 Feb 2025 14:00:28 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C540F10E34A;
+ Tue,  4 Feb 2025 14:00:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Enable_Aux_based_Nits_brightne?=
+ =?utf-8?q?ss_control_for_eDP_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 04 Feb 2025 14:00:26 -0000
+Message-ID: <173867762680.876953.3445276528630962764@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250204125009.2609726-1-suraj.kandpal@intel.com>
+In-Reply-To: <20250204125009.2609726-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,142 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rename all the main functions to have intel_lspcon_ prefix. Keep the
-infoframes hooks named lspcon_ for now, and grouped together, as there'd
-be a clash with intel_lspcon_infoframes_enabled().
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c     | 10 +++++-----
- drivers/gpu/drm/i915/display/intel_lspcon.c | 10 +++++-----
- drivers/gpu/drm/i915/display/intel_lspcon.h | 14 ++++++++------
- 3 files changed, 18 insertions(+), 16 deletions(-)
+Series: Enable Aux based Nits brightness control for eDP (rev2)
+URL   : https://patchwork.freedesktop.org/series/143910/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 14d81538c912..6cfd8c8c78de 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3502,7 +3502,7 @@ void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode)
- 	} else {
- 		struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 
--		lspcon_resume(dig_port);
-+		intel_lspcon_resume(dig_port);
- 
- 		/* Write the source OUI as early as possible */
- 		intel_dp_init_source_oui(intel_dp);
-@@ -3519,7 +3519,7 @@ void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode)
- 		}
- 
- 		if (ret == 1 && intel_lspcon_active(dig_port))
--			lspcon_wait_pcon_mode(dig_port);
-+			intel_lspcon_wait_pcon_mode(dig_port);
- 	}
- 
- 	if (ret != 1)
-@@ -5369,7 +5369,7 @@ intel_dp_detect_dpcd(struct intel_dp *intel_dp)
- 	if (drm_WARN_ON(display->drm, intel_dp_is_edp(intel_dp)))
- 		return connector_status_connected;
- 
--	lspcon_resume(dig_port);
-+	intel_lspcon_resume(dig_port);
- 
- 	if (!intel_dp_get_dpcd(intel_dp))
- 		return connector_status_disconnected;
-@@ -5864,8 +5864,8 @@ intel_dp_connector_register(struct drm_connector *connector)
- 	 * ToDo: Clean this up to handle lspcon init and resume more
- 	 * efficiently and streamlined.
- 	 */
--	if (lspcon_init(dig_port)) {
--		if (lspcon_detect_hdr_capability(dig_port))
-+	if (intel_lspcon_init(dig_port)) {
-+		if (intel_lspcon_detect_hdr_capability(dig_port))
- 			drm_connector_attach_hdr_output_metadata_property(connector);
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-index 02c22a981fe1..63c1afa30b05 100644
---- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-+++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-@@ -126,7 +126,7 @@ static u32 get_hdr_status_reg(struct intel_lspcon *lspcon)
- 		return DPCD_PARADE_LSPCON_HDR_STATUS;
- }
- 
--bool lspcon_detect_hdr_capability(struct intel_digital_port *dig_port)
-+bool intel_lspcon_detect_hdr_capability(struct intel_digital_port *dig_port)
- {
- 	struct intel_lspcon *lspcon = &dig_port->lspcon;
- 	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
-@@ -661,14 +661,14 @@ u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
- 	return val;
- }
- 
--void lspcon_wait_pcon_mode(struct intel_digital_port *dig_port)
-+void intel_lspcon_wait_pcon_mode(struct intel_digital_port *dig_port)
- {
- 	struct intel_lspcon *lspcon = &dig_port->lspcon;
- 
- 	lspcon_wait_mode(lspcon, DRM_LSPCON_MODE_PCON);
- }
- 
--bool lspcon_init(struct intel_digital_port *dig_port)
-+bool intel_lspcon_init(struct intel_digital_port *dig_port)
- {
- 	struct intel_display *display = to_intel_display(dig_port);
- 	struct intel_dp *intel_dp = &dig_port->dp;
-@@ -714,7 +714,7 @@ u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
- 	return dig_port->infoframes_enabled(encoder, pipe_config);
- }
- 
--void lspcon_resume(struct intel_digital_port *dig_port)
-+void intel_lspcon_resume(struct intel_digital_port *dig_port)
- {
- 	struct intel_display *display = to_intel_display(dig_port);
- 	struct intel_lspcon *lspcon = &dig_port->lspcon;
-@@ -724,7 +724,7 @@ void lspcon_resume(struct intel_digital_port *dig_port)
- 		return;
- 
- 	if (!lspcon->active) {
--		if (!lspcon_init(dig_port)) {
-+		if (!intel_lspcon_init(dig_port)) {
- 			drm_err(display->drm, "LSPCON init failed on port %c\n",
- 				port_name(dig_port->base.port));
- 			return;
-diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/drm/i915/display/intel_lspcon.h
-index 20581af1ddb2..41d142a5c440 100644
---- a/drivers/gpu/drm/i915/display/intel_lspcon.h
-+++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
-@@ -13,11 +13,15 @@ struct intel_crtc_state;
- struct intel_digital_port;
- struct intel_encoder;
- 
--bool lspcon_init(struct intel_digital_port *dig_port);
-+bool intel_lspcon_init(struct intel_digital_port *dig_port);
- bool intel_lspcon_active(struct intel_digital_port *dig_port);
--bool lspcon_detect_hdr_capability(struct intel_digital_port *dig_port);
--void lspcon_resume(struct intel_digital_port *dig_port);
--void lspcon_wait_pcon_mode(struct intel_digital_port *dig_port);
-+bool intel_lspcon_detect_hdr_capability(struct intel_digital_port *dig_port);
-+void intel_lspcon_resume(struct intel_digital_port *dig_port);
-+void intel_lspcon_wait_pcon_mode(struct intel_digital_port *dig_port);
-+u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
-+				    const struct intel_crtc_state *pipe_config);
-+
-+/* digital port infoframes hooks */
- void lspcon_write_infoframe(struct intel_encoder *encoder,
- 			    const struct intel_crtc_state *crtc_state,
- 			    unsigned int type,
-@@ -32,7 +36,5 @@ void lspcon_set_infoframes(struct intel_encoder *encoder,
- 			   const struct drm_connector_state *conn_state);
- u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
- 			      const struct intel_crtc_state *pipe_config);
--u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
--				    const struct intel_crtc_state *pipe_config);
- 
- #endif /* __INTEL_LSPCON_H__ */
--- 
-2.39.5
+== Summary ==
+
+lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-rc1-xe+/kernel/kernel/
+lib/modules/6.14.0-rc1-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-rc1-xe+/kernel/block/
+lib/modules/6.14.0-rc1-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-rc1-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-rc1-xe+/build
+lib/modules/6.14.0-rc1-xe+/modules.alias.bin
+lib/modules/6.14.0-rc1-xe+/modules.builtin
+lib/modules/6.14.0-rc1-xe+/modules.softdep
+lib/modules/6.14.0-rc1-xe+/modules.alias
+lib/modules/6.14.0-rc1-xe+/modules.order
+lib/modules/6.14.0-rc1-xe+/modules.symbols
+lib/modules/6.14.0-rc1-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1738677616:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1738677616:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
