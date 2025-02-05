@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3B54C02192
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 13:14:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF5F5C02192
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 13:16:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AED810E1EA;
-	Wed,  5 Feb 2025 13:14:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8ADC210E086;
+	Wed,  5 Feb 2025 13:16:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bQyT4CJT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eFEAZPw6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4352A10E7B0
- for <intel-xe@lists.freedesktop.org>; Wed,  5 Feb 2025 13:14:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F134A10E086
+ for <intel-xe@lists.freedesktop.org>; Wed,  5 Feb 2025 13:16:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738761259; x=1770297259;
+ t=1738761395; x=1770297395;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=+lSH3vkQOq3tHFUJjrbn02S2GMjxFWgiWhzE+Xj3Ngc=;
- b=bQyT4CJTl0ZkyBjIpjn/583omsu6GBZmAgdYItcesSzN8fGN9shrNdVR
- +ND33PBo38KhGyGOdFCfCXb8BzptzR3chTAC6P9emaoMfDMM+eI8/roMT
- sQu9dtoH4OisITDW94G8rvtTKl9ZaInxw7oFSLP52D+UUvZhiOu1tTYL2
- HrO9Cx39cU7JS3NRJV8akbd/yfyELsBECWtDNN+IFnL895hNipE+MGmPz
- Ryelc/6YAZkyyzZLdoXy0VZAqp7DqZErMCiYi6/eH68mEIt/UAhPljFPm
- +FsdHBnNq4dr2SBlBy6Lu6VVUc7ZSQorYguMnD3OFeIOoSBRrz9ZX7snV Q==;
-X-CSE-ConnectionGUID: 36VVbybKSBmTNT1eCDH0YQ==
-X-CSE-MsgGUID: 3twXs70QSXmAgDwz60BkxQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39225121"
-X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="39225121"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 05:14:19 -0800
-X-CSE-ConnectionGUID: Z24a+3ECT+iUGmNjp+FUNQ==
-X-CSE-MsgGUID: iYoMzxnuROCU0qZ9XKKtuA==
+ bh=uGhbUKOIC5TP3sa2XSrjKo2WEB/MRZjIRFNuC299r04=;
+ b=eFEAZPw6rkJkJN89SGpeXk8QmB7dTIkg0p6QMhvzKxwrfF/vGGN0+1ei
+ 9bsElj4KfzP1BOFVCBj2/DzUBFPwjOQi7M+B336WrI7P4rHuxkTyWCq6L
+ QYcv1ttBNAfrQn3xQxtptMHi8ed2J8ZeYXkIytaRSFdFBtPL4mnF4Ui53
+ wa5zaDDi6XzvNwaBWjffyzGYRc3JglPVLdGw0UfQtalLM/o2TD0krsgXo
+ h9lj/00v4Sggn1n3EKnZ7N8pEeljJDyUWc0kS5FEwo7aA327o/HiyrC+j
+ ycGfXjhoAB1vcClsh0I+p3IjEjrGTbpT5MjR9Mn1kIGPyOz7MuQJb0R0c w==;
+X-CSE-ConnectionGUID: J20PlUceT5SDeM04qyrBVg==
+X-CSE-MsgGUID: 31IuO4X7RmWOA8AEWWelAw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="39436368"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="39436368"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 05:16:35 -0800
+X-CSE-ConnectionGUID: 3A1JOTyERtuehJwL/JIwuQ==
+X-CSE-MsgGUID: 7XyLJILeSy2LDXWqtEJCBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="111475932"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110747720"
 Received: from carterle-desk.ger.corp.intel.com (HELO [10.245.246.213])
  ([10.245.246.213])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 05:14:17 -0800
-Message-ID: <68c890a3baff21199f6aca82dccdd024f56de199.camel@linux.intel.com>
-Subject: Re: [PATCH 3/3] drm/xe: Allow scratch page under fault mode for
- certain platform
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 05:16:34 -0800
+Message-ID: <f5ea7496a09c6dd74a2f69ed0c927ca358a0e33d.camel@linux.intel.com>
+Subject: Re: [PATCH 1/3] drm/xe: Introduced needs_scratch bit in device
+ descriptor
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 To: Oak Zeng <oak.zeng@intel.com>, intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, jonathan.cavitt@intel.com
-Date: Wed, 05 Feb 2025 14:14:15 +0100
-In-Reply-To: <20250204184558.4181478-3-oak.zeng@intel.com>
+Date: Wed, 05 Feb 2025 14:16:31 +0100
+In-Reply-To: <20250204184558.4181478-1-oak.zeng@intel.com>
 References: <20250204184558.4181478-1-oak.zeng@intel.com>
- <20250204184558.4181478-3-oak.zeng@intel.com>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,127 +71,93 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Tue, 2025-02-04 at 13:45 -0500, Oak Zeng wrote:
-> Normally scratch page is not allowed when a vm is operate under page
-> fault mode, i.e., in the existing codes,
-> DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE
-> and DRM_XE_VM_CREATE_FLAG_FAULT_MODE are mutual exclusive. The reason
-> is fault mode relies on recoverable page to work, while scratch page
-> can mute recoverable page fault.
+> On some platform, scratch page is needed for out of bound prefetch
+> to work. Introduce a bit in device descriptor to specify whether
+> this device needs scratch page to work.
 >=20
-> On xe2 and xe3, out of bound prefetch can cause page fault and
-> further
-> system hang because xekmd can't resolve such page fault. SYCL and OCL
-> language runtime requires out of bound prefetch to be silently
-> dropped
-> without causing any functional problem, thus the existing behavior
-> doesn't meet language runtime requirement.
->=20
-> At the same time, HW prefetching can cause page fault interrupt. Due
-> to
-> page fault interrupt overhead (i.e., need Guc and KMD involved to fix
-> the page fault), HW prefetching can be slowed by many orders of
-> magnitude.
->=20
-> Fix those problems by allowing scratch page under fault mode for xe2
-> and
-> xe3. With scratch page in place, HW prefetching could always hit
-> scratch
-> page instead of causing interrupt.
->=20
-> A side effect is, scratch page could hide application program error.
-> Application out of bound accesses are hided
-s/hided/hidden/
-
->  by scratch page mapping,
-> instead of get reported to user.
->=20
-> igt test: https://patchwork.freedesktop.org/series/144334/. Test
-> result on
-> BMG:
->=20
-> root@DUT1130BMGFRD:/home/szeng/dii-tools/igt-public/build/tests#
-> ./xe_exec_fault_mode --run-subtest scratch-fault
-> IGT-Version: 1.30-gde1a3cb42 (x86_64) (Linux: 6.13.0-xe x86_64)
-> Using IGT_SRANDOM=3D1738684805 for randomisation
-> Opened device: /dev/dri/card0
-> Starting subtest: scratch-fault
-> Subtest scratch-fault: SUCCESS (0.080s)
->=20
-> Without this series, the test result is:
->=20
-> root@DUT1130BMGFRD:/home/szeng/dii-tools/igt-public/build/tests#
-> ./xe_exec_fault_mode --run-subtest scratch-fault
-> IGT-Version: 1.30-gde1a3cb42 (x86_64) (Linux: 6.13.0-xe x86_64)
-> Using IGT_SRANDOM=3D1738686046 for randomisation
-> Opened device: /dev/dri/card0
-> Starting subtest: scratch-fault
-> (xe_exec_fault_mode:5047) CRITICAL: Test assertion failure function
-> test_exec, file ../tests/intel/xe_exec_fault_mode.c:349:
-> (xe_exec_fault_mode:5047) CRITICAL: Failed assertion:
-> __xe_wait_ufence(fd, &exec_sync[i], 0xdeadbeefdeadbeefull,
-> exec_queues[i % n_exec_queues], &timeout) =3D=3D 0
-> (xe_exec_fault_mode:5047) CRITICAL: Last errno: 62, Timer expired
-> (xe_exec_fault_mode:5047) CRITICAL: error: -62 !=3D 0
-> Stack trace:
-> =C2=A0 #0 ../lib/igt_core.c:2266 __igt_fail_assert()
-> =C2=A0 #1 ../tests/intel/xe_exec_fault_mode.c:346 test_exec()
-> =C2=A0 #2 ../tests/intel/xe_exec_fault_mode.c:537
-> __igt_unique____real_main407()
-> =C2=A0 #3 ../tests/intel/xe_exec_fault_mode.c:407 main()
-> =C2=A0 #4 ../sysdeps/nptl/libc_start_call_main.h:74
-> __libc_start_call_main()
-> =C2=A0 #5 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
-> =C2=A0 #6 [_start+0x2e]
-> Subtest scratch-fault failed.
->=20
-> v2: Refine commit message (Thomas)
+> v2: introduce a needs_scratch bit in device info (Thomas, Jonathan)
 >=20
 > Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+LGTM.
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+
+
 > ---
-> =C2=A0drivers/gpu/drm/xe/xe_vm.c | 9 +++++----
-> =C2=A01 file changed, 5 insertions(+), 4 deletions(-)
+> =C2=A0drivers/gpu/drm/xe/xe_device_types.h | 3 +++
+> =C2=A0drivers/gpu/drm/xe/xe_pci.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 5 +++++
+> =C2=A02 files changed, 8 insertions(+)
 >=20
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 813d893d9b63..c0372f083d42 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -1752,6 +1752,11 @@ int xe_vm_create_ioctl(struct drm_device *dev,
-> void *data,
-> =C2=A0	if (XE_IOCTL_DBG(xe, args->extensions))
-> =C2=A0		return -EINVAL;
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h
+> b/drivers/gpu/drm/xe/xe_device_types.h
+> index c0e886bac183..1197ab31e528 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -45,6 +45,7 @@ struct xe_pxp;
+> =C2=A0#define GRAPHICS_VERx100(xe) ((xe)->info.graphics_verx100)
+> =C2=A0#define MEDIA_VERx100(xe) ((xe)->info.media_verx100)
+> =C2=A0#define IS_DGFX(xe) ((xe)->info.is_dgfx)
+> +#define NEEDS_SCRATCH(xe) ((xe)->info.needs_scratch)
 > =C2=A0
-> +	if (XE_IOCTL_DBG(xe, args->flags &
-> DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE &&
-> +			 args->flags &
-> DRM_XE_VM_CREATE_FLAG_FAULT_MODE &&
-> +			 !(NEEDS_SCRATCH(xe))))
-> +		return -EINVAL;
-> +
-
-We should probably move this test to where the old test were below,
-since the WA below enables scratch pages.
-
-/Thomas
-
-
-> =C2=A0	if (XE_WA(xe_root_mmio_gt(xe), 14016763929))
-> =C2=A0		args->flags |=3D DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE;
+> =C2=A0#define XE_VRAM_FLAGS_NEED64K		BIT(0)
 > =C2=A0
-> @@ -1765,10 +1770,6 @@ int xe_vm_create_ioctl(struct drm_device *dev,
-> void *data,
-> =C2=A0	if (XE_IOCTL_DBG(xe, args->flags &
-> ~ALL_DRM_XE_VM_CREATE_FLAGS))
-> =C2=A0		return -EINVAL;
+> @@ -318,6 +319,8 @@ struct xe_device {
+> =C2=A0		u8 has_usm:1;
+> =C2=A0		/** @info.is_dgfx: is discrete device */
+> =C2=A0		u8 is_dgfx:1;
+> +		/** @info.needs_scratch: needs scratch page for oob
+> prefetch to work */
+> +		u8 needs_scratch:1;
+> =C2=A0		/**
+> =C2=A0		 * @info.probe_display: Probe display hardware.=C2=A0 If
+> set to
+> =C2=A0		 * false, the driver will behave as if there is no
+> display
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c
+> b/drivers/gpu/drm/xe/xe_pci.c
+> index e8ef7d6b4db8..09736674a77e 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -67,6 +67,7 @@ struct xe_device_desc {
+> =C2=A0	u8 has_llc:1;
+> =C2=A0	u8 has_pxp:1;
+> =C2=A0	u8 has_sriov:1;
+> +	u8 needs_scratch:1;
+> =C2=A0	u8 skip_guc_pc:1;
+> =C2=A0	u8 skip_mtcfg:1;
+> =C2=A0	u8 skip_pcode:1;
+> @@ -353,6 +354,7 @@ static const struct xe_device_desc lnl_desc =3D {
+> =C2=A0	.dma_mask_size =3D 46,
+> =C2=A0	.has_display =3D true,
+> =C2=A0	.has_pxp =3D true,
+> +	.needs_scratch =3D true,
+> =C2=A0};
 > =C2=A0
-> -	if (XE_IOCTL_DBG(xe, args->flags &
-> DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE &&
-> -			 args->flags &
-> DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
-> -		return -EINVAL;
-> -
-> =C2=A0	if (XE_IOCTL_DBG(xe, !(args->flags &
-> DRM_XE_VM_CREATE_FLAG_LR_MODE) &&
-> =C2=A0			 args->flags &
-> DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
-> =C2=A0		return -EINVAL;
+> =C2=A0static const struct xe_device_desc bmg_desc =3D {
+> @@ -361,6 +363,7 @@ static const struct xe_device_desc bmg_desc =3D {
+> =C2=A0	.dma_mask_size =3D 46,
+> =C2=A0	.has_display =3D true,
+> =C2=A0	.has_heci_cscfi =3D 1,
+> +	.needs_scratch =3D true,
+> =C2=A0};
+> =C2=A0
+> =C2=A0static const struct xe_device_desc ptl_desc =3D {
+> @@ -368,6 +371,7 @@ static const struct xe_device_desc ptl_desc =3D {
+> =C2=A0	.dma_mask_size =3D 46,
+> =C2=A0	.has_display =3D true,
+> =C2=A0	.require_force_probe =3D true,
+> +	.needs_scratch =3D true,
+> =C2=A0};
+> =C2=A0
+> =C2=A0#undef PLATFORM
+> @@ -643,6 +647,7 @@ static int xe_info_init_early(struct xe_device
+> *xe,
+> =C2=A0	xe->info.skip_guc_pc =3D desc->skip_guc_pc;
+> =C2=A0	xe->info.skip_mtcfg =3D desc->skip_mtcfg;
+> =C2=A0	xe->info.skip_pcode =3D desc->skip_pcode;
+> +	xe->info.needs_scratch =3D desc->needs_scratch;
+> =C2=A0
+> =C2=A0	xe->info.probe_display =3D IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> &&
+> =C2=A0				 xe_modparam.probe_display &&
 
