@@ -4,181 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 951D6C02192
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 08:14:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D43D7C02192
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 08:32:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57FB210E747;
-	Wed,  5 Feb 2025 08:14:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A02FA10E751;
+	Wed,  5 Feb 2025 08:32:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L4az4U7q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Km1wklH6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 327FB10E747;
- Wed,  5 Feb 2025 08:14:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B271A10E754;
+ Wed,  5 Feb 2025 08:32:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738743267; x=1770279267;
+ t=1738744357; x=1770280357;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=19OJaIk7vUi8Mo6Gg0VxLguvprIQThpAiOKHZ67WpQ4=;
- b=L4az4U7qBt8kPazbq6MiWNlYCpCjiWRUIwSHigit8HPPNwQibcshwKp3
- OiVx6WSODcvtYW8MDUStpdF9Hg0+kqeFLGQ6FPYz6HkRw6cjD4/st7z1O
- ownPK0qGYvpAMBSVaruonRmvpiHmUV9jpuqVmaHZbMA3PZt9YvNf09gpW
- +KusCeg6uFPNHBzQezDIW+LxJLX5M0P7Ii1Q3s4AbFpDq/vP1l0iqq9rj
- 5t8DZBI7Cik/ZqS7TQDne5B3JLs41DlVefzRwUiRs+G+wnosEEZQja9nl
- aI22oTUKtpn5YkssfLbNOnaiLP5rdtzrlIcQ1V4xBvGu4K1WtCuGaUYoE g==;
-X-CSE-ConnectionGUID: zg+SnmBZRVOe7tXcb3z5rw==
-X-CSE-MsgGUID: SEOVMEYCQSu2iTkvxohJlg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="26901610"
-X-IronPort-AV: E=Sophos;i="6.13,260,1732608000"; d="scan'208";a="26901610"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 00:14:22 -0800
-X-CSE-ConnectionGUID: Ep2WulovSaSyeO/MZQjRAg==
-X-CSE-MsgGUID: w4LAhBoyRtK393y97iQkUg==
+ bh=zqXkucG/mHFQUbQK/5eW5pFFzsPe4bYsBBrlYRFZoF8=;
+ b=Km1wklH6bpgAwxIurl0cs0zkiw41HX+UMF7cOdWDTLQAeyJg0p09ZzMV
+ G2eRY3+e+0EU12JMjdn4WOBJSYNSWaUzzpDUmSec976kpIAOuIovZMM36
+ 5RWtCM9YMWaJ9PAio6KMQdkPgdjtOzeE+Pv9wjxD7WpSsE82LhfKqX4/L
+ cl4nh7hISXhiG4PC+3npfJbsbQ0iZLxuZz9JJE5/fBk+VcS6bMKxdxFdS
+ u4kO+umyoMJSjMBJzoBja98kbapP/WNPNhel0wPV8aUOav/DU8xuaLo8J
+ Qc8sMrRdCOETQU44Vc43Sb4B5DpPnQh3YyYgUJJ+H8lH+t+bUXKhBT2au Q==;
+X-CSE-ConnectionGUID: 3VRL+Mz3S/GXhSE/vH8+rQ==
+X-CSE-MsgGUID: WPHxjc4JRvCIwn4IHDJ2GQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39455833"
+X-IronPort-AV: E=Sophos;i="6.13,260,1732608000"; d="scan'208";a="39455833"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 00:32:31 -0800
+X-CSE-ConnectionGUID: SMAPvot6RCWDzFjYBp+5nQ==
+X-CSE-MsgGUID: W1yuMFYARmW5ZfsizkiwDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,260,1732608000"; d="scan'208";a="110720608"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Feb 2025 00:14:14 -0800
+X-IronPort-AV: E=Sophos;i="6.13,260,1732608000"; d="scan'208";a="115831250"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 Feb 2025 00:32:30 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Wed, 5 Feb 2025 00:14:13 -0800
+ 15.1.2507.44; Wed, 5 Feb 2025 00:32:29 -0800
 Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Wed, 5 Feb 2025 00:14:13 -0800
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.46) by
+ 15.1.2507.44 via Frontend Transport; Wed, 5 Feb 2025 00:32:29 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.42) by
  edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 5 Feb 2025 00:14:12 -0800
+ 15.1.2507.44; Wed, 5 Feb 2025 00:32:29 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LZm6VY9dg8cvQ/mor0hpgSIolDtz06GrkEr0PPm9hNn4RGF9hNFZsOYLvhua+wEtpEHJDfsBbtuXrglVluD4sO7n3IV3VD9/1+iB5hiMHjGaGgKAnzkg8RL9fWaMRg8pHnlRyoSendk5HbiUzkuYixvsQlJUdGKfdujxio/hclP0cjeUjzHiI2S4bwGRm3m3VqG5fAfhc9ZixnDm7MadYxOtGr1zir+GHcnuipfY8kceN88QCkVCkeEI+J3NWK3gakPkpvhq7uaxdr7MJ37pdCDao5gEKZj9Hy0Z8Bx8q08jAf+s+lo6D78S/skcLpECm3rYwhghJh429ouFdLPzuA==
+ b=feln42Ivdi/K2NK8f8Ux66mz2tvTR+IOZcm2aiNmUVk6+0stJc9SwFB8sF8IWyvw881mnHyLfaoV7nwWbk+P1l7rSzwRjdvECmCKqggPydmbzownOhFolvypMwy0Tj6lnMnjguuueu6XLEqRaoEgYPhjWhyNyU8PBV/VtnlP2dQm6+rkrExs05lglIicRxP9zGdC5Fom050QCo+fIGFb/bVT0gc6A6n5Fvd77XL2y8GbZqEHJGjXF7nNa3Kwqzjm06sxmrSSEcCP9k3M8S5uRHOcnJSrHiGjTHzIaiLrF7bhI/90lqylEAgtq067ZoJvkkzOP+HeCMHX272AYAQBeQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LJsCrfArtzND3iD7CN+5L5Aq/tqAPTzxpUIgfM03hUk=;
- b=XkpoyXvfZY9zpVzskteNac1ay+8mwkgq+Qf4kR/YrpsLrVYCuas44w5bREAlnuRgQnocTAHvKmd0z5VNr/n1uTBUMRXZVLFO+lR3ffiXfA2fhf1RBDBJ4UrpPUIYOuEKvllK8rNc0oIL1oYI/aEt7E5fyqRvg8Rw8jdqWuCFYuLEgIMMxlUABRTvfDKeXAy3hpIlkK05d7WBZ6KW85wXwSU1+7IzaJDvCQ2wt0NEQ2rRn/A3wk9oBDRtTEVBJTONSzBphrXl0BVEYe3DgklmHCVcyq/bf2cajnyCI2AUnYp5qWzsk2JahjuRaZwJdRylDE+X0sO4aMl1yDhda2D5uQ==
+ bh=c3p8R6TYHyoubQdnWNzsttURHJjrLNKyP8y2Kx4gv8o=;
+ b=Qf2pFF7LsdTYc5fllRG+L+BU3cI6EnZGYQ1Koy2v4cAHiS2IUdRRXvMqpQfecjq/Mu0qoBZYL2JU/kXiEhqUVld4jRiXVAuU1D7VYWytPyfQC94yB6wWpZ7pJMznEsbwVogvs1wBCy6xFlkj3xZacQzCeddG3x+JyD49/VG84jmSkzHYnEqwU5WXVb1WggZmGHPI4xE7fupV1DoDMSzT1ohVw5XZ+dcJjKc3Jx96MO9ptRz3TCZiuJcYFKiEhdIEyt4Q4aCWjjUFqzKBbI7ofgpLCJNER1T20sS/14kAekevp+3wyuENBrX1rElGzT7ykDvmIfJjNNkyJsu6bleNKw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by MN0PR11MB6133.namprd11.prod.outlook.com (2603:10b6:208:3cb::15) with
+ by PH0PR11MB4965.namprd11.prod.outlook.com (2603:10b6:510:34::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.10; Wed, 5 Feb
- 2025 08:14:11 +0000
+ 2025 08:32:26 +0000
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.8422.010; Wed, 5 Feb 2025
- 08:14:10 +0000
-Message-ID: <921818d1-b357-45e6-a189-cd6766eaa278@intel.com>
-Date: Wed, 5 Feb 2025 13:44:04 +0530
+ 08:32:26 +0000
+Message-ID: <c27c5e61-309d-46f0-a611-4e979e3bd558@intel.com>
+Date: Wed, 5 Feb 2025 14:02:20 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] drm/i915/display: Configure the scaler
+Subject: Re: [PATCH v8 4/6] drm/i915/display: Enable the second scaler for
+ sharpness
 To: Nemesa Garg <nemesa.garg@intel.com>, <intel-gfx@lists.freedesktop.org>,
  <intel-xe@lists.freedesktop.org>
 References: <20250113104936.1338290-1-nemesa.garg@intel.com>
- <20250113104936.1338290-4-nemesa.garg@intel.com>
+ <20250113104936.1338290-5-nemesa.garg@intel.com>
 Content-Language: en-US
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250113104936.1338290-4-nemesa.garg@intel.com>
+In-Reply-To: <20250113104936.1338290-5-nemesa.garg@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MAXP287CA0017.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a00:49::35) To DM4PR11MB5341.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA0PR01CA0117.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:11d::20) To DM4PR11MB5341.namprd11.prod.outlook.com
  (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|MN0PR11MB6133:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c234b16-8118-4269-764e-08dd45bd11be
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH0PR11MB4965:EE_
+X-MS-Office365-Filtering-Correlation-Id: c21afa50-7daf-4afc-e24c-08dd45bf9ec0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SnlyYXIzUUZickNhR0JHQW1HQm5UeDYvdnRQbEhkN25SRjg2YWdtVFppRHJX?=
- =?utf-8?B?WHVabzY3MGMvVWFNN09kUXdUeElrNWpBOURYRWUxQ2ViZHZCVGs5enZVbnVi?=
- =?utf-8?B?eHdKTmxoZDNoZS9BR0cxWFZVeHlsQTJMTFFLTTFLa2hrNXg3OE1Hd3FIOWhk?=
- =?utf-8?B?eDVrUjM5NWhvdzB5YkREVEZCbUFPV2FyeVdkNm5FMU93WlZzZEVuM0UwNjhm?=
- =?utf-8?B?dnJXRzFEK0krdDdxVFR1SHljUnRlTWE3QzVaWEhQZ1ZHd1lSUkVjaCtXbmtF?=
- =?utf-8?B?NFNVd0N2WjRPOEJIMjlkZFkvSTdCQ2JIR3hYaG1XK2VOa0xJd09xZGN0S1Nw?=
- =?utf-8?B?dnpYYnY4VjZUQS9xSDV6a096VHUxY3NHTzduM0ptUnUyajBaM2VRZ29UalZl?=
- =?utf-8?B?K0JJVDFaR2MzSWJUbEJ3S2xyMmp5VjBmZndiSjd1dTF4eHR4cDNRM3VNQkYy?=
- =?utf-8?B?WWxIbjIyVlNyNExOQjZBaVpMMDRiY3NTQXU1YndKeGpTWTJFazV5OWhybWN4?=
- =?utf-8?B?c0x5RklnNGRaNDVyMmVya2dDa0VYbmM0MERHYlo2UEluZWZUanpIS1FYUUZW?=
- =?utf-8?B?cnNBc1E3L0Fzb0xrOThabkxrV1hFNGZOVVNCWkxzVDNmMmpmZ05YVmUwOFdI?=
- =?utf-8?B?cWRSVDNaU2RHTUFJTExpUWJYMDFaZTh5ZHZFd3VXa1dhSEs3Vi95SjFSWTNV?=
- =?utf-8?B?M1VCcW5pNEY0NzdTVTdVdzRFZTdoL002czFZcWlOWEE2Y0dXaDJKME1ETW0z?=
- =?utf-8?B?NmpNRzhkMFQ2bldPOXZ3aW56dDlEdW13dndoL2VKVkp4TjJCeHdzUXZFbFV6?=
- =?utf-8?B?UXYyODJvaVNWV25hVXJ6R1ZYeWlqMFc5Z1VHY080VDNZUDVVNFZKSVdSRkFU?=
- =?utf-8?B?MHBjOHpBKzk4MDJPK0Q3MmhpN2dwRDRCY1ZGWVB1ODd0bHRORzhqck84MjE3?=
- =?utf-8?B?VkZVSks5VTdpb28vcWxmcmNpK0JaNHh6T1NTZ0hRajB5OGYxak9VY2N1TWhF?=
- =?utf-8?B?Tmg3NWxEREczRkpoME55TUM3V2tSclVENEhaNjBlYVZ3RHhxK0NNL1QwenZS?=
- =?utf-8?B?K0V0TGVINFJENml5UXJPdXV2QkJvekNxY0tyZnhPL25KcUc1VnppcFRueUlm?=
- =?utf-8?B?bng2Nlh3ck5tYmJvdXVKRldiYVY4QVRHQkttM3Q1Z0RJYnBqQnFqZ2ZsRkhi?=
- =?utf-8?B?bFZ6WEVKRUUrVm5rREZSOGNTS3lBNlo2SUI0RDlxcVd5Yk9WbzNQT0tab1J3?=
- =?utf-8?B?N2Y5NFNCWG0yYlg5NlJwNjAxaHRsLzcybXNtR2UzOUNDUTdYdFBaR1pwcGUx?=
- =?utf-8?B?ZUNBalU1Wm8rMjVDTk14a3VIcVBqVllqSklhcnYxUlpuLzA3QUxqUWllY2hr?=
- =?utf-8?B?UEwweitSSFJOMWFoRHlJNEZrazkrY1BOQW9Obi9zU3V1MTZNQW5zZGk3Ymw5?=
- =?utf-8?B?N3dpSVpaaDZLYUlxSExmeFV4bnBkbW1VODNsSnlNTHZzZEtnYVhUYmdITzNm?=
- =?utf-8?B?dUV4bEcvY204b3VNOUwzTlJxcTJyNzh4YnNKbS8zbmpyWnJlSkxzL2VmZW9V?=
- =?utf-8?B?L3ZYZ2x1WkIwTmord0QyMzQ2NlA5NXlzWndjVzJoMlRqazk1MmtpMWFaeElu?=
- =?utf-8?B?Vk8vTU02M0t6TTZ1SUpqOU9jQ1Y0NzI4V3Zib1N0RGhpSmg5VWJHNkc5aVcz?=
- =?utf-8?B?Q3FlWGdCbHpUQndDUmNEbCswRHAzdnBISGNNSlR5amkrdE0xa2NGakx4L05O?=
- =?utf-8?B?MXVEd3NYUDd3MjV3ZVMrV2tMVVFyQ3E1Sk8zaWZDWktINmpicjJ4WEd0UFVn?=
- =?utf-8?B?NHdXRWFRUmMvZG1BNGJjcjNLK0hITDZZSis1d3I5NTR3YzFSOEdocnp3U3Jm?=
- =?utf-8?Q?jEgVYCUlhMGMP?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SzFYYnZ4bVhnNWVQeE02TFJTUUlhUnlhTmowbGhQdHJTeitPNThvVWtXU3pZ?=
+ =?utf-8?B?enQ0OGhjSmlJQk9KV3dhY3plOW5uNDhhVXgvN2Fhb3hZVjkzeUtwN3NKYXpB?=
+ =?utf-8?B?cTFFaXZiSUxaWk0xakJEam9aZE1PL0FWc1lIRXdYMXk2MGQxMFJpcHdyY2Vi?=
+ =?utf-8?B?cEtUUlVCcWRZNHg3RGU1a01MT3JPMlBNdDNwc0RjTm5qeHZya1VaQWxDdHh3?=
+ =?utf-8?B?L0pycWhzMzRyQS9DbGhZTVZXTFNwcC9VcklVVVV6VVhZVlEzRndxejhETCtH?=
+ =?utf-8?B?YUFRSnc0MCtQMTBYQ2lPNURJK0tMZnV6bWo3bXQrVnE0L1ZnbWNITjZrK1V4?=
+ =?utf-8?B?dnF5ZjRJRVlPZFQ0aHUrdmptRUFUanZYRWwyQUo0ZmhsWUJ2d1FLcjdoTWFZ?=
+ =?utf-8?B?SjNNS29TWUpLUHE3eGVTNkRTc2Mwb1pmeUYvalBsZnJRWWRHU20xUklXWDIr?=
+ =?utf-8?B?bEJ1YjBaeWJqNFU4R1pOK21zR1UrQlhxcHlsejFwSXJMZEIwRE41VE9EeXdj?=
+ =?utf-8?B?UXM4SlZISFgyR01kQ3hDclJJb0FxZlFPd1hVREtKVXkyUHhWb1V3bVROcTN3?=
+ =?utf-8?B?c1pocUFlV21ianJmaU1zTDNaT2g1QmlkWWgvc2lVVitqVXpYNUhadExzblpj?=
+ =?utf-8?B?eTRCMWpWVDY2ZUpIMUVSVVNGTEtWOTJpYm5sSmVCWWpIQ3JxMlJFM0k1ekc2?=
+ =?utf-8?B?OUtFSlZpbUJ5cmxiMjVRakpKczBPU1VYRjRqelpkQy9yN2xCbVVJd1dZWXQ1?=
+ =?utf-8?B?U29zZE1VblpFL2ZZY2hqRXdwWGRBcUZRaGlBemwwMlhrb2IrQ3o5ZzVtemNj?=
+ =?utf-8?B?NWtIWWtscEcvZzluOGw2elJSWnZKdDE2bmJUUm9pejlNVGVFSkExM3VObXRW?=
+ =?utf-8?B?K0dzbDdXSkIwaDMyNERiMCtySlJqMDNMNkZwejd0WTFQWEZtRWIraXp5RjNE?=
+ =?utf-8?B?Skpoc1hCeWtwMDExM1E4TE5tU05UUFlzSGlYVVNGYTIzL01JRWN0YWhGc1Uz?=
+ =?utf-8?B?N08za2pKdC9zRk1kc1ZIUUJNT29WUzMrb3FOcHJUM1pNbStyWUF3QnRVZ0Mz?=
+ =?utf-8?B?V1JMeUhkSVp6OUNSMTE2ME1ZZlR5bzNveFdVRFpsdWViNWNDQ0VpTm9ld2w1?=
+ =?utf-8?B?ZFpBMFllWlJIRHVQbWNScS9pMEFoZGtTZERObmV6d1hKMC9HRWk5bXJQTFRD?=
+ =?utf-8?B?M3k1aVo0Q1hYUU5VNVFJUER1N3RLeHA1ZXRPOG5TYkZaMW11UE1OZUliMk1V?=
+ =?utf-8?B?d3UzYTh1dXRsSkQ3NUxOUzJsMTBpYllQb0U5Ui9XWDFvVHNJdlNQQ3l4L1lO?=
+ =?utf-8?B?TnRJemNCYTF4cjBxOUFZcUkzODEyek42RDd4dWFZUzVWTi93b1kyZFBvK2h2?=
+ =?utf-8?B?UkNBRlYwaWlNYTRraXdLSTErWVVLT2tLcFlxeGcyT2FSMzM3VjVzcW5wZDI3?=
+ =?utf-8?B?ZnlEQytzNHNkSi9ienE3WmZ6cmYzNTFNUCtlcjlnbHpHZW0rSjRlQWRmOEhw?=
+ =?utf-8?B?MDhTZ1JKa0dTRk1aTHhxVVYyNDNZTHdxV09SRHBycWlTUkZHV3hXQm4wWktM?=
+ =?utf-8?B?NEpqVHFqVDB6TDcyK0dnTS9rOHovNDVnWlh3M0xQSFloTkxQQ0NNa2s4MG1v?=
+ =?utf-8?B?aXROUkZSVUd6SEduTGdJYVJXNWtnNzhLWEIySWcybHJndHErUyszdExWUkJm?=
+ =?utf-8?B?RjFVWkl0bytVVzlSYkh6L21PWCtxdjJuQ29Jdk1ZbDJYWHVCYmhCQVdaK2Mv?=
+ =?utf-8?B?WHN6eWZoNm1uQmkvSEVSNlU2clI3OTBBYkxnYU9RTG83bXdtcURmRmhpZUoz?=
+ =?utf-8?B?dzgvZ3BxWkNyTkhxbUxYcURsNEd2VTRaZ0tuc09FSzloWk80Z2ZvdnBaSWZw?=
+ =?utf-8?Q?4rXRv9/277LY6?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cXZ5UFBwVGhkd0d1Smo3bHFVTHBNSkFzRDNuYzdRV1hMVnlCZFcwVjhNS3JG?=
- =?utf-8?B?UVc2MWxkSDNqckFuTFRMVlFKN1lHbmt2WUdaaVNmOXQ0dmtGUGdKdnFtcFF4?=
- =?utf-8?B?NlpCaVVIci9TRFNCbjM5b0JEeXVEUHlzOGZ0YzNyUkxmWitNK2F6NS8zSEcz?=
- =?utf-8?B?aERFK3NkQUlyYVNraXRjZlJraEdIaXJrYnkxQ1VLeTBXZmE1YjlkS28zdWZT?=
- =?utf-8?B?WTd2THVwZ3kxV0tGN1pMcWdiWVR4T1pxZXRKeTMyVVErOFZJeTZMSklzaGtF?=
- =?utf-8?B?a0tpZ1hCMldHMko0S092VXlDaVlMOWl2VHFhY0xXTTZVMVIyZzVQUzIwOThm?=
- =?utf-8?B?YnNWRFRURUN4T3lzNWF3eXBrek1rWVNZSE9nenJXd2dDTkxGNDdsUk5TZHo3?=
- =?utf-8?B?cUl0bVhKVFc2b21uSWthWXpVc0JMSnB1RzlldlFhYzkyZ3M5NHZ4WWpnckFu?=
- =?utf-8?B?YTVjYlhYSXZIeFFwcEdhNUFOejU3bS9xY0VySFJybTFvR21DSDYySncwRU0r?=
- =?utf-8?B?cGRjNy9IRXR0NmZqTjBXK1h3RXg2aHpJRmVDSmI4WGhRQ3NMcGUvK1FvSVJr?=
- =?utf-8?B?aUEycGJlT3dieWZhZXZjR3lrSFFlRFdjMjIxVkhvaDVtMDBrajZlejhPeDF6?=
- =?utf-8?B?RWZIZk9nM2dOSHRNSjl3MG9GUzN6TEdtS1RDcEdKaHNhZ0EvazBpcmJTQ2Yw?=
- =?utf-8?B?NGVCT1pOYXgvZG4yZ0dzVElkSWhZdmUybEYvaEcrWlhuQnc0bVNXNFhkdW4z?=
- =?utf-8?B?OHBEV0poOVROUSt1VkpaNDhOdXR6Ty9nK0lrbmtLVFJkU2RLK3FIRmRDMGRX?=
- =?utf-8?B?blVBbGoxanBsNm5kM24rb1ZGM284ZnZmY25mcU9RYWxzNjJmeHBCTnFGdEhp?=
- =?utf-8?B?VmswTXZDSWkydzZPejlFdi9HcDM2bEpWaHlteFJCTStkZmx0bjAvNkdvNERm?=
- =?utf-8?B?WXZFdHRvMmxKRjlEcXBqalUrVEZlZmkycHY3b09hTUV6TlY5UGVKM3pGY0Jx?=
- =?utf-8?B?Rll6dTNYSGJpcytHUHFDMHNxZU90eGYvUzhheW03dlRwallrSWV4aXkrb0x2?=
- =?utf-8?B?VEpkVjZnT1ltZjlQY3FETCtHSEErLytsNHNiZXR5ak1zczJHaWpQbDZCcStV?=
- =?utf-8?B?RFJiZDkxbGpDMVNtNHJQZmcwbExxbE1sWkk0bGhtZVZoODN6Wk1PeGJVb2dt?=
- =?utf-8?B?eEF3dG14QzhxeUw2YU9SYWZObDNiZkNQcmI5bElmc3VIUHZoQld3YmJqS2pp?=
- =?utf-8?B?Y291eDBsTTM4UC9aUDJMMURuNVU0VlVzMkxjZHUreXpUK3EzZ0pTc2ZUbmNV?=
- =?utf-8?B?VDgvRk1kUjlBNTVzRG5URVZ2eEtEaEhHMG9jTVloRExZMWh1VlhCTXk0L3lL?=
- =?utf-8?B?K0l4T3EvZmMrT1QyWTBRUWpXdXhhOHdma2RDSnQzT3BsVExWMkxIc2s4OFpz?=
- =?utf-8?B?djRVY3NzaEYrMitOREE0aEhBZmpkcTQrUjhUVkN5NzM1SitCK2RabTRYR2VF?=
- =?utf-8?B?cjNJSitTaWpoMC9xMDJaNjJ1cXoxaE1CL0VUQlNDemViV2lubW1sMHlIUVJ0?=
- =?utf-8?B?UmJqeVM2ekRYa2dYRVQwY294K0YvWjZNbW1MUjEvYnhySXpCc1E3RFJoWUNv?=
- =?utf-8?B?dlV0bnRFME9OYmF6Zmx4MmMzSlVxV1Jnd2NGTlpRNWdUZEMrU3M4MTdHdm1K?=
- =?utf-8?B?TURNYXRoajhiR3VOeDNkVDI4VmJobWg2VTM5QnRhK3RaMXhRaFNPOTIveXdK?=
- =?utf-8?B?c3pkNzFrSG1TMFhoZG95VU5MTk5ReDZCcDRPd1FTMURSeWphaUlLNitxMHd2?=
- =?utf-8?B?RWlhSXNuTzNPbndjTDBwWEdFMW1BdVpMMHFZL2tmbTFvM3NrV1pkYUFoWlJi?=
- =?utf-8?B?WmlQUFc1ZCs5dXFTMk5Ld0dia01zcGVyWFhMdWdHb0grRXJaU1ljYnhrTXI4?=
- =?utf-8?B?c01pN0p1TFdROWIyUmc3d2ZxVllxWDdnUEhFdU5QTGkvZGFRZk5GdUhDT2s5?=
- =?utf-8?B?SlRvQ3FOMndxdE93MDZJS2dVQ0JqdmpINEVrWmRabUplQTlqS3dobFJzcVhI?=
- =?utf-8?B?dFRXZjJlenlRWUhncjR6VEEvTFd0ZDlvcDI1cHk5Y1ByTFFiZW11VisydmJx?=
- =?utf-8?B?QnZvVjlzdmJSVnRJdGJCVStIZWx0QXFhbWpLaGNIY2xockc3bEtGZ1NIVHEy?=
- =?utf-8?B?SGc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c234b16-8118-4269-764e-08dd45bd11be
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U1lueCtPeU53dnlvUFNXeCtHenBRSU50QkFDViszTUU2dyt6SlBmUHlhZHFq?=
+ =?utf-8?B?RXhoYWdabkk2MFFRVW8vVjlLY05KQ1VDUitkOU94MGJLalVwZStqSUg5S2dK?=
+ =?utf-8?B?UFVMd3A2eHZXbElSSUtldk94QjJySDFEOHBpYnpWanNmUmZqbzh1VFQ4WUxm?=
+ =?utf-8?B?N0U3U05oTkRTUkluMGZmeGNObnl1cXVFTHdGcmFRWjJnV2NSREZpeGJNaTdH?=
+ =?utf-8?B?UEU1djRLbHFMMEY2Snh0dXpPaGtHdEcvZ0NNK2JONm4yTmZYWk1zRFFQMEl3?=
+ =?utf-8?B?MGttMThOUDBGOHN2MFFMYjQySEh1T3RjVzVDOTVyTlpVOXNoVDF2WGhQWmNi?=
+ =?utf-8?B?cDk5UEpjS24yMGZoWmpGMEhJUkNkVVorRE43VHY0czUzdzA1dENWWHVYYWha?=
+ =?utf-8?B?dmFOSUJvekNLc1JPbU5sdzJVa2ZIcVhKcGZ0dEoxQzBObjVkSWNicXFSOVI3?=
+ =?utf-8?B?QTI4VHdtdnF5SWdtRHRTM290VUxEdlBVUlgzcXN2L05YclhwT0l4MHNybG1q?=
+ =?utf-8?B?RDdSeEdaWE94TnllK2taWmM4TXkzMURBdzFIRTB4eHJJU05YSGxGRmI5ditL?=
+ =?utf-8?B?bHN5R3VBNy9LeENLQ0J5S201VmF4VGZ4SnNTcUo0UStZRXlybDAvajUzb2lR?=
+ =?utf-8?B?ZFlHYTB1QzNRUlVvbEhuWHU2SUN0K1M4R2EwdHNHc215d1Q4YStaMHY0ZmZp?=
+ =?utf-8?B?N0FSYUdHZDlJaE9LMVBuZDNIaVVEc3p5K0s3d0xiT3VoSGo3bnkzRFVkKzk4?=
+ =?utf-8?B?b1FCQlczTW5NNlVEbUdyeHJKK2x6YXAybVZVYjB1UlRhdE81OG1PUnlNREgz?=
+ =?utf-8?B?dXJZeTU3RWRYV0hNNlFENURqWWdzU0EzOFV5T3ZOQS9adU81VDRwQnRaMG4v?=
+ =?utf-8?B?eXd4ckREYWdKOUd3TDcwQ05yWTN4ZVpSQUJjY1RUNk15cE9DSGUxNDc3aVkz?=
+ =?utf-8?B?TURDN2FhMlY3QmkyeDI4akhncHYxUjhEMzQ5WVV3ZzhnNFpOdDdXSm02dURp?=
+ =?utf-8?B?YmIxdDMwR04xck5zRll3R0FsOGR6bkJORTU5MXV0c25YRVhwSFpFU2xjb3M0?=
+ =?utf-8?B?ajRCUVFzbGN5U1dCWGJBQ2RrNGZ0aTJ6WkJTN0JjMDdxRGZnQXFNT3hVdG5H?=
+ =?utf-8?B?ZXlYSEFFci9tM1EydlVaZUw0ZWcyMnAyRE5KSS9WajFkUXZPQ0p4VmdYU0hE?=
+ =?utf-8?B?QmdNMWtuMDh2SDR0akVnemVkMHJ5YWRtTzhDRVlpaDU0S2ZTdDdRWVA2RWk2?=
+ =?utf-8?B?VnQ5UkMvWFFlcmZKdWY1UWh2RVBmTWc4aTJuMzJaNjkxT3RISEVQNkpaNkto?=
+ =?utf-8?B?anlQK0ErRjNuM0Jyalo2WWVQVzQxdk4yZXNNNGh1M2xUVDB1M1JEeGVGSWFa?=
+ =?utf-8?B?c01ndzJrSXltMzlidUxHSExNbzUrY09YaUdzZmh0OVh1QndTVXUwSkZsT21j?=
+ =?utf-8?B?VDM5Vmk0SjZpOFNGWlpxOXcxbmk0Nm5rRTlWOGNlYXBpdUJ4dWpFYW0rc2h4?=
+ =?utf-8?B?UDcvYUxaTFUvV1BNVTBCMUFMdGhzdWgzeFJkWEc3ellscm5uRGZhM090U0VS?=
+ =?utf-8?B?VGI2NUtNK3d6eThwaHBOVmpWMlZxSFYxMk5KNnhQcDUxUCtnQ1RmMnEwS1hK?=
+ =?utf-8?B?Wlh1enRyR2IxR3VsTDVsa05vdHpYV2dxWTVPYld4c3FzdXZoT0F6U0dobG5t?=
+ =?utf-8?B?MjEzT003RDVFNlVXTVRoRTFSNWdJYnhuaWZjeGFkcE52RDR0WnZIblFRcjd5?=
+ =?utf-8?B?akZ1KzV5SkIrMmQzd04rODVuOUJYT09GS3prK2xkYTBvK1dSUXpjUjJoQnJm?=
+ =?utf-8?B?Yks2TE1EdndGZUtIamlkL1RxcXFrTmhqOXZObHJ3S05MV0czbjhIMWV6MU1j?=
+ =?utf-8?B?Zy80bWF1bk9WVWZkbmN1aitzaXRpRzBYazd2S0VKdXNObXpoVTdQMGtYQlV2?=
+ =?utf-8?B?OXJlNjFyc1JhQmdFTkZzYUhOejBCRkZOR0VpL0sxYW5TYkdQYkdIM24yZXEv?=
+ =?utf-8?B?WU03cjQ5UjVqK1RXaEtRS3NZUUlZRGE1Y1hDbEloWEo3Znp3YWNzRXdJbDZx?=
+ =?utf-8?B?aVQ5Z2ZuTDY2b3lab3BUNWJNd243RlVvT3lwZkVYVHI2ck9VL0FUSENTOERV?=
+ =?utf-8?B?bzY4aFRTV2xQZU5Uc2NQYTNaZTBpUVlxbjZBWWpWYUQvWmZobFFBUEpqcWxF?=
+ =?utf-8?B?b3c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c21afa50-7daf-4afc-e24c-08dd45bf9ec0
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2025 08:14:10.8595 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2025 08:32:26.6415 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yLg2E9CtHLteOHL/Hv0mrAV1jV9Zgvi4wWelU6zMvhlPIueR8azj9wf+uZJuA86gp+MyBdsaM8jvi94/7moYpu2VP5qhsnftWtMrlkg/Cbc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6133
+X-MS-Exchange-CrossTenant-UserPrincipalName: ho7nZCDsuB2G5O7jY7tUKhb9YOlfxObzvaj1zcVGqPtGgCo91ICCXLGYGOMnytKZbi/MBCY1LW0PKTjr+GdRUlZG2gDWRAZUfzRRaLEc+Rc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4965
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -195,116 +196,273 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-
 On 1/13/2025 4:19 PM, Nemesa Garg wrote:
-> Write the scaler registers for sharpness.
-
-Here you are enabling the scaler for sharpness, so subject name 
-configure the scaler doesnt seem right.
-
-The configuring is done in Patch#4.
-
-
+> As only second scaler can be used for sharpness check if it
+> is available and also check if panel fitting is also not enabled,
+> then set the sharpness. Panel fitting will have the preference
+> over sharpness property.
+>
+> v2: Add the panel fitting check before enabling sharpness
+> v3: Reframe commit message[Arun]
+> v4: Replace string based comparison with plane_state[Jani]
+> v5: Rebase
+> v6: Fix build issue
+> v7: Remove scaler id from verify_crtc_state[Ankit]
+> v8:Rebase
 >
 > Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_casf.c |  2 +
->   drivers/gpu/drm/i915/display/skl_scaler.c | 45 +++++++++++++++++++++++
->   drivers/gpu/drm/i915/display/skl_scaler.h |  1 +
->   3 files changed, 48 insertions(+)
+>   drivers/gpu/drm/i915/display/intel_casf.c     |  7 ++++
+>   drivers/gpu/drm/i915/display/intel_casf.h     |  1 +
+>   drivers/gpu/drm/i915/display/intel_display.c  |  8 ++--
+>   .../drm/i915/display/intel_display_types.h    |  1 +
+>   drivers/gpu/drm/i915/display/intel_pfit.c     |  6 +++
+>   drivers/gpu/drm/i915/display/skl_scaler.c     | 41 +++++++++++++------
+>   6 files changed, 49 insertions(+), 15 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
-> index b507401457bf..773abaad74ca 100644
+> index 773abaad74ca..aff7aa6d3eb3 100644
 > --- a/drivers/gpu/drm/i915/display/intel_casf.c
 > +++ b/drivers/gpu/drm/i915/display/intel_casf.c
-> @@ -97,6 +97,8 @@ static void intel_casf_write_coeff(struct intel_crtc_state *crtc_state)
->   void intel_casf_enable(struct intel_crtc_state *crtc_state)
->   {
->   	intel_casf_write_coeff(crtc_state);
-> +
-> +	skl_scaler_setup_casf(crtc_state);
+> @@ -101,6 +101,13 @@ void intel_casf_enable(struct intel_crtc_state *crtc_state)
+>   	skl_scaler_setup_casf(crtc_state);
 >   }
 >   
+> +int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
+> +{
+
+There should be a platform check here.
+
+
+> +	crtc_state->hw.casf_params.need_scaler = true;
+
+
+You are using need_scaler as a CASF enable flag. It would be better to 
+name it accordingly.
+If we need to check crtc_state->hw.casf_params.need_scaler == true at 
+multiple places while configuring the scaler,
+consider creating a helper function intel_casf_needs_scaler(crtc_state) 
+that returns crtc_state->hw.casf_params.need_scaler.
+
+
+> +
+> +	return 0;
+> +}
+> +
 >   static void convert_sharpness_coef_binary(struct scaler_filter_coeff *coeff,
+>   					  u16 coefficient)
+>   {
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf.h b/drivers/gpu/drm/i915/display/intel_casf.h
+> index 8e0b67a2fd99..568e0f8083eb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_casf.h
+> +++ b/drivers/gpu/drm/i915/display/intel_casf.h
+> @@ -12,5 +12,6 @@ struct intel_crtc_state;
+>   
+>   void intel_casf_enable(struct intel_crtc_state *crtc_state);
+>   void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state);
+> +int intel_casf_compute_config(struct intel_crtc_state *crtc_state);
+>   
+>   #endif /* __INTEL_CASF_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 413b7fd7e287..beef3a76eba4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2137,7 +2137,7 @@ static void get_crtc_power_domains(struct intel_crtc_state *crtc_state,
+>   	set_bit(POWER_DOMAIN_PIPE(pipe), mask->bits);
+>   	set_bit(POWER_DOMAIN_TRANSCODER(cpu_transcoder), mask->bits);
+>   	if (crtc_state->pch_pfit.enabled ||
+> -	    crtc_state->pch_pfit.force_thru)
+> +	    crtc_state->pch_pfit.force_thru || crtc_state->hw.casf_params.need_scaler)
+>   		set_bit(POWER_DOMAIN_PIPE_PANEL_FITTER(pipe), mask->bits);
+>   
+>   	drm_for_each_encoder_mask(encoder, &dev_priv->drm,
+> @@ -2386,7 +2386,7 @@ static u32 ilk_pipe_pixel_rate(const struct intel_crtc_state *crtc_state)
+>   	 * PF-ID we'll need to adjust the pixel_rate here.
+>   	 */
+>   
+> -	if (!crtc_state->pch_pfit.enabled)
+> +	if (!crtc_state->pch_pfit.enabled || crtc_state->hw.casf_params.need_scaler)
+>   		return pixel_rate;
+>   
+>   	drm_rect_init(&src, 0, 0,
+> @@ -4584,7 +4584,8 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+>   
+>   	if (DISPLAY_VER(dev_priv) >= 9) {
+>   		if (intel_crtc_needs_modeset(crtc_state) ||
+> -		    intel_crtc_needs_fastset(crtc_state)) {
+> +		    intel_crtc_needs_fastset(crtc_state) ||
+> +		    crtc_state->hw.casf_params.need_scaler) {
+>   			ret = skl_update_scaler_crtc(crtc_state);
+>   			if (ret)
+>   				return ret;
+> @@ -5750,6 +5751,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>   		PIPE_CONF_CHECK_LLI(cmrr.cmrr_m);
+>   		PIPE_CONF_CHECK_LLI(cmrr.cmrr_n);
+>   		PIPE_CONF_CHECK_BOOL(cmrr.enable);
+> +		PIPE_CONF_CHECK_BOOL(hw.casf_params.need_scaler);
+>   	}
+>   
+>   #undef PIPE_CONF_CHECK_X
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 7cb58bf56907..e5d28377bd0b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -939,6 +939,7 @@ struct intel_casf {
+>   #define SCALER_FILTER_NUM_TAPS 7
+>   	struct scaler_filter_coeff coeff[SCALER_FILTER_NUM_TAPS];
+>   	u8 win_size;
+> +	bool need_scaler;
+>   };
+>   
+>   void intel_io_mmio_fw_write(void *ctx, i915_reg_t reg, u32 val);
+> diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
+> index 4ee03d9d14ad..dce86fb22c70 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pfit.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pfit.c
+> @@ -183,6 +183,9 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
+>   	struct intel_display *display = to_intel_display(crtc_state);
+>   	const struct drm_display_mode *adjusted_mode =
+>   		&crtc_state->hw.adjusted_mode;
+> +	struct intel_atomic_state *state = to_intel_atomic_state(conn_state->state);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct intel_crtc_state *old_crtc_state = intel_atomic_get_old_crtc_state(state, crtc);
+>   	int pipe_src_w = drm_rect_width(&crtc_state->pipe_src);
+>   	int pipe_src_h = drm_rect_height(&crtc_state->pipe_src);
+>   	int ret, x, y, width, height;
+> @@ -193,6 +196,9 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
+>   	    crtc_state->output_format != INTEL_OUTPUT_FORMAT_YCBCR420)
+>   		return 0;
+>   
+> +	if (old_crtc_state->hw.casf_params.need_scaler)
+> +		return -EINVAL;
+> +
+
+Should mention here the reasoning. If sharpness is already enabled, then 
+panel fitter cannot be used.
+
+
+>   	switch (conn_state->scaling_mode) {
+>   	case DRM_MODE_SCALE_CENTER:
+>   		width = pipe_src_w;
 > diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-> index a11e09a15e23..0718210de910 100644
+> index 0718210de910..40584bc19dbb 100644
 > --- a/drivers/gpu/drm/i915/display/skl_scaler.c
 > +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -132,6 +132,13 @@ static void skl_scaler_max_dst_size(struct intel_crtc *crtc,
->   	}
+> @@ -271,7 +271,8 @@ int skl_update_scaler_crtc(struct intel_crtc_state *crtc_state)
+>   				 drm_rect_width(&crtc_state->pipe_src),
+>   				 drm_rect_height(&crtc_state->pipe_src),
+>   				 width, height, NULL, 0,
+> -				 crtc_state->pch_pfit.enabled);
+> +				 crtc_state->pch_pfit.enabled ||
+> +				 crtc_state->hw.casf_params.need_scaler);
 >   }
 >   
-> +#define SCALER_FILTER_SELECT \
-> +       (PS_FILTER_PROGRAMMED | \
-> +        PS_Y_VERT_FILTER_SELECT(1) | \
-> +        PS_Y_HORZ_FILTER_SELECT(0) | \
-> +        PS_UV_VERT_FILTER_SELECT(1) | \
-> +        PS_UV_HORZ_FILTER_SELECT(0))
-> +
->   static int
->   skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
->   		  unsigned int scaler_user, int *scaler_id,
-> @@ -667,6 +674,44 @@ static void skl_scaler_setup_filter(struct intel_display *display, enum pipe pip
->   	}
+>   /**
+> @@ -310,7 +311,9 @@ int skl_update_scaler_plane(struct intel_crtc_state *crtc_state,
 >   }
 >   
-> +void skl_scaler_setup_casf(struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct intel_display *display = to_intel_display(crtc);
-> +	struct drm_display_mode *adjusted_mode =
-> +	&crtc_state->hw.adjusted_mode;
-> +	struct intel_crtc_scaler_state *scaler_state =
-> +		&crtc_state->scaler_state;
-> +	struct drm_rect src, dest;
-> +	int id, width, height;
-> +	int x, y;
-> +	enum pipe pipe = crtc->pipe;
-> +	u32 ps_ctrl;
-> +
-> +	width = adjusted_mode->crtc_hdisplay;
-> +	height = adjusted_mode->crtc_vdisplay;
-> +
-> +	x = y = 0;
-> +	drm_rect_init(&dest, x, y, width, height);
-> +
-> +	width = drm_rect_width(&dest);
-> +	height = drm_rect_height(&dest);
-> +	id = scaler_state->scaler_id;
-> +
-> +	drm_rect_init(&src, 0, 0,
-> +		      drm_rect_width(&crtc_state->pipe_src) << 16,
-> +		      drm_rect_height(&crtc_state->pipe_src) << 16);
-> +
-> +	ps_ctrl = PS_SCALER_EN | PS_BINDING_PIPE | scaler_state->scalers[id].mode |
-> +		  SCALER_FILTER_SELECT;
-> +
-> +	intel_de_write_fw(display, SKL_PS_CTRL(pipe, id), ps_ctrl);
+>   static int intel_allocate_scaler(struct intel_crtc_scaler_state *scaler_state,
+> -				 struct intel_crtc *crtc)
+> +				 struct intel_crtc *crtc,
+> +				 struct intel_plane_state *plane_state,
+> +				 bool casf_scaler)
+>   {
+>   	int i;
+>   
+> @@ -318,6 +321,11 @@ static int intel_allocate_scaler(struct intel_crtc_scaler_state *scaler_state,
+>   		if (scaler_state->scalers[i].in_use)
+>   			continue;
+>   
+> +		if (!plane_state) {
+> +			if (casf_scaler && i != 1)
+> +				continue;
+> +		}
+
+A comment here will be better to explain the reason for this, namely: 
+CASF needs second scaler.
 
 
-Should we not disable the SKL_PS_CTL when sharpness is disabled?
+> +
+>   		scaler_state->scalers[i].in_use = true;
+>   
+>   		return i;
+> @@ -330,19 +338,23 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
+>   				     int num_scalers_need, struct intel_crtc *crtc,
+>   				     const char *name, int idx,
+>   				     struct intel_plane_state *plane_state,
+> -				     int *scaler_id)
+> +				     int *scaler_id, bool casf_scaler)
+>   {
+>   	struct intel_display *display = to_intel_display(crtc);
+>   	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> +	struct intel_crtc_state *crtc_state = to_intel_crtc_state(crtc->base.state);
+>   	u32 mode;
+>   
+>   	if (*scaler_id < 0)
+> -		*scaler_id = intel_allocate_scaler(scaler_state, crtc);
+> +		*scaler_id = intel_allocate_scaler(scaler_state, crtc, plane_state, casf_scaler);
+>   
+>   	if (drm_WARN(display->drm, *scaler_id < 0,
+>   		     "Cannot find scaler for %s:%d\n", name, idx))
+>   		return -EINVAL;
+>   
+> +	if (crtc_state->hw.casf_params.need_scaler)
+> +		mode = SKL_PS_SCALER_MODE_HQ;
+> +
+>   	/* set scaler mode */
+>   	if (plane_state && plane_state->hw.fb &&
+>   	    plane_state->hw.fb->format->is_yuv &&
+> @@ -462,7 +474,8 @@ static int setup_crtc_scaler(struct intel_atomic_state *state,
+>   	return intel_atomic_setup_scaler(scaler_state,
+>   					 hweight32(scaler_state->scaler_users),
+>   					 crtc, "CRTC", crtc->base.base.id,
+> -					 NULL, &scaler_state->scaler_id);
+> +					 NULL, &scaler_state->scaler_id,
+> +					 crtc_state->hw.casf_params.need_scaler);
+>   }
+>   
+>   static int setup_plane_scaler(struct intel_atomic_state *state,
+> @@ -497,7 +510,8 @@ static int setup_plane_scaler(struct intel_atomic_state *state,
+>   	return intel_atomic_setup_scaler(scaler_state,
+>   					 hweight32(scaler_state->scaler_users),
+>   					 crtc, "PLANE", plane->base.base.id,
+> -					 plane_state, &plane_state->scaler_id);
+> +					 plane_state, &plane_state->scaler_id,
+> +					 crtc_state->hw.casf_params.need_scaler);
+>   }
+>   
+>   /**
+> @@ -889,16 +903,19 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
+>   			continue;
+>   
+>   		id = i;
+> -		crtc_state->pch_pfit.enabled = true;
+> +
+> +		if (!crtc_state->hw.casf_params.need_scaler)
+> +			crtc_state->pch_pfit.enabled = true;
+
+This is only clear after looking at the last patch. I think its better 
+to have the whole get_config part together if it makes sense.
 
 Regards,
 
 Ankit
 
-> +	intel_de_write_fw(display, SKL_PS_WIN_POS(pipe, id),
-> +			  PS_WIN_XPOS(x) | PS_WIN_YPOS(y));
-> +	intel_de_write_fw(display, SKL_PS_WIN_SZ(pipe, id),
-> +			  PS_WIN_XSIZE(width) | PS_WIN_YSIZE(height));
-> +}
-> +
->   void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
->   {
->   	struct intel_display *display = to_intel_display(crtc_state);
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/i915/display/skl_scaler.h
-> index 4d2e2dbb1666..e1fe6a2d6c32 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.h
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.h
-> @@ -28,5 +28,6 @@ void skl_detach_scalers(const struct intel_crtc_state *crtc_state);
->   void skl_scaler_disable(const struct intel_crtc_state *old_crtc_state);
 >   
->   void skl_scaler_get_config(struct intel_crtc_state *crtc_state);
-> +void skl_scaler_setup_casf(struct intel_crtc_state *crtc_state);
+>   		pos = intel_de_read(display, SKL_PS_WIN_POS(crtc->pipe, i));
+>   		size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, i));
 >   
->   #endif
+> -		drm_rect_init(&crtc_state->pch_pfit.dst,
+> -			      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
+> -			      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
+> -			      REG_FIELD_GET(PS_WIN_XSIZE_MASK, size),
+> -			      REG_FIELD_GET(PS_WIN_YSIZE_MASK, size));
+> +		if (!crtc_state->hw.casf_params.need_scaler)
+> +			drm_rect_init(&crtc_state->pch_pfit.dst,
+> +				      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
+> +				      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
+> +				      REG_FIELD_GET(PS_WIN_XSIZE_MASK, size),
+> +				      REG_FIELD_GET(PS_WIN_YSIZE_MASK, size));
+>   
+>   		scaler_state->scalers[i].in_use = true;
+>   		break;
