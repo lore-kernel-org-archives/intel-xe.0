@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF5F5C02192
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 13:16:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F618C02196
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 13:19:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8ADC210E086;
-	Wed,  5 Feb 2025 13:16:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16D3110E1EA;
+	Wed,  5 Feb 2025 13:19:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eFEAZPw6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AdwjhBUR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F134A10E086
- for <intel-xe@lists.freedesktop.org>; Wed,  5 Feb 2025 13:16:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C03BE10E086;
+ Wed,  5 Feb 2025 13:19:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738761395; x=1770297395;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=uGhbUKOIC5TP3sa2XSrjKo2WEB/MRZjIRFNuC299r04=;
- b=eFEAZPw6rkJkJN89SGpeXk8QmB7dTIkg0p6QMhvzKxwrfF/vGGN0+1ei
- 9bsElj4KfzP1BOFVCBj2/DzUBFPwjOQi7M+B336WrI7P4rHuxkTyWCq6L
- QYcv1ttBNAfrQn3xQxtptMHi8ed2J8ZeYXkIytaRSFdFBtPL4mnF4Ui53
- wa5zaDDi6XzvNwaBWjffyzGYRc3JglPVLdGw0UfQtalLM/o2TD0krsgXo
- h9lj/00v4Sggn1n3EKnZ7N8pEeljJDyUWc0kS5FEwo7aA327o/HiyrC+j
- ycGfXjhoAB1vcClsh0I+p3IjEjrGTbpT5MjR9Mn1kIGPyOz7MuQJb0R0c w==;
-X-CSE-ConnectionGUID: J20PlUceT5SDeM04qyrBVg==
-X-CSE-MsgGUID: 31IuO4X7RmWOA8AEWWelAw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="39436368"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="39436368"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 05:16:35 -0800
-X-CSE-ConnectionGUID: 3A1JOTyERtuehJwL/JIwuQ==
-X-CSE-MsgGUID: 7XyLJILeSy2LDXWqtEJCBw==
+ t=1738761556; x=1770297556;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=QTe0Ok0VdxIc5LCLdeWsbJvIc5Adlm14a7gIW4d+D+4=;
+ b=AdwjhBURvJwXbstLoWYZqicis4X9BH/yiRkvpSn64Li6t0qziwmyd9gl
+ gb8pVmAPiELAwV0aXzulcAobxCKVHPQdMnODSQKQUV6abkPSIeLz4uPS3
+ bVqJPQ+EgIqgyniBXC43jeEakD7HypNZndWXsvJpfiYymgYptHPqOxdnk
+ ZoX9Ey4/R/vr4gZriQfYk9lplF1/0sQ6jTXxo9MT2Xns3z2xLhJUzCCP4
+ QUrebuFIvb3lNtXL+m53tqGOLj8dOeqStTf6NL1hIQl+0Q0tXa3K9RM7v
+ w65mWJfS++VeYXnBf1g9ERpBaVuh8Dgc1f+NzXAbGFOSUK3NFfP5PBDzS g==;
+X-CSE-ConnectionGUID: MPLaJuVDSUC5Op2oEWpiPw==
+X-CSE-MsgGUID: 0oPsQF9QTjWYlhTY7nquww==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="38531955"
+X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="38531955"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 05:19:15 -0800
+X-CSE-ConnectionGUID: BIw2d+pLSzadQLaz5vTOWA==
+X-CSE-MsgGUID: VW+hX6h6RB+RZXZqOGVxAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110747720"
-Received: from carterle-desk.ger.corp.intel.com (HELO [10.245.246.213])
- ([10.245.246.213])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 05:16:34 -0800
-Message-ID: <f5ea7496a09c6dd74a2f69ed0c927ca358a0e33d.camel@linux.intel.com>
-Subject: Re: [PATCH 1/3] drm/xe: Introduced needs_scratch bit in device
- descriptor
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Oak Zeng <oak.zeng@intel.com>, intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, jonathan.cavitt@intel.com
-Date: Wed, 05 Feb 2025 14:16:31 +0100
-In-Reply-To: <20250204184558.4181478-1-oak.zeng@intel.com>
-References: <20250204184558.4181478-1-oak.zeng@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="111784677"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 05:19:13 -0800
+Date: Wed, 5 Feb 2025 15:20:10 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Imre Deak <imre.deak@gmail.com>
+Subject: Re: [PATCH 04/17] drm/i915/ddi: Set missing TC DP PHY lane stagger
+ delay in DDI_BUF_CTL
+Message-ID: <Z6NlioWUEobJ76dE@ideak-desk.fi.intel.com>
+References: <20250129200221.2508101-1-imre.deak@intel.com>
+ <20250129200221.2508101-5-imre.deak@intel.com>
+ <87tt984m3j.fsf@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87tt984m3j.fsf@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,97 +67,104 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2025-02-04 at 13:45 -0500, Oak Zeng wrote:
-> On some platform, scratch page is needed for out of bound prefetch
-> to work. Introduce a bit in device descriptor to specify whether
-> this device needs scratch page to work.
->=20
-> v2: introduce a needs_scratch bit in device info (Thomas, Jonathan)
->=20
-> Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-LGTM.
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+On Wed, Feb 05, 2025 at 02:22:56PM +0200, Jani Nikula wrote:
+> On Wed, 29 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
+> > From: Imre Deak <imre.deak@gmail.com>
+> >
+> > Add the missing PHY lane stagger delay programming for ICL-ADL
+> > platforms on TypeC DP outputs.
+> >
+> > Bspec: 7534, 49533
+> > Signed-off-by: Imre Deak <imre.deak@gmail.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 18 ++++++++++++++++++
+> >  drivers/gpu/drm/i915/i915_reg.h          |  3 +++
+> >  2 files changed, 21 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 76e8296cb134b..6192c0d3c87a5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -328,9 +328,21 @@ static u32 ddi_buf_phy_link_rate(int port_clock)
+> >  	}
+> >  }
+> >  
+> > +static int dp_phy_lane_stagger_delay(int port_clock)
+> > +{
+> > +	/*
+> > +	 * Return the number of link symbols per 100 ns:
+> > +	 * port_clock (10 kHz) -> bits    / 100 us
+> > +	 * / symbol_size       -> symbols / 100 us
+> > +	 * / 1000              -> symbols / 100 ns
+> > +	 */
+> > +	return DIV_ROUND_UP(port_clock, intel_dp_link_symbol_size(port_clock) * 1000);
+> 
+> Okay, this checks out, but it was incredibly difficult (for me) to
+> follow, even with the comment. The meaning of 100 ns is also not
+> documented i.e. we want a lane stagger delay of 100 ns or greater, and
+> we must express this in terms of symbols in the register.
 
+I could clarify the above one-line code comment based on the bspec
+description as (i.e. replace "Return the number of link symbols per 100
+ns" with):
 
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_device_types.h | 3 +++
-> =C2=A0drivers/gpu/drm/xe/xe_pci.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 5 +++++
-> =C2=A02 files changed, 8 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h
-> b/drivers/gpu/drm/xe/xe_device_types.h
-> index c0e886bac183..1197ab31e528 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -45,6 +45,7 @@ struct xe_pxp;
-> =C2=A0#define GRAPHICS_VERx100(xe) ((xe)->info.graphics_verx100)
-> =C2=A0#define MEDIA_VERx100(xe) ((xe)->info.media_verx100)
-> =C2=A0#define IS_DGFX(xe) ((xe)->info.is_dgfx)
-> +#define NEEDS_SCRATCH(xe) ((xe)->info.needs_scratch)
-> =C2=A0
-> =C2=A0#define XE_VRAM_FLAGS_NEED64K		BIT(0)
-> =C2=A0
-> @@ -318,6 +319,8 @@ struct xe_device {
-> =C2=A0		u8 has_usm:1;
-> =C2=A0		/** @info.is_dgfx: is discrete device */
-> =C2=A0		u8 is_dgfx:1;
-> +		/** @info.needs_scratch: needs scratch page for oob
-> prefetch to work */
-> +		u8 needs_scratch:1;
-> =C2=A0		/**
-> =C2=A0		 * @info.probe_display: Probe display hardware.=C2=A0 If
-> set to
-> =C2=A0		 * false, the driver will behave as if there is no
-> display
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c
-> b/drivers/gpu/drm/xe/xe_pci.c
-> index e8ef7d6b4db8..09736674a77e 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -67,6 +67,7 @@ struct xe_device_desc {
-> =C2=A0	u8 has_llc:1;
-> =C2=A0	u8 has_pxp:1;
-> =C2=A0	u8 has_sriov:1;
-> +	u8 needs_scratch:1;
-> =C2=A0	u8 skip_guc_pc:1;
-> =C2=A0	u8 skip_mtcfg:1;
-> =C2=A0	u8 skip_pcode:1;
-> @@ -353,6 +354,7 @@ static const struct xe_device_desc lnl_desc =3D {
-> =C2=A0	.dma_mask_size =3D 46,
-> =C2=A0	.has_display =3D true,
-> =C2=A0	.has_pxp =3D true,
-> +	.needs_scratch =3D true,
-> =C2=A0};
-> =C2=A0
-> =C2=A0static const struct xe_device_desc bmg_desc =3D {
-> @@ -361,6 +363,7 @@ static const struct xe_device_desc bmg_desc =3D {
-> =C2=A0	.dma_mask_size =3D 46,
-> =C2=A0	.has_display =3D true,
-> =C2=A0	.has_heci_cscfi =3D 1,
-> +	.needs_scratch =3D true,
-> =C2=A0};
-> =C2=A0
-> =C2=A0static const struct xe_device_desc ptl_desc =3D {
-> @@ -368,6 +371,7 @@ static const struct xe_device_desc ptl_desc =3D {
-> =C2=A0	.dma_mask_size =3D 46,
-> =C2=A0	.has_display =3D true,
-> =C2=A0	.require_force_probe =3D true,
-> +	.needs_scratch =3D true,
-> =C2=A0};
-> =C2=A0
-> =C2=A0#undef PLATFORM
-> @@ -643,6 +647,7 @@ static int xe_info_init_early(struct xe_device
-> *xe,
-> =C2=A0	xe->info.skip_guc_pc =3D desc->skip_guc_pc;
-> =C2=A0	xe->info.skip_mtcfg =3D desc->skip_mtcfg;
-> =C2=A0	xe->info.skip_pcode =3D desc->skip_pcode;
-> +	xe->info.needs_scratch =3D desc->needs_scratch;
-> =C2=A0
-> =C2=A0	xe->info.probe_display =3D IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-> &&
-> =C2=A0				 xe_modparam.probe_display &&
+"""
+Return the number of symbol clocks delay used to stagger the
+assertion/desassertion of the port lane enables. The target delay time
+is 100 ns or greater, return the number of symbols specific to
+the provided port_clock (aka link clock) corresponding to this delay
+time, i.e. so that
 
+   number_of_symbols * duration_of_one_symbol >= 100 ns
+
+The delay must be applied only on TypeC DP outputs, for everything else
+the delay must be set to 0.
+"""
+
+followed by the above unit conversion hints.
+
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> > +}
+> > +
+> >  static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
+> >  				      const struct intel_crtc_state *crtc_state)
+> >  {
+> > +	struct intel_display *display = to_intel_display(encoder);
+> >  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> >  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> >  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+> > @@ -356,6 +368,12 @@ static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
+> >  		if (!intel_tc_port_in_tbt_alt_mode(dig_port))
+> >  			intel_dp->DP |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+> >  	}
+> > +
+> > +	if (IS_DISPLAY_VER(display, 11, 13) && intel_encoder_is_tc(encoder)) {
+> > +		int delay = dp_phy_lane_stagger_delay(crtc_state->port_clock);
+> > +
+> > +		intel_dp->DP |= DDI_BUF_LANE_STAGGER_DELAY(delay);
+> > +	}
+> >  }
+> >  
+> >  static int icl_calc_tbt_pll_link(struct drm_i915_private *dev_priv,
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > index 04e47d0a8ab92..7fe4e71fc08ec 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -3632,6 +3632,9 @@ enum skl_power_gate {
+> >  #define  DDI_BUF_PORT_DATA_20BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 1)
+> >  #define  DDI_BUF_PORT_DATA_40BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 2)
+> >  #define  DDI_BUF_PORT_REVERSAL			(1 << 16)
+> > +#define  DDI_BUF_LANE_STAGGER_DELAY_MASK	REG_GENMASK(15, 8)
+> > +#define  DDI_BUF_LANE_STAGGER_DELAY(symbols)	REG_FIELD_PREP(DDI_BUF_LANE_STAGGER_DELAY_MASK, \
+> > +							       symbols)
+> >  #define  DDI_BUF_IS_IDLE			(1 << 7)
+> >  #define  DDI_BUF_CTL_TC_PHY_OWNERSHIP		REG_BIT(6)
+> >  #define  DDI_A_4_LANES				(1 << 4)
+> 
+> -- 
+> Jani Nikula, Intel
