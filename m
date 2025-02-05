@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8BC8C02194
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 11:30:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 128F4C02194
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 11:30:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4EFD10E1AD;
-	Wed,  5 Feb 2025 11:30:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WvwNZCyy";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A854510E1AD
- for <intel-xe@lists.freedesktop.org>; Wed,  5 Feb 2025 11:29:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738754989; x=1770290989;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=twvJ0r1rET9SErN5sBn6T3AZ/jGGDNqUykquDRYAGVA=;
- b=WvwNZCyylxiG6tgywfPfVvUasvwf5g8PY3kg8DZiuBPHBiFWp+97sPSk
- ygVOqATn3wwUJY7SS5ZBnv5zzuhEH92IZ9mSR2DwRaoXT4JlCiwIaDKQP
- A+0+qZUh5y+WDhTc4tbQQ4ZNx/rlY1zWUgApusUQnbg5lEsIpqATU7T8B
- d66AhTafICLkn4uLzOi29LQhI7uPTPdQyOSGDkPvCzNkkx6k/MH/IOL0c
- H1/JTyzub8oWdqD7io5hNHt1kdjQgJ1+KJ8I3LzFZmhWLmFenGcIvZ9Ue
- Bg0eSnuyjl9V2nh/1OU/dM4Cna+c7t4S1DaePNZkmC32zE/3qoFfPNtTM Q==;
-X-CSE-ConnectionGUID: eBTVpxGXT0iI7a4gVNiAMg==
-X-CSE-MsgGUID: v2iUuH92RFiSF4AY1RadPg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="49931866"
-X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="49931866"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 03:29:48 -0800
-X-CSE-ConnectionGUID: fw22lzt6QAmY50LSUPpEAg==
-X-CSE-MsgGUID: 0cOhNGJuQEmLZVeUr/mn0g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="141735323"
-Received: from mbernato-mobl1.ger.corp.intel.com (HELO [10.246.3.119])
- ([10.246.3.119])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 03:29:45 -0800
-Message-ID: <ac682fd4-196f-40ad-be72-95730248fc95@linux.intel.com>
-Date: Wed, 5 Feb 2025 12:29:42 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD84510E1AD;
+	Wed,  5 Feb 2025 11:30:19 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17E1D10E783;
+ Wed,  5 Feb 2025 11:30:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] drm/xe/client: Skip drm-total-cycles if unable to
- read timestamp
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org,
- =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <20250204180522.2327214-1-marcin.bernatowicz@linux.intel.com>
- <20250204180522.2327214-4-marcin.bernatowicz@linux.intel.com>
- <15799e7d-1259-4a87-831b-1b6ceb8fee1a@intel.com>
- <dlawvvg26dolbcqdky3mkbqke4euaon4q2nvcjl4fit6jxshhb@vgzmhe6us5qt>
-Content-Language: en-US
-From: "Bernatowicz, Marcin" <marcin.bernatowicz@linux.intel.com>
-In-Reply-To: <dlawvvg26dolbcqdky3mkbqke4euaon4q2nvcjl4fit6jxshhb@vgzmhe6us5qt>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Expose_modifiers/formats_suppo?=
+ =?utf-8?q?rted_by_async_flips_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 05 Feb 2025 11:30:18 -0000
+Message-ID: <173875501808.1392100.3943244691363285382@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250205-asyn-v4-0-9a5b018e359b@intel.com>
+In-Reply-To: <20250205-asyn-v4-0-9a5b018e359b@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,102 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: Expose modifiers/formats supported by async flips (rev3)
+URL   : https://patchwork.freedesktop.org/series/140934/
+State : success
 
-On 2/4/2025 9:13 PM, Lucas De Marchi wrote:
-> On Tue, Feb 04, 2025 at 07:56:03PM +0100, Michal Wajdeczko wrote:
->>
->>
->> On 04.02.2025 19:05, Marcin Bernatowicz wrote:
->>> Ensure show_run_ticks() only prints drm-total-cycles when timestamp
->>> retrieval succeeds.
->>>
->>> Signed-off-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
->>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>> Cc: Michał Winiarski <michal.winiarski@intel.com>
->>> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>> ---
->>>  drivers/gpu/drm/xe/xe_drm_client.c | 9 ++++++---
->>>  1 file changed, 6 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/ 
->>> xe_drm_client.c
->>> index 63f30b6df70b..e5c4f342380e 100644
->>> --- a/drivers/gpu/drm/xe/xe_drm_client.c
->>> +++ b/drivers/gpu/drm/xe/xe_drm_client.c
->>> @@ -323,6 +323,7 @@ static void show_run_ticks(struct drm_printer *p, 
->>> struct drm_file *file)
->>>      struct xe_exec_queue *q;
->>>      u64 gpu_timestamp;
->>>      unsigned int fw_ref;
->>> +    int err;
->>>
->>>      /*
->>>       * Wait for any exec queue going away: their cycles will get 
->>> updated on
->>> @@ -350,7 +351,7 @@ static void show_run_ticks(struct drm_printer *p, 
->>> struct drm_file *file)
->>>      }
->>>      mutex_unlock(&xef->exec_queue.lock);
->>>
->>> -    gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
->>> +    err = xe_hw_engine_read_timestamp(hwe, &gpu_timestamp);
->>
->> can't we just check for !IS_SRIOV_VF here?
->>
->>>
->>>      xe_force_wake_put(gt_to_fw(hwe->gt), fw_ref);
->>>      xe_pm_runtime_put(xe);
->>> @@ -371,8 +372,10 @@ static void show_run_ticks(struct drm_printer 
->>> *p, struct drm_file *file)
->>>          class_name = xe_hw_engine_class_to_str(class);
->>>          drm_printf(p, "drm-cycles-%s:\t%llu\n",
->>>                 class_name, xef->run_ticks[class]);
->>> -        drm_printf(p, "drm-total-cycles-%s:\t%llu\n",
->>> -               class_name, gpu_timestamp);
->>> +
->>> +        if (!err)
->>> +            drm_printf(p, "drm-total-cycles-%s:\t%llu\n",
->>
->> are we sure we don't break any tools that might look for this?
-> 
-> It may break if the tool is expecting drm-total-cycles-* to exist when it
-> reads a drm-cycles-*. Also there isn't much value afaik from showing just
-> the total cycles. IMO we could just skip the entire function
-> on IS_SRIOV_VF().
+== Summary ==
 
-igt@xe_drm_fdinfo is passing, as its checks are immune to the lack of 
-drm-total-cycles-*. However, the only information we get is that the 
-engine was busy (and comparison with spin->timestamp passes), with no 
-utilization visible in gputop (the tool does not break).
+lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-rc1-xe+/kernel/kernel/
+lib/modules/6.14.0-rc1-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-rc1-xe+/kernel/block/
+lib/modules/6.14.0-rc1-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-rc1-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-rc1-xe+/build
+lib/modules/6.14.0-rc1-xe+/modules.alias.bin
+lib/modules/6.14.0-rc1-xe+/modules.builtin
+lib/modules/6.14.0-rc1-xe+/modules.softdep
+lib/modules/6.14.0-rc1-xe+/modules.alias
+lib/modules/6.14.0-rc1-xe+/modules.order
+lib/modules/6.14.0-rc1-xe+/modules.symbols
+lib/modules/6.14.0-rc1-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1738755007:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1738755007:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-We could "fool" the tools by setting drm-total-cycles to a CPU-based 
-timestamp:
-
-drm-total-cycles = mul_u64_u32_div(local_clock(),
-                                    hwe->gt->info.reference_clock,
-                                    NSEC_PER_SEC);
-
-However, this is a no-go, as it could introduce more problems than benefits.
-
-I also checked qmassa, but it does not handle VF devices (for unrelated 
-reasons).
-
-I'll send a second version skipping show_run_ticks if VF.
-
-Thanks,
-marcin
-> 
-> Lucas De Marchi
-> 
->>
->>> +                   class_name, gpu_timestamp);
->>>
->>>          if (capacity[class] > 1)
->>>              drm_printf(p, "drm-engine-capacity-%s:\t%lu\n",
->>
 
