@@ -4,165 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5635FC02193
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 01:16:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77B1CC02193
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 01:29:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A22C10E023;
-	Wed,  5 Feb 2025 01:16:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2378710E023;
+	Wed,  5 Feb 2025 01:29:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OhSByWDM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K1wVgGuj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D5FC10E023
- for <intel-xe@lists.freedesktop.org>; Wed,  5 Feb 2025 01:16:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB1BF10E716
+ for <intel-xe@lists.freedesktop.org>; Wed,  5 Feb 2025 01:29:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738718171; x=1770254171;
+ t=1738718961; x=1770254961;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=QP1tGeisEopxZIXxiy8AhBEoOz5v0dlKuDhI+1V1Cds=;
- b=OhSByWDM6QPwhsCFJI7Prcx8pQdTS1swKjjr8YJVz7vLOmdqHJoHWmft
- 5teH7G/Ux0C246Dqa25QT+JE6pmPkAvfrzsMvH1x+0sYOEsXWCziUDfRH
- b9vbaj61MPZgWoDyGYgwkzNu+PuJUtoPyTbmaQC3vWxW8NUDO9fRvQabr
- zyEQxBrqrwvEvx8lyFknKKIe2C25Cxkj14PrkJlzaiQgQ39b4SSMmm3dc
- oDtiJp5HhRjJTm0F1V62zAe1fTioTMvdQ07mFVxNRzkXLiLltdA9JYsJF
- v351HOuJEb4f509XiQGRdy+ttnYPhGvY1hRtXwBoubaR1rZ0+NgKAl0DA g==;
-X-CSE-ConnectionGUID: wZ68QY3lTSyCU/GaXWovGA==
-X-CSE-MsgGUID: Qc4z+fyvSxuemX0/0f+L1g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="50659454"
-X-IronPort-AV: E=Sophos;i="6.13,260,1732608000"; d="scan'208";a="50659454"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 17:16:11 -0800
-X-CSE-ConnectionGUID: +qoCf4e/Tuu/U3ZCpM9TDw==
-X-CSE-MsgGUID: 39HNAK5NQWioisG97NGdUA==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=2U7lXoZEMLP3Lak2MB0JKTZDFZ4awtoOsUEk65tJY+0=;
+ b=K1wVgGujOSM2x/ssavbaKc5CPVBjLrx6IKbFj0Vj7qpiAD03KwA6LqlP
+ gfeqqT7orxc6TOm9RILsPqJXaHBYslz8htpZ040BqfsH82HvcYiLt0L4w
+ /Hvzz2/zvU+mjFKaeP8xegMAWBiRZi/AwbtTJH9xIEjB7FprRDmyE5wq5
+ Cm8U5ELduws+rHnoEiH1aeYiR+yeLE8bw2FB4GNK4yKk6P4V9rUj5aIAR
+ JUp4CFV9F7x3O2LWk2ifxWGjCuZq5yLlMxqcGtLIHm2iZ6dupj1R1ydmO
+ m4xqI9xrknfbo6Ui5W/2jAKpPDXVpDwhAqFbGY8o13frQC1N8Ourj10On A==;
+X-CSE-ConnectionGUID: kjzNDjRfQzWjN16VwPs73A==
+X-CSE-MsgGUID: DPJ5xXT2SY+u12ti281FUw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="64628206"
+X-IronPort-AV: E=Sophos;i="6.13,260,1732608000"; d="scan'208";a="64628206"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 17:29:20 -0800
+X-CSE-ConnectionGUID: dyk+Wz0fRkmcOBuGrMokcg==
+X-CSE-MsgGUID: Xyuy4ceoTCm3yC5jWoyxdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,260,1732608000"; d="scan'208";a="110609914"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110602032"
 Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 04 Feb 2025 17:16:11 -0800
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 04 Feb 2025 17:29:20 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
  ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 4 Feb 2025 17:16:09 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ 15.1.2507.44; Tue, 4 Feb 2025 17:29:19 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Tue, 4 Feb 2025 17:16:09 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.44 via Frontend Transport; Tue, 4 Feb 2025 17:29:19 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.177)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 4 Feb 2025 17:16:09 -0800
+ 15.1.2507.44; Tue, 4 Feb 2025 17:29:19 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jtfQYtGT52i7M89TZ7H6W4libbvDqVxYr9lbJm3a+j4TFQEUj9ZfPuv17Je2W51dfER9HTrCrygWcJC07KTfJ+MMzh4i+6z3bc8X/8o5yJufGXlu3Cy1p+i+4xSN0w2fjPNJvg4kItd7kIOft/fZcToEG+zSivAXzQnbmvdYOeH58h8DGbZvITi+uNmWpTqOOLbePVWL9BHOta9rBBiBz8jrDX/jZpFjGPlZ46aSf2ddjogOzny1FLaAx94jYcD7W75KxyVRqKcJgX5ftSEnow1UQwcECNxv76fcKnTLhixaEQUgM/u1Dopb7F2Ww8tT4wafj3LiAs+fetPZrre+cw==
+ b=BQZAnuNXLkotJ84TH3RZKxcZsU5pUVyPPtDysMuGrcEIFt3jaKMe4+jOgU6SWwfhLOUgTZ5EhVFLmL3w6yYN8anfy/ocX6lrOxskRP81+g8tEg+FVXuxKLvG8Ebwn1a0/9BKKGOqTNnNfCEdXXnGq1YKtm/JztO7OkGgRNT+HWtMwpxdBvrh6RJ3ALNsuCh1fYaiwrNbkkga7io1HWSs20efy0bripVcZGSZ7sd3b+XKNPYzHbBeebrFLJ8L0PmRBiVlP2mLU//uKEwr2L3Q30j8TU48LMu7KlnXcQkKxYGqg7ZhXuq/GY/fez5v06O6Ly3kbcPe8IGVK1ibrc0GmA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7jFTwvMcKRXNqXfxAiV2h1Cpb1ppBljqYNCBveQKm1Y=;
- b=OfsaKWZcn+DbABjXYbQ+Vb/55l0kDTye6MIXL1fjgzHqwl/kLdiuEiU+BK7/7hASBrW48yrGmpWuz4gg3GQeSSeaMNd9J0PCHeSZRmK/xFD7QVQOqVyAr+CHh6VtTHn/jXi2MVFN+DrCOYSRWUUb9kM57QiKMvGFFWjNjtso+dKSk4t7MXtWHbRethMWEu9IUbWtuXouhJBKPyYYuIA6cmrdsCKNwWoEN2eemN2ZhUmKgePGkae7G+wN/Kt6cQm6+pr0OTVvpR2MPwx1Ap2OpWxtl9gF/VYj4qkRpe51xx/YB9YRdJhPb3wh2x3rimCPJ7l4TvZY6zX0n2lDUi3lyQ==
+ bh=/7Pjy3In8A7WZfwOYexUb8GRHh3YcfcroLltFdLcusY=;
+ b=aIXfPsgb5r1BquAOEPQBSqW0hnLbjCIZRZeFE/1ZM71Jn6JKtuXbmXEa6YleHwf0c+sWSLB2mFyqt0/gJpJXy7oPXDZIRZKjQ4WcyaFL3dgVIsbGmZq1VZMN0lHnOkLA1tdHT+n/gOvUkdOF4uKamORsEj2xyIcANIIPZryhEex95K/aSvzP2x6IUsCTgJZJcgAXM8PMC2R309e4LAJXnez7rqSagwcg4jOPkNHcFMhuDT61bdc80xdQYqxg3TfzFyjsTdZ1i3GlFXV+KSXVCWOxW7mlSitWwJDP7tMI1uXsJ0B/7OatdoA0Nwr691ZkE5ySN8xgmIXMcGPPuSKgWw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7444.namprd11.prod.outlook.com (2603:10b6:8:146::11)
- by CY8PR11MB7033.namprd11.prod.outlook.com (2603:10b6:930:53::16) with
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by PH0PR11MB7521.namprd11.prod.outlook.com (2603:10b6:510:283::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.25; Wed, 5 Feb
- 2025 01:16:06 +0000
-Received: from DS0PR11MB7444.namprd11.prod.outlook.com
- ([fe80::fea8:e53a:7a96:7fe3]) by DS0PR11MB7444.namprd11.prod.outlook.com
- ([fe80::fea8:e53a:7a96:7fe3%6]) with mapi id 15.20.8377.009; Wed, 5 Feb 2025
- 01:16:06 +0000
-Date: Tue, 4 Feb 2025 19:16:00 -0600
-From: "Olson, Matthew" <matthew.olson@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-CC: Harish Chegondi <harish.chegondi@intel.com>,
- <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v8 5/7] drm/xe/eustall: Add EU stall sampling support for
- Xe2
-Message-ID: <Z6K70DoXZyfTN_eD@bolson-desk>
-References: <cover.1736970203.git.harish.chegondi@intel.com>
- <b192bec80378c3a7532fad983d910b896846fc3a.1736970203.git.harish.chegondi@intel.com>
- <855xlwgasx.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.26; Wed, 5 Feb
+ 2025 01:29:12 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543%4]) with mapi id 15.20.8398.025; Wed, 5 Feb 2025
+ 01:29:11 +0000
+Date: Tue, 4 Feb 2025 17:28:50 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+CC: <lucas.demarchi@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <anshuman.gupta@intel.com>, <vinay.belgaumkar@intel.com>,
+ <soham.purkait@intel.com>
+Subject: Re: [PATCH v4 4/8] drm/xe/xe_pmu: Add PMU support for
+ per-engine-class activity
+Message-ID: <Z6K+0oBpkPqKwuUm@orsosgc001>
+References: <20250129101653.1976699-1-riana.tauro@intel.com>
+ <20250129101653.1976699-5-riana.tauro@intel.com>
+ <Z51YmyBWc2HlsSZt@orsosgc001>
+ <10546030-ec4e-4717-8d80-5c976bd3e596@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <855xlwgasx.wl-ashutosh.dixit@intel.com>
-X-ClientProxiedBy: BN8PR03CA0027.namprd03.prod.outlook.com
- (2603:10b6:408:94::40) To DS0PR11MB7444.namprd11.prod.outlook.com
- (2603:10b6:8:146::11)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <10546030-ec4e-4717-8d80-5c976bd3e596@intel.com>
+X-ClientProxiedBy: MW4PR03CA0260.namprd03.prod.outlook.com
+ (2603:10b6:303:b4::25) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7444:EE_|CY8PR11MB7033:EE_
-X-MS-Office365-Filtering-Correlation-Id: b0ba170d-4467-4950-88f2-08dd4582aa6f
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|PH0PR11MB7521:EE_
+X-MS-Office365-Filtering-Correlation-Id: 01fda118-0c04-4348-2b27-08dd458472d0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?yV8UxRo2lQ3tPai/ab49dpJLxOsYrKEFMTvlSc3MpFhLvLzRW6QuFU2ptZa+?=
- =?us-ascii?Q?QbDKM3ZTPFmI+Wa1xmtEwFuUO1YUrQ7VcGpVdXGpoKyKMC+0edL/V2YdOns0?=
- =?us-ascii?Q?b5rNfJWdvdUIhYmHiir4nk6gcQfMspAuDG6xTOm40yzw65nMwwBrvINg2xWw?=
- =?us-ascii?Q?AXRJ3abEbyjYXteJTrUvxL+eksyppWJb1kvmoubBzFLPa47IyWc7ATUcG3j7?=
- =?us-ascii?Q?BqOu02hhSUAekgGpx5lf+e/XCPZdTUITZ74sFdkADoE9Y+xavSuQ2CVNRyVg?=
- =?us-ascii?Q?FAJS9O+AMjK4jN0sGhtE8vfn7xdjm/w0eeEmEKYpBWiDjibpfebHsznH2mm3?=
- =?us-ascii?Q?QIj7lmVNbqyuxS2qZLDygFGiX8PFYmWXuezISdXkNTix7YN1BrXhrkMT4k+8?=
- =?us-ascii?Q?FE+VpkV+BS+5WPP41U+h7fELCbds4BHPdeWQ9mUFv3442F8FgTAL4iGwMNlP?=
- =?us-ascii?Q?QoYxxyNH5DS45LTbkEw7R+r/RoTFghV8asTBhFb+RJtdgsbLyl53pGeqobZ4?=
- =?us-ascii?Q?3JZ6xZHwgWWTXFilVRc2xAnWpDQWGhR7opdmjlqo+206B6vhEWg/Av05CVGl?=
- =?us-ascii?Q?WWn3LMRUSRjg/a9nudWvlPy2rqPEVjU83iEmMFPFrWgPrEG5ZT8gJs2kXgKy?=
- =?us-ascii?Q?502E8mGvQqTR7olmduNdmj30wrzSsHIktDb/mY3DnCQqAevJryerDDtn/a1f?=
- =?us-ascii?Q?Bi3yCBEHHjw1aFbRcCDfqON1BVu6IusTwgLu8hhxqCNvOUFZ7huO0F8hgiZ/?=
- =?us-ascii?Q?Efw0HpXlHkpl2Cod2FHSRh6HKkWy+xvkdWEZbnX901GOxpN4uiGVbK2JeWSq?=
- =?us-ascii?Q?bLRhdhPxvFhk7GXYPgMvdb3sSU2HJi53CTXTZHBsTbVsFaDpfLL4Ok2KJtTK?=
- =?us-ascii?Q?XM0c+68q1hUh1dBO/27+0gX3QzIbuFR8RP2uVtEpMdskS2hUwiYWpd77Z3WP?=
- =?us-ascii?Q?UL+WHfPiODv/pzfmm5LxKPZjIYphznHDQGsljAHWe4FQmbVPXZABffKNj08k?=
- =?us-ascii?Q?6xVFP5n6/Gh2yrnVGya2J/I23ztxdY9IzdoMXtr8otgspDpzTRQsI4Gye20g?=
- =?us-ascii?Q?w//Nj+K3QPogLDMbO7VlBVQENIXUhqpcl/O72QM90enklmsCYWAON55oHN+L?=
- =?us-ascii?Q?axoKOeWfZJKK5Qo/P7a4EGnKWZqkjO9UNjuycHwLkAha/I3+qx4nwDskAXx5?=
- =?us-ascii?Q?4JZ6xi44Y34rwuMEDSVSkI6nsrpfiDLSgrKuXOAmcSA3Tzx1nBMz1fGJebUt?=
- =?us-ascii?Q?DSLe9ay57qvSC+JIYdPKxaySRsTlysj1rB0WAaP/VqphwkaK1iBXxYBVtYdb?=
- =?us-ascii?Q?DIfatfXIM2YQ9hYr73CZ3TsjiCF1BHU574icaDFPIF7S8qC301SJRPEc84u3?=
- =?us-ascii?Q?IBXTZ15LySRhelRcP4Ind0j/sJUz?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dEFITGR0bUJ6VkE1QXdDT3JzNHFtVlltZGlubHN0TDdsRm4zQkpJd3NDbmZ3?=
+ =?utf-8?B?MWVjTk96ZE1oU1BhdVdrS210S1hSWkNQeE41MUlBYlYvdVJYL1JvV214b3M3?=
+ =?utf-8?B?eDgzeXpiVTJQWWxESHl4WlpxeDROWnBDUytZb3I0YlZFMDdDZVVBNHNLaG91?=
+ =?utf-8?B?Z2k3OWtXTy9ON3A2ZkVUaXFQQzlJaUVSRmQ4SmltV2hpUUk4UTJKWmVpMXU4?=
+ =?utf-8?B?VWdtb3B1YnNhYlFQYUF1eittelMvZDIxcVEzTzBpNnZWM09ocVAvRUxaNHhI?=
+ =?utf-8?B?OXdZeitTS1ZxR21URkJBSEFhNGZhTGRDL3hCTi9MWkNHVEo2dGYxZTJ6VkZ4?=
+ =?utf-8?B?S3djVFpxVlBpNGRFTnNSa25waHM0aW81ME1UNFVPTHhpS0dOZUhCYUxXZGJX?=
+ =?utf-8?B?dGJnck1hTG9MQ1RiQmZDRlhqVk0xbXJwRnJ5SDJlZFVwUE1wMzIrRWtXTFNw?=
+ =?utf-8?B?RDY4azh1aUI3MmlCb2lmeUJSMHFHcDhhRW1Od3dzVWRxaVJjazJTcFpQODBX?=
+ =?utf-8?B?eFNNZzJjWmNNc21UcEZTL3QyT3RCbUQzV3lTSElkc09FQzVxV3pXVWZOaEtz?=
+ =?utf-8?B?UHNhMnl5SGJwWkF5NTczbVdSZFZlMkwzNFd2dHh5NWJxaUpUWVJyWXpTMUVN?=
+ =?utf-8?B?dWxMbG5keVZjVUpFVU05VnhsQndkbE9FWHV0VER4aUhMTE9iczdLWS9CRGkz?=
+ =?utf-8?B?cjhmZVVLZkJ3WWZNT0FnQlFGZXJkL2NuVGVPSjU2TzFKdVBQalFOZ1BUcy9K?=
+ =?utf-8?B?elVNM3I3UE1wY2FiMVZSOFV0NVBUemxyazZJcldRYktGUW5BZXJwdVhtYTZr?=
+ =?utf-8?B?K1lPLzdGS1FRK1RuU3RoS1JHakxQY0l1NU55V2ZpT3BteTBEbUh4NmVoMzJv?=
+ =?utf-8?B?UHJxNzYrMFN2TXdhaDBoWGVaSWtsRFJkMzdXZ2FEK2gvNDB0MExvakhJL0hL?=
+ =?utf-8?B?cXQrSU5wWUkzWkp6ZVY1MFJkQ0llNEYvZ1hlS250QVhraGZKaXZxWTd4VFlP?=
+ =?utf-8?B?ZTdaS0kzcFlOdVFuS3ZDeHVwTmdCQ3FaRTZGTmlqdkZ4NnQ2K3dZZjRNVlA3?=
+ =?utf-8?B?TVpxL2xqaUQrOGE5cGZJdDgzT0IrLzBzWGhHRXdxT01EdUVPcEZIaUFFNGlm?=
+ =?utf-8?B?dWhzaVlMd3RObXNrRjhwUkRKRzY0UDlZeStJSElUbDZMdEVyZ2ljbkMzanNM?=
+ =?utf-8?B?anpoWmdrQ2tvckI2QjlrMVpKdHlObXRwQ1QyZFIzZXJwWlI3cUZDcGtlVGhI?=
+ =?utf-8?B?Uk13VGdrNEhkUjY3NHNrODZHRFRWWTNoV1lSa1FmSGZ6U1dkUG1UU1U4ZUZC?=
+ =?utf-8?B?eDA4ZGVKdTRhVEhiTzg3Y0Irc1dMTE1PdFFORldYeS9MTldydTRSYnE3SHNK?=
+ =?utf-8?B?ak5JRkFlcE1UdENmN1U3TFArUzhHNlZlUzFvZ2RDem5QdlY2WUVWQWdtcDlk?=
+ =?utf-8?B?dmpobmFmQkZOQmZjM3U4UGg4cmVTSkxtQ2N3aHBnMjZvNnV3Mi9NMHR3UEJL?=
+ =?utf-8?B?YmxSd0d1ajhyZDdhNkdvSzVsdkZTYnRyemhrby9WS3VJYjdyZ2R2VVhYNE4v?=
+ =?utf-8?B?NmowaDJIajdpZ2h5YlY0WEZDckV4L3dVbTRPb0dXQ3oyNU9oeXkvS3VJVSto?=
+ =?utf-8?B?bVZCZFhwN0FEcmVuaDBsUFZPZG4wZjY4bG16Mkd3dXdnWFUxNml6VzhhU2xL?=
+ =?utf-8?B?aDJtSUs0VEJYeHkzR1NZZU9XZFdUR2xQL1NaQTB3cGpHZXRWOVFQNGhWMFRY?=
+ =?utf-8?B?dkFCVHJ2Q1BkZWVxQW9lOXVOWE5XSUVhWmFwVVY1c3B0NEw2a3h0SHVQbFdB?=
+ =?utf-8?B?SWYzWldncDdlMFJRVDd4QmVLeE91Rjd1dmJIZEZVN1drS2c4WlVpejJBbWZl?=
+ =?utf-8?Q?iAG7GuzZVlgIj?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?319dH1A38PgK2jYVfayGlV/S98eMr2rhEuhK88xDzEcy9P8rfam9ahkiyUN1?=
- =?us-ascii?Q?Cv4D3zkDwkQVDPHCQTSZVWTls2Bp/G1fKB+V9PBRiEcSM0ZUaqEpYELfL/1Q?=
- =?us-ascii?Q?m25eIPopAnojnV3ugE4Ulw/knhxnJ6WXqaH8QN9oVI5UqSqc/6/flSRXTXpo?=
- =?us-ascii?Q?Lijverw5kdb8mYCij71KleYHb40yb2mVvKv56FJrsY9FzKFa4mO5dmX2LUY0?=
- =?us-ascii?Q?nGyRBUBaBJ+4/aeBYrpo3tXO4rxbfp4MQiwetp4/N1iiQwAr70ceJ0+JxhA2?=
- =?us-ascii?Q?w3bIPVdDR+khiXmyWeZqPZPPl7XJ/hLa0vAQlSYsQJOSSlONadhdSYdBavOa?=
- =?us-ascii?Q?qmV5DW/RhxnjmkEg9+OokRJuWzV1j3mZk6BYXlSIWxXbTMSotnHN/ccTAN9J?=
- =?us-ascii?Q?Ten5bL4efjFXt9/XG9by6agCWAsdDtQu66tBSD/H+1Y4Pxw9GUTR2fpk2xpQ?=
- =?us-ascii?Q?EkxSWZBktQBQxoNfjQWXd1uVRcGO7RErZBYjh52Qk7/p/3iNa6nqONXWXsnx?=
- =?us-ascii?Q?2j08E1fV0T847l3YhOEhJMtSndLA7PW04krSjypb/g2ZKlVcqUWqgVAd8+2G?=
- =?us-ascii?Q?jHC7elFKu5fTDGw2Uytzt3E48PNnqgKOozMtQF64v73mkvWGse1MZEPgpInA?=
- =?us-ascii?Q?+WSf8a//dRlVON4DUNMLIbWiMh7OSlauEWDRP6VY8dYlGkf8s2blCKjmzaRM?=
- =?us-ascii?Q?eWrL6IEXcDSykgV29n4U4Vrna3lxo6AQSZAeCaqGOSajfyneC0RobR4knSMk?=
- =?us-ascii?Q?4iRNw6/UtehKUpKHS7O8ZobqvBqrforZRbxb/LcnXCdwbM4Ctc1Tuq/jA+FE?=
- =?us-ascii?Q?v8tavcPfeOdU5yxaT0iw28WLwHjUsuiYQPmZ3I5O3GND81N8tctWVeVGu9Py?=
- =?us-ascii?Q?9d9wCj1VW4svPzBPPnH9tQkZ25yBZUcSmtsvoSOywwsDhpRGv+aF+NPlNUgw?=
- =?us-ascii?Q?CkhDsWp2KVtqSxzzhoGKtGLdf5H8A6g3XXKOg48xoznnjyOM38scS3R/2EHA?=
- =?us-ascii?Q?CDwlQSQjKOO3DMNamaY1zscv0aNsNbHcDtGKbKDMlHkQGMFt//HtFEAIg/m/?=
- =?us-ascii?Q?H/ncclDvAyit4gYWFOK9LnlYXAlGxQHMdz36JmSqtfm+HNtOftYYnuaIue62?=
- =?us-ascii?Q?wVINLJcqhf+8uNIc9SqUwvePVDIF1THW47R5kxCXjCo1HrrH389A5leJ6VKX?=
- =?us-ascii?Q?tvjYqBNUdWPQPZmszXYL4p0T2TnLGMF9BeNhl3QH0jVvcYl3imvPbpCvXYc/?=
- =?us-ascii?Q?q+ZsRJIPoCPAtPpgCace/pPd8AmJ89gb2mdnH1zk55pOFBQ5cKp0db4Gu8pY?=
- =?us-ascii?Q?wNVG+YwAGbYCI7YNm9hLWG+K7I0W//bgiQDqiaw/N/uQU1yY/GL+GwTvSQ/c?=
- =?us-ascii?Q?3+0EG9bvDObmv8aEvhnaOCvOzSYqfRaA6gitBZ+PC48fewZnil1KCkQ+ZhWv?=
- =?us-ascii?Q?KeiLO71sPUFaWlW0UhNP4Aga619weMJ7XAbCbxnNbpk/0CZxa8+ynloaAbj1?=
- =?us-ascii?Q?tmpMTQGJhth16ncHLozHF+V5irMfPP19AJ26AbQmj6uBdM73RaQmafR/luBc?=
- =?us-ascii?Q?swMB9sTRvH0uJZVZG7EdHuiiVqW8YUX46LJM4fu7kkKUjy3yz1p5+C7U0Kza?=
- =?us-ascii?Q?aw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b0ba170d-4467-4950-88f2-08dd4582aa6f
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7444.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bm9ZTmNKaEMxZFZ3ZTdtcHJWajJQNDJaTElBbHR0UkhSSVFTYW82TlRXS0h6?=
+ =?utf-8?B?MWRHVHlHTG0vRVU2QktiTWM3L0d3ZHliZ2JhRGVtQnVVYzA1Q3pIRjVRSkM4?=
+ =?utf-8?B?MlgzcVE5R1ZBTGNLckFJeUQ3bWh3NTEwUUtjZ2dVT3NCNktHd2owbitTVDFu?=
+ =?utf-8?B?UXdSVTQ2ZkhybEpMU1hYa09wb0Yrc3ZYdFFKKzk5MmVPM1cxTjFrRURnQ2Qx?=
+ =?utf-8?B?czg3RDhvQlBTc3pvcmZJNFR5azY0akhRWmVHQ3VNL0hSSHlYWWUxOWRtT050?=
+ =?utf-8?B?bkNMa1p2OGJ4dWlyai9RbUNqYkUyRGtyOHZJVnBYZW5neUdQbU5MM3U3elk1?=
+ =?utf-8?B?OXVEdndTOFN4amlHcFhTWW93NlQ1TjVTcFp2dmQ4YzdOR3p5SW42Nk5qOVdO?=
+ =?utf-8?B?eHJBZUJiNzMxVExUUzNrWjRzcEJqek5LVkp3ejQwTG9KeEtTSlN5QTJYYmkw?=
+ =?utf-8?B?T0I0MHJOR0pkSnFndENnWG9zL3JrQW1paWVsajNBNUNLaW9lVTM5OUVuVjRT?=
+ =?utf-8?B?M3dyQjE1OGY2WVhqOUh5TzNFbmZ0ZGMzTWJUMHhBaC9CVkFqbjlxa1pxeUFh?=
+ =?utf-8?B?Nlp4SWdkT3pLYWdnUisrMC9UdTRjRklmUW1RZ3lubURmS25jY2xaMFI0d3dL?=
+ =?utf-8?B?TG9TR0twTVNrMVBEd3pKc2NERnVXNjZ5cE1EOXZFREdRam4wM1ZOeU4vNGF3?=
+ =?utf-8?B?ZmFtYWVGamdWL3Fpc3JRdlFEVUhEdVFFMnptQ25acWhNQTFSbkJTRzFYVTAy?=
+ =?utf-8?B?TzdlR0g4UlRYQUU4YlpQZU1MZEQrZDBSZmJlV0Z3dVN6OU15NnpRNStsSVJy?=
+ =?utf-8?B?V3RjMFQvMitLN1hlZ2NoclJrU3BlSExLVGI4ZHUvMFYrWVZlSzZ4TkJ4OEtx?=
+ =?utf-8?B?UEhQOTdNZlU3a2lLelBsWndOYm9Zc2dHUTlRYUsxZHFHZ1FwVkdudzBRRTFs?=
+ =?utf-8?B?Ukl1a1RVUndEaGlRbDFDYTA0Yld0VjZidk1wT3hkb1B3SHkvT05aZG9zRENO?=
+ =?utf-8?B?c0s2M1VaYjVFVWxIb3RHVlZ0dFh5NWQyeTJsSEwzSy9TNlB6SGF0TU14SUtS?=
+ =?utf-8?B?WFhpZU9MdDVsNkNQeU4yWWZlOEVhZ0RodERwTGQyMlR1NjR4Q3FJQmhlNzRn?=
+ =?utf-8?B?SSs2T08zV2FLVXV3TjcwRHVQL29CenRhQ2MxdFB6YWt3VTh3R0dsalVGUDVw?=
+ =?utf-8?B?Mm1TWTFtd1ZDNXlnaUI3a29yb01LZ2lxN24vWENsem1BYTJrYktaMjA1SlZw?=
+ =?utf-8?B?d0xLTHVscEJKZnFJR2piNXlTcWIyMkpOcm80blpUQ2FrTHBSRWowV0tPSERN?=
+ =?utf-8?B?Q2FsR1QzWmRhQ3AwaGJmSURHL045VWdEekdHbGpIME96eUVva2dkYWI0ZGhU?=
+ =?utf-8?B?QXh6TG9Ua2tjME03bHh4MVY4TWRUdkpqckVmTTRLVW5WSWxaR3NxVXgxbHBK?=
+ =?utf-8?B?bkpFeVZhQ0p1RlFYV1VQM2hKZnJKWitTZHE5citBWXVEVnNDdTdNcHlkd1FD?=
+ =?utf-8?B?T09tSmVxSDZUdElhZEp1VnlnWXJsOXVUb2g4Znp5RWsyUU1zVjR0QjNMaURK?=
+ =?utf-8?B?WXFHMDVBU01sM05PeDE3a2VWdmR5UDFjbGQraGxVdCtseERQRy83YmhqU0hM?=
+ =?utf-8?B?V2NKZ1RvQlFtU3BSaktzNVg3Uk52WThlQWpzYldETDZMcEZlVHprTUxiQm82?=
+ =?utf-8?B?ME5XZVdFdWRnbDFWbTQyclNRYXFqcjlCZG1OVEdYZnUxMExIRjBDTmN2bWVM?=
+ =?utf-8?B?Q1dEZ29ZODczaEErRjVIZC80ckVGS1JNb2plZXdnaG5za2xOcU8zWUdDcXRK?=
+ =?utf-8?B?a3FSK2lKMjJyWG0vSVJIVFFZeW1MeWNmcENueXJuaXkySzJhVFJXVnRZNWdi?=
+ =?utf-8?B?SWphSGhudHdKamsvV2hPYmNpU21VYVZOQzErNlF2SUVYaXkvY2JHbFlSRUFU?=
+ =?utf-8?B?dTM5czlMTEZGSi9rME1GSkZUZ2dvRHV0YWpCZmtmVmIySm50RlhOQ0prdXB4?=
+ =?utf-8?B?NGxDYXhZeTZpbEk1REFQdlp6aFB2TWM4VXg2QmpVVXJQSUdnQWNYa28rdjZJ?=
+ =?utf-8?B?bkNrbFQyTng0eFcxZFdmRUZBaG50UDU4UE5oVkw1dFdLS3pCa1VJY002SElS?=
+ =?utf-8?B?VCtRS3RLM0ZPRkJPMEw0Q3FOeXk4Qm1LcThIdUY2a0FEUkNlYTMwR0NxQTRI?=
+ =?utf-8?Q?Bi0jah2+6B8PQrn2pgLsEYc=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 01fda118-0c04-4348-2b27-08dd458472d0
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2025 01:16:06.6114 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2025 01:29:11.4453 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: di3gqpmvFCUKEhIgouhwGWK3RoChxGna8iBm/O+ygJseSeEey50oBmH/UMthylAOGNJENw3fv+4+f8sNqZxteQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7033
+X-MS-Exchange-CrossTenant-UserPrincipalName: oNNOcdV5NW/Lsx31HYCMsQWnQEWScOnFCeXuse28DwlAFK+wNgR/Ir5qGhV5cPjRe6IzZ0C0n0YtG+xdgkdAI+JzpX6+wwW0Nn7Gy4PlW6U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7521
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,114 +198,236 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jan 29, 2025 at 08:55:42PM -0800, Dixit, Ashutosh wrote:
-> On Wed, 15 Jan 2025 12:02:11 -0800, Harish Chegondi wrote:
-> > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-> > index 437782f8433c..d72f80a9dfe4 100644
-> > --- a/drivers/gpu/drm/xe/xe_eu_stall.c
-> > +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-> > @@ -73,6 +73,42 @@ struct xe_eu_stall_data_pvc {
-> >	__u64 unused[6];
-> >  } __packed;
-> >
-> > +/**
-> > + * struct xe_eu_stall_data_xe2 - EU stall data format for LNL, BMG
-> > + *
-> > + * Bits		Field
-> > + * 0  to 28	IP (addr)
-> > + * 29 to 36	Tdr count
-> > + * 37 to 44	other count
-> > + * 45 to 52	control count
-> > + * 53 to 60	pipestall count
-> > + * 61 to 68	send count
-> > + * 69 to 76	dist_acc count
-> > + * 77 to 84	sbid count
-> > + * 85 to 92	sync count
-> > + * 93 to 100	inst_fetch count
-> > + * 101 to 108	Active count
-> > + * 109 to 111	Exid
-> > + * 112		EndFlag (is always 1)
-> > + */
-> > +struct xe_eu_stall_data_xe2 {
-> > +	__u64 ip_addr:29;
-> > +	__u64 tdr_count:8;
-> > +	__u64 other_count:8;
-> > +	__u64 control_count:8;
-> > +	__u64 pipestall_count:8;
-> > +	__u64 send_count:8;
-> > +	__u64 dist_acc_count:8;
-> > +	__u64 sbid_count:8;
-> > +	__u64 sync_count:8;
-> > +	__u64 inst_fetch_count:8;
-> > +	__u64 active_count:8;
-> > +	__u64 ex_id:3;
-> > +	__u64 end_flag:1;
-> > +	__u64 unused_bits:15;
-> > +	__u64 unused[6];
-> > +} __packed;
-> 
-> Same question about whether or not to retain this struct. Retain it if we
-> want to document this information otherwise drop it and just keep sizeof.
+On Mon, Feb 03, 2025 at 07:44:27PM +0530, Riana Tauro wrote:
+>Hi Umesh
+>
+>On 2/1/2025 4:41 AM, Umesh Nerlige Ramappa wrote:
+>>On Wed, Jan 29, 2025 at 03:46:47PM +0530, Riana Tauro wrote:
+>>>PMU provides two counters (engine-active-ticks, engine-total-ticks)
+>>>to calculate engine activity. When querying engine activity,
+>>>user must group these 2 counters using the perf_event
+>>>group mechanism to ensure both counters are sampled together.
+>>>
+>>>To list the events
+>>>
+>>>    ./perf list
+>>>      xe_0000_03_00.0/engine-active-ticks/        [Kernel PMU event]
+>>>      xe_0000_03_00.0/engine-total-ticks/        [Kernel PMU event]
+>>
+>>checkpatch complains that the line is > 75 columns here. Maybe drop the
+>>'[Kernel PMU event]' and move it to left:
+>>
+>>./perf list
+>>     xe_0000_03_00.0/engine-active-ticks/
+>>     xe_0000_03_00.0/engine-total-ticks/
+>CI doesn't show this. Its below 75
 
-I'd prefer to keep them, as I've personally found it convenient to refer
-to them while while writing the userspace reader of these samples. I'm not
-aware of any other particular place that they can be found, other than
-maybe some other public repo that uses the i915 version of this interface
-(IGT, maybe?). I'd venture to guess that others trying to call this 
-code are also going to be searching for these definitions in
-`drivers/gpu/drm/xe` as well.
+oh, my bad
 
-> 
-> > +
-> >  static u64 per_xecore_buf_size = SZ_512K;
-> >
-> >  static unsigned long
-> > @@ -83,6 +119,8 @@ xe_eu_stall_data_record_size(struct xe_device *xe)
-> >
-> >	if (platform == XE_PVC)
-> >		record_size = sizeof(struct xe_eu_stall_data_pvc);
-> > +	else if ((platform == XE_LUNARLAKE) || (platform == XE_BATTLEMAGE))
-> 
-> 'else if (GRAPHICS_VER(xe) >= 20)' so that we don't have to keep adding
-> each individual platform.
-> 
-> > +		record_size = sizeof(struct xe_eu_stall_data_xe2);
-> >
-> >	return record_size;
-> >  }
-> > @@ -311,10 +349,16 @@ eu_stall_data_buf_check(struct xe_eu_stall_data_stream *stream)
-> >  static void
-> >  clear_dropped_eviction_line_bit(struct xe_gt *gt, u16 group, u16 instance)
-> >  {
-> > +	struct xe_device *xe = gt_to_xe(gt);
-> >	u32 write_ptr_reg;
-> >
-> > -	/* On PVC, the overflow bit has to be cleared by writing 1 to it. */
-> > -	write_ptr_reg = _MASKED_BIT_ENABLE(XEHPC_EUSTALL_REPORT_OVERFLOW_DROP);
-> > +	/* On PVC, the overflow bit has to be cleared by writing 1 to it.
-> > +	 * On other GPUs, the bit has to be cleared by writing 0 to it.
-> > +	 */
-> > +	if (GRAPHICS_VER(xe) >= 20)
-> > +		write_ptr_reg = _MASKED_BIT_DISABLE(XEHPC_EUSTALL_REPORT_OVERFLOW_DROP);
-> > +	else
-> > +		write_ptr_reg = _MASKED_BIT_ENABLE(XEHPC_EUSTALL_REPORT_OVERFLOW_DROP);
-> >
-> >	xe_gt_mcr_unicast_write(gt, XEHPC_EUSTALL_REPORT, write_ptr_reg, group, instance);
-> >  }
-> > @@ -882,7 +926,9 @@ static const struct file_operations fops_eu_stall = {
-> >
-> >  static inline bool has_eu_stall_sampling_support(struct xe_device *xe)
-> >  {
-> > -	return ((xe->info.platform == XE_PVC) ? true : false);
-> > +	return ((xe->info.platform == XE_PVC ||
-> > +		 xe->info.platform == XE_LUNARLAKE ||
-> > +		 xe->info.platform == XE_BATTLEMAGE) ? true : false);
-> 
-> Same here, use (GRAPHICS_VER(xe) >= 20).
-> 
-> >  }
-> >
-> >  /**
-> > --
-> > 2.47.1
-> >
+>>
+>>>
+>>>The formats to be used with the above are
+>>>
+>>>    engine_instance    - config:12-19
+>>>    engine_class    - config:20-27
+>>>    gt        - config:60-63
+>>>
+>>>The events can then be read using perf tool
+>>>
+>>>./perf stat -e xe_0000_03_00.0/engine-active-ticks,gt=0,
+>>>                   engine_class=0,engine_instance=0/,
+>>>           xe_0000_03_00.0/engine-total-ticks,gt=0,
+>>>                   engine_class=0,engine_instance=0/ -I 1000
+>>>
+>>>Engine activity can then be calculated as below
+>>>engine activity % = (engine active ticks/engine total ticks) * 100
+>>>
+>>>v2: validate gt
+>>>   rename total-ticks to engine-total-ticks
+>>>   add helper to get hwe (Umesh)
+>>>
+>>>Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+>>>---
+>>>drivers/gpu/drm/xe/xe_guc.c |   5 ++
+>>>drivers/gpu/drm/xe/xe_pmu.c | 129 +++++++++++++++++++++++++++++++++---
+>>>drivers/gpu/drm/xe/xe_uc.c  |   3 +
+>>>3 files changed, 128 insertions(+), 9 deletions(-)
+>>>
+>>>diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+>>>index 1619c0a52db9..bc1ff0a4e1e7 100644
+>>>--- a/drivers/gpu/drm/xe/xe_guc.c
+>>>+++ b/drivers/gpu/drm/xe/xe_guc.c
+>>>@@ -27,6 +27,7 @@
+>>>#include "xe_guc_capture.h"
+>>>#include "xe_guc_ct.h"
+>>>#include "xe_guc_db_mgr.h"
+>>>+#include "xe_guc_engine_activity.h"
+>>>#include "xe_guc_hwconfig.h"
+>>>#include "xe_guc_log.h"
+>>>#include "xe_guc_pc.h"
+>>>@@ -744,6 +745,10 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
+>>>    if (ret)
+>>>        return ret;
+>>>
+>>>+    ret = xe_guc_engine_activity_init(guc);
+>>>+    if (ret)
+>>>+        return ret;
+>>>+
+>>>    ret = xe_guc_buf_cache_init(&guc->buf);
+>>>    if (ret)
+>>>        return ret;
+>>>diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+>>>index 3910a82328ee..8ea78d8f7e2e 100644
+>>>--- a/drivers/gpu/drm/xe/xe_pmu.c
+>>>+++ b/drivers/gpu/drm/xe/xe_pmu.c
+>>>@@ -8,15 +8,16 @@
+>>>
+>>>#include "xe_device.h"
+>>>#include "xe_gt_idle.h"
+>>>+#include "xe_guc_engine_activity.h"
+>>>+#include "xe_hw_engine.h"
+>>>#include "xe_pm.h"
+>>>#include "xe_pmu.h"
+>>>
+>>>/**
+>>> * DOC: Xe PMU (Performance Monitoring Unit)
+>>> *
+>>>- * Expose events/counters like GT-C6 residency and GT frequency 
+>>>to user land via
+>>>- * the perf interface. Events are per device. The GT can be 
+>>>selected with an
+>>>- * extra config sub-field (bits 60-63).
+>>>+ * Expose events/counters like GT-C6 residency, GT frequency and 
+>>>per- class-engine
+>>>+ * activity to user land via the perf interface. Events are per device.
+>>> *
+>>> * All events are listed in sysfs:
+>>> *
+>>>@@ -24,7 +25,19 @@
+>>> *     $ ls /sys/bus/event_source/devices/xe_0000_00_02.0/events/
+>>> *     $ ls /sys/bus/event_source/devices/xe_0000_00_02.0/format/
+>>> *
+>>>- * The format directory has info regarding the configs that can be used.
+>>>+ * format directory configs:
+>>>+ *
+>>>+ *        60        56        52        48        44        40        
+>>>36        32
+>>>+ * | - - - - | - - - - | - - - - | - - - - | - - - - | - - - - | 
+>>>- - - - | - - - - |
+>>>+ *   [ gt ]
+>>>+ *
+>>>+ *        28        24        20        16        12         
+>>>8         4         0
+>>>+ * | - - - - | - - - - | - - - - | - - - - | - - - - | - - - - | 
+>>>- - - - | - - - - |
+>>>+ *            [   engine_class  ] [ engine_instance ] [         
+>>>event             ]
+>>>+ *
+>>>+ * engine_class and engine_instance bits will be applicable for
+>>>+ * per-engine-class activity events (engine-active-ticks, engine- 
+>>>total-ticks)
+>>
+>>Please also mention that gt is applicable to the engine events as well.
+>>
+>>Also a line saying "engine_class and engine_instance are not 
+>>applicable to gt events (like c6 and frequency)".
+>
+>Is the below description okay ?
+>
+>"if event[0:11] == (0x02 | 0x03) (engine-* events)
+>use engine_class[20:27], engine_instance[12:19] and gt[60:63] to select
+>the required engine of the gt
+>
+>For the rest of the events use gt[60:63] to select gt. Rest of
+>the formats are not applicable"
+
+Note that I would only mention events known to us today. If more are 
+added in future, doc needs to be updated.
+
+Something like this:
+
+The following format parameters are available to read events, but only 
+some are valid with each event:
+
+gt[60:63]		Selects gt for the event
+engine_class[20:27]	Selects engine-class for event
+engine_instance[12:19]	Selects the engine-instance for the event
+vf_id/function[x:y]	Selects the function of the event
+
+For engine specific events (engine-*), gt, engine_class and 
+engine_instance parameters must be passed/set as populated by the
+DRM_XE_DEVICE_QUERY_ENGINES.
+
+For gt specific events (gt-*) gt parameter must be passed. All other 
+parameters must be set to 0.
+
+Thanks,
+Umesh
+
+>>
+>>Ideally it would be good if there is an intuitive way for the user to
+>>determine this association, maybe something like:
+>>
+>>gt-<event>
+>>/* gt should be passed in format for events like  c6, freq etc. */
+>>
+>>gt-engine-<event>
+>>/* gt and engine* should be passed in format for active/total ticks */
+>would be intuitive to find formats.
+>>
+>>but I am afraid that could just result in very long event names in 
+>>future, so I am okay with what it is now with the required 
+>>documentation.
+>>
+>>@Lucas, any thoughts here ^ ?
+>>
+>>>+ *
+>>> * The standard perf tool can be used to grep for a certain event 
+>>>as well.
+>>> * Example:
+>>> *
+>>>@@ -35,20 +48,34 @@
+>>> *     $ perf stat -e <event_name,gt=> -I <interval>
+>>> */
+>>>
+>>>-#define XE_PMU_EVENT_GT_MASK        GENMASK_ULL(63, 60)
+>>>-#define XE_PMU_EVENT_ID_MASK        GENMASK_ULL(11, 0)
+>>>+#define XE_PMU_EVENT_GT_MASK            GENMASK_ULL(63, 60)
+>>>+#define XE_PMU_EVENT_ENGINE_CLASS_MASK        GENMASK_ULL(27, 20)
+>>>+#define XE_PMU_EVENT_ENGINE_INSTANCE_MASK    GENMASK_ULL(19, 12)
+>>>+#define XE_PMU_EVENT_ID_MASK            GENMASK_ULL(11, 0)
+>>>
+>>>static unsigned int config_to_event_id(u64 config)
+>>>{
+>>>    return FIELD_GET(XE_PMU_EVENT_ID_MASK, config);
+>>>}
+>>>
+>>>+static unsigned int config_to_engine_class(u64 config)
+>>>+{
+>>>+    return FIELD_GET(XE_PMU_EVENT_ENGINE_CLASS_MASK, config);
+>>>+}
+>>>+
+>>>+static unsigned int config_to_engine_instance(u64 config)
+>>>+{
+>>>+    return FIELD_GET(XE_PMU_EVENT_ENGINE_INSTANCE_MASK, config);
+>>>+}
+>>>+
+>>>static unsigned int config_to_gt_id(u64 config)
+>>>{
+>>>    return FIELD_GET(XE_PMU_EVENT_GT_MASK, config);
+>>>}
+>>>
+>>>-#define XE_PMU_EVENT_GT_C6_RESIDENCY    0x01
+>>>+#define XE_PMU_EVENT_GT_C6_RESIDENCY        0x01
+>>>+#define XE_PMU_EVENT_ENGINE_ACTIVE_TICKS    0x02
+>>>+#define XE_PMU_EVENT_ENGINE_TOTAL_TICKS     0x03
+>>
+>>checkpatch warning here ^ (space before tab)
+>Will fix this
+>
+>Thanks
+>Riana Tauro
+>>
+>>Thanks,
+>>Umesh
+>
