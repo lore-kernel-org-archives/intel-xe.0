@@ -4,64 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A8DFC02196
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 10:08:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47CABC02192
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 10:41:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6557610E76C;
-	Wed,  5 Feb 2025 10:08:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D697510E770;
+	Wed,  5 Feb 2025 10:41:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fco8N2rP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C9WX1Qe0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 388B310E053;
- Wed,  5 Feb 2025 10:08:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECD7410E192;
+ Wed,  5 Feb 2025 10:41:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738750109; x=1770286109;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=OPoogcRfKQrFNs/fOSf/S1Q/7IWcKDEOZRcmdoXrAW0=;
- b=fco8N2rPWLcvaO3PD5F+8KiqUXbP+QCpJ5GQ7EvUDqySrr/mxA4gf6gz
- s3bh/A7x1O5BpOxWT/ogTUXyBbdBuFhFyiyX4AQ3FB9cMz8758XEeQMlX
- lXG/CArd+9cNZqIYiX74gflq3m5ccVHV60zf21X0wIDtq3NYJxsW/gQqY
- meFqSotB92E+LsYiHa79hsUjEPVuV2b2vJXpm60um+OITfHEJP/pFcSct
- S2dTRPHehxa4SWEhzTEDZtTV3gO4JJ2Dz8it2Hd45DmEht9nwLbLnPyP0
- +kyHT+9Gym7CKmp9+mcIkR+lnivr/8rJjJzudFoor6usWtshxMtSMDhW8 Q==;
-X-CSE-ConnectionGUID: xtcL9Su0RSiwb3RYD+6JZQ==
-X-CSE-MsgGUID: qI3BJNAXTuyZUVfhNwMcsQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="50699448"
-X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="50699448"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 02:08:29 -0800
-X-CSE-ConnectionGUID: 0sqSBSsXTPGXwiO0T/uqxg==
-X-CSE-MsgGUID: Sg3o4+Q/QwGQppX3LyZXIw==
+ t=1738752115; x=1770288115;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=c1oT0oxzjGlZPPsKq0GONEpwSwga0WHGHiYMmjV8a7o=;
+ b=C9WX1Qe0ZZyZNJsk4qdx9Mjf1DDZvAlvN2G4lru2mpytDbMKcR7tvRWH
+ MqJ5Uu3LrA7Ld7uRZ6C/7X4lna7HiAtm0kRHyHIREh1AGb9VnVjyomG9J
+ VeibpRrijYPeNRv2ZglA5FvN6caGfddiwxH660CxtSa8PZGO7D2PQTEi8
+ wssLLLkUgz3h4BbkNEoZi3ZBa7A0AegWgUmn1UzPzZUTuhRwhZ+61X/+N
+ xBb7vWbp6AMGUfwbBml0BB5M77vBu+JxGo69M1Hg/t+w2LwgtvXrtiloW
+ lydkwD0nihdKqa1+K4ANLi2b97k847Rwor/E5SB9zN9LzJHgUEZyCm/Bk Q==;
+X-CSE-ConnectionGUID: jM5tyQmBRViCADpl1ikn1w==
+X-CSE-MsgGUID: Uamz095WRhS8v+4Xp1tMGg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="38544810"
+X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="38544810"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 02:41:54 -0800
+X-CSE-ConnectionGUID: DOPzxNaKTO+GXyXiRFW1eQ==
+X-CSE-MsgGUID: bemnoh6pQqC9CRhwTb3tyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110707693"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.217])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 02:08:26 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Govindapillai, Vinod"
- <vinod.govindapillai@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-Cc: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>, "Syrjala, Ville"
- <ville.syrjala@intel.com>, "Reddy Guddati, Santhosh"
- <santhosh.reddy.guddati@intel.com>, "Saarinen, Jani"
- <jani.saarinen@intel.com>
-Subject: RE: [PATCH v6 4/7] drm/i915/xe3: update and store the plane damage
- clips
-In-Reply-To: <SN7PR11MB67508AADD6C54A1B6CD7DB81E3F72@SN7PR11MB6750.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250130210027.591927-1-vinod.govindapillai@intel.com>
- <20250130210027.591927-5-vinod.govindapillai@intel.com>
- <SN7PR11MB67508AADD6C54A1B6CD7DB81E3F72@SN7PR11MB6750.namprd11.prod.outlook.com>
-Date: Wed, 05 Feb 2025 12:08:22 +0200
-Message-ID: <87wme44sbt.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="114938021"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa003.fm.intel.com with ESMTP; 05 Feb 2025 02:41:53 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH v4 0/3] Expose modifiers/formats supported by async flips
+Date: Wed, 05 Feb 2025 15:57:16 +0530
+Message-Id: <20250205-asyn-v4-0-9a5b018e359b@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAU9o2cC/zXMzQ7CIBAE4Fdp9ixkoT+oJ9/DeEDcComFZqHGp
+ um7S0w8fpOZ2SATB8pwbjZgeoccUqzoDg04b+OTRHhUg0bdo0ItbF6juI9mMC3WxDmo1ZlpDJ/
+ fzfVWPXKaRPFM9j/ulFJHNH2retkNA+JJKGF5iZLltHDx6yXEQi/p0gT7/gWPoLa9mAAAAA==
+X-Change-ID: 20250102-asyn-bf76730501cc
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@intel.com, 
+ Arun R Murthy <arun.r.murthy@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,244 +70,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 05 Feb 2025, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> -----Original Message-----
->> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Vinod
->> Govindapillai
->> Sent: Friday, January 31, 2025 2:30 AM
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Govindapillai, Vinod <vinod.govindapillai@intel.com>; Syrjala, Ville
->> <ville.syrjala@intel.com>; Reddy Guddati, Santhosh
->> <santhosh.reddy.guddati@intel.com>; Saarinen, Jani
->> <jani.saarinen@intel.com>
->> Subject: [PATCH v6 4/7] drm/i915/xe3: update and store the plane damage
->> clips
->> 
->> Userspace can pass damage area clips per plane to track changes in a plane
->> and some display components can utilze these damage clips for efficiently
->> handling use cases like FBC, PSR etc. A merged damage area is generated and
->> its coordinates are updated relative to viewport and HW and stored in the
->> plane_state. This merged damage areas will be used for FBC dirty rect support
->> in xe3 in the follow-up patch.
->> 
->> Big thanks to Ville Syrjala for his contribuitions in shaping up of this series.
->> 
->> v1: - Move damage_merged helper to cover bigjoiner case and use
->>     the correct plane state for damage find helper (Ville)
->>     - Damage handling code under HAS_FBC_DIRTY_RECT() so the
->>     the related part will be executed only for xe3+
->>     - Changed dev_priv to i915 in one of the functions
->> 
->> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
->> ---
->>  .../gpu/drm/i915/display/intel_atomic_plane.c | 28 ++++++++++++
->>  .../drm/i915/display/intel_display_types.h    |  2 +
->>  .../drm/i915/display/skl_universal_plane.c    | 45 +++++++++++++++++--
->>  3 files changed, 71 insertions(+), 4 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->> b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->> index c558143f4f82..f55f7044dc67 100644
->> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->> @@ -36,6 +36,7 @@
->> 
->>  #include <drm/drm_atomic_helper.h>
->>  #include <drm/drm_blend.h>
->> +#include <drm/drm_damage_helper.h>
->>  #include <drm/drm_fourcc.h>
->>  #include <drm/drm_gem.h>
->>  #include <drm/drm_gem_atomic_helper.h>
->> @@ -322,6 +323,25 @@ static void intel_plane_clear_hw_state(struct
->> intel_plane_state *plane_state)
->>  	memset(&plane_state->hw, 0, sizeof(plane_state->hw));  }
->> 
->> +static void
->> +intel_plane_check_plane_damage(struct intel_plane_state
->> *new_plane_state,
->> +			       const struct intel_plane_state
->> *old_primary_plane_state,
->> +			       const struct intel_plane_state
->> *new_primary_plane_state) {
->> +	struct intel_display *display = to_intel_display(new_plane_state);
->> +	struct drm_rect *damage_merged = &new_plane_state-
->> >damage_merged;
->> +
->> +	if (!HAS_FBC_DIRTY_RECT(display))
->> +		return;
->> +
->> +	if (!drm_atomic_helper_damage_merged(&old_primary_plane_state-
->> >uapi,
->> +					     &new_primary_plane_state->uapi,
->> +					     damage_merged))
->> +		/* Incase helper fails, mark whole plane region as damage */
->> +		*damage_merged =
->> +			drm_plane_state_src(&new_primary_plane_state-
->> >uapi);
->> +}
->> +
->>  void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state
->> *plane_state,
->>  				       const struct intel_plane_state
->> *from_plane_state,
->>  				       struct intel_crtc *crtc)
->> @@ -691,6 +711,7 @@ int intel_plane_atomic_check(struct
->> intel_atomic_state *state,
->>  	const struct intel_plane_state *old_plane_state =
->>  		intel_atomic_get_old_plane_state(state, plane);
->>  	const struct intel_plane_state *new_primary_crtc_plane_state;
->> +	const struct intel_plane_state *old_primary_crtc_plane_state;
->>  	struct intel_crtc *crtc = intel_crtc_for_pipe(display, plane->pipe);
->>  	const struct intel_crtc_state *old_crtc_state =
->>  		intel_atomic_get_old_crtc_state(state, crtc); @@ -705,10
->> +726,17 @@ int intel_plane_atomic_check(struct intel_atomic_state *state,
->> 
->>  		new_primary_crtc_plane_state =
->>  			intel_atomic_get_new_plane_state(state,
->> primary_crtc_plane);
->> +		old_primary_crtc_plane_state =
->> +			intel_atomic_get_old_plane_state(state,
->> primary_crtc_plane);
->>  	} else {
->>  		new_primary_crtc_plane_state = new_plane_state;
->> +		old_primary_crtc_plane_state = old_plane_state;
->>  	}
->> 
->> +	intel_plane_check_plane_damage(new_plane_state,
->> +				       old_primary_crtc_plane_state,
->> +				       new_primary_crtc_plane_state);
->> +
->>  	intel_plane_copy_uapi_to_hw_state(new_plane_state,
->>  					  new_primary_crtc_plane_state,
->>  					  crtc);
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
->> b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index cb51b7936f93..8d53bcca9614 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -695,6 +695,8 @@ struct intel_plane_state {
->>  	u64 ccval;
->> 
->>  	const char *no_fbc_reason;
->> +
->> +	struct drm_rect damage_merged;
->>  };
->> 
->>  struct intel_initial_plane_config {
->> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> index 301ad3a22c4c..b90a7d52c071 100644
->> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> @@ -2249,11 +2249,42 @@ static void check_protection(struct
->> intel_plane_state *plane_state)
->>  		!plane_state->decrypt;
->>  }
->> 
->> +static void
->> +skl_plane_check_damage_with_viewport(struct intel_plane_state
->> +*plane_state) {
->> +	struct drm_rect *damage_merged = &plane_state->damage_merged;
->> +	const struct drm_framebuffer *fb = plane_state->hw.fb;
->> +	unsigned int rotation = plane_state->hw.rotation;
->> +	struct drm_rect *src = &plane_state->uapi.src;
->> +
->> +	if (drm_rotation_90_or_270(rotation)) {
->> +		drm_rect_rotate(damage_merged, fb->width, fb->height,
->> +				DRM_MODE_ROTATE_270);
->> +		drm_rect_translate(damage_merged, -(src->y1 >> 16),
->> +				   -(src->x1 >> 16));
->> +	} else {
->> +		drm_rect_translate(damage_merged, -(src->x1 >> 16),
->> +				   -(src->y1 >> 16));
->> +	}
->> +}
->> +
->> +static void
->> +skl_plane_check_damage_with_plane_surf(struct intel_plane_state
->> +*plane_state) {
->> +	struct drm_rect *damage_merged = &plane_state->damage_merged;
->> +	struct drm_rect src;
->> +
->> +	drm_rect_fp_to_int(&src, &plane_state->uapi.src);
->> +	drm_rect_translate(damage_merged, src.x1, src.y1);
->> +	drm_rect_intersect(damage_merged, &src); }
->> +
->>  static int skl_plane_check(struct intel_crtc_state *crtc_state,
->>  			   struct intel_plane_state *plane_state)  {
->> +	struct intel_display *display = to_intel_display(crtc_state);
->>  	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
->> -	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
->> +	struct drm_i915_private *i915 = to_i915(plane->base.dev);
->
-> This change of moving from dev_priv naming to i915 and to start using intel_display
-> Is a refactor and should be in a patch of its own.
+All of the formats/modifiers supported by the plane during synchronous
+flips are nor supported by asynchronous flips. The formats/modifiers
+exposed to user by IN_FORMATS exposes all formats/modifiers supported by
+plane and this list varies for async flips. If the async flip supported
+formats/modifiers are exposed to the user, user based on this list can
+take decision to proceed or not and avoid flip failures during async
+flips.
+Discussion around this can be located @
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29618#note_2487123
+Userspace implementation for IN_FORMARTS_ASYNC under review @
+https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4063
 
-I think a small amount of opportunistic i915 -> display changes are
-okay. But the s/dev_priv/i915/ is IMO just useless. All of them need to
-go eventually, calling it i915 is not helping at this point.
+TODO: Upon merge of the patch related to async flip
+https://patchwork.freedesktop.org/patch/626849/?series=139807&rev=6
+the patch 5 in this series will have to make use of the new function
+pointer can_async_flip().
 
-BR,
-Jani.
+v3: Add new plane->funcs format_mod_supported_async (Ville)
+v4: reuse the existing can_async_flip in i915 (Ville)
+    pass format_mod_supported/async as parameter to create_in_formats
+    function & leave the modifiers/formats in drm_format_modifer_blob
+    untouched (Ville)
 
->
-> Regards,
-> Suraj Kandpal
->
->>  	const struct drm_framebuffer *fb = plane_state->hw.fb;
->>  	int min_scale = DRM_PLANE_NO_SCALING;
->>  	int max_scale = DRM_PLANE_NO_SCALING;
->> @@ -2266,7 +2297,7 @@ static int skl_plane_check(struct intel_crtc_state
->> *crtc_state,
->>  	/* use scaler when colorkey is not required */
->>  	if (!plane_state->ckey.flags && skl_fb_scalable(fb)) {
->>  		min_scale = 1;
->> -		max_scale = skl_plane_max_scale(dev_priv, fb);
->> +		max_scale = skl_plane_max_scale(i915, fb);
->>  	}
->> 
->>  	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state, @@ -
->> 2274,6 +2305,9 @@ static int skl_plane_check(struct intel_crtc_state
->> *crtc_state,
->>  	if (ret)
->>  		return ret;
->> 
->> +	if (HAS_FBC_DIRTY_RECT(display))
->> +		skl_plane_check_damage_with_viewport(plane_state);
->> +
->>  	ret = skl_check_plane_surface(plane_state);
->>  	if (ret)
->>  		return ret;
->> @@ -2289,6 +2323,9 @@ static int skl_plane_check(struct intel_crtc_state
->> *crtc_state,
->>  	if (ret)
->>  		return ret;
->> 
->> +	if (HAS_FBC_DIRTY_RECT(display))
->> +		skl_plane_check_damage_with_plane_surf(plane_state);
->> +
->>  	ret = skl_plane_check_nv12_rotation(plane_state);
->>  	if (ret)
->>  		return ret;
->> @@ -2301,12 +2338,12 @@ static int skl_plane_check(struct intel_crtc_state
->> *crtc_state,
->> 
->>  	plane_state->ctl = skl_plane_ctl(crtc_state, plane_state);
->> 
->> -	if (DISPLAY_VER(dev_priv) >= 10)
->> +	if (DISPLAY_VER(display) >= 10)
->>  		plane_state->color_ctl = glk_plane_color_ctl(crtc_state,
->>  							     plane_state);
->> 
->>  	if (intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier) &&
->> -	    icl_is_hdr_plane(dev_priv, plane->id))
->> +	    icl_is_hdr_plane(i915, plane->id))
->>  		/* Enable and use MPEG-2 chroma siting */
->>  		plane_state->cus_ctl = PLANE_CUS_ENABLE |
->>  			PLANE_CUS_HPHASE_0 |
->> --
->> 2.43.0
->
+Arun R Murthy (3):
+  drm/plane: Add new plane property IN_FORMATS_ASYNC
+  drm/plane: Expose function to create format/modifier blob
+  drm/i915/display: Populate list of async supported formats/modifiers
 
+ drivers/gpu/drm/drm_mode_config.c             |  7 +++
+ drivers/gpu/drm/drm_plane.c                   | 50 ++++++++++++------
+ .../drm/i915/display/skl_universal_plane.c    | 51 +++++++++++++++++++
+ include/drm/drm_mode_config.h                 |  6 +++
+ include/drm/drm_plane.h                       |  4 ++
+ 5 files changed, 103 insertions(+), 15 deletions(-)
+
+--
+2.25.1
+
+---
+Arun R Murthy (5):
+      drm/plane: Add new plane property IN_FORMATS_ASYNC
+      drm/plane: Expose function to create format/modifier blob
+      drm/plane: Function to check async supported modifier/format
+      drm/i915/display: Populate list of async supported formats/modifiers
+      drm/i915/display: Add function for format_mod_supported_async
+
+ drivers/gpu/drm/drm_mode_config.c                  |   7 ++
+ drivers/gpu/drm/drm_plane.c                        |  72 +++++++++----
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 113 ++++++++++++++++++---
+ include/drm/drm_mode_config.h                      |   6 ++
+ include/drm/drm_plane.h                            |  24 +++++
+ 5 files changed, 188 insertions(+), 34 deletions(-)
+---
+base-commit: 08bd590935a5258ffd79355c59adffd72fb2c642
+change-id: 20250102-asyn-bf76730501cc
+
+Best regards,
+--
+Arun R Murthy <arun.r.murthy@intel.com>
+
+---
+Arun R Murthy (3):
+      drm/plane: Add new plane property IN_FORMATS_ASYNC
+      drm/plane: modify create_in_formats to accommodate async
+      drm/i915/display: Add i915 hook for format_mod_supported_async
+
+ drivers/gpu/drm/drm_mode_config.c                  |  7 +++
+ drivers/gpu/drm/drm_plane.c                        | 46 +++++++++++++-----
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 56 ++++++++++++++++------
+ include/drm/drm_mode_config.h                      |  6 +++
+ include/drm/drm_plane.h                            | 20 ++++++++
+ 5 files changed, 109 insertions(+), 26 deletions(-)
+---
+base-commit: a19d8731db07e41101ed00b9d86ac8868df2a763
+change-id: 20250102-asyn-bf76730501cc
+
+Best regards,
 -- 
-Jani Nikula, Intel
+Arun R Murthy <arun.r.murthy@intel.com>
+
