@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DD29C02192
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 05:56:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18574C02192
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 06:05:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30BCF10E737;
-	Wed,  5 Feb 2025 05:56:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D44F510E0AD;
+	Wed,  5 Feb 2025 06:05:15 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FE9A10E737;
- Wed,  5 Feb 2025 05:56:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A14A810E0AD;
+ Wed,  5 Feb 2025 06:05:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0779748960658005145=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/client=3A_bo-=3Ec?=
- =?utf-8?q?lient_does_not_need_bos=5Flock?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/3?=
+ =?utf-8?q?=5D_drm/xe=3A_Introduced_needs=5Fscratch_bit_in_device_descriptor?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+To: "Oak Zeng" <oak.zeng@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 05 Feb 2025 05:56:17 -0000
-Message-ID: <173873497751.1284095.12756718189749807671@b555e5b46a47>
+Date: Wed, 05 Feb 2025 06:05:14 -0000
+Message-ID: <173873551465.1284095.12094258343856894853@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250205051042.1991192-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20250205051042.1991192-1-tejas.upadhyay@intel.com>
+References: <20250204184558.4181478-1-oak.zeng@intel.com>
+In-Reply-To: <20250204184558.4181478-1-oak.zeng@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,33 +40,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============0779748960658005145==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/xe/client: bo->client does not need bos_lock
-URL   : https://patchwork.freedesktop.org/series/144352/
+Series: series starting with [1/3] drm/xe: Introduced needs_scratch bit in device descriptor
+URL   : https://patchwork.freedesktop.org/series/144338/
 State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast a19d8731db07e41101ed00b9d86ac8868df2a763
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+CI Bug Log - changes from xe-2596-61ea57f296816a0c8d068c32043f18dbff95e056_BAT -> xe-pw-144338v1_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2596-61ea57f296816a0c8d068c32043f18dbff95e056 -> xe-pw-144338v1
+
+  IGT_8223: ccfe042787b082c06402ff9af257f8338b8edd5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2596-61ea57f296816a0c8d068c32043f18dbff95e056: 61ea57f296816a0c8d068c32043f18dbff95e056
+  xe-pw-144338v1: 144338v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144338v1/index.html
+
+--===============0779748960658005145==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/xe: Introduced needs_scratch bit in device descriptor</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144338/">https://patchwork.freedesktop.org/series/144338/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144338v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144338v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2596-61ea57f296816a0c8d068c32043f18dbff95e056_BAT -&gt; xe-pw-144338v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2596-61ea57f296816a0c8d068c32043f18dbff95e056 -&gt; xe-pw-144338v1</li>
+</ul>
+<p>IGT_8223: ccfe042787b082c06402ff9af257f8338b8edd5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2596-61ea57f296816a0c8d068c32043f18dbff95e056: 61ea57f296816a0c8d068c32043f18dbff95e056<br />
+  xe-pw-144338v1: 144338v1</p>
+
+</body>
+</html>
+
+--===============0779748960658005145==--
