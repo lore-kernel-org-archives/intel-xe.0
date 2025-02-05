@@ -4,57 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6693CC02194
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 10:42:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7397EC02192
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 11:00:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8D4210E77D;
-	Wed,  5 Feb 2025 10:42:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3023010E145;
+	Wed,  5 Feb 2025 11:00:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HGOnGFvk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HIbkEHaz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8239C10E77A;
- Wed,  5 Feb 2025 10:42:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54C8810E145
+ for <intel-xe@lists.freedesktop.org>; Wed,  5 Feb 2025 11:00:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738752123; x=1770288123;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=EKl1rSYaknFywSLfxXXlGO+DIZIj85omve2lwtZwFEI=;
- b=HGOnGFvkqhQdpRW8YXVDUydP07YVKQ47GN4qQgcsT+6NZqQ9sgNoJGaq
- ODZWkwfZ/eMSMFKysMlfG+47g57rSKVgbvtdWpE/eUn9nlzaGGe0q+ZYX
- nsmSouiXMfdu/ABDcHiP3ShqZLSMBTFIIKzt9Xm4G/Mxcoht4KCT8XgkO
- y6TRdyP8RrHSTkm/VuXFdC/7sjHsy2VRojWB3Rfpc/JEN8Z/1aLLtFC5v
- Kh6n3x/QBSg2CgmkftesFrPWVs0MrbWO05XY3Z0KQEKGh/bn3eNpIySFb
- YoB9vCJ+KY4qjSeRCjNB1YM/LfWH9Di+lrTuwPxENphn81HYRLoWp+qR3 w==;
-X-CSE-ConnectionGUID: hYMQmeELQ9C5UCcZaf0QWA==
-X-CSE-MsgGUID: RpZ4BT7uRGWiZakEt5Kw/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="38544820"
-X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="38544820"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 02:42:03 -0800
-X-CSE-ConnectionGUID: aryJZ6MmRB+Ub/rEUFxGPw==
-X-CSE-MsgGUID: rYj/DU3JSvmwSdiEyGw30w==
+ t=1738753236; x=1770289236;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=/n1HlNU9LnSQ4sqVBf6J6rAfXegmjHUis0eB9iRgsUU=;
+ b=HIbkEHazeejw9xmYadXGfvMlMNDlu9bCLLJFtURjZRzhblpcPyQGku6f
+ Jh/0psfgsOJQ+TVV/rlkpnGqpeJ5NIiRhoextXF1wZr/z33Yd7YhM4byY
+ l4zrJxh+Yok0yUd3XtgUoIssXxQC/FVUqzs9Swx9/tVGaaDHEkhCQwnlC
+ 5Ug1pZDR1py1tAwEu3y3XW6q0/dvUL+Xp2tQZEuUXMyPpOcBjfKp15xuv
+ xjmozYh+lVR7P5OIuF2IKOh0RWBQnvFUJliqi88MS/Wjm3GO+Eb9QGTRS
+ U2Rtj4EuJl4DSVBhc/FMIRdRY2694vtuRdg7et9W53YvctjiwUtjxr4Th w==;
+X-CSE-ConnectionGUID: L4y6urLORmSZJYxmCcNYDg==
+X-CSE-MsgGUID: 6hBq9LEcQ06HYm9oh21y+w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39013069"
+X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="39013069"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 03:00:36 -0800
+X-CSE-ConnectionGUID: eFgkz/UXQBGwa7Kp1XwSEw==
+X-CSE-MsgGUID: 8QQ98ZqzRz+cc6gFGEw//Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="114938031"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa003.fm.intel.com with ESMTP; 05 Feb 2025 02:42:02 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Wed, 05 Feb 2025 15:57:19 +0530
-Subject: [PATCH v4 3/3] drm/i915/display: Add i915 hook for
- format_mod_supported_async
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="115842936"
+Received: from mbernato-mobl1.ger.corp.intel.com (HELO [10.246.3.119])
+ ([10.246.3.119])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 03:00:35 -0800
+Message-ID: <82db9013-ce1d-4ce2-956d-9dfb05a8a43f@linux.intel.com>
+Date: Wed, 5 Feb 2025 12:00:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250205-asyn-v4-3-9a5b018e359b@intel.com>
-References: <20250205-asyn-v4-0-9a5b018e359b@intel.com>
-In-Reply-To: <20250205-asyn-v4-0-9a5b018e359b@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] drm/xe/vf: Return error code from
+ xe_hw_engine_read_timestamp()
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  intel-xe@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@intel.com, 
- Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+References: <20250204180522.2327214-1-marcin.bernatowicz@linux.intel.com>
+ <20250204180522.2327214-3-marcin.bernatowicz@linux.intel.com>
+ <6b7039b2-f123-4a67-93ec-239d14b8f971@intel.com>
+Content-Language: en-US
+From: "Bernatowicz, Marcin" <marcin.bernatowicz@linux.intel.com>
+In-Reply-To: <6b7039b2-f123-4a67-93ec-239d14b8f971@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,99 +75,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hook up the newly added plane function pointer
-format_mod_supported_async to populate the modifiers/formats supported
-by asynchronous flips.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 56 ++++++++++++++++------
- 1 file changed, 41 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index ba5db553c374259f8f3246c1408b55d32c8794e5..96d53b22715cf397483acbdb23b4dd60d6cbb604 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -511,6 +511,33 @@ skl_plane_max_stride(struct intel_plane *plane,
- 				modifier, rotation,
- 				max_pixels, max_bytes);
- }
-+static bool intel_plane_async_formats(struct intel_plane *plane, uint32_t format)
-+{
-+	switch (format) {
-+	case DRM_FORMAT_RGB565:
-+	case DRM_FORMAT_XRGB8888:
-+	case DRM_FORMAT_XBGR8888:
-+	case DRM_FORMAT_ARGB8888:
-+	case DRM_FORMAT_ABGR8888:
-+	case DRM_FORMAT_XRGB2101010:
-+	case DRM_FORMAT_XBGR2101010:
-+	case DRM_FORMAT_XRGB16161616F:
-+	case DRM_FORMAT_XBGR16161616F:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool intel_plane_format_mod_supported_async(struct drm_plane *plane,
-+						   uint32_t format,
-+						   uint64_t modifier)
-+{
-+	if (intel_plane_can_async_flip(to_intel_plane(plane), modifier))
-+		return false;
-+
-+	return intel_plane_async_formats(to_intel_plane(plane), format);
-+}
- 
- static bool tgl_plane_can_async_flip(u64 modifier)
- {
-@@ -2559,30 +2586,29 @@ static bool tgl_plane_format_mod_supported(struct drm_plane *_plane,
- 	}
- }
- 
-+#define INTEL_PLANE_FUNCS \
-+	.update_plane = drm_atomic_helper_update_plane, \
-+	.disable_plane = drm_atomic_helper_disable_plane, \
-+	.destroy = intel_plane_destroy, \
-+	.atomic_duplicate_state = intel_plane_duplicate_state, \
-+	.atomic_destroy_state = intel_plane_destroy_state, \
-+	.format_mod_supported_async = intel_plane_format_mod_supported_async
-+
- static const struct drm_plane_funcs skl_plane_funcs = {
--	.update_plane = drm_atomic_helper_update_plane,
--	.disable_plane = drm_atomic_helper_disable_plane,
--	.destroy = intel_plane_destroy,
--	.atomic_duplicate_state = intel_plane_duplicate_state,
--	.atomic_destroy_state = intel_plane_destroy_state,
-+	INTEL_PLANE_FUNCS,
-+
- 	.format_mod_supported = skl_plane_format_mod_supported,
- };
- 
- static const struct drm_plane_funcs icl_plane_funcs = {
--	.update_plane = drm_atomic_helper_update_plane,
--	.disable_plane = drm_atomic_helper_disable_plane,
--	.destroy = intel_plane_destroy,
--	.atomic_duplicate_state = intel_plane_duplicate_state,
--	.atomic_destroy_state = intel_plane_destroy_state,
-+	INTEL_PLANE_FUNCS,
-+
- 	.format_mod_supported = icl_plane_format_mod_supported,
- };
- 
- static const struct drm_plane_funcs tgl_plane_funcs = {
--	.update_plane = drm_atomic_helper_update_plane,
--	.disable_plane = drm_atomic_helper_disable_plane,
--	.destroy = intel_plane_destroy,
--	.atomic_duplicate_state = intel_plane_duplicate_state,
--	.atomic_destroy_state = intel_plane_destroy_state,
-+	INTEL_PLANE_FUNCS,
-+
- 	.format_mod_supported = tgl_plane_format_mod_supported,
- };
- 
+On 2/4/2025 7:53 PM, Michal Wajdeczko wrote:
+> 
+> 
+> On 04.02.2025 19:05, Marcin Bernatowicz wrote:
+>> Modify xe_hw_engine_read_timestamp() to return an error code instead
+>> of a u64 timestamp. Return -EOPNOTSUPP when called from Virtual Function
+>> (VF) mode to avoid reading the inaccessible RING_TIMESTAMP register.
+>>
+>> Update function signature to pass the timestamp via a pointer argument.
+>>
+>> Signed-off-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: Michał Winiarski <michal.winiarski@intel.com>
+>> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_hw_engine.c | 10 ++++++++--
+>>   drivers/gpu/drm/xe/xe_hw_engine.h |  2 +-
+>>   2 files changed, 9 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+>> index fc447751fe78..ab91c15f3a8b 100644
+>> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+>> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+>> @@ -981,9 +981,15 @@ const char *xe_hw_engine_class_to_str(enum xe_engine_class class)
+>>   	return NULL;
+>>   }
+>>   
+>> -u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe)
+>> +int xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe, u64 *gpu_timestamp)
+>>   {
+>> -	return xe_mmio_read64_2x32(&hwe->gt->mmio, RING_TIMESTAMP(hwe->mmio_base));
+>> +	if (IS_SRIOV_VF(gt_to_xe(hwe->gt)))
+>> +		return -EOPNOTSUPP;
+> 
+> there seems to be 1 caller of this function
+> is it worth to make change here instead of fixing the caller ?
+> 
+Fixing the function seems more reasonable than tracking the caller(s).
+However, considering the subsequent comments, this patch should be dropped.
 
--- 
-2.25.1
+>> +
+>> +	*gpu_timestamp = xe_mmio_read64_2x32(&hwe->gt->mmio,
+>> +					     RING_TIMESTAMP(hwe->mmio_base));
+>> +
+>> +	return 0;
+>>   }
+>>   
+>>   enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe)
+>> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+>> index 6b5f9fa2a594..df377da82770 100644
+>> --- a/drivers/gpu/drm/xe/xe_hw_engine.h
+>> +++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+>> @@ -73,7 +73,7 @@ static inline bool xe_hw_engine_is_valid(struct xe_hw_engine *hwe)
+>>   }
+>>   
+>>   const char *xe_hw_engine_class_to_str(enum xe_engine_class class);
+>> -u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe);
+>> +int xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe, u64 *gpu_timestamp);
+>>   enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe);
+>>   
+>>   void xe_hw_engine_mmio_write32(struct xe_hw_engine *hwe, struct xe_reg reg, u32 val);
+> 
+> and this patch will not compile without 3/3
+
+Indeed, my bad
+
+> 
 
