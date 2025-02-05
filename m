@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B81EC02194
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 13:44:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29B92C02196
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 13:45:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 052EE10E7B0;
-	Wed,  5 Feb 2025 13:44:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A831910E7B0;
+	Wed,  5 Feb 2025 13:45:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i3eQkPnl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LmJIlo3n";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CF9D10E7B0;
- Wed,  5 Feb 2025 13:44:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D607810E7B0;
+ Wed,  5 Feb 2025 13:45:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738763071; x=1770299071;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=pZuQOs0ezi3gK/5h3906HBUA9ZpL+1+rDBjo3QVvfHg=;
- b=i3eQkPnlvZ07EXYpnR5TztDvple49mzfOcV4X3yY/NZ8H+z4+X+HT+db
- 514y41QVsPEUmhfE27aGXCfn44siHP3gEBcHiolvBoyS8Xy4n5Km+qbos
- Ive/lYv1if44DIyhulkvxxDGr/XuwG/2wrag8E0xlZW0caPYE85CkAx76
- nUJrtcMcQu3EA56wYk5pHzkf+41cuL2pJs1JmcTFw0VMNA+MEXpLsbCcL
- nCn8O+NxfF45Llz1D8lEwWhQB0Re2hZ3xcHMQsxQMicPfkmeXQn44Ayho
- HyyQYPBxG9UNGkjAH6GUn0vz3qEIdxQyP4w9a1qTICLMdA7aM1pk1qBp3 Q==;
-X-CSE-ConnectionGUID: tT+BCx7JTWCzGsG/opqB1g==
-X-CSE-MsgGUID: sMfpCWufTf+ZhafuRuN4Cw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="38533866"
-X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="38533866"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 05:44:31 -0800
-X-CSE-ConnectionGUID: iTxNbSnQTTehHI4EK+XCQA==
-X-CSE-MsgGUID: txM82kzESNqKRWgH+f7hYw==
+ t=1738763111; x=1770299111;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=EqX0YnxPZwpoVlMU7NXip1F6FwpdpOh3xO/dRhUcqdY=;
+ b=LmJIlo3nwZ4dbKU33d3Lwc1XzfYp+puiNxZ5OjDB4KC+0u4Ps2fTMmA7
+ 5TVGjunMy9Pd7kQLl0Cj/Xe5xKHyvjI1fjuUTaLDfXESyU30gplsI08z7
+ nruxM7MkYBZCR86s6R60+TQn/TJ6bXln0DXC9OYHx8OJ+mTzZ4siao86f
+ 5W9TdWQwpLhDz0uYttTLfqQFsPo9BXeX+CCTMKXUcEmyppbspj/xFq0Dm
+ UaCbTlcDrnzjgJgBlRqDlIWdAhg4KnRdXyEt6Vu/LEuiiozYuvg1ChCag
+ 0BbSm9PiSN5AkIEv12KDjRK8J5lgb+dFkDm96hRm14cyrPkyAX062sx/b A==;
+X-CSE-ConnectionGUID: zDs6AdkbTWew8s2iYstc3Q==
+X-CSE-MsgGUID: pcqpoptLRayPYAX3hyr/6A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="38559286"
+X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="38559286"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 05:45:10 -0800
+X-CSE-ConnectionGUID: h7vxkS80RT+lq0lGj5/sTg==
+X-CSE-MsgGUID: P73DqTAFRc6w34bPIiDXQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="111347119"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.217])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 05:42:02 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: imre.deak@intel.com
+X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="110808429"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 05:45:09 -0800
+Date: Wed, 5 Feb 2025 15:46:07 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/mst: fix INT_MAX to .4 fixed point conversion
- mistake
-In-Reply-To: <Z6I3iNAjlZHnxxyf@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250204153717.2996923-1-jani.nikula@intel.com>
- <Z6I3iNAjlZHnxxyf@ideak-desk.fi.intel.com>
-Date: Wed, 05 Feb 2025 15:41:59 +0200
-Message-ID: <8734gs4ifs.fsf@intel.com>
+Subject: Re: [PATCH 08/17] drm/i915/ddi: Move platform checks within
+ mtl_ddi_enable/disable_d2d_link()
+Message-ID: <Z6Nrn_GsmWLG_ruP@ideak-desk.fi.intel.com>
+References: <20250129200221.2508101-1-imre.deak@intel.com>
+ <20250129200221.2508101-9-imre.deak@intel.com>
+ <87lduk4l7f.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87lduk4l7f.fsf@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,60 +66,86 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 04 Feb 2025, Imre Deak <imre.deak@intel.com> wrote:
-> On Tue, Feb 04, 2025 at 05:37:17PM +0200, Jani Nikula wrote:
->> intel_dp_mtp_tu_compute_config() conversion to use .4 fixed point didn't
->> take into account that intel_dp_mst_max_dpt_bpp() may return INT_MAX
->> when the transport limitation is not relevant. Converting INT_MAX to .4
->> fixed point results in -1.0, which then gets used as if it were a real
->> max BPP value:
->> 
->> i915 0000:00:02.0: [drm:intel_dp_mtp_tu_compute_config [i915]] Limiting bpp to max DPT bpp (24.0000 -> -1.0000)
->> i915 0000:00:02.0: [drm:intel_dp_mtp_tu_compute_config [i915]] Looking for slots in range min bpp 18.0000 max bpp -1.0000
->> 
->> Just return 0 for "no max DPT BPP", and handle it explicitly.
->> 
->> Fixes: 67782bf6e8a6 ("drm/i915/mst: Convert intel_dp_mtp_tu_compute_config() to .4 format")
->> Cc: Imre Deak <imre.deak@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Imre Deak <imre.deak@intel.com>
+On Wed, Feb 05, 2025 at 02:42:12PM +0200, Jani Nikula wrote:
+> On Wed, 29 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
+> > The prefix of the mtl_ddi_enable_d2d() / mtl_ddi_disable_d2d_link()
+> > names show already what are the relevant platforms, so the corresponding
+> > platform check is a detail that can be hidden in the functions, do so.
+> >
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> But unrelated bafflement below.
+> 
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 9 +++++++--
+> >  1 file changed, 7 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index d040558b5d029..07188606a0177 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -2545,6 +2545,9 @@ mtl_ddi_enable_d2d(struct intel_encoder *encoder)
+> >  	i915_reg_t reg;
+> >  	u32 set_bits, wait_bits;
+> >  
+> > +	if (DISPLAY_VER(dev_priv) < 14)
+> > +		return;
+> > +
+> >  	if (DISPLAY_VER(dev_priv) >= 20) {
+> >  		reg = DDI_BUF_CTL(port);
+> 
+> Unrelated to this patch, this seems weird. DDI_BUF_CTL for display
+> version 20+? 
 
-Pushed to din, thanks for the review!
+Yes, some DDI buffer control/status flags got shuffled around across
+different platforms. The D2D enabling flag was originally added on MTL
+in the new XELPDP_PORT_BUF_CTL1 register, then on LNL this same D2D
+enabling flag was moved (back) to the old DDI_BUF_CTL register. A
+similar shuffling happened with the DDI buffer (PHY) enabled _status_
+flag (vs. the DDI buffer enabled _control_ flag, which was not
+shuffled).
 
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> index b729e27cdde2..95abc6ea85eb 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> @@ -111,7 +111,7 @@ static int intel_dp_mst_max_dpt_bpp(const struct intel_crtc_state *crtc_state,
->>  		&crtc_state->hw.adjusted_mode;
->>  
->>  	if (!intel_dp_is_uhbr(crtc_state) || DISPLAY_VER(display) >= 20 || !dsc)
->> -		return INT_MAX;
->> +		return 0;
->>  
->>  	/*
->>  	 * DSC->DPT interface width:
->> @@ -248,7 +248,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
->>  	}
->>  
->>  	max_dpt_bpp_x16 = fxp_q4_from_int(intel_dp_mst_max_dpt_bpp(crtc_state, dsc));
->> -	if (max_bpp_x16 > max_dpt_bpp_x16) {
->> +	if (max_dpt_bpp_x16 && max_bpp_x16 > max_dpt_bpp_x16) {
->>  		drm_dbg_kms(display->drm, "Limiting bpp to max DPT bpp (" FXP_Q4_FMT " -> " FXP_Q4_FMT ")\n",
->>  			    FXP_Q4_ARGS(max_bpp_x16), FXP_Q4_ARGS(max_dpt_bpp_x16));
->>  		max_bpp_x16 = max_dpt_bpp_x16;
->> -- 
->> 2.39.5
->> 
+> While XELPDP_PORT_BUF_CTL1() also has a check for >= 20.
 
--- 
-Jani Nikula, Intel
+Yes, flags other than the D2D enable control/status are in
+XELPDP_PORT_BUF_CTL1 reg for LNL+. So both MTL and LNL+ uses this
+register, but the mapping of the register for port A/B changed on LNL+.
+
+> 
+> >  		set_bits = XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
+> > @@ -3035,6 +3038,9 @@ mtl_ddi_disable_d2d_link(struct intel_encoder *encoder)
+> >  	i915_reg_t reg;
+> >  	u32 clr_bits, wait_bits;
+> >  
+> > +	if (DISPLAY_VER(dev_priv) < 14)
+> > +		return;
+> > +
+> >  	if (DISPLAY_VER(dev_priv) >= 20) {
+> >  		reg = DDI_BUF_CTL(port);
+> >  		clr_bits = XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
+> > @@ -3411,8 +3417,7 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
+> >  		hsw_prepare_hdmi_ddi_buffers(encoder, crtc_state);
+> >  
+> >  	/* e. Enable D2D Link for C10/C20 Phy */
+> > -	if (DISPLAY_VER(dev_priv) >= 14)
+> > -		mtl_ddi_enable_d2d(encoder);
+> > +	mtl_ddi_enable_d2d(encoder);
+> 
+> Why do we have mtl_ddi_enable_d2d() and mtl_ddi_disable_d2d_link(). It
+> just boggles my mind that the names mismatch.
+
+Yes, it's not consistent. I can include the
+s/mtl_ddi_disable_d2d_link/mtl_ddi_disable_ddi/
+change in this patch.
+
+> >  
+> >  	encoder->set_signal_levels(encoder, crtc_state);
+> 
+> -- 
+> Jani Nikula, Intel
