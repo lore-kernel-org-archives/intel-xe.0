@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92998C02196
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 13:03:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3B54C02192
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Feb 2025 13:14:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6125310E161;
-	Wed,  5 Feb 2025 13:03:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AED810E1EA;
+	Wed,  5 Feb 2025 13:14:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ik1JpSpx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bQyT4CJT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BFC910E161;
- Wed,  5 Feb 2025 13:02:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4352A10E7B0
+ for <intel-xe@lists.freedesktop.org>; Wed,  5 Feb 2025 13:14:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738760552; x=1770296552;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=qUqcIMBTWXAi6wycK9W9/W8pB6pyFV+0pv1HYqYeEXY=;
- b=ik1JpSpxBINJUhAyvAN2/D1aX4ktzAm1Bla8l+9RAMClWemKIbfeX1Sc
- uX1o5lS2xw6qqJPrD7g/zVMZh+5RQTAW2iLCK58zzUdhc4WPVz3DLDHGA
- 2dAJef10/dZCqfEWaliDzzAUkfchR0vnVhTUtYQOmItecmKObV9tDxtuv
- Qns2UZqFq8CGo5x3RqTNwsQ7QGKdebYmzrV8HhDV03XFH6NIZb+85px/p
- BcPHNeczB6ro1iqE+PIfTwgIob/WJnGNP4MJC9EiQiddocHMyXj2r/41p
- 5bSIFFgx9FG+sY4kC7l2Et2bO5GrSauZYTP2UUC03w2zleUknpk57moDB g==;
-X-CSE-ConnectionGUID: O8ndOCmZSKaCrhEqimD9Yg==
-X-CSE-MsgGUID: KR0HQQYCTTuXK9suPZN3hg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="56862746"
-X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="56862746"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 05:02:31 -0800
-X-CSE-ConnectionGUID: PfNZrD8+RM2iWe+o0rcE8w==
-X-CSE-MsgGUID: TqQYLDVaT0GEDDqNRV047g==
+ t=1738761259; x=1770297259;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=+lSH3vkQOq3tHFUJjrbn02S2GMjxFWgiWhzE+Xj3Ngc=;
+ b=bQyT4CJTl0ZkyBjIpjn/583omsu6GBZmAgdYItcesSzN8fGN9shrNdVR
+ +ND33PBo38KhGyGOdFCfCXb8BzptzR3chTAC6P9emaoMfDMM+eI8/roMT
+ sQu9dtoH4OisITDW94G8rvtTKl9ZaInxw7oFSLP52D+UUvZhiOu1tTYL2
+ HrO9Cx39cU7JS3NRJV8akbd/yfyELsBECWtDNN+IFnL895hNipE+MGmPz
+ Ryelc/6YAZkyyzZLdoXy0VZAqp7DqZErMCiYi6/eH68mEIt/UAhPljFPm
+ +FsdHBnNq4dr2SBlBy6Lu6VVUc7ZSQorYguMnD3OFeIOoSBRrz9ZX7snV Q==;
+X-CSE-ConnectionGUID: 36VVbybKSBmTNT1eCDH0YQ==
+X-CSE-MsgGUID: 3twXs70QSXmAgDwz60BkxQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39225121"
+X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="39225121"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 05:14:19 -0800
+X-CSE-ConnectionGUID: Z24a+3ECT+iUGmNjp+FUNQ==
+X-CSE-MsgGUID: iYoMzxnuROCU0qZ9XKKtuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="148097672"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.217])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 05:02:30 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 07/17] drm/i915/ddi: Simplify waiting for a port to idle
- via DDI_BUF_CTL
-In-Reply-To: <Z6Nd_4pAWl7KGAD2@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250129200221.2508101-1-imre.deak@intel.com>
- <20250129200221.2508101-8-imre.deak@intel.com> <87o6zg4lix.fsf@intel.com>
- <Z6Nd_4pAWl7KGAD2@ideak-desk.fi.intel.com>
-Date: Wed, 05 Feb 2025 15:02:26 +0200
-Message-ID: <87a5b04k9p.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="111475932"
+Received: from carterle-desk.ger.corp.intel.com (HELO [10.245.246.213])
+ ([10.245.246.213])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 05:14:17 -0800
+Message-ID: <68c890a3baff21199f6aca82dccdd024f56de199.camel@linux.intel.com>
+Subject: Re: [PATCH 3/3] drm/xe: Allow scratch page under fault mode for
+ certain platform
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Oak Zeng <oak.zeng@intel.com>, intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, jonathan.cavitt@intel.com
+Date: Wed, 05 Feb 2025 14:14:15 +0100
+In-Reply-To: <20250204184558.4181478-3-oak.zeng@intel.com>
+References: <20250204184558.4181478-1-oak.zeng@intel.com>
+ <20250204184558.4181478-3-oak.zeng@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,184 +71,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 05 Feb 2025, Imre Deak <imre.deak@intel.com> wrote:
-> On Wed, Feb 05, 2025 at 02:35:18PM +0200, Jani Nikula wrote:
->> On Wed, 29 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
->> > When waiting for a port to idle, there is no point in distinguishing the
->> > platform specific timeouts, instead of just using the maximum timeout.
->> 
->> Why?
->> 
->> All of this sounds kind of reasonable, but we'll need a better rationale
->> than "there is no point".
->
-> The rational is that there is no point in the complexity of specifying
-> an exact timeout and for that the suitable wait API. The sequence in
-> particular is not performance critical at all either and due to
-> scheduling it's not guaranteed anyhow how long the wait will last at the
-> given timescale. In the usual case where the wait succeeds the actual
-> time waited does not change with the increased timeout.
+On Tue, 2025-02-04 at 13:45 -0500, Oak Zeng wrote:
+> Normally scratch page is not allowed when a vm is operate under page
+> fault mode, i.e., in the existing codes,
+> DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE
+> and DRM_XE_VM_CREATE_FLAG_FAULT_MODE are mutual exclusive. The reason
+> is fault mode relies on recoverable page to work, while scratch page
+> can mute recoverable page fault.
+>=20
+> On xe2 and xe3, out of bound prefetch can cause page fault and
+> further
+> system hang because xekmd can't resolve such page fault. SYCL and OCL
+> language runtime requires out of bound prefetch to be silently
+> dropped
+> without causing any functional problem, thus the existing behavior
+> doesn't meet language runtime requirement.
+>=20
+> At the same time, HW prefetching can cause page fault interrupt. Due
+> to
+> page fault interrupt overhead (i.e., need Guc and KMD involved to fix
+> the page fault), HW prefetching can be slowed by many orders of
+> magnitude.
+>=20
+> Fix those problems by allowing scratch page under fault mode for xe2
+> and
+> xe3. With scratch page in place, HW prefetching could always hit
+> scratch
+> page instead of causing interrupt.
+>=20
+> A side effect is, scratch page could hide application program error.
+> Application out of bound accesses are hided
+s/hided/hidden/
 
-Fair. Just needs to be in the commit message. ;)
+>  by scratch page mapping,
+> instead of get reported to user.
+>=20
+> igt test: https://patchwork.freedesktop.org/series/144334/. Test
+> result on
+> BMG:
+>=20
+> root@DUT1130BMGFRD:/home/szeng/dii-tools/igt-public/build/tests#
+> ./xe_exec_fault_mode --run-subtest scratch-fault
+> IGT-Version: 1.30-gde1a3cb42 (x86_64) (Linux: 6.13.0-xe x86_64)
+> Using IGT_SRANDOM=3D1738684805 for randomisation
+> Opened device: /dev/dri/card0
+> Starting subtest: scratch-fault
+> Subtest scratch-fault: SUCCESS (0.080s)
+>=20
+> Without this series, the test result is:
+>=20
+> root@DUT1130BMGFRD:/home/szeng/dii-tools/igt-public/build/tests#
+> ./xe_exec_fault_mode --run-subtest scratch-fault
+> IGT-Version: 1.30-gde1a3cb42 (x86_64) (Linux: 6.13.0-xe x86_64)
+> Using IGT_SRANDOM=3D1738686046 for randomisation
+> Opened device: /dev/dri/card0
+> Starting subtest: scratch-fault
+> (xe_exec_fault_mode:5047) CRITICAL: Test assertion failure function
+> test_exec, file ../tests/intel/xe_exec_fault_mode.c:349:
+> (xe_exec_fault_mode:5047) CRITICAL: Failed assertion:
+> __xe_wait_ufence(fd, &exec_sync[i], 0xdeadbeefdeadbeefull,
+> exec_queues[i % n_exec_queues], &timeout) =3D=3D 0
+> (xe_exec_fault_mode:5047) CRITICAL: Last errno: 62, Timer expired
+> (xe_exec_fault_mode:5047) CRITICAL: error: -62 !=3D 0
+> Stack trace:
+> =C2=A0 #0 ../lib/igt_core.c:2266 __igt_fail_assert()
+> =C2=A0 #1 ../tests/intel/xe_exec_fault_mode.c:346 test_exec()
+> =C2=A0 #2 ../tests/intel/xe_exec_fault_mode.c:537
+> __igt_unique____real_main407()
+> =C2=A0 #3 ../tests/intel/xe_exec_fault_mode.c:407 main()
+> =C2=A0 #4 ../sysdeps/nptl/libc_start_call_main.h:74
+> __libc_start_call_main()
+> =C2=A0 #5 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
+> =C2=A0 #6 [_start+0x2e]
+> Subtest scratch-fault failed.
+>=20
+> v2: Refine commit message (Thomas)
+>=20
+> Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_vm.c | 9 +++++----
+> =C2=A01 file changed, 5 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 813d893d9b63..c0372f083d42 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -1752,6 +1752,11 @@ int xe_vm_create_ioctl(struct drm_device *dev,
+> void *data,
+> =C2=A0	if (XE_IOCTL_DBG(xe, args->extensions))
+> =C2=A0		return -EINVAL;
+> =C2=A0
+> +	if (XE_IOCTL_DBG(xe, args->flags &
+> DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE &&
+> +			 args->flags &
+> DRM_XE_VM_CREATE_FLAG_FAULT_MODE &&
+> +			 !(NEEDS_SCRATCH(xe))))
+> +		return -EINVAL;
+> +
 
-BR,
-Jani.
+We should probably move this test to where the old test were below,
+since the WA below enables scratch pages.
 
->
->> > Simplify things accordingly, describing the Bspec platform specific
->> > timeouts in code comments.
->> >
->> > Signed-off-by: Imre Deak <imre.deak@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_ddi.c | 78 +++++++++++-------------
->> >  1 file changed, 36 insertions(+), 42 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
->> > index 24c56d2aa5f31..d040558b5d029 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->> > @@ -177,69 +177,63 @@ static void hsw_prepare_hdmi_ddi_buffers(struct intel_encoder *encoder,
->> >  		       trans->entries[level].hsw.trans2);
->> >  }
->> >  
->> > -static void mtl_wait_ddi_buf_idle(struct drm_i915_private *i915, enum port port)
->> > +static i915_reg_t intel_ddi_buf_status_reg(struct intel_display *display, enum port port)
->> >  {
->> > -	int ret;
->> > +	struct drm_i915_private *i915 = to_i915(display->drm);
->> 
->> Please don't add new i915 uses, display will work just fine here.
->> 
->> >  
->> > -	/* FIXME: find out why Bspec's 100us timeout is too short */
->> > -	ret = wait_for_us((intel_de_read(i915, XELPDP_PORT_BUF_CTL1(i915, port)) &
->> > -			   XELPDP_PORT_BUF_PHY_IDLE), 10000);
->> > -	if (ret)
->> > -		drm_err(&i915->drm, "Timeout waiting for DDI BUF %c to get idle\n",
->> > -			port_name(port));
->> > +	if (DISPLAY_VER(display) >= 14)
->> > +		return XELPDP_PORT_BUF_CTL1(i915, port);
->> > +	else
->> > +		return DDI_BUF_CTL(port);
->> >  }
->> >  
->> >  void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
->> >  			     enum port port)
->> >  {
->> > -	if (IS_BROXTON(dev_priv)) {
->> > +	struct intel_display *display = &dev_priv->display;
->> > +
->> > +	/*
->> > +	 * Bspec's platform specific timeouts:
->> > +	 * MTL+   : 100 us
->> > +	 * BXT    : fixed 16 us
->> > +	 * HSW-ADL: 8 us
->> > +	 *
->> > +	 * FIXME: MTL requires 10 ms based on tests, find out why 100 us is too short
->> > +	 */
->> 
->> Seems a bit odd to me to list all the platform specific timeouts, and
->> then largely ignore them without explanation!
->
-> It's documented so after any future platform requirement changes
-> (dropping support for a platform, adding a new platform with a new
-> timeout) can be applied to the timeout used below.
->
->> Also, 10 ms is several orders of magnitude longer than it should need to
->> be on all platforms.
->
-> I described above why this doesn't matter (in the usual case the wait
-> duration will not change).
->
->> 
->> > +	if (display->platform.broxton) {
->> >  		udelay(16);
->> >  		return;
->> >  	}
->> >  
->> > -	if (wait_for_us((intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
->> > -			 DDI_BUF_IS_IDLE), 8))
->> > -		drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c to get idle\n",
->> > +	static_assert(DDI_BUF_IS_IDLE == XELPDP_PORT_BUF_PHY_IDLE);
->> > +	if (intel_de_wait_for_set(display, intel_ddi_buf_status_reg(display, port),
->> > +				  DDI_BUF_IS_IDLE, 10))
->> > +		drm_err(display->drm, "Timeout waiting for DDI BUF %c to get idle\n",
->> >  			port_name(port));
->> >  }
->> >  
->> >  static void intel_wait_ddi_buf_active(struct intel_encoder *encoder)
->> >  {
->> > -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->> > +	struct intel_display *display = to_intel_display(encoder);
->> >  	enum port port = encoder->port;
->> > -	int timeout_us;
->> > -	int ret;
->> >  
->> > -	/* Wait > 518 usecs for DDI_BUF_CTL to be non idle */
->> > -	if (DISPLAY_VER(dev_priv) < 10) {
->> > +	/*
->> > +	 * Bspec's platform specific timeouts:
->> > +	 * MTL+             : 10000 us
->> > +	 * DG2              : 1200 us
->> > +	 * TGL-ADL combo PHY: 1000 us
->> > +	 * TGL-ADL TypeC PHY: 3000 us
->> > +	 * HSW-ICL          : fixed 518 us
->> > +	 */
->> > +	if (DISPLAY_VER(display) < 10) {
->> >  		usleep_range(518, 1000);
->> >  		return;
->> >  	}
->> >  
->> > -	if (DISPLAY_VER(dev_priv) >= 14) {
->> > -		timeout_us = 10000;
->> > -	} else if (IS_DG2(dev_priv)) {
->> > -		timeout_us = 1200;
->> > -	} else if (DISPLAY_VER(dev_priv) >= 12) {
->> > -		if (intel_encoder_is_tc(encoder))
->> > -			timeout_us = 3000;
->> > -		else
->> > -			timeout_us = 1000;
->> > -	} else {
->> > -		timeout_us = 500;
->> > -	}
->> > -
->> > -	if (DISPLAY_VER(dev_priv) >= 14)
->> > -		ret = _wait_for(!(intel_de_read(dev_priv,
->> > -						XELPDP_PORT_BUF_CTL1(dev_priv, port)) &
->> > -				  XELPDP_PORT_BUF_PHY_IDLE),
->> > -				timeout_us, 10, 10);
->> > -	else
->> > -		ret = _wait_for(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) & DDI_BUF_IS_IDLE),
->> > -				timeout_us, 10, 10);
->> > -
->> > -	if (ret)
->> > -		drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c to get active\n",
->> > +	static_assert(DDI_BUF_IS_IDLE == XELPDP_PORT_BUF_PHY_IDLE);
->> > +	if (intel_de_wait_for_clear(display, intel_ddi_buf_status_reg(display, port),
->> > +				    DDI_BUF_IS_IDLE, 10))
->> > +		drm_err(display->drm, "Timeout waiting for DDI BUF %c to get active\n",
->> >  			port_name(port));
->> >  }
->> >  
->> > @@ -3067,7 +3061,7 @@ static void mtl_disable_ddi_buf(struct intel_encoder *encoder,
->> >  	intel_de_rmw(dev_priv, DDI_BUF_CTL(port), DDI_BUF_CTL_ENABLE, 0);
->> >  
->> >  	/* 3.c Poll for PORT_BUF_CTL Idle Status == 1, timeout after 100us */
->> 
->> Comment is now stale. (Which is why we should never add comments like
->> that.)
->
-> Right, I remove all these later in the patchset.
->
->> 
->> > -	mtl_wait_ddi_buf_idle(dev_priv, port);
->> > +	intel_wait_ddi_buf_idle(dev_priv, port);
->> >  
->> >  	/* 3.d Disable D2D Link */
->> >  	mtl_ddi_disable_d2d_link(encoder);
->> 
->> -- 
->> Jani Nikula, Intel
+/Thomas
 
--- 
-Jani Nikula, Intel
+
+> =C2=A0	if (XE_WA(xe_root_mmio_gt(xe), 14016763929))
+> =C2=A0		args->flags |=3D DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE;
+> =C2=A0
+> @@ -1765,10 +1770,6 @@ int xe_vm_create_ioctl(struct drm_device *dev,
+> void *data,
+> =C2=A0	if (XE_IOCTL_DBG(xe, args->flags &
+> ~ALL_DRM_XE_VM_CREATE_FLAGS))
+> =C2=A0		return -EINVAL;
+> =C2=A0
+> -	if (XE_IOCTL_DBG(xe, args->flags &
+> DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE &&
+> -			 args->flags &
+> DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
+> -		return -EINVAL;
+> -
+> =C2=A0	if (XE_IOCTL_DBG(xe, !(args->flags &
+> DRM_XE_VM_CREATE_FLAG_LR_MODE) &&
+> =C2=A0			 args->flags &
+> DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
+> =C2=A0		return -EINVAL;
+
