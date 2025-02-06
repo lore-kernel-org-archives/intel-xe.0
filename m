@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 337B3C02199
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 17:17:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9A8CC02199
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 17:18:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01D6610E8F0;
-	Thu,  6 Feb 2025 17:17:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7E0210E8EF;
+	Thu,  6 Feb 2025 17:18:07 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52E4C10E8F0;
- Thu,  6 Feb 2025 17:17:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3707D10E8F5;
+ Thu,  6 Feb 2025 17:18:06 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Fix_uninit?=
- =?utf-8?q?ialized_pointer_read_in_xe=5Fvm=5Fbind=5Fkernel=5Fbo?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Fix_uninitializ?=
+ =?utf-8?q?ed_pointer_read_in_xe=5Fvm=5Fbind=5Fkernel=5Fbo?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dheeraj Reddy Jonnalagadda" <dheeraj.linuxdev@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Feb 2025 17:17:55 -0000
-Message-ID: <173886227533.2143846.17878275728097270857@b555e5b46a47>
+Date: Thu, 06 Feb 2025 17:18:06 -0000
+Message-ID: <173886228622.2143846.16815809936758772814@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250206134706.60200-1-dheeraj.linuxdev@gmail.com>
 In-Reply-To: <20250206134706.60200-1-dheeraj.linuxdev@gmail.com>
@@ -48,9 +48,35 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 68225b9bc1d2 drm-tip: 2025y-02m-06d-16h-45m-09s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Fix uninitialized pointer read in xe_vm_bind_kernel_bo
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c139ae6efee92b9c748c76882559134f067da647
+Author: Dheeraj Reddy Jonnalagadda <dheeraj.linuxdev@gmail.com>
+Date:   Thu Feb 6 19:17:06 2025 +0530
+
+    drm/xe: Fix uninitialized pointer read in xe_vm_bind_kernel_bo
+    
+    xe_vm_bind_kernel_bo() declares the variable fence without initializing
+    it. If an error occurs before fence is assigned a valid value, the
+    function may return an uninitialized pointer.
+    
+    Specifically, this can happen if:
+    
+    - vm_bind_ioctl_ops_create() fails, leading to release_vm_lock error
+      path
+    
+    Initialize fence to NULL at declaration.
+    
+    Fixes: dcdd6b84d9ac ("drm/xe/pxp: Allocate PXP execution resources")
+    Signed-off-by: Dheeraj Reddy Jonnalagadda <dheeraj.linuxdev@gmail.com>
++ /mt/dim checkpatch 68225b9bc1d285bd2ab63355e94f9e661d2f895e drm-intel
+c139ae6efee9 drm/xe: Fix uninitialized pointer read in xe_vm_bind_kernel_bo
 
 
