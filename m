@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C197FC02194
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 11:55:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B458BC02194
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 11:59:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8ADAF10E08F;
-	Thu,  6 Feb 2025 11:55:32 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6864010E08F;
- Thu,  6 Feb 2025 11:55:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C94B10E840;
+	Thu,  6 Feb 2025 11:59:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UJEnvV/Y";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 203DE10E82C;
+ Thu,  6 Feb 2025 11:59:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738843175; x=1770379175;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=ioPTGCPofV7P0tYMQ4o8OJoZbYdhcIwWFsqfn2L38M4=;
+ b=UJEnvV/YqtOngAJmIXMTalDCBh1KqRgBHWB12lg045d02Qs61Ad/Gkyt
+ n1uNVkZIcj1VTjMiiiw9KkSNbWuxqaJl2ewsBm9fi6rlTO667Sw7TumoU
+ pHzs7H5ZkfIUTeEGDyh+tjW2vvb9vJ/iMPHKuaxVkIv7ezR+8V249OKhe
+ 52DmyzsQQTJj9gqpsl2p4cN8qt3IkiRhyPZ1MyvtJjxVTuZj9lPnDB9wG
+ 7lzRd2+SvzT/AKAwNjK7UwfwaxsxtGNtxTaV6jARrP9e/DbVcjCKaa0Ug
+ 4jY6+T70oIJHRRmxD344RDjzRUGQVLy9100XmF9qMlowRU6GVoKWoTxqc w==;
+X-CSE-ConnectionGUID: xZiittCqRj6Z90nJwZYuUw==
+X-CSE-MsgGUID: Izcz1/QFRiCl5CrdPLXOMA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39336034"
+X-IronPort-AV: E=Sophos;i="6.13,264,1732608000"; d="scan'208";a="39336034"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2025 03:59:35 -0800
+X-CSE-ConnectionGUID: yYgjYDCMQByCg51kYtppzQ==
+X-CSE-MsgGUID: NM5ahS0wSIaMk76ftmKLVg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,264,1732608000"; d="scan'208";a="110972140"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO [10.245.245.197])
+ ([10.245.245.197])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2025 03:59:33 -0800
+Message-ID: <f94d793f-bfde-411c-afa1-3325692356a6@intel.com>
+Date: Thu, 6 Feb 2025 11:59:30 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_MAINTAINERS=3A_Add_TTM_r?=
- =?utf-8?q?eviewers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Feb 2025 11:55:31 -0000
-Message-ID: <173884293142.2007739.10790410966538289511@b555e5b46a47>
-X-Patchwork-Hint: ignore
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] MAINTAINERS: Add TTM reviewers
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 References: <20250206103544.36971-1-thomas.hellstrom@linux.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
 In-Reply-To: <20250206103544.36971-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +70,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 06/02/2025 10:35, Thomas Hellström wrote:
+> Add Matthew Auld and Matthew Brost as TTM reviewers
+> 
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Dave Airlie <airlied@gmail.com>
+> Cc: Simona Vetter <simona.vetter@ffwll.ch>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Reviewed-by: Christian König <christian.koenig@amd.com>
 
-Series: MAINTAINERS: Add TTM reviewers
-URL   : https://patchwork.freedesktop.org/series/144409/
-State : success
+Acked-by: Matthew Auld <matthew.auld@intel.com>
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 5cd5f595e2d183e974b3695aa5938390594f8e99
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+> ---
+>   MAINTAINERS | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4dbf6a03e416..7a032ea9f109 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -7931,6 +7931,8 @@ F:	include/drm/drm_privacy_screen*
+>   DRM TTM SUBSYSTEM
+>   M:	Christian Koenig <christian.koenig@amd.com>
+>   M:	Huang Rui <ray.huang@amd.com>
+> +R:	Matthew Auld <matthew.auld@intel.com>
+> +R:	Matthew Brost <matthew.brost@intel.com>
+>   L:	dri-devel@lists.freedesktop.org
+>   S:	Maintained
+>   T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
 
