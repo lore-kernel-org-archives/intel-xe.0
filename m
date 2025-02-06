@@ -4,183 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7058FC02194
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 09:28:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70544C02194
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 09:29:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3897A10E7F2;
-	Thu,  6 Feb 2025 09:28:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 319AA10E2E0;
+	Thu,  6 Feb 2025 09:29:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RdyoZ6ry";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VsHG7nhD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACF0A10E2E3;
- Thu,  6 Feb 2025 09:28:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD6B010E2E0
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Feb 2025 09:29:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738834096; x=1770370096;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=b1xUWeO683zGJ6OEYw86BX7iA+K12htiU4MsHEBEfXM=;
- b=RdyoZ6ryWecWt7o4zaHvieeFeR6efD74PsopWWQih2a4NwMXrhO8PKx1
- XoxfgfMLN4yHW8HQOY36kAIerXsAqweNTsg+2RSG2JqNSFABZtlvwkvlN
- vA04wX1n2nl3iCvfme6Neb/o6C4vRjah8qWRvLLlOuWcLbwzydV26QEBb
- d0BXs7ZqxypMgHNCP5g/2dlPuLlBJ/LjTxGsvolAkLVmSBCXC9ewG/GrL
- DvNcwkDuGOvJL4EkZlywuSSSoyFaIS0L+1m3zXgyUc0gom3XKfCGmlGgv
- sX7qrOehYkXMDYhUFoZxSYj+xMis1rwibiqKVId5ykRH23dGaociJLILI g==;
-X-CSE-ConnectionGUID: RXObLP+ARnKoe1IIZLQXbA==
-X-CSE-MsgGUID: 5fnduqxWTmyyvQ07seEqzw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="49673513"
-X-IronPort-AV: E=Sophos;i="6.13,264,1732608000"; d="scan'208";a="49673513"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 01:28:16 -0800
-X-CSE-ConnectionGUID: ipD7Zxh2Tea5tOhz8dgAyQ==
-X-CSE-MsgGUID: Sj8jZGwjQ/SzIG/EjUgOPg==
+ t=1738834194; x=1770370194;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=rado7OUV4gPMfEIqkQ8NC56VUk+oujd3/38nr2dFpQo=;
+ b=VsHG7nhDRvBj5ENpyLJatgRQEO6Rc6eQIrnn8+syXIcHE8KgGBPEk7tI
+ 5I9hqa0mKNg8YQC/BTintJiQ6wUpL4r46y7qgic5Q7S9BBpE79f6v5jxq
+ oCRpBAXznY1+31tbUCmiBVJPtoknLx7Vmm/oeltDoqfhtevsWvYnXefyj
+ BiWibk+frcjKmW301M+hm3KA7/LBJ8F5JMcQceI04TzsrjXWyGcs87OQh
+ q2vb8fNM39ZBb+KeMl8xzVwYlfcn9c7Tixr0RHaXRErxR8+VIDvIJ2bCU
+ 0nkEjHc7y7jOeXC0Qy68CKsip+bAlVy2uUJhpzfWl6qIYb/uObc9FIHEd Q==;
+X-CSE-ConnectionGUID: F5vFC66OR0yHCc0KooFZ0Q==
+X-CSE-MsgGUID: whVwhIFnQPO2ybJbcxC/Mw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="38629049"
+X-IronPort-AV: E=Sophos;i="6.13,264,1732608000"; d="scan'208";a="38629049"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2025 01:29:52 -0800
+X-CSE-ConnectionGUID: l92k+7EnRT+R3fph7Eq4Gg==
+X-CSE-MsgGUID: DX/jOfq+SPC+KmtRrslSDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116351362"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Feb 2025 01:28:17 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 6 Feb 2025 01:28:16 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 6 Feb 2025 01:28:16 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.170)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 6 Feb 2025 01:28:14 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=K1bi+DSQW22QdZ0TWrMUH4x4MCOPT+t8jEJBEYRWDjcMqwBgsWQEcY/AJs/mdHjNJFTWVC0h3gw/EhC7eTE2XXhENW0S1D/hDDPbegs+qu3P3IYpKhrFl7vafj6bUCrDlAYJf3VG6XTEcItf+iFT5k72NknbL30msWVXki/LA/CBD4oRdcPdhTh9rRzMpJwZFkIRrFNRe3UkCOkg7XtJJyJhKx4vp5bLH6IW25YDQKK5zZZfZC+qemr33Z29SyV2e3gync1SjdBbLqKHtXVuThZBLcU606xub17zNZqvaDMJQrIvaZMSEPWJpEqWjpila0XfqYdVaUIOXR4rLlE9wg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TmNyaj+QOy/q8tgk99wvQhYl9VmcJrmaRZJGCaLjk/Y=;
- b=FkiuDtlVpfAvHzhxiXXme0uGqQIuH321ermKPkI0TV7iPcXGHIrYuWxJUPIw/dkv2f053hu8yAS04UDmcEDaNzGt4zeOmrAH6vpJz40tjOgt8v69lhYafnaFZK/pj8vWW80RSMfWW4Zr66p1SaR+Y8Jq//A/m0hE0IJQriwucWmPJhmfQ4q9hx4xrXE6aiaOIVMObI+/+k5sSyR6UEWgyeyzsWd1XPvECZx8hnaGyx4EJY6RYPhwf/u2bgbX4Tgiyq1VE4XlcKH13DLELAMoJ8OrgAvFwrdtIIy3c2+dzfudMwWqP3asglDYIO2gxehomwrJmkFQEtj0Gd2FPiz0pA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by PH0PR11MB5174.namprd11.prod.outlook.com (2603:10b6:510:3b::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.11; Thu, 6 Feb
- 2025 09:27:31 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.8422.010; Thu, 6 Feb 2025
- 09:27:31 +0000
-Message-ID: <0fafff1b-73b2-4134-b90a-217a4dab58fe@intel.com>
-Date: Thu, 6 Feb 2025 14:57:24 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/i915/dsb: Introduce intel_dsb_poll()
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- <intel-gfx@lists.freedesktop.org>
-CC: <intel-xe@lists.freedesktop.org>
-References: <20250130184518.22353-1-ville.syrjala@linux.intel.com>
- <20250130184518.22353-2-ville.syrjala@linux.intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250130184518.22353-2-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA1P287CA0020.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a00:35::32) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-IronPort-AV: E=Sophos;i="6.13,264,1732608000"; d="scan'208";a="142042962"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.47])
+ ([10.245.246.47])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2025 01:29:50 -0800
+Message-ID: <98073717d6ba2fe5de729315e165f7d77f850c45.camel@linux.intel.com>
+Subject: Re: [PATCH 3/3] drm/xe: Allow scratch page under fault mode for
+ certain platform
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: "Zeng, Oak" <oak.zeng@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Cc: "Brost, Matthew" <matthew.brost@intel.com>, "Cavitt, Jonathan"
+ <jonathan.cavitt@intel.com>
+Date: Thu, 06 Feb 2025 10:29:47 +0100
+In-Reply-To: <MN2PR11MB4728736D182B9C0671A8501692F62@MN2PR11MB4728.namprd11.prod.outlook.com>
+References: <20250204184558.4181478-1-oak.zeng@intel.com>
+ <20250204184558.4181478-3-oak.zeng@intel.com>
+ <68c890a3baff21199f6aca82dccdd024f56de199.camel@linux.intel.com>
+ <MN2PR11MB4728736D182B9C0671A8501692F62@MN2PR11MB4728.namprd11.prod.outlook.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH0PR11MB5174:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5675fc55-5871-4197-92b4-08dd46907acc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Z1VPdktCZ3Z6NjNTRjY3T25lZTIxWjNqSmVyZXRLV2U4YWtYaGxxakJBYUph?=
- =?utf-8?B?b0x4c2RDbTQ2a2o3ek5ycXJRWUdKZmJWbGtrUXdXZk9wYVNzckxEQldnZjZz?=
- =?utf-8?B?NUdIM0I0UzR0Nk9xbGxpckRicUM4eHBvLytZRGhSa0RSWU13dm9NNGwraDdy?=
- =?utf-8?B?L3U1TGhVVHhBNElhaHk1Snp3TldCenhHU0xha05BdGxlM0F2K2g1bGZibkZB?=
- =?utf-8?B?SXJXbkxPVDd5R1NSdEN2MVRCUXE0R09tT05CbytqNzczbWRmc1Ixd0d6bVBM?=
- =?utf-8?B?OVpKQy9aVEFIb2ZmTUhxbjZOK1VYcGtqdTNWUG5vT2I3dGNDYUtNUUJXWHNU?=
- =?utf-8?B?WFdWblRqaHZiaDBrdzhKb2lVcGMzdVZmRzZLOHc1aTBmTVIyUlpwc3VjL2VB?=
- =?utf-8?B?ZU9SSmdaYW96S3lXVzk1SzBJcGsxOUIxdjU3VUo0ZGF6aUtZejJxS29MS3l1?=
- =?utf-8?B?cWNMcWlSZ2Vpa0xoZnp0TjkwQitBWkhoemE5SHpuS3dxU0trNXBSOEZhdTVx?=
- =?utf-8?B?UVFWZFgvdHkrQllTNFBzcVZuSnVsZnNWeE9oVHdQalMzcWd0R083cWl0ODJY?=
- =?utf-8?B?WEVHbHBUdTN5V3ZwS2x2RkRDcHZnZFE0K2ExS2Znc3ZkSkFUYllJdDFydXB0?=
- =?utf-8?B?Mkp6ZDJJTldIV0FJS1Q1UVJIT3NucXRmODcvczl4RGJhSzFPN1c5TVUyZ3g2?=
- =?utf-8?B?Ykp2Q3NkUEF6bkluLzJla1BvbFdkVk5BUXViV3hPNFFXZ2xKZHdPdXErVkV4?=
- =?utf-8?B?eXphUmsweSswbTVPMVQyR0lnUEhTVHg3ZzBaeEwveDVVdVoyMTRTbGV3OXQv?=
- =?utf-8?B?SXdaemlJQ0c1SXlPWmU2NTRicnp4RXVaMnljNFhrRnBHWmRqVERmMkxQWDJK?=
- =?utf-8?B?dTRDdzJ0QlgzdWJzT2liaG9KcytoOHljZ3U0YklEUU5haXVSanlGT3pmY2Mz?=
- =?utf-8?B?QU94NVdpRnVkMERQeGh4MmZuaDdud2JaeEU4dXdnTmQyYlpCNXl6K0poOVFF?=
- =?utf-8?B?emFKanl6M3BzR3VMU29jUkpkM1M2cXo1alovakVVK2xrUlB3SS90dHNwbUVj?=
- =?utf-8?B?bktLRlhDZHFIcGJoRnlRNkw0cUZxU3JQQ0lvb2dNTDl5ZElRMHNqUmh0REoz?=
- =?utf-8?B?NHVlK1NyNUd1bS9TUWdJcWpaT0F5dmhORFZSVUFhd2YrWElsd1dZY05zVUZX?=
- =?utf-8?B?cGRsMHU1L3gvMXVlOUJpL0FZS0pMakRMZTI2d1pTaVBPYVBTQTROLzNqNy94?=
- =?utf-8?B?eDYvWUNlaGVhU0dCY2lWcThwTnBrYzdKNFA4aTFkMDFIOWpMMVNOdHpSSFZT?=
- =?utf-8?B?NXNTM1R0ZkJMNXAxQWtrbkU0UzNqeDIwQ1QxM0FrNzhoUmhjMGlMZzNYYVFv?=
- =?utf-8?B?N05ObXEzeGRTdGlvRTloaWNqYXNyK2l2NXJqUjZyV1Q3T3UyVGRReGZ5cjdk?=
- =?utf-8?B?WGo4QjZZV1VxaFRLaEViQ2d3WHJ2NU9aZEQyQXBCcVpTNytQYUtqMjE4dlNP?=
- =?utf-8?B?b0FnMnZLVmFBZ3dydm1VZ2xrcmRaNkpvaFR1ckhsL3NzL0YzaHJBT2IxZXdU?=
- =?utf-8?B?UlVVWVJuVWM2Sy9ub1VPMTAwYjlJYXV4Tjc0ekxOQnlRSmNFUFZzWnR1Vmkw?=
- =?utf-8?B?SUNpVDJVTmVTREYyQWxNTCtoaVRSbWZNQ2tDR2RqMW9aSUdjamFSNW1uUVB2?=
- =?utf-8?B?TGJyZXBjVTdiRnlURGR3VzFGd0s5ZGRDRzVRNHZXMUtIaVNqZjA5b3h4aHYz?=
- =?utf-8?B?Q2tPNHV4aDA3eGF5TXBkTmlYL0czRkM4enMyV0RXWnpUUmMrTjV2VTN2aUQ1?=
- =?utf-8?B?aE01RHdxYVBhL1FWcElVUCtDYWVXemUrQ0lNODN4UHJXdEJpVFlMbzBheWRv?=
- =?utf-8?Q?bshxyR3cn6LLn?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VDdLUDRQNUdYYkl6N3NxeGlJTnBMcjh6WVRuT3pPTEJLMlFhTk1zMFEyNncz?=
- =?utf-8?B?TFdZZVFkdmEvQmtjcklDYXpYaUp3dmtFU1B2YitBaDlJZ05HMzlldytPL2d1?=
- =?utf-8?B?M2d4NktIanU4dEVYMUtWNzNBSk45NGNHd0d6OXJsRDNqK0NmaUxvMmJDRy9S?=
- =?utf-8?B?V2RMQ2k0TkJFdFp3R25vUEFIZk11TWp2S2d4T0RaeVhmbUZ3WFNwcWQ3OGd6?=
- =?utf-8?B?NXN2NU1KQWVza3R6cWNNeklKWk1tS2N4UE1pUFd5blJBVkxLa3IwRFU0WGFl?=
- =?utf-8?B?a1JUWmdPbTFrTFo4VCswMnRJQVZnSERZOG9FcnE5a3U2Mno3bTAwZzNsQmZF?=
- =?utf-8?B?QitzbDlqODRqWWI4bmR3QjVzdzZtZ0hXSVVMTUQyaCszVldDb0t6eElxa3Q4?=
- =?utf-8?B?Q2lZa2tITlV3eEkvelU5RlhCbjQ0dEJpODNpQm5scGNpbkxNMUdPSE1aMWFS?=
- =?utf-8?B?V20walBYZTV1dmJkWmsrRlZpSXEra01naTRwd1VLdDdXelZhcno2Nmxsb1Va?=
- =?utf-8?B?dUdaSmFrZG5QRjhRVXNCWDUrWm9nb0FYVjBpeDhPcG5yQVEvY1lTYUdLRWwz?=
- =?utf-8?B?cVQ1bldNUjVQSW1Va0pmSmpmM21KMTZ1RmZqSXJOUHhTL0QwSjhJM29CZXA0?=
- =?utf-8?B?ai9MNE5FZjVYWEw0a1YwVXAwMzFtQmIxTmhYQlk1bXFraTMyZzBzRUMxM2FC?=
- =?utf-8?B?YWM3Mk5YdWFWaEgzTXBWS1Fpc0hOTWVtUlRsRVNkODFicUtaelQ0eGVSaHhp?=
- =?utf-8?B?U0ZTVHVKSkl6Ulk4NlJqSEpXelBJS2k5SzVkSk9qWi9RWVNRSGJLWUo3UGcy?=
- =?utf-8?B?NitablczNUdiVWR5VXlJN1lFRW5EdEpTN1p2d3dkNWpUOHJHQ3lFM1hZb1BQ?=
- =?utf-8?B?SmpzVXUxUW1WNWMybm9mMVFQTjRiekFFUUFNaGkzMmFFVWxKdk1oVmJCM29Y?=
- =?utf-8?B?ekxoZGhiN2t6TS9kbktPYlRDdStRdUd2OFlKSDdIY3BLNTZOTkhrNGV2cXlx?=
- =?utf-8?B?cGNGVVpDcDFpdFJGeWxaUFYwWWNhQ1pWeGoxZTMrb0E2bVpyREhIY3JXc0FY?=
- =?utf-8?B?bVJQcUIyK05ScnVPc3ppR1VaMlA4WFJGTDdZOUoyWHY5bzRJQ0pqSVMvc2ZJ?=
- =?utf-8?B?dENmVjlFa1g5b1VJU01YT29hMFk0NnlLajVOTm95ZTl2MmNHdXZiZUliZ20r?=
- =?utf-8?B?ZlBhL1kybDNvdnp3ZitDZThOd0tid3JtclJpR0dNeEQ2aWRxSWJMWGJIVGRN?=
- =?utf-8?B?T2h4cFVlQ3lZT0ZKNERtWThnazQyRFd1RVNTVFo3Y3ptYjJDdS8xUDZOTEZY?=
- =?utf-8?B?UTcvYVE2b3BsUG40N1JTakFMampHNkoycDd2amlhdCt5TGlWQzdtOCtVRVNK?=
- =?utf-8?B?WEs3alZNL1VObnhvM1VEQS9TNllaandvQzlGQ0I2bmV1cTI1Vlp2NTZjSGgv?=
- =?utf-8?B?RTdVNWZnN2tBSHNSczJKYzJNeWV0SDdjS2hoN2VRMmxrWnNFS1p1Y25lbWx5?=
- =?utf-8?B?RmRsRE9hT0lzbzRvditNL2o4SllBR0UyT3F4RFRDOGxXT2g0MThtT2h3M2Ra?=
- =?utf-8?B?b1JZYlE3Qm5PUVhsZExjaThJVElvN3RocG9Qa3VmZ2FJamJOWW00QlF2Wmcy?=
- =?utf-8?B?NXFiUW40RTkxY0I1MGNiUG9URXI3ejdHTFlRYUtrVDhINTA0UEJCMml5LzlS?=
- =?utf-8?B?QTU2WlVHOFF3Uzc2MUJsN1hLamtoL29mM3E2d2p2bUFTcmdJNjBZaFBUb2VX?=
- =?utf-8?B?VXhKV29tSXZxM1RnOWlKK1RFWnpwSWxaOWNHTFludUFmV2VDVk9rUzZFMzBN?=
- =?utf-8?B?Sjh5RlNobTJnR3NDQksvTkVDYW1zZlN2VTRxMVRZM0pEdU1qOCtvYXNNT3o3?=
- =?utf-8?B?TlRQWUoyTFU2TVV4cGM1Tyt3cXVTWGN3a3gxdFB4NkR1dUJWZFREUmhOQk54?=
- =?utf-8?B?WDZlRk5oS0lpeC9vcTlMVjJ2U1A4cUd6dG5ZZXErcHJFK3gxcTU4R2FrdEp0?=
- =?utf-8?B?VS9haWV6RHp2TFUrN25BZ21pVkhIMzl3REcvNkxaT254dWx4bmRaMU5VSlRw?=
- =?utf-8?B?NlBtNytTRnZ6aGlEdEQyMXA4WThBMHNRbFNxaDVWOVhjZm05SlF5VFpkOWI3?=
- =?utf-8?B?Mk1mY2t1eHhBNjF6MzBydEYzcS9Cejh1QVdHNCtheFRRYXgwUjEvRThOVlBZ?=
- =?utf-8?B?MEE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5675fc55-5871-4197-92b4-08dd46907acc
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2025 09:27:30.9479 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nbTENAqDbCMN1G/LLpetBr1yQPgMCucl50XBJ8X11ClpjBAGp2nr4jL6emwLi4FOO5x4OmcK6THbWQVhR7gq+4MpQ8a+PVb1Duqi0v8OuYo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5174
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -195,71 +75,187 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Thu, 2025-02-06 at 01:54 +0000, Zeng, Oak wrote:
+>=20
+>=20
+> > -----Original Message-----
+> > From: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > Sent: February 5, 2025 8:14 AM
+> > To: Zeng, Oak <oak.zeng@intel.com>; intel-xe@lists.freedesktop.org
+> > Cc: Brost, Matthew <matthew.brost@intel.com>; Cavitt, Jonathan
+> > <jonathan.cavitt@intel.com>
+> > Subject: Re: [PATCH 3/3] drm/xe: Allow scratch page under fault
+> > mode for certain platform
+> >=20
+> > On Tue, 2025-02-04 at 13:45 -0500, Oak Zeng wrote:
+> > > Normally scratch page is not allowed when a vm is operate under
+> > page
+> > > fault mode, i.e., in the existing codes,
+> > > DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE
+> > > and DRM_XE_VM_CREATE_FLAG_FAULT_MODE are mutual
+> > exclusive. The reason
+> > > is fault mode relies on recoverable page to work, while scratch
+> > > page
+> > > can mute recoverable page fault.
+> > >=20
+> > > On xe2 and xe3, out of bound prefetch can cause page fault and
+> > > further
+> > > system hang because xekmd can't resolve such page fault. SYCL and
+> > OCL
+> > > language runtime requires out of bound prefetch to be silently
+> > > dropped
+> > > without causing any functional problem, thus the existing
+> > > behavior
+> > > doesn't meet language runtime requirement.
+> > >=20
+> > > At the same time, HW prefetching can cause page fault interrupt.
+> > Due
+> > > to
+> > > page fault interrupt overhead (i.e., need Guc and KMD involved to
+> > fix
+> > > the page fault), HW prefetching can be slowed by many orders of
+> > > magnitude.
+> > >=20
+> > > Fix those problems by allowing scratch page under fault mode for
+> > xe2
+> > > and
+> > > xe3. With scratch page in place, HW prefetching could always hit
+> > > scratch
+> > > page instead of causing interrupt.
+> > >=20
+> > > A side effect is, scratch page could hide application program
+> > > error.
+> > > Application out of bound accesses are hided
+> > s/hided/hidden/
+> >=20
+> > > =C2=A0by scratch page mapping,
+> > > instead of get reported to user.
+> > >=20
+> > > igt test: https://patchwork.freedesktop.org/series/144334/. Test
+> > > result on
+> > > BMG:
+> > >=20
+> > > root@DUT1130BMGFRD:/home/szeng/dii-tools/igt-
+> > public/build/tests#
+> > > ./xe_exec_fault_mode --run-subtest scratch-fault
+> > > IGT-Version: 1.30-gde1a3cb42 (x86_64) (Linux: 6.13.0-xe x86_64)
+> > > Using IGT_SRANDOM=3D1738684805 for randomisation
+> > > Opened device: /dev/dri/card0
+> > > Starting subtest: scratch-fault
+> > > Subtest scratch-fault: SUCCESS (0.080s)
+> > >=20
+> > > Without this series, the test result is:
+> > >=20
+> > > root@DUT1130BMGFRD:/home/szeng/dii-tools/igt-
+> > public/build/tests#
+> > > ./xe_exec_fault_mode --run-subtest scratch-fault
+> > > IGT-Version: 1.30-gde1a3cb42 (x86_64) (Linux: 6.13.0-xe x86_64)
+> > > Using IGT_SRANDOM=3D1738686046 for randomisation
+> > > Opened device: /dev/dri/card0
+> > > Starting subtest: scratch-fault
+> > > (xe_exec_fault_mode:5047) CRITICAL: Test assertion failure
+> > function
+> > > test_exec, file ../tests/intel/xe_exec_fault_mode.c:349:
+> > > (xe_exec_fault_mode:5047) CRITICAL: Failed assertion:
+> > > __xe_wait_ufence(fd, &exec_sync[i], 0xdeadbeefdeadbeefull,
+> > > exec_queues[i % n_exec_queues], &timeout) =3D=3D 0
+> > > (xe_exec_fault_mode:5047) CRITICAL: Last errno: 62, Timer expired
+> > > (xe_exec_fault_mode:5047) CRITICAL: error: -62 !=3D 0
+> > > Stack trace:
+> > > =C2=A0 #0 ../lib/igt_core.c:2266 __igt_fail_assert()
+> > > =C2=A0 #1 ../tests/intel/xe_exec_fault_mode.c:346 test_exec()
+> > > =C2=A0 #2 ../tests/intel/xe_exec_fault_mode.c:537
+> > > __igt_unique____real_main407()
+> > > =C2=A0 #3 ../tests/intel/xe_exec_fault_mode.c:407 main()
+> > > =C2=A0 #4 ../sysdeps/nptl/libc_start_call_main.h:74
+> > > __libc_start_call_main()
+> > > =C2=A0 #5 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
+> > > =C2=A0 #6 [_start+0x2e]
+> > > Subtest scratch-fault failed.
+> > >=20
+> > > v2: Refine commit message (Thomas)
+> > >=20
+> > > Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+> > > ---
+> > > =C2=A0drivers/gpu/drm/xe/xe_vm.c | 9 +++++----
+> > > =C2=A01 file changed, 5 insertions(+), 4 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/xe/xe_vm.c
+> > b/drivers/gpu/drm/xe/xe_vm.c
+> > > index 813d893d9b63..c0372f083d42 100644
+> > > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > > @@ -1752,6 +1752,11 @@ int xe_vm_create_ioctl(struct
+> > drm_device *dev,
+> > > void *data,
+> > > =C2=A0	if (XE_IOCTL_DBG(xe, args->extensions))
+> > > =C2=A0		return -EINVAL;
+> > >=20
+> > > +	if (XE_IOCTL_DBG(xe, args->flags &
+> > > DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE &&
+> > > +			 args->flags &
+> > > DRM_XE_VM_CREATE_FLAG_FAULT_MODE &&
+> > > +			 !(NEEDS_SCRATCH(xe))))
+> > > +		return -EINVAL;
+> > > +
+> >=20
+> > We should probably move this test to where the old test were below,
+> > since the WA below enables scratch pages.
+>=20
+>=20
+> Below wa code is for dg2.
+> If we move this test below the wa code, then on dg2, if people create
+> vm
+> With FAULT_MODE | LR_MODE, above check would fail user.
 
-On 1/31/2025 12:15 AM, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->
-> Add a functiuon for emitting a DSB poll instruction. We'll allow
+Though on DG2 we don't support fault mode.
 
-s/functiuon/function
+>=20
+> So I do think we should keep this check above wa codes.
+
+I think what matters here is readability of the code. A naive reader
+(like me in this case) would start to wonder why enabling scratch pages
+*after* the sanity check for them is done, and whether that is a bug or
+an oversight, and that would require looking up what the WA actually
+means.
+
+So IMO in general sanity checks should be done after all implicit
+enabling of flags if at all possible. And if not, they should be
+accompanied by a comment that explains why the enabling of the flag is
+not included in the sanity check.
+
+/Thomas
 
 
-> the caller to specify the poll parameters.
->
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_dsb.c | 19 +++++++++++++++++++
->   drivers/gpu/drm/i915/display/intel_dsb.h |  3 +++
->   2 files changed, 22 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-> index 2f2812c23972..b68ee125afae 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> @@ -452,6 +452,25 @@ void intel_dsb_wait_scanline_out(struct intel_atomic_state *state,
->   			   start, end);
->   }
->   
-> +void intel_dsb_poll(struct intel_dsb *dsb,
-> +		    i915_reg_t reg, u32 mask, u32 val,
-> +		    int wait, int count)
+>=20
+> Oak
+>=20
+>=20
+> >=20
+> > /Thomas
+> >=20
+> >=20
+> > > =C2=A0	if (XE_WA(xe_root_mmio_gt(xe), 14016763929))
+> > > =C2=A0		args->flags |=3D
+> > DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE;
+> > >=20
+> > > @@ -1765,10 +1770,6 @@ int xe_vm_create_ioctl(struct
+> > drm_device *dev,
+> > > void *data,
+> > > =C2=A0	if (XE_IOCTL_DBG(xe, args->flags &
+> > > ~ALL_DRM_XE_VM_CREATE_FLAGS))
+> > > =C2=A0		return -EINVAL;
+> > >=20
+> > > -	if (XE_IOCTL_DBG(xe, args->flags &
+> > > DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE &&
+> > > -			 args->flags &
+> > > DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
+> > > -		return -EINVAL;
+> > > -
+> > > =C2=A0	if (XE_IOCTL_DBG(xe, !(args->flags &
+> > > DRM_XE_VM_CREATE_FLAG_LR_MODE) &&
+> > > =C2=A0			 args->flags &
+> > > DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
+> > > =C2=A0		return -EINVAL;
+>=20
 
-Perhaps `wait_us` to convey that value is in microseconds.
-
-In any case change LGTM.
-
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-
-> +{
-> +	struct intel_crtc *crtc = dsb->crtc;
-> +	enum pipe pipe = crtc->pipe;
-> +
-> +	intel_dsb_reg_write(dsb, DSB_POLLMASK(pipe, dsb->id), mask);
-> +	intel_dsb_reg_write(dsb, DSB_POLLFUNC(pipe, dsb->id),
-> +			    DSB_POLL_ENABLE |
-> +			    DSB_POLL_WAIT(wait) | DSB_POLL_COUNT(count));
-> +
-> +	intel_dsb_noop(dsb, 5);
-> +
-> +	intel_dsb_emit(dsb, val,
-> +		       (DSB_OPCODE_POLL << DSB_OPCODE_SHIFT) |
-> +		       i915_mmio_reg_offset(reg));
-> +}
-> +
->   static void intel_dsb_align_tail(struct intel_dsb *dsb)
->   {
->   	u32 aligned_tail, tail;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-> index da6df07a3c83..4511d1a1a187 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsb.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-> @@ -54,6 +54,9 @@ void intel_dsb_wait_scanline_out(struct intel_atomic_state *state,
->   				 int lower, int upper);
->   void intel_dsb_vblank_evade(struct intel_atomic_state *state,
->   			    struct intel_dsb *dsb);
-> +void intel_dsb_poll(struct intel_dsb *dsb,
-> +		    i915_reg_t reg, u32 mask, u32 val,
-> +		    int wait, int count);
->   void intel_dsb_chain(struct intel_atomic_state *state,
->   		     struct intel_dsb *dsb,
->   		     struct intel_dsb *chained_dsb,
