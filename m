@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D2E9C02194
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 19:21:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2965C02194
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 19:22:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB00210E155;
-	Thu,  6 Feb 2025 19:21:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D45310E30C;
+	Thu,  6 Feb 2025 19:22:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iPfeVZj5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X2tS0Vs+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4562710E155;
- Thu,  6 Feb 2025 19:21:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC9010E30C;
+ Thu,  6 Feb 2025 19:22:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738869717; x=1770405717;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=M+EU3nRQQwirKSiRb1jT9zBIQHZ7VpGTwoEx20TgYJA=;
- b=iPfeVZj5lIr3c/DBWz5J/V2LFLcRMT9tLacRHTVHgVi9pWazhXiXIEor
- VyD5BTL2waPD2ZQmYF3mE96wIaxKweNXj9jRL5SiZycWOdXQgh1g+OOyO
- b1Xub9zzBYYS1dyCGeVfQQpWEJaD7wB/9vhlpHdECp4mhZU86KOUVxDcI
- Yv1Rll3UkIUotsYpO6SBJrXcfBqNaRd5nmyzeLix3cJ8A3+GZmKDfumoD
- QwsYN8QbWrm4MPTbGLZ2weKuasBTnn65rgBnBEauo1iKD+kr3i6gsZrX/
- oCRVD6u93Y5cK+TIFlrZjF8gj3ncCL3Zvhraa3OsLsdXguYYj/yIuDBCi A==;
-X-CSE-ConnectionGUID: r2SyK4Y6Qzq04e59dNza7A==
-X-CSE-MsgGUID: BScVcuteTrGRN+wV3F6J0g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39398810"
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="39398810"
+ t=1738869721; x=1770405721;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=N5r609qw0H3V/Ad6D4oxujMEDGaK8JdG8V55li0u6oU=;
+ b=X2tS0Vs+XWWWRAk0nw9YYhe88kyQblKOaHeklcTIY5TkKaUjpmlE+dEg
+ PDNJVjGjfFMQZ/NGcGCEeZeW+Que+zC8ItIL4ChL8gRh2LIRtC5eKG93/
+ 4TeRzjMVOmS3DtWd/H/DZT+9m4eo5Qolue9Vdrt42Uymi0U9mnPza6IDb
+ dXKcTGzHnzJV3Y3a2KpJArc+7Be/jPFdv7mn5HMn43btzBa0oUB8AFNL5
+ kcgi4nunD9ljHeRuSeNrfseVptRVPHxSMb86W8QakClzN/CHR5CF7K9wb
+ k46HgJKxKWs7/VGbq1D2+INaHKUsGCWmjcGOktgFyj78GtSL+ykSKV8Zy g==;
+X-CSE-ConnectionGUID: tYKWoUlFQNS/B/cof8aFrQ==
+X-CSE-MsgGUID: i3hqwHAxTx+D4DR6xZJUug==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39398825"
+X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="39398825"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 11:21:57 -0800
-X-CSE-ConnectionGUID: XMqxEqnFTOGIOQTDrG1TqA==
-X-CSE-MsgGUID: do14L89ZQg+i7l9mCTg50w==
+ 06 Feb 2025 11:22:01 -0800
+X-CSE-ConnectionGUID: R4LCTo6STLag1/WrEsXUZA==
+X-CSE-MsgGUID: L4U4nOSQTlurhuA8UO1JRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="111502490"
+X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="111502526"
 Received: from lstrano-mobl6.amr.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.111.1])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 11:21:56 -0800
+ 06 Feb 2025 11:22:01 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/3] drm/i915/xe3lpd: Update bandwidth parameters
-Date: Thu,  6 Feb 2025 16:21:27 -0300
-Message-ID: <20250206192148.53610-1-gustavo.sousa@intel.com>
+Subject: [PATCH 3/3] drm/i915/xe3lpd: Update bandwidth parameters
+Date: Thu,  6 Feb 2025 16:21:30 -0300
+Message-ID: <20250206192148.53610-4-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250206192148.53610-1-gustavo.sousa@intel.com>
+References: <20250206192148.53610-1-gustavo.sousa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,18 +71,41 @@ Bandwidth parameters for Xe3_LPD have been updated with respect to
 previous display releases. Encode them into xe3lpd_sa_info and use that
 new struct.
 
-Since we are touching intel_bw.c, also take the opportunity to make it
-use display-specific platform checkers, which is what patches #1 and #2
-are about.
+Bspec: 68859
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bw.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-Gustavo Sousa (3):
-  drm/i915/display: Use display variable in intel_bw.c
-  drm/i915/display: Use display-specific platform checks in intel_bw.c
-  drm/i915/xe3lpd: Update bandwidth parameters
-
- drivers/gpu/drm/i915/display/intel_bw.c | 192 ++++++++++++++----------
- 1 file changed, 112 insertions(+), 80 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index e52c66eca93d..9937fb10ebf3 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -404,6 +404,13 @@ static const struct intel_sa_info xe2_hpd_sa_info = {
+ 	/* Other values not used by simplified algorithm */
+ };
+ 
++static const struct intel_sa_info xe3lpd_sa_info = {
++	.deburst = 32,
++	.deprogbwlimit = 65, /* GB/s */
++	.displayrtids = 256,
++	.derating = 10,
++};
++
+ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel_sa_info *sa)
+ {
+ 	struct intel_display *display = &dev_priv->display;
+@@ -759,7 +766,9 @@ void intel_bw_init_hw(struct drm_i915_private *dev_priv)
+ 	if (!HAS_DISPLAY(display))
+ 		return;
+ 
+-	if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx)
++	if (DISPLAY_VER(display) >= 30)
++		tgl_get_bw_info(dev_priv, &xe3lpd_sa_info);
++	else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx)
+ 		xe2_hpd_get_bw_info(dev_priv, &xe2_hpd_sa_info);
+ 	else if (DISPLAY_VER(display) >= 14)
+ 		tgl_get_bw_info(dev_priv, &mtl_sa_info);
 -- 
 2.48.1
 
