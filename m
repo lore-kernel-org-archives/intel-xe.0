@@ -4,51 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE405C02196
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 04:53:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01847C0219B
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 04:53:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F73D10E062;
-	Thu,  6 Feb 2025 04:53:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82A5D10E224;
+	Thu,  6 Feb 2025 04:53:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DMGINzSG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uv+8o4Ob";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A602810E062;
- Thu,  6 Feb 2025 04:53:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 999EB10E224;
+ Thu,  6 Feb 2025 04:53:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738817581; x=1770353581;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=cFpRgeQgM8YTB6NxFmJNL2QqWKtEmHDpWI36Mg8ms3A=;
- b=DMGINzSGY71wNeUjKsks8N1MyDy1edtJhtDw9FyyZf9KceNwSOCK/tRf
- Bphnulu36uEEe4Rt1OSU4agarv5wJz2Y9PqrhIOxbL19VjXaPhUmjSNLU
- HVBa7SFlePZ32EVAn/18XpBCHS0f5viFQHXuCiM3uECbXMv/j0esUbwDe
- quL1fVV9rq+2KC1zkdFpoOUYjlRcyIVhiVoBpyJX2X/RKiK6QhgRYJMWO
- 2sg95H4HzLNCUg/S4PRvpsh9v+3W3zN5e46ky/UButjoyhcW4jGkXxoq7
- RpPtA4AYjpmLrZkZL3gePhhkHpTFHTkejzHCIEUFFQfNunlCWaAkk85b/ g==;
-X-CSE-ConnectionGUID: ZNZbDWujTI6lESdXQQUsnw==
-X-CSE-MsgGUID: coGk4V0bSh2DSB8nCgicwQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39677252"
-X-IronPort-AV: E=Sophos;i="6.13,263,1732608000"; d="scan'208";a="39677252"
+ t=1738817584; x=1770353584;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=GpBmNdHMzsthwtCeqL7Trvc77apM22k7onzD7Ruh1mw=;
+ b=Uv+8o4Ob5HbG+Aqabr7YtVTSBjhHnlCndNuL2KDC1kfXoDTJgchzOeRX
+ Hlh+2CcU34WiUzsWHoAEL3bU7sfLLXhmNncet+KboUVvlUJptOjSW7SHG
+ WRIQXtWto4rcVvM5UztASzQ25xlIiU76EjMCAe9G7MP+LKnrNFXb5BM5h
+ 26j/bBdVlOxgTYBNI1c3DN0/Xn4LSxpemibEFlm4mdCFdyKwekZQQvl7C
+ UwRL5BzQ71rhJVa76FegUhywICpBGF/trI3Y7f1+cAXxTzjoGakx4Oyui
+ qg+K5fRXqqYxMVuyW4Sfdazk3Vf5qgj4tBAiJTCUpqbjedmgD+45VfQEN A==;
+X-CSE-ConnectionGUID: X57zcPxkQmOuA+prRcLrdg==
+X-CSE-MsgGUID: 8C09xKTlR5OAnJ5Co1utrQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39677260"
+X-IronPort-AV: E=Sophos;i="6.13,263,1732608000"; d="scan'208";a="39677260"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 20:53:00 -0800
-X-CSE-ConnectionGUID: WhJqXO6/T5GV0+5HEg6OWw==
-X-CSE-MsgGUID: xWSW34cVQv+zTKBYfF7K6A==
+ 05 Feb 2025 20:53:03 -0800
+X-CSE-ConnectionGUID: Ej9mgzzZSDatQ9bTBGVwlw==
+X-CSE-MsgGUID: LEYMP5flSjm+OtLjijNH4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,263,1732608000"; d="scan'208";a="116091783"
+X-IronPort-AV: E=Sophos;i="6.13,263,1732608000"; d="scan'208";a="116091793"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa004.jf.intel.com with ESMTP; 05 Feb 2025 20:52:58 -0800
+ by orviesa004.jf.intel.com with ESMTP; 05 Feb 2025 20:53:02 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: jouni.hogander@intel.com,
 	ankit.k.nautiyal@intel.com
-Subject: [PATCH v3 0/2] Compute as_sdp when vrr is enabled
-Date: Thu,  6 Feb 2025 10:19:59 +0530
-Message-ID: <20250206045001.2919360-1-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v3 2/2] Revert "drm/i915/dp: Compute as_sdp based on if vrr
+ possible"
+Date: Thu,  6 Feb 2025 10:20:01 +0530
+Message-ID: <20250206045001.2919360-3-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250206045001.2919360-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20250206045001.2919360-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -66,18 +69,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Compute as sdp when vrr.enable is set, also Skip
-infoframe.enable check to avoid full modeset during
-as_sdp toggle.
+This reverts commit 08277aa5d5a44befd71717de35b956f55e1e8401.
 
-Mitul Golani (2):
-  drm/i915/display: Skip state checker for AS SDP infoframe enable
-  Revert "drm/i915/dp: Compute as_sdp based on if vrr possible"
+Compute AS SDP params only when VRR is enabled to maintain
+PSR exclusivity.
 
- drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++----
- drivers/gpu/drm/i915/display/intel_dp.c      |  2 +-
- 2 files changed, 7 insertions(+), 5 deletions(-)
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index cd53070d7ea2..f7bd6946910d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2817,7 +2817,7 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+ 
+-	if (!intel_vrr_possible(crtc_state) || !intel_dp->as_sdp_supported)
++	if (!crtc_state->vrr.enable || !intel_dp->as_sdp_supported)
+ 		return;
+ 
+ 	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
 -- 
 2.48.1
 
