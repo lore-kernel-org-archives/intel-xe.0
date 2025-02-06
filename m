@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3ED3C02194
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 19:06:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51F66C02194
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 19:13:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9310F10E259;
-	Thu,  6 Feb 2025 19:06:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n2sEgtP8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF7E510E926
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Feb 2025 19:06:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738868767; x=1770404767;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=iXmlMDFCZx7gRQheifVi8NTu0H7COgrhWdqZ2e52S7g=;
- b=n2sEgtP8YRui8q0m+v0u3PXJp3XUDRRzBI+eY0jim6Gg9OS2LEsEJxEi
- FxGV3FOM7lhivLx/dXJbesHD/MZj2HA99M8t+dWWrta1ivAPa1LdCkboc
- RlQPfwgn6Jqt9SY5laSWewhUyGGFhClhUnt9AvOuqBoGGS3wnLOdAGVAZ
- 5INS1GqSKHifm5XoK3Wb1jVNAiEMR55Tz1Po4cHosyaWSteOc0SBDhALQ
- l091HopsM4Vz5ah3J0Iz+WwNR0e7oJxH1uvU+Jhdsdxuya9MHwwryqCXU
- f+P9nrZok1POdszT9sthVhslid4vXkHKXeLiSoTIx8BR9mZ7C4E2O7GpH g==;
-X-CSE-ConnectionGUID: HI/QRKcxTdinEGBpZ3b3VQ==
-X-CSE-MsgGUID: 90F9S92FTKeXf05/w20Ubg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39516276"
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="39516276"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 11:06:07 -0800
-X-CSE-ConnectionGUID: spD2td7uSCymw0ljFBYdxA==
-X-CSE-MsgGUID: elwqnxh8Q2uc54h4WPS65Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="111914078"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa009.fm.intel.com with ESMTP; 06 Feb 2025 11:06:03 -0800
-Received: from [10.245.96.215] (unknown [10.245.96.215])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 5995327BAA;
- Thu,  6 Feb 2025 19:06:02 +0000 (GMT)
-Message-ID: <b6020e99-5e20-42d7-a0f9-169ed068b983@intel.com>
-Date: Thu, 6 Feb 2025 20:06:01 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF20B10E155;
+	Thu,  6 Feb 2025 19:13:39 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E002610E096;
+ Thu,  6 Feb 2025 19:13:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0163037190735198913=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 6/8] drm/xe: Add support for per-function engine
- activity
-To: Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, umesh.nerlige.ramappa@intel.com,
- lucas.demarchi@intel.com, vinay.belgaumkar@intel.com, soham.purkait@intel.com
-References: <20250206104358.3436519-1-riana.tauro@intel.com>
- <20250206104358.3436519-7-riana.tauro@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250206104358.3436519-7-riana.tauro@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=5Fmst=3A_Fix_di?=
+ =?utf-8?q?sabling_the_minimum_HBlank_time?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 06 Feb 2025 19:13:38 -0000
+Message-ID: <173886921890.2185672.16073266507696491852@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250206164624.3185280-1-imre.deak@intel.com>
+In-Reply-To: <20250206164624.3185280-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,464 +36,182 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============0163037190735198913==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/dp_mst: Fix disabling the minimum HBlank time
+URL   : https://patchwork.freedesktop.org/series/144431/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2611-68225b9bc1d285bd2ab63355e94f9e661d2f895e_BAT -> xe-pw-144431v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-144431v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229] / [Intel XE#455]) +1 other test skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144431v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#2229])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144431v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [SKIP][3] ([Intel XE#1192]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2611-68225b9bc1d285bd2ab63355e94f9e661d2f895e/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144431v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  * igt@xe_pat@pat-index-xelp@render:
+    - bat-adlp-vf:        [DMESG-WARN][5] ([Intel XE#3970]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2611-68225b9bc1d285bd2ab63355e94f9e661d2f895e/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144431v1/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][7] ([Intel XE#1192]) -> [SKIP][8] ([Intel XE#2229] / [Intel XE#455])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2611-68225b9bc1d285bd2ab63355e94f9e661d2f895e/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144431v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
 
 
-On 06.02.2025 11:43, Riana Tauro wrote:
-> Add support for function level engine activity stats.
-> This is enabled when sriov_numvfs is set and disabled when vf's
+Build changes
+-------------
 
-VF's
+  * Linux: xe-2611-68225b9bc1d285bd2ab63355e94f9e661d2f895e -> xe-pw-144431v1
 
-> are disabled.
-> 
-> v2: remove unnecessary initialization
->     move offset to improve code readability (Umesh)
->     remove global for function engine activity (Lucas)
-> 
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> ---
->  drivers/gpu/drm/xe/abi/guc_actions_abi.h      |   1 +
->  drivers/gpu/drm/xe/xe_guc_engine_activity.c   | 208 +++++++++++++++---
->  drivers/gpu/drm/xe/xe_guc_engine_activity.h   |   5 +-
->  .../gpu/drm/xe/xe_guc_engine_activity_types.h |   8 +-
->  drivers/gpu/drm/xe/xe_pmu.c                   |   4 +-
->  5 files changed, 192 insertions(+), 34 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-> index ec516e838ee8..448afb86e05c 100644
-> --- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-> @@ -141,6 +141,7 @@ enum xe_guc_action {
->  	XE_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
->  	XE_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
->  	XE_GUC_ACTION_SET_DEVICE_ENGINE_ACTIVITY_BUFFER = 0x550C,
-> +	XE_GUC_ACTION_SET_FUNCTION_ENGINE_ACTIVITY_BUFFER = 0x550D,
->  	XE_GUC_ACTION_NOTIFY_MEMORY_CAT_ERROR = 0x6000,
->  	XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC = 0x6002,
->  	XE_GUC_ACTION_PAGE_FAULT_RES_DESC = 0x6003,
-> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> index 5d67fe38639a..0ab9112466f1 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> @@ -15,35 +15,62 @@
->  #include "xe_hw_engine.h"
->  #include "xe_map.h"
->  #include "xe_mmio.h"
-> +#include "xe_sriov_pf_helpers.h"
->  #include "xe_trace_guc.h"
->  
->  #define TOTAL_QUANTA 0x8000
->  
-> -static struct iosys_map engine_activity_map(struct xe_guc *guc, struct xe_hw_engine *hwe)
-> +static struct iosys_map engine_activity_map(struct xe_guc *guc, struct xe_hw_engine *hwe,
-> +					    unsigned int index)
->  {
->  	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> -	struct engine_activity_buffer *buffer = &engine_activity->device_buffer;
-> +	struct engine_activity_buffer *buffer;
->  	u16 guc_class = xe_engine_class_to_guc_class(hwe->class);
-> -	size_t offset = 0;
-> +	size_t offset;
-> +
-> +	if (engine_activity->num_functions) {
-> +		buffer = &engine_activity->function_buffer;
-> +		offset = sizeof(struct guc_engine_activity_data) * index;
+  IGT_8224: c659b986ba648584d36b3cfece897bc84a33dcbb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2611-68225b9bc1d285bd2ab63355e94f9e661d2f895e: 68225b9bc1d285bd2ab63355e94f9e661d2f895e
+  xe-pw-144431v1: 144431v1
 
-maybe we should assert that index < num_functions?
+== Logs ==
 
-> +	} else {
-> +		buffer = &engine_activity->device_buffer;
-> +		offset = 0;
-> +	}
->  
-> -	offset = offsetof(struct guc_engine_activity_data,
-> +	offset += offsetof(struct guc_engine_activity_data,
->  			  engine_activity[guc_class][hwe->logical_instance]);
->  
->  	return IOSYS_MAP_INIT_OFFSET(&buffer->activity_bo->vmap, offset);
->  }
->  
-> -static struct iosys_map engine_metadata_map(struct xe_guc *guc)
-> +static struct iosys_map engine_metadata_map(struct xe_guc *guc,
-> +					    unsigned int index)
->  {
->  	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> -	struct engine_activity_buffer *buffer = &engine_activity->device_buffer;
-> +	struct engine_activity_buffer *buffer;
-> +	size_t offset;
-> +
-> +	if (engine_activity->num_functions) {
-> +		buffer = &engine_activity->function_buffer;
-> +		offset = sizeof(struct guc_engine_activity_metadata) * index;
-> +	} else {
-> +		buffer = &engine_activity->device_buffer;
-> +		offset = 0;
-> +	}
->  
-> -	return buffer->metadata_bo->vmap;
-> +	return IOSYS_MAP_INIT_OFFSET(&buffer->metadata_bo->vmap, offset);
->  }
->  
->  static int allocate_engine_activity_group(struct xe_guc *guc)
->  {
->  	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> -	u32 num_activity_group = 1;
-> +	struct xe_device *xe = guc_to_xe(guc);
-> +	u32 num_activity_group;
-> +
-> +	/*
-> +	 * An additional activity group is allocated for PF
-> +	 */
-> +	num_activity_group = IS_SRIOV_PF(xe) ? xe_sriov_pf_get_totalvfs(xe) + 1 : 1;
-> +
->  
->  	engine_activity->eag = kmalloc_array(num_activity_group,
->  					     sizeof(struct engine_activity_group),
-> @@ -59,10 +86,11 @@ static int allocate_engine_activity_group(struct xe_guc *guc)
->  }
->  
->  static int allocate_engine_activity_buffers(struct xe_guc *guc,
-> -					    struct engine_activity_buffer *buffer)
-> +					    struct engine_activity_buffer *buffer,
-> +					    int count)
->  {
-> -	u32 metadata_size = sizeof(struct guc_engine_activity_metadata);
-> -	u32 size = sizeof(struct guc_engine_activity_data);
-> +	u32 metadata_size = sizeof(struct guc_engine_activity_metadata) * count;
-> +	u32 size = sizeof(struct guc_engine_activity_data) * count;
->  	struct xe_gt *gt = guc_to_gt(guc);
->  	struct xe_tile *tile = gt_to_tile(gt);
->  	struct xe_bo *bo, *metadata_bo;
-> @@ -105,10 +133,17 @@ static bool engine_activity_supported(struct xe_guc *guc)
->  	return false;
->  }
->  
-> -static struct engine_activity *hw_engine_to_engine_activity(struct xe_hw_engine *hwe)
-> +static void free_engine_activity_buffers(struct engine_activity_buffer *buffer)
-> +{
-> +	xe_bo_unpin_map_no_vm(buffer->metadata_bo);
-> +	xe_bo_unpin_map_no_vm(buffer->activity_bo);
-> +}
-> +
-> +static struct engine_activity *hw_engine_to_engine_activity(struct xe_hw_engine *hwe,
-> +							    unsigned int index)
->  {
->  	struct xe_guc *guc = &hwe->gt->uc.guc;
-> -	struct engine_activity_group *eag = &guc->engine_activity.eag[0];
-> +	struct engine_activity_group *eag = &guc->engine_activity.eag[index];
->  	u16 guc_class = xe_engine_class_to_guc_class(hwe->class);
->  
->  	return &eag->engine[guc_class][hwe->logical_instance];
-> @@ -125,9 +160,10 @@ static u64 cpu_ns_to_guc_tsc_tick(ktime_t ns, u32 freq)
->  #define read_metadata_record(xe_, map_, field_) \
->  	xe_map_rd_field(xe_, map_, 0, struct guc_engine_activity_metadata, field_)
->  
-> -static u64 get_engine_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
-> +static u64 get_engine_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe,
-> +				   unsigned int index)
->  {
-> -	struct engine_activity *ea = hw_engine_to_engine_activity(hwe);
-> +	struct engine_activity *ea = hw_engine_to_engine_activity(hwe, index);
->  	struct guc_engine_activity *cached_activity = &ea->activity;
->  	struct guc_engine_activity_metadata *cached_metadata = &ea->metadata;
->  	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> @@ -138,8 +174,8 @@ static u64 get_engine_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
->  	u64 active_ticks, gpm_ts;
->  	u16 change_num;
->  
-> -	activity_map = engine_activity_map(guc, hwe);
-> -	metadata_map = engine_metadata_map(guc);
-> +	activity_map = engine_activity_map(guc, hwe, index);
-> +	metadata_map = engine_metadata_map(guc, index);
->  	global_change_num = read_metadata_record(xe, &metadata_map, global_change_num);
->  
->  	/* GuC has not initialized activity data yet, return 0 */
-> @@ -182,9 +218,9 @@ static u64 get_engine_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
->  	return ea->total + ea->active;
->  }
->  
-> -static u64 get_engine_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
-> +static u64 get_engine_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe, unsigned int index)
->  {
-> -	struct engine_activity *ea = hw_engine_to_engine_activity(hwe);
-> +	struct engine_activity *ea = hw_engine_to_engine_activity(hwe, index);
->  	struct guc_engine_activity_metadata *cached_metadata = &ea->metadata;
->  	struct guc_engine_activity *cached_activity = &ea->activity;
->  	struct iosys_map activity_map, metadata_map;
-> @@ -193,8 +229,8 @@ static u64 get_engine_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
->  	u64 numerator;
->  	u16 quanta_ratio;
->  
-> -	activity_map = engine_activity_map(guc, hwe);
-> -	metadata_map = engine_metadata_map(guc);
-> +	activity_map = engine_activity_map(guc, hwe, index);
-> +	metadata_map = engine_metadata_map(guc, index);
->  
->  	if (!cached_metadata->guc_tsc_frequency_hz)
->  		cached_metadata->guc_tsc_frequency_hz = read_metadata_record(xe, &metadata_map,
-> @@ -236,10 +272,35 @@ static int enable_engine_activity_stats(struct xe_guc *guc)
->  	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
->  }
->  
-> -static void engine_activity_set_cpu_ts(struct xe_guc *guc)
-> +static int enable_function_engine_activity_stats(struct xe_guc *guc, bool enable)
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144431v1/index.html
 
-IMO it's cleaner to have separate 'disable()' function that will prepare
-and send tailored action params
+--===============0163037190735198913==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
->  {
->  	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> -	struct engine_activity_group *eag = &engine_activity->eag[0];
-> +	u32 metadata_ggtt_addr = 0, ggtt_addr = 0, num_functions = 0;
-> +	struct engine_activity_buffer *buffer = &engine_activity->function_buffer;
-> +	u32 action[6];
-> +	int len = 0;
-> +
-> +	if (enable) {
-> +		metadata_ggtt_addr = xe_bo_ggtt_addr(buffer->metadata_bo);
-> +		ggtt_addr = xe_bo_ggtt_addr(buffer->activity_bo);
-> +		num_functions = engine_activity->num_functions;
-> +	}
-> +
-> +	action[len++] = XE_GUC_ACTION_SET_FUNCTION_ENGINE_ACTIVITY_BUFFER;
-> +	action[len++] = num_functions;
-> +	action[len++] = metadata_ggtt_addr;
-> +	action[len++] = 0;
-> +	action[len++] = ggtt_addr;
-> +	action[len++] = 0;
-> +
-> +	/* Blocking here to ensure the buffers are ready before reading them */
-> +	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
-> +}
-> +
-> +static void engine_activity_set_cpu_ts(struct xe_guc *guc, unsigned int index)
-> +{
-> +	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> +	struct engine_activity_group *eag = &engine_activity->eag[index];
->  	int i, j;
->  
->  	for (i = 0; i < GUC_MAX_ENGINE_CLASSES; i++)
-> @@ -256,36 +317,106 @@ static u32 gpm_timestamp_shift(struct xe_gt *gt)
->  	return 3 - REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, reg);
->  }
->  
-> +static bool is_function_valid(struct xe_guc *guc, unsigned int fn_id)
-> +{
-> +	struct xe_device *xe = guc_to_xe(guc);
-> +	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> +
-> +	if (!IS_SRIOV_PF(xe) && fn_id)
-> +		return false;
-> +
-> +	if (engine_activity->num_functions && fn_id >= engine_activity->num_functions)
-> +		return false;
-> +
-> +	return true;
-> +}
-> +
-> +static int engine_activity_disable_function_stats(struct xe_guc *guc, bool enable)
-> +{
-> +	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> +	struct engine_activity_buffer *buffer = &engine_activity->function_buffer;
-> +	int ret;
-> +
-> +	if (!engine_activity->num_functions)
-> +		return 0;
-> +
-> +	ret = enable_function_engine_activity_stats(guc, enable);
-> +	if (ret)
-> +		return ret;
-> +
-> +	free_engine_activity_buffers(buffer);
-> +	engine_activity->num_functions = 0;
-> +
-> +	return 0;
-> +}
-> +
-> +static int engine_activity_enable_function_stats(struct xe_guc *guc, int num_vfs, bool enable)
-> +{
-> +	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
-> +	struct engine_activity_buffer *buffer = &engine_activity->function_buffer;
-> +	int ret, i;
-> +
-> +	if (!num_vfs)
-> +		return 0;
-> +
-> +	/* This includes 1 PF and num_vfs */
-> +	engine_activity->num_functions = num_vfs + 1;
-> +
-> +	ret = allocate_engine_activity_buffers(guc, buffer, engine_activity->num_functions);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = enable_function_engine_activity_stats(guc, enable);
-> +	if (ret) {
-> +		free_engine_activity_buffers(buffer);
-> +		engine_activity->num_functions = 0;
-> +		return ret;
-> +	}
-> +
-> +	for (i = 0; i < engine_activity->num_functions; i++)
-> +		engine_activity_set_cpu_ts(guc, i + 1);
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * xe_guc_engine_activity_active_ticks - Get engine active ticks
->   * @hwe: The hw_engine object
-> + * @fn_id: function id to report on
->   *
->   * Return: accumulated ticks @hwe was active since engine activity stats were enabled.
->   */
-> -u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe)
-> +u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe, unsigned int fn_id)
->  {
->  	struct xe_guc *guc =  &hwe->gt->uc.guc;
->  
->  	if (!xe_guc_engine_activity_supported(guc))
->  		return 0;
->  
-> -	return get_engine_active_ticks(guc, hwe);
-> +	if (!is_function_valid(guc, fn_id))
-> +		return 0;
-> +
-> +	return get_engine_active_ticks(guc, hwe, fn_id);
->  }
->  
->  /**
->   * xe_guc_engine_activity_total_ticks - Get engine total ticks
->   * @hwe: The hw_engine object
-> + * @fn_id: function id to report on
->   *
->   * Return: accumulated quanta of ticks allocated for the engine
->   */
-> -u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe)
-> +u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe, unsigned int fn_id)
->  {
->  	struct xe_guc *guc =  &hwe->gt->uc.guc;
->  
->  	if (!xe_guc_engine_activity_supported(guc))
->  		return 0;
->  
-> -	return get_engine_total_ticks(guc, hwe);
-> +	if (!is_function_valid(guc, fn_id))
-> +		return 0;
-> +
-> +	return get_engine_total_ticks(guc, hwe, fn_id);
->  }
->  
->  /**
-> @@ -303,6 +434,25 @@ bool xe_guc_engine_activity_supported(struct xe_guc *guc)
->  	return engine_activity->supported;
->  }
->  
-> +/**
-> + * xe_guc_engine_activity_function_stats - Enable/Disable per-function engine activity stats
-> + * @guc: The GuC object
-> + * @num_vfs: number of vfs
-> + * @enable: true to enable, false otherwise
-> + *
-> + * Return: 0 on success, negative error code otherwise
-> + */
-> +int xe_guc_engine_activity_function_stats(struct xe_guc *guc, int num_vfs, bool enable)
-> +{
-> +	if (!xe_guc_engine_activity_supported(guc))
-> +		return 0;
-> +
-> +	if (enable)
-> +		return engine_activity_enable_function_stats(guc, num_vfs, enable);
-> +
-> +	return engine_activity_disable_function_stats(guc, enable);
-> +}
-> +
->  /**
->   * xe_guc_engine_activity_enable_stats - Enable engine activity stats
->   * @guc: The GuC object
-> @@ -320,7 +470,7 @@ void xe_guc_engine_activity_enable_stats(struct xe_guc *guc)
->  	if (ret)
->  		xe_gt_err(guc_to_gt(guc), "failed to enable activity stats%d\n", ret);
->  	else
-> -		engine_activity_set_cpu_ts(guc);
-> +		engine_activity_set_cpu_ts(guc, 0);
->  }
->  
->  static void engine_activity_fini(void *arg)
-> @@ -350,7 +500,7 @@ int xe_guc_engine_activity_init(struct xe_guc *guc)
->  		return ret;
->  	}
->  
-> -	ret = allocate_engine_activity_buffers(guc, &engine_activity->device_buffer);
-> +	ret = allocate_engine_activity_buffers(guc, &engine_activity->device_buffer, 1);
->  	if (ret) {
->  		xe_gt_err(gt, "failed to allocate activity buffers%d\n", ret);
->  		kfree(engine_activity->eag);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.h b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
-> index 9d3ea3f67b6a..765397b959e0 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_engine_activity.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
-> @@ -14,6 +14,7 @@ struct xe_guc;
->  int xe_guc_engine_activity_init(struct xe_guc *guc);
->  bool xe_guc_engine_activity_supported(struct xe_guc *guc);
->  void xe_guc_engine_activity_enable_stats(struct xe_guc *guc);
-> -u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe);
-> -u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe);
-> +int xe_guc_engine_activity_function_stats(struct xe_guc *guc, int num_vfs, bool enable);
-> +u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe, unsigned int fn_id);
-> +u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe, unsigned int fn_id);
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
-> index 81002c83d65e..d95ec6a74b30 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
-> @@ -79,14 +79,20 @@ struct xe_guc_engine_activity {
->  	/** @num_activity_group: number of activity groups */
->  	u32 num_activity_group;
->  
-> +	/** @num_functions: number of functions */
-> +	u32 num_functions;
-> +
->  	/** @supported: checks if engine activity is supported */
->  	bool supported;
->  
-> -	/** @eag: holds the device level engine activity data */
-> +	/** @eag: array with entries to hold engine activity stats of global, PF and VF's */
->  	struct engine_activity_group *eag;
->  
->  	/** @device_buffer: buffer object for global engine activity */
->  	struct engine_activity_buffer device_buffer;
 
-do we need both device ad function buffers ?
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-for non-PF case (native) we can still buffer[1]
-for PF case we will allocate buffer[1 + totalVFs]
-and in the future
-for PF case we will allocate buffer[1]
 
-> +
-> +	/** @function_buffer: buffer object for per-function engine activity */
-> +	struct engine_activity_buffer function_buffer;
->  };
->  #endif
->  
-> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
-> index 5b5fe4424aba..a758fc517048 100644
-> --- a/drivers/gpu/drm/xe/xe_pmu.c
-> +++ b/drivers/gpu/drm/xe/xe_pmu.c
-> @@ -242,9 +242,9 @@ static u64 read_engine_events(struct perf_event *event, u64 prev)
->  	if (!hwe)
->  		drm_warn(&xe->drm, "unknown pmu engine\n");
->  	else if (config_to_event_id(event->attr.config) == XE_PMU_EVENT_ENGINE_ACTIVE_TICKS)
-> -		val = xe_guc_engine_activity_active_ticks(hwe);
-> +		val = xe_guc_engine_activity_active_ticks(hwe, 0);
->  	else
-> -		val = xe_guc_engine_activity_total_ticks(hwe);
-> +		val = xe_guc_engine_activity_total_ticks(hwe, 0);
->  
->  	return val;
->  }
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp_mst: Fix disabling the minimum HBlank time</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144431/">https://patchwork.freedesktop.org/series/144431/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144431v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144431v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2611-68225b9bc1d285bd2ab63355e94f9e661d2f895e_BAT -&gt; xe-pw-144431v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-144431v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144431v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144431v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2611-68225b9bc1d285bd2ab63355e94f9e661d2f895e/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144431v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp@render:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2611-68225b9bc1d285bd2ab63355e94f9e661d2f895e/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144431v1/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2611-68225b9bc1d285bd2ab63355e94f9e661d2f895e/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144431v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2611-68225b9bc1d285bd2ab63355e94f9e661d2f895e -&gt; xe-pw-144431v1</li>
+</ul>
+<p>IGT_8224: c659b986ba648584d36b3cfece897bc84a33dcbb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2611-68225b9bc1d285bd2ab63355e94f9e661d2f895e: 68225b9bc1d285bd2ab63355e94f9e661d2f895e<br />
+  xe-pw-144431v1: 144431v1</p>
+
+</body>
+</html>
+
+--===============0163037190735198913==--
