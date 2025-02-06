@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EB99C02196
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 05:04:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A43B3C02196
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 05:04:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B3CA10E106;
-	Thu,  6 Feb 2025 05:04:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6741E10E106;
+	Thu,  6 Feb 2025 05:04:47 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACBC010E106;
- Thu,  6 Feb 2025 05:04:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4303E10E106;
+ Thu,  6 Feb 2025 05:04:46 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Compute_as=5Fsdp_whe?=
- =?utf-8?q?n_vrr_is_enabled_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Compute_as=5Fsdp_when_vrr?=
+ =?utf-8?q?_is_enabled_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Feb 2025 05:04:22 -0000
-Message-ID: <173881826270.1837131.13336705803487476591@b555e5b46a47>
+Date: Thu, 06 Feb 2025 05:04:46 -0000
+Message-ID: <173881828627.1786638.3863639385638695885@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250206045001.2919360-1-mitulkumar.ajitkumar.golani@intel.com>
 In-Reply-To: <20250206045001.2919360-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -48,10 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 7a632b6798b6 drm-tip: 2025y-02m-05d-20h-51m-51s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: Skip state checker for AS SDP infoframe enable
-Applying: Revert "drm/i915/dp: Compute as_sdp based on if vrr possible"
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit abf547590cd77fa9a2ec9f2cadff41379a343f22
+Author: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Date:   Thu Feb 6 10:20:01 2025 +0530
+
+    Revert "drm/i915/dp: Compute as_sdp based on if vrr possible"
+    
+    This reverts commit 08277aa5d5a44befd71717de35b956f55e1e8401.
+    
+    Compute AS SDP params only when VRR is enabled to maintain
+    PSR exclusivity.
+    
+    Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+    Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
++ /mt/dim checkpatch 7a632b6798b6a05b63725249e3209afea13ea499 drm-intel
+c613e59c9334 drm/i915/display: Skip state checker for AS SDP infoframe enable
+abf547590cd7 Revert "drm/i915/dp: Compute as_sdp based on if vrr possible"
 
 
