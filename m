@@ -4,54 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 379DDC02196
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 10:25:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C9E8C02194
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 10:26:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0282E10E801;
-	Thu,  6 Feb 2025 10:25:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E914B10E80F;
+	Thu,  6 Feb 2025 10:26:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XQeyJpLU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CeskW3iv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C798B10E80F
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Feb 2025 10:25:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90D8610E80F
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Feb 2025 10:26:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738837541; x=1770373541;
+ t=1738837589; x=1770373589;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EgMpVMX2DBtCO/SDRpGLSfHT892vofy0umaL73RjXwA=;
- b=XQeyJpLUEBy4De+RMbHkUDCnZfKLB/dN3zz5t8ZHl3R8l1Rf4tV0T1S/
- Uu7pqIAONPSI2fn4U0YPircrPwYpqgz+Fo6VJjBSMosNi3A1MKei72FQh
- sLBLI43azTbZ0l6quP1wBGcr+k3gQrptmGw5ddsdKv/gZX1y4staPoaZT
- XXhqDWHWBB17IlBQhsCuRtN7Eb1YEsfZsmG8y6G8exueLovLOed7jUVd0
- h4ICaZpwyk4eL4OLbOVOWTUPjtki+vknvF6Qs03R8NckxVYlOdBJ2vdEh
- 1hdMSeClI3qToNE604GmsRBTUfzthu03YAiNDVepNNwiKCP67GnlUZKkm w==;
-X-CSE-ConnectionGUID: csXWJ3HWSc6qePh50NY92g==
-X-CSE-MsgGUID: uQN4WpF2S6y2sM7L3toxmw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="64786996"
-X-IronPort-AV: E=Sophos;i="6.13,264,1732608000"; d="scan'208";a="64786996"
+ bh=rDGMa7uwhUuUktPHS8eqROTOocrhafBboCfA/p698Jo=;
+ b=CeskW3ivu666VC0P8zMs1hbdC4KcUyeDLgN/83MpvxqeDugb4/Dzdf0W
+ QC4pk/VbhxR8kr95Psu8eWFvT0vSyEjx9XSuFf+EAr4xxxpTCkeklDw8i
+ B+AwiVGtYFmdNbniXZ/ahSnOAHprN3WVlEWu9ajODj6jAgm4CIFAIBtmS
+ enyTtVcnmLjUVYotdjT5d5Cd+YOzzaf7YeIbAd5O0VqD+0nYVJ1DvqSij
+ TwoErkE1USGVBhoV5x6LXnDgMSlah0DlWFbNMNICKDpqzE3zAeZ7E2S1L
+ gAq4qoQTJgauHHdZWY+jnZc0vIwosdIXnetKDUDcD7vwzd0TOot2DKJEW A==;
+X-CSE-ConnectionGUID: GiOIDvVXTgSS5BivP4fzpw==
+X-CSE-MsgGUID: gjci6jr4TeCByTg84lIZdg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="64787028"
+X-IronPort-AV: E=Sophos;i="6.13,264,1732608000"; d="scan'208";a="64787028"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 02:25:41 -0800
-X-CSE-ConnectionGUID: Cdi/v0MNQ7eG2SZFU6cWVQ==
-X-CSE-MsgGUID: pyklH78ES6KiUlrvjaCWCQ==
+ 06 Feb 2025 02:26:28 -0800
+X-CSE-ConnectionGUID: his2tbZgRySsPyltEc5R8g==
+X-CSE-MsgGUID: QOnuF2qlTtObf45xp8aqaA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,264,1732608000"; d="scan'208";a="110998025"
+X-IronPort-AV: E=Sophos;i="6.13,264,1732608000"; d="scan'208";a="110998138"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 02:25:38 -0800
+ 06 Feb 2025 02:26:26 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
  umesh.nerlige.ramappa@intel.com, lucas.demarchi@intel.com,
  vinay.belgaumkar@intel.com, soham.purkait@intel.com,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v5 5/8] drm/xe/xe_pmu: Acquire forcewake on event init for
- engine events
-Date: Thu,  6 Feb 2025 16:13:54 +0530
-Message-ID: <20250206104358.3436519-6-riana.tauro@intel.com>
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v5 6/8] drm/xe: Add support for per-function engine activity
+Date: Thu,  6 Feb 2025 16:13:55 +0530
+Message-ID: <20250206104358.3436519-7-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250206104358.3436519-1-riana.tauro@intel.com>
 References: <20250206104358.3436519-1-riana.tauro@intel.com>
@@ -71,134 +69,442 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When the engine events are created, acquire GT forcewake to read gpm
-timestamp required for the events and release on event destroy. This
-cannot be done during read due to the raw spinlock held my pmu.
+Add support for function level engine activity stats.
+This is enabled when sriov_numvfs is set and disabled when vf's
+are disabled.
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+v2: remove unnecessary initialization
+    move offset to improve code readability (Umesh)
+    remove global for function engine activity (Lucas)
+
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pmu.c       | 47 +++++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_pmu_types.h |  8 ++++++
- 2 files changed, 53 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h      |   1 +
+ drivers/gpu/drm/xe/xe_guc_engine_activity.c   | 208 +++++++++++++++---
+ drivers/gpu/drm/xe/xe_guc_engine_activity.h   |   5 +-
+ .../gpu/drm/xe/xe_guc_engine_activity_types.h |   8 +-
+ drivers/gpu/drm/xe/xe_pmu.c                   |   4 +-
+ 5 files changed, 192 insertions(+), 34 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
-index 06a1c72a3838..5b5fe4424aba 100644
---- a/drivers/gpu/drm/xe/xe_pmu.c
-+++ b/drivers/gpu/drm/xe/xe_pmu.c
-@@ -7,6 +7,7 @@
- #include <linux/device.h>
- 
- #include "xe_device.h"
-+#include "xe_force_wake.h"
- #include "xe_gt_idle.h"
- #include "xe_guc_engine_activity.h"
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+index ec516e838ee8..448afb86e05c 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+@@ -141,6 +141,7 @@ enum xe_guc_action {
+ 	XE_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
+ 	XE_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
+ 	XE_GUC_ACTION_SET_DEVICE_ENGINE_ACTIVITY_BUFFER = 0x550C,
++	XE_GUC_ACTION_SET_FUNCTION_ENGINE_ACTIVITY_BUFFER = 0x550D,
+ 	XE_GUC_ACTION_NOTIFY_MEMORY_CAT_ERROR = 0x6000,
+ 	XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC = 0x6002,
+ 	XE_GUC_ACTION_PAGE_FAULT_RES_DESC = 0x6003,
+diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+index 5d67fe38639a..0ab9112466f1 100644
+--- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
++++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+@@ -15,35 +15,62 @@
  #include "xe_hw_engine.h"
-@@ -102,6 +103,36 @@ static struct xe_hw_engine *event_to_hwe(struct perf_event *event)
- 	return hwe;
- }
+ #include "xe_map.h"
+ #include "xe_mmio.h"
++#include "xe_sriov_pf_helpers.h"
+ #include "xe_trace_guc.h"
  
-+static bool is_engine_event(u64 config)
-+{
-+	unsigned int event_id = config_to_event_id(config);
-+
-+	return (event_id == XE_PMU_EVENT_ENGINE_TOTAL_TICKS ||
-+		event_id == XE_PMU_EVENT_ENGINE_ACTIVE_TICKS);
-+}
-+
-+static void event_gt_forcewake(struct perf_event *event)
-+{
-+	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
-+	u64 config = event->attr.config;
-+	struct xe_pmu *pmu = &xe->pmu;
-+	struct xe_gt *gt;
-+	unsigned int fw_ref;
-+
-+	gt = xe_device_get_gt(xe, config_to_gt_id(config));
-+	if (!gt || !is_engine_event(config))
-+		return;
-+
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (!fw_ref)
-+		return;
-+
-+	if (!pmu->fw_ref)
-+		pmu->fw_ref = fw_ref;
-+
-+	pmu->fw_count++;
-+}
-+
- static bool event_supported(struct xe_pmu *pmu, unsigned int gt,
- 			    unsigned int id)
+ #define TOTAL_QUANTA 0x8000
+ 
+-static struct iosys_map engine_activity_map(struct xe_guc *guc, struct xe_hw_engine *hwe)
++static struct iosys_map engine_activity_map(struct xe_guc *guc, struct xe_hw_engine *hwe,
++					    unsigned int index)
  {
-@@ -144,6 +175,13 @@ static bool event_param_valid(struct perf_event *event)
- static void xe_pmu_event_destroy(struct perf_event *event)
- {
- 	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
-+	struct xe_pmu *pmu = &xe->pmu;
-+	struct xe_gt *gt;
+ 	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
+-	struct engine_activity_buffer *buffer = &engine_activity->device_buffer;
++	struct engine_activity_buffer *buffer;
+ 	u16 guc_class = xe_engine_class_to_guc_class(hwe->class);
+-	size_t offset = 0;
++	size_t offset;
 +
-+	if (pmu->fw_count--) {
-+		gt = xe_device_get_gt(xe, config_to_gt_id(event->attr.config));
-+		xe_force_wake_put(gt_to_fw(gt), pmu->fw_ref);
++	if (engine_activity->num_functions) {
++		buffer = &engine_activity->function_buffer;
++		offset = sizeof(struct guc_engine_activity_data) * index;
++	} else {
++		buffer = &engine_activity->device_buffer;
++		offset = 0;
 +	}
  
- 	drm_WARN_ON(&xe->drm, event->parent);
- 	xe_pm_runtime_put(xe);
-@@ -183,18 +221,23 @@ static int xe_pmu_event_init(struct perf_event *event)
- 	if (!event->parent) {
- 		drm_dev_get(&xe->drm);
- 		xe_pm_runtime_get(xe);
-+		event_gt_forcewake(event);
- 		event->destroy = xe_pmu_event_destroy;
- 	}
+-	offset = offsetof(struct guc_engine_activity_data,
++	offset += offsetof(struct guc_engine_activity_data,
+ 			  engine_activity[guc_class][hwe->logical_instance]);
  
- 	return 0;
+ 	return IOSYS_MAP_INIT_OFFSET(&buffer->activity_bo->vmap, offset);
  }
  
--static u64 read_engine_events(struct perf_event *event)
-+static u64 read_engine_events(struct perf_event *event, u64 prev)
+-static struct iosys_map engine_metadata_map(struct xe_guc *guc)
++static struct iosys_map engine_metadata_map(struct xe_guc *guc,
++					    unsigned int index)
  {
- 	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
-+	struct xe_pmu *pmu = &xe->pmu;
- 	struct xe_hw_engine *hwe;
- 	u64 val = 0;
- 
-+	if (!pmu->fw_count)
-+		return prev;
+ 	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
+-	struct engine_activity_buffer *buffer = &engine_activity->device_buffer;
++	struct engine_activity_buffer *buffer;
++	size_t offset;
 +
- 	hwe = event_to_hwe(event);
- 	if (!hwe)
- 		drm_warn(&xe->drm, "unknown pmu engine\n");
-@@ -218,7 +261,7 @@ static u64 __xe_pmu_event_read(struct perf_event *event, u64 prev)
- 		return xe_gt_idle_residency_msec(&gt->gtidle);
- 	case XE_PMU_EVENT_ENGINE_ACTIVE_TICKS:
- 	case XE_PMU_EVENT_ENGINE_TOTAL_TICKS:
--		return read_engine_events(event);
-+		return read_engine_events(event, prev);
++	if (engine_activity->num_functions) {
++		buffer = &engine_activity->function_buffer;
++		offset = sizeof(struct guc_engine_activity_metadata) * index;
++	} else {
++		buffer = &engine_activity->device_buffer;
++		offset = 0;
++	}
+ 
+-	return buffer->metadata_bo->vmap;
++	return IOSYS_MAP_INIT_OFFSET(&buffer->metadata_bo->vmap, offset);
+ }
+ 
+ static int allocate_engine_activity_group(struct xe_guc *guc)
+ {
+ 	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
+-	u32 num_activity_group = 1;
++	struct xe_device *xe = guc_to_xe(guc);
++	u32 num_activity_group;
++
++	/*
++	 * An additional activity group is allocated for PF
++	 */
++	num_activity_group = IS_SRIOV_PF(xe) ? xe_sriov_pf_get_totalvfs(xe) + 1 : 1;
++
+ 
+ 	engine_activity->eag = kmalloc_array(num_activity_group,
+ 					     sizeof(struct engine_activity_group),
+@@ -59,10 +86,11 @@ static int allocate_engine_activity_group(struct xe_guc *guc)
+ }
+ 
+ static int allocate_engine_activity_buffers(struct xe_guc *guc,
+-					    struct engine_activity_buffer *buffer)
++					    struct engine_activity_buffer *buffer,
++					    int count)
+ {
+-	u32 metadata_size = sizeof(struct guc_engine_activity_metadata);
+-	u32 size = sizeof(struct guc_engine_activity_data);
++	u32 metadata_size = sizeof(struct guc_engine_activity_metadata) * count;
++	u32 size = sizeof(struct guc_engine_activity_data) * count;
+ 	struct xe_gt *gt = guc_to_gt(guc);
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	struct xe_bo *bo, *metadata_bo;
+@@ -105,10 +133,17 @@ static bool engine_activity_supported(struct xe_guc *guc)
+ 	return false;
+ }
+ 
+-static struct engine_activity *hw_engine_to_engine_activity(struct xe_hw_engine *hwe)
++static void free_engine_activity_buffers(struct engine_activity_buffer *buffer)
++{
++	xe_bo_unpin_map_no_vm(buffer->metadata_bo);
++	xe_bo_unpin_map_no_vm(buffer->activity_bo);
++}
++
++static struct engine_activity *hw_engine_to_engine_activity(struct xe_hw_engine *hwe,
++							    unsigned int index)
+ {
+ 	struct xe_guc *guc = &hwe->gt->uc.guc;
+-	struct engine_activity_group *eag = &guc->engine_activity.eag[0];
++	struct engine_activity_group *eag = &guc->engine_activity.eag[index];
+ 	u16 guc_class = xe_engine_class_to_guc_class(hwe->class);
+ 
+ 	return &eag->engine[guc_class][hwe->logical_instance];
+@@ -125,9 +160,10 @@ static u64 cpu_ns_to_guc_tsc_tick(ktime_t ns, u32 freq)
+ #define read_metadata_record(xe_, map_, field_) \
+ 	xe_map_rd_field(xe_, map_, 0, struct guc_engine_activity_metadata, field_)
+ 
+-static u64 get_engine_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
++static u64 get_engine_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe,
++				   unsigned int index)
+ {
+-	struct engine_activity *ea = hw_engine_to_engine_activity(hwe);
++	struct engine_activity *ea = hw_engine_to_engine_activity(hwe, index);
+ 	struct guc_engine_activity *cached_activity = &ea->activity;
+ 	struct guc_engine_activity_metadata *cached_metadata = &ea->metadata;
+ 	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
+@@ -138,8 +174,8 @@ static u64 get_engine_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
+ 	u64 active_ticks, gpm_ts;
+ 	u16 change_num;
+ 
+-	activity_map = engine_activity_map(guc, hwe);
+-	metadata_map = engine_metadata_map(guc);
++	activity_map = engine_activity_map(guc, hwe, index);
++	metadata_map = engine_metadata_map(guc, index);
+ 	global_change_num = read_metadata_record(xe, &metadata_map, global_change_num);
+ 
+ 	/* GuC has not initialized activity data yet, return 0 */
+@@ -182,9 +218,9 @@ static u64 get_engine_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
+ 	return ea->total + ea->active;
+ }
+ 
+-static u64 get_engine_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
++static u64 get_engine_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe, unsigned int index)
+ {
+-	struct engine_activity *ea = hw_engine_to_engine_activity(hwe);
++	struct engine_activity *ea = hw_engine_to_engine_activity(hwe, index);
+ 	struct guc_engine_activity_metadata *cached_metadata = &ea->metadata;
+ 	struct guc_engine_activity *cached_activity = &ea->activity;
+ 	struct iosys_map activity_map, metadata_map;
+@@ -193,8 +229,8 @@ static u64 get_engine_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
+ 	u64 numerator;
+ 	u16 quanta_ratio;
+ 
+-	activity_map = engine_activity_map(guc, hwe);
+-	metadata_map = engine_metadata_map(guc);
++	activity_map = engine_activity_map(guc, hwe, index);
++	metadata_map = engine_metadata_map(guc, index);
+ 
+ 	if (!cached_metadata->guc_tsc_frequency_hz)
+ 		cached_metadata->guc_tsc_frequency_hz = read_metadata_record(xe, &metadata_map,
+@@ -236,10 +272,35 @@ static int enable_engine_activity_stats(struct xe_guc *guc)
+ 	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
+ }
+ 
+-static void engine_activity_set_cpu_ts(struct xe_guc *guc)
++static int enable_function_engine_activity_stats(struct xe_guc *guc, bool enable)
+ {
+ 	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
+-	struct engine_activity_group *eag = &engine_activity->eag[0];
++	u32 metadata_ggtt_addr = 0, ggtt_addr = 0, num_functions = 0;
++	struct engine_activity_buffer *buffer = &engine_activity->function_buffer;
++	u32 action[6];
++	int len = 0;
++
++	if (enable) {
++		metadata_ggtt_addr = xe_bo_ggtt_addr(buffer->metadata_bo);
++		ggtt_addr = xe_bo_ggtt_addr(buffer->activity_bo);
++		num_functions = engine_activity->num_functions;
++	}
++
++	action[len++] = XE_GUC_ACTION_SET_FUNCTION_ENGINE_ACTIVITY_BUFFER;
++	action[len++] = num_functions;
++	action[len++] = metadata_ggtt_addr;
++	action[len++] = 0;
++	action[len++] = ggtt_addr;
++	action[len++] = 0;
++
++	/* Blocking here to ensure the buffers are ready before reading them */
++	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
++}
++
++static void engine_activity_set_cpu_ts(struct xe_guc *guc, unsigned int index)
++{
++	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
++	struct engine_activity_group *eag = &engine_activity->eag[index];
+ 	int i, j;
+ 
+ 	for (i = 0; i < GUC_MAX_ENGINE_CLASSES; i++)
+@@ -256,36 +317,106 @@ static u32 gpm_timestamp_shift(struct xe_gt *gt)
+ 	return 3 - REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, reg);
+ }
+ 
++static bool is_function_valid(struct xe_guc *guc, unsigned int fn_id)
++{
++	struct xe_device *xe = guc_to_xe(guc);
++	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
++
++	if (!IS_SRIOV_PF(xe) && fn_id)
++		return false;
++
++	if (engine_activity->num_functions && fn_id >= engine_activity->num_functions)
++		return false;
++
++	return true;
++}
++
++static int engine_activity_disable_function_stats(struct xe_guc *guc, bool enable)
++{
++	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
++	struct engine_activity_buffer *buffer = &engine_activity->function_buffer;
++	int ret;
++
++	if (!engine_activity->num_functions)
++		return 0;
++
++	ret = enable_function_engine_activity_stats(guc, enable);
++	if (ret)
++		return ret;
++
++	free_engine_activity_buffers(buffer);
++	engine_activity->num_functions = 0;
++
++	return 0;
++}
++
++static int engine_activity_enable_function_stats(struct xe_guc *guc, int num_vfs, bool enable)
++{
++	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
++	struct engine_activity_buffer *buffer = &engine_activity->function_buffer;
++	int ret, i;
++
++	if (!num_vfs)
++		return 0;
++
++	/* This includes 1 PF and num_vfs */
++	engine_activity->num_functions = num_vfs + 1;
++
++	ret = allocate_engine_activity_buffers(guc, buffer, engine_activity->num_functions);
++	if (ret)
++		return ret;
++
++	ret = enable_function_engine_activity_stats(guc, enable);
++	if (ret) {
++		free_engine_activity_buffers(buffer);
++		engine_activity->num_functions = 0;
++		return ret;
++	}
++
++	for (i = 0; i < engine_activity->num_functions; i++)
++		engine_activity_set_cpu_ts(guc, i + 1);
++
++	return 0;
++}
++
+ /**
+  * xe_guc_engine_activity_active_ticks - Get engine active ticks
+  * @hwe: The hw_engine object
++ * @fn_id: function id to report on
+  *
+  * Return: accumulated ticks @hwe was active since engine activity stats were enabled.
+  */
+-u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe)
++u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe, unsigned int fn_id)
+ {
+ 	struct xe_guc *guc =  &hwe->gt->uc.guc;
+ 
+ 	if (!xe_guc_engine_activity_supported(guc))
+ 		return 0;
+ 
+-	return get_engine_active_ticks(guc, hwe);
++	if (!is_function_valid(guc, fn_id))
++		return 0;
++
++	return get_engine_active_ticks(guc, hwe, fn_id);
+ }
+ 
+ /**
+  * xe_guc_engine_activity_total_ticks - Get engine total ticks
+  * @hwe: The hw_engine object
++ * @fn_id: function id to report on
+  *
+  * Return: accumulated quanta of ticks allocated for the engine
+  */
+-u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe)
++u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe, unsigned int fn_id)
+ {
+ 	struct xe_guc *guc =  &hwe->gt->uc.guc;
+ 
+ 	if (!xe_guc_engine_activity_supported(guc))
+ 		return 0;
+ 
+-	return get_engine_total_ticks(guc, hwe);
++	if (!is_function_valid(guc, fn_id))
++		return 0;
++
++	return get_engine_total_ticks(guc, hwe, fn_id);
+ }
+ 
+ /**
+@@ -303,6 +434,25 @@ bool xe_guc_engine_activity_supported(struct xe_guc *guc)
+ 	return engine_activity->supported;
+ }
+ 
++/**
++ * xe_guc_engine_activity_function_stats - Enable/Disable per-function engine activity stats
++ * @guc: The GuC object
++ * @num_vfs: number of vfs
++ * @enable: true to enable, false otherwise
++ *
++ * Return: 0 on success, negative error code otherwise
++ */
++int xe_guc_engine_activity_function_stats(struct xe_guc *guc, int num_vfs, bool enable)
++{
++	if (!xe_guc_engine_activity_supported(guc))
++		return 0;
++
++	if (enable)
++		return engine_activity_enable_function_stats(guc, num_vfs, enable);
++
++	return engine_activity_disable_function_stats(guc, enable);
++}
++
+ /**
+  * xe_guc_engine_activity_enable_stats - Enable engine activity stats
+  * @guc: The GuC object
+@@ -320,7 +470,7 @@ void xe_guc_engine_activity_enable_stats(struct xe_guc *guc)
+ 	if (ret)
+ 		xe_gt_err(guc_to_gt(guc), "failed to enable activity stats%d\n", ret);
+ 	else
+-		engine_activity_set_cpu_ts(guc);
++		engine_activity_set_cpu_ts(guc, 0);
+ }
+ 
+ static void engine_activity_fini(void *arg)
+@@ -350,7 +500,7 @@ int xe_guc_engine_activity_init(struct xe_guc *guc)
+ 		return ret;
  	}
  
- 	return 0;
-diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h b/drivers/gpu/drm/xe/xe_pmu_types.h
-index f5ba4d56622c..134b3400b19c 100644
---- a/drivers/gpu/drm/xe/xe_pmu_types.h
-+++ b/drivers/gpu/drm/xe/xe_pmu_types.h
-@@ -30,6 +30,14 @@ struct xe_pmu {
- 	 * @name: Name as registered with perf core.
- 	 */
- 	const char *name;
-+	/**
-+	 * @fw_ref: force_wake ref
-+	 */
-+	unsigned int fw_ref;
-+	/**
-+	 * @fw_count: force_wake count
-+	 */
-+	unsigned int fw_count;
- 	/**
- 	 * @supported_events: Bitmap of supported events, indexed by event id
- 	 */
+-	ret = allocate_engine_activity_buffers(guc, &engine_activity->device_buffer);
++	ret = allocate_engine_activity_buffers(guc, &engine_activity->device_buffer, 1);
+ 	if (ret) {
+ 		xe_gt_err(gt, "failed to allocate activity buffers%d\n", ret);
+ 		kfree(engine_activity->eag);
+diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.h b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
+index 9d3ea3f67b6a..765397b959e0 100644
+--- a/drivers/gpu/drm/xe/xe_guc_engine_activity.h
++++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
+@@ -14,6 +14,7 @@ struct xe_guc;
+ int xe_guc_engine_activity_init(struct xe_guc *guc);
+ bool xe_guc_engine_activity_supported(struct xe_guc *guc);
+ void xe_guc_engine_activity_enable_stats(struct xe_guc *guc);
+-u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe);
+-u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe);
++int xe_guc_engine_activity_function_stats(struct xe_guc *guc, int num_vfs, bool enable);
++u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe, unsigned int fn_id);
++u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe, unsigned int fn_id);
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
+index 81002c83d65e..d95ec6a74b30 100644
+--- a/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
+@@ -79,14 +79,20 @@ struct xe_guc_engine_activity {
+ 	/** @num_activity_group: number of activity groups */
+ 	u32 num_activity_group;
+ 
++	/** @num_functions: number of functions */
++	u32 num_functions;
++
+ 	/** @supported: checks if engine activity is supported */
+ 	bool supported;
+ 
+-	/** @eag: holds the device level engine activity data */
++	/** @eag: array with entries to hold engine activity stats of global, PF and VF's */
+ 	struct engine_activity_group *eag;
+ 
+ 	/** @device_buffer: buffer object for global engine activity */
+ 	struct engine_activity_buffer device_buffer;
++
++	/** @function_buffer: buffer object for per-function engine activity */
++	struct engine_activity_buffer function_buffer;
+ };
+ #endif
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+index 5b5fe4424aba..a758fc517048 100644
+--- a/drivers/gpu/drm/xe/xe_pmu.c
++++ b/drivers/gpu/drm/xe/xe_pmu.c
+@@ -242,9 +242,9 @@ static u64 read_engine_events(struct perf_event *event, u64 prev)
+ 	if (!hwe)
+ 		drm_warn(&xe->drm, "unknown pmu engine\n");
+ 	else if (config_to_event_id(event->attr.config) == XE_PMU_EVENT_ENGINE_ACTIVE_TICKS)
+-		val = xe_guc_engine_activity_active_ticks(hwe);
++		val = xe_guc_engine_activity_active_ticks(hwe, 0);
+ 	else
+-		val = xe_guc_engine_activity_total_ticks(hwe);
++		val = xe_guc_engine_activity_total_ticks(hwe, 0);
+ 
+ 	return val;
+ }
 -- 
 2.47.1
 
