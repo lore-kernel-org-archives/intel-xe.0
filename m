@@ -4,64 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA88EC02199
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 14:41:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71C2EC02194
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 15:06:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8225310E872;
-	Thu,  6 Feb 2025 14:41:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD3C10E885;
+	Thu,  6 Feb 2025 15:06:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fI76wVm3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XiJ2xe1m";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D72010E86F;
- Thu,  6 Feb 2025 14:41:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2108510E885
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Feb 2025 15:06:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738852874; x=1770388874;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=HLlnW3M69YzwxXzo46zZ6yry5KTG3UCpTsImGwgyXNs=;
- b=fI76wVm3pKKF7v+TDFeO2bD7Q7kZdXw2fd7X23Ggu/4UApRfu7PEjtfM
- tn1zZSPME1JwZRAcdZcbgRmb+tPRj0vORrHjfKi4EzK+PLs7sv1PlRE4y
- thKEAdcN1FU36cIml8HhNFOCyNKj8rrebKn2pavSY3PoTQq9/h7wb6Yig
- 30aYtAOnbAo5G95mjlCTa8nQT+/TF46eANqC8EzFZFx1C7kAw39Rvqh/G
- wzApj8cwUrbXByk07p4uAHCAFqULMrChLGW7A1KIjVsR5gl6Yiv389Ys6
- BWq9h3XZ7aUvma70f6aGmBugKyVRQKQw/W7fbjXglJBBIXHjw8DVWYu49 w==;
-X-CSE-ConnectionGUID: J7uhHldoSEqIAtHIYL9Uog==
-X-CSE-MsgGUID: 6AAZnTTVRAOHxjX1xiqoVg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39350888"
-X-IronPort-AV: E=Sophos;i="6.13,264,1732608000"; d="scan'208";a="39350888"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 06:41:13 -0800
-X-CSE-ConnectionGUID: +UjBaj9bSsORYK7E6SM9Aw==
-X-CSE-MsgGUID: 5R8QDCkOTL2nUHKQwaUMWA==
+ t=1738854415; x=1770390415;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=X0Z4VBd0nHsSB8fWc5lCGoV0MyPyOpK2t1RIp4KkEZw=;
+ b=XiJ2xe1msdgqht7VSttfa8UhVlaSa9jLOpBY+yTVymZ+VS2Vxxhcg3kH
+ MzRlEQU71ogUWZFtoNsIzl6V/G7lwadg5QmXLkd5tu+BFg389uxuyIAdd
+ 0IO/KGQn+fXZZgyT1bx6P3gRECcHKaii+MCnEeWKZ/dwTL2q6K95pz51L
+ tXz/Q+Rot3tEZTHIh9aarjdKN0wUAiMEU8CNFubFHVqIVh8A+6wt9dXC6
+ L4NbPdEjGPVXz85vKLLlnOszDtaoNzQqXXTxnw9jeHX4sebQIJyKoEAmc
+ hwU/9jXzGSlBPVQlKKoy0BHdWp7/FL9DiUb8ZL8+eBgqE7MNGnbHPUSxj w==;
+X-CSE-ConnectionGUID: WrbACrqURzeAfhcfVGrV6Q==
+X-CSE-MsgGUID: c0RZ4D5ISNSvyDqrZvG3SQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="64812743"
+X-IronPort-AV: E=Sophos;i="6.13,264,1732608000"; d="scan'208";a="64812743"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2025 07:06:55 -0800
+X-CSE-ConnectionGUID: OAmNJHwlQpuqJkx44fqC/A==
+X-CSE-MsgGUID: W5weSsR/TC+q+kWTfzRISA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="134466505"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO [10.245.245.221])
- ([10.245.245.221])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 06:41:12 -0800
-Message-ID: <13913616-d22f-489b-838e-b879a70f5692@intel.com>
-Date: Thu, 6 Feb 2025 15:41:09 +0100
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="115315830"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.47])
+ ([10.245.246.47])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2025 07:06:53 -0800
+Message-ID: <0a1a00602635a93f1f98af0f6bc0a64aaf1b2fd3.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Don't treat SR-IOV platforms as reclaim unsafe
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>, Matthew Brost
+ <matthew.brost@intel.com>
+Date: Thu, 06 Feb 2025 16:06:50 +0100
+In-Reply-To: <20250205120150.896-1-michal.wajdeczko@intel.com>
+References: <20250205120150.896-1-michal.wajdeczko@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/8] drm/dp: Increase eDP display control capability size
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Cc: "Shankar, Uma" <uma.shankar@intel.com>, "Kao, Ben" <ben.kao@intel.com>
-References: <20250206063253.2827017-1-suraj.kandpal@intel.com>
- <20250206063253.2827017-3-suraj.kandpal@intel.com>
- <IA0PR11MB73074C21AE5D2F7F1157A88CBAF62@IA0PR11MB7307.namprd11.prod.outlook.com>
- <SN7PR11MB675030A5AC6E4F8BDE7679F7E3F62@SN7PR11MB6750.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@intel.com>
-In-Reply-To: <SN7PR11MB675030A5AC6E4F8BDE7679F7E3F62@SN7PR11MB6750.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,55 +71,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Acked-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+On Wed, 2025-02-05 at 13:01 +0100, Michal Wajdeczko wrote:
+> Since commit a4d1c5d0b99b ("drm/xe/pf: Move VFs reprovisioning
+> to worker") and commit 78d5d1e20d1d ("drm/xe/relay: Don't use
+> GFP_KERNEL for new transactions") we should have no more lockdep
+> dependencies on the reclaim path when running in the SRIOV mode
+> so we believe that we can now mark SRIOV driver as reclaim safe.
+>=20
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_pm.c | 2 +-
+> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index 35dd1757b40b..12200be7b43d 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -91,7 +91,7 @@ static struct lockdep_map
+> xe_pm_runtime_nod3cold_map =3D {
+> =C2=A0 */
+> =C2=A0bool xe_rpm_reclaim_safe(const struct xe_device *xe)
+> =C2=A0{
+> -	return !xe->d3cold.capable && !xe->info.has_sriov;
+> +	return !xe->d3cold.capable;
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void xe_rpm_lockmap_acquire(const struct xe_device *xe)
 
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-for both
-
-On 2025-02-06 07:45, Kandpal, Suraj wrote:
->
->> -----Original Message-----
->> From: Murthy, Arun R <arun.r.murthy@intel.com>
->> Sent: Thursday, February 6, 2025 12:13 PM
->> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-xe@lists.freedesktop.org;
->> intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
->> Cc: Shankar, Uma <uma.shankar@intel.com>; Kao, Ben <ben.kao@intel.com>
->> Subject: RE: [PATCH 2/8] drm/dp: Increase eDP display control capability size
->>
->>> Increase the eDP display control capability size to take into account
->>> the general capability register 703 and 704 that have recently been added.
->>>
->>> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->>> ---
->> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
->>
->> Thanks and Regards,
->> Arun R Murthy
-> Hi Maarten,
->
-> can I get an ack to merge this from drm-intel-next
->
-> Regards,
-> Suraj Kandpal
->
->> --------------------
->>>   include/drm/display/drm_dp.h | 2 +-
->>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/include/drm/display/drm_dp.h
->>> b/include/drm/display/drm_dp.h index 05e16f0144ff..784a32bfbad8
->> 100644
->>> --- a/include/drm/display/drm_dp.h
->>> +++ b/include/drm/display/drm_dp.h
->>> @@ -1670,7 +1670,7 @@ enum drm_dp_phy {
->>>   #define DP_RECEIVER_CAP_SIZE		0xf
->>>   #define DP_DSC_RECEIVER_CAP_SIZE        0x10 /* DSC Capabilities 0x60
->>> through 0x6F */
->>>   #define EDP_PSR_RECEIVER_CAP_SIZE	2
->>> -#define EDP_DISPLAY_CTL_CAP_SIZE	3
->>> +#define EDP_DISPLAY_CTL_CAP_SIZE	5
->>>   #define DP_LTTPR_COMMON_CAP_SIZE	8
->>>   #define DP_LTTPR_PHY_CAP_SIZE		3
->>>
->>> --
->>> 2.34.1
