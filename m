@@ -4,184 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16824C02194
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 09:52:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3534C02194
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 10:20:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B051B10E7F2;
-	Thu,  6 Feb 2025 09:52:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5080C10E810;
+	Thu,  6 Feb 2025 10:20:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XOBolA7K";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="N8XJk+3S";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1AFB10E7F2;
- Thu,  6 Feb 2025 09:52:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738835578; x=1770371578;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=DKmZp96kaOBUmqK2vYS+1m2lW2I84Xe6thgVWdi3UiA=;
- b=XOBolA7KhSA9U2+2vKAfA34dAzrM0dh4SmCdlrbJM90oJswJhTzC70yx
- Z1nuVNlxwHj795YJ8XczSlxUxQ4ole5U3orN2o071sEfrWxLvNCMEDCVI
- IfPYRljwZ8z3BwO+wMMcrFwxDUs34Oy6YORw4lh8oo0N/8NzUJHeh8orn
- SkXQYNkuijoAr0zMgSyfVDQcJRLCEBfa0KafzMpOhAEKM83CeiXyugWwk
- P/oBq/SBV4rq6HVr9gXkhue9cD8XnQiX1IkngVQ/9oiixS0v7BJOr3AFa
- eo1ugwoeAH9Gefyu52c1vBvrPUvkI/izgA6fAIT0GMSt00y4DoIVidHrd w==;
-X-CSE-ConnectionGUID: ANFHetqPSpmFoX3Ws6vpKw==
-X-CSE-MsgGUID: OuL5A8K5TH+hZ5+3WH1TRg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="39546370"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="39546370"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 01:52:58 -0800
-X-CSE-ConnectionGUID: O+NUG3J6QJG6ArLTHok/VA==
-X-CSE-MsgGUID: W8iEN0xmTbKQJ3rX1KVsbg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,264,1732608000"; d="scan'208";a="111086286"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Feb 2025 01:52:57 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 6 Feb 2025 01:52:56 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 6 Feb 2025 01:52:56 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 6 Feb 2025 01:52:55 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qp8NOgTlHBsHzI/POqcyiJA1wSlAYKZgWh3ZQZLjbZXkF5GzO3pjRXsI0TlC0cAwxvGvFXmpq232wcyrskYA5TS9PTdzMq/IAGuHx3x6VdxePiuSmGYJsnvhUvK91fXHXYJfG/32/vFCeKQ9zuUw2I5k5Pp5OxOT1E6wK/kaTX81cjriQuaruaB7zRbtGA5Uv5ei1WO9l0vqNVkdKMHoyf+clXFs6OWq8a38mvf3GLicpQkoP28Eg8K4w/NQOPfRorUjz3kyApGsWbPVvoLdnsWkDt1myjEHB0nHRMcWJR/z0raWesJ+JdxKysdL7jBwnGzzXnLizSNHSXl7gspjMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gERz6hBC8k2HJW9reFLO6hrB/f32yMR8xDazMzX2H6I=;
- b=UoUAIWS4P+jrmjkPQgW6KIEyaCfCWFYeOQrPmnR5bmXDic6PMzP56Kn2CTHu/f0YqdyV3osU7ulmeJf8UmscikXUPkofkE7Pk2wfcQec077znJP4eDGExDUh0u8mokK2YTmBy5/07+MLhRyq+Hn1PcnTm0CnZtcZ3MmpcXavpQ6fHzVs0f+Ae+6LzVjQTJm58t2y+9GDA2LIAz68salKFaWx9j0sYzWc9e3KvHgFw+GzBMBC4S9L6SucF6+++QysfAcI2/qWWpmidXvXphVe0kqo5hWXYaMo9oWt7ShrjGI2WvJlnivN/Jx6Xvt6WhnQLzVss/sJMp608knbRf41Vg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by CY8PR11MB7364.namprd11.prod.outlook.com (2603:10b6:930:87::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.24; Thu, 6 Feb
- 2025 09:52:21 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.8422.010; Thu, 6 Feb 2025
- 09:52:21 +0000
-Message-ID: <d9e9f4a8-4f1c-4351-ac00-f8c4b674fb95@intel.com>
-Date: Thu, 6 Feb 2025 15:22:14 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] drm/i915/vrr: Poll for the push send bit to clear on
- the DSB
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- <intel-gfx@lists.freedesktop.org>
-CC: <intel-xe@lists.freedesktop.org>
-References: <20250130184518.22353-1-ville.syrjala@linux.intel.com>
- <20250130184518.22353-4-ville.syrjala@linux.intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250130184518.22353-4-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0PR01CA0036.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:81::12) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81DE710E803;
+ Thu,  6 Feb 2025 10:20:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=8b7HAZDdvy6wxmTp01LlvDD368LWl/q7GrRA6jxXjlw=; b=N8XJk+3SRFjqK33+cp1P5cKBtt
+ sDAi5tSngxoWHOVWrf6aWoQ+/qLy47kLvca5En9THWfuhbGJSvHMonMXcNAE+fJDo+oEhTyqMZGaE
+ gUxsBCPBm/Gf2BShcwDLVowTuMKuBtF62m0v087I9fAjH6AsZdDxZJP7/Iv+bX/0wKRImbYoULozX
+ 9p04NpdDJ8ezJO78RXA20Lf/hWPGb0Wl6hk7//kbVqa5gsgCb1phgFoQvNFEja+Vq4GQUOGJ5JgYS
+ bW/IC7lL0jn+SPNiBoxlPH8vIqbCpe4vXt1jR78aapEkitXptN8oxFel+bQk7KjX56QKg2JFMtuYb
+ 9Ap8GEfg==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1tfyzu-004ZHW-GO; Thu, 06 Feb 2025 11:20:44 +0100
+Message-ID: <2c9c08ad-0fd8-4803-a1c0-ae3e4326ad26@igalia.com>
+Date: Thu, 6 Feb 2025 10:20:43 +0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CY8PR11MB7364:EE_
-X-MS-Office365-Filtering-Correlation-Id: 61d49237-67f3-4f29-60d0-08dd4693f31e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?UU84c1IybXR6dmIyVEQ0aHV3MU10MlRLcE1xR0Z2eUV4aXozTm0rZG00MVdE?=
- =?utf-8?B?YlZqUGg2NGRQZmVVYytCb2Y4bUx3aWQ5ZXpRTmJZNEV4UVJtOXdOcVpFRlg1?=
- =?utf-8?B?QTFKL3M3UW1lWW9SQXhsV2M0MUx2UXU1ekgrWVB3WjJDbUsvNEQrejNzZnh2?=
- =?utf-8?B?WTBpNzR0a256N0FzVXNJM2VZSytzeTlpUkUyVUVhN3lvM2FTN2RqMWM2QTJJ?=
- =?utf-8?B?N2dTSzRKakEzajg1RmVYaGc5Tk1taWVKalVUd3Vrbzl0ZnZBR3pJa0preEEx?=
- =?utf-8?B?bEg2ejV2MmFGWnFkNENpR1JncXBmSWVoQm1DZTMvVTJFdlFBVVR1NlVkUG96?=
- =?utf-8?B?Tk9sY2lmVlpJT0hCVXlldE42VDlhckxleUU5dys5M092S2k2d0lzUDFCRXlt?=
- =?utf-8?B?aG00QjlQN1c3SEhmelMvbVBlQW5IdVFEMk1ZNXZmMTJocTVjNHh4R1NRTDVG?=
- =?utf-8?B?NlRjMHVmL2FBM2ErVmNuT3RGMFFIKysxT2QyMVNPRU9lZEFFUWNmRmt2bHhF?=
- =?utf-8?B?bGNBdDVCNXZ3UDUzSFZqOHhFV1JzZW9LR0I4dUxoZ2VvZWQ2NmFVSlQvY2R3?=
- =?utf-8?B?SjZPc0k3clJSOFhVbEoxMTdmeGsrRTV0QnY3WVVDcXRDaGF4ZnhHTjRJYk5k?=
- =?utf-8?B?N0E1cnA2Y3ZoZkRmVFI1SEtZV2I1VXErNWVOUFdwdFVoUU9GZHhJVFNTQjNI?=
- =?utf-8?B?UFo3UDNiWU55bENXMm1BQldrMlQrR2dnNHFYMGI1ZWxjaHVPbGJzWHZYcE56?=
- =?utf-8?B?U1JJeHRMdVRWUzY3dGYrZzI0ZERadDZ0ckh1WTJLN2N1dk9LYi9Xc3d2N0E4?=
- =?utf-8?B?K1RSQ3c3TkRDQzlHT3k2SU1SQTFLSktlL0hNWng1aFV6REhLZ3JsdlkrdnlO?=
- =?utf-8?B?OTFjd1hWV1JoakhKeVYwSlVxaFhqNzloUTB1N0ltRGZnQ1FGU1B3OGI2akp4?=
- =?utf-8?B?eFlieS9Qelk3UGgyb0lYczNtZ2RmRHNadGo4MUdCRnVDVWc1M3BSanlKakc2?=
- =?utf-8?B?dnZYbE4rWDJpYmQrdElQK0MyRjlhanFpdEJwTWYyWEVHL0tSSXZ3RnNEVmlW?=
- =?utf-8?B?bjMrUFUraklmQjZOdlZqaXp6VExpeGJrTmJLazRUN0d0bkRONm9JWjNEeU1l?=
- =?utf-8?B?aXBNWStOdkdWMDBMRHorVXlhbi9GOVFaRDRaUDBZWXVaVkZGQmlua3N0Wlo5?=
- =?utf-8?B?OFlDYmxHYzdDTVVxaWhRZGVOMGhYL2ZmZThnNHVIaXdZZ2E0M1lFYzhTY09I?=
- =?utf-8?B?cDdheW82TkJNcUQwbUMyMExibDJkRC9sR2htM1kydmVGTmM3anNRM2tISmVI?=
- =?utf-8?B?ZEJDRDlERmhacHJpbHUxcmk0U1BhYllXQlE1cnlXRVpRb1RUK253bzQyRits?=
- =?utf-8?B?bFYvNzdWUS91SkhPd1ZlREJ1N0dvbkZXTEdvTTJIZTVhUTBSWDFBVUUwdS9a?=
- =?utf-8?B?NjdNUS81aUhMVStxa1BWR2RuRW5od3JoUG9GSnJMKytSdVY0ZXlwTlhSMUto?=
- =?utf-8?B?SElpTndxVXNEYjRvWnRhSURha3lHUDRFRE83NExtSS9mQnIyNm42SkM0a0Zm?=
- =?utf-8?B?WnJMVVorQ082WWRaNjBwb0tTd2hWc0R2bTRYTGVvSHdWMTlHSlVpUmJZWE1v?=
- =?utf-8?B?MUJNSVI0bXNRVm5lM3VzVWcvTEMxUGVRREpoaTVkMVlqcWtzaHJpWGtGK3lE?=
- =?utf-8?B?c2xmQlZObDFwakhDblNnUGo4MWpGVlQrR1BxNTNsZ2F6N1gyeFk5YjdWc2Fv?=
- =?utf-8?B?UmlLaTg4eTc2RWYvVVppY0EyVkgwSkpNdHFoQ1BXSlJ5TzZ2RStaQ0lQcHAr?=
- =?utf-8?B?ZlJiY3BqeWxqY0lsSUFLUVhOZ0pqcndpTGpQRmpDdSsxcGhac29DL0tEMk9r?=
- =?utf-8?Q?M4GoPUaQjqrhh?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OE0vbHVDUklDbG1CLzVlREFNUnl0cm52Znpyd2RXalN1TE5aTWNNVzVORCt0?=
- =?utf-8?B?YkF3YUdLUGVERklrS0lNbVlqTTU3SGVrM1BGa0hFbFFVVnRvUEQ3dngxU0Zl?=
- =?utf-8?B?WUVkSDFKNzY2QU9HTk5xdWtNckUrWlEzenp3OUdYSDRmTW5QdzQ2WHNjaU8w?=
- =?utf-8?B?RDdwT25VWVdyL2l1elJEeTNtWnd0MGRqUXkrSE1GZ1dEeTltUEQ2NWZIOUVE?=
- =?utf-8?B?MHJJSmtKbUJJTjBDZUdKOWVsY25tZmFWNm5wQ2h2QmdtWERPWm5JWTZUc1lz?=
- =?utf-8?B?VTlaNXQrUENuZkhveWw0U1FScGUyUGtIRzQ5V3RWT3ZUSGNPcjc1Q0lYekMr?=
- =?utf-8?B?dG9CVVE2cStuRTFVbk9rRU04bVZEN1FYTXZSYmVqdzdYVjMycU5OcVFzbEhx?=
- =?utf-8?B?OGdUQzJySHQ2aWlUSzVSM2tOZXl1NzQ4UFJseitrTm95Wm9SeFo2QnJwODg5?=
- =?utf-8?B?WE9XRC9QUGVpSFk0YmJlSVgzRHZNZkpMS005UzJpdEVyNkEzelRqVWdSY0Zs?=
- =?utf-8?B?L29CMmtKMVh0YmJsMXBYbUNaRVFSZy9hMVlrbFl3Y1h3NVJWakhCNGhWakhY?=
- =?utf-8?B?aW1BQWNQZUU1c2d0eUppeUV0bHlxSlpXT3ZNUTBkQ0RTQitGK3JSc0IyOFZm?=
- =?utf-8?B?NlFkbGpMZFZIYUZCdTJxNFl0ZUJKQWp5V29QMXIvUmNiTmRwMW5Jd2lLQStW?=
- =?utf-8?B?NGZrQkIvV3dHRDJRakp4eFRXUEpiSGVONmNTVkdDV0RyTTBHZUhXVHY3NVl1?=
- =?utf-8?B?Z3lMK1hVOTJ0YjM5YlNJd2lLS0tONjdFYkNMdGozZUY4RUlOeU1Ma3pBcGVi?=
- =?utf-8?B?SkVNT2FFVlN4UUl3eGtqcThsUmpkT0oybFJXOGo5T0FYNU0ySnlidGRGSDE5?=
- =?utf-8?B?SFBqM2pVS2U0YjJZcDFFbWxWYkFoMHk3NkVsSG1DZlgzcTlHN2ZSckx6cXVM?=
- =?utf-8?B?d0NsN0JIYS9YejNGOHgzblB0ZHBpZWU2ZTJ6b1dZTTdnYStrTnpPRjM5bG5P?=
- =?utf-8?B?R0ZXSDdUU2J6NmpZZHRablNuME9TYURiak5NQ3A5NVNOM24zL1VNcEZ2S3c4?=
- =?utf-8?B?MEhUNTBiQVRaQlBmUlRwZ0R3OTRZQUlEZ2JpQXFOYnNqOWV1eW5IbnBtRUts?=
- =?utf-8?B?L2crMnc5eGRuaXFOSDJuMXBPSkdSY1ZCajBqT3QxMjUraWVBc004N3BsdFY3?=
- =?utf-8?B?dEtnOTBydEpXb1dJMWlLWDQrWThQbmVjTWxrdEh0a2lPeDdpK1Fzc1UySHpX?=
- =?utf-8?B?VkRrWHpPcmZlaFFuL090NlJlOXQ0MFZhZXEwQ0MxUkNzaEZza2s0cENFSXFX?=
- =?utf-8?B?V3hiTHdzZzhia1lKbWlVUjJBUWhxQkZYMUcyV0N2U0U4Skc3Ykhka05tdnp0?=
- =?utf-8?B?T1huL3M3UkxPdVdXWGJDb3ZMaG15YTRnRE1pakdXdXJRbFVaSm9EWlA1dG1r?=
- =?utf-8?B?aGRFYXVtOVZqak9MT1l6UDVINUxCN0RnUEY1NW1za1d2c2lIaGc3ZndJaDBm?=
- =?utf-8?B?M1hvNVN0ajB1ZG5GZnU4Z0ZWTmxmT0xPLzdJT3hWRkhTT29mSWJ0bkJFaFhJ?=
- =?utf-8?B?VmhYaUltWklOcngxODhpSW9RWDJtbnZQcUhJdWtoaGVlSHNiQkgvTXdLV0lo?=
- =?utf-8?B?UjNHWmQ1SCtnZ3NoWGJyMTBwdE02QXF1MXlBNk1yRW1kanVoWTFYUVdOUC9V?=
- =?utf-8?B?QysxdStrV3lWOW9VUS8wcWp1MDZOdDN2SXFoVUlmajdwN05ETC9mS3AvTVdP?=
- =?utf-8?B?dHJOU05GSEd4bVcwNlB6S2tMNDBGaE9ZMlVqRGJVWldRRVVUYThTQ09hc2hD?=
- =?utf-8?B?TGtidS9raG1NOFVHZEE3aFh2MldJUERuZkJRRjdpemtSTC9WZEJnNUdmQmRV?=
- =?utf-8?B?VHdhTlpoaGVmWDl5R3RZWVlkKzBPZ1FXWEYyY3p4bmkxZ0dQczRhVEJqVk55?=
- =?utf-8?B?UDlwdm41VXV3QURwOEFLQVpINDdJTXhSSk5peE5jRXBTenQyak5wKzdIbm1L?=
- =?utf-8?B?cU9pVGZtNGoxMWk4bnFlVmVQVlI4bk94aWJEY3hUVDRHcTdKeFBsYUR3Q1hw?=
- =?utf-8?B?SmppWkpaUUNsQkduSWZrRlZVd2ZXQTgvSUZzQUVKU3VIY2JFR1NaNFlzUTd3?=
- =?utf-8?B?ajk3SFlGeWpOMUlZYWQ2M3lmRzFVYVNTeW1BcWpuK0J3UUorTldJdjNQNFN4?=
- =?utf-8?B?dVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 61d49237-67f3-4f29-60d0-08dd4693f31e
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2025 09:52:21.7808 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tN0dCr0YXZZKmKgm7ciD824bqkhudOh91Pi/K6TSooXQrRCylczh3PtshyQBiJQVviOExXQwBvckmkV7ficsLz9n9F2azQvlciHLCYeCSlI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7364
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC] drm/scheduler: Remove mention of TDR from scheduler API
+To: Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: dri-devel@lists.freedesktop.org, kernel-dev@igalia.com,
+ Danilo Krummrich <dakr@redhat.com>, Philipp Stanner <pstanner@redhat.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+References: <20250205111427.8043-1-tvrtko.ursulin@igalia.com>
+ <76739b4e-a1e8-48f9-b547-69b1e2a2504f@amd.com>
+ <Z6RabijQPbaPDIjn@lstrano-desk.jf.intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <Z6RabijQPbaPDIjn@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,124 +67,275 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 1/31/2025 12:15 AM, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->
-> Since we now do the "wait for safe window" before triggering
-> the push send, there is a theoretical possibity that we may
-> have screwed up the vblank evasion and the push has slipped
-> past the vmax decision boundary. In that case the push would
-> only happen after the next frame's vactive, while we've
-> already signalled the flip to have completed via the DSB
-> interrupt immediately after triggering the push.
->
-> To make sure we catch such screwups let's poll for the push
-> send bit to clear. Assuming vblank delay has been dealt with
-> already it should clear within ~1 scanline. But for safety
-> let's give it ~2 scanlines. If the bit does not clear within
-> that time the DSB will raise the poll error interrupt to inform
-> us that something went wrong.
->
-> Also I suppose it might generally be a good idea to make sure
-> the send bit has cleared before we complete the commit because
-> we're not supposed to send a new push while the previous one
-> is still pending.
->
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On 06/02/2025 06:45, Matthew Brost wrote:
+> On Wed, Feb 05, 2025 at 01:44:48PM +0100, Christian König wrote:
+>> Am 05.02.25 um 12:14 schrieb Tvrtko Ursulin:
+>>> Christian suggests scheduler should not use the term TDR because it only
+>>> can do basic timeout detection on it's own, not the full blown timeout-
+>>> detection-and-recovery (TDR) as the term is generally understood.
+>>
+>> There is even more to the term TDR on Windows than
+>> timeout-detection-and-recovery.
+>>
+>> For example it includes a certain signaling of errors which works totally
+>> different on Linux.
+>>
+>>> Attempt to rename it to a more basic drm_sched_trigger_timeout.
+>>>
+>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>> Suggested-by: Christian König <christian.koenig@amd.com>
+>>> Cc: Christian König <christian.koenig@amd.com>
+>>> Cc: Danilo Krummrich <dakr@redhat.com>
+>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>> Cc: Philipp Stanner <pstanner@redhat.com>
+>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>> Cc: intel-xe@lists.freedesktop.org
+>>> ---
+>>> While doing this I have however noticed the pre-existing drm_sched_fault
+>>> API sitting right below drm_sched_tdr_queue_imm() added by
+>>> 3c6c7ca4508b ("drm/sched: Add a helper to queue TDR immediately").
+>>>
+>>> It does not appear to be documented in the kernel doc why is the
+>>> newer API setting sched->timeout permanently to zero, or why are
+>>> both needed and what are the considerations to use one versus the
+>>> other. Perhaps Matt can clarify as the author of the newer API.
+>>
+>> Oh, good point. I wasn't aware of that duplication.
+>>
+> 
+> The newer API in Xe is used when we ban a queue to flush out all
+> remaining job's on the queue - even ones yet to be scheduled. Unsure
+> how the old API is used in other drivers but it doesn't work for Xe's
+> use case.
 
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+I am not sure how timeout handling relates to jobs not yet scheduled. 
+Timeout worker only looks at the sched->pending_list to start with. 
+Drm_sched_tdr_queue_imm will also only queue the worker if there is 
+something on the pending_list.
 
+I think we should fully understand what exactly doesn't work so we can 
+formulate a plan on either how to document the newer helper better, or 
+how to remove and consolidate.
 
-> ---
->   drivers/gpu/drm/i915/display/intel_color.c   |  1 +
->   drivers/gpu/drm/i915/display/intel_display.c |  1 +
->   drivers/gpu/drm/i915/display/intel_vrr.c     | 31 ++++++++++++++++++++
->   drivers/gpu/drm/i915/display/intel_vrr.h     |  2 ++
->   4 files changed, 35 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> index be2691a80227..964a4bde3c88 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -1990,6 +1990,7 @@ void intel_color_prepare_commit(struct intel_atomic_state *state,
->   
->   	intel_vrr_send_push(crtc_state->dsb_color_vblank, crtc_state);
->   	intel_dsb_wait_vblank_delay(state, crtc_state->dsb_color_vblank);
-> +	intel_vrr_dsb_wait_push_sent(crtc_state->dsb_color_vblank, crtc_state);
->   	intel_dsb_interrupt(crtc_state->dsb_color_vblank);
->   
->   	intel_dsb_finish(crtc_state->dsb_color_vblank);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 69dbb0eb5ca1..3fc61c1848b3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7732,6 +7732,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
->   
->   			intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
->   			intel_dsb_wait_vblank_delay(state, new_crtc_state->dsb_commit);
-> +			intel_vrr_dsb_wait_push_sent(new_crtc_state->dsb_commit, new_crtc_state);
->   			intel_dsb_interrupt(new_crtc_state->dsb_commit);
->   		}
->   	}
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index adb51609d0a3..2925a013f708 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -5,6 +5,7 @@
->    */
->   
->   #include "i915_reg.h"
-> +#include "intel_crtc.h"
->   #include "intel_de.h"
->   #include "intel_display_types.h"
->   #include "intel_dp.h"
-> @@ -416,6 +417,36 @@ void intel_vrr_send_push(struct intel_dsb *dsb,
->   		intel_dsb_nonpost_end(dsb);
->   }
->   
-> +void intel_vrr_dsb_wait_push_sent(struct intel_dsb *dsb,
-> +				  const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> +	int wait, count;
-> +
-> +	/* not to be used in mmio codepaths */
-> +	if (drm_WARN_ON(display->drm, !dsb))
-> +		return;
-> +
-> +	/*
-> +	 * We always do the send after the "wait for safe window", thus
-> +	 * the push should happen within ~1 scanline. Poll for ~2 scanlines
-> +	 * to make sure it does. If the bit does not clear DSB will raise
-> +	 * the poll error interrupt as an indication that we failed to
-> +	 * sequence things correctly.
-> +	 *
-> +	 * Note that vblank delay does postpone the bit clearing, but
-> +	 * we can ignore that by assuming that our caller has already
-> +	 * dealt with it via intel_dsb_wait_vblank_delay() after
-> +	 * triggering the push.
-> +	 */
-> +	wait = 2; /* usecs */
-> +	count = DIV_ROUND_UP(intel_scanlines_to_usecs(&crtc_state->hw.adjusted_mode, 2), wait);
-> +
-> +	intel_dsb_poll(dsb, TRANS_PUSH(display, cpu_transcoder),
-> +		       TRANS_PUSH_SEND, 0, wait, count);
-> +}
-> +
->   bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state)
->   {
->   	struct intel_display *display = to_intel_display(crtc_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-> index 899cbf40f880..19a5aa671eae 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-> @@ -25,6 +25,8 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
->   void intel_vrr_enable(const struct intel_crtc_state *crtc_state);
->   void intel_vrr_send_push(struct intel_dsb *dsb,
->   			 const struct intel_crtc_state *crtc_state);
-> +void intel_vrr_dsb_wait_push_sent(struct intel_dsb *dsb,
-> +				  const struct intel_crtc_state *crtc_state);
->   bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state);
->   void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state);
->   void intel_vrr_get_config(struct intel_crtc_state *crtc_state);
+Is xe using it as a one way transition - ie when it sets sched->timeout 
+to zero it never restores that scheduler instance into normal operation?
+
+In which case one option could be to remove drm_sched_tdr_queue_imm and 
+add something like drm_sched_set_timeout. AFAICT a sequence of 
+drm_sched_set_timeout and drm_sched_fault would have the same effect as 
+drm_sched_tdr_queue_imm. But setting the timeout to zero to start with 
+sounds dodgy so not sure.
+
+Are you perhaps simply wanting a "draining" (as opposed to re-queueing 
+with a timeout) version of the timeout handler? In which case 
+drm_sched_tdr_queue_imm and it's kernel doc should have as minimumn 
+explain that. Although personally I would prefer a more explicit helper 
+for that.
+
+Regards,
+
+Tvrtko
+
+>>> ---
+>>>    drivers/gpu/drm/scheduler/sched_main.c | 32 ++++++++++++++------------
+>>>    drivers/gpu/drm/xe/xe_gpu_scheduler.h  |  4 ++--
+>>>    drivers/gpu/drm/xe/xe_guc_submit.c     |  8 +++----
+>>>    include/drm/gpu_scheduler.h            |  8 +++----
+>>>    4 files changed, 27 insertions(+), 25 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+>>> index a48be16ab84f..b01792fe6141 100644
+>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
+>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+>>> @@ -433,7 +433,8 @@ static void drm_sched_start_timeout(struct drm_gpu_scheduler *sched)
+>>>    	if (sched->timeout != MAX_SCHEDULE_TIMEOUT &&
+>>>    	    !list_empty(&sched->pending_list))
+>>> -		mod_delayed_work(sched->timeout_wq, &sched->work_tdr, sched->timeout);
+>>> +		mod_delayed_work(sched->timeout_wq, &sched->work_timeout,
+>>> +				 sched->timeout);
+>>>    }
+>>>    static void drm_sched_start_timeout_unlocked(struct drm_gpu_scheduler *sched)
+>>> @@ -444,20 +445,20 @@ static void drm_sched_start_timeout_unlocked(struct drm_gpu_scheduler *sched)
+>>>    }
+>>>    /**
+>>> - * drm_sched_tdr_queue_imm: - immediately start job timeout handler
+>>> + * drm_sched_trigger_timeout: - immediately start job timeout handler
+>>>     *
+>>>     * @sched: scheduler for which the timeout handling should be started.
+>>>     *
+>>>     * Start timeout handling immediately for the named scheduler.
+>>>     */
+>>> -void drm_sched_tdr_queue_imm(struct drm_gpu_scheduler *sched)
+>>> +void drm_sched_trigger_timeout(struct drm_gpu_scheduler *sched)
+>>>    {
+>>>    	spin_lock(&sched->job_list_lock);
+>>>    	sched->timeout = 0;
+>>>    	drm_sched_start_timeout(sched);
+>>>    	spin_unlock(&sched->job_list_lock);
+>>>    }
+>>> -EXPORT_SYMBOL(drm_sched_tdr_queue_imm);
+>>> +EXPORT_SYMBOL(drm_sched_trigger_timeout);
+>>>    /**
+>>>     * drm_sched_fault - immediately start timeout handler
+>>> @@ -469,7 +470,7 @@ EXPORT_SYMBOL(drm_sched_tdr_queue_imm);
+>>>    void drm_sched_fault(struct drm_gpu_scheduler *sched)
+>>>    {
+>>>    	if (sched->timeout_wq)
+>>> -		mod_delayed_work(sched->timeout_wq, &sched->work_tdr, 0);
+>>> +		mod_delayed_work(sched->timeout_wq, &sched->work_timeout, 0);
+>>>    }
+>>>    EXPORT_SYMBOL(drm_sched_fault);
+>>> @@ -489,14 +490,15 @@ unsigned long drm_sched_suspend_timeout(struct drm_gpu_scheduler *sched)
+>>>    {
+>>>    	unsigned long sched_timeout, now = jiffies;
+>>> -	sched_timeout = sched->work_tdr.timer.expires;
+>>> +	sched_timeout = sched->work_timeout.timer.expires;
+>>>    	/*
+>>>    	 * Modify the timeout to an arbitrarily large value. This also prevents
+>>>    	 * the timeout to be restarted when new submissions arrive
+>>>    	 */
+>>> -	if (mod_delayed_work(sched->timeout_wq, &sched->work_tdr, MAX_SCHEDULE_TIMEOUT)
+>>> -			&& time_after(sched_timeout, now))
+>>> +	if (mod_delayed_work(sched->timeout_wq, &sched->work_timeout,
+>>> +			     MAX_SCHEDULE_TIMEOUT) &&
+>>> +	    time_after(sched_timeout, now))
+>>>    		return sched_timeout - now;
+>>>    	else
+>>>    		return sched->timeout;
+>>> @@ -517,9 +519,9 @@ void drm_sched_resume_timeout(struct drm_gpu_scheduler *sched,
+>>>    	spin_lock(&sched->job_list_lock);
+>>>    	if (list_empty(&sched->pending_list))
+>>> -		cancel_delayed_work(&sched->work_tdr);
+>>> +		cancel_delayed_work(&sched->work_timeout);
+>>>    	else
+>>> -		mod_delayed_work(sched->timeout_wq, &sched->work_tdr, remaining);
+>>> +		mod_delayed_work(sched->timeout_wq, &sched->work_timeout, remaining);
+>>>    	spin_unlock(&sched->job_list_lock);
+>>>    }
+>>> @@ -541,7 +543,7 @@ static void drm_sched_job_timedout(struct work_struct *work)
+>>>    	struct drm_sched_job *job;
+>>>    	enum drm_gpu_sched_stat status = DRM_GPU_SCHED_STAT_NOMINAL;
+>>> -	sched = container_of(work, struct drm_gpu_scheduler, work_tdr.work);
+>>> +	sched = container_of(work, struct drm_gpu_scheduler, work_timeout.work);
+>>>    	/* Protects against concurrent deletion in drm_sched_get_finished_job */
+>>>    	spin_lock(&sched->job_list_lock);
+>>> @@ -659,7 +661,7 @@ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad)
+>>>    	 * this TDR finished and before the newly restarted jobs had a
+>>>    	 * chance to complete.
+>>>    	 */
+>>> -	cancel_delayed_work(&sched->work_tdr);
+>>> +	cancel_delayed_work(&sched->work_timeout);
+>>>    }
+>>>    EXPORT_SYMBOL(drm_sched_stop);
+>>> @@ -1107,7 +1109,7 @@ drm_sched_get_finished_job(struct drm_gpu_scheduler *sched)
+>>>    		list_del_init(&job->list);
+>>>    		/* cancel this job's TO timer */
+>>> -		cancel_delayed_work(&sched->work_tdr);
+>>> +		cancel_delayed_work(&sched->work_timeout);
+>>>    		/* make the scheduled timestamp more accurate */
+>>>    		next = list_first_entry_or_null(&sched->pending_list,
+>>>    						typeof(*next), list);
+>>> @@ -1325,7 +1327,7 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+>>>    	INIT_LIST_HEAD(&sched->pending_list);
+>>>    	spin_lock_init(&sched->job_list_lock);
+>>>    	atomic_set(&sched->credit_count, 0);
+>>> -	INIT_DELAYED_WORK(&sched->work_tdr, drm_sched_job_timedout);
+>>> +	INIT_DELAYED_WORK(&sched->work_timeout, drm_sched_job_timedout);
+>>>    	INIT_WORK(&sched->work_run_job, drm_sched_run_job_work);
+>>>    	INIT_WORK(&sched->work_free_job, drm_sched_free_job_work);
+>>>    	atomic_set(&sched->_score, 0);
+>>> @@ -1395,7 +1397,7 @@ void drm_sched_fini(struct drm_gpu_scheduler *sched)
+>>>    	wake_up_all(&sched->job_scheduled);
+>>>    	/* Confirm no work left behind accessing device structures */
+>>> -	cancel_delayed_work_sync(&sched->work_tdr);
+>>> +	cancel_delayed_work_sync(&sched->work_timeout);
+>>>    	if (sched->own_submit_wq)
+>>>    		destroy_workqueue(sched->submit_wq);
+>>> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+>>> index c250ea773491..3fd728b1bfd6 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+>>> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+>>> @@ -44,9 +44,9 @@ static inline void xe_sched_stop(struct xe_gpu_scheduler *sched)
+>>>    	drm_sched_stop(&sched->base, NULL);
+>>>    }
+>>> -static inline void xe_sched_tdr_queue_imm(struct xe_gpu_scheduler *sched)
+>>> +static inline void xe_sched_trigger_timeout(struct xe_gpu_scheduler *sched)
+>>>    {
+>>> -	drm_sched_tdr_queue_imm(&sched->base);
+>>> +	drm_sched_trigger_timeout(&sched->base);
+>>>    }
+>>>    static inline void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched)
+>>> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+>>> index 913c74d6e2ae..968709fd6db4 100644
+>>> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+>>> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+>>> @@ -778,7 +778,7 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
+>>>    		xe_gt_warn(q->gt, "Pending enable/disable failed to respond\n");
+>>>    		xe_sched_submission_start(sched);
+>>>    		xe_gt_reset_async(q->gt);
+>>> -		xe_sched_tdr_queue_imm(sched);
+>>> +		xe_sched_trigger_timeout(sched);
+>>>    		return;
+>>>    	}
+>>> @@ -807,7 +807,7 @@ static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
+>>>    	if (xe_exec_queue_is_lr(q))
+>>>    		queue_work(guc_to_gt(guc)->ordered_wq, &q->guc->lr_tdr);
+>>>    	else
+>>> -		xe_sched_tdr_queue_imm(&q->guc->sched);
+>>> +		xe_sched_trigger_timeout(&q->guc->sched);
+>>>    }
+>>>    /**
+>>> @@ -986,7 +986,7 @@ static void enable_scheduling(struct xe_exec_queue *q)
+>>>    		xe_gt_warn(guc_to_gt(guc), "Schedule enable failed to respond");
+>>>    		set_exec_queue_banned(q);
+>>>    		xe_gt_reset_async(q->gt);
+>>> -		xe_sched_tdr_queue_imm(&q->guc->sched);
+>>> +		xe_sched_trigger_timeout(&q->guc->sched);
+>>>    	}
+>>>    }
+>>> @@ -1144,7 +1144,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+>>>    			xe_exec_queue_get(q);	/* GT reset owns this */
+>>>    			set_exec_queue_banned(q);
+>>>    			xe_gt_reset_async(q->gt);
+>>> -			xe_sched_tdr_queue_imm(sched);
+>>> +			xe_sched_trigger_timeout(sched);
+>>>    			goto rearm;
+>>>    		}
+>>>    	}
+>>> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+>>> index cf88f2bd020f..666968cf505d 100644
+>>> --- a/include/drm/gpu_scheduler.h
+>>> +++ b/include/drm/gpu_scheduler.h
+>>> @@ -494,10 +494,10 @@ struct drm_sched_backend_ops {
+>>>     *                 finished.
+>>>     * @job_id_count: used to assign unique id to the each job.
+>>>     * @submit_wq: workqueue used to queue @work_run_job and @work_free_job
+>>> - * @timeout_wq: workqueue used to queue @work_tdr
+>>> + * @timeout_wq: workqueue used to queue @work_timeout
+>>>     * @work_run_job: work which calls run_job op of each scheduler.
+>>>     * @work_free_job: work which calls free_job op of each scheduler.
+>>> - * @work_tdr: schedules a delayed call to @drm_sched_job_timedout after the
+>>> + * @work_timeout: schedules a delayed call to @drm_sched_job_timedout after the
+>>>     *            timeout interval is over.
+>>>     * @pending_list: the list of jobs which are currently in the job queue.
+>>>     * @job_list_lock: lock to protect the pending_list.
+>>> @@ -527,7 +527,7 @@ struct drm_gpu_scheduler {
+>>>    	struct workqueue_struct		*timeout_wq;
+>>>    	struct work_struct		work_run_job;
+>>>    	struct work_struct		work_free_job;
+>>> -	struct delayed_work		work_tdr;
+>>> +	struct delayed_work		work_timeout;
+>>>    	struct list_head		pending_list;
+>>>    	spinlock_t			job_list_lock;
+>>>    	int				hang_limit;
+>>> @@ -571,7 +571,7 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
+>>>    				    struct drm_gpu_scheduler **sched_list,
+>>>                                       unsigned int num_sched_list);
+>>> -void drm_sched_tdr_queue_imm(struct drm_gpu_scheduler *sched);
+>>> +void drm_sched_trigger_timeout(struct drm_gpu_scheduler *sched);
+>>>    void drm_sched_job_cleanup(struct drm_sched_job *job);
+>>>    void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
+>>>    bool drm_sched_wqueue_ready(struct drm_gpu_scheduler *sched);
+>>
