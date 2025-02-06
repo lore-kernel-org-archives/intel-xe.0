@@ -4,64 +4,190 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1FB5C02199
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 20:11:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8470CC02194
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 20:31:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC1FA10E30E;
-	Thu,  6 Feb 2025 20:11:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31F6D10E941;
+	Thu,  6 Feb 2025 20:31:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GDv7P7FD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n0ihRhuz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 464B010E30E
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Feb 2025 20:11:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEA1910E939;
+ Thu,  6 Feb 2025 20:31:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738872715; x=1770408715;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=zxE26dhbt92JoHK0Lc7SCcmm+eIYHu8hQFF/t1Q5vCQ=;
- b=GDv7P7FDqVsSQoI6vZaKKN59EDnyZIsqC9Xf4oVoSzcy4cDNdx9YtslQ
- hEFAv7ti6Bi12XopUvfIe65Gg5m8JaE8W6da9Ra3Bio78vJkKQO0FFgHX
- 5PTBXSVoH1wU9balvD2t9VazCgSMfRJ9gl9E3uQU+eWlQlb9P761+6Gp3
- vnhCNwwlkv/hDHnuV6CKf5FiyJkoJws5caiidsOWimtrvHUQcV/vB3nCt
- deG0LhB5BWIyjEBjYKfLwlWyj+BEJ03Uwn4LF6UUb89M4lmsLajcOCsxP
- IOXJAyKQFR0wfAI5vPCGo2k2p3q4pOiWwX13RATySHQ0XV4gqlBVSc8Q4 A==;
-X-CSE-ConnectionGUID: 8VLidsctSNqNRf6Y1SPjCA==
-X-CSE-MsgGUID: kIPG4YjcR06w4kxSecGRlg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39392316"
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="39392316"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 12:11:55 -0800
-X-CSE-ConnectionGUID: oTZeA2ulQouqpGdj5pz3Dw==
-X-CSE-MsgGUID: ILVZMR2CTrS4waYAzHL8Rw==
+ t=1738873917; x=1770409917;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=OOFVAjVgpD22wkbv09YrXnBP4u+5jgjQ7UmlXia0b6o=;
+ b=n0ihRhuzA87CHM15kHEyGucsF3VCqChddFhBIwsKnvCEGQJJAQq/Jdkt
+ xldYOLolC4YXNzcKMY8Q8qtpreMgXoxh2PC5gC/+XT9ceXvyNjamMSo/u
+ cKHDD4DV2WIakikppN7+zOPOmFCfnbSNVx7oO0qOwuNie4fim5J74x8hT
+ epNzwToMgA3fGoewUyVcuVP9iXTJ+EKnzOA4nN0eSKrCCzhlgXKDY9RXQ
+ 31OtAMxcF5degEI0pUNKdSoNHCph5MLHlnVChqeF+qhS2112UoklCoegN
+ gq5JrI+a97pPYdHfx09ybPWgYbI+XRx9qMfQ7CLIqbJRQ6EtTBYNFgzVE g==;
+X-CSE-ConnectionGUID: bmtJZuA4Qt68iYsPT2sfGQ==
+X-CSE-MsgGUID: 28uWQ0uSRBeM8cHR/oObkA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39407240"
+X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="39407240"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2025 12:31:56 -0800
+X-CSE-ConnectionGUID: kQq7GhdTT7SsyM2OYKi4xg==
+X-CSE-MsgGUID: uDw2cmdQQfCBFJTfRjPY+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="111932254"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.47])
- ([10.245.246.47])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 12:11:53 -0800
-Message-ID: <8072ebc831a73b073421a5a43d5a19e13634ced5.camel@linux.intel.com>
-Subject: Re: [PATCH 2/3] drm/xe: Clear scratch page before vm_bind
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: "Zeng, Oak" <oak.zeng@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-Cc: "Brost, Matthew" <matthew.brost@intel.com>, "Cavitt, Jonathan"
- <jonathan.cavitt@intel.com>
-Date: Thu, 06 Feb 2025 21:11:51 +0100
-In-Reply-To: <MN2PR11MB472818E2CC67EA97629704FA92F62@MN2PR11MB4728.namprd11.prod.outlook.com>
-References: <20250204184558.4181478-1-oak.zeng@intel.com>
- <20250204184558.4181478-2-oak.zeng@intel.com>
- <a8445518d81b30f3e726be857538e7fa3dfba16b.camel@linux.intel.com>
- <MN2PR11MB4728BF17A22D2B51A033771C92F62@MN2PR11MB4728.namprd11.prod.outlook.com>
- <5240fcb0fe9d929c008fafee4ac3149a23346474.camel@linux.intel.com>
- <MN2PR11MB472818E2CC67EA97629704FA92F62@MN2PR11MB4728.namprd11.prod.outlook.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="142202020"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Feb 2025 12:31:56 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Thu, 6 Feb 2025 12:31:54 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Thu, 6 Feb 2025 12:31:54 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Thu, 6 Feb 2025 12:31:51 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=k8SQRYm4EKWEthNIildFb71Joli7XZLWqx43EeLfrYodRJHo+TWIEiwKxGKlEQS5CBEkkjdYjV/UqqnrI9RW8J9yHRlcFMZrwkeJS/ELzPLDP1uj5tQQKDWlLHGT42gT8QGXNquvN2Y91oKd/nx6tTW6lmxfNmh21010vjmeIQCvf96gOKfVYmK4R+7odTKn/iCZWBolIWugrrqztc5uhV8mEYDvmkm3JBSWv48sj2tB+bvyZNAqcFqxldhcv8ZKbo78/KuJOTNMY6OLbrxrGV0tI9HKxDlE4T9SedHJy7YDhHnrou+mlujtkuAJLXqhxGZHmknYO9myU6A0mznEnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pyRKSOYYodFNuVmyu2DfhvgKojzH8Y9V7Trm/nfb3Lw=;
+ b=f8zWfT2aVl6qLvQaHhXNbf6+PjUhgCqvoQ2ujkbHxcLa6L3iNG5qMwLy9Ge2lDYG+d+MhcGWP7uWb8/Dby/LVjcT2t3pBLim8BakK9X5B2UJacqQ8ksAL+WPo390Zh1Fs2SVHgSLohOPP28vJiwBbRoCloLDi3scN2gfNjXm30m6bJMLBzYjKBuQkYVxCaPsvaftlbNPR+mUx6ZLlvX8lSzZs3W5cf3NmLT4AF1yqGAli8IOLNOUA3c6vGxrbrMXTSozUjiDXIukz8dVgO0k66GHkGZSztsRXDPqG+u9jsS9ed582HHLG0DhQm7Ay2EadJXiFYfpF9tEyv/fEDXy5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7SPRMB0046.namprd11.prod.outlook.com (2603:10b6:510:1f6::20)
+ by SN7PR11MB7976.namprd11.prod.outlook.com (2603:10b6:806:2ec::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.13; Thu, 6 Feb
+ 2025 20:31:50 +0000
+Received: from PH7SPRMB0046.namprd11.prod.outlook.com
+ ([fe80::5088:3f5b:9a15:61dc]) by PH7SPRMB0046.namprd11.prod.outlook.com
+ ([fe80::5088:3f5b:9a15:61dc%4]) with mapi id 15.20.8398.025; Thu, 6 Feb 2025
+ 20:31:50 +0000
+Date: Thu, 6 Feb 2025 15:31:44 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+CC: "Zhuo, Qiuxu" <qiuxu.zhuo@intel.com>, "jani.nikula@linux.intel.com"
+ <jani.nikula@linux.intel.com>, "joonas.lahtinen@linux.intel.com"
+ <joonas.lahtinen@linux.intel.com>, "tursulin@ursulin.net"
+ <tursulin@ursulin.net>, "airlied@gmail.com" <airlied@gmail.com>,
+ "simona@ffwll.ch" <simona@ffwll.ch>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Subject: Re: Compile error on "error: =?utf-8?Q?cal?=
+ =?utf-8?B?bCB0byDigJhfX2NvbXBpbGV0aW1lX2Fzc2VydF81ODHigJkgZGVjbGFyZWQg?=
+ =?utf-8?Q?with_attribute_error=3A_clamp=28=29_low_limi?= =?utf-8?Q?t?=
+ dsc_min_bpc * 3 greater than high limit dsc_max_bpc * 3"
+Message-ID: <Z6UcMPGQ7HiwHEPj@intel.com>
+References: <CY8PR11MB7134D2D3BD641BE58310EF0189F62@CY8PR11MB7134.namprd11.prod.outlook.com>
+ <01316a42-bcc0-4255-8750-3c5e8329161f@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <01316a42-bcc0-4255-8750-3c5e8329161f@intel.com>
+X-ClientProxiedBy: MW4PR02CA0024.namprd02.prod.outlook.com
+ (2603:10b6:303:16d::9) To PH7SPRMB0046.namprd11.prod.outlook.com
+ (2603:10b6:510:1f6::20)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7SPRMB0046:EE_|SN7PR11MB7976:EE_
+X-MS-Office365-Filtering-Correlation-Id: b86513b5-8a01-4d00-5ada-08dd46ed48b5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ODlJU0pvQlpVUWhKdnpLd0UrRlBoTFl2alhwRVNmSXhseWJkNUtxclFEZjVC?=
+ =?utf-8?B?YU5GQ2tJZEdRb0J1U005TThnYkRleFAzeGdtVnZxUXdZcldkZFFMb3d3M1FO?=
+ =?utf-8?B?MzVqbHZidE4yWXB6SDZUck14bDZFU2hRcVd0ckl5akR3dVByY1FFZFFUOGdz?=
+ =?utf-8?B?NXhkb1dTckIzd3JOVXR6WktRak12R2F2aG1NUHlKaWxjSDRBMjV3UFI3UFAv?=
+ =?utf-8?B?TmJ2Wk9MVk5OOVRyL2M2bm1OamFOSWNXMnBnZkdObGFLQmJDWnkxQ0ZmL0hQ?=
+ =?utf-8?B?NGdRTzJFcEY2b2hxMzFoSlJpNkd0Tk5wZWpkblh5dTVHWkU5MmpQT2NjUE8z?=
+ =?utf-8?B?S0FYUCt1ME1Jd0FoN0Y4empCZXkwcHNoK2hYMXB2eTJJMU9hTlVLZmhxWkV6?=
+ =?utf-8?B?S25OKzZ6YzlEekd5RWtzRnFCeGRSRU16UzZTQ1NnVGFPVjVreEJOR2lRQ0Jm?=
+ =?utf-8?B?YWxmL0UxZGlNWEw1ckw2NG91dTRidWtDRWlzczNuSmlLZGRWUU1Jb2ZrRFlF?=
+ =?utf-8?B?Y2xMZEVGN05sUXM4a2Y5eDAwWGJ4OWlMU0w4MTZualdjRDh2bWc0NEg3ZGVH?=
+ =?utf-8?B?LzdOQ1ZsbXFsV3pFZDVoeXRLb3FVTzlESnNYTWNPRDdkN0lzbFB1ODFKWWox?=
+ =?utf-8?B?bnlFK1paRnZ4bnJFV01EWEJydkpmcGx3Tld6T0UraytxRk9lZXpPU2NNdVh3?=
+ =?utf-8?B?YkhndHJ4NndGSFB2K2pGQmNaeXc1d2ovNlpvZVVBN1ZMbUQzRVkxbmd1YlRs?=
+ =?utf-8?B?SUw2ejFOR3FER3J6MUJVc0EySE9oZC9MVXR0OHp2QmljSjVrazJFbGs0TXJF?=
+ =?utf-8?B?UnlBUGZqZFp4bk5EYUEzR2gyVDdROG50MVhtak9zRWt4RzJZRlBRY3dSRmlw?=
+ =?utf-8?B?NC9NMnlLVWJXR0g3TFBiS2dZU2xHRWRKTnMzMGlkU2svdHZFZ3hYSS90b1VY?=
+ =?utf-8?B?eFFraEl1aHNpN2xaWkllSm15d3Jwblk5akJYVVl0Nnh5VmpCWWJJNVM2SUVx?=
+ =?utf-8?B?SHFkbVlrbnpiM1JDdDUzS1JKOVdDRTdkUzVrNys3S2VOdDNCbFF1WHArNTMr?=
+ =?utf-8?B?U2VkVDhrZ0s3WFlOMWxVVVN2MHd0WUp3c0luVmtEanpUcDZnb3V0aHQ2UEJ5?=
+ =?utf-8?B?aGdqQ2FkL0M5VDloYk9BT2ZBdkw3UDV6TE4yRjRlOTBqZmJFcFByampBanlJ?=
+ =?utf-8?B?SWU1aVJtN3JEZ2RFc2JHQ0VmdFY0OG12Wm8wNUlqSHg4OXluekErdXN1K3pH?=
+ =?utf-8?B?OFJNemRKY0FkRW9yTlBWakRTN3BRUjJmNXdzVUkzVWNoOTc0VWcxSFNkVGRC?=
+ =?utf-8?B?b21ubFg2SUtPQ3VGZEN5anNWNkp3TFZJU0d6akxpeWdOSHQ2Qkw1bDcva3NT?=
+ =?utf-8?B?ZWU2a2hiK09WUEI4Mi9mTVViNEtLcVFGckl0QTBJd2w2anRvdVBuVmVnRHgz?=
+ =?utf-8?B?bnBzejExZU4zSURRMkd6YkVaUGVIc1EvdjFCSXRUTnNOSTlldEFVZlUxdGh1?=
+ =?utf-8?B?cTlEem9jTG4rcmlYQnk0dE1iWFhIcTJjVjh2R3JTZ0pLU0YrSTBDd2lvQ3ls?=
+ =?utf-8?B?U3FGTHZzWWU5NEJSVUQwMENZUjljQzdVWWJBZUtBaVdWdFVpZ3dtWVlrRnly?=
+ =?utf-8?B?aDZpV1NhSUhyU3NkMEwxZnN6bDMvV0pwNzNqci8xQTR4YThWdXRoQjcyWHlM?=
+ =?utf-8?B?WTBiWVZFaHJQRmRGSGc1ZHh4RmZyNVZlamFkeXZnMzhpZG5nb3Z6eFkwOHVn?=
+ =?utf-8?Q?rcd4ibF/JMg/2wd1rQ6P82QKi4kwuwZwLkeJpoZ?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7SPRMB0046.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q3ZFbnJYVzNMM2d6eU1QVU1nWEN3T05DY1prVEVKVzg1R1ptL1o0SzlNdVVY?=
+ =?utf-8?B?NjlHNlA0Z20vSnJCQlErRFpjTDVYbG90RVJJbE4xL29aOGxjRVFZUE5PZWVH?=
+ =?utf-8?B?NzFzN2VCd1BsaFNzZitwTnFQZEROVFU4QVNUQTVhTUNBV2NyQ2RCTldNRmZw?=
+ =?utf-8?B?NzNhU2h0MXFURXNpZFBBeGtRdUNmZDRwWWZwSVF6K054ek44Y002ZGtScWpp?=
+ =?utf-8?B?MzBSU3JkazVMaEQ3ci9jK1pudlZ3VzNOd2h6WnFHa2tlaU5iWWozZGhKdlZv?=
+ =?utf-8?B?MW1tR2JjZDdrYmxxaHhyemViRXovdHQxeXBmRVZaalMzeGcvRzlIWFNlZEVs?=
+ =?utf-8?B?VUpSemd0b0hGZC8wUXk4ckE1MDVPOTFMM2ViTjArckhyQVAvQ013UDVwOXdH?=
+ =?utf-8?B?RFVESHduNnE0d1U4bmNzRUZTQ0xRaFZOQmtnc3cxOUIrWEpHbXNibWlqZzFq?=
+ =?utf-8?B?QjhTUVBZTVk0cTFxaFZrZ2duVHR1WmRkVWhYRFBpSU8reGlyK29Vb0lEaDJs?=
+ =?utf-8?B?TlFiQkhlRHdkNXBhMmJlMUczelBoN3AxVWVJbnRxdnZoYkFqSHR5dlR3SHcv?=
+ =?utf-8?B?VlhNamkwUHJLemhsaUdSNU5XS2JGRmplT3BMZENqSEV1Y1l6Q1VHNTFtRlpz?=
+ =?utf-8?B?QmdyRWRrNGpSMGZ5MWJjQnhkZ3NDeWVsRmNXSDAxeGVZNW9ZUGxYZUNJNUlw?=
+ =?utf-8?B?K250WWoxS2x3Y2pPWWxiSjRQZ3Y1MkkrSHRaMmZ0SkhsNlpxc1pUUW0xSFdQ?=
+ =?utf-8?B?YjI3RnNSUzlqc0JMamI2dFV0WmgxN2dLclE0T2VBMUxNZEJvM2Y3NTNxWTNj?=
+ =?utf-8?B?b0NJeWFORnRIaUpJais1QzdMVklreUFRamxIMWNjZ2Q2dkUyY2FRRGg5VU5s?=
+ =?utf-8?B?K0tqQ29nTEpMZWxxcEVHUmhkV0owcnZCeURCaGlqWStsMFAxWDlEclVRbDg5?=
+ =?utf-8?B?Q3kzNURQSkxUOFVkUzZZTDhmVW9SY3hpNkVRcTRielN6T212MDhFTkdnY25v?=
+ =?utf-8?B?citrblFjTFJRdTBaTUZ6azl3MUNaQmZHNzA5MHVMc25yamhDZVEwWWZhTFE5?=
+ =?utf-8?B?M0Q1YjBtaHUwazZMTHFRUkR6WmNhaEhYVEUreEU3aitNRGpQbjJhQVBMNU9q?=
+ =?utf-8?B?NU5zQVdNZ0hlVExZNWpHbUVhRi9aS01QeHdoWmNLeVlPYlpTQ2xyMEFzSUtC?=
+ =?utf-8?B?OE9HVE8vN3dNcGh5MUdQMSs4bnpGSlNOUVdaZ1cxVXhKcXJhczlvc1lpOGxF?=
+ =?utf-8?B?YVI5ckQxTVV5MEZaR2drL2wvcElrWDVDZjd6WGc0Zm9wQ2owaU11OU5zQlFN?=
+ =?utf-8?B?dmFwa3VPcVNmQUlsSXJwQzJCWDFYUS8vT1drbkxzcWZ2SVFFOUlxNGEzOEdQ?=
+ =?utf-8?B?Wmh1VXVIMnQwdE04V1U0WFJubThzb212V043am82amxkWHZxTjYrMkNvbkN5?=
+ =?utf-8?B?S09SN2VCVGNENHhkd0tZSFh5bUswdVBnaGtuQ3g3MXRXcjIvOXN1Y2x5My9N?=
+ =?utf-8?B?eU9yL2J1OE9acGxVeG51TUxpMnBWWlNRdUt0MTZXVjFtbkYxWG9OK1lZbDRY?=
+ =?utf-8?B?UzZSWmx1Z3Y1bHB5SFMrdmlxVEdBWENzTk9Lbjl4djlkeE0yU3J2U1lvT3dC?=
+ =?utf-8?B?YWs1NDB2N3BLeGIvUTFvMEUrWU9adGc0bWFKWkM3SXNDbVBhUTErNmNreThp?=
+ =?utf-8?B?MlhZb09yUlRwQ0J6MUhScGNERjlnZm1pekNlcUlONng1anBmSDhFSnduRTRr?=
+ =?utf-8?B?UGg4a1U0cE9DVllMMTFxcTB4SGpFVEoxOG41N05EQTEweTRGalMrUW1jZG1w?=
+ =?utf-8?B?cU5KalN3d29GeVIxS1M5WGkrZmppck82aWpobjdBSmhiQVc3RThtMnNQQmhs?=
+ =?utf-8?B?VXoxb0YvR3Vya2hkSWhMdExaSXJKY1E3T2dvVzNoRnNXS09UZ3NsRnl4Qit4?=
+ =?utf-8?B?b1preEpjcE53ekhSZ3B3M0hXVW1tMGhtTFkrZ1BFUjQ5bGJYcmZXNU4rNWtv?=
+ =?utf-8?B?RzdOSnNkOUZaYjkvK0JKTy93bHVLeWJqUFdZbXpxaFk5NWlsY3VsQlJpUmtR?=
+ =?utf-8?B?U1E2M09vbU9kQjU3ZGNwL0hHQjJIT1l2eWhHOUJtbVlFaFVPZjBQbjAyTUd1?=
+ =?utf-8?B?Zi9Lcll1N2V3ZUZPU3YrTmlEeFlEZXZOSEVQNDZyZlRMNW50a3VXK3pObFRF?=
+ =?utf-8?B?eWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b86513b5-8a01-4d00-5ada-08dd46ed48b5
+X-MS-Exchange-CrossTenant-AuthSource: PH7SPRMB0046.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2025 20:31:49.9438 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8DN6PbRLfplZP5eTeARexYleq8iiotWWjFBvo9TU7k0P9AZ9OO+lo0+oExdBrXHg2ld7v+sFg1mc52PD914AhQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7976
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,615 +202,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Oak,
+On Thu, Feb 06, 2025 at 09:43:54PM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 2/6/2025 1:34 PM, Zhuo, Qiuxu wrote:
+> > Hi,
+> > 
+> > I got the compile error as below.
+> > My GCC is: gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
+> > kernel: v6.14-rc1
+> 
+> Hi Qiuxu,
+> 
+> Thanks for the mail.
+> 
+> Fix was sent and merged in drm-intel-next : https://cgit.freedesktop.org/drm/drm-intel/commit/?h=drm-intel-next&id=a67221b5eb8d59fb7e1f0df3ef9945b6a0f32cca
 
-On Thu, 2025-02-06 at 18:56 +0000, Zeng, Oak wrote:
-> Hi Thomas!
->=20
-> > -----Original Message-----
-> > From: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > Sent: February 6, 2025 7:52 AM
-> > To: Zeng, Oak <oak.zeng@intel.com>; intel-xe@lists.freedesktop.org
-> > Cc: Brost, Matthew <matthew.brost@intel.com>; Cavitt, Jonathan
-> > <jonathan.cavitt@intel.com>
-> > Subject: Re: [PATCH 2/3] drm/xe: Clear scratch page before vm_bind
-> >=20
-> > On Thu, 2025-02-06 at 01:52 +0000, Zeng, Oak wrote:
-> > >=20
-> > >=20
-> > > > -----Original Message-----
-> > > > From: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > > > Sent: February 5, 2025 9:36 AM
-> > > > To: Zeng, Oak <oak.zeng@intel.com>; intel-
-> > xe@lists.freedesktop.org
-> > > > Cc: Brost, Matthew <matthew.brost@intel.com>; Cavitt, Jonathan
-> > > > <jonathan.cavitt@intel.com>
-> > > > Subject: Re: [PATCH 2/3] drm/xe: Clear scratch page before
-> > vm_bind
-> > > >=20
-> > > > On Tue, 2025-02-04 at 13:45 -0500, Oak Zeng wrote:
-> > > > > When a vm runs under fault mode, if scratch page is enabled,
-> > we
-> > > > need
-> > > > > to clear the scratch page mapping before vm_bind for the
-> > vm_bind
-> > > > > address range. Under fault mode, we depend on recoverable
-> > page
-> > > > fault
-> > > > > to establish mapping in page table. If scratch page is not
-> > > > > cleared,
-> > > > > GPU access of address won't cause page fault because it
-> > > > > always
-> > > > > hits
-> > > > > the existing scratch page mapping.
-> > > >=20
-> > > > I think we need to ephasize that we clear AT vm_bind time, not
-> > > > before,
-> > > > both in the commit description and the patch title.
-> > >=20
-> > > Will fix.
-> > >=20
-> > > >=20
-> > > > >=20
-> > > > > When vm_bind with IMMEDIATE flag, there is no need of
-> > clearing as
-> > > > > immediate bind can overwrite the scratch page mapping.
-> > > > >=20
-> > > > > So far only is xe2 and xe3 products are allowed to enable
-> > > > > scratch
-> > > > > page
-> > > > > under fault mode. On other platform we don't allow scratch
-> > page
-> > > > under
-> > > > > fault mode, so no need of such clearing.
-> > > > >=20
-> > > > > v2: Rework vm_bind pipeline to clear scratch page mapping.
-> > > > > This
-> > > > > is
-> > > > > similar
-> > > > > to a map operation, with the exception that PTEs are cleared
-> > > > instead
-> > > > > of
-> > > > > pointing to valid physical pages. (Matt, Thomas)
-> > > > >=20
-> > > > > TLB invalidation is needed after clear scratch page mapping
-> > > > > as
-> > > > > larger
-> > > > > scratch page mapping could be backed by physical page and
-> > cached
-> > > > in
-> > > > > TLB. (Matt, Thomas)
-> > > > >=20
-> > > > > Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-> > > > > ---
-> > > > > =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 | 66
-> > ++++++++++++++++++++++--
-> > > > ------
-> > > > > --
-> > > > > =C2=A0drivers/gpu/drm/xe/xe_pt_types.h |=C2=A0 2 +
-> > > > > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 | 29 ++++++++++++--
-> > > > > =C2=A0drivers/gpu/drm/xe/xe_vm_types.h |=C2=A0 2 +
-> > > > > =C2=A04 files changed, 75 insertions(+), 24 deletions(-)
-> > > > >=20
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_pt.c
-> > > > b/drivers/gpu/drm/xe/xe_pt.c
-> > > > > index 1ddcc7e79a93..3fd0ae2dbe7d 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_pt.c
-> > > > > +++ b/drivers/gpu/drm/xe/xe_pt.c
-> > > > > @@ -268,6 +268,8 @@ struct xe_pt_stage_bind_walk {
-> > > > > =C2=A0	 * granularity.
-> > > > > =C2=A0	 */
-> > > > > =C2=A0	bool needs_64K;
-> > > > > +	/* @clear_pt: clear page table entries during the
-> > > > > bind
-> > > > > walk
-> > > > > */
-> > > > > +	bool clear_pt;
-> > > > > =C2=A0	/**
-> > > > > =C2=A0	 * @vma: VMA being mapped
-> > > > > =C2=A0	 */
-> > > > > @@ -497,21 +499,25 @@ xe_pt_stage_bind_entry(struct
-> > xe_ptw
-> > > > *parent,
-> > > > > pgoff_t offset,
-> > > > >=20
-> > > > > =C2=A0		XE_WARN_ON(xe_walk->va_curs_start !=3D addr);
-> > > > >=20
-> > > > > -		pte =3D vm->pt_ops->pte_encode_vma(is_null ? 0
-> > > > > :
-> > > > > -
-> > > > > xe_res_dma(curs) +
-> > > > > xe_walk->dma_offset,
-> > > > > -						 xe_walk-
-> > > > > >vma,
-> > > > > pat_index, level);
-> > > > > -		pte |=3D xe_walk->default_pte;
-> > > > > +		if (xe_walk->clear_pt) {
-> > > > > +			pte =3D 0;
-> > > > > +		} else {
-> > > > > +			pte =3D vm->pt_ops-
-> > > > > >pte_encode_vma(is_null
-> > > > > ?
-> > > > 0
-> > > > > :
-> > > > > +					xe_res_dma(curs) +
-> > > > > xe_walk-
-> > > > > > dma_offset,
-> > > > > +					xe_walk->vma,
-> > > > > pat_index,
-> > > > > level);
-> > > > > +			pte |=3D xe_walk->default_pte;
-> > > > >=20
-> > > > > -		/*
-> > > > > -		 * Set the XE_PTE_PS64 hint if possible,
-> > > > > otherwise
-> > > > > if
-> > > > > -		 * this device *requires* 64K PTE size for
-> > > > > VRAM,
-> > > > > fail.
-> > > > > -		 */
-> > > > > -		if (level =3D=3D 0 && !xe_parent->is_compact) {
-> > > > > -			if (xe_pt_is_pte_ps64K(addr, next,
-> > > > > xe_walk))
-> > > > > {
-> > > > > -				xe_walk->vma->gpuva.flags |=3D
-> > > > > XE_VMA_PTE_64K;
-> > > > > -				pte |=3D XE_PTE_PS64;
-> > > > > -			} else if (XE_WARN_ON(xe_walk-
-> > > > > needs_64K)) {
-> > > > > -				return -EINVAL;
-> > > > > +			/*
-> > > > > +			 * Set the XE_PTE_PS64 hint if
-> > > > > possible,
-> > > > > otherwise if
-> > > > > +			 * this device *requires* 64K PTE
-> > > > > size
-> > > > > for
-> > > > > VRAM, fail.
-> > > > > +			 */
-> > > > > +			if (level =3D=3D 0 && !xe_parent-
-> > > > > > is_compact) {
-> > > > > +				if (xe_pt_is_pte_ps64K(addr,
-> > > > > next,
-> > > > > xe_walk)) {
-> > > > > +					xe_walk->vma-
-> > > > > > gpuva.flags
-> > > > > =3D
-> > > > > XE_VMA_PTE_64K;
-> > > > > +					pte |=3D XE_PTE_PS64;
-> > > > > +				} else if
-> > > > > (XE_WARN_ON(xe_walk-
-> > > > > > needs_64K)) {
-> > > > > +					return -EINVAL;
-> > > > > +				}
-> > > > > =C2=A0			}
-> > > > > =C2=A0		}
-> > > > >=20
-> > > >=20
-> > > > I think there might be some things missing here.
-> > > > The bind should look exactly as a is_null bind, with the
-> > > > exception
-> > > > that
-> > > > the pte should be 0, so might be able to benefit from is_null,
-> > > > for
-> > > > example xe_pg_hugepte_possible() short-circuit the dma-
-> > address
-> > > > check.
-> > >=20
-> > > You are right. Above code has a problem for huge pte cases: it
-> > > wouldn't detect
-> > > A huge pte for clear_pt case. I will fix it.
-> > >=20
-> > > I will not make is_null be true for clear_pt case, but will make
-> > > similar logic to
-> > > Let clear_pt benefit from is_null logic.
-> > >=20
-> > > > With clear_pt we don't want to use the XE_PTE_PS64K, though,
-> > like
-> > > > you
-> > > > identified above.
-> > > >=20
-> > > > Will get back with a look at the invalidation.
-> > >=20
-> > > I don't quite get here. Please do let me know if you find
-> > > anything.
-> >=20
-> > Yes, I meant I hadn't had time to look at this part yet.
-> >=20
-> > For binding with scratch, it looks like *all* binds need TLB
-> > invalidation, not just clearing binds, So in the below code-path,
-> > can't
-> > we just replace the xe_vm_in_preempt_fence_mode() with
-> > xe_vm_in_lr_mode()?
->=20
-> I think you are correct.=20
->=20
-> For long run vm, regardless it is in fault mode or not, we need to
-> invalidate
-> TLB scratch page caching during bind. Original codes only did TLB inv
-> on non-
-> Fault mode. On fault mode + LR,=C2=A0 this runs into two sub-cases:
-> 1.=C2=A0 immediate bind
-> 2. bind triggered by page fault: note this can actually runs into the
-> !rebind case
-> When the fault address is first time accessed by gpu. But the TLB
-> cache for
-> Scratch page mapping should have been invalidated by the
-> "invalidate_on_bind"
-> Condition.
->=20
-> So this leaves case #1 problematic.
->=20
-> It would be better for others to comment also, as in the comment
-> below, it explicitly
-> Called out "non-faulting LR". My understanding is, people didn't
-> think of case #1 above.
->=20
-> Since it is an existing issue, I will make it a separate patch for
-> better tracking purpose.
+Which is queued to be in 6.14-rc2
 
-Hmm. What is the existing issue, I don't quite follow?
-
-/Thomas
-
->=20
-> Oak=20
->=20
-> >=20
-> >=20
-> > 		/*
-> > 		 * If rebind, we have to invalidate TLB on !LR vms
-> > to
-> > invalidate
-> > 		 * cached PTEs point to freed memory. On LR vms
-> > this
-> > is done
-> > 		 * automatically when the context is re-enabled by
-> > the
-> > rebind worker,
-> > 		 * or in fault mode it was invalidated on PTE
-> > zapping.
-> > 		 *
-> > 		 * If !rebind, and scratch enabled VMs, there is a
-> > chance the scratch
-> > 		 * PTE is already cached in the TLB so it needs to
-> > be
-> > invalidated.
-> > 		 * On !LR VMs this is done in the ring ops
-> > preceding a
-> > batch, but on
-> > 		 * non-faulting LR, in particular on user-space
-> > batch
-> > buffer chaining,
-> > 		 * it needs to be done here.
-> > 		 */
-> > 		if ((!pt_op->rebind && xe_vm_has_scratch(vm) &&
-> > 		=C2=A0=C2=A0=C2=A0=C2=A0 xe_vm_in_preempt_fence_mode(vm)))
-> >=20
-> > /Thomas
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> > >=20
-> > > Oak
-> > > >=20
-> > > >=20
-> > > > > @@ -519,7 +525,7 @@ xe_pt_stage_bind_entry(struct xe_ptw
-> > > > *parent,
-> > > > > pgoff_t offset,
-> > > > > =C2=A0		if (unlikely(ret))
-> > > > > =C2=A0			return ret;
-> > > > >=20
-> > > > > -		if (!is_null)
-> > > > > +		if (!is_null && !xe_walk->clear_pt)
-> > > > > =C2=A0			xe_res_next(curs, next - addr);
-> > > > > =C2=A0		xe_walk->va_curs_start =3D next;
-> > > > > =C2=A0		xe_walk->vma->gpuva.flags |=3D (XE_VMA_PTE_4K
-> > > > > <<
-> > > > > level);
-> > > > > @@ -589,6 +595,7 @@ static const struct xe_pt_walk_ops
-> > > > > xe_pt_stage_bind_ops =3D {
-> > > > > =C2=A0 * @vma: The vma indicating the address range.
-> > > > > =C2=A0 * @entries: Storage for the update entries used for
-> > > > > connecting
-> > > > > the
-> > > > > tree to
-> > > > > =C2=A0 * the main tree at commit time.
-> > > > > + * @clear_pt: Clear the page table entries.
-> > > > > =C2=A0 * @num_entries: On output contains the number of @entries
-> > > > used.
-> > > > > =C2=A0 *
-> > > > > =C2=A0 * This function builds a disconnected page-table tree for =
-a
-> > > > > given
-> > > > > address
-> > > > > @@ -602,7 +609,8 @@ static const struct xe_pt_walk_ops
-> > > > > xe_pt_stage_bind_ops =3D {
-> > > > > =C2=A0 */
-> > > > > =C2=A0static int
-> > > > > =C2=A0xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
-> > > > > -		 struct xe_vm_pgtable_update *entries, u32
-> > > > > *num_entries)
-> > > > > +		 struct xe_vm_pgtable_update *entries,
-> > > > > +		 bool clear_pt, u32 *num_entries)
-> > > > > =C2=A0{
-> > > > > =C2=A0	struct xe_device *xe =3D tile_to_xe(tile);
-> > > > > =C2=A0	struct xe_bo *bo =3D xe_vma_bo(vma);
-> > > > > @@ -622,10 +630,19 @@ xe_pt_stage_bind(struct xe_tile *tile,
-> > > > struct
-> > > > > xe_vma *vma,
-> > > > > =C2=A0		.vma =3D vma,
-> > > > > =C2=A0		.wupd.entries =3D entries,
-> > > > > =C2=A0		.needs_64K =3D (xe_vma_vm(vma)->flags &
-> > > > > XE_VM_FLAG_64K) && is_devmem,
-> > > > > +		.clear_pt =3D clear_pt,
-> > > > > =C2=A0	};
-> > > > > =C2=A0	struct xe_pt *pt =3D xe_vma_vm(vma)->pt_root[tile-
-> > > > > >id];
-> > > > > =C2=A0	int ret;
-> > > > >=20
-> > > > > +	if (clear_pt) {
-> > > > > +		ret =3D xe_pt_walk_range(&pt->base, pt->level,
-> > > > > xe_vma_start(vma),
-> > > > > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_vma_end(vma),
-> > > > > &xe_walk.base);
-> > > > > +
-> > > > > +		*num_entries =3D
-> > > > > xe_walk.wupd.num_used_entries;
-> > > > > +		return ret;
-> > > > > +	}
-> > > > > +
-> > > > > =C2=A0	/**
-> > > > > =C2=A0	 * Default atomic expectations for different
-> > > > > allocation
-> > > > > scenarios are as follows:
-> > > > > =C2=A0	 *
-> > > > > @@ -981,12 +998,14 @@ static void xe_pt_free_bind(struct
-> > > > > xe_vm_pgtable_update *entries,
-> > > > >=20
-> > > > > =C2=A0static int
-> > > > > =C2=A0xe_pt_prepare_bind(struct xe_tile *tile, struct xe_vma *vma=
-,
-> > > > > -		=C2=A0=C2=A0 struct xe_vm_pgtable_update *entries, u32
-> > > > > *num_entries)
-> > > > > +		=C2=A0=C2=A0 struct xe_vm_pgtable_update *entries,
-> > > > > +		=C2=A0=C2=A0 bool invalidate_on_bind, u32
-> > > > > *num_entries)
-> > > > > =C2=A0{
-> > > > > =C2=A0	int err;
-> > > > >=20
-> > > > > =C2=A0	*num_entries =3D 0;
-> > > > > -	err =3D xe_pt_stage_bind(tile, vma, entries,
-> > > > > num_entries);
-> > > > > +	err =3D xe_pt_stage_bind(tile, vma, entries,
-> > > > > invalidate_on_bind,
-> > > > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_entries);
-> > > > > =C2=A0	if (!err)
-> > > > > =C2=A0		xe_tile_assert(tile, *num_entries);
-> > > > >=20
-> > > > > @@ -1661,6 +1680,7 @@ static int bind_op_prepare(struct
-> > xe_vm
-> > > > *vm,
-> > > > > struct xe_tile *tile,
-> > > > > =C2=A0		return err;
-> > > > >=20
-> > > > > =C2=A0	err =3D xe_pt_prepare_bind(tile, vma, pt_op->entries,
-> > > > > +				 pt_update_ops-
-> > > > > > invalidate_on_bind,
-> > > > > =C2=A0				 &pt_op->num_entries);
-> > > > > =C2=A0	if (!err) {
-> > > > > =C2=A0		xe_tile_assert(tile, pt_op->num_entries <=3D
-> > > > > @@ -1685,7 +1705,7 @@ static int bind_op_prepare(struct
-> > xe_vm
-> > > > *vm,
-> > > > > struct xe_tile *tile,
-> > > > > =C2=A0		 * it needs to be done here.
-> > > > > =C2=A0		 */
-> > > > > =C2=A0		if ((!pt_op->rebind && xe_vm_has_scratch(vm)
-> > > > > &&
-> > > > > -		=C2=A0=C2=A0=C2=A0=C2=A0 xe_vm_in_preempt_fence_mode(vm)))
-> > > > > +		=C2=A0=C2=A0=C2=A0=C2=A0 xe_vm_in_preempt_fence_mode(vm)) ||
-> > > > > pt_update_ops->invalidate_on_bind)
-> > > > > =C2=A0			pt_update_ops->needs_invalidation =3D
-> > > > > true;
-> > > > > =C2=A0		else if (pt_op->rebind &&
-> > > > > !xe_vm_in_lr_mode(vm))
-> > > > > =C2=A0			/* We bump also if
-> > > > > batch_invalidate_tlb
-> > > > > is
-> > > > > true */
-> > > > > @@ -1759,9 +1779,13 @@ static int op_prepare(struct xe_vm
-> > *vm,
-> > > > >=20
-> > > > > =C2=A0	switch (op->base.op) {
-> > > > > =C2=A0	case DRM_GPUVA_OP_MAP:
-> > > > > -		if (!op->map.immediate &&
-> > > > xe_vm_in_fault_mode(vm))
-> > > > > +		if (!op->map.immediate &&
-> > > > xe_vm_in_fault_mode(vm) &&
-> > > > > +		=C2=A0=C2=A0=C2=A0 !op->map.invalidate_on_bind)
-> > > > > =C2=A0			break;
-> > > > >=20
-> > > > > +		if (op->map.invalidate_on_bind)
-> > > > > +			pt_update_ops->invalidate_on_bind =3D
-> > > > > true;
-> > > > > +
-> > > > > =C2=A0		err =3D bind_op_prepare(vm, tile,
-> > > > > pt_update_ops,
-> > > > > op-
-> > > > > > map.vma);
-> > > > > =C2=A0		pt_update_ops->wait_vm_kernel =3D true;
-> > > > > =C2=A0		break;
-> > > > > @@ -1871,6 +1895,8 @@ static void bind_op_commit(struct
-> > xe_vm
-> > > > *vm,
-> > > > > struct xe_tile *tile,
-> > > > > =C2=A0	}
-> > > > > =C2=A0	vma->tile_present |=3D BIT(tile->id);
-> > > > > =C2=A0	vma->tile_staged &=3D ~BIT(tile->id);
-> > > > > +	if (pt_update_ops->invalidate_on_bind)
-> > > > > +		vma->tile_invalidated |=3D BIT(tile->id);
-> > > > > =C2=A0	if (xe_vma_is_userptr(vma)) {
-> > > > > =C2=A0		lockdep_assert_held_read(&vm-
-> > > > > > userptr.notifier_lock);
-> > > > > =C2=A0		to_userptr_vma(vma)->userptr.initial_bind =3D
-> > > > > true;
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_pt_types.h
-> > > > > b/drivers/gpu/drm/xe/xe_pt_types.h
-> > > > > index 384cc04de719..3d0aa2a5102e 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_pt_types.h
-> > > > > +++ b/drivers/gpu/drm/xe/xe_pt_types.h
-> > > > > @@ -108,6 +108,8 @@ struct xe_vm_pgtable_update_ops {
-> > > > > =C2=A0	bool needs_userptr_lock;
-> > > > > =C2=A0	/** @needs_invalidation: Needs invalidation */
-> > > > > =C2=A0	bool needs_invalidation;
-> > > > > +	/** @invalidate_on_bind: Invalidate the range before
-> > > > > bind */
-> > > > > +	bool invalidate_on_bind;
-> > > > > =C2=A0	/**
-> > > > > =C2=A0	 * @wait_vm_bookkeep: PT operations need to wait
-> > > > > until
-> > > > > VM
-> > > > is
-> > > > > idle
-> > > > > =C2=A0	 * (bookkeep dma-resv slots are idle) and stage all
-> > > > > future
-> > > > > VM activity
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_vm.c
-> > > > b/drivers/gpu/drm/xe/xe_vm.c
-> > > > > index d664f2e418b2..813d893d9b63 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > > > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > > > > @@ -1921,6 +1921,23 @@ static void print_op(struct xe_device
-> > *xe,
-> > > > > struct drm_gpuva_op *op)
-> > > > > =C2=A0}
-> > > > > =C2=A0#endif
-> > > > >=20
-> > > > > +static bool __xe_vm_needs_clear_scratch_pages(struct
-> > xe_vm
-> > > > *vm, u32
-> > > > > bind_flags)
-> > > > > +{
-> > > > > +	if (!xe_vm_in_fault_mode(vm))
-> > > > > +		return false;
-> > > > > +
-> > > > > +	if (!NEEDS_SCRATCH(vm->xe))
-> > > > > +		return false;
-> > > > > +
-> > > > > +	if (!xe_vm_has_scratch(vm))
-> > > > > +		return false;
-> > > > > +
-> > > > > +	if (bind_flags & DRM_XE_VM_BIND_FLAG_IMMEDIATE)
-> > > > > +		return false;
-> > > > > +
-> > > > > +	return true;
-> > > > > +}
-> > > > > +
-> > > > > =C2=A0/*
-> > > > > =C2=A0 * Create operations list from IOCTL arguments, setup
-> > operations
-> > > > > fields so parse
-> > > > > =C2=A0 * and commit steps are decoupled from IOCTL arguments. Thi=
-s
-> > > > step
-> > > > > can fail.
-> > > > > @@ -1991,6 +2008,8 @@ vm_bind_ioctl_ops_create(struct
-> > xe_vm
-> > > > *vm,
-> > > > > struct xe_bo *bo,
-> > > > > =C2=A0			op->map.is_null =3D flags &
-> > > > > DRM_XE_VM_BIND_FLAG_NULL;
-> > > > > =C2=A0			op->map.dumpable =3D flags &
-> > > > > DRM_XE_VM_BIND_FLAG_DUMPABLE;
-> > > > > =C2=A0			op->map.pat_index =3D pat_index;
-> > > > > +			op->map.invalidate_on_bind =3D
-> > > > > +
-> > > > 	__xe_vm_needs_clear_scratch_pages(vm
-> > > > > , flags);
-> > > > > =C2=A0		} else if (__op->op =3D=3D
-> > > > > DRM_GPUVA_OP_PREFETCH) {
-> > > > > =C2=A0			op->prefetch.region =3D
-> > > > > prefetch_region;
-> > > > > =C2=A0		}
-> > > > > @@ -2188,7 +2207,8 @@ static int
-> > vm_bind_ioctl_ops_parse(struct
-> > > > xe_vm
-> > > > > *vm, struct drm_gpuva_ops *ops,
-> > > > > =C2=A0				return PTR_ERR(vma);
-> > > > >=20
-> > > > > =C2=A0			op->map.vma =3D vma;
-> > > > > -			if (op->map.immediate ||
-> > > > > !xe_vm_in_fault_mode(vm))
-> > > > > +			if (op->map.immediate ||
-> > > > > !xe_vm_in_fault_mode(vm) ||
-> > > > > +			=C2=A0=C2=A0=C2=A0 op->map.invalidate_on_bind)
-> > > > >=20
-> > > > 	xe_vma_ops_incr_pt_update_ops(vops,
-> > > > >=20
-> > > > > op-
-> > > > > > tile_mask);
-> > > > > =C2=A0			break;
-> > > > > @@ -2416,9 +2436,10 @@ static int op_lock_and_prep(struct
-> > > > drm_exec
-> > > > > *exec, struct xe_vm *vm,
-> > > > >=20
-> > > > > =C2=A0	switch (op->base.op) {
-> > > > > =C2=A0	case DRM_GPUVA_OP_MAP:
-> > > > > -		err =3D vma_lock_and_validate(exec, op-
-> > > > > >map.vma,
-> > > > > -
-> > > > > !xe_vm_in_fault_mode(vm)
-> > > > > > >=20
-> > > > > -					=C2=A0=C2=A0=C2=A0 op-
-> > > > > >map.immediate);
-> > > > > +		if (!op->map.invalidate_on_bind)
-> > > > > +			err =3D vma_lock_and_validate(exec,
-> > > > > op-
-> > > > > > map.vma,
-> > > > > +
-> > > > > !xe_vm_in_fault_mode(vm) ||
-> > > > > +						=C2=A0=C2=A0=C2=A0 op-
-> > > > > > map.immediate);
-> > > > > =C2=A0		break;
-> > > > > =C2=A0	case DRM_GPUVA_OP_REMAP:
-> > > > > =C2=A0		err =3D check_ufence(gpuva_to_vma(op-
-> > > > > > base.remap.unmap->va));
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
-> > > > > b/drivers/gpu/drm/xe/xe_vm_types.h
-> > > > > index 52467b9b5348..dace04f4ea5e 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> > > > > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> > > > > @@ -297,6 +297,8 @@ struct xe_vma_op_map {
-> > > > > =C2=A0	bool is_null;
-> > > > > =C2=A0	/** @dumpable: whether BO is dumped on GPU hang */
-> > > > > =C2=A0	bool dumpable;
-> > > > > +	/** @invalidate: invalidate the VMA before bind */
-> > > > > +	bool invalidate_on_bind;
-> > > > > =C2=A0	/** @pat_index: The pat index to use for this
-> > > > > operation.
-> > > > > */
-> > > > > =C2=A0	u16 pat_index;
-> > > > > =C2=A0};
-> > >=20
->=20
-
+> 
+> Regards,
+> 
+> Ankit
+> 
+> 
+> > 
+> > --- compile error log ---
+> > 
+> >    CC      drivers/gpu/drm/i915/display/intel_dp.o
+> > In file included from <command-line>:0:0:
+> > In function ‘intel_dp_dsc_compute_pipe_bpp_limits.isra.77’,
+> >      inlined from ‘intel_dp_compute_config_limits’ at drivers/gpu/drm/i915/display/intel_dp.c:2547:3:
+> > ././include/linux/compiler_types.h:542:38: error: call to ‘__compiletime_assert_581’ declared with attribute error: clamp() low limit dsc_min_bpc * 3 greater than high limit dsc_max_bpc * 3
+> >    _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+> >                                        ^
+> > ././include/linux/compiler_types.h:523:4: note: in definition of macro ‘__compiletime_assert’
+> >      prefix ## suffix();    \
+> >      ^~~~~~
+> > ././include/linux/compiler_types.h:542:2: note: in expansion of macro ‘_compiletime_assert’
+> >    _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+> >    ^~~~~~~~~~~~~~~~~~~
+> > ./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’
+> >   #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+> >                                       ^~~~~~~~~~~~~~~~~~
+> > ./include/linux/minmax.h:188:2: note: in expansion of macro ‘BUILD_BUG_ON_MSG’
+> >    BUILD_BUG_ON_MSG(statically_true(ulo > uhi),    \
+> >    ^~~~~~~~~~~~~~~~
+> > ./include/linux/minmax.h:195:2: note: in expansion of macro ‘__clamp_once’
+> >    __clamp_once(type, val, lo, hi, __UNIQUE_ID(v_), __UNIQUE_ID(l_), __UNIQUE_ID(h_))
+> >    ^~~~~~~~~~~~
+> > ./include/linux/minmax.h:206:28: note: in expansion of macro ‘__careful_clamp’
+> >   #define clamp(val, lo, hi) __careful_clamp(__auto_type, val, lo, hi)
+> >                              ^~~~~~~~~~~~~~~
+> > drivers/gpu/drm/i915/display/intel_dp.c:2506:25: note: in expansion of macro ‘clamp’
+> >    limits->pipe.max_bpp = clamp(limits->pipe.max_bpp, dsc_min_bpc * 3, dsc_max_bpc * 3);
+> >                           ^~~~~
+> > drivers/gpu/drm/xe/Makefile:165: recipe for target 'drivers/gpu/drm/xe/i915-display/intel_dp.o' failed
+> > 
