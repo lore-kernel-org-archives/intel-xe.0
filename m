@@ -4,184 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05DB3C02194
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 22:40:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A92DC02196
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 22:44:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2FB610E971;
-	Thu,  6 Feb 2025 22:40:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C92E710E971;
+	Thu,  6 Feb 2025 22:44:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dI0PHrgi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PfBU1+fJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A007A10E974
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Feb 2025 22:40:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB03E10E971;
+ Thu,  6 Feb 2025 22:44:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738881636; x=1770417636;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=FBjGs715QcK2Rt7AeRPNKyIqve68kUrvduwJ2DolYy4=;
- b=dI0PHrgiQrLVk57HrZ1qwf45g89qD2s6llIhfK9SKylmqtzwlGGBSqVo
- LKRGOizl2wN+8/lZ9D2zDrLNAXaAfY0L4OLyQO5OeHAJfnDCLpzdTwLcc
- 1zD5VAPJHR8b478fVF/9xWJ/XFX04hnHwU1e/AIassBO3JfyqIHnXcFaN
- RAbThN+HvjsDWHZBSFKDKFCrH0yfbPqsBKv3MhZWGLNDX5C58ylGX0K93
- g9IZGdMh/rna81SzzXMzcwqejdujnLYYnUx1afhnblSHIvODtC3FL2acR
- K+ZRFYcSBuPufEZF/6cCfGR/U+C6Vl+DBNUbH+q1cLtIZbiWIV80Uqjnp g==;
-X-CSE-ConnectionGUID: 8lqrvdcdSAOmhjaODgptzQ==
-X-CSE-MsgGUID: UUeVG+5CRNCFol4kJmYNsA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="50902301"
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="50902301"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 14:40:36 -0800
-X-CSE-ConnectionGUID: kMcBUsMaSRKyTg1AIjQKJg==
-X-CSE-MsgGUID: INLDaLVETXapoACr1p6qIw==
+ t=1738881846; x=1770417846;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=kAwu5uYJ6foF8aSgbhKIyma6XJiHHGfw1uVhqfqswYw=;
+ b=PfBU1+fJvseHqIeLljNINzWAgwvc1XRtvIpn/rhDJgEVSfL4t3Fi3nBK
+ hFLKVv7ThQ0PyJi7N8PHr8VxeBg1GLiiSgPIsNwnCj5/76rcMc6mVPHbP
+ UnMexZ+s+gyscG+GZj1B3GG/EKNKEowlfD6ckMIaotwxytnz1O88Fa15x
+ zt3HBRhXP+dQn6T2FttLIzf1f/NQHmG5JBGcxTcGa0FEqDXKp3ozuLphz
+ UmeRYwHs5bxu5KN3L1gip39uR0JCj6c1IGrz0rU9dpTuLcK3uVgsqrpbj
+ AG8B5b79GKXKNvEFX+jdJvoeXE435WGlq1kRrV3dBhtPAauvpM3IKTvFB Q==;
+X-CSE-ConnectionGUID: wUmfbRZ6Rlm8hzUNN2TUbQ==
+X-CSE-MsgGUID: sn75cG3cTBukY7Z0mNo2Ow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50944941"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="50944941"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2025 14:44:04 -0800
+X-CSE-ConnectionGUID: k4Zyuh/hSrGvHn9dmjoZVg==
+X-CSE-MsgGUID: YuzU+C9uQ8S55fheMKnPpw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="111874097"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Feb 2025 14:40:35 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 6 Feb 2025 14:40:34 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 6 Feb 2025 14:40:34 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.41) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 6 Feb 2025 14:40:33 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pG3q/s1cpYyLgSc0Np9fxU+wyjztIUHahnRSP2PrHskdM0Jdbtaxfbk0Hm9IFhXQTj/P+uTqoK7c6x0lkK8gNxpxKPYSjML+VcWe8t34ghwgBt6XHx1e3YX0VGxrQekOU6SIW0VvezFl7u8qM6GAJVPoxlVvcUy7eAEgvlojEoImsESgl7HvV1lDBqH7GtC3q44oq8BC7R1WYCum478ECil28y6WQXQhV83swjfmb+jZ+Fq0Efc8l/M4tYmYI810YuSkNYJrSVKJa22QlkdOxiJmsGtX7pHvLpRbz14i61xLkoOqZ3PyGRLdIAoizdmU5l51mDj3PgW+srpTMEpJDw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XcKk7Uc5xBr1BF6CApMbs6UIE5LzAB5u8FCqP+G/9Vg=;
- b=FN8P1W8u+mQ5AQXQUcFnk91nqwxmEd6X3WTrapFlYbCPP9THDwJzJBeeK7XbqWY41t35pwHCGkLn2gEA2WwsOq4wca0VkY2oHbc0UafH6bDMHpcx8qrXxKQtAl/rsSy2Gu0zGree3jIsVHeAypZ+k6SizU5Fy7xJPspPt2s6z50+3FQOiTrCD+S1kXYxNl/zFEcEP+jvqeOqexSC9dZg8aLbo4R/eOiqFaKI4J8BVtc2t+Q6tMYCan8NDoAAHZzHlAaeTE7nyONr4Ziq6MuwRQLdKwZEhnmZldO6GSlq6F4JmWpIvfQzwsNEWJ/hEsxKB5ClDAaqnr26VMzi2aIycw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7SPRMB0046.namprd11.prod.outlook.com (2603:10b6:510:1f6::20)
- by CY8PR11MB7799.namprd11.prod.outlook.com (2603:10b6:930:78::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.11; Thu, 6 Feb
- 2025 22:40:30 +0000
-Received: from PH7SPRMB0046.namprd11.prod.outlook.com
- ([fe80::5088:3f5b:9a15:61dc]) by PH7SPRMB0046.namprd11.prod.outlook.com
- ([fe80::5088:3f5b:9a15:61dc%4]) with mapi id 15.20.8398.025; Thu, 6 Feb 2025
- 22:40:30 +0000
-Date: Thu, 6 Feb 2025 17:40:24 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas Hellstrom
- <thomas.hellstrom@linux.intel.com>, Piotr =?iso-8859-1?Q?Pi=F3rkowski?=
- <piotr.piorkowski@intel.com>, Jakub Kolakowski <jakub1.kolakowski@intel.com>, 
- Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Enable SR-IOV for PTL
-Message-ID: <Z6U6WDFF1t29Az_t@intel.com>
-References: <20250206214545.940-1-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250206214545.940-1-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: MW2PR16CA0016.namprd16.prod.outlook.com (2603:10b6:907::29)
- To PH7SPRMB0046.namprd11.prod.outlook.com
- (2603:10b6:510:1f6::20)
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="116286532"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2025 14:44:01 -0800
+Date: Fri, 7 Feb 2025 00:44:55 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH v9] drm/i915/dp: Guarantee a minimum HBlank time
+Message-ID: <Z6U7Z5EWRYzKAUlQ@ideak-desk.fi.intel.com>
+References: <20250122-hblank-v9-1-90afda006685@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7SPRMB0046:EE_|CY8PR11MB7799:EE_
-X-MS-Office365-Filtering-Correlation-Id: b1fb215c-ccaa-4a7b-35cf-08dd46ff4246
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SWdmNGNWYWNpL0VsSHl1ZzNFOFUzOWEySTJsdytRT3JYZVR4bFBDRVdrWWVu?=
- =?utf-8?B?QzlOb0pReTArMnBKdjYrTTBQZXIrQS9JM1c5ZnRXZ0pxc1RqUFZtS0M1UFU2?=
- =?utf-8?B?Uk5lazRqVDI5VnhuamlKOUNYT0p2SEZWWURsR1JwRTV3SnNsWklwbHlydWF6?=
- =?utf-8?B?TVptRGMvaWpoQm9Sb0NYYWprZmpVR0EwT0ZNNUxWUlpjWUREa2tJWFVud0Nj?=
- =?utf-8?B?amhDc3dPeTFnV0lqRkFYOWh0Smh1SVIyZVJMcWpJWjI2cHk0a2JDeXhmUjBx?=
- =?utf-8?B?d0cwWlU4M1BTQnd2RTVpMDVlSjlNQkV6bkFZVCtnTnZnTXZkL1FWbEtHNlRx?=
- =?utf-8?B?NXo3S3VXbjFzSzM3VWdwN2ZLM0RLY1VnaXdjZ3lYNWFqOWtTM2dxS2V0Qyta?=
- =?utf-8?B?NkJic29CMDd3WDMyNTlwdFNUcDFPUDVxWFVMYmlrbXkwKzhUVlN3WXk0T3Na?=
- =?utf-8?B?c3NPZXRyRXJnbGhWOGcvM2N2RkhYT204KzhpTmR0ZURjSExJRFd6UjMzZmdF?=
- =?utf-8?B?bWtpZnBsU09IRWR0OVhjNEVvM3dYK2h0T29UTE5WUTFDZ3ZPbVpRQlllZ3hN?=
- =?utf-8?B?a3RJMFBGbytVMWlMYmN2dUZXTUJtQkw2dmVtbEdHdUc1VHRnRzZwNDQzK3li?=
- =?utf-8?B?RENSSXhpSUFGSkYrbDArMVgwOWhiZ04wUzVDL1JTeW1tamdITWhRcEZCdko2?=
- =?utf-8?B?Mzg5UVgra3Q2d2VwUUR4cmU3Z0VXbDRraUtTVzAxNERkQlpNS2gxUS90WGJM?=
- =?utf-8?B?R0s0UkNONE5ONkxiWFJaN1RxdExqR0gwbk9OaVZxZ1BIZE5ieThqcE1QZVE0?=
- =?utf-8?B?SytLQmt2RlE0QXBHczhBaXFjUjJGRFlyaVlSNW9BdjVjanpRNGdpSzhEMFVn?=
- =?utf-8?B?TndXVHUwai9GSGFlNStjbEZxZE9oU3RXbzhJZkJOeVlzVXZaVWgyVXFzVVA2?=
- =?utf-8?B?Y3FFQ1JWaVpHZW1UdjJlLzN0cXBuV3BOMzllRlZYVE9waHFiL2Z1bit6Z1pu?=
- =?utf-8?B?R0hFd3J1MWlUZ3ZTTWdGMkZpVzI3dWROMkJpQncyUlozUGt1eDg2RVBWNitI?=
- =?utf-8?B?U0lDOTV1cmhtZTM5dENaR0pRVDZxeG9US0VZNGZ2YWFOYWhOY0pxOE5sdlpt?=
- =?utf-8?B?VkF1R0JDeGNOTzJQU2R3ZWVFU3ZGMnZ6TENzZ3QyZ0NUZW1TdEVCK2FoaEk5?=
- =?utf-8?B?OGFJOURwUi9jUVFOV0FxT2EzUHQzRE1LNy9BMHBma3dIS01EUXpLbDQyRlBK?=
- =?utf-8?B?Yzd5VUx1d3loM3RkRk9ZRmNkcHNLN1h5MjQzOEUzNkowYjdJYXhvRU50N2k1?=
- =?utf-8?B?OGFMUkpPWWdudG1tUE1Kd3F4d0dBTjZBYjl4d0J5c2J2SFEreFdMNDJEd0Ex?=
- =?utf-8?B?T2FjbHg5ZnlHV3lNTXMzYi9zaU56MWkvSXdhTXZ6d0R6N08zSk90Uk1oNCtY?=
- =?utf-8?B?SUF1bHd5RVB1TWJjL1Y0QXJiSjA2UFNhcEMwRlMyUlNaZmhqNXRKMjhrVEdu?=
- =?utf-8?B?MU02Y1RBSGFVYUFqZFJWaC9Ham1pTTduZm9pQnVqVmk1ZVFWS0RiNlBGcFZz?=
- =?utf-8?B?S01KM1ZBT08wUFh1UEVvUEx0Qmk1dnJhdmYvRzJUZStndHhoQUl2Y2pERjNS?=
- =?utf-8?B?bm1lbXV6LzVEaUwvYmVpdmZDWEI3djBuZGlGcVRNS0xqQW1NeEY4Z2dHQVV1?=
- =?utf-8?B?QXQ4ZnNBajZmWksyejU1QWZEVk5mWkc3S0VkY2kyYTJzSkd1WGdhR2VFb2VK?=
- =?utf-8?B?T2NSZHM5ZERxRzk3TEJVYlRERVoxT3c4TU5VMnNhVFA0dTB4YVc5bkdPV0k5?=
- =?utf-8?B?TlU0azZwVUZVQVRNV09nTmVDcDcreWhEVjhkK2ZxR2psN095MDVOcVJmWW5u?=
- =?utf-8?Q?i9Vu1XLfoZy0E?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7SPRMB0046.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dGdUdnN2U0tvUldia3pWWDB4SGN1VHJjdUg0TlRaVWM3cjBndW1EU2I0ejNn?=
- =?utf-8?B?Vy83QlZJRXdHeUg3NkR4cXdRRk14d3ZVVXU4RlV3V3VxQisxMEJMaEpsVHEy?=
- =?utf-8?B?OHRJbjFEcWJVVmdnWi93dmZIUG5CbHJLSFBHWVRudC84THhLWjYxL2ZicGJZ?=
- =?utf-8?B?Vzk2VFFmMUtBS0xSc0ZDWGlyN2xCMFhuS29LZnQrQVp4aXVMaU9ZK1hXVkJT?=
- =?utf-8?B?NGpiL1UxbVE5Wm1LcTlUR0ZpQXc4cnRUT0JvZml4aEJTTmcyQVJKQ09sMm5l?=
- =?utf-8?B?YzlJY2hxOUk0ZDl2Qk9oT0pBRjMxRHhuQ3ppTlh4ekR4MGFvWVFzQ0ZFMEpL?=
- =?utf-8?B?S0VDN1FPRi84UTdDMDZ5ZndNN3QzMm1sZFVQQkJPQ05DZDM3Q2NYaUpjSkly?=
- =?utf-8?B?NDloMkNOcmxKdm1zR1NhQ2VtL1UxSnFPbTNuVmtYUHd0bW1obXNMWmI1VGVQ?=
- =?utf-8?B?SExWcU9oRENVSnQrVU1XRGo3cDkzZ0I2UGxuT1hudnVmTVRTdEVmeEJnYjlk?=
- =?utf-8?B?cXFrWGpRS1ZHcVRRZWFFU090Wmg4KzVDUVpFV1ZrOVltaFlGTXlEZ2hMaE52?=
- =?utf-8?B?S2d0WnNhVWIzWVMweXcvS1hxY1M2NTl6YzlLR051MmduSFdjQVAxaUY0blZD?=
- =?utf-8?B?RjE4d0lvS21rbW8xUWMzbGhoWTNWWm43MFUvMHpiako1eGpGc3VTSEIrd2Zy?=
- =?utf-8?B?UzFLalR0TUxueVlIWGVNdXhrd05FdzBDMjIydkJLanBkZTdKemN5OEd4YTBV?=
- =?utf-8?B?RXZQNVdkVXNvbTRURWlPdGtjWmppK3hOcUNvZUJGT25QZTBsa2FyQ2JORmto?=
- =?utf-8?B?aVErNXpPVGZlWlAwRG9MOGMxSmIyUStRblROalIrSGFTYXNlL3lOR1lMV2Rt?=
- =?utf-8?B?d3pZS3RBdlVCUVJNbi9ZVVA2UEpsbFREeDJwQmk1LzN3N0k0VFFVcHFvNG1W?=
- =?utf-8?B?ek9pOUxkQXZwMzdndm15bmc1d3QwQ3kvOENoS3lheW9iT0FuTDVSeU5zV28x?=
- =?utf-8?B?Mlprc2hIZWQvOUdvRlN5d2JSbVNsTXlCdTB2OVZYU2hvcktiYmNIZVh5Q1RY?=
- =?utf-8?B?NkQ4L3NVSkFUcWNBTFdlYkh0RGEvaXgvZCtkMlpGK3A5dkxIeFpOTU12M080?=
- =?utf-8?B?ampMZDFGRlZtcjdCUzRScDRlVCtKVHNqKzl0ODVMclZNc1l2U09aYW95YTIr?=
- =?utf-8?B?S3NtZW9hVHhKaTRyelFaSThPODVZY0N1UkUxVEJyaFJHN0pkTkVScUg3NVQy?=
- =?utf-8?B?REsrSExtekxhRDRUaThQa1EzYzBlcEJSZUlITHpxSFpFT3RUemVRalZpUGdG?=
- =?utf-8?B?VEdiRWhTTmphQmhRbzlnS3ZPNlNMUWVWaWdqSDQrQStWWGF0dTVZa2xNMjVO?=
- =?utf-8?B?dWt2NjBYV3N2NlRFNkhzdnlXM05rbEo0K3ZWQ1FwaHVKYmlpQ1RqeFRCWGg2?=
- =?utf-8?B?azNKdFF3SmxSZTNnQWFza3JZRittajg3eFRwOTdNUUJTUUVxT2NKUG9TYXFq?=
- =?utf-8?B?QUlDb1VQYnlFTFc4SXRjazdMZC9rNWtjWmp2V0M0aEE0UFZtVUFFZ0lRZVRh?=
- =?utf-8?B?dTFwMkw1OUFWNUhCNzJ3bWdkOTE1aU1jSk5vSGpER1lEZTlYOUx6N1FtSjE4?=
- =?utf-8?B?dW9DUHZGL3czeWVwdjYyZGlGamtPbzRvODByRVF6R1g1M3lqaG9KdEwrOXJj?=
- =?utf-8?B?aXpLVi9Wd29wam0xemxueW5GQ0tQbStKYmJDUG1YaHNwMWJ5OVdCYlAxNy92?=
- =?utf-8?B?MUxlS09BNnk2NXlSSEQ2V1BPOENEdGRJQVBmanhENUoxUjJiTGdEL25nVEpI?=
- =?utf-8?B?OGUrWit1UDlURi9DWWRRaUhHNW5DYTBPbndiY1M3M1ZPNHlCalg3NE5ZSFQ5?=
- =?utf-8?B?R0NzUkQrWDdsYWYzaUFqRVBlVCsrd25pNk8yMTZRV3VjVyt5cklvVzdUdDEy?=
- =?utf-8?B?Rll3RHlNY05FejZ2bG9JTDViVXl2a3JPcmxjaDFJNm55ZEEvQWUxWUlTL2xE?=
- =?utf-8?B?ajRtNnJqYXlKcmF1MkR2a29kR2R0M052RTNCa2xVQUIzbHUrQVZ2VFU5M1Bt?=
- =?utf-8?B?c2tJRG8wd3EzdmJITjdjcjV0c3hhWmxkbmlHMVZoV25QbGVlUzd2WFg0VnRJ?=
- =?utf-8?B?NlBMMWt3UlU2OUxEMVFJd1piVERndk80ZndKVlRwOXhNUVN0dUZNbVh6YlUr?=
- =?utf-8?B?Qnc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1fb215c-ccaa-4a7b-35cf-08dd46ff4246
-X-MS-Exchange-CrossTenant-AuthSource: PH7SPRMB0046.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2025 22:40:30.1439 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oSdS7Tyn/3dI6biI9sJASNcu2RcjtkHa+VuiuLmg2qFZKY3TwnhLAvI+5AeYHaoXJ3KVoTBfR0sC2EJNE9vTZA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7799
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250122-hblank-v9-1-90afda006685@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -193,78 +64,239 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 06, 2025 at 10:45:45PM +0100, Michal Wajdeczko wrote:
-> We should now have sufficient changes in the driver to run it on
-> PTL platforms in the SR-IOV Physical Function (PF) mode, that would
-> allow us to enable SR-IOV Virtual Functions (VFs), and successfully
-> probe our driver in the VF mode on enabled VF devices.
-> 
-> To unblock SR-IOV PF mode you need to load xe with modparam:
-> 
->  xe.max_vfs=7
-> 
-> Then to enable VFs it is sufficient to use:
-> 
->  $ echo 7 > /sys/bus/pci/devices/0000:00:02.0/sriov_numvfs
-> 
-> Note that in default auto-provisioning all VFs are allocated with
-> some amount of shared resources (like unlimited GPU execution and
-> preemption times, fair GGTT space, fair GuC context IDs range, ...)
-> 
-> However with CONFIG_DEBUG_FS enabled it is possible to tweak most
-> of the SR-IOV configuration parameters using attributes like:
-> 
->  /sys/kernel/debug/dri/0000:00:02.0/gt0/
->  ├── pf
->  │   ├── contexts_spare
->  │   ├── doorbells_spare
->  │   ├── exec_quantum_ms
->  │   ├── ggtt_spare
->  │   ├── preempt_timeout_us
->  │   ├── sched_priority
->  │   └── ...
->  ├── vf1
->  │   ├── contexts_quota
->  │   ├── doorbells_quota
->  │   ├── exec_quantum_ms
->  │   ├── ggtt_quota
->  │   ├── preempt_timeout_us
->  │   ├── sched_priority
->  │   └── ...
->  ├── vf2
->  │   └── ...
->  :
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-> ---
-> Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
-> Cc: Jakub Kolakowski <jakub1.kolakowski@intel.com>
-> Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_pci.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index e8ef7d6b4db8..6a8e82aff385 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -367,6 +367,7 @@ static const struct xe_device_desc ptl_desc = {
->  	PLATFORM(PANTHERLAKE),
->  	.dma_mask_size = 46,
->  	.has_display = true,
-> +	.has_sriov = true,
+Hi,
 
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+I noticed a few issues in this patch (while fixing the other ones
+reported), could you please check and follow up on the comments
+below? Thanks.
 
->  	.require_force_probe = true,
->  };
+On Wed, Jan 22, 2025 at 11:25:42AM +0530, Arun R Murthy wrote:
+> Mandate a minimum Hblank symbol cycle count between BlankingStart and
+> BlankingEnd in 8b/10b MST and 128b/132b mode.
+> 
+> v2: Affine calculation/updation of min HBlank to dp_mst (Jani)
+> v3: moved min_hblank from struct intel_dp to intel_crtc_state (Jani)
+> v4: use max/min functions, change intel_xx *intel_xx to intel_xx *xx
+>     (Jani)
+>     Limit hblank to 511 and accommodate BS/BE in calculated value
+>     (Srikanth)
+> v5: Some spelling corrections (Suraj)
+> v6: Removed DP2.1 in comment as this is applicable for both DP2.1 and
+>     DP1.4 (Suraj)
+> v7: crtc_state holds the logical values and the register value
+>     computation is moved to mst_enable() (Jani)
+> v8: Limit max hblank to 0x10, disable min_hblank on mst_disable (Jani)
+> 
+> Bspec: 74379
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+> Changes in v9:
+> - EDITME: describe what is new in this series revision.
+> - EDITME: use bulletpoints and terse descriptions.
+> - Link to v8: https://lore.kernel.org/r/20250121-hblank-v8-1-b05752f4aa5a@intel.com
+> ---
+>  .../gpu/drm/i915/display/intel_crtc_state_dump.c   |  1 +
+>  drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c        | 53 +++++++++++++++++++++-
+>  drivers/gpu/drm/i915/i915_reg.h                    |  4 ++
+>  4 files changed, 58 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> index 1fbaa67e2fea77279f120bfb9755a2642550046c..07c671741513f7f263b7b233ffec71998745fd0f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> @@ -249,6 +249,7 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+>  			   str_enabled_disabled(pipe_config->has_sel_update),
+>  			   str_enabled_disabled(pipe_config->has_panel_replay),
+>  			   str_enabled_disabled(pipe_config->enable_psr2_sel_fetch));
+> +		drm_printf(&p, "minimum HBlank: %d\n", pipe_config->min_hblank);
+>  	}
 >  
+>  	drm_printf(&p, "audio: %i, infoframes: %i, infoframes enabled: 0x%x\n",
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 8271e50e36447a6c97a93ca0d0b83327ff6ee461..f525e266c0232e8c29ba3f84d2c81612f78e894b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1095,6 +1095,7 @@ struct intel_crtc_state {
+>  
+>  	int max_link_bpp_x16;	/* in 1/16 bpp units */
+>  	int pipe_bpp;		/* in 1 bpp units */
+> +	int min_hblank;
+>  	struct intel_link_m_n dp_m_n;
+>  
+>  	/* m2_n2 for eDP downclock */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 227bd2783e64105dc8dd521b99e7d04ce2e577cc..6b827f569f64634c36b031760589e0d2d01f5bb1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -209,6 +209,28 @@ static int intel_dp_mst_dsc_get_slice_count(const struct intel_connector *connec
+>  					    num_joined_pipes);
+>  }
+>  
+> +static void intel_dp_mst_compute_min_hblank(struct intel_crtc_state *crtc_state,
+> +					    struct intel_connector *connector,
+> +					    int bpp_x16)
+
+This shouldn't be in intel_dp_mst.c, as it's also used for UHBR/SST.
+
+> +{
+> +	struct intel_encoder *encoder = connector->encoder;
+> +	struct intel_display *display = to_intel_display(encoder);
+> +	const struct drm_display_mode *adjusted_mode =
+> +					&crtc_state->hw.adjusted_mode;
+> +	int symbol_size = intel_dp_is_uhbr(crtc_state) ? 32 : 8;
+> +	int hblank;
+> +
+> +	if (DISPLAY_VER(display) < 20)
+> +		return;
+> +
+> +	/* Calculate min Hblank Link Layer Symbol Cycle Count for 8b/10b MST & 128b/132b */
+> +	hblank = DIV_ROUND_UP((DIV_ROUND_UP
+> +			       (adjusted_mode->htotal - adjusted_mode->hdisplay, 4) * bpp_x16),
+> +			      symbol_size);
+
+bpp_x16 is the bpp in .4 fixed point format, so the above seems to be
+missing a div-by-16 accordingly.
+
+Also the above formula doesn't seem to take DSC into account. Based on
+the HBLNK_ML_SYM_CYC_CNT formula in DP Standard v2.1 (at 2.6.4.4.1 and
+2.7.9) Bspec tells us to use (converting it to LL cycles, which is just
+assuming 4 lanes always), I think we'd need something like:
+
+lane_count = 4;
+hactive = adjusted_mode->hdisplay;
+htotal = adjusted_mode->htotal;
+is_mst = true;
+
+hactive_sym_cycles = is_dsc ? drm_dp_link_dsc_symbol_cycles(lane_count, hactive, dsc_slices,
+							    bpp_x16, symbol_size, is_mst) :
+			      drm_dp_link_symbol_cycles(...);
+htotal_sym_cycles = htotal * hactive_sym_cycles / hactive;
+hblank_sym_cycles = htotal_sym_cycles - hactive_sym_cycles;
+
+> +
+> +	crtc_state->min_hblank = hblank;
+> +}
+> +
+>  int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+>  				   struct intel_crtc_state *crtc_state,
+>  				   int max_bpp, int min_bpp,
+> @@ -266,6 +288,9 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+>  
+>  		local_bw_overhead = intel_dp_mst_bw_overhead(crtc_state,
+>  							     false, dsc_slice_count, link_bpp_x16);
+> +
+> +		intel_dp_mst_compute_min_hblank(crtc_state, connector, link_bpp_x16);
+> +
+>  		intel_dp_mst_compute_m_n(crtc_state,
+>  					 local_bw_overhead,
+>  					 link_bpp_x16,
+> @@ -982,6 +1007,7 @@ static void mst_stream_disable(struct intel_atomic_state *state,
+>  	struct intel_dp *intel_dp = to_primary_dp(encoder);
+>  	struct intel_connector *connector =
+>  		to_intel_connector(old_conn_state->connector);
+> +	enum transcoder trans = old_crtc_state->cpu_transcoder;
+>  
+>  	drm_dbg_kms(display->drm, "active links %d\n",
+>  		    intel_dp->active_mst_links);
+> @@ -992,6 +1018,8 @@ static void mst_stream_disable(struct intel_atomic_state *state,
+>  	intel_hdcp_disable(intel_mst->connector);
+>  
+>  	intel_dp_sink_disable_decompression(state, connector, old_crtc_state);
+> +
+> +	intel_de_write(display, DP_MIN_HBLANK_CTL(trans), 0x00);
+>  }
+>  
+>  static void mst_stream_post_disable(struct intel_atomic_state *state,
+> @@ -1265,7 +1293,7 @@ static void mst_stream_enable(struct intel_atomic_state *state,
+>  	enum transcoder trans = pipe_config->cpu_transcoder;
+>  	bool first_mst_stream = intel_dp->active_mst_links == 1;
+>  	struct intel_crtc *pipe_crtc;
+> -	int ret, i;
+> +	int ret, i, min_hblank;
+>  
+>  	drm_WARN_ON(display->drm, pipe_config->has_pch_encoder);
+>  
+> @@ -1280,6 +1308,29 @@ static void mst_stream_enable(struct intel_atomic_state *state,
+>  			       TRANS_DP2_VFREQ_PIXEL_CLOCK(crtc_clock_hz & 0xffffff));
+>  	}
+>  
+> +	if (DISPLAY_VER(display) >= 20) {
+> +		/*
+> +		 * adjust the BlankingStart/BlankingEnd framing control from
+> +		 * the calculated value
+> +		 */
+
+All these adjustments should be done already during computation in
+intel_dp_mst_compute_min_hblank(), the only thing done here is writing
+pipe_config->min_hblank to the register.
+
+HW/SW state verification should be added, as Ville reminded.
+
+> +		min_hblank = pipe_config->min_hblank - 2;
+
+Probably better to avoid getting min_hblank negative already here.
+
+> +
+> +		/* Maximum value to be programmed is limited to 0x10 */
+> +		min_hblank = min(0x10, min_hblank);
+
+Bspec seems to specify a decimal 10 value.
+
+> +		/*
+> +		 * Minimum hblank accepted for 128b/132b would be 5 and for
+> +		 * 8b/10b would be 3 symbol count
+> +		 */
+
+Where is the above 5 and 3 minimum symbol count defined at? I can't see
+anything related to that at least in Bspec.
+
+> +		if (intel_dp_is_uhbr(pipe_config))
+> +			min_hblank = max(min_hblank, 5);
+> +		else
+> +			min_hblank = max(min_hblank, 3);
+> +
+> +		intel_de_write(display, DP_MIN_HBLANK_CTL(trans),
+> +			       min_hblank);
+
+What is the purpose of programming this? I can't find any explanation
+for it, but one reason could be to ensure that the audio SDP data can be
+transmitted during the Hblank period. That would mean it wouldn't need
+to be programmed if there is no audio being transmitted and that it
+could be adjusted according to the actual audio BW. Would be good to
+request a clarification for this from HW people.
+
+> +	}
+> +
+>  	enable_bs_jitter_was(pipe_config);
+>  
+>  	intel_ddi_enable_transcoder_func(encoder, pipe_config);
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 765e6c0528fb0b5a894395b77a5edbf0b0c80009..7bd783931199e2e5c7e15358bb4d2c904f28176a 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -3197,6 +3197,10 @@
+>  #define _TRANS_DP2_VFREQLOW_D			0x630a8
+>  #define TRANS_DP2_VFREQLOW(trans)		_MMIO_TRANS(trans, _TRANS_DP2_VFREQLOW_A, _TRANS_DP2_VFREQLOW_B)
+>  
+> +#define _DP_MIN_HBLANK_CTL_A			0x600ac
+> +#define _DP_MIN_HBLANK_CTL_B			0x610ac
+> +#define DP_MIN_HBLANK_CTL(trans)		_MMIO_TRANS(trans, _DP_MIN_HBLANK_CTL_A, _DP_MIN_HBLANK_CTL_B)
+> +
+>  /* SNB eDP training params */
+>  /* SNB A-stepping */
+>  #define  EDP_LINK_TRAIN_400MV_0DB_SNB_A		(0x38 << 22)
+> 
+> ---
+> base-commit: a15d2a84505eed8dbb58911147e44752734f3a88
+> change-id: 20250121-hblank-ad8ce892eb3a
+> 
+> Best regards,
 > -- 
-> 2.47.1
+> Arun R Murthy <arun.r.murthy@intel.com>
 > 
