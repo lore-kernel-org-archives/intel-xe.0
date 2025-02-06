@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B0EBC02196
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 21:45:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5541CC02194
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 21:46:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A699A10E1A0;
-	Thu,  6 Feb 2025 21:45:55 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2779510E1A0;
- Thu,  6 Feb 2025 21:44:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2247039480148968591=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFA1010E1A0;
+	Thu,  6 Feb 2025 21:46:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DEhK7jZg";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBD1610E1A0
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Feb 2025 21:46:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738878369; x=1770414369;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fGc0x6IX9NmXBXxx9Qi7iXHV/hOUhDpX4WSqe8w3rGo=;
+ b=DEhK7jZgEFNPH0BTZBTBh8NJMhaCWOmhnfemKiEJEZw04W6RHRNEO0A1
+ hD8VCS43u4m2NJVdKxuh1FZ9nEK/HALIeuhKTkU64uwsF/Gu/CDQmjj6V
+ LBLiHQdTDdT5G4DWK5V30gMSvDTH7hcDKwVe8k8Vm0Robn8iDZbbYUlj1
+ Pn6V77z31yi43xy8FsmD2cWu/MCDIxZBM258Dhe5VnUFCS6t3Z1975rxy
+ nnfuoZAaqXOzfO0LOHODJcSJl0mXzG6w0Tzj7IBkvvxUwUv4pkpUtb19l
+ CMt8cAbYZGKVGf93+OXHEf6FfaELzOhopj/kSMmVxBAPccxEQoah307qj Q==;
+X-CSE-ConnectionGUID: rfFaiM52SIGvAQszFaWpmQ==
+X-CSE-MsgGUID: ZntjatxzQ0WdxknvoqIpcg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50941050"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="50941050"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2025 13:46:08 -0800
+X-CSE-ConnectionGUID: r5o5F0oOREaeQh8QO/1bxQ==
+X-CSE-MsgGUID: Q/XWmffASRm9ijs5QoU1lQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="116276314"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.96.215])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2025 13:46:05 -0800
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Jakub Kolakowski <jakub1.kolakowski@intel.com>,
+ Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+Subject: [PATCH] drm/xe: Enable SR-IOV for PTL
+Date: Thu,  6 Feb 2025 22:45:45 +0100
+Message-Id: <20250206214545.940-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_intel=5Fdisplay?=
- =?utf-8?q?_conversions_and_some_debug_improvements_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Feb 2025 21:44:44 -0000
-Message-ID: <173887828413.2250576.1406788902603832834@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250206185533.32306-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250206185533.32306-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,140 +68,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2247039480148968591==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+We should now have sufficient changes in the driver to run it on
+PTL platforms in the SR-IOV Physical Function (PF) mode, that would
+allow us to enable SR-IOV Virtual Functions (VFs), and successfully
+probe our driver in the VF mode on enabled VF devices.
 
-== Series Details ==
+To unblock SR-IOV PF mode you need to load xe with modparam:
 
-Series: drm/i915: intel_display conversions and some debug improvements (rev2)
-URL   : https://patchwork.freedesktop.org/series/143941/
-State : success
+ xe.max_vfs=7
 
-== Summary ==
+Then to enable VFs it is sufficient to use:
 
-CI Bug Log - changes from xe-2612-2aff25306def7c151be69b338bc1f5a27733c93e_BAT -> xe-pw-143941v2_BAT
-====================================================
+ $ echo 7 > /sys/bus/pci/devices/0000:00:02.0/sriov_numvfs
 
-Summary
--------
+Note that in default auto-provisioning all VFs are allocated with
+some amount of shared resources (like unlimited GPU execution and
+preemption times, fair GGTT space, fair GuC context IDs range, ...)
 
-  **SUCCESS**
+However with CONFIG_DEBUG_FS enabled it is possible to tweak most
+of the SR-IOV configuration parameters using attributes like:
 
-  No regressions found.
+ /sys/kernel/debug/dri/0000:00:02.0/gt0/
+ ├── pf
+ │   ├── contexts_spare
+ │   ├── doorbells_spare
+ │   ├── exec_quantum_ms
+ │   ├── ggtt_spare
+ │   ├── preempt_timeout_us
+ │   ├── sched_priority
+ │   └── ...
+ ├── vf1
+ │   ├── contexts_quota
+ │   ├── doorbells_quota
+ │   ├── exec_quantum_ms
+ │   ├── ggtt_quota
+ │   ├── preempt_timeout_us
+ │   ├── sched_priority
+ │   └── ...
+ ├── vf2
+ │   └── ...
+ :
 
-  
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+---
+Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Cc: Jakub Kolakowski <jakub1.kolakowski@intel.com>
+Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_pci.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Participating hosts (9 -> 8)
-------------------------------
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index e8ef7d6b4db8..6a8e82aff385 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -367,6 +367,7 @@ static const struct xe_device_desc ptl_desc = {
+ 	PLATFORM(PANTHERLAKE),
+ 	.dma_mask_size = 46,
+ 	.has_display = true,
++	.has_sriov = true,
+ 	.require_force_probe = true,
+ };
+ 
+-- 
+2.47.1
 
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-143941v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_vm@shared-pde2-page:
-    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3970])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2612-2aff25306def7c151be69b338bc1f5a27733c93e/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143941v2/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_intel_bb@intel-bb-blit-none:
-    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#3970]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2612-2aff25306def7c151be69b338bc1f5a27733c93e/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-none.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143941v2/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-none.html
-
-  
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-
-
-Build changes
--------------
-
-  * Linux: xe-2612-2aff25306def7c151be69b338bc1f5a27733c93e -> xe-pw-143941v2
-
-  IGT_8224: c659b986ba648584d36b3cfece897bc84a33dcbb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2612-2aff25306def7c151be69b338bc1f5a27733c93e: 2aff25306def7c151be69b338bc1f5a27733c93e
-  xe-pw-143941v2: 143941v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143941v2/index.html
-
---===============2247039480148968591==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: intel_display conversions and some debug improvements (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143941/">https://patchwork.freedesktop.org/series/143941/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143941v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143941v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2612-2aff25306def7c151be69b338bc1f5a27733c93e_BAT -&gt; xe-pw-143941v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-143941v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_vm@shared-pde2-page:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2612-2aff25306def7c151be69b338bc1f5a27733c93e/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143941v2/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_intel_bb@intel-bb-blit-none:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2612-2aff25306def7c151be69b338bc1f5a27733c93e/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-none.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143941v2/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-none.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2612-2aff25306def7c151be69b338bc1f5a27733c93e -&gt; xe-pw-143941v2</li>
-</ul>
-<p>IGT_8224: c659b986ba648584d36b3cfece897bc84a33dcbb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2612-2aff25306def7c151be69b338bc1f5a27733c93e: 2aff25306def7c151be69b338bc1f5a27733c93e<br />
-  xe-pw-143941v2: 143941v2</p>
-
-</body>
-</html>
-
---===============2247039480148968591==--
