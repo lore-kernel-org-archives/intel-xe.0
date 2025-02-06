@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B5D3C0219B
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 06:33:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D8ECC0219C
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 06:33:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E829F10E433;
-	Thu,  6 Feb 2025 06:33:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34A6710E16A;
+	Thu,  6 Feb 2025 06:33:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C1oQav9x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IvxfDUYl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50CF810E433;
- Thu,  6 Feb 2025 06:33:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CFEE10E42C;
+ Thu,  6 Feb 2025 06:33:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738823597; x=1770359597;
+ t=1738823605; x=1770359605;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IWHOuTtGWIiNIXjE7VJu/Q9mBXYHdz7Cmdu26DbhqMg=;
- b=C1oQav9xx9XbWrxki84WHYlzDkOR3a+Jmk1bJ0mUKy3xZzpzPYyziEe7
- u30HPO2n4Py8ghZls2MQH/L3ZQIO0ONV5bj4rSMyGRVKxkBJKR5RpzoCs
- IEiJYjPmXR86ck3mW5M2knHwLp/cBcOYi5wdI24acpV4Nbc+Et5B67mmL
- AzN2iLy5owaKfSBUTARUqHC1Xc50F5+Frh4u2cyzmVloXWCRUYu7dR5r/
- xfVOPW1uKFcPUYSBB+RFoZfgfWL88OLqRIeF/do75J77z+OPORrjqoJXd
- anLGARI33bKn5AqNPIgVe6sL4DcbhytdFFOh/rafdzvJLNhOv7Yv22/bp w==;
-X-CSE-ConnectionGUID: 3ZG0MnU6QGGNcA8ntU8b6Q==
-X-CSE-MsgGUID: rc8iRG2UTua0/IiNPOwILw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="27014226"
-X-IronPort-AV: E=Sophos;i="6.13,263,1732608000"; d="scan'208";a="27014226"
+ bh=DXe9ZQrPUoJuVdAF+V0/NeWMRxH5RoRl3OkqbwCzIJs=;
+ b=IvxfDUYlELZhzuUxr+zqmH/sK3CAN7c+OmRyV61S3PEpQYyQ8bMlXtCz
+ I05A3ODA2QQ2uSjnYwSW1fFSL99Tv860gfRkOo++nSPL/5cy7mXjyFQ2x
+ F/8twXD84wZ9kYou43l0u/yT/mNIATiLmpWnVhyXLhJN3WJXHlVJtGWHX
+ gGC08PPOaQATp8SFZ1KkhHQyqGMQXAJfi7L8Nw6BIlp9RFgs9Hyu2AbWA
+ Y8yR9qGPFgkNCbLs+t8rriBv9TZ2HZ5TB1sbNO/LjCIMRK0xvTV43jtcm
+ whufUuPoGMeLCNW3Vb0o9i8Yv33eewnXSsjp+lHQFMEYrdwlWOjDM2yY1 Q==;
+X-CSE-ConnectionGUID: keHUaDh2SqWZdUWfAj3D6A==
+X-CSE-MsgGUID: Z8dPB3lcTyaVu8FGo98iyg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="27014241"
+X-IronPort-AV: E=Sophos;i="6.13,263,1732608000"; d="scan'208";a="27014241"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 22:33:17 -0800
-X-CSE-ConnectionGUID: WRV7mhsVQTiLKls2YaCIgw==
-X-CSE-MsgGUID: TdUt0gm2QOO2XEtC1ogFYQ==
+ 05 Feb 2025 22:33:25 -0800
+X-CSE-ConnectionGUID: 35rk0aNBS2aaV65O3Kh+6w==
+X-CSE-MsgGUID: cWszZvjyTRqed7VMJHwxGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112013704"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112013744"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa008.jf.intel.com with ESMTP; 05 Feb 2025 22:33:15 -0800
+ by orviesa008.jf.intel.com with ESMTP; 05 Feb 2025 22:33:23 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: uma.shankar@intel.com, arun.r.murthy@intel.com, ben.kao@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 4/8] drm/i915/backlight: Check Luminance based brightness
- control for VESA
-Date: Thu,  6 Feb 2025 12:02:49 +0530
-Message-Id: <20250206063253.2827017-5-suraj.kandpal@intel.com>
+Subject: [PATCH 7/8] drm/i915/backlight: Setup nits based luminance via VESA
+Date: Thu,  6 Feb 2025 12:02:52 +0530
+Message-Id: <20250206063253.2827017-8-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250206063253.2827017-1-suraj.kandpal@intel.com>
 References: <20250206063253.2827017-1-suraj.kandpal@intel.com>
@@ -68,57 +67,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Check if we are capable of controlling brightness via luminance
-which is dependent on PANEL_LUMINANCE_CONTROL_CAPABLE bit being set
-on EDP_GENERAL_CAPABILITY_2 register.
+Modify backlight setup function for VESA interface to take into
+account the nits based luminance.
 
 --v2
--Prefer using luminance rather than nits [Jani]
--Fix commit message
-
---v3
--Fix the bit name used in commit message [Arun]
--Use correct edp_dpcd[] to check the capability [Arun]
+-Prefer using luminance over nits [Jani]
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Tested-by: Ben Kao <ben.kao@intel.com>
+Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h    | 1 +
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 9 +++++++++
- 2 files changed, 10 insertions(+)
+ .../drm/i915/display/intel_dp_aux_backlight.c | 99 +++++++++++--------
+ 1 file changed, 59 insertions(+), 40 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index cb51b7936f93..3b64ad724b29 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -412,6 +412,7 @@ struct intel_panel {
- 		union {
- 			struct {
- 				struct drm_edp_backlight_info info;
-+				bool luminance_control_support;
- 			} vesa;
- 			struct {
- 				bool sdr_uses_aux;
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 09e82f24d030..2599aa39b21d 100644
+index b0640b5128b1..301a4dfdfbe5 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -575,6 +575,15 @@ intel_dp_aux_supports_vesa_backlight(struct intel_connector *connector)
+@@ -560,56 +560,75 @@ static void intel_dp_aux_vesa_disable_backlight(const struct drm_connector_state
+ static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector, enum pipe pipe)
  {
  	struct intel_display *display = to_intel_display(connector);
++	struct drm_luminance_range_info *luminance_range =
++		&connector->base.display_info.luminance_range;
  	struct intel_dp *intel_dp = intel_attached_dp(connector);
-+	struct intel_panel *panel = &connector->panel;
-+
-+	if ((intel_dp->edp_dpcd[3] & DP_EDP_PANEL_LUMINANCE_CONTROL_CAPABLE)) {
-+		drm_dbg_kms(display->drm,
-+			    "[CONNECTOR:%d:%s] AUX Luminance Based Backlight Control Supported!\n",
-+			    connector->base.base.id, connector->base.name);
-+		panel->backlight.edp.vesa.luminance_control_support = true;
-+		return true;
-+	}
+ 	struct intel_panel *panel = &connector->panel;
+ 	u16 current_level;
+ 	u8 current_mode;
+ 	int ret;
  
- 	if (drm_edp_backlight_supported(intel_dp->edp_dpcd)) {
- 		drm_dbg_kms(display->drm,
+-	ret = drm_edp_backlight_init(&intel_dp->aux, &panel->backlight.edp.vesa.info,
+-				     panel->vbt.backlight.pwm_freq_hz, intel_dp->edp_dpcd,
+-				     &current_level, &current_mode);
+-	if (ret < 0)
+-		return ret;
+-
+-	drm_dbg_kms(display->drm,
+-		    "[CONNECTOR:%d:%s] AUX VESA backlight enable is controlled through %s\n",
+-		    connector->base.base.id, connector->base.name,
+-		    dpcd_vs_pwm_str(panel->backlight.edp.vesa.info.aux_enable));
+-	drm_dbg_kms(display->drm,
+-		    "[CONNECTOR:%d:%s] AUX VESA backlight level is controlled through %s\n",
+-		    connector->base.base.id, connector->base.name,
+-		    dpcd_vs_pwm_str(panel->backlight.edp.vesa.info.aux_set));
+-
+-	if (!panel->backlight.edp.vesa.info.aux_set || !panel->backlight.edp.vesa.info.aux_enable) {
+-		ret = panel->backlight.pwm_funcs->setup(connector, pipe);
+-		if (ret < 0) {
+-			drm_err(display->drm,
+-				"[CONNECTOR:%d:%s] Failed to setup PWM backlight controls for eDP backlight: %d\n",
+-				connector->base.base.id, connector->base.name, ret);
+-			return ret;
+-		}
+-	}
+-
+-	if (panel->backlight.edp.vesa.info.aux_set) {
+-		panel->backlight.max = panel->backlight.edp.vesa.info.max;
+-		panel->backlight.min = 0;
+-		if (current_mode == DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD) {
+-			panel->backlight.level = current_level;
+-			panel->backlight.enabled = panel->backlight.level != 0;
++	if (panel->backlight.edp.vesa.luminance_control_support) {
++		if (luminance_range->max_luminance) {
++			panel->backlight.max = luminance_range->max_luminance;
++			panel->backlight.min = luminance_range->min_luminance;
+ 		} else {
+-			panel->backlight.level = panel->backlight.max;
+-			panel->backlight.enabled = false;
++			panel->backlight.max = 512;
++			panel->backlight.min = 0;
+ 		}
++		panel->backlight.level = intel_dp_aux_vesa_get_backlight(connector, 0);
++		panel->backlight.enabled = panel->backlight.level != 0;
++		drm_dbg_kms(display->drm,
++			    "[CONNECTOR:%d:%s] AUX VESA Nits backlight level is controlled through DPCD\n",
++			    connector->base.base.id, connector->base.name);
+ 	} else {
+-		panel->backlight.max = panel->backlight.pwm_level_max;
+-		panel->backlight.min = panel->backlight.pwm_level_min;
+-		if (current_mode == DP_EDP_BACKLIGHT_CONTROL_MODE_PWM) {
+-			panel->backlight.level = panel->backlight.pwm_funcs->get(connector, pipe);
+-			panel->backlight.enabled = panel->backlight.pwm_enabled;
++		ret = drm_edp_backlight_init(&intel_dp->aux, &panel->backlight.edp.vesa.info,
++					     panel->vbt.backlight.pwm_freq_hz, intel_dp->edp_dpcd,
++					     &current_level, &current_mode);
++		if (ret < 0)
++			return ret;
++
++		drm_dbg_kms(display->drm,
++			    "[CONNECTOR:%d:%s] AUX VESA backlight enable is controlled through %s\n",
++			    connector->base.base.id, connector->base.name,
++			    dpcd_vs_pwm_str(panel->backlight.edp.vesa.info.aux_enable));
++		drm_dbg_kms(display->drm,
++			    "[CONNECTOR:%d:%s] AUX VESA backlight level is controlled through %s\n",
++			    connector->base.base.id, connector->base.name,
++			    dpcd_vs_pwm_str(panel->backlight.edp.vesa.info.aux_set));
++
++		if (!panel->backlight.edp.vesa.info.aux_set ||
++		    !panel->backlight.edp.vesa.info.aux_enable) {
++			ret = panel->backlight.pwm_funcs->setup(connector, pipe);
++			if (ret < 0) {
++				drm_err(display->drm,
++					"[CONNECTOR:%d:%s] Failed to setup PWM backlight controls for eDP backlight: %d\n",
++					connector->base.base.id, connector->base.name, ret);
++				return ret;
++			}
++		}
++
++		if (panel->backlight.edp.vesa.info.aux_set) {
++			panel->backlight.max = panel->backlight.edp.vesa.info.max;
++			panel->backlight.min = 0;
++			if (current_mode == DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD) {
++				panel->backlight.level = current_level;
++				panel->backlight.enabled = panel->backlight.level != 0;
++			} else {
++				panel->backlight.level = panel->backlight.max;
++				panel->backlight.enabled = false;
++			}
+ 		} else {
+-			panel->backlight.level = panel->backlight.max;
+-			panel->backlight.enabled = false;
++			panel->backlight.max = panel->backlight.pwm_level_max;
++			panel->backlight.min = panel->backlight.pwm_level_min;
++			if (current_mode == DP_EDP_BACKLIGHT_CONTROL_MODE_PWM) {
++				panel->backlight.level =
++					panel->backlight.pwm_funcs->get(connector, pipe);
++				panel->backlight.enabled = panel->backlight.pwm_enabled;
++			} else {
++				panel->backlight.level = panel->backlight.max;
++				panel->backlight.enabled = false;
++			}
+ 		}
+ 	}
+ 
 -- 
 2.34.1
 
