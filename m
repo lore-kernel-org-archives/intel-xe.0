@@ -4,170 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAA41C02196
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 06:44:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 359D3C02196
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 06:44:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2F2210E160;
-	Thu,  6 Feb 2025 06:44:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F24A710E441;
+	Thu,  6 Feb 2025 06:44:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DSyX7+1l";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J9vSP4ja";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9B6E10E160;
- Thu,  6 Feb 2025 06:44:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E6C210E160;
+ Thu,  6 Feb 2025 06:44:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738824252; x=1770360252;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=uRdSiBJV/7hHQNB6v9DtnnBagbQWclQYmhEzVuJDFPU=;
- b=DSyX7+1lBo9c5PM1AYYlFiRTKa7gDjGjvcn1/cEBcE0SU9vlu0D1WrCt
- tmwi05D99t5jhgBILT7mbCF2dOOr35B1H/HgqKgpH2QnpG9efUES0smKL
- qhKOB/z4rVJYCeXxtUlHOchk+rzOMElXOzvLnmgCoL2Iv0LiBadLLaOam
- IC2LAI4YYWsq+ax3AiVFzZ86S/Ss+fz5PomnddMQYlp/GrEQyf9BCQxRj
- TU2FoiI76Yh+GAEWSKKz+X1jMqntn0P1tCwVDWXcz6Bm323aPnFYBvblB
- XmRkyXldO2nzq94YW96mZRn22b6DrJj4ZI9TyaZH7cIapfn06OmhfMYuF w==;
-X-CSE-ConnectionGUID: drTULWO7STumN+R1+8yCqA==
-X-CSE-MsgGUID: 5Hut1W+MTRSC2DfIOtD5aA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="27014875"
-X-IronPort-AV: E=Sophos;i="6.13,263,1732608000"; d="scan'208";a="27014875"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 22:44:12 -0800
-X-CSE-ConnectionGUID: JrmDjYYySvqkY4+P1Xzyww==
-X-CSE-MsgGUID: ZPJDDoPGQQaghmQFP2gvnQ==
+ t=1738824268; x=1770360268;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=dlpSgMlsLfLUGzenHzqAT46vLI46hugqdl42WG7YPEA=;
+ b=J9vSP4jalZWF8MG8OK1D42uzz/TQland2EnU6S0xgdY1ie/kYon4aIed
+ k8zGcSza66en/qNpp8rZFQczFEca3JjGwGR+JKsuG/c3dIxsj0kIC9HEm
+ ZRywqID3RyHVY2OroHy10Pca5SZJCk5FO5P5wCG5yNdz5nm9yFq6FJEOh
+ eIiGxVTtfeL65lv7rA54g/J2U8fclyp6jiNXAGRd7poUAXElDf8YKqF5D
+ gqNbJEIjsuxUUDyKB6xro/vlbXfervqNo70W3sWY5uXQXSboGnpd8DgwM
+ 15PCLCARzIrnn+3paOhBKnbYyhWummdIwHsU5o9pK4dTH61neU/qGzvCY w==;
+X-CSE-ConnectionGUID: vI2bGcfEQleT9oaOFQSCqw==
+X-CSE-MsgGUID: w5U61CaoRdGBZxfNwzYgEg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="42252261"
+X-IronPort-AV: E=Sophos;i="6.13,263,1732608000"; d="scan'208";a="42252261"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 22:44:28 -0800
+X-CSE-ConnectionGUID: JCdNf0J2TAKClfFeuJJqlw==
+X-CSE-MsgGUID: n/gyeABCTHK2MR1Gy8HuzA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="142004915"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Feb 2025 22:44:12 -0800
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="148323760"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 Feb 2025 22:44:28 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Wed, 5 Feb 2025 22:44:11 -0800
+ 15.1.2507.44; Wed, 5 Feb 2025 22:44:26 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Wed, 5 Feb 2025 22:44:11 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.41) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.44 via Frontend Transport; Wed, 5 Feb 2025 22:44:26 -0800
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.171)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 5 Feb 2025 22:44:11 -0800
+ 15.1.2507.44; Wed, 5 Feb 2025 22:44:25 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OvU9CQx7wABHOSJRQWINHqiMpxsqdkNuqVc8p4EsHq2zCaCPlzHXQH9M5lYiv7W4jvo7cbRwfrfT5WqkAKX7T1KJ/bXBH76VWeUdrqnc4Tqz/v/3hX4Dkkw+hIB5fNW/b4NT5pETQeBFaJnMYUa2Eu2KflyG7E0M9SugQ4ylpiYpkj11C4Ya0oL4azawk4bKv/ujWuWVPKJ/Tor0lm/RwW6qXoHXvkAUmuB5X56EknyFmJXM0sPgnhT8a7rNTHm+XGEVZY4hghE06qL/AFHwMmreoEksn5F+CPTSF9KdFm1b0wZPuoLVSLwTspSeStxGkulzONXgjvAr6d5+fA/Gpg==
+ b=In+IbJCz7G6QXx9lBwk1prS9hfT7lBJHkA1l2Id0O/BOYRCr0Dc/ulO0GffV44mbfmONXwWDxmG/sSx4OPP4mgpanmdKFN1go9nW3t6uToc3K2rg9ACZJQCkyM6PQd7wo3pBpwhiqnOCWjcJjjFfiBOIXC6nOitT01KRLGSROl9xZvBd17oEerBTZKFW5O6kcfxUlwa8kTD+v/JyDpQKCYnYYs9D+YkkUZiMQpoFuh6agOFMLFNx+fNrltVOJPxnjPe2a3ZFxa2uUaRUzFVV12yQ//mZSMA09I25kO+/r249lPFAgLkawIH7Q9oalJvw4MjosCyPdlfwwGceWZ5fCA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Us6V2zRNbXnljv0656cNZ+X4Z+fDXKDPU0+EjC8+eV4=;
- b=hcklu3YSx2H6gyn1ki6CNZNLyfhyp+aXDkwq1h/dC1Y1JYsR0lhmvbKckog6A2ffWaL1cLU9LcNSedyVCQp5CQcZJzFTEfZ6dPNkzWKN8wD20iSqG+IY5Qknnq7KsA/RqW2B93lyur9S7ao9t3tNwTTWzEbadhttStM/J57XDRkBtb3lfRBHg4mdS3rMVSQXPbf662LqEdMvvV2bj1WHmT/JPBB1iacMX6iC7Ls8VhJMysrjrObXUtl4MHex5+njEiOC0OWKxt5HTYBb0CarEyVqT4OwXXE3ygHLj9mJkiD7WBRmleHpQ/gIMgP6S+D4hbZt1mU1kEGJks7ZdWZbhQ==
+ bh=PVbDbVqkImIx9shWmkrzuGyF0GembOb6w/6RtbthLo0=;
+ b=tJEwXONEj0AQ5G1WD/+UJnIALDNBUsmB+qvALrbMIJ/1jhCBToSoCwAqj4dCehpAz4eBZz54UyP13R6EaiMrq+O4Wcw3MsOkbh+gueVwrAXvZWweKdq5HxsEiW2tqC3o4BcOljKkQXV7DaqEIhgHl7AYhXotZp5OspcTduZJXITkoIa8NtMs4CyAK8CWcqBHyt6sX2loBm4M3fpwJhAAvf/Exe6LVFENuqB3XAbvxK4RW2OX2N8m6Jqvl1rs2XhFTz7zaRQEp25nBajg92eN875oloQI+IbVGxyxA7SuJVozWn/FXBI8/EiZmDqxO1EgxRKKTuKoqKzqS+0pIWV1Yw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
- by MW4PR11MB6716.namprd11.prod.outlook.com (2603:10b6:303:20d::18)
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by BL3PR11MB6314.namprd11.prod.outlook.com (2603:10b6:208:3b1::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.25; Thu, 6 Feb
- 2025 06:43:55 +0000
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::dafa:d38d:8ac1:e843]) by IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::dafa:d38d:8ac1:e843%5]) with mapi id 15.20.8422.012; Thu, 6 Feb 2025
- 06:43:55 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-CC: "Shankar, Uma" <uma.shankar@intel.com>, "Kao, Ben" <ben.kao@intel.com>
-Subject: RE: [PATCH 3/8] drm/i915/backlight: Use proper interface based on eDP
- version
-Thread-Topic: [PATCH 3/8] drm/i915/backlight: Use proper interface based on
- eDP version
-Thread-Index: AQHbeGEJioQ5Nfj2sEC2vFoo0hdpI7M51AbA
-Date: Thu, 6 Feb 2025 06:43:55 +0000
-Message-ID: <IA0PR11MB73073FA674A23145294AF53BBAF62@IA0PR11MB7307.namprd11.prod.outlook.com>
-References: <20250206063253.2827017-1-suraj.kandpal@intel.com>
- <20250206063253.2827017-4-suraj.kandpal@intel.com>
-In-Reply-To: <20250206063253.2827017-4-suraj.kandpal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA0PR11MB7307:EE_|MW4PR11MB6716:EE_
-x-ms-office365-filtering-correlation-id: 2fab1610-98b3-4f95-600f-08dd4679a097
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?dLHGf4AENRbPDFI0xtb1TlJA1CGHi4wdes8x1CCZyhgaT/IXwAJguFWcFHCT?=
- =?us-ascii?Q?lTkNu4YAT6UV2bk0qhuHUu4eKFEs1E0Hg9p4BR/KflockemNHtIIQzLk6JKD?=
- =?us-ascii?Q?L7fU2KiHYCWCwQN97rspDki7KLGVH6DdaGdYEegIKyFoohoU/XRAtwydaJfo?=
- =?us-ascii?Q?W0JrjknxDr+ksR0K3XjiXi+xVyTuwbVXODTk8t6HVIndAWbC5I8jHBaxGAwN?=
- =?us-ascii?Q?dRpCDS9fciTy40ZsANPDmgPDDuACtwPvQ7HSoHajWJ2uitfi2DFdQoWPgB+4?=
- =?us-ascii?Q?Fw+q3pQ3Whikdyg9BkzddSVk4GzY0DeoKlWq9G71mTAXivFs3enpqEzPuiIX?=
- =?us-ascii?Q?62yNzmMbkxyt0fds3NFTG1Nilc4uZjE2QNDRccqJMB/73YUkS+9sFP2b5k9X?=
- =?us-ascii?Q?/QKE++E7029XxxGknIXmY4+gnaO+eVTXfH7+q0Ig0FHzF1XRhoyYZnQM4hQ3?=
- =?us-ascii?Q?5Zf2ePanDx79sUJqSUAJhDJioKPQrcOg0z46KLinyc4ZE+3JffxJI42sdlyV?=
- =?us-ascii?Q?YtFki+zuy53OxgEqh1/xqiCz9vNEUOuqUEgZUfMN9zemh6+gtp9hQNv7Hj0c?=
- =?us-ascii?Q?Kmww+xk7sPUbknfLLTverFXdQ+KCDfUqFM1C42o8dYuYJfVOhKBNw2ryn5dH?=
- =?us-ascii?Q?6TPPgKMx1NoKb9ZdSQ57vPEZA4MX8wWz5NTPZnPsdw67OspOfIPFnV3j+tIz?=
- =?us-ascii?Q?RGTTq5aPDPeQv5ItlomRqSZtMF1bkzKeWp7JM+ZXBqXwiBIJFw08bxzh8YDC?=
- =?us-ascii?Q?IYyYwOodgBBYAA8h9lVFB6iBBTLfISkHqkb8E80N7VXVRI9SQr48B1c9nyzG?=
- =?us-ascii?Q?zLaL6hf01K5+dWPaE77L6riEBNw15iHVCfdohpb90vFOGtE7dxBGqHjOyKVA?=
- =?us-ascii?Q?/yD7jizviJY40vD+EXWajaoaWe3/lTm9uXSG6Aw5kWY5pWFULhKEDC+8+aZQ?=
- =?us-ascii?Q?5knIFdP4BKj34VL5G86XVCrNFE1xOMP6paPZboec0JHA7WgcF7msn1ibJY9h?=
- =?us-ascii?Q?hYqo/WGG0cK+IdqaK9zEW0gVJe3BrJ01DUCalNQKVxV2DyP1/F5KfreTYyc9?=
- =?us-ascii?Q?6COWJX9lePvP0bYfa6Ei/UEIzmMHKkM311grcV6HX+xwu4M0T1YVbXqE2SuF?=
- =?us-ascii?Q?ouRSCnJHoS/K+9geMkChTkUXkwflZoFcIBdKkYz2A/7VYNpjwTONPhvcoMDI?=
- =?us-ascii?Q?ibgJdegfBO4yIAiXXdPmQL0G+9HTVDTwNI7RhDU6XovFnOjT7nZOrTOtBEfg?=
- =?us-ascii?Q?vvD3Y3XxXtaDmcP/YCXjdL8b0d+8BCvYepCCMgfhsfUAclbT7Uuiar8WqtjM?=
- =?us-ascii?Q?o2HiDcSnIaCkU7fmO9R5EYnA7m9c0Ce9N6TmBKmz2cN13jzD5EDa+nQYARTb?=
- =?us-ascii?Q?FQaBD1ZIbF3Q3CqmvQvhQBkTrmf6cJ1LUoKYUsfSaCXGG5FV/upXPRMjVoAE?=
- =?us-ascii?Q?cTajiv9cIxld+jp/Japav0hiUW+Mv7iC?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?c+D3utzVO+Of+idU/WftKDonToDU7nY4Jss/LO631A1UohgHwKu9EqOaXo5+?=
- =?us-ascii?Q?kvi3rcpYWfq6Err9QTbC73XUcvxlm642V3H/6g87BMREYkkk8VwMULFcZHXn?=
- =?us-ascii?Q?qdieIFFDDeK6lizqJbVqXm2X1CRDgIucYTFacqfhW9LGhGMlWn6gr8iBRmWx?=
- =?us-ascii?Q?XPeCxM1pXyNj4XrT/bvaxFjtZOXno6rbQS5hvTKHSdPbLpE6U6Tyb9nxc/9+?=
- =?us-ascii?Q?Fr9PF+VSA0SoKnV5TQbLHrBGg8Gn+sFqVAa3DLYCyepS2/vjgbtXPDOxoKzi?=
- =?us-ascii?Q?Usspr9iNHpzk9B+r4XEbl32a4taUtC8ep1cup8PHxzPHL+aCCsfsjnxEGjKg?=
- =?us-ascii?Q?Qiks78IHYKuPAoRhUFGkRcTFxfWz34r9anK7D3bMmhgyp2lzE4Z0R4VjGJdY?=
- =?us-ascii?Q?d04yvQ+bDciV6wsx3d/f51TMvGKq/wK1zcbbZPYew1Ia6G+ji2JzP2qEKghG?=
- =?us-ascii?Q?+7wMSei3wTPSXcAzpH8pGZ+ctx+FsxUmgHYpRLgMCQfWgodWoGsBXa7AgezM?=
- =?us-ascii?Q?UK4IifO1n7dUZuOLRaOMxM65VgYAFe20kpGEKhVS/WKTMlfZTTIMnSQ1h9C0?=
- =?us-ascii?Q?NLcfPRM6vcaCluPTJBmbKTfOGSqK/t9jtPrqVbfJqGgTtW5MIx8E47xh8NTc?=
- =?us-ascii?Q?Zqegy95/XUbPADBrLKoOo5JXVf0rUYQCTOFYH28wcc7VSGdA47GJJ0pBp8nt?=
- =?us-ascii?Q?/bnNeZGWZpgcu8XrcEvN8pIivz+et9BIiJ1VvamHuyTsTnuUEcTCp4BVpHhl?=
- =?us-ascii?Q?+ovKllkeJHOln0vuln/j6lzPGLGNACFdjYVcX5rTD5MHhXe2guiDn0WoSt4M?=
- =?us-ascii?Q?XZrOqsTeQ0fF3GPDGJcim1ad6+NFqm96CJZkitItinMfo1EO7PErLF663wxf?=
- =?us-ascii?Q?3wHDznmFOJneeCD5JmdV4tpoC3SNWjyzIJxyywv/g5qR2Bh5DeiHRkNqogcL?=
- =?us-ascii?Q?WNNO8alncJAq5BHQfCB8mpWQAM5meuC6LthFM2luGr3jdh1w9hfi3OVPijhD?=
- =?us-ascii?Q?9H2Huby4PB3yv9eZO51HKzJKEpZd+NPjkGqGRY6Aj5me/kje/ukTaIjPeIsa?=
- =?us-ascii?Q?MPO5QWuUuSMvYihdS9RS72usFFLtGEB2S1iwddVvZllIZLohWkxhxfpU0RlD?=
- =?us-ascii?Q?ARLc/NzzRypwSBzCe0yDl5QgfTjKOGh4LItl9lT8NAz/2NvZ7FUgDE3yXU0d?=
- =?us-ascii?Q?S5kIq2Mt0Se43geNdB6DrYbX0wvX+sIqRtQjjWcuOK5gyFsProqH557AZ/qu?=
- =?us-ascii?Q?VFjGO8/O8SEXum/QifHXRfcRUImfz45c2oXI/XXATpv6ekliprkplnLDWcqb?=
- =?us-ascii?Q?i0pxJze0lzSiAqrZcHuEb+M6ZzumvvF6CtzysOeeffgwgSyCulalTCfitPv9?=
- =?us-ascii?Q?rQQ1CWrBWy0vY3NWEBcXTbSN/Lo9mfqMpUN77slG6wxp3CAaQ3hBd/NT4BzO?=
- =?us-ascii?Q?RC4AVFJwFr8Pv4HKqY8iCBMupSHI5oyr4lgJjqBr0S24uIBrsRe8QV06sW9c?=
- =?us-ascii?Q?tRpM1H4RyFlxp6oEOJ+bRs6vY4v15WwyYGK5fJR6D9aWM+KuJkMweDw8ABeh?=
- =?us-ascii?Q?Im7TDMFkwYbv56BbtOi6BcNcXc6BxQffBYSDjJ2f?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ 2025 06:44:04 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.8422.011; Thu, 6 Feb 2025
+ 06:44:04 +0000
+Date: Wed, 5 Feb 2025 22:45:02 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+CC: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ <dri-devel@lists.freedesktop.org>, <kernel-dev@igalia.com>, Danilo Krummrich
+ <dakr@redhat.com>, Philipp Stanner <pstanner@redhat.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: [RFC] drm/scheduler: Remove mention of TDR from scheduler API
+Message-ID: <Z6RabijQPbaPDIjn@lstrano-desk.jf.intel.com>
+References: <20250205111427.8043-1-tvrtko.ursulin@igalia.com>
+ <76739b4e-a1e8-48f9-b547-69b1e2a2504f@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <76739b4e-a1e8-48f9-b547-69b1e2a2504f@amd.com>
+X-ClientProxiedBy: MW4PR04CA0275.namprd04.prod.outlook.com
+ (2603:10b6:303:89::10) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|BL3PR11MB6314:EE_
+X-MS-Office365-Filtering-Correlation-Id: ee3924da-04f2-4a98-defe-08dd4679a5d0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?24FwWuxNZNS9tgvC0Kg9mDtN63BfXJ7I0tSx0bS1LdDv+B+6SIW6GzRw5w?=
+ =?iso-8859-1?Q?rvCiaGhL/IwZJUwRAZG4msyTML1KmipnpKCBj6aJdW+TMnlU9TwoJj8iMY?=
+ =?iso-8859-1?Q?vkixwJ5joStK9/LDFqyFCoKJglEaClzJmaKbwgN/+eIXSWq2oXsBTD6HVT?=
+ =?iso-8859-1?Q?ai6WyAiCua+nJ2zKvQx2C52LlfL5a/FdmNMURFVwFUTlZh3YawuRxp8yJ+?=
+ =?iso-8859-1?Q?qL+D7RzC/1wm7SPOdgs5NXKEP5+Qq01elwmfm9ywsvymUo3JfuOORrJfzX?=
+ =?iso-8859-1?Q?hfq2CF48wQIMi+St+flXTjf9GfV9G5nMMj7MgmumzAqmUOVwt4RWICiwpI?=
+ =?iso-8859-1?Q?yN8PYQi8O2S+JFyp545Er17hbXTzco+Cy52+a3DUNRzP1GzZpEXltQcsi4?=
+ =?iso-8859-1?Q?lWgtCz285ee3e4CTMrm0rEE0LRAD5daR9KlWJ1fypa0FVGJkNsnuVbGbqH?=
+ =?iso-8859-1?Q?JeMu5NuNwFMFvUH1SrP7NQGM/ywFr9rSSd5uq1UbcgeAXcp8xawFYASj+i?=
+ =?iso-8859-1?Q?JQiFSmrZMp1+LrNSOTeyHMDhFlWsCPHm8LmHIiWekhO2dWhve4YcIQYCmm?=
+ =?iso-8859-1?Q?JPG8Rw+NJTwOX65vZ5gT+5kqGCXWzdMQf+lCDkRHQaDAGGvDIAYazueR79?=
+ =?iso-8859-1?Q?VFEnoxw4CDdfeyE+Xps6QmT7DAYwfeXgmTTtSNuJKTOrGi2foKzEc82ThA?=
+ =?iso-8859-1?Q?DDXSukS/FVFOOIdX+igBSC9x78IY7h8vak3XNIWoPosRXiqc8PrAxWybSA?=
+ =?iso-8859-1?Q?6pBwBp9AwAW2FOC7xiQtf0xgUn/RAcvoa07YXhF2+l8c52E51AJpWE/HgD?=
+ =?iso-8859-1?Q?lea0tqehtGn3N8QgraFB2VUfCG2jazgBKpGBUVynkWBJqHdgFPwYTIG9b4?=
+ =?iso-8859-1?Q?mk1Tb56VsoIbPddAVMvDdGd6oBsBOjxQVndfXI2htGwyonWRYwmTFTstpZ?=
+ =?iso-8859-1?Q?i6HC+lgyZpI/Y4cUp5f0o5JA4mxijw/AfjYCCodfufYoCQ3xb9QlArlNfR?=
+ =?iso-8859-1?Q?D+kOhcnwt4a1llHz8ldhERaegRtR6E6KnuYQWTfSDhUrRFHkGeG9A/JMQJ?=
+ =?iso-8859-1?Q?N0zhIMwmX+IHal7QQfoPqAfKUsqSFcxfh7jKDgQrefe9etqqL3ze3wChE1?=
+ =?iso-8859-1?Q?n+BK+AC8PKvQDgVmEd7Gb19whQzlvRA5CnxnW2QnAePatDdwEh+9ubzqlN?=
+ =?iso-8859-1?Q?06fAGNLfAmEWEj1njfKYBxGTzzMvAlHTb5UhY6bqbOWjUpCXOn1RZneyb3?=
+ =?iso-8859-1?Q?lGlwI5oMzZEl9iL9IT+1EfuOrKa59Q/hiS5LLC+QlbHKylpFqzPm5T9HLP?=
+ =?iso-8859-1?Q?TIf06SoDxIHmGZajY0ujmxrOZAaF89DdUDeUryB+zQJTxKlCPsjnMgAbDH?=
+ =?iso-8859-1?Q?EFGkoQIjHbgQEc557G/qfu1P08iYf1a039qdMud1hlXJx4r0LRVDxAGELL?=
+ =?iso-8859-1?Q?TJkFpjA1GR3zYh27?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?RvddVSFUT/fVwOIRtIdaqTV7JK24MldAV1OLkBOxHwVD5ma6qgnq90g/Ce?=
+ =?iso-8859-1?Q?nvf3tlZhj/8HIl6+EDE5s70ZTfflUaqPhsLdc7lS/jN5Umpi3buWjibTV8?=
+ =?iso-8859-1?Q?odZ7N1RNOnUEVzwpWEEhCd6gx+pq6SDA4MErjvolXjl2P8Ly6XRy31TSKc?=
+ =?iso-8859-1?Q?dO905eHUVlcATgG6hBHxKbEEvseA02gVBatvokMz17qbm2i8QYDxSbANY5?=
+ =?iso-8859-1?Q?k62FP96t55VWvNbKhRmZO9r3SXb8XcWN0uQ8VOnRUJnW4Enz3YdGv8TOIw?=
+ =?iso-8859-1?Q?fYzTBm5UxpiWfWCAwC94l/xEsPo/tFjfUV9hEFqlyP9+C7UYQUiXAI0TCQ?=
+ =?iso-8859-1?Q?3dxQLSiOFmhcPPzUL7ibxeAL5GCZoDt+XFT9x3jMJ37JcPY1CN4ceJR+rj?=
+ =?iso-8859-1?Q?CY0bZqhnmRwxX1eRYPyYCiBCpt9YyoL3WYdP3M1PpRdiA+OUZtiyqNaCPL?=
+ =?iso-8859-1?Q?HIyEBM/bGkrG50Bi/hD8SDizWYu0/C/qDe2dTSzhf86t/lb4oeGvFVvPOY?=
+ =?iso-8859-1?Q?Fw7PGwDf0sfzf4RYKDaJtjPgbOEEVpA3vanCqtHFKGUsVd9scGdMmrf8Yi?=
+ =?iso-8859-1?Q?SsNJa2CT9ZEZHZjnQuAd3dTCeHUq+p9jZd2tn5oKK5gGQ43HAjTtiwXpn5?=
+ =?iso-8859-1?Q?2hOV+n44Dstt+bqHhAp/nrYH04+B3kyqRG/7i7oOGj6dl509row1ElEaY0?=
+ =?iso-8859-1?Q?rK3bxemFwmqUqsYnqdDap0CvtH6Pjhi14S7Jt0NV6RAynhnouLFtCtzCSU?=
+ =?iso-8859-1?Q?8yNMqFE+EId/ATiqS0W/r8/iqDlne2mqKuFpjYiDM3iNMWSiVaJ6pCTXSY?=
+ =?iso-8859-1?Q?o+e7ZVYkzJWpElo0HoSsDsVnT4aystEgptbbZzZNftvzvicaR8S0idAgI3?=
+ =?iso-8859-1?Q?URDq/CEGZXbL2hL4mJlDFpYUlBQWl6aW6w2AxcCS+RzZsuLTYT95ZYyy1T?=
+ =?iso-8859-1?Q?iO93SAAbkp57K7sP9kzYZg1eaghl9PxQmDeasFmdAUVgTy06DGncaSRRHo?=
+ =?iso-8859-1?Q?pqZH8H/+CTiGuGaoSAtGPTv/rLAiQam0BY45AYEYH9cZERua5WpG0z6voY?=
+ =?iso-8859-1?Q?ihZAsxO3EofjyQKn7NOxRU7jHOlbzsvxvtYKYGDOQrK0ASWqlsXj4t+dST?=
+ =?iso-8859-1?Q?z3I7V/EAOr9pgeTfnv1DXh22o168mA02/+r3Qym1IzUo7ZaAiyQy+Szl84?=
+ =?iso-8859-1?Q?bfBhBAnam3yowoRK2Po0zkLTunnSyf/ToDKQlJOGgUgcyyM3tJv25a4/pE?=
+ =?iso-8859-1?Q?oJ7g4gs2VUuywVD6qReCj/awypqxtafScNESKDXBAnbSGXlywdsTEs/Xa4?=
+ =?iso-8859-1?Q?/v7SKF1zeOU8f8haCxl4j0lSd+xWxiVL4NQbvoqxAt1g8MaIzrnSnlQTfS?=
+ =?iso-8859-1?Q?VFRe0LFhftdbLcWxa6uFSHI5PpbVZP7w2Q6chMdTyjxjC4BpGQIvm8j3lu?=
+ =?iso-8859-1?Q?NjNmI3/SzNrXW+q273/jOa1iaAiQmrTHutpVCTwMLp6EeZaW1gSTTZ6424?=
+ =?iso-8859-1?Q?bmnayICjOthn53SnvvRsdkadc+eOm9SWRHV/eZMsKcu/DhIKpt9zsU+kSH?=
+ =?iso-8859-1?Q?JjYbO8Quco4Opi8c3FzAcHDXQ8NECWnE87Er81O0LZYFerSe1vu4AuI0AN?=
+ =?iso-8859-1?Q?yuOxNwXlWIy9hOC0TOp7AqK4RfU6FDQWcajFNXcVSowQga1P2wq871Ew?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ee3924da-04f2-4a98-defe-08dd4679a5d0
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2fab1610-98b3-4f95-600f-08dd4679a097
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Feb 2025 06:43:55.5539 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +ZigIR9QLdZidUr5a1FbNHt9i5OVFy3mXqaLmSLi2FIQQplKVuvTsueNObc6p36wZhlJVwsiE48lWNnbw5eUHw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6716
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2025 06:44:04.4873 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: x8hyeMs5J/yOdOmVGKpMEmnuko7AP3ls8x0kK5nlxOcXPw/BS5rUhsy7UOk955F/wgOTKwZQn9NxRTWjMtfd6g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6314
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -183,69 +183,251 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> eDP is supposed to use VESA interface when using revision 1.5 and above, =
-use
-> Intel interface for backlight control otherwise. Add check to use correct
-> interface.
->=20
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> Tested-by: Ben Kao <ben.kao@intel.com>
-> ---
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+On Wed, Feb 05, 2025 at 01:44:48PM +0100, Christian König wrote:
+> Am 05.02.25 um 12:14 schrieb Tvrtko Ursulin:
+> > Christian suggests scheduler should not use the term TDR because it only
+> > can do basic timeout detection on it's own, not the full blown timeout-
+> > detection-and-recovery (TDR) as the term is generally understood.
+> 
+> There is even more to the term TDR on Windows than
+> timeout-detection-and-recovery.
+> 
+> For example it includes a certain signaling of errors which works totally
+> different on Linux.
+> 
+> > Attempt to rename it to a more basic drm_sched_trigger_timeout.
+> > 
+> > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> > Suggested-by: Christian König <christian.koenig@amd.com>
+> > Cc: Christian König <christian.koenig@amd.com>
+> > Cc: Danilo Krummrich <dakr@redhat.com>
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > Cc: Philipp Stanner <pstanner@redhat.com>
+> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Cc: intel-xe@lists.freedesktop.org
+> > ---
+> > While doing this I have however noticed the pre-existing drm_sched_fault
+> > API sitting right below drm_sched_tdr_queue_imm() added by
+> > 3c6c7ca4508b ("drm/sched: Add a helper to queue TDR immediately").
+> > 
+> > It does not appear to be documented in the kernel doc why is the
+> > newer API setting sched->timeout permanently to zero, or why are
+> > both needed and what are the considerations to use one versus the
+> > other. Perhaps Matt can clarify as the author of the newer API.
+> 
+> Oh, good point. I wasn't aware of that duplication.
+> 
 
-Thanks and Regards,
-Arun R Murthy
---------------------
+The newer API in Xe is used when we ban a queue to flush out all
+remaining job's on the queue - even ones yet to be scheduled. Unsure
+how the old API is used in other drivers but it doesn't work for Xe's
+use case.
 
->  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index c846ef4acf5b..09e82f24d030 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -604,6 +604,7 @@ static const struct intel_panel_bl_funcs
-> intel_dp_vesa_bl_funcs =3D {  int intel_dp_aux_init_backlight_funcs(struc=
-t
-> intel_connector *connector)  {
->  	struct intel_display *display =3D to_intel_display(connector);
-> +	struct intel_dp *intel_dp =3D intel_attached_dp(connector);
->  	struct drm_device *dev =3D connector->base.dev;
->  	struct intel_panel *panel =3D &connector->panel;
->  	bool try_intel_interface =3D false, try_vesa_interface =3D false; @@ -6=
-40,6
-> +641,10 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector
-> *connector)
->  		break;
->  	}
->=20
-> +	/* For eDP 1.5 and above we are supposed to use VESA interface for
-> brightness control */
-> +	if (intel_dp->edp_dpcd[0] >=3D DP_EDP_15)
-> +		try_vesa_interface =3D true;
-> +
->  	/*
->  	 * Since Intel has their own backlight control interface, the majority =
-of
-> machines out there
->  	 * using DPCD backlight controls with Intel GPUs will be using this
-> interface as opposed to @@ -653,7 +658,8 @@ int
-> intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->  	 * backlight interface at all. This means that the only sensible way fo=
-r us
-> to detect both
->  	 * interfaces is to probe for Intel's first, and VESA's second.
->  	 */
-> -	if (try_intel_interface &&
-> intel_dp_aux_supports_hdr_backlight(connector)) {
-> +	if (try_intel_interface &&
-> intel_dp_aux_supports_hdr_backlight(connector) &&
-> +	    intel_dp->edp_dpcd[0] <=3D DP_EDP_14b) {
->  		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Using Intel
-> proprietary eDP backlight controls\n",
->  			    connector->base.base.id, connector->base.name);
->  		panel->backlight.funcs =3D &intel_dp_hdr_bl_funcs;
-> --
-> 2.34.1
+Matt
 
+> Regards,
+> Christian.
+> 
+> > ---
+> >   drivers/gpu/drm/scheduler/sched_main.c | 32 ++++++++++++++------------
+> >   drivers/gpu/drm/xe/xe_gpu_scheduler.h  |  4 ++--
+> >   drivers/gpu/drm/xe/xe_guc_submit.c     |  8 +++----
+> >   include/drm/gpu_scheduler.h            |  8 +++----
+> >   4 files changed, 27 insertions(+), 25 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+> > index a48be16ab84f..b01792fe6141 100644
+> > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > @@ -433,7 +433,8 @@ static void drm_sched_start_timeout(struct drm_gpu_scheduler *sched)
+> >   	if (sched->timeout != MAX_SCHEDULE_TIMEOUT &&
+> >   	    !list_empty(&sched->pending_list))
+> > -		mod_delayed_work(sched->timeout_wq, &sched->work_tdr, sched->timeout);
+> > +		mod_delayed_work(sched->timeout_wq, &sched->work_timeout,
+> > +				 sched->timeout);
+> >   }
+> >   static void drm_sched_start_timeout_unlocked(struct drm_gpu_scheduler *sched)
+> > @@ -444,20 +445,20 @@ static void drm_sched_start_timeout_unlocked(struct drm_gpu_scheduler *sched)
+> >   }
+> >   /**
+> > - * drm_sched_tdr_queue_imm: - immediately start job timeout handler
+> > + * drm_sched_trigger_timeout: - immediately start job timeout handler
+> >    *
+> >    * @sched: scheduler for which the timeout handling should be started.
+> >    *
+> >    * Start timeout handling immediately for the named scheduler.
+> >    */
+> > -void drm_sched_tdr_queue_imm(struct drm_gpu_scheduler *sched)
+> > +void drm_sched_trigger_timeout(struct drm_gpu_scheduler *sched)
+> >   {
+> >   	spin_lock(&sched->job_list_lock);
+> >   	sched->timeout = 0;
+> >   	drm_sched_start_timeout(sched);
+> >   	spin_unlock(&sched->job_list_lock);
+> >   }
+> > -EXPORT_SYMBOL(drm_sched_tdr_queue_imm);
+> > +EXPORT_SYMBOL(drm_sched_trigger_timeout);
+> >   /**
+> >    * drm_sched_fault - immediately start timeout handler
+> > @@ -469,7 +470,7 @@ EXPORT_SYMBOL(drm_sched_tdr_queue_imm);
+> >   void drm_sched_fault(struct drm_gpu_scheduler *sched)
+> >   {
+> >   	if (sched->timeout_wq)
+> > -		mod_delayed_work(sched->timeout_wq, &sched->work_tdr, 0);
+> > +		mod_delayed_work(sched->timeout_wq, &sched->work_timeout, 0);
+> >   }
+> >   EXPORT_SYMBOL(drm_sched_fault);
+> > @@ -489,14 +490,15 @@ unsigned long drm_sched_suspend_timeout(struct drm_gpu_scheduler *sched)
+> >   {
+> >   	unsigned long sched_timeout, now = jiffies;
+> > -	sched_timeout = sched->work_tdr.timer.expires;
+> > +	sched_timeout = sched->work_timeout.timer.expires;
+> >   	/*
+> >   	 * Modify the timeout to an arbitrarily large value. This also prevents
+> >   	 * the timeout to be restarted when new submissions arrive
+> >   	 */
+> > -	if (mod_delayed_work(sched->timeout_wq, &sched->work_tdr, MAX_SCHEDULE_TIMEOUT)
+> > -			&& time_after(sched_timeout, now))
+> > +	if (mod_delayed_work(sched->timeout_wq, &sched->work_timeout,
+> > +			     MAX_SCHEDULE_TIMEOUT) &&
+> > +	    time_after(sched_timeout, now))
+> >   		return sched_timeout - now;
+> >   	else
+> >   		return sched->timeout;
+> > @@ -517,9 +519,9 @@ void drm_sched_resume_timeout(struct drm_gpu_scheduler *sched,
+> >   	spin_lock(&sched->job_list_lock);
+> >   	if (list_empty(&sched->pending_list))
+> > -		cancel_delayed_work(&sched->work_tdr);
+> > +		cancel_delayed_work(&sched->work_timeout);
+> >   	else
+> > -		mod_delayed_work(sched->timeout_wq, &sched->work_tdr, remaining);
+> > +		mod_delayed_work(sched->timeout_wq, &sched->work_timeout, remaining);
+> >   	spin_unlock(&sched->job_list_lock);
+> >   }
+> > @@ -541,7 +543,7 @@ static void drm_sched_job_timedout(struct work_struct *work)
+> >   	struct drm_sched_job *job;
+> >   	enum drm_gpu_sched_stat status = DRM_GPU_SCHED_STAT_NOMINAL;
+> > -	sched = container_of(work, struct drm_gpu_scheduler, work_tdr.work);
+> > +	sched = container_of(work, struct drm_gpu_scheduler, work_timeout.work);
+> >   	/* Protects against concurrent deletion in drm_sched_get_finished_job */
+> >   	spin_lock(&sched->job_list_lock);
+> > @@ -659,7 +661,7 @@ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad)
+> >   	 * this TDR finished and before the newly restarted jobs had a
+> >   	 * chance to complete.
+> >   	 */
+> > -	cancel_delayed_work(&sched->work_tdr);
+> > +	cancel_delayed_work(&sched->work_timeout);
+> >   }
+> >   EXPORT_SYMBOL(drm_sched_stop);
+> > @@ -1107,7 +1109,7 @@ drm_sched_get_finished_job(struct drm_gpu_scheduler *sched)
+> >   		list_del_init(&job->list);
+> >   		/* cancel this job's TO timer */
+> > -		cancel_delayed_work(&sched->work_tdr);
+> > +		cancel_delayed_work(&sched->work_timeout);
+> >   		/* make the scheduled timestamp more accurate */
+> >   		next = list_first_entry_or_null(&sched->pending_list,
+> >   						typeof(*next), list);
+> > @@ -1325,7 +1327,7 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+> >   	INIT_LIST_HEAD(&sched->pending_list);
+> >   	spin_lock_init(&sched->job_list_lock);
+> >   	atomic_set(&sched->credit_count, 0);
+> > -	INIT_DELAYED_WORK(&sched->work_tdr, drm_sched_job_timedout);
+> > +	INIT_DELAYED_WORK(&sched->work_timeout, drm_sched_job_timedout);
+> >   	INIT_WORK(&sched->work_run_job, drm_sched_run_job_work);
+> >   	INIT_WORK(&sched->work_free_job, drm_sched_free_job_work);
+> >   	atomic_set(&sched->_score, 0);
+> > @@ -1395,7 +1397,7 @@ void drm_sched_fini(struct drm_gpu_scheduler *sched)
+> >   	wake_up_all(&sched->job_scheduled);
+> >   	/* Confirm no work left behind accessing device structures */
+> > -	cancel_delayed_work_sync(&sched->work_tdr);
+> > +	cancel_delayed_work_sync(&sched->work_timeout);
+> >   	if (sched->own_submit_wq)
+> >   		destroy_workqueue(sched->submit_wq);
+> > diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> > index c250ea773491..3fd728b1bfd6 100644
+> > --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> > +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> > @@ -44,9 +44,9 @@ static inline void xe_sched_stop(struct xe_gpu_scheduler *sched)
+> >   	drm_sched_stop(&sched->base, NULL);
+> >   }
+> > -static inline void xe_sched_tdr_queue_imm(struct xe_gpu_scheduler *sched)
+> > +static inline void xe_sched_trigger_timeout(struct xe_gpu_scheduler *sched)
+> >   {
+> > -	drm_sched_tdr_queue_imm(&sched->base);
+> > +	drm_sched_trigger_timeout(&sched->base);
+> >   }
+> >   static inline void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched)
+> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > index 913c74d6e2ae..968709fd6db4 100644
+> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > @@ -778,7 +778,7 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
+> >   		xe_gt_warn(q->gt, "Pending enable/disable failed to respond\n");
+> >   		xe_sched_submission_start(sched);
+> >   		xe_gt_reset_async(q->gt);
+> > -		xe_sched_tdr_queue_imm(sched);
+> > +		xe_sched_trigger_timeout(sched);
+> >   		return;
+> >   	}
+> > @@ -807,7 +807,7 @@ static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
+> >   	if (xe_exec_queue_is_lr(q))
+> >   		queue_work(guc_to_gt(guc)->ordered_wq, &q->guc->lr_tdr);
+> >   	else
+> > -		xe_sched_tdr_queue_imm(&q->guc->sched);
+> > +		xe_sched_trigger_timeout(&q->guc->sched);
+> >   }
+> >   /**
+> > @@ -986,7 +986,7 @@ static void enable_scheduling(struct xe_exec_queue *q)
+> >   		xe_gt_warn(guc_to_gt(guc), "Schedule enable failed to respond");
+> >   		set_exec_queue_banned(q);
+> >   		xe_gt_reset_async(q->gt);
+> > -		xe_sched_tdr_queue_imm(&q->guc->sched);
+> > +		xe_sched_trigger_timeout(&q->guc->sched);
+> >   	}
+> >   }
+> > @@ -1144,7 +1144,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+> >   			xe_exec_queue_get(q);	/* GT reset owns this */
+> >   			set_exec_queue_banned(q);
+> >   			xe_gt_reset_async(q->gt);
+> > -			xe_sched_tdr_queue_imm(sched);
+> > +			xe_sched_trigger_timeout(sched);
+> >   			goto rearm;
+> >   		}
+> >   	}
+> > diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+> > index cf88f2bd020f..666968cf505d 100644
+> > --- a/include/drm/gpu_scheduler.h
+> > +++ b/include/drm/gpu_scheduler.h
+> > @@ -494,10 +494,10 @@ struct drm_sched_backend_ops {
+> >    *                 finished.
+> >    * @job_id_count: used to assign unique id to the each job.
+> >    * @submit_wq: workqueue used to queue @work_run_job and @work_free_job
+> > - * @timeout_wq: workqueue used to queue @work_tdr
+> > + * @timeout_wq: workqueue used to queue @work_timeout
+> >    * @work_run_job: work which calls run_job op of each scheduler.
+> >    * @work_free_job: work which calls free_job op of each scheduler.
+> > - * @work_tdr: schedules a delayed call to @drm_sched_job_timedout after the
+> > + * @work_timeout: schedules a delayed call to @drm_sched_job_timedout after the
+> >    *            timeout interval is over.
+> >    * @pending_list: the list of jobs which are currently in the job queue.
+> >    * @job_list_lock: lock to protect the pending_list.
+> > @@ -527,7 +527,7 @@ struct drm_gpu_scheduler {
+> >   	struct workqueue_struct		*timeout_wq;
+> >   	struct work_struct		work_run_job;
+> >   	struct work_struct		work_free_job;
+> > -	struct delayed_work		work_tdr;
+> > +	struct delayed_work		work_timeout;
+> >   	struct list_head		pending_list;
+> >   	spinlock_t			job_list_lock;
+> >   	int				hang_limit;
+> > @@ -571,7 +571,7 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
+> >   				    struct drm_gpu_scheduler **sched_list,
+> >                                      unsigned int num_sched_list);
+> > -void drm_sched_tdr_queue_imm(struct drm_gpu_scheduler *sched);
+> > +void drm_sched_trigger_timeout(struct drm_gpu_scheduler *sched);
+> >   void drm_sched_job_cleanup(struct drm_sched_job *job);
+> >   void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
+> >   bool drm_sched_wqueue_ready(struct drm_gpu_scheduler *sched);
+> 
