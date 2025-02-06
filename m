@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FE26C02194
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FB0CC02196
 	for <intel-xe@archiver.kernel.org>; Thu,  6 Feb 2025 23:24:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0718010E9BE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F53310E9BF;
 	Thu,  6 Feb 2025 23:24:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X4bjJalS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BBqh/HRF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1DF910E9A0
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Feb 2025 23:23:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6996710E9BD
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Feb 2025 23:23:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738884236; x=1770420236;
+ t=1738884237; x=1770420237;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=N1Q2TMDDzGRtVHZqVTmju1slkR7AWQtxb+imFi05oY4=;
- b=X4bjJalSF15gYb0SM/llPdcdjChzj3GPfFLLwtkDMyx/p01kLWPGZa3S
- wH8ncDpK/D4myGxsT+lXxpe5raQ+sopOltO6x9P7z/OFaByuWXQSP1+tg
- ccB24IWAMNRJ2pfCyNWAEuRN2CIFI8kup8yDE0aRJhEsnvvc3ahr7s0uJ
- mhe4+eSVvlqcmvzYNamJjTESOc+e0WV97d4xuwdzjmCWZbh6I/JcHaT90
- UgFtw4dHq2tST5uxnq5hRujbXz+Myh5UAN2AAkFraWGTjHjsdtnQG8BQZ
- SeFBBGHGk7iOANMgDL/j3tI/hti+ZeoLmTJzhQ+NwUVb1ATxpzQt2eK14 A==;
-X-CSE-ConnectionGUID: Q3FXctg8Q3aj3Vw7X3+vYA==
-X-CSE-MsgGUID: Tf5ghmqpSGmIOGb/CAmzGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="61993725"
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="61993725"
+ bh=OEAQitLxnrZsGtSh81B0Y5IappmToOghWSKO6W2ogJY=;
+ b=BBqh/HRFxQhv5/ctlNPh6yn+0C50yYlZl3eB+RTpd1vIh+bsMmxYTia2
+ 7kJrEXO6vMkp8uwtUaz1Jqtd1h9jl6pBWTUyDy9nh5FTRW5p74fCFXuKl
+ M9IbSWfZv7R6XGg2FnCP2kXLSYOYR9eDJgsKY/4q0TIe9yYfcij6KCQxp
+ xX/jQ9M/XTg502gqNDBhHNcB69xApWddGyC1uJCoz7xj+Uiu+05bhoa6C
+ fx5XgnIdcWltIhH0FiU5bUVuadQV+BZznSfGbk9EGa+Its+yUpu7o/WaP
+ ifds4mvMYtEMNQVN593ePCgWyB7aM2++FQK39xjdyoQrF4i4nIIzobqoq Q==;
+X-CSE-ConnectionGUID: 3oPu+EJaRKmEA5kK42tlQg==
+X-CSE-MsgGUID: LQeOhhF5SfuxozwGA9NxxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="61993732"
+X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="61993732"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 15:23:56 -0800
-X-CSE-ConnectionGUID: T3TfQsnlR3afJD1S0Yl2TQ==
-X-CSE-MsgGUID: Opf0uQNlT4CZL6H6hCptRg==
+ 06 Feb 2025 15:23:57 -0800
+X-CSE-ConnectionGUID: 1gOHAPcDR1CNJ/AtTM+lvw==
+X-CSE-MsgGUID: wA/UIv6kQX+hybEHMt61Wg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="134594805"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="134594817"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 15:23:55 -0800
+ 06 Feb 2025 15:23:56 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Francois Dugast <francois.dugast@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 08/14] drm/xe: Cleanup extra calls to
- xe_hw_fence_irq_finish()
-Date: Thu,  6 Feb 2025 15:23:26 -0800
-Message-ID: <20250206232333.2660325-9-lucas.demarchi@intel.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Riana Tauro <riana.tauro@intel.com>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Subject: [PATCH v2 12/14] drm/xe: Fail probe if xe_pmu_register() fails
+Date: Thu,  6 Feb 2025 15:23:30 -0800
+Message-ID: <20250206232333.2660325-13-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250206232333.2660325-1-lucas.demarchi@intel.com>
 References: <20250206232333.2660325-1-lucas.demarchi@intel.com>
@@ -69,66 +70,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that xe_gt_remove is handled entirely by xe_gt, it's clear there are
-some extra calls to xe_hw_fence_irq_finish() that aren't necessary.
-Neither all_fw_domain_init() or gt_fw_domain_init() need to do that
-since it's handled by the caller on any error.
+Now that previous callers in xe_device_probe() are handling the errors,
+that can be done for xe_pmu_register() as well.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Riana Tauro <riana.tauro@intel.com>
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c | 15 ++++-----------
- 1 file changed, 4 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index c33040278e1aa..bd16ca070dd20 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -389,13 +389,11 @@ static void dump_pat_on_error(struct xe_gt *gt)
- static int gt_fw_domain_init(struct xe_gt *gt)
- {
- 	unsigned int fw_ref;
--	int err, i;
-+	int err;
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 6f90d74330524..002e066f5f288 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -883,7 +883,9 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err_unregister_display;
  
- 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (!fw_ref) {
--		err = -ETIMEDOUT;
--		goto err_hw_fence_irq;
--	}
-+	if (!fw_ref)
-+		return -ETIMEDOUT;
+-	xe_pmu_register(&xe->pmu);
++	err = xe_pmu_register(&xe->pmu);
++	if (err)
++		goto err_unregister_display;
  
- 	if (!xe_gt_is_media_type(gt)) {
- 		err = xe_ggtt_init(gt_to_tile(gt)->mem.ggtt);
-@@ -436,9 +434,6 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- err_force_wake:
- 	dump_pat_on_error(gt);
- 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
--err_hw_fence_irq:
--	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
--		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
+ 	xe_debugfs_register(xe);
  
- 	return err;
- }
-@@ -446,7 +441,7 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- static int all_fw_domain_init(struct xe_gt *gt)
- {
- 	unsigned int fw_ref;
--	int err, i;
-+	int err;
- 
- 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
- 	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL)) {
-@@ -524,8 +519,6 @@ static int all_fw_domain_init(struct xe_gt *gt)
- 
- err_force_wake:
- 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
--	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
--		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
- 
- 	return err;
- }
 -- 
 2.48.1
 
