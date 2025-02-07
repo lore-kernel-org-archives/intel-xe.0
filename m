@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C589C02199
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 23:42:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 280EAC0219D
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 23:42:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB4D10E343;
-	Fri,  7 Feb 2025 23:42:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E374210E348;
+	Fri,  7 Feb 2025 23:42:51 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0222910E343;
- Fri,  7 Feb 2025 23:42:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34B3610E348;
+ Fri,  7 Feb 2025 23:42:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Cleanup_error_handli?=
- =?utf-8?q?ng_on_probe_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Cleanup_error_handling_on?=
+ =?utf-8?q?_probe_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Feb 2025 23:42:28 -0000
-Message-ID: <173897174800.2896480.3487396241901444944@b555e5b46a47>
+Date: Fri, 07 Feb 2025 23:42:50 -0000
+Message-ID: <173897177021.2896480.11940481992391863776@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250207221945.2878241-1-lucas.demarchi@intel.com>
 In-Reply-To: <20250207221945.2878241-1-lucas.demarchi@intel.com>
@@ -44,25 +44,51 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Cleanup error handling on probe (rev3)
 URL   : https://patchwork.freedesktop.org/series/144211/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 4f934139887f drm-tip: 2025y-02m-07d-17h-56m-42s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Fix xe_display_fini() calls
-Applying: drm/xe: Fix error handling in xe_irq_install()
-Applying: drm/xe: Fix xe_tile_init_noalloc() error propagation
-Applying: drm/xe: Stop ignoring errors from xe_ttm_stolen_mgr_init()
-Applying: drm/xe: Remove leftover pxp comment
-Applying: drm/xe: Add callback support for driver remove
-Applying: drm/xe: Cleanup unwind of gt initialization
-Applying: drm/xe: Cleanup extra calls to xe_hw_fence_irq_finish()
-Applying: drm/xe/oa: Move fini to xe_oa
-Applying: drm/xe: Move drm_dev_unplug() out of display function
-Applying: drm/xe/oa: Handle errors in xe_oa_register()
-Applying: drm/xe/pmu: Fail probe if xe_pmu_register() fails
-Applying: drm/xe/hwmon: Stop ignoring errors on probe
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 956dee9076353151384bfc6cf59a1a982486e0ca
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Fri Feb 7 14:19:45 2025 -0800
+
+    drm/xe/hwmon: Stop ignoring errors on probe
+    
+    Not registering hwmon because it's not available (SRIOV_VF and DGFX) is
+    different from failing the initialization. Handle the errors
+    appropriately.
+    
+    Cc: Badal Nilawar <badal.nilawar@intel.com>
+    Cc: Karthik Poosa <karthik.poosa@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: Raag Jadav <raag.jadav@intel.com>
++ /mt/dim checkpatch 4f934139887fd60bd4ac9027b7eec3e86ade8085 drm-intel
+11b9def794be drm/xe: Fix xe_display_fini() calls
+35ec606100b2 drm/xe: Fix error handling in xe_irq_install()
+07628ae3844c drm/xe: Fix xe_tile_init_noalloc() error propagation
+8e80270dd37f drm/xe: Stop ignoring errors from xe_ttm_stolen_mgr_init()
+b0e20d3c9e3c drm/xe: Remove leftover pxp comment
+9742744b6194 drm/xe: Add callback support for driver remove
+-:130: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#130: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 155 lines checked
+1e4f2c02d35d drm/xe: Cleanup unwind of gt initialization
+360e233c4e30 drm/xe: Cleanup extra calls to xe_hw_fence_irq_finish()
+748fa16958dc drm/xe/oa: Move fini to xe_oa
+151d9c31bd37 drm/xe: Move drm_dev_unplug() out of display function
+93090d902aae drm/xe/oa: Handle errors in xe_oa_register()
+0e93b31ef5e1 drm/xe/pmu: Fail probe if xe_pmu_register() fails
+956dee907635 drm/xe/hwmon: Stop ignoring errors on probe
 
 
