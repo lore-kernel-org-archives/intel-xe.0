@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EAEBC02194
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 17:32:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90595C02194
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 17:38:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD41B10EB88;
-	Fri,  7 Feb 2025 17:32:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 571BE10EB8E;
+	Fri,  7 Feb 2025 17:38:47 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE28A10E0A5;
- Fri,  7 Feb 2025 17:31:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0169805117488169430=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F61A10EB8E;
+ Fri,  7 Feb 2025 17:37:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_i915=5Freg=2Eh_?=
- =?utf-8?q?display_split?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/dmc=3A_Test_Xe2L?=
+ =?utf-8?q?PD_DMC_v2=2E28?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Feb 2025 17:31:09 -0000
-Message-ID: <173894946983.2750823.2066088573940009264@b555e5b46a47>
+Date: Fri, 07 Feb 2025 17:37:51 -0000
+Message-ID: <173894987145.2746619.15106754115951334246@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <cover.1738935286.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1738935286.git.jani.nikula@intel.com>
+References: <20250207141948.39894-1-gustavo.sousa@intel.com>
+In-Reply-To: <20250207141948.39894-1-gustavo.sousa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,35 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0169805117488169430==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: i915_reg.h display split
-URL   : https://patchwork.freedesktop.org/series/144506/
+Series: drm/i915/dmc: Test Xe2LPD DMC v2.28
+URL   : https://patchwork.freedesktop.org/series/144509/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2615-f8ea772f4fb5a761d1dc321aad5749633d0801eb_BAT -> xe-pw-144506v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 62f137c95b03682edbb084f897c78222c81c8cdc
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Fri Feb 7 11:19:45 2025 -0300
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2615-f8ea772f4fb5a761d1dc321aad5749633d0801eb -> xe-pw-144506v1
-
-  IGT_8226: 8226
-  xe-2615-f8ea772f4fb5a761d1dc321aad5749633d0801eb: f8ea772f4fb5a761d1dc321aad5749633d0801eb
-  xe-pw-144506v1: 144506v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144506v1/index.html
-
---===============0169805117488169430==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+    drm/i915/dmc: Test Xe2LPD DMC v2.28
+    
+    NOT TO BE REVIEWED/MERGED
+    
+    Hardcode path to DMC firmware for CI purposes only.
+    
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 49c8ca412964de1695370bf2f1531a4442f10c47 drm-intel
+62f137c95b03 drm/i915/dmc: Test Xe2LPD DMC v2.28
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: i915_reg.h display split</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144506/">https://patchwork.freedesktop.org/series/144506/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144506v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144506v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2615-f8ea772f4fb5a761d1dc321aad5749633d0801eb_BAT -&gt; xe-pw-144506v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2615-f8ea772f4fb5a761d1dc321aad5749633d0801eb -&gt; xe-pw-144506v1</li>
-</ul>
-<p>IGT_8226: 8226<br />
-  xe-2615-f8ea772f4fb5a761d1dc321aad5749633d0801eb: f8ea772f4fb5a761d1dc321aad5749633d0801eb<br />
-  xe-pw-144506v1: 144506v1</p>
-
-</body>
-</html>
-
---===============0169805117488169430==--
