@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FF7AC02194
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 17:59:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2CFDC02194
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 18:29:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E8DC10EB90;
-	Fri,  7 Feb 2025 17:59:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A161C10EBA5;
+	Fri,  7 Feb 2025 18:29:26 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16EC010EB90;
- Fri,  7 Feb 2025 17:59:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 241BE10EB9E;
+ Fri,  7 Feb 2025 18:28:08 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/i915/dmc=3A_Test_Xe2?=
- =?utf-8?q?LPD_DMC_v2=2E28?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Carve_out_?=
+ =?utf-8?q?wopcm_portion_from_the_stolen_memory?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Feb 2025 17:59:10 -0000
-Message-ID: <173895115008.2761272.15052670584037143654@b555e5b46a47>
+Date: Fri, 07 Feb 2025 18:28:08 -0000
+Message-ID: <173895288813.2773758.4992801914243587403@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250207141948.39894-1-gustavo.sousa@intel.com>
-In-Reply-To: <20250207141948.39894-1-gustavo.sousa@intel.com>
+References: <20250207164334.1393054-1-nirmoy.das@intel.com>
+In-Reply-To: <20250207164334.1393054-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,31 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/dmc: Test Xe2LPD DMC v2.28
-URL   : https://patchwork.freedesktop.org/series/144509/
+Series: drm/xe: Carve out wopcm portion from the stolen memory
+URL   : https://patchwork.freedesktop.org/series/144520/
 State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 49c8ca412964de1695370bf2f1531a4442f10c47
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 4f934139887f drm-tip: 2025y-02m-07d-17h-56m-42s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Carve out wopcm portion from the stolen memory
 
 
