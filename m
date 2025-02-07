@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C773C0219E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63E4BC021A1
 	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 22:22:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9DF010EBC2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D529B10EBC1;
 	Fri,  7 Feb 2025 22:22:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KVlxDQTh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P1rdDSM1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A190510EBB5
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Feb 2025 22:20:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE1C810EBB9
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Feb 2025 22:20:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738966803; x=1770502803;
+ t=1738966802; x=1770502802;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OEAQitLxnrZsGtSh81B0Y5IappmToOghWSKO6W2ogJY=;
- b=KVlxDQThzht9FSolhHZYNqtXLTTvbNxBEzA3TBEohR2cp11A9PTWFqNi
- A54zPxikocd+MTyDHRWbjLqKDgTPQMXh5jTadMHs3pk1GjcmyGafMgcah
- hjCrxdWfFh5uUAEogCOJB2NBya0z42rbP5tYxPleO6O5Nwjj43ryzC+EW
- iC7FaUKpzi8VITdXtE9C1fg5ik8aSzyy75qHHMENyjKcEz5MMGTTRBu5h
- XTdSb4Gy6RxsAmTaIRkPZ0HsWCTFR0BcS3Qm8H6sUUjEoAe2xBri1BFxV
- mA6YWq9N4JK0SUBoyDMMJXZ5aTLTgy+4eZ/bn23Ip8M9TZ/f21AvjiMZY g==;
-X-CSE-ConnectionGUID: VRm5pB93S+S5nEcs4rp1Gg==
-X-CSE-MsgGUID: 10VaBK1CQ82Br5TJTeOb5g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="51050693"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="51050693"
+ bh=cTvX1+r18hj/45QyT5Q3cscQuBZupF1VM/H70kIM9XM=;
+ b=P1rdDSM1jfmKM+pZGzbEUj3aPyGFs93islIYrX8fdx/bl8F0jOXWjJci
+ vAEeuBlQH66bDhL6+nAlsYa0OJKg4tGn5/hc7IdkUFxW8Qb74uB5mx2z4
+ Cx2zoLb2Rhj807DbZJcKOrgSS+vyDekCmQlKye8DZT0iOSzw2i1KtoDEx
+ SRBPv39jsTo9ejpNpX3O6Mcn0u64NOaGPxbCARqkr4rrVns2PQTjfWKoC
+ JlUxaUiT0inUh/U3znacxJnqdXjV8uXDRelOUyJm1aPSsANU+Ic6I+Mz6
+ vVHSctH042zRgZlb8zkT/8ZqJSkTIx1UKkdNCglHPyLtMnc4HqkUolpBV w==;
+X-CSE-ConnectionGUID: PoNzJLvUSsqzQ/bQREYFgw==
+X-CSE-MsgGUID: r+V+I4ilR9G6zdqOKt71Kw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="51050683"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="51050683"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 14:20:03 -0800
-X-CSE-ConnectionGUID: CuQAcQAtSGi27p4hP/2rCg==
-X-CSE-MsgGUID: nDntv8K9ToqbpTNSS7BKRQ==
+ 07 Feb 2025 14:20:01 -0800
+X-CSE-ConnectionGUID: 5JLKICwQQCCRPICCKdyUMg==
+X-CSE-MsgGUID: /9Xa2iXiRXe6y6xkR2bO0w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="112158435"
+X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="112158406"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 14:20:03 -0800
+ 07 Feb 2025 14:20:01 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Francois Dugast <francois.dugast@intel.com>,
  Matthew Auld <matthew.auld@intel.com>,
  Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Riana Tauro <riana.tauro@intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Subject: [PATCH v3 12/13] drm/xe/pmu: Fail probe if xe_pmu_register() fails
-Date: Fri,  7 Feb 2025 14:19:44 -0800
-Message-ID: <20250207221945.2878241-13-lucas.demarchi@intel.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v3 03/13] drm/xe: Fix xe_tile_init_noalloc() error propagation
+Date: Fri,  7 Feb 2025 14:19:35 -0800
+Message-ID: <20250207221945.2878241-4-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250207221945.2878241-1-lucas.demarchi@intel.com>
 References: <20250207221945.2878241-1-lucas.demarchi@intel.com>
@@ -72,31 +70,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that previous callers in xe_device_probe() are handling the errors,
-that can be done for xe_pmu_register() as well.
+Propagate the error to the caller so initialization properly stops if
+sysfs creation fails.
 
-Cc: Riana Tauro <riana.tauro@intel.com>
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Reviewed-by: Francois Dugast <francois.dugast@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_tile.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 6f90d74330524..002e066f5f288 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -883,7 +883,9 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err_unregister_display;
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 2825553b568f7..377438ea6b838 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -172,9 +172,7 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
  
--	xe_pmu_register(&xe->pmu);
-+	err = xe_pmu_register(&xe->pmu);
-+	if (err)
-+		goto err_unregister_display;
+ 	xe_wa_apply_tile_workarounds(tile);
  
- 	xe_debugfs_register(xe);
+-	err = xe_tile_sysfs_init(tile);
+-
+-	return 0;
++	return xe_tile_sysfs_init(tile);
+ }
  
+ int xe_tile_init(struct xe_tile *tile)
 -- 
 2.48.1
 
