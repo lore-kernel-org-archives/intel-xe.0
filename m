@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CD56C0219E
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 21:59:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09460C021A0
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 21:59:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2FF610EBB5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C823A10EBB7;
 	Fri,  7 Feb 2025 21:59:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SvYJ2GR2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nLjDfoeM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D15C10E143;
- Fri,  7 Feb 2025 21:54:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C593310E143;
+ Fri,  7 Feb 2025 21:54:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738965256; x=1770501256;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=TqUMTmzfEm/PeH+Au1QbItA0agM1UFJ21xwmXN6vAq8=;
- b=SvYJ2GR2uQyrKdRSTFQrB9KDUoO+okm9etttpP5tFfgmTAPSkktqaep5
- EuE5nKSMGoow1LO+YoACZCPAxYKceNdZewfQdL5sNSJfFkPa2SiNHI1DX
- uzZ2eEWJKZ13PzVvwlzyb4DCERpmMhyuo6wjj2Keg1tdduXBrE/uKRuAJ
- J84STAY54xk0g5ZHfb6sBO8O+zVJLJxy4HzhnVTt1oBbCdJsYqQaJN2fx
- xisTrOC63Xk0OlqniJFfwyTkdqz/zbnFyOoJRUiDByRsb1O4bbWg/n+Bu
- tE41/iIRaY7WTU+8eFaAOkbZ0hQ6Lqhx+SW93VPJ7MbyungnBeeVkYVKG A==;
-X-CSE-ConnectionGUID: EOzN7US2Qsqm4JiqyWJ32g==
-X-CSE-MsgGUID: c84TdoAKRT21iCbXkzgtLA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11338"; a="39745989"
-X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="39745989"
+ t=1738965250; x=1770501250;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZRWrJLe+hdp+YWVmBLDTYzCjbyvN/uXgkfqBI29/6qI=;
+ b=nLjDfoeMkopz4vn4stgvksYPJlOzL0oJeoeOI51DYuvOB5DFrZ7/GV55
+ PjaTSe4Lvc0P2bDHsAasGSRIfO99OKXL70UdWfml+fjp9lPRGkGMD+AB4
+ 3Nh7tyPxWJ0ZAMLUjAj+mHEztyNpNq09WZbyFqXOLb4pH/Gu5EJNPClx7
+ MVKrC2oX1o27c4L5dbDdSND4vhJCRjIw84qgfFwI44d6M5Sym/qH1jn1f
+ Uuyxl+zJ/THC0c5Fpabm8GUoiyo0f4ytnfHTR66xiuM66ILZ5M3pt8CDN
+ oZDek+6+cRa0kH0jbiLus1+OMqvhiG7kmveYkiXtBCLzKWBWWgG8KVR0U w==;
+X-CSE-ConnectionGUID: YIkrM7CmTjqSwnCD/YBvkQ==
+X-CSE-MsgGUID: 2e6ytleMSPOmIN8aVmetYA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11338"; a="39745980"
+X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="39745980"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 13:54:16 -0800
-X-CSE-ConnectionGUID: ucpQBYXKQW+k4UgM24KtsQ==
-X-CSE-MsgGUID: uRbXBfaoRFidhX0Qfiw6mg==
+ 07 Feb 2025 13:54:10 -0800
+X-CSE-ConnectionGUID: G9GQP4rNRjOv3KjbtJtZUg==
+X-CSE-MsgGUID: OzuZspasRyix30uWxb2LaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="111851041"
+X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="111851030"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 07 Feb 2025 13:54:13 -0800
+ by fmviesa008.fm.intel.com with SMTP; 07 Feb 2025 13:54:07 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 07 Feb 2025 23:54:12 +0200
+ Fri, 07 Feb 2025 23:54:06 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/3] drm/i915: Reverse the scanline_offset if ladder
-Date: Fri,  7 Feb 2025 23:54:05 +0200
-Message-ID: <20250207215406.19348-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 0/3] drm/i915: Fix scanline_offset for LNL+/BMG+
+Date: Fri,  7 Feb 2025 23:54:03 +0200
+Message-ID: <20250207215406.19348-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
-In-Reply-To: <20250207215406.19348-1-ville.syrjala@linux.intel.com>
-References: <20250207215406.19348-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -70,35 +68,23 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Make intel_crtc_scanline_offset() a bit less confusing by
-fully reordering the if ladder to use the new->old platform
-order.
+Something has changed in the hardware on LNL/BMG because
+HDMI outputs no longer have the extra scanline offset.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_vblank.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+I confirmed that MTL still has the old behaviour, which
+is a bit weird since both MTL and BMG have display ver 14
+vs. LNL is version 20. But can't argue with actual
+hardware behaviour.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 7b240ce681a0..dd928d890e3a 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -224,12 +224,12 @@ int intel_crtc_scanline_offset(const struct intel_crtc_state *crtc_state)
- 	 */
- 	if (DISPLAY_VER(display) >= 20 || display->platform.battlemage)
- 		return 1;
--	else if (DISPLAY_VER(display) == 2)
--		return -1;
- 	else if (HAS_DDI(display) && intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
- 		return 2;
--	else
-+	else if (DISPLAY_VER(display) >= 3)
- 		return 1;
-+	else
-+		return -1;
- }
- 
- /*
+Ville Syrjälä (3):
+  drm/i915: Fix scanline_offset for LNL+ and BMG+
+  drm/i915: Reverse the scanline_offset if ladder
+  drm/i915: Replace the HAS_DDI() in intel_crtc_scanline_offset() with
+    specific platform checks
+
+ drivers/gpu/drm/i915/display/intel_vblank.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
+
 -- 
 2.45.3
 
