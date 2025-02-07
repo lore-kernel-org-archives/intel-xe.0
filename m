@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5444BC02196
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 11:10:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92E11C02194
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 11:15:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04A6210EAC8;
-	Fri,  7 Feb 2025 11:10:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FAx7/g8W";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EBA410EAC6;
- Fri,  7 Feb 2025 11:08:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738926513; x=1770462513;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=kauT0iiYQNDJecV/GrQQ22TfNvng5opR4O/G4TE38uA=;
- b=FAx7/g8WFYnwPr6g+jw1Sze2a5cIB3+cwbgxqo8/RgRFCTI7VERas4wn
- 0SzmvmQhFRnBoGKIHs+kjedlQGJ8tgB3dgjal3vFBil5UQkZ5JIkk+diB
- EoxLpA9HDaVQSG6mXJ3WB8/4ommACI0IkbY6Y8zNxVbMgcOn4DsIc5F2O
- //hVWwoNfY+mhiYdN03v3ivMOEQKlNPPs2zmnqC0xGp1ifIZILh4mmsm2
- tqP/UtKwVNDniswXwjkN/nmox91hbhWEVPCev5B+ee/ryYWD9+W3vNMSc
- xcANXIZvBcy+z/kgxm6/Lyis8dm/A5FfOi0NB90fGvvbUTJ3kkjhqXFnz w==;
-X-CSE-ConnectionGUID: Kr75NcRfQGKnViXX304VFQ==
-X-CSE-MsgGUID: BPxmOBrBRm+bb5htT08t8w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="43324202"
-X-IronPort-AV: E=Sophos;i="6.13,266,1732608000"; d="scan'208";a="43324202"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 03:08:32 -0800
-X-CSE-ConnectionGUID: KOfqjbbgQROReTIQ2CR6Sg==
-X-CSE-MsgGUID: bS/Zl2IOSmmVoO6VtiX+bg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,266,1732608000"; d="scan'208";a="112123802"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.122])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 03:08:29 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 01/12] drm/i915: Pass intel_display to
- intel_scanout_needs_vtd_wa()
-In-Reply-To: <20250206185533.32306-2-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250206185533.32306-1-ville.syrjala@linux.intel.com>
- <20250206185533.32306-2-ville.syrjala@linux.intel.com>
-Date: Fri, 07 Feb 2025 13:08:26 +0200
-Message-ID: <87r04a3tcl.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60D7210EAC9;
+	Fri,  7 Feb 2025 11:15:04 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DFC310EAC9;
+ Fri,  7 Feb 2025 11:15:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1407156227233500273=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_fault_injection_f?=
+ =?utf-8?q?or_guc_CTB_=26_mmio_send/recv=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 07 Feb 2025 11:15:03 -0000
+Message-ID: <173892690364.2604639.15901885201744401529@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250207093916.20509-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250207093916.20509-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,230 +36,156 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 06 Feb 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Now that intel_scanout_needs_vtd_wa() is no longer used from
-> the gem code we can convert it to take struct intel_display.
-> which will help with converting the low level plane code over
-> as well.
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+--===============1407156227233500273==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
-> ---
->  drivers/gpu/drm/i915/display/i9xx_plane.c          | 11 ++++++-----
->  drivers/gpu/drm/i915/display/intel_cursor.c        |  7 ++++---
->  drivers/gpu/drm/i915/display/intel_display.c       |  6 ++++--
->  drivers/gpu/drm/i915/display/intel_display.h       |  2 +-
->  drivers/gpu/drm/i915/display/intel_sprite.c        | 10 +++++-----
->  drivers/gpu/drm/i915/display/skl_universal_plane.c |  3 ++-
->  6 files changed, 22 insertions(+), 17 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/=
-i915/display/i9xx_plane.c
-> index bd3f8db13700..110ad49884be 100644
-> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> @@ -780,13 +780,13 @@ unsigned int vlv_plane_min_alignment(struct intel_p=
-lane *plane,
->  				     const struct drm_framebuffer *fb,
->  				     int color_plane)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(plane->base.dev);
-> +	struct intel_display *display =3D to_intel_display(plane);
->=20=20
->  	if (intel_plane_can_async_flip(plane, fb->modifier))
->  		return 256 * 1024;
->=20=20
->  	/* FIXME undocumented so not sure what's actually needed */
-> -	if (intel_scanout_needs_vtd_wa(i915))
-> +	if (intel_scanout_needs_vtd_wa(display))
->  		return 256 * 1024;
->=20=20
->  	switch (fb->modifier) {
-> @@ -804,12 +804,12 @@ static unsigned int g4x_primary_min_alignment(struc=
-t intel_plane *plane,
->  					      const struct drm_framebuffer *fb,
->  					      int color_plane)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(plane->base.dev);
-> +	struct intel_display *display =3D to_intel_display(plane);
->=20=20
->  	if (intel_plane_can_async_flip(plane, fb->modifier))
->  		return 256 * 1024;
->=20=20
-> -	if (intel_scanout_needs_vtd_wa(i915))
-> +	if (intel_scanout_needs_vtd_wa(display))
->  		return 256 * 1024;
->=20=20
->  	switch (fb->modifier) {
-> @@ -865,6 +865,7 @@ static const struct drm_plane_funcs i8xx_plane_funcs =
-=3D {
->  struct intel_plane *
->  intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe =
-pipe)
->  {
-> +	struct intel_display *display =3D &dev_priv->display;
->  	struct intel_plane *plane;
->  	const struct drm_plane_funcs *plane_funcs;
->  	unsigned int supported_rotations;
-> @@ -959,7 +960,7 @@ intel_primary_plane_create(struct drm_i915_private *d=
-ev_priv, enum pipe pipe)
->  		plane->min_alignment =3D i9xx_plane_min_alignment;
->=20=20
->  	/* FIXME undocumented for VLV/CHV so not sure what's actually needed */
-> -	if (intel_scanout_needs_vtd_wa(dev_priv))
-> +	if (intel_scanout_needs_vtd_wa(display))
->  		plane->vtd_guard =3D 128;
->=20=20
->  	if (IS_I830(dev_priv) || IS_I845G(dev_priv)) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/dr=
-m/i915/display/intel_cursor.c
-> index 6a1035a22b0a..791557b99d94 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> @@ -372,9 +372,9 @@ static unsigned int i9xx_cursor_min_alignment(struct =
-intel_plane *plane,
->  					      const struct drm_framebuffer *fb,
->  					      int color_plane)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(plane->base.dev);
-> +	struct intel_display *display =3D to_intel_display(plane);
->=20=20
-> -	if (intel_scanout_needs_vtd_wa(i915))
-> +	if (intel_scanout_needs_vtd_wa(display))
->  		return 64 * 1024;
->=20=20
->  	return 4 * 1024; /* physical for i915/i945 */
-> @@ -989,6 +989,7 @@ struct intel_plane *
->  intel_cursor_plane_create(struct drm_i915_private *dev_priv,
->  			  enum pipe pipe)
->  {
-> +	struct intel_display *display =3D &dev_priv->display;
->  	struct intel_plane *cursor;
->  	int ret, zpos;
->  	u64 *modifiers;
-> @@ -1019,7 +1020,7 @@ intel_cursor_plane_create(struct drm_i915_private *=
-dev_priv,
->  		else
->  			cursor->min_alignment =3D i9xx_cursor_min_alignment;
->=20=20
-> -		if (intel_scanout_needs_vtd_wa(dev_priv))
-> +		if (intel_scanout_needs_vtd_wa(display))
->  			cursor->vtd_guard =3D 2;
->=20=20
->  		cursor->update_arm =3D i9xx_cursor_update_arm;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index a6383ddde871..0f4d4a86cb98 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -8782,7 +8782,9 @@ void intel_hpd_poll_fini(struct drm_i915_private *i=
-915)
->  	drm_connector_list_iter_end(&conn_iter);
->  }
->=20=20
-> -bool intel_scanout_needs_vtd_wa(struct drm_i915_private *i915)
-> +bool intel_scanout_needs_vtd_wa(struct intel_display *display)
->  {
-> -	return IS_DISPLAY_VER(i915, 6, 11) && i915_vtd_active(i915);
-> +	struct drm_i915_private *i915 =3D to_i915(display->drm);
-> +
-> +	return IS_DISPLAY_VER(display, 6, 11) && i915_vtd_active(i915);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
-rm/i915/display/intel_display.h
-> index 49a246feb1ae..793c9d30c582 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -596,7 +596,7 @@ bool assert_port_valid(struct drm_i915_private *i915,=
- enum port port);
->  	unlikely(__ret_warn_on);					\
->  })
->=20=20
-> -bool intel_scanout_needs_vtd_wa(struct drm_i915_private *i915);
-> +bool intel_scanout_needs_vtd_wa(struct intel_display *display);
->  int intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_stat=
-e);
->=20=20
->  #endif
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
-m/i915/display/intel_sprite.c
-> index a6b27798fdc3..d873c3ea5fa6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -980,9 +980,9 @@ static unsigned int g4x_sprite_min_alignment(struct i=
-ntel_plane *plane,
->  					     const struct drm_framebuffer *fb,
->  					     int color_plane)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(plane->base.dev);
-> +	struct intel_display *display =3D to_intel_display(plane);
->=20=20
-> -	if (intel_scanout_needs_vtd_wa(i915))
-> +	if (intel_scanout_needs_vtd_wa(display))
->  		return 128 * 1024;
->=20=20
->  	return 4 * 1024;
-> @@ -1610,7 +1610,7 @@ intel_sprite_plane_create(struct drm_i915_private *=
-dev_priv,
->  		plane->min_cdclk =3D vlv_plane_min_cdclk;
->=20=20
->  		/* FIXME undocumented for VLV/CHV so not sure what's actually needed */
-> -		if (intel_scanout_needs_vtd_wa(dev_priv))
-> +		if (intel_scanout_needs_vtd_wa(display))
->  			plane->vtd_guard =3D 128;
->=20=20
->  		if (IS_CHERRYVIEW(dev_priv) && pipe =3D=3D PIPE_B) {
-> @@ -1639,7 +1639,7 @@ intel_sprite_plane_create(struct drm_i915_private *=
-dev_priv,
->=20=20
->  		plane->min_alignment =3D g4x_sprite_min_alignment;
->=20=20
-> -		if (intel_scanout_needs_vtd_wa(dev_priv))
-> +		if (intel_scanout_needs_vtd_wa(display))
->  			plane->vtd_guard =3D 64;
->=20=20
->  		formats =3D snb_sprite_formats;
-> @@ -1656,7 +1656,7 @@ intel_sprite_plane_create(struct drm_i915_private *=
-dev_priv,
->  		plane->min_alignment =3D g4x_sprite_min_alignment;
->  		plane->min_cdclk =3D g4x_sprite_min_cdclk;
->=20=20
-> -		if (intel_scanout_needs_vtd_wa(dev_priv))
-> +		if (intel_scanout_needs_vtd_wa(display))
->  			plane->vtd_guard =3D 64;
->=20=20
->  		if (IS_SANDYBRIDGE(dev_priv)) {
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
-/gpu/drm/i915/display/skl_universal_plane.c
-> index ee93361bba09..e166e1915afa 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -2697,6 +2697,7 @@ struct intel_plane *
->  skl_universal_plane_create(struct drm_i915_private *dev_priv,
->  			   enum pipe pipe, enum plane_id plane_id)
->  {
-> +	struct intel_display *display =3D &dev_priv->display;
->  	const struct drm_plane_funcs *plane_funcs;
->  	struct intel_plane *plane;
->  	enum drm_plane_type plane_type;
-> @@ -2750,7 +2751,7 @@ skl_universal_plane_create(struct drm_i915_private =
-*dev_priv,
->  	else
->  		plane->min_alignment =3D skl_plane_min_alignment;
->=20=20
-> -	if (intel_scanout_needs_vtd_wa(dev_priv))
-> +	if (intel_scanout_needs_vtd_wa(display))
->  		plane->vtd_guard =3D DISPLAY_VER(dev_priv) >=3D 10 ? 168 : 136;
->=20=20
->  	if (DISPLAY_VER(dev_priv) >=3D 11) {
+Series: Introduce fault injection for guc CTB & mmio send/recv.
+URL   : https://patchwork.freedesktop.org/series/144484/
+State : success
 
---=20
-Jani Nikula, Intel
+== Summary ==
+
+CI Bug Log - changes from xe-2613-f2401c718ce075408a723b147cac70aad2a8246f_BAT -> xe-pw-144484v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-144484v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [PASS][1] -> [SKIP][2] ([Intel XE#1192]) +1 other test skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2613-f2401c718ce075408a723b147cac70aad2a8246f/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144484v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  * igt@xe_vm@shared-pde2-page:
+    - bat-adlp-vf:        [PASS][3] -> [DMESG-WARN][4] ([Intel XE#3970])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2613-f2401c718ce075408a723b147cac70aad2a8246f/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144484v1/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][6] ([Intel XE#1192])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2613-f2401c718ce075408a723b147cac70aad2a8246f/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144484v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-2613-f2401c718ce075408a723b147cac70aad2a8246f -> xe-pw-144484v1
+
+  IGT_8224: c659b986ba648584d36b3cfece897bc84a33dcbb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2613-f2401c718ce075408a723b147cac70aad2a8246f: f2401c718ce075408a723b147cac70aad2a8246f
+  xe-pw-144484v1: 144484v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144484v1/index.html
+
+--===============1407156227233500273==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introduce fault injection for guc CTB &amp; mmio send/recv.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144484/">https://patchwork.freedesktop.org/series/144484/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144484v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144484v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2613-f2401c718ce075408a723b147cac70aad2a8246f_BAT -&gt; xe-pw-144484v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-144484v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2613-f2401c718ce075408a723b147cac70aad2a8246f/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144484v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_vm@shared-pde2-page:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2613-f2401c718ce075408a723b147cac70aad2a8246f/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144484v1/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2613-f2401c718ce075408a723b147cac70aad2a8246f/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144484v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2613-f2401c718ce075408a723b147cac70aad2a8246f -&gt; xe-pw-144484v1</li>
+</ul>
+<p>IGT_8224: c659b986ba648584d36b3cfece897bc84a33dcbb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2613-f2401c718ce075408a723b147cac70aad2a8246f: f2401c718ce075408a723b147cac70aad2a8246f<br />
+  xe-pw-144484v1: 144484v1</p>
+
+</body>
+</html>
+
+--===============1407156227233500273==--
