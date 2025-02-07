@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 549D2C02194
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 10:37:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97935C02194
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 10:37:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A0DE10EA9F;
-	Fri,  7 Feb 2025 10:37:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KXvtn0zJ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0510210EA9E;
- Fri,  7 Feb 2025 10:37:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738924622; x=1770460622;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=0I3afZAbatYGQAZDOAU3nrQPHfoBlMWH0a+5Xt59WFM=;
- b=KXvtn0zJ8QvTlna0J8Tvc54GBrChbMTKR1sOquJFO4YLh+4vCudSZAP+
- gyp2SNIEuaUnRM1asSuJfmkWBGLqcaC7WzUCBzDCsMXInIEg6ZVDoDU0H
- gVGN3l8v0Ke/BtHg2Ic0BaeoVjlVE3zT2x3BNMCQG4pm2/bt8Rz8bR54Y
- QfqHDHRYkHcweTZrA66je87JvkASgQxQnM6SDImTGeLlXm6Xw34EQecKR
- 8HGxrZWxb1g9BzosLwXHy+NeKjcRXe2NrLGX7WRDlGHZUiXAoM1carOmM
- jzd/GTTIROocW8Eaeuls1Vl61SbEMvCMw0jQzTbN/SIm9cwBpFHBvcIQz Q==;
-X-CSE-ConnectionGUID: U8FXgDFbRbyOgShaSoUmBA==
-X-CSE-MsgGUID: l7x87cX4QFmq7uYZwygthw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="57097825"
-X-IronPort-AV: E=Sophos;i="6.13,266,1732608000"; d="scan'208";a="57097825"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 02:37:00 -0800
-X-CSE-ConnectionGUID: Xcq3ceB6TdC9lvOrvZZXeA==
-X-CSE-MsgGUID: FgwAKu+QRIWqFXWGV4Yo0Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,266,1732608000"; d="scan'208";a="111413219"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO [10.245.246.108])
- ([10.245.246.108])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 02:36:57 -0800
-Message-ID: <b5f266dbc938ad38afa382a253d854ec213aee15.camel@linux.intel.com>
-Subject: Re: [PATCH v4 13/33] drm/gpuvm: Add DRM_GPUVA_OP_DRIVER
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com, 
- simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
-Date: Fri, 07 Feb 2025 11:36:55 +0100
-In-Reply-To: <20250129195212.745731-14-matthew.brost@intel.com>
-References: <20250129195212.745731-1-matthew.brost@intel.com>
- <20250129195212.745731-14-matthew.brost@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 619E010EAA5;
+	Fri,  7 Feb 2025 10:37:48 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6DD510EA9F;
+ Fri,  7 Feb 2025 10:37:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Introduce_fault_injectio?=
+ =?utf-8?q?n_for_guc_CTB_=26_mmio_send/recv=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 07 Feb 2025 10:37:47 -0000
+Message-ID: <173892466774.2587820.17889435926119400410@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250207093916.20509-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250207093916.20509-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,40 +36,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2025-01-29 at 11:51 -0800, Matthew Brost wrote:
-> Add DRM_GPUVA_OP_DRIVER which allows driver to define their own gpuvm
-> ops. Useful for driver created ops which can be passed into the bind
-> software pipeline.
->=20
-> v3:
-> =C2=A0- s/DRM_GPUVA_OP_USER/DRM_GPUVA_OP_DRIVER (Thomas)
-> =C2=A0- Better commit message (Thomas)
->=20
-> Cc: Danilo Krummrich <dakr@redhat.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+== Series Details ==
 
-> ---
-> =C2=A0include/drm/drm_gpuvm.h | 5 +++++
-> =C2=A01 file changed, 5 insertions(+)
->=20
-> diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
-> index 00d4e43b76b6..2a9629377633 100644
-> --- a/include/drm/drm_gpuvm.h
-> +++ b/include/drm/drm_gpuvm.h
-> @@ -812,6 +812,11 @@ enum drm_gpuva_op_type {
-> =C2=A0	 * @DRM_GPUVA_OP_PREFETCH: the prefetch op type
-> =C2=A0	 */
-> =C2=A0	DRM_GPUVA_OP_PREFETCH,
-> +
-> +	/**
-> +	 * @DRM_GPUVA_OP_DRIVER: the driver defined op type
-> +	 */
-> +	DRM_GPUVA_OP_DRIVER,
-> =C2=A0};
-> =C2=A0
-> =C2=A0/**
+Series: Introduce fault injection for guc CTB & mmio send/recv.
+URL   : https://patchwork.freedesktop.org/series/144484/
+State : success
+
+== Summary ==
+
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast a05904055d959d068edd472132e9e4939888832d
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+Okay!
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
