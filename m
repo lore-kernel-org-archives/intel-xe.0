@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB9ADC021A0
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 22:36:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD64EC021A1
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 22:36:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85A4C10E334;
-	Fri,  7 Feb 2025 22:36:40 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 531D710E2B0;
- Fri,  7 Feb 2025 22:36:01 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66BF310EBB7;
+	Fri,  7 Feb 2025 22:36:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qi5IwQTk";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A901010EBB7;
+ Fri,  7 Feb 2025 22:32:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738967537; x=1770503537;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=+nxSU7lG7VZB8Wz5lymR6Lj0oBCKLuce+LRAK8iwh+Q=;
+ b=Qi5IwQTkAWCAQgZMCJaFILXulm8LzWAiOk/0NGNH2E/nfn5W0dxM/yxu
+ 5x9UBB6rt5AeKi0RYbY/kQ2EO30iL7h8kng+GjbSqixte3rM70whWUim6
+ GRjuOp/1xk2acsS5po54uH7uKEf0xNDHp+9yEYmlo0dQO3Fj1L7/OanUw
+ yDQkEOub4E/OzR5lObtIane0fFbHfiO/9hKOnhy/POUyXVubQSblOfwVG
+ evqyjWc6rFzlzrYt2lJcIIQeS1j8i+TOErYZZ64fVP3zNoVRyZU0by37t
+ s6YfxzSZCl7dt2PvksRmFDQjyi5pgFg/PYOP+m5lpTSWOS0Fp3o9cjssL g==;
+X-CSE-ConnectionGUID: koJlxPVjR9yxK4CVqYDLdQ==
+X-CSE-MsgGUID: HAadJvsKSayKnPyhLzCdyA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11338"; a="39313400"
+X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="39313400"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2025 14:32:17 -0800
+X-CSE-ConnectionGUID: 2RMxBjxcTfq9iJH+nQYYCA==
+X-CSE-MsgGUID: 4Xjm4fXDTZKVrA981C1CIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="111857454"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 07 Feb 2025 14:32:15 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Sat, 08 Feb 2025 00:32:14 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH v2 5/8] drm/i915/dsb: Introduce intel_dsb_poll()
+Date: Sat,  8 Feb 2025 00:31:56 +0200
+Message-ID: <20250207223159.14132-6-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.45.3
+In-Reply-To: <20250207223159.14132-1-ville.syrjala@linux.intel.com>
+References: <20250207223159.14132-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_Fix_scan?=
- =?utf-8?q?line=5Foffset_for_LNL+/BMG+?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Feb 2025 22:36:01 -0000
-Message-ID: <173896776133.2880514.11780941651915638368@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250207215406.19348-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250207215406.19348-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,23 +65,67 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: drm/i915: Fix scanline_offset for LNL+/BMG+
-URL   : https://patchwork.freedesktop.org/series/144527/
-State : success
+Add a function for emitting a DSB poll instruction. We'll allow
+the caller to specify the poll parameters.
 
-== Summary ==
+v2: s/wait/wait_us/ (Ankit)
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 4f934139887f drm-tip: 2025y-02m-07d-17h-56m-42s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915: Fix scanline_offset for LNL+ and BMG+
-Applying: drm/i915: Reverse the scanline_offset if ladder
-Applying: drm/i915: Replace the HAS_DDI() in intel_crtc_scanline_offset() with specific platform checks
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dsb.c | 19 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dsb.h |  3 +++
+ 2 files changed, 22 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 01e3bd385cac..aba57ddfbb92 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -459,6 +459,25 @@ void intel_dsb_wait_scanline_out(struct intel_atomic_state *state,
+ 			   start, end);
+ }
+ 
++void intel_dsb_poll(struct intel_dsb *dsb,
++		    i915_reg_t reg, u32 mask, u32 val,
++		    int wait_us, int count)
++{
++	struct intel_crtc *crtc = dsb->crtc;
++	enum pipe pipe = crtc->pipe;
++
++	intel_dsb_reg_write(dsb, DSB_POLLMASK(pipe, dsb->id), mask);
++	intel_dsb_reg_write(dsb, DSB_POLLFUNC(pipe, dsb->id),
++			    DSB_POLL_ENABLE |
++			    DSB_POLL_WAIT(wait_us) | DSB_POLL_COUNT(count));
++
++	intel_dsb_noop(dsb, 5);
++
++	intel_dsb_emit(dsb, val,
++		       (DSB_OPCODE_POLL << DSB_OPCODE_SHIFT) |
++		       i915_mmio_reg_offset(reg));
++}
++
+ static void intel_dsb_align_tail(struct intel_dsb *dsb)
+ {
+ 	u32 aligned_tail, tail;
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
+index da6df07a3c83..e843c52bf97c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.h
++++ b/drivers/gpu/drm/i915/display/intel_dsb.h
+@@ -54,6 +54,9 @@ void intel_dsb_wait_scanline_out(struct intel_atomic_state *state,
+ 				 int lower, int upper);
+ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
+ 			    struct intel_dsb *dsb);
++void intel_dsb_poll(struct intel_dsb *dsb,
++		    i915_reg_t reg, u32 mask, u32 val,
++		    int wait_us, int count);
+ void intel_dsb_chain(struct intel_atomic_state *state,
+ 		     struct intel_dsb *dsb,
+ 		     struct intel_dsb *chained_dsb,
+-- 
+2.45.3
 
