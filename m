@@ -4,61 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 571CDC0219D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 144FFC0219B
 	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 10:25:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2327F10EAB3;
-	Fri,  7 Feb 2025 10:25:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3E5E10EAB1;
+	Fri,  7 Feb 2025 10:25:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QBXsFw2g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n9w7P6BF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36A0A10EA97
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Feb 2025 10:20:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DA3F10EA97;
+ Fri,  7 Feb 2025 10:17:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738923622; x=1770459622;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=m46ZPx4CHhgWi6AHtGOc+5nWnnSUvCRvz9qZ09s63C4=;
- b=QBXsFw2gVHF4K9bVcfNyhI4C+twm0F9SkC25BcBIxBkxRl0Gy6fdIgMQ
- KFmWpkt+kB9GLrDpacrwNuhxEjj+ADSVnj8hyqluJZMmGxVXaGQSrwDgo
- 684ByrD23S2HaBYVYpAS/9u6NWemaNm+3bPijnoe4ouNAgiuT76Ll4I9p
- KncN169ayG3NAm7SOUKHfFZ8XVQwpPivbZ51XItMPWluoVUQo7RFRREme
- oIUyWWuIXsBWT5Y9p13+V9LGkgL8ESns+4YWzdxYa9pW1DliE6CAdOGRQ
- eywAM2t9her/Kak+/1kKQnyYtIvREhCTUD8gFEa+a53LeYl16+htPoV5U g==;
-X-CSE-ConnectionGUID: pSyXlDuAR2qHRtS+AXJxLg==
-X-CSE-MsgGUID: LIpZXNKwTW+BcvO+8+spzg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="43222197"
-X-IronPort-AV: E=Sophos;i="6.13,266,1732608000"; d="scan'208";a="43222197"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 02:20:22 -0800
-X-CSE-ConnectionGUID: hIblrYM3TMe07lBpzxrFZA==
-X-CSE-MsgGUID: EKZg47eDTgKXx8D9GjsP1g==
+ t=1738923470; x=1770459470;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=qnwV7myQ+RZZo3jWcxVKL6EYTri/P1XDHzta8lvjqrY=;
+ b=n9w7P6BFKuj9kWLmM6vfr0L8xlDG05ETqRkzSa3l19oA7xce2adiBLdl
+ ZRKPkCK4I2S0yVMP2vItUX9HW4HQnMwX2EYBYeayauUv9aDKbeXsS653c
+ /P5IBqaQkdOw4EowfrjgCaKjRGIDFtocuj+uR57c8rao21U5fwHnDs472
+ UInvnGQc5NyF8dDtsra1gimm/wnPn4l4518Xl8K9QFipmhS0bQjAeiDOr
+ PaKo2d02wH2dc+9CzXIMgQqPbLyUIq0j7Pz6p9/uaYvATHhnyMpI/NIJI
+ /SkeV+q6gFfnCvUG5IotPJ3lphwY0wBI4uLocDVN0I3nzRL1vZ7WzfphY Q==;
+X-CSE-ConnectionGUID: r8OJDgK7QXuOP0wjYNfMfA==
+X-CSE-MsgGUID: wvChVY3fRyS6sKJkHlmSqg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="39674926"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="39674926"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2025 02:17:50 -0800
+X-CSE-ConnectionGUID: SvfP0AEPSyiVRUxIuEoPqg==
+X-CSE-MsgGUID: tRvTAOcbQmCtBIjnAOh2mg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="111339188"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.74])
- ([10.245.244.74])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 02:20:20 -0800
-Message-ID: <286f74fa-1021-478b-b8db-74acd4f320cb@intel.com>
-Date: Fri, 7 Feb 2025 10:20:18 +0000
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116686092"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.122])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2025 02:17:49 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 1/3] drm/i915/pch: Make LPT LP a dedicated PCH type
+Date: Fri,  7 Feb 2025 12:17:36 +0200
+Message-Id: <777b63f50b10fba1d768af25870e81b33267bdc8.1738923308.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1738923308.git.jani.nikula@intel.com>
+References: <cover.1738923308.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 13/14] drm/xe/hwmon: Fix mutex destroy
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Francois Dugast <francois.dugast@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>,
- Karthik Poosa <karthik.poosa@intel.com>
-References: <20250206232333.2660325-1-lucas.demarchi@intel.com>
- <20250206232333.2660325-14-lucas.demarchi@intel.com>
- <h3qkpwdljkdfi22j3ldgqenhlb6j6k6wuksmazdfnuy3twapjn@umhq67gyaekc>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <h3qkpwdljkdfi22j3ldgqenhlb6j6k6wuksmazdfnuy3twapjn@umhq67gyaekc>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,70 +69,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 07/02/2025 03:27, Lucas De Marchi wrote:
-> On Thu, Feb 06, 2025 at 03:23:31PM -0800, Lucas De Marchi wrote:
->> Since the mutex is used if userspace kept the fd open, it can't be
->> released together with the dev cleanup and needs to be delayed. Also,
+Add PCH type PCH_LPT_LP and rename PCH_LPT to PCH_LPT_H for
+consistency. Keep the existing HAS_PCH_LPT*() macros, but express them
+in terms of the PCH types instead of looking at the device IDs
+directly. This makes the PCH checks independent of the PCH device IDs.
 
-Where is that? I would have thought here that 
-devm_hwmon_device_register_with_info() would ensure nothing can reach 
-that lock once the physical device is detached, since everything 
-contained in xe->hwmon is tied to that, including the lock. It looks a 
-little weird but seems like it should be fine?
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_backlight.c |  2 +-
+ drivers/gpu/drm/i915/soc/intel_pch.c           |  8 ++++----
+ drivers/gpu/drm/i915/soc/intel_pch.h           | 14 ++++++--------
+ 3 files changed, 11 insertions(+), 13 deletions(-)
 
->> there's no need to add an action just to release the mutex: use the
->> specific drmm_mutex_init() that should be smarter if mutex_destroy() is
->> actually a nop.
->>
->> Cc: Badal Nilawar <badal.nilawar@intel.com>
->> Cc: Karthik Poosa <karthik.poosa@intel.com>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> 
-> oops... 3a13c2de442d6bfaef9c102cd1092e6cae22b753
-> 
-> the reasoning is true, but the entire thing is in struct devm allocated.
-> Then CI complains:
-> 
-> <4> [321.873848] WARNING: CPU: 13 PID: 12544 at kernel/locking/mutex- 
-> debug.c:114 mutex_destroy+0x5b/0x60
- > >
-> Lucas De Marchi
-> 
->> ---
->> drivers/gpu/drm/xe/xe_hwmon.c | 10 +---------
->> 1 file changed, 1 insertion(+), 9 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/ 
->> xe_hwmon.c
->> index 7f327e3342123..0fc91c184570d 100644
->> --- a/drivers/gpu/drm/xe/xe_hwmon.c
->> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
->> @@ -869,13 +869,6 @@ xe_hwmon_get_preregistration_info(struct 
->> xe_device *xe)
->>             xe_hwmon_energy_get(hwmon, channel, &energy);
->> }
->>
->> -static void xe_hwmon_mutex_destroy(void *arg)
->> -{
->> -    struct xe_hwmon *hwmon = arg;
->> -
->> -    mutex_destroy(&hwmon->hwmon_lock);
->> -}
->> -
->> void xe_hwmon_register(struct xe_device *xe)
->> {
->>     struct device *dev = xe->drm.dev;
->> @@ -895,8 +888,7 @@ void xe_hwmon_register(struct xe_device *xe)
->>
->>     xe->hwmon = hwmon;
->>
->> -    mutex_init(&hwmon->hwmon_lock);
->> -    if (devm_add_action_or_reset(dev, xe_hwmon_mutex_destroy, hwmon))
->> +    if (drmm_mutex_init(&xe->drm, &hwmon->hwmon_lock))
->>         return;
->>
->>     /* There's only one instance of hwmon per device */
->> -- 
->> 2.48.1
->>
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+index 477b21af71a4..178dc6c8de80 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+@@ -1829,7 +1829,7 @@ void intel_backlight_init_funcs(struct intel_panel *panel)
+ 		panel->backlight.pwm_funcs = &bxt_pwm_funcs;
+ 	} else if (INTEL_PCH_TYPE(i915) >= PCH_CNP) {
+ 		panel->backlight.pwm_funcs = &cnp_pwm_funcs;
+-	} else if (INTEL_PCH_TYPE(i915) >= PCH_LPT) {
++	} else if (INTEL_PCH_TYPE(i915) >= PCH_LPT_H) {
+ 		if (HAS_PCH_LPT(i915))
+ 			panel->backlight.pwm_funcs = &lpt_pwm_funcs;
+ 		else
+diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/soc/intel_pch.c
+index 9f7c9dbc178e..0370ccb6943c 100644
+--- a/drivers/gpu/drm/i915/soc/intel_pch.c
++++ b/drivers/gpu/drm/i915/soc/intel_pch.c
+@@ -33,14 +33,14 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
+ 			    !IS_HASWELL(dev_priv) && !IS_BROADWELL(dev_priv));
+ 		drm_WARN_ON(&dev_priv->drm,
+ 			    IS_HASWELL_ULT(dev_priv) || IS_BROADWELL_ULT(dev_priv));
+-		return PCH_LPT;
++		return PCH_LPT_H;
+ 	case INTEL_PCH_LPT_LP_DEVICE_ID_TYPE:
+ 		drm_dbg_kms(&dev_priv->drm, "Found LynxPoint LP PCH\n");
+ 		drm_WARN_ON(&dev_priv->drm,
+ 			    !IS_HASWELL(dev_priv) && !IS_BROADWELL(dev_priv));
+ 		drm_WARN_ON(&dev_priv->drm,
+ 			    !IS_HASWELL_ULT(dev_priv) && !IS_BROADWELL_ULT(dev_priv));
+-		return PCH_LPT;
++		return PCH_LPT_LP;
+ 	case INTEL_PCH_WPT_DEVICE_ID_TYPE:
+ 		drm_dbg_kms(&dev_priv->drm, "Found WildcatPoint PCH\n");
+ 		drm_WARN_ON(&dev_priv->drm,
+@@ -48,7 +48,7 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
+ 		drm_WARN_ON(&dev_priv->drm,
+ 			    IS_HASWELL_ULT(dev_priv) || IS_BROADWELL_ULT(dev_priv));
+ 		/* WPT is LPT compatible */
+-		return PCH_LPT;
++		return PCH_LPT_H;
+ 	case INTEL_PCH_WPT_LP_DEVICE_ID_TYPE:
+ 		drm_dbg_kms(&dev_priv->drm, "Found WildcatPoint LP PCH\n");
+ 		drm_WARN_ON(&dev_priv->drm,
+@@ -56,7 +56,7 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
+ 		drm_WARN_ON(&dev_priv->drm,
+ 			    !IS_HASWELL_ULT(dev_priv) && !IS_BROADWELL_ULT(dev_priv));
+ 		/* WPT is LPT compatible */
+-		return PCH_LPT;
++		return PCH_LPT_LP;
+ 	case INTEL_PCH_SPT_DEVICE_ID_TYPE:
+ 		drm_dbg_kms(&dev_priv->drm, "Found SunrisePoint PCH\n");
+ 		drm_WARN_ON(&dev_priv->drm,
+diff --git a/drivers/gpu/drm/i915/soc/intel_pch.h b/drivers/gpu/drm/i915/soc/intel_pch.h
+index 89e89ede265d..bc926df14c45 100644
+--- a/drivers/gpu/drm/i915/soc/intel_pch.h
++++ b/drivers/gpu/drm/i915/soc/intel_pch.h
+@@ -19,7 +19,8 @@ enum intel_pch {
+ 	PCH_NONE = 0,	/* No PCH present */
+ 	PCH_IBX,	/* Ibexpeak PCH */
+ 	PCH_CPT,	/* Cougarpoint/Pantherpoint PCH */
+-	PCH_LPT,	/* Lynxpoint/Wildcatpoint PCH */
++	PCH_LPT_H,	/* Lynxpoint/Wildcatpoint H PCH */
++	PCH_LPT_LP,	/* Lynxpoint/Wildcatpoint LP PCH */
+ 	PCH_SPT,        /* Sunrisepoint/Kaby Lake PCH */
+ 	PCH_CNP,        /* Cannon/Comet Lake PCH */
+ 	PCH_ICP,	/* Ice Lake/Jasper Lake PCH */
+@@ -72,13 +73,10 @@ enum intel_pch {
+ #define HAS_PCH_ICP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_ICP)
+ #define HAS_PCH_CNP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_CNP)
+ #define HAS_PCH_SPT(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_SPT)
+-#define HAS_PCH_LPT(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_LPT)
+-#define HAS_PCH_LPT_LP(dev_priv) \
+-	(INTEL_PCH_ID(dev_priv) == INTEL_PCH_LPT_LP_DEVICE_ID_TYPE || \
+-	 INTEL_PCH_ID(dev_priv) == INTEL_PCH_WPT_LP_DEVICE_ID_TYPE)
+-#define HAS_PCH_LPT_H(dev_priv) \
+-	(INTEL_PCH_ID(dev_priv) == INTEL_PCH_LPT_DEVICE_ID_TYPE || \
+-	 INTEL_PCH_ID(dev_priv) == INTEL_PCH_WPT_DEVICE_ID_TYPE)
++#define HAS_PCH_LPT_H(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_LPT_H)
++#define HAS_PCH_LPT_LP(dev_priv)		(INTEL_PCH_TYPE(dev_priv) == PCH_LPT_LP)
++#define HAS_PCH_LPT(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_LPT_H || \
++						 INTEL_PCH_TYPE(dev_priv) == PCH_LPT_LP)
+ #define HAS_PCH_CPT(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_CPT)
+ #define HAS_PCH_IBX(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_IBX)
+ #define HAS_PCH_NOP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_NOP)
+-- 
+2.39.5
 
