@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EEFBC02194
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 13:01:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29EBFC0219C
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 13:03:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C4C310E372;
-	Fri,  7 Feb 2025 13:01:04 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 338EE10E0AA;
- Fri,  7 Feb 2025 13:01:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA90E10E190;
+	Fri,  7 Feb 2025 13:03:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NMikKtvY";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E8AB10E0AA;
+ Fri,  7 Feb 2025 13:01:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738933278; x=1770469278;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=Jzihua10kZ2uZqq8IrEX6A/b4OOLGtNsITHHaYpt9dE=;
+ b=NMikKtvYqjSfMiG2CezbgbimPH68rm5klvPGRjitSoKGUExhcs+Jt4P2
+ 5jGstmUapURWEMzTy3i6M5LY/GRcHWJmSZc+m0uo8joLYE194FIP3k32N
+ fwrxxgfZXUkhCCqWQ3RqrXfeQ+Chh7E4a8xjM5dfjZ3VDpS7UaCBMVPm9
+ 991IZT7cN5ZVT/CO2hQgRZms7oqEWf/v+cKkYY3lDqbrltvpZKEFzGnpo
+ xad0I81xVZ3VZ/VvMuy6GDzpioFyEs1QDWnCkvgtDxMKkrTaCJd3OtAz/
+ 7QFGXsPegkrhKrN1vzv8EAsbJKA0D6X1bo96iXleDG54N4dKARDucNoa+ Q==;
+X-CSE-ConnectionGUID: jtaqt51pQyuMoBmX32B0Sg==
+X-CSE-MsgGUID: QBBhLtcRSAa22WdP+VINaA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11338"; a="38772828"
+X-IronPort-AV: E=Sophos;i="6.13,267,1732608000"; d="scan'208";a="38772828"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2025 05:01:18 -0800
+X-CSE-ConnectionGUID: A42opYq2Rni+ZHIxezLGfw==
+X-CSE-MsgGUID: m6vaL05pQteYcyt9858v8g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,267,1732608000"; d="scan'208";a="116564141"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO [10.245.246.108])
+ ([10.245.246.108])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2025 05:01:15 -0800
+Message-ID: <639abb99850a42ff0af6a04adca91ddd6df819dc.camel@linux.intel.com>
+Subject: Re: [PATCH v4 17/33] drm/xe: Do not allow CPU address mirror VMA
+ unbind if the GPU has bindings
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com, 
+ simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
+Date: Fri, 07 Feb 2025 14:01:12 +0100
+In-Reply-To: <20250129195212.745731-18-matthew.brost@intel.com>
+References: <20250129195212.745731-1-matthew.brost@intel.com>
+ <20250129195212.745731-18-matthew.brost@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/hdcp=3A_move_hdcp_deb?=
- =?utf-8?q?ugfs_to_intel=5Fhdcp=2Ec=2C_cleanups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Feb 2025 13:01:03 -0000
-Message-ID: <173893326314.2647636.13600238376195337754@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <cover.1738924826.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1738924826.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +70,114 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 2025-01-29 at 11:51 -0800, Matthew Brost wrote:
+> uAPI is designed with the use case that only mapping a BO to a
+> malloc'd
+> address will unbind a CPU-address mirror VMA. Therefore, allowing a
+> CPU-address mirror VMA to unbind when the GPU has bindings in the
+> range
+> being unbound does not make much sense. This behavior is not
+> supported,
+> as it simplifies the code. This decision can always be revisited if a
+> use case arises.
+>=20
+> v3:
+> =C2=A0- s/arrises/arises (Thomas)
+> =C2=A0- s/system allocator/GPU address mirror (Thomas)
+> =C2=A0- Kernel doc (Thomas)
+> =C2=A0- Newline between function defs (Thomas)
+>=20
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_svm.c |=C2=A0 5 +++++
+> =C2=A0drivers/gpu/drm/xe/xe_svm.h |=C2=A0 2 ++
+> =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0 | 16 ++++++++++++++++
+> =C2=A03 files changed, 23 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> b/drivers/gpu/drm/xe/xe_svm.c
+> index 03c5cbcacb0e..56ece53b2069 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -428,3 +428,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+> struct xe_vma *vma,
+> =C2=A0
+> =C2=A0	return err;
+> =C2=A0}
+> +
+> +bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end)
 
-Series: drm/i915/hdcp: move hdcp debugfs to intel_hdcp.c, cleanups
-URL   : https://patchwork.freedesktop.org/series/144492/
-State : success
+Kerneldoc?
 
-== Summary ==
+> +{
+> +	return drm_gpusvm_has_mapping(&vm->svm.gpusvm, start, end);
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_svm.h
+> b/drivers/gpu/drm/xe/xe_svm.h
+> index ef5bc4e919e8..b181c174ca61 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.h
+> +++ b/drivers/gpu/drm/xe/xe_svm.h
+> @@ -46,6 +46,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+> struct xe_vma *vma,
+> =C2=A0			=C2=A0=C2=A0=C2=A0 struct xe_tile *tile, u64 fault_addr,
+> =C2=A0			=C2=A0=C2=A0=C2=A0 bool atomic);
+> =C2=A0
+> +bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end);
+> +
+> =C2=A0static inline bool xe_svm_range_pages_valid(struct xe_svm_range
+> *range)
+And here.
 
-lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/events/amd/
-lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
-lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/events/rapl.ko
-lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/
-lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.14.0-rc1-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.14.0-rc1-xe+/kernel/kernel/
-lib/modules/6.14.0-rc1-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/zstd.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/xctr.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/authenc.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm3.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/cmac.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/essiv.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/ccm.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/wp512.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/lrw.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/842.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/md4.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/lz4.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/sm4.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.14.0-rc1-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.14.0-rc1-xe+/kernel/block/
-lib/modules/6.14.0-rc1-xe+/kernel/block/bfq.ko
-lib/modules/6.14.0-rc1-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.14.0-rc1-xe+/build
-lib/modules/6.14.0-rc1-xe+/modules.alias.bin
-lib/modules/6.14.0-rc1-xe+/modules.builtin
-lib/modules/6.14.0-rc1-xe+/modules.softdep
-lib/modules/6.14.0-rc1-xe+/modules.alias
-lib/modules/6.14.0-rc1-xe+/modules.order
-lib/modules/6.14.0-rc1-xe+/modules.symbols
-lib/modules/6.14.0-rc1-xe+/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1738933241:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1738933241:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+> =C2=A0{
+> =C2=A0	return drm_gpusvm_range_pages_valid(range->base.gpusvm,
+> &range->base);
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 6fa446884955..d8c78ecd54ec 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2398,6 +2398,17 @@ static int vm_bind_ioctl_ops_parse(struct
+> xe_vm *vm, struct drm_gpuva_ops *ops,
+> =C2=A0			struct xe_vma *old =3D
+> =C2=A0				gpuva_to_vma(op->base.remap.unmap-
+> >va);
+> =C2=A0			bool skip =3D xe_vma_is_cpu_addr_mirror(old);
+> +			u64 start =3D xe_vma_start(old), end =3D
+> xe_vma_end(old);
+> +
+> +			if (op->base.remap.prev)
+> +				start =3D op->base.remap.prev->va.addr
+> +
+> +					op->base.remap.prev-
+> >va.range;
+> +			if (op->base.remap.next)
+> +				end =3D op->base.remap.next->va.addr;
+> +
+> +			if (xe_vma_is_cpu_addr_mirror(old) &&
+> +			=C2=A0=C2=A0=C2=A0 xe_svm_has_mapping(vm, start, end))
+> +				return -EBUSY;
+> =C2=A0
+> =C2=A0			op->remap.start =3D xe_vma_start(old);
+> =C2=A0			op->remap.range =3D xe_vma_size(old);
+> @@ -2480,6 +2491,11 @@ static int vm_bind_ioctl_ops_parse(struct
+> xe_vm *vm, struct drm_gpuva_ops *ops,
+> =C2=A0		{
+> =C2=A0			struct xe_vma *vma =3D gpuva_to_vma(op-
+> >base.unmap.va);
+> =C2=A0
+> +			if (xe_vma_is_cpu_addr_mirror(vma) &&
+> +			=C2=A0=C2=A0=C2=A0 xe_svm_has_mapping(vm,
+> xe_vma_start(vma),
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_vma_end(vma)))
+> +				return -EBUSY;
+> +
+> =C2=A0			if (!xe_vma_is_cpu_addr_mirror(vma))
+> =C2=A0				xe_vma_ops_incr_pt_update_ops(vops,
+> op->tile_mask);
+> =C2=A0			break;
 
+Thanks,
+Thomas
 
