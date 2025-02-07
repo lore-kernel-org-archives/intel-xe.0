@@ -4,52 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA90FC02196
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 09:26:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49E16C02192
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 09:31:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70D0A10EA88;
-	Fri,  7 Feb 2025 09:26:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 139FE10EA88;
+	Fri,  7 Feb 2025 09:31:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HKT0Pd96";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="feDBcuEA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4F1A10EA81
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Feb 2025 09:23:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 488DD10EA87;
+ Fri,  7 Feb 2025 09:30:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738920228; x=1770456228;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HqKPHYnTCXfbVl0t3iJK2Amy88FtR2BTrEaErRCAA7g=;
- b=HKT0Pd96zH9ZWJaMXrJX+EYT3TO8iouK4dfTmKu2ApH4eYY+q41bC+FN
- oXCh3it9/6Im0khJdKFgda+9xeFB05PGUb8Icocn+LwVDXxdVdHtuOZzI
- 7+8RjBT9d4EuA+Fho/mTJaBLexfdtCd4OIZogOhwrAnrlhnG1xrGVc5aW
- NZ9ph6uD/Vs9XQ07ltL+CGeHTlCsDFw921qCkE/mMaOu5Q4mjP5TNBBCD
- 5ypNVsPOe1zX412r34/HjIlzEYGd+9kRm5yxnLPkSTlye6I00LiXHLWx9
- zFs/lnEUh0L40oaZRza13e2KhopSltBpRh7tg+sgYpvHinWKmqKqQTs0u w==;
-X-CSE-ConnectionGUID: xvrXPe7kT3elHnSczvwpyQ==
-X-CSE-MsgGUID: tzT/VrsNTguo2wziIoUD7w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39686319"
-X-IronPort-AV: E=Sophos;i="6.13,266,1732608000"; d="scan'208";a="39686319"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 01:23:47 -0800
-X-CSE-ConnectionGUID: cCVLYMczRjCd9a3IaJO8SA==
-X-CSE-MsgGUID: YTgO2Er3SIS/jCIj8H/OLQ==
+ t=1738920653; x=1770456653;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=3Es7hVZae1SzcWNkogIQE+cEl9xUcgIWmgHuwXkAJ0U=;
+ b=feDBcuEAfAI9VILksaZnvPpZV6dFpymfP4f43d+fhAWoNdddc9//qaQ/
+ N59ZOOX12tyaA21UJxaoSruEyra7w0vJyU4wV/2ZTKYvOHE/cE3Rqhe5U
+ 9B9I+fbvTeCIDH7shsaBJJBPlyXdQtDaLhPswFF95N/0wDzEzWa05+F7r
+ keF2Aimbj9vkgqTKMQLxbujYNPA2pCdSZBGs5LlhLT9X5k5dCJ4DanK1V
+ P0lDjrK/jI/Vf+6SHiLmRiwa6VVQVyJwv+Fvxod9XqrU3ldWlXzANTMR3
+ UwsPv4XdjgirJ/6Qc/MEFbd5o1DhJQs4BEFLYK6b5ZGS7XlGWzeAJjiG9 w==;
+X-CSE-ConnectionGUID: 9okjp4s6SfWRIHDF5jOwLw==
+X-CSE-MsgGUID: 6ox4kCD/QDuhkl8ADr7mig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="57092915"
+X-IronPort-AV: E=Sophos;i="6.13,266,1732608000"; d="scan'208";a="57092915"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2025 01:30:53 -0800
+X-CSE-ConnectionGUID: 6HP3vtaeQuCk65k3YX7dmw==
+X-CSE-MsgGUID: IuQziQ9XQCWwqZmdXHHhzg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,266,1732608000"; d="scan'208";a="111995210"
-Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa010.fm.intel.com with ESMTP; 07 Feb 2025 01:23:46 -0800
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Subject: [PATCH 0/2] Introduce fault injection for guc CTB & mmio send/recv.
-Date: Fri,  7 Feb 2025 15:09:14 +0530
-Message-Id: <20250207093916.20509-1-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.35.3
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="115565962"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO [10.245.246.108])
+ ([10.245.246.108])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2025 01:30:51 -0800
+Message-ID: <29d5890ff3cb556f3185c78a755595ed0e6eba7b.camel@linux.intel.com>
+Subject: Re: [PATCH v4 07/33] drm/xe: Select DRM_GPUSVM Kconfig
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com, 
+ simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
+Date: Fri, 07 Feb 2025 10:30:47 +0100
+In-Reply-To: <20250129195212.745731-8-matthew.brost@intel.com>
+References: <20250129195212.745731-1-matthew.brost@intel.com>
+ <20250129195212.745731-8-matthew.brost@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,50 +72,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce fault injection for guc CTB & mmio send/recv
-
-Enable below Kconfig options.
-CONFIG_KUNIT=m
-CONFIG_KUNIT_DEBUGFS=y
-CONFIG_FAIL_FUNCTION=y
-CONFIG_FAULT_INJECTION=y
-CONFIG_FAULT_INJECTION_DEBUG_FS=y
-CONFIG_FUNCTION_ERROR_INJECTION=y
-
-Fault can be injected with below steps.
-FAILTYPE=fail_function
-FAILFUNC=xe_guc_ct_send_recv
-
-echo > /sys/kernel/debug/$FAILTYPE/inject
-echo $FAILFUNC > /sys/kernel/debug/$FAILTYPE/inject
-printf %#x -19 > /sys/kernel/debug/$FAILTYPE/$FAILFUNC/retval
-
-echo N > /sys/kernel/debug/$FAILTYPE/task-filter
-echo 10 > /sys/kernel/debug/$FAILTYPE/probability
-echo 0 > /sys/kernel/debug/$FAILTYPE/interval
-echo -1 > /sys/kernel/debug/$FAILTYPE/times
-echo 0 > /sys/kernel/debug/$FAILTYPE/space
-echo 1 > /sys/kernel/debug/$FAILTYPE/verbose
+On Wed, 2025-01-29 at 11:51 -0800, Matthew Brost wrote:
+> Xe depends on DRM_GPUSVM for SVM implementation, select it in
+> Kconfig.
+>=20
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
 
-ALso, can be tested using IGT with 
-igt@xe_fault_injection@probe-fail-guc-xe_guc_mmio_send_recv
-igt@xe_fault_injection@probe-fail-guc-xe_guc_ct_send_recv
-
-Test-with: 20250207072902.12582-2-satyanarayana.k.v.p@intel.com
-Test-with: 20250207072902.12582-3-satyanarayana.k.v.p@intel.com
-Test-with: 20250207072902.12582-4-satyanarayana.k.v.p@intel.com
-Test-with: 20250207072902.12582-5-satyanarayana.k.v.p@intel.com
-
-
-Satyanarayana K V P (2):
-  drm/xe: Introduce fault injection for guc mmio send/recv.
-  drm/xe: Introduce fault injection for guc CTB send/recv
-
- drivers/gpu/drm/xe/xe_guc.c    | 1 +
- drivers/gpu/drm/xe/xe_guc_ct.c | 1 +
- 2 files changed, 2 insertions(+)
-
--- 
-2.35.3
+> ---
+> =C2=A0drivers/gpu/drm/xe/Kconfig | 1 +
+> =C2=A01 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+> index 99219c16e8aa..60b922f75001 100644
+> --- a/drivers/gpu/drm/xe/Kconfig
+> +++ b/drivers/gpu/drm/xe/Kconfig
+> @@ -39,6 +39,7 @@ config DRM_XE
+> =C2=A0	select DRM_TTM_HELPER
+> =C2=A0	select DRM_EXEC
+> =C2=A0	select DRM_GPUVM
+> +	select DRM_GPUSVM
+> =C2=A0	select DRM_SCHED
+> =C2=A0	select MMU_NOTIFIER
+> =C2=A0	select WANT_DEV_COREDUMP
 
