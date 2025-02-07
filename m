@@ -4,185 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AA1BC02192
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 07:53:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C2AAC02192
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 08:00:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50AFA10EA3D;
-	Fri,  7 Feb 2025 07:53:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1883B10EA3E;
+	Fri,  7 Feb 2025 08:00:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ck2Elalq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fAZbdEQ8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E69710EA3D
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Feb 2025 07:53:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF92910E248
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Feb 2025 08:00:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738914817; x=1770450817;
+ t=1738915214; x=1770451214;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=ksvT4S9dO2dNGsxaQO8z5I1GYDPdO8eUS0foAr58hrU=;
- b=ck2ElalqcN6hRzR7vPr++erjHCTxnkRoLxvyPKEsMHR2TfczZV29S3/9
- 95EI0hTIFFUgMwbaQOmhkkpu5/ybKNDUXi3CRo2Undjxz3UNNg+T3SwPw
- NdLKB3v4nqYdawchvw5hsfDhR0ycWKibNLJ4v67O67UMwIaWh0sz71mUG
- CuUAQeI9Zi6bO6zfSndmk9eZjKeqp7/2EcVwNQfbYg/jlbqfSL+cVVZM/
- b9kSfSodkPqIJgUXR5g3FRtIkEYW6gSMF5mlbfEgJrnTNfXgWO6OxGzAw
- uTpHmfRcIDfTroNYc0rGfcIWZB8UOxFTsmsUHVBspYGGJQvZ4arA5yrGK Q==;
-X-CSE-ConnectionGUID: peskH/XXTk2okJwjbyo4Lg==
-X-CSE-MsgGUID: thbK1jMLSl+0vkMqxsm3/w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="50938036"
-X-IronPort-AV: E=Sophos;i="6.13,266,1732608000"; d="scan'208";a="50938036"
+ bh=vOtOzE82y71kqziUisN5j5RL19ie+6gH/Tq9K5rJvNY=;
+ b=fAZbdEQ8vv+bcs9lAP4Ufs1LlSadRqn/Zau9DvdxaDIRspl6nu/lVw1Q
+ 0b2eiu9NizbcuErNEbcB2277mLbfhAn2+sKhOiJ80KMYoRjQ32+1RxnGO
+ 11O4roC2LrDIJMoUVb80A5t2avsV3bi5vze8bvigVHukHfuLj5ZyDomYX
+ oSmfsFOEMCATDKU736hA1tWZxO7I/1bhUyWpb+MrNTROZynXnQ7eBGyRV
+ Zhym4sT1aaEtW+k2h893ygbpyAxO8nEYslwfVUnXWd1G5egV3++Rxnqus
+ uUl9DAvT7u+yJ6DOjN00XR2QuXE7gU7X9KKiv3mO7s0JNcYlKKsPodgvR A==;
+X-CSE-ConnectionGUID: xDJ63qfzTe6yTcNnoyNIEA==
+X-CSE-MsgGUID: 6BzgZulVT/u4KQBarqfn2Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="50938503"
+X-IronPort-AV: E=Sophos;i="6.13,266,1732608000"; d="scan'208";a="50938503"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 23:53:37 -0800
-X-CSE-ConnectionGUID: k61vVSmaSSmbksYd9JBDFg==
-X-CSE-MsgGUID: K7fOfk1sRwyiExIZ/ZOlVQ==
+ 07 Feb 2025 00:00:12 -0800
+X-CSE-ConnectionGUID: Vu4LEdgBTJipfdGWKzjNOg==
+X-CSE-MsgGUID: ghsSppC5Q+iIehAr3bGuFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116075256"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116076516"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
  by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Feb 2025 23:53:19 -0800
+ 07 Feb 2025 00:00:11 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 6 Feb 2025 23:53:06 -0800
+ 15.1.2507.44; Thu, 6 Feb 2025 23:59:40 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 6 Feb 2025 23:53:06 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.177)
+ 15.1.2507.44 via Frontend Transport; Thu, 6 Feb 2025 23:59:40 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.176)
  by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 6 Feb 2025 23:53:04 -0800
+ 15.1.2507.44; Thu, 6 Feb 2025 23:59:40 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sRhNnK4y7bAaGSSfG81Pry06bNS8FAkzEkCk8fjZDJ2+N0CUwN9S446bFIEKghzFtIuxyVzl1B9Ye7sSdCdlsTTKdkeZc0h8gLyw10uydsSauxiiDm2xemxHcvc7Aq34a8ikr2MjwQ4Si/a422FYaLKn9rMtyOlE4uRAPkdN7FeBSHxqb78iX5U5zPOtDX15VEXPFHiSNVGH4DLSO+paQjMVr640dYK+FKQvJ2MktGejSfRpG/c7QhcEI3QFdyBvInO5dGj5SK1yn+Tp5M4QV1AhnB7bC+UbvhlBbLUzM8LuqRMnW8d5DE3ALeVitohkjmEsEdUF7TsBIviSr28q5g==
+ b=mYKTW6q34BurygLKhW2Ig1d+4Bd8p7SPhMfnw70wmgL9YSdBaowVUELegFFvV9pPZd6zv65+XF85h+8zFZ2QFqWARZAVWAgUdflXNQ/am0t7jUG2WdlLiD6eZ+KdCPUXoKiL6xwG3Cx1VZFOzYnsFRC8SrmF9w3YPq+2rKjNP+z0xnmLoSEXv1HKqSpHAjVfH5xKQeJOcZxTDKXVHG38slnzzlwpePu2RTdelVyJAF8zLe6CK5dPIT4WWvevTNDdCFGpEw2oSIiGVpnsqLdddEseqDhYye/1qk2A050KXazRmsWOoAPYHinOpkC1kxytTfho2z953Bw4EBRNoPClTg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dPc6zc0HyAWKHGyZnF74YBHdcLDVf0cRN+HMhWE+leA=;
- b=wAymHGyVLJbof2K5E9KuysS1RJRtcFMtr5IjtdF2H8cKLN/XXqJb4TiILYxT3P8zB6fKDZEvN9iT/NdgBsKeOv9wA4wVA8VbIZJo+WLDlYAGWL4dNwwhoRXsXUsRxx4LTu5DJyHBcSGPSXWE/VGX28K9ljt0WckZBILCpdt7Zv2bdIKYqPjZSv3q4QKUYLAIjWm7o6Rzwg/Fpci1GLvZ3bVoU/9LctLYotkIbm6iz02n57XX9Q34LGEN1s7G1OmBA63ZMx2KwkR87g4YCWo4VqwCDULgIeLnvRKYpZhqgs5xbG8P9RrbneLYNCw8k9e0ViLLHahWBBWHO7Hjmh94Gw==
+ bh=NPjra//Y93J+99xO/2+XYqQQWgSbGF5R3vt1ZD02ofU=;
+ b=UlSSX45zxyg62igIYcpTjLYJqBg2M5pzEPeoEIskILYls2k+Vj2vKRkZXv3JeKPWhnG/rFhpR01b6t1KulfUkfOAuLnVWIgfUz6vct+BYrvus2bxVrzvmjA/jzwxfFMzfGZ7nSwNiknBucz/MgIkSZ2n0N3f7GOCY99Eg+/9GVkQhEtHKr80rYj1QQoaz6B69ydoby1PTOw99JB/3qwW3hZYib9g/WXhjdIwn6jWXLtnnQaF3Bu3hBgvVCiq65pz/3FjrEsA+c7A+K/eMiBX7waLBXZPpZfa60vclKfXy1xxlkmrAB9DCrU3fivPxSEBxK369ejX8aJ8lcD88IaeAw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- BY1PR11MB8055.namprd11.prod.outlook.com (2603:10b6:a03:530::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.11; Fri, 7 Feb
- 2025 07:52:21 +0000
+ DS0PR11MB7849.namprd11.prod.outlook.com (2603:10b6:8:fd::16) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8398.25; Fri, 7 Feb 2025 07:59:33 +0000
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::d3ba:63fc:10be:dfca]) by DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::d3ba:63fc:10be:dfca%4]) with mapi id 15.20.8422.010; Fri, 7 Feb 2025
- 07:52:21 +0000
-Message-ID: <a48ad6cf-e533-4c5c-baa7-56ad3a2922b8@intel.com>
-Date: Fri, 7 Feb 2025 13:22:13 +0530
+ 07:59:33 +0000
+Message-ID: <f3b65371-51e7-4532-ab23-bf50cf4a94dd@intel.com>
+Date: Fri, 7 Feb 2025 13:29:25 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 7/8] drm/xe/xe_pmu: Add pmu support for per-function
- engine activity stats
+Subject: Re: [PATCH v5 3/8] drm/xe/guc: Expose engine activity only for
+ supported GuC version
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  <intel-xe@lists.freedesktop.org>
 CC: <anshuman.gupta@intel.com>, <umesh.nerlige.ramappa@intel.com>,
  <lucas.demarchi@intel.com>, <vinay.belgaumkar@intel.com>,
- <soham.purkait@intel.com>
+ <soham.purkait@intel.com>, John Harrison <John.C.Harrison@Intel.com>
 References: <20250206104358.3436519-1-riana.tauro@intel.com>
- <20250206104358.3436519-8-riana.tauro@intel.com>
- <61dd8ba7-5fa2-47db-a03f-81fae29cc1e9@intel.com>
+ <20250206104358.3436519-4-riana.tauro@intel.com>
+ <810aa04d-0781-43be-8914-8f6c60f42f5e@intel.com>
 Content-Language: en-US
 From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <61dd8ba7-5fa2-47db-a03f-81fae29cc1e9@intel.com>
+In-Reply-To: <810aa04d-0781-43be-8914-8f6c60f42f5e@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0113.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:11d::14) To DS0PR11MB7958.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA1P287CA0012.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a00:35::13) To DS0PR11MB7958.namprd11.prod.outlook.com
  (2603:10b6:8:f9::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|BY1PR11MB8055:EE_
-X-MS-Office365-Filtering-Correlation-Id: ac052607-9357-4b95-04a8-08dd474c59e6
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|DS0PR11MB7849:EE_
+X-MS-Office365-Filtering-Correlation-Id: d3cea2a2-7cc2-4aae-86b6-08dd474d5b46
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SEY0Ky9hZmNJQ0tMcUxFQzcrb21OKy9jcytMMFVOek1GSWhxVlVqWXQwMUlt?=
- =?utf-8?B?a0dnQUFzU09ITSs5cDJvSFM0Z29nZGFycGhBSjRMaC81bXhZYTZ6dHg5Z0t5?=
- =?utf-8?B?VGV0QUFsTjRVL0V5YytUcXJqZm4xcEVPREZyUXpmY09JdjNWaWM3MWJ2WXM0?=
- =?utf-8?B?MHAwUXJuOWQrRGtmaXQrZXd6c3o5SDk2cm45TFF6dDJXN1pZNnhtK21SeFhh?=
- =?utf-8?B?ZW5EbitNRWtET3RJanFxOUJmM1ljSEI4WEdWVWhEQnpGa0R4bGNMeDNKYlcr?=
- =?utf-8?B?RnEyM1lnMmpldEsxTGFiODBZWkM4TTZoU1k3OTg1cXQ4MmpGQjVoamQwOWtq?=
- =?utf-8?B?ejIwU01MZGdjaDRHcHVlYURySjJzNFFJVUdBVWFpYjkySklpMEEva3lWakhi?=
- =?utf-8?B?cytGN04xeTdLNTdjMUxTWWo0ZVlhblI4KythZXA5dmJob3krZ0ZiVE9qeklM?=
- =?utf-8?B?VStvNHd1cGo4ekg0L0FDKzhkWkhLZXNKbjF6TE53K0YxeEFjd090N2pzNDFl?=
- =?utf-8?B?YStXV09Qa0dGVml6ODBKaldwTXlBcFV4aWlkYXUwbzZCaWhxdDliSXRRb3ND?=
- =?utf-8?B?eWsyY3RtTEt5ZGFaWWlPdkJwZDhqY0ExUUFqb1JYRmpUbStPVVdOdVhVUG5O?=
- =?utf-8?B?QlNpMW9ENGx6K29ES20zWEVaU1diYmNWNWVjWEF1VG9qdWhCTmhyQ2RqY091?=
- =?utf-8?B?WGJDTXhXVjVBVVVmelJqdmRoWGdEckJydCtUeTdnRmFVS2o5b0dHT3RWdGRD?=
- =?utf-8?B?blpsdDA5b2pCQTFGRlZLRTBuay9IUk5ISVQ3Q2VzYTRZdjQ5MVlLeERVZk9E?=
- =?utf-8?B?WWthazBwa052UlVqTW1iajdQRXJnYldiSUdFLzdhaFYxekNBSzNLNy9mRCs4?=
- =?utf-8?B?RGxLTzVxSWRJaUhxY1luN1grckUwanF1dDZSNkovSTFiWjhicitjODNnSi9R?=
- =?utf-8?B?eWF4M3ZGaUVuYTN5dzdsUTNYcEkvK0NVbm5sZ0pnMWxmZC9kZXNsb1FXQTlZ?=
- =?utf-8?B?dWwzV1lnakdzWmJqQnQyRE4rNWo0UDBKd3dRTGFNdUV5ZDRvbEo5RUFpYk52?=
- =?utf-8?B?YUZnVWZ2WTlrMlQzcm8vRmVPalFuQ25jRVlQU1RzYkduYWxiUjNONTlRakJO?=
- =?utf-8?B?RVQxL3BNUDRsZnVjc1FqMURvWE0xK2R0T3p3VE15UkJ5N3d3SUNBaHR5WmN2?=
- =?utf-8?B?UVBSMXFlZStZVm03QzMzVHVVSXZQWDNvTzBzWHhGT3RwYXdOT2RtL3EyV3lV?=
- =?utf-8?B?R2hjbUVLQjdDY3RkeGM3SmJrSEx6SlBHKzV1UGhIeWtHZnc0MHhBdmkvMkZV?=
- =?utf-8?B?ajcwSmdvcGk5c1hQT1ZXVXB4a0NIMlRXNlJKeFJYNzJhRTdyNnM1bFdBaGhX?=
- =?utf-8?B?L00rWThTcWVNRSt2OU1VUlVXZ0w2cGpFOWJmbmZ2Sk96cHdkZXNhajRNM1po?=
- =?utf-8?B?TjZVVVQvelovM01tMHdqa2tBU1IySS9USzU3N3hvNnJOZFhBaTdydk9zOUM0?=
- =?utf-8?B?clo5Wk1HOUJxc2gxcUpPNm5Sa1A5U0o1bDJFWEdHR2tJU2Ixc1cydThxUmIr?=
- =?utf-8?B?SXVTOWkvNmNCT2c0eFh1NzVhdHJVTCtmTnZCRGxnNWpCdmJoeThWRnZacXBs?=
- =?utf-8?B?OWtRbTlhSjdxamtxUW5sdXhlck14NVJQMW9ndC9qNG1kMnQ2Q2x0RncwdG5B?=
- =?utf-8?B?Nk9rRlhITC9vMHVWY2ZZK2dyZGMyV0h0Z1J6RGdUK0NQaWFMRng1KzdzdFI1?=
- =?utf-8?B?dDBXRFdGbENFcUZURXk1bXlnSTE4UkkrNzRIMjY2aVZST0JVWTBKaHpLN0RP?=
- =?utf-8?B?QWptT2hyUXBxRk1hYXZab29udExSZEpJK1ViaHROYTdxcFFTbjVtMzBMRThp?=
- =?utf-8?Q?JWhRyyzkL/Ovg?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?cTEvTThEdzJrOWlyVjZlbkNNV0laem9ydCtTLzZNSFYyV3Q0TUswN0lZeUxI?=
+ =?utf-8?B?U2ZBb2R2T0o2RE9oZmR1OEhyRkpuU3hHN2x3R0p5TmR3ZUNsSDE1b2dWNmVP?=
+ =?utf-8?B?dWYzVnk0ZllHakNTRWpGMmI0Nzl2UFAyRVNZWUMycmkwOVpLQjFiQkNld1lo?=
+ =?utf-8?B?bXp1dVlSTVVRTnlUZTVMRkVwUS81S0lZSEFiMzBqQzRlU0Y4d0tOTnRFUGtl?=
+ =?utf-8?B?eWx2SmJ5RzlMeGhnQzZ5aVZqeHY2NVVMaGtjNDVCK2FIMDlncXN1RG42TVdP?=
+ =?utf-8?B?OFJrMkFrdTl1aEU5N2dINjl5bTNuai9hVGJUQmVMNzh3WEFlcUNwN3VuVThN?=
+ =?utf-8?B?WUNOWDdyNnRBM3JxTyt1RnhPT0UreFdkaElhZUpDcEwxVUlxYWFyeGRySGZ6?=
+ =?utf-8?B?TXc0UkNHQi9qSkIvM2lCNWpIQUFScXVpT2QrSkhwZHJCdG4rZmQvTVpoQU9j?=
+ =?utf-8?B?bEhPS1ErNk1BVzdLRXBFRG5SQUV6NGhHaE85SVVwNDNQQUlKekNYV3pBNGNS?=
+ =?utf-8?B?M2h0OTRrNy9FcFZTSmNDcURNQjIvZ0dpS1BYcDRBQ3lqenM3ZENiNU0zWnds?=
+ =?utf-8?B?eTFGMUhZYWVVb0R6MmdEcFNrbEIrYk1PMTMvZXBYY1pTdTRMMnpyT092Q2tz?=
+ =?utf-8?B?d0NDa2taaE1KRElnaXNCRytNWk9LNWdDdjhWUE1sOEVUc0hHTEl6WUZjK05n?=
+ =?utf-8?B?eTJMMjQ0cEp4K00xMHJkcXExY3ZYQ1oxc2o2WjhyTG16YWtIWm9uVDJpa0s3?=
+ =?utf-8?B?TVdLNDRZOWpTdHdXbTI4bUVBdldMRyt0WFVRNHpBSVhRS3dVQXBlYnJwQ3RW?=
+ =?utf-8?B?bHNyVFA2cFlVTUZ2eVBDYVRjUFlWTTdYL1MzQ1MrUXVpdlh5YkFVcS93YzNS?=
+ =?utf-8?B?WFNRaFZPQytkYWtDcnFQZ25RZk1VNUMrNUNmRXlScWlrRUpXQ1ZnQ1NTVXlN?=
+ =?utf-8?B?bUpoeTZDN0JnK0NxZUdiaHBaeTdYSnMrcnVLOGxZUUN4MFRvcmsrYzVxTStm?=
+ =?utf-8?B?TkF4QVl4UURnbUFFUTBjN2xWTExPV3kyUDBscXdXcGlpTlRuTytCSjRVQkhD?=
+ =?utf-8?B?QU4wQmgxY3U5QXB5cEVTV1lDMWlHcEZrenF4d052cXBSemlqZmhhd0RlU2N1?=
+ =?utf-8?B?ZGRPOWVzR3ZwT0NQTU1SWEViOVhYczFFS3FOM0NWUlVVVjdxRTFUWHdTYnF4?=
+ =?utf-8?B?c25ITDlTcE1RYloxRTdJQUp0UGdnMHh3TU5hN002UHk0ZTl0SDRndG9mRmtP?=
+ =?utf-8?B?QkJoQkVWWmJuclg5UUo4Uk8zTkxhc1JnUHliT2NseGJOUG1taFJMdTlDTlc1?=
+ =?utf-8?B?K2pDT091UVlycEVlLzJSVitJTzRUaTVHKzdFQ3JiaWd1bFBZMFNBUHZoeSt0?=
+ =?utf-8?B?S2lMSVpPbG14S2RxL2dVeTM0c1VWUm9XOWtBY1VrKys4Z0dmUjdLeWkvN3ZE?=
+ =?utf-8?B?NFROL2x5MExEdWM0MEZpR01vb3YxK05KMVNOcEc4clF1UUNrVEdqSURPYzZP?=
+ =?utf-8?B?TFVVa3lVNGJvOU1JcTY5ZUxOVjMwOEZsTVRuL2V4NUhITU1tb0JPL0RKc2x0?=
+ =?utf-8?B?NTFQeU5TWUpxK2VGVENUVUhGeWpLRWVWTHMxeDY0UzRkWjE2dXlRUWlrZllO?=
+ =?utf-8?B?cDBFL3ovMTMzbmFXN2REREZra2JualUzSUNlcWQxQlREYTg3OTNqaks0S1Zz?=
+ =?utf-8?B?SUxQdGlqcW8xd0NRVkYxWStNZFYxQTZ6N2JBVEwrV2UzZStGUGpWbHdxRHJx?=
+ =?utf-8?B?akdRWklVTWU5T25MUE9HL0VhVTVYQkcvT3JvMklxSEJQc2JRclRaWnJFeFdP?=
+ =?utf-8?B?Z1NMVTBGZnBWdkRLVFBmQ0tZeXMrRWJESHQwSWtKNjc4dmFPbUtLRXlTUUUw?=
+ =?utf-8?Q?MF9gcVsgp7YEk?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aXlISVR2OTk3M2tFaHJCRTJWRVdEUU41bFlWZldjcDBrRXZ2czBjYUtDRjlC?=
- =?utf-8?B?MzBrL3JZUjc5RlFxOFlDVE1hTHQ4K2E1MzdCSmNoaFhwZWFWeGQ4b2NPa2dP?=
- =?utf-8?B?NW1lTWc4WldRaXlwN0k4RCtJU2lBSGswVDVxT2pmdmh1NFZjdWhPYlY4M29K?=
- =?utf-8?B?dlhsT2xyZ2lzeGpFc0ZYTUM5L0xkV3FEbm5UNGkzZEFMV3prMjVaeHA5dEVP?=
- =?utf-8?B?Z3RCUnNsdCtwTlFJQU5VZEJ3c0pYSWkxTWNId0lRV1orMHduaDJncWVuNHh2?=
- =?utf-8?B?T1VTaUQ0bHFJSGdzVGdtWGhTa1JZOTRoVms5a2F6WC9CYlAvL1diK3loVy9r?=
- =?utf-8?B?eHF6QUhYR051VGJPYXBHOUU4cFNyakRjM1V6RHR0Z2szbnpQQ29aV1FkMldD?=
- =?utf-8?B?ZGdjWVJXNEtkY1JlOFpDVXVkSWJNN3dLZGlmSlVkbzFNRWpUMDBqd09PZ3Mv?=
- =?utf-8?B?dWRBZmhZWkdZZjNraTc0R2RnY3lsRCswVkVuUlZmT1VIdHJtWitGZ0R0dGxa?=
- =?utf-8?B?M3IxdU5MRFRXaVFpNnluNm8zMHB1TkZ0ajRtMkNua3R3OUxUU0lDb2FuOHhK?=
- =?utf-8?B?WFFZeldFWGRiSkdhZEQxMmcveE8wMHBPWnJHMnJ1OU1TNmhwN2h4aW9aYmtz?=
- =?utf-8?B?VWZjNksrWlZkdlM3YTVnbFFnV1hPMWF1ZmFZUHJlb2FEcVRQOVF1VlhTNm9H?=
- =?utf-8?B?RGVTNnRlU0kxWUVEVzIwandNb1ZMek5hY3dvb3ZyWTdjSEV1YkVadWNTZXY5?=
- =?utf-8?B?QlpKcGhhT1RoLyttNVJrQWViaTF4b1NIcEFGa2l0QnlaR1pxV0VPYzlGdzc1?=
- =?utf-8?B?MkhJSnRKOWdFaWFpOWdJTFd3eWdNZ201ZVdxU3dmeHh6N011QWtEVS8yUHoy?=
- =?utf-8?B?bEZDcW9qK1hoSlVXSmhBSFRTMlJNU1l2TVRzeElOWEtlUGtCdzcvdm1FMS9m?=
- =?utf-8?B?VVRUc0FMSlFvQkp2ekYzZFE4OXZlaXpERnJzS2cvMUxxaUMvUWExQlNtMmg1?=
- =?utf-8?B?bGhsOEZSdUtmS2Vxb1Fyb3g1MVh0SXF2Rlo3eG5xZTlqSnU3THYrWE5IMEZ6?=
- =?utf-8?B?N2VSS2JaaytFR2lGREN1VktEeWFGS1JmNVZhcnFOYkRubldwWVZkYStvb2Nh?=
- =?utf-8?B?cnU4bTY5WVFBRWR2VzZUaU0zRFpqUHZnQmFtYzJ0R04zYmZRMTlFQUpUWERh?=
- =?utf-8?B?bmNidVoyR0VrTFdKKzVZQ1JKZjRFbm1KNlFoNHk0TjQ5YVVnQXQzeExMVlRC?=
- =?utf-8?B?Sis0TkNDZGVTYnllZTZoL2l3MkVRd2UxODIxWGJ4bEh6cFRtRTNvY3Njak9v?=
- =?utf-8?B?ZmFiMVJwTFpubEpCb3VVSkRmdkkrYTgzcE9IK0JYb0xqc1hjYWptWnBCOWJE?=
- =?utf-8?B?VHFaUXU3ZlIzWEttWCtHcFBMZTVSck9RNTdJT04wN1ZLMXBzZnBXbFo2Mjc2?=
- =?utf-8?B?dWREbDVwZTBwcUdIMjFFRnBYZklVN1NaUXVyQWJkYWF1allVbDNyam5RUmoz?=
- =?utf-8?B?ODg0MUNGOUpDT2IxdG1ya2NxcFp0dkZ2YVRleE15bkFEdjFGeTRhc1E0dzd6?=
- =?utf-8?B?VUoxN294ZGJ1MzZESkJkTXRsZG9tcWxzTnpnUlUzQ0pocVp5ajRzVzJQWGFU?=
- =?utf-8?B?MmhGVHB6b0pEMGVFK0JtL3kxdlFFbnFTRUZUZWtUbEkyMGpKNTYyN2FLZm55?=
- =?utf-8?B?OGg1TUVwbkt5dDVhY1IrbjlEMVg5L1F6WjU4a0RXMzdVWmtJM1dkL2tRL0Fi?=
- =?utf-8?B?eXhmNTBGYnFoa3c2ZHFNMm5jd1FuVnE3K2I1MmV2V0ZQMmdsQk41My9HVis3?=
- =?utf-8?B?YklESy9FR003N0EveWJwVVZ4ek0yRWorVVltL21DNWlTakVibUtEUXFRNmxK?=
- =?utf-8?B?L1ZoNVZNY2lBUFhSbWkrQjBWMVhXSkhGSThDVTY3aXgwVEUzMDBIdzZNSEFh?=
- =?utf-8?B?NG1sTHBLSkJDMlNGTm02TlRYM1k1NU93R2ROWVNhWng0K1lCS0tXajNvVTdJ?=
- =?utf-8?B?bzFHZk1WZEJocHE0VjJlcHVsYVZKZ0tEeVBRcVRpZkxYRlcvbFVEK2lVcUNI?=
- =?utf-8?B?YjZjVzlBNDdkTXQ1dENrclhVUFhwZGFSeUE2SmJVY0VPVHBma3ZzeGFmcWpI?=
- =?utf-8?Q?2dX7jCmtEHdv9PXqsXOJuVshU?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac052607-9357-4b95-04a8-08dd474c59e6
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S0EwTUprQmxtODBac2dnNEthMFQxT1VxcmFDd0ppWHp2V3ByemszSWNLKzVD?=
+ =?utf-8?B?RGlKQ0c4dEEzN0ZmR1YvY29nY3BUR1RUaS9GcXlHVEdEaE1Mbmx6ZVBJNXVx?=
+ =?utf-8?B?Mm5tbzF2VTdBcHU3SzBaVkFMRGJzTmNnOFlkRG9tSmRDSFFMazRsN21SZ2tR?=
+ =?utf-8?B?NWFQZ0hZcHB2b2l0MklyTUUraDlwUHM1YW9NZmFSOEt6TGZ0cGJRdnczaGYr?=
+ =?utf-8?B?T1BqN2tuL1g1dmhlQmdNd2l0cjNVYzRXZXJ3TythanpZajRrcVRrWHRMYk5T?=
+ =?utf-8?B?NlRJNnlXeldMN3RBbmNlblVreEx5Q1ZKK1FTU3BuTDdrbmQ3UWlJUzJ0S1hp?=
+ =?utf-8?B?RDZJZXVOUjErQUk0Nm1PZUlCTDM1ZlRJa1RycE9XWURHcnEzQjdiekVpWkN0?=
+ =?utf-8?B?MTg3U1I3Rk1PWnJoc0syQS9GQ1oxalNrakUzZ1EwUFM5WVBuNldwb05GRXpC?=
+ =?utf-8?B?QjZoVlhnWGhwb1B3Y1RGdTBxT055QnBjSjNSRGZKV1JNM2JudkpBbWt0ZHRn?=
+ =?utf-8?B?RFg4MDlSMVBaYTNUaXZDYzREUGcvT3JNdTJJeXNxQTRLajJQUGRrOWNoQ0xy?=
+ =?utf-8?B?NTk5bE4wKzJTYnFaNWVyeGIrWjY1ekhZbDFLYWlHZUQ1OGdHWi9rTWFMS1ZV?=
+ =?utf-8?B?REp2UEVEeGM3N0NVZEwxRlFmVDRRQ1F5ZVZXN1MvaVNwOE5rZ3VTSHArRVZL?=
+ =?utf-8?B?M1E2aXdOZVpKeGdEbUR0Kzc4YkJGZ1p1Y3pMaDR1ZFlndWZ2T2R3MW52a090?=
+ =?utf-8?B?ZmhlVi9xMU4zRzZnL0tQa1NkRmEwTTBHSWJkN3VZV0FINmtmQnE4TngwdUdO?=
+ =?utf-8?B?Tk5YdzZGZVZEbS8vUndncDg5aVA1c0k3T3NrQ1QxZnBrRTFXWHhPM3Y2Mllx?=
+ =?utf-8?B?Zjl1amtUNlRqc040TzhJWkNXeHBXT2o5a0wxNzRCSUN5Z0Q2dC85VDhsV3lS?=
+ =?utf-8?B?c2psNzRHWWxMVGxVQitKL3F0eEZIQncyRVNyR0t0cmFDVVJaaHJtZVBzalU3?=
+ =?utf-8?B?TU15aURndWxrWkNEbGt1KzRWcisvWWZTYVl3aFhBMFMxbTAzdnpTanlUMTdS?=
+ =?utf-8?B?N3Z4UzVXM3JhTDZZQ2NpWC81YmhnWnVnODZaNUtkM3BpUDBrbm1ISndmQnJZ?=
+ =?utf-8?B?S1BaWThMY1U4TDlnVFVIYklWL0grclE4V013SlRNa09nYXpYamYwcmtiamFH?=
+ =?utf-8?B?SFNQUnFpZ0EzUklqS296RzQvbi9vdUVqRnZFc09KQ0MxTUdXWnpKMnR2VHFh?=
+ =?utf-8?B?TExpOGU2S0Z2ekhrNnB6eUNnUGlQeUhCd0JXQlVsVWg2Wmp0LzFUbUN3Y2pR?=
+ =?utf-8?B?OGwrcE83VEtmY2gvTU5CbWVwUm9JblYwTW5UVFRCRmE1Q3luRjRIcmI5MURm?=
+ =?utf-8?B?cnNHYXluL010aTE2aE5wMlJtQXN2c0RqQmpQd2kwaGdlYmFJbmdaS3dkbVZ2?=
+ =?utf-8?B?SGs4MTk1d3VvZWE0cE5iUjQ3Q05uUmVHaHFrc2dmdGR5eGNNTWRQVjlFTTBz?=
+ =?utf-8?B?bHNLWWthRTAvS0kyd0VwMERQcEwwL3d1Y1RXczlSbE1ZM1VJSFFPeXk2YVNS?=
+ =?utf-8?B?cnB5VGtkOU9iT0JwWVp2b3V3ZmlTZGFKV2ZaSDA4ZUloZXFOeXhLeXh6bkZn?=
+ =?utf-8?B?Rko3UzNTNDU4bW1PUjBlZHI2T3djZVl6RlRmY1hZZlkwY2JRRVAwdjBpdDZO?=
+ =?utf-8?B?ODI3ZERzMXZQMGQzSWVkdXF2WWJsektrcEtsVk5oRmMyeGg1c2ZVZnVFaHdC?=
+ =?utf-8?B?d2d5T2daS2hQL0F3bWNlRFF4RDJvMWxjdG5BdDZMS3k3cU1xUjVXVXZOTGJa?=
+ =?utf-8?B?c0UvSkVWSVRnKzN6a1VzUXpWWms1MWRacENEZ29VMVpUTllqS3F1eTlVbVRW?=
+ =?utf-8?B?dnRRL3Faa0RhYndBNzNhcDRTY2VsUytEV0YySGlsU3I4MDZ4UnpqQUR4endC?=
+ =?utf-8?B?N3grWU42c1AvNC80c24yV1huNVdaekg0OExoS0ExYngwSTFIYTFPdWoxQVlr?=
+ =?utf-8?B?bEVwL00zamEwVkZaWnU5UDZicUNRcU9HMmZwUzJBUGxKTHMxeHlSZU9nOFdP?=
+ =?utf-8?B?S2s5STRTR0pHZFlnQWV3NS90YloxODltWXlDbkJZY1Y1MXhyNS9YYnFrRFlr?=
+ =?utf-8?Q?oh171YzHmimdKHQ9s23Z5Xm5K?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3cea2a2-7cc2-4aae-86b6-08dd474d5b46
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2025 07:52:21.1179 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2025 07:59:32.9367 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DpNYslLblA+jBeNACjCiOmg+UaTwWgxVXtrJ/62pRtTDOdkrLVn/ny9PxrTTpRRhLxySfeCx6uykNvW6HDJdRw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8055
+X-MS-Exchange-CrossTenant-UserPrincipalName: dsU6gyrUHk/IkXfzEBqLh4Tl83M1R3sLe7YlBy7YLFgx8QPwFviHwa6Xc0KurX3SvkfPCc5y1g19E94Onas9Eg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7849
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -200,212 +200,180 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hi Michal
 
-On 2/7/2025 12:45 AM, Michal Wajdeczko wrote:
+On 2/7/2025 12:09 AM, Michal Wajdeczko wrote:
 > 
 > 
 > On 06.02.2025 11:43, Riana Tauro wrote:
->> Add pmu support for per-function engine activity
->> stats.
-> 
-> PMU ?
-> unneeded line wrap ?
-Will fix this
-> 
+>> Engine activity is supported only on GuC submission version >= 1.14.1
+>> Allow enabling/reading engine activity only on supported
+>> GuC versions. Warn once if not supported.
 >>
->> per-function engine activity is enabled when sriov_numvfs
->> are set. If sriov_numvfs is set to 2, then the applicable function
->> values are
+>> v2: use guc interface version (John)
+>> v3: do not use drm_WARN (Umesh)
+>> v4: use variable for supported and use gt logs
+>>      use a friendlier log message (Michal)
 >>
->> 0 - PF engine activity
->> 1,2 - per-VF engine activity from PF
-> 
-> 0 - PF engine activity
-> 1 - VF1 engine activity
-> 2 - VF2 engine activity
-Will add this
-> 
-> but maybe better to show full entries:
-> 
-> xe_0000_03_00.0/engine...ticks/ - PF activity
-> xe_0000_03_00.1/engine...ticks/ - VF1 activity
-> xe_0000_03_00.2/engine...ticks/ - VF2 activity
-
-This is not the case since here PF is monitoring the engine activity of 
-VF's. Not VF reporting the engine activity stats.
-So the function id's are sent to PF to get engine activity stats
-> 
-> as 'function' term here matches 'PCI function'
-> 
->>
->> This can be read from perf tool as shown below
->>
->> ./perf stat -e xe_<bdf>/engine-active-ticks,gt=0,engine_class=0,
->> 			 engine_instance=0,function=1/ -I 1000
->>
->> v2: fix documentation (Umesh)
->>      remove global for functions (Lucas, Michal)
->>
+>> Cc: John Harrison <John.C.Harrison@Intel.com>
 >> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 >> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_pmu.c | 38 ++++++++++++++++++++++++++++++-------
->>   1 file changed, 31 insertions(+), 7 deletions(-)
+>>   drivers/gpu/drm/xe/xe_guc_engine_activity.c   | 42 +++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_guc_engine_activity.h   |  1 +
+>>   .../gpu/drm/xe/xe_guc_engine_activity_types.h |  3 ++
+>>   3 files changed, 46 insertions(+)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
->> index a758fc517048..66cf2ece97ec 100644
->> --- a/drivers/gpu/drm/xe/xe_pmu.c
->> +++ b/drivers/gpu/drm/xe/xe_pmu.c
->> @@ -13,6 +13,7 @@
->>   #include "xe_hw_engine.h"
->>   #include "xe_pm.h"
->>   #include "xe_pmu.h"
->> +#include "xe_sriov_pf_helpers.h"
->>   
->>   /**
->>    * DOC: Xe PMU (Performance Monitoring Unit)
->> @@ -32,9 +33,10 @@
->>    *	gt[60:63]		Selects gt for the event
->>    *	engine_class[20:27]	Selects engine-class for event
->>    *	engine_instance[12:19]	Selects the engine-instance for the event
->> + *	function[44:59]		Selects the function of the event (SRIOV enabled)
->>    *
->>    * For engine specific events (engine-*), gt, engine_class and engine_instance parameters must be
->> - * set as populated by DRM_XE_DEVICE_QUERY_ENGINES.
->> + * set as populated by DRM_XE_DEVICE_QUERY_ENGINES and function if SRIOV is enabled.
->>    *
->>    * For gt specific events (gt-*) gt parameter must be passed. All other parameters will be 0.
->>    *
->> @@ -49,6 +51,7 @@
->>    */
->>   
->>   #define XE_PMU_EVENT_GT_MASK			GENMASK_ULL(63, 60)
->> +#define XE_PMU_EVENT_FUNCTION_MASK		GENMASK_ULL(59, 44)
->>   #define XE_PMU_EVENT_ENGINE_CLASS_MASK		GENMASK_ULL(27, 20)
->>   #define XE_PMU_EVENT_ENGINE_INSTANCE_MASK	GENMASK_ULL(19, 12)
->>   #define XE_PMU_EVENT_ID_MASK			GENMASK_ULL(11, 0)
->> @@ -58,6 +61,11 @@ static unsigned int config_to_event_id(u64 config)
->>   	return FIELD_GET(XE_PMU_EVENT_ID_MASK, config);
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+>> index 9c08af273397..5d67fe38639a 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+>> @@ -89,6 +89,22 @@ static int allocate_engine_activity_buffers(struct xe_guc *guc,
+>>   	return 0;
 >>   }
 >>   
->> +static unsigned int config_to_function_id(u64 config)
+>> +static bool engine_activity_supported(struct xe_guc *guc)
+> 
+> maybe rename it a little to distinguish from other function that just
+> look at engine_activity->supported flag?
+
+Hmm, this is static and internally used. Not sure what to rename it to
+
+Is this okay ? is_engine_activity_supported
+> 
 >> +{
->> +	return FIELD_GET(XE_PMU_EVENT_FUNCTION_MASK, config);
+>> +	struct xe_uc_fw_version *version = &guc->fw.versions.found[XE_UC_FW_VER_COMPATIBILITY];
+>> +	struct xe_gt *gt = guc_to_gt(guc);
+>> +
+>> +	/* engine activity stats is supported from GuC interface version (1.14.1) */
+>> +	if (GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 14, 1))
+>> +		return true;
+> 
+> it also doesn't work on VFs
+> so maybe it should be different logic:
+Will add this
+> 
+> 	if (IS_SRIOV_VF) {
+> 		xt_gt_into("EA not supported on VFs\n");
+> 		return false;
+> 	}
+> 
+> 	if (GUC_SUBMIT_VER < 1.14.1) {
+> 		xt_gt_into("EA not supported on vA, need vB+\n");
+> 		return false;
+> 	}
+> 
+>> +
+>> +	xe_gt_warn(gt,
+> 
+> does it really need to be 'warn' level?
+yeah CI flags it as a failure. Will change it to debug
+> 
+>> +		   "engine activity stats unsupported in GuC interface v%u.%u.%u, v%u.%u.%u or newer required\n",
+>> +		   version->major, version->minor, version->patch, 1, 14, 1);
+>> +
+>> +	return false;
 >> +}
 >> +
->>   static unsigned int config_to_engine_class(u64 config)
+>>   static struct engine_activity *hw_engine_to_engine_activity(struct xe_hw_engine *hwe)
 >>   {
->>   	return FIELD_GET(XE_PMU_EVENT_ENGINE_CLASS_MASK, config);
->> @@ -146,7 +154,7 @@ static bool event_supported(struct xe_pmu *pmu, unsigned int gt,
->>   static bool event_param_valid(struct perf_event *event)
+>>   	struct xe_guc *guc = &hwe->gt->uc.guc;
+>> @@ -250,6 +266,9 @@ u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe)
 >>   {
->>   	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
->> -	unsigned int engine_class, engine_instance;
->> +	unsigned int engine_class, engine_instance, function_id;
->>   	u64 config = event->attr.config;
->>   	struct xe_gt *gt;
+>>   	struct xe_guc *guc =  &hwe->gt->uc.guc;
 >>   
->> @@ -154,18 +162,28 @@ static bool event_param_valid(struct perf_event *event)
->>   	if (!gt)
->>   		return false;
->>   
->> +	function_id = config_to_function_id(config);
->> +	if (function_id && !IS_SRIOV_PF(xe))
-> 
-> hmm, it rather should be:
-> 
-> 	if (function_id && IS_SRIOV_VF(xe))
-This path is not hit for VF
-
-The perf_pmu_register doesn't initialize for VF's
-
-         if (IS_SRIOV_VF(xe))
-                 return 0;
-
-function id is applicable only when SRIOV is enabled and VF engine 
-activity is requested from PF. Hence SRIOV_PF here and the check to
-see if function_id is valid
-> 
-> but (see below)
-> 
->> +		return false;
+>> +	if (!xe_guc_engine_activity_supported(guc))
+>> +		return 0;
 >> +
->>   	engine_class = config_to_engine_class(config);
->>   	engine_instance = config_to_engine_instance(config);
+>>   	return get_engine_active_ticks(guc, hwe);
+>>   }
 >>   
->>   	switch (config_to_event_id(config)) {
->>   	case XE_PMU_EVENT_GT_C6_RESIDENCY:
->> -		if (engine_class || engine_instance)
->> +		if (engine_class || engine_instance || function_id)
->>   			return false;
->>   		break;
->>   	case XE_PMU_EVENT_ENGINE_ACTIVE_TICKS:
->>   	case XE_PMU_EVENT_ENGINE_TOTAL_TICKS:
->>   		if (!event_to_hwe(event))
->>   			return false;
->> +		/*
->> +		 * PF(0) and total vfs when SRIOV is enabled
->> +		 */
->> +		if (function_id > xe_sriov_pf_get_totalvfs(xe))
+>> @@ -263,9 +282,27 @@ u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe)
+>>   {
+>>   	struct xe_guc *guc =  &hwe->gt->uc.guc;
+>>   
+>> +	if (!xe_guc_engine_activity_supported(guc))
+>> +		return 0;
+>> +
+>>   	return get_engine_total_ticks(guc, hwe);
+>>   }
+>>   
+>> +/**
+>> + * xe_guc_engine_activity_supported - Check support for engine activity stats
+>> + * @guc: The GuC object
+>> + *
+>> + * Engine activity stats is supported from GuC interface version (1.14.1)
 > 
-> shouldn't we rely on checks from one place?
+> what about VFs?
+Will add the check to return false in case of VF's as suggested above
 > 
-will move it to one place
-> likely xe_guc_engine_activity_xxx() will also have checks for
-> index/function and may use ea->num_functions for that
-event and params support is checked in pmu_event init.
-There are additional checks while reading too but the init will return 
-not supported if events/functions/parameters are not valid.
+>> + *
+>> + * Return: true if engine activity stats supported, false otherwise
+>> + */
+>> +bool xe_guc_engine_activity_supported(struct xe_guc *guc)
+>> +{
+>> +	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
+>> +
+>> +	return engine_activity->supported;
+>> +}
+>> +
+>>   /**
+>>    * xe_guc_engine_activity_enable_stats - Enable engine activity stats
+>>    * @guc: The GuC object
+>> @@ -276,6 +313,9 @@ void xe_guc_engine_activity_enable_stats(struct xe_guc *guc)
+>>   {
+>>   	int ret;
+>>   
+>> +	if (!xe_guc_engine_activity_supported(guc))
+>> +		return;
+>> +
+>>   	ret = enable_engine_activity_stats(guc);
+>>   	if (ret)
+>>   		xe_gt_err(guc_to_gt(guc), "failed to enable activity stats%d\n", ret);
+>> @@ -302,6 +342,8 @@ int xe_guc_engine_activity_init(struct xe_guc *guc)
+>>   	struct xe_gt *gt = guc_to_gt(guc);
+>>   	int ret;
+>>   
+>> +	engine_activity->supported = engine_activity_supported(guc);
+> 
+> should we continue if not supported ?
+Thanks for catching this. Shouldn't continue.
+Will fix it
+> 
+>> +
+>>   	ret = allocate_engine_activity_group(guc);
+>>   	if (ret) {
+>>   		xe_gt_err(gt, "failed to allocate activity group %d\n", ret);
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.h b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
+>> index c00f3da5513d..9d3ea3f67b6a 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_engine_activity.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
+>> @@ -12,6 +12,7 @@ struct xe_hw_engine;
+>>   struct xe_guc;
+>>   
+>>   int xe_guc_engine_activity_init(struct xe_guc *guc);
+>> +bool xe_guc_engine_activity_supported(struct xe_guc *guc);
+>>   void xe_guc_engine_activity_enable_stats(struct xe_guc *guc);
+>>   u64 xe_guc_engine_activity_active_ticks(struct xe_hw_engine *hwe);
+>>   u64 xe_guc_engine_activity_total_ticks(struct xe_hw_engine *hwe);
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
+>> index a2ab327d3eec..81002c83d65e 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
+>> @@ -79,6 +79,9 @@ struct xe_guc_engine_activity {
+>>   	/** @num_activity_group: number of activity groups */
+>>   	u32 num_activity_group;
+>>   
+>> +	/** @supported: checks if engine activity is supported */
+> 
+> indicates?
+will fix this
 
 Thanks
 Riana
 > 
->> +			return false;
+>> +	bool supported;
 >> +
->>   		break;
->>   	}
+>>   	/** @eag: holds the device level engine activity data */
+>>   	struct engine_activity_group *eag;
 >>   
->> @@ -233,18 +251,22 @@ static u64 read_engine_events(struct perf_event *event, u64 prev)
->>   	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
->>   	struct xe_pmu *pmu = &xe->pmu;
->>   	struct xe_hw_engine *hwe;
->> -	u64 val = 0;
->> +	unsigned int function_id;
->> +	u64 config, val = 0;
->>   
->>   	if (!pmu->fw_count)
->>   		return prev;
->>   
->> +	config = event->attr.config;
->> +	function_id = config_to_function_id(config);
->> +
->>   	hwe = event_to_hwe(event);
->>   	if (!hwe)
->>   		drm_warn(&xe->drm, "unknown pmu engine\n");
->> -	else if (config_to_event_id(event->attr.config) == XE_PMU_EVENT_ENGINE_ACTIVE_TICKS)
->> -		val = xe_guc_engine_activity_active_ticks(hwe, 0);
->> +	else if (config_to_event_id(config) == XE_PMU_EVENT_ENGINE_ACTIVE_TICKS)
->> +		val = xe_guc_engine_activity_active_ticks(hwe, function_id);
->>   	else
->> -		val = xe_guc_engine_activity_total_ticks(hwe, 0);
->> +		val = xe_guc_engine_activity_total_ticks(hwe, function_id);
->>   
->>   	return val;
->>   }
->> @@ -347,6 +369,7 @@ static void xe_pmu_event_del(struct perf_event *event, int flags)
->>   }
->>   
->>   PMU_FORMAT_ATTR(gt,			"config:60-63");
->> +PMU_FORMAT_ATTR(function,		"config:44-59");
->>   PMU_FORMAT_ATTR(engine_class,		"config:20-27");
->>   PMU_FORMAT_ATTR(engine_instance,	"config:12-19");
->>   PMU_FORMAT_ATTR(event,			"config:0-11");
->> @@ -355,6 +378,7 @@ static struct attribute *pmu_format_attrs[] = {
->>   	&format_attr_event.attr,
->>   	&format_attr_engine_class.attr,
->>   	&format_attr_engine_instance.attr,
->> +	&format_attr_function.attr,
->>   	&format_attr_gt.attr,
->>   	NULL,
->>   };
 > 
 
