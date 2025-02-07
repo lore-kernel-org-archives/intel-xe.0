@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4799C02194
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 13:35:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC106C02199
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Feb 2025 13:35:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CB6D10E325;
-	Fri,  7 Feb 2025 13:35:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB0CA10EAF0;
+	Fri,  7 Feb 2025 13:35:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J6kNWtav";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q/4vDoJc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F05110E325;
- Fri,  7 Feb 2025 13:35:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2B8310E325;
+ Fri,  7 Feb 2025 13:35:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738935328; x=1770471328;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=kYTuTzzD9yXjTHv0Z2+IHI7V4EfwsJEQmOWXJHpafP8=;
- b=J6kNWtavMWH22PTX857QoKVoi0SvBEtf77L+jYNbLozOLmedEDWPpTX3
- 1cdkMt7YtHZMRO3X0OZmI8idc4n4GMaMAuCq9dW40Lf0jvsmjB1zioDz4
- XuUP7rtisgwlDmGFgV1HdGgjA4mvUKEGLiSzUixq025dqTe+X9umkP927
- JTP2UIXBUG36mZmmV/SZfIO2JuRqYq3rcX1SzQLIJU1HfIuyILTDPUe3C
- 5v42dPkQJ//1fkrXzDGzs+k1WeAJjujH1s3iE+uy3tkUO6PASme3PGJO3
- n/6vr6JwauLocWkUCI2ugKQ82LBrUq+mWWhSuQHpBtJr6r0LN355roClF w==;
-X-CSE-ConnectionGUID: qO8oG9+rSsaRFo6a7LKVUQ==
-X-CSE-MsgGUID: G0GpH1w8T2iB1g92ijlwWw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11338"; a="39482015"
-X-IronPort-AV: E=Sophos;i="6.13,267,1732608000"; d="scan'208";a="39482015"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 05:35:28 -0800
-X-CSE-ConnectionGUID: 0d1B1lduTAqXR5R9T7m9wA==
-X-CSE-MsgGUID: 5kDHhBiCR4u0YuFmZxBF2w==
+ t=1738935341; x=1770471341;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=5CKc4sQb7UaiQzw21YxfzRTTQ7qslAgeCM83cW8cjjQ=;
+ b=Q/4vDoJc1zD8b5aT0W+A0q83Z6wNUb88KSPXEIkhoh4ICMhObKokesfF
+ OSi9DI9gthoiIWnLNqLF2iE4wBMkbcw+YVROc70A75qkF73JkNbTBWVcI
+ EKMa4f1atNkE0nW2lrTJufTZz+BdWJhjuql8Yrl5iKTtt11C21kqI5xFT
+ bpG8VKyX+PgAew7z9zPqg8xKdV5dxTVIbyCbH2hFR2nkOfnGkZ+feBFqW
+ mJdS4n2P87Oh+NkRNYDsSYqxeibpj9SAd/q+YbdFWkbmcSN7TGG247Ezy
+ EyZzwt2UDo61m9FhgOIhSwGegS+jmy3kr1R6I3pbOrHrtHQS8xqbhZNg/ Q==;
+X-CSE-ConnectionGUID: Ugj+jlHGRg27tEAPx+Zvpw==
+X-CSE-MsgGUID: ctl96b14RBKksUfT+PNKhQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11338"; a="43496356"
+X-IronPort-AV: E=Sophos;i="6.13,267,1732608000"; d="scan'208";a="43496356"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2025 05:35:40 -0800
+X-CSE-ConnectionGUID: LILtAh8ASdqskARZFN0lpg==
+X-CSE-MsgGUID: V9Ui0kgZQoWX6xIM+LcRjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,267,1732608000"; d="scan'208";a="112155603"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116728149"
 Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.122])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 05:35:26 -0800
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2025 05:35:38 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com, imre.deak@intel.com
-Subject: [PATCH 0/3] drm/i915: i915_reg.h display split
-Date: Fri,  7 Feb 2025 15:35:19 +0200
-Message-Id: <cover.1738935286.git.jani.nikula@intel.com>
+Subject: [PATCH 2/3] drm/i915/reg: Remove some extra blank lines
+Date: Fri,  7 Feb 2025 15:35:21 +0200
+Message-Id: <43183b2a681a24ee1ebcfd5cab847bb8acfc5d65.1738935286.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1738935286.git.jani.nikula@intel.com>
+References: <cover.1738935286.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -67,88 +69,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Remove some blank lines from i915_reg.h primarily to help the scripted
+refactoring coming up, keeping the comments together.
 
-Jani Nikula (3):
-  drm/i915/reg: use REG_BIT and friends to define DP registers
-  drm/i915/reg: Remove some extra blank lines
-  drm/i915: split out display register macros to a separate file
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/i915_reg.h | 5 -----
+ 1 file changed, 5 deletions(-)
 
- drivers/gpu/drm/i915/display/g4x_dp.c         |   24 +-
- drivers/gpu/drm/i915/display/g4x_hdmi.c       |    1 +
- drivers/gpu/drm/i915/display/hsw_ips.c        |    1 +
- .../gpu/drm/i915/display/i9xx_display_sr.c    |    1 +
- drivers/gpu/drm/i915/display/i9xx_plane.c     |    2 +
- drivers/gpu/drm/i915/display/i9xx_wm.c        |    1 +
- drivers/gpu/drm/i915/display/icl_dsi.c        |    1 +
- .../gpu/drm/i915/display/intel_backlight.c    |    2 +-
- drivers/gpu/drm/i915/display/intel_bw.c       |    3 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c    |    1 +
- drivers/gpu/drm/i915/display/intel_cmtg.c     |    3 +-
- .../gpu/drm/i915/display/intel_combo_phy.c    |    1 +
- drivers/gpu/drm/i915/display/intel_crt.c      |    1 +
- drivers/gpu/drm/i915/display/intel_ddi.c      |    1 +
- drivers/gpu/drm/i915/display/intel_display.c  |    3 +-
- .../drm/i915/display/intel_display_debugfs.c  |    1 +
- .../drm/i915/display/intel_display_device.c   |    6 +-
- .../gpu/drm/i915/display/intel_display_irq.c  |    2 +
- .../drm/i915/display/intel_display_power.c    |    1 +
- .../i915/display/intel_display_power_map.c    |    1 +
- .../i915/display/intel_display_power_well.c   |    1 +
- .../gpu/drm/i915/display/intel_display_regs.h | 2768 ++++++++++++++++
- .../gpu/drm/i915/display/intel_display_wa.c   |    1 +
- drivers/gpu/drm/i915/display/intel_dmc.c      |    1 +
- drivers/gpu/drm/i915/display/intel_dmc_wl.c   |    1 +
- drivers/gpu/drm/i915/display/intel_dp.c       |    6 +-
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |    1 +
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |    1 +
- drivers/gpu/drm/i915/display/intel_dp_test.c  |    1 +
- drivers/gpu/drm/i915/display/intel_dpio_phy.c |    1 +
- drivers/gpu/drm/i915/display/intel_dpll.c     |    1 +
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |    1 +
- .../gpu/drm/i915/display/intel_dpt_common.c   |    1 +
- drivers/gpu/drm/i915/display/intel_drrs.c     |    1 +
- drivers/gpu/drm/i915/display/intel_dsb.c      |    1 +
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |    3 +-
- drivers/gpu/drm/i915/display/intel_dvo.c      |    1 +
- drivers/gpu/drm/i915/display/intel_fbc.c      |    3 +
- drivers/gpu/drm/i915/display/intel_fdi.c      |    3 +-
- .../drm/i915/display/intel_fifo_underrun.c    |    1 +
- drivers/gpu/drm/i915/display/intel_gmbus.c    |    1 +
- drivers/gpu/drm/i915/display/intel_hdcp.c     |    1 +
- drivers/gpu/drm/i915/display/intel_hdmi.c     |    2 +-
- .../gpu/drm/i915/display/intel_hotplug_irq.c  |    1 +
- drivers/gpu/drm/i915/display/intel_lspcon.c   |    1 +
- drivers/gpu/drm/i915/display/intel_lvds.c     |    3 +-
- .../drm/i915/display/intel_modeset_setup.c    |    3 +-
- drivers/gpu/drm/i915/display/intel_overlay.c  |    2 +
- .../gpu/drm/i915/display/intel_pch_display.c  |    1 +
- .../gpu/drm/i915/display/intel_pch_refclk.c   |    1 +
- drivers/gpu/drm/i915/display/intel_pfit.c     |    1 +
- drivers/gpu/drm/i915/display/intel_pipe_crc.c |    1 +
- drivers/gpu/drm/i915/display/intel_pmdemand.c |    1 +
- drivers/gpu/drm/i915/display/intel_pps.c      |    1 +
- drivers/gpu/drm/i915/display/intel_psr.c      |    1 +
- drivers/gpu/drm/i915/display/intel_sdvo.c     |    1 +
- drivers/gpu/drm/i915/display/intel_snps_phy.c |    1 +
- drivers/gpu/drm/i915/display/intel_tc.c       |    1 +
- drivers/gpu/drm/i915/display/intel_vblank.c   |    1 +
- drivers/gpu/drm/i915/display/intel_vga.c      |    2 +
- drivers/gpu/drm/i915/display/intel_vrr.c      |    1 +
- drivers/gpu/drm/i915/display/skl_scaler.c     |    1 +
- .../drm/i915/display/skl_universal_plane.c    |    4 +-
- drivers/gpu/drm/i915/display/skl_watermark.c  |    1 +
- drivers/gpu/drm/i915/display/vlv_dsi.c        |    1 +
- drivers/gpu/drm/i915/gvt/display.c            |    1 +
- drivers/gpu/drm/i915/gvt/fb_decoder.c         |    1 +
- drivers/gpu/drm/i915/gvt/handlers.c           |    1 +
- drivers/gpu/drm/i915/gvt/interrupt.c          |    1 +
- drivers/gpu/drm/i915/gvt/mmio.c               |    1 +
- drivers/gpu/drm/i915/i915_reg.h               | 2800 -----------------
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |    1 +
- drivers/gpu/drm/xe/display/xe_plane_initial.c |    2 +-
- 73 files changed, 2869 insertions(+), 2829 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_regs.h
-
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index da658c3591f0..6e80508b544c 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -1016,7 +1016,6 @@
+ /*
+  * Overlay regs
+  */
+-
+ #define OVADD			_MMIO(0x30000)
+ #define DOVSTA			_MMIO(0x30008)
+ #define OC_BUF			(0x3 << 20)
+@@ -1071,7 +1070,6 @@
+ /*
+  * Display engine regs
+  */
+-
+ /* Pipe/transcoder A timing regs */
+ #define _TRANS_HTOTAL_A		0x60000
+ #define _TRANS_HTOTAL_B		0x61000
+@@ -2781,7 +2779,6 @@
+  * functionality covered in PCH_PORT_HOTPLUG is split into
+  * SHOTPLUG_CTL_DDI and SHOTPLUG_CTL_TC.
+  */
+-
+ #define SHOTPLUG_CTL_DDI				_MMIO(0xc4030)
+ #define   SHOTPLUG_CTL_DDI_HPD_ENABLE(hpd_pin)			(0x8 << (_HPD_PIN_DDI(hpd_pin) * 4))
+ #define   SHOTPLUG_CTL_DDI_HPD_OUTPUT_DATA(hpd_pin)		(0x4 << (_HPD_PIN_DDI(hpd_pin) * 4))
+@@ -2861,7 +2858,6 @@
+ #define  TRANS_DPLL_ENABLE(pipe)	(1 << ((pipe) * 4 + 3))
+ 
+ /* transcoder */
+-
+ #define _PCH_TRANS_HTOTAL_A		0xe0000
+ #define _PCH_TRANS_HTOTAL_B		0xe1000
+ #define PCH_TRANS_HTOTAL(pipe)		_MMIO_PIPE(pipe, _PCH_TRANS_HTOTAL_A, _PCH_TRANS_HTOTAL_B)
+@@ -3787,7 +3783,6 @@ enum skl_power_gate {
+ /*
+  * SKL Clocks
+  */
+-
+ /* CDCLK_CTL */
+ #define CDCLK_CTL			_MMIO(0x46000)
+ #define  CDCLK_FREQ_SEL_MASK		REG_GENMASK(27, 26)
 -- 
 2.39.5
 
