@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1ADEC02198
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Feb 2025 14:17:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB4BFC02198
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Feb 2025 14:25:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9933410E165;
-	Mon, 10 Feb 2025 14:17:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WYOuiSvs";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2923C10E165
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Feb 2025 14:17:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739197038; x=1770733038;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ogpju4rn4y72Vl+20jG04/9k/K+VkPiUIef+zwBQpHY=;
- b=WYOuiSvs0PRw3Dvf6PPRIHa4Ol+kicIzNlOqxoR/5vumwD8+P15/g87T
- 9mWQB2nrTD/c30bmKtxwxkb3TOG6NtsJjwQARHeJiEiqn+5tX5vuKO3ff
- LqywNQrrvVbZ5BAtnjTXGsSzQM30QfPIonpRZZmosndZbrpPgxpa/u0tj
- cm9n+Lgk3IHeXfCy8Bg0hndjaREj+dn46bJKLiwDkgmcp1RSBkHqpOuu/
- 9nyva6bWcMqjvUgQoT8J02mTRUXfJV57lT9u79ZxY5+HxjLRkGMW9mX5F
- m/oIFXBXyhccfh/x7mnMM4Kj+jKAw7UsI5OCFIrbsplDFi9ciaDm0GeB2 Q==;
-X-CSE-ConnectionGUID: bYkZUJ4/SZ6yybPLeGzPLQ==
-X-CSE-MsgGUID: Y4US0Z4wSiWnEPgoMrdaXw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="50762755"
-X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; d="scan'208";a="50762755"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2025 06:17:17 -0800
-X-CSE-ConnectionGUID: 7FEESJtaQ1KOnnsHQCMOOA==
-X-CSE-MsgGUID: U1U93UBfRYeuodHGsjgpBw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; d="scan'208";a="112837887"
-Received: from nirmoyda-desk.igk.intel.com ([10.211.135.230])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2025 06:17:15 -0800
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Nirmoy Das <nirmoy.das@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, stable@vger.kernel.org
-Subject: [PATCH v2] drm/xe: Carve out wopcm portion from the stolen memory
-Date: Mon, 10 Feb 2025 15:36:54 +0100
-Message-ID: <20250210143654.2076747-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.46.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7190210E55E;
+	Mon, 10 Feb 2025 14:25:45 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87D0510E55B;
+ Mon, 10 Feb 2025 14:25:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6240515728458632743=="
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/display=3A_Fix_fbdev?=
+ =?utf-8?q?_GGTT_mapping_handling=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 10 Feb 2025 14:25:44 -0000
+Message-ID: <173919754455.329789.11630896361478096883@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250210133355.1023238-1-dev@lankhorst.se>
+In-Reply-To: <20250210133355.1023238-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,115 +36,140 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The top of stolen memory is WOPCM, which shouldn't be accessed. Remove
-this portion from the stolen memory region for discrete platforms.
-This was already done for integrated, but was missing for discrete
-platforms.
+--===============6240515728458632743==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This also moves get_wopcm_size() so detect_bar2_dgfx() and
-detect_bar2_integrated can use the same function.
+== Series Details ==
 
-v2: Improve commit message and suitable stable version tag(Lucas)
+Series: drm/xe/display: Fix fbdev GGTT mapping handling.
+URL   : https://patchwork.freedesktop.org/series/144602/
+State : success
 
-Fixes: d8b52a02cb40 ("drm/xe: Implement stolen memory.")
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: <stable@vger.kernel.org> # v6.11+
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 54 ++++++++++++++------------
- 1 file changed, 30 insertions(+), 24 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-index 423856cc18d4..d414421f8c13 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -57,12 +57,35 @@ bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe)
- 	return GRAPHICS_VERx100(xe) < 1270 && !IS_DGFX(xe);
- }
- 
-+static u32 get_wopcm_size(struct xe_device *xe)
-+{
-+	u32 wopcm_size;
-+	u64 val;
-+
-+	val = xe_mmio_read64_2x32(xe_root_tile_mmio(xe), STOLEN_RESERVED);
-+	val = REG_FIELD_GET64(WOPCM_SIZE_MASK, val);
-+
-+	switch (val) {
-+	case 0x5 ... 0x6:
-+		val--;
-+		fallthrough;
-+	case 0x0 ... 0x3:
-+		wopcm_size = (1U << val) * SZ_1M;
-+		break;
-+	default:
-+		WARN(1, "Missing case wopcm_size=%llx\n", val);
-+		wopcm_size = 0;
-+	}
-+
-+	return wopcm_size;
-+}
-+
- static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
- {
- 	struct xe_tile *tile = xe_device_get_root_tile(xe);
- 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
--	u64 stolen_size;
-+	u64 stolen_size, wopcm_size;
- 	u64 tile_offset;
- 	u64 tile_size;
- 
-@@ -74,7 +97,13 @@ static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
- 	if (drm_WARN_ON(&xe->drm, tile_size < mgr->stolen_base))
- 		return 0;
- 
-+	/* Carve out the top of DSM as it contains the reserved WOPCM region */
-+	wopcm_size = get_wopcm_size(xe);
-+	if (drm_WARN_ON(&xe->drm, !wopcm_size))
-+		return 0;
-+
- 	stolen_size = tile_size - mgr->stolen_base;
-+	stolen_size -= wopcm_size;
- 
- 	/* Verify usage fits in the actual resource available */
- 	if (mgr->stolen_base + stolen_size <= pci_resource_len(pdev, LMEM_BAR))
-@@ -89,29 +118,6 @@ static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
- 	return ALIGN_DOWN(stolen_size, SZ_1M);
- }
- 
--static u32 get_wopcm_size(struct xe_device *xe)
--{
--	u32 wopcm_size;
--	u64 val;
--
--	val = xe_mmio_read64_2x32(xe_root_tile_mmio(xe), STOLEN_RESERVED);
--	val = REG_FIELD_GET64(WOPCM_SIZE_MASK, val);
--
--	switch (val) {
--	case 0x5 ... 0x6:
--		val--;
--		fallthrough;
--	case 0x0 ... 0x3:
--		wopcm_size = (1U << val) * SZ_1M;
--		break;
--	default:
--		WARN(1, "Missing case wopcm_size=%llx\n", val);
--		wopcm_size = 0;
--	}
--
--	return wopcm_size;
--}
--
- static u32 detect_bar2_integrated(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
--- 
-2.46.0
+CI Bug Log - changes from xe-2628-71542b8e400e0d4ec7215e0b8b1fce67e5215f9f_BAT -> xe-pw-144602v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-144602v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [DMESG-FAIL][2] ([Intel XE#3890]) -> [PASS][3] +1 other test pass
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2628-71542b8e400e0d4ec7215e0b8b1fce67e5215f9f/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#3890]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3890
+
+
+Build changes
+-------------
+
+  * Linux: xe-2628-71542b8e400e0d4ec7215e0b8b1fce67e5215f9f -> xe-pw-144602v1
+
+  IGT_8227: 8227
+  xe-2628-71542b8e400e0d4ec7215e0b8b1fce67e5215f9f: 71542b8e400e0d4ec7215e0b8b1fce67e5215f9f
+  xe-pw-144602v1: 144602v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v1/index.html
+
+--===============6240515728458632743==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/display: Fix fbdev GGTT mapping handling.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144602/">https://patchwork.freedesktop.org/series/144602/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2628-71542b8e400e0d4ec7215e0b8b1fce67e5215f9f_BAT -&gt; xe-pw-144602v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-144602v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_migrate:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2628-71542b8e400e0d4ec7215e0b8b1fce67e5215f9f/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3890">Intel XE#3890</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2628-71542b8e400e0d4ec7215e0b8b1fce67e5215f9f -&gt; xe-pw-144602v1</li>
+</ul>
+<p>IGT_8227: 8227<br />
+  xe-2628-71542b8e400e0d4ec7215e0b8b1fce67e5215f9f: 71542b8e400e0d4ec7215e0b8b1fce67e5215f9f<br />
+  xe-pw-144602v1: 144602v1</p>
+
+</body>
+</html>
+
+--===============6240515728458632743==--
