@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3AE7C0219B
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Feb 2025 16:07:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 010C3C02198
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Feb 2025 16:15:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6524010E1D2;
-	Mon, 10 Feb 2025 16:07:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CDCC10E5A6;
+	Mon, 10 Feb 2025 16:15:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vq5TIa14";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ENt0TbWP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B7F910E1D2;
- Mon, 10 Feb 2025 16:07:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92BF810E5A6
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Feb 2025 16:15:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739203635; x=1770739635;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=tCjM1ygx//9vc8o3R/yO00IgxxIqgBTgOL+MlJ+rC1U=;
- b=Vq5TIa14v34INRE2VJQLmOdXv6au1BcFgS+8cFwR9kd4V0MBzvTNprPN
- a0vslO2dwbd3nnjgJsQGcNHvDeVuZNIDytiV8ip1DXY99gJJGcmjnXCQK
- 98rGnluJvLJO2KIPTj9a3nMevqzDroQVK2UcnA4ME8fosT2y1u3V0AGc5
- UgHg+tLRLkIS4HJ3p57BDxI1XHIeRvQD44nPPkqNAg35WZZQrCwxtcivK
- gHQPFur8J6M4kIvksP9Em7F0jOqNqb4WQM7oiQq3+AV5hvX1eRYlq63xu
- OZhJaSPkVvc74+orf7PBLCj41PFxHMfMXUkLS9+PywbIFJsEHo3rKBi7o A==;
-X-CSE-ConnectionGUID: yqyhAK7CSVSuhKBjZG/Gag==
-X-CSE-MsgGUID: r2RalY6XQJaZh8GF+P69LQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="27393085"
-X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; d="scan'208";a="27393085"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2025 08:07:15 -0800
-X-CSE-ConnectionGUID: GQRY+85CRamQ0rq8ZpAnJA==
-X-CSE-MsgGUID: FjG6bLHKSOiG04zGJ4QHYg==
+ t=1739204113; x=1770740113;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=94hlI+YM/7fcdpnkMu9SKB95nOoeWXMCEZ46y8Nj4PU=;
+ b=ENt0TbWPdwwTdhJokWjpUy5wABOBOZET4u/shHHjR3rjoaNjbV9fX/6l
+ 9CRWdpiIca7P2f9aB5yLKarKlTN5acHDgzFPR1RV0cAvDphEsfQ4xjVpn
+ i/HWeRIGkfpP06ywvfmciMLY3bXfEuRpe6y+c1VLVojeCPxn1tsvtOUst
+ MBwHDprXZiBU4l8OzFFoycJgx1Rzwy0TAJT6HvVG1BvnKzUjq90mH0su7
+ adbvq2f1YJoTXc1XJ9N7A1Vbs+Wd3arYTsxAZOVGKS2V6ns5N5XIbrAhH
+ 4Fuui8juJ0DODxPxsGYu9XAeElTpDRV7OcmxbO/2FL7xX3u1JQ14ORUEf Q==;
+X-CSE-ConnectionGUID: f3PpXQeJQ+GnFRn35nf6GQ==
+X-CSE-MsgGUID: 3KiuWrkrRHWvcSuNxglAww==
+X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="50778534"
+X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="50778534"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2025 08:15:12 -0800
+X-CSE-ConnectionGUID: v0jqNzYGQKOcdgYrtMQ74A==
+X-CSE-MsgGUID: dg8j7VR8RB+YhZHcYZToOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; d="scan'208";a="112447102"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 10 Feb 2025 08:07:12 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 10 Feb 2025 18:07:11 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v3 7/8] drm/i915/vrr: Check that the push send bit is clear
- after delayed vblank
-Date: Mon, 10 Feb 2025 18:07:11 +0200
-Message-ID: <20250210160711.24010-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.45.3
-In-Reply-To: <20250207223159.14132-8-ville.syrjala@linux.intel.com>
-References: <20250207223159.14132-8-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="112186155"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.18])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2025 08:15:08 -0800
+Date: Mon, 10 Feb 2025 17:15:04 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ matthew.d.roper@intel.com, andi.shyti@linux.intel.com,
+ intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ riana.tauro@intel.com, badal.nilawar@intel.com, karthik.poosa@intel.com
+Subject: Re: [PATCH v1] drm/xe/hwmon: expose fan speed
+Message-ID: <Z6omCGczu0vjQtpc@ashyti-mobl2.lan>
+References: <20250210100515.2205584-1-raag.jadav@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250210100515.2205584-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,141 +70,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Hi Raag,
 
-Since we don't do mailbox updates the push send bit
-should alwyas clear by the time the delay vblank fires
-and the flip completes. Check for that to make sure we
-haven't screwed up the sequencing/vblank evasion/etc.
+On Mon, Feb 10, 2025 at 03:35:15PM +0530, Raag Jadav wrote:
+> Add hwmon support for fan1_input, fan2_input and fan3_input attributes,
+> which will expose fan speed of respective channels in RPM when supported
+> by hardware. With this in place we can monitor fan speed using lm-sensors
+> tool.
+> 
+> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 
-On the DSB path we should be able to guarantee this
-since we don't have to deal with any scheduler latencies
-and whatnot. I suppose unexpected DMA/memory latencies
-might be the only thing that might trip us up here.
+I think you've got the hang of it by now :-)
 
-For the MMIO path we do always have a non-zero chance
-that vblank evasion fails (since we can't really guarantee
-anything about the scheduling behaviour). That could trip
-up this check, but that seems fine since we already print
-errors for other types of vblank evasion failures.
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-Should the CPU vblank evasion actually fail, then the push
-send bit can still be set when the next commit happens. But
-both the DSB and MMIO paths should handle that situation
-gracefully.
+> +#define   FAN_SPEED_CONTROL			0x7D
+> +#define     FSC_READ_NUM_FANS			0x4
+> +
 
-v2: Only check once instead of polling for two scanlines
-    since we should now be guaranteed to be past the
-    delayed vblank.
-    Also check in the MMIO path for good measure
-v3: Skip the push send check when VRR is enabled.
-    With joiner the secondary pipe's DSBs doen't have access
-    to the transcoder registers, and so doing this check
-    there triggers a reponse timeout error on the DSB. VRR
-    is not currently allowed when using joiner, so this will
-    prevent the bogus register access.
+I don't really like the alignment here, I'd have preferred:
 
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com> #v1
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_color.c   |  1 +
- drivers/gpu/drm/i915/display/intel_display.c |  4 +++
- drivers/gpu/drm/i915/display/intel_vrr.c     | 34 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_vrr.h     |  2 ++
- 4 files changed, 41 insertions(+)
+	...	0x7D
+	...	0x04
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 4d8f6509cac4..cfe14162231d 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -1991,6 +1991,7 @@ void intel_color_prepare_commit(struct intel_atomic_state *state,
- 	if (crtc_state->use_dsb) {
- 		intel_vrr_send_push(crtc_state->dsb_color_vblank, crtc_state);
- 		intel_dsb_wait_vblank_delay(state, crtc_state->dsb_color_vblank);
-+		intel_vrr_check_push_sent(crtc_state->dsb_color_vblank, crtc_state);
- 		intel_dsb_interrupt(crtc_state->dsb_color_vblank);
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 0790b2a4583e..34434071a415 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7737,6 +7737,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 
- 			intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
- 			intel_dsb_wait_vblank_delay(state, new_crtc_state->dsb_commit);
-+			intel_vrr_check_push_sent(new_crtc_state->dsb_commit, new_crtc_state);
- 			intel_dsb_interrupt(new_crtc_state->dsb_commit);
- 		}
- 	}
-@@ -7886,6 +7887,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 			intel_crtc_disable_flip_done(state, crtc);
- 
- 		intel_atomic_dsb_wait_commit(new_crtc_state);
-+
-+		if (!state->base.legacy_cursor_update && !new_crtc_state->use_dsb)
-+			intel_vrr_check_push_sent(NULL, new_crtc_state);
- 	}
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index adb51609d0a3..cac49319026d 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -416,6 +416,40 @@ void intel_vrr_send_push(struct intel_dsb *dsb,
- 		intel_dsb_nonpost_end(dsb);
- }
- 
-+void intel_vrr_check_push_sent(struct intel_dsb *dsb,
-+			       const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+
-+	if (!crtc_state->vrr.enable)
-+		return;
-+
-+	/*
-+	 * Make sure the push send bit has cleared. This should
-+	 * already be the case as long as the caller makes sure
-+	 * this is called after the delayed vblank has occurred.
-+	 */
-+	if (dsb) {
-+		int wait_us, count;
-+
-+		wait_us = 2;
-+		count = 1;
-+
-+		/*
-+		 * If the bit hasn't cleared the DSB will
-+		 * raise the poll error interrupt.
-+		 */
-+		intel_dsb_poll(dsb, TRANS_PUSH(display, cpu_transcoder),
-+			       TRANS_PUSH_SEND, 0, wait_us, count);
-+	} else {
-+		if (intel_vrr_is_push_sent(crtc_state))
-+			drm_err(display->drm, "[CRTC:%d:%s] VRR push send still pending\n",
-+				crtc->base.base.id, crtc->base.name);
-+	}
-+}
-+
- bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index 899cbf40f880..514822577e8a 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -25,6 +25,8 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
- void intel_vrr_enable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_send_push(struct intel_dsb *dsb,
- 			 const struct intel_crtc_state *crtc_state);
-+void intel_vrr_check_push_sent(struct intel_dsb *dsb,
-+			       const struct intel_crtc_state *crtc_state);
- bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state);
- void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state);
- void intel_vrr_get_config(struct intel_crtc_state *crtc_state);
--- 
-2.45.3
+with the '0'. But you are being consistent with the header's
+style, so it's OK.
 
+Thanks,
+Andi
