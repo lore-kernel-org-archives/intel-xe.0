@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 125E9C02198
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Feb 2025 14:54:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E2D3C02198
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Feb 2025 15:09:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAD3610E0AC;
-	Mon, 10 Feb 2025 14:54:34 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDB3710E0AC;
- Mon, 10 Feb 2025 14:54:32 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B96A10E099;
+	Mon, 10 Feb 2025 15:09:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ODE4SzYm";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0660310E099
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Feb 2025 15:09:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739200178; x=1770736178;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=8xW1qpxGPuJbKIEKzYxe2Augwz9P+TJaMrcKdlv5Wp4=;
+ b=ODE4SzYmKxboqdv+iYvFnZF34mtv+R8AE+8mCASeyMnPoKGU1ltu6bYj
+ 2zRsgH5Fyx3ejPEeUyFD21ALncM+C3v0WT2XN7hVYpCOOVWho5DbW4mVj
+ bJttDzDlfXrgwWhiGQxowh7GzbsW54zgR/PtinaZ9+DYvgwMGam+oPXeX
+ Ekh1Jr1Iz4h/CLEZa+N2mqzIEIhoMzwJD9TLIC2L+v3YbkM6RtNxnHirS
+ tiLaczSUezvLsP9FWuS4HAd5yzTZcZSQbb4tdF8HasifT6f5TsZ4+690f
+ ve1TzEc/cdwgXoxcuIAXwtspb/3XFU9yZPK98fkqVxen76lynJQXSQeI2 g==;
+X-CSE-ConnectionGUID: DnKHhNT7T1mTdWkwuupUNA==
+X-CSE-MsgGUID: 3P//zXCkQaixWJYUJEY/Uw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="39652152"
+X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; d="scan'208";a="39652152"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2025 07:09:37 -0800
+X-CSE-ConnectionGUID: ooyx0ID0Re+uAbn+tjAfhg==
+X-CSE-MsgGUID: LiZymh/ASxGtpPjBMNSIpA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="135474681"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.177.152])
+ ([10.245.177.152])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2025 07:09:35 -0800
+Message-ID: <9c548c30-d95d-469f-af49-3b2b15886c31@linux.intel.com>
+Date: Mon, 10 Feb 2025 16:09:32 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Add_support_for_EU_stall?=
- =?utf-8?q?_sampling?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Harish Chegondi" <harish.chegondi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 10 Feb 2025 14:54:32 -0000
-Message-ID: <173919927296.352309.7679138547749689273@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <cover.1739193510.git.harish.chegondi@intel.com>
-In-Reply-To: <cover.1739193510.git.harish.chegondi@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Carve out wopcm portion from the stolen memory
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, stable@vger.kernel.org
+References: <20250207164334.1393054-1-nirmoy.das@intel.com>
+ <qx2azqvhrnpyhyag73mhddkje2s5rvb74uhcnx4fcd6sr6na4l@w45ubhrjcidt>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <qx2azqvhrnpyhyag73mhddkje2s5rvb74uhcnx4fcd6sr6na4l@w45ubhrjcidt>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +70,137 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: Add support for EU stall sampling
-URL   : https://patchwork.freedesktop.org/series/144609/
-State : success
+On 2/7/2025 11:55 PM, Lucas De Marchi wrote:
+> On Fri, Feb 07, 2025 at 05:43:34PM +0100, Nirmoy Das wrote:
+>> Top of stolen memory is wopcm which shouldn't be accessed so remove
+>> that portion of memory from the stolen memory.
+>
+> humn... we are already doing this for integrated. The copy & paste is
+> small here to deserve a refactor, but maybe mention that this is already
+> done for integrated and it was missed on the discrete side?
+>
+>>
+>> Fixes: d8b52a02cb40 ("drm/xe: Implement stolen memory.")
+>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: <stable@vger.kernel.org> # v6.8+
+>
+> I'd rather do this 6.11+. It's not important before that as we didn't
+> have any platform out of force probe or close to be out of force probe.
+>
+> We will most likely not be able to apply this patch on 6.8.
+>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> ---
+>> drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 54 ++++++++++++++------------
+>> 1 file changed, 30 insertions(+), 24 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+>> index 423856cc18d4..d414421f8c13 100644
+>> --- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+>> +++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+>> @@ -57,12 +57,35 @@ bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe)
+>>     return GRAPHICS_VERx100(xe) < 1270 && !IS_DGFX(xe);
+>> }
+>>
+>> +static u32 get_wopcm_size(struct xe_device *xe)
+>> +{
+>> +    u32 wopcm_size;
+>> +    u64 val;
+>> +
+>> +    val = xe_mmio_read64_2x32(xe_root_tile_mmio(xe), STOLEN_RESERVED);
+>> +    val = REG_FIELD_GET64(WOPCM_SIZE_MASK, val);
+>> +
+>> +    switch (val) {
+>> +    case 0x5 ... 0x6:
+>> +        val--;
+>> +        fallthrough;
+>> +    case 0x0 ... 0x3:
+>> +        wopcm_size = (1U << val) * SZ_1M;
+>> +        break;
+>> +    default:
+>> +        WARN(1, "Missing case wopcm_size=%llx\n", val);
+>> +        wopcm_size = 0;
+>> +    }
+>> +
+>> +    return wopcm_size;
+>> +}
+>
+> Please also mention in the commit message the code movement here, that
+> is done just for the function to be called by detect_bar2_dgfx()
+>
+> Other than that, Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-== Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 656e731586e568a8633c0bd16d28dcec8d67f237
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Thanks Lucas, sent out a v2 with better commit message and stable tag with 6.11+.
 
 
+Nirmoy
+
+>
+> thanks
+> Lucas De Marchi
+>
+>> +
+>> static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+>> {
+>>     struct xe_tile *tile = xe_device_get_root_tile(xe);
+>>     struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+>>     struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+>> -    u64 stolen_size;
+>> +    u64 stolen_size, wopcm_size;
+>>     u64 tile_offset;
+>>     u64 tile_size;
+>>
+>> @@ -74,7 +97,13 @@ static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+>>     if (drm_WARN_ON(&xe->drm, tile_size < mgr->stolen_base))
+>>         return 0;
+>>
+>> +    /* Carve out the top of DSM as it contains the reserved WOPCM region */
+>> +    wopcm_size = get_wopcm_size(xe);
+>> +    if (drm_WARN_ON(&xe->drm, !wopcm_size))
+>> +        return 0;
+>> +
+>>     stolen_size = tile_size - mgr->stolen_base;
+>> +    stolen_size -= wopcm_size;
+>>
+>>     /* Verify usage fits in the actual resource available */
+>>     if (mgr->stolen_base + stolen_size <= pci_resource_len(pdev, LMEM_BAR))
+>> @@ -89,29 +118,6 @@ static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+>>     return ALIGN_DOWN(stolen_size, SZ_1M);
+>> }
+>>
+>> -static u32 get_wopcm_size(struct xe_device *xe)
+>> -{
+>> -    u32 wopcm_size;
+>> -    u64 val;
+>> -
+>> -    val = xe_mmio_read64_2x32(xe_root_tile_mmio(xe), STOLEN_RESERVED);
+>> -    val = REG_FIELD_GET64(WOPCM_SIZE_MASK, val);
+>> -
+>> -    switch (val) {
+>> -    case 0x5 ... 0x6:
+>> -        val--;
+>> -        fallthrough;
+>> -    case 0x0 ... 0x3:
+>> -        wopcm_size = (1U << val) * SZ_1M;
+>> -        break;
+>> -    default:
+>> -        WARN(1, "Missing case wopcm_size=%llx\n", val);
+>> -        wopcm_size = 0;
+>> -    }
+>> -
+>> -    return wopcm_size;
+>> -}
+>> -
+>> static u32 detect_bar2_integrated(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+>> {
+>>     struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+>> -- 
+>> 2.46.0
+>>
