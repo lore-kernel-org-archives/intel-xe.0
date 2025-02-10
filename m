@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 010C3C02198
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Feb 2025 16:15:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DC45C021A1
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Feb 2025 16:17:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CDCC10E5A6;
-	Mon, 10 Feb 2025 16:15:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 035B010E5AC;
+	Mon, 10 Feb 2025 16:17:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ENt0TbWP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JJrhcAp3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92BF810E5A6
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Feb 2025 16:15:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48F4E10E5A6;
+ Mon, 10 Feb 2025 16:17:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739204113; x=1770740113;
+ t=1739204222; x=1770740222;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=94hlI+YM/7fcdpnkMu9SKB95nOoeWXMCEZ46y8Nj4PU=;
- b=ENt0TbWPdwwTdhJokWjpUy5wABOBOZET4u/shHHjR3rjoaNjbV9fX/6l
- 9CRWdpiIca7P2f9aB5yLKarKlTN5acHDgzFPR1RV0cAvDphEsfQ4xjVpn
- i/HWeRIGkfpP06ywvfmciMLY3bXfEuRpe6y+c1VLVojeCPxn1tsvtOUst
- MBwHDprXZiBU4l8OzFFoycJgx1Rzwy0TAJT6HvVG1BvnKzUjq90mH0su7
- adbvq2f1YJoTXc1XJ9N7A1Vbs+Wd3arYTsxAZOVGKS2V6ns5N5XIbrAhH
- 4Fuui8juJ0DODxPxsGYu9XAeElTpDRV7OcmxbO/2FL7xX3u1JQ14ORUEf Q==;
-X-CSE-ConnectionGUID: f3PpXQeJQ+GnFRn35nf6GQ==
-X-CSE-MsgGUID: 3KiuWrkrRHWvcSuNxglAww==
-X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="50778534"
-X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="50778534"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2025 08:15:12 -0800
-X-CSE-ConnectionGUID: v0jqNzYGQKOcdgYrtMQ74A==
-X-CSE-MsgGUID: dg8j7VR8RB+YhZHcYZToOA==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=qmJmcA5FF6GXFZYreYBR3otN6Xkd2MciqvjlQYtZ61Y=;
+ b=JJrhcAp3ToYBMPfTA+hK2Rllv9kmOeXtFCFCZqVplaGgLQiubGdyDXV+
+ jk+1YHTOQVVM/UZpGK79+MiGRjlqqwkiVDPbp+F2We7ZWlc3RqyBnhe7T
+ S4V1aOuNF+O4YYd1wSiIUSR8ZvDFqKeCZMJgxwiF5nt8WB2iopSDF3MRr
+ 1uzzqFregoiLljvjY0w5yKNqmkYCwCLaJy0/ytHsu7RpKsn8HbZWsvIQP
+ QHYIiedyuzjpxhOWDpr9Tf263srwESgkZH/X3Cqevkc6z3d2F64hLj/N/
+ +7vXko7WwrqsyM2CyTI1JHjG+3waujuopmawx/9vpM6s4PtPeKGCynowz w==;
+X-CSE-ConnectionGUID: x+ckg5aWRKWrUGYzj+rXPw==
+X-CSE-MsgGUID: KcfSHNaBSFWU7ki5b4OEvg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="27394826"
+X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="27394826"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2025 08:17:02 -0800
+X-CSE-ConnectionGUID: ynuf2mkrSXuaUU2zGL1yRQ==
+X-CSE-MsgGUID: hxUSdAbORIy8AThGcCbmbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="112186155"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.18])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2025 08:15:08 -0800
-Date: Mon, 10 Feb 2025 17:15:04 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- matthew.d.roper@intel.com, andi.shyti@linux.intel.com,
- intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- riana.tauro@intel.com, badal.nilawar@intel.com, karthik.poosa@intel.com
-Subject: Re: [PATCH v1] drm/xe/hwmon: expose fan speed
-Message-ID: <Z6omCGczu0vjQtpc@ashyti-mobl2.lan>
-References: <20250210100515.2205584-1-raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="112450383"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 10 Feb 2025 08:16:59 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 10 Feb 2025 18:16:58 +0200
+Date: Mon, 10 Feb 2025 18:16:58 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Matt Roper <matthew.d.roper@intel.com>, gustavo.sousa@intel.com
+Subject: Re: [PATCH 0/3] drm/i915: Fix scanline_offset for LNL+/BMG+
+Message-ID: <Z6omejfSAI1NkOGj@intel.com>
+References: <20250207215406.19348-1-ville.syrjala@linux.intel.com>
+ <hwau7ipfc7kfmjtosaxhdiz5cjvc3y3dborr4l36lugrfw2s75@bb4p7hjsb7wa>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250210100515.2205584-1-raag.jadav@intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <hwau7ipfc7kfmjtosaxhdiz5cjvc3y3dborr4l36lugrfw2s75@bb4p7hjsb7wa>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,31 +71,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Raag,
-
-On Mon, Feb 10, 2025 at 03:35:15PM +0530, Raag Jadav wrote:
-> Add hwmon support for fan1_input, fan2_input and fan3_input attributes,
-> which will expose fan speed of respective channels in RPM when supported
-> by hardware. With this in place we can monitor fan speed using lm-sensors
-> tool.
+On Fri, Feb 07, 2025 at 04:41:11PM -0600, Lucas De Marchi wrote:
+> On Fri, Feb 07, 2025 at 11:54:03PM +0200, Ville Syrjälä wrote:
+> >From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> >Something has changed in the hardware on LNL/BMG because
+> >HDMI outputs no longer have the extra scanline offset.
+> >
+> >I confirmed that MTL still has the old behaviour, which
+> >is a bit weird since both MTL and BMG have display ver 14
+> >vs. LNL is version 20. But can't argue with actual
+> >hardware behaviour.
 > 
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> <6>[  210.368608] xe 0000:03:00.0: [drm] Found battlemage (device ID e20b) discrete display version 14.01 stepping B0
+> vs
+> <6>[  412.999204] i915 0000:00:02.0: [drm] Found meteorlake (device ID 7d55) integrated display version 14.00 stepping C0
+> 
+> So 14.01 vs 14.00. In the driver:
+> 
+> static const struct {                                                            
+>          u16 ver;
+>          u16 rel;
+>          const struct intel_display_device_info *display;
+> } gmdid_display_map[] = {
+>          { 14,  0, &xe_lpdp_display },
+>          { 14,  1, &xe2_hpd_display },
+> 	...
+> }
+> 
+> So maybe we need to check for the full version >= 1401 instead?
 
-I think you've got the hang of it by now :-)
+Just another pointless detail I don't want to have to remember.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Also it's already a huge pain in the backside trying to figure out
+what new platform has what display ip. Someone really needs to at
+least document this properly. Or perhaps we should just put the
+expected display ip version back into the platform definition and 
+then just double check that the version we read from the GMD thing
+matches our expectations.
 
-> +#define   FAN_SPEED_CONTROL			0x7D
-> +#define     FSC_READ_NUM_FANS			0x4
-> +
+Until the hardware people get their act together and the display ip
+version actually has some real meaning we shouldn't use it outside
+the major version IMO.
 
-I don't really like the alignment here, I'd have preferred:
+> 
+> +Matt Roper, +Gustavo who may know the right bspec to confirm this
+> change in behavior
 
-	...	0x7D
-	...	0x04
+None of this stuff is in bspec.
 
-with the '0'. But you are being consistent with the header's
-style, so it's OK.
+> 
+> Lucas De Marchi
+> 
+> >
+> >Ville Syrjälä (3):
+> >  drm/i915: Fix scanline_offset for LNL+ and BMG+
+> >  drm/i915: Reverse the scanline_offset if ladder
+> >  drm/i915: Replace the HAS_DDI() in intel_crtc_scanline_offset() with
+> >    specific platform checks
+> >
+> > drivers/gpu/drm/i915/display/intel_vblank.c | 13 ++++++++-----
+> > 1 file changed, 8 insertions(+), 5 deletions(-)
+> >
+> >-- 
+> >2.45.3
+> >
 
-Thanks,
-Andi
+-- 
+Ville Syrjälä
+Intel
