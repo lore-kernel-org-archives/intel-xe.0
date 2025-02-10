@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49AE8C02198
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4C1EC0219E
 	for <intel-xe@archiver.kernel.org>; Mon, 10 Feb 2025 13:46:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00D6B10E161;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A159710E1C3;
 	Mon, 10 Feb 2025 13:46:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S0nWcn7a";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TsT+i63P";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E22B10E161
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CE2910E1C3
  for <intel-xe@lists.freedesktop.org>; Mon, 10 Feb 2025 13:46:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1739195218; x=1770731218;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jkCed9S34o08SJIsQVPb6jjDis1qXwTW6lGHyUDWIXA=;
- b=S0nWcn7aLB/zZCTn0Dplb/dQXLKd5+mWIxgHDwQF6cYl63MJHUuHcfyv
- k1O32reDLiEnqzJEV8WbtRBodjwaZwBtx26R1R7XgztBPtBFXfRzRqvb/
- 0Q2TlD5+2dPtCcXHzlj6yVOdBb7wGp3ZQOyvgj+TkeembgcKuDwRhy3h6
- 6ccvyoLsOAcJCZsvx6j7UJ+DKASqq+nu+HK3SB11N3SlJYl6F8N7CDVMU
- dUrSHJ7dK3ZgU2aaadaWo8d7BiQzF86MYA64Wi387VNMR8ZTVxmbumtrl
- 2mdr57JIJfq4JZlqfYBHj6UDe2o2Dnukd/rpOGImwEES8+7kYLL3WHZyQ Q==;
-X-CSE-ConnectionGUID: i+1zsgRBRoG/RtTebz44mQ==
-X-CSE-MsgGUID: NQffDKEVTdy4LmAwhnS4lA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="27378419"
-X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; d="scan'208";a="27378419"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=HSFqC4eR71zG9Gcxz3i33on3ZD2ns8ctvh/nOtEXSgc=;
+ b=TsT+i63PQ8kKsbpT4n8NwLICP3rFmb1C0OUOJPSyUwTh1IlU7DMOkjVy
+ Evz2ndCiomBvcvt/quCVvMfPCQWtQ4l8bdI05YpS/OKmLYGyomk+g1FNO
+ Un9AFKBUutFwT1NKLm74kg4jWl8VR4ldofyAVE42QvtqxhU5S7GfPQhWH
+ +SolTEUv5op513qKFjBSQgDvZWZM30c3/lepUBBywzkn8VtEoRhtcSDZL
+ Zrf2DvoSr9bmnL3ROsEPD4ck3xOT79VIsDls1Itgrx6nXvgaBqwbslIRU
+ UJiPooIMJXQ8vWmvmHCkNyvW5f1CcJsMSLOklk8qA6Z/9LE6nFocOI+zn g==;
+X-CSE-ConnectionGUID: nWk+Dbn6RP2RR590yTzS2A==
+X-CSE-MsgGUID: Zc1lkxScR6eQ4gb/uCa/gA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="27378420"
+X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; d="scan'208";a="27378420"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2025 05:46:57 -0800
-X-CSE-ConnectionGUID: EEcUEhIfTvWqR9oRUyFq/w==
-X-CSE-MsgGUID: jRduQAaeSLaQB+Aukuhzpg==
+ 10 Feb 2025 05:46:58 -0800
+X-CSE-ConnectionGUID: TkIrBTS0Q46MWgWuY+HkSw==
+X-CSE-MsgGUID: rT658YLYR6ORYWasNGKPgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="149386829"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="149386832"
 Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Feb 2025 05:46:58 -0800
@@ -46,10 +46,13 @@ To: intel-xe@lists.freedesktop.org
 Cc: ashutosh.dixit@intel.com, james.ausmus@intel.com,
  felix.j.degrood@intel.com, matthew.olson@intel.com,
  lucas.demarchi@intel.com, Harish Chegondi <harish.chegondi@intel.com>
-Subject: [PATCH v9 0/8] Add support for EU stall sampling
-Date: Mon, 10 Feb 2025 05:46:41 -0800
-Message-ID: <cover.1739193510.git.harish.chegondi@intel.com>
+Subject: [PATCH v9 1/8] drm/xe/topology: Add a function to find the index of
+ the last enabled DSS in a mask
+Date: Mon, 10 Feb 2025 05:46:42 -0800
+Message-ID: <2bc4dab8887901e7514567bf5aadcab3c68ea776.1739193510.git.harish.chegondi@intel.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <cover.1739193510.git.harish.chegondi@intel.com>
+References: <cover.1739193510.git.harish.chegondi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,100 +69,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The following patch series add support for EU stall sampling,
-a new hardware feature first added in PVC and is being supported
-in XE2 and later architecture GPUs. This feature would enable
-capturing of EU stall data which include the IP address of the
-instruction stalled and various stall reason counts.
+Last enabled DSS in a DSS mask can help estimate the maximum DSSes enabled
+in the DSS mask, as the enabled DSSes can be discontiguous.
 
-Support for this feature is being added into Mesa:
-https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/30142
-
-New IGT tests for EU stall sampling are being added:
-https://patchwork.freedesktop.org/series/143030/
-
-This patch series has undergone basic testing with the new IGT tests.
-
-Thank You.
-
-v9: a. Split the big patch in v8 into two patches
-    b. Moved all drop data handling code into one patch
-    c. Several other code improvements as mentioned in the patches
-v8: a. Used div_u64() instead of / to fix 32-bit build issue.
-    b. Changed copyright year in new files to 2025.
-    c. Renamed struct drm_xe_eu_stall_data_pvc to struct xe_eu_stall_data_pvc
-    d. Renamed struct drm_xe_eu_stall_data_xe2 to struct xe_eu_stall_data_xe2
-
-v7: a. Renamed input property DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT
-       to DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS to be consistent with
-       OA. Renamed the corresponding internal variables.
-    b. Fixed some commit messages based on review feedback.
-    c. Changed sampling_rates from a pointer to flexible array.
-
-v6: a. Changed the uAPI input to accept sampling rate in GPU cycles
-       instead of sampling rate multiplier.
-    b. Fix buffer wrap around over write bug (Matt Olson).
-    c. Include EU stall sampling rates information and per XeCore buffer size in the query information.
-
-v5: Addressed review feedback from v4 including
-    a. Removed DRM_XE_EU_STALL_PROP_POLL_PERIOD from the uAPI (Ashutosh)
-    b. Separated the patches for Xe_HPC and Xe2 (Matt R)
-    c. Moved read() returning -EIO into a separate patch
-    d. Removed spinlocks around set_bit() and clear_bit() (Matt R)
-    e. Renamed several variables, structures and enums (Ashutosh and
-Matt R)
-    f. Addressed other review feedback.
-v4: Addressed review feedback from v3 including
-    a. Split the patch into multiple patches (Matt R)
-    b. Added a new device query to get EU stall info (Ashutosh)
-    c. Renamed all Dss to xecore (Matt R)
-    d. Removed buffer size and disable at open input properties. (Matt R)
-    e. Removed the "_SHIFT" macros (Matt R)
-    f. Allocate the EU stall buffer only on system memory.
-    g. Changed the work arounds to OOB (Matt R)
-    h. Other review feedback.
-v3: a. Removed data header and changed read() to return -EIO when data is dropped by the HW.
-    b. Added a new DRM_XE_OBSERVATION_IOCTL_INFO to query EU stall data record info
-    c. Added struct drm_xe_eu_stall_data_pvc and struct drm_xe_eu_stall_data_xe2
-       to xe_drm.h. These declarations would help user space to parse the
-       EU stall data
-    d. Addressed other review comments from v2
-v2: Rename xe perf layer as xe observation layer (Ashutosh)
-
-Reviewed-by: Ben Olson <matthew.olson@intel.com>
-Acked-by: Felix Degrood <felix.j.degrood@intel.com>
 Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_topology.h | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-Harish Chegondi (8):
-  drm/xe/topology: Add a function to find the index of the last enabled
-    DSS in a mask
-  drm/xe/uapi: Introduce API for EU stall sampling
-  drm/xe/eustall: Add support to init, enable and disable EU stall
-    sampling
-  drm/xe/eustall: Add support to read() and poll() EU stall data
-  drm/xe/eustall: Add support to handle dropped EU stall data
-  drm/xe/eustall: Add EU stall sampling support for Xe2
-  drm/xe/uapi: Add a device query to get EU stall sampling information
-  drm/xe/eustall: Add workaround 22016596838 which applies to PVC.
-
- drivers/gpu/drm/xe/Makefile                |    1 +
- drivers/gpu/drm/xe/regs/xe_eu_stall_regs.h |   29 +
- drivers/gpu/drm/xe/xe_eu_stall.c           | 1029 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_eu_stall.h           |   21 +
- drivers/gpu/drm/xe/xe_gt.c                 |    6 +
- drivers/gpu/drm/xe/xe_gt_topology.h        |   13 +
- drivers/gpu/drm/xe/xe_gt_types.h           |    3 +
- drivers/gpu/drm/xe/xe_observation.c        |   14 +
- drivers/gpu/drm/xe/xe_query.c              |   38 +
- drivers/gpu/drm/xe/xe_trace.h              |   33 +
- drivers/gpu/drm/xe/xe_wa_oob.rules         |    1 +
- include/uapi/drm/xe_drm.h                  |   74 ++
- 12 files changed, 1262 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_eu_stall_regs.h
- create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.c
- create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.h
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.h b/drivers/gpu/drm/xe/xe_gt_topology.h
+index 746b325bbf6e..a72d26ba0653 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.h
++++ b/drivers/gpu/drm/xe/xe_gt_topology.h
+@@ -25,6 +25,19 @@ void xe_gt_topology_init(struct xe_gt *gt);
+ 
+ void xe_gt_topology_dump(struct xe_gt *gt, struct drm_printer *p);
+ 
++/**
++ * xe_gt_topology_mask_last_dss() - Returns the index of the last DSS in a mask.
++ * @mask: Input DSS mask
++ *
++ * Return: Index of the last DSS in the input DSS mask,
++ *	   XE_MAX_DSS_FUSE_BITS if DSS mask is empty.
++ */
++static inline unsigned int
++xe_gt_topology_mask_last_dss(const xe_dss_mask_t mask)
++{
++	return find_last_bit(mask, XE_MAX_DSS_FUSE_BITS);
++}
++
+ unsigned int
+ xe_dss_mask_group_ffs(const xe_dss_mask_t mask, int groupsize, int groupnum);
+ 
 -- 
 2.48.1
 
