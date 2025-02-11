@@ -4,73 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D20AEC021A4
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 14:09:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9831C021A5
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 14:10:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11B8A10E8B5;
-	Wed, 12 Feb 2025 14:09:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A13910E8B8;
+	Wed, 12 Feb 2025 14:10:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel-corp-partner-google-com.20230601.gappssmtp.com header.i=@intel-corp-partner-google-com.20230601.gappssmtp.com header.b="B19pmthB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel-corp-partner-google-com.20230601.gappssmtp.com header.i=@intel-corp-partner-google-com.20230601.gappssmtp.com header.b="TEoq36gq";
 	dkim-atps=neutral
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com
- [209.85.219.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98F8910E0F7
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Feb 2025 02:20:40 +0000 (UTC)
-Received: by mail-yb1-f175.google.com with SMTP id
- 3f1490d57ef6-e5b638d3f83so1460737276.2
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Feb 2025 18:20:40 -0800 (PST)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com
+ [209.85.219.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93FEE10E0F7
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Feb 2025 02:20:47 +0000 (UTC)
+Received: by mail-yb1-f177.google.com with SMTP id
+ 3f1490d57ef6-e5b22d35268so4489849276.3
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Feb 2025 18:20:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=intel-corp-partner-google-com.20230601.gappssmtp.com; s=20230601;
- t=1739240439; x=1739845239; darn=lists.freedesktop.org; 
+ t=1739240446; x=1739845246; darn=lists.freedesktop.org; 
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=kS/KbNClhw8/vSmfpHGR6Ftc/z5h+dh7Eir6GSecYYA=;
- b=B19pmthBu7+90PeM0mGWatX7eG8tDsvHNTQLqIYo0QETKg4J0PlddikB95klanMaNz
- sX+zpFZi0EfADBq4fbOr7kkhdeh9dNfcG9MEmm21SydC6U/eGQyBxFTBwWr+5KgBUb8+
- u52GJRN0bbRRu/x5llha57Co7k8lU+/OyJW2tDv1BkPXjMh759hvePx7XbBNoN5qdNsg
- WwEmv/ls9NVzVyN9JQZIrL69w7a4PJiV5h4pr8FUuGafUapJzKkg/JM8cDkuV4EGFq18
- FrhTRu7kDj8aqftO3XjibDBl79Hawv61XvFjhyE7fnqg7SGS/Ui9LkHBbcP96mXG9rWx
- dN/Q==
+ bh=Zwr9/tQFz50zBK/rUZp+Db4GI+9+Uw67YPkTnUbcAvA=;
+ b=TEoq36gq/bNuWL6rVlHfGZOg+k9qQlx8IHboeF+xnPphnPk0WvfSCOKaDoVI3C1kIH
+ 6KkZgSIzmP3hVrZ88WK7z21BJMcOkvyn3btt9XweJZxNzcFEgqU1TQeq/TISq5ZunnS6
+ jkGT4gKroV4EvXFEEnSzDF1c08atcACOtpocwj4ngvYYzYAshevdwOXagZLsh+YFBg+h
+ rFbAtnOVde0DfgsBB0826z9rgpyCG0hpgmOmerNgUXaDDKbYTXhvbl40nwxmd2DNM/bE
+ gBLK6PdxF2mH+npaLHuSQODZkIxjcVV7Fu4MGJEa1xPoMBH+TPJkScYTZVVl6Fvk1ymQ
+ kJIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1739240439; x=1739845239;
+ d=1e100.net; s=20230601; t=1739240446; x=1739845246;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=kS/KbNClhw8/vSmfpHGR6Ftc/z5h+dh7Eir6GSecYYA=;
- b=dovSun79Mh7qPB2R8LBA8X1yQHgu6rMFbQjsivtMnqsqlHxiP0y7JOwiBookzBbnZH
- FIYo2kkAbVB4xHJW1OjXCtG2J2Jf+D/h/CXJKesExKogcY3yoGqdRf1HeUzXd5a1x4pV
- 1EtMo54pczDvQEFWlKxaS2jGAntOFiHSRn0KduSZOICRlOIs5Wuf7hBxV5ascbGBvJ0e
- I7hGRs7ElT7dw7UooLrk2vAD9onCbnHF8O/qtVKi5sOOVOCLQ1+s7Nxcdp3EjlzXMR3C
- b375Dw4+uuBdsc+/xtgHrw1OFhuqyYdWNajYaAcbUGgFPBUm3Wxc+ONB1mCoIZMIcH9l
- 4H1w==
-X-Gm-Message-State: AOJu0YxOyVrwOdwWia9wzBqKDuFdUUllEjlUOm+CvbZ5Aeff+NiMcwcB
- rufa6xvDxpViNZg8TWCVU0YE5dA+gUWoXQjreL4d52yrtb2lKieWgNNbiLolcFaR0CFQo1DTTtr
- irrs=
-X-Gm-Gg: ASbGncsaf3p//L1Jf1jWQiTLxPY5GYt8BjMfdlIzSn23NCBJZRFgvmM2uYEaCoEj6Su
- QzxaNKuD8EAinmn6Civxd1YRwNnYGBPBzJtPsGAOUbsDE7JLhj92WylD21cuY/SZzZWGjneKV9z
- Z1rPHp4o+BpErES9qAjt0tHDjSfOYc1lMbfG77/Ql2NY+IOOQ+3sNRLnqWf9SscDc3srK68cGDb
- GERbSHlefZ1pI/JomPBSqiOxeE4rV5x4QlM7GPiXh397lSqaB4UDORQtQPfdAlw37mkCaXPZPL8
- KfrGDknC4sXO8ZH4C7X+bFRSqZJU/YqjR6MWwlZX3QRmE1Y7
-X-Google-Smtp-Source: AGHT+IHlK2WLCUMm4OdUx0urUFOc505cEvOxSLqJwGyBgo3ODe7IUk+M+Jl34RM+cyQbQSBE0YRSYQ==
-X-Received: by 2002:a05:6902:102a:b0:e57:fc0a:fae8 with SMTP id
- 3f1490d57ef6-e5d93d30565mr2680112276.42.1739240438936; 
- Mon, 10 Feb 2025 18:20:38 -0800 (PST)
+ bh=Zwr9/tQFz50zBK/rUZp+Db4GI+9+Uw67YPkTnUbcAvA=;
+ b=Ry16/etrTjQy00S8y6oFy0r8JcBZLuUaSq+5yW2uXABtRPypnhvEcRlq4XMLzNCr/d
+ EUK8/0rQz5dOj//bCTdeYwQXBYmXfap8FOcsXrQj6CsCjXXY6vGy7+AUa4WmlHFA2P2w
+ niNdpdr68thZTeLgLJ/jl3nzq8I3z81DGvX3tqcpCqdwcMcq4q8FEljDxe/SiionysW0
+ va0FhIE8cHRoYpXaXbv1M60krDLShtFqoCpwuIqgXegYpT0vygn8SYXAr3nE9a609rMw
+ AI9/WiqrxyoXT6hLhQ0mh2W3UKLeZQvTCz3/TiTeBxHD9A4y5qwIdLpb6XLo5Ytgpm4w
+ LFVQ==
+X-Gm-Message-State: AOJu0Yzwz01/Gp0GzQbrYio/xtYhFvfpXx3/QkQjdwg/QczfGdDjYXHd
+ uv6hAdpgvvci6niNVCNHAsTWbZFhveUdmasHs6mDtAx4tOs6BQvq8+Tc4P7rOcsVCPYZXWvMUDQ
+ hI3o=
+X-Gm-Gg: ASbGncsGqCldfKejE12Ofz6JJNa59DgV0MTo3LHo0a5Jfl++FzTdwtKhqAPnkBAtSLC
+ 2E7885+YwvkGbzMiLpQ9ol0OLrYpHQG7/tfOMR03CEe88bKVRVwikcTJjFEC0AnvSxq2NH9T1P5
+ jERfF01vlsZDCFGKJZ1KgjT1atUe4dX6WVvK8rl3L+Ke5uv+2GiHIhBnhPKK0ta0PlLBCuWJwqo
+ O4qxAvJYR31WD/GKex+DRKmSRBJj+5ij63JxGbTcrbiHi2Ypbt8WK3BgtCDpVSAiqu8DfqYZfP9
+ 1e3sx5evjGh+Y3PLKZoW5KMi/8a+llIkSs6uwQ9koLtqfFUy
+X-Google-Smtp-Source: AGHT+IGC7o+88pqDfW0OeHLWJ/B7ycKEF4getxGxYLJBvqErPr6l6danVasZDvfXh2safAbofPN/zA==
+X-Received: by 2002:a05:6902:1102:b0:e5b:3a59:525e with SMTP id
+ 3f1490d57ef6-e5b4619f45dmr13304256276.18.1739240445929; 
+ Mon, 10 Feb 2025 18:20:45 -0800 (PST)
 Received: from nucskully.lan ([192.254.97.188])
  by smtp.googlemail.com with ESMTPSA id
- 3f1490d57ef6-e5b3a203ef8sm2860928276.13.2025.02.10.18.20.37
+ 3f1490d57ef6-e5b3a203ef8sm2860928276.13.2025.02.10.18.20.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 10 Feb 2025 18:20:38 -0800 (PST)
+ Mon, 10 Feb 2025 18:20:45 -0800 (PST)
 From: Carlos Santa <carlos.santa@intel.corp-partner.google.com>
 X-Google-Original-From: Carlos Santa
  <carlos.santa@intel-corp-partner.google.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jose.souza@intel.com, lionel.g.landwerlin@intel.com,
  rodrigo.vivi@intel.com, carlos.santa@intel.com,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [RFC v2 2/6] drm/xe: Add "null_sparse" type to VM snap properties
-Date: Mon, 10 Feb 2025 18:20:02 -0800
-Message-ID: <20250211022006.23234-3-carlos.santa@intel-corp-partner.google.com>
+ Matthew Brost <matthew.brost@intel.com>,
+ Carlos Santa <carlos.santa@intel-corp-partner.google.com>
+Subject: [RFC v2 4/6] drm/xe/uapi: Add DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
+Date: Mon, 10 Feb 2025 18:20:04 -0800
+Message-ID: <20250211022006.23234-5-carlos.santa@intel-corp-partner.google.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250211022006.23234-1-carlos.santa@intel-corp-partner.google.com>
 References: <20250211022006.23234-1-carlos.santa@intel-corp-partner.google.com>
@@ -94,74 +95,46 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-Add "null_sparse" type to VM snap properties indicating the VMA reads
-zero and writes are droppped. This is useful information for debug and
-will help build a robust GPU hang replay tool.
+Add DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE which accepts a user pointer
+to populate the exec queue state so that a GPU hang can be replayed via
+a Mesa tool.
 
-The current format is:
-
-[<vma address>]: <permissions>|<type>
-
-Permissions has two options, either "read_only" or "read_write".
-
-Type has three options, either "userptr", "null_sparse", or "bo".
+v2: Update the value for HANG_REPLAY_STATE flag
 
 Cc: José Roberto de Souza <jose.souza@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Carlos Santa <carlos.santa@intel-corp-partner.google.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ include/uapi/drm/xe_drm.h | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 130c31775787..75904637e1dd 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3381,6 +3381,7 @@ struct xe_vm_snapshot {
- 		unsigned long len;
- #define XE_VM_SNAP_FLAG_USERPTR		BIT(0)
- #define XE_VM_SNAP_FLAG_READ_ONLY	BIT(1)
-+#define XE_VM_SNAP_FLAG_IS_NULL		BIT(2)
- 		unsigned long flags;
- 		struct xe_bo *bo;
- 		void *data;
-@@ -3438,6 +3439,8 @@ struct xe_vm_snapshot *xe_vm_snapshot_capture(struct xe_vm *vm)
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 892f54d3aa09..339c812cae1a 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -204,8 +204,12 @@ struct drm_xe_ext_set_property {
+ 	/** @pad: MBZ */
+ 	__u32 pad;
  
- 			snap->snap[i].bo_ofs = xe_vma_userptr(vma);
- 			snap->snap[i].flags |= XE_VM_SNAP_FLAG_USERPTR;
-+		} else if (xe_vma_is_null(vma)) {
-+			snap->snap[i].flags |= XE_VM_SNAP_FLAG_IS_NULL;
- 		} else {
- 			snap->snap[i].data = ERR_PTR(-ENOENT);
- 		}
-@@ -3458,7 +3461,8 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
- 		struct xe_bo *bo = snap->snap[i].bo;
- 		int err;
+-	/** @value: property value */
+-	__u64 value;
++	union {
++		/** @value: property value */
++		__u64 value;
++		/** @ptr: pointer to user value */
++		__u64 ptr;
++	};
  
--		if (IS_ERR(snap->snap[i].data))
-+		if (IS_ERR(snap->snap[i].data) ||
-+		    snap->snap[i].flags & XE_VM_SNAP_FLAG_IS_NULL)
- 			continue;
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
+@@ -1210,6 +1214,7 @@ struct drm_xe_exec_queue_create {
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE		2
++#define   DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE		3
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
  
- 		snap->snap[i].data = kvmalloc(snap->snap[i].len, GFP_USER);
-@@ -3510,6 +3514,8 @@ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
- 		drm_printf(p, "[%llx].properties: %s|%s\n", snap->snap[i].ofs,
- 			   snap->snap[i].flags & XE_VM_SNAP_FLAG_READ_ONLY ?
- 			   "read_only" : "read_write",
-+			   snap->snap[i].flags & XE_VM_SNAP_FLAG_IS_NULL ?
-+			   "null_sparse" :
- 			   snap->snap[i].flags & XE_VM_SNAP_FLAG_USERPTR ?
- 			   "userptr" : "bo");
- 
-@@ -3519,6 +3525,9 @@ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
- 			continue;
- 		}
- 
-+		if (snap->snap[i].flags & XE_VM_SNAP_FLAG_IS_NULL)
-+			continue;
-+
- 		drm_printf(p, "[%llx].data: ", snap->snap[i].ofs);
- 
- 		for (j = 0; j < snap->snap[i].len; j += sizeof(u32)) {
 -- 
 2.43.0
 
