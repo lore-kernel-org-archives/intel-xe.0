@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F4D7C0219B
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 12:36:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9FE4C021A1
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 12:37:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 335C810E236;
-	Tue, 11 Feb 2025 12:36:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A88410E6AE;
+	Tue, 11 Feb 2025 12:37:09 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69E0410E236;
- Tue, 11 Feb 2025 12:36:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6CD910E236;
+ Tue, 11 Feb 2025 12:37:08 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/sched=3A_Use_str?=
- =?utf-8?q?uct_for_drm=5Fsched=5Finit=28=29_params_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/sched=3A_Use_struct_f?=
+ =?utf-8?q?or_drm=5Fsched=5Finit=28=29_params_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Philipp Stanner" <phasta@kernel.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 11 Feb 2025 12:36:45 -0000
-Message-ID: <173927740542.895660.1917253189740474731@b555e5b46a47>
+Date: Tue, 11 Feb 2025 12:37:08 -0000
+Message-ID: <173927742874.894011.8123241544962252229@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250211111422.21235-2-phasta@kernel.org>
 In-Reply-To: <20250211111422.21235-2-phasta@kernel.org>
@@ -48,9 +48,41 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 27f9e4e38665 drm-tip: 2025y-02m-11d-09h-54m-33s UTC integration manifest
-=== git am output follows ===
-Applying: drm/sched: Use struct for drm_sched_init() params
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7d70f5dac5cafba6e28ba68b01b0cd5917759fbc
+Author: Philipp Stanner <phasta@kernel.org>
+Date:   Tue Feb 11 12:14:23 2025 +0100
+
+    drm/sched: Use struct for drm_sched_init() params
+    
+    drm_sched_init() has a great many parameters and upcoming new
+    functionality for the scheduler might add even more. Generally, the
+    great number of parameters reduces readability and has already caused
+    one missnaming, addressed in:
+    
+    commit 6f1cacf4eba7 ("drm/nouveau: Improve variable name in
+    nouveau_sched_init()").
+    
+    Introduce a new struct for the scheduler init parameters and port all
+    users.
+    
+    Signed-off-by: Philipp Stanner <phasta@kernel.org>
+    Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
+    Acked-by: Matthew Brost <matthew.brost@intel.com> # for Xe
+    Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com> # for Panfrost and Panthor
+    Reviewed-by: Christian Gmeiner <cgmeiner@igalia.com> # for Etnaviv
+    Reviewed-by: Frank Binns <frank.binns@imgtec.com> # for Imagination
+    Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com> # for Sched
+    Reviewed-by: Maíra Canal <mcanal@igalia.com> # for v3d
++ /mt/dim checkpatch 27f9e4e3866556a4498e3b4ddebc27d4f6d0ae2f drm-intel
+7d70f5dac5ca drm/sched: Use struct for drm_sched_init() params
 
 
