@@ -4,57 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 471F2C0219B
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 15:51:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2039DC0219B
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 16:03:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEAA010E0EE;
-	Tue, 11 Feb 2025 15:51:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A785310E23A;
+	Tue, 11 Feb 2025 16:03:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FoMAzTh9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OZ2plD9Z";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6975B10E0EE;
- Tue, 11 Feb 2025 15:51:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 142EB10E23A;
+ Tue, 11 Feb 2025 16:03:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739289065; x=1770825065;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=E8CJrnFoxbpMXUIyvV8KiBbzuGuUR+4lmVFywOacSyU=;
- b=FoMAzTh9EdL9JvSktd65/RIqpdnjqlq5b7PF4aK0dTrSIJN9dC5kq9C0
- AS6CZrfCO2sRk06tEN8UwT1BeH8lQKw0Uvm3JAxTMGQ++xXoNBTtIaZVt
- l5N6oI+CDQwcam2BbkLnq3MQDM3Qe9PA+0ANBOcU7AJ+gl6ITqL+u52ET
- uGBlGHk8MJ5nvKaR7TyVeKIxYZFS7XvPhiRmH/gk0us/Snt1AnmXfFI4A
- bFN9Z/crCV75r1LQ+V7RiNuT+VWnK/TXFpq8lfuYWXrrq59pAO+X/Fp4T
- 2PWt6FJbvEzu2AleyGwbIpahAtXEA+ygCvbDOlDwN/dwyO3pSgL4MxTbG A==;
-X-CSE-ConnectionGUID: qaqgDQsMTTaQJ8iyXuYiaQ==
-X-CSE-MsgGUID: 5rn6EkDuRgegrmuDBX2RUQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="40038409"
-X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="40038409"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 07:51:05 -0800
-X-CSE-ConnectionGUID: vXKwbUKeSNOMX14nSXI5ag==
-X-CSE-MsgGUID: cuMM7nbiQy2n70EPsaSsFw==
+ t=1739289796; x=1770825796;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=IHlMIaUgzxz8fzV4OZnZ5QnpTV+O3JpPoAameZPFfQg=;
+ b=OZ2plD9ZExEdqG7s+PG5biC0Xi0aMjsWGULscMCAyOosg+YUjH4x25Xk
+ q6NeHOpJTI18VoCVrnIfF9U+ehR1bN9L348FTVadALNRNDnYp7TJ621SU
+ tWpo+YAbBm+/MFQ1oV/RICwLz+NAD1qBiiBRLBrMrfyekhU2vRYvFwI1x
+ yTYt6d2uO3t5YBtWGKWjWP7y6++hobV2D+Z9rRETEcCvtf2KZ9K+gU1Cl
+ eu4k+BQnHtVUmgcaS5GPoYOyiiEOlY/EhLivc0J/ndAu5spqQs/PsIPVV
+ NK3P/rnE2CR8NpjUsVnZcrqrBNE8HyY80OoVhQPfkjy8Qnz8e/CQd42WV A==;
+X-CSE-ConnectionGUID: blC8c9ujRzej8hzfh3PvLA==
+X-CSE-MsgGUID: ioA1bxfCRymhiIKDxq1bYg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="39111308"
+X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="39111308"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 08:03:15 -0800
+X-CSE-ConnectionGUID: fsrimmLlRE+8Xh3Ts1SaCg==
+X-CSE-MsgGUID: 1ACLRTaAQp+0VoMj6Gj1HA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="117561742"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.93])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 07:51:02 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, uma.shankar@intel.com,
- jani.saarinen@intel.com
-Subject: Re: [PATCH v2] drm/i915/display: implement wa_18038517565
-In-Reply-To: <20250211152400.460496-1-vinod.govindapillai@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250211152400.460496-1-vinod.govindapillai@intel.com>
-Date: Tue, 11 Feb 2025 17:50:59 +0200
-Message-ID: <878qqc1nvg.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116636692"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO [10.245.246.71])
+ ([10.245.246.71])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 08:03:13 -0800
+Message-ID: <7842182aeb75205fccde42ca4e0700a7c52bbebf.camel@linux.intel.com>
+Subject: Re: [PATCH v4 04/33] drm/pagemap: Add DRM pagemap
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com, 
+ simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
+Date: Tue, 11 Feb 2025 17:03:10 +0100
+In-Reply-To: <Z6pIY16rfPNDS0Xr@lstrano-desk.jf.intel.com>
+References: <20250129195212.745731-1-matthew.brost@intel.com>
+ <20250129195212.745731-5-matthew.brost@intel.com>
+ <1c642a05ec279837394864e1e99226ea3e22421e.camel@linux.intel.com>
+ <Z6pIY16rfPNDS0Xr@lstrano-desk.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,101 +74,243 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 11 Feb 2025, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
-> Disable FBC compressor clock gating before enabling FBC and
-> clear it after disabling FBC.
->
-> v2: update the DG2 registers for this wa
->
-> Bspec: 74212, 72197, 69741, 65555
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 23 +++++++++++++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h          |  7 +++++++
->  2 files changed, 30 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index df05904bac8a..ac11110159f1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -522,6 +522,21 @@ static void ilk_fbc_activate(struct intel_fbc *fbc)
->  		       DPFC_CTL_EN | g4x_dpfc_ctl(fbc));
->  }
->  
-> +static void fbc_compressor_clkgate_disable_wa(struct intel_fbc *fbc,
-> +					      bool disable)
-> +{
-> +	struct intel_display *display = fbc->display;
-> +
-> +	if (display->platform.dg2)
-> +		intel_de_rmw(fbc->display, GEN9_CLKGATE_DIS_4,
+On Mon, 2025-02-10 at 10:41 -0800, Matthew Brost wrote:
+> On Fri, Feb 07, 2025 at 09:34:00AM +0100, Thomas Hellstr=C3=B6m wrote:
+> > On Wed, 2025-01-29 at 11:51 -0800, Matthew Brost wrote:
+> > > From: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > >=20
+> > > Introduce drm_pagemap ops to map and unmap dma to VRAM resources.
+> > > In
+> > > the
+> > > local memory case it's a matter of merely providing an offset
+> > > into
+> > > the
+> > > device's physical address. For future p2p the map and unmap
+> > > functions
+> > > may
+> > > encode as needed.
+> > >=20
+> > > Similar to how dma-buf works, let the memory provider
+> > > (drm_pagemap)
+> > > provide
+> > > the mapping functionality.
+> >=20
+>=20
+> Trying to parse all of this.=20
+>=20
+> > It should be noted that the long term idea for dma mapping is to
+> > have
+> > that done by the client instead of by the memory provider, which
+> > Jason
+>=20
+> - Client here is the device mapping the memory.
+> - Memory provider is the device where the memory is located?
+>=20
+> Did I get this correct?
+>=20
+> > reminded me of in a discussion on dri-devel. The dma-mapping here
+> > is
+> > modeled after how it's done for dma-buf, where the exporter maps
+> > dma.
+> >=20
+> > So following that, it might be that we should move these dma-
+> > mapping
+> > ops to the drm_gpusvm().
+> >=20
+>=20
+> So we move ops to the local client (gpusvm) rather than remote
+> device,
+> right?
+>=20
+> > The situation I can think of, where this might be a problem is that
+> > if
+> > the device-private struct page to dma address mapping is not known
+> > to
+> > the client.
+> >=20
+>=20
+> I'm not following this but I agree if dma mapping at the client we
+> need
+> the remote device structure given how the dma mapping API works.
+>=20
+> So to wrap it up - what, if anything, do you think we need to do to
+> this
+> individual patch as part of this series?
 
-You already have display local variable, use it.
+I've been thinking a bit more about this, and I think a change we can
+do is to rename these methods to something along device_map() and
+device_unmap(). The purpose would be to emphasize that the resulting
+addresses are typically not meaningful outside of the driver, and not
+to be confused with standard dma-mapping.
 
-> +			     DG2_DPFC_GATING_DIS,
-> +			     disable ? DG2_DPFC_GATING_DIS : 0);
-> +	else if (DISPLAY_VER(display) >= 14)
-> +		intel_de_rmw(fbc->display, MTL_PIPE_CLKGATE_DIS2(fbc->id),
+/Thomas
 
-Ditto.
 
-> +			     MTL_DPFC_GATING_DIS,
-> +			     disable ? MTL_DPFC_GATING_DIS : 0);
-> +}
-> +
->  static void ilk_fbc_deactivate(struct intel_fbc *fbc)
->  {
->  	struct intel_display *display = fbc->display;
-> @@ -532,6 +547,10 @@ static void ilk_fbc_deactivate(struct intel_fbc *fbc)
->  	if (dpfc_ctl & DPFC_CTL_EN) {
->  		dpfc_ctl &= ~DPFC_CTL_EN;
->  		intel_de_write(display, ILK_DPFC_CONTROL(fbc->id), dpfc_ctl);
-> +
-> +		/* wa_18038517565 Enable DPFC clock gating after FBC disable */
-> +		if (display->platform.dg2 || DISPLAY_VER(display) >= 14)
-> +			fbc_compressor_clkgate_disable_wa(fbc, false);
->  	}
->  }
->  
-> @@ -912,6 +931,10 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
->  	if (DISPLAY_VER(display) >= 11 && !IS_DG2(i915))
->  		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
->  			     0, DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
-> +
-> +	/* wa_18038517565 Disable DPFC clock gating before FBC enable */
-> +	if (display->platform.dg2 || DISPLAY_VER(display) >= 14)
-> +		fbc_compressor_clkgate_disable_wa(fbc, true);
->  }
->  
->  static void __intel_fbc_cleanup_cfb(struct intel_fbc *fbc)
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 670cd2371f94..6a95bf472258 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -1043,6 +1043,7 @@
->  
->  #define GEN9_CLKGATE_DIS_4		_MMIO(0x4653C)
->  #define   BXT_GMBUS_GATING_DIS		(1 << 14)
-> +#define   DG2_DPFC_GATING_DIS		REG_BIT(31)
->  
->  #define GEN9_CLKGATE_DIS_5		_MMIO(0x46540)
->  #define   DPCE_GATING_DIS		REG_BIT(17)
-> @@ -4273,6 +4274,12 @@ enum skl_power_gate {
->  #define MTL_CLKGATE_DIS_TRANS(dev_priv, trans)			_MMIO_TRANS2(dev_priv, trans, _MTL_CLKGATE_DIS_TRANS_A)
->  #define  MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS		REG_BIT(7)
->  
-> +#define _MTL_PIPE_CLKGATE_DIS2_A			0x60114
-> +#define _MTL_PIPE_CLKGATE_DIS2_B			0x61114
-> +#define MTL_PIPE_CLKGATE_DIS2(pipe) \
-> +	_MMIO_PIPE(pipe, _MTL_PIPE_CLKGATE_DIS2_A, _MTL_PIPE_CLKGATE_DIS2_B)
+>=20
+> Matt
+>=20
+> > /Thomas
+> >=20
+> >=20
+> >=20
+> >=20
+> >=20
+> > >=20
+> > > v3:
+> > > =C2=A0- Move to drm level include
+> > > v4:
+> > > =C2=A0- Fix kernel doc (G.G.)
+> > >=20
+> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > Signed-off-by: Thomas Hellstr=C3=B6m
+> > > <thomas.hellstrom@linux.intel.com>
+> > > ---
+> > > =C2=A0include/drm/drm_pagemap.h | 105
+> > > ++++++++++++++++++++++++++++++++++++++
+> > > =C2=A01 file changed, 105 insertions(+)
+> > > =C2=A0create mode 100644 include/drm/drm_pagemap.h
+> > >=20
+> > > diff --git a/include/drm/drm_pagemap.h
+> > > b/include/drm/drm_pagemap.h
+> > > new file mode 100644
+> > > index 000000000000..2b610ccf7e30
+> > > --- /dev/null
+> > > +++ b/include/drm/drm_pagemap.h
+> > > @@ -0,0 +1,105 @@
+> > > +/* SPDX-License-Identifier: MIT */
+> > > +#ifndef _DRM_PAGEMAP_H_
+> > > +#define _DRM_PAGEMAP_H_
+> > > +
+> > > +#include <linux/dma-direction.h>
+> > > +#include <linux/hmm.h>
+> > > +#include <linux/types.h>
+> > > +
+> > > +struct drm_pagemap;
+> > > +struct device;
+> > > +
+> > > +/**
+> > > + * enum drm_interconnect_protocol - Used to identify an
+> > > interconnect
+> > > protocol.
+> > > + */
+> > > +enum drm_interconnect_protocol {
+> > > +	DRM_INTERCONNECT_SYSTEM,=C2=A0=C2=A0=C2=A0 /* DMA map is system pag=
+es.
+> > > */
+> > > +	DRM_INTERCONNECT_PCIE_P2P,=C2=A0 /* DMA map is PCIE P2P */
+> > > +	DRM_INTERCONNECT_DRIVER,=C2=A0=C2=A0=C2=A0 /* DMA map is driver def=
+ined
+> > > */
+> > > +	/* A driver can add private values beyond
+> > > DRM_INTERCONNECT_DRIVER */
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct drm_pagemap_dma_addr - DMA address representation.
+> > > + * @addr: The dma address or driver-defined address for driver
+> > > private interconnects.
+> > > + * @proto: The interconnect protocol.
+> > > + * @order: The page order of the dma mapping. (Size is PAGE_SIZE
+> > > <<
+> > > order).
+> > > + * @dir: The DMA direction.
+> > > + *
+> > > + * Note: There is room for improvement here. We should be able
+> > > to
+> > > pack into
+> > > + * 64 bits.
+> > > + */
+> > > +struct drm_pagemap_dma_addr {
+> > > +	dma_addr_t addr;
+> > > +	u64 proto : 54;
+> > > +	u64 order : 8;
+> > > +	u64 dir : 2;
+> > > +};
+> > > +
+> > > +/**
+> > > + * drm_pagemap_dma_addr_encode() - Encode a dma address with
+> > > metadata
+> > > + * @addr: The dma address or driver-defined address for driver
+> > > private interconnects.
+> > > + * @proto: The interconnect protocol.
+> > > + * @order: The page order of the dma mapping. (Size is PAGE_SIZE
+> > > <<
+> > > order).
+> > > + * @dir: The DMA direction.
+> > > + *
+> > > + * Return: A struct drm_pagemap_dma_addr encoding the above
+> > > information.
+> > > + */
+> > > +static inline struct drm_pagemap_dma_addr
+> > > +drm_pagemap_dma_addr_encode(dma_addr_t addr,
+> > > +			=C2=A0=C2=A0=C2=A0 enum drm_interconnect_protocol
+> > > proto,
+> > > +			=C2=A0=C2=A0=C2=A0 unsigned int order,
+> > > +			=C2=A0=C2=A0=C2=A0 enum dma_data_direction dir)
+> > > +{
+> > > +	return (struct drm_pagemap_dma_addr) {
+> > > +		.addr =3D addr,
+> > > +		.proto =3D proto,
+> > > +		.order =3D order,
+> > > +		.dir =3D dir,
+> > > +	};
+> > > +}
+> > > +
+> > > +/**
+> > > + * struct drm_pagemap_ops: Ops for a drm-pagemap.
+> > > + */
+> > > +struct drm_pagemap_ops {
+> > > +	/**
+> > > +	 * @map_dma: Map for dma access or provide a virtual
+> > > address
+> > > suitable for
+> > > +	 *
+> > > +	 * @dpagemap: The struct drm_pagemap for the page.
+> > > +	 * @dev: The dma mapper.
+> > > +	 * @page: The page to map.
+> > > +	 * @order: The page order of the dma mapping. (Size is
+> > > PAGE_SIZE << order).
+> > > +	 * @dir: The transfer direction.
+> > > +	 */
+> > > +	struct drm_pagemap_dma_addr (*map_dma)(struct
+> > > drm_pagemap
+> > > *dpagemap,
+> > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct device
+> > > *dev,
+> > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct page
+> > > *page,
+> > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int
+> > > order,
+> > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum
+> > > dma_data_direction dir);
+> > > +
+> > > +	/**
+> > > +	 * @unmap_dma: Unmap a dma address previously obtained
+> > > using
+> > > @map_dma.
+> > > +	 *
+> > > +	 * @dpagemap: The struct drm_pagemap for the mapping.
+> > > +	 * @dev: The dma unmapper.
+> > > +	 * @addr: The dma address obtained when mapping.
+> > > +	 */
+> > > +	void (*unmap_dma)(struct drm_pagemap *dpagemap,
+> > > +			=C2=A0 struct device *dev,
+> > > +			=C2=A0 struct drm_pagemap_dma_addr addr);
+> > > +
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct drm_pagemap: Additional information for a struct
+> > > dev_pagemap
+> > > + * used for device p2p handshaking.
+> > > + * @ops: The struct drm_pagemap_ops.
+> > > + * @dev: The struct drevice owning the device-private memory.
+> > > + */
+> > > +struct drm_pagemap {
+> > > +	const struct drm_pagemap_ops *ops;
+> > > +	struct device *dev;
+> > > +};
+> > > +
+> > > +#endif
+> >=20
 
-In the register definitions, please err towards longer lines.
-
-> +#define   MTL_DPFC_GATING_DIS			REG_BIT(6)
-> +
->  #define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
->  #define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
->  #define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
-
--- 
-Jani Nikula, Intel
