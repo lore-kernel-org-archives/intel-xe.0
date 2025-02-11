@@ -4,169 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57081C0219B
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 19:20:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF2D8C0219B
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 19:23:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C7C910E306;
-	Tue, 11 Feb 2025 19:20:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 799E710E306;
+	Tue, 11 Feb 2025 19:23:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ORqdIU3p";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QwjebLT5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F95910E15E;
- Tue, 11 Feb 2025 19:20:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A55C10E306
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Feb 2025 19:23:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739301643; x=1770837643;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=QGSUvw7+CRfqboiApf9nXEVeq9Zn39lsomEBauL+VGk=;
- b=ORqdIU3p/eDCT08tp58yplicCqfyAyY27kbyHkwY9JtOy2Dw1qw10qJA
- 8zbhEnGgIxZcLiyhzEriEEW9BAbauXtI4tBxzQ0Siah2JATTgo28kDG9O
- pwq5zwy1awKDM0P0RYpyN1RjjDGKm2eBSknXTvxviEYp630J2XZ/mIw7y
- Jkk1xi7L6DMoLMKHgg26Y7Rbh1ZA76OwPHNO2WhMUByfbi36nD36bOBOP
- 3h8JuIXmmDkeigl1jlfjdFa2+p641y7pztJ6s+drktGjJ4+u/C6wXKLNj
- gK2wkFq+Etp3qEezyCXcUutq8YQNHt1u57+1muGiBu4x1LMYV9yqlt5HE Q==;
-X-CSE-ConnectionGUID: JHGVCB0YRnekr3HWuFovTg==
-X-CSE-MsgGUID: 0CGCN+eVR8mikjow0Wucxg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="40058291"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="40058291"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 11:20:43 -0800
-X-CSE-ConnectionGUID: 4Ilo/hSHTseUhbVxzxPNYg==
-X-CSE-MsgGUID: pQiqElnRQ42dfy1mP2H2GQ==
+ t=1739301783; x=1770837783;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=7HdB5Mi5Q6R5oBhNb3OpZjVw3MQd/Apj5w1to00933o=;
+ b=QwjebLT5IOJOTYY+lsZi+Q8l0R3VbWRtm1+9V7339puX/M81sG9up9Dq
+ dskYbpo/3umbS/5x9sAeb39znWIwewhFpsV7hUEeRfxAjORz1KZiy0lLL
+ 1GgjFtl9h0q/39jBD/OX9+gqbcXumGsBtAacUAaKOXBksFYFEzZYKMLTT
+ 3DwXyApylv/SkccZShODgWwN47+AioNmQSyh+fat1pIlF/oHOc7c7r/7V
+ B+SH+p/O4UOfjm6AlZQEiii8qItSiCKm4waKn9+4fFelJmXyI0RRTNVDE
+ QNoCooCCaXGu++lk93eAjh/BlaXpGIkmMZ68wfKmj278AGP5wJBbkBvVA w==;
+X-CSE-ConnectionGUID: PyP2CchmQwerhoj5YbyIbw==
+X-CSE-MsgGUID: hdmItbVvT1eNTpXssOAwUQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="39852878"
+X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="39852878"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 11:23:03 -0800
+X-CSE-ConnectionGUID: vKh762yfQt+zdBd9PwjapQ==
+X-CSE-MsgGUID: phnEmCQJSiubP4xx+ToL8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="113245365"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 11 Feb 2025 11:20:42 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 11 Feb 2025 11:20:41 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Tue, 11 Feb 2025 11:20:41 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.42) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 11 Feb 2025 11:20:41 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P4qf3yokSi79aDsNg9SxKHYYb8oOEHy5BYffngDjQedtxFj2Ac2OMb7Zg/38K8SEGY5jf2gdzuFa5wn2ayy4v+iudJGKy82JA/J5pFVFPUPCw1MSuFH+GgRfUJu3Fzu35md98rSG4nr0Qp+M9PS8tlOFe6IBOCEaMlphjlwrkvWjLBnUH7RT8rz95kAhMnAphHrEv+Q6BthAETD5f70j7xP7FaU83TItXSiJORwHjPFbzb337BVOEBfCS40vx2gptICuKLqCyRQfChglgmxZearQzvTm+phPF0xDzrp0TNFwarTROvP83ZbKsTmUaiUyyWSFtdMSEHp7w0A9FL/sGg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=E6Qp+pcro1mI47Sp0XeosUjgIMezJu4IDvjo4hfg4cs=;
- b=J7tepAE7iBF1BdnVozJPNkW4Apnd3j9LuuffcY0q28gPc4JJ5/v+3K5LX4/CtY5FammfTObCzfTXtqSRbgVZ9RDLe7VWywg1a7UB5JT9hmRFSu37x1MXupiwv4uar0a+0C9/ZND+12uw0C6gwJGs3kz5rH4BdKM7taIGm+yD+Se/WYdBdil/SLekT6ummkhyGnoEeEIOyuUXgCk9pFg1Hgl3B6DSbsrAU/E1+/LJbLQt/Sr59ulY6WD+F7JKOhyF6bnSiBuWLnG9bO90vR0ozXrcIPEc36BNkDpc4tOU8ewlpkh1AWCZB/rZgQfeNknlm5t+PIa3B+7Ei1Gb1NhcSw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CH0PR11MB5217.namprd11.prod.outlook.com (2603:10b6:610:e0::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.19; Tue, 11 Feb
- 2025 19:20:39 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.8422.015; Tue, 11 Feb 2025
- 19:20:39 +0000
-Date: Tue, 11 Feb 2025 11:21:39 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <himal.prasad.ghimiray@intel.com>, <apopple@nvidia.com>, <airlied@gmail.com>, 
- <simona.vetter@ffwll.ch>, <felix.kuehling@amd.com>, <dakr@kernel.org>
-Subject: Re: [PATCH v4 29/33] drm/xe: Basic SVM BO eviction
-Message-ID: <Z6ujQ0G6Wj4QQezs@lstrano-desk.jf.intel.com>
-References: <20250129195212.745731-1-matthew.brost@intel.com>
- <20250129195212.745731-30-matthew.brost@intel.com>
- <ec4bcb3b178a3de6e605216e588e2eba9cc3217a.camel@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ec4bcb3b178a3de6e605216e588e2eba9cc3217a.camel@linux.intel.com>
-X-ClientProxiedBy: SJ0PR03CA0183.namprd03.prod.outlook.com
- (2603:10b6:a03:2ef::8) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CH0PR11MB5217:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f8d4541-8375-4144-a20a-08dd4ad12b44
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?31N7zxX1B4k2qTbB0GC1rY9hBSim2Y6x4YpzVNrdIt6VPlokCIZV7GVa72?=
- =?iso-8859-1?Q?7ltW9P4K95R61myJqnPeAxQDjZIYS6iil742LWlatqds9wLHJJURWFW3IL?=
- =?iso-8859-1?Q?+0iRFBNZaKU1aEu4T4+t6+lkysP8EBN4D9t6xvVEuf9AII55T29PiiJlsc?=
- =?iso-8859-1?Q?a4fyjN0CzAX9WE8w8oCQURWR1m5RnJQK9CCmOWVLAjQPstT/ApWFZ8LzBh?=
- =?iso-8859-1?Q?gyzW4L1wgfjf5hTHwIClamOBMnMziniIvhso/fNs/Buns1FVe2KgZEKfvB?=
- =?iso-8859-1?Q?vNE+SnHiuLyq40FWcOqTDLAXIx+1uWINSwyp2gOctrGisRWTo6zmWuAvXw?=
- =?iso-8859-1?Q?JSDM/Dud4DvXxNtasVPpVu8prYa7Ag/edgTGYHOzS+xoQo7jHtuU/x4Bmc?=
- =?iso-8859-1?Q?UuKisvIMpmByvoRH8UfyqxeO2ZqQuqMy1m7FkkJoJ+2n8BdhvftUTIijV0?=
- =?iso-8859-1?Q?JCCgD/Cg73SxTIub4QX3H1i74Wo29oJIjWp/mbVrjx1JYm7GYWQDM5UAya?=
- =?iso-8859-1?Q?bAffhqYTPtd4tvQ/rDvwHEpcSdPT1MA+ySSxOpbr3jotWgvZ3SY9gKmnLi?=
- =?iso-8859-1?Q?JIDXoN2MFHy+JDNXMXmgSdBh/yo8/UFvppNcGve7UulbXWD43Z6x0a9QOi?=
- =?iso-8859-1?Q?9FrhqH+koLLDvKL3uOo6CFTnTlr3cQhuSxUlOqLmgXvC6dN4dPRCDWkM+y?=
- =?iso-8859-1?Q?OlOL6faRccanTgklAFi5kwdzzd2OLIA2USPA3ReDQtuJunvKsHz7aqFLEU?=
- =?iso-8859-1?Q?2eQocoqKZ8Gmtc6nl5pUaFFN6XeBUv4NZ52PWSYp7EBv6N6+A6n3HVFHzd?=
- =?iso-8859-1?Q?TmWnGZ/ct3WyWtfCyWzxquyBNS1+PrBOags8K1vjYEW9MkPi/Tzkd5BIWo?=
- =?iso-8859-1?Q?5Bd0bFTL36Jwnrot0QiAXNUP3izQkKn5IgogtTuSj8PjwcBhuCooMQZvXR?=
- =?iso-8859-1?Q?/72wCzZp86MP7+Pxqt0kQBdMjNf6y6nu1DzX87mic+Op+6/1GW53OMzbsH?=
- =?iso-8859-1?Q?bXiHrXHE/XZuKi96kNSFef2waSNOya2Y/sJPS0qGozxFPxHGP+UVyBWL1C?=
- =?iso-8859-1?Q?cm6LHUdTTky2k1u38jsgduo5FTSKMs1e03j/3azv2Lu4QNu1wDJBhdNQ3g?=
- =?iso-8859-1?Q?sugGyR0kYFFgJiwIkdr2SKamycv6wNgJX1kFTUBM8uj1fKZdadOUc/z/Q1?=
- =?iso-8859-1?Q?L7CjN1zRHZRewmOUPRTa4WbKO+Np/F5x+GpAMHvSHnn8av1lgKpE99VRme?=
- =?iso-8859-1?Q?1psAYCe0uTpjYn0GTk9MG059uaGKcejK0+GS/1SuLEur4W6RkqEj2vTCxA?=
- =?iso-8859-1?Q?6IU2Xkg90cdT04Sy4DGR7UC8Hm4xI5RnYX/i1//3PaMfqEfX7MucbQA8Yt?=
- =?iso-8859-1?Q?1m+yFE/6FiguhUwssiqcycwr/hoYsioGZ7kWU8VWTR8qiNSaS99wqoBygH?=
- =?iso-8859-1?Q?5kPt8NuN26dC1wf7?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?VWbLR31bxL3KEtoxD1shR1ylBlhXtVaXrIEhac4kvQlO6CiOoHbaOwquXj?=
- =?iso-8859-1?Q?5fk1VuCgnun9PWyqZ9IsdvFEvHBPj4DQg/+FVlWpyyqbnnHE8i+1EYktKa?=
- =?iso-8859-1?Q?AwrC5lw+7G2PagKbLLOOSlc1ALFzGK0MvTCTRuY5EfD2BofbJNG6tZW2Bn?=
- =?iso-8859-1?Q?qhKXy23UzFW7zhhrF2J6WPQyP6EQEhEtlf+KIW7y1F+EevBnAQuQZm/4wL?=
- =?iso-8859-1?Q?ZXn7miTJwyEV+vXZo59a6bthCinOHexzaoP4PW+rU0rHktZwBwL4XATzTU?=
- =?iso-8859-1?Q?iO1qW92byvwb8bFW7GAuI9ifdKDHFa5hEw0ZQrB9XiHdiqnAHSm1I9DMpq?=
- =?iso-8859-1?Q?jqx+lIj4hGGdmXzsIwH0CMjbZ6NIe22G/9T9CZHVqdN9D5fARgvXTljcMb?=
- =?iso-8859-1?Q?VATv2Mh5G95cRhqyC7zuv/NDL1WTe1jZhaDUa+7wyVZOugD4pnGAY1c2df?=
- =?iso-8859-1?Q?eI06IlBTiWg+0ydXYCmNQTeO2U2Agpa15qZ+jJzfAYsoKipGZAZSlRihZ7?=
- =?iso-8859-1?Q?y/f/J/7r113//N6/Vov2Ffh2qbAsBHWWYRncbK1fiMdjJYOsekmLow0o7w?=
- =?iso-8859-1?Q?Hk7ght6+hej6AWZmkt+NpscnegIy+BSG3xLu7m/486rbIRot9b3/xqLQp0?=
- =?iso-8859-1?Q?m7EYm3bXM0IZABFuqpjU0MElnESvYCIBDGJmAjpfKdI1K5t5BkG+2aErFw?=
- =?iso-8859-1?Q?iDnHA89pzVKWLrCoL8PV1G2o5G7Nxez/Q1ljeqbSUyPYI5FRaid7sLdKsA?=
- =?iso-8859-1?Q?//hJjwe0DY0L0oE78mrGq36uOrc4qThCtbzI4lgCRmg9hY0PQqSx7Du/bX?=
- =?iso-8859-1?Q?R5VRWgx2zmE5jwyPa+86WZ06n0VRtBl9rmy9N4kB+PejI/9Vb62a5MzJCu?=
- =?iso-8859-1?Q?gqHramq9JiOKqt/3Esh0drId+MH3bSzqWX0xiqPOLxj3xe24HmZ8quALxE?=
- =?iso-8859-1?Q?i2zIzCT0unGmQngpgrsMlltUUcDi3ka/uun2l4kq/bdT/fd/jd0DgqOfyx?=
- =?iso-8859-1?Q?7HvIkoFkMiVEi9WGSNiVRwfgShSAOD3XM5DQpnu1minn+ZWhpIblyz2QUv?=
- =?iso-8859-1?Q?35X7Enq7CyTtfoKWyrPaEMncCifmEI6Y6mkCRFQmLpmhqhGUeuSkigX3ak?=
- =?iso-8859-1?Q?kuDuXaVp1Z5xO8KylwMw4I9MhHKjLmMJKYduRwpEeQ0Ats7SmEw+NYb+4Z?=
- =?iso-8859-1?Q?gSPChvZslfLGcgexn72XFE+LlRSgU4yo94aHoXE2F3s1kah2ke8c78nLWW?=
- =?iso-8859-1?Q?uhfDSMvsZ9VCvxpW8KcNorwSvjMueGfbs9sxCjt7RXl+fNW1DwUbZ7hTSS?=
- =?iso-8859-1?Q?6amOMZnQlFTnqOr8vVeq9cPhFLCj8mu3q2T1oIfCtt7qP+0knTeEA1epUV?=
- =?iso-8859-1?Q?4KyZFVAXo9Qs6spl4TflhNIMaxJSpnVymBHSpEUXcTszY9EhR7X1JAZERf?=
- =?iso-8859-1?Q?MN7G4wtHINo+z4DyPMBj20ZMWoQtK3yWj5W0Ys7gYzx3YKkKytF+Z+8zW3?=
- =?iso-8859-1?Q?0kCaFCH5fhu665RNDvygfeHQ4IjdLaZ6rtQmA/6AvSIDoKUiztfWG7oJFz?=
- =?iso-8859-1?Q?JabXO2tXVAG0nCnCu2XmW/NAy48rd6J7Nvsiy+PXkPqVm0wrJYf6pq+K9D?=
- =?iso-8859-1?Q?o8yt9jt9FybhwZszbPpgYG22RGb/vlrSLQdQ93jyxkM62yQzAv5qNc/g?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f8d4541-8375-4144-a20a-08dd4ad12b44
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2025 19:20:39.2985 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LIJjjX78ZVYm5OhKlCaqbmAD3pwxuUCJsCYPiHglsIZ/57J90vL4Nrwt794EpPXYzI6pB0CnsRU+R3Mnm14x8g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5217
-X-OriginatorOrg: intel.com
+X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="112360059"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 11:23:03 -0800
+Date: Tue, 11 Feb 2025 11:23:02 -0800
+Message-ID: <85ed042smh.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Harish Chegondi <harish.chegondi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v9 0/8] Add support for EU stall sampling
+In-Reply-To: <cover.1739193510.git.harish.chegondi@intel.com>
+References: <cover.1739193510.git.harish.chegondi@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -181,151 +69,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Feb 07, 2025 at 03:45:51PM +0100, Thomas Hellström wrote:
-> On Wed, 2025-01-29 at 11:52 -0800, Matthew Brost wrote:
-> > Wire xe_bo_move to GPU SVM migration via new helper xe_svm_bo_evict.
-> > 
-> > v2:
-> >  - Use xe_svm_bo_evict
-> >  - Drop bo->range
-> > v3:
-> >  - Kernel doc (Thomas)
-> > v4:
-> >  - Add missing xe_bo.c code
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> 
-> I think in the long run, we'd want to do the svm eviction / unbind in
-> move_notify(), since that's where we're supposed to unbind other
-> subsystems. And then just purge the bo using a NULL placement, but
-> since this is equivalent let's postpone that to a more general
-> xe_bo_move() cleanup. It's getting pretty hard to follow.
-> 
+On Mon, 10 Feb 2025 05:46:41 -0800, Harish Chegondi wrote:
+>
 
-Agree xe_bo_move() could use some cleanup.
+Hi Harish,
 
-Matt
+> The following patch series add support for EU stall sampling,
+> a new hardware feature first added in PVC and is being supported
+> in XE2 and later architecture GPUs. This feature would enable
+> capturing of EU stall data which include the IP address of the
+> instruction stalled and various stall reason counts.
+>
+> Support for this feature is being added into Mesa:
+> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/30142
+>
+> New IGT tests for EU stall sampling are being added:
+> https://patchwork.freedesktop.org/series/143030/
+>
+> This patch series has undergone basic testing with the new IGT tests.
 
-> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> 
-> 
-> > ---
-> >  drivers/gpu/drm/xe/xe_bo.c  | 19 +++++++++++++++++++
-> >  drivers/gpu/drm/xe/xe_svm.c | 15 ++++++++++++++-
-> >  drivers/gpu/drm/xe/xe_svm.h |  3 +++
-> >  3 files changed, 36 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> > index 20c96709e267..657687ee70d0 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > @@ -255,6 +255,8 @@ int xe_bo_placement_for_flags(struct xe_device
-> > *xe, struct xe_bo *bo,
-> >  static void xe_evict_flags(struct ttm_buffer_object *tbo,
-> >  			   struct ttm_placement *placement)
-> >  {
-> > +	struct xe_bo *bo;
-> > +
-> >  	if (!xe_bo_is_xe_bo(tbo)) {
-> >  		/* Don't handle scatter gather BOs */
-> >  		if (tbo->type == ttm_bo_type_sg) {
-> > @@ -266,6 +268,12 @@ static void xe_evict_flags(struct
-> > ttm_buffer_object *tbo,
-> >  		return;
-> >  	}
-> >  
-> > +	bo = ttm_to_xe_bo(tbo);
-> > +	if (bo->flags & XE_BO_FLAG_CPU_ADDR_MIRROR) {
-> > +		*placement = sys_placement;
-> > +		return;
-> > +	}
-> > +
-> >  	/*
-> >  	 * For xe, sg bos that are evicted to system just triggers a
-> >  	 * rebind of the sg list upon subsequent validation to
-> > XE_PL_TT.
-> > @@ -710,6 +718,17 @@ static int xe_bo_move(struct ttm_buffer_object
-> > *ttm_bo, bool evict,
-> >  		goto out;
-> >  	}
-> >  
-> > +	if (!move_lacks_source && (bo->flags &
-> > XE_BO_FLAG_CPU_ADDR_MIRROR) &&
-> > +	    new_mem->mem_type == XE_PL_SYSTEM) {
-> > +		ret = xe_svm_bo_evict(bo);
-> > +		if (!ret) {
-> > +			drm_dbg(&xe->drm, "Evict system allocator BO
-> > success\n");
-> > +			ttm_bo_move_null(ttm_bo, new_mem);
-> > +		}
-> > +
-> > +		goto out;
-> > +	}
-> > +
-> >  	if (old_mem_type == XE_PL_SYSTEM && new_mem->mem_type ==
-> > XE_PL_TT && !handle_system_ccs) {
-> >  		ttm_bo_move_null(ttm_bo, new_mem);
-> >  		goto out;
-> > diff --git a/drivers/gpu/drm/xe/xe_svm.c
-> > b/drivers/gpu/drm/xe/xe_svm.c
-> > index fc030855d078..dafc5061eb42 100644
-> > --- a/drivers/gpu/drm/xe/xe_svm.c
-> > +++ b/drivers/gpu/drm/xe/xe_svm.c
-> > @@ -768,6 +768,20 @@ bool xe_svm_has_mapping(struct xe_vm *vm, u64
-> > start, u64 end)
-> >  	return drm_gpusvm_has_mapping(&vm->svm.gpusvm, start, end);
-> >  }
-> >  
-> > +/**
-> > + * xe_svm_bo_evict() - SVM evict BO to system memory
-> > + * @bo: BO to evict
-> > + *
-> > + * SVM evict BO to system memory. GPU SVM layer ensures all device
-> > pages
-> > + * are evicted before returning.
-> > + *
-> > + * Return: 0 on success standard error code otherwise
-> > + */
-> > +int xe_svm_bo_evict(struct xe_bo *bo)
-> > +{
-> > +	return drm_gpusvm_evict_to_ram(&bo->devmem_allocation);
-> > +}
-> > +
-> >  #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
-> >  static struct drm_pagemap_dma_addr
-> >  xe_drm_pagemap_map_dma(struct drm_pagemap *dpagemap,
-> > @@ -795,7 +809,6 @@ static const struct drm_pagemap_ops
-> > xe_drm_pagemap_ops = {
-> >  	.map_dma = xe_drm_pagemap_map_dma,
-> >  };
-> >  
-> > ->>>>>>> 133db8ade5f0 (drm/xe: Add drm_pagemap ops to SVM)
-> >  /**
-> >   * xe_devm_add: Remap and provide memmap backing for device memory
-> >   * @tile: tile that the memory region belongs to
-> > diff --git a/drivers/gpu/drm/xe/xe_svm.h
-> > b/drivers/gpu/drm/xe/xe_svm.h
-> > index 4c2576162c39..77dec5aae0ee 100644
-> > --- a/drivers/gpu/drm/xe/xe_svm.h
-> > +++ b/drivers/gpu/drm/xe/xe_svm.h
-> > @@ -11,6 +11,7 @@
-> >  
-> >  #define XE_INTERCONNECT_VRAM DRM_INTERCONNECT_DRIVER
-> >  
-> > +struct xe_bo;
-> >  struct xe_mem_region;
-> >  struct xe_tile;
-> >  struct xe_vm;
-> > @@ -56,6 +57,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
-> > struct xe_vma *vma,
-> >  
-> >  bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end);
-> >  
-> > +int xe_svm_bo_evict(struct xe_bo *bo);
-> > +
-> >  static inline bool xe_svm_range_pages_valid(struct xe_svm_range
-> > *range)
-> >  {
-> >  	return drm_gpusvm_range_pages_valid(range->base.gpusvm,
-> > &range->base);
-> 
+Before posting the next version, could you please update the IGT to sync
+with this version. And then include a "Test-with:" in the the next kernel
+version, so that we can see some Eu Stall IGT's running in the pre-merge?
+
+No need to fix all IGT issues yet, if you don't have the time now. That can
+be done later. Just fix the IGT's enough for the tests to run and hopefully
+pass, when we post new versions for the kernel series.
+
+Thanks.
+--
+Ashutosh
+
+>
+> Thank You.
+>
+> v9: a. Split the big patch in v8 into two patches
+>     b. Moved all drop data handling code into one patch
+>     c. Several other code improvements as mentioned in the patches
+> v8: a. Used div_u64() instead of / to fix 32-bit build issue.
+>     b. Changed copyright year in new files to 2025.
+>     c. Renamed struct drm_xe_eu_stall_data_pvc to struct xe_eu_stall_data_pvc
+>     d. Renamed struct drm_xe_eu_stall_data_xe2 to struct xe_eu_stall_data_xe2
+>
+> v7: a. Renamed input property DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT
+>        to DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS to be consistent with
+>        OA. Renamed the corresponding internal variables.
+>     b. Fixed some commit messages based on review feedback.
+>     c. Changed sampling_rates from a pointer to flexible array.
+>
+> v6: a. Changed the uAPI input to accept sampling rate in GPU cycles
+>        instead of sampling rate multiplier.
+>     b. Fix buffer wrap around over write bug (Matt Olson).
+>     c. Include EU stall sampling rates information and per XeCore buffer size in the query information.
+>
+> v5: Addressed review feedback from v4 including
+>     a. Removed DRM_XE_EU_STALL_PROP_POLL_PERIOD from the uAPI (Ashutosh)
+>     b. Separated the patches for Xe_HPC and Xe2 (Matt R)
+>     c. Moved read() returning -EIO into a separate patch
+>     d. Removed spinlocks around set_bit() and clear_bit() (Matt R)
+>     e. Renamed several variables, structures and enums (Ashutosh and
+> Matt R)
+>     f. Addressed other review feedback.
+> v4: Addressed review feedback from v3 including
+>     a. Split the patch into multiple patches (Matt R)
+>     b. Added a new device query to get EU stall info (Ashutosh)
+>     c. Renamed all Dss to xecore (Matt R)
+>     d. Removed buffer size and disable at open input properties. (Matt R)
+>     e. Removed the "_SHIFT" macros (Matt R)
+>     f. Allocate the EU stall buffer only on system memory.
+>     g. Changed the work arounds to OOB (Matt R)
+>     h. Other review feedback.
+> v3: a. Removed data header and changed read() to return -EIO when data is dropped by the HW.
+>     b. Added a new DRM_XE_OBSERVATION_IOCTL_INFO to query EU stall data record info
+>     c. Added struct drm_xe_eu_stall_data_pvc and struct drm_xe_eu_stall_data_xe2
+>        to xe_drm.h. These declarations would help user space to parse the
+>        EU stall data
+>     d. Addressed other review comments from v2
+> v2: Rename xe perf layer as xe observation layer (Ashutosh)
+>
+> Reviewed-by: Ben Olson <matthew.olson@intel.com>
+> Acked-by: Felix Degrood <felix.j.degrood@intel.com>
+> Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>
+> Harish Chegondi (8):
+>   drm/xe/topology: Add a function to find the index of the last enabled
+>     DSS in a mask
+>   drm/xe/uapi: Introduce API for EU stall sampling
+>   drm/xe/eustall: Add support to init, enable and disable EU stall
+>     sampling
+>   drm/xe/eustall: Add support to read() and poll() EU stall data
+>   drm/xe/eustall: Add support to handle dropped EU stall data
+>   drm/xe/eustall: Add EU stall sampling support for Xe2
+>   drm/xe/uapi: Add a device query to get EU stall sampling information
+>   drm/xe/eustall: Add workaround 22016596838 which applies to PVC.
+>
+>  drivers/gpu/drm/xe/Makefile                |    1 +
+>  drivers/gpu/drm/xe/regs/xe_eu_stall_regs.h |   29 +
+>  drivers/gpu/drm/xe/xe_eu_stall.c           | 1029 ++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_eu_stall.h           |   21 +
+>  drivers/gpu/drm/xe/xe_gt.c                 |    6 +
+>  drivers/gpu/drm/xe/xe_gt_topology.h        |   13 +
+>  drivers/gpu/drm/xe/xe_gt_types.h           |    3 +
+>  drivers/gpu/drm/xe/xe_observation.c        |   14 +
+>  drivers/gpu/drm/xe/xe_query.c              |   38 +
+>  drivers/gpu/drm/xe/xe_trace.h              |   33 +
+>  drivers/gpu/drm/xe/xe_wa_oob.rules         |    1 +
+>  include/uapi/drm/xe_drm.h                  |   74 ++
+>  12 files changed, 1262 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/regs/xe_eu_stall_regs.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.h
+>
+> --
+> 2.48.1
+>
