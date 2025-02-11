@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2039DC0219B
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 16:03:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E57D8C0219E
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 16:09:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A785310E23A;
-	Tue, 11 Feb 2025 16:03:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OZ2plD9Z";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 142EB10E23A;
- Tue, 11 Feb 2025 16:03:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739289796; x=1770825796;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=IHlMIaUgzxz8fzV4OZnZ5QnpTV+O3JpPoAameZPFfQg=;
- b=OZ2plD9ZExEdqG7s+PG5biC0Xi0aMjsWGULscMCAyOosg+YUjH4x25Xk
- q6NeHOpJTI18VoCVrnIfF9U+ehR1bN9L348FTVadALNRNDnYp7TJ621SU
- tWpo+YAbBm+/MFQ1oV/RICwLz+NAD1qBiiBRLBrMrfyekhU2vRYvFwI1x
- yTYt6d2uO3t5YBtWGKWjWP7y6++hobV2D+Z9rRETEcCvtf2KZ9K+gU1Cl
- eu4k+BQnHtVUmgcaS5GPoYOyiiEOlY/EhLivc0J/ndAu5spqQs/PsIPVV
- NK3P/rnE2CR8NpjUsVnZcrqrBNE8HyY80OoVhQPfkjy8Qnz8e/CQd42WV A==;
-X-CSE-ConnectionGUID: blC8c9ujRzej8hzfh3PvLA==
-X-CSE-MsgGUID: ioA1bxfCRymhiIKDxq1bYg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="39111308"
-X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="39111308"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 08:03:15 -0800
-X-CSE-ConnectionGUID: fsrimmLlRE+8Xh3Ts1SaCg==
-X-CSE-MsgGUID: 1ACLRTaAQp+0VoMj6Gj1HA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116636692"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO [10.245.246.71])
- ([10.245.246.71])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 08:03:13 -0800
-Message-ID: <7842182aeb75205fccde42ca4e0700a7c52bbebf.camel@linux.intel.com>
-Subject: Re: [PATCH v4 04/33] drm/pagemap: Add DRM pagemap
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com, 
- simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
-Date: Tue, 11 Feb 2025 17:03:10 +0100
-In-Reply-To: <Z6pIY16rfPNDS0Xr@lstrano-desk.jf.intel.com>
-References: <20250129195212.745731-1-matthew.brost@intel.com>
- <20250129195212.745731-5-matthew.brost@intel.com>
- <1c642a05ec279837394864e1e99226ea3e22421e.camel@linux.intel.com>
- <Z6pIY16rfPNDS0Xr@lstrano-desk.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83ED710E700;
+	Tue, 11 Feb 2025 16:09:58 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0438310E702;
+ Tue, 11 Feb 2025 16:09:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8969755644224010983=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_impleme?=
+ =?utf-8?q?nt_wa=5F18038517565_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 11 Feb 2025 16:09:56 -0000
+Message-ID: <173929019699.974576.11455921159275159084@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250211152400.460496-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20250211152400.460496-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,246 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2025-02-10 at 10:41 -0800, Matthew Brost wrote:
-> On Fri, Feb 07, 2025 at 09:34:00AM +0100, Thomas Hellstr=C3=B6m wrote:
-> > On Wed, 2025-01-29 at 11:51 -0800, Matthew Brost wrote:
-> > > From: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > >=20
-> > > Introduce drm_pagemap ops to map and unmap dma to VRAM resources.
-> > > In
-> > > the
-> > > local memory case it's a matter of merely providing an offset
-> > > into
-> > > the
-> > > device's physical address. For future p2p the map and unmap
-> > > functions
-> > > may
-> > > encode as needed.
-> > >=20
-> > > Similar to how dma-buf works, let the memory provider
-> > > (drm_pagemap)
-> > > provide
-> > > the mapping functionality.
-> >=20
->=20
-> Trying to parse all of this.=20
->=20
-> > It should be noted that the long term idea for dma mapping is to
-> > have
-> > that done by the client instead of by the memory provider, which
-> > Jason
->=20
-> - Client here is the device mapping the memory.
-> - Memory provider is the device where the memory is located?
->=20
-> Did I get this correct?
->=20
-> > reminded me of in a discussion on dri-devel. The dma-mapping here
-> > is
-> > modeled after how it's done for dma-buf, where the exporter maps
-> > dma.
-> >=20
-> > So following that, it might be that we should move these dma-
-> > mapping
-> > ops to the drm_gpusvm().
-> >=20
->=20
-> So we move ops to the local client (gpusvm) rather than remote
-> device,
-> right?
->=20
-> > The situation I can think of, where this might be a problem is that
-> > if
-> > the device-private struct page to dma address mapping is not known
-> > to
-> > the client.
-> >=20
->=20
-> I'm not following this but I agree if dma mapping at the client we
-> need
-> the remote device structure given how the dma mapping API works.
->=20
-> So to wrap it up - what, if anything, do you think we need to do to
-> this
-> individual patch as part of this series?
+--===============8969755644224010983==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I've been thinking a bit more about this, and I think a change we can
-do is to rename these methods to something along device_map() and
-device_unmap(). The purpose would be to emphasize that the resulting
-addresses are typically not meaningful outside of the driver, and not
-to be confused with standard dma-mapping.
+== Series Details ==
 
-/Thomas
+Series: drm/i915/display: implement wa_18038517565 (rev2)
+URL   : https://patchwork.freedesktop.org/series/144183/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2639-5a6f3d00770c0c384a79c34a74e049c80d8b235d_BAT -> xe-pw-144183v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
 
 
->=20
-> Matt
->=20
-> > /Thomas
-> >=20
-> >=20
-> >=20
-> >=20
-> >=20
-> > >=20
-> > > v3:
-> > > =C2=A0- Move to drm level include
-> > > v4:
-> > > =C2=A0- Fix kernel doc (G.G.)
-> > >=20
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > Signed-off-by: Thomas Hellstr=C3=B6m
-> > > <thomas.hellstrom@linux.intel.com>
-> > > ---
-> > > =C2=A0include/drm/drm_pagemap.h | 105
-> > > ++++++++++++++++++++++++++++++++++++++
-> > > =C2=A01 file changed, 105 insertions(+)
-> > > =C2=A0create mode 100644 include/drm/drm_pagemap.h
-> > >=20
-> > > diff --git a/include/drm/drm_pagemap.h
-> > > b/include/drm/drm_pagemap.h
-> > > new file mode 100644
-> > > index 000000000000..2b610ccf7e30
-> > > --- /dev/null
-> > > +++ b/include/drm/drm_pagemap.h
-> > > @@ -0,0 +1,105 @@
-> > > +/* SPDX-License-Identifier: MIT */
-> > > +#ifndef _DRM_PAGEMAP_H_
-> > > +#define _DRM_PAGEMAP_H_
-> > > +
-> > > +#include <linux/dma-direction.h>
-> > > +#include <linux/hmm.h>
-> > > +#include <linux/types.h>
-> > > +
-> > > +struct drm_pagemap;
-> > > +struct device;
-> > > +
-> > > +/**
-> > > + * enum drm_interconnect_protocol - Used to identify an
-> > > interconnect
-> > > protocol.
-> > > + */
-> > > +enum drm_interconnect_protocol {
-> > > +	DRM_INTERCONNECT_SYSTEM,=C2=A0=C2=A0=C2=A0 /* DMA map is system pag=
-es.
-> > > */
-> > > +	DRM_INTERCONNECT_PCIE_P2P,=C2=A0 /* DMA map is PCIE P2P */
-> > > +	DRM_INTERCONNECT_DRIVER,=C2=A0=C2=A0=C2=A0 /* DMA map is driver def=
-ined
-> > > */
-> > > +	/* A driver can add private values beyond
-> > > DRM_INTERCONNECT_DRIVER */
-> > > +};
-> > > +
-> > > +/**
-> > > + * struct drm_pagemap_dma_addr - DMA address representation.
-> > > + * @addr: The dma address or driver-defined address for driver
-> > > private interconnects.
-> > > + * @proto: The interconnect protocol.
-> > > + * @order: The page order of the dma mapping. (Size is PAGE_SIZE
-> > > <<
-> > > order).
-> > > + * @dir: The DMA direction.
-> > > + *
-> > > + * Note: There is room for improvement here. We should be able
-> > > to
-> > > pack into
-> > > + * 64 bits.
-> > > + */
-> > > +struct drm_pagemap_dma_addr {
-> > > +	dma_addr_t addr;
-> > > +	u64 proto : 54;
-> > > +	u64 order : 8;
-> > > +	u64 dir : 2;
-> > > +};
-> > > +
-> > > +/**
-> > > + * drm_pagemap_dma_addr_encode() - Encode a dma address with
-> > > metadata
-> > > + * @addr: The dma address or driver-defined address for driver
-> > > private interconnects.
-> > > + * @proto: The interconnect protocol.
-> > > + * @order: The page order of the dma mapping. (Size is PAGE_SIZE
-> > > <<
-> > > order).
-> > > + * @dir: The DMA direction.
-> > > + *
-> > > + * Return: A struct drm_pagemap_dma_addr encoding the above
-> > > information.
-> > > + */
-> > > +static inline struct drm_pagemap_dma_addr
-> > > +drm_pagemap_dma_addr_encode(dma_addr_t addr,
-> > > +			=C2=A0=C2=A0=C2=A0 enum drm_interconnect_protocol
-> > > proto,
-> > > +			=C2=A0=C2=A0=C2=A0 unsigned int order,
-> > > +			=C2=A0=C2=A0=C2=A0 enum dma_data_direction dir)
-> > > +{
-> > > +	return (struct drm_pagemap_dma_addr) {
-> > > +		.addr =3D addr,
-> > > +		.proto =3D proto,
-> > > +		.order =3D order,
-> > > +		.dir =3D dir,
-> > > +	};
-> > > +}
-> > > +
-> > > +/**
-> > > + * struct drm_pagemap_ops: Ops for a drm-pagemap.
-> > > + */
-> > > +struct drm_pagemap_ops {
-> > > +	/**
-> > > +	 * @map_dma: Map for dma access or provide a virtual
-> > > address
-> > > suitable for
-> > > +	 *
-> > > +	 * @dpagemap: The struct drm_pagemap for the page.
-> > > +	 * @dev: The dma mapper.
-> > > +	 * @page: The page to map.
-> > > +	 * @order: The page order of the dma mapping. (Size is
-> > > PAGE_SIZE << order).
-> > > +	 * @dir: The transfer direction.
-> > > +	 */
-> > > +	struct drm_pagemap_dma_addr (*map_dma)(struct
-> > > drm_pagemap
-> > > *dpagemap,
-> > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct device
-> > > *dev,
-> > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct page
-> > > *page,
-> > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int
-> > > order,
-> > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum
-> > > dma_data_direction dir);
-> > > +
-> > > +	/**
-> > > +	 * @unmap_dma: Unmap a dma address previously obtained
-> > > using
-> > > @map_dma.
-> > > +	 *
-> > > +	 * @dpagemap: The struct drm_pagemap for the mapping.
-> > > +	 * @dev: The dma unmapper.
-> > > +	 * @addr: The dma address obtained when mapping.
-> > > +	 */
-> > > +	void (*unmap_dma)(struct drm_pagemap *dpagemap,
-> > > +			=C2=A0 struct device *dev,
-> > > +			=C2=A0 struct drm_pagemap_dma_addr addr);
-> > > +
-> > > +};
-> > > +
-> > > +/**
-> > > + * struct drm_pagemap: Additional information for a struct
-> > > dev_pagemap
-> > > + * used for device p2p handshaking.
-> > > + * @ops: The struct drm_pagemap_ops.
-> > > + * @dev: The struct drevice owning the device-private memory.
-> > > + */
-> > > +struct drm_pagemap {
-> > > +	const struct drm_pagemap_ops *ops;
-> > > +	struct device *dev;
-> > > +};
-> > > +
-> > > +#endif
-> >=20
+Changes
+-------
 
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2639-5a6f3d00770c0c384a79c34a74e049c80d8b235d -> xe-pw-144183v2
+
+  IGT_8228: 8228
+  xe-2639-5a6f3d00770c0c384a79c34a74e049c80d8b235d: 5a6f3d00770c0c384a79c34a74e049c80d8b235d
+  xe-pw-144183v2: 144183v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144183v2/index.html
+
+--===============8969755644224010983==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: implement wa_18038517565 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144183/">https://patchwork.freedesktop.org/series/144183/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144183v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144183v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2639-5a6f3d00770c0c384a79c34a74e049c80d8b235d_BAT -&gt; xe-pw-144183v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2639-5a6f3d00770c0c384a79c34a74e049c80d8b235d -&gt; xe-pw-144183v2</li>
+</ul>
+<p>IGT_8228: 8228<br />
+  xe-2639-5a6f3d00770c0c384a79c34a74e049c80d8b235d: 5a6f3d00770c0c384a79c34a74e049c80d8b235d<br />
+  xe-pw-144183v2: 144183v2</p>
+
+</body>
+</html>
+
+--===============8969755644224010983==--
