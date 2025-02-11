@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD66AC021A7
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 10:49:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A091C021A4
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 10:49:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB5B310E65C;
-	Tue, 11 Feb 2025 10:49:13 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58BEB10E65B;
- Tue, 11 Feb 2025 10:49:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF31D10E657;
+	Tue, 11 Feb 2025 10:49:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j4Cr5tv7";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8D3010E657;
+ Tue, 11 Feb 2025 10:49:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739270950; x=1770806950;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=fg8cEgFYisPkNSqaF/Hm/1HPlMrARB7/MXIuC7WiI3A=;
+ b=j4Cr5tv7teQ6zgVcBUS4a/vVtMiiyqL69w7cYngwRRLc1fYri4+OFT0y
+ HzF7sP/ijpFbHX9kR0o7mTtyK73lqU9Xc1ADaqyRn9EAAZZCp/g3rFBNT
+ AHI7+m13KA4M13ABYDQgpLkqcP47bperTB+0yYphtByCWtqjNIgKv47Ll
+ ScRyZ2osMu66mEI7dCEYbeLiXKp5lKDoa/FaoEgNwd+0cFWkBDrtA0A6r
+ PwW7BohWaJVfuXvySrzBxtS4IadS1TaO3Dg4tC7MYUSXf6u+JhTK7OQKz
+ JA7BCganiXyKsB/6pAx2g+kEA3kONwtd56bnFkYJA1AlToV2nQ2VskjO/ A==;
+X-CSE-ConnectionGUID: 1s0tc8iDQlim2m/3ct4xHQ==
+X-CSE-MsgGUID: bOpNt/jNQ166aA8ogyTpow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="57293169"
+X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="57293169"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 02:49:09 -0800
+X-CSE-ConnectionGUID: frpDke5ZRuSbYfVOKOxurA==
+X-CSE-MsgGUID: aZ5B9FP4SW6woRfmAokBFg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="112991346"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by fmviesa010.fm.intel.com with ESMTP; 11 Feb 2025 02:49:08 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, jani.nikula@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 2/9] drm/i915/display_debug_fs: Prefer using display->platform
+Date: Tue, 11 Feb 2025 16:18:50 +0530
+Message-Id: <20250211104857.3501566-3-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250211104857.3501566-1-suraj.kandpal@intel.com>
+References: <20250211104857.3501566-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_PMU_support_for_engine_ac?=
- =?utf-8?q?tivity_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 11 Feb 2025 10:49:11 -0000
-Message-ID: <173927095135.864439.17961848771730919013@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250211100952.322303-1-riana.tauro@intel.com>
-In-Reply-To: <20250211100952.322303-1-riana.tauro@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,88 +64,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Prefer using display->platform.xx instead of IS_PLATFORM() checks
 
-Series: PMU support for engine activity (rev2)
-URL   : https://patchwork.freedesktop.org/series/144408/
-State : warning
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit bc85c921545a2b5cf1b165c9fdcea27f7f9e7c6e
-Author: Riana Tauro <riana.tauro@intel.com>
-Date:   Tue Feb 11 15:39:50 2025 +0530
-
-    drm/xe/pf: Enable per-function engine activity stats
-    
-    Enable per-function engine activity stats when VF's are enabled
-    and disable when VF's are disabled
-    
-    v2: fix commit message
-        remove reset stats from pf config (Michal)
-    
-    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-+ /mt/dim checkpatch 27f9e4e3866556a4498e3b4ddebc27d4f6d0ae2f drm-intel
-1ecc77b8d4b6 drm/xe: Add engine activity support
--:76: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#76: 
-new file mode 100644
-
--:538: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#538: FILE: drivers/gpu/drm/xe/xe_guc_fwif.h:220:
-+	struct guc_engine_activity engine_activity[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
-
-total: 0 errors, 2 warnings, 0 checks, 491 lines checked
-011eaf11fbda drm/xe/trace: Add trace for engine activity
--:66: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#66: FILE: drivers/gpu/drm/xe/xe_trace_guc.h:109:
-+	    TP_STRUCT__entry(
-
--:83: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#83: FILE: drivers/gpu/drm/xe/xe_trace_guc.h:126:
-+	    TP_fast_assign(
-
-total: 0 errors, 0 warnings, 2 checks, 84 lines checked
-e798a36469d2 drm/xe/guc: Expose engine activity only for supported GuC version
-7dfd55cd965b drm/xe/xe_pmu: Add PMU support for engine activity
--:299: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#299: FILE: drivers/gpu/drm/xe/xe_pmu.c:373:
-+XE_EVENT_ATTR_NOUNIT(engine-active-ticks, engine_active_ticks, XE_PMU_EVENT_ENGINE_ACTIVE_TICKS);
-                            ^
-
--:299: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#299: FILE: drivers/gpu/drm/xe/xe_pmu.c:373:
-+XE_EVENT_ATTR_NOUNIT(engine-active-ticks, engine_active_ticks, XE_PMU_EVENT_ENGINE_ACTIVE_TICKS);
-                                   ^
-
--:300: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#300: FILE: drivers/gpu/drm/xe/xe_pmu.c:374:
-+XE_EVENT_ATTR_NOUNIT(engine-total-ticks, engine_total_ticks, XE_PMU_EVENT_ENGINE_TOTAL_TICKS);
-                            ^
-
--:300: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#300: FILE: drivers/gpu/drm/xe/xe_pmu.c:374:
-+XE_EVENT_ATTR_NOUNIT(engine-total-ticks, engine_total_ticks, XE_PMU_EVENT_ENGINE_TOTAL_TICKS);
-                                  ^
-
-total: 0 errors, 0 warnings, 4 checks, 277 lines checked
-44cf5249ce4e drm/xe/xe_pmu: Acquire forcewake on event init for engine events
-bd3bb15d5290 drm/xe: Add support for per-function engine activity
-66b16f519461 drm/xe/xe_pmu: Add PMU support for per-function engine activity stats
-bc85c921545a drm/xe/pf: Enable per-function engine activity stats
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index d85924caa26e..991c1726f522 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -96,14 +96,14 @@ static int i915_sr_status(struct seq_file *m, void *unused)
+ 		/* no global SR status; inspect per-plane WM */;
+ 	else if (HAS_PCH_SPLIT(dev_priv))
+ 		sr_enabled = intel_de_read(display, WM1_LP_ILK) & WM_LP_ENABLE;
+-	else if (IS_I965GM(dev_priv) || IS_G4X(dev_priv) ||
+-		 IS_I945G(dev_priv) || IS_I945GM(dev_priv))
++	else if (display->platform.i965gm || display->platform.g4x ||
++		 display->platform.i945g || display->platform.i945gm)
+ 		sr_enabled = intel_de_read(display, FW_BLC_SELF) & FW_BLC_SELF_EN;
+-	else if (IS_I915GM(dev_priv))
++	else if (display->platform.i915gm)
+ 		sr_enabled = intel_de_read(display, INSTPM) & INSTPM_SELF_EN;
+-	else if (IS_PINEVIEW(dev_priv))
++	else if (display->platform.pineview)
+ 		sr_enabled = intel_de_read(display, DSPFW3(dev_priv)) & PINEVIEW_SELF_REFRESH_EN;
+-	else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
++	else if (display->platform.valleyview || display->platform.cherryview)
+ 		sr_enabled = intel_de_read(display, FW_BLC_SELF_VLV) & FW_CSPWRDWNEN;
+ 
+ 	intel_display_power_put(display, POWER_DOMAIN_INIT, wakeref);
+-- 
+2.34.1
 
