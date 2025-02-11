@@ -4,169 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C538C0219D
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 11:04:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AEA8C021A2
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 11:15:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D35DD10E65E;
-	Tue, 11 Feb 2025 11:04:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2035D10E678;
+	Tue, 11 Feb 2025 11:15:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bLT+dTch";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZbcOWvbz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A69010E65D;
- Tue, 11 Feb 2025 11:04:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739271852; x=1770807852;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=pty7BIVr2vdWcIp/+c0OdxK44WxNUqW/w5jqicnxr+0=;
- b=bLT+dTchCE+FBhXCFnCP76VYpSurEPjR841R5RwdbUAzwi9z6lQ3AlFP
- RE6KFF4UZy8UP/6T1/9BWQt+mPazrUOO3839dfc2uZXoG2hSj9k8blXLp
- FjxU8T5ADXQtTHcH9JiiTNbaSBunB91ak0Yq13CCC4qOlgv64bNZPWQrg
- in4/RtFRzJfRsnHMujNdltYuBS1sGLS++jg4jV50dd70cErF5eQ8EEy7z
- PZWeYpCeCHtwi0+3CQ1bAmmjiqKKz2divh6myfF6Bt9SiWsP3o6KLWAqy
- 4MyqgTQdzbg3hdV4y+5twp6i4Ap8TJBPSXS2d/bsnHTzAk9/fyettNHCa g==;
-X-CSE-ConnectionGUID: NgAASy30QdSc/jvWwdZPzA==
-X-CSE-MsgGUID: rj4eYW2gQoWQyaK3R7QqBA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="42722202"
-X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="42722202"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 03:04:12 -0800
-X-CSE-ConnectionGUID: gwXIEFUUT9SyxnV5iKOJpA==
-X-CSE-MsgGUID: fl4q/cpNRD+sqkZ0Mc6WUA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="113118873"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 11 Feb 2025 03:04:11 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 11 Feb 2025 03:04:11 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Tue, 11 Feb 2025 03:04:11 -0800
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.45) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 11 Feb 2025 03:04:10 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=f32+gn6w3jXMBPU1A/QXcO6KK3VSF27JuMQK8TE9+i0+xT2sTKCtZzpqqHa/0TYpYyDpYDctGNJX+NKTfzfqo72xuzLD9vU1wR574/dXnXgLtXtTCW6kMMrTJ54d/EqljtCtZV+D1sh1MTJ6hP/m+pWbEMZEP3t7uD3gueSx64n4zflsC88V4bHOE7e9yrS7kx4Y0jcg1MyA2V/sxw6tFSOAXPYGK2Q264MB+yZQfKxSNuAFbJp+kzuLg+Oun49SCqjBeFOK1zinBqd9TZTwdrUfO+3K5PpAwbN2OX7b+mJdR/jdHtCz1Xy2S/beMH0+Y9mTRovh2ZbGv5GA9cVhsQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=anfxNlL6cH8X9v8nrN781rptlXqwQv9AVBjGrA9w6/A=;
- b=WHpBFSJTM9b3lf6V98KO8hPYL0aAPA9hdxU4yQgGl7FZQhqO7oxBz6T7kq2OkbYUSn9GssBTzDdJuZ0pttJP/zoUFm2gHUnmooz7ghATt97fYydtrwSDdaii0EC8FeqJmyRPPx18B52653j8Qt5wSwCXV3PX9PqnIi/HizQiuq/WMcR96WiaBr8uukQrMZxOd5GEqIbbNp6JugQg7e6YadIKZACDWnu1uSdxCIq4Xj7aOQk3zYzTmLBih+fJMEexkhIhHlHcIn4CIJ6fAMO77l+VuA5EJUcHF2okFLEPDWNJL+RvORgM0Fv7GJEsaB/weX7dLTnT5UDKEpeD5IqfqQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by PH8PR11MB6950.namprd11.prod.outlook.com (2603:10b6:510:226::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.16; Tue, 11 Feb
- 2025 11:04:07 +0000
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527%3]) with mapi id 15.20.8422.015; Tue, 11 Feb 2025
- 11:04:07 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Reddy Guddati,
- Santhosh" <santhosh.reddy.guddati@intel.com>
-Subject: RE: [PATCH] drm/i915/hdcp: Create force_hdcp14 debug fs entry
-Thread-Topic: [PATCH] drm/i915/hdcp: Create force_hdcp14 debug fs entry
-Thread-Index: AQHbeSek853Y8TCGDUCNY9Rh4RG5yrM7qsCAgAZK0TA=
-Date: Tue, 11 Feb 2025 11:04:07 +0000
-Message-ID: <SN7PR11MB67502858FCD83B8F98423CA2E3FD2@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20250207061454.3030060-1-suraj.kandpal@intel.com>
- <87tt963u1e.fsf@intel.com>
-In-Reply-To: <87tt963u1e.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|PH8PR11MB6950:EE_
-x-ms-office365-filtering-correlation-id: bbfae54c-cd46-471b-3fc2-08dd4a8bce36
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?2dd3IIBcvqVMC0PH2UEjzjE6EakxCWA6uiSv5SCFkGzx6sFfAL4enhCQSSKV?=
- =?us-ascii?Q?4uvladFuCOAtNH/31WHanmdYaOREZy6Yh0A10/fEIMfc5xPp2EC6cooQPnA5?=
- =?us-ascii?Q?5mlcmgj8ECSH70tt2pfz5mIMUmwFbK0vY+G9VyWATa0TP4KxQf/ai+0+9lxv?=
- =?us-ascii?Q?QfKY6y3jz9Gil5LIvqjOsHXCUZOqe6U0pQrrsgLKcW5TghArnzIOdRqetLEb?=
- =?us-ascii?Q?lRWy9k7PGMa4bXaYtCRKisw2I2UHofDMYui1vxfpEJR3NEPrt4oWf80ippDx?=
- =?us-ascii?Q?foQbwSwl9orIi3aAtgW/+a+nHjqa3bYThgUxJIDBTgtNZljBLDKFEREqzHg7?=
- =?us-ascii?Q?81Dd2DXMaDW7UxW6yDEu5u8nNbBvD1fuQKbE/LvRkhY3z6FPav2WEv/IZ8dv?=
- =?us-ascii?Q?FKtQtgIB7JmnI+8hE2Adx2eAQekn6EiRdy30teJ4scCED4q6ib7MwdncUW+7?=
- =?us-ascii?Q?ZL/4bLINFJKpdocLPxFxgckXWu/MtVp4xyMeokBfASIKlyN5Xo/PpQuqITj/?=
- =?us-ascii?Q?EGoybJWOuFHRsp4ADJuiy6l671FTEMwhRYbmgB3s1S+5AhPlAWXh/fDpixKg?=
- =?us-ascii?Q?hHvA+fv2sDGvAhw0cVdESVtd49gyn86oD3BCsddj3hb/ZjVpTsbDDjKuh1Ma?=
- =?us-ascii?Q?TP8CmmlbEtIhb16EJKxCwPZcE3Z2glZwwfjjMNxzC3w92i7hp6lsGoR5Qrau?=
- =?us-ascii?Q?7gty5oKlVJ2i6gfPMkPMo3IKFO0Fnzja5TTtFmHEdwzBVOA0SuF/+sacSQMA?=
- =?us-ascii?Q?ASrWX0l7+IIIhktLUGTmxKlHKpShm2nEtYeHxt+leyWrr6el9Sk9yYqU25iu?=
- =?us-ascii?Q?HcNBeeBbA/b0vOIrBYppOsWI5IdMv68ptUzWDPBWl/XqRBacvs9oU5eSse67?=
- =?us-ascii?Q?V7qERyn0dYeasAMDhzpLHY2e9xM3l84+qVdoXt+lTadiJgOaxUC1dOOJYEal?=
- =?us-ascii?Q?eENideSlgrqOBP3S9GC26SNAP9YROAulXigwKdJx2DdC/k7/uvMny6jtdzFj?=
- =?us-ascii?Q?r4tbeAJguhAigeYVwIO7maXbDXhtNwqT1JyBWBe9SOKVuHXKmlmKumNRhXxb?=
- =?us-ascii?Q?q84LmvwGoBfOULZ1TXeNu6tzXFgHhSiM0R4JJ+EEUD0oGiO/DCbPeWqCzPkB?=
- =?us-ascii?Q?JNFBRCUslmbhY1yGSLao2FDWN0EUvV68h0rOwVcxp2f3b/Fm809yzcD00pAb?=
- =?us-ascii?Q?RJ1DGVHr89ua2qMSSSB8IN9HL6kkrQsD2cZzfa6KQB2mrCNrV/8LJpE3RCTK?=
- =?us-ascii?Q?XyMAVwXxl1+zCfenr917c32JI8nnkTrSuoEiTe7qSMNFkF0yyyxFclYLsa40?=
- =?us-ascii?Q?1mjyGgeHE99pzvPCmUHig3dysTqQYyErGZJ3GnnSbGTyIlZ/4aUqaoaWBtxV?=
- =?us-ascii?Q?gOcpvZaHZagLc580CSphQJKYx/YdWiINwqO8drmQavlOvtySwa9idogzUjXk?=
- =?us-ascii?Q?CJFW+M4+Sci4CKVxm++hKSkEF8tB0708?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ttUxkX/k5FT4UDrqk4IEblc1DbehE9o1HSLgvVsd/Nrizbd8phq/Vto9D3SQ?=
- =?us-ascii?Q?zSuncbEmdiNqGl99ABYB0g6veN5twGEkIjlTkJbfmewXDuuCwY/Lh6rm6Qnd?=
- =?us-ascii?Q?YpSGUPYkNEeaifMMxB6U6FV8gsvxKamKsM/pOJU0vPLWSVyCaxWJKkwV/zzH?=
- =?us-ascii?Q?VdVdWP1v74y1E4NF+w1kMuXtCODEAv9vkNmIXsuQU0Mg0p16zMODqMqG+Smp?=
- =?us-ascii?Q?jKnF0yQKeiD4KQvbGJWHepGrcaofdLNMlwgexxLP+ThRuRZeFdJhbOXeZgH/?=
- =?us-ascii?Q?hhwUEX8Fti+Gs01X6Lgel/82vKHxsjLSEWv6sXWgPagYMsHOnEOxeRK1gI+W?=
- =?us-ascii?Q?Pw//e3+mNAh5lQFSRp4iHElR8mV9EbjvyR0TkrAqMN0UyzsVJ5j4/KUM9OCh?=
- =?us-ascii?Q?UXSxF4lObBI+1cShSkN23Nxu4JlM07Xd9OIuMpxYcCoIxVCyN5gXYaG/mgs3?=
- =?us-ascii?Q?/8Q2kNu8ZKxJdQ+eahigZOmT5W4NPDrwpEhDz7ETmcCpGhyg/Uvjykq6FU5s?=
- =?us-ascii?Q?6IYEdGWt1NnD5e3cHJZM7GwqBhEL+b8tg6UV9OlMWiDeCPk2qui7cPbvXjaV?=
- =?us-ascii?Q?uQlgoECUIpEfSF4EYi1BMkb7TjwzCiIdlAdD5nQ9MpRqsJJEKj+fwbzF7Zy3?=
- =?us-ascii?Q?Jd6uTScGqKEwabpgswhfTeuQRYPxNAlB+YfIeayR+hA5je6VyS92stza3/Ax?=
- =?us-ascii?Q?7mMEtTCZHgLXJlxCgDftD+1I5QZIsI6diBUBGFUQoNUZzHPeRlal/4jxzZ/1?=
- =?us-ascii?Q?unh58mCfG+w3QD/Ddf/41vSjDo4GdnYVxtnBDYF5WpLojrm4QFdolH6IoFTR?=
- =?us-ascii?Q?SHgCJWymvjueDV0lCaILMDexDKIPAzOKn4lbbGHdYi/hEflPWU0UMP3YMvaB?=
- =?us-ascii?Q?Pcoh9lJiKTyC+ChVySbv5hpCtJ0OERYh5ljSOBcbqww0uTUkus3pdY0IaB7m?=
- =?us-ascii?Q?9JuSkW1RUUr1KXQYPxweE+eZDpDVhQ4UdrjdFtGRp/yaE8cXrAgF0R0jeCjH?=
- =?us-ascii?Q?6bOSNFamVnasO0OscfHAP9yQBUtGU8ciiEqxW5e8fl0So/9bshoMJMkdfmRi?=
- =?us-ascii?Q?wHGpjpgvdSa9l6xuF32pIOD/MLBe3QnA6N1KrDaxSCS0MUeGJ7kl0iz4KiF9?=
- =?us-ascii?Q?y52Wdx/AO4HlsfICM+eqowPbuv44wbaiBKjc/7vXxEq8CXDzEZxXsdoIEAt8?=
- =?us-ascii?Q?ENQEJuK/gOOfJ7rQmwY+5jKVfxLOK1PnYx3393P7a8rHD7v7EA13S20ezOfj?=
- =?us-ascii?Q?PJ809uoXamVNIofAAjkQNTSN9hpVztsCeSjphcfS6FLktD55+6co6JQ7AZD4?=
- =?us-ascii?Q?r0t3DoyBmXZa0UlSxtTBIyH4lxBRzn9LusanOE3McKIAFNYaakb9lx8By6mv?=
- =?us-ascii?Q?nX57iYnPrRsheJp+pGlE7FDP2+aIgFUaSL2Qp0ILDfOKk+Sl/Xld25Iuvcl3?=
- =?us-ascii?Q?FxgdJvSqipCyD7OzzaIm7BsEHRjmbxf32Hi83lgl3MnFnBcqEERHUYeacYmV?=
- =?us-ascii?Q?HWx5CTQHkk6DsjvjL62EWhqZX529xRo7WUkkZ7skWs4eIuoQzWKqfaxz66mn?=
- =?us-ascii?Q?iuaXVex2qv+U9GozJvpErLcyfNrWzfI8OTaMy3Lo?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 612ED10E2F5;
+ Tue, 11 Feb 2025 11:15:13 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id B3A1D5C1374;
+ Tue, 11 Feb 2025 11:14:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60D9FC4CEDD;
+ Tue, 11 Feb 2025 11:15:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1739272512;
+ bh=n5k2WUD4f6h5m1i4Z5oBkd7/U5DouPKN0ybmaWdPSrQ=;
+ h=From:To:Cc:Subject:Date:From;
+ b=ZbcOWvbzHmgvLsJ8EhZPUyW/LfEVOTZAjI3BTkGRqQ4s+H14DaNkJGWfruWflc74I
+ +hwe5UsikncdbMxRjdThYyQRhJevoK3oX2FAffGVFVMPr7ObppLbEsmSrU+GfRlhej
+ xTUOxkSpzJ7YJ4HMfpsmfi3zlzexDcr/ZGB8K+ltikTphZcnwYCRjqIu4frubKIZpn
+ XfLOgrnuggYC1NYNtcG6Uz432MZfyqGqY1RHL2xcrRgvELpgQp6nFOteY8NJz9O4xr
+ de+q+JbTpYIYc8n8og/+bkvczcOHJchhRGCL1FF2qLxNyybU9+zEv3SVydPUzbXvJw
+ i4jVqLhK23kbg==
+From: Philipp Stanner <phasta@kernel.org>
+To: Min Ma <min.ma@amd.com>, Lizhi Hou <lizhi.hou@amd.com>,
+ Oded Gabbay <ogabbay@kernel.org>, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Qiang Yu <yuq825@gmail.com>,
+ Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Matthew Brost <matthew.brost@intel.com>,
+ Philipp Stanner <phasta@kernel.org>, Melissa Wen <mwen@igalia.com>,
+ =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sunil Khatri <sunil.khatri@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
+ Yunxiang Li <Yunxiang.Li@amd.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
+ lima@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Christian Gmeiner <cgmeiner@igalia.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH v4] drm/sched: Use struct for drm_sched_init() params
+Date: Tue, 11 Feb 2025 12:14:23 +0100
+Message-ID: <20250211111422.21235-2-phasta@kernel.org>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bbfae54c-cd46-471b-3fc2-08dd4a8bce36
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Feb 2025 11:04:07.6655 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: g2w8IKRGxUgrH8bqqFyuzY7JSDhDQk/2HZD5Mg7FCkTH6sOEQBXRjIHlgVB9mnlnQkYIWzxQ7ChYjyBhnp8Hqw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6950
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -181,230 +87,732 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+drm_sched_init() has a great many parameters and upcoming new
+functionality for the scheduler might add even more. Generally, the
+great number of parameters reduces readability and has already caused
+one missnaming, addressed in:
 
+commit 6f1cacf4eba7 ("drm/nouveau: Improve variable name in
+nouveau_sched_init()").
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Friday, February 7, 2025 4:24 PM
-> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-
-> xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
-> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Reddy Guddati, Santho=
-sh
-> <santhosh.reddy.guddati@intel.com>; Kandpal, Suraj
-> <suraj.kandpal@intel.com>
-> Subject: Re: [PATCH] drm/i915/hdcp: Create force_hdcp14 debug fs entry
->=20
-> On Fri, 07 Feb 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> > Testing HDCP 1.4 becomes tough since the only way our code comes to
-> > HDCP 1.4 pathway is if the monitor only supports HDCP 1.4 which
-> > becomes tough to find sometimes.
-> > Setting this debug_fs entry will force use to use the HDCP 1.4 path so
-> > that more robust HDCP 1.4 testing can take place.
->=20
-> For several years now the direction has been to move and place the debugf=
-s
-> handling next to the implementation, instead of piling on in
-> intel_display_debugfs.c. It's been happening gradually.
->=20
-> It's time to draw a line in the sand. I'm not accepting any new code in
-> intel_display_debugfs.c, including this one. It needs to move.
->=20
-> I've rebased and reposted an old patch to move hdcp debugfs to
-> intel_hdcp.c. After that, this needs to go to intel_hdcp.c.
->=20
-> Some other comments inline.
->=20
-> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > ---
-> >  .../drm/i915/display/intel_display_debugfs.c  | 76 +++++++++++++++++++
-> >  .../drm/i915/display/intel_display_types.h    |  2 +
-> >  drivers/gpu/drm/i915/display/intel_hdcp.c     |  2 +-
-> >  3 files changed, 79 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > index 926f09c35084..1b34aed98849 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > @@ -1383,6 +1383,80 @@ static const struct file_operations
-> i915_joiner_fops =3D {
-> >  	.write =3D i915_joiner_write
-> >  };
-> >
-> > +static ssize_t i915_force_hdcp14_write(struct file *file,
-> > +				       const char __user *ubuf,
-> > +				       size_t len, loff_t *offp)
-> > +{
-> > +	struct seq_file *m =3D file->private_data;
-> > +	struct intel_connector *connector =3D m->private;
-> > +	struct intel_display *display =3D to_intel_display(connector);
-> > +	struct intel_hdcp *hdcp =3D &connector->hdcp;
-> > +	bool force_hdcp14 =3D false;
-> > +	int ret;
-> > +
-> > +	if (len =3D=3D 0)
-> > +		return 0;
-> > +
-> > +	drm_dbg(display->drm,
-> > +		"Copied %zu bytes from user to force DSC\n", len);
->=20
-> Useless debug logging.
+Introduce a new struct for the scheduler init parameters and port all
+users.
 
-Will remove.
+Signed-off-by: Philipp Stanner <phasta@kernel.org>
+Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
+Acked-by: Matthew Brost <matthew.brost@intel.com> # for Xe
+Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com> # for Panfrost and Panthor
+Reviewed-by: Christian Gmeiner <cgmeiner@igalia.com> # for Etnaviv
+Reviewed-by: Frank Binns <frank.binns@imgtec.com> # for Imagination
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com> # for Sched
+Reviewed-by: Maíra Canal <mcanal@igalia.com> # for v3d
+---
+Changes in v4:
+  - Add forgotten driver accel/amdxdna. (Me)
+  - Rephrase the "init to NULL" comments. (Tvrtko)
+  - Apply RBs by Tvrtko and Maira.
+  - Terminate the last struct members with a comma, so that future
+    fields can be added with a minimal patch diff. (Me)
 
->=20
-> > +
-> > +	ret =3D kstrtobool_from_user(ubuf, len, &force_hdcp14);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	drm_dbg(display->drm, "Got %s for force HDCP1.4\n",
-> > +		(force_hdcp14) ? "true" : "false");
->=20
-> Also useless debug logging.
+Changes in v3:
+  - Various formatting requirements.
 
-Sure will remove it.
+Changes in v2:
+  - Point out that the hang-limit is deprecated. (Christian)
+  - Initialize the structs to 0 at declaration. (Planet Earth)
+  - Don't set stuff explicitly to 0 / NULL. (Tvrtko)
+  - Make the structs const where possible. (Boris)
+  - v3d: Use just 1, universal, function for sched-init. (Maíra)
+---
+ drivers/accel/amdxdna/aie2_ctx.c           | 12 +++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 18 ++++--
+ drivers/gpu/drm/etnaviv/etnaviv_sched.c    | 20 +++----
+ drivers/gpu/drm/imagination/pvr_queue.c    | 18 ++++--
+ drivers/gpu/drm/lima/lima_sched.c          | 16 ++++--
+ drivers/gpu/drm/msm/msm_ringbuffer.c       | 17 +++---
+ drivers/gpu/drm/nouveau/nouveau_sched.c    | 16 ++++--
+ drivers/gpu/drm/panfrost/panfrost_job.c    | 20 ++++---
+ drivers/gpu/drm/panthor/panthor_mmu.c      | 16 ++++--
+ drivers/gpu/drm/panthor/panthor_sched.c    | 28 ++++++----
+ drivers/gpu/drm/scheduler/sched_main.c     | 50 ++++++-----------
+ drivers/gpu/drm/v3d/v3d_sched.c            | 65 +++++++++-------------
+ drivers/gpu/drm/xe/xe_execlist.c           | 15 +++--
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c      | 17 +++++-
+ include/drm/gpu_scheduler.h                | 36 ++++++++++--
+ 15 files changed, 210 insertions(+), 154 deletions(-)
 
->=20
-> > +	hdcp->force_hdcp14 =3D force_hdcp14;
-> > +
-> > +	*offp +=3D len;
-> > +	return len;
-> > +}
-> > +
-> > +static int i915_force_hdcp14_show(struct seq_file *m, void *data) {
-> > +	struct intel_connector *connector =3D m->private;
-> > +	struct intel_display *display =3D to_intel_display(connector);
-> > +	struct intel_encoder *encoder =3D intel_attached_encoder(connector);
-> > +	struct intel_hdcp *hdcp =3D &connector->hdcp;
-> > +	struct drm_crtc *crtc;
-> > +	int ret;
-> > +
-> > +	if (!encoder)
-> > +		return -ENODEV;
-> > +
-> > +	ret =3D drm_modeset_lock_single_interruptible(&display->drm-
-> >mode_config.connection_mutex);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	crtc =3D connector->base.state->crtc;
-> > +	if (connector->base.status !=3D connector_status_connected || !crtc) =
-{
-> > +		ret =3D -ENODEV;
-> > +		goto out;
-> > +	}
-> > +
-> > +	seq_printf(m, "Force_HDCP14: %s\n",
-> > +		   str_yes_no(hdcp->force_hdcp14));
->=20
-> So I'm not sure why we're printing "Force_HDCP14: " in there. Why isn't j=
-ust
-> yes/no enough? The name of the debugfs attribute is literally
-> i915_force_hdcp14.
->=20
+diff --git a/drivers/accel/amdxdna/aie2_ctx.c b/drivers/accel/amdxdna/aie2_ctx.c
+index 2799729801f6..8ac01bc2f0db 100644
+--- a/drivers/accel/amdxdna/aie2_ctx.c
++++ b/drivers/accel/amdxdna/aie2_ctx.c
+@@ -516,6 +516,14 @@ int aie2_hwctx_init(struct amdxdna_hwctx *hwctx)
+ {
+ 	struct amdxdna_client *client = hwctx->client;
+ 	struct amdxdna_dev *xdna = client->xdna;
++	const struct drm_sched_init_args args = {
++		.ops = &sched_ops,
++		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
++		.credit_limit = HWCTX_MAX_CMDS,
++		.timeout = msecs_to_jiffies(HWCTX_MAX_TIMEOUT),
++		.name = hwctx->name,
++		.dev = xdna->ddev.dev,
++	};
+ 	struct drm_gpu_scheduler *sched;
+ 	struct amdxdna_hwctx_priv *priv;
+ 	struct amdxdna_gem_obj *heap;
+@@ -573,9 +581,7 @@ int aie2_hwctx_init(struct amdxdna_hwctx *hwctx)
+ 	might_lock(&priv->io_lock);
+ 	fs_reclaim_release(GFP_KERNEL);
+ 
+-	ret = drm_sched_init(sched, &sched_ops, NULL, DRM_SCHED_PRIORITY_COUNT,
+-			     HWCTX_MAX_CMDS, 0, msecs_to_jiffies(HWCTX_MAX_TIMEOUT),
+-			     NULL, NULL, hwctx->name, xdna->ddev.dev);
++	ret = drm_sched_init(sched, &args);
+ 	if (ret) {
+ 		XDNA_ERR(xdna, "Failed to init DRM scheduler. ret %d", ret);
+ 		goto free_cmd_bufs;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 96316111300a..daa65971c503 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -2816,6 +2816,12 @@ static int amdgpu_device_fw_loading(struct amdgpu_device *adev)
+ 
+ static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
+ {
++	struct drm_sched_init_args args = {
++		.ops = &amdgpu_sched_ops,
++		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
++		.timeout_wq = adev->reset_domain->wq,
++		.dev = adev->dev,
++	};
+ 	long timeout;
+ 	int r, i;
+ 
+@@ -2841,12 +2847,12 @@ static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
+ 			break;
+ 		}
+ 
+-		r = drm_sched_init(&ring->sched, &amdgpu_sched_ops, NULL,
+-				   DRM_SCHED_PRIORITY_COUNT,
+-				   ring->num_hw_submission, 0,
+-				   timeout, adev->reset_domain->wq,
+-				   ring->sched_score, ring->name,
+-				   adev->dev);
++		args.timeout = timeout;
++		args.credit_limit = ring->num_hw_submission;
++		args.score = ring->sched_score;
++		args.name = ring->name;
++
++		r = drm_sched_init(&ring->sched, &args);
+ 		if (r) {
+ 			DRM_ERROR("Failed to create scheduler on ring %s.\n",
+ 				  ring->name);
+diff --git a/drivers/gpu/drm/etnaviv/etnaviv_sched.c b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
+index 5b67eda122db..76a3a3e517d8 100644
+--- a/drivers/gpu/drm/etnaviv/etnaviv_sched.c
++++ b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
+@@ -144,17 +144,17 @@ int etnaviv_sched_push_job(struct etnaviv_gem_submit *submit)
+ 
+ int etnaviv_sched_init(struct etnaviv_gpu *gpu)
+ {
+-	int ret;
++	const struct drm_sched_init_args args = {
++		.ops = &etnaviv_sched_ops,
++		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
++		.credit_limit = etnaviv_hw_jobs_limit,
++		.hang_limit = etnaviv_job_hang_limit,
++		.timeout = msecs_to_jiffies(500),
++		.name = dev_name(gpu->dev),
++		.dev = gpu->dev,
++	};
+ 
+-	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops, NULL,
+-			     DRM_SCHED_PRIORITY_COUNT,
+-			     etnaviv_hw_jobs_limit, etnaviv_job_hang_limit,
+-			     msecs_to_jiffies(500), NULL, NULL,
+-			     dev_name(gpu->dev), gpu->dev);
+-	if (ret)
+-		return ret;
+-
+-	return 0;
++	return drm_sched_init(&gpu->sched, &args);
+ }
+ 
+ void etnaviv_sched_fini(struct etnaviv_gpu *gpu)
+diff --git a/drivers/gpu/drm/imagination/pvr_queue.c b/drivers/gpu/drm/imagination/pvr_queue.c
+index c4f08432882b..21c185d18bb2 100644
+--- a/drivers/gpu/drm/imagination/pvr_queue.c
++++ b/drivers/gpu/drm/imagination/pvr_queue.c
+@@ -1210,6 +1210,17 @@ struct pvr_queue *pvr_queue_create(struct pvr_context *ctx,
+ 		},
+ 	};
+ 	struct pvr_device *pvr_dev = ctx->pvr_dev;
++	const struct drm_sched_init_args sched_args = {
++		.ops = &pvr_queue_sched_ops,
++		.submit_wq = pvr_dev->sched_wq,
++		.num_rqs = 1,
++		.credit_limit = 64 * 1024,
++		.hang_limit = 1,
++		.timeout = msecs_to_jiffies(500),
++		.timeout_wq = pvr_dev->sched_wq,
++		.name = "pvr-queue",
++		.dev = pvr_dev->base.dev,
++	};
+ 	struct drm_gpu_scheduler *sched;
+ 	struct pvr_queue *queue;
+ 	int ctx_state_size, err;
+@@ -1282,12 +1293,7 @@ struct pvr_queue *pvr_queue_create(struct pvr_context *ctx,
+ 
+ 	queue->timeline_ufo.value = cpu_map;
+ 
+-	err = drm_sched_init(&queue->scheduler,
+-			     &pvr_queue_sched_ops,
+-			     pvr_dev->sched_wq, 1, 64 * 1024, 1,
+-			     msecs_to_jiffies(500),
+-			     pvr_dev->sched_wq, NULL, "pvr-queue",
+-			     pvr_dev->base.dev);
++	err = drm_sched_init(&queue->scheduler, &sched_args);
+ 	if (err)
+ 		goto err_release_ufo;
+ 
+diff --git a/drivers/gpu/drm/lima/lima_sched.c b/drivers/gpu/drm/lima/lima_sched.c
+index b40c90e97d7e..825135a26aa4 100644
+--- a/drivers/gpu/drm/lima/lima_sched.c
++++ b/drivers/gpu/drm/lima/lima_sched.c
+@@ -515,18 +515,22 @@ int lima_sched_pipe_init(struct lima_sched_pipe *pipe, const char *name)
+ {
+ 	unsigned int timeout = lima_sched_timeout_ms > 0 ?
+ 			       lima_sched_timeout_ms : 10000;
++	const struct drm_sched_init_args args = {
++		.ops = &lima_sched_ops,
++		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
++		.credit_limit = 1,
++		.hang_limit = lima_job_hang_limit,
++		.timeout = msecs_to_jiffies(timeout),
++		.name = name,
++		.dev = pipe->ldev->dev,
++	};
+ 
+ 	pipe->fence_context = dma_fence_context_alloc(1);
+ 	spin_lock_init(&pipe->fence_lock);
+ 
+ 	INIT_WORK(&pipe->recover_work, lima_sched_recover_work);
+ 
+-	return drm_sched_init(&pipe->base, &lima_sched_ops, NULL,
+-			      DRM_SCHED_PRIORITY_COUNT,
+-			      1,
+-			      lima_job_hang_limit,
+-			      msecs_to_jiffies(timeout), NULL,
+-			      NULL, name, pipe->ldev->dev);
++	return drm_sched_init(&pipe->base, &args);
+ }
+ 
+ void lima_sched_pipe_fini(struct lima_sched_pipe *pipe)
+diff --git a/drivers/gpu/drm/msm/msm_ringbuffer.c b/drivers/gpu/drm/msm/msm_ringbuffer.c
+index c803556a8f64..c5651c39ac2a 100644
+--- a/drivers/gpu/drm/msm/msm_ringbuffer.c
++++ b/drivers/gpu/drm/msm/msm_ringbuffer.c
+@@ -59,8 +59,14 @@ static const struct drm_sched_backend_ops msm_sched_ops = {
+ struct msm_ringbuffer *msm_ringbuffer_new(struct msm_gpu *gpu, int id,
+ 		void *memptrs, uint64_t memptrs_iova)
+ {
++	struct drm_sched_init_args args = {
++		.ops = &msm_sched_ops,
++		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
++		.credit_limit = num_hw_submissions,
++		.timeout = MAX_SCHEDULE_TIMEOUT,
++		.dev = gpu->dev->dev,
++	};
+ 	struct msm_ringbuffer *ring;
+-	long sched_timeout;
+ 	char name[32];
+ 	int ret;
+ 
+@@ -87,6 +93,7 @@ struct msm_ringbuffer *msm_ringbuffer_new(struct msm_gpu *gpu, int id,
+ 	}
+ 
+ 	msm_gem_object_set_name(ring->bo, "ring%d", id);
++	args.name = to_msm_bo(ring->bo)->name,
+ 
+ 	ring->end   = ring->start + (MSM_GPU_RINGBUFFER_SZ >> 2);
+ 	ring->next  = ring->start;
+@@ -95,13 +102,7 @@ struct msm_ringbuffer *msm_ringbuffer_new(struct msm_gpu *gpu, int id,
+ 	ring->memptrs = memptrs;
+ 	ring->memptrs_iova = memptrs_iova;
+ 
+-	 /* currently managing hangcheck ourselves: */
+-	sched_timeout = MAX_SCHEDULE_TIMEOUT;
+-
+-	ret = drm_sched_init(&ring->sched, &msm_sched_ops, NULL,
+-			     DRM_SCHED_PRIORITY_COUNT,
+-			     num_hw_submissions, 0, sched_timeout,
+-			     NULL, NULL, to_msm_bo(ring->bo)->name, gpu->dev->dev);
++	ret = drm_sched_init(&ring->sched, &args);
+ 	if (ret) {
+ 		goto fail;
+ 	}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.c b/drivers/gpu/drm/nouveau/nouveau_sched.c
+index 4412f2711fb5..d326e55d2d24 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_sched.c
++++ b/drivers/gpu/drm/nouveau/nouveau_sched.c
+@@ -404,7 +404,14 @@ nouveau_sched_init(struct nouveau_sched *sched, struct nouveau_drm *drm,
+ {
+ 	struct drm_gpu_scheduler *drm_sched = &sched->base;
+ 	struct drm_sched_entity *entity = &sched->entity;
+-	const long timeout = msecs_to_jiffies(NOUVEAU_SCHED_JOB_TIMEOUT_MS);
++	struct drm_sched_init_args args = {
++		.ops = &nouveau_sched_ops,
++		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
++		.credit_limit = credit_limit,
++		.timeout = msecs_to_jiffies(NOUVEAU_SCHED_JOB_TIMEOUT_MS),
++		.name = "nouveau_sched",
++		.dev = drm->dev->dev
++	};
+ 	int ret;
+ 
+ 	if (!wq) {
+@@ -416,10 +423,9 @@ nouveau_sched_init(struct nouveau_sched *sched, struct nouveau_drm *drm,
+ 		sched->wq = wq;
+ 	}
+ 
+-	ret = drm_sched_init(drm_sched, &nouveau_sched_ops, wq,
+-			     NOUVEAU_SCHED_PRIORITY_COUNT,
+-			     credit_limit, 0, timeout,
+-			     NULL, NULL, "nouveau_sched", drm->dev->dev);
++	args.submit_wq = wq,
++
++	ret = drm_sched_init(drm_sched, &args);
+ 	if (ret)
+ 		goto fail_wq;
+ 
+diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c b/drivers/gpu/drm/panfrost/panfrost_job.c
+index 9b8e82fb8bc4..5657106c2f7d 100644
+--- a/drivers/gpu/drm/panfrost/panfrost_job.c
++++ b/drivers/gpu/drm/panfrost/panfrost_job.c
+@@ -836,8 +836,16 @@ static irqreturn_t panfrost_job_irq_handler(int irq, void *data)
+ 
+ int panfrost_job_init(struct panfrost_device *pfdev)
+ {
++	struct drm_sched_init_args args = {
++		.ops = &panfrost_sched_ops,
++		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
++		.credit_limit = 2,
++		.timeout = msecs_to_jiffies(JOB_TIMEOUT_MS),
++		.timeout_wq = pfdev->reset.wq,
++		.name = "pan_js",
++		.dev = pfdev->dev,
++	};
+ 	struct panfrost_job_slot *js;
+-	unsigned int nentries = 2;
+ 	int ret, j;
+ 
+ 	/* All GPUs have two entries per queue, but without jobchain
+@@ -845,7 +853,7 @@ int panfrost_job_init(struct panfrost_device *pfdev)
+ 	 * so let's just advertise one entry in that case.
+ 	 */
+ 	if (!panfrost_has_hw_feature(pfdev, HW_FEATURE_JOBCHAIN_DISAMBIGUATION))
+-		nentries = 1;
++		args.credit_limit = 1;
+ 
+ 	pfdev->js = js = devm_kzalloc(pfdev->dev, sizeof(*js), GFP_KERNEL);
+ 	if (!js)
+@@ -875,13 +883,7 @@ int panfrost_job_init(struct panfrost_device *pfdev)
+ 	for (j = 0; j < NUM_JOB_SLOTS; j++) {
+ 		js->queue[j].fence_context = dma_fence_context_alloc(1);
+ 
+-		ret = drm_sched_init(&js->queue[j].sched,
+-				     &panfrost_sched_ops, NULL,
+-				     DRM_SCHED_PRIORITY_COUNT,
+-				     nentries, 0,
+-				     msecs_to_jiffies(JOB_TIMEOUT_MS),
+-				     pfdev->reset.wq,
+-				     NULL, "pan_js", pfdev->dev);
++		ret = drm_sched_init(&js->queue[j].sched, &args);
+ 		if (ret) {
+ 			dev_err(pfdev->dev, "Failed to create scheduler: %d.", ret);
+ 			goto err_sched;
+diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c b/drivers/gpu/drm/panthor/panthor_mmu.c
+index 5ce80e2532d5..f8efe07152a4 100644
+--- a/drivers/gpu/drm/panthor/panthor_mmu.c
++++ b/drivers/gpu/drm/panthor/panthor_mmu.c
+@@ -2278,6 +2278,16 @@ panthor_vm_create(struct panthor_device *ptdev, bool for_mcu,
+ 	u64 full_va_range = 1ull << va_bits;
+ 	struct drm_gem_object *dummy_gem;
+ 	struct drm_gpu_scheduler *sched;
++	const struct drm_sched_init_args sched_args = {
++		.ops = &panthor_vm_bind_ops,
++		.submit_wq = ptdev->mmu->vm.wq,
++		.num_rqs = 1,
++		.credit_limit = 1,
++		/* Bind operations are synchronous for now, no timeout needed. */
++		.timeout = MAX_SCHEDULE_TIMEOUT,
++		.name = "panthor-vm-bind",
++		.dev = ptdev->base.dev,
++	};
+ 	struct io_pgtable_cfg pgtbl_cfg;
+ 	u64 mair, min_va, va_range;
+ 	struct panthor_vm *vm;
+@@ -2335,11 +2345,7 @@ panthor_vm_create(struct panthor_device *ptdev, bool for_mcu,
+ 		goto err_mm_takedown;
+ 	}
+ 
+-	/* Bind operations are synchronous for now, no timeout needed. */
+-	ret = drm_sched_init(&vm->sched, &panthor_vm_bind_ops, ptdev->mmu->vm.wq,
+-			     1, 1, 0,
+-			     MAX_SCHEDULE_TIMEOUT, NULL, NULL,
+-			     "panthor-vm-bind", ptdev->base.dev);
++	ret = drm_sched_init(&vm->sched, &sched_args);
+ 	if (ret)
+ 		goto err_free_io_pgtable;
+ 
+diff --git a/drivers/gpu/drm/panthor/panthor_sched.c b/drivers/gpu/drm/panthor/panthor_sched.c
+index 5844a7f639e0..f49e2dfcbc6c 100644
+--- a/drivers/gpu/drm/panthor/panthor_sched.c
++++ b/drivers/gpu/drm/panthor/panthor_sched.c
+@@ -3284,6 +3284,22 @@ static struct panthor_queue *
+ group_create_queue(struct panthor_group *group,
+ 		   const struct drm_panthor_queue_create *args)
+ {
++	const struct drm_sched_init_args sched_args = {
++		.ops = &panthor_queue_sched_ops,
++		.submit_wq = group->ptdev->scheduler->wq,
++		.num_rqs = 1,
++		/*
++		 * The credit limit argument tells us the total number of
++		 * instructions across all CS slots in the ringbuffer, with
++		 * some jobs requiring twice as many as others, depending on
++		 * their profiling status.
++		 */
++		.credit_limit = args->ringbuf_size / sizeof(u64),
++		.timeout = msecs_to_jiffies(JOB_TIMEOUT_MS),
++		.timeout_wq = group->ptdev->reset.wq,
++		.name = "panthor-queue",
++		.dev = group->ptdev->base.dev,
++	};
+ 	struct drm_gpu_scheduler *drm_sched;
+ 	struct panthor_queue *queue;
+ 	int ret;
+@@ -3354,17 +3370,7 @@ group_create_queue(struct panthor_group *group,
+ 	if (ret)
+ 		goto err_free_queue;
+ 
+-	/*
+-	 * Credit limit argument tells us the total number of instructions
+-	 * across all CS slots in the ringbuffer, with some jobs requiring
+-	 * twice as many as others, depending on their profiling status.
+-	 */
+-	ret = drm_sched_init(&queue->scheduler, &panthor_queue_sched_ops,
+-			     group->ptdev->scheduler->wq, 1,
+-			     args->ringbuf_size / sizeof(u64),
+-			     0, msecs_to_jiffies(JOB_TIMEOUT_MS),
+-			     group->ptdev->reset.wq,
+-			     NULL, "panthor-queue", group->ptdev->base.dev);
++	ret = drm_sched_init(&queue->scheduler, &sched_args);
+ 	if (ret)
+ 		goto err_free_queue;
+ 
+diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+index a48be16ab84f..8c36a59afb72 100644
+--- a/drivers/gpu/drm/scheduler/sched_main.c
++++ b/drivers/gpu/drm/scheduler/sched_main.c
+@@ -1244,40 +1244,24 @@ static void drm_sched_run_job_work(struct work_struct *w)
+  * drm_sched_init - Init a gpu scheduler instance
+  *
+  * @sched: scheduler instance
+- * @ops: backend operations for this scheduler
+- * @submit_wq: workqueue to use for submission. If NULL, an ordered wq is
+- *	       allocated and used
+- * @num_rqs: number of runqueues, one for each priority, up to DRM_SCHED_PRIORITY_COUNT
+- * @credit_limit: the number of credits this scheduler can hold from all jobs
+- * @hang_limit: number of times to allow a job to hang before dropping it
+- * @timeout: timeout value in jiffies for the scheduler
+- * @timeout_wq: workqueue to use for timeout work. If NULL, the system_wq is
+- *		used
+- * @score: optional score atomic shared with other schedulers
+- * @name: name used for debugging
+- * @dev: target &struct device
++ * @args: scheduler initialization arguments
+  *
+  * Return 0 on success, otherwise error code.
+  */
+-int drm_sched_init(struct drm_gpu_scheduler *sched,
+-		   const struct drm_sched_backend_ops *ops,
+-		   struct workqueue_struct *submit_wq,
+-		   u32 num_rqs, u32 credit_limit, unsigned int hang_limit,
+-		   long timeout, struct workqueue_struct *timeout_wq,
+-		   atomic_t *score, const char *name, struct device *dev)
++int drm_sched_init(struct drm_gpu_scheduler *sched, const struct drm_sched_init_args *args)
+ {
+ 	int i;
+ 
+-	sched->ops = ops;
+-	sched->credit_limit = credit_limit;
+-	sched->name = name;
+-	sched->timeout = timeout;
+-	sched->timeout_wq = timeout_wq ? : system_wq;
+-	sched->hang_limit = hang_limit;
+-	sched->score = score ? score : &sched->_score;
+-	sched->dev = dev;
++	sched->ops = args->ops;
++	sched->credit_limit = args->credit_limit;
++	sched->name = args->name;
++	sched->timeout = args->timeout;
++	sched->hang_limit = args->hang_limit;
++	sched->timeout_wq = args->timeout_wq ? args->timeout_wq : system_wq;
++	sched->score = args->score ? args->score : &sched->_score;
++	sched->dev = args->dev;
+ 
+-	if (num_rqs > DRM_SCHED_PRIORITY_COUNT) {
++	if (args->num_rqs > DRM_SCHED_PRIORITY_COUNT) {
+ 		/* This is a gross violation--tell drivers what the  problem is.
+ 		 */
+ 		drm_err(sched, "%s: num_rqs cannot be greater than DRM_SCHED_PRIORITY_COUNT\n",
+@@ -1292,16 +1276,16 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+ 		return 0;
+ 	}
+ 
+-	if (submit_wq) {
+-		sched->submit_wq = submit_wq;
++	if (args->submit_wq) {
++		sched->submit_wq = args->submit_wq;
+ 		sched->own_submit_wq = false;
+ 	} else {
+ #ifdef CONFIG_LOCKDEP
+-		sched->submit_wq = alloc_ordered_workqueue_lockdep_map(name,
++		sched->submit_wq = alloc_ordered_workqueue_lockdep_map(args->name,
+ 								       WQ_MEM_RECLAIM,
+ 								       &drm_sched_lockdep_map);
+ #else
+-		sched->submit_wq = alloc_ordered_workqueue(name, WQ_MEM_RECLAIM);
++		sched->submit_wq = alloc_ordered_workqueue(args->name, WQ_MEM_RECLAIM);
+ #endif
+ 		if (!sched->submit_wq)
+ 			return -ENOMEM;
+@@ -1309,11 +1293,11 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+ 		sched->own_submit_wq = true;
+ 	}
+ 
+-	sched->sched_rq = kmalloc_array(num_rqs, sizeof(*sched->sched_rq),
++	sched->sched_rq = kmalloc_array(args->num_rqs, sizeof(*sched->sched_rq),
+ 					GFP_KERNEL | __GFP_ZERO);
+ 	if (!sched->sched_rq)
+ 		goto Out_check_own;
+-	sched->num_rqs = num_rqs;
++	sched->num_rqs = args->num_rqs;
+ 	for (i = DRM_SCHED_PRIORITY_KERNEL; i < sched->num_rqs; i++) {
+ 		sched->sched_rq[i] = kzalloc(sizeof(*sched->sched_rq[i]), GFP_KERNEL);
+ 		if (!sched->sched_rq[i])
+diff --git a/drivers/gpu/drm/v3d/v3d_sched.c b/drivers/gpu/drm/v3d/v3d_sched.c
+index 961465128d80..80466ce8c7df 100644
+--- a/drivers/gpu/drm/v3d/v3d_sched.c
++++ b/drivers/gpu/drm/v3d/v3d_sched.c
+@@ -820,67 +820,54 @@ static const struct drm_sched_backend_ops v3d_cpu_sched_ops = {
+ 	.free_job = v3d_cpu_job_free
+ };
+ 
++static int
++v3d_queue_sched_init(struct v3d_dev *v3d, const struct drm_sched_backend_ops *ops,
++		     enum v3d_queue queue, const char *name)
++{
++	struct drm_sched_init_args args = {
++		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
++		.credit_limit = 1,
++		.timeout = msecs_to_jiffies(500),
++		.dev = v3d->drm.dev,
++	};
++
++	args.ops = ops;
++	args.name = name;
++
++	return drm_sched_init(&v3d->queue[queue].sched, &args);
++}
++
+ int
+ v3d_sched_init(struct v3d_dev *v3d)
+ {
+-	int hw_jobs_limit = 1;
+-	int job_hang_limit = 0;
+-	int hang_limit_ms = 500;
+ 	int ret;
+ 
+-	ret = drm_sched_init(&v3d->queue[V3D_BIN].sched,
+-			     &v3d_bin_sched_ops, NULL,
+-			     DRM_SCHED_PRIORITY_COUNT,
+-			     hw_jobs_limit, job_hang_limit,
+-			     msecs_to_jiffies(hang_limit_ms), NULL,
+-			     NULL, "v3d_bin", v3d->drm.dev);
++	ret = v3d_queue_sched_init(v3d, &v3d_bin_sched_ops, V3D_BIN, "v3d_bin");
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = drm_sched_init(&v3d->queue[V3D_RENDER].sched,
+-			     &v3d_render_sched_ops, NULL,
+-			     DRM_SCHED_PRIORITY_COUNT,
+-			     hw_jobs_limit, job_hang_limit,
+-			     msecs_to_jiffies(hang_limit_ms), NULL,
+-			     NULL, "v3d_render", v3d->drm.dev);
++	ret = v3d_queue_sched_init(v3d, &v3d_render_sched_ops, V3D_RENDER,
++				   "v3d_render");
+ 	if (ret)
+ 		goto fail;
+ 
+-	ret = drm_sched_init(&v3d->queue[V3D_TFU].sched,
+-			     &v3d_tfu_sched_ops, NULL,
+-			     DRM_SCHED_PRIORITY_COUNT,
+-			     hw_jobs_limit, job_hang_limit,
+-			     msecs_to_jiffies(hang_limit_ms), NULL,
+-			     NULL, "v3d_tfu", v3d->drm.dev);
++	ret = v3d_queue_sched_init(v3d, &v3d_tfu_sched_ops, V3D_TFU, "v3d_tfu");
+ 	if (ret)
+ 		goto fail;
+ 
+ 	if (v3d_has_csd(v3d)) {
+-		ret = drm_sched_init(&v3d->queue[V3D_CSD].sched,
+-				     &v3d_csd_sched_ops, NULL,
+-				     DRM_SCHED_PRIORITY_COUNT,
+-				     hw_jobs_limit, job_hang_limit,
+-				     msecs_to_jiffies(hang_limit_ms), NULL,
+-				     NULL, "v3d_csd", v3d->drm.dev);
++		ret = v3d_queue_sched_init(v3d, &v3d_csd_sched_ops, V3D_CSD,
++					   "v3d_csd");
+ 		if (ret)
+ 			goto fail;
+ 
+-		ret = drm_sched_init(&v3d->queue[V3D_CACHE_CLEAN].sched,
+-				     &v3d_cache_clean_sched_ops, NULL,
+-				     DRM_SCHED_PRIORITY_COUNT,
+-				     hw_jobs_limit, job_hang_limit,
+-				     msecs_to_jiffies(hang_limit_ms), NULL,
+-				     NULL, "v3d_cache_clean", v3d->drm.dev);
++		ret = v3d_queue_sched_init(v3d, &v3d_cache_clean_sched_ops,
++					   V3D_CACHE_CLEAN, "v3d_cache_clean");
+ 		if (ret)
+ 			goto fail;
+ 	}
+ 
+-	ret = drm_sched_init(&v3d->queue[V3D_CPU].sched,
+-			     &v3d_cpu_sched_ops, NULL,
+-			     DRM_SCHED_PRIORITY_COUNT,
+-			     1, job_hang_limit,
+-			     msecs_to_jiffies(hang_limit_ms), NULL,
+-			     NULL, "v3d_cpu", v3d->drm.dev);
++	ret = v3d_queue_sched_init(v3d, &v3d_cpu_sched_ops, V3D_CPU, "v3d_cpu");
+ 	if (ret)
+ 		goto fail;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index a8c416a48812..809aaba59561 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -332,6 +332,15 @@ static const struct drm_sched_backend_ops drm_sched_ops = {
+ static int execlist_exec_queue_init(struct xe_exec_queue *q)
+ {
+ 	struct drm_gpu_scheduler *sched;
++	const struct drm_sched_init_args args = {
++		.ops = &drm_sched_ops,
++		.num_rqs = 1,
++		.credit_limit = q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES,
++		.hang_limit = XE_SCHED_HANG_LIMIT,
++		.timeout = XE_SCHED_JOB_TIMEOUT,
++		.name = q->hwe->name,
++		.dev = gt_to_xe(q->gt)->drm.dev,
++	};
+ 	struct xe_execlist_exec_queue *exl;
+ 	struct xe_device *xe = gt_to_xe(q->gt);
+ 	int err;
+@@ -346,11 +355,7 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
+ 
+ 	exl->q = q;
+ 
+-	err = drm_sched_init(&exl->sched, &drm_sched_ops, NULL, 1,
+-			     q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES,
+-			     XE_SCHED_HANG_LIMIT, XE_SCHED_JOB_TIMEOUT,
+-			     NULL, NULL, q->hwe->name,
+-			     gt_to_xe(q->gt)->drm.dev);
++	err = drm_sched_init(&exl->sched, &args);
+ 	if (err)
+ 		goto err_free;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+index 50361b4638f9..869b43a4151d 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+@@ -63,13 +63,24 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
+ 		  atomic_t *score, const char *name,
+ 		  struct device *dev)
+ {
++	const struct drm_sched_init_args args = {
++		.ops = ops,
++		.submit_wq = submit_wq,
++		.num_rqs = 1,
++		.credit_limit = hw_submission,
++		.hang_limit = hang_limit,
++		.timeout = timeout,
++		.timeout_wq = timeout_wq,
++		.score = score,
++		.name = name,
++		.dev = dev,
++	};
++
+ 	sched->ops = xe_ops;
+ 	INIT_LIST_HEAD(&sched->msgs);
+ 	INIT_WORK(&sched->work_process_msg, xe_sched_process_msg_work);
+ 
+-	return drm_sched_init(&sched->base, ops, submit_wq, 1, hw_submission,
+-			      hang_limit, timeout, timeout_wq, score, name,
+-			      dev);
++	return drm_sched_init(&sched->base, &args);
+ }
+ 
+ void xe_sched_fini(struct xe_gpu_scheduler *sched)
+diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+index a0ff08123f07..fcc071fc1543 100644
+--- a/include/drm/gpu_scheduler.h
++++ b/include/drm/gpu_scheduler.h
+@@ -540,12 +540,38 @@ struct drm_gpu_scheduler {
+ 	struct device			*dev;
+ };
+ 
++/**
++ * struct drm_sched_init_args - parameters for initializing a DRM GPU scheduler
++ *
++ * @ops: backend operations provided by the driver
++ * @submit_wq: workqueue to use for submission. If NULL, an ordered wq is
++ *	       allocated and used.
++ * @num_rqs: Number of run-queues. This may be at most DRM_SCHED_PRIORITY_COUNT,
++ *	     as there's usually one run-queue per priority, but may be less.
++ * @credit_limit: the number of credits this scheduler can hold from all jobs
++ * @hang_limit: number of times to allow a job to hang before dropping it.
++ *		This mechanism is DEPRECATED. Set it to 0.
++ * @timeout: timeout value in jiffies for submitted jobs.
++ * @timeout_wq: workqueue to use for timeout work. If NULL, the system_wq is used.
++ * @score: score atomic shared with other schedulers. May be NULL.
++ * @name: name (typically the driver's name). Used for debugging
++ * @dev: associated device. Used for debugging
++ */
++struct drm_sched_init_args {
++	const struct drm_sched_backend_ops *ops;
++	struct workqueue_struct *submit_wq;
++	struct workqueue_struct *timeout_wq;
++	u32 num_rqs;
++	u32 credit_limit;
++	unsigned int hang_limit;
++	long timeout;
++	atomic_t *score;
++	const char *name;
++	struct device *dev;
++};
++
+ int drm_sched_init(struct drm_gpu_scheduler *sched,
+-		   const struct drm_sched_backend_ops *ops,
+-		   struct workqueue_struct *submit_wq,
+-		   u32 num_rqs, u32 credit_limit, unsigned int hang_limit,
+-		   long timeout, struct workqueue_struct *timeout_wq,
+-		   atomic_t *score, const char *name, struct device *dev);
++		   const struct drm_sched_init_args *args);
+ 
+ void drm_sched_fini(struct drm_gpu_scheduler *sched);
+ int drm_sched_job_init(struct drm_sched_job *job,
+-- 
+2.47.1
 
-Okay will just print yes or no here I just went with what we have previousl=
-y been doing with debug fs entry.
-
-> > +out:
-> > +	drm_modeset_unlock(&display->drm-
-> >mode_config.connection_mutex);
->=20
-> Blank line before return please.
->=20
-
-Sure will add it.
-
-> > +	return ret;
-> > +}
-> > +
-> > +static int i915_force_hdcp14_open(struct inode *inode,
-> > +				  struct file *file)
-> > +{
-> > +	return single_open(file, i915_force_hdcp14_show,
-> > +			   inode->i_private);
-> > +}
-> > +
-> > +static const struct file_operations i915_force_hdcp14_fops =3D {
-> > +	.owner =3D THIS_MODULE,
-> > +	.open =3D i915_force_hdcp14_open,
-> > +	.read =3D seq_read,
-> > +	.llseek =3D seq_lseek,
-> > +	.release =3D single_release,
-> > +	.write =3D i915_force_hdcp14_write
-> > +};
-> > +
-> >  /**
-> >   * intel_connector_debugfs_add - add i915 specific connector debugfs
-> files
-> >   * @connector: pointer to a registered intel_connector @@ -1411,6
-> > +1485,8 @@ void intel_connector_debugfs_add(struct intel_connector
-> *connector)
-> >  	    connector_type =3D=3D DRM_MODE_CONNECTOR_HDMIB) {
-> >  		debugfs_create_file("i915_hdcp_sink_capability", 0444, root,
-> >  				    connector,
-> &i915_hdcp_sink_capability_fops);
-> > +		debugfs_create_file("i915_force_hdcp14", 0644, root,
-> > +				    connector, &i915_force_hdcp14_fops);
-> >  	}
-> >
-> >  	if (DISPLAY_VER(i915) >=3D 11 &&
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index 6a82c6ade549..c78dd77ef74c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -496,6 +496,8 @@ struct intel_hdcp {
-> >  	enum transcoder cpu_transcoder;
-> >  	/* Only used for DP MST stream encryption */
-> >  	enum transcoder stream_transcoder;
-> > +	/* Used to force HDCP 1.4 bypassing HDCP 2.x */
-> > +	bool force_hdcp14;
-> >  };
-> >
-> >  struct intel_connector {
-> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > index 7cc0399b2a5d..c008e4f1ce05 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > @@ -2473,7 +2473,7 @@ static int _intel_hdcp_enable(struct
-> intel_atomic_state *state,
-> >  	 * Considering that HDCP2.2 is more secure than HDCP1.4, If the
-> setup
-> >  	 * is capable of HDCP2.2, it is preferred to use HDCP2.2.
-> >  	 */
-> > -	if (intel_hdcp2_get_capability(connector)) {
-> > +	if (intel_hdcp2_get_capability(connector) && !hdcp->force_hdcp14)
-> {
->=20
-> Why isn't this check inside intel_hdcp2_get_capability()? That's used in
-> more places, and now you've selected just one place that forces 1.4. Isn'=
-t
-> that inconsistent?
-
-Well we really don't what to change what capability we report here to the u=
-ser,
-what we want is that we have to ability to forcefully enable HDCP 1.4 even =
-if HDCP 2.2 is available
-(majorly used for ease of testing).
-This is the only place where we need to check to see have that happen.
-
->=20
-> Also, that might be a place to debug log about forcing hdcp2 support off,=
- if
-> you really need debugfs.
-
-Sure will add the debug log here.
-
-Regards,
-Suraj Kandpal
-
->=20
-> >  		ret =3D _intel_hdcp2_enable(state, connector);
-> >  		if (!ret)
-> >  			check_link_interval =3D
->=20
-> --
-> Jani Nikula, Intel
