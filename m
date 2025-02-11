@@ -4,190 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23E00C0219B
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 17:33:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84F20C0219B
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 17:33:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E183B10E732;
-	Tue, 11 Feb 2025 17:33:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50CF810E732;
+	Tue, 11 Feb 2025 17:33:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QSzq4lMU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FZd7rA1l";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2AC910E732
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Feb 2025 17:33:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0223B10E732
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Feb 2025 17:33:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739295220; x=1770831220;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=Ldpy8pbm6ZfytpjuryFOPFWLpFrKkWwhdRf/YFwiJgk=;
- b=QSzq4lMUgg1PCZSQJd33cRbuD38tNVHhiLOxessLWspg2lwmhXdz2PoE
- RU4poTfcID9lzE+nc08sHHUDvVLsya7ohKtloP9FUsjnYse2eliBZMqaA
- K0GlQOHdWF+ROLQQwLmrH6WyRq6lsF5SmmpXcqV2vq6iJbSfHv/neZ8Wa
- T7vGDlgUvaxEGedvfrSIpeU5V1bNs5l2V55SoaszPFwe9vfsBICIFXQ1d
- OE4zIPvsMuqScbDx1YmMnFpnuBSWyU0SDAbA+XEu+LYupVaEwdqukxONa
- XK9e25pT3avxx3U7TDtX+BtAvDZ0aJfRQ7mmUKH4zDnI0rdnfKpLDrspj g==;
-X-CSE-ConnectionGUID: BnQq+WrbSYC3x5TiA9M8Aw==
-X-CSE-MsgGUID: hCVB4288Sp6qL2MC9qmR0A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="39841125"
-X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="39841125"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 09:33:39 -0800
-X-CSE-ConnectionGUID: IsucDXFRQei1PfW62eCCzw==
-X-CSE-MsgGUID: D19ihZA4RbKGbdMmxHenrQ==
+ t=1739295237; x=1770831237;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=iqCGKc8FmiKKBL9IoOrNsAHBAXbCIg+Rg48SnQUssuw=;
+ b=FZd7rA1ly+zkVhyEYaYQ9mL5mBzc2opzsYTk3W2ZKgGSQ63mQ1X3sVm3
+ Q8UJCTi8faNag2IA/WwkT29+xjBYw8POGIqsNyKwKAwRYM3ICovaec/G3
+ AyuEjRpeSR0IcabumRYIChFy5fYy7/Yca8cEqHDs6FEKgY8r0m6NOQibI
+ Jb9nGLumcwzEGlwu02d903AEueCz2/RbeKD/YPyI3YyrnaZ3EaKAYHMsl
+ v50pM0vTOAhH4kSK0EJas9Wc0spx/xVSWt4KthO3n+DP+A1DpR1oJ49rV
+ waFu7NJOfBBlyGFFrU6OO9WphZLeUAt//8ZUsDled3HDUUT9eg5U5D/5o A==;
+X-CSE-ConnectionGUID: PcD39gTlQx+RWOBPNXxhew==
+X-CSE-MsgGUID: jOB8qWR4TGCuFIB/ivVqCA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="27528151"
+X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="27528151"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 09:33:56 -0800
+X-CSE-ConnectionGUID: 0yzZ+RqUS1qIxChUCVIjMQ==
+X-CSE-MsgGUID: Sksp3eQ0SkC1ow4FBF14/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="112409874"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 11 Feb 2025 09:33:39 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 11 Feb 2025 09:33:38 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Tue, 11 Feb 2025 09:33:38 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.43) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 11 Feb 2025 09:33:38 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GO1i3nUZElIywlZZ0DxRwAHtwOA4C5cYKcGxsdDKneFUSgYvnWqe/yHgcsoNCyWtdz5Z7xKHe+LcFEOinuZfKnMOMSbo8VIiMCRegAjz1u2LsOTz2LktxDQParBq2fxtVOyKeOnqvUicmXde+hzPHv7RsSJlEmPkQZgJV8Bhir8CsZEzyv7vJlRFQpK1vG6Eh8G1LAbAZpwA8bo81FpnrgDxxC/Vq332oVTUiTrsoiYoVkOeUkbipx9CRprLokVZn3GHkCSp8wRGoUbQgBGho4PWm3SNaf4D6e6znMrAls1uCqwuHjWpSscirynRy53E49sMJXZXfR1FcVnWU4EvHw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LCApene/vo7fYhgb/9179E9hucRXZzVN2mJwZMeEhDE=;
- b=MieynQntNDOiYP97URx58HKCJMLZFXJg9l0b1Fm2BpTDAtEX3lr0U/Ubozcs5U4Uc1lJhUGoRge2RuVZYmm8LpTMBiqjTaIBfLUvj8RObWI8iP4ryrC31jkB5fxSL0R7+3sFQKe0zLnCClHgdI02wZv7qtj2CP6OA9O7j+JrF5gRZXQFwQr5k07MPr+4T3F5TiFVNZ40uPGYZb1x5AsAdOB0ReKvfFsKtimgMx1Ej84043Mk5CBaPi6nh70JK2zGm6VL22w01X007Z0drCpS1dr25AoDc3nm8YbY9Qd8kads1U672M7GpLpGggswvAsRcbzTdltAk+pZV/a0rEiX6A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
- by BL3PR11MB6340.namprd11.prod.outlook.com (2603:10b6:208:3b4::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.18; Tue, 11 Feb
- 2025 17:33:35 +0000
-Received: from DS0PR11MB7408.namprd11.prod.outlook.com
- ([fe80::6387:4b73:8906:7543]) by DS0PR11MB7408.namprd11.prod.outlook.com
- ([fe80::6387:4b73:8906:7543%4]) with mapi id 15.20.8422.015; Tue, 11 Feb 2025
- 17:33:35 +0000
-Date: Tue, 11 Feb 2025 09:33:32 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-CC: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
- <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <lucas.demarchi@intel.com>, <vinay.belgaumkar@intel.com>,
- <soham.purkait@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v5 5/8] drm/xe/xe_pmu: Acquire forcewake on event init
- for engine events
-Message-ID: <Z6uJ7KEtAwPmqpsL@orsosgc001>
-References: <20250206104358.3436519-1-riana.tauro@intel.com>
- <20250206104358.3436519-6-riana.tauro@intel.com>
- <ad580886-537b-4026-bc64-781efb182148@intel.com>
- <8ae02a6c-4459-43f6-8db9-95bb9a7cf898@intel.com>
- <71fed9a8-b8e2-4a38-bf2c-c328eb2d4673@intel.com>
- <Z6aXw52sdI+3KnyT@orsosgc001>
- <31dcd451-70b1-4142-aad0-2cea371f8d2d@intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <31dcd451-70b1-4142-aad0-2cea371f8d2d@intel.com>
-X-ClientProxiedBy: MW4PR04CA0106.namprd04.prod.outlook.com
- (2603:10b6:303:83::21) To DS0PR11MB7408.namprd11.prod.outlook.com
- (2603:10b6:8:136::15)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|BL3PR11MB6340:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5472fa45-2b6f-45a7-1670-08dd4ac23614
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dy9VcnZ1WG5LMTNzRmwvbFpOQ3JhQTlGTDBkTHZwS0VJbEV1WEkwcVhrdTZw?=
- =?utf-8?B?SCtnSXZMLzU4dkJ0TUcwNjAvM3hTREZPNC9EQ1JiZUxTOG9NWmFJL2MyTTFX?=
- =?utf-8?B?anA0SjJZQVFRTEZQR3l6VzYzTWhNUWdsVDg0RjF3bVVyaSs0QWJLUGpVNVYz?=
- =?utf-8?B?N3hXbnFNN3Z6Z0U4ZGMydUk3bGJXZDFMQitnK05vNGYya21uUzBaYWx2Q0FK?=
- =?utf-8?B?dy94ak5YRXdzNXVaQkNrWnVweHpUY0FBWE5DdHJzYzNuWGExU252SHEwZ1pF?=
- =?utf-8?B?dktRRjRESGJHak0wbWMzY3JNbjVRTmF4R0c1aEo1dXBRZFNTQmFQaFBQcS9a?=
- =?utf-8?B?NnI3eTZZZ2dMbGZZU3FDajlWem94WUZBOU1HaHB1cGpsd3dPdklaOVVGMFMy?=
- =?utf-8?B?di9yTGFWNHA5MllVdjNxL1NKMlBXb1doNTMvOXFmZjlwMjY5SlVMK1ZGZURM?=
- =?utf-8?B?Uk92YzI5ZTJGYk1GclNhZysyb2JLMWxtdUh4Ky9NRVFJMUZsWFQ0YUhwTWVB?=
- =?utf-8?B?cVlrNmpiQUhhSHl6ZU8zWklTbU9SY2RtRTlHU0k1d0Y1ZGN6Skw0U083VGF2?=
- =?utf-8?B?Z3VuZytLVms4dUZkK3NISG9Xc3N5ZzFhSEtQOUlVQTV5UWltcDRuTEVpQWhX?=
- =?utf-8?B?RWU2Z0lCMFEwUEFZUVN5THJjMmJQN0xlUUNKU3RGSXBxSEtySEFSSWt0bkJJ?=
- =?utf-8?B?bjF3ZmM3Vm9tNm13NzlQYytyczNMdWZrUHh2UjFMQnR6ZW0rRTgrS0RlcFFY?=
- =?utf-8?B?T0huekFtU2J1Y0J6clZVMlE0OFpVc1JmVFh3UFJkMkFyMmR4a1JKTGhoZU9v?=
- =?utf-8?B?MklBKzgvWjBZNDduUENFSnEzQi9XVmpxMkNLaDB0Y0dGd0I4T0xNbFhoUUtL?=
- =?utf-8?B?bzNIVkt0UmNkeTR5RjhaMjZRN3FWWkVNTi93bmY3TU5qbDNPTFVBMmdyWDg4?=
- =?utf-8?B?ZG9rN0xsUG96cHp6L1A2ekFkeDhSRFg2WTJoSEQxQkwrN1JPTEJKMm5CckpQ?=
- =?utf-8?B?WEp3Tk1mRzB5VFBzMnh0TFRXdXlpaHZCZjM4RnBLK3BMY2ozeDVEQ280T09y?=
- =?utf-8?B?QWtQeEZvZHlhdkMrR3ZuaitWSWJqSTQwKy9FckhtMmhMajMrWHF3NjNabFVF?=
- =?utf-8?B?Mk5tQk5pa0tMUWlVNjdJemlQRXA1UndSVGhLWVdjeEF6Szl5VHFVZmVYY1hN?=
- =?utf-8?B?cm5INmpGK0xmc3dNVWtWY1docFYzcVZORnR1TXNPOFBrZkh6eVJBTXRFUWJu?=
- =?utf-8?B?Ui9Lc0sxZGNwVEJsRGRzZXNCV040VGtocFJhYVVPQVdCdm1seDNiM25qWE1G?=
- =?utf-8?B?UUJvT1BmMWJSWk9FTDUvU0JhYjhZOXJKbFloZ010MTFNNVZMZDJlQXFWMzQr?=
- =?utf-8?B?ODV1S2pJMHgrblZheHZydUFnOFdxd2ZCd2VMN2p2Wlp5bkpKdHJGaUhjWlc5?=
- =?utf-8?B?SjhuVWJQMzg0U2lvU2djUHBmZHc5TGVVb01ObVZEbTNjZG5QYS8vNVlZZGFB?=
- =?utf-8?B?cFgwUDRvSmR3b1I3VlJUUHI5a3Rocm1qSHNsZzhoL1UzT3l5aDg3VUpJWDFs?=
- =?utf-8?B?SkRjQjQ5T0NEZ2czN05pZkVicEVmcnZaYkhkWEFxSFN0UEFKQ0V5TnNYZTZk?=
- =?utf-8?B?SXZlaGc4SVA5cVM2Ti8vb0pOenFUN1JKdkk3clJaOWRVUGE4V1FsTVE4TTJv?=
- =?utf-8?B?VFlCZCttc2pvSVAwUGxOYTBiK0V3cmJld0RER3lWREFCdkV5bDBtalpHKzl1?=
- =?utf-8?B?MVJ4ejQ5eFp2OStZcTlFWUU1ZTFHVFdKc2RoMjB5WTBXNldyWWI0VVpUUlht?=
- =?utf-8?B?bzVjOGpIWDNKRFZ1VXpDMzFZNlRaUlN0V25rb1l2WE8xV1pZdHcyWTlweldv?=
- =?utf-8?Q?QL3vcCqqiZJ6n?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MEdQeC9oQjBzSG9PeTM1eGkrUUMweTVVQnFoNTdGd0RHZExLZ29sOHlRckEv?=
- =?utf-8?B?SEorU0h0ZHlHaVJsdzdQbnZqc0NoaWI3bWRpZCsxaHVGQ1ZSWURCMldxTXZm?=
- =?utf-8?B?OWlBUlhmOGlqRU8zYlVkUFlQdHc2SWtyUS9NdVpIUkxWWUtmYy8yekkrQ3E5?=
- =?utf-8?B?NTYweDVrZ2U3WWVYRVpSZkpyM0d3czRtU1N0b3BwclZMdmV6TjJ5NU1vbnpT?=
- =?utf-8?B?T0JaaGpVeVlhMEJoT3lqc1kwL2U3a01NeDZWWFliOFQ2WVRvMnQyWGdsMXZ4?=
- =?utf-8?B?M1ZYMlpGSFhiTGlyQnFXZlBQVENjeEVyQ1FBb0RQZUs2eFpWQ3hhR3BMMUdi?=
- =?utf-8?B?bUxpM0gwQnRhMmRQVDVyL1o0b0dES3ZjMWVoK2lTdGljVzgwRVhWeXZZU3pB?=
- =?utf-8?B?MWJqR21ReHdJcCsxMUYvaTlsTzNJWDVpTm5aTjZ1RXp5SjVCV2kwTDI1UGNw?=
- =?utf-8?B?TnIyZDhLekJIWDJmZWFjVWUxOEE2Q2wxYXZRVXViYlNzNG5JQnRlMDF6MGt4?=
- =?utf-8?B?Y0h2V0hEdld1QXZtWTFpdzlzY2NNeGtuVC9RcTJ4a21xQUozMXF4d3RZd1ln?=
- =?utf-8?B?Vk9PWnhJazQrNEZWYVZnNUV1azFUUXluUCtBMlU4ZUVtUHFrbStoY0dvNEsx?=
- =?utf-8?B?UXlYZDVuUVNJMEJqaXNkbmtuWVB4bzlkK2dtTFZnVW5WVndDWGJkR1JrQ3dB?=
- =?utf-8?B?OHJETytHc2N4ZXpGZmRBNm9lRm1KQ2Q3WnZkV1Q4Q2tpcnRLT2pjbG9KRndm?=
- =?utf-8?B?SGhtMFpHaEFxSkNlSFZyNERubi9WdHUrMTB0NTBUeXRzSDRNaU5qYUhuWUcz?=
- =?utf-8?B?ZHIxZWhoK3BoMTJPMkpNRDRMZlNtT3BCMmlXNUJYaW9XVWk3MnBLVFZqQnkz?=
- =?utf-8?B?dkdWWHQ2emE1VzlMSmo0UitIU3Z4alFmQVpLVUg1V0QrbWtGWXczL3BpWldh?=
- =?utf-8?B?bmIyV1dwY2dKa3NPOEZ6dDg1dTBETGlQZEM0NW94RU5ocWFmU0JnZU9OQ2VO?=
- =?utf-8?B?VTVneUo5R0VVU2QvZFBaaDZJUnptbUlEYkpxL1FUUk5pVjRaMWFVbGMrSThG?=
- =?utf-8?B?MGl3QjVFKzVONFlqL3lYMXNvTWxFQjBXQnprT1ZDaWRBVkVwYWNXZkJvRDZr?=
- =?utf-8?B?bkd1dHgyV0luMDB6SnlVcWFZeW96b3p6YWdhMFJLczdFaEl4OXdMbFl2dzFE?=
- =?utf-8?B?S3BKaHJ6UTdUdGgxN3JUb2pQYUNaTFI5RFMyRFBGYmRnV29vRG1IbitBNTBl?=
- =?utf-8?B?T1E5cE1TQ1NDUU1EWlppK28zK2FXNjVSbnVMMEZsQ21EbXJGcklDTW5RbWQ3?=
- =?utf-8?B?TDV3Ky9wQjgwQlNoNjQvVlFkek1GWjFCTjRBbThJQTc4WGhjczlyalVwalN4?=
- =?utf-8?B?bDF5dy9GV1hsbVNjbnNMVU1YTUVQaTVPRnozMEdjTW42dkpDaXpTdHQxR25u?=
- =?utf-8?B?OHlEODhCck1UOUlueFZ0VHlxWGxvcVYvbzNpWm1yTkxCSmo1OFR0eHE4Qmpt?=
- =?utf-8?B?KzY4bU45T1EyVG9aVm10SnNHSUxGL3dCSDhnWUFmN3YvUWlFU3JHeTViTUlE?=
- =?utf-8?B?ZlhrWjUzNVh3Tk92eWxCODFPS3d2MmVwaGFJUUFQYU9VS0RxR1ZNN3hENXJ6?=
- =?utf-8?B?YUpTUFd5bU9VVCtJQVpaVlhEekxyWjROS2I3R1F5blBoTCsxOEJFdFV3c3M1?=
- =?utf-8?B?bkpRbGQxMFUzRFJydTBSVmt6UXFLUzdldktFYlpONzhIQmlxTkw3VjhBT25s?=
- =?utf-8?B?QSt4YUlRRzdyOWYwZnJVZVlJQVVJRnRxNWhYZkdXV2RUOVV0OERKWU5sVnNL?=
- =?utf-8?B?ckN1YmtXS0hXcGhDSzh2dVNTSEFZbG9CZ05yaVVPK1VCMnpuNmk2bTQ0bDkz?=
- =?utf-8?B?WjhiY2Nvb21IUWNMZ2lKZG8zT043QUQ1UlJhL2c3eHhDdXlmeGMxaEgrT3VR?=
- =?utf-8?B?cjRtM2VPY0xxQTJSUTlOR2VpK1FiSmZPRUM1NFh6RDZicVRtdkMwMWJucG1S?=
- =?utf-8?B?MHZrZzhrZnpheTFITk5QeWJkK3FkMnFXSStmTHUrWkd2S0kxRXpXS2xtN0d5?=
- =?utf-8?B?enk2SmM5RkFad2I5bUhGQmhNVTg1L1BGT0plSkVuM01KdmRwdituQXRWYm94?=
- =?utf-8?B?QTJVa0oweXhIbDBOcVZQSXFGNUJiV1lXMUdaUVdGbG9XRE5EV1BZRE1QTFZS?=
- =?utf-8?Q?o4TTS87Y9uMhGFg4hktkjGc=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5472fa45-2b6f-45a7-1670-08dd4ac23614
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2025 17:33:34.9904 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fGKtO5fBe+Yi8XPrbSMMyIdX8a1s78ubs2fMf6KDSqmTvnRhMI2z3512XHIngCpmSeqTU963O1RT8qwjgb8vi9ITc37oZpqGERBmk1pNSJc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6340
-X-OriginatorOrg: intel.com
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113056840"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 09:33:56 -0800
+Date: Tue, 11 Feb 2025 09:33:55 -0800
+Message-ID: <8534gk8jy4.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Harish Chegondi <harish.chegondi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v9 3/8] drm/xe/eustall: Add support to init,
+ enable and disable EU stall sampling
+In-Reply-To: <724540fe6e68526abc8a271d500f5a8a84acc0a9.1739193510.git.harish.chegondi@intel.com>
+References: <cover.1739193510.git.harish.chegondi@intel.com>	<724540fe6e68526abc8a271d500f5a8a84acc0a9.1739193510.git.harish.chegondi@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -202,230 +70,653 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Feb 10, 2025 at 03:50:00PM +0530, Riana Tauro wrote:
+On Mon, 10 Feb 2025 05:46:44 -0800, Harish Chegondi wrote:
 >
->
->On 2/8/2025 5:01 AM, Umesh Nerlige Ramappa wrote:
->>On Fri, Feb 07, 2025 at 12:21:24PM +0530, Ghimiray, Himal Prasad wrote:
->>>
->>>
->>>On 07-02-2025 11:48, Riana Tauro wrote:
->>>>
->>>>Hi Himal
->>>>
->>>>On 2/7/2025 8:39 AM, Ghimiray, Himal Prasad wrote:
->>>>>
->>>>>
->>>>>On 06-02-2025 16:13, Riana Tauro wrote:
->>>>>>When the engine events are created, acquire GT forcewake to read gpm
->>>>>>timestamp required for the events and release on event destroy. This
->>>>>>cannot be done during read due to the raw spinlock held my pmu.
->>>>>>
->>>>>>Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>>>>Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->>>>>>Signed-off-by: Riana Tauro <riana.tauro@intel.com>
->>>>>>---
->>>>>>  drivers/gpu/drm/xe/xe_pmu.c       | 47 
->>>>>>++++++++++++++++++++++++++ +++--
->>>>>>  drivers/gpu/drm/xe/xe_pmu_types.h |  8 ++++++
->>>>>>  2 files changed, 53 insertions(+), 2 deletions(-)
->>>>>>
->>>>>>diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
->>>>>>index 06a1c72a3838..5b5fe4424aba 100644
->>>>>>--- a/drivers/gpu/drm/xe/xe_pmu.c
->>>>>>+++ b/drivers/gpu/drm/xe/xe_pmu.c
->>>>>>@@ -7,6 +7,7 @@
->>>>>>  #include <linux/device.h>
->>>>>>  #include "xe_device.h"
->>>>>>+#include "xe_force_wake.h"
->>>>>>  #include "xe_gt_idle.h"
->>>>>>  #include "xe_guc_engine_activity.h"
->>>>>>  #include "xe_hw_engine.h"
->>>>>>@@ -102,6 +103,36 @@ static struct xe_hw_engine 
->>>>>>*event_to_hwe(struct perf_event *event)
->>>>>>      return hwe;
->>>>>>  }
->>>>>>+static bool is_engine_event(u64 config)
->>>>>>+{
->>>>>>+    unsigned int event_id = config_to_event_id(config);
->>>>>>+
->>>>>>+    return (event_id == XE_PMU_EVENT_ENGINE_TOTAL_TICKS ||
->>>>>>+        event_id == XE_PMU_EVENT_ENGINE_ACTIVE_TICKS);
->>>>>>+}
->>>>>>+
->>>>>>+static void event_gt_forcewake(struct perf_event *event)
->>>>>>+{
->>>>>>+    struct xe_device *xe = container_of(event->pmu, 
->>>>>>typeof(*xe), pmu.base);
->>>>>>+    u64 config = event->attr.config;
->>>>>>+    struct xe_pmu *pmu = &xe->pmu;
->>>>>>+    struct xe_gt *gt;
->>>>>>+    unsigned int fw_ref;
->>>>>>+
->>>>>>+    gt = xe_device_get_gt(xe, config_to_gt_id(config));
->>>>>>+    if (!gt || !is_engine_event(config))
->>>>>>+        return;
->>>>>>+
->>>>>>+    fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->>>>>>+    if (!fw_ref)
->>>>>>+        return;
->>>>>>+
->>>>>>+    if (!pmu->fw_ref)
->>>>>>+        pmu->fw_ref = fw_ref;
->>>>>>+
->>>>>>+    pmu->fw_count++;
->>>>>>+}
->>>>>>+
->>>>>>  static bool event_supported(struct xe_pmu *pmu, unsigned int gt,
->>>>>>                  unsigned int id)
->>>>>>  {
->>>>>>@@ -144,6 +175,13 @@ static bool event_param_valid(struct 
->>>>>>perf_event *event)
->>>>>>  static void xe_pmu_event_destroy(struct perf_event *event)
->>>>>>  {
->>>>>>      struct xe_device *xe = container_of(event->pmu, 
->>>>>>typeof(*xe), pmu.base);
->>>>>>+    struct xe_pmu *pmu = &xe->pmu;
->>>>>>+    struct xe_gt *gt;
->>>>>>+
->>>>>>+    if (pmu->fw_count--) {
->>>>>>+        gt = xe_device_get_gt(xe, config_to_gt_id(event- 
->>>>>>>attr.config));
->>>>>>+        xe_force_wake_put(gt_to_fw(gt), pmu->fw_ref);
->>>>>>+    }
->>>>>
->>>>>
->>>>>Considering that fw->lock will be acquired and released 
->>>>>multiple times during the put operation, this might create an 
->>>>>overhead.
->>>>>
->>>>>How about implementing a _put function that can take the 
->>>>>number of refcounts to decrement as an input parameter, 
->>>>>similar to xe_force_wake_put_many?
->>>>Could you give more details on your suggestion? Would put_many 
->>>>just decrement the count? But wouldn't that still require a 
->>>>lock? Multiple event_destroys can call the function at the same 
->>>>time right?
->>>
->>>I was thinking about putting all refcounts at the end of last 
->>>event destroy in case of multiple pmu's.
->>>
->>>>
->>>>
->>>>One thing that can be done is to take forcewake on first count 
->>>>and release it when the last event is destroyed in cases of 
->>>>multiple
->>>>pmu being used
->>
->>Unless there is a measured inefficiency, I would recommend not 
->>refcounting this in PMU. If a forcewake is already taken, the code 
->>in forcewake_get is just handling increments and not really 
->>accessing MMIO, so we should be okay here.
->>
->>Also, pmu->fw_count is not required, since the force_wake_get logic 
->>should be already handling that. We should just call get and put and 
->>this should be good enough.
->
->I added the counting because if forcewake get fails then destroy won't 
->know if it has to call xe_force_wake_put (multiple perf opened). If 
->there is count and ref set, then can be called based on that.
->
->If we can return -ENOTSUPPORTED if forcewake get fails for engine 
->events, then the above will work
 
-Hmm, not sure I understand. If forcewake_get fails, then we don't need 
-to call force_wake_put. Also if force_wake_get fails, we should fail the 
-event init (which means the destroy should not get called).
+Hi Harish,
 
-Thanks,
-Umesh
+> diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+> index 0ceb3091f81e..12afa9720971 100644
+> --- a/drivers/gpu/drm/xe/xe_eu_stall.c
+> +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+> @@ -8,17 +8,57 @@
+>  #include <linux/poll.h>
+>  #include <linux/types.h>
+>
+> +#include <drm/drm_drv.h>
+>  #include <uapi/drm/xe_drm.h>
+>
+> +#include "xe_bo.h"
+>  #include "xe_device.h"
+>  #include "xe_eu_stall.h"
+> +#include "xe_force_wake.h"
+> +#include "xe_gt_mcr.h"
+>  #include "xe_gt_printk.h"
+>  #include "xe_gt_topology.h"
+>  #include "xe_macros.h"
+>  #include "xe_observation.h"
+> +#include "xe_pm.h"
+> +
+> +#include "regs/xe_eu_stall_regs.h"
+> +#include "regs/xe_gt_regs.h"
+> +
+> +#define POLL_PERIOD_MS	10
+>
+>  static size_t per_xecore_buf_size = SZ_512K;
+>
+> +struct per_xecore_buf {
+> +	/* Buffer vaddr */
+> +	u8 *vaddr;
+> +	/* Write pointer */
+> +	u32 write;
+> +	/* Read pointer */
+> +	u32 read;
+> +	/* lock to protect read and write pointers */
+> +	struct mutex ptr_lock;
+> +};
+> +
+> +struct xe_eu_stall_data_stream {
+> +	bool enabled;
+> +	size_t data_record_size;
+> +	size_t per_xecore_buf_size;
+> +	unsigned int wait_num_reports;
+> +	unsigned int sampling_rate_mult;
+> +
+> +	struct xe_gt *gt;
+> +	struct xe_bo *bo;
+> +	struct per_xecore_buf *xecore_buf;
+> +};
+> +
+> +struct xe_eu_stall_gt {
+> +	/* Lock to protect stream */
+> +	struct mutex stream_lock;
+> +	/* EU stall data stream */
+> +	struct xe_eu_stall_data_stream *stream;
+> +};
+> +
+>  /**
+>   * struct eu_stall_open_properties - EU stall sampling properties received
+>   *				     from user space at open.
+> @@ -33,6 +73,47 @@ struct eu_stall_open_properties {
+>	struct xe_gt *gt;
+>  };
+>
+> +/**
+> + * struct xe_eu_stall_data_pvc - EU stall data format for PVC
+> + *			Bits		Field
+> + * @ip_addr:		0  to 28	IP (addr)
+> + * @active_count:	29 to 36	active count
+> + * @other_count:	37 to 44	other count
+> + * @control_count:	45 to 52	control count
+> + * @pipestall_count:	53 to 60	pipestall count
+> + * @send_count:		61 to 68	send count
+> + * @dist_acc_count:	69 to 76	dist_acc count
+> + * @sbid_count:		77 to 84	sbid count
+> + * @sync_count:		85 to 92	sync count
+> + * @inst_fetch_count:	93 to 100	inst_fetch count
+> + * @unused_bits:	101 to 127	unused bits
+> + * @unused:		remaining	unused bytes
+> + */
+
+I'd say delete this comment, it seems to be no zero extra information above
+what is already included in the struct below.
+
+If you want to document the bit positions, add them on the same line as the
+struct field, e.g.:
+
+	__u64 active_count:8; /* bits 36:29 */
+
+> +struct xe_eu_stall_data_pvc {
+> +	__u64 ip_addr:29;
+> +	__u64 active_count:8;
+> +	__u64 other_count:8;
+> +	__u64 control_count:8;
+> +	__u64 pipestall_count:8;
+> +	__u64 send_count:8;
+> +	__u64 dist_acc_count:8;
+> +	__u64 sbid_count:8;
+> +	__u64 sync_count:8;
+> +	__u64 inst_fetch_count:8;
+> +	__u64 unused_bits:27;
+> +	__u64 unused[6];
+> +} __packed;
+> +
+> +static size_t xe_eu_stall_data_record_size(struct xe_device *xe)
+> +{
+> +	unsigned long record_size = 0;
+> +
+> +	if (xe->info.platform == XE_PVC)
+> +		record_size = sizeof(struct xe_eu_stall_data_pvc);
+> +
+> +	return record_size;
+> +}
+> +
+>  /**
+>   * num_data_rows - Return the number of EU stall data rows of 64B each
+>   *		   for a given data size.
+> @@ -44,6 +125,36 @@ static u32 num_data_rows(u32 data_size)
+>	return (data_size >> 6);
+>  }
+>
+> +/**
+> + * xe_eu_stall_init() - Allocate and initialize GT level EU stall data
+> + *			structure xe_eu_stall_gt within struct xe_gt.
+> + *
+> + * @gt: GT being initialized.
+> + *
+> + * Returns: zero on success or a negative error code.
+> + */
+> +int xe_eu_stall_init(struct xe_gt *gt)
+> +{
+> +	gt->eu_stall = kzalloc(sizeof(*gt->eu_stall), GFP_KERNEL);
+> +	if (!gt->eu_stall)
+> +		return -ENOMEM;
+> +
+> +	mutex_init(&gt->eu_stall->stream_lock);
+> +	return 0;
+> +}
+> +
+> +/**
+> + * xe_eu_stall_fini() - Clean up the GT level EU stall data
+> + *			structure xe_eu_stall_gt within struct xe_gt.
+> + *
+> + * @gt: GT being cleaned up.
+> + */
+> +void xe_eu_stall_fini(struct xe_gt *gt)
+> +{
+> +	mutex_destroy(&gt->eu_stall->stream_lock);
+> +	kfree(gt->eu_stall);
+> +}
+> +
+>  static int set_prop_eu_stall_sampling_rate(struct xe_device *xe, u64 value,
+>					   struct eu_stall_open_properties *props)
+>  {
+> @@ -166,6 +277,120 @@ static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
+>	return ret;
+>  }
+>
+> +static void free_eu_stall_data_buf(struct xe_eu_stall_data_stream *stream)
+> +{
+> +	if (stream->bo)
+> +		xe_bo_unpin_map_no_vm(stream->bo);
+> +}
+> +
+> +static int alloc_eu_stall_data_buf(struct xe_eu_stall_data_stream *stream,
+> +				   u16 num_xecore)
+> +{
+> +	struct xe_tile *tile = stream->gt->tile;
+> +	struct xe_bo *bo;
+> +	u32 size;
+> +
+> +	size = stream->per_xecore_buf_size * num_xecore;
+> +
+> +	bo = xe_bo_create_pin_map_at_aligned(tile->xe, tile, NULL,
+> +					     size, ~0ull, ttm_bo_type_kernel,
+> +					     XE_BO_FLAG_SYSTEM | XE_BO_FLAG_GGTT, SZ_64);
+> +	if (IS_ERR(bo))
+> +		return PTR_ERR(bo);
+> +
+> +	XE_WARN_ON(!IS_ALIGNED(xe_bo_ggtt_addr(bo), SZ_64));
+> +	stream->bo = bo;
+> +
+> +	return 0;
+> +}
+> +
+> +static int xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
+> +{
+> +	u32 write_ptr_reg, write_ptr, read_ptr_reg, reg_value;
+> +	struct per_xecore_buf *xecore_buf;
+> +	struct xe_gt *gt = stream->gt;
+> +	u16 group, instance;
+> +	unsigned int fw_ref;
+> +	int xecore;
+> +
+> +	/* Take runtime pm ref and forcewake to disable RC6 */
+> +	xe_pm_runtime_get(gt_to_xe(gt));
+> +	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_RENDER);
+> +	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_RENDER)) {
+> +		xe_gt_err(gt, "Failed to get RENDER forcewake\n");
+> +		xe_force_wake_put(gt_to_fw(gt), XE_FW_RENDER);
+
+The above line should not be there.
+
+> +		xe_pm_runtime_put(gt_to_xe(gt));
+> +		return -ETIMEDOUT;
+> +	}
+> +
+> +	for_each_dss_steering(xecore, gt, group, instance) {
+> +		write_ptr_reg = xe_gt_mcr_unicast_read(gt, XEHPC_EUSTALL_REPORT, group, instance);
+> +		write_ptr = REG_FIELD_GET(XEHPC_EUSTALL_REPORT_WRITE_PTR_MASK, write_ptr_reg);
+> +		read_ptr_reg = REG_FIELD_PREP(XEHPC_EUSTALL_REPORT1_READ_PTR_MASK, write_ptr);
+> +		read_ptr_reg = _MASKED_FIELD(XEHPC_EUSTALL_REPORT1_READ_PTR_MASK, read_ptr_reg);
+
+My previous question regarding this is still unanswered: "Why do we need to
+do all this, read the write ptr reg and write to read ptr register? Can't
+we just set both read and write ptr to the start of the per xecore buf
+address (likely stream->bo ggtt_addr).
+
+> +		/* Initialize the read pointer to the write pointer */
+> +		xe_gt_mcr_unicast_write(gt, XEHPC_EUSTALL_REPORT1, read_ptr_reg, group, instance);
+> +		write_ptr <<= 6;
+> +		write_ptr &= (stream->per_xecore_buf_size << 1) - 1;
+> +		xecore_buf = &stream->xecore_buf[xecore];
+> +		xecore_buf->write = write_ptr;
+> +		xecore_buf->read = write_ptr;
+> +	}
+> +	reg_value = _MASKED_FIELD(EUSTALL_MOCS | EUSTALL_SAMPLE_RATE,
+> +				  REG_FIELD_PREP(EUSTALL_MOCS, gt->mocs.uc_index << 1) |
+
+Please explain this mocs.uc_index business, as I mentioned in the prev version.
+
+> +				  REG_FIELD_PREP(EUSTALL_SAMPLE_RATE,
+> +						 stream->sampling_rate_mult));
+> +	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_CTRL, reg_value);
+> +	/* GGTT addresses can never be > 32 bits */
+> +	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_BASE_UPPER, 0);
+> +	reg_value = xe_bo_ggtt_addr(stream->bo);
+> +	reg_value |= REG_FIELD_PREP(XEHPC_EUSTALL_BASE_XECORE_BUF_SZ, 2);
+
+This "2" should be derived from per_xecore_buf_size or
+stream->per_xecore_buf_size by dividing by 256, as I previously indicated.
+
+> +	reg_value |= XEHPC_EUSTALL_BASE_ENABLE_SAMPLING;
+> +	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_BASE, reg_value);
+> +
+> +	return 0;
+> +}
+> +
+> +static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+> +				   struct eu_stall_open_properties *props)
+> +{
+> +	struct per_xecore_buf *xecore_buf;
+> +	u16 num_xecore, group, instance;
+> +	struct xe_gt *gt = stream->gt;
+> +	xe_dss_mask_t all_xecore;
+> +	u32 vaddr_offset;
+
+Should probably be size_t
+
+> +	int ret, xecore;
+> +
+> +	stream->sampling_rate_mult = props->sampling_rate_mult;
+> +	stream->wait_num_reports = props->wait_num_reports;
+> +	stream->per_xecore_buf_size = per_xecore_buf_size;
+> +	stream->data_record_size = xe_eu_stall_data_record_size(gt_to_xe(gt));
+> +
+> +	bitmap_or(all_xecore, gt->fuse_topo.g_dss_mask, gt->fuse_topo.c_dss_mask,
+> +		  XE_MAX_DSS_FUSE_BITS);
+> +	/*
+> +	 * Enabled subslices can be discontiguous. Find the maximum number of subslices
+> +	 * that are enabled.
+> +	 */
+> +	num_xecore = xe_gt_topology_mask_last_dss(all_xecore) + 1;
+> +
+> +	ret = alloc_eu_stall_data_buf(stream, num_xecore);
+> +	if (ret)
+> +		return ret;
+> +
+> +	stream->xecore_buf = kcalloc(num_xecore, sizeof(*stream->xecore_buf), GFP_KERNEL);
+> +	if (!stream->xecore_buf)
+> +		return -ENOMEM;
+
+What about free_eu_stall_data_buf here?
+
+The way to do this is: either the function succeeds, or if it fails, it
+frees all resources it allocates before returning.
+
+> +
+> +	for_each_dss_steering(xecore, gt, group, instance) {
+> +		xecore_buf = &stream->xecore_buf[xecore];
+> +		vaddr_offset = xecore * stream->per_xecore_buf_size;
+> +		xecore_buf->vaddr = stream->bo->vmap.vaddr + vaddr_offset;
+> +		mutex_init(&xecore_buf->ptr_lock);
+> +	}
+> +	return 0;
+> +}
+> +
+>  /**
+>   * xe_eu_stall_stream_poll - handles userspace poll() of a EU stall data stream fd.
+>   *
+> @@ -181,6 +406,49 @@ static __poll_t xe_eu_stall_stream_poll(struct file *file, poll_table *wait)
+>	return ret;
+>  }
+>
+> +static int xe_eu_stall_enable_locked(struct xe_eu_stall_data_stream *stream)
+> +{
+> +	int ret = 0;
+> +
+> +	if (stream->enabled)
+> +		return ret;
+> +
+> +	stream->enabled = true;
+> +
+> +	ret = xe_eu_stall_stream_enable(stream);
+> +	return ret;
+> +}
+> +
+> +static int xe_eu_stall_disable_locked(struct xe_eu_stall_data_stream *stream)
+> +{
+> +	struct xe_gt *gt = stream->gt;
+> +
+> +	if (!stream->enabled)
+> +		return 0;
+> +
+> +	stream->enabled = false;
+> +
+> +	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_BASE, 0);
+> +
+> +	xe_force_wake_put(gt_to_fw(gt), XE_FW_RENDER);
+> +	xe_pm_runtime_put(gt_to_xe(gt));
+> +
+> +	return 0;
+> +}
+> +
+> +static long xe_eu_stall_stream_ioctl_locked(struct xe_eu_stall_data_stream *stream,
+> +					    unsigned int cmd, unsigned long arg)
+> +{
+> +	switch (cmd) {
+> +	case DRM_XE_OBSERVATION_IOCTL_ENABLE:
+> +		return xe_eu_stall_enable_locked(stream);
+> +	case DRM_XE_OBSERVATION_IOCTL_DISABLE:
+> +		return xe_eu_stall_disable_locked(stream);
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+>  /**
+>   * xe_eu_stall_stream_ioctl - support ioctl() of a xe EU stall data stream fd.
+>   *
+> @@ -195,14 +463,22 @@ static long xe_eu_stall_stream_ioctl(struct file *file,
+>				     unsigned int cmd,
+>				     unsigned long arg)
+>  {
+> -	switch (cmd) {
+> -	case DRM_XE_OBSERVATION_IOCTL_ENABLE:
+> -		return 0;
+> -	case DRM_XE_OBSERVATION_IOCTL_DISABLE:
+> -		return 0;
+> -	}
+> +	struct xe_eu_stall_data_stream *stream = file->private_data;
+> +	struct xe_gt *gt = stream->gt;
+> +	long ret;
+>
+> -	return -EINVAL;
+> +	mutex_lock(&gt->eu_stall->stream_lock);
+> +	ret = xe_eu_stall_stream_ioctl_locked(stream, cmd, arg);
+> +	mutex_unlock(&gt->eu_stall->stream_lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static void
+> +xe_eu_stall_stream_close_locked(struct xe_eu_stall_data_stream *stream)
+> +{
+> +	xe_eu_stall_disable_locked(stream);
+> +	free_eu_stall_data_buf(stream);
+>  }
+
+I don't see the point of this function since it is just called from one
+place xe_eu_stall_stream_close. You might as well put these 2 lines of code
+there.
+
+As suggested below we can have a xe_eu_stall_stream_destroy() which can be
+called from xe_eu_stall_stream_open_locked() and from
+xe_eu_stall_stream_close(). But optional.
 
 >
->Thanks
->Riana
+>  /**
+> @@ -215,6 +491,19 @@ static long xe_eu_stall_stream_ioctl(struct file *file,
+>   */
+>  static int xe_eu_stall_stream_close(struct inode *inode, struct file *file)
+>  {
+> +	struct xe_eu_stall_data_stream *stream = file->private_data;
+> +	struct xe_gt *gt = stream->gt;
+> +
+> +	mutex_lock(&gt->eu_stall->stream_lock);
+> +	xe_eu_stall_stream_close_locked(stream);
+> +	kfree(stream->xecore_buf);
+> +	kfree(stream);
+> +	gt->eu_stall->stream = NULL;
+
+This sequence should generally be identical to the error unwind sequence in
+xe_eu_stall_stream_open_locked.
+
+> +	mutex_unlock(&gt->eu_stall->stream_lock);
+> +
+> +	/* Release the reference the EU stall stream kept on the driver */
+> +	drm_dev_put(&gt->tile->xe->drm);
+> +
+>	return 0;
+>  }
 >
->>
->>Thanks,
->>Umesh
->>
->>>
->>>This sounds even better.
->>>
->>>>>
->>>>>If the overhead has already been considered and found to be 
->>>>>acceptable, I am fine with avoiding unnecessary modifications 
->>>>>to this patch.
->>>>This is the first rev for this patch. Open to suggestions
->>>>
->>>>Background for this patch: force_wake is needed to read the timestamp
->>>>register required for engine events.Cannot take it while reading 
->>>>the register from pmu_read due to a lockdep splat 
->>>>(PROVE_RAW_LOCK_NESTING).
->>>>
->>>>The suggestion was to take forcewake throughout the duration of 
->>>>event being read
->>>>
->>>>Thanks
->>>>Riana
->>>>>
->>>>>
->>>>>>      drm_WARN_ON(&xe->drm, event->parent);
->>>>>>      xe_pm_runtime_put(xe);
->>>>>>@@ -183,18 +221,23 @@ static int xe_pmu_event_init(struct 
->>>>>>perf_event *event)
->>>>>>      if (!event->parent) {
->>>>>>          drm_dev_get(&xe->drm);
->>>>>>          xe_pm_runtime_get(xe);
->>>>>>+        event_gt_forcewake(event);
->>>>>>          event->destroy = xe_pmu_event_destroy;
->>>>>>      }
->>>>>>      return 0;
->>>>>>  }
->>>>>>-static u64 read_engine_events(struct perf_event *event)
->>>>>>+static u64 read_engine_events(struct perf_event *event, u64 prev)
->>>>>>  {
->>>>>>      struct xe_device *xe = container_of(event->pmu, 
->>>>>>typeof(*xe), pmu.base);
->>>>>>+    struct xe_pmu *pmu = &xe->pmu;
->>>>>>      struct xe_hw_engine *hwe;
->>>>>>      u64 val = 0;
->>>>>>+    if (!pmu->fw_count)
->>>>>>+        return prev;
->>>>>>+
->>>>>>      hwe = event_to_hwe(event);
->>>>>>      if (!hwe)
->>>>>>          drm_warn(&xe->drm, "unknown pmu engine\n");
->>>>>>@@ -218,7 +261,7 @@ static u64 __xe_pmu_event_read(struct 
->>>>>>perf_event *event, u64 prev)
->>>>>>          return xe_gt_idle_residency_msec(&gt->gtidle);
->>>>>>      case XE_PMU_EVENT_ENGINE_ACTIVE_TICKS:
->>>>>>      case XE_PMU_EVENT_ENGINE_TOTAL_TICKS:
->>>>>>-        return read_engine_events(event);
->>>>>>+        return read_engine_events(event, prev);
->>>>>>      }
->>>>>>      return 0;
->>>>>>diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h 
->>>>>>b/drivers/gpu/drm/ xe/ xe_pmu_types.h
->>>>>>index f5ba4d56622c..134b3400b19c 100644
->>>>>>--- a/drivers/gpu/drm/xe/xe_pmu_types.h
->>>>>>+++ b/drivers/gpu/drm/xe/xe_pmu_types.h
->>>>>>@@ -30,6 +30,14 @@ struct xe_pmu {
->>>>>>       * @name: Name as registered with perf core.
->>>>>>       */
->>>>>>      const char *name;
->>>>>>+    /**
->>>>>>+     * @fw_ref: force_wake ref
->>>>>>+     */
->>>>>>+    unsigned int fw_ref;
->>>>>>+    /**
->>>>>>+     * @fw_count: force_wake count
->>>>>>+     */
->>>>>>+    unsigned int fw_count;
->>>>>>      /**
->>>>>>       * @supported_events: Bitmap of supported events, 
->>>>>>indexed by event id
->>>>>>       */
->>>>>
->>>>
->>>
+> @@ -230,7 +519,67 @@ static const struct file_operations fops_eu_stall = {
+>
+>  static inline bool has_eu_stall_sampling_support(struct xe_device *xe)
+>  {
+> -	return false;
+> +	return ((xe->info.platform == XE_PVC) ? true : false);
+
+return xe->info.platform == XE_PVC;
+
+> +}
+> +
+> +/**
+> + * xe_eu_stall_stream_open_locked - Open a EU stall data stream FD.
+> + * @dev: drm device instance
+> + * @props: individually validated u64 property value pairs
+> + * @file: drm file
+> + *
+> + * Returns: zero on success or a negative error code.
+> + */
+> +static int
+> +xe_eu_stall_stream_open_locked(struct drm_device *dev,
+> +			       struct eu_stall_open_properties *props,
+> +			       struct drm_file *file)
+> +{
+> +	struct xe_eu_stall_data_stream *stream;
+> +	struct xe_gt *gt = props->gt;
+> +	unsigned long f_flags = 0;
+> +	int ret, stream_fd;
+> +
+> +	/* Only one session can be active at any time */
+> +	if (gt->eu_stall->stream) {
+> +		xe_gt_dbg(gt, "EU stall sampling session already active\n");
+> +		return -EBUSY;
+> +	}
+> +
+> +	stream = kzalloc(sizeof(*stream), GFP_KERNEL);
+> +	if (!stream)
+> +		return -ENOMEM;
+> +
+> +	gt->eu_stall->stream = stream;
+> +	stream->gt = gt;
+> +
+> +	ret = xe_eu_stall_stream_init(stream, props);
+> +	if (ret) {
+> +		xe_gt_dbg(gt, "EU stall stream init failed : %d\n", ret);
+> +		goto err_alloc;
+
+This is wrong as pointed below. If this fails we jump to 'kfree(stream)'.
+
+Also don't invent random label names. See
+xe_oa_stream_open_ioctl_locked(): err_destroy is for destroy, err_free for
+free etc.
+
+So this should be goto err_free.
+
+> +	}
+> +
+> +	stream_fd = anon_inode_getfd("[xe_eu_stall]", &fops_eu_stall, stream, f_flags);
+> +	if (stream_fd < 0) {
+> +		ret = stream_fd;
+> +		xe_gt_dbg(gt, "EU stall inode get fd failed : %d\n", ret);
+> +		goto err_open;
+
+goto err_destroy. see below.
+
+> +	}
+> +
+> +	/* Take a reference on the driver that will be kept with stream_fd
+> +	 * until its release.
+> +	 */
+> +	drm_dev_get(&gt->tile->xe->drm);
+> +
+> +	return stream_fd;
+> +
+> +err_open:
+> +	free_eu_stall_data_buf(stream);
+> +err_alloc:
+> +	gt->eu_stall->stream = NULL;
+> +	kfree(stream->xecore_buf);
+
+This is wrong, stream->xecore_buf is allocated in xe_eu_stall_stream_init
+and we are jumping here if xe_eu_stall_stream_init fails.
+
+See xe_oa_stream_open_ioctl_locked() as an example for doing this unwinding
+correctly. We need a 'destroy' function which will free stuff allocated in
+xe_eu_stall_stream_init. And that function should be called from
+close/release too.
+
+Ideally, we should not have to peek inside these functions to see what is
+being allocated there and then free them. The destroy function is the
+wrapper which should do all the free's.
+
+Or maybe if you want to skip destroy() we can do that too, but at least the
+code here needs to be fixed.
+
+> +	kfree(stream);
+
+err_free label before this line. Should do kfree(stream) and
+'gt->eu_stall->stream = NULL'.
+
+> +	return ret;
+
+So basically, without destroy(), this is something like:
+
+	err_destroy:
+		kfree(stream->xecore_buf);
+		free_eu_stall_data_buf(stream);
+	err_free:
+		kfree(stream);
+		gt->eu_stall->stream = NULL;
+		return ret;
+
+Not what you have above. And the code under err_destroy can go into a
+destroy() function, but if you want we can skip that for now.
+
+
+>  }
+>
+>  /**
+> @@ -252,7 +601,7 @@ int xe_eu_stall_stream_open(struct drm_device *dev,
+>  {
+>	struct xe_device *xe = to_xe_device(dev);
+>	struct eu_stall_open_properties props = {};
+> -	int ret, stream_fd;
+> +	int ret;
+>
+>	if (xe_observation_paranoid && !perfmon_capable()) {
+>		xe_gt_dbg(props.gt, "Insufficient privileges for EU stall monitoring\n");
+> @@ -263,6 +612,10 @@ int xe_eu_stall_stream_open(struct drm_device *dev,
+>		return -EPERM;
+>	}
+>
+> +	/* Initialize and set default values */
+> +	props.wait_num_reports = 1;
+> +	props.sampling_rate_mult = 4;
+
+What about props.gt? Can it also be initialized to gt[0], corresponding to
+default gt_id 0, basically default gt if not specified in uapi is gt0?
+
+> +
+>	ret = xe_eu_stall_user_extensions(xe, data, &props);
+>	if (ret)
+>		return ret;
+> @@ -272,9 +625,9 @@ int xe_eu_stall_stream_open(struct drm_device *dev,
+>		return -EINVAL;
+>	}
+>
+> -	stream_fd = anon_inode_getfd("[xe_eu_stall]", &fops_eu_stall, NULL, 0);
+> -	if (stream_fd < 0)
+> -		xe_gt_dbg(props.gt, "EU stall inode get fd failed : %d\n", stream_fd);
+> +	mutex_lock(&props.gt->eu_stall->stream_lock);
+> +	ret = xe_eu_stall_stream_open_locked(dev, &props, file);
+> +	mutex_unlock(&props.gt->eu_stall->stream_lock);
+>
+> -	return stream_fd;
+> +	return ret;
+>  }
+> diff --git a/drivers/gpu/drm/xe/xe_eu_stall.h b/drivers/gpu/drm/xe/xe_eu_stall.h
+> index d514e78341d5..e42250c1d294 100644
+> --- a/drivers/gpu/drm/xe/xe_eu_stall.h
+> +++ b/drivers/gpu/drm/xe/xe_eu_stall.h
+> @@ -6,9 +6,10 @@
+>  #ifndef __XE_EU_STALL_H__
+>  #define __XE_EU_STALL_H__
+>
+> -#include <drm/drm_device.h>
+> -#include <drm/drm_file.h>
+> -#include <linux/types.h>
+> +#include "xe_gt_types.h"
+> +
+> +int xe_eu_stall_init(struct xe_gt *gt);
+> +void xe_eu_stall_fini(struct xe_gt *gt);
+>
+>  int xe_eu_stall_stream_open(struct drm_device *dev,
+>			    u64 data,
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 9fb8f1e678dc..ee5a16727300 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -60,6 +60,7 @@
+>  #include "xe_vm.h"
+>  #include "xe_wa.h"
+>  #include "xe_wopcm.h"
+> +#include "xe_eu_stall.h"
+>
+>  static void gt_fini(struct drm_device *drm, void *arg)
+>  {
+> @@ -159,6 +160,7 @@ void xe_gt_remove(struct xe_gt *gt)
+>		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
+>
+>	xe_gt_disable_host_l2_vram(gt);
+> +	xe_eu_stall_fini(gt);
+
+Maybe move to the top of the function, so that fini happens in reverse
+order to init?
+
+>  }
+>
+>  static void gt_reset_worker(struct work_struct *w);
+> @@ -625,6 +627,10 @@ int xe_gt_init(struct xe_gt *gt)
+>
+>	xe_gt_record_user_engines(gt);
+>
+> +	err = xe_eu_stall_init(gt);
+> +	if (err)
+> +		return err;
+> +
+>	return 0;
+>  }
+>
+> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> index 6e66bf0e8b3f..833a1a67e9ae 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> @@ -430,6 +430,9 @@ struct xe_gt {
+>
+>	/** @oa: oa observation subsystem per gt info */
+>	struct xe_oa_gt oa;
+> +
+> +	/** @eu_stall: EU stall counters subsystem per gt info */
+> +	struct xe_eu_stall_gt *eu_stall;
+
+This needs a forward declaration for 'struct xe_eu_stall_gt'.
+
+>  };
+>
+>  #endif
+> --
+> 2.48.1
 >
