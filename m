@@ -4,61 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44093C0219E
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 16:57:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37541C0219B
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Feb 2025 17:07:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F40B510E715;
-	Tue, 11 Feb 2025 16:57:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF6AD10E726;
+	Tue, 11 Feb 2025 17:07:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LZra/PKa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c3xTyQbC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B15710E70E;
- Tue, 11 Feb 2025 16:57:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DADE10E71E
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Feb 2025 17:07:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739293051; x=1770829051;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=hehcflHIDCb1WIQWmW4uc0/8BI+FZe1uIwMt9dfQbjE=;
- b=LZra/PKa5a9PidxoOFQht1/ZtDa5dPhTWgFiQW4umJX16mJ0b0kE7Hpe
- qTihSd69CONuUuIu89GKxzsmHKABG3oNh3e7ffburPEOffjHJwjnarl4z
- EfoAF/O0gT6dLnta0OiHI176oqQipElZVZGxEZhu3Gx28lMVy3J/lhZUR
- c3k+OdUTn71WONlS0Mw4CkdhWkgogf3U4IqvgtM2CPALk5Cs7srpTFID4
- JUO8E3Yi7zU3wh0w/wKRdItofLmOHunFi86z3fX9GwToFy3Q1HpznwMqa
- M2wL02lI/PlVSssBLQEKl2GAoR32OTJYkESVD36vFfsOmmaEiMKdOtW/P A==;
-X-CSE-ConnectionGUID: eg6hbIGNSMm8A0gcrsiQvg==
-X-CSE-MsgGUID: IsdsmntLRDCzB/1dXVI5RQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="40046582"
-X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="40046582"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 08:57:30 -0800
-X-CSE-ConnectionGUID: 7d/gnsd7TPiKGdISyNqGkg==
-X-CSE-MsgGUID: toZU5keERtecx4wtsqJudQ==
+ t=1739293672; x=1770829672;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=nOGTpznbZy4am78Tonw/Fo+MG8W/gQyjV2BJ1TdiT7A=;
+ b=c3xTyQbCXinY1EcG27GAFuOexFYkmxSqq8KaEsSJ8eOw3Z+r0Ip+8DV8
+ ZZEfd17ipZJ3AfAZggV72YZYIjUVmYYFwWmj4DDlrUKMgizr1kiJ6UkGD
+ eax1ln9l0vU3Gh09C3wuFzRmHPyxMWe0PFA9cG8dvA3iWtPSpVTFw8dp0
+ wPd7vilWEpoXYZvL6yQcqs4UMnCGPgosrEGkH6L5m+X+4WkDxMj0PC3jI
+ Cw2phslOMXjxt4Esf8mDxUGGdn92Gu1+VqxkbPCl+KBETJ1H5hgpprP0r
+ 9H32K8ClZNzIbmY6wgwIwTA4WbsCybkUoHS2TrglV9/966Nz+u7moJMtV w==;
+X-CSE-ConnectionGUID: thUlKgxyQ1yg8kJKim/9Sg==
+X-CSE-MsgGUID: 2b+cp6qCQJ2X8QQZyvKTnw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="50559202"
+X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="50559202"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 09:07:48 -0800
+X-CSE-ConnectionGUID: SjBCmTymSRCNQXsiOj5vRA==
+X-CSE-MsgGUID: h+4qFaLWTyWIfA7LkOQXKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="112542775"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.93])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 08:57:27 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Subject: RE: [PATCH 8/9] drm/i915/dpll: Accept intel_display as argument for
- shared_dpll_init
-In-Reply-To: <SN7PR11MB6750C81DB52D61A104B27223E3FD2@SN7PR11MB6750.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250211104857.3501566-1-suraj.kandpal@intel.com>
- <20250211104857.3501566-9-suraj.kandpal@intel.com>
- <87jz9w1v42.fsf@intel.com>
- <SN7PR11MB6750C81DB52D61A104B27223E3FD2@SN7PR11MB6750.namprd11.prod.outlook.com>
-Date: Tue, 11 Feb 2025 18:57:25 +0200
-Message-ID: <8734gk1ksq.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112426107"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 11 Feb 2025 09:07:48 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Tue, 11 Feb 2025 09:07:47 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Tue, 11 Feb 2025 09:07:47 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Tue, 11 Feb 2025 09:07:46 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RZbZImFUJ6A1GIIu6eBLqC06tp8Si3sXXoU9WEM2d288fpgA1Algu3Dm6Iva05uvVEk/u/ISeY+m/EWUQFNyhL4CGikuZHZCKCfYHzuHoWP0nPzaOa0ByXZ7ebOS1bVoKkSroXcLsWx+NQ1YnRoEU82z9CD4xQCiIA1D+iUKLZxFwAkt0mKavzEcOnWXkXvSUJtQ/Ob5eSFNwr9AXPV8eo2DGvtC56om5hacvP2IrmTDtfsMDbFtJkVCwjUS5iN8t1TAa5OllLXP1QijDjsF0mdpZ6YJ66sy7lcoJzJqYZHJGhKUxCxG0P40kZVn6J6bU9n8uRnrtlOs+j5yd6lvFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kJnmdAx70oKX6oCiJPSZXfsuCJH0391kZD72G3kGv+Q=;
+ b=E3JQZq89lyfRD+3/0W3hfHxCydwmSnRzKMVFbYetICEx0E7qMODsUkDOEdjjh6y85Nv+rS32B6MEqoT5vgkbscvzE0D8KfeeWjKJlAvshv+kRAjZKIuKCLRMp+O4Ts+IkbH+EpuRvcHeArNzD4uOJi3ntyHRWlYO9t91EeDi50JAZBerLy6FFStv2lPEi6O7i7rsXJabxnzKGTuWqBotnBWp9RaTwE2tMxB1msuXxI7S2wiIQLxYB4ieYpTPnj1jrNLje/qDhwbAM7MXAYpzgLRSf1TdQ47lL5siG45ZR5sHDRmZqE451w+Bxy5FJhSGzrxymLOLCUPzDRHaI4LSrg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
+ by PH7PR11MB6404.namprd11.prod.outlook.com (2603:10b6:510:1f8::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.18; Tue, 11 Feb
+ 2025 17:07:41 +0000
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::d720:25db:67bb:6f50]) by PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::d720:25db:67bb:6f50%7]) with mapi id 15.20.8445.008; Tue, 11 Feb 2025
+ 17:07:41 +0000
+Message-ID: <988cf01d-fca8-4151-82a8-36f6ea1698c8@intel.com>
+Date: Tue, 11 Feb 2025 09:07:39 -0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/guc: Escalate GuC load failure immediately
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Brost, Matthew" <matthew.brost@intel.com>, "Harrison, John C"
+ <john.c.harrison@intel.com>
+References: <20250211004702.1872837-1-daniele.ceraolospurio@intel.com>
+ <SJ1PR11MB6204F3EF51FC309DADA9782B81FD2@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Content-Language: en-US
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+In-Reply-To: <SJ1PR11MB6204F3EF51FC309DADA9782B81FD2@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0PR03CA0191.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::16) To PH7PR11MB7605.namprd11.prod.outlook.com
+ (2603:10b6:510:277::5)
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|PH7PR11MB6404:EE_
+X-MS-Office365-Filtering-Correlation-Id: bf27e67b-2410-4552-a267-08dd4abe9841
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dUZReW9HSU9BSStsczFXbzJQeTltWlVIK0dONTk0UjJPaE4xZ0s4Nmc2eG5P?=
+ =?utf-8?B?WlBOYldQbUt1OWVTcDBOU1FCdjNqb3J3eWJZYzNKTkRucmdkUnYxN2FFYjVk?=
+ =?utf-8?B?bGhwNTRyeitCeEFBTHJjczcvMkxnc01vaDNCK2VkQ21PNXpQNVRpeFp0RzFJ?=
+ =?utf-8?B?MStkYjYyRm9ZdEg1b04yYm8wOFV4L09JdGZ0T09kdmtZR3FsMjNWWGFwbkxJ?=
+ =?utf-8?B?anIzS0MyTy8rR1podk5xc2ppcUw5UHArTjNBTW9ldWJmZVRRYlFWQnF0YVFW?=
+ =?utf-8?B?Um9oTytzNFBwamZaZWhoSytOTGJVOGFIdU5DYjJuRG1DK0FQRGR6TSsyT3RO?=
+ =?utf-8?B?Qk5wcDl2b3FhTGZMZ3NUdlVLVWEzZmZSRjBVK0h4U3JxTmdNdEJhTXdESHIr?=
+ =?utf-8?B?N0hmT2xEVVJYSDUyY2cwQlg1SzhkaUM1RGs4MXNvQXVRUkJZVk5vbkFrMTNP?=
+ =?utf-8?B?SDdiMTNHeW8veUFVUDRFSUxYUjgzS1IrdExrZCtjS0xzaUpyeDU3VjdXbmJR?=
+ =?utf-8?B?ZWVYSmxsVm9PTjBQZGxWMDB6RFRaRzRJazBsejV0NVdKazc4WjArQ2dzY1Bw?=
+ =?utf-8?B?SDdIMkVQclVUb0g5cVdINUhITHhHMy9zWFdndHl0dTlOU0s1V3dKUHpPSnd4?=
+ =?utf-8?B?RXRqd2gxTW1GRmNRd3VOTWN3aFdVaGxrYUpZVkduZU1OOFNEdlorcnRVdGxN?=
+ =?utf-8?B?V1pSY3BLSTN2enVsUTR3QldJdnlGS3VaamxwT0R4QnM4MmhpUzFBeThSVmJM?=
+ =?utf-8?B?bUJuMDZQaDlhc2dVd2hTNTlZUEJNOUV3ZlRJSTRabFRwY1FpbVRid01Yd1Z2?=
+ =?utf-8?B?TVZjeTBPYjJ1K2JwNlc5YkE4VTFiM2ZQZWFRZ3hyZjdmVGlOV2x1N2JpR2or?=
+ =?utf-8?B?bTJiOEVjbitFUGloYUd0eXBkZGhLWVExbTUwZGtPcXZ4R1Z1ZFZzbjBEY1JE?=
+ =?utf-8?B?RURyU2VCbXpOUzJxU0F3R1kxZnVxbUtTY1R2RUVYMjNuMmoxNmE3MUNoMnF5?=
+ =?utf-8?B?RHppOUIzbTAvakU1aGNXSUdzZ1drWEM1Rlo5dGdVMmlHbTEvZHhpZUxlNDJ0?=
+ =?utf-8?B?eDl6WVpxSFF2bUkvaFhIN0krd1F3RlpOenJZQVc3aDNLT0doc2lNdTE2L1pw?=
+ =?utf-8?B?em92U2IwN3VpZk1lai9tRnh2cE9rMlR2Vk9rL0hrSkIyMnBoRW1ScjhlTTda?=
+ =?utf-8?B?Q1d5d2N3MWllM1J0QjBCRG5KQ01ZMUZJdmwyUWRGQWk1S25UWjVnVUdhS0JX?=
+ =?utf-8?B?enRqK0ZlMEtmY3lTZkUvSXVaczZ4NytLRklJTytlWm9ZenExR0tkSnhOcGo4?=
+ =?utf-8?B?REYyRWpEWjREMnVIZW9sMzhOQnJaVUlKejh5KzRUUnJxenRQWE1iVmJlZEtC?=
+ =?utf-8?B?c3VxdC96d05reDB6YkFMaEhUM3J6c1MxbnFkMFRGU2FiWitYWUtkMG0va3NM?=
+ =?utf-8?B?eUl3KzBZNE8wZXN6dldDOVZ3MkJaMmtiZlJuZmZKMjQ2YXkzK3pBaGxuUEpr?=
+ =?utf-8?B?TS9qUHMxS0RtckM0TmYrWjdLOXdEbDVtUXZqdnJSUThOZW5ZUFR1V0lLZFpw?=
+ =?utf-8?B?WEpMVFI3WWxBczV3RjdldC8vUkJnR0dWMmdUVGZ2bmk4b1JnNmJLcUlTc0JB?=
+ =?utf-8?B?V3lvSHgvclF1S09NcnN5TS9Wd1BEbTRPSHl3QXA0SWRmeCtXK3U1dUQvNmRj?=
+ =?utf-8?B?R3l6Z0JYbEc4b1FnRUFWa1BGalpNQzREb0lsbEhuaUZGd1NBTzVVc05jUU53?=
+ =?utf-8?B?cVp4aGRNUElRMmVOWVRLSk1hQW5TTmlKVWdWUXRpdVVoZUVoZU9QQUdWVFFW?=
+ =?utf-8?B?a05hNDNHRFE4UFVkeHU4MWpicHByOE9vZlNnZ3Uyemw4bCtSS3dPaXVZRXVK?=
+ =?utf-8?Q?jjwEcuNS7Jx7+?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cXF0cDhnOUdZTDFidFNDbXlDSDBvK2xzSGxtWThLRFRNU0ExU1FlY1dOcTRL?=
+ =?utf-8?B?WUUwc0d0UTRzdFBkaElYSXFzdTFZOFhpdk1DVzZiUUVOT3hoeU9yNytRZXht?=
+ =?utf-8?B?NlBsYmQySHRjdXpodHFPS0VWZnZNRHJkUk16VGRBRGUvam1PWWNjY0tYZHJC?=
+ =?utf-8?B?cndmOFRaR1llZWEvTlhCdUg5dmJrMC9zWVI4ZmJwYTNxZW9uSGxQWS96RXIv?=
+ =?utf-8?B?RnlyZzJNWWlzYW5HdXlQeXhwbDZQcUppYzlKZGYrcTh4UFBpa05PVTl4Y1Vx?=
+ =?utf-8?B?NitFaDgwRWFkdi92OWRQQUUxVGxobXBBOGtyMDA4ai9tMkV0YW5GREZ6alpV?=
+ =?utf-8?B?U1JvTlY0VUNZN282Q1VBVHZIN2NnWjlJcWg0RnRkWFRCaEtBR1hrNFdKd2l0?=
+ =?utf-8?B?VnBEY01sQXYvR2pxTmFvYmsybHRFVkhEbVQ0Qmg0RnI4NGF5Q0FjRElIOENo?=
+ =?utf-8?B?bUlkeXJFMzhyNkYyQThZazNyR0JSY0R3N0diaXlHL1VtdnEwMnpoVmZZbDZI?=
+ =?utf-8?B?NXcyTXE0Q3p1SDlNWHhZLzF5NGFoOXJWejEzc3lIUm1yYWNpREZuVWxXWGYw?=
+ =?utf-8?B?eDRMQndYNk02Q20rdGVuUXFKRjlSanFLOXNkREc1SDJGclBOZnpZKzhFamVE?=
+ =?utf-8?B?MGRXZmQxWnpLSEdpRVlrQ00yaTRiVW56WEkvRnZHZGFidFo1VDhlNDRWZ3VS?=
+ =?utf-8?B?ZTMzTitZMnBWM1RlU0FsRXdROUI0TU5lcXpFc25ROW8yUlN4c2tlMXRCUllr?=
+ =?utf-8?B?STJwWEV1UUVOQjNiOWNBYXZOQ3ZGZ0ZVYXNHQzBsMEx3TVhTT3dTTkp5ZmVP?=
+ =?utf-8?B?VDE4WEFwcjF2czBXZGNjbVRkRnkwMGg4cmdMM29ZSHFWblplVlNrN0Jtd0N3?=
+ =?utf-8?B?NlFoWG1GeVcwUlN4bGxTdllMNU9GWEN0U3JuSndhVXZWUGQ1UkpjN3MyK1du?=
+ =?utf-8?B?N2FzUVJlUWNENEFtYk1WT21iMDU4V3NlU0FEL3crMzRaVVRqN3lOM2dwTzJa?=
+ =?utf-8?B?S2g0UXNoTDJpTjJlVFZVTmJ3b1ZPSzF5c21mVnpDVG5BS0hCTDR3Rk9OZWtE?=
+ =?utf-8?B?NnZWeUhJY3lrb1ZzOHlNUE4raUFxcUg2azJvK3d4bzdyUEJnemdXbXpGb00z?=
+ =?utf-8?B?SzYxdUNVeGV2OWpDYit6MGFxNXU2akwwZkhoYVJQQ25kTkhwUGNmNWc5eWN4?=
+ =?utf-8?B?bW96Nk1ZREZSaEFvQzc3ZTNEUmtIUjJPdnlLRktwYlZBUmZSQ2lVdnpQa1Bh?=
+ =?utf-8?B?Ukd3Nm0rTVE0TC9pd01teTFWbm5LdkNza2hDYzI4bHI3clRXRGJzZFpTdXpU?=
+ =?utf-8?B?c3FVSmtZTGFzYzJQYXYwcUlZd1pVK0NKREMxOG1oZU5zT1ZEUGpCcVlZVnZ1?=
+ =?utf-8?B?NUFJYjJhVjBhVHVQTmJLMDBzMmhabW1aa2t4SWtWU3hOQVVkUEw5K2NzQ0dU?=
+ =?utf-8?B?MDdteVJEMklCUDdmdEJtWTh6QW1XK2pQbEd2elhyTnFlQnBDaTN1ZVhLYVZ1?=
+ =?utf-8?B?M0ZTNlJqWGlyLzMybXR4amYzOFNkV0ZFZ1pEODJUSU8xbTdDVFZ3TkJqM29l?=
+ =?utf-8?B?ejJGRXJ1OEJrSzQxRmN2R0dZUXgwekhDVlFxOVZyMi9CUElGcDRZbkFEQzNm?=
+ =?utf-8?B?UnFFbCtsc0F5RnNXTmJmMklUcWd1ZzAvcnRkWG52dEw5TGFOU1d3NGlBWlVu?=
+ =?utf-8?B?ZDBLWHJUeWEvaDdZVFNFcDNHS0pUVEpjUFZ1eVEzZERjdmN2K2tidmc4QU80?=
+ =?utf-8?B?SmppcndzRklpK3NqeVJTL3c4RFFtcllpMkxjNDltS1l1akZ5cFJibUdON1pk?=
+ =?utf-8?B?K2QvOWxWOFBHdkNxZ1ErZG82WVMxU2piT2lvaVVmTHE3ajlwVVduRmF6TXhj?=
+ =?utf-8?B?WWwyek41YnYzR2o3NjFFbFFLQjU5dkNIY21aOGk0amN5eXdBZXVLbUIvQTVU?=
+ =?utf-8?B?MndVQlkyV0h6V2ZDMnV3dnc2Y2NFcmVUNmhTNkpVZnExTkdiT25PdVI2bFNp?=
+ =?utf-8?B?L1BrRnJicEpkMWdBa25sdFkrbXVWWFpIb0EwZEkvaTQ3VjRMdnpKbDJUMlBn?=
+ =?utf-8?B?VzhwT1oxMDFHVmJFQVh5em5lM3F4NU9qZWtQYTBSbDUzQWQ0cXVDeVJxcGRn?=
+ =?utf-8?B?MmdlSXJKRU1KZjhKeTVlTkJiaTlPN2x5bXFiejg5Z0dVd2hVRU4vVTQ0cjdO?=
+ =?utf-8?B?aFE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf27e67b-2410-4552-a267-08dd4abe9841
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2025 17:07:41.6968 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: t4Q/Ia7tJaUeYxbCiGX9YGDhQkm9dEzW8XDD8aZxt/or7v2f9UM9EV7B4y7lZVyrYEdYJgNz3grwzDpqpdPg6s3I5BXyHmxaBhm7+wuGHr0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6404
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,240 +196,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 11 Feb 2025, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+
+
+On 2/11/2025 1:53 AM, Upadhyay, Tejas wrote:
+>
 >> -----Original Message-----
->> From: Nikula, Jani <jani.nikula@intel.com>
->> Sent: Tuesday, February 11, 2025 6:45 PM
->> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-
->> xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
->> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Kandpal, Suraj
->> <suraj.kandpal@intel.com>
->> Subject: Re: [PATCH 8/9] drm/i915/dpll: Accept intel_display as argument for
->> shared_dpll_init
+>> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Daniele
+>> Ceraolo Spurio
+>> Sent: Tuesday, February 11, 2025 6:17 AM
+>> To: intel-xe@lists.freedesktop.org
+>> Cc: Ceraolo Spurio, Daniele <daniele.ceraolospurio@intel.com>; Brost,
+>> Matthew <matthew.brost@intel.com>; Harrison, John C
+>> <john.c.harrison@intel.com>
+>> Subject: [PATCH] drm/xe/guc: Escalate GuC load failure immediately
 >>
->> On Tue, 11 Feb 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
->> > Use intel_display as an argument for intel_shared_dpll_init() and
->> > replace drm_i915_private in function wherever possible.
->> > While at it prefer using display->platform.xx over IS_PLATFORM.
->> >
->> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> > ---
->> >  .../drm/i915/display/intel_display_driver.c   |  2 +-
->> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 49
->> > ++++++++++---------  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |
->> > 3 +-
->> >  3 files changed, 27 insertions(+), 27 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c
->> > b/drivers/gpu/drm/i915/display/intel_display_driver.c
->> > index 978f530c810e..852f1129a058 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
->> > @@ -448,7 +448,7 @@ int intel_display_driver_probe_nogem(struct
->> intel_display *display)
->> >     }
->> >
->> >     intel_plane_possible_crtcs_init(display);
->> > -   intel_shared_dpll_init(i915);
->> > +   intel_shared_dpll_init(display);
->> >     intel_fdi_pll_freq_update(i915);
->> >
->> >     intel_update_czclk(i915);
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> > index f94da1ffc8ce..26b6b9372fa3 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> > @@ -2042,8 +2042,8 @@ static void bxt_ddi_pll_enable(struct
->> > intel_display *display,  {
->> >     const struct bxt_dpll_hw_state *hw_state = &dpll_hw_state->bxt;
->> >     enum port port = (enum port)pll->info->id; /* 1:1 port->PLL mapping
->> */
->> > -   enum dpio_phy phy;
->> > -   enum dpio_channel ch;
->> > +   enum dpio_phy phy = DPIO_PHY0;
->> > +   enum dpio_channel ch = DPIO_CH0;
+>> When the Xe was first introduced, we intentionally avoided escalating GuC
+>> load failures, to not abort mid-probe. Xe is now mature enough and we
+>> gracefully handle probe failures, so we can start escalating immediately.
 >>
->> Unrelated change, please drop.
+>> Note that even without this patch the probe is still aborted because the
+>> attempt to enable CTs after GuC load will fail and that failure is already
+>> escalated.
 >>
->
-> The problem is by dropping these changes I am not able to build the kernel and it throws the following warning because of which I had to add this
->
->
-> drivers/gpu/drm/i915/display/intel_dpll_mgr.c: In function _bxt_ddi_pll_enable_:
-> ./drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:240:56: error: _phy_ is used uninitialized [-Werror=uniniti
-> alized]
->   240 |         (BUILD_BUG_ON_ZERO(!__is_constexpr(__c_index)) +                        \
->       |                                                        ^
-> drivers/gpu/drm/i915/display/intel_dpll_mgr.c:2047:23: note: _phy_ was declared here
->  2047 |         enum dpio_phy phy;
->       |                       ^~~
-> In file included from ./drivers/gpu/drm/xe/compat-i915-headers/i915_reg_defs.h:6,
->                  from drivers/gpu/drm/i915/display/intel_display_reg_defs.h:9,
->                  from drivers/gpu/drm/i915/display/bxt_dpio_phy_regs.h:9,
->                  from drivers/gpu/drm/i915/display/intel_dpll_mgr.c:27:
-> ./drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:213:58: error: _ch_ is used uninitialized [-Werror=uninitia
-> lized]
->   213 | #define _PICK_EVEN(__index, __a, __b) ((__a) + (__index) * ((__b) - (__a)))
->       |                                                          ^
-> drivers/gpu/drm/i915/display/intel_dpll_mgr.c:2048:27: note: _ch_ was declared here
->  2048 |         enum dpio_channel ch;
+>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_guc.c | 10 +++++++---
+>>   1 file changed, 7 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c index
+>> 1619c0a52db9..13c3084c42c2 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc.c
+>> @@ -938,7 +938,7 @@ static s32 guc_pc_get_cur_freq(struct xe_guc_pc
+>> *guc_pc)  #endif
+>>   #define GUC_LOAD_TIME_WARN_MS      200
+>>
+>> -static void guc_wait_ucode(struct xe_guc *guc)
+>> +static int guc_wait_ucode(struct xe_guc *guc)
+>>   {
+>>   	struct xe_gt *gt = guc_to_gt(guc);
+>>   	struct xe_mmio *mmio = &gt->mmio;
+>> @@ -1045,6 +1045,8 @@ static void guc_wait_ucode(struct xe_guc *guc)
+>>   			  delta_ms, xe_guc_pc_get_act_freq(guc_pc),
+>> guc_pc_get_cur_freq(guc_pc),
+>>   			  before_freq, status, count);
+>>   	}
+>> +
+>> +	return load_done ? 0 : -EIO;
+> Do you see possibility of load_done to be -1 and you will return success here?
 
-Did you think to look into why this happens? I encourage you to always
-do that instead of just silencing the warning. You'll learn about C and
-the compiler.
+You're right, I'll change this to load_done == 1.
 
-It's quite interesting and subtle and deserves to be mentioned in the
-commit message.
-
-For i915.ko, bxt_port_to_phy_channel() is a regular function, and the
-compiler will likely assume it'll initialize the parameters. And it
-does.
-
-For xe.ko, bxt_port_to_phy_channel() is a static inline stub, and the
-compiler can be absolutely certain the parameters aren't initialized.
-
-So, why does this cause an error now? The above didn't change now!
-
-With IS_GEMINILAKE() || IS_BROXTON() the compiler can be sure it's false
-for xe.ko. The whole chain bxt_pll_mgr -> bxt_plls -> bxt_ddi_pll_funcs
--> bxt_ddi_pll_enable can be optimized away. It's unreachable.
-
-Not so with display->platform.geminilake ||
-display->platform.broxton. The compiler sees use of uninitialized
-variables.
-
-BR,
-Jani.
-
-
+Daniele
 
 >
-> Regards,
-> Suraj Kandpal
->
->> With that fixed,
+> Tejas
+>>   }
 >>
->> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+>>   static int __xe_guc_upload(struct xe_guc *guc) @@ -1077,14 +1079,16 @@
+>> static int __xe_guc_upload(struct xe_guc *guc)
+>>   		goto out;
 >>
+>>   	/* Wait for authentication */
+>> -	guc_wait_ucode(guc);
+>> +	ret = guc_wait_ucode(guc);
+>> +	if (ret)
+>> +		goto out;
 >>
->> >     u32 temp;
->> >
->> >     bxt_port_to_phy_channel(display, port, &phy, &ch); @@ -4302,40
->> > +4302,41 @@ static const struct intel_dpll_mgr adlp_pll_mgr = {
->> >
->> >  /**
->> >   * intel_shared_dpll_init - Initialize shared DPLLs
->> > - * @i915: i915 device
->> > + * @display: intel_display device
->> >   *
->> > - * Initialize shared DPLLs for @i915.
->> > + * Initialize shared DPLLs for @display.
->> >   */
->> > -void intel_shared_dpll_init(struct drm_i915_private *i915)
->> > +void intel_shared_dpll_init(struct intel_display *display)
->> >  {
->> > +   struct drm_i915_private *i915 = to_i915(display->drm);
->> >     const struct intel_dpll_mgr *dpll_mgr = NULL;
->> >     const struct dpll_info *dpll_info;
->> >     int i;
->> >
->> > -   mutex_init(&i915->display.dpll.lock);
->> > +   mutex_init(&display->dpll.lock);
->> >
->> > -   if (DISPLAY_VER(i915) >= 14 || IS_DG2(i915))
->> > +   if (DISPLAY_VER(display) >= 14 || display->platform.dg2)
->> >             /* No shared DPLLs on DG2; port PLLs are part of the PHY */
->> >             dpll_mgr = NULL;
->> > -   else if (IS_ALDERLAKE_P(i915))
->> > +   else if (display->platform.alderlake_p)
->> >             dpll_mgr = &adlp_pll_mgr;
->> > -   else if (IS_ALDERLAKE_S(i915))
->> > +   else if (display->platform.alderlake_s)
->> >             dpll_mgr = &adls_pll_mgr;
->> > -   else if (IS_DG1(i915))
->> > +   else if (display->platform.dg1)
->> >             dpll_mgr = &dg1_pll_mgr;
->> > -   else if (IS_ROCKETLAKE(i915))
->> > +   else if (display->platform.rocketlake)
->> >             dpll_mgr = &rkl_pll_mgr;
->> > -   else if (DISPLAY_VER(i915) >= 12)
->> > +   else if (DISPLAY_VER(display) >= 12)
->> >             dpll_mgr = &tgl_pll_mgr;
->> > -   else if (IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915))
->> > +   else if (display->platform.jasperlake ||
->> > +display->platform.elkhartlake)
->> >             dpll_mgr = &ehl_pll_mgr;
->> > -   else if (DISPLAY_VER(i915) >= 11)
->> > +   else if (DISPLAY_VER(display) >= 11)
->> >             dpll_mgr = &icl_pll_mgr;
->> > -   else if (IS_GEMINILAKE(i915) || IS_BROXTON(i915))
->> > +   else if (display->platform.geminilake || display->platform.broxton)
->> >             dpll_mgr = &bxt_pll_mgr;
->> > -   else if (DISPLAY_VER(i915) == 9)
->> > +   else if (DISPLAY_VER(display) == 9)
->> >             dpll_mgr = &skl_pll_mgr;
->> > -   else if (HAS_DDI(i915))
->> > +   else if (HAS_DDI(display))
->> >             dpll_mgr = &hsw_pll_mgr;
->> >     else if (HAS_PCH_IBX(i915) || HAS_PCH_CPT(i915))
->> >             dpll_mgr = &pch_pll_mgr;
->> > @@ -4346,20 +4347,20 @@ void intel_shared_dpll_init(struct
->> drm_i915_private *i915)
->> >     dpll_info = dpll_mgr->dpll_info;
->> >
->> >     for (i = 0; dpll_info[i].name; i++) {
->> > -           if (drm_WARN_ON(&i915->drm,
->> > -                           i >= ARRAY_SIZE(i915-
->> >display.dpll.shared_dplls)))
->> > +           if (drm_WARN_ON(display->drm,
->> > +                           i >= ARRAY_SIZE(display->dpll.shared_dplls)))
->> >                     break;
->> >
->> >             /* must fit into unsigned long bitmask on 32bit */
->> > -           if (drm_WARN_ON(&i915->drm, dpll_info[i].id >= 32))
->> > +           if (drm_WARN_ON(display->drm, dpll_info[i].id >= 32))
->> >                     break;
->> >
->> > -           i915->display.dpll.shared_dplls[i].info = &dpll_info[i];
->> > -           i915->display.dpll.shared_dplls[i].index = i;
->> > +           display->dpll.shared_dplls[i].info = &dpll_info[i];
->> > +           display->dpll.shared_dplls[i].index = i;
->> >     }
->> >
->> > -   i915->display.dpll.mgr = dpll_mgr;
->> > -   i915->display.dpll.num_shared_dpll = i;
->> > +   display->dpll.mgr = dpll_mgr;
->> > +   display->dpll.num_shared_dpll = i;
->> >  }
->> >
->> >  /**
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
->> > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
->> > index 3d988f17f31d..caffb084830c 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
->> > @@ -35,7 +35,6 @@
->> >                  ((__pll) = &(__display)->dpll.shared_dplls[(__i)]) ; (__i)++)
->> >
->> >  enum tc_port;
->> > -struct drm_i915_private;
->> >  struct drm_printer;
->> >  struct intel_atomic_state;
->> >  struct intel_crtc;
->> > @@ -422,7 +421,7 @@ bool intel_dpll_get_hw_state(struct intel_display
->> > *display,  void intel_enable_shared_dpll(const struct intel_crtc_state
->> > *crtc_state);  void intel_disable_shared_dpll(const struct
->> > intel_crtc_state *crtc_state);  void
->> > intel_shared_dpll_swap_state(struct intel_atomic_state *state); -void
->> > intel_shared_dpll_init(struct drm_i915_private *i915);
->> > +void intel_shared_dpll_init(struct intel_display *display);
->> >  void intel_dpll_update_ref_clks(struct intel_display *display);  void
->> > intel_dpll_readout_hw_state(struct intel_display *display);  void
->> > intel_dpll_sanitize_state(struct intel_display *display);
+>>   	xe_uc_fw_change_status(&guc->fw, XE_UC_FIRMWARE_RUNNING);
+>>   	return 0;
 >>
+>>   out:
+>>   	xe_uc_fw_change_status(&guc->fw, XE_UC_FIRMWARE_LOAD_FAIL);
+>> -	return 0	/* FIXME: ret, don't want to stop load currently */;
+>> +	return ret;
+>>   }
+>>
+>>   static int vf_guc_min_load_for_hwconfig(struct xe_guc *guc)
 >> --
->> Jani Nikula, Intel
+>> 2.43.0
 
--- 
-Jani Nikula, Intel
