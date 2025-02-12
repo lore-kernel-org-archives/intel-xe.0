@@ -4,59 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2699C021A4
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 17:12:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85887C02198
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 17:17:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4C8710E945;
-	Wed, 12 Feb 2025 17:12:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34A0810E93E;
+	Wed, 12 Feb 2025 17:17:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RLm5jb7W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="It2wo9d6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3552F10E944;
- Wed, 12 Feb 2025 17:12:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 259CE10E93E
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Feb 2025 17:17:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739380367; x=1770916367;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=SDmCsRHYKXwrLOX/IDQTwg6DdKXv4jUHN57zXfrfmSw=;
- b=RLm5jb7Wpg5HgAG//J9fp05ATtbO3sadD/NnKUEwq0rwk/0iaWnNELf2
- lV+N8MfquEgKqiiFZ92pUkOe4SZAcgWU4fV82Sdtd7BkQ2LqQ1XP2syE5
- 8tCfttSXmEOA+v65S/+PD2HQzSuR0xYqyHuLJkQzCh5R3HeGrOCtdlDmA
- Np4hPdsux39kpS9PBl1TccuC/vI1Vgg4Ru5sPq8TxWiy6O4rFRkSNn5Wv
- J40VUBey9aNHNNmOl4kcOcwE33+9rGj9ZAsz2NEd3b4BSsouBRTdzbBLb
- W+Q9ONujHiMP6B4922Tx/a1KQOhhCqIL2lt+cKTfX/JXf6Ap5/sVii1bx Q==;
-X-CSE-ConnectionGUID: OtA6YGv/Tt+b8Xlsv+GyFw==
-X-CSE-MsgGUID: LmR8Mt3mQ+O9dAKZWqvaiA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="62518787"
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="62518787"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 09:12:46 -0800
-X-CSE-ConnectionGUID: GTnaMyA4SWWv9VM4AopTPw==
-X-CSE-MsgGUID: DtxUdf32Q2KVpluoEmm+lQ==
+ t=1739380622; x=1770916622;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=B8UnLZM7DIIzahTf+ZuPE5KtvTuM8L5n+4lnHh3b1FE=;
+ b=It2wo9d6vT7/6yvS/DHbTrmOECnRgI564Rit2d1HW7whD7oE78AgRdtX
+ y6QEyLZFvMxbXunXIVB6iytNMjBKmqJ5UdLL+qDdN18J0+mC6yCMnTe16
+ uuT0IL/m8830HvCBj4HQSjyMfyqhhrWUU4gNK5DFjflzbdEq/SaPFKeS6
+ qKbyakrupAltRGl1bxJzs8vA9CaVY+3ashBBgriUTBuNX3FiGtXQyc6N8
+ X1XJAZFJGZ1tPla+hawxU93vIRV530WDrL9DXeRz8n0FEQu/U8NtTq3aP
+ /bYaBfaROWpcYTRTNCb2oQF+pG9zzTOA1JRewlvV1b1RkNPa5uDqkFvZL w==;
+X-CSE-ConnectionGUID: GHwRh3NUTHCCKuUgS8jOSg==
+X-CSE-MsgGUID: ArP6V5hYTAycTC3CNIvuMg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="57454528"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="57454528"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 09:17:02 -0800
+X-CSE-ConnectionGUID: 89zqDR9VQquGwWKeFD1Bhg==
+X-CSE-MsgGUID: oug/z+VvStWfAWGnWZvixQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="117823946"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.167])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 09:12:45 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- I915-ci-infra@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: =?utf-8?Q?=E2=9C=97?= Xe.CI.BAT: failure for Improve
- type-safety on POWER_DOMAIN_*() macros
-In-Reply-To: <173937954545.145254.15387044598135714895@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250212132658.323640-1-gustavo.sousa@intel.com>
- <173937676007.1347988.12791820742293922574@b555e5b46a47>
- <173937954545.145254.15387044598135714895@intel.com>
-Date: Wed, 12 Feb 2025 19:12:41 +0200
-Message-ID: <877c5vytme.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="113088239"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 09:17:01 -0800
+Date: Wed, 12 Feb 2025 09:17:00 -0800
+Message-ID: <857c5v2icz.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v2] drm/xe/oa: Allow oa_exponent value of 0
+In-Reply-To: <20250212162610.1432159-1-umesh.nerlige.ramappa@intel.com>
+References: <20250212162610.1432159-1-umesh.nerlige.ramappa@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,69 +69,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 12 Feb 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Patchwork (2025-02-12 13:12:40-03:00)
->>== Series Details ==
->>
->>Series: Improve type-safety on POWER_DOMAIN_*() macros
->>URL   : https://patchwork.freedesktop.org/series/144727/
->>State : failure
->>
->>== Summary ==
->>
->>CI Bug Log - changes from xe-2647-a05c910166dda7fc8b510e5c9771c3bed3fbb906_BAT -> xe-pw-144727v1_BAT
->>====================================================
->>
->>Summary
->>-------
->>
->>  **FAILURE**
->>
->>  Serious unknown changes coming with xe-pw-144727v1_BAT absolutely need to be
->>  verified manually.
->>  
->>  If you think the reported changes have nothing to do with the changes
->>  introduced in xe-pw-144727v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->>  to document this new failure mode, which will reduce false positives in CI.
->>
->>  
->>
->>Participating hosts (9 -> 8)
->>------------------------------
->>
->>  Missing    (1): bat-adlp-vm 
->>
->>Possible new issues
->>-------------------
->>
->>  Here are the unknown changes that may have been introduced in xe-pw-144727v1_BAT:
->>
->>### IGT changes ###
->>
->>#### Possible regressions ####
->>
->>  * igt@fbdev@info:
->>    - bat-bmg-1:          [PASS][1] -> [TIMEOUT][2]
->>   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2647-a05c910166dda7fc8b510e5c9771c3bed3fbb906/bat-bmg-1/igt@fbdev@info.html
->>   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144727v1/bat-bmg-1/igt@fbdev@info.html
+On Wed, 12 Feb 2025 08:26:10 -0800, Umesh Nerlige Ramappa wrote:
 >
+> OA exponent value of 0 is a valid value for periodic reports. Allow user
+> to pass 0 for the OA sampling interval since it gets converted to 2 gt
+> clock ticks.
 >
-> Hi CI Team,
->
-> The changes in this series are non-functional. This failure should not
-> be related to this series.
->
-> Could you re-report, please?
+> v2: Update the check in xe_oa_stream_init as well (Ashutosh)
 
-There's a non-functional change, and the report might be spot on!
-
-BR,
-Jani.
-
-
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 >
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_oa.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> index a692dffcb638..9c95ad742f7d 100644
+> --- a/drivers/gpu/drm/xe/xe_oa.c
+> +++ b/drivers/gpu/drm/xe/xe_oa.c
+> @@ -1690,7 +1690,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+>	stream->oa_buffer.format = &stream->oa->oa_formats[param->oa_format];
+>
+>	stream->sample = param->sample;
+> -	stream->periodic = param->period_exponent > 0;
+> +	stream->periodic = param->period_exponent >= 0;
+>	stream->period_exponent = param->period_exponent;
+>	stream->no_preempt = param->no_preempt;
+>	stream->wait_num_reports = param->wait_num_reports;
+> @@ -2025,7 +2025,7 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
+>		goto err_exec_q;
+>	}
+>
+> -	if (param.period_exponent > 0) {
+> +	if (param.period_exponent >= 0) {
+>		u64 oa_period, oa_freq_hz;
+>
+>		/* Requesting samples from OAG buffer is a privileged operation */
 > --
-> Gustavo Sousa
-
--- 
-Jani Nikula, Intel
+> 2.34.1
+>
