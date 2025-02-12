@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED6BDC021B3
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 13:15:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4DBEC021B6
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 13:15:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F4F610E89C;
-	Wed, 12 Feb 2025 13:15:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47BF910E894;
+	Wed, 12 Feb 2025 13:15:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EEHYkBP2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M3LSgqPS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E83A10E897;
- Wed, 12 Feb 2025 13:15:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0B3510E894;
+ Wed, 12 Feb 2025 13:15:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739366102; x=1770902102;
+ t=1739366110; x=1770902110;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Z8HaHNA/EvnZCI6bP3CQij/7XIITDrWKT0BQwesX79E=;
- b=EEHYkBP235GzEX5DcrajtlIaMeJNZD1314FJuesnazisvRtokZP3XCxQ
- CL43WV5AgbySAk85akXzr3Wg5JM84S2DJENYAIxsQJd2Z5wgUBRbihjsH
- IKTdvjUBIWWhEmYItLr7Ftm9sKl0i9YaG55BMLEnRfWl5gVEYyqi3fa3u
- 5vsV7MkUwN8s4S0jnDmT091EQ7Vt2HAnlWO97A1n91JESGyYSHm2h45i8
- 8C122puyHXo1/jEZvXR2uLg5HyEqyMjHF+MRb4efChi5NUShuTunQ0+U+
- Xv/E7fNke1ucLDvx2H3BhvqJDMt/WdT+SMP02CAWiTPxAo6tCauSA5R4B w==;
-X-CSE-ConnectionGUID: da1eJv9xSjyeVO7i7mMGtQ==
-X-CSE-MsgGUID: q6WHlSKiRw6EjdqYnWhpjA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="51451567"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="51451567"
+ bh=epvBaMwS+n7+h0pTkNBQWTF0M0xKSlEK3eNhXXCXc2A=;
+ b=M3LSgqPSlSdYsWoyAmnfYQfnfwvWDKhDqmNrKsoAT7RwbswQgo6PolWC
+ rCtODYoH7lkJNz0wzAhcC7O+vhzDjKKbXfMV5OqCBYtgt0lV0FvshRct0
+ cqOm17NV2qkIdTLxdAjNlPQYrI1hlIJaOSYC6Qff/PvkIG2BsPd0joMb/
+ M/yhzUXGdmieykK8aknFvUFg6uoj2ROhhqwQR3XtqEBsC4zcTdKl/yI9a
+ kVIsQ+Ngdj9IVwdJOTjaJG+qWzrpURSPNuVSBw5QcOc9OE+FP1SZMmJk2
+ sAD5UmbKXphfTEcG3ekiacBD0s6G/qOVfINayElomM+zdSg6wou2FhCKC g==;
+X-CSE-ConnectionGUID: pXWUnizLQtm05p/xTOCWig==
+X-CSE-MsgGUID: xsIGbieESm64K225h6CxVw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="51451582"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="51451582"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 05:15:02 -0800
-X-CSE-ConnectionGUID: 7/momobnRYO4YDvSqOtH1g==
-X-CSE-MsgGUID: RLc999q8RLmi4nw+IxUzKw==
+ 12 Feb 2025 05:15:09 -0800
+X-CSE-ConnectionGUID: 76y6UMFqRgigoh2tiXIv7Q==
+X-CSE-MsgGUID: mN25ZK0qRCCkoWpRy9xeNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="112767865"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="112767929"
 Received: from carterle-desk.ger.corp.intel.com (HELO
  vgovind2-mobl3.intel.com) ([10.245.246.178])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 05:15:00 -0800
+ 12 Feb 2025 05:15:07 -0800
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, vinod.govindapillai@intel.com,
  ville.syrjala@intel.com, santhosh.reddy.guddati@intel.com,
  jani.saarinen@intel.com
-Subject: [PATCH v7 5/7] drm/i915/xe3: avoid calling fbc activate if fbc is
- active
-Date: Wed, 12 Feb 2025 15:14:18 +0200
-Message-ID: <20250212131420.60026-6-vinod.govindapillai@intel.com>
+Subject: [PATCH v7 7/7] drm/i915/xe3: disable FBC if PSR2 selective fetch is
+ enabled
+Date: Wed, 12 Feb 2025 15:14:20 +0200
+Message-ID: <20250212131420.60026-8-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250212131420.60026-1-vinod.govindapillai@intel.com>
 References: <20250212131420.60026-1-vinod.govindapillai@intel.com>
@@ -72,51 +72,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If FBC is already active, we don't need to call FBC activate
-routine again. This is more relevant in case of dirty rect
-support in FBC. Xe doesn't support legacy fences. Hence fence
-programming also not required as part of this fbc_hw_activate.
-Any FBC related register updates done after enabling the dirty
-rect support in xe3 will trigger nuke by FBC HW. So avoid
-calling fbc activate routine again if the FBC is already active.
+It is not recommended to have both FBC dirty rect and PSR2
+selective fetch be enabled at the same time. If PSR2 selective
+fetch or panel replay is on, mark FBC as not possible.
 
-The front buffer rendering sequence will call intel_fbc_flush()
-and which will call intel_fbc_nuke() or intel_fbc_activate()
-based on FBC status explicitly and won't get impacted by this
-change.
+v2: fix the condition to disable FBC if PSR2 enabled (Jani)
 
-v2: use HAS_FBC_DIRTY_RECT()
-    move this functionality within intel_fbc_activate()
+v3: use HAS_FBC_DIRTY_RECT()
 
+Bspec: 68881
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/gpu/drm/i915/display/intel_fbc.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index df05904bac8a..951dc81b7b97 100644
+index 8c92953b53f5..ac70955444ea 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbc.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -739,8 +739,19 @@ static void intel_fbc_nuke(struct intel_fbc *fbc)
- 
- static void intel_fbc_activate(struct intel_fbc *fbc)
- {
-+	struct intel_display *display = fbc->display;
-+
- 	lockdep_assert_held(&fbc->lock);
- 
-+	/*
-+	 * When dirty rectangle is enabled, any updates to FBC registers will
-+	 * trigger nuke. So avoid calling intel_fbc_activate if fbc is already
-+	 * active and for XE3 cases. Xe doesn't support legacy fences. So
-+	 * no need to update the fences as well.
-+	 */
-+	if (HAS_FBC_DIRTY_RECT(display) && fbc->active)
-+		return;
-+
- 	intel_fbc_hw_activate(fbc);
- 	intel_fbc_nuke(fbc);
- 
+@@ -1438,9 +1438,14 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+ 	 * Display 12+ is not supporting FBC with PSR2.
+ 	 * Recommendation is to keep this combination disabled
+ 	 * Bspec: 50422 HSD: 14010260002
++	 *
++	 * In Xe3, PSR2 selective fetch and FBC dirty rect feature cannot
++	 * coexist. So if PSR2 selective fetch is supported then mark that
++	 * FBC is not supported.
++	 * TODO: Need a logic to decide between PSR2 and FBC Dirty rect
+ 	 */
+-	if (IS_DISPLAY_VER(display, 12, 14) && crtc_state->has_sel_update &&
+-	    !crtc_state->has_panel_replay) {
++	if ((IS_DISPLAY_VER(display, 12, 14) || HAS_FBC_DIRTY_RECT(display)) &&
++	    crtc_state->has_sel_update && !crtc_state->has_panel_replay) {
+ 		plane_state->no_fbc_reason = "PSR2 enabled";
+ 		return 0;
+ 	}
 -- 
 2.43.0
 
