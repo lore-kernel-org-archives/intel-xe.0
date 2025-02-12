@@ -4,54 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74F16C021A4
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 17:11:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2699C021A4
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 17:12:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28B4510E93E;
-	Wed, 12 Feb 2025 17:11:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4C8710E945;
+	Wed, 12 Feb 2025 17:12:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iQBgyVN6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RLm5jb7W";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C68C610E93C;
- Wed, 12 Feb 2025 17:11:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3552F10E944;
+ Wed, 12 Feb 2025 17:12:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739380295; x=1770916295;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=ID16G8gIngI5QGuujH4/QGs3veKiO4zi7CYjIa4n5wE=;
- b=iQBgyVN62c7XD6t9G086o+2iFLiUlxss3fE/wP06c2iziAjPgUgWkFIw
- KDD5QZrywggW++EjZhUg4klScIxw1tUutidFkNCf4VRE5GeiqqPb6dl0K
- 8SSlIILE3fXviw75B3lyhasOHVk1h8lMmPyi/WjupNDxvihUJUDZHvpiZ
- a41A1P8BcwNP9dBs4l3RGdk70kLVmyNBGGV0YEj/danT7fabTAS45ZqGR
- tyDeaBSL9qIQNiCxaN9ain7f/oaqqCaM2BPESw/4s3bjBjwc4JMjEb0rI
- GbKE50B0oo3EYTRPCLv0J+wkEp0wGe8VXw/b18BgtrwpG2lMZ78pVmq1a w==;
-X-CSE-ConnectionGUID: J1+3XfHcQ3qYP4ZCo0idVg==
-X-CSE-MsgGUID: oz6Tl/bRS8al6AyIubIsFQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="40169552"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="40169552"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 09:11:35 -0800
-X-CSE-ConnectionGUID: EysWy76IQG+6RmM2eMqFzA==
-X-CSE-MsgGUID: Jjd98S3KT5CFtgh6g1nG2w==
+ t=1739380367; x=1770916367;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=SDmCsRHYKXwrLOX/IDQTwg6DdKXv4jUHN57zXfrfmSw=;
+ b=RLm5jb7Wpg5HgAG//J9fp05ATtbO3sadD/NnKUEwq0rwk/0iaWnNELf2
+ lV+N8MfquEgKqiiFZ92pUkOe4SZAcgWU4fV82Sdtd7BkQ2LqQ1XP2syE5
+ 8tCfttSXmEOA+v65S/+PD2HQzSuR0xYqyHuLJkQzCh5R3HeGrOCtdlDmA
+ Np4hPdsux39kpS9PBl1TccuC/vI1Vgg4Ru5sPq8TxWiy6O4rFRkSNn5Wv
+ J40VUBey9aNHNNmOl4kcOcwE33+9rGj9ZAsz2NEd3b4BSsouBRTdzbBLb
+ W+Q9ONujHiMP6B4922Tx/a1KQOhhCqIL2lt+cKTfX/JXf6Ap5/sVii1bx Q==;
+X-CSE-ConnectionGUID: OtA6YGv/Tt+b8Xlsv+GyFw==
+X-CSE-MsgGUID: LmR8Mt3mQ+O9dAKZWqvaiA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="62518787"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="62518787"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 09:12:46 -0800
+X-CSE-ConnectionGUID: GTnaMyA4SWWv9VM4AopTPw==
+X-CSE-MsgGUID: DtxUdf32Q2KVpluoEmm+lQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="112737393"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="117823946"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.167])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 09:11:32 -0800
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 09:12:45 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/i915/display: Make POWER_DOMAIN_*() always
- result in enum intel_display_power_domain
-In-Reply-To: <20250212132658.323640-3-gustavo.sousa@intel.com>
+ I915-ci-infra@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: =?utf-8?Q?=E2=9C=97?= Xe.CI.BAT: failure for Improve
+ type-safety on POWER_DOMAIN_*() macros
+In-Reply-To: <173937954545.145254.15387044598135714895@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250212132658.323640-1-gustavo.sousa@intel.com>
- <20250212132658.323640-3-gustavo.sousa@intel.com>
-Date: Wed, 12 Feb 2025 19:11:29 +0200
-Message-ID: <87bjv7ytoe.fsf@intel.com>
+ <173937676007.1347988.12791820742293922574@b555e5b46a47>
+ <173937954545.145254.15387044598135714895@intel.com>
+Date: Wed, 12 Feb 2025 19:12:41 +0200
+Message-ID: <877c5vytme.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,41 +72,68 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Wed, 12 Feb 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> In the hope of contributing to type safety in our code, let's ensure
-> that the type returned by the POWER_DOMAIN_*() macros is always of type
-> enum intel_display_power_domain.
+> Quoting Patchwork (2025-02-12 13:12:40-03:00)
+>>== Series Details ==
+>>
+>>Series: Improve type-safety on POWER_DOMAIN_*() macros
+>>URL   : https://patchwork.freedesktop.org/series/144727/
+>>State : failure
+>>
+>>== Summary ==
+>>
+>>CI Bug Log - changes from xe-2647-a05c910166dda7fc8b510e5c9771c3bed3fbb906_BAT -> xe-pw-144727v1_BAT
+>>====================================================
+>>
+>>Summary
+>>-------
+>>
+>>  **FAILURE**
+>>
+>>  Serious unknown changes coming with xe-pw-144727v1_BAT absolutely need to be
+>>  verified manually.
+>>  
+>>  If you think the reported changes have nothing to do with the changes
+>>  introduced in xe-pw-144727v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>>  to document this new failure mode, which will reduce false positives in CI.
+>>
+>>  
+>>
+>>Participating hosts (9 -> 8)
+>>------------------------------
+>>
+>>  Missing    (1): bat-adlp-vm 
+>>
+>>Possible new issues
+>>-------------------
+>>
+>>  Here are the unknown changes that may have been introduced in xe-pw-144727v1_BAT:
+>>
+>>### IGT changes ###
+>>
+>>#### Possible regressions ####
+>>
+>>  * igt@fbdev@info:
+>>    - bat-bmg-1:          [PASS][1] -> [TIMEOUT][2]
+>>   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2647-a05c910166dda7fc8b510e5c9771c3bed3fbb906/bat-bmg-1/igt@fbdev@info.html
+>>   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144727v1/bat-bmg-1/igt@fbdev@info.html
 >
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.h | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> index 3caa3f517a32..ab4c9a1e7e02 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -117,12 +117,13 @@ enum intel_display_power_domain {
->  	POWER_DOMAIN_INVALID = POWER_DOMAIN_NUM,
->  };
->  
-> -#define POWER_DOMAIN_PIPE(pipe) ((int)(pipe) + POWER_DOMAIN_PIPE_A)
-> +#define POWER_DOMAIN_PIPE(pipe) \
-> +	((enum intel_display_power_domain)((int)(pipe) +  1 + POWER_DOMAIN_PIPE_A))
-                                                        ^^^^^^^
+> Hi CI Team,
+>
+> The changes in this series are non-functional. This failure should not
+> be related to this series.
+>
+> Could you re-report, please?
 
-What's with the +1?
+There's a non-functional change, and the report might be spot on!
+
+BR,
+Jani.
 
 
->  #define POWER_DOMAIN_PIPE_PANEL_FITTER(pipe) \
-> -		((int)(pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A)
-> +	((enum intel_display_power_domain)((int)(pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A))
->  #define POWER_DOMAIN_TRANSCODER(tran) \
->  	((tran) == TRANSCODER_EDP ? POWER_DOMAIN_TRANSCODER_EDP : \
-> -	 (int)(tran) + POWER_DOMAIN_TRANSCODER_A)
-> +	 (enum intel_display_power_domain)((int)(tran) + POWER_DOMAIN_TRANSCODER_A))
->  
->  struct intel_power_domain_mask {
->  	DECLARE_BITMAP(bits, POWER_DOMAIN_NUM);
+>
+> --
+> Gustavo Sousa
 
 -- 
 Jani Nikula, Intel
