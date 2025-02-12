@@ -4,58 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E94F0C02198
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 16:38:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 101A0C02198
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 16:45:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B64DA10E921;
-	Wed, 12 Feb 2025 16:38:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC0D310E92D;
+	Wed, 12 Feb 2025 16:45:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P+f/z5i2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hJKkxBJI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F211F10E91C;
- Wed, 12 Feb 2025 16:38:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3AD710E92D;
+ Wed, 12 Feb 2025 16:45:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739378281; x=1770914281;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=p08tkTHtgsli0vuc5FFjl32m9lVgIKgWB5+I4hynDSw=;
- b=P+f/z5i2jPyH1bhXtK3vf5Jr81E6EVwprejDPgjYkq/D2w4ametcFzvN
- uNFrrclYay/BquKZWwnarNpUPVtq8IpAJcQK37Un6GB4aKTxpwaL+/vTY
- QXRTxaNVT8JdqypBtI0wVnOd/JmkkRCWMoQbWXwVDXargs4go/I8wy5bn
- Wm8t2t8bACT9pkEeP0hjjZGi7r+v8SR6jo+OpvSCDjyiBLJadrW9P4RkP
- ur5wmDDv6aEsH0frpydrAB4Su9EindkmMfcNmBe12lveVrb4Hdt0kF8JC
- X6a3guNO2lCSntj+zaTO6uBK1YMP+OL7TBQw6/5sigmjS2QKkKIvrsJ+5 Q==;
-X-CSE-ConnectionGUID: mbAHac3RTV6+8Yq/03QZPg==
-X-CSE-MsgGUID: rgRdfMSZTBacwknhhBfABw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="51033123"
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="51033123"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 08:38:01 -0800
-X-CSE-ConnectionGUID: EnGnmd9RSeavtRUoc8dw+A==
-X-CSE-MsgGUID: TQPpU+k2SUm6FGIvDkWSfg==
+ t=1739378708; x=1770914708;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Vh9RiYLtjhCeC0AoVDNpZyxCjBGzvep4m3ysYAn/s0g=;
+ b=hJKkxBJIK3ThpX1yG2Owt8+D1/d1RQyhRgM/xii2VxxWggkv6pFyAvyM
+ he8IotpVuPsdYd8Lwq6Ypo0RdhIGrvKNogyjm/BlVGi18wvccDlRlGS4h
+ icRP82OvzOZBn/JObaFeP73hcjlhguRKC4ogGrTquqjVZheUxV7EToaV7
+ k7ppnvxkDKJDFN9nXUYM8yaBpj0U3ZLgPjUEWKue6IImF5J/omYWJ0qS5
+ B8ymqcbTzcgIueRLvKpylw1145EYekxcLDBwKgq4acNuFtb54U1XXZmUl
+ 6izDF2nMbBzUllEdjolBS2vWXp69pYb7lTG0Sn/2pvR65Qqmy3uTDy33n w==;
+X-CSE-ConnectionGUID: Ujq33EzpRQmO6dZeA5hm9g==
+X-CSE-MsgGUID: 45Y8TzFcRoSZfN1neqmSyg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="62515159"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="62515159"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 08:45:07 -0800
+X-CSE-ConnectionGUID: YmosOCT4TlSwZuaJcCzbkQ==
+X-CSE-MsgGUID: ei4lPOcCQIKQQZ4VfBAPoQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="112835921"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.167])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 08:37:59 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 14/14] drm/i915/display: convert i915_pipestat_enable_mask()
- to struct intel_display
-Date: Wed, 12 Feb 2025 18:36:43 +0200
-Message-Id: <975b382c703cfb62f24643e40eac247b8e8bbea8.1739378096.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1739378095.git.jani.nikula@intel.com>
-References: <cover.1739378095.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="113082917"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 12 Feb 2025 08:45:05 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 12 Feb 2025 18:45:03 +0200
+Date: Wed, 12 Feb 2025 18:45:03 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v3 7/8] drm/i915/vrr: Check that the push send bit is
+ clear after delayed vblank
+Message-ID: <Z6zQD0wK4LjQGxMv@intel.com>
+References: <20250207223159.14132-8-ville.syrjala@linux.intel.com>
+ <20250210160711.24010-1-ville.syrjala@linux.intel.com>
+ <6e7cb456-7866-4063-8ad0-e7e1c2bcd72d@intel.com>
+ <Z6uLA_ZsQS-EIZt_@intel.com>
+ <ab7a1152-7b5d-42d3-88f3-f61efab2757b@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ab7a1152-7b5d-42d3-88f3-f61efab2757b@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,139 +74,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Going forward, struct intel_display is the main display device data
-pointer. Convert i915_pipestat_enable_mask() to struct intel_display,
-allowing further conversions elsewhere.
+On Wed, Feb 12, 2025 at 06:39:56PM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 2/11/2025 11:08 PM, Ville Syrjälä wrote:
+> > On Tue, Feb 11, 2025 at 12:38:47PM +0530, Nautiyal, Ankit K wrote:
+> >> On 2/10/2025 9:37 PM, Ville Syrjala wrote:
+> >>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >>>
+> >>> Since we don't do mailbox updates the push send bit
+> >>> should alwyas clear by the time the delay vblank fires
+> >>> and the flip completes. Check for that to make sure we
+> >>> haven't screwed up the sequencing/vblank evasion/etc.
+> >>>
+> >>> On the DSB path we should be able to guarantee this
+> >>> since we don't have to deal with any scheduler latencies
+> >>> and whatnot. I suppose unexpected DMA/memory latencies
+> >>> might be the only thing that might trip us up here.
+> >>>
+> >>> For the MMIO path we do always have a non-zero chance
+> >>> that vblank evasion fails (since we can't really guarantee
+> >>> anything about the scheduling behaviour). That could trip
+> >>> up this check, but that seems fine since we already print
+> >>> errors for other types of vblank evasion failures.
+> >>>
+> >>> Should the CPU vblank evasion actually fail, then the push
+> >>> send bit can still be set when the next commit happens. But
+> >>> both the DSB and MMIO paths should handle that situation
+> >>> gracefully.
+> >>>
+> >>> v2: Only check once instead of polling for two scanlines
+> >>>       since we should now be guaranteed to be past the
+> >>>       delayed vblank.
+> >>>       Also check in the MMIO path for good measure
+> >>> v3: Skip the push send check when VRR is enabled.
+> >>>       With joiner the secondary pipe's DSBs doen't have access
+> >>>       to the transcoder registers, and so doing this check
+> >>>       there triggers a reponse timeout error on the DSB. VRR
+> >>>       is not currently allowed when using joiner, so this will
+> >>>       prevent the bogus register access.
+> >>>
+> >>> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com> #v1
+> >>> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >>> ---
+> >>>    drivers/gpu/drm/i915/display/intel_color.c   |  1 +
+> >>>    drivers/gpu/drm/i915/display/intel_display.c |  4 +++
+> >>>    drivers/gpu/drm/i915/display/intel_vrr.c     | 34 ++++++++++++++++++++
+> >>>    drivers/gpu/drm/i915/display/intel_vrr.h     |  2 ++
+> >>>    4 files changed, 41 insertions(+)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> >>> index 4d8f6509cac4..cfe14162231d 100644
+> >>> --- a/drivers/gpu/drm/i915/display/intel_color.c
+> >>> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> >>> @@ -1991,6 +1991,7 @@ void intel_color_prepare_commit(struct intel_atomic_state *state,
+> >>>    	if (crtc_state->use_dsb) {
+> >>>    		intel_vrr_send_push(crtc_state->dsb_color_vblank, crtc_state);
+> >>>    		intel_dsb_wait_vblank_delay(state, crtc_state->dsb_color_vblank);
+> >>> +		intel_vrr_check_push_sent(crtc_state->dsb_color_vblank, crtc_state);
+> >>>    		intel_dsb_interrupt(crtc_state->dsb_color_vblank);
+> >>>    	}
+> >>>    
+> >>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> >>> index 0790b2a4583e..34434071a415 100644
+> >>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> >>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> >>> @@ -7737,6 +7737,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+> >>>    
+> >>>    			intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
+> >>>    			intel_dsb_wait_vblank_delay(state, new_crtc_state->dsb_commit);
+> >>> +			intel_vrr_check_push_sent(new_crtc_state->dsb_commit, new_crtc_state);
+> >>>    			intel_dsb_interrupt(new_crtc_state->dsb_commit);
+> >>>    		}
+> >>>    	}
+> >>> @@ -7886,6 +7887,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+> >>>    			intel_crtc_disable_flip_done(state, crtc);
+> >>>    
+> >>>    		intel_atomic_dsb_wait_commit(new_crtc_state);
+> >>> +
+> >>> +		if (!state->base.legacy_cursor_update && !new_crtc_state->use_dsb)
+> >>> +			intel_vrr_check_push_sent(NULL, new_crtc_state);
+> >>>    	}
+> >>>    
+> >>>    	/*
+> >>> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> >>> index adb51609d0a3..cac49319026d 100644
+> >>> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> >>> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> >>> @@ -416,6 +416,40 @@ void intel_vrr_send_push(struct intel_dsb *dsb,
+> >>>    		intel_dsb_nonpost_end(dsb);
+> >>>    }
+> >>>    
+> >>> +void intel_vrr_check_push_sent(struct intel_dsb *dsb,
+> >>> +			       const struct intel_crtc_state *crtc_state)
+> >>> +{
+> >>> +	struct intel_display *display = to_intel_display(crtc_state);
+> >>> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> >>> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> >>> +
+> >>> +	if (!crtc_state->vrr.enable)
+> >> I think you mean:
+> >>
+> >> if (crtc_state->vrr.enable) return;
+> > No. We want to do the check when VRR is enabled (when we are
+> > actually sending pushes), and skip it otherwise (when we don't
+> > send pushes anyway).
+> Oh ok, I got confused with the change log:
+> 
+> v3: Skip the push send check when VRR is enabled.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../gpu/drm/i915/display/intel_display_irq.c  | 19 ++++++++++---------
- .../gpu/drm/i915/display/intel_display_irq.h  |  5 +++--
- .../drm/i915/display/intel_fifo_underrun.c    |  4 ++--
- 3 files changed, 15 insertions(+), 13 deletions(-)
+My bad. I'll fix up the commit msg when pushing.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index b8fcf74bd3ac..880eaed83cd5 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -226,29 +226,30 @@ void ibx_disable_display_interrupt(struct drm_i915_private *i915, u32 bits)
- 	ibx_display_interrupt_update(i915, bits, 0);
- }
- 
--u32 i915_pipestat_enable_mask(struct drm_i915_private *dev_priv,
-+u32 i915_pipestat_enable_mask(struct intel_display *display,
- 			      enum pipe pipe)
- {
--	u32 status_mask = dev_priv->display.irq.pipestat_irq_mask[pipe];
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
-+	u32 status_mask = display->irq.pipestat_irq_mask[pipe];
- 	u32 enable_mask = status_mask << 16;
- 
- 	lockdep_assert_held(&dev_priv->irq_lock);
- 
--	if (DISPLAY_VER(dev_priv) < 5)
-+	if (DISPLAY_VER(display) < 5)
- 		goto out;
- 
- 	/*
- 	 * On pipe A we don't support the PSR interrupt yet,
- 	 * on pipe B and C the same bit MBZ.
- 	 */
--	if (drm_WARN_ON_ONCE(&dev_priv->drm,
-+	if (drm_WARN_ON_ONCE(display->drm,
- 			     status_mask & PIPE_A_PSR_STATUS_VLV))
- 		return 0;
- 	/*
- 	 * On pipe B and C we don't support the PSR interrupt yet, on pipe
- 	 * A the same bit is for perf counters which we don't use either.
- 	 */
--	if (drm_WARN_ON_ONCE(&dev_priv->drm,
-+	if (drm_WARN_ON_ONCE(display->drm,
- 			     status_mask & PIPE_B_PSR_STATUS_VLV))
- 		return 0;
- 
-@@ -261,7 +262,7 @@ u32 i915_pipestat_enable_mask(struct drm_i915_private *dev_priv,
- 		enable_mask |= SPRITE1_FLIP_DONE_INT_EN_VLV;
- 
- out:
--	drm_WARN_ONCE(&dev_priv->drm,
-+	drm_WARN_ONCE(display->drm,
- 		      enable_mask & ~PIPESTAT_INT_ENABLE_MASK ||
- 		      status_mask & ~PIPESTAT_INT_STATUS_MASK,
- 		      "pipe %c: enable_mask=0x%x, status_mask=0x%x\n",
-@@ -288,7 +289,7 @@ void i915_enable_pipestat(struct drm_i915_private *dev_priv,
- 		return;
- 
- 	dev_priv->display.irq.pipestat_irq_mask[pipe] |= status_mask;
--	enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
-+	enable_mask = i915_pipestat_enable_mask(display, pipe);
- 
- 	intel_de_write(display, reg, enable_mask | status_mask);
- 	intel_de_posting_read(display, reg);
-@@ -312,7 +313,7 @@ void i915_disable_pipestat(struct drm_i915_private *dev_priv,
- 		return;
- 
- 	dev_priv->display.irq.pipestat_irq_mask[pipe] &= ~status_mask;
--	enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
-+	enable_mask = i915_pipestat_enable_mask(display, pipe);
- 
- 	intel_de_write(display, reg, enable_mask | status_mask);
- 	intel_de_posting_read(display, reg);
-@@ -525,7 +526,7 @@ void i9xx_pipestat_irq_ack(struct drm_i915_private *dev_priv,
- 
- 		reg = PIPESTAT(dev_priv, pipe);
- 		pipe_stats[pipe] = intel_de_read(display, reg) & status_mask;
--		enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
-+		enable_mask = i915_pipestat_enable_mask(display, pipe);
- 
- 		/*
- 		 * Clear the PIPE*STAT regs before the IIR
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
-index b077712b7be1..75ab38a0908e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
-@@ -11,8 +11,9 @@
- #include "intel_display_limits.h"
- 
- enum pipe;
--struct drm_i915_private;
- struct drm_crtc;
-+struct drm_i915_private;
-+struct intel_display;
- 
- void valleyview_enable_display_irqs(struct drm_i915_private *i915);
- void valleyview_disable_display_irqs(struct drm_i915_private *i915);
-@@ -64,7 +65,7 @@ void gen8_de_irq_postinstall(struct drm_i915_private *i915);
- void gen11_de_irq_postinstall(struct drm_i915_private *i915);
- void dg1_de_irq_postinstall(struct drm_i915_private *i915);
- 
--u32 i915_pipestat_enable_mask(struct drm_i915_private *i915, enum pipe pipe);
-+u32 i915_pipestat_enable_mask(struct intel_display *display, enum pipe pipe);
- void i915_enable_pipestat(struct drm_i915_private *i915, enum pipe pipe, u32 status_mask);
- void i915_disable_pipestat(struct drm_i915_private *i915, enum pipe pipe, u32 status_mask);
- void i915_enable_asle_pipestat(struct drm_i915_private *i915);
-diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-index 14b00988a81f..7a8fbff39be0 100644
---- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-+++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-@@ -103,7 +103,7 @@ static void i9xx_check_fifo_underruns(struct intel_crtc *crtc)
- 	if ((intel_de_read(display, reg) & PIPE_FIFO_UNDERRUN_STATUS) == 0)
- 		return;
- 
--	enable_mask = i915_pipestat_enable_mask(dev_priv, crtc->pipe);
-+	enable_mask = i915_pipestat_enable_mask(display, crtc->pipe);
- 	intel_de_write(display, reg, enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
- 	intel_de_posting_read(display, reg);
- 
-@@ -121,7 +121,7 @@ static void i9xx_set_fifo_underrun_reporting(struct intel_display *display,
- 	lockdep_assert_held(&dev_priv->irq_lock);
- 
- 	if (enable) {
--		u32 enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
-+		u32 enable_mask = i915_pipestat_enable_mask(display, pipe);
- 
- 		intel_de_write(display, reg,
- 			       enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
+Thanks for the review.
+
 -- 
-2.39.5
-
+Ville Syrjälä
+Intel
