@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56C7EC02198
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 08:40:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68C25C0219E
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 08:47:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1388410E802;
-	Wed, 12 Feb 2025 08:40:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 268CC10E7FA;
+	Wed, 12 Feb 2025 08:47:31 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14BCC10E802;
- Wed, 12 Feb 2025 08:40:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9107669223480378241=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87B1C10E7FA;
+ Wed, 12 Feb 2025 08:47:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=5Fi915=5Fprivate_to_int?=
- =?utf-8?q?el=5Fdisplay_cleanup_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PSR_DSB_support_=28r?=
+ =?utf-8?q?ev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Feb 2025 08:40:02 -0000
-Message-ID: <173934960207.1232530.1580935388192775315@b555e5b46a47>
+Date: Wed, 12 Feb 2025 08:47:29 -0000
+Message-ID: <173935004954.1232530.12602011298566864482@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250212074542.3569452-1-suraj.kandpal@intel.com>
-In-Reply-To: <20250212074542.3569452-1-suraj.kandpal@intel.com>
+References: <20250212075742.995022-1-jouni.hogander@intel.com>
+In-Reply-To: <20250212075742.995022-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,29 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9107669223480378241==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm_i915_private to intel_display cleanup (rev3)
-URL   : https://patchwork.freedesktop.org/series/144587/
+Series: PSR DSB support (rev7)
+URL   : https://patchwork.freedesktop.org/series/142521/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2643-a5fe717b56653a6f5e5b98ed07d5fe54789465c9_BAT -> xe-pw-144587v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 212e6e184222 drm-tip: 2025y-02m-12d-08h-05m-04s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/psr: Use PSR2_MAN_TRK_CTL CFF bit only to send full update
+Applying: drm/i915/psr: Rename psr_force_hw_tracking_exit as intel_psr_force_update
+Applying: drm/i915/psr: Split setting sff and cff bits away from intel_psr_force_update
+Applying: drm/i915/psr: Add register definitions for SFF_CTL and CFF_CTL registers
+Applying: drm/i915/psr: Use SFF_CTL on invalidate/flush for LunarLake onwards
+Applying: drm/i915/psr: Allow writing PSR2_MAN_TRK_CTL using DSB
+Applying: drm/i915/psr: Write PSR2_MAN_TRK_CTL on DSB commit as well
+Applying: drm/i915/display: Warn on use_dsb in non-dsb pipe update functions
+Applying: drm/i915/psr: Remove DSB_SKIP_WAITS_EN chicken bit
+Applying: drm/i915/display: Evade scanline 0 as well if PSR1 or PSR2 is enabled
+Applying: drm/i915/psr: Add function for triggering "Frame Change" event
+Applying: drm/i915/display: Ensure we have "Frame Change" event in DSB commit
+Applying: drm/i915/psr: Allow DSB usage when PSR is enabled
 
 
-Build changes
--------------
-
-  * Linux: xe-2643-a5fe717b56653a6f5e5b98ed07d5fe54789465c9 -> xe-pw-144587v3
-
-  IGT_8228: 8228
-  xe-2643-a5fe717b56653a6f5e5b98ed07d5fe54789465c9: a5fe717b56653a6f5e5b98ed07d5fe54789465c9
-  xe-pw-144587v3: 144587v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144587v3/index.html
-
---===============9107669223480378241==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm_i915_private to intel_display cleanup (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144587/">https://patchwork.freedesktop.org/series/144587/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144587v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144587v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2643-a5fe717b56653a6f5e5b98ed07d5fe54789465c9_BAT -&gt; xe-pw-144587v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2643-a5fe717b56653a6f5e5b98ed07d5fe54789465c9 -&gt; xe-pw-144587v3</li>
-</ul>
-<p>IGT_8228: 8228<br />
-  xe-2643-a5fe717b56653a6f5e5b98ed07d5fe54789465c9: a5fe717b56653a6f5e5b98ed07d5fe54789465c9<br />
-  xe-pw-144587v3: 144587v3</p>
-
-</body>
-</html>
-
---===============9107669223480378241==--
