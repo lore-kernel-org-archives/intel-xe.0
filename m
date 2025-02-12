@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1193FC02198
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 17:43:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5A33C02198
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 17:44:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5D3810E94B;
-	Wed, 12 Feb 2025 17:43:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC82110E945;
+	Wed, 12 Feb 2025 17:44:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fkMc9OnQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hiTXedPb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03E0910E947;
- Wed, 12 Feb 2025 17:43:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3185110E945
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Feb 2025 17:44:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739382228; x=1770918228;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=NrrsJBGGj+6RiKlZLWEgbb895tj94AD1tSlsq7h/1LM=;
- b=fkMc9OnQNdRY5rVhKj3bfb6Fl9+y17AlKaIIWEWtDSJXxFD7OzB/T4d+
- kPKjE2PWnKX2tyPKjh+M9+kVxSY0IBmrKPoHDFLqBMaVw02MCOusauTTN
- uNj5HB0GxaJvDy44EwYg29QZBQjy6pHPbAowitmWhZMtDKrxC6hTBfAi8
- 1UtkoBthvh/pDleKY34/oyKBAZ5kf8sX5dCjBUBcPFDdEznV+CaBU9ZN0
- Iru6JrQfPh5oWM6yNLPrJJQDIID6xddX6Mo6o4+Wgcxn/dl8T9laGFxY2
- XbFPKbdyg7BkdhAWweMLGTG/cKiPQ3qRmbjEXGboX9k7rqwwWp01EaSWa A==;
-X-CSE-ConnectionGUID: ywP/0fPlTHikO8KNzh4qqQ==
-X-CSE-MsgGUID: IVdexD+TS9CkKCHDH5iScQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="40180089"
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="40180089"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 09:43:48 -0800
-X-CSE-ConnectionGUID: wAE64eh4Q1+pmahu2C57YA==
-X-CSE-MsgGUID: bljx5X13RQmtjA4PuRHyLA==
+ t=1739382271; x=1770918271;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=nFAJFB7YtQsv3EDNxdx5ct9QKD8x0fIGRF4JSp6Yx/Y=;
+ b=hiTXedPbyZUS1hy2SsrLv6yXoZIpm8VGhwx7iP1EKKqXzi6RIzbP6iDC
+ 4SqI7yFwzhmtXM2PmmBZyrnMvaKCFGMn6jfHS9iJ3+m8i9HrTrPjl1/i1
+ PT18n4tQojCl8ncg9Kp4KmtaUrsgOmpULvSnwoVSmnJt1AP4ymyEOstzN
+ a9Gz6WWqTH8DLktpg2Y4OyMaoUdrf1D/VokYbz7PwVYo30Qaohwx3k8Qo
+ ff2ijEXgQchjcWWVGin6kLHUJPG2N9kY+mi1cGIZqJ3bgErV2Lo8+Lfro
+ RHPHyjtEKBOmLMo/wt+/NoJGynID4maRp50p/Zi7U+iWCxqBizROq/60a w==;
+X-CSE-ConnectionGUID: 7qukrtTeSguI3+ixUnO43g==
+X-CSE-MsgGUID: SwFWZMJGQt6KWKDMYu7mhg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="27649629"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="27649629"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 09:44:31 -0800
+X-CSE-ConnectionGUID: cf1S2+EPR46xywi8Wc9XLA==
+X-CSE-MsgGUID: S/ahjD84S9CO4FK+Zw9g8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="150069142"
-Received: from dnelso2-mobl.amr.corp.intel.com (HELO
- gjsousa-mobl2.corp.amr.intel.com) ([10.125.108.97])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 09:43:47 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 2/2] drm/i915/display: Make POWER_DOMAIN_*() always result
- in enum intel_display_power_domain
-Date: Wed, 12 Feb 2025 14:43:17 -0300
-Message-ID: <20250212174333.371681-3-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250212174333.371681-1-gustavo.sousa@intel.com>
-References: <20250212174333.371681-1-gustavo.sousa@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="136157248"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 09:44:30 -0800
+Date: Wed, 12 Feb 2025 09:44:30 -0800
+Message-ID: <855xlf2h35.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v2] drm/xe/oa: Allow oa_exponent value of 0
+In-Reply-To: <857c5v2icz.wl-ashutosh.dixit@intel.com>
+References: <20250212162610.1432159-1-umesh.nerlige.ramappa@intel.com>
+ <857c5v2icz.wl-ashutosh.dixit@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,40 +70,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In the hope of contributing to type safety in our code, let's ensure
-that the type returned by the POWER_DOMAIN_*() macros is always of type
-enum intel_display_power_domain.
+On Wed, 12 Feb 2025 09:17:00 -0800, Dixit, Ashutosh wrote:
+>
+> On Wed, 12 Feb 2025 08:26:10 -0800, Umesh Nerlige Ramappa wrote:
+> >
+> > OA exponent value of 0 is a valid value for periodic reports. Allow user
+> > to pass 0 for the OA sampling interval since it gets converted to 2 gt
+> > clock ticks.
+> >
+> > v2: Update the check in xe_oa_stream_init as well (Ashutosh)
+>
+> Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-v2:
-  - Remove accidental +1 in definition of POWER_DOMAIN_PIPE(). (Jani)
+Sorry, maybe add a Fixes tag to this before you merge.
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power.h | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index 3caa3f517a32..e354051e8982 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -117,12 +117,13 @@ enum intel_display_power_domain {
- 	POWER_DOMAIN_INVALID = POWER_DOMAIN_NUM,
- };
- 
--#define POWER_DOMAIN_PIPE(pipe) ((int)(pipe) + POWER_DOMAIN_PIPE_A)
-+#define POWER_DOMAIN_PIPE(pipe) \
-+	((enum intel_display_power_domain)((int)(pipe) + POWER_DOMAIN_PIPE_A))
- #define POWER_DOMAIN_PIPE_PANEL_FITTER(pipe) \
--		((int)(pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A)
-+	((enum intel_display_power_domain)((int)(pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A))
- #define POWER_DOMAIN_TRANSCODER(tran) \
- 	((tran) == TRANSCODER_EDP ? POWER_DOMAIN_TRANSCODER_EDP : \
--	 (int)(tran) + POWER_DOMAIN_TRANSCODER_A)
-+	 (enum intel_display_power_domain)((int)(tran) + POWER_DOMAIN_TRANSCODER_A))
- 
- struct intel_power_domain_mask {
- 	DECLARE_BITMAP(bits, POWER_DOMAIN_NUM);
--- 
-2.48.1
-
+> >
+> > Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_oa.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> > index a692dffcb638..9c95ad742f7d 100644
+> > --- a/drivers/gpu/drm/xe/xe_oa.c
+> > +++ b/drivers/gpu/drm/xe/xe_oa.c
+> > @@ -1690,7 +1690,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+> >	stream->oa_buffer.format = &stream->oa->oa_formats[param->oa_format];
+> >
+> >	stream->sample = param->sample;
+> > -	stream->periodic = param->period_exponent > 0;
+> > +	stream->periodic = param->period_exponent >= 0;
+> >	stream->period_exponent = param->period_exponent;
+> >	stream->no_preempt = param->no_preempt;
+> >	stream->wait_num_reports = param->wait_num_reports;
+> > @@ -2025,7 +2025,7 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
+> >		goto err_exec_q;
+> >	}
+> >
+> > -	if (param.period_exponent > 0) {
+> > +	if (param.period_exponent >= 0) {
+> >		u64 oa_period, oa_freq_hz;
+> >
+> >		/* Requesting samples from OAG buffer is a privileged operation */
+> > --
+> > 2.34.1
+> >
