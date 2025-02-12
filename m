@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDB24C02198
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 17:52:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A775C02198
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 17:55:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7DE810E94B;
-	Wed, 12 Feb 2025 17:52:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NW4avgJr";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A809610E94B;
- Wed, 12 Feb 2025 17:52:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739382745; x=1770918745;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=1LnIf1mI/O39P43CvPYMWY+M7+kUBXDoOG5tPnV/RpY=;
- b=NW4avgJr+0D25lb7bgyQvIImdNeBkRdHtlaQY+3UvUaPSw9lnmg3Loac
- jNDQe8EQY6TjL56dDmaL7GgKuZACROZHuqls5DwkumGsELOcazRnv3Hkc
- jbgniNQs6sIjE0+uWIY8AJnHpCxSCQhwQOWd3/U6gsEuNAh+NTR72dKL1
- rkbFLRMilyv2BDY6sD4fS3qbzN8Dvx+sqZwldBOTbYOL4hk3eF+j0p0zF
- vRzk0Xr98y4tR3qbS6zI2RaMN1lWaKWMtWavzddA6kzYJBoCcHFC49LyU
- mOBHUlhU0zQbM1nQ9w7cQJQCumSV1NVXWyMkoaHHyN4Rk7/Y/fwb4KbWg g==;
-X-CSE-ConnectionGUID: 8zZ15ZeSQR+7N1w6lAL2/g==
-X-CSE-MsgGUID: VbXTIt6HS12mgpFC8jgdBA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="51448542"
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="51448542"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 09:52:23 -0800
-X-CSE-ConnectionGUID: DaZ31gWXSJ6/DvPRqwcpdw==
-X-CSE-MsgGUID: 2ZN1JocATQSHbsAiZRj3fw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="113095476"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Feb 2025 09:52:20 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 12 Feb 2025 19:52:19 +0200
-Date: Wed, 12 Feb 2025 19:52:19 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v2 1/2] drm/i915/display: Use explicit cast in
- POWER_DOMAIN_*() macros
-Message-ID: <Z6zf00kDlmteGiIq@intel.com>
-References: <20250212174333.371681-1-gustavo.sousa@intel.com>
- <20250212174333.371681-2-gustavo.sousa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23DB210E95C;
+	Wed, 12 Feb 2025 17:55:04 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E23D010E950;
+ Wed, 12 Feb 2025 17:55:02 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1560181160957376998=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250212174333.371681-2-gustavo.sousa@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Add_support_for_Mesa_GPU_ha?=
+ =?utf-8?q?ng_replay_tool_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 12 Feb 2025 17:55:02 -0000
+Message-ID: <173938290291.1381149.11099177762111080792@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250211022006.23234-1-carlos.santa@intel-corp-partner.google.com>
+In-Reply-To: <20250211022006.23234-1-carlos.santa@intel-corp-partner.google.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,54 +36,244 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 12, 2025 at 02:43:16PM -0300, Gustavo Sousa wrote:
-> Let the compiler know that we are intetionally using a different enum
-> type to perform arithmetic with enum intel_display_power_domain in the
-> POWER_DOMAIN_*(). Do that by explicitly casting the macro argument to
-> int.
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202502120809.XfmcqkBD-lkp@intel.com/
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.h | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> index a3a5c1be8bab..3caa3f517a32 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -117,12 +117,12 @@ enum intel_display_power_domain {
->  	POWER_DOMAIN_INVALID = POWER_DOMAIN_NUM,
->  };
->  
-> -#define POWER_DOMAIN_PIPE(pipe) ((pipe) + POWER_DOMAIN_PIPE_A)
-> +#define POWER_DOMAIN_PIPE(pipe) ((int)(pipe) + POWER_DOMAIN_PIPE_A)
->  #define POWER_DOMAIN_PIPE_PANEL_FITTER(pipe) \
-> -		((pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A)
-> +		((int)(pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A)
->  #define POWER_DOMAIN_TRANSCODER(tran) \
->  	((tran) == TRANSCODER_EDP ? POWER_DOMAIN_TRANSCODER_EDP : \
-> -	 (tran) + POWER_DOMAIN_TRANSCODER_A)
-> +	 (int)(tran) + POWER_DOMAIN_TRANSCODER_A)
+--===============1560181160957376998==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I've generally gone for the 
-POWER_DOMAIN_TRANSCODER_A + (tran) - TRANSCODER_A
-form for such things, to also make sure it works
-even if TRANSCODER_A isn't 0 anymore.
-Does that avoid the warning as well?
+== Series Details ==
 
-Maybe these should even be functions rather than macros?
+Series: Add support for Mesa GPU hang replay tool (rev2)
+URL   : https://patchwork.freedesktop.org/series/143868/
+State : failure
 
->  
->  struct intel_power_domain_mask {
->  	DECLARE_BITMAP(bits, POWER_DOMAIN_NUM);
-> -- 
-> 2.48.1
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668_BAT -> xe-pw-143868v2_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-143868v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-143868v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-143868v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_exec_queue_property@invalid-property:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html
+    - bat-atsm-2:         [PASS][3] -> [FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html
+    - bat-adlp-vf:        [PASS][5] -> [FAIL][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-adlp-vf/igt@xe_exec_queue_property@invalid-property.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-adlp-vf/igt@xe_exec_queue_property@invalid-property.html
+    - bat-lnl-1:          [PASS][7] -> [FAIL][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html
+    - bat-pvc-2:          [PASS][9] -> [FAIL][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-pvc-2/igt@xe_exec_queue_property@invalid-property.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-pvc-2/igt@xe_exec_queue_property@invalid-property.html
+    - bat-bmg-2:          [PASS][11] -> [FAIL][12]
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html
+    - bat-bmg-1:          [PASS][13] -> [FAIL][14]
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html
+    - bat-lnl-2:          [PASS][15] -> [FAIL][16]
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-143868v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][17] ([Intel XE#2229] / [Intel XE#455]) +1 other test skip
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][18] ([Intel XE#2229])
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [SKIP][19] ([Intel XE#1192]) -> [PASS][20] +1 other test pass
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  * igt@xe_pat@pat-index-xelp@render:
+    - bat-adlp-vf:        [DMESG-WARN][21] ([Intel XE#3970]) -> [PASS][22] +1 other test pass
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][23] ([Intel XE#1192]) -> [SKIP][24] ([Intel XE#2229] / [Intel XE#455])
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668 -> xe-pw-143868v2
+
+  IGT_8228: 8228
+  xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668: 5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668
+  xe-pw-143868v2: 143868v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/index.html
+
+--===============1560181160957376998==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add support for Mesa GPU hang replay tool (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143868/">https://patchwork.freedesktop.org/series/143868/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668_BAT -&gt; xe-pw-143868v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-143868v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-143868v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-143868v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_exec_queue_property@invalid-property:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-adlp-vf/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-adlp-vf/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-pvc-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-pvc-2/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-143868v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp@render:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143868v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668 -&gt; xe-pw-143868v2</li>
+</ul>
+<p>IGT_8228: 8228<br />
+  xe-2648-5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668: 5bf5e8eecd1eaeb1f5c0c36b5047d6884b5b8668<br />
+  xe-pw-143868v2: 143868v2</p>
+
+</body>
+</html>
+
+--===============1560181160957376998==--
