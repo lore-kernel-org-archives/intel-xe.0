@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD1C6C02198
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 20:25:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E441C02198
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 20:32:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AC5E10E994;
-	Wed, 12 Feb 2025 20:25:08 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E09E910E994;
- Wed, 12 Feb 2025 20:25:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5241593363900142124=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Expose_modifiers/formats_su?=
- =?utf-8?q?pported_by_async_flips_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07C0610E98C;
+	Wed, 12 Feb 2025 20:32:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SAXhR1NN";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9726610E98C
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Feb 2025 20:32:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739392344; x=1770928344;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=QIETyESkhMoOFZSIMYI2gDV2zWrGxZkpjaxjhQrO9bA=;
+ b=SAXhR1NN9MKEzmtO8ToCSN9Cf/1lVJKEU8VnK0zch8sefZPMDM0mwyjQ
+ TgTtNsnjL8gcugtDmbM38/YioJ691KQMHtfCDIa/XyAiGGAXP72tJI1h4
+ 2QR+pmJqsTZ644P34sabp8iy5R++GgyL18hQKGe0A5ThIRcEGSjI1lCcE
+ PstPpgyDqr6VW8IxosNp43jz4KJuzDdq6fjQTwkzsAGS/LGLjZwFb2hpU
+ HcZt/ELSl9b5ZsTBWhZ0z7Xx/wTfCK24jbzy1+kxoNPGQlNJUFPHNCNU2
+ DYcR7BU8Vv7PJ2mFQ49LaNNvsoud4MneM4tyGXzhKh/zKPJFpFLyzCFEQ A==;
+X-CSE-ConnectionGUID: 7yV0kk+ITiO2LbWeLJYAWQ==
+X-CSE-MsgGUID: VMwTcvk9RK6w2PsfLV/PBw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="57475461"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="57475461"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 12:32:24 -0800
+X-CSE-ConnectionGUID: 7DqGqmZiQXaHP6y1M60Fiw==
+X-CSE-MsgGUID: GTSDQjcdTJqicVfb4bnCJw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="112702874"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 12:32:22 -0800
+Date: Wed, 12 Feb 2025 22:33:18 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Feb 2025 20:25:06 -0000
-Message-ID: <173939190691.1417151.18238815400156248188@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250212-asyn-v5-0-dc182281dca3@intel.com>
-In-Reply-To: <20250212-asyn-v5-0-dc182281dca3@intel.com>
+Subject: Re: [PATCH] drm/xe/display: Remove hpd cancel work sync from runtime
+ pm path
+Message-ID: <Z60FjqU7JDotstyg@ideak-desk.fi.intel.com>
+References: <20250212192447.402715-1-rodrigo.vivi@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250212192447.402715-1-rodrigo.vivi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,196 +64,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5241593363900142124==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Feb 12, 2025 at 02:24:47PM -0500, Rodrigo Vivi wrote:
+> This function will synchronously cancel and wait for many display
+> work queue items, which might try to take the runtime pm reference
+> causing a bad deadlock. So, remove it from the runtime_pm suspend patch.
+> 
+> Reported-by: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-== Series Details ==
+Makes sense, since instead of trying to cancel a pending a work from
+here, the work should instead wake up the device if needed via RPM get:
 
-Series: Expose modifiers/formats supported by async flips (rev4)
-URL   : https://patchwork.freedesktop.org/series/140934/
-State : success
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-== Summary ==
+See some notes below.
 
-CI Bug Log - changes from xe-2650-99733311410a5518dda4fd7bab11266f318a9453_BAT -> xe-pw-140934v4_BAT
-====================================================
+> ---
+>  drivers/gpu/drm/xe/display/xe_display.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index 651799c946ac..f0f427689a56 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -311,7 +311,8 @@ static void __xe_display_pm_suspend(struct xe_device *xe, bool runtime)
+>  
+>  	xe_display_flush_cleanup_work(xe);
+>  
+> -	intel_hpd_cancel_work(xe);
+> +	if (!runtime)
+> +		intel_hpd_cancel_work(xe);
 
-Summary
--------
+Could be moved to the block below.
 
-  **SUCCESS**
+AFAICS it's still in the wrong spot for system suspend, as in
+xe_pm_suspend() the above function will be called before
+xe_irq_suspend(), so a new interrupt/work could be scheduled
+here right after intel_hpd_cancel_work(). But that's a separate issue.
 
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140934v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229] / [Intel XE#455]) +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_migrate_sanity_kunit:
-    - bat-adlp-vf:        NOTRUN -> [DMESG-FAIL][2] ([Intel XE#3890])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_migrate_sanity_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_intel_bb@intel-bb-blit-x:
-    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#3970]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2650-99733311410a5518dda4fd7bab11266f318a9453/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
-
-  * igt@xe_live_ktest@xe_dma_buf:
-    - bat-adlp-vf:        [SKIP][5] ([Intel XE#1192]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2650-99733311410a5518dda4fd7bab11266f318a9453/bat-adlp-vf/igt@xe_live_ktest@xe_dma_buf.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/bat-adlp-vf/igt@xe_live_ktest@xe_dma_buf.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][7] ([Intel XE#1192]) -> [SKIP][8] ([Intel XE#2229] / [Intel XE#455])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2650-99733311410a5518dda4fd7bab11266f318a9453/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [SKIP][9] ([Intel XE#1192]) -> [DMESG-FAIL][10] ([Intel XE#3890])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2650-99733311410a5518dda4fd7bab11266f318a9453/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#3890]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3890
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * Linux: xe-2650-99733311410a5518dda4fd7bab11266f318a9453 -> xe-pw-140934v4
-
-  IGT_8228: 8228
-  xe-2650-99733311410a5518dda4fd7bab11266f318a9453: 99733311410a5518dda4fd7bab11266f318a9453
-  xe-pw-140934v4: 140934v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/index.html
-
---===============5241593363900142124==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Expose modifiers/formats supported by async flips (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140934/">https://patchwork.freedesktop.org/series/140934/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2650-99733311410a5518dda4fd7bab11266f318a9453_BAT -&gt; xe-pw-140934v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140934v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_migrate_sanity_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_migrate_sanity_kunit.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3890">Intel XE#3890</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_intel_bb@intel-bb-blit-x:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2650-99733311410a5518dda4fd7bab11266f318a9453/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_dma_buf:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2650-99733311410a5518dda4fd7bab11266f318a9453/bat-adlp-vf/igt@xe_live_ktest@xe_dma_buf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/bat-adlp-vf/igt@xe_live_ktest@xe_dma_buf.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_bo:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2650-99733311410a5518dda4fd7bab11266f318a9453/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2650-99733311410a5518dda4fd7bab11266f318a9453/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140934v4/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3890">Intel XE#3890</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2650-99733311410a5518dda4fd7bab11266f318a9453 -&gt; xe-pw-140934v4</li>
-</ul>
-<p>IGT_8228: 8228<br />
-  xe-2650-99733311410a5518dda4fd7bab11266f318a9453: 99733311410a5518dda4fd7bab11266f318a9453<br />
-  xe-pw-140934v4: 140934v4</p>
-
-</body>
-</html>
-
---===============5241593363900142124==--
+>  
+>  	if (!runtime && has_display(xe)) {
+>  		intel_display_driver_suspend_access(display);
+> -- 
+> 2.48.1
+> 
