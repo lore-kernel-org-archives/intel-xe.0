@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CEDAC021A5
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 13:27:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F0CBC02198
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 13:34:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A29E210E8A1;
-	Wed, 12 Feb 2025 13:27:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mv+3DlcD";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B38F510E8A0;
- Wed, 12 Feb 2025 13:27:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739366843; x=1770902843;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=zQ0B5LmUmWXct9wbzy+2CRmJ7hF+yzEqgT3I6hmYEAE=;
- b=Mv+3DlcDrD6m49GyiEcriryP1Vj7h0ojADL+pijc4p5gBEz2uSjq1jeA
- nD4ty2sm5kqxoAsNCUuRzx/ygp4tvV0QA7nWstkERUPp6sQA7FPBhEgCc
- ydBxcpac/tLwWXIzrAzD9n9rg7QMswaeC9irr/6AwE2O9mmEvGZ6njUFE
- JLRYFHSSOKMsp7KVCFW8KLIIYNoqfKwjtAoV227kTcozTxGh79UsgNM40
- g95vi8iYUMl8HOk57CSUg1F1lV9O/AsCQp5XX8p9/8CWEhCKMakme5HdT
- dEL3fBLJQX2+c3GXxaywZtg+qbtFoEoGHj5TfjctLY3qAnRriqUbG2rxt w==;
-X-CSE-ConnectionGUID: VdgA+C2FQTiW87oXs8xMqw==
-X-CSE-MsgGUID: XsSO0mdjTeqPp7tKVGMkzg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="51416189"
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="51416189"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 05:27:23 -0800
-X-CSE-ConnectionGUID: RdhaNaQUTZiJv/t8P174YA==
-X-CSE-MsgGUID: DQdB6a6/Rg2r1o9r41RQhA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="112655796"
-Received: from dnelso2-mobl.amr.corp.intel.com (HELO
- gjsousa-mobl2.corp.amr.intel.com) ([10.125.108.97])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 05:27:21 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/i915/display: Make POWER_DOMAIN_*() always result in
- enum intel_display_power_domain
-Date: Wed, 12 Feb 2025 10:26:38 -0300
-Message-ID: <20250212132658.323640-3-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250212132658.323640-1-gustavo.sousa@intel.com>
-References: <20250212132658.323640-1-gustavo.sousa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 136C510E8A1;
+	Wed, 12 Feb 2025 13:34:43 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3012410E276;
+ Wed, 12 Feb 2025 13:34:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0083405168106222370=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/display=3A_Fix_fbdev?=
+ =?utf-8?q?_GGTT_mapping_handling=2E_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 12 Feb 2025 13:34:42 -0000
+Message-ID: <173936728218.1309158.8463208409004181034@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250212113509.14972-1-dev@lankhorst.se>
+In-Reply-To: <20250212113509.14972-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,39 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In the hope of contributing to type safety in our code, let's ensure
-that the type returned by the POWER_DOMAIN_*() macros is always of type
-enum intel_display_power_domain.
+--===============0083405168106222370==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power.h | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index 3caa3f517a32..ab4c9a1e7e02 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -117,12 +117,13 @@ enum intel_display_power_domain {
- 	POWER_DOMAIN_INVALID = POWER_DOMAIN_NUM,
- };
- 
--#define POWER_DOMAIN_PIPE(pipe) ((int)(pipe) + POWER_DOMAIN_PIPE_A)
-+#define POWER_DOMAIN_PIPE(pipe) \
-+	((enum intel_display_power_domain)((int)(pipe) +  1 + POWER_DOMAIN_PIPE_A))
- #define POWER_DOMAIN_PIPE_PANEL_FITTER(pipe) \
--		((int)(pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A)
-+	((enum intel_display_power_domain)((int)(pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A))
- #define POWER_DOMAIN_TRANSCODER(tran) \
- 	((tran) == TRANSCODER_EDP ? POWER_DOMAIN_TRANSCODER_EDP : \
--	 (int)(tran) + POWER_DOMAIN_TRANSCODER_A)
-+	 (enum intel_display_power_domain)((int)(tran) + POWER_DOMAIN_TRANSCODER_A))
- 
- struct intel_power_domain_mask {
- 	DECLARE_BITMAP(bits, POWER_DOMAIN_NUM);
--- 
-2.48.1
+Series: drm/xe/display: Fix fbdev GGTT mapping handling. (rev3)
+URL   : https://patchwork.freedesktop.org/series/144602/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2646-8c008f1eeec8418aa5be00ece4b8ce7317d1be4c_BAT -> xe-pw-144602v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2646-8c008f1eeec8418aa5be00ece4b8ce7317d1be4c -> xe-pw-144602v3
+
+  IGT_8228: 8228
+  xe-2646-8c008f1eeec8418aa5be00ece4b8ce7317d1be4c: 8c008f1eeec8418aa5be00ece4b8ce7317d1be4c
+  xe-pw-144602v3: 144602v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v3/index.html
+
+--===============0083405168106222370==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/display: Fix fbdev GGTT mapping handling. (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144602/">https://patchwork.freedesktop.org/series/144602/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2646-8c008f1eeec8418aa5be00ece4b8ce7317d1be4c_BAT -&gt; xe-pw-144602v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2646-8c008f1eeec8418aa5be00ece4b8ce7317d1be4c -&gt; xe-pw-144602v3</li>
+</ul>
+<p>IGT_8228: 8228<br />
+  xe-2646-8c008f1eeec8418aa5be00ece4b8ce7317d1be4c: 8c008f1eeec8418aa5be00ece4b8ce7317d1be4c<br />
+  xe-pw-144602v3: 144602v3</p>
+
+</body>
+</html>
+
+--===============0083405168106222370==--
