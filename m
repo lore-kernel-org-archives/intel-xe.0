@@ -4,63 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D490CC02198
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 18:56:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 907A5C02198
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 19:02:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BD4910E969;
-	Wed, 12 Feb 2025 18:56:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B41810E968;
+	Wed, 12 Feb 2025 19:02:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QMahRw1Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pj9uCbj5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B3FE10E969;
- Wed, 12 Feb 2025 18:56:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC33810E968
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Feb 2025 19:02:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739386563; x=1770922563;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=vknaCoep7T6+mEhvWubw+8FPzvR8awuQhGl2sT/uU4E=;
- b=QMahRw1Yn2zq/yuSLwBCPKeFkmiLUE+Y0jliGWtq+Z2J3DjKd98eAmAk
- PEp9v6MPnrBp0gajURDRnfeN0F8iIzkUHwzRrEQDRL9tFiiIORSzfbDGu
- fSPuRzE7WT/1uKzo5KatWFv3Ycl4Cdfn6qOiEXOg+uICrHZjYSy83+lLG
- oFdwEdC5iOcqNz+eX3Lmrqk2A79lV9eB/ITjp9Vxc11VUjxTfOZyVCtBb
- mUedIyUare7FN3oOdXDzRdjJWxqiLn3Y+rgxk5ssFlEL88VDF4iHQCqlk
- qebVB8eMTdchqiKeDUI98g5GaTYFqMV8jWaMRVe2yLPQmIMtaABZgQKz8 Q==;
-X-CSE-ConnectionGUID: TmjeetqBS5qw3+1g8NtIag==
-X-CSE-MsgGUID: W1PYHVE1QGOSkRM9GufOBg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="40326005"
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="40326005"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 10:56:03 -0800
-X-CSE-ConnectionGUID: xIlq6qsnTPKlfuF6VpAKWg==
-X-CSE-MsgGUID: SKo60N3TRVu9gPhOzzziUw==
+ t=1739386929; x=1770922929;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=J0oTsG13Sq1Z4xe1DSQNOwXNaVcqDELu1TWSZM6Wd2c=;
+ b=Pj9uCbj5pZ8+DdeORSl+aE4J/U6229FFBS4ebw4+rxFLXplW2miKuV5J
+ 6wJO4kOAEqHYStZZOAhiTMa0niSXginznT1GbuhEPOBc+DlNKLzhR/2vd
+ k+gghu4NZCMA55CfcGphadYv4pUZ3mLs542fPl4ildNA09bHg9VRkpx+n
+ yc4IiyUU5HaQsewhEZaN0JWlx90mguTHikfTa8BFlpwUzJ5aL2YvROVBf
+ 26mvqk+rZhJGkxf1iFCsf2VA7ySpaj9yYYz8JEDRC2v/glKlnGhDCjhw+
+ qvMPhdMFF9x7YTfBP6HdJkES95G1yMu6mc/J8Dk//dJlM6qNu/j1tvpgD w==;
+X-CSE-ConnectionGUID: kUqReLSiTm2iig4h/MbVWQ==
+X-CSE-MsgGUID: qxCctMmfQ+OZKiYVjLWYdQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="27658257"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="27658257"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 11:02:09 -0800
+X-CSE-ConnectionGUID: WaWZideNTnKOha8PZ48KfA==
+X-CSE-MsgGUID: owKGg3VkTJOrfinqyF9hZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="113106510"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Feb 2025 10:56:01 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 12 Feb 2025 20:55:59 +0200
-Date: Wed, 12 Feb 2025 20:55:59 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v2 1/2] drm/i915/display: Use explicit cast in
- POWER_DOMAIN_*() macros
-Message-ID: <Z6zuv5ZIQrut0Uf5@intel.com>
-References: <20250212174333.371681-1-gustavo.sousa@intel.com>
- <20250212174333.371681-2-gustavo.sousa@intel.com>
- <Z6zf00kDlmteGiIq@intel.com>
- <173938316839.145254.11637419535806568600@intel.com>
- <173938586622.145254.18264992862975057866@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <173938586622.145254.18264992862975057866@intel.com>
-X-Patchwork-Hint: comment
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="112900468"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 11:02:08 -0800
+Date: Wed, 12 Feb 2025 11:02:07 -0800
+Message-ID: <851pw37zrk.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Harish Chegondi <harish.chegondi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v9 4/8] drm/xe/eustall: Add support to read() and poll()
+ EU stall data
+In-Reply-To: <2c6ba4545b30b3f7ff0055fd9994618fd31d12ab.1739193510.git.harish.chegondi@intel.com>
+References: <cover.1739193510.git.harish.chegondi@intel.com>	<2c6ba4545b30b3f7ff0055fd9994618fd31d12ab.1739193510.git.harish.chegondi@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,118 +70,547 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 12, 2025 at 03:44:26PM -0300, Gustavo Sousa wrote:
-> Quoting Gustavo Sousa (2025-02-12 14:59:28-03:00)
-> >Quoting Ville Syrjälä (2025-02-12 14:52:19-03:00)
-> >>On Wed, Feb 12, 2025 at 02:43:16PM -0300, Gustavo Sousa wrote:
-> >>> Let the compiler know that we are intetionally using a different enum
-> >>> type to perform arithmetic with enum intel_display_power_domain in the
-> >>> POWER_DOMAIN_*(). Do that by explicitly casting the macro argument to
-> >>> int.
-> >>> 
-> >>> Reported-by: kernel test robot <lkp@intel.com>
-> >>> Closes: https://lore.kernel.org/oe-kbuild-all/202502120809.XfmcqkBD-lkp@intel.com/
-> >>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> >>> ---
-> >>>  drivers/gpu/drm/i915/display/intel_display_power.h | 6 +++---
-> >>>  1 file changed, 3 insertions(+), 3 deletions(-)
-> >>> 
-> >>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> >>> index a3a5c1be8bab..3caa3f517a32 100644
-> >>> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> >>> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> >>> @@ -117,12 +117,12 @@ enum intel_display_power_domain {
-> >>>          POWER_DOMAIN_INVALID = POWER_DOMAIN_NUM,
-> >>>  };
-> >>>  
-> >>> -#define POWER_DOMAIN_PIPE(pipe) ((pipe) + POWER_DOMAIN_PIPE_A)
-> >>> +#define POWER_DOMAIN_PIPE(pipe) ((int)(pipe) + POWER_DOMAIN_PIPE_A)
-> >>>  #define POWER_DOMAIN_PIPE_PANEL_FITTER(pipe) \
-> >>> -                ((pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A)
-> >>> +                ((int)(pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A)
-> >>>  #define POWER_DOMAIN_TRANSCODER(tran) \
-> >>>          ((tran) == TRANSCODER_EDP ? POWER_DOMAIN_TRANSCODER_EDP : \
-> >>> -         (tran) + POWER_DOMAIN_TRANSCODER_A)
-> >>> +         (int)(tran) + POWER_DOMAIN_TRANSCODER_A)
-> >>
-> >>I've generally gone for the 
-> >>POWER_DOMAIN_TRANSCODER_A + (tran) - TRANSCODER_A
-> >>form for such things, to also make sure it works
-> >>even if TRANSCODER_A isn't 0 anymore.
-> >>Does that avoid the warning as well?
-> >
-> >Hm... That's a good idea; and I think it might avoid the warning indeed
-> >(maybe we would need parentheses around (tran) - TRANSCODER_A).
-> 
-> I did a quick test and this also took care of removing the clang warning
-> in my environment:
-> 
->   diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
->   index e354051e8982..d46b35dbe018 100644
->   --- a/drivers/gpu/drm/i915/display/intel_display_power.h
->   +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
->   @@ -123,7 +123,7 @@ enum intel_display_power_domain {
->           ((enum intel_display_power_domain)((int)(pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A))
->    #define POWER_DOMAIN_TRANSCODER(tran) \
->           ((tran) == TRANSCODER_EDP ? POWER_DOMAIN_TRANSCODER_EDP : \
->   -        (enum intel_display_power_domain)((int)(tran) + POWER_DOMAIN_TRANSCODER_A))
->   +        (enum intel_display_power_domain)(POWER_DOMAIN_TRANSCODER_A + ((tran) - TRANSCODER_A)))
->    
->    struct intel_power_domain_mask {
->           DECLARE_BITMAP(bits, POWER_DOMAIN_NUM);
-> 
-> The parentheses around (tran) - TRANSCODER_A were indeed necessary,
-> probably for the compiler to see that as an int expression.
-> 
-> We can get rid of the parentheses if we do (tran) - TRANSCODER_A before
-> adding POWER_DOMAIN_TRANSCODER_A:
-> 
->   diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
->   index e354051e8982..b15eb4fd5062 100644
->   --- a/drivers/gpu/drm/i915/display/intel_display_power.h
->   +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
->   @@ -123,7 +123,7 @@ enum intel_display_power_domain {
->    	((enum intel_display_power_domain)((int)(pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A))
->    #define POWER_DOMAIN_TRANSCODER(tran) \
->    	((tran) == TRANSCODER_EDP ? POWER_DOMAIN_TRANSCODER_EDP : \
->   -	 (enum intel_display_power_domain)((int)(tran) + POWER_DOMAIN_TRANSCODER_A))
->   +	 (enum intel_display_power_domain)((tran) - TRANSCODER_A + POWER_DOMAIN_TRANSCODER_A))
+On Mon, 10 Feb 2025 05:46:45 -0800, Harish Chegondi wrote:
+>
 
-Looks reasoanble enough to me. Do we still need the final cast?
+Hi Harish,
 
->    
->    struct intel_power_domain_mask {
->    	DECLARE_BITMAP(bits, POWER_DOMAIN_NUM);
-> 
-> I'm tending more toward the second alternative.
-> 
+> Implement the EU stall sampling APIs to read() and poll() EU stall data.
+> A work function periodically polls the EU stall data buffer write pointer
+> registers to look for any new data and caches the write pointer. The read
+> function compares the cached read and write pointers and copies any new
+> data to the user space.
+>
+> v9:  New patch split from the previous patch.
+>      Used *_delayed_work functions instead of hrtimer
+>      Addressed the review feedback in read and poll functions
+>
+> Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_eu_stall.c | 267 ++++++++++++++++++++++++++++++-
+>  drivers/gpu/drm/xe/xe_trace.h    |  33 ++++
+>  2 files changed, 298 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+> index 12afa9720971..53f17aac7d3b 100644
+> --- a/drivers/gpu/drm/xe/xe_eu_stall.c
+> +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+> @@ -21,6 +21,7 @@
+>  #include "xe_macros.h"
+>  #include "xe_observation.h"
+>  #include "xe_pm.h"
+> +#include "xe_trace.h"
+>
+>  #include "regs/xe_eu_stall_regs.h"
+>  #include "regs/xe_gt_regs.h"
+> @@ -41,7 +42,9 @@ struct per_xecore_buf {
+>  };
+>
+>  struct xe_eu_stall_data_stream {
+> +	bool pollin;
+>	bool enabled;
+> +	wait_queue_head_t poll_wq;
+>	size_t data_record_size;
+>	size_t per_xecore_buf_size;
+>	unsigned int wait_num_reports;
+> @@ -50,6 +53,8 @@ struct xe_eu_stall_data_stream {
+>	struct xe_gt *gt;
+>	struct xe_bo *bo;
+>	struct per_xecore_buf *xecore_buf;
+> +	struct delayed_work buf_poll_work;
+> +	struct workqueue_struct *buf_poll_wq;
+>  };
+>
+>  struct xe_eu_stall_gt {
+> @@ -256,6 +261,190 @@ static int xe_eu_stall_user_extensions(struct xe_device *xe, u64 extension,
+>	return 0;
+>  }
+>
+> +/**
+> + * buf_data_size - Calculate the number of bytes in a circular buffer
+> + *		   given the read and write pointers and the size of
+> + *		   the buffer.
+> + *
+> + * @buf_size: Size of the circular buffer
+> + * @read_ptr: Read pointer with an additional overflow bit
+> + * @write_ptr: Write pointer with an additional overflow bit
+> + *
+> + * Since the read and write pointers have an additional overflow bit,
+> + * this function calculates the offsets from the pointers and use the
+> + * offsets to calculate the data size in the buffer.
+> + *
+> + * Returns: number of bytes of data in the buffer
+> + */
+> +static u32 buf_data_size(size_t buf_size, u32 read_ptr, u32 write_ptr)
+> +{
+> +	u32 read_offset, write_offset, size = 0;
+> +
+> +	if (read_ptr == write_ptr)
+> +		goto exit;
+> +
+> +	read_offset = read_ptr & (buf_size - 1);
+> +	write_offset = write_ptr & (buf_size - 1);
+> +
+> +	if (write_offset > read_offset)
+> +		size = write_offset - read_offset;
+> +	else
+> +		size = buf_size - read_offset + write_offset;
+> +exit:
+> +	return size;
+> +}
+
+Looks good now :)
+
+> +
+> +/**
+> + * eu_stall_data_buf_poll - Poll for EU stall data in the buffer.
+> + *
+> + * @stream: xe EU stall data stream instance
+> + *
+> + * Returns: true if the EU stall buffer contains minimum stall data as
+> + *	    specified by the event report count, else false.
+> + */
+> +static bool eu_stall_data_buf_poll(struct xe_eu_stall_data_stream *stream)
+> +{
+> +	u32 read_ptr, write_ptr_reg, write_ptr, total_data = 0;
+> +	u32 buf_size = stream->per_xecore_buf_size;
+> +	struct per_xecore_buf *xecore_buf;
+> +	struct xe_gt *gt = stream->gt;
+> +	bool min_data_present = false;
+> +	u16 group, instance;
+> +	unsigned int xecore;
+
+u32 and move above to u32 line?
+
+> +
+> +	for_each_dss_steering(xecore, gt, group, instance) {
+> +		xecore_buf = &stream->xecore_buf[xecore];
+> +		mutex_lock(&xecore_buf->ptr_lock);
+
+One thing I am wondering about is: do we really need these per xecore_buf
+locks? How about moving ptr_lock into xe_eu_stall_data_stream and just
+cover for_each_dss_steering() calls with the ptr lock. Because the polling
+thread runs every 10 ms, this should give plenty of time for the polling
+thread and the reads to go through, even with lock contention. And it will
+eliminate all these locks and the locking/unlocking overhead.
+
+> +		read_ptr = xecore_buf->read;
+> +		write_ptr_reg = xe_gt_mcr_unicast_read(gt, XEHPC_EUSTALL_REPORT,
+> +						       group, instance);
+> +		write_ptr = REG_FIELD_GET(XEHPC_EUSTALL_REPORT_WRITE_PTR_MASK, write_ptr_reg);
+> +		write_ptr <<= 6;
+> +		write_ptr &= ((buf_size << 1) - 1);
+> +		if (write_ptr != read_ptr && !min_data_present) {
+
+Don't need to check for 'write_ptr != read_ptr' here, it's already
+happening in buf_data_size.
+
+> +			total_data += buf_data_size(buf_size, read_ptr, write_ptr);
+> +			/*
+> +			 * Check if there are at least minimum number of stall data
+> +			 * rows for poll() to indicate that the data is present.
+> +			 * Each stall data row is 64B (cacheline size).
+> +			 */
+
+I'd say this comment is not needed and should be removed, the code below is
+clear enough.
+
+> +			if (num_data_rows(total_data) >= stream->wait_num_reports)
+> +				min_data_present = true;
+> +		}
+> +		xecore_buf->write = write_ptr;
+> +		mutex_unlock(&xecore_buf->ptr_lock);
+> +	}
+> +	return min_data_present;
+> +}
+> +
+> +static int xe_eu_stall_data_buf_read(struct xe_eu_stall_data_stream *stream,
+> +				     char __user *buf, size_t count,
+> +				     size_t *total_data_size, struct xe_gt *gt,
+> +				     u16 group, u16 instance, unsigned int xecore)
+> +{
+> +	size_t read_data_size, copy_size, buf_size, data_record_size;
+> +	u32 read_ptr_reg, read_ptr, write_ptr;
+> +	u8 *xecore_start_vaddr, *read_vaddr;
+> +	struct per_xecore_buf *xecore_buf;
+> +	u32 read_offset, write_offset;
+> +	int ret = 0;
+> +
+> +	/* Hardware increments the read and write pointers such that they can
+> +	 * overflow into one additional bit. For example, a 256KB size buffer
+> +	 * offset pointer needs 18 bits. But HW uses 19 bits for the read and
+> +	 * write pointers. This technique avoids wasting a slot in the buffer.
+> +	 * Read and write offsets are calculated from the pointers in order to
+> +	 * check if the write pointer has wrapped around the array.
+> +	 */
+> +	xecore_buf = &stream->xecore_buf[xecore];
+> +	mutex_lock(&xecore_buf->ptr_lock);
+> +	xecore_start_vaddr = xecore_buf->vaddr;
+> +	read_ptr = xecore_buf->read;
+> +	write_ptr = xecore_buf->write;
+> +	buf_size = stream->per_xecore_buf_size;
+> +	data_record_size = stream->data_record_size;
+> +
+> +	read_data_size = buf_data_size(buf_size, read_ptr, write_ptr);
+> +	/* Read only the data that the user space buffer can accommodate */
+> +	if ((*total_data_size + read_data_size) > count) {
+> +		read_data_size = count - *total_data_size;
+> +		read_data_size = (read_data_size / data_record_size) * data_record_size;
+> +	}
+
+As I said, my preferred way of writing this is as follows. Isn't this cleaner?
+
+	read_data_size = buf_data_size(buf_size, read_ptr, write_ptr);
+	XE_WARN_ON(count >= *total_size);
+	read_data_size = min_t(size_t, count - *total_size, read_data_size);
+	read_data_size = ALIGN_DOWN(read_data_size, data_record_size);
+
+Since data_record_size has to be a power of 2 for this to work (which it
+is), I would even put a
+
+	xe_assert(xe, is_power_of_2(record_size));
+
+in xe_eu_stall_data_record_size().
+
+
+> +	if (read_data_size == 0)
+> +		goto exit;
+> +
+> +	read_offset = read_ptr & (buf_size - 1);
+> +	write_offset = write_ptr & (buf_size - 1);
+> +	read_vaddr = xecore_start_vaddr + read_offset;
+> +
+> +	if (write_offset > read_offset) {
+> +		if (copy_to_user((buf + *total_data_size), read_vaddr, read_data_size)) {
+
+internal brackets not needed     ^
+
+> +			ret = -EFAULT;
+> +			goto exit;
+> +		}
+> +	} else {
+> +		if (read_data_size >= (buf_size - read_offset))
+
+internal brackets not needed          ^
+
+> +			copy_size = buf_size - read_offset;
+> +		else
+> +			copy_size = read_data_size;
+
+if (write_offset < read_offset) how is this 'else' ever possible? So
+shouldn't copy_size just be set unconditionally to 'buf_size -
+read_offset'?
+
+> +		if (copy_to_user((buf + *total_data_size), read_vaddr, copy_size)) {
+
+internal brackets not needed     ^
+
+> +			ret = -EFAULT;
+> +			goto exit;
+> +		}
+> +		if (copy_to_user((buf + *total_data_size + copy_size),
+
+internal brackets not needed     ^
+
+> +				 xecore_start_vaddr, read_data_size - copy_size)) {
+> +			ret = -EFAULT;
+> +			goto exit;
+> +		}
+> +	}
+> +
+> +	*total_data_size += read_data_size;
+> +	read_ptr += read_data_size;
+
+Because there is an overflow bit we can just add without worrying about
+wraparound?
+
+> +
+> +	/* Read pointer can overflow into one additional bit */
+> +	read_ptr &= (buf_size << 1) - 1;
+> +	read_ptr_reg = REG_FIELD_PREP(XEHPC_EUSTALL_REPORT1_READ_PTR_MASK, (read_ptr >> 6));
+> +	read_ptr_reg = _MASKED_FIELD(XEHPC_EUSTALL_REPORT1_READ_PTR_MASK, read_ptr_reg);
+> +	xe_gt_mcr_unicast_write(gt, XEHPC_EUSTALL_REPORT1, read_ptr_reg, group, instance);
+> +	xecore_buf->read = read_ptr;
+> +	trace_xe_eu_stall_data_read(group, instance, read_ptr, write_ptr,
+> +				    read_offset, write_offset, *total_data_size);
+> +exit:
+> +	mutex_unlock(&xecore_buf->ptr_lock);
+> +	return ret;
+> +}
+> +
+> +/**
+> + * xe_eu_stall_stream_read_locked - copy EU stall counters data from the
+> + *				    per xecore buffers to the userspace buffer
+> + * @stream: A stream opened for EU stall count metrics
+> + * @file: An xe EU stall data stream file
+> + * @buf: destination buffer given by userspace
+> + * @count: the number of bytes userspace wants to read
+> + *
+> + * Returns: Number of bytes copied or a negative error code
+> + * If we've successfully copied any data then reporting that takes
+> + * precedence over any internal error status, so the data isn't lost.
+> + */
+> +static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *stream,
+> +					      struct file *file, char __user *buf,
+> +					      size_t count)
+> +{
+> +	struct xe_gt *gt = stream->gt;
+> +	size_t total_size = 0;
+> +	u16 group, instance;
+> +	unsigned int xecore;
+> +	int ret = 0;
+> +
+> +	for_each_dss_steering(xecore, gt, group, instance) {
+> +		ret = xe_eu_stall_data_buf_read(stream, buf, count, &total_size,
+> +						gt, group, instance, xecore);
+> +		if (ret || count == total_size)
+> +			break;
+> +	}
+> +	return total_size ?: (ret ?: -EAGAIN);
+> +}
+> +
+>  /**
+>   * xe_eu_stall_stream_read - handles userspace read() of a EU stall data stream fd.
+>   *
+> @@ -272,7 +461,35 @@ static int xe_eu_stall_user_extensions(struct xe_device *xe, u64 extension,
+>  static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
+>				       size_t count, loff_t *ppos)
+>  {
+> -	ssize_t ret = 0;
+> +	struct xe_eu_stall_data_stream *stream = file->private_data;
+> +	struct xe_gt *gt = stream->gt;
+> +	ssize_t ret;
+> +
+> +	if (count == 0)
+> +		return -EINVAL;
+
+I believe we need to also handle the fact that count might not be a
+multiple of record_size. The easiest way to handle this seems to be right
+here:
+	ssize_t aligned_count = ALIGN_DOWN(count, stream->data_record_size);
+
+And used aligned_count rather than count in xe_eu_stall_stream_read_locked
+calls. So that we don't have to worry about this in later function calls.
+
+So above will become:
+
+	if (aligned_count == 0)
+		return -EINVAL;
+
+Unless there is a minimum user buffer size we want to support, in that case
+this becomes:
+
+	if (aligned_count < minimum_user_buffer_size)
+		return -EINVAL;
+
+But to me looks like a good value for minimum_user_buffer_size is not
+available.
+
+Anyway, better to handle this degenerate case here itself.
+
+> +
+> +	if (!stream->enabled) {
+> +		xe_gt_dbg(gt, "EU stall data stream not enabled to read\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (!(file->f_flags & O_NONBLOCK)) {
+> +		do {
+> +			ret = wait_event_interruptible(stream->poll_wq, stream->pollin);
+> +			if (ret)
+> +				return -EINTR;
+> +
+> +			mutex_lock(&gt->eu_stall->stream_lock);
+> +			ret = xe_eu_stall_stream_read_locked(stream, file, buf, count);
+> +			mutex_unlock(&gt->eu_stall->stream_lock);
+> +		} while (ret == -EAGAIN);
+> +	} else {
+> +		mutex_lock(&gt->eu_stall->stream_lock);
+> +		ret = xe_eu_stall_stream_read_locked(stream, file, buf, count);
+> +		mutex_unlock(&gt->eu_stall->stream_lock);
+> +	}
+> +
+> +	stream->pollin = false;
+
+Carry over comment from previous rev: this breaks if user buffer is smaller
+than available data. But this is a corner case so let's fix this after the
+initial merge.
+
+Let's put it a list of to be done's in the cover letter to do after we
+merge in the next revision.
+
+>
+>	return ret;
+>  }
+> @@ -281,6 +498,7 @@ static void free_eu_stall_data_buf(struct xe_eu_stall_data_stream *stream)
+>  {
+>	if (stream->bo)
+>		xe_bo_unpin_map_no_vm(stream->bo);
+> +	destroy_workqueue(stream->buf_poll_wq);
+
+Don't put this here in free_eu_stall_data_buf, put this in the caller of
+this function, like the destroy/close function.
+
+>  }
+>
+>  static int alloc_eu_stall_data_buf(struct xe_eu_stall_data_stream *stream,
+> @@ -351,6 +569,21 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
+>	return 0;
+>  }
+>
+> +static void eu_stall_data_buf_poll_work_fn(struct work_struct *work)
+> +{
+> +	struct xe_eu_stall_data_stream *stream =
+> +		container_of(work, typeof(*stream), buf_poll_work.work);
+> +
+> +	if (eu_stall_data_buf_poll(stream)) {
+> +		stream->pollin = true;
+> +		wake_up(&stream->poll_wq);
+> +	}
+> +	if (stream->enabled)
+
+See comment at xe_eu_stall_disable_locked. If we do
+cancel_delayed_work_sync there, I think this stream->enabled check might
+not be needed here. Also see comments at cancel_work_sync in
+kernel/workqueue.c.
+
+Could you please check and see if it works out. xe_guc_ct.c (and
+xe_gt_tlb_invalidation.c) seem to be doing that.
+
+> +		queue_delayed_work(stream->buf_poll_wq,
+> +				   &stream->buf_poll_work,
+> +				   msecs_to_jiffies(POLL_PERIOD_MS));
+> +}
+> +
+>  static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+>				   struct eu_stall_open_properties *props)
+>  {
+> @@ -361,6 +594,11 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+>	u32 vaddr_offset;
+>	int ret, xecore;
+>
+> +	init_waitqueue_head(&stream->poll_wq);
+> +	INIT_DELAYED_WORK(&stream->buf_poll_work, eu_stall_data_buf_poll_work_fn);
+> +	stream->buf_poll_wq = alloc_ordered_workqueue("xe_eu_stall", 0);
+> +	if (!stream->buf_poll_wq)
+> +		return -ENOMEM;
+
+Now we also need to destroy_workqueue during error unwinding (see comments
+regarding this in Patch 3).
+
+>	stream->sampling_rate_mult = props->sampling_rate_mult;
+>	stream->wait_num_reports = props->wait_num_reports;
+>	stream->per_xecore_buf_size = per_xecore_buf_size;
+> @@ -391,6 +629,19 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+>	return 0;
+>  }
+>
+> +static __poll_t xe_eu_stall_stream_poll_locked(struct xe_eu_stall_data_stream *stream,
+> +					       struct file *file, poll_table *wait)
+> +{
+> +	__poll_t events = 0;
+> +
+> +	poll_wait(file, &stream->poll_wq, wait);
+> +
+> +	if (stream->pollin)
+> +		events |= EPOLLIN;
+> +
+> +	return events;
+> +}
+> +
+>  /**
+>   * xe_eu_stall_stream_poll - handles userspace poll() of a EU stall data stream fd.
+>   *
+> @@ -401,7 +652,13 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+>   */
+>  static __poll_t xe_eu_stall_stream_poll(struct file *file, poll_table *wait)
+>  {
+> -	__poll_t ret = 0;
+> +	struct xe_eu_stall_data_stream *stream = file->private_data;
+> +	struct xe_gt *gt = stream->gt;
+> +	__poll_t ret;
+> +
+> +	mutex_lock(&gt->eu_stall->stream_lock);
+> +	ret = xe_eu_stall_stream_poll_locked(stream, file, wait);
+> +	mutex_unlock(&gt->eu_stall->stream_lock);
+>
+>	return ret;
+>  }
+> @@ -416,6 +673,9 @@ static int xe_eu_stall_enable_locked(struct xe_eu_stall_data_stream *stream)
+>	stream->enabled = true;
+>
+>	ret = xe_eu_stall_stream_enable(stream);
+> +	queue_delayed_work(stream->buf_poll_wq,
+
+A blank line before this line would be nice.
+
+> +			   &stream->buf_poll_work,
+> +			   msecs_to_jiffies(POLL_PERIOD_MS));
+>	return ret;
+>  }
+>
+> @@ -429,6 +689,9 @@ static int xe_eu_stall_disable_locked(struct xe_eu_stall_data_stream *stream)
+>	stream->enabled = false;
+>
+>	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_BASE, 0);
+> +	/* Check for any new EU stall data one last time */
+> +	queue_delayed_work(stream->buf_poll_wq, &stream->buf_poll_work, 0);
+
+I am not sure if this is needed, especially if we use
+cancel_delayed_work_sync.
+
+> +	flush_delayed_work(&stream->buf_poll_work);
+
+I think here we should use cancel_delayed_work_sync() instead. See
+e.g. xe_guc_ct.c (and also maybe xe_gt_tlb_invalidation.c).
+
+>
+>	xe_force_wake_put(gt_to_fw(gt), XE_FW_RENDER);
+>	xe_pm_runtime_put(gt_to_xe(gt));
+> diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+> index d5281de04d54..1cc6bfc34ccb 100644
+> --- a/drivers/gpu/drm/xe/xe_trace.h
+> +++ b/drivers/gpu/drm/xe/xe_trace.h
+> @@ -427,6 +427,39 @@ DEFINE_EVENT(xe_pm_runtime, xe_pm_runtime_get_ioctl,
+>	     TP_ARGS(xe, caller)
+>  );
+>
+> +TRACE_EVENT(xe_eu_stall_data_read,
+> +	    TP_PROTO(u8 slice, u8 subslice,
+> +		     u32 read_ptr, u32 write_ptr,
+> +		     u32 read_offset, u32 write_offset,
+> +		     size_t total_size),
+> +	    TP_ARGS(slice, subslice, read_ptr, write_ptr,
+> +		    read_offset, write_offset, total_size),
+> +
+> +	    TP_STRUCT__entry(__field(u8, slice)
+> +			     __field(u8, subslice)
+> +			     __field(u32, read_ptr)
+> +			     __field(u32, write_ptr)
+> +			     __field(u32, read_offset)
+> +			     __field(u32, write_offset)
+> +			     __field(size_t, total_size)
+> +			     ),
+> +
+> +	    TP_fast_assign(__entry->slice = slice;
+> +			   __entry->subslice = subslice;
+> +			   __entry->read_ptr = read_ptr;
+> +			   __entry->write_ptr = write_ptr;
+> +			   __entry->read_offset = read_offset;
+> +			   __entry->write_offset = write_offset;
+> +			   __entry->total_size = total_size;
+> +			   ),
+> +
+> +	    TP_printk("slice:%u subslice:%u readptr:0x%x writeptr:0x%x read off:%u write off:%u size:%zu ",
+> +		      __entry->slice, __entry->subslice,
+> +		      __entry->read_ptr, __entry->write_ptr,
+> +		      __entry->read_offset, __entry->write_offset,
+> +		      __entry->total_size)
+> +);
+> +
+>  #endif
+>
+>  /* This part must be outside protection */
 > --
-> Gustavo Sousa
-> 
-> >
-> >>
-> >>Maybe these should even be functions rather than macros?
-> >
-> >Yeah. I actually considered this possibility, but went with the macros
-> >to keep the change simple.
-> >
-> >If that's welcome, I could go ahead with turning those macros into
-> >static inline functions.
-> >
-> >--
-> >Gustavo Sousa
-> >
-> >>
-> >>>  
-> >>>  struct intel_power_domain_mask {
-> >>>          DECLARE_BITMAP(bits, POWER_DOMAIN_NUM);
-> >>> -- 
-> >>> 2.48.1
-> >>
-> >>-- 
-> >>Ville Syrjälä
-> >>Intel
-
--- 
-Ville Syrjälä
-Intel
+> 2.48.1
+>
