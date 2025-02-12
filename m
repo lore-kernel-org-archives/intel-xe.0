@@ -4,57 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5681C021A4
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 16:33:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72988C021A4
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Feb 2025 16:36:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7189810E917;
-	Wed, 12 Feb 2025 16:33:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2688C10E905;
+	Wed, 12 Feb 2025 16:36:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a3ZeadJY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KwOzPhsM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8045710E911;
- Wed, 12 Feb 2025 16:33:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6830B10E903;
+ Wed, 12 Feb 2025 16:36:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739377998; x=1770913998;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=bPb4HGtPc1jw3HZ2PILjHq8rNQ6CKsUqMy94wB2IVAE=;
- b=a3ZeadJYMUMVlBJ40WLLhgrcIyM2+DkAZXxYGm31XTvPuMGzHvZfGSni
- CLcgmUSoi6sYCDkHke5Q5fghTJIVlmWVFa8fI0oSkhmyLAYs3slitl1Xq
- 6RhHfo4EFXxGQZL+efxo19NZXXLqG6Pw7IC8HbG6dA8wYTcHiGqNHcA04
- Cq74ftWam5Dv3qtk9iAxxOmqGI4LsOuTgFjj82gg6j7IQfMi7gk716mju
- tPQVizxIX5Tu/Ey7kZETMymgPfewS0gihrmTGXixObU139OaamSWpRQ5Q
- pYS9KzTqDrBry1oH0mZmphXj6XgWZvkwrwTMifQpNnxv2+x8zBJMhNVM5 g==;
-X-CSE-ConnectionGUID: czN1DSufQdGibDpforgghA==
-X-CSE-MsgGUID: XK9jlCjQTRuVlG6lv8MLgA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="39969133"
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="39969133"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 08:33:18 -0800
-X-CSE-ConnectionGUID: 4H8SIfHcR8qpEHO4OETAsQ==
-X-CSE-MsgGUID: QzFEoXf5QFSIc8uGMqRkeg==
+ t=1739378211; x=1770914211;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qIDmZ8GFyhMCk8IVoPrqfz2e02AtA4vVqcnswtOqR0o=;
+ b=KwOzPhsMpCWWIy7Kq+6Jt582SL24o5gu452MSYaWYSGe49WIajIk84Rr
+ lvNhEA0Mi3QhoYouINYdSwTJBgdRbKhdqrn/RD/5UnGXbaF9t+WsEJzlY
+ bFWLGzOajkBVX3wHukCqnpFA+1Rf3lp4CEicRmk99mIS59HmXBHTRFztx
+ gL528rRLdh2PCBGV4sdwa5saeWfp5USCNfpV42NTB5+3bAFO3Qcyt1tSo
+ XYrwvL8aTYdbpoOhza5qMXwJ1rPVv3JvlqHqk6leD4a73EhGsObjnHRh8
+ C0SHJhH627r8dvIXgkGSvnE4OHRyJpOJKPfXBwQEcrIZMdgtXTX9fQT3S g==;
+X-CSE-ConnectionGUID: 7JQlwRmMRGSAuuHdjgI0XA==
+X-CSE-MsgGUID: /lkTI25WST61CzZ1GD/vmQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="65405190"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="65405190"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 08:36:50 -0800
+X-CSE-ConnectionGUID: /Apk0w3aRiq3wG6+R9efEg==
+X-CSE-MsgGUID: hvBdBAEaS+iwiuN8qrmtOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116989312"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa003.fm.intel.com with ESMTP; 12 Feb 2025 08:33:16 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Wed, 12 Feb 2025 21:48:24 +0530
-Subject: [PATCH v5 3/3] drm/i915/display: Add i915 hook for
- format_mod_supported_async
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="112858729"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.167])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 08:36:48 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 00/14] drm/i915/display: conversions to struct intel_display
+Date: Wed, 12 Feb 2025 18:36:29 +0200
+Message-Id: <cover.1739378095.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250212-asyn-v5-3-dc182281dca3@intel.com>
-References: <20250212-asyn-v5-0-dc182281dca3@intel.com>
-In-Reply-To: <20250212-asyn-v5-0-dc182281dca3@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@intel.com, 
- Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,101 +67,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hook up the newly added plane function pointer
-format_mod_supported_async to populate the modifiers/formats supported
-by asynchronous flips.
+Convert a bunch of files and functions to struct intel display.
 
-v5: Correct the if condition for modifier support check (Chaitanya)
+The approach is to mostly convert a file, then see what the stragglers
+are, convert those too, and repeat.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 56 ++++++++++++++++------
- 1 file changed, 41 insertions(+), 15 deletions(-)
+The PCH checks are starting to become a big straggler for further
+conversions.
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index ba5db553c374259f8f3246c1408b55d32c8794e5..2743b031d1092ccc74b4144bd06dba8790f722e7 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -511,6 +511,33 @@ skl_plane_max_stride(struct intel_plane *plane,
- 				modifier, rotation,
- 				max_pixels, max_bytes);
- }
-+static bool intel_plane_async_formats(struct intel_plane *plane, uint32_t format)
-+{
-+	switch (format) {
-+	case DRM_FORMAT_RGB565:
-+	case DRM_FORMAT_XRGB8888:
-+	case DRM_FORMAT_XBGR8888:
-+	case DRM_FORMAT_ARGB8888:
-+	case DRM_FORMAT_ABGR8888:
-+	case DRM_FORMAT_XRGB2101010:
-+	case DRM_FORMAT_XBGR2101010:
-+	case DRM_FORMAT_XRGB16161616F:
-+	case DRM_FORMAT_XBGR16161616F:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool intel_plane_format_mod_supported_async(struct drm_plane *plane,
-+						   uint32_t format,
-+						   uint64_t modifier)
-+{
-+	if (!intel_plane_can_async_flip(to_intel_plane(plane), modifier))
-+		return false;
-+
-+	return intel_plane_async_formats(to_intel_plane(plane), format);
-+}
- 
- static bool tgl_plane_can_async_flip(u64 modifier)
- {
-@@ -2559,30 +2586,29 @@ static bool tgl_plane_format_mod_supported(struct drm_plane *_plane,
- 	}
- }
- 
-+#define INTEL_PLANE_FUNCS \
-+	.update_plane = drm_atomic_helper_update_plane, \
-+	.disable_plane = drm_atomic_helper_disable_plane, \
-+	.destroy = intel_plane_destroy, \
-+	.atomic_duplicate_state = intel_plane_duplicate_state, \
-+	.atomic_destroy_state = intel_plane_destroy_state, \
-+	.format_mod_supported_async = intel_plane_format_mod_supported_async
-+
- static const struct drm_plane_funcs skl_plane_funcs = {
--	.update_plane = drm_atomic_helper_update_plane,
--	.disable_plane = drm_atomic_helper_disable_plane,
--	.destroy = intel_plane_destroy,
--	.atomic_duplicate_state = intel_plane_duplicate_state,
--	.atomic_destroy_state = intel_plane_destroy_state,
-+	INTEL_PLANE_FUNCS,
-+
- 	.format_mod_supported = skl_plane_format_mod_supported,
- };
- 
- static const struct drm_plane_funcs icl_plane_funcs = {
--	.update_plane = drm_atomic_helper_update_plane,
--	.disable_plane = drm_atomic_helper_disable_plane,
--	.destroy = intel_plane_destroy,
--	.atomic_duplicate_state = intel_plane_duplicate_state,
--	.atomic_destroy_state = intel_plane_destroy_state,
-+	INTEL_PLANE_FUNCS,
-+
- 	.format_mod_supported = icl_plane_format_mod_supported,
- };
- 
- static const struct drm_plane_funcs tgl_plane_funcs = {
--	.update_plane = drm_atomic_helper_update_plane,
--	.disable_plane = drm_atomic_helper_disable_plane,
--	.destroy = intel_plane_destroy,
--	.atomic_duplicate_state = intel_plane_duplicate_state,
--	.atomic_destroy_state = intel_plane_destroy_state,
-+	INTEL_PLANE_FUNCS,
-+
- 	.format_mod_supported = tgl_plane_format_mod_supported,
- };
- 
+BR,
+Jani.
+
+Jani Nikula (14):
+  drm/i915/dp: convert g4x_dp.[ch] to struct intel display
+  drm/i915/hdmi: convert g4x_hdmi.[ch] to struct intel_display
+  drm/i915/ips: convert hsw_ips.c to struct intel_display
+  drm/i915/display: convert assert_transcoder*() to struct intel_display
+  drm/i915/display: convert assert_port_valid() to struct intel_display
+  drm/i915/hpd: drop dev_priv parameter from intel_hpd_pin_default()
+  drm/i915/display: convert
+    intel_set_{cpu,pch}_fifo_underrun_reporting() to intel_display
+  drm/i915/sdvo: convert intel_sdvo.[ch] to struct intel_display
+  drm/i915/display: convert intel_cpu_transcoder_mode_valid() to
+    intel_display
+  drm/i915/display: convert intel_mode_valid_max_plane_size() to
+    intel_display
+  drm/i915/dsi: convert platform checks to display->platform.<platform>
+    style
+  drm/i915/combo-phy: convert intel_combo_phy.[ch] to struct
+    intel_display
+  drm/i915/display: convert intel_fifo_underrun.[ch] to struct
+    intel_display
+  drm/i915/display: convert i915_pipestat_enable_mask() to struct
+    intel_display
+
+ drivers/gpu/drm/i915/display/g4x_dp.c         |  99 +++---
+ drivers/gpu/drm/i915/display/g4x_dp.h         |  14 +-
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       | 154 +++++----
+ drivers/gpu/drm/i915/display/g4x_hdmi.h       |   6 +-
+ drivers/gpu/drm/i915/display/hsw_ips.c        |  26 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  21 +-
+ .../gpu/drm/i915/display/intel_combo_phy.c    | 180 ++++++-----
+ .../gpu/drm/i915/display/intel_combo_phy.h    |   8 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |  21 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   2 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  11 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 155 ++++-----
+ drivers/gpu/drm/i915/display/intel_display.h  |  10 +-
+ .../gpu/drm/i915/display/intel_display_irq.c  |  37 +--
+ .../gpu/drm/i915/display/intel_display_irq.h  |   5 +-
+ .../drm/i915/display/intel_display_power.c    |   5 +-
+ .../i915/display/intel_display_power_well.c   |   3 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   5 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   5 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  30 +-
+ drivers/gpu/drm/i915/display/intel_dsi.c      |   8 +-
+ drivers/gpu/drm/i915/display/intel_dvo.c      |   8 +-
+ drivers/gpu/drm/i915/display/intel_fdi.c      |   3 +-
+ .../drm/i915/display/intel_fifo_underrun.c    | 181 ++++++-----
+ .../drm/i915/display/intel_fifo_underrun.h    |  18 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   5 +-
+ drivers/gpu/drm/i915/display/intel_hotplug.c  |   4 +-
+ drivers/gpu/drm/i915/display/intel_hotplug.h  |   3 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   6 +-
+ .../drm/i915/display/intel_modeset_setup.c    |   6 +-
+ .../gpu/drm/i915/display/intel_pch_display.c  |   4 +-
+ drivers/gpu/drm/i915/display/intel_pps.c      |  11 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     | 293 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_sdvo.h     |  10 +-
+ drivers/gpu/drm/i915/display/intel_tv.c       |   6 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   8 +-
+ 36 files changed, 671 insertions(+), 700 deletions(-)
 
 -- 
-2.25.1
+2.39.5
 
