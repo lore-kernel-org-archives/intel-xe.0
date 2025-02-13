@@ -4,75 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09746C021A7
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 06:42:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E36CC021A9
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 06:48:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5E2710EA01;
-	Thu, 13 Feb 2025 06:42:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15BD210EA09;
+	Thu, 13 Feb 2025 06:48:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="ImCK39nu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cC1kguiC";
 	dkim-atps=neutral
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
- [209.85.218.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D71410EA01
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Feb 2025 06:42:47 +0000 (UTC)
-Received: by mail-ej1-f52.google.com with SMTP id
- a640c23a62f3a-ab7c07e8b9bso95977766b.1
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Feb 2025 22:42:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1739428966; x=1740033766; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=9BwzwrGYYZTdrC+x4ZDscx1vZlqh8gdJX/EdgKjGlkU=;
- b=ImCK39nuYbvWUmQ7Xjuq98RGV56dQpviNtXWTm/LRzanrMYfAYnDcdV7t/JJJNsJqI
- TOvJU+skgRa/RCRV7teKUh/UMywpZ7LPBpwrfeZJt/N3i7DyblTv5KtQzv6oZMC8Bh2+
- DWIbGIUUQRcQVyVKgNUP9XyLi+JT58R4QAt0XhJVsDKLFJueU31nId4LBWTKA0laPc+C
- gQqHMG0WQi7zmc+AjTXSwBYUTGcn6Flwu/C/mShMBwRsYbzzh5M7HU5/wstINK9S0iUh
- E7eYNwhF8eAs8cnPekZJLDazPD4221OMvzUBbDVAnLBL768ZirWIaW8sQ/JNXV+xOGD9
- VsUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1739428966; x=1740033766;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=9BwzwrGYYZTdrC+x4ZDscx1vZlqh8gdJX/EdgKjGlkU=;
- b=lpAQx+JWVlHxKVxo9Fh3f8IreTiIbs4z4irWApTYzwCA7wk3HfxRQO9fQXxZJI3K2D
- JVmhvg7KYxWktr3pn3yLlx9iW+EqYghwTNRve82GsqQuxo2rDzP5baW+ovd04CFcT194
- /cdu0uAOGXgc5YIDbClq7KMvq7rJi+yrXawkHdc+9ikDh/cXZcF2t1mZChzpIJjakoEc
- WuHP79DbB0g6f5eVxgAawsYLNURIBatqtelQLThFr+WwFKY2VV1WohMoseh2uVWuqhj7
- 6J+CCE7/YB2Tx9tjYoD6vE4u9gTIiWP7qCc6x9pzTL9b6wL1/g7O/ekMQtpqx96nXY46
- N/yQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWrjlu7VdyQ51hWBZW7eoQqAiBnNGHoRooa1XBQVLCiIQDjblANYsq55NoVOVkMTD3QjQKj38bbyA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwL2ifA9adH48uCPG0JkK/IFU1alrA+FKRMyqtpheUjfk8Yj3aO
- cTfBzJI1JBa2Xe8KwuR4IBw0Fv3VSIeS/h3HU0MMwE8KI/4tWGI/eFXYHbiWgus=
-X-Gm-Gg: ASbGncuEfyrNAFSRYz6r3pc5Ef8LMN13auPx6B3S6TzWPRVzKfGvh/sSMMp0CxsqQOE
- XN1e+pTpTJ9R8tHte4lymTTfucd0DgVWPddIfUz8zlcxUx9QPIVIMdNplfsdT8o30e3SedpJ/y1
- DXykRaX7bp4Nzh7V4uTryoBD4v3/rMReYicem9v5HOSK/to7WDnOZZkgaZVNl00nXEGBoTooxNE
- kwhn2vbyGlT+D3oIPiXvpPHAKpv04HXXutq97vBegt/2ToAHlRd7CL6eq9qdE03ESDiV1N6comH
- 1yP+OpinYaK8AS9fiygB
-X-Google-Smtp-Source: AGHT+IHfO8U4hoQ4wfehrbP6h0/5qB3bjvRpKf7TxOY9LwHfy4pcqhScdFSiA9hJ+EqazrPV64mc4g==
-X-Received: by 2002:a17:907:7207:b0:ab2:db7b:5db3 with SMTP id
- a640c23a62f3a-ab7f34e7515mr531837466b.54.1739428965658; 
- Wed, 12 Feb 2025 22:42:45 -0800 (PST)
-Received: from localhost ([196.207.164.177])
- by smtp.gmail.com with UTF8SMTPSA id
- a640c23a62f3a-aba5337674asm64956166b.99.2025.02.12.22.42.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 12 Feb 2025 22:42:45 -0800 (PST)
-Date: Thu, 13 Feb 2025 09:42:41 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-xe@lists.freedesktop.org, John Harrison <John.C.Harrison@intel.com>
-Subject: Re: [PATCH] drm/xe/pxp: Don't kill queues while holding the spinlock
-Message-ID: <aff30f31-6f1c-4086-b059-d8c1246bfdb2@stanley.mountain>
-References: <20250213004032.2059861-1-daniele.ceraolospurio@intel.com>
- <Z61KX8koy/aFnvOy@lstrano-desk.jf.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2746810EA05;
+ Thu, 13 Feb 2025 06:48:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739429296; x=1770965296;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DGH79fVmIYtvBaFvFFFLfI3Od9bUtHNN0Ok/qiQ209Q=;
+ b=cC1kguiCgz2aQQCREbJQ9eJe3px5KG3j7s7A99qyyNMFSzAXTFycVf9B
+ rngXpy0UFNZh0nlHEpWbpaNalIGdQ8vdRai0EFawHzQz/017dmbVbN15w
+ 1ONR9XOefNuEH/TVf4ATGyJT27mR5x/CAaZ7Ynuu0Su3jH8QYjczf+5TQ
+ Du70kv28ojLwW6hmpo1iwhH6pnk/ZTtCZaS1cgsKZlSIQTnGnI3IJZ9W7
+ JtLwKw3+eFobp1ORW4NAR5FPb6m0V6clUqSrIxoDZN2Ev6Giiu5de6U6p
+ HLkwvcmFh+5eCCq4LyX8HAb/u4c2baZyGguZL42x6UOdCAoNkuhry+zho w==;
+X-CSE-ConnectionGUID: Br5P8cWSS9SuvWa7+VALkQ==
+X-CSE-MsgGUID: LTJNlQ43SEOU9VU+eECu5A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="50764034"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="50764034"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 22:48:16 -0800
+X-CSE-ConnectionGUID: 9Ntt142lQaexri6FiTWxrQ==
+X-CSE-MsgGUID: LWyNaGqmTwmcVXwK3OYwvg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="118237068"
+Received: from ksztyber-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.244.234])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 22:48:14 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v8 00/13] PSR DSB support
+Date: Thu, 13 Feb 2025 08:47:51 +0200
+Message-ID: <20250213064804.2077127-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z61KX8koy/aFnvOy@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,36 +68,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 12, 2025 at 05:26:55PM -0800, Matthew Brost wrote:
-> On Wed, Feb 12, 2025 at 04:40:32PM -0800, Daniele Ceraolo Spurio wrote:
-> > xe_exec_queue_kill can sleep, so we can't call it from under the lock.
-> > We can instead move the queues to a separate list and then kill them all
-> > after we release the lock.
-> > 
-> > Since being in the list is used to track whether RPM cleanup is needed,
-> > we can no longer defer that to queue_destroy, so we perform it
-> > immediately instead.
-> > 
-> > Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-> > Fixes: f8caa80154c4 ("drm/xe/pxp: Add PXP queue tracking and session start")
-> > Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> 
-> Patch LGTM but can this actually happen though? i.e. Can or do we enable
-> PXP on LR queues?
-> 
+This patch set is doing necessary modifications to support PSR update
+using DSB on LunarLake onwards
 
-This isn't really an answer to your question, but when I reported this
-bug I didn't notice the if (xe_vm_in_preempt_fence_mode()) check in
-xe_vm_remove_compute_exec_queue().  So it's possible that this was a
-false positive?
+It is not necessary to wait for PSR1 to idle or PSR2 to exit DEEP
+sleep at the begin of commit This is left out from DSB commit. There
+might be room for optimization for non-DSB as well because such wait
+is not supposed to be necessary at the begin of update.
 
-> Also as a follow should be add a might_sleep() to xe_exec_queue_kill to
-> catch this type of bug immediately?
+PSR mutex is not locked when performing DSB commit. It is not
+necessary as we are currently using DSB only when sending updates
+towards panel. I.e. not using it when changing PSR mode. Also
+necessary changes are made to use PSR2_MAN_TRK_CTL only in
+DSB. Frontbuffer updates and legacy cursor updates are using SFF_CTL
+register to perform full frame updates.
 
-There is a might_sleep() in down_write().  If this is a real bug that
-would have caught it.  The problem is that people don't generally test
-with CONFIG_DEBUG_ATOMIC_SLEEP so the might_sleep() calls are turned off.
+DSB_SKIP_WAITS_EN is removed to ensure all waits are performed when
+PSR is active. PSR "Frame Change" event is manually triggered at the
+begin of each DSB commit by adding CURSURFLIVE register write.
 
-regards,
-dan carpenter
+Possibe problem with DSB commit when PSR is already waking up is
+avoided by evading scanline 0.
+
+v8:
+  - rebase
+v7:
+  - Rename "drm/i915/psr: Changes for PSR2_MAN_TRK_CTL handling when
+    DSB is in use" as "drm/i915/psr: Write PSR2_MAN_TRK_CTL on DSB
+    commit" due to scope changes.
+  - Warn on use_dsb in non-dsb pipe update functions
+  - dsb as a first parameter in intel_psr_trigger_frame_change_event
+v6:
+  - add comment explaining why we are not setting DSB_SKIP_WAITS_EN
+  - add separate function to generate the "Frame change"evant.
+  - use intel_dsb_emit_wait_dsl
+  - add evasion of scanline 0 also for Panel Replay
+v5:
+  - rebase
+v4:
+  - remove DSB_SKIP_WAITS_EN
+  - Add CURSURFLIVE register write at the begin of DSB commit
+  - evade scanline 0
+v3:
+  - do not use DSB when PSR mode is changing
+v2:
+  - use _MMIO_TRANS instead of _MMIO_TRANS2
+  - drop evasion from intel_psr_configure_full_frame_update
+
+Jouni Högander (13):
+  drm/i915/psr: Use PSR2_MAN_TRK_CTL CFF bit only to send full update
+  drm/i915/psr: Rename psr_force_hw_tracking_exit as
+    intel_psr_force_update
+  drm/i915/psr: Split setting sff and cff bits away from
+    intel_psr_force_update
+  drm/i915/psr: Add register definitions for SFF_CTL and CFF_CTL
+    registers
+  drm/i915/psr: Use SFF_CTL on invalidate/flush for LunarLake onwards
+  drm/i915/psr: Allow writing PSR2_MAN_TRK_CTL using DSB
+  drm/i915/psr: Write PSR2_MAN_TRK_CTL on DSB commit as well
+  drm/i915/display: Warn on use_dsb in non-dsb pipe update functions
+  drm/i915/psr: Remove DSB_SKIP_WAITS_EN chicken bit
+  drm/i915/display: Evade scanline 0 as well if PSR1 or PSR2 is enabled
+  drm/i915/psr: Add function for triggering "Frame Change" event
+  drm/i915/display: Ensure we have "Frame Change" event in DSB commit
+  drm/i915/psr: Allow DSB usage when PSR is enabled
+
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   4 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  21 ++-
+ drivers/gpu/drm/i915/display/intel_dsb.c      |  27 +++-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 141 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_psr.h      |   7 +-
+ drivers/gpu/drm/i915/display/intel_psr_regs.h |  10 ++
+ 6 files changed, 136 insertions(+), 74 deletions(-)
+
+-- 
+2.43.0
 
