@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30CF3C021A9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 739AAC021AD
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 19:29:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D76EA10EB8D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8D0610EB8F;
 	Thu, 13 Feb 2025 19:29:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="njvuZy6t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F3yUukVa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 785CB10EB88
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D290010EB8C
  for <intel-xe@lists.freedesktop.org>; Thu, 13 Feb 2025 19:29:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739474975; x=1771010975;
+ t=1739474976; x=1771010976;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=7WZFUqb5hzQKCLAImTdlxTq4RQM0joRIBFnCtLWveeA=;
- b=njvuZy6tdHkGd0+I404SGeVftaBIb7E4bGuvI1JXbuF3SHJ51xLHtm9Z
- SW4FeOZFxsA1516IYwjGwimh23lqeQQlzAnZYsVQvC7YEhEzoG9bFl7CB
- XSFv8XXMir7SHg+GF9JkbK4qgspkFCVk3KjZjAhWbQUIpDgzXKopCDLrP
- ugZhOnzxXU9i2FmfqFqiNeSYiCy2PNpJoIlOaN5DfejaPorDRm8nF5HOv
- 5Cv2kh9nHa17B89Cnk1jLNZo7CPTpAtmOcGrSXHTthu0XFnTrMX96XUOv
- 8FXw767b9ynChkfpWqbmcG5XOMmbcUL2KKhNOXDy9CiJ5jWX9cPUHlx54 Q==;
-X-CSE-ConnectionGUID: 21dOlR+AST2iiFNU4M9uoQ==
-X-CSE-MsgGUID: cp9n7JaLS5G8b91vQNz0FA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40127928"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="40127928"
+ bh=UiIy4YZRTJ5IvPyhlfKA5D2kS9IeNLGm17ynDIIySQI=;
+ b=F3yUukVaQ/tzMKcgDIQIEqfH8ckDQKZbMsKduGtBJoTJFDHk1yFBE5KN
+ G/xO7zassTE7oL6QUPiShYw9rkXj3m3bNxQVyNomAIbZUcuzHSBBSA6WO
+ LHcKSU2vlcb+LHtzF02hOPYF6O2VD+WjRxa3dIF7WZu/PS2kdxys4XTet
+ S/8AkuWWUlqDeY7t/4ZMjdoImO0WK7deVPcZeP5QNzOvhW+5OgpPhU8F7
+ S+sDc9yZjok1e3ahNbXBbIeR9B5hqwIWrFZKqfGDRJsR28RSNnGRxxj/N
+ AfrZ3qU6Wtj6TuuV+hRpZOfYOjqX73GAssTvUSGo9pcUIx7k69Jmvw3zG w==;
+X-CSE-ConnectionGUID: sWui6eHhRySBXCHrU7bvXA==
+X-CSE-MsgGUID: gXlux0hgT5iFBbFWGYvRGw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40127934"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="40127934"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Feb 2025 11:29:35 -0800
-X-CSE-ConnectionGUID: aIm8g3L/QPqbdo87PSHsPQ==
-X-CSE-MsgGUID: 9Xjze++1T1KAm4SluHPDdQ==
+X-CSE-ConnectionGUID: nMfyGbbMTTeeswFN1SBooQ==
+X-CSE-MsgGUID: 7M4cNLs3Rce1jTx94gVXSQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="150416876"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="150416893"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Feb 2025 11:29:35 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Subject: [CI 07/13] drm/xe: Cleanup unwind of gt initialization
-Date: Thu, 13 Feb 2025 11:29:03 -0800
-Message-ID: <20250213192909.996148-7-lucas.demarchi@intel.com>
+Subject: [CI 13/13] drm/xe/hwmon: Stop ignoring errors on probe
+Date: Thu, 13 Feb 2025 11:29:09 -0800
+Message-ID: <20250213192909.996148-13-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250213192909.996148-1-lucas.demarchi@intel.com>
 References: <20250213192909.996148-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,355 +65,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The only thing in xe_gt_remove() that really needs to happen on the
-device remove callback is the xe_uc_remove(). That's because of the
-following call chain:
+Not registering hwmon because it's not available (SRIOV_VF and DGFX) is
+different from failing the initialization. Handle the errors
+appropriately.
 
-	xe_gt_remove()
-	  xe_uc_remove()
-	    xe_gsc_remove()
-	      xe_gsc_proxy_remove()
-
-Move xe_gsc_proxy_remove() to be handled as a xe_device_remove_action,
-so it's recorded when it should run during device removal. The rest can
-be handled normally by devm infra.
-
-Besides removing the deep call chain above, xe_device_probe() doesn't
-have to unwind the gt loop and it's also more in line with the
-xe_device_probe() style.
-
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Cc: Karthik Poosa <karthik.poosa@intel.com>
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c    | 21 +----------
- drivers/gpu/drm/xe/xe_gsc.c       |  9 -----
- drivers/gpu/drm/xe/xe_gsc.h       |  1 -
- drivers/gpu/drm/xe/xe_gsc_proxy.c | 63 ++++++++++++++-----------------
- drivers/gpu/drm/xe/xe_gsc_proxy.h |  1 -
- drivers/gpu/drm/xe/xe_gsc_types.h |  1 +
- drivers/gpu/drm/xe/xe_gt.c        | 35 ++++++++---------
- drivers/gpu/drm/xe/xe_gt.h        |  1 -
- drivers/gpu/drm/xe/xe_uc.c        | 13 -------
- drivers/gpu/drm/xe/xe_uc.h        |  1 -
- 10 files changed, 47 insertions(+), 99 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |  4 +++-
+ drivers/gpu/drm/xe/xe_hwmon.c  | 31 ++++++++++++++++---------------
+ drivers/gpu/drm/xe/xe_hwmon.h  |  4 ++--
+ 3 files changed, 21 insertions(+), 18 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 50e16a3b489ef..edab1681a01c9 100644
+index 44471604142fc..31013491f8d7e 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -750,7 +750,6 @@ int xe_device_probe(struct xe_device *xe)
- 	struct xe_tile *tile;
- 	struct xe_gt *gt;
- 	int err;
--	u8 last_gt;
- 	u8 id;
+@@ -895,7 +895,9 @@ int xe_device_probe(struct xe_device *xe)
  
- 	xe->probing = true;
-@@ -861,18 +860,16 @@ int xe_device_probe(struct xe_device *xe)
- 		return err;
+ 	xe_debugfs_register(xe);
  
- 	for_each_gt(gt, xe, id) {
--		last_gt = id;
--
- 		err = xe_gt_init(gt);
- 		if (err)
--			goto err_fini_gt;
-+			return err;
- 	}
+-	xe_hwmon_register(xe);
++	err = xe_hwmon_register(xe);
++	if (err)
++		goto err_unregister_display;
  
- 	xe_heci_gsc_init(xe);
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_sanitize_freq(gt);
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 7f327e3342123..48d80ffdf7bb9 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -839,10 +839,9 @@ static const struct hwmon_chip_info hwmon_chip_info = {
+ };
  
- 	err = xe_oa_init(xe);
- 	if (err)
--		goto err_fini_gt;
-+		return err;
- 
- 	err = xe_display_init(xe);
- 	if (err)
-@@ -911,14 +908,6 @@ int xe_device_probe(struct xe_device *xe)
- err_fini_oa:
- 	xe_oa_fini(xe);
- 
--err_fini_gt:
--	for_each_gt(gt, xe, id) {
--		if (id < last_gt)
--			xe_gt_remove(gt);
--		else
--			break;
--	}
--
- 	return err;
- }
- 
-@@ -987,9 +976,6 @@ static void xe_device_remove_display(struct xe_device *xe)
- 
- void xe_device_remove(struct xe_device *xe)
+ static void
+-xe_hwmon_get_preregistration_info(struct xe_device *xe)
++xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
  {
--	struct xe_gt *gt;
--	u8 id;
--
- 	xe_oa_unregister(xe);
- 
- 	xe_device_remove_display(xe);
-@@ -998,9 +984,6 @@ void xe_device_remove(struct xe_device *xe)
- 
- 	xe_heci_gsc_fini(xe);
- 
--	for_each_gt(gt, xe, id)
--		xe_gt_remove(gt);
--
- 	xe_device_call_remove_actions(xe);
+-	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+-	struct xe_hwmon *hwmon = xe->hwmon;
++	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+ 	long energy;
+ 	u64 val_sku_unit = 0;
+ 	int channel;
+@@ -876,33 +875,34 @@ static void xe_hwmon_mutex_destroy(void *arg)
+ 	mutex_destroy(&hwmon->hwmon_lock);
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
-index 1eb791ddc375c..fd41113f85725 100644
---- a/drivers/gpu/drm/xe/xe_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_gsc.c
-@@ -555,15 +555,6 @@ void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc)
- 		flush_work(&gsc->work);
- }
+-void xe_hwmon_register(struct xe_device *xe)
++int xe_hwmon_register(struct xe_device *xe)
+ {
+ 	struct device *dev = xe->drm.dev;
+ 	struct xe_hwmon *hwmon;
++	int ret;
  
--/**
-- * xe_gsc_remove() - Clean up the GSC structures before driver removal
-- * @gsc: the GSC uC
-- */
--void xe_gsc_remove(struct xe_gsc *gsc)
--{
--	xe_gsc_proxy_remove(gsc);
--}
--
- /*
-  * wa_14015076503: if the GSC FW is loaded, we need to alert it before doing a
-  * GSC engine reset by writing a notification bit in the GS1 register and then
-diff --git a/drivers/gpu/drm/xe/xe_gsc.h b/drivers/gpu/drm/xe/xe_gsc.h
-index e282b9ef6ec4d..d99f66c38075c 100644
---- a/drivers/gpu/drm/xe/xe_gsc.h
-+++ b/drivers/gpu/drm/xe/xe_gsc.h
-@@ -17,7 +17,6 @@ int xe_gsc_init(struct xe_gsc *gsc);
- int xe_gsc_init_post_hwconfig(struct xe_gsc *gsc);
- void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc);
- void xe_gsc_load_start(struct xe_gsc *gsc);
--void xe_gsc_remove(struct xe_gsc *gsc);
- void xe_gsc_hwe_irq_handler(struct xe_hw_engine *hwe, u16 intr_vec);
+ 	/* hwmon is available only for dGfx */
+ 	if (!IS_DGFX(xe))
+-		return;
++		return 0;
  
- void xe_gsc_wa_14015076503(struct xe_gt *gt, bool prep);
-diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-index 24cc6a4f9a96a..31c90577faf0b 100644
---- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
-+++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-@@ -423,6 +423,34 @@ static int proxy_channel_alloc(struct xe_gsc *gsc)
- 	return 0;
- }
+ 	/* hwmon is not available on VFs */
+ 	if (IS_SRIOV_VF(xe))
+-		return;
++		return 0;
  
-+static void xe_gsc_proxy_remove(void *arg)
-+{
-+	struct xe_gsc *gsc = arg;
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+	struct xe_device *xe = gt_to_xe(gt);
-+	unsigned int fw_ref = 0;
-+
-+	if (!gsc->proxy.component_added)
-+		return;
-+
-+	/* disable HECI2 IRQs */
-+	xe_pm_runtime_get(xe);
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
-+	if (!fw_ref)
-+		xe_gt_err(gt, "failed to get forcewake to disable GSC interrupts\n");
-+
-+	/* try do disable irq even if forcewake failed */
-+	gsc_proxy_irq_toggle(gsc, false);
-+
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	xe_pm_runtime_put(xe);
-+
-+	xe_gsc_wait_for_worker_completion(gsc);
-+
-+	component_del(xe->drm.dev, &xe_gsc_proxy_component_ops);
-+	gsc->proxy.component_added = false;
-+}
-+
- /**
-  * xe_gsc_proxy_init() - init objects and MEI component required by GSC proxy
-  * @gsc: the GSC uC
-@@ -462,40 +490,7 @@ int xe_gsc_proxy_init(struct xe_gsc *gsc)
- 
- 	gsc->proxy.component_added = true;
- 
--	/* the component must be removed before unload, so can't use drmm for cleanup */
--
--	return 0;
--}
--
--/**
-- * xe_gsc_proxy_remove() - remove the GSC proxy MEI component
-- * @gsc: the GSC uC
-- */
--void xe_gsc_proxy_remove(struct xe_gsc *gsc)
--{
--	struct xe_gt *gt = gsc_to_gt(gsc);
--	struct xe_device *xe = gt_to_xe(gt);
--	unsigned int fw_ref = 0;
--
--	if (!gsc->proxy.component_added)
+ 	hwmon = devm_kzalloc(dev, sizeof(*hwmon), GFP_KERNEL);
+ 	if (!hwmon)
 -		return;
 -
--	/* disable HECI2 IRQs */
--	xe_pm_runtime_get(xe);
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
--	if (!fw_ref)
--		xe_gt_err(gt, "failed to get forcewake to disable GSC interrupts\n");
--
--	/* try do disable irq even if forcewake failed */
--	gsc_proxy_irq_toggle(gsc, false);
--
--	xe_force_wake_put(gt_to_fw(gt), fw_ref);
--	xe_pm_runtime_put(xe);
--
--	xe_gsc_wait_for_worker_completion(gsc);
--
--	component_del(xe->drm.dev, &xe_gsc_proxy_component_ops);
--	gsc->proxy.component_added = false;
-+	return xe_device_add_action_or_reset(xe, xe_gsc_proxy_remove, gsc);
- }
+-	xe->hwmon = hwmon;
++		return -ENOMEM;
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.h b/drivers/gpu/drm/xe/xe_gsc_proxy.h
-index c511ade6b8637..fdef56995cd43 100644
---- a/drivers/gpu/drm/xe/xe_gsc_proxy.h
-+++ b/drivers/gpu/drm/xe/xe_gsc_proxy.h
-@@ -12,7 +12,6 @@ struct xe_gsc;
+ 	mutex_init(&hwmon->hwmon_lock);
+-	if (devm_add_action_or_reset(dev, xe_hwmon_mutex_destroy, hwmon))
+-		return;
++	ret = devm_add_action_or_reset(dev, xe_hwmon_mutex_destroy, hwmon);
++	if (ret)
++		return ret;
  
- int xe_gsc_proxy_init(struct xe_gsc *gsc);
- bool xe_gsc_proxy_init_done(struct xe_gsc *gsc);
--void xe_gsc_proxy_remove(struct xe_gsc *gsc);
- int xe_gsc_proxy_start(struct xe_gsc *gsc);
+ 	/* There's only one instance of hwmon per device */
+ 	hwmon->xe = xe;
++	xe->hwmon = hwmon;
  
- int xe_gsc_proxy_request_handler(struct xe_gsc *gsc);
-diff --git a/drivers/gpu/drm/xe/xe_gsc_types.h b/drivers/gpu/drm/xe/xe_gsc_types.h
-index 5926de20214c8..97c056656df05 100644
---- a/drivers/gpu/drm/xe/xe_gsc_types.h
-+++ b/drivers/gpu/drm/xe/xe_gsc_types.h
-@@ -13,6 +13,7 @@
- #include <linux/workqueue.h>
+-	xe_hwmon_get_preregistration_info(xe);
++	xe_hwmon_get_preregistration_info(hwmon);
  
- #include "xe_uc_fw_types.h"
-+#include "xe_device_types.h"
+ 	drm_dbg(&xe->drm, "Register xe hwmon interface\n");
  
- struct xe_bo;
- struct xe_exec_queue;
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 9fb8f1e678dc8..c33040278e1aa 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -141,26 +141,6 @@ static void xe_gt_disable_host_l2_vram(struct xe_gt *gt)
- 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- }
- 
--/**
-- * xe_gt_remove() - Clean up the GT structures before driver removal
-- * @gt: the GT object
-- *
-- * This function should only act on objects/structures that must be cleaned
-- * before the driver removal callback is complete and therefore can't be
-- * deferred to a drmm action.
-- */
--void xe_gt_remove(struct xe_gt *gt)
--{
--	int i;
+@@ -910,11 +910,12 @@ void xe_hwmon_register(struct xe_device *xe)
+ 	hwmon->hwmon_dev = devm_hwmon_device_register_with_info(dev, "xe", hwmon,
+ 								&hwmon_chip_info,
+ 								hwmon_groups);
 -
--	xe_uc_remove(&gt->uc);
--
--	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
--		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
--
--	xe_gt_disable_host_l2_vram(gt);
--}
--
- static void gt_reset_worker(struct work_struct *w);
- 
- static int emit_nop_job(struct xe_gt *gt, struct xe_exec_queue *q)
-@@ -583,6 +563,17 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
- 	return err;
- }
- 
-+static void xe_gt_fini(void *arg)
-+{
-+	struct xe_gt *gt = arg;
-+	int i;
-+
-+	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
-+		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
-+
-+	xe_gt_disable_host_l2_vram(gt);
-+}
-+
- int xe_gt_init(struct xe_gt *gt)
- {
- 	int err;
-@@ -595,6 +586,10 @@ int xe_gt_init(struct xe_gt *gt)
- 		xe_hw_fence_irq_init(&gt->fence_irq[i]);
+ 	if (IS_ERR(hwmon->hwmon_dev)) {
+-		drm_warn(&xe->drm, "Failed to register xe hwmon (%pe)\n", hwmon->hwmon_dev);
++		drm_err(&xe->drm, "Failed to register xe hwmon (%pe)\n", hwmon->hwmon_dev);
+ 		xe->hwmon = NULL;
+-		return;
++		return PTR_ERR(hwmon->hwmon_dev);
  	}
- 
-+	err = devm_add_action_or_reset(gt_to_xe(gt)->drm.dev, xe_gt_fini, gt);
-+	if (err)
-+		return err;
 +
- 	err = xe_gt_pagefault_init(gt);
- 	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index e504cc33ade4f..187fa6490eafc 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -54,7 +54,6 @@ int xe_gt_resume(struct xe_gt *gt);
- void xe_gt_reset_async(struct xe_gt *gt);
- void xe_gt_sanitize(struct xe_gt *gt);
- int xe_gt_sanitize_freq(struct xe_gt *gt);
--void xe_gt_remove(struct xe_gt *gt);
- 
- /**
-  * xe_gt_wait_for_reset - wait for gt's async reset to finalize.
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 0d073a9987c2e..d8167e818280b 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -288,19 +288,6 @@ int xe_uc_suspend(struct xe_uc *uc)
- 	return xe_guc_suspend(&uc->guc);
++	return 0;
  }
  
--/**
-- * xe_uc_remove() - Clean up the UC structures before driver removal
-- * @uc: the UC object
-- *
-- * This function should only act on objects/structures that must be cleaned
-- * before the driver removal callback is complete and therefore can't be
-- * deferred to a drmm action.
-- */
--void xe_uc_remove(struct xe_uc *uc)
--{
--	xe_gsc_remove(&uc->gsc);
--}
--
- /**
-  * xe_uc_declare_wedged() - Declare UC wedged
-  * @uc: the UC object
-diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
-index 506517c113339..3813c1ede450e 100644
---- a/drivers/gpu/drm/xe/xe_uc.h
-+++ b/drivers/gpu/drm/xe/xe_uc.h
-@@ -20,7 +20,6 @@ void xe_uc_stop(struct xe_uc *uc);
- int xe_uc_start(struct xe_uc *uc);
- int xe_uc_suspend(struct xe_uc *uc);
- int xe_uc_sanitize_reset(struct xe_uc *uc);
--void xe_uc_remove(struct xe_uc *uc);
- void xe_uc_declare_wedged(struct xe_uc *uc);
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.h b/drivers/gpu/drm/xe/xe_hwmon.h
+index c42a1de2cd7a2..d02c1bfe8c0a0 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.h
++++ b/drivers/gpu/drm/xe/xe_hwmon.h
+@@ -11,9 +11,9 @@
+ struct xe_device;
  
+ #if IS_REACHABLE(CONFIG_HWMON)
+-void xe_hwmon_register(struct xe_device *xe);
++int xe_hwmon_register(struct xe_device *xe);
+ #else
+-static inline void xe_hwmon_register(struct xe_device *xe) { };
++static inline int xe_hwmon_register(struct xe_device *xe) { return 0; };
  #endif
+ 
+ #endif /* _XE_HWMON_H_ */
 -- 
 2.48.1
 
