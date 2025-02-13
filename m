@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C958C021A0
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 23:53:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79CE2C021A0
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 23:54:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED21C10E186;
-	Thu, 13 Feb 2025 23:53:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KfTc5drC";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D292E10E186
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Feb 2025 23:53:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739490785; x=1771026785;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=0h64yOc3oqkgODU1GLefYXdbozp4SRXdfByB/TiKYgg=;
- b=KfTc5drCtw6GPv0Q0lbqPe+71MVbxox89zygWMcjTBMy6rTIpyOwgHsG
- 0dNs4NS7cn1QU/B7mGBoAPNtAL9AKVcrxzoGRCoSWazIrzFmfCmkdlePO
- IERA5eWUpvmhp323SiEGtgDGzazO0lFV5wN5ysLHoOW37fAJbxT35X+Of
- clBeaDMk0SaadoDIVxrixRlStcnvSQoy+EA6eGB0mi1HbGk38BBZbyKHV
- F0Y3Yg2zrXY/Osaxcr8zj+89yxZJB5ioc8kmWnonl03cywki0HRoasso3
- 00QX2d3m0nDI0rt0YYkNYDY802Z7Cimw2NKNnGm2fId9L8M+gnp9Uy//e w==;
-X-CSE-ConnectionGUID: v6srfsjBRv6k2EH4VpxYvg==
-X-CSE-MsgGUID: VsPBzBk5Q/yg0lyIcsSxtg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40374504"
-X-IronPort-AV: E=Sophos;i="6.13,284,1732608000"; d="scan'208";a="40374504"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 15:53:04 -0800
-X-CSE-ConnectionGUID: 3JK0qTypQ9WdTJIf2lAwWg==
-X-CSE-MsgGUID: rCAr7QzeROSD54IG6KtYpw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,284,1732608000"; d="scan'208";a="118386080"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa004.fm.intel.com with ESMTP; 13 Feb 2025 15:53:02 -0800
-Received: from [10.246.16.98] (mwajdecz-MOBL.ger.corp.intel.com [10.246.16.98])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 31FE53542B;
- Thu, 13 Feb 2025 23:53:01 +0000 (GMT)
-Message-ID: <0969242a-f433-41f7-a217-036e46f19c29@intel.com>
-Date: Fri, 14 Feb 2025 00:53:00 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EBE810E12F;
+	Thu, 13 Feb 2025 23:54:51 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78EAD10E12F;
+ Thu, 13 Feb 2025 23:54:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1665010154752790317=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] drm/xe: Add xe_mmio_init() initialization function
-To: Ilia Levi <ilia.levi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, lucas.demarchi@intel.com,
- koby.elbaz@intel.com, yaron.avizrat@intel.com
-References: <4ac54f6e-eed7-4f77-ad13-68ef6c078180@intel.com>
- <20250213093559.204652-1-ilia.levi@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250213093559.204652-1-ilia.levi@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Stop_reading_?=
+ =?utf-8?q?masks_from_device_memory_when_populating_the_ADS?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 13 Feb 2025 23:54:49 -0000
+Message-ID: <173949088948.1756964.3957257564791140114@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250213214053.2191635-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20250213214053.2191635-1-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,167 +36,182 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1665010154752790317==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/xe/guc: Stop reading masks from device memory when populating the ADS
+URL   : https://patchwork.freedesktop.org/series/144827/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2660-4570ecc1f49b000dbba61bb05e22ef5db89382b7_BAT -> xe-pw-144827v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-144827v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229] / [Intel XE#455]) +1 other test skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144827v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#2229])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144827v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_intel_bb@render@render-linear-256:
+    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#3970]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2660-4570ecc1f49b000dbba61bb05e22ef5db89382b7/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144827v1/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [SKIP][5] ([Intel XE#1192]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2660-4570ecc1f49b000dbba61bb05e22ef5db89382b7/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144827v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][7] ([Intel XE#1192]) -> [SKIP][8] ([Intel XE#2229] / [Intel XE#455])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2660-4570ecc1f49b000dbba61bb05e22ef5db89382b7/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144827v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
 
 
-On 13.02.2025 10:35, Ilia Levi wrote:
-> Add a convenience function for minimal initialization of struct xe_mmio.
-> This function also validates that the entirety of the provided mmio region
-> is usable with struct xe_reg.
-> 
-> v2: Modify commit message, add kernel doc, refactor assert (Michal)
-> v3: Fix off-by-one bug, add clarifying macro (Michal)
-> v4: Derive bitfield width from size (Michal)
-> 
-> Signed-off-by: Ilia Levi <ilia.levi@intel.com>
-> ---
->  drivers/gpu/drm/xe/regs/xe_reg_defs.h | 14 +++++++++++-
->  drivers/gpu/drm/xe/xe_gt.c            |  7 +++---
->  drivers/gpu/drm/xe/xe_mmio.c          | 32 ++++++++++++++++++---------
->  drivers/gpu/drm/xe/xe_mmio.h          |  2 ++
->  4 files changed, 39 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_reg_defs.h b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
-> index 89716172fbb8..c39aab843e35 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_reg_defs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
-> @@ -7,9 +7,21 @@
->  #define _XE_REG_DEFS_H_
->  
->  #include <linux/build_bug.h>
-> +#include <linux/log2.h>
-> +#include <linux/sizes.h>
->  
->  #include "compat-i915-headers/i915_reg_defs.h"
->  
-> +/**
-> + * XE_REG_ADDR_MAX - The upper limit on MMIO register address
-> + *
-> + * This macro specifies the upper limit (not inclusive) on MMIO register offset
-> + * supported by struct xe_reg and functions based on struct xe_mmio.
-> + *
-> + * Currently this is defined as 4 MiB.
-> + */
-> +#define XE_REG_ADDR_MAX	SZ_4M
-> +
->  /**
->   * struct xe_reg - Register definition
->   *
-> @@ -21,7 +33,7 @@ struct xe_reg {
->  	union {
->  		struct {
->  			/** @addr: address */
-> -			u32 addr:22;
-> +			u32 addr:const_ilog2(XE_REG_ADDR_MAX);
->  			/**
->  			 * @masked: register is "masked", with upper 16bits used
->  			 * to identify the bits that are updated on the lower
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 01a4a852b8f4..f10c1f5fbbe1 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -637,10 +637,9 @@ int xe_gt_init(struct xe_gt *gt)
->  void xe_gt_mmio_init(struct xe_gt *gt)
->  {
->  	struct xe_tile *tile = gt_to_tile(gt);
-> +	struct xe_device *xe = tile_to_xe(tile);
->  
-> -	gt->mmio.regs = tile->mmio.regs;
-> -	gt->mmio.regs_size = tile->mmio.regs_size;
-> -	gt->mmio.tile = tile;
-> +	xe_mmio_init(&gt->mmio, tile, tile->mmio.regs, tile->mmio.regs_size);
->  
->  	if (gt->info.type == XE_GT_TYPE_MEDIA) {
->  		gt->mmio.adj_offset = MEDIA_GT_GSI_OFFSET;
-> @@ -650,7 +649,7 @@ void xe_gt_mmio_init(struct xe_gt *gt)
->  		gt->mmio.adj_limit = 0;
->  	}
->  
-> -	if (IS_SRIOV_VF(gt_to_xe(gt)))
-> +	if (IS_SRIOV_VF(xe))
->  		gt->mmio.sriov_vf_gt = gt;
->  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> index 3aed849a128b..70a36e777546 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.c
-> +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> @@ -55,7 +55,6 @@ static void tiles_fini(void *arg)
->  static void mmio_multi_tile_setup(struct xe_device *xe, size_t tile_mmio_size)
->  {
->  	struct xe_tile *tile;
-> -	void __iomem *regs;
->  	u8 id;
->  
->  	/*
-> @@ -94,13 +93,8 @@ static void mmio_multi_tile_setup(struct xe_device *xe, size_t tile_mmio_size)
->  		}
->  	}
->  
-> -	regs = xe->mmio.regs;
-> -	for_each_tile(tile, xe, id) {
-> -		tile->mmio.regs_size = SZ_4M;
-> -		tile->mmio.regs = regs;
-> -		tile->mmio.tile = tile;
-> -		regs += tile_mmio_size;
-> -	}
-> +	for_each_remote_tile(tile, xe, id)
-> +		xe_mmio_init(&tile->mmio, tile, xe->mmio.regs + id * tile_mmio_size, SZ_4M);
->  }
->  
->  int xe_mmio_probe_tiles(struct xe_device *xe)
-> @@ -140,13 +134,29 @@ int xe_mmio_probe_early(struct xe_device *xe)
->  	}
->  
->  	/* Setup first tile; other tiles (if present) will be setup later. */
-> -	root_tile->mmio.regs_size = SZ_4M;
-> -	root_tile->mmio.regs = xe->mmio.regs;
-> -	root_tile->mmio.tile = root_tile;
-> +	xe_mmio_init(&root_tile->mmio, root_tile, xe->mmio.regs, SZ_4M);
->  
->  	return devm_add_action_or_reset(xe->drm.dev, mmio_fini, xe);
->  }
->  
-> +/**
-> + * xe_mmio_init() - Initialize an MMIO instance
-> + * @mmio: Pointer to the MMIO instance to initialize
-> + * @tile: The tile to which the MMIO region belongs
-> + * @ptr: Pointer to the start of the MMIO region
-> + * @size: The size of the MMIO region in bytes
-> + *
-> + * This is a convenience function for minimal initialization of struct xe_mmio.
-> + */
-> +void xe_mmio_init(struct xe_mmio *mmio, struct xe_tile *tile, void __iomem *ptr, u32 size)
+Build changes
+-------------
 
-nit: mmio->regs_size has type size_t so being strict we should use the
-same type here instead of u32, but since we only pass SZ_4M ...
+  * Linux: xe-2660-4570ecc1f49b000dbba61bb05e22ef5db89382b7 -> xe-pw-144827v1
 
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+  IGT_8229: 8229
+  xe-2660-4570ecc1f49b000dbba61bb05e22ef5db89382b7: 4570ecc1f49b000dbba61bb05e22ef5db89382b7
+  xe-pw-144827v1: 144827v1
 
-> +{
-> +	xe_tile_assert(tile, size <= XE_REG_ADDR_MAX);
-> +
-> +	mmio->regs = ptr;
-> +	mmio->regs_size = size;
-> +	mmio->tile = tile;
-> +}
-> +
->  static void mmio_flush_pending_writes(struct xe_mmio *mmio)
->  {
->  #define DUMMY_REG_OFFSET	0x130030
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-> index b32e7ee4b23e..c151ba569003 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.h
-> +++ b/drivers/gpu/drm/xe/xe_mmio.h
-> @@ -14,6 +14,8 @@ struct xe_reg;
->  int xe_mmio_probe_early(struct xe_device *xe);
->  int xe_mmio_probe_tiles(struct xe_device *xe);
->  
-> +void xe_mmio_init(struct xe_mmio *mmio, struct xe_tile *tile, void __iomem *ptr, u32 size);
-> +
->  u8 xe_mmio_read8(struct xe_mmio *mmio, struct xe_reg reg);
->  u16 xe_mmio_read16(struct xe_mmio *mmio, struct xe_reg reg);
->  void xe_mmio_write32(struct xe_mmio *mmio, struct xe_reg reg, u32 val);
+== Logs ==
 
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144827v1/index.html
+
+--===============1665010154752790317==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Stop reading masks from device memory when populating the ADS</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144827/">https://patchwork.freedesktop.org/series/144827/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144827v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144827v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2660-4570ecc1f49b000dbba61bb05e22ef5db89382b7_BAT -&gt; xe-pw-144827v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-144827v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144827v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144827v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_intel_bb@render@render-linear-256:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2660-4570ecc1f49b000dbba61bb05e22ef5db89382b7/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144827v1/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2660-4570ecc1f49b000dbba61bb05e22ef5db89382b7/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144827v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2660-4570ecc1f49b000dbba61bb05e22ef5db89382b7/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144827v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2660-4570ecc1f49b000dbba61bb05e22ef5db89382b7 -&gt; xe-pw-144827v1</li>
+</ul>
+<p>IGT_8229: 8229<br />
+  xe-2660-4570ecc1f49b000dbba61bb05e22ef5db89382b7: 4570ecc1f49b000dbba61bb05e22ef5db89382b7<br />
+  xe-pw-144827v1: 144827v1</p>
+
+</body>
+</html>
+
+--===============1665010154752790317==--
