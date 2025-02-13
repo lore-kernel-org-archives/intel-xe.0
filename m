@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0B9EC021A0
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 13:54:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2880CC021A0
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 13:58:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A932410EAB3;
-	Thu, 13 Feb 2025 13:54:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E64D110EAB6;
+	Thu, 13 Feb 2025 13:58:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gtrg/AQV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ljMNQWuY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE98610EAAF
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Feb 2025 13:54:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F30E10EAB3
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Feb 2025 13:58:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739454890; x=1770990890;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bHZeZfKNTDogIf6Y2kInrbME7S2+Xgh/ojub8j6miqU=;
- b=Gtrg/AQV0/FwTL1uImnIxjICT9hWm/icDMuJFGNzxxza8KbALk8Scbfr
- k4E1nefhxTujNmngRSJ90sTcAq3xWwGTuFFqJnHgdhU0mwF9Gw876Itec
- lJwKUV5JGEzoU0clxdxmxtW1pSri1t+NM9htIRW+Eb83/mWhmg4wPbMfw
- YhZVkmCoknC37BemIWCw3TnCZdGq8NMk2Xiht8rNUKukH6M5/tb3M/7du
- xt8aQjkemJw8cUET6v8MYNpPjuyiw/NydY8j204qG/GYZUyZrki0jSeJz
- VLAdQHhWbdbGb2YWmLvb02BXOoBgMdKTz24g3KmFSGTqOez6RHMCeiwb5 Q==;
-X-CSE-ConnectionGUID: kMrttvtWQcqoHWkc/63KbA==
-X-CSE-MsgGUID: QC9CR6RdSKy4sy8pIiPSig==
-X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="51554200"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="51554200"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 05:54:50 -0800
-X-CSE-ConnectionGUID: YZ+rNqu2T3OcocVS5wpSaQ==
-X-CSE-MsgGUID: UWP57olhRjaEQ9XGGQFx2A==
+ t=1739455109; x=1770991109;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/XIOHcnEM3sQs81zifD1Y0dIYu8kx+nEJWl9S49RxKo=;
+ b=ljMNQWuYt9z6lZ4xF5xbXnk94HMTDfFrPuWtyZveT5i6wDiSEzLMVMRU
+ puE3IwhgSoXKE4gscaMslYmUJpvD946WyFEyjTzt04OkEDW+x8U0rO5e0
+ wyG40Fl4m0ezM7CxkS/dDZyw8+UlfIsuuVD0/q8Q0JK2gP3qsxxYK5pe4
+ hdzwY0LpcKJXY9nk74uVlXsO1Tz72urq1xejP2X25xg5YT9C7HsE+js2x
+ LpEnKe+AS7ZjsPkRTsvJ23LkKt/lDe07b8msxVZPxExFsTSeNCWckxB6I
+ 69TzNSe377g+M2gPlv1C31c/Y6xC8yPorjdkkctgRUmjz0n3a8PhZw97j w==;
+X-CSE-ConnectionGUID: bHUpEdMDSS+H6mXihK0dvA==
+X-CSE-MsgGUID: Jmx+khipSAexv/eVAAE+cA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40020315"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="40020315"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2025 05:58:28 -0800
+X-CSE-ConnectionGUID: E5b19jklRuuI4/DnwrYPIQ==
+X-CSE-MsgGUID: 5MA/JZBPTS6pdhtEOXWGiQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="113020051"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="118081438"
 Received: from apaszkie-mobl2.apaszkie-mobl2 (HELO mwauld-desk.intel.com)
  ([10.245.245.31])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 05:54:48 -0800
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2025 05:58:27 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- stable@vger.kernel.org
-Subject: [PATCH] drm/xe/userptr: fix EFAULT handling
-Date: Thu, 13 Feb 2025 13:54:35 +0000
-Message-ID: <20250213135434.186967-2-matthew.auld@intel.com>
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH 2/2] drm/xe/userptr: remove tmp_evict list
+Date: Thu, 13 Feb 2025 13:58:10 +0000
+Message-ID: <20250213135808.189144-4-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250213135808.189144-3-matthew.auld@intel.com>
+References: <20250213135808.189144-3-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -68,81 +69,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we treat EFAULT from hmm_range_fault() as a non-fatal error
-when called from xe_vm_userptr_pin() with the idea that we want to avoid
-killing the entire vm and chucking an error, under the assumption that
-the user just did an unmap or something, and has no intention of
-actually touching that memory from the GPU.  At this point we have
-already zapped the PTEs so any access should generate a page fault, and
-if the pin fails there also it will then become fatal.
+Doesn't look to be used.
 
-However it looks like it's possible for the userptr vma to still be on
-the rebind list in preempt_rebind_work_func(), if we had to retry the
-pin again due to something happening in the caller before we did the
-rebind step, but in the meantime needing to re-validate the userptr and
-this time hitting the EFAULT.
-
-This might explain an internal user report of hitting:
-
-[  191.738349] WARNING: CPU: 1 PID: 157 at drivers/gpu/drm/xe/xe_res_cursor.h:158 xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
-[  191.738551] Workqueue: xe-ordered-wq preempt_rebind_work_func [xe]
-[  191.738616] RIP: 0010:xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
-[  191.738690] Call Trace:
-[  191.738692]  <TASK>
-[  191.738694]  ? show_regs+0x69/0x80
-[  191.738698]  ? __warn+0x93/0x1a0
-[  191.738703]  ? xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
-[  191.738759]  ? report_bug+0x18f/0x1a0
-[  191.738764]  ? handle_bug+0x63/0xa0
-[  191.738767]  ? exc_invalid_op+0x19/0x70
-[  191.738770]  ? asm_exc_invalid_op+0x1b/0x20
-[  191.738777]  ? xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
-[  191.738834]  ? ret_from_fork_asm+0x1a/0x30
-[  191.738849]  bind_op_prepare+0x105/0x7b0 [xe]
-[  191.738906]  ? dma_resv_reserve_fences+0x301/0x380
-[  191.738912]  xe_pt_update_ops_prepare+0x28c/0x4b0 [xe]
-[  191.738966]  ? kmemleak_alloc+0x4b/0x80
-[  191.738973]  ops_execute+0x188/0x9d0 [xe]
-[  191.739036]  xe_vm_rebind+0x4ce/0x5a0 [xe]
-[  191.739098]  ? trace_hardirqs_on+0x4d/0x60
-[  191.739112]  preempt_rebind_work_func+0x76f/0xd00 [xe]
-
-Followed by NPD, when running some workload, since the sg was never
-actually populated but the vma is still marked for rebind when it should
-be skipped for this special EFAULT case. And from the logs it does seem
-like we hit this special EFAULT case before the explosions.
-
-Fixes: 521db22a1d70 ("drm/xe: Invalidate userptr VMA on page pin fault")
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v6.10+
 ---
- drivers/gpu/drm/xe/xe_vm.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index d664f2e418b2..1caee9cbeafb 100644
+index 1caee9cbeafb..2d8f99c7c3a9 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -692,6 +692,17 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
- 			xe_vm_unlock(vm);
- 			if (err)
- 				return err;
-+
-+			/*
-+			 * We might have already done the pin once already, but then had to retry
-+			 * before the re-bind happended, due some other condition in the caller, but
-+			 * in the meantime the userptr got dinged by the notifier such that we need
-+			 * to revalidate here, but this time we hit the EFAULT. In such a case
-+			 * make sure we remove ourselves from the rebind list to avoid going down in
-+			 * flames.
-+			 */
-+			if (!list_empty(&uvma->vma.combined_links.rebind))
-+				list_del_init(&uvma->vma.combined_links.rebind);
- 		} else {
- 			if (err < 0)
- 				return err;
+@@ -660,7 +660,6 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
+ {
+ 	struct xe_userptr_vma *uvma, *next;
+ 	int err = 0;
+-	LIST_HEAD(tmp_evict);
+ 
+ 	xe_assert(vm->xe, !xe_vm_in_fault_mode(vm));
+ 	lockdep_assert_held_write(&vm->lock);
 -- 
 2.48.1
 
