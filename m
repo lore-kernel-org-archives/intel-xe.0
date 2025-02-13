@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9D1CC021AA
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 06:48:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4AC1C021A8
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 06:48:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90C4710EA0B;
-	Thu, 13 Feb 2025 06:48:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6936010EA1A;
+	Thu, 13 Feb 2025 06:48:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h8twmox/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YfLnutxP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F58D10EA17;
- Thu, 13 Feb 2025 06:48:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEA6A10EA17;
+ Thu, 13 Feb 2025 06:48:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739429312; x=1770965312;
+ t=1739429316; x=1770965316;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Y1G/9/+uZIzPRvfZp3Ga+WMyNY8c8ejIjZHnvV3TUFs=;
- b=h8twmox/Zmu/3r21K/28H4tiRQjQyucQ47DBCN9bc27HkKuSdvnsMSdA
- UE65TnJZ/91U/FotHilYWVRurktX/eIUbQRksXiUn8xRRrV5EjqmhXXmC
- iq/x/cdFPYuz15ljdoAAesskdbG+k5O0VIupvn6hVI1SuJZTErbWOyS8s
- JHTm7ooQhRk7LS1ufJ/QWyqeZ1etZBIzrdExbBbtpmQkkESY+lZspc0GZ
- xxKzlRE5GrDAhXfdRoORH62KyFylUp4/JTtQ6zbj379WbxRlbVAbyX3RC
- Wau3QglsyLFffP9adMzuKDVDKztW1MtxPSLgRb8C/ruz/AniK2009SSIi w==;
-X-CSE-ConnectionGUID: DWY7gdvXTLaciF44SHpNGQ==
-X-CSE-MsgGUID: hcp7Xn5KQFas/j4dKVky6A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="50764114"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="50764114"
+ bh=KB7rLDkiTQHzAJDSYoG15l4TlWyHES6rvmfxDHAEoPQ=;
+ b=YfLnutxPvgKjDM8lbyRw7ub/04bf80d7WAdkz779vKfH/NKhBIzw6/yG
+ nXqVC8dvjreKygcXjeMDVRotGsq7A9Br9fSTIBBwDB0FhJ4KfOzGXCBRZ
+ hHvKC1HE+ZfblxIfSOh4Dy/7xo9Y5Id5LAwRmjNPVvd9yJsrbldU2d3hz
+ WN6MBpzSZblxnWkRIoxQqFJTK9EUUnE9jToO+uiAxuKX3BbNCSRY9ci9t
+ Tm/SNOza26GJ+TLSQiYRt+62H63LuBGuiXUc94G4w3yQ0+LHahAe81zI7
+ Nzialt61YGhjjwb4GVJ0l0+eSO4op9sdas+bWnGJcYn5qNa01OAty3DgA A==;
+X-CSE-ConnectionGUID: StnxW+fqSaahmT2KLmtq+A==
+X-CSE-MsgGUID: eNS426cOSxumzMjkaHoXjw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="50764137"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="50764137"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 22:48:32 -0800
-X-CSE-ConnectionGUID: aTp4Rw/ZRiGlIELa0k6pNA==
-X-CSE-MsgGUID: tm4voqUWQmiJY7WUuC2tyg==
+ 12 Feb 2025 22:48:35 -0800
+X-CSE-ConnectionGUID: pfpgwZpaTqm7vyYu+iUd9A==
+X-CSE-MsgGUID: JW4gjDnyTb2BBVVydqEe/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="118237269"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="118237305"
 Received: from ksztyber-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.234])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 22:48:29 -0800
+ 12 Feb 2025 22:48:33 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH v8 09/13] drm/i915/psr: Remove DSB_SKIP_WAITS_EN chicken bit
-Date: Thu, 13 Feb 2025 08:48:00 +0200
-Message-ID: <20250213064804.2077127-10-jouni.hogander@intel.com>
+Subject: [PATCH v8 11/13] drm/i915/psr: Add function for triggering "Frame
+ Change" event
+Date: Thu, 13 Feb 2025 08:48:02 +0200
+Message-ID: <20250213064804.2077127-12-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250213064804.2077127-1-jouni.hogander@intel.com>
 References: <20250213064804.2077127-1-jouni.hogander@intel.com>
@@ -71,57 +72,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We have different approach on how flip is considered being complete. We are
-waiting for vblank on DSB and generate interrupt when it happens and this
-interrupt is considered as indication of completion -> we definitely do not
-want to skip vblank wait.
+Add new function to trigger "Frame Change" event for ensuring we are waking
+up before vblank evasion.
 
-Also not skipping scanline wait shouldn't cause any problems if we are in
-DEEP_SLEEP PIPEDSL register is returning 0 -> evasion does nothing and if
-we are not in DEEP_SLEEP evasion works same way as without PSR.
-
-v2: add comment explaining why we are not setting DSB_SKIP_WAITS_EN
+v2: dsb as a first parameter
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 22 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_psr.h |  3 +++
+ 2 files changed, 25 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index db69b1c676f7..4c067bf9ac4c 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -170,17 +170,26 @@ static int dsb_scanline_to_hw(struct intel_atomic_state *state,
- 	return (scanline + vtotal - intel_crtc_scanline_offset(crtc_state)) % vtotal;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index c805ff82e700..427a7d1df1f9 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -44,6 +44,7 @@
+ #include "intel_psr.h"
+ #include "intel_psr_regs.h"
+ #include "intel_snps_phy.h"
++#include "intel_vblank.h"
+ #include "skl_universal_plane.h"
+ 
+ /**
+@@ -2289,6 +2290,27 @@ bool intel_psr_needs_block_dc_vblank(const struct intel_crtc_state *crtc_state)
+ 	return false;
  }
  
-+/*
-+ * Bspec suggests that we should always set DSB_SKIP_WAITS_EN. We have approach
-+ * different from what is explained in Bspec on how flip is considered being
-+ * complete. We are waiting for vblank in DSB and generate interrupt when it
-+ * happens and this interrupt is considered as indication of completion -> we
-+ * definitely do not want to skip vblank wait. We also have concern what comes
-+ * to skipping vblank evasion. I.e. arming registers are latched before we have
-+ * managed writing them. Due to these reasons we are not setting
-+ * DSB_SKIP_WAITS_EN.
++/**
++ * intel_psr_trigger_frame_change_event - Trigger "Frame Change" event
++ * @dsb: DSB context
++ * @state: the atomic state
++ * @crtc: the CRTC
++ *
++ * Generate PSR "Frame Change" event.
 + */
- static u32 dsb_chicken(struct intel_atomic_state *state,
- 		       struct intel_crtc *crtc)
++void intel_psr_trigger_frame_change_event(struct intel_dsb *dsb,
++					  struct intel_atomic_state *state,
++					  struct intel_crtc *crtc)
++{
++	const struct intel_crtc_state *crtc_state =
++		intel_pre_commit_crtc_state(state, crtc);
++	struct intel_display *display = to_intel_display(crtc);
++
++	if (crtc_state->has_psr)
++		intel_de_write_dsb(display, dsb,
++				   CURSURFLIVE(display, crtc->pipe), 0);
++}
++
+ static u32 man_trk_ctl_enable_bit_get(struct intel_display *display)
  {
- 	if (pre_commit_is_vrr_active(state, crtc))
--		return DSB_SKIP_WAITS_EN |
--			DSB_CTRL_WAIT_SAFE_WINDOW |
-+		return DSB_CTRL_WAIT_SAFE_WINDOW |
- 			DSB_CTRL_NO_WAIT_VBLANK |
- 			DSB_INST_WAIT_SAFE_WINDOW |
- 			DSB_INST_NO_WAIT_VBLANK;
- 	else
--		return DSB_SKIP_WAITS_EN;
-+		return 0;
- }
+ 	struct drm_i915_private *dev_priv = to_i915(display->drm);
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+index e6eba6633a92..a43a374cff55 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.h
++++ b/drivers/gpu/drm/i915/display/intel_psr.h
+@@ -64,6 +64,9 @@ bool intel_psr_link_ok(struct intel_dp *intel_dp);
  
- static bool assert_dsb_has_room(struct intel_dsb *dsb)
+ void intel_psr_lock(const struct intel_crtc_state *crtc_state);
+ void intel_psr_unlock(const struct intel_crtc_state *crtc_state);
++void intel_psr_trigger_frame_change_event(struct intel_dsb *dsb,
++					  struct intel_atomic_state *state,
++					  struct intel_crtc *crtc);
+ void intel_psr_connector_debugfs_add(struct intel_connector *connector);
+ void intel_psr_debugfs_register(struct intel_display *display);
+ 
 -- 
 2.43.0
 
