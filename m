@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 811F1C021A5
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 02:10:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31B67C02198
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 02:10:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 300D210E9D8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BFB310E24D;
 	Thu, 13 Feb 2025 02:10:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Czty0FO+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BaaZ6GLy";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 940BC10E397;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8048010E9C3;
  Thu, 13 Feb 2025 02:10:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1739412618; x=1770948618;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Fv3fkyR6germfRGByo2a+Euzom3ewJl8GmTpgUT20nA=;
- b=Czty0FO+XuXMxybbYrAXiQciBY0HXQQaXyqLH+WrDvtzLXBcbeumUkV4
- lJeFN0t6+yqTNuDATtSt4Kg/vZ5D65/x5zLk7SapQ+xrsZTF3RWvR/pQy
- Nzep/rgYDCAafeMU5ZXjblwN95pzAoEg12Z4TY2hdIJiY0OInImAy2DDn
- kdvA8p0Jsum503xo0dF15WnsO+PWd2/olTbD9i9i4c+igI3fODK1+G9Nu
- +13k7Bjq+p9YqbnMs6HOsdsc1/gcbCgBv0vKiuPUU+dawCyPh7vUVQS87
- 3XwI9YnyyZeR2dnzAyy8U9CyfWqd/yQiS2MkC4PJz/ajkktzvQHYTn3A/ g==;
-X-CSE-ConnectionGUID: grjIM0J6RVaRVcowEVUlVA==
-X-CSE-MsgGUID: oh4BNZDqS8GNLkKTBG5LAQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="65455992"
-X-IronPort-AV: E=Sophos;i="6.13,281,1732608000"; d="scan'208";a="65455992"
+ bh=FyA2xjSExy7eEokv2Y48+Z7E7hTvvuo6Uav4suK4SsA=;
+ b=BaaZ6GLyT19tLbJp+8m49ouukZJs4d93A9l1xER7qtSDAR8yOeav8fAv
+ wuIniQkIpx2nft0V1O312uzpoMHvmksdBkGEHI7GteRzTYt8LLj7p4SH/
+ 4uJGlr6WunY62VrZSi0xhL+yP/fBjj/PpQ9Q+8tpbV2RDT+zvnlpXLijc
+ RxDOhRff9JuqNDdj1IiRmr/3q6zaZtDHFV+RkC9MTN0DgfoYPK//iVURP
+ nvWmO7OmyT6aBLlGAYl4cU+LBXQZhAYP5eUmZUBVcMYf9zuLERSkSY9+7
+ 00d+jCceEP2S3JqsdDGsawSlOW4csy5mMTxr0bprS44Tj9z9ZRZ9loBw7 g==;
+X-CSE-ConnectionGUID: rdg61VIBR7KyH9DH9mzNfQ==
+X-CSE-MsgGUID: jk4um8AQTTuCEqfUGm3Edw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="65455961"
+X-IronPort-AV: E=Sophos;i="6.13,281,1732608000"; d="scan'208";a="65455961"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Feb 2025 18:10:16 -0800
-X-CSE-ConnectionGUID: ZGGMmRkbTP2V2T2dzBLyXg==
-X-CSE-MsgGUID: 1t1PVidMSZWeOG1EpAH4VA==
+X-CSE-ConnectionGUID: bVkIt+r3QIShhAb0uovCWQ==
+X-CSE-MsgGUID: wJGahddhT5+xHhFrya2Q9Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="117945078"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="117945066"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Feb 2025 18:10:15 -0800
@@ -47,9 +47,9 @@ To: intel-xe@lists.freedesktop.org,
 Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v5 15/32] drm/xe: Add SVM garbage collector
-Date: Wed, 12 Feb 2025 18:10:55 -0800
-Message-Id: <20250213021112.1228481-16-matthew.brost@intel.com>
+Subject: [PATCH v5 11/32] drm/xe: Nuke VM's mapping upon close
+Date: Wed, 12 Feb 2025 18:10:51 -0800
+Message-Id: <20250213021112.1228481-12-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250213021112.1228481-1-matthew.brost@intel.com>
 References: <20250213021112.1228481-1-matthew.brost@intel.com>
@@ -70,236 +70,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add basic SVM garbage collector which destroy a SVM range upon a MMU
-UNMAP event. The garbage collector runs on worker or in GPU fault
-handler and is required as locks in the path of reclaim are required and
-cannot be taken the notifier.
+Clear root PT entry and invalidate entire VM's address space when
+closing the VM. Will prevent the GPU from accessing any of the VM's
+memory after closing.
 
 v2:
- - Flush garbage collector in xe_svm_close
+ - s/vma/vm in kernel doc (CI)
+ - Don't nuke migration VM as this occur at driver unload (CI)
 v3:
- - Better commit message (Thomas)
- - Kernel doc (Thomas)
- - Use list_first_entry_or_null for garbage collector loop (Thomas)
- - Don't add to garbage collector if VM is closed (Thomas)
-v4:
- - Use %pe to print error (Thomas)
+ - Rebase and pull into SVM series (Thomas)
+ - Wait for pending binds (Thomas)
 v5:
- - s/visable/visible (Thomas)
+ - Remove xe_gt_tlb_invalidation_fence_fini in error case (Matt Auld)
+ - Drop local migration bool (Thomas)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c      | 91 +++++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_svm.h      |  5 ++
- drivers/gpu/drm/xe/xe_vm.c       |  4 ++
- drivers/gpu/drm/xe/xe_vm_types.h | 18 +++++++
- 4 files changed, 116 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 22 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  2 ++
+ drivers/gpu/drm/xe/xe_pt.c                  | 14 +++++++++++++
+ drivers/gpu/drm/xe/xe_pt.h                  |  3 +++
+ drivers/gpu/drm/xe/xe_vm.c                  | 20 +++++++++++++++++++
+ 5 files changed, 61 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index d9d93d12f595..ed91291a24db 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -38,6 +38,7 @@ xe_svm_range_alloc(struct drm_gpusvm *gpusvm)
- 	if (!range)
- 		return ERR_PTR(-ENOMEM);
- 
-+	INIT_LIST_HEAD(&range->garbage_collector_link);
- 	xe_vm_get(gpusvm_to_vm(gpusvm));
- 
- 	return &range->base;
-@@ -54,6 +55,24 @@ static struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
- 	return container_of(r, struct xe_svm_range, base);
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 0a93831c0a02..03072e094991 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -410,6 +410,28 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ 	return send_tlb_invalidation(&gt->uc.guc, fence, action, len);
  }
  
-+static void
-+xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct xe_svm_range *range,
-+				   const struct mmu_notifier_range *mmu_range)
++/**
++ * xe_gt_tlb_invalidation_vm - Issue a TLB invalidation on this GT for a VM
++ * @gt: graphics tile
++ * @vm: VM to invalidate
++ *
++ * Invalidate entire VM's address space
++ */
++void xe_gt_tlb_invalidation_vm(struct xe_gt *gt, struct xe_vm *vm)
 +{
-+	struct xe_device *xe = vm->xe;
++	struct xe_gt_tlb_invalidation_fence fence;
++	u64 range = 1ull << vm->xe->info.va_bits;
++	int ret;
 +
-+	drm_gpusvm_range_set_unmapped(&range->base, mmu_range);
++	xe_gt_tlb_invalidation_fence_init(gt, &fence, true);
 +
-+	spin_lock(&vm->svm.garbage_collector.lock);
-+	if (list_empty(&range->garbage_collector_link))
-+		list_add_tail(&range->garbage_collector_link,
-+			      &vm->svm.garbage_collector.range_list);
-+	spin_unlock(&vm->svm.garbage_collector.lock);
++	ret = xe_gt_tlb_invalidation_range(gt, &fence, 0, range, vm->usm.asid);
++	if (ret < 0)
++		return;
 +
-+	queue_work(xe_device_get_root_tile(xe)->primary_gt->usm.pf_wq,
-+		   &vm->svm.garbage_collector.work);
++	xe_gt_tlb_invalidation_fence_wait(&fence);
 +}
 +
- static u8
- xe_svm_range_notifier_event_begin(struct xe_vm *vm, struct drm_gpusvm_range *r,
- 				  const struct mmu_notifier_range *mmu_range,
-@@ -100,7 +119,9 @@ xe_svm_range_notifier_event_end(struct xe_vm *vm, struct drm_gpusvm_range *r,
- 	xe_svm_assert_in_notifier(vm);
- 
- 	drm_gpusvm_range_unmap_pages(&vm->svm.gpusvm, r, &ctx);
--	/* TODO: Add range to garbage collector if VM is not closed */
-+	if (!xe_vm_is_closed(vm) && mmu_range->event == MMU_NOTIFY_UNMAP)
-+		xe_svm_garbage_collector_add_range(vm, to_xe_range(r),
-+						   mmu_range);
- }
- 
- static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
-@@ -202,6 +223,63 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
- 		xe_svm_range_notifier_event_end(vm, r, mmu_range);
- }
- 
-+static int __xe_svm_garbage_collector(struct xe_vm *vm,
-+				      struct xe_svm_range *range)
-+{
-+	/* TODO: Do unbind */
-+
-+	drm_gpusvm_range_remove(&vm->svm.gpusvm, &range->base);
-+
-+	return 0;
-+}
-+
-+static int xe_svm_garbage_collector(struct xe_vm *vm)
-+{
-+	struct xe_svm_range *range;
-+	int err;
-+
-+	lockdep_assert_held_write(&vm->lock);
-+
-+	if (xe_vm_is_closed_or_banned(vm))
-+		return -ENOENT;
-+
-+	spin_lock(&vm->svm.garbage_collector.lock);
-+	for (;;) {
-+		range = list_first_entry_or_null(&vm->svm.garbage_collector.range_list,
-+						 typeof(*range),
-+						 garbage_collector_link);
-+		if (!range)
-+			break;
-+
-+		list_del(&range->garbage_collector_link);
-+		spin_unlock(&vm->svm.garbage_collector.lock);
-+
-+		err = __xe_svm_garbage_collector(vm, range);
-+		if (err) {
-+			drm_warn(&vm->xe->drm,
-+				 "Garbage collection failed: %pe\n",
-+				 ERR_PTR(err));
-+			xe_vm_kill(vm, true);
-+			return err;
-+		}
-+
-+		spin_lock(&vm->svm.garbage_collector.lock);
-+	}
-+	spin_unlock(&vm->svm.garbage_collector.lock);
-+
-+	return 0;
-+}
-+
-+static void xe_svm_garbage_collector_work_func(struct work_struct *w)
-+{
-+	struct xe_vm *vm = container_of(w, struct xe_vm,
-+					svm.garbage_collector.work);
-+
-+	down_write(&vm->lock);
-+	xe_svm_garbage_collector(vm);
-+	up_write(&vm->lock);
-+}
-+
- static const struct drm_gpusvm_ops gpusvm_ops = {
- 	.range_alloc = xe_svm_range_alloc,
- 	.range_free = xe_svm_range_free,
-@@ -226,6 +304,11 @@ int xe_svm_init(struct xe_vm *vm)
- {
- 	int err;
- 
-+	spin_lock_init(&vm->svm.garbage_collector.lock);
-+	INIT_LIST_HEAD(&vm->svm.garbage_collector.range_list);
-+	INIT_WORK(&vm->svm.garbage_collector.work,
-+		  xe_svm_garbage_collector_work_func);
-+
- 	err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
- 			      current->mm, NULL, 0, vm->size,
- 			      SZ_512M, &gpusvm_ops, fault_chunk_sizes,
-@@ -247,6 +330,7 @@ int xe_svm_init(struct xe_vm *vm)
- void xe_svm_close(struct xe_vm *vm)
- {
- 	xe_assert(vm->xe, xe_vm_is_closed(vm));
-+	flush_work(&vm->svm.garbage_collector.work);
- }
- 
  /**
-@@ -296,7 +380,10 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 	xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(vma));
+  * xe_gt_tlb_invalidation_vma - Issue a TLB invalidation on this GT for a VMA
+  * @gt: GT structure
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+index 672acfcdf0d7..abe9b03d543e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+@@ -12,6 +12,7 @@
  
- retry:
--	/* TODO: Run garbage collector */
-+	/* Always process UNMAPs first so view SVM ranges is current */
-+	err = xe_svm_garbage_collector(vm);
-+	if (err)
-+		return err;
+ struct xe_gt;
+ struct xe_guc;
++struct xe_vm;
+ struct xe_vma;
  
- 	r = drm_gpusvm_range_find_or_insert(&vm->svm.gpusvm, fault_addr,
- 					    xe_vma_start(vma), xe_vma_end(vma),
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 03ae43d8b4ee..b3a4f2e82b50 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -19,6 +19,11 @@ struct xe_vma;
- struct xe_svm_range {
- 	/** @base: base drm_gpusvm_range */
- 	struct drm_gpusvm_range base;
-+	/**
-+	 * @garbage_collector_link: Link into VM's garbage collect SVM range
-+	 * list. Protected by VM's garbage collect lock.
-+	 */
-+	struct list_head garbage_collector_link;
- 	/**
- 	 * @tile_present: Tile mask of binding is present for this range.
- 	 * Protected by GPU SVM notifier lock.
+ int xe_gt_tlb_invalidation_init_early(struct xe_gt *gt);
+@@ -21,6 +22,7 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt);
+ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 			       struct xe_gt_tlb_invalidation_fence *fence,
+ 			       struct xe_vma *vma);
++void xe_gt_tlb_invalidation_vm(struct xe_gt *gt, struct xe_vm *vm);
+ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ 				 struct xe_gt_tlb_invalidation_fence *fence,
+ 				 u64 start, u64 end, u32 asid);
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 99b97bf37c05..c5060011ad43 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -214,6 +214,20 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
+ 	xe_pt_free(pt);
+ }
+ 
++/**
++ * xe_pt_clear() - Clear a page-table.
++ * @xe: xe device.
++ * @pt: The page-table.
++ *
++ * Clears page-table by setting to zero.
++ */
++void xe_pt_clear(struct xe_device *xe, struct xe_pt *pt)
++{
++	struct iosys_map *map = &pt->bo->vmap;
++
++	xe_map_memset(xe, map, 0, 0, SZ_4K);
++}
++
+ /**
+  * DOC: Pagetable building
+  *
+diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
+index 9ab386431cad..8e43912ae8e9 100644
+--- a/drivers/gpu/drm/xe/xe_pt.h
++++ b/drivers/gpu/drm/xe/xe_pt.h
+@@ -13,6 +13,7 @@ struct dma_fence;
+ struct xe_bo;
+ struct xe_device;
+ struct xe_exec_queue;
++struct xe_svm_range;
+ struct xe_sync_entry;
+ struct xe_tile;
+ struct xe_vm;
+@@ -35,6 +36,8 @@ void xe_pt_populate_empty(struct xe_tile *tile, struct xe_vm *vm,
+ 
+ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred);
+ 
++void xe_pt_clear(struct xe_device *xe, struct xe_pt *pt);
++
+ int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops);
+ struct dma_fence *xe_pt_update_ops_run(struct xe_tile *tile,
+ 				       struct xe_vma_ops *vops);
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 3565c2673b9f..f57fc30b969a 100644
+index cbfe5fad1680..9cfb068f5845 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3150,6 +3150,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		}
- 	}
- 
-+	/* Ensure all UNMAPs visible */
-+	if (xe_vm_in_fault_mode(vm))
-+		flush_work(&vm->svm.garbage_collector.work);
+@@ -1559,7 +1559,27 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ static void xe_vm_close(struct xe_vm *vm)
+ {
+ 	down_write(&vm->lock);
 +
- 	err = down_write_killable(&vm->lock);
- 	if (err)
- 		goto put_exec_queue;
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 2d988a867e63..8aa77aaaae6b 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -146,6 +146,24 @@ struct xe_vm {
- 	struct {
- 		/** @svm.gpusvm: base GPUSVM used to track fault allocations */
- 		struct drm_gpusvm gpusvm;
-+		/**
-+		 * @svm.garbage_collector: Garbage collector which is used unmap
-+		 * SVM range's GPU bindings and destroy the ranges.
-+		 */
-+		struct {
-+			/** @svm.garbage_collector.lock: Protect's range list */
-+			spinlock_t lock;
-+			/**
-+			 * @svm.garbage_collector.range_list: List of SVM ranges
-+			 * in the garbage collector.
-+			 */
-+			struct list_head range_list;
-+			/**
-+			 * @svm.garbage_collector.work: Worker which the
-+			 * garbage collector runs on.
-+			 */
-+			struct work_struct work;
-+		} garbage_collector;
- 	} svm;
+ 	vm->size = 0;
++
++	if (!((vm->flags & XE_VM_FLAG_MIGRATION))) {
++		struct xe_tile *tile;
++		struct xe_gt *gt;
++		u8 id;
++
++		/* Wait for pending binds */
++		dma_resv_wait_timeout(xe_vm_resv(vm),
++				      DMA_RESV_USAGE_BOOKKEEP,
++				      false, MAX_SCHEDULE_TIMEOUT);
++
++		for_each_tile(tile, vm->xe, id)
++			if (vm->pt_root[id])
++				xe_pt_clear(vm->xe, vm->pt_root[id]);
++
++		for_each_gt(gt, vm->xe, id)
++			xe_gt_tlb_invalidation_vm(gt, vm);
++	}
++
+ 	up_write(&vm->lock);
+ }
  
- 	struct xe_device *xe;
 -- 
 2.34.1
 
