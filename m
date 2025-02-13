@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44431C021A0
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 23:06:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B2D4C021A0
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 23:07:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 117B910E16F;
-	Thu, 13 Feb 2025 23:06:29 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A42E10E16F;
- Thu, 13 Feb 2025 23:06:27 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C704610E16F;
+	Thu, 13 Feb 2025 23:07:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="agVg3YdU";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EB7A10E16F
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Feb 2025 23:07:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739488070; x=1771024070;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lpDeH/i3McLiO05w+NLH7oJoIO4rkQXD565RJO33SfE=;
+ b=agVg3YdU/Ydb1UGQU5EBOvP8MDmDCInBtFLNHEYnI9AhtE41AAESgrmX
+ N/jjmOntqINpe3qkYwkMqBnZSUVryP+jveAADSVf+mqBj9PyYBmZajBuP
+ hAgGa3Q2foRuGXJ8LxwKKQjDEMEAAajoJF+wcz/RlgYVPpP/2raIxfOUu
+ rf2juMYpkS69fXFL+3NSyPwZdRquXgtan8u2Xpdb5j77End+oorOgrtuk
+ lGduntDA27Vfyo2lpe14KQ2OZgMZYzm8K1TR1tSsOqde8qpcXkeSSdiLN
+ Hz4K6wEO0euoo15Xn3KiKpD6Sx5pJA7MWh/1DNS/7n44ynx1LfnM1gtC6 g==;
+X-CSE-ConnectionGUID: oajmaRAoSMiDVwZjek9sDw==
+X-CSE-MsgGUID: 2Cx4XIfKR7GvZ8yOJbPnAw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="27819702"
+X-IronPort-AV: E=Sophos;i="6.13,284,1732608000"; d="scan'208";a="27819702"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2025 15:07:50 -0800
+X-CSE-ConnectionGUID: cKo+fi1oTL2AxaqwtPRwgQ==
+X-CSE-MsgGUID: 8IcGvtsiRZujLYTTVv0eiA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="117907507"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.96])
+ by fmviesa005.fm.intel.com with ESMTP; 13 Feb 2025 15:07:49 -0800
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH] drm/xe/debugfs: Add missing xe_pm_runtime_put in
+ wedge_mode_set
+Date: Thu, 13 Feb 2025 23:03:22 +0000
+Message-Id: <20250213230322.1180621-1-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/guc=3A_Stop_readin?=
- =?utf-8?q?g_masks_from_device_memory_when_populating_the_ADS?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Feb 2025 23:06:27 -0000
-Message-ID: <173948798756.1812936.13685479270787412897@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250213214053.2191635-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20250213214053.2191635-1-daniele.ceraolospurio@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,44 +62,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+xe_pm_runtime_put is missed in the failure path.
 
-Series: drm/xe/guc: Stop reading masks from device memory when populating the ADS
-URL   : https://patchwork.freedesktop.org/series/144827/
-State : success
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+ drivers/gpu/drm/xe/xe_debugfs.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit c84743e875cbd636121865e816c6b7916a6ca3ad
-Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Date:   Thu Feb 13 13:40:53 2025 -0800
-
-    drm/xe/guc: Stop reading masks from device memory when populating the ADS
-    
-    If the device memory is corrupted during the suspend/resume flow, the
-    masks might end up being random values and using them might lead us to
-    trying to set values for engines that do not exist, which in turns might
-    lead to invalid memory accesses.
-    
-    Given that the driver does know which engines are available, we can just
-    calculate the masks instead of reading them out of memory.
-    
-    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-    Cc: John Harrison <John.C.Harrison@Intel.com>
-+ /mt/dim checkpatch 5a69acbd85ccb74b6f1ff124806bbd9d2c9cfa1a drm-intel
-c84743e875cb drm/xe/guc: Stop reading masks from device memory when populating the ADS
-
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 56cb3788e752..761e00cb6437 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -176,6 +176,7 @@ static ssize_t wedged_mode_set(struct file *f, const char __user *ubuf,
+ 		ret = xe_guc_ads_scheduler_policy_toggle_reset(&gt->uc.guc.ads);
+ 		if (ret) {
+ 			xe_gt_err(gt, "Failed to update GuC ADS scheduler policy. GuC may still cause engine reset even with wedged_mode=2\n");
++			xe_pm_runtime_put(xe);
+ 			return -EIO;
+ 		}
+ 	}
+-- 
+2.25.1
 
