@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0DDAC021A0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4CB5C021A6
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 19:29:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8725E10EB88;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A612110EB8A;
 	Thu, 13 Feb 2025 19:29:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SlhNE/Jv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JT5QFsjN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F59310EB88
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBAE810EB8A
  for <intel-xe@lists.freedesktop.org>; Thu, 13 Feb 2025 19:29:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739474975; x=1771010975;
+ t=1739474976; x=1771010976;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=iWZrk+pNNLwTaZ0FQY3i3vVrW84y+GFk7OQFhSU6fbI=;
- b=SlhNE/JvNwZLOdCrJcwOLh5bYiuqMsubBy0+Dn2kgOFyOMHy+3ZtvsEg
- C7t1aomZSZlol5b2IPaF7MDIGIMhiZSN/Lk7TkvDY00KIkRenAX0GOj+c
- PAxnbAqRzTvKtwYWHB0YYB5QBXu5uiOtRDxARDUDFlxWlXYGLcIv++jFB
- ROnLikPAR66S+Hig9iZ+QO5+QKagKCtZsQqI4y+PHcT/uasQXzGgrjbep
- 2V50OpZxFTaE8suyfPgd9qeq6cwW5jk0J9peSFn61HyejpH0eZeNTfjQN
- uHVOaVKoy0ZCva7yrWZuC6PXcrthvK1R1txXKtOsYX7U5KOCa6VoFRzKF Q==;
-X-CSE-ConnectionGUID: 0AqVSNX5Rr+Kmd3GtNQwkg==
-X-CSE-MsgGUID: 5voPGE6eTKSG6mRSeySBZA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40127922"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="40127922"
+ bh=A36UshyOZdViyHNEUAWXUF1V0SuXw72dzFDpQREk0VA=;
+ b=JT5QFsjNePoSd0H/q0ZcSBRAGnOzSIUGAzOXPIVYwSudFyYUP42INkRM
+ rMmf2ndhzqeL1M+FgMwC24ctKTM39nfjt9coaqbsws/Q1iW52sZ9Vh/gh
+ raJL/XCZWulUEoGVyjv2Dzn7WoMHrK0nj3F0Fp1PjSJZhWKo3zyhEAJ++
+ bRT2yjJ7Y0kzVvG2BOoTjwTp1k6nfLawGmBe1H+w9V7RqON2beRWaxTsi
+ UzDhs7vWfI+C6zGLc6msQSLjVHQu6PrKrq6TCx1732m6xVRt53l7kbMf6
+ IET6j82OVuSYDY1vdAfMHNY3jftzWcm9Iz667RwjbWaAcvr/SaBl0XWwu Q==;
+X-CSE-ConnectionGUID: blX+zT15S/K09RTwesNWVg==
+X-CSE-MsgGUID: I9b3DLLnRkytQo+e1gQ7Vg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40127932"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="40127932"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Feb 2025 11:29:35 -0800
-X-CSE-ConnectionGUID: VtAYzCzlSIW+2J5O9Lt2YA==
-X-CSE-MsgGUID: XWzsmFLOTaOZGPDL3xuQrg==
+X-CSE-ConnectionGUID: OxUKkiBPSOOE9FGKJTvcMA==
+X-CSE-MsgGUID: yhFg95NqRFSb0rcuES69ZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="150416859"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="150416887"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Feb 2025 11:29:35 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Subject: [CI 02/13] drm/xe: Fix xe_display_fini() calls
-Date: Thu, 13 Feb 2025 11:28:58 -0800
-Message-ID: <20250213192909.996148-2-lucas.demarchi@intel.com>
+Subject: [CI 11/13] drm/xe/oa: Handle errors in xe_oa_register()
+Date: Thu, 13 Feb 2025 11:29:07 -0800
+Message-ID: <20250213192909.996148-11-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250213192909.996148-1-lucas.demarchi@intel.com>
 References: <20250213192909.996148-1-lucas.demarchi@intel.com>
@@ -65,175 +65,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_display_fini() undoes things from xe_display_init() (technically from
-intel_display_driver_probe()). Those `goto err` in xe_device_probe()
-were wrong and being accumulated over time.
+Let xe_oa_unregister() be handled by devm infra since it's only putting
+the kobject. Also, since kobject_create_and_add may fail, handle the
+error accordingly.
 
-Commit 65e366ace5ee ("drm/xe/display: Use a single early init call for
-display") made it easier to fix now that we don't have xe_display_* init
-calls spread on xe_device_probe(). Change xe_display_init() to use
-devm_add_action_or_reset() that will finalize display in the right
-order.
-
-While at it, also add a newline and comment about calling
-xe_driver_flr_fini.
-
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 22 ++++++++++++----------
- drivers/gpu/drm/xe/display/xe_display.h |  2 --
- drivers/gpu/drm/xe/xe_device.c          | 21 +++++++++++----------
- 3 files changed, 23 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 14 ++++++++------
+ drivers/gpu/drm/xe/xe_oa.c     | 30 +++++++++++++++---------------
+ drivers/gpu/drm/xe/xe_oa.h     |  3 +--
+ 3 files changed, 24 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 363295918cc59..fb1c906ce60aa 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -162,27 +162,29 @@ int xe_display_init_early(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index db9545b29a356..86f3fd399f9ba 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -877,15 +877,17 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ 	err = xe_pxp_init(xe);
+ 	if (err)
+-		goto err_fini_display;
++		goto err_remove_display;
+ 
+ 	err = drm_dev_register(&xe->drm, 0);
+ 	if (err)
+-		goto err_fini_display;
++		goto err_remove_display;
+ 
+ 	xe_display_register(xe);
+ 
+-	xe_oa_register(xe);
++	err = xe_oa_register(xe);
++	if (err)
++		goto err_unregister_display;
+ 
+ 	xe_pmu_register(&xe->pmu);
+ 
+@@ -902,7 +904,9 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ 	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
+ 
+-err_fini_display:
++err_unregister_display:
++	xe_display_unregister(xe);
++err_remove_display:
+ 	xe_display_driver_remove(xe);
+ 
  	return err;
- }
+@@ -971,8 +975,6 @@ void xe_device_remove(struct xe_device *xe)
  
--int xe_display_init(struct xe_device *xe)
-+static void xe_display_fini(void *arg)
- {
-+	struct xe_device *xe = arg;
- 	struct intel_display *display = &xe->display;
+ 	xe_display_driver_remove(xe);
  
--	if (!xe->info.probe_display)
--		return 0;
+-	xe_oa_unregister(xe);
 -
--	return intel_display_driver_probe(display);
-+	intel_hpd_poll_fini(xe);
-+	intel_hdcp_component_fini(display);
-+	intel_audio_deinit(display);
+ 	xe_heci_gsc_fini(xe);
+ 
+ 	xe_device_call_remove_actions(xe);
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 2c640185bdeca..d89e6cabf5a56 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -2423,36 +2423,36 @@ int xe_oa_remove_config_ioctl(struct drm_device *dev, u64 data, struct drm_file
+ 	return ret;
  }
  
--void xe_display_fini(struct xe_device *xe)
-+int xe_display_init(struct xe_device *xe)
++static void xe_oa_unregister(void *arg)
++{
++	struct xe_oa *oa = arg;
++
++	if (!oa->metrics_kobj)
++		return;
++
++	kobject_put(oa->metrics_kobj);
++	oa->metrics_kobj = NULL;
++}
++
+ /**
+  * xe_oa_register - Xe OA registration
+  * @xe: @xe_device
+  *
+  * Exposes the metrics sysfs directory upon completion of module initialization
+  */
+-void xe_oa_register(struct xe_device *xe)
++int xe_oa_register(struct xe_device *xe)
  {
- 	struct intel_display *display = &xe->display;
-+	int err;
+ 	struct xe_oa *oa = &xe->oa;
  
- 	if (!xe->info.probe_display)
+ 	if (!oa->xe)
 -		return;
 +		return 0;
  
--	intel_hpd_poll_fini(xe);
-+	err = intel_display_driver_probe(display);
-+	if (err)
-+		return err;
- 
--	intel_hdcp_component_fini(display);
--	intel_audio_deinit(display);
-+	return xe_device_add_action_or_reset(xe, xe_display_fini, xe);
- }
- 
- void xe_display_register(struct xe_device *xe)
-diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
-index e2a99624f7064..685dc74402fb8 100644
---- a/drivers/gpu/drm/xe/display/xe_display.h
-+++ b/drivers/gpu/drm/xe/display/xe_display.h
-@@ -22,7 +22,6 @@ int xe_display_probe(struct xe_device *xe);
- 
- int xe_display_init_early(struct xe_device *xe);
- int xe_display_init(struct xe_device *xe);
--void xe_display_fini(struct xe_device *xe);
- 
- void xe_display_register(struct xe_device *xe);
- void xe_display_unregister(struct xe_device *xe);
-@@ -54,7 +53,6 @@ static inline int xe_display_probe(struct xe_device *xe) { return 0; }
- 
- static inline int xe_display_init_early(struct xe_device *xe) { return 0; }
- static inline int xe_display_init(struct xe_device *xe) { return 0; }
--static inline void xe_display_fini(struct xe_device *xe) {}
- 
- static inline void xe_display_register(struct xe_device *xe) {}
- static inline void xe_display_unregister(struct xe_device *xe) {}
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 31da48d4fdb91..4f13cc4cd2ac4 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -741,6 +741,7 @@ static int probe_has_flat_ccs(struct xe_device *xe)
- 			"Flat CCS has been disabled in bios, May lead to performance impact");
- 
- 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+
- 	return 0;
- }
- 
-@@ -812,22 +813,26 @@ int xe_device_probe(struct xe_device *xe)
- 	err = xe_devcoredump_init(xe);
- 	if (err)
- 		return err;
-+
-+	/*
-+	 * From here on, if a step fails, make sure a Driver-FLR is triggereed
-+	 */
- 	err = devm_add_action_or_reset(xe->drm.dev, xe_driver_flr_fini, xe);
- 	if (err)
- 		return err;
- 
- 	err = probe_has_flat_ccs(xe);
- 	if (err)
--		goto err;
-+		return err;
- 
- 	err = xe_vram_probe(xe);
- 	if (err)
--		goto err;
-+		return err;
- 
- 	for_each_tile(tile, xe, id) {
- 		err = xe_tile_init_noalloc(tile);
- 		if (err)
--			goto err;
-+			return err;
- 	}
- 
- 	/* Allocate and map stolen after potential VRAM resize */
-@@ -841,17 +846,17 @@ int xe_device_probe(struct xe_device *xe)
- 	 */
- 	err = xe_display_init_early(xe);
- 	if (err)
--		goto err;
-+		return err;
- 
- 	for_each_tile(tile, xe, id) {
- 		err = xe_tile_init(tile);
- 		if (err)
--			goto err;
-+			return err;
- 	}
- 
- 	err = xe_irq_install(xe);
- 	if (err)
--		goto err;
-+		return err;
- 
- 	for_each_gt(gt, xe, id) {
- 		last_gt = id;
-@@ -913,8 +918,6 @@ int xe_device_probe(struct xe_device *xe)
- 			break;
- 	}
- 
--err:
--	xe_display_fini(xe);
- 	return err;
- }
- 
-@@ -990,8 +993,6 @@ void xe_device_remove(struct xe_device *xe)
- 
- 	xe_device_remove_display(xe);
- 
--	xe_display_fini(xe);
+ 	oa->metrics_kobj = kobject_create_and_add("metrics",
+ 						  &xe->drm.primary->kdev->kobj);
+-}
 -
- 	xe_oa_fini(xe);
+-/**
+- * xe_oa_unregister - Xe OA de-registration
+- * @xe: @xe_device
+- */
+-void xe_oa_unregister(struct xe_device *xe)
+-{
+-	struct xe_oa *oa = &xe->oa;
+-
+ 	if (!oa->metrics_kobj)
+-		return;
++		return -ENOMEM;
  
- 	xe_heci_gsc_fini(xe);
+-	kobject_put(oa->metrics_kobj);
+-	oa->metrics_kobj = NULL;
++	return devm_add_action_or_reset(xe->drm.dev, xe_oa_unregister, oa);
+ }
+ 
+ static u32 num_oa_units_per_gt(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_oa.h b/drivers/gpu/drm/xe/xe_oa.h
+index eb36ce250c615..e510826f9efc6 100644
+--- a/drivers/gpu/drm/xe/xe_oa.h
++++ b/drivers/gpu/drm/xe/xe_oa.h
+@@ -15,8 +15,7 @@ struct xe_gt;
+ struct xe_hw_engine;
+ 
+ int xe_oa_init(struct xe_device *xe);
+-void xe_oa_register(struct xe_device *xe);
+-void xe_oa_unregister(struct xe_device *xe);
++int xe_oa_register(struct xe_device *xe);
+ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *file);
+ int xe_oa_add_config_ioctl(struct drm_device *dev, u64 data, struct drm_file *file);
+ int xe_oa_remove_config_ioctl(struct drm_device *dev, u64 data, struct drm_file *file);
 -- 
 2.48.1
 
