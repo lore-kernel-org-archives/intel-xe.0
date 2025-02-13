@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16DDEC021A0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1A19C021A4
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 19:51:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B222410EB88;
-	Thu, 13 Feb 2025 19:51:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45FD310EB8B;
+	Thu, 13 Feb 2025 19:51:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fc4HwlaC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mxUw58c+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7662310EB88;
- Thu, 13 Feb 2025 19:51:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 618B810EB88;
+ Thu, 13 Feb 2025 19:51:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739476300; x=1771012300;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=u8QOcsW1hKMXTPqtEYEs/RVOSbNc5kuUGyIb/eGUYNQ=;
- b=Fc4HwlaCY9KFO8RW0rbQ96uKzgk4aVsWPnL3enrOPVk6AhSSwrC3BCTY
- Cy0+orPNUH7swdcLmI2tAieIFgcXSnSLCBmeEQEdXrm5+lozIZKI35s/o
- Q7UcgzaKrGlD+6Eoce1hwgoXqie216W3nPemjesRS5jAoqrdjx26hGQu2
- Y+b61N9RqqkDZQ7v+VakY04EcEkRhD53QZbyZdbO8BNk+JjSAjiIv97xj
- ued0J62r0V/yvezZyVFfjsvr1SVK6nyaVxML6kNDyd5MdzAam7TvRgoKC
- daVx6rA0b7FRqP0ETG27PMHcBZcztP/+pm0CNWh0maqrDNOCe872KDech g==;
-X-CSE-ConnectionGUID: 5o/6RiJATZqq73UT2//Hvg==
-X-CSE-MsgGUID: FtrBr6WhT9S3n0mf5ECm2Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40354744"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="40354744"
+ t=1739476301; x=1771012301;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=+NO0b0muPhplHkRCwarGBSbooNg18Pk8HMsQIZuiP1c=;
+ b=mxUw58c+/ufDJyqP/Q0KXIv7SUCFe+xLkgGyhnpn1A4durHNRY0dsTQv
+ lzOkj78Jfp/ZHbWdPtJe6eb82uCGCUkTndXqcsSB+gZ2mWls8QESRZX23
+ LxNKeugSnaCHY75HBeuiUrdmiMlb3RpH1x/njU2jRmvRDjuthgix/UDtQ
+ B95IkSQAnGMfbRRVhVLqqgGGOVjD/uhvsrxsD5VRLOeANdQCwIpuKSsP1
+ yi79jq9HQHH3af5/BvJaGtYKn5WzGLDyE0m/4znHW56b8L1JJ2hxatJxp
+ TVIjx2QSGt1dtQ8ex9FrIOLqUEd/FLQqbJALM7LJAJKiAX4XGPaQica4L A==;
+X-CSE-ConnectionGUID: FS1Mm50xR/qSshac/eGGdQ==
+X-CSE-MsgGUID: 9XEDGbdLRhG1dR58pdYhiQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40354749"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="40354749"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Feb 2025 11:51:40 -0800
-X-CSE-ConnectionGUID: NT4XNycPRS+vsKZet6mRrQ==
-X-CSE-MsgGUID: B0HFBQuUThGndtxI3QjsNA==
+X-CSE-ConnectionGUID: zYjI3UZkSb+J0r4+GtMGzQ==
+X-CSE-MsgGUID: N806ZgfQTxS3p8laBX72aw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="117372205"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="117372220"
 Received: from aalteres-desk1.fm.intel.com ([10.1.39.140])
  by fmviesa003.fm.intel.com with ESMTP; 13 Feb 2025 11:51:40 -0800
 From: Alan Previn <alan.previn.teres.alexis@intel.com>
@@ -49,10 +49,13 @@ Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Zhanjun Dong <zhanjun.dong@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v8 0/6] Maintenence of devcoredump <-> GuC-Err-Capture plumbing
-Date: Thu, 13 Feb 2025 11:51:33 -0800
-Message-Id: <20250213195139.3396082-1-alan.previn.teres.alexis@intel.com>
+Subject: [PATCH v8 4/6] drm/xe/guc: Move xe_hw_engine_snapshot creation back
+ to xe_hw_engine.c
+Date: Thu, 13 Feb 2025 11:51:37 -0800
+Message-Id: <20250213195139.3396082-5-alan.previn.teres.alexis@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250213195139.3396082-1-alan.previn.teres.alexis@intel.com>
+References: <20250213195139.3396082-1-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,62 +72,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GuC-Error-Capture is currently reaching into xe_devcoredump
-structure to store its own place-holder snaphot-ptr to workaround
-the race between G2H-Error-Capture-Notification vs Drm-Scheduler
-triggering GuC-Submission-exec-queue-timeout/kill.
+xe_devcoredump calls xe_engine_snapshot_capture_for_queue() to allocate
+and populate the xe_hw_engine_snapshot structure. Move that function
+back into xe_hw_engine.c since it doesn't make sense for
+GuC-Err-Capture to allocate a structure it doesn't own.
 
-From a subsystem layering perspective, this isn't scalable as
-GuC should not be manipulating contents of a global structure it
-does not own when responding to an unrelated thread / callstack.
+   v7: Rename function to respect "xe_hw_engine" namespace (Rodrigo)
 
-Also, part of the earlier mentioned workaround includes the
-GuC-Error-Capture taking on one of the front-end functions
-for xe_hw_engine_snapshot generation because of an orthogonal
-debugfs-caller requesting raw dumps of engine registers without
-a job. This request is better handled by GuC-Error-Capture since
-there is a lot to manage for reading and printing engine
-register lists and we want to avoid duplicate code or tables.
+Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+Reviewed-by: Zhanjun Dong <zhanjun.dong@intel.com>
+---
+ drivers/gpu/drm/xe/xe_devcoredump.c |  2 +-
+ drivers/gpu/drm/xe/xe_guc_capture.c | 30 -----------------------
+ drivers/gpu/drm/xe/xe_guc_capture.h |  1 -
+ drivers/gpu/drm/xe/xe_hw_engine.c   | 38 ++++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_hw_engine.h   |  3 +--
+ 5 files changed, 36 insertions(+), 38 deletions(-)
 
-However, logically speaking, the GuC-Error-Capture output node
-is really a subset of xe_hw_engine_snapshot. This is irregardless
-of the fact that the majority of an engine-snapshot is the
-register dumps that only the GuC-Error-Capture can do.
-
-That said, this series intends to refactor the plumbing between
-Guc-Error-Capture and xe_devcoredump (including
-xe_hw_engine_snapshot) to fix the layering for future
-maintenence and scalability. This is done without changing
-any functionality and IP-locality (i.e. GuC-Error-Capture still owns
-the single point of engine register list definition and printing).
-This series ensures 'xe_devcoredump_snapshot' owns
-'xe_hw_engine_snapshot generation' and the latter owns
-'xe_guc_capture_snapshot' retrieval (with GuC-Error-Capture
-as its helper).
-
-Alan Previn (6):
-  drm/xe/guc: Rename __guc_capture_parsed_output
-  drm/xe/guc: Don't store capture nodes in xe_devcoredump_snapshot
-  drm/xe/guc: Split engine state print between xe_hw_engine vs
-    xe_guc_capture
-  drm/xe/guc: Move xe_hw_engine_snapshot creation back to xe_hw_engine.c
-  drm/xe/xe_hw_engine: Update xe_hw_engine capture for debugfs/gt_reset
-  drm/xe/guc: Update comments on GuC-Err-Capture flows
-
- drivers/gpu/drm/xe/xe_devcoredump.c           |   7 +-
- drivers/gpu/drm/xe/xe_devcoredump_types.h     |   6 -
- drivers/gpu/drm/xe/xe_guc_capture.c           | 397 ++++++++----------
- drivers/gpu/drm/xe/xe_guc_capture.h           |  16 +-
- .../drm/xe/xe_guc_capture_snapshot_types.h    |  57 +++
- drivers/gpu/drm/xe/xe_guc_submit.c            |  12 +-
- drivers/gpu/drm/xe/xe_hw_engine.c             | 114 +++--
- drivers/gpu/drm/xe/xe_hw_engine.h             |   4 +-
- drivers/gpu/drm/xe/xe_hw_engine_types.h       |  13 +-
- 9 files changed, 353 insertions(+), 273 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_snapshot_types.h
-
-
-base-commit: b7446752e5d3de98bf26b5d3a7ca4fe9165ec779
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 7a4610d2ea4f..6cbb4fce8ef2 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -311,7 +311,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 		ss->job = xe_sched_job_snapshot_capture(job);
+ 	ss->vm = xe_vm_snapshot_capture(q->vm);
+ 
+-	xe_engine_snapshot_capture_for_queue(q);
++	xe_hw_engine_snapshot_capture_for_queue(q);
+ 
+ 	queue_work(system_unbound_wq, &ss->work);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index ac3134da3f19..c57b13afcfd9 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -1870,36 +1870,6 @@ xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q,
+ 	return NULL;
+ }
+ 
+-/**
+- * xe_engine_snapshot_capture_for_queue - Take snapshot of associated engine
+- * @q: The exec queue object
+- *
+- * Take snapshot of associated HW Engine
+- *
+- * Returns: None.
+- */
+-void
+-xe_engine_snapshot_capture_for_queue(struct xe_exec_queue *q)
+-{
+-	struct xe_device *xe = gt_to_xe(q->gt);
+-	struct xe_devcoredump *coredump = &xe->devcoredump;
+-	struct xe_hw_engine *hwe;
+-	enum xe_hw_engine_id id;
+-	u32 adj_logical_mask = q->logical_mask;
+-
+-	if (IS_SRIOV_VF(xe))
+-		return;
+-
+-	for_each_hw_engine(hwe, q->gt, id) {
+-		if (hwe->class != q->hwe->class ||
+-		    !(BIT(hwe->logical_instance) & adj_logical_mask)) {
+-			coredump->snapshot.hwe[id] = NULL;
+-			continue;
+-		}
+-		coredump->snapshot.hwe[id] = xe_hw_engine_snapshot_capture(hwe, q);
+-	}
+-}
+-
+ /*
+  * xe_guc_capture_put_matched_nodes - Cleanup matched nodes
+  * @guc: The GuC object
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.h b/drivers/gpu/drm/xe/xe_guc_capture.h
+index e67589ab4342..77ee35a3f205 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.h
++++ b/drivers/gpu/drm/xe/xe_guc_capture.h
+@@ -56,7 +56,6 @@ xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q,
+ void xe_guc_capture_snapshot_store_manual_job(struct xe_guc *guc, struct xe_exec_queue *q);
+ void xe_guc_capture_snapshot_print(struct xe_guc *guc, struct xe_guc_capture_snapshot *node,
+ 				   struct drm_printer *p);
+-void xe_engine_snapshot_capture_for_queue(struct xe_exec_queue *q);
+ void xe_guc_capture_steered_list_init(struct xe_guc *guc);
+ void xe_guc_capture_put_matched_nodes(struct xe_guc *guc, struct xe_guc_capture_snapshot *n);
+ int xe_guc_capture_init(struct xe_guc *guc);
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index c980a5c84a8b..fef01d2086a8 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -830,7 +830,7 @@ void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec)
+ }
+ 
+ /**
+- * xe_hw_engine_snapshot_capture - Take a quick snapshot of the HW Engine.
++ * hw_engine_snapshot_capture - Take a quick snapshot of the HW Engine.
+  * @hwe: Xe HW Engine.
+  * @q: The exec queue object.
+  *
+@@ -840,8 +840,8 @@ void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec)
+  * Returns: a Xe HW Engine snapshot object that must be freed by the
+  * caller, using `xe_hw_engine_snapshot_free`.
+  */
+-struct xe_hw_engine_snapshot *
+-xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe, struct xe_exec_queue *q)
++static struct xe_hw_engine_snapshot *
++hw_engine_snapshot_capture(struct xe_hw_engine *hwe, struct xe_exec_queue *q)
+ {
+ 	struct xe_hw_engine_snapshot *snapshot;
+ 	struct xe_guc_capture_snapshot *node;
+@@ -887,6 +887,36 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe, struct xe_exec_queue *q)
+ 	return snapshot;
+ }
+ 
++/**
++ * xe_hw_engine_snapshot_capture_for_queue - Take snapshot of associated engine
++ * @q: The exec queue object
++ *
++ * Take snapshot of associated HW Engine
++ *
++ * Returns: None.
++ */
++void
++xe_hw_engine_snapshot_capture_for_queue(struct xe_exec_queue *q)
++{
++	struct xe_device *xe = gt_to_xe(q->gt);
++	struct xe_devcoredump *coredump = &xe->devcoredump;
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++	u32 adj_logical_mask = q->logical_mask;
++
++	if (IS_SRIOV_VF(xe))
++		return;
++
++	for_each_hw_engine(hwe, q->gt, id) {
++		if (hwe->class != q->hwe->class ||
++		    !(BIT(hwe->logical_instance) & adj_logical_mask)) {
++			coredump->snapshot.hwe[id] = NULL;
++			continue;
++		}
++		coredump->snapshot.hwe[id] = hw_engine_snapshot_capture(hwe, q);
++	}
++}
++
+ /**
+  * xe_hw_engine_snapshot_free - Free all allocated objects for a given snapshot.
+  * @snapshot: Xe HW Engine snapshot object.
+@@ -945,7 +975,7 @@ void xe_hw_engine_print(struct xe_hw_engine *hwe, struct drm_printer *p)
+ {
+ 	struct xe_hw_engine_snapshot *snapshot;
+ 
+-	snapshot = xe_hw_engine_snapshot_capture(hwe, NULL);
++	snapshot = hw_engine_snapshot_capture(hwe, NULL);
+ 	xe_hw_engine_snapshot_print(snapshot, p);
+ 	xe_hw_engine_snapshot_free(snapshot);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+index 069b32aa7423..74f6ea0c8d3e 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+@@ -55,8 +55,7 @@ void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec);
+ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe);
+ u32 xe_hw_engine_mask_per_class(struct xe_gt *gt,
+ 				enum xe_engine_class engine_class);
+-struct xe_hw_engine_snapshot *
+-xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe, struct xe_exec_queue *q);
++void xe_hw_engine_snapshot_capture_for_queue(struct xe_exec_queue *q);
+ void xe_hw_engine_snapshot_free(struct xe_hw_engine_snapshot *snapshot);
+ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm_printer *p);
+ void xe_hw_engine_print(struct xe_hw_engine *hwe, struct drm_printer *p);
 -- 
 2.34.1
 
