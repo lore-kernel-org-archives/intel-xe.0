@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09D3CC021A6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6736C021A4
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 02:10:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CD8310E9C9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D24A10E9CA;
 	Thu, 13 Feb 2025 02:10:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Um6h1AcV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e9CludLC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9063010E397;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C127110E9BF;
  Thu, 13 Feb 2025 02:10:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1739412617; x=1770948617;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QWns/RGjTBirmlxxcOcV3vqnZNco/m2w5GKrYU/v8Ns=;
- b=Um6h1AcVIb0XzDO2MAxXWTZQ4e7ImG/vLGAgrmDQRt6Uxk/O/yEoYPm6
- 7+A77fBzt1cZbYtD4ua0ACjCKQvEAkxXYWRJjPMIdnJOygourAZYN/OCc
- qkgvCDqqsZec+8bKfRXB8mz2FRsI87GXHtVm2PXMnkdQWmpX07sawDdwa
- ALQZHWSpqaJmt4AQs8Cd2D4o1kxAUU7wZGFPZ7x7qGIZV36Kk0YbvZhLX
- HoYDhBcPyUPJ4UtLy/swK8Kzw2aHmK1NgG+P7bhsstUF3ct9gaF4TmWfq
- iDEgQq/3eK8kW3MR+r39HuJvbQVuuGANOQVDeDXgnLnwn84yUL468KnoK w==;
-X-CSE-ConnectionGUID: kFZw7PJeRz6r77K/gsxIlg==
-X-CSE-MsgGUID: OAX9/ww3QQi5Yh2ZusL+oQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="65455937"
-X-IronPort-AV: E=Sophos;i="6.13,281,1732608000"; d="scan'208";a="65455937"
+ bh=Joj2+YH1CzhB4PYA96SlJIACeIn/A3g+T6jWkyr8Fvc=;
+ b=e9CludLCVNm6DhrIvkYEPOZh4JHYw9CDCtVSX9so+sr8TIoKxcdESiYN
+ U67X2kbjfcRFdQDDsHxh3aH8IzHkWhezjX4woUiWh0V8iliS/WNOVV477
+ sxeIqZoFpLQqZRtvd0Bhq0B2IY1yNYKTPowa1Nwtl2WsQUYB8VOvIHSDa
+ eEM1+UTj/9p9sYJZa8MLz4V2vIR4jOg3U1dhSf8KS3ABYu8uz9tqb4np3
+ u/s8Gx3WobzLdhiRvIUmYdA2mIfwY0t11KxHCh63Qr648Xft0eSGdaxTq
+ 03QYhSNUvj2RxPc5DoUOQVk4tDa6B7v0YXD7OBX1S3bRbPfOPyi/jonbv Q==;
+X-CSE-ConnectionGUID: bvkPJ1WkSLya/BS+p4qkjg==
+X-CSE-MsgGUID: x5Edy6U8QQGDQ0f/jJh9Sw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="65455950"
+X-IronPort-AV: E=Sophos;i="6.13,281,1732608000"; d="scan'208";a="65455950"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 18:10:15 -0800
-X-CSE-ConnectionGUID: LPMivRqHQBeHIwhnw7/OsQ==
-X-CSE-MsgGUID: GiXPiVBlSTa+l8ikz/YsZQ==
+ 12 Feb 2025 18:10:16 -0800
+X-CSE-ConnectionGUID: Kpu788isRpihPMBFn731og==
+X-CSE-MsgGUID: XdvDEe4oQhCK+JYuTi+0+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="117945048"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="117945060"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Feb 2025 18:10:15 -0800
@@ -47,9 +47,9 @@ To: intel-xe@lists.freedesktop.org,
 Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v5 05/32] drm/xe/bo: Introduce xe_bo_put_async
-Date: Wed, 12 Feb 2025 18:10:45 -0800
-Message-Id: <20250213021112.1228481-6-matthew.brost@intel.com>
+Subject: [PATCH v5 09/32] drm/xe: Add SVM init / close / fini to faulting VMs
+Date: Wed, 12 Feb 2025 18:10:49 -0800
+Message-Id: <20250213021112.1228481-10-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250213021112.1228481-1-matthew.brost@intel.com>
 References: <20250213021112.1228481-1-matthew.brost@intel.com>
@@ -70,132 +70,215 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Add SVM init / close / fini to faulting VMs. Minimual implementation
+acting as a placeholder for follow on patches.
 
-Introduce xe_bo_put_async to put a bo where the context is such that
-the bo destructor can't run due to lockdep problems or atomic context.
-
-If the put is the final put, freeing will be done from a work item.
-
-v5:
- - Kerenl doc for xe_bo_put_async (Thomas)
+v2:
+ - Add close function
+v3:
+ - Better commit message (Thomas)
+ - Kernel doc (Thomas)
+ - Update chunk array to be unsigned long (Thomas)
+ - Use new drm_gpusvm.h header location (Thomas)
+ - Newlines between functions in xe_svm.h (Thomas)
+ - Call drm_gpusvm_driver_set_lock in init (Thomas)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c           | 25 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_bo.h           | 19 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_device.c       |  3 +++
- drivers/gpu/drm/xe/xe_device_types.h |  8 ++++++++
- 4 files changed, 55 insertions(+)
+ drivers/gpu/drm/xe/Makefile      |  1 +
+ drivers/gpu/drm/xe/xe_svm.c      | 73 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_svm.h      | 17 ++++++++
+ drivers/gpu/drm/xe/xe_vm.c       | 12 ++++++
+ drivers/gpu/drm/xe/xe_vm_types.h |  7 +++
+ 5 files changed, 110 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_svm.c
+ create mode 100644 drivers/gpu/drm/xe/xe_svm.h
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index cd1c693c0b62..a2a924b531e5 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -2644,6 +2644,31 @@ void xe_bo_put_commit(struct llist_head *deferred)
- 		drm_gem_object_free(&bo->ttm.base.refcount);
- }
- 
-+static void xe_bo_dev_work_func(struct work_struct *work)
-+{
-+	struct xe_bo_dev *bo_dev = container_of(work, typeof(*bo_dev), async_free);
-+
-+	xe_bo_put_commit(&bo_dev->async_list);
-+}
-+
-+/**
-+ * xe_bo_dev_init() - Initialize BO dev to manage async BO freeing
-+ * @bo_dev: The BO dev structure
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 5ce65ccb3c08..724b4130b8be 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -100,6 +100,7 @@ xe-y += xe_bb.o \
+ 	xe_sched_job.o \
+ 	xe_step.o \
+ 	xe_survivability_mode.o \
++	xe_svm.o \
+ 	xe_sync.o \
+ 	xe_tile.o \
+ 	xe_tile_sysfs.o \
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+new file mode 100644
+index 000000000000..79da859f02b1
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -0,0 +1,73 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2024 Intel Corporation
 + */
-+void xe_bo_dev_init(struct xe_bo_dev *bo_dev)
++
++#include "xe_svm.h"
++#include "xe_vm.h"
++#include "xe_vm_types.h"
++
++static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
++			      struct drm_gpusvm_notifier *notifier,
++			      const struct mmu_notifier_range *mmu_range)
 +{
-+	INIT_WORK(&bo_dev->async_free, xe_bo_dev_work_func);
++	/* TODO: Implement */
 +}
 +
-+/**
-+ * xe_bo_dev_fini() - Finalize BO dev managing async BO freeing
-+ * @bo_dev: The BO dev structure
-+ */
-+void xe_bo_dev_fini(struct xe_bo_dev *bo_dev)
-+{
-+	flush_work(&bo_dev->async_free);
-+}
++static const struct drm_gpusvm_ops gpusvm_ops = {
++	.invalidate = xe_svm_invalidate,
++};
 +
- void xe_bo_put(struct xe_bo *bo)
- {
- 	struct xe_tile *tile;
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index f09b9315721b..9dfec438d1c7 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -322,6 +322,25 @@ xe_bo_put_deferred(struct xe_bo *bo, struct llist_head *deferred)
- 
- void xe_bo_put_commit(struct llist_head *deferred);
- 
++static const unsigned long fault_chunk_sizes[] = {
++	SZ_2M,
++	SZ_64K,
++	SZ_4K,
++};
++
 +/**
-+ * xe_bo_put_async() - Put BO async
-+ * @bo: The bo to put.
++ * xe_svm_init() - SVM initialize
++ * @vm: The VM.
 + *
-+ * Put BO async, the final put is deferred to a worker to exit an IRQ context.
++ * Initialize SVM state which is embedded within the VM.
++ *
++ * Return: 0 on success, negative error code on error.
 + */
-+static inline void
-+xe_bo_put_async(struct xe_bo *bo)
++int xe_svm_init(struct xe_vm *vm)
 +{
-+	struct xe_bo_dev *bo_device = &xe_bo_device(bo)->bo_device;
++	int err;
 +
-+	if (xe_bo_put_deferred(bo, &bo_device->async_list))
-+		schedule_work(&bo_device->async_free);
++	err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
++			      current->mm, NULL, 0, vm->size,
++			      SZ_512M, &gpusvm_ops, fault_chunk_sizes,
++			      ARRAY_SIZE(fault_chunk_sizes));
++	if (err)
++		return err;
++
++	drm_gpusvm_driver_set_lock(&vm->svm.gpusvm, &vm->lock);
++
++	return 0;
 +}
 +
-+void xe_bo_dev_init(struct xe_bo_dev *bo_device);
++/**
++ * xe_svm_close() - SVM close
++ * @vm: The VM.
++ *
++ * Close SVM state (i.e., stop and flush all SVM actions).
++ */
++void xe_svm_close(struct xe_vm *vm)
++{
++	xe_assert(vm->xe, xe_vm_is_closed(vm));
++}
 +
-+void xe_bo_dev_fini(struct xe_bo_dev *bo_device);
++/**
++ * xe_svm_fini() - SVM finalize
++ * @vm: The VM.
++ *
++ * Finalize SVM state which is embedded within the VM.
++ */
++void xe_svm_fini(struct xe_vm *vm)
++{
++	xe_assert(vm->xe, xe_vm_is_closed(vm));
 +
- struct sg_table *xe_bo_sg(struct xe_bo *bo);
- 
- /*
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 36d7ffb3b4d9..756099e870cd 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -388,6 +388,8 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
- {
- 	struct xe_device *xe = to_xe_device(dev);
- 
-+	xe_bo_dev_fini(&xe->bo_device);
++	drm_gpusvm_fini(&vm->svm.gpusvm);
++}
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+new file mode 100644
+index 000000000000..49cfd938aa17
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -0,0 +1,17 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2024 Intel Corporation
++ */
 +
- 	if (xe->preempt_fence_wq)
- 		destroy_workqueue(xe->preempt_fence_wq);
- 
-@@ -425,6 +427,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 	if (WARN_ON(err))
- 		goto err;
- 
-+	xe_bo_dev_init(&xe->bo_device);
- 	err = drmm_add_action_or_reset(&xe->drm, xe_device_destroy, NULL);
- 	if (err)
- 		goto err;
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 833c29fed3a3..6a41f608a7a1 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -525,6 +525,14 @@ struct xe_device {
- 		int mode;
- 	} wedged;
- 
-+	/** @bo_device: Struct to control async free of BOs */
-+	struct xe_bo_dev {
-+		/** @async_free: Free worker */
-+		struct work_struct async_free;
-+		/** @async_list: List of BOs to be freed */
-+		struct llist_head async_list;
-+	} bo_device;
++#ifndef _XE_SVM_H_
++#define _XE_SVM_H_
 +
- 	/** @pmu: performance monitoring unit */
- 	struct xe_pmu pmu;
++struct xe_vm;
++
++int xe_svm_init(struct xe_vm *vm);
++
++void xe_svm_fini(struct xe_vm *vm);
++
++void xe_svm_close(struct xe_vm *vm);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 06d15ac8d64b..cbfe5fad1680 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -35,6 +35,7 @@
+ #include "xe_pt.h"
+ #include "xe_pxp.h"
+ #include "xe_res_cursor.h"
++#include "xe_svm.h"
+ #include "xe_sync.h"
+ #include "xe_trace_bo.h"
+ #include "xe_wa.h"
+@@ -1525,6 +1526,12 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 		}
+ 	}
  
++	if (flags & XE_VM_FLAG_FAULT_MODE) {
++		err = xe_svm_init(vm);
++		if (err)
++			goto err_close;
++	}
++
+ 	if (number_tiles > 1)
+ 		vm->composite_fence_ctx = dma_fence_context_alloc(1);
+ 
+@@ -1570,6 +1577,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 	xe_vm_close(vm);
+ 	if (xe_vm_in_preempt_fence_mode(vm))
+ 		flush_work(&vm->preempt.rebind_work);
++	if (xe_vm_in_fault_mode(vm))
++		xe_svm_close(vm);
+ 
+ 	down_write(&vm->lock);
+ 	for_each_tile(tile, xe, id) {
+@@ -1638,6 +1647,9 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 		xe_vma_destroy_unlocked(vma);
+ 	}
+ 
++	if (xe_vm_in_fault_mode(vm))
++		xe_svm_fini(vm);
++
+ 	up_write(&vm->lock);
+ 
+ 	down_write(&xe->usm.lock);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 9f125d07d30f..18ec9003a48a 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -6,6 +6,7 @@
+ #ifndef _XE_VM_TYPES_H_
+ #define _XE_VM_TYPES_H_
+ 
++#include <drm/drm_gpusvm.h>
+ #include <drm/drm_gpuvm.h>
+ 
+ #include <linux/dma-resv.h>
+@@ -140,6 +141,12 @@ struct xe_vm {
+ 	/** @gpuvm: base GPUVM used to track VMAs */
+ 	struct drm_gpuvm gpuvm;
+ 
++	/** @svm: Shared virtual memory state */
++	struct {
++		/** @svm.gpusvm: base GPUSVM used to track fault allocations */
++		struct drm_gpusvm gpusvm;
++	} svm;
++
+ 	struct xe_device *xe;
+ 
+ 	/* exec queue used for (un)binding vma's */
 -- 
 2.34.1
 
