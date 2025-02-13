@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6736C021A4
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 02:10:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B444DC02198
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 02:10:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D24A10E9CA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47DF810E9CC;
 	Thu, 13 Feb 2025 02:10:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e9CludLC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="THuMqdHV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C127110E9BF;
- Thu, 13 Feb 2025 02:10:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0997B10E9C1;
+ Thu, 13 Feb 2025 02:10:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1739412617; x=1770948617;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Joj2+YH1CzhB4PYA96SlJIACeIn/A3g+T6jWkyr8Fvc=;
- b=e9CludLCVNm6DhrIvkYEPOZh4JHYw9CDCtVSX9so+sr8TIoKxcdESiYN
- U67X2kbjfcRFdQDDsHxh3aH8IzHkWhezjX4woUiWh0V8iliS/WNOVV477
- sxeIqZoFpLQqZRtvd0Bhq0B2IY1yNYKTPowa1Nwtl2WsQUYB8VOvIHSDa
- eEM1+UTj/9p9sYJZa8MLz4V2vIR4jOg3U1dhSf8KS3ABYu8uz9tqb4np3
- u/s8Gx3WobzLdhiRvIUmYdA2mIfwY0t11KxHCh63Qr648Xft0eSGdaxTq
- 03QYhSNUvj2RxPc5DoUOQVk4tDa6B7v0YXD7OBX1S3bRbPfOPyi/jonbv Q==;
-X-CSE-ConnectionGUID: bvkPJ1WkSLya/BS+p4qkjg==
-X-CSE-MsgGUID: x5Edy6U8QQGDQ0f/jJh9Sw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="65455950"
-X-IronPort-AV: E=Sophos;i="6.13,281,1732608000"; d="scan'208";a="65455950"
+ bh=dRz5ve7PMaiw5+HWNbDDKGnGis8xP2oroALs9l2vwME=;
+ b=THuMqdHV3lijTT5biV/UI8Bvi/gIKk2UMj1FwApdjaTZOYBXUnZqwCQZ
+ //q2HX7YDKfqWsD+kkW+wdZR5SxjfxCS8BUzMgwzDTdvY6LhbU5DVOGfW
+ 5tt1q/S8eSEVNd0b+Er5M2dFHaM4JXO6Zu3j4mjPTIWnVC7nj/S8MeA2f
+ E2tX4tdACvS3JflsGXt6Ny4EUUMWf/yskOLYIIU/IlojYmaHzl3aG4Yjt
+ tTuwMwN3aYrXug998rp/1oelAwXcSZ/8CM9/w6pxDE/GEGSq3HocHtCGa
+ luy1nSf4pASdN0BDZGy0C6CFGaB3bhnHhhFJL2O3ZrwAfL8UUcV9qHGzK g==;
+X-CSE-ConnectionGUID: y7XgLwbURZuUsnqSLyXZHw==
+X-CSE-MsgGUID: cDqLt25FTtG6UMytTZ4Q4Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="65455965"
+X-IronPort-AV: E=Sophos;i="6.13,281,1732608000"; d="scan'208";a="65455965"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Feb 2025 18:10:16 -0800
-X-CSE-ConnectionGUID: Kpu788isRpihPMBFn731og==
-X-CSE-MsgGUID: XdvDEe4oQhCK+JYuTi+0+A==
+X-CSE-ConnectionGUID: zBt9yDCDTPuXf8ykjrR7rA==
+X-CSE-MsgGUID: 79nBH1OGTWOf7htFYW5wsA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="117945060"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="117945069"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Feb 2025 18:10:15 -0800
@@ -47,9 +47,9 @@ To: intel-xe@lists.freedesktop.org,
 Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v5 09/32] drm/xe: Add SVM init / close / fini to faulting VMs
-Date: Wed, 12 Feb 2025 18:10:49 -0800
-Message-Id: <20250213021112.1228481-10-matthew.brost@intel.com>
+Subject: [PATCH v5 12/32] drm/xe: Add SVM range invalidation and page fault
+Date: Wed, 12 Feb 2025 18:10:52 -0800
+Message-Id: <20250213021112.1228481-13-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250213021112.1228481-1-matthew.brost@intel.com>
 References: <20250213021112.1228481-1-matthew.brost@intel.com>
@@ -70,215 +70,505 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add SVM init / close / fini to faulting VMs. Minimual implementation
-acting as a placeholder for follow on patches.
+Add SVM range invalidation vfunc which invalidates PTEs. A new PT layer
+function which accepts a SVM range is added to support this. In
+addition, add the basic page fault handler which allocates a SVM range
+which is used by SVM range invalidation vfunc.
 
 v2:
- - Add close function
+ - Don't run invalidation if VM is closed
+ - Cycle notifier lock in xe_svm_close
+ - Drop xe_gt_tlb_invalidation_fence_fini
 v3:
  - Better commit message (Thomas)
- - Kernel doc (Thomas)
- - Update chunk array to be unsigned long (Thomas)
- - Use new drm_gpusvm.h header location (Thomas)
- - Newlines between functions in xe_svm.h (Thomas)
- - Call drm_gpusvm_driver_set_lock in init (Thomas)
+ - Add lockdep asserts (Thomas)
+ - Add kernel doc (Thomas)
+ - s/change/changed (Thomas)
+ - Use new GPU SVM range / notifier structures
+ - Ensure PTEs are zapped / dma mappings are unmapped on VM close (Thomas)
+v4:
+ - Fix macro (Checkpatch)
+v5:
+ - Use range start/end helpers (Thomas)
+ - Use notifier start/end helpers (Thomas)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/Makefile      |  1 +
- drivers/gpu/drm/xe/xe_svm.c      | 73 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_svm.h      | 17 ++++++++
- drivers/gpu/drm/xe/xe_vm.c       | 12 ++++++
- drivers/gpu/drm/xe/xe_vm_types.h |  7 +++
- 5 files changed, 110 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_svm.c
- create mode 100644 drivers/gpu/drm/xe/xe_svm.h
+ drivers/gpu/drm/xe/xe_gt_pagefault.c |  18 ++-
+ drivers/gpu/drm/xe/xe_pt.c           |  41 +++++
+ drivers/gpu/drm/xe/xe_pt.h           |   2 +
+ drivers/gpu/drm/xe/xe_svm.c          | 233 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_svm.h          |  32 ++++
+ drivers/gpu/drm/xe/xe_vm.c           |   4 +
+ 6 files changed, 324 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 5ce65ccb3c08..724b4130b8be 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -100,6 +100,7 @@ xe-y += xe_bb.o \
- 	xe_sched_job.o \
- 	xe_step.o \
- 	xe_survivability_mode.o \
-+	xe_svm.o \
- 	xe_sync.o \
- 	xe_tile.o \
- 	xe_tile_sysfs.o \
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-new file mode 100644
-index 000000000000..79da859f02b1
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 46701ca11ce0..3047b1ac024c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -19,6 +19,7 @@
+ #include "xe_guc.h"
+ #include "xe_guc_ct.h"
+ #include "xe_migrate.h"
 +#include "xe_svm.h"
-+#include "xe_vm.h"
-+#include "xe_vm_types.h"
+ #include "xe_trace_bo.h"
+ #include "xe_vm.h"
+ 
+@@ -125,8 +126,8 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
+ 	return 0;
+ }
+ 
+-static int handle_vma_pagefault(struct xe_gt *gt, struct pagefault *pf,
+-				struct xe_vma *vma)
++static int handle_vma_pagefault(struct xe_gt *gt, struct xe_vma *vma,
++				bool atomic)
+ {
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+ 	struct xe_tile *tile = gt_to_tile(gt);
+@@ -134,13 +135,13 @@ static int handle_vma_pagefault(struct xe_gt *gt, struct pagefault *pf,
+ 	struct dma_fence *fence;
+ 	ktime_t end = 0;
+ 	int err;
+-	bool atomic;
 +
-+static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
-+			      struct drm_gpusvm_notifier *notifier,
-+			      const struct mmu_notifier_range *mmu_range)
++	lockdep_assert_held_write(&vm->lock);
+ 
+ 	xe_gt_stats_incr(gt, XE_GT_STATS_ID_VMA_PAGEFAULT_COUNT, 1);
+ 	xe_gt_stats_incr(gt, XE_GT_STATS_ID_VMA_PAGEFAULT_BYTES, xe_vma_size(vma));
+ 
+ 	trace_xe_vma_pagefault(vma);
+-	atomic = access_is_atomic(pf->access_type);
+ 
+ 	/* Check if VMA is valid */
+ 	if (vma_is_valid(tile, vma) && !atomic)
+@@ -210,6 +211,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 	struct xe_vm *vm;
+ 	struct xe_vma *vma = NULL;
+ 	int err;
++	bool atomic;
+ 
+ 	/* SW isn't expected to handle TRTT faults */
+ 	if (pf->trva_fault)
+@@ -235,7 +237,13 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 		goto unlock_vm;
+ 	}
+ 
+-	err = handle_vma_pagefault(gt, pf, vma);
++	atomic = access_is_atomic(pf->access_type);
++
++	if (xe_vma_is_cpu_addr_mirror(vma))
++		err = xe_svm_handle_pagefault(vm, vma, gt_to_tile(gt),
++					      pf->page_addr, atomic);
++	else
++		err = handle_vma_pagefault(gt, vma, atomic);
+ 
+ unlock_vm:
+ 	if (!err)
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index c5060011ad43..a9aa1678437e 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -20,6 +20,7 @@
+ #include "xe_res_cursor.h"
+ #include "xe_sched_job.h"
+ #include "xe_sync.h"
++#include "xe_svm.h"
+ #include "xe_trace.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_vm.h"
+@@ -844,6 +845,46 @@ bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma)
+ 	return xe_walk.needs_invalidate;
+ }
+ 
++/**
++ * xe_pt_zap_ptes_range() - Zap (zero) gpu ptes of a SVM range
++ * @tile: The tile we're zapping for.
++ * @vm: The VM we're zapping for.
++ * @range: The SVM range we're zapping for.
++ *
++ * SVM invalidation needs to be able to zap the gpu ptes of a given address
++ * range. In order to be able to do that, that function needs access to the
++ * shared page-table entries so it can either clear the leaf PTEs or
++ * clear the pointers to lower-level page-tables. The caller is required
++ * to hold the SVM notifier lock.
++ *
++ * Return: Whether ptes were actually updated and a TLB invalidation is
++ * required.
++ */
++bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm *vm,
++			  struct xe_svm_range *range)
 +{
-+	/* TODO: Implement */
++	struct xe_pt_zap_ptes_walk xe_walk = {
++		.base = {
++			.ops = &xe_pt_zap_ptes_ops,
++			.shifts = xe_normal_pt_shifts,
++			.max_level = XE_PT_HIGHEST_LEVEL,
++		},
++		.tile = tile,
++	};
++	struct xe_pt *pt = vm->pt_root[tile->id];
++	u8 pt_mask = (range->tile_present & ~range->tile_invalidated);
++
++	xe_svm_assert_in_notifier(vm);
++
++	if (!(pt_mask & BIT(tile->id)))
++		return false;
++
++	(void)xe_pt_walk_shared(&pt->base, pt->level, range->base.itree.start,
++				range->base.itree.last + 1, &xe_walk.base);
++
++	return xe_walk.needs_invalidate;
 +}
 +
-+static const struct drm_gpusvm_ops gpusvm_ops = {
-+	.invalidate = xe_svm_invalidate,
-+};
+ static void
+ xe_vm_populate_pgtable(struct xe_migrate_pt_update *pt_update, struct xe_tile *tile,
+ 		       struct iosys_map *map, void *data,
+diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
+index 8e43912ae8e9..5ecf003d513c 100644
+--- a/drivers/gpu/drm/xe/xe_pt.h
++++ b/drivers/gpu/drm/xe/xe_pt.h
+@@ -45,5 +45,7 @@ void xe_pt_update_ops_fini(struct xe_tile *tile, struct xe_vma_ops *vops);
+ void xe_pt_update_ops_abort(struct xe_tile *tile, struct xe_vma_ops *vops);
+ 
+ bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma);
++bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm *vm,
++			  struct xe_svm_range *range);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 79da859f02b1..42f415a88bde 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -3,18 +3,208 @@
+  * Copyright © 2024 Intel Corporation
+  */
+ 
++#include "xe_gt_tlb_invalidation.h"
++#include "xe_pt.h"
+ #include "xe_svm.h"
+ #include "xe_vm.h"
+ #include "xe_vm_types.h"
+ 
++static struct xe_vm *gpusvm_to_vm(struct drm_gpusvm *gpusvm)
++{
++	return container_of(gpusvm, struct xe_vm, svm.gpusvm);
++}
 +
-+static const unsigned long fault_chunk_sizes[] = {
-+	SZ_2M,
-+	SZ_64K,
-+	SZ_4K,
-+};
++static struct xe_vm *range_to_vm(struct drm_gpusvm_range *r)
++{
++	return gpusvm_to_vm(r->gpusvm);
++}
++
++static unsigned long xe_svm_range_start(struct xe_svm_range *range)
++{
++	return drm_gpusvm_range_start(&range->base);
++}
++
++static unsigned long xe_svm_range_end(struct xe_svm_range *range)
++{
++	return drm_gpusvm_range_end(&range->base);
++}
++
++static struct drm_gpusvm_range *
++xe_svm_range_alloc(struct drm_gpusvm *gpusvm)
++{
++	struct xe_svm_range *range;
++
++	range = kzalloc(sizeof(*range), GFP_KERNEL);
++	if (!range)
++		return ERR_PTR(-ENOMEM);
++
++	xe_vm_get(gpusvm_to_vm(gpusvm));
++
++	return &range->base;
++}
++
++static void xe_svm_range_free(struct drm_gpusvm_range *range)
++{
++	xe_vm_put(range_to_vm(range));
++	kfree(range);
++}
++
++static struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
++{
++	return container_of(r, struct xe_svm_range, base);
++}
++
++static u8
++xe_svm_range_notifier_event_begin(struct xe_vm *vm, struct drm_gpusvm_range *r,
++				  const struct mmu_notifier_range *mmu_range,
++				  u64 *adj_start, u64 *adj_end)
++{
++	struct xe_svm_range *range = to_xe_range(r);
++	struct xe_device *xe = vm->xe;
++	struct xe_tile *tile;
++	u8 tile_mask = 0;
++	u8 id;
++
++	xe_svm_assert_in_notifier(vm);
++
++	/* Skip if already unmapped or if no binding exist */
++	if (range->base.flags.unmapped || !range->tile_present)
++		return 0;
++
++	/* Adjust invalidation to range boundaries */
++	if (xe_svm_range_start(range) < mmu_range->start)
++		*adj_start = xe_svm_range_start(range);
++	if (xe_svm_range_end(range) > mmu_range->end)
++		*adj_end = xe_svm_range_end(range);
++
++	/*
++	 * XXX: Ideally would zap PTEs in one shot in xe_svm_invalidate but the
++	 * invalidation code can't correctly cope with sparse ranges or
++	 * invalidations spanning multiple ranges.
++	 */
++	for_each_tile(tile, xe, id)
++		if (xe_pt_zap_ptes_range(tile, vm, range)) {
++			tile_mask |= BIT(id);
++			range->tile_invalidated |= BIT(id);
++		}
++
++	return tile_mask;
++}
++
++static void
++xe_svm_range_notifier_event_end(struct xe_vm *vm, struct drm_gpusvm_range *r,
++				const struct mmu_notifier_range *mmu_range)
++{
++	struct drm_gpusvm_ctx ctx = { .in_notifier = true, };
++
++	xe_svm_assert_in_notifier(vm);
++
++	drm_gpusvm_range_unmap_pages(&vm->svm.gpusvm, r, &ctx);
++	/* TODO: Add range to garbage collector if VM is not closed */
++}
++
+ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+ 			      struct drm_gpusvm_notifier *notifier,
+ 			      const struct mmu_notifier_range *mmu_range)
+ {
+-	/* TODO: Implement */
++	struct xe_vm *vm = gpusvm_to_vm(gpusvm);
++	struct xe_device *xe = vm->xe;
++	struct xe_tile *tile;
++	struct drm_gpusvm_range *r, *first;
++	struct xe_gt_tlb_invalidation_fence
++		fence[XE_MAX_TILES_PER_DEVICE * XE_MAX_GT_PER_TILE];
++	u64 adj_start = mmu_range->start, adj_end = mmu_range->end;
++	u8 tile_mask = 0;
++	u8 id;
++	u32 fence_id = 0;
++	long err;
++
++	xe_svm_assert_in_notifier(vm);
++
++	/* Adjust invalidation to notifier boundaries */
++	if (adj_start < drm_gpusvm_notifier_start(notifier))
++		adj_start = drm_gpusvm_notifier_start(notifier);
++	if (adj_end > drm_gpusvm_notifier_end(notifier))
++		adj_end = drm_gpusvm_notifier_end(notifier);
++
++	first = drm_gpusvm_range_find(notifier, adj_start, adj_end);
++	if (!first)
++		return;
++
++	/*
++	 * PTs may be getting destroyed so not safe to touch these but PT should
++	 * be invalidated at this point in time. Regardless we still need to
++	 * ensure any dma mappings are unmapped in the here.
++	 */
++	if (xe_vm_is_closed(vm))
++		goto range_notifier_event_end;
++
++	/*
++	 * XXX: Less than ideal to always wait on VM's resv slots if an
++	 * invalidation is not required. Could walk range list twice to figure
++	 * out if an invalidations is need, but also not ideal.
++	 */
++	err = dma_resv_wait_timeout(xe_vm_resv(vm),
++				    DMA_RESV_USAGE_BOOKKEEP,
++				    false, MAX_SCHEDULE_TIMEOUT);
++	XE_WARN_ON(err <= 0);
++
++	r = first;
++	drm_gpusvm_for_each_range(r, notifier, adj_start, adj_end)
++		tile_mask |= xe_svm_range_notifier_event_begin(vm, r, mmu_range,
++							       &adj_start,
++							       &adj_end);
++	if (!tile_mask)
++		goto range_notifier_event_end;
++
++	xe_device_wmb(xe);
++
++	for_each_tile(tile, xe, id) {
++		if (tile_mask & BIT(id)) {
++			int err;
++
++			xe_gt_tlb_invalidation_fence_init(tile->primary_gt,
++							  &fence[fence_id], true);
++
++			err = xe_gt_tlb_invalidation_range(tile->primary_gt,
++							   &fence[fence_id],
++							   adj_start,
++							   adj_end,
++							   vm->usm.asid);
++			if (WARN_ON_ONCE(err < 0))
++				goto wait;
++			++fence_id;
++
++			if (!tile->media_gt)
++				continue;
++
++			xe_gt_tlb_invalidation_fence_init(tile->media_gt,
++							  &fence[fence_id], true);
++
++			err = xe_gt_tlb_invalidation_range(tile->media_gt,
++							   &fence[fence_id],
++							   adj_start,
++							   adj_end,
++							   vm->usm.asid);
++			if (WARN_ON_ONCE(err < 0))
++				goto wait;
++			++fence_id;
++		}
++	}
++
++wait:
++	for (id = 0; id < fence_id; ++id)
++		xe_gt_tlb_invalidation_fence_wait(&fence[id]);
++
++range_notifier_event_end:
++	r = first;
++	drm_gpusvm_for_each_range(r, notifier, adj_start, adj_end)
++		xe_svm_range_notifier_event_end(vm, r, mmu_range);
+ }
+ 
+ static const struct drm_gpusvm_ops gpusvm_ops = {
++	.range_alloc = xe_svm_range_alloc,
++	.range_free = xe_svm_range_free,
+ 	.invalidate = xe_svm_invalidate,
+ };
+ 
+@@ -71,3 +261,44 @@ void xe_svm_fini(struct xe_vm *vm)
+ 
+ 	drm_gpusvm_fini(&vm->svm.gpusvm);
+ }
 +
 +/**
-+ * xe_svm_init() - SVM initialize
++ * xe_svm_handle_pagefault() - SVM handle page fault
 + * @vm: The VM.
++ * @vma: The CPU address mirror VMA.
++ * @tile: The tile upon the fault occurred.
++ * @fault_addr: The GPU fault address.
++ * @atomic: The fault atomic access bit.
 + *
-+ * Initialize SVM state which is embedded within the VM.
++ * Create GPU bindings for a SVM page fault.
 + *
 + * Return: 0 on success, negative error code on error.
 + */
-+int xe_svm_init(struct xe_vm *vm)
++int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
++			    struct xe_tile *tile, u64 fault_addr,
++			    bool atomic)
 +{
++	struct drm_gpusvm_ctx ctx = { .read_only = xe_vma_read_only(vma), };
++	struct drm_gpusvm_range *r;
 +	int err;
 +
-+	err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
-+			      current->mm, NULL, 0, vm->size,
-+			      SZ_512M, &gpusvm_ops, fault_chunk_sizes,
-+			      ARRAY_SIZE(fault_chunk_sizes));
-+	if (err)
-+		return err;
++	lockdep_assert_held_write(&vm->lock);
++	xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(vma));
 +
-+	drm_gpusvm_driver_set_lock(&vm->svm.gpusvm, &vm->lock);
++retry:
++	/* TODO: Run garbage collector */
 +
-+	return 0;
-+}
++	r = drm_gpusvm_range_find_or_insert(&vm->svm.gpusvm, fault_addr,
++					    xe_vma_start(vma), xe_vma_end(vma),
++					    &ctx);
++	if (IS_ERR(r))
++		return PTR_ERR(r);
 +
-+/**
-+ * xe_svm_close() - SVM close
-+ * @vm: The VM.
-+ *
-+ * Close SVM state (i.e., stop and flush all SVM actions).
-+ */
-+void xe_svm_close(struct xe_vm *vm)
-+{
-+	xe_assert(vm->xe, xe_vm_is_closed(vm));
-+}
++	err = drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r, &ctx);
++	if (err == -EFAULT || err == -EPERM)	/* Corner where CPU mappings have changed */
++		goto retry;
 +
-+/**
-+ * xe_svm_fini() - SVM finalize
-+ * @vm: The VM.
-+ *
-+ * Finalize SVM state which is embedded within the VM.
-+ */
-+void xe_svm_fini(struct xe_vm *vm)
-+{
-+	xe_assert(vm->xe, xe_vm_is_closed(vm));
++	/* TODO: Issue bind */
 +
-+	drm_gpusvm_fini(&vm->svm.gpusvm);
++	return err;
 +}
 diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-new file mode 100644
-index 000000000000..49cfd938aa17
---- /dev/null
+index 4569931db622..caf02138ae4f 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
 +++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -0,0 +1,17 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
+@@ -7,10 +7,29 @@
+ #define _XE_SVM_H_
+ 
+ #include <drm/drm_pagemap.h>
++#include <drm/drm_gpusvm.h>
+ 
+ #define XE_INTERCONNECT_VRAM DRM_INTERCONNECT_DRIVER
+ 
++struct xe_tile;
+ struct xe_vm;
++struct xe_vma;
 +
-+#ifndef _XE_SVM_H_
-+#define _XE_SVM_H_
++/** struct xe_svm_range - SVM range */
++struct xe_svm_range {
++	/** @base: base drm_gpusvm_range */
++	struct drm_gpusvm_range base;
++	/**
++	 * @tile_present: Tile mask of binding is present for this range.
++	 * Protected by GPU SVM notifier lock.
++	 */
++	u8 tile_present;
++	/**
++	 * @tile_invalidated: Tile mask of binding is invalidated for this
++	 * range. Protected by GPU SVM notifier lock.
++	 */
++	u8 tile_invalidated;
++};
+ 
+ int xe_svm_init(struct xe_vm *vm);
+ 
+@@ -18,4 +37,17 @@ void xe_svm_fini(struct xe_vm *vm);
+ 
+ void xe_svm_close(struct xe_vm *vm);
+ 
++int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
++			    struct xe_tile *tile, u64 fault_addr,
++			    bool atomic);
 +
-+struct xe_vm;
++#define xe_svm_assert_in_notifier(vm__) \
++	lockdep_assert_held_write(&(vm__)->svm.gpusvm.notifier_lock)
 +
-+int xe_svm_init(struct xe_vm *vm);
++#define xe_svm_notifier_lock(vm__)	\
++	drm_gpusvm_notifier_lock(&(vm__)->svm.gpusvm)
 +
-+void xe_svm_fini(struct xe_vm *vm);
++#define xe_svm_notifier_unlock(vm__)	\
++	drm_gpusvm_notifier_unlock(&(vm__)->svm.gpusvm)
 +
-+void xe_svm_close(struct xe_vm *vm);
-+
-+#endif
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 06d15ac8d64b..cbfe5fad1680 100644
+index 9cfb068f5845..7d16e34a408a 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -35,6 +35,7 @@
- #include "xe_pt.h"
- #include "xe_pxp.h"
- #include "xe_res_cursor.h"
-+#include "xe_svm.h"
- #include "xe_sync.h"
- #include "xe_trace_bo.h"
- #include "xe_wa.h"
-@@ -1525,6 +1526,12 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 		}
- 	}
- 
-+	if (flags & XE_VM_FLAG_FAULT_MODE) {
-+		err = xe_svm_init(vm);
-+		if (err)
-+			goto err_close;
-+	}
-+
- 	if (number_tiles > 1)
- 		vm->composite_fence_ctx = dma_fence_context_alloc(1);
- 
-@@ -1570,6 +1577,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 	xe_vm_close(vm);
- 	if (xe_vm_in_preempt_fence_mode(vm))
- 		flush_work(&vm->preempt.rebind_work);
-+	if (xe_vm_in_fault_mode(vm))
-+		xe_svm_close(vm);
- 
+@@ -1559,6 +1559,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ static void xe_vm_close(struct xe_vm *vm)
+ {
  	down_write(&vm->lock);
- 	for_each_tile(tile, xe, id) {
-@@ -1638,6 +1647,9 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 		xe_vma_destroy_unlocked(vma);
++	if (xe_vm_in_fault_mode(vm))
++		xe_svm_notifier_lock(vm);
+ 
+ 	vm->size = 0;
+ 
+@@ -1580,6 +1582,8 @@ static void xe_vm_close(struct xe_vm *vm)
+ 			xe_gt_tlb_invalidation_vm(gt, vm);
  	}
  
 +	if (xe_vm_in_fault_mode(vm))
-+		xe_svm_fini(vm);
-+
++		xe_svm_notifier_unlock(vm);
  	up_write(&vm->lock);
+ }
  
- 	down_write(&xe->usm.lock);
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 9f125d07d30f..18ec9003a48a 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_VM_TYPES_H_
- #define _XE_VM_TYPES_H_
- 
-+#include <drm/drm_gpusvm.h>
- #include <drm/drm_gpuvm.h>
- 
- #include <linux/dma-resv.h>
-@@ -140,6 +141,12 @@ struct xe_vm {
- 	/** @gpuvm: base GPUVM used to track VMAs */
- 	struct drm_gpuvm gpuvm;
- 
-+	/** @svm: Shared virtual memory state */
-+	struct {
-+		/** @svm.gpusvm: base GPUSVM used to track fault allocations */
-+		struct drm_gpusvm gpusvm;
-+	} svm;
-+
- 	struct xe_device *xe;
- 
- 	/* exec queue used for (un)binding vma's */
 -- 
 2.34.1
 
